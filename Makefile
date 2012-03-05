@@ -1,6 +1,3 @@
-#gawk sort order
-export LC_CTYPE=C
-
 .SUFFIXES: .asm .tx .o .gbc
 
 TEXTFILES =	
@@ -11,7 +8,7 @@ pokecrystal.o: pokecrystal.asm main.tx constants.asm ${TEXTFILES}
 	rgbasm -o pokecrystal.o pokecrystal.asm
 	
 .asm.tx:
-	awk -f textpre.awk < $< > $@
+	python textpre.py < $< > $@
 
 pokecrystal.gbc: pokecrystal.o
 	rgblink -o $@ $<

@@ -19,7 +19,7 @@ INCBIN "baserom.gbc",$20000,$4000
 SECTION "bank9",DATA,BANK[$9]
 INCBIN "baserom.gbc",$24000,$4000
 SECTION "bankA",DATA,BANK[$A]
-INCBIN "baserom.gbc",$28000,$$2A5e9 - $28000
+INCBIN "baserom.gbc",$28000,$2A5e9 - $28000
 
 	db $03,$02 ; Sprout Tower 2F
 	db $05,$05,$05 ; encounter rates: morn/day/nite
