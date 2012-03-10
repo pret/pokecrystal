@@ -2526,7 +2526,7 @@ map_names = {
               "label": "MahoganyPokeCenter1F"},
         0x4: {"name": "Route 42 Ecruteak Gate"},
         0x5: {"name": "Route 42"},
-        0x6: {"name": "Route 43"},
+        0x6: {"name": "Route 44"},
         0x7: {"name": "Mahogany Town"},
     },
     3: {

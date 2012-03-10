@@ -1563,7 +1563,7 @@ WildMons1: ; 0x2a5e9
 	db 17,VENOMOTH
 	db 17,VENOMOTH
 
-	db $02,$06 ; Route 43
+	db $02,$06 ; Route 44
 	db $19,$19,$19 ; encounter rates: morn/day/nite
 	; morn
 	db 23,TANGELA
