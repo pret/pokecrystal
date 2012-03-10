@@ -21,6 +21,9 @@ INCBIN "baserom.gbc",$24000,$4000
 SECTION "bankA",DATA,BANK[$A]
 INCBIN "baserom.gbc",$28000,$2A5e9 - $28000
 
+WildMons1: ; 0x2a5e9
+; Johto Pokémon in grass
+
 	db $03,$02 ; Sprout Tower 2F
 	db $05,$05,$05 ; encounter rates: morn/day/nite
 	; morn
@@ -1670,7 +1673,1275 @@ INCBIN "baserom.gbc",$28000,$2A5e9 - $28000
 
 	db $FF
 
-INCBIN "baserom.gbc",$2b11d,$2c000 - $2b11d
+
+WildMons2: ; 0x2b11d
+; Johto Pokémon in water
+
+	db $03,$16 ; Ruins of Alph (outside)
+	db $05 ; encounter rate
+	db 15,WOOPER
+	db 20,QUAGSIRE
+	db 15,QUAGSIRE
+
+	db $03,$25 ; Union Cave 1F
+	db $05 ; encounter rate
+	db 15,WOOPER
+	db 20,QUAGSIRE
+	db 15,QUAGSIRE
+
+	db $03,$26 ; Union Cave B1F
+	db $05 ; encounter rate
+	db 15,WOOPER
+	db 20,QUAGSIRE
+	db 15,QUAGSIRE
+
+	db $03,$27 ; Union Cave B2F
+	db $0a ; encounter rate
+	db 15,TENTACOOL
+	db 20,QUAGSIRE
+	db 20,TENTACRUEL
+
+	db $03,$28 ; Slowpoke Well B1F
+	db $05 ; encounter rate
+	db 15,SLOWPOKE
+	db 20,SLOWPOKE
+	db 10,SLOWPOKE
+
+	db $03,$29 ; Slowpoke Well B2F
+	db $05 ; encounter rate
+	db 15,SLOWPOKE
+	db 20,SLOWPOKE
+	db 20,SLOWBRO
+
+	db $03,$34 ; Ilex Forest
+	db $05 ; encounter rate
+	db 15,PSYDUCK
+	db 10,PSYDUCK
+	db 15,GOLDUCK
+
+	db $03,$39 ; Mount Mortar 1F
+	db $0a ; encounter rate
+	db 15,GOLDEEN
+	db 20,MARILL
+	db 20,SEAKING
+
+	db $03,$3b ; Mount Mortar 2F (inside)
+	db $05 ; encounter rate
+	db 20,GOLDEEN
+	db 25,MARILL
+	db 25,SEAKING
+
+	db $03,$3c ; Mount Mortar B1F
+	db $05 ; encounter rate
+	db 15,GOLDEEN
+	db 20,MARILL
+	db 20,SEAKING
+
+	db $03,$44 ; Whirl Island SW
+	db $0a ; encounter rate
+	db 20,TENTACOOL
+	db 15,HORSEA
+	db 20,TENTACRUEL
+
+	db $03,$48 ; Whirl Island B2F
+	db $0a ; encounter rate
+	db 15,HORSEA
+	db 20,HORSEA
+	db 20,TENTACRUEL
+
+	db $03,$49 ; Whirl Island, Lugia's chamber
+	db $0a ; encounter rate
+	db 20,HORSEA
+	db 20,TENTACRUEL
+	db 20,SEADRA
+
+	db $03,$4b ; Silver Cave 2
+	db $05 ; encounter rate
+	db 35,SEAKING
+	db 35,GOLDUCK
+	db 35,GOLDEEN
+
+	db $03,$4e ; Dark Cave, Violet entrance
+	db $05 ; encounter rate
+	db 15,MAGIKARP
+	db 10,MAGIKARP
+	db 5,MAGIKARP
+
+	db $03,$4f ; Dark Cave, Blackthorn entrance
+	db $05 ; encounter rate
+	db 15,MAGIKARP
+	db 10,MAGIKARP
+	db 5,MAGIKARP
+
+	db $03,$51 ; Dragon1s Den B1F
+	db $0a ; encounter rate
+	db 15,MAGIKARP
+	db 10,MAGIKARP
+	db 10,DRATINI
+
+	db $0f,$01 ; Olivine Port
+	db $05 ; encounter rate
+	db 20,TENTACOOL
+	db 15,TENTACOOL
+	db 20,TENTACRUEL
+
+	db $1a,$01 ; Route 30
+	db $05 ; encounter rate
+	db 20,POLIWAG
+	db 15,POLIWAG
+	db 20,POLIWHIRL
+
+	db $1a,$02 ; Route 31
+	db $05 ; encounter rate
+	db 20,POLIWAG
+	db 15,POLIWAG
+	db 20,POLIWHIRL
+
+	db $0a,$01 ; Route 32
+	db $0f ; encounter rate
+	db 15,TENTACOOL
+	db 20,QUAGSIRE
+	db 20,TENTACRUEL
+
+	db $0b,$01 ; Route 34
+	db $0f ; encounter rate
+	db 20,TENTACOOL
+	db 15,TENTACOOL
+	db 20,TENTACRUEL
+
+	db $0a,$02 ; Route 35
+	db $0a ; encounter rate
+	db 20,PSYDUCK
+	db 15,PSYDUCK
+	db 20,GOLDUCK
+
+	db $16,$01 ; Route 40
+	db $0f ; encounter rate
+	db 20,TENTACOOL
+	db 15,TENTACOOL
+	db 20,TENTACRUEL
+
+	db $16,$02 ; Route 41
+	db $0f ; encounter rate
+	db 20,TENTACOOL
+	db 20,TENTACRUEL
+	db 20,MANTINE
+
+	db $02,$05 ; Route 42
+	db $0a ; encounter rate
+	db 20,GOLDEEN
+	db 15,GOLDEEN
+	db 20,SEAKING
+
+	db $09,$05 ; Route 43
+	db $05 ; encounter rate
+	db 20,MAGIKARP
+	db 15,MAGIKARP
+	db 10,MAGIKARP
+
+	db $02,$06 ; Route 44
+	db $05 ; encounter rate
+	db 25,POLIWAG
+	db 20,POLIWAG
+	db 25,POLIWHIRL
+
+	db $05,$08 ; Route 45
+	db $05 ; encounter rate
+	db 20,MAGIKARP
+	db 15,MAGIKARP
+	db 5,MAGIKARP
+
+	db $18,$04 ; New Bark Town
+	db $0f ; encounter rate
+	db 20,TENTACOOL
+	db 15,TENTACOOL
+	db 20,TENTACRUEL
+
+	db $1a,$03 ; Cherrygrove City
+	db $0f ; encounter rate
+	db 20,TENTACOOL
+	db 15,TENTACOOL
+	db 20,TENTACRUEL
+
+	db $0a,$05 ; Violet City
+	db $05 ; encounter rate
+	db 20,POLIWAG
+	db 15,POLIWAG
+	db 20,POLIWHIRL
+
+	db $16,$03 ; Cianwood City
+	db $0f ; encounter rate
+	db 20,TENTACOOL
+	db 15,TENTACOOL
+	db 20,TENTACRUEL
+
+	db $01,$0e ; Olivine City
+	db $0f ; encounter rate
+	db 20,TENTACOOL
+	db 15,TENTACOOL
+	db 20,TENTACRUEL
+
+	db $04,$09 ; Ecruteak City
+	db $05 ; encounter rate
+	db 20,POLIWAG
+	db 15,POLIWAG
+	db 20,POLIWHIRL
+
+	db $09,$06 ; Lake of Rage
+	db $0f ; encounter rate
+	db 15,MAGIKARP
+	db 10,MAGIKARP
+	db 15,GYARADOS
+
+	db $05,$0a ; Blackthorn City
+	db $0a ; encounter rate
+	db 15,MAGIKARP
+	db 10,MAGIKARP
+	db 5,MAGIKARP
+
+	db $13,$02 ; Silver Cave outside
+	db $05 ; encounter rate
+	db 35,POLIWHIRL
+	db 40,POLIWHIRL
+	db 35,POLIWAG
+
+	db $FF
+
+WildMons3: ; 0x2b274
+; Kanto Pokémon in grass
+
+	db $03,$54 ; Diglett's Cave
+	db $0a,$05,$14 ; encounter rates: morn/day/nite
+	; morn
+	db 3,DIGLETT
+	db 6,DIGLETT
+	db 12,DIGLETT
+	db 24,DIGLETT
+	db 24,DUGTRIO
+	db 24,DUGTRIO
+	db 24,DUGTRIO
+	; day
+	db 2,DIGLETT
+	db 4,DIGLETT
+	db 8,DIGLETT
+	db 16,DIGLETT
+	db 16,DUGTRIO
+	db 16,DUGTRIO
+	db 16,DUGTRIO
+	; nite
+	db 4,DIGLETT
+	db 8,DIGLETT
+	db 16,DIGLETT
+	db 32,DIGLETT
+	db 32,DUGTRIO
+	db 32,DUGTRIO
+	db 32,DUGTRIO
+
+	db $03,$55 ; Mount Moon
+	db $0f,$0f,$0f ; encounter rates: morn/day/nite
+	; morn
+	db 6,ZUBAT
+	db 8,GEODUDE
+	db 8,SANDSHREW
+	db 12,PARAS
+	db 10,GEODUDE
+	db 8,CLEFAIRY
+	db 8,CLEFAIRY
+	; day
+	db 6,ZUBAT
+	db 8,GEODUDE
+	db 8,SANDSHREW
+	db 12,PARAS
+	db 10,GEODUDE
+	db 8,CLEFAIRY
+	db 8,CLEFAIRY
+	; nite
+	db 6,ZUBAT
+	db 8,GEODUDE
+	db 8,CLEFAIRY
+	db 12,PARAS
+	db 10,GEODUDE
+	db 12,CLEFAIRY
+	db 12,CLEFAIRY
+
+	db $03,$57 ; Rock Tunnel 1F
+	db $0f,$0f,$0f ; encounter rates: morn/day/nite
+	; morn
+	db 10,CUBONE
+	db 11,GEODUDE
+	db 12,MACHOP
+	db 12,ZUBAT
+	db 15,MACHOKE
+	db 12,MAROWAK
+	db 12,MAROWAK
+	; day
+	db 10,CUBONE
+	db 11,GEODUDE
+	db 12,MACHOP
+	db 12,ZUBAT
+	db 15,MACHOKE
+	db 12,MAROWAK
+	db 12,MAROWAK
+	; nite
+	db 12,ZUBAT
+	db 11,GEODUDE
+	db 12,GEODUDE
+	db 17,HAUNTER
+	db 15,ZUBAT
+	db 15,ZUBAT
+	db 15,ZUBAT
+
+	db $03,$58 ; Rock Tunnel B1F
+	db $0f,$0f,$0f ; encounter rates: morn/day/nite
+	; morn
+	db 12,CUBONE
+	db 14,GEODUDE
+	db 16,ONIX
+	db 12,ZUBAT
+	db 15,MAROWAK
+	db 15,KANGASKHAN
+	db 15,KANGASKHAN
+	; day
+	db 12,CUBONE
+	db 14,GEODUDE
+	db 16,ONIX
+	db 12,ZUBAT
+	db 15,MAROWAK
+	db 15,KANGASKHAN
+	db 15,KANGASKHAN
+	; nite
+	db 12,ZUBAT
+	db 14,GEODUDE
+	db 16,ONIX
+	db 15,ZUBAT
+	db 15,HAUNTER
+	db 15,GOLBAT
+	db 15,GOLBAT
+
+	db $03,$5b ; Victory Road
+	db $0f,$0f,$0f ; encounter rates: morn/day/nite
+	; morn
+	db 34,GRAVELER
+	db 32,RHYHORN
+	db 33,ONIX
+	db 34,GOLBAT
+	db 35,SANDSLASH
+	db 35,RHYDON
+	db 35,RHYDON
+	; day
+	db 34,GRAVELER
+	db 32,RHYHORN
+	db 33,ONIX
+	db 34,GOLBAT
+	db 35,SANDSLASH
+	db 35,RHYDON
+	db 35,RHYDON
+	; nite
+	db 34,GOLBAT
+	db 34,GRAVELER
+	db 32,ONIX
+	db 36,GRAVELER
+	db 38,GRAVELER
+	db 40,GRAVELER
+	db 40,GRAVELER
+
+	db $03,$53 ; Tohjo Falls
+	db $0f,$0f,$0f ; encounter rates: morn/day/nite
+	; morn
+	db 22,ZUBAT
+	db 22,RATICATE
+	db 24,GOLBAT
+	db 21,SLOWPOKE
+	db 20,RATTATA
+	db 23,SLOWPOKE
+	db 23,SLOWPOKE
+	; day
+	db 22,ZUBAT
+	db 22,RATICATE
+	db 24,GOLBAT
+	db 21,SLOWPOKE
+	db 20,RATTATA
+	db 23,SLOWPOKE
+	db 23,SLOWPOKE
+	; nite
+	db 22,ZUBAT
+	db 22,RATICATE
+	db 24,GOLBAT
+	db 21,SLOWPOKE
+	db 20,RATTATA
+	db 23,SLOWPOKE
+	db 23,SLOWPOKE
+
+	db $0d,$01 ; Route 1
+	db $19,$19,$19 ; encounter rates: morn/day/nite
+	; morn
+	db 2,PIDGEY
+	db 2,RATTATA
+	db 3,SENTRET
+	db 3,PIDGEY
+	db 6,FURRET
+	db 4,PIDGEY
+	db 4,PIDGEY
+	; day
+	db 2,PIDGEY
+	db 2,RATTATA
+	db 3,SENTRET
+	db 3,PIDGEY
+	db 6,FURRET
+	db 4,PIDGEY
+	db 4,PIDGEY
+	; nite
+	db 2,HOOTHOOT
+	db 2,RATTATA
+	db 3,RATTATA
+	db 3,HOOTHOOT
+	db 6,RATICATE
+	db 4,HOOTHOOT
+	db 4,HOOTHOOT
+
+	db $17,$01 ; Route 2
+	db $19,$19,$19 ; encounter rates: morn/day/nite
+	; morn
+	db 3,CATERPIE
+	db 3,LEDYBA
+	db 5,PIDGEY
+	db 7,BUTTERFREE
+	db 7,LEDIAN
+	db 4,PIKACHU
+	db 4,PIKACHU
+	; day
+	db 3,CATERPIE
+	db 3,PIDGEY
+	db 5,PIDGEY
+	db 7,BUTTERFREE
+	db 7,PIDGEOTTO
+	db 4,PIKACHU
+	db 4,PIKACHU
+	; nite
+	db 3,HOOTHOOT
+	db 3,SPINARAK
+	db 5,HOOTHOOT
+	db 7,NOCTOWL
+	db 7,ARIADOS
+	db 4,NOCTOWL
+	db 4,NOCTOWL
+
+	db $0e,$01 ; Route 3
+	db $19,$19,$19 ; encounter rates: morn/day/nite
+	; morn
+	db 5,SPEAROW
+	db 5,RATTATA
+	db 8,EKANS
+	db 10,RATICATE
+	db 10,ARBOK
+	db 10,SANDSHREW
+	db 10,SANDSHREW
+	; day
+	db 5,SPEAROW
+	db 5,RATTATA
+	db 8,EKANS
+	db 10,RATICATE
+	db 10,ARBOK
+	db 10,SANDSHREW
+	db 10,SANDSHREW
+	; nite
+	db 5,RATTATA
+	db 10,RATTATA
+	db 10,RATICATE
+	db 6,ZUBAT
+	db 5,RATTATA
+	db 6,CLEFAIRY
+	db 6,CLEFAIRY
+
+	db $07,$0c ; Route 4
+	db $19,$19,$19 ; encounter rates: morn/day/nite
+	; morn
+	db 5,SPEAROW
+	db 5,RATTATA
+	db 8,EKANS
+	db 10,RATICATE
+	db 10,ARBOK
+	db 10,SANDSHREW
+	db 10,SANDSHREW
+	; day
+	db 5,SPEAROW
+	db 5,RATTATA
+	db 8,EKANS
+	db 10,RATICATE
+	db 10,ARBOK
+	db 10,SANDSHREW
+	db 10,SANDSHREW
+	; nite
+	db 5,RATTATA
+	db 10,RATTATA
+	db 10,RATICATE
+	db 6,ZUBAT
+	db 5,RATTATA
+	db 6,CLEFAIRY
+	db 6,CLEFAIRY
+
+	db $19,$01 ; Route 5
+	db $19,$19,$19 ; encounter rates: morn/day/nite
+	; morn
+	db 13,PIDGEY
+	db 13,SNUBBULL
+	db 15,PIDGEOTTO
+	db 12,ABRA
+	db 14,JIGGLYPUFF
+	db 14,ABRA
+	db 14,ABRA
+	; day
+	db 13,PIDGEY
+	db 13,SNUBBULL
+	db 15,PIDGEOTTO
+	db 12,ABRA
+	db 14,JIGGLYPUFF
+	db 14,ABRA
+	db 14,ABRA
+	; nite
+	db 13,HOOTHOOT
+	db 13,MEOWTH
+	db 15,NOCTOWL
+	db 12,ABRA
+	db 14,JIGGLYPUFF
+	db 14,ABRA
+	db 14,ABRA
+
+	db $0c,$01 ; Route 6
+	db $19,$19,$19 ; encounter rates: morn/day/nite
+	; morn
+	db 13,RATTATA
+	db 13,SNUBBULL
+	db 14,MAGNEMITE
+	db 15,RATICATE
+	db 12,JIGGLYPUFF
+	db 15,GRANBULL
+	db 15,GRANBULL
+	; day
+	db 13,RATTATA
+	db 13,SNUBBULL
+	db 14,MAGNEMITE
+	db 15,RATICATE
+	db 12,JIGGLYPUFF
+	db 15,GRANBULL
+	db 15,GRANBULL
+	; nite
+	db 13,MEOWTH
+	db 13,DROWZEE
+	db 14,MAGNEMITE
+	db 15,PSYDUCK
+	db 12,JIGGLYPUFF
+	db 15,RATICATE
+	db 15,RATICATE
+
+	db $15,$01 ; Route 7
+	db $19,$19,$19 ; encounter rates: morn/day/nite
+	; morn
+	db 17,RATTATA
+	db 17,SPEAROW
+	db 18,SNUBBULL
+	db 18,RATICATE
+	db 18,JIGGLYPUFF
+	db 16,ABRA
+	db 16,ABRA
+	; day
+	db 17,RATTATA
+	db 17,SPEAROW
+	db 18,SNUBBULL
+	db 18,RATICATE
+	db 18,JIGGLYPUFF
+	db 16,ABRA
+	db 16,ABRA
+	; nite
+	db 17,MEOWTH
+	db 17,MURKROW
+	db 18,HOUNDOUR
+	db 18,PERSIAN
+	db 18,JIGGLYPUFF
+	db 16,ABRA
+	db 16,ABRA
+
+	db $12,$01 ; Route 8
+	db $19,$19,$19 ; encounter rates: morn/day/nite
+	; morn
+	db 17,SNUBBULL
+	db 19,PIDGEOTTO
+	db 16,ABRA
+	db 17,GROWLITHE
+	db 16,JIGGLYPUFF
+	db 18,KADABRA
+	db 18,KADABRA
+	; day
+	db 17,SNUBBULL
+	db 19,PIDGEOTTO
+	db 16,ABRA
+	db 17,GROWLITHE
+	db 16,JIGGLYPUFF
+	db 18,KADABRA
+	db 18,KADABRA
+	; nite
+	db 17,MEOWTH
+	db 20,NOCTOWL
+	db 16,ABRA
+	db 17,HAUNTER
+	db 16,JIGGLYPUFF
+	db 18,KADABRA
+	db 18,KADABRA
+
+	db $07,$0d ; Route 9
+	db $19,$19,$19 ; encounter rates: morn/day/nite
+	; morn
+	db 15,RATTATA
+	db 15,SPEAROW
+	db 15,RATICATE
+	db 15,FEAROW
+	db 15,FEAROW
+	db 18,MAROWAK
+	db 18,MAROWAK
+	; day
+	db 15,RATTATA
+	db 15,SPEAROW
+	db 15,RATICATE
+	db 15,FEAROW
+	db 15,FEAROW
+	db 18,MAROWAK
+	db 18,MAROWAK
+	; nite
+	db 15,RATTATA
+	db 15,VENONAT
+	db 15,RATICATE
+	db 15,VENOMOTH
+	db 15,ZUBAT
+	db 18,RATICATE
+	db 18,RATICATE
+
+	db $07,$0e ; Route 10
+	db $19,$19,$19 ; encounter rates: morn/day/nite
+	; morn
+	db 15,SPEAROW
+	db 17,VOLTORB
+	db 15,RATICATE
+	db 15,FEAROW
+	db 15,MAROWAK
+	db 16,ELECTABUZZ
+	db 16,ELECTABUZZ
+	; day
+	db 15,SPEAROW
+	db 17,VOLTORB
+	db 15,RATICATE
+	db 15,FEAROW
+	db 15,MAROWAK
+	db 18,ELECTABUZZ
+	db 18,ELECTABUZZ
+	; nite
+	db 15,VENONAT
+	db 17,VOLTORB
+	db 15,RATICATE
+	db 15,VENOMOTH
+	db 15,ZUBAT
+	db 16,ELECTABUZZ
+	db 16,ELECTABUZZ
+
+	db $0c,$02 ; Route 11
+	db $19,$19,$19 ; encounter rates: morn/day/nite
+	; morn
+	db 14,HOPPIP
+	db 13,RATICATE
+	db 15,MAGNEMITE
+	db 16,PIDGEOTTO
+	db 16,RATTATA
+	db 16,HOPPIP
+	db 16,HOPPIP
+	; day
+	db 14,HOPPIP
+	db 13,RATICATE
+	db 15,MAGNEMITE
+	db 16,PIDGEOTTO
+	db 16,RATTATA
+	db 16,HOPPIP
+	db 16,HOPPIP
+	; nite
+	db 14,DROWZEE
+	db 13,MEOWTH
+	db 15,MAGNEMITE
+	db 16,NOCTOWL
+	db 16,RATICATE
+	db 16,HYPNO
+	db 16,HYPNO
+
+	db $11,$01 ; Route 13
+	db $19,$19,$19 ; encounter rates: morn/day/nite
+	; morn
+	db 23,NIDORINO
+	db 23,NIDORINA
+	db 25,PIDGEOTTO
+	db 25,HOPPIP
+	db 27,HOPPIP
+	db 27,HOPPIP
+	db 25,CHANSEY
+	; day
+	db 23,NIDORINO
+	db 23,NIDORINA
+	db 25,PIDGEOTTO
+	db 25,HOPPIP
+	db 27,HOPPIP
+	db 27,HOPPIP
+	db 25,CHANSEY
+	; nite
+	db 23,VENONAT
+	db 23,QUAGSIRE
+	db 25,NOCTOWL
+	db 25,VENOMOTH
+	db 25,QUAGSIRE
+	db 25,QUAGSIRE
+	db 25,CHANSEY
+
+	db $11,$02 ; Route 14
+	db $19,$19,$19 ; encounter rates: morn/day/nite
+	; morn
+	db 26,NIDORINO
+	db 26,NIDORINA
+	db 28,PIDGEOTTO
+	db 28,HOPPIP
+	db 30,SKIPLOOM
+	db 30,SKIPLOOM
+	db 28,CHANSEY
+	; day
+	db 26,NIDORINO
+	db 26,NIDORINA
+	db 28,PIDGEOTTO
+	db 28,HOPPIP
+	db 30,SKIPLOOM
+	db 30,SKIPLOOM
+	db 28,CHANSEY
+	; nite
+	db 26,VENONAT
+	db 26,QUAGSIRE
+	db 28,NOCTOWL
+	db 28,VENOMOTH
+	db 28,QUAGSIRE
+	db 28,QUAGSIRE
+	db 28,CHANSEY
+
+	db $11,$03 ; Route 15
+	db $19,$19,$19 ; encounter rates: morn/day/nite
+	; morn
+	db 23,NIDORINO
+	db 23,NIDORINA
+	db 25,PIDGEOTTO
+	db 25,HOPPIP
+	db 27,HOPPIP
+	db 27,HOPPIP
+	db 25,CHANSEY
+	; day
+	db 23,NIDORINO
+	db 23,NIDORINA
+	db 25,PIDGEOTTO
+	db 25,HOPPIP
+	db 27,HOPPIP
+	db 27,HOPPIP
+	db 25,CHANSEY
+	; nite
+	db 23,VENONAT
+	db 23,QUAGSIRE
+	db 25,NOCTOWL
+	db 25,VENOMOTH
+	db 25,QUAGSIRE
+	db 25,QUAGSIRE
+	db 25,CHANSEY
+
+	db $15,$02 ; Route 16
+	db $19,$19,$19 ; encounter rates: morn/day/nite
+	; morn
+	db 26,GRIMER
+	db 27,FEAROW
+	db 28,GRIMER
+	db 29,FEAROW
+	db 29,FEAROW
+	db 30,MUK
+	db 30,MUK
+	; day
+	db 26,GRIMER
+	db 27,FEAROW
+	db 28,GRIMER
+	db 29,FEAROW
+	db 29,SLUGMA
+	db 30,MUK
+	db 30,MUK
+	; nite
+	db 26,GRIMER
+	db 27,GRIMER
+	db 28,GRIMER
+	db 29,MURKROW
+	db 29,MURKROW
+	db 30,MUK
+	db 30,MUK
+
+	db $15,$03 ; Route 17
+	db $19,$19,$19 ; encounter rates: morn/day/nite
+	; morn
+	db 30,FEAROW
+	db 29,GRIMER
+	db 31,GRIMER
+	db 32,FEAROW
+	db 33,GRIMER
+	db 33,MUK
+	db 33,MUK
+	; day
+	db 30,FEAROW
+	db 29,SLUGMA
+	db 29,GRIMER
+	db 32,FEAROW
+	db 32,SLUGMA
+	db 33,MUK
+	db 33,MUK
+	; nite
+	db 30,GRIMER
+	db 29,GRIMER
+	db 31,GRIMER
+	db 32,GRIMER
+	db 33,GRIMER
+	db 33,MUK
+	db 33,MUK
+
+	db $11,$04 ; Route 18
+	db $19,$19,$19 ; encounter rates: morn/day/nite
+	; morn
+	db 26,GRIMER
+	db 27,FEAROW
+	db 28,GRIMER
+	db 29,FEAROW
+	db 29,FEAROW
+	db 30,MUK
+	db 30,MUK
+	; day
+	db 26,GRIMER
+	db 27,FEAROW
+	db 28,GRIMER
+	db 29,FEAROW
+	db 29,SLUGMA
+	db 30,MUK
+	db 30,MUK
+	; nite
+	db 26,GRIMER
+	db 27,GRIMER
+	db 28,GRIMER
+	db 29,GRIMER
+	db 29,GRIMER
+	db 30,MUK
+	db 30,MUK
+
+	db $06,$07 ; Route 21
+	db $0f,$0f,$0f ; encounter rates: morn/day/nite
+	; morn
+	db 30,TANGELA
+	db 25,RATTATA
+	db 35,TANGELA
+	db 20,RATICATE
+	db 30,MR__MIME
+	db 28,MR__MIME
+	db 28,MR__MIME
+	; day
+	db 30,TANGELA
+	db 25,RATTATA
+	db 35,TANGELA
+	db 20,RATICATE
+	db 28,MR__MIME
+	db 30,MR__MIME
+	db 30,MR__MIME
+	; nite
+	db 30,TANGELA
+	db 25,RATTATA
+	db 35,TANGELA
+	db 20,RATICATE
+	db 30,TANGELA
+	db 28,TANGELA
+	db 28,TANGELA
+
+	db $17,$02 ; Route 22
+	db $19,$19,$19 ; encounter rates: morn/day/nite
+	; morn
+	db 3,RATTATA
+	db 3,SPEAROW
+	db 5,SPEAROW
+	db 4,DODUO
+	db 6,PONYTA
+	db 7,FEAROW
+	db 7,FEAROW
+	; day
+	db 3,RATTATA
+	db 3,SPEAROW
+	db 5,SPEAROW
+	db 4,DODUO
+	db 6,PONYTA
+	db 7,FEAROW
+	db 7,FEAROW
+	; nite
+	db 3,RATTATA
+	db 3,POLIWAG
+	db 5,RATTATA
+	db 4,POLIWAG
+	db 6,RATTATA
+	db 7,RATTATA
+	db 7,RATTATA
+
+	db $07,$0f ; Route 24
+	db $19,$19,$19 ; encounter rates: morn/day/nite
+	; morn
+	db 8,CATERPIE
+	db 10,CATERPIE
+	db 12,METAPOD
+	db 12,ABRA
+	db 10,BELLSPROUT
+	db 14,BUTTERFREE
+	db 14,BUTTERFREE
+	; day
+	db 8,CATERPIE
+	db 12,SUNKERN
+	db 10,CATERPIE
+	db 12,ABRA
+	db 10,BELLSPROUT
+	db 14,BUTTERFREE
+	db 14,BUTTERFREE
+	; nite
+	db 10,VENONAT
+	db 10,ODDISH
+	db 12,ODDISH
+	db 12,ABRA
+	db 10,BELLSPROUT
+	db 14,GLOOM
+	db 14,GLOOM
+
+	db $07,$10 ; Route 25
+	db $19,$19,$19 ; encounter rates: morn/day/nite
+	; morn
+	db 10,CATERPIE
+	db 10,PIDGEY
+	db 12,PIDGEOTTO
+	db 12,METAPOD
+	db 10,BELLSPROUT
+	db 14,BUTTERFREE
+	db 14,BUTTERFREE
+	; day
+	db 10,CATERPIE
+	db 10,PIDGEY
+	db 12,PIDGEOTTO
+	db 12,METAPOD
+	db 10,BELLSPROUT
+	db 14,BUTTERFREE
+	db 14,BUTTERFREE
+	; nite
+	db 10,ODDISH
+	db 10,HOOTHOOT
+	db 10,VENONAT
+	db 12,NOCTOWL
+	db 10,BELLSPROUT
+	db 14,NOCTOWL
+	db 14,NOCTOWL
+
+	db $18,$01 ; Route 26
+	db $19,$19,$19 ; encounter rates: morn/day/nite
+	; morn
+	db 28,DODUO
+	db 28,SANDSLASH
+	db 32,PONYTA
+	db 30,RATICATE
+	db 30,DODUO
+	db 30,ARBOK
+	db 30,ARBOK
+	; day
+	db 28,DODUO
+	db 28,SANDSLASH
+	db 32,PONYTA
+	db 30,RATICATE
+	db 30,DODUO
+	db 30,ARBOK
+	db 30,ARBOK
+	; nite
+	db 28,NOCTOWL
+	db 28,RATICATE
+	db 32,NOCTOWL
+	db 30,RATICATE
+	db 30,QUAGSIRE
+	db 30,QUAGSIRE
+	db 30,QUAGSIRE
+
+	db $18,$02 ; Route 27
+	db $19,$19,$19 ; encounter rates: morn/day/nite
+	; morn
+	db 28,DODUO
+	db 28,ARBOK
+	db 30,RATICATE
+	db 30,DODUO
+	db 32,PONYTA
+	db 30,DODRIO
+	db 30,DODRIO
+	; day
+	db 28,DODUO
+	db 28,ARBOK
+	db 30,RATICATE
+	db 30,DODUO
+	db 32,PONYTA
+	db 30,DODRIO
+	db 30,DODRIO
+	; nite
+	db 28,QUAGSIRE
+	db 28,NOCTOWL
+	db 30,RATICATE
+	db 30,QUAGSIRE
+	db 32,NOCTOWL
+	db 32,NOCTOWL
+	db 32,NOCTOWL
+
+	db $13,$01 ; Route 28
+	db $19,$19,$19 ; encounter rates: morn/day/nite
+	; morn
+	db 39,TANGELA
+	db 40,PONYTA
+	db 40,RAPIDASH
+	db 42,ARBOK
+	db 41,DODUO
+	db 43,DODRIO
+	db 43,DODRIO
+	; day
+	db 39,TANGELA
+	db 40,PONYTA
+	db 40,RAPIDASH
+	db 42,ARBOK
+	db 41,DODUO
+	db 43,DODRIO
+	db 43,DODRIO
+	; nite
+	db 39,TANGELA
+	db 40,POLIWHIRL
+	db 40,GOLBAT
+	db 40,POLIWHIRL
+	db 42,GOLBAT
+	db 42,GOLBAT
+	db 42,GOLBAT
+
+	db $FF
+
+WildMons4: ; 0x2b7f7
+; Kanto Pokémon in water
+
+	db $03,$53 ; Tohjo Falls
+	db $0a ; encounter rate
+	db 20,GOLDEEN
+	db 20,SLOWPOKE
+	db 20,SEAKING
+
+	db $0f,$02 ; Vermilion Port
+	db $05 ; encounter rate
+	db 35,TENTACOOL
+	db 30,TENTACOOL
+	db 35,TENTACRUEL
+
+	db $07,$0c ; Route 4
+	db $0a ; encounter rate
+	db 10,GOLDEEN
+	db 5,GOLDEEN
+	db 10,SEAKING
+
+	db $0c,$01 ; Route 6
+	db $05 ; encounter rate
+	db 10,PSYDUCK
+	db 5,PSYDUCK
+	db 10,GOLDUCK
+
+	db $07,$0d ; Route 9
+	db $0a ; encounter rate
+	db 15,GOLDEEN
+	db 10,GOLDEEN
+	db 15,SEAKING
+
+	db $07,$0e ; Route 10
+	db $0a ; encounter rate
+	db 15,GOLDEEN
+	db 10,GOLDEEN
+	db 15,SEAKING
+
+	db $12,$02 ; Route 12
+	db $0f ; encounter rate
+	db 25,TENTACOOL
+	db 25,QUAGSIRE
+	db 25,TENTACRUEL
+
+	db $11,$01 ; Route 13
+	db $0f ; encounter rate
+	db 25,TENTACOOL
+	db 25,QUAGSIRE
+	db 25,TENTACRUEL
+
+	db $06,$05 ; Route 19
+	db $0f ; encounter rate
+	db 35,TENTACOOL
+	db 30,TENTACOOL
+	db 35,TENTACRUEL
+
+	db $06,$06 ; Route 20
+	db $0f ; encounter rate
+	db 35,TENTACOOL
+	db 30,TENTACOOL
+	db 35,TENTACRUEL
+
+	db $06,$07 ; Route 21
+	db $0f ; encounter rate
+	db 35,TENTACOOL
+	db 30,TENTACOOL
+	db 35,TENTACRUEL
+
+	db $17,$02 ; Route 22
+	db $05 ; encounter rate
+	db 10,POLIWAG
+	db 5,POLIWAG
+	db 10,POLIWHIRL
+
+	db $07,$0f ; Route 24
+	db $0a ; encounter rate
+	db 10,GOLDEEN
+	db 5,GOLDEEN
+	db 10,SEAKING
+
+	db $07,$10 ; Route 25
+	db $0a ; encounter rate
+	db 10,GOLDEEN
+	db 5,GOLDEEN
+	db 10,SEAKING
+
+	db $18,$01 ; Route 26
+	db $0f ; encounter rate
+	db 30,TENTACOOL
+	db 25,TENTACOOL
+	db 30,TENTACRUEL
+
+	db $18,$02 ; Route 27
+	db $0f ; encounter rate
+	db 20,TENTACOOL
+	db 15,TENTACOOL
+	db 20,TENTACRUEL
+
+	db $13,$01 ; Route 28
+	db $05 ; encounter rate
+	db 40,POLIWAG
+	db 35,POLIWAG
+	db 40,POLIWHIRL
+
+	db $0d,$02 ; Pallet Town
+	db $0f ; encounter rate
+	db 35,TENTACOOL
+	db 30,TENTACOOL
+	db 35,TENTACRUEL
+
+	db $17,$03 ; Viridian City
+	db $05 ; encounter rate
+	db 10,POLIWAG
+	db 5,POLIWAG
+	db 10,POLIWHIRL
+
+	db $07,$11 ; Cerulean City
+	db $0a ; encounter rate
+	db 10,GOLDEEN
+	db 5,GOLDEEN
+	db 10,SEAKING
+
+	db $0c,$03 ; Vermilion City
+	db $0f ; encounter rate
+	db 35,TENTACOOL
+	db 30,TENTACOOL
+	db 35,TENTACRUEL
+
+	db $15,$04 ; Celadon City
+	db $05 ; encounter rate
+	db 20,GRIMER
+	db 15,GRIMER
+	db 15,MUK
+
+	db $11,$05 ; Fuchsia City
+	db $05 ; encounter rate
+	db 20,MAGIKARP
+	db 15,MAGIKARP
+	db 10,MAGIKARP
+
+	db $06,$08 ; Cinnabar Island
+	db $0f ; encounter rate
+	db 35,TENTACOOL
+	db 30,TENTACOOL
+	db 35,TENTACRUEL
+
+	db $FF
+
+
+WildMons5: ; 0x2b8d0
+; swarms in grass
+
+; Dunsparce swarm
+	db $03,$4e ; Dark Cave, Violet Entrance
+	db $0a,$0a,$0a ; encounter rates: morn/day/nite
+	; morn
+	db 3,GEODUDE
+	db 3,DUNSPARCE
+	db 2,ZUBAT
+	db 2,GEODUDE
+	db 2,DUNSPARCE
+	db 4,DUNSPARCE
+	db 4,DUNSPARCE
+	; day
+	db 3,GEODUDE
+	db 3,DUNSPARCE
+	db 2,ZUBAT
+	db 2,GEODUDE
+	db 2,DUNSPARCE
+	db 4,DUNSPARCE
+	db 4,DUNSPARCE
+	; nite
+	db 3,GEODUDE
+	db 3,DUNSPARCE
+	db 2,ZUBAT
+	db 2,GEODUDE
+	db 2,DUNSPARCE
+	db 4,DUNSPARCE
+	db 4,DUNSPARCE
+
+; Yanma swarm
+	db $0a,$02 ; Route 35
+	db $19,$19,$19 ; encounter rates: morn/day/nite
+	; morn
+	db 12,NIDORAN_M
+	db 12,NIDORAN_F
+	db 12,YANMA
+	db 14,YANMA
+	db 14,PIDGEY
+	db 10,DITTO
+	db 10,DITTO
+	; day
+	db 12,NIDORAN_M
+	db 12,NIDORAN_F
+	db 12,YANMA
+	db 14,YANMA
+	db 14,PIDGEY
+	db 10,DITTO
+	db 10,DITTO
+	; nite
+	db 12,NIDORAN_M
+	db 12,NIDORAN_F
+	db 12,YANMA
+	db 14,YANMA
+	db 14,HOOTHOOT
+	db 10,DITTO
+	db 10,DITTO
+
+	db $FF
+
+
+WildMons6: ; 0x2b92f
+; swarms in water
+
+	; no swarms encountered while surfing in Crystal
+	db $FF
+
+
+INCBIN "baserom.gbc",$2b930,$2c000 - $2b930
 
 SECTION "bankB",DATA,BANK[$B]
 INCBIN "baserom.gbc",$2C000,$4000
