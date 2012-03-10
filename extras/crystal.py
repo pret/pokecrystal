@@ -1282,7 +1282,7 @@ def parse_script_engine_script_at(address, map_group=None, map_id=None):
             size = 3
             end = True
             command["text_pointer"] = calculate_pointer_from_bytes_at(start_address+1, bank=False)
-        elif command_byte == 0x52: #Text2 code [2b]
+        elif command_byte == 0x53: #Text2 code [2b]
             info = "Display text (by pointer) and end [xxyy]"
             long_info = """
             #Displays a text. Afterwards there is no other script interpreted.
@@ -1292,15 +1292,15 @@ def parse_script_engine_script_at(address, map_group=None, map_id=None):
             size = 3
             end = True
             command["text_pointer"] = calculate_pointer_from_bytes_at(start_address+1, bank=False)
-        elif command_byte == 0x53: #Close text box code
+        elif command_byte == 0x54: #Close text box code
             info = "Close text box"
             long_info = "Closes a text box which was opened by 47 resp. 4B/4C/4D."
             size = 1
-        elif command_byte == 0x54: #Keep text box open code
+        elif command_byte == 0x55: #Keep text box open code
             info = "Keep text box open"
             long_info = "Keeps a text box open which was opened by 47 resp. 4B/4C/4D."
             size = 1
-        elif command_byte == 0x55: #Pokémon picture code [xx]
+        elif command_byte == 0x56: #Pokémon picture code [xx]
             info = "Display a pokemon picture in a box by pokemon id [xx]"
             long_info = """
             #Opens a box and puts a Pokémon picture into it.
@@ -1311,7 +1311,7 @@ def parse_script_engine_script_at(address, map_group=None, map_id=None):
             """
             size = 2
             command["byte"] = ord(rom[start_address+1])
-        elif command_byte == 0x56: #Pokémon picture YES/NO code
+        elif command_byte == 0x57: #Pokémon picture YES/NO code
             info = "?? Display a pokemon picture and a yes/no box"
             long_info = """
             #Displays a YES/NO box at X08/Y05.
@@ -1320,14 +1320,14 @@ def parse_script_engine_script_at(address, map_group=None, map_id=None):
             #   01 = yes chosen
             """
             size = 1
-        elif command_byte == 0x57: #Menu interpreter 1
+        elif command_byte == 0x58: #Menu interpreter 1
             info = "Menu interpreter 1 (see menu loader)"
             long_info = """
             #Interprets menu data loaded by 4F.
             #see also http://hax.iimarck.us/files/scriptingcodes_eng.htm#ZusatzDatA57
             """
             size = 1
-        elif command_byte == 0x58: #Menu interpreter 2
+        elif command_byte == 0x59: #Menu interpreter 2
             info = "Menu interpreter 2 (see menu loader)"
             long_info = """
             #Interprets menu data loaded by 4F.
@@ -1335,11 +1335,11 @@ def parse_script_engine_script_at(address, map_group=None, map_id=None):
             #see also http://hax.iimarck.us/files/scriptingcodes_eng.htm#ZusatzDatA58
             """
             size = 1
-        elif command_byte == 0x59: #Load Pikachu data
+        elif command_byte == 0x5A: #Load Pikachu data
             info = "Load pikachu data"
             long_info = "Loads 0x19 (Pikachu) to PokéRAM and level 5 to LevelRAM."
             size = 1
-        elif command_byte == 0x5A: #Delete FightRAM/reset person check
+        elif command_byte == 0x5B: #Delete FightRAM/reset person check
             info = "? Disable fleeing from battle"
             long_info = """
             #Deletes the value in BattleRAM.
@@ -1347,7 +1347,7 @@ def parse_script_engine_script_at(address, map_group=None, map_id=None):
             #a trainer's area of view.
             """
             size = 1
-        elif command_byte == 0x5B: #Load trainer data1
+        elif command_byte == 0x5C: #Load trainer data1
             info = "Load trainer from RAM"
             long_info = """
             #Loads trainer data when HIRO is in a trainer's range of sight.
@@ -1356,7 +1356,7 @@ def parse_script_engine_script_at(address, map_group=None, map_id=None):
             #TrRAM2. 81 is written to BattleRAM.
             """
             size = 1
-        elif command_byte == 0x5C: #Load Pokémon data [xxyy]
+        elif command_byte == 0x5D: #Load Pokémon data [xxyy]
             info = "Loads pokemon by id and level for BattleRAM [xx][yy]"
             long_info = """
             #Loads Pokémon data. Writes 80 to BattleRAM.
@@ -1365,7 +1365,7 @@ def parse_script_engine_script_at(address, map_group=None, map_id=None):
             size = 3
             command["pokemon_id"] = ord(rom[start_address+1])
             command["pokemon_level"] = ord(rom[start_address+2])
-        elif command_byte == 0x5D: #Load trainer data2 [xxyy]
+        elif command_byte == 0x5E: #Load trainer data2 [xxyy]
             info = "Load trainer by group/id for BattleRAM [xx][yy]"
             long_info = """
             #Loads trainer data. Trainer group --> TrRAM1,
@@ -1375,7 +1375,7 @@ def parse_script_engine_script_at(address, map_group=None, map_id=None):
             size = 3
             command["trainer_group"] = ord(rom[start_address+1])
             command["trainer_id"] = ord(rom[start_address+2])
-        elif command_byte == 0x5E: #Start battle
+        elif command_byte == 0x5F: #Start battle
             info = "Start pre-configured battle"
             long_info = """
             #Starts trainer or Pokémon battle. BattleRAM: 80 = Poké battle; 81 = Trainer battle.
@@ -1384,11 +1384,11 @@ def parse_script_engine_script_at(address, map_group=None, map_id=None):
             #   01 = lose
             """
             size = 1
-        elif command_byte == 0x5F: #Return to In game engine after battle
+        elif command_byte == 0x60: #Return to In game engine after battle
             info = "Return to in-game engine after battle"
             long_info = "Returns to ingame engine and evaluates battle. When lost then return to last Pokémon Center etc."
             size = 1
-        elif command_byte == 0x60: #Learn how to catch PKMN [xx]
+        elif command_byte == 0x61: #Learn how to catch PKMN [xx]
             info = "Pokemon catching tutorial [xx]"
             long_info = """
             #Starts a learn-how-to-catch battle with a Pokémon, whose data needs to be loaded beforehand
@@ -1401,7 +1401,7 @@ def parse_script_engine_script_at(address, map_group=None, map_id=None):
             """
             size = 2
             command["byte"] = ord(rom[start_address+1])
-        elif command_byte == 0x61: #Trainer text code
+        elif command_byte == 0x62: #Trainer text code
             info = "Set trainer text by id [xx]"
             long_info = """
             #Interprets the data of a in the event structure defined trainer.
@@ -1412,7 +1412,7 @@ def parse_script_engine_script_at(address, map_group=None, map_id=None):
             """
             size = 2
             command["byte"] = ord(rom[start_address+1])
-        elif command_byte == 0x62: #Trainer status code [xx]
+        elif command_byte == 0x63: #Trainer status code [xx]
             info = "? Check trainer status [xx]"
             long_info = """
             #Checks/changes the status of a in the event structure defined trainer.
@@ -1425,7 +1425,7 @@ def parse_script_engine_script_at(address, map_group=None, map_id=None):
             """
             size = 2
             command["byte"] = ord(rom[start_address+1])
-        elif command_byte == 0x63: #Pointer Win/Lose [2b + 2b]
+        elif command_byte == 0x64: #Pointer Win/Lose [2b + 2b]
             info = "Set win/lose pointers for battle [xxyy][xxyy]"
             long_info = """
             #Writes the win/lose pointer of a battle into the ram.
@@ -1435,7 +1435,7 @@ def parse_script_engine_script_at(address, map_group=None, map_id=None):
             size = 5
             command["won_pointer"] = calculate_pointer_from_bytes_at(start_address+1, bank=False)
             command["lost_pointer"] = calculate_pointer_from_bytes_at(start_address+3, bank=False)
-        elif command_byte == 0x64: #Script talk-after
+        elif command_byte == 0x65: #Script talk-after
             #XXX this is a really poor description of whatever this is
             info = "? Load the trainer talk-after script"
             long_info = """
@@ -1445,7 +1445,7 @@ def parse_script_engine_script_at(address, map_group=None, map_id=None):
             #[64]
             """
             size = 1
-        elif command_byte == 0x65: #Script talk-after-cancel
+        elif command_byte == 0x66: #Script talk-after-cancel
             info = "Disable/cancel trainer after-battle text"
             long_info = """
             #Cancels the talk-after script of the in the event-structure-defined
@@ -1453,7 +1453,7 @@ def parse_script_engine_script_at(address, map_group=None, map_id=None):
             #[65]
             """
             size = 1
-        elif command_byte == 0x66: #Script talk-after-check
+        elif command_byte == 0x67: #Script talk-after-check
             #XXX also bad explanation/name...
             info = "? Check if trainer talk-after script is executed just after battle or not"
             long_info = """
@@ -1465,7 +1465,7 @@ def parse_script_engine_script_at(address, map_group=None, map_id=None):
             #[66]
             """
             size = 1
-        elif command_byte == 0x67: #Set talked-to person [xx]
+        elif command_byte == 0x68: #Set talked-to person [xx]
             info = "Set last talked-to person [xx]"
             long_info = """
             #Sets the number of the last person talked to.
@@ -1473,7 +1473,7 @@ def parse_script_engine_script_at(address, map_group=None, map_id=None):
             """
             size = 2
             command["person_id"] = ord(rom[start_address+1])
-        elif command_byte == 0x68: #Moving code [xx + 2b]
+        elif command_byte == 0x69: #Moving code [xx + 2b]
             info = "Move person (by id) with moving data (by pointer) [id][xxyy]"
             long_info = """
             #Moves the person using moving data.
@@ -1483,7 +1483,7 @@ def parse_script_engine_script_at(address, map_group=None, map_id=None):
             size = 4
             command["person_id"] = ord(rom[start_address+1])
             command["moving_data_pointer"] = calculate_pointer_from_bytes_at(start_address+2, bank=False)
-        elif command_byte == 0x69: #Moving code for talked-to person [2b]
+        elif command_byte == 0x6A: #Moving code for talked-to person [2b]
             info = "Move talked-to person with moving data (by pointer) [xxyy]"
             long_info = """
             #Moves talked-to person using moving data.
@@ -1491,14 +1491,14 @@ def parse_script_engine_script_at(address, map_group=None, map_id=None):
             """
             size = 3
             command["moving_data_pointer"] = calculate_pointer_from_bytes_at(start_address+1, bank=False)
-        elif command_byte == 0x6A: #Talk-to facing code
+        elif command_byte == 0x6B: #Talk-to facing code
             info = "Move talked-to person's facing direction to HIRO"
             long_info = """
             #Turns the heads of the talked-to persons to HIRO.
             #[6A]
             """
             size = 1
-        elif command_byte == 0x6B: #Facing of people code [xxyy]
+        elif command_byte == 0x6C: #Facing of people code [xxyy]
             info = "Move facing direction of person1 to look at person2 [2][1]"
             long_info = """
             #Turns the head of person1 to another person2.
@@ -1509,7 +1509,7 @@ def parse_script_engine_script_at(address, map_group=None, map_id=None):
             size = 3
             command["person2_id"] = ord(rom[start_address+1])
             command["person1_id"] = ord(rom[start_address+2])
-        elif command_byte == 0x6C: #Variable sprites [xxyy]
+        elif command_byte == 0x6D: #Variable sprites [xxyy]
             info = "Store value in variable sprite RAM location x by id Y [xx][yy]"
             long_info = """
             #Writes a number to the variable sprite RAM from D555 to D564 (see Compendium on the sprite system).
@@ -1519,7 +1519,7 @@ def parse_script_engine_script_at(address, map_group=None, map_id=None):
             size = 3
             command["number"] = ord(rom[start_address+1])
             command["sprite_id"] = ord(rom[start_address+2])
-        elif command_byte == 0x6D: #Hide person [xx]
+        elif command_byte == 0x6E: #Hide person [xx]
             info = "Hide person by id [xx]"
             long_info = """
             #Hides a person.
@@ -1527,7 +1527,7 @@ def parse_script_engine_script_at(address, map_group=None, map_id=None):
             """
             size = 2
             command["person_id"] = ord(rom[start_address+1])
-        elif command_byte == 0x6E: #Show person [xx]
+        elif command_byte == 0x6F: #Show person [xx]
             info = "Show person by id [xx]"
             long_info = """
             #Shows a hidden person again.
@@ -1535,7 +1535,7 @@ def parse_script_engine_script_at(address, map_group=None, map_id=None):
             """
             size = 2
             command["person_id"] = ord(rom[start_address+1])
-        elif command_byte == 0x6F: #Following code1 [xxyy]
+        elif command_byte == 0x70: #Following code1 [xxyy]
             info = "Following code1 [leader id][follower id]"
             long_info = """
             #A person1 follows another person2. The person1 that follows
@@ -1546,11 +1546,11 @@ def parse_script_engine_script_at(address, map_group=None, map_id=None):
             size = 3
             command["leader_person_id"] = ord(rom[start_address+1])
             command["follower_person_id"] = ord(rom[start_address+2])
-        elif command_byte == 0x70: #Stop following code
+        elif command_byte == 0x71: #Stop following code
             info = "Stop all follow code"
             long_info = "Ends all current follow codes."
             size = 1
-        elif command_byte == 0x71: #Move person [xxyyzz]
+        elif command_byte == 0x72: #Move person [xxyyzz]
             info = "Move person by id to xy [id][xx][yy]"
             long_info = """
             #Sets the X/Y values of a person anew.
@@ -1561,7 +1561,7 @@ def parse_script_engine_script_at(address, map_group=None, map_id=None):
             command["person_id"] = ord(rom[start_address+1])
             command["x"] = ord(rom[start_address+2])
             command["y"] = ord(rom[start_address+3])
-        elif command_byte == 0x72: #Write person location [xx] (lock person location?)
+        elif command_byte == 0x73: #Write person location [xx] (lock person location?)
             info = "Lock person's location by id [id]"
             long_info = """
             #Writes the current X/Y values of a person into the ram.
@@ -1572,7 +1572,7 @@ def parse_script_engine_script_at(address, map_group=None, map_id=None):
             """
             size = 2
             command["person_id"] = ord(rom[start_address+1])
-        elif command_byte == 0x73: #Load emoticons [xx]
+        elif command_byte == 0x74: #Load emoticons [xx]
             info = "Load emoticon bubble [xx]"
             long_info = """
             #Loads the emoticon bubble depending on the given bubble number.
@@ -1589,7 +1589,7 @@ def parse_script_engine_script_at(address, map_group=None, map_id=None):
             """
             size = 2
             command["bubble_number"] = ord(rom[start_address+1])
-        elif command_byte == 0x74: #Display emoticon [xxyyzz]
+        elif command_byte == 0x75: #Display emoticon [xxyyzz]
             info = "Display emoticon by bubble id and person id and time [xx][yy][zz]"
             long_info = """
             #Displays the bubble above a persons head for the given time period.
@@ -1601,7 +1601,7 @@ def parse_script_engine_script_at(address, map_group=None, map_id=None):
             command["bubble_number"] = ord(rom[start_address+1])
             command["person_id"] = ord(rom[start_address+2])
             command["time"] = ord(rom[start_address+3])
-        elif command_byte == 0x75: #Change facing [xxyy]
+        elif command_byte == 0x76: #Change facing [xxyy]
             info = "Set facing direction of person [person][facing]"
             long_info = """
             #Changes the facing direction of a person.
@@ -1610,7 +1610,7 @@ def parse_script_engine_script_at(address, map_group=None, map_id=None):
             size = 3
             command["person_id"] = ord(rom[start_address+1])
             command["facing"] = ord(rom[start_address+2])
-        elif command_byte == 0x76: #Following code2 [xxyy]
+        elif command_byte == 0x77: #Following code2 [xxyy]
             info = "Following code2 [leader id][follower id]"
             long_info = """
             #A person1 follows a person2. The following person1 automatically clings to person2.
@@ -1620,7 +1620,7 @@ def parse_script_engine_script_at(address, map_group=None, map_id=None):
             size = 3
             command["leader_person_id"] = ord(rom[start_address+1])
             command["follower_person_id"] = ord(rom[start_address+2])
-        elif command_byte == 0x77: #Earth quake [xx]
+        elif command_byte == 0x78: #Earth quake [xx]
             info = "Earthquake [xx]"
             long_info = """
             #The screen shakes. xx gives time as well as displacement of the screen.
@@ -1628,7 +1628,7 @@ def parse_script_engine_script_at(address, map_group=None, map_id=None):
             """
             size = 2
             command["shake_byte"] = ord(rom[start_address+1])
-        elif command_byte == 0x78: #Exchange map [3b]
+        elif command_byte == 0x79: #Exchange map [3b]
             info = "Draw map data over current map [bank][pointer]"
             long_info = """
             #This code draws another whole map as wide and high as the
@@ -1638,7 +1638,7 @@ def parse_script_engine_script_at(address, map_group=None, map_id=None):
             """
             size = 4
             command["map_data_pointer"] = calculate_pointer_from_bytes_at(start_address+1, bank=True)
-        elif command_byte == 0x79: #Change block code [xxyyzz]
+        elif command_byte == 0x7A: #Change block code [xxyyzz]
             info = "Change block to block id on map [xx][yy][id]"
             long_info = """
             #Changes a block on the current map by giving the new block
@@ -1649,7 +1649,7 @@ def parse_script_engine_script_at(address, map_group=None, map_id=None):
             command["x"] = ord(rom[start_address+1])
             command["y"] = ord(rom[start_address+2])
             command["block"] = ord(rom[start_address+3])
-        elif command_byte == 0x7A: #Reload map code
+        elif command_byte == 0x7B: #Reload map code
             info = "Reload/redisplay map"
             long_info = """
             #Reloads and re-displays the map completely.
@@ -1657,7 +1657,7 @@ def parse_script_engine_script_at(address, map_group=None, map_id=None):
             #[7A]
             """
             size = 1
-        elif command_byte == 0x7B: #Reload map part code
+        elif command_byte == 0x7C: #Reload map part code
             info = "Reload/redisplay map portion occupied by HIRO"
             long_info = """
             #Reloads and re-displays the part of the map HIRO is on,
@@ -1665,7 +1665,7 @@ def parse_script_engine_script_at(address, map_group=None, map_id=None):
             #[7B]
             """
             size = 1
-        elif command_byte == 0x7C: #Write command queue
+        elif command_byte == 0x7D: #Write command queue
             info = "Write command queue [xxyy]"
             long_info = """
             #Writes a command queue to the next free slot in ram.
@@ -1675,7 +1675,7 @@ def parse_script_engine_script_at(address, map_group=None, map_id=None):
             """
             size = 3
             command["command_queue_pointer"] = calculate_pointer_from_bytes_at(start_address+1, bank=False)
-        elif command_byte == 0x7D: #Delete command queue
+        elif command_byte == 0x7E: #Delete command queue
             info = "Delete command queue"
             long_info = """
             #Deletes a command queue and frees a slot in ram.
@@ -1684,7 +1684,7 @@ def parse_script_engine_script_at(address, map_group=None, map_id=None):
             #XXX wtf?
             size = 2
             command["first_command"] = ord(rom[start_address+1])
-        elif command_byte == 0x7E: #Song code1 [xxyy]
+        elif command_byte == 0x7F: #Song code1 [xxyy]
             info = "Play music by number [xxyy]"
             long_info = """
             #Immediately plays the music.
@@ -1696,7 +1696,7 @@ def parse_script_engine_script_at(address, map_group=None, map_id=None):
             size = 3
             #XXX what is the format of this music data?
             command["music_number"] = rom_interval(start_address+1, size-1, strings=False)
-        elif command_byte == 0x7F: #Song code2
+        elif command_byte == 0x80: #Song code2
             info = "Song code2"
             long_info = """
             #Plays the music of the trainer group in TrRAM1.
@@ -1704,7 +1704,7 @@ def parse_script_engine_script_at(address, map_group=None, map_id=None):
             #[7F]
             """
             size = 1
-        elif command_byte == 0x80: #Music fade-out code [xxyy][zz]
+        elif command_byte == 0x81: #Music fade-out code [xxyy][zz]
             info = "Music fade-out then play next [xxyy][time]"
             long_info = """
             #The current music is faded out and the new music is played afterwards.
@@ -1713,7 +1713,7 @@ def parse_script_engine_script_at(address, map_group=None, map_id=None):
             size = 4
             command["music_number"] = rom_interval(start_address+1, 2, strings=False)
             command["fade_time"] = ord(rom[start_address+3])
-        elif command_byte == 0x81: #Play map music code
+        elif command_byte == 0x82: #Play map music code
             info = "Play map's music"
             long_info = """
             #Starts playing the original map music.
@@ -1721,14 +1721,14 @@ def parse_script_engine_script_at(address, map_group=None, map_id=None):
             #[81]
             """
             size = 1
-        elif command_byte == 0x82: #Map reload music code
+        elif command_byte == 0x83: #Map reload music code
             info = "Reload map music"
             long_info = """
             #After a map reload no music is played.
             #[82]
             """
             size = 1
-        elif command_byte == 0x83: #Cry code [xx00]
+        elif command_byte == 0x84: #Cry code [xx00]
             info = "Play cry by id or RAM [cry][00]"
             long_info = """
             #Plays the Pokémon's cry.
@@ -1738,7 +1738,7 @@ def parse_script_engine_script_at(address, map_group=None, map_id=None):
             size = 3
             command["cry_number"] = ord(rom[start_address+1])
             command["other_byte"] = ord(rom[start_address+2])
-        elif command_byte == 0x84: #Sound code [xxyy]
+        elif command_byte == 0x85: #Sound code [xxyy]
             info = "Play sound by sound number [xxyy]"
             long_info = """
             #Plays the sound.
@@ -1749,14 +1749,14 @@ def parse_script_engine_script_at(address, map_group=None, map_id=None):
             """
             size = 3
             command["sound_number"] = rom_interval(start_address+1, 2, strings=False)
-        elif command_byte == 0x85: #Key-down code
+        elif command_byte == 0x86: #Key-down code
             info = "Wait for key-down"
             long_info = """
             #Waits for the Player to press a button.
             #[85]
             """
             size = 1
-        elif command_byte == 0x86: #Warp sound
+        elif command_byte == 0x87: #Warp sound
             info = "Warp sound"
             long_info = """
             #Evaluates which sound is played when HIRO enters a Warp field.
@@ -1764,14 +1764,14 @@ def parse_script_engine_script_at(address, map_group=None, map_id=None):
             #[86]
             """
             size = 1
-        elif command_byte == 0x87: #Special sound
+        elif command_byte == 0x88: #Special sound
             info = "Special sound if TM was last checked"
             long_info = """
             #When last given/checked Item was a TM then it plays sound 0x9B. If not, then 0x01.
             #[87]
             """
             size = 1
-        elif command_byte == 0x88: #Engine remote control [2b]
+        elif command_byte == 0x89: #Engine remote control [2b]
             info = "Engine remote control [bb][xxyy]"
             long_info = """
             #This code controls the engine via "data stream".
@@ -1780,7 +1780,7 @@ def parse_script_engine_script_at(address, map_group=None, map_id=None):
             """
             size = 4
             command["data_stream_pointer"] = calculate_pointer_from_bytes_at(start_address+1, bank=True)
-        elif command_byte == 0x89: #Load map anew [xx]
+        elif command_byte == 0x8A: #Load map anew [xx]
             info = "Load map with specific loading process [xx]"
             long_info = """
             #The number decides which map loading process is used.
@@ -1791,7 +1791,7 @@ def parse_script_engine_script_at(address, map_group=None, map_id=None):
             """
             size = 2
             command["number"] = ord(rom[start_address+1])
-        elif command_byte == 0x8A: #Waiting code [xx]
+        elif command_byte == 0x8B: #Waiting code [xx]
             info = "Wait code"
             long_info = """
             #This code lets the game wait for 2 * xx time intervals.
@@ -1801,7 +1801,7 @@ def parse_script_engine_script_at(address, map_group=None, map_id=None):
             """
             size = 2
             command["time"] = ord(rom[start_address+1])
-        elif command_byte == 0x8B: #Deactivate static facing [xx]
+        elif command_byte == 0x8C: #Deactivate static facing [xx]
             info = "Deactive static facing after time [xx]"
             long_info = """
             #Deactivates static facings on all persons on the screen after a time xx.
@@ -1809,7 +1809,7 @@ def parse_script_engine_script_at(address, map_group=None, map_id=None):
             """
             size = 2
             command["time"] = ord(rom[start_address+1])
-        elif command_byte == 0x8C: #Priority jump1 [2b]
+        elif command_byte == 0x8D: #Priority jump1 [2b]
             info = "Priority jump to script by pointer [xxyy]"
             long_info = """
             #The pointer acts like code 00, but with this higher
@@ -1819,14 +1819,14 @@ def parse_script_engine_script_at(address, map_group=None, map_id=None):
             """
             size = 3
             command["script_pointer"] = calculate_pointer_from_bytes_at(start_address+1, bank=False)
-        elif command_byte == 0x8D: #Warp check
+        elif command_byte == 0x8E: #Warp check
             info = "Reactive all engine checks if player is warping"
             long_info = """
             #If HIRO is entering or leaving a warp then this code reactivates all the engine-checks.
             #[8D]
             """
             size = 1
-        elif command_byte == 0x8E: #Priority jump2 [2b]
+        elif command_byte == 0x8F: #Priority jump2 [2b]
             info = "Priority jump to script by pointer (after 1st cycle) [xxyy]"
             long_info = """
             #The pointer acts like code 03, but with this code all
@@ -1835,7 +1835,7 @@ def parse_script_engine_script_at(address, map_group=None, map_id=None):
             """
             size = 3
             command["script_pointer"] = calculate_pointer_from_bytes_at(start_address+1, bank=False)
-        elif command_byte == 0x8F: #Return code1
+        elif command_byte == 0x90: #Return code1
             info = "Return code 1"
             long_info = """
             #Ends the current script and loads the backup offset for "linked"
@@ -1847,7 +1847,7 @@ def parse_script_engine_script_at(address, map_group=None, map_id=None):
             """
             size = 1
             end = True
-        elif command_byte == 0x90: #Return code2
+        elif command_byte == 0x91: #Return code2
             info = "Return code 2"
             long_info = """
             #Ends the current script and loads the backup offset for "linked"
@@ -1857,7 +1857,7 @@ def parse_script_engine_script_at(address, map_group=None, map_id=None):
             """
             size = 1
             end = True
-        elif command_byte == 0x91: #Return code3
+        elif command_byte == 0x92: #Return code3
             info = "Return code 3"
             long_info = """
             #Reloads the map completely like the code 0x7A
@@ -1871,14 +1871,14 @@ def parse_script_engine_script_at(address, map_group=None, map_id=None):
             #XXX does this end the script?? "else acts like 0x90"
             #       else? what's the "if"?
             end = True
-        elif command_byte == 0x92: #Reset sophisticated functions
+        elif command_byte == 0x93: #Reset sophisticated functions
             info = "Reset sophisticated functions"
             long_info = """
             #Resets all sophisticated functions to 0.
             #[92]
             """
             size = 1
-        elif command_byte == 0x93: #Mart menu [xxyyzz]
+        elif command_byte == 0x94: #Mart menu [xxyyzz]
             info = "Mart menu [dialog no][mart no 2b]"
             long_info = """
             #Displays a whole mart menu, however, doesn't load font to ram.
@@ -1889,7 +1889,7 @@ def parse_script_engine_script_at(address, map_group=None, map_id=None):
             size = 4
             command["dialog_number"] = ord(rom[start_address+1])
             command["mart_number"] = rom_interval(start_address+2, 2, strings=False)
-        elif command_byte == 0x94: #Elevator menu [2b]
+        elif command_byte == 0x95: #Elevator menu [2b]
             info = "Display elevator menu by pointer [xxyy]"
             long_info = """
             #Displays a whole elevator menu, but it doesn't load font to ram.
@@ -1898,7 +1898,7 @@ def parse_script_engine_script_at(address, map_group=None, map_id=None):
             """
             size = 3
             command["floor_list_pointer"] = calculate_pointer_from_bytes_at(start_address+1, bank=False)
-        elif command_byte == 0x95: #Trade menu [xx]
+        elif command_byte == 0x96: #Trade menu [xx]
             info = "Display trade menu by trade id [xx]"
             long_info = """
             #Displays a whole trade menu, but it doesn't load font to ram.
@@ -1907,7 +1907,7 @@ def parse_script_engine_script_at(address, map_group=None, map_id=None):
             """
             size = 2
             command["trade_number"] = ord(rom[start_address+1])
-        elif command_byte == 0x96: #Give cell phone number with YES/NO [xx]
+        elif command_byte == 0x97: #Give cell phone number with YES/NO [xx]
             info = "Give cell phone number by id with YES/NO [id]"
             long_info = """
             #Gives a telephone number but asks for decision beforehand.
@@ -1920,7 +1920,7 @@ def parse_script_engine_script_at(address, map_group=None, map_id=None):
             size = 2
             #maybe this next param should be called "phone_number"
             command["number"] = ord(rom[start_address+1])
-        elif command_byte == 0x97: #Call code [2b]
+        elif command_byte == 0x98: #Call code [2b]
             info = "Call code pointing to name of caller [xxyy]"
             long_info = """
             #Displays the upper cell phone box and displays a freely selectable name.
@@ -1928,14 +1928,14 @@ def parse_script_engine_script_at(address, map_group=None, map_id=None):
             """
             size = 3
             command["caller_name_pointer"] = calculate_pointer_from_bytes_at(start_address+1, bank=False)
-        elif command_byte == 0x98: #Hang-up code
+        elif command_byte == 0x99: #Hang-up code
             info = "Hang-up phone"
             long_info = """
             #Simulates the hanging-up.
             #[98]
             """
             size = 1
-        elif command_byte == 0x99: #Decoration code [xx]
+        elif command_byte == 0x9A: #Decoration code [xx]
             info = "Set monologue decoration [xx]"
             long_info = """
             #Displays monologues according to the selected ornament.
@@ -1949,7 +1949,7 @@ def parse_script_engine_script_at(address, map_group=None, map_id=None):
             """
             size = 2
             command["ornament"] = ord(rom[start_address+1])
-        elif command_byte == 0x9A: #Berry tree code [xx]
+        elif command_byte == 0x9B: #Berry tree code [xx]
             info = "Berry tree by tree id [xx]"
             long_info = """
             #Creates a typical berry tree monologue.
@@ -1961,7 +1961,7 @@ def parse_script_engine_script_at(address, map_group=None, map_id=None):
             size = 2
             end = True
             command["tree_id"] = ord(rom[start_address+1])
-        elif command_byte == 0x9B: #Cell phone call code [xx00]
+        elif command_byte == 0x9C: #Cell phone call code [xx00]
             info = "Cell phone call [call id][00]"
             long_info = """
             #Initiates with the next step on a outer world map (permission byte) a phone call.
@@ -1979,7 +1979,7 @@ def parse_script_engine_script_at(address, map_group=None, map_id=None):
             size = 3
             command["call_id"] = ord(rom[start_address+1])
             command["byte"] = ord(rom[start_address+2])
-        elif command_byte == 0x9C: #Check cell phone call code
+        elif command_byte == 0x9D: #Check cell phone call code
             info = "Check if/which a phone call is active"
             long_info = """
             #Checks if a phone call is "in the line".
@@ -1989,7 +1989,7 @@ def parse_script_engine_script_at(address, map_group=None, map_id=None):
             #[9C]
             """
             size = 1
-        elif command_byte == 0x9D: #Commented give item code [xxyy]
+        elif command_byte == 0x9E: #Commented give item code [xxyy]
             info = "Give item by id and quantity with 'put in pocket' text [id][qty]"
             long_info = """
             #The same as 0x1F but this code comments where
@@ -1999,7 +1999,17 @@ def parse_script_engine_script_at(address, map_group=None, map_id=None):
             size = 3
             command["item_id"] = ord(rom[start_address+1])
             command["quantity"] = ord(rom[start_address+2])
-        elif command_byte == 0x9E: #Load special wild PKMN data [xxyy]
+        elif command_byte == 0x9F: #Commented ive item code?
+            info = "Give item by id and quantity with 'put in pocket' text [id][qty]"
+            long_info = """
+            #The same as 0x1F but this code comments where
+            #HIRO puts what item in a short monologue.
+            #[9D][Item][Amount]
+            """
+            size = 3
+            command["item_id"] = ord(rom[start_address+1])
+            command["quantity"] = ord(rom[start_address+2])
+        elif command_byte == 0xA0: #Load special wild PKMN data [xxyy]
             info = "Load wild pokemon data for a remote map [map group][map id]"
             long_info = """
             #Activates the checks in the special tables for the wild pokémon data.
@@ -2009,7 +2019,7 @@ def parse_script_engine_script_at(address, map_group=None, map_id=None):
             size = 3
             command["map_group"] = ord(rom[start_address+1])
             command["map_id"] = ord(rom[start_address+2])
-        elif command_byte == 0x9F: #Hall of Fame code
+        elif command_byte == 0xA1: #Hall of Fame code
             info = "Hall of Fame"
             long_info = """
             #Saves and enters HIRO's complete Team in the Hall of Fame.
@@ -2017,14 +2027,14 @@ def parse_script_engine_script_at(address, map_group=None, map_id=None):
             #[9F]
             """
             size = 1
-        elif command_byte == 0xA0: #Credits code
+        elif command_byte == 0xA2: #Credits code
             info = "Credits"
             long_info = """
             #Shows the credits and HIRO is located on the Silver mountain plateau.
             #[A0]
             """
             size = 1
-        elif command_byte == 0xA1: #Facing warp
+        elif command_byte == 0xA3: #Facing warp
             info = "Warp-to and set facing direction [Facing (00-03)][Map bank][Map no][X][Y]"
             long_info = """
             #Acts like code 0x3C but defines the desired facing of HIRO.
@@ -2036,7 +2046,7 @@ def parse_script_engine_script_at(address, map_group=None, map_id=None):
             command["map_id"] = ord(rom[start_address+3])
             command["x"] = ord(rom[start_address+4])
             command["y"] = ord(rom[start_address+5])
-        elif command_byte == 0xA2: #MEMORY code [2b + Bank + xx]
+        elif command_byte == 0xA4: #MEMORY code [2b + Bank + xx]
             info = "Set memX to a string by a pointer [aabb][bank][xx]"
             long_info = """
             #MEMORY1, 2 or 3 can directly be filled with a string from
@@ -2047,7 +2057,7 @@ def parse_script_engine_script_at(address, map_group=None, map_id=None):
             command["string_pointer"] = calculate_pointer_from_bytes_at(start_address+1, bank="reversed")
             command["string_pointer_bank"] = ord(rom[start_address+3])
             command["memory_id"] = ord(rom[start_address+4])
-        elif command_byte == 0xA3: #Display any location name [xx]
+        elif command_byte == 0xA5: #Display any location name [xx]
             info = "Copy the name of a location (by id) to TEMPMEMORY1"
             long_info = """
             #By the location number the name of that location is written to TEMPMEMORY1.
