@@ -402,10 +402,11 @@ def clean_up_long_info(long_info):
         long_info = "\n".join(new_lines)
     return long_info
 
-def command_debug_information(command_byte=None, map_group=None, map_id=None, address=None, info=None, long_info=None):
+def command_debug_information(command_byte=None, map_group=None, map_id=None, address=None, info=None, long_info=None, pksv_name=None):
     info1 = "parsing command byte " + hex(command_byte) + " for map " + \
           str(map_group) + "." + str(map_id) + " at " + hex(address)
-    info1 += "    info: " + str(info)
+    info1 += "    pksv: " + str(pksv_name)
+    #info1 += "    info: " + str(info)
     #info1 += "    long_info: " + long_info
     return info1
 
@@ -419,11 +420,38 @@ def parse_text_engine_script_at(address):
     commands = {}
     return commands
 
+def translate_command_byte(crystal=None, gold=None):
+    """takes a command byte from either crystal or gold
+    returns the command byte in the other (non-given) game
+
+    The new commands are values 0x52 and 0x9F. This means:
+        Crystal's 0x00–0x51 correspond to Gold's 0x00–0x51
+        Crystal's 0x53–0x9E correspond to Gold's 0x52–0x9D
+        Crystal's 0xA0–0xA5 correspond to Gold's 0x9E–0xA3
+
+    see: http://www.pokecommunity.com/showpost.php?p=4347261
+    """
+    if crystal: #convert to gold
+        if crystal <= 0x51: return crystal
+        if crystal == 0x52: return None
+        if 0x53 <= crystal <= 0x9E: return crystal-1
+        if crystal == 0x9F: return None
+        if 0xA0 <= crystal <= 0xA5: return crystal-2
+        if crystal > 0xA5: raise "dunno yet if crystal has new insertions after crystal:0xA5 (gold:0xA3)"
+    elif gold: #convert to crystal
+        if gold <= 0x51: return gold
+        if 0x52 <= gold <= 0x9D: return gold+1
+        if 0x9E <= gold <= 0xA3: return gold+2
+        if gold > 0xA3: raise "dunno yet if crystal has new insertions after gold:0xA3 (crystal:0xA5)"
+    else: raise "translate_command_byte needs either a crystal or gold command"
+
 pksv_gs = {
     0x00: "2call",
     0x01: "3call",
+    0x02: "2ptcall",
     0x03: "2jump",
     0x04: "3jump",
+    0x05: "2ptjump",
     0x06: "if equal",
     0x07: "if not equal",
     0x08: "if false",
@@ -431,12 +459,19 @@ pksv_gs = {
     0x0A: "if less than",
     0x0B: "if greater than",
     0x0C: "jumpstd",
+    0x0D: "callstd",
     0x0E: "3callasm",
     0x0F: "special",
+    0x10: "2ptcallasm",
+    0x11: "checkmaptriggers",
     0x12: "domaptrigger",
+    0x13: "checktriggers",
     0x14: "dotrigger",
     0x15: "writebyte",
+    0x16: "addvar",
+    0x17: "random",
     0x19: "copybytetovar",
+    0x1A: "copyvartobyte", #loadvar ?
     0x1C: "checkcode",
     0x1E: "writecode",
     0x1F: "giveitem",
@@ -452,6 +487,7 @@ pksv_gs = {
     0x2C: "checkpoke",
     0x2D: "givepoke",
     0x2E: "giveegg",
+    0x2F: "givepokeitem",
     0x31: "checkbit1",
     0x32: "clearbit1",
     0x33: "setbit1",
@@ -460,21 +496,31 @@ pksv_gs = {
     0x36: "setbit2",
     0x37: "wildoff",
     0x38: "wildon",
+    0x39: "xycompare",
     0x3A: "warpmod",
     0x3B: "blackoutmod",
     0x3C: "warp",
+    0x41: "itemtotext",
+    0x43: "trainertotext",
     0x44: "stringtotext",
+    0x45: "itemnotify",
     0x46: "pocketisfull",
     0x47: "loadfont",
+    0x48: "refreshscreen",
     0x49: "loadmovesprites",
     0x4B: "3writetext",
     0x4C: "2writetext",
     0x4E: "yesorno",
+    0x4F: "loadmenudata",
+    0x50: "writebackup",
     0x51: "jumptextfaceplayer",
     0x52: "jumptext",
     0x53: "closetext",
     0x54: "keeptextopen",
     0x55: "pokepic",
+    0x56: "pokepicyesorno",
+    0x57: "interpretmenu",
+    0x58: "interpretmenu2",
     0x5C: "loadpokedata",
     0x5D: "loadtrainer",
     0x5E: "startbattle",
@@ -482,9 +528,11 @@ pksv_gs = {
     0x60: "catchtutorial",
     0x63: "winlosstext",
     0x65: "talkaftercancel",
+    0x67: "setlasttalked",
     0x68: "applymovement",
     0x6A: "faceplayer",
     0x6B: "faceperson",
+    0x6C: "variablesprite",
     0x6D: "disappear",
     0x6E: "appear",
     0x6F: "follow",
@@ -496,12 +544,26 @@ pksv_gs = {
     0x77: "earthquake",
     0x79: "changeblock",
     0x7A: "reloadmap",
+    0x7B: "reloadmappart",
+    0x7C: "writecmdqueue",
+    0x7D: "delcmdqueue",
+    0x7E: "playmusic",
+    0x7F: "playrammusic",
     0x80: "musicfadeout",
+    0x81: "playmapmusic",
+    0x82: "reloadmapmusic",
     0x83: "cry",
     0x84: "playsound",
     0x85: "waitbutton",
+    0x86: "warpsound",
+    0x87: "specialsound",
+    0x88: "passtoengine",
+    0x89: "newloadmap",
     0x8A: "pause",
+    0x8B: "deactivatefacing",
     0x8C: "priorityjump",
+    0x8D: "warpcheck",
+    0x8E: "ptpriorityjump",
     0x8F: "return",
     0x90: "end",
     0x91: "reloadandreturn",
@@ -509,18 +571,30 @@ pksv_gs = {
     0x93: "pokemart",
     0x94: "elevator",
     0x95: "trade",
+    0x96: "askforphonenumber",
+    0x97: "phonecall",
+    0x98: "hangup",
+    0x99: "describedecoration",
     0x9A: "fruittree",
+    0x9C: "checkphonecall",
     0x9D: "verbosegiveitem",
+    0x9E: "loadwilddata",
+    0x9F: "halloffame",
     0xA0: "credits",
     0xA1: "warpfacing",
+    0xA2: "storetext",
+    0xA3: "displaylocation",
 }
 
 #see http://www.pokecommunity.com/showpost.php?p=4347261
+#NOTE: this has some updates that need to be back-ported to gold
 pksv_crystal = {
     0x00: "2call",
     0x01: "3call",
+    0x02: "2ptcall",
     0x03: "2jump",
     0x04: "3jump",
+    0x05: "2ptjump",
     0x06: "if equal",
     0x07: "if not equal",
     0x08: "if false",
@@ -528,12 +602,19 @@ pksv_crystal = {
     0x0A: "if less than",
     0x0B: "if greater than",
     0x0C: "jumpstd",
+    0x0D: "callstd",
     0x0E: "3callasm",
     0x0F: "special",
+    0x10: "2ptcallasm",
+    0x11: "checkmaptriggers",
     0x12: "domaptrigger",
+    0x13: "checktriggers",
     0x14: "dotrigger",
     0x15: "writebyte",
+    0x16: "addvar",
+    0x17: "random",
     0x19: "copybytetovar",
+    0x1A: "copyvartobyte", #loadvar?
     0x1C: "checkcode",
     0x1E: "writecode",
     0x1F: "giveitem",
@@ -549,6 +630,7 @@ pksv_crystal = {
     0x2C: "checkpoke",
     0x2D: "givepoke",
     0x2E: "giveegg",
+    0x2F: "givepokeitem",
     0x31: "checkbit1",
     0x32: "clearbit1",
     0x33: "setbit1",
@@ -557,21 +639,31 @@ pksv_crystal = {
     0x36: "setbit2",
     0x37: "wildoff",
     0x38: "wildon",
+    0x39: "xycompare",
     0x3A: "warpmod",
     0x3B: "blackoutmod",
     0x3C: "warp",
+    0x41: "itemtotext",
+    0x43: "trainertotext",
     0x44: "stringtotext",
+    0x45: "itemnotify",
     0x46: "pocketisfull",
     0x47: "loadfont",
+    0x48: "refreshscreen",
     0x49: "loadmovesprites",
     0x4B: "3writetext",
     0x4C: "2writetext",
     0x4E: "yesorno",
+    0x4F: "loadmenudata",
+    0x50: "writebackup",
     0x51: "jumptextfaceplayer",
     0x53: "jumptext",
     0x54: "closetext",
     0x55: "keeptextopen",
     0x56: "pokepic",
+    0x57: "pokepicyesorno",
+    0x58: "interpretmenu",
+    0x59: "interpretmenu2",
     0x5D: "loadpokedata",
     0x5E: "loadtrainer",
     0x5F: "startbattle",
@@ -579,9 +671,11 @@ pksv_crystal = {
     0x61: "catchtutorial",
     0x64: "winlosstext",
     0x66: "talkaftercancel",
+    0x68: "setlasttalked",
     0x69: "applymovement",
     0x6B: "faceplayer",
     0x6C: "faceperson",
+    0x6D: "variablesprite",
     0x6E: "disappear",
     0x6F: "appear",
     0x70: "follow",
@@ -593,12 +687,26 @@ pksv_crystal = {
     0x78: "earthquake",
     0x7A: "changeblock",
     0x7B: "reloadmap",
+    0x7C: "reloadmappart",
+    0x7D: "writecmdqueue",
+    0x7E: "delcmdqueue",
+    0x7F: "playmusic",
+    0x80: "playrammusic",
     0x81: "musicfadeout",
+    0x82: "playmapmusic",
+    0x83: "reloadmapmusic",
     0x84: "cry",
     0x85: "playsound",
     0x86: "waitbutton",
+    0x87: "warpsound",
+    0x88: "specialsound",
+    0x89: "passtoengine",
+    0x8A: "newloadmap",
     0x8B: "pause",
+    0x8C: "deactivatefacing",
     0x8D: "priorityjump",
+    0x8E: "warpcheck",
+    0x8F: "ptpriorityjump",
     0x90: "return",
     0x91: "end",
     0x92: "reloadandreturn",
@@ -606,11 +714,43 @@ pksv_crystal = {
     0x94: "pokemart",
     0x95: "elevator",
     0x96: "trade",
+    0x97: "askforphonenumber",
+    0x98: "phonecall",
+    0x99: "hangup",
+    0x9A: "describedecoration",
     0x9B: "fruittree",
+    0x9C: "specialphonecall",
+    0x9D: "checkphonecall",
     0x9E: "verbosegiveitem",
+    0xA0: "loadwilddata",
+    0xA1: "halloffame",
     0xA2: "credits",
     0xA3: "warpfacing",
+    0xA4: "storetext",
+    0xA5: "displaylocation",
 }
+
+#these have no pksv names as of pksv 2.1.1
+pksv_crystal_unknowns = [
+    0x9F,
+    0xA6, 0xA7, 0xA8, 0xA9, 0xAA, 0xAB, 0xAC, 0xAD, 0xAE, 0xAF,
+    0xB0, 0xB1, 0xB2, 0xB3, 0xB4, 0xB5, 0xB6, 0xB7, 0xB8,
+    0xCC, 0xCD,
+    0xD1, 0xD2, 0xD3, 0xD4, 0xD5, 0xD6, 
+    0xE4, 0xE5, 0xE6, 0xE7, 0xE8, 0xE9, 0xEA, 0xEB, 0xEC, 0xED, 0xEE, 0xEF,
+    0xF0, 0xF1, 0xF2, 0xF3, 0xF4, 0xF5, 0xF6, 0xF7, 0xF8,
+    0xFA, 0xFB, 0xFC, 0xFD, 0xFE, 0xFF,
+]
+
+#use this to keep track of commands without pksv names
+pksv_no_names = {}
+def pretty_print_pksv_no_names():
+    """just some nice debugging output"""
+    for (command_byte, addresses) in pksv_no_names.items():
+        if command_byte in pksv_crystal_unknowns: continue
+        print hex(command_byte) + " appearing in these scripts: "
+        for address in addresses:
+            print "    " + hex(address)
 
 def parse_script_engine_script_at(address, map_group=None, map_id=None):
     """parses a script-engine script"""
@@ -669,6 +809,7 @@ def parse_script_engine_script_at(address, map_group=None, map_id=None):
             """
             size = 3
             command["pointer"] = calculate_pointer_from_bytes_at(start_address+1)
+            end = True #according to pksv
         elif command_byte == 0x04: #Pointer code [3b]
             info = "pointer code"
             long_info = """
@@ -677,6 +818,7 @@ def parse_script_engine_script_at(address, map_group=None, map_id=None):
             """
             size = 4
             command["pointer"] = calculate_pointer_from_bytes_at(start_address+1, bank=True)
+            end = True #according to pksv
         elif command_byte == 0x05: #Pointer code [2b+3b]
             info = "pointer code"
             long_info = """
@@ -685,22 +827,25 @@ def parse_script_engine_script_at(address, map_group=None, map_id=None):
             """
             size = 3
             command["pointer"] = calculate_pointer_from_bytes_at(start_address+1)
+            end = True #according to pksv
         elif command_byte == 0x06: #RAM check [=byte]
             info = "RAM check [=byte]"
             long_info = """
             When the conditional is true...
             .. then go to pointed script, else resume interpreting after the pointer
             """
-            size = 3
-            command["pointer"] = calculate_pointer_from_bytes_at(start_address+1)
+            size = 4
+            command["byte"] = ord(rom[start_address+1])
+            command["pointer"] = calculate_pointer_from_bytes_at(start_address+2)
         elif command_byte == 0x07: #RAM check [<>byte]
             info = "RAM check [<>byte]"
             long_info = """
             When the conditional is true...
             .. then go to pointed script, else resume interpreting after the pointer
             """
-            size = 3
-            command["pointer"] = calculate_pointer_from_bytes_at(start_address+1)
+            size = 4
+            command["byte"] = ord(rom[start_address+1])
+            command["pointer"] = calculate_pointer_from_bytes_at(start_address+2)
         elif command_byte == 0x08: #RAM check [=0]
             info = "RAM check [=0]"
             long_info = """
@@ -723,16 +868,18 @@ def parse_script_engine_script_at(address, map_group=None, map_id=None):
             When the conditional is true...
             .. then go to pointed script, else resume interpreting after the pointer
             """
-            size = 3
-            command["pointer"] = calculate_pointer_from_bytes_at(start_address+1)
+            size = 4
+            command["byte"] = ord(rom[start_address+1])
+            command["pointer"] = calculate_pointer_from_bytes_at(start_address+2)
         elif command_byte == 0x0B: #RAM check [>byte]
             info = "RAM check [>byte]"
             long_info = """
             When the conditional is true...
             .. then go to pointed script, else resume interpreting after the pointer
             """
-            size = 3
-            command["pointer"] = calculate_pointer_from_bytes_at(start_address+1)
+            size = 4
+            command["byte"] = ord(rom[start_address+1])
+            command["pointer"] = calculate_pointer_from_bytes_at(start_address+2)
         elif command_byte == 0x0C: #0C codes [xxyy]
             info = "call predefined script then end"
             long_info = """
@@ -2014,6 +2161,7 @@ def parse_script_engine_script_at(address, map_group=None, map_id=None):
             """
             size = 3
             command["script_pointer"] = calculate_pointer_from_bytes_at(start_address+1, bank=False)
+            end = True #according to pksv
         elif command_byte == 0x8E: #Warp check
             info = "Reactive all engine checks if player is warping"
             long_info = """
@@ -2030,6 +2178,7 @@ def parse_script_engine_script_at(address, map_group=None, map_id=None):
             """
             size = 3
             command["script_pointer"] = calculate_pointer_from_bytes_at(start_address+1, bank=False)
+            end = True #according to pksv
         elif command_byte == 0x90: #Return code1
             info = "Return code 1"
             long_info = """
@@ -2157,10 +2306,11 @@ def parse_script_engine_script_at(address, map_group=None, map_id=None):
             end = True
             command["tree_id"] = ord(rom[start_address+1])
         elif command_byte == 0x9C: #Cell phone call code [xx00]
-            info = "Cell phone call [call id][00]"
+            #XXX confirm this?
+            info = "Cell phone call [call id]" #was originally: [call id][00]
             long_info = """
             #Initiates with the next step on a outer world map (permission byte) a phone call.
-            #[9B][Call no][00]
+            #[9B][Call no] and maybe [00] ???
             #call no:
             #  01 = PokéRus
             #  02 = Pokémon stolen
@@ -2171,9 +2321,9 @@ def parse_script_engine_script_at(address, map_group=None, map_id=None):
             #  07 = Mother is unhappy that HIRO didn't talk to her before leaving
             #  08 = PROF. ELM has got something for HIRO a second time
             """
-            size = 3
+            size = 2
             command["call_id"] = ord(rom[start_address+1])
-            command["byte"] = ord(rom[start_address+2])
+            #command["byte"] = ord(rom[start_address+2])
         elif command_byte == 0x9D: #Check cell phone call code
             info = "Check if/which a phone call is active"
             long_info = """
@@ -2261,10 +2411,22 @@ def parse_script_engine_script_at(address, map_group=None, map_id=None):
             size = 2
             command["location_number"] = ord(rom[start_address+1])
         else:
-            end = True
+            size = 1
+            #end = True
             #raise NotImplementedError, "command byte is " + hex(command_byte) + " at " + hex(offset) + " on map " + str(map_group) + "." + str(map_id)
+            print "dunno what this command is: " + hex(command_byte)
         long_info = clean_up_long_info(long_info)
-        print command_debug_information(command_byte=command_byte, map_group=map_group, map_id=map_id, address=offset, info=info, long_info=long_info)
+        
+        if command_byte in pksv_crystal.keys():
+            pksv_name = pksv_crystal[command_byte]
+        else:
+            pksv_name = None
+            if command_byte in pksv_no_names.keys():
+                pksv_no_names[command_byte].append(address)
+            else:
+                pksv_no_names[command_byte] = [address]
+
+        print command_debug_information(command_byte=command_byte, map_group=map_group, map_id=map_id, address=offset, info=info, long_info=long_info, pksv_name=pksv_name)
         
         #store the size of the command
         command["size"] = size
