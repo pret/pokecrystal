@@ -366,7 +366,7 @@ def calculate_bank(address):
 def calculate_pointer(short_pointer, bank=None):
     """calculates the full address given a 4-byte pointer and bank byte"""
     short_pointer = int(short_pointer)
-    if short_pointer > 0x4000:
+    if 0x4000 <= short_pointer <= 0x7fff:
         short_pointer -= 0x4000
         bank = int(bank)
     else:
@@ -2885,7 +2885,7 @@ def parse_people_event_bytes(some_bytes, address=None, map_group=None, map_id=No
                 script = parse_script_engine_script_at(ptr_address, map_group=map_group, map_id=map_id)
                 extra_portion = {
                     "script_address": ptr_address,
-                    #"script": script,
+                    "script": script,
                     "event_type": "script",
                 }
             if is_give_item:
