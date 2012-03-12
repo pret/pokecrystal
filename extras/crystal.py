@@ -342,6 +342,10 @@ def rom_until(offset, byte, strings=True):
     global rom
     return rom_interval(offset, rom.find(chr(byte), offset) - offset, strings=strings)
 
+def how_many_until(byte, starting):
+    index = rom.find(byte, starting)
+    return index - starting
+
 def load_map_group_offsets():
     """reads the map group table for the list of pointers"""
     global map_group_pointer_table, map_group_count, map_group_offsets
@@ -412,14 +416,243 @@ def command_debug_information(command_byte=None, map_group=None, map_id=None, ad
     #info1 += "    long_info: " + long_info
     return info1
 
-def parse_text_engine_script_at(address, map_group=None, map_id=None):
+def process_00_subcommands(start_address, end_address):
+    """split this text up into multiple lines
+    based on subcommands ending each line"""
+    lines = {}
+    subsection = rom[start_address:end_address]
+
+    line_count = 0
+    current_line = []
+    for pbyte in subsection:
+        byte = ord(pbyte)
+        current_line.append(byte)
+        if  byte == 0x4f or byte == 0x51 or byte == 0x55:
+            lines[line_count] = current_line
+            current_line = []
+            line_count += 1
+
+    #don't forget the last line
+    lines[line_count] = current_line
+    line_count += 1
+    return lines
+
+def parse_text_from_bytes(bytes):
+    """assembles a string based on bytes looked up in the chars table"""
+    line = ""
+    for byte in bytes:
+        if type(byte) != int:
+            byte = ord(byte)
+        if byte in chars.keys():
+            line += chars[byte]
+        else:
+            print "byte not known: " + hex(byte)
+    return line
+
+def parse_text_at(address, count=10):
+    """returns a list of bytes from an address
+    see parse_text_at2 for pretty printing"""
+    return parse_text_from_bytes(rom_interval(address, count, strings=False))
+
+def parse_text_at2(address, count=10):
+    """returns a string of text from an address"""
+    output = ""
+    commands = process_00_subcommands(address, address+count)
+    for (line_id, line) in commands.items():
+        output += parse_text_from_bytes(line)
+        output += "\n"
+    return output
+
+def parse_text_engine_script_at(address, map_group=None, map_id=None, debug=True):
+    return {}
+
+def new_parse_text_engine_script_at(address, map_group=None, map_id=None, debug=True):
     """parses a text-engine script ("in-text scripts")
     http://hax.iimarck.us/files/scriptingcodes_eng.htm#InText
+
+    This is presently very broken.
+
+    see parse_text_at2, parse_text_at, and process_00_subcommands
     """
     global rom
     if rom == None:
         load_rom()
     commands = {}
+
+    total_text_commands = 0
+    command_counter = 0
+    original_address = address
+    offset = address
+    end = False
+    while not end:
+        command = {}
+        command_byte = ord(rom[address])
+        if  command_byte == 0:
+            #read until $57, $50 or $58
+            jump57 = how_many_until(chr(0x57), offset)
+            jump50 = how_many_until(chr(0x50), offset)
+            jump58 = how_many_until(chr(0x58), offset)
+     
+            #whichever command comes first
+            jump = min([jump57, jump50, jump58])
+
+            end_address = offset + jump - 1 #we want the address before $57
+
+            command = {"type": command_byte,
+                       "start_address": offset,
+                       "end_address": end_address,
+                       "size": jump,
+                       "lines": process_00_subcommands(offset+1, end_address),
+                      }   
+
+            offset += jump
+        elif command_byte == 0x17:
+            #TX_FAR [pointer][bank]
+            pointer_byte1 = ord(rom[offset+1])
+            pointer_byte2 = ord(rom[offset+2])
+            pointer_bank = ord(rom[offset+3])
+
+            pointer = (pointer_byte1 + (pointer_byte2 << 8))
+            pointer = extract_maps.calculate_pointer(pointer, pointer_bank)
+
+            command = {"type": command_byte,
+                       "start_address": offset,
+                       "end_address": offset + 3, #last byte belonging to this command
+                       "pointer": pointer, #parameter
+                      }
+
+            offset += 3 + 1
+        elif command_byte == 0x50 or command_byte == 0x57 or command_byte == 0x58: #end text
+            command = {"type": command_byte,
+                       "start_address": offset,
+                       "end_address": offset,
+                      }
+
+            #this byte simply indicates to end the script
+            end = True
+
+            #this byte simply indicates to end the script
+            if command_byte == 0x50 and ord(rom[offset+1]) == 0x50: #$50$50 means end completely
+                end = True
+                commands[command_counter+1] = command
+
+                #also save the next byte, before we quit
+                commands[command_counter+1]["start_address"] += 1
+                commands[command_counter+1]["end_address"] += 1
+                add_command_byte_to_totals(command_byte)
+            elif command_byte == 0x50: #only end if we started with $0
+                if len(commands.keys()) > 0:
+                    if commands[0]["type"] == 0x0: end = True
+            elif command_byte == 0x57 or command_byte == 0x58: #end completely
+                end = True
+                offset += 1 #go past this 0x50
+        elif command_byte == 0x1:
+            #01 = text from RAM. [01][2-byte pointer]
+            size = 3 #total size, including the command byte
+            pointer_byte1 = ord(rom[offset+1])
+            pointer_byte2 = ord(rom[offset+2])
+
+            command = {"type": command_byte,
+                       "start_address": offset+1,
+                       "end_address": offset+2, #last byte belonging to this command
+                       "pointer": [pointer_byte1, pointer_byte2], #RAM pointer
+                      }
+
+            #view near these bytes
+            #subsection = rom[offset:offset+size+1] #peak ahead
+            #for x in subsection:
+            #    print hex(ord(x))
+            #print "--"
+
+            offset += 2 + 1 #go to the next byte
+
+            #use this to look at the surrounding bytes
+            if debug:
+                print "next command is: " + hex(ord(rom[offset])) + " ... we are at command number: " + str(command_counter) + " near " + hex(offset) + " on map_id=" + str(map_id)
+        elif command_byte == 0x7:
+            #07 = shift texts 1 row above (2nd line becomes 1st line); address for next text = 2nd line. [07]
+            size = 1
+            command = {"type": command_byte,
+                       "start_address": offset,
+                       "end_address": offset,
+                      }
+            offset += 1
+        elif command_byte == 0x3:
+            #03 = set new address in RAM for text. [03][2-byte RAM address]
+            size = 3
+            command = {"type": command_byte, "start_address": offset, "end_address": offset+2}
+            offset += size
+        elif command_byte == 0x4: #draw box
+            #04 = draw box. [04][2-Byte pointer][height Y][width X]
+            size = 5 #including the command
+            command = {
+                        "type": command_byte,
+                        "start_address": offset,
+                        "end_address": offset + size,
+                        "pointer_bytes": [ord(rom[offset+1]), ord(rom[offset+2])],
+                        "y": ord(rom[offset+3]),
+                        "x": ord(rom[offset+4]),
+                      }
+            offset += size + 1
+        elif command_byte == 0x5:
+            #05 = write text starting at 2nd line of text-box. [05][text][ending command]
+            #read until $57, $50 or $58
+            jump57 = how_many_until(chr(0x57), offset)
+            jump50 = how_many_until(chr(0x50), offset)
+            jump58 = how_many_until(chr(0x58), offset)
+
+            #whichever command comes first
+            jump = min([jump57, jump50, jump58])
+
+            end_address = offset + jump - 1 #we want the address before $57
+
+            command = {"type": command_byte,
+                       "start_address": offset,
+                       "end_address": end_address,
+                       "size": jump,
+                       "lines": process_00_subcommands(offset+1, end_address),
+                      }
+            offset = end_address + 1
+        elif command_byte == 0x6:
+            #06 = wait for keypress A or B (put blinking arrow in textbox). [06]
+            command = {"type": command_byte, "start_address": offset, "end_address": offset}
+            offset += 1
+        elif command_byte == 0x7:
+            #07 = shift texts 1 row above (2nd line becomes 1st line); address for next text = 2nd line. [07]
+            command = {"type": command_byte, "start_address": offset, "end_address": offset}
+            offset += 1
+        elif command_byte == 0x8:
+            #08 = asm until whenever
+            command = {"type": command_byte, "start_address": offset, "end_address": offset}
+            offset += 1
+            end = True
+        elif command_byte == 0x9:
+            #09 = write hex-to-dec number from RAM to textbox [09][2-byte RAM address][byte bbbbcccc]
+            #  bbbb = how many bytes to read (read number is big-endian)
+            #  cccc = how many digits display (decimal)
+            #(note: max of decimal digits is 7,i.e. max number correctly displayable is 9999999)
+            ram_address_byte1 = ord(rom[offset+1])
+            ram_address_byte2 = ord(rom[offset+2])
+            read_byte = ord(rom[offset+3])
+
+            command = {
+                        "type": command_byte,
+                        "address": [ram_address_byte1, ram_address_byte2],
+                        "read_byte": read_byte, #split this up when we make a macro for this
+                      }
+
+            offset += 4
+        else:
+            #if len(commands) > 0:
+            #   print "Unknown text command " + hex(command_byte) + " at " + hex(offset) + ", script began with " + hex(commands[0]["type"])
+            if debug:
+                print "Unknown text command at " + hex(offset) + " - command: " + hex(ord(rom[offset])) + " on map_id=" + str(map_id)
+
+            #end at the first unknown command
+            end = True
+        commands[command_counter] = command
+        command_counter += 1
+    total_text_commands += len(commands)
     return commands
 
 def translate_command_byte(crystal=None, gold=None):
