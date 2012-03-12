@@ -375,6 +375,8 @@ def calculate_pointer_from_bytes_at(address, bank=False):
         bank = calculate_bank(address)
     elif bank == "reverse" or bank == "reversed":
         bank = ord(rom[address+2])
+    elif type(bank) == int:
+        pass
     else:
         raise "bad bank given to calculate_pointer_from_bytes_at"
     byte1 = ord(rom[address])
@@ -410,7 +412,7 @@ def command_debug_information(command_byte=None, map_group=None, map_id=None, ad
     #info1 += "    long_info: " + long_info
     return info1
 
-def parse_text_engine_script_at(address):
+def parse_text_engine_script_at(address, map_group=None, map_id=None):
     """parses a text-engine script ("in-text scripts")
     http://hax.iimarck.us/files/scriptingcodes_eng.htm#InText
     """
@@ -2538,6 +2540,56 @@ def parse_signpost_bytes(some_bytes, bank=None, map_group=None, map_id=None):
             "script": script,
         })
     return signposts
+def parse_trainer_header_at(address, map_group=None, map_id=None):
+    """
+    [Bit no. (2byte)][Trainer group][Trainer]
+    [2byte pointer to Text when seen]
+    [2byte pointer to text when trainer beaten]
+    [2byte pointer to script when lost (0000=Blackout)]
+    [2byte pointer to script if won/talked to again]
+     
+    The bit number tell the game later on if the trainer has been
+    beaten already (bit = 1) or not (bit = 0). All Bit number of BitTable1.
+     
+    03 = Nothing
+    04 = Nothing
+    05 = Nothing
+    06 = Nothing
+    """
+    bank = calculate_bank(address)
+    bytes = rom_interval(address, 12, strings=False)
+    bit_number = bytes[0]
+    trainer_group = bytes[1]
+    trainer_id = bytes[2]
+    text_when_seen_ptr = calculate_pointer_from_bytes_at(address+3, bank=bank)
+    text_when_seen = parse_text_engine_script_at(text_when_seen_ptr, map_group=map_group, map_id=map_id)
+    text_when_trainer_beaten_ptr = calculate_pointer_from_bytes_at(address+5, bank=bank)
+    text_when_trainer_beaten = parse_text_engine_script_at(text_when_trainer_beaten_ptr, map_group=map_group, map_id=map_id)
+    if [ord(rom[address+7]), ord(rom[address+8])] == [0, 0]:
+        script_when_lost_ptr = 0
+        script_when_lost = None
+    else:
+        print "parsing script-when-lost"
+        script_when_lost_ptr = calculate_pointer_from_bytes_at(address+7, bank=bank)
+        script_when_lost = None #parse_script_engine_script_at(script_when_lost_ptr, map_group=map_group, map_id=map_id)
+    print "parsing script-talk-again" #or is this a text?
+    script_talk_again_ptr = calculate_pointer_from_bytes_at(address+9, bank=bank)
+    script_talk_again = None #parse_script_engine_script_at(script_talk_again_ptr, map_group=map_group, map_id=map_id)
+    
+    return {
+        "bit_number": bit_number,
+        "trainer_group": trainer_group,
+        "trainer_id": trainer_id,
+        "text_when_seen_ptr": text_when_seen_ptr,
+        "text_when_seen": text_when_seen,
+        "text_when_trainer_beaten_ptr": text_when_trainer_beaten_ptr,
+        "text_when_trainer_beaten": text_when_trainer_beaten,
+        "script_when_lost_ptr": script_when_lost_ptr,
+        "script_when_lost": script_when_lost,
+        "script_talk_again_ptr": script_talk_again_ptr,
+        "script_talk_again": script_talk_again,
+    }
+    
 def parse_people_event_bytes(some_bytes, address=None, map_group=None, map_id=None): #max of 14 people per map?
     """parse some number of people-events from the data
     see http://hax.iimarck.us/files/scriptingcodes_eng.htm#Scripthdr
@@ -2568,20 +2620,54 @@ def parse_people_event_bytes(some_bytes, address=None, map_group=None, map_id=No
         color_function_byte = int(bytes[7], 16) #Color|Function
         trainer_sight_range = int(bytes[8], 16)
         
+        lower_bits = color_function_byte & 0xF
+        #lower_bits_high = lower_bits >> 2
+        #lower_bits_low = lower_bits & 3
+        higher_bits = color_function_byte >> 4
+        #higher_bits_high = higher_bits >> 2
+        #higher_bits_low = higher_bits & 3
+
+        is_regular_script = lower_bits == 00
+        #pointer points to script
+        is_give_item = lower_bits == 01
+        #pointer points to [Item no.][Amount]
+        is_trainer = lower_bits == 02
+        #pointer points to trainer header
+
         #goldmap called these next two bytes "text_block" and "text_bank"?
         script_pointer_byte1 = int(bytes[9], 16)
         script_pointer_byte2 = int(bytes[10], 16)
         script_pointer = script_pointer_byte1 + (script_pointer_byte2 << 8)
         #calculate the full address by assuming it's in the current bank
         #but what if it's not in the same bank?
-        script_address = None
-        script = None
+        extra_portion = {}
         if bank:
-            print "parsing a person-script at x=" + str(x) + " y=" + str(y)
-            script_address = calculate_pointer(script_pointer, bank)
-            script = parse_script_engine_script_at(script_address, map_group=map_group, map_id=map_id)
-
-        #take the script pointer
+            ptr_address = calculate_pointer(script_pointer, bank)
+            if is_regular_script:
+                print "parsing a person-script at x=" + str(x-4) + " y=" + str(y-4)
+                script = parse_script_engine_script_at(ptr_address, map_group=map_group, map_id=map_id)
+                extra_portion = {
+                    "script_address": ptr_address,
+                    #"script": script,
+                    "event_type": "script",
+                }
+            if is_give_item:
+                print "... not parsing give item event... [item id][quantity]"
+                extra_portion = {
+                    "event_type": "give_item",
+                    "give_item_data_address": ptr_address,
+                    "item_id": ord(rom[ptr_address]),
+                    "item_qty": ord(rom[ptr_address+1]),
+                }
+            if is_trainer:
+                print "parsing a trainer (person-event) at x=" + str(x) + " y=" + str(y)
+                parsed_trainer = parse_trainer_header_at(ptr_address, map_group=map_group, map_id=map_id)
+                extra_portion = {
+                    "event_type": "trainer",
+                    "trainer_data_address": ptr_address,
+                    "trainer_data": parsed_trainer,
+                }
+                
 
         #XXX not sure what's going on here
         #bit no. of bit table 1 (hidden if set)
@@ -2589,7 +2675,11 @@ def parse_people_event_bytes(some_bytes, address=None, map_group=None, map_id=No
         when_byte = int(bytes[11], 16)
         hide = int(bytes[12], 16)
 
-        people_events.append({
+        bit_number_of_bit_table1_byte2 = int(bytes[11], 16)
+        bit_number_of_bit_table1_byte1 = int(bytes[12], 16)
+        bit_number_of_bit_table1 = bit_number_of_bit_table1_byte1 + (bit_number_of_bit_table1_byte2 << 8)
+
+        people_event = {
             "pict": pict,
             "y": y,                      #y from top + 4
             "x": x,                      #x from left + 4
@@ -2601,13 +2691,14 @@ def parse_people_event_bytes(some_bytes, address=None, map_group=None, map_id=No
             "trainer_sight_range": trainer_sight_range,  #trainer range of sight
             "script_pointer": {"1": script_pointer_byte1,
                                "2": script_pointer_byte2},
-            "script_address": script_address,
-            "script": script,            #parsed script.. hah!
+
             #"text_block": text_block,   #script pointer byte 1
             #"text_bank": text_bank,     #script pointer byte 2
             "when_byte": when_byte,      #bit no. of bit table 1 (hidden if set)
             "hide": hide,                #note: FFFF for none
-        })
+        }
+        people_event.update(extra_portion)
+        people_events.append(people_event)
     return people_events
 
 class MapEventElement():
@@ -2737,14 +2828,12 @@ def parse_map_event_header_at(address, map_group=None, map_id=None):
     after_signposts = after_triggers + 1 + signpost_byte_count
     returnable.update({"signpost_count": signpost_count, "signposts": parse_signpost_bytes(signposts, bank=bank, map_group=map_group, map_id=map_id)})
   
-    print "skipping event data... (oops)"
-    #raise NotImplementedError, "holy mother of god"
-    #XXX parse trainer data too.. this changes the structure of people events...
     #people events
-    #people_event_count = ord(rom[after_signposts])
-    #people_event_byte_count = people_event_byte_size * people_event_count
-    #people_events = rom_interval(after_signposts+1, people_event_byte_count)
-    #returnable.update({"people_event_count": people_event_count, "people_events": parse_people_event_bytes(people_events, address=after_signposts+1, map_group=map_group, map_id=map_id)})
+    people_event_count = ord(rom[after_signposts])
+    people_event_byte_count = people_event_byte_size * people_event_count
+    people_events_bytes = rom_interval(after_signposts+1, people_event_byte_count)
+    people_events = parse_people_event_bytes(people_events_bytes, address=after_signposts+1, map_group=map_group, map_id=map_id)
+    returnable.update({"people_event_count": people_event_count, "people_events": people_events})
 
     return returnable
 
@@ -2800,12 +2889,14 @@ def parse_map_script_header_at(address, map_group=None, map_id=None):
         after battle:
             01, 04
     """
+    print "starting to parse the map's script header.."
     #[[Number1 of pointers] Number1 * [2byte pointer to script][00][00]]
     ptr_line_size = 4 #[2byte pointer to script][00][00]
     trigger_ptr_cnt = ord(rom[address])
     trigger_pointers = grouper(rom_interval(address+1, trigger_ptr_cnt * ptr_line_size, strings=False), count=ptr_line_size)
     triggers = {}
     for index, trigger_pointer in enumerate(trigger_pointers):
+        print "parsing a trigger header..."
         byte1 = trigger_pointer[0]
         byte2 = trigger_pointer[1]
         ptr   = byte1 + (byte2 << 8)
@@ -2827,6 +2918,7 @@ def parse_map_script_header_at(address, map_group=None, map_id=None):
     callback_pointers = {}
     callbacks = {}
     for index, callback_line in enumerate(callback_ptrs):
+        print "parsing a callback header..."
         hook_byte = callback_line[0] #1, 2, 3, 4, 5
         callback_byte1 = callback_line[1]
         callback_byte2 = callback_line[2]
@@ -2851,18 +2943,40 @@ def parse_map_script_header_at(address, map_group=None, map_id=None):
         "callback_scripts": callbacks,
     }
 
+def parse_map_header_by_id(*args, **kwargs):
+    """convenience function to parse a specific map"""
+    map_group, map_id = None, None
+    if "map_group" in kwargs.keys():
+        map_group = kwargs["map_group"]
+    if "map_id" in kwargs.keys():
+        map_id = kwargs["map_id"]
+    if (map_group == None and map_id != None) or \
+       (map_group != None and map_id == None):
+        raise Exception, "map_group and map_id must both be provided"
+    elif map_group == None and map_id == None and len(args) == 0:
+        raise Exception, "must be given an argument"
+    elif len(args) == 1 and type(args[0]) == str:
+        map_group = int(args[0].split(".")[0])
+        map_id = int(args[0].split(".")[1])
+    else:
+        raise Exception, "dunno what to do with input"
+    offset = map_names[map_group]["offset"]
+    map_header_offset = offset + ((map_id - 1) * map_header_byte_size)
+    return parse_map_header_at(map_header_offset, map_group=map_group, map_id=map_id)
+
 def parse_all_map_headers():
     """calls parse_map_header_at for each map in each map group"""
     global map_names
     if not map_names[1].has_key("offset"):
-        raise "dunno what to do - map_names should have groups with pre-calculated offsets by now"
+        raise Exception, "dunno what to do - map_names should have groups with pre-calculated offsets by now"
     for group_id, group_data in map_names.items():
         offset = group_data["offset"]
         #we only care about the maps
-        del group_data["offset"]
+        #del group_data["offset"]
         for map_id, map_data in group_data.items():
-            map_header_offset = offset + ((map_id - 1) * map_header_byte_size)
+            if map_id == "offset": continue #skip the "offset" address for this map group
             print "map_group is: " + str(group_id) + "  map_id is: " + str(map_id)
+            map_header_offset = offset + ((map_id - 1) * map_header_byte_size)
             parsed_map = parse_map_header_at(map_header_offset, map_group=group_id, map_id=map_id)
             map_names[group_id][map_id].update(parsed_map)
             map_names[group_id][map_id]["header_offset"] = map_header_offset
