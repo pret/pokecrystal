@@ -363,11 +363,15 @@ def calculate_bank(address):
     if type(address) == str:
         address = int(address, 16)
     return int(address) / 0x4000
-def calculate_pointer(short_pointer, bank):
+def calculate_pointer(short_pointer, bank=None):
     """calculates the full address given a 4-byte pointer and bank byte"""
     short_pointer = int(short_pointer)
-    bank = int(bank)
-    pointer = short_pointer - 0x4000 + (bank * 0x4000)
+    if short_pointer > 0x4000:
+        short_pointer -= 0x4000
+        bank = int(bank)
+    else:
+        bank = 0
+    pointer = short_pointer + (bank * 0x4000)
     return pointer
 def calculate_pointer_from_bytes_at(address, bank=False):
     """calculates a pointer from 2 bytes at a location
