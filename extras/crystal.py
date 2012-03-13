@@ -467,6 +467,110 @@ def parse_text_at2(address, count=10):
         output += "\n"
     return output
 
+def find_all_text_pointers_in_script_engine_script(script, bank):
+    """returns a list of text pointers
+    based on each script-engine script command"""
+    #TODO: recursively follow any jumps in the script
+    if script == None: return []
+    addresses = set()
+    for (k, command) in script.items():
+        if   command["type"] == 0x4B:
+            addresses.add(command["pointer"])
+        elif command["type"] == 0x4C:
+            addresses.add(command["pointer"])
+        elif command["type"] == 0x51:
+            addresses.add(command["text_pointer"])
+        elif command["type"] == 0x53:
+            addresses.add(command["text_pointer"])
+        elif command["type"] == 0x64:
+            addresses.add(command["won_pointer"])
+            addresses.add(command["lost_pointer"])
+    return addresses
+
+def find_text_addresses():
+    """returns a list of text pointers
+    useful for testing parse_text_engine_script_at
+    
+    Note that this list is not exhaustive. There are some texts that
+    are only pointed to from some script that a current script just
+    points to. So find_all_text_pointers_in_script_engine_script will
+    have to recursively follow through each script to find those.
+    """
+    addresses = set()
+    #for each map group
+    for map_group in map_names:
+        #for each map id
+        for map_id in map_names[map_group]:
+            #skip the offset key
+            if map_id == "offset": continue
+            #dump this into smap
+            smap = map_names[map_group][map_id]
+            #signposts
+            signposts = smap["signposts"]
+            #for each signpost
+            for signpost in signposts:
+                #dump this into script
+                script = signpost["script"]
+                #skip signposts with no bytes
+                if len(script) == 0: continue
+                #find all text pointers in script
+                texts = find_all_text_pointers_in_script_engine_script(script, smap["event_bank"])
+                #dump these addresses in
+                addresses.update(texts)
+            #xy triggers
+            xy_triggers = smap["xy_triggers"]
+            #for each xy trigger
+            for xy_trigger in xy_triggers:
+                #dump this into script
+                script = xy_trigger["script"]
+                #find all text pointers in script
+                texts = find_all_text_pointers_in_script_engine_script(script, smap["event_bank"])
+                #dump these addresses in
+                addresses.update(texts)
+            #trigger scripts
+            triggers = smap["trigger_scripts"]
+            #for each trigger
+            for (i, trigger) in triggers.items():
+                #dump this into script
+                script = trigger["script"]
+                #find all text pointers in script
+                texts = find_all_text_pointers_in_script_engine_script(script, calculate_bank(trigger["address"]))
+                #dump these addresses in
+                addresses.update(texts)
+            #callback scripts
+            callbacks = smap["callback_scripts"]
+            #for each callback
+            for (k, callback) in callbacks.items():
+                #dump this into script
+                script = callback["script"]
+                #find all text pointers in script
+                texts = find_all_text_pointers_in_script_engine_script(script, calculate_bank(callback["address"]))
+                #dump these addresses in
+                addresses.update(texts)
+            #people-events
+            events = smap["people_events"]
+            #for each event
+            for event in events:
+                if event["event_type"] == "script":
+                    #dump this into script
+                    script = event["script"]
+                    #find all text pointers in script
+                    texts = find_all_text_pointers_in_script_engine_script(script, smap["event_bank"])
+                    #dump these addresses in
+                    addresses.update(texts)
+                if event["event_type"] == "trainer":
+                    trainer_data = event["trainer_data"]
+                    addresses.update([trainer_data["text_when_seen_ptr"]])
+                    addresses.update([trainer_data["text_when_trainer_beaten_ptr"]])
+                    trainer_bank = calculate_bank(event["trainer_data_address"])
+                    script1 = trainer_data["script_talk_again"]
+                    texts1 = find_all_text_pointers_in_script_engine_script(script1, trainer_bank)
+                    addresses.update(texts1)
+                    script2 = trainer_data["script_when_lost"]
+                    texts2 = find_all_text_pointers_in_script_engine_script(script2, trainer_bank)
+                    addresses.update(texts2)
+    return addresses
+
 def parse_text_engine_script_at(address, map_group=None, map_id=None, debug=True):
     return {}
 
@@ -2802,16 +2906,22 @@ def parse_trainer_header_at(address, map_group=None, map_id=None):
     text_when_seen = parse_text_engine_script_at(text_when_seen_ptr, map_group=map_group, map_id=map_id)
     text_when_trainer_beaten_ptr = calculate_pointer_from_bytes_at(address+5, bank=bank)
     text_when_trainer_beaten = parse_text_engine_script_at(text_when_trainer_beaten_ptr, map_group=map_group, map_id=map_id)
+
     if [ord(rom[address+7]), ord(rom[address+8])] == [0, 0]:
         script_when_lost_ptr = 0
         script_when_lost = None
     else:
         print "parsing script-when-lost"
         script_when_lost_ptr = calculate_pointer_from_bytes_at(address+7, bank=bank)
-        script_when_lost = None #parse_script_engine_script_at(script_when_lost_ptr, map_group=map_group, map_id=map_id)
+        script_when_lost = None
+        #if script_when_lost_ptr > 0x4000:
+        #    script_when_lost = parse_script_engine_script_at(script_when_lost_ptr, map_group=map_group, map_id=map_id)
+    
     print "parsing script-talk-again" #or is this a text?
     script_talk_again_ptr = calculate_pointer_from_bytes_at(address+9, bank=bank)
-    script_talk_again = None #parse_script_engine_script_at(script_talk_again_ptr, map_group=map_group, map_id=map_id)
+    script_talk_again = None
+    #if script_talk_again_ptr > 0x4000:
+    #    script_talk_again = parse_script_engine_script_at(script_talk_again_ptr, map_group=map_group, map_id=map_id)
     
     return {
         "bit_number": bit_number,
@@ -2904,8 +3014,7 @@ def parse_people_event_bytes(some_bytes, address=None, map_group=None, map_id=No
                     "trainer_data_address": ptr_address,
                     "trainer_data": parsed_trainer,
                 }
-                
-
+        
         #XXX not sure what's going on here
         #bit no. of bit table 1 (hidden if set)
         #note: FFFF for none
@@ -2933,6 +3042,10 @@ def parse_people_event_bytes(some_bytes, address=None, map_group=None, map_id=No
             #"text_bank": text_bank,     #script pointer byte 2
             "when_byte": when_byte,      #bit no. of bit table 1 (hidden if set)
             "hide": hide,                #note: FFFF for none
+
+            "is_trainer": is_trainer,
+            "is_regular_script": is_regular_script,
+            "is_give_item": is_give_item,
         }
         people_event.update(extra_portion)
         people_events.append(people_event)
