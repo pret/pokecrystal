@@ -6,6 +6,10 @@
 import sys
 from copy import copy
 
+#for IntervalMap
+from bisect import bisect_left, bisect_right
+from itertools import izip
+
 #table of pointers to map groups
 #each map group contains some number of map headers
 map_group_pointer_table = 0x94000
@@ -296,6 +300,109 @@ for key, value in jap_chars.items():
     if key not in chars.keys():
         chars[key] = value
 
+class IntervalMap(object):
+    """
+    This class maps a set of intervals to a set of values.
+
+    >>> i = IntervalMap()
+    >>> i[0:5] = "hello world"
+    >>> i[6:10] = "hello cruel world"
+    >>> print i[4]
+    "hello world"
+    """
+    def __init__(self):
+        """initializes an empty IntervalMap"""
+        self._bounds = []
+        self._items = []
+        self._upperitem = None
+    def __setitem__(self, _slice, _value):
+        """sets an interval mapping"""
+        assert isinstance(_slice, slice), 'The key must be a slice object'
+    
+        if _slice.start is None:
+            start_point = -1
+        else:
+            start_point = bisect_left(self._bounds, _slice.start)
+        
+        if _slice.stop is None:
+            end_point = -1
+        else:
+            end_point = bisect_left(self._bounds, _slice.stop)
+        
+        if start_point>=0:
+            if start_point < len(self._bounds) and self._bounds[start_point]<_slice.start:
+                start_point += 1 
+
+            if end_point>=0:        
+                self._bounds[start_point:end_point] = [_slice.start, _slice.stop]
+                if start_point < len(self._items):
+                    self._items[start_point:end_point] = [self._items[start_point], _value]
+                else:
+                    self._items[start_point:end_point] = [self._upperitem, _value]
+            else:
+                self._bounds[start_point:] = [_slice.start]
+                if start_point < len(self._items):
+                    self._items[start_point:] = [self._items[start_point], _value]
+                else:
+                    self._items[start_point:] = [self._upperitem]
+                self._upperitem = _value
+        else:
+            if end_point>=0:
+                self._bounds[:end_point] = [_slice.stop]
+                self._items[:end_point] = [_value]
+            else:
+                self._bounds[:] = []
+                self._items[:] = []
+                self._upperitem = _value
+    def __getitem__(self,_point):
+        """gets a value from the mapping"""
+        assert not isinstance(_point, slice), 'The key cannot be a slice object'  
+            
+        index = bisect_right(self._bounds, _point)
+        if index < len(self._bounds):
+            return self._items[index]
+        else:
+            return self._upperitem
+    def items(self):
+        """returns an iterator with each item being
+        ((low_bound, high_bound), value)
+        these items are returned in order"""
+        previous_bound = None
+        for (b, v) in izip(self._bounds, self._items):
+            if v is not None:
+                yield (previous_bound, b), v
+            previous_bound = b
+        if self._upperitem is not None:
+            yield (previous_bound, None), self._upperitem
+    def values(self):
+        """returns an iterator with each item being a stored value
+        the items are returned in order"""
+        for v in self._items:
+            if v is not None:
+                yield v
+        if self._upperitem is not None:
+            yield self._upperitem
+    def __repr__(self):
+        s = []
+        for b,v in self.items():
+            if v is not None:
+                s.append('[%r, %r] => %r'%(
+                    b[0],
+                    b[1],
+                    v
+                ))
+        return '{'+', '.join(s)+'}'
+
+#keys are intervals "500..555" of byte addresses for each script
+#last byte is not inclusive
+#this is how to make sure scripts are not recalculated
+script_parse_table = IntervalMap()
+
+def is_script_already_parsed_at(address):
+    """looks up whether or not a script is parsed at a certain address"""
+    if script_parse_table[address] == None: return False
+    return True
+
 def map_name_cleaner(input):
     """generate a valid asm label for a given map name"""
     return input.replace(":", "").\
@@ -412,7 +519,7 @@ def clean_up_long_info(long_info):
         long_info = "\n".join(new_lines)
     return long_info
 
-def command_debug_information(command_byte=None, map_group=None, map_id=None, address=None, info=None, long_info=None, pksv_name=None):
+def command_debug_information(command_byte=None, map_group=None, map_id=None, address=0, info=None, long_info=None, pksv_name=None):
     info1 = "parsing command byte " + hex(command_byte) + " for map " + \
           str(map_group) + "." + str(map_id) + " at " + hex(address)
     info1 += "    pksv: " + str(pksv_name)
@@ -1095,24 +1202,37 @@ def pretty_print_pksv_no_names():
         for address in addresses:
             print "    " + hex(address)
 
-def parse_script_engine_script_at(address, map_group=None, map_id=None):
+def parse_script_engine_script_at(address, map_group=None, map_id=None, force=False):
     """parses a script-engine script"""
     global rom
     if rom == None:
         load_rom()
-
+    #check if work is being repeated
+    if is_script_already_parsed_at(address) and not force:
+        return script_parse_table[address]
+    original_start_address = address
+    #this next line stops the same script from being re-parsed multiple times
+    #for instance.. maybe there's a script jump, then a jump back
+    #the original script should only be parsed once
+    script_parse_table[original_start_address:original_start_address+1] = "incomplete"
+    #set up some variables
     commands = {}
     offset = address
     end = False
+    #main loop.. parse each command byte
     while not end:
+        #reset variables so we don't contaminate this command
         info, long_info, size = None, None, 0
+        #read the current command byte
         command_byte = ord(rom[offset])
+        #setup the current command representation
         command = {"type": command_byte, "start_address": offset}
 
         #size is the total size including the command byte
         #last_byte_address is offset+size-1
         start_address = offset
 
+        #start checking against possible command bytes
         if   command_byte == 0x00: #Pointer code [2b+ret]
             pksv_name = "2call"
             info = "pointer code"
@@ -2781,6 +2901,8 @@ def parse_script_engine_script_at(address, map_group=None, map_id=None):
         offset += 1
         #add the command into the command list please
         commands[len(commands.keys())] = command
+
+    script_parse_table[original_start_address : offset-1] = commands    
     return commands
 
 def parse_warp_bytes(some_bytes):
