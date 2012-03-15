@@ -613,8 +613,12 @@ def find_text_addresses():
             signposts = smap["signposts"]
             #for each signpost
             for signpost in signposts:
-                #dump this into script
-                script = signpost["script"]
+                if signpost["func"] in [0, 1, 2, 3, 4]:
+                    #dump this into script
+                    script = signpost["script"]
+                elif signpost["func"] in [05, 06]:
+                    script = signpost["script"]
+                else: continue
                 #skip signposts with no bytes
                 if len(script) == 0: continue
                 #find all text pointers in script
@@ -1202,20 +1206,40 @@ def pretty_print_pksv_no_names():
             print "    " + hex(address)
 
 
-recursive_scripts = []
+recursive_scripts = set([])
 def rec_parse_script_engine_script_at(address, origin=None):
     """this is called in parse_script_engine_script_at for recursion
     when this works it should be flipped back to using the regular
     parser."""
-    recursive_scripts.append([address, origin])
+    recursive_scripts.add((address, origin))
     return {}
+def find_broken_recursive_scripts(output=False):
+    """well.. these at least have a chance of maybe being broken?"""
+    for r in list(recursive_scripts):
+        script = {}
+        length = "not counted here"
+        if is_script_already_parsed_at(r[0]):
+            script = script_parse_table[r[0]]
+            length = str(len(script))
+        if len(script) > 20 or script == {}:
+            print "******************* begin"
+            print "script at " + hex(r[0]) + " from main script " + hex(r[1]) + " with length: " + length
+            if output:
+                parse_script_engine_script_at(r[0], force=True, debug=True)
+            print "==================== end"
 
-def parse_script_engine_script_at(address, map_group=None, map_id=None, force=False):
+stop_points = [0x1aafa2]
+def parse_script_engine_script_at(address, map_group=None, map_id=None, force=False, debug=True):
     """parses a script-engine script
     force=True if you want to re-parse and get the debug information"""
     global rom
     if rom == None:
         load_rom()
+    
+    if address in stop_points:
+        print "got " + hex(address) + ".. map_group=" + str(map_group) + " map_id=" + str(map_id)
+        system.exit()
+    
     #check if work is being repeated
     if is_script_already_parsed_at(address) and not force:
         return script_parse_table[address]
@@ -2940,7 +2964,8 @@ def parse_script_engine_script_at(address, map_group=None, map_id=None, force=Fa
             else:
                 pksv_no_names[command_byte] = [address]
 
-        print command_debug_information(command_byte=command_byte, map_group=map_group, map_id=map_id, address=offset, info=info, long_info=long_info, pksv_name=pksv_name)
+        if debug:
+            print command_debug_information(command_byte=command_byte, map_group=map_group, map_id=map_id, address=offset, info=info, long_info=long_info, pksv_name=pksv_name)
         
         #store the size of the command
         command["size"] = size
@@ -3035,24 +3060,56 @@ def parse_signpost_bytes(some_bytes, bank=None, map_group=None, map_id=None):
         y = int(bytes[0], 16)
         x = int(bytes[1], 16)
         func = int(bytes[2], 16)
-        script_ptr_byte1 = int(bytes[3], 16)
-        script_ptr_byte2 = int(bytes[4], 16)
-        script_pointer = script_ptr_byte1 + (script_ptr_byte2 << 8)
-        script_address = None
-        script = None
-        if bank:
+
+        additional = {}
+        if func in [0, 1, 2, 3, 4]:
             print "******* parsing signpost script.. signpost is at: x=" + str(x) + " y=" + str(y)
+            script_ptr_byte1 = int(bytes[3], 16)
+            script_ptr_byte2 = int(bytes[4], 16)
+            script_pointer = script_ptr_byte1 + (script_ptr_byte2 << 8)
+        
+            script_address = None
+            script = None
+        
             script_address = calculate_pointer(script_pointer, bank)
             script = parse_script_engine_script_at(script_address, map_group=map_group, map_id=map_id)
-        signposts.append({
-            "y": y,
-            "x": x,
-            "func": func,
+
+            additional = {
             "script_ptr": script_pointer,
             "script_pointer": {"1": script_ptr_byte1, "2": script_ptr_byte2},
             "script_address": script_address,
             "script": script,
-        })
+            }
+        elif func in [5, 6]:
+            print "******* parsing signpost script.. signpost is at: x=" + str(x) + " y=" + str(y)
+            ptr_byte1 = int(bytes[3], 16)
+            ptr_byte2 = int(bytes[4], 16)
+            pointer = ptr_byte1 + (ptr_byte2 << 8)
+            address = calculate_pointer(pointer, bank)
+            bit_table_byte1 = ord(rom[address])
+            bit_table_byte2 = ord(rom[address+1])
+            script_ptr_byte1 = ord(rom[address+2])
+            script_ptr_byte2 = ord(rom[address+3])
+            script_address = calculate_pointer_from_bytes_at(address+2, bank=bank)
+            script = parse_script_engine_script_at(script_address, map_group=map_group, map_id=map_id)
+            
+            additional = {
+            "bit_table_bytes": {"1": bit_table_byte1, "2": bit_table_byte2},
+            "script_ptr": script_ptr_byte1 + (script_ptr_byte2 << 8),
+            "script_pointer": {"1": script_ptr_byte1, "2": script_ptr_byte2},
+            "script_address": script_address,
+            "script": script,
+            }
+        else:
+            print ".. type 7 or 8 signpost not parsed yet."
+        
+        spost = {
+            "y": y,
+            "x": x,
+            "func": func,
+        }
+        spost.update(additional)
+        signposts.append(spost)
     return signposts
 def parse_trainer_header_at(address, map_group=None, map_id=None):
     """
