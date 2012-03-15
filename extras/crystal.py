@@ -1212,7 +1212,7 @@ def rec_parse_script_engine_script_at(address, origin=None):
     when this works it should be flipped back to using the regular
     parser."""
     recursive_scripts.add((address, origin))
-    return {}
+    return parse_script_engine_script_at(address, origin=origin)
 def find_broken_recursive_scripts(output=False):
     """well.. these at least have a chance of maybe being broken?"""
     for r in list(recursive_scripts):
@@ -1229,7 +1229,7 @@ def find_broken_recursive_scripts(output=False):
             print "==================== end"
 
 stop_points = [0x1aafa2]
-def parse_script_engine_script_at(address, map_group=None, map_id=None, force=False, debug=True):
+def parse_script_engine_script_at(address, map_group=None, map_id=None, force=False, debug=True, origin=False):
     """parses a script-engine script
     force=True if you want to re-parse and get the debug information"""
     global rom
@@ -1238,8 +1238,14 @@ def parse_script_engine_script_at(address, map_group=None, map_id=None, force=Fa
     
     if address in stop_points:
         print "got " + hex(address) + ".. map_group=" + str(map_group) + " map_id=" + str(map_id)
-        system.exit()
+        sys.exit()
+    if address < 0x4000 and address not in [0x26ef, 0x114]:
+        print "address is less than 0x4000.. address is: " + hex(address)
+        sys.exit()
     
+    #max number of commands in a 'recursive' script
+    max_cmds = 100
+
     #check if work is being repeated
     if is_script_already_parsed_at(address) and not force:
         return script_parse_table[address]
@@ -1265,6 +1271,11 @@ def parse_script_engine_script_at(address, map_group=None, map_id=None, force=Fa
         #last_byte_address is offset+size-1
         start_address = offset
 
+        if (len(commands.keys()) > max_cmds) and origin != False:
+            print "too many commands in this script? might not be a script (starting at: " +\
+                  hex(original_start_address) + ").. called from a script at: " + hex(origin)
+            sys.exit()
+
         #start checking against possible command bytes
         if   command_byte == 0x00: #Pointer code [2b+ret]
             pksv_name = "2call"
@@ -1278,6 +1289,9 @@ def parse_script_engine_script_at(address, map_group=None, map_id=None, force=Fa
             last_byte_address = offset + size - 1
             pointer = calculate_pointer_from_bytes_at(start_address+1)
             command["pointer"] = pointer
+            print "in script starting at "+hex(original_start_address)+\
+                  " about to parse script at "+hex(pointer)+\
+                  " called by "+info+" byte="+hex(command_byte)
             script = rec_parse_script_engine_script_at(pointer, original_start_address)
             command["script"] = script
         elif command_byte == 0x01: #Pointer code [3b+ret]
@@ -1290,6 +1304,9 @@ def parse_script_engine_script_at(address, map_group=None, map_id=None, force=Fa
             size = 4
             info = "pointer code"
             pointer = calculate_pointer_from_bytes_at(start_address+1, bank=True)
+            print "in script starting at "+hex(original_start_address)+\
+                  " about to parse script at "+hex(pointer)+\
+                  " called by "+info+" byte="+hex(command_byte)
             script = rec_parse_script_engine_script_at(pointer, original_start_address)
             command["pointer"] = pointer
             command["script"] = script
@@ -1301,6 +1318,9 @@ def parse_script_engine_script_at(address, map_group=None, map_id=None, force=Fa
             """
             size = 3
             pointer = calculate_pointer_from_bytes_at(start_address+1)
+            print "in script starting at "+hex(original_start_address)+\
+                  " about to parse script at "+hex(pointer)+\
+                  " called by "+info+" byte="+hex(command_byte)
             script = rec_parse_script_engine_script_at(pointer, original_start_address)
             command["pointer"] = pointer
             command["script"] = script
@@ -1313,6 +1333,9 @@ def parse_script_engine_script_at(address, map_group=None, map_id=None, force=Fa
             """
             size = 3
             pointer = calculate_pointer_from_bytes_at(start_address+1)
+            print "in script starting at "+hex(original_start_address)+\
+                  " about to parse script at "+hex(pointer)+\
+                  " called by "+info+" byte="+hex(command_byte)
             script = rec_parse_script_engine_script_at(pointer, original_start_address)
             command["pointer"] = pointer
             command["script"] = script
@@ -1325,6 +1348,9 @@ def parse_script_engine_script_at(address, map_group=None, map_id=None, force=Fa
             """
             size = 4
             pointer = calculate_pointer_from_bytes_at(start_address+1, bank=True)
+            print "in script starting at "+hex(original_start_address)+\
+                  " about to parse script at "+hex(pointer)+\
+                  " called by "+info+" byte="+hex(command_byte)
             script = rec_parse_script_engine_script_at(pointer, original_start_address)
             command["pointer"] = pointer
             command["script"] = script
@@ -1338,6 +1364,9 @@ def parse_script_engine_script_at(address, map_group=None, map_id=None, force=Fa
             size = 3
             command["pointer"] = calculate_pointer_from_bytes_at(start_address+1)
             command["target_pointer"] = calculate_pointer_from_bytes_at(command["pointer"], bank=True)
+            print "in script starting at "+hex(original_start_address)+\
+                  " about to parse script at "+hex(command["target_pointer"])+\
+                  " called by "+info+" byte="+hex(command_byte)
             script = rec_parse_script_engine_script_at(command["target_pointer"], original_start_address)
             command["script"] = script
             end = True #according to pksv
@@ -1350,6 +1379,9 @@ def parse_script_engine_script_at(address, map_group=None, map_id=None, force=Fa
             size = 4
             command["byte"] = ord(rom[start_address+1])
             pointer = calculate_pointer_from_bytes_at(start_address+2)
+            print "in script starting at "+hex(original_start_address)+\
+                  " about to parse script at "+hex(pointer)+\
+                  " called by "+info+" byte="+hex(command_byte)
             script = rec_parse_script_engine_script_at(pointer, original_start_address)
             command["pointer"] = pointer
             command["script"] = script
@@ -1362,6 +1394,9 @@ def parse_script_engine_script_at(address, map_group=None, map_id=None, force=Fa
             size = 4
             command["byte"] = ord(rom[start_address+1])
             pointer = calculate_pointer_from_bytes_at(start_address+2)
+            print "in script starting at "+hex(original_start_address)+\
+                  " about to parse script at "+hex(pointer)+\
+                  " called by "+info+" byte="+hex(command_byte)
             script = rec_parse_script_engine_script_at(pointer, original_start_address)
             command["pointer"] = pointer
             command["script"] = script
@@ -1373,6 +1408,9 @@ def parse_script_engine_script_at(address, map_group=None, map_id=None, force=Fa
             """
             size = 3
             pointer = calculate_pointer_from_bytes_at(start_address+1)
+            print "in script starting at "+hex(original_start_address)+\
+                  " about to parse script at "+hex(pointer)+\
+                  " called by "+info+" byte="+hex(command_byte)
             script = rec_parse_script_engine_script_at(pointer, original_start_address)
             command["pointer"] = pointer
             command["script"] = script
@@ -1384,6 +1422,9 @@ def parse_script_engine_script_at(address, map_group=None, map_id=None, force=Fa
             """
             size = 3
             pointer = calculate_pointer_from_bytes_at(start_address+1)
+            print "in script starting at "+hex(original_start_address)+\
+                  " about to parse script at "+hex(pointer)+\
+                  " called by "+info+" byte="+hex(command_byte)
             script = rec_parse_script_engine_script_at(pointer, original_start_address)
             command["pointer"] = pointer
             command["script"] = script
@@ -1396,6 +1437,9 @@ def parse_script_engine_script_at(address, map_group=None, map_id=None, force=Fa
             size = 4
             command["byte"] = ord(rom[start_address+1])
             pointer = calculate_pointer_from_bytes_at(start_address+2)
+            print "in script starting at "+hex(original_start_address)+\
+                  " about to parse script at "+hex(pointer)+\
+                  " called by "+info+" byte="+hex(command_byte)
             script = rec_parse_script_engine_script_at(pointer, original_start_address)
             command["pointer"] = pointer
             command["script"] = script
@@ -1408,6 +1452,9 @@ def parse_script_engine_script_at(address, map_group=None, map_id=None, force=Fa
             size = 4
             command["byte"] = ord(rom[start_address+1])
             pointer = calculate_pointer_from_bytes_at(start_address+2)
+            print "in script starting at "+hex(original_start_address)+\
+                  " about to parse script at "+hex(pointer)+\
+                  " called by "+info+" byte="+hex(command_byte)
             script = rec_parse_script_engine_script_at(pointer, original_start_address)
             command["pointer"] = pointer
             command["script"] = script
@@ -2693,6 +2740,9 @@ def parse_script_engine_script_at(address, map_group=None, map_id=None, force=Fa
             """
             size = 3
             script_pointer = calculate_pointer_from_bytes_at(start_address+1, bank=False)
+            print "in script starting at "+hex(original_start_address)+\
+                  " about to parse script at "+hex(script_pointer)+\
+                  " called by "+info+" byte="+hex(command_byte)
             script = rec_parse_script_engine_script_at(script_pointer, original_start_address)
             command["script_pointer"] = script_pointer
             command["script"] = script
@@ -2713,6 +2763,9 @@ def parse_script_engine_script_at(address, map_group=None, map_id=None, force=Fa
             """
             size = 3
             script_pointer = calculate_pointer_from_bytes_at(start_address+1, bank=False)
+            print "in script starting at "+hex(original_start_address)+\
+                  " about to parse script at "+hex(script_pointer)+\
+                  " called by "+info+" byte="+hex(command_byte)
             script = rec_parse_script_engine_script_at(script_pointer, original_start_address)
             command["script_pointer"] = script_pointer
             command["script"] = script
