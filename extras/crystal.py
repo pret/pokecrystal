@@ -1,7 +1,4 @@
-#!/usr/bin/python
 # -*- coding: utf-8 -*-
-#author: Bryan Bishop <kanzure@gmail.com>
-#date: 2012-03-04
 #utilities to help disassemble pokémon crystal
 import sys
 from copy import copy
@@ -1195,15 +1192,27 @@ pksv_crystal_unknowns = [
 #use this to keep track of commands without pksv names
 pksv_no_names = {}
 def pretty_print_pksv_no_names():
-    """just some nice debugging output"""
+    """just some nice debugging output
+    use this to keep track of commands without pksv names
+    pksv_no_names is created in parse_script_engine_script_at"""
     for (command_byte, addresses) in pksv_no_names.items():
         if command_byte in pksv_crystal_unknowns: continue
         print hex(command_byte) + " appearing in these scripts: "
         for address in addresses:
             print "    " + hex(address)
 
+
+recursive_scripts = []
+def rec_parse_script_engine_script_at(address, origin=None):
+    """this is called in parse_script_engine_script_at for recursion
+    when this works it should be flipped back to using the regular
+    parser."""
+    recursive_scripts.append([address, origin])
+    return {}
+
 def parse_script_engine_script_at(address, map_group=None, map_id=None, force=False):
-    """parses a script-engine script"""
+    """parses a script-engine script
+    force=True if you want to re-parse and get the debug information"""
     global rom
     if rom == None:
         load_rom()
@@ -1243,8 +1252,10 @@ def parse_script_engine_script_at(address, map_group=None, map_id=None, force=Fa
             size = 3
             start_address = offset
             last_byte_address = offset + size - 1
-            command["pointer"] = calculate_pointer_from_bytes_at(start_address+1)
-            #XXX should we also parse this target script?
+            pointer = calculate_pointer_from_bytes_at(start_address+1)
+            command["pointer"] = pointer
+            script = rec_parse_script_engine_script_at(pointer, original_start_address)
+            command["script"] = script
         elif command_byte == 0x01: #Pointer code [3b+ret]
             pksv_name = "3call"
             info = "pointer code"
@@ -1254,7 +1265,10 @@ def parse_script_engine_script_at(address, map_group=None, map_id=None, force=Fa
             """
             size = 4
             info = "pointer code"
-            command["pointer"] = calculate_pointer_from_bytes_at(start_address+1, bank=True)
+            pointer = calculate_pointer_from_bytes_at(start_address+1, bank=True)
+            script = rec_parse_script_engine_script_at(pointer, original_start_address)
+            command["pointer"] = pointer
+            command["script"] = script
         elif command_byte == 0x02: #Pointer code [2b+3b+ret]
             info = "pointer code"
             long_info = """
@@ -1262,7 +1276,10 @@ def parse_script_engine_script_at(address, map_group=None, map_id=None, force=Fa
             [Code][resp. pointer(2byte or 3byte)]
             """
             size = 3
-            command["pointer"] = calculate_pointer_from_bytes_at(start_address+1)
+            pointer = calculate_pointer_from_bytes_at(start_address+1)
+            script = rec_parse_script_engine_script_at(pointer, original_start_address)
+            command["pointer"] = pointer
+            command["script"] = script
         elif command_byte == 0x03: #Pointer code [2b]
             #XXX what does "new script is part of main script" mean?
             info = "pointer code"
@@ -1271,7 +1288,10 @@ def parse_script_engine_script_at(address, map_group=None, map_id=None, force=Fa
             [Code][resp. pointer(2byte or 3byte)]
             """
             size = 3
-            command["pointer"] = calculate_pointer_from_bytes_at(start_address+1)
+            pointer = calculate_pointer_from_bytes_at(start_address+1)
+            script = rec_parse_script_engine_script_at(pointer, original_start_address)
+            command["pointer"] = pointer
+            command["script"] = script
             end = True #according to pksv
         elif command_byte == 0x04: #Pointer code [3b]
             info = "pointer code"
@@ -1280,7 +1300,10 @@ def parse_script_engine_script_at(address, map_group=None, map_id=None, force=Fa
             [Code][resp. pointer(2byte or 3byte)]
             """
             size = 4
-            command["pointer"] = calculate_pointer_from_bytes_at(start_address+1, bank=True)
+            pointer = calculate_pointer_from_bytes_at(start_address+1, bank=True)
+            script = rec_parse_script_engine_script_at(pointer, original_start_address)
+            command["pointer"] = pointer
+            command["script"] = script
             end = True #according to pksv
         elif command_byte == 0x05: #Pointer code [2b+3b]
             info = "pointer code"
@@ -1290,6 +1313,9 @@ def parse_script_engine_script_at(address, map_group=None, map_id=None, force=Fa
             """
             size = 3
             command["pointer"] = calculate_pointer_from_bytes_at(start_address+1)
+            command["target_pointer"] = calculate_pointer_from_bytes_at(command["pointer"], bank=True)
+            script = rec_parse_script_engine_script_at(command["target_pointer"], original_start_address)
+            command["script"] = script
             end = True #according to pksv
         elif command_byte == 0x06: #RAM check [=byte]
             info = "RAM check [=byte]"
@@ -1299,7 +1325,10 @@ def parse_script_engine_script_at(address, map_group=None, map_id=None, force=Fa
             """
             size = 4
             command["byte"] = ord(rom[start_address+1])
-            command["pointer"] = calculate_pointer_from_bytes_at(start_address+2)
+            pointer = calculate_pointer_from_bytes_at(start_address+2)
+            script = rec_parse_script_engine_script_at(pointer, original_start_address)
+            command["pointer"] = pointer
+            command["script"] = script
         elif command_byte == 0x07: #RAM check [<>byte]
             info = "RAM check [<>byte]"
             long_info = """
@@ -1308,7 +1337,10 @@ def parse_script_engine_script_at(address, map_group=None, map_id=None, force=Fa
             """
             size = 4
             command["byte"] = ord(rom[start_address+1])
-            command["pointer"] = calculate_pointer_from_bytes_at(start_address+2)
+            pointer = calculate_pointer_from_bytes_at(start_address+2)
+            script = rec_parse_script_engine_script_at(pointer, original_start_address)
+            command["pointer"] = pointer
+            command["script"] = script
         elif command_byte == 0x08: #RAM check [=0]
             info = "RAM check [=0]"
             long_info = """
@@ -1316,7 +1348,10 @@ def parse_script_engine_script_at(address, map_group=None, map_id=None, force=Fa
             .. then go to pointed script, else resume interpreting after the pointer
             """
             size = 3
-            command["pointer"] = calculate_pointer_from_bytes_at(start_address+1)
+            pointer = calculate_pointer_from_bytes_at(start_address+1)
+            script = rec_parse_script_engine_script_at(pointer, original_start_address)
+            command["pointer"] = pointer
+            command["script"] = script
         elif command_byte == 0x09: #RAM check [<>0]
             info = "RAM check [<>0]"
             long_info = """
@@ -1324,7 +1359,10 @@ def parse_script_engine_script_at(address, map_group=None, map_id=None, force=Fa
             .. then go to pointed script, else resume interpreting after the pointer
             """
             size = 3
-            command["pointer"] = calculate_pointer_from_bytes_at(start_address+1)
+            pointer = calculate_pointer_from_bytes_at(start_address+1)
+            script = rec_parse_script_engine_script_at(pointer, original_start_address)
+            command["pointer"] = pointer
+            command["script"] = script
         elif command_byte == 0x0A: #RAM check [<byte]
             info = "RAM check [<byte]"
             long_info = """
@@ -1333,7 +1371,10 @@ def parse_script_engine_script_at(address, map_group=None, map_id=None, force=Fa
             """
             size = 4
             command["byte"] = ord(rom[start_address+1])
-            command["pointer"] = calculate_pointer_from_bytes_at(start_address+2)
+            pointer = calculate_pointer_from_bytes_at(start_address+2)
+            script = rec_parse_script_engine_script_at(pointer, original_start_address)
+            command["pointer"] = pointer
+            command["script"] = script
         elif command_byte == 0x0B: #RAM check [>byte]
             info = "RAM check [>byte]"
             long_info = """
@@ -1342,7 +1383,10 @@ def parse_script_engine_script_at(address, map_group=None, map_id=None, force=Fa
             """
             size = 4
             command["byte"] = ord(rom[start_address+1])
-            command["pointer"] = calculate_pointer_from_bytes_at(start_address+2)
+            pointer = calculate_pointer_from_bytes_at(start_address+2)
+            script = rec_parse_script_engine_script_at(pointer, original_start_address)
+            command["pointer"] = pointer
+            command["script"] = script
         elif command_byte == 0x0C: #0C codes [xxyy]
             info = "call predefined script then end"
             long_info = """
@@ -1475,6 +1519,7 @@ def parse_script_engine_script_at(address, map_group=None, map_id=None, force=Fa
             #[19][2-byte RAM address]
             """
             size = 3
+            #XXX maybe a pointer is a bad idea?
             command["pointer"] = calculate_pointer_from_bytes_at(start_address+1, bank=False)
         elif command_byte == 0x1A: #Copy variable code2 [xxyy]
             info = "Write variable from script RAM variable to actual RAM address [xxyy]"
@@ -2623,7 +2668,10 @@ def parse_script_engine_script_at(address, map_group=None, map_id=None, force=Fa
             #[8C][2byte pointer to script]
             """
             size = 3
-            command["script_pointer"] = calculate_pointer_from_bytes_at(start_address+1, bank=False)
+            script_pointer = calculate_pointer_from_bytes_at(start_address+1, bank=False)
+            script = rec_parse_script_engine_script_at(script_pointer, original_start_address)
+            command["script_pointer"] = script_pointer
+            command["script"] = script
             end = True #according to pksv
         elif command_byte == 0x8E: #Warp check
             info = "Reactive all engine checks if player is warping"
@@ -2640,7 +2688,10 @@ def parse_script_engine_script_at(address, map_group=None, map_id=None, force=Fa
             #[8E][2byte pointer to script]
             """
             size = 3
-            command["script_pointer"] = calculate_pointer_from_bytes_at(start_address+1, bank=False)
+            script_pointer = calculate_pointer_from_bytes_at(start_address+1, bank=False)
+            script = rec_parse_script_engine_script_at(script_pointer, original_start_address)
+            command["script_pointer"] = script_pointer
+            command["script"] = script
             end = True #according to pksv
         elif command_byte == 0x90: #Return code1
             info = "Return code 1"
