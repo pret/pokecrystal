@@ -1228,7 +1228,10 @@ def find_broken_recursive_scripts(output=False):
                 parse_script_engine_script_at(r[0], force=True, debug=True)
             print "==================== end"
 
-stop_points = [0x1aafa2]
+stop_points = [0x1aafa2,
+               0x9f58f, #battle tower
+               0x9f62f, #battle tower
+              ]
 def parse_script_engine_script_at(address, map_group=None, map_id=None, force=False, debug=True, origin=False):
     """parses a script-engine script
     force=True if you want to re-parse and get the debug information"""
@@ -1238,13 +1241,13 @@ def parse_script_engine_script_at(address, map_group=None, map_id=None, force=Fa
     
     if address in stop_points:
         print "got " + hex(address) + ".. map_group=" + str(map_group) + " map_id=" + str(map_id)
-        sys.exit()
-    if address < 0x4000 and address not in [0x26ef, 0x114]:
+        return {}
+    if address < 0x4000 and address not in [0x26ef, 0x114, 0x1108]:
         print "address is less than 0x4000.. address is: " + hex(address)
         sys.exit()
     
     #max number of commands in a 'recursive' script
-    max_cmds = 100
+    max_cmds = 150
 
     #check if work is being repeated
     if is_script_already_parsed_at(address) and not force:
@@ -2898,7 +2901,7 @@ def parse_script_engine_script_at(address, map_group=None, map_id=None, force=Fa
             command["tree_id"] = ord(rom[start_address+1])
         elif command_byte == 0x9C: #Cell phone call code [xx00]
             #XXX confirm this?
-            info = "Cell phone call [call id]" #was originally: [call id][00]
+            info = "Cell phone call [2-byte call id]" #was originally: [call id][00]
             long_info = """
             #Initiates with the next step on a outer world map (permission byte) a phone call.
             #[9B][Call no] and maybe [00] ???
@@ -2912,9 +2915,9 @@ def parse_script_engine_script_at(address, map_group=None, map_id=None, force=Fa
             #  07 = Mother is unhappy that HIRO didn't talk to her before leaving
             #  08 = PROF. ELM has got something for HIRO a second time
             """
-            size = 2
+            size = 3
             command["call_id"] = ord(rom[start_address+1])
-            #command["byte"] = ord(rom[start_address+2])
+            command["id"] = rom_interval(start_address+2, 2, strings=False)
         elif command_byte == 0x9D: #Check cell phone call code
             info = "Check if/which a phone call is active"
             long_info = """
@@ -3370,6 +3373,7 @@ class PeopleEvent(MapEventElement):
 
 def parse_map_header_at(address, map_group=None, map_id=None):
     """parses an arbitrary map header at some address"""
+    print "parsing a map header at: " + hex(address)
     bytes = rom_interval(address, map_header_byte_size, strings=False)
     bank = bytes[0]
     tileset = bytes[1]
@@ -3391,6 +3395,7 @@ def parse_map_header_at(address, map_group=None, map_id=None):
         "time_of_day": time_of_day,
         "fishing": fishing_group,
     }
+    print "second map header address is: " + hex(second_map_header_address)
     map_header.update(parse_second_map_header_at(second_map_header_address))
     map_header.update(parse_map_event_header_at(map_header["event_address"], map_group=map_group, map_id=map_id))
     #maybe this next one should be under the "scripts" key?
