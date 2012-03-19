@@ -24,6 +24,10 @@ people_event_byte_size = 13
 #a message to show with NotImplementedErrors
 bryan_message = "bryan hasn't got to this yet"
 
+max_texts = 3
+text_count = 0
+texts = []
+
 #this is straight out of ../textpre.py because i'm lazy
 #see jap_chars for overrides if you are in japanese mode?
 chars = {
@@ -527,6 +531,7 @@ def command_debug_information(command_byte=None, map_group=None, map_id=None, ad
 def process_00_subcommands(start_address, end_address):
     """split this text up into multiple lines
     based on subcommands ending each line"""
+    print "process_00_subcommands(" + hex(start_address) + ", " + hex(end_address) + ")"
     lines = {}
     subsection = rom[start_address:end_address]
 
@@ -563,7 +568,8 @@ def parse_text_at(address, count=10):
     return parse_text_from_bytes(rom_interval(address, count, strings=False))
 
 def parse_text_at2(address, count=10):
-    """returns a string of text from an address"""
+    """returns a string of text from an address
+    this does not handle text commands"""
     output = ""
     commands = process_00_subcommands(address, address+count)
     for (line_id, line) in commands.items():
@@ -599,6 +605,7 @@ def find_text_addresses():
     are only pointed to from some script that a current script just
     points to. So find_all_text_pointers_in_script_engine_script will
     have to recursively follow through each script to find those.
+    .. it does this now :)
     """
     addresses = set()
     #for each map group
@@ -679,10 +686,10 @@ def find_text_addresses():
                     addresses.update(texts2)
     return addresses
 
-def parse_text_engine_script_at(address, map_group=None, map_id=None, debug=True):
+def old_parse_text_engine_script_at(address, map_group=None, map_id=None, debug=True):
     return {}
 
-def new_parse_text_engine_script_at(address, map_group=None, map_id=None, debug=True):
+def parse_text_engine_script_at(address, map_group=None, map_id=None, debug=True, show=True):
     """parses a text-engine script ("in-text scripts")
     http://hax.iimarck.us/files/scriptingcodes_eng.htm#InText
 
@@ -690,7 +697,7 @@ def new_parse_text_engine_script_at(address, map_group=None, map_id=None, debug=
 
     see parse_text_at2, parse_text_at, and process_00_subcommands
     """
-    global rom
+    global rom, text_count, max_texts, texts
     if rom == None:
         load_rom()
     commands = {}
@@ -701,8 +708,11 @@ def new_parse_text_engine_script_at(address, map_group=None, map_id=None, debug=
     offset = address
     end = False
     while not end:
+        address = offset
         command = {}
         command_byte = ord(rom[address])
+        print "parse_text_engine_script_at has encountered a command byte " + hex(command_byte) + " at " + hex(address)
+        end_address = address + 1
         if  command_byte == 0:
             #read until $57, $50 or $58
             jump57 = how_many_until(chr(0x57), offset)
@@ -714,11 +724,18 @@ def new_parse_text_engine_script_at(address, map_group=None, map_id=None, debug=
 
             end_address = offset + jump - 1 #we want the address before $57
 
+            lines = process_00_subcommands(offset+1, end_address)
+
+            if show:
+                text = parse_text_at2(offset+1, end_address-offset+1)
+                texts.append(text)
+                print text
+
             command = {"type": command_byte,
                        "start_address": offset,
                        "end_address": end_address,
                        "size": jump,
-                       "lines": process_00_subcommands(offset+1, end_address),
+                       "lines": lines,
                       }   
 
             offset += jump
@@ -821,12 +838,18 @@ def new_parse_text_engine_script_at(address, map_group=None, map_id=None, debug=
             jump = min([jump57, jump50, jump58])
 
             end_address = offset + jump - 1 #we want the address before $57
+            lines = process_00_subcommands(offset+1, end_address)
+            
+            if show:
+                text = parse_text_at2(offset+1, end_address-offset+1)
+                texts.append(text)
+                print text
 
             command = {"type": command_byte,
                        "start_address": offset,
                        "end_address": end_address,
                        "size": jump,
-                       "lines": process_00_subcommands(offset+1, end_address),
+                       "lines": lines,
                       }
             offset = end_address + 1
         elif command_byte == 0x6:
@@ -869,6 +892,11 @@ def new_parse_text_engine_script_at(address, map_group=None, map_id=None, debug=
         commands[command_counter] = command
         command_counter += 1
     total_text_commands += len(commands)
+    
+    text_count += 1
+    #if text_count >= max_texts:
+    #    sys.exit()
+    
     return commands
 
 def translate_command_byte(crystal=None, gold=None):
@@ -3185,26 +3213,26 @@ def parse_trainer_header_at(address, map_group=None, map_id=None):
     """
     bank = calculate_bank(address)
     bytes = rom_interval(address, 12, strings=False)
-    bit_number = bytes[0]
-    trainer_group = bytes[1]
-    trainer_id = bytes[2]
-    text_when_seen_ptr = calculate_pointer_from_bytes_at(address+3, bank=bank)
+    bit_number = bytes[0] + (bytes[1] << 8)
+    trainer_group = bytes[2]
+    trainer_id = bytes[3]
+    text_when_seen_ptr = calculate_pointer_from_bytes_at(address+4, bank=bank)
     text_when_seen = parse_text_engine_script_at(text_when_seen_ptr, map_group=map_group, map_id=map_id)
-    text_when_trainer_beaten_ptr = calculate_pointer_from_bytes_at(address+5, bank=bank)
+    text_when_trainer_beaten_ptr = calculate_pointer_from_bytes_at(address+6, bank=bank)
     text_when_trainer_beaten = parse_text_engine_script_at(text_when_trainer_beaten_ptr, map_group=map_group, map_id=map_id)
 
-    if [ord(rom[address+7]), ord(rom[address+8])] == [0, 0]:
+    if [ord(rom[address+8]), ord(rom[address+9])] == [0, 0]:
         script_when_lost_ptr = 0
         script_when_lost = None
     else:
         print "parsing script-when-lost"
-        script_when_lost_ptr = calculate_pointer_from_bytes_at(address+7, bank=bank)
+        script_when_lost_ptr = calculate_pointer_from_bytes_at(address+8, bank=bank)
         script_when_lost = None
         #if script_when_lost_ptr > 0x4000:
         #    script_when_lost = parse_script_engine_script_at(script_when_lost_ptr, map_group=map_group, map_id=map_id)
     
     print "parsing script-talk-again" #or is this a text?
-    script_talk_again_ptr = calculate_pointer_from_bytes_at(address+9, bank=bank)
+    script_talk_again_ptr = calculate_pointer_from_bytes_at(address+10, bank=bank)
     script_talk_again = None
     #if script_talk_again_ptr > 0x4000:
     #    script_talk_again = parse_script_engine_script_at(script_talk_again_ptr, map_group=map_group, map_id=map_id)
