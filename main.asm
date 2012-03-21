@@ -38,7 +38,36 @@ INCBIN "baserom.gbc",$3105,$4000-$3105
 SECTION "bank1",DATA,BANK[$1]
 INCBIN "baserom.gbc",$4000,$4000
 SECTION "bank2",DATA,BANK[$2]
-INCBIN "baserom.gbc",$8000,$4000
+INCBIN "baserom.gbc",$8000,$a68
+
+CheckShininess: ; 0x8a68
+; given a pointer to Attack/Defense DV in bc, determine if monster is shiny.
+; if shiny, set carry.
+	ld l,c
+	ld h,b
+	ld a,[hl]
+	and a,%00100000 ; is attack DV xx1x?
+	jr z,.NotShiny
+	ld a,[hli]
+	and a,%1111
+	cp $A ; is defense DV 1010?
+	jr nz,.NotShiny
+	ld a,[hl]
+	and a,%11110000
+	cp $A0 ; is speed DV 1010?
+	jr nz,.NotShiny
+	ld a,[hl]
+	and a,%1111
+	cp $A ; is special DV 1010?
+	jr nz,.NotShiny
+	scf
+	ret
+.NotShiny
+	and a ; clear carry flag
+	ret
+
+INCBIN "baserom.gbc",$8a88,$c000-$8a88
+
 SECTION "bank3",DATA,BANK[$3]
 INCBIN "baserom.gbc",$c000,$29
 
