@@ -1,5 +1,40 @@
 SECTION "bank0",HOME
-INCBIN "baserom.gbc",$0,$4000
+INCBIN "baserom.gbc",$0,$304d
+
+GetFarByte: ; 0x304d
+; retrieve a single byte from a:hl, and return it in a.
+	; bankswitch to new bank
+	ld [$ff00+$8b], a
+	ld a, [$ff00+$9d]
+	push af
+	ld a, [$ff00+$8b]
+	rst $10
+
+	; get byte from new bank
+	ld a, [hl]
+	ld [$ff00+$8b], a
+
+	; bankswitch to previous bank
+	pop af
+	rst $10
+
+	; return retrieved value in a
+	ld a, [$ff00+$8b]
+	ret
+
+INCBIN "baserom.gbc",$305d,$30fe-$305d
+
+AddNTimes ; 0x30fe
+	and a
+	ret z
+.loop
+	add hl, bc
+	dec a
+	jr nz, .loop
+	ret
+; 0x3105
+
+INCBIN "baserom.gbc",$3105,$4000-$3105
 SECTION "bank1",DATA,BANK[$1]
 INCBIN "baserom.gbc",$4000,$4000
 SECTION "bank2",DATA,BANK[$2]
@@ -156,7 +191,7 @@ SpecialsPointers: ; 0xc029
 	dbw $13,$70bc
 	dbw $22,$6f6b
 	dbw $22,$6fd4
-	dbw $22,$7170
+	dbw BANK(SpecialDratini),SpecialDratini
 	dbw $04,$5485
 	dbw $12,$66e8
 	dbw $12,$6711
@@ -3135,6 +3170,7 @@ Moves: ; 0x41afb
 ; characteristics of each move
 ; animation, effect, power, type, accuracy, PP, XXX something else
 	db POUND,$00,40,NORMAL,$ff,35,$00
+Move1:
 	db KARATE_CHOP,$00,50,FIGHTING,$ff,25,$00
 	db DOUBLESLAP,$1d,15,NORMAL,$d8,10,$00
 	db COMET_PUNCH,$1d,18,NORMAL,$d8,15,$00
@@ -3681,8 +3717,124 @@ SECTION "bank20",DATA,BANK[$20]
 INCBIN "baserom.gbc",$80000,$4000
 SECTION "bank21",DATA,BANK[$21]
 INCBIN "baserom.gbc",$84000,$4000
+
 SECTION "bank22",DATA,BANK[$22]
-INCBIN "baserom.gbc",$88000,$4000
+INCBIN "baserom.gbc",$88000,$3170
+
+SpecialDratini: ; 0x8b170
+; if $c2dd is 0 or 1, change the moveset of the last Dratini in the party.
+;  0: give it a special moveset with Extremespeed.
+;  1: give it the normal moveset of a level 15 Dratini.
+
+	ld a, [$c2dd]
+	cp $2
+	ret nc
+	ld bc, TeamCount
+	ld a, [bc]
+	ld hl, 0
+	call GetNthTeamMon
+	ld a, [bc]
+	ld c, a
+	ld de, TeamMon2 - TeamMon1
+.CheckForDratini
+; start at the end of the party and search backwards for a Dratini
+	ld a, [hl]
+	cp DRATINI
+	jr z, .GiveMoveset
+	ld a, l
+	sub e
+	ld l, a
+	ld a, h
+	sbc d
+	ld h, a
+	dec c
+	jr nz, .CheckForDratini
+	ret
+
+.GiveMoveset
+	push hl
+	ld a, [$c2dd]
+	ld hl, .Movesets
+	ld bc, .Moveset1 - .Moveset0
+	call AddNTimes
+
+	; get address of mon's first move
+	pop de
+	inc de
+	inc de
+
+.GiveMoves
+	ld a, [hl]
+	and a ; is the move 00?
+	ret z ; if so, we're done here
+
+	push hl
+	push de
+	ld [de], a ; give the Pokémon the new move
+
+	; get the PP of the new move
+	dec a
+	ld hl, Moves + 5
+	ld bc, Move1 - Moves
+	call AddNTimes
+	ld a, BANK(Moves)
+	call GetFarByte
+
+	; get the address of the move's PP and update the PP
+	ld hl, TeamMon1PP - TeamMon1Moves
+	add hl, de
+	ld [hl], a
+
+	pop de
+	pop hl
+	inc de
+	inc hl
+	jr .GiveMoves
+
+.Movesets
+.Moveset0
+; Dratini does not normally learn Extremespeed. This is a special gift.
+	db WRAP
+	db THUNDER_WAVE
+	db TWISTER
+	db EXTREMESPEED
+	db 0
+.Moveset1
+; This is the normal moveset of a level 15 Dratini
+	db WRAP
+	db LEER
+	db THUNDER_WAVE
+	db TWISTER
+	db 0
+
+
+GetNthTeamMon: ; 0x8b1ce
+; inputs:
+; hl must be set to 0 before calling this function.
+; a must be set to the number of Pokémon in the party.
+
+; outputs:
+; returns the address of the last Pokémon in the party in hl.
+; sets carry if a is 0.
+
+	ld de, TeamMon1
+	add hl, de
+	and a
+	jr z, .EmptyParty
+	dec a
+	ret z
+	ld de, TeamMon2 - TeamMon1
+.loop
+	add hl, de
+	dec a
+	jr nz, .loop
+	ret
+.EmptyParty
+	scf
+	ret
+
+INCBIN "baserom.gbc",$8b1e1,$8c000-$8b1e1
+
 SECTION "bank23",DATA,BANK[$23]
 INCBIN "baserom.gbc",$8C000,$4000
 SECTION "bank24",DATA,BANK[$24]

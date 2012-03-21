@@ -4,7 +4,7 @@ TEXTFILES =
 
 all: pokecrystal.gbc
 
-pokecrystal.o: pokecrystal.asm main.tx constants.asm ${TEXTFILES}
+pokecrystal.o: pokecrystal.asm main.tx constants.asm wram.asm ${TEXTFILES}
 	rgbasm -o pokecrystal.o pokecrystal.asm
 	
 .asm.tx:
