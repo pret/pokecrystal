@@ -2135,6 +2135,7 @@ def parse_script_engine_script_at(address, map_group=None, map_id=None, force=Fa
             size = 4
             command["pointer"] = calculate_pointer_from_bytes_at(start_address+1, bank=False)
             command["memory_id"] = ord(rom[start_address+3])
+            command["text"] = parse_text_engine_script_at(command["pointer"], map_group=map_group, map_id=map_id)
         elif command_byte == 0x45: #Stow away item code
             info = "Show HIRO put the ITEMNAME in the ITEMPOCKET text box"
             long_info = """
@@ -2183,6 +2184,7 @@ def parse_script_engine_script_at(address, map_group=None, map_id=None, force=Fa
             size = 4
             command["text_group"] = ord(rom[start_address+1])
             command["pointer"] = calculate_pointer_from_bytes_at(start_address+1, bank=True)
+            command["text"] = parse_text_engine_script_at(command["pointer"], map_group=map_group, map_id=map_id)
         elif command_byte == 0x4C: #Display text [2b]
             info = "Display text by pointer [xxyy]"
             long_info = """
@@ -2191,6 +2193,7 @@ def parse_script_engine_script_at(address, map_group=None, map_id=None, force=Fa
             """
             size = 3
             command["pointer"] = calculate_pointer_from_bytes_at(start_address+1, bank=False)
+            command["text"] = parse_text_engine_script_at(command["pointer"], map_group=map_group, map_id=map_id)
         elif command_byte == 0x4D: #Repeat text [xxyy]
             info = "Repeat text [FF][FF]"
             long_info = """
@@ -2233,7 +2236,8 @@ def parse_script_engine_script_at(address, map_group=None, map_id=None, force=Fa
             """
             size = 3
             end = True
-            command["text_pointer"] = calculate_pointer_from_bytes_at(start_address+1, bank=False)
+            command["pointer"] = calculate_pointer_from_bytes_at(start_address+1, bank=False)
+            command["text"] = parse_text_engine_script_at(command["pointer"], map_group=map_id, map_id=map_id)
         elif command_byte == 0x53: #Text2 code [2b]
             info = "Display text (by pointer) and end [xxyy]"
             long_info = """
@@ -2243,7 +2247,8 @@ def parse_script_engine_script_at(address, map_group=None, map_id=None, force=Fa
             """
             size = 3
             end = True
-            command["text_pointer"] = calculate_pointer_from_bytes_at(start_address+1, bank=False)
+            command["pointer"] = calculate_pointer_from_bytes_at(start_address+1, bank=False)
+            command["text"] = parse_text_engine_script_at(command["pointer"], map_group=map_id, map_id=map_id)
         elif command_byte == 0x54: #Close text box code
             info = "Close text box"
             long_info = "Closes a text box which was opened by 47 resp. 4B/4C/4D."
@@ -2387,6 +2392,8 @@ def parse_script_engine_script_at(address, map_group=None, map_id=None, force=Fa
             size = 5
             command["won_pointer"] = calculate_pointer_from_bytes_at(start_address+1, bank=False)
             command["lost_pointer"] = calculate_pointer_from_bytes_at(start_address+3, bank=False)
+            command["text_won"] = parse_text_engine_script_at(command["won_pointer"], map_group=map_id, map_id=map_id)
+            command["text_lost"] = parse_text_engine_script_at(command["lost_pointer"], map_group=map_id, map_id=map_id)
         elif command_byte == 0x65: #Script talk-after
             #XXX this is a really poor description of whatever this is
             info = "? Load the trainer talk-after script"
