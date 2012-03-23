@@ -3235,14 +3235,15 @@ def parse_trainer_header_at(address, map_group=None, map_id=None):
         print "parsing script-when-lost"
         script_when_lost_ptr = calculate_pointer_from_bytes_at(address+8, bank=bank)
         script_when_lost = None
-        #if script_when_lost_ptr > 0x4000:
-        #    script_when_lost = parse_script_engine_script_at(script_when_lost_ptr, map_group=map_group, map_id=map_id)
+        silver_avoids = [0xfa53]
+        if script_when_lost_ptr > 0x4000 and not script_when_lost_ptr in silver_avoids:
+            script_when_lost = parse_script_engine_script_at(script_when_lost_ptr, map_group=map_group, map_id=map_id)
     
     print "parsing script-talk-again" #or is this a text?
     script_talk_again_ptr = calculate_pointer_from_bytes_at(address+10, bank=bank)
     script_talk_again = None
-    #if script_talk_again_ptr > 0x4000:
-    #    script_talk_again = parse_script_engine_script_at(script_talk_again_ptr, map_group=map_group, map_id=map_id)
+    if script_talk_again_ptr > 0x4000:
+        script_talk_again = parse_script_engine_script_at(script_talk_again_ptr, map_group=map_group, map_id=map_id)
     
     return {
         "bit_number": bit_number,
