@@ -498,6 +498,8 @@ def calculate_pointer_from_bytes_at(address, bank=False):
     byte1 = ord(rom[address])
     byte2 = ord(rom[address+1])
     temp  = byte1 + (byte2 << 8)
+    if temp == 0:
+        return None
     return calculate_pointer(temp, bank)
 
 def clean_up_long_info(long_info):
