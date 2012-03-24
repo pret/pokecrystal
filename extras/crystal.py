@@ -420,15 +420,11 @@ def map_name_cleaner(input):
 
 class RomStr(str):
     """simple wrapper to prevent a giant rom from being shown on screen"""
+    def length(self):
+        """len(self)"""
+        return len(self)
     def __repr__(self):
         return "RomStr(too long)"
-
-def grouper(some_list, count=2):
-    """splits a list into sublists
-    given: [1, 2, 3, 4]
-    returns: [[1, 2], [3, 4]]"""
-    return [some_list[i:i+count] for i in range(0, len(some_list), count)]
-
 def load_rom(filename="../baserom.gbc"):
     """loads bytes into memory"""
     global rom
@@ -436,6 +432,26 @@ def load_rom(filename="../baserom.gbc"):
     rom = RomStr(file_handler.read())
     file_handler.close()
     return rom
+
+class AsmList(list):
+    """simple wrapper to prevent all asm lines from being shown on screen"""
+    def length(self):
+        """len(self)"""
+        return len(self)
+    def __repr__(self):
+        return "AsmList(too long)"
+def load_asm(filename="../main.asm"):
+    """loads the asm source code into memory"""
+    global asm
+    asm = open(filename, "r").read().split("\n")
+    asm = AsmList(asm)
+    return asm
+
+def grouper(some_list, count=2):
+    """splits a list into sublists
+    given: [1, 2, 3, 4]
+    returns: [[1, 2], [3, 4]]"""
+    return [some_list[i:i+count] for i in range(0, len(some_list), count)]
 
 def rom_interval(offset, length, strings=True, debug=True):
     """returns hex values for the rom starting at offset until offset+length"""
@@ -4426,6 +4442,12 @@ class TestCram(unittest.TestCase):
         rom = self.rom
         self.assertEqual(len(rom), 2097152)
         self.failUnless(isinstance(rom, RomStr))
+    def test_load_asm(self):
+        asm = load_asm()
+        joined_lines = "\n".join(asm)
+        self.failUnless("SECTION" in joined_lines)
+        self.failUnless("bank" in joined_lines)
+        self.failUnless(isinstance(asm, AsmList))
     def test_rom_file_existence(self):
         "ROM file must exist"
         self.failUnless("baserom.gbc" in os.listdir("../"))
@@ -4551,6 +4573,31 @@ class TestRomStr(unittest.TestCase):
     def test_conversion(self):
         "check if RomStr() -> str() works"
         self.assertEquals(str(self.sample), self.sample_text)
+    def test_inheritance(self):
+        self.failUnless(issubclass(RomStr, str))
+    def test_length(self):
+        self.assertEquals(len(self.sample_text), len(self.sample))
+        self.assertEquals(len(self.sample_text), self.sample.length())
+        self.assertEquals(len(self.sample), self.sample.length())
+class TestAsmList(unittest.TestCase):
+    """AsmList is a class that should act exactly like list()
+    except that it never shows the contents of its list
+    unless explicitly forced"""
+    def test_equals(self):
+        base = [1,2,3]
+        asm = AsmList(base)
+        self.assertEquals(base, asm)
+        self.assertEquals(asm, base)
+        self.assertEquals(base, list(asm))
+    def test_inheritance(self):
+        self.failUnless(issubclass(AsmList, list))
+    def test_length(self):
+        base = range(0, 10)
+        asm = AsmList(base)
+        self.assertEquals(len(base), len(asm))
+        self.assertEquals(len(base), asm.length())
+        self.assertEquals(len(base), len(list(asm)))
+        self.assertEquals(len(asm), asm.length())
 class TestMapParsing(unittest.TestCase):
     def test_parse_warp_bytes(self):
         pass #or raise NotImplementedError, bryan_message
