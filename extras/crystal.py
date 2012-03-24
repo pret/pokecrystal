@@ -477,6 +477,7 @@ def load_map_group_offsets():
     """reads the map group table for the list of pointers"""
     global map_group_pointer_table, map_group_count, map_group_offsets
     global rom
+    map_group_offsets = [] #otherwise this method can only be used once
     data = rom_interval(map_group_pointer_table, map_group_count*2, strings=False)
     data = grouper(data)
     for pointer_parts in data:
@@ -4489,14 +4490,20 @@ class TestCram(unittest.TestCase):
         for address in [0x4000, 0x5000, 0x6000, 0x7000]:
             self.assertRaises(Exception, calculate_bank, address)
     def test_calculate_pointer(self):
-        pass #or raise NotImplementedError, bryan_message
-    def test_calculate_pointer_from_bytes_at(self):
-        pass #or raise NotImplementedError, bryan_message
+        #for offset <= 0x4000
+        self.assertEqual(calculate_pointer(0x0000), 0x0000)
+        self.assertEqual(calculate_pointer(0x3FFF), 0x3FFF)
+        #for 0x4000 <= offset <= 0x7FFFF
+        self.assertEqual(calculate_pointer(0x430F, bank=5), 0x1430F)
+        #for offset >= 0x7FFF
+        self.assertEqual(calculate_pointer(0x8FFF, bank=6), calculate_pointer(0x8FFF, bank=7))
+    #def test_calculate_pointer_from_bytes_at(self):
+    #    pass #or raise NotImplementedError, bryan_message
     def test_rom_text_at(self):
         self.assertEquals(rom_text_at(0x112116, 8), "HTTP/1.0")
-    def test_find_all_text_pointers_in_script_engine_script(self):
-        "finds text pointers from scripts"
-        pass #or raise NotImplementedError, bryan_message
+    #def test_find_all_text_pointers_in_script_engine_script(self):
+    #    "finds text pointers from scripts"
+    #    pass #or raise NotImplementedError, bryan_message
     def test_translate_command_byte(self):
         self.failUnless(translate_command_byte(crystal=0x0) == 0x0)
         self.failUnless(translate_command_byte(crystal=0x10) == 0x10)
@@ -4528,6 +4535,16 @@ class TestCram(unittest.TestCase):
         self.assertEqual(map_name(2, 7), "Mahogany Town")
         self.assertEqual(map_name(3, 0x34), "Ilex Forest")
         self.assertEqual(map_name(7, 0x11), "Cerulean City")
+    def test_load_map_group_offsets(self):
+        addresses = load_map_group_offsets()
+        self.assertEqual(len(addresses), 26, msg="there should be 26 map groups")
+        addresses = load_map_group_offsets()
+        self.assertEqual(len(addresses), 26, msg="there should still be 26 map groups")
+        self.assertIn(0x94034, addresses)
+        for address in addresses:
+            self.assertGreaterEqual(address, 0x4000)
+            self.failIf(0x4000 <= address <= 0x7FFF)
+            self.failIf(address <= 0x4000)
 class TestIntervalMap(unittest.TestCase):
     def test_intervals(self):
         i = IntervalMap()
@@ -4599,26 +4616,26 @@ class TestAsmList(unittest.TestCase):
         self.assertEquals(len(base), len(list(asm)))
         self.assertEquals(len(asm), asm.length())
 class TestMapParsing(unittest.TestCase):
-    def test_parse_warp_bytes(self):
-        pass #or raise NotImplementedError, bryan_message
-    def test_parse_xy_trigger_bytes(self):
-        pass #or raise NotImplementedError, bryan_message
-    def test_parse_signpost_bytes(self):
-        pass #or raise NotImplementedError, bryan_message
-    def test_parse_people_event_bytes(self):
-        pass #or raise NotImplementedError, bryan_message
-    def test_parse_trainer_header_at(self):
-        pass #or raise NotImplementedError, bryan_message
-    def test_parse_map_header_at(self):
-        pass #or raise NotImplementedError, bryan_message
-    def test_parse_second_map_header_at(self):
-        pass #or raise NotImplementedError, bryan_message
-    def test_parse_map_event_header_at(self):
-        pass #or raise NotImplementedError, bryan_message
-    def test_parse_map_script_header_at(self):
-        pass #or raise NotImplementedError, bryan_message
-    def test_parse_map_header_by_id(self):
-        pass #or raise NotImplementedError, bryan_message
+    #def test_parse_warp_bytes(self):
+    #    pass #or raise NotImplementedError, bryan_message
+    #def test_parse_xy_trigger_bytes(self):
+    #    pass #or raise NotImplementedError, bryan_message
+    #def test_parse_signpost_bytes(self):
+    #    pass #or raise NotImplementedError, bryan_message
+    #def test_parse_people_event_bytes(self):
+    #    pass #or raise NotImplementedError, bryan_message
+    #def test_parse_trainer_header_at(self):
+    #    pass #or raise NotImplementedError, bryan_message
+    #def test_parse_map_header_at(self):
+    #    pass #or raise NotImplementedError, bryan_message
+    #def test_parse_second_map_header_at(self):
+    #    pass #or raise NotImplementedError, bryan_message
+    #def test_parse_map_event_header_at(self):
+    #    pass #or raise NotImplementedError, bryan_message
+    #def test_parse_map_script_header_at(self):
+    #    pass #or raise NotImplementedError, bryan_message
+    #def test_parse_map_header_by_id(self):
+    #    pass #or raise NotImplementedError, bryan_message
     def test_parse_all_map_headers(self):
         global parse_map_header_at, counter
         counter = 0
@@ -4634,29 +4651,31 @@ class TestMapParsing(unittest.TestCase):
         self.assertEqual(counter, 388)
         parse_map_header_at = temp
 class TestTextScript(unittest.TestCase):
-    def test_to_asm(self):
-        pass #or raise NotImplementedError, bryan_message
-    def test_find_addresses(self):
-        pass #or raise NotImplementedError, bryan_message
-    def test_parse_text_at(self):
-        pass #or raise NotImplementedError, bryan_message
-    def test_to_asm_at(self):
-        pass #or raise NotImplementedError, bryan_message
+    """for testing 'in-script' commands, etc."""
+    #def test_to_asm(self):
+    #    pass #or raise NotImplementedError, bryan_message
+    #def test_find_addresses(self):
+    #    pass #or raise NotImplementedError, bryan_message
+    #def test_parse_text_at(self):
+    #    pass #or raise NotImplementedError, bryan_message
+    #def test_to_asm_at(self):
+    #    pass #or raise NotImplementedError, bryan_message
 class TestEncodedText(unittest.TestCase):
-    def test_to_asm(self):
-        pass #or raise NotImplementedError, bryan_message
-    def test_process_00_subcommands(self):
-        pass #or raise NotImplementedError, bryan_message
-    def test_from_bytes(self):
-        pass #or raise NotImplementedError, bryan_message
-    def test_parse_text_at(self):
-        pass #or raise NotImplementedError, bryan_message
+    """for testing chars-table encoded text chunks"""
+    #def test_to_asm(self):
+    #    pass #or raise NotImplementedError, bryan_message
+    #def test_process_00_subcommands(self):
+    #    pass #or raise NotImplementedError, bryan_message
+    #def test_from_bytes(self):
+    #    pass #or raise NotImplementedError, bryan_message
+    #def test_parse_text_at(self):
+    #    pass #or raise NotImplementedError, bryan_message
 class TestScript(unittest.TestCase):
     """for testing parse_script_engine_script_at
     and script parsing in general.
     Script should be a class?"""
-    def test_parse_script_engine_script_at(self):
-        pass #or raise NotImplementedError, bryan_message
+    #def test_parse_script_engine_script_at(self):
+    #    pass #or raise NotImplementedError, bryan_message
 class TestMetaTesting(unittest.TestCase):
     """test whether or not i am finding at least
     some of the tests in this file"""
@@ -4778,7 +4797,14 @@ def find_untested_methods():
     return untested
 def report_untested():
     untested = find_untested_methods()
-    output = "NOT TESTED: " + str(untested)
+    output = "NOT TESTED: ["
+    first = True
+    for name in untested:
+        if first:
+            output += name
+            first = False
+        else: output += ", "+name
+    output += "]"
     return output
 
 #### ways to run this file ####
