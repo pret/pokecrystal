@@ -523,6 +523,7 @@ def clean_up_long_info(long_info):
     return long_info
 
 def command_debug_information(command_byte=None, map_group=None, map_id=None, address=0, info=None, long_info=None, pksv_name=None):
+    "used to help debug in parse_script_engine_script_at"
     info1 = "parsing command byte " + hex(command_byte) + " for map " + \
           str(map_group) + "." + str(map_id) + " at " + hex(address)
     info1 += "    pksv: " + str(pksv_name)
@@ -530,59 +531,389 @@ def command_debug_information(command_byte=None, map_group=None, map_id=None, ad
     #info1 += "    long_info: " + long_info
     return info1
 
+class TextScript():
+    "a text is a sequence of commands different from a script-engine script"
+    def to_asm(self): pass
+    @staticmethod
+    def find_addresses():
+        """returns a list of text pointers
+        useful for testing parse_text_engine_script_at
+        
+        Note that this list is not exhaustive. There are some texts that
+        are only pointed to from some script that a current script just
+        points to. So find_all_text_pointers_in_script_engine_script will
+        have to recursively follow through each script to find those.
+        .. it does this now :)
+        """
+        addresses = set()
+        #for each map group
+        for map_group in map_names:
+            #for each map id
+            for map_id in map_names[map_group]:
+                #skip the offset key
+                if map_id == "offset": continue
+                #dump this into smap
+                smap = map_names[map_group][map_id]
+                #signposts
+                signposts = smap["signposts"]
+                #for each signpost
+                for signpost in signposts:
+                    if signpost["func"] in [0, 1, 2, 3, 4]:
+                        #dump this into script
+                        script = signpost["script"]
+                    elif signpost["func"] in [05, 06]:
+                        script = signpost["script"]
+                    else: continue
+                    #skip signposts with no bytes
+                    if len(script) == 0: continue
+                    #find all text pointers in script
+                    texts = find_all_text_pointers_in_script_engine_script(script, smap["event_bank"])
+                    #dump these addresses in
+                    addresses.update(texts)
+                #xy triggers
+                xy_triggers = smap["xy_triggers"]
+                #for each xy trigger
+                for xy_trigger in xy_triggers:
+                    #dump this into script
+                    script = xy_trigger["script"]
+                    #find all text pointers in script
+                    texts = find_all_text_pointers_in_script_engine_script(script, smap["event_bank"])
+                    #dump these addresses in
+                    addresses.update(texts)
+                #trigger scripts
+                triggers = smap["trigger_scripts"]
+                #for each trigger
+                for (i, trigger) in triggers.items():
+                    #dump this into script
+                    script = trigger["script"]
+                    #find all text pointers in script
+                    texts = find_all_text_pointers_in_script_engine_script(script, calculate_bank(trigger["address"]))
+                    #dump these addresses in
+                    addresses.update(texts)
+                #callback scripts
+                callbacks = smap["callback_scripts"]
+                #for each callback
+                for (k, callback) in callbacks.items():
+                    #dump this into script
+                    script = callback["script"]
+                    #find all text pointers in script
+                    texts = find_all_text_pointers_in_script_engine_script(script, calculate_bank(callback["address"]))
+                    #dump these addresses in
+                    addresses.update(texts)
+                #people-events
+                events = smap["people_events"]
+                #for each event
+                for event in events:
+                    if event["event_type"] == "script":
+                        #dump this into script
+                        script = event["script"]
+                        #find all text pointers in script
+                        texts = find_all_text_pointers_in_script_engine_script(script, smap["event_bank"])
+                        #dump these addresses in
+                        addresses.update(texts)
+                    if event["event_type"] == "trainer":
+                        trainer_data = event["trainer_data"]
+                        addresses.update([trainer_data["text_when_seen_ptr"]])
+                        addresses.update([trainer_data["text_when_trainer_beaten_ptr"]])
+                        trainer_bank = calculate_bank(event["trainer_data_address"])
+                        script1 = trainer_data["script_talk_again"]
+                        texts1 = find_all_text_pointers_in_script_engine_script(script1, trainer_bank)
+                        addresses.update(texts1)
+                        script2 = trainer_data["script_when_lost"]
+                        texts2 = find_all_text_pointers_in_script_engine_script(script2, trainer_bank)
+                        addresses.update(texts2)
+        return addresses
+    @staticmethod
+    def parse_text_at(address, map_group=None, map_id=None, debug=True, show=True):
+        """parses a text-engine script ("in-text scripts")
+        http://hax.iimarck.us/files/scriptingcodes_eng.htm#InText
+    
+        This is presently very broken.
+    
+        see parse_text_at2, parse_text_at, and process_00_subcommands
+        """
+        global rom, text_count, max_texts, texts
+        if rom == None:
+            load_rom()
+        if address == None:
+            return "not a script"
+        commands = {}
+    
+        total_text_commands = 0
+        command_counter = 0
+        original_address = address
+        offset = address
+        end = False
+        while not end:
+            address = offset
+            command = {}
+            command_byte = ord(rom[address])
+            print "parse_text_engine_script_at has encountered a command byte " + hex(command_byte) + " at " + hex(address)
+            end_address = address + 1
+            if  command_byte == 0:
+                #read until $57, $50 or $58
+                jump57 = how_many_until(chr(0x57), offset)
+                jump50 = how_many_until(chr(0x50), offset)
+                jump58 = how_many_until(chr(0x58), offset)
+         
+                #whichever command comes first
+                jump = min([jump57, jump50, jump58])
+    
+                end_address = offset + jump - 1 #we want the address before $57
+    
+                lines = process_00_subcommands(offset+1, end_address)
+    
+                if show:
+                    text = parse_text_at2(offset+1, end_address-offset+1)
+                    texts.append(text)
+                    print text
+    
+                command = {"type": command_byte,
+                           "start_address": offset,
+                           "end_address": end_address,
+                           "size": jump,
+                           "lines": lines,
+                          }   
+    
+                offset += jump
+            elif command_byte == 0x17:
+                #TX_FAR [pointer][bank]
+                pointer_byte1 = ord(rom[offset+1])
+                pointer_byte2 = ord(rom[offset+2])
+                pointer_bank = ord(rom[offset+3])
+    
+                pointer = (pointer_byte1 + (pointer_byte2 << 8))
+                pointer = extract_maps.calculate_pointer(pointer, pointer_bank)
+    
+                command = {"type": command_byte,
+                           "start_address": offset,
+                           "end_address": offset + 3, #last byte belonging to this command
+                           "pointer": pointer, #parameter
+                          }
+    
+                offset += 3 + 1
+            elif command_byte == 0x50 or command_byte == 0x57 or command_byte == 0x58: #end text
+                command = {"type": command_byte,
+                           "start_address": offset,
+                           "end_address": offset,
+                          }
+    
+                #this byte simply indicates to end the script
+                end = True
+    
+                #this byte simply indicates to end the script
+                if command_byte == 0x50 and ord(rom[offset+1]) == 0x50: #$50$50 means end completely
+                    end = True
+                    commands[command_counter+1] = command
+    
+                    #also save the next byte, before we quit
+                    commands[command_counter+1]["start_address"] += 1
+                    commands[command_counter+1]["end_address"] += 1
+                    add_command_byte_to_totals(command_byte)
+                elif command_byte == 0x50: #only end if we started with $0
+                    if len(commands.keys()) > 0:
+                        if commands[0]["type"] == 0x0: end = True
+                elif command_byte == 0x57 or command_byte == 0x58: #end completely
+                    end = True
+                    offset += 1 #go past this 0x50
+            elif command_byte == 0x1:
+                #01 = text from RAM. [01][2-byte pointer]
+                size = 3 #total size, including the command byte
+                pointer_byte1 = ord(rom[offset+1])
+                pointer_byte2 = ord(rom[offset+2])
+    
+                command = {"type": command_byte,
+                           "start_address": offset+1,
+                           "end_address": offset+2, #last byte belonging to this command
+                           "pointer": [pointer_byte1, pointer_byte2], #RAM pointer
+                          }
+    
+                #view near these bytes
+                #subsection = rom[offset:offset+size+1] #peak ahead
+                #for x in subsection:
+                #    print hex(ord(x))
+                #print "--"
+    
+                offset += 2 + 1 #go to the next byte
+    
+                #use this to look at the surrounding bytes
+                if debug:
+                    print "next command is: " + hex(ord(rom[offset])) + " ... we are at command number: " + str(command_counter) + " near " + hex(offset) + " on map_id=" + str(map_id)
+            elif command_byte == 0x7:
+                #07 = shift texts 1 row above (2nd line becomes 1st line); address for next text = 2nd line. [07]
+                size = 1
+                command = {"type": command_byte,
+                           "start_address": offset,
+                           "end_address": offset,
+                          }
+                offset += 1
+            elif command_byte == 0x3:
+                #03 = set new address in RAM for text. [03][2-byte RAM address]
+                size = 3
+                command = {"type": command_byte, "start_address": offset, "end_address": offset+2}
+                offset += size
+            elif command_byte == 0x4: #draw box
+                #04 = draw box. [04][2-Byte pointer][height Y][width X]
+                size = 5 #including the command
+                command = {
+                            "type": command_byte,
+                            "start_address": offset,
+                            "end_address": offset + size,
+                            "pointer_bytes": [ord(rom[offset+1]), ord(rom[offset+2])],
+                            "y": ord(rom[offset+3]),
+                            "x": ord(rom[offset+4]),
+                          }
+                offset += size + 1
+            elif command_byte == 0x5:
+                #05 = write text starting at 2nd line of text-box. [05][text][ending command]
+                #read until $57, $50 or $58
+                jump57 = how_many_until(chr(0x57), offset)
+                jump50 = how_many_until(chr(0x50), offset)
+                jump58 = how_many_until(chr(0x58), offset)
+    
+                #whichever command comes first
+                jump = min([jump57, jump50, jump58])
+    
+                end_address = offset + jump - 1 #we want the address before $57
+                lines = process_00_subcommands(offset+1, end_address)
+                
+                if show:
+                    text = parse_text_at2(offset+1, end_address-offset+1)
+                    texts.append(text)
+                    print text
+    
+                command = {"type": command_byte,
+                           "start_address": offset,
+                           "end_address": end_address,
+                           "size": jump,
+                           "lines": lines,
+                          }
+                offset = end_address + 1
+            elif command_byte == 0x6:
+                #06 = wait for keypress A or B (put blinking arrow in textbox). [06]
+                command = {"type": command_byte, "start_address": offset, "end_address": offset}
+                offset += 1
+            elif command_byte == 0x7:
+                #07 = shift texts 1 row above (2nd line becomes 1st line); address for next text = 2nd line. [07]
+                command = {"type": command_byte, "start_address": offset, "end_address": offset}
+                offset += 1
+            elif command_byte == 0x8:
+                #08 = asm until whenever
+                command = {"type": command_byte, "start_address": offset, "end_address": offset}
+                offset += 1
+                end = True
+            elif command_byte == 0x9:
+                #09 = write hex-to-dec number from RAM to textbox [09][2-byte RAM address][byte bbbbcccc]
+                #  bbbb = how many bytes to read (read number is big-endian)
+                #  cccc = how many digits display (decimal)
+                #(note: max of decimal digits is 7,i.e. max number correctly displayable is 9999999)
+                ram_address_byte1 = ord(rom[offset+1])
+                ram_address_byte2 = ord(rom[offset+2])
+                read_byte = ord(rom[offset+3])
+    
+                command = {
+                            "type": command_byte,
+                            "address": [ram_address_byte1, ram_address_byte2],
+                            "read_byte": read_byte, #split this up when we make a macro for this
+                          }
+    
+                offset += 4
+            else:
+                #if len(commands) > 0:
+                #   print "Unknown text command " + hex(command_byte) + " at " + hex(offset) + ", script began with " + hex(commands[0]["type"])
+                if debug:
+                    print "Unknown text command at " + hex(offset) + " - command: " + hex(ord(rom[offset])) + " on map_id=" + str(map_id)
+    
+                #end at the first unknown command
+                end = True
+            commands[command_counter] = command
+            command_counter += 1
+        total_text_commands += len(commands)
+        
+        text_count += 1
+        #if text_count >= max_texts:
+        #    sys.exit()
+        
+        return commands
+def parse_text_engine_script_at(address, map_group=None, map_id=None, debug=True, show=True):
+    """parses a text-engine script ("in-text scripts")
+    http://hax.iimarck.us/files/scriptingcodes_eng.htm#InText
+    see parse_text_at2, parse_text_at, and process_00_subcommands
+    """
+    return TextScript.parse_text_at(address, map_group=map_group, map_id=map_id, debug=debug, show=show)
+def find_text_addresses():
+    """returns a list of text pointers
+    useful for testing parse_text_engine_script_at"""
+    return TextScript.find_addresses()
+
+class EncodedText():
+    """a sequence of bytes that, when decoded, represent readable text
+    based on the chars table from textpre.py and other places"""
+    def to_asm(self): pass
+    @staticmethod
+    def process_00_subcommands(start_address, end_address):
+        """split this text up into multiple lines
+        based on subcommands ending each line"""
+        print "process_00_subcommands(" + hex(start_address) + ", " + hex(end_address) + ")"
+        lines = {}
+        subsection = rom[start_address:end_address]
+    
+        line_count = 0
+        current_line = []
+        for pbyte in subsection:
+            byte = ord(pbyte)
+            current_line.append(byte)
+            if  byte == 0x4f or byte == 0x51 or byte == 0x55:
+                lines[line_count] = current_line
+                current_line = []
+                line_count += 1
+    
+        #don't forget the last line
+        lines[line_count] = current_line
+        line_count += 1
+        return lines
+    @staticmethod
+    def from_bytes(bytes):
+        """assembles a string based on bytes looked up in the chars table"""
+        line = ""
+        for byte in bytes:
+            if type(byte) != int:
+                byte = ord(byte)
+            if byte in chars.keys():
+                line += chars[byte]
+            else:
+                print "byte not known: " + hex(byte)
+        return line
+    @staticmethod
+    def parse_text_at(address, count=10):
+        """returns a string of text from an address
+        this does not handle text commands"""
+        output = ""
+        commands = process_00_subcommands(address, address+count)
+        for (line_id, line) in commands.items():
+            output += parse_text_from_bytes(line)
+            output += "\n"
+        return output
 def process_00_subcommands(start_address, end_address):
     """split this text up into multiple lines
     based on subcommands ending each line"""
-    print "process_00_subcommands(" + hex(start_address) + ", " + hex(end_address) + ")"
-    lines = {}
-    subsection = rom[start_address:end_address]
-
-    line_count = 0
-    current_line = []
-    for pbyte in subsection:
-        byte = ord(pbyte)
-        current_line.append(byte)
-        if  byte == 0x4f or byte == 0x51 or byte == 0x55:
-            lines[line_count] = current_line
-            current_line = []
-            line_count += 1
-
-    #don't forget the last line
-    lines[line_count] = current_line
-    line_count += 1
-    return lines
-
+    return EncodedText.process_00_subcommands(start_address, end_address)
 def parse_text_from_bytes(bytes):
     """assembles a string based on bytes looked up in the chars table"""
-    line = ""
-    for byte in bytes:
-        if type(byte) != int:
-            byte = ord(byte)
-        if byte in chars.keys():
-            line += chars[byte]
-        else:
-            print "byte not known: " + hex(byte)
-    return line
-
+    return EncodedText.from_bytes(bytes)
 def parse_text_at(address, count=10):
     """returns a list of bytes from an address
     see parse_text_at2 for pretty printing"""
     return parse_text_from_bytes(rom_interval(address, count, strings=False))
+def parse_text_at2(address, count=10):
+    """returns a string of text from an address
+    this does not handle text commands"""
+    return EncodedText.parse_text_at(address, count)
 
 def rom_text_at(address, count=10):
     """prints out raw text from the ROM
     like for 0x112110"""
     return "".join([chr(x) for x in rom_interval(address, count, strings=False)])
-
-def parse_text_at2(address, count=10):
-    """returns a string of text from an address
-    this does not handle text commands"""
-    output = ""
-    commands = process_00_subcommands(address, address+count)
-    for (line_id, line) in commands.items():
-        output += parse_text_from_bytes(line)
-        output += "\n"
-    return output
 
 def find_all_text_pointers_in_script_engine_script(script, bank):
     """returns a list of text pointers
@@ -603,310 +934,6 @@ def find_all_text_pointers_in_script_engine_script(script, bank):
             addresses.add(command["won_pointer"])
             addresses.add(command["lost_pointer"])
     return addresses
-
-def find_text_addresses():
-    """returns a list of text pointers
-    useful for testing parse_text_engine_script_at
-    
-    Note that this list is not exhaustive. There are some texts that
-    are only pointed to from some script that a current script just
-    points to. So find_all_text_pointers_in_script_engine_script will
-    have to recursively follow through each script to find those.
-    .. it does this now :)
-    """
-    addresses = set()
-    #for each map group
-    for map_group in map_names:
-        #for each map id
-        for map_id in map_names[map_group]:
-            #skip the offset key
-            if map_id == "offset": continue
-            #dump this into smap
-            smap = map_names[map_group][map_id]
-            #signposts
-            signposts = smap["signposts"]
-            #for each signpost
-            for signpost in signposts:
-                if signpost["func"] in [0, 1, 2, 3, 4]:
-                    #dump this into script
-                    script = signpost["script"]
-                elif signpost["func"] in [05, 06]:
-                    script = signpost["script"]
-                else: continue
-                #skip signposts with no bytes
-                if len(script) == 0: continue
-                #find all text pointers in script
-                texts = find_all_text_pointers_in_script_engine_script(script, smap["event_bank"])
-                #dump these addresses in
-                addresses.update(texts)
-            #xy triggers
-            xy_triggers = smap["xy_triggers"]
-            #for each xy trigger
-            for xy_trigger in xy_triggers:
-                #dump this into script
-                script = xy_trigger["script"]
-                #find all text pointers in script
-                texts = find_all_text_pointers_in_script_engine_script(script, smap["event_bank"])
-                #dump these addresses in
-                addresses.update(texts)
-            #trigger scripts
-            triggers = smap["trigger_scripts"]
-            #for each trigger
-            for (i, trigger) in triggers.items():
-                #dump this into script
-                script = trigger["script"]
-                #find all text pointers in script
-                texts = find_all_text_pointers_in_script_engine_script(script, calculate_bank(trigger["address"]))
-                #dump these addresses in
-                addresses.update(texts)
-            #callback scripts
-            callbacks = smap["callback_scripts"]
-            #for each callback
-            for (k, callback) in callbacks.items():
-                #dump this into script
-                script = callback["script"]
-                #find all text pointers in script
-                texts = find_all_text_pointers_in_script_engine_script(script, calculate_bank(callback["address"]))
-                #dump these addresses in
-                addresses.update(texts)
-            #people-events
-            events = smap["people_events"]
-            #for each event
-            for event in events:
-                if event["event_type"] == "script":
-                    #dump this into script
-                    script = event["script"]
-                    #find all text pointers in script
-                    texts = find_all_text_pointers_in_script_engine_script(script, smap["event_bank"])
-                    #dump these addresses in
-                    addresses.update(texts)
-                if event["event_type"] == "trainer":
-                    trainer_data = event["trainer_data"]
-                    addresses.update([trainer_data["text_when_seen_ptr"]])
-                    addresses.update([trainer_data["text_when_trainer_beaten_ptr"]])
-                    trainer_bank = calculate_bank(event["trainer_data_address"])
-                    script1 = trainer_data["script_talk_again"]
-                    texts1 = find_all_text_pointers_in_script_engine_script(script1, trainer_bank)
-                    addresses.update(texts1)
-                    script2 = trainer_data["script_when_lost"]
-                    texts2 = find_all_text_pointers_in_script_engine_script(script2, trainer_bank)
-                    addresses.update(texts2)
-    return addresses
-
-def old_parse_text_engine_script_at(address, map_group=None, map_id=None, debug=True):
-    return {}
-
-def parse_text_engine_script_at(address, map_group=None, map_id=None, debug=True, show=True):
-    """parses a text-engine script ("in-text scripts")
-    http://hax.iimarck.us/files/scriptingcodes_eng.htm#InText
-
-    This is presently very broken.
-
-    see parse_text_at2, parse_text_at, and process_00_subcommands
-    """
-    global rom, text_count, max_texts, texts
-    if rom == None:
-        load_rom()
-    if address == None:
-        return "not a script"
-    commands = {}
-
-    total_text_commands = 0
-    command_counter = 0
-    original_address = address
-    offset = address
-    end = False
-    while not end:
-        address = offset
-        command = {}
-        command_byte = ord(rom[address])
-        print "parse_text_engine_script_at has encountered a command byte " + hex(command_byte) + " at " + hex(address)
-        end_address = address + 1
-        if  command_byte == 0:
-            #read until $57, $50 or $58
-            jump57 = how_many_until(chr(0x57), offset)
-            jump50 = how_many_until(chr(0x50), offset)
-            jump58 = how_many_until(chr(0x58), offset)
-     
-            #whichever command comes first
-            jump = min([jump57, jump50, jump58])
-
-            end_address = offset + jump - 1 #we want the address before $57
-
-            lines = process_00_subcommands(offset+1, end_address)
-
-            if show:
-                text = parse_text_at2(offset+1, end_address-offset+1)
-                texts.append(text)
-                print text
-
-            command = {"type": command_byte,
-                       "start_address": offset,
-                       "end_address": end_address,
-                       "size": jump,
-                       "lines": lines,
-                      }   
-
-            offset += jump
-        elif command_byte == 0x17:
-            #TX_FAR [pointer][bank]
-            pointer_byte1 = ord(rom[offset+1])
-            pointer_byte2 = ord(rom[offset+2])
-            pointer_bank = ord(rom[offset+3])
-
-            pointer = (pointer_byte1 + (pointer_byte2 << 8))
-            pointer = extract_maps.calculate_pointer(pointer, pointer_bank)
-
-            command = {"type": command_byte,
-                       "start_address": offset,
-                       "end_address": offset + 3, #last byte belonging to this command
-                       "pointer": pointer, #parameter
-                      }
-
-            offset += 3 + 1
-        elif command_byte == 0x50 or command_byte == 0x57 or command_byte == 0x58: #end text
-            command = {"type": command_byte,
-                       "start_address": offset,
-                       "end_address": offset,
-                      }
-
-            #this byte simply indicates to end the script
-            end = True
-
-            #this byte simply indicates to end the script
-            if command_byte == 0x50 and ord(rom[offset+1]) == 0x50: #$50$50 means end completely
-                end = True
-                commands[command_counter+1] = command
-
-                #also save the next byte, before we quit
-                commands[command_counter+1]["start_address"] += 1
-                commands[command_counter+1]["end_address"] += 1
-                add_command_byte_to_totals(command_byte)
-            elif command_byte == 0x50: #only end if we started with $0
-                if len(commands.keys()) > 0:
-                    if commands[0]["type"] == 0x0: end = True
-            elif command_byte == 0x57 or command_byte == 0x58: #end completely
-                end = True
-                offset += 1 #go past this 0x50
-        elif command_byte == 0x1:
-            #01 = text from RAM. [01][2-byte pointer]
-            size = 3 #total size, including the command byte
-            pointer_byte1 = ord(rom[offset+1])
-            pointer_byte2 = ord(rom[offset+2])
-
-            command = {"type": command_byte,
-                       "start_address": offset+1,
-                       "end_address": offset+2, #last byte belonging to this command
-                       "pointer": [pointer_byte1, pointer_byte2], #RAM pointer
-                      }
-
-            #view near these bytes
-            #subsection = rom[offset:offset+size+1] #peak ahead
-            #for x in subsection:
-            #    print hex(ord(x))
-            #print "--"
-
-            offset += 2 + 1 #go to the next byte
-
-            #use this to look at the surrounding bytes
-            if debug:
-                print "next command is: " + hex(ord(rom[offset])) + " ... we are at command number: " + str(command_counter) + " near " + hex(offset) + " on map_id=" + str(map_id)
-        elif command_byte == 0x7:
-            #07 = shift texts 1 row above (2nd line becomes 1st line); address for next text = 2nd line. [07]
-            size = 1
-            command = {"type": command_byte,
-                       "start_address": offset,
-                       "end_address": offset,
-                      }
-            offset += 1
-        elif command_byte == 0x3:
-            #03 = set new address in RAM for text. [03][2-byte RAM address]
-            size = 3
-            command = {"type": command_byte, "start_address": offset, "end_address": offset+2}
-            offset += size
-        elif command_byte == 0x4: #draw box
-            #04 = draw box. [04][2-Byte pointer][height Y][width X]
-            size = 5 #including the command
-            command = {
-                        "type": command_byte,
-                        "start_address": offset,
-                        "end_address": offset + size,
-                        "pointer_bytes": [ord(rom[offset+1]), ord(rom[offset+2])],
-                        "y": ord(rom[offset+3]),
-                        "x": ord(rom[offset+4]),
-                      }
-            offset += size + 1
-        elif command_byte == 0x5:
-            #05 = write text starting at 2nd line of text-box. [05][text][ending command]
-            #read until $57, $50 or $58
-            jump57 = how_many_until(chr(0x57), offset)
-            jump50 = how_many_until(chr(0x50), offset)
-            jump58 = how_many_until(chr(0x58), offset)
-
-            #whichever command comes first
-            jump = min([jump57, jump50, jump58])
-
-            end_address = offset + jump - 1 #we want the address before $57
-            lines = process_00_subcommands(offset+1, end_address)
-            
-            if show:
-                text = parse_text_at2(offset+1, end_address-offset+1)
-                texts.append(text)
-                print text
-
-            command = {"type": command_byte,
-                       "start_address": offset,
-                       "end_address": end_address,
-                       "size": jump,
-                       "lines": lines,
-                      }
-            offset = end_address + 1
-        elif command_byte == 0x6:
-            #06 = wait for keypress A or B (put blinking arrow in textbox). [06]
-            command = {"type": command_byte, "start_address": offset, "end_address": offset}
-            offset += 1
-        elif command_byte == 0x7:
-            #07 = shift texts 1 row above (2nd line becomes 1st line); address for next text = 2nd line. [07]
-            command = {"type": command_byte, "start_address": offset, "end_address": offset}
-            offset += 1
-        elif command_byte == 0x8:
-            #08 = asm until whenever
-            command = {"type": command_byte, "start_address": offset, "end_address": offset}
-            offset += 1
-            end = True
-        elif command_byte == 0x9:
-            #09 = write hex-to-dec number from RAM to textbox [09][2-byte RAM address][byte bbbbcccc]
-            #  bbbb = how many bytes to read (read number is big-endian)
-            #  cccc = how many digits display (decimal)
-            #(note: max of decimal digits is 7,i.e. max number correctly displayable is 9999999)
-            ram_address_byte1 = ord(rom[offset+1])
-            ram_address_byte2 = ord(rom[offset+2])
-            read_byte = ord(rom[offset+3])
-
-            command = {
-                        "type": command_byte,
-                        "address": [ram_address_byte1, ram_address_byte2],
-                        "read_byte": read_byte, #split this up when we make a macro for this
-                      }
-
-            offset += 4
-        else:
-            #if len(commands) > 0:
-            #   print "Unknown text command " + hex(command_byte) + " at " + hex(offset) + ", script began with " + hex(commands[0]["type"])
-            if debug:
-                print "Unknown text command at " + hex(offset) + " - command: " + hex(ord(rom[offset])) + " on map_id=" + str(map_id)
-
-            #end at the first unknown command
-            end = True
-        commands[command_counter] = command
-        command_counter += 1
-    total_text_commands += len(commands)
-    
-    text_count += 1
-    #if text_count >= max_texts:
-    #    sys.exit()
-    
-    return commands
 
 def translate_command_byte(crystal=None, gold=None):
     """takes a command byte from either crystal or gold
@@ -1241,7 +1268,6 @@ def pretty_print_pksv_no_names():
         print hex(command_byte) + " appearing in these scripts: "
         for address in addresses:
             print "    " + hex(address)
-
 
 recursive_scripts = set([])
 def rec_parse_script_engine_script_at(address, origin=None):
