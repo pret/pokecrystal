@@ -437,7 +437,7 @@ def load_rom(filename="../baserom.gbc"):
     file_handler.close()
     return rom
 
-def rom_interval(offset, length, strings=True):
+def rom_interval(offset, length, strings=True, debug=True):
     """returns hex values for the rom starting at offset until offset+length"""
     global rom
     returnable = []
@@ -473,6 +473,8 @@ def calculate_bank(address):
     """you are too lazy to divide on your own?"""
     if type(address) == str:
         address = int(address, 16)
+    if 0x4000 <= address <= 0x7FFF:
+        raise Exception, "bank 1 does not exist"
     return int(address) / 0x4000
 def calculate_pointer(short_pointer, bank=None):
     """calculates the full address given a 4-byte pointer and bank byte"""
@@ -1145,19 +1147,19 @@ def translate_command_byte(crystal=None, gold=None):
 
     see: http://www.pokecommunity.com/showpost.php?p=4347261
     """
-    if crystal: #convert to gold
+    if crystal != None: #convert to gold
         if crystal <= 0x51: return crystal
         if crystal == 0x52: return None
         if 0x53 <= crystal <= 0x9E: return crystal-1
         if crystal == 0x9F: return None
         if 0xA0 <= crystal <= 0xA5: return crystal-2
-        if crystal > 0xA5: raise "dunno yet if crystal has new insertions after crystal:0xA5 (gold:0xA3)"
-    elif gold: #convert to crystal
+        if crystal > 0xA5: raise Exception, "dunno yet if crystal has new insertions after crystal:0xA5 (gold:0xA3)"
+    elif gold != None: #convert to crystal
         if gold <= 0x51: return gold
         if 0x52 <= gold <= 0x9D: return gold+1
         if 0x9E <= gold <= 0xA3: return gold+2
-        if gold > 0xA3: raise "dunno yet if crystal has new insertions after gold:0xA3 (crystal:0xA5)"
-    else: raise "translate_command_byte needs either a crystal or gold command"
+        if gold > 0xA3: raise Exception, "dunno yet if crystal has new insertions after gold:0xA3 (crystal:0xA5)"
+    else: raise Exception, "translate_command_byte needs either a crystal or gold command"
 
 pksv_gs = {
     0x00: "2call",
@@ -1469,13 +1471,13 @@ def pretty_print_pksv_no_names():
             print "    " + hex(address)
 
 recursive_scripts = set([])
-def rec_parse_script_engine_script_at(address, origin=None):
+def rec_parse_script_engine_script_at(address, origin=None, debug=True):
     """this is called in parse_script_engine_script_at for recursion
     when this works it should be flipped back to using the regular
     parser."""
     recursive_scripts.add((address, origin))
-    return parse_script_engine_script_at(address, origin=origin)
-def find_broken_recursive_scripts(output=False):
+    return parse_script_engine_script_at(address, origin=origin, debug=debug)
+def find_broken_recursive_scripts(output=False, debug=True):
     """well.. these at least have a chance of maybe being broken?"""
     for r in list(recursive_scripts):
         script = {}
@@ -3306,7 +3308,7 @@ def parse_script_engine_script_at(address, map_group=None, map_id=None, force=Fa
     script_parse_table[original_start_address : offset-1] = commands    
     return commands
 
-def parse_warp_bytes(some_bytes):
+def parse_warp_bytes(some_bytes, debug=True):
     """parse some number of warps from the data"""
     assert len(some_bytes) % warp_byte_size == 0, "wrong number of bytes"
     warps = []
@@ -3324,7 +3326,7 @@ def parse_warp_bytes(some_bytes):
             "map_id": map_id,
         })
     return warps
-def parse_xy_trigger_bytes(some_bytes, bank=None, map_group=None, map_id=None):
+def parse_xy_trigger_bytes(some_bytes, bank=None, map_group=None, map_id=None, debug=True):
     """parse some number of triggers from the data"""
     assert len(some_bytes) % trigger_byte_size == 0, "wrong number of bytes"
     triggers = []
@@ -3354,7 +3356,7 @@ def parse_xy_trigger_bytes(some_bytes, bank=None, map_group=None, map_id=None):
             "script": script,
         })
     return triggers
-def parse_signpost_bytes(some_bytes, bank=None, map_group=None, map_id=None):
+def parse_signpost_bytes(some_bytes, bank=None, map_group=None, map_id=None, debug=True):
     """parse some number of signposts from the data
 
     [Y position][X position][Function][Script pointer (2byte)]
@@ -3436,7 +3438,7 @@ def parse_signpost_bytes(some_bytes, bank=None, map_group=None, map_id=None):
         spost.update(additional)
         signposts.append(spost)
     return signposts
-def parse_trainer_header_at(address, map_group=None, map_id=None):
+def parse_trainer_header_at(address, map_group=None, map_id=None, debug=True):
     """
     [Bit no. (2byte)][Trainer group][Trainer]
     [2byte pointer to Text when seen]
@@ -3493,7 +3495,7 @@ def parse_trainer_header_at(address, map_group=None, map_id=None):
         "script_talk_again": script_talk_again,
     }
     
-def parse_people_event_bytes(some_bytes, address=None, map_group=None, map_id=None): #max of 14 people per map?
+def parse_people_event_bytes(some_bytes, address=None, map_group=None, map_id=None, debug=True): #max of 14 people per map?
     """parse some number of people-events from the data
     see http://hax.iimarck.us/files/scriptingcodes_eng.htm#Scripthdr
 
@@ -3641,10 +3643,10 @@ class PeopleEvent(MapEventElement):
     standard_size = people_event_byte_size
     parse_func    = parse_people_event_bytes
 
-def parse_map_header_at(address, map_group=None, map_id=None):
+def parse_map_header_at(address, map_group=None, map_id=None, debug=True):
     """parses an arbitrary map header at some address"""
     print "parsing a map header at: " + hex(address)
-    bytes = rom_interval(address, map_header_byte_size, strings=False)
+    bytes = rom_interval(address, map_header_byte_size, strings=False, debug=debug)
     bank = bytes[0]
     tileset = bytes[1]
     permission = bytes[2]
@@ -3666,13 +3668,13 @@ def parse_map_header_at(address, map_group=None, map_id=None):
         "fishing": fishing_group,
     }
     print "second map header address is: " + hex(second_map_header_address)
-    map_header.update(parse_second_map_header_at(second_map_header_address))
-    map_header.update(parse_map_event_header_at(map_header["event_address"], map_group=map_group, map_id=map_id))
+    map_header.update(parse_second_map_header_at(second_map_header_address, debug=debug))
+    map_header.update(parse_map_event_header_at(map_header["event_address"], map_group=map_group, map_id=map_id, debug=debug))
     #maybe this next one should be under the "scripts" key?
-    map_header.update(parse_map_script_header_at(map_header["script_address"], map_group=map_group, map_id=map_id))
+    map_header.update(parse_map_script_header_at(map_header["script_address"], map_group=map_group, map_id=map_id, debug=debug))
     return map_header
 
-def parse_second_map_header_at(address, map_group=None, map_id=None):
+def parse_second_map_header_at(address, map_group=None, map_id=None, debug=True):
     """each map has a second map header"""
     bytes = rom_interval(address, second_map_header_byte_size, strings=False)
     border_block = bytes[0]
@@ -3704,7 +3706,7 @@ def parse_second_map_header_at(address, map_group=None, map_id=None):
         "connections": connections,
     }
 
-def parse_map_event_header_at(address, map_group=None, map_id=None):
+def parse_map_event_header_at(address, map_group=None, map_id=None, debug=True):
     """parse crystal map event header byte structure thing"""
     returnable = {}
 
@@ -3745,7 +3747,7 @@ def parse_map_event_header_at(address, map_group=None, map_id=None):
 
     return returnable
 
-def parse_map_script_header_at(address, map_group=None, map_id=None):
+def parse_map_script_header_at(address, map_group=None, map_id=None, debug=True):
     """parses a script header
     
     This structure allows the game to have e.g. one-time only events on a map
@@ -3872,7 +3874,7 @@ def parse_map_header_by_id(*args, **kwargs):
     map_header_offset = offset + ((map_id - 1) * map_header_byte_size)
     return parse_map_header_at(map_header_offset, map_group=map_group, map_id=map_id)
 
-def parse_all_map_headers():
+def parse_all_map_headers(debug=True):
     """calls parse_map_header_at for each map in each map group"""
     global map_names
     if not map_names[1].has_key("offset"):
@@ -3883,9 +3885,9 @@ def parse_all_map_headers():
         #del group_data["offset"]
         for map_id, map_data in group_data.items():
             if map_id == "offset": continue #skip the "offset" address for this map group
-            print "map_group is: " + str(group_id) + "  map_id is: " + str(map_id)
+            if debug: print "map_group is: " + str(group_id) + "  map_id is: " + str(map_id)
             map_header_offset = offset + ((map_id - 1) * map_header_byte_size)
-            parsed_map = parse_map_header_at(map_header_offset, map_group=group_id, map_id=map_id)
+            parsed_map = parse_map_header_at(map_header_offset, map_group=group_id, map_id=map_id, debug=debug)
             map_names[group_id][map_id].update(parsed_map)
             map_names[group_id][map_id]["header_offset"] = map_header_offset
 
@@ -4433,6 +4435,9 @@ class TestCram(unittest.TestCase):
         correct = "9f2922b235a5eeb78d65594e82ef5dde"
         md5sum = md5.md5(rom).hexdigest()
         self.assertEqual(md5sum, correct)
+    def test_bizarre_http_presence(self):
+        rom_segment = self.rom[0x112116:0x112116+8]
+        self.assertEqual(rom_segment, "HTTP/1.0")
     def test_rom_interval(self):
         address = 0x100
         interval = 10
@@ -4455,6 +4460,47 @@ class TestCram(unittest.TestCase):
     def test_how_many_until(self):
         how_many = how_many_until(chr(0x13), 0x1337)
         self.assertEqual(how_many, 3)
+    def test_calculate_bank(self):
+        self.failUnless(calculate_bank(0x8000) == 2)
+        self.failUnless(calculate_bank("0x9000") == 2)
+        self.failUnless(calculate_bank(0) == 0)
+        for address in [0x4000, 0x5000, 0x6000, 0x7000]:
+            self.assertRaises(Exception, calculate_bank, address)
+    def test_calculate_pointer(self):
+        pass #or raise NotImplementedError, bryan_message
+    def test_calculate_pointer_from_bytes_at(self):
+        pass #or raise NotImplementedError, bryan_message
+    def test_rom_text_at(self):
+        self.assertEquals(rom_text_at(0x112116, 8), "HTTP/1.0")
+    def test_find_all_text_pointers_in_script_engine_script(self):
+        "finds text pointers from scripts"
+        pass #or raise NotImplementedError, bryan_message
+    def test_translate_command_byte(self):
+        self.failUnless(translate_command_byte(crystal=0x0) == 0x0)
+        self.failUnless(translate_command_byte(crystal=0x10) == 0x10)
+        self.failUnless(translate_command_byte(crystal=0x40) == 0x40)
+        self.failUnless(translate_command_byte(gold=0x0) == 0x0)
+        self.failUnless(translate_command_byte(gold=0x10) == 0x10)
+        self.failUnless(translate_command_byte(gold=0x40) == 0x40)
+        self.assertEqual(translate_command_byte(gold=0x0), translate_command_byte(crystal=0x0))
+        self.failUnless(translate_command_byte(gold=0x52) == 0x53)
+        self.failUnless(translate_command_byte(gold=0x53) == 0x54)
+        self.failUnless(translate_command_byte(crystal=0x53) == 0x52)
+        self.failUnless(translate_command_byte(crystal=0x52) == None)
+        self.assertRaises(Exception, translate_command_byte, None, gold=0xA4)
+    def test_pksv_integrity(self):
+        "does pksv_gs look okay?"
+        self.assertEqual(pksv_gs[0x00], "2call")
+        self.assertEqual(pksv_gs[0x2D], "givepoke")
+        self.assertEqual(pksv_gs[0x85], "waitbutton")
+        self.assertEqual(pksv_crystal[0x00], "2call")
+        self.assertEqual(pksv_crystal[0x86], "waitbutton")
+        self.assertEqual(pksv_crystal[0xA2], "credits")
+    def test_chars_integrity(self):
+        self.assertEqual(chars[0x80], "A")
+        self.assertEqual(chars[0xA0], "a")
+        self.assertEqual(chars[0xF0], "¥")
+        self.assertEqual(jap_chars[0x44], "ぱ")
 class TestRomStr(unittest.TestCase):
     """RomStr is a class that should act exactly like str()
     except that it never shows the contents of it string
@@ -4476,6 +4522,64 @@ class TestRomStr(unittest.TestCase):
     def test_conversion(self):
         "check if RomStr() -> str() works"
         self.assertEquals(str(self.sample), self.sample_text)
+class TestMapParsing(unittest.TestCase):
+    def test_parse_warp_bytes(self):
+        pass #or raise NotImplementedError, bryan_message
+    def test_parse_xy_trigger_bytes(self):
+        pass #or raise NotImplementedError, bryan_message
+    def test_parse_signpost_bytes(self):
+        pass #or raise NotImplementedError, bryan_message
+    def test_parse_people_event_bytes(self):
+        pass #or raise NotImplementedError, bryan_message
+    def test_parse_trainer_header_at(self):
+        pass #or raise NotImplementedError, bryan_message
+    def test_parse_map_header_at(self):
+        pass #or raise NotImplementedError, bryan_message
+    def test_parse_second_map_header_at(self):
+        pass #or raise NotImplementedError, bryan_message
+    def test_parse_map_event_header_at(self):
+        pass #or raise NotImplementedError, bryan_message
+    def test_parse_map_script_header_at(self):
+        pass #or raise NotImplementedError, bryan_message
+    def test_parse_map_header_by_id(self):
+        pass #or raise NotImplementedError, bryan_message
+    def test_parse_all_map_headers(self):
+        global parse_map_header_at, counter
+        counter = 0
+        for k in map_names.keys():
+            if "offset" not in map_names[k].keys():
+                map_names[k]["offset"] = 0
+        temp = parse_map_header_at
+        def parse_map_header_at(address, map_group=None, map_id=None, debug=False):
+            global counter
+            counter += 1
+            return {}
+        parse_all_map_headers(debug=False)
+        self.assertEqual(counter, 388)
+        parse_map_header_at = temp
+class TestTextScript(unittest.TestCase):
+    def test_find_addresses(self):
+        pass #or raise NotImplementedError, bryan_message
+    def test_parse_text_at(self):
+        pass #or raise NotImplementedError, bryan_message
+    def test_to_asm_at(self):
+        pass #or raise NotImplementedError, bryan_message
+    def test_to_asm(self):
+        pass #or raise NotImplementedError, bryan_message
+class TestEncodedText(unittest.TestCase):
+    def test_to_asm(self):
+        pass #or raise NotImplementedError, bryan_message
+    def test_process_00_subcommands(self):
+        pass #or raise NotImplementedError, bryan_message
+    def test_from_bytes(self):
+        pass #or raise NotImplementedError, bryan_message
+    def test_parse_text_at(self):
+        pass #or raise NotImplementedError, bryan_message
+class TestScript(unittest.TestCase):
+    """for testing parse_script_engine_script_at
+    and script parsing in general.
+    Script should be a class?"""
+    pass
 class TestMetaTesting(unittest.TestCase):
     """test whether or not i am finding at least
     some of the tests in this file"""
