@@ -1,11 +1,14 @@
 # -*- coding: utf-8 -*-
 #utilities to help disassemble pokémon crystal
-import sys
+import sys, os, inspect, md5
 from copy import copy
 
 #for IntervalMap
 from bisect import bisect_left, bisect_right
 from itertools import izip
+
+#for testing all this crap
+import unittest2 as unittest
 
 #table of pointers to map groups
 #each map group contains some number of map headers
@@ -4382,14 +4385,159 @@ for map_group_id in map_names.keys():
         cleaned_name = map_name_cleaner(map_data["name"])
         #set the value in the original dictionary
         map_names[map_group_id][map_id]["label"] = cleaned_name
-#read the rom and figure out the offsets for maps
-load_rom()
-load_map_group_offsets()
-#add the offsets into our map structure, why not (johto maps only)
-[map_names[map_group_id+1].update({"offset": offset}) for map_group_id, offset in enumerate(map_group_offsets)]
-#parse map header bytes for each map
-parse_all_map_headers()
 
-if __name__ == "__main__":
+#### generic testing ####
+
+class TestCram(unittest.TestCase):
+    "this is where i cram all of my unit tests together"
+    @classmethod
+    def setUpClass(cls):
+        global rom
+        cls.rom = load_rom()
+        rom = cls.rom
+    @classmethod
+    def tearDownClass(cls):
+        del cls.rom
+    def test_generic_useless(self):
+        "do i know how to write a test?"
+        self.assertEqual(1, 1)
+    def test_map_name_cleaner(self):
+        name = "hello world"
+        cleaned_name = map_name_cleaner(name)
+        self.assertNotEqual(name, cleaned_name)
+        self.failUnless(" " not in cleaned_name)
+        name = "Some Random Pokémon Center"
+        cleaned_name = map_name_cleaner(name)
+        self.assertNotEqual(name, cleaned_name)
+        self.failIf(" " in cleaned_name)
+        self.failIf("é" in cleaned_name)
+    def test_grouper(self):
+        data = range(0, 10)
+        groups = grouper(data, count=2)
+        self.assertEquals(len(groups), 5)
+        data = range(0, 20)
+        groups = grouper(data, count=2)
+        self.assertEquals(len(groups), 10)
+        self.assertNotEqual(data, groups)
+        self.assertNotEqual(len(data), len(groups))
+    def test_load_rom(self):
+        rom = self.rom
+        self.assertEqual(len(rom), 2097152)
+        self.failUnless(isinstance(rom, RomStr))
+    def test_rom_file_existence(self):
+        "ROM file must exist"
+        self.failUnless("baserom.gbc" in os.listdir("../"))
+    def test_rom_md5(self):
+        "ROM file must have the correct md5 sum"
+        rom = self.rom
+        correct = "9f2922b235a5eeb78d65594e82ef5dde"
+        md5sum = md5.md5(rom).hexdigest()
+        self.assertEqual(md5sum, correct)
+    def test_rom_interval(self):
+        address = 0x100
+        interval = 10
+        correct_strings = ['0x0', '0xc3', '0x6e', '0x1', '0xce',
+                           '0xed', '0x66', '0x66', '0xcc', '0xd']
+        byte_strings = rom_interval(address, interval, strings=True)
+        self.assertEqual(byte_strings, correct_strings)
+        correct_ints = [0, 195, 110, 1, 206, 237, 102, 102, 204, 13]
+        ints = rom_interval(address, interval, strings=False)
+        self.assertEqual(ints, correct_ints)
+    def test_rom_until(self):
+        address = 0x1337
+        byte = 0x13
+        bytes = rom_until(address, byte, strings=True)
+        self.failUnless(len(bytes) == 3)
+        self.failUnless(bytes[0] == '0xd5')
+        bytes = rom_until(address, byte, strings=False)
+        self.failUnless(len(bytes) == 3)
+        self.failUnless(bytes[0] == 0xd5)
+    def test_how_many_until(self):
+        how_many = how_many_until(chr(0x13), 0x1337)
+        self.assertEqual(how_many, 3)
+class TestRomStr(unittest.TestCase):
+    """RomStr is a class that should act exactly like str()
+    except that it never shows the contents of it string
+    unless explicitly forced"""
+    sample_text = "hello world!"
+    sample = None
+    def setUp(self):
+        if self.sample == None:
+            self.__class__.sample = RomStr(self.sample_text)
+    def test_equals(self):
+        "check if RomStr() == str()"
+        self.assertEquals(self.sample_text, self.sample)
+    def test_not_equal(self):
+        "check if RomStr('a') != RomStr('b')"
+        self.assertNotEqual(RomStr('a'), RomStr('b'))
+    def test_appending(self):
+        "check if RomStr()+'a'==str()+'a'"
+        self.assertEquals(self.sample_text+'a', self.sample+'a')
+    def test_conversion(self):
+        "check if RomStr() -> str() works"
+        self.assertEquals(str(self.sample), self.sample_text)
+class TestMetaTesting(unittest.TestCase):
+    """test whether or not i am finding at least
+    some of the tests in this file"""
+    tests = None
+    def setUp(self):
+        if self.tests == None:
+            self.__class__.tests = assemble_test_cases()
+    def test_assemble_test_cases_count(self):
+        "does assemble_test_cases find some tests?"
+        self.failUnless(len(self.tests) > 0)
+    def test_assemble_test_cases_inclusion(self):
+        "is this class found by assemble_test_cases?"
+        #i guess it would have to be for this to be running?
+        self.failUnless(self.__class__ in self.tests)
+    def test_assemble_test_cases_others(self):
+        "test other inclusions for assemble_test_cases"
+        self.failUnless(TestRomStr in self.tests)
+        self.failUnless(TestCram in self.tests)
+
+def assemble_test_cases():
+    """finds classes that inherit from unittest.TestCase
+    because i am too lazy to remember to add them to a 
+    global list of tests for the suite runner"""
+    classes = []
+    clsmembers = inspect.getmembers(sys.modules[__name__], inspect.isclass)
+    #lambda member: member.__module__ == __name__ and inspect.isclass)
+    for (name, some_class) in clsmembers:
+        if issubclass(some_class, unittest.TestCase):
+            classes.append(some_class)
+    return classes
+def load_tests(loader, tests, pattern):
+    suite = unittest.TestSuite()
+    for test_class in assemble_test_cases():
+        tests = loader.loadTestsFromTestCase(test_class)
+        suite.addTests(tests)
+    return suite
+def find_untested_methods():
+    """finds all untested methods in this module
+    by searching for method names in test case
+    method names."""
+    raise NotImplementedError, bryan_message
+
+#### ways to run this file ####
+
+def run_tests():
+    #deprecated: unittest.main()
+    loader = unittest.TestLoader()
+    suite = load_tests(loader, None, None)
+    unittest.TextTestRunner(verbosity=2).run(suite)
+def run_main():
+    #read the rom and figure out the offsets for maps
     load_rom()
     load_map_group_offsets()
+    #add the offsets into our map structure, why not (johto maps only)
+    [map_names[map_group_id+1].update({"offset": offset}) for map_group_id, offset in enumerate(map_group_offsets)]
+    #parse map header bytes for each map
+    parse_all_map_headers()
+#just a helpful alias
+main=run_main
+#when you run the file.. do unit tests
+if __name__ == "__main__":
+    run_tests()
+#when you load the module.. parse everything
+elif __name__ == "crystal": pass
+    #run_main()
