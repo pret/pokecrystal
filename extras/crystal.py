@@ -533,7 +533,7 @@ def command_debug_information(command_byte=None, map_group=None, map_id=None, ad
 
 class TextScript():
     "a text is a sequence of commands different from a script-engine script"
-    def to_asm(self): pass
+    def to_asm(self): raise NotImplementedError, bryan_message
     @staticmethod
     def find_addresses():
         """returns a list of text pointers
@@ -835,6 +835,202 @@ class TextScript():
         #    sys.exit()
         
         return commands
+    @staticmethod
+    def to_asm_at(address, label="SomeLabel"):
+        #parse the text script
+        commands = TextScript.parse_text_at(start_address)
+        #apparently this isn't important anymore?
+        needs_to_begin_with_0 = True
+        #start with zero please
+        byte_count = 0 
+        #where we store all output
+        output = ""
+        had_text_end_byte = False
+        had_text_end_byte_57_58 = False
+        had_db_last = False
+        #reset this pretty fast..
+        first_line = True
+        #for each command..
+        for this_command in commands.keys():
+            if not "lines" in commands[this_command].keys():
+                command = commands[this_command]
+                if not "type" in command.keys():
+                    print "ERROR in command: " + str(command)
+                    continue #dunno what to do here?
+    
+                if   command["type"] == 0x1: #TX_RAM
+                    if first_line:
+                        output = "\n"
+                        output += label + ": ; " + hex(start_address)
+                        first_line = False
+                    p1 = command["pointer"][0]
+                    p2 = command["pointer"][1]
+    
+                    #remember to account for big endian -> little endian
+                    output += "\n" + spacing + "TX_RAM $%.2x%.2x" %(p2, p1)
+                    byte_count += 3
+                    had_db_last = False
+                elif command["type"] == 0x17: #TX_FAR
+                    if first_line:
+                        output = "\n"
+                        output += label + ": ; " + hex(start_address)
+                        first_line = False
+                    #p1 = command["pointer"][0]
+                    #p2 = command["pointer"][1]
+                    output += "\n" + spacing + "TX_FAR _" + label + " ; " + hex(command["pointer"])
+                    byte_count += 4 #$17, bank, address word
+                    had_db_last = False
+                elif command["type"] == 0x9: #TX_RAM_HEX2DEC
+                    if first_line:
+                        output = "\n" + label + ": ; " + hex(start_address)
+                        first_line = False
+                    #address, read_byte
+                    output += "\n" + spacing + "TX_NUM $%.2x%.2x, $%.2x" % (command["address"][1], command["address"][0], command["read_byte"])
+                    had_db_last = False
+                    byte_count += 4
+                elif command["type"] == 0x50 and not had_text_end_byte:
+                    #had_text_end_byte helps us avoid repeating $50s
+                    if first_line:
+                        output = "\n" + label + ": ; " + hex(start_address)
+                        first_line = False
+                    if had_db_last:
+                        output += ", $50"
+                    else:
+                        output += "\n" + spacing + "db $50"
+                    byte_count += 1
+                    had_db_last = True
+                elif command["type"] in [0x57, 0x58] and not had_text_end_byte_57_58:
+                    if first_line: #shouldn't happen, really
+                        output = "\n" + label + ": ; " + hex(start_address)
+                        first_line = False
+                    if had_db_last:
+                        output += ", $%.2x" % (command["type"])
+                    else:
+                        output += "\n" + spacing + "db $%.2x" % (command["type"])
+                    byte_count += 1
+                    had_db_last = True
+                elif command["type"] in [0x57, 0x58] and had_text_end_byte_57_58:
+                    pass #this is ok
+                elif command["type"] == 0x50 and had_text_end_byte:
+                    pass #this is also ok
+                elif command["type"] == 0x0b:
+                    if first_line:
+                        output = "\n" + label + ": ; " + hex(start_address)
+                        first_line = False
+                    if had_db_last:
+                        output += ", $0b"
+                    else:
+                        output += "\n" + spacing + "db $0B"
+                    byte_count += 1
+                    had_db_last = True
+                elif command["type"] == 0x11:
+                    if first_line:
+                        output = "\n" + label + ": ; " + hex(start_address)
+                        first_line = False
+                    if had_db_last:
+                        output += ", $11"
+                    else:
+                        output += "\n" + spacing + "db $11"
+                    byte_count += 1
+                    had_db_last = True
+                elif command["type"] == 0x6: #wait for keypress
+                    if first_line:
+                        output = "\n" + label + ": ; " + hex(start_address)
+                        first_line = False
+                    if had_db_last:
+                        output += ", $6"
+                    else:
+                        output += "\n" + spacing + "db $6"
+                    byte_count += 1
+                    had_db_last = True
+                else:
+                    print "ERROR in command: " + hex(command["type"])
+                    had_db_last = False
+    
+                #everything else is for $0s, really
+                continue
+            lines = commands[this_command]["lines"]
+    
+            #reset this in case we have non-$0s later
+            had_db_last = False
+    
+            #add the ending byte to the last line- always seems $57
+            #this should already be in there, but it's not because of a bug in the text parser
+            lines[len(lines.keys())-1].append(commands[len(commands.keys())-1]["type"])
+    
+            if first_line:
+                output  = "\n"
+                output += label + ": ; " + hex(start_address) + "\n"
+                first_line = False
+            else:
+                output += "\n"
+    
+            first = True #first byte
+            for line_id in lines:
+                line = lines[line_id]
+                output += spacing + "db "
+                if first and needs_to_begin_with_0:
+                    output += "$0, "
+                    first = False
+                    byte_count += 1
+    
+                quotes_open = False
+                first_byte = True
+                was_byte = False
+                for byte in line:
+                    if byte == 0x50:
+                        had_text_end_byte = True #don't repeat it
+                    if byte in [0x58, 0x57]:
+                        had_text_end_byte_57_58 = True
+    
+                    if byte in txt_bytes:
+                        if not quotes_open and not first_byte: #start text
+                            output += ", \""
+                            quotes_open = True
+                            first_byte = False
+                        if not quotes_open and first_byte: #start text
+                            output += "\""
+                            quotes_open = True
+                        output += txt_bytes[byte]
+                    elif byte in constant_abbreviation_bytes:
+                        if quotes_open:
+                            output += "\""
+                            quotes_open = False
+                        if not first_byte:
+                            output += ", "
+                        output += constant_abbreviation_bytes[byte]
+                    else:
+                        if quotes_open:
+                            output += "\""
+                            quotes_open = False
+    
+                        #if you want the ending byte on the last line
+                        #if not (byte == 0x57 or byte == 0x50 or byte == 0x58):
+                        if not first_byte:
+                            output += ", "
+    
+                        output += "$" + hex(byte)[2:]
+                        was_byte = True
+    
+                        #add a comma unless it's the end of the line
+                        #if byte_count+1 != len(line):
+                        #    output += ", "
+    
+                    first_byte = False
+                    byte_count += 1
+                #close final quotes
+                if quotes_open:
+                    output += "\""
+                    quotes_open = False
+    
+                output += "\n"
+        include_newline = "\n"
+        if len(output)!=0 and output[-1] == "\n":
+            include_newline = ""
+        output += include_newline + "; " + hex(start_address) + " + " + str(byte_count) + " bytes = " + hex(start_address + byte_count)
+        print output
+        return (output, byte_count)
+
 def parse_text_engine_script_at(address, map_group=None, map_id=None, debug=True, show=True):
     """parses a text-engine script ("in-text scripts")
     http://hax.iimarck.us/files/scriptingcodes_eng.htm#InText
@@ -849,7 +1045,7 @@ def find_text_addresses():
 class EncodedText():
     """a sequence of bytes that, when decoded, represent readable text
     based on the chars table from textpre.py and other places"""
-    def to_asm(self): pass
+    def to_asm(self): raise NotImplementedError, bryan_message
     @staticmethod
     def process_00_subcommands(start_address, end_address):
         """split this text up into multiple lines
