@@ -4710,6 +4710,15 @@ class TestMetaTesting(unittest.TestCase):
         classes = [x[1] for x in tests]
         for test in suite._tests:
             self.assertIn(test.__class__, classes)
+    def test_report_untested(self):
+        untested = find_untested_methods()
+        output = report_untested()
+        if len(untested) > 0:
+            self.assertIn("NOT TESTED", output)
+            for name in untested:
+                self.assertIn(name, output)
+        elif len(untested) == 0:
+            self.assertNotIn("NOT TESTED", output)
 def assemble_test_cases():
     """finds classes that inherit from unittest.TestCase
     because i am too lazy to remember to add them to a 
@@ -4739,7 +4748,7 @@ def find_untested_methods():
     by searching for method names in test case
     method names."""
     untested = []
-    avoid_funcs = ["main", "run_main", "run_tests", "copy", "deepcopy"]
+    avoid_funcs = ["main", "run_tests", "copy", "deepcopy"]
     test_funcs = []
     #get a list of all classes in this module
     classes = inspect.getmembers(sys.modules[__name__], inspect.isclass)
@@ -4769,7 +4778,8 @@ def find_untested_methods():
     return untested
 def report_untested():
     untested = find_untested_methods()
-    print "NOT TESTED: " + str(untested)
+    output = "NOT TESTED: " + str(untested)
+    return output
 
 #### ways to run this file ####
 
@@ -4777,7 +4787,7 @@ def run_tests(): #rather than unittest.main()
     loader = unittest.TestLoader()
     suite = load_tests(loader, None, None)
     unittest.TextTestRunner(verbosity=2).run(suite)
-    report_untested()
+    print report_untested()
 def run_main():
     #read the rom and figure out the offsets for maps
     load_rom()
