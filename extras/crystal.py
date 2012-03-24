@@ -1123,9 +1123,9 @@ def find_all_text_pointers_in_script_engine_script(script, bank):
         elif command["type"] == 0x4C:
             addresses.add(command["pointer"])
         elif command["type"] == 0x51:
-            addresses.add(command["text_pointer"])
+            addresses.add(command["pointer"])
         elif command["type"] == 0x53:
-            addresses.add(command["text_pointer"])
+            addresses.add(command["pointer"])
         elif command["type"] == 0x64:
             addresses.add(command["won_pointer"])
             addresses.add(command["lost_pointer"])
