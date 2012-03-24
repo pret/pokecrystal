@@ -569,6 +569,11 @@ def parse_text_at(address, count=10):
     see parse_text_at2 for pretty printing"""
     return parse_text_from_bytes(rom_interval(address, count, strings=False))
 
+def rom_text_at(address, count=10):
+    """prints out raw text from the ROM
+    like for 0x112110"""
+    return "".join([chr(x) for x in rom_interval(address, count, strings=False)])
+
 def parse_text_at2(address, count=10):
     """returns a string of text from an address
     this does not handle text commands"""
@@ -702,6 +707,8 @@ def parse_text_engine_script_at(address, map_group=None, map_id=None, debug=True
     global rom, text_count, max_texts, texts
     if rom == None:
         load_rom()
+    if address == None:
+        return "not a script"
     commands = {}
 
     total_text_commands = 0
