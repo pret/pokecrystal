@@ -4501,6 +4501,35 @@ class TestCram(unittest.TestCase):
         self.assertEqual(chars[0xA0], "a")
         self.assertEqual(chars[0xF0], "¥")
         self.assertEqual(jap_chars[0x44], "ぱ")
+    def test_map_names_integrity(self):
+        def map_name(map_group, map_id): return map_names[map_group][map_id]["name"]
+        self.assertEqual(map_name(2, 7), "Mahogany Town")
+        self.assertEqual(map_name(3, 0x34), "Ilex Forest")
+        self.assertEqual(map_name(7, 0x11), "Cerulean City")
+class TestIntervalMap(unittest.TestCase):
+    def test_intervals(self):
+        i = IntervalMap()
+        first = "hello world"
+        second = "testing 123"
+        i[0:5] = first
+        i[5:10] = second
+        self.assertEqual(i[0], first)
+        self.assertEqual(i[1], first)
+        self.assertNotEqual(i[5], first)
+        self.assertEqual(i[6], second)
+        i[3:10] = second
+        self.assertEqual(i[3], second)
+        self.assertNotEqual(i[4], first)
+    def test_items(self):
+        i = IntervalMap()
+        first = "hello world"
+        second = "testing 123"
+        i[0:5] = first
+        i[5:10] = second
+        results = list(i.items())
+        self.failUnless(len(results) == 2)
+        self.assertEqual(results[0], ((0, 5), "hello world"))
+        self.assertEqual(results[1], ((5, 10), "testing 123"))
 class TestRomStr(unittest.TestCase):
     """RomStr is a class that should act exactly like str()
     except that it never shows the contents of it string
@@ -4558,13 +4587,13 @@ class TestMapParsing(unittest.TestCase):
         self.assertEqual(counter, 388)
         parse_map_header_at = temp
 class TestTextScript(unittest.TestCase):
+    def test_to_asm(self):
+        pass #or raise NotImplementedError, bryan_message
     def test_find_addresses(self):
         pass #or raise NotImplementedError, bryan_message
     def test_parse_text_at(self):
         pass #or raise NotImplementedError, bryan_message
     def test_to_asm_at(self):
-        pass #or raise NotImplementedError, bryan_message
-    def test_to_asm(self):
         pass #or raise NotImplementedError, bryan_message
 class TestEncodedText(unittest.TestCase):
     def test_to_asm(self):
@@ -4579,7 +4608,8 @@ class TestScript(unittest.TestCase):
     """for testing parse_script_engine_script_at
     and script parsing in general.
     Script should be a class?"""
-    pass
+    def test_parse_script_engine_script_at(self):
+        pass #or raise NotImplementedError, bryan_message
 class TestMetaTesting(unittest.TestCase):
     """test whether or not i am finding at least
     some of the tests in this file"""
