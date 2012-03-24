@@ -3931,7 +3931,7 @@ map_names = {
         0xA: {"name": "Tin Tower 7F"},
         0xB: {"name": "Tin Tower 8F"},
         0xC: {"name": "Tin Tower 9F"},
-        0xD: {"name": "Bured Tower 1F"},
+        0xD: {"name": "Burned Tower 1F"},
         0xE: {"name": "Burned Tower B1F"},
         0xF: {"name": "National Park"},
         0x10: {"name": "National Park Bug Contest"},
