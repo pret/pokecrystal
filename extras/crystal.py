@@ -4675,14 +4675,47 @@ class TestMetaTesting(unittest.TestCase):
         "test other inclusions for assemble_test_cases"
         self.failUnless(TestRomStr in self.tests)
         self.failUnless(TestCram in self.tests)
-
+    def test_check_has_test(self):
+        self.failUnless(check_has_test("beaver", ["test_beaver"]))
+        self.failUnless(check_has_test("beaver", ["test_beaver_2"]))
+        self.failIf(check_has_test("beaver_1", ["test_beaver"]))
+    def test_find_untested_methods(self):
+        untested = find_untested_methods()
+        #the return type must be an iterable
+        self.failUnless(hasattr(untested, "__iter__"))
+        #.. basically, a list
+        self.failUnless(isinstance(untested, list))
+    def test_find_untested_methods_method(self):
+        """create a function and see if it is found"""
+        #setup a function in the global namespace
+        global some_random_test_method
+        #define the method
+        def some_random_test_method(): pass
+        #first make sure it is in the global scope
+        members = inspect.getmembers(sys.modules[__name__], inspect.isfunction)
+        func_names = [functuple[0] for functuple in members]
+        self.assertIn("some_random_test_method", func_names)
+        #test whether or not it is found by find_untested_methods
+        untested = find_untested_methods()
+        self.assertIn("some_random_test_method", untested)
+        #remove the test method from the global namespace
+        del some_random_test_method
+    def test_load_tests(self):
+        loader = unittest.TestLoader()
+        suite = load_tests(loader, None, None)
+        suite._tests[0]._testMethodName
+        membership_test = lambda member: \
+            inspect.isclass(member) and issubclass(member, unittest.TestCase)
+        tests = inspect.getmembers(sys.modules[__name__], membership_test)
+        classes = [x[1] for x in tests]
+        for test in suite._tests:
+            self.assertIn(test.__class__, classes)
 def assemble_test_cases():
     """finds classes that inherit from unittest.TestCase
     because i am too lazy to remember to add them to a 
     global list of tests for the suite runner"""
     classes = []
     clsmembers = inspect.getmembers(sys.modules[__name__], inspect.isclass)
-    #lambda member: member.__module__ == __name__ and inspect.isclass)
     for (name, some_class) in clsmembers:
         if issubclass(some_class, unittest.TestCase):
             classes.append(some_class)
@@ -4693,19 +4726,58 @@ def load_tests(loader, tests, pattern):
         tests = loader.loadTestsFromTestCase(test_class)
         suite.addTests(tests)
     return suite
+def check_has_test(func_name, tested_names):
+    """checks if there is a test dedicated to this function"""
+    if "test_"+func_name in tested_names:
+        return True
+    for name in tested_names:
+        if "test_"+func_name in name:
+            return True
+    return False
 def find_untested_methods():
-    """finds all untested methods in this module
+    """finds all untested functions in this module
     by searching for method names in test case
     method names."""
-    raise NotImplementedError, bryan_message
+    untested = []
+    avoid_funcs = ["main", "run_main", "run_tests", "copy", "deepcopy"]
+    test_funcs = []
+    #get a list of all classes in this module
+    classes = inspect.getmembers(sys.modules[__name__], inspect.isclass)
+    #for each class..
+    for (name, klass) in classes:
+        #only look at those that have tests
+        if issubclass(klass, unittest.TestCase):
+            #look at this class' methods
+            funcs = inspect.getmembers(klass, inspect.ismethod)
+            #for each method..
+            for (name2, func) in funcs:
+                #store the ones that begin with test_
+                if "test_" in name2 and name2[0:5] == "test_":
+                    test_funcs.append([name2, func])
+    #assemble a list of all test method names (test_x, test_y, ..)
+    tested_names = [funcz[0] for funcz in test_funcs]
+    #now get a list of all functions in this module
+    funcs = inspect.getmembers(sys.modules[__name__], inspect.isfunction)
+    #for each function..
+    for (name, func) in funcs:
+        #we don't care about some of these
+        if name in avoid_funcs: continue
+        #check if this function has a test named after it
+        has_test = check_has_test(name, tested_names)
+        if not has_test:
+            untested.append(name)
+    return untested
+def report_untested():
+    untested = find_untested_methods()
+    print "NOT TESTED: " + str(untested)
 
 #### ways to run this file ####
 
-def run_tests():
-    #deprecated: unittest.main()
+def run_tests(): #rather than unittest.main()
     loader = unittest.TestLoader()
     suite = load_tests(loader, None, None)
     unittest.TextTestRunner(verbosity=2).run(suite)
+    report_untested()
 def run_main():
     #read the rom and figure out the offsets for maps
     load_rom()
