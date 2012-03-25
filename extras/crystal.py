@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 #utilities to help disassemble pokémon crystal
 import sys, os, inspect, md5, json
-from copy import copy
+from copy import copy, deepcopy
+import subprocess
 
 #for IntervalMap
 from bisect import bisect_left, bisect_right
@@ -4422,7 +4423,7 @@ processed_incbins = {}
 
 def isolate_incbins():
     "find each incbin line"
-    global incbin_lines
+    global incbin_lines, asm
     incbin_lines = []
     for line in asm:
         if line == "": continue
@@ -4507,7 +4508,7 @@ def find_incbin_to_replace_for(address, debug=False, rom_file="../baserom.gbc"):
             return incbin_key
     return None
 
-def split_incbin_line_into_three(line, start_address, byte_count):
+def split_incbin_line_into_three(line, start_address, byte_count, rom_file="../baserom.gbc"):
     """
     splits an incbin line into three pieces.
     you can replace the middle one with the new content of length bytecount
@@ -4544,11 +4545,18 @@ def split_incbin_line_into_three(line, start_address, byte_count):
     output += "INCBIN \"baserom.gbc\",$" + hex(third[0])[2:] + ",$" + hex(third[1])[2:] #no newline
     return output
 
-def generate_diff_insert(line_number, newline):
+def generate_diff_insert(line_number, newline, debug=False):
+    """generates a diff between the old main.asm and the new main.asm
+    note: requires python2.7 i think? b/c of subprocess.check_output"""
+    global asm
     original = "\n".join(line for line in asm)
     newfile = deepcopy(asm)
     newfile[line_number] = newline #possibly inserting multiple lines
     newfile = "\n".join(line for line in newfile)
+
+    #make sure there's a newline at the end of the file
+    if newfile[-1] != "\n":
+        newfile += "\n"
 
     original_filename = "ejroqjfoad.temp"
     newfile_filename = "fjiqefo.temp"
@@ -4564,13 +4572,16 @@ def generate_diff_insert(line_number, newline):
     try:
         diffcontent = subprocess.check_output("diff -u ../main.asm " + newfile_filename, shell=True)
     except AttributeError, exc:
-        raise exc
+        p = subprocess.Popen(["diff", "-u", "../main.asm", newfile_filename], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        out, err = p.communicate()
+        diffcontent = out
     except Exception, exc:
-        diffcontent = exc.output
+        raise exc
 
     os.system("rm " + original_filename)
     os.system("rm " + newfile_filename)
 
+    if debug: print diffcontent
     return diffcontent
 
 def apply_diff(diff, try_fixing=True, do_compile=True):
@@ -5017,6 +5028,9 @@ class TestCram(unittest.TestCase):
             self.assertGreaterEqual(address, 0x4000)
             self.failIf(0x4000 <= address <= 0x7FFF)
             self.failIf(address <= 0x4000)
+    def test_index(self):
+        self.assertTrue(index([1,2,3,4], lambda f: True) == 0)
+        self.assertTrue(index([1,2,3,4], lambda f: f==3) == 2)
 class TestIntervalMap(unittest.TestCase):
     def test_intervals(self):
         i = IntervalMap()
@@ -5235,6 +5249,51 @@ class TestAsmList(unittest.TestCase):
         self.assertTrue(processed_incbins == {})
         #reset the original functions
         load_asm, isolate_incbins, process_incbins = temp1, temp2, temp3
+    def test_find_incbin_to_replace_for(self):
+        global asm, incbin_lines, processed_incbins
+        asm = ['first line', 'second line', 'third line',
+               'INCBIN "baserom.gbc",$90,$200 - $90',
+               'fifth line', 'last line']
+        isolate_incbins()
+        process_incbins()
+        line_num = find_incbin_to_replace_for(0x100)
+        #must be the 4th line (the INBIN line)
+        self.assertEqual(line_num, 3)
+    def test_split_incbin_line_into_three(self):
+        global asm, incbin_lines, processed_incbins
+        asm = ['first line', 'second line', 'third line',
+               'INCBIN "baserom.gbc",$90,$200 - $90',
+               'fifth line', 'last line']
+        isolate_incbins()
+        process_incbins()
+        content = split_incbin_line_into_three(3, 0x100, 10)
+        #must end up with three INCBINs in output
+        self.failUnless(content.count("INCBIN") == 3)
+    def test_analyze_intervals(self):
+        global asm, incbin_lines, processed_incbins
+        asm, incbin_lines, processed_incbins = None, [], {}
+        asm = ['first line', 'second line', 'third line',
+               'INCBIN "baserom.gbc",$90,$200 - $90',
+               'fifth line', 'last line',
+               'INCBIN "baserom.gbc",$33F,$4000 - $33F']
+        isolate_incbins()
+        process_incbins()
+        largest = analyze_intervals()
+        self.assertEqual(largest[0]["line_number"], 6)
+        self.assertEqual(largest[0]["line"], asm[6])
+        self.assertEqual(largest[1]["line_number"], 3)
+        self.assertEqual(largest[1]["line"], asm[3])
+    def test_generate_diff_insert(self):
+        global asm
+        asm = ['first line', 'second line', 'third line',
+               'INCBIN "baserom.gbc",$90,$200 - $90',
+               'fifth line', 'last line',
+               'INCBIN "baserom.gbc",$33F,$4000 - $33F']
+        diff = generate_diff_insert(0, "the real first line", debug=False)
+        self.assertIn("the real first line", diff)
+        self.assertIn("INCBIN", diff)
+        self.assertNotIn("No newline at end of file", diff)
+        self.assertIn("+"+asm[1], diff)
 class TestMapParsing(unittest.TestCase):
     #def test_parse_warp_bytes(self):
     #    pass #or raise NotImplementedError, bryan_message
