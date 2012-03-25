@@ -674,7 +674,8 @@ class TextScript():
             address = offset
             command = {}
             command_byte = ord(rom[address])
-            print "parse_text_engine_script_at has encountered a command byte " + hex(command_byte) + " at " + hex(address)
+            if debug:
+                print "TextScript.parse_script_at has encountered a command byte " + hex(command_byte) + " at " + hex(address)
             end_address = address + 1
             if  command_byte == 0:
                 #read until $57, $50 or $58
@@ -687,11 +688,10 @@ class TextScript():
     
                 end_address = offset + jump - 1 #we want the address before $57
     
-                lines = process_00_subcommands(offset+1, end_address)
+                lines = process_00_subcommands(offset+1, end_address, debug=debug)
     
-                if show:
-                    text = parse_text_at2(offset+1, end_address-offset+1)
-                    texts.append(text)
+                if show and debug:
+                    text = parse_text_at2(offset+1, end_address-offset+1, debug=debug)
                     print text
     
                 command = {"type": command_byte,
@@ -801,11 +801,10 @@ class TextScript():
                 jump = min([jump57, jump50, jump58])
     
                 end_address = offset + jump - 1 #we want the address before $57
-                lines = process_00_subcommands(offset+1, end_address)
+                lines = process_00_subcommands(offset+1, end_address, debug=debug)
                 
-                if show:
-                    text = parse_text_at2(offset+1, end_address-offset+1)
-                    texts.append(text)
+                if show and debug:
+                    text = parse_text_at2(offset+1, end_address-offset+1, debug=debug)
                     print text
     
                 command = {"type": command_byte,
@@ -1073,10 +1072,11 @@ class EncodedText():
     based on the chars table from textpre.py and other places"""
     def to_asm(self): raise NotImplementedError, bryan_message
     @staticmethod
-    def process_00_subcommands(start_address, end_address):
+    def process_00_subcommands(start_address, end_address, debug=True):
         """split this text up into multiple lines
         based on subcommands ending each line"""
-        print "process_00_subcommands(" + hex(start_address) + ", " + hex(end_address) + ")"
+        if debug:
+            print "process_00_subcommands(" + hex(start_address) + ", " + hex(end_address) + ")"
         lines = {}
         subsection = rom[start_address:end_address]
     
@@ -1095,7 +1095,7 @@ class EncodedText():
         line_count += 1
         return lines
     @staticmethod
-    def from_bytes(bytes):
+    def from_bytes(bytes, debug=True):
         """assembles a string based on bytes looked up in the chars table"""
         line = ""
         for byte in bytes:
@@ -1103,47 +1103,50 @@ class EncodedText():
                 byte = ord(byte)
             if byte in chars.keys():
                 line += chars[byte]
-            else:
+            elif debug:
                 print "byte not known: " + hex(byte)
         return line
     @staticmethod
-    def parse_text_at(address, count=10):
+    def parse_text_at(address, count=10, debug=True):
         """returns a string of text from an address
         this does not handle text commands"""
         output = ""
-        commands = process_00_subcommands(address, address+count)
+        commands = process_00_subcommands(address, address+count, debug=debug)
         for (line_id, line) in commands.items():
-            output += parse_text_from_bytes(line)
+            output += parse_text_from_bytes(line, debug=debug)
             output += "\n"
+        texts.append([address, output])
         return output
-def process_00_subcommands(start_address, end_address):
+def process_00_subcommands(start_address, end_address, debug=True):
     """split this text up into multiple lines
     based on subcommands ending each line"""
-    return EncodedText.process_00_subcommands(start_address, end_address)
-def parse_text_from_bytes(bytes):
+    return EncodedText.process_00_subcommands(start_address, end_address, debug=debug)
+def parse_text_from_bytes(bytes, debug=True):
     """assembles a string based on bytes looked up in the chars table"""
-    return EncodedText.from_bytes(bytes)
-def parse_text_at(address, count=10):
+    return EncodedText.from_bytes(bytes, debug=debug)
+def parse_text_at(address, count=10, debug=True):
     """returns a list of bytes from an address
     see parse_text_at2 for pretty printing"""
-    return parse_text_from_bytes(rom_interval(address, count, strings=False))
-def parse_text_at2(address, count=10):
+    return parse_text_from_bytes(rom_interval(address, count, strings=False), debug=debug)
+def parse_text_at2(address, count=10, debug=True):
     """returns a string of text from an address
     this does not handle text commands"""
-    return EncodedText.parse_text_at(address, count)
+    return EncodedText.parse_text_at(address, count, debug=debug)
 
 def rom_text_at(address, count=10):
     """prints out raw text from the ROM
     like for 0x112110"""
     return "".join([chr(x) for x in rom_interval(address, count, strings=False)])
 
-def find_all_text_pointers_in_script_engine_script(script, bank):
+def find_all_text_pointers_in_script_engine_script(script, bank=None, debug=False):
     """returns a list of text pointers
     based on each script-engine script command"""
     #TODO: recursively follow any jumps in the script
     if script == None: return []
     addresses = set()
     for (k, command) in script.items():
+        if debug:
+            print "command is: " + str(command)
         if   command["type"] == 0x4B:
             addresses.add(command["pointer"])
         elif command["type"] == 0x4C:
@@ -1577,10 +1580,11 @@ def parse_script_engine_script_at(address, map_group=None, map_id=None, force=Fa
             last_byte_address = offset + size - 1
             pointer = calculate_pointer_from_bytes_at(start_address+1)
             command["pointer"] = pointer
-            print "in script starting at "+hex(original_start_address)+\
-                  " about to parse script at "+hex(pointer)+\
-                  " called by "+info+" byte="+hex(command_byte)
-            script = rec_parse_script_engine_script_at(pointer, original_start_address)
+            if debug:
+                print "in script starting at "+hex(original_start_address)+\
+                      " about to parse script at "+hex(pointer)+\
+                      " called by "+info+" byte="+hex(command_byte)
+            script = rec_parse_script_engine_script_at(pointer, original_start_address, debug=debug)
             command["script"] = script
         elif command_byte == 0x01: #Pointer code [3b+ret]
             pksv_name = "3call"
@@ -1592,10 +1596,11 @@ def parse_script_engine_script_at(address, map_group=None, map_id=None, force=Fa
             size = 4
             info = "pointer code"
             pointer = calculate_pointer_from_bytes_at(start_address+1, bank=True)
-            print "in script starting at "+hex(original_start_address)+\
-                  " about to parse script at "+hex(pointer)+\
-                  " called by "+info+" byte="+hex(command_byte)
-            script = rec_parse_script_engine_script_at(pointer, original_start_address)
+            if debug:
+                print "in script starting at "+hex(original_start_address)+\
+                      " about to parse script at "+hex(pointer)+\
+                      " called by "+info+" byte="+hex(command_byte)
+            script = rec_parse_script_engine_script_at(pointer, original_start_address, debug)
             command["pointer"] = pointer
             command["script"] = script
         elif command_byte == 0x02: #Pointer code [2b+3b+ret]
@@ -1606,10 +1611,11 @@ def parse_script_engine_script_at(address, map_group=None, map_id=None, force=Fa
             """
             size = 3
             pointer = calculate_pointer_from_bytes_at(start_address+1)
-            print "in script starting at "+hex(original_start_address)+\
-                  " about to parse script at "+hex(pointer)+\
-                  " called by "+info+" byte="+hex(command_byte)
-            script = rec_parse_script_engine_script_at(pointer, original_start_address)
+            if debug:
+                print "in script starting at "+hex(original_start_address)+\
+                      " about to parse script at "+hex(pointer)+\
+                      " called by "+info+" byte="+hex(command_byte)
+            script = rec_parse_script_engine_script_at(pointer, original_start_address, debug=debug)
             command["pointer"] = pointer
             command["script"] = script
         elif command_byte == 0x03: #Pointer code [2b]
@@ -1621,10 +1627,11 @@ def parse_script_engine_script_at(address, map_group=None, map_id=None, force=Fa
             """
             size = 3
             pointer = calculate_pointer_from_bytes_at(start_address+1)
-            print "in script starting at "+hex(original_start_address)+\
-                  " about to parse script at "+hex(pointer)+\
-                  " called by "+info+" byte="+hex(command_byte)
-            script = rec_parse_script_engine_script_at(pointer, original_start_address)
+            if debug:
+                print "in script starting at "+hex(original_start_address)+\
+                      " about to parse script at "+hex(pointer)+\
+                      " called by "+info+" byte="+hex(command_byte)
+            script = rec_parse_script_engine_script_at(pointer, original_start_address, debug=debug)
             command["pointer"] = pointer
             command["script"] = script
             end = True #according to pksv
@@ -1636,10 +1643,11 @@ def parse_script_engine_script_at(address, map_group=None, map_id=None, force=Fa
             """
             size = 4
             pointer = calculate_pointer_from_bytes_at(start_address+1, bank=True)
-            print "in script starting at "+hex(original_start_address)+\
+            if debug:
+                print "in script starting at "+hex(original_start_address)+\
                   " about to parse script at "+hex(pointer)+\
                   " called by "+info+" byte="+hex(command_byte)
-            script = rec_parse_script_engine_script_at(pointer, original_start_address)
+            script = rec_parse_script_engine_script_at(pointer, original_start_address, debug=debug)
             command["pointer"] = pointer
             command["script"] = script
             end = True #according to pksv
@@ -1652,10 +1660,12 @@ def parse_script_engine_script_at(address, map_group=None, map_id=None, force=Fa
             size = 3
             command["pointer"] = calculate_pointer_from_bytes_at(start_address+1)
             command["target_pointer"] = calculate_pointer_from_bytes_at(command["pointer"], bank=True)
-            print "in script starting at "+hex(original_start_address)+\
+            
+            if debug:
+                print "in script starting at "+hex(original_start_address)+\
                   " about to parse script at "+hex(command["target_pointer"])+\
                   " called by "+info+" byte="+hex(command_byte)
-            script = rec_parse_script_engine_script_at(command["target_pointer"], original_start_address)
+            script = rec_parse_script_engine_script_at(command["target_pointer"], original_start_address, debug=debug)
             command["script"] = script
             end = True #according to pksv
         elif command_byte == 0x06: #RAM check [=byte]
@@ -1667,10 +1677,11 @@ def parse_script_engine_script_at(address, map_group=None, map_id=None, force=Fa
             size = 4
             command["byte"] = ord(rom[start_address+1])
             pointer = calculate_pointer_from_bytes_at(start_address+2)
-            print "in script starting at "+hex(original_start_address)+\
+            if debug:
+                print "in script starting at "+hex(original_start_address)+\
                   " about to parse script at "+hex(pointer)+\
                   " called by "+info+" byte="+hex(command_byte)
-            script = rec_parse_script_engine_script_at(pointer, original_start_address)
+            script = rec_parse_script_engine_script_at(pointer, original_start_address, debug=debug)
             command["pointer"] = pointer
             command["script"] = script
         elif command_byte == 0x07: #RAM check [<>byte]
@@ -1682,10 +1693,11 @@ def parse_script_engine_script_at(address, map_group=None, map_id=None, force=Fa
             size = 4
             command["byte"] = ord(rom[start_address+1])
             pointer = calculate_pointer_from_bytes_at(start_address+2)
-            print "in script starting at "+hex(original_start_address)+\
+            if debug:
+                print "in script starting at "+hex(original_start_address)+\
                   " about to parse script at "+hex(pointer)+\
                   " called by "+info+" byte="+hex(command_byte)
-            script = rec_parse_script_engine_script_at(pointer, original_start_address)
+            script = rec_parse_script_engine_script_at(pointer, original_start_address, debug=debug)
             command["pointer"] = pointer
             command["script"] = script
         elif command_byte == 0x08: #RAM check [=0]
@@ -1696,10 +1708,11 @@ def parse_script_engine_script_at(address, map_group=None, map_id=None, force=Fa
             """
             size = 3
             pointer = calculate_pointer_from_bytes_at(start_address+1)
-            print "in script starting at "+hex(original_start_address)+\
+            if debug:
+                print "in script starting at "+hex(original_start_address)+\
                   " about to parse script at "+hex(pointer)+\
                   " called by "+info+" byte="+hex(command_byte)
-            script = rec_parse_script_engine_script_at(pointer, original_start_address)
+            script = rec_parse_script_engine_script_at(pointer, original_start_address, debug=debug)
             command["pointer"] = pointer
             command["script"] = script
         elif command_byte == 0x09: #RAM check [<>0]
@@ -1710,10 +1723,11 @@ def parse_script_engine_script_at(address, map_group=None, map_id=None, force=Fa
             """
             size = 3
             pointer = calculate_pointer_from_bytes_at(start_address+1)
-            print "in script starting at "+hex(original_start_address)+\
+            if debug:
+                print "in script starting at "+hex(original_start_address)+\
                   " about to parse script at "+hex(pointer)+\
                   " called by "+info+" byte="+hex(command_byte)
-            script = rec_parse_script_engine_script_at(pointer, original_start_address)
+            script = rec_parse_script_engine_script_at(pointer, original_start_address, debug=debug)
             command["pointer"] = pointer
             command["script"] = script
         elif command_byte == 0x0A: #RAM check [<byte]
@@ -1725,10 +1739,11 @@ def parse_script_engine_script_at(address, map_group=None, map_id=None, force=Fa
             size = 4
             command["byte"] = ord(rom[start_address+1])
             pointer = calculate_pointer_from_bytes_at(start_address+2)
-            print "in script starting at "+hex(original_start_address)+\
+            if debug:
+                print "in script starting at "+hex(original_start_address)+\
                   " about to parse script at "+hex(pointer)+\
                   " called by "+info+" byte="+hex(command_byte)
-            script = rec_parse_script_engine_script_at(pointer, original_start_address)
+            script = rec_parse_script_engine_script_at(pointer, original_start_address, debug=debug)
             command["pointer"] = pointer
             command["script"] = script
         elif command_byte == 0x0B: #RAM check [>byte]
@@ -1740,10 +1755,11 @@ def parse_script_engine_script_at(address, map_group=None, map_id=None, force=Fa
             size = 4
             command["byte"] = ord(rom[start_address+1])
             pointer = calculate_pointer_from_bytes_at(start_address+2)
-            print "in script starting at "+hex(original_start_address)+\
+            if debug:
+                print "in script starting at "+hex(original_start_address)+\
                   " about to parse script at "+hex(pointer)+\
                   " called by "+info+" byte="+hex(command_byte)
-            script = rec_parse_script_engine_script_at(pointer, original_start_address)
+            script = rec_parse_script_engine_script_at(pointer, original_start_address, debug=debug)
             command["pointer"] = pointer
             command["script"] = script
         elif command_byte == 0x0C: #0C codes [xxyy]
@@ -2392,7 +2408,7 @@ def parse_script_engine_script_at(address, map_group=None, map_id=None, force=Fa
             size = 4
             command["pointer"] = calculate_pointer_from_bytes_at(start_address+1, bank=False)
             command["memory_id"] = ord(rom[start_address+3])
-            command["text"] = parse_text_engine_script_at(command["pointer"], map_group=map_group, map_id=map_id)
+            command["text"] = parse_text_engine_script_at(command["pointer"], map_group=map_group, map_id=map_id, debug=debug)
         elif command_byte == 0x45: #Stow away item code
             info = "Show HIRO put the ITEMNAME in the ITEMPOCKET text box"
             long_info = """
@@ -2441,7 +2457,7 @@ def parse_script_engine_script_at(address, map_group=None, map_id=None, force=Fa
             size = 4
             command["text_group"] = ord(rom[start_address+1])
             command["pointer"] = calculate_pointer_from_bytes_at(start_address+1, bank=True)
-            command["text"] = parse_text_engine_script_at(command["pointer"], map_group=map_group, map_id=map_id)
+            command["text"] = parse_text_engine_script_at(command["pointer"], map_group=map_group, map_id=map_id, debug=debug)
         elif command_byte == 0x4C: #Display text [2b]
             info = "Display text by pointer [xxyy]"
             long_info = """
@@ -2450,7 +2466,7 @@ def parse_script_engine_script_at(address, map_group=None, map_id=None, force=Fa
             """
             size = 3
             command["pointer"] = calculate_pointer_from_bytes_at(start_address+1, bank=False)
-            command["text"] = parse_text_engine_script_at(command["pointer"], map_group=map_group, map_id=map_id)
+            command["text"] = parse_text_engine_script_at(command["pointer"], map_group=map_group, map_id=map_id, debug=debug)
         elif command_byte == 0x4D: #Repeat text [xxyy]
             info = "Repeat text [FF][FF]"
             long_info = """
@@ -2494,7 +2510,7 @@ def parse_script_engine_script_at(address, map_group=None, map_id=None, force=Fa
             size = 3
             end = True
             command["pointer"] = calculate_pointer_from_bytes_at(start_address+1, bank=False)
-            command["text"] = parse_text_engine_script_at(command["pointer"], map_group=map_id, map_id=map_id)
+            command["text"] = parse_text_engine_script_at(command["pointer"], map_group=map_id, map_id=map_id, debug=debug)
         elif command_byte == 0x53: #Text2 code [2b]
             info = "Display text (by pointer) and end [xxyy]"
             long_info = """
@@ -2505,7 +2521,7 @@ def parse_script_engine_script_at(address, map_group=None, map_id=None, force=Fa
             size = 3
             end = True
             command["pointer"] = calculate_pointer_from_bytes_at(start_address+1, bank=False)
-            command["text"] = parse_text_engine_script_at(command["pointer"], map_group=map_id, map_id=map_id)
+            command["text"] = parse_text_engine_script_at(command["pointer"], map_group=map_id, map_id=map_id, debug=debug)
         elif command_byte == 0x54: #Close text box code
             info = "Close text box"
             long_info = "Closes a text box which was opened by 47 resp. 4B/4C/4D."
@@ -2649,8 +2665,8 @@ def parse_script_engine_script_at(address, map_group=None, map_id=None, force=Fa
             size = 5
             command["won_pointer"] = calculate_pointer_from_bytes_at(start_address+1, bank=False)
             command["lost_pointer"] = calculate_pointer_from_bytes_at(start_address+3, bank=False)
-            command["text_won"] = parse_text_engine_script_at(command["won_pointer"], map_group=map_id, map_id=map_id)
-            command["text_lost"] = parse_text_engine_script_at(command["lost_pointer"], map_group=map_id, map_id=map_id)
+            command["text_won"] = parse_text_engine_script_at(command["won_pointer"], map_group=map_id, map_id=map_id, debug=debug)
+            command["text_lost"] = parse_text_engine_script_at(command["lost_pointer"], map_group=map_id, map_id=map_id, debug=debug)
         elif command_byte == 0x65: #Script talk-after
             #XXX this is a really poor description of whatever this is
             info = "? Load the trainer talk-after script"
@@ -3035,10 +3051,11 @@ def parse_script_engine_script_at(address, map_group=None, map_id=None, force=Fa
             """
             size = 3
             script_pointer = calculate_pointer_from_bytes_at(start_address+1, bank=False)
-            print "in script starting at "+hex(original_start_address)+\
+            if debug:
+                print "in script starting at "+hex(original_start_address)+\
                   " about to parse script at "+hex(script_pointer)+\
                   " called by "+info+" byte="+hex(command_byte)
-            script = rec_parse_script_engine_script_at(script_pointer, original_start_address)
+            script = rec_parse_script_engine_script_at(script_pointer, original_start_address, debug=debug)
             command["script_pointer"] = script_pointer
             command["script"] = script
             end = True #according to pksv
@@ -3058,10 +3075,11 @@ def parse_script_engine_script_at(address, map_group=None, map_id=None, force=Fa
             """
             size = 3
             script_pointer = calculate_pointer_from_bytes_at(start_address+1, bank=False)
-            print "in script starting at "+hex(original_start_address)+\
+            if debug:
+                print "in script starting at "+hex(original_start_address)+\
                   " about to parse script at "+hex(script_pointer)+\
                   " called by "+info+" byte="+hex(command_byte)
-            script = rec_parse_script_engine_script_at(script_pointer, original_start_address)
+            script = rec_parse_script_engine_script_at(script_pointer, original_start_address, debug=debug)
             command["script_pointer"] = script_pointer
             command["script"] = script
             end = True #according to pksv
@@ -3481,9 +3499,9 @@ def parse_trainer_header_at(address, map_group=None, map_id=None, debug=True):
     trainer_group = bytes[2]
     trainer_id = bytes[3]
     text_when_seen_ptr = calculate_pointer_from_bytes_at(address+4, bank=bank)
-    text_when_seen = parse_text_engine_script_at(text_when_seen_ptr, map_group=map_group, map_id=map_id)
+    text_when_seen = parse_text_engine_script_at(text_when_seen_ptr, map_group=map_group, map_id=map_id, debug=debug)
     text_when_trainer_beaten_ptr = calculate_pointer_from_bytes_at(address+6, bank=bank)
-    text_when_trainer_beaten = parse_text_engine_script_at(text_when_trainer_beaten_ptr, map_group=map_group, map_id=map_id)
+    text_when_trainer_beaten = parse_text_engine_script_at(text_when_trainer_beaten_ptr, map_group=map_group, map_id=map_id, debug=debug)
 
     if [ord(rom[address+8]), ord(rom[address+9])] == [0, 0]:
         script_when_lost_ptr = 0
@@ -3494,13 +3512,13 @@ def parse_trainer_header_at(address, map_group=None, map_id=None, debug=True):
         script_when_lost = None
         silver_avoids = [0xfa53]
         if script_when_lost_ptr > 0x4000 and not script_when_lost_ptr in silver_avoids:
-            script_when_lost = parse_script_engine_script_at(script_when_lost_ptr, map_group=map_group, map_id=map_id)
+            script_when_lost = parse_script_engine_script_at(script_when_lost_ptr, map_group=map_group, map_id=map_id, debug=debug)
     
     print "parsing script-talk-again" #or is this a text?
     script_talk_again_ptr = calculate_pointer_from_bytes_at(address+10, bank=bank)
     script_talk_again = None
     if script_talk_again_ptr > 0x4000:
-        script_talk_again = parse_script_engine_script_at(script_talk_again_ptr, map_group=map_group, map_id=map_id)
+        script_talk_again = parse_script_engine_script_at(script_talk_again_ptr, map_group=map_group, map_id=map_id, debug=debug)
     
     return {
         "bit_number": bit_number,
@@ -3570,7 +3588,7 @@ def parse_people_event_bytes(some_bytes, address=None, map_group=None, map_id=No
         if bank:
             ptr_address = calculate_pointer(script_pointer, bank)
             if is_regular_script:
-                print "parsing a person-script at x=" + str(x-4) + " y=" + str(y-4)
+                print "parsing a person-script at x=" + str(x-4) + " y=" + str(y-4) + " address="+hex(ptr_address)
                 script = parse_script_engine_script_at(ptr_address, map_group=map_group, map_id=map_id)
                 extra_portion = {
                     "script_address": ptr_address,
@@ -4980,13 +4998,13 @@ class TestCram(unittest.TestCase):
         self.assertEqual(calculate_pointer(0x430F, bank=5), 0x1430F)
         #for offset >= 0x7FFF
         self.assertEqual(calculate_pointer(0x8FFF, bank=6), calculate_pointer(0x8FFF, bank=7))
-    #def test_calculate_pointer_from_bytes_at(self):
-    #    pass #or raise NotImplementedError, bryan_message
+    def test_calculate_pointer_from_bytes_at(self):
+        addr1 = calculate_pointer_from_bytes_at(0x100, bank=False)
+        self.assertEqual(addr1, 0xc300)
+        addr2 = calculate_pointer_from_bytes_at(0x100, bank=True)
+        self.assertEqual(addr2, 0x2ec3)
     def test_rom_text_at(self):
         self.assertEquals(rom_text_at(0x112116, 8), "HTTP/1.0")
-    #def test_find_all_text_pointers_in_script_engine_script(self):
-    #    "finds text pointers from scripts"
-    #    pass #or raise NotImplementedError, bryan_message
     def test_translate_command_byte(self):
         self.failUnless(translate_command_byte(crystal=0x0) == 0x0)
         self.failUnless(translate_command_byte(crystal=0x10) == 0x10)
@@ -5341,20 +5359,31 @@ class TestTextScript(unittest.TestCase):
     #    pass #or raise NotImplementedError, bryan_message
 class TestEncodedText(unittest.TestCase):
     """for testing chars-table encoded text chunks"""
-    #def test_to_asm(self):
-    #    pass #or raise NotImplementedError, bryan_message
-    #def test_process_00_subcommands(self):
-    #    pass #or raise NotImplementedError, bryan_message
-    #def test_from_bytes(self):
-    #    pass #or raise NotImplementedError, bryan_message
-    #def test_parse_text_at(self):
-    #    pass #or raise NotImplementedError, bryan_message
+    def test_process_00_subcommands(self):
+        g = process_00_subcommands(0x197186, 0x197186+601, debug=False)
+        self.assertEqual(len(g), 42)
+        self.assertEqual(len(g[0]), 13)
+        self.assertEqual(g[1], [184, 174, 180, 211, 164, 127, 20, 231, 81])
+    def test_parse_text_at2(self):
+        oakspeech = parse_text_at2(0x197186, 601, debug=False)
+        self.assertIn("encyclopedia", oakspeech)
+        self.assertIn("researcher", oakspeech)
+        self.assertIn("dependable", oakspeech)
+    #don't really care about these other two
+    def test_parse_text_from_bytes(self): pass
+    def test_parse_text_at(self): pass
 class TestScript(unittest.TestCase):
-    """for testing parse_script_engine_script_at
-    and script parsing in general.
-    Script should be a class?"""
+    """for testing parse_script_engine_script_at and script parsing in
+    general. Script should be a class."""
     #def test_parse_script_engine_script_at(self):
     #    pass #or raise NotImplementedError, bryan_message
+    def test_find_all_text_pointers_in_script_engine_script(self):
+        address = 0x197637 #0x197634
+        script = parse_script_engine_script_at(address, debug=False)
+        bank = calculate_bank(address)
+        r = find_all_text_pointers_in_script_engine_script(script, bank=bank, debug=False)
+        results = list(r)
+        self.assertIn(0x197661, results)
 class TestMetaTesting(unittest.TestCase):
     """test whether or not i am finding at least
     some of the tests in this file"""
@@ -5446,7 +5475,7 @@ def find_untested_methods():
     by searching for method names in test case
     method names."""
     untested = []
-    avoid_funcs = ["main", "run_tests", "copy", "deepcopy"]
+    avoid_funcs = ["main", "run_tests", "run_main", "copy", "deepcopy"]
     test_funcs = []
     #get a list of all classes in this module
     classes = inspect.getmembers(sys.modules[__name__], inspect.isclass)
@@ -5483,7 +5512,8 @@ def report_untested():
             output += name
             first = False
         else: output += ", "+name
-    output += "]"
+    output += "]\n"
+    output += "total untested: " + str(len(untested))
     return output
 
 #### ways to run this file ####
