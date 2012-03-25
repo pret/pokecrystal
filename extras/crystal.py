@@ -5369,6 +5369,10 @@ class TestEncodedText(unittest.TestCase):
         self.assertIn("encyclopedia", oakspeech)
         self.assertIn("researcher", oakspeech)
         self.assertIn("dependable", oakspeech)
+    def test_parse_text_engine_script_at(self):
+        p = parse_text_engine_script_at(0x197185, debug=False)
+        self.assertEqual(len(p), 2)
+        self.assertEqual(len(p[0]["lines"]), 41)
     #don't really care about these other two
     def test_parse_text_from_bytes(self): pass
     def test_parse_text_at(self): pass
