@@ -24,7 +24,7 @@ GetFarByte: ; 0x304d
 
 INCBIN "baserom.gbc",$305d,$30fe-$305d
 
-AddNTimes ; 0x30fe
+AddNTimes: ; 0x30fe
 	and a
 	ret z
 .loop
