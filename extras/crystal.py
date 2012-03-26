@@ -308,6 +308,20 @@ for key, value in jap_chars.items():
     if key not in chars.keys():
         chars[key] = value
 
+class Size():
+    """a simple way to track whether or not a size
+    includes the first value or not, like for
+    whether or not the size of a command in a script
+    also includes the command byte or not"""
+    def __init__(self, size, inclusive=False):
+        self.inclusive = inclusive
+        if inclusive: size = size-1
+        self.size = size
+    def inclusive(self):
+        return self.size + 1
+    def exclusive(self):
+        return self.size
+
 class IntervalMap(object):
     """
     This class maps a set of intervals to a set of values.
@@ -418,6 +432,7 @@ def map_name_cleaner(input):
                  replace(")", "").\
                  replace("'", "").\
                  replace("/", "").\
+                 replace(",", "").\
                  replace(".", "").\
                  replace("Pokémon Center", "PokeCenter").\
                  replace(" ", "")
@@ -456,6 +471,14 @@ def grouper(some_list, count=2):
     given: [1, 2, 3, 4]
     returns: [[1, 2], [3, 4]]"""
     return [some_list[i:i+count] for i in range(0, len(some_list), count)]
+
+def is_valid_address(address):
+    """is_valid_rom_address"""
+    if address == None: return False
+    if type(address) == str:
+        address = int(address, 16)
+    if 0 <= address <= 2097152: return True
+    else: return False
 
 def rom_interval(offset, length, strings=True, debug=True):
     """returns hex values for the rom starting at offset until offset+length"""
@@ -1138,6 +1161,554 @@ def rom_text_at(address, count=10):
     like for 0x112110"""
     return "".join([chr(x) for x in rom_interval(address, count, strings=False)])
 
+def get_map_constant_label(map_group=None, map_id=None):
+    """returns PALLET_TOWN for some map group/id pair"""
+    if map_group == None: raise Exception, "need map_group"
+    if map_id == None: raise Exception, "need map_id"
+    global map_internal_ids
+    for (id, each) in map_internal_ids.items():
+        if each["map_group"] == map_group and each["map_id"] == map_id:
+            return each["label"]
+    return None
+def get_map_constant_label_by_id(global_id):
+    """returns a map constant label for a particular map id"""
+    global map_internal_ids
+    return map_internal_ids[global_id]["label"]
+def get_id_for_map_constant_label(label):
+    """returns some global id for a given map constant label
+    PALLET_TOWN = 1, for instance."""
+    global map_internal_ids
+    for (id, each) in map_internal_ids.items():
+        if each["label"] == label: return id
+    return None
+def generate_map_constant_labels():
+    """generates the global for this script
+    mapping ids to map groups/ids/labels"""
+    global map_internal_ids
+    map_internal_ids = {}
+    i = 0
+    for map_group in map_names.keys():
+        for map_id in map_names[map_group].keys():
+            cmap = map_names[map_group][map_id]
+            name = cmap["name"]
+            name = name.replace("Pokémon Center", "PokeCenter").\
+                        replace(" ", "_")
+            constant_label = map_name_cleaner(name).upper()
+            map_internal_ids[i] = {"label": constant_label,
+                                   "map_id": map_id,
+                                   "map_group": map_group}
+            i += 1
+    return map_internal_ids
+#see generate_map_constant_labels() later
+def generate_map_constants():
+    """generates content for constants.asm
+    this will generate two macros: GROUP and MAP"""
+    global map_internal_ids
+    if map_internal_ids == None or map_internal_ids == {}:
+        generate_map_constant_labels()
+    globals, groups, maps = "", "", ""
+    for (id, each) in map_internal_ids.items():
+        groups += "GROUP_"+each["label"] + " EQU $%.2x" % (each["map_group"])
+        groups += "\n"
+        maps += "MAP_"+each["label"] + " EQU $%.2x" % (each["map_id"])
+        maps += "\n"
+        globals +=  each["label"] + " EQU $%.2x" % (id)
+        globals += "\n"
+        #for multi-byte constants:
+        #print each["label"] + " EQUS \"$%.2x,$%.2x\"" % (each["map_group"], each["map_id"])
+    print globals
+    print groups
+    print maps
+
+pokemon_constants = {
+1: "BULBASAUR",
+2: "IVYSAUR",
+3: "VENUSAUR",
+4: "CHARMANDER",
+5: "CHARMELEON",
+6: "CHARIZARD",
+7: "SQUIRTLE",
+8: "WARTORTLE",
+9: "BLASTOISE",
+10: "CATERPIE",
+11: "METAPOD",
+12: "BUTTERFREE",
+13: "WEEDLE",
+14: "KAKUNA",
+15: "BEEDRILL",
+16: "PIDGEY",
+17: "PIDGEOTTO",
+18: "PIDGEOT",
+19: "RATTATA",
+20: "RATICATE",
+21: "SPEAROW",
+22: "FEAROW",
+23: "EKANS",
+24: "ARBOK",
+25: "PIKACHU",
+26: "RAICHU",
+27: "SANDSHREW",
+28: "SANDSLASH",
+29: "NIDORAN_F",
+30: "NIDORINA",
+31: "NIDOQUEEN",
+32: "NIDORAN_M",
+33: "NIDORINO",
+34: "NIDOKING",
+35: "CLEFAIRY",
+36: "CLEFABLE",
+37: "VULPIX",
+38: "NINETALES",
+39: "JIGGLYPUFF",
+40: "WIGGLYTUFF",
+41: "ZUBAT",
+42: "GOLBAT",
+43: "ODDISH",
+44: "GLOOM",
+45: "VILEPLUME",
+46: "PARAS",
+47: "PARASECT",
+48: "VENONAT",
+49: "VENOMOTH",
+50: "DIGLETT",
+51: "DUGTRIO",
+52: "MEOWTH",
+53: "PERSIAN",
+54: "PSYDUCK",
+55: "GOLDUCK",
+56: "MANKEY",
+57: "PRIMEAPE",
+58: "GROWLITHE",
+59: "ARCANINE",
+60: "POLIWAG",
+61: "POLIWHIRL",
+62: "POLIWRATH",
+63: "ABRA",
+64: "KADABRA",
+65: "ALAKAZAM",
+66: "MACHOP",
+67: "MACHOKE",
+68: "MACHAMP",
+69: "BELLSPROUT",
+70: "WEEPINBELL",
+71: "VICTREEBEL",
+72: "TENTACOOL",
+73: "TENTACRUEL",
+74: "GEODUDE",
+75: "GRAVELER",
+76: "GOLEM",
+77: "PONYTA",
+78: "RAPIDASH",
+79: "SLOWPOKE",
+80: "SLOWBRO",
+81: "MAGNEMITE",
+82: "MAGNETON",
+83: "FARFETCH_D",
+84: "DODUO",
+85: "DODRIO",
+86: "SEEL",
+87: "DEWGONG",
+88: "GRIMER",
+89: "MUK",
+90: "SHELLDER",
+91: "CLOYSTER",
+92: "GASTLY",
+93: "HAUNTER",
+94: "GENGAR",
+95: "ONIX",
+96: "DROWZEE",
+97: "HYPNO",
+98: "KRABBY",
+99: "KINGLER",
+100: "VOLTORB",
+101: "ELECTRODE",
+102: "EXEGGCUTE",
+103: "EXEGGUTOR",
+104: "CUBONE",
+105: "MAROWAK",
+106: "HITMONLEE",
+107: "HITMONCHAN",
+108: "LICKITUNG",
+109: "KOFFING",
+110: "WEEZING",
+111: "RHYHORN",
+112: "RHYDON",
+113: "CHANSEY",
+114: "TANGELA",
+115: "KANGASKHAN",
+116: "HORSEA",
+117: "SEADRA",
+118: "GOLDEEN",
+119: "SEAKING",
+120: "STARYU",
+121: "STARMIE",
+122: "MR__MIME",
+123: "SCYTHER",
+124: "JYNX",
+125: "ELECTABUZZ",
+126: "MAGMAR",
+127: "PINSIR",
+128: "TAUROS",
+129: "MAGIKARP",
+130: "GYARADOS",
+131: "LAPRAS",
+132: "DITTO",
+133: "EEVEE",
+134: "VAPOREON",
+135: "JOLTEON",
+136: "FLAREON",
+137: "PORYGON",
+138: "OMANYTE",
+139: "OMASTAR",
+140: "KABUTO",
+141: "KABUTOPS",
+142: "AERODACTYL",
+143: "SNORLAX",
+144: "ARTICUNO",
+145: "ZAPDOS",
+146: "MOLTRES",
+147: "DRATINI",
+148: "DRAGONAIR",
+149: "DRAGONITE",
+150: "MEWTWO",
+151: "MEW",
+152: "CHIKORITA",
+153: "BAYLEEF",
+154: "MEGANIUM",
+155: "CYNDAQUIL",
+156: "QUILAVA",
+157: "TYPHLOSION",
+158: "TOTODILE",
+159: "CROCONAW",
+160: "FERALIGATR",
+161: "SENTRET",
+162: "FURRET",
+163: "HOOTHOOT",
+164: "NOCTOWL",
+165: "LEDYBA",
+166: "LEDIAN",
+167: "SPINARAK",
+168: "ARIADOS",
+169: "CROBAT",
+170: "CHINCHOU",
+171: "LANTURN",
+172: "PICHU",
+173: "CLEFFA",
+174: "IGGLYBUFF",
+175: "TOGEPI",
+176: "TOGETIC",
+177: "NATU",
+178: "XATU",
+179: "MAREEP",
+180: "FLAAFFY",
+181: "AMPHAROS",
+182: "BELLOSSOM",
+183: "MARILL",
+184: "AZUMARILL",
+185: "SUDOWOODO",
+186: "POLITOED",
+187: "HOPPIP",
+188: "SKIPLOOM",
+189: "JUMPLUFF",
+190: "AIPOM",
+191: "SUNKERN",
+192: "SUNFLORA",
+193: "YANMA",
+194: "WOOPER",
+195: "QUAGSIRE",
+196: "ESPEON",
+197: "UMBREON",
+198: "MURKROW",
+199: "SLOWKING",
+200: "MISDREAVUS",
+201: "UNOWN",
+202: "WOBBUFFET",
+203: "GIRAFARIG",
+204: "PINECO",
+205: "FORRETRESS",
+206: "DUNSPARCE",
+207: "GLIGAR",
+208: "STEELIX",
+209: "SNUBBULL",
+210: "GRANBULL",
+211: "QWILFISH",
+212: "SCIZOR",
+213: "SHUCKLE",
+214: "HERACROSS",
+215: "SNEASEL",
+216: "TEDDIURSA",
+217: "URSARING",
+218: "SLUGMA",
+219: "MAGCARGO",
+220: "SWINUB",
+221: "PILOSWINE",
+222: "CORSOLA",
+223: "REMORAID",
+224: "OCTILLERY",
+225: "DELIBIRD",
+226: "MANTINE",
+227: "SKARMORY",
+228: "HOUNDOUR",
+229: "HOUNDOOM",
+230: "KINGDRA",
+231: "PHANPY",
+232: "DONPHAN",
+233: "PORYGON2",
+234: "STANTLER",
+235: "SMEARGLE",
+236: "TYROGUE",
+237: "HITMONTOP",
+238: "SMOOCHUM",
+239: "ELEKID",
+240: "MAGBY",
+241: "MILTANK",
+242: "BLISSEY",
+243: "RAIKOU",
+244: "ENTEI",
+245: "SUICUNE",
+246: "LARVITAR",
+247: "PUPITAR",
+248: "TYRANITAR",
+249: "LUGIA",
+250: "HO_OH",
+251: "CELEBI",
+}
+def get_pokemon_constant_by_id(id):
+    return pokemon_constants[id]
+
+item_constants = {1: 'MASTER_BALL',
+2: 'ULTRA_BALL',
+3: 'BRIGHTPOWDER',
+4: 'GREAT_BALL',
+5: 'POKE_BALL',
+7: 'BICYCLE',
+8: 'MOON_STONE',
+9: 'ANTIDOTE',
+10: 'BURN_HEAL',
+11: 'ICE_HEAL',
+12: 'AWAKENING',
+13: 'PARLYZ_HEAL',
+14: 'FULL_RESTORE',
+15: 'MAX_POTION',
+16: 'HYPER_POTION',
+17: 'SUPER_POTION',
+18: 'POTION',
+19: 'ESCAPE_ROPE',
+20: 'REPEL',
+21: 'MAX_ELIXER',
+22: 'FIRE_STONE',
+23: 'THUNDERSTONE',
+24: 'WATER_STONE',
+26: 'HP_UP',
+27: 'PROTEIN',
+28: 'IRON',
+29: 'CARBOS',
+30: 'LUCKY_PUNCH',
+31: 'CALCIUM',
+32: 'RARE_CANDY',
+33: 'X_ACCURACY',
+34: 'LEAF_STONE',
+35: 'METAL_POWDER',
+36: 'NUGGET',
+37: 'POKE_DOLL',
+38: 'FULL_HEAL',
+39: 'REVIVE',
+40: 'MAX_REVIVE',
+41: 'GUARD_SPEC.',
+42: 'SUPER_REPEL',
+43: 'MAX_REPEL',
+44: 'DIRE_HIT',
+46: 'FRESH_WATER',
+47: 'SODA_POP',
+48: 'LEMONADE',
+49: 'X_ATTACK',
+51: 'X_DEFEND',
+52: 'X_SPEED',
+53: 'X_SPECIAL',
+54: 'COIN_CASE',
+55: 'ITEMFINDER',
+57: 'EXP.SHARE',
+58: 'OLD_ROD',
+59: 'GOOD_ROD',
+60: 'SILVER_LEAF',
+61: 'SUPER_ROD',
+62: 'PP_UP',
+63: 'ETHER',
+64: 'MAX_ETHER',
+65: 'ELIXER',
+66: 'RED_SCALE',
+67: 'SECRETPOTION',
+68: 'S.S.TICKET',
+69: 'MYSTERY_EGG',
+70: 'CLEAR_BELL',
+71: 'SILVER_WING',
+72: 'MOOMOO_MILK',
+73: 'QUICK_CLAW',
+74: 'PSNCUREBERRY',
+75: 'GOLD_LEAF',
+76: 'SOFT_SAND',
+77: 'SHARP_BEAK',
+78: 'PRZCUREBERRY',
+79: 'BURNT_BERRY',
+80: 'ICE_BERRY',
+81: 'POISON_BARB',
+82: "KING'S_ROCK",
+83: 'BITTER_BERRY',
+84: 'MINT_BERRY',
+85: 'RED_APRICORN',
+86: 'TINYMUSHROOM',
+87: 'BIG_MUSHROOM',
+88: 'SILVERPOWDER',
+89: 'BLU_APRICORN',
+91: 'AMULET_COIN',
+92: 'YLW_APRICORN',
+93: 'GRN_APRICORN',
+94: 'CLEANSE_TAG',
+95: 'MYSTIC_WATER',
+96: 'TWISTEDSPOON',
+97: 'WHT_APRICORN',
+98: 'BLACKBELT',
+99: 'BLK_APRICORN',
+101: 'PNK_APRICORN',
+102: 'BLACKGLASSES',
+103: 'SLOWPOKETAIL',
+104: 'PINK_BOW',
+105: 'STICK',
+106: 'SMOKE_BALL',
+107: 'NEVERMELTICE',
+108: 'MAGNET',
+109: 'MIRACLEBERRY',
+110: 'PEARL',
+111: 'BIG_PEARL',
+112: 'EVERSTONE',
+113: 'SPELL_TAG',
+114: 'RAGECANDYBAR',
+115: 'GS_BALL',
+116: 'BLUE_CARD',
+117: 'MIRACLE_SEED',
+118: 'THICK_CLUB',
+119: 'FOCUS_BAND',
+121: 'ENERGYPOWDER',
+122: 'ENERGY_ROOT',
+123: 'HEAL_POWDER',
+124: 'REVIVAL_HERB',
+125: 'HARD_STONE',
+126: 'LUCKY_EGG',
+127: 'CARD_KEY',
+128: 'MACHINE_PART',
+129: 'EGG_TICKET',
+130: 'LOST_ITEM',
+131: 'STARDUST',
+132: 'STAR_PIECE',
+133: 'BASEMENT_KEY',
+134: 'PASS',
+138: 'CHARCOAL',
+139: 'BERRY_JUICE',
+140: 'SCOPE_LENS',
+143: 'METAL_COAT',
+144: 'DRAGON_FANG',
+146: 'LEFTOVERS',
+150: 'MYSTERYBERRY',
+151: 'DRAGON_SCALE',
+152: 'BERSERK_GENE',
+156: 'SACRED_ASH',
+157: 'HEAVY_BALL',
+158: 'FLOWER_MAIL',
+159: 'LEVEL_BALL',
+160: 'LURE_BALL',
+161: 'FAST_BALL',
+163: 'LIGHT_BALL',
+164: 'FRIEND_BALL',
+165: 'MOON_BALL',
+166: 'LOVE_BALL',
+167: 'NORMAL_BOX',
+168: 'GORGEOUS_BOX',
+169: 'SUN_STONE',
+170: 'POLKADOT_BOW',
+172: 'UP_GRADE',
+173: 'BERRY',
+174: 'GOLD_BERRY',
+175: 'SQUIRTBOTTLE',
+177: 'PARK_BALL',
+178: 'RAINBOW_WING',
+180: 'BRICK_PIECE',
+181: 'SURF_MAIL',
+182: 'LITEBLUEMAIL',
+183: 'PORTRAITM_AIL',
+184: 'LOVELY_MAIL',
+185: 'EON_MAIL',
+186: 'MORPH_MAIL',
+187: 'BLUESKY_MAIL',
+188: 'MUSIC_MAIL',
+189: 'MIRAGE_MAIL',
+191: 'TM_01',
+192: 'TM_02',
+193: 'TM_03',
+194: 'TM_04',
+196: 'TM_05',
+197: 'TM_06',
+198: 'TM_07',
+199: 'TM_08',
+200: 'TM_09',
+201: 'TM_10',
+202: 'TM_11',
+203: 'TM_12',
+204: 'TM_13',
+205: 'TM_14',
+206: 'TM_15',
+207: 'TM_16',
+208: 'TM_17',
+209: 'TM_18',
+210: 'TM_19',
+211: 'TM_20',
+212: 'TM_21',
+213: 'TM_22',
+214: 'TM_23',
+215: 'TM_24',
+216: 'TM_25',
+217: 'TM_26',
+218: 'TM_27',
+219: 'TM_28',
+221: 'TM_29',
+222: 'TM_30',
+223: 'TM_31',
+224: 'TM_32',
+225: 'TM_33',
+226: 'TM_34',
+227: 'TM_35',
+228: 'TM_36',
+229: 'TM_37',
+230: 'TM_38',
+231: 'TM_39',
+232: 'TM_40',
+233: 'TM_41',
+234: 'TM_42',
+235: 'TM_43',
+236: 'TM_44',
+237: 'TM_45',
+238: 'TM_46',
+239: 'TM_47',
+240: 'TM_48',
+241: 'TM_49',
+242: 'TM_50',
+243: 'HM_01',
+244: 'HM_02',
+245: 'HM_03',
+246: 'HM_04',
+247: 'HM_05',
+248: 'HM_06',
+249: 'HM_07'}
+def find_item_label_by_id(id):
+    if id in item_constants.keys():
+        return item_constants[id]   
+    else: return None
+def generate_item_constants():
+    """make a list of items to put in constants.asm"""
+    for (id, item) in item_constants.items():
+        val = ("$%.2x"%id).upper()
+        while len(item)<13: item+= " "
+        print item + " EQU " + val
+
 def find_all_text_pointers_in_script_engine_script(script, bank=None, debug=False):
     """returns a list of text pointers
     based on each script-engine script command"""
@@ -1211,7 +1782,8 @@ pksv_gs = {
     0x16: "addvar",
     0x17: "random",
     0x19: "copybytetovar",
-    0x1A: "copyvartobyte", #loadvar ?
+    0x1A: "copyvartobyte",
+    0x1B: "loadvar",
     0x1C: "checkcode",
     0x1E: "writecode",
     0x1F: "giveitem",
@@ -1354,7 +1926,8 @@ pksv_crystal = {
     0x16: "addvar",
     0x17: "random",
     0x19: "copybytetovar",
-    0x1A: "copyvartobyte", #loadvar?
+    0x1A: "copyvartobyte",
+    0x1B: "loadvar",
     0x1C: "checkcode",
     0x1E: "writecode",
     0x1F: "giveitem",
@@ -1481,6 +2054,481 @@ pksv_crystal_unknowns = [
     0xF0, 0xF1, 0xF2, 0xF3, 0xF4, 0xF5, 0xF6, 0xF7, 0xF8,
     0xFA, 0xFB, 0xFC, 0xFD, 0xFE, 0xFF,
 ]
+
+class Command():
+    def __init__(self, address=None):
+        raise Exception, "i don't think anything actually calls this?"
+        self.params = {}
+        if not is_valid_address(address):
+            raise Exception, "address is invalid"
+        self.address = address
+    def to_asm(self):
+        #start with the rgbasm macro name for this command
+        output = self.macro_name
+        #return if there are no params
+        if len(self.param_types.keys()) == 0: return output
+        #first one will have no prefixing comma
+        first = True
+        #start reading the bytes after the command byte
+        current_address = self.address+1
+        #add each param
+        for param in self.params:
+            name = param.name
+            #the first param shouldn't have ", " prefixed
+            if first: first = False
+            #but all other params should
+            else: output += ", "
+            #now add the asm-compatible param string
+            output += obj.to_asm()
+            current_address += obj.size
+        #for param_type in self.param_types:
+        #    name = param_type["name"]
+        #    klass = param_type["klass"]
+        #    #create an instance of this type
+        #    #tell it to begin parsing at this latest byte
+        #    obj = klass(address=current_address)
+        #    #the first param shouldn't have ", " prefixed
+        #    if first: first = False
+        #    #but all other params should
+        #    else: output += ", "
+        #    #now add the asm-compatible param string
+        #    output += obj.to_asm()
+        #    current_address += obj.size
+        return output
+    def parse(self):
+        #id, size (inclusive), param_types
+        #param_type = {"name": each[1], "class": each[0]}
+        self.params = {}
+        current_address = self.address+1
+        byte = int(rom[self.address])
+        if not byte == self.id:
+            raise Exception, "this should never happen"
+        i = 0
+        for (key, param_type) in self.param_types.items():
+            name = param_type["name"]
+            klass = param_type["class"]
+            #make an instance of this class, like SingleByteParam()
+            #or ItemLabelByte.. by making an instance, obj.parse() is called
+            obj = klass(address=current_address, name=name)
+            #save this for later
+            self.params[i] = obj
+            #increment our counters
+            current_address += obj.size
+            i += 1
+        return True
+class GivePoke(Command):
+    id = 0x2D
+    size = 4 #minimum
+    param_types = {
+                  0: {"name": "pokemon", "class": PokemonParam},
+                  1: {"name": "level", "class": SingleByteParam},
+                  2: {"name": "item", "class": ItemLabelByte},
+                  3: {"name": "trainer", "class": SingleByteParam},
+                  4: {"name": "trainer_name_pointer", "class": MultiByteParam}, #should probably use TextLabelParam
+                  5: {"name": "pkmn_nickname", "class": MultiByteParam}, #XXX TextLabelParam ?
+                  ]
+    def parse(self):
+        self.params = {}
+        byte = int(rom[self.address])
+        if not byte == self.id:
+            raise Exception, "this should never happen"
+        current_address = self.address+1
+        i = 0
+        for (key, param_type) in self.param_types.items():
+            #stop executing after the 4th byte unless it == 0x1
+            if i == 4 and self.params[-1].byte != 1: break
+            name = param_type["name"]
+            klass = param_type["class"]
+            #make an instance of this class, like SingleByteParam()
+            #or ItemLabelByte.. by making an instance, obj.parse() is called
+            obj = klass(address=current_address, name=name)
+            #save this for later
+            self.params[i] = obj
+            #increment our counters
+            current_address += obj.size
+            i += 1
+        return True
+
+class SingleByteParam():
+    """or SingleByte(CommandParam)"""
+    size = 1
+    should_be_decimal = False
+    def __init__(self, *args, **kwargs):
+        for (key, value) in kwargs:
+            setattr(self, key, value)
+        #check address
+        if not hasattr(self, "address"):
+            raise Exception, "an address is a requirement")
+        elif self.address == None:
+            raise Exception, "address must not be None"
+        elif not is_valid_address(self.address):
+            raise Exception, "address must be valid"
+        #check size
+        if not hasattr(self, "size") or self.size == None:
+            raise Exception, "size is probably 1?"
+        #parse bytes from ROM
+        self.parse()
+    def parse(self): self.byte = int(rom[self.address], 16)
+    def to_asm(self):
+        if not self.should_be_decimal: return hex(self.byte).replace("0x", "$")
+        else: return str(self.byte)
+class HexByte(SingleByteParam):
+    def to_asm(self): return hex(self.byte)
+class DollarSignByte(SingleByteParam):
+    #def to_asm(self): return "$%.2x"%self.byte
+    def to_asm(self): return hex(self.byte).replace("0x", "$")
+class ItemLabelByte(DollarSignByte):
+    def to_asm(self):
+        label = find_item_label_by_id(self.byte)
+        if label: return label
+        elif not label: return DollarSignByte.to_asm(self)
+class DecimalByte(SingleByteParam):
+    should_be_decimal = True
+
+class MultiByteParam():
+    """or MultiByte(CommandParam)"""
+    size = 2
+    should_be_decimal = False
+    def __init__(self, *args, **kwargs):
+        self.prefix = "$" #default.. feel free to set 0x in kwargs
+        for (key, value) in kwargs:
+            setattr(self, key, value)
+        #check address
+        if not hasattr(self, "address") or self.address == None:
+            raise Exception, "an address is a requirement")
+        elif not is_valid_address(self.address):
+            raise Exception, "address must be valid"
+        #check size
+        if not hasattr(self, "size") or self.size == None:
+            raise Exception, "don't know how many bytes to read (size)"
+        self.parse()
+    def parse(self): self.bytes = rom_interval(self.address, self.size, strings=False)
+    #you won't actually use this to_asm because it's too generic
+    #def to_asm(self): return ", ".join([(self.prefix+"%.2x")%x for x in self.bytes])
+    def to_asm(self):
+        if not self.should_be_decimal:
+            return self.prefix+"".join([("%.2x")%x for x in reversed(self.bytes)])
+        elif self.should_be_decimal:
+            decimal = int("0x"+"".join([("%.2x")%x for x in reversed(self.bytes)]), 16)
+            return str(decimal)
+class PointerLabelParam(MultiByteParam):
+    #default size is 2 bytes
+    default_size = 2
+    size = 2
+    #default is to not parse out a bank
+    bank = False
+    def __init__(self, *args, **kwargs):
+        #bank can be overriden
+        if "bank" in kwargs.keys():
+            if kwargs["bank"] != False and kwargs["bank"] != None:
+                #not +=1 because child classes set size=3 already
+                self.size = self.default_size + 1
+            if kwargs["bank"] not in [None, False, True, "reverse"]:
+                raise Exception, "bank cannot be: " + str(bank)
+        if self.size > 3:
+            raise Exception, "param size is too large"
+        #continue instantiation.. self.bank will be set down the road
+        MultiByteParam.__init__(self, *args, **kwargs)
+    def to_asm(self):
+        bank = self.bank
+        #we pass bank= for whether or not to include a bank byte when reading
+        #.. it's not related to caddress
+        caddress = calculate_pointers_from_bytes_at(self.address+1, bank=self.bank)
+        label = get_label_for(caddress)
+        pointer_part = label #use the label, if it is found
+        #setup output bytes if the label was not found
+        if not label:
+            #pointer_part = (", ".join([(self.prefix+"%.2x")%x for x in reversed(self.bytes[1:])]))
+            pointer_part = self.prefix+("%.2x"%self.bytes[2])+("%.2x"%self.bytes[1])
+        #bank positioning matters!
+        if bank == True or bank == "reverse": #bank, pointer
+            #possibly use BANK(LABEL) if we know the bank
+            if not label:
+                bank_part = ((self.prefix+"%.2x")%bank)
+            else:
+                bank_part = "BANK("+label+")"
+            #return the asm based on the order the bytes were specified to be in
+            if bank == "reverse": #pointer, bank
+                return pointer_part+", "+bank_part
+            elif bank == True: #bank, pointer
+                return bank_part+", "+pointer_part
+            else: raise Exception, "this should never happen"
+            raise Exception, "this should never happen"
+        #this next one will either return the label or the raw bytes
+        elif bank == False or bank == None: #pointer
+            return pointer_part #this could be the same as label
+        else:
+            raise Exception, "this should never happen"
+        raise Exception, "this should never happen"
+class PointerLabelBeforeBank(PointerLabelParam):
+    bank = True #bank appears first, see calculate_pointer_from_bytes_at
+    size = 3
+class PointerLabelAfterBank(PointerLabelParam):
+    bank = "reverse" #bank appears last, see calculate_pointer_from_bytes_at
+    size = 3
+class ScriptPointerLabelParam(PointerLabelParam): pass
+class ScriptPointerLabelBeforeBank(PointerLabelBeforeBank): pass
+class ScriptPointerLabelAfterBank(PointerLabelAfterBank): pass
+def _parse_script_pointer_bytes(self):
+    PointerLabelParam.parse(self)
+    address = calculate_pointer_from_bytes_at(self.address, bank=self.bank)
+    self.script = parse_script_engine_script_at(address)
+ScriptPointerLabelParam = _parse_script_pointer_bytes
+ScriptPointerLabelBeforeBank.parse = _parse_script_pointer_bytes
+ScriptPointerLabelAfterBank.parse = _parse_script_pointer_bytes
+class PointerLabelToScriptPointer(PointerLabelParam):
+    def parse(self):
+        PointerLabelParam.parse(self)
+        address = calculate_pointer_from_bytes_at(self.address, bank=self.bank)
+        address2 = calculate_pointer_from_bytes_at(address, bank="reverse") #maybe not "reverse"?
+        self.script = parse_script_engine_script_at(address2, origin=False)
+class AsmPointerParam(PointerLabelBeforeBank):
+    def parse(self):
+        PointerLabelBeforeBank.parse(self)
+        address = calculate_pointer_from_bytes_at(self.address, bank=self.bank) #3-byte pointer
+        self.asm = parse_script_asm_at(address) #might end in some specific way?
+class PointerToAsmPointerParam(PointerLabelParam):
+    def parse(self):
+        PointerLabelParam.parse(self)
+        address = calculate_pointer_from_bytes_at(self.address, bank=self.bank) #2-byte pointer
+        address2 = calculate_pointer_from_bytes_at(address, bank="reverse") #maybe not "reverse"?
+        self.asm = parse_script_asm_at(address) #might end in some specific way?
+class RAMAddressParam(MultiByteParam):
+    def to_asm(self):
+        address = calculate_pointer_from_bytes_at(self.address, bank=False)
+        label = get_ram_label(address)
+        if label: return "["+label+"]"
+        else: return "[$"+"".join(["%.2x"%x for x in self.bytes])+"]"
+class MoneyByteParam(MultiByteParam):
+    size = 3
+    max_value = 0x0F423F
+    should_be_decimal = True
+class CoinByteParam(MultiByteParam):
+    size = 2
+    max_value = 0x270F
+    should_be_decimal = True
+class MapGroupParam(SingleByteParam):
+    def to_asm(self):
+        map_id = ord(rom[self.address+1])
+        map_constant_label = get_map_constant_label(map_id=map_id, map_group=self.byte) #like PALLET_TOWN
+        if map_constant_label == None: return str(self.byte)
+        #else: return "GROUP("+map_constant_label+")"
+        else: return "GROUP_"+map_constant_label
+class MapIdParam(SingleByteParam):
+    def parse(self):
+        SingleByteParam.parse(self)
+        self.map_group = ord(rom[self.address-1])
+    def to_asm(self):
+        map_group = ord(rom[self.address-1])
+        map_constant_label = get_map_constant_label(map_id=self.byte, map_group=map_group)
+        if map_constant_label == None: return str(self.byte)
+        #else: return "MAP("+map_constant_label+")"
+        else: return "MAP_"+map_constant_label
+class MapGroupIdParam(MultiByteParam):
+    def parse(self):
+        MultiByteParam.parse(self)
+        self.map_group = self.bytes[0]
+        self.map_id = self.bytes[1]
+    def to_asm(self):
+        map_group = self.map_group
+        map_id = self.map_id
+        label = get_map_constant_label(map_group=map_group, map_id=map_id)
+        return label
+class PokemonParam(SingleByteParam):
+    def to_asm(self):
+        pokemon_constant = get_pokemon_constant_by_id(self.byte)
+        if pokemon_constant: return pokemon_constant
+        else: return str(self.byte)
+class PointerParamToItemAndLetter(MultiByteParam):
+    raise NotImplementedError, bryan_message
+    #[2F][2byte pointer to item no + 0x20 bytes letter text]
+class TrainerIdParam(SingleByteParam):
+    raise NotImplementedError, bryan_message
+class TrainerGroupParam(SingleByteParam):
+    raise NotImplementedError, bryan_message
+
+SingleByteParam, HexByte, DollarSignByte, ItemLabelByte
+PointerLabelParam, PointerLabelBeforeBank, PointerLabelAfterBank
+
+#byte: [name, [param1 name, param1 type], [param2 name, param2 type], ...]
+#0x9E: ["verbosegiveitem", ["item", ItemLabelByte], ["quantity", SingleByteParam]],
+pksv_crystal_more = {
+    0x00: ["2call", ["pointer", ScriptPointerLabelParam]],
+    0x01: ["3call", ["pointer", ScriptPointerLabelBeforeBank]],
+    0x02: ["2ptcall", ["pointer", PointerLabelToScriptPointer]],
+    0x03: ["2jump", ["pointer", ScriptPointerLabelParam]],
+    0x04: ["3jump", ["pointer", ScriptPointerLabelBeforeBank]],
+    0x05: ["2ptjump", ["pointer", PointerLabelToScriptPointer]],
+    0x06: ["if equal", ["byte", SingleByteParam], ["pointer", ScriptPointerLabelParam]],
+    0x07: ["if not equal", ["byte", SingleByteParam], ["pointer", ScriptPointerLabelParam]],
+    0x08: ["if false", ["pointer", ScriptPointerLabelParam]],
+    0x09: ["if true", ["pointer", ScriptPointerLabelParam]],
+    0x0A: ["if less than", ["byte", SingleByteParam], ["pointer", ScriptPointerLabelParam]],
+    0x0B: ["if greater than", ["byte", SingleByteParam], ["pointer", ScriptPointerLabelParam]],
+    0x0C: ["jumpstd", ["predefined_script", MultiByteParam]],
+    0x0D: ["callstd", ["predefined_script", MultiByteParam]],
+    0x0E: ["3callasm", ["asm", AsmPointerParam]],
+    0x0F: ["special", ["predefined_script", MultiByteParam]],
+    0x10: ["2ptcallasm", ["asm", PointerToAsmPointerParam]],
+    #should map_group/map_id be dealt with in some special way in the asm?
+    0x11: ["checkmaptriggers", ["map_group", SingleByteParam], ["map_id", SingleByteParam]],
+    0x12: ["domaptrigger", ["map_group", MapGroupParam], ["map_id", MapIdParam], ["trigger_id", SingleByteParam]],
+    0x13: ["checktriggers"],
+    0x14: ["dotrigger", ["trigger_id", SingleByteParam]],
+    0x15: ["writebyte", ["value", SingleByteParam]],
+    0x16: ["addvar", ["value", SingleByteParam]],
+    0x17: ["random", ["input", SingleByteParam]],
+    0x19: ["copybytetovar", ["address", RAMAddressParam]],
+    0x1A: ["copyvartobyte", ["address", RAMAddressParam]],
+    0x1B: ["loadvar", ["address", RAMAddressParam], ["value", SingleByteParam]],
+    0x1C: ["checkcode", ["variable_id", SingleByteParam]],
+    0x1E: ["writecode", ["variable_id", SingleByteParam], ["value", SingleByteParam]],
+    0x1F: ["giveitem", ["item", ItemLabelByte], ["quantity", SingleByteParam]],
+    0x20: ["takeitem", ["item", ItemLabelByte], ["quantity", SingleByteParam]],
+    0x21: ["checkitem", ["item", ItemLabelByte]],
+    0x22: ["givemoney", ["account", SingleByteParam], ["money", MoneyByteParam]],
+    0x23: ["takemoney", ["account", SingleByteParam], ["money", MoneyByteParam]],
+    0x24: ["checkmonkey", ["account", SingleByteParam], ["money", MoneyByteParam]],
+    0x25: ["givecoins", ["coins", CoinByteParam]],
+    0x26: ["takecoins", ["coins", CoinByteParam]],
+    0x27: ["checkcoins", ["coins", CoinByteParam]],
+    #0x28-0x2A not from pksv
+    0x28: ["addcellnum", ["person", SingleByteParam]],
+    0x29: ["delcellnum", ["person", SingleByteParam]],
+    0x2A: ["checkcellnum", ["person", SingleByteParam]],
+    #back on track...
+    0x2B: ["checktime", ["time", SingleByteParam]],
+    0x2C: ["checkpoke", ["pkmn", PokemonParam]],
+#0x2D: ["givepoke", ], .... see GivePoke class
+    0x2E: ["giveegg", ["pkmn", PokemonParam], ["level", DecimalByte]],
+    0x2F: ["givepokeitem", ["pointer", PointerParamToItemAndLetter]],
+    0x30: ["checkpokeitem", ["pointer", PointerParamToItemAndLetter]], #not pksv
+    0x31: ["checkbit1", ["bit_number", SingleByteParam]],
+    0x32: ["clearbit1", ["bit_number", SingleByteParam]],
+    0x33: ["setbit1", ["bit_number", SingleByteParam]],
+    0x34: ["checkbit2", ["bit_number", SingleByteParam]],
+    0x35: ["clearbit2", ["bit_number", SingleByteParam]],
+    0x36: ["setbit2", ["bit_number", SingleByteParam]],
+    0x37: ["wildoff"],
+    0x38: ["wildon"],
+    0x39: ["xycompare", ["pointer", MultiByteParam]],
+    0x3A: ["warpmod", ["warp_id", SingleByteParam], ["map_group", MapGroupParam], ["map_id", MapIdParam]],
+    0x3B: ["blackoutmod", ["map_group", MapGroupParam], ["map_id", MapIdParam]],
+    0x3C: ["warp", ["map_group", MapGroupParam], ["map_id", MapIdParam], ["x", SingleByteParam], ["y", SingleByteParam]],
+    0x3D: ["readmoney", ["account", SingleByteParam], ["memory", SingleByteParam]], #not pksv
+    0x3E: ["readcoins", ["memory", SingleByteParam]], #not pksv
+    0x3F: ["RAM2MEM", ["memory", SingleByteParam]], #not pksv
+    0x40: ["pokenamemem", ["pokemon", PokemonParam], ["memory", SingleByteParam]], #not pksv
+    0x41: ["itemtotext", ["item", ItemLabelByte], ["memory", SingleByteParam]],
+    0x42: ["mapnametotext", ["memory", SingleByteParam]], #not pksv
+    0x43: ["trainertotext", ["trainer_id", TrainerIdParam], ["trainer_group", TrainerGroupParam], ["memory", SingleByteParam]],
+    0x44: ["stringtotext", ],
+    0x45: ["itemnotify", ],
+    0x46: ["pocketisfull", ],
+    0x47: ["loadfont", ],
+    0x48: ["refreshscreen", ],
+    0x49: ["loadmovesprites", ],
+    0x4B: ["3writetext", ],
+    0x4C: ["2writetext", ],
+    0x4E: ["yesorno", ],
+    0x4F: ["loadmenudata", ],
+    0x50: ["writebackup", ],
+    0x51: ["jumptextfaceplayer", ],
+    0x53: ["jumptext", ],
+    0x54: ["closetext", ],
+    0x55: ["keeptextopen", ],
+    0x56: ["pokepic", ],
+    0x57: ["pokepicyesorno", ],
+    0x58: ["interpretmenu", ],
+    0x59: ["interpretmenu2", ],
+    0x5D: ["loadpokedata", ],
+    0x5E: ["loadtrainer", ],
+    0x5F: ["startbattle", ],
+    0x60: ["returnafterbattle", ],
+    0x61: ["catchtutorial", ],
+    0x64: ["winlosstext", ],
+    0x66: ["talkaftercancel", ],
+    0x68: ["setlasttalked", ],
+    0x69: ["applymovement", ],
+    0x6B: ["faceplayer", ],
+    0x6C: ["faceperson", ],
+    0x6D: ["variablesprite", ],
+    0x6E: ["disappear", ],
+    0x6F: ["appear", ],
+    0x70: ["follow", ],
+    0x71: ["stopfollow", ],
+    0x72: ["moveperson", ],
+    0x75: ["showemote", ],
+    0x76: ["spriteface", ],
+    0x77: ["follownotexact", ],
+    0x78: ["earthquake", ],
+    0x7A: ["changeblock", ],
+    0x7B: ["reloadmap", ],
+    0x7C: ["reloadmappart", ],
+    0x7D: ["writecmdqueue", ],
+    0x7E: ["delcmdqueue", ],
+    0x7F: ["playmusic", ],
+    0x80: ["playrammusic", ],
+    0x81: ["musicfadeout", ],
+    0x82: ["playmapmusic", ],
+    0x83: ["reloadmapmusic", ],
+    0x84: ["cry", ],
+    0x85: ["playsound", ],
+    0x86: ["waitbutton", ],
+    0x87: ["warpsound", ],
+    0x88: ["specialsound", ],
+    0x89: ["passtoengine", ],
+    0x8A: ["newloadmap", ],
+    0x8B: ["pause", ],
+    0x8C: ["deactivatefacing", ],
+    0x8D: ["priorityjump", ],
+    0x8E: ["warpcheck", ],
+    0x8F: ["ptpriorityjump", ],
+    0x90: ["return", ],
+    0x91: ["end", ],
+    0x92: ["reloadandreturn", ],
+    0x93: ["resetfuncs", ],
+    0x94: ["pokemart", ],
+    0x95: ["elevator", ],
+    0x96: ["trade", ],
+    0x97: ["askforphonenumber", ],
+    0x98: ["phonecall", ],
+    0x99: ["hangup", ],
+    0x9A: ["describedecoration", ],
+    0x9B: ["fruittree", ],
+    0x9C: ["specialphonecall", ],
+    0x9D: ["checkphonecall", ],
+    0x9E: ["verbosegiveitem", ],
+    0xA0: ["loadwilddata", ],
+    0xA1: ["halloffame", ],
+    0xA2: ["credits", ],
+    0xA3: ["warpfacing", ],
+    0xA4: ["storetext", ],
+    0xA5: ["displaylocation", ],
+}
+#these cause the script to end; used in create_command_classes
+pksv_crystal_more_enders = [0x03, 0x04, 0x05, 0x0C, 0x51, 0x53,
+                            0x8D, 0x8F, 0x90, 0x91, 0x92, 0x9B] 
+def create_command_classes():
+    """creates some classes for each command byte"""
+    klasses = []
+    for (byte, cmd) in pksv_crystal_more.items():
+        cmd_name = cmd[0]
+        params = {"id": byte, "size": 1, "end": byte in pksv_crystal_more_enders}
+        if len(cmd) > 1:
+            param_types = cmd[1:]
+            params["param_types"] = {}
+            for (i, each) in enumerate(param_types):
+                thing = {"name": each[0], "class": each[1]}
+                params["param_types"][i] = thing
+                params["size"] += thing["class"].size
+        klass_name = cmd_name+"Command"
+        klass = classobj(klass_name, (Command,), params)
+        globals()[klass_name] = klass
+        klasses = append(klass)
+    #later an individual klass will be instantiated to handle something
+    return klasses
+create_command_classes()
 
 #use this to keep track of commands without pksv names
 pksv_no_names = {}
@@ -4514,6 +5562,8 @@ for map_group_id in map_names.keys():
         cleaned_name = map_name_cleaner(map_data["name"])
         #set the value in the original dictionary
         map_names[map_group_id][map_id]["label"] = cleaned_name
+#generate map constants (like 1=PALLET_TOWN)
+generate_map_constant_labels()
 
 #### pretty printing ###
 #texts: TextScript.to_asm_at
@@ -5594,6 +6644,8 @@ def find_untested_methods():
     for (name, func) in funcs:
         #we don't care about some of these
         if name in avoid_funcs: continue
+        #skip functions beginning with _
+        if name[0] == "_": continue 
         #check if this function has a test named after it
         has_test = check_has_test(name, tested_names)
         if not has_test:
