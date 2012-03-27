@@ -3,6 +3,7 @@
 import sys, os, inspect, md5, json
 from copy import copy, deepcopy
 import subprocess
+from new import classobj
 
 #for IntervalMap
 from bisect import bisect_left, bisect_right
@@ -2055,100 +2056,6 @@ pksv_crystal_unknowns = [
     0xFA, 0xFB, 0xFC, 0xFD, 0xFE, 0xFF,
 ]
 
-class Command():
-    def __init__(self, address=None):
-        raise Exception, "i don't think anything actually calls this?"
-        self.params = {}
-        if not is_valid_address(address):
-            raise Exception, "address is invalid"
-        self.address = address
-    def to_asm(self):
-        #start with the rgbasm macro name for this command
-        output = self.macro_name
-        #return if there are no params
-        if len(self.param_types.keys()) == 0: return output
-        #first one will have no prefixing comma
-        first = True
-        #start reading the bytes after the command byte
-        current_address = self.address+1
-        #add each param
-        for param in self.params:
-            name = param.name
-            #the first param shouldn't have ", " prefixed
-            if first: first = False
-            #but all other params should
-            else: output += ", "
-            #now add the asm-compatible param string
-            output += obj.to_asm()
-            current_address += obj.size
-        #for param_type in self.param_types:
-        #    name = param_type["name"]
-        #    klass = param_type["klass"]
-        #    #create an instance of this type
-        #    #tell it to begin parsing at this latest byte
-        #    obj = klass(address=current_address)
-        #    #the first param shouldn't have ", " prefixed
-        #    if first: first = False
-        #    #but all other params should
-        #    else: output += ", "
-        #    #now add the asm-compatible param string
-        #    output += obj.to_asm()
-        #    current_address += obj.size
-        return output
-    def parse(self):
-        #id, size (inclusive), param_types
-        #param_type = {"name": each[1], "class": each[0]}
-        self.params = {}
-        current_address = self.address+1
-        byte = int(rom[self.address])
-        if not byte == self.id:
-            raise Exception, "this should never happen"
-        i = 0
-        for (key, param_type) in self.param_types.items():
-            name = param_type["name"]
-            klass = param_type["class"]
-            #make an instance of this class, like SingleByteParam()
-            #or ItemLabelByte.. by making an instance, obj.parse() is called
-            obj = klass(address=current_address, name=name)
-            #save this for later
-            self.params[i] = obj
-            #increment our counters
-            current_address += obj.size
-            i += 1
-        return True
-class GivePoke(Command):
-    id = 0x2D
-    size = 4 #minimum
-    param_types = {
-                  0: {"name": "pokemon", "class": PokemonParam},
-                  1: {"name": "level", "class": SingleByteParam},
-                  2: {"name": "item", "class": ItemLabelByte},
-                  3: {"name": "trainer", "class": SingleByteParam},
-                  4: {"name": "trainer_name_pointer", "class": MultiByteParam}, #should probably use TextLabelParam
-                  5: {"name": "pkmn_nickname", "class": MultiByteParam}, #XXX TextLabelParam ?
-                  ]
-    def parse(self):
-        self.params = {}
-        byte = int(rom[self.address])
-        if not byte == self.id:
-            raise Exception, "this should never happen"
-        current_address = self.address+1
-        i = 0
-        for (key, param_type) in self.param_types.items():
-            #stop executing after the 4th byte unless it == 0x1
-            if i == 4 and self.params[-1].byte != 1: break
-            name = param_type["name"]
-            klass = param_type["class"]
-            #make an instance of this class, like SingleByteParam()
-            #or ItemLabelByte.. by making an instance, obj.parse() is called
-            obj = klass(address=current_address, name=name)
-            #save this for later
-            self.params[i] = obj
-            #increment our counters
-            current_address += obj.size
-            i += 1
-        return True
-
 class SingleByteParam():
     """or SingleByte(CommandParam)"""
     size = 1
@@ -2158,7 +2065,7 @@ class SingleByteParam():
             setattr(self, key, value)
         #check address
         if not hasattr(self, "address"):
-            raise Exception, "an address is a requirement")
+            raise Exception, "an address is a requirement"
         elif self.address == None:
             raise Exception, "address must not be None"
         elif not is_valid_address(self.address):
@@ -2182,7 +2089,7 @@ class ItemLabelByte(DollarSignByte):
         label = find_item_label_by_id(self.byte)
         if label: return label
         elif not label: return DollarSignByte.to_asm(self)
-class DecimalByte(SingleByteParam):
+class DecimalParam(SingleByteParam):
     should_be_decimal = True
 
 class MultiByteParam():
@@ -2195,7 +2102,7 @@ class MultiByteParam():
             setattr(self, key, value)
         #check address
         if not hasattr(self, "address") or self.address == None:
-            raise Exception, "an address is a requirement")
+            raise Exception, "an address is a requirement"
         elif not is_valid_address(self.address):
             raise Exception, "address must be valid"
         #check size
@@ -2273,7 +2180,7 @@ def _parse_script_pointer_bytes(self):
     PointerLabelParam.parse(self)
     address = calculate_pointer_from_bytes_at(self.address, bank=self.bank)
     self.script = parse_script_engine_script_at(address)
-ScriptPointerLabelParam = _parse_script_pointer_bytes
+ScriptPointerLabelParam.parse = _parse_script_pointer_bytes
 ScriptPointerLabelBeforeBank.parse = _parse_script_pointer_bytes
 ScriptPointerLabelAfterBank.parse = _parse_script_pointer_bytes
 class PointerLabelToScriptPointer(PointerLabelParam):
@@ -2340,15 +2247,30 @@ class PokemonParam(SingleByteParam):
         if pokemon_constant: return pokemon_constant
         else: return str(self.byte)
 class PointerParamToItemAndLetter(MultiByteParam):
-    raise NotImplementedError, bryan_message
     #[2F][2byte pointer to item no + 0x20 bytes letter text]
+    #raise NotImplementedError, bryan_message
+    pass
 class TrainerIdParam(SingleByteParam):
-    raise NotImplementedError, bryan_message
+    #raise NotImplementedError, bryan_message
+    pass
 class TrainerGroupParam(SingleByteParam):
-    raise NotImplementedError, bryan_message
-
-SingleByteParam, HexByte, DollarSignByte, ItemLabelByte
-PointerLabelParam, PointerLabelBeforeBank, PointerLabelAfterBank
+    #raise NotImplementedError, bryan_message
+    pass
+class MenuDataPointerParam(PointerLabelParam):
+    #read menu data at the target site
+    #raise NotImplementedError, bryan_message
+    pass
+class RawTextPointerLabelParam(PointerLabelParam):
+    #is this to raw text? or to a text script?
+    #raise NotImplementedError, bryan_message
+    pass
+class TextPointerLabelParam(PointerLabelParam):
+    #definitely points to a text script
+    pass
+class MovementPointerLabelParam(PointerLabelParam):
+    pass
+class MapDataPointerParam(PointerLabelParam):
+    pass
 
 #byte: [name, [param1 name, param1 type], [param2 name, param2 type], ...]
 #0x9E: ["verbosegiveitem", ["item", ItemLabelByte], ["quantity", SingleByteParam]],
@@ -2400,7 +2322,7 @@ pksv_crystal_more = {
     0x2B: ["checktime", ["time", SingleByteParam]],
     0x2C: ["checkpoke", ["pkmn", PokemonParam]],
 #0x2D: ["givepoke", ], .... see GivePoke class
-    0x2E: ["giveegg", ["pkmn", PokemonParam], ["level", DecimalByte]],
+    0x2E: ["giveegg", ["pkmn", PokemonParam], ["level", DecimalParam]],
     0x2F: ["givepokeitem", ["pointer", PointerParamToItemAndLetter]],
     0x30: ["checkpokeitem", ["pointer", PointerParamToItemAndLetter]], #not pksv
     0x31: ["checkbit1", ["bit_number", SingleByteParam]],
@@ -2422,94 +2344,207 @@ pksv_crystal_more = {
     0x41: ["itemtotext", ["item", ItemLabelByte], ["memory", SingleByteParam]],
     0x42: ["mapnametotext", ["memory", SingleByteParam]], #not pksv
     0x43: ["trainertotext", ["trainer_id", TrainerIdParam], ["trainer_group", TrainerGroupParam], ["memory", SingleByteParam]],
-    0x44: ["stringtotext", ],
-    0x45: ["itemnotify", ],
-    0x46: ["pocketisfull", ],
-    0x47: ["loadfont", ],
-    0x48: ["refreshscreen", ],
-    0x49: ["loadmovesprites", ],
-    0x4B: ["3writetext", ],
-    0x4C: ["2writetext", ],
-    0x4E: ["yesorno", ],
-    0x4F: ["loadmenudata", ],
-    0x50: ["writebackup", ],
-    0x51: ["jumptextfaceplayer", ],
-    0x53: ["jumptext", ],
-    0x54: ["closetext", ],
-    0x55: ["keeptextopen", ],
-    0x56: ["pokepic", ],
-    0x57: ["pokepicyesorno", ],
-    0x58: ["interpretmenu", ],
-    0x59: ["interpretmenu2", ],
-    0x5D: ["loadpokedata", ],
-    0x5E: ["loadtrainer", ],
-    0x5F: ["startbattle", ],
-    0x60: ["returnafterbattle", ],
-    0x61: ["catchtutorial", ],
-    0x64: ["winlosstext", ],
-    0x66: ["talkaftercancel", ],
-    0x68: ["setlasttalked", ],
-    0x69: ["applymovement", ],
-    0x6B: ["faceplayer", ],
-    0x6C: ["faceperson", ],
-    0x6D: ["variablesprite", ],
-    0x6E: ["disappear", ],
-    0x6F: ["appear", ],
-    0x70: ["follow", ],
-    0x71: ["stopfollow", ],
-    0x72: ["moveperson", ],
-    0x75: ["showemote", ],
-    0x76: ["spriteface", ],
-    0x77: ["follownotexact", ],
-    0x78: ["earthquake", ],
-    0x7A: ["changeblock", ],
-    0x7B: ["reloadmap", ],
-    0x7C: ["reloadmappart", ],
-    0x7D: ["writecmdqueue", ],
-    0x7E: ["delcmdqueue", ],
-    0x7F: ["playmusic", ],
-    0x80: ["playrammusic", ],
-    0x81: ["musicfadeout", ],
-    0x82: ["playmapmusic", ],
-    0x83: ["reloadmapmusic", ],
-    0x84: ["cry", ],
-    0x85: ["playsound", ],
-    0x86: ["waitbutton", ],
-    0x87: ["warpsound", ],
-    0x88: ["specialsound", ],
-    0x89: ["passtoengine", ],
-    0x8A: ["newloadmap", ],
-    0x8B: ["pause", ],
-    0x8C: ["deactivatefacing", ],
-    0x8D: ["priorityjump", ],
-    0x8E: ["warpcheck", ],
-    0x8F: ["ptpriorityjump", ],
-    0x90: ["return", ],
-    0x91: ["end", ],
-    0x92: ["reloadandreturn", ],
-    0x93: ["resetfuncs", ],
-    0x94: ["pokemart", ],
-    0x95: ["elevator", ],
-    0x96: ["trade", ],
-    0x97: ["askforphonenumber", ],
-    0x98: ["phonecall", ],
-    0x99: ["hangup", ],
-    0x9A: ["describedecoration", ],
-    0x9B: ["fruittree", ],
-    0x9C: ["specialphonecall", ],
-    0x9D: ["checkphonecall", ],
-    0x9E: ["verbosegiveitem", ],
-    0xA0: ["loadwilddata", ],
-    0xA1: ["halloffame", ],
-    0xA2: ["credits", ],
-    0xA3: ["warpfacing", ],
-    0xA4: ["storetext", ],
-    0xA5: ["displaylocation", ],
+    0x44: ["stringtotext", ["text_pointer", RawTextPointerLabelParam], ["memory", SingleByteParam]],
+    0x45: ["itemnotify"],
+    0x46: ["pocketisfull"],
+    0x47: ["loadfont"],
+    0x48: ["refreshscreen", ["dummy", SingleByteParam]],
+    0x49: ["loadmovesprites"],
+    0x4A: ["loadbytec1ce", ["byte", SingleByteParam]], #not pksv
+    0x4B: ["3writetext", ["text_pointer", PointerLabelBeforeBank]],
+    0x4C: ["2writetext", ["text_pointer", RawTextPointerLabelParam]], #XXX - is this to a text script, or raw text?
+    0x4D: ["repeattext", ["byte", SingleByteParam], ["byte", SingleByteParam]], #not pksv
+    0x4E: ["yesorno"],
+    0x4F: ["loadmenudata", ["data", MenuDataPointerParam]],
+    0x50: ["writebackup"],
+#XXX test123
+    0x51: ["jumptextfaceplayer", ["text_pointer", RawTextPointerLabelParam]],
+    0x53: ["jumptext", ["text_pointer", TextPointerLabelParam]],
+    0x54: ["closetext"],
+    0x55: ["keeptextopen"],
+    0x56: ["pokepic", ["pokemon", PokemonParam]],
+    0x57: ["pokepicyesorno"],
+    0x58: ["interpretmenu"],
+    0x59: ["interpretmenu2"],
+#not pksv
+    0x5A: ["loadpikachudata"],
+    0x5B: ["battlecheck"],
+    0x5C: ["loadtrainerdata"],
+#back to pksv..
+    0x5D: ["loadpokedata", ["pokemon", PokemonParam], ["level", DecimalParam]],
+    0x5E: ["loadtrainer", ["trainer_group", TrainerGroupParam], ["trainer_id", TrainerIdParam]],
+    0x5F: ["startbattle"],
+    0x60: ["returnafterbattle"],
+    0x61: ["catchtutorial", ["byte", SingleByteParam]],
+#not pksv
+    0x62: ["trainertext", ["which_text", SingleByteParam]],
+    0x63: ["trainerstatus", ["action", SingleByteParam]],
+#back to pksv..
+    0x64: ["winlosstext", ["win_text_pointer", TextPointerLabelParam], ["loss_text_pointer", TextPointerLabelParam]],
+    0x65: ["scripttalkafter"], #not pksv
+    0x66: ["talkaftercancel"],
+    0x67: ["istalkafterscriptexecutedafterbattle"], #not pksv
+    0x68: ["setlasttalked", ["person", SingleByteParam]],
+    0x69: ["applymovement", ["person", SingleByteParam], ["data", MovementPointerLabelParam]],
+    0x6A: ["applymovement2", ["data", MovementPointerLabelParam]], #not pksv
+    0x6B: ["faceplayer"],
+    0x6C: ["faceperson", ["person1", SingleByteParam], ["person2", SingleByteParam]],
+    0x6D: ["variablesprite", ["byte", SingleByteParam], ["sprite", SingleByteParam]],
+    0x6E: ["disappear", ["person", SingleByteParam]], #hideperson
+    0x6F: ["appear", ["person", SingleByteParam]], #showperson
+    0x70: ["follow", ["person2", SingleByteParam], ["person1", SingleByteParam]], 
+    0x71: ["stopfollow"],
+    0x72: ["moveperson", ["person", SingleByteParam], ["x", SingleByteParam], ["y", SingleByteParam]],
+    0x73: ["writepersonxy", ["person", SingleByteParam]], #not pksv
+    0x74: ["loademote", ["bubble", SingleByteParam]],
+    0x75: ["showemote", ["bubble", SingleByteParam], ["person", SingleByteParam], ["time", SingleByteParam]],
+    0x76: ["spriteface", ["person", SingleByteParam], ["facing", SingleByteParam]],
+    0x77: ["follownotexact", ["person2", SingleByteParam], ["person1", SingleByteParam]],
+    0x78: ["earthquake", ["param", SingleByteParam]],
+    0x79: ["changemap", ["map_data_pointer", MapDataPointerParam]],
+    0x7A: ["changeblock", ["x", SingleByteParam], ["y", SingleByteParam], ["block", SingleByteParam]],
+    0x7B: ["reloadmap"],
+    0x7C: ["reloadmappart"],
+    0x7D: ["writecmdqueue", ["queue_pointer", MultiByteParam]],
+    0x7E: ["delcmdqueue", ["byte", SingleByteParam]],
+    0x7F: ["playmusic", ["music_pointer", MultiByteParam]],
+    0x80: ["playrammusic"],
+    0x81: ["musicfadeout", ["music", MultiByteParam], ["fadetime", SingleByteParam]],
+    0x82: ["playmapmusic"],
+    0x83: ["reloadmapmusic"],
+    0x84: ["cry", ["cry_id", SingleByteParam], ["wtf", SingleByteParam]], #XXX maybe it should use PokemonParam
+    0x85: ["playsound", ["sound_pointer", MultiByteParam]],
+    0x86: ["waitbutton"],
+    0x87: ["warpsound"],
+    0x88: ["specialsound"],
+    0x89: ["passtoengine", ["data_pointer", PointerLabelBeforeBank]],
+    0x8A: ["newloadmap", ["which_method", SingleByteParam]],
+    0x8B: ["pause", ["length", SingleByteParam]],
+    0x8C: ["deactivatefacing", ["time", SingleByteParam]],
+    0x8D: ["priorityjump", ["pointer", ScriptPointerLabelParam]],
+    0x8E: ["warpcheck"],
+    0x8F: ["ptpriorityjump", ["pointer", ScriptPointerLabelParam]],
+    0x90: ["return"],
+    0x91: ["end"],
+    0x92: ["reloadandreturn"],
+    0x93: ["resetfuncs"],
+    0x94: ["pokemart", ["dialog_id", SingleByteParam], ["mart_id", SingleByteParam]],
+    0x95: ["elevator", ["floor_list_pointer", PointerLabelParam]],
+    0x96: ["trade", ["trade_id", SingleByteParam]],
+    0x97: ["askforphonenumber", ["number", SingleByteParam]],
+    0x98: ["phonecall", ["caller_name", RawTextPointerLabelParam]],
+    0x99: ["hangup"],
+    0x9A: ["describedecoration", ["byte", SingleByteParam]],
+    0x9B: ["fruittree", ["tree_id", SingleByteParam]],
+    0x9C: ["specialphonecall", ["call_id", SingleByteParam], ["wtf", SingleByteParam]],
+    0x9D: ["checkphonecall"],
+    0x9E: ["verbosegiveitem", ["item", ItemLabelByte], ["quantity", DecimalParam]],
+    0xA0: ["loadwilddata", ["map_group", MapGroupParam], ["map_id", MapIdParam]],
+    0xA1: ["halloffame"],
+    0xA2: ["credits"],
+    0xA3: ["warpfacing", ["facing", SingleByteParam], ["map_group", MapGroupParam], ["map_id", MapIdParam], ["x", SingleByteParam], ["y", SingleByteParam]],
+    0xA4: ["storetext", ["pointer", PointerLabelBeforeBank], ["memory", SingleByteParam]],
+    0xA5: ["displaylocation", ["id", SingleByteParam]],
 }
+
+class Command():
+    def __init__(self, address=None):
+        raise Exception, "i don't think anything actually calls this?"
+        self.params = {}
+        if not is_valid_address(address):
+            raise Exception, "address is invalid"
+        self.address = address
+    def to_asm(self):
+        #start with the rgbasm macro name for this command
+        output = self.macro_name
+        #return if there are no params
+        if len(self.param_types.keys()) == 0: return output
+        #first one will have no prefixing comma
+        first = True
+        #start reading the bytes after the command byte
+        current_address = self.address+1
+        #add each param
+        for param in self.params:
+            name = param.name
+            #the first param shouldn't have ", " prefixed
+            if first: first = False
+            #but all other params should
+            else: output += ", "
+            #now add the asm-compatible param string
+            output += obj.to_asm()
+            current_address += obj.size
+        #for param_type in self.param_types:
+        #    name = param_type["name"]
+        #    klass = param_type["klass"]
+        #    #create an instance of this type
+        #    #tell it to begin parsing at this latest byte
+        #    obj = klass(address=current_address)
+        #    #the first param shouldn't have ", " prefixed
+        #    if first: first = False
+        #    #but all other params should
+        #    else: output += ", "
+        #    #now add the asm-compatible param string
+        #    output += obj.to_asm()
+        #    current_address += obj.size
+        return output
+    def parse(self):
+        #id, size (inclusive), param_types
+        #param_type = {"name": each[1], "class": each[0]}
+        self.params = {}
+        current_address = self.address+1
+        byte = int(rom[self.address])
+        if not byte == self.id:
+            raise Exception, "this should never happen"
+        i = 0
+        for (key, param_type) in self.param_types.items():
+            name = param_type["name"]
+            klass = param_type["class"]
+            #make an instance of this class, like SingleByteParam()
+            #or ItemLabelByte.. by making an instance, obj.parse() is called
+            obj = klass(address=current_address, name=name)
+            #save this for later
+            self.params[i] = obj
+            #increment our counters
+            current_address += obj.size
+            i += 1
+        return True
+class GivePoke(Command):
+    id = 0x2D
+    size = 4 #minimum
+    param_types = {
+                  0: {"name": "pokemon", "class": PokemonParam},
+                  1: {"name": "level", "class": SingleByteParam},
+                  2: {"name": "item", "class": ItemLabelByte},
+                  3: {"name": "trainer", "class": SingleByteParam},
+                  4: {"name": "trainer_name_pointer", "class": MultiByteParam}, #should probably use TextLabelParam
+                  5: {"name": "pkmn_nickname", "class": MultiByteParam}, #XXX TextLabelParam ?
+                  }
+    def parse(self):
+        self.params = {}
+        byte = int(rom[self.address])
+        if not byte == self.id:
+            raise Exception, "this should never happen"
+        current_address = self.address+1
+        i = 0
+        for (key, param_type) in self.param_types.items():
+            #stop executing after the 4th byte unless it == 0x1
+            if i == 4 and self.params[-1].byte != 1: break
+            name = param_type["name"]
+            klass = param_type["class"]
+            #make an instance of this class, like SingleByteParam()
+            #or ItemLabelByte.. by making an instance, obj.parse() is called
+            obj = klass(address=current_address, name=name)
+            #save this for later
+            self.params[i] = obj
+            #increment our counters
+            current_address += obj.size
+            i += 1
+        return True
+
 #these cause the script to end; used in create_command_classes
 pksv_crystal_more_enders = [0x03, 0x04, 0x05, 0x0C, 0x51, 0x53,
                             0x8D, 0x8F, 0x90, 0x91, 0x92, 0x9B] 
-def create_command_classes():
+def create_command_classes(debug=False):
     """creates some classes for each command byte"""
     klasses = []
     for (byte, cmd) in pksv_crystal_more.items():
@@ -2521,14 +2556,17 @@ def create_command_classes():
             for (i, each) in enumerate(param_types):
                 thing = {"name": each[0], "class": each[1]}
                 params["param_types"][i] = thing
+                if debug:
+                    print "each is: " + str(each)
+                    print "thing[class] is: " + str(thing["class"])
                 params["size"] += thing["class"].size
         klass_name = cmd_name+"Command"
         klass = classobj(klass_name, (Command,), params)
         globals()[klass_name] = klass
-        klasses = append(klass)
+        klasses.append(klass)
     #later an individual klass will be instantiated to handle something
     return klasses
-create_command_classes()
+command_classes = create_command_classes()
 
 #use this to keep track of commands without pksv names
 pksv_no_names = {}
