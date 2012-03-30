@@ -537,14 +537,14 @@ def calculate_pointer_from_bytes_at(address, bank=False):
     if bank == True:
         bank = ord(rom[address])
         address += 1
-    elif bank == False:
+    elif bank == False or bank == None:
         bank = calculate_bank(address)
     elif bank == "reverse" or bank == "reversed":
         bank = ord(rom[address+2])
     elif type(bank) == int:
         pass
     else:
-        raise "bad bank given to calculate_pointer_from_bytes_at"
+        raise Exception, "bad bank given to calculate_pointer_from_bytes_at"
     byte1 = ord(rom[address])
     byte2 = ord(rom[address+1])
     temp  = byte1 + (byte2 << 8)
@@ -2142,13 +2142,13 @@ class PointerLabelParam(MultiByteParam):
         bank = self.bank
         #we pass bank= for whether or not to include a bank byte when reading
         #.. it's not related to caddress
-        caddress = calculate_pointers_from_bytes_at(self.address+1, bank=self.bank)
+        caddress = calculate_pointer_from_bytes_at(self.address, bank=self.bank)
         label = get_label_for(caddress)
         pointer_part = label #use the label, if it is found
         #setup output bytes if the label was not found
         if not label:
             #pointer_part = (", ".join([(self.prefix+"%.2x")%x for x in reversed(self.bytes[1:])]))
-            pointer_part = self.prefix+("%.2x"%self.bytes[2])+("%.2x"%self.bytes[1])
+            pointer_part = self.prefix+("%.2x"%self.bytes[1])+("%.2x"%self.bytes[0])
         #bank positioning matters!
         if bank == True or bank == "reverse": #bank, pointer
             #possibly use BANK(LABEL) if we know the bank
@@ -5835,6 +5835,16 @@ def write_all_labels(all_labels, filename="labels.json"):
     fh.close()
     return True
 
+def get_label_for(address):
+    """returns a label assigned to a particular address"""
+    global all_labels
+    if type(address) != int:
+        raise Exception, "get_label_for requires an integer address"
+    for thing in all_labels:
+        if thing["address"] == address:
+            return thing["label"]
+    return None
+
 def remove_quoted_text(line):
     """get rid of content inside quotes
     and also removes the quotes from the input string"""
@@ -6240,11 +6250,22 @@ class TestCram(unittest.TestCase):
         x = find_item_label_by_id
         self.assertEqual(x(249), "HM_07")
         self.assertEqual(x(173), "BERRY")
+        self.assertEqual(x(45), None)
     def test_generate_item_constants(self):
         x = generate_item_constants
         r = x()
         self.failUnless("HM_07" in r)
         self.failUnless("EQU" in r)
+    def test_get_label_for(self):
+        global all_labels
+        temp = copy(all_labels)
+        #this is basd on the format defined in get_labels_between
+        all_labels = [{"label": "poop", "address": 0x5,
+                       "offset": 0x5, "bank": 0,
+                       "line_number": 2
+                     }]
+        self.assertEqual(get_label_for(5), "poop")
+        all_labels = temp
 class TestIntervalMap(unittest.TestCase):
     def test_intervals(self):
         i = IntervalMap()
@@ -6584,7 +6605,7 @@ class TestScript(unittest.TestCase):
         r = find_all_text_pointers_in_script_engine_script(script, bank=bank, debug=False)
         results = list(r)
         self.assertIn(0x197661, results)
-class TestSingleByteParam(unittest.TestCase):
+class TestByteParams(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.address = 10
@@ -6602,6 +6623,44 @@ class TestSingleByteParam(unittest.TestCase):
         self.assertEqual(self.sbp.to_asm(), "$2d")
         self.sbp.should_be_decimal = True
         self.assertEqual(self.sbp.to_asm(), str(45))
+    def test_HexByte_to_asm(self):
+        h = HexByte(address=10)
+        a = h.to_asm()
+        self.assertEqual(a, "0x2d")
+    def test_DollarSignByte_to_asm(self):
+        d = DollarSignByte(address=10)
+        a = d.to_asm()
+        self.assertEqual(a, "$2d")
+    def test_ItemLabelByte_to_asm(self):
+        i = ItemLabelByte(address=433)
+        self.assertEqual(i.byte, 54)
+        self.assertEqual(i.to_asm(), "COIN_CASE")
+        self.assertEqual(ItemLabelByte(address=10).to_asm(), "$2d")
+    def test_DecimalParam_to_asm(self):
+        d = DecimalParam(address=10)
+        x = d.to_asm()
+        self.assertEqual(x, str(0x2d))
+class TestMultiByteParam(unittest.TestCase):
+    def setup_for(self, somecls, byte_size=2, address=443, **kwargs):
+        self.cls = somecls(address=address, size=byte_size, **kwargs)
+        self.assertEqual(self.cls.address, address)
+        self.assertEqual(self.cls.bytes, rom_interval(address, byte_size, strings=False))
+        self.assertEqual(self.cls.size, byte_size)
+    def test_two_byte_param(self):
+        self.setup_for(MultiByteParam, byte_size=2)
+        self.assertEqual(self.cls.to_asm(), "$f0c0")
+    def test_three_byte_param(self):
+        self.setup_for(MultiByteParam, byte_size=3)
+    def test_PointerLabelParam_no_bank(self):
+        self.setup_for(PointerLabelParam, bank=None)
+        #assuming no label at this location..
+        self.assertEqual(self.cls.to_asm(), "$f0c0")
+        global all_labels
+        all_labels = [{"label": "poop", "address": 0xf0c0,
+                       "offset": 0xf0c0, "bank": 0,
+                       "line_number": 2
+                     }]
+        self.assertEqual(self.cls.to_asm(), "poop")
 class TestMetaTesting(unittest.TestCase):
     """test whether or not i am finding at least
     some of the tests in this file"""
