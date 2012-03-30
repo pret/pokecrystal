@@ -1705,10 +1705,12 @@ def find_item_label_by_id(id):
     else: return None
 def generate_item_constants():
     """make a list of items to put in constants.asm"""
+    output = ""
     for (id, item) in item_constants.items():
         val = ("$%.2x"%id).upper()
         while len(item)<13: item+= " "
-        print item + " EQU " + val
+        output += item + " EQU " + val
+    return output
 
 def find_all_text_pointers_in_script_engine_script(script, bank=None, debug=False):
     """returns a list of text pointers
@@ -2061,7 +2063,7 @@ class SingleByteParam():
     size = 1
     should_be_decimal = False
     def __init__(self, *args, **kwargs):
-        for (key, value) in kwargs:
+        for (key, value) in kwargs.items():
             setattr(self, key, value)
         #check address
         if not hasattr(self, "address"):
@@ -2075,7 +2077,7 @@ class SingleByteParam():
             raise Exception, "size is probably 1?"
         #parse bytes from ROM
         self.parse()
-    def parse(self): self.byte = int(rom[self.address], 16)
+    def parse(self): self.byte = ord(rom[self.address])
     def to_asm(self):
         if not self.should_be_decimal: return hex(self.byte).replace("0x", "$")
         else: return str(self.byte)
@@ -2098,7 +2100,7 @@ class MultiByteParam():
     should_be_decimal = False
     def __init__(self, *args, **kwargs):
         self.prefix = "$" #default.. feel free to set 0x in kwargs
-        for (key, value) in kwargs:
+        for (key, value) in kwargs.items():
             setattr(self, key, value)
         #check address
         if not hasattr(self, "address") or self.address == None:
@@ -6229,6 +6231,20 @@ class TestCram(unittest.TestCase):
     def test_index(self):
         self.assertTrue(index([1,2,3,4], lambda f: True) == 0)
         self.assertTrue(index([1,2,3,4], lambda f: f==3) == 2)
+    def test_get_pokemon_constant_by_id(self):
+        x = get_pokemon_constant_by_id
+        self.assertEqual(x(1), "BULBASAUR")
+        self.assertEqual(x(151), "MEW")
+        self.assertEqual(x(250), "HO_OH")
+    def test_find_item_label_by_id(self):
+        x = find_item_label_by_id
+        self.assertEqual(x(249), "HM_07")
+        self.assertEqual(x(173), "BERRY")
+    def test_generate_item_constants(self):
+        x = generate_item_constants
+        r = x()
+        self.failUnless("HM_07" in r)
+        self.failUnless("EQU" in r)
 class TestIntervalMap(unittest.TestCase):
     def test_intervals(self):
         i = IntervalMap()
@@ -6568,6 +6584,24 @@ class TestScript(unittest.TestCase):
         r = find_all_text_pointers_in_script_engine_script(script, bank=bank, debug=False)
         results = list(r)
         self.assertIn(0x197661, results)
+class TestSingleByteParam(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        cls.address = 10
+        cls.sbp = SingleByteParam(address=cls.address)
+    @classmethod
+    def tearDownClass(cls):
+        del cls.sbp
+    def test__init__(self):
+        self.assertEqual(self.sbp.size, 1)
+        self.assertEqual(self.sbp.address, self.address)
+    def test_parse(self):
+        self.sbp.parse()
+        self.assertEqual(str(self.sbp.byte), str(45))
+    def test_to_asm(self):
+        self.assertEqual(self.sbp.to_asm(), "$2d")
+        self.sbp.should_be_decimal = True
+        self.assertEqual(self.sbp.to_asm(), str(45))
 class TestMetaTesting(unittest.TestCase):
     """test whether or not i am finding at least
     some of the tests in this file"""
