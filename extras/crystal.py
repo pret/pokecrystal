@@ -6304,6 +6304,16 @@ class TestCram(unittest.TestCase):
         ids = generate_map_constant_labels()
         self.assertEqual(ids[0]["label"], "OLIVINE_POKECENTER_1F")
         self.assertEqual(ids[1]["label"], "OLIVINE_GYM")
+    def test_get_id_for_map_constant_label(self):
+        global map_internal_ids
+        map_internal_ids = generate_map_constant_labels()
+        self.assertEqual(get_id_for_map_constant_label("OLIVINE_GYM"), 1)
+        self.assertEqual(get_id_for_map_constant_label("OLIVINE_POKECENTER_1F"), 0)
+    def test_get_map_constant_label_by_id(self):
+        global map_internal_ids
+        map_internal_ids = generate_map_constant_labels()
+        self.assertEqual(get_map_constant_label_by_id(0), "OLIVINE_POKECENTER_1F")
+        self.assertEqual(get_map_constant_label_by_id(1), "OLIVINE_GYM")
     def test_is_valid_address(self):
         self.assertTrue(is_valid_address(0))
         self.assertTrue(is_valid_address(1))
@@ -6728,6 +6738,32 @@ class TestMultiByteParam(unittest.TestCase):
                        "line_number": 2
                      }]
         self.assertEqual(self.cls.to_asm(), "poop")
+class TestPostParsing(unittest.TestCase):
+    """tests that must be run after parsing all maps"""
+    @classmethod
+    def setUpClass(cls):
+        run_main()
+    def test_signpost_counts(self):
+        self.assertEqual(len(map_names[1][1]["signposts"]), 0)
+        self.assertEqual(len(map_names[1][2]["signposts"]), 2)
+        self.assertEqual(len(map_names[10][5]["signposts"]), 7)
+    def test_warp_counts(self):
+        self.assertEqual(map_names[10][5]["warp_count"], 9)
+        self.assertEqual(map_names[18][5]["warp_count"], 3)
+        self.assertEqual(map_names[15][1]["warp_count"], 2)
+    def test_map_sizes(self):
+        self.assertEqual(map_names[15][1]["height"], 18)
+        self.assertEqual(map_names[15][1]["width"], 10)
+        self.assertEqual(map_names[7][1]["height"], 4)
+        self.assertEqual(map_names[7][1]["width"], 4)
+    def test_map_connection_counts(self):
+        self.assertEqual(map_names[7][1]["connections"], 0)
+        self.assertEqual(map_names[10][1]["connections"], 12)
+        self.assertEqual(map_names[10][2]["connections"], 12)
+        self.assertEqual(map_names[11][1]["connections"], 9) #or 13?
+    def test_second_map_header_address(self):
+        self.assertEqual(map_names[11][1]["second_map_header_address"], 0x9509c)
+        self.assertEqual(map_names[1][5]["second_map_header_address"], 0x95bd0)
 class TestMetaTesting(unittest.TestCase):
     """test whether or not i am finding at least
     some of the tests in this file"""
