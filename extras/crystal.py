@@ -445,6 +445,7 @@ class RomStr(str):
         return len(self)
     def __repr__(self):
         return "RomStr(too long)"
+rom = RomStr(None)
 def load_rom(filename="../baserom.gbc"):
     """loads bytes into memory"""
     global rom
@@ -452,6 +453,16 @@ def load_rom(filename="../baserom.gbc"):
     rom = RomStr(file_handler.read())
     file_handler.close()
     return rom
+def maybe_load_rom(filename="../baserom.gbc"):
+    """checks that the loaded rom matches the path
+    and then loads the rom if necessary."""
+    global rom
+    if rom != RomStr(None) and rom != None:
+        return rom
+    if not isinstance(rom, RomStr):
+        return load_rom(filename=filename)
+    elif os.lstat(filename).st_size != len(rom):
+        return load_rom(filename)
 
 class AsmList(list):
     """simple wrapper to prevent all asm lines from being shown on screen"""
@@ -6608,6 +6619,7 @@ class TestScript(unittest.TestCase):
 class TestByteParams(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
+        maybe_load_rom()
         cls.address = 10
         cls.sbp = SingleByteParam(address=cls.address)
     @classmethod
