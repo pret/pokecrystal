@@ -4,6 +4,7 @@ import sys, os, inspect, md5, json
 from copy import copy, deepcopy
 import subprocess
 from new import classobj
+import random
 
 #for IntervalMap
 from bisect import bisect_left, bisect_right
@@ -446,23 +447,23 @@ class RomStr(str):
     def __repr__(self):
         return "RomStr(too long)"
 rom = RomStr(None)
-def load_rom(filename="../baserom.gbc"):
+def direct_load_rom(filename="../baserom.gbc"):
     """loads bytes into memory"""
     global rom
     file_handler = open(filename, "r")
     rom = RomStr(file_handler.read())
     file_handler.close()
     return rom
-def maybe_load_rom(filename="../baserom.gbc"):
+def load_rom(filename="../baserom.gbc"):
     """checks that the loaded rom matches the path
     and then loads the rom if necessary."""
     global rom
     if rom != RomStr(None) and rom != None:
         return rom
     if not isinstance(rom, RomStr):
-        return load_rom(filename=filename)
+        return direct_load_rom(filename=filename)
     elif os.lstat(filename).st_size != len(rom):
-        return load_rom(filename)
+        return direct_load_rom(filename)
 
 class AsmList(list):
     """simple wrapper to prevent all asm lines from being shown on screen"""
@@ -695,7 +696,7 @@ class TextScript():
         """
         global rom, text_count, max_texts, texts
         if rom == None:
-            load_rom()
+            direct_load_rom()
         if address == None:
             return "not a script"
         commands = {}
@@ -2692,7 +2693,7 @@ class Script():
     
         global rom
         if rom == None:
-            load_rom()
+            direct_load_rom()
         
         #max number of commands in a 'recursive' script
         max_cmds = 150
@@ -5869,6 +5870,13 @@ def remove_quoted_text(line):
         line = line[0:first] + line[second+1:]
     return line
 
+class Label:
+    def __init__(self, name=None, address=None, line_number=None):
+        assert name!=None, "need a name"
+        assert address!=None, "need an address"
+        assert line_number!=None, "need a line number"
+        self.name, self.address, self.line_number = str(name), int(address), int(line_number)
+
 def line_has_comment_address(line, returnable={}, bank=None):
     """checks that a given line has a comment
     with a valid address, and returns the address in the object.
@@ -6116,7 +6124,7 @@ class TestCram(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         global rom
-        cls.rom = load_rom()
+        cls.rom = direct_load_rom()
         rom = cls.rom
     @classmethod
     def tearDownClass(cls):
@@ -6143,10 +6151,18 @@ class TestCram(unittest.TestCase):
         self.assertEquals(len(groups), 10)
         self.assertNotEqual(data, groups)
         self.assertNotEqual(len(data), len(groups))
-    def test_load_rom(self):
+    def test_direct_load_rom(self):
         rom = self.rom
         self.assertEqual(len(rom), 2097152)
         self.failUnless(isinstance(rom, RomStr))
+    def test_load_rom(self):
+        global rom
+        rom = None
+        load_rom()
+        self.failIf(rom == None)
+        rom = RomStr(None)
+        load_rom()
+        self.failIf(rom == RomStr(None))
     def test_load_asm(self):
         asm = load_asm()
         joined_lines = "\n".join(asm)
@@ -6277,6 +6293,22 @@ class TestCram(unittest.TestCase):
                      }]
         self.assertEqual(get_label_for(5), "poop")
         all_labels = temp
+    def test_generate_map_constant_labels(self):
+        ids = generate_map_constant_labels()
+        self.assertEqual(ids[0]["label"], "OLIVINE_POKECENTER_1F")
+        self.assertEqual(ids[1]["label"], "OLIVINE_GYM")
+    def test_is_valid_address(self):
+        self.assertTrue(is_valid_address(0))
+        self.assertTrue(is_valid_address(1))
+        self.assertTrue(is_valid_address(10))
+        self.assertTrue(is_valid_address(100))
+        self.assertTrue(is_valid_address(1000))
+        self.assertTrue(is_valid_address(10000))
+        self.assertFalse(is_valid_address(2097153))
+        self.assertFalse(is_valid_address(2098000))
+        addresses = [random.randrange(0,2097153) for i in range(0, 9+1)]
+        for address in addresses:
+            self.assertTrue(is_valid_address(address))
 class TestIntervalMap(unittest.TestCase):
     def test_intervals(self):
         i = IntervalMap()
@@ -6616,10 +6648,25 @@ class TestScript(unittest.TestCase):
         r = find_all_text_pointers_in_script_engine_script(script, bank=bank, debug=False)
         results = list(r)
         self.assertIn(0x197661, results)
+class TestLabel(unittest.TestCase):
+    def test_label_making(self):
+        line_number = 2
+        address = 0xf0c0
+        label_name = "poop"
+        l = Label(name=label_name, address=address, line_number=line_number)
+        self.failUnless(hasattr(l, "name"))
+        self.failUnless(hasattr(l, "address"))
+        self.failUnless(hasattr(l, "line_number"))
+        self.failIf(isinstance(l.address, str))
+        self.failIf(isinstance(l.line_number, str))
+        self.failUnless(isinstance(l.name, str))
+        self.assertEqual(l.line_number, line_number)
+        self.assertEqual(l.name, label_name)
+        self.assertEqual(l.address, address)
 class TestByteParams(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        maybe_load_rom()
+        load_rom()
         cls.address = 10
         cls.sbp = SingleByteParam(address=cls.address)
     @classmethod
@@ -6668,6 +6715,7 @@ class TestMultiByteParam(unittest.TestCase):
         #assuming no label at this location..
         self.assertEqual(self.cls.to_asm(), "$f0c0")
         global all_labels
+        #hm.. maybe all_labels should be using a class?
         all_labels = [{"label": "poop", "address": 0xf0c0,
                        "offset": 0xf0c0, "bank": 0,
                        "line_number": 2
@@ -6816,7 +6864,7 @@ def run_tests(): #rather than unittest.main()
     print report_untested()
 def run_main():
     #read the rom and figure out the offsets for maps
-    load_rom()
+    direct_load_rom()
     load_map_group_offsets()
     #add the offsets into our map structure, why not (johto maps only)
     [map_names[map_group_id+1].update({"offset": offset}) for map_group_id, offset in enumerate(map_group_offsets)]
