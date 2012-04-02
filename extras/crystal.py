@@ -1202,6 +1202,7 @@ def generate_map_constant_labels():
     i = 0
     for map_group in map_names.keys():
         for map_id in map_names[map_group].keys():
+            if map_id == "offset": continue
             cmap = map_names[map_group][map_id]
             name = cmap["name"]
             name = name.replace("Pokémon Center", "PokeCenter").\
@@ -5846,6 +5847,12 @@ def write_all_labels(all_labels, filename="labels.json"):
     fh.write(json.dumps(all_labels))
     fh.close()
     return True
+
+#TODO: implement get_ram_label
+def get_ram_label(address):
+    """not implemented yet.. supposed to get a label for a particular RAM location
+    like W_PARTYPOKE1HP"""
+    return None
 
 def get_label_for(address):
     """returns a label assigned to a particular address"""
