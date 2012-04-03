@@ -1541,7 +1541,7 @@ item_constants = {1: 'MASTER_BALL',
 53: 'X_SPECIAL',
 54: 'COIN_CASE',
 55: 'ITEMFINDER',
-57: 'EXP.SHARE',
+57: 'EXP_SHARE',
 58: 'OLD_ROD',
 59: 'GOOD_ROD',
 60: 'SILVER_LEAF',
@@ -2605,20 +2605,21 @@ def parse_script_with_command_classes(start_address):
             if kls.id == cur_byte:
                 right_kls = kls
         if right_kls == None:
-            print "current_address is: " + hex(current_address)
+            print "xyz123 current_address is: " + hex(current_address)
             current_address += 1
-            continue
+            #continue
             asm_output = ""
             for command in commands:
                 asm_output += command.to_asm() + "\n"
             raise Exception, "no command found? id: " + hex(cur_byte) + " at " + hex(current_address) + " asm is:\n" + asm_output
         cls = right_kls(address=current_address)
+        print cls.to_asm()
         end = cls.end
         commands.append(cls)
         #current_address = cls.last_address + 1
-        current_address += cls.size + 1
+        current_address += cls.size
     asm_output = "".join([command.to_asm()+"\n" for command in commands])
-    print asm_output
+    print "--------------\n"+asm_output
     return commands
 
 #use this to keep track of commands without pksv names
