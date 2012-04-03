@@ -2463,12 +2463,15 @@ pksv_crystal_more = {
 }
 
 class Command():
-    def __init__(self, address=None):
-        raise Exception, "i don't think anything actually calls this?"
+    def __init__(self, address=None, *pargs, **kwargs):
+        #raise Exception, "i don't think anything actually calls this?"
         self.params = {}
         if not is_valid_address(address):
             raise Exception, "address is invalid"
         self.address = address
+        self.last_address = None
+        self.params = {}
+        self.parse()
     def to_asm(self):
         #start with the rgbasm macro name for this command
         output = self.macro_name
@@ -2479,15 +2482,17 @@ class Command():
         #start reading the bytes after the command byte
         current_address = self.address+1
         #add each param
-        for param in self.params:
+        for (key, param) in self.params.items():
             name = param.name
             #the first param shouldn't have ", " prefixed
-            if first: first = False
+            if first:
+                output += " "
+                first = False
             #but all other params should
             else: output += ", "
             #now add the asm-compatible param string
-            output += obj.to_asm()
-            current_address += obj.size
+            output += param.to_asm()
+            current_address += param.size
         #for param_type in self.param_types:
         #    name = param_type["name"]
         #    klass = param_type["klass"]
@@ -2505,11 +2510,10 @@ class Command():
     def parse(self):
         #id, size (inclusive), param_types
         #param_type = {"name": each[1], "class": each[0]}
-        self.params = {}
         current_address = self.address+1
-        byte = int(rom[self.address])
+        byte = ord(rom[self.address])
         if not byte == self.id:
-            raise Exception, "this should never happen"
+            raise Exception, "byte ("+hex(byte)+") != self.id ("+hex(self.id)+")"
         i = 0
         for (key, param_type) in self.param_types.items():
             name = param_type["name"]
@@ -2522,6 +2526,7 @@ class Command():
             #increment our counters
             current_address += obj.size
             i += 1
+        self.last_address = current_address
         return True
 class GivePoke(Command):
     id = 0x2D
@@ -2554,6 +2559,7 @@ class GivePoke(Command):
             #increment our counters
             current_address += obj.size
             i += 1
+        self.last_address = current_address
         return True
 
 #these cause the script to end; used in create_command_classes
@@ -2564,10 +2570,10 @@ def create_command_classes(debug=False):
     klasses = []
     for (byte, cmd) in pksv_crystal_more.items():
         cmd_name = cmd[0]
-        params = {"id": byte, "size": 1, "end": byte in pksv_crystal_more_enders}
+        params = {"id": byte, "size": 1, "end": byte in pksv_crystal_more_enders, "macro_name": cmd_name}
+        params["param_types"] = {}
         if len(cmd) > 1:
             param_types = cmd[1:]
-            params["param_types"] = {}
             for (i, each) in enumerate(param_types):
                 thing = {"name": each[0], "class": each[1]}
                 params["param_types"][i] = thing
@@ -2582,6 +2588,31 @@ def create_command_classes(debug=False):
     #later an individual klass will be instantiated to handle something
     return klasses
 command_classes = create_command_classes()
+
+def parse_script_with_command_classes(start_address):
+    """parses a script using the Command classes
+    as an alternative to the old method using hard-coded commands"""
+    global command_classes
+    current_address = start_address
+    commands = []
+    end = False
+    while not end:
+        cur_byte = ord(rom[current_address])
+        #find the right address
+        right_kls = None
+        for kls in command_classes:
+            if kls.id == cur_byte:
+                right_kls = kls
+        if right_kls == None:
+            asm_output = ""
+            for command in commands:
+                asm_output += command.to_asm() + "\n"
+            raise Exception, "no command found? id: " + hex(cur_byte) + " at " + hex(current_address) + " asm is:\n" + asm_output
+        cls = right_kls(address=current_address)
+        end = cls.end
+        commands.append(cls)
+        current_address = cls.last_address + 1
+    return commands
 
 #use this to keep track of commands without pksv names
 pksv_no_names = {}
@@ -6738,7 +6769,7 @@ class TestMultiByteParam(unittest.TestCase):
                        "line_number": 2
                      }]
         self.assertEqual(self.cls.to_asm(), "poop")
-class TestPostParsing(unittest.TestCase):
+class TestPostParsing: #(unittest.TestCase):
     """tests that must be run after parsing all maps"""
     @classmethod
     def setUpClass(cls):
