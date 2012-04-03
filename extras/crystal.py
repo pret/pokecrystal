@@ -2592,7 +2592,8 @@ command_classes = create_command_classes()
 def parse_script_with_command_classes(start_address):
     """parses a script using the Command classes
     as an alternative to the old method using hard-coded commands"""
-    global command_classes
+    global command_classes, rom
+    load_rom()
     current_address = start_address
     commands = []
     end = False
@@ -2604,6 +2605,9 @@ def parse_script_with_command_classes(start_address):
             if kls.id == cur_byte:
                 right_kls = kls
         if right_kls == None:
+            print "current_address is: " + hex(current_address)
+            current_address += 1
+            continue
             asm_output = ""
             for command in commands:
                 asm_output += command.to_asm() + "\n"
@@ -2611,7 +2615,10 @@ def parse_script_with_command_classes(start_address):
         cls = right_kls(address=current_address)
         end = cls.end
         commands.append(cls)
-        current_address = cls.last_address + 1
+        #current_address = cls.last_address + 1
+        current_address += cls.size + 1
+    asm_output = "".join([command.to_asm()+"\n" for command in commands])
+    print asm_output
     return commands
 
 #use this to keep track of commands without pksv names
@@ -2794,6 +2801,8 @@ class Script():
                 start_address = offset
                 last_byte_address = offset + size - 1
                 pointer = calculate_pointer_from_bytes_at(start_address+1)
+                if pointer == None:
+                    raise Exception, "pointer is None (shouldn't be None pointer on 0x0 script command"
                 command["pointer"] = pointer
                 if debug:
                     print "in script starting at "+hex(original_start_address)+\
