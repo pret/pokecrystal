@@ -6764,6 +6764,12 @@ class TestPostParsing(unittest.TestCase):
     def test_second_map_header_address(self):
         self.assertEqual(map_names[11][1]["second_map_header_address"], 0x9509c)
         self.assertEqual(map_names[1][5]["second_map_header_address"], 0x95bd0)
+    def test_event_address(self):
+        self.assertEqual(map_names[17][5]["event_address"], 0x194d67)
+        self.assertEqual(map_names[23][3]["event_address"], 0x1a9ec9)
+    def test_people_event_counts(self):
+        self.assertEqual(len(map_names[23][3]["people_events"]), 4)
+        self.assertEqual(len(map_names[10][3]["people_events"]), 9)
 class TestMetaTesting(unittest.TestCase):
     """test whether or not i am finding at least
     some of the tests in this file"""
