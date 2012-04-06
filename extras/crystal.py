@@ -24,6 +24,10 @@ if not hasattr(unittest.TestCase, 'setUpClass'):
 if not hasattr(json, "dumps"):
     json.dumps = json.write
 
+# New versions of json don't have read anymore.
+if not hasattr(json, "read"):
+    json.read = json.loads
+
 #table of pointers to map groups
 #each map group contains some number of map headers
 map_group_pointer_table = 0x94000
