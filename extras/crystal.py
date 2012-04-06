@@ -5836,13 +5836,16 @@ def generate_diff_insert(line_number, newline, debug=False):
     newfile_fh.close()
 
     try:
+        from subprocess import CalledProcessError
+    except ImportError:
+        CalledProcessError = None
+
+    try:
         diffcontent = subprocess.check_output("diff -u ../main.asm " + newfile_filename, shell=True)
-    except AttributeError, exc:
+    except (AttributeError, CalledProcessError):
         p = subprocess.Popen(["diff", "-u", "../main.asm", newfile_filename], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         out, err = p.communicate()
         diffcontent = out
-    except Exception, exc:
-        raise exc
 
     os.system("rm " + original_filename)
     os.system("rm " + newfile_filename)
