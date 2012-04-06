@@ -458,6 +458,18 @@ class RomStr(str):
         return len(self)
     def __repr__(self):
         return "RomStr(too long)"
+    def interval(self, offset, length, strings=True, debug=True):
+        """returns hex values for the rom starting at offset until offset+length"""
+        returnable = []
+        for byte in self[offset:offset+length]:
+            if strings:
+                returnable.append(hex(ord(byte)))
+            else:
+                returnable.append(ord(byte))
+        return returnable
+    def until(self, offset, byte, strings=True, debug=False):
+        """returns hex values from rom starting at offset until the given byte"""
+        return self.interval(offset, self.find(chr(byte), offset) - offset, strings=strings)
 rom = RomStr(None)
 def direct_load_rom(filename="../baserom.gbc"):
     """loads bytes into memory"""
@@ -508,18 +520,12 @@ def is_valid_address(address):
 def rom_interval(offset, length, strings=True, debug=True):
     """returns hex values for the rom starting at offset until offset+length"""
     global rom
-    returnable = []
-    for byte in rom[offset:offset+length]:
-        if strings:
-            returnable.append(hex(ord(byte)))
-        else:
-            returnable.append(ord(byte))
-    return returnable
+    return rom.interval(offset, length, strings=strings, debug=debug)
 
-def rom_until(offset, byte, strings=True):
+def rom_until(offset, byte, strings=True, debug=True):
     """returns hex values from rom starting at offset until the given byte"""
     global rom
-    return rom_interval(offset, rom.find(chr(byte), offset) - offset, strings=strings)
+    return rom.until(offset, byte, strings=strings, debug=debug)
 
 def how_many_until(byte, starting):
     index = rom.find(byte, starting)
@@ -6433,6 +6439,29 @@ class TestRomStr(unittest.TestCase):
         self.assertEquals(len(self.sample_text), len(self.sample))
         self.assertEquals(len(self.sample_text), self.sample.length())
         self.assertEquals(len(self.sample), self.sample.length())
+    def test_rom_interval(self):
+        global rom
+        load_rom()
+        address = 0x100
+        interval = 10
+        correct_strings = ['0x0', '0xc3', '0x6e', '0x1', '0xce',
+                           '0xed', '0x66', '0x66', '0xcc', '0xd']
+        byte_strings = rom.interval(address, interval, strings=True)
+        self.assertEqual(byte_strings, correct_strings)
+        correct_ints = [0, 195, 110, 1, 206, 237, 102, 102, 204, 13]
+        ints = rom.interval(address, interval, strings=False)
+        self.assertEqual(ints, correct_ints)
+    def test_rom_until(self):
+        global rom
+        load_rom()
+        address = 0x1337
+        byte = 0x13
+        bytes = rom.until(address, byte, strings=True)
+        self.failUnless(len(bytes) == 3)
+        self.failUnless(bytes[0] == '0xd5')
+        bytes = rom.until(address, byte, strings=False)
+        self.failUnless(len(bytes) == 3)
+        self.failUnless(bytes[0] == 0xd5)
 class TestAsmList(unittest.TestCase):
     """AsmList is a class that should act exactly like list()
     except that it never shows the contents of its list
