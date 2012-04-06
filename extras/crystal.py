@@ -11,7 +11,10 @@ from bisect import bisect_left, bisect_right
 from itertools import izip
 
 #for testing all this crap
-import unittest2 as unittest
+try:
+    import unittest2 as unittest
+except ImportError:
+    import unittest
 
 if not hasattr(json, "dumps"):
     json.dumps = json.write
