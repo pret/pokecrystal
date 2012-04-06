@@ -16,6 +16,11 @@ try:
 except ImportError:
     import unittest
 
+# Check for things we need in unittest.
+if not hasattr(unittest.TestCase, 'setUpClass'):
+    print "The unittest2 module or Python 2.7 is required to run this script."
+    sys.exit(1)
+
 if not hasattr(json, "dumps"):
     json.dumps = json.write
 
