@@ -435,8 +435,17 @@ class IntervalMap(object):
                 ))
         return '{'+', '.join(s)+'}'
 
+# ---- script_parse_table explanation ----
+# This is an IntervalMap that keeps track of previously parsed scripts, texts
+# and other objects. Anything that has a location in the ROM should be mapped
+# to an interval (a range of addresses) in this structure. Each object that is
+# assigned to an interval should implement attributes or methods like:
+#   ATTRIBUTE/METHOD            EXPLANATION
+#   label                       what the heck to call the object
+#   address                     where it begins
+#   to_asm()                    spit out asm (not including label)
 #keys are intervals "500..555" of byte addresses for each script
-#last byte is not inclusive
+#last byte is not inclusive(?) really? according to who??
 #this is how to make sure scripts are not recalculated
 script_parse_table = IntervalMap()
 
@@ -2705,7 +2714,10 @@ class Script():
             raise Exception, "don't know what to do with second (or later) positional arguments"
         self.label = "UnknownScript_"+hex(self.address)
         #parse the script at the address
-        self.parse(self.address, **kwargs)
+        if "use_old_parse" in kwargs.keys() and kwargs["use_old_parse"] == True:
+            self.old_parse(**kwargs)
+        else:
+            self.parse(self.address, **kwargs)
     def pksv_list(self):
         """shows a list of pksv names for each command in the script"""
         items = []
@@ -4659,6 +4671,19 @@ def parse_script_engine_script_at(address, map_group=None, map_id=None, force=Fa
     if is_script_already_parsed_at(address) and not force:
         return script_parse_table[address]
     return Script(address, map_group=map_group, map_id=map_id, force=force, debug=debug, origin=origin)
+
+def compare_script_parsing_methods(address):
+    """
+    compares the parsed scripts using the new method and the old method
+    The new method is Script.parse, the old method is Script.old_parse.
+
+    There are likely to be problems with the new script parser, the one
+    that uses the command classes to parse bytes. To look for these
+    problems, you can compare the output of one parsing method to the
+    output of the other. When there's a difference, there is something
+    worth correcting. Probably by each command's "macro_name" attribute.
+    """
+    raise NotImplementedError, bryan_message
 
 def parse_warp_bytes(some_bytes, debug=True):
     """parse some number of warps from the data"""
