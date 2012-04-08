@@ -4683,7 +4683,33 @@ def compare_script_parsing_methods(address):
     output of the other. When there's a difference, there is something
     worth correcting. Probably by each command's "macro_name" attribute.
     """
-    raise NotImplementedError, bryan_message
+    load_rom()
+    separator = "################ compare_script_parsing_methods"
+    #first do it the old way
+    print separator
+    print "parsing the script at " + hex(address) + " using the old method"
+    oldscript = Script(address, debug=True, force=True, origin=True, use_old_parse=True)
+    #and now the old way
+    print separator
+    print "parsing the script at " + hex(address) + " using the new method"
+    newscript = Script(address, debug=True, force=True, origin=True)
+    #let the comparison begin..
+    errors = 0
+    print separator + " COMPARISON RESULTS"
+    if not len(oldscript.commands.keys()) == len(newscript.commands):
+        print "the two scripts don't have the same number of commands"
+        errors += 1
+    for (id, oldcommand) in oldscript.commands.items():
+        newcommand = newscript.commands[id]
+        oldcommand_pksv_name = pksv_crystal[oldcommand["type"]].replace(" ", "_")
+        if oldcommand["start_address"] != newcommand.address:
+            print "the two addresses (command id="+str(id)+") do not match old="+hex(oldcommand["start_address"]) + " new="+hex(newcommand.address)
+            errors += 1
+        if oldcommand_pksv_name != newcommand.macro_name:
+            print "the two commands (id="+str(id)+") do not have the same name old="+oldcommand_pksv_name+" new="+newcommand.macro_name
+            errors += 1
+    print "total comparison errors: " + str(errors)
+    return oldscript, newscript
 
 def parse_warp_bytes(some_bytes, debug=True):
     """parse some number of warps from the data"""
