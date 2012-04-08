@@ -2212,7 +2212,7 @@ class ScriptPointerLabelAfterBank(PointerLabelAfterBank): pass
 def _parse_script_pointer_bytes(self):
     PointerLabelParam.parse(self)
     address = calculate_pointer_from_bytes_at(self.address, bank=self.bank)
-    self.script = parse_script_engine_script_at(address)
+    self.script = parse_script_engine_script_at(address, debug=self.debug, force=self.force, map_group=self.map_group, map_id=self.map_id)
 ScriptPointerLabelParam.parse = _parse_script_pointer_bytes
 ScriptPointerLabelBeforeBank.parse = _parse_script_pointer_bytes
 ScriptPointerLabelAfterBank.parse = _parse_script_pointer_bytes
@@ -2221,18 +2221,18 @@ class PointerLabelToScriptPointer(PointerLabelParam):
         PointerLabelParam.parse(self)
         address = calculate_pointer_from_bytes_at(self.address, bank=self.bank)
         address2 = calculate_pointer_from_bytes_at(address, bank="reverse") #maybe not "reverse"?
-        self.script = parse_script_engine_script_at(address2, origin=False)
+        self.script = parse_script_engine_script_at(address2, origin=False, map_group=self.map_group, map_id=self.map_id, force=self.force, debug=self.debug)
 class AsmPointerParam(PointerLabelBeforeBank):
     def parse(self):
         PointerLabelBeforeBank.parse(self)
         address = calculate_pointer_from_bytes_at(self.address, bank=self.bank) #3-byte pointer
-        self.asm = parse_script_asm_at(address) #might end in some specific way?
+        self.asm = parse_script_asm_at(address, map_group=self.map_group, map_id=self.map_id, force=self.force, debug=self.debug) #might end in some specific way?
 class PointerToAsmPointerParam(PointerLabelParam):
     def parse(self):
         PointerLabelParam.parse(self)
         address = calculate_pointer_from_bytes_at(self.address, bank=self.bank) #2-byte pointer
         address2 = calculate_pointer_from_bytes_at(address, bank="reverse") #maybe not "reverse"?
-        self.asm = parse_script_asm_at(address) #might end in some specific way?
+        self.asm = parse_script_asm_at(address, map_group=self.map_group, map_id=self.map_id, force=self.force, debug=self.debug) #might end in some specific way?
 class RAMAddressParam(MultiByteParam):
     def to_asm(self):
         address = calculate_pointer_from_bytes_at(self.address, bank=False)
@@ -2482,13 +2482,29 @@ pksv_crystal_more = {
 
 class Command():
     def __init__(self, address=None, *pargs, **kwargs):
-        #raise Exception, "i don't think anything actually calls this?"
-        self.params = {}
+        """params:
+        address     - where the command starts
+        force       - whether or not to force the script to be parsed (default False)
+        debug       - are we in debug mode? default False
+        map_group
+        map_id
+        """
+        defaults = {"force": False, "debug": False, "map_group": None, "map_id": None}
         if not is_valid_address(address):
             raise Exception, "address is invalid"
+        #set up some variables
         self.address = address
         self.last_address = None
+        #params are where this command's byte parameters are stored
         self.params = {}
+        #override default settings
+        defaults.update(kwargs)
+        #set everything
+        for (key, value) in defaults.items():
+            setattr(self, key, value)
+        #but also store these kwargs
+        self.args = defaults
+        #start parsing this command's parameter bytes
         self.parse()
     def to_asm(self):
         #start with the rgbasm macro name for this command
@@ -2538,7 +2554,7 @@ class Command():
             klass = param_type["class"]
             #make an instance of this class, like SingleByteParam()
             #or ItemLabelByte.. by making an instance, obj.parse() is called
-            obj = klass(address=current_address, name=name)
+            obj = klass(address=current_address, name=name, **self.args)
             #save this for later
             self.params[i] = obj
             #increment our counters
@@ -2639,7 +2655,7 @@ def parse_script_with_command_classes(start_address, force=False, map_group=None
             for command in commands:
                 asm_output += command.to_asm() + "\n"
             raise Exception, "no command found? id: " + hex(cur_byte) + " at " + hex(current_address) + " asm is:\n" + asm_output
-        cls = right_kls(address=current_address)
+        cls = right_kls(address=current_address, force=force, map_group=map_group, map_id=map_id)
         print cls.to_asm()
         end = cls.end
         commands.append(cls)
