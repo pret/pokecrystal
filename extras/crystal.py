@@ -2497,7 +2497,7 @@ pksv_crystal_more = {
     0x91: ["end"],
     0x92: ["reloadandreturn"],
     0x93: ["resetfuncs"],
-    0x94: ["pokemart", ["dialog_id", SingleByteParam], ["mart_id", SingleByteParam]],
+    0x94: ["pokemart", ["dialog_id", SingleByteParam], ["mart_id", MultiByteParam]], #maybe it should be a pokemark constant id/label?
     0x95: ["elevator", ["floor_list_pointer", PointerLabelParam]],
     0x96: ["trade", ["trade_id", SingleByteParam]],
     0x97: ["askforphonenumber", ["number", SingleByteParam]],
