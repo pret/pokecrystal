@@ -704,7 +704,7 @@ class TextScript():
                         addresses.update(texts2)
         return addresses
     @staticmethod
-    def parse_text_at(address, map_group=None, map_id=None, debug=True, show=True):
+    def parse_text_at(address, map_group=None, map_id=None, debug=True, show=True, force=False):
         """parses a text-engine script ("in-text scripts")
         http://hax.iimarck.us/files/scriptingcodes_eng.htm#InText
     
@@ -712,18 +712,23 @@ class TextScript():
     
         see parse_text_at2, parse_text_at, and process_00_subcommands
         """
-        global rom, text_count, max_texts, texts
+        global rom, text_count, max_texts, texts, script_parse_table
         if rom == None:
             direct_load_rom()
         if address == None:
             return "not a script"
         commands = {}
+
+        if is_script_already_parsed_at(address) and not force:
+            print "text is already parsed at this location: " + hex(address)
+            return script_parse_table[address]
     
         total_text_commands = 0
         command_counter = 0
         original_address = address
         offset = address
         end = False
+        script_parse_table[original_address:original_address+1] = "incomplete text"
         while not end:
             address = offset
             command = {}
@@ -913,6 +918,7 @@ class TextScript():
         #if text_count >= max_texts:
         #    sys.exit()
         
+        script_parse_table[original_address:offset-1] = commands
         return commands
     @staticmethod
     def to_asm_at(address, label="SomeLabel"):
@@ -1110,12 +1116,14 @@ class TextScript():
         print output
         return (output, byte_count)
 
-def parse_text_engine_script_at(address, map_group=None, map_id=None, debug=True, show=True):
+def parse_text_engine_script_at(address, map_group=None, map_id=None, debug=True, show=True, force=False):
     """parses a text-engine script ("in-text scripts")
     http://hax.iimarck.us/files/scriptingcodes_eng.htm#InText
     see parse_text_at2, parse_text_at, and process_00_subcommands
     """
-    return TextScript.parse_text_at(address, map_group=map_group, map_id=map_id, debug=debug, show=show)
+    if is_script_already_parsed_at(address) and not force:
+        return script_parse_table[address]
+    return TextScript.parse_text_at(address, map_group=map_group, map_id=map_id, debug=debug, show=show, force=force)
 def find_text_addresses():
     """returns a list of text pointers
     useful for testing parse_text_engine_script_at"""
@@ -2296,12 +2304,15 @@ class MenuDataPointerParam(PointerLabelParam):
     #raise NotImplementedError, bryan_message
     pass
 class RawTextPointerLabelParam(PointerLabelParam):
-    #is this to raw text? or to a text script?
-    #raise NotImplementedError, bryan_message
+    #not sure if these are always to a text script or raw text?
     pass
 class TextPointerLabelParam(PointerLabelParam):
-    #definitely points to a text script
-    pass
+    """this is a pointer to a text script"""
+    bank = False
+    def parse(self):
+        PointerLabelParam.parse(self)
+        address = calculate_pointer_from_bytes_at(self.address, bank=self.bank)
+        self.text = parse_text_engine_script_at(address, map_group=self.map_group, map_id=self.map_id, force=self.force, debug=self.debug)
 class MovementPointerLabelParam(PointerLabelParam):
     pass
 class MapDataPointerParam(PointerLabelParam):
@@ -2387,12 +2398,11 @@ pksv_crystal_more = {
     0x49: ["loadmovesprites"],
     0x4A: ["loadbytec1ce", ["byte", SingleByteParam]], #not pksv
     0x4B: ["3writetext", ["text_pointer", PointerLabelBeforeBank]],
-    0x4C: ["2writetext", ["text_pointer", RawTextPointerLabelParam]], #XXX - is this to a text script, or raw text?
+    0x4C: ["2writetext", ["text_pointer", TextPointerLabelParam]],
     0x4D: ["repeattext", ["byte", SingleByteParam], ["byte", SingleByteParam]], #not pksv
     0x4E: ["yesorno"],
     0x4F: ["loadmenudata", ["data", MenuDataPointerParam]],
     0x50: ["writebackup"],
-#XXX test123
     0x51: ["jumptextfaceplayer", ["text_pointer", RawTextPointerLabelParam]],
     0x53: ["jumptext", ["text_pointer", TextPointerLabelParam]],
     0x54: ["closetext"],
@@ -2634,7 +2644,7 @@ def parse_script_with_command_classes(start_address, force=False, map_group=None
     global command_classes, rom, script_parse_table
     current_address = start_address
     if start_address in stop_points and force == False:
-        print "got " + hex(start_address) + " at map_group="+str(map_group)+" map_id="+str(map_id)
+        print "script parsing is stopping at stop_point=" + hex(start_address) + " at map_group="+str(map_group)+" map_id="+str(map_id)
         return None
     if start_address < 0x4000 and start_address not in [0x26ef, 0x114, 0x1108]:
         print "address is less than 0x4000.. address is: " + hex(start_address)
