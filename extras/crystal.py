@@ -28,6 +28,8 @@ if not hasattr(json, "dumps"):
 if not hasattr(json, "read"):
     json.read = json.loads
 
+spacing = "\t"
+
 #table of pointers to map groups
 #each map group contains some number of map headers
 map_group_pointer_table = 0x94000
@@ -48,6 +50,10 @@ bryan_message = "bryan hasn't got to this yet"
 max_texts = 3
 text_count = 0
 texts = []
+
+#these appear outside of quotes (see pokered/extras/pretty_map_headers.py)
+#this doesn't do anything but is still used in TextScript
+constant_abbreviation_bytes = {}
 
 #this is straight out of ../textpre.py because i'm lazy
 #see jap_chars for overrides if you are in japanese mode?
@@ -613,7 +619,11 @@ def command_debug_information(command_byte=None, map_group=None, map_id=None, ad
 
 class TextScript():
     "a text is a sequence of commands different from a script-engine script"
-    def to_asm(self): raise NotImplementedError, bryan_message
+    def __init__(self, address, map_group=None, map_id=None, debug=True, show=True, force=False):
+        self.address = address
+        self.map_group, self.map_id, self.debug, self.show, self.force = map_group, map_id, debug, show, force
+        self.label = "UnknownTextLabel_"+hex(address)
+        self.parse_text_at(address)
     @staticmethod
     def find_addresses():
         """returns a list of text pointers
@@ -703,8 +713,7 @@ class TextScript():
                         texts2 = find_all_text_pointers_in_script_engine_script(script2, trainer_bank)
                         addresses.update(texts2)
         return addresses
-    @staticmethod
-    def parse_text_at(address, map_group=None, map_id=None, debug=True, show=True, force=False):
+    def parse_text_at(self, address):
         """parses a text-engine script ("in-text scripts")
         http://hax.iimarck.us/files/scriptingcodes_eng.htm#InText
     
@@ -717,6 +726,7 @@ class TextScript():
             direct_load_rom()
         if address == None:
             return "not a script"
+        map_group, map_id, debug, show, force = self.map_group, self.map_id, self.debug, self.show, self.force
         commands = {}
 
         if is_script_already_parsed_at(address) and not force:
@@ -918,12 +928,14 @@ class TextScript():
         #if text_count >= max_texts:
         #    sys.exit()
         
-        script_parse_table[original_address:offset-1] = commands
+        self.commands = commands
+        script_parse_table[original_address:offset-1] = self
         return commands
-    @staticmethod
-    def to_asm_at(address, label="SomeLabel"):
-        #parse the text script
-        commands = TextScript.parse_text_at(start_address)
+    def to_asm(self, label=None):
+        address = self.address
+        start_address = address
+        if label == None: label = self.label
+        commands = self.commands
         #apparently this isn't important anymore?
         needs_to_begin_with_0 = True
         #start with zero please
@@ -1042,7 +1054,9 @@ class TextScript():
             #add the ending byte to the last line- always seems $57
             #this should already be in there, but it's not because of a bug in the text parser
             lines[len(lines.keys())-1].append(commands[len(commands.keys())-1]["type"])
-    
+   
+            #XXX to_asm should probably not include label output
+            #so this will need to be removed eventually 
             if first_line:
                 output  = "\n"
                 output += label + ": ; " + hex(start_address) + "\n"
@@ -1068,7 +1082,7 @@ class TextScript():
                     if byte in [0x58, 0x57]:
                         had_text_end_byte_57_58 = True
     
-                    if byte in txt_bytes:
+                    if byte in chars:
                         if not quotes_open and not first_byte: #start text
                             output += ", \""
                             quotes_open = True
@@ -1076,7 +1090,7 @@ class TextScript():
                         if not quotes_open and first_byte: #start text
                             output += "\""
                             quotes_open = True
-                        output += txt_bytes[byte]
+                        output += chars[byte]
                     elif byte in constant_abbreviation_bytes:
                         if quotes_open:
                             output += "\""
@@ -1123,7 +1137,7 @@ def parse_text_engine_script_at(address, map_group=None, map_id=None, debug=True
     """
     if is_script_already_parsed_at(address) and not force:
         return script_parse_table[address]
-    return TextScript.parse_text_at(address, map_group=map_group, map_id=map_id, debug=debug, show=show, force=force)
+    return TextScript(address, map_group=map_group, map_id=map_id, debug=debug, show=show, force=force)
 def find_text_addresses():
     """returns a list of text pointers
     useful for testing parse_text_engine_script_at"""
@@ -2635,54 +2649,6 @@ def create_command_classes(debug=False):
     return klasses
 command_classes = create_command_classes()
 
-def parse_script_with_command_classes(start_address, force=False, map_group=None, map_id=None, force_top=True):
-    """parses a script using the Command classes
-    as an alternative to the old method using hard-coded commands
-
-    force_top just means 'force the main script to get parsed, but not any subscripts'
-    """
-    global command_classes, rom, script_parse_table
-    current_address = start_address
-    if start_address in stop_points and force == False:
-        print "script parsing is stopping at stop_point=" + hex(start_address) + " at map_group="+str(map_group)+" map_id="+str(map_id)
-        return None
-    if start_address < 0x4000 and start_address not in [0x26ef, 0x114, 0x1108]:
-        print "address is less than 0x4000.. address is: " + hex(start_address)
-        sys.exit(1)
-    if is_script_already_parsed_at(start_address) and not force and not force_top:
-        raise Exception, "this script has already been parsed before, please use that instance ("+hex(start_address)+")"
-    load_rom()
-    script_parse_table[start_address:start_address+1] = "incomplete"
-    commands = []
-    end = False
-    while not end:
-        cur_byte = ord(rom[current_address])
-        #find the right address
-        right_kls = None
-        for kls in command_classes:
-            if kls.id == cur_byte:
-                right_kls = kls
-        if right_kls == None:
-            print "parsing script; current_address is: " + hex(current_address)
-            current_address += 1
-            #continue
-            asm_output = ""
-            for command in commands:
-                asm_output += command.to_asm() + "\n"
-            raise Exception, "no command found? id: " + hex(cur_byte) + " at " + hex(current_address) + " asm is:\n" + asm_output
-        print "about to parse command: " + str(right_kls.macro_name)
-        cls = right_kls(address=current_address, force=force, map_group=map_group, map_id=map_id)
-        print cls.to_asm()
-        end = cls.end
-        commands.append(cls)
-        #current_address = cls.last_address + 1
-        current_address += cls.size
-    #XXX set to "self" in script_parse_table when this moves into the Script class
-    script_parse_table[start_address:current_address] = commands
-    asm_output = "".join([command.to_asm()+"\n" for command in commands])
-    print "--------------\n"+asm_output
-    return commands
-
 #use this to keep track of commands without pksv names
 pksv_no_names = {}
 def pretty_print_pksv_no_names():
@@ -2737,16 +2703,21 @@ class Script():
             self.address = address
         elif len(args) > 1:
             raise Exception, "don't know what to do with second (or later) positional arguments"
+        self.label = "UnknownScript_"+hex(self.address)
         #parse the script at the address
-        self.parse(**kwargs)
+        self.parse(self.address, **kwargs)
     def pksv_list(self):
         """shows a list of pksv names for each command in the script"""
         items = []
-        for (id, command) in self.commands.items():
-            if command["type"] in pksv_crystal:
-                items.append(pksv_crystal[command["type"]])
-            else:
-                items.append(hex(command["type"]))
+        if type(self.commands) == dict:
+            for (id, command) in self.commands.items():
+                if command["type"] in pksv_crystal:
+                    items.append(pksv_crystal[command["type"]])
+                else:
+                    items.append(hex(command["type"]))
+        else:
+            for command in self.commands:
+                items.append(command.macro_name)
         return items
     def to_pksv(self):
         """returns a string of pksv command names"""
@@ -2764,7 +2735,58 @@ class Script():
     def show_pksv(self):
         """prints a list of pksv command names in this script"""
         print self.to_pksv()
-    def parse(self, *args, **kwargs):
+    def parse(self, start_address, force=False, map_group=None, map_id=None, force_top=True, origin=True, debug=False):
+        """parses a script using the Command classes
+        as an alternative to the old method using hard-coded commands
+    
+        force_top just means 'force the main script to get parsed, but not any subscripts'
+        """
+        global command_classes, rom, script_parse_table
+        current_address = start_address
+        if start_address in stop_points and force == False:
+            print "script parsing is stopping at stop_point=" + hex(start_address) + " at map_group="+str(map_group)+" map_id="+str(map_id)
+            return None
+        if start_address < 0x4000 and start_address not in [0x26ef, 0x114, 0x1108]:
+            print "address is less than 0x4000.. address is: " + hex(start_address)
+            sys.exit(1)
+        if is_script_already_parsed_at(start_address) and not force and not force_top:
+            raise Exception, "this script has already been parsed before, please use that instance ("+hex(start_address)+")"
+        load_rom()
+        script_parse_table[start_address:start_address+1] = "incomplete parse_script_with_command_classes"
+        commands = []
+        end = False
+        while not end:
+            cur_byte = ord(rom[current_address])
+            #find the right address
+            right_kls = None
+            for kls in command_classes:
+                if kls.id == cur_byte:
+                    right_kls = kls
+            if right_kls == None:
+                print "parsing script; current_address is: " + hex(current_address)
+                current_address += 1
+                #continue
+                asm_output = ""
+                for command in commands:
+                    asm_output += command.to_asm() + "\n"
+                raise Exception, "no command found? id: " + hex(cur_byte) + " at " + hex(current_address) + " asm is:\n" + asm_output
+            print "about to parse command: " + str(right_kls.macro_name)
+            cls = right_kls(address=current_address, force=force, map_group=map_group, map_id=map_id)
+            print cls.to_asm()
+            end = cls.end
+            commands.append(cls)
+            #current_address = cls.last_address + 1
+            current_address += cls.size
+        #XXX set to "self" in script_parse_table when this moves into the Script class
+        script_parse_table[start_address:current_address] = self
+        asm_output = "".join([command.to_asm()+"\n" for command in commands])
+        print "--------------\n"+asm_output
+        self.commands = commands
+        return commands
+    def to_asm(self):
+        asm_output = "".join([command.to_asm()+"\n" for command in self.commands])
+        return asm_output
+    def old_parse(self, *args, **kwargs):
         """parses a script-engine script; force=True if you want to re-parse
         and get the debug information"""
         #can't handle more than one argument
@@ -2825,7 +2847,7 @@ class Script():
         #this next line stops the same script from being re-parsed multiple times
         #for instance.. maybe there's a script jump, then a jump back
         #the original script should only be parsed once
-        script_parse_table[original_start_address:original_start_address+1] = "incomplete"
+        script_parse_table[original_start_address:original_start_address+1] = "incomplete Script"
         
         #set up some variables
         self.commands = {}
@@ -4631,7 +4653,7 @@ class Script():
             commands[len(commands.keys())] = command
     
         self.commands = commands
-        script_parse_table[original_start_address : offset-1] = self
+        script_parse_table[original_start_address : offset] = self
         return True
 def parse_script_engine_script_at(address, map_group=None, map_id=None, force=False, debug=True, origin=True):
     if is_script_already_parsed_at(address) and not force:
@@ -5720,10 +5742,6 @@ for map_group_id in map_names.keys():
 #generate map constants (like 1=PALLET_TOWN)
 generate_map_constant_labels()
 
-#### pretty printing ###
-#texts: TextScript.to_asm_at
-#scripts: Script.to_asm_at
-
 #### asm utilities ####
 #these are pulled in from pokered/extras/analyze_incbins.py
 
@@ -6771,8 +6789,6 @@ class TestTextScript(unittest.TestCase):
     #def test_find_addresses(self):
     #    pass #or raise NotImplementedError, bryan_message
     #def test_parse_text_at(self):
-    #    pass #or raise NotImplementedError, bryan_message
-    #def test_to_asm_at(self):
     #    pass #or raise NotImplementedError, bryan_message
 class TestEncodedText(unittest.TestCase):
     """for testing chars-table encoded text chunks"""
