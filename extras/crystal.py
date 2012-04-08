@@ -2335,7 +2335,8 @@ class TextPointerLabelParam(PointerLabelParam):
     def parse(self):
         PointerLabelParam.parse(self)
         address = calculate_pointer_from_bytes_at(self.address, bank=self.bank)
-        self.text = parse_text_engine_script_at(address, map_group=self.map_group, map_id=self.map_id, force=self.force, debug=self.debug)
+        if address != None and address != 0:
+            self.text = parse_text_engine_script_at(address, map_group=self.map_group, map_id=self.map_id, force=self.force, debug=self.debug)
 class MovementPointerLabelParam(PointerLabelParam):
     pass
 class MapDataPointerParam(PointerLabelParam):
@@ -2755,6 +2756,7 @@ class Script():
         """
         global command_classes, rom, script_parse_table
         current_address = start_address
+        print "Script.parse address="+hex(self.address)
         if start_address in stop_points and force == False:
             print "script parsing is stopping at stop_point=" + hex(start_address) + " at map_group="+str(map_group)+" map_id="+str(map_id)
             return None
@@ -2801,6 +2803,7 @@ class Script():
     def old_parse(self, *args, **kwargs):
         """parses a script-engine script; force=True if you want to re-parse
         and get the debug information"""
+        print "Script.old_parse address="+hex(self.address)
         #can't handle more than one argument
         if len(args) > 1:
             raise Exception, "Script.parse_script doesn't know how to handle positional arguments"
@@ -3983,10 +3986,17 @@ class Script():
                 #* When pointer = 0000 then "Blackout" instead of return to gameplay.
                 """
                 size = 5
+                #sometimes win/lost can be a pointer to 0000 or None?
                 command["won_pointer"] = calculate_pointer_from_bytes_at(start_address+1, bank=False)
                 command["lost_pointer"] = calculate_pointer_from_bytes_at(start_address+3, bank=False)
-                command["text_won"] = parse_text_engine_script_at(command["won_pointer"], map_group=map_id, map_id=map_id, debug=debug)
-                command["text_lost"] = parse_text_engine_script_at(command["lost_pointer"], map_group=map_id, map_id=map_id, debug=debug)
+                if command["won_pointer"] == None:
+                    command["won_pointer"] = 0
+                else:
+                    command["text_won"] = parse_text_engine_script_at(command["won_pointer"], map_group=map_id, map_id=map_id, debug=debug)
+                if command["lost_pointer"] == None:
+                    command["lost_pointer"] = 0
+                else:
+                    command["text_lost"] = parse_text_engine_script_at(command["lost_pointer"], map_group=map_id, map_id=map_id, debug=debug)
             elif command_byte == 0x65: #Script talk-after
                 #XXX this is a really poor description of whatever this is
                 info = "? Load the trainer talk-after script"
@@ -6033,7 +6043,8 @@ def get_label_for(address):
     """returns a label assigned to a particular address"""
     global all_labels
     if type(address) != int:
-        raise Exception, "get_label_for requires an integer address"
+        print "get_label_for requires an integer address"
+        return None
 
     #the old way
     for thing in all_labels:
