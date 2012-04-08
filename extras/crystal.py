@@ -5965,10 +5965,21 @@ def get_label_for(address):
     global all_labels
     if type(address) != int:
         raise Exception, "get_label_for requires an integer address"
+
+    #the old way
     for thing in all_labels:
         if thing["address"] == address:
             return thing["label"]
-    return None
+    
+    #the new way
+    if is_script_already_parsed_at(address):
+        obj = script_parse_table[address]
+        if hasattr(obj, "label"):
+            return getattr(obj, "label")
+        else:
+            return "AlreadyParsedNoDefaultUnknownLabel_" + hex(address)
+
+    return "NotYetParsed_"+hex(address)
 
 def remove_quoted_text(line):
     """get rid of content inside quotes
