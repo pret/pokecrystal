@@ -2607,12 +2607,21 @@ def create_command_classes(debug=False):
     return klasses
 command_classes = create_command_classes()
 
-def parse_script_with_command_classes(start_address):
+def parse_script_with_command_classes(start_address, force=False, map_group=None, map_id=None):
     """parses a script using the Command classes
     as an alternative to the old method using hard-coded commands"""
-    global command_classes, rom
-    load_rom()
+    global command_classes, rom, script_parse_table
     current_address = start_address
+    if start_address in stop_points and force == False:
+        print "got " + hex(start_address) + " at map_group="+str(map_group)+" map_id="+str(map_id)
+        return None
+    if start_address < 0x4000 and start_address not in [0x26ef, 0x114, 0x1108]:
+        print "address is less than 0x4000.. address is: " + hex(start_address)
+        sys.exit(1)
+    if is_script_already_parsed_at(start_address) and not force:
+        raise Exception, "this script has already been parsed before, please use that instance ("+hex(start_address)+")"
+    load_rom()
+    script_parse_table[start_address:start_address+1] = "incomplete"
     commands = []
     end = False
     while not end:
@@ -2623,7 +2632,7 @@ def parse_script_with_command_classes(start_address):
             if kls.id == cur_byte:
                 right_kls = kls
         if right_kls == None:
-            print "xyz123 current_address is: " + hex(current_address)
+            print "parsing script; current_address is: " + hex(current_address)
             current_address += 1
             #continue
             asm_output = ""
@@ -5904,6 +5913,7 @@ def analyze_intervals():
         results.append(processed_incbins[key])
     return results
 
+all_labels = []
 def write_all_labels(all_labels, filename="labels.json"):
     fh = open(filename, "w")
     fh.write(json.dumps(all_labels))
