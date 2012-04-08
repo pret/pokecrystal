@@ -2604,7 +2604,9 @@ class Command():
         return True
 class GivePoke(Command):
     id = 0x2D
-    size = 4 #minimum
+    macro_name = "givepoke"
+    size = 5 #minimum
+    end = False
     param_types = {
                   0: {"name": "pokemon", "class": PokemonParam},
                   1: {"name": "level", "class": SingleByteParam},
@@ -2615,14 +2617,14 @@ class GivePoke(Command):
                   }
     def parse(self):
         self.params = {}
-        byte = int(rom[self.address])
+        byte = ord(rom[self.address])
         if not byte == self.id:
             raise Exception, "this should never happen"
         current_address = self.address+1
         i = 0
         for (key, param_type) in self.param_types.items():
             #stop executing after the 4th byte unless it == 0x1
-            if i == 4 and self.params[-1].byte != 1: break
+            if i == 4 and self.params[3].byte != 1: break
             name = param_type["name"]
             klass = param_type["class"]
             #make an instance of this class, like SingleByteParam()
@@ -2641,7 +2643,8 @@ pksv_crystal_more_enders = [0x03, 0x04, 0x05, 0x0C, 0x51, 0x53,
                             0x8D, 0x8F, 0x90, 0x91, 0x92, 0x9B] 
 def create_command_classes(debug=False):
     """creates some classes for each command byte"""
-    klasses = []
+    #don't forget to add any manually created script command classes
+    klasses = [GivePoke]
     for (byte, cmd) in pksv_crystal_more.items():
         cmd_name = cmd[0].replace(" ", "_")
         params = {"id": byte, "size": 1, "end": byte in pksv_crystal_more_enders, "macro_name": cmd_name}
