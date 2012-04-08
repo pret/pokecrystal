@@ -2211,7 +2211,9 @@ class ScriptPointerLabelBeforeBank(PointerLabelBeforeBank): pass
 class ScriptPointerLabelAfterBank(PointerLabelAfterBank): pass
 def _parse_script_pointer_bytes(self):
     PointerLabelParam.parse(self)
+    print "_parse_script_pointer_bytes - calculating the pointer located at " + hex(self.address)
     address = calculate_pointer_from_bytes_at(self.address, bank=self.bank)
+    print "_parse_script_pointer_bytes - the pointer is: " + hex(address)
     self.script = parse_script_engine_script_at(address, debug=self.debug, force=self.force, map_group=self.map_group, map_id=self.map_id)
 ScriptPointerLabelParam.parse = _parse_script_pointer_bytes
 ScriptPointerLabelBeforeBank.parse = _parse_script_pointer_bytes
@@ -2358,12 +2360,12 @@ pksv_crystal_more = {
     0x2E: ["giveegg", ["pkmn", PokemonParam], ["level", DecimalParam]],
     0x2F: ["givepokeitem", ["pointer", PointerParamToItemAndLetter]],
     0x30: ["checkpokeitem", ["pointer", PointerParamToItemAndLetter]], #not pksv
-    0x31: ["checkbit1", ["bit_number", SingleByteParam]],
-    0x32: ["clearbit1", ["bit_number", SingleByteParam]],
-    0x33: ["setbit1", ["bit_number", SingleByteParam]],
-    0x34: ["checkbit2", ["bit_number", SingleByteParam]],
-    0x35: ["clearbit2", ["bit_number", SingleByteParam]],
-    0x36: ["setbit2", ["bit_number", SingleByteParam]],
+    0x31: ["checkbit1", ["bit_number", MultiByteParam]],
+    0x32: ["clearbit1", ["bit_number", MultiByteParam]],
+    0x33: ["setbit1", ["bit_number", MultiByteParam]],
+    0x34: ["checkbit2", ["bit_number", MultiByteParam]],
+    0x35: ["clearbit2", ["bit_number", MultiByteParam]],
+    0x36: ["setbit2", ["bit_number", MultiByteParam]],
     0x37: ["wildoff"],
     0x38: ["wildon"],
     0x39: ["xycompare", ["pointer", MultiByteParam]],
@@ -2603,7 +2605,7 @@ def create_command_classes(debug=False):
     """creates some classes for each command byte"""
     klasses = []
     for (byte, cmd) in pksv_crystal_more.items():
-        cmd_name = cmd[0]
+        cmd_name = cmd[0].replace(" ", "_")
         params = {"id": byte, "size": 1, "end": byte in pksv_crystal_more_enders, "macro_name": cmd_name}
         params["param_types"] = {}
         if len(cmd) > 1:
@@ -2623,9 +2625,12 @@ def create_command_classes(debug=False):
     return klasses
 command_classes = create_command_classes()
 
-def parse_script_with_command_classes(start_address, force=False, map_group=None, map_id=None):
+def parse_script_with_command_classes(start_address, force=False, map_group=None, map_id=None, force_top=True):
     """parses a script using the Command classes
-    as an alternative to the old method using hard-coded commands"""
+    as an alternative to the old method using hard-coded commands
+
+    force_top just means 'force the main script to get parsed, but not any subscripts'
+    """
     global command_classes, rom, script_parse_table
     current_address = start_address
     if start_address in stop_points and force == False:
@@ -2634,7 +2639,7 @@ def parse_script_with_command_classes(start_address, force=False, map_group=None
     if start_address < 0x4000 and start_address not in [0x26ef, 0x114, 0x1108]:
         print "address is less than 0x4000.. address is: " + hex(start_address)
         sys.exit(1)
-    if is_script_already_parsed_at(start_address) and not force:
+    if is_script_already_parsed_at(start_address) and not force and not force_top:
         raise Exception, "this script has already been parsed before, please use that instance ("+hex(start_address)+")"
     load_rom()
     script_parse_table[start_address:start_address+1] = "incomplete"
@@ -2655,12 +2660,15 @@ def parse_script_with_command_classes(start_address, force=False, map_group=None
             for command in commands:
                 asm_output += command.to_asm() + "\n"
             raise Exception, "no command found? id: " + hex(cur_byte) + " at " + hex(current_address) + " asm is:\n" + asm_output
+        print "about to parse command: " + str(right_kls.macro_name)
         cls = right_kls(address=current_address, force=force, map_group=map_group, map_id=map_id)
         print cls.to_asm()
         end = cls.end
         commands.append(cls)
         #current_address = cls.last_address + 1
         current_address += cls.size
+    #XXX set to "self" in script_parse_table when this moves into the Script class
+    script_parse_table[start_address:current_address] = commands
     asm_output = "".join([command.to_asm()+"\n" for command in commands])
     print "--------------\n"+asm_output
     return commands
