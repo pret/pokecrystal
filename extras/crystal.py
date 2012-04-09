@@ -1180,25 +1180,27 @@ class EncodedText():
         line_count += 1
         return lines
     @staticmethod
-    def from_bytes(bytes, debug=True):
+    def from_bytes(bytes, debug=True, japanese=False):
         """assembles a string based on bytes looked up in the chars table"""
         line = ""
+        if japanese: charset = jap_chars
+        else: charset = chars
         for byte in bytes:
             if type(byte) != int:
                 byte = ord(byte)
-            if byte in chars.keys():
-                line += chars[byte]
+            if byte in charset.keys():
+                line += charset[byte]
             elif debug:
                 print "byte not known: " + hex(byte)
         return line
     @staticmethod
-    def parse_text_at(address, count=10, debug=True):
+    def parse_text_at(address, count=10, debug=True, japanese=False):
         """returns a string of text from an address
         this does not handle text commands"""
         output = ""
         commands = process_00_subcommands(address, address+count, debug=debug)
         for (line_id, line) in commands.items():
-            output += parse_text_from_bytes(line, debug=debug)
+            output += parse_text_from_bytes(line, debug=debug, japanese=japanese)
             output += "\n"
         texts.append([address, output])
         return output
@@ -1206,17 +1208,17 @@ def process_00_subcommands(start_address, end_address, debug=True):
     """split this text up into multiple lines
     based on subcommands ending each line"""
     return EncodedText.process_00_subcommands(start_address, end_address, debug=debug)
-def parse_text_from_bytes(bytes, debug=True):
+def parse_text_from_bytes(bytes, debug=True, japanese=False):
     """assembles a string based on bytes looked up in the chars table"""
-    return EncodedText.from_bytes(bytes, debug=debug)
+    return EncodedText.from_bytes(bytes, debug=debug, japanese=japanese)
 def parse_text_at(address, count=10, debug=True):
     """returns a list of bytes from an address
     see parse_text_at2 for pretty printing"""
     return parse_text_from_bytes(rom_interval(address, count, strings=False), debug=debug)
-def parse_text_at2(address, count=10, debug=True):
+def parse_text_at2(address, count=10, debug=True, japanese=False):
     """returns a string of text from an address
     this does not handle text commands"""
-    return EncodedText.parse_text_at(address, count, debug=debug)
+    return EncodedText.parse_text_at(address, count, debug=debug, japanese=japanese)
 
 def rom_text_at(address, count=10):
     """prints out raw text from the ROM
@@ -2459,7 +2461,7 @@ pksv_crystal_more = {
     0x64: ["winlosstext", ["win_text_pointer", TextPointerLabelParam], ["loss_text_pointer", TextPointerLabelParam]],
     0x65: ["scripttalkafter"], #not pksv
     0x66: ["talkaftercancel"],
-    0x67: ["istalkafterscriptexecutedafterbattle"], #not pksv
+    0x67: ["talkaftercheck"],
     0x68: ["setlasttalked", ["person", SingleByteParam]],
     0x69: ["applymovement", ["person", SingleByteParam], ["data", MovementPointerLabelParam]],
     0x6A: ["applymovement2", ["data", MovementPointerLabelParam]], #not pksv
@@ -2515,13 +2517,14 @@ pksv_crystal_more = {
     0x9C: ["specialphonecall", ["call_id", SingleByteParam], ["wtf", SingleByteParam]],
     0x9D: ["checkphonecall"],
     0x9E: ["verbosegiveitem", ["item", ItemLabelByte], ["quantity", DecimalParam]],
-    0x9F: ["verbosegiveitem2"],
+    0x9F: ["verbosegiveitem2", ["unknown", SingleByteParam]],
     0xA0: ["loadwilddata", ["map_group", MapGroupParam], ["map_id", MapIdParam]],
     0xA1: ["halloffame"],
     0xA2: ["credits"],
     0xA3: ["warpfacing", ["facing", SingleByteParam], ["map_group", MapGroupParam], ["map_id", MapIdParam], ["x", SingleByteParam], ["y", SingleByteParam]],
     0xA4: ["storetext", ["pointer", PointerLabelBeforeBank], ["memory", SingleByteParam]],
     0xA5: ["displaylocation", ["id", SingleByteParam]],
+    0xA8: ["unknown0xa8", ["unknown", SingleByteParam]],
     0xB2: ["unknown0xb2"],
 }
 
@@ -2772,7 +2775,7 @@ class Script():
         """
         global command_classes, rom, script_parse_table
         current_address = start_address
-        print "Script.parse address="+hex(self.address)
+        print "Script.parse address="+hex(self.address) +" map_group="+str(map_group)+" map_id="+str(map_id)
         if start_address in stop_points and force == False:
             print "script parsing is stopping at stop_point=" + hex(start_address) + " at map_group="+str(map_group)+" map_id="+str(map_id)
             return None
