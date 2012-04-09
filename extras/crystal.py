@@ -2103,12 +2103,14 @@ pksv_crystal = {
     0x9C: "specialphonecall",
     0x9D: "checkphonecall",
     0x9E: "verbosegiveitem",
+    0x9F: "verbosegiveitem2",
     0xA0: "loadwilddata",
     0xA1: "halloffame",
     0xA2: "credits",
     0xA3: "warpfacing",
     0xA4: "storetext",
     0xA5: "displaylocation",
+    0xB2: "unknown0xb2",
 }
 
 #these have no pksv names as of pksv 2.1.1
@@ -2373,6 +2375,7 @@ pksv_crystal_more = {
     0x15: ["writebyte", ["value", SingleByteParam]],
     0x16: ["addvar", ["value", SingleByteParam]],
     0x17: ["random", ["input", SingleByteParam]],
+    0x18: ["checkver"],
     0x19: ["copybytetovar", ["address", RAMAddressParam]],
     0x1A: ["copyvartobyte", ["address", RAMAddressParam]],
     0x1B: ["loadvar", ["address", RAMAddressParam], ["value", SingleByteParam]],
@@ -2512,12 +2515,14 @@ pksv_crystal_more = {
     0x9C: ["specialphonecall", ["call_id", SingleByteParam], ["wtf", SingleByteParam]],
     0x9D: ["checkphonecall"],
     0x9E: ["verbosegiveitem", ["item", ItemLabelByte], ["quantity", DecimalParam]],
+    0x9F: ["verbosegiveitem2"],
     0xA0: ["loadwilddata", ["map_group", MapGroupParam], ["map_id", MapIdParam]],
     0xA1: ["halloffame"],
     0xA2: ["credits"],
     0xA3: ["warpfacing", ["facing", SingleByteParam], ["map_group", MapGroupParam], ["map_id", MapIdParam], ["x", SingleByteParam], ["y", SingleByteParam]],
     0xA4: ["storetext", ["pointer", PointerLabelBeforeBank], ["memory", SingleByteParam]],
     0xA5: ["displaylocation", ["id", SingleByteParam]],
+    0xB2: ["unknown0xb2"],
 }
 
 class Command():
@@ -2605,7 +2610,7 @@ class Command():
 class GivePoke(Command):
     id = 0x2D
     macro_name = "givepoke"
-    size = 5 #minimum
+    size = 4 #minimum
     end = False
     param_types = {
                   0: {"name": "pokemon", "class": PokemonParam},
@@ -2624,6 +2629,7 @@ class GivePoke(Command):
         i = 0
         for (key, param_type) in self.param_types.items():
             #stop executing after the 4th byte unless it == 0x1
+            if i == 4: print "self.params[3].byte is: " + str(self.params[3].byte)
             if i == 4 and self.params[3].byte != 1: break
             name = param_type["name"]
             klass = param_type["class"]
@@ -2634,13 +2640,16 @@ class GivePoke(Command):
             self.params[i] = obj
             #increment our counters
             current_address += obj.size
+            self.size += obj.size
             i += 1
         self.last_address = current_address
         return True
 
 #these cause the script to end; used in create_command_classes
 pksv_crystal_more_enders = [0x03, 0x04, 0x05, 0x0C, 0x51, 0x53,
-                            0x8D, 0x8F, 0x90, 0x91, 0x92, 0x9B] 
+                            0x8D, 0x8F, 0x90, 0x91, 0x92, 0x9B,
+                            0xB2, #maybe?
+                           ]
 def create_command_classes(debug=False):
     """creates some classes for each command byte"""
     #don't forget to add any manually created script command classes
@@ -2791,7 +2800,7 @@ class Script():
                 for command in commands:
                     asm_output += command.to_asm() + "\n"
                 raise Exception, "no command found? id: " + hex(cur_byte) + " at " + hex(current_address) + " asm is:\n" + asm_output
-            print "about to parse command: " + str(right_kls.macro_name)
+            print "about to parse command(script@"+hex(start_address)+"): " + str(right_kls.macro_name)
             cls = right_kls(address=current_address, force=force, map_group=map_group, map_id=map_id)
             print cls.to_asm()
             end = cls.end
