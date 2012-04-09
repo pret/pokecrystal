@@ -2531,6 +2531,7 @@ pksv_crystal_more = {
     0xA5: ["displaylocation", ["id", SingleByteParam]],
     0xA8: ["unknown0xa8", ["unknown", SingleByteParam]],
     0xB2: ["unknown0xb2", ["unknown", SingleByteParam]],
+    0xCC: ["unknown0xcc"],
 }
 
 class Command():
@@ -2658,6 +2659,7 @@ class GivePoke(Command):
 pksv_crystal_more_enders = [0x03, 0x04, 0x05, 0x0C, 0x51, 0x53,
                             0x8D, 0x8F, 0x90, 0x91, 0x92, 0x9B,
                             0xB2, #maybe?
+                            0xCC, #maybe?
                            ]
 def create_command_classes(debug=False):
     """creates some classes for each command byte"""
