@@ -1539,7 +1539,12 @@ pokemon_constants = {
 251: "CELEBI",
 }
 def get_pokemon_constant_by_id(id):
+    if id == 0: return None
     return pokemon_constants[id]
+
+def parse_script_asm_at(*args, **kwargs):
+    #XXX TODO
+    return None
 
 item_constants = {1: 'MASTER_BALL',
 2: 'ULTRA_BALL',
@@ -2517,7 +2522,7 @@ pksv_crystal_more = {
     0x9C: ["specialphonecall", ["call_id", SingleByteParam], ["wtf", SingleByteParam]],
     0x9D: ["checkphonecall"],
     0x9E: ["verbosegiveitem", ["item", ItemLabelByte], ["quantity", DecimalParam]],
-    0x9F: ["verbosegiveitem2", ["unknown", SingleByteParam]],
+    0x9F: ["verbosegiveitem2", ["item", ItemLabelByte]],
     0xA0: ["loadwilddata", ["map_group", MapGroupParam], ["map_id", MapIdParam]],
     0xA1: ["halloffame"],
     0xA2: ["credits"],
@@ -2525,7 +2530,7 @@ pksv_crystal_more = {
     0xA4: ["storetext", ["pointer", PointerLabelBeforeBank], ["memory", SingleByteParam]],
     0xA5: ["displaylocation", ["id", SingleByteParam]],
     0xA8: ["unknown0xa8", ["unknown", SingleByteParam]],
-    0xB2: ["unknown0xb2"],
+    0xB2: ["unknown0xb2", ["unknown", SingleByteParam]],
 }
 
 class Command():
@@ -2630,6 +2635,7 @@ class GivePoke(Command):
             raise Exception, "this should never happen"
         current_address = self.address+1
         i = 0
+        self.size = 1
         for (key, param_type) in self.param_types.items():
             #stop executing after the 4th byte unless it == 0x1
             if i == 4: print "self.params[3].byte is: " + str(self.params[3].byte)
