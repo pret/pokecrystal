@@ -2203,11 +2203,11 @@ class PointerLabelParam(MultiByteParam):
     def __init__(self, *args, **kwargs):
         #bank can be overriden
         if "bank" in kwargs.keys():
-            if kwargs["bank"] != False and kwargs["bank"] != None:
+            if kwargs["bank"] != False and kwargs["bank"] != None and kwargs["bank"] in [True, "reverse"]:
                 #not +=1 because child classes set size=3 already
                 self.size = self.default_size + 1
-            if kwargs["bank"] not in [None, False, True, "reverse"]:
-                raise Exception, "bank cannot be: " + str(bank)
+            #if kwargs["bank"] not in [None, False, True, "reverse"]:
+            #    raise Exception, "bank cannot be: " + str(kwargs["bank"])
         if self.size > 3:
             raise Exception, "param size is too large"
         #continue instantiation.. self.bank will be set down the road
@@ -5012,6 +5012,83 @@ class PeopleEvent(MapEventElement):
     standard_size = people_event_byte_size
     parse_func    = parse_people_event_bytes
 
+class SignpostRemoteBase:
+    def __init__(self, address, bank=None, map_group=None, map_id=None, signpost=None, debug=False, label=None):
+        self.address = address
+        self.last_address = address + self.size
+        script_parse_table[self.address : self.last_address] = self
+        self.bank = bank
+        self.map_group = map_group
+        self.map_id = map_id
+        self.signpost = signpost
+        self.debug = debug
+        self.params = []
+        if label == None:
+            self.label = self.base_label + hex(self.address)
+        else: self.label = label
+        self.parse()
+    def to_asm(self):
+        """very similar to Command.to_asm"""
+        if len(self.params) == 0: return ""
+        output = ", ".join([p.to_asm() for p in self.params])
+        return output
+class SignpostRemoteScriptChunk(SignpostRemoteBase):
+    """
+    a signpost might point to [Bit-Nr. (2byte)][2byte pointer to script]
+    """
+    base_label = "SignpostRemoteScript_"
+    size = 4
+    def parse(self):
+        address = self.address
+        bank = self.bank
+
+        #bit_table_byte1 = ord(rom[address])
+        #bit_table_byte2 = ord(rom[address+1])
+        bit_table = MultiByteParam(address=address, map_group=self.map_group, map_id=self.map_id, debug=self.debug)
+        self.params.append(bit_table)
+
+        #script_address = calculate_pointer_from_bytes_at(address+2, bank=bank)
+        #script = parse_script_engine_script_at(script_address, map_group=self.map_group, map_id=self.map_id, debug=self.debug)
+        script_param = ScriptPointerLabelParam(address=address+2, map_group=self.map_group, map_id=self.map_id, debug=self.debug, force=False)
+        self.params.append(script_param)
+        self.script = script_param.script
+        self.signpost.remote_script = self.script
+
+        #self.bit_table_bytes = [bit_table_byte1, bit_table_byte2]
+        #self.script_address = script_address
+        #self.script = script
+class SignpostRemoteItemChunk(SignpostRemoteBase):
+    """
+    a signpost might point to [Bit-Nr. (2byte)][Item no.]
+    """
+    base_label = "SignpostRemoteItem_"
+    size = 3
+    def parse(self):
+        address = self.address
+        bank = self.bank
+        
+        bit_table = MultiByteParam(address=address, map_group=self.map_group, map_id=self.map_id, debug=self.debug)
+        self.params.append(bit_table)
+        
+        item = ItemLabelByte(address=address+2)
+        self.params.append(item)
+        self.item = item
+class SignpostRemoteUnknownChunk(SignpostRemoteBase):
+    """
+    a signpost might point to [Bit-Nr. (2byte)][??]
+    """
+    base_label = "SignpostRemoteUnknown_"
+    size = 3
+    def parse(self):
+        address = self.address
+        bank = self.bank
+        
+        bit_table = MultiByteParam(address=address, bank=self.bank, map_group=self.map_group, map_id=self.map_id, debug=self.debug)
+        self.params.append(bit_table)
+        
+        byte = SingleByteParam(address=address+2)
+        self.params.append(byte)
+
 class Signpost:
     """parse some number of signposts from the data
 
@@ -5038,6 +5115,7 @@ class Signpost:
                 script pointer to: [Bit-Nr. (2byte)][??]
     """
     size = 5
+    macro_name = "signpost"
     def __init__(self, address, id, bank=None, map_group=None, map_id=None, debug=True, label=None):
         self.address = address
         self.id = id
@@ -5052,88 +5130,121 @@ class Signpost:
         self.last_address = self.address + self.size
         self.y, self.x, self.func = None, None, None
         script_parse_table[self.address : self.last_address] = self
+        self.remotes = []
+        self.params = []
         self.parse()
     def parse(self):
         """parse just one signpost"""
+        address = self.address
         bank = self.bank
-        some_bytes = rom_interval(self.address, self.size)
         self.last_address = self.address + self.size
-        for bytes in grouper(some_bytes, count=signpost_byte_size):
-            self.y = int(bytes[0], 16)
-            self.x = int(bytes[1], 16)
-            self.func = int(bytes[2], 16)
-            y, x, func = self.y, self.x, self.func
-
-            output = "******* parsing signpost "+str(self.id)+" at: "
-            output += "x="+str(x)+" y="+str(y)+" on map_group="
-            output += str(self.map_group)+" map_id="+str(self.map_id)
-    
-            if func in [0, 1, 2, 3, 4]:
-                #signpost's script pointer points to a script
-                script_ptr_byte1 = int(bytes[3], 16)
-                script_ptr_byte2 = int(bytes[4], 16)
-                script_pointer = script_ptr_byte1 + (script_ptr_byte2 << 8)
+        bytes = rom_interval(self.address, self.size) #, signpost_byte_size)
             
-                script_address = None
-                script = None
-            
-                script_address = calculate_pointer(script_pointer, bank)
-                output += " script@"+hex(script_address)
-                print output
-                script = parse_script_engine_script_at(script_address, map_group=self.map_group, map_id=self.map_id, debug=self.debug)
-    
-                self.script_address = script_address
-                self.script = script
-            elif func in [5, 6]:
-                #signpost's script pointer points to [Bit-Nr. (2byte)][2byte pointer to script]
-                ptr_byte1 = int(bytes[3], 16)
-                ptr_byte2 = int(bytes[4], 16)
-                pointer = ptr_byte1 + (ptr_byte2 << 8)
-                address = calculate_pointer(pointer, bank)
-                
-                self.pointer = pointer
-                self.points_to = address
-                
-                bit_table_byte1 = ord(rom[address])
-                bit_table_byte2 = ord(rom[address+1])
-                script_ptr_byte1 = ord(rom[address+2])
-                script_ptr_byte2 = ord(rom[address+3])
-                script_address = calculate_pointer_from_bytes_at(address+2, bank=bank)
-                output += " script@"+hex(script_address)
-                print output
-                script = parse_script_engine_script_at(script_address, map_group=self.map_group, map_id=self.map_id, debug=self.debug)
-                
-                self.bit_table_bytes = [bit_table_byte1, bit_table_byte2]
-                self.target_script_address = script_address
-                self.target_script = script
-            elif func == 7:
-                #signpost's script pointer points to [Bit-Nr. (2byte)][Item no.]
-                ptr_byte1 = int(bytes[3], 16)
-                ptr_byte2 = int(bytes[4], 16)
-                pointer = ptr_byte1 + (ptr_byte2 << 8)
-                address = calculate_pointer(pointer, bank)
-                
-                self.pointer = pointer
-                self.points_to = address
-                
-                bit_table_byte1 = ord(rom[address])
-                bit_table_byte2 = ord(rom[address+1])
-                item_id         = ord(rom[address+2])
-                output += " item_id="+str(item_id)
-                print output
+        self.y = int(bytes[0], 16)
+        self.x = int(bytes[1], 16)
+        self.func = int(bytes[2], 16)
+        y, x, func = self.y, self.x, self.func
 
-                self.bit_table_bytes = [bit_table_byte1, bit_table_byte2]
-                self.item_id = item_id
-            elif func == 8:
-                #signpost's script pointer points to [Bit-Nr. (2byte)][??]
-                print "... type 8 signpost not handled yet."
-            else:
-                raise Exception, "unknown signpost type byte="+hex(func) + " signpost@"+hex(self.address)
+        #y
+        self.params.append(DecimalParam(address=address, bank=self.bank, map_group=self.map_group, map_id=self.map_id, debug=self.debug))
+        #x
+        self.params.append(DecimalParam(address=address+1, bank=self.bank, map_group=self.map_group, map_id=self.map_id, debug=self.debug))
+        #func
+        self.params.append(HexByte(address=address+2, bank=self.bank, map_group=self.map_group, map_id=self.map_id, debug=self.debug))
+
+        output = "******* parsing signpost "+str(self.id)+" at: "
+        output += "x="+str(x)+" y="+str(y)+" on map_group="
+        output += str(self.map_group)+" map_id="+str(self.map_id)
+
+        if func in [0, 1, 2, 3, 4]:
+            #signpost's script pointer points to a script
+            script_ptr_byte1 = int(bytes[3], 16)
+            script_ptr_byte2 = int(bytes[4], 16)
+            script_pointer = script_ptr_byte1 + (script_ptr_byte2 << 8)
+            
+            script_address = calculate_pointer(script_pointer, bank)
+            output += " script@"+hex(script_address)
+            print output
+
+            param = ScriptPointerLabelParam(address=self.address+3, map_group=self.map_group, map_id=self.map_id, debug=self.debug, force=False)
+            self.params.append(param)
+            
+            #self.script_address = script_address
+            #self.script = script
+        elif func in [5, 6]:
+            #signpost's script pointer points to [Bit-Nr. (2byte)][2byte pointer to script]
+            ptr_byte1 = int(bytes[3], 16)
+            ptr_byte2 = int(bytes[4], 16)
+            pointer = ptr_byte1 + (ptr_byte2 << 8)
+            address = calculate_pointer(pointer, bank)
+            
+            bit_table_byte1 = ord(rom[address])
+            bit_table_byte2 = ord(rom[address+1])
+            script_ptr_byte1 = ord(rom[address+2])
+            script_ptr_byte2 = ord(rom[address+3])
+            script_address = calculate_pointer_from_bytes_at(address+2, bank=bank)
+            
+            output += " remote_chunk@"+hex(address)+" remote_script@"+hex(script_address)
+            print output
+            
+            r1 = SignpostRemoteScriptChunk(address, signpost=self, \
+                   bank=self.bank, map_group=self.map_group, map_id=self.map_id, \
+                   debug=self.debug)
+            self.remotes.append(r1)
+            
+            mb = PointerLabelParam(address=address, map_group=self.map_group, map_id=self.map_id, debug=self.debug)
+            self.params.append(mb)
+        elif func == 7:
+            #signpost's script pointer points to [Bit-Nr. (2byte)][Item no.]
+            ptr_byte1 = int(bytes[3], 16)
+            ptr_byte2 = int(bytes[4], 16)
+            pointer = ptr_byte1 + (ptr_byte2 << 8)
+            address = calculate_pointer(pointer, bank)
+            
+            item_id         = ord(rom[address+2])
+            output += " item_id="+str(item_id)
+            print output
+            
+            r1 = SignpostRemoteItemChunk(address, signpost=self, \
+                   bank=self.bank, map_group=self.map_group, map_id=self.map_id, \
+                   debug=self.debug)
+            self.remotes.append(r1)
+            
+            mb = PointerLabelParam(address=address, map_group=self.map_group, map_id=self.map_id, debug=self.debug)
+            self.params.append(mb)
+
+            #bit_table_byte1 = ord(rom[address])
+            #bit_table_byte2 = ord(rom[address+1])
+            #self.bit_table_bytes = [bit_table_byte1, bit_table_byte2]
+            #self.item_id = item_id
+        elif func == 8:
+            #signpost's script pointer points to [Bit-Nr. (2byte)][??]
+            ptr_byte1 = int(bytes[3], 16)
+            ptr_byte2 = int(bytes[4], 16)
+            pointer = ptr_byte1 + (ptr_byte2 << 8)
+            address = calculate_pointer(pointer, bank)
+            
+            output += " remote unknown chunk at="+hex(address)
+            print output
+            
+            r1 = SignpostRemoteUnknownChunk(address, signpost=self, \
+                   bank=self.bank, map_group=self.map_group, map_id=self.map_id, \
+                   debug=self.debug)
+            self.remotes.append(r1)
+            
+            mb = PointerLabelParam(address=address, map_group=self.map_group, map_id=self.map_id, debug=self.debug)
+            self.params.append(mb)
+        else:
+            raise Exception, "unknown signpost type byte="+hex(func) + " signpost@"+hex(self.address)
     def to_asm(self):
-        raise NotImplementedError 
+        output = self.macro_name + " "
+        if self.params == []: raise Exception, "signpost has no params?"
+        output += ", ".join([p.to_asm() for p in self.params])
+        return output
 
 all_signposts = []
 def parse_signpost_bytes(address, signpost_count, bank=None, map_group=None, map_id=None, debug=True):
+    if bank == None: raise Exception, "signposts need to know their bank"
     signposts = []
     current_address = address
     id = 0
