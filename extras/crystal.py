@@ -4835,8 +4835,40 @@ def parse_xy_trigger_bytes(some_bytes, bank=None, map_group=None, map_id=None, d
             "script": script,
         })
     return triggers
-def parse_trainer_header_at(address, map_group=None, map_id=None, debug=True):
-    """
+
+class ItemFragment(Command):
+    """used by ItemFragmentParam and PeopleEvent
+    (for items placed on a map)"""
+    size = 2
+    macro_name = "item_frag"
+    base_label = "ItemFragment_"
+    override_byte_check = True
+    param_types = {
+        0: {"name": "item", "class": ItemLabelByte},
+        1: {"name": "quantity", "class": DecimalParam},
+    }
+    def __init__(self, address, bank=None, map_group=None, map_id=None, debug=False, label=None):
+        assert is_valid_address(address), "PeopleEvent must be given a valid address"
+        self.address = address
+        self.last_address = address + self.size
+        self.bank = bank
+        if label: self.label = label
+        else: self.label = self.base_label + hex(address)
+        self.map_group = map_group
+        self.map_id = map_id
+        self.debug = debug
+        self.params = []
+        script_parse_table[self.address : self.last_address] = self
+        self.parse()
+class ItemFragmentParam(PointerLabelParam);
+    """used by PeopleEvent"""
+    def parse(self):
+        PointerLabelParam.parse(self)
+        address = calculate_pointer_from_bytes_at(self.address, bank=self.bank)
+        itemfrag = ItemFragment(address, map_group=self.map_group, map_id=self.map_id, debug=self.debug)
+        self.remotes = [itemfrag]
+class TrainerFragment(Command):
+    """used by TrainerFragmentParam and PeopleEvent for trainer data
     [Bit no. (2byte)][Trainer group][Trainer]
     [2byte pointer to Text when seen]
     [2byte pointer to text when trainer beaten]
@@ -4851,6 +4883,127 @@ def parse_trainer_header_at(address, map_group=None, map_id=None, debug=True):
     05 = Nothing
     06 = Nothing
     """
+    size = 12
+    macro_name = "trainer_def"
+    base_label = "Trainer_"
+    override_byte_check = True
+    param_types = {
+        0: {"name": "bit_number", "class": MultiByteParam},
+        1: {"name": "trainer_group", "class": TrainerGroupParam},
+        2: {"name": "trainer_id", "class": TrainerIdParam},
+        3: {"name": "text_when_seen", "class": TextPointerLabelParam},
+        4: {"name": "text_when_trainer_beaten", "class": TextPointerLabelParam},
+        5: {"name": "script_when_lost", "class": ScriptPointerLabelParam},
+        6: {"name": "script_talk_again", "class": ScriptPointerLabelParam},
+    }
+    def __init__(self, *args, **kwargs):
+        Command.__init__(self, *args, **kwargs)
+        self.last_address = self.address + self.size
+        script_parse_table[self.address : self.last_address] = self
+class TrainerFragmentParam(PointerLabelParam):
+    """used by PeopleEvent to point to trainer data"""
+    def parse(self):
+        PointerLabelParam.parse(self)
+        address = calculate_pointer_from_bytes_at(self.address, bank=self.bank)
+        trainerfrag = TrainerFragment(address, map_group=self.map_group, map_id=self.map_id, debug=self.debug)
+        self.remotes = [trainerfrag]
+class PeopleEvent(Command):
+    size = people_event_byte_size
+    macro_name = "people_event_def"
+    base_label = "PeopleEvent_"
+    override_byte_check = True
+    param_types = {
+        0: {"name": "picture", "class": HexByte},
+        1: {"name": "y from top+4", "class": DecimalParam},
+        2: {"name": "x from top+4", "class": DecimalParam),
+        3: {"name": "facing", "class": HexParam},
+        4: {"name": "movement", "class": HexParam},
+        5: {"name": "clock_hour", "class": DecimalParam},
+        6: {"name": "clock_daytime", "class": DecimalParam},
+        7: {"name": "color_function", "class": HexParam},
+        8: {"name": "sight_range", "class": DecimalParam},
+        9: {"name": "pointer", "class": PointerLabelParam}, #or ScriptPointerLabelParam or ItemLabelParam
+        10: {"name": "BitTable1 bit number", "class": MultiByteParam},
+    }
+    def __init__(self, address, id, bank=None, map_group=None, map_id=None, debug=False, label=None):
+        assert is_valid_address(address), "PeopleEvent must be given a valid address"
+        self.address = address
+        self.last_address = address + people_event_byte_size
+        self.id = id
+        self.bank = bank
+        if label: self.label = label
+        else: self.label = self.base_label + hex(address)
+        self.map_group = map_group
+        self.map_id = map_id
+        self.debug = debug
+        self.params = []
+        script_parse_table[self.address : self.last_address] = self
+        self.parse()
+    def parse(self):
+        address = self.address
+        bank = self.bank
+
+        color_function_byte = None
+        lower_bits = None
+        higher_bits = None
+        is_regular_script = None
+        is_give_item = None
+        is_trainer = None
+
+        self.params = {}
+        current_address = self.address
+        i = 0
+        self.size = 1
+        color_function_byte = None
+        for (key, param_type) in self.param_types.items():
+            if i == 9:
+                if is_give_item:
+                    name = "item_fragment_pointer"
+                    klass = ItemFragmentParam
+                elif is_regular_script:
+                    name = "script_pointer"
+                    klass = ScriptPointerLabelParam
+                elif is_trainer:
+                    name = "trainer"
+                    klass = TrainerFragmentParam
+                else:
+                    name = "unknown"
+                    klass = MultiByteParam
+            else:
+                name = param_type["name"]
+                klass = param_type["klass"]
+            obj = klass(address=current_address, name=name, debug=self.debug)
+            self.params[i] = obj
+            if i == 7:
+                color_function_byte = ord(rom[current_address])
+                lower_bits = color_function_byte & 0xF
+                higher_bits = color_function_byte >> 4
+                is_regular_script = lower_bits == 00
+                is_give_item = lower_bits == 01
+                is_trainer = lower_bits == 02
+            current_address += obj.size
+            self.size += obj.size
+            i += 1
+        self.last_address = current_address
+        self.is_trainer = is_trainer
+        self.is_give_item = is_give_item
+        self.is_regular_script = is_regular_script
+        return True
+
+all_people_events = []
+def parse_people_events(address, people_event_count, bank=None, map_group=None, map_id=None, debug=False): #people_event_byte_size
+    people_events = []
+    current_address = address
+    id = 0
+    for each in range(people_event_count):
+        pevent = PeopleEvent(address=current_address, id=id, bank=bank, map_group=map_group, map_id=map_id, debug=debug)
+        current_address += people_event_byte_size
+        people_events.append(pevent)
+        id += 1
+    all_people_events.append(people_events)
+    return people_events
+
+def old_parse_trainer_header_at(address, map_group=None, map_id=None, debug=True):
     bank = calculate_bank(address)
     bytes = rom_interval(address, 12, strings=False)
     bit_number = bytes[0] + (bytes[1] << 8)
@@ -4891,45 +5044,8 @@ def parse_trainer_header_at(address, map_group=None, map_id=None, debug=True):
         "script_talk_again_ptr": script_talk_again_ptr,
         "script_talk_again": script_talk_again,
     }
-    
-class PeopleEvent(Command):
-    size = people_event_byte_size
-    macro_name = "people_event_def"
-    base_label = "PeopleEvent_"
-    override_byte_check = True
-    param_types = {
-        0: {"name": "picture", "class": HexByte},
-        1: {"name": "y from top+4", "class": DecimalParam},
-        2: {"name": "x from top+4", "class": DecimalParam),
-        3: {"name": "facing", "class": HexParam},
-        4: {"name": "movement", "class": HexParam},
-        5: {"name": "clock_hour", "class": DecimalParam},
-        6: {"name": "clock_daytime", "class": DecimalParam},
-        7: {"name": "color_function", "class": HexParam},
-        8: {"name": "sight_range", "class": DecimalParam},
-        9: {"name": "pointer", "class": PointerLabelParam}, #or ScriptPointerLabelParam ??
-        10: {"name": "BitTable1 bit number", "class": MultiByteParam},
-    }
-    def __init__(self, address, id, bank=None, map_group=None, map_id=None, debug=False, label=None):
-        assert is_valid_address(address), "PeopleEvent must be given a valid address"
-        self.address = address
-        self.last_address = address + people_event_byte_size
-        self.id = id
-        self.bank = bank
-        if label: self.label = label
-        else: self.label = self.base_label + hex(address)
-        self.map_group = map_group
-        self.map_id = map_id
-        self.debug = debug
-        self.params = []
-        script_parse_table[self.address : self.last_address] = self
-        self.parse()
-    def parse(self):
-        address = self.address
-        bank = self.bank
-        
-    def to_asm(self): raise NotImplementedError, bryan_message
-def parse_people_event_bytes(some_bytes, address=None, map_group=None, map_id=None, debug=True): #max of 14 people per map?
+
+def old_parse_people_event_bytes(some_bytes, address=None, map_group=None, map_id=None, debug=True):
     """parse some number of people-events from the data
     see http://hax.iimarck.us/files/scriptingcodes_eng.htm#Scripthdr
 
@@ -4939,6 +5055,8 @@ def parse_people_event_bytes(some_bytes, address=None, map_group=None, map_id=No
         3B 08 0C 05 01 FF FF 00 00 05 40 FF FF
         3A 07 06 06 00 FF FF A0 00 08 40 FF FF
         29 05 0B 06 00 FF FF 00 00 0B 40 FF FF
+    
+    max of 14 people per map?
     """
     assert len(some_bytes) % people_event_byte_size == 0, "wrong number of bytes"
 
@@ -5380,15 +5498,17 @@ def parse_map_event_header_at(address, map_group=None, map_id=None, debug=True):
     #signposts
     signpost_count = ord(rom[after_triggers])
     signpost_byte_count = signpost_byte_size * signpost_count
-    signposts = rom_interval(after_triggers+1, signpost_byte_count)
+    #signposts = rom_interval(after_triggers+1, signpost_byte_count)
+    signposts = parse_signpost_bytes(after_triggers+1, signpost_count, bank=bank, map_group=map_group, map_id=map_id)
     after_signposts = after_triggers + 1 + signpost_byte_count
-    returnable.update({"signpost_count": signpost_count, "signposts": parse_signpost_bytes(after_triggers+1, signpost_count, bank=bank, map_group=map_group, map_id=map_id)})
+    returnable.update({"signpost_count": signpost_count, "signposts": signposts})
   
     #people events
     people_event_count = ord(rom[after_signposts])
     people_event_byte_count = people_event_byte_size * people_event_count
-    people_events_bytes = rom_interval(after_signposts+1, people_event_byte_count)
-    people_events = parse_people_event_bytes(people_events_bytes, address=after_signposts+1, map_group=map_group, map_id=map_id)
+    #people_events_bytes = rom_interval(after_signposts+1, people_event_byte_count)
+    #people_events = parse_people_event_bytes(people_events_bytes, address=after_signposts+1, map_group=map_group, map_id=map_id)
+    people_events = parse_people_events(after_signposts+1, people_event_count, bank=bank, map_group=map_group, map_id=map_id)
     returnable.update({"people_event_count": people_event_count, "people_events": people_events})
 
     return returnable
@@ -7050,8 +7170,6 @@ class TestMapParsing(unittest.TestCase):
     #def test_parse_signpost_bytes(self):
     #    pass #or raise NotImplementedError, bryan_message
     #def test_parse_people_event_bytes(self):
-    #    pass #or raise NotImplementedError, bryan_message
-    #def test_parse_trainer_header_at(self):
     #    pass #or raise NotImplementedError, bryan_message
     #def test_parse_map_header_at(self):
     #    pass #or raise NotImplementedError, bryan_message
