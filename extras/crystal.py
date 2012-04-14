@@ -2550,8 +2550,15 @@ pksv_crystal_more = {
     0xCC: ["unknown0xcc"],
 }
 
-class Command():
+class Command:
+    """
+    Note: when dumping to asm, anything in script_parse_table that directly
+    inherits Command should not be .to_asm()'d.
+    """
+    #use this when the "byte id" doesn't matter
+    #.. for example, a non-script command doesn't use the "byte id"
     override_byte_check = False
+    
     def __init__(self, address=None, *pargs, **kwargs):
         """params:
         address     - where the command starts
@@ -5347,50 +5354,93 @@ def parse_second_map_header_at(address, map_group=None, map_id=None, debug=True)
         "connections": connections,
     }
 
-def parse_map_event_header_at(address, map_group=None, map_id=None, debug=True):
+class MapEventHeader:
+    base_label = "MapEventHeader_"
+    def __init__(self, address, map_group=None, map_id=None, debug=True, bank=None, label=None):
+        self.address = address
+        self.map_group = map_group
+        self.map_id = map_id
+        self.debug = debug
+        self.bank = bank
+        if label:
+            self.label = label
+        else:
+            self.label = self.base_label + hex(address)
+        self.parse()
+        script_parse_table[address : self.last_address] = self
+    def parse(self):
+        address = self.address
+        bank = calculate_bank(self.address) #or use self.bank
+        print "event header address is: " + hex(address)
+        
+        filler1 = ord(rom[address])
+        filler2 = ord(rom[address+1])
+        self.fillers = [filler1, filler2]
+        
+        #warps
+        warp_count = ord(rom[address+2])
+        warp_byte_count = warp_byte_size * warp_count
+        after_warps = address + 3 + warp_byte_count
+        warps = parse_warps(address+3, warp_count, bank=bank, map_group=map_group, map_id=map_id, debug=debug)
+        self.warp_count = warp_count
+        self.warps = warps
+
+        #triggers (based on xy location)
+        trigger_count = ord(rom[after_warps])
+        trigger_byte_count = trigger_byte_size * trigger_count
+        xy_triggers = parse_xy_triggers(after_warps+1, trigger_count, bank=bank, map_group=map_group, map_id=map_id, debug=debug)
+        after_triggers = after_warps + 1 + trigger_byte_count
+        self.xy_trigger_count = xy_trigger_count
+        self.xy_triggers = xy_triggers
+        
+        #signposts
+        signpost_count = ord(rom[after_triggers])
+        signpost_byte_count = signpost_byte_size * signpost_count
+        #signposts = rom_interval(after_triggers+1, signpost_byte_count)
+        signposts = parse_signposts(after_triggers+1, signpost_count, bank=bank, map_group=map_group, map_id=map_id, debug=debug)
+        after_signposts = after_triggers + 1 + signpost_byte_count
+        self.signpost_count = signpost_count
+        self.signposts = signposts
+      
+        #people events
+        people_event_count = ord(rom[after_signposts])
+        people_event_byte_count = people_event_byte_size * people_event_count
+        #people_events_bytes = rom_interval(after_signposts+1, people_event_byte_count)
+        #people_events = parse_people_event_bytes(people_events_bytes, address=after_signposts+1, map_group=map_group, map_id=map_id)
+        people_events = parse_people_events(after_signposts+1, people_event_count, bank=bank, map_group=map_group, map_id=map_id, debug=debug)
+        self.people_event_count = people_event_count
+        self.people_events = people_events
+        
+        if people_event_count > 0:
+            self.last_address = people_events[-1].last_address
+        else:
+            self.last_address = after_signposts+1
+        return True
+    def to_asm(self):
+        output += spacing + "; warps\n"
+        output += spacing + "db %d\n"%(self.warp_count)
+        output += "\n".join([spacing+warp.to_asm() for warp in self.warps])
+
+        output += "\n\n"
+        output += spacing + "; xy triggers\n"
+        output += spacing + "db %d\n"%(self.xy_trigger_count)
+        output += "\n".join([spacing+xy_trigger.to_asm() for xy_trigger in self.xy_triggers])
+
+        output += "\n\n"
+        output += spacing + "; signposts\n"
+        output += spacing + "db %d\n"%(self.signpost_count)
+        output += "\n".join([spacing+signpost.to_asm() for signpost in self.signposts])
+
+        output += "\n\n"
+        output += spacing + "; people-events\n"
+        output += spacing + "db %d\n"%(self.people_event_count)
+        output += "\n".join([spacing+people_event.to_asm() for people_event in self.people_events])
+
+        return output
+
+def parse_map_event_header_at(address, map_group=None, map_id=None, debug=True, bank=None):
     """parse crystal map event header byte structure thing"""
-    returnable = {}
-
-    bank = calculate_bank(address)
-
-    print "event header address is: " + hex(address)
-    filler1 = ord(rom[address])
-    filler2 = ord(rom[address+1])
-    returnable.update({"1": filler1, "2": filler2})
-    
-    #warps
-    warp_count = ord(rom[address+2])
-    warp_byte_count = warp_byte_size * warp_count
-    after_warps = address + 3 + warp_byte_count
-    warps = parse_warps(address+3, warp_count, bank=bank, map_group=map_group, map_id=map_id, debug=debug)
-    returnable.update({"warp_count": warp_count, "warps": warps})
-    
-    #triggers (based on xy location)
-    trigger_count = ord(rom[after_warps])
-    trigger_byte_count = trigger_byte_size * trigger_count
-    #triggers = rom_interval(after_warps+1, trigger_byte_count)
-    #xy_triggers = parse_xy_trigger_bytes(triggers, bank=bank, map_group=map_group, map_id=map_id)
-    xy_triggers = parse_xy_triggers(after_warps+1, trigger_count, bank=bank, map_group=map_group, map_id=map_id, debug=debug)
-    after_triggers = after_warps + 1 + trigger_byte_count
-    returnable.update({"xy_trigger_count": trigger_count, "xy_triggers": xy_triggers})
-    
-    #signposts
-    signpost_count = ord(rom[after_triggers])
-    signpost_byte_count = signpost_byte_size * signpost_count
-    #signposts = rom_interval(after_triggers+1, signpost_byte_count)
-    signposts = parse_signposts(after_triggers+1, signpost_count, bank=bank, map_group=map_group, map_id=map_id, debug=debug)
-    after_signposts = after_triggers + 1 + signpost_byte_count
-    returnable.update({"signpost_count": signpost_count, "signposts": signposts})
-  
-    #people events
-    people_event_count = ord(rom[after_signposts])
-    people_event_byte_count = people_event_byte_size * people_event_count
-    #people_events_bytes = rom_interval(after_signposts+1, people_event_byte_count)
-    #people_events = parse_people_event_bytes(people_events_bytes, address=after_signposts+1, map_group=map_group, map_id=map_id)
-    people_events = parse_people_events(after_signposts+1, people_event_count, bank=bank, map_group=map_group, map_id=map_id, debug=debug)
-    returnable.update({"people_event_count": people_event_count, "people_events": people_events})
-
-    return returnable
+    return MapEventHeader(address, map_group=map_group, map_id=map_id, debug=debug, bank=bank)
 
 def parse_map_script_header_at(address, map_group=None, map_id=None, debug=True):
     """parses a script header
