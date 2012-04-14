@@ -2219,6 +2219,17 @@ class PointerLabelParam(MultiByteParam):
         caddress = calculate_pointer_from_bytes_at(self.address, bank=self.bank)
         label = get_label_for(caddress)
         pointer_part = label #use the label, if it is found
+        
+        #check that the label actually points to the right place
+        result = script_parse_table[caddress]
+        if result != None and hasattr(result, "label"):
+            if result.label != label:
+                label = None
+            elif result.address != caddress:
+                label = None
+        elif result != None:
+            label = None
+        
         #setup output bytes if the label was not found
         if not label:
             #pointer_part = (", ".join([(self.prefix+"%.2x")%x for x in reversed(self.bytes[1:])]))
@@ -2811,9 +2822,9 @@ class Script():
                 for command in commands:
                     asm_output += command.to_asm() + "\n"
                 raise Exception, "no command found? id: " + hex(cur_byte) + " at " + hex(current_address) + " asm is:\n" + asm_output
-            print "about to parse command(script@"+hex(start_address)+"): " + str(right_kls.macro_name)
+            #print "about to parse command(script@"+hex(start_address)+"): " + str(right_kls.macro_name)
             cls = right_kls(address=current_address, force=force, map_group=map_group, map_id=map_id)
-            print cls.to_asm()
+            #print cls.to_asm()
             end = cls.end
             commands.append(cls)
             #current_address = cls.last_address + 1
@@ -4796,88 +4807,6 @@ def parse_xy_trigger_bytes(some_bytes, bank=None, map_group=None, map_id=None, d
             "script": script,
         })
     return triggers
-def parse_signpost_bytes(some_bytes, bank=None, map_group=None, map_id=None, debug=True):
-    """parse some number of signposts from the data
-
-    [Y position][X position][Function][Script pointer (2byte)]
-
-    functions:
-        00      Sign can be read from all directions
-                script pointer to: script
-        01      Sign can only be read from below
-                script pointer to: script
-        02      Sign can only be read from above
-                script pointer to: script
-        03      Sign can only be read from right
-                script pointer to: script
-        04      Sign can only be read from left
-                script pointer to: script
-        05      If bit of BitTable1 is set then pointer is interpreted
-                script pointer to: [Bit-Nr. (2byte)][2byte pointer to script]
-        06      If bit of BitTable1 is not set then pointer is interpreted
-                script pointer to: [Bit-Nr. (2byte)][2byte pointer to script]
-        07      If bit of BitTable1 is set then item is given
-                script pointer to: [Bit-Nr. (2byte)][Item no.]
-        08      No Action
-                script pointer to: [Bit-Nr. (2byte)][??]
-    """
-    assert len(some_bytes) % signpost_byte_size == 0, "wrong number of bytes"
-    signposts = []
-    for bytes in grouper(some_bytes, count=signpost_byte_size):
-        y = int(bytes[0], 16)
-        x = int(bytes[1], 16)
-        func = int(bytes[2], 16)
-
-        additional = {}
-        if func in [0, 1, 2, 3, 4]:
-            print "******* parsing signpost script.. signpost is at: x=" + str(x) + " y=" + str(y)
-            script_ptr_byte1 = int(bytes[3], 16)
-            script_ptr_byte2 = int(bytes[4], 16)
-            script_pointer = script_ptr_byte1 + (script_ptr_byte2 << 8)
-        
-            script_address = None
-            script = None
-        
-            script_address = calculate_pointer(script_pointer, bank)
-            script = parse_script_engine_script_at(script_address, map_group=map_group, map_id=map_id)
-
-            additional = {
-            "script_ptr": script_pointer,
-            "script_pointer": {"1": script_ptr_byte1, "2": script_ptr_byte2},
-            "script_address": script_address,
-            "script": script,
-            }
-        elif func in [5, 6]:
-            print "******* parsing signpost script.. signpost is at: x=" + str(x) + " y=" + str(y)
-            ptr_byte1 = int(bytes[3], 16)
-            ptr_byte2 = int(bytes[4], 16)
-            pointer = ptr_byte1 + (ptr_byte2 << 8)
-            address = calculate_pointer(pointer, bank)
-            bit_table_byte1 = ord(rom[address])
-            bit_table_byte2 = ord(rom[address+1])
-            script_ptr_byte1 = ord(rom[address+2])
-            script_ptr_byte2 = ord(rom[address+3])
-            script_address = calculate_pointer_from_bytes_at(address+2, bank=bank)
-            script = parse_script_engine_script_at(script_address, map_group=map_group, map_id=map_id)
-            
-            additional = {
-            "bit_table_bytes": {"1": bit_table_byte1, "2": bit_table_byte2},
-            "script_ptr": script_ptr_byte1 + (script_ptr_byte2 << 8),
-            "script_pointer": {"1": script_ptr_byte1, "2": script_ptr_byte2},
-            "script_address": script_address,
-            "script": script,
-            }
-        else:
-            print ".. type 7 or 8 signpost not parsed yet."
-        
-        spost = {
-            "y": y,
-            "x": x,
-            "func": func,
-        }
-        spost.update(additional)
-        signposts.append(spost)
-    return signposts
 def parse_trainer_header_at(address, map_group=None, map_id=None, debug=True):
     """
     [Bit no. (2byte)][Trainer group][Trainer]
@@ -5076,12 +5005,145 @@ class Warp(MapEventElement):
 class Trigger(MapEventElement):
     standard_size = trigger_byte_size
     parse_func    = parse_xy_trigger_bytes
-class Signpost(MapEventElement):
-    standard_size = signpost_byte_size
-    parse_func    = parse_signpost_bytes
+#class Signpost(MapEventElement):
+#    standard_size = signpost_byte_size
+#    parse_func    = parse_signpost_bytes
 class PeopleEvent(MapEventElement):
     standard_size = people_event_byte_size
     parse_func    = parse_people_event_bytes
+
+class Signpost:
+    """parse some number of signposts from the data
+
+    [Y position][X position][Function][Script pointer (2byte)]
+
+    functions:
+        00      Sign can be read from all directions
+                script pointer to: script
+        01      Sign can only be read from below
+                script pointer to: script
+        02      Sign can only be read from above
+                script pointer to: script
+        03      Sign can only be read from right
+                script pointer to: script
+        04      Sign can only be read from left
+                script pointer to: script
+        05      If bit of BitTable1 is set then pointer is interpreted
+                script pointer to: [Bit-Nr. (2byte)][2byte pointer to script]
+        06      If bit of BitTable1 is not set then pointer is interpreted
+                script pointer to: [Bit-Nr. (2byte)][2byte pointer to script]
+        07      If bit of BitTable1 is set then item is given
+                script pointer to: [Bit-Nr. (2byte)][Item no.]
+        08      No Action
+                script pointer to: [Bit-Nr. (2byte)][??]
+    """
+    size = 5
+    def __init__(self, address, id, bank=None, map_group=None, map_id=None, debug=True, label=None):
+        self.address = address
+        self.id = id
+        if label == None:
+            self.label = "UnknownSignpost_"+str(map_group)+"Map"+str(map_id)+"_"+hex(address)
+        else:
+            self.label = label
+        self.map_group = map_group
+        self.map_id = map_id
+        self.debug = debug
+        self.bank = bank
+        self.last_address = self.address + self.size
+        self.y, self.x, self.func = None, None, None
+        script_parse_table[self.address : self.last_address] = self
+        self.parse()
+    def parse(self):
+        """parse just one signpost"""
+        bank = self.bank
+        some_bytes = rom_interval(self.address, self.size)
+        self.last_address = self.address + self.size
+        for bytes in grouper(some_bytes, count=signpost_byte_size):
+            self.y = int(bytes[0], 16)
+            self.x = int(bytes[1], 16)
+            self.func = int(bytes[2], 16)
+            y, x, func = self.y, self.x, self.func
+
+            output = "******* parsing signpost "+str(self.id)+" at: "
+            output += "x="+str(x)+" y="+str(y)+" on map_group="
+            output += str(self.map_group)+" map_id="+str(self.map_id)
+    
+            if func in [0, 1, 2, 3, 4]:
+                #signpost's script pointer points to a script
+                script_ptr_byte1 = int(bytes[3], 16)
+                script_ptr_byte2 = int(bytes[4], 16)
+                script_pointer = script_ptr_byte1 + (script_ptr_byte2 << 8)
+            
+                script_address = None
+                script = None
+            
+                script_address = calculate_pointer(script_pointer, bank)
+                output += " script@"+hex(script_address)
+                print output
+                script = parse_script_engine_script_at(script_address, map_group=self.map_group, map_id=self.map_id, debug=self.debug)
+    
+                self.script_address = script_address
+                self.script = script
+            elif func in [5, 6]:
+                #signpost's script pointer points to [Bit-Nr. (2byte)][2byte pointer to script]
+                ptr_byte1 = int(bytes[3], 16)
+                ptr_byte2 = int(bytes[4], 16)
+                pointer = ptr_byte1 + (ptr_byte2 << 8)
+                address = calculate_pointer(pointer, bank)
+                
+                self.pointer = pointer
+                self.points_to = address
+                
+                bit_table_byte1 = ord(rom[address])
+                bit_table_byte2 = ord(rom[address+1])
+                script_ptr_byte1 = ord(rom[address+2])
+                script_ptr_byte2 = ord(rom[address+3])
+                script_address = calculate_pointer_from_bytes_at(address+2, bank=bank)
+                output += " script@"+hex(script_address)
+                print output
+                script = parse_script_engine_script_at(script_address, map_group=self.map_group, map_id=self.map_id, debug=self.debug)
+                
+                self.bit_table_bytes = [bit_table_byte1, bit_table_byte2]
+                self.target_script_address = script_address
+                self.target_script = script
+            elif func == 7:
+                #signpost's script pointer points to [Bit-Nr. (2byte)][Item no.]
+                ptr_byte1 = int(bytes[3], 16)
+                ptr_byte2 = int(bytes[4], 16)
+                pointer = ptr_byte1 + (ptr_byte2 << 8)
+                address = calculate_pointer(pointer, bank)
+                
+                self.pointer = pointer
+                self.points_to = address
+                
+                bit_table_byte1 = ord(rom[address])
+                bit_table_byte2 = ord(rom[address+1])
+                item_id         = ord(rom[address+2])
+                output += " item_id="+str(item_id)
+                print output
+
+                self.bit_table_bytes = [bit_table_byte1, bit_table_byte2]
+                self.item_id = item_id
+            elif func == 8:
+                #signpost's script pointer points to [Bit-Nr. (2byte)][??]
+                print "... type 8 signpost not handled yet."
+            else:
+                raise Exception, "unknown signpost type byte="+hex(func) + " signpost@"+hex(self.address)
+    def to_asm(self):
+        raise NotImplementedError 
+
+all_signposts = []
+def parse_signpost_bytes(address, signpost_count, bank=None, map_group=None, map_id=None, debug=True):
+    signposts = []
+    current_address = address
+    id = 0
+    for each in range(signpost_count):
+        signpost = Signpost(current_address, id, bank=bank, map_group=map_group, map_id=map_id, debug=debug)
+        current_address += signpost_byte_size #i think ??
+        signposts.append(signpost)
+        id += 1
+    all_signposts.extend(signposts)
+    return signposts
 
 def parse_map_header_at(address, map_group=None, map_id=None, debug=True):
     """parses an arbitrary map header at some address"""
@@ -5176,7 +5238,7 @@ def parse_map_event_header_at(address, map_group=None, map_id=None, debug=True):
     signpost_byte_count = signpost_byte_size * signpost_count
     signposts = rom_interval(after_triggers+1, signpost_byte_count)
     after_signposts = after_triggers + 1 + signpost_byte_count
-    returnable.update({"signpost_count": signpost_count, "signposts": parse_signpost_bytes(signposts, bank=bank, map_group=map_group, map_id=map_id)})
+    returnable.update({"signpost_count": signpost_count, "signposts": parse_signpost_bytes(after_triggers+1, signpost_count, bank=bank, map_group=map_group, map_id=map_id)})
   
     #people events
     people_event_count = ord(rom[after_signposts])
