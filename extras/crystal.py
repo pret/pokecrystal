@@ -453,6 +453,10 @@ def is_script_already_parsed_at(address):
     """looks up whether or not a script is parsed at a certain address"""
     if script_parse_table[address] == None: return False
     return True
+def script_parse_table_pretty_printer():
+    """helpful debugging output"""
+    for each in script_parse_table.items():
+        print each
 
 def map_name_cleaner(input):
     """generate a valid asm label for a given map name"""
@@ -2546,6 +2550,7 @@ pksv_crystal_more = {
 }
 
 class Command():
+    override_byte_check = False
     def __init__(self, address=None, *pargs, **kwargs):
         """params:
         address     - where the command starts
@@ -2579,7 +2584,10 @@ class Command():
         #first one will have no prefixing comma
         first = True
         #start reading the bytes after the command byte
-        current_address = self.address+1
+        if not self.override_byte_check:
+            current_address = self.address+1
+        else:
+            current_address = self.address
         #add each param
         for (key, param) in self.params.items():
             name = param.name
@@ -2609,9 +2617,12 @@ class Command():
     def parse(self):
         #id, size (inclusive), param_types
         #param_type = {"name": each[1], "class": each[0]}
-        current_address = self.address+1
+        if not self.override_byte_check:
+            current_address = self.address+1
+        else:
+            current_address = self.address
         byte = ord(rom[self.address])
-        if not byte == self.id:
+        if (not byte == self.id) and not self.override_byte_check:
             raise Exception, "byte ("+hex(byte)+") != self.id ("+hex(self.id)+")"
         i = 0
         for (key, param_type) in self.param_types.items():
@@ -2675,6 +2686,7 @@ pksv_crystal_more_enders = [0x03, 0x04, 0x05, 0x0C, 0x51, 0x53,
 def create_command_classes(debug=False):
     """creates some classes for each command byte"""
     #don't forget to add any manually created script command classes
+    #.. except for Warp, Signpost and some others that aren't found in scripts
     klasses = [GivePoke]
     for (byte, cmd) in pksv_crystal_more.items():
         cmd_name = cmd[0].replace(" ", "_")
@@ -4759,24 +4771,36 @@ def compare_script_parsing_methods(address):
     print "total comparison errors: " + str(errors)
     return oldscript, newscript
 
-def parse_warp_bytes(some_bytes, debug=True):
-    """parse some number of warps from the data"""
-    assert len(some_bytes) % warp_byte_size == 0, "wrong number of bytes"
+class Warp(Command):
+    """only used outside of scripts"""
+    size = warp_byte_size
+    macro_name = "warp_def"
+    param_types = {
+        0: {"name": "y", "class": HexByte},
+        1: {"name": "x", "class": HexByte},
+        2: {"name": "warp_to", "class": DecimalParam},
+        3: {"name": "map_bank", "class": MapGroupParam},
+        4: {"name": "map_id", "class": MapIdParam},
+    }
+    override_byte_check = True
+    def __init__(self, *args, **kwargs):
+        self.id = kwargs["id"]
+        script_parse_table[kwargs["address"] : kwargs["address"] + self.size] = self
+        Command.__init__(self, *args, **kwargs)
+
+all_warps = []
+def parse_warps(address, warp_count, bank=None, map_group=None, map_id=None, debug=True):
     warps = []
-    for bytes in grouper(some_bytes, count=warp_byte_size):
-        y = int(bytes[0], 16)
-        x = int(bytes[1], 16)
-        warp_to = int(bytes[2], 16)
-        map_group = int(bytes[3], 16)
-        map_id = int(bytes[4], 16)
-        warps.append({
-            "y": y,
-            "x": x,
-            "warp_to": warp_to,
-            "map_group": map_group,
-            "map_id": map_id,
-        })
+    current_address = address
+    id = 0
+    for each in range(warp_count):
+        warp = Warp(address=current_address, id=id, bank=bank, map_group=map_group, map_id=map_id, debug=debug)
+        current_address += warp_byte_size
+        warps.append(warp)
+        id += 1
+    all_warps.extend(warps)
     return warps
+
 def parse_xy_trigger_bytes(some_bytes, bank=None, map_group=None, map_id=None, debug=True):
     """parse some number of triggers from the data"""
     assert len(some_bytes) % trigger_byte_size == 0, "wrong number of bytes"
@@ -4978,39 +5002,12 @@ def parse_people_event_bytes(some_bytes, address=None, map_group=None, map_id=No
         people_events.append(people_event)
     return people_events
 
-class MapEventElement():
-    def __init__(self, *args, **kwargs):
-        if len(args) == 1:
-            if isinstance(args[0], list):
-                if len(args[0]) != self.__class__.standard_size:
-                    raise "input has the wrong size"
-                #convert all of the list elements to integers
-                ints = []
-                for byte in args[0]:
-                    ints.append(int(byte, 16))
-                #parse using the class default method
-                events = self.__class__.parse_func(ints)
-                for key, value in events[0]:
-                    setattr(self, key, value)
-            else:
-                raise "dunno how to handle this positional input"
-        elif len(kwargs.keys()) != 0:
-            for key, value in kwargs.items():
-                setattr(self, key, value)
-        else:
-            raise "dunno how to handle given input"
-class Warp(MapEventElement):
-    standard_size = warp_byte_size
-    parse_func    = parse_warp_bytes
-class Trigger(MapEventElement):
-    standard_size = trigger_byte_size
-    parse_func    = parse_xy_trigger_bytes
-#class Signpost(MapEventElement):
-#    standard_size = signpost_byte_size
-#    parse_func    = parse_signpost_bytes
-class PeopleEvent(MapEventElement):
-    standard_size = people_event_byte_size
-    parse_func    = parse_people_event_bytes
+#class Trigger(MapEventElement):
+#    standard_size = trigger_byte_size
+#    parse_func    = parse_xy_trigger_bytes
+#class PeopleEvent(MapEventElement):
+#    standard_size = people_event_byte_size
+#    parse_func    = parse_people_event_bytes
 
 class SignpostRemoteBase:
     def __init__(self, address, bank=None, map_group=None, map_id=None, signpost=None, debug=False, label=None):
@@ -5333,9 +5330,9 @@ def parse_map_event_header_at(address, map_group=None, map_id=None, debug=True):
     #warps
     warp_count = ord(rom[address+2])
     warp_byte_count = warp_byte_size * warp_count
-    warps = rom_interval(address+3, warp_byte_count)
     after_warps = address + 3 + warp_byte_count
-    returnable.update({"warp_count": warp_count, "warps": parse_warp_bytes(warps)})
+    warps = parse_warps(address+3, warp_count, bank=bank, map_group=map_group, map_id=map_id, debug=debug)
+    returnable.update({"warp_count": warp_count, "warps": warps})
     
     #triggers (based on xy location)
     trigger_count = ord(rom[after_warps])
