@@ -2588,6 +2588,7 @@ class Command():
             current_address = self.address+1
         else:
             current_address = self.address
+        #output = self.macro_name + ", ".join([param.to_asm() for (key, param) in self.params.items()])
         #add each param
         for (key, param) in self.params.items():
             name = param.name
@@ -4801,6 +4802,9 @@ def parse_warps(address, warp_count, bank=None, map_group=None, map_id=None, deb
     all_warps.extend(warps)
     return warps
 
+#class Trigger(MapEventElement):
+#    standard_size = trigger_byte_size
+#    parse_func    = parse_xy_trigger_bytes
 def parse_xy_trigger_bytes(some_bytes, bank=None, map_group=None, map_id=None, debug=True):
     """parse some number of triggers from the data"""
     assert len(some_bytes) % trigger_byte_size == 0, "wrong number of bytes"
@@ -4888,6 +4892,43 @@ def parse_trainer_header_at(address, map_group=None, map_id=None, debug=True):
         "script_talk_again": script_talk_again,
     }
     
+class PeopleEvent(Command):
+    size = people_event_byte_size
+    macro_name = "people_event_def"
+    base_label = "PeopleEvent_"
+    override_byte_check = True
+    param_types = {
+        0: {"name": "picture", "class": HexByte},
+        1: {"name": "y from top+4", "class": DecimalParam},
+        2: {"name": "x from top+4", "class": DecimalParam),
+        3: {"name": "facing", "class": HexParam},
+        4: {"name": "movement", "class": HexParam},
+        5: {"name": "clock_hour", "class": DecimalParam},
+        6: {"name": "clock_daytime", "class": DecimalParam},
+        7: {"name": "color_function", "class": HexParam},
+        8: {"name": "sight_range", "class": DecimalParam},
+        9: {"name": "pointer", "class": PointerLabelParam}, #or ScriptPointerLabelParam ??
+        10: {"name": "BitTable1 bit number", "class": MultiByteParam},
+    }
+    def __init__(self, address, id, bank=None, map_group=None, map_id=None, debug=False, label=None):
+        assert is_valid_address(address), "PeopleEvent must be given a valid address"
+        self.address = address
+        self.last_address = address + people_event_byte_size
+        self.id = id
+        self.bank = bank
+        if label: self.label = label
+        else: self.label = self.base_label + hex(address)
+        self.map_group = map_group
+        self.map_id = map_id
+        self.debug = debug
+        self.params = []
+        script_parse_table[self.address : self.last_address] = self
+        self.parse()
+    def parse(self):
+        address = self.address
+        bank = self.bank
+        
+    def to_asm(self): raise NotImplementedError, bryan_message
 def parse_people_event_bytes(some_bytes, address=None, map_group=None, map_id=None, debug=True): #max of 14 people per map?
     """parse some number of people-events from the data
     see http://hax.iimarck.us/files/scriptingcodes_eng.htm#Scripthdr
@@ -5002,13 +5043,6 @@ def parse_people_event_bytes(some_bytes, address=None, map_group=None, map_id=No
         people_events.append(people_event)
     return people_events
 
-#class Trigger(MapEventElement):
-#    standard_size = trigger_byte_size
-#    parse_func    = parse_xy_trigger_bytes
-#class PeopleEvent(MapEventElement):
-#    standard_size = people_event_byte_size
-#    parse_func    = parse_people_event_bytes
-
 class SignpostRemoteBase:
     def __init__(self, address, bank=None, map_group=None, map_id=None, signpost=None, debug=False, label=None):
         self.address = address
@@ -5086,6 +5120,8 @@ class SignpostRemoteUnknownChunk(SignpostRemoteBase):
         byte = SingleByteParam(address=address+2)
         self.params.append(byte)
 
+#this could potentially extend Command
+#see how class Warp does this
 class Signpost:
     """parse some number of signposts from the data
 
