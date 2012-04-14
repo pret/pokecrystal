@@ -4794,19 +4794,44 @@ all_warps = []
 def parse_warps(address, warp_count, bank=None, map_group=None, map_id=None, debug=True):
     warps = []
     current_address = address
-    id = 0
     for each in range(warp_count):
-        warp = Warp(address=current_address, id=id, bank=bank, map_group=map_group, map_id=map_id, debug=debug)
+        warp = Warp(address=current_address, id=each, bank=bank, map_group=map_group, map_id=map_id, debug=debug)
         current_address += warp_byte_size
         warps.append(warp)
-        id += 1
     all_warps.extend(warps)
     return warps
 
-#class Trigger(MapEventElement):
-#    standard_size = trigger_byte_size
-#    parse_func    = parse_xy_trigger_bytes
-def parse_xy_trigger_bytes(some_bytes, bank=None, map_group=None, map_id=None, debug=True):
+class XYTrigger(Command):
+    size = trigger_byte_size
+    macro_name = "xy_trigger"
+    param_types = {
+        0: {"name": "number", "class": DecimalParam},
+        1: {"name": "y", "class": HexByte},
+        2: {"name": "x", "class": HexByte},
+        3: {"name": "unknown1", "class": SingleByteParam},
+        4: {"name": "script", "class": ScriptPointerLabelParam},
+        5: {"name": "unknown2", "class": SingleByteParam},
+        6: {"name": "unknown3", "class": SingleByteParam},
+    }
+    override_byte_check = True
+    def __init__(self, *args, **kwargs):
+        self.id = kwargs["id"]
+        #XYTrigger shouldn't really be in the globals, should it..
+        script_parse_table[kwargs["address"] : kwargs["address"] + self.size] = self
+        Command.__init__(self, *args, **kwargs)
+
+all_xy_triggers = []
+def parse_xy_triggers(address, trigger_count, bank=None, map_group=None, map_id=None, debug=True):
+    xy_triggers = []
+    current_address = address
+    for each in range(trigger_count):
+        xy_trigger = XYTrigger(address=current_address, id=each, bank=bank, map_group=map_group, map_id=map_id, debug=debug)
+        current_address += trigger_byte_size
+        xy_triggers.append(xy_trigger)
+    all_xy_triggers.extend(xy_triggers)
+    return xy_triggers
+
+def old_parse_xy_trigger_bytes(some_bytes, bank=None, map_group=None, map_id=None, debug=True):
     """parse some number of triggers from the data"""
     assert len(some_bytes) % trigger_byte_size == 0, "wrong number of bytes"
     triggers = []
@@ -4943,6 +4968,7 @@ class PeopleEvent(Command):
         self.debug = debug
         self.force = force
         self.params = {}
+        #PeopleEvent should probably not be in the global script_parse_table
         script_parse_table[self.address : self.last_address] = self
         self.parse()
     def parse(self):
@@ -5008,165 +5034,7 @@ def parse_people_events(address, people_event_count, bank=None, map_group=None, 
         current_address += people_event_byte_size
         people_events.append(pevent)
         id += 1
-    all_people_events.append(people_events)
-    return people_events
-
-def old_parse_trainer_header_at(address, map_group=None, map_id=None, debug=True):
-    bank = calculate_bank(address)
-    bytes = rom_interval(address, 12, strings=False)
-    bit_number = bytes[0] + (bytes[1] << 8)
-    trainer_group = bytes[2]
-    trainer_id = bytes[3]
-    text_when_seen_ptr = calculate_pointer_from_bytes_at(address+4, bank=bank)
-    text_when_seen = parse_text_engine_script_at(text_when_seen_ptr, map_group=map_group, map_id=map_id, debug=debug)
-    text_when_trainer_beaten_ptr = calculate_pointer_from_bytes_at(address+6, bank=bank)
-    text_when_trainer_beaten = parse_text_engine_script_at(text_when_trainer_beaten_ptr, map_group=map_group, map_id=map_id, debug=debug)
-
-    if [ord(rom[address+8]), ord(rom[address+9])] == [0, 0]:
-        script_when_lost_ptr = 0
-        script_when_lost = None
-    else:
-        print "parsing script-when-lost"
-        script_when_lost_ptr = calculate_pointer_from_bytes_at(address+8, bank=bank)
-        script_when_lost = None
-        silver_avoids = [0xfa53]
-        if script_when_lost_ptr > 0x4000 and not script_when_lost_ptr in silver_avoids:
-            script_when_lost = parse_script_engine_script_at(script_when_lost_ptr, map_group=map_group, map_id=map_id, debug=debug)
-    
-    print "parsing script-talk-again" #or is this a text?
-    script_talk_again_ptr = calculate_pointer_from_bytes_at(address+10, bank=bank)
-    script_talk_again = None
-    if script_talk_again_ptr > 0x4000:
-        script_talk_again = parse_script_engine_script_at(script_talk_again_ptr, map_group=map_group, map_id=map_id, debug=debug)
-    
-    return {
-        "bit_number": bit_number,
-        "trainer_group": trainer_group,
-        "trainer_id": trainer_id,
-        "text_when_seen_ptr": text_when_seen_ptr,
-        "text_when_seen": text_when_seen,
-        "text_when_trainer_beaten_ptr": text_when_trainer_beaten_ptr,
-        "text_when_trainer_beaten": text_when_trainer_beaten,
-        "script_when_lost_ptr": script_when_lost_ptr,
-        "script_when_lost": script_when_lost,
-        "script_talk_again_ptr": script_talk_again_ptr,
-        "script_talk_again": script_talk_again,
-    }
-
-def old_parse_people_event_bytes(some_bytes, address=None, map_group=None, map_id=None, debug=True):
-    """parse some number of people-events from the data
-    see http://hax.iimarck.us/files/scriptingcodes_eng.htm#Scripthdr
-
-    For example, map 1.1 (group 1 map 1) has four person-events.
-    
-        37 05 07 06 00 FF FF 00 00 02 40 FF FF
-        3B 08 0C 05 01 FF FF 00 00 05 40 FF FF
-        3A 07 06 06 00 FF FF A0 00 08 40 FF FF
-        29 05 0B 06 00 FF FF 00 00 0B 40 FF FF
-    
-    max of 14 people per map?
-    """
-    assert len(some_bytes) % people_event_byte_size == 0, "wrong number of bytes"
-
-    #address is not actually required for this function to work...
-    bank = None
-    if address:
-        bank = calculate_bank(address)
-
-    people_events = []
-    for bytes in grouper(some_bytes, count=people_event_byte_size):
-        pict = int(bytes[0], 16)
-        y = int(bytes[1], 16)    #y from top + 4
-        x = int(bytes[2], 16)    #x from left + 4
-        face = int(bytes[3], 16) #0-4 for regular, 6-9 for static facing
-        move = int(bytes[4], 16)
-        clock_time_byte1 = int(bytes[5], 16)
-        clock_time_byte2 = int(bytes[6], 16)
-        color_function_byte = int(bytes[7], 16) #Color|Function
-        trainer_sight_range = int(bytes[8], 16)
-        
-        lower_bits = color_function_byte & 0xF
-        #lower_bits_high = lower_bits >> 2
-        #lower_bits_low = lower_bits & 3
-        higher_bits = color_function_byte >> 4
-        #higher_bits_high = higher_bits >> 2
-        #higher_bits_low = higher_bits & 3
-
-        is_regular_script = lower_bits == 00
-        #pointer points to script
-        is_give_item = lower_bits == 01
-        #pointer points to [Item no.][Amount]
-        is_trainer = lower_bits == 02
-        #pointer points to trainer header
-
-        #goldmap called these next two bytes "text_block" and "text_bank"?
-        script_pointer_byte1 = int(bytes[9], 16)
-        script_pointer_byte2 = int(bytes[10], 16)
-        script_pointer = script_pointer_byte1 + (script_pointer_byte2 << 8)
-        #calculate the full address by assuming it's in the current bank
-        #but what if it's not in the same bank?
-        extra_portion = {}
-        if bank:
-            ptr_address = calculate_pointer(script_pointer, bank)
-            if is_regular_script:
-                print "parsing a person-script at x=" + str(x-4) + " y=" + str(y-4) + " address="+hex(ptr_address)
-                script = parse_script_engine_script_at(ptr_address, map_group=map_group, map_id=map_id)
-                extra_portion = {
-                    "script_address": ptr_address,
-                    "script": script,
-                    "event_type": "script",
-                }
-            if is_give_item:
-                print "... not parsing give item event... [item id][quantity]"
-                extra_portion = {
-                    "event_type": "give_item",
-                    "give_item_data_address": ptr_address,
-                    "item_id": ord(rom[ptr_address]),
-                    "item_qty": ord(rom[ptr_address+1]),
-                }
-            if is_trainer:
-                print "parsing a trainer (person-event) at x=" + str(x) + " y=" + str(y)
-                parsed_trainer = parse_trainer_header_at(ptr_address, map_group=map_group, map_id=map_id)
-                extra_portion = {
-                    "event_type": "trainer",
-                    "trainer_data_address": ptr_address,
-                    "trainer_data": parsed_trainer,
-                }
-        
-        #XXX not sure what's going on here
-        #bit no. of bit table 1 (hidden if set)
-        #note: FFFF for none
-        when_byte = int(bytes[11], 16)
-        hide = int(bytes[12], 16)
-
-        bit_number_of_bit_table1_byte2 = int(bytes[11], 16)
-        bit_number_of_bit_table1_byte1 = int(bytes[12], 16)
-        bit_number_of_bit_table1 = bit_number_of_bit_table1_byte1 + (bit_number_of_bit_table1_byte2 << 8)
-
-        people_event = {
-            "pict": pict,
-            "y": y,                      #y from top + 4
-            "x": x,                      #x from left + 4
-            "face": face,                #0-4 for regular, 6-9 for static facing
-            "move": move,
-            "clock_time": {"1": clock_time_byte1,
-                           "2": clock_time_byte2},       #clock/time setting byte 1
-            "color_function_byte": color_function_byte,  #Color|Function
-            "trainer_sight_range": trainer_sight_range,  #trainer range of sight
-            "script_pointer": {"1": script_pointer_byte1,
-                               "2": script_pointer_byte2},
-
-            #"text_block": text_block,   #script pointer byte 1
-            #"text_bank": text_bank,     #script pointer byte 2
-            "when_byte": when_byte,      #bit no. of bit table 1 (hidden if set)
-            "hide": hide,                #note: FFFF for none
-
-            "is_trainer": is_trainer,
-            "is_regular_script": is_regular_script,
-            "is_give_item": is_give_item,
-        }
-        people_event.update(extra_portion)
-        people_events.append(people_event)
+    all_people_events.extend(people_events)
     return people_events
 
 class SignpostRemoteBase:
@@ -5288,6 +5156,7 @@ class Signpost:
         self.bank = bank
         self.last_address = self.address + self.size
         self.y, self.x, self.func = None, None, None
+        #Signpost should probably not be in the globals
         script_parse_table[self.address : self.last_address] = self
         self.remotes = []
         self.params = []
@@ -5402,7 +5271,7 @@ class Signpost:
         return output
 
 all_signposts = []
-def parse_signpost_bytes(address, signpost_count, bank=None, map_group=None, map_id=None, debug=True):
+def parse_signposts(address, signpost_count, bank=None, map_group=None, map_id=None, debug=True):
     if bank == None: raise Exception, "signposts need to know their bank"
     signposts = []
     current_address = address
@@ -5499,15 +5368,17 @@ def parse_map_event_header_at(address, map_group=None, map_id=None, debug=True):
     #triggers (based on xy location)
     trigger_count = ord(rom[after_warps])
     trigger_byte_count = trigger_byte_size * trigger_count
-    triggers = rom_interval(after_warps+1, trigger_byte_count)
+    #triggers = rom_interval(after_warps+1, trigger_byte_count)
+    #xy_triggers = parse_xy_trigger_bytes(triggers, bank=bank, map_group=map_group, map_id=map_id)
+    xy_triggers = parse_xy_triggers(after_warps+1, trigger_count, bank=bank, map_group=map_group, map_id=map_id, debug=debug)
     after_triggers = after_warps + 1 + trigger_byte_count
-    returnable.update({"xy_trigger_count": trigger_count, "xy_triggers": parse_xy_trigger_bytes(triggers, bank=bank, map_group=map_group, map_id=map_id)})
+    returnable.update({"xy_trigger_count": trigger_count, "xy_triggers": xy_triggers})
     
     #signposts
     signpost_count = ord(rom[after_triggers])
     signpost_byte_count = signpost_byte_size * signpost_count
     #signposts = rom_interval(after_triggers+1, signpost_byte_count)
-    signposts = parse_signpost_bytes(after_triggers+1, signpost_count, bank=bank, map_group=map_group, map_id=map_id)
+    signposts = parse_signposts(after_triggers+1, signpost_count, bank=bank, map_group=map_group, map_id=map_id, debug=debug)
     after_signposts = after_triggers + 1 + signpost_byte_count
     returnable.update({"signpost_count": signpost_count, "signposts": signposts})
   
@@ -5516,7 +5387,7 @@ def parse_map_event_header_at(address, map_group=None, map_id=None, debug=True):
     people_event_byte_count = people_event_byte_size * people_event_count
     #people_events_bytes = rom_interval(after_signposts+1, people_event_byte_count)
     #people_events = parse_people_event_bytes(people_events_bytes, address=after_signposts+1, map_group=map_group, map_id=map_id)
-    people_events = parse_people_events(after_signposts+1, people_event_count, bank=bank, map_group=map_group, map_id=map_id)
+    people_events = parse_people_events(after_signposts+1, people_event_count, bank=bank, map_group=map_group, map_id=map_id, debug=debug)
     returnable.update({"people_event_count": people_event_count, "people_events": people_events})
 
     return returnable
@@ -5626,6 +5497,165 @@ def parse_map_script_header_at(address, map_group=None, map_id=None, debug=True)
         "trigger_scripts": triggers,
         "callback_scripts": callbacks,
     }
+
+def old_parse_trainer_header_at(address, map_group=None, map_id=None, debug=True):
+    bank = calculate_bank(address)
+    bytes = rom_interval(address, 12, strings=False)
+    bit_number = bytes[0] + (bytes[1] << 8)
+    trainer_group = bytes[2]
+    trainer_id = bytes[3]
+    text_when_seen_ptr = calculate_pointer_from_bytes_at(address+4, bank=bank)
+    text_when_seen = parse_text_engine_script_at(text_when_seen_ptr, map_group=map_group, map_id=map_id, debug=debug)
+    text_when_trainer_beaten_ptr = calculate_pointer_from_bytes_at(address+6, bank=bank)
+    text_when_trainer_beaten = parse_text_engine_script_at(text_when_trainer_beaten_ptr, map_group=map_group, map_id=map_id, debug=debug)
+
+    if [ord(rom[address+8]), ord(rom[address+9])] == [0, 0]:
+        script_when_lost_ptr = 0
+        script_when_lost = None
+    else:
+        print "parsing script-when-lost"
+        script_when_lost_ptr = calculate_pointer_from_bytes_at(address+8, bank=bank)
+        script_when_lost = None
+        silver_avoids = [0xfa53]
+        if script_when_lost_ptr > 0x4000 and not script_when_lost_ptr in silver_avoids:
+            script_when_lost = parse_script_engine_script_at(script_when_lost_ptr, map_group=map_group, map_id=map_id, debug=debug)
+    
+    print "parsing script-talk-again" #or is this a text?
+    script_talk_again_ptr = calculate_pointer_from_bytes_at(address+10, bank=bank)
+    script_talk_again = None
+    if script_talk_again_ptr > 0x4000:
+        script_talk_again = parse_script_engine_script_at(script_talk_again_ptr, map_group=map_group, map_id=map_id, debug=debug)
+    
+    return {
+        "bit_number": bit_number,
+        "trainer_group": trainer_group,
+        "trainer_id": trainer_id,
+        "text_when_seen_ptr": text_when_seen_ptr,
+        "text_when_seen": text_when_seen,
+        "text_when_trainer_beaten_ptr": text_when_trainer_beaten_ptr,
+        "text_when_trainer_beaten": text_when_trainer_beaten,
+        "script_when_lost_ptr": script_when_lost_ptr,
+        "script_when_lost": script_when_lost,
+        "script_talk_again_ptr": script_talk_again_ptr,
+        "script_talk_again": script_talk_again,
+    }
+
+def old_parse_people_event_bytes(some_bytes, address=None, map_group=None, map_id=None, debug=True):
+    """parse some number of people-events from the data
+    see PeopleEvent
+    see http://hax.iimarck.us/files/scriptingcodes_eng.htm#Scripthdr
+
+    For example, map 1.1 (group 1 map 1) has four person-events.
+    
+        37 05 07 06 00 FF FF 00 00 02 40 FF FF
+        3B 08 0C 05 01 FF FF 00 00 05 40 FF FF
+        3A 07 06 06 00 FF FF A0 00 08 40 FF FF
+        29 05 0B 06 00 FF FF 00 00 0B 40 FF FF
+    
+    max of 14 people per map?
+    """
+    assert len(some_bytes) % people_event_byte_size == 0, "wrong number of bytes"
+
+    #address is not actually required for this function to work...
+    bank = None
+    if address:
+        bank = calculate_bank(address)
+
+    people_events = []
+    for bytes in grouper(some_bytes, count=people_event_byte_size):
+        pict = int(bytes[0], 16)
+        y = int(bytes[1], 16)    #y from top + 4
+        x = int(bytes[2], 16)    #x from left + 4
+        face = int(bytes[3], 16) #0-4 for regular, 6-9 for static facing
+        move = int(bytes[4], 16)
+        clock_time_byte1 = int(bytes[5], 16)
+        clock_time_byte2 = int(bytes[6], 16)
+        color_function_byte = int(bytes[7], 16) #Color|Function
+        trainer_sight_range = int(bytes[8], 16)
+        
+        lower_bits = color_function_byte & 0xF
+        #lower_bits_high = lower_bits >> 2
+        #lower_bits_low = lower_bits & 3
+        higher_bits = color_function_byte >> 4
+        #higher_bits_high = higher_bits >> 2
+        #higher_bits_low = higher_bits & 3
+
+        is_regular_script = lower_bits == 00
+        #pointer points to script
+        is_give_item = lower_bits == 01
+        #pointer points to [Item no.][Amount]
+        is_trainer = lower_bits == 02
+        #pointer points to trainer header
+
+        #goldmap called these next two bytes "text_block" and "text_bank"?
+        script_pointer_byte1 = int(bytes[9], 16)
+        script_pointer_byte2 = int(bytes[10], 16)
+        script_pointer = script_pointer_byte1 + (script_pointer_byte2 << 8)
+        #calculate the full address by assuming it's in the current bank
+        #but what if it's not in the same bank?
+        extra_portion = {}
+        if bank:
+            ptr_address = calculate_pointer(script_pointer, bank)
+            if is_regular_script:
+                print "parsing a person-script at x=" + str(x-4) + " y=" + str(y-4) + " address="+hex(ptr_address)
+                script = parse_script_engine_script_at(ptr_address, map_group=map_group, map_id=map_id)
+                extra_portion = {
+                    "script_address": ptr_address,
+                    "script": script,
+                    "event_type": "script",
+                }
+            if is_give_item:
+                print "... not parsing give item event... [item id][quantity]"
+                extra_portion = {
+                    "event_type": "give_item",
+                    "give_item_data_address": ptr_address,
+                    "item_id": ord(rom[ptr_address]),
+                    "item_qty": ord(rom[ptr_address+1]),
+                }
+            if is_trainer:
+                print "parsing a trainer (person-event) at x=" + str(x) + " y=" + str(y)
+                parsed_trainer = parse_trainer_header_at(ptr_address, map_group=map_group, map_id=map_id)
+                extra_portion = {
+                    "event_type": "trainer",
+                    "trainer_data_address": ptr_address,
+                    "trainer_data": parsed_trainer,
+                }
+        
+        #XXX not sure what's going on here
+        #bit no. of bit table 1 (hidden if set)
+        #note: FFFF for none
+        when_byte = int(bytes[11], 16)
+        hide = int(bytes[12], 16)
+
+        bit_number_of_bit_table1_byte2 = int(bytes[11], 16)
+        bit_number_of_bit_table1_byte1 = int(bytes[12], 16)
+        bit_number_of_bit_table1 = bit_number_of_bit_table1_byte1 + (bit_number_of_bit_table1_byte2 << 8)
+
+        people_event = {
+            "pict": pict,
+            "y": y,                      #y from top + 4
+            "x": x,                      #x from left + 4
+            "face": face,                #0-4 for regular, 6-9 for static facing
+            "move": move,
+            "clock_time": {"1": clock_time_byte1,
+                           "2": clock_time_byte2},       #clock/time setting byte 1
+            "color_function_byte": color_function_byte,  #Color|Function
+            "trainer_sight_range": trainer_sight_range,  #trainer range of sight
+            "script_pointer": {"1": script_pointer_byte1,
+                               "2": script_pointer_byte2},
+
+            #"text_block": text_block,   #script pointer byte 1
+            #"text_bank": text_bank,     #script pointer byte 2
+            "when_byte": when_byte,      #bit no. of bit table 1 (hidden if set)
+            "hide": hide,                #note: FFFF for none
+
+            "is_trainer": is_trainer,
+            "is_regular_script": is_regular_script,
+            "is_give_item": is_give_item,
+        }
+        people_event.update(extra_portion)
+        people_events.append(people_event)
+    return people_events
 
 def parse_map_header_by_id(*args, **kwargs):
     """convenience function to parse a specific map"""
