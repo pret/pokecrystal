@@ -5292,42 +5292,44 @@ def parse_signposts(address, signpost_count, bank=None, map_group=None, map_id=N
     return signposts
 
 class MapHeader:
-    def __init__(self, address, map_group=None, map_id=None, debug=True):
+    base_label = "MapHeader_"
+    def __init__(self, address, map_group=None, map_id=None, debug=True, label=None, bank=0x25):
         self.address = address
         self.map_group = map_group
         self.map_id = map_id
+        self.bank = bank
         self.debug = debug
+        if not label:
+            self.label = self.base_label + hex(address)
+        else:
+            self.label = label
+        self.last_address = address + 8
+        sccript_parse_table[address : self.last_address] = self
         self.parse()
     def parse(self):
+        address = self.address
+        self.bank = HexByte(address)
+        self.tileset = HexByte(address+1)
+        self.permission = DecimalParam(address+2)
+        #TODO: is the bank really supposed to be 0x25 all the time ??
+        self.second_map_header = SecondMapHeader(calculate_pointer(ord(rom[address+3])+(ord(rom[address+4])<<8), self.bank))
+        self.location_on_world_map = HexByte(address+5)
+        self.music = HexByte(address+6)
+        self.time_of_day = DecimalParam(address+7)
+        self.fishing_group = DecimalParam(address+8)
     def to_asm(self):
+        output  = "; bank, tileset, permission\n"
+        output += "db " + ", ".join([self.bank.to_asm(), self.tileset.to_asm(), self.permission.to_asm()])
+        output += "\n\n; second map header\n"
+        output += "dw " + PointerLabelParam(self.second_map_header.address).to_asm()
+        output += "\n\n; location on world map, music, time of day, fishing group\n"
+        output += "db " + ", ".join([self.location_on_world_map.to_asm(), self.muisc.to_asm(), self.time_of_day.to_asm(), self.fishing_group.to_asm()])
+        return output
+        
 def parse_map_header_at(address, map_group=None, map_id=None, debug=True):
     """parses an arbitrary map header at some address"""
     print "parsing a map header at: " + hex(address)
-    bytes = rom_interval(address, map_header_byte_size, strings=False, debug=debug)
-    bank = bytes[0]
-    tileset = bytes[1]
-    permission = bytes[2]
-    second_map_header_address = calculate_pointer(bytes[3] + (bytes[4] << 8), 0x25)
-    location_on_world_map = bytes[5] #pokégear world map location
-    music = bytes[6]
-    time_of_day = bytes[7]
-    fishing_group = bytes[8]
-
-    map_header = {
-        "bank": bank,
-        "tileset": tileset,
-        "permission": permission, #map type?
-        "second_map_header_pointer": {"1": bytes[3], "2": bytes[4]},
-        "second_map_header_address": second_map_header_address,
-        "location_on_world_map": location_on_world_map, #area
-        "music": music,
-        "time_of_day": time_of_day,
-        "fishing": fishing_group,
-    }
-    print "second map header address is: " + hex(second_map_header_address)
-    map_header.update(parse_second_map_header_at(second_map_header_address, debug=debug))
-    map_header.update(parse_map_event_header_at(map_header["event_address"], map_group=map_group, map_id=map_id, debug=debug))
-    map_header.update(parse_map_script_header_at(map_header["script_address"], map_group=map_group, map_id=map_id, debug=debug))
+    map_header = MapHeader(address, map_group=map_group, map_id=map_id, debug=debug)
     return map_header
 
 class SecondMapHeader:
