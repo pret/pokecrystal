@@ -2204,6 +2204,7 @@ class PointerLabelParam(MultiByteParam):
     size = 2
     #default is to not parse out a bank
     bank = False
+    force = False
     def __init__(self, *args, **kwargs):
         #bank can be overriden
         if "bank" in kwargs.keys():
@@ -5304,19 +5305,19 @@ class MapHeader:
         else:
             self.label = label
         self.last_address = address + 8
-        sccript_parse_table[address : self.last_address] = self
+        script_parse_table[address : self.last_address] = self
         self.parse()
     def parse(self):
         address = self.address
-        self.bank = HexByte(address)
-        self.tileset = HexByte(address+1)
-        self.permission = DecimalParam(address+2)
+        self.bank = HexByte(address=address)
+        self.tileset = HexByte(address=address+1)
+        self.permission = DecimalParam(address=address+2)
         #TODO: is the bank really supposed to be 0x25 all the time ??
-        self.second_map_header = SecondMapHeader(calculate_pointer(ord(rom[address+3])+(ord(rom[address+4])<<8), self.bank))
-        self.location_on_world_map = HexByte(address+5)
-        self.music = HexByte(address+6)
-        self.time_of_day = DecimalParam(address+7)
-        self.fishing_group = DecimalParam(address+8)
+        self.second_map_header = SecondMapHeader(calculate_pointer(ord(rom[address+3])+(ord(rom[address+4])<<8), self.bank.byte), map_group=self.map_group, map_id=self.map_id, debug=self.debug)
+        self.location_on_world_map = HexByte(address=address+5)
+        self.music = HexByte(address=address+6)
+        self.time_of_day = DecimalParam(address=address+7)
+        self.fishing_group = DecimalParam(address=address+8)
     def to_asm(self):
         output  = "; bank, tileset, permission\n"
         output += "db " + ", ".join([self.bank.to_asm(), self.tileset.to_asm(), self.permission.to_asm()])
@@ -5340,8 +5341,8 @@ class SecondMapHeader:
         self.map_id = map_id
         self.debug = debug
         self.bank = bank
-        if !label:
-            self.label = base_label + hex(address)
+        if not label:
+            self.label = self.base_label + hex(address)
         else: self.label = label
         self.last_address = address+12
         #i think it's always a static size?
@@ -5351,9 +5352,9 @@ class SecondMapHeader:
         address = self.address
         bytes = rom_interval(address, second_map_header_byte_size, strings=False)
 
-        self.border_block = HexByte(address)
-        self.height = DecimalParam(address+1)
-        self.width  = DecimalParam(address+2)
+        self.border_block = HexByte(address=address)
+        self.height = DecimalParam(address=address+1)
+        self.width  = DecimalParam(address=address+2)
         
         #TODO: process blockdata ?
         #bank appears first
@@ -5365,7 +5366,7 @@ class SecondMapHeader:
         self.script_header = MapScriptHeader(address+6, map_group=self.map_group, map_id=self.map_id, debug=self.debug)
         
         self.event_header = MapEventHeader(address+8)
-        self.connections = DecimalParam(address+11)
+        self.connections = DecimalParam(address=address+11)
 
         #border_block = bytes[0]
         #height = bytes[1]
@@ -5434,7 +5435,7 @@ class MapBlockData:
             self.label = label
         else:
             self.label = self.base_label + hex(address)
-        self.last_address = self.address + (self.width * self.height)
+        self.last_address = self.address + (self.width.byte * self.height.byte)
         script_parse_table[address : self.last_address] = self
         self.parse()
     def save_to_file(self):
@@ -5442,7 +5443,8 @@ class MapBlockData:
         map_path = self.map_path
         if not os.path.exists(map_path):
             #dump to file
-            bytes = rom_interval(self.address, self.width*self.height, strings=True)
+            #bytes = rom_interval(self.address, self.width.byte*self.height.byte, strings=True)
+            bytes = rom[self.address : self.address + self.width.byte*self.height.byte]
             file_handler = open(map_path, "w")
             file_handler.write(bytes)
             file_handler.close()
@@ -5619,7 +5621,7 @@ class MapScriptHeader:
         current_address = address
         for (index, trigger_bytes) in enumerate(groups):
             print "parsing a trigger header..."
-            script = ScriptPointerLabelParam(current_address, map_group=map_group, map_id=map_id, debug=debug)
+            script = ScriptPointerLabelParam(address=current_address, map_group=map_group, map_id=map_id, debug=debug)
             self.triggers.append(script)
             current_address += ptr_line_size
         current_address = address + (self.trigger_count * ptr_line_size) + 1
@@ -5629,7 +5631,7 @@ class MapScriptHeader:
         self.callbacks = []
         for index in range(callback_count):
             hook_byte = HexByte(current_address)
-            callback = ScriptPointerLabelParam(current_address+1, map_group=map_group, map_id=map_id, debug=debug)
+            callback = ScriptPointerLabelParam(address=current_address+1, map_group=map_group, map_id=map_id, debug=debug)
             callbacks.append({"hook": hook_byte, "callback": callback})
         return True
     def to_asm(self):
