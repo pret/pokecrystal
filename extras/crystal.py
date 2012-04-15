@@ -5298,6 +5298,7 @@ def parse_signposts(address, signpost_count, bank=None, map_group=None, map_id=N
 class MapHeader:
     base_label = "MapHeader_"
     def __init__(self, address, map_group=None, map_id=None, debug=True, label=None, bank=0x25):
+        print "creating a MapHeader at "+hex(address)+" map_group="+str(map_group)+" map_id="+str(map_id)
         self.address = address
         self.map_group = map_group
         self.map_id = map_id
@@ -5312,6 +5313,7 @@ class MapHeader:
         self.parse()
     def parse(self):
         address = self.address
+        print "parsing a MapHeader at " + hex(address)
         self.bank = HexByte(address=address)
         self.tileset = HexByte(address=address+1)
         self.permission = DecimalParam(address=address+2)
@@ -5339,6 +5341,7 @@ def parse_map_header_at(address, map_group=None, map_id=None, debug=True):
 class SecondMapHeader:
     base_label = "SecondMapHeader_"
     def __init__(self, address, map_group=None, map_id=None, debug=True, bank=None, label=None):
+        print "creating a SecondMapHeader at " + hex(address)
         self.address = address
         self.map_group = map_group
         self.map_id = map_id
@@ -5459,6 +5462,7 @@ class MapBlockData:
 class MapEventHeader:
     base_label = "MapEventHeader_"
     def __init__(self, address, map_group=None, map_id=None, debug=True, bank=None, label=None):
+        print "making a MapEventHeader at "+hex(address)+" map_group="+str(map_group)+" map_id="+str(map_id)
         self.address = address
         self.map_group = map_group
         self.map_id = map_id
@@ -5600,6 +5604,7 @@ class MapScriptHeader:
     """
     base_label = "MapScriptHeader_"
     def __init__(self, address, map_group=None, map_id=None, debug=True, bank=None, label=None):
+        print "creating a MapScriptHeader at " + hex(address) + " map_group="+str(map_group)+" map_id="+str(map_id)
         self.address = address
         self.map_group = map_group
         self.map_id = map_id
@@ -5623,7 +5628,7 @@ class MapScriptHeader:
         groups = grouper(rom_interval(address+1, self.trigger_count * ptr_line_size, strings=False), count=ptr_line_size)
         current_address = address
         for (index, trigger_bytes) in enumerate(groups):
-            print "parsing a trigger header..."
+            print "parsing a map trigger script at "+hex(current_address)+" map_group="+str(map_group)+" map_id="+str(map_id)
             script = ScriptPointerLabelParam(address=current_address, map_group=map_group, map_id=map_id, debug=debug)
             self.triggers.append(script)
             current_address += ptr_line_size
@@ -5631,13 +5636,16 @@ class MapScriptHeader:
         #[[Number2 of pointers] Number2 * [hook number][2byte pointer to script]]
         callback_ptr_line_size = 3
         self.callback_count = DecimalParam(address=current_address)
+        current_address += 1
         self.callbacks = []
         for index in range(self.callback_count.byte):
+            print "parsing a callback script at "+hex(current_address)+" map_group="+str(map_group)+" map_id="+str(map_id)
             hook_byte = HexByte(address=current_address)
             callback = ScriptPointerLabelParam(address=current_address+1, map_group=map_group, map_id=map_id, debug=debug)
             self.callbacks.append({"hook": hook_byte, "callback": callback})
             current_address += 3 #i think?
         self.last_address = current_address
+        print "done parsing a MapScriptHeader map_group="+str(map_group)+" map_id="+str(map_id)
         return True
     def to_asm(self):
         output = ""
