@@ -5522,6 +5522,7 @@ class MapHeader:
         self.second_map_header_address = calculate_pointer(ord(rom[address+3])+(ord(rom[address+4])<<8), self.bank.byte)
         #TODO: is the bank really supposed to be 0x25 all the time ??
         self.second_map_header = SecondMapHeader(self.second_map_header_address, map_group=self.map_group, map_id=self.map_id, debug=self.debug)
+        all_second_map_headers.append(self.second_map_header)
         self.location_on_world_map = HexByte(address=address+5)
         self.music = HexByte(address=address+6)
         self.time_of_day = DecimalParam(address=address+7)
@@ -5534,11 +5535,13 @@ class MapHeader:
         output += "\n\n; location on world map, music, time of day, fishing group\n"
         output += "db " + ", ".join([self.location_on_world_map.to_asm(), self.muisc.to_asm(), self.time_of_day.to_asm(), self.fishing_group.to_asm()])
         return output
-        
+
+all_map_headers = []
 def parse_map_header_at(address, map_group=None, map_id=None, debug=True):
     """parses an arbitrary map header at some address"""
     print "parsing a map header at: " + hex(address)
     map_header = MapHeader(address, map_group=map_group, map_id=map_id, debug=debug)
+    all_map_headers.append(map_header)
     return map_header
 
 def old_parse_map_header_at(address, map_group=None, map_id=None, debug=True):
@@ -5609,10 +5612,12 @@ class SecondMapHeader:
         ###self.script_address = PointerLabelBeforeBank(address+6)
         self.script_header_address = calculate_pointer_from_bytes_at(address+6, bank=True)
         self.script_header = MapScriptHeader(self.script_header_address, map_group=self.map_group, map_id=self.map_id, debug=self.debug)
-        
+        all_map_script_headers.append(self.script_header)
+
         self.event_header_address = calculate_pointer_from_bytes_at(address+9, bank=ord(rom[address+6]))
         self.event_header = MapEventHeader(self.event_header_address)
         self.connections = DecimalParam(address=address+11)
+        all_map_event_headers.append(self.event_header)
 
         #border_block = bytes[0]
         #height = bytes[1]
@@ -5657,9 +5662,13 @@ class SecondMapHeader:
         output += "; connections\n"
         output += "db " + self.connections.to_asm()
         return output
+
+all_second_map_headers = []
 def parse_second_map_header_at(address, map_group=None, map_id=None, debug=True):
     """each map has a second map header"""
-    return SecondMapHeader(address, map_group=map_group, map_id=map_id, debug=debug)
+    smh = SecondMapHeader(address, map_group=map_group, map_id=map_id, debug=debug)
+    all_second_map_headers.append(smh)
+    return smh
 
 def old_parse_second_map_header_at(address, map_group=None, map_id=None, debug=True):
     """each map has a second map header"""
@@ -5818,9 +5827,12 @@ class MapEventHeader:
 
         return output
 
+all_map_event_headers = []
 def parse_map_event_header_at(address, map_group=None, map_id=None, debug=True, bank=None):
     """parse crystal map event header byte structure thing"""
-    return MapEventHeader(address, map_group=map_group, map_id=map_id, debug=debug, bank=bank)
+    ev = MapEventHeader(address, map_group=map_group, map_id=map_id, debug=debug, bank=bank)
+    all_map_event_headers.append(ev)
+    return ev
 
 def old_parse_map_event_header_at(address, map_group=None, map_id=None, debug=True):
     """parse crystal map event header byte structure thing"""
@@ -5970,8 +5982,12 @@ class MapScriptHeader:
         #not so sure about this next one
         output += "\n".join(["dbw "+str(p["hook"])+", "+p["callback"].to_asm() for p in self.callbacks])
         return output
+
+all_map_script_headers = []
 def parse_map_script_header_at(address, map_group=None, map_id=None, debug=True):
-    return MapScriptHeader(address, map_group=map_group, map_id=map_id, debug=debug)
+    evv = MapScriptHeader(address, map_group=map_group, map_id=map_id, debug=debug)
+    all_map_script_headers.append(evv)
+    return evv
 
 def old_parse_map_script_header_at(address, map_group=None, map_id=None, debug=True):
     print "starting to parse the map's script header.."
