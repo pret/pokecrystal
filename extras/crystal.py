@@ -5511,7 +5511,7 @@ class MapHeader:
         self.permission = DecimalParam(address=address+2)
         self.second_map_header_address = calculate_pointer(ord(rom[address+3])+(ord(rom[address+4])<<8), self.bank.byte)
         #TODO: is the bank really supposed to be 0x25 all the time ??
-        #self.second_map_header = SecondMapHeader(self.second_map_header_address, map_group=self.map_group, map_id=self.map_id, debug=self.debug)
+        self.second_map_header = SecondMapHeader(self.second_map_header_address, map_group=self.map_group, map_id=self.map_id, debug=self.debug)
         self.location_on_world_map = HexByte(address=address+5)
         self.music = HexByte(address=address+6)
         self.time_of_day = DecimalParam(address=address+7)
@@ -5556,7 +5556,7 @@ def old_parse_map_header_at(address, map_group=None, map_id=None, debug=True):
         "fishing": fishing_group,
     }
     print "second map header address is: " + hex(second_map_header_address)
-    #map_header.update(old_parse_second_map_header_at(second_map_header_address, debug=debug))
+    map_header["second_map_header"] = old_parse_second_map_header_at(second_map_header_address, debug=debug)
     #map_header.update(old_parse_map_event_header_at(map_header["event_address"], map_group=map_group, map_id=map_id, debug=debug))
     #map_header.update(old_parse_map_script_header_at(map_header["script_address"], map_group=map_group, map_id=map_id, debug=debug))
     return map_header
@@ -5588,13 +5588,17 @@ class SecondMapHeader:
         #TODO: process blockdata ?
         #bank appears first
         ###self.blockdata_address = PointerLabelBeforeBank(address+3)
-        self.blockdata = MapBlockData(address+3, map_group=self.map_group, map_id=self.map_id, debug=self.debug, width=self.width, height=self.height)
+        self.blockdata_address = calculate_pointer_from_bytes_at(address+3, bank=True)
+        #self.blockdata = MapBlockData(self.blockdata_address, map_group=self.map_group, map_id=self.map_id, debug=self.debug, width=self.width, height=self.height)
+        
         #bank appears first
         #TODO: process MapScriptHeader
         ###self.script_address = PointerLabelBeforeBank(address+6)
-        self.script_header = MapScriptHeader(address+6, map_group=self.map_group, map_id=self.map_id, debug=self.debug)
+        self.script_header_address = calculate_pointer_from_bytes_at(address+6, bank=True)
+        #self.script_header = MapScriptHeader(self.script_header_address, map_group=self.map_group, map_id=self.map_id, debug=self.debug)
         
-        self.event_header = MapEventHeader(address+8)
+        self.event_header_address = calculate_pointer_from_bytes_at(address+9, bank=ord(rom[address+6]))
+        #self.event_header = MapEventHeader(address+8)
         self.connections = DecimalParam(address=address+11)
 
         #border_block = bytes[0]
