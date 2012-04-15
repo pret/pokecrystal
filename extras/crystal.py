@@ -5602,13 +5602,13 @@ class SecondMapHeader:
         #bank appears first
         ###self.blockdata_address = PointerLabelBeforeBank(address+3)
         self.blockdata_address = calculate_pointer_from_bytes_at(address+3, bank=True)
-        #self.blockdata = MapBlockData(self.blockdata_address, map_group=self.map_group, map_id=self.map_id, debug=self.debug, width=self.width, height=self.height)
+        self.blockdata = MapBlockData(self.blockdata_address, map_group=self.map_group, map_id=self.map_id, debug=self.debug, width=self.width, height=self.height)
         
         #bank appears first
         #TODO: process MapScriptHeader
         ###self.script_address = PointerLabelBeforeBank(address+6)
         self.script_header_address = calculate_pointer_from_bytes_at(address+6, bank=True)
-        #self.script_header = MapScriptHeader(self.script_header_address, map_group=self.map_group, map_id=self.map_id, debug=self.debug)
+        self.script_header = MapScriptHeader(self.script_header_address, map_group=self.map_group, map_id=self.map_id, debug=self.debug)
         
         self.event_header_address = calculate_pointer_from_bytes_at(address+9, bank=ord(rom[address+6]))
         self.event_header = MapEventHeader(self.event_header_address)
@@ -5939,7 +5939,7 @@ class MapScriptHeader:
         self.triggers = []
         ptr_line_size = 4
         groups = grouper(rom_interval(address+1, self.trigger_count * ptr_line_size, strings=False), count=ptr_line_size)
-        current_address = address
+        current_address = address+1
         for (index, trigger_bytes) in enumerate(groups):
             print "parsing a map trigger script at "+hex(current_address)+" map_group="+str(map_group)+" map_id="+str(map_id)
             script = ScriptPointerLabelParam(address=current_address, map_group=map_group, map_id=map_id, debug=debug)
@@ -6223,10 +6223,10 @@ def parse_all_map_headers(debug=True):
             map_header_offset = offset + ((map_id - 1) * map_header_byte_size)
             map_names[group_id][map_id]["header_offset"] = map_header_offset
            
-            old_parsed_map = old_parse_map_header_at(map_header_offset, map_group=group_id, map_id=map_id, debug=debug)
             new_parsed_map = parse_map_header_at(map_header_offset, map_group=group_id, map_id=map_id, debug=debug)
             map_names[group_id][map_id]["header_new"] = new_parsed_map
-            map_names[group_id][map_id]["header_old"] = old_parsed_map
+            #old_parsed_map = old_parse_map_header_at(map_header_offset, map_group=group_id, map_id=map_id, debug=debug)
+            #map_names[group_id][map_id]["header_old"] = old_parsed_map
 
 #map names with no labels will be generated at the end of the structure 
 map_names = {
