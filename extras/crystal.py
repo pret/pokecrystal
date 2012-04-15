@@ -5318,41 +5318,77 @@ def parse_map_header_at(address, map_group=None, map_id=None, debug=True):
     print "second map header address is: " + hex(second_map_header_address)
     map_header.update(parse_second_map_header_at(second_map_header_address, debug=debug))
     map_header.update(parse_map_event_header_at(map_header["event_address"], map_group=map_group, map_id=map_id, debug=debug))
-    #maybe this next one should be under the "scripts" key?
     map_header.update(parse_map_script_header_at(map_header["script_address"], map_group=map_group, map_id=map_id, debug=debug))
     return map_header
 
+class SecondMapHeader:
+    base_label = "SecondMapHeader_"
+    def __init__(self, address, map_group=None, map_id=None, debug=True, bank=None, label=None):
+        self.address = address
+        self.map_group = map_group
+        self.map_id = map_id
+        self.debug = debug
+        self.bank = bank
+        if !label:
+            self.label = base_label + hex(address)
+        else: self.label = label
+        self.last_address = address+12
+        #i think it's always a static size?
+        script_parse_table[address : self.last_address] = self
+        self.parse()
+    def parse(self):
+        address = self.address
+        bytes = rom_interval(address, second_map_header_byte_size, strings=False)
+
+        self.border_block = HexByte(address)
+        self.height = DecimalParam(address+1)
+        self.width  = DecimalParam(address+2)
+        
+        #TODO: process blockdata ?
+        #bank appears first
+        ###self.blockdata_address = PointerLabelBeforeBank(address+3)
+        self.blockdata = MapBlockDataParam(address+3, map_group=self.map_group, map_id=self.map_id, debug=self.debug)
+        #bank appears first
+        #TODO: process MapScriptHeader
+        ###self.script_address = PointerLabelBeforeBank(address+6)
+        self.script_header = MapScriptHeader(address+6, map_group=self.map_group, map_id=self.map_id, debug=self.debug)
+        
+        self.event_header = MapEventHeader(address+8)
+        self.connections = DecimalParam(address+11)
+
+        #border_block = bytes[0]
+        #height = bytes[1]
+        #width = bytes[2]
+        #blockdata_bank = bytes[3]
+        #blockdata_pointer = bytes[4] + (bytes[5] << 8)
+        #blockdata_address = calculate_pointer(blockdata_pointer, blockdata_bank)
+        #script_bank = bytes[6]
+        #script_pointer = bytes[7] + (bytes[8] << 8)
+        #script_address = calculate_pointer(script_pointer, script_bank)
+        #event_bank = script_bank
+        #event_pointer = bytes[9] + (bytes[10] << 8)
+        #event_address = calculate_pointer(event_pointer, event_bank)
+        #connections = bytes[11]
+        ####
+        #self.border_block = border_block
+        #self.height = height
+        #self.width = width
+        #self.blockdata_bank = blockdata_bank
+        #self.blockdata_pointer = blockdata_pointer
+        #self.blockdata_address = blockdata_address
+        #self.script_bank = script_bank
+        #self.script_pointer = script_pointer
+        #self.script_address = script_address
+        #self.event_bank = event_bank
+        #self.event_pointer = event_pointer
+        #self.event_address = event_address
+        #self.connections = connections
+        
+        return True
+
 def parse_second_map_header_at(address, map_group=None, map_id=None, debug=True):
     """each map has a second map header"""
-    bytes = rom_interval(address, second_map_header_byte_size, strings=False)
-    border_block = bytes[0]
-    height = bytes[1]
-    width = bytes[2]
-    blockdata_bank = bytes[3]
-    blockdata_pointer = bytes[4] + (bytes[5] << 8)
-    blockdata_address = calculate_pointer(blockdata_pointer, blockdata_bank)
-    script_bank = bytes[6]
-    script_pointer = bytes[7] + (bytes[8] << 8)
-    script_address = calculate_pointer(script_pointer, script_bank)
-    event_bank = script_bank
-    event_pointer = bytes[9] + (bytes[10] << 8)
-    event_address = calculate_pointer(event_pointer, event_bank)
-    connections = bytes[11]
-    return {
-        "border_block": border_block,
-        "height": height,
-        "width": width,
-        "blockdata_bank": blockdata_bank,
-        "blockdata_pointer": {"1": bytes[4], "2": bytes[5]},
-        "blockdata_address": blockdata_address,
-        "script_bank": script_bank,
-        "script_pointer": {"1": bytes[7], "2": bytes[8]},
-        "script_address": script_address,
-        "event_bank": event_bank,
-        "event_pointer": {"1": bytes[9], "2": bytes[10]},
-        "event_address": event_address,
-        "connections": connections,
-    }
+    return SecondMapHeader(address, map_group=map_group, map_id=map_id, debug=debug)
 
 class MapEventHeader:
     base_label = "MapEventHeader_"
@@ -5369,6 +5405,7 @@ class MapEventHeader:
         self.parse()
         script_parse_table[address : self.last_address] = self
     def parse(self):
+        map_group, map_id, debug = self.map_group, self.map_id, self.debug
         address = self.address
         bank = calculate_bank(self.address) #or use self.bank
         print "event header address is: " + hex(address)
@@ -5386,9 +5423,9 @@ class MapEventHeader:
         self.warps = warps
 
         #triggers (based on xy location)
-        trigger_count = ord(rom[after_warps])
-        trigger_byte_count = trigger_byte_size * trigger_count
-        xy_triggers = parse_xy_triggers(after_warps+1, trigger_count, bank=bank, map_group=map_group, map_id=map_id, debug=debug)
+        xy_trigger_count = ord(rom[after_warps])
+        trigger_byte_count = trigger_byte_size * xy_trigger_count
+        xy_triggers = parse_xy_triggers(after_warps+1, xy_trigger_count, bank=bank, map_group=map_group, map_id=map_id, debug=debug)
         after_triggers = after_warps + 1 + trigger_byte_count
         self.xy_trigger_count = xy_trigger_count
         self.xy_triggers = xy_triggers
