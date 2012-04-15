@@ -4999,7 +4999,7 @@ class PeopleEvent(Command):
         self.force = force
         self.params = {}
         #PeopleEvent should probably not be in the global script_parse_table
-        script_parse_table[self.address : self.last_address] = self
+        #script_parse_table[self.address : self.last_address] = self
         self.parse()
     def parse(self):
         address = self.address
@@ -5311,7 +5311,7 @@ class Signpost:
         self.last_address = self.address + self.size
         self.y, self.x, self.func = None, None, None
         #Signpost should probably not be in the globals
-        script_parse_table[self.address : self.last_address] = self
+        #script_parse_table[self.address : self.last_address] = self
         self.remotes = []
         self.params = []
         self.parse()
