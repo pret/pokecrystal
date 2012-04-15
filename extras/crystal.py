@@ -5347,7 +5347,7 @@ class SecondMapHeader:
         #TODO: process blockdata ?
         #bank appears first
         ###self.blockdata_address = PointerLabelBeforeBank(address+3)
-        self.blockdata = MapBlockDataParam(address+3, map_group=self.map_group, map_id=self.map_id, debug=self.debug)
+        self.blockdata = MapBlockData(address+3, map_group=self.map_group, map_id=self.map_id, debug=self.debug)
         #bank appears first
         #TODO: process MapScriptHeader
         ###self.script_address = PointerLabelBeforeBank(address+6)
@@ -5370,7 +5370,7 @@ class SecondMapHeader:
         #event_address = calculate_pointer(event_pointer, event_bank)
         #connections = bytes[11]
         ####
-        #self.border_block = border_block
+        #self.bordere_block = border_block
         #self.height = height
         #self.width = width
         #self.blockdata_bank = blockdata_bank
@@ -5385,7 +5385,20 @@ class SecondMapHeader:
         #self.connections = connections
         
         return True
-
+    def to_asm(self):
+        output = "; border block\n"
+        output += "db " + self.border_block.to_asm() + "\n\n"
+        output += "; height, width\n"
+        output += "db " + self.height.to_asm() + ", " + self.width.to_asm() + "\n\n"
+        output += "; blockdata (bank-then-pointer)\n"
+        output += ScriptPointerLabelBeforeBank(self.blockdata.address).to_asm() + "\n\n"
+        output += "; script header (bank-then-pointer)\n"
+        output += ScriptPointerLabelBeforeBank(self.script_header.address).to_asm() + "\n\n"
+        output += "; map event header (bank-then-pointer)\n"
+        output += ScriptPointerLabelBeforeBank(self.event_header.address).to_asm() + "\n\n"
+        output += "; connections\n"
+        output += "db " + self.connections.to_asm()
+        return output
 def parse_second_map_header_at(address, map_group=None, map_id=None, debug=True):
     """each map has a second map header"""
     return SecondMapHeader(address, map_group=map_group, map_id=map_id, debug=debug)
@@ -5454,24 +5467,25 @@ class MapEventHeader:
             self.last_address = after_signposts+1
         return True
     def to_asm(self):
-        output += spacing + "; warps\n"
-        output += spacing + "db %d\n"%(self.warp_count)
-        output += "\n".join([spacing+warp.to_asm() for warp in self.warps])
+        xspacing = "" #was =spacing
+        output += xspacing + "; warps\n"
+        output += xspacing + "db %d\n"%(self.warp_count)
+        output += "\n".join([xspacing+warp.to_asm() for warp in self.warps])
 
         output += "\n\n"
-        output += spacing + "; xy triggers\n"
-        output += spacing + "db %d\n"%(self.xy_trigger_count)
-        output += "\n".join([spacing+xy_trigger.to_asm() for xy_trigger in self.xy_triggers])
+        output += xspacing + "; xy triggers\n"
+        output += xspacing + "db %d\n"%(self.xy_trigger_count)
+        output += "\n".join([xspacing+xy_trigger.to_asm() for xy_trigger in self.xy_triggers])
 
         output += "\n\n"
-        output += spacing + "; signposts\n"
-        output += spacing + "db %d\n"%(self.signpost_count)
-        output += "\n".join([spacing+signpost.to_asm() for signpost in self.signposts])
+        output += xspacing + "; signposts\n"
+        output += xspacing + "db %d\n"%(self.signpost_count)
+        output += "\n".join([xspacing+signpost.to_asm() for signpost in self.signposts])
 
         output += "\n\n"
-        output += spacing + "; people-events\n"
-        output += spacing + "db %d\n"%(self.people_event_count)
-        output += "\n".join([spacing+people_event.to_asm() for people_event in self.people_events])
+        output += xspacing + "; people-events\n"
+        output += xspacing + "db %d\n"%(self.people_event_count)
+        output += "\n".join([xspacing+people_event.to_asm() for people_event in self.people_events])
 
         return output
 
