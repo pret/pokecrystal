@@ -5051,6 +5051,16 @@ class PeopleEvent(Command):
         self.is_trainer = is_trainer
         self.is_give_item = is_give_item
         self.is_regular_script = is_regular_script
+        self.y = self.params[1].byte
+        self.x = self.params[2].byte
+        self.facing = self.params[3].byte
+        self.movement = self.params[4].byte
+        self.clock_hour = self.params[5].byte
+        self.clock_daytime = self.params[6].byte
+        self.color_function = self.params[7].byte
+        self.sight_range = self.params[8].byte
+        self.pointer = self.params[9].bytes
+        self.bit_number = self.params[10].bytes
         return True
 
 all_people_events = []
@@ -5557,8 +5567,11 @@ def old_parse_map_header_at(address, map_group=None, map_id=None, debug=True):
     }
     print "second map header address is: " + hex(second_map_header_address)
     map_header["second_map_header"] = old_parse_second_map_header_at(second_map_header_address, debug=debug)
-    #map_header.update(old_parse_map_event_header_at(map_header["event_address"], map_group=map_group, map_id=map_id, debug=debug))
-    #map_header.update(old_parse_map_script_header_at(map_header["script_address"], map_group=map_group, map_id=map_id, debug=debug))
+    event_header_address = map_header["second_map_header"]["event_address"]
+    script_header_address = map_header["second_map_header"]["script_address"]
+    #maybe event_header and script_header should be put under map_header["second_map_header"]
+    map_header["event_header"] = old_parse_map_event_header_at(event_header_address, map_group=map_group, map_id=map_id, debug=debug)
+    map_header["script_header"] = old_parse_map_script_header_at(script_header_address, map_group=map_group, map_id=map_id, debug=debug)
     return map_header
 
 class SecondMapHeader:
@@ -5598,7 +5611,7 @@ class SecondMapHeader:
         #self.script_header = MapScriptHeader(self.script_header_address, map_group=self.map_group, map_id=self.map_id, debug=self.debug)
         
         self.event_header_address = calculate_pointer_from_bytes_at(address+9, bank=ord(rom[address+6]))
-        #self.event_header = MapEventHeader(address+8)
+        self.event_header = MapEventHeader(self.event_header_address)
         self.connections = DecimalParam(address=address+11)
 
         #border_block = bytes[0]
@@ -5839,7 +5852,7 @@ def old_parse_map_event_header_at(address, map_group=None, map_id=None, debug=Tr
     signpost_byte_count = signpost_byte_size * signpost_count
     signposts = rom_interval(after_triggers+1, signpost_byte_count)
     after_signposts = after_triggers + 1 + signpost_byte_count
-    returnable.update({"signpost_count": signpost_count, "signposts": old_parse_signpost_bytes(after_triggers+1, signpost_count, bank=bank, map_group=map_group, map_id=map_id)})
+    returnable.update({"signpost_count": signpost_count, "signposts": old_parse_signpost_bytes(signposts, bank=bank, map_group=map_group, map_id=map_id)})
   
     #people events
     people_event_count = ord(rom[after_signposts])
@@ -6208,11 +6221,12 @@ def parse_all_map_headers(debug=True):
             if map_id == "offset": continue #skip the "offset" address for this map group
             if debug: print "map_group is: " + str(group_id) + "  map_id is: " + str(map_id)
             map_header_offset = offset + ((map_id - 1) * map_header_byte_size)
+            map_names[group_id][map_id]["header_offset"] = map_header_offset
+           
             old_parsed_map = old_parse_map_header_at(map_header_offset, map_group=group_id, map_id=map_id, debug=debug)
             new_parsed_map = parse_map_header_at(map_header_offset, map_group=group_id, map_id=map_id, debug=debug)
             map_names[group_id][map_id]["header_new"] = new_parsed_map
             map_names[group_id][map_id]["header_old"] = old_parsed_map
-            map_names[group_id][map_id]["header_offset"] = map_header_offset
 
 #map names with no labels will be generated at the end of the structure 
 map_names = {
