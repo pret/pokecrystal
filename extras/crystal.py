@@ -5356,7 +5356,7 @@ class SecondMapHeader:
         #TODO: process blockdata ?
         #bank appears first
         ###self.blockdata_address = PointerLabelBeforeBank(address+3)
-        self.blockdata = MapBlockData(address+3, map_group=self.map_group, map_id=self.map_id, debug=self.debug)
+        self.blockdata = MapBlockData(address+3, map_group=self.map_group, map_id=self.map_id, debug=self.debug, width=self.width, height=self.height)
         #bank appears first
         #TODO: process MapScriptHeader
         ###self.script_address = PointerLabelBeforeBank(address+6)
@@ -5539,11 +5539,7 @@ def parse_map_event_header_at(address, map_group=None, map_id=None, debug=True, 
     """parse crystal map event header byte structure thing"""
     return MapEventHeader(address, map_group=map_group, map_id=map_id, debug=debug, bank=bank)
 
-class MapScriptHeader(Command):
-    def __init__(self, *args, **kwargs):
-    def parse(self):
-    def to_asm(self):
-def parse_map_script_header_at(address, map_group=None, map_id=None, debug=True):
+class MapScriptHeader:
     """parses a script header
     
     This structure allows the game to have e.g. one-time only events on a map
@@ -5553,7 +5549,7 @@ def parse_map_script_header_at(address, map_group=None, map_id=None, debug=True)
     This header a combination of a trigger script section and a callback script
     section. I don't know if these 'trigger scripts' are the same as the others
     referenced in the map event header, so this might need to be renamed very
-    soon.
+    soon. The scripts in MapEventHeader are called XYTrigger.
 
     trigger scripts: 
     [[Number1 of pointers] Number1 * [2byte pointer to script][00][00]]
@@ -5595,59 +5591,57 @@ def parse_map_script_header_at(address, map_group=None, map_id=None, debug=True)
         after battle:
             01, 04
     """
-    print "starting to parse the map's script header.."
-    #[[Number1 of pointers] Number1 * [2byte pointer to script][00][00]]
-    ptr_line_size = 4 #[2byte pointer to script][00][00]
-    trigger_ptr_cnt = ord(rom[address])
-    trigger_pointers = grouper(rom_interval(address+1, trigger_ptr_cnt * ptr_line_size, strings=False), count=ptr_line_size)
-    triggers = {}
-    for index, trigger_pointer in enumerate(trigger_pointers):
-        print "parsing a trigger header..."
-        byte1 = trigger_pointer[0]
-        byte2 = trigger_pointer[1]
-        ptr   = byte1 + (byte2 << 8)
-        trigger_address = calculate_pointer(ptr, calculate_bank(address))
-        trigger_script  = parse_script_engine_script_at(trigger_address, map_group=map_group, map_id=map_id)
-        triggers[index] = {
-            "script": trigger_script,
-            "address": trigger_address,
-            "pointer": {"1": byte1, "2": byte2},
-        }
-    
-    #bump ahead in the byte stream
-    address += trigger_ptr_cnt * ptr_line_size + 1
-    
-    #[[Number2 of pointers] Number2 * [hook number][2byte pointer to script]]
-    callback_ptr_line_size = 3
-    callback_ptr_cnt = ord(rom[address])
-    callback_ptrs = grouper(rom_interval(address+1, callback_ptr_cnt * callback_ptr_line_size, strings=False), count=callback_ptr_line_size)
-    callback_pointers = {}
-    callbacks = {}
-    for index, callback_line in enumerate(callback_ptrs):
-        print "parsing a callback header..."
-        hook_byte = callback_line[0] #1, 2, 3, 4, 5
-        callback_byte1 = callback_line[1]
-        callback_byte2 = callback_line[2]
-        callback_ptr = callback_byte1 + (callback_byte2 << 8)
-        callback_address = calculate_pointer(callback_ptr, calculate_bank(address))
-        callback_script = parse_script_engine_script_at(callback_address)
-        callback_pointers[len(callback_pointers.keys())] = [hook_byte, callback_ptr]
-        callbacks[index] = {
-            "script": callback_script,
-            "address": callback_address,
-            "pointer": {"1": callback_byte1, "2": callback_byte2},
-        }
-    
-    #XXX do these triggers/callbacks call asm or script engine scripts?
-    return {
-        #"trigger_ptr_cnt": trigger_ptr_cnt,
-        "trigger_pointers": trigger_pointers,
-        #"callback_ptr_cnt": callback_ptr_cnt,
-        #"callback_ptr_scripts": callback_ptrs,
-        "callback_pointers": callback_pointers,
-        "trigger_scripts": triggers,
-        "callback_scripts": callbacks,
-    }
+    base_label = "MapScriptHeader_"
+    def __init__(self, address, map_group=None, map_id=None, debug=True, bank=None, label=None):
+        self.address = address
+        self.map_group = map_group
+        self.map_id = map_id
+        self.debug = debug
+        self.bank = bank
+        if label:
+            self.label = label
+        else:
+            self.label = self.base_label + hex(address)
+        self.parse()
+        script_parse_table[address : self.last_address] = self
+    def parse(self):
+        address = self.address
+        map_group = self.map_group
+        map_id = self.map_id
+        debug = self.debug
+        #[[Number1 of pointers] Number1 * [2byte pointer to script][00][00]]
+        self.trigger_count = ord(rom[address])
+        self.triggers = []
+        ptr_line_size = 4
+        groups = grouper(rom_interval(address+1, self.trigger_count * ptr_line_size, strings=False), count=ptr_line_size)
+        current_address = address
+        for (index, trigger_bytes) in enumerate(groups):
+            print "parsing a trigger header..."
+            script = ScriptPointerLabelParam(current_address, map_group=map_group, map_id=map_id, debug=debug)
+            self.triggers.append(script)
+            current_address += ptr_line_size
+        current_address = address + (self.trigger_count * ptr_line_size) + 1
+        #[[Number2 of pointers] Number2 * [hook number][2byte pointer to script]]
+        callback_ptr_line_size = 3
+        self.callback_count = DecimalParam(current_address)
+        self.callbacks = []
+        for index in range(callback_count):
+            hook_byte = HexByte(current_address)
+            callback = ScriptPointerLabelParam(current_address+1, map_group=map_group, map_id=map_id, debug=debug)
+            callbacks.append({"hook": hook_byte, "callback": callback})
+        return True
+    def to_asm(self):
+        output = ""
+        output += "; trigger count\n"
+        output += "db %d\n\n"%self.trigger_count
+        output += "; triggers\n"
+        output += "dw " + "\n".join([p.to_asm() for p in self.triggers]) + "\n\n"
+        output += "; callbacks\n"
+        #not so sure about this next one
+        output += "\n".join(["dbw "+str(p["hook"])+", "+p["callback"].to_asm() for p in self.callbacks])
+        return output
+def parse_map_script_header_at(address, map_group=None, map_id=None, debug=True):
+    return MapScriptHeader(address, map_group=map_group, map_id=map_id, debug=debug)
 
 def old_parse_trainer_header_at(address, map_group=None, map_id=None, debug=True):
     bank = calculate_bank(address)
