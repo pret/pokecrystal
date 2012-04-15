@@ -5291,6 +5291,15 @@ def parse_signposts(address, signpost_count, bank=None, map_group=None, map_id=N
     all_signposts.extend(signposts)
     return signposts
 
+class MapHeader:
+    def __init__(self, address, map_group=None, map_id=None, debug=True):
+        self.address = address
+        self.map_group = map_group
+        self.map_id = map_id
+        self.debug = debug
+        self.parse()
+    def parse(self):
+    def to_asm(self):
 def parse_map_header_at(address, map_group=None, map_id=None, debug=True):
     """parses an arbitrary map header at some address"""
     print "parsing a map header at: " + hex(address)
@@ -5403,6 +5412,43 @@ def parse_second_map_header_at(address, map_group=None, map_id=None, debug=True)
     """each map has a second map header"""
     return SecondMapHeader(address, map_group=map_group, map_id=map_id, debug=debug)
 
+class MapBlockData:
+    base_label = "MapBlockData_"
+    maps_path = os.path.realpath(os.path.join(os.path.realpath("."), "../maps"))
+    def __init__(self, address, map_group=None, map_id=None, debug=True, bank=None, label=None, width=None, height=None):
+        self.address = address
+        self.map_group = map_group
+        self.map_id = map_id
+        self.map_name = map_names[map_group][map_id]["label"]
+        self.map_path = os.path.join(self.maps_path, self.map_name + ".blk")
+        self.debug = debug
+        self.bank = bank
+        if width and height:
+            self.width = width
+            self.height = height
+        else:
+            raise Exception, "MapBlockData needs to know the width/height of its map"
+        if label:
+            self.label = label
+        else:
+            self.label = self.base_label + hex(address)
+        self.last_address = self.address + (self.width * self.height)
+        script_parse_table[address : self.last_address] = self
+        self.parse()
+    def save_to_file(self):
+        #check if the file exists already
+        map_path = self.map_path
+        if not os.path.exists(map_path):
+            #dump to file
+            bytes = rom_interval(self.address, self.width*self.height, strings=True)
+            file_handler = open(map_path, "w")
+            file_handler.write(bytes)
+            file_handler.close()
+    def parse(self):
+        self.save_to_file()
+    def to_asm(self):
+        return "INCBIN \"maps/"+self.map_name+".blk\""
+
 class MapEventHeader:
     base_label = "MapEventHeader_"
     def __init__(self, address, map_group=None, map_id=None, debug=True, bank=None, label=None):
@@ -5493,6 +5539,10 @@ def parse_map_event_header_at(address, map_group=None, map_id=None, debug=True, 
     """parse crystal map event header byte structure thing"""
     return MapEventHeader(address, map_group=map_group, map_id=map_id, debug=debug, bank=bank)
 
+class MapScriptHeader(Command):
+    def __init__(self, *args, **kwargs):
+    def parse(self):
+    def to_asm(self):
 def parse_map_script_header_at(address, map_group=None, map_id=None, debug=True):
     """parses a script header
     
