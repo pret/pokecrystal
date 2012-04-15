@@ -5509,8 +5509,9 @@ class MapHeader:
         self.bank = HexByte(address=address)
         self.tileset = HexByte(address=address+1)
         self.permission = DecimalParam(address=address+2)
+        self.second_map_header_address = calculate_pointer(ord(rom[address+3])+(ord(rom[address+4])<<8), self.bank.byte)
         #TODO: is the bank really supposed to be 0x25 all the time ??
-        self.second_map_header = SecondMapHeader(calculate_pointer(ord(rom[address+3])+(ord(rom[address+4])<<8), self.bank.byte), map_group=self.map_group, map_id=self.map_id, debug=self.debug)
+        #self.second_map_header = SecondMapHeader(self.second_map_header_address, map_group=self.map_group, map_id=self.map_id, debug=self.debug)
         self.location_on_world_map = HexByte(address=address+5)
         self.music = HexByte(address=address+6)
         self.time_of_day = DecimalParam(address=address+7)
@@ -5555,10 +5556,9 @@ def old_parse_map_header_at(address, map_group=None, map_id=None, debug=True):
         "fishing": fishing_group,
     }
     print "second map header address is: " + hex(second_map_header_address)
-    map_header.update(old_parse_second_map_header_at(second_map_header_address, debug=debug))
-    map_header.update(old_parse_map_event_header_at(map_header["event_address"], map_group=map_group, map_id=map_id, debug=debug))
-    #maybe this next one should be under the "scripts" key?
-    map_header.update(old_parse_map_script_header_at(map_header["script_address"], map_group=map_group, map_id=map_id, debug=debug))
+    #map_header.update(old_parse_second_map_header_at(second_map_header_address, debug=debug))
+    #map_header.update(old_parse_map_event_header_at(map_header["event_address"], map_group=map_group, map_id=map_id, debug=debug))
+    #map_header.update(old_parse_map_script_header_at(map_header["script_address"], map_group=map_group, map_id=map_id, debug=debug))
     return map_header
 
 class SecondMapHeader:
@@ -6204,8 +6204,10 @@ def parse_all_map_headers(debug=True):
             if map_id == "offset": continue #skip the "offset" address for this map group
             if debug: print "map_group is: " + str(group_id) + "  map_id is: " + str(map_id)
             map_header_offset = offset + ((map_id - 1) * map_header_byte_size)
-            parsed_map = parse_map_header_at(map_header_offset, map_group=group_id, map_id=map_id, debug=debug)
-            map_names[group_id][map_id].update(parsed_map)
+            old_parsed_map = old_parse_map_header_at(map_header_offset, map_group=group_id, map_id=map_id, debug=debug)
+            new_parsed_map = parse_map_header_at(map_header_offset, map_group=group_id, map_id=map_id, debug=debug)
+            map_names[group_id][map_id]["header_new"] = new_parsed_map
+            map_names[group_id][map_id]["header_old"] = old_parsed_map
             map_names[group_id][map_id]["header_offset"] = map_header_offset
 
 #map names with no labels will be generated at the end of the structure 
