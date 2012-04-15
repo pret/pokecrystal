@@ -2843,7 +2843,10 @@ class Script():
                 asm_output = ""
                 for command in commands:
                     asm_output += command.to_asm() + "\n"
-                raise Exception, "no command found? id: " + hex(cur_byte) + " at " + hex(current_address) + " asm is:\n" + asm_output
+                end = True
+                continue
+                #XXX maybe a bad idea to not die ?
+                #raise Exception, "no command found? id: " + hex(cur_byte) + " at " + hex(current_address) + " asm is:\n" + asm_output
             #print "about to parse command(script@"+hex(start_address)+"): " + str(right_kls.macro_name)
             cls = right_kls(address=current_address, force=force, map_group=map_group, map_id=map_id)
             #print cls.to_asm()
@@ -5627,12 +5630,14 @@ class MapScriptHeader:
         current_address = address + (self.trigger_count * ptr_line_size) + 1
         #[[Number2 of pointers] Number2 * [hook number][2byte pointer to script]]
         callback_ptr_line_size = 3
-        self.callback_count = DecimalParam(current_address)
+        self.callback_count = DecimalParam(address=current_address)
         self.callbacks = []
-        for index in range(callback_count):
-            hook_byte = HexByte(current_address)
+        for index in range(self.callback_count.byte):
+            hook_byte = HexByte(address=current_address)
             callback = ScriptPointerLabelParam(address=current_address+1, map_group=map_group, map_id=map_id, debug=debug)
-            callbacks.append({"hook": hook_byte, "callback": callback})
+            self.callbacks.append({"hook": hook_byte, "callback": callback})
+            current_address += 3 #i think?
+        self.last_address = current_address
         return True
     def to_asm(self):
         output = ""
