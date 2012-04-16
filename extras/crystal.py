@@ -4970,7 +4970,7 @@ class TrainerFragmentParam(PointerLabelParam):
         PointerLabelParam.parse(self)
 class PeopleEvent(Command):
     size = people_event_byte_size
-    macro_name = "people_event_def"
+    macro_name = "person_event"
     base_label = "PeopleEvent_"
     override_byte_check = True
     param_types = {
@@ -6751,6 +6751,7 @@ for map_group_id in map_names.keys():
 #generate map constants (like 1=PALLET_TOWN)
 generate_map_constant_labels()
 
+
 #### asm utilities ####
 #these are pulled in from pokered/extras/analyze_incbins.py
 
@@ -6762,6 +6763,14 @@ incbin_lines = []
 
 #storage for processed incbin lines
 processed_incbins = {}
+
+def to_asm(some_object):
+    """shows asm with labels and ending comments"""
+    #label: ; 0x10101
+    asm = some_object.label + ": ; " + hex(some_object.address) + "\n"
+    asm += spacing + some_object.to_asm().replace("\n", "\n"+spacing).replace("\n"+spacing+"\n"+spacing, "\n\n"+spacing)
+    asm += "\n; " + hex(some_object.last_address)
+    return asm
 
 def isolate_incbins():
     "find each incbin line"
