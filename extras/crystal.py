@@ -2257,7 +2257,8 @@ class PointerLabelParam(MultiByteParam):
         elif bank == False or bank == None: #pointer
             return pointer_part #this could be the same as label
         else:
-            raise Exception, "this should never happen"
+            #raise Exception, "this should never happen"
+            return pointer_part #probably in the same bank ?
         raise Exception, "this should never happen"
 class PointerLabelBeforeBank(PointerLabelParam):
     bank = True #bank appears first, see calculate_pointer_from_bytes_at
@@ -5531,9 +5532,9 @@ class MapHeader:
         output  = "; bank, tileset, permission\n"
         output += "db " + ", ".join([self.bank.to_asm(), self.tileset.to_asm(), self.permission.to_asm()])
         output += "\n\n; second map header\n"
-        output += "dw " + PointerLabelParam(self.second_map_header.address).to_asm()
+        output += "dw " + PointerLabelParam(address=self.address+3).to_asm() #TODO: should we include bank=self.bank.byte ??
         output += "\n\n; location on world map, music, time of day, fishing group\n"
-        output += "db " + ", ".join([self.location_on_world_map.to_asm(), self.muisc.to_asm(), self.time_of_day.to_asm(), self.fishing_group.to_asm()])
+        output += "db " + ", ".join([self.location_on_world_map.to_asm(), self.music.to_asm(), self.time_of_day.to_asm(), self.fishing_group.to_asm()])
         return output
 
 all_map_headers = []
@@ -5614,6 +5615,7 @@ class SecondMapHeader:
         self.script_header = MapScriptHeader(self.script_header_address, map_group=self.map_group, map_id=self.map_id, debug=self.debug)
         all_map_script_headers.append(self.script_header)
 
+        self.event_bank = ord(rom[address+6])
         self.event_header_address = calculate_pointer_from_bytes_at(address+9, bank=ord(rom[address+6]))
         self.event_header = MapEventHeader(self.event_header_address)
         self.connections = DecimalParam(address=address+11)
@@ -5654,11 +5656,11 @@ class SecondMapHeader:
         output += "; height, width\n"
         output += "db " + self.height.to_asm() + ", " + self.width.to_asm() + "\n\n"
         output += "; blockdata (bank-then-pointer)\n"
-        output += ScriptPointerLabelBeforeBank(self.blockdata.address).to_asm() + "\n\n"
+        output += "dbw " + ScriptPointerLabelBeforeBank(address=self.address+3, map_group=self.map_group, map_id=self.map_id, debug=self.debug).to_asm() + "\n\n"
         output += "; script header (bank-then-pointer)\n"
-        output += ScriptPointerLabelBeforeBank(self.script_header.address).to_asm() + "\n\n"
+        output += "dbw " + ScriptPointerLabelBeforeBank(address=self.address+6, map_group=self.map_group, map_id=self.map_id, debug=self.debug).to_asm() + "\n\n"
         output += "; map event header (bank-then-pointer)\n"
-        output += ScriptPointerLabelBeforeBank(self.event_header.address).to_asm() + "\n\n"
+        output += "dw " + PointerLabelParam(address=self.address+9, bank=self.event_bank, map_group=self.map_group, map_id=self.map_id, debug=self.debug).to_asm() + "\n\n"
         output += "; connections\n"
         output += "db " + self.connections.to_asm()
         return output
@@ -5806,6 +5808,7 @@ class MapEventHeader:
         return True
     def to_asm(self):
         xspacing = "" #was =spacing
+        output = ""
         output += xspacing + "; warps\n"
         output += xspacing + "db %d\n"%(self.warp_count)
         output += "\n".join([xspacing+warp.to_asm() for warp in self.warps])
@@ -6241,8 +6244,8 @@ def parse_all_map_headers(debug=True):
            
             new_parsed_map = parse_map_header_at(map_header_offset, map_group=group_id, map_id=map_id, debug=debug)
             map_names[group_id][map_id]["header_new"] = new_parsed_map
-            #old_parsed_map = old_parse_map_header_at(map_header_offset, map_group=group_id, map_id=map_id, debug=debug)
-            #map_names[group_id][map_id]["header_old"] = old_parsed_map
+            old_parsed_map = old_parse_map_header_at(map_header_offset, map_group=group_id, map_id=map_id, debug=debug)
+            map_names[group_id][map_id]["header_old"] = old_parsed_map
 
 #map names with no labels will be generated at the end of the structure 
 map_names = {
