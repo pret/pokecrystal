@@ -5964,9 +5964,10 @@ class MapScriptHeader:
         #[[Number2 of pointers] Number2 * [hook number][2byte pointer to script]]
         callback_ptr_line_size = 3
         self.callback_count = DecimalParam(address=current_address)
+        self.callback_count = self.callback_count.byte
         current_address += 1
         self.callbacks = []
-        for index in range(self.callback_count.byte):
+        for index in range(self.callback_count):
             print "parsing a callback script at "+hex(current_address)+" map_group="+str(map_group)+" map_id="+str(map_id)
             hook_byte = HexByte(address=current_address)
             callback = ScriptPointerLabelParam(address=current_address+1, map_group=map_group, map_id=map_id, debug=debug)
@@ -5978,12 +5979,16 @@ class MapScriptHeader:
     def to_asm(self):
         output = ""
         output += "; trigger count\n"
-        output += "db %d\n\n"%self.trigger_count
-        output += "; triggers\n"
-        output += "dw " + "\n".join([p.to_asm() for p in self.triggers]) + "\n\n"
-        output += "; callbacks\n"
-        #not so sure about this next one
-        output += "\n".join(["dbw "+str(p["hook"])+", "+p["callback"].to_asm() for p in self.callbacks])
+        output += "db %d\n"%self.trigger_count
+        if len(self.triggers) > 0:
+            output += "\n; triggers\n"
+            output += "\n".join(["dw "+p.to_asm() for p in self.triggers]) + "\n"
+        output += "\n; callback count\n"
+        output += "db %d\n"%self.callback_count
+        if len(self.callbacks) > 0:
+            output += "\n; callbacks\n"
+            #not so sure about this next one
+            output += "\n".join(["dbw "+str(p["hook"].byte)+", "+p["callback"].to_asm() for p in self.callbacks])
         return output
 
 all_map_script_headers = []
