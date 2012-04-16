@@ -3869,7 +3869,23 @@ INCBIN "baserom.gbc",$8C000,$4000
 SECTION "bank24",DATA,BANK[$24]
 INCBIN "baserom.gbc",$90000,$4000
 SECTION "bank25",DATA,BANK[$25]
-INCBIN "baserom.gbc",$94000,$4000
+INCBIN "baserom.gbc",$94000,$94034 - $94000
+
+MapHeader_0x94034: ; 0x94034
+	; bank, tileset, permission
+	db $25, $7, 3
+
+	; second map header
+	dw $5ba0
+
+	; location on world map, music, time of day, fishing group
+	db $1b, $9, 1, 1
+; had to increase the final size by 1
+; had to convert 0x->$ (duh..)
+; 0x9403d
+
+INCBIN "baserom.gbc",$9403d,$98000 - $9403d
+
 SECTION "bank26",DATA,BANK[$26]
 INCBIN "baserom.gbc",$98000,$4000
 SECTION "bank27",DATA,BANK[$27]
