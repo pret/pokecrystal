@@ -2160,7 +2160,7 @@ class SingleByteParam():
         if not self.should_be_decimal: return hex(self.byte).replace("0x", "$")
         else: return str(self.byte)
 class HexByte(SingleByteParam):
-    def to_asm(self): return hex(self.byte)
+    def to_asm(self): return "$%.2x" % (self.byte)
 class DollarSignByte(SingleByteParam):
     #def to_asm(self): return "$%.2x"%self.byte
     def to_asm(self): return hex(self.byte).replace("0x", "$")
