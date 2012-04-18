@@ -3197,7 +3197,7 @@ INCBIN "baserom.gbc",$40000,$1afb
 
 Moves: ; 0x41afb
 ; characteristics of each move
-; animation, effect, power, type, accuracy, PP, XXX something else
+; animation, effect, power, type, accuracy, PP, effect chance
 	db POUND,$00,40,NORMAL,$ff,35,$00
 Move1:
 	db KARATE_CHOP,$00,50,FIGHTING,$ff,25,$00
