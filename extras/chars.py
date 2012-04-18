@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from copy import copy
 #this is straight out of ../textpre.py because i'm lazy
 #see jap_chars for overrides if you are in japanese mode?
 chars = {
