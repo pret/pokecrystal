@@ -61,16 +61,16 @@ chars = {
     0x50: "@",
     0x54: "#",
     0x75: "…",
-    
+
     0x79: "┌",
     0x7A: "─",
     0x7B: "┐",
     0x7C: "│",
     0x7D: "└",
     0x7E: "┘",
-    
+
     0x74: "№",
-    
+
     0x7F: " ",
     0x80: "A",
     0x81: "B",
@@ -333,12 +333,15 @@ class Size():
     includes the first value or not, like for
     whether or not the size of a command in a script
     also includes the command byte or not"""
+
     def __init__(self, size, inclusive=False):
         self.inclusive = inclusive
         if inclusive: size = size-1
         self.size = size
+
     def inclusive(self):
         return self.size + 1
+
     def exclusive(self):
         return self.size
 
@@ -352,30 +355,32 @@ class IntervalMap(object):
     >>> print i[4]
     "hello world"
     """
+
     def __init__(self):
         """initializes an empty IntervalMap"""
         self._bounds = []
         self._items = []
         self._upperitem = None
+
     def __setitem__(self, _slice, _value):
         """sets an interval mapping"""
         assert isinstance(_slice, slice), 'The key must be a slice object'
-    
+
         if _slice.start is None:
             start_point = -1
         else:
             start_point = bisect_left(self._bounds, _slice.start)
-        
+
         if _slice.stop is None:
             end_point = -1
         else:
             end_point = bisect_left(self._bounds, _slice.stop)
-        
+
         if start_point>=0:
             if start_point < len(self._bounds) and self._bounds[start_point]<_slice.start:
-                start_point += 1 
+                start_point += 1
 
-            if end_point>=0:        
+            if end_point>=0:
                 self._bounds[start_point:end_point] = [_slice.start, _slice.stop]
                 if start_point < len(self._items):
                     self._items[start_point:end_point] = [self._items[start_point], _value]
@@ -396,15 +401,17 @@ class IntervalMap(object):
                 self._bounds[:] = []
                 self._items[:] = []
                 self._upperitem = _value
+
     def __getitem__(self,_point):
         """gets a value from the mapping"""
-        assert not isinstance(_point, slice), 'The key cannot be a slice object'  
-            
+        assert not isinstance(_point, slice), 'The key cannot be a slice object'
+
         index = bisect_right(self._bounds, _point)
         if index < len(self._bounds):
             return self._items[index]
         else:
             return self._upperitem
+
     def items(self):
         """returns an iterator with each item being
         ((low_bound, high_bound), value)
@@ -416,6 +423,7 @@ class IntervalMap(object):
             previous_bound = b
         if self._upperitem is not None:
             yield (previous_bound, None), self._upperitem
+
     def values(self):
         """returns an iterator with each item being a stored value
         the items are returned in order"""
@@ -424,6 +432,7 @@ class IntervalMap(object):
                 yield v
         if self._upperitem is not None:
             yield self._upperitem
+
     def __repr__(self):
         s = []
         for b,v in self.items():
@@ -434,6 +443,7 @@ class IntervalMap(object):
                     v
                 ))
         return '{'+', '.join(s)+'}'
+
 
 # ---- script_parse_table explanation ----
 # This is an IntervalMap that keeps track of previously parsed scripts, texts
@@ -453,6 +463,7 @@ def is_script_already_parsed_at(address):
     """looks up whether or not a script is parsed at a certain address"""
     if script_parse_table[address] == None: return False
     return True
+
 def script_parse_table_pretty_printer():
     """helpful debugging output"""
     for each in script_parse_table.items():
@@ -472,11 +483,14 @@ def map_name_cleaner(input):
 
 class RomStr(str):
     """simple wrapper to prevent a giant rom from being shown on screen"""
+
     def length(self):
         """len(self)"""
         return len(self)
+
     def __repr__(self):
         return "RomStr(too long)"
+
     def interval(self, offset, length, strings=True, debug=True):
         """returns hex values for the rom starting at offset until offset+length"""
         returnable = []
@@ -486,10 +500,14 @@ class RomStr(str):
             else:
                 returnable.append(ord(byte))
         return returnable
+
     def until(self, offset, byte, strings=True, debug=False):
         """returns hex values from rom starting at offset until the given byte"""
         return self.interval(offset, self.find(chr(byte), offset) - offset, strings=strings)
+
+
 rom = RomStr(None)
+
 def direct_load_rom(filename="../baserom.gbc"):
     """loads bytes into memory"""
     global rom
@@ -497,6 +515,7 @@ def direct_load_rom(filename="../baserom.gbc"):
     rom = RomStr(file_handler.read())
     file_handler.close()
     return rom
+
 def load_rom(filename="../baserom.gbc"):
     """checks that the loaded rom matches the path
     and then loads the rom if necessary."""
@@ -510,11 +529,15 @@ def load_rom(filename="../baserom.gbc"):
 
 class AsmList(list):
     """simple wrapper to prevent all asm lines from being shown on screen"""
+
     def length(self):
         """len(self)"""
         return len(self)
+
     def __repr__(self):
         return "AsmList(too long)"
+
+
 def load_asm(filename="../main.asm"):
     """loads the asm source code into memory"""
     global asm
@@ -570,6 +593,7 @@ def calculate_bank(address):
     if 0x4000 <= address <= 0x7FFF:
         raise Exception, "bank 1 does not exist"
     return int(address) / 0x4000
+
 def calculate_pointer(short_pointer, bank=None):
     """calculates the full address given a 4-byte pointer and bank byte"""
     short_pointer = int(short_pointer)
@@ -580,6 +604,7 @@ def calculate_pointer(short_pointer, bank=None):
         bank = 0
     pointer = short_pointer + (bank * 0x4000)
     return pointer
+
 def calculate_pointer_from_bytes_at(address, bank=False):
     """calculates a pointer from 2 bytes at a location
     or 3-byte pointer [bank][2-byte pointer] if bank=True"""
@@ -630,18 +655,21 @@ def command_debug_information(command_byte=None, map_group=None, map_id=None, ad
     #info1 += "    long_info: " + long_info
     return info1
 
+
 class TextScript():
     "a text is a sequence of commands different from a script-engine script"
+
     def __init__(self, address, map_group=None, map_id=None, debug=True, show=True, force=False):
         self.address = address
         self.map_group, self.map_id, self.debug, self.show, self.force = map_group, map_id, debug, show, force
         self.label = "UnknownTextLabel_"+hex(address)
         self.parse_text_at(address)
+
     @staticmethod
     def find_addresses():
         """returns a list of text pointers
         useful for testing parse_text_engine_script_at
-        
+
         Note that this list is not exhaustive. There are some texts that
         are only pointed to from some script that a current script just
         points to. So find_all_text_pointers_in_script_engine_script will
@@ -726,12 +754,13 @@ class TextScript():
                         texts2 = find_all_text_pointers_in_script_engine_script(script2, trainer_bank)
                         addresses.update(texts2)
         return addresses
+
     def parse_text_at(self, address):
         """parses a text-engine script ("in-text scripts")
         http://hax.iimarck.us/files/scriptingcodes_eng.htm#InText
-    
+
         This is presently very broken.
-    
+
         see parse_text_at2, parse_text_at, and process_00_subcommands
         """
         global rom, text_count, max_texts, texts, script_parse_table
@@ -745,7 +774,7 @@ class TextScript():
         if is_script_already_parsed_at(address) and not force:
             print "text is already parsed at this location: " + hex(address)
             return script_parse_table[address]
-    
+
         total_text_commands = 0
         command_counter = 0
         original_address = address
@@ -764,56 +793,56 @@ class TextScript():
                 jump57 = how_many_until(chr(0x57), offset)
                 jump50 = how_many_until(chr(0x50), offset)
                 jump58 = how_many_until(chr(0x58), offset)
-         
+
                 #whichever command comes first
                 jump = min([jump57, jump50, jump58])
-    
+
                 end_address = offset + jump - 1 #we want the address before $57
-    
+
                 lines = process_00_subcommands(offset+1, end_address, debug=debug)
-    
+
                 if show and debug:
                     text = parse_text_at2(offset+1, end_address-offset+1, debug=debug)
                     print text
-    
+
                 command = {"type": command_byte,
                            "start_address": offset,
                            "end_address": end_address,
                            "size": jump,
                            "lines": lines,
-                          }   
-    
+                          }
+
                 offset += jump
             elif command_byte == 0x17:
                 #TX_FAR [pointer][bank]
                 pointer_byte1 = ord(rom[offset+1])
                 pointer_byte2 = ord(rom[offset+2])
                 pointer_bank = ord(rom[offset+3])
-    
+
                 pointer = (pointer_byte1 + (pointer_byte2 << 8))
                 pointer = extract_maps.calculate_pointer(pointer, pointer_bank)
-    
+
                 command = {"type": command_byte,
                            "start_address": offset,
                            "end_address": offset + 3, #last byte belonging to this command
                            "pointer": pointer, #parameter
                           }
-    
+
                 offset += 3 + 1
             elif command_byte == 0x50 or command_byte == 0x57 or command_byte == 0x58: #end text
                 command = {"type": command_byte,
                            "start_address": offset,
                            "end_address": offset,
                           }
-    
+
                 #this byte simply indicates to end the script
                 end = True
-    
+
                 #this byte simply indicates to end the script
                 if command_byte == 0x50 and ord(rom[offset+1]) == 0x50: #$50$50 means end completely
                     end = True
                     commands[command_counter+1] = command
-    
+
                     #also save the next byte, before we quit
                     commands[command_counter+1]["start_address"] += 1
                     commands[command_counter+1]["end_address"] += 1
@@ -829,21 +858,21 @@ class TextScript():
                 size = 3 #total size, including the command byte
                 pointer_byte1 = ord(rom[offset+1])
                 pointer_byte2 = ord(rom[offset+2])
-    
+
                 command = {"type": command_byte,
                            "start_address": offset+1,
                            "end_address": offset+2, #last byte belonging to this command
                            "pointer": [pointer_byte1, pointer_byte2], #RAM pointer
                           }
-    
+
                 #view near these bytes
                 #subsection = rom[offset:offset+size+1] #peak ahead
                 #for x in subsection:
                 #    print hex(ord(x))
                 #print "--"
-    
+
                 offset += 2 + 1 #go to the next byte
-    
+
                 #use this to look at the surrounding bytes
                 if debug:
                     print "next command is: " + hex(ord(rom[offset])) + " ... we are at command number: " + str(command_counter) + " near " + hex(offset) + " on map_id=" + str(map_id)
@@ -878,17 +907,17 @@ class TextScript():
                 jump57 = how_many_until(chr(0x57), offset)
                 jump50 = how_many_until(chr(0x50), offset)
                 jump58 = how_many_until(chr(0x58), offset)
-    
+
                 #whichever command comes first
                 jump = min([jump57, jump50, jump58])
-    
+
                 end_address = offset + jump - 1 #we want the address before $57
                 lines = process_00_subcommands(offset+1, end_address, debug=debug)
-                
+
                 if show and debug:
                     text = parse_text_at2(offset+1, end_address-offset+1, debug=debug)
                     print text
-    
+
                 command = {"type": command_byte,
                            "start_address": offset,
                            "end_address": end_address,
@@ -917,33 +946,34 @@ class TextScript():
                 ram_address_byte1 = ord(rom[offset+1])
                 ram_address_byte2 = ord(rom[offset+2])
                 read_byte = ord(rom[offset+3])
-    
+
                 command = {
                             "type": command_byte,
                             "address": [ram_address_byte1, ram_address_byte2],
                             "read_byte": read_byte, #split this up when we make a macro for this
                           }
-    
+
                 offset += 4
             else:
                 #if len(commands) > 0:
                 #   print "Unknown text command " + hex(command_byte) + " at " + hex(offset) + ", script began with " + hex(commands[0]["type"])
                 if debug:
                     print "Unknown text command at " + hex(offset) + " - command: " + hex(ord(rom[offset])) + " on map_id=" + str(map_id)
-    
+
                 #end at the first unknown command
                 end = True
             commands[command_counter] = command
             command_counter += 1
         total_text_commands += len(commands)
-        
+
         text_count += 1
         #if text_count >= max_texts:
         #    sys.exit()
-        
+
         self.commands = commands
         script_parse_table[original_address:offset-1] = self
         return commands
+
     def to_asm(self, label=None):
         address = self.address
         start_address = address
@@ -952,7 +982,7 @@ class TextScript():
         #apparently this isn't important anymore?
         needs_to_begin_with_0 = True
         #start with zero please
-        byte_count = 0 
+        byte_count = 0
         #where we store all output
         output = ""
         had_text_end_byte = False
@@ -967,7 +997,7 @@ class TextScript():
                 if not "type" in command.keys():
                     print "ERROR in command: " + str(command)
                     continue #dunno what to do here?
-    
+
                 if   command["type"] == 0x1: #TX_RAM
                     if first_line:
                         output = "\n"
@@ -975,7 +1005,7 @@ class TextScript():
                         first_line = False
                     p1 = command["pointer"][0]
                     p2 = command["pointer"][1]
-    
+
                     #remember to account for big endian -> little endian
                     output += "\n" + spacing + "TX_RAM $%.2x%.2x" %(p2, p1)
                     byte_count += 3
@@ -1056,27 +1086,27 @@ class TextScript():
                 else:
                     print "ERROR in command: " + hex(command["type"])
                     had_db_last = False
-    
+
                 #everything else is for $0s, really
                 continue
             lines = commands[this_command]["lines"]
-    
+
             #reset this in case we have non-$0s later
             had_db_last = False
-    
+
             #add the ending byte to the last line- always seems $57
             #this should already be in there, but it's not because of a bug in the text parser
             lines[len(lines.keys())-1].append(commands[len(commands.keys())-1]["type"])
-   
+
             #XXX to_asm should probably not include label output
-            #so this will need to be removed eventually 
+            #so this will need to be removed eventually
             if first_line:
                 output  = "\n"
                 output += label + ": ; " + hex(start_address) + "\n"
                 first_line = False
             else:
                 output += "\n"
-    
+
             first = True #first byte
             for line_id in lines:
                 line = lines[line_id]
@@ -1085,7 +1115,7 @@ class TextScript():
                     output += "$0, "
                     first = False
                     byte_count += 1
-    
+
                 quotes_open = False
                 first_byte = True
                 was_byte = False
@@ -1094,7 +1124,7 @@ class TextScript():
                         had_text_end_byte = True #don't repeat it
                     if byte in [0x58, 0x57]:
                         had_text_end_byte_57_58 = True
-    
+
                     if byte in chars:
                         if not quotes_open and not first_byte: #start text
                             output += ", \""
@@ -1115,26 +1145,26 @@ class TextScript():
                         if quotes_open:
                             output += "\""
                             quotes_open = False
-    
+
                         #if you want the ending byte on the last line
                         #if not (byte == 0x57 or byte == 0x50 or byte == 0x58):
                         if not first_byte:
                             output += ", "
-    
+
                         output += "$" + hex(byte)[2:]
                         was_byte = True
-    
+
                         #add a comma unless it's the end of the line
                         #if byte_count+1 != len(line):
                         #    output += ", "
-    
+
                     first_byte = False
                     byte_count += 1
                 #close final quotes
                 if quotes_open:
                     output += "\""
                     quotes_open = False
-    
+
                 output += "\n"
         include_newline = "\n"
         if len(output)!=0 and output[-1] == "\n":
@@ -1151,6 +1181,7 @@ def parse_text_engine_script_at(address, map_group=None, map_id=None, debug=True
     if is_script_already_parsed_at(address) and not force:
         return script_parse_table[address]
     return TextScript(address, map_group=map_group, map_id=map_id, debug=debug, show=show, force=force)
+
 def find_text_addresses():
     """returns a list of text pointers
     useful for testing parse_text_engine_script_at"""
@@ -1159,7 +1190,9 @@ def find_text_addresses():
 class EncodedText():
     """a sequence of bytes that, when decoded, represent readable text
     based on the chars table from textpre.py and other places"""
+
     def to_asm(self): raise NotImplementedError, bryan_message
+
     @staticmethod
     def process_00_subcommands(start_address, end_address, debug=True):
         """split this text up into multiple lines
@@ -1168,7 +1201,7 @@ class EncodedText():
             print "process_00_subcommands(" + hex(start_address) + ", " + hex(end_address) + ")"
         lines = {}
         subsection = rom[start_address:end_address]
-    
+
         line_count = 0
         current_line = []
         for pbyte in subsection:
@@ -1178,11 +1211,12 @@ class EncodedText():
                 lines[line_count] = current_line
                 current_line = []
                 line_count += 1
-    
+
         #don't forget the last line
         lines[line_count] = current_line
         line_count += 1
         return lines
+
     @staticmethod
     def from_bytes(bytes, debug=True, japanese=False):
         """assembles a string based on bytes looked up in the chars table"""
@@ -1197,6 +1231,7 @@ class EncodedText():
             elif debug:
                 print "byte not known: " + hex(byte)
         return line
+
     @staticmethod
     def parse_text_at(address, count=10, debug=True, japanese=False):
         """returns a string of text from an address
@@ -1208,17 +1243,22 @@ class EncodedText():
             output += "\n"
         texts.append([address, output])
         return output
+
+
 def process_00_subcommands(start_address, end_address, debug=True):
     """split this text up into multiple lines
     based on subcommands ending each line"""
     return EncodedText.process_00_subcommands(start_address, end_address, debug=debug)
+
 def parse_text_from_bytes(bytes, debug=True, japanese=False):
     """assembles a string based on bytes looked up in the chars table"""
     return EncodedText.from_bytes(bytes, debug=debug, japanese=japanese)
+
 def parse_text_at(address, count=10, debug=True):
     """returns a list of bytes from an address
     see parse_text_at2 for pretty printing"""
     return parse_text_from_bytes(rom_interval(address, count, strings=False), debug=debug)
+
 def parse_text_at2(address, count=10, debug=True, japanese=False):
     """returns a string of text from an address
     this does not handle text commands"""
@@ -1238,10 +1278,12 @@ def get_map_constant_label(map_group=None, map_id=None):
         if each["map_group"] == map_group and each["map_id"] == map_id:
             return each["label"]
     return None
+
 def get_map_constant_label_by_id(global_id):
     """returns a map constant label for a particular map id"""
     global map_internal_ids
     return map_internal_ids[global_id]["label"]
+
 def get_id_for_map_constant_label(label):
     """returns some global id for a given map constant label
     PALLET_TOWN = 1, for instance."""
@@ -1249,6 +1291,7 @@ def get_id_for_map_constant_label(label):
     for (id, each) in map_internal_ids.items():
         if each["label"] == label: return id
     return None
+
 def generate_map_constant_labels():
     """generates the global for this script
     mapping ids to map groups/ids/labels"""
@@ -1268,6 +1311,7 @@ def generate_map_constant_labels():
                                    "map_group": map_group}
             i += 1
     return map_internal_ids
+
 #see generate_map_constant_labels() later
 def generate_map_constants():
     """generates content for constants.asm
@@ -1542,6 +1586,7 @@ pokemon_constants = {
 250: "HO_OH",
 251: "CELEBI",
 }
+
 def get_pokemon_constant_by_id(id):
     if id == 0: return None
     return pokemon_constants[id]
@@ -1772,10 +1817,12 @@ item_constants = {1: 'MASTER_BALL',
 247: 'HM_05',
 248: 'HM_06',
 249: 'HM_07'}
+
 def find_item_label_by_id(id):
     if id in item_constants.keys():
-        return item_constants[id]   
+        return item_constants[id]
     else: return None
+
 def generate_item_constants():
     """make a list of items to put in constants.asm"""
     output = ""
@@ -2130,16 +2177,18 @@ pksv_crystal_unknowns = [
     0xA6, 0xA7, 0xA8, 0xA9, 0xAA, 0xAB, 0xAC, 0xAD, 0xAE, 0xAF,
     0xB0, 0xB1, 0xB2, 0xB3, 0xB4, 0xB5, 0xB6, 0xB7, 0xB8,
     0xCC, 0xCD,
-    0xD1, 0xD2, 0xD3, 0xD4, 0xD5, 0xD6, 
+    0xD1, 0xD2, 0xD3, 0xD4, 0xD5, 0xD6,
     0xE4, 0xE5, 0xE6, 0xE7, 0xE8, 0xE9, 0xEA, 0xEB, 0xEC, 0xED, 0xEE, 0xEF,
     0xF0, 0xF1, 0xF2, 0xF3, 0xF4, 0xF5, 0xF6, 0xF7, 0xF8,
     0xFA, 0xFB, 0xFC, 0xFD, 0xFE, 0xFF,
 ]
 
+
 class SingleByteParam():
     """or SingleByte(CommandParam)"""
     size = 1
     should_be_decimal = False
+
     def __init__(self, *args, **kwargs):
         for (key, value) in kwargs.items():
             setattr(self, key, value)
@@ -2155,27 +2204,39 @@ class SingleByteParam():
             raise Exception, "size is probably 1?"
         #parse bytes from ROM
         self.parse()
+
     def parse(self): self.byte = ord(rom[self.address])
+
     def to_asm(self):
         if not self.should_be_decimal: return hex(self.byte).replace("0x", "$")
         else: return str(self.byte)
+
+
 class HexByte(SingleByteParam):
-    def to_asm(self): return "$%.2x" % (self.byte)
+    def to_asm(self): return hex(self.byte)
+
+
 class DollarSignByte(SingleByteParam):
     #def to_asm(self): return "$%.2x"%self.byte
     def to_asm(self): return hex(self.byte).replace("0x", "$")
+
+
 class ItemLabelByte(DollarSignByte):
     def to_asm(self):
         label = find_item_label_by_id(self.byte)
         if label: return label
         elif not label: return DollarSignByte.to_asm(self)
+
+
 class DecimalParam(SingleByteParam):
     should_be_decimal = True
+
 
 class MultiByteParam():
     """or MultiByte(CommandParam)"""
     size = 2
     should_be_decimal = False
+
     def __init__(self, *args, **kwargs):
         self.prefix = "$" #default.. feel free to set 0x in kwargs
         for (key, value) in kwargs.items():
@@ -2189,7 +2250,9 @@ class MultiByteParam():
         if not hasattr(self, "size") or self.size == None:
             raise Exception, "don't know how many bytes to read (size)"
         self.parse()
+
     def parse(self): self.bytes = rom_interval(self.address, self.size, strings=False)
+
     #you won't actually use this to_asm because it's too generic
     #def to_asm(self): return ", ".join([(self.prefix+"%.2x")%x for x in self.bytes])
     def to_asm(self):
@@ -2198,6 +2261,8 @@ class MultiByteParam():
         elif self.should_be_decimal:
             decimal = int("0x"+"".join([("%.2x")%x for x in reversed(self.bytes)]), 16)
             return str(decimal)
+
+
 class PointerLabelParam(MultiByteParam):
     #default size is 2 bytes
     default_size = 2
@@ -2205,6 +2270,7 @@ class PointerLabelParam(MultiByteParam):
     #default is to not parse out a bank
     bank = False
     force = False
+
     def __init__(self, *args, **kwargs):
         #bank can be overriden
         if "bank" in kwargs.keys():
@@ -2217,6 +2283,7 @@ class PointerLabelParam(MultiByteParam):
             raise Exception, "param size is too large"
         #continue instantiation.. self.bank will be set down the road
         MultiByteParam.__init__(self, *args, **kwargs)
+
     def to_asm(self):
         bank = self.bank
         #we pass bank= for whether or not to include a bank byte when reading
@@ -2224,7 +2291,7 @@ class PointerLabelParam(MultiByteParam):
         caddress = calculate_pointer_from_bytes_at(self.address, bank=self.bank)
         label = get_label_for(caddress)
         pointer_part = label #use the label, if it is found
-        
+
         #check that the label actually points to the right place
         result = script_parse_table[caddress]
         if result != None and hasattr(result, "label"):
@@ -2234,7 +2301,7 @@ class PointerLabelParam(MultiByteParam):
                 label = None
         elif result != None:
             label = None
-        
+
         #setup output bytes if the label was not found
         if not label:
             #pointer_part = (", ".join([(self.prefix+"%.2x")%x for x in reversed(self.bytes[1:])]))
@@ -2260,15 +2327,27 @@ class PointerLabelParam(MultiByteParam):
             #raise Exception, "this should never happen"
             return pointer_part #probably in the same bank ?
         raise Exception, "this should never happen"
+
+
 class PointerLabelBeforeBank(PointerLabelParam):
     bank = True #bank appears first, see calculate_pointer_from_bytes_at
     size = 3
+
+
 class PointerLabelAfterBank(PointerLabelParam):
     bank = "reverse" #bank appears last, see calculate_pointer_from_bytes_at
     size = 3
+
+
 class ScriptPointerLabelParam(PointerLabelParam): pass
+
+
 class ScriptPointerLabelBeforeBank(PointerLabelBeforeBank): pass
+
+
 class ScriptPointerLabelAfterBank(PointerLabelAfterBank): pass
+
+
 def _parse_script_pointer_bytes(self):
     PointerLabelParam.parse(self)
     print "_parse_script_pointer_bytes - calculating the pointer located at " + hex(self.address)
@@ -2279,37 +2358,50 @@ def _parse_script_pointer_bytes(self):
 ScriptPointerLabelParam.parse = _parse_script_pointer_bytes
 ScriptPointerLabelBeforeBank.parse = _parse_script_pointer_bytes
 ScriptPointerLabelAfterBank.parse = _parse_script_pointer_bytes
+
 class PointerLabelToScriptPointer(PointerLabelParam):
     def parse(self):
         PointerLabelParam.parse(self)
         address = calculate_pointer_from_bytes_at(self.address, bank=self.bank)
         address2 = calculate_pointer_from_bytes_at(address, bank="reverse") #maybe not "reverse"?
         self.script = parse_script_engine_script_at(address2, origin=False, map_group=self.map_group, map_id=self.map_id, force=self.force, debug=self.debug)
+
+
 class AsmPointerParam(PointerLabelBeforeBank):
     def parse(self):
         PointerLabelBeforeBank.parse(self)
         address = calculate_pointer_from_bytes_at(self.address, bank=self.bank) #3-byte pointer
         self.asm = parse_script_asm_at(address, map_group=self.map_group, map_id=self.map_id, force=self.force, debug=self.debug) #might end in some specific way?
+
+
 class PointerToAsmPointerParam(PointerLabelParam):
     def parse(self):
         PointerLabelParam.parse(self)
         address = calculate_pointer_from_bytes_at(self.address, bank=self.bank) #2-byte pointer
         address2 = calculate_pointer_from_bytes_at(address, bank="reverse") #maybe not "reverse"?
         self.asm = parse_script_asm_at(address, map_group=self.map_group, map_id=self.map_id, force=self.force, debug=self.debug) #might end in some specific way?
+
+
 class RAMAddressParam(MultiByteParam):
     def to_asm(self):
         address = calculate_pointer_from_bytes_at(self.address, bank=False)
         label = get_ram_label(address)
         if label: return "["+label+"]"
         else: return "[$"+"".join(["%.2x"%x for x in self.bytes])+"]"
+
+
 class MoneyByteParam(MultiByteParam):
     size = 3
     max_value = 0x0F423F
     should_be_decimal = True
+
+
 class CoinByteParam(MultiByteParam):
     size = 2
     max_value = 0x270F
     should_be_decimal = True
+
+
 class MapGroupParam(SingleByteParam):
     def to_asm(self):
         map_id = ord(rom[self.address+1])
@@ -2317,48 +2409,68 @@ class MapGroupParam(SingleByteParam):
         if map_constant_label == None: return str(self.byte)
         #else: return "GROUP("+map_constant_label+")"
         else: return "GROUP_"+map_constant_label
+
+
 class MapIdParam(SingleByteParam):
     def parse(self):
         SingleByteParam.parse(self)
         self.map_group = ord(rom[self.address-1])
+
     def to_asm(self):
         map_group = ord(rom[self.address-1])
         map_constant_label = get_map_constant_label(map_id=self.byte, map_group=map_group)
         if map_constant_label == None: return str(self.byte)
         #else: return "MAP("+map_constant_label+")"
         else: return "MAP_"+map_constant_label
+
+
 class MapGroupIdParam(MultiByteParam):
     def parse(self):
         MultiByteParam.parse(self)
         self.map_group = self.bytes[0]
         self.map_id = self.bytes[1]
+
     def to_asm(self):
         map_group = self.map_group
         map_id = self.map_id
         label = get_map_constant_label(map_group=map_group, map_id=map_id)
         return label
+
+
 class PokemonParam(SingleByteParam):
     def to_asm(self):
         pokemon_constant = get_pokemon_constant_by_id(self.byte)
         if pokemon_constant: return pokemon_constant
         else: return str(self.byte)
+
+
 class PointerParamToItemAndLetter(MultiByteParam):
     #[2F][2byte pointer to item no + 0x20 bytes letter text]
     #raise NotImplementedError, bryan_message
     pass
+
+
 class TrainerIdParam(SingleByteParam):
     #raise NotImplementedError, bryan_message
     pass
+
+
 class TrainerGroupParam(SingleByteParam):
     #raise NotImplementedError, bryan_message
     pass
+
+
 class MenuDataPointerParam(PointerLabelParam):
     #read menu data at the target site
     #raise NotImplementedError, bryan_message
     pass
+
+
 class RawTextPointerLabelParam(PointerLabelParam):
     #not sure if these are always to a text script or raw text?
     pass
+
+
 class TextPointerLabelParam(PointerLabelParam):
     """this is a pointer to a text script"""
     bank = False
@@ -2367,10 +2479,15 @@ class TextPointerLabelParam(PointerLabelParam):
         address = calculate_pointer_from_bytes_at(self.address, bank=self.bank)
         if address != None and address != 0:
             self.text = parse_text_engine_script_at(address, map_group=self.map_group, map_id=self.map_id, force=self.force, debug=self.debug)
+
+
 class MovementPointerLabelParam(PointerLabelParam):
     pass
+
+
 class MapDataPointerParam(PointerLabelParam):
     pass
+
 
 #byte: [name, [param1 name, param1 type], [param2 name, param2 type], ...]
 #0x9E: ["verbosegiveitem", ["item", ItemLabelByte], ["quantity", SingleByteParam]],
@@ -2493,7 +2610,7 @@ pksv_crystal_more = {
     0x6D: ["variablesprite", ["byte", SingleByteParam], ["sprite", SingleByteParam]],
     0x6E: ["disappear", ["person", SingleByteParam]], #hideperson
     0x6F: ["appear", ["person", SingleByteParam]], #showperson
-    0x70: ["follow", ["person2", SingleByteParam], ["person1", SingleByteParam]], 
+    0x70: ["follow", ["person2", SingleByteParam], ["person1", SingleByteParam]],
     0x71: ["stopfollow"],
     0x72: ["moveperson", ["person", SingleByteParam], ["x", SingleByteParam], ["y", SingleByteParam]],
     0x73: ["writepersonxy", ["person", SingleByteParam]], #not pksv
@@ -2552,6 +2669,7 @@ pksv_crystal_more = {
     0xCC: ["unknown0xcc"],
 }
 
+
 class Command:
     """
     Note: when dumping to asm, anything in script_parse_table that directly
@@ -2560,7 +2678,7 @@ class Command:
     #use this when the "byte id" doesn't matter
     #.. for example, a non-script command doesn't use the "byte id"
     override_byte_check = False
-    
+
     def __init__(self, address=None, *pargs, **kwargs):
         """params:
         address     - where the command starts
@@ -2586,6 +2704,7 @@ class Command:
         self.args = defaults
         #start parsing this command's parameter bytes
         self.parse()
+
     def to_asm(self):
         #start with the rgbasm macro name for this command
         output = self.macro_name
@@ -2625,6 +2744,7 @@ class Command:
         #    output += obj.to_asm()
         #    current_address += obj.size
         return output
+
     def parse(self):
         #id, size (inclusive), param_types
         #param_type = {"name": each[1], "class": each[0]}
@@ -2649,6 +2769,8 @@ class Command:
             i += 1
         self.last_address = current_address
         return True
+
+
 class GivePoke(Command):
     id = 0x2D
     macro_name = "givepoke"
@@ -2687,6 +2809,7 @@ class GivePoke(Command):
             i += 1
         self.last_address = current_address
         return True
+
 
 #these cause the script to end; used in create_command_classes
 pksv_crystal_more_enders = [0x03, 0x04, 0x05, 0x0C, 0x51, 0x53,
@@ -2739,6 +2862,7 @@ def rec_parse_script_engine_script_at(address, origin=None, debug=True):
     parser."""
     recursive_scripts.add((address, origin))
     return parse_script_engine_script_at(address, origin=origin, debug=debug)
+
 def find_broken_recursive_scripts(output=False, debug=True):
     """well.. these at least have a chance of maybe being broken?"""
     for r in list(recursive_scripts):
@@ -2753,6 +2877,7 @@ def find_broken_recursive_scripts(output=False, debug=True):
             if output:
                 parse_script_engine_script_at(r[0], force=True, debug=True)
             print "==================== end"
+
 
 stop_points = [0x1aafa2,
                0x9f58f, #battle tower
@@ -2780,6 +2905,7 @@ class Script():
             self.old_parse(**kwargs)
         else:
             self.parse(self.address, **kwargs)
+
     def pksv_list(self):
         """shows a list of pksv names for each command in the script"""
         items = []
@@ -2793,6 +2919,8 @@ class Script():
             for command in self.commands:
                 items.append(command.macro_name)
         return items
+
+
     def to_pksv(self):
         """returns a string of pksv command names"""
         pksv = self.pksv_list()
@@ -2806,13 +2934,15 @@ class Script():
             else:
                 output += ", "+item
         return output
+
     def show_pksv(self):
         """prints a list of pksv command names in this script"""
         print self.to_pksv()
+
     def parse(self, start_address, force=False, map_group=None, map_id=None, force_top=True, origin=True, debug=False):
         """parses a script using the Command classes
         as an alternative to the old method using hard-coded commands
-    
+
         force_top just means 'force the main script to get parsed, but not any subscripts'
         """
         global command_classes, rom, script_parse_table
@@ -2861,9 +2991,11 @@ class Script():
         print "--------------\n"+asm_output
         self.commands = commands
         return commands
+
     def to_asm(self):
         asm_output = "".join([command.to_asm()+"\n" for command in self.commands])
         return asm_output
+
     def old_parse(self, *args, **kwargs):
         """parses a script-engine script; force=True if you want to re-parse
         and get the debug information"""
@@ -2892,18 +3024,18 @@ class Script():
         origin = kwargs["origin"]
         self.map_group = map_group
         self.map_id = map_id
-    
+
         global rom
         if rom == None:
             direct_load_rom()
-        
+
         #max number of commands in a 'recursive' script
         max_cmds = 150
-    
+
         #set the address to be parsed
         address = self.address
         original_start_address = address
-    
+
         #don't parse these crazy things (battle tower things, some rival things, etc.)
         if address in stop_points:
             print "got " + hex(address) + ".. map_group=" + str(map_group) + " map_id=" + str(map_id)
@@ -2912,28 +3044,28 @@ class Script():
         if address < 0x4000 and address not in [0x26ef, 0x114, 0x1108]:
             print "address is less than 0x4000.. address is: " + hex(address)
             sys.exit()
-    
+
         #check if work is being repeated
         if is_script_already_parsed_at(address) and not force:
             raise Exception, "this script has already been parsed before, please use that instance"
             #use the commands from a previously-parsed Script object
             #self.commands = script_parse_table[address].commands
             #return True
-            
+
             #return a previously-created Script object
             #return script_parse_table[address]
-        
+
         #this next line stops the same script from being re-parsed multiple times
         #for instance.. maybe there's a script jump, then a jump back
         #the original script should only be parsed once
         script_parse_table[original_start_address:original_start_address+1] = "incomplete Script"
-        
+
         #set up some variables
         self.commands = {}
         commands = self.commands
         offset = address
         end = False
-    
+
         #main loop.. parse each command byte
         while not end:
             #reset variables so we don't contaminate this command
@@ -2942,16 +3074,16 @@ class Script():
             command_byte = ord(rom[offset])
             #setup the current command representation
             command = {"type": command_byte, "start_address": offset}
-    
+
             #size is the total size including the command byte
             #last_byte_address is offset+size-1
             start_address = offset
-    
+
             if (len(commands.keys()) > max_cmds) and origin != False:
                 print "too many commands in this script? might not be a script (starting at: " +\
                       hex(original_start_address) + ").. called from a script at: " + hex(origin)
                 sys.exit()
-    
+
             #start checking against possible command bytes
             if   command_byte == 0x00: #Pointer code [2b+ret]
                 pksv_name = "2call"
@@ -3047,7 +3179,7 @@ class Script():
                 size = 3
                 command["pointer"] = calculate_pointer_from_bytes_at(start_address+1)
                 command["target_pointer"] = calculate_pointer_from_bytes_at(command["pointer"], bank=True)
-                
+
                 if debug:
                     print "in script starting at "+hex(original_start_address)+\
                       " about to parse script at "+hex(command["target_pointer"])+\
@@ -3681,7 +3813,7 @@ class Script():
                 #in a command queue, because with every regular move of HIRO the bits
                 #are reset again. This code is an alternative to the trigger events and
                 #can be used via the command queue code.
-                #See Write command queue, Additional documentation: 3:4661 with c= index 
+                #See Write command queue, Additional documentation: 3:4661 with c= index
                 #in table (start=00), hl=D171, b=01, d=00.
                 """
                 size = 3
@@ -4714,7 +4846,7 @@ class Script():
                 #raise NotImplementedError, "command byte is " + hex(command_byte) + " at " + hex(offset) + " on map " + str(map_group) + "." + str(map_id)
                 print "dunno what this command is: " + hex(command_byte)
             long_info = clean_up_long_info(long_info)
-            
+
             if command_byte in pksv_crystal.keys():
                 pksv_name = pksv_crystal[command_byte]
             else:
@@ -4723,10 +4855,10 @@ class Script():
                     pksv_no_names[command_byte].append(address)
                 else:
                     pksv_no_names[command_byte] = [address]
-    
+
             if debug:
                 print command_debug_information(command_byte=command_byte, map_group=map_group, map_id=map_id, address=offset, info=info, long_info=long_info, pksv_name=pksv_name)
-            
+
             #store the size of the command
             command["size"] = size
             #the end address is just offset + size - 1 (because size includes command byte)
@@ -4737,10 +4869,12 @@ class Script():
             offset += 1
             #add the command into the command list please
             commands[len(commands.keys())] = command
-    
+
         self.commands = commands
         script_parse_table[original_start_address : offset] = self
         return True
+
+
 def parse_script_engine_script_at(address, map_group=None, map_id=None, force=False, debug=True, origin=True):
     if is_script_already_parsed_at(address) and not force:
         return script_parse_table[address]
@@ -4785,6 +4919,7 @@ def compare_script_parsing_methods(address):
     print "total comparison errors: " + str(errors)
     return oldscript, newscript
 
+
 class Warp(Command):
     """only used outside of scripts"""
     size = warp_byte_size
@@ -4797,6 +4932,7 @@ class Warp(Command):
         4: {"name": "map_id", "class": MapIdParam},
     }
     override_byte_check = True
+
     def __init__(self, *args, **kwargs):
         self.id = kwargs["id"]
         script_parse_table[kwargs["address"] : kwargs["address"] + self.size] = self
@@ -4845,6 +4981,7 @@ class XYTrigger(Command):
         6: {"name": "unknown3", "class": SingleByteParam},
     }
     override_byte_check = True
+
     def __init__(self, *args, **kwargs):
         self.id = kwargs["id"]
         #XYTrigger shouldn't really be in the globals, should it..
@@ -4880,7 +5017,7 @@ def old_parse_xy_trigger_bytes(some_bytes, bank=None, map_group=None, map_id=Non
             script_address = calculate_pointer(script_ptr, bank)
             print "******* parsing xy trigger byte scripts... x=" + str(x) + " y=" + str(y)
             script = parse_script_engine_script_at(script_address, map_group=map_group, map_id=map_id)
-        
+
         triggers.append({
             "trigger_number": trigger_number,
             "y": y,
@@ -4893,6 +5030,7 @@ def old_parse_xy_trigger_bytes(some_bytes, bank=None, map_group=None, map_id=Non
         })
     return triggers
 
+
 class ItemFragment(Command):
     """used by ItemFragmentParam and PeopleEvent
     (for items placed on a map)"""
@@ -4904,6 +5042,7 @@ class ItemFragment(Command):
         0: {"name": "item", "class": ItemLabelByte},
         1: {"name": "quantity", "class": DecimalParam},
     }
+
     def __init__(self, address=None, bank=None, map_group=None, map_id=None, debug=False, label=None):
         assert is_valid_address(address), "PeopleEvent must be given a valid address"
         self.address = address
@@ -4918,13 +5057,18 @@ class ItemFragment(Command):
         self.args = {"debug": debug, "map_group": map_group, "map_id": map_id, "bank": bank}
         script_parse_table[self.address : self.last_address] = self
         self.parse()
+
+
 class ItemFragmentParam(PointerLabelParam):
     """used by PeopleEvent"""
+
     def parse(self):
         PointerLabelParam.parse(self)
         address = calculate_pointer_from_bytes_at(self.address, bank=self.bank)
         itemfrag = ItemFragment(address=address, map_group=self.map_group, map_id=self.map_id, debug=self.debug)
         self.remotes = [itemfrag]
+
+
 class TrainerFragment(Command):
     """used by TrainerFragmentParam and PeopleEvent for trainer data
     [Bit no. (2byte)][Trainer group][Trainer]
@@ -4932,10 +5076,10 @@ class TrainerFragment(Command):
     [2byte pointer to text when trainer beaten]
     [2byte pointer to script when lost (0000=Blackout)]
     [2byte pointer to script if won/talked to again]
-     
+
     The bit number tell the game later on if the trainer has been
     beaten already (bit = 1) or not (bit = 0). All Bit number of BitTable1.
-     
+
     03 = Nothing
     04 = Nothing
     05 = Nothing
@@ -4954,6 +5098,7 @@ class TrainerFragment(Command):
         5: {"name": "script_when_lost", "class": ScriptPointerLabelParam},
         6: {"name": "script_talk_again", "class": ScriptPointerLabelParam},
     }
+
     def __init__(self, *args, **kwargs):
         address = kwargs["address"]
         print "TrainerFragment address=" + hex(address)
@@ -4961,13 +5106,18 @@ class TrainerFragment(Command):
         Command.__init__(self, *args, **kwargs)
         self.last_address = self.address + self.size
         script_parse_table[self.address : self.last_address] = self
+
+
 class TrainerFragmentParam(PointerLabelParam):
     """used by PeopleEvent to point to trainer data"""
+
     def parse(self):
         address = calculate_pointer_from_bytes_at(self.address, bank=self.bank)
         trainerfrag = TrainerFragment(address=address, map_group=self.map_group, map_id=self.map_id, debug=self.debug)
         self.remotes = [trainerfrag]
         PointerLabelParam.parse(self)
+
+
 class PeopleEvent(Command):
     size = people_event_byte_size
     macro_name = "person_event"
@@ -4986,6 +5136,7 @@ class PeopleEvent(Command):
         9: {"name": "pointer", "class": PointerLabelParam}, #or ScriptPointerLabelParam or ItemLabelParam
         10: {"name": "BitTable1 bit number", "class": MultiByteParam},
     }
+
     def __init__(self, address, id, bank=None, map_group=None, map_id=None, debug=False, label=None, force=False):
         assert is_valid_address(address), "PeopleEvent must be given a valid address"
         self.address = address
@@ -5002,6 +5153,7 @@ class PeopleEvent(Command):
         #PeopleEvent should probably not be in the global script_parse_table
         #script_parse_table[self.address : self.last_address] = self
         self.parse()
+
     def parse(self):
         address = self.address
         bank = self.bank
@@ -5064,6 +5216,7 @@ class PeopleEvent(Command):
         self.bit_number = self.params[10].bytes
         return True
 
+
 all_people_events = []
 def parse_people_events(address, people_event_count, bank=None, map_group=None, map_id=None, debug=False, force=False):
     #people_event_byte_size
@@ -5083,7 +5236,7 @@ def old_parse_people_event_bytes(some_bytes, address=None, map_group=None, map_i
     see http://hax.iimarck.us/files/scriptingcodes_eng.htm#Scripthdr
 
     For example, map 1.1 (group 1 map 1) has four person-events.
-   
+
         37 05 07 06 00 FF FF 00 00 02 40 FF FF
         3B 08 0C 05 01 FF FF 00 00 05 40 FF FF
         3A 07 06 06 00 FF FF A0 00 08 40 FF FF
@@ -5107,7 +5260,7 @@ def old_parse_people_event_bytes(some_bytes, address=None, map_group=None, map_i
         clock_time_byte2 = int(bytes[6], 16)
         color_function_byte = int(bytes[7], 16) #Color|Function
         trainer_sight_range = int(bytes[8], 16)
-       
+
         lower_bits = color_function_byte & 0xF
         #lower_bits_high = lower_bits >> 2
         #lower_bits_low = lower_bits & 3
@@ -5155,7 +5308,7 @@ def old_parse_people_event_bytes(some_bytes, address=None, map_group=None, map_i
                     "trainer_data_address": ptr_address,
                     "trainer_data": parsed_trainer,
                 }
-        
+
         #XXX not sure what's going on here
         #bit no. of bit table 1 (hidden if set)
         #note: FFFF for none
@@ -5192,6 +5345,7 @@ def old_parse_people_event_bytes(some_bytes, address=None, map_group=None, map_i
         people_events.append(people_event)
     return people_events
 
+
 class SignpostRemoteBase:
     def __init__(self, address, bank=None, map_group=None, map_id=None, signpost=None, debug=False, label=None):
         self.address = address
@@ -5207,17 +5361,21 @@ class SignpostRemoteBase:
             self.label = self.base_label + hex(self.address)
         else: self.label = label
         self.parse()
+
     def to_asm(self):
         """very similar to Command.to_asm"""
         if len(self.params) == 0: return ""
         output = ", ".join([p.to_asm() for p in self.params])
         return output
+
+
 class SignpostRemoteScriptChunk(SignpostRemoteBase):
     """
     a signpost might point to [Bit-Nr. (2byte)][2byte pointer to script]
     """
     base_label = "SignpostRemoteScript_"
     size = 4
+
     def parse(self):
         address = self.address
         bank = self.bank
@@ -5237,37 +5395,44 @@ class SignpostRemoteScriptChunk(SignpostRemoteBase):
         #self.bit_table_bytes = [bit_table_byte1, bit_table_byte2]
         #self.script_address = script_address
         #self.script = script
+
+
 class SignpostRemoteItemChunk(SignpostRemoteBase):
     """
     a signpost might point to [Bit-Nr. (2byte)][Item no.]
     """
     base_label = "SignpostRemoteItem_"
     size = 3
+
     def parse(self):
         address = self.address
         bank = self.bank
-        
+
         bit_table = MultiByteParam(address=address, map_group=self.map_group, map_id=self.map_id, debug=self.debug)
         self.params.append(bit_table)
-        
+
         item = ItemLabelByte(address=address+2)
         self.params.append(item)
         self.item = item
+
+
 class SignpostRemoteUnknownChunk(SignpostRemoteBase):
     """
     a signpost might point to [Bit-Nr. (2byte)][??]
     """
     base_label = "SignpostRemoteUnknown_"
     size = 3
+
     def parse(self):
         address = self.address
         bank = self.bank
-        
+
         bit_table = MultiByteParam(address=address, bank=self.bank, map_group=self.map_group, map_id=self.map_id, debug=self.debug)
         self.params.append(bit_table)
-        
+
         byte = SingleByteParam(address=address+2)
         self.params.append(byte)
+
 
 #this could potentially extend Command
 #see how class Warp does this
@@ -5298,6 +5463,7 @@ class Signpost:
     """
     size = 5
     macro_name = "signpost"
+
     def __init__(self, address, id, bank=None, map_group=None, map_id=None, debug=True, label=None):
         self.address = address
         self.id = id
@@ -5316,13 +5482,14 @@ class Signpost:
         self.remotes = []
         self.params = []
         self.parse()
+
     def parse(self):
         """parse just one signpost"""
         address = self.address
         bank = self.bank
         self.last_address = self.address + self.size
         bytes = rom_interval(self.address, self.size) #, signpost_byte_size)
-            
+
         self.y = int(bytes[0], 16)
         self.x = int(bytes[1], 16)
         self.func = int(bytes[2], 16)
@@ -5344,14 +5511,14 @@ class Signpost:
             script_ptr_byte1 = int(bytes[3], 16)
             script_ptr_byte2 = int(bytes[4], 16)
             script_pointer = script_ptr_byte1 + (script_ptr_byte2 << 8)
-            
+
             script_address = calculate_pointer(script_pointer, bank)
             output += " script@"+hex(script_address)
             print output
 
             param = ScriptPointerLabelParam(address=self.address+3, map_group=self.map_group, map_id=self.map_id, debug=self.debug, force=False)
             self.params.append(param)
-            
+
             #self.script_address = script_address
             #self.script = script
         elif func in [5, 6]:
@@ -5360,21 +5527,21 @@ class Signpost:
             ptr_byte2 = int(bytes[4], 16)
             pointer = ptr_byte1 + (ptr_byte2 << 8)
             address = calculate_pointer(pointer, bank)
-            
+
             bit_table_byte1 = ord(rom[address])
             bit_table_byte2 = ord(rom[address+1])
             script_ptr_byte1 = ord(rom[address+2])
             script_ptr_byte2 = ord(rom[address+3])
             script_address = calculate_pointer_from_bytes_at(address+2, bank=bank)
-            
+
             output += " remote_chunk@"+hex(address)+" remote_script@"+hex(script_address)
             print output
-            
+
             r1 = SignpostRemoteScriptChunk(address, signpost=self, \
                    bank=self.bank, map_group=self.map_group, map_id=self.map_id, \
                    debug=self.debug)
             self.remotes.append(r1)
-            
+
             mb = PointerLabelParam(address=address, map_group=self.map_group, map_id=self.map_id, debug=self.debug)
             self.params.append(mb)
         elif func == 7:
@@ -5383,16 +5550,16 @@ class Signpost:
             ptr_byte2 = int(bytes[4], 16)
             pointer = ptr_byte1 + (ptr_byte2 << 8)
             address = calculate_pointer(pointer, bank)
-            
+
             item_id         = ord(rom[address+2])
             output += " item_id="+str(item_id)
             print output
-            
+
             r1 = SignpostRemoteItemChunk(address, signpost=self, \
                    bank=self.bank, map_group=self.map_group, map_id=self.map_id, \
                    debug=self.debug)
             self.remotes.append(r1)
-            
+
             mb = PointerLabelParam(address=address, map_group=self.map_group, map_id=self.map_id, debug=self.debug)
             self.params.append(mb)
 
@@ -5406,15 +5573,15 @@ class Signpost:
             ptr_byte2 = int(bytes[4], 16)
             pointer = ptr_byte1 + (ptr_byte2 << 8)
             address = calculate_pointer(pointer, bank)
-            
+
             output += " remote unknown chunk at="+hex(address)
             print output
-            
+
             r1 = SignpostRemoteUnknownChunk(address, signpost=self, \
                    bank=self.bank, map_group=self.map_group, map_id=self.map_id, \
                    debug=self.debug)
             self.remotes.append(r1)
-            
+
             mb = PointerLabelParam(address=address, map_group=self.map_group, map_id=self.map_id, debug=self.debug)
             self.params.append(mb)
         else:
@@ -5424,6 +5591,7 @@ class Signpost:
         if self.params == []: raise Exception, "signpost has no params?"
         output += ", ".join([p.to_asm() for p in self.params])
         return output
+
 
 all_signposts = []
 def parse_signposts(address, signpost_count, bank=None, map_group=None, map_id=None, debug=True):
@@ -5453,10 +5621,10 @@ def old_parse_signpost_bytes(some_bytes, bank=None, map_group=None, map_id=None,
             script_ptr_byte1 = int(bytes[3], 16)
             script_ptr_byte2 = int(bytes[4], 16)
             script_pointer = script_ptr_byte1 + (script_ptr_byte2 << 8)
-       
+
             script_address = None
             script = None
-       
+
             script_address = calculate_pointer(script_pointer, bank)
             script = parse_script_engine_script_at(script_address, map_group=map_group, map_id=map_id)
 
@@ -5478,7 +5646,7 @@ def old_parse_signpost_bytes(some_bytes, bank=None, map_group=None, map_id=None,
             script_ptr_byte2 = ord(rom[address+3])
             script_address = calculate_pointer_from_bytes_at(address+2, bank=bank)
             script = parse_script_engine_script_at(script_address, map_group=map_group, map_id=map_id)
-           
+
             additional = {
             "bit_table_bytes": {"1": bit_table_byte1, "2": bit_table_byte2},
             "script_ptr": script_ptr_byte1 + (script_ptr_byte2 << 8),
@@ -5488,7 +5656,7 @@ def old_parse_signpost_bytes(some_bytes, bank=None, map_group=None, map_id=None,
             }
         else:
             print ".. type 7 or 8 signpost not parsed yet."
-       
+
         spost = {
             "y": y,
             "x": x,
@@ -5498,8 +5666,10 @@ def old_parse_signpost_bytes(some_bytes, bank=None, map_group=None, map_id=None,
         signposts.append(spost)
     return signposts
 
+
 class MapHeader:
     base_label = "MapHeader_"
+
     def __init__(self, address, map_group=None, map_id=None, debug=True, label=None, bank=0x25):
         print "creating a MapHeader at "+hex(address)+" map_group="+str(map_group)+" map_id="+str(map_id)
         self.address = address
@@ -5514,6 +5684,7 @@ class MapHeader:
         self.last_address = address + 8
         script_parse_table[address : self.last_address] = self
         self.parse()
+
     def parse(self):
         address = self.address
         print "parsing a MapHeader at " + hex(address)
@@ -5528,6 +5699,7 @@ class MapHeader:
         self.music = HexByte(address=address+6)
         self.time_of_day = DecimalParam(address=address+7)
         self.fishing_group = DecimalParam(address=address+8)
+
     def to_asm(self):
         output  = "; bank, tileset, permission\n"
         output += "db " + ", ".join([self.bank.to_asm(), self.tileset.to_asm(), self.permission.to_asm()])
@@ -5536,6 +5708,7 @@ class MapHeader:
         output += "\n\n; location on world map, music, time of day, fishing group\n"
         output += "db " + ", ".join([self.location_on_world_map.to_asm(), self.music.to_asm(), self.time_of_day.to_asm(), self.fishing_group.to_asm()])
         return output
+
 
 all_map_headers = []
 def parse_map_header_at(address, map_group=None, map_id=None, debug=True):
@@ -5578,8 +5751,10 @@ def old_parse_map_header_at(address, map_group=None, map_id=None, debug=True):
     map_header["script_header"] = old_parse_map_script_header_at(script_header_address, map_group=map_group, map_id=map_id, debug=debug)
     return map_header
 
+
 class SecondMapHeader:
     base_label = "SecondMapHeader_"
+
     def __init__(self, address, map_group=None, map_id=None, debug=True, bank=None, label=None):
         print "creating a SecondMapHeader at " + hex(address)
         self.address = address
@@ -5594,6 +5769,7 @@ class SecondMapHeader:
         #i think it's always a static size?
         script_parse_table[address : self.last_address] = self
         self.parse()
+
     def parse(self):
         address = self.address
         bytes = rom_interval(address, second_map_header_byte_size, strings=False)
@@ -5601,13 +5777,13 @@ class SecondMapHeader:
         self.border_block = HexByte(address=address)
         self.height = DecimalParam(address=address+1)
         self.width  = DecimalParam(address=address+2)
-        
+
         #TODO: process blockdata ?
         #bank appears first
         ###self.blockdata_address = PointerLabelBeforeBank(address+3)
         self.blockdata_address = calculate_pointer_from_bytes_at(address+3, bank=True)
         self.blockdata = MapBlockData(self.blockdata_address, map_group=self.map_group, map_id=self.map_id, debug=self.debug, width=self.width, height=self.height)
-        
+
         #bank appears first
         #TODO: process MapScriptHeader
         ###self.script_address = PointerLabelBeforeBank(address+6)
@@ -5648,8 +5824,9 @@ class SecondMapHeader:
         #self.event_pointer = event_pointer
         #self.event_address = event_address
         #self.connections = connections
-        
+
         return True
+
     def to_asm(self):
         output = "; border block\n"
         output += "db " + self.border_block.to_asm() + "\n\n"
@@ -5664,6 +5841,7 @@ class SecondMapHeader:
         output += "; connections\n"
         output += "db " + self.connections.to_asm()
         return output
+
 
 all_second_map_headers = []
 def parse_second_map_header_at(address, map_group=None, map_id=None, debug=True):
@@ -5704,9 +5882,11 @@ def old_parse_second_map_header_at(address, map_group=None, map_id=None, debug=T
         "connections": connections,
     }
 
+
 class MapBlockData:
     base_label = "MapBlockData_"
     maps_path = os.path.realpath(os.path.join(os.path.realpath("."), "../maps"))
+
     def __init__(self, address, map_group=None, map_id=None, debug=True, bank=None, label=None, width=None, height=None):
         self.address = address
         self.map_group = map_group
@@ -5727,6 +5907,7 @@ class MapBlockData:
         self.last_address = self.address + (self.width.byte * self.height.byte)
         script_parse_table[address : self.last_address] = self
         self.parse()
+
     def save_to_file(self):
         #check if the file exists already
         map_path = self.map_path
@@ -5737,13 +5918,17 @@ class MapBlockData:
             file_handler = open(map_path, "w")
             file_handler.write(bytes)
             file_handler.close()
+
     def parse(self):
         self.save_to_file()
+
     def to_asm(self):
         return "INCBIN \"maps/"+self.map_name+".blk\""
 
+
 class MapEventHeader:
     base_label = "MapEventHeader_"
+
     def __init__(self, address, map_group=None, map_id=None, debug=True, bank=None, label=None):
         print "making a MapEventHeader at "+hex(address)+" map_group="+str(map_group)+" map_id="+str(map_id)
         self.address = address
@@ -5757,16 +5942,17 @@ class MapEventHeader:
             self.label = self.base_label + hex(address)
         self.parse()
         script_parse_table[address : self.last_address] = self
+
     def parse(self):
         map_group, map_id, debug = self.map_group, self.map_id, self.debug
         address = self.address
         bank = calculate_bank(self.address) #or use self.bank
         print "event header address is: " + hex(address)
-        
+
         filler1 = ord(rom[address])
         filler2 = ord(rom[address+1])
         self.fillers = [filler1, filler2]
-        
+
         #warps
         warp_count = ord(rom[address+2])
         warp_byte_count = warp_byte_size * warp_count
@@ -5782,7 +5968,7 @@ class MapEventHeader:
         after_triggers = after_warps + 1 + trigger_byte_count
         self.xy_trigger_count = xy_trigger_count
         self.xy_triggers = xy_triggers
-        
+
         #signposts
         signpost_count = ord(rom[after_triggers])
         signpost_byte_count = signpost_byte_size * signpost_count
@@ -5791,7 +5977,7 @@ class MapEventHeader:
         after_signposts = after_triggers + 1 + signpost_byte_count
         self.signpost_count = signpost_count
         self.signposts = signposts
-      
+
         #people events
         people_event_count = ord(rom[after_signposts])
         people_event_byte_count = people_event_byte_size * people_event_count
@@ -5800,12 +5986,13 @@ class MapEventHeader:
         people_events = parse_people_events(after_signposts+1, people_event_count, bank=bank, map_group=map_group, map_id=map_id, debug=debug)
         self.people_event_count = people_event_count
         self.people_events = people_events
-        
+
         if people_event_count > 0:
             self.last_address = people_events[-1].last_address
         else:
             self.last_address = after_signposts+1
         return True
+
     def to_asm(self):
         xspacing = "" #was =spacing
         output = ""
@@ -5830,6 +6017,7 @@ class MapEventHeader:
 
         return output
 
+
 all_map_event_headers = []
 def parse_map_event_header_at(address, map_group=None, map_id=None, debug=True, bank=None):
     """parse crystal map event header byte structure thing"""
@@ -5847,28 +6035,28 @@ def old_parse_map_event_header_at(address, map_group=None, map_id=None, debug=Tr
     filler1 = ord(rom[address])
     filler2 = ord(rom[address+1])
     returnable.update({"1": filler1, "2": filler2})
-    
+
     #warps
     warp_count = ord(rom[address+2])
     warp_byte_count = warp_byte_size * warp_count
     warps = rom_interval(address+3, warp_byte_count)
     after_warps = address + 3 + warp_byte_count
     returnable.update({"warp_count": warp_count, "warps": old_parse_warp_bytes(warps)})
-    
+
     #triggers (based on xy location)
     trigger_count = ord(rom[after_warps])
     trigger_byte_count = trigger_byte_size * trigger_count
     triggers = rom_interval(after_warps+1, trigger_byte_count)
     after_triggers = after_warps + 1 + trigger_byte_count
     returnable.update({"xy_trigger_count": trigger_count, "xy_triggers": old_parse_xy_trigger_bytes(triggers, bank=bank, map_group=map_group, map_id=map_id)})
-    
+
     #signposts
     signpost_count = ord(rom[after_triggers])
     signpost_byte_count = signpost_byte_size * signpost_count
     signposts = rom_interval(after_triggers+1, signpost_byte_count)
     after_signposts = after_triggers + 1 + signpost_byte_count
     returnable.update({"signpost_count": signpost_count, "signposts": old_parse_signpost_bytes(signposts, bank=bank, map_group=map_group, map_id=map_id)})
-  
+
     #people events
     people_event_count = ord(rom[after_signposts])
     people_event_byte_count = people_event_byte_size * people_event_count
@@ -5878,9 +6066,10 @@ def old_parse_map_event_header_at(address, map_group=None, map_id=None, debug=Tr
 
     return returnable
 
+
 class MapScriptHeader:
     """parses a script header
-    
+
     This structure allows the game to have e.g. one-time only events on a map
     or first enter events or permanent changes to the map or permanent script
     calls.
@@ -5890,7 +6079,7 @@ class MapScriptHeader:
     referenced in the map event header, so this might need to be renamed very
     soon. The scripts in MapEventHeader are called XYTrigger.
 
-    trigger scripts: 
+    trigger scripts:
     [[Number1 of pointers] Number1 * [2byte pointer to script][00][00]]
 
     callback scripts:
@@ -5931,6 +6120,7 @@ class MapScriptHeader:
             01, 04
     """
     base_label = "MapScriptHeader_"
+
     def __init__(self, address, map_group=None, map_id=None, debug=True, bank=None, label=None):
         print "creating a MapScriptHeader at " + hex(address) + " map_group="+str(map_group)+" map_id="+str(map_id)
         self.address = address
@@ -5944,6 +6134,7 @@ class MapScriptHeader:
             self.label = self.base_label + hex(address)
         self.parse()
         script_parse_table[address : self.last_address] = self
+
     def parse(self):
         address = self.address
         map_group = self.map_group
@@ -5976,6 +6167,7 @@ class MapScriptHeader:
         self.last_address = current_address
         print "done parsing a MapScriptHeader map_group="+str(map_group)+" map_id="+str(map_id)
         return True
+
     def to_asm(self):
         output = ""
         output += "; trigger count\n"
@@ -5990,6 +6182,7 @@ class MapScriptHeader:
             #not so sure about this next one
             output += "\n".join(["dbw "+str(p["hook"].byte)+", "+p["callback"].to_asm() for p in self.callbacks])
         return output
+
 
 all_map_script_headers = []
 def parse_map_script_header_at(address, map_group=None, map_id=None, debug=True):
@@ -6016,10 +6209,10 @@ def old_parse_map_script_header_at(address, map_group=None, map_id=None, debug=T
             "address": trigger_address,
             "pointer": {"1": byte1, "2": byte2},
         }
-    
+
     #bump ahead in the byte stream
     address += trigger_ptr_cnt * ptr_line_size + 1
-    
+
     #[[Number2 of pointers] Number2 * [hook number][2byte pointer to script]]
     callback_ptr_line_size = 3
     callback_ptr_cnt = ord(rom[address])
@@ -6040,7 +6233,7 @@ def old_parse_map_script_header_at(address, map_group=None, map_id=None, debug=T
             "address": callback_address,
             "pointer": {"1": callback_byte1, "2": callback_byte2},
         }
-    
+
     #XXX do these triggers/callbacks call asm or script engine scripts?
     return {
         #"trigger_ptr_cnt": trigger_ptr_cnt,
@@ -6073,13 +6266,13 @@ def old_parse_trainer_header_at(address, map_group=None, map_id=None, debug=True
         silver_avoids = [0xfa53]
         if script_when_lost_ptr > 0x4000 and not script_when_lost_ptr in silver_avoids:
             script_when_lost = parse_script_engine_script_at(script_when_lost_ptr, map_group=map_group, map_id=map_id, debug=debug)
-    
+
     print "parsing script-talk-again" #or is this a text?
     script_talk_again_ptr = calculate_pointer_from_bytes_at(address+10, bank=bank)
     script_talk_again = None
     if script_talk_again_ptr > 0x4000:
         script_talk_again = parse_script_engine_script_at(script_talk_again_ptr, map_group=map_group, map_id=map_id, debug=debug)
-    
+
     return {
         "bit_number": bit_number,
         "trainer_group": trainer_group,
@@ -6100,12 +6293,12 @@ def old_parse_people_event_bytes(some_bytes, address=None, map_group=None, map_i
     see http://hax.iimarck.us/files/scriptingcodes_eng.htm#Scripthdr
 
     For example, map 1.1 (group 1 map 1) has four person-events.
-    
+
         37 05 07 06 00 FF FF 00 00 02 40 FF FF
         3B 08 0C 05 01 FF FF 00 00 05 40 FF FF
         3A 07 06 06 00 FF FF A0 00 08 40 FF FF
         29 05 0B 06 00 FF FF 00 00 0B 40 FF FF
-    
+
     max of 14 people per map?
     """
     assert len(some_bytes) % people_event_byte_size == 0, "wrong number of bytes"
@@ -6126,7 +6319,7 @@ def old_parse_people_event_bytes(some_bytes, address=None, map_group=None, map_i
         clock_time_byte2 = int(bytes[6], 16)
         color_function_byte = int(bytes[7], 16) #Color|Function
         trainer_sight_range = int(bytes[8], 16)
-        
+
         lower_bits = color_function_byte & 0xF
         #lower_bits_high = lower_bits >> 2
         #lower_bits_low = lower_bits & 3
@@ -6174,7 +6367,7 @@ def old_parse_people_event_bytes(some_bytes, address=None, map_group=None, map_i
                     "trainer_data_address": ptr_address,
                     "trainer_data": parsed_trainer,
                 }
-        
+
         #XXX not sure what's going on here
         #bit no. of bit table 1 (hidden if set)
         #note: FFFF for none
@@ -6246,13 +6439,13 @@ def parse_all_map_headers(debug=True):
             if debug: print "map_group is: " + str(group_id) + "  map_id is: " + str(map_id)
             map_header_offset = offset + ((map_id - 1) * map_header_byte_size)
             map_names[group_id][map_id]["header_offset"] = map_header_offset
-           
+
             new_parsed_map = parse_map_header_at(map_header_offset, map_group=group_id, map_id=map_id, debug=debug)
             map_names[group_id][map_id]["header_new"] = new_parsed_map
             old_parsed_map = old_parse_map_header_at(map_header_offset, map_group=group_id, map_id=map_id, debug=debug)
             map_names[group_id][map_id]["header_old"] = old_parsed_map
 
-#map names with no labels will be generated at the end of the structure 
+#map names with no labels will be generated at the end of the structure
 map_names = {
     1: {
         0x1: {"name": "Olivine Pokémon Center 1F",
@@ -6734,6 +6927,7 @@ map_names = {
         0xB: {"name": "Route 31 Violet Gate"},
     },
 }
+
 #generate labels for each map name
 for map_group_id in map_names.keys():
     map_group = map_names[map_group_id]
@@ -6863,7 +7057,7 @@ def split_incbin_line_into_three(line, start_address, byte_count, rom_file="../b
     """
     splits an incbin line into three pieces.
     you can replace the middle one with the new content of length bytecount
-    
+
     start_address: where you want to start inserting bytes
     byte_count: how many bytes you will be inserting
     """
@@ -7007,7 +7201,7 @@ def get_label_for(address):
     for thing in all_labels:
         if thing["address"] == address:
             return thing["label"]
-    
+
     #the new way
     if is_script_already_parsed_at(address):
         obj = script_parse_table[address]
@@ -7143,6 +7337,7 @@ def line_has_comment_address(line, returnable={}, bank=None):
     returnable["offset"] = offset
     returnable["address"] = calculate_pointer(offset, bank=bank)
     return True
+
 def line_has_label(line):
     """returns True if the line has an asm label"""
     if not isinstance(line, str):
@@ -7162,6 +7357,7 @@ def line_has_label(line):
     if "::" in line:
         return False
     return True
+
 def get_label_from_line(line):
     """returns the label from the line"""
     #check if the line has a label
@@ -7170,6 +7366,7 @@ def get_label_from_line(line):
     #split up the line
     label = line.split(":")[0]
     return label
+
 def find_labels_without_addresses():
     """scans the asm source and finds labels that are unmarked"""
     without_addresses = []
@@ -7261,7 +7458,7 @@ def scan_for_predefined_labels(debug=False):
             output += " to "
             output += str(end_line_id)
             print output
-        
+
         #store the start/stop line number for this bank
         bank_intervals[bank_id] = {"start": start_line_id,
                                    "end": end_line_id,}
@@ -7282,17 +7479,21 @@ def scan_for_predefined_labels(debug=False):
 
 class TestCram(unittest.TestCase):
     "this is where i cram all of my unit tests together"
+
     @classmethod
     def setUpClass(cls):
         global rom
         cls.rom = direct_load_rom()
         rom = cls.rom
+
     @classmethod
     def tearDownClass(cls):
         del cls.rom
+
     def test_generic_useless(self):
         "do i know how to write a test?"
         self.assertEqual(1, 1)
+
     def test_map_name_cleaner(self):
         name = "hello world"
         cleaned_name = map_name_cleaner(name)
@@ -7303,6 +7504,7 @@ class TestCram(unittest.TestCase):
         self.assertNotEqual(name, cleaned_name)
         self.failIf(" " in cleaned_name)
         self.failIf("é" in cleaned_name)
+
     def test_grouper(self):
         data = range(0, 10)
         groups = grouper(data, count=2)
@@ -7312,10 +7514,12 @@ class TestCram(unittest.TestCase):
         self.assertEquals(len(groups), 10)
         self.assertNotEqual(data, groups)
         self.assertNotEqual(len(data), len(groups))
+
     def test_direct_load_rom(self):
         rom = self.rom
         self.assertEqual(len(rom), 2097152)
         self.failUnless(isinstance(rom, RomStr))
+
     def test_load_rom(self):
         global rom
         rom = None
@@ -7324,24 +7528,29 @@ class TestCram(unittest.TestCase):
         rom = RomStr(None)
         load_rom()
         self.failIf(rom == RomStr(None))
+
     def test_load_asm(self):
         asm = load_asm()
         joined_lines = "\n".join(asm)
         self.failUnless("SECTION" in joined_lines)
         self.failUnless("bank" in joined_lines)
         self.failUnless(isinstance(asm, AsmList))
+
     def test_rom_file_existence(self):
         "ROM file must exist"
         self.failUnless("baserom.gbc" in os.listdir("../"))
+
     def test_rom_md5(self):
         "ROM file must have the correct md5 sum"
         rom = self.rom
         correct = "9f2922b235a5eeb78d65594e82ef5dde"
         md5sum = md5.md5(rom).hexdigest()
         self.assertEqual(md5sum, correct)
+
     def test_bizarre_http_presence(self):
         rom_segment = self.rom[0x112116:0x112116+8]
         self.assertEqual(rom_segment, "HTTP/1.0")
+
     def test_rom_interval(self):
         address = 0x100
         interval = 10
@@ -7352,6 +7561,7 @@ class TestCram(unittest.TestCase):
         correct_ints = [0, 195, 110, 1, 206, 237, 102, 102, 204, 13]
         ints = rom_interval(address, interval, strings=False)
         self.assertEqual(ints, correct_ints)
+
     def test_rom_until(self):
         address = 0x1337
         byte = 0x13
@@ -7361,15 +7571,18 @@ class TestCram(unittest.TestCase):
         bytes = rom_until(address, byte, strings=False)
         self.failUnless(len(bytes) == 3)
         self.failUnless(bytes[0] == 0xd5)
+
     def test_how_many_until(self):
         how_many = how_many_until(chr(0x13), 0x1337)
         self.assertEqual(how_many, 3)
+
     def test_calculate_bank(self):
         self.failUnless(calculate_bank(0x8000) == 2)
         self.failUnless(calculate_bank("0x9000") == 2)
         self.failUnless(calculate_bank(0) == 0)
         for address in [0x4000, 0x5000, 0x6000, 0x7000]:
             self.assertRaises(Exception, calculate_bank, address)
+
     def test_calculate_pointer(self):
         #for offset <= 0x4000
         self.assertEqual(calculate_pointer(0x0000), 0x0000)
@@ -7378,13 +7591,16 @@ class TestCram(unittest.TestCase):
         self.assertEqual(calculate_pointer(0x430F, bank=5), 0x1430F)
         #for offset >= 0x7FFF
         self.assertEqual(calculate_pointer(0x8FFF, bank=6), calculate_pointer(0x8FFF, bank=7))
+
     def test_calculate_pointer_from_bytes_at(self):
         addr1 = calculate_pointer_from_bytes_at(0x100, bank=False)
         self.assertEqual(addr1, 0xc300)
         addr2 = calculate_pointer_from_bytes_at(0x100, bank=True)
         self.assertEqual(addr2, 0x2ec3)
+
     def test_rom_text_at(self):
         self.assertEquals(rom_text_at(0x112116, 8), "HTTP/1.0")
+
     def test_translate_command_byte(self):
         self.failUnless(translate_command_byte(crystal=0x0) == 0x0)
         self.failUnless(translate_command_byte(crystal=0x10) == 0x10)
@@ -7398,6 +7614,7 @@ class TestCram(unittest.TestCase):
         self.failUnless(translate_command_byte(crystal=0x53) == 0x52)
         self.failUnless(translate_command_byte(crystal=0x52) == None)
         self.assertRaises(Exception, translate_command_byte, None, gold=0xA4)
+
     def test_pksv_integrity(self):
         "does pksv_gs look okay?"
         self.assertEqual(pksv_gs[0x00], "2call")
@@ -7406,16 +7623,19 @@ class TestCram(unittest.TestCase):
         self.assertEqual(pksv_crystal[0x00], "2call")
         self.assertEqual(pksv_crystal[0x86], "waitbutton")
         self.assertEqual(pksv_crystal[0xA2], "credits")
+
     def test_chars_integrity(self):
         self.assertEqual(chars[0x80], "A")
         self.assertEqual(chars[0xA0], "a")
         self.assertEqual(chars[0xF0], "¥")
         self.assertEqual(jap_chars[0x44], "ぱ")
+
     def test_map_names_integrity(self):
         def map_name(map_group, map_id): return map_names[map_group][map_id]["name"]
         self.assertEqual(map_name(2, 7), "Mahogany Town")
         self.assertEqual(map_name(3, 0x34), "Ilex Forest")
         self.assertEqual(map_name(7, 0x11), "Cerulean City")
+
     def test_load_map_group_offsets(self):
         addresses = load_map_group_offsets()
         self.assertEqual(len(addresses), 26, msg="there should be 26 map groups")
@@ -7426,24 +7646,29 @@ class TestCram(unittest.TestCase):
             self.assertGreaterEqual(address, 0x4000)
             self.failIf(0x4000 <= address <= 0x7FFF)
             self.failIf(address <= 0x4000)
+
     def test_index(self):
         self.assertTrue(index([1,2,3,4], lambda f: True) == 0)
         self.assertTrue(index([1,2,3,4], lambda f: f==3) == 2)
+
     def test_get_pokemon_constant_by_id(self):
         x = get_pokemon_constant_by_id
         self.assertEqual(x(1), "BULBASAUR")
         self.assertEqual(x(151), "MEW")
         self.assertEqual(x(250), "HO_OH")
+
     def test_find_item_label_by_id(self):
         x = find_item_label_by_id
         self.assertEqual(x(249), "HM_07")
         self.assertEqual(x(173), "BERRY")
         self.assertEqual(x(45), None)
+
     def test_generate_item_constants(self):
         x = generate_item_constants
         r = x()
         self.failUnless("HM_07" in r)
         self.failUnless("EQU" in r)
+
     def test_get_label_for(self):
         global all_labels
         temp = copy(all_labels)
@@ -7454,20 +7679,24 @@ class TestCram(unittest.TestCase):
                      }]
         self.assertEqual(get_label_for(5), "poop")
         all_labels = temp
+
     def test_generate_map_constant_labels(self):
         ids = generate_map_constant_labels()
         self.assertEqual(ids[0]["label"], "OLIVINE_POKECENTER_1F")
         self.assertEqual(ids[1]["label"], "OLIVINE_GYM")
+
     def test_get_id_for_map_constant_label(self):
         global map_internal_ids
         map_internal_ids = generate_map_constant_labels()
         self.assertEqual(get_id_for_map_constant_label("OLIVINE_GYM"), 1)
         self.assertEqual(get_id_for_map_constant_label("OLIVINE_POKECENTER_1F"), 0)
+
     def test_get_map_constant_label_by_id(self):
         global map_internal_ids
         map_internal_ids = generate_map_constant_labels()
         self.assertEqual(get_map_constant_label_by_id(0), "OLIVINE_POKECENTER_1F")
         self.assertEqual(get_map_constant_label_by_id(1), "OLIVINE_GYM")
+
     def test_is_valid_address(self):
         self.assertTrue(is_valid_address(0))
         self.assertTrue(is_valid_address(1))
@@ -7480,6 +7709,8 @@ class TestCram(unittest.TestCase):
         addresses = [random.randrange(0,2097153) for i in range(0, 9+1)]
         for address in addresses:
             self.assertTrue(is_valid_address(address))
+
+
 class TestIntervalMap(unittest.TestCase):
     def test_intervals(self):
         i = IntervalMap()
@@ -7494,6 +7725,7 @@ class TestIntervalMap(unittest.TestCase):
         i[3:10] = second
         self.assertEqual(i[3], second)
         self.assertNotEqual(i[4], first)
+
     def test_items(self):
         i = IntervalMap()
         first = "hello world"
@@ -7504,33 +7736,43 @@ class TestIntervalMap(unittest.TestCase):
         self.failUnless(len(results) == 2)
         self.assertEqual(results[0], ((0, 5), "hello world"))
         self.assertEqual(results[1], ((5, 10), "testing 123"))
+
+
 class TestRomStr(unittest.TestCase):
     """RomStr is a class that should act exactly like str()
     except that it never shows the contents of it string
     unless explicitly forced"""
     sample_text = "hello world!"
     sample = None
+
     def setUp(self):
         if self.sample == None:
             self.__class__.sample = RomStr(self.sample_text)
+
     def test_equals(self):
         "check if RomStr() == str()"
         self.assertEquals(self.sample_text, self.sample)
+
     def test_not_equal(self):
         "check if RomStr('a') != RomStr('b')"
         self.assertNotEqual(RomStr('a'), RomStr('b'))
+
     def test_appending(self):
         "check if RomStr()+'a'==str()+'a'"
         self.assertEquals(self.sample_text+'a', self.sample+'a')
+
     def test_conversion(self):
         "check if RomStr() -> str() works"
         self.assertEquals(str(self.sample), self.sample_text)
+
     def test_inheritance(self):
         self.failUnless(issubclass(RomStr, str))
+
     def test_length(self):
         self.assertEquals(len(self.sample_text), len(self.sample))
         self.assertEquals(len(self.sample_text), self.sample.length())
         self.assertEquals(len(self.sample), self.sample.length())
+
     def test_rom_interval(self):
         global rom
         load_rom()
@@ -7543,6 +7785,7 @@ class TestRomStr(unittest.TestCase):
         correct_ints = [0, 195, 110, 1, 206, 237, 102, 102, 204, 13]
         ints = rom.interval(address, interval, strings=False)
         self.assertEqual(ints, correct_ints)
+
     def test_rom_until(self):
         global rom
         load_rom()
@@ -7554,18 +7797,23 @@ class TestRomStr(unittest.TestCase):
         bytes = rom.until(address, byte, strings=False)
         self.failUnless(len(bytes) == 3)
         self.failUnless(bytes[0] == 0xd5)
+
+
 class TestAsmList(unittest.TestCase):
     """AsmList is a class that should act exactly like list()
     except that it never shows the contents of its list
     unless explicitly forced"""
+
     def test_equals(self):
         base = [1,2,3]
         asm = AsmList(base)
         self.assertEquals(base, asm)
         self.assertEquals(asm, base)
         self.assertEquals(base, list(asm))
+
     def test_inheritance(self):
         self.failUnless(issubclass(AsmList, list))
+
     def test_length(self):
         base = range(0, 10)
         asm = AsmList(base)
@@ -7573,6 +7821,7 @@ class TestAsmList(unittest.TestCase):
         self.assertEquals(len(base), asm.length())
         self.assertEquals(len(base), len(list(asm)))
         self.assertEquals(len(asm), asm.length())
+
     def test_remove_quoted_text(self):
         x = remove_quoted_text
         self.assertEqual(x("hello world"), "hello world")
@@ -7582,6 +7831,7 @@ class TestAsmList(unittest.TestCase):
         input = "hello world 'testing 123'"
         self.assertNotEqual(x(input), input)
         self.failIf("testing" in x(input))
+
     def test_line_has_comment_address(self):
         x = line_has_comment_address
         self.assertFalse(x(""))
@@ -7616,6 +7866,7 @@ class TestAsmList(unittest.TestCase):
         returnable = {}
         self.assertTrue(x("hello_world: ; 0x4050", returnable=returnable, bank=5))
         self.assertTrue(returnable["address"] == 0x14050)
+
     def test_line_has_label(self):
         x = line_has_label
         self.assertTrue(x("hi:"))
@@ -7625,11 +7876,13 @@ class TestAsmList(unittest.TestCase):
         self.assertFalse(x(";HelloWorld:"))
         self.assertFalse(x("::::"))
         self.assertFalse(x(":;:;:;:::"))
+
     def test_get_label_from_line(self):
         x = get_label_from_line
         self.assertEqual(x("HelloWorld: "), "HelloWorld")
         self.assertEqual(x("HiWorld:"), "HiWorld")
         self.assertEqual(x("HiWorld"), None)
+
     def test_find_labels_without_addresses(self):
         global asm
         asm = ["hello_world: ; 0x1", "hello_world2: ;"]
@@ -7639,6 +7892,7 @@ class TestAsmList(unittest.TestCase):
         labels = find_labels_without_addresses()
         self.failUnless(len(labels) == 0)
         asm = None
+
     def test_get_labels_between(self):
         global asm
         x = get_labels_between#(start_line_id, end_line_id, bank)
@@ -7650,6 +7904,7 @@ class TestAsmList(unittest.TestCase):
         self.assertEqual(len(labels), 1)
         self.assertEqual(labels[0]["label"], "HelloWorld")
         del asm
+
     def test_scan_for_predefined_labels(self):
         #label keys: line_number, bank, label, offset, address
         load_asm()
@@ -7658,6 +7913,7 @@ class TestAsmList(unittest.TestCase):
         self.assertIn("GetFarByte", label_names)
         self.assertIn("AddNTimes", label_names)
         self.assertIn("CheckShininess", label_names)
+
     def test_write_all_labels(self):
         """dumping json into a file"""
         filename = "test_labels.json"
@@ -7684,6 +7940,7 @@ class TestAsmList(unittest.TestCase):
         self.assertEqual(len(obj), len(labels))
         self.assertEqual(len(obj), 2)
         self.assertEqual(obj, labels)
+
     def test_isolate_incbins(self):
         global asm
         asm = ["123", "456", "789", "abc", "def", "ghi",
@@ -7695,6 +7952,7 @@ class TestAsmList(unittest.TestCase):
         self.assertIn(asm[8], lines)
         for line in lines:
             self.assertIn("baserom", line)
+
     def test_process_incbins(self):
         global incbin_lines, processed_incbins, asm
         incbin_lines = ['INCBIN "baserom.gbc",$12DA,$12F8 - $12DA',
@@ -7705,6 +7963,7 @@ class TestAsmList(unittest.TestCase):
         self.assertEqual(len(processed_incbins), len(incbin_lines))
         self.assertEqual(processed_incbins[0]["line"], incbin_lines[0])
         self.assertEqual(processed_incbins[2]["line"], incbin_lines[1])
+
     def test_reset_incbins(self):
         global asm, incbin_lines, processed_incbins
         #temporarily override the functions
@@ -7721,6 +7980,7 @@ class TestAsmList(unittest.TestCase):
         self.assertTrue(processed_incbins == {})
         #reset the original functions
         load_asm, isolate_incbins, process_incbins = temp1, temp2, temp3
+
     def test_find_incbin_to_replace_for(self):
         global asm, incbin_lines, processed_incbins
         asm = ['first line', 'second line', 'third line',
@@ -7731,6 +7991,7 @@ class TestAsmList(unittest.TestCase):
         line_num = find_incbin_to_replace_for(0x100)
         #must be the 4th line (the INBIN line)
         self.assertEqual(line_num, 3)
+
     def test_split_incbin_line_into_three(self):
         global asm, incbin_lines, processed_incbins
         asm = ['first line', 'second line', 'third line',
@@ -7741,6 +8002,7 @@ class TestAsmList(unittest.TestCase):
         content = split_incbin_line_into_three(3, 0x100, 10)
         #must end up with three INCBINs in output
         self.failUnless(content.count("INCBIN") == 3)
+
     def test_analyze_intervals(self):
         global asm, incbin_lines, processed_incbins
         asm, incbin_lines, processed_incbins = None, [], {}
@@ -7755,6 +8017,7 @@ class TestAsmList(unittest.TestCase):
         self.assertEqual(largest[0]["line"], asm[6])
         self.assertEqual(largest[1]["line_number"], 3)
         self.assertEqual(largest[1]["line"], asm[3])
+
     def test_generate_diff_insert(self):
         global asm
         asm = ['first line', 'second line', 'third line',
@@ -7766,6 +8029,8 @@ class TestAsmList(unittest.TestCase):
         self.assertIn("INCBIN", diff)
         self.assertNotIn("No newline at end of file", diff)
         self.assertIn("+"+asm[1], diff)
+
+
 class TestMapParsing(unittest.TestCase):
     #def test_parse_warp_bytes(self):
     #    pass #or raise NotImplementedError, bryan_message
@@ -7783,6 +8048,7 @@ class TestMapParsing(unittest.TestCase):
     #    pass #or raise NotImplementedError, bryan_message
     #def test_parse_map_header_by_id(self):
     #    pass #or raise NotImplementedError, bryan_message
+
     def test_parse_all_map_headers(self):
         global parse_map_header_at, counter
         counter = 0
@@ -7797,6 +8063,8 @@ class TestMapParsing(unittest.TestCase):
         parse_all_map_headers(debug=False)
         self.assertEqual(counter, 388)
         parse_map_header_at = temp
+
+
 class TestTextScript(unittest.TestCase):
     """for testing 'in-script' commands, etc."""
     #def test_to_asm(self):
@@ -7805,30 +8073,39 @@ class TestTextScript(unittest.TestCase):
     #    pass #or raise NotImplementedError, bryan_message
     #def test_parse_text_at(self):
     #    pass #or raise NotImplementedError, bryan_message
+
+
 class TestEncodedText(unittest.TestCase):
     """for testing chars-table encoded text chunks"""
+
     def test_process_00_subcommands(self):
         g = process_00_subcommands(0x197186, 0x197186+601, debug=False)
         self.assertEqual(len(g), 42)
         self.assertEqual(len(g[0]), 13)
         self.assertEqual(g[1], [184, 174, 180, 211, 164, 127, 20, 231, 81])
+
     def test_parse_text_at2(self):
         oakspeech = parse_text_at2(0x197186, 601, debug=False)
         self.assertIn("encyclopedia", oakspeech)
         self.assertIn("researcher", oakspeech)
         self.assertIn("dependable", oakspeech)
+
     def test_parse_text_engine_script_at(self):
         p = parse_text_engine_script_at(0x197185, debug=False)
         self.assertEqual(len(p), 2)
         self.assertEqual(len(p[0]["lines"]), 41)
+
     #don't really care about these other two
     def test_parse_text_from_bytes(self): pass
     def test_parse_text_at(self): pass
+
+
 class TestScript(unittest.TestCase):
     """for testing parse_script_engine_script_at and script parsing in
     general. Script should be a class."""
     #def test_parse_script_engine_script_at(self):
     #    pass #or raise NotImplementedError, bryan_message
+
     def test_find_all_text_pointers_in_script_engine_script(self):
         address = 0x197637 #0x197634
         script = parse_script_engine_script_at(address, debug=False)
@@ -7836,6 +8113,8 @@ class TestScript(unittest.TestCase):
         r = find_all_text_pointers_in_script_engine_script(script, bank=bank, debug=False)
         results = list(r)
         self.assertIn(0x197661, results)
+
+
 class TestLabel(unittest.TestCase):
     def test_label_making(self):
         line_number = 2
@@ -7851,53 +8130,68 @@ class TestLabel(unittest.TestCase):
         self.assertEqual(l.line_number, line_number)
         self.assertEqual(l.name, label_name)
         self.assertEqual(l.address, address)
+
+
 class TestByteParams(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         load_rom()
         cls.address = 10
         cls.sbp = SingleByteParam(address=cls.address)
+
     @classmethod
     def tearDownClass(cls):
         del cls.sbp
+
     def test__init__(self):
         self.assertEqual(self.sbp.size, 1)
         self.assertEqual(self.sbp.address, self.address)
+
     def test_parse(self):
         self.sbp.parse()
         self.assertEqual(str(self.sbp.byte), str(45))
+
     def test_to_asm(self):
         self.assertEqual(self.sbp.to_asm(), "$2d")
         self.sbp.should_be_decimal = True
         self.assertEqual(self.sbp.to_asm(), str(45))
+
     def test_HexByte_to_asm(self):
         h = HexByte(address=10)
         a = h.to_asm()
         self.assertEqual(a, "0x2d")
+
     def test_DollarSignByte_to_asm(self):
         d = DollarSignByte(address=10)
         a = d.to_asm()
         self.assertEqual(a, "$2d")
+
     def test_ItemLabelByte_to_asm(self):
         i = ItemLabelByte(address=433)
         self.assertEqual(i.byte, 54)
         self.assertEqual(i.to_asm(), "COIN_CASE")
         self.assertEqual(ItemLabelByte(address=10).to_asm(), "$2d")
+
     def test_DecimalParam_to_asm(self):
         d = DecimalParam(address=10)
         x = d.to_asm()
         self.assertEqual(x, str(0x2d))
+
+
 class TestMultiByteParam(unittest.TestCase):
     def setup_for(self, somecls, byte_size=2, address=443, **kwargs):
         self.cls = somecls(address=address, size=byte_size, **kwargs)
         self.assertEqual(self.cls.address, address)
         self.assertEqual(self.cls.bytes, rom_interval(address, byte_size, strings=False))
         self.assertEqual(self.cls.size, byte_size)
+
     def test_two_byte_param(self):
         self.setup_for(MultiByteParam, byte_size=2)
         self.assertEqual(self.cls.to_asm(), "$f0c0")
+
     def test_three_byte_param(self):
         self.setup_for(MultiByteParam, byte_size=3)
+
     def test_PointerLabelParam_no_bank(self):
         self.setup_for(PointerLabelParam, bank=None)
         #assuming no label at this location..
@@ -7909,66 +8203,84 @@ class TestMultiByteParam(unittest.TestCase):
                        "line_number": 2
                      }]
         self.assertEqual(self.cls.to_asm(), "poop")
+
+
 class TestPostParsing: #(unittest.TestCase):
     """tests that must be run after parsing all maps"""
     @classmethod
     def setUpClass(cls):
         run_main()
+
     def test_signpost_counts(self):
         self.assertEqual(len(map_names[1][1]["signposts"]), 0)
         self.assertEqual(len(map_names[1][2]["signposts"]), 2)
         self.assertEqual(len(map_names[10][5]["signposts"]), 7)
+
     def test_warp_counts(self):
         self.assertEqual(map_names[10][5]["warp_count"], 9)
         self.assertEqual(map_names[18][5]["warp_count"], 3)
         self.assertEqual(map_names[15][1]["warp_count"], 2)
+
     def test_map_sizes(self):
         self.assertEqual(map_names[15][1]["height"], 18)
         self.assertEqual(map_names[15][1]["width"], 10)
         self.assertEqual(map_names[7][1]["height"], 4)
         self.assertEqual(map_names[7][1]["width"], 4)
+
     def test_map_connection_counts(self):
         self.assertEqual(map_names[7][1]["connections"], 0)
         self.assertEqual(map_names[10][1]["connections"], 12)
         self.assertEqual(map_names[10][2]["connections"], 12)
         self.assertEqual(map_names[11][1]["connections"], 9) #or 13?
+
     def test_second_map_header_address(self):
         self.assertEqual(map_names[11][1]["second_map_header_address"], 0x9509c)
         self.assertEqual(map_names[1][5]["second_map_header_address"], 0x95bd0)
+
     def test_event_address(self):
         self.assertEqual(map_names[17][5]["event_address"], 0x194d67)
         self.assertEqual(map_names[23][3]["event_address"], 0x1a9ec9)
+
     def test_people_event_counts(self):
         self.assertEqual(len(map_names[23][3]["people_events"]), 4)
         self.assertEqual(len(map_names[10][3]["people_events"]), 9)
+
+
 class TestMetaTesting(unittest.TestCase):
     """test whether or not i am finding at least
     some of the tests in this file"""
     tests = None
+
     def setUp(self):
         if self.tests == None:
             self.__class__.tests = assemble_test_cases()
+
     def test_assemble_test_cases_count(self):
         "does assemble_test_cases find some tests?"
         self.failUnless(len(self.tests) > 0)
+
     def test_assemble_test_cases_inclusion(self):
         "is this class found by assemble_test_cases?"
         #i guess it would have to be for this to be running?
         self.failUnless(self.__class__ in self.tests)
+
     def test_assemble_test_cases_others(self):
         "test other inclusions for assemble_test_cases"
         self.failUnless(TestRomStr in self.tests)
         self.failUnless(TestCram in self.tests)
+
     def test_check_has_test(self):
         self.failUnless(check_has_test("beaver", ["test_beaver"]))
         self.failUnless(check_has_test("beaver", ["test_beaver_2"]))
         self.failIf(check_has_test("beaver_1", ["test_beaver"]))
+
     def test_find_untested_methods(self):
         untested = find_untested_methods()
         #the return type must be an iterable
         self.failUnless(hasattr(untested, "__iter__"))
         #.. basically, a list
         self.failUnless(isinstance(untested, list))
+
     def test_find_untested_methods_method(self):
         """create a function and see if it is found"""
         #setup a function in the global namespace
@@ -7984,6 +8296,7 @@ class TestMetaTesting(unittest.TestCase):
         self.assertIn("some_random_test_method", untested)
         #remove the test method from the global namespace
         del some_random_test_method
+
     def test_load_tests(self):
         loader = unittest.TestLoader()
         suite = load_tests(loader, None, None)
@@ -7994,6 +8307,7 @@ class TestMetaTesting(unittest.TestCase):
         classes = [x[1] for x in tests]
         for test in suite._tests:
             self.assertIn(test.__class__, classes)
+
     def test_report_untested(self):
         untested = find_untested_methods()
         output = report_untested()
@@ -8003,9 +8317,11 @@ class TestMetaTesting(unittest.TestCase):
                 self.assertIn(name, output)
         elif len(untested) == 0:
             self.assertNotIn("NOT TESTED", output)
+
+
 def assemble_test_cases():
     """finds classes that inherit from unittest.TestCase
-    because i am too lazy to remember to add them to a 
+    because i am too lazy to remember to add them to a
     global list of tests for the suite runner"""
     classes = []
     clsmembers = inspect.getmembers(sys.modules[__name__], inspect.isclass)
@@ -8013,12 +8329,14 @@ def assemble_test_cases():
         if issubclass(some_class, unittest.TestCase):
             classes.append(some_class)
     return classes
+
 def load_tests(loader, tests, pattern):
     suite = unittest.TestSuite()
     for test_class in assemble_test_cases():
         tests = loader.loadTestsFromTestCase(test_class)
         suite.addTests(tests)
     return suite
+
 def check_has_test(func_name, tested_names):
     """checks if there is a test dedicated to this function"""
     if "test_"+func_name in tested_names:
@@ -8027,6 +8345,7 @@ def check_has_test(func_name, tested_names):
         if "test_"+func_name in name:
             return True
     return False
+
 def find_untested_methods():
     """finds all untested functions in this module
     by searching for method names in test case
@@ -8056,12 +8375,13 @@ def find_untested_methods():
         #we don't care about some of these
         if name in avoid_funcs: continue
         #skip functions beginning with _
-        if name[0] == "_": continue 
+        if name[0] == "_": continue
         #check if this function has a test named after it
         has_test = check_has_test(name, tested_names)
         if not has_test:
             untested.append(name)
     return untested
+
 def report_untested():
     untested = find_untested_methods()
     output = "NOT TESTED: ["
@@ -8082,6 +8402,7 @@ def run_tests(): #rather than unittest.main()
     suite = load_tests(loader, None, None)
     unittest.TextTestRunner(verbosity=2).run(suite)
     print report_untested()
+
 def run_main():
     #read the rom and figure out the offsets for maps
     direct_load_rom()
@@ -8090,6 +8411,7 @@ def run_main():
     [map_names[map_group_id+1].update({"offset": offset}) for map_group_id, offset in enumerate(map_group_offsets)]
     #parse map header bytes for each map
     parse_all_map_headers()
+
 #just a helpful alias
 main=run_main
 #when you run the file.. do unit tests
