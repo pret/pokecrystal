@@ -47,7 +47,14 @@ PartyMon1Species: ; 0xdcdf
 PartyMon1Item: ; 0xdce0
 	ds 1
 PartyMon1Moves: ; 0xdce1
-	ds 4
+PartyMon1Move1: ; 0xdce1
+	ds 1
+PartyMon1Move2: ; 0xdce2
+	ds 1
+PartyMon1Move3: ; 0xdce3
+	ds 1
+PartyMon1Move4: ; 0xdce4
+	ds 1
 PartyMon1ID: ; 0xdce5
 	ds 2
 PartyMon1Exp: ; 0xdce7
@@ -106,7 +113,14 @@ PartyMon2Species: ; 0xdd0f
 PartyMon2Item: ; 0xdd10
 	ds 1
 PartyMon2Moves: ; 0xdd11
-	ds 4
+PartyMon2Move1: ; 0xdd11
+	ds 1
+PartyMon2Move2: ; 0xdd12
+	ds 1
+PartyMon2Move3: ; 0xdd13
+	ds 1
+PartyMon2Move4: ; 0xdd14
+	ds 1
 PartyMon2ID: ; 0xdd15
 	ds 2
 PartyMon2Exp: ; 0xdd17
@@ -165,7 +179,14 @@ PartyMon3Species: ; 0xdd3f
 PartyMon3Item: ; 0xdd40
 	ds 1
 PartyMon3Moves: ; 0xdd41
-	ds 4
+PartyMon3Move1: ; 0xdd41
+	ds 1
+PartyMon3Move2: ; 0xdd42
+	ds 1
+PartyMon3Move3: ; 0xdd43
+	ds 1
+PartyMon3Move4: ; 0xdd44
+	ds 1
 PartyMon3ID: ; 0xdd45
 	ds 2
 PartyMon3Exp: ; 0xdd47
@@ -224,7 +245,14 @@ PartyMon4Species: ; 0xdd6f
 PartyMon4Item: ; 0xdd70
 	ds 1
 PartyMon4Moves: ; 0xdd71
-	ds 4
+PartyMon4Move1: ; 0xdd71
+	ds 1
+PartyMon4Move2: ; 0xdd72
+	ds 1
+PartyMon4Move3: ; 0xdd73
+	ds 1
+PartyMon4Move4: ; 0xdd74
+	ds 1
 PartyMon4ID: ; 0xdd75
 	ds 2
 PartyMon4Exp: ; 0xdd77
@@ -283,7 +311,14 @@ PartyMon5Species: ; 0xdd9f
 PartyMon5Item: ; 0xdda0
 	ds 1
 PartyMon5Moves: ; 0xdda1
-	ds 4
+PartyMon5Move1: ; 0xdda1
+	ds 1
+PartyMon5Move2: ; 0xdda2
+	ds 1
+PartyMon5Move3: ; 0xdda3
+	ds 1
+PartyMon5Move4: ; 0xdda4
+	ds 1
 PartyMon5ID: ; 0xdda5
 	ds 2
 PartyMon5Exp: ; 0xdda7
@@ -342,7 +377,14 @@ PartyMon6Species: ; 0xddcf
 PartyMon6Item: ; 0xddd0
 	ds 1
 PartyMon6Moves: ; 0xddd1
-	ds 4
+PartyMon6Move1: ; 0xddd1
+	ds 1
+PartyMon6Move2: ; 0xddd2
+	ds 1
+PartyMon6Move3: ; 0xddd3
+	ds 1
+PartyMon6Move4: ; 0xddd4
+	ds 1
 PartyMon6ID: ; 0xddd5
 	ds 2
 PartyMon6Exp: ; 0xddd7
