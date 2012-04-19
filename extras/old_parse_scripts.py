@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 This is in a separate file because it screws up highlighting. Doesn't
 do anything on its own.
