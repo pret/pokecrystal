@@ -3758,13 +3758,13 @@ SpecialDratini: ; 0x8b170
 	ld a, [$c2dd]
 	cp $2
 	ret nc
-	ld bc, TeamCount
+	ld bc, PartyCount
 	ld a, [bc]
 	ld hl, 0
-	call GetNthTeamMon
+	call GetNthPartyMon
 	ld a, [bc]
 	ld c, a
-	ld de, TeamMon2 - TeamMon1
+	ld de, PartyMon2 - PartyMon1
 .CheckForDratini
 ; start at the end of the party and search backwards for a Dratini
 	ld a, [hl]
@@ -3810,7 +3810,7 @@ SpecialDratini: ; 0x8b170
 	call GetFarByte
 
 	; get the address of the move's PP and update the PP
-	ld hl, TeamMon1PP - TeamMon1Moves
+	ld hl, PartyMon1PP - PartyMon1Moves
 	add hl, de
 	ld [hl], a
 
@@ -3837,7 +3837,7 @@ SpecialDratini: ; 0x8b170
 	db 0
 
 
-GetNthTeamMon: ; 0x8b1ce
+GetNthPartyMon: ; 0x8b1ce
 ; inputs:
 ; hl must be set to 0 before calling this function.
 ; a must be set to the number of Pokémon in the party.
@@ -3846,13 +3846,13 @@ GetNthTeamMon: ; 0x8b1ce
 ; returns the address of the last Pokémon in the party in hl.
 ; sets carry if a is 0.
 
-	ld de, TeamMon1
+	ld de, PartyMon1
 	add hl, de
 	and a
 	jr z, .EmptyParty
 	dec a
 	ret z
-	ld de, TeamMon2 - TeamMon1
+	ld de, PartyMon2 - PartyMon1
 .loop
 	add hl, de
 	dec a
