@@ -407,12 +407,12 @@ PartyMon6Happiness: ; 0xddea
 	ds 1
 PartyMon6PokerusStatus: ; 0xddeb
 	ds 1
-PartyMon5CaughtData: ; 0xddec
-PartyMon5CaughtTime: ; 0xddec
-PartyMon5CaughtLevel ; 0xddec
+PartyMon6CaughtData: ; 0xddec
+PartyMon6CaughtTime: ; 0xddec
+PartyMon6CaughtLevel ; 0xddec
 	ds 1
-PartyMon5CaughtGender: ; 0xdded
-PartyMon5CaughtLocation: ; 0xdded
+PartyMon6CaughtGender: ; 0xdded
+PartyMon6CaughtLocation: ; 0xdded
 	ds 1
 PartyMon6Level: ; 0xddee
 	ds 1
