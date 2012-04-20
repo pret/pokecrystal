@@ -4036,11 +4036,18 @@ incbin_lines = []
 processed_incbins = {}
 
 def to_asm(some_object):
-    """shows asm with labels and ending comments"""
-    #label: ; 0x10101
+    """shows an object's asm with a label and an ending comment
+    showing the next byte address"""
+    if isinstance(some_object, int):
+        some_object = script_parse_table[some_object]
+    #add one to the last_address to show where the next byte is in the file
+    last_address = some_object.last_address + 1
+    #create a line like "label: ; 0x10101"
     asm = some_object.label + ": ; " + hex(some_object.address) + "\n"
+    #now add the inner/actual asm
     asm += spacing + some_object.to_asm().replace("\n", "\n"+spacing).replace("\n"+spacing+"\n"+spacing, "\n\n"+spacing)
-    asm += "\n; " + hex(some_object.last_address)
+    #show the address of the next byte below this
+    asm += "\n; " + hex(last_address)
     return asm
 
 def isolate_incbins():
