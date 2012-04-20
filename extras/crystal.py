@@ -1208,6 +1208,9 @@ class MultiByteParam():
         else:
             self.parsed_address = calculate_pointer_from_bytes_at(self.address, bank=None)
 
+    def get_dependencies(self):
+        return []
+
     #you won't actually use this to_asm because it's too generic
     #def to_asm(self): return ", ".join([(self.prefix+"%.2x")%x for x in self.bytes])
     def to_asm(self):
@@ -1242,6 +1245,11 @@ class PointerLabelParam(MultiByteParam):
     def parse(self):
         self.parsed_address = calculate_pointer_from_bytes_at(self.address, bank=self.bank)
         MultiByteParam.parse(self)
+
+    def get_dependencies(self):
+        dependencies = [script_parse_table[self.parsed_address]]
+        dependencies.append(script_parse_table[self.parsed_address].get_dependencies())
+        return dependencies
 
     def to_asm(self):
         bank = self.bank
@@ -1481,6 +1489,14 @@ class Command:
         self.args = defaults
         #start parsing this command's parameter bytes
         self.parse()
+
+    def get_dependencies(self):
+        dependencies = []
+        for (key, param) in self.params.items():
+            if hasattr("get_dependencies", param):
+                deps = param.get_dependencies()
+                dependencies.extend(deps)
+        return dependencies
 
     def to_asm(self):
         #start with the rgbasm macro name for this command
@@ -1941,6 +1957,13 @@ class Script():
         print "--------------\n"+asm_output
         self.commands = commands
         return commands
+
+    def get_dependencies(self):
+        dependencies = []
+        for command in self.commands:
+            deps = command.get_dependencies()
+            dependencies.extend(deps)
+        return dependencies
 
     def to_asm(self):
         asm_output = "".join([command.to_asm()+"\n" for command in self.commands])
@@ -2438,6 +2461,13 @@ class SignpostRemoteBase:
         else: self.label = label
         self.parse()
 
+    def get_dependencies(self):
+        dependencies = []
+        for p in self.params:
+            deps = p.get_dependencies()
+            dependencies.extend(deps)
+        return dependencies
+
     def to_asm(self):
         """very similar to Command.to_asm"""
         if len(self.params) == 0: return ""
@@ -2662,6 +2692,13 @@ class Signpost:
             self.params.append(mb)
         else:
             raise Exception, "unknown signpost type byte="+hex(func) + " signpost@"+hex(self.address)
+    
+    def get_dependencies(self):
+        dependencies = []
+        for p in self.params:
+            dependencies.extend(p.get_dependencies())
+        return dependencies
+
     def to_asm(self):
         output = self.macro_name + " "
         if self.params == []: raise Exception, "signpost has no params?"
@@ -2775,6 +2812,11 @@ class MapHeader:
         self.music = HexByte(address=address+6)
         self.time_of_day = DecimalParam(address=address+7)
         self.fishing_group = DecimalParam(address=address+8)
+    
+    def get_dependencies(self):
+        dependencies = [self.second_map_header]
+        dependencies.append(self.second_map_header.get_dependencies())
+        return dependencies
 
     def to_asm(self):
         output  = "; bank, tileset, permission\n"
@@ -2902,6 +2944,12 @@ class SecondMapHeader:
         #self.connections = connections
 
         return True
+    
+    def get_dependencies(self):
+        dependencies = [self.script_header, self.event_header, self.blockdata]
+        dependencies.append(self.script_header.get_dependencies())
+        dependencies.append(self.event_header.get_dependencies())
+        return dependencies
 
     def to_asm(self):
         output = "; border block\n"
@@ -3070,6 +3118,12 @@ class MapEventHeader:
         else:
             self.last_address = after_signposts+1
         return True
+    
+    def get_dependencies(self):
+        dependencies = self.people_events + self.signposts + self.xy_triggers + self.warps
+        for p in list(dependencies):
+            dependencies.extend(p.get_dependencies())
+        return dependencies
 
     def to_asm(self):
         xspacing = "" #was =spacing
@@ -3245,6 +3299,14 @@ class MapScriptHeader:
         self.last_address = current_address
         print "done parsing a MapScriptHeader map_group="+str(map_group)+" map_id="+str(map_id)
         return True
+    
+    def get_dependencies(self):
+        dependencies = self.triggers
+        for p in list(dependencies):
+            dependencies.extend(p.get_dependencies())
+        for callback in self.callbacks:
+            dependencies.extend(callback["callback"].get_dependencies())
+        return dependencies
 
     def to_asm(self):
         output = ""
@@ -4049,6 +4111,19 @@ def to_asm(some_object):
     #show the address of the next byte below this
     asm += "\n; " + hex(last_address)
     return asm
+
+def get_dependencies_for(some_object):
+    """
+    calculates which labels need to be satisfied for an object
+    to be inserted into the asm and compile successfully.
+
+    You could also choose to not insert labels into the asm, but
+    then you're losing out on the main value of having asm in the
+    first place.
+    """
+    if isinstance(some_object, int):
+        some_object = script_parse_table[some_object]
+    return some_object.get_dependencies()
 
 def isolate_incbins():
     "find each incbin line"
