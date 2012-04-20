@@ -2987,6 +2987,8 @@ class MapBlockData:
     def save_to_file(self):
         #check if the file exists already
         map_path = self.map_path
+        if not os.path.exists(self.maps_path):
+            os.mkdir(self.maps_path)
         if not os.path.exists(map_path):
             #dump to file
             #bytes = rom_interval(self.address, self.width.byte*self.height.byte, strings=True)
