@@ -241,7 +241,7 @@ rom = RomStr(None)
 def direct_load_rom(filename="../baserom.gbc"):
     """loads bytes into memory"""
     global rom
-    file_handler = open(filename, "r")
+    file_handler = open(filename, "rb")
     rom = RomStr(file_handler.read())
     file_handler.close()
     return rom
