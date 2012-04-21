@@ -2246,13 +2246,17 @@ class TrainerFragment(Command):
     def __init__(self, *args, **kwargs):
         address = kwargs["address"]
         print "TrainerFragment address=" + hex(address)
-        if not is_valid_address(address) or address in [0x26ef]: return
-        Command.__init__(self, *args, **kwargs)
+        self.address = address
         self.last_address = self.address + self.size
+        if not is_valid_address(address) or address in [0x26ef]:
+            self.include_in_asm = False
+            return
         script_parse_table[self.address : self.last_address] = self
+        Command.__init__(self, *args, **kwargs)
     
     def get_dependencies(self):
         deps = []
+        if not is_valid_address(self.address): return deps
         deps.append(self.params[3])
         deps.extend(self.params[3].get_dependencies())
         deps.append(self.params[4])
@@ -2282,12 +2286,14 @@ class TrainerFragment(Command):
 
 class TrainerFragmentParam(PointerLabelParam):
     """used by PeopleEvent to point to trainer data"""
-
     def parse(self):
         address = calculate_pointer_from_bytes_at(self.address, bank=self.bank)
         self.calculated_address = address
-        trainerfrag = TrainerFragment(address=address, map_group=self.map_group, map_id=self.map_id, debug=self.debug)
-        self.dependencies = [trainerfrag]
+        if address == 0x26ef:
+            self.dependencies = []
+        else:
+            trainerfrag = TrainerFragment(address=address, map_group=self.map_group, map_id=self.map_id, debug=self.debug)
+            self.dependencies = [trainerfrag]
         PointerLabelParam.parse(self)
 
     def get_dependencies(self):
