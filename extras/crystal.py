@@ -1870,7 +1870,7 @@ stop_points = [0x1aafa2,
                0x9f58f, #battle tower
                0x9f62f, #battle tower
               ]
-class Script():
+class Script:
     def __init__(self, *args, **kwargs):
         self.address = None
         self.commands = None
@@ -1987,6 +1987,8 @@ class Script():
 
     def to_asm(self):
         asm_output = "".join([command.to_asm()+"\n" for command in self.commands])
+        if asm_output[-1] == "\n":
+            asm_output = asm_output[:-1]
         return asm_output
 
     def old_parse(self, *args, **kwargs):
@@ -3239,7 +3241,9 @@ class MapEventHeader:
             output += xspacing
             output += people_event.to_asm()
             output += "\n"
-
+        
+        if output[-1] == "\n":
+            output = output[:-1]
         return output
 
 all_map_event_headers = []
