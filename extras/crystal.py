@@ -4428,6 +4428,85 @@ def apply_diff(diff, try_fixing=True, do_compile=True):
                 os.system("mv ../main1.asm ../main.asm")
             return False
 
+class AsmLine:
+    #TODO: parse label lines
+    def __init__(self, line, bank=None):
+        self.line = line
+        self.bank = bank
+    def to_asm(self):
+        return self.line
+
+class Incbin:
+    def __init__(self, line, bank=None):
+        self.line = line
+        self.bank = bank
+        self.parse()
+    def parse(self):
+        incbin = self.line
+        partial_start = incbin[21:]
+        start = partial_start.split(",")[0].replace("$", "0x")
+        start = eval(start)
+        start_hex = hex(start).replace("0x", "$")
+
+        partial_interval = incbin[21:].split(",")[1]
+        partial_interval = partial_interval.replace(";", "#")
+        partial_interval = partial_interval.replace("$", "0x").replace("0xx", "0x")
+        interval = eval(partial_interval)
+        interval_hex = hex(interval).replace("0x", "$").replace("x", "")
+
+        end = start + interval
+        end_hex = hex(end).replace("0x", "$")
+
+        self.address = start
+        self.start_address = start
+        self.end_address = end
+        self.last_address = end
+        self.interval = interval
+    def to_asm(self):
+        if self.interval > 0:
+            return self.line
+        else: return ""
+
+def AsmSection:
+    def __init__(self, line):
+        self.bank_id = None
+        self.line = line
+        self.parse()
+    def parse(self):
+        line    = self.line
+        bank_id = int(line.split("\"")[1].split("bank")[1])
+        self.bank_id  = bank_id
+        start_address = bank_id * 0x4000
+        end_address   = (bank_id * 0x4000) + 0x4000 - 1
+        #this entity doesn't actually take up this space..
+        #although it could be argued that lines should exist under this object
+        #self.address  = self.start_address = start_address
+        #self.last_address = self.end_address = end_address
+    def to_asm(self):
+        return self.line
+
+class Asm:
+    """controls the overall asm output"""
+    def __init__(self, filename="../main.asm"):
+        self.parts = []
+        self.filename = filename
+        self.load_and_parse()
+
+    def load_and_parse(self):
+        self.parts = []
+        asm = open(self.filename, "r").read().split("\n")
+        asm_list = AsmList(asm)
+        bank = 0
+        for line in asm_list:
+            if line[0:6] == "INCBIN" or line[1:6] == "INCBIN":
+                thing = Incbin(line, bank=bank)
+            if line[0:7] == "SECTION":
+                thing = AsmSection(line)
+                bank = thing.bank_id
+            else:
+                thing = AsmLine(line, bank=bank)
+            self.parts.append(thing)
+
 def index(seq, f):
     """return the index of the first item in seq
     where f(item) == True."""
