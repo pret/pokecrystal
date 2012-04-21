@@ -708,7 +708,9 @@ class TextScript:
         #    sys.exit()
 
         self.commands = commands
+        self.last_address = offset - 1 #why -1??
         script_parse_table[original_address:offset-1] = self
+        self.size = self.byte_count = self.last_address - original_address
         return commands
 
     def get_dependencies(self):
@@ -910,8 +912,8 @@ class TextScript:
         if len(output)!=0 and output[-1] == "\n":
             include_newline = ""
         output += include_newline + "; " + hex(start_address) + " + " + str(byte_count) + " bytes = " + hex(start_address + byte_count)
-        print output
-        return (output, byte_count)
+        self.size = self.byte_count = byte_count
+        return output
 
 def parse_text_engine_script_at(address, map_group=None, map_id=None, debug=True, show=True, force=False):
     """parses a text-engine script ("in-text scripts")
@@ -1516,7 +1518,8 @@ class Command:
         for (key, param) in self.params.items():
             if hasattr(param, "get_dependencies"):
                 deps = param.get_dependencies()
-                dependencies.extend(deps)
+                if deps != None:
+                    dependencies.extend(deps)
         return dependencies
 
     def to_asm(self):
@@ -2113,7 +2116,7 @@ class XYTrigger(Command):
     def get_dependencies(self):
         dependencies = []
         thing = script_parse_table[self.params[4].parsed_address]
-        if thing:
+        if thing and thing != self.params[4]:
             dependencies.append(thing)
         return dependencies
 
@@ -3411,7 +3414,8 @@ class MapScriptHeader:
         output += "db %d\n"%self.trigger_count
         if len(self.triggers) > 0:
             output += "\n; triggers\n"
-            output += "\n".join(["dw "+p.to_asm() for p in self.triggers]) + "\n"
+            output += "\n".join([str("dw "+p.to_asm()) for p in self.triggers])
+            output += "\n"
         output += "\n; callback count\n"
         output += "db %d"%self.callback_count
         if len(self.callbacks) > 0:
@@ -4203,7 +4207,11 @@ def to_asm(some_object):
     #create a line like "label: ; 0x10101"
     asm = some_object.label + ": ; " + hex(some_object.address) + "\n"
     #now add the inner/actual asm
-    asm += spacing + some_object.to_asm().replace("\n", "\n"+spacing).replace("\n"+spacing+"\n"+spacing, "\n\n"+spacing)
+    #asm += spacing + some_object.to_asm().replace("\n", "\n"+spacing).replace("\n"+spacing+"\n"+spacing, "\n\n"+spacing)
+    asmr = some_object.to_asm()
+    asmr = asmr.replace("\n", "\n"+spacing)
+    asmr = asmr.replace("\n"+spacing+"\n", "\n\n"+spacing)
+    asm += spacing + asmr
     #show the address of the next byte below this
     asm += "\n; " + hex(last_address)
     return asm
@@ -4437,16 +4445,26 @@ class AsmLine:
         return self.line
 
 class Incbin:
-    def __init__(self, line, bank=None):
+    def __init__(self, line, bank=None, debug=False):
         self.line = line
         self.bank = bank
         self.replace_me = False
+        self.debug = debug
         self.parse()
     def parse(self):
         incbin = self.line
         partial_start = incbin[21:]
         start = partial_start.split(",")[0].replace("$", "0x")
-        start = eval(start)
+
+        if self.debug:
+            print "Incbin.parse -- line is: " + self.line
+            print "Incbin.parse -- partial_start is: " + partial_start
+            print "Incbin.parse -- start is: " + start
+        try:
+            start = eval(start)
+        except Exception, e:
+            raise Exception, "problem with evaluating interval range"
+
         start_hex = hex(start).replace("0x", "$")
 
         partial_interval = incbin[21:].split(",")[1]
@@ -4473,10 +4491,15 @@ class Incbin:
             raise Exception, "this incbin doesn't handle this address"
         incbins = []
 
+        if self.debug:
+            print "splitting an incbin ("+self.line+") into three at "+hex(start_address)+" for "+str(byte_count)+" bytes"
+
         #start, end1, end2 (to be printed as start, end1 - end2)
-        if (start_address - self.start) > 0:
-            first = (self.start, start_address, self.start)
+        if (start_address - self.start_address) > 0:
+            first = (self.start_address, start_address, self.start_address)
             incbins.append(Incbin("INCBIN \"baserom.gbc\",$%.2x,$%.2x - $%.2x" % (first[0], first[1], first[2])))
+            if self.debug:
+                print "    " + incbins[0].line
         else:
             #skip this one because we're not including anything
             first = None
@@ -4485,10 +4508,14 @@ class Incbin:
         second = (start_address, byte_count)
         incbins.append(Incbin("INCBIN \"baserom.gbc\",$%.2x,$%.2x" % (start_address, byte_count)))
         incbins[-1].replace_me = True
+        if self.debug:
+            print "    " + incbins[-1].line
 
-        if (end - (start_address + byte_count)) > 0:
-            third = (start_address + byte_count, end - (start_address + byte_count))
+        if (self.last_address - (start_address + byte_count)) > 0:
+            third = (start_address + byte_count, self.last_address - (start_address + byte_count))
             incbins.append(Incbin("INCBIN \"baserom.gbc\",$%.2x,$%.2x" % (third[0], third[1])))
+            if self.debug:
+                print "    " + incbins[-1].line
 
         return incbins
         
@@ -4503,6 +4530,10 @@ class AsmSection:
         self.bank_id  = bank_id
         start_address = bank_id * 0x4000
         end_address   = (bank_id * 0x4000) + 0x4000 - 1
+        
+        self.address = self.start_address = start_address
+        self.last_address = None
+        self.end_address = None
         #this entity doesn't actually take up this space..
         #although it could be argued that lines should exist under this object
         #self.address  = self.start_address = start_address
@@ -4512,9 +4543,10 @@ class AsmSection:
 
 class Asm:
     """controls the overall asm output"""
-    def __init__(self, filename="../main.asm"):
+    def __init__(self, filename="../main.asm", debug=True):
         self.parts = []
         self.filename = filename
+        self.debug = debug
         self.load_and_parse()
     def load_and_parse(self):
         self.parts = []
@@ -4531,22 +4563,44 @@ class Asm:
                 thing = AsmLine(line, bank=bank)
             self.parts.append(thing)
     def insert(self, new_object):
-        assert hasattr(new_object, "address"), "object needs to have an address property"
-        assert hasattr(new_object, "last_address"), "object needs to have a last address"
+        if isinstance(new_object, TextScript):
+            print "ignoring TextScript object-- these seem very broken?"
+            return
+        if not hasattr(new_object, "address"):
+            print "object needs to have an address property: " + str(new_object)
+            return
+        if not hasattr(new_object, "last_address"):
+            print "object needs to have a last_address property: " + str(new_object)
+            return
         #check if the object is already inserted
         if new_object in self.parts:
-            return "object was previously inserted"
+            print "object was previously inserted ("+str(new_object)+")"
+            return
         start_address = new_object.address
-        end_address = new_object.end_address
+        end_address = new_object.last_address
+        if self.debug:
+            print "object is type="+str(new_object.__class__)+" new_object="+str(new_object)
+            print "start_address="+hex(start_address)+" end_address="+hex(end_address)
+        if (end_address < start_address) or ((end_address - start_address) < 0):
+            if not self.debug:
+                print "object is type="+str(new_object.__class__)+" new_object="+str(new_object)
+                print "start_address="+hex(start_address)+" end_address="+hex(end_address)
+            if hasattr(new_object, "to_asm"):
+                print to_asm(new_object)
+            raise Exception, "Asm.insert was given an object with a bad address range"
         # 1) find which object needs to be replaced
         # or
         # 2) find which object goes after it
         found = False
         for object in list(self.parts):
             #skip objects without a defined interval (like a comment line)
-            if not hasattr(object, "address") and hasattr(object, "last_address"): continue
+            if not hasattr(object, "address") or not hasattr(object, "last_address"):
+                continue
+            #skip an AsmSection
+            if isinstance(object, AsmSection):
+                continue
             #replace an incbin with three incbins, replace middle incbin with whatever
-            if object.address <= start_address <= object.last_address and isinstance(object, Incbin):
+            elif isinstance(object, Incbin) and (object.address <= start_address <= object.last_address):
                 #split up the incbin into three segments
                 incbins = object.split(start_address, end_address - start_address)
                 #figure out which incbin to replace with the new object
@@ -4555,7 +4609,7 @@ class Asm:
                 else: #assume incbins[1].replace_me (the middle one)
                     index = 1
                 #replace that index with the new_object
-                incbins[index] = new_object
+                incbins[index] = to_asm(new_object)
                 #insert these incbins into self.parts
                 gindex = self.parts.index(object)
                 self.parts = self.parts[:gindex] + incbins + self.parts[gindex:]
@@ -4571,6 +4625,17 @@ class Asm:
         if not found:
             raise Exception, "unable to insert object into Asm"
         return True 
+    def insert_single_with_dependencies(self, object):
+        objects = get_dependencies_for(object) + [object]
+        for object in objects:
+            if self.debug:
+                print "object.__class__="+str(object.__class__) + " object is: " + str(object)
+            self.insert(object)
+    def insert_all(self):
+        for each in script_parse_table.items():
+            object = each[1]
+            if type(object) == str: continue
+            self.insert_single_with_dependencies(object)
 
 def index(seq, f):
     """return the index of the first item in seq
