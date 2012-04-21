@@ -385,14 +385,16 @@ def command_debug_information(command_byte=None, map_group=None, map_id=None, ad
     #info1 += "    long_info: " + long_info
     return info1
 
-
-class TextScript():
+class TextScript:
     "a text is a sequence of commands different from a script-engine script"
-
-    def __init__(self, address, map_group=None, map_id=None, debug=True, show=True, force=False):
+    base_label = "UnknownText_"
+    def __init__(self, address, map_group=None, map_id=None, debug=True, show=True, force=False, label=None):
         self.address = address
         self.map_group, self.map_id, self.debug, self.show, self.force = map_group, map_id, debug, show, force
-        self.label = "UnknownTextLabel_"+hex(address)
+        if not label:
+            label = self.base_label + hex(address)
+        self.label = label
+        self.dependencies = []
         self.parse_text_at(address)
 
     @staticmethod
@@ -552,10 +554,15 @@ class TextScript():
                 pointer = (pointer_byte1 + (pointer_byte2 << 8))
                 pointer = extract_maps.calculate_pointer(pointer, pointer_bank)
 
+                text = TextScript(pointer, map_group=self.map_group, map_id=self.amp_id, debug=self.debug, \
+                                  show=self.debug, force=self.debug, label="Target"+self.label)
+                self.dependencies.append(text)
+
                 command = {"type": command_byte,
                            "start_address": offset,
                            "end_address": offset + 3, #last byte belonging to this command
                            "pointer": pointer, #parameter
+                           "text": text,
                           }
 
                 offset += 3 + 1
@@ -703,6 +710,9 @@ class TextScript():
         self.commands = commands
         script_parse_table[original_address:offset-1] = self
         return commands
+
+    def get_dependencies(self):
+        return self.dependencies
 
     def to_asm(self, label=None):
         address = self.address
@@ -1162,10 +1172,11 @@ class SingleByteParam():
 
     def parse(self): self.byte = ord(rom[self.address])
 
+    def get_dependencies(self): return []
+
     def to_asm(self):
         if not self.should_be_decimal: return hex(self.byte).replace("0x", "$")
         else: return str(self.byte)
-
 
 class DollarSignByte(SingleByteParam):
     def to_asm(self): return hex(self.byte).replace("0x", "$")
@@ -1247,8 +1258,12 @@ class PointerLabelParam(MultiByteParam):
         MultiByteParam.parse(self)
 
     def get_dependencies(self):
-        dependencies = [script_parse_table[self.parsed_address]]
-        dependencies.append(script_parse_table[self.parsed_address].get_dependencies())
+        dependencies = []
+        thing = script_parse_table[self.parsed_address]
+        if thing:
+            print "parsed address is: " + hex(self.parsed_address)
+            dependencies.append(thing)
+            dependencies.extend(thing.get_dependencies())
         return dependencies
 
     def to_asm(self):
@@ -1493,7 +1508,7 @@ class Command:
     def get_dependencies(self):
         dependencies = []
         for (key, param) in self.params.items():
-            if hasattr("get_dependencies", param):
+            if hasattr(param, "get_dependencies"):
                 deps = param.get_dependencies()
                 dependencies.extend(deps)
         return dependencies
@@ -2037,6 +2052,9 @@ class Warp(Command):
         script_parse_table[kwargs["address"] : kwargs["address"] + self.size] = self
         Command.__init__(self, *args, **kwargs)
 
+    def get_dependencies(self):
+        return []
+
 all_warps = []
 def parse_warps(address, warp_count, bank=None, map_group=None, map_id=None, debug=True):
     warps = []
@@ -2086,6 +2104,13 @@ class XYTrigger(Command):
         #XYTrigger shouldn't really be in the globals, should it..
         script_parse_table[kwargs["address"] : kwargs["address"] + self.size] = self
         Command.__init__(self, *args, **kwargs)
+    
+    def get_dependencies(self):
+        dependencies = []
+        thing = script_parse_table[self.params[4].parsed_address]
+        if thing:
+            dependencies.append(thing)
+        return dependencies
 
 all_xy_triggers = []
 def parse_xy_triggers(address, trigger_count, bank=None, map_group=None, map_id=None, debug=True):
@@ -3109,7 +3134,7 @@ class MapEventHeader:
         people_event_byte_count = people_event_byte_size * people_event_count
         #people_events_bytes = rom_interval(after_signposts+1, people_event_byte_count)
         #people_events = parse_people_event_bytes(people_events_bytes, address=after_signposts+1, map_group=map_group, map_id=map_id)
-        people_events = parse_people_events(after_signposts+1, people_event_count, bank=bank, map_group=map_group, map_id=map_id, debug=debug)
+        people_events = parse_people_events(after_signposts+1, people_event_count, bank=calculate_bank(after_signposts+2), map_group=map_group, map_id=map_id, debug=debug)
         self.people_event_count = people_event_count
         self.people_events = people_events
 
@@ -3120,7 +3145,10 @@ class MapEventHeader:
         return True
     
     def get_dependencies(self):
-        dependencies = self.people_events + self.signposts + self.xy_triggers + self.warps
+        dependencies  = self.people_events
+        dependencies += self.signposts
+        dependencies += self.xy_triggers
+        dependencies += self.warps
         for p in list(dependencies):
             dependencies.extend(p.get_dependencies())
         return dependencies
@@ -3129,23 +3157,35 @@ class MapEventHeader:
         xspacing = "" #was =spacing
         output = ""
         output += xspacing + "; warps\n"
-        output += xspacing + "db %d\n"%(self.warp_count)
+        output += xspacing + "db %d"%(self.warp_count)
+        if len(self.warps) > 0:
+            output += "\n"
         output += "\n".join([xspacing+warp.to_asm() for warp in self.warps])
 
         output += "\n\n"
         output += xspacing + "; xy triggers\n"
-        output += xspacing + "db %d\n"%(self.xy_trigger_count)
+        output += xspacing + "db %d"%(self.xy_trigger_count)
+        if len(self.xy_triggers) > 0:
+            output += "\n"
         output += "\n".join([xspacing+xy_trigger.to_asm() for xy_trigger in self.xy_triggers])
 
         output += "\n\n"
         output += xspacing + "; signposts\n"
-        output += xspacing + "db %d\n"%(self.signpost_count)
+        output += xspacing + "db %d"%(self.signpost_count)
+        if len(self.signposts) > 0:
+            output += "\n"
         output += "\n".join([xspacing+signpost.to_asm() for signpost in self.signposts])
 
         output += "\n\n"
         output += xspacing + "; people-events\n"
-        output += xspacing + "db %d\n"%(self.people_event_count)
-        output += "\n".join([xspacing+people_event.to_asm() for people_event in self.people_events])
+        output += xspacing + "db %d"%(self.people_event_count)
+        if len(self.people_events) > 0:
+            output += "\n"
+
+        for people_event in self.people_events:
+            output += xspacing
+            output += people_event.to_asm()
+            output += "\n"
 
         return output
 
@@ -3305,6 +3345,7 @@ class MapScriptHeader:
         for p in list(dependencies):
             dependencies.extend(p.get_dependencies())
         for callback in self.callbacks:
+            dependencies.append(callback["callback"])
             dependencies.extend(callback["callback"].get_dependencies())
         return dependencies
 
