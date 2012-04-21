@@ -1240,6 +1240,7 @@ class PointerLabelParam(MultiByteParam):
     #default is to not parse out a bank
     bank = False
     force = False
+    debug = False
 
     def __init__(self, *args, **kwargs):
         #bank can be overriden
@@ -1261,8 +1262,9 @@ class PointerLabelParam(MultiByteParam):
     def get_dependencies(self):
         dependencies = []
         thing = script_parse_table[self.parsed_address]
-        if thing:
-            print "parsed address is: " + hex(self.parsed_address)
+        if thing and thing.address == self.parsed_address:
+            if self.debug:
+                print "parsed address is: " + hex(self.parsed_address) + " with label: " + thing.label + " of type: " + str(thing.__class__)
             dependencies.append(thing)
             dependencies.extend(thing.get_dependencies())
         return dependencies
@@ -1956,9 +1958,7 @@ class Script():
                 print "parsing script; current_address is: " + hex(current_address)
                 current_address += 1
                 #continue
-                asm_output = ""
-                for command in commands:
-                    asm_output += command.to_asm() + "\n"
+                asm_output = "\n".join([command.to_asm() for command in commands])
                 end = True
                 continue
                 #XXX maybe a bad idea to not die ?
@@ -1971,8 +1971,9 @@ class Script():
             #current_address = cls.last_address + 1
             current_address += cls.size
         #XXX set to "self" in script_parse_table when this moves into the Script class
+        self.last_address = current_address
         script_parse_table[start_address:current_address] = self
-        asm_output = "".join([command.to_asm()+"\n" for command in commands])
+        asm_output = "\n".join([command.to_asm() for command in commands])
         print "--------------\n"+asm_output
         self.commands = commands
         return commands
@@ -2105,8 +2106,6 @@ class XYTrigger(Command):
 
     def __init__(self, *args, **kwargs):
         self.id = kwargs["id"]
-        #XYTrigger shouldn't really be in the globals, should it..
-        script_parse_table[kwargs["address"] : kwargs["address"] + self.size] = self
         Command.__init__(self, *args, **kwargs)
     
     def get_dependencies(self):
@@ -3196,11 +3195,14 @@ class MapEventHeader:
         return True
     
     def get_dependencies(self):
-        dependencies  = self.people_events
-        dependencies += self.signposts
-        dependencies += self.xy_triggers
-        dependencies += self.warps
-        for p in list(dependencies):
+        bases = []
+        bases += self.people_events
+        bases += self.signposts
+        bases += self.xy_triggers
+        bases += self.warps
+        
+        dependencies = []
+        for p in bases:
             dependencies.extend(p.get_dependencies())
         return dependencies
 
@@ -3239,7 +3241,6 @@ class MapEventHeader:
             output += "\n"
 
         return output
-
 
 all_map_event_headers = []
 def parse_map_event_header_at(address, map_group=None, map_id=None, debug=True, bank=None):
@@ -3408,13 +3409,12 @@ class MapScriptHeader:
             output += "\n; triggers\n"
             output += "\n".join(["dw "+p.to_asm() for p in self.triggers]) + "\n"
         output += "\n; callback count\n"
-        output += "db %d\n"%self.callback_count
+        output += "db %d"%self.callback_count
         if len(self.callbacks) > 0:
-            output += "\n; callbacks\n"
+            output += "\n\n; callbacks\n"
             #not so sure about this next one
             output += "\n".join(["dbw "+str(p["hook"].byte)+", "+p["callback"].to_asm() for p in self.callbacks])
         return output
-
 
 all_map_script_headers = []
 def parse_map_script_header_at(address, map_group=None, map_id=None, debug=True):
