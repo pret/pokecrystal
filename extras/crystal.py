@@ -4466,7 +4466,29 @@ class Incbin:
         if self.interval > 0:
             return self.line
         else: return ""
+    def split(self, start_address, byte_count):
+        """splits this incbin into three separate incbins"""
+        if start_address < self.start_address or start_address > self.end_address:
+            raise Exception, "this incbin doesn't handle this address"
+        incbins = []
 
+        #start, end1, end2 (to be printed as start, end1 - end2)
+        if (start_address - self.start) > 0:
+            first = (self.start, start_address, self.start)
+            incbins.append(Incbin("INCBIN \"baserom.gbc\",$%.2x,$%.2x - $%.2x" % (first[0], first[1], first[2])))
+        else:
+            #skip this one because we're not including anything
+            first = None
+
+        #this is the one you will replace with whatever content
+        second = (start_address, byte_count)
+        incbins.append(Incbin("INCBIN \"baserom.gbc\",$%.2x,$%.2x" % (start_address, byte_count)))
+
+        third = (start_address + byte_count, end - (start_address + byte_count))
+        incbins.append(Incbin("INCBIN \"baserom.gbc\",$%.2x,$%.2x" % (third[0], third[1])))
+
+        return incbins
+        
 def AsmSection:
     def __init__(self, line):
         self.bank_id = None
@@ -4491,7 +4513,6 @@ class Asm:
         self.parts = []
         self.filename = filename
         self.load_and_parse()
-
     def load_and_parse(self):
         self.parts = []
         asm = open(self.filename, "r").read().split("\n")
@@ -4506,6 +4527,7 @@ class Asm:
             else:
                 thing = AsmLine(line, bank=bank)
             self.parts.append(thing)
+    def insert(self, object):
 
 def index(seq, f):
     """return the index of the first item in seq
