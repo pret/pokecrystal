@@ -4219,7 +4219,7 @@ def to_asm(some_object):
     asmr = asmr.replace("\n"+spacing+"\n", "\n\n"+spacing)
     asm += spacing + asmr
     #show the address of the next byte below this
-    asm += "\n; " + hex(last_address)
+    asm += "\n; " + hex(last_address) + "\n"
     return asm
 
 def flattener(x):
@@ -4637,11 +4637,26 @@ class Asm:
             if self.debug:
                 print "object.__class__="+str(object.__class__) + " object is: " + str(object)
             self.insert(object)
-    def insert_all(self):
+    def insert_all(self, limit=100):
+        count = 0
         for each in script_parse_table.items():
+            if count == limit: break
             object = each[1]
             if type(object) == str: continue
             self.insert_single_with_dependencies(object)
+            count += 1
+    def insert_and_dump(self, limit=100, filename="output.txt"):
+        self.insert_all(limit=limit)
+        fh = open(filename, "w")
+        for each in self.parts:
+            if hasattr(each, "to_asm"):
+                if isinstance(each, AsmSection) or isinstance(each, Incbin) or isinstance(each, AsmLine):
+                    fh.write(each.to_asm()+"\n")
+                else:
+                    #print "each is: " + str(each)
+                    fh.write(to_asm(each))
+            else:
+                fh.write(each + "\n")
 
 def index(seq, f):
     """return the index of the first item in seq
