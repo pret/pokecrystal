@@ -1493,6 +1493,9 @@ class Command:
         #set up some variables
         self.address = address
         self.last_address = None
+        #setup the label based on base_label if available
+        if hasattr(self, "base_label"):
+            self.label = self.base_label + hex(self.address)
         #params are where this command's byte parameters are stored
         self.params = {}
         #override default settings
@@ -2188,13 +2191,25 @@ class ItemFragmentParam(PointerLabelParam):
 
     def parse(self):
         PointerLabelParam.parse(self)
+        
         address = calculate_pointer_from_bytes_at(self.address, bank=self.bank)
+        self.calculated_address = address
+        
         itemfrag = ItemFragment(address=address, map_group=self.map_group, map_id=self.map_id, debug=self.debug)
-        self.remotes = [itemfrag]
+        self.itemfrag = itemfrag
 
+        self.dependencies = [itemfrag].extend(itemfrag.get_dependencies())
+
+    def get_dependencies(self):
+        #self.dependencies = [itemfrag].extend(itemfrag.get_dependencies())
+        return self.dependencies
 
 class TrainerFragment(Command):
     """used by TrainerFragmentParam and PeopleEvent for trainer data
+    
+    Maybe this shouldn't be a Command. The output might sprawl
+    over multiple lines, and maybe it should be commented in to_asm?
+    
     [Bit no. (2byte)][Trainer group][Trainer]
     [2byte pointer to Text when seen]
     [2byte pointer to text when trainer beaten]
@@ -2230,17 +2245,35 @@ class TrainerFragment(Command):
         Command.__init__(self, *args, **kwargs)
         self.last_address = self.address + self.size
         script_parse_table[self.address : self.last_address] = self
-
+    
+    def get_dependencies(self):
+        deps = []
+        deps.append(self.params[3])
+        deps.extend(self.params[3].get_dependencies())
+        deps.append(self.params[4])
+        deps.extend(self.params[4].get_dependencies())
+        deps.append(self.params[5])
+        deps.extend(self.params[5].get_dependencies())
+        deps.append(self.params[6])
+        deps.extend(self.params[6].get_dependencies())
+        return deps
 
 class TrainerFragmentParam(PointerLabelParam):
     """used by PeopleEvent to point to trainer data"""
 
     def parse(self):
         address = calculate_pointer_from_bytes_at(self.address, bank=self.bank)
+        self.calculated_address = address
         trainerfrag = TrainerFragment(address=address, map_group=self.map_group, map_id=self.map_id, debug=self.debug)
-        self.remotes = [trainerfrag]
+        self.dependencies = [trainerfrag]
         PointerLabelParam.parse(self)
 
+    def get_dependencies(self):
+        deps = []
+        deps.extend(self.dependencies)
+        if len(self.dependencies) > 0:
+            deps.extend(self.dependencies[0].get_dependencies())
+        return deps
 
 class PeopleEvent(Command):
     size = people_event_byte_size
@@ -2936,7 +2969,7 @@ class SecondMapHeader:
 
         self.event_bank = ord(rom[address+6])
         self.event_header_address = calculate_pointer_from_bytes_at(address+9, bank=ord(rom[address+6]))
-        self.event_header = MapEventHeader(self.event_header_address)
+        self.event_header = MapEventHeader(self.event_header_address, map_group=self.map_group, map_id=self.map_id, debug=self.debug)
         self.connections = DecimalParam(address=address+11)
         all_map_event_headers.append(self.event_header)
 
