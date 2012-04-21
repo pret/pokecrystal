@@ -1214,6 +1214,7 @@ class MultiByteParam():
 
     def parse(self):
         self.bytes = rom_interval(self.address, self.size, strings=False)
+        self.parsed_number = self.bytes[0] + (self.bytes[1] << 8)
         if hasattr(self, "bank"):
             self.parsed_address = calculate_pointer_from_bytes_at(self.address, bank=self.bank)
         else:
@@ -2257,6 +2258,23 @@ class TrainerFragment(Command):
         deps.append(self.params[6])
         deps.extend(self.params[6].get_dependencies())
         return deps
+
+    def to_asm(self):
+        xspacing = ""
+        output = ""
+        output += xspacing + "; bit/flag number\n"
+        output += xspacing + "db $%.2x"%(self.params[0].parsed_number)
+        output += "\n\n"+xspacing+"; trainer group && trainer id\n"
+        output += xspacing + "db %d, %d" % (self.params[1].byte, self.params[2].byte)
+        output += "\n\n"+xspacing+"; text when seen\n"
+        output += xspacing + "dw " + self.params[3].to_asm()
+        output += "\n\n"+xspacing+"; text when trainer beaten\n"
+        output += xspacing + "dw " + self.params[4].to_asm()
+        output += "\n\n"+xspacing+"; script when lost\n"
+        output += xspacing + "dw " + self.params[5].to_asm()
+        output += "\n\n"+xspacing+"; script when talk again\n"
+        output += xspacing + "dw " + self.params[6].to_asm()
+        return output
 
 class TrainerFragmentParam(PointerLabelParam):
     """used by PeopleEvent to point to trainer data"""
