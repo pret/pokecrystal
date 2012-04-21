@@ -4492,14 +4492,14 @@ class Incbin:
 
         return incbins
         
-def AsmSection:
+class AsmSection:
     def __init__(self, line):
         self.bank_id = None
         self.line = line
         self.parse()
     def parse(self):
         line    = self.line
-        bank_id = int(line.split("\"")[1].split("bank")[1])
+        bank_id = int(line.split("\"")[1].split("bank")[1], 16)
         self.bank_id  = bank_id
         start_address = bank_id * 0x4000
         end_address   = (bank_id * 0x4000) + 0x4000 - 1
@@ -4524,7 +4524,7 @@ class Asm:
         for line in asm_list:
             if line[0:6] == "INCBIN" or line[1:6] == "INCBIN":
                 thing = Incbin(line, bank=bank)
-            if line[0:7] == "SECTION":
+            elif line[0:7] == "SECTION":
                 thing = AsmSection(line)
                 bank = thing.bank_id
             else:
@@ -4543,6 +4543,8 @@ class Asm:
         # 2) find which object goes after it
         found = False
         for object in list(self.parts):
+            #skip objects without a defined interval (like a comment line)
+            if not hasattr(object, "address") and hasattr(object, "last_address"): continue
             #replace an incbin with three incbins, replace middle incbin with whatever
             if object.address <= start_address <= object.last_address and isinstance(object, Incbin):
                 #split up the incbin into three segments
