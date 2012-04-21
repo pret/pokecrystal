@@ -4204,6 +4204,21 @@ def to_asm(some_object):
     asm += "\n; " + hex(last_address)
     return asm
 
+def flattener(x):
+    "flattens a list of sublists into just one list (generator)"
+    try:
+        it = iter(x)
+    except TypeError:
+        yield x
+    else:
+        for i in it:
+            for j in flattener(i):
+                yield j
+
+def flatten(x):
+    "flattens a list of sublists into just one list"
+    return list(flattener(x))
+
 def get_dependencies_for(some_object):
     """
     calculates which labels need to be satisfied for an object
@@ -4215,7 +4230,8 @@ def get_dependencies_for(some_object):
     """
     if isinstance(some_object, int):
         some_object = script_parse_table[some_object]
-    return some_object.get_dependencies()
+    deps = some_object.get_dependencies()
+    return list(flatten(deps))
 
 def isolate_incbins():
     "find each incbin line"
