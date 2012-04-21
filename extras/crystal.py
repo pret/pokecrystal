@@ -4440,6 +4440,7 @@ class Incbin:
     def __init__(self, line, bank=None):
         self.line = line
         self.bank = bank
+        self.replace_me = False
         self.parse()
     def parse(self):
         incbin = self.line
@@ -4483,9 +4484,11 @@ class Incbin:
         #this is the one you will replace with whatever content
         second = (start_address, byte_count)
         incbins.append(Incbin("INCBIN \"baserom.gbc\",$%.2x,$%.2x" % (start_address, byte_count)))
+        incbins[-1].replace_me = True
 
-        third = (start_address + byte_count, end - (start_address + byte_count))
-        incbins.append(Incbin("INCBIN \"baserom.gbc\",$%.2x,$%.2x" % (third[0], third[1])))
+        if (end - (start_address + byte_count)) > 0:
+            third = (start_address + byte_count, end - (start_address + byte_count))
+            incbins.append(Incbin("INCBIN \"baserom.gbc\",$%.2x,$%.2x" % (third[0], third[1])))
 
         return incbins
         
@@ -4527,7 +4530,45 @@ class Asm:
             else:
                 thing = AsmLine(line, bank=bank)
             self.parts.append(thing)
-    def insert(self, object):
+    def insert(self, new_object):
+        assert hasattr(new_object, "address"), "object needs to have an address property"
+        assert hasattr(new_object, "last_address"), "object needs to have a last address"
+        #check if the object is already inserted
+        if new_object in self.parts:
+            return "object was previously inserted"
+        start_address = new_object.address
+        end_address = new_object.end_address
+        # 1) find which object needs to be replaced
+        # or
+        # 2) find which object goes after it
+        found = False
+        for object in list(self.parts):
+            #replace an incbin with three incbins, replace middle incbin with whatever
+            if object.address <= start_address <= object.last_address and isinstance(object, Incbin):
+                #split up the incbin into three segments
+                incbins = object.split(start_address, end_address - start_address)
+                #figure out which incbin to replace with the new object
+                if incbins[0].replace_me:
+                    index = 0
+                else: #assume incbins[1].replace_me (the middle one)
+                    index = 1
+                #replace that index with the new_object
+                incbins[index] = new_object
+                #insert these incbins into self.parts
+                gindex = self.parts.index(object)
+                self.parts = self.parts[:gindex] + incbins + self.parts[gindex:]
+                found = True
+                break
+            #insert before the current object
+            elif object.address > end_address:
+                #insert_before = index of object
+                index = self.parts.index(object)
+                self.parts.insert(index, new_object)
+                found = True
+                break
+        if not found:
+            raise Exception, "unable to insert object into Asm"
+        return True 
 
 def index(seq, f):
     """return the index of the first item in seq
