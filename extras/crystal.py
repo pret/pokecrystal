@@ -4220,7 +4220,7 @@ def to_asm(some_object):
     asmr = asmr.replace("\n\n"+spacing+spacing, "\n\n"+spacing)
     asm += spacing + asmr
     #show the address of the next byte below this
-    asm += "\n; " + hex(last_address) + "\n"
+    asm += "\n; " + hex(last_address)
     return asm
 
 def flattener(x):
@@ -4649,15 +4649,47 @@ class Asm:
     def insert_and_dump(self, limit=100, filename="output.txt"):
         self.insert_all(limit=limit)
         fh = open(filename, "w")
+        newlines_before_next_obj_requested = 0
+        newlines_before_next_obj_given     = 0
         for each in self.parts:
+            asm = ""
             if hasattr(each, "to_asm"):
+                #get the asm content to insert into the file
                 if isinstance(each, AsmSection) or isinstance(each, Incbin) or isinstance(each, AsmLine):
-                    fh.write(each.to_asm()+"\n")
+                    asm = each.to_asm()
+                else: #like: MapHeader, SecondMapHeader, MapEventHeader, MapScriptHeader, ..
+                    asm = to_asm(each)
+
+                #calculate how many newlines should be inserted
+                if   isinstance(each, AsmSection) or isinstance(each, Incbin):
+                    newlines_before_next_obj_requested = 2
+                elif isinstance(each, AsmLine) and each.line != "":
+                    newlines_before_next_obj_requested = 1
                 else:
-                    #print "each is: " + str(each)
-                    fh.write(to_asm(each)+"\n")
+                    newlines_before_next_obj_requested = 2
+            elif isinstance(each, str):
+                asm = each
+                newlines_before_next_obj_requested = 1
             else:
-                fh.write(each + "\n")
+                raise Exception, "dunno what to do with ("+str(each)+") in Asm.parts"
+
+            #blank lines are newlines because main.asm was parsed with split("\n")
+            #and split("\n") doesn't leave \n characters at the end of each line
+            if asm == "" and newlines_before_next_obj_given < newlines_before_next_obj_requested:
+                fh.write("\n")
+                newlines_before_next_obj_given += 1
+            else:
+                fh.write(asm)
+
+            #write the requested newlines if it hasn't happened yet
+            if len(asm) > 0 and asm[-1] != "\n":
+                while newlines_before_next_obj_given < newlines_before_next_obj_requested:
+                    fh.write("\n")
+                    newlines_before_next_obj_given += 1
+                newlines_before_next_obj_given = 0
+                newlines_before_next_obj_requested = 0
+            elif len(asm) > 1 and asm[-1] == "\n":
+                raise Exception, "last character is newline in asm, but asm has other content?"
 
 def index(seq, f):
     """return the index of the first item in seq
