@@ -4217,6 +4217,7 @@ def to_asm(some_object):
     asmr = some_object.to_asm()
     asmr = asmr.replace("\n", "\n"+spacing)
     asmr = asmr.replace("\n"+spacing+"\n", "\n\n"+spacing)
+    asmr = asmr.replace("\n\n"+spacing+spacing, "\n\n"+spacing)
     asm += spacing + asmr
     #show the address of the next byte below this
     asm += "\n; " + hex(last_address) + "\n"
