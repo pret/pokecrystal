@@ -1263,8 +1263,10 @@ class PointerLabelParam(MultiByteParam):
 
     def get_dependencies(self):
         dependencies = []
+        if self.parsed_address == self.address:
+            return dependencies
         thing = script_parse_table[self.parsed_address]
-        if thing and thing.address == self.parsed_address:
+        if thing and thing.address == self.parsed_address and not (thing is self):
             if self.debug:
                 print "parsed address is: " + hex(self.parsed_address) + " with label: " + thing.label + " of type: " + str(thing.__class__)
             dependencies.append(thing)
@@ -1516,9 +1518,9 @@ class Command:
     def get_dependencies(self):
         dependencies = []
         for (key, param) in self.params.items():
-            if hasattr(param, "get_dependencies"):
+            if hasattr(param, "get_dependencies") and param != self:
                 deps = param.get_dependencies()
-                if deps != None:
+                if deps != None and not self in deps:
                     dependencies.extend(deps)
         return dependencies
 
@@ -4632,9 +4634,15 @@ class Asm:
         if not found:
             raise Exception, "unable to insert object into Asm"
         return True 
-    def insert_single_with_dependencies(self, object):
-        objects = get_dependencies_for(object) + [object]
+    def insert_single_with_dependencies(self, object0):
+        objects = get_dependencies_for(object0) + [object0]
+        objects = list(set(objects))
         for object in objects:
+            if object in self.parts:
+                if self.debug:
+                    print "already inserted -- object.__class__="+str(object.__class__)+" object is: "+str(object)+\
+                          " for object.__class__="+str(object0.__class__)+" object="+str(object0)
+                continue
             if self.debug:
                 print "object.__class__="+str(object.__class__) + " object is: " + str(object)
             self.insert(object)
