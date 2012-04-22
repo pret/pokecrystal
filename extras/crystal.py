@@ -4615,7 +4615,7 @@ class Asm:
                 else: #assume incbins[1].replace_me (the middle one)
                     index = 1
                 #replace that index with the new_object
-                incbins[index] = to_asm(new_object)
+                incbins[index] = new_object
                 #insert these incbins into self.parts
                 gindex = self.parts.index(object)
                 self.parts = self.parts[:gindex] + incbins + self.parts[gindex:]
