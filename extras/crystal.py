@@ -4619,7 +4619,7 @@ class Asm:
                 incbins[index] = new_object
                 #insert these incbins into self.parts
                 gindex = self.parts.index(object)
-                self.parts = self.parts[:gindex] + incbins + self.parts[gindex:]
+                self.parts = self.parts[:gindex] + incbins + self.parts[gindex+1:]
                 found = True
                 break
             #insert before the current object
