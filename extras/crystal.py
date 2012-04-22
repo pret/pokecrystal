@@ -3406,7 +3406,7 @@ class MapScriptHeader:
         return True
     
     def get_dependencies(self):
-        dependencies = self.triggers
+        dependencies = copy(self.triggers)
         for p in list(dependencies):
             dependencies.extend(p.get_dependencies())
         for callback in self.callbacks:
@@ -4655,7 +4655,7 @@ class Asm:
                     fh.write(each.to_asm()+"\n")
                 else:
                     #print "each is: " + str(each)
-                    fh.write(to_asm(each))
+                    fh.write(to_asm(each)+"\n")
             else:
                 fh.write(each + "\n")
 
