@@ -1641,8 +1641,8 @@ pksv_crystal_more = {
     0x05: ["2ptjump", ["pointer", PointerLabelToScriptPointer]],
     0x06: ["if equal", ["byte", SingleByteParam], ["pointer", ScriptPointerLabelParam]],
     0x07: ["if not equal", ["byte", SingleByteParam], ["pointer", ScriptPointerLabelParam]],
-    0x08: ["if false", ["pointer", ScriptPointerLabelParam]],
-    0x09: ["if true", ["pointer", ScriptPointerLabelParam]],
+    0x08: ["iffalse", ["pointer", ScriptPointerLabelParam]],
+    0x09: ["iftrue", ["pointer", ScriptPointerLabelParam]],
     0x0A: ["if less than", ["byte", SingleByteParam], ["pointer", ScriptPointerLabelParam]],
     0x0B: ["if greater than", ["byte", SingleByteParam], ["pointer", ScriptPointerLabelParam]],
     0x0C: ["jumpstd", ["predefined_script", MultiByteParam]],
@@ -1666,7 +1666,7 @@ pksv_crystal_more = {
     0x1D: ["writevarcode", ["variable_id", SingleByteParam]],
     0x1E: ["writecode", ["variable_id", SingleByteParam], ["value", SingleByteParam]],
     0x1F: ["giveitem", ["item", ItemLabelByte], ["quantity", SingleByteParam]],
-    0x20: ["takeitem", ["item", ItemLabelByte], ["quantity", SingleByteParam]],
+    0x20: ["takeitem", ["item", ItemLabelByte], ["quantity", DecimalParam]],
     0x21: ["checkitem", ["item", ItemLabelByte]],
     0x22: ["givemoney", ["account", SingleByteParam], ["money", MoneyByteParam]],
     0x23: ["takemoney", ["account", SingleByteParam], ["money", MoneyByteParam]],
@@ -1756,10 +1756,10 @@ pksv_crystal_more = {
     0x72: ["moveperson", ["person", SingleByteParam], ["x", SingleByteParam], ["y", SingleByteParam]],
     0x73: ["writepersonxy", ["person", SingleByteParam]], #not pksv
     0x74: ["loademote", ["bubble", SingleByteParam]],
-    0x75: ["showemote", ["bubble", SingleByteParam], ["person", SingleByteParam], ["time", SingleByteParam]],
+    0x75: ["showemote", ["bubble", SingleByteParam], ["person", SingleByteParam], ["time", DecimalParam]],
     0x76: ["spriteface", ["person", SingleByteParam], ["facing", SingleByteParam]],
     0x77: ["follownotexact", ["person2", SingleByteParam], ["person1", SingleByteParam]],
-    0x78: ["earthquake", ["param", SingleByteParam]],
+    0x78: ["earthquake", ["param", DecimalParam]],
     0x79: ["changemap", ["map_data_pointer", MapDataPointerParam]],
     0x7A: ["changeblock", ["x", SingleByteParam], ["y", SingleByteParam], ["block", SingleByteParam]],
     0x7B: ["reloadmap"],
@@ -1778,7 +1778,7 @@ pksv_crystal_more = {
     0x88: ["specialsound"],
     0x89: ["passtoengine", ["data_pointer", PointerLabelBeforeBank]],
     0x8A: ["newloadmap", ["which_method", SingleByteParam]],
-    0x8B: ["pause", ["length", SingleByteParam]],
+    0x8B: ["pause", ["length", DecimalParam]],
     0x8C: ["deactivatefacing", ["time", SingleByteParam]],
     0x8D: ["priorityjump", ["pointer", ScriptPointerLabelParam]],
     0x8E: ["warpcheck"],
@@ -2273,7 +2273,7 @@ class TrainerFragment(Command):
         xspacing = ""
         output = ""
         output += xspacing + "; bit/flag number\n"
-        output += xspacing + "db $%.2x"%(self.params[0].parsed_number)
+        output += xspacing + "dw $%.2x"%(self.params[0].parsed_number)
         output += "\n\n"+xspacing+"; trainer group && trainer id\n"
         output += xspacing + "db %d, %d" % (self.params[1].byte, self.params[2].byte)
         output += "\n\n"+xspacing+"; text when seen\n"
