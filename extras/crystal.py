@@ -4621,7 +4621,8 @@ class Asm:
                 incbins[index] = new_object
                 #insert these incbins into self.parts
                 gindex = self.parts.index(object)
-                self.parts = self.parts[:gindex] + incbins + self.parts[gindex+1:]
+                self.parts = self.parts[:gindex] + incbins + self.parts[gindex:]
+                self.parts.remove(object)
                 found = True
                 break
             #insert before the current object
@@ -4656,6 +4657,8 @@ class Asm:
             count += 1
     def insert_and_dump(self, limit=100, filename="output.txt"):
         self.insert_all(limit=limit)
+        self.dump(filename=filename)
+    def dump(self, filename="output.txt"):
         fh = open(filename, "w")
         newlines_before_next_obj_requested = 0
         newlines_before_next_obj_given     = 0
