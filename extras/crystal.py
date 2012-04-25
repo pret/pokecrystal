@@ -4691,7 +4691,10 @@ class Asm:
                 current_requested_newlines_before = 0
                 current_requested_newlines_after  = 1
             elif isinstance(each, AsmSection) or isinstance(each, Incbin) or hasattr(each, "to_asm"):
-                asm = each.to_asm()
+                if isinstance(each, AsmSection) or isinstance(each, Incbin):
+                    asm = each.to_asm()
+                else:
+                    asm = to_asm(each)
                 current_requested_newlines_before = 2
                 current_requested_newlines_after  = 2
             else:
