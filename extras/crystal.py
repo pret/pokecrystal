@@ -3388,7 +3388,8 @@ class MapScriptHeader:
         for (index, trigger_bytes) in enumerate(groups):
             print "parsing a map trigger script at "+hex(current_address)+" map_group="+str(map_group)+" map_id="+str(map_id)
             script = ScriptPointerLabelParam(address=current_address, map_group=map_group, map_id=map_id, debug=debug)
-            self.triggers.append(script)
+            extra_bytes = MultiByteParam(address=current_address+2, map_group=map_group, map_id=map_id, debug=debug)
+            self.triggers.append([script, extra_bytes])
             current_address += ptr_line_size
         current_address = address + (self.trigger_count * ptr_line_size) + 1
         #[[Number2 of pointers] Number2 * [hook number][2byte pointer to script]]
@@ -3408,9 +3409,10 @@ class MapScriptHeader:
         return True
     
     def get_dependencies(self):
-        dependencies = copy(self.triggers)
-        for p in list(dependencies):
-            dependencies.extend(p.get_dependencies())
+        dependencies = []
+        for p in list(self.triggers):
+            #dependencies.append(p[0])
+            dependencies.extend(p[0].get_dependencies())
         for callback in self.callbacks:
             dependencies.append(callback["callback"])
             dependencies.extend(callback["callback"].get_dependencies())
@@ -3422,7 +3424,7 @@ class MapScriptHeader:
         output += "db %d\n"%self.trigger_count
         if len(self.triggers) > 0:
             output += "\n; triggers\n"
-            output += "\n".join([str("dw "+p.to_asm()) for p in self.triggers])
+            output += "\n".join([str("dw "+p[0].to_asm()+", "+p[1].to_asm()) for p in self.triggers])
             output += "\n"
         output += "\n; callback count\n"
         output += "db %d"%self.callback_count
@@ -4211,7 +4213,7 @@ def to_asm(some_object):
     if isinstance(some_object, int):
         some_object = script_parse_table[some_object]
     #add one to the last_address to show where the next byte is in the file
-    last_address = some_object.last_address + 1
+    last_address = some_object.last_address
     #create a line like "label: ; 0x10101"
     asm = some_object.label + ": ; " + hex(some_object.address) + "\n"
     #now add the inner/actual asm
