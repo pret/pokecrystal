@@ -4662,45 +4662,52 @@ class Asm:
         fh = open(filename, "w")
         newlines_before_next_obj_requested = 0
         newlines_before_next_obj_given     = 0
+
+        current_requested_newlines_before  = 0
+        current_requested_newlines_after   = 0
+        previous_requested_newlines_before = 0
+        previous_requested_newlines_after  = 0
+
+        written_newlines          = 0
+        write_something           = False
+        first = True
+        last  = None
         for each in self.parts:
             asm = ""
-            if hasattr(each, "to_asm"):
-                #get the asm content to insert into the file
-                if isinstance(each, AsmSection) or isinstance(each, Incbin) or isinstance(each, AsmLine):
+            previous_requested_newlines_after = current_requested_newlines_after
+            current_requested_newlines_before = current_requested_newlines_after
+
+            write_something = True
+            if (isinstance(each, str) and each == "") or (isinstance(each, AsmLine) and each.line == ""):
+                current_requested_newlines_before = 0
+                if current_requested_newlines_after < 2:
+                    current_requested_newlines_after += 1
+                write_something = False
+            elif (isinstance(each, str) and each != "") or (isinstance(each, AsmLine) and each.line != ""):
+                if isinstance(each, AsmLine):
                     asm = each.to_asm()
-                else: #like: MapHeader, SecondMapHeader, MapEventHeader, MapScriptHeader, ..
-                    asm = to_asm(each)
+                elif isinstance(each, str):
+                    asm = each
+                current_requested_newlines_before = 0
+                current_requested_newlines_after  = 1
+            elif isinstance(each, AsmSection) or isinstance(each, Incbin) or hasattr(each, "to_asm"):
+                asm = each.to_asm()
+                current_requested_newlines_before = 2
+                current_requested_newlines_after  = 2
+            else:
+                raise Exception, "dunno what to do with("+str(each)+") in Asm.parts"
 
-                #calculate how many newlines should be inserted
-                if   isinstance(each, AsmSection) or isinstance(each, Incbin):
-                    newlines_before_next_obj_requested = 2
-                elif isinstance(each, AsmLine) and each.line != "":
-                    newlines_before_next_obj_requested = 1
+            if write_something:
+                if not first:
+                    newlines_before = max([current_requested_newlines_before, previous_requested_newlines_after])
+                    while written_newlines < newlines_before:
+                        fh.write("\n")
+                        written_newlines += 1
                 else:
-                    newlines_before_next_obj_requested = 2
-            elif isinstance(each, str):
-                asm = each
-                newlines_before_next_obj_requested = 1
-            else:
-                raise Exception, "dunno what to do with ("+str(each)+") in Asm.parts"
-
-            #blank lines are newlines because main.asm was parsed with split("\n")
-            #and split("\n") doesn't leave \n characters at the end of each line
-            if asm == "" and newlines_before_next_obj_given < newlines_before_next_obj_requested:
-                fh.write("\n")
-                newlines_before_next_obj_given += 1
-            else:
+                    first = False
                 fh.write(asm)
-
-            #write the requested newlines if it hasn't happened yet
-            if len(asm) > 0 and asm[-1] != "\n":
-                while newlines_before_next_obj_given < newlines_before_next_obj_requested:
-                    fh.write("\n")
-                    newlines_before_next_obj_given += 1
-                newlines_before_next_obj_given = 0
-                newlines_before_next_obj_requested = 0
-            elif len(asm) > 1 and asm[-1] == "\n":
-                raise Exception, "last character is newline in asm, but asm has other content?"
+                written_newlines = 0
+            last = each
 
 def index(seq, f):
     """return the index of the first item in seq
