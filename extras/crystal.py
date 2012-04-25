@@ -4609,7 +4609,7 @@ class Asm:
             if isinstance(object, AsmSection):
                 continue
             #replace an incbin with three incbins, replace middle incbin with whatever
-            elif isinstance(object, Incbin) and (object.address <= start_address <= object.last_address):
+            elif isinstance(object, Incbin) and (object.address <= start_address < object.last_address):
                 #split up the incbin into three segments
                 incbins = object.split(start_address, end_address - start_address)
                 #figure out which incbin to replace with the new object
