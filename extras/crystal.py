@@ -898,11 +898,47 @@ def find_text_addresses():
     useful for testing parse_text_engine_script_at"""
     return TextScript.find_addresses()
 
-class EncodedText():
+class EncodedText:
     """a sequence of bytes that, when decoded, represent readable text
     based on the chars table from textpre.py and other places"""
+    base_label = "UnknownRawText_"
 
-    def to_asm(self): raise NotImplementedError, bryan_message
+    def __init__(self, address, bank=None, map_group=None, map_id=None, debug=True, label=None):
+        self.address = address
+        if bank:
+            self.bank = bank
+        else:
+            self.bank = calculate_bank(address)
+        self.map_group, self.map_id, self.debug = map_group, map_id, debug
+        if not label:
+            label = self.base_label + hex(address)
+        self.label = label
+        self.parse()
+        script_parse_table[self.address : self.last_address] = self
+    
+    def get_dependencies(self):
+        return []
+    
+    def parse(self):
+        offset = self.address
+
+        #read until $57, $50 or $58
+        jump57 = how_many_until(chr(0x57), offset)
+        jump50 = how_many_until(chr(0x50), offset)
+        jump58 = how_many_until(chr(0x58), offset)
+
+        #whichever command comes first
+        jump = min([jump57, jump50, jump58])
+
+        end_address = offset + jump #we want the address before $57
+        
+        text = parse_text_at2(offset, end_address-offset, debug=self.debug)
+        self.text = text
+
+        self.last_address = self.end_address = end_address
+
+    def to_asm(self):
+        return "\""+self.text+"\""
 
     @staticmethod
     def process_00_subcommands(start_address, end_address, debug=True):
@@ -1225,6 +1261,7 @@ class PointerLabelParam(MultiByteParam):
             if kwargs["bank"] != False and kwargs["bank"] != None and kwargs["bank"] in [True, "reverse"]:
                 #not +=1 because child classes set size=3 already
                 self.size = self.default_size + 1
+                self.given_bank = kwargs["bank"]
             #if kwargs["bank"] not in [None, False, True, "reverse"]:
             #    raise Exception, "bank cannot be: " + str(kwargs["bank"])
         if self.size > 3:
@@ -1432,8 +1469,15 @@ class MenuDataPointerParam(PointerLabelParam):
 
 class RawTextPointerLabelParam(PointerLabelParam):
     #not sure if these are always to a text script or raw text?
-    pass
+    def parse(self):
+        PointerLabelParam.parse(self)
+        #bank = calculate_bank(self.address)
+        address = calculate_pointer_from_bytes_at(self.address, bank=False)
+        self.calculated_address = address
+        self.text = TextScript(address, map_group=self.map_group, map_id=self.map_id, debug=self.debug)
 
+    def get_dependencies(self):
+        return [self.text]
 
 class TextPointerLabelParam(PointerLabelParam):
     """this is a pointer to a text script"""
@@ -1713,7 +1757,7 @@ pksv_crystal_more = {
     0x4F: ["loadmenudata", ["data", MenuDataPointerParam]],
     0x50: ["writebackup"],
     0x51: ["jumptextfaceplayer", ["text_pointer", RawTextPointerLabelParam]],
-    0x53: ["jumptext", ["text_pointer", TextPointerLabelParam]],
+    0x53: ["jumptext", ["text_pointer", RawTextPointerLabelParam]],
     0x54: ["closetext"],
     0x55: ["keeptextopen"],
     0x56: ["pokepic", ["pokemon", PokemonParam]],
