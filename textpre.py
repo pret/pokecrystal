@@ -366,7 +366,7 @@ def quote_translator(asm):
     return
 
 def extract_token(asm):
-    token = asm.split(" ")[0].replace("\t", "")
+    token = asm.split(" ")[0].replace("\t", "").replace("\n", "")
     return token
 
 def macro_test(asm):
