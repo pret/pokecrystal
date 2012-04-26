@@ -3,10 +3,17 @@
 
 import sys
 
-from extras.crystal import *
+from extras.crystal import command_classes, \
+                    Warp, \
+                    XYTrigger, \
+                    Signpost, \
+                    PeopleEvent, \
+                    DataByteWordMacro, \
+                    PointerLabelBeforeBank, \
+                    PointerLabelAfterBank
 
 macros = command_classes + \
-         [Warp, XYTrigger, Signpost, PeopleEvent, DataByteWordMacro]
+    [Warp, XYTrigger, Signpost, PeopleEvent, DataByteWordMacro]
 
 chars = {
 "ガ": 0x05,
