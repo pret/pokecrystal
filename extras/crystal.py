@@ -393,7 +393,7 @@ class TextScript:
         self.map_group, self.map_id, self.debug, self.show, self.force = map_group, map_id, debug, show, force
         if not label:
             label = self.base_label + hex(address)
-        self.label = label
+        self.label = Label(name=label, address=address, object=self)
         self.dependencies = []
         self.parse_text_at(address)
 
@@ -720,7 +720,7 @@ class TextScript:
     def to_asm(self, label=None):
         address = self.address
         start_address = address
-        if label == None: label = self.label
+        if label == None: label = self.label.name
         commands = self.commands
         #apparently this isn't important anymore?
         needs_to_begin_with_0 = True
@@ -912,7 +912,7 @@ class EncodedText:
         self.map_group, self.map_id, self.debug = map_group, map_id, debug
         if not label:
             label = self.base_label + hex(address)
-        self.label = label
+        self.label = Label(name=label, address=address, object=self)
         self.parse()
         script_parse_table[self.address : self.last_address] = self
     
@@ -1280,7 +1280,7 @@ class PointerLabelParam(MultiByteParam):
         thing = script_parse_table[self.parsed_address]
         if thing and thing.address == self.parsed_address and not (thing is self):
             if self.debug:
-                print "parsed address is: " + hex(self.parsed_address) + " with label: " + thing.label + " of type: " + str(thing.__class__)
+                print "parsed address is: " + hex(self.parsed_address) + " with label: " + thing.label.name + " of type: " + str(thing.__class__)
             dependencies.append(thing)
             dependencies.extend(thing.get_dependencies())
         return dependencies
@@ -1296,7 +1296,7 @@ class PointerLabelParam(MultiByteParam):
         #check that the label actually points to the right place
         result = script_parse_table[caddress]
         if result != None and hasattr(result, "label"):
-            if result.label != label:
+            if result.label.name != label:
                 label = None
             elif result.address != caddress:
                 label = None
@@ -1504,6 +1504,7 @@ class Command:
     #use this when the "byte id" doesn't matter
     #.. for example, a non-script command doesn't use the "byte id"
     override_byte_check = False
+    base_label = "UnseenLabel_"
 
     def __init__(self, address=None, *pargs, **kwargs):
         """params:
@@ -1520,8 +1521,8 @@ class Command:
         self.address = address
         self.last_address = None
         #setup the label based on base_label if available
-        if hasattr(self, "base_label"):
-            self.label = self.base_label + hex(self.address)
+        label = self.base_label + hex(self.address)
+        self.label = Label(name=label, address=address, object=self)
         #params are where this command's byte parameters are stored
         self.params = {}
         #override default settings
@@ -1940,6 +1941,7 @@ stop_points = [0x1aafa2,
                0x9f62f, #battle tower
               ]
 class Script:
+    base_label = "UnknownScript_"
     def __init__(self, *args, **kwargs):
         self.address = None
         self.commands = None
@@ -1955,7 +1957,13 @@ class Script:
             self.address = address
         elif len(args) > 1:
             raise Exception, "don't know what to do with second (or later) positional arguments"
-        self.label = "UnknownScript_"+hex(self.address)
+        if "label" in kwargs.keys():
+            label = kwargs["label"]
+        else:
+            label = None
+        if not label:
+            label = self.base_label + hex(self.address)
+        self.label = Label(name=label, address=address, object=self)
         #parse the script at the address
         if "use_old_parse" in kwargs.keys() and kwargs["use_old_parse"] == True:
             self.old_parse(**kwargs)
@@ -2246,8 +2254,9 @@ class ItemFragment(Command):
         self.address = address
         self.last_address = address + self.size
         self.bank = bank
-        if label: self.label = label
-        else: self.label = self.base_label + hex(address)
+        if not label:
+            label = self.base_label + hex(address)
+        self.label = Label(name=label, address=address, object=self)
         self.map_group = map_group
         self.map_id = map_id
         self.debug = debug
@@ -2401,8 +2410,9 @@ class PeopleEvent(Command):
         self.last_address = address + people_event_byte_size
         self.id = id
         self.bank = bank
-        if label: self.label = label
-        else: self.label = self.base_label + hex(address)
+        if not label:
+            label = self.base_label + hex(address)
+        self.label = Label(name=label, address=address, object=self)
         self.map_group = map_group
         self.map_id = map_id
         self.debug = debug
@@ -2615,9 +2625,9 @@ class SignpostRemoteBase:
         self.signpost = signpost
         self.debug = debug
         self.params = []
-        if label == None:
-            self.label = self.base_label + hex(self.address)
-        else: self.label = label
+        if not label:
+            label = self.base_label + hex(address)
+        self.label = Label(name=label, address=address, object=self)
         self.parse()
 
     def get_dependencies(self):
@@ -2742,9 +2752,8 @@ class Signpost(Command):
         self.address = address
         self.id = id
         if label == None:
-            self.label = "UnknownSignpost_"+str(map_group)+"Map"+str(map_id)+"_"+hex(address)
-        else:
-            self.label = label
+            label = "UnknownSignpost_"+str(map_group)+"Map"+str(map_id)+"_"+hex(address)
+        self.label = Label(name=label, address=address, object=self)
         self.map_group = map_group
         self.map_id = map_id
         self.debug = debug
@@ -2958,9 +2967,8 @@ class MapHeader:
         self.bank = bank
         self.debug = debug
         if not label:
-            self.label = self.base_label + hex(address)
-        else:
-            self.label = label
+            label = self.base_label + hex(address)
+        self.label = Label(name=label, address=address, object=self)
         self.last_address = address + 9
         script_parse_table[address : self.last_address] = self
         self.parse()
@@ -3048,8 +3056,8 @@ class SecondMapHeader:
         self.debug = debug
         self.bank = bank
         if not label:
-            self.label = self.base_label + hex(address)
-        else: self.label = label
+            label = self.base_label + hex(address)
+        self.label = Label(name=label, address=address, object=self)
         self.last_address = address+12
         #i think it's always a static size?
         script_parse_table[address : self.last_address] = self
@@ -3193,10 +3201,9 @@ class MapBlockData:
             self.height = height
         else:
             raise Exception, "MapBlockData needs to know the width/height of its map"
-        if label:
-            self.label = label
-        else:
-            self.label = self.base_label + hex(address)
+        if not label:
+            label = self.base_label + hex(address)
+        self.label = Label(name=label, address=address, object=self)
         self.last_address = self.address + (self.width.byte * self.height.byte)
         script_parse_table[address : self.last_address] = self
         self.parse()
@@ -3231,10 +3238,9 @@ class MapEventHeader:
         self.map_id = map_id
         self.debug = debug
         self.bank = bank
-        if label:
-            self.label = label
-        else:
-            self.label = self.base_label + hex(address)
+        if not label:
+            label = self.base_label + hex(address)
+        self.label = Label(name=label, address=address, object=self)
         self.parse()
         script_parse_table[address : self.last_address] = self
 
@@ -3450,10 +3456,9 @@ class MapScriptHeader:
         self.map_id = map_id
         self.debug = debug
         self.bank = bank
-        if label:
-            self.label = label
-        else:
-            self.label = self.base_label + hex(address)
+        if not label:
+            label = self.base_label + hex(address)
+        self.label = Label(name=label, address=address, object=self)
         self.parse()
         script_parse_table[address : self.last_address] = self
 
@@ -4297,7 +4302,7 @@ def to_asm(some_object):
     #add one to the last_address to show where the next byte is in the file
     last_address = some_object.last_address
     #create a line like "label: ; 0x10101"
-    asm = some_object.label + ": ; " + hex(some_object.address) + "\n"
+    asm = some_object.label.name + ": ; " + hex(some_object.address) + "\n"
     #now add the inner/actual asm
     #asm += spacing + some_object.to_asm().replace("\n", "\n"+spacing).replace("\n"+spacing+"\n"+spacing, "\n\n"+spacing)
     asmr = some_object.to_asm()
@@ -4646,7 +4651,7 @@ class Asm:
     """controls the overall asm output"""
     def __init__(self, filename="../main.asm", debug=True):
         self.parts = []
-        self.label_names = []
+        self.labels = []
         self.filename = filename
         self.debug = debug
         self.load_and_parse()
@@ -4665,10 +4670,15 @@ class Asm:
                 thing = AsmLine(line, bank=bank)
                 label = get_label_from_line(line)
                 if label:
-                    self.label_names.append(label)
+                    laddress = get_address_from_line_comment(line)
+                    thing.label = Label(name=label, address=laddress, object=thing, add_to_globals=False)
+                    self.labels.append(thing.label)
             self.parts.append(thing)
     def is_label_name_in_file(self, label_name):
-        return label_name in self.label_names
+        for llabel in self.labels:
+            if llabel.name == label_name:
+                return llabel
+        return False
     def does_address_have_label(self, address):
         """ Checks if an address has a label.
         """
@@ -4676,26 +4686,34 @@ class Asm:
         # or- it's possibel that no label was given
         # or there will be an Incbin that covers the range
         for part in self.parts:
-            if issubtype(part, Incbin) and part.start_address <= address <= part.end_address:
+            if isinstance(part, Incbin) and part.start_address <= address <= part.end_address:
                 return False
-            elif part.address == address and hasattr(part, "label"):
+            elif hasattr(part, "address") and part.address == address and hasattr(part, "label"):
                 return part.label
 
         return None
     def insert(self, new_object):
-        #if isinstance(new_object, TextScript):
-        #    print "ignoring TextScript object-- these seem very broken?"
-        #    return
+        #first some validation
         if not hasattr(new_object, "address"):
             print "object needs to have an address property: " + str(new_object)
             return
         if not hasattr(new_object, "last_address"):
             print "object needs to have a last_address property: " + str(new_object)
             return
+
         #check if the object is already inserted
         if new_object in self.parts:
             print "object was previously inserted ("+str(new_object)+")"
             return
+        #check by label
+        if self.is_label_name_in_file(new_object.label.name):
+            print "object was previously inserted ("+str(new_object)+") by label: "+new_object.label.name
+            return
+        #check by address
+        if self.does_address_have_label(new_object.address):
+            print "object's address is already used ("+str(new_object)+") at "+hex(new_object.address)+" label="+new_object.label.name
+            return
+
         start_address = new_object.address
         end_address = new_object.last_address
         if self.debug:
@@ -4708,6 +4726,7 @@ class Asm:
             if hasattr(new_object, "to_asm"):
                 print to_asm(new_object)
             raise Exception, "Asm.insert was given an object with a bad address range"
+        
         # 1) find which object needs to be replaced
         # or
         # 2) find which object goes after it
@@ -4745,7 +4764,7 @@ class Asm:
                 break
         if not found:
             raise Exception, "unable to insert object into Asm"
-        self.label_names.append(self.label.name)
+        self.labels.append(new_object.label)
         return True 
     def insert_single_with_dependencies(self, object0):
         objects = get_dependencies_for(object0) + [object0]
@@ -4907,7 +4926,7 @@ class Label:
     This label is simply a way to keep track of what objects have
     been previously written to file.
     """
-    def __init__(self, name=None, address=None, line_number=None, object=None, is_in_file=None, address_is_in_file=None):
+    def __init__(self, name=None, address=None, line_number=None, object=None, is_in_file=None, address_is_in_file=None, add_to_globals=True):
         assert name!=None, "need a name"
         assert address!=None, "need an address"
         assert is_valid_address(address), "address must be valid"
@@ -4934,14 +4953,15 @@ class Label:
         #    self.old_check_address_is_in_file()
 
         self.is_in_file = is_in_file
-        if is_in_file == None:
-            self.check_is_in_file()
+        #if is_in_file == None and add_to_globals:
+        #    self.check_is_in_file()
 
         self.address_is_in_file = address_is_in_file
-        if address_is_in_file == None:
-            self.check_address_is_in_file()
+        #if address_is_in_file == None and add_to_globals:
+        #    self.check_address_is_in_file()
 
-        all_new_labels.append(self)
+        if add_to_globals:
+            all_new_labels.append(self)
 
     def check_is_in_file(self):
         """ This method checks if the label appears in the file
@@ -5134,6 +5154,15 @@ def line_has_label(line):
     if "::" in line:
         return False
     return True
+
+def get_address_from_line_comment(line, bank=None):
+    """ wrapper for line_has_comment_address
+    """
+    returnable = {}
+    result = line_has_comment_address(line, returnable=returnable, bank=bank)
+    if not result:
+        return False
+    return returnable["address"]
 
 def get_label_from_line(line):
     """returns the label from the line"""
