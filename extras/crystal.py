@@ -2664,6 +2664,14 @@ class Signpost(Command):
     macro_name = "signpost"
     override_byte_check = True
 
+    #preprocessor uses this
+    param_types = {
+        0: {"name": "y", "class": DecimalParam},
+        1: {"name": "x", "class": DecimalParam},
+        2: {"name": "function", "class": HexByte},
+        3: {"name": "pointer", "class": PointerLabelParam},
+    }
+
     def __init__(self, address, id, bank=None, map_group=None, map_id=None, debug=True, label=None):
         self.address = address
         self.id = id
