@@ -1,11 +1,3 @@
-INCLUDE "script_macros.asm"
-
-; macro for putting a byte then a word
-dbw: MACRO
-	db \1
-	dw \2
-	ENDM
-
 BULBASAUR  EQU 1
 IVYSAUR    EQU 2
 VENUSAUR   EQU 3
