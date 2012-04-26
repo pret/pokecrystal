@@ -3457,9 +3457,9 @@ class MapScriptHeader:
         output += "\n; callback count\n"
         output += "db %d"%self.callback_count
         if len(self.callbacks) > 0:
-            output += "\n\n; callbacks\n"
+            output += "\n\n; callbacks\n\n"
             #not so sure about this next one
-            output += "\n".join(["dbw "+str(p["hook"].byte)+", "+p["callback"].to_asm() for p in self.callbacks])
+            output += "\n\n".join(["db "+str(p["hook"].byte)+"\ndw "+p["callback"].to_asm() for p in self.callbacks])
         return output
 
 all_map_script_headers = []
@@ -4741,6 +4741,9 @@ class Asm:
                 fh.write(asm)
                 written_newlines = 0
             last = each
+
+        #make sure the file ends with a newline
+        fh.write("\n")
 
 def index(seq, f):
     """return the index of the first item in seq
