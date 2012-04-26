@@ -730,6 +730,7 @@ class TextScript:
         had_text_end_byte = False
         had_text_end_byte_57_58 = False
         had_db_last = False
+        xspacing = ""
         #reset this pretty fast..
         first_line = True
         #for each command..
@@ -741,54 +742,37 @@ class TextScript:
                     continue #dunno what to do here?
 
                 if   command["type"] == 0x1: #TX_RAM
-                    if first_line:
-                        output = "\n"
-                        output += label + ": ; " + hex(start_address)
-                        first_line = False
                     p1 = command["pointer"][0]
                     p2 = command["pointer"][1]
 
                     #remember to account for big endian -> little endian
-                    output += "\n" + spacing + "TX_RAM $%.2x%.2x" %(p2, p1)
+                    output += "\n" + xspacing + "TX_RAM $%.2x%.2x" %(p2, p1)
                     byte_count += 3
                     had_db_last = False
                 elif command["type"] == 0x17: #TX_FAR
-                    if first_line:
-                        output = "\n"
-                        output += label + ": ; " + hex(start_address)
-                        first_line = False
                     #p1 = command["pointer"][0]
                     #p2 = command["pointer"][1]
-                    output += "\n" + spacing + "TX_FAR _" + label + " ; " + hex(command["pointer"])
+                    output += "\n" + xspacing + "TX_FAR _" + label + " ; " + hex(command["pointer"])
                     byte_count += 4 #$17, bank, address word
                     had_db_last = False
                 elif command["type"] == 0x9: #TX_RAM_HEX2DEC
-                    if first_line:
-                        output = "\n" + label + ": ; " + hex(start_address)
-                        first_line = False
                     #address, read_byte
-                    output += "\n" + spacing + "TX_NUM $%.2x%.2x, $%.2x" % (command["address"][1], command["address"][0], command["read_byte"])
+                    output += "\n" + xspacing + "TX_NUM $%.2x%.2x, $%.2x" % (command["address"][1], command["address"][0], command["read_byte"])
                     had_db_last = False
                     byte_count += 4
                 elif command["type"] == 0x50 and not had_text_end_byte:
                     #had_text_end_byte helps us avoid repeating $50s
-                    if first_line:
-                        output = "\n" + label + ": ; " + hex(start_address)
-                        first_line = False
                     if had_db_last:
                         output += ", $50"
                     else:
-                        output += "\n" + spacing + "db $50"
+                        output += "\n" + xspacing + "db $50"
                     byte_count += 1
                     had_db_last = True
                 elif command["type"] in [0x57, 0x58] and not had_text_end_byte_57_58:
-                    if first_line: #shouldn't happen, really
-                        output = "\n" + label + ": ; " + hex(start_address)
-                        first_line = False
                     if had_db_last:
                         output += ", $%.2x" % (command["type"])
                     else:
-                        output += "\n" + spacing + "db $%.2x" % (command["type"])
+                        output += "\n" + xspacing + "db $%.2x" % (command["type"])
                     byte_count += 1
                     had_db_last = True
                 elif command["type"] in [0x57, 0x58] and had_text_end_byte_57_58:
@@ -796,33 +780,24 @@ class TextScript:
                 elif command["type"] == 0x50 and had_text_end_byte:
                     pass #this is also ok
                 elif command["type"] == 0x0b:
-                    if first_line:
-                        output = "\n" + label + ": ; " + hex(start_address)
-                        first_line = False
                     if had_db_last:
                         output += ", $0b"
                     else:
-                        output += "\n" + spacing + "db $0B"
+                        output += "\n" + xspacing + "db $0B"
                     byte_count += 1
                     had_db_last = True
                 elif command["type"] == 0x11:
-                    if first_line:
-                        output = "\n" + label + ": ; " + hex(start_address)
-                        first_line = False
                     if had_db_last:
                         output += ", $11"
                     else:
-                        output += "\n" + spacing + "db $11"
+                        output += "\n" + xspacing + "db $11"
                     byte_count += 1
                     had_db_last = True
                 elif command["type"] == 0x6: #wait for keypress
-                    if first_line:
-                        output = "\n" + label + ": ; " + hex(start_address)
-                        first_line = False
                     if had_db_last:
                         output += ", $6"
                     else:
-                        output += "\n" + spacing + "db $6"
+                        output += "\n" + xspacing + "db $6"
                     byte_count += 1
                     had_db_last = True
                 else:
@@ -840,19 +815,10 @@ class TextScript:
             #this should already be in there, but it's not because of a bug in the text parser
             lines[len(lines.keys())-1].append(commands[len(commands.keys())-1]["type"])
 
-            #XXX to_asm should probably not include label output
-            #so this will need to be removed eventually
-            if first_line:
-                output  = "\n"
-                output += label + ": ; " + hex(start_address) + "\n"
-                first_line = False
-            else:
-                output += "\n"
-
             first = True #first byte
             for line_id in lines:
                 line = lines[line_id]
-                output += spacing + "db "
+                output += xspacing + "db "
                 if first and needs_to_begin_with_0:
                     output += "$0, "
                     first = False
@@ -908,10 +874,12 @@ class TextScript:
                     quotes_open = False
 
                 output += "\n"
-        include_newline = "\n"
-        if len(output)!=0 and output[-1] == "\n":
-            include_newline = ""
-        output += include_newline + "; " + hex(start_address) + " + " + str(byte_count) + " bytes = " + hex(start_address + byte_count)
+        #include_newline = "\n"
+        #if len(output)!=0 and output[-1] == "\n":
+        #    include_newline = ""
+        #output += include_newline + "; " + hex(start_address) + " + " + str(byte_count) + " bytes = " + hex(start_address + byte_count)
+        if output[-1] == "\n":
+            output = output[:-1]
         self.size = self.byte_count = byte_count
         return output
 
@@ -2910,7 +2878,7 @@ class MapHeader:
             self.label = self.base_label + hex(address)
         else:
             self.label = label
-        self.last_address = address + 8
+        self.last_address = address + 9
         script_parse_table[address : self.last_address] = self
         self.parse()
 
@@ -4602,9 +4570,9 @@ class Asm:
                 thing = AsmLine(line, bank=bank)
             self.parts.append(thing)
     def insert(self, new_object):
-        if isinstance(new_object, TextScript):
-            print "ignoring TextScript object-- these seem very broken?"
-            return
+        #if isinstance(new_object, TextScript):
+        #    print "ignoring TextScript object-- these seem very broken?"
+        #    return
         if not hasattr(new_object, "address"):
             print "object needs to have an address property: " + str(new_object)
             return
