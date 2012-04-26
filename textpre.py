@@ -266,6 +266,11 @@ chars = {
 }
 
 for l in sys.stdin:
+    # skip lines with no quotes
+    if "\"" not in l:
+        sys.stdout.write(l)
+        continue
+
     # strip comments
     asm = ""
     comment    = None
