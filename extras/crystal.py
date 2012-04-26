@@ -4827,6 +4827,7 @@ def write_all_labels(all_labels, filename="labels.json"):
     return True
 
 #TODO: implement get_ram_label
+#wram.asm integration would be nice
 def get_ram_label(address):
     """not implemented yet.. supposed to get a label for a particular RAM location
     like W_PARTYPOKE1HP"""
@@ -4868,12 +4869,88 @@ def remove_quoted_text(line):
         line = line[0:first] + line[second+1:]
     return line
 
+# all_new_labels is a temporary replacement for all_labels,
+# at least until the two approaches are merged in the code base.
+all_new_labels = []
+
 class Label:
-    def __init__(self, name=None, address=None, line_number=None):
+    """ Every object in script_parse_table is given a label.
+    
+    This label is simply a way to keep track of what objects have
+    been previously written to file.
+    """
+    def __init__(self, name=None, address=None, line_number=None, object=None, is_in_file=None, address_is_in_file=None):
         assert name!=None, "need a name"
         assert address!=None, "need an address"
-        assert line_number!=None, "need a line number"
-        self.name, self.address, self.line_number = str(name), int(address), int(line_number)
+        assert is_valid_address(address), "address must be valid"
+
+        self.name = name
+        self.address = address
+        self.object = object
+        
+        # label might not be in the file yet
+        self.line_number = line_number
+        
+        # check if the label is in the file already
+        self.is_in_file = is_in_file
+        if is_in_file == None:
+            self.check_is_in_file()
+
+        # check if the address of this label is already in use
+        self.address_is_in_file = address_is_in_file
+        if address_is_in_file == None:
+            self.check_address_is_in_file()
+
+        all_new_labels.append(self)
+
+    def get_line_number(self):
+        """ Reads the asm file to figure out the line number.
+        
+        Note that this label might not be in the file yet, like
+        if this is a newly generated label. However, if crystal.py
+        has been run before and manipulated main.asm, then it is
+        possible that this label is already in the file.
+        """
+        lineno = is_label_in_asm(self.name)
+        if lineno:
+            self.line_number = lineno
+            self.is_in_file = True
+            return lineno
+        else:
+            self.line_number = None
+            self.is_in_file = False
+        return None
+
+    def check_is_in_file(self):
+        """ Reads the asm file to figure out if this label
+        is already inserted or not.
+        """
+        self.get_line_number()
+        return self.is_in_file
+    
+    def check_address_is_in_file(self):
+        """ Checks whether or not the address of the object is
+        already in the file. This might happen if the label name
+        is different but the address is the same. Another scenario
+        is that the label is already used, but at a different
+        address.
+        
+        This method works by looking at the INCBINs. When there is
+        an INCBIN that covers this address in the file, then there
+        is no label at this address yet (or there is, but we can
+        easily add another label in front of the incbin or something),
+        and when there is no INCBIN that has this address, then we
+        know that something is already using this address.
+        """
+        if processed_incbins == {}:
+            process_incbins()
+        
+        incbin = find_incbin_to_replace_for(self.address)
+
+        if incbin == None:
+            return True
+        else:
+            return False
 
 def line_has_comment_address(line, returnable={}, bank=None):
     """checks that a given line has a comment
@@ -5009,6 +5086,24 @@ def get_label_from_line(line):
     #split up the line
     label = line.split(":")[0]
     return label
+
+def is_label_in_asm(label):
+    """ Returns the line number
+    or returns None if the label is not in the file.
+    """
+
+    # line numbering begins at 1 in vim
+    i = 1
+    
+    # check if any line starts with this label
+    for line in asm:
+        if line_has_label(line):
+            thislabel = get_label_from_line(line)
+            if thislabel == label:
+                return i
+        i += 1
+
+    return False
 
 def find_labels_without_addresses():
     """scans the asm source and finds labels that are unmarked"""
