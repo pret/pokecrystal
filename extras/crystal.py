@@ -529,9 +529,9 @@ class TextScript:
                 #whichever command comes first
                 jump = min([jump57, jump50, jump58])
 
-                end_address = offset + jump - 1 #we want the address before $57
+                end_address = offset + jump #we want the address before $57
 
-                lines = process_00_subcommands(offset+1, end_address+1, debug=debug)
+                lines = process_00_subcommands(offset+1, end_address, debug=debug)
 
                 if show and debug:
                     text = parse_text_at2(offset+1, end_address-offset+1, debug=debug)
@@ -648,9 +648,9 @@ class TextScript:
                 #whichever command comes first
                 jump = min([jump57, jump50, jump58])
 
-                end_address = offset + jump - 1 #we want the address before $57
+                end_address = offset + jump #we want the address before $57
 
-                lines = process_00_subcommands(offset+1, end_address+1, debug=debug)
+                lines = process_00_subcommands(offset+1, end_address, debug=debug)
 
                 if show and debug:
                     text = parse_text_at2(offset+1, end_address-offset+1, debug=debug)
@@ -709,8 +709,8 @@ class TextScript:
         #    sys.exit()
 
         self.commands = commands
-        self.last_address = offset - 1 #why -1??
-        script_parse_table[original_address:offset-1] = self
+        self.last_address = offset
+        script_parse_table[original_address:offset] = self
         self.size = self.byte_count = self.last_address - original_address
         return commands
 
