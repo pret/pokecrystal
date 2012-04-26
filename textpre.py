@@ -271,28 +271,32 @@ for l in sys.stdin:
         sys.stdout.write(l)
         continue
 
-    # strip comments
     asm = ""
-    comment    = None
-    in_quotes  = False
-    in_comment = False
-    for letter in l:
-        if in_comment:
-            comment += letter
-        elif in_quotes and letter != "\"":
-            asm += letter
-        elif in_quotes and letter == "\"":
-            in_quotes = False
-            asm += letter
-        elif not in_quotes and letter == "\"":
-            in_quotes = True
-            asm += letter
-        elif not in_quotes and letter != "\"":
-            if letter == ";":
-                in_comment = True
-                comment = ";"
-            else:
+
+    # strip comments
+    comment = None
+    if ";" in l:
+        in_quotes  = False
+        in_comment = False
+        for letter in l:
+            if in_comment:
+                comment += letter
+            elif in_quotes and letter != "\"":
                 asm += letter
+            elif in_quotes and letter == "\"":
+                in_quotes = False
+                asm += letter
+            elif not in_quotes and letter == "\"":
+                in_quotes = True
+                asm += letter
+            elif not in_quotes and letter != "\"":
+                if letter == ";":
+                    in_comment = True
+                    comment = ";"
+                else:
+                    asm += letter
+    else:
+        asm = l
 
     # skip asm with no quotes
     if "\"" not in asm:
