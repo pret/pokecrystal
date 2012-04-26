@@ -531,7 +531,7 @@ class TextScript:
 
                 end_address = offset + jump - 1 #we want the address before $57
 
-                lines = process_00_subcommands(offset+1, end_address, debug=debug)
+                lines = process_00_subcommands(offset+1, end_address+1, debug=debug)
 
                 if show and debug:
                     text = parse_text_at2(offset+1, end_address-offset+1, debug=debug)
@@ -649,7 +649,8 @@ class TextScript:
                 jump = min([jump57, jump50, jump58])
 
                 end_address = offset + jump - 1 #we want the address before $57
-                lines = process_00_subcommands(offset+1, end_address, debug=debug)
+
+                lines = process_00_subcommands(offset+1, end_address+1, debug=debug)
 
                 if show and debug:
                     text = parse_text_at2(offset+1, end_address-offset+1, debug=debug)
@@ -921,7 +922,7 @@ class EncodedText():
                 lines[line_count] = current_line
                 current_line = []
                 line_count += 1
-
+        
         #don't forget the last line
         lines[line_count] = current_line
         line_count += 1
