@@ -2343,7 +2343,7 @@ class PeopleEvent(Command):
         10: {"name": "BitTable1 bit number", "class": MultiByteParam},
     }
 
-    def to_asm(self):
+    def xto_asm(self):
         output = "\n; person-event\n; picture, y, x, facing, movement, clock_hour, clock_daytime, color_function, sight_range\n"
         output += "db $%.2x, %d, %d, $%.2x, $%.2x, %d, %d, $%.2x, %d\n" % (self.params[0].byte, self.params[1].byte, self.params[2].byte, self.params[3].byte, self.params[4].byte, self.params[5].byte, self.params[6].byte, self.params[7].byte, self.params[8].byte)
         output += "; pointer\ndw %s\n" % (self.params[9].to_asm())
