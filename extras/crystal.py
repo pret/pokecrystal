@@ -3468,8 +3468,7 @@ class MapScriptHeader:
         output += "db %d"%self.callback_count
         if len(self.callbacks) > 0:
             output += "\n\n; callbacks\n\n"
-            #not so sure about this next one
-            output += "\n\n".join(["db "+str(p["hook"].byte)+"\ndw "+p["callback"].to_asm() for p in self.callbacks])
+            output += "\n\n".join(["dbw "+str(p["hook"].byte)+", "+p["callback"].to_asm() for p in self.callbacks])
         return output
 
 all_map_script_headers = []
