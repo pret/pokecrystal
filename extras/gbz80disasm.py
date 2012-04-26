@@ -555,7 +555,6 @@ for line in temp_opt_table:
 opt_table = {}
 for line in temp_opt_table:
     opt_table[line[1]] = [line[0], line[2]]
-del temp_opt_table
 del line
 
 end_08_scripts_with = [
