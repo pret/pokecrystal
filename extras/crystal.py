@@ -4634,10 +4634,19 @@ class AsmSection:
     def to_asm(self):
         return self.line
 
+new_asm = None
+def load_asm2(filename="../main.asm", force=False):
+    """loads the asm source code into memory"""
+    global new_asm
+    if new_asm == None or force:
+        new_asm = Asm(filename=filename)
+    return new_asm
+
 class Asm:
     """controls the overall asm output"""
     def __init__(self, filename="../main.asm", debug=True):
         self.parts = []
+        self.label_names = []
         self.filename = filename
         self.debug = debug
         self.load_and_parse()
@@ -4654,7 +4663,25 @@ class Asm:
                 bank = thing.bank_id
             else:
                 thing = AsmLine(line, bank=bank)
+                label = get_label_from_line(line)
+                if label:
+                    self.label_names.append(label)
             self.parts.append(thing)
+    def is_label_name_in_file(self, label_name):
+        return label_name in self.label_names
+    def does_address_have_label(self, address):
+        """ Checks if an address has a label.
+        """
+        # either something will directly have the address
+        # or- it's possibel that no label was given
+        # or there will be an Incbin that covers the range
+        for part in self.parts:
+            if issubtype(part, Incbin) and part.start_address <= address <= part.end_address:
+                return False
+            elif part.address == address and hasattr(part, "label"):
+                return part.label
+
+        return None
     def insert(self, new_object):
         #if isinstance(new_object, TextScript):
         #    print "ignoring TextScript object-- these seem very broken?"
@@ -4718,6 +4745,7 @@ class Asm:
                 break
         if not found:
             raise Exception, "unable to insert object into Asm"
+        self.label_names.append(self.label.name)
         return True 
     def insert_single_with_dependencies(self, object0):
         objects = get_dependencies_for(object0) + [object0]
@@ -4891,19 +4919,48 @@ class Label:
         # label might not be in the file yet
         self.line_number = line_number
         
+        # -- These were some old attempts to check whether the label
+        # -- was already in use. They work, but the other method is
+        # -- better.
+        #
         # check if the label is in the file already
+        #self.is_in_file = is_in_file
+        #if is_in_file == None:
+        #    self.old_check_is_in_file()
+        #
+        # check if the address of this label is already in use
+        #self.address_is_in_file = address_is_in_file
+        #if address_is_in_file == None:
+        #    self.old_check_address_is_in_file()
+
         self.is_in_file = is_in_file
         if is_in_file == None:
             self.check_is_in_file()
 
-        # check if the address of this label is already in use
         self.address_is_in_file = address_is_in_file
         if address_is_in_file == None:
             self.check_address_is_in_file()
 
         all_new_labels.append(self)
 
-    def get_line_number(self):
+    def check_is_in_file(self):
+        """ This method checks if the label appears in the file
+        based on the entries to the Asm.parts list.
+        """
+        #assert new_asm != None, "new_asm should be an instance of Asm"
+        load_asm2()
+        is_in_file = new_asm.is_label_name_in_file(self.name)
+        self.is_in_file = is_in_file
+        return is_in_file
+
+    def check_address_is_in_file(self):
+        """ Checks if the address is in use by another label.
+        """
+        load_asm2()
+        self.address_is_in_file = new_asm.does_address_have_label(self.address)
+        return self.address_is_in_file
+
+    def get_line_number_from_raw_file(self):
         """ Reads the asm file to figure out the line number.
         
         Note that this label might not be in the file yet, like
@@ -4911,7 +4968,7 @@ class Label:
         has been run before and manipulated main.asm, then it is
         possible that this label is already in the file.
         """
-        lineno = is_label_in_asm(self.name)
+        lineno = old_is_label_in_asm(self.name)
         if lineno:
             self.line_number = lineno
             self.is_in_file = True
@@ -4921,14 +4978,14 @@ class Label:
             self.is_in_file = False
         return None
 
-    def check_is_in_file(self):
+    def old_check_is_in_file(self):
         """ Reads the asm file to figure out if this label
         is already inserted or not.
         """
-        self.get_line_number()
+        self.get_line_number_from_raw_file()
         return self.is_in_file
     
-    def check_address_is_in_file(self):
+    def old_check_address_is_in_file(self):
         """ Checks whether or not the address of the object is
         already in the file. This might happen if the label name
         is different but the address is the same. Another scenario
@@ -5087,9 +5144,12 @@ def get_label_from_line(line):
     label = line.split(":")[0]
     return label
 
-def is_label_in_asm(label):
-    """ Returns the line number
-    or returns None if the label is not in the file.
+def old_is_label_in_asm(label):
+    """ Returns the line number or returns None if the
+    label is not in the file. This is an "old" method
+    because it looks directly at the list of lines
+    rather than reading a globally shared instance of
+    the Asm class.
     """
 
     # line numbering begins at 1 in vim
