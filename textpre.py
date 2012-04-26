@@ -414,7 +414,7 @@ def macro_translator(macro, token, line):
 
         # check if there are no params (redundant)
         if len(params) == 1 and params[0] == "":
-            raise Exception, "ERROR: macro has no params?"
+            raise Exception, "macro has no params?"
 
     # write out a comment showing the original line
     sys.stdout.write("; original_line: " + original_line)
