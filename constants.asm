@@ -1,3 +1,5 @@
+INCLUDE "script_macros.asm"
+
 ; macro for putting a byte then a word
 dbw: MACRO
 	db \1
