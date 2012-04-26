@@ -3,6 +3,11 @@
 
 import sys
 
+from extras.crystal import *
+
+macros = command_classes + \
+         [Warp, XYTrigger, Signpost, PeopleEvent, DataByteWordMacro]
+
 chars = {
 "ガ": 0x05,
 "ギ": 0x06,
@@ -360,6 +365,138 @@ def quote_translator(asm):
         even = not even
     return
 
+def extract_token(asm):
+    token = asm.split(" ")[0].replace("\t", "")
+    return token
+
+def macro_test(asm):
+    """ Returns a matching macro, or None/False.
+    """
+
+    # macros are determined by the first symbol on the line
+    token = extract_token(asm)
+
+    # check against all names
+    for macro in macros:
+        if macro.macro_name == token:
+            return macro, token
+
+    return None, None
+
+def macro_translator(macro, token, line):
+    """ Converts a line with a macro into a rgbasm-compatible line.
+    """
+    assert macro.macro_name == token, "macro/token mismatch"
+    
+    original_line = line
+
+    # remove trailing newline
+    if line[-1] == "\n":
+        line = line[:-1]
+    else:
+        original_line += "\n"
+
+    # remove first tab
+    has_tab = False
+    if line[0] == "\t":
+        has_tab = True
+        line = line[1:]
+
+    # remove duplicate whitespace (also trailing)
+    line = " ".join(line.split())
+
+    params = []
+
+    # check if the line has params
+    if " " in line:
+        # split the line into separate parameters
+        params = line.replace(token, "").split(",")
+
+        # check if there are no params (redundant)
+        if len(params) == 1 and params[0] == "":
+            raise Exception, "ERROR: macro has no params?"
+
+    # write out a comment showing the original line
+    sys.stdout.write("; original_line: " + original_line)
+
+    # certain macros don't need an initial byte written
+    # do: all scripting macros
+    # don't: signpost, warp_def, person_event, xy_trigger
+    if not macro.override_byte_check:
+        sys.stdout.write("db $%.2x\n" % (macro.id))
+
+    # --- long-winded sanity check goes here ---
+
+    # sanity check... this won't work because PointerLabelBeforeBank shows
+    # up as two params, so these two lengths will always be different.
+    #assert len(params) == len(macro.param_types), \
+    #       "mismatched number of parameters on this line: " + \
+    #       original_line
+
+    # v2 sanity check :) although it sorta sucks that this loop happens twice?
+    allowed_length = 0
+    for (index, param_type) in macro.param_types.items():
+        param_klass = param_type["class"]
+
+        if param_klass.byte_type == "db":
+            allowed_length += 1 # just one value
+        elif param_klass.byte_type == "dw":
+            if param_klass.size == 2:
+                allowed_length += 1 # just label
+            elif param_klass.size == 3:
+                allowed_length += 2 # bank and label
+            else:
+                raise Exception, "dunno what to do with a macro param with a size > 3"
+        else:
+            raise Exception, "dunno what to do with this non db/dw macro param: " + \
+                             str(param_klass) + " in line: " + original_line
+    
+    assert len(params) == allowed_length, \
+           "mismatched number of parameters on this line: " + \
+           original_line
+    # --- end of ridiculously long sanity check ---
+
+    index = 0
+    while index < len(macro.param_types):
+        param_type  = macro.param_types[index]
+        description = param_type["name"]
+        param_klass = param_type["class"]
+        byte_type   = param_klass.byte_type # db or dw
+        size        = param_klass.size
+        param       = params[index].strip()
+        
+        # param_klass.to_asm() won't work here because it doesn't
+        # include db/dw.
+
+        # some parameters are really multiple types of bytes
+        if (byte_type == "dw" and size != 2) or \
+           (byte_type == "db" and size != 1):
+
+            sys.stdout.write("; " + description + "\n")
+            
+            if   size == 3 and issubclass(param_klass, PointerLabelBeforeBank):
+                # write the bank first
+                sys.stdout.write("db " + params[index] + "\n")
+                # write the pointer second
+                sys.stdout.write("dw " + params[index+1] + "\n")
+                index += 2
+            elif size == 3 and issubclass(param_klass, PointerLabelAfterBank):
+                # write the pointer first
+                sys.stdout.write("dw " + params[index+1] + "\n")
+                # write the bank second
+                sys.stdout.write("db " + params[index] + "\n")
+                index += 2
+            else:
+                raise Exception, "dunno what to do with this macro " + \
+                "param (" + str(param_klass) + ") " + "on this line: " + \
+                original_line
+
+        # or just print out the byte
+        else:
+            sys.stdout.write(byte_type + " " + param + " ; " + description + "\n")
+
+            index += 1
+
 for l in sys.stdin:
     # strip and store any comment on this line
     if ";" in l:
@@ -371,8 +508,15 @@ for l in sys.stdin:
     # convert text to bytes when a quote appears (not in a comment)
     if "\"" in asm:
         quote_translator(asm)
+
+    # check against other preprocessor features
     else:
-        sys.stdout.write(asm)
+        macro, token = macro_test(asm)
+
+        if macro:
+            macro_translator(macro, token, asm)
+        else:
+            sys.stdout.write(asm)
 
     # show line comment
     if comment != None:
