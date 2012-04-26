@@ -454,6 +454,7 @@ def macro_translator(macro, token, line):
     assert len(params) == allowed_length, \
            "mismatched number of parameters on this line: " + \
            original_line
+
     # --- end of ridiculously long sanity check ---
 
     index = 0
@@ -482,9 +483,9 @@ def macro_translator(macro, token, line):
                 index += 2
             elif size == 3 and issubclass(param_klass, PointerLabelAfterBank):
                 # write the pointer first
-                sys.stdout.write("dw " + params[index+1] + "\n")
+                sys.stdout.write("dw " + params[index] + "\n")
                 # write the bank second
-                sys.stdout.write("db " + params[index] + "\n")
+                sys.stdout.write("db " + params[index+1] + "\n")
                 index += 2
             else:
                 raise Exception, "dunno what to do with this macro " + \
