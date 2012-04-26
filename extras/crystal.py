@@ -1123,6 +1123,7 @@ class SingleByteParam():
     """or SingleByte(CommandParam)"""
     size = 1
     should_be_decimal = False
+    byte_type = "db"
 
     def __init__(self, *args, **kwargs):
         for (key, value) in kwargs.items():
@@ -1167,6 +1168,7 @@ class MultiByteParam():
     """or MultiByte(CommandParam)"""
     size = 2
     should_be_decimal = False
+    byte_type = "dw"
 
     def __init__(self, *args, **kwargs):
         self.prefix = "$" #default.. feel free to set 0x in kwargs
@@ -2633,7 +2635,7 @@ class SignpostRemoteUnknownChunk(SignpostRemoteBase):
 
 #this could potentially extend Command
 #see how class Warp does this
-class Signpost:
+class Signpost(Command):
     """parse some number of signposts from the data
 
     [Y position][X position][Function][Script pointer (2byte)]
@@ -2660,6 +2662,7 @@ class Signpost:
     """
     size = 5
     macro_name = "signpost"
+    override_byte_check = True
 
     def __init__(self, address, id, bank=None, map_group=None, map_id=None, debug=True, label=None):
         self.address = address
