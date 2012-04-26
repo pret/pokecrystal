@@ -555,7 +555,7 @@ class TextScript:
                 pointer = extract_maps.calculate_pointer(pointer, pointer_bank)
 
                 text = TextScript(pointer, map_group=self.map_group, map_id=self.amp_id, debug=self.debug, \
-                                  show=self.debug, force=self.debug, label="Target"+self.label)
+                                  show=self.debug, force=self.debug, label="Target"+self.label.name)
                 self.dependencies.append(text)
 
                 command = {"type": command_byte,
