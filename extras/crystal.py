@@ -900,7 +900,7 @@ def find_text_addresses():
 
 class EncodedText:
     """a sequence of bytes that, when decoded, represent readable text
-    based on the chars table from textpre.py and other places"""
+    based on the chars table from preprocessor.py and other places"""
     base_label = "UnknownRawText_"
 
     def __init__(self, address, bank=None, map_group=None, map_id=None, debug=True, label=None):

@@ -8,7 +8,7 @@ pokecrystal.o: pokecrystal.asm main.tx constants.asm wram.asm ${TEXTFILES}
 	rgbasm -o pokecrystal.o pokecrystal.asm
 	
 .asm.tx:
-	python textpre.py < $< > $@
+	python preprocessor.py < $< > $@
 
 pokecrystal.gbc: pokecrystal.o
 	rgblink -o $@ $<
