@@ -1041,7 +1041,7 @@ def generate_map_constants():
         #print each["label"] + " EQUS \"$%.2x,$%.2x\"" % (each["map_group"], each["map_id"])
     print globals
     print groups
-    print maps
+    #print maps
 
 from pokemon_constants import pokemon_constants
 
@@ -1495,7 +1495,7 @@ class Command:
     def to_asm(self):
         #start with the rgbasm macro name for this command
         output = ""
-        if self.macro_name[0].isdigit():
+        if len(self.macro_name) > 0 and self.macro_name[0].isdigit():
             output += "_"
         output += self.macro_name
         #return if there are no params
@@ -2045,7 +2045,7 @@ def compare_script_parsing_methods(address):
 class Warp(Command):
     """only used outside of scripts"""
     size = warp_byte_size
-    macro_name = "warp_def"
+    macro_name = "" #"warp_def"
     param_types = {
         0: {"name": "y", "class": HexByte},
         1: {"name": "x", "class": HexByte},
@@ -2059,6 +2059,13 @@ class Warp(Command):
         self.id = kwargs["id"]
         script_parse_table[kwargs["address"] : kwargs["address"] + self.size] = self
         Command.__init__(self, *args, **kwargs)
+
+    def to_asm(self):
+        output = "\n;warp\n; x, y\n"
+        output += "db %d, %d\n" % (self.params[0].byte, self.params[1].byte)
+        output += "; warp_to, map_bank, map_id\n"
+        output += "db %d, %s, %s" % (self.params[2].byte, self.params[3].to_asm(), self.params[4].to_asm())
+        return output
 
     def get_dependencies(self):
         return []
@@ -2095,7 +2102,7 @@ def old_parse_warp_bytes(some_bytes, debug=True):
 
 class XYTrigger(Command):
     size = trigger_byte_size
-    macro_name = "xy_trigger"
+    macro_name = "" #"xy_trigger"
     param_types = {
         0: {"name": "number", "class": DecimalParam},
         1: {"name": "y", "class": HexByte},
@@ -2303,7 +2310,7 @@ class TrainerFragmentParam(PointerLabelParam):
 
 class PeopleEvent(Command):
     size = people_event_byte_size
-    macro_name = "person_event"
+    macro_name = "" #"person_event"
     base_label = "PeopleEvent_"
     override_byte_check = True
     param_types = {
@@ -2319,6 +2326,13 @@ class PeopleEvent(Command):
         9: {"name": "pointer", "class": PointerLabelParam}, #or ScriptPointerLabelParam or ItemLabelParam
         10: {"name": "BitTable1 bit number", "class": MultiByteParam},
     }
+
+    def to_asm(self):
+        output = "\n; person-event\n; picture, y, x, facing, movement, clock_hour, clock_daytime, color_function, sight_range\n"
+        output += "db $%.2x, %d, %d, $%.2x, $%.2x, %d, %d, $%.2x, %d\n" % (self.params[0].byte, self.params[1].byte, self.params[2].byte, self.params[3].byte, self.params[4].byte, self.params[5].byte, self.params[6].byte, self.params[7].byte, self.params[8].byte)
+        output += "; pointer\ndw %s\n" % (self.params[9].to_asm())
+        output += "; BitTable1 bit number\ndw %s" % (self.params[10].to_asm())
+        return output
 
     def __init__(self, address, id, bank=None, map_group=None, map_id=None, debug=False, label=None, force=False):
         assert is_valid_address(address), "PeopleEvent must be given a valid address"
@@ -2652,7 +2666,7 @@ class Signpost:
                 script pointer to: [Bit-Nr. (2byte)][??]
     """
     size = 5
-    macro_name = "signpost"
+    macro_name = "" #"signpost"
 
     def __init__(self, address, id, bank=None, map_group=None, map_id=None, debug=True, label=None):
         self.address = address
@@ -2784,9 +2798,12 @@ class Signpost:
         return dependencies
 
     def to_asm(self):
-        output = self.macro_name + " "
+        output = "" #self.macro_name + " "
         if self.params == []: raise Exception, "signpost has no params?"
-        output += ", ".join([p.to_asm() for p in self.params])
+        output += "\n; signpost\n; y, x, func\n"
+        output += "db %d, %d, $%.2x\n" % (self.params[0].byte, self.params[1].byte, self.params[2].byte)
+        output += "; pointer\n"
+        output += "dw %s" % (self.params[3].to_asm())
         return output
 
 
@@ -3041,9 +3058,11 @@ class SecondMapHeader:
         output += "; height, width\n"
         output += "db " + self.height.to_asm() + ", " + self.width.to_asm() + "\n\n"
         output += "; blockdata (bank-then-pointer)\n"
-        output += "dbw " + ScriptPointerLabelBeforeBank(address=self.address+3, map_group=self.map_group, map_id=self.map_id, debug=self.debug).to_asm() + "\n\n"
+        thing = ScriptPointerLabelBeforeBank(address=self.address+3, map_group=self.map_group, map_id=self.map_id, debug=self.debug).to_asm()
+        output += "db " + thing.split(", ")[0] + "\ndw "+thing.split(", ")[1] + "\n\n"
         output += "; script header (bank-then-pointer)\n"
-        output += "dbw " + ScriptPointerLabelBeforeBank(address=self.address+6, map_group=self.map_group, map_id=self.map_id, debug=self.debug).to_asm() + "\n\n"
+        thing = ScriptPointerLabelBeforeBank(address=self.address+6, map_group=self.map_group, map_id=self.map_id, debug=self.debug).to_asm()
+        output += "db " + thing.split(", ")[0] + "\ndw " + thing.split(", ")[1] + "\n\n"
         output += "; map event header (bank-then-pointer)\n"
         output += "dw " + PointerLabelParam(address=self.address+9, bank=self.event_bank, map_group=self.map_group, map_id=self.map_id, debug=self.debug).to_asm() + "\n\n"
         output += "; connections\n"
