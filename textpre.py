@@ -265,43 +265,38 @@ chars = {
 "9": 0xFF
 }
 
-for l in sys.stdin:
-    # skip lines with no quotes
-    if "\"" not in l:
-        sys.stdout.write(l)
-        continue
+def separate_comment(l):
+    """ Separates asm and comments on a single line.
+    """
 
-    asm = ""
+    asm        = ""
+    comment    = None
+    in_quotes  = False
+    in_comment = False
 
-    # strip comments
-    comment = None
-    if ";" in l:
-        in_quotes  = False
-        in_comment = False
-        for letter in l:
-            if in_comment:
-                comment += letter
-            elif in_quotes and letter != "\"":
-                asm += letter
-            elif in_quotes and letter == "\"":
-                in_quotes = False
-                asm += letter
-            elif not in_quotes and letter == "\"":
-                in_quotes = True
-                asm += letter
-            elif not in_quotes and letter != "\"":
-                if letter == ";":
-                    in_comment = True
-                    comment = ";"
-                else:
-                    asm += letter
-    else:
-        asm = l
+    # token either belongs to the line or to the comment
+    for token in l:
+        if in_comment:
+            comment += token
+        elif in_quotes and token != "\"":
+            asm += token
+        elif in_quotes and token == "\"":
+            in_quotes = False
+            asm += token
+        elif not in_quotes and token == "\"":
+            in_quotes = True
+            asm += token
+        elif not in_quotes and token != "\"":
+            if token == ";":
+                in_comment = True
+                comment = ";"
+            else:
+                asm += token
+    return asm, comment
 
-    # skip asm with no quotes
-    if "\"" not in asm:
-        sys.stdout.write(l)
-        continue
+def quote_translator(asm):
+    """ Writes asm with quoted text translated into bytes.
+    """
 
     # split by quotes
     asms = asm.split("\"")
@@ -311,16 +306,16 @@ for l in sys.stdin:
     if "section" in lowasm \
     or "include" in lowasm \
     or "incbin" in lowasm:
-        sys.stdout.write(l)
-        continue
+        sys.stdout.write(asm)
+        return
 
     even = False
     i = 0
     for token in asms:
         i = i + 1
+
         if even:
             # token is a string to convert to byte values
-
             while len(token):
                 # read a single UTF-8 codepoint
                 char = token[0]
@@ -358,10 +353,27 @@ for l in sys.stdin:
 
                 if len(token):
                     sys.stdout.write(", ")
-
+        # if not even
         else:
             sys.stdout.write(token)
-        even = not even
 
+        even = not even
+    return
+
+for l in sys.stdin:
+    # strip and store any comment on this line
+    if ";" in l:
+        asm, comment = separate_comment(l)
+    else:
+        asm     = l
+        comment = None
+
+    # convert text to bytes when a quote appears (not in a comment)
+    if "\"" in asm:
+        quote_translator(asm)
+    else:
+        sys.stdout.write(asm)
+
+    # show line comment
     if comment != None:
         sys.stdout.write(comment)
