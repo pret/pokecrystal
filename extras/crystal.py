@@ -2045,7 +2045,7 @@ def compare_script_parsing_methods(address):
 class Warp(Command):
     """only used outside of scripts"""
     size = warp_byte_size
-    macro_name = "" #"warp_def"
+    macro_name = "warp_def"
     param_types = {
         0: {"name": "y", "class": HexByte},
         1: {"name": "x", "class": HexByte},
@@ -2059,13 +2059,6 @@ class Warp(Command):
         self.id = kwargs["id"]
         script_parse_table[kwargs["address"] : kwargs["address"] + self.size] = self
         Command.__init__(self, *args, **kwargs)
-
-    def to_asm(self):
-        output = "\n;warp\n; x, y\n"
-        output += "db %d, %d\n" % (self.params[0].byte, self.params[1].byte)
-        output += "; warp_to, map_bank, map_id\n"
-        output += "db %d, %s, %s" % (self.params[2].byte, self.params[3].to_asm(), self.params[4].to_asm())
-        return output
 
     def get_dependencies(self):
         return []
@@ -2102,7 +2095,7 @@ def old_parse_warp_bytes(some_bytes, debug=True):
 
 class XYTrigger(Command):
     size = trigger_byte_size
-    macro_name = "" #"xy_trigger"
+    macro_name = "xy_trigger"
     param_types = {
         0: {"name": "number", "class": DecimalParam},
         1: {"name": "y", "class": HexByte},
@@ -2310,7 +2303,7 @@ class TrainerFragmentParam(PointerLabelParam):
 
 class PeopleEvent(Command):
     size = people_event_byte_size
-    macro_name = "" #"person_event"
+    macro_name = "person_event"
     base_label = "PeopleEvent_"
     override_byte_check = True
     param_types = {
@@ -2666,7 +2659,7 @@ class Signpost:
                 script pointer to: [Bit-Nr. (2byte)][??]
     """
     size = 5
-    macro_name = "" #"signpost"
+    macro_name = "signpost"
 
     def __init__(self, address, id, bank=None, map_group=None, map_id=None, debug=True, label=None):
         self.address = address
@@ -2798,14 +2791,10 @@ class Signpost:
         return dependencies
 
     def to_asm(self):
-        output = "" #self.macro_name + " "
+        output = self.macro_name + " "
         if self.params == []: raise Exception, "signpost has no params?"
-        output += "\n; signpost\n; y, x, func\n"
-        output += "db %d, %d, $%.2x\n" % (self.params[0].byte, self.params[1].byte, self.params[2].byte)
-        output += "; pointer\n"
-        output += "dw %s" % (self.params[3].to_asm())
+        output += ", ".join([p.to_asm() for p in self.params])
         return output
-
 
 all_signposts = []
 def parse_signposts(address, signpost_count, bank=None, map_group=None, map_id=None, debug=True):
@@ -3059,10 +3048,10 @@ class SecondMapHeader:
         output += "db " + self.height.to_asm() + ", " + self.width.to_asm() + "\n\n"
         output += "; blockdata (bank-then-pointer)\n"
         thing = ScriptPointerLabelBeforeBank(address=self.address+3, map_group=self.map_group, map_id=self.map_id, debug=self.debug).to_asm()
-        output += "db " + thing.split(", ")[0] + "\ndw "+thing.split(", ")[1] + "\n\n"
+        output += "dbw " + thing.split(", ")[0] + ", "+thing.split(", ")[1] + "\n\n"
         output += "; script header (bank-then-pointer)\n"
         thing = ScriptPointerLabelBeforeBank(address=self.address+6, map_group=self.map_group, map_id=self.map_id, debug=self.debug).to_asm()
-        output += "db " + thing.split(", ")[0] + "\ndw " + thing.split(", ")[1] + "\n\n"
+        output += "dbw " + thing.split(", ")[0] + ", " + thing.split(", ")[1] + "\n\n"
         output += "; map event header (bank-then-pointer)\n"
         output += "dw " + PointerLabelParam(address=self.address+9, bank=self.event_bank, map_group=self.map_group, map_id=self.map_id, debug=self.debug).to_asm() + "\n\n"
         output += "; connections\n"
