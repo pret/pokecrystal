@@ -1014,7 +1014,9 @@ def generate_map_constant_labels():
             cmap = map_names[map_group][map_id]
             name = cmap["name"]
             name = name.replace("Pokémon Center", "PokeCenter").\
-                        replace(" ", "_")
+                        replace(" ", "_").\
+                        replace("-", "_").\
+                        replace("é", "e")
             constant_label = map_name_cleaner(name).upper()
             map_internal_ids[i] = {"label": constant_label,
                                    "map_id": map_id,
@@ -1031,17 +1033,19 @@ def generate_map_constants():
         generate_map_constant_labels()
     globals, groups, maps = "", "", ""
     for (id, each) in map_internal_ids.items():
-        groups += "GROUP_"+each["label"] + " EQU $%.2x" % (each["map_group"])
+        label = each["label"].replace("-", "_").replace("é", "e").upper()
+
+        groups += "GROUP_"+ label + " EQU $%.2x" % (each["map_group"])
         groups += "\n"
-        maps += "MAP_"+each["label"] + " EQU $%.2x" % (each["map_id"])
+        maps += "MAP_"+ label + " EQU $%.2x" % (each["map_id"])
         maps += "\n"
-        globals +=  each["label"] + " EQU $%.2x" % (id)
+        globals +=  label + " EQU $%.2x" % (id)
         globals += "\n"
         #for multi-byte constants:
         #print each["label"] + " EQUS \"$%.2x,$%.2x\"" % (each["map_group"], each["map_id"])
     print globals
     print groups
-    #print maps
+    print maps
 
 from pokemon_constants import pokemon_constants
 
