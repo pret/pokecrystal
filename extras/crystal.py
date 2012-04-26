@@ -3257,7 +3257,9 @@ class MapEventHeader:
 
     def to_asm(self):
         xspacing = "" #was =spacing
-        output = ""
+        output = "; filler\n"
+        output += "db %d, %d\n\n" % (self.fillers[0], self.fillers[1])
+
         output += xspacing + "; warps\n"
         output += xspacing + "db %d"%(self.warp_count)
         if len(self.warps) > 0:
