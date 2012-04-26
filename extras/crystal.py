@@ -1602,6 +1602,23 @@ class GivePoke(Command):
         self.last_address = current_address
         return True
 
+class DataByteWordMacro(Command):
+    """ Only used by the preprocessor.
+    """
+
+    id = None
+    macro_name = "dbw"
+    size = 3
+    override_byte_check = True
+
+    param_types = {
+        0: {"name": "db value", "class": DecimalParam},
+        1: {"name": "dw value", "class": PointerLabelParam},
+    }
+
+    def __init__(self): pass
+    def parse(self): pass
+    def to_asm(self): pass
 
 #byte: [name, [param1 name, param1 type], [param2 name, param2 type], ...]
 #0x9E: ["verbosegiveitem", ["item", ItemLabelByte], ["quantity", SingleByteParam]],
