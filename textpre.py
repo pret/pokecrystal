@@ -266,14 +266,28 @@ chars = {
 }
 
 for l in sys.stdin:
-
     # strip comments
-    line = l.partition(";")
-    i = 0
     asm = ""
-    while i < len(line) and l[0] != ";":
-        asm = asm + line[i]
-        i = i + 1
+    comment    = None
+    in_quotes  = False
+    in_comment = False
+    for letter in l:
+        if in_comment:
+            comment += letter
+        elif in_quotes and letter != "\"":
+            asm += letter
+        elif in_quotes and letter == "\"":
+            in_quotes = False
+            asm += letter
+        elif not in_quotes and letter == "\"":
+            in_quotes = True
+            asm += letter
+        elif not in_quotes and letter != "\"":
+            if letter == ";":
+                in_comment = True
+                comment = ";"
+            else:
+                asm += letter
 
     # skip asm with no quotes
     if "\"" not in asm:
@@ -339,3 +353,6 @@ for l in sys.stdin:
         else:
             sys.stdout.write(token)
         even = not even
+
+    if comment != None:
+        sys.stdout.write(comment)
