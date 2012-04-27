@@ -1522,7 +1522,10 @@ class TextPointerLabelParam(PointerLabelParam):
         address = calculate_pointer_from_bytes_at(self.address, bank=self.bank)
         if address != None and address != 0:
             self.text = parse_text_engine_script_at(address, map_group=self.map_group, map_id=self.map_id, force=self.force, debug=self.debug)
-
+    
+    def get_dependencies(self, recompute=False, global_dependencies=set()):
+        global_dependencies.add(self.text)
+        return [self.text]
 
 class MovementPointerLabelParam(PointerLabelParam):
     pass
