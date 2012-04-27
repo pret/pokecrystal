@@ -2056,10 +2056,13 @@ class Script:
         return commands
 
     def get_dependencies(self):
+        if self.dependencies != None:
+            return self.dependencies
         dependencies = []
         for command in self.commands:
             deps = command.get_dependencies()
             dependencies.extend(deps)
+        self.dependencies = dependencies
         return dependencies
 
     def to_asm(self):
