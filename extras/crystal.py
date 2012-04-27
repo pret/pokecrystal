@@ -714,7 +714,9 @@ class TextScript:
         self.size = self.byte_count = self.last_address - original_address
         return commands
 
-    def get_dependencies(self):
+    def get_dependencies(self, recompute=False):
+        if recompute:
+            raise NotImplementedError, bryan_message
         return self.dependencies
 
     def to_asm(self, label=None):
@@ -916,7 +918,7 @@ class EncodedText:
         self.parse()
         script_parse_table[self.address : self.last_address] = self
     
-    def get_dependencies(self):
+    def get_dependencies(self, recompute=False):
         return []
     
     def parse(self):
@@ -1184,7 +1186,8 @@ class SingleByteParam():
 
     def parse(self): self.byte = ord(rom[self.address])
 
-    def get_dependencies(self): return []
+    def get_dependencies(self, recompute=False):
+        return []
 
     def to_asm(self):
         if not self.should_be_decimal: return hex(self.byte).replace("0x", "$")
@@ -1233,7 +1236,7 @@ class MultiByteParam():
         else:
             self.parsed_address = calculate_pointer_from_bytes_at(self.address, bank=None)
 
-    def get_dependencies(self):
+    def get_dependencies(self, recompute=False):
         return []
 
     #you won't actually use this to_asm because it's too generic
@@ -1285,7 +1288,7 @@ class PointerLabelParam(MultiByteParam):
             if self.debug:
                 print "parsed address is: " + hex(self.parsed_address) + " with label: " + thing.label.name + " of type: " + str(thing.__class__)
             dependencies.append(thing)
-            dependencies.extend(thing.get_dependencies())
+            dependencies.extend(thing.get_dependencies(recompute=recompute))
         self.dependencies = dependencies
         return dependencies
 
@@ -1480,7 +1483,7 @@ class RawTextPointerLabelParam(PointerLabelParam):
         self.calculated_address = address
         self.text = TextScript(address, map_group=self.map_group, map_id=self.map_id, debug=self.debug)
 
-    def get_dependencies(self):
+    def get_dependencies(self, recompute=False):
         return [self.text]
 
 class TextPointerLabelParam(PointerLabelParam):
@@ -1546,7 +1549,7 @@ class Command:
             return self.dependencies
         for (key, param) in self.params.items():
             if hasattr(param, "get_dependencies") and param != self:
-                deps = param.get_dependencies()
+                deps = param.get_dependencies(recompute=recompute)
                 if deps != None and not self in deps:
                     dependencies.extend(deps)
         self.dependencies = dependencies
@@ -2069,7 +2072,7 @@ class Script:
             return self.dependencies
         dependencies = []
         for command in self.commands:
-            deps = command.get_dependencies()
+            deps = command.get_dependencies(recompute=recompute)
             dependencies.extend(deps)
         self.dependencies = dependencies
         return dependencies
@@ -2148,7 +2151,7 @@ class Warp(Command):
         script_parse_table[kwargs["address"] : kwargs["address"] + self.size] = self
         Command.__init__(self, *args, **kwargs)
 
-    def get_dependencies(self):
+    def get_dependencies(self, recompute=False):
         return []
 
 all_warps = []
@@ -2295,10 +2298,10 @@ class ItemFragmentParam(PointerLabelParam):
         itemfrag = ItemFragment(address=address, map_group=self.map_group, map_id=self.map_id, debug=self.debug)
         self.itemfrag = itemfrag
 
-        self.dependencies = [itemfrag].extend(itemfrag.get_dependencies())
-
-    def get_dependencies(self):
-        #self.dependencies = [itemfrag].extend(itemfrag.get_dependencies())
+    def get_dependencies(self, recompute=False):
+        if self.dependencies != None and not recompute:
+            return self.dependencies
+        self.dependencies = [self.itemfrag].extend(self.itemfrag.get_dependencies(recompute=recompute))
         return self.dependencies
 
 class TrainerFragment(Command):
@@ -2353,13 +2356,13 @@ class TrainerFragment(Command):
         if self.dependencies != None and not recompute:
             return self.dependencies
         deps.append(self.params[3])
-        deps.extend(self.params[3].get_dependencies())
+        deps.extend(self.params[3].get_dependencies(recompute=recompute))
         deps.append(self.params[4])
-        deps.extend(self.params[4].get_dependencies())
+        deps.extend(self.params[4].get_dependencies(recompute=recompute))
         deps.append(self.params[5])
-        deps.extend(self.params[5].get_dependencies())
+        deps.extend(self.params[5].get_dependencies(recompute=recompute))
         deps.append(self.params[6])
-        deps.extend(self.params[6].get_dependencies())
+        deps.extend(self.params[6].get_dependencies(recompute=recompute))
         self.dependencies = dep
         return deps
 
@@ -2398,7 +2401,7 @@ class TrainerFragmentParam(PointerLabelParam):
             return self.dependencies
         deps.extend(self.dependencies)
         if len(self.dependencies) > 0:
-            deps.extend(self.dependencies[0].get_dependencies())
+            deps.extend(self.dependencies[0].get_dependencies(recompute=recompute))
         self.dependencies = deps
         return deps
 
@@ -2661,7 +2664,7 @@ class SignpostRemoteBase:
         if self.dependencies != None and not recompute:
             return self.dependencies
         for p in self.params:
-            deps = p.get_dependencies()
+            deps = p.get_dependencies(recompute=recompute)
             dependencies.extend(deps)
         self.dependencies = dependencies
         return dependencies
@@ -2905,7 +2908,7 @@ class Signpost(Command):
         if self.dependencies != None and not recompute:
             return self.dependencies
         for p in self.params:
-            dependencies.extend(p.get_dependencies())
+            dependencies.extend(p.get_dependencies(recompute=recompute))
         self.dependencies = dependencies
         return dependencies
 
@@ -3026,7 +3029,7 @@ class MapHeader:
         if self.dependencies != None and not recompute:
             return self.dependencies
         dependencies = [self.second_map_header]
-        dependencies.append(self.second_map_header.get_dependencies())
+        dependencies.append(self.second_map_header.get_dependencies(recompute=recompute))
         self.dependencies = dependencies
         return dependencies
 
@@ -3162,8 +3165,8 @@ class SecondMapHeader:
         if self.dependencies != None and not recompute:
             return self.dependencies
         dependencies = [self.script_header, self.event_header, self.blockdata]
-        dependencies.append(self.script_header.get_dependencies())
-        dependencies.append(self.event_header.get_dependencies())
+        dependencies.append(self.script_header.get_dependencies(recompute=recompute))
+        dependencies.append(self.event_header.get_dependencies(recompute=recompute))
         self.dependencies = dependencies
         return dependencies
 
@@ -3347,7 +3350,7 @@ class MapEventHeader:
         
         dependencies = []
         for p in bases:
-            dependencies.extend(p.get_dependencies())
+            dependencies.extend(p.get_dependencies(recompute=recompute))
         self.dependencies = dependencies
         return dependencies
 
@@ -3548,10 +3551,10 @@ class MapScriptHeader:
         dependencies = []
         for p in list(self.triggers):
             #dependencies.append(p[0])
-            dependencies.extend(p[0].get_dependencies())
+            dependencies.extend(p[0].get_dependencies(recompute=recompute))
         for callback in self.callbacks:
             dependencies.append(callback["callback"])
-            dependencies.extend(callback["callback"].get_dependencies())
+            dependencies.extend(callback["callback"].get_dependencies(recompute=recompute))
         self.dependencies = dependencies
         return dependencies
 
