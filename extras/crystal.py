@@ -1319,6 +1319,7 @@ class PointerLabelParam(MultiByteParam):
         if not label:
             #pointer_part = (", ".join([(self.prefix+"%.2x")%x for x in reversed(self.bytes[1:])]))
             pointer_part = self.prefix+("%.2x"%self.bytes[1])+("%.2x"%self.bytes[0])
+
         #bank positioning matters!
         if bank == True or bank == "reverse": #bank, pointer
             #possibly use BANK(LABEL) if we know the bank
@@ -1340,7 +1341,6 @@ class PointerLabelParam(MultiByteParam):
             #raise Exception, "this should never happen"
             return pointer_part #probably in the same bank ?
         raise Exception, "this should never happen"
-
 
 class PointerLabelBeforeBank(PointerLabelParam):
     bank = True #bank appears first, see calculate_pointer_from_bytes_at
@@ -5018,7 +5018,11 @@ def get_label_for(address):
             return "AlreadyParsedNoDefaultUnknownLabel_" + hex(address)
 
     #return "NotYetParsed_"+hex(address)
-    return "$%.2x"%(address)
+    if address > 0x7FFF:
+        value = 0x4000 + (address % 0x4000)
+        return "$%.2x"%(value)
+    else:
+        return "$%.2x"%(address)
 
 def remove_quoted_text(line):
     """get rid of content inside quotes
