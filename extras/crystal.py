@@ -1710,7 +1710,7 @@ pksv_crystal_more = {
     0x21: ["checkitem", ["item", ItemLabelByte]],
     0x22: ["givemoney", ["account", SingleByteParam], ["money", MoneyByteParam]],
     0x23: ["takemoney", ["account", SingleByteParam], ["money", MoneyByteParam]],
-    0x24: ["checkmonkey", ["account", SingleByteParam], ["money", MoneyByteParam]],
+    0x24: ["checkmoney", ["account", SingleByteParam], ["money", MoneyByteParam]],
     0x25: ["givecoins", ["coins", CoinByteParam]],
     0x26: ["takecoins", ["coins", CoinByteParam]],
     0x27: ["checkcoins", ["coins", CoinByteParam]],
