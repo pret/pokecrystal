@@ -2376,7 +2376,7 @@ class TrainerFragment(Command):
         deps.extend(self.params[5].get_dependencies(recompute=recompute, global_dependencies=global_dependencies))
         #deps.append(self.params[6])
         deps.extend(self.params[6].get_dependencies(recompute=recompute, global_dependencies=global_dependencies))
-        self.dependencies = dep
+        self.dependencies = deps
         return deps
 
     def to_asm(self):
@@ -4858,8 +4858,9 @@ class Asm:
         self.labels.append(new_object.label)
         return True 
     def insert_single_with_dependencies(self, object0):
-        objects = get_dependencies_for(object0) + [object0]
-        objects = list(set(objects))
+        global_dependencies = set([object0])
+        poopbutt = get_dependencies_for(object0, global_dependencies=global_dependencies, recompute=False)
+        objects = global_dependencies
         for object in objects:
             #if object in self.parts:
             #    if self.debug:
