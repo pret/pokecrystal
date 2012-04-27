@@ -1110,7 +1110,7 @@ def generate_item_constants():
     for (id, item) in item_constants.items():
         val = ("$%.2x"%id).upper()
         while len(item)<13: item+= " "
-        output += item + " EQU " + val
+        output += item + " EQU " + val + "\n"
     return output
 
 def find_all_text_pointers_in_script_engine_script(script, bank=None, debug=False):
