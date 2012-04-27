@@ -879,7 +879,7 @@ class TextScript:
         #if len(output)!=0 and output[-1] == "\n":
         #    include_newline = ""
         #output += include_newline + "; " + hex(start_address) + " + " + str(byte_count) + " bytes = " + hex(start_address + byte_count)
-        if output[-1] == "\n":
+        if len(output) > 0 and output[-1] == "\n":
             output = output[:-1]
         self.size = self.byte_count = byte_count
         return output
@@ -4710,9 +4710,9 @@ class Asm:
             print "object was previously inserted ("+str(new_object)+") by label: "+new_object.label.name
             return
         #check by address
-        if self.does_address_have_label(new_object.address):
-            print "object's address is already used ("+str(new_object)+") at "+hex(new_object.address)+" label="+new_object.label.name
-            return
+        #if self.does_address_have_label(new_object.address):
+        #    print "object's address is already used ("+str(new_object)+") at "+hex(new_object.address)+" label="+new_object.label.name
+        #    return
 
         start_address = new_object.address
         end_address = new_object.last_address
@@ -4770,11 +4770,11 @@ class Asm:
         objects = get_dependencies_for(object0) + [object0]
         objects = list(set(objects))
         for object in objects:
-            if object in self.parts:
-                if self.debug:
-                    print "already inserted -- object.__class__="+str(object.__class__)+" object is: "+str(object)+\
-                          " for object.__class__="+str(object0.__class__)+" object="+str(object0)
-                continue
+            #if object in self.parts:
+            #    if self.debug:
+            #        print "already inserted -- object.__class__="+str(object.__class__)+" object is: "+str(object)+\
+            #              " for object.__class__="+str(object0.__class__)+" object="+str(object0)
+            #    continue
             if self.debug:
                 print "object.__class__="+str(object.__class__) + " object is: " + str(object)
             self.insert(object)
