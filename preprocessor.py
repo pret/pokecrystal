@@ -11,10 +11,18 @@ from extras.crystal import command_classes, \
                     DataByteWordMacro, \
                     PointerLabelBeforeBank, \
                     PointerLabelAfterBank, \
-                    MoneyByteParam
+                    MoneyByteParam, \
+                    ItemFragment
 
 macros = command_classes + \
-    [Warp, XYTrigger, Signpost, PeopleEvent, DataByteWordMacro]
+    [
+    Warp,
+    XYTrigger,
+    Signpost,
+    PeopleEvent,
+    DataByteWordMacro,
+    ItemFragment,
+    ]
 
 chars = {
 "ガ": 0x05,
