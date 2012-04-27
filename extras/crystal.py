@@ -1399,8 +1399,8 @@ class RAMAddressParam(MultiByteParam):
     def to_asm(self):
         address = calculate_pointer_from_bytes_at(self.address, bank=False)
         label = get_ram_label(address)
-        if label: return "["+label+"]"
-        else: return "[$"+"".join(["%.2x"%x for x in self.bytes])+"]"
+        if label: return label
+        else: return "$"+"".join(["%.2x"%x for x in self.bytes])+""
 
 
 class MoneyByteParam(MultiByteParam):
