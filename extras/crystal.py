@@ -4988,10 +4988,10 @@ def get_label_for(address):
             return thing["label"]
 
     #the new way
-    if is_script_already_parsed_at(address):
-        obj = script_parse_table[address]
+    obj = script_parse_table[address]
+    if obj:
         if hasattr(obj, "label"):
-            return getattr(obj, "label")
+            return obj.label.name
         else:
             return "AlreadyParsedNoDefaultUnknownLabel_" + hex(address)
 
