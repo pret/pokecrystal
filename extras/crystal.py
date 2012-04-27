@@ -1523,6 +1523,8 @@ class TextPointerLabelParam(PointerLabelParam):
         address = calculate_pointer_from_bytes_at(self.address, bank=self.bank)
         if address != None and address != 0:
             self.text = parse_text_engine_script_at(address, map_group=self.map_group, map_id=self.map_id, force=self.force, debug=self.debug)
+            if not self.text:
+                self.text = script_parse_table[address]
     
     def get_dependencies(self, recompute=False, global_dependencies=set()):
         if self.text:
@@ -1799,7 +1801,7 @@ pksv_crystal_more = {
     0x49: ["loadmovesprites"],
     0x4A: ["loadbytec1ce", ["byte", SingleByteParam]], #not pksv
     0x4B: ["3writetext", ["text_pointer", PointerLabelBeforeBank]],
-    0x4C: ["2writetext", ["text_pointer", TextPointerLabelParam]],
+    0x4C: ["2writetext", ["text_pointer", RawTextPointerLabelParam]],
     0x4D: ["repeattext", ["byte", SingleByteParam], ["byte", SingleByteParam]], #not pksv
     0x4E: ["yesorno"],
     0x4F: ["loadmenudata", ["data", MenuDataPointerParam]],
