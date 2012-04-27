@@ -4778,6 +4778,9 @@ class Asm:
             if self.debug:
                 print "object.__class__="+str(object.__class__) + " object is: " + str(object)
             self.insert(object)
+    def insert_multiple_with_dependencies(self, objects):
+        for object in objects:
+            self.insert_single_with_dependencies(object)
     def insert_all(self, limit=100):
         count = 0
         for each in script_parse_table.items():
