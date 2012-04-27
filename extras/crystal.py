@@ -4390,12 +4390,21 @@ def get_dependencies_for(some_object, recompute=False):
     then you're losing out on the main value of having asm in the
     first place.
     """
-    if isinstance(some_object, int):
-        some_object = script_parse_table[some_object]
-    if some_object.dependencies != None and not recompute:
-        return list(flatten(some_object.dependencies))
-    deps = some_object.get_dependencies(recompute=recompute)
-    return list(flatten(deps))
+    try:
+        if isinstance(some_object, int):
+            some_object = script_parse_table[some_object]
+        if some_object.dependencies != None and not recompute:
+            return list(flatten(some_object.dependencies))
+        deps = some_object.get_dependencies(recompute=recompute)
+        return list(flatten(deps))
+    except RuntimeError, e:
+        #1552, 1291, 2075, 1552, 1291...
+        print "some_object is: " + str(some_object)
+        print "class type: " + str(some_object.__class__)
+        print "label name: " + str(some_object.label.name)
+        print "address: " + str(some_object.address)
+        print "asm is: \n\n" + to_asm(some_object)
+        raise e
 
 def isolate_incbins():
     "find each incbin line"
@@ -4771,8 +4780,11 @@ class Asm:
         start_address = new_object.address
         end_address = new_object.last_address
         if self.debug:
-            print "object is type="+str(new_object.__class__)+" new_object="+str(new_object)
-            print "start_address="+hex(start_address)+" end_address="+hex(end_address)
+            debugmsg  = "object is " + new_object.label.name + " type="+str(new_object.__class__)+" new_object="+str(new_object)
+            debugmsg += " start_address="+hex(start_address)+" end_address="+hex(end_address)
+            debugmsg += " label = " + new_object.label.name
+            print debugmsg
+            del debugmsg
         if (end_address < start_address) or ((end_address - start_address) < 0):
             if not self.debug:
                 print "object is type="+str(new_object.__class__)+" new_object="+str(new_object)
