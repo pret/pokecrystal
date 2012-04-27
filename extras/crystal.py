@@ -1407,7 +1407,29 @@ class MoneyByteParam(MultiByteParam):
     size = 3
     max_value = 0x0F423F
     should_be_decimal = True
+    def parse(self):
+        MultiByteParam.parse(self)
+        # in the rom as xxyyzz
+        self.x = self.bytes[0]
+        self.y = self.bytes[1]
+        self.z = self.bytes[2]
+    def to_asm(self):
+        return str(self.x + self.y << 8 + self.z << 16)
 
+    #this is used by the preprocessor    
+    @staticmethod
+    def from_asm(value):
+        #max is 0F423F
+        #z = 0x0F ; y = 0x42 ; x = 0x3F
+        #999999 = x + (y << 8) + (z << 16)
+        
+        value = int(value)
+
+        x = (value & 0x0000FF)
+        y = (value & 0x00FF00) >> 8
+        z = (value & 0xFF0000) >> 16
+
+        return str(x) + "\ndb "+str(y)+"\ndb "+str(z)
 
 class CoinByteParam(MultiByteParam):
     size = 2

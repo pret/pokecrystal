@@ -10,7 +10,8 @@ from extras.crystal import command_classes, \
                     PeopleEvent, \
                     DataByteWordMacro, \
                     PointerLabelBeforeBank, \
-                    PointerLabelAfterBank
+                    PointerLabelAfterBank, \
+                    MoneyByteParam
 
 macros = command_classes + \
     [Warp, XYTrigger, Signpost, PeopleEvent, DataByteWordMacro]
@@ -450,6 +451,8 @@ def macro_translator(macro, token, line):
         elif param_klass.byte_type == "dw":
             if param_klass.size == 2:
                 allowed_length += 1 # just label
+            elif param_klass == MoneyByteParam:
+                allowed_length += 1
             elif param_klass.size == 3:
                 allowed_length += 2 # bank and label
             else:
@@ -488,12 +491,15 @@ def macro_translator(macro, token, line):
                 # write the pointer second
                 sys.stdout.write("dw " + params[index+1] + "\n")
                 index += 2
-            elif size == 3 and issubclass(param_klass, PointerLabelAfterBank):
+            elif size == 3 and (issubclass(param_klass, PointerLabelAfterBank):
                 # write the pointer first
                 sys.stdout.write("dw " + params[index] + "\n")
                 # write the bank second
                 sys.stdout.write("db " + params[index+1] + "\n")
                 index += 2
+            elif size == 3 and issubclass(param_klass, MoneyByteParam):
+                sys.stdout.write("db " + MoneyByteParam.from_asm(params[index]) + "\n")
+                index += 1
             else:
                 raise Exception, "dunno what to do with this macro " + \
                 "param (" + str(param_klass) + ") " + "on this line: " + \
