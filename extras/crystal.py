@@ -714,9 +714,10 @@ class TextScript:
         self.size = self.byte_count = self.last_address - original_address
         return commands
 
-    def get_dependencies(self, recompute=False):
-        if recompute:
-            raise NotImplementedError, bryan_message
+    def get_dependencies(self, recompute=False, global_dependencies=set()):
+        #if recompute:
+        #    raise NotImplementedError, bryan_message
+        global_dependencies.update(self.dependencies)
         return self.dependencies
 
     def to_asm(self, label=None):
@@ -918,7 +919,7 @@ class EncodedText:
         self.parse()
         script_parse_table[self.address : self.last_address] = self
     
-    def get_dependencies(self, recompute=False):
+    def get_dependencies(self, recompute=False, global_dependencies=set()):
         return []
     
     def parse(self):
@@ -1186,7 +1187,7 @@ class SingleByteParam():
 
     def parse(self): self.byte = ord(rom[self.address])
 
-    def get_dependencies(self, recompute=False):
+    def get_dependencies(self, recompute=False, global_dependencies=set()):
         return []
 
     def to_asm(self):
@@ -1236,7 +1237,7 @@ class MultiByteParam():
         else:
             self.parsed_address = calculate_pointer_from_bytes_at(self.address, bank=None)
 
-    def get_dependencies(self, recompute=False):
+    def get_dependencies(self, recompute=False, global_dependencies=set()):
         return []
 
     #you won't actually use this to_asm because it's too generic
@@ -1277,18 +1278,22 @@ class PointerLabelParam(MultiByteParam):
         self.parsed_address = calculate_pointer_from_bytes_at(self.address, bank=self.bank)
         MultiByteParam.parse(self)
 
-    def get_dependencies(self, recompute=False):
+    def get_dependencies(self, recompute=False, global_dependencies=set()):
         dependencies = []
         if self.parsed_address == self.address:
             return dependencies
         if self.dependencies != None and not recompute:
+            global_dependencies.update(self.dependencies)
             return self.dependencies
         thing = script_parse_table[self.parsed_address]
         if thing and thing.address == self.parsed_address and not (thing is self):
             if self.debug:
                 print "parsed address is: " + hex(self.parsed_address) + " with label: " + thing.label.name + " of type: " + str(thing.__class__)
             dependencies.append(thing)
-            dependencies.extend(thing.get_dependencies(recompute=recompute))
+            if not thing in global_dependencies:
+                global_dependencies.add(thing)
+                more = thing.get_dependencies(recompute=recompute, global_dependencies=global_dependencies)
+                dependencies.extend(more)
         self.dependencies = dependencies
         return dependencies
 
@@ -1483,7 +1488,8 @@ class RawTextPointerLabelParam(PointerLabelParam):
         self.calculated_address = address
         self.text = TextScript(address, map_group=self.map_group, map_id=self.map_id, debug=self.debug)
 
-    def get_dependencies(self, recompute=False):
+    def get_dependencies(self, recompute=False, global_dependencies=set()):
+        global_dependencies.add(self.text)
         return [self.text]
 
 class TextPointerLabelParam(PointerLabelParam):
@@ -1543,13 +1549,14 @@ class Command:
         #start parsing this command's parameter bytes
         self.parse()
 
-    def get_dependencies(self, recompute=False):
+    def get_dependencies(self, recompute=False, global_dependencies=set()):
         dependencies = []
         if self.dependencies != None and not recompute:
+            global_dependencies.update(self.dependencies)
             return self.dependencies
         for (key, param) in self.params.items():
             if hasattr(param, "get_dependencies") and param != self:
-                deps = param.get_dependencies(recompute=recompute)
+                deps = param.get_dependencies(recompute=recompute, global_dependencies=global_dependencies)
                 if deps != None and not self in deps:
                     dependencies.extend(deps)
         self.dependencies = dependencies
@@ -2067,12 +2074,13 @@ class Script:
         self.commands = commands
         return commands
 
-    def get_dependencies(self, recompute=False):
+    def get_dependencies(self, recompute=False, global_dependencies=set()):
         if self.dependencies != None and not recompute:
+            global_dependencies.update(self.dependencies)
             return self.dependencies
         dependencies = []
         for command in self.commands:
-            deps = command.get_dependencies(recompute=recompute)
+            deps = command.get_dependencies(recompute=recompute, global_dependencies=global_dependencies)
             dependencies.extend(deps)
         self.dependencies = dependencies
         return dependencies
@@ -2151,7 +2159,7 @@ class Warp(Command):
         script_parse_table[kwargs["address"] : kwargs["address"] + self.size] = self
         Command.__init__(self, *args, **kwargs)
 
-    def get_dependencies(self, recompute=False):
+    def get_dependencies(self, recompute=False, global_dependencies=set()):
         return []
 
 all_warps = []
@@ -2203,13 +2211,15 @@ class XYTrigger(Command):
         self.dependencies = None
         Command.__init__(self, *args, **kwargs)
     
-    def get_dependencies(self, recompute=False):
+    def get_dependencies(self, recompute=False, global_dependencies=set()):
         dependencies = []
         if self.dependencies != None and not recompute:
+            global_dependencies.update(self.dependencies)
             return self.dependencies
         thing = script_parse_table[self.params[4].parsed_address]
         if thing and thing != self.params[4]:
             dependencies.append(thing)
+            global_dependencies.add(thing)
         self.dependencies = dependencies
         return dependencies
 
@@ -2298,10 +2308,12 @@ class ItemFragmentParam(PointerLabelParam):
         itemfrag = ItemFragment(address=address, map_group=self.map_group, map_id=self.map_id, debug=self.debug)
         self.itemfrag = itemfrag
 
-    def get_dependencies(self, recompute=False):
+    def get_dependencies(self, recompute=False, global_dependencies=set()):
         if self.dependencies != None and not recompute:
+            global_dependencies.update(self.dependencies)
             return self.dependencies
-        self.dependencies = [self.itemfrag].extend(self.itemfrag.get_dependencies(recompute=recompute))
+        self.dependencies = [self.itemfrag].extend(self.itemfrag.get_dependencies(recompute=recompute, global_dependencies=global_dependencies))
+        global_dependencies.add(self.itemfrag)
         return self.dependencies
 
 class TrainerFragment(Command):
@@ -2350,19 +2362,20 @@ class TrainerFragment(Command):
         self.dependencies = None
         Command.__init__(self, *args, **kwargs)
     
-    def get_dependencies(self, recompute=False):
+    def get_dependencies(self, recompute=False, global_dependencies=set()):
         deps = []
         if not is_valid_address(self.address): return deps
         if self.dependencies != None and not recompute:
+            global_dependencies.update(self.dependencies)
             return self.dependencies
-        deps.append(self.params[3])
-        deps.extend(self.params[3].get_dependencies(recompute=recompute))
-        deps.append(self.params[4])
-        deps.extend(self.params[4].get_dependencies(recompute=recompute))
-        deps.append(self.params[5])
-        deps.extend(self.params[5].get_dependencies(recompute=recompute))
-        deps.append(self.params[6])
-        deps.extend(self.params[6].get_dependencies(recompute=recompute))
+        #deps.append(self.params[3])
+        deps.extend(self.params[3].get_dependencies(recompute=recompute, global_dependencies=global_dependencies))
+        #deps.append(self.params[4])
+        deps.extend(self.params[4].get_dependencies(recompute=recompute, global_dependencies=global_dependencies))
+        #deps.append(self.params[5])
+        deps.extend(self.params[5].get_dependencies(recompute=recompute, global_dependencies=global_dependencies))
+        #deps.append(self.params[6])
+        deps.extend(self.params[6].get_dependencies(recompute=recompute, global_dependencies=global_dependencies))
         self.dependencies = dep
         return deps
 
@@ -2389,19 +2402,21 @@ class TrainerFragmentParam(PointerLabelParam):
         address = calculate_pointer_from_bytes_at(self.address, bank=self.bank)
         self.calculated_address = address
         if address == 0x26ef:
-            self.dependencies = []
+            self.trainerfrag = None
         else:
             trainerfrag = TrainerFragment(address=address, map_group=self.map_group, map_id=self.map_id, debug=self.debug)
-            self.dependencies = [trainerfrag]
+            self.trainerfrag = trainerfrag
         PointerLabelParam.parse(self)
 
-    def get_dependencies(self, recompute=False):
+    def get_dependencies(self, recompute=False, global_dependencies=set()):
         deps = []
         if self.dependencies != None and not recompute:
+            global_dependencies.update(self.dependencies)
             return self.dependencies
-        deps.extend(self.dependencies)
-        if len(self.dependencies) > 0:
-            deps.extend(self.dependencies[0].get_dependencies(recompute=recompute))
+        if self.trainerfrag:
+            global_dependencies.add(self.trainerfrag)
+            deps.append(self.trainerfrag)
+            deps.extend(self.trainerfrag.get_dependencies(recompute=recompute, global_dependencies=global_dependencies))
         self.dependencies = deps
         return deps
 
@@ -2659,12 +2674,13 @@ class SignpostRemoteBase:
         self.dependencies = None
         self.parse()
 
-    def get_dependencies(self, recompute=False):
+    def get_dependencies(self, recompute=False, global_dependencies=set()):
         dependencies = []
         if self.dependencies != None and not recompute:
+            global_dependencies.update(self.dependencies)
             return self.dependencies
         for p in self.params:
-            deps = p.get_dependencies(recompute=recompute)
+            deps = p.get_dependencies(recompute=recompute, global_dependencies=global_dependencies)
             dependencies.extend(deps)
         self.dependencies = dependencies
         return dependencies
@@ -2903,12 +2919,13 @@ class Signpost(Command):
         else:
             raise Exception, "unknown signpost type byte="+hex(func) + " signpost@"+hex(self.address)
     
-    def get_dependencies(self, recompute=False):
+    def get_dependencies(self, recompute=False, global_dependencies=set()):
         dependencies = []
         if self.dependencies != None and not recompute:
+            global_dependencies.update(self.dependencies)
             return self.dependencies
         for p in self.params:
-            dependencies.extend(p.get_dependencies(recompute=recompute))
+            dependencies.extend(p.get_dependencies(recompute=recompute, global_dependencies=global_dependencies))
         self.dependencies = dependencies
         return dependencies
 
@@ -3025,11 +3042,13 @@ class MapHeader:
         self.time_of_day = DecimalParam(address=address+7)
         self.fishing_group = DecimalParam(address=address+8)
     
-    def get_dependencies(self, recompute=False):
+    def get_dependencies(self, recompute=False, global_dependencies=set()):
         if self.dependencies != None and not recompute:
+            global_dependencies.update(self.dependencies)
             return self.dependencies
         dependencies = [self.second_map_header]
-        dependencies.append(self.second_map_header.get_dependencies(recompute=recompute))
+        global_dependencies.add(self.second_map_header)
+        dependencies.append(self.second_map_header.get_dependencies(recompute=recompute, global_dependencies=global_dependencies))
         self.dependencies = dependencies
         return dependencies
 
@@ -3161,12 +3180,14 @@ class SecondMapHeader:
 
         return True
     
-    def get_dependencies(self, recompute=False):
+    def get_dependencies(self, recompute=False, global_dependencies=set()):
         if self.dependencies != None and not recompute:
+            global_dependencies.update(self.dependencies)
             return self.dependencies
         dependencies = [self.script_header, self.event_header, self.blockdata]
-        dependencies.append(self.script_header.get_dependencies(recompute=recompute))
-        dependencies.append(self.event_header.get_dependencies(recompute=recompute))
+        global_dependencies.update(dependencies)
+        dependencies.append(self.script_header.get_dependencies(recompute=recompute, global_dependencies=global_dependencies))
+        dependencies.append(self.event_header.get_dependencies(recompute=recompute, global_dependencies=global_dependencies))
         self.dependencies = dependencies
         return dependencies
 
@@ -3339,8 +3360,9 @@ class MapEventHeader:
             self.last_address = after_signposts+1
         return True
     
-    def get_dependencies(self, recompute=False):
+    def get_dependencies(self, recompute=False, global_dependencies=set()):
         if self.dependencies != None and not recompute:
+            global_dependencies.update(self.dependencies)
             return self.dependencies
         bases = []
         bases += self.people_events
@@ -3350,7 +3372,7 @@ class MapEventHeader:
         
         dependencies = []
         for p in bases:
-            dependencies.extend(p.get_dependencies(recompute=recompute))
+            dependencies.extend(p.get_dependencies(recompute=recompute, global_dependencies=global_dependencies))
         self.dependencies = dependencies
         return dependencies
 
@@ -3545,16 +3567,18 @@ class MapScriptHeader:
         print "done parsing a MapScriptHeader map_group="+str(map_group)+" map_id="+str(map_id)
         return True
     
-    def get_dependencies(self, recompute=False):
+    def get_dependencies(self, recompute=False, global_dependencies=set()):
         if self.dependencies != None and not recompute:
+            global_dependencies.update(self.dependencies)
             return self.dependencies
         dependencies = []
         for p in list(self.triggers):
             #dependencies.append(p[0])
-            dependencies.extend(p[0].get_dependencies(recompute=recompute))
+            dependencies.extend(p[0].get_dependencies(recompute=recompute, global_dependencies=global_dependencies))
         for callback in self.callbacks:
             dependencies.append(callback["callback"])
-            dependencies.extend(callback["callback"].get_dependencies(recompute=recompute))
+            global_dependencies.add(callback["callback"])
+            dependencies.extend(callback["callback"].get_dependencies(recompute=recompute, global_dependencies=global_dependencies))
         self.dependencies = dependencies
         return dependencies
 
@@ -4381,7 +4405,7 @@ def flatten(x):
     "flattens a list of sublists into just one list"
     return list(flattener(x))
 
-def get_dependencies_for(some_object, recompute=False):
+def get_dependencies_for(some_object, recompute=False, global_dependencies=set()):
     """
     calculates which labels need to be satisfied for an object
     to be inserted into the asm and compile successfully.
@@ -4394,9 +4418,10 @@ def get_dependencies_for(some_object, recompute=False):
         if isinstance(some_object, int):
             some_object = script_parse_table[some_object]
         if some_object.dependencies != None and not recompute:
-            return list(flatten(some_object.dependencies))
-        deps = some_object.get_dependencies(recompute=recompute)
-        return list(flatten(deps))
+            global_dependencies.update(some_object.dependencies)
+        else:
+            some_object.get_dependencies(recompute=recompute, global_dependencies=global_dependencies)
+        return global_dependencies
     except RuntimeError, e:
         #1552, 1291, 2075, 1552, 1291...
         print "some_object is: " + str(some_object)
