@@ -1410,11 +1410,11 @@ class MoneyByteParam(MultiByteParam):
     def parse(self):
         MultiByteParam.parse(self)
         # in the rom as xxyyzz
-        self.x = self.bytes[0]
+        self.x = self.bytes[2]
         self.y = self.bytes[1]
-        self.z = self.bytes[2]
+        self.z = self.bytes[0]
     def to_asm(self):
-        return str(self.x + self.y << 8 + self.z << 16)
+        return str(self.x + (self.y << 8) + (self.z << 16))
 
     #this is used by the preprocessor    
     @staticmethod
