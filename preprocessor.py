@@ -351,7 +351,7 @@ def quote_translator(asm):
                     token = token[1:]
 
                     # certain apostrophe-letter pairs are only a single byte
-                    if char == "'" and \
+                    if char == "'" and len(token) > 0 and \
                         (token[0] == "d" or \
                          token[0] == "l" or \
                          token[0] == "m" or \
@@ -491,7 +491,7 @@ def macro_translator(macro, token, line):
                 # write the pointer second
                 sys.stdout.write("dw " + params[index+1] + "\n")
                 index += 2
-            elif size == 3 and (issubclass(param_klass, PointerLabelAfterBank):
+            elif size == 3 and issubclass(param_klass, PointerLabelAfterBank):
                 # write the pointer first
                 sys.stdout.write("dw " + params[index] + "\n")
                 # write the bank second
