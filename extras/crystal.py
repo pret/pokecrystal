@@ -725,7 +725,9 @@ class TextScript:
         address = self.address
         start_address = address
         if label == None: label = self.label.name
-        commands = self.commands
+        #using deepcopy because otherwise additional @s get appended each time
+        #like to the end of the text for TextScript(0x5cf3a)
+        commands = deepcopy(self.commands)
         #apparently this isn't important anymore?
         needs_to_begin_with_0 = True
         #start with zero please
