@@ -505,6 +505,7 @@ class TextScript:
 
         if is_script_already_parsed_at(address) and not force:
             print "text is already parsed at this location: " + hex(address)
+            raise Exception, "text is already parsed, what's going on ?"
             return script_parse_table[address]
 
         total_text_commands = 0
@@ -1014,6 +1015,13 @@ def parse_text_at2(address, count=10, debug=True, japanese=False):
     this does not handle text commands"""
     return EncodedText.parse_text_at(address, count, debug=debug, japanese=japanese)
 
+def parse_text_at3(address, map_group=None, map_id=None, debug=False):
+    deh = script_parse_table[address]
+    if deh:
+        return deh
+    else:
+        return TextScript(address, map_group=map_group, map_id=map_id, debug=debug)
+
 def rom_text_at(address, count=10):
     """prints out raw text from the ROM
     like for 0x112110"""
@@ -1287,8 +1295,8 @@ class PointerLabelParam(MultiByteParam):
             return self.dependencies
         thing = script_parse_table[self.parsed_address]
         if thing and thing.address == self.parsed_address and not (thing is self):
-            if self.debug:
-                print "parsed address is: " + hex(self.parsed_address) + " with label: " + thing.label.name + " of type: " + str(thing.__class__)
+            #if self.debug:
+            #    print "parsed address is: " + hex(self.parsed_address) + " with label: " + thing.label.name + " of type: " + str(thing.__class__)
             dependencies.append(thing)
             if not thing in global_dependencies:
                 global_dependencies.add(thing)
@@ -1508,7 +1516,9 @@ class RawTextPointerLabelParam(PointerLabelParam):
         #bank = calculate_bank(self.address)
         address = calculate_pointer_from_bytes_at(self.address, bank=False)
         self.calculated_address = address
-        self.text = TextScript(address, map_group=self.map_group, map_id=self.map_id, debug=self.debug)
+        #self.text = parse_text_at3(address, map_group=self.map_group, map_id=self.map_id, debug=self.debug)
+        #self.text = TextScript(address, map_group=self.map_group, map_id=self.map_id, debug=self.debug)
+        self.text = parse_text_engine_script_at(address, map_group=self.map_group, map_id=self.map_id, debug=self.debug)
 
     def get_dependencies(self, recompute=False, global_dependencies=set()):
         global_dependencies.add(self.text)
@@ -4812,13 +4822,26 @@ class Asm:
 
         return None
     def insert(self, new_object):
+        if isinstance(new_object, ScriptPointerLabelParam):
+            # its' probably being injected in some get_dependencies() somewhere
+            print "don't know why ScriptPointerLabelParam is getting to this point?"
+            return
+        start_address = new_object.address
+        
         #first some validation
         if not hasattr(new_object, "address"):
             print "object needs to have an address property: " + str(new_object)
             return
+        
+        debugmsg  = "object is " + new_object.label.name + " type="+str(new_object.__class__)+" new_object="+str(new_object)
+        debugmsg += " label = " + new_object.label.name
+        debugmsg += " start_address="+hex(start_address)#+" end_address="+hex(end_address)
+        
         if not hasattr(new_object, "last_address"):
-            print "object needs to have a last_address property: " + str(new_object)
-            return
+            print debugmsg
+            raise Exception, "object needs to have a last_address property"
+        end_address = new_object.last_address
+        debugmsg += " last_address="+hex(end_address)
 
         #check if the object is already inserted
         if new_object in self.parts:
@@ -4832,18 +4855,13 @@ class Asm:
         #if self.does_address_have_label(new_object.address):
         #    print "object's address is already used ("+str(new_object)+") at "+hex(new_object.address)+" label="+new_object.label.name
         #    return
-
-        start_address = new_object.address
-        end_address = new_object.last_address
+        
         if self.debug:
-            debugmsg  = "object is " + new_object.label.name + " type="+str(new_object.__class__)+" new_object="+str(new_object)
-            debugmsg += " start_address="+hex(start_address)+" end_address="+hex(end_address)
-            debugmsg += " label = " + new_object.label.name
             print debugmsg
-            del debugmsg
+        del debugmsg
         if (end_address < start_address) or ((end_address - start_address) < 0):
             if not self.debug:
-                print "object is type="+str(new_object.__class__)+" new_object="+str(new_object)
+                print "object is new_object="+str(new_object)
                 print "start_address="+hex(start_address)+" end_address="+hex(end_address)
             if hasattr(new_object, "to_asm"):
                 print to_asm(new_object)
@@ -4892,15 +4910,28 @@ class Asm:
         global_dependencies = set([object0])
         poopbutt = get_dependencies_for(object0, global_dependencies=global_dependencies, recompute=False)
         objects = global_dependencies
+        objects.update(poopbutt)
+        new_objects = copy(objects)
         for object in objects:
+            if hasattr(object, "dependencies") and object.dependencies == None:
+                new_objects.update(object.get_dependencies())
+        for object in new_objects:
+            if isinstance(object, ScriptPointerLabelParam):
+                continue
             #if object in self.parts:
             #    if self.debug:
             #        print "already inserted -- object.__class__="+str(object.__class__)+" object is: "+str(object)+\
             #              " for object.__class__="+str(object0.__class__)+" object="+str(object0)
             #    continue
             if self.debug:
-                print "object.__class__="+str(object.__class__) + " object is: " + str(object)
+                print " object is: " + str(object)
             self.insert(object)
+
+            #just some old debugging
+            #if object.label.name == "UnknownText_0x60128":
+            #    raise Exception, "debugging..."
+            #elif object.label.name == "UnknownScript_0x60011":
+            #    raise Exception, "debugging.. dependencies are: " + str(object.dependencies) + " versus: " + str(object.get_dependencies())
     def insert_multiple_with_dependencies(self, objects):
         for object in objects:
             self.insert_single_with_dependencies(object)
@@ -5009,9 +5040,11 @@ def get_ram_label(address):
 def get_label_for(address):
     """returns a label assigned to a particular address"""
     global all_labels
-    if type(address) != int:
-        print "get_label_for requires an integer address"
+
+    if address == None:
         return None
+    if type(address) != int:
+        raise Exception, "get_label_for requires an integer address, got: " + str(type(address))
 
     #the old way
     for thing in all_labels:
