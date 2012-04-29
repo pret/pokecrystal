@@ -2109,7 +2109,6 @@ class Script:
             commands.append(cls)
             #current_address = cls.last_address + 1
             current_address += cls.size
-        #XXX set to "self" in script_parse_table when this moves into the Script class
         self.last_address = current_address
         script_parse_table[start_address:current_address] = self
         asm_output = "\n".join([command.to_asm() for command in commands])
