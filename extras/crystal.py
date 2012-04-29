@@ -2082,38 +2082,73 @@ class Script:
             sys.exit(1)
         if is_script_already_parsed_at(start_address) and not force and not force_top:
             raise Exception, "this script has already been parsed before, please use that instance ("+hex(start_address)+")"
+        
+        # load up the rom if it hasn't been loaded already
         load_rom()
+
+        # in the event that the script parsing fails.. it would be nice to leave evidence
         script_parse_table[start_address:start_address+1] = "incomplete parse_script_with_command_classes"
+
+        # start with a blank script
         commands = []
+
+        # use this to control the while loop
         end = False
+
+        # for each command found..
         while not end:
+            # get the current scripting byte
             cur_byte = ord(rom[current_address])
-            #find the right address
-            right_kls = None
-            for kls in command_classes:
-                if kls.id == cur_byte:
-                    right_kls = kls
-            if right_kls == None:
+
+            # reset the command class (last command was probably different)
+            scripting_command_class = None
+
+            # match the command id byte to a scripting command class like GivePoke
+            for class_ in command_classes:
+                if class_.id == cur_byte:
+                    scripting_command_class = class_
+
+            # no matching command found (not implemented yet)- just end this script
+            # NOTE: might be better to raise an exception and end the program?
+            if scripting_command_class == None:
                 print "parsing script; current_address is: " + hex(current_address)
                 current_address += 1
-                #continue
                 asm_output = "\n".join([command.to_asm() for command in commands])
                 end = True
                 continue
-                #XXX maybe a bad idea to not die ?
+                # maybe the program should exit with failure instead?
                 #raise Exception, "no command found? id: " + hex(cur_byte) + " at " + hex(current_address) + " asm is:\n" + asm_output
-            #print "about to parse command(script@"+hex(start_address)+"): " + str(right_kls.macro_name)
-            cls = right_kls(address=current_address, force=force, map_group=map_group, map_id=map_id)
-            #print cls.to_asm()
-            end = cls.end
+
+            # create an instance of the command class and let it parse its parameter bytes
+            #print "about to parse command(script@"+hex(start_address)+"): " + str(scripting_command_class.macro_name)
+            cls = scripting_command_class(address=current_address, force=force, map_group=map_group, map_id=map_id)
+            
+            #if self.debug:
+            #    print cls.to_asm()
+            
+            # store it in this script object
             commands.append(cls)
+            
+            # certain commands will end the scripting engine
+            end = cls.end
+            
+            # skip past the command's parameter bytes to go to the next command
             #current_address = cls.last_address + 1
             current_address += cls.size
+
+        # last byte belonging to script is last byte of last command,
+        # or the last byte of the last command's last parameter
         self.last_address = current_address
+
+        # store the script in the global table/map thing
         script_parse_table[start_address:current_address] = self
+        
         asm_output = "\n".join([command.to_asm() for command in commands])
         print "--------------\n"+asm_output
+        
+        # store the script
         self.commands = commands
+        
         return commands
 
     def get_dependencies(self, recompute=False, global_dependencies=set()):
