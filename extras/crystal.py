@@ -385,6 +385,183 @@ def command_debug_information(command_byte=None, map_group=None, map_id=None, ad
     #info1 += "    long_info: " + long_info
     return info1
 
+class TextCommand: pass
+class MainText(TextCommand):
+    "Write text. Structure: [00][Text][0x50 (ends code)]"
+    id = 0x0
+    macro_name = "do_text"
+class WriteTextFromRAM(TextCommand):
+    """
+    Write text from ram. Structure: [01][Ram address (2byte)]
+    For valid ram addresses see Glossary. This enables use of variable text strings.
+    """
+    id = 0x1
+    macro_name = "text_from_ram"
+class WriteNumberFromRAM(TextCommand):
+    """
+    02 = Write number from ram. Structure: [02][Ram address (2byte)][Byte]
+ 
+    Byte:
+   
+    Bit5:Bit6:Bit7
+       1:   1:   1 = PokéDollar| Don’t write zeros
+       0:   1:   1 = Don’t write zeros
+       0:   0:   1 = Spaces instead of zeros
+       0:   0:   0 = Write zeros
+       0:   1:   0 = Write zeros
+       1:   0:   0 = PokéDollar
+       1:   1:   0 = PokéDollar
+       1:   0:   1 = Spaces instead of zeros| PokéDollar
+ 
+    Number of figures = Byte AND 0x1F *2
+    No Hex --> Dec Conversio
+    """
+    id = 0x2
+    macro_name = "number_from_ram"
+class SetWriteRAMLocation(TextCommand):
+    "Define new ram address to write to. Structure: [03][Ram address (2byte)]"
+    id = 0x3
+    macro_name = "store_at"
+class ShowBoxWithValueAt(TextCommand):
+    "04 = Write a box. Structure: [04][Ram address (2byte)][Y][X]"
+    id = 0x4
+    macro_name = "text_box"
+class Populate2ndLineOfTextBoxWithRAMContents(TextCommand):
+    "05 = New ram address to write to becomes 2nd line of a text box. Structure: [05]"
+    id = 0x5
+    macro_name = "text_dunno1"
+class ShowArrowsAndButtonWait(TextCommand):
+    "06 = Wait for key down + show arrows. Structure: [06]"
+    id = 0x6
+    macro_name = "waitbutton"
+class Populate2ndLine(TextCommand):
+    """
+    07 = New ram address to write to becomes 2nd line of a text box
+    Textbox + show arrows. Structure: [07]
+    """
+    id = 0x7
+    macro_name = "text_dunno2"
+class TextInlineAsm(TextCommand):
+    "08 = After the code an ASM script starts. Structure: [08][Script]"
+    id = 0x8
+    macro_name = "start_asm"
+class WriteDecimalNumberFromRAM(TextCommand):
+    """
+    09 = Write number from rom/ram in decimal. Structure: [09][Ram address/Pointer (2byte)][Byte]
+      Byte:
+ 
+      Is split: 1. 4 bits = Number of bytes to load. 0 = 3, 1 = 1, 2 = 2
+                2. 4 bits = Number of figures of displayed number
+                                                     0 = Don’t care
+                                                     1 = Don’t care
+                                                     >=2 = Number
+    """
+    id = 0x9
+    macro_name = "deciram"
+class InterpretDataStream(TextCommand):
+    """
+    0A = Interpret Data stream. Structure: [0A]
+    see: http://hax.iimarck.us/files/scriptingcodes_eng.htm#Marke88
+    """
+    id = 0xA
+    macro_name = "interpret_data"
+class Play0thSound(TextCommand):
+    "0B = Play sound 0x0000. Structure: [0B]"
+    id = 0xB
+    sound_num = 0
+    macro_name = "sound0"
+class LimitedIntrepretDataStream(TextCommand):
+    """
+    0C = Interpret Data stream. Structure: [0C][Number of codes to interpret]
+    For every interpretation there is a“…“ written
+    """
+    id = 0xC
+    macro_name = "limited_interpret_data"
+class WaitForKeyDownDisplayArrow(ShowArrowsAndButtonWait):
+    """
+    0D = Wait for key down  display arrow. Structure: [0D]
+    """
+    id = 0xD
+    macro_name = "waitbutton2"
+class Play9thSound(Play0thSound):
+    id = 0xE
+    sound_num = 9
+    macro_name = "sound0x09"
+class Play1stSound(Play0thSound):
+    id = 0xF
+    sound_num = 1
+    macro_name = "sound0x0F"
+class Play2ndSound(Play0thSound):
+    id = 0x10
+    sound_num = 2
+    macro_name = "sound0x02"
+class Play10thSound(Play0thSound):
+    id = 0x11
+    sound_num = 10
+    macro_name = "sound0x0A"
+class Play45thSound(Play0thSound):
+    id = 0x12
+    sound_num = 0x2D
+    macro_name = "sound0x2D"
+class Play44thSound(Play0thSound):
+    id = 0x13
+    sound_num = 0x2C
+    macro_name = "sound0x2C"
+class DisplayByteFromRAMAt(TextCommand):
+    """
+    14 = Display MEMORY. Structure: [14][Byte]
+ 
+    Byte:
+ 
+      00 = MEMORY1
+      01 = MEMORY2
+      02 = MEMORY
+      04 = TEMPMEMORY2
+      05 = TEMPMEMORY1
+    """
+    id = 0x14
+    macro_name = "show_byte_at"
+class WriteCurrentDay(TextCommand):
+    "15 = Write current day. Structure: [15]"
+    id = 0x15
+    macro_name = "current_day"
+class TextJump(TextCommand):
+    "16 = 3byte pointer to new text follows. Structure: [16][2byte pointer][bank]"
+    id = 0x16
+    macro_name = "text_jump"
+
+class NewTextScript:
+    """ A text is a sequence of bytes (and sometimes commands). It's not the
+    same thing as a Script. The bytes are translated into characters based
+    on the lookup table (see chars.py). The in-text commands are for including
+    values from RAM, playing sound, etc.
+
+    see: http://hax.iimarck.us/files/scriptingcodes_eng.htm#InText
+    """
+    base_label = "UnknownText_"
+    def __init__(self, address, map_group=None, map_id=None, debug=True, label=None):
+        self.address = address
+        self.map_group, self.map_id, self.debug = map_group, map_id, debug
+        self.dependencies = []
+        self.commands = []
+        
+        if not label:
+            label = self.base_label + hex(address)
+        self.label = Label(name=label, address=address, object=self)
+        
+        self.parse()
+
+    def get_dependencies(self, recompute=False, global_dependencies=set()):
+        global_dependencies.update(self.dependencies)
+        return self.dependencies
+
+    def parse(self):
+        global text_command_classes, script_parse_table
+        raise NotImplementedError, bryan_message
+
+    def to_asm(self):
+        pass
+
 class TextScript:
     "a text is a sequence of commands different from a script-engine script"
     base_label = "UnknownText_"
