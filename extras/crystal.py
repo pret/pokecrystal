@@ -385,11 +385,79 @@ def command_debug_information(command_byte=None, map_group=None, map_id=None, ad
     #info1 += "    long_info: " + long_info
     return info1
 
-class TextCommand: pass
+class TextCommand(Command):
+    # an individual text command will not end it
+    end = False
+
+    # this is only used for e.g. macros that don't appear as a byte in the ROM
+    override_byte_check = False
+
+    # in the case of text/asm commands, size is unknown until after parsing
+    size = None
+
+    params = []
+
+    # most text commands won't have any dependencies
+    # .. except for that one that points to another location for text
+    # get_dependencies on Command will look at the values of params
+    #def get_dependencies(self, recompute=False, global_dependencies=set()):
+    #    return []
+
 class MainText(TextCommand):
     "Write text. Structure: [00][Text][0x50 (ends code)]"
     id = 0x0
     macro_name = "do_text"
+
+    def parse(self):
+        offset = self.address
+
+        # read until $50, $57 or $58 (not sure about $58...)
+        jump57 = how_many_until(chr(0x57), offset)
+        jump50 = how_many_until(chr(0x50), offset)
+        jump58 = how_many_until(chr(0x58), offset)
+
+        # pick whichever one comes first
+        jump = min([jump57, jump50, jump58])
+
+        # if $57 appears first then this command is the last in this text script
+        if jump == jump57:
+            self.end = True
+
+        # we want the address after the $57
+        # ("last_address" is misnamed everywhere)
+        end_address = offset + 1 + jump
+        self.last_address = self.end_address = end_address
+
+        # read the text bytes into a structure
+        self.bytes = rom_interval(offset + 1, jump, strings=False)
+
+        self.size = jump + 1
+
+    def to_asm(self):
+        if self.size < 2 or len(self.bytes) < 1:
+            raise Exception, "$0 text command can't end itself with no follow-on bytes"
+        
+        output = "db $0"
+
+        # db $0, $57 or db $0, $50 or w/e
+        if self.size == 2 and len(self.bytes) == 1:
+            output += ", $%.2x" % (self.bytes[0])
+            return output
+
+        # whether or not quotes are open
+        in_quotes = False
+
+        # whether or not to print "db " next
+        new_line = False
+
+        for byte in self.bytes:
+            if byte in [0x4f, 0x51, 0x55]: pass
+            elif byte in [0x50, ]: pass
+
+            # TODO
+
+        return output
+
 class WriteTextFromRAM(TextCommand):
     """
     Write text from ram. Structure: [01][Ram address (2byte)]
@@ -397,6 +465,7 @@ class WriteTextFromRAM(TextCommand):
     """
     id = 0x1
     macro_name = "text_from_ram"
+    size = 3
 class WriteNumberFromRAM(TextCommand):
     """
     02 = Write number from ram. Structure: [02][Ram address (2byte)][Byte]
@@ -418,22 +487,27 @@ class WriteNumberFromRAM(TextCommand):
     """
     id = 0x2
     macro_name = "number_from_ram"
+    size = 4
 class SetWriteRAMLocation(TextCommand):
     "Define new ram address to write to. Structure: [03][Ram address (2byte)]"
     id = 0x3
     macro_name = "store_at"
+    size = 3
 class ShowBoxWithValueAt(TextCommand):
     "04 = Write a box. Structure: [04][Ram address (2byte)][Y][X]"
     id = 0x4
     macro_name = "text_box"
+    size = 5
 class Populate2ndLineOfTextBoxWithRAMContents(TextCommand):
     "05 = New ram address to write to becomes 2nd line of a text box. Structure: [05]"
     id = 0x5
     macro_name = "text_dunno1"
+    size = 1
 class ShowArrowsAndButtonWait(TextCommand):
     "06 = Wait for key down + show arrows. Structure: [06]"
     id = 0x6
     macro_name = "waitbutton"
+    size = 1
 class Populate2ndLine(TextCommand):
     """
     07 = New ram address to write to becomes 2nd line of a text box
@@ -441,10 +515,12 @@ class Populate2ndLine(TextCommand):
     """
     id = 0x7
     macro_name = "text_dunno2"
+    size = 1
 class TextInlineAsm(TextCommand):
     "08 = After the code an ASM script starts. Structure: [08][Script]"
     id = 0x8
     macro_name = "start_asm"
+    end = True
 class WriteDecimalNumberFromRAM(TextCommand):
     """
     09 = Write number from rom/ram in decimal. Structure: [09][Ram address/Pointer (2byte)][Byte]
@@ -458,6 +534,7 @@ class WriteDecimalNumberFromRAM(TextCommand):
     """
     id = 0x9
     macro_name = "deciram"
+    size = 4
 class InterpretDataStream(TextCommand):
     """
     0A = Interpret Data stream. Structure: [0A]
@@ -465,11 +542,13 @@ class InterpretDataStream(TextCommand):
     """
     id = 0xA
     macro_name = "interpret_data"
+    size = 1
 class Play0thSound(TextCommand):
     "0B = Play sound 0x0000. Structure: [0B]"
     id = 0xB
     sound_num = 0
     macro_name = "sound0"
+    size = 1
 class LimitedIntrepretDataStream(TextCommand):
     """
     0C = Interpret Data stream. Structure: [0C][Number of codes to interpret]
@@ -477,36 +556,44 @@ class LimitedIntrepretDataStream(TextCommand):
     """
     id = 0xC
     macro_name = "limited_interpret_data"
+    size = 2
 class WaitForKeyDownDisplayArrow(ShowArrowsAndButtonWait):
     """
     0D = Wait for key down  display arrow. Structure: [0D]
     """
     id = 0xD
     macro_name = "waitbutton2"
+    size = 1
 class Play9thSound(Play0thSound):
     id = 0xE
     sound_num = 9
     macro_name = "sound0x09"
+    size = 1
 class Play1stSound(Play0thSound):
     id = 0xF
     sound_num = 1
     macro_name = "sound0x0F"
+    size = 1
 class Play2ndSound(Play0thSound):
     id = 0x10
     sound_num = 2
     macro_name = "sound0x02"
+    size = 1
 class Play10thSound(Play0thSound):
     id = 0x11
     sound_num = 10
     macro_name = "sound0x0A"
+    size = 1
 class Play45thSound(Play0thSound):
     id = 0x12
     sound_num = 0x2D
     macro_name = "sound0x2D"
+    size = 1
 class Play44thSound(Play0thSound):
     id = 0x13
     sound_num = 0x2C
     macro_name = "sound0x2C"
+    size = 1
 class DisplayByteFromRAMAt(TextCommand):
     """
     14 = Display MEMORY. Structure: [14][Byte]
@@ -521,14 +608,17 @@ class DisplayByteFromRAMAt(TextCommand):
     """
     id = 0x14
     macro_name = "show_byte_at"
+    size = 2
 class WriteCurrentDay(TextCommand):
     "15 = Write current day. Structure: [15]"
     id = 0x15
     macro_name = "current_day"
+    size = 1
 class TextJump(TextCommand):
     "16 = 3byte pointer to new text follows. Structure: [16][2byte pointer][bank]"
     id = 0x16
     macro_name = "text_jump"
+    size = 4
 
 class NewTextScript:
     """ A text is a sequence of bytes (and sometimes commands). It's not the
@@ -562,6 +652,7 @@ class NewTextScript:
     def to_asm(self):
         pass
 
+all_texts = []
 class TextScript:
     "a text is a sequence of commands different from a script-engine script"
     base_label = "UnknownText_"
@@ -889,6 +980,7 @@ class TextScript:
         self.commands = commands
         self.last_address = offset
         script_parse_table[original_address:offset] = self
+        all_texts.append(self)
         self.size = self.byte_count = self.last_address - original_address
         return commands
 
