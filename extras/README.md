@@ -232,6 +232,20 @@ print text
 That last text at 0x197186 will look like:
 
 ```python
-"OAK: Aha! So\nyou're !\nI'm OAK! A #MON\nresearcher.\nI was just visit-\ning my old friend\nMR.#MON.\nI heard you were\nrunning an errand\nfor PROF.ELM, so I\nwaited here.\nOh! What's this?\nA rare #MON!\nLet's see\xe2\x80\xa6\nHm, I see!\nI understand why\nPROF.ELM gave you\na #MON for this\nerrand.\nTo researchers\nlike PROF.ELM and\nI, #MON are our\nfriends.\nHe saw that you\nwould treat your\n#MON with love\nand care.\n\xe2\x80\xa6Ah!\nYou seem to be\ndependable.\nHow would you like\nto help me out?\nSee? This is the\nlatest version of\n#DEX.\nIt automatically\nrecords data on\n#MON you've\nseen or caught.\nIt's a hi-tech\nencyclopedia! received\n#DEX!\n"
+"""
+OAK: Aha! So
+you're !
+I'm OAK! A #MON
+researcher.
+I was just visit-
+ing my old friend
+MR.#MON.
+I heard you were
+running an errand
+for PROF.ELM, so I
+waited here.
+Oh! What's this?
+A rare #MON!
+"""
 ```
 
