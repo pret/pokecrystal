@@ -144,7 +144,7 @@ map_id = script.map_id
 
 # MapHeader is not given all the info yet
 # in the mean time "map_names" contains some metadata
-map_dict = crystal.map_names[map_group][map_name]
+map_dict = crystal.map_names[map_group][map_id]
 map_header = map_dict["header_new"]
 
 print map_dict["name"]
