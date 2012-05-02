@@ -205,3 +205,29 @@ MapEventHeader_0x584c3: ; 0x584c3
 ; 0x58560
 ```
 
+#### Helpful ROM investigation tools
+
+```crystal
+import crystal
+
+# load the bytes
+crystal.load_rom()
+
+# get a sequence of bytes
+crystal.rom_interval(0x112116, 10)
+# ['0x48', '0x54', '0x54', '0x50', '0x2f', '0x31', '0x2e', '0x30', '0xd', '0xa']
+crystal.rom_interval(0x112116, 10, strings=False)
+# [72, 84, 84, 80, 47, 49, 46, 48, 13, 10]
+
+# get bytes until a certain byte
+crystal.rom_until(0x112116, 0x50, strings=False)
+# ['0x48', '0x54', '0x54']
+# [72, 84, 84]
+
+# look at a text at 0x197186
+text = crystal.parse_text_at2(0x197186, 601, debug=False)
+print text
+```
+
+That last text at 0x197186 will look like: `"OAK: Aha! So\nyou're !\nI'm OAK! A #MON\nresearcher.\nI was just visit-\ning my old friend\nMR.#MON.\nI heard you were\nrunning an errand\nfor PROF.ELM, so I\nwaited here.\nOh! What's this?\nA rare #MON!\nLet's see\xe2\x80\xa6\nHm, I see!\nI understand why\nPROF.ELM gave you\na #MON for this\nerrand.\nTo researchers\nlike PROF.ELM and\nI, #MON are our\nfriends.\nHe saw that you\nwould treat your\n#MON with love\nand care.\n\xe2\x80\xa6Ah!\nYou seem to be\ndependable.\nHow would you like\nto help me out?\nSee? This is the\nlatest version of\n#DEX.\nIt automatically\nrecords data on\n#MON you've\nseen or caught.\nIt's a hi-tech\nencyclopedia! received\n#DEX!\n"`.
+
