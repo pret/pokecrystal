@@ -53,8 +53,8 @@ print script.to_asm()
 
 # what labels does it refer to?
 # these must be present in the final asm file for rgbasm to compile the file
-label_names = script.get_dependencies()
-print str(label_names)
+objdeps = script.get_dependencies()
+print str(objdeps)
 
 # the individual commands that make up the script
 commands = script.commands
