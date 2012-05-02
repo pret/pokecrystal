@@ -24,5 +24,5 @@ asm.insert_multiple_with_dependencies(crystal.all_map_headers[:x])
 asm.dump()
 ```
 
-After running those lines, `cp extras/output.asm main.asm` and run `git diff main.asm` to confirm that changes to `main.asm` have occurred. To test whether or not the newly inserted ASM compiles into the same ROM, use: `make clean && make`. This will complain very loudly if something is broken.
+After running those lines, `cp extras/output.txt main.asm` and run `git diff main.asm` to confirm that changes to `main.asm` have occurred. To test whether or not the newly inserted ASM compiles into the same ROM, use: `make clean && make`. This will complain very loudly if something is broken.
 
