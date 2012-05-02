@@ -151,3 +151,57 @@ print map_dict["name"]
 # Ruins of Alph Outside
 ```
 
+While the above doesn't show this, it turns out that the script at 0x58043 is referenced in the `MapEventHeader` as a person-event.
+
+```python
+print map_header.second_map_header.event_header.to_asm()
+```
+
+This will show a structure roughly like:
+
+```asm
+person_event $3c, 19, 15, $7, $0, 255, 255, $0, 0, UnknownScript_0x58043, $0703
+```
+
+within this:
+
+```asm
+MapEventHeader_0x584c3: ; 0x584c3
+    ; filler
+    db 0, 0
+
+    ; warps
+    db 11
+    warp_def $11, $2, 1, GROUP_RUINS_OF_ALPH_HO_OH_CHAMBER, MAP_RUINS_OF_ALPH_HO_OH_CHAMBER
+    warp_def $7, $e, 1, GROUP_RUINS_OF_ALPH_KABUTO_CHAMBER, MAP_RUINS_OF_ALPH_KABUTO_CHAMBER
+    warp_def $1d, $2, 1, GROUP_RUINS_OF_ALPH_OMANYTE_CHAMBER, MAP_RUINS_OF_ALPH_OMANYTE_CHAMBER
+    warp_def $21, $10, 1, GROUP_RUINS_OF_ALPH_AERODACTYL_CHAMBER, MAP_RUINS_OF_ALPH_AERODACTYL_CHAMBER
+    warp_def $d, $a, 1, GROUP_RUINS_OF_ALPH_INNER_CHAMBER, MAP_RUINS_OF_ALPH_INNER_CHAMBER
+    warp_def $b, $11, 1, GROUP_RUINS_OF_ALPH_RESEARCH_CENTER, MAP_RUINS_OF_ALPH_RESEARCH_CENTER
+    warp_def $13, $6, 1, GROUP_UNION_CAVE_B1F, MAP_UNION_CAVE_B1F
+    warp_def $1b, $6, 2, GROUP_UNION_CAVE_B1F, MAP_UNION_CAVE_B1F
+    warp_def $5, $7, 3, GROUP_ROUTE_36_RUINS_OF_ALPH_GATE, MAP_ROUTE_36_RUINS_OF_ALPH_GATE
+    warp_def $14, $d, 1, GROUP_ROUTE_32_RUINS_OF_ALPH_GATE, MAP_ROUTE_32_RUINS_OF_ALPH_GATE
+    warp_def $15, $d, 2, GROUP_ROUTE_32_RUINS_OF_ALPH_GATE, MAP_ROUTE_32_RUINS_OF_ALPH_GATE
+
+    ; xy triggers
+    db 2
+    xy_trigger 1, $e, $b, $0, UnknownScript_0x58031, $0, $0
+    xy_trigger 1, $f, $a, $0, UnknownScript_0x5803a, $0, $0
+
+    ; signposts
+    db 3
+    signpost 8, 16, $0, UnknownScript_0x580b1
+    signpost 16, 12, $0, UnknownScript_0x580b4
+    signpost 12, 18, $0, UnknownScript_0x580b7
+
+    ; people-events
+    db 5
+    person_event $27, 24, 8, $6, $0, 255, 255, $2, 1, Trainer_0x58089, $ffff
+    person_event $3c, 19, 15, $7, $0, 255, 255, $0, 0, UnknownScript_0x58043, $0703
+    person_event $3a, 21, 17, $3, $0, 255, 255, $a0, 0, UnknownScript_0x58061, $078e
+    person_event $27, 15, 18, $2, $11, 255, 255, $b0, 0, UnknownScript_0x58076, $078f
+    person_event $27, 12, 16, $7, $0, 255, 255, $80, 0, UnknownScript_0x5807e, $078f
+; 0x58560
+```
+
