@@ -35,7 +35,7 @@ import crystal
 crystal.run_tests()
 ```
 
-#### Investigating scripts from a known address
+#### Parsing a script at a known address
 
 Here is a demo of how to investigate a particular script, starting with only an address to a known script (0x58043). In this case, the script calls the `2writetext` command to show some dialog. This dialog will be shown at the end of the example.
 
@@ -123,5 +123,31 @@ UnknownText_0x580c7: ; 0x580c7
     db "grade your #-", $55
     db "DEX. Follow me.", $57
 ; 0x581e5
+```
+
+#### Figuring out where a script appears based on a known address
+
+Another approach is to parse the entire ROM, then check a script at a particular address. This has the advantage that the script object will have the `map_group` and `map_id` variables set.
+
+```python
+import crystal
+
+# parse the ROM
+crystal.run_main()
+
+# get the parsed script
+script = crystal.script_parse_table[0x58043]
+
+# read its attributes to figure out map group / map id
+map_group = script.map_group
+map_id = script.map_id
+
+# MapHeader is not given all the info yet
+# in the mean time "map_names" contains some metadata
+map_dict = crystal.map_names[map_group][map_name]
+map_header = map_dict["header_new"]
+
+print map_dict["name"]
+# Ruins of Alph Outside
 ```
 

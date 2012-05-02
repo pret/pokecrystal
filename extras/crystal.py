@@ -2295,6 +2295,10 @@ class Script:
         if not label:
             label = self.base_label + hex(self.address)
         self.label = Label(name=label, address=address, object=self)
+        if "map_group" in kwargs.keys():
+            self.map_group = kwargs["map_group"]
+        if "map_id" in kwargs.keys():
+            self.map_id = kwargs["map_id"]
         #parse the script at the address
         if "use_old_parse" in kwargs.keys() and kwargs["use_old_parse"] == True:
             self.old_parse(**kwargs)
