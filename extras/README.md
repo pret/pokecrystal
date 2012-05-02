@@ -207,7 +207,7 @@ MapEventHeader_0x584c3: ; 0x584c3
 
 #### Helpful ROM investigation tools
 
-```crystal
+```python
 import crystal
 
 # load the bytes
