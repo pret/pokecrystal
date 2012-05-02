@@ -224,6 +224,10 @@ crystal.rom_until(0x112116, 0x50, strings=False)
 # ['0x48', '0x54', '0x54']
 # [72, 84, 84]
 
+# or just look at it the encoded characters directly
+crystal.rom[0x112116:0x112116+10]
+# 'HTTP/1.0\r\n'
+
 # look at a text at 0x197186
 text = crystal.parse_text_at2(0x197186, 601, debug=False)
 print text
