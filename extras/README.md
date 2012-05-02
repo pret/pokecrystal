@@ -224,7 +224,7 @@ crystal.rom_until(0x112116, 0x50, strings=False)
 # ['0x48', '0x54', '0x54']
 # [72, 84, 84]
 
-# or just look at it the encoded characters directly
+# or just look at the encoded characters directly
 crystal.rom[0x112116:0x112116+10]
 # 'HTTP/1.0\r\n'
 
