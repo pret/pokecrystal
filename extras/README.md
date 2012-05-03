@@ -51,7 +51,7 @@ script = Script(0x58043)
 # show the script
 print script.to_asm()
 
-# what labels does it refer to?
+# what labels does it point to in the to_asm output?
 # these must be present in the final asm file for rgbasm to compile the file
 objdeps = script.get_dependencies()
 print str(objdeps)
