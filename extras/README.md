@@ -250,6 +250,7 @@ for PROF.ELM, so I
 waited here.
 Oh! What's this?
 A rare #MON!
+...
 """
 ```
 
