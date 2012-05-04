@@ -1835,9 +1835,28 @@ class MainText(TextCommand):
         # whether or not to print "db " next
         new_line = False
 
+        # whether or not there was a ", " last..
+        # this is useful outside of quotes
+        was_comma = False
+
         for byte in self.bytes:
-            if byte in [0x4f, 0x51, 0x55]: pass
-            elif byte in [0x50, ]: pass
+            # $4f, $51 and $55 can end a line
+            if byte in [0x4f, 0x51, 0x55]:
+                assert not new_line, "can't have $4f, $51, $55 as the first character on a newline"
+                
+                if in_quotes:
+                    output += "\", $%.2x\n" % (byte)
+                    in_quotes = False
+                    new_line = True
+                elif not in_quotes:
+                    if not was_comma:
+                        output += ", "
+                    output += "$%.2x\n" % (byte)
+                    was_comma = True
+                    new_line = True
+            elif byte == 0x50:
+                assert not new_line, "can't have $50 or '@' as the first character on a newline"
+                pass
 
             # TODO
 
