@@ -1852,10 +1852,13 @@ class MainText(TextCommand):
                     if not was_comma:
                         output += ", "
                     output += "$%.2x\n" % (byte)
-                    was_comma = True
+                    was_comma = False
                     new_line = True
             elif byte == 0x50:
                 assert not new_line, "can't have $50 or '@' as the first character on a newline"
+
+                if in_quotes:
+                    output += "@\""
                 pass
 
             # TODO
