@@ -1770,9 +1770,11 @@ class TextCommand(Command):
     end = False
 
     # this is only used for e.g. macros that don't appear as a byte in the ROM
+    # don't use the override because all text commands are specified with a byte
     override_byte_check = False
 
     # in the case of text/asm commands, size is unknown until after parsing
+    # some text commands can specify this upfront but not $0
     size = None
 
     params = []
@@ -1780,6 +1782,7 @@ class TextCommand(Command):
     # most text commands won't have any dependencies
     # .. except for that one that points to another location for text
     # get_dependencies on Command will look at the values of params
+    # so this doesn't need to be specified by TextCommand as long as it extends Command
     #def get_dependencies(self, recompute=False, global_dependencies=set()):
     #    return []
 
@@ -1809,8 +1812,10 @@ class MainText(TextCommand):
         self.last_address = self.end_address = end_address
 
         # read the text bytes into a structure
+        # skip the first offset byte because that's the command byte
         self.bytes = rom_interval(offset + 1, jump, strings=False)
 
+        # include the original command in the size calculation
         self.size = jump + 1
 
     def to_asm(self):
