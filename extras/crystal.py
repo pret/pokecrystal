@@ -1838,28 +1838,75 @@ class MainText(TextCommand):
         # whether or not there was a ", " last..
         # this is useful outside of quotes
         was_comma = False
+        
+        # has a $50 or $57 been passed yet?
+        end = False
 
         for byte in self.bytes:
+            if end:
+                raise Exception, "the text ended due to a $50 or $57 but there are more bytes?"
+
             # $4f, $51 and $55 can end a line
             if byte in [0x4f, 0x51, 0x55]:
                 assert not new_line, "can't have $4f, $51, $55 as the first character on a newline"
                 
                 if in_quotes:
                     output += "\", $%.2x\n" % (byte)
-                    in_quotes = False
-                    new_line = True
                 elif not in_quotes:
                     if not was_comma:
                         output += ", "
                     output += "$%.2x\n" % (byte)
-                    was_comma = False
-                    new_line = True
+
+                # reset everything
+                in_quotes = False
+                new_line  = True
+                was_comma = False
             elif byte == 0x50:
+                # technically you could have this i guess... db "@"
+                # but in most situations it will be added to the end of the previous line
                 assert not new_line, "can't have $50 or '@' as the first character on a newline"
 
                 if in_quotes:
-                    output += "@\""
+                    output += "@\"\n"
+                    new_line = True
+                elif not in_quotes:
+                    if not was_comma:
+                        output += ", "
+                    output += "\"@\"\n"
+                
+                # reset everything
+                in_quotes = False
+                new_line  = True
+                was_comma = False
+                end       = True
+            elif byte in chars.keys():
+                char = chars[byte]
+
+                if char == "\"":
+                    pass
                 pass
+            else:
+                # raise Exception, "unknown byte in text script ($%.2x)" % (byte)
+                # just add an unknown byte directly to the text.. what's the worse that can happen?
+
+                if new_line:
+                    output += "db " 
+
+                if in_quotes:
+                    output += "\", $%.2x" % (byte)
+
+                    in_quotes = False
+                    was_comma = False
+                    new_line = False
+                elif not in_quotes:
+                    if not was_comma and not new_line:
+                        output += ", "
+                    output += "$%.2x" % (byte)
+                
+                # reset things
+                in_quotes = False
+                new_line  = False
+                was_comma = False
 
             # TODO
 
