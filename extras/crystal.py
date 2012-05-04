@@ -1846,6 +1846,14 @@ class MainText(TextCommand):
             if end:
                 raise Exception, "the text ended due to a $50 or $57 but there are more bytes?"
 
+            if new_line:
+                if in_quotes:
+                    raise Exception, "can't be in_quotes on a newline"
+                elif was_comma:
+                    raise Exception, "last line's last character can't be a comma"
+
+                output += "db "
+
             # $4f, $51 and $55 can end a line
             if byte in [0x4f, 0x51, 0x55]:
                 assert not new_line, "can't have $4f, $51, $55 as the first character on a newline"
@@ -1880,17 +1888,30 @@ class MainText(TextCommand):
                 was_comma = False
                 end       = True
             elif byte in chars.keys():
+                # figure out what the character actually is
                 char = chars[byte]
 
                 if char == "\"":
-                    pass
-                pass
+                    if in_quotes:
+                        output += "\""
+                        in_quotes = False
+                    if not in_quotes:
+                        if new_line:
+                            output += "\""
+                        elif not new_line:
+                            if not was_comma:
+                                output += ", "
+                            output += "\""
+                        in_quotes = True
+                else:
+                    output += char
+
+                new_line  = False
+                was_comma = False
+                end       = False
             else:
                 # raise Exception, "unknown byte in text script ($%.2x)" % (byte)
                 # just add an unknown byte directly to the text.. what's the worse that can happen?
-
-                if new_line:
-                    output += "db " 
 
                 if in_quotes:
                     output += "\", $%.2x" % (byte)
