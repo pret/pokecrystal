@@ -2174,7 +2174,6 @@ class WriteCurrentDay(TextCommand):
     id = 0x15
     macro_name = "current_day"
     size = 1
-
 class TextJump(TextCommand):
     "16 = 3byte pointer to new text follows. Structure: [16][2byte pointer][bank]"
     id = 0x16
@@ -2183,6 +2182,11 @@ class TextJump(TextCommand):
     param_types = {
         0: {"name": "text", "class": TextPointerLabelAfterBankParam},
     }
+
+text_command_classes = inspect.getmembers(sys.modules[__name__], \
+                       lambda obj: inspect.isclass(obj) and \
+                       issubclass(obj, TextCommand) and \
+                       obj != TextCommand)
 
 #byte: [name, [param1 name, param1 type], [param2 name, param2 type], ...]
 #0x9E: ["verbosegiveitem", ["item", ItemLabelByte], ["quantity", SingleByteParam]],
