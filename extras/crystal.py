@@ -394,7 +394,7 @@ class NewTextScript:
     see: http://hax.iimarck.us/files/scriptingcodes_eng.htm#InText
     """
     base_label = "UnknownText_"
-    def __init__(self, address, map_group=None, map_id=None, debug=True, label=None, force=False):
+    def __init__(self, address, map_group=None, map_id=None, debug=False, label=None, force=False):
         self.address = address
         self.map_group, self.map_id, self.debug = map_group, map_id, debug
         self.dependencies = []
@@ -410,6 +410,7 @@ class NewTextScript:
         
         self.parse()
 
+    # hmm this looks exactly like Script.get_dependencies (which makes sense..)
     def get_dependencies(self, recompute=False, global_dependencies=set()):
         if self.dependencies != None and not recompute:
             global_dependencies.update(self.dependencies)
@@ -421,13 +422,79 @@ class NewTextScript:
         self.dependencies = dependencies
         return self.dependencies
 
+    # this is almost an exact copy of Script.parse
+    # with the exception of using text_command_classes instead of command_classes
     def parse(self):
         global text_command_classes, script_parse_table
-        current_address = self.address
-        # TODO
+        current_address = copy(self.address)
+        start_address = copy(current_address)
+        
+        # don't clutter up my screen
+        if self.debug:
+            print "NewTextScript.parse address="+hex(self.address)+" map_group="+str(self.map_group)+" map_id="+str(self.map_id)
+
+        # load up the rom if it hasn't been loaded already
+        load_rom()
+
+        # in the event that the script parsing fails.. it would be nice to leave evidence
+        script_parse_table[start_address:start_address+1] = "incomplete NewTextScript.parse"
+
+        # start with a blank script
+        commands = []
+
+        # use this to control the while loop
+        end = False
+        
+        # for each command found...
+        while not end:
+            # get the current scripting byte
+            cur_byte = ord(rom[current_address])
+
+            # reset the command class (last command was probably different)
+            scripting_command_class = None
+
+            # match the command id byte to a scripting command class like MainText
+            for class_ in text_command_classes:
+                if class_.id == cur_byte:
+                    scripting_command_class = class_
+            
+            # no matching command found
+            if scripting_command_class == None:
+                raise Exception, "unable to parse text command $%.2x in the text script at %s" % (cur_byte, hex(start_address))
+
+            # create an instance of the command class and let it parse its parameter bytes
+            cls = scripting_command_class(address=current_address, map_group=self.map_group, map_id=self.map_id, debug=self.debug, force=self.force)
+
+            if self.debug:
+                print cls.to_asm()
+            
+            # store it in this script object
+            commands.append(cls)
+
+            # certain commands will end the scripting engine
+            end = cls.end
+
+            # skip past the command's parameter bytes to go to the next command
+            current_address += cls.size
+
+        # last byte belonging to script is last byte of last command,
+        # or the last byte of the last command's last parameter
+        # (actually i think this might be the next byte after??)
+        self.last_address = current_address
+
+        # store the script in the global table/map thing
+        script_parse_table[start_address:current_address] = self
+        
+        asm_output = "\n".join([command.to_asm() for command in commands])
+        print "--------------\n"+asm_output
+
+        # store the script
+        self.commands = commands
+
+        return commands
 
     def to_asm(self):
-        # TODO
+        pass
 
 all_texts = []
 class TextScript:
