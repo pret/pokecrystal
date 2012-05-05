@@ -1879,6 +1879,9 @@ class DataByteWordMacro(Command):
     def to_asm(self): pass
 
 class MovementCommand(Command):
+    # by default.. handle all the <$45s
+    id = [0, 4, 8, 0x0C, 0x10, 0x14, 0x18, 0x1C, 0x20, 0x24, 0x28, 0x2C, 0x30, 0x34, 0x3A, 0x3B, 0x3D]
+
     # the vast majority of movement commands do not end the movement script
     end = False
 
@@ -1908,16 +1911,14 @@ class MovementCommand(Command):
     def to_asm(self):
         if ord(rom[self.address]) < 0x45:
             byte = ord(rom[self.address])
-            
-            base = [0, 4, 8, 0x0C, 0x10, 0x14, 0x18, 0x1C, 0x20, 0x24, 0x28, 0x2C, 0x30, 0x34, 0x3A, 0x3B, 0x3D]
 
-            if byte in base:
+            if byte in self.base:
                 modulator = "down"
-            elif byte in [x+1 for x in base]:
+            elif byte in [x+1 for x in self.base]:
                 modulator = "up"
-            elif byte in [x+2 for x in base]:
+            elif byte in [x+2 for x in self.base]:
                 modulator = "left"
-            elif byte in [x+3 for x in base]:
+            elif byte in [x+3 for x in self.base]:
                 modulator = "right"
             else:
                 raise Exception, "can't figure out direction- this should never happen"
@@ -1928,8 +1929,7 @@ class MovementCommand(Command):
 
 movement_command_classes = inspect.getmembers(sys.modules[__name__], \
                            lambda obj: inspect.isclass(obj) and \
-                           issubclass(obj, MovementCommand) and \
-                           obj != MovementCommand)
+                           issubclass(obj, MovementCommand))
 
 class ApplyMovementData:
     base_label = "MovementData_"
