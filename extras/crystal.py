@@ -398,7 +398,8 @@ class TextScript:
     def __init__(self, address, map_group=None, map_id=None, debug=False, label=None, force=False, show=None):
         self.address = address
         # $91, $84, $82, $54, $8c 
-        if address in [0x26f2, 0x6ee, 0x1071, 0x5ce33, 0x69523, 0x7ee98, 0x72176, 0x7a578, 0x19c09b]:
+        # 0x19768c is a a weird problem?
+        if address in [0x26f2, 0x6ee, 0x1071, 0x5ce33, 0x69523, 0x7ee98, 0x72176, 0x7a578, 0x19c09b, 0x19768c]:
             return None
         self.map_group, self.map_id, self.debug = map_group, map_id, debug
         self.dependencies = None
@@ -2136,7 +2137,7 @@ class MainText(TextCommand):
         jump = min([jump57, jump50, jump58])
 
         # if $57 appears first then this command is the last in this text script
-        if jump == jump57:
+        if jump == jump57 or jump == jump58:
             self.end = True
 
         # we want the address after the $57
@@ -2205,7 +2206,7 @@ class MainText(TextCommand):
             elif byte == 0x50:
                 # technically you could have this i guess... db "@"
                 # but in most situations it will be added to the end of the previous line
-                assert not new_line, "can't have $50 or '@' as the first character on a newline"
+                #assert not new_line, "can't have $50 or '@' as the first character on a newline in the text at "+hex(self.address)
 
                 if in_quotes:
                     output += "@\"\n"
@@ -2220,8 +2221,11 @@ class MainText(TextCommand):
                 new_line  = True
                 was_comma = False
                 end       = True
+
+                # self.end should be set in parse or constructor
+                # so this is very useless here.. but it's a truism i guess
                 self.end  = True
-            elif byte == 0x57:
+            elif byte == 0x57 or byte == 0x58:
                 # close any quotes
                 if in_quotes:
                     output += "\""
@@ -2230,12 +2234,18 @@ class MainText(TextCommand):
                 if not was_comma:
                     output += ", "
 
-                output += "$57\n"
+                output += "$%.2x\n" % (byte)
 
                 in_quotes = False
                 new_line  = True
                 was_comma = False
                 end       = True
+
+                # dunno if $58 should end a text script or not
+                # also! self.end should be set in parse not in to_asm
+                # so this is pretty useless overall...
+                if byte == 0x58:
+                    self.end = True
             elif byte in chars.keys():
                 # figure out what the character actually is
                 char = chars[byte]
@@ -2289,7 +2299,7 @@ class MainText(TextCommand):
 
         # this shouldn't happen because of the rom_until calls in the parse method
         if not end:
-            raise Exception, "ran out of bytes without the script ending?"
+            raise Exception, "ran out of bytes without the script ending? starts at "+hex(self.address)
 
         # last character may or may not be allowed to be a newline?
         # Script.to_asm() has command.to_asm()+"\n"
