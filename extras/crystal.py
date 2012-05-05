@@ -394,12 +394,16 @@ class NewTextScript:
     see: http://hax.iimarck.us/files/scriptingcodes_eng.htm#InText
     """
     base_label = "UnknownText_"
-    def __init__(self, address, map_group=None, map_id=None, debug=True, label=None):
+    def __init__(self, address, map_group=None, map_id=None, debug=True, label=None, force=False):
         self.address = address
         self.map_group, self.map_id, self.debug = map_group, map_id, debug
         self.dependencies = []
         self.commands = []
+        self.force = force
         
+        if is_script_already_parsed_at(address) and not force:
+            raise Exception, "TextScript already parsed at "+hex(address)
+
         if not label:
             label = self.base_label + hex(address)
         self.label = Label(name=label, address=address, object=self)
@@ -407,15 +411,23 @@ class NewTextScript:
         self.parse()
 
     def get_dependencies(self, recompute=False, global_dependencies=set()):
-        global_dependencies.update(self.dependencies)
+        if self.dependencies != None and not recompute:
+            global_dependencies.update(self.dependencies)
+            return self.dependencies
+        dependencies = []
+        for command in self.commands:
+            deps = command.get_dependencies(recompute=recompute, global_dependencies=global_dependencies)
+            dependencies.extend(deps)
+        self.dependencies = dependencies
         return self.dependencies
 
     def parse(self):
         global text_command_classes, script_parse_table
-        raise NotImplementedError, bryan_message
+        current_address = self.address
+        # TODO
 
     def to_asm(self):
-        pass
+        # TODO
 
 all_texts = []
 class TextScript:
