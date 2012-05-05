@@ -1685,8 +1685,16 @@ class TextPointerLabelAfterBankParam(PointerLabelAfterBank):
             return []
 
 class MovementPointerLabelParam(PointerLabelParam):
-    pass
+    def parse(self):
+        PointerLabelParam.parse(self)
+        self.movement = MovementData(self.address, map_group=self.map_group, map_id=self.map_id, debug=self.debug)
 
+    def get_dependencies(self, recompute=False, global_dependencies=set()):
+        if hasattr(self, "movement") and self.movement:
+            global_dependencies.add(self.movement)
+            return [self.movement].extend(self.movement.get_dependencies())
+        else:
+            raise Exception, "MovementPointerLabelParam hasn't been parsed yet"
 
 class MapDataPointerParam(PointerLabelParam):
     pass
@@ -1869,6 +1877,156 @@ class DataByteWordMacro(Command):
     def __init__(self): pass
     def parse(self): pass
     def to_asm(self): pass
+
+class MovementCommand(Command):
+    # the vast majority of movement commands do not end the movement script
+    end = False
+
+    # this is only used for e.g. macros that don't appear as a byte in the ROM
+    # don't use the override because all movements are specified with a byte
+    override_byte_check = False
+
+    # most commands have size=1 but one or two have a single parameter (gasp)
+    size = 1
+
+    param_types = {}
+    params = []
+
+    # most movement commands won't have any dependencies
+    # get_dependencies on Command will look at the values of params
+    # so this doesn't need to be specified by MovementCommand as long as it extends Command
+    #def get_dependencies(self, recompute=False, global_dependencies=set()):
+    #    return []
+
+    def parse(self):
+        if ord(rom[self.address]) < 0x45:
+            # this is mostly handled in to_asm
+            pass
+        else:
+            Command.parse(self)
+
+    def to_asm(self):
+        if ord(rom[self.address]) < 0x45:
+            byte = ord(rom[self.address])
+            base = [0, 4, 8, 0x0C, 0x10, 0x14, 0x18, 0x1C, 0x20, 0x24, 0x28, 0x2C, 0x30, 0x34, 0x3A, 0x3B, 0x3D]
+            if byte in base:
+                modulator = "down"
+            elif byte in [x+1 for x in base]:
+                modulator = "up"
+            elif byte in [x+2 for x in base]:
+                modulator = "left"
+            elif byte in [x+3 for x in base]:
+                modulator = "right"
+            else:
+                raise Exception, "can't figure out direction- this should never happen"
+
+            return self.macro_name+" "+modulator
+        else:
+            Command.parse(self)
+
+movement_command_classes = inspect.getmembers(sys.modules[__name__], \
+                           lambda obj: inspect.isclass(obj) and \
+                           issubclass(obj, MovementCommand) and \
+                           obj != MovementCommand)
+
+class ApplyMovementData:
+    base_label = "MovementData_"
+    
+    def __init__(self, address, map_group=None, map_id=None, debug=False, label=None):
+        self.address   = address
+        self.map_group = map_group
+        self.map_id    = map_id
+        self.debug     = debug
+        
+        if not label:
+            label = self.base_label + hex(address)
+        self.label     = Label(name=label, address=address, object=self)
+
+        self.commands = []
+
+        self.parse()
+    
+    # this is almost an exact copy of Script.parse
+    # with the exception of using text_command_classes instead of command_classes
+    def parse(self):
+        global apply_movement_command_classes, script_parse_table
+        
+        # i feel like checking myself
+        assert is_valid_address(address), "ApplyMovementData.parse must be given a valid address"
+        
+        current_address = copy(self.address)
+        start_address = copy(current_address)
+        
+        # don't clutter up my screen
+        if self.debug:
+            print "ApplyMovementData.parse address="+hex(self.address)+" map_group="+str(self.map_group)+" map_id="+str(self.map_id)
+
+        # load up the rom if it hasn't been loaded already
+        load_rom()
+
+        # in the event that the script parsing fails.. it would be nice to leave evidence
+        script_parse_table[start_address:start_address+1] = "incomplete ApplyMovementData.parse"
+
+        # start with a blank script
+        commands = []
+
+        # use this to control the while loop
+        end = False
+        
+        # for each command found...
+        while not end:
+            # get the current scripting byte
+            cur_byte = ord(rom[current_address])
+
+            # reset the command class (last command was probably different)
+            scripting_command_class = None
+
+            # match the command id byte to a scripting command class like "step half"
+            for class_ in movement_command_classes:
+                # allow lists of ids
+                if type(class_[1].id) == list and cur_byte in class_[1].id \
+                   or class_[1].id == cur_byte:
+                    scripting_command_class = class_[1]
+            
+            # no matching command found
+            if scripting_command_class == None:
+                raise Exception, "unable to parse movement command $%.2x in the movement script at %s" % (cur_byte, hex(start_address))
+
+            # create an instance of the command class and let it parse its parameter bytes
+            cls = scripting_command_class(address=current_address, map_group=self.map_group, map_id=self.map_id, debug=self.debug, force=self.force)
+
+            if self.debug:
+                print cls.to_asm()
+            
+            # store it in this script object
+            commands.append(cls)
+
+            # certain commands will end the movement engine
+            end = cls.end
+
+            # skip past the command's parameter bytes to go to the next command
+            current_address += cls.size
+
+        # last byte belonging to script is last byte of last command,
+        # or the last byte of the last command's last parameter
+        # (actually i think this might be the next byte after??)
+        self.last_address = current_address
+
+        # store the script in the global table/map thing
+        script_parse_table[start_address:current_address] = self
+        all_texts.append(self)
+
+        if self.debug:
+            asm_output = "\n".join([command.to_asm() for command in commands])
+            print "--------------\n"+asm_output
+
+        # store the script
+        self.commands = commands
+        return commands
+
+    def to_asm(self):
+        asm_output = "\n".join([command.to_asm() for command in self.commands])
+        return asm_output
 
 class TextCommand(Command):
     # an individual text command will not end it
