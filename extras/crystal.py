@@ -1880,7 +1880,7 @@ class DataByteWordMacro(Command):
 
 class MovementCommand(Command):
     # by default.. handle all the <$45s
-    id = [0, 4, 8, 0x0C, 0x10, 0x14, 0x18, 0x1C, 0x20, 0x24, 0x28, 0x2C, 0x30, 0x34, 0x3A, 0x3B, 0x3D]
+    #id = [0, 4, 8, 0x0C, 0x10, 0x14, 0x18, 0x1C, 0x20, 0x24, 0x28, 0x2C, 0x30, 0x34, 0x3A, 0x3B, 0x3D]
 
     # the vast majority of movement commands do not end the movement script
     end = False
@@ -1902,13 +1902,17 @@ class MovementCommand(Command):
     #    return []
 
     def parse(self):
-        if ord(rom[self.address]) < 0x45:
-            # this is mostly handled in to_asm
-            pass
-        else:
-            Command.parse(self)
+        self.byte = ord(rom[self.address])
+        #
+        #if ord(rom[self.address]) < 0x45:
+        #    # this is mostly handled in to_asm
+        #    pass
+        #else:
+        #    Command.parse(self)
 
     def to_asm(self):
+        return "db $%.2x"%(self.byte)
+        
         if ord(rom[self.address]) < 0x38:
             byte = ord(rom[self.address])
 
@@ -2044,6 +2048,10 @@ class ApplyMovementData:
 
             # certain commands will end the movement engine
             end = cls.end
+            
+            # temporary fix for applymovement scripts
+            if ord(rom[current_address]) == 0x47:
+                end = True
 
             # skip past the command's parameter bytes to go to the next command
             current_address += cls.size
