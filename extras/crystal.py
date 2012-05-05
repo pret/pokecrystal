@@ -1915,7 +1915,7 @@ class MainText(TextCommand):
                             output += "\""
                         in_quotes = True
 
-                # the above if statement is probably not ever called
+                # the above if statement is probably never called
                 else:
                     if not in_quotes:
                         if not new_line and not was_comma:
