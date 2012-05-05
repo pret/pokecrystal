@@ -2378,6 +2378,7 @@ class TextInlineAsm(TextCommand):
     id = 0x8
     macro_name = "start_asm"
     end = True
+    size = 1
     # TODO: parse the following asm with gbz80disasm
 class WriteDecimalNumberFromRAM(TextCommand):
     """
