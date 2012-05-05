@@ -1897,6 +1897,21 @@ class MainText(TextCommand):
                 new_line  = True
                 was_comma = False
                 end       = True
+            elif byte == 0x57:
+                # close any quotes
+                if in_quotes:
+                    output += "\""
+                    was_comma = False
+
+                if not was_comma:
+                    output += ", "
+
+                output += "$57\n"
+
+                in_quotes = False
+                new_line  = True
+                was_comma = False
+                end       = True
             elif byte in chars.keys():
                 # figure out what the character actually is
                 char = chars[byte]
