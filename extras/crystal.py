@@ -397,8 +397,8 @@ class NewTextScript:
     def __init__(self, address, map_group=None, map_id=None, debug=False, label=None, force=False):
         self.address = address
         self.map_group, self.map_id, self.debug = map_group, map_id, debug
-        self.dependencies = []
-        self.commands = []
+        self.dependencies = None
+        self.commands = None
         self.force = force
         
         if is_script_already_parsed_at(address) and not force:
@@ -415,10 +415,13 @@ class NewTextScript:
         if self.dependencies != None and not recompute:
             global_dependencies.update(self.dependencies)
             return self.dependencies
+        
         dependencies = []
+
         for command in self.commands:
             deps = command.get_dependencies(recompute=recompute, global_dependencies=global_dependencies)
             dependencies.extend(deps)
+        
         self.dependencies = dependencies
         return self.dependencies
 
@@ -494,7 +497,8 @@ class NewTextScript:
         return commands
 
     def to_asm(self):
-        pass
+        asm_output = "\n".join([command.to_asm() for command in self.commands])
+        return asm_output
 
 all_texts = []
 class TextScript:
