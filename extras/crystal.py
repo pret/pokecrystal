@@ -1909,7 +1909,7 @@ class MovementCommand(Command):
             Command.parse(self)
 
     def to_asm(self):
-        if ord(rom[self.address]) < 0x45:
+        if ord(rom[self.address]) < 0x38:
             byte = ord(rom[self.address])
 
             if byte in self.base:
@@ -1923,9 +1923,48 @@ class MovementCommand(Command):
             else:
                 raise Exception, "can't figure out direction- this should never happen"
 
-            return self.macro_name+" "+modulator
+            macro_name = self.make_name()
+
+            return macro_name+" "+modulator
         else:
             return Command.to_asm(self)
+
+    def make_name(self):
+        """ Makes a macro name based on the byte id.
+        """
+        byte = ord(rom[self.address])
+        
+        if byte in self.base:
+            modulator = "down"
+        elif byte in [x+1 for x in self.base]:
+            modulator = "up"
+        elif byte in [x+2 for x in self.base]:
+            modulator = "left"
+        elif byte in [x+3 for x in self.base]:
+            modulator = "right"
+        else:
+            raise Exception, "can't figure out direction- this should never happen"
+        
+        x = byte
+
+        if   0x00 <= x < 0x04: name = "turn_head"
+        elif 0x04 <= x < 0x08: name = "half_step"
+        elif 0x08 <= x < 0x0C: name = "slow_step"
+        elif 0x0C <= x < 0x10: name = "step"
+        elif 0x10 <= x < 0x14: name = "big_step"
+        elif 0x14 <= x < 0x18: name = "slow_slide_step"
+        elif 0x18 <= x < 0x1C: name = "slide_step"
+        elif 0x1C <= x < 0x20: name = "fast_slide_step"
+        elif 0x20 <= x < 0x24: name = "turn_away"
+        elif 0x24 <= x < 0x28: name = "turn_in"
+        elif 0x28 <= x < 0x2C: name = "turn_waterfall"
+        elif 0x2C <= x < 0x30: name = "slow_jump_step"
+        elif 0x30 <= x < 0x34: name = "jump_step"
+        elif 0x34 <= x < 0x38: name = "fast_jump_step"
+        elif x >= 0x38:
+            raise Exception, "ApplyMovementData >$45 command found in <$45 namer?"
+
+        return name
 
 movement_command_classes = inspect.getmembers(sys.modules[__name__], \
                            lambda obj: inspect.isclass(obj) and \
