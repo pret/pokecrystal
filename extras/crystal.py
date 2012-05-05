@@ -1579,6 +1579,23 @@ class TextPointerLabelParam(PointerLabelParam):
         else:
             return []
 
+class TextPointerLabelAfterBankParam(PointerLabelAfterBank):
+    text = None
+    def parse(self):
+        PointerLabelAfterBank.parse(self)
+        address = calculate_pointer_from_bytes_at(self.address, bank=self.bank)
+        if address != None and address != 0:
+            self.text = parse_text_engine_script_at(address, map_group=self.map_group, map_id=self.map_id, force=self.force, debug=self.debug)
+            if not self.text:
+                self.text = script_parse_table[address]
+    
+    def get_dependencies(self, recompute=False, global_dependencies=set()):
+        if self.text:
+            global_dependencies.add(self.text)
+            return [self.text]
+        else:
+            return []
+
 class MovementPointerLabelParam(PointerLabelParam):
     pass
 
@@ -1777,6 +1794,7 @@ class TextCommand(Command):
     # some text commands can specify this upfront but not $0
     size = None
 
+    param_types = {}
     params = []
 
     # most text commands won't have any dependencies
@@ -1982,6 +2000,9 @@ class WriteTextFromRAM(TextCommand):
     id = 0x1
     macro_name = "text_from_ram"
     size = 3
+    param_types = {
+        0: {"name": "pointer", "class": PointerLabelParam},
+    }
 class WriteNumberFromRAM(TextCommand):
     """
     02 = Write number from ram. Structure: [02][Ram address (2byte)][Byte]
@@ -2004,16 +2025,28 @@ class WriteNumberFromRAM(TextCommand):
     id = 0x2
     macro_name = "number_from_ram"
     size = 4
+    param_types = {
+        0: {"name": "pointer", "class": PointerLabelParam},
+        1: {"name": "config", "class": HexByte},
+    }
 class SetWriteRAMLocation(TextCommand):
     "Define new ram address to write to. Structure: [03][Ram address (2byte)]"
     id = 0x3
     macro_name = "store_at"
     size = 3
+    param_types = {
+        0: {"name": "ram address", "class": PointerLabelParam},
+    }
 class ShowBoxWithValueAt(TextCommand):
     "04 = Write a box. Structure: [04][Ram address (2byte)][Y][X]"
     id = 0x4
     macro_name = "text_box"
     size = 5
+    param_types = {
+        0: {"name": "ram address", "class": PointerLabelParam},
+        1: {"name": "y", "class": DecimalParam},
+        2: {"name": "x", "class": DecimalParam},
+    }
 class Populate2ndLineOfTextBoxWithRAMContents(TextCommand):
     "05 = New ram address to write to becomes 2nd line of a text box. Structure: [05]"
     id = 0x5
@@ -2037,6 +2070,7 @@ class TextInlineAsm(TextCommand):
     id = 0x8
     macro_name = "start_asm"
     end = True
+    # TODO: parse the following asm with gbz80disasm
 class WriteDecimalNumberFromRAM(TextCommand):
     """
     09 = Write number from rom/ram in decimal. Structure: [09][Ram address/Pointer (2byte)][Byte]
@@ -2051,6 +2085,10 @@ class WriteDecimalNumberFromRAM(TextCommand):
     id = 0x9
     macro_name = "deciram"
     size = 4
+    param_types = {
+        0: {"name": "pointer?", "class": PointerLabelParam},
+        1: {"name": "config", "class": HexByte},
+    }
 class InterpretDataStream(TextCommand):
     """
     0A = Interpret Data stream. Structure: [0A]
@@ -2073,6 +2111,9 @@ class LimitedIntrepretDataStream(TextCommand):
     id = 0xC
     macro_name = "limited_interpret_data"
     size = 2
+    param_types = {
+        0: {"name": "number of codes to interpret", "class": DecimalParam},
+    }
 class WaitForKeyDownDisplayArrow(ShowArrowsAndButtonWait):
     """
     0D = Wait for key down  display arrow. Structure: [0D]
@@ -2125,16 +2166,23 @@ class DisplayByteFromRAMAt(TextCommand):
     id = 0x14
     macro_name = "show_byte_at"
     size = 2
+    param_types = {
+        1: {"name": "memory byte id", "class": DecimalParam},
+    }
 class WriteCurrentDay(TextCommand):
     "15 = Write current day. Structure: [15]"
     id = 0x15
     macro_name = "current_day"
     size = 1
+
 class TextJump(TextCommand):
     "16 = 3byte pointer to new text follows. Structure: [16][2byte pointer][bank]"
     id = 0x16
     macro_name = "text_jump"
     size = 4
+    param_types = {
+        0: {"name": "text", "class": TextPointerLabelAfterBankParam},
+    }
 
 #byte: [name, [param1 name, param1 type], [param2 name, param2 type], ...]
 #0x9E: ["verbosegiveitem", ["item", ItemLabelByte], ["quantity", SingleByteParam]],
