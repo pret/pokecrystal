@@ -458,8 +458,8 @@ class NewTextScript:
 
             # match the command id byte to a scripting command class like MainText
             for class_ in text_command_classes:
-                if class_.id == cur_byte:
-                    scripting_command_class = class_
+                if class_[1].id == cur_byte:
+                    scripting_command_class = class_[1]
             
             # no matching command found
             if scripting_command_class == None:
@@ -487,9 +487,10 @@ class NewTextScript:
 
         # store the script in the global table/map thing
         script_parse_table[start_address:current_address] = self
-        
-        asm_output = "\n".join([command.to_asm() for command in commands])
-        print "--------------\n"+asm_output
+       
+        if self.debug:
+            asm_output = "\n".join([command.to_asm() for command in commands])
+            print "--------------\n"+asm_output
 
         # store the script
         self.commands = commands
