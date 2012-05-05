@@ -5828,6 +5828,48 @@ class Asm:
         #make sure the file ends with a newline
         fh.write("\n")
 
+def list_texts_in_bank(bank):
+    """ Narrows down the list of objects
+    that you will be inserting into Asm.
+    """
+    if len(all_texts) == 0:
+        raise Exception, "all_texts is blank.. run_main() will populate it"
+
+    assert bank != None, "list_texts_in_banks must be given a particular bank"
+
+    assert 0 <= bank < 0x80, "bank doesn't exist in the ROM"
+
+    texts = []
+    for text in all_texts:
+        if calculate_bank(text.address) == bank:
+            texts.append(text)
+
+    return texts
+
+def dump_asm_for_texts_in_bank(bank, start=50, end=100):
+    """ Simple utility to help with dumping texts into a particular bank. This
+    is helpful for figuring out which text is breaking that bank.
+    """
+    # load and parse the ROM if necessary
+    if rom == None or len(rom) <= 4:
+        load_rom()
+        run_main()
+    
+    # get all texts
+    # first 100 look okay?
+    texts = list_texts_in_bank(bank)[start:end]
+
+    # create a new dump
+    asm = Asm()
+
+    # start the insertion process
+    asm.insert_multiple_with_dependencies(texts)
+    
+    # start dumping
+    asm.dump()
+
+    print "done dumping texts for bank $%.2x" % (bank)
+
 def index(seq, f):
     """return the index of the first item in seq
     where f(item) == True."""
