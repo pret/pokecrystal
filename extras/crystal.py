@@ -1908,7 +1908,9 @@ class MovementCommand(Command):
     def to_asm(self):
         if ord(rom[self.address]) < 0x45:
             byte = ord(rom[self.address])
+            
             base = [0, 4, 8, 0x0C, 0x10, 0x14, 0x18, 0x1C, 0x20, 0x24, 0x28, 0x2C, 0x30, 0x34, 0x3A, 0x3B, 0x3D]
+
             if byte in base:
                 modulator = "down"
             elif byte in [x+1 for x in base]:
@@ -1922,7 +1924,7 @@ class MovementCommand(Command):
 
             return self.macro_name+" "+modulator
         else:
-            Command.parse(self)
+            return Command.to_asm(self)
 
 movement_command_classes = inspect.getmembers(sys.modules[__name__], \
                            lambda obj: inspect.isclass(obj) and \
