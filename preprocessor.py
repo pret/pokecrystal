@@ -12,7 +12,8 @@ from extras.crystal import command_classes, \
                     PointerLabelBeforeBank, \
                     PointerLabelAfterBank, \
                     MoneyByteParam, \
-                    ItemFragment
+                    ItemFragment, \
+                    text_command_classes
 
 macros = command_classes + \
     [
@@ -22,7 +23,7 @@ macros = command_classes + \
     PeopleEvent,
     DataByteWordMacro,
     ItemFragment,
-    ]
+    ] #+ [x[1] for x in text_command_classes]
 
 chars = {
 "ガ": 0x05,
