@@ -385,7 +385,8 @@ def command_debug_information(command_byte=None, map_group=None, map_id=None, ad
     #info1 += "    long_info: " + long_info
     return info1
 
-class NewTextScript:
+all_texts = []
+class TextScript:
     """ A text is a sequence of bytes (and sometimes commands). It's not the
     same thing as a Script. The bytes are translated into characters based
     on the lookup table (see chars.py). The in-text commands are for including
@@ -394,8 +395,11 @@ class NewTextScript:
     see: http://hax.iimarck.us/files/scriptingcodes_eng.htm#InText
     """
     base_label = "UnknownText_"
-    def __init__(self, address, map_group=None, map_id=None, debug=False, label=None, force=False):
+    def __init__(self, address, map_group=None, map_id=None, debug=False, label=None, force=False, show=None):
         self.address = address
+        # $91, $84, $82, $54, $8c 
+        if address in [0x26f2, 0x6ee, 0x1071, 0x5ce33, 0x69523, 0x7ee98, 0x72176, 0x7a578, 0x19c09b]:
+            return None
         self.map_group, self.map_id, self.debug = map_group, map_id, debug
         self.dependencies = None
         self.commands = None
@@ -487,7 +491,8 @@ class NewTextScript:
 
         # store the script in the global table/map thing
         script_parse_table[start_address:current_address] = self
-       
+        all_texts.append(self)
+
         if self.debug:
             asm_output = "\n".join([command.to_asm() for command in commands])
             print "--------------\n"+asm_output
@@ -501,8 +506,7 @@ class NewTextScript:
         asm_output = "\n".join([command.to_asm() for command in self.commands])
         return asm_output
 
-all_texts = []
-class TextScript:
+class OldTextScript:
     "a text is a sequence of commands different from a script-engine script"
     base_label = "UnknownText_"
     def __init__(self, address, map_group=None, map_id=None, debug=True, show=True, force=False, label=None):
@@ -1999,6 +2003,7 @@ class MainText(TextCommand):
                 new_line  = True
                 was_comma = False
                 end       = True
+                self.end  = True
             elif byte == 0x57:
                 # close any quotes
                 if in_quotes:
@@ -2073,6 +2078,8 @@ class MainText(TextCommand):
         # Script.to_asm() has command.to_asm()+"\n"
         if output[-1] == "\n":
             output = output[:-1]
+
+        self.size = len(self.bytes)
 
         return output
 
@@ -2266,6 +2273,15 @@ class TextJump(TextCommand):
     param_types = {
         0: {"name": "text", "class": TextPointerLabelAfterBankParam},
     }
+# this is needed because sometimes a script ends with $50 $50
+class TextEndingCommand(TextCommand):
+    id = 0x50
+    macro_name = "db"
+    override_byte_check = False
+    size = 1
+    end = True
+    def to_asm(self):
+        return "db $50"
 
 text_command_classes = inspect.getmembers(sys.modules[__name__], \
                        lambda obj: inspect.isclass(obj) and \
