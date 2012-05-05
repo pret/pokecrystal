@@ -1963,6 +1963,10 @@ class MainText(TextCommand):
                 new_line  = False
                 was_comma = False
 
+        # this shouldn't happen because of the rom_until calls in the parse method
+        if not end:
+            raise Exception, "ran out of bytes without the script ending?"
+
         # last character may or may not be allowed to be a newline?
         # Script.to_asm() has command.to_asm()+"\n"
         if output[-1] == "\n":
