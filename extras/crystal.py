@@ -1687,7 +1687,7 @@ class TextPointerLabelAfterBankParam(PointerLabelAfterBank):
 class MovementPointerLabelParam(PointerLabelParam):
     def parse(self):
         PointerLabelParam.parse(self)
-        self.movement = MovementData(self.address, map_group=self.map_group, map_id=self.map_id, debug=self.debug)
+        self.movement = ApplyMovementData(self.parsed_address, map_group=self.map_group, map_id=self.map_id, debug=self.debug)
 
     def get_dependencies(self, recompute=False, global_dependencies=set()):
         if hasattr(self, "movement") and self.movement:
@@ -1882,6 +1882,9 @@ class MovementCommand(Command):
     # by default.. handle all the <$45s
     #id = [0, 4, 8, 0x0C, 0x10, 0x14, 0x18, 0x1C, 0x20, 0x24, 0x28, 0x2C, 0x30, 0x34, 0x3A, 0x3B, 0x3D]
 
+    # this is just for the "temporary" fix until a better applymovement parser is written
+    id = [x for x in range(0, 56)]
+
     # the vast majority of movement commands do not end the movement script
     end = False
 
@@ -1974,14 +1977,16 @@ movement_command_classes = inspect.getmembers(sys.modules[__name__], \
                            lambda obj: inspect.isclass(obj) and \
                            issubclass(obj, MovementCommand))
 
+all_movements = []
 class ApplyMovementData:
     base_label = "MovementData_"
     
-    def __init__(self, address, map_group=None, map_id=None, debug=False, label=None):
+    def __init__(self, address, map_group=None, map_id=None, debug=False, label=None, force=False):
         self.address   = address
         self.map_group = map_group
         self.map_id    = map_id
         self.debug     = debug
+        self.force     = force
         
         if not label:
             label = self.base_label + hex(address)
@@ -1995,7 +2000,8 @@ class ApplyMovementData:
     # with the exception of using text_command_classes instead of command_classes
     def parse(self):
         global apply_movement_command_classes, script_parse_table
-        
+        address = self.address
+
         # i feel like checking myself
         assert is_valid_address(address), "ApplyMovementData.parse must be given a valid address"
         
@@ -2033,9 +2039,17 @@ class ApplyMovementData:
                    or class_[1].id == cur_byte:
                     scripting_command_class = class_[1]
             
+            
+            # temporary fix for applymovement scripts
+            if ord(rom[current_address]) == 0x47:
+                end = True
+                scripting_command_class = movement_command_classes[0][1]
+            
             # no matching command found
             if scripting_command_class == None:
-                raise Exception, "unable to parse movement command $%.2x in the movement script at %s" % (cur_byte, hex(start_address))
+                #raise Exception, "unable to parse movement command $%.2x in the movement script at %s" % (cur_byte, hex(start_address))
+                end = True
+                continue
 
             # create an instance of the command class and let it parse its parameter bytes
             cls = scripting_command_class(address=current_address, map_group=self.map_group, map_id=self.map_id, debug=self.debug, force=self.force)
@@ -2048,10 +2062,6 @@ class ApplyMovementData:
 
             # certain commands will end the movement engine
             end = cls.end
-            
-            # temporary fix for applymovement scripts
-            if ord(rom[current_address]) == 0x47:
-                end = True
 
             # skip past the command's parameter bytes to go to the next command
             current_address += cls.size
@@ -2062,8 +2072,8 @@ class ApplyMovementData:
         self.last_address = current_address
 
         # store the script in the global table/map thing
+        all_movements.append(self)
         script_parse_table[start_address:current_address] = self
-        all_texts.append(self)
 
         if self.debug:
             asm_output = "\n".join([command.to_asm() for command in commands])
