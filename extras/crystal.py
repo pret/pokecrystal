@@ -1786,6 +1786,16 @@ class TextCommand(Command):
     #def get_dependencies(self, recompute=False, global_dependencies=set()):
     #    return []
 
+# this is a regular command in a TextScript for writing text
+# but unlike other macros that preprocessor.py handles,
+# the preprocessor-parser is custom and MainText is not
+# used as a macro by main.asm - however, MainText is
+# treated as a macro for the sake of parsing the ROM because
+# it is called with $0. This is very similar to how Script
+# is parsed and handled. But again, script command macros
+# are quite different.. preprocessor.py allows some of them
+# to handle how they should be parsed from main.asm, in
+# addition to their regular "parse()" method.
 class MainText(TextCommand):
     "Write text. Structure: [00][Text][0x50 (ends code)]"
     id = 0x0
@@ -1891,11 +1901,12 @@ class MainText(TextCommand):
                 # figure out what the character actually is
                 char = chars[byte]
 
+                # oh wait.. quotes isn't a valid character in the first place :(
                 if char == "\"":
                     if in_quotes:
                         output += "\""
                         in_quotes = False
-                    if not in_quotes:
+                    elif not in_quotes:
                         if new_line:
                             output += "\""
                         elif not new_line:
@@ -1903,7 +1914,15 @@ class MainText(TextCommand):
                                 output += ", "
                             output += "\""
                         in_quotes = True
+
+                # the above if statement is probably not ever called
                 else:
+                    if not in_quotes:
+                        if not new_line and not was_comma:
+                            output += ", "
+                        output += "\""
+                        in_quotes = True
+
                     output += char
 
                 new_line  = False
@@ -1929,7 +1948,10 @@ class MainText(TextCommand):
                 new_line  = False
                 was_comma = False
 
-            # TODO
+        # last character may or may not be allowed to be a newline?
+        # Script.to_asm() has command.to_asm()+"\n"
+        if output[-1] == "\n":
+            output = output[:-1]
 
         return output
 
