@@ -13,6 +13,7 @@ from extras.crystal import command_classes, \
                     PointerLabelAfterBank, \
                     MoneyByteParam, \
                     ItemFragment, \
+                    TextEndingCommand, \
                     text_command_classes
 
 macros = command_classes + \
@@ -23,7 +24,7 @@ macros = command_classes + \
     PeopleEvent,
     DataByteWordMacro,
     ItemFragment,
-    ] #+ [x[1] for x in text_command_classes]
+    ] + [x[1] for x in text_command_classes]
 
 chars = {
 "ガ": 0x05,
@@ -435,6 +436,14 @@ def macro_translator(macro, token, line):
 
     # write out a comment showing the original line
     sys.stdout.write("; original_line: " + original_line)
+
+
+    # "db" is a macro because of TextEndingCommand
+    # rgbasm can handle "db" so no preprocessing is required
+    # (don't check its param count)
+    if macro.macro_name == "db" and macro == TextEndingCommand:
+        sys.stdout.write(original_line)
+        return
 
     # certain macros don't need an initial byte written
     # do: all scripting macros
