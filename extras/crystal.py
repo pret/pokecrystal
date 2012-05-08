@@ -5731,35 +5731,42 @@ class Asm:
             raise Exception, "unable to insert object into Asm"
         self.labels.append(new_object.label)
         return True 
-    def insert_single_with_dependencies(self, object0):
-        global_dependencies = set([object0])
-        poopbutt = get_dependencies_for(object0, global_dependencies=global_dependencies, recompute=False)
-        objects = global_dependencies
-        objects.update(poopbutt)
-        new_objects = copy(objects)
-        for object in objects:
-            if hasattr(object, "dependencies") and object.dependencies == None:
-                new_objects.update(object.get_dependencies())
-        for object in new_objects:
-            if isinstance(object, ScriptPointerLabelParam):
-                continue
-            #if object in self.parts:
-            #    if self.debug:
-            #        print "already inserted -- object.__class__="+str(object.__class__)+" object is: "+str(object)+\
-            #              " for object.__class__="+str(object0.__class__)+" object="+str(object0)
-            #    continue
-            if self.debug:
-                print " object is: " + str(object)
-            self.insert(object)
-
-            #just some old debugging
-            #if object.label.name == "UnknownText_0x60128":
-            #    raise Exception, "debugging..."
-            #elif object.label.name == "UnknownScript_0x60011":
-            #    raise Exception, "debugging.. dependencies are: " + str(object.dependencies) + " versus: " + str(object.get_dependencies())
+    def insert_with_dependencies(self, input):
+        if type(input) == list:
+            input_objects = input
+        else:
+            input_objects = [input]
+        
+        for object0 in input_objects:
+            global_dependencies = set([object0])
+            poopbutt = get_dependencies_for(object0, global_dependencies=global_dependencies, recompute=False)
+            objects = global_dependencies
+            objects.update(poopbutt)
+            new_objects = copy(objects)
+            for object in objects:
+                if hasattr(object, "dependencies") and object.dependencies == None:
+                    new_objects.update(object.get_dependencies())
+            for object in new_objects:
+                if isinstance(object, ScriptPointerLabelParam):
+                    continue
+                #if object in self.parts:
+                #    if self.debug:
+                #        print "already inserted -- object.__class__="+str(object.__class__)+" object is: "+str(object)+\
+                #              " for object.__class__="+str(object0.__class__)+" object="+str(object0)
+                #    continue
+                if self.debug:
+                    print " object is: " + str(object)
+                self.insert(object)
+    
+                #just some old debugging
+                #if object.label.name == "UnknownText_0x60128":
+                #    raise Exception, "debugging..."
+                #elif object.label.name == "UnknownScript_0x60011":
+                #    raise Exception, "debugging.. dependencies are: " + str(object.dependencies) + " versus: " + str(object.get_dependencies())
+    def insert_single_with_dependencies(self, object):
+        self.insert_with_dependencies(object)
     def insert_multiple_with_dependencies(self, objects):
-        for object in objects:
-            self.insert_single_with_dependencies(object)
+        self.insert_with_dependencies(objects)
     def insert_all(self, limit=100):
         count = 0
         for each in script_parse_table.items():
