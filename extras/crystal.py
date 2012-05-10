@@ -490,6 +490,11 @@ class TextScript:
         # (actually i think this might be the next byte after??)
         self.last_address = current_address
 
+        # just some debugging..
+        last_address = self.last_address
+        print "TextScript last_address == " + hex(last_address)
+        #assert last_address != 0x5db06, "TextScript.parse somehow has a text with a last_address of 0x5db06 instead of 0x5db07"
+
         # store the script in the global table/map thing
         script_parse_table[start_address:current_address] = self
         all_texts.append(self)
