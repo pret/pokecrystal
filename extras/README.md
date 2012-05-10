@@ -18,7 +18,7 @@ asm = crystal.Asm()
 
 # insert the first 10 maps
 x = 10
-asm.insert_multiple_with_dependencies(crystal.all_map_headers[:x])
+asm.insert_with_dependencies(crystal.all_map_headers[:x])
 
 # dump to extras/output.txt
 asm.dump()
