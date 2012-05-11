@@ -5872,6 +5872,22 @@ def list_texts_in_bank(bank):
 
     return texts
 
+def list_movements_in_bank(bank):
+    """ Narrows down the list of objects
+    to speed up Asm insertion.
+    """
+    if len(all_movements) == 0:
+        raise Exception, "all_movements is blank.. run_main() will populate it"
+
+    assert bank != None, "list_movements_in_bank must be given a particular bank"
+    assert 0 <= bank < 0x80, "bank doesn't exist in the ROM (out of bounds)"
+    
+    movements = []
+    for movement in all_movements:
+        if calculate_bank(movement.address) == bank:
+            movements.append(movement)
+    return movements
+
 def dump_asm_for_texts_in_bank(bank, start=50, end=100):
     """ Simple utility to help with dumping texts into a particular bank. This
     is helpful for figuring out which text is breaking that bank.
@@ -5895,6 +5911,18 @@ def dump_asm_for_texts_in_bank(bank, start=50, end=100):
     asm.dump()
 
     print "done dumping texts for bank $%.2x" % (bank)
+
+def dump_asm_for_movements_in_bank(bank, start=0, end=100):
+    if rom == None or len(rom) <= 4:
+        load_rom()
+        run_main()
+
+    movements = list_movements_in_bank(bank)[start:end]
+
+    asm = Asm()
+    asm.insert_with_dependencies(movements)
+    asm.dump()
+    print "done dumping movements for bank $%.2x" % (bank)
 
 def index(seq, f):
     """return the index of the first item in seq
