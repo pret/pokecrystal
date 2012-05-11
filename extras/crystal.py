@@ -2247,7 +2247,7 @@ class MainText(TextCommand):
                     output += "\""
                     was_comma = False
 
-                if not was_comma:
+                if not was_comma and not new_line:
                     output += ", "
 
                 output += "$%.2x\n" % (byte)
