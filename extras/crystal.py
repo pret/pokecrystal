@@ -483,17 +483,28 @@ class TextScript:
             end = cls.end
 
             # skip past the command's parameter bytes to go to the next command
-            current_address += cls.size
+            #current_address += cls.size
+            current_address = cls.last_address
 
         # last byte belonging to script is last byte of last command,
         # or the last byte of the last command's last parameter
         # (actually i think this might be the next byte after??)
         self.last_address = current_address
 
+        if self.debug:
+            print "cls.address is: " + hex(cls.address)
+            print "cls.size is: " + hex(cls.size)
+            print "cls.last_address is: " + hex(cls.last_address)
+            print "self.last_address is: " + hex(self.last_address)
+
+        assert self.last_address == (cls.address + cls.size), "the last address should equal the last command's (address + size)"
+        assert self.last_address == cls.last_address, "the last address of the TextScript should be the last_address of its last command"
+
         # just some debugging..
-        last_address = self.last_address
-        print "TextScript last_address == " + hex(last_address)
-        #assert last_address != 0x5db06, "TextScript.parse somehow has a text with a last_address of 0x5db06 instead of 0x5db07"
+        if self.debug:
+            last_address = self.last_address
+            print "TextScript last_address == " + hex(last_address)
+            #assert last_address != 0x5db06, "TextScript.parse somehow has a text with a last_address of 0x5db06 instead of 0x5db07"
 
         # store the script in the global table/map thing
         script_parse_table[start_address:current_address] = self
@@ -2310,8 +2321,6 @@ class MainText(TextCommand):
         # Script.to_asm() has command.to_asm()+"\n"
         if output[-1] == "\n":
             output = output[:-1]
-
-        self.size = len(self.bytes)
 
         return output
 
