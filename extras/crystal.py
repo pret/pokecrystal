@@ -2333,7 +2333,7 @@ class WriteTextFromRAM(TextCommand):
     macro_name = "text_from_ram"
     size = 3
     param_types = {
-        0: {"name": "pointer", "class": PointerLabelParam},
+        0: {"name": "pointer", "class": MultiByteParam}, 
     }
 class WriteNumberFromRAM(TextCommand):
     """
