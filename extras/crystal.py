@@ -2228,7 +2228,7 @@ class MainText(TextCommand):
                     output += "@\"\n"
                     new_line = True
                 elif not in_quotes:
-                    if not was_comma:
+                    if not was_comma and not new_line:
                         output += ", "
                     output += "\"@\"\n"
                 
