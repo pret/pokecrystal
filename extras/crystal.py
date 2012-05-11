@@ -2004,6 +2004,7 @@ class ApplyMovementData:
         self.map_id    = map_id
         self.debug     = debug
         self.force     = force
+        self.dependencies = []
         
         if not label:
             label = self.base_label + hex(address)
@@ -2103,6 +2104,10 @@ class ApplyMovementData:
     def to_asm(self):
         asm_output = "\n".join([command.to_asm() for command in self.commands])
         return asm_output
+
+    # TODO: get_dependencies doesn't work if ApplyMovementData uses labels in the future
+    def get_dependencies(self, recompute=False, global_dependencies=set()):
+        return []
 
 class TextCommand(Command):
     # an individual text command will not end it
