@@ -2387,7 +2387,7 @@ class Populate2ndLineOfTextBoxWithRAMContents(TextCommand):
 class ShowArrowsAndButtonWait(TextCommand):
     "06 = Wait for key down + show arrows. Structure: [06]"
     id = 0x6
-    macro_name = "waitbutton"
+    macro_name = "text_waitbutton"
     size = 1
 class Populate2ndLine(TextCommand):
     """
