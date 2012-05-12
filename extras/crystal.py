@@ -2017,7 +2017,7 @@ class ApplyMovementData:
     # this is almost an exact copy of Script.parse
     # with the exception of using text_command_classes instead of command_classes
     def parse(self):
-        global apply_movement_command_classes, script_parse_table
+        global movement_command_classes, script_parse_table
         address = self.address
 
         # i feel like checking myself
