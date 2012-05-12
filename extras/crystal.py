@@ -1896,12 +1896,6 @@ class DataByteWordMacro(Command):
     def to_asm(self): pass
 
 class MovementCommand(Command):
-    # by default.. handle all the <$45s
-    #id = [0, 4, 8, 0x0C, 0x10, 0x14, 0x18, 0x1C, 0x20, 0x24, 0x28, 0x2C, 0x30, 0x34, 0x3A, 0x3B, 0x3D]
-
-    # this is just for the "temporary" fix until a better applymovement parser is written
-    id = [x for x in range(0, 56)]
-
     # the vast majority of movement commands do not end the movement script
     end = False
 
@@ -1990,9 +1984,74 @@ class MovementCommand(Command):
 
         return name
 
-movement_command_classes = inspect.getmembers(sys.modules[__name__], \
-                           lambda obj: inspect.isclass(obj) and \
-                           issubclass(obj, MovementCommand))
+movement_command_bases = {
+    0x00: "turn_head",
+    0x04: "half_step",
+    0x08: "slow_step", #small_step?
+    0x0C: "step",
+    0x10: "big_step", #fast_step?
+    0x14: "slow_slide_step",
+    0x18: "slide_step",
+    0x1C: "fast_slide_step",
+    0x20: "turn_away",
+    0x24: "turn_in", #towards?
+    0x28: "turn_waterfall", #what??
+    0x2C: "slow_jump_step",
+    0x30: "jump_step",
+    0x34: "fast_jump_step",
+
+    # tauwasser says the pattern stops at $45 but $38 looks more realistic?
+    0x3A: "remove_fixed_facing",
+    0x3B: "fix_facing",
+    0x3D: "hide_person",
+    0x45: "accelerate_last",
+    0x46: ["step_sleep", ["duration", DecimalParam]],
+    0x47: "step_end",
+    0x49: "hide_person",
+
+    # do these next two have any params ??
+    0x4C: "teleport_from",
+    0x4D: "teleport_to",
+    
+    0x4E: "skyfall",
+    0x4F: "step_wait5",
+    0x55: ["step_shake", ["displacement", DecimalParam]],
+}
+
+# create MovementCommands from movement_command_bases
+def create_movement_commands():
+    """ Creates MovementCommands from movement_command_bases.
+    This is just a cheap trick instead of manually defining
+    all of those classes.
+    """
+    #movement_command_classes = inspect.getmembers(sys.modules[__name__], \
+    #                       lambda obj: inspect.isclass(obj) and \
+    #                       issubclass(obj, MovementCommand) and \
+    #                       not (obj is MovementCommand))
+    movement_command_classes = []
+    for (byte, cmd) in movement_command_bases.items():
+        if type(cmd) == str:
+            cmd = [cmd]
+        cmd_name = cmd[0].replace(" ", "_")
+        params = {"id": byte, "size": 1, "end": byte is 0x47, "macro_name": cmd_name}
+        params["param_types"] = {}
+        if len(cmd) > 1:
+            param_types = cmd[1:]
+            for (i, each) in enumerate(param_types):
+                thing = {"name": each[0], "class": each[1]}
+                params["param_types"][i] = thing
+                if debug:
+                    print "each is: " + str(each)
+                    print "thing[class] is: " + str(thing["class"])
+                params["size"] += thing["class"].size
+        klass_name = cmd_name+"Command"
+        klass = classobj(klass_name, (Command,), params)
+        globals()[klass_name] = klass
+        movement_command_classes.append(klass)
+    #later an individual klass will be instantiated to handle something
+    return movement_command_classes
+
+movement_command_classes = create_movement_commands()
 
 all_movements = []
 class ApplyMovementData:
@@ -2004,13 +2063,13 @@ class ApplyMovementData:
         self.map_id    = map_id
         self.debug     = debug
         self.force     = force
-        self.dependencies = []
         
         if not label:
             label = self.base_label + hex(address)
         self.label     = Label(name=label, address=address, object=self)
 
-        self.commands = []
+        self.dependencies = []
+        self.commands     = []
 
         self.parse()
     
@@ -2057,7 +2116,6 @@ class ApplyMovementData:
                    or class_[1].id == cur_byte:
                     scripting_command_class = class_[1]
             
-            
             # temporary fix for applymovement scripts
             if ord(rom[current_address]) == 0x47:
                 end = True
@@ -2065,9 +2123,7 @@ class ApplyMovementData:
             
             # no matching command found
             if scripting_command_class == None:
-                #raise Exception, "unable to parse movement command $%.2x in the movement script at %s" % (cur_byte, hex(start_address))
-                end = True
-                continue
+                raise Exception, "unable to parse movement command $%.2x in the movement script at %s" % (cur_byte, hex(start_address))
 
             # create an instance of the command class and let it parse its parameter bytes
             cls = scripting_command_class(address=current_address, map_group=self.map_group, map_id=self.map_id, debug=self.debug, force=self.force)
