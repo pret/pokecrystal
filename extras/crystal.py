@@ -2019,7 +2019,7 @@ movement_command_bases = {
 }
 
 # create MovementCommands from movement_command_bases
-def create_movement_commands():
+def create_movement_commands(debug=False):
     """ Creates MovementCommands from movement_command_bases.
     This is just a cheap trick instead of manually defining
     all of those classes.
