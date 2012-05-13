@@ -1984,6 +1984,7 @@ class MovementCommand(Command):
 
         return name
 
+# down, up, left, right
 movement_command_bases = {
     0x00: "turn_head",
     0x04: "half_step",
@@ -2028,7 +2029,7 @@ def create_movement_commands(debug=False):
     #                       lambda obj: inspect.isclass(obj) and \
     #                       issubclass(obj, MovementCommand) and \
     #                       not (obj is MovementCommand))
-    movement_command_classes = []
+    movement_command_classes2 = []
     for (byte, cmd) in movement_command_bases.items():
         if type(cmd) == str:
             cmd = [cmd]
@@ -2044,12 +2045,41 @@ def create_movement_commands(debug=False):
                     print "each is: " + str(each)
                     print "thing[class] is: " + str(thing["class"])
                 params["size"] += thing["class"].size
-        klass_name = cmd_name+"Command"
-        klass = classobj(klass_name, (Command,), params)
-        globals()[klass_name] = klass
-        movement_command_classes.append(klass)
+        
+        if byte <= 0x34:
+            for x in range(0, 4):
+                
+                direction = None
+                if x == 0:
+                    direction = "down"
+                elif x == 1:
+                    direction = "up"
+                elif x == 2:
+                    direction = "left"
+                elif x == 3:
+                    direction = "right"
+                else: raise Exception, "this should never happen"
+
+                cmd_name = cmd[0].replace(" ", "_") + "_" + direction
+                klass_name = cmd_name+"Command"
+                params["id"] = copy(byte)
+                params["macro_name"] = cmd_name
+                klass = classobj(copy(klass_name), (MovementCommand,), deepcopy(params))
+                globals()[klass_name] = klass
+                movement_command_classes2.append(klass)
+                print "klass.byte is: " + hex(klass.id)
+
+                byte += 1
+            del cmd_name
+            del params
+            del klass_name
+        else:
+            klass_name = cmd_name+"Command"
+            klass = classobj(klass_name, (MovementCommand,), params)
+            globals()[klass_name] = klass
+            movement_command_classes2.append(klass)
     #later an individual klass will be instantiated to handle something
-    return movement_command_classes
+    return movement_command_classes2
 
 movement_command_classes = create_movement_commands()
 
@@ -2112,14 +2142,14 @@ class ApplyMovementData:
             # match the command id byte to a scripting command class like "step half"
             for class_ in movement_command_classes:
                 # allow lists of ids
-                if type(class_[1].id) == list and cur_byte in class_[1].id \
-                   or class_[1].id == cur_byte:
-                    scripting_command_class = class_[1]
+                if (type(class_.id) == list and cur_byte in class_.id) \
+                   or class_.id == cur_byte:
+                    scripting_command_class = class_
             
             # temporary fix for applymovement scripts
             if ord(rom[current_address]) == 0x47:
                 end = True
-                scripting_command_class = movement_command_classes[0][1]
+                scripting_command_class = movement_command_classes[0]
             
             # no matching command found
             if scripting_command_class == None:
