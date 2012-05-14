@@ -14,7 +14,8 @@ from extras.crystal import command_classes, \
                     MoneyByteParam, \
                     ItemFragment, \
                     TextEndingCommand, \
-                    text_command_classes
+                    text_command_classes, \
+                    movement_command_classes
 
 macros = command_classes + \
     [
@@ -24,7 +25,8 @@ macros = command_classes + \
     PeopleEvent,
     DataByteWordMacro,
     ItemFragment,
-    ] + [x[1] for x in text_command_classes]
+    ] + [x[1] for x in text_command_classes] \
+    + movement_command_classes
 
 chars = {
 "ガ": 0x05,

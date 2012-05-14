@@ -1916,73 +1916,31 @@ class MovementCommand(Command):
     #    return []
 
     def parse(self):
-        self.byte = ord(rom[self.address])
-        #
-        #if ord(rom[self.address]) < 0x45:
-        #    # this is mostly handled in to_asm
-        #    pass
-        #else:
-        #    Command.parse(self)
+        if ord(rom[self.address]) < 0x45:
+            # this is mostly handled in to_asm
+            pass
+        else:
+            Command.parse(self)
 
     def to_asm(self):
-        return "db $%.2x"%(self.byte)
-        
-        if ord(rom[self.address]) < 0x38:
-            byte = ord(rom[self.address])
+        #return "db $%.2x"%(self.byte)
+        return Command.to_asm(self)
 
-            if byte in self.base:
-                modulator = "down"
-            elif byte in [x+1 for x in self.base]:
-                modulator = "up"
-            elif byte in [x+2 for x in self.base]:
-                modulator = "left"
-            elif byte in [x+3 for x in self.base]:
-                modulator = "right"
-            else:
-                raise Exception, "can't figure out direction- this should never happen"
-
-            macro_name = self.make_name()
-
-            return macro_name+" "+modulator
-        else:
-            return Command.to_asm(self)
-
-    def make_name(self):
-        """ Makes a macro name based on the byte id.
-        """
-        byte = ord(rom[self.address])
-        
-        if byte in self.base:
-            modulator = "down"
-        elif byte in [x+1 for x in self.base]:
-            modulator = "up"
-        elif byte in [x+2 for x in self.base]:
-            modulator = "left"
-        elif byte in [x+3 for x in self.base]:
-            modulator = "right"
-        else:
-            raise Exception, "can't figure out direction- this should never happen"
-        
-        x = byte
-
-        if   0x00 <= x < 0x04: name = "turn_head"
-        elif 0x04 <= x < 0x08: name = "half_step"
-        elif 0x08 <= x < 0x0C: name = "slow_step"
-        elif 0x0C <= x < 0x10: name = "step"
-        elif 0x10 <= x < 0x14: name = "big_step"
-        elif 0x14 <= x < 0x18: name = "slow_slide_step"
-        elif 0x18 <= x < 0x1C: name = "slide_step"
-        elif 0x1C <= x < 0x20: name = "fast_slide_step"
-        elif 0x20 <= x < 0x24: name = "turn_away"
-        elif 0x24 <= x < 0x28: name = "turn_in"
-        elif 0x28 <= x < 0x2C: name = "turn_waterfall"
-        elif 0x2C <= x < 0x30: name = "slow_jump_step"
-        elif 0x30 <= x < 0x34: name = "jump_step"
-        elif 0x34 <= x < 0x38: name = "fast_jump_step"
-        elif x >= 0x38:
-            raise Exception, "ApplyMovementData >$45 command found in <$45 namer?"
-
-        return name
+class MovementDBCommand(Command):
+    end = False
+    macro_name = "db"
+    override_byte_check = True
+    id = None
+    byte = None
+    size = 1
+    param_types = {
+        0: {"name": "db value", "class": SingleByteParam},
+    }
+    params = []
+    
+    def to_asm(self):
+        asm = Command.to_asm(self)
+        return asm + " ; movement"
 
 # down, up, left, right
 movement_command_bases = {
@@ -2153,13 +2111,19 @@ class ApplyMovementData:
             # no matching command found
             xyz = None
             if scripting_command_class == None:
-                scripting_command_class = MovementCommand
+                scripting_command_class = MovementDBCommand
+                #scripting_command_class = deepcopy(MovementCommand)
+                #scripting_command_class.id = scripting_command_class.byte = ord(rom[current_address])
+                #scripting_command_class.macro_name = "db"
+                #scripting_command_class.size = 1
+                #scripting_command_class.override_byte_check = True
+                #scripting_command_class.id = None
+                #scripting_command_class.param_types = {0: {"name": "db value", "class": DecimalParam}}
+
                 xyz = True
 
             # create an instance of the command class and let it parse its parameter bytes
             cls = scripting_command_class(address=current_address, map_group=self.map_group, map_id=self.map_id, debug=self.debug, force=self.force)
-            if xyz:
-                cls.byte = ord(rom[current_address])
 
             if self.debug:
                 print cls.to_asm()
@@ -2197,6 +2161,12 @@ class ApplyMovementData:
     # TODO: get_dependencies doesn't work if ApplyMovementData uses labels in the future
     def get_dependencies(self, recompute=False, global_dependencies=set()):
         return []
+
+def print_all_movements():
+    for each in all_movements:
+        print each.to_asm()
+        print "------------------"
+    print "done"
 
 class TextCommand(Command):
     # an individual text command will not end it
