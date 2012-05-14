@@ -2025,7 +2025,6 @@ def create_movement_commands(debug=False):
                 klass = classobj(copy(klass_name), (MovementCommand,), deepcopy(params))
                 globals()[klass_name] = klass
                 movement_command_classes2.append(klass)
-                print "klass.byte is: " + hex(klass.id)
 
                 byte += 1
             del cmd_name
