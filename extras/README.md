@@ -1,7 +1,7 @@
 Pokémon Crystal utilities and extras
 ==============================
 
-`crystal.py` parses the ROM into classes and objects. It prmarily parses map headers, "second" map headers, map event headers, map script headers, map triggers, map "callbacks", map blockdata, xy triggers, warps, people-events, texts and scripts. The purpose of the file is to parse the ROM into python and then spit it back out with the global `to_asm()` method.
+`crystal.py` parses the ROM and provides convenient classes to dump human-readable ASM with the global `to_asm()` method. This ASM can then be compiled back into the original ROM. Currently it parses map headers, "second" map headers, map event headers, map script headers, map triggers, map "callbacks", map blockdata, xy triggers, warps, people-events, texts and scripts.
 
 #### Simple ASM generation example
 
