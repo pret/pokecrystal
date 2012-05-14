@@ -1,6 +1,20 @@
 SECTION "bank0",HOME
 
-INCBIN "baserom.gbc",$0,$304d
+INCBIN "baserom.gbc",$0,$3041
+
+ByteFill:  ; 0x3041
+; fill BC bytes with the value of A, starting at HL
+	inc b  ; we bail *when* b hits 0, so include the last run
+	inc c  ; same thing; include last byte
+	jr .HandleLoop
+.PutByte
+	ld [hli], a
+.HandleLoop
+	dec c
+	jr nz, .PutByte
+	dec b
+	jr nz, .PutByte
+	ret
 
 GetFarByte: ; 0x304d
 ; retrieve a single byte from a:hl, and return it in a.
