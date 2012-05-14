@@ -2149,14 +2149,17 @@ class ApplyMovementData:
             # temporary fix for applymovement scripts
             if ord(rom[current_address]) == 0x47:
                 end = True
-                scripting_command_class = movement_command_classes[0]
             
             # no matching command found
+            xyz = None
             if scripting_command_class == None:
-                raise Exception, "unable to parse movement command $%.2x in the movement script at %s" % (cur_byte, hex(start_address))
+                scripting_command_class = MovementCommand
+                xyz = True
 
             # create an instance of the command class and let it parse its parameter bytes
             cls = scripting_command_class(address=current_address, map_group=self.map_group, map_id=self.map_id, debug=self.debug, force=self.force)
+            if xyz:
+                cls.byte = ord(rom[current_address])
 
             if self.debug:
                 print cls.to_asm()
