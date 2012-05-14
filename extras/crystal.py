@@ -399,7 +399,7 @@ class TextScript:
         self.address = address
         # $91, $84, $82, $54, $8c 
         # 0x19768c is a a weird problem?
-        if address in [0x26f2, 0x6ee, 0x1071, 0x5ce33, 0x69523, 0x7ee98, 0x72176, 0x7a578, 0x19c09b, 0x19768c]:
+        if address in [0x26ef, 0x26f2, 0x6ee, 0x1071, 0x5ce33, 0x69523, 0x7ee98, 0x72176, 0x7a578, 0x19c09b, 0x19768c]:
             return None
         self.map_group, self.map_id, self.debug = map_group, map_id, debug
         self.dependencies = None
@@ -415,8 +415,14 @@ class TextScript:
         
         self.parse()
 
+    def is_valid(self):
+        return not (self.address in [0x26ef, 0x26f2, 0x6ee, 0x1071, 0x5ce33, 0x69523, 0x7ee98, 0x72176, 0x7a578, 0x19c09b, 0x19768c])
+
     # hmm this looks exactly like Script.get_dependencies (which makes sense..)
     def get_dependencies(self, recompute=False, global_dependencies=set()):
+        if self.address in [0x26ef, 0x26f2, 0x6ee, 0x1071, 0x5ce33, 0x69523, 0x7ee98, 0x72176, 0x7a578, 0x19c09b, 0x19768c]:
+            return []
+
         if self.dependencies != None and not recompute:
             global_dependencies.update(self.dependencies)
             return self.dependencies
@@ -433,6 +439,9 @@ class TextScript:
     # this is almost an exact copy of Script.parse
     # with the exception of using text_command_classes instead of command_classes
     def parse(self):
+        if self.address in [0x26ef, 0x26f2, 0x6ee, 0x1071, 0x5ce33, 0x69523, 0x7ee98, 0x72176, 0x7a578, 0x19c09b, 0x19768c]:
+            return None
+
         global text_command_classes, script_parse_table
         current_address = copy(self.address)
         start_address = copy(current_address)
@@ -520,6 +529,9 @@ class TextScript:
         return commands
 
     def to_asm(self):
+        if self.address in [0x26ef, 0x26f2, 0x6ee, 0x1071, 0x5ce33, 0x69523, 0x7ee98, 0x72176, 0x7a578, 0x19c09b, 0x19768c]:
+            return None
+
         asm_output = "\n".join([command.to_asm() for command in self.commands])
         return asm_output
 
@@ -695,7 +707,8 @@ class OldTextScript:
 
                 text = TextScript(pointer, map_group=self.map_group, map_id=self.amp_id, debug=self.debug, \
                                   show=self.debug, force=self.debug, label="Target"+self.label.name)
-                self.dependencies.append(text)
+                if text.is_valid():
+                    self.dependencies.append(text)
 
                 command = {"type": command_byte,
                            "start_address": offset,
@@ -1161,7 +1174,10 @@ def parse_text_at3(address, map_group=None, map_id=None, debug=False):
     if deh:
         return deh
     else:
-        return TextScript(address, map_group=map_group, map_id=map_id, debug=debug)
+        text = TextScript(address, map_group=map_group, map_id=map_id, debug=debug)
+        if text.is_valid():
+            return text
+        else: return None
 
 def rom_text_at(address, count=10):
     """prints out raw text from the ROM
@@ -1709,7 +1725,7 @@ class MovementPointerLabelParam(PointerLabelParam):
     def get_dependencies(self, recompute=False, global_dependencies=set()):
         if hasattr(self, "movement") and self.movement:
             global_dependencies.add(self.movement)
-            return [self.movement].extend(self.movement.get_dependencies())
+            return [self.movement] + self.movement.get_dependencies(recompute=recompute, global_dependencies=global_dependencies)
         else:
             raise Exception, "MovementPointerLabelParam hasn't been parsed yet"
 
@@ -1758,9 +1774,9 @@ class Command:
 
     def get_dependencies(self, recompute=False, global_dependencies=set()):
         dependencies = []
-        if self.dependencies != None and not recompute:
-            global_dependencies.update(self.dependencies)
-            return self.dependencies
+        #if self.dependencies != None and not recompute:
+        #    global_dependencies.update(self.dependencies)
+        #    return self.dependencies
         for (key, param) in self.params.items():
             if hasattr(param, "get_dependencies") and param != self:
                 deps = param.get_dependencies(recompute=recompute, global_dependencies=global_dependencies)
@@ -5734,7 +5750,10 @@ class Asm:
         if not hasattr(new_object, "address"):
             print "object needs to have an address property: " + str(new_object)
             return
-        
+       
+        if not hasattr(new_object, "label") and hasattr(new_object, "is_valid") and not new_object.is_valid():
+            return
+
         debugmsg  = "object is " + new_object.label.name + " type="+str(new_object.__class__)+" new_object="+str(new_object)
         debugmsg += " label = " + new_object.label.name
         debugmsg += " start_address="+hex(start_address)#+" end_address="+hex(end_address)
