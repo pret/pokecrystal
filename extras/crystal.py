@@ -3833,7 +3833,7 @@ class Signpost(Command):
                    debug=self.debug)
             self.remotes.append(r1)
 
-            mb = PointerLabelParam(address=address, map_group=self.map_group, map_id=self.map_id, debug=self.debug)
+            mb = PointerLabelParam(address=self.address+3, map_group=self.map_group, map_id=self.map_id, debug=self.debug)
             self.params.append(mb)
         elif func == 7:
             #signpost's script pointer points to [Bit-Nr. (2byte)][Item no.]
@@ -3851,7 +3851,7 @@ class Signpost(Command):
                    debug=self.debug)
             self.remotes.append(r1)
 
-            mb = PointerLabelParam(address=address, map_group=self.map_group, map_id=self.map_id, debug=self.debug)
+            mb = PointerLabelParam(address=self.address+3, map_group=self.map_group, map_id=self.map_id, debug=self.debug)
             self.params.append(mb)
 
             #bit_table_byte1 = ord(rom[address])
@@ -3873,7 +3873,7 @@ class Signpost(Command):
                    debug=self.debug)
             self.remotes.append(r1)
 
-            mb = PointerLabelParam(address=address, map_group=self.map_group, map_id=self.map_id, debug=self.debug)
+            mb = PointerLabelParam(address=self.address+3, map_group=self.map_group, map_id=self.map_id, debug=self.debug)
             self.params.append(mb)
         else:
             raise Exception, "unknown signpost type byte="+hex(func) + " signpost@"+hex(self.address)
