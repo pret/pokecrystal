@@ -3647,7 +3647,14 @@ class SignpostRemoteBase:
     def to_asm(self):
         """very similar to Command.to_asm"""
         if len(self.params) == 0: return ""
-        output = ", ".join([p.to_asm() for p in self.params])
+        #output = ", ".join([p.to_asm() for p in self.params])
+        output = ""
+        for param in self.params:
+            if issubclass(param.__class__, SingleByteParam):
+                output += "db "
+            else:
+                output += "dw "
+            output += param.to_asm() + "\n"
         return output
 
 
