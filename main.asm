@@ -27,19 +27,19 @@ CopyBytes: ; 0x3026
 SwapBytes: ; 0x3034
 ; swap bc bytes between hl and de
 .Loop
-        ; stash [hl] away on the stack
+	; stash [hl] away on the stack
 	ld a, [hl]
 	push af
 
-        ; copy a byte from [de] to [hl]
+	; copy a byte from [de] to [hl]
 	ld a, [de]
 	ld [hli], a
 
-        ; retrieve the previous value of [hl]; put it in [de]
+	; retrieve the previous value of [hl]; put it in [de]
 	pop af
 	ld [de], a
 
-        ; handle loop stuff
+	; handle loop stuff
 	inc de
 	dec bc
 	ld a, b
@@ -84,19 +84,19 @@ GetFarByte: ; 0x304d
 
 GetFarHalfword: ; 0x305d
 ; retrieve a halfword from a:hl, and return it in hl.
-        ; bankswitch to new bank
+	; bankswitch to new bank
 	ld [$ff00+$8b], a
 	ld a, [$ff00+$9d]
 	push af
 	ld a, [$ff00+$8b]
 	rst $10
 
-        ; get halfword from new bank, put it in hl
+	; get halfword from new bank, put it in hl
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
 
-        ; bankswitch to previous bank and return
+	; bankswitch to previous bank and return
 	pop af
 	rst $10
 	ret
