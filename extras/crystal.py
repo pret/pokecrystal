@@ -1466,7 +1466,11 @@ class PointerLabelParam(MultiByteParam):
         bank = self.bank
         #we pass bank= for whether or not to include a bank byte when reading
         #.. it's not related to caddress
-        caddress = calculate_pointer_from_bytes_at(self.address, bank=self.bank)
+        caddress = None
+        if not (hasattr(self, "parsed_address") and self.parsed_address != None):
+            caddress = calculate_pointer_from_bytes_at(self.address, bank=self.bank)
+        else:
+            caddress = self.parsed_address
         label = get_label_for(caddress)
         pointer_part = label #use the label, if it is found
 
