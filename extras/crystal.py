@@ -5962,6 +5962,14 @@ class Asm:
         #make sure the file ends with a newline
         fh.write("\n")
 
+def list_things_in_bank(bank):
+    objects = []
+    for blah in script_parse_table.items():
+        object = blah[1]
+        if hasattr(object, "address") and calculate_bank(object.address) == bank:
+            objects.append(object)
+    return objects
+
 def list_texts_in_bank(bank):
     """ Narrows down the list of objects
     that you will be inserting into Asm.
@@ -6031,6 +6039,27 @@ def dump_asm_for_movements_in_bank(bank, start=0, end=100):
     asm.insert_with_dependencies(movements)
     asm.dump()
     print "done dumping movements for bank $%.2x" % (bank)
+
+def dump_things_in_bank(bank, start=50, end=100):
+    """ is helpful for figuring out which object is breaking that bank.
+    """
+    # load and parse the ROM if necessary
+    if rom == None or len(rom) <= 4:
+        load_rom()
+        run_main()
+    
+    things = list_things_in_bank(bank)[start:end]
+
+    # create a new dump
+    asm = Asm()
+
+    # start the insertion process
+    asm.insert_multiple_with_dependencies(things)
+    
+    # start dumping
+    asm.dump()
+
+    print "done dumping things for bank $%.2x" % (bank)
 
 def index(seq, f):
     """return the index of the first item in seq
