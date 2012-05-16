@@ -481,14 +481,20 @@ def macro_translator(macro, token, line):
             raise Exception, "dunno what to do with this non db/dw macro param: " + \
                              str(param_klass) + " in line: " + original_line
     
-    assert len(params) == allowed_length, \
+    # sometimes the allowed length can vary
+    if hasattr(macro, "allowed_lengths"):
+        allowed_lengths = macro.allowed_lengths + [allowed_length]
+    else:
+        allowed_lengths = [allowed_length]
+
+    assert len(params) in allowed_lengths, \
            "mismatched number of parameters on this line: " + \
            original_line
 
     # --- end of ridiculously long sanity check ---
 
     index = 0
-    while index < len(macro.param_types):
+    while index < len(params):
         param_type  = macro.param_types[index]
         description = param_type["name"]
         param_klass = param_type["class"]

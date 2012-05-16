@@ -1871,6 +1871,8 @@ class GivePoke(Command):
                   4: {"name": "trainer_name_pointer", "class": MultiByteParam}, #should probably use TextLabelParam
                   5: {"name": "pkmn_nickname", "class": MultiByteParam}, #XXX TextLabelParam ?
                   }
+    allowed_lengths = [4, 6]
+
     def parse(self):
         self.params = {}
         byte = ord(rom[self.address])
