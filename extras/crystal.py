@@ -1188,6 +1188,7 @@ def get_map_constant_label(map_group=None, map_id=None):
     """returns PALLET_TOWN for some map group/id pair"""
     if map_group == None: raise Exception, "need map_group"
     if map_id == None: raise Exception, "need map_id"
+    
     global map_internal_ids
     for (id, each) in map_internal_ids.items():
         if each["map_group"] == map_group and each["map_id"] == map_id:
@@ -1599,6 +1600,23 @@ class MoneyByteParam(MultiByteParam):
         z = (value & 0xFF0000) >> 16
 
         return str(z) + "\ndb "+str(y)+"\ndb "+str(x)
+
+def read_money(address, dohex=False):
+    z = ord(rom[address])
+    y = ord(rom[address+1])
+    x = ord(rom[address+2])
+    answer = x + (y << 8) + (z << 16)
+    if not dohex:
+        return answer
+    else:
+        return hex(answer)
+
+def write_money(money):
+    value = money
+    x = (value & 0x0000FF)
+    y = (value & 0x00FF00) >> 8
+    z = (value & 0xFF0000) >> 16
+    return "db "+str(z)+"\ndb "+str(y)+"\ndb "+str(x)
 
 class CoinByteParam(MultiByteParam):
     size = 2
@@ -5007,7 +5025,7 @@ map_names = {
         0xB: {"name": "Bill's House"},
         0xC: {"name": "Route 4"},
         0xD: {"name": "Route 9"},
-        0xE: {"name": "Route 10"},
+        0xE: {"name": "Route 10 North"},
         0xF: {"name": "Route 24"},
         0x10: {"name": "Route 25"},
         0x11: {"name": "Cerulean City"},
@@ -5166,7 +5184,7 @@ map_names = {
     18: {
         0x1: {"name": "Route 8"},
         0x2: {"name": "Route 12"},
-        0x3: {"name": "Route 10"},
+        0x3: {"name": "Route 10 South"},
         0x4: {"name": "Lavender Town"},
         0x5: {"name": "Lavender Pokémon Center 1F",
               "label": "LavenderPokeCenter1F"},
