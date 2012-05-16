@@ -1598,7 +1598,7 @@ class MoneyByteParam(MultiByteParam):
         y = (value & 0x00FF00) >> 8
         z = (value & 0xFF0000) >> 16
 
-        return str(x) + "\ndb "+str(y)+"\ndb "+str(z)
+        return str(z) + "\ndb "+str(y)+"\ndb "+str(x)
 
 class CoinByteParam(MultiByteParam):
     size = 2
