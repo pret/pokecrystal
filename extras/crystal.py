@@ -1498,7 +1498,14 @@ class PointerLabelParam(MultiByteParam):
             if not label:
                 bank_part = ((self.prefix+"%.2x")%bank)
             else:
-                bank_part = "BANK("+label+")"
+                if "$" in label:
+                    if 0x4000 <= caddress <= 0x7FFF:
+                        #bank_part = "$%.2x" % (calculate_bank(self.parent.parent.address))
+                        bank_part = "1"
+                    else:
+                        bank_part = "$%.2x" % (calculate_bank(caddress))
+                else:
+                    bank_part = "BANK("+label+")"
             #return the asm based on the order the bytes were specified to be in
             if bank == "reverse": #pointer, bank
                 return pointer_part+", "+bank_part
@@ -1517,7 +1524,7 @@ class PointerLabelParam(MultiByteParam):
 class PointerLabelBeforeBank(PointerLabelParam):
     bank = True #bank appears first, see calculate_pointer_from_bytes_at
     size = 3
-
+    byte_type = "dw"
 
 class PointerLabelAfterBank(PointerLabelParam):
     bank = "reverse" #bank appears last, see calculate_pointer_from_bytes_at
@@ -1744,7 +1751,10 @@ class TextPointerLabelAfterBankParam(PointerLabelAfterBank):
 class MovementPointerLabelParam(PointerLabelParam):
     def parse(self):
         PointerLabelParam.parse(self)
-        self.movement = ApplyMovementData(self.parsed_address, map_group=self.map_group, map_id=self.map_id, debug=self.debug)
+        if is_script_already_parsed_at(self.parsed_address):
+            self.movement = script_parse_table[self.parsed_address]
+        else:
+            self.movement = ApplyMovementData(self.parsed_address, map_group=self.map_group, map_id=self.map_id, debug=self.debug)
 
     def get_dependencies(self, recompute=False, global_dependencies=set()):
         if hasattr(self, "movement") and self.movement:
@@ -1868,7 +1878,7 @@ class Command:
             klass = param_type["class"]
             #make an instance of this class, like SingleByteParam()
             #or ItemLabelByte.. by making an instance, obj.parse() is called
-            obj = klass(address=current_address, name=name, **self.args)
+            obj = klass(address=current_address, name=name, parent=self, **dict([(k,v) for (k, v) in self.args.items() if k not in ["parent"]]))
             #save this for later
             self.params[i] = obj
             #increment our counters
@@ -2934,6 +2944,8 @@ class Script:
             self.map_group = kwargs["map_group"]
         if "map_id" in kwargs.keys():
             self.map_id = kwargs["map_id"]
+        if "parent" in kwargs.keys():
+            self.parent = kwargs["parent"]
         #parse the script at the address
         if "use_old_parse" in kwargs.keys() and kwargs["use_old_parse"] == True:
             self.old_parse(**kwargs)
@@ -3029,7 +3041,7 @@ class Script:
 
             # create an instance of the command class and let it parse its parameter bytes
             #print "about to parse command(script@"+hex(start_address)+"): " + str(scripting_command_class.macro_name)
-            cls = scripting_command_class(address=current_address, force=force, map_group=map_group, map_id=map_id)
+            cls = scripting_command_class(address=current_address, force=force, map_group=map_group, map_id=map_id, parent=self)
             
             #if self.debug:
             #    print cls.to_asm()
@@ -6067,7 +6079,7 @@ def dump_things_in_bank(bank, start=50, end=100):
     asm = Asm()
 
     # start the insertion process
-    asm.insert_multiple_with_dependencies(things)
+    asm.insert_with_dependencies(things)
     
     # start dumping
     asm.dump()
