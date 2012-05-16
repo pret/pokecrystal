@@ -30,6 +30,8 @@ if not hasattr(json, "read"):
 
 spacing = "\t"
 
+lousy_dragon_shrine_hack = [0x18d079, 0x18d0a9, 0x18d061, 0x18d091]
+
 #table of pointers to map groups
 #each map group contains some number of map headers
 map_group_pointer_table = 0x94000
@@ -5775,11 +5777,18 @@ class Asm:
             # its' probably being injected in some get_dependencies() somewhere
             print "don't know why ScriptPointerLabelParam is getting to this point?"
             return
-        start_address = new_object.address
         
         #first some validation
         if not hasattr(new_object, "address"):
             print "object needs to have an address property: " + str(new_object)
+            return
+        
+        start_address = new_object.address
+
+        # skip this dragon shrine script calling itself
+        # what about other scripts that call themselves ?
+        if start_address in lousy_dragon_shrine_hack:
+            print "skipping 0x18d079 in dragon shrine for a lousy hack"
             return
        
         if not hasattr(new_object, "label") and hasattr(new_object, "is_valid") and not new_object.is_valid():
@@ -5845,6 +5854,10 @@ class Asm:
                 gindex = self.parts.index(object)
                 self.parts = self.parts[:gindex] + incbins + self.parts[gindex:]
                 self.parts.remove(object)
+                found = True
+                break
+            elif object.address <= start_address < object.last_address:
+                print "this is probably a script that is looping back on itself?"
                 found = True
                 break
             #insert before the current object
@@ -6103,6 +6116,10 @@ def get_label_for(address):
         return None
     if type(address) != int:
         raise Exception, "get_label_for requires an integer address, got: " + str(type(address))
+
+    # lousy hack to get around recursive scripts in dragon shrine
+    if address in lousy_dragon_shrine_hack:
+        return None
 
     #the old way
     for thing in all_labels:
