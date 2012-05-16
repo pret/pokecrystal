@@ -493,9 +493,12 @@ def macro_translator(macro, token, line):
 
     # --- end of ridiculously long sanity check ---
 
+    # used for storetext
+    correction = 0
+
     index = 0
     while index < len(params):
-        param_type  = macro.param_types[index]
+        param_type  = macro.param_types[index - correction]
         description = param_type["name"]
         param_klass = param_type["class"]
         byte_type   = param_klass.byte_type # db or dw
@@ -513,16 +516,18 @@ def macro_translator(macro, token, line):
             
             if   size == 3 and issubclass(param_klass, PointerLabelBeforeBank):
                 # write the bank first
-                sys.stdout.write("db " + params[index] + "\n")
+                sys.stdout.write("db " + params[index].strip() + "\n")
                 # write the pointer second
-                sys.stdout.write("dw " + params[index+1] + "\n")
+                sys.stdout.write("dw " + params[index+1].strip() + "\n")
                 index += 2
+                correction += 1
             elif size == 3 and issubclass(param_klass, PointerLabelAfterBank):
                 # write the pointer first
-                sys.stdout.write("dw " + params[index] + "\n")
+                sys.stdout.write("dw " + params[index].strip() + "\n")
                 # write the bank second
-                sys.stdout.write("db " + params[index+1] + "\n")
+                sys.stdout.write("db " + params[index+1].strip() + "\n")
                 index += 2
+                correction += 1
             elif size == 3 and issubclass(param_klass, MoneyByteParam):
                 sys.stdout.write("db " + MoneyByteParam.from_asm(params[index]) + "\n")
                 index += 1
