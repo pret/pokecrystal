@@ -4026,10 +4026,13 @@ class MapHeader:
         self.dependencies = None
         if not label:
             label = self.base_label + hex(address)
-        self.label = Label(name=label, address=address, object=self)
+        self.label = Label(address=address, object=self)
         self.last_address = address + 9
         script_parse_table[address : self.last_address] = self
         self.parse()
+
+    def make_label(self):
+        return map_names[self.map_group][self.map_id]["label"] + "_MapHeader"
 
     def parse(self):
         address = self.address
@@ -4121,11 +4124,14 @@ class SecondMapHeader:
         self.dependencies = None
         if not label:
             label = self.base_label + hex(address)
-        self.label = Label(name=label, address=address, object=self)
+        self.label = Label(address=address, object=self)
         self.last_address = address+12
         #i think it's always a static size?
         script_parse_table[address : self.last_address] = self
         self.parse()
+    
+    def make_label(self):
+        return map_names[self.map_group][self.map_id]["label"] + "_SecondMapHeader"
 
     def parse(self):
         address = self.address
@@ -4272,10 +4278,13 @@ class MapBlockData:
             raise Exception, "MapBlockData needs to know the width/height of its map"
         if not label:
             label = self.base_label + hex(address)
-        self.label = Label(name=label, address=address, object=self)
+        self.label = Label(address=address, object=self)
         self.last_address = self.address + (self.width.byte * self.height.byte)
         script_parse_table[address : self.last_address] = self
         self.parse()
+    
+    def make_label(self):
+        return map_names[self.map_group][self.map_id]["label"] + "_BlockData"
 
     def save_to_file(self):
         #check if the file exists already
@@ -4310,9 +4319,12 @@ class MapEventHeader:
         self.dependencies = None
         if not label:
             label = self.base_label + hex(address)
-        self.label = Label(name=label, address=address, object=self)
+        self.label = Label(address=address, object=self)
         self.parse()
         script_parse_table[address : self.last_address] = self
+    
+    def make_label(self):
+        return map_names[self.map_group][self.map_id]["label"] + "_MapEventHeader"
 
     def parse(self):
         map_group, map_id, debug = self.map_group, self.map_id, self.debug
@@ -4533,9 +4545,12 @@ class MapScriptHeader:
         self.dependencies = None
         if not label:
             label = self.base_label + hex(address)
-        self.label = Label(name=label, address=address, object=self)
+        self.label = Label(address=address, object=self)
         self.parse()
         script_parse_table[address : self.last_address] = self
+    
+    def make_label(self):
+        return map_names[self.map_group][self.map_id]["label"] + "_MapScriptHeader"
 
     def parse(self):
         address = self.address
@@ -6177,11 +6192,10 @@ class Label:
     been previously written to file.
     """
     def __init__(self, name=None, address=None, line_number=None, object=None, is_in_file=None, address_is_in_file=None, add_to_globals=True):
-        assert name!=None, "need a name"
-        assert address!=None, "need an address"
+        assert address != None, "need an address"
         assert is_valid_address(address), "address must be valid"
+        assert object != None, "need an object to relate with"
 
-        self.name = name
         self.address = address
         self.object = object
         
@@ -6193,22 +6207,16 @@ class Label:
         # -- better.
         #
         # check if the label is in the file already
-        #self.is_in_file = is_in_file
-        #if is_in_file == None:
-        #    self.old_check_is_in_file()
-        #
         # check if the address of this label is already in use
-        #self.address_is_in_file = address_is_in_file
-        #if address_is_in_file == None:
-        #    self.old_check_address_is_in_file()
 
         self.is_in_file = is_in_file
-        #if is_in_file == None and add_to_globals:
-        #    self.check_is_in_file()
 
         self.address_is_in_file = address_is_in_file
-        #if address_is_in_file == None and add_to_globals:
-        #    self.check_address_is_in_file()
+        
+        if name == None:
+            name = object.base_label + "_" + hex(object.address)
+
+        self.name = name
 
         if add_to_globals:
             all_new_labels.append(self)
@@ -6278,6 +6286,13 @@ class Label:
             return True
         else:
             return False
+
+    def make_label(self):
+        """ Generates a label name based on parents and self.object.
+        """
+        object = self.object
+        name = object.make_label()
+        return name
 
 def line_has_comment_address(line, returnable={}, bank=None):
     """checks that a given line has a comment
