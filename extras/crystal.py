@@ -3267,7 +3267,7 @@ class ItemFragment(Command):
     """used by ItemFragmentParam and PeopleEvent
     (for items placed on a map)"""
     size = 2
-    macro_name = "item_frag"
+    macro_name = "db"
     base_label = "ItemFragment_"
     override_byte_check = True
     param_types = {

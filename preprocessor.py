@@ -443,7 +443,7 @@ def macro_translator(macro, token, line):
     # "db" is a macro because of TextEndingCommand
     # rgbasm can handle "db" so no preprocessing is required
     # (don't check its param count)
-    if macro.macro_name == "db" and macro == TextEndingCommand:
+    if macro.macro_name == "db" and macro in [TextEndingCommand, ItemFragment]:
         sys.stdout.write(original_line)
         return
 
