@@ -3545,6 +3545,10 @@ class TrainerGroupHeader:
         min_id = min(trainer_group_maximums[self.group_id])
         max_id = max(trainer_group_maximums[self.group_id])
 
+        if self.group_id == 0x0C:
+            # CAL appears a third time with third-stage evos (meganium, typhlosion, feraligatr)
+            max_id += 1
+
         for trainer_id in range(min_id, max_id+1):
             trainer_header = TrainerHeader(address=current_address, trainer_group_id=self.group_id, trainer_id=trainer_id, parent=self)
             self.individual_trainer_headers.append(trainer_header)
