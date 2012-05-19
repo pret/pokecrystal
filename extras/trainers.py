@@ -1,9 +1,12 @@
 # url: http://hax.iimarck.us/topic/8/
+
+# for fixing trainer_group_names
 import re
 
-trainer_group_pointer_table_address = 0x39999
-# gs: 0x3993E
+trainer_group_pointer_table_address    = 0x39999
+trianer_group_pointer_table_address_gs = 0x3993E
 
+# TODO: check if "é", ".", "♂", "♀" are okay in the output
 trainer_group_names = {
 0x01: {"name": "Leader [Falkner]"},
 0x02: {"name": "Leader [Whitney]"},
@@ -35,7 +38,7 @@ trainer_group_names = {
 0x1C: {"name": "Cooltrainer♀"},
 0x1D: {"name": "Beauty"},
 0x1E: {"name": "Pokémaniac"},
-0x1F: {"name": "Rocket [Male Grunt]"},
+0x1F: {"name": "Rocket Grunt [Male]"},
 0x20: {"name": "Gentleman"},
 0x21: {"name": "Skier"},
 0x22: {"name": "Teacher"},
@@ -55,11 +58,11 @@ trainer_group_names = {
 0x30: {"name": "Firebreather"},
 0x31: {"name": "Juggler"},
 0x32: {"name": "Blackbelt"},
-0x33: {"name": "Rocket [Male Executive]"},
+0x33: {"name": "Rocket Executive [Male]"},
 0x34: {"name": "Psychic"},
 0x35: {"name": "Picnicker"},
 0x36: {"name": "Camper"},
-0x37: {"name": "Rocket [Female Executive]"},
+0x37: {"name": "Rocket Executive [Female]"},
 0x38: {"name": "Sage"},
 0x39: {"name": "Medium"},
 0x3A: {"name": "Boarder"},
@@ -70,7 +73,7 @@ trainer_group_names = {
 0x3F: {"name": "PKMN Trainer [Red]"},
 0x40: {"name": "Leader [Blue]"},
 0x41: {"name": "Officer"},
-0x42: {"name": "Rocket [Female Grunt]"},
+0x42: {"name": "Rocket Grunt [Female]"},
 0x43: {"name": "Mysticalman [Eusine]"}, # crystal only
 }
 
