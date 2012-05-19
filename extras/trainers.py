@@ -82,7 +82,17 @@ def remove_parentheticals_from_trainer_group_names():
     """
     i = 0
     for (key, value) in trainer_group_names.items():
+        # remove the brackets and inner contents from each name
         newvalue = re.sub(r'\[[^\)]*\]', '', value["name"]).strip()
+
+        # clean up some characters
+        newvalue = newvalue.replace("♀", "F")\
+                           .replace("♂", "M")\
+                           .replace(".", "")\
+                           .replace(" ", "_")\
+                           .replace("é", "e")
+
+        # and calculate the address of the first byte of this pointer
         trainer_group_names[key] = {"name": newvalue,
                                     "pointer_address": trainer_group_pointer_table_address + (i * 2),
                                    }
@@ -93,6 +103,9 @@ def remove_parentheticals_from_trainer_group_names():
 remove_parentheticals_from_trainer_group_names()
 
 class TrainerGroupTable:
+    """ A list of pointers.
+    """
+
     def __init__(self):
         self.address = trainer_group_pointer_table_address
         self.bank = calculate_bank(trainer_group_pointer_table_address)
@@ -111,19 +124,62 @@ class TrainerGroupTable:
         for header in self.headers:
             dependencies += header.get_dependencies(recompute=recompute, global_dependencies=global_dependencies)
         return dependencies
+
     def parse(self):
         size = 0
         for (key, kvalue) in trainer_group_names.items():
-            name = kvalue["name"]
+            # calculate the location of this trainer group header from its pointer
             pointer_bytes_location = kvalue["pointer_address"]
             parsed_address = calculate_pointer_from_bytes_at(pointer_bytes_location, bank=self.bank)
             trainer_group_names[key]["parsed_address"] = parsed_address
+
+            # parse the trainer group header at this location
+            name = kvalue["name"]
             trainer_group_header = TrainerGroupHeader(address=parsed_address, group_id=key, group_name=name)
             trainer_group_names[key]["header"] = trainer_group_header
             self.headers.append(trainer_group_header)
-            size += trainer_group_header.size
+
+            # keep track of the size of this pointer table
+            size += 2
         self.size = size
         self.last_address = self.address + self.size
+
+    def to_asm(self):
+        output = "".join([str("dw "+get_label_for(header.address)+"\n") for header in self.headers])
+        return output
+
+class TrainerGroupHeader:
+    """
+    <Trainer Name> <0x50> <Data type> <Pokémon Data>+ <0xFF>
+
+    Data type <0x00>: Pokémon Data is <Level> <Species>. Used by most trainers.
+    Data type <0x01>: Pokémon Data is <Level> <Pokémon> <Move1> <Move2> <Move3> <Move4>. Used often for Gym Leaders.
+    Data type <0x02>: Pokémon Data is <Level> <Pokémon> <Held Item>. Used mainly by Pokéfans.
+    Data type <0x03>: Pokémon Data is <Level> <Pokémon> <Held Item> <Move1> <Move2> <Move3> <Move4>. Used by a few Cooltrainers.
+    """
+
+    def __init__(self, address=None, group_id=None, group_name=None):
+        assert address!=None, "TrainerGroupHeader requires an address"
+        assert group_id!=None, "TrainerGroupHeader requires a group_id"
+        assert group_name!=None, "TrainerGroupHeader requires a group_name"
+        self.address = address
+        self.group_id = group_id
+        self.group_name = group_name
+        self.dependencies = None
+        self.label = Label(name=group_name+"TrainerGroupHeader", address=self.address, object=self)
+        self.parse()
+
+    def get_dependencies(self, recompute=False, global_dependencies=set()):
+        """ TrainerGroupHeader has no dependencies.
+        """
+        return []
+
+    def parse(self):
+        size = 0
+        raise NotImplementedError
+        # how do i know when there's no more data for this header?
+        # do a global analysis of the rom and figure out the max ids i guess
+        # this wont work for rom hacks of course
 
     def to_asm(self):
         pass
