@@ -3548,6 +3548,9 @@ class TrainerGroupHeader:
         if self.group_id == 0x0C:
             # CAL appears a third time with third-stage evos (meganium, typhlosion, feraligatr)
             max_id += 1
+        elif self.group_id == 0x29:
+            # there's a missing supernerd :(
+            max_id += 1
 
         for trainer_id in range(min_id, max_id+1):
             trainer_header = TrainerHeader(address=current_address, trainer_group_id=self.group_id, trainer_id=trainer_id, parent=self)
