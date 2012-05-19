@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 # url: http://hax.iimarck.us/topic/8/
 
 # for fixing trainer_group_names
