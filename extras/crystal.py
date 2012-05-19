@@ -3313,6 +3313,7 @@ class ItemFragmentParam(PointerLabelParam):
         global_dependencies.add(self.itemfrag)
         return self.dependencies
 
+trainer_group_maximums = {}
 class TrainerFragment(Command):
     """used by TrainerFragmentParam and PeopleEvent for trainer data
     
@@ -3375,6 +3376,20 @@ class TrainerFragment(Command):
         deps.extend(self.params[6].get_dependencies(recompute=recompute, global_dependencies=global_dependencies))
         self.dependencies = deps
         return deps
+
+    def parse(self):
+        Command.parse(self)
+
+        # get the trainer group id
+        trainer_group = self.params[1].byte
+
+        # get the trainer id
+        trainer_id = self.params[2].byte
+
+        if not trainer_group in trainer_group_maximums.keys():
+            trainer_group_maximums[trainer_group] = trainer_id
+        elif trainer_group_maximums[trainer_group] < trainer_id:
+            trainer_group_maximums[trainer_group] = trainer_id
 
     def to_asm(self):
         xspacing = ""
