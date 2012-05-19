@@ -3434,6 +3434,306 @@ class TrainerFragmentParam(PointerLabelParam):
 
 from trainers import *
 
+# for fixing trainer_group_names
+import re
+
+trainer_group_pointer_table_address    = 0x39999
+trainer_group_pointer_table_address_gs = 0x3993E
+
+class TrainerGroupTable:
+    """ A list of pointers.
+    """
+
+    def __init__(self):
+        assert 0x43 in trainer_group_maximums.keys(), "TrainerGroupTable should onyl be created after all the trainers have been found"
+        self.address = trainer_group_pointer_table_address
+        self.bank = calculate_bank(trainer_group_pointer_table_address)
+        self.label = Label(name="TrainerGroupPointerTable", address=self.address, object=self)
+        self.size = None
+        self.last_address = None
+        self.dependencies = None
+        self.headers = []
+        self.parse()
+
+        # TODO: add this to script_parse_table
+        #script_parse_table[address : self.last_address] = self
+
+    def get_dependencies(self, recompute=False, global_dependencies=set()):
+        global_dependencies.update(self.headers)
+        if recompute == True and self.dependencies != None and self.dependencies != []: 
+            return self.dependencies
+        dependencies = [self.headers]
+        for header in self.headers:
+            dependencies += header.get_dependencies(recompute=recompute, global_dependencies=global_dependencies)
+        return dependencies
+
+    def parse(self):
+        size = 0 
+        for (key, kvalue) in trainer_group_names.items():
+            # calculate the location of this trainer group header from its pointer
+            pointer_bytes_location = kvalue["pointer_address"]
+            parsed_address = calculate_pointer_from_bytes_at(pointer_bytes_location, bank=self.bank)
+            trainer_group_names[key]["parsed_address"] = parsed_address
+
+            # parse the trainer group header at this location
+            name = kvalue["name"]
+            trainer_group_header = TrainerGroupHeader(address=parsed_address, group_id=key, group_name=name)
+            trainer_group_names[key]["header"] = trainer_group_header
+            self.headers.append(trainer_group_header)
+
+            # keep track of the size of this pointer table
+            size += 2
+        self.size = size
+        self.last_address = self.address + self.size
+
+    def to_asm(self):
+        output = "".join([str("dw "+get_label_for(header.address)+"\n") for header in self.headers])
+        return output
+
+class TrainerGroupHeader:
+    """
+    A trainer group header is a repeating list of individual trainer headers.
+
+    <Trainer Name> <0x50> <Data type> <Pokémon Data>+ <0xFF>
+
+    Data type <0x00>: Pokémon Data is <Level> <Species>. Used by most trainers.
+    Data type <0x01>: Pokémon Data is <Level> <Pokémon> <Move1> <Move2> <Move3> <Move4>. Used often for Gym Leaders.
+    Data type <0x02>: Pokémon Data is <Level> <Pokémon> <Held Item>. Used mainly by Pokéfans.
+    Data type <0x03>: Pokémon Data is <Level> <Pokémon> <Held Item> <Move1> <Move2> <Move3> <Move4>. Used by a few Cooltrainers.
+    """
+
+    def __init__(self, address=None, group_id=None, group_name=None):
+        assert address!=None, "TrainerGroupHeader requires an address"
+        assert group_id!=None, "TrainerGroupHeader requires a group_id"
+        assert group_name!=None, "TrainerGroupHeader requires a group_name"
+
+        self.address = address
+        self.group_id = group_id
+        self.group_name = group_name
+        self.dependencies = None
+        self.individual_trainer_headers = []
+        self.label = Label(name=group_name+"TrainerGroupHeader", address=self.address, object=self)
+        self.parse()
+
+        # TODO: add this to script_parse_table
+        #script_parse_table[address : self.last_address] = self
+
+    def get_dependencies(self, recompute=False, global_dependencies=set()):
+        """ TrainerGroupHeader has no dependencies.
+        """
+        # TODO: possibly include self.individual_trainer_headers
+        if recompute or self.dependencies == None:
+            self.dependencies = []
+        return self.dependencies
+
+    def parse(self):
+        """
+        how do i know when there's no more data for this header?
+         do a global analysis of the rom and figure out the max ids
+         this wont work for rom hacks of course
+        see find_trainer_ids_from_scripts
+        """
+        size = 0
+        current_address = self.address
+
+        # create an IndividualTrainerHeader for each id in range(min id, max id + 1)
+        min_id = min(trainer_group_maximums[self.group_id])
+        max_id = max(trainer_group_maximums[self.group_id])
+
+        for trainer_id in range(min_id, max_id+1):
+            trainer_header = TrainerHeader(address=current_address, trainer_group_id=self.group_id, trainer_id=trainer_id, parent=self)
+            current_address += trainer_header.size
+            size += trainer_header.size
+
+        self.last_address = current_address
+        self.size = size
+
+    def to_asm(self):
+        raise NotImplementedError
+        output += ""
+
+class TrainerHeader:
+    """
+    <Trainer Name> <0x50> <Data type> <Pokémon Data>+ <0xFF>
+
+    Data type <0x00>: Pokémon Data is <Level> <Species>. Used by most trainers.
+    Data type <0x01>: Pokémon Data is <Level> <Pokémon> <Move1> <Move2> <Move3> <Move4>. Used often for Gym Leaders.
+    Data type <0x02>: Pokémon Data is <Level> <Pokémon> <Held Item>. Used mainly by Pokéfans.
+    Data type <0x03>: Pokémon Data is <Level> <Pokémon> <Held Item> <Move1> <Move2> <Move3> <Move4>. Used by a few Cooltrainers.
+    """
+
+    def __init__(self, address=None, trainer_group_id=None, trainer_id=None, parent=None):
+        self.parent = parent
+        self.address = address
+        self.trainer_group_id = trainer_group_id
+        self.trainer_id = trainer_id
+        self.dependencies = []
+        self.size = None
+        self.last_address = None
+        self.parse()
+        self.label = Label(name=self.make_name(), address=self.address, object=self)
+        # this shouldn't be added to script_parse_table because
+        # TrainerGroupHeader covers its address range
+
+    def make_name(self):
+        """ Must occur after parse() is called.
+        Constructs a name based on self.parent.group_name and self.name.
+        """
+        return self.parent.group_name + "_" + self.name
+
+    def get_dependencies(self, recompute=False, global_dependencies=set()):
+        if recompute or self.dependencies == None:
+            self.dependencies = []
+        return self.dependencies
+
+    def parse(self):
+        address = self.address
+
+        # figure out how many bytes until 0x50 "@"
+        jump = how_many_until(chr(0x50), address)
+
+        # parse the "@" into the name
+        self.name = parse_text_at(address, jump+1)
+
+        # where is the next byte?
+        current_address = address + jump + 1
+
+        # figure out the pokemon data type
+        self.data_type = ord(rom[current_address])
+
+        current_address += 1
+
+        # figure out which partymon parser to use for this trainer header
+        party_mon_parser = None
+        for monparser in trainer_party_mon_parsers:
+            if monparser.id == self.data_type:
+                party_mon_parser = monparser
+                break
+
+        if party_mon_parser == None:
+            raise Exception, "no trainer party mon parser found to parse data type " + hex(self.data_type)
+
+        self.party_mons = party_mon_parser(address=current_address, group_id=self.trainer_group_id, trainer_id=self.trainer_id, parent=self)
+
+        # let's have everything in trainer_party_mon_parsers handle the last $FF
+        self.size = self.party_mons.size + 1 + len(self.name)
+        self.last_address = self.party_mons.last_address
+
+    def to_asm(self):
+        output = "db \""+self.name+"\"\n"
+        output += "; data type\n"
+        output += "db $%.2x\n"%(self.data_byte)
+        output += self.party_mons.to_asm()
+        return output
+
+# TODO: MoveParam should map to an actual attack
+MoveParam = SingleByteParam
+
+class TrainerPartyMonParser:
+    """ Just a generic trainer party mon parser.
+    Don't use this directly. Only use the child classes.
+    """
+    id = None
+    dependencies = None
+    params = []
+    param_types = None
+
+    # could go either way on this one.. TrainerGroupHeader.parse would need to be changed
+    # so as to not increase current_address by one after reading "data_type"
+    override_byte_check = True
+
+    def __init__(self, address=None, group_id=None, trainer_id=None, parent=None):
+        self.address = address
+        self.group_id = group_id
+        self.trainer_id = trainer_id
+        self.parent = parent
+        self.args = {}
+        self.params = {}
+        self.parse()
+
+        # pick up the $FF at the end
+        self.size += 1
+        self.last_address += 1
+
+    # this is exactly Command.parse
+    def parse(self):
+        #id, size (inclusive), param_types
+        #param_type = {"name": each[1], "class": each[0]}
+        if not self.override_byte_check:
+            current_address = self.address+1
+        else:
+            current_address = self.address
+        byte = ord(rom[self.address])
+        if not self.override_byte_check and (not byte == self.id):
+            raise Exception, "byte ("+hex(byte)+") != self.id ("+hex(self.id)+")"
+        i = 0
+        for (key, param_type) in self.param_types.items():
+            name = param_type["name"]
+            klass = param_type["class"]
+            #make an instance of this class, like SingleByteParam()
+            #or ItemLabelByte.. by making an instance, obj.parse() is called
+            obj = klass(address=current_address, name=name, parent=self, **dict([(k,v) for (k, v) in self.args.items() if k not in ["parent"]]))
+            #save this for later
+            self.params[i] = obj
+            #increment our counters
+            current_address += obj.size
+            i += 1
+        self.last_address = current_address
+        return True
+
+    def to_asm(self):
+        output = "; " + ", ".join([param_type["name"] for param_type in self.param_types]) + "\n"
+        output += "db " + ", ".join([param.to_asm() for (name, param) in self.params.items()])
+        output += "\n"
+        output += "db $FF ; end trainer party mons"
+        return output
+
+class TrainerPartyMonParser0(TrainerPartyMonParser):
+    """ Data type <0x00>: Pokémon Data is <Level> <Species>. Used by most trainers. """
+    id = 0
+    size = 2 + 1
+    param_types = {
+        0: {"name": "level", "class": DecimalParam},
+        1: {"name": "species", "class": PokemonParam},
+    }
+class TrainerPartyMonParser1(TrainerPartyMonParser):
+    """ Data type <0x01>: Pokémon Data is <Level> <Pokémon> <Move1> <Move2> <Move3> <Move4>. Used often for Gym Leaders."""
+    id = 1
+    size = 6 + 1
+    param_types = {
+        0: {"name": "level", "class": DecimalParam},
+        1: {"name": "species", "class": PokemonParam},
+        2: {"name": "move1", "class": MoveParam},
+        3: {"name": "move2", "class": MoveParam},
+        4: {"name": "move3", "class": MoveParam},
+        5: {"name": "move4", "class": MoveParam},
+    }
+class TrainerPartyMonParser2(TrainerPartyMonParser):
+    """ Data type <0x02>: Pokémon Data is <Level> <Pokémon> <Held Item>. Used mainly by Pokéfans. """
+    id = 2
+    size = 3 + 1
+    param_types = {
+        0: {"name": "level", "class": DecimalParam},
+        1: {"name": "species", "class": PokemonParam},
+        2: {"name": "item", "class": ItemLabelByte},
+    }
+class TrainerPartyMonParser3(TrainerPartyMonParser):
+    """ Data type <0x03>: Pokémon Data is <Level> <Pokémon> <Held Item> <Move1> <Move2> <Move3> <Move4>.
+    Used by a few Cooltrainers. """
+    id = 3
+    size = 7 + 1
+    param_types = {
+        0: {"name": "level", "class": DecimalParam},
+        1: {"name": "species", "class": PokemonParam},
+        2: {"name": "item", "class": ItemLabelByte},
+        3: {"name": "move1", "class": MoveParam},
+        4: {"name": "move2", "class": MoveParam},
+        5: {"name": "move3", "class": MoveParam},
+        6: {"name": "move4", "class": MoveParam},
+    }
+
+trainer_party_mon_parsers = [TrainerPartyMonParser0, TrainerPartyMonParser1, TrainerPartyMonParser2, TrainerPartyMonParser3]
+
 def find_trainer_ids_from_scripts():
     """ Looks through all scripts to find trainer group numbers and trainer numbers.
 
@@ -7623,7 +7923,7 @@ def run_main():
     find_trainer_ids_from_scripts()
 
     # and parse the main TrainerGroupTable once we know the max number of trainers
-    #gtable = TrainerGroupTable()
+    trainer_group_header = TrainerGroupTable()
 
 #just a helpful alias
 main=run_main
