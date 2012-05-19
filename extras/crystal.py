@@ -3440,6 +3440,7 @@ import re
 trainer_group_pointer_table_address    = 0x39999
 trainer_group_pointer_table_address_gs = 0x3993E
 
+trainer_group_table = None
 class TrainerGroupTable:
     """ A list of pointers.
     """
@@ -3468,7 +3469,7 @@ class TrainerGroupTable:
         return dependencies
 
     def parse(self):
-        size = 0 
+        size = 0
         for (key, kvalue) in trainer_group_names.items():
             # calculate the location of this trainer group header from its pointer
             pointer_bytes_location = kvalue["pointer_address"]
@@ -3536,21 +3537,28 @@ class TrainerGroupHeader:
         size = 0
         current_address = self.address
 
+        if self.group_id not in trainer_group_maximums.keys():
+            self.size = 0
+            self.last_address = current_address
+            return
+
         # create an IndividualTrainerHeader for each id in range(min id, max id + 1)
         min_id = min(trainer_group_maximums[self.group_id])
         max_id = max(trainer_group_maximums[self.group_id])
 
         for trainer_id in range(min_id, max_id+1):
             trainer_header = TrainerHeader(address=current_address, trainer_group_id=self.group_id, trainer_id=trainer_id, parent=self)
-            current_address += trainer_header.size
+            self.individual_trainer_headers.append(trainer_header)
+            #current_address += trainer_header.size
+            current_address = trainer_header.last_address
             size += trainer_header.size
 
         self.last_address = current_address
         self.size = size
 
     def to_asm(self):
-        raise NotImplementedError
-        output += ""
+        output = "\n\n".join(["; "+header.make_name()+" at "+hex(header.address)+"\n"+header.to_asm() for header in self.individual_trainer_headers])
+        return output
 
 class TrainerHeader:
     """
@@ -3579,7 +3587,10 @@ class TrainerHeader:
         """ Must occur after parse() is called.
         Constructs a name based on self.parent.group_name and self.name.
         """
-        return self.parent.group_name + "_" + self.name
+        if self.trainer_group_id in [0x14, 0x16, 0x17, 0x18, 0x19, 0x1B, 0x1C, 0x1D, 0x1E, 0x20, 0x21, 0x22, 0x24, 0x25, 0x26, 0x27, 0x28, 0x29, 0x2B, 0x2C, 0x2D, 0x2F, 0x30, 0x31, 0x32, 0x34, 0x35, 0x36, 0x38, 0x39, 0x3A, 0x3B, 0x3C, 0x3D, 0x3E, 0x41]:
+            return self.parent.group_name.upper() + "_" + self.name[:-1]
+        else:
+            return self.parent.group_name + "_" + str(self.trainer_id)
 
     def get_dependencies(self, recompute=False, global_dependencies=set()):
         if recompute or self.dependencies == None:
@@ -3616,14 +3627,16 @@ class TrainerHeader:
         self.party_mons = party_mon_parser(address=current_address, group_id=self.trainer_group_id, trainer_id=self.trainer_id, parent=self)
 
         # let's have everything in trainer_party_mon_parsers handle the last $FF
-        self.size = self.party_mons.size + 1 + len(self.name)
+        #self.size = self.party_mons.size + 1 + len(self.name)
+        self.size = self.party_mons.last_address - self.address
         self.last_address = self.party_mons.last_address
 
     def to_asm(self):
         output = "db \""+self.name+"\"\n"
         output += "; data type\n"
-        output += "db $%.2x\n"%(self.data_byte)
+        output += "db $%.2x\n"%(self.data_type)
         output += self.party_mons.to_asm()
+        output += "\n; last_address="+hex(self.last_address)+" size="+str(self.size)
         return output
 
 # TODO: MoveParam should map to an actual attack
@@ -3635,7 +3648,6 @@ class TrainerPartyMonParser:
     """
     id = None
     dependencies = None
-    params = []
     param_types = None
 
     # could go either way on this one.. TrainerGroupHeader.parse would need to be changed
@@ -3648,44 +3660,42 @@ class TrainerPartyMonParser:
         self.trainer_id = trainer_id
         self.parent = parent
         self.args = {}
-        self.params = {}
+        self.mons = {}
         self.parse()
 
         # pick up the $FF at the end
-        self.size += 1
         self.last_address += 1
 
-    # this is exactly Command.parse
     def parse(self):
-        #id, size (inclusive), param_types
-        #param_type = {"name": each[1], "class": each[0]}
-        if not self.override_byte_check:
-            current_address = self.address+1
-        else:
-            current_address = self.address
-        byte = ord(rom[self.address])
-        if not self.override_byte_check and (not byte == self.id):
-            raise Exception, "byte ("+hex(byte)+") != self.id ("+hex(self.id)+")"
-        i = 0
-        for (key, param_type) in self.param_types.items():
-            name = param_type["name"]
-            klass = param_type["class"]
-            #make an instance of this class, like SingleByteParam()
-            #or ItemLabelByte.. by making an instance, obj.parse() is called
-            obj = klass(address=current_address, name=name, parent=self, **dict([(k,v) for (k, v) in self.args.items() if k not in ["parent"]]))
-            #save this for later
-            self.params[i] = obj
-            #increment our counters
-            current_address += obj.size
-            i += 1
+        current_address = self.address
+        pkmn = 0
+        continuer = True
+        while continuer:
+            self.mons[pkmn] = {}
+            i = 0
+            for (key, param_type) in self.param_types.items():
+                name = param_type["name"]
+                klass = param_type["class"]
+                #make an instance of this class, like SingleByteParam()
+                #or ItemLabelByte.. by making an instance, obj.parse() is called
+                obj = klass(address=current_address, name=name, parent=self, **dict([(k,v) for (k, v) in self.args.items() if k not in ["parent"]]))
+                #save this for later
+                self.mons[pkmn][i] = obj
+                #increment our counters
+                current_address += obj.size
+                i += 1
+            pkmn += 1
+            if ord(rom[current_address]) == 0xFF:
+                break
         self.last_address = current_address
         return True
 
     def to_asm(self):
-        output = "; " + ", ".join([param_type["name"] for param_type in self.param_types]) + "\n"
-        output += "db " + ", ".join([param.to_asm() for (name, param) in self.params.items()])
-        output += "\n"
-        output += "db $FF ; end trainer party mons"
+        output = "; " + ", ".join([param_type["name"] for (key, param_type) in self.param_types.items()]) + "\n"
+        for mon in self.mons:
+            output += "db " + ", ".join([param.to_asm() for (name, param) in self.mons[mon].items()])
+            output += "\n"
+        output += "db $ff ; end trainer party mons"
         return output
 
 class TrainerPartyMonParser0(TrainerPartyMonParser):
@@ -7923,7 +7933,8 @@ def run_main():
     find_trainer_ids_from_scripts()
 
     # and parse the main TrainerGroupTable once we know the max number of trainers
-    trainer_group_header = TrainerGroupTable()
+    global trainer_group_table
+    trainer_group_table = TrainerGroupTable()
 
 #just a helpful alias
 main=run_main
