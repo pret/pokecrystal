@@ -3557,6 +3557,9 @@ class TrainerGroupHeader:
         elif self.group_id == 0x31:
             # missing jugglers
             max_id += 3
+        elif self.group_id == 0x32:
+            # blackbelt wai
+            max_id += 1
 
         for trainer_id in range(min_id, max_id+1):
             trainer_header = TrainerHeader(address=current_address, trainer_group_id=self.group_id, trainer_id=trainer_id, parent=self)
