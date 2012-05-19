@@ -3387,9 +3387,9 @@ class TrainerFragment(Command):
         trainer_id = self.params[2].byte
 
         if not trainer_group in trainer_group_maximums.keys():
-            trainer_group_maximums[trainer_group] = [trainer_id]
+            trainer_group_maximums[trainer_group] = set([trainer_id])
         else:
-            trainer_group_maximums[trainer_group].append(trainer_id)
+            trainer_group_maximums[trainer_group].add(trainer_id)
 
     def to_asm(self):
         xspacing = ""
@@ -3440,12 +3440,61 @@ def find_trainer_ids_from_scripts():
     This can be used with trainer_group_maximums to figure out the current number of
     trainers in each of the originating trainer groups.
     """
+    total_unreferenced_trainers = 0
 
     # look at each possibly relevant script
     for item in script_parse_table.items():
         object = item[1]
         if isinstance(object, Script):
             check_script_has_trainer_data(object)
+
+    # make a set of each list of trainer ids to avoid dupes
+    # this will be used later in TrainerGroupTable
+    for item in trainer_group_maximums.items():
+        key = item[0]
+        value = set(item[1])
+        trainer_group_maximums[key] = value
+
+def report_unreferenced_trainer_ids():
+    """ Reports on the number of unreferenced trainer ids in each group.
+
+    This should be called after find_trainer_ids_from_scripts.
+
+    These are trainer groups with "unused" trainer ids. The
+    "find_trainer_ids_from_scripts" function analyzes each script in the game,
+    and each map header in the game (because of code in TrainerFragment), and
+    finds all references to trainers. But, if there are any trainers that are
+    referenced in raw ASM, this method does not detect them. Each instance of a
+    trainer reference is added to a global table called
+    "trainer_group_maximums". Next, "find_trainer_ids_from_scripts" looks at
+    the trainer IDs referenced for each group and takes the minimum number and
+    the maximum number. To find whether or not there are any unused trainers,
+    it takes the minimum and maximum ids and then sees which intermediate
+    numbers are missing from the list of "referenced" trainer ids.
+    """
+    for item in trainer_group_maximums.items():
+        key = item[0]
+        value = item[1]
+
+        # i'm curious: are there any missing trainer ids in this group?
+        min_id = min(value)
+        max_id = max(value)
+        expectables = range(min_id, max_id+1)
+
+        unreferenced = set()
+
+        for expectable in expectables:
+            if not expectable in value:
+                unreferenced.add(expectable)
+
+        if len(unreferenced) > 0:
+            total_unreferenced_trainers += len(unreferenced)
+            output = "trainer group "+hex(key)+" (\""+trainer_group_names[key]["name"]+"\")"
+            output += " (min="+str(min_id)+", max="+str(max_id)+")"
+            output += " has "+str(len(unreferenced))+" unreferenced trainer ids"
+            output += ": " + str(unreferenced)
+            print output
+    print "total unreferenced trainers: " + str(total_unreferenced_trainers)
 
 def check_script_has_trainer_data(script):
     """ see find_trainer_ids_from_scripts
@@ -3463,9 +3512,9 @@ def check_script_has_trainer_data(script):
 
         if trainer_group != None and trainer_id != None:
             if trainer_group in trainer_group_maximums.keys():
-                trainer_group_maximums[trainer_group].append(trainer_id)
+                trainer_group_maximums[trainer_group].add(trainer_id)
             else:
-                trainer_group_maximums[trainer_group] = [trainer_id]
+                trainer_group_maximums[trainer_group] = set([trainer_id])
 
 def trainer_name_from_group(group_id, trainer_id=0):
     """ This doesn't actually work for trainer_id > 0."""
@@ -7572,7 +7621,7 @@ def run_main():
     find_trainer_ids_from_scripts()
 
     # and parse the main TrainerGroupTable once we know the max number of trainers
-    gtable = TrainerGroupTable()
+    #gtable = TrainerGroupTable()
 
 #just a helpful alias
 main=run_main
