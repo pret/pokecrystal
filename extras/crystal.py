@@ -3432,6 +3432,40 @@ class TrainerFragmentParam(PointerLabelParam):
         self.dependencies = deps
         return deps
 
+def find_trainer_ids_from_scripts():
+    """ Looks through all scripts to find trainer group numbers and trainer numbers.
+
+    This can be used with trainer_group_maximums to figure out the current number of
+    trainers in each of the originating trainer groups.
+    """
+
+    # look at each possibly relevant script
+    for item in script_parse_table.items():
+        object = item[1]
+        if isinstance(object, Script):
+            check_script_has_trainer_data(object)
+
+def check_script_has_trainer_data(script):
+    """ see find_trainer_ids_from_scripts
+    """
+    for command in script.commands:
+        trainer_group = None
+        trainer_id = None
+
+        if command.id == 0x43:
+            trainer_group = command.params[1].byte
+            trainer_id = command.params[0].byte
+        elif command.id == 0x5E:
+            trainer_group = command.params[0].byte
+            trainer_id = command.params[1].byte
+
+        if trainer_group != None and trainer_id != None:
+            if trainer_group in trainer_group_maximums.keys():
+                if trainer_id > trainer_group_maximums[trainer_group]:
+                    trainer_group_maximums[trainer_group] = trainer_id
+            else:
+                trainer_group_maximums[trainer_group] = trainer_id
+
 class PeopleEvent(Command):
     size = people_event_byte_size
     macro_name = "person_event"
