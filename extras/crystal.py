@@ -3516,8 +3516,7 @@ class TrainerGroupHeader:
         self.label = Label(name=group_name+"TrainerGroupHeader", address=self.address, object=self)
         self.parse()
 
-        # TODO: add this to script_parse_table
-        #script_parse_table[address : self.last_address] = self
+        script_parse_table[address : self.last_address] = self
 
     def get_dependencies(self, recompute=False, global_dependencies=set()):
         """ TrainerGroupHeader has no dependencies.
