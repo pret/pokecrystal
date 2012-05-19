@@ -3525,12 +3525,14 @@ def trainer_name_from_group(group_id, trainer_id=0):
     return text
 
 def trainer_group_report():
+    """ Reports how many trainer ids are used in each trainer group.
+    """
     output = ""
     total = 0
     for trainer_group_id in trainer_group_maximums.keys():
         group_name = trainer_group_names[trainer_group_id]["name"]
         first_name = trainer_name_from_group(trainer_group_id).replace("\n", "")
-        trainers = len(set(trainer_group_maximums[trainer_group_id]))
+        trainers = len(trainer_group_maximums[trainer_group_id])
         total += trainers
         output += "group "+hex(trainer_group_id)+":\n"
         output += "\tname: "+group_name+"\n"
