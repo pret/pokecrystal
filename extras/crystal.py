@@ -2718,7 +2718,7 @@ pksv_crystal_more = {
     0x40: ["pokenamemem", ["pokemon", PokemonParam], ["memory", SingleByteParam]], #not pksv
     0x41: ["itemtotext", ["item", ItemLabelByte], ["memory", SingleByteParam]],
     0x42: ["mapnametotext", ["memory", SingleByteParam]], #not pksv
-    0x43: ["trainertotext", ["trainer_id", TrainerIdParam], ["trainer_group", TrainerGroupParam], ["memory", SingleByteParam]],
+    0x43: ["trainertotext", ["trainer_id", TrainerGroupParam], ["trainer_group", TrainerIdParam], ["memory", SingleByteParam]],
     0x44: ["stringtotext", ["text_pointer", RawTextPointerLabelParam], ["memory", SingleByteParam]],
     0x45: ["itemnotify"],
     0x46: ["pocketisfull"],
@@ -3387,9 +3387,9 @@ class TrainerFragment(Command):
         trainer_id = self.params[2].byte
 
         if not trainer_group in trainer_group_maximums.keys():
-            trainer_group_maximums[trainer_group] = trainer_id
-        elif trainer_group_maximums[trainer_group] < trainer_id:
-            trainer_group_maximums[trainer_group] = trainer_id
+            trainer_group_maximums[trainer_group] = [trainer_id]
+        else:
+            trainer_group_maximums[trainer_group].append(trainer_id)
 
     def to_asm(self):
         xspacing = ""
@@ -3432,6 +3432,8 @@ class TrainerFragmentParam(PointerLabelParam):
         self.dependencies = deps
         return deps
 
+from trainers import *
+
 def find_trainer_ids_from_scripts():
     """ Looks through all scripts to find trainer group numbers and trainer numbers.
 
@@ -3453,18 +3455,40 @@ def check_script_has_trainer_data(script):
         trainer_id = None
 
         if command.id == 0x43:
-            trainer_group = command.params[1].byte
-            trainer_id = command.params[0].byte
+            trainer_group = command.params[0].byte
+            trainer_id = command.params[1].byte
         elif command.id == 0x5E:
             trainer_group = command.params[0].byte
             trainer_id = command.params[1].byte
 
         if trainer_group != None and trainer_id != None:
             if trainer_group in trainer_group_maximums.keys():
-                if trainer_id > trainer_group_maximums[trainer_group]:
-                    trainer_group_maximums[trainer_group] = trainer_id
+                trainer_group_maximums[trainer_group].append(trainer_id)
             else:
-                trainer_group_maximums[trainer_group] = trainer_id
+                trainer_group_maximums[trainer_group] = [trainer_id]
+
+def trainer_name_from_group(group_id, trainer_id=0):
+    """ This doesn't actually work for trainer_id > 0."""
+    bank = calculate_bank(0x39999)
+    ptr_address = 0x39999 + ((group_id - 1)*2)
+    address = calculate_pointer_from_bytes_at(ptr_address, bank=bank)
+    text = parse_text_at2(address, how_many_until(chr(0x50), address))
+    return text
+
+def trainer_group_report():
+    output = ""
+    total = 0
+    for trainer_group_id in trainer_group_maximums.keys():
+        group_name = trainer_group_names[trainer_group_id]["name"]
+        first_name = trainer_name_from_group(trainer_group_id).replace("\n", "")
+        trainers = len(set(trainer_group_maximums[trainer_group_id]))
+        total += trainers
+        output += "group "+hex(trainer_group_id)+":\n"
+        output += "\tname: "+group_name+"\n"
+        output += "\tfirst: "+first_name+"\n"
+        output += "\ttrainer count:\t"+str(trainers)+"\n\n"
+    output += "total trainers: " + str(total)
+    return output
 
 class PeopleEvent(Command):
     size = people_event_byte_size
@@ -7533,13 +7557,22 @@ def run_tests(): #rather than unittest.main()
     print report_untested()
 
 def run_main():
-    #read the rom and figure out the offsets for maps
+    # read the rom and figure out the offsets for maps
     direct_load_rom()
     load_map_group_offsets()
-    #add the offsets into our map structure, why not (johto maps only)
+
+    # add the offsets into our map structure, why not (johto maps only)
     [map_names[map_group_id+1].update({"offset": offset}) for map_group_id, offset in enumerate(map_group_offsets)]
-    #parse map header bytes for each map
+
+    # parse map header bytes for each map
     parse_all_map_headers()
+
+    # find trainers based on scripts and map headers
+    # this can only happen after parsing the entire map and map scripts
+    find_trainer_ids_from_scripts()
+
+    # and parse the main TrainerGroupTable once we know the max number of trainers
+    gtable = TrainerGroupTable()
 
 #just a helpful alias
 main=run_main
