@@ -3563,6 +3563,9 @@ class TrainerGroupHeader:
         elif self.group_id == 0x3C:
             # kimono girl miki
             max_id += 1
+        elif self.group_id == 0x3D:
+            # twins lea & pia
+            max_id += 1
 
         for trainer_id in range(min_id, max_id+1):
             trainer_header = TrainerHeader(address=current_address, trainer_group_id=self.group_id, trainer_id=trainer_id, parent=self)
