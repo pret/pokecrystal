@@ -3436,7 +3436,7 @@ class TrainerFragment(Command):
         output += xspacing + "; bit/flag number\n"
         output += xspacing + "dw $%.2x"%(self.params[0].parsed_number)
         output += "\n\n"+xspacing+"; trainer group && trainer id\n"
-        output += xspacing + "db %d, %d" % (self.params[1].byte, self.params[2].byte)
+        output += xspacing + "db %s, %s" % (self.params[1].to_asm(), self.params[2].to_asm())
         output += "\n\n"+xspacing+"; text when seen\n"
         output += xspacing + "dw " + self.params[3].to_asm()
         output += "\n\n"+xspacing+"; text when trainer beaten\n"
