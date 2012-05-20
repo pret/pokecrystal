@@ -3626,7 +3626,11 @@ class TrainerHeader:
             seed = self.name
 
         if "?" in seed:
-            seed = trainer_group_names[self.trainer_group_id]["name"]+"_"+seed[-1]
+            if seed[-2].isdigit():
+                x = 2
+            else:
+                x = 1
+            seed = trainer_group_names[self.trainer_group_id]["name"]+"_"+seed[-x:]
         elif self.trainer_group_id == 0x1f and "EXECUTIVE" in seed:
             seed = "GRUNT_"+seed
 
