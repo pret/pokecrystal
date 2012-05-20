@@ -3633,6 +3633,10 @@ class TrainerHeader:
             seed = trainer_group_names[self.trainer_group_id]["name"]+"_"+seed[-x:]
         elif self.trainer_group_id == 0x1f and "EXECUTIVE" in seed:
             seed = "GRUNT_"+seed
+        elif self.trainer_group_id == 0x2d and "BENNY" in seed.upper():
+            seed = "BIKER_BENNY"
+        elif self.trainer_group_id == 0x24 and "BENNY" in seed.upper():
+            seed = "BUG_CATCHER_BENNY"
 
         return string.capwords(seed).\
                replace("@", "").\
