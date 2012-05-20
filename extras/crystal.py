@@ -3901,7 +3901,7 @@ def make_trainer_group_name_trainer_ids(debug=True):
     if debug:
         print "starting to make trainer names and give ids to repeated trainer names"
 
-    i = 1 
+    i = 1
     for header in trainer_group_table.headers:
         trainer_names = [] # (name, trainer_header)
         dupes = set()
@@ -3922,6 +3922,8 @@ def make_trainer_group_name_trainer_ids(debug=True):
 
         # now add the trainer names to trainer_group_names
         trainer_group_names[i]["trainer_names"] = [theader.make_constant_name() for theader in header.individual_trainer_headers]
+
+        i += 1
 
     if debug:
         print "done improving trainer names"
