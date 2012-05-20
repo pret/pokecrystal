@@ -3443,6 +3443,8 @@ trainer_group_pointer_table_address_gs = 0x3993E
 trainer_group_table = None
 class TrainerGroupTable:
     """ A list of pointers.
+
+    This should probably be called TrainerGroupPointerTable.
     """
 
     def __init__(self):
@@ -3463,9 +3465,9 @@ class TrainerGroupTable:
         global_dependencies.update(self.headers)
         if recompute == True and self.dependencies != None and self.dependencies != []: 
             return self.dependencies
-        dependencies = [self.headers]
+        dependencies = copy(self.headers)
         for header in self.headers:
-            dependencies += header.get_dependencies(recompute=recompute, global_dependencies=global_dependencies)
+            dependencies.extend(header.get_dependencies(recompute=recompute, global_dependencies=global_dependencies))
         return dependencies
 
     def parse(self):
