@@ -7,7 +7,9 @@ import re
 trainer_group_pointer_table_address    = 0x39999
 trainer_group_pointer_table_address_gs = 0x3993E
 
-# "uses_increasing_trainer_ids" means Grunt1, Grunt2, Grunt3
+# Any trainer that appears more than once should have an id after each
+# trainer name.
+
 # "uses_numeric_trainer_ids" means never use a name for the trainer_id
 trainer_group_names = {
 0x01: {"name": "Falkner", "uses_numeric_trainer_ids": True},
@@ -22,7 +24,7 @@ trainer_group_names = {
 #PokemonProf group is empty :/
 0x0A: {"name": "Pokémon Prof."},
 0x0B: {"name": "Elite Four Will", "uses_numeric_trainer_ids": True},
-0x0C: {"name": "Special PKMN 1 [Cal]", "uses_increasing_trainer_ids": True},
+0x0C: {"name": "Special PKMN 1 [Cal]"},
 0x0D: {"name": "Elite Four Bruno", "uses_numeric_trainer_ids": True},
 0x0E: {"name": "Elite Four Karen", "uses_numeric_trainer_ids": True},
 0x0F: {"name": "Elite Four Koga", "uses_numeric_trainer_ids": True},
@@ -41,7 +43,7 @@ trainer_group_names = {
 0x1C: {"name": "CooltrainerF"},
 0x1D: {"name": "Beauty"},
 0x1E: {"name": "Pokémaniac"},
-0x1F: {"name": "RocketM", "uses_increasing_trainer_ids": True},
+0x1F: {"name": "GruntM", "uses_numeric_trainer_ids": True},
 0x20: {"name": "Gentleman"},
 0x21: {"name": "Skier"},
 0x22: {"name": "Teacher"},
@@ -76,7 +78,7 @@ trainer_group_names = {
 0x3F: {"name": "Red", "uses_numeric_trainer_ids": True},
 0x40: {"name": "Blue", "uses_numeric_trainer_ids": True},
 0x41: {"name": "Officer"},
-0x42: {"name": "RocketF", "uses_increasing_trainer_ids": True},
+0x42: {"name": "GruntF", "uses_numeric_trainer_ids": True},
 0x43: {"name": "Mysticalman [Eusine]"}, # crystal only
 }
 
