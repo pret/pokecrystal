@@ -1693,15 +1693,32 @@ class PointerParamToItemAndLetter(MultiByteParam):
 
 
 class TrainerIdParam(SingleByteParam):
-    #raise NotImplementedError, bryan_message
-    pass
-    #def to_asm(self):
-    #    pass
+    def to_asm(self):
+        # find the group id by first finding the param type id
+        i = 0
+        foundit = None
+        for (k, v) in self.parent.param_types.items():
+            if v["class"] == TrainerGroupParam:
+                foundit = i
+                break
+            i += 1
+
+        if foundit == None:
+            raise Exception, "didn't find a TrainerGroupParam in this command??"
+
+        # now get the trainer group id
+        trainer_group_id = self.parent.params[foundit].byte
+
+        # check the rule to see whether to use an id or not
+        if "uses_numeric_trainer_ids" in trainer_group_names[trainer_group_id].keys():
+            return str(self.byte)
+        else:
+            return trainer_group_names[trainer_group_id]["trainer_names"][self.byte-1]
 
 class TrainerGroupParam(SingleByteParam):
-    #raise NotImplementedError, bryan_message
-    pass
-
+    def to_asm(self):
+        trainer_group_id = self.byte
+        return trainer_group_names[trainer_group_id]["constant"]
 
 class MenuDataPointerParam(PointerLabelParam):
     #read menu data at the target site
