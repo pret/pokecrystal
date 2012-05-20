@@ -3624,6 +3624,12 @@ class TrainerHeader:
             seed = self.seed_constant_name
         else:
             seed = self.name
+
+        if "?" in seed:
+            seed = trainer_group_names[self.trainer_group_id]["name"]+"_"+seed[-1]
+        elif self.trainer_group_id == 0x1f and "EXECUTIVE" in seed:
+            seed = "GRUNT_"+seed
+
         return string.capwords(seed).\
                replace("@", "").\
                replace(" & ", "AND").\
@@ -3905,7 +3911,7 @@ def make_trainer_group_name_trainer_ids(debug=True):
     for header in trainer_group_table.headers:
         trainer_names = [] # (name, trainer_header)
         dupes = set()
-        group_id = i 
+        group_id = i
         group_name = header.group_name
         for trainer_header in header.individual_trainer_headers:
             if trainer_header.name in [x[0] for x in trainer_names]:
@@ -3927,6 +3933,30 @@ def make_trainer_group_name_trainer_ids(debug=True):
 
     if debug:
         print "done improving trainer names"
+
+def pretty_print_trainer_id_constants():
+    """ Prints out some constants for trainer ids, for "constants.asm".
+
+    make_trainer_group_name_trainer_ids must be called prior to this.
+    """
+    assert trainer_group_table != None, "must make trainer_group_table first"
+    assert trainer_group_names != None, "must have trainer_group_names available"
+    assert "trainer_names" in trainer_group_names[1].keys(), "trainer_names must be set in trainer_group_names"
+
+    output = ""
+    for (key, value) in trainer_group_names.items():
+        if "uses_numeric_trainer_ids" in trainer_group_names[key].keys():
+            continue
+        id = key
+        group = value
+        header = group["header"]
+        name = group["name"]
+        trainer_names = group["trainer_names"]
+        output += "; " + name + "\n"
+        for (id, name) in enumerate(trainer_names):
+            output += name.upper() + " EQU $%.2x"%(id+1) + "\n"
+        output += "\n"
+    return output
 
 class PeopleEvent(Command):
     size = people_event_byte_size

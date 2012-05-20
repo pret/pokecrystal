@@ -98,9 +98,8 @@ def remove_parentheticals_from_trainer_group_names():
                            .replace("é", "e")
 
         # and calculate the address of the first byte of this pointer
-        trainer_group_names[key] = {"name": newvalue,
-                                    "pointer_address": trainer_group_pointer_table_address + (i * 2),
-                                   }
+        trainer_group_names[key]["name"] = newvalue
+        trainer_group_names[key]["pointer_address"] = trainer_group_pointer_table_address + (i * 2)
         i += 1
     return trainer_group_names
 
