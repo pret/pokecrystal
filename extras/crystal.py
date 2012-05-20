@@ -4458,6 +4458,7 @@ class Signpost(Command):
 
             param = ScriptPointerLabelParam(address=self.address+3, map_group=self.map_group, map_id=self.map_id, debug=self.debug, force=False)
             self.params.append(param)
+            param.label = Label(address=param.address, object=param, name="Map"+map_names[self.map_group][self.map_id]["label"]+"Signpost"+str(self.id)+"Script")
 
             #self.script_address = script_address
             #self.script = script
@@ -4482,8 +4483,16 @@ class Signpost(Command):
                    debug=self.debug)
             self.remotes.append(r1)
 
+            # give a better label to the SignpostRemoteScriptChunk
+            r1.label = Label(address=r1.address, object=r1, name="Map"+map_names[self.map_group][self.map_id]["label"]+"SignpostPtr"+str(self.id))
+
             mb = PointerLabelParam(address=self.address+3, map_group=self.map_group, map_id=self.map_id, debug=self.debug)
             self.params.append(mb)
+
+            # update the remote script address
+            param = script_parse_table[script_address]
+            param.label = Label(address=param.address, object=param, name="Map"+map_names[self.map_group][self.map_id]["label"]+"Signpost"+str(self.id)+"Script")
+
         elif func == 7:
             #signpost's script pointer points to [Bit-Nr. (2byte)][Item no.]
             ptr_byte1 = int(bytes[3], 16)
@@ -4499,6 +4508,7 @@ class Signpost(Command):
                    bank=self.bank, map_group=self.map_group, map_id=self.map_id, \
                    debug=self.debug)
             self.remotes.append(r1)
+            r1.label = Label(address=r1.address, object=r1, name="Map"+map_names[self.map_group][self.map_id]["label"]+"SignpostItem"+str(self.id))
 
             mb = PointerLabelParam(address=self.address+3, map_group=self.map_group, map_id=self.map_id, debug=self.debug)
             self.params.append(mb)
