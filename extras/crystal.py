@@ -3611,7 +3611,7 @@ class TrainerGroupHeader:
         self.size = size
 
     def to_asm(self):
-        output = "\n\n".join(["; "+header.make_name()+" at "+hex(header.address)+"\n"+header.to_asm() for header in self.individual_trainer_headers])
+        output = "\n\n".join(["; "+header.make_constant_name()+" ("+str(header.trainer_id)+") at "+hex(header.address)+"\n"+header.to_asm() for header in self.individual_trainer_headers])
         return output
 
 class TrainerHeader:
@@ -3713,8 +3713,7 @@ class TrainerHeader:
 
     def to_asm(self):
         output = "db \""+self.name+"\"\n"
-        output += "; data type\n"
-        output += "db $%.2x\n"%(self.data_type)
+        output += "db $%.2x ; data type\n" % (self.data_type)
         output += self.party_mons.to_asm()
         output += "\n; last_address="+hex(self.last_address)+" size="+str(self.size)
         return output
@@ -3768,7 +3767,8 @@ class TrainerPartyMonParser:
         return True
 
     def to_asm(self):
-        output = "; " + ", ".join([param_type["name"] for (key, param_type) in self.param_types.items()]) + "\n"
+        output = ""
+        #output = "; " + ", ".join([param_type["name"] for (key, param_type) in self.param_types.items()]) + "\n"
         for mon in self.mons:
             output += "db " + ", ".join([param.to_asm() for (name, param) in self.mons[mon].items()])
             output += "\n"
