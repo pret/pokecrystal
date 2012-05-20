@@ -63,6 +63,14 @@ constant_abbreviation_bytes = {}
 # Import the characters from its module.
 from chars import chars, jap_chars
 
+from trainers import *
+
+# for fixing trainer_group_names
+import re
+
+trainer_group_pointer_table_address    = 0x39999
+trainer_group_pointer_table_address_gs = 0x3993E
+
 class Size():
     """a simple way to track whether or not a size
     includes the first value or not, like for
@@ -3435,14 +3443,6 @@ class TrainerFragmentParam(PointerLabelParam):
             deps.extend(self.trainerfrag.get_dependencies(recompute=recompute, global_dependencies=global_dependencies))
         self.dependencies = deps
         return deps
-
-from trainers import *
-
-# for fixing trainer_group_names
-import re
-
-trainer_group_pointer_table_address    = 0x39999
-trainer_group_pointer_table_address_gs = 0x3993E
 
 trainer_group_table = None
 class TrainerGroupTable:
