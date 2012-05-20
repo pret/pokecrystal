@@ -4458,6 +4458,7 @@ class Signpost(Command):
 
             param = ScriptPointerLabelParam(address=self.address+3, map_group=self.map_group, map_id=self.map_id, debug=self.debug, force=False)
             self.params.append(param)
+            param = script_parse_table[param.parsed_address]
             param.label = Label(address=param.address, object=param, name="Map"+map_names[self.map_group][self.map_id]["label"]+"Signpost"+str(self.id)+"Script")
 
             #self.script_address = script_address
