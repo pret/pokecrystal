@@ -4921,7 +4921,7 @@ class MapEventHeader:
         self.bank = bank
         self.dependencies = None
         label = self.make_label()
-        self.label = Label(address=address, object=self)
+        self.label = Label(name=label, address=address, object=self)
         self.parse()
         script_parse_table[address : self.last_address] = self
 
