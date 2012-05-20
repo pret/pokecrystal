@@ -65,6 +65,8 @@ from chars import chars, jap_chars
 
 from trainers import *
 
+from move_constants import moves
+
 # for fixing trainer_group_names
 import re
 
@@ -1719,6 +1721,10 @@ class TrainerGroupParam(SingleByteParam):
     def to_asm(self):
         trainer_group_id = self.byte
         return trainer_group_names[trainer_group_id]["constant"]
+
+class MoveParam(SingleByteParam):
+    def to_asm(self):
+        return moves[self.byte]
 
 class MenuDataPointerParam(PointerLabelParam):
     #read menu data at the target site
@@ -3708,9 +3714,6 @@ class TrainerHeader:
         output += self.party_mons.to_asm()
         output += "\n; last_address="+hex(self.last_address)+" size="+str(self.size)
         return output
-
-# TODO: MoveParam should map to an actual attack
-MoveParam = SingleByteParam
 
 class TrainerPartyMonParser:
     """ Just a generic trainer party mon parser.
