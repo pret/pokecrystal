@@ -412,7 +412,7 @@ class TextScript:
     base_label = "UnknownText_"
     def __init__(self, address, map_group=None, map_id=None, debug=False, label=None, force=False, show=None):
         self.address = address
-        # $91, $84, $82, $54, $8c 
+        # $91, $84, $82, $54, $8c
         # 0x19768c is a a weird problem?
         if address in [0x26ef, 0x26f2, 0x6ee, 0x1071, 0x5ce33, 0x69523, 0x7ee98, 0x72176, 0x7a578, 0x19c09b, 0x19768c]:
             return None
@@ -420,14 +420,14 @@ class TextScript:
         self.dependencies = None
         self.commands = None
         self.force = force
-        
+
         if is_script_already_parsed_at(address) and not force:
             raise Exception, "TextScript already parsed at "+hex(address)
 
         if not label:
             label = self.base_label + hex(address)
         self.label = Label(name=label, address=address, object=self)
-        
+
         self.parse()
 
     def is_valid(self):
@@ -441,13 +441,13 @@ class TextScript:
         if self.dependencies != None and not recompute:
             global_dependencies.update(self.dependencies)
             return self.dependencies
-        
+
         dependencies = []
 
         for command in self.commands:
             deps = command.get_dependencies(recompute=recompute, global_dependencies=global_dependencies)
             dependencies.extend(deps)
-        
+
         self.dependencies = dependencies
         return self.dependencies
 
@@ -460,7 +460,7 @@ class TextScript:
         global text_command_classes, script_parse_table
         current_address = copy(self.address)
         start_address = copy(current_address)
-        
+
         # don't clutter up my screen
         if self.debug:
             print "NewTextScript.parse address="+hex(self.address)+" map_group="+str(self.map_group)+" map_id="+str(self.map_id)
@@ -476,7 +476,7 @@ class TextScript:
 
         # use this to control the while loop
         end = False
-        
+
         # for each command found...
         while not end:
             # get the current scripting byte
@@ -489,7 +489,7 @@ class TextScript:
             for class_ in text_command_classes:
                 if class_[1].id == cur_byte:
                     scripting_command_class = class_[1]
-            
+
             # no matching command found
             if scripting_command_class == None:
                 raise Exception, "unable to parse text command $%.2x in the text script at %s" % (cur_byte, hex(start_address))
@@ -499,7 +499,7 @@ class TextScript:
 
             if self.debug:
                 print cls.to_asm()
-            
+
             # store it in this script object
             commands.append(cls)
 
@@ -1088,10 +1088,10 @@ class EncodedText:
         self.label = Label(name=label, address=address, object=self)
         self.parse()
         script_parse_table[self.address : self.last_address] = self
-    
+
     def get_dependencies(self, recompute=False, global_dependencies=set()):
         return []
-    
+
     def parse(self):
         offset = self.address
 
@@ -1104,7 +1104,7 @@ class EncodedText:
         jump = min([jump57, jump50, jump58])
 
         end_address = offset + jump #we want the address before $57
-        
+
         text = parse_text_at2(offset, end_address-offset, debug=self.debug)
         self.text = text
 
@@ -1131,7 +1131,7 @@ class EncodedText:
                 lines[line_count] = current_line
                 current_line = []
                 line_count += 1
-        
+
         #don't forget the last line
         lines[line_count] = current_line
         line_count += 1
@@ -1203,7 +1203,7 @@ def get_map_constant_label(map_group=None, map_id=None):
     """returns PALLET_TOWN for some map group/id pair"""
     if map_group == None: raise Exception, "need map_group"
     if map_id == None: raise Exception, "need map_id"
-    
+
     global map_internal_ids
     for (id, each) in map_internal_ids.items():
         if each["map_group"] == map_group and each["map_id"] == map_id:
@@ -1608,13 +1608,13 @@ class MoneyByteParam(MultiByteParam):
     def to_asm(self):
         return str(self.x + (self.y << 8) + (self.z << 16))
 
-    #this is used by the preprocessor    
+    #this is used by the preprocessor
     @staticmethod
     def from_asm(value):
         #max is 0F423F
         #z = 0x0F ; y = 0x42 ; x = 0x3F
         #999999 = x + (y << 8) + (z << 16)
-        
+
         value = int(value)
 
         x = (value & 0x0000FF)
@@ -1762,7 +1762,7 @@ class TextPointerLabelParam(PointerLabelParam):
             self.text = parse_text_engine_script_at(address, map_group=self.map_group, map_id=self.map_id, force=self.force, debug=self.debug)
             if not self.text:
                 self.text = script_parse_table[address]
-    
+
     def get_dependencies(self, recompute=False, global_dependencies=set()):
         if self.text:
             global_dependencies.add(self.text)
@@ -1779,7 +1779,7 @@ class TextPointerLabelAfterBankParam(PointerLabelAfterBank):
             self.text = parse_text_engine_script_at(address, map_group=self.map_group, map_id=self.map_id, force=self.force, debug=self.debug)
             if not self.text:
                 self.text = script_parse_table[address]
-    
+
     def get_dependencies(self, recompute=False, global_dependencies=set()):
         if self.text:
             global_dependencies.add(self.text)
@@ -2028,7 +2028,7 @@ class MovementDBCommand(Command):
         0: {"name": "db value", "class": SingleByteParam},
     }
     params = []
-    
+
     def to_asm(self):
         asm = Command.to_asm(self)
         return asm + " ; movement"
@@ -2062,7 +2062,7 @@ movement_command_bases = {
     # do these next two have any params ??
     0x4C: "teleport_from",
     0x4D: "teleport_to",
-    
+
     0x4E: "skyfall",
     0x4F: "step_wait5",
     0x55: ["step_shake", ["displacement", DecimalParam]],
@@ -2094,10 +2094,10 @@ def create_movement_commands(debug=False):
                     print "each is: " + str(each)
                     print "thing[class] is: " + str(thing["class"])
                 params["size"] += thing["class"].size
-        
+
         if byte <= 0x34:
             for x in range(0, 4):
-                
+
                 direction = None
                 if x == 0:
                     direction = "down"
@@ -2134,14 +2134,14 @@ movement_command_classes = create_movement_commands()
 all_movements = []
 class ApplyMovementData:
     base_label = "MovementData_"
-    
+
     def __init__(self, address, map_group=None, map_id=None, debug=False, label=None, force=False):
         self.address   = address
         self.map_group = map_group
         self.map_id    = map_id
         self.debug     = debug
         self.force     = force
-        
+
         if not label:
             label = self.base_label + hex(address)
         self.label     = Label(name=label, address=address, object=self)
@@ -2150,7 +2150,7 @@ class ApplyMovementData:
         self.commands     = []
 
         self.parse()
-    
+
     # this is almost an exact copy of Script.parse
     # with the exception of using text_command_classes instead of command_classes
     def parse(self):
@@ -2159,10 +2159,10 @@ class ApplyMovementData:
 
         # i feel like checking myself
         assert is_valid_address(address), "ApplyMovementData.parse must be given a valid address"
-        
+
         current_address = copy(self.address)
         start_address = copy(current_address)
-        
+
         # don't clutter up my screen
         if self.debug:
             print "ApplyMovementData.parse address="+hex(self.address)+" map_group="+str(self.map_group)+" map_id="+str(self.map_id)
@@ -2178,7 +2178,7 @@ class ApplyMovementData:
 
         # use this to control the while loop
         end = False
-        
+
         # for each command found...
         while not end:
             # get the current scripting byte
@@ -2193,11 +2193,11 @@ class ApplyMovementData:
                 if (type(class_.id) == list and cur_byte in class_.id) \
                    or class_.id == cur_byte:
                     scripting_command_class = class_
-            
+
             # temporary fix for applymovement scripts
             if ord(rom[current_address]) == 0x47:
                 end = True
-            
+
             # no matching command found
             xyz = None
             if scripting_command_class == None:
@@ -2217,7 +2217,7 @@ class ApplyMovementData:
 
             if self.debug:
                 print cls.to_asm()
-            
+
             # store it in this script object
             commands.append(cls)
 
@@ -2325,7 +2325,7 @@ class MainText(TextCommand):
     def to_asm(self):
         if self.size < 2 or len(self.bytes) < 1:
             raise Exception, "$0 text command can't end itself with no follow-on bytes"
-        
+
         output = "db $0"
 
         # db $0, $57 or db $0, $50 or w/e
@@ -2342,7 +2342,7 @@ class MainText(TextCommand):
         # whether or not there was a ", " last..
         # this is useful outside of quotes
         was_comma = False
-        
+
         # has a $50 or $57 been passed yet?
         end = False
 
@@ -2361,7 +2361,7 @@ class MainText(TextCommand):
             # $4f, $51 and $55 can end a line
             if byte in [0x4f, 0x51, 0x55]:
                 assert not new_line, "can't have $4f, $51, $55 as the first character on a newline"
-                
+
                 if in_quotes:
                     output += "\", $%.2x\n" % (byte)
                 elif not in_quotes:
@@ -2385,7 +2385,7 @@ class MainText(TextCommand):
                     if not was_comma and not new_line:
                         output += ", "
                     output += "\"@\"\n"
-                
+
                 # reset everything
                 in_quotes = False
                 new_line  = True
@@ -2461,7 +2461,7 @@ class MainText(TextCommand):
                     if not was_comma and not new_line:
                         output += ", "
                     output += "$%.2x" % (byte)
-                
+
                 # reset things
                 in_quotes = False
                 new_line  = False
@@ -2487,14 +2487,14 @@ class WriteTextFromRAM(TextCommand):
     macro_name = "text_from_ram"
     size = 3
     param_types = {
-        0: {"name": "pointer", "class": MultiByteParam}, 
+        0: {"name": "pointer", "class": MultiByteParam},
     }
 class WriteNumberFromRAM(TextCommand):
     """
     02 = Write number from ram. Structure: [02][Ram address (2byte)][Byte]
- 
+
     Byte:
-   
+
     Bit5:Bit6:Bit7
        1:   1:   1 = PokéDollar| Don’t write zeros
        0:   1:   1 = Don’t write zeros
@@ -2504,7 +2504,7 @@ class WriteNumberFromRAM(TextCommand):
        1:   0:   0 = PokéDollar
        1:   1:   0 = PokéDollar
        1:   0:   1 = Spaces instead of zeros| PokéDollar
- 
+
     Number of figures = Byte AND 0x1F *2
     No Hex --> Dec Conversio
     """
@@ -2562,7 +2562,7 @@ class WriteDecimalNumberFromRAM(TextCommand):
     """
     09 = Write number from rom/ram in decimal. Structure: [09][Ram address/Pointer (2byte)][Byte]
       Byte:
- 
+
       Is split: 1. 4 bits = Number of bytes to load. 0 = 3, 1 = 1, 2 = 2
                 2. 4 bits = Number of figures of displayed number
                                                      0 = Don’t care
@@ -2641,9 +2641,9 @@ class Play44thSound(Play0thSound):
 class DisplayByteFromRAMAt(TextCommand):
     """
     14 = Display MEMORY. Structure: [14][Byte]
- 
+
     Byte:
- 
+
       00 = MEMORY1
       01 = MEMORY2
       02 = MEMORY
@@ -3041,7 +3041,7 @@ class Script:
             sys.exit(1)
         if is_script_already_parsed_at(start_address) and not force and not force_top:
             raise Exception, "this script has already been parsed before, please use that instance ("+hex(start_address)+")"
-        
+
         # load up the rom if it hasn't been loaded already
         load_rom()
 
@@ -3081,16 +3081,16 @@ class Script:
             # create an instance of the command class and let it parse its parameter bytes
             #print "about to parse command(script@"+hex(start_address)+"): " + str(scripting_command_class.macro_name)
             cls = scripting_command_class(address=current_address, force=force, map_group=map_group, map_id=map_id, parent=self)
-            
+
             #if self.debug:
             #    print cls.to_asm()
-            
+
             # store it in this script object
             commands.append(cls)
-            
+
             # certain commands will end the scripting engine
             end = cls.end
-            
+
             # skip past the command's parameter bytes to go to the next command
             #current_address = cls.last_address + 1
             current_address += cls.size
@@ -3101,13 +3101,13 @@ class Script:
 
         # store the script in the global table/map thing
         script_parse_table[start_address:current_address] = self
-        
+
         asm_output = "\n".join([command.to_asm() for command in commands])
         print "--------------\n"+asm_output
-        
+
         # store the script
         self.commands = commands
-        
+
         return commands
 
     def get_dependencies(self, recompute=False, global_dependencies=set()):
@@ -3246,7 +3246,7 @@ class XYTrigger(Command):
         self.id = kwargs["id"]
         self.dependencies = None
         Command.__init__(self, *args, **kwargs)
-    
+
     def get_dependencies(self, recompute=False, global_dependencies=set()):
         dependencies = []
         if self.dependencies != None and not recompute:
@@ -3337,10 +3337,10 @@ class ItemFragmentParam(PointerLabelParam):
 
     def parse(self):
         PointerLabelParam.parse(self)
-        
+
         address = calculate_pointer_from_bytes_at(self.address, bank=self.bank)
         self.calculated_address = address
-        
+
         itemfrag = ItemFragment(address=address, map_group=self.map_group, map_id=self.map_id, debug=self.debug)
         self.itemfrag = itemfrag
 
@@ -3355,10 +3355,10 @@ class ItemFragmentParam(PointerLabelParam):
 trainer_group_maximums = {}
 class TrainerFragment(Command):
     """used by TrainerFragmentParam and PeopleEvent for trainer data
-    
+
     Maybe this shouldn't be a Command. The output might sprawl
     over multiple lines, and maybe it should be commented in to_asm?
-    
+
     [Bit no. (2byte)][Trainer group][Trainer]
     [2byte pointer to Text when seen]
     [2byte pointer to text when trainer beaten]
@@ -3398,7 +3398,7 @@ class TrainerFragment(Command):
         script_parse_table[self.address : self.last_address] = self
         self.dependencies = None
         Command.__init__(self, *args, **kwargs)
-    
+
     def get_dependencies(self, recompute=False, global_dependencies=set()):
         deps = []
         if not is_valid_address(self.address): return deps
@@ -3494,7 +3494,7 @@ class TrainerGroupTable:
 
     def get_dependencies(self, recompute=False, global_dependencies=set()):
         global_dependencies.update(self.headers)
-        if recompute == True and self.dependencies != None and self.dependencies != []: 
+        if recompute == True and self.dependencies != None and self.dependencies != []:
             return self.dependencies
         dependencies = copy(self.headers)
         for header in self.headers:
@@ -4495,7 +4495,7 @@ class Signpost(Command):
             self.params.append(mb)
         else:
             raise Exception, "unknown signpost type byte="+hex(func) + " signpost@"+hex(self.address)
-    
+
     def get_dependencies(self, recompute=False, global_dependencies=set()):
         dependencies = []
         if self.dependencies != None and not recompute:
@@ -4621,7 +4621,7 @@ class MapHeader:
         self.music = HexByte(address=address+6)
         self.time_of_day = DecimalParam(address=address+7)
         self.fishing_group = DecimalParam(address=address+8)
-    
+
     def get_dependencies(self, recompute=False, global_dependencies=set()):
         if self.dependencies != None and not recompute:
             global_dependencies.update(self.dependencies)
@@ -4702,7 +4702,7 @@ class SecondMapHeader:
         #i think it's always a static size?
         script_parse_table[address : self.last_address] = self
         self.parse()
-    
+
     def make_label(self):
         return map_names[self.map_group][self.map_id]["label"] + "_SecondMapHeader"
 
@@ -4762,7 +4762,7 @@ class SecondMapHeader:
         #self.connections = connections
 
         return True
-    
+
     def get_dependencies(self, recompute=False, global_dependencies=set()):
         if self.dependencies != None and not recompute:
             global_dependencies.update(self.dependencies)
@@ -4855,7 +4855,7 @@ class MapBlockData:
         self.last_address = self.address + (self.width.byte * self.height.byte)
         script_parse_table[address : self.last_address] = self
         self.parse()
-    
+
     def make_label(self):
         return map_names[self.map_group][self.map_id]["label"] + "_BlockData"
 
@@ -4895,7 +4895,7 @@ class MapEventHeader:
         self.label = Label(address=address, object=self)
         self.parse()
         script_parse_table[address : self.last_address] = self
-    
+
     def make_label(self):
         return map_names[self.map_group][self.map_id]["label"] + "_MapEventHeader"
 
@@ -4948,7 +4948,7 @@ class MapEventHeader:
         else:
             self.last_address = after_signposts+1
         return True
-    
+
     def get_dependencies(self, recompute=False, global_dependencies=set()):
         if self.dependencies != None and not recompute:
             global_dependencies.update(self.dependencies)
@@ -4958,7 +4958,7 @@ class MapEventHeader:
         bases += self.signposts
         bases += self.xy_triggers
         bases += self.warps
-        
+
         dependencies = []
         for p in bases:
             dependencies.extend(p.get_dependencies(recompute=recompute, global_dependencies=global_dependencies))
@@ -5000,7 +5000,7 @@ class MapEventHeader:
             output += xspacing
             output += people_event.to_asm()
             output += "\n"
-        
+
         if output[-1] == "\n":
             output = output[:-1]
         return output
@@ -5121,7 +5121,7 @@ class MapScriptHeader:
         self.label = Label(address=address, object=self)
         self.parse()
         script_parse_table[address : self.last_address] = self
-    
+
     def make_label(self):
         return map_names[self.map_group][self.map_id]["label"] + "_MapScriptHeader"
 
@@ -5158,7 +5158,7 @@ class MapScriptHeader:
         self.last_address = current_address
         print "done parsing a MapScriptHeader map_group="+str(map_group)+" map_id="+str(map_id)
         return True
-    
+
     def get_dependencies(self, recompute=False, global_dependencies=set()):
         if self.dependencies != None and not recompute:
             global_dependencies.update(self.dependencies)
@@ -6296,7 +6296,7 @@ class Incbin:
                 print "    " + incbins[-1].line
 
         return incbins
-        
+
 class AsmSection:
     def __init__(self, line):
         self.bank_id = None
@@ -6308,7 +6308,7 @@ class AsmSection:
         self.bank_id  = bank_id
         start_address = bank_id * 0x4000
         end_address   = (bank_id * 0x4000) + 0x4000 - 1
-        
+
         self.address = self.start_address = start_address
         self.last_address = None
         self.end_address = None
@@ -6377,12 +6377,12 @@ class Asm:
             # its' probably being injected in some get_dependencies() somewhere
             print "don't know why ScriptPointerLabelParam is getting to this point?"
             return
-        
+
         #first some validation
         if not hasattr(new_object, "address"):
             print "object needs to have an address property: " + str(new_object)
             return
-        
+
         start_address = new_object.address
 
         # skip this dragon shrine script calling itself
@@ -6390,14 +6390,14 @@ class Asm:
         if start_address in lousy_dragon_shrine_hack:
             print "skipping 0x18d079 in dragon shrine for a lousy hack"
             return
-       
+
         if not hasattr(new_object, "label") and hasattr(new_object, "is_valid") and not new_object.is_valid():
             return
 
         debugmsg  = "object is " + new_object.label.name + " type="+str(new_object.__class__)+" new_object="+str(new_object)
         debugmsg += " label = " + new_object.label.name
         debugmsg += " start_address="+hex(start_address)#+" end_address="+hex(end_address)
-        
+
         if not hasattr(new_object, "last_address"):
             print debugmsg
             raise Exception, "object needs to have a last_address property"
@@ -6416,7 +6416,7 @@ class Asm:
         #if self.does_address_have_label(new_object.address):
         #    print "object's address is already used ("+str(new_object)+") at "+hex(new_object.address)+" label="+new_object.label.name
         #    return
-        
+
         if self.debug:
             print debugmsg
         del debugmsg
@@ -6427,7 +6427,7 @@ class Asm:
             if hasattr(new_object, "to_asm"):
                 print to_asm(new_object)
             raise Exception, "Asm.insert was given an object with a bad address range"
-        
+
         # 1) find which object needs to be replaced
         # or
         # 2) find which object goes after it
@@ -6470,13 +6470,13 @@ class Asm:
         if not found:
             raise Exception, "unable to insert object into Asm"
         self.labels.append(new_object.label)
-        return True 
+        return True
     def insert_with_dependencies(self, input):
         if type(input) == list:
             input_objects = input
         else:
             input_objects = [input]
-        
+
         for object0 in input_objects:
             global_dependencies = set([object0])
             poopbutt = get_dependencies_for(object0, global_dependencies=global_dependencies, recompute=False)
@@ -6497,7 +6497,7 @@ class Asm:
                 if self.debug:
                     print " object is: " + str(object)
                 self.insert(object)
-    
+
                 #just some old debugging
                 #if object.label.name == "UnknownText_0x60128":
                 #    raise Exception, "debugging..."
@@ -6610,7 +6610,7 @@ def list_movements_in_bank(bank):
 
     assert bank != None, "list_movements_in_bank must be given a particular bank"
     assert 0 <= bank < 0x80, "bank doesn't exist in the ROM (out of bounds)"
-    
+
     movements = []
     for movement in all_movements:
         if calculate_bank(movement.address) == bank:
@@ -6625,7 +6625,7 @@ def dump_asm_for_texts_in_bank(bank, start=50, end=100):
     if rom == None or len(rom) <= 4:
         load_rom()
         run_main()
-    
+
     # get all texts
     # first 100 look okay?
     texts = list_texts_in_bank(bank)[start:end]
@@ -6635,7 +6635,7 @@ def dump_asm_for_texts_in_bank(bank, start=50, end=100):
 
     # start the insertion process
     asm.insert_multiple_with_dependencies(texts)
-    
+
     # start dumping
     asm.dump()
 
@@ -6660,7 +6660,7 @@ def dump_things_in_bank(bank, start=50, end=100):
     if rom == None or len(rom) <= 4:
         load_rom()
         run_main()
-    
+
     things = list_things_in_bank(bank)[start:end]
 
     # create a new dump
@@ -6668,7 +6668,7 @@ def dump_things_in_bank(bank, start=50, end=100):
 
     # start the insertion process
     asm.insert_with_dependencies(things)
-    
+
     # start dumping
     asm.dump()
 
@@ -6760,7 +6760,7 @@ all_new_labels = []
 
 class Label:
     """ Every object in script_parse_table is given a label.
-    
+
     This label is simply a way to keep track of what objects have
     been previously written to file.
     """
@@ -6771,10 +6771,10 @@ class Label:
 
         self.address = address
         self.object = object
-        
+
         # label might not be in the file yet
         self.line_number = line_number
-        
+
         # -- These were some old attempts to check whether the label
         # -- was already in use. They work, but the other method is
         # -- better.
@@ -6785,7 +6785,7 @@ class Label:
         self.is_in_file = is_in_file
 
         self.address_is_in_file = address_is_in_file
-        
+
         if name == None:
             name = object.base_label + "_" + hex(object.address)
 
@@ -6813,7 +6813,7 @@ class Label:
 
     def get_line_number_from_raw_file(self):
         """ Reads the asm file to figure out the line number.
-        
+
         Note that this label might not be in the file yet, like
         if this is a newly generated label. However, if crystal.py
         has been run before and manipulated main.asm, then it is
@@ -6835,14 +6835,14 @@ class Label:
         """
         self.get_line_number_from_raw_file()
         return self.is_in_file
-    
+
     def old_check_address_is_in_file(self):
         """ Checks whether or not the address of the object is
         already in the file. This might happen if the label name
         is different but the address is the same. Another scenario
         is that the label is already used, but at a different
         address.
-        
+
         This method works by looking at the INCBINs. When there is
         an INCBIN that covers this address in the file, then there
         is no label at this address yet (or there is, but we can
@@ -6852,7 +6852,7 @@ class Label:
         """
         if processed_incbins == {}:
             process_incbins()
-        
+
         incbin = find_incbin_to_replace_for(self.address)
 
         if incbin == None:
@@ -7021,7 +7021,7 @@ def old_is_label_in_asm(label):
 
     # line numbering begins at 1 in vim
     i = 1
-    
+
     # check if any line starts with this label
     for line in asm:
         if line_has_label(line):
