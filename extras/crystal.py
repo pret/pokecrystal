@@ -16,6 +16,9 @@ try:
 except ImportError:
     import unittest
 
+# for capwords
+import string
+
 # Check for things we need in unittest.
 if not hasattr(unittest.TestCase, 'setUpClass'):
     print "The unittest2 module or Python 2.7 is required to run this script."
@@ -1684,7 +1687,8 @@ class PointerParamToItemAndLetter(MultiByteParam):
 class TrainerIdParam(SingleByteParam):
     #raise NotImplementedError, bryan_message
     pass
-
+    #def to_asm(self):
+    #    pass
 
 class TrainerGroupParam(SingleByteParam):
     #raise NotImplementedError, bryan_message
@@ -3615,6 +3619,18 @@ class TrainerHeader:
         else:
             return self.parent.group_name + "_" + str(self.trainer_id)
 
+    def make_constant_name(self):
+        if hasattr(self, "seed_constant_name"):
+            seed = self.seed_constant_name
+        else:
+            seed = self.name
+        return string.capwords(seed).\
+               replace("@", "").\
+               replace(" & ", "AND").\
+               replace(" ", "").\
+               replace(".", "_").\
+               upper()
+
     def get_dependencies(self, recompute=False, global_dependencies=set()):
         if recompute or self.dependencies == None:
             self.dependencies = []
@@ -3873,6 +3889,42 @@ def trainer_group_report():
         output += "\ttrainer count:\t"+str(trainers)+"\n\n"
     output += "total trainers: " + str(total)
     return output
+
+def make_trainer_group_name_trainer_ids(debug=True):
+    """ Edits trainer_group_names and sets the trainer names.
+    For instance, "AMY & MAY" becomes "AMY_AND_MAY1" and "AMY_AND_MAY2"
+
+    This should only be used after TrainerGroupTable.parse has been called.
+    """
+    assert trainer_group_table != None, "TrainerGroupTable must be called before setting the trainer names"
+
+    if debug:
+        print "starting to make trainer names and give ids to repeated trainer names"
+
+    i = 1 
+    for header in trainer_group_table.headers:
+        trainer_names = [] # (name, trainer_header)
+        dupes = set()
+        group_id = i 
+        group_name = header.group_name
+        for trainer_header in header.individual_trainer_headers:
+            if trainer_header.name in [x[0] for x in trainer_names]:
+                dupes.add(trainer_header.name)
+            trainer_names.append([trainer_header.name, trainer_header])
+
+        # now fix trainers with duplicate names by appending an id
+        if len(dupes) > 0:
+            for dupe in dupes:
+                culprits = [trainer_header for trainer_header in header.individual_trainer_headers if trainer_header.name == dupe]
+                for (id, culprit) in enumerate(culprits):
+                    culprit.seed_constant_name = culprit.name.replace("@", "") + str(id+1)
+                    culprit.constant_name = culprit.make_constant_name()
+
+        # now add the trainer names to trainer_group_names
+        trainer_group_names[i]["trainer_names"] = [theader.make_constant_name() for theader in header.individual_trainer_headers]
+
+    if debug:
+        print "done improving trainer names"
 
 class PeopleEvent(Command):
     size = people_event_byte_size
@@ -7958,6 +8010,9 @@ def run_main():
     # and parse the main TrainerGroupTable once we know the max number of trainers
     global trainer_group_table
     trainer_group_table = TrainerGroupTable()
+
+    # improve duplicate trainer names
+    make_trainer_group_name_trainer_ids()
 
 #just a helpful alias
 main=run_main
