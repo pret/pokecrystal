@@ -1724,7 +1724,11 @@ class TrainerGroupParam(SingleByteParam):
 
 class MoveParam(SingleByteParam):
     def to_asm(self):
-        return moves[self.byte]
+        if self.byte in moves.keys():
+            return moves[self.byte]
+        else:
+            # this happens for move=0 (no move) in trainer headers
+            return str(self.byte)
 
 class MenuDataPointerParam(PointerLabelParam):
     #read menu data at the target site
