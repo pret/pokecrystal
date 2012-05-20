@@ -3238,7 +3238,7 @@ TrainerGroupPointerTable: ; 0x39999
 	dw Rival1TrainerGroupHeader
 	dw EliteFourWillTrainerGroupHeader
 	dw EliteFourWillTrainerGroupHeader
-	dw SpecialPKMN1TrainerGroupHeader
+	dw PKMNTrainerGroupHeader
 	dw EliteFourBrunoTrainerGroupHeader
 	dw EliteFourKarenTrainerGroupHeader
 	dw EliteFourKogaTrainerGroupHeader
@@ -3549,7 +3549,7 @@ EliteFourWillTrainerGroupHeader: ; 0x39c51
 	; last_address=0x39c76 size=37
 ; 0x39c76
 
-SpecialPKMN1TrainerGroupHeader: ; 0x39c76
+PKMNTrainerGroupHeader: ; 0x39c76
 	; CAL1 (2) at 0x39c76
 	db "CAL@"
 	db $00 ; data type

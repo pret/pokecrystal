@@ -24,7 +24,7 @@ trainer_group_names = {
 #PokemonProf group is empty :/
 0x0A: {"name": "Pokémon Prof.", "constant": "POKEMON_PROF"},
 0x0B: {"name": "Elite Four Will", "uses_numeric_trainer_ids": True, "constant": "WILL"},
-0x0C: {"name": "Special PKMN 1 [Cal]", "constant": "CAL"},
+0x0C: {"name": "PKMN [Cal]", "constant": "CAL"},
 0x0D: {"name": "Elite Four Bruno", "uses_numeric_trainer_ids": True, "constant": "BRUNO"},
 0x0E: {"name": "Elite Four Karen", "uses_numeric_trainer_ids": True, "constant": "KAREN"},
 0x0F: {"name": "Elite Four Koga", "uses_numeric_trainer_ids": True, "constant": "KOGA"},
