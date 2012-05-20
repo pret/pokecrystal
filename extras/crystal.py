@@ -3430,6 +3430,16 @@ class TrainerFragment(Command):
         else:
             trainer_group_maximums[trainer_group].add(trainer_id)
 
+        # possibly give this object a better label
+        label = "Trainer_"
+        if "uses_numeric_trainer_ids" in trainer_group_names[trainer_group].keys():
+            label += string.capwords(trainer_group_names[trainer_group]["constant"]).replace("Lt_surge", "Lt_Surge")
+        else:
+            label += string.capwords(trainer_group_names[trainer_group]["constant"]) + \
+                     string.capwords(trainer_group_names[trainer_group]["trainer_names"][trainer_id-1])
+
+        self.label = Label(name=label, address=self.address, object=self)
+
     def to_asm(self):
         xspacing = ""
         output = ""
@@ -3996,7 +4006,7 @@ class PeopleEvent(Command):
     base_label = "PeopleEvent_"
     override_byte_check = True
     param_types = {
-        0: {"name": "picture", "class": HexByte},
+        0: {"name": "sprite", "class": HexByte},
         1: {"name": "y from top+4", "class": DecimalParam},
         2: {"name": "x from top+4", "class": DecimalParam},
         3: {"name": "facing", "class": HexByte},
