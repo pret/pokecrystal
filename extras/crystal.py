@@ -3430,8 +3430,8 @@ class TrainerFragment(Command):
         else:
             trainer_group_maximums[trainer_group].add(trainer_id)
 
-        # possibly give this object a better label
-        label = "Trainer_"
+        # give this object a possibly better label
+        label = "Trainer"
         if "uses_numeric_trainer_ids" in trainer_group_names[trainer_group].keys():
             label += string.capwords(trainer_group_names[trainer_group]["constant"]).replace("Lt_surge", "Lt_Surge")
         else:
@@ -3439,6 +3439,28 @@ class TrainerFragment(Command):
                      string.capwords(trainer_group_names[trainer_group]["trainer_names"][trainer_id-1])
 
         self.label = Label(name=label, address=self.address, object=self)
+
+        # ---- give better labels to the objects created by TrainerFragment ----
+
+        text_when_seen_text = script_parse_table[self.params[3].parsed_address]
+        if text_when_seen_text != None:
+            text_when_seen_label = Label(name=label + "WhenSeenText", address=text_when_seen_text.address, object=text_when_seen_text)
+            text_when_seen_text.label = text_when_seen_label
+
+        text_when_beaten_text = script_parse_table[self.params[4].parsed_address]
+        if text_when_beaten_text != None:
+            text_when_beaten_label = Label(name=label + "WhenBeatenText", address=text_when_beaten_text.address, object=text_when_beaten_text)
+            text_when_beaten_text.label = text_when_beaten_label
+
+        script_when_lost = script_parse_table[self.params[5].parsed_address]
+        if script_when_lost != None:
+            script_when_lost_label = Label(name=label + "WhenLostScript", address=script_when_lost.address, object=script_when_lost)
+            script_when_lost.label = script_when_lost_label
+
+        script_talk_again = script_parse_table[self.params[6].parsed_address]
+        if script_talk_again != None:
+            script_talk_again_label = Label(name=label + "WhenTalkScript", address=script_talk_again.address, object=script_talk_again)
+            script_talk_again.label = script_talk_again_label
 
     def to_asm(self):
         xspacing = ""
