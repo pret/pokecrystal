@@ -3521,8 +3521,7 @@ class TrainerGroupTable:
         self.headers = []
         self.parse()
 
-        # TODO: add this to script_parse_table
-        #script_parse_table[address : self.last_address] = self
+        script_parse_table[self.address : self.last_address] = self
 
     def get_dependencies(self, recompute=False, global_dependencies=set()):
         global_dependencies.update(self.headers)
@@ -3960,7 +3959,7 @@ def trainer_group_report():
     output += "total trainers: " + str(total)
     return output
 
-def make_trainer_group_name_trainer_ids(debug=True):
+def make_trainer_group_name_trainer_ids(trainer_group_table, debug=True):
     """ Edits trainer_group_names and sets the trainer names.
     For instance, "AMY & MAY" becomes "AMY_AND_MAY1" and "AMY_AND_MAY2"
 
@@ -4629,9 +4628,8 @@ class MapHeader:
         self.bank = bank
         self.debug = debug
         self.dependencies = None
-        if not label:
-            label = self.base_label + hex(address)
-        self.label = Label(address=address, object=self)
+        label = self.make_label()
+        self.label = Label(name=label, address=address, object=self)
         self.last_address = address + 9
         script_parse_table[address : self.last_address] = self
         self.parse()
@@ -4727,9 +4725,8 @@ class SecondMapHeader:
         self.debug = debug
         self.bank = bank
         self.dependencies = None
-        if not label:
-            label = self.base_label + hex(address)
-        self.label = Label(address=address, object=self)
+        label = self.make_label()
+        self.label = Label(name=label, address=address, object=self)
         self.last_address = address+12
         #i think it's always a static size?
         script_parse_table[address : self.last_address] = self
@@ -4881,9 +4878,8 @@ class MapBlockData:
             self.height = height
         else:
             raise Exception, "MapBlockData needs to know the width/height of its map"
-        if not label:
-            label = self.base_label + hex(address)
-        self.label = Label(address=address, object=self)
+        label = self.make_label()
+        self.label = Label(name=label, address=address, object=self)
         self.last_address = self.address + (self.width.byte * self.height.byte)
         script_parse_table[address : self.last_address] = self
         self.parse()
@@ -4922,8 +4918,7 @@ class MapEventHeader:
         self.debug = debug
         self.bank = bank
         self.dependencies = None
-        if not label:
-            label = self.base_label + hex(address)
+        label = self.make_label()
         self.label = Label(address=address, object=self)
         self.parse()
         script_parse_table[address : self.last_address] = self
@@ -5148,9 +5143,8 @@ class MapScriptHeader:
         self.debug = debug
         self.bank = bank
         self.dependencies = None
-        if not label:
-            label = self.base_label + hex(address)
-        self.label = Label(address=address, object=self)
+        label = self.make_label()
+        self.label = Label(name=label, address=address, object=self)
         self.parse()
         script_parse_table[address : self.last_address] = self
 
@@ -8105,10 +8099,10 @@ def run_main():
 
     # and parse the main TrainerGroupTable once we know the max number of trainers
     #global trainer_group_table
-    #trainer_group_table = TrainerGroupTable()
+    trainer_group_table = TrainerGroupTable()
 
     # improve duplicate trainer names
-    make_trainer_group_name_trainer_ids()
+    make_trainer_group_name_trainer_ids(trainer_group_table)
 
 #just a helpful alias
 main=run_main
