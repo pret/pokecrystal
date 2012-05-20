@@ -4743,14 +4743,16 @@ class SecondMapHeader:
         self.height = DecimalParam(address=address+1)
         self.width  = DecimalParam(address=address+2)
 
-        #TODO: process blockdata ?
         #bank appears first
         ###self.blockdata_address = PointerLabelBeforeBank(address+3)
         self.blockdata_address = calculate_pointer_from_bytes_at(address+3, bank=True)
-        self.blockdata = MapBlockData(self.blockdata_address, map_group=self.map_group, map_id=self.map_id, debug=self.debug, width=self.width, height=self.height)
+        xyz = script_parse_table[self.blockdata_address]
+        if xyz == None:
+            self.blockdata = MapBlockData(self.blockdata_address, map_group=self.map_group, map_id=self.map_id, debug=self.debug, width=self.width, height=self.height)
+        else:
+            self.blockdata = xyz
 
         #bank appears first
-        #TODO: process MapScriptHeader
         ###self.script_address = PointerLabelBeforeBank(address+6)
         self.script_header_address = calculate_pointer_from_bytes_at(address+6, bank=True)
         self.script_header = MapScriptHeader(self.script_header_address, map_group=self.map_group, map_id=self.map_id, debug=self.debug)
