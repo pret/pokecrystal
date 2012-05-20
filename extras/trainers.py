@@ -14,13 +14,13 @@ trainer_group_names = {
 0x03: {"name": "Bugsy"},
 0x04: {"name": "Morty"},
 0x05: {"name": "Pryce"},
-0x06: {"name": "Leader Jasmine"},
-0x07: {"name": "Leader Chuck"},
-0x08: {"name": "Leader Clair"},
+0x06: {"name": "Jasmine"},
+0x07: {"name": "Chuck"},
+0x08: {"name": "Clair"},
 0x09: {"name": "Rival1"},
 0x0A: {"name": "Pokémon Prof."},
 0x0B: {"name": "Elite Four Will"},
-0x0C: {"name": "PKMN Trainer [Cal]"},
+0x0C: {"name": "Special PKMN 1 [Cal]"},
 0x0D: {"name": "Elite Four Bruno"},
 0x0E: {"name": "Elite Four Karen"},
 0x0F: {"name": "Elite Four Koga"},
@@ -71,7 +71,7 @@ trainer_group_names = {
 0x3C: {"name": "Kimono Girl"},
 0x3D: {"name": "Twins"},
 0x3E: {"name": "PokéfanF"},
-0x3F: {"name": "PKMN Trainer [Red]"},
+0x3F: {"name": "Special PKMN 2 [Red]"},
 0x40: {"name": "Blue"},
 0x41: {"name": "Officer"},
 0x42: {"name": "RocketF"},
@@ -90,7 +90,7 @@ def remove_parentheticals_from_trainer_group_names():
         newvalue = newvalue.replace("♀", "F")\
                            .replace("♂", "M")\
                            .replace(".", "")\
-                           .replace(" ", "_")\
+                           .replace(" ", "")\
                            .replace("é", "e")
 
         # and calculate the address of the first byte of this pointer
