@@ -8104,8 +8104,8 @@ def run_main():
     find_trainer_ids_from_scripts()
 
     # and parse the main TrainerGroupTable once we know the max number of trainers
-    global trainer_group_table
-    trainer_group_table = TrainerGroupTable()
+    #global trainer_group_table
+    #trainer_group_table = TrainerGroupTable()
 
     # improve duplicate trainer names
     make_trainer_group_name_trainer_ids()
