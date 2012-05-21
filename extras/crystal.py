@@ -225,7 +225,7 @@ def map_name_cleaner(input):
                  replace(".", "").\
                  replace("Pokémon Center", "PokeCenter").\
                  replace("é", "e").\
-                 replace("-", "")
+                 replace("-", "").\
                  replace(" ", "")
 
 class RomStr(str):
