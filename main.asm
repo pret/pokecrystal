@@ -98413,9 +98413,8 @@ INCBIN "baserom.gbc",$1ac0d6,$1ac0d7 - $1ac0d6
 
 UnknownScript_0x1ac0d7: ; 0x1ac0d7
 	jumpstd $001c
-; 0x1ac0da
-
-INCBIN "baserom.gbc",$1ac0da,$01
+	end
+; 0x1ac0db
 
 UnknownScript_0x1ac0db: ; 0x1ac0db
 	jumpstd $001d
@@ -98425,9 +98424,8 @@ INCBIN "baserom.gbc",$1ac0de,$1ac0df - $1ac0de
 
 UnknownScript_0x1ac0df: ; 0x1ac0df
 	jumpstd $001e
-; 0x1ac0e2
-
-INCBIN "baserom.gbc",$1ac0e2,$01
+	end
+; 0x1ac0e3
 
 UnknownScript_0x1ac0e3: ; 0x1ac0e3
 	jumpstd $001f
