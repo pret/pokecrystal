@@ -3435,10 +3435,14 @@ class TrainerFragment(Command):
         # give this object a possibly better label
         label = "Trainer"
         if "uses_numeric_trainer_ids" in trainer_group_names[trainer_group].keys():
-            label += string.capwords(trainer_group_names[trainer_group]["constant"]).replace("Lt_surge", "Lt_Surge")
+            label += string.capwords(trainer_group_names[trainer_group]["constant"])
+            if len(trainer_group_names[trainer_group]["trainer_names"]) > 1:
+                label += str(trainer_id)
         else:
             label += string.capwords(trainer_group_names[trainer_group]["constant"]) + \
                      string.capwords(trainer_group_names[trainer_group]["trainer_names"][trainer_id-1])
+
+        label = label.replace("Gruntm", "GruntM").replace("Gruntf", "GruntF").replace("Lt_surge", "LtSurge")
 
         self.label = Label(name=label, address=self.address, object=self)
 
