@@ -85538,70 +85538,59 @@ UnknownScript_0x19d8cb: ; 0x19d8cb
 
 UnknownScript_0x19d8df: ; 0x19d8df
 	jumpstd $0019
-; 0x19d8e2
-
-INCBIN "baserom.gbc",$19d8e2,$19d8e3 - $19d8e2
+	end
+; 0x19d8e3
 
 UnknownScript_0x19d8e3: ; 0x19d8e3
 	jumpstd $001a
-; 0x19d8e6
-
-INCBIN "baserom.gbc",$19d8e6,$01
+	end
+; 0x19d8e7
 
 UnknownScript_0x19d8e7: ; 0x19d8e7
 	jumpstd $001b
-; 0x19d8ea
-
-INCBIN "baserom.gbc",$19d8ea,$19d8eb - $19d8ea
+	end
+; 0x19d8eb
 
 UnknownScript_0x19d8eb: ; 0x19d8eb
 	jumpstd $001c
-; 0x19d8ee
-
-INCBIN "baserom.gbc",$19d8ee,$01
+	end
+; 0x19d8ef
 
 UnknownScript_0x19d8ef: ; 0x19d8ef
 	jumpstd $001d
-; 0x19d8f2
-
-INCBIN "baserom.gbc",$19d8f2,$19d8f3 - $19d8f2
+	end
+; 0x19d8f3
 
 UnknownScript_0x19d8f3: ; 0x19d8f3
 	jumpstd $001e
-; 0x19d8f6
-
-INCBIN "baserom.gbc",$19d8f6,$01
+	end
+; 0x19d8f7
 
 UnknownScript_0x19d8f7: ; 0x19d8f7
 	jumpstd $001f
-; 0x19d8fa
-
-INCBIN "baserom.gbc",$19d8fa,$01
+	end
+; 0x19d8fb
 
 UnknownScript_0x19d8fb: ; 0x19d8fb
 	jumpstd $0020
-; 0x19d8fe
-
-INCBIN "baserom.gbc",$19d8fe,$01
+	end
+; 0x19d8ff
 
 UnknownScript_0x19d8ff: ; 0x19d8ff
 	jumpstd $0021
-; 0x19d902
-
-INCBIN "baserom.gbc",$19d902,$19d903 - $19d902
+	end
+; 0x19d903
 
 UnknownScript_0x19d903: ; 0x19d903
 	setbit1 $0339
 	jumpstd $0021
-; 0x19d909
-
-INCBIN "baserom.gbc",$19d909,$19d90a - $19d909
+	end
+; 0x19d90a
 
 UnknownScript_0x19d90a: ; 0x19d90a
 	jumpstd $0022
-; 0x19d90d
-
-INCBIN "baserom.gbc",$19d90d,$19d90e - $19d90d
+	end
+; 0x19d90e
 
 TrainerPsychicPhil: ; 0x19d90e
 	; bit/flag number
@@ -86183,70 +86172,59 @@ UnknownScript_0x19e118: ; 0x19e118
 
 UnknownScript_0x19e11b: ; 0x19e11b
 	jumpstd $0019
-; 0x19e11e
-
-INCBIN "baserom.gbc",$19e11e,$01
+	end
+; 0x19e11f
 
 UnknownScript_0x19e11f: ; 0x19e11f
 	jumpstd $001a
-; 0x19e122
-
-INCBIN "baserom.gbc",$19e122,$19e123 - $19e122
+	end
+; 0x19e123
 
 UnknownScript_0x19e123: ; 0x19e123
 	jumpstd $001b
-; 0x19e126
-
-INCBIN "baserom.gbc",$19e126,$01
+	end
+; 0x19e127
 
 UnknownScript_0x19e127: ; 0x19e127
 	jumpstd $001c
-; 0x19e12a
-
-INCBIN "baserom.gbc",$19e12a,$19e12b - $19e12a
+	end
+; 0x19e12b
 
 UnknownScript_0x19e12b: ; 0x19e12b
 	jumpstd $001d
-; 0x19e12e
-
-INCBIN "baserom.gbc",$19e12e,$01
+	end
+; 0x19e12f
 
 UnknownScript_0x19e12f: ; 0x19e12f
 	jumpstd $001e
-; 0x19e132
-
-INCBIN "baserom.gbc",$19e132,$19e133 - $19e132
+	end
+; 0x19e133
 
 UnknownScript_0x19e133: ; 0x19e133
 	jumpstd $001f
-; 0x19e136
-
-INCBIN "baserom.gbc",$19e136,$01
+	end
+; 0x19e137
 
 UnknownScript_0x19e137: ; 0x19e137
 	jumpstd $0020
-; 0x19e13a
-
-INCBIN "baserom.gbc",$19e13a,$19e13b - $19e13a
+	end
+; 0x19e13b
 
 UnknownScript_0x19e13b: ; 0x19e13b
 	jumpstd $0021
-; 0x19e13e
-
-INCBIN "baserom.gbc",$19e13e,$01
+	end
+; 0x19e13f
 
 UnknownScript_0x19e13f: ; 0x19e13f
 	setbit1 $033a
 	jumpstd $0021
-; 0x19e145
-
-INCBIN "baserom.gbc",$19e145,$19e146 - $19e145
+	end
+; 0x19e146
 
 UnknownScript_0x19e146: ; 0x19e146
 	jumpstd $0022
-; 0x19e149
-
-INCBIN "baserom.gbc",$19e149,$01
+	end
+; 0x19e14a
 
 TrainerHikerErik: ; 0x19e14a
 	; bit/flag number
