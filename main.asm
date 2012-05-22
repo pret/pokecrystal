@@ -11899,9 +11899,8 @@ UnknownScript_0x5856d: ; 0x5856d
 
 UnknownScript_0x58577: ; 0x58577
 	priorityjump UnknownScript_0x58596
-; 0x5857a
-
-INCBIN "baserom.gbc",$5857a,$01
+	end
+; 0x5857b
 
 UnknownScript_0x5857b: ; 0x5857b
 	end
@@ -12364,9 +12363,8 @@ UnknownScript_0x58be9: ; 0x58be9
 
 UnknownScript_0x58bf3: ; 0x58bf3
 	priorityjump UnknownScript_0x58c12
-; 0x58bf6
-
-INCBIN "baserom.gbc",$58bf6,$01
+	end
+; 0x58bf7
 
 UnknownScript_0x58bf7: ; 0x58bf7
 	end
@@ -12553,9 +12551,8 @@ UnknownScript_0x58dad: ; 0x58dad
 
 UnknownScript_0x58db4: ; 0x58db4
 	priorityjump UnknownScript_0x58dd3
-; 0x58db7
-
-INCBIN "baserom.gbc",$58db7,$01
+	end
+; 0x58db8
 
 UnknownScript_0x58db8: ; 0x58db8
 	end
@@ -12877,9 +12874,8 @@ UnknownScript_0x59180: ; 0x59180
 
 UnknownScript_0x59181: ; 0x59181
 	priorityjump UnknownScript_0x59192
-; 0x59184
-
-INCBIN "baserom.gbc",$59184,$01
+	end
+; 0x59185
 
 UnknownScript_0x59185: ; 0x59185
 	checktriggers
@@ -15034,58 +15030,49 @@ UnknownScript_0x5b03f: ; 0x5b03f
 
 UnknownScript_0x5b053: ; 0x5b053
 	jumpstd $0019
-; 0x5b056
-
-INCBIN "baserom.gbc",$5b056,$5b057 - $5b056
+	end
+; 0x5b057
 
 UnknownScript_0x5b057: ; 0x5b057
 	jumpstd $001a
-; 0x5b05a
-
-INCBIN "baserom.gbc",$5b05a,$01
+	end
+; 0x5b05b
 
 UnknownScript_0x5b05b: ; 0x5b05b
 	jumpstd $001b
-; 0x5b05e
-
-INCBIN "baserom.gbc",$5b05e,$5b05f - $5b05e
+	end
+; 0x5b05f
 
 UnknownScript_0x5b05f: ; 0x5b05f
 	jumpstd $001c
-; 0x5b062
-
-INCBIN "baserom.gbc",$5b062,$01
+	end
+; 0x5b063
 
 UnknownScript_0x5b063: ; 0x5b063
 	jumpstd $001d
-; 0x5b066
-
-INCBIN "baserom.gbc",$5b066,$5b067 - $5b066
+	end
+; 0x5b067
 
 UnknownScript_0x5b067: ; 0x5b067
 	jumpstd $001e
-; 0x5b06a
-
-INCBIN "baserom.gbc",$5b06a,$5b06b - $5b06a
+	end
+; 0x5b06b
 
 UnknownScript_0x5b06b: ; 0x5b06b
 	jumpstd $001f
-; 0x5b06e
-
-INCBIN "baserom.gbc",$5b06e,$01
+	end
+; 0x5b06f
 
 UnknownScript_0x5b06f: ; 0x5b06f
 	setbit1 $0337
 	jumpstd $0021
-; 0x5b075
-
-INCBIN "baserom.gbc",$5b075,$01
+	end
+; 0x5b076
 
 UnknownScript_0x5b076: ; 0x5b076
 	jumpstd $0022
-; 0x5b079
-
-INCBIN "baserom.gbc",$5b079,$5b07a - $5b079
+	end
+; 0x5b07a
 
 TrainerSailorHuey1WhenSeenText: ; 0x5b07a
 	db $0, "Men of the sea are", $4f
@@ -15658,45 +15645,38 @@ UnknownScript_0x5c0f3: ; 0x5c0f3
 
 UnknownScript_0x5c0fc: ; 0x5c0fc
 	jumpstd $0019
-; 0x5c0ff
-
-INCBIN "baserom.gbc",$5c0ff,$5c100 - $5c0ff
+	end
+; 0x5c100
 
 UnknownScript_0x5c100: ; 0x5c100
 	jumpstd $001a
-; 0x5c103
-
-INCBIN "baserom.gbc",$5c103,$5c104 - $5c103
+	end
+; 0x5c104
 
 UnknownScript_0x5c104: ; 0x5c104
 	jumpstd $001b
-; 0x5c107
-
-INCBIN "baserom.gbc",$5c107,$01
+	end
+; 0x5c108
 
 UnknownScript_0x5c108: ; 0x5c108
 	jumpstd $001c
-; 0x5c10b
-
-INCBIN "baserom.gbc",$5c10b,$5c10c - $5c10b
+	end
+; 0x5c10c
 
 UnknownScript_0x5c10c: ; 0x5c10c
 	jumpstd $001d
-; 0x5c10f
-
-INCBIN "baserom.gbc",$5c10f,$01
+	end
+; 0x5c110
 
 UnknownScript_0x5c110: ; 0x5c110
 	jumpstd $001e
-; 0x5c113
-
-INCBIN "baserom.gbc",$5c113,$5c114 - $5c113
+	end
+; 0x5c114
 
 UnknownScript_0x5c114: ; 0x5c114
 	jumpstd $001f
-; 0x5c117
-
-INCBIN "baserom.gbc",$5c117,$01
+	end
+; 0x5c118
 
 TrainerPokefanmWilliam: ; 0x5c118
 	; bit/flag number
@@ -15797,51 +15777,43 @@ UnknownScript_0x5c189: ; 0x5c189
 
 UnknownScript_0x5c18f: ; 0x5c18f
 	jumpstd $0023
-; 0x5c192
-
-INCBIN "baserom.gbc",$5c192,$01
+	end
+; 0x5c193
 
 UnknownScript_0x5c193: ; 0x5c193
 	jumpstd $0024
-; 0x5c196
-
-INCBIN "baserom.gbc",$5c196,$01
+	end
+; 0x5c197
 
 UnknownScript_0x5c197: ; 0x5c197
 	jumpstd $0025
-; 0x5c19a
-
-INCBIN "baserom.gbc",$5c19a,$5c19b - $5c19a
+	end
+; 0x5c19b
 
 UnknownScript_0x5c19b: ; 0x5c19b
 	jumpstd $0026
-; 0x5c19e
-
-INCBIN "baserom.gbc",$5c19e,$01
+	end
+; 0x5c19f
 
 UnknownScript_0x5c19f: ; 0x5c19f
 	jumpstd $0027
-; 0x5c1a2
-
-INCBIN "baserom.gbc",$5c1a2,$01
+	end
+; 0x5c1a3
 
 UnknownScript_0x5c1a3: ; 0x5c1a3
 	jumpstd $0028
-; 0x5c1a6
-
-INCBIN "baserom.gbc",$5c1a6,$01
+	end
+; 0x5c1a7
 
 UnknownScript_0x5c1a7: ; 0x5c1a7
 	jumpstd $002a
-; 0x5c1aa
-
-INCBIN "baserom.gbc",$5c1aa,$5c1ab - $5c1aa
+	end
+; 0x5c1ab
 
 UnknownScript_0x5c1ab: ; 0x5c1ab
 	jumpstd $002b
-; 0x5c1ae
-
-INCBIN "baserom.gbc",$5c1ae,$01
+	end
+; 0x5c1af
 
 TrainerLassKrise: ; 0x5c1af
 	; bit/flag number
@@ -16536,9 +16508,8 @@ INCBIN "baserom.gbc",$5ce33,$5ce3e - $5ce33
 
 UnknownScript_0x5ce3e: ; 0x5ce3e
 	jumpstd $002f
-; 0x5ce41
-
-INCBIN "baserom.gbc",$5ce41,$01
+	end
+; 0x5ce42
 
 UnknownScript_0x5ce42: ; 0x5ce42
 	playsound $0019
@@ -21285,9 +21256,8 @@ INCBIN "baserom.gbc",$69523,$69527 - $69523
 
 UnknownScript_0x69527: ; 0x69527
 	jumpstd $0030
-; 0x6952a
-
-INCBIN "baserom.gbc",$6952a,$01
+	end
+; 0x6952b
 
 UnknownScript_0x6952b: ; 0x6952b
 	2writetext UnknownText_0x69693
@@ -21904,9 +21874,8 @@ UnknownScript_0x6a19e: ; 0x6a19e
 
 UnknownScript_0x6a19f: ; 0x6a19f
 	priorityjump UnknownScript_0x6a1d1
-; 0x6a1a2
-
-INCBIN "baserom.gbc",$6a1a2,$6a1a3 - $6a1a2
+	end
+; 0x6a1a3
 
 UnknownScript_0x6a1a3: ; 0x6a1a3
 	checkbit2 $0011
@@ -22107,9 +22076,8 @@ MapRoute36NationalParkgateSignpost0Script: ; 0x6a2db
 
 UnknownScript_0x6a2de: ; 0x6a2de
 	jumpstd $0015
-; 0x6a2e1
-
-INCBIN "baserom.gbc",$6a2e1,$6a2e2 - $6a2e1
+	end
+; 0x6a2e2
 
 MovementData_0x6a2e2: ; 0x6a2e2
 	step_down
@@ -22418,9 +22386,8 @@ UnknownScript_0x6ab12: ; 0x6ab12
 
 UnknownScript_0x6ab13: ; 0x6ab13
 	priorityjump UnknownScript_0x6ab47
-; 0x6ab16
-
-INCBIN "baserom.gbc",$6ab16,$6ab17 - $6ab16
+	end
+; 0x6ab17
 
 UnknownScript_0x6ab17: ; 0x6ab17
 	checkbit2 $0011
@@ -22700,9 +22667,8 @@ UnknownScript_0x6acf4: ; 0x6acf4
 
 UnknownScript_0x6ad02: ; 0x6ad02
 	jumpstd $0015
-; 0x6ad05
-
-INCBIN "baserom.gbc",$6ad05,$01
+	end
+; 0x6ad06
 
 UnknownScript_0x6ad06: ; 0x6ad06
 	faceplayer
@@ -23542,9 +23508,8 @@ UnknownScript_0x6c356: ; 0x6c356
 
 UnknownScript_0x6c357: ; 0x6c357
 	priorityjump UnknownScript_0x6c38f
-; 0x6c35a
-
-INCBIN "baserom.gbc",$6c35a,$01
+	end
+; 0x6c35b
 
 UnknownScript_0x6c35b: ; 0x6c35b
 	checkbit1 $02e2
@@ -25667,9 +25632,8 @@ TeamRocketBaseB3F_MapScriptHeader: ; 0x6dfd4
 
 UnknownScript_0x6dfe9: ; 0x6dfe9
 	priorityjump UnknownScript_0x6dffc
-; 0x6dfec
-
-INCBIN "baserom.gbc",$6dfec,$6dfed - $6dfec
+	end
+; 0x6dfed
 
 UnknownScript_0x6dfed: ; 0x6dfed
 	end
@@ -30890,9 +30854,8 @@ MountMoon_MapScriptHeader: ; 0x7407f
 
 UnknownScript_0x74089: ; 0x74089
 	priorityjump UnknownScript_0x7408e
-; 0x7408c
-
-INCBIN "baserom.gbc",$7408c,$01
+	end
+; 0x7408d
 
 UnknownScript_0x7408d: ; 0x7408d
 	end
@@ -31553,9 +31516,8 @@ UnknownScript_0x748ac: ; 0x748ac
 
 UnknownScript_0x748ad: ; 0x748ad
 	priorityjump UnknownScript_0x748b1
-; 0x748b0
-
-INCBIN "baserom.gbc",$748b0,$748b1 - $748b0
+	end
+; 0x748b1
 
 UnknownScript_0x748b1: ; 0x748b1
 	applymovement $0, MovementData_0x74a32
@@ -31985,9 +31947,8 @@ UnknownScript_0x74d9d: ; 0x74d9d
 
 UnknownScript_0x74d9e: ; 0x74d9e
 	priorityjump UnknownScript_0x74da6
-; 0x74da1
-
-INCBIN "baserom.gbc",$74da1,$01
+	end
+; 0x74da2
 
 UnknownScript_0x74da2: ; 0x74da2
 	setbit2 $003a
@@ -32328,9 +32289,8 @@ UnknownScript_0x75135: ; 0x75135
 
 UnknownScript_0x75136: ; 0x75136
 	priorityjump UnknownScript_0x7513b
-; 0x75139
-
-INCBIN "baserom.gbc",$75139,$7513a - $75139
+	end
+; 0x7513a
 
 UnknownScript_0x7513a: ; 0x7513a
 	end
@@ -35200,45 +35160,38 @@ UnknownScript_0x78131: ; 0x78131
 
 UnknownScript_0x78137: ; 0x78137
 	jumpstd $0019
-; 0x7813a
-
-INCBIN "baserom.gbc",$7813a,$01
+	end
+; 0x7813b
 
 UnknownScript_0x7813b: ; 0x7813b
 	jumpstd $001a
-; 0x7813e
-
-INCBIN "baserom.gbc",$7813e,$01
+	end
+; 0x7813f
 
 UnknownScript_0x7813f: ; 0x7813f
 	jumpstd $001b
-; 0x78142
-
-INCBIN "baserom.gbc",$78142,$78143 - $78142
+	end
+; 0x78143
 
 UnknownScript_0x78143: ; 0x78143
 	jumpstd $001c
-; 0x78146
-
-INCBIN "baserom.gbc",$78146,$01
+	end
+; 0x78147
 
 UnknownScript_0x78147: ; 0x78147
 	jumpstd $001d
-; 0x7814a
-
-INCBIN "baserom.gbc",$7814a,$01
+	end
+; 0x7814b
 
 UnknownScript_0x7814b: ; 0x7814b
 	jumpstd $001e
-; 0x7814e
-
-INCBIN "baserom.gbc",$7814e,$7814f - $7814e
+	end
+; 0x7814f
 
 UnknownScript_0x7814f: ; 0x7814f
 	jumpstd $001f
-; 0x78152
-
-INCBIN "baserom.gbc",$78152,$78153 - $78152
+	end
+; 0x78153
 
 TrainerPicnickerGina1: ; 0x78153
 	; bit/flag number
@@ -35364,57 +35317,48 @@ UnknownScript_0x78225: ; 0x78225
 
 UnknownScript_0x78228: ; 0x78228
 	jumpstd $0023
-; 0x7822b
-
-INCBIN "baserom.gbc",$7822b,$01
+	end
+; 0x7822c
 
 UnknownScript_0x7822c: ; 0x7822c
 	jumpstd $0024
-; 0x7822f
-
-INCBIN "baserom.gbc",$7822f,$01
+	end
+; 0x78230
 
 UnknownScript_0x78230: ; 0x78230
 	jumpstd $0025
-; 0x78233
-
-INCBIN "baserom.gbc",$78233,$78234 - $78233
+	end
+; 0x78234
 
 UnknownScript_0x78234: ; 0x78234
 	jumpstd $0026
-; 0x78237
-
-INCBIN "baserom.gbc",$78237,$78238 - $78237
+	end
+; 0x78238
 
 UnknownScript_0x78238: ; 0x78238
 	jumpstd $0027
-; 0x7823b
-
-INCBIN "baserom.gbc",$7823b,$01
+	end
+; 0x7823c
 
 UnknownScript_0x7823c: ; 0x7823c
 	jumpstd $0028
-; 0x7823f
-
-INCBIN "baserom.gbc",$7823f,$01
+	end
+; 0x78240
 
 UnknownScript_0x78240: ; 0x78240
 	jumpstd $0029
-; 0x78243
-
-INCBIN "baserom.gbc",$78243,$01
+	end
+; 0x78244
 
 UnknownScript_0x78244: ; 0x78244
 	jumpstd $002a
-; 0x78247
-
-INCBIN "baserom.gbc",$78247,$78248 - $78247
+	end
+; 0x78248
 
 UnknownScript_0x78248: ; 0x78248
 	jumpstd $002b
-; 0x7824b
-
-INCBIN "baserom.gbc",$7824b,$01
+	end
+; 0x7824c
 
 UnknownScript_0x7824c: ; 0x7824c
 	faceplayer
@@ -35981,9 +35925,8 @@ ElmsLab_MapScriptHeader: ; 0x78b5d
 
 UnknownScript_0x78b7a: ; 0x78b7a
 	priorityjump UnknownScript_0x78b8c
-; 0x78b7d
-
-INCBIN "baserom.gbc",$78b7d,$01
+	end
+; 0x78b7e
 
 UnknownScript_0x78b7e: ; 0x78b7e
 	end
@@ -36508,9 +36451,8 @@ UnknownScript_0x78ecb: ; 0x78ecb
 
 UnknownScript_0x78ee2: ; 0x78ee2
 	jumpstd $002f
-; 0x78ee5
-
-INCBIN "baserom.gbc",$78ee5,$01
+	end
+; 0x78ee6
 
 UnknownScript_0x78ee6: ; 0x78ee6
 	faceplayer
@@ -37449,9 +37391,8 @@ INCBIN "baserom.gbc",$7a578,$7a57e - $7a578
 
 UnknownScript_0x7a57e: ; 0x7a57e
 	jumpstd $002f
-; 0x7a581
-
-INCBIN "baserom.gbc",$7a581,$7a582 - $7a581
+	end
+; 0x7a582
 
 UnknownScript_0x7a582: ; 0x7a582
 	faceplayer
@@ -37764,9 +37705,8 @@ UnknownScript_0x7abb4: ; 0x7abb4
 	checkbit1 $0036
 	iftrue UnknownScript_0x7abc4
 	jumpstd $0018
-; 0x7abc3
-
-INCBIN "baserom.gbc",$7abc3,$01
+	return
+; 0x7abc4
 
 UnknownScript_0x7abc4: ; 0x7abc4
 	return
@@ -55233,9 +55173,8 @@ EcruteakPokeCenter1F_MapScriptHeader: ; 0x98e55
 
 UnknownScript_0x98e5f: ; 0x98e5f
 	priorityjump UnknownScript_0x98e64
-; 0x98e62
-
-INCBIN "baserom.gbc",$98e62,$01
+	end
+; 0x98e63
 
 UnknownScript_0x98e63: ; 0x98e63
 	end
@@ -56016,9 +55955,8 @@ EcruteakGym_MapScriptHeader: ; 0x99d49
 
 UnknownScript_0x99d53: ; 0x99d53
 	priorityjump UnknownScript_0x99dc6
-; 0x99d56
-
-INCBIN "baserom.gbc",$99d56,$99d57 - $99d56
+	end
+; 0x99d57
 
 UnknownScript_0x99d57: ; 0x99d57
 	end
@@ -59867,9 +59805,8 @@ UnknownScript_0x9e39d: ; 0x9e39d
 	closetext
 	loadmovesprites
 	priorityjump UnknownScript_0x9e44e
-; 0x9e3c3
-
-INCBIN "baserom.gbc",$9e3c3,$01
+	end
+; 0x9e3c4
 
 UnknownScript_0x9e3c4: ; 0x9e3c4
 	priorityjump UnknownScript_0x9e555
@@ -60390,9 +60327,8 @@ BattleTowerBattleRoom_MapScriptHeader: ; 0x9f40f
 UnknownScript_0x9f419: ; 0x9f419
 	disappear $2
 	priorityjump UnknownScript_0x9f421
-; 0x9f41e
-
-INCBIN "baserom.gbc",$9f41e,$9f420 - $9f41e
+	dotrigger $1
+; 0x9f420
 
 UnknownScript_0x9f420: ; 0x9f420
 	end
@@ -60525,9 +60461,8 @@ BattleTowerElevator_MapScriptHeader: ; 0x9f558
 
 UnknownScript_0x9f562: ; 0x9f562
 	priorityjump UnknownScript_0x9f568
-; 0x9f565
-
-INCBIN "baserom.gbc",$9f565,$9f567 - $9f565
+	dotrigger $1
+; 0x9f567
 
 UnknownScript_0x9f567: ; 0x9f567
 	end
@@ -60597,9 +60532,8 @@ BattleTowerHallway_MapScriptHeader: ; 0x9f5b1
 
 UnknownScript_0x9f5bb: ; 0x9f5bb
 	priorityjump UnknownScript_0x9f5c1
-; 0x9f5be
-
-INCBIN "baserom.gbc",$9f5be,$9f5c0 - $9f5be
+	dotrigger $1
+; 0x9f5c0
 
 UnknownScript_0x9f5c0: ; 0x9f5c0
 	end
@@ -62520,9 +62454,8 @@ WillsRoom_MapScriptHeader: ; 0x1804b9
 
 UnknownScript_0x1804c6: ; 0x1804c6
 	priorityjump UnknownScript_0x1804e0
-; 0x1804c9
-
-INCBIN "baserom.gbc",$1804c9,$1804ca - $1804c9
+	end
+; 0x1804ca
 
 UnknownScript_0x1804ca: ; 0x1804ca
 	end
@@ -62670,9 +62603,8 @@ KogasRoom_MapScriptHeader: ; 0x18071b
 
 UnknownScript_0x180728: ; 0x180728
 	priorityjump UnknownScript_0x180742
-; 0x18072b
-
-INCBIN "baserom.gbc",$18072b,$18072c - $18072b
+	end
+; 0x18072c
 
 UnknownScript_0x18072c: ; 0x18072c
 	end
@@ -62822,9 +62754,8 @@ BrunosRoom_MapScriptHeader: ; 0x180986
 
 UnknownScript_0x180993: ; 0x180993
 	priorityjump UnknownScript_0x1809ad
-; 0x180996
-
-INCBIN "baserom.gbc",$180996,$01
+	end
+; 0x180997
 
 UnknownScript_0x180997: ; 0x180997
 	end
@@ -62970,9 +62901,8 @@ KarensRoom_MapScriptHeader: ; 0x180baf
 
 UnknownScript_0x180bbc: ; 0x180bbc
 	priorityjump UnknownScript_0x180bd6
-; 0x180bbf
-
-INCBIN "baserom.gbc",$180bbf,$180bc0 - $180bbf
+	end
+; 0x180bc0
 
 UnknownScript_0x180bc0: ; 0x180bc0
 	end
@@ -63123,9 +63053,8 @@ LancesRoom_MapScriptHeader: ; 0x180e2c
 
 UnknownScript_0x180e39: ; 0x180e39
 	priorityjump UnknownScript_0x180e53
-; 0x180e3c
-
-INCBIN "baserom.gbc",$180e3c,$180e3d - $180e3c
+	end
+; 0x180e3d
 
 UnknownScript_0x180e3d: ; 0x180e3d
 	end
@@ -63472,9 +63401,8 @@ HallOfFame_MapScriptHeader: ; 0x181445
 
 UnknownScript_0x18144f: ; 0x18144f
 	priorityjump UnknownScript_0x181454
-; 0x181452
-
-INCBIN "baserom.gbc",$181452,$181453 - $181452
+	end
+; 0x181453
 
 UnknownScript_0x181453: ; 0x181453
 	end
@@ -64609,9 +64537,8 @@ TinTower1F_MapScriptHeader: ; 0x18501a
 
 UnknownScript_0x18502a: ; 0x18502a
 	priorityjump UnknownScript_0x18508f
-; 0x18502d
-
-INCBIN "baserom.gbc",$18502d,$01
+	end
+; 0x18502e
 
 UnknownScript_0x18502e: ; 0x18502e
 	end
@@ -65439,9 +65366,8 @@ BurnedTower1F_MapScriptHeader: ; 0x185be1
 
 UnknownScript_0x185bf2: ; 0x185bf2
 	priorityjump UnknownScript_0x185c0d
-; 0x185bf5
-
-INCBIN "baserom.gbc",$185bf5,$185bf6 - $185bf5
+	end
+; 0x185bf6
 
 UnknownScript_0x185bf6: ; 0x185bf6
 	end
@@ -66298,9 +66224,8 @@ UnknownScript_0x1883d9: ; 0x1883d9
 
 UnknownScript_0x1883da: ; 0x1883da
 	priorityjump UnknownScript_0x1883de
-; 0x1883dd
-
-INCBIN "baserom.gbc",$1883dd,$1883de - $1883dd
+	end
+; 0x1883de
 
 UnknownScript_0x1883de: ; 0x1883de
 	applymovement $2, MovementData_0x1884e3
@@ -70771,9 +70696,8 @@ DragonShrine_MapScriptHeader: ; 0x18d014
 
 UnknownScript_0x18d01e: ; 0x18d01e
 	priorityjump UnknownScript_0x18d023
-; 0x18d021
-
-INCBIN "baserom.gbc",$18d021,$01
+	end
+; 0x18d022
 
 UnknownScript_0x18d022: ; 0x18d022
 	end
@@ -73472,45 +73396,38 @@ UnknownScript_0x1905f1: ; 0x1905f1
 
 UnknownScript_0x1905f7: ; 0x1905f7
 	jumpstd $0019
-; 0x1905fa
-
-INCBIN "baserom.gbc",$1905fa,$1905fb - $1905fa
+	end
+; 0x1905fb
 
 UnknownScript_0x1905fb: ; 0x1905fb
 	jumpstd $001a
-; 0x1905fe
-
-INCBIN "baserom.gbc",$1905fe,$1905ff - $1905fe
+	end
+; 0x1905ff
 
 UnknownScript_0x1905ff: ; 0x1905ff
 	jumpstd $001b
-; 0x190602
-
-INCBIN "baserom.gbc",$190602,$190603 - $190602
+	end
+; 0x190603
 
 UnknownScript_0x190603: ; 0x190603
 	jumpstd $001c
-; 0x190606
-
-INCBIN "baserom.gbc",$190606,$01
+	end
+; 0x190607
 
 UnknownScript_0x190607: ; 0x190607
 	jumpstd $001d
-; 0x19060a
-
-INCBIN "baserom.gbc",$19060a,$19060b - $19060a
+	end
+; 0x19060b
 
 UnknownScript_0x19060b: ; 0x19060b
 	jumpstd $001e
-; 0x19060e
-
-INCBIN "baserom.gbc",$19060e,$01
+	end
+; 0x19060f
 
 UnknownScript_0x19060f: ; 0x19060f
 	jumpstd $001f
-; 0x190612
-
-INCBIN "baserom.gbc",$190612,$190613 - $190612
+	end
+; 0x190613
 
 TrainerFisherHenry: ; 0x190613
 	; bit/flag number
@@ -73650,45 +73567,38 @@ UnknownScript_0x1906d8: ; 0x1906d8
 
 UnknownScript_0x1906e1: ; 0x1906e1
 	jumpstd $0023
-; 0x1906e4
-
-INCBIN "baserom.gbc",$1906e4,$1906e5 - $1906e4
+	end
+; 0x1906e5
 
 UnknownScript_0x1906e5: ; 0x1906e5
 	jumpstd $0024
-; 0x1906e8
-
-INCBIN "baserom.gbc",$1906e8,$01
+	end
+; 0x1906e9
 
 UnknownScript_0x1906e9: ; 0x1906e9
 	jumpstd $0025
-; 0x1906ec
-
-INCBIN "baserom.gbc",$1906ec,$1906ed - $1906ec
+	end
+; 0x1906ed
 
 UnknownScript_0x1906ed: ; 0x1906ed
 	jumpstd $0026
-; 0x1906f0
-
-INCBIN "baserom.gbc",$1906f0,$1906f1 - $1906f0
+	end
+; 0x1906f1
 
 UnknownScript_0x1906f1: ; 0x1906f1
 	jumpstd $0027
-; 0x1906f4
-
-INCBIN "baserom.gbc",$1906f4,$01
+	end
+; 0x1906f5
 
 UnknownScript_0x1906f5: ; 0x1906f5
 	jumpstd $0028
-; 0x1906f8
-
-INCBIN "baserom.gbc",$1906f8,$1906f9 - $1906f8
+	end
+; 0x1906f9
 
 UnknownScript_0x1906f9: ; 0x1906f9
 	jumpstd $0029
-; 0x1906fc
-
-INCBIN "baserom.gbc",$1906fc,$01
+	end
+; 0x1906fd
 
 TrainerYoungsterAlbert: ; 0x1906fd
 	; bit/flag number
@@ -75337,33 +75247,28 @@ UnknownScript_0x192872: ; 0x192872
 
 UnknownScript_0x192873: ; 0x192873
 	priorityjump UnknownScript_0x192ab6
-; 0x192876
-
-INCBIN "baserom.gbc",$192876,$192877 - $192876
+	end
+; 0x192877
 
 UnknownScript_0x192877: ; 0x192877
 	priorityjump UnknownScript_0x192add
-; 0x19287a
-
-INCBIN "baserom.gbc",$19287a,$01
+	end
+; 0x19287b
 
 UnknownScript_0x19287b: ; 0x19287b
 	priorityjump UnknownScript_0x192c4e
-; 0x19287e
-
-INCBIN "baserom.gbc",$19287e,$19287f - $19287e
+	end
+; 0x19287f
 
 UnknownScript_0x19287f: ; 0x19287f
 	priorityjump UnknownScript_0x192ac3
-; 0x192882
-
-INCBIN "baserom.gbc",$192882,$01
+	end
+; 0x192883
 
 UnknownScript_0x192883: ; 0x192883
 	priorityjump UnknownScript_0x192aea
-; 0x192886
-
-INCBIN "baserom.gbc",$192886,$192887 - $192886
+	end
+; 0x192887
 
 UnknownScript_0x192887: ; 0x192887
 	appear $5
@@ -76436,9 +76341,8 @@ TradeCenter_MapScriptHeader: ; 0x1933dc
 
 UnknownScript_0x1933e9: ; 0x1933e9
 	priorityjump UnknownScript_0x1933fe
-; 0x1933ec
-
-INCBIN "baserom.gbc",$1933ec,$1933ed - $1933ec
+	end
+; 0x1933ed
 
 UnknownScript_0x1933ed: ; 0x1933ed
 	end
@@ -76516,9 +76420,8 @@ Colosseum_MapScriptHeader: ; 0x19345d
 
 UnknownScript_0x193471: ; 0x193471
 	priorityjump UnknownScript_0x19348c
-; 0x193474
-
-INCBIN "baserom.gbc",$193474,$193475 - $193474
+	end
+; 0x193475
 
 UnknownScript_0x193475: ; 0x193475
 	end
@@ -76613,9 +76516,8 @@ TimeCapsule_MapScriptHeader: ; 0x1934eb
 
 UnknownScript_0x1934f8: ; 0x1934f8
 	priorityjump UnknownScript_0x19350d
-; 0x1934fb
-
-INCBIN "baserom.gbc",$1934fb,$1934fc - $1934fb
+	end
+; 0x1934fc
 
 UnknownScript_0x1934fc: ; 0x1934fc
 	end
@@ -76697,9 +76599,8 @@ MobileTradeRoomMobile_MapScriptHeader: ; 0x19356c
 
 UnknownScript_0x193576: ; 0x193576
 	priorityjump UnknownScript_0x19357b
-; 0x193579
-
-INCBIN "baserom.gbc",$193579,$01
+	end
+; 0x19357a
 
 UnknownScript_0x19357a: ; 0x19357a
 	end
@@ -76761,9 +76662,8 @@ MobileBattleRoom_MapScriptHeader: ; 0x1935c4
 
 UnknownScript_0x1935ce: ; 0x1935ce
 	priorityjump UnknownScript_0x1935d3
-; 0x1935d1
-
-INCBIN "baserom.gbc",$1935d1,$01
+	end
+; 0x1935d2
 
 UnknownScript_0x1935d2: ; 0x1935d2
 	end
@@ -77144,57 +77044,48 @@ UnknownScript_0x1941c6: ; 0x1941c6
 
 UnknownScript_0x1941c9: ; 0x1941c9
 	jumpstd $0019
-; 0x1941cc
-
-INCBIN "baserom.gbc",$1941cc,$01
+	end
+; 0x1941cd
 
 UnknownScript_0x1941cd: ; 0x1941cd
 	jumpstd $001a
-; 0x1941d0
-
-INCBIN "baserom.gbc",$1941d0,$1941d1 - $1941d0
+	end
+; 0x1941d1
 
 UnknownScript_0x1941d1: ; 0x1941d1
 	jumpstd $001b
-; 0x1941d4
-
-INCBIN "baserom.gbc",$1941d4,$1941d5 - $1941d4
+	end
+; 0x1941d5
 
 UnknownScript_0x1941d5: ; 0x1941d5
 	jumpstd $001c
-; 0x1941d8
-
-INCBIN "baserom.gbc",$1941d8,$01
+	end
+; 0x1941d9
 
 UnknownScript_0x1941d9: ; 0x1941d9
 	jumpstd $001d
-; 0x1941dc
-
-INCBIN "baserom.gbc",$1941dc,$01
+	end
+; 0x1941dd
 
 UnknownScript_0x1941dd: ; 0x1941dd
 	jumpstd $001e
-; 0x1941e0
-
-INCBIN "baserom.gbc",$1941e0,$01
+	end
+; 0x1941e1
 
 UnknownScript_0x1941e1: ; 0x1941e1
 	jumpstd $001f
-; 0x1941e4
-
-INCBIN "baserom.gbc",$1941e4,$1941e5 - $1941e4
+	end
+; 0x1941e5
 
 UnknownScript_0x1941e5: ; 0x1941e5
 	jumpstd $0020
-; 0x1941e8
-
-INCBIN "baserom.gbc",$1941e8,$01
+	end
+; 0x1941e9
 
 UnknownScript_0x1941e9: ; 0x1941e9
 	jumpstd $0021
-; 0x1941ec
-
-INCBIN "baserom.gbc",$1941ec,$1941ed - $1941ec
+	end
+; 0x1941ed
 
 TrainerPsychicMark: ; 0x1941ed
 	; bit/flag number
@@ -79859,9 +79750,8 @@ MrPokemonsHouse_MapScriptHeader: ; 0x196e47
 
 UnknownScript_0x196e51: ; 0x196e51
 	priorityjump UnknownScript_0x196e56
-; 0x196e54
-
-INCBIN "baserom.gbc",$196e54,$01
+	end
+; 0x196e55
 
 UnknownScript_0x196e55: ; 0x196e55
 	end
@@ -82703,9 +82593,8 @@ Route43Gate_MapScriptHeader: ; 0x19abb8
 
 UnknownScript_0x19abc5: ; 0x19abc5
 	priorityjump UnknownScript_0x19abda
-; 0x19abc8
-
-INCBIN "baserom.gbc",$19abc8,$19abc9 - $19abc8
+	end
+; 0x19abc9
 
 UnknownScript_0x19abc9: ; 0x19abc9
 	end
@@ -84208,45 +84097,38 @@ UnknownScript_0x19c8ec: ; 0x19c8ec
 
 UnknownScript_0x19c903: ; 0x19c903
 	jumpstd $0019
-; 0x19c906
-
-INCBIN "baserom.gbc",$19c906,$01
+	end
+; 0x19c907
 
 UnknownScript_0x19c907: ; 0x19c907
 	jumpstd $001a
-; 0x19c90a
-
-INCBIN "baserom.gbc",$19c90a,$19c90b - $19c90a
+	end
+; 0x19c90b
 
 UnknownScript_0x19c90b: ; 0x19c90b
 	jumpstd $001b
-; 0x19c90e
-
-INCBIN "baserom.gbc",$19c90e,$01
+	end
+; 0x19c90f
 
 UnknownScript_0x19c90f: ; 0x19c90f
 	jumpstd $001c
-; 0x19c912
-
-INCBIN "baserom.gbc",$19c912,$19c913 - $19c912
+	end
+; 0x19c913
 
 UnknownScript_0x19c913: ; 0x19c913
 	jumpstd $001d
-; 0x19c916
-
-INCBIN "baserom.gbc",$19c916,$01
+	end
+; 0x19c917
 
 UnknownScript_0x19c917: ; 0x19c917
 	jumpstd $001e
-; 0x19c91a
-
-INCBIN "baserom.gbc",$19c91a,$19c91b - $19c91a
+	end
+; 0x19c91b
 
 UnknownScript_0x19c91b: ; 0x19c91b
 	jumpstd $001f
-; 0x19c91e
-
-INCBIN "baserom.gbc",$19c91e,$01
+	end
+; 0x19c91f
 
 TrainerCamperIvan: ; 0x19c91f
 	; bit/flag number
@@ -84944,45 +84826,38 @@ UnknownScript_0x19d123: ; 0x19d123
 
 UnknownScript_0x19d12c: ; 0x19d12c
 	jumpstd $0019
-; 0x19d12f
-
-INCBIN "baserom.gbc",$19d12f,$19d130 - $19d12f
+	end
+; 0x19d130
 
 UnknownScript_0x19d130: ; 0x19d130
 	jumpstd $001a
-; 0x19d133
-
-INCBIN "baserom.gbc",$19d133,$19d134 - $19d133
+	end
+; 0x19d134
 
 UnknownScript_0x19d134: ; 0x19d134
 	jumpstd $001b
-; 0x19d137
-
-INCBIN "baserom.gbc",$19d137,$01
+	end
+; 0x19d138
 
 UnknownScript_0x19d138: ; 0x19d138
 	jumpstd $001c
-; 0x19d13b
-
-INCBIN "baserom.gbc",$19d13b,$01
+	end
+; 0x19d13c
 
 UnknownScript_0x19d13c: ; 0x19d13c
 	jumpstd $001d
-; 0x19d13f
-
-INCBIN "baserom.gbc",$19d13f,$19d140 - $19d13f
+	end
+; 0x19d140
 
 UnknownScript_0x19d140: ; 0x19d140
 	jumpstd $001e
-; 0x19d143
-
-INCBIN "baserom.gbc",$19d143,$01
+	end
+; 0x19d144
 
 UnknownScript_0x19d144: ; 0x19d144
 	jumpstd $001f
-; 0x19d147
-
-INCBIN "baserom.gbc",$19d147,$19d148 - $19d147
+	end
+; 0x19d148
 
 TrainerPokemaniacRon: ; 0x19d148
 	; bit/flag number
@@ -85163,57 +85038,48 @@ UnknownScript_0x19d233: ; 0x19d233
 
 UnknownScript_0x19d239: ; 0x19d239
 	jumpstd $0023
-; 0x19d23c
-
-INCBIN "baserom.gbc",$19d23c,$01
+	end
+; 0x19d23d
 
 UnknownScript_0x19d23d: ; 0x19d23d
 	jumpstd $0024
-; 0x19d240
-
-INCBIN "baserom.gbc",$19d240,$19d241 - $19d240
+	end
+; 0x19d241
 
 UnknownScript_0x19d241: ; 0x19d241
 	jumpstd $0025
-; 0x19d244
-
-INCBIN "baserom.gbc",$19d244,$01
+	end
+; 0x19d245
 
 UnknownScript_0x19d245: ; 0x19d245
 	jumpstd $0026
-; 0x19d248
-
-INCBIN "baserom.gbc",$19d248,$19d249 - $19d248
+	end
+; 0x19d249
 
 UnknownScript_0x19d249: ; 0x19d249
 	jumpstd $0027
-; 0x19d24c
-
-INCBIN "baserom.gbc",$19d24c,$19d24d - $19d24c
+	end
+; 0x19d24d
 
 UnknownScript_0x19d24d: ; 0x19d24d
 	jumpstd $0028
-; 0x19d250
-
-INCBIN "baserom.gbc",$19d250,$01
+	end
+; 0x19d251
 
 UnknownScript_0x19d251: ; 0x19d251
 	jumpstd $0029
-; 0x19d254
-
-INCBIN "baserom.gbc",$19d254,$19d255 - $19d254
+	end
+; 0x19d255
 
 UnknownScript_0x19d255: ; 0x19d255
 	jumpstd $002a
-; 0x19d258
-
-INCBIN "baserom.gbc",$19d258,$01
+	end
+; 0x19d259
 
 UnknownScript_0x19d259: ; 0x19d259
 	jumpstd $002b
-; 0x19d25c
-
-INCBIN "baserom.gbc",$19d25c,$19d25d - $19d25c
+	end
+; 0x19d25d
 
 MapRoute43Signpost0Script: ; 0x19d25d
 	jumptext UnknownText_0x19d67b
@@ -98283,21 +98149,18 @@ UnknownScript_0x1ac0c5: ; 0x1ac0c5
 
 UnknownScript_0x1ac0cb: ; 0x1ac0cb
 	jumpstd $0019
-; 0x1ac0ce
-
-INCBIN "baserom.gbc",$1ac0ce,$1ac0cf - $1ac0ce
+	end
+; 0x1ac0cf
 
 UnknownScript_0x1ac0cf: ; 0x1ac0cf
 	jumpstd $001a
-; 0x1ac0d2
-
-INCBIN "baserom.gbc",$1ac0d2,$1ac0d3 - $1ac0d2
+	end
+; 0x1ac0d3
 
 UnknownScript_0x1ac0d3: ; 0x1ac0d3
 	jumpstd $001b
-; 0x1ac0d6
-
-INCBIN "baserom.gbc",$1ac0d6,$1ac0d7 - $1ac0d6
+	end
+; 0x1ac0d7
 
 UnknownScript_0x1ac0d7: ; 0x1ac0d7
 	jumpstd $001c
@@ -98306,9 +98169,8 @@ UnknownScript_0x1ac0d7: ; 0x1ac0d7
 
 UnknownScript_0x1ac0db: ; 0x1ac0db
 	jumpstd $001d
-; 0x1ac0de
-
-INCBIN "baserom.gbc",$1ac0de,$1ac0df - $1ac0de
+	end
+; 0x1ac0df
 
 UnknownScript_0x1ac0df: ; 0x1ac0df
 	jumpstd $001e
@@ -98317,9 +98179,8 @@ UnknownScript_0x1ac0df: ; 0x1ac0df
 
 UnknownScript_0x1ac0e3: ; 0x1ac0e3
 	jumpstd $001f
-; 0x1ac0e6
-
-INCBIN "baserom.gbc",$1ac0e6,$1ac0e7 - $1ac0e6
+	end
+; 0x1ac0e7
 
 MapRoute33Signpost0Script: ; 0x1ac0e7
 	jumptext UnknownText_0x1ac279
