@@ -1756,7 +1756,20 @@ class RawTextPointerLabelParam(PointerLabelParam):
         #self.text = TextScript(address, map_group=self.map_group, map_id=self.map_id, debug=self.debug)
         self.text = parse_text_engine_script_at(address, map_group=self.map_group, map_id=self.map_id, debug=self.debug)
 
-        string_to_text_texts.append(self.text)
+    def get_dependencies(self, recompute=False, global_dependencies=set()):
+        global_dependencies.add(self.text)
+        return [self.text]
+
+class EncodedTextLabelParam(PointerLabelParam):
+    def parse(self):
+        PointerLabelParam.parse(self)
+
+        address = calculate_pointer_from_bytes_at(self.address, bank=False)
+        self.parsed_address = address
+        self.text = EncodedText(address, map_group=self.map_group, map_id=self.map_id, debug=self.debug)
+
+        if isinstance(self.text, EncodedText):
+            string_to_text_texts.append(self.text)
 
     def get_dependencies(self, recompute=False, global_dependencies=set()):
         global_dependencies.add(self.text)
@@ -2769,7 +2782,7 @@ pksv_crystal_more = {
     0x41: ["itemtotext", ["item", ItemLabelByte], ["memory", SingleByteParam]],
     0x42: ["mapnametotext", ["memory", SingleByteParam]], #not pksv
     0x43: ["trainertotext", ["trainer_id", TrainerGroupParam], ["trainer_group", TrainerIdParam], ["memory", SingleByteParam]],
-    0x44: ["stringtotext", ["text_pointer", RawTextPointerLabelParam], ["memory", SingleByteParam]],
+    0x44: ["stringtotext", ["text_pointer", EncodedTextLabelParam], ["memory", SingleByteParam]],
     0x45: ["itemnotify"],
     0x46: ["pocketisfull"],
     0x47: ["loadfont"],
