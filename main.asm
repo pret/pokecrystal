@@ -21268,7 +21268,9 @@ UnknownScript_0x69511: ; 0x69511
 	end
 ; 0x69523
 
-INCBIN "baserom.gbc",$69523,$69527 - $69523
+UnknownRawText_0x69523: ; 0x69523
+	db "EGG@"
+; 0x69527
 
 UnknownScript_0x69527: ; 0x69527
 	jumpstd $0030
@@ -21728,6 +21730,7 @@ UnknownScript_0x69d96: ; 0x69d96
 ; 0x69d98
 
 GivePokeItem_0x69d98: ; 0x69d98
+
 INCBIN "baserom.gbc",$69d98,$2e
 
 UnknownScript_0x69dc6: ; 0x69dc6
@@ -29406,9 +29409,12 @@ UnknownScript_0x72144: ; 0x72144
 
 UnknownScript_0x72172: ; 0x72172
 	jumpstd $002f
-; 0x72175
+	end
+; 0x72176
 
-INCBIN "baserom.gbc",$72175,$7217b - $72175
+UnknownRawText_0x72176: ; 0x72176
+	db "COIN@"
+; 0x7217b
 
 UnknownScript_0x7217b: ; 0x7217b
 	2writetext UnknownText_0x7238a
@@ -37409,7 +37415,9 @@ UnknownScript_0x7a572: ; 0x7a572
 	2jump $64f6
 ; 0x7a578
 
-INCBIN "baserom.gbc",$7a578,$7a57e - $7a578
+UnknownRawText_0x7a578: ; 0x7a578
+	db $54, "GEAR@"
+; 0x7a57e
 
 UnknownScript_0x7a57e: ; 0x7a57e
 	jumpstd $002f
@@ -41883,9 +41891,12 @@ UnknownScript_0x7ee80: ; 0x7ee80
 
 UnknownScript_0x7ee94: ; 0x7ee94
 	jumpstd $002f
-; 0x7ee97
+	end
+; 0x7ee98
 
-INCBIN "baserom.gbc",$7ee97,$7eea2 - $7ee97
+UnknownRawText_0x7ee98: ; 0x7ee98
+	db "EXPN CARD@"
+; 0x7eea2
 
 UnknownScript_0x7eea2: ; 0x7eea2
 	faceplayer
@@ -83559,9 +83570,12 @@ UnknownScript_0x19c01f: ; 0x19c01f
 
 UnknownScript_0x19c097: ; 0x19c097
 	jumpstd $002f
-; 0x19c09a
+	end
+; 0x19c09b
 
-INCBIN "baserom.gbc",$19c09a,$0a
+UnknownRawText_0x19c09b: ; 0x19c09b
+	db "MAP CARD@"
+; 0x19c0a4
 
 UnknownScript_0x19c0a4: ; 0x19c0a4
 	2writetext UnknownText_0x19c49f

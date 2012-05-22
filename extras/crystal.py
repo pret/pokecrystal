@@ -1090,6 +1090,7 @@ class EncodedText:
         if not label:
             label = self.base_label + hex(address)
         self.label = Label(name=label, address=address, object=self)
+        self.dependencies = None
         self.parse()
         script_parse_table[self.address : self.last_address] = self
 
