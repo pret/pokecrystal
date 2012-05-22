@@ -14383,7 +14383,7 @@ TrainerGruntM29: ; 0x5a5d8
 TrainerGruntM29WhenTalkScript: ; 0x5a5e4
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x5a8e8
+	2writetext TrainerGruntM29SlowpokeProfitText
 	closetext
 	loadmovesprites
 	end
@@ -14614,7 +14614,7 @@ TrainerGruntM29WhenBeatenText: ; 0x5a8cc
 	db "my day!", $57
 ; 0x5a8e8
 
-UnknownText_0x5a8e8: ; 0x5a8e8
+TrainerGruntM29SlowpokeProfitText: ; 0x5a8e8
 	db $0, "Sure, we've been", $4f
 	db "hacking the tails", $51
 	db "off SLOWPOKE and", $4f
