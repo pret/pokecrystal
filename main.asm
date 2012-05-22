@@ -17101,9 +17101,10 @@ UnknownScript_0x5d82f: ; 0x5d82f
 	closetext
 	loadmovesprites
 	checkcellnum $25
-	iftrue $583f
+	iftrue UnknownScript_0x5d83f
 	checkbit1 $033c
 	iftrue UnknownScript_0x5d8cc
+UnknownScript_0x5d83f: ; 0x5d83f
 	spriteface $b, $3
 	pause 10
 	end
