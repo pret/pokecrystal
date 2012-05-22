@@ -1719,7 +1719,8 @@ class TrainerIdParam(SingleByteParam):
         trainer_group_id = self.parent.params[foundit].byte
 
         # check the rule to see whether to use an id or not
-        if "uses_numeric_trainer_ids" in trainer_group_names[trainer_group_id].keys():
+        if ("uses_numeric_trainer_ids" in trainer_group_names[trainer_group_id].keys()) or \
+           (not "trainer_names" in trainer_group_names[trainer_group_id].keys()):
             return str(self.byte)
         else:
             return trainer_group_names[trainer_group_id]["trainer_names"][self.byte-1]
@@ -1743,6 +1744,7 @@ class MenuDataPointerParam(PointerLabelParam):
     pass
 
 
+string_to_text_texts = []
 class RawTextPointerLabelParam(PointerLabelParam):
     #not sure if these are always to a text script or raw text?
     def parse(self):
@@ -1753,6 +1755,8 @@ class RawTextPointerLabelParam(PointerLabelParam):
         #self.text = parse_text_at3(address, map_group=self.map_group, map_id=self.map_id, debug=self.debug)
         #self.text = TextScript(address, map_group=self.map_group, map_id=self.map_id, debug=self.debug)
         self.text = parse_text_engine_script_at(address, map_group=self.map_group, map_id=self.map_id, debug=self.debug)
+
+        string_to_text_texts.append(self.text)
 
     def get_dependencies(self, recompute=False, global_dependencies=set()):
         global_dependencies.add(self.text)
@@ -3439,9 +3443,11 @@ class TrainerFragment(Command):
 
         # give this object a possibly better label
         label = "Trainer"
-        if "uses_numeric_trainer_ids" in trainer_group_names[trainer_group].keys():
+        if ("uses_numeric_trainer_ids" in trainer_group_names[trainer_group].keys()) \
+           or ("trainer_names" not in trainer_group_names[trainer_group].keys()):
             label += string.capwords(trainer_group_names[trainer_group]["constant"])
-            if len(trainer_group_names[trainer_group]["trainer_names"]) > 1:
+            if "trainer_names" in trainer_group_names[trainer_group].keys() \
+               and len(trainer_group_names[trainer_group]["trainer_names"]) > 1:
                 label += str(trainer_id)
         else:
             label += string.capwords(trainer_group_names[trainer_group]["constant"]) + \
