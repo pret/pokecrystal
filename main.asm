@@ -14411,7 +14411,7 @@ TrainerGruntM1: ; 0x5a5ec
 
 TrainerGruntM1WhenTalkScript: ; 0x5a5f8
 	loadfont
-	2writetext UnknownText_0x5a9fc
+	2writetext TrainerGruntM1WhenTalkText
 	closetext
 	loadmovesprites
 	special $0030
@@ -14425,10 +14425,10 @@ TrainerGruntM1WhenTalkScript: ; 0x5a5f8
 	disappear $8
 	moveperson $8, $b, $6
 	appear $8
-	applymovement $8, MovementData_0x5a6a5
+	applymovement $8, KurtSlowpokeWellVictoryMovementData
 	spriteface $0, $3
 	loadfont
-	2writetext UnknownText_0x5a7ca
+	2writetext KurtLeaveSlowpokeWellText
 	closetext
 	loadmovesprites
 	setbit1 $002b
@@ -14544,7 +14544,7 @@ ItemFragment_0x5a6a3: ; 0x5a6a3
 	db SUPER_POTION, 1
 ; 0x5a6a5
 
-MovementData_0x5a6a5: ; 0x5a6a5
+KurtSlowpokeWellVictoryMovementData: ; 0x5a6a5
 	step_left
 	step_left
 	step_left
@@ -14586,7 +14586,7 @@ UnknownText_0x5a6b5: ; 0x5a6b5
 	db "in my place!", $57
 ; 0x5a7ca
 
-UnknownText_0x5a7ca: ; 0x5a7ca
+KurtLeaveSlowpokeWellText: ; 0x5a7ca
 	db $0, "KURT: Way to go,", $4f
 	db $52, "!", $51
 	db "TEAM ROCKET has", $4f
@@ -14640,7 +14640,7 @@ TrainerGruntM1WhenBeatenText: ; 0x5a9d0
 	db "time!", $57
 ; 0x5a9fc
 
-UnknownText_0x5a9fc: ; 0x5a9fc
+TrainerGruntM1WhenTalkText: ; 0x5a9fc
 	db $0, "Yeah, TEAM ROCKET", $4f
 	db "was broken up", $55
 	db "three years ago.", $51
