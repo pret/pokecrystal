@@ -16493,7 +16493,7 @@ UnknownScript_0x5cdd5: ; 0x5cdd5
 	waitbutton
 	2writetext UnknownText_0x5d37b
 	keeptextopen
-	stringtotext $4e33, $1
+	stringtotext RadioCardText, $1
 	2call UnknownScript_0x5ce3e
 	2writetext UnknownText_0x5d3c0
 	keeptextopen
@@ -16505,7 +16505,9 @@ UnknownScript_0x5ce2d: ; 0x5ce2d
 	end
 ; 0x5ce33
 
-INCBIN "baserom.gbc",$5ce33,$5ce3e - $5ce33
+RadioCardText: ; 0x5ce33
+	db "RADIO CARD@"
+; 0x5ce3d
 
 UnknownScript_0x5ce3e: ; 0x5ce3e
 	jumpstd $002f
