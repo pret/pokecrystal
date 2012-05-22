@@ -1110,6 +1110,10 @@ class EncodedText:
         end_address = offset + jump #we want the address before $57
 
         text = parse_text_at2(offset, end_address-offset, debug=self.debug)
+
+        if jump == jump50:
+            text += "@"
+
         self.text = text
 
         self.last_address = self.end_address = end_address
@@ -1164,7 +1168,6 @@ class EncodedText:
         commands = process_00_subcommands(address, address+count, debug=debug)
         for (line_id, line) in commands.items():
             output += parse_text_from_bytes(line, debug=debug, japanese=japanese)
-            output += "\n"
         texts.append([address, output])
         return output
 
