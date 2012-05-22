@@ -17141,9 +17141,10 @@ UnknownScript_0x5d86b: ; 0x5d86b
 	closetext
 	loadmovesprites
 	checkcellnum $25
-	iftrue $587b
+	iftrue UnknownScript_0x5d87b
 	checkbit1 $029e
 	iftrue UnknownScript_0x5d8cc
+UnknownScript_0x5d87b: ; 0x5d87b
 	spriteface $b, $3
 	end
 ; 0x5d87f
@@ -17153,9 +17154,10 @@ UnknownScript_0x5d87f: ; 0x5d87f
 	closetext
 	loadmovesprites
 	checkcellnum $25
-	iftrue $588f
+	iftrue UnknownScript_0x5d88f
 	checkbit1 $029e
 	iftrue UnknownScript_0x5d8cc
+UnknownScript_0x5d88f: ; 0x5d88f
 	spriteface $b, $3
 	end
 ; 0x5d893
@@ -17165,15 +17167,16 @@ UnknownScript_0x5d893: ; 0x5d893
 	closetext
 	loadmovesprites
 	checkcellnum $25
-	iftrue $58a3
+	iftrue UnknownScript_0x5d8a3
 	checkbit1 $033c
 	iftrue UnknownScript_0x5d8cc
+UnknownScript_0x5d8a3: ; 0x5d8a3
 	end
 ; 0x5d8a4
 
 UnknownScript_0x5d8a4: ; 0x5d8a4
 	checkcellnum $25
-	iftrue $58fe
+	iftrue UnknownScript_0x5d8fe
 	pause 20
 	spriteface $b, $0
 	pause 15
@@ -17186,12 +17189,13 @@ UnknownScript_0x5d8a4: ; 0x5d8a4
 	setbit1 $033c
 	loadfont
 	2writetext UnknownText_0x5e1ee
-	2jump $58d0
+	2jump UnknownScript_0x5d8d0
 ; 0x5d8cc
 
 UnknownScript_0x5d8cc: ; 0x5d8cc
 	loadfont
 	2writetext UnknownText_0x5e2bf
+UnknownScript_0x5d8d0: ; 0x5d8d0
 	askforphonenumber $25
 	if_equal $1, UnknownScript_0x5d8f6
 	if_equal $2, UnknownScript_0x5d8ed
@@ -17220,6 +17224,7 @@ UnknownScript_0x5d8f6: ; 0x5d8f6
 	closetext
 	loadmovesprites
 	spriteface $b, $3
+UnknownScript_0x5d8fe: ; 0x5d8fe
 	end
 ; 0x5d8ff
 
@@ -17828,9 +17833,10 @@ MapRadioTower3FSignpost2Script: ; 0x5e5f3
 	2writetext UnknownText_0x5eaa4
 	closetext
 	checkbit1 $0025
-	iftrue $6603
+	iftrue UnknownScript_0x5e603
 	checkitem CARD_KEY
 	iftrue UnknownScript_0x5e605
+UnknownScript_0x5e603: ; 0x5e603
 	loadmovesprites
 	end
 ; 0x5e605
@@ -18984,10 +18990,11 @@ UnknownScript_0x60b91: ; 0x60b91
 	checkitem SECRETPOTION
 	iftrue UnknownScript_0x60bab
 	checkbit1 $0037
-	iftrue $4ba5
+	iftrue UnknownScript_0x60ba5
 	2writetext UnknownText_0x60c81
 	keeptextopen
 	setbit1 $0037
+UnknownScript_0x60ba5: ; 0x60ba5
 	2writetext UnknownText_0x60d64
 	closetext
 	loadmovesprites
@@ -19267,7 +19274,7 @@ UnknownScript_0x60f94: ; 0x60f94
 
 UnknownScript_0x60f9e: ; 0x60f9e
 	checkbit1 $0340
-	iftrue $4fd8
+	iftrue UnknownScript_0x60fd8
 	playsound $0023
 	moveperson $3, $0, $7
 	disappear $3
@@ -19288,6 +19295,7 @@ UnknownScript_0x60f9e: ; 0x60f9e
 	special $003d
 	disappear $3
 	playsound $0023
+UnknownScript_0x60fd8: ; 0x60fd8
 	end
 ; 0x60fd9
 
@@ -19300,7 +19308,7 @@ UnknownScript_0x60fd9: ; 0x60fd9
 
 UnknownScript_0x60fe3: ; 0x60fe3
 	checkbit1 $0340
-	iftrue $501d
+	iftrue UnknownScript_0x6101d
 	playsound $0023
 	moveperson $3, $0, $7
 	disappear $3
@@ -19321,6 +19329,7 @@ UnknownScript_0x60fe3: ; 0x60fe3
 	special $003d
 	disappear $3
 	playsound $0023
+UnknownScript_0x6101d: ; 0x6101d
 	end
 ; 0x6101e
 
@@ -19863,14 +19872,16 @@ UnknownScript_0x62d63: ; 0x62d63
 	checkbit1 $00c0
 	iftrue UnknownScript_0x62d84
 	checkbit1 $007a
-	iftrue $6d7e
+	iftrue UnknownScript_0x62d7e
 	2writetext UnknownText_0x62d9d
 	keeptextopen
 	verbosegiveitem TM_12, 1
-	iffalse $6d82
+	iffalse UnknownScript_0x62d82
 	setbit1 $007a
+UnknownScript_0x62d7e: ; 0x62d7e
 	2writetext UnknownText_0x62df6
 	closetext
+UnknownScript_0x62d82: ; 0x62d82
 	loadmovesprites
 	end
 ; 0x62d84
@@ -21661,7 +21672,7 @@ UnknownScript_0x69d37: ; 0x69d37
 	faceplayer
 	loadfont
 	checkbit1 $0052
-	iftrue $5d92
+	iftrue UnknownScript_0x69d92
 	checkbit1 $0051
 	iftrue UnknownScript_0x69d85
 	checkbit1 $0050
@@ -21678,7 +21689,7 @@ UnknownScript_0x69d37: ; 0x69d37
 	playsound $0091
 	waitbutton
 	givepoke SPEAROW, $a, $0, $1, $5db9, $5dbf
-	givepokeitem $5d98
+	givepokeitem GivePokeItem_0x69d98
 	setbit1 $0050
 	2writetext UnknownText_0x69ed6
 	closetext
@@ -21704,14 +21715,17 @@ UnknownScript_0x69d85: ; 0x69d85
 	2writetext UnknownText_0x69f8b
 	keeptextopen
 	verbosegiveitem HP_UP, 1
-	iffalse $5d96
+	iffalse UnknownScript_0x69d96
 	setbit1 $0052
+UnknownScript_0x69d92: ; 0x69d92
 	2writetext UnknownText_0x69fd9
 	closetext
+UnknownScript_0x69d96: ; 0x69d96
 	loadmovesprites
 	end
 ; 0x69d98
 
+GivePokeItem_0x69d98: ; 0x69d98
 INCBIN "baserom.gbc",$69d98,$2e
 
 UnknownScript_0x69dc6: ; 0x69dc6
@@ -22406,7 +22420,7 @@ UnknownScript_0x6ab20: ; 0x6ab20
 
 UnknownScript_0x6ab23: ; 0x6ab23
 	checkbit1 $02d2
-	iftrue $6b46
+	iftrue UnknownScript_0x6ab46
 	checkcode $b
 	if_equal $2, UnknownScript_0x6ab42
 	if_equal $4, UnknownScript_0x6ab42
@@ -22421,6 +22435,7 @@ UnknownScript_0x6ab23: ; 0x6ab23
 UnknownScript_0x6ab42: ; 0x6ab42
 	appear $2
 	disappear $d
+UnknownScript_0x6ab46: ; 0x6ab46
 	return
 ; 0x6ab47
 
@@ -22512,6 +22527,7 @@ UnknownScript_0x6abe0: ; 0x6abe0
 	if_less_than $1, UnknownScript_0x6ac41
 	special $0016
 	clearbit1 $0308
+UnknownScript_0x6ac10: ; 0x6ac10
 	setbit2 $0011
 	special $003c
 	2writetext UnknownText_0x6ae87
@@ -22536,9 +22552,10 @@ UnknownScript_0x6abe0: ; 0x6abe0
 
 UnknownScript_0x6ac41: ; 0x6ac41
 	checkcode $1
-	if_greater_than $6, $6c4d
+	if_greater_than $6, UnknownScript_0x6ac4d 
 	checkcode $10
 	if_equal $0, UnknownScript_0x6ac85
+UnknownScript_0x6ac4d: ; 0x6ac4d
 	special $005a
 	if_equal $1, UnknownScript_0x6ac8b
 	2writetext UnknownText_0x6afb0
@@ -22553,7 +22570,7 @@ UnknownScript_0x6ac41: ; 0x6ac41
 	playsound $000c
 	waitbutton
 	keeptextopen
-	2jump $6c10
+	2jump UnknownScript_0x6ac10
 ; 0x6ac73
 
 UnknownScript_0x6ac73: ; 0x6ac73
