@@ -16462,7 +16462,7 @@ UnknownScript_0x5cdd5: ; 0x5cdd5
 	faceplayer
 	loadfont
 	checkbit2 $0000
-	iftrue $4e2d
+	iftrue UnknownScript_0x5ce2d
 	2writetext UnknownText_0x5d12d
 	yesorno
 	iffalse UnknownScript_0x5ce4b
@@ -16498,6 +16498,7 @@ UnknownScript_0x5cdd5: ; 0x5cdd5
 	2writetext UnknownText_0x5d3c0
 	keeptextopen
 	setbit2 $0000
+UnknownScript_0x5ce2d: ; 0x5ce2d
 	2writetext UnknownText_0x5d3e5
 	closetext
 	loadmovesprites
