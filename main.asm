@@ -31553,8 +31553,6 @@ Route1718Gate_MapEventHeader: ; 0x736b6
 	person_event $43, 6, 9, $6, $0, 255, 255, $90, 0, UnknownScript_0x7360e, $ffff
 ; 0x736ed
 
-INCBIN "baserom.gbc",$736ed,$913
-
 SECTION "bank1D",DATA,BANK[$1D]
 
 DiglettsCave_MapScriptHeader: ; 0x74000
