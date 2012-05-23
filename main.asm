@@ -8962,7 +8962,9 @@ GoldenrodBikeShop_MapScriptHeader: ; 0x5474d
 	db 0
 ; 0x5474f
 
-INCBIN "baserom.gbc",$5474f,$54750 - $5474f
+UnknownScript_0x5474f: ; 0x5474f
+	end
+; 0x54750
 
 UnknownScript_0x54750: ; 0x54750
 	faceplayer
@@ -11758,7 +11760,20 @@ TrainerPsychicNathanWhenTalkScript: ; 0x58095
 	end
 ; 0x5809d
 
-INCBIN "baserom.gbc",$5809d,$580b1 - $5809d
+UnknownScript_0x5809d: ; 0x5809d
+	musicfadeout $2905, $1
+; 0x580a2
+
+UnknownScript_0x580a2: ; 0x580a2
+	db $e5
+	itemtotext THUNDERSTONE, $42
+	2call $a900
+	pokenamemem EXEGGCUTE, $47
+	2writetext UnknownText_0x58250
+	closetext
+	loadmovesprites
+	end
+; 0x580b1
 
 MapRuinsofAlphOutsideSignpost0Script: ; 0x580b1
 	jumptext UnknownText_0x58325
@@ -11813,7 +11828,21 @@ UnknownText_0x580c7: ; 0x580c7
 	db "DEX. Follow me.", $57
 ; 0x581e5
 
-INCBIN "baserom.gbc",$581e5,$106
+INCBIN "baserom.gbc",$581e5,$58250 - $581e5
+
+UnknownText_0x58250: ; 0x58250
+	db $0, "The RUINS are from", $4f
+	db "about 1500 years", $55
+	db "ago.", $51
+	db "Nobody knows who", $4f
+	db "built them.", $51
+	db "It's also not", $4f
+	db "known if the #-", $55
+	db "MON statues have", $55
+	db "any meaning.", $51
+	db "It's all one big", $4f
+	db "mystery…", $57
+; 0x582eb
 
 TrainerPsychicNathanWhenSeenText: ; 0x582eb
 	db $0, "Hmmm… This is a", $4f
