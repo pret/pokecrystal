@@ -20668,7 +20668,22 @@ UnknownText_0x62fda: ; 0x62fda
 	db "for you.", $57
 ; 0x62ff7
 
-INCBIN "baserom.gbc",$62ff7,$630ce - $62ff7
+UnknownText_0x62ff7: ; 0x62ff7
+	db $0, "I'm the DAY-CARE", $4f
+	db "MAN.", $51
+	db "There's something", $4f
+	db "new in GOLDENROD", $51
+	db "called the TRADE", $4f
+	db "CORNER.", $51
+	db "I was given an EGG", $4f
+	db "TICKET that can be", $51
+	db "traded in for a", $4f
+	db "ODD EGG.", $51
+	db "But since we run a", $4f
+	db "DAY-CARE, we don't", $51
+	db "need it. You may", $4f
+	db "as well have it.", $57
+; 0x630ce
 
 UnknownText_0x630ce: ; 0x630ce
 	db $0, "I'm the DAY-CARE", $4f
@@ -20688,7 +20703,9 @@ UnknownText_0x630ce: ; 0x630ce
 	db "yours to keep!", $57
 ; 0x631a1
 
-INCBIN "baserom.gbc",$631a1,$631ae - $631a1
+UnknownText_0x631a1: ; 0x631a1
+	db $0, "Come again.", $57
+; 0x631ae
 
 UnknownText_0x631ae: ; 0x631ae
 	db $0, $52, " received", $4f
@@ -21609,7 +21626,9 @@ UnknownText_0x68eb2: ; 0x68eb2
 	db "battle.", $57
 ; 0x68eeb
 
-INCBIN "baserom.gbc",$68eeb,$68efe - $68eeb
+UnknownText_0x68eeb: ; 0x68eeb
+	db $0, "Read which topic?", $57
+; 0x68efe
 
 UnknownText_0x68efe: ; 0x68efe
 	db $0, "If poisoned, a", $4f
@@ -21712,7 +21731,11 @@ UnknownText_0x69287: ; 0x69287
 	db "anymore…", $57
 ; 0x69344
 
-INCBIN "baserom.gbc",$69344,$31
+UnknownText_0x69344: ; 0x69344
+	db $0, "This super machine", $4f
+	db "prints data out as", $51
+	db "stickers!", $57
+; 0x69375
 
 EarlsPokemonAcademy_MapEventHeader: ; 0x69375
 	; filler
@@ -21969,7 +21992,24 @@ UnknownText_0x69712: ; 0x69712
 	db "take the EGG?", $57
 ; 0x6972d
 
-INCBIN "baserom.gbc",$6972d,$dc
+UnknownText_0x6972d: ; 0x6972d
+	db $0, "I've been thinking", $4f
+	db "it'd be great to", $51
+	db "be able to link up", $4f
+	db "and battle with my", $51
+	db "friends who live", $4f
+	db "far away.", $57
+; 0x69791
+
+UnknownText_0x69791: ; 0x69791
+	db $0, "I just battled a", $4f
+	db "friend in CIANWOOD", $55
+	db "over a link.", $51
+	db "If you connect a", $4f
+	db "MOBILE ADAPTER,", $51
+	db "you can link with", $4f
+	db "a friend far away.", $57
+; 0x69809
 
 UnknownText_0x69809: ; 0x69809
 	db $0, "A guy named BILL", $4f
@@ -23787,7 +23827,20 @@ UnusedSudowoodoText: ; 0x6b7e7
 	db "identity using a", $55
 	db "SILPHSCOPE 2.", $57
 
-INCBIN "baserom.gbc",$6b84c,$6b910 - $6b84c
+UnknownText_0x6b84c: ; 0x6b84c
+	db $0, "The Bug-Catching", $4f
+	db "Contest is held on", $51
+	db "Tuesday, Thursday", $4f
+	db "and Saturday.", $51
+	db "Not only do you", $4f
+	db "earn a prize just", $51
+	db "for participating,", $4f
+	db "you also get to", $51
+	db "keep the bug", $4f
+	db "#MON you may", $51
+	db "have at the end of", $4f
+	db "the contest.", $57
+; 0x6b910
 
 UnknownText_0x6b910: ; 0x6b910
 	db $0, "Uh-oh… Your PACK", $4f
@@ -24302,7 +24355,13 @@ MovementData_0x6c412: ; 0x6c412
 	step_end
 ; 0x6c414
 
-INCBIN "baserom.gbc",$6c414,$57
+UnknownText_0x6c414: ; 0x6c414
+	db $0, "Hello, kiddo!", $51
+	db "How would you like", $4f
+	db "some RAGECANDYBAR?", $51
+	db "It's the thing to", $4f
+	db "eat in MAHOGANY!", $57
+; 0x6c46b
 
 UnknownText_0x6c46b: ; 0x6c46b
 	db $0, "Arrgh… You found", $4f
@@ -26043,7 +26102,10 @@ UnknownText_0x6d809: ; 0x6d809
 	db "any need for it.", $57
 ; 0x6d8e6
 
-INCBIN "baserom.gbc",$6d8e6,$6d8f8 - $6d8e6
+UnknownText_0x6d8e6: ; 0x6d8e6
+	db $0, $52, " received", $4f
+	db "HM06.", $57
+; 0x6d8f8
 
 UnknownText_0x6d8f8: ; 0x6d8f8
 	db $0, "That's WHIRLPOOL.", $4f
@@ -27397,7 +27459,6 @@ MapIlexForestSignpostItem2: ; 0x6ee1b
 MapIlexForestSignpostItem3: ; 0x6ee1e
 	dw $008a
 	db FULL_HEAL
-	
 ; 0x6ee21
 
 INCBIN "baserom.gbc",$6ee21,$6ee24 - $6ee21
@@ -29536,7 +29597,11 @@ UnknownText_0x71830: ; 0x71830
 	db "DIPLOMA printed.", $57
 ; 0x71863
 
-INCBIN "baserom.gbc",$71863,$32
+UnknownText_0x71863: ; 0x71863
+	db $0, "Something's wrong.", $4f
+	db "I'll have to can-", $55
+	db "cel printing.", $57
+; 0x71895
 
 UnknownText_0x71895: ; 0x71895
 	db $0, "Who, me? I'm the", $4f
@@ -36304,7 +36369,14 @@ TrainerYoungsterSamuelWhenBeatenText: ; 0x7835e
 	db "passing stranger!", $57
 ; 0x7837d
 
-INCBIN "baserom.gbc",$7837d,$783d8 - $7837d
+UnknownText_0x7837d: ; 0x7837d
+	db $0, "Have you been to", $4f
+	db "GOLDENROD CITY?", $51
+	db "Weren't you amazed", $4f
+	db "by how they've", $51
+	db "changed the", $4f
+	db "#MON CENTER?", $57
+; 0x783d8
 
 UnknownText_0x783d8: ; 0x783d8
 	db $0, "I'm going to train", $4f
@@ -36492,7 +36564,10 @@ UnknownText_0x7892b: ; 0x7892b
 	db "startled us.", $57
 ; 0x7898a
 
-INCBIN "baserom.gbc",$7898a,$1e
+UnknownText_0x7898a: ; 0x7898a
+	db $0, "ILEX FOREST", $4f
+	db "THROUGH THE GATE", $57
+; 0x789a8
 
 UnknownText_0x789a8: ; 0x789a8
 	db $0, "ROUTE 34", $51
@@ -37757,7 +37832,11 @@ UnknownText_0x79e6f: ; 0x79e6f
 	db "PROF.OAK in KANTO!", $57
 ; 0x79f0b
 
-INCBIN "baserom.gbc",$79f0b,$2d
+UnknownText_0x79f0b: ; 0x79f0b
+	db $0, "It's the #MON", $4f
+	db "EGG being studied", $55
+	db "by PROF.ELM.", $57
+; 0x79f38
 
 UnknownText_0x79f38: ; 0x79f38
 	db $0, $14, ", I want", $4f
@@ -38603,7 +38682,17 @@ UnknownText_0x7af6b: ; 0x7af6b
 	db "professor!", $57
 ; 0x7afbc
 
-INCBIN "baserom.gbc",$7afbc,$5f
+UnknownText_0x7afbc: ; 0x7afbc
+	db $0, "There's some food", $4f
+	db "here. It must be", $55
+	db "for the LAB.", $57
+; 0x7afec
+
+UnknownText_0x7afec: ; 0x7afec
+	db $0, "There's some food", $4f
+	db "here. This must be", $55
+	db "for #MON.", $57
+; 0x7b01b
 
 UnknownText_0x7b01b: ; 0x7b01b
 	db $0, "#MON. Where do", $4f
@@ -42671,7 +42760,13 @@ UnknownText_0x7f32d: ; 0x7f32d
 	db "on CHANNEL 20", $57
 ; 0x7f36b
 
-INCBIN "baserom.gbc",$7f36b,$7f3b9 - $7f36b
+UnknownText_0x7f36b: ; 0x7f36b
+	db $0, "Wow! A full rack", $4f
+	db "of #MON CDs and", $55
+	db "videos.", $51
+	db "This must be the", $4f
+	db "reference library.", $57
+; 0x7f3b9
 
 LavRadioTower1F_MapEventHeader: ; 0x7f3b9
 	; filler
@@ -58509,7 +58604,10 @@ UnknownText_0x9c354: ; 0x9c354
 	db "this too…", $57
 ; 0x9c393
 
-INCBIN "baserom.gbc",$9c393,$9c3a5 - $9c393
+UnknownText_0x9c393: ; 0x9c393
+	db $0, $52, " received", $4f
+	db "TM09.", $57
+; 0x9c3a5
 
 UnknownText_0x9c3a5: ; 0x9c3a5
 	db $0, "…You could use", $4f
@@ -59431,7 +59529,10 @@ UnknownText_0x9d156: ; 0x9d156
 	db "fer your trouble.", $57
 ; 0x9d1b5
 
-INCBIN "baserom.gbc",$9d1b5,$12
+UnknownText_0x9d1b5: ; 0x9d1b5
+	db $0, $52, " received", $4f
+	db "TM13.", $57
+; 0x9d1c7
 
 UnknownText_0x9d1c7: ; 0x9d1c7
 	db $0, "That there's", $4f
