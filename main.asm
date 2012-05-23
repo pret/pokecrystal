@@ -60969,14 +60969,40 @@ UnknownText_0x9e886: ; 0x9e886
 	db $57
 ; 0x9e9eb
 
-INCBIN "baserom.gbc",$9e9eb,$9ea49 - $9e9eb
+UnknownText_0x9e9eb: ; 0x9e9eb
+	db $0, "Received a list of", $4f
+	db "LEADERS on the", $55
+	db "HONOR ROLL.", $51
+	db $57
+; 0x9ea1b
+
+UnknownText_0x9ea1b: ; 0x9ea1b
+	db $0, "Please confirm on", $4f
+	db "this monitor.", $57
+; 0x9ea3c
+
+UnknownText_0x9ea3c: ; 0x9ea3c
+	db $0, "Thank you!", $51
+	db $57
+; 0x9ea49
 
 UnknownText_0x9ea49: ; 0x9ea49
 	db $0, "Thanks for", $4f
 	db "visiting!", $57
 ; 0x9ea5f
 
-INCBIN "baserom.gbc",$9ea5f,$9eaef - $9ea5f
+UnknownText_0x9ea5f: ; 0x9ea5f
+	db $0, "Congratulations!", $51
+	db "You've beaten all", $4f
+	db "the trainers!", $51
+	db "Your feat may be", $4f
+	db "worth registering,", $51
+	db $52, ". With your", $4f
+	db "results, you may", $51
+	db "be chosen as a", $4f
+	db "ROOM LEADER.", $51
+	db $57
+; 0x9eaef
 
 UnknownText_0x9eaef: ; 0x9eaef
 	db $0, "Congratulations!", $51
@@ -60987,7 +61013,12 @@ UnknownText_0x9eaef: ; 0x9eaef
 	db $57
 ; 0x9eb45
 
-INCBIN "baserom.gbc",$9eb45,$39
+UnknownText_0x9eb45: ; 0x9eb45
+	db $0, "Would you like to", $4f
+	db "register your", $51
+	db "record with the", $4f
+	db "CENTER?", $57
+; 0x9eb7e
 
 UnknownText_0x9eb7e: ; 0x9eb7e
 	db $0, $52, " got five", $4f
@@ -61006,7 +61037,11 @@ UnknownText_0x9eb94: ; 0x9eb94
 	db "and come back.", $57
 ; 0x9ebd6
 
-INCBIN "baserom.gbc",$9ebd6,$33
+UnknownText_0x9ebd6: ; 0x9ebd6
+	db $0, "Your registration", $4f
+	db "is complete.", $51
+	db "Please come again!", $57
+; 0x9ec09
 
 UnknownText_0x9ec09: ; 0x9ec09
 	db $0, "We hope to serve", $4f
@@ -61024,7 +61059,27 @@ UnknownText_0x9ec3d: ; 0x9ec3d
 	db "BATTLE TOWER?", $57
 ; 0x9ec6d
 
-INCBIN "baserom.gbc",$9ec6d,$9ed3c - $9ec6d
+UnknownText_0x9ec6d: ; 0x9ec6d
+	db $0, "Your record from", $4f
+	db "the previous", $51
+	db "BATTLE ROOM can't", $4f
+	db "be registered. OK?", $57
+; 0x9ecb0
+
+UnknownText_0x9ecb0: ; 0x9ecb0
+	db $0, "Your record from", $4f
+	db "the previous", $51
+	db "BATTLE ROOM can't", $4f
+	db "be registered.", $51
+	db "Also, the existing", $4f
+	db "record will be", $55
+	db "deleted. OK?", $57
+; 0x9ed1e
+
+UnknownText_0x9ed1e: ; 0x9ed1e
+	db $0, "Check the LEADER", $4f
+	db "HONOR ROLL?", $57
+; 0x9ed3c
 
 UnknownText_0x9ed3c: ; 0x9ed3c
 	db $0, "BATTLE TOWER rules", $4f
@@ -61070,7 +61125,12 @@ UnknownText_0x9eebc: ; 0x9eebc
 	db $0, ". Ready?", $57
 ; 0x9eee0
 
-INCBIN "baserom.gbc",$9eee0,$3f
+UnknownText_0x9eee0: ; 0x9eee0
+	db $0, "Your session will", $4f
+	db "be SAVED before", $51
+	db "connecting with", $4f
+	db "the CENTER.", $57
+; 0x9ef1f
 
 UnknownText_0x9ef1f: ; 0x9ef1f
 	db $0, "Before entering", $4f
@@ -61084,14 +61144,25 @@ UnknownText_0x9ef5e: ; 0x9ef5e
 	db "session?", $57
 ; 0x9ef79
 
-INCBIN "baserom.gbc",$9ef79,$46
+UnknownText_0x9ef79: ; 0x9ef79
+	db $0, "Your record will", $4f
+	db "be SAVED before", $51
+	db "you go back into", $4f
+	db "the previous ROOM.", $57
+; 0x9efbf
 
 UnknownText_0x9efbf: ; 0x9efbf
 	db $0, "Cancel your BATTLE", $4f
 	db "ROOM challenge?", $57
 ; 0x9efe3
 
-INCBIN "baserom.gbc",$9efe3,$54
+UnknownText_0x9efe3: ; 0x9efe3
+	db $0, "We have your", $4f
+	db "previous record on", $51
+	db "file. Would you", $4f
+	db "like to register", $55
+	db "it at the CENTER?", $57
+; 0x9f037
 
 UnknownText_0x9f037: ; 0x9f037
 	db $0, "We've been waiting", $4f
@@ -61100,7 +61171,57 @@ UnknownText_0x9f037: ; 0x9f037
 	db "please.", $57
 ; 0x9f076
 
-INCBIN "baserom.gbc",$9f076,$1ee
+UnknownText_0x9f076: ; 0x9f076
+	db $0, "You may enter only", $4f
+	db "five BATTLE ROOMS", $55
+	db "each day.", $51
+	db "Please come back", $4f
+	db "tomorrow.", $57
+; 0x9f0c1
+
+UnknownText_0x9f0c1: ; 0x9f0c1
+	db $0, "Sorry, but it's", $4f
+	db "not possible to", $51
+	db "register your", $4f
+	db "current record at", $51
+	db "the CENTER because", $4f
+	db "too much time has", $51
+	db "elapsed since the", $4f
+	db "start of your", $55
+	db "challenge.", $57
+; 0x9f151
+
+; a dupe?
+UnknownText_0x9f151: ; 0x9f151
+	db $0, "Sorry, but it's", $4f
+	db "not possible to", $51
+	db "register your most", $4f
+	db "recent record at", $51
+	db "the CENTER because", $4f
+	db "too much time has", $51
+	db "elapsed since the", $4f
+	db "start of your", $55
+	db "challenge.", $57
+; 0x9f1e5
+
+UnknownText_0x9f1e5: ; 0x9f1e5
+	db $0, "One or more of", $4f
+	db "your #MON's", $55
+	db "levels exceeds @"
+	deciram $c2dd, $13
+	db $0, ".", $57
+; 0x9f217
+
+UnknownText_0x9f217: ; 0x9f217
+	text_from_ram $cd49
+	db $0, " may not", $4f
+	db "enter a BATTLE", $55
+	db "ROOM under L70.", $51
+	db "This BATTLE ROOM", $4f
+	db "is for L@"
+	deciram $c2dd, $13
+	db $0, ".", $57
+; 0x9f264
 
 UnknownText_0x9f264: ; 0x9f264
 	db $0, "Destroyed by the", $4f
