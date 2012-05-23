@@ -9957,7 +9957,7 @@ MapGoldenrodNameRatersHouseSignpost2Script: ; 0x55787
 	jumpstd $000c
 ; 0x5578a
 
-INCBIN "baserom.gbc",$5578a,$1c9
+INCLUDE "text/sweethoney.tx"
 
 GoldenrodNameRatersHouse_MapEventHeader: ; 0x55953
 	; filler
@@ -23197,7 +23197,20 @@ UnknownText_0x6b7af: ; 0x6b7af
 	db "win.", $57
 ; 0x6b7e7
 
-INCBIN "baserom.gbc",$6b7e7,$129
+
+; This text is unused and unreferenced in the final game.
+; The tree Pokémon is Sudowoodo.
+; The Silph Scope 2 was later reworked into the Squirtbottle.
+
+UnusedSudowoodoText: ; 0x6b7e7
+	db 0, "I hear there's a", $4f
+	db "#MON that looks", $55
+	db "just like a tree.", $51
+	db "You can reveal its", $4f
+	db "identity using a", $55
+	db "SILPHSCOPE 2.", $57
+
+INCBIN "baserom.gbc",$6b84c,$6b910 - $6b84c
 
 UnknownText_0x6b910: ; 0x6b910
 	db $0, "Uh-oh… Your PACK", $4f
@@ -91072,7 +91085,20 @@ MapEcruteakCitySignpostItem7: ; 0x1a4055
 	
 ; 0x1a4058
 
-INCBIN "baserom.gbc",$1a4058,$1a4105 - $1a4058
+UnusedMissingDaughterText: ; 0x1a4058
+; This text is neither used nor referenced in the final game.
+	db $0, "Oh, no. Oh, no…",$51
+	db "My daughter is", $4f
+	db "missing.", $51
+	db "No… She couldn't", $4f
+	db "have gone to the", $55
+	db "BURNED TOWER.", $51
+	db "I told her not to", $4f
+	db "go near it…", $51
+	db "People seem to", $4f
+	db "disappear there…", $51
+	db "Oh, what should I", $4f
+	db "do…?", $57
 
 UnknownText_0x1a4105: ; 0x1a4105
 	db $0, "ECRUTEAK used to", $4f
