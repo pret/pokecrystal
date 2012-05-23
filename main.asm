@@ -41039,9 +41039,9 @@ UnknownScript_0x7e1f6: ; 0x7e1f6
 	faceplayer
 	loadfont
 	checkbit1 $0061
-	iftrue $6231
+	iftrue UnknownScript_0x7e231
 	checkbit1 $04a9
-	iftrue $6217
+	iftrue UnknownScript_0x7e217
 	2writetext UnknownText_0x7e24d
 	closetext
 	loadmovesprites
@@ -41051,6 +41051,7 @@ UnknownScript_0x7e1f6: ; 0x7e1f6
 	returnafterbattle
 	setbit1 $04a9
 	loadfont
+UnknownScript_0x7e217: ; 0x7e217
 	2writetext UnknownText_0x7e2c0
 	keeptextopen
 	waitbutton
@@ -41061,6 +41062,7 @@ UnknownScript_0x7e1f6: ; 0x7e1f6
 	waitbutton
 	givepoke TYROGUE, $a, $0, $0
 	setbit1 $0061
+UnknownScript_0x7e231: ; 0x7e231
 	2writetext UnknownText_0x7e36a
 	closetext
 	loadmovesprites
@@ -41927,7 +41929,7 @@ UnknownScript_0x7ee6c: ; 0x7ee6c
 	faceplayer
 	loadfont
 	checkbit2 $0003
-	iftrue $6e8e
+	iftrue UnknownScript_0x7ee8e
 	checkbit1 $00c9
 	iftrue UnknownScript_0x7ee80
 	2writetext UnknownText_0x7effb
@@ -41942,6 +41944,7 @@ UnknownScript_0x7ee80: ; 0x7ee80
 	stringtotext $6e98, $1
 	2call UnknownScript_0x7ee94
 	setbit2 $0003
+UnknownScript_0x7ee8e: ; 0x7ee8e
 	2writetext UnknownText_0x7f141
 	closetext
 	loadmovesprites
