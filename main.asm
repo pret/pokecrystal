@@ -42175,15 +42175,16 @@ UnknownScript_0x7f484: ; 0x7f484
 	faceplayer
 	loadfont
 	checkbit1 $0019
-	iftrue $74a0
+	iftrue UnknownScript_0x7f4a0
 	2writetext UnknownText_0x7f4af
 	yesorno
 	iffalse UnknownScript_0x7f4a6
 	2writetext UnknownText_0x7f52f
 	keeptextopen
 	verbosegiveitem SUPER_ROD, 1
-	iffalse $74aa
+	iffalse UnknownScript_0x7f4aa
 	setbit1 $0019
+UnknownScript_0x7f4a0: ; 0x7f4a0
 	2writetext UnknownText_0x7f57c
 	closetext
 	loadmovesprites
@@ -42193,6 +42194,7 @@ UnknownScript_0x7f484: ; 0x7f484
 UnknownScript_0x7f4a6: ; 0x7f4a6
 	2writetext UnknownText_0x7f5ec
 	closetext
+UnknownScript_0x7f4aa: ; 0x7f4aa
 	loadmovesprites
 	end
 ; 0x7f4ac
@@ -54602,8 +54604,9 @@ UnknownScript_0x98022: ; 0x98022
 	setbit1 $0767
 	setbit1 $07b1
 	checkitem CLEAR_BELL
-	iftrue $4032
+	iftrue UnknownScript_0x98032
 	dotrigger $0
+UnknownScript_0x98032: ; 0x98032
 	return
 ; 0x98033
 
@@ -56061,7 +56064,7 @@ UnknownScript_0x99d58: ; 0x99d58
 	faceplayer
 	loadfont
 	checkbit1 $04c0
-	iftrue $5d8c
+	iftrue UnknownScript_0x99d8c
 	2writetext UnknownText_0x99e65
 	closetext
 	loadmovesprites
@@ -56080,6 +56083,7 @@ UnknownScript_0x99d58: ; 0x99d58
 	domaptrigger GROUP_ECRUTEAK_HOUSE, MAP_ECRUTEAK_HOUSE, $1
 	setbit1 $0766
 	setbit1 $0767
+UnknownScript_0x99d8c: ; 0x99d8c	
 	checkbit1 $000c
 	iftrue UnknownScript_0x99db1
 	setbit1 $0415
@@ -56542,7 +56546,7 @@ UnknownScript_0x9a5fb: ; 0x9a5fb
 	faceplayer
 	loadfont
 	checkbit1 $005a
-	iftrue $6614
+	iftrue UnknownScript_0x9a614
 	2writetext UnknownText_0x9a63c
 	yesorno
 	iffalse UnknownScript_0x9a61a
@@ -56550,6 +56554,7 @@ UnknownScript_0x9a5fb: ; 0x9a5fb
 	keeptextopen
 	verbosegiveitem ITEMFINDER, 1
 	setbit1 $005a
+UnknownScript_0x9a614: ; 0x9a614
 	2writetext UnknownText_0x9a70e
 	closetext
 	loadmovesprites
@@ -57481,12 +57486,13 @@ UnknownScript_0x9b847: ; 0x9b847
 	faceplayer
 	loadfont
 	checkbit1 $00c8
-	iftrue $785c
+	iftrue UnknownScript_0x9b85c
 	2writetext UnknownText_0x9b865
 	keeptextopen
 	verbosegiveitem NUGGET, 1
 	iffalse $7860
 	setbit1 $00c8
+UnknownScript_0x9b85c: ; 0x9b85c
 	2writetext UnknownText_0x9b8e5
 	closetext
 	loadmovesprites
@@ -57791,7 +57797,7 @@ UnknownScript_0x9c12f: ; 0x9c12f
 	faceplayer
 	loadfont
 	checkbit1 $04c1
-	iftrue $4159
+	iftrue UnknownScript_0x9c159
 	2writetext UnknownText_0x9c1b9
 	closetext
 	loadmovesprites
@@ -57807,12 +57813,13 @@ UnknownScript_0x9c12f: ; 0x9c12f
 	setbit2 $001f
 	checkcode $7
 	2call UnknownScript_0x9c178
+UnknownScript_0x9c159: ; 0x9c159
 	checkbit1 $000d
 	iftrue UnknownScript_0x9c172
 	2writetext UnknownText_0x9c354
 	keeptextopen
 	verbosegiveitem TM_23, 1
-	iffalse $4176
+	iffalse UnknownScript_0x9c176
 	setbit1 $000d
 	2writetext UnknownText_0x9c3a5
 	closetext
@@ -57823,6 +57830,7 @@ UnknownScript_0x9c12f: ; 0x9c12f
 UnknownScript_0x9c172: ; 0x9c172
 	2writetext UnknownText_0x9c3d1
 	closetext
+UnknownScript_0x9c176: ; 0x9c176
 	loadmovesprites
 	end
 ; 0x9c178
@@ -58270,11 +58278,12 @@ UnknownScript_0x9c8c1: ; 0x9c8c1
 	faceplayer
 	loadfont
 	checkbit1 $0013
-	iftrue $48d3
+	iftrue UnknownScript_0x9c8d3
 	2writetext UnknownText_0x9c8df
 	keeptextopen
 	verbosegiveitem HM_04, 1
 	setbit1 $0013
+UnknownScript_0x9c8d3: ; 0x9c8d3
 	2writetext UnknownText_0x9c965
 	closetext
 	loadmovesprites
@@ -58750,7 +58759,7 @@ UnknownScript_0x9cf0e: ; 0x9cf0e
 	faceplayer
 	loadfont
 	checkbit1 $003e
-	iftrue $4f2f
+	iftrue UnknownScript_0x9cf2f
 	checkbit1 $003d
 	iftrue UnknownScript_0x9cf22
 	2writetext UnknownText_0x9d0f6
@@ -58763,10 +58772,12 @@ UnknownScript_0x9cf22: ; 0x9cf22
 	2writetext UnknownText_0x9d156
 	keeptextopen
 	verbosegiveitem TM_13, 1
-	iffalse $4f33
+	iffalse UnknownScript_0x9cf33
 	setbit1 $003e
+UnknownScript_0x9cf2f: ; 0x9cf2f
 	2writetext UnknownText_0x9d1c7
 	closetext
+UnknownScript_0x9cf33: ; 0x9cf33
 	loadmovesprites
 	end
 ; 0x9cf35
@@ -59097,7 +59108,7 @@ UnknownScript_0x9d60f: ; 0x9d60f
 	faceplayer
 	loadfont
 	checkbit1 $04c2
-	iftrue $5656
+	iftrue UnknownScript_0x9d656
 	2writetext UnknownText_0x9d6f9
 	closetext
 	loadmovesprites
@@ -59128,6 +59139,7 @@ UnknownScript_0x9d60f: ; 0x9d60f
 	setbit2 $0020
 	checkcode $7
 	2call UnknownScript_0x9d681
+UnknownScript_0x9d656: ; 0x9d656
 	checkbit1 $000a
 	iftrue UnknownScript_0x9d67b
 	setbit1 $04a5
@@ -59137,7 +59149,7 @@ UnknownScript_0x9d60f: ; 0x9d60f
 	2writetext UnknownText_0x9d84d
 	keeptextopen
 	verbosegiveitem TM_01, 1
-	iffalse $567f
+	iffalse UnknownScript_0x9d67f
 	setbit1 $000a
 	2writetext UnknownText_0x9d8da
 	closetext
@@ -59148,6 +59160,7 @@ UnknownScript_0x9d60f: ; 0x9d60f
 UnknownScript_0x9d67b: ; 0x9d67b
 	2writetext UnknownText_0x9d930
 	closetext
+UnknownScript_0x9d67f: ; 0x9d67f
 	loadmovesprites
 	end
 ; 0x9d681
@@ -62253,9 +62266,9 @@ UnknownScript_0x18000a: ; 0x18000a
 
 UnknownScript_0x180053: ; 0x180053
 	checkbit1 $0319
-	iffalse $412b
+	iffalse UnknownScript_0x18012b
 	checkbit2 $005d
-	iftrue $412b
+	iftrue UnknownScript_0x18012b
 	checkcode $b
 	if_equal $0, $412b
 	if_equal $2, $412b
@@ -62276,15 +62289,15 @@ UnknownScript_0x180053: ; 0x180053
 
 UnknownScript_0x180094: ; 0x180094
 	checkbit1 $0319
-	iffalse $412b
+	iffalse UnknownScript_0x18012b
 	checkbit2 $005d
-	iftrue $412b
+	iftrue UnknownScript_0x18012b
 	checkcode $b
-	if_equal $0, $412b
-	if_equal $2, $412b
-	if_equal $4, $412b
-	if_equal $5, $412b
-	if_equal $6, $412b
+	if_equal $0, UnknownScript_0x18012b
+	if_equal $2, UnknownScript_0x18012b
+	if_equal $4, UnknownScript_0x18012b
+	if_equal $5, UnknownScript_0x18012b
+	if_equal $6, UnknownScript_0x18012b
 	appear $5
 	spriteface $0, $0
 	showemote $0, $0, 15
@@ -62343,6 +62356,7 @@ UnknownScript_0x180113: ; 0x180113
 	dotrigger $0
 	playmapmusic
 	setbit2 $005d
+UnknownScript_0x18012b: ; 0x18012b
 	end
 ; 0x18012c
 
@@ -63527,8 +63541,9 @@ UnknownScript_0x181454: ; 0x181454
 	domaptrigger GROUP_SPROUT_TOWER_3F, MAP_SPROUT_TOWER_3F, $1
 	special $001b
 	checkbit1 $0024
-	iftrue $5497
+	iftrue UnknownScript_0x181497
 	specialphonecall $5, $0
+UnknownScript_0x181497: ; 0x181497
 	halloffame
 	end
 ; 0x181499
@@ -63684,9 +63699,10 @@ UnknownScript_0x18404a: ; 0x18404a
 	faceplayer
 	loadfont
 	checkbit1 $00c9
-	iftrue $4058
+	iftrue UnknownScript_0x184058
 	checkbit1 $00cb
 	iftrue UnknownScript_0x18405e
+UnknownScript_0x184058: ; 0x184058
 	2writetext UnknownText_0x18424e
 	closetext
 	loadmovesprites
@@ -64641,16 +64657,18 @@ UnknownScript_0x18502e: ; 0x18502e
 
 UnknownScript_0x18502f: ; 0x18502f
 	checkbit1 $0336
-	iftrue $5047
+	iftrue UnknownScript_0x185047
 	checkbit1 $0044
 	iffalse UnknownScript_0x185050
 	special $0096
 	iffalse UnknownScript_0x185050
 	clearbit1 $07c5
 	setbit1 $07b6
+UnknownScript_0x185047: ; 0x185047
 	checkbit1 $0317
-	iffalse $504f
+	iffalse UnknownScript_0x18504f
 	appear $5
+UnknownScript_0x18504f: ; 0x18504f
 	return
 ; 0x185050
 
@@ -64690,8 +64708,9 @@ UnknownScript_0x185077: ; 0x185077
 
 UnknownScript_0x185084: ; 0x185084
 	checkbit1 $0336
-	iftrue $508e
+	iftrue UnknownScript_0x18508e
 	changeblock $a, $2, $9
+UnknownScript_0x18508e: ; 0x18508e
 	return
 ; 0x18508f
 
@@ -64808,7 +64827,7 @@ UnknownScript_0x185188: ; 0x185188
 	checkbit1 $0317
 	iftrue UnknownScript_0x1851b6
 	checkbit1 $0336
-	iftrue $51b0
+	iftrue UnknownScript_0x1851b0
 	2writetext UnknownText_0x185629
 	keeptextopen
 	verbosegiveitem RAINBOW_WING, 1
@@ -64822,6 +64841,7 @@ UnknownScript_0x185188: ; 0x185188
 	setbit1 $0336
 	loadmovesprites
 	loadfont
+UnknownScript_0x1851b0: ; 0x1851b0
 	2writetext UnknownText_0x18564a
 	closetext
 	loadmovesprites
@@ -65474,11 +65494,13 @@ UnknownScript_0x185bf7: ; 0x185bf7
 
 UnknownScript_0x185bf8: ; 0x185bf8
 	checkbit1 $0332
-	iftrue $5c02
+	iftrue UnknownScript_0x185c02
 	changeblock $a, $8, $32
+UnknownScript_0x185c02: ; 0x185c02
 	checkbit1 $007b
-	iftrue $5c0c
+	iftrue UnknownScript_0x185c0c
 	changeblock $6, $e, $9
+UnknownScript_0x185c0c: ; 0x185c0c
 	return
 ; 0x185c0d
 
@@ -65778,8 +65800,9 @@ UnknownScript_0x18615f: ; 0x18615f
 
 UnknownScript_0x186160: ; 0x186160
 	checkbit1 $007b
-	iftrue $616a
+	iftrue UnknownScript_0x18616a
 	changeblock $6, $e, $2
+UnknownScript_0x18616a: ; 0x18616a
 	return
 ; 0x18616b
 
@@ -66363,7 +66386,7 @@ UnknownScript_0x188432: ; 0x188432
 	faceplayer
 	loadfont
 	checkbit2 $0024
-	iftrue $4460
+	iftrue UnknownScript_0x188460
 	2writetext UnknownText_0x188674
 	closetext
 	loadmovesprites
@@ -66380,6 +66403,7 @@ UnknownScript_0x188432: ; 0x188432
 	playsound $009c
 	waitbutton
 	setbit2 $0024
+UnknownScript_0x188460: ; 0x188460
 	2writetext UnknownText_0x188782
 	closetext
 	loadmovesprites
