@@ -74287,7 +74287,12 @@ UnknownScript_0x19046f: ; 0x19046f
 	end
 ; 0x190489
 
-INCBIN "baserom.gbc",$190489,$19048f - $190489
+UnknownScript_0x190489: ; 0x190489
+	2writetext UnknownText_0x190820
+	closetext
+	loadmovesprites
+	end
+; 0x19048f
 
 UnknownScript_0x19048f: ; 0x19048f
 	2writetext UnknownText_0x190925
@@ -75345,7 +75350,9 @@ MapVermilionHouseFishingSpeechHouseSignpost0Script: ; 0x191490
 	jumptext UnknownText_0x1915a3
 ; 0x191493
 
-INCBIN "baserom.gbc",$191493,$03
+UnknownScript_0x191493: ; 0x191493
+	jumpstd $0002
+; 0x191496
 
 UnknownText_0x191496: ; 0x191496
 	db $0, "I am the FISHING", $4f
@@ -77593,7 +77600,18 @@ MapTradeCenterSignpost1Script: ; 0x193405
 	end
 ; 0x19340b
 
-INCBIN "baserom.gbc",$19340b,$1e
+UnknownScript_0x19340b: ; 0x19340b
+	loadfont
+	2writetext UnknownText_0x193412
+	closetext
+	loadmovesprites
+	end
+; 0x193412
+
+UnknownText_0x193412: ; 0x193412
+	db $0, "Your friend is", $4f
+	db "ready.", $57
+; 0x193429
 
 TradeCenter_MapEventHeader: ; 0x193429
 	; filler
@@ -85054,7 +85072,11 @@ MovementData_0x19c1d4: ; 0x19c1d4
 	step_end
 ; 0x19c1d7
 
-INCBIN "baserom.gbc",$19c1d7,$19c1da - $19c1d7
+MovementData_0x19c1d7: ; 0x19c1d7
+	step_left
+	turn_head_down
+	step_end
+; 0x19c1da
 
 MovementData_0x19c1da: ; 0x19c1da
 	big_step_left
@@ -87636,7 +87658,12 @@ UnknownScript_0x19e285: ; 0x19e285
 	end
 ; 0x19e28b
 
-INCBIN "baserom.gbc",$19e28b,$19e291 - $19e28b
+UnknownScript_0x19e28b: ; 0x19e28b
+	2writetext UnknownText_0x19e830
+	closetext
+	loadmovesprites
+	end
+; 0x19e291
 
 MapRoute45Signpost0Script: ; 0x19e291
 	jumptext UnknownText_0x19e8fe
@@ -94527,7 +94554,33 @@ MapRoute40SignpostItem1: ; 0x1a6219
 	db HYPER_POTION
 ; 0x1a621c
 
-INCBIN "baserom.gbc",$1a621c,$1a622f - $1a621c
+MovementData_0x1a621c: ; 0x1a621c
+	step_right
+	step_up
+	step_up
+	step_up
+	step_up
+	step_up
+	step_up
+	step_end
+; 0x1a6224
+
+MovementData_0x1a6224: ; 0x1a6224
+	step_up
+	step_up
+	step_up
+	step_up
+	step_up
+	step_end
+; 0x1a622a
+
+MovementData_0x1a622a: ; 0x1a622a
+	step_up
+	step_up
+	step_up
+	step_up
+	step_end
+; 0x1a622f
 
 TrainerSwimmermSimonWhenSeenText: ; 0x1a622f
 	db $0, "You have to warm", $4f
