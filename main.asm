@@ -14174,7 +14174,7 @@ UnknownScript_0x5a31c: ; 0x5a31c
 
 UnknownScript_0x5a31f: ; 0x5a31f
 	faceplayer
-	cry $83, $0
+	cry LAPRAS
 	loadpokedata LAPRAS, 20
 	startbattle
 	disappear $7
@@ -14525,7 +14525,7 @@ TrainerGruntF1WhenTalkScript: ; 0x5a679
 UnknownScript_0x5a681: ; 0x5a681
 	faceplayer
 	loadfont
-	cry $4f, $0
+	cry SLOWPOKE
 	2writetext UnknownText_0x5abcb
 	yesorno
 	iftrue UnknownScript_0x5a68f
@@ -14544,7 +14544,7 @@ UnknownScript_0x5a695: ; 0x5a695
 	faceplayer
 	loadfont
 	2writetext UnknownText_0x5ac61
-	cry $4f, $0
+	cry SLOWPOKE
 	closetext
 	loadmovesprites
 	end
@@ -15535,7 +15535,7 @@ UnknownScript_0x5c02c: ; 0x5c02c
 	faceplayer
 	loadfont
 	2writetext UnknownText_0x5c416
-	cry $35, $0
+	cry PERSIAN
 	closetext
 	loadmovesprites
 	end
@@ -16893,7 +16893,7 @@ UnknownScript_0x5d70f: ; 0x5d70f
 UnknownScript_0x5d715: ; 0x5d715
 	loadfont
 	2writetext UnknownText_0x5d9b6
-	cry $27, $0
+	cry JIGGLYPUFF
 	closetext
 	loadmovesprites
 	end
@@ -18111,7 +18111,7 @@ UnknownScript_0x5ebac: ; 0x5ebac
 UnknownScript_0x5ebb2: ; 0x5ebb2
 	loadfont
 	2writetext UnknownText_0x5ed66
-	cry $34, $0
+	cry MEOWTH
 	closetext
 	loadmovesprites
 	end
@@ -19038,7 +19038,7 @@ UnknownScript_0x60bab: ; 0x60bab
 	keeptextopen
 	loadmovesprites
 	special $003d
-	cry $b5, $0
+	cry AMPHAROS
 	special $002e
 	pause 10
 	special $0031
@@ -19114,7 +19114,7 @@ UnknownScript_0x60c3a: ; 0x60c3a
 
 UnknownScript_0x60c51: ; 0x60c51
 	2writetext UnknownText_0x60f3d
-	cry $b5, $0
+	cry AMPHAROS
 	closetext
 	loadmovesprites
 	special $002e
@@ -19913,7 +19913,7 @@ UnknownScript_0x62d84: ; 0x62d84
 UnknownScript_0x62d8a: ; 0x62d8a
 	loadfont
 	2writetext UnknownText_0x62e83
-	cry $c, $0
+	cry BUTTERFREE
 	closetext
 	loadmovesprites
 	end
@@ -21186,7 +21186,7 @@ UnknownScript_0x693ef: ; 0x693ef
 	faceplayer
 	loadfont
 	2writetext UnknownText_0x6947c
-	cry $10, $0
+	cry PIDGEY
 	closetext
 	loadmovesprites
 	end
@@ -24272,7 +24272,7 @@ UnknownScript_0x6ca26: ; 0x6ca26
 
 UnknownScript_0x6ca34: ; 0x6ca34
 	special $002e
-	cry $64, $0
+	cry VOLTORB
 	special $0031
 	setlasttalked $ff
 	writecode $3, $9
@@ -24283,7 +24283,7 @@ UnknownScript_0x6ca34: ; 0x6ca34
 
 UnknownScript_0x6ca47: ; 0x6ca47
 	special $002e
-	cry $4a, $0
+	cry GEODUDE
 	special $0031
 	setlasttalked $ff
 	writecode $3, $9
@@ -24294,7 +24294,7 @@ UnknownScript_0x6ca47: ; 0x6ca47
 
 UnknownScript_0x6ca5a: ; 0x6ca5a
 	special $002e
-	cry $6d, $0
+	cry KOFFING
 	special $0031
 	setlasttalked $ff
 	writecode $3, $9
@@ -24736,7 +24736,7 @@ UnknownScript_0x6cf9c: ; 0x6cf9c
 	2writetext UnknownText_0x6d2c3
 	closetext
 	loadmovesprites
-	cry $95, $0
+	cry DRAGONITE
 	spriteface $3, $2
 	spriteface $0, $2
 	appear $5
@@ -24940,7 +24940,7 @@ TrainerGruntM19WhenTalkScript: ; 0x6d0f9
 ; 0x6d101
 
 UnknownScript_0x6d101: ; 0x6d101
-	cry $65, $0
+	cry ELECTRODE
 	loadpokedata ELECTRODE, 23
 	startbattle
 	iftrue UnknownScript_0x6d182
@@ -24959,7 +24959,7 @@ UnknownScript_0x6d101: ; 0x6d101
 ; 0x6d12c
 
 UnknownScript_0x6d12c: ; 0x6d12c
-	cry $65, $0
+	cry ELECTRODE
 	loadpokedata ELECTRODE, 23
 	startbattle
 	iftrue UnknownScript_0x6d182
@@ -24978,7 +24978,7 @@ UnknownScript_0x6d12c: ; 0x6d12c
 ; 0x6d157
 
 UnknownScript_0x6d157: ; 0x6d157
-	cry $65, $0
+	cry ELECTRODE
 	loadpokedata ELECTRODE, 23
 	startbattle
 	iftrue UnknownScript_0x6d182
@@ -26452,7 +26452,7 @@ UnknownScript_0x6eb8f: ; 0x6eb8f
 	2writetext UnknownText_0x6f06f
 	keeptextopen
 	2writetext UnknownText_0x6f086
-	cry $53, $0
+	cry FARFETCH_D
 	closetext
 	loadmovesprites
 	applymovement $2, MovementData_0x6ee8f
@@ -26681,7 +26681,7 @@ UnknownScript_0x6ed96: ; 0x6ed96
 	faceplayer
 	loadfont
 	2writetext UnknownText_0x6f086
-	cry $53, $0
+	cry FARFETCH_D
 	closetext
 	loadmovesprites
 	end
@@ -26691,7 +26691,7 @@ UnknownScript_0x6eda1: ; 0x6eda1
 	faceplayer
 	loadfont
 	2writetext UnknownText_0x6f086
-	cry $53, $0
+	cry FARFETCH_D
 	closetext
 	loadmovesprites
 	checkcode $9
@@ -27443,7 +27443,7 @@ UnknownScript_0x70063: ; 0x70063
 	loadfont
 	2writetext UnknownText_0x703cb
 	pause 15
-	cry $82, $0
+	cry GYARADOS
 	loadmovesprites
 	loadpokedata GYARADOS, 30
 	writecode $3, $7
@@ -28651,7 +28651,7 @@ UnknownScript_0x713ef: ; 0x713ef
 UnknownScript_0x713f2: ; 0x713f2
 	loadfont
 	2writetext UnknownText_0x71470
-	cry $34, $0
+	cry MEOWTH
 	closetext
 	loadmovesprites
 	end
@@ -28660,7 +28660,7 @@ UnknownScript_0x713f2: ; 0x713f2
 UnknownScript_0x713fc: ; 0x713fc
 	loadfont
 	2writetext UnknownText_0x7147f
-	cry $23, $0
+	cry CLEFAIRY
 	closetext
 	loadmovesprites
 	end
@@ -28669,7 +28669,7 @@ UnknownScript_0x713fc: ; 0x713fc
 UnknownScript_0x71406: ; 0x71406
 	loadfont
 	2writetext UnknownText_0x71496
-	cry $1d, $0
+	cry NIDORAN_F
 	closetext
 	loadmovesprites
 	end
@@ -34758,19 +34758,19 @@ UnknownScript_0x7709a: ; 0x7709a
 	pause 15
 	appear $4
 	spriteface $2, $3
-	cry $23, $0
+	cry CLEFAIRY
 	waitbutton
 	pause 30
 	follow $2, $3
-	cry $23, $0
+	cry CLEFAIRY
 	applymovement $2, MovementData_0x77123
-	cry $23, $0
+	cry CLEFAIRY
 	applymovement $2, MovementData_0x77126
-	cry $23, $0
+	cry CLEFAIRY
 	applymovement $2, MovementData_0x77128
-	cry $23, $0
+	cry CLEFAIRY
 	applymovement $2, MovementData_0x7712b
-	cry $23, $0
+	cry CLEFAIRY
 	applymovement $2, MovementData_0x7712d
 	stopfollow
 	applymovement $3, MovementData_0x77130
@@ -34781,7 +34781,7 @@ UnknownScript_0x7709a: ; 0x7709a
 	pause 10
 	showemote $0, $2, 15
 	spriteface $2, $0
-	cry $23, $0
+	cry CLEFAIRY
 	pause 15
 	follow $2, $3
 	applymovement $2, MovementData_0x77134
@@ -34978,7 +34978,7 @@ UnknownScript_0x77244: ; 0x77244
 	faceplayer
 	loadfont
 	2writetext UnknownText_0x77260
-	cry $fa, $0
+	cry HO_OH
 	pause 15
 	loadmovesprites
 	setbit1 $0317
@@ -36142,7 +36142,7 @@ UnknownScript_0x78c73: ; 0x78c73
 	spriteface $2, $0
 	refreshscreen $0
 	pokepic CYNDAQUIL
-	cry $9b, $0
+	cry CYNDAQUIL
 	closetext
 	pokepicyesorno
 	loadfont
@@ -36173,7 +36173,7 @@ UnknownScript_0x78cb5: ; 0x78cb5
 	spriteface $2, $0
 	refreshscreen $0
 	pokepic TOTODILE
-	cry $9e, $0
+	cry TOTODILE
 	closetext
 	pokepicyesorno
 	loadfont
@@ -36202,7 +36202,7 @@ UnknownScript_0x78cf1: ; 0x78cf1
 	spriteface $2, $0
 	refreshscreen $0
 	pokepic CHIKORITA
-	cry $98, $0
+	cry CHIKORITA
 	closetext
 	pokepicyesorno
 	loadfont
@@ -40315,7 +40315,7 @@ UnknownScript_0x7d7b6: ; 0x7d7b6
 UnknownScript_0x7d7b9: ; 0x7d7b9
 	loadfont
 	2writetext UnknownText_0x7d8bb
-	cry $43, $0
+	cry MACHOKE
 	closetext
 	loadmovesprites
 	end
@@ -41559,7 +41559,7 @@ UnknownScript_0x7e8cd: ; 0x7e8cd
 UnknownScript_0x7e8d0: ; 0x7e8d0
 	loadfont
 	2writetext UnknownText_0x7e9b6
-	cry $36, $0
+	cry PSYDUCK
 	closetext
 	loadmovesprites
 	end
@@ -41568,7 +41568,7 @@ UnknownScript_0x7e8d0: ; 0x7e8d0
 UnknownScript_0x7e8da: ; 0x7e8da
 	loadfont
 	2writetext UnknownText_0x7e9c9
-	cry $21, $0
+	cry NIDORINO
 	closetext
 	loadmovesprites
 	end
@@ -41577,7 +41577,7 @@ UnknownScript_0x7e8da: ; 0x7e8da
 UnknownScript_0x7e8e4: ; 0x7e8e4
 	loadfont
 	2writetext UnknownText_0x7e9da
-	cry $10, $0
+	cry PIDGEY
 	closetext
 	loadmovesprites
 	end
@@ -55728,7 +55728,7 @@ UnknownScript_0x99515: ; 0x99515
 UnknownScript_0x9951b: ; 0x9951b
 	loadfont
 	2writetext UnknownText_0x99a0a
-	cry $70, $0
+	cry RHYDON
 	closetext
 	loadmovesprites
 	end
@@ -56872,7 +56872,7 @@ UnknownScript_0x9ae3d: ; 0x9ae3d
 UnknownScript_0x9ae40: ; 0x9ae40
 	loadfont
 	2writetext UnknownText_0x9aefe
-	cry $15, $0
+	cry SPEAROW
 	closetext
 	loadmovesprites
 	end
@@ -56881,7 +56881,7 @@ UnknownScript_0x9ae40: ; 0x9ae40
 UnknownScript_0x9ae4a: ; 0x9ae4a
 	loadfont
 	2writetext UnknownText_0x9af10
-	cry $13, $0
+	cry RATTATA
 	closetext
 	loadmovesprites
 	end
@@ -58031,7 +58031,7 @@ UnknownScript_0x9c58f: ; 0x9c58f
 UnknownScript_0x9c592: ; 0x9c592
 	loadfont
 	2writetext UnknownText_0x9c5f0
-	cry $70, $0
+	cry RHYDON
 	closetext
 	loadmovesprites
 	end
@@ -58573,7 +58573,7 @@ UnknownScript_0x9cd1f: ; 0x9cd1f
 
 UnknownScript_0x9cd25: ; 0x9cd25
 	2writetext UnknownText_0x9cd92
-	cry $f1, $0
+	cry MILTANK
 	closetext
 	loadmovesprites
 	end
@@ -62371,7 +62371,7 @@ UnknownScript_0x180154: ; 0x180154
 UnknownScript_0x18015a: ; 0x18015a
 	loadfont
 	2writetext UnknownText_0x180433
-	cry $3f, $0
+	cry ABRA
 	closetext
 	loadmovesprites
 	end
@@ -63635,7 +63635,7 @@ UnknownScript_0x18401d: ; 0x18401d
 UnknownScript_0x184020: ; 0x184020
 	loadfont
 	2writetext UnknownText_0x1841e9
-	cry $50, $0
+	cry SLOWBRO
 	closetext
 	loadmovesprites
 	end
@@ -63654,7 +63654,7 @@ UnknownScript_0x18402a: ; 0x18402a
 	loadmovesprites
 	loadfont
 	2writetext UnknownText_0x1841e9
-	cry $50, $0
+	cry SLOWBRO
 	closetext
 	loadmovesprites
 	loadfont
@@ -64687,7 +64687,7 @@ UnknownScript_0x18508f: ; 0x18508f
 	iftrue $50b6
 	applymovement $3, MovementData_0x1851d0
 	spriteface $0, $2
-	cry $f3, $0
+	cry RAIKOU
 	pause 10
 	playsound $0014
 	applymovement $3, MovementData_0x1851d4
@@ -64699,7 +64699,7 @@ UnknownScript_0x18508f: ; 0x18508f
 	iftrue $50d7
 	applymovement $4, MovementData_0x1851da
 	spriteface $0, $3
-	cry $f4, $0
+	cry ENTEI
 	pause 10
 	playsound $0014
 	applymovement $4, MovementData_0x1851de
@@ -64710,7 +64710,7 @@ UnknownScript_0x18508f: ; 0x18508f
 	pause 10
 	applymovement $0, MovementData_0x1851e8
 	applymovement $2, MovementData_0x1851e4
-	cry $f5, $0
+	cry SUICUNE
 	pause 20
 	loadpokedata SUICUNE, 40
 	writecode $3, $c
@@ -65775,19 +65775,19 @@ UnknownScript_0x18616b: ; 0x18616b
 	pause 5
 	disappear $6
 	pause 15
-	cry $f3, $0
+	cry RAIKOU
 	appear $4
 	spriteface $0, $1
 	pause 5
 	disappear $7
 	pause 15
-	cry $f4, $0
+	cry ENTEI
 	appear $5
 	spriteface $0, $1
 	pause 5
 	disappear $8
 	pause 15
-	cry $f5, $0
+	cry SUICUNE
 	pause 15
 	playsound $0014
 	spriteface $0, $2
@@ -65808,7 +65808,7 @@ UnknownScript_0x18616b: ; 0x18616b
 	applymovement $5, MovementData_0x186248
 	spriteface $0, $1
 	pause 20
-	cry $f5, $0
+	cry SUICUNE
 	pause 30
 	playsound $0014
 	applymovement $5, MovementData_0x186253
@@ -66056,7 +66056,7 @@ UnknownScript_0x18804d: ; 0x18804d
 UnknownScript_0x188050: ; 0x188050
 	loadfont
 	2writetext UnknownText_0x1880e7
-	cry $32, $0
+	cry DIGLETT
 	closetext
 	loadmovesprites
 	end
@@ -66121,7 +66121,7 @@ UnknownScript_0x188136: ; 0x188136
 UnknownScript_0x188139: ; 0x188139
 	loadfont
 	2writetext UnknownText_0x18819c
-	cry $73, $0
+	cry KANGASKHAN
 	closetext
 	loadmovesprites
 	end
@@ -66130,7 +66130,7 @@ UnknownScript_0x188139: ; 0x188139
 UnknownScript_0x188143: ; 0x188143
 	loadfont
 	2writetext UnknownText_0x1881b5
-	cry $29, $0
+	cry ZUBAT
 	closetext
 	loadmovesprites
 	end
@@ -68780,7 +68780,7 @@ UnknownScript_0x18ad24: ; 0x18ad24
 UnknownScript_0x18ad2a: ; 0x18ad2a
 	loadfont
 	2writetext UnknownText_0x18ae4b
-	cry $f2, $0
+	cry BLISSEY
 	closetext
 	loadmovesprites
 	end
@@ -69017,7 +69017,7 @@ UnknownScript_0x18afaa: ; 0x18afaa
 UnknownScript_0x18afbc: ; 0x18afbc
 	loadfont
 	2writetext UnknownText_0x18b476
-	cry $55, $0
+	cry DODRIO
 	keeptextopen
 	2writetext UnknownText_0x18b489
 	closetext
@@ -69873,7 +69873,7 @@ UnknownScript_0x18c518: ; 0x18c518
 	faceplayer
 	loadfont
 	2writetext UnknownText_0x18c531
-	cry $f9, $0
+	cry LUGIA
 	pause 15
 	loadmovesprites
 	setbit1 $0318
@@ -71539,7 +71539,7 @@ UnknownScript_0x18dd63: ; 0x18dd63
 	faceplayer
 	loadfont
 	2writetext UnknownText_0x18dfe5
-	cry $53, $0
+	cry FARFETCH_D
 	closetext
 	loadmovesprites
 	end
@@ -72153,7 +72153,7 @@ UnknownScript_0x18e44f: ; 0x18e44f
 	faceplayer
 	loadfont
 	2writetext UnknownText_0x18eb56
-	cry $4f, $0
+	cry SLOWPOKE
 	closetext
 	loadmovesprites
 	end
@@ -74502,7 +74502,7 @@ UnknownScript_0x19186e: ; 0x19186e
 UnknownScript_0x191871: ; 0x191871
 	loadfont
 	2writetext UnknownText_0x191de9
-	cry $99, $0
+	cry BAYLEEF
 	closetext
 	loadmovesprites
 	end
@@ -78308,7 +78308,7 @@ UnknownScript_0x195949: ; 0x195949
 UnknownScript_0x19594c: ; 0x19594c
 	loadfont
 	2writetext UnknownText_0x1959ee
-	cry $93, $0
+	cry DRATINI
 	closetext
 	loadmovesprites
 	end
@@ -80397,7 +80397,7 @@ UnknownScript_0x1980cb: ; 0x1980cb
 	2writetext UnknownText_0x1985b0
 	pause 60
 	2writetext UnknownText_0x1985c3
-	cry $4f, $0
+	cry SLOWPOKE
 	closetext
 	loadmovesprites
 	end
@@ -90475,7 +90475,7 @@ UnknownScript_0x1a2807: ; 0x1a2807
 UnknownScript_0x1a280a: ; 0x1a280a
 	loadfont
 	2writetext UnknownText_0x1a2825
-	cry $20, $0
+	cry NIDORAN_M
 	closetext
 	loadmovesprites
 	end
@@ -90822,7 +90822,7 @@ UnknownScript_0x1a2eea: ; 0x1a2eea
 UnknownScript_0x1a2eed: ; 0x1a2eed
 	loadfont
 	2writetext UnknownText_0x1a2f5d
-	cry $27, $0
+	cry JIGGLYPUFF
 	closetext
 	loadmovesprites
 	end
@@ -92651,7 +92651,7 @@ Route39_MapScriptHeader: ; 0x1a5af3
 UnknownScript_0x1a5af5: ; 0x1a5af5
 	loadfont
 	2writetext UnknownText_0x1a5bf9
-	cry $f1, $0
+	cry MILTANK
 	closetext
 	loadmovesprites
 	end
@@ -96591,7 +96591,7 @@ UnknownScript_0x1a9f43: ; 0x1a9f43
 UnknownScript_0x1a9f46: ; 0x1a9f46
 	loadfont
 	2writetext UnknownText_0x1a9fcb
-	cry $3e, $0
+	cry POLIWRATH
 	closetext
 	loadmovesprites
 	end
@@ -97177,7 +97177,7 @@ UnknownScript_0x1aa986: ; 0x1aa986
 UnknownScript_0x1aa989: ; 0x1aa989
 	loadfont
 	2writetext UnknownText_0x1aaaca
-	cry $42, $0
+	cry MACHOP
 	closetext
 	loadmovesprites
 	earthquake 30
@@ -97205,7 +97205,7 @@ UnknownScript_0x1aa99e: ; 0x1aa99e
 UnknownScript_0x1aa9ab: ; 0x1aa9ab
 	2writetext UnknownText_0x1aab84
 	pause 15
-	cry $8f, $0
+	cry SNORLAX
 	loadmovesprites
 	writecode $3, $a
 	loadpokedata SNORLAX, 50
@@ -101119,7 +101119,7 @@ UnknownScript_0x1ae66f: ; 0x1ae66f
 UnknownScript_0x1ae675: ; 0x1ae675
 	loadfont
 	2writetext UnknownText_0x1ae752
-	cry $16, $0
+	cry FEAROW
 	closetext
 	loadmovesprites
 	end
