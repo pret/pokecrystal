@@ -61943,8 +61943,6 @@ BattleTowerOutside_MapEventHeader: ; 0x9fb5f
 	person_event $28, 28, 16, $3, $0, 255, 255, $a0, 0, UnknownScript_0x26ef, $ffff
 ; 0x9fbb2
 
-INCBIN "baserom.gbc",$9fbb2,$44e
-
 SECTION "bank28",DATA,BANK[$28]
 
 INCBIN "baserom.gbc",$A0000,$4000
