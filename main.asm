@@ -43011,8 +43011,6 @@ Route12SuperRodHouse_MapEventHeader: ; 0x7f60b
 	person_event $3b, 7, 9, $6, $0, 255, 255, $80, 0, UnknownScript_0x7f484, $ffff
 ; 0x7f628
 
-INCBIN "baserom.gbc",$7f628,$9d8
-
 SECTION "bank20",DATA,BANK[$20]
 
 INCBIN "baserom.gbc",$80000,$4000
