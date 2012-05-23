@@ -18538,8 +18538,6 @@ RadioTower4F_MapEventHeader: ; 0x5f01a
 	person_event $3c, 6, 8, $8, $0, 255, 255, $92, 4, TrainerScientistRich, $06ce
 ; 0x5f099
 
-INCBIN "baserom.gbc",$5f099,$f67
-
 SECTION "bank18",DATA,BANK[$18]
 
 RadioTower5F_MapScriptHeader: ; 0x60000
