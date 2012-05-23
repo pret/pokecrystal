@@ -42701,7 +42701,9 @@ MapLavRadioTower1FSignpost1Script: ; 0x7eeb9
 	jumptext UnknownText_0x7f32d
 ; 0x7eebc
 
-INCBIN "baserom.gbc",$7eebc,$03
+UnknownScript_0x7eebc: ; 0x7eebc
+	jumptext UnknownText_0x7f36b
+; 0x7eebf
 
 UnknownText_0x7eebf: ; 0x7eebf
 	db $0, "Welcome!", $4f
@@ -42920,7 +42922,9 @@ UnknownScript_0x7f4aa: ; 0x7f4aa
 	end
 ; 0x7f4ac
 
-INCBIN "baserom.gbc",$7f4ac,$7f4af - $7f4ac
+UnknownScript_0x7f4ac: ; 0x7f4ac
+	jumpstd $0002
+; 0x7f4af
 
 UnknownText_0x7f4af: ; 0x7f4af
 	db $0, "I'm the FISHING", $4f
@@ -58220,7 +58224,9 @@ UnknownScript_0x9b85c: ; 0x9b85c
 	end
 ; 0x9b862
 
-INCBIN "baserom.gbc",$9b862,$9b865 - $9b862
+UnknownScript_0x9b862: ; 0x9b862
+	jumpstd $0001
+; 0x9b865
 
 UnknownText_0x9b865: ; 0x9b865
 	db $0, "Hi! Wow, I'm glad", $4f
@@ -58931,7 +58937,9 @@ UnknownScript_0x9c740: ; 0x9c740
 	end
 ; 0x9c746
 
-INCBIN "baserom.gbc",$9c746,$03
+UnknownScript_0x9c746: ; 0x9c746
+	jumpstd $0002
+; 0x9c749
 
 UnknownText_0x9c749: ; 0x9c749
 	db $0, "OLIVINE is on the", $4f
@@ -59710,7 +59718,12 @@ UnknownScript_0x9d2ee: ; 0x9d2ee
 	end
 ; 0x9d2f4
 
-INCBIN "baserom.gbc",$9d2f4,$9d2fa - $9d2f4
+UnknownScript_0x9d2f4: ; 0x9d2f4
+	2writetext UnknownText_0x9d5b0
+	closetext
+	loadmovesprites
+	end
+; 0x9d2fa
 
 UnknownScript_0x9d2fa: ; 0x9d2fa
 	2writetext UnknownText_0x9d56c
@@ -59719,7 +59732,9 @@ UnknownScript_0x9d2fa: ; 0x9d2fa
 	end
 ; 0x9d300
 
-INCBIN "baserom.gbc",$9d300,$9d303 - $9d300
+UnknownScript_0x9d300: ; 0x9d300
+	jumpstd $0002
+; 0x9d303
 
 UnknownText_0x9d303: ; 0x9d303
 	db $0, "I, I'm in shock!", $51
@@ -60671,8 +60686,11 @@ UnknownScript_0x9e3c4: ; 0x9e3c4
 	priorityjump UnknownScript_0x9e555
 ; 0x9e3c7
 
-INCBIN "baserom.gbc",$9e3c7,$9e3d1 - $9e3c7
-
+UnknownScript_0x9e3c7: ; 0x9e3c7
+	writebyte $4
+	special $0086
+	writebyte $6
+	special $0086
 UnknownScript_0x9e3d1: ; 0x9e3d1
 	dotrigger $1
 	end
@@ -60797,7 +60815,11 @@ UnknownScript_0x9e4b0: ; 0x9e4b0
 	end
 ; 0x9e4b6
 
-INCBIN "baserom.gbc",$9e4b6,$9e4bb - $9e4b6
+UnknownScript_0x9e4b6: ; 0x9e4b6
+	special $008b
+	loadmovesprites
+	end
+; 0x9e4bb
 
 UnknownScript_0x9e4bb: ; 0x9e4bb
 	closetext
@@ -61444,7 +61466,30 @@ UnknownScript_0x9f4d9: ; 0x9f4d9
 	2jump UnknownScript_0x9e47a
 ; 0x9f4eb
 
-INCBIN "baserom.gbc",$9f4eb,$43
+UnknownScript_0x9f4eb: ; 0x9f4eb
+	writebyte $4
+	special $0086
+	loadfont
+	2writetext UnknownText_0x9f0c1
+	closetext
+	loadmovesprites
+	end
+; 0x9f4f7
+
+UnknownScript_0x9f4f7: ; 0x9f4f7
+	writebyte $4
+	special $0086
+	writebyte $6
+	special $0086
+	loadfont
+	2writetext UnknownText_0x9ea49
+	2writetext UnknownText_0x9ec09
+	closetext
+	loadmovesprites
+	end
+; 0x9f50b
+
+INCBIN "baserom.gbc",$9f50b,$9f52e-$9f50b
 
 BattleTowerBattleRoom_MapEventHeader: ; 0x9f52e
 	; filler
@@ -66391,7 +66436,13 @@ ItemFragment_0x185b88: ; 0x185b88
 	db HP_UP, 1
 ; 0x185b8a
 
-INCBIN "baserom.gbc",$185b8a,$185bab - $185b8a
+UnknownText_0x185b8a: ; 0x185b8a
+	db $0, "HO-OH: Shaoooh!", $57
+; 0x185b9b
+
+UnknownText_0x185b9b: ; 0x185b9b
+	db $0, "LUGIA: Gyaaan!", $57
+; 0x185bab
 
 TinTower9F_MapEventHeader: ; 0x185bab
 	; filler
@@ -66895,7 +66946,12 @@ MovementData_0x186248: ; 0x186248
 	step_end
 ; 0x18624f
 
-INCBIN "baserom.gbc",$18624f,$04
+MovementData_0x18624f: ; 0x18624f
+	db $39 ; movement
+	big_step_down
+	db $38 ; movement
+	step_end
+; 0x186253
 
 MovementData_0x186253: ; 0x186253
 	db $39 ; movement
@@ -72903,8 +72959,8 @@ UnknownScript_0x18e2a5: ; 0x18e2a5
 	end
 ; 0x18e2ab
 
-INCBIN "baserom.gbc",$18e2ab,$03
-
+UnknownScript_0x18e2ab: ; 0x18e2ab
+	setbit1 $0001
 UnknownScript_0x18e2ae: ; 0x18e2ae
 	2writetext UnknownText_0x18e82a
 	closetext
@@ -72920,9 +72976,10 @@ UnknownScript_0x18e2b4: ; 0x18e2b4
 	verbosegiveitem2 LEVEL_BALL
 	addvar $8
 	unknown0xb2 $62
-; 0x18e2c4
-
-INCBIN "baserom.gbc",$18e2c4,$06
+UnknownScript_0x18e2c4: ; 0x18e2c4
+	clearbit1 $0258
+	2jump UnknownScript_0x18e2ab
+; 0x18e2ca
 
 UnknownScript_0x18e2ca: ; 0x18e2ca
 	checkbit2 $0050
@@ -72932,9 +72989,10 @@ UnknownScript_0x18e2ca: ; 0x18e2ca
 	verbosegiveitem2 LURE_BALL
 	addvar $8
 	unknown0xb2 $62
-; 0x18e2da
-
-INCBIN "baserom.gbc",$18e2da,$18e2e0 - $18e2da
+UnknownScript_0x18e2da: ; 0x18e2da
+	clearbit1 $0259
+	2jump UnknownScript_0x18e2ab
+; 0x18e2e0
 
 UnknownScript_0x18e2e0: ; 0x18e2e0
 	checkbit2 $0050
@@ -72944,9 +73002,10 @@ UnknownScript_0x18e2e0: ; 0x18e2e0
 	verbosegiveitem2 MOON_BALL
 	addvar $8
 	unknown0xb2 $62
-; 0x18e2f0
-
-INCBIN "baserom.gbc",$18e2f0,$18e2f6 - $18e2f0
+UnknownScript_0x18e2f0: ; 0x18e2f0
+	clearbit1 $025a
+	2jump UnknownScript_0x18e2ab
+; 0x18e2f6
 
 UnknownScript_0x18e2f6: ; 0x18e2f6
 	checkbit2 $0050
@@ -72956,9 +73015,10 @@ UnknownScript_0x18e2f6: ; 0x18e2f6
 	verbosegiveitem2 FRIEND_BALL
 	addvar $8
 	unknown0xb2 $62
-; 0x18e306
-
-INCBIN "baserom.gbc",$18e306,$06
+UnknownScript_0x18e306: ; 0x18e306
+	clearbit1 $025b
+	2jump UnknownScript_0x18e2ab
+; 0x18e30c
 
 UnknownScript_0x18e30c: ; 0x18e30c
 	checkbit2 $0050
@@ -72968,9 +73028,10 @@ UnknownScript_0x18e30c: ; 0x18e30c
 	verbosegiveitem2 FAST_BALL
 	addvar $8
 	unknown0xb2 $62
-; 0x18e31c
-
-INCBIN "baserom.gbc",$18e31c,$18e322 - $18e31c
+UnknownScript_0x18e31c: ; 0x18e31c
+	clearbit1 $025c
+	2jump UnknownScript_0x18e2ab
+; 0x18e322
 
 UnknownScript_0x18e322: ; 0x18e322
 	checkbit2 $0050
@@ -72980,9 +73041,10 @@ UnknownScript_0x18e322: ; 0x18e322
 	verbosegiveitem2 HEAVY_BALL
 	addvar $8
 	unknown0xb2 $62
-; 0x18e332
-
-INCBIN "baserom.gbc",$18e332,$06
+UnknownScript_0x18e332: ; 0x18e332
+	clearbit1 $025d
+	2jump UnknownScript_0x18e2ab
+; 0x18e338
 
 UnknownScript_0x18e338: ; 0x18e338
 	checkbit2 $0050
@@ -72992,9 +73054,10 @@ UnknownScript_0x18e338: ; 0x18e338
 	verbosegiveitem2 LOVE_BALL
 	addvar $8
 	unknown0xb2 $62
-; 0x18e348
-
-INCBIN "baserom.gbc",$18e348,$06
+UnknownScript_0x18e348: ; 0x18e348
+	clearbit1 $025e
+	2jump UnknownScript_0x18e2ab
+; 0x18e34e
 
 UnknownScript_0x18e34e: ; 0x18e34e
 	checkbit1 $00bf
