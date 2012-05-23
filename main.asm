@@ -88849,8 +88849,6 @@ Route25_MapEventHeader: ; 0x19f58f
 	person_event $54, 8, 36, $1, $0, 255, 255, $1, 0, ItemFragment_0x19efe3, $078b
 ; 0x19f643
 
-INCBIN "baserom.gbc",$19f643,$9bd
-
 SECTION "bank68",DATA,BANK[$68]
 
 CianwoodCity_MapScriptHeader: ; 0x1a0000
