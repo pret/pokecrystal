@@ -102592,8 +102592,6 @@ Route10North_MapEventHeader: ; 0x1b2099
 	db 0
 ; 0x1b20b3
 
-INCBIN "baserom.gbc",$1b20b3,$1f4d
-
 SECTION "bank6D",DATA,BANK[$6D]
 
 INCBIN "baserom.gbc",$1B4000,$4000
