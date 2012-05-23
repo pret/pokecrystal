@@ -95581,8 +95581,6 @@ Route12_MapEventHeader: ; 0x1a72cf
 	person_event $54, 55, 9, $1, $0, 255, 255, $1, 0, ItemFragment_0x1a700d, $0789
 ; 0x1a7337
 
-INCBIN "baserom.gbc",$1a7337,$cc9
-
 SECTION "bank6A",DATA,BANK[$6A]
 
 NewBarkTown_MapScriptHeader: ; 0x1a8000
