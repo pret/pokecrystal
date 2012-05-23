@@ -23197,7 +23197,20 @@ UnknownText_0x6b7af: ; 0x6b7af
 	db "win.", $57
 ; 0x6b7e7
 
-INCBIN "baserom.gbc",$6b7e7,$129
+
+; This text is unused and unreferenced in the final game.
+; The tree Pokémon is Sudowoodo.
+; The Silph Scope 2 was later reworked into the Squirtbottle.
+
+UnusedSudowoodoText: ; 0x6b7e7
+	db 0, "I hear there's a", $4f
+	db "#MON that looks", $55
+	db "just like a tree.", $51
+	db "You can reveal its", $4f
+	db "identity using a", $55
+	db "SILPHSCOPE 2.", $57
+
+INCBIN "baserom.gbc",$6b84c,$6b910 - $6b84c
 
 UnknownText_0x6b910: ; 0x6b910
 	db $0, "Uh-oh… Your PACK", $4f
