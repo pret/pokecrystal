@@ -19985,7 +19985,26 @@ UnknownText_0x62105: ; 0x62105
 	db "afford to lose.", $57
 ; 0x62173
 
-INCBIN "baserom.gbc",$62173,$ed
+UnknownText_0x62173: ; 0x62173
+	db $0, "I came over here", $4f
+	db "when I got word", $51
+	db "that GOLDENROD's", $4f
+	db "#MON CENTER has", $51
+	db "new machines that", $4f
+	db "no one's ever seen", $55
+	db "before.", $51
+	db "But it looks like", $4f
+	db "they're still busy", $51
+	db "with all their", $4f
+	db "preparations…", $57
+; 0x62222
+
+UnknownText_0x62222: ; 0x62222
+	db $0, "Just seeing all", $4f
+	db "these new things", $51
+	db "here makes me feel", $4f
+	db "younger!", $57
+; 0x62260
 
 UnknownText_0x62260: ; 0x62260
 	db $0, "A higher level", $4f
@@ -20014,7 +20033,23 @@ UnknownText_0x62359: ; 0x62359
 	db "again!", $57
 ; 0x62370
 
-INCBIN "baserom.gbc",$62370,$623fb - $62370
+UnknownText_0x62370: ; 0x62370
+	db $0, "#COM CENTER", $4f
+	db "1F INFORMATION", $51
+	db "Left:", $4f
+	db "ADMINISTRATION", $51
+	db "Center:", $4f
+	db "TRADE CORNER", $51
+	db "Right:", $4f
+	db "#MON NEWS", $57
+; 0x623c7
+
+UnknownText_0x623c7: ; 0x623c7
+	db $0, "It's a #MON", $4f
+	db "NEWS MACHINE!", $51
+	db "It's not in", $4f
+	db "operation yet…", $57
+; 0x623fb
 
 UnknownText_0x623fb: ; 0x623fb
 	db $0, "Oh my, your pack", $4f
