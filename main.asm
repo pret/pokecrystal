@@ -7942,8 +7942,6 @@ MysticalmanTrainerGroupHeader: ; 0x3ba4c
 	; last_address=0x3ba67 size=27
 ; 0x3ba67
 
-INCBIN "baserom.gbc",$3ba67,$599
-
 SECTION "bankF",DATA,BANK[$F]
 
 INCBIN "baserom.gbc",$3C000,$40000 - $3C000
@@ -74152,8 +74150,10 @@ MapMahoganyTownSignpost3Script: ; 0x1900a1
 	jumpstd $0010
 ; 0x1900a4
 
-INCBIN "baserom.gbc",$1900a4,$1900a7 - $1900a4
-
+MovementData_0x1900a4: ; 0x1900a4
+	step_down
+	big_step_up
+	turn_head_down
 MovementData_0x1900a7: ; 0x1900a7
 	step_left
 	step_end
