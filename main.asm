@@ -6,7 +6,7 @@ UnknownScript_0x26ef: ; 0x26ef
 	jumptextfaceplayer $26f2
 ; 0x26f2
 
-INCBIN "baserom.gbc",$26f2,$937
+INCBIN "baserom.gbc",$26f2,$3026-$26f2
 
 CopyBytes: ; 0x3026
 ; copy bc bytes from hl to de
