@@ -2324,6 +2324,10 @@ class MainText(TextCommand):
     def parse(self):
         offset = self.address
 
+        # the code below assumes we're jumping past a $0 byte
+        if use_zero == False:
+            offset = offset - 1
+
         # read until $50, $57 or $58 (not sure about $58...)
         jump57 = how_many_until(chr(0x57), offset)
         jump50 = how_many_until(chr(0x50), offset)
