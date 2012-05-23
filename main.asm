@@ -11828,7 +11828,18 @@ UnknownText_0x580c7: ; 0x580c7
 	db "DEX. Follow me.", $57
 ; 0x581e5
 
-INCBIN "baserom.gbc",$581e5,$58250 - $581e5
+UnknownText_0x581e5: ; 0x581e5
+	db $0, "What do you want?", $4f
+	db "I'm studying--", $55
+	db "don't disturb me!", $57
+; 0x58217
+
+UnknownText_0x58217: ; 0x58217
+	db $0, "Sorry…", $4f
+	db "I'm frustrated by", $51
+	db "our lack of real", $4f
+	db "understanding…", $57
+; 0x58250
 
 UnknownText_0x58250: ; 0x58250
 	db $0, "The RUINS are from", $4f
@@ -21538,7 +21549,9 @@ UnknownScript_0x68b0b: ; 0x68b0b
 	end
 ; 0x68b27
 
-INCBIN "baserom.gbc",$68b27,$68b2a - $68b27
+UnknownScript_0x68b27: ; 0x68b27
+	jumptext UnknownText_0x69344
+; 0x68b2a
 
 MapEarlsPokemonAcademySignpost1Script: ; 0x68b2a
 	jumpstd $0001
@@ -23548,7 +23561,9 @@ UnknownScript_0x6adc8: ; 0x6adc8
 	end
 ; 0x6adce
 
-INCBIN "baserom.gbc",$6adce,$03
+UnknownScript_0x6adce: ; 0x6adce
+	jumptext UnknownText_0x6b84c
+; 0x6add1
 
 MovementData_0x6add1: ; 0x6add1
 	big_step_down
@@ -34093,7 +34108,9 @@ FastShipCabins_SE_SSE_CaptainsCabin_MapScriptHeader: ; 0x75ea4
 	db 0
 ; 0x75ea6
 
-INCBIN "baserom.gbc",$75ea6,$75ea7 - $75ea6
+UnknownScript_0x75ea6: ; 0x75ea6
+	end
+; 0x75ea7
 
 UnknownScript_0x75ea7: ; 0x75ea7
 	faceplayer
