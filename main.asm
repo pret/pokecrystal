@@ -62709,8 +62709,6 @@ OlivineLighthouse6F_BlockData: ; 0xaff00
 	INCBIN "maps/OlivineLighthouse6F.blk"
 ; 0xaff5a
 
-INCBIN "baserom.gbc",$aff5a,$a6
-
 SECTION "bank2C",DATA,BANK[$2C]
 
 INCBIN "baserom.gbc",$b0000,$b0023 - $b0000
