@@ -67082,8 +67082,6 @@ BurnedTowerB1F_MapEventHeader: ; 0x1863de
 	person_event $2b, 16, 14, $7, $0, 255, 255, $90, 0, UnknownScript_0x186212, $07aa
 ; 0x18647f
 
-INCBIN "baserom.gbc",$18647f,$1b81
-
 SECTION "bank62",DATA,BANK[$62]
 
 CeruleanGymBadgeSpeechHouse_MapScriptHeader: ; 0x188000
