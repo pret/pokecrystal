@@ -9957,7 +9957,7 @@ MapGoldenrodNameRatersHouseSignpost2Script: ; 0x55787
 	jumpstd $000c
 ; 0x5578a
 
-INCBIN "baserom.gbc",$5578a,$1c9
+INCLUDE "text/sweethoney.tx"
 
 GoldenrodNameRatersHouse_MapEventHeader: ; 0x55953
 	; filler

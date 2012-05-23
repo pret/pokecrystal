@@ -1,6 +1,6 @@
 .SUFFIXES: .asm .tx .o .gbc
 
-TEXTFILES =	
+TEXTFILES =	text/sweethoney.tx
 
 all: pokecrystal.gbc
 
