@@ -2326,7 +2326,9 @@ class MainText(TextCommand):
 
         # the code below assumes we're jumping past a $0 byte
         if self.use_zero == False:
-            offset = offset -1
+            offset = offset
+        else:
+            offset = offset + 1
 
         # read until $50, $57 or $58 (not sure about $58...)
         jump57 = how_many_until(chr(0x57), offset)
@@ -2335,6 +2337,7 @@ class MainText(TextCommand):
 
         # pick whichever one comes first
         jump = min([jump57, jump50, jump58])
+        jump += 1
 
         # if $57 appears first then this command is the last in this text script
         if jump == jump57 or jump == jump58:
@@ -2342,15 +2345,19 @@ class MainText(TextCommand):
 
         # we want the address after the $57
         # ("last_address" is misnamed everywhere)
-        end_address = offset + 1 + jump
+        end_address = offset + jump
         self.last_address = self.end_address = end_address
 
         # read the text bytes into a structure
         # skip the first offset byte because that's the command byte
-        self.bytes = rom_interval(offset + 1, jump, strings=False)
+        self.bytes = rom_interval(offset , jump, strings=False)
 
         # include the original command in the size calculation
-        self.size = jump + 1
+        self.size = jump
+
+        # TODO: this is possibly wrong
+        if self.use_zero:
+            self.size += 1
 
     def to_asm(self):
         if self.size < 2 or len(self.bytes) < 1:
