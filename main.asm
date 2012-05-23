@@ -102490,8 +102490,6 @@ Route28FamousSpeechHouse_MapEventHeader: ; 0x1ae762
 	person_event $9e, 9, 10, $16, $0, 255, 255, $b0, 0, UnknownScript_0x1ae675, $ffff
 ; 0x1ae796
 
-INCBIN "baserom.gbc",$1ae796,$186a
-
 SECTION "bank6C",DATA,BANK[$6C]
 
 INCBIN "baserom.gbc",$1b0000,$1b2042 - $1b0000
