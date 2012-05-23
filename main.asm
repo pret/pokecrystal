@@ -15622,8 +15622,6 @@ OlivineLighthouse4F_MapEventHeader: ; 0x5b6c0
 	person_event $28, 6, 15, $6, $0, 255, 255, $92, 1, TrainerLassConnie1, $ffff
 ; 0x5b712
 
-INCBIN "baserom.gbc",$5b712,$8ee
-
 SECTION "bank17",DATA,BANK[$17]
 
 NationalPark_MapScriptHeader: ; 0x5c000
