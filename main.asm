@@ -11612,8 +11612,6 @@ GoldenrodGameCorner_MapEventHeader: ; 0x571db
 	person_event $2d, 14, 21, $9, $0, 255, 255, $80, 0, UnknownScript_0x56c1a, $076b
 ; 0x57322
 
-INCBIN "baserom.gbc",$57322,$cde
-
 SECTION "bank16",DATA,BANK[$16]
 
 RuinsofAlphOutside_MapScriptHeader: ; 0x58000
