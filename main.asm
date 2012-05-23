@@ -77475,7 +77475,10 @@ UnknownText_0x1944d0: ; 0x1944d0
 	db "have this.", $57
 ; 0x19451a
 
-INCBIN "baserom.gbc",$19451a,$12
+UnknownText_0x19451a: ; 0x19451a
+	db $0, $52, " received", $4f
+	db "TM08.", $57
+; 0x19452c
 
 UnknownText_0x19452c: ; 0x19452c
 	db $0, "That happens to be", $4f
@@ -77489,7 +77492,15 @@ UnknownText_0x19452c: ; 0x19452c
 	db "smash 'em up!", $57
 ; 0x1945b8
 
-INCBIN "baserom.gbc",$1945b8,$194626 - $1945b8
+UnknownText_0x1945b8: ; 0x1945b8
+	db $0, "An odd tree is", $4f
+	db "blocking the way", $55
+	db "to GOLDENROD CITY.", $51
+	db "I wanted to go see", $4f
+	db "the huge #MON", $51
+	db "CENTER they just", $4f
+	db "opened…", $57
+; 0x194626
 
 UnknownText_0x194626: ; 0x194626
 	db $0, "An odd tree is", $4f
@@ -78369,7 +78380,10 @@ UnknownText_0x195883: ; 0x195883
 	db "going to be mad…", $57
 ; 0x1958a5
 
-INCBIN "baserom.gbc",$1958a5,$1b
+UnknownText_0x1958a5: ; 0x1958a5
+	db $0, "The boulder fell", $4f
+	db "through!", $57
+; 0x1958c0
 
 BlackthornGym2F_MapEventHeader: ; 0x1958c0
 	; filler
@@ -78422,7 +78436,9 @@ UnknownScript_0x19594c: ; 0x19594c
 	end
 ; 0x195956
 
-INCBIN "baserom.gbc",$195956,$06
+UnknownText_0x195956: ; 0x195956
+	limited_interpret_data 2
+	db $0, "ズ", $03, $00
 
 UnknownText_0x19595c: ; 0x19595c
 	db $0, "A clan of trainers", $4f
