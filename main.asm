@@ -92222,8 +92222,6 @@ PewterSnoozeSpeechHouse_MapEventHeader: ; 0x1a308a
 	person_event $2f, 7, 9, $8, $0, 255, 255, $90, 0, UnknownScript_0x1a3059, $ffff
 ; 0x1a30b1
 
-INCBIN "baserom.gbc",$1a30b1,$f4f
-
 SECTION "bank69",DATA,BANK[$69]
 
 EcruteakCity_MapScriptHeader: ; 0x1a4000
