@@ -39129,8 +39129,6 @@ Route2946Gate_MapEventHeader: ; 0x7b674
 	person_event $27, 8, 10, $4, $10, 255, 255, $a0, 0, UnknownScript_0x7b5be, $ffff
 ; 0x7b6a8
 
-INCBIN "baserom.gbc",$7b6a8,$958
-
 SECTION "bank1F",DATA,BANK[$1F]
 
 Route22_MapScriptHeader: ; 0x7c000
