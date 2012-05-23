@@ -36387,7 +36387,9 @@ UnknownScript_0x7831d: ; 0x7831d
 	end
 ; 0x7831f
 
-INCBIN "baserom.gbc",$7831f,$78322 - $7831f
+UnknownScript_0x7831f: ; 0x7831f
+	jumptext UnknownText_0x7898a
+; 0x78322
 
 MapRoute34Signpost0Script: ; 0x78322
 	jumptext UnknownText_0x789a8
@@ -38515,7 +38517,9 @@ KrissHouse2F_MapScriptHeader: ; 0x7abab
 	dbw 1, UnknownScript_0x7abc5
 ; 0x7abb3
 
-INCBIN "baserom.gbc",$7abb3,$7abb4 - $7abb3
+UnknownScript_0x7abb3: ; 0x7abb3
+	end
+; 0x7abb4
 
 UnknownScript_0x7abb4: ; 0x7abb4
 	special $004a
@@ -61752,7 +61756,22 @@ UnknownScript_0x9f66c: ; 0x9f66c
 	jumptextfaceplayer UnknownText_0x9f7c8
 ; 0x9f66f
 
-INCBIN "baserom.gbc",$9f66f,$a7
+UnknownText_0x9f66f: ; 0x9f66f
+	db $0, "Did you come to", $4f
+	db "see the BATTLE", $55
+	db "TOWER too?", $51
+	db "But I guess you", $4f
+	db "can't go in yet.", $57
+; 0x9f6ba
+
+UnknownText_0x9f6ba: ; 0x9f6ba
+	db $0, "BATTLE TOWER has", $4f
+	db "opened.", $51
+	db "I want to go, but", $4f
+	db "I haven't thought", $51
+	db "up a cool line for", $4f
+	db "when I win.", $57
+; 0x9f716
 
 UnknownText_0x9f716: ; 0x9f716
 	db $0, "Are you going to", $4f
