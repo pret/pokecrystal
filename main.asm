@@ -27461,7 +27461,9 @@ MapIlexForestSignpostItem3: ; 0x6ee1e
 	db FULL_HEAL
 ; 0x6ee21
 
-INCBIN "baserom.gbc",$6ee21,$6ee24 - $6ee21
+UnknownScript_0x6ee21: ; 0x6ee21
+	jumpstd $000e
+; 0x6ee24
 
 MapIlexForestSignpost0Script: ; 0x6ee24
 	jumptext UnknownText_0x6f2de
@@ -29174,7 +29176,9 @@ MapCeladonDeptStore6FSignpost0Script: ; 0x7124a
 	jumptext UnknownText_0x7133e
 ; 0x7124d
 
-INCBIN "baserom.gbc",$7124d,$71250 - $7124d
+UnknownScript_0x7124d: ; 0x7124d
+	jumpstd $0014
+; 0x71250
 
 UnknownText_0x71250: ; 0x71250
 	db $0, "A vending machine!", $4f
@@ -29265,7 +29269,18 @@ MapCeladonDeptStoreElevatorSignpost0Script: ; 0x713ad
 	end
 ; 0x713be
 
-INCBIN "baserom.gbc",$713be,$713d8 - $713be
+UnknownText_0x713be: ; 0x713be
+	text_waitbutton
+	text_box $1504, 5, 5
+	store_at $615
+	text_waitbutton
+	store_at $715
+	text_dunno2
+	store_at $815
+	start_asm
+; 0x713d0
+
+INCBIN "baserom.gbc",$713d0,$713d8 - $713d0
 
 CeladonDeptStoreElevator_MapEventHeader: ; 0x713d8
 	; filler
@@ -29522,7 +29537,12 @@ UnknownScript_0x716b0: ; 0x716b0
 	end
 ; 0x716b6
 
-INCBIN "baserom.gbc",$716b6,$06
+UnknownScript_0x716b6: ; 0x716b6
+	2writetext UnknownText_0x71863
+	closetext
+	loadmovesprites
+	end
+; 0x716bc
 
 UnknownScript_0x716bc: ; 0x716bc
 	jumptextfaceplayer UnknownText_0x71895
@@ -33196,7 +33216,15 @@ MovementData_0x7522e: ; 0x7522e
 	step_end
 ; 0x75231
 
-INCBIN "baserom.gbc",$75231,$75235 - $75231
+MovementData_0x75231: ; 0x75231
+	step_up
+	step_end
+; 0x75233
+
+MovementData_0x75233: ; 0x75233
+	step_down
+	step_end
+; 0x75235
 
 MovementData_0x75235: ; 0x75235
 	step_up
@@ -37288,7 +37316,9 @@ MapElmsLabSignpost15Script: ; 0x78f5e
 	jumptext UnknownText_0x7a3a6
 ; 0x78f61
 
-INCBIN "baserom.gbc",$78f61,$78f64 - $78f61
+UnknownScript_0x78f61: ; 0x78f61
+	jumpstd $000d
+; 0x78f64
 
 MapElmsLabSignpost12Script: ; 0x78f64
 	jumpstd $0001
@@ -38488,7 +38518,25 @@ UnknownScript_0x7ac1e: ; 0x7ac1e
 	end
 ; 0x7ac24
 
-INCBIN "baserom.gbc",$7ac24,$75
+UnknownText_0x7ac24: ; 0x7ac24
+	db $0, "PROF.OAK'S #MON", $4f
+	db "TALK! Please tune", $55
+	db "in next time!", $57
+; 0x7ac55
+
+UnknownText_0x7ac55: ; 0x7ac55
+	db $0, "#MON CHANNEL!", $57
+; 0x7ac64
+
+UnknownText_0x7ac64: ; 0x7ac64
+	db $0, "This is DJ MARY,", $4f
+	db "your co-host!", $57
+; 0x7ac84
+
+UnknownText_0x7ac84: ; 0x7ac84
+	db $0, "#MON!", $4f
+	db "#MON CHANNEL…", $57
+; 0x7ac99
 
 KrissHouse2F_MapEventHeader: ; 0x7ac99
 	; filler
@@ -41922,7 +41970,6 @@ ItemFragment_0x7e50d: ; 0x7e50d
 MapIcePathB1FSignpostItem0: ; 0x7e50f
 	dw $0094
 	db MAX_POTION
-	
 ; 0x7e512
 
 INCBIN "baserom.gbc",$7e512,$1b
@@ -42397,7 +42444,9 @@ UnknownScript_0x7eaf2: ; 0x7eaf2
 	end
 ; 0x7eafa
 
-INCBIN "baserom.gbc",$7eafa,$03
+UnknownScript_0x7eafa: ; 0x7eafa
+	jumpstd $0001
+; 0x7eafd
 
 LavenderNameRater_MapEventHeader: ; 0x7eafd
 	; filler
