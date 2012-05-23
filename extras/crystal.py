@@ -2850,7 +2850,7 @@ pksv_crystal_more = {
     0x81: ["musicfadeout", ["music", MultiByteParam], ["fadetime", SingleByteParam]],
     0x82: ["playmapmusic"],
     0x83: ["reloadmapmusic"],
-    0x84: ["cry", ["cry_id", SingleByteParam], ["wtf", SingleByteParam]], #XXX maybe it should use PokemonParam
+    0x84: ["cry", ["cry_id", MultiByteParam]], #XXX maybe it should use PokemonParam
     0x85: ["playsound", ["sound_pointer", MultiByteParam]],
     0x86: ["waitbutton"],
     0x87: ["warpsound"],
