@@ -2325,8 +2325,8 @@ class MainText(TextCommand):
         offset = self.address
 
         # the code below assumes we're jumping past a $0 byte
-        if use_zero == False:
-            offset = offset - 1
+        if self.use_zero == False:
+            offset = offset -1
 
         # read until $50, $57 or $58 (not sure about $58...)
         jump57 = how_many_until(chr(0x57), offset)
@@ -2356,10 +2356,10 @@ class MainText(TextCommand):
         if self.size < 2 or len(self.bytes) < 1:
             raise Exception, "$0 text command can't end itself with no follow-on bytes"
 
-        if use_zero:
+        if self.use_zero:
             output = "db $0"
         else:
-            output += "db "
+            output = ""
 
         # db $0, $57 or db $0, $50 or w/e
         if self.size == 2 and len(self.bytes) == 1:
@@ -2378,6 +2378,10 @@ class MainText(TextCommand):
 
         # has a $50 or $57 been passed yet?
         end = False
+
+        if not self.use_zero:
+            new_line = True
+            was_comma = False
 
         for byte in self.bytes:
             if end:
