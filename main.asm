@@ -6,11 +6,50 @@ UnknownScript_0x26ef: ; 0x26ef
 	jumptextfaceplayer $26f2
 ; 0x26f2
 
-INCBIN "baserom.gbc",$26f2,$94f
+INCBIN "baserom.gbc",$26f2,$937
 
-ByteFill:  ; 0x3041
-; fill BC bytes with the value of A, starting at HL
-	inc b  ; we bail *when* b hits 0, so include the last run
+CopyBytes: ; 0x3026
+; copy bc bytes from hl to de
+	inc b  ; we bail the moment b hits 0, so include the last run
+	inc c  ; same thing; include last byte
+	jr .HandleLoop
+.CopyByte
+	ld a, [hli]
+	ld [de], a
+	inc de
+.HandleLoop
+	dec c
+	jr nz, .CopyByte
+	dec b
+	jr nz, .CopyByte
+	ret
+
+SwapBytes: ; 0x3034
+; swap bc bytes between hl and de
+.Loop
+	; stash [hl] away on the stack
+	ld a, [hl]
+	push af
+
+	; copy a byte from [de] to [hl]
+	ld a, [de]
+	ld [hli], a
+
+	; retrieve the previous value of [hl]; put it in [de]
+	pop af
+	ld [de], a
+
+	; handle loop stuff
+	inc de
+	dec bc
+	ld a, b
+	or c
+	jr nz, .Loop
+	ret
+
+ByteFill: ; 0x3041
+; fill bc bytes with the value of a, starting at hl
+	inc b  ; we bail the moment b hits 0, so include the last run
 	inc c  ; same thing; include last byte
 	jr .HandleLoop
 .PutByte
@@ -43,7 +82,27 @@ GetFarByte: ; 0x304d
 	ld a, [$ff00+$8b]
 	ret
 
-INCBIN "baserom.gbc",$305d,$30fe-$305d
+GetFarHalfword: ; 0x305d
+; retrieve a halfword from a:hl, and return it in hl.
+	; bankswitch to new bank
+	ld [$ff00+$8b], a
+	ld a, [$ff00+$9d]
+	push af
+	ld a, [$ff00+$8b]
+	rst $10
+
+	; get halfword from new bank, put it in hl
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+
+	; bankswitch to previous bank and return
+	pop af
+	rst $10
+	ret
+; 0x306b
+
+INCBIN "baserom.gbc",$306b,$30fe-$306b
 
 AddNTimes: ; 0x30fe
 	and a
