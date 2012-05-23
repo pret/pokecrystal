@@ -91072,7 +91072,20 @@ MapEcruteakCitySignpostItem7: ; 0x1a4055
 	
 ; 0x1a4058
 
-INCBIN "baserom.gbc",$1a4058,$1a4105 - $1a4058
+UnusedMissingDaughterText: ; 0x1a4058
+; This text is neither used nor referenced in the final game.
+	db $0, "Oh, no. Oh, no…",$51
+	db "My daughter is", $4f
+	db "missing.", $51
+	db "No… She couldn't", $4f
+	db "have gone to the", $55
+	db "BURNED TOWER.", $51
+	db "I told her not to", $4f
+	db "go near it…", $51
+	db "People seem to", $4f
+	db "disappear there…", $51
+	db "Oh, what should I", $4f
+	db "do…?", $57
 
 UnknownText_0x1a4105: ; 0x1a4105
 	db $0, "ECRUTEAK used to", $4f
