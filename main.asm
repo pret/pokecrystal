@@ -59752,7 +59752,12 @@ UnknownText_0x9d56c: ; 0x9d56c
 	db "treats them well.", $57
 ; 0x9d5b0
 
-INCBIN "baserom.gbc",$9d5b0,$40
+UnknownText_0x9d5b0: ; 0x9d5b0
+	db $0, "If I take my #-", $4f
+	db "MON back, what are", $51
+	db "you going to use", $4f
+	db "in battle?", $57
+; 0x9d5f0
 
 ManiasHouse_MapEventHeader: ; 0x9d5f0
 	; filler
@@ -60247,7 +60252,26 @@ UnknownText_0x9ddc5: ; 0x9ddc5
 	db "looking at you!", $57
 ; 0x9ddf2
 
-INCBIN "baserom.gbc",$9ddf2,$9ded7 - $9ddf2
+UnknownText_0x9ddf2: ; 0x9ddf2
+	db $0, "Don't you get the", $4f
+	db "urge to show off", $51
+	db "your #MON to", $4f
+	db "friends?", $51
+	db "I wish I could", $4f
+	db "show the #MON I", $51
+	db "raised to my pal", $4f
+	db "in VIOLET.", $57
+; 0x9de66
+
+UnknownText_0x9de66: ; 0x9de66
+	db $0, "I've been battling", $4f
+	db "my pal in VIOLET", $51
+	db "using a MOBILE", $4f
+	db "ADAPTER link.", $51
+	db "I'm down 5-7", $4f
+	db "against him. I've", $55
+	db "gotta crank it up!", $57
+; 0x9ded7
 
 UnknownText_0x9ded7: ; 0x9ded7
 	db $0, "I love showing off", $4f
@@ -60877,7 +60901,47 @@ UnknownText_0x9e60a: ; 0x9e60a
 	db "your BATTLE ROOM.", $57
 ; 0x9e62f
 
-INCBIN "baserom.gbc",$9e62f,$9e886 - $9e62f
+UnknownText_0x9e62f: ; 0x9e62f
+	db $0, "BATTLE TOWER is a", $4f
+	db "facility made for", $55
+	db "#MON battles.", $51
+	db "Countless #MON", $4f
+	db "trainers gather", $51
+	db "from all over to", $4f
+	db "hold battles in", $51
+	db "specially designed", $4f
+	db "BATTLE ROOMS.", $51
+	db "There are many", $4f
+	db "BATTLE ROOMS in", $55
+	db "the BATTLE TOWER.", $51
+	db "Each ROOM holds", $4f
+	db "seven trainers.", $51
+	db "If you defeat the", $4f
+	db "seven in a ROOM,", $51
+	db "and you have a", $4f
+	db "good record, you", $51
+	db "could become the", $4f
+	db "ROOM's LEADER.", $51
+	db "All LEADERS will", $4f
+	db "be recorded in the", $51
+	db "HONOR ROLL for", $4f
+	db "posterity.", $51
+	db "You may challenge", $4f
+	db "in up to five", $51
+	db "BATTLE ROOMS each", $4f
+	db "day.", $51
+	db "However, you may", $4f
+	db "battle only once a", $51
+	db "day in any given", $4f
+	db "ROOM.", $51
+	db "To interrupt a", $4f
+	db "session, you must", $51
+	db "SAVE. If not, you", $4f
+	db "won't be able to", $51
+	db "resume your ROOM", $4f
+	db "challenge.", $51
+	db $57
+; 0x9e886
 
 UnknownText_0x9e886: ; 0x9e886
 	db $0, "BATTLE TOWER is a", $4f
