@@ -28038,8 +28038,6 @@ IlexForest_MapEventHeader: ; 0x6f5e7
 	person_event $54, 5, 31, $1, $0, 255, 255, $1, 0, ItemFragment_0x6ee16, $07bb
 ; 0x6f6a4
 
-INCBIN "baserom.gbc",$6f6a4,$95c
-
 SECTION "bank1C",DATA,BANK[$1C]
 
 LakeofRage_MapScriptHeader: ; 0x70000
