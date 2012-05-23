@@ -70452,8 +70452,6 @@ Route5CleanseTagSpeechHouse_MapEventHeader: ; 0x18b744
 	person_event $29, 7, 9, $8, $0, 255, 255, $80, 0, UnknownScript_0x18b64f, $ffff
 ; 0x18b778
 
-INCBIN "baserom.gbc",$18b778,$888
-
 SECTION "bank63",DATA,BANK[$63]
 
 PewterCity_MapScriptHeader: ; 0x18c000
