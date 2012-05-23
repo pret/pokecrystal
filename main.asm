@@ -84748,8 +84748,6 @@ OaksLab_MapEventHeader: ; 0x19ba33
 	person_event $3c, 8, 5, $2, $11, 255, 255, $90, 0, UnknownScript_0x19b415, $ffff
 ; 0x19bac7
 
-INCBIN "baserom.gbc",$19bac7,$539
-
 SECTION "bank67",DATA,BANK[$67]
 
 CherrygroveCity_MapScriptHeader: ; 0x19c000
