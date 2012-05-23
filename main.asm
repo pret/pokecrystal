@@ -81448,8 +81448,6 @@ Route31VioletGate_MapEventHeader: ; 0x19768c
 	person_event $24, 6, 5, $3, $0, 255, 255, $90, 0, UnknownScript_0x197637, $ffff
 ; 0x1976c0
 
-INCBIN "baserom.gbc",$1976c0,$940
-
 SECTION "bank66",DATA,BANK[$66]
 
 AzaleaTown_MapScriptHeader: ; 0x198000
