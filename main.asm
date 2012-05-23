@@ -74175,7 +74175,12 @@ UnknownText_0x1910d4: ; 0x1910d4
 	db "in VIOLET CITY.", $57
 ; 0x191105
 
-INCBIN "baserom.gbc",$191105,$191133 - $191105
+; possibly unused
+UnknownText_0x191105: ; 0x191105
+	db $0, "The fishermen", $4f
+	db "yelled at me for", $55
+	db "bugging them…", $57
+; 0x191133
 
 UnknownText_0x191133: ; 0x191133
 	db $0, "WROOOOAR!", $4f
@@ -76285,7 +76290,10 @@ UnknownText_0x192d7e: ; 0x192d7e
 	db "mobile phone?", $57
 ; 0x192dc2
 
-INCBIN "baserom.gbc",$192dc2,$192de0 - $192dc2
+UnknownText_0x192dc2: ; 0x192dc2
+	db $0, "This way to the", $4f
+	db "MOBILE ROOM.", $57
+; 0x192de0
 
 UnknownText_0x192de0: ; 0x192de0
 	db $0, "Welcome to CABLE", $4f
@@ -76344,7 +76352,15 @@ UnknownText_0x192fd1: ; 0x192fd1
 	db $0, "Please come again.", $58
 ; 0x192fe5
 
-INCBIN "baserom.gbc",$192fe5,$44
+UnknownText_0x192fe5: ; 0x192fe5
+	db $0, "Please come in.", $58
+; 0x192ff6
+
+UnknownText_0x192ff6: ; 0x192ff6
+	db $0, "We'll put you in", $4f
+	db "the link room for", $55
+	db "the time being.", $57
+; 0x193029
 
 UnknownText_0x193029: ; 0x193029
 	db $0, "You can't link to", $4f
@@ -76360,7 +76376,9 @@ UnknownText_0x19306b: ; 0x19306b
 	db $0, "Please come in.", $57
 ; 0x19307c
 
-INCBIN "baserom.gbc",$19307c,$19308b - $19307c
+UnknownText_0x19307c: ; 0x19307c
+	db $0, "Please enter.", $58
+; 0x19308b
 
 UnknownText_0x19308b: ; 0x19308b
 	db $0, "Sorry--@"
