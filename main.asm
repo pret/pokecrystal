@@ -93515,7 +93515,6 @@ UnknownScript_0x1a6216: ; 0x1a6216
 MapRoute40SignpostItem1: ; 0x1a6219
 	dw $00ab
 	db HYPER_POTION
-	
 ; 0x1a621c
 
 INCBIN "baserom.gbc",$1a621c,$1a622f - $1a621c
