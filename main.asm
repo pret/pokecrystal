@@ -8996,7 +8996,10 @@ UnknownScript_0x5477b: ; 0x5477b
 	end
 ; 0x54781
 
-INCBIN "baserom.gbc",$54781,$03
+; possibly unused
+UnknownScript_0x54781: ; 0x54781
+	jumptext UnknownText_0x548c0
+; 0x54784
 
 MapGoldenrodBikeShopSignpost8Script: ; 0x54784
 	jumptext UnknownText_0x548ed
@@ -9778,7 +9781,17 @@ UnknownScript_0x553c5: ; 0x553c5
 	end
 ; 0x553cb
 
-INCBIN "baserom.gbc",$553cb,$553d4 - $553cb
+UnknownScript_0x553cb: ; 0x553cb
+	jumpstd $0002
+; 0x553ce
+
+UnknownScript_0x553ce: ; 0x553ce
+	jumpstd $0003
+; 0x553d1
+
+UnknownScript_0x553d1: ; 0x553d1
+	jumpstd $000c
+; 0x553d4
 
 UnknownText_0x553d4: ; 0x553d4
 	db $0, "Have you seen that", $4f
@@ -12040,7 +12053,10 @@ UnknownText_0x58612: ; 0x58612
 	db "on the walls…", $57
 ; 0x58633
 
-INCBIN "baserom.gbc",$58633,$58644 - $58633
+; possibly unused
+UnknownText_0x58633: ; 0x58633
+	db $0, "It's UNOWN text!", $57
+; 0x58644
 
 UnknownText_0x58644: ; 0x58644
 	db $0, "Patterns appeared", $4f
@@ -12119,7 +12135,9 @@ UnknownScript_0x58732: ; 0x58732
 	priorityjump UnknownScript_0x58751
 ; 0x58735
 
-INCBIN "baserom.gbc",$58735,$58736 - $58735
+UnknownScript_0x58735: ; 0x58735
+	end
+; 0x58736
 
 UnknownScript_0x58736: ; 0x58736
 	end
@@ -12307,14 +12325,30 @@ UnknownText_0x589b8: ; 0x589b8
 	db "this wall here…", $57
 ; 0x58a03
 
-INCBIN "baserom.gbc",$58a03,$58aa7 - $58a03
+; possibly unused
+UnknownText_0x58a03: ; 0x58a03
+	db $0, "The patterns on", $4f
+	db "the wall appear to", $55
+	db "be words!", $51
+	db "And those sliding", $4f
+	db "stone panels seem", $51
+	db "to be signals of", $4f
+	db "some kind.", $51
+	db "I think they make", $4f
+	db "#MON appear,", $51
+	db "but it's not clear", $4f
+	db "yet…", $57
+; 0x58aa7
 
 UnknownText_0x58aa7: ; 0x58aa7
 	db $0, "Patterns appeared", $4f
 	db "on the walls…", $57
 ; 0x58ac8
 
-INCBIN "baserom.gbc",$58ac8,$11
+; possibly unused
+UnknownText_0x58ac8: ; 0x58ac8
+	db $0, "It's UNOWN text!", $57
+; 0x58ad9
 
 UnknownText_0x58ad9: ; 0x58ad9
 	db $0, "Patterns appeared", $4f
@@ -12506,7 +12540,10 @@ UnknownText_0x58c8e: ; 0x58c8e
 	db "on the walls…", $57
 ; 0x58caf
 
-INCBIN "baserom.gbc",$58caf,$11
+; possibly unused.. this again?
+UnknownText_0x58caf: ; 0x58caf
+	db $0, "It's UNOWN text!", $57
+; 0x58cc0
 
 UnknownText_0x58cc0: ; 0x58cc0
 	db $0, "Patterns appeared", $4f
@@ -12695,7 +12732,10 @@ UnknownText_0x58e4f: ; 0x58e4f
 	db "on the walls…", $57
 ; 0x58e70
 
-INCBIN "baserom.gbc",$58e70,$58e81 - $58e70
+; possibly unused.. again?
+UnknownText_0x58e70: ; 0x58e70
+	db $0, "It's UNOWN text!", $57
+; 0x58e81
 
 UnknownText_0x58e81: ; 0x58e81
 	db $0, "Patterns appeared", $4f
@@ -12768,7 +12808,9 @@ UnknownScript_0x58f6a: ; 0x58f6a
 	priorityjump UnknownScript_0x58f6e
 ; 0x58f6d
 
-INCBIN "baserom.gbc",$58f6d,$58f6e - $58f6d
+UnknownScript_0x58f6d: ; 0x58f6d
+	end
+; 0x58f6e
 
 UnknownScript_0x58f6e: ; 0x58f6e
 	loadfont
@@ -13075,7 +13117,9 @@ UnknownScript_0x59260: ; 0x59260
 	end
 ; 0x59269
 
-INCBIN "baserom.gbc",$59269,$5926c - $59269
+UnknownScript_0x59269: ; 0x59269
+	jumptext UnknownText_0x59848
+; 0x5926c
 
 MapRuinsofAlphResearchCenterSignpost0Script: ; 0x5926c
 	jumptext UnknownText_0x59886
@@ -13197,7 +13241,29 @@ UnknownText_0x595cb: ; 0x595cb
 	db "kinds of them…", $57
 ; 0x59669
 
-INCBIN "baserom.gbc",$59669,$59769 - $59669
+; possibly unused
+UnknownText_0x59669: ; 0x59669
+	db $0, "We think something", $4f
+	db "caused the cryptic", $51
+	db "patterns to appear", $4f
+	db "in the RUINS.", $51
+	db "We've focused our", $4f
+	db "studies on that.", $57
+; 0x596d3
+
+; possibly unused
+UnknownText_0x596d3: ; 0x596d3
+	db $0, "According to my", $4f
+	db "research…", $51
+	db "Those mysterious", $4f
+	db "patterns appeared", $51
+	db "when the #COM", $4f
+	db "CENTER was built.", $51
+	db "It must mean that", $4f
+	db "radio waves have", $51
+	db "some sort of a", $4f
+	db "link…", $57
+; 0x59769
 
 UnknownText_0x59769: ; 0x59769
 	db $0, "Why did those", $4f
@@ -13231,7 +13297,13 @@ UnknownText_0x5982d: ; 0x5982d
 	db "printed out.", $57
 ; 0x59848
 
-INCBIN "baserom.gbc",$59848,$59886 - $59848
+; possibly unused
+UnknownText_0x59848: ; 0x59848
+	db $0, "It's a photo of", $4f
+	db "the RESEARCH", $51
+	db "CENTER'S founder,", $4f
+	db "PROF.SILKTREE.", $57
+; 0x59886
 
 UnknownText_0x59886: ; 0x59886
 	db $0, "There are many", $4f
@@ -13791,7 +13863,9 @@ ItemFragment_0x59c06: ; 0x59c06
 	db AWAKENING, 1
 ; 0x59c08
 
-INCBIN "baserom.gbc",$59c08,$03
+UnknownScript_0x59c08: ; 0x59c08
+	jumptext UnknownText_0x59f29
+; 0x59c0b
 
 TrainerHikerRussellWhenSeenText: ; 0x59c0b
 	db $0, "You're headed to", $4f
@@ -13892,7 +13966,9 @@ UnknownText_0x59efc: ; 0x59efc
 	db "up this cave.", $57
 ; 0x59f29
 
-INCBIN "baserom.gbc",$59f29,$0c
+UnknownText_0x59f29: ; 0x59f29
+	db $0, "UNION CAVE", $57
+; 0x59f35
 
 UnionCave1F_MapEventHeader: ; 0x59f35
 	; filler
@@ -15121,7 +15197,13 @@ TrainerSailorHuey1WhenBeatenText: ; 0x5b0b0
 	db "I lose!", $57
 ; 0x5b0be
 
-INCBIN "baserom.gbc",$5b0be,$3a
+; possibly unused
+UnknownText_0x5b0be: ; 0x5b0be
+	db $0, "What power!", $4f
+	db "How would you like", $51
+	db "to sail the seas", $4f
+	db "with me?", $57
+; 0x5b0f8
 
 TrainerGentlemanAlfredWhenSeenText: ; 0x5b0f8
 	db $0, "Hm? This is no", $4f
@@ -16888,7 +16970,9 @@ RadioTower2F_MapScriptHeader: ; 0x5d6fb
 	db 0
 ; 0x5d6fd
 
-INCBIN "baserom.gbc",$5d6fd,$01
+UnknownScript_0x5d6fd: ; 0x5d6fd
+	end
+; 0x5d6fe
 
 UnknownScript_0x5d6fe: ; 0x5d6fe
 	jumptextfaceplayer UnknownText_0x5d924
@@ -19117,7 +19201,9 @@ UnknownScript_0x60c25: ; 0x60c25
 	end
 ; 0x60c39
 
-INCBIN "baserom.gbc",$60c39,$60c3a - $60c39
+UnknownScript_0x60c39: ; 0x60c39
+	end
+; 0x60c3a
 
 UnknownScript_0x60c3a: ; 0x60c3a
 	faceplayer
@@ -19453,7 +19539,441 @@ MovementData_0x6106c: ; 0x6106c
 	step_end
 ; 0x61072
 
-INCBIN "baserom.gbc",$61072,$1093
+; unused
+UnknownText_0x61072: ; 0x61072
+	db $0, "Hello! Welcome to", $4f
+	db "#COM CENTER", $55
+	db "TRADE CORNER.", $51
+	db "You can trade", $4f
+	db "#MON with other", $55
+	db "people far away.", $57
+; 0x610ce
+
+UnknownText_0x610ce: ; 0x610ce
+	db $0, "To make a trade,", $4f
+	db "we must hold your", $55
+	db "#MON.", $51
+	db "Would you like to", $4f
+	db "trade?", $57
+; 0x61111
+
+UnknownText_0x61111: ; 0x61111
+	db $0, "What kind of", $4f
+	db "#MON do you", $55
+	db "want in return?", $57
+; 0x6113b
+
+UnknownText_0x6113b: ; 0x6113b
+	db $0, "Fine. We will try", $4f
+	db "to trade your", $51
+	db "@"
+	text_from_ram $d099
+	db $0, " for", $4f
+	db "@"
+	text_from_ram $d0ac
+	db $0, ".", $51
+	db "We'll have to hold", $4f
+	db "your #MON", $55
+	db "during the trade.", $51
+	db "Please wait while", $4f
+	db "we prepare the", $55
+	db "room for it.", $57
+; 0x611c9
+
+UnknownText_0x611c9: ; 0x611c9
+	db $0, "Fine. We will try", $4f
+	db "to trade your", $51
+	db "@"
+	text_from_ram $d099
+	db $0, " for a", $4f
+	db "#MON that you", $55
+	db "have never seen.", $51
+	db "We'll have to hold", $4f
+	db "your #MON", $55
+	db "during the trade.", $51
+	db "Please wait while", $4f
+	db "we prepare the", $55
+	db "room for it.", $57
+; 0x61271
+
+UnknownText_0x61271: ; 0x61271
+	db $0, "Your trade #MON", $4f
+	db "has been received.", $51
+	db "It will take time", $4f
+	db "to find a trade", $51
+	db "partner. Please", $4f
+	db "come back later.", $57
+; 0x612d8
+
+UnknownText_0x612d8: ; 0x612d8
+	db $0, "Oh? You have only", $4f
+	db "one #MON in", $55
+	db "your party. ", $51
+	db "Please come back", $4f
+	db "once you've in-", $55
+	db "creased the size", $55
+	db "of your party.", $57
+; 0x61344
+
+UnknownText_0x61344: ; 0x61344
+	db $0, "We hope to see you", $4f
+	db "again.", $57
+; 0x6135f
+
+UnknownText_0x6135f: ; 0x6135f
+	db $0, "Communication", $4f
+	db "error…", $57
+; 0x61375
+
+UnknownText_0x61375: ; 0x61375
+	db $0, "If we accept that", $4f
+	db "#MON, what will", $55
+	db "you battle with?", $57
+; 0x613a9
+
+UnknownText_0x613a9: ; 0x613a9
+	db $0, "Sorry. We can't", $4f
+	db "accept an EGG.", $57
+; 0x613c8
+
+UnknownText_0x613c8: ; 0x613c8
+	db $0, "Sorry, but your", $4f
+	db "#MON appears to", $51
+	db "be abnormal. We", $4f
+	db "can't accept it.", $57
+; 0x61409
+
+UnknownText_0x61409: ; 0x61409
+	db $0, "Oh? Aren't we", $4f
+	db "already holding a", $55
+	db "#MON of yours?", $57
+; 0x61438
+
+UnknownText_0x61438: ; 0x61438
+	db $0, "We'll check the", $4f
+	db "rooms.", $51
+	db "Please wait.", $57
+; 0x6145c
+
+UnknownText_0x6145c: ; 0x6145c
+	db $0, "Thank you for your", $4f
+	db "patience.", $51
+	db "A trade partner", $4f
+	db "has been found.", $57
+; 0x6149a
+
+UnknownText_0x6149a: ; 0x6149a
+	db $0, "It's your new", $4f
+	db "partner.", $51
+	db "Please take care", $4f
+	db "of it with love.", $51
+	db "We hope to see you", $4f
+	db "again.", $57
+; 0x614ed
+
+UnknownText_0x614ed: ; 0x614ed
+	db $0, "Uh-oh. Your party", $4f
+	db "is already full.", $51
+	db "Please come back", $4f
+	db "when you have room", $55
+	db "in your party.", $57
+; 0x61544
+
+UnknownText_0x61544: ; 0x61544
+	db $0, "It's unfortunate,", $4f
+	db "but no one has", $51
+	db "come forward as a", $4f
+	db "trade partner.", $51
+	db "Would you like", $4f
+	db "your #MON back?", $57
+; 0x615a5
+
+UnknownText_0x615a5: ; 0x615a5
+	db $0, "We have returned", $4f
+	db "your #MON.", $57
+; 0x615c2
+
+UnknownText_0x615c2: ; 0x615c2
+	db $0, "It's unfortunate,", $4f
+	db "but no one has", $51
+	db "come forward as a", $4f
+	db "trade partner.", $51
+	db "We've held your", $4f
+	db "#MON for a long", $51
+	db "time. As a result,", $4f
+	db "it is very lonely.", $51
+	db "Sorry, but we must", $4f
+	db "return it to you.", $57
+; 0x6166e
+
+UnknownText_0x6166e: ; 0x6166e
+	db $0, "We hope to see you", $4f
+	db "again.", $57
+; 0x61689
+
+UnknownText_0x61689: ; 0x61689
+	db $0, "Fine. We will", $4f
+	db "continue to hold", $55
+	db "your #MON.", $57
+; 0x616b4
+
+UnknownText_0x616b4: ; 0x616b4
+	db $0, "Oh? You left your", $4f
+	db "#MON with us", $55
+	db "only recently.", $51
+	db "Please come back", $4f
+	db "later.", $57
+; 0x616fb
+
+UnknownText_0x616fb: ; 0x616fb
+	db $0, "We'll SAVE before", $4f
+	db "connecting to the", $55
+	db "CENTER.", $57
+; 0x61727
+
+UnknownText_0x61727: ; 0x61727
+	db $0, "Which #MON do", $4f
+	db "you want to trade?", $57
+; 0x61749
+
+UnknownText_0x61749: ; 0x61749
+	db $0, "Sorry, but we must", $4f
+	db "cancel the trade.", $57
+; 0x6176f
+
+UnknownText_0x6176f: ; 0x6176f
+	db $0, "Oh!", $51
+	db "I see you have an", $4f
+	db "EGG TICKET!", $51
+	db "It's a coupon that", $4f
+	db "special people can", $51
+	db "redeem for a", $4f
+	db "special #MON!", $57
+; 0x617d2
+
+UnknownText_0x617d2: ; 0x617d2
+	db $0, "Let me give you a", $4f
+	db "quick briefing.", $51
+	db "Trades held at the", $4f
+	db "TRADE CORNER are", $51
+	db "between two", $4f
+	db "trainers who don't", $51
+	db "know each other's", $4f
+	db "identity.", $51
+	db "As a result, it", $4f
+	db "may take time.", $51
+	db "However, an ODD", $4f
+	db "EGG is available", $55
+	db "just for you.", $51
+	db "It will be sent to", $4f
+	db "you right away.", $51
+	db "Please choose one", $4f
+	db "of the rooms in", $51
+	db "the CENTER.", $4f
+	db "An ODD EGG will be", $51
+	db "sent from the", $4f
+	db "chosen room.", $57
+; 0x6191f
+
+UnknownText_0x6191f: ; 0x6191f
+	db $0, "Please wait a", $4f
+	db "moment.", $57
+; 0x61936
+
+UnknownText_0x61936: ; 0x61936
+	db $0, "Thank you for", $4f
+	db "waiting.", $51
+	db "We received your", $4f
+	db "ODD EGG.", $51
+	db "Here it is!", $51
+	db "Please raise it", $4f
+	db "with loving care.", $57
+; 0x61996
+
+UnknownText_0x61996: ; 0x61996
+	db $0, "I'm awfully sorry.", $51
+	db "The EGG TICKET", $4f
+	db "exchange service", $55
+	db "isn't running now.", $57
+; 0x619db
+
+UnknownText_0x619db: ; 0x619db
+	db $0, "It's a #MON", $4f
+	db "NEWS MACHINE.", $57
+; 0x619f5
+
+UnknownText_0x619f5: ; 0x619f5
+	db $0, "What would you", $4f
+	db "like to do?", $57
+; 0x61a11
+
+UnknownText_0x61a11: ; 0x61a11
+	db $0, "#MON NEWS is", $4f
+	db "news compiled from", $51
+	db "the SAVE files of", $4f
+	db "#MON trainers.", $51
+	db "When reading the", $4f
+	db "NEWS, your SAVE", $51
+	db "file may be sent", $4f
+	db "out.", $51
+	db "The SAVE file data", $4f
+	db "will contain your", $51
+	db "adventure log and", $4f
+	db "mobile profile.", $51
+	db "Your phone number", $4f
+	db "will not be sent.", $51
+	db "The contents of", $4f
+	db "the NEWS will vary", $51
+	db "depending on the", $4f
+	db "SAVE files sent by", $51
+	db "you and the other", $4f
+	db "#MON trainers.", $51
+	db "You might even be", $4f
+	db "in the NEWS!", $57
+; 0x61b7c
+
+UnknownText_0x61b7c: ; 0x61b7c
+	db $0, "Would you like to", $4f
+	db "get the NEWS?", $57
+; 0x61b9d
+
+UnknownText_0x61b9d: ; 0x61b9d
+	db $0, "Reading the latest", $4f
+	db "NEWS… Please wait.", $57
+; 0x61bc4
+
+UnknownText_0x61bc4: ; 0x61bc4
+	db $0, "There is no old", $4f
+	db "NEWS…", $57
+; 0x61bdb
+
+UnknownText_0x61bdb: ; 0x61bdb
+	db $0, "The NEWS data is", $4f
+	db "corrupted.", $51
+	db "Please download", $4f
+	db "the NEWS again.", $57
+; 0x61c18
+
+UnknownText_0x61c18: ; 0x61c18
+	db $0, "We're making", $4f
+	db "preparations.", $51
+	db "Please come back", $4f
+	db "later.", $57
+; 0x61c4b
+
+UnknownText_0x61c4b: ; 0x61c4b
+	db $0, "We will SAVE your", $4f
+	db "progress before", $51
+	db "starting the NEWS", $4f
+	db "MACHINE.", $57
+; 0x61c89
+
+UnknownText_0x61c89: ; 0x61c89
+	db $0, "Whoa, this #MON", $4f
+	db "CENTER is huge.", $51
+	db "They just built", $4f
+	db "this place. They", $51
+	db "installed lots of", $4f
+	db "new machines too.", $57
+; 0x61cef
+
+UnknownText_0x61cef: ; 0x61cef
+	db $0, "I thought up a fun", $4f
+	db "new thing for the", $55
+	db "TRADE CORNER!", $51
+	db "I make a PIDGEY", $4f
+	db "hold MAIL, then", $51
+	db "put it up for", $4f
+	db "trade for another", $55
+	db "one!", $51
+	db "If everyone did", $4f
+	db "that, MAIL could", $51
+	db "be traded with all", $4f
+	db "sorts of people!", $51
+	db "I call it PIDGEY", $4f
+	db "MAIL!", $51
+	db "If it becomes", $4f
+	db "popular, I might", $51
+	db "make lots of new", $4f
+	db "friends!", $57
+; 0x61dfd
+
+UnknownText_0x61dfd: ; 0x61dfd
+	db $0, "They said you can", $4f
+	db "trade #MON with", $51
+	db "total strangers up", $4f
+	db "here.", $51
+	db "But they're still", $4f
+	db "adjusting things.", $57
+; 0x61e5c
+
+UnknownText_0x61e5c: ; 0x61e5c
+	db $0, "Some girl I don't", $4f
+	db "know sent me her", $51
+	db "HOPPIP.", $4f
+	db "You should trade", $51
+	db "for a #MON that", $4f
+	db "you want.", $57
+; 0x61eb2
+
+UnknownText_0x61eb2: ; 0x61eb2
+	db $0, "I received a", $4f
+	db "female HOPPIP, but", $55
+	db "its named STANLEY!", $51
+	db "That's my dad's", $4f
+	db "name!", $57
+; 0x61efa
+
+UnknownText_0x61efa: ; 0x61efa
+	db $0, "What is the NEWS", $4f
+	db "MACHINE?", $51
+	db "Does it get news", $4f
+	db "from a wider area", $55
+	db "than the radio?", $57
+; 0x61f48
+
+UnknownText_0x61f48: ; 0x61f48
+	db $0, "The #COM CENTER", $4f
+	db "will link with all", $51
+	db "#MON CENTERS in", $4f
+	db "a wireless net.", $51
+	db "That must mean", $4f
+	db "I'll be able to", $51
+	db "link with all", $4f
+	db "sorts of people.", $57
+; 0x61fc9
+
+UnknownText_0x61fc9: ; 0x61fc9
+	db $0, "The machines here", $4f
+	db "can't be used yet.", $51
+	db "Still, it's nice", $4f
+	db "coming to a trendy", $51
+	db "place before other", $4f
+	db "people.", $57
+; 0x6202c
+
+UnknownText_0x6202c: ; 0x6202c
+	db $0, "My friend was in", $4f
+	db "the NEWS a while", $51
+	db "back. I was really", $4f
+	db "surprised!", $57
+; 0x6206d
+
+UnknownText_0x6206d: ; 0x6206d
+	db $0, "I get anxious if I", $4f
+	db "don't check out", $55
+	db "the latest NEWS!", $57
+; 0x620a1
+
+UnknownText_0x620a1: ; 0x620a1
+	db $0, "If I get in the", $4f
+	db "NEWS and become", $51
+	db "famous, I bet I'll", $4f
+	db "be adored.", $51
+	db "I wonder how I", $4f
+	db "could get in the", $55
+	db "NEWS?", $57
+; 0x62105
 
 UnknownText_0x62105: ; 0x62105
 	db $0, "The COLOSSEUM", $4f
