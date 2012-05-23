@@ -23927,8 +23927,6 @@ Route36NationalParkgate_MapEventHeader: ; 0x6b9ac
 	person_event $43, 6, 7, $6, $0, 255, 255, $a0, 0, UnknownScript_0x6acf4, $0748
 ; 0x6ba67
 
-INCBIN "baserom.gbc",$6ba67,$599
-
 SECTION "bank1B",DATA,BANK[$1B]
 
 Route8_MapScriptHeader: ; 0x6c000
