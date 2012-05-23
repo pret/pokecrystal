@@ -2319,6 +2319,7 @@ class MainText(TextCommand):
     "Write text. Structure: [00][Text][0x50 (ends code)]"
     id = 0x0
     macro_name = "do_text"
+    use_zero = True
 
     def parse(self):
         offset = self.address
@@ -2351,7 +2352,10 @@ class MainText(TextCommand):
         if self.size < 2 or len(self.bytes) < 1:
             raise Exception, "$0 text command can't end itself with no follow-on bytes"
 
-        output = "db $0"
+        if use_zero:
+            output = "db $0"
+        else:
+            output += "db "
 
         # db $0, $57 or db $0, $50 or w/e
         if self.size == 2 and len(self.bytes) == 1:
@@ -2502,6 +2506,9 @@ class MainText(TextCommand):
             output = output[:-1]
 
         return output
+
+class PokedexText(MainText):
+    use_zero = False
 
 class WriteTextFromRAM(TextCommand):
     """
