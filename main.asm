@@ -99414,8 +99414,6 @@ SeafoamGym_MapEventHeader: ; 0x1ab865
 	person_event $48, 9, 10, $7, $0, 255, 255, $90, 0, UnknownScript_0x1ab531, $0777
 ; 0x1ab88a
 
-INCBIN "baserom.gbc",$1ab88a,$776
-
 SECTION "bank6B",DATA,BANK[$6B]
 
 Route33_MapScriptHeader: ; 0x1ac000
