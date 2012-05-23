@@ -35727,8 +35727,6 @@ TinTowerRoof_MapEventHeader: ; 0x7726a
 	person_event $a2, 9, 13, $16, $0, 255, 255, $80, 0, UnknownScript_0x77244, $073c
 ; 0x77282
 
-INCBIN "baserom.gbc",$77282,$d7e
-
 SECTION "bank1E",DATA,BANK[$1E]
 
 Route34_MapScriptHeader: ; 0x78000
