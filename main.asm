@@ -63049,8 +63049,6 @@ GoldenrodDeptStoreRoof_BlockData: ; 0xb1b22
 	INCBIN "maps/GoldenrodDeptStoreRoof.blk"
 ; 0xb1b42
 
-INCBIN "baserom.gbc",$b1b42,$24be
-
 SECTION "bank2D",DATA,BANK[$2D]
 
 INCBIN "baserom.gbc",$B4000,$4000
