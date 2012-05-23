@@ -73974,8 +73974,6 @@ AzaleaGym_MapEventHeader: ; 0x18f3cc
 	person_event $48, 17, 11, $6, $0, 255, 255, $80, 0, UnknownScript_0x18ece6, $ffff
 ; 0x18f441
 
-INCBIN "baserom.gbc",$18f441,$bbf
-
 SECTION "bank64",DATA,BANK[$64]
 
 MahoganyTown_MapScriptHeader: ; 0x190000
