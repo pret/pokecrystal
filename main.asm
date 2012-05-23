@@ -58468,8 +58468,6 @@ VictoryRoadGate_MapEventHeader: ; 0x9bb9b
 	person_event $41, 9, 16, $8, $0, 255, 255, $0, 0, UnknownScript_0x9ba24, $0750
 ; 0x9bbf8
 
-INCBIN "baserom.gbc",$9bbf8,$408
-
 SECTION "bank27",DATA,BANK[$27]
 
 OlivinePokeCenter1F_MapScriptHeader: ; 0x9c000
