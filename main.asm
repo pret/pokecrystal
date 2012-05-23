@@ -61623,7 +61623,12 @@ UnknownText_0x9f716: ; 0x9f716
 	db "win special gifts.", $57
 ; 0x9f783
 
-INCBIN "baserom.gbc",$9f783,$9f7c8 - $9f783
+UnknownText_0x9f783: ; 0x9f783
+	db $0, "I'm going to train", $4f
+	db "my #MON so I'll", $51
+	db "be all ready for", $4f
+	db "the BATTLE TOWER.", $57
+; 0x9f7c8
 
 UnknownText_0x9f7c8: ; 0x9f7c8
 	db $0, "The levels of the", $4f
@@ -61696,7 +61701,23 @@ MapBattleTowerOutsideSignpost0Script: ; 0x9f868
 	jumptext UnknownText_0x9fafc
 ; 0x9f86b
 
-INCBIN "baserom.gbc",$9f86b,$c5
+UnknownText_0x9f86b: ; 0x9f86b
+	db $0, "Wow, the BATTLE", $4f
+	db "TOWER is huge! My", $51
+	db "neck is tired from", $4f
+	db "looking up at it.", $57
+; 0x9f8b3
+
+UnknownText_0x9f8b3: ; 0x9f8b3
+	db $0, "Wow, the BATTLE", $4f
+	db "TOWER is huge!", $51
+	db "Since there are a", $4f
+	db "whole bunch of", $51
+	db "trainers inside,", $4f
+	db "there must also be", $51
+	db "a wide variety of", $4f
+	db "#MON.", $57
+; 0x9f930
 
 UnknownText_0x9f930: ; 0x9f930
 	db $0, "Wow, the BATTLE", $4f
@@ -61706,7 +61727,14 @@ UnknownText_0x9f930: ; 0x9f930
 	db "in there!", $57
 ; 0x9f97b
 
-INCBIN "baserom.gbc",$9f97b,$9f9db - $9f97b
+UnknownText_0x9f97b: ; 0x9f97b
+	db $0, "What on earth do", $4f
+	db "they do here?", $51
+	db "If the name says", $4f
+	db "anything, I guess", $51
+	db "it must be for", $4f
+	db "#MON battles.", $57
+; 0x9f9db
 
 UnknownText_0x9f9db: ; 0x9f9db
 	db $0, "You can use only", $4f
@@ -61717,7 +61745,14 @@ UnknownText_0x9f9db: ; 0x9f9db
 	db "battle…", $57
 ; 0x9fa32
 
-INCBIN "baserom.gbc",$9fa32,$5a
+UnknownText_0x9fa32: ; 0x9fa32
+	db $0, "Ehehehe…", $4f
+	db "I sneaked out of", $55
+	db "work to come here.", $51
+	db "I'm never giving", $4f
+	db "up until I become", $55
+	db "a LEADER!", $57
+; 0x9fa8c
 
 UnknownText_0x9fa8c: ; 0x9fa8c
 	db $0, "Hehehe, I snuck", $4f
@@ -61728,7 +61763,9 @@ UnknownText_0x9fa8c: ; 0x9fa8c
 	db "all. That I must!", $57
 ; 0x9faee
 
-INCBIN "baserom.gbc",$9faee,$0e
+UnknownText_0x9faee: ; 0x9faee
+	db $0, "BATTLE TOWER", $57
+; 0x9fafc
 
 UnknownText_0x9fafc: ; 0x9fafc
 	db $0, "BATTLE TOWER", $51
@@ -61736,7 +61773,14 @@ UnknownText_0x9fafc: ; 0x9fafc
 	db "Trainer Challenge!", $57
 ; 0x9fb2f
 
-INCBIN "baserom.gbc",$9fb2f,$30
+UnknownText_0x9fb2f: ; 0x9fb2f
+	db $0, "The BATTLE TOWER's", $4f
+	db "doors are closed…", $57
+; 0x9fb54
+
+UnknownText_0x9fb54: ; 0x9fb54
+	db $0, "It's open!", $57
+; 0x9fb5f
 
 BattleTowerOutside_MapEventHeader: ; 0x9fb5f
 	; filler
@@ -71595,7 +71639,10 @@ UnknownText_0x18ce11: ; 0x18ce11
 	db "approval.", $57
 ; 0x18ceab
 
-INCBIN "baserom.gbc",$18ceab,$1e
+UnknownText_0x18ceab: ; 0x18ceab
+	db $0, "It's a stranger we", $4f
+	db "don't know.", $57
+; 0x18cec9
 
 TrainerTwinsLeaandpia1WhenBeatenText: ; 0x18cec9
 	db $0, "Ouchies.", $57
@@ -71610,7 +71657,9 @@ TrainerTwinsLeaandpia1WhenSeenText: ; 0x18cef8
 	db $0, "Who are you?", $57
 ; 0x18cf06
 
-INCBIN "baserom.gbc",$18cf06,$18cf0f - $18cf06
+UnknownText_0x18cf06: ; 0x18cf06
+	db $0, "Meanie.", $57
+; 0x18cf0f
 
 UnknownText_0x18cf0f: ; 0x18cf0f
 	db $0, "We'll tell on you.", $51
@@ -72326,7 +72375,15 @@ UnknownText_0x18db34: ; 0x18db34
 	db "fainted.", $57
 ; 0x18db88
 
-INCBIN "baserom.gbc",$18db88,$66
+UnknownText_0x18db88: ; 0x18db88
+	db $0, "This BILL guy", $4f
+	db "created the system", $51
+	db "for storing", $4f
+	db "#MON in a PC.", $51
+	db "BILL's PC can", $4f
+	db "store up to 20", $55
+	db "#MON per BOX.", $57
+; 0x18dbee
 
 UnknownText_0x18dbee: ; 0x18dbee
 	db $0, "BILL's PC can", $4f
