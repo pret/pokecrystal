@@ -20785,8 +20785,6 @@ DayCare_MapEventHeader: ; 0x63250
 	person_event $30, 7, 9, $8, $0, 255, 255, $80, 0, UnknownScript_0x62fc3, $ffff
 ; 0x6328e
 
-INCBIN "baserom.gbc",$6328e,$d72
-
 SECTION "bank19",DATA,BANK[$19]
 
 INCBIN "baserom.gbc",$64000,$4000
