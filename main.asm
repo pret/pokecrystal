@@ -78009,8 +78009,6 @@ MobileBattleRoom_MapEventHeader: ; 0x193673
 	db 0
 ; 0x193688
 
-INCBIN "baserom.gbc",$193688,$978
-
 SECTION "bank65",DATA,BANK[$65]
 
 Route36_MapScriptHeader: ; 0x194000
