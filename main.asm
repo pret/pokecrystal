@@ -73911,7 +73911,18 @@ UnknownText_0x1907ab: ; 0x1907ab
 	db "CENTER.", $57
 ; 0x190820
 
-INCBIN "baserom.gbc",$190820,$1908b0 - $190820
+; might not be referenced anywhere
+UnknownText_0x190820: ; 0x190820
+	db $0, "Have you gone to", $4f
+	db "SPROUT TOWER?", $51
+	db "If you ever visit", $4f
+	db "VIOLET CITY, ", $51
+	db "they'll expect you", $4f
+	db "to train there.", $51
+	db "That's basic for", $4f
+	db "trainers. Go to", $55
+	db "SPROUT TOWER!", $57
+; 0x1908b0
 
 UnknownText_0x1908b0: ; 0x1908b0
 	db $0, "Have you gone to", $4f
@@ -74017,7 +74028,46 @@ UnknownText_0x190c37: ; 0x190c37
 	db "as you can, kid!", $57
 ; 0x190c9c
 
-INCBIN "baserom.gbc",$190c9c,$190dcf - $190c9c
+; --- start a segment of possibly unused texts
+
+UnknownText_0x190c9c: ; 0x190c9c
+	db $0, "I keep catching", $4f
+	db "the same #MON…", $51
+	db "Maybe a battle", $4f
+	db "will turn things", $55
+	db "around for me.", $57
+; 0x190ceb
+
+UnknownText_0x190ceb: ; 0x190ceb
+	db $0, "Nothing ever goes", $4f
+	db "right for me now…", $57
+; 0x190d10
+
+UnknownText_0x190d10: ; 0x190d10
+	db $0, "How come the guy", $4f
+	db "next to me catches", $55
+	db "good #MON?", $57
+; 0x190d40
+
+UnknownText_0x190d40: ; 0x190d40
+	db $0, "Heh, I'm on a roll", $4f
+	db "today. How about a", $55
+	db "battle, kid?", $57
+; 0x190d73
+
+UnknownText_0x190d73: ; 0x190d73
+	db $0, "Oof. I wasn't", $4f
+	db "lucky that time.", $57
+; 0x190d92
+
+UnknownText_0x190d92: ; 0x190d92
+	db $0, "You have to have a", $4f
+	db "good ROD if you", $51
+	db "want to catch good", $4f
+	db "#MON.", $57
+; 0x190dcf
+
+; --- end a segment of possibly unused texts
 
 TrainerFisherHenryWhenSeenText: ; 0x190dcf
 	db $0, "My #MON?", $4f
