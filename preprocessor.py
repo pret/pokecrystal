@@ -407,7 +407,7 @@ def macro_translator(macro, token, line):
     """ Converts a line with a macro into a rgbasm-compatible line.
     """
     assert macro.macro_name == token, "macro/token mismatch"
-    
+
     original_line = line
 
     # remove trailing newline
@@ -480,7 +480,7 @@ def macro_translator(macro, token, line):
         else:
             raise Exception, "dunno what to do with this non db/dw macro param: " + \
                              str(param_klass) + " in line: " + original_line
-    
+
     # sometimes the allowed length can vary
     if hasattr(macro, "allowed_lengths"):
         allowed_lengths = macro.allowed_lengths + [allowed_length]
@@ -504,7 +504,7 @@ def macro_translator(macro, token, line):
         byte_type   = param_klass.byte_type # db or dw
         size        = param_klass.size
         param       = params[index].strip()
-        
+
         # param_klass.to_asm() won't work here because it doesn't
         # include db/dw.
 
@@ -513,7 +513,7 @@ def macro_translator(macro, token, line):
            (byte_type == "db" and size != 1):
 
             sys.stdout.write("; " + description + "\n")
-            
+
             if   size == 3 and issubclass(param_klass, PointerLabelBeforeBank):
                 # write the bank first
                 sys.stdout.write("db " + params[index].strip() + "\n")
