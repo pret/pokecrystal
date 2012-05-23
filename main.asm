@@ -9038,7 +9038,12 @@ UnknownText_0x54898: ; 0x54898
 	db "people…", $57
 ; 0x548c0
 
-INCBIN "baserom.gbc",$548c0,$548ed - $548c0
+; possibly unused
+UnknownText_0x548c0: ; 0x548c0
+	db $0, "Just released!", $51
+	db "First-rate compact", $4f
+	db "BICYCLES!", $57
+; 0x548ed
 
 UnknownText_0x548ed: ; 0x548ed
 	db $0, "It's a shiny new", $4f
@@ -9773,7 +9778,7 @@ UnknownScript_0x553c5: ; 0x553c5
 	end
 ; 0x553cb
 
-INCBIN "baserom.gbc",$553cb,$09
+INCBIN "baserom.gbc",$553cb,$553d4 - $553cb
 
 UnknownText_0x553d4: ; 0x553d4
 	db $0, "Have you seen that", $4f
@@ -10125,7 +10130,24 @@ MapGoldenrodDeptStore2FSignpost1Script: ; 0x55b79
 	jumpstd $0014
 ; 0x55b7c
 
-INCBIN "baserom.gbc",$55b7c,$55c25 - $55b7c
+; possibly unused
+UnknownText_0x55b7c: ; 0x55b7c
+	db $0, "We intend to sell", $4f
+	db "items for #MON", $55
+	db "to hold.", $51
+	db "This is a free", $4f
+	db "gift. Have a #-", $55
+	db "MON hold it.", $57
+; 0x55bd3
+
+; possibly unused
+UnknownText_0x55bd3: ; 0x55bd3
+	db $0, "By giving #MON", $4f
+	db "items to hold, I", $51
+	db "bet trainers will", $4f
+	db "develop new battle", $55
+	db "techniques.", $57
+; 0x55c25
 
 UnknownText_0x55c25: ; 0x55c25
 	db $0, "#GEAR can store", $4f
@@ -80527,7 +80549,15 @@ UnknownScript_0x1980cb: ; 0x1980cb
 	end
 ; 0x1980da
 
-INCBIN "baserom.gbc",$1980da,$0b
+UnknownScript_0x1980da: ; 0x1980da
+	faceplayer
+	loadfont
+	2writetext UnknownText_0x1985cd
+	cry $00c3
+	closetext
+	loadmovesprites
+	end
+; 0x1980e5
 
 UnknownScript_0x1980e5: ; 0x1980e5
 	applymovement $0, MovementData_0x198148
@@ -80752,7 +80782,9 @@ UnknownText_0x1985c3: ; 0x1985c3
 	db $0, $56, " ", $56, "Yawn?", $57
 ; 0x1985cd
 
-INCBIN "baserom.gbc",$1985cd,$1985df - $1985cd
+UnknownText_0x1985cd: ; 0x1985cd
+	db $0, "WOOSTER: Gugyoo…", $57
+; 0x1985df
 
 UnknownText_0x1985df: ; 0x1985df
 	db $0, "ILEX FOREST is", $4f
@@ -81339,7 +81371,10 @@ UnknownText_0x198fee: ; 0x198fee
 	db "ENTRANCE", $57
 ; 0x199004
 
-INCBIN "baserom.gbc",$199004,$1e
+UnknownText_0x199004: ; 0x199004
+	db $0, "For Mobile Tips!", $4f
+	db "#COM CENTER", $57
+; 0x199022
 
 UnknownText_0x199022: ; 0x199022
 	db $0, "Blooming Beautiful", $4f
@@ -81800,7 +81835,10 @@ UnknownScript_0x199990: ; 0x199990
 	end
 ; 0x199996
 
-INCBIN "baserom.gbc",$199996,$06
+; TODO wtf?
+UnknownText_0x199996: ; 0x199996
+	limited_interpret_data 2
+	db $0, "ズ", $03, $00
 
 UnknownText_0x19999c: ; 0x19999c
 	db $0, "I heard that a red", $4f
@@ -82601,7 +82639,9 @@ UnknownScript_0x19a722: ; 0x19a722
 	end
 ; 0x19a728
 
-INCBIN "baserom.gbc",$19a728,$03
+UnknownScript_0x19a728: ; 0x19a728
+	jumptext UnknownText_0x19aabc
+; 0x19a72b
 
 MapLakeofRageMagikarpHouseSignpost1Script: ; 0x19a72b
 	jumpstd $0001
@@ -82693,7 +82733,15 @@ UnknownText_0x19aa79: ; 0x19aa79
 	db "Maybe next time.", $57
 ; 0x19aabc
 
-INCBIN "baserom.gbc",$19aabc,$26
+UnknownText_0x19aabc: ; 0x19aabc
+	db $0, "CURRENT RECORD", $51
+	db "@"
+	text_from_ram $d099
+	db $0, " caught by", $4f
+	db "@"
+	text_from_ram $d0ac
+	db "@@"
+; 0x19aae2
 
 LakeofRageMagikarpHouse_MapEventHeader: ; 0x19aae2
 	; filler
@@ -83034,7 +83082,10 @@ UnknownText_0x19ad9b: ; 0x19ad9b
 	db "you take it away?", $57
 ; 0x19ae1b
 
-INCBIN "baserom.gbc",$19ae1b,$12
+UnknownText_0x19ae1b: ; 0x19ae1b
+	db $0, $52, " received", $4f
+	db "TM30.", $57
+; 0x19ae2d
 
 UnknownText_0x19ae2d: ; 0x19ae2d
 	db $0, "Use this gate to", $4f
@@ -83380,7 +83431,9 @@ OaksLab_MapScriptHeader: ; 0x19b3c5
 	db 0
 ; 0x19b3c7
 
-INCBIN "baserom.gbc",$19b3c7,$19b3c8 - $19b3c7
+UnknownScript_0x19b3c7: ; 0x19b3c7
+	end
+; 0x19b3c8
 
 UnknownScript_0x19b3c8: ; 0x19b3c8
 	faceplayer
@@ -86770,7 +86823,13 @@ UnknownText_0x19e7d1: ; 0x19e7d1
 	db "to harm #MON.", $57
 ; 0x19e830
 
-INCBIN "baserom.gbc",$19e830,$19e87f - $19e830
+UnknownText_0x19e830: ; 0x19e830
+	db $0, "I'm really, really", $4f
+	db "tough!", $51
+	db "Is there anywhere", $4f
+	db "I can prove how", $55
+	db "tough I really am?", $57
+; 0x19e87f
 
 UnknownText_0x19e87f: ; 0x19e87f
 	db $0, "I'm really, really", $4f
@@ -87691,7 +87750,9 @@ UnknownText_0x19f567: ; 0x19f567
 	db "BILL'S HOUSE", $57
 ; 0x19f581
 
-INCBIN "baserom.gbc",$19f581,$0e
+UnknownText_0x19f581: ; 0x19f581
+	db $0, "BILL'S HOUSE", $57
+; 0x19f58f
 
 Route25_MapEventHeader: ; 0x19f58f
 	; filler
@@ -87849,7 +87910,9 @@ UnknownScript_0x1a00b9: ; 0x1a00b9
 	jumptextfaceplayer UnknownText_0x1a0394
 ; 0x1a00bc
 
-INCBIN "baserom.gbc",$1a00bc,$1a00bf - $1a00bc
+UnknownScript_0x1a00bc: ; 0x1a00bc
+	jumptextfaceplayer UnknownText_0x1a03cc
+; 0x1a00bf
 
 MapCianwoodCitySignpost0Script: ; 0x1a00bf
 	jumptext UnknownText_0x1a0660
@@ -87998,7 +88061,15 @@ UnknownText_0x1a0394: ; 0x1a0394
 	db "MON.", $57
 ; 0x1a03cc
 
-INCBIN "baserom.gbc",$1a03cc,$1a0433 - $1a03cc
+; possibly unused
+UnknownText_0x1a03cc: ; 0x1a03cc
+	db $0, "There are several", $4f
+	db "islands between", $55
+	db "here and OLIVINE.", $51
+	db "A mythical sea", $4f
+	db "creature supposed-", $55
+	db "ly lives there.", $57
+; 0x1a0433
 
 UnknownText_0x1a0433: ; 0x1a0433
 	db $0, "EUSINE: Yo,", $4f
@@ -89072,7 +89143,13 @@ UnknownText_0x1a12d9: ; 0x1a12d9
 	db "progress.", $57
 ; 0x1a1316
 
-INCBIN "baserom.gbc",$1a1316,$1a134c - $1a1316
+; possibly unused
+UnknownText_0x1a1316: ; 0x1a1316
+	db $0, "I'm waiting for", $4f
+	db "#MON that", $51
+	db "appear only in the", $4f
+	db "daytime.", $57
+; 0x1a134c
 
 UnknownText_0x1a134c: ; 0x1a134c
 	db $0, "I'm waiting for", $4f
@@ -92591,7 +92668,13 @@ UnknownScript_0x1a55c7: ; 0x1a55c7
 	end
 ; 0x1a55cd
 
-INCBIN "baserom.gbc",$1a55cd,$20
+UnknownScript_0x1a55cd: ; 0x1a55cd
+	reloadmapmusic
+	playrammusic
+	end
+; 0x1a55d0
+
+INCBIN "baserom.gbc",$1a55d0,$1a55ed - $1a55d0
 
 UnknownScript_0x1a55ed: ; 0x1a55ed
 	jumptextfaceplayer UnknownText_0x1a59d5
@@ -93923,12 +94006,13 @@ TrainerSwimmermMathewWhenTalkScript: ; 0x1a6901
 	end
 ; 0x1a6909
 
-INCBIN "baserom.gbc",$1a6909,$1a690c - $1a6909
+UnknownScript_0x1a6909: ; 0x1a6909
+	jumpstd $000f
+; 0x1a690c
 
 MapRoute41SignpostItem0: ; 0x1a690c
 	dw $00ac
 	db MAX_ETHER
-	
 ; 0x1a690f
 
 TrainerSwimmermCharlieWhenSeenText: ; 0x1a690f
@@ -95359,7 +95443,9 @@ UnknownText_0x1a8c99: ; 0x1a8c99
 	db "Opening Now!", $57
 ; 0x1a8cba
 
-INCBIN "baserom.gbc",$1a8cba,$1a8cce - $1a8cba
+UnknownText_0x1a8cba: ; 0x1a8cba
+	db $0, "BATTLE TOWER AHEAD", $57
+; 0x1a8cce
 
 OlivineCity_MapEventHeader: ; 0x1a8cce
 	; filler
@@ -96866,7 +96952,20 @@ UnknownText_0x1aa1bd: ; 0x1aa1bd
 	db "a sales clerk.", $57
 ; 0x1aa25b
 
-INCBIN "baserom.gbc",$1aa25b,$ab
+; possibly unused
+UnknownText_0x1aa25b: ; 0x1aa25b
+	db $0, "I love being", $4f
+	db "surrounded by tall", $55
+	db "buildings!", $51
+	db "Isn't it true that", $4f
+	db "GOLDENROD #MON", $51
+	db "CENTER was made", $4f
+	db "much, much bigger?", $51
+	db "That is so neat!", $4f
+	db "I wish we had a", $51
+	db "place like that in", $4f
+	db "KANTO…", $57
+; 0x1aa306
 
 UnknownText_0x1aa306: ; 0x1aa306
 	db $0, "Looking at the", $4f
