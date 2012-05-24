@@ -1,3 +1,5 @@
+_CRYSTAL EQU 1
+
 BULBASAUR  EQU 1
 IVYSAUR    EQU 2
 VENUSAUR   EQU 3
@@ -2155,3 +2157,20 @@ DIRK EQU $02
 ; Mysticalman
 EUSINE EQU $01
 
+
+; evolution types
+EVOLVE_LEVEL     EQU 1
+EVOLVE_ITEM      EQU 2
+EVOLVE_TRADE     EQU 3
+EVOLVE_HAPPINESS EQU 4
+EVOLVE_STAT      EQU 5
+
+; happiness evolution triggers
+TR_ANYTIME EQU 1
+TR_MORNDAY EQU 2
+TR_NITE    EQU 3
+
+; stat evolution triggers
+ATK_GT_DEF EQU 1
+ATK_LT_DEF EQU 2
+ATK_EQ_DEF EQU 3
