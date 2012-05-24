@@ -9116,7 +9116,9 @@ DiglettEvosAttacks:
 
 DugtrioEvosAttacks:
 	db 0 ; no more evolutions
+if _CRYSTAL
 	db 1,TRI_ATTACK
+endc
 	db 1,SCRATCH
 	db 1,GROWL
 	db 1,MAGNITUDE
@@ -9559,7 +9561,11 @@ MagnetonEvosAttacks:
 	db 16,SONICBOOM
 	db 21,THUNDER_WAVE
 	db 27,LOCK_ON
+if _CRYSTAL
 	db 35,TRI_ATTACK
+else
+	db 35,SWIFT
+endc
 	db 43,SCREECH
 	db 53,ZAP_CANNON
 	db 0 ; no more level-up moves
@@ -9675,7 +9681,9 @@ CloysterEvosAttacks:
 	db 1,SUPERSONIC
 	db 1,AURORA_BEAM
 	db 1,PROTECT
+if _CRYSTAL
 	db 33,SPIKES
+endc
 	db 41,SPIKE_CANNON
 	db 0 ; no more level-up moves
 
@@ -10252,7 +10260,11 @@ EeveeEvosAttacks:
 	db 16,GROWL
 	db 23,QUICK_ATTACK
 	db 30,BITE
+if _CRYSTAL
 	db 36,BATON_PASS
+else
+	db 36,FOCUS_ENERGY
+endc
 	db 42,TAKE_DOWN
 	db 0 ; no more level-up moves
 
@@ -10731,7 +10743,11 @@ SpinarakEvosAttacks:
 	db 23,LEECH_LIFE
 	db 30,FURY_SWIPES
 	db 37,SPIDER_WEB
+if _CRYSTAL
 	db 45,AGILITY
+else
+	db 45,SCREECH
+endc
 	db 53,PSYCHIC_M
 	db 0 ; no more level-up moves
 
@@ -10747,7 +10763,11 @@ AriadosEvosAttacks:
 	db 25,LEECH_LIFE
 	db 34,FURY_SWIPES
 	db 43,SPIDER_WEB
+if _CRYSTAL
 	db 53,AGILITY
+else
+	db 53,SCREECH
+endc
 	db 63,PSYCHIC_M
 	db 0 ; no more level-up moves
 
@@ -10970,7 +10990,11 @@ HoppipEvosAttacks:
 	db EVOLVE_LEVEL,18,SKIPLOOM
 	db 0 ; no more evolutions
 	db 1,SPLASH
+if _CRYSTAL
 	db 5,SYNTHESIS
+else
+	db 1,SYNTHESIS
+endc
 	db 5,TAIL_WHIP
 	db 10,TACKLE
 	db 13,POISONPOWDER
@@ -10988,7 +11012,9 @@ SkiploomEvosAttacks:
 	db 1,SYNTHESIS
 	db 1,TAIL_WHIP
 	db 1,TACKLE
+if _CRYSTAL
 	db 5,SYNTHESIS
+endc
 	db 5,TAIL_WHIP
 	db 10,TACKLE
 	db 13,POISONPOWDER
@@ -11005,7 +11031,9 @@ JumpluffEvosAttacks:
 	db 1,SYNTHESIS
 	db 1,TAIL_WHIP
 	db 1,TACKLE
+if _CRYSTAL
 	db 5,SYNTHESIS
+endc
 	db 5,TAIL_WHIP
 	db 10,TACKLE
 	db 13,POISONPOWDER
@@ -11059,7 +11087,11 @@ YanmaEvosAttacks:
 	db 19,SONICBOOM
 	db 25,DETECT
 	db 31,SUPERSONIC
+if _CRYSTAL
 	db 37,WING_ATTACK
+else
+	db 37,SWIFT
+endc
 	db 43,SCREECH
 	db 0 ; no more level-up moves
 
@@ -11271,7 +11303,9 @@ GranbullEvosAttacks:
 
 QwilfishEvosAttacks:
 	db 0 ; no more evolutions
+if _CRYSTAL
 	db 1,SPIKES
+endc
 	db 1,TACKLE
 	db 1,POISON_STING
 	db 10,HARDEN
@@ -11331,7 +11365,9 @@ SneaselEvosAttacks:
 	db 41,AGILITY
 	db 49,SLASH
 	db 57,BEAT_UP
+if _CRYSTAL
 	db 65,METAL_CLAW
+endc
 	db 0 ; no more level-up moves
 
 TeddiursaEvosAttacks:
@@ -11399,7 +11435,9 @@ SwinubEvosAttacks:
 	db 28,TAKE_DOWN
 	db 37,MIST
 	db 46,BLIZZARD
+if _CRYSTAL
 	db 55,AMNESIA
+endc
 	db 0 ; no more level-up moves
 
 PiloswineEvosAttacks:
@@ -11413,7 +11451,9 @@ PiloswineEvosAttacks:
 	db 33,FURY_ATTACK
 	db 42,MIST
 	db 56,BLIZZARD
+if _CRYSTAL
 	db 70,AMNESIA
+endc
 	db 0 ; no more level-up moves
 
 CorsolaEvosAttacks:
@@ -11706,10 +11746,17 @@ SuicuneEvosAttacks:
 	db 0 ; no more evolutions
 	db 1,BITE
 	db 1,LEER
+if _CRYSTAL
 	db 11,BUBBLEBEAM
 	db 21,RAIN_DANCE
 	db 31,GUST
 	db 41,AURORA_BEAM
+else
+	db 11,WATER_GUN
+	db 21,ROAR
+	db 31,GUST
+	db 41,BUBBLEBEAM
+endc
 	db 51,MIST
 	db 61,MIRROR_COAT
 	db 71,HYDRO_PUMP
