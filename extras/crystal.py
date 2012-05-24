@@ -5557,13 +5557,13 @@ class PokedexEntryPointerTable:
         self.parse()
 
         script_parse_table[self.address : self.last_address] = self
-    
+
     def get_dependencies(self, recompute=False, global_dependencies=set()):
         global_dependencies.update(self.entries)
         dependencies = []
         [dependencies.extend(entry.get_dependencies(recompute=recompute, global_dependencies=global_dependencies)) for entry in self.entries]
         return dependencies
-    
+
     def parse(self):
         size = 0
         lastpointer = 0
@@ -5581,8 +5581,8 @@ class PokedexEntryPointerTable:
             #if pointer < lastpointer:
             #    self.target_bank += 1
             #    pointer += 0x4000
-            self.entries.append(PokedexEntry(pointer, i+1))          
-            
+            self.entries.append(PokedexEntry(pointer, i+1))
+
             size += 2
         self.size = size
         self.last_address = self.address + self.size
@@ -5605,7 +5605,7 @@ class PokedexEntry:
         self.label = Label(name=pokename+"PokedexEntry", address=self.address, object=self)
         self.parse()
         script_parse_table[address : self.last_address] = self
-        
+
     def get_dependencies(self, recompute=False, global_dependencies=set()):
         return []
 
@@ -5615,17 +5615,17 @@ class PokedexEntry:
         jump = how_many_until(chr(0x50), address)
         self.species = parse_text_at(address, jump+1)
         address = address + jump + 1
-        
+
         self.weight = ord(rom[address  ]) + (ord(rom[address+1]) << 8)
         self.height = ord(rom[address+2]) + (ord(rom[address+3]) << 8)
         address += 4
-        
+
         jump = how_many_until(chr(0x50), address)
         self.page1 = PokedexText(address)
         address = address + jump + 1
         jump = how_many_until(chr(0x50), address)
         self.page2 = PokedexText(address)
-        
+
         self.last_address = address + jump + 1 
         #print(self.to_asm())
         return True
@@ -5633,8 +5633,8 @@ class PokedexEntry:
     def to_asm(self):
         output = """\
     db "{0}" ; species name
-    dw {1}, {2} ; weight, height
-    
+    dw {1}, {2} ; height, weight
+
     {3}
     {4}""".format(self.species, self.weight, self.height, self.page1.to_asm(), self.page2.to_asm())
         return output
