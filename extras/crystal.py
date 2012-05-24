@@ -5542,6 +5542,103 @@ def parse_all_map_headers(debug=True):
             old_parsed_map = old_parse_map_header_at(map_header_offset, map_group=group_id, map_id=map_id, debug=debug)
             map_names[group_id][map_id]["header_old"] = old_parsed_map
 
+class PokedexEntryPointerTable:
+    """ A list of pointers.
+    """
+
+    def __init__(self):
+        self.address = 0x44378
+        self.target_bank = calculate_bank(0x181695)
+        self.label = Label(name="PokedexDataPointerTable", address=self.address, object=self)
+        self.size = None
+        self.last_address = None
+        self.dependencies = None
+        self.entries = []
+        self.parse()
+
+        script_parse_table[self.address : self.last_address] = self
+    
+    def get_dependencies(self, recompute=False, global_dependencies=set()):
+        global_dependencies.update(self.entries)
+        dependencies = []
+        [dependencies.extend(entry.get_dependencies(recompute=recompute, global_dependencies=global_dependencies)) for entry in self.entries]
+        return dependencies
+    
+    def parse(self):
+        size = 0
+        lastpointer = 0
+        for i in range(251):
+            # Those are consecutive in GS!
+            if i == 0x40:
+                self.target_bank = 0x6e
+            elif i == 0x80:
+                self.target_bank = 0x73
+            elif i == 0xc0:
+                self.target_bank = 0x74
+            loc = self.address+(i*2)
+            pointer = calculate_pointer_from_bytes_at(loc, bank=self.target_bank)
+            #print(hex(pointer))
+            #if pointer < lastpointer:
+            #    self.target_bank += 1
+            #    pointer += 0x4000
+            self.entries.append(PokedexEntry(pointer, i+1))          
+            
+            size += 2
+        self.size = size
+        self.last_address = self.address + self.size
+
+    def to_asm(self):
+        output = "".join([str("dw "+get_label_for(entry.address)+"\n") for entry in self.entries])
+        return output
+
+class PokedexEntry:
+    """ """
+
+    def __init__(self, address, pokemon_id):
+        self.address = address
+        self.dependencies = None
+        #label = self.make_label()
+        if pokemon_id in pokemon_constants:
+            pokename = string.capwords(pokemon_constants[pokemon_id].replace("__", " ").replace("_", " ")).replace(" ", "")
+        else:
+            pokename = "Pokemon{0}".format(pokemon_id)
+        self.label = Label(name=pokename+"PokedexEntry", address=self.address, object=self)
+        self.parse()
+        script_parse_table[address : self.last_address] = self
+        
+    def get_dependencies(self, recompute=False, global_dependencies=set()):
+        return []
+
+    def parse(self):
+        # eww.
+        address = self.address
+        jump = how_many_until(chr(0x50), address)
+        self.species = parse_text_at(address, jump+1)
+        address = address + jump + 1
+        
+        self.weight = ord(rom[address  ]) + (ord(rom[address+1]) << 8)
+        self.height = ord(rom[address+2]) + (ord(rom[address+3]) << 8)
+        address += 4
+        
+        jump = how_many_until(chr(0x50), address)
+        self.page1 = PokedexText(address)
+        address = address + jump + 1
+        jump = how_many_until(chr(0x50), address)
+        self.page2 = PokedexText(address)
+        
+        self.last_address = address + jump + 1 
+        #print(self.to_asm())
+        return True
+
+    def to_asm(self):
+        output = """\
+    db "{0}" ; species name
+    dw {1}, {2} ; weight, height
+    
+    {3}
+    {4}""".format(self.species, self.weight, self.height, self.page1.to_asm(), self.page2.to_asm())
+        return output
+
 #map names with no labels will be generated at the end of the structure
 map_names = {
     1: {
