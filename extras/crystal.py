@@ -5626,7 +5626,7 @@ class PokedexEntry:
         jump = how_many_until(chr(0x50), address)
         self.page2 = PokedexText(address)
 
-        self.last_address = address + jump + 1 
+        self.last_address = address + jump + 1
         #print(self.to_asm())
         return True
 
