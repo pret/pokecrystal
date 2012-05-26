@@ -4778,6 +4778,27 @@ def old_parse_map_header_at(address, map_group=None, map_id=None, debug=True):
     return map_header
 
 
+def get_direction(connection_byte, connection_id):
+    """ Given a connection byte and a connection id, which direction is this
+    connection?
+
+    example:
+      The 0th connection of $5 is SOUTH and the 1st connection is
+      EAST.
+    """
+    connection_options = [0b1000, 0b0100, 0b0010, 0b0001]
+    results = ["NORTH", "SOUTH", "WEST", "EAST"]
+
+    for option in connection_options:
+        if (option & connection_byte) == 0:
+            results[connection_options.index(option)] = ""
+
+    # prune results
+    while "" in results:
+        results.remove("")
+
+    return results[connection_id]
+
 class SecondMapHeader:
     base_label = "SecondMapHeader_"
 
@@ -4791,8 +4812,11 @@ class SecondMapHeader:
         self.dependencies = None
         label = self.make_label()
         self.label = Label(name=label, address=address, object=self)
+
+        # the minimum number of bytes is 12
         self.last_address = address+12
-        #i think it's always a static size?
+        self.size = 12
+
         script_parse_table[address : self.last_address] = self
         self.parse()
 
@@ -4802,6 +4826,10 @@ class SecondMapHeader:
     def parse(self):
         address = self.address
         bytes = rom_interval(address, second_map_header_byte_size, strings=False)
+        size = second_map_header_byte_size
+
+        # for later
+        self.connections = []
 
         self.border_block = HexByte(address=address)
         self.height = DecimalParam(address=address+1)
@@ -4825,36 +4853,34 @@ class SecondMapHeader:
         self.event_bank = ord(rom[address+6])
         self.event_header_address = calculate_pointer_from_bytes_at(address+9, bank=ord(rom[address+6]))
         self.event_header = MapEventHeader(self.event_header_address, map_group=self.map_group, map_id=self.map_id, debug=self.debug)
-        self.connections = DecimalParam(address=address+11)
+        self.connection_byte = DecimalParam(address=address+11)
         all_map_event_headers.append(self.event_header)
 
-        #border_block = bytes[0]
-        #height = bytes[1]
-        #width = bytes[2]
-        #blockdata_bank = bytes[3]
-        #blockdata_pointer = bytes[4] + (bytes[5] << 8)
-        #blockdata_address = calculate_pointer(blockdata_pointer, blockdata_bank)
-        #script_bank = bytes[6]
-        #script_pointer = bytes[7] + (bytes[8] << 8)
-        #script_address = calculate_pointer(script_pointer, script_bank)
-        #event_bank = script_bank
-        #event_pointer = bytes[9] + (bytes[10] << 8)
-        #event_address = calculate_pointer(event_pointer, event_bank)
-        #connections = bytes[11]
-        ####
-        #self.bordere_block = border_block
-        #self.height = height
-        #self.width = width
-        #self.blockdata_bank = blockdata_bank
-        #self.blockdata_pointer = blockdata_pointer
-        #self.blockdata_address = blockdata_address
-        #self.script_bank = script_bank
-        #self.script_pointer = script_pointer
-        #self.script_address = script_address
-        #self.event_bank = event_bank
-        #self.event_pointer = event_pointer
-        #self.event_address = event_address
-        #self.connections = connections
+        self.size = size
+
+        if self.connection_byte == 0:
+            return True
+
+        current_address = address+12
+
+        # short alias
+        cb    = self.connection_byte
+
+        # east = 1, west = 2, south = 4, north = 8 (or'd together)
+        east  = ((cb & 0x1) != 0)
+        west  = ((cb & 0x2) != 0)
+        south = ((cb & 0x4) != 0)
+        north = ((cb & 0x8) != 0)
+        directions = [east, west, south, north]
+        connection_count = directions.count(True)
+
+        for connection in range(0, connection_count):
+            direction = get_direction(self.connection_byte, connection)
+            connection = Connection(current_address, direction=direction, map_group=self.map_group, map_id=self.map_id, debug=self.debug)
+            self.connections.append(connection)
+
+            # 12 bytes each?
+            current_address += connection.size
 
         return True
 
@@ -4883,9 +4909,168 @@ class SecondMapHeader:
         output += "; map event header (bank-then-pointer)\n"
         output += "dw " + PointerLabelParam(address=self.address+9, bank=self.event_bank, map_group=self.map_group, map_id=self.map_id, debug=self.debug).to_asm() + "\n\n"
         output += "; connections\n"
-        output += "db " + self.connections.to_asm()
+        output += "db " + self.connection_byte.to_asm()
+
+        if self.connection_byte == 0:
+            return output
+        else:
+            output += "\n\n"
+
+        connections = "\n".join([connection.to_asm() for connection in self.connections])
+        output += connections
+
         return output
 
+connection = Connection(current_address, direction=direction, map_group=self.map_group, map_id=self.map_id, debug=self.debug)
+
+class Connection:
+    size = 12
+
+    def __init__(self, address, direction=None, map_group=None, map_id=None, debug=True):
+        self.address = address
+        self.direction = direction.lower()
+        self.map_group = map_group
+        self.map_id = map_id
+        self.debug = debug
+        self.last_address = address + self.size
+
+        self.parse()
+
+    def parse(self):
+        current_address = self.address
+
+        is_vertical   = ((self.direction == "north") or (self.direction == "south"))
+        is_horizontal = ((self.direction == "east") or (self.direction == "west"))
+
+        connected_map_group_id = ord(rom[current_address])
+        self.connected_map_group_id = connected_map_group_id
+        current_address += 1
+
+        connected_map_id = ord(rom[current_address])
+        self.connected_map_id = connected_map_id
+        current_address += 1
+
+        # window (use JohtoMap's calculation, not this)
+        #   up: C701h + height_of_connected_map * (width_of_connected_map + 6)
+        #   left: C706h + 2 * width_of_connected_map
+        #   down/right: C707h + width_of_connected_map
+        #
+        # 2 bytes (flipped) - X position of starting point for intermediate
+        # tiles (scrolls through connected map line-by-line. this way you can
+        # change Y position also)
+        #
+        # According to JohtoMap, the calculation for tile data pointer is:
+        #   int p = otherMap.tileDataLocation;
+        #   int h = (otherMap.width - otherMap.height)
+        #   if (h > 0)
+        #       p += (h * otherMap.height) + (otherMap.height * 3) + (otherMap.height + 3)
+        #   else
+        #       p += (otherMap.height * otherMap.width) - (otherMap.width * 3);
+        #   c.tileDataPointer = gb.Get2BytePointer(p);
+        #
+        # tauwasser calls this "connection strip pointer"
+        tile_data_pointer = ord(rom[current_address]) + (ord(rom[current_address+1]) << 8)
+        strip_pointer = tile_data_pointer
+        self.strip_pointer = tile_data_pointer
+        current_address += 2
+
+        # 10:19 <comet> memoryotherpointer is <comet> what johtomap calls OMDL (in ram where the tiles start getting pulled from the other map)
+        memory_other_pointer = ord(rom[current_address]) + (ord(rom[current_address+1]) << 8)
+        # 10:42 <comet> it would be a good idea to rename otherpointer strippointer or striploc
+        # 10:42 <comet> since thats more accurate
+        # 11:05 <comet> Above: C803h + xoffset
+        # 11:05 <comet> Below: C803h + (m.height + 3) * (m.width + 6) + xoffset
+        # 11:05 <comet> Left: C800h + (m.width + 6) * (yoffset + 3)
+        # 11:05 <comet> Right: C7FDh + (m.width + 6) * (yoffset + 4)
+        #
+        # tauwasser calls this "connection strip destination" and lin calls this "memoryOtherPointer"
+        #   Points to the upper left block of the connection strip
+        #   (The bank the Blockdata is in, is loaded out of the Mapheader of the connected Map.)
+        #   The connection strip is always 3 Blocks high resp. wide
+        #   (depending on the connection's direction)
+        strip_destination = memory_other_pointer
+        self.strip_destination = memory_other_pointer
+        current_address += 2
+
+        # length of the connection strip in blocks
+        connection_strip_length = ord(rom[current_address])
+        current_address += 1
+        connected_map_width     = ord(rom[current_address])
+        current_address += 1
+
+        self.connection_strip_length = connection_strip_length
+        self.connected_map_width     = connected_map_width
+
+        y_position_after_map_change = ord(rom[current_address])
+        current_address += 1
+
+        x_position_after_map_change = ord(rom[current_address])
+        current_address += 1
+
+        # in pokered these were called alignments? same thing?
+        self.yoffset = y_position_after_map_change
+        self.xoffset = x_position_after_map_change
+
+        # tauwasser calls this "window" and lin calls this "memoryCurrentPointer"
+        # Position of the upper left block after entering the Map
+        #
+        # tauwasser's formula for windows:
+        #   Above: C701h + Height_of_connected_map * (Width_of_connected_map + 6)
+        #   Left: C706h + 2 * Width_of_connected_map
+        #   Below/Right: C707h + Width_of_connected_map
+        window = ord(rom[current_address]) + (ord(rom[current_address+1]) << 8)
+        current_address += 2
+
+        self.window = window
+
+    def to_asm(self):
+        output = ""
+        ldirection = self.direction.lower()
+
+        connected_map_group_id = self.connected_map_group_id
+        connected_map_id       = self.connected_map_id
+        map_constant_label = get_map_constant_label(map_group=connected_map_group_id, map_id=connected_map_id)
+        if map_constant_label != None:
+            map_group_label = "GROUP_" + map_constant_label
+            map_label       = "MAP_"   + map_constant_label
+        else:
+            map_group_label = str(connected_map_group_id)
+            map_label       = str(connected_map_id)
+
+        output += "; " + self.direction.upper() + " to " \
+                  + map_names[connected_map_group_id][connected_map_id]["name"] \
+                  + "\n"
+
+        output += "db %s, %s ; connected map (group, id)\n" % (map_group_label, map_label)
+
+        # TODO
+        strip_pointer     = self.strip_pointer
+        strip_destination = self.strip_destination
+
+        connection_strip_length = str(self.connection_strip_length)
+        connected_map_width  = str(self.connected_map_width)
+        output += "db %s, %s ; (connection strip length, connected map width)\n" % \
+                  (connection_strip_length, connected_map_width)
+
+        #if ldirection in ["east", "west"]:
+        #    Y_movement_of_connection_strip_in_blocks = 
+        #elif direction in ["north", "south"]:
+        #    X_movement_of_connection_strip_in_blocks = 
+
+        # Above: (Heigt_of_connected_map * 2) - 1
+        # Below: 0
+        # Left/Right: (Y_movement_of_connection_strip_in_blocks * -2)
+        yoffset = self.yoffset # y_position_after_map_change
+
+        # Left: (Width_of_connected_map * 2) - 1
+        # Right: 0
+        # Above/Below: (X_movement_of_connection_strip_in_blocks * -2)
+        xoffset = self.xoffset # x_position_after_map_change
+
+        # TODO
+        window = self.window
+
+        return output
 
 all_second_map_headers = []
 def parse_second_map_header_at(address, map_group=None, map_id=None, debug=True):
