@@ -494,9 +494,16 @@ class TextScript:
                 if class_[1].id == cur_byte:
                     scripting_command_class = class_[1]
 
+            if self.address == 0x9c00e and self.debug:
+                if current_address > 0x9c087:
+                    print "self.commands is: " + str(commands)
+                    print "command 0 address is: " + hex(commands[0].address) + " last_address="+hex(commands[0].last_address)
+                    print "command 1 address is: " + hex(commands[1].address) + " last_address="+hex(commands[1].last_address)
+                    raise Exception, "going beyond the bounds for this text script"
+
             # no matching command found
             if scripting_command_class == None:
-                raise Exception, "unable to parse text command $%.2x in the text script at %s" % (cur_byte, hex(start_address))
+                raise Exception, "unable to parse text command $%.2x in the text script at %s at %s" % (cur_byte, hex(start_address), hex(current_address))
 
             # create an instance of the command class and let it parse its parameter bytes
             cls = scripting_command_class(address=current_address, map_group=self.map_group, map_id=self.map_id, debug=self.debug, force=self.force)
@@ -2337,11 +2344,12 @@ class MainText(TextCommand):
 
         # pick whichever one comes first
         jump = min([jump57, jump50, jump58])
-        jump += 1
 
         # if $57 appears first then this command is the last in this text script
         if jump == jump57 or jump == jump58:
             self.end = True
+
+        jump += 1
 
         # we want the address after the $57
         # ("last_address" is misnamed everywhere)
@@ -2350,14 +2358,23 @@ class MainText(TextCommand):
 
         # read the text bytes into a structure
         # skip the first offset byte because that's the command byte
-        self.bytes = rom_interval(offset , jump, strings=False)
+        self.bytes = rom_interval(offset, jump, strings=False)
 
         # include the original command in the size calculation
         self.size = jump
 
-        # TODO: this is possibly wrong
         if self.use_zero:
-            self.size += 1
+            self.last_address = self.address + jump + 1
+            self.size = self.last_address - self.address
+
+            if self.address == 0x9c00e and self.debug:
+                if self.last_address != 0x9c086:
+                    print "self.address is: " + hex(self.address)
+                    print "jump is: " + str(jump)
+                    print "bytes are: " + str(self.bytes)
+                    print "self.size is: " + str(self.size)
+                    print "self.last_address is: " + hex(self.last_address)
+                    raise Exception, "last_address is wrong for 0x9c00e"
 
     def to_asm(self):
         if self.size < 2 or len(self.bytes) < 1:
@@ -2729,7 +2746,7 @@ class TextEndingCommand(TextCommand):
 text_command_classes = inspect.getmembers(sys.modules[__name__], \
                        lambda obj: inspect.isclass(obj) and \
                        issubclass(obj, TextCommand) and \
-                       obj != TextCommand)
+                       obj != TextCommand and obj != PokedexText)
 
 #byte: [name, [param1 name, param1 type], [param2 name, param2 type], ...]
 #0x9E: ["verbosegiveitem", ["item", ItemLabelByte], ["quantity", SingleByteParam]],
@@ -4858,8 +4875,8 @@ class SecondMapHeader:
 
         self.size = size
 
-        if self.connection_byte == 0:
-            return True
+        #if self.connection_byte == 0:
+        return True
 
         current_address = address+12
 
@@ -4920,8 +4937,6 @@ class SecondMapHeader:
         output += connections
 
         return output
-
-connection = Connection(current_address, direction=direction, map_group=self.map_group, map_id=self.map_id, debug=self.debug)
 
 class Connection:
     size = 12
