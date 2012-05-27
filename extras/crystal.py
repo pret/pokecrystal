@@ -4939,6 +4939,11 @@ class SecondMapHeader:
         return output
 
 strip_pointer_data = []
+connections = []
+wrong_norths = []
+wrong_easts = []
+wrong_souths = []
+wrong_wests = []
 
 class Connection:
     size = 12
@@ -4951,6 +4956,7 @@ class Connection:
         self.debug = debug
         self.smh = smh
         self.last_address = address + self.size
+        connections.append(self)
 
         self.parse()
 
@@ -5042,6 +5048,9 @@ class Connection:
         current_address += 2
 
         self.window = window
+
+        current_map_height = self.smh.height.byte
+        current_map_width  = self.smh.width.byte
         
         ldirection = self.direction.lower()
         if "header_new" in map_names[connected_map_group_id][connected_map_id].keys():
@@ -5069,11 +5078,12 @@ class Connection:
                     p = strip_pointer
                     method = "north3"
                 else:
+                    # this doesn't seem to ever happen
                     # or just do nothing (value is already ok)
                     method = "north4"
             elif ldirection == "west":
                 h = connected_map_height - self.smh.height.byte
-                if (h > 0):
+                if ((p + (h * connected_map_width) - (connected_map_width * 3) + (connected_map_width - 1) - 2)%0x4000)+0x4000 == strip_pointer:
                     # lin's method:
                     #   p += (h * otherMap.width) - (otherMap.width * 3) + (otherMap.width - 3)
                     p += (h * connected_map_width) - (connected_map_width * 3) + (connected_map_width - 1) - 2
@@ -5084,6 +5094,17 @@ class Connection:
                     #   p += otherMap.width - 3
                     p += connected_map_width - 3
                     method = "west2"
+                elif ((p + xoffset + (current_map_height * 2))%0x4000 + 0x4000) == strip_pointer:
+                    method = "west3"
+                    p += xoffset + (current_map_height * 2)
+                elif (p%0x4000)+0x4000 != strip_pointer:
+                    # worst case scenario: dunno what to do
+                    method = "west4"
+                    p = strip_pointer
+                else:
+                    # this doesn't seem to ever happen
+                    # do nothing
+                    method = "west5"
             elif ldirection == "south":
                 print "south.. dunno what to do?"
 
@@ -5104,6 +5125,14 @@ class Connection:
                 elif ((p + (connected_map_height - connection_strip_length) * connected_map_width)%0x4000)+0x4000 == strip_pointer:
                     p += (connected_map_height - connection_strip_length) * connected_map_width
                     method = "east2"
+                elif ((p + 100 - 4 * connected_map_width)%0x4000) + 0x4000 == strip_pointer:
+                    method = "east3"
+                    p += 100 - 4 * connected_map_width
+                elif ((p + 2 * (100 - 4 * connected_map_width))%0x4000) + 0x4000 == strip_pointer:
+                    method = "east4"
+                    # the "2" is possibly ( connected_map_height / current_map_height )
+                    # or current_map_width/yoffset or connected_map_width/yoffset
+                    p += 2 * (100 - 4 * connected_map_width)
 
             # convert the address to a 2-byte pointer
             intermediate_p = p
@@ -5154,6 +5183,17 @@ class Connection:
                 o = "current map group_id="+hex(self.map_group)+" map_id="+hex(self.map_id)+" "+map_names[self.map_group][self.map_id]["label"]+" smh="+hex(self.smh.address)
                 o += " width="+str(self.smh.width.byte)+" height="+str(self.smh.height.byte)
                 print o
+
+                if ldirection == "east":
+                    wrong_easts.append(data)
+                elif ldirection == "west":
+                    wrong_wests.append(data)
+                elif ldirection == "south":
+                    wrong_souths.append(data)
+                elif ldirection == "north":
+                    wrong_norths.append(data)
+
+                # this will only happen if there's a bad formula
                 raise Exception, "tauwasser strip_pointer calculation was wrong? strip_pointer="+hex(strip_pointer) + " p="+hex(p)
 
     def to_asm(self):
