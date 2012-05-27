@@ -4939,6 +4939,7 @@ class SecondMapHeader:
         return output
 
 strip_pointer_data = []
+strip_destination_data = []
 connections = []
 wrong_norths = []
 wrong_easts = []
@@ -5051,9 +5052,11 @@ class Connection:
 
         current_map_height = self.smh.height.byte
         current_map_width  = self.smh.width.byte
-        
-        ldirection = self.direction.lower()
+
         if "header_new" in map_names[connected_map_group_id][connected_map_id].keys():
+            # the below code ensures that there's an equation to handle strip_pointer
+            
+            ldirection = self.direction.lower()
             connected_map_header        = map_names[connected_map_group_id][connected_map_id]["header_new"]
             connected_second_map_header = connected_map_header.second_map_header
             connected_map_height        = connected_second_map_header.height.byte
@@ -5195,6 +5198,103 @@ class Connection:
 
                 # this will only happen if there's a bad formula
                 raise Exception, "tauwasser strip_pointer calculation was wrong? strip_pointer="+hex(strip_pointer) + " p="+hex(p)
+            
+            calculated_destination = None
+            method = "strip_destination_default"
+            x_movement_of_the_connection_strip_in_blocks = None
+            y_movement_of_the_connection_strip_in_blocks = None
+
+            # the below code makes sure there's an equation to calculte strip_destination
+            # 11:05 <comet> Above: C803h + xoffset
+            # 11:05 <comet> Below: C803h + (m.height + 3) * (m.width + 6) + xoffset
+            # 11:05 <comet> Left: C800h + (m.width + 6) * (yoffset + 3)
+            # 11:05 <comet> Right: C7FDh + (m.width + 6) * (yoffset + 4)
+            #
+            # tauwasser calls this "connection strip destination" and lin calls this "memoryOtherPointer"
+            #   Points to the upper left block of the connection strip
+            #   (The bank the Blockdata is in, is loaded out of the Mapheader of the connected Map.)
+            #   The connection strip is always 3 Blocks high resp. wide
+            #   (depending on the connection's direction)
+            if ldirection == "north":
+                x_movement_of_the_connection_strip_in_blocks = strip_destination - 0xC703
+                print "(north) x_movement_of_the_connection_strip_in_blocks is: " + str(x_movement_of_the_connection_strip_in_blocks)
+                if x_movement_of_the_connection_strip_in_blocks < 0:
+                    raise Exception, "x_movement_of_the_connection_strip_in_blocks is wrong? " + str(x_movement_of_the_connection_strip_in_blocks)
+            elif ldirection == "south":
+                # strip_destination =
+                # 0xc703 + (current_map_height + 3) * (current_map_width + 6) + x_movement_of_the_connection_strip_in_blocks
+                x_movement_of_the_connection_strip_in_blocks = strip_destination - (0xc703 + (current_map_height + 3) * (current_map_width + 6))
+                print "(south) x_movement_of_the_connection_strip_in_blocks is: " + str(x_movement_of_the_connection_strip_in_blocks)
+            elif ldirection == "east":
+                # strip_destination =
+                #   0xc700 + (current_map_width + 6) * (y_movement_of_the_connection_strip_in_blocks + 3)
+                y_movement_of_the_connection_strip_in_blocks = (strip_destination - 0xc700) / (current_map_width + 6) - 3
+                print "(east) y_movement_of_the_connection_strip_in_blocks is: " + str(y_movement_of_the_connection_strip_in_blocks)
+            elif ldirection == "west":
+                # strip_destination =
+                #   0xc6fd + (current_map_width + 6) * (y_movement_of_the_connection_strip_in_blocks + 4)
+                y_movement_of_the_connection_strip_in_blocks = (strip_destination - 0xc6fd) / (current_map_width + 6) - 4
+                print "(west) y_movement_of_the_connection_strip_in_blocks is: " + str(y_movement_of_the_connection_strip_in_blocks)
+
+            # let's also check the window equations
+            # tauwasser calls this "window" and lin calls this "memoryCurrentPointer"
+            # Position of the upper left block after entering the Map
+            #
+            # tauwasser's formula for windows:
+            #   Above: C701h + Height_of_connected_map * (Width_of_connected_map + 6)
+            #   Left: C706h + 2 * Width_of_connected_map
+            #   Below/Right: C707h + Width_of_connected_map
+            window_worked = False
+            if ldirection == "north":
+                # tauwasser's formula: 0xc701 + connected_map_height * (connected_map_width + 6)
+                window_start = 0xc801
+                if window == window_start + (connected_map_height * 6) + (connected_map_height * connected_map_width):
+                    window_worked = True
+            elif ldirection == "east":
+                window_start = 0xc807
+                if window == (window_start + connected_map_width):
+                    window_worked = True
+            elif ldirection == "south":
+                window_start = 0xc807
+                if window == (window_start + connected_map_width):
+                    window_worked = True
+            elif ldirection == "west":
+                window_start = 0xc807
+                if window == (window_start + xoffset):
+                    window_worked = True
+
+            data = {
+                "window": window,
+                "window_start": window_start,
+                "window_diff": window - window_start,
+                "window_worked": window_worked,
+                "strip_destination": strip_destination,
+                "strip_length": connection_strip_length,
+                "other_blockdata_address": connected_second_map_header.blockdata.address,
+                "other_blockdata_pointer": (connected_second_map_header.blockdata.address%0x4000)+0x4000,
+
+                "xoffset": xoffset,
+                "yoffset": yoffset,
+
+                "connected_map_height": connected_map_height,
+                "connected_map_width": connected_map_width,
+                "connected_map_group_id": connected_map_group_id,
+                "connected_map_id": connected_map_id,
+                "connected_map_label": map_names[connected_map_group_id][connected_map_id]["label"],
+                
+                "current_map_width": self.smh.width.byte,
+                "current_map_height": self.smh.height.byte,
+                "current_map_label": map_names[self.smh.map_group][self.smh.map_id]["label"],
+                "current_map_group_id": self.smh.map_group,
+                "current_map_id": self.smh.map_id,
+
+                "y_movement_of_the_connection_strip_in_blocks": y_movement_of_the_connection_strip_in_blocks,
+                "x_movement_of_the_connection_strip_in_blocks": x_movement_of_the_connection_strip_in_blocks,
+                
+                "direction": ldirection,
+                "method": method,
+            }
+            strip_destination_data.append(data)
 
     def to_asm(self):
         output     = ""
