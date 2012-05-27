@@ -5020,9 +5020,11 @@ class Connection:
         self.connected_map_width     = connected_map_width
 
         y_position_after_map_change = ord(rom[current_address])
+        yoffset = y_position_after_map_change
         current_address += 1
 
         x_position_after_map_change = ord(rom[current_address])
+        xoffset = x_position_after_map_change
         current_address += 1
 
         # in pokered these were called alignments? same thing?
@@ -5072,7 +5074,23 @@ class Connection:
             elif ldirection == "south":
                 print "south.. dunno what to do?"
                 h = None
-                p = 400
+                p = (xoffset - connection_strip_length + self.smh.width.byte) / 2
+                if xoffset == 0:
+                    print "connection_strip_length: " + str(connection_strip_length)
+                    print "strip_pointer = " + hex(strip_pointer)
+                    print "other map height = " + str(connected_map_height)
+                    print "other map width = " + str(connected_map_width)
+                    o = "other map group_id="+hex(connected_map_group_id) + " map_id="+hex(connected_map_id)+" "+map_names[connected_map_group_id][connected_map_id]["label"] + " smh="+hex(connected_second_map_header.address)
+                    o += " width="+str(connected_second_map_header.width.byte)+" height="+str(connected_second_map_header.height.byte)
+                    print o
+                    raise Exception, "south - xoffset is 0"
+
+                o = "current map group_id="+hex(self.map_group)+" map_id="+hex(self.map_id)+" "+map_names[self.map_group][self.map_id]["label"]+" smh="+hex(self.smh.address)
+                o += " width="+str(self.smh.width.byte)+" height="+str(self.smh.height.byte)
+                print o
+                #if not ((p % 0x4000) + 0x4000 == strip_pointer):
+                #    p = 400
+
                 data = {
                     "strip_pointer": strip_pointer,
                     "strip_length": connection_strip_length,
