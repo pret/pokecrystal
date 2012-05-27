@@ -5050,100 +5050,100 @@ class Connection:
             connected_map_height        = connected_second_map_header.height.byte
             connected_map_width         = connected_second_map_header.width.byte
             p = connected_second_map_header.blockdata.address
-    
+            h = None
+            method = "default"
+
             if ldirection == "north":
                 h = connected_map_width - self.smh.width.byte
-                if (h > 0):
-                    print "north h > 0"
-                    # p += (h * otherMap.height) + (otherMap.height * 3) + (otherMap.height + 3)
-                    p += (h * connected_map_height) + (connected_map_height * 3) + (connected_map_height + 1)
-                else:
-                    print "north h <= 0"
-                    # p += (otherMap.height * otherMap.width) - (otherMap.width * 3)
+                if ((p + ((connected_map_height * connected_map_width) - (connected_map_width * 3)))%0x4000)+0x4000 == strip_pointer:
+                    # lin's equation:
+                    #   p += (otherMap.height * otherMap.width) - (otherMap.width * 3)
                     p += (connected_map_height * connected_map_width) - (connected_map_width * 3)
+                    method = "north1"
+                elif ((p + connected_map_width + xoffset + (16 * connected_map_height) - 16)%0x4000)+0x4000 == strip_pointer:
+                    p += connected_map_width + xoffset + (16 * connected_map_height) - 16
+                    method = "north2"
+                elif p != strip_pointer:
+                    # worst case scenario: we don't know how to calculate p, so we'll just set it as a constant
+                    # example: Route10North north to Route9 (strip_pointer=0x7eae, connected map's blockdata=0x7de9)
+                    p = strip_pointer
+                    method = "north3"
+                else:
+                    # or just do nothing (value is already ok)
+                    method = "north4"
             elif ldirection == "west":
                 h = connected_map_height - self.smh.height.byte
                 if (h > 0):
-                    print "west h > 0"
-                    # p += (h * otherMap.width) - (otherMap.width * 3) + (otherMap.width - 3)
-                    p += (h * connected_map_width) - (connected_map_width * 3) + (connected_map_width - 1)
-                else:
+                    # lin's method:
+                    #   p += (h * otherMap.width) - (otherMap.width * 3) + (otherMap.width - 3)
+                    p += (h * connected_map_width) - (connected_map_width * 3) + (connected_map_width - 1) - 2
+                    method = "west1"
+                elif ((p + connected_map_width - 3)%0x4000)+0x4000 == strip_pointer:
                     print "west h <= 0"
-                    # p += otherMap.width - 3
+                    # lin's method:
+                    #   p += otherMap.width - 3
                     p += connected_map_width - 3
+                    method = "west2"
             elif ldirection == "south":
                 print "south.. dunno what to do?"
-                h = None
-                p = (xoffset - connection_strip_length + self.smh.width.byte) / 2
-                if xoffset == 0:
-                    print "connection_strip_length: " + str(connection_strip_length)
-                    print "strip_pointer = " + hex(strip_pointer)
-                    print "other map height = " + str(connected_map_height)
-                    print "other map width = " + str(connected_map_width)
-                    o = "other map group_id="+hex(connected_map_group_id) + " map_id="+hex(connected_map_id)+" "+map_names[connected_map_group_id][connected_map_id]["label"] + " smh="+hex(connected_second_map_header.address)
-                    o += " width="+str(connected_second_map_header.width.byte)+" height="+str(connected_second_map_header.height.byte)
-                    print o
-                    raise Exception, "south - xoffset is 0"
 
-                o = "current map group_id="+hex(self.map_group)+" map_id="+hex(self.map_id)+" "+map_names[self.map_group][self.map_id]["label"]+" smh="+hex(self.smh.address)
-                o += " width="+str(self.smh.width.byte)+" height="+str(self.smh.height.byte)
-                print o
-                #if not ((p % 0x4000) + 0x4000 == strip_pointer):
-                #    p = 400
-
-                data = {
-                    "strip_pointer": strip_pointer,
-                    "strip_length": connection_strip_length,
-                    "other_blockdata_address": connected_second_map_header.blockdata.address,
-                    "other_blockdata_pointer": (connected_second_map_header.blockdata.address%0x4000)+0x4000,
-                    "connected_map_group_id": connected_map_group_id,
-                    "connected_map_id": connected_map_id,
-                    "connected_map_label": map_names[connected_map_group_id][connected_map_id]["label"],
-                    "connected_map_height": connected_map_height,
-                    "connected_map_width": connected_map_width,
-                    "current_map_group_id": self.smh.map_group,
-                    "current_map_id": self.smh.map_id,
-                    "current_map_label": map_names[self.smh.map_group][self.smh.map_id]["label"],
-                    "current_map_width": self.smh.width.byte,
-                    "current_map_height": self.smh.height.byte,
-                    "difference": strip_pointer - ((connected_second_map_header.blockdata.address%0x4000)+0x4000),
-                    "direction": "south",
-                }
-                strip_pointer_data.append(data)
+                if (p%0x4000)+0x4000 == strip_pointer:
+                    # do nothing
+                    method = "south1"
+                elif ((p + (xoffset - connection_strip_length + self.smh.width.byte) / 2)%0x4000)+0x4000 == strip_pointer:
+                    # comet's method
+                    method = "south2"
+                    p += (xoffset - connection_strip_length + self.smh.width.byte) / 2
+                elif ((p + ((xoffset - connection_strip_length + self.smh.width.byte) / 2) - 1)%0x4000)+0x4000 == strip_pointer:
+                    method = "south3"
+                    p += ((xoffset - connection_strip_length + self.smh.width.byte) / 2) - 1
             elif ldirection == "east":
-                print "east ..."
-                h = None
-                p += (connected_map_height - connection_strip_length) * connected_map_width
-                data = {
-                    "strip_pointer": strip_pointer,
-                    "strip_length": connection_strip_length,
-                    "other_blockdata_address": connected_second_map_header.blockdata.address,
-                    "other_blockdata_pointer": (connected_second_map_header.blockdata.address%0x4000)+0x4000,
-                    "connected_map_height": connected_map_height,
-                    "connected_map_width": connected_map_width,
-                    "connected_map_group_id": connected_map_group_id,
-                    "connected_map_id": connected_map_id,
-                    "connected_map_label": map_names[connected_map_group_id][connected_map_id]["label"],
-                    "current_map_width": self.smh.width.byte,
-                    "current_map_height": self.smh.height.byte,
-                    "current_map_label": map_names[self.smh.map_group][self.smh.map_id]["label"],
-                    "current_map_group_id": self.smh.map_group,
-                    "current_map_id": self.smh.map_id,
-                    "difference": strip_pointer - ((connected_second_map_header.blockdata.address%0x4000)+0x4000),
-                    "direction": "east",
-                }
-                strip_pointer_data.append(data)
-    
+                if (p%0x4000)+0x4000 == strip_pointer:
+                    # do nothing
+                    method = "east1"
+                elif ((p + (connected_map_height - connection_strip_length) * connected_map_width)%0x4000)+0x4000 == strip_pointer:
+                    p += (connected_map_height - connection_strip_length) * connected_map_width
+                    method = "east2"
+
             # convert the address to a 2-byte pointer
             intermediate_p = p
             p = (p % 0x4000) + 0x4000
+            
+            data = {
+                "strip_pointer": strip_pointer,
+                "strip_length": connection_strip_length,
+                "other_blockdata_address": connected_second_map_header.blockdata.address,
+                "other_blockdata_pointer": (connected_second_map_header.blockdata.address%0x4000)+0x4000,
+
+                "xoffset": xoffset,
+                "yoffset": yoffset,
+
+                "connected_map_height": connected_map_height,
+                "connected_map_width": connected_map_width,
+                "connected_map_group_id": connected_map_group_id,
+                "connected_map_id": connected_map_id,
+                "connected_map_label": map_names[connected_map_group_id][connected_map_id]["label"],
+                
+                "current_map_width": self.smh.width.byte,
+                "current_map_height": self.smh.height.byte,
+                "current_map_label": map_names[self.smh.map_group][self.smh.map_id]["label"],
+                "current_map_group_id": self.smh.map_group,
+                "current_map_id": self.smh.map_id,
+                
+                "difference": strip_pointer - ((connected_second_map_header.blockdata.address%0x4000)+0x4000),
+                "direction": ldirection,
+                "method": method,
+            }
+            strip_pointer_data.append(data)
     
-            if p != strip_pointer and intermediate_p != 400:
+            if p != strip_pointer:
+                print "method: " + method + " direction: " + ldirection
                 print "other map blockdata address: " + hex(connected_second_map_header.blockdata.address)
                 print "h = " + str(h)
                 print "initial p = " + hex(connected_second_map_header.blockdata.address)
                 print "intermediate p = " + hex(intermediate_p)
                 print "final p = " + hex(p)
+                print "connection length = " + str(connection_strip_length)
                 print "strip_pointer = " + hex(strip_pointer)
                 print "other map height = " + str(connected_map_height)
                 print "other map width = " + str(connected_map_width)
@@ -5154,7 +5154,6 @@ class Connection:
                 o = "current map group_id="+hex(self.map_group)+" map_id="+hex(self.map_id)+" "+map_names[self.map_group][self.map_id]["label"]+" smh="+hex(self.smh.address)
                 o += " width="+str(self.smh.width.byte)+" height="+str(self.smh.height.byte)
                 print o
-
                 raise Exception, "tauwasser strip_pointer calculation was wrong? strip_pointer="+hex(strip_pointer) + " p="+hex(p)
 
     def to_asm(self):
