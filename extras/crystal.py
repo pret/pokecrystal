@@ -5308,7 +5308,11 @@ class Connection:
         connected_map_height        = connected_second_map_header.height.byte
         connected_map_width         = connected_second_map_header.width.byte
 
+        connection_strip_length = str(self.connection_strip_length)
+        connected_map_width  = str(self.connected_map_width)
+
         map_constant_label          = get_map_constant_label(map_group=connected_map_group_id, map_id=connected_map_id)
+        self_constant_label         = get_map_constant_label(map_group=self.smh.map_group, map_id=self.smh.map_id)
         if map_constant_label != None:
             map_group_label = "GROUP_" + map_constant_label
             map_label       = "MAP_"   + map_constant_label
@@ -5334,42 +5338,100 @@ class Connection:
 
         p = connected_second_map_header.blockdata.address
 
+        output += "dw "
+
         if ldirection == "north":
             h = connected_map_width - self.smh.width.byte
-            if (h > 0):
-                print "north h > 0"
-                # p += (h * otherMap.height) + (otherMap.height * 3) + (otherMap.height + 3)
-                p += (h * connected_map_height) + (connected_map_height * 3) + (connected_map_height + 1)
-            else:
-                print "north h <= 0"
-                # p += (otherMap.height * otherMap.width) - (otherMap.width * 3)
+            if ((p + ((connected_map_height * connected_map_width) - (connected_map_width * 3)))%0x4000)+0x4000 == strip_pointer:
+                # lin's equation:
+                #   p += (otherMap.height * otherMap.width) - (otherMap.width * 3)
                 p += (connected_map_height * connected_map_width) - (connected_map_width * 3)
+                method = "north1"
+                output += "(" + get_label_for(connected_second_map_header.blockdata.address) + " + (" + map_constant_label + "_HEIGHT * " + map_constant_label + "_WIDTH) - (" + map_constant_label + "_WIDTH * 3))"
+            elif ((p + connected_map_width + xoffset + (16 * connected_map_height) - 16)%0x4000)+0x4000 == strip_pointer:
+                p += connected_map_width + xoffset + (16 * connected_map_height) - 16
+                method = "north2"
+                output += "(" + get_label_for(connected_second_map_header.blockdata.address) + " + " + map_constant_label + "_WIDTH + " + str(xoffset) + " + (16 * " + map_constant_label + "_HEIGHT) - 16)"
+            elif p != strip_pointer:
+                # worst case scenario: we don't know how to calculate p, so we'll just set it as a constant
+                # example: Route10North north to Route9 (strip_pointer=0x7eae, connected map's blockdata=0x7de9)
+                p = strip_pointer
+                method = "north3"
+                output += "$%.2x" % (p)
+            else:
+                # this doesn't seem to ever happen
+                # or just do nothing (value is already ok)
+                method = "north4"
+                output += "(" + get_label_for(connected_second_map_header.blockdata.address) + ")"
         elif ldirection == "west":
             h = connected_map_height - self.smh.height.byte
-            if (h > 0):
-                print "west h > 0"
-                # p += (h * otherMap.width) - (otherMap.width * 3) + (otherMap.width - 3)
-                p += (h * connected_map_width) - (connected_map_width * 3) + (connected_map_width - 1)
-            else:
+            h_out = "(" + map_constant_label +"_HEIGHT - " + self_constant_label +"_HEIGHT)"
+            if ((p + (h * connected_map_width) - (connected_map_width * 3) + (connected_map_width - 1) - 2)%0x4000)+0x4000 == strip_pointer:
+                # lin's method:
+                #   p += (h * otherMap.width) - (otherMap.width * 3) + (otherMap.width - 3)
+                p += (h * connected_map_width) - (connected_map_width * 3) + (connected_map_width - 1) - 2
+                method = "west1"
+                this_part = "((" + h_out + " * " + map_constant_label + "_WIDTH) - (" + map_constant_label + "_WIDTH * 3) + (" + map_constant_label + "_WIDTH - 1) - 2)"
+                output += "(" + get_label_for(connected_second_map_header.blockdata.address) + " + " + this_part + ")"
+            elif ((p + connected_map_width - 3)%0x4000)+0x4000 == strip_pointer:
                 print "west h <= 0"
-                # p += otherMap.width - 3
+                # lin's method:
+                #   p += otherMap.width - 3
                 p += connected_map_width - 3
-        elif ldirection == "south" or ldirection == "east":
-            h = None
-            p += 0
+                method = "west2"
+                output += "(" + get_label_for(connected_second_map_header.blockdata.address) + " + " + map_constant_label + "_WIDTH - 3)"
+            elif ((p + xoffset + (current_map_height * 2))%0x4000 + 0x4000) == strip_pointer:
+                method = "west3"
+                p += xoffset + (current_map_height * 2)
+                otuput += "(" + get_label_for(connected_second_map_header.blockdata.address) + " + " + str(xoffset) + " + (" + map_constant_label + "_HEIGHT * 2))"
+            elif (p%0x4000)+0x4000 != strip_pointer:
+                # worst case scenario: dunno what to do
+                method = "west4"
+                p = strip_pointer
+                output += "$%.2x" % ((p%0x4000)+0x4000)
+            else:
+                # this doesn't seem to ever happen
+                # do nothing
+                method = "west5"
+                output += "(" + get_label_for(connected_second_map_header.blockdata.address) + ")"
+        elif ldirection == "south":
+            if (p%0x4000)+0x4000 == strip_pointer:
+                # do nothing
+                method = "south1"
+                output += "(" + get_label_for(connected_second_map_header.blockdata.address) + ")"
+            elif ((p + (xoffset - connection_strip_length + self.smh.width.byte) / 2)%0x4000)+0x4000 == strip_pointer:
+                # comet's method
+                method = "south2"
+                p += (xoffset - connection_strip_length + self.smh.width.byte) / 2
+                this_part = "((" + str(xoffset) + " - " + str(connection_strip_length) + " + " + self_constant_label + "_WIDTH) / 2)"
+                output += "(" + get_label_for(connected_second_map_header.blockdata.address) + " + " + this_part + ")"
+            elif ((p + ((xoffset - connection_strip_length + self.smh.width.byte) / 2) - 1)%0x4000)+0x4000 == strip_pointer:
+                method = "south3"
+                p += ((xoffset - connection_strip_length + self.smh.width.byte) / 2) - 1
+                this_part = "(((" + str(xoffset) + " - " + str(connection_strip_length) + " + " + self_constant_label + "_WIDTH) / 2) - 1)"
+                output += "(" + get_label_for(connected_second_map_header.blockdata.address) + " + " + this_part + ")"
+        elif ldirection == "east":
+            if (p%0x4000)+0x4000 == strip_pointer:
+                # do nothing
+                method = "east1"
+                output += "(" + get_label_for(connected_second_map_header.blockdata.address) + ")"
+            elif ((p + (connected_map_height - connection_strip_length) * connected_map_width)%0x4000)+0x4000 == strip_pointer:
+                p += (connected_map_height - connection_strip_length) * connected_map_width
+                method = "east2"
+                this_part = "((" + map_constant_label + "_HEIGHT - " + connection_strip_length + ") * " + map_constant_label + "_WIDTH)"
+                output += "(" + get_label_for(connected_second_map_header.blockdata.address) + " + " + this_part +  ")"
+            elif ((p + 100 - 4 * connected_map_width)%0x4000) + 0x4000 == strip_pointer:
+                method = "east3"
+                p += 100 - 4 * connected_map_width
+                output += "(" + get_label_for(connected_second_map_header.blockdata.address) + " + 100 - (" + map_constant_label + "_WIDTH * 4))"
+            elif ((p + 2 * (100 - 4 * connected_map_width))%0x4000) + 0x4000 == strip_pointer:
+                method = "east4"
+                # the "2" is possibly ( connected_map_height / current_map_height )
+                # or current_map_width/yoffset or connected_map_width/yoffset
+                p += 2 * (100 - 4 * connected_map_width)
+                output += "(" + get_label_for(connected_second_map_header.blockdata.address) + " + ((100 - (" + map_constant_label + "_WIDTH * 4)) * 2))"
 
-        # convert the address to a 2-byte pointer
-        intermediate_p = p
-        p = (p % 0x4000) + 0x4000
-
-        if p != strip_pointer:
-            print "other map blockdata address: " + hex(connected_second_map_header.blockdata.address)
-            print "h = " + str(h)
-            print "initial p = " + hex(connected_second_map_header.blockdata.address)
-            print "intermediate p = " + hex(intermediate_p)
-            print "final p = " + hex(p)
-            print "strip_pointer = " + hex(strip_pointer)
-            raise Exception, "tauwasser strip_pointer calculation was wrong? strip_pointer="+hex(strip_pointer) + " p="+hex(p)
+        output += "; strip pointer\n"
 
         # 10:19 <comet> memoryotherpointer is <comet> what johtomap calls OMDL (in ram where the tiles start getting pulled from the other map)
         # 10:42 <comet> it would be a good idea to rename otherpointer strippointer or striploc
@@ -5386,8 +5448,6 @@ class Connection:
         #   (depending on the connection's direction)
         strip_destination = self.strip_destination
 
-        connection_strip_length = str(self.connection_strip_length)
-        connected_map_width  = str(self.connected_map_width)
         output += "db %s, %s ; (connection strip length, connected map width)\n" % \
                   (connection_strip_length, connected_map_width)
 
