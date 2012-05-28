@@ -1298,6 +1298,22 @@ def generate_map_constants_dimensions():
         output += label + "_WIDTH EQU %d\n" % (map_names[map_group][map_id]["header_new"].second_map_header.width.byte)
     return output
 
+def transform_wildmons(asm):
+    """ Converts a wildmons section to use map constants.
+    input: wildmons text. """
+    asmlines = asm.split("\n")
+    returnlines = []
+    for line in asmlines:
+        if "; " in line and not ("day" in line or "morn" in line or "nite" in line or "0x" in line or "encounter" in line) \
+        and line != "" and line.split("; ")[0] != "":
+            map_group = int(line.split("\tdb ")[1].split(",")[0].replace("$", "0x"), base=16)
+            map_id    = int(line.split("\tdb ")[1].split(",")[1].replace("$", "0x").split("; ")[0], base=16)
+            label     = get_map_constant_label(map_group=map_group, map_id=map_id)
+            returnlines.append("\tdb GROUP_"+label+", MAP_"+label) #+" ; " + line.split(";")[1])
+        else:
+            returnlines.append(line)
+    return "\n".join(returnlines)
+
 from pokemon_constants import pokemon_constants
 
 def get_pokemon_constant_by_id(id):

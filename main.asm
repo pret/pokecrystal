@@ -364,7 +364,7 @@ INCBIN "baserom.gbc",$28000,$2A5e9 - $28000
 WildMons1: ; 0x2a5e9
 ; Johto Pokémon in grass
 
-	db $03,$02 ; Sprout Tower 2F
+	db GROUP_SPROUT_TOWER_2F, MAP_SPROUT_TOWER_2F
 	db $05,$05,$05 ; encounter rates: morn/day/nite
 	; morn
 	db 3,RATTATA
@@ -391,7 +391,7 @@ WildMons1: ; 0x2a5e9
 	db 5,RATTATA
 	db 5,RATTATA
 
-	db $03,$03 ; Sprout Tower 3F
+	db GROUP_SPROUT_TOWER_3F, MAP_SPROUT_TOWER_3F
 	db $05,$05,$05 ; encounter rates: morn/day/nite
 	; morn
 	db 3,RATTATA
@@ -418,7 +418,7 @@ WildMons1: ; 0x2a5e9
 	db 5,RATTATA
 	db 5,RATTATA
 
-	db $03,$05 ; Tin Tower 2F
+	db GROUP_TIN_TOWER_2F, MAP_TIN_TOWER_2F
 	db $05,$05,$05 ; encounter rates: morn/day/nite
 	; morn
 	db 20,RATTATA
@@ -445,7 +445,7 @@ WildMons1: ; 0x2a5e9
 	db 24,RATTATA
 	db 24,RATTATA
 
-	db $03,$06 ; Tin Tower 3F
+	db GROUP_TIN_TOWER_3F, MAP_TIN_TOWER_3F
 	db $05,$05,$05 ; encounter rates: morn/day/nite
 	; morn
 	db 20,RATTATA
@@ -472,7 +472,7 @@ WildMons1: ; 0x2a5e9
 	db 24,RATTATA
 	db 24,RATTATA
 
-	db $03,$07 ; Tin Tower 4F
+	db GROUP_TIN_TOWER_4F, MAP_TIN_TOWER_4F
 	db $05,$05,$05 ; encounter rates: morn/day/nite
 	; morn
 	db 20,RATTATA
@@ -499,7 +499,7 @@ WildMons1: ; 0x2a5e9
 	db 24,RATTATA
 	db 24,RATTATA
 
-	db $03,$08 ; Tin Tower 5F
+	db GROUP_TIN_TOWER_5F, MAP_TIN_TOWER_5F
 	db $05,$05,$05 ; encounter rates: morn/day/nite
 	; morn
 	db 20,RATTATA
@@ -526,7 +526,7 @@ WildMons1: ; 0x2a5e9
 	db 24,RATTATA
 	db 24,RATTATA
 
-	db $03,$09 ; Tin Tower 6F
+	db GROUP_TIN_TOWER_6F, MAP_TIN_TOWER_6F
 	db $05,$05,$05 ; encounter rates: morn/day/nite
 	; morn
 	db 20,RATTATA
@@ -553,7 +553,7 @@ WildMons1: ; 0x2a5e9
 	db 24,RATTATA
 	db 24,RATTATA
 
-	db $03,$0a ; Tin Tower 7F
+	db GROUP_TIN_TOWER_7F, MAP_TIN_TOWER_7F
 	db $05,$05,$05 ; encounter rates: morn/day/nite
 	; morn
 	db 20,RATTATA
@@ -580,7 +580,7 @@ WildMons1: ; 0x2a5e9
 	db 24,RATTATA
 	db 24,RATTATA
 
-	db $03,$0b ; Tin Tower 8F
+	db GROUP_TIN_TOWER_8F, MAP_TIN_TOWER_8F
 	db $05,$05,$05 ; encounter rates: morn/day/nite
 	; morn
 	db 20,RATTATA
@@ -607,7 +607,7 @@ WildMons1: ; 0x2a5e9
 	db 24,RATTATA
 	db 24,RATTATA
 
-	db $03,$0c ; Tin Tower 9F
+	db GROUP_TIN_TOWER_9F, MAP_TIN_TOWER_9F
 	db $05,$05,$05 ; encounter rates: morn/day/nite
 	; morn
 	db 20,RATTATA
@@ -634,7 +634,7 @@ WildMons1: ; 0x2a5e9
 	db 24,RATTATA
 	db 24,RATTATA
 
-	db $03,$0d ; Burned Tower 1F
+	db GROUP_BURNED_TOWER_1F, MAP_BURNED_TOWER_1F
 	db $0a,$0a,$0a ; encounter rates: morn/day/nite
 	; morn
 	db 13,RATTATA
@@ -661,7 +661,7 @@ WildMons1: ; 0x2a5e9
 	db 15,RATICATE
 	db 15,RATICATE
 
-	db $03,$0e ; Burned Tower B1F
+	db GROUP_BURNED_TOWER_B1F, MAP_BURNED_TOWER_B1F
 	db $0f,$0f,$0f ; encounter rates: morn/day/nite
 	; morn
 	db 14,RATTATA
@@ -688,7 +688,7 @@ WildMons1: ; 0x2a5e9
 	db 16,KOFFING
 	db 16,WEEZING
 
-	db $03,$0f ; National Park
+	db GROUP_NATIONAL_PARK, MAP_NATIONAL_PARK
 	db $19,$19,$19 ; encounter rates: morn/day/nite
 	; morn
 	db 12,NIDORAN_M
@@ -715,7 +715,7 @@ WildMons1: ; 0x2a5e9
 	db 12,VENONAT
 	db 12,VENONAT
 
-	db $03,$16 ; Ruins of Alph (outside)
+	db GROUP_RUINS_OF_ALPH_OUTSIDE, MAP_RUINS_OF_ALPH_OUTSIDE
 	db $0a,$0a,$0a ; encounter rates: morn/day/nite
 	; morn
 	db 20,NATU
@@ -742,7 +742,7 @@ WildMons1: ; 0x2a5e9
 	db 22,QUAGSIRE
 	db 22,QUAGSIRE
 
-	db $03,$1b ; Ruins of Alph (inner chamber)
+	db GROUP_RUINS_OF_ALPH_INNER_CHAMBER, MAP_RUINS_OF_ALPH_INNER_CHAMBER
 	db $0f,$0f,$0f ; encounter rates: morn/day/nite
 	; morn
 	db 5,UNOWN
@@ -769,7 +769,7 @@ WildMons1: ; 0x2a5e9
 	db 5,UNOWN
 	db 5,UNOWN
 
-	db $03,$25 ; Union Cave 1F
+	db GROUP_UNION_CAVE_1F, MAP_UNION_CAVE_1F
 	db $0f,$0f,$0f ; encounter rates: morn/day/nite
 	; morn
 	db 6,GEODUDE
@@ -796,7 +796,7 @@ WildMons1: ; 0x2a5e9
 	db 6,ONIX
 	db 6,ONIX
 
-	db $03,$26 ; Union Cave B1F
+	db GROUP_UNION_CAVE_B1F, MAP_UNION_CAVE_B1F
 	db $0f,$0f,$0f ; encounter rates: morn/day/nite
 	; morn
 	db 8,GEODUDE
@@ -823,7 +823,7 @@ WildMons1: ; 0x2a5e9
 	db 8,RATTATA
 	db 8,RATTATA
 
-	db $03,$27 ; Union Cave B1F
+	db GROUP_UNION_CAVE_B2F, MAP_UNION_CAVE_B2F
 	db $0a,$0a,$0a ; encounter rates: morn/day/nite
 	; morn
 	db 22,ZUBAT
@@ -850,7 +850,7 @@ WildMons1: ; 0x2a5e9
 	db 23,ONIX
 	db 23,ONIX
 
-	db $03,$28 ; Slowpoke Well B1F
+	db GROUP_SLOWPOKE_WELL_B1F, MAP_SLOWPOKE_WELL_B1F
 	db $05,$05,$05 ; encounter rates: morn/day/nite
 	; morn
 	db 5,ZUBAT
@@ -877,7 +877,7 @@ WildMons1: ; 0x2a5e9
 	db 8,SLOWPOKE
 	db 8,SLOWPOKE
 
-	db $03,$29 ; Slowpoke Well B2F
+	db GROUP_SLOWPOKE_WELL_B2F, MAP_SLOWPOKE_WELL_B2F
 	db $05,$05,$05 ; encounter rates: morn/day/nite
 	; morn
 	db 21,ZUBAT
@@ -904,7 +904,7 @@ WildMons1: ; 0x2a5e9
 	db 23,SLOWPOKE
 	db 23,SLOWPOKE
 
-	db $03,$34 ; Ilex Forest
+	db GROUP_ILEX_FOREST, MAP_ILEX_FOREST
 	db $0a,$0a,$0a ; encounter rates: morn/day/nite
 	; morn
 	db 5,CATERPIE
@@ -931,7 +931,7 @@ WildMons1: ; 0x2a5e9
 	db 6,PARAS
 	db 6,PARAS
 
-	db $03,$39 ; Mount Mortar 1F
+	db GROUP_MOUNT_MORTAR_1F_OUTSIDE, MAP_MOUNT_MORTAR_1F_OUTSIDE
 	db $0f,$0f,$0f ; encounter rates: morn/day/nite
 	; morn
 	db 14,RATTATA
@@ -958,7 +958,7 @@ WildMons1: ; 0x2a5e9
 	db 16,RATICATE
 	db 16,RATICATE
 
-	db $03,$3a ; Mount Mortar 1F (inside)
+	db GROUP_MOUNT_MORTAR_1F_INSIDE, MAP_MOUNT_MORTAR_1F_INSIDE
 	db $0f,$0f,$0f ; encounter rates: morn/day/nite
 	; morn
 	db 13,GEODUDE
@@ -985,7 +985,7 @@ WildMons1: ; 0x2a5e9
 	db 15,GOLBAT
 	db 15,GOLBAT
 
-	db $03,$3b ; Mount Mortar 2F (inside)
+	db GROUP_MOUNT_MORTAR_2F_INSIDE, MAP_MOUNT_MORTAR_2F_INSIDE
 	db $0f,$0f,$0f ; encounter rates: morn/day/nite
 	; morn
 	db 31,GRAVELER
@@ -1012,7 +1012,7 @@ WildMons1: ; 0x2a5e9
 	db 32,GOLBAT
 	db 32,GOLBAT
 
-	db $03,$3c ; Mount Mortar B1F
+	db GROUP_MOUNT_MORTAR_B1F, MAP_MOUNT_MORTAR_B1F
 	db $0f,$0f,$0f ; encounter rates: morn/day/nite
 	; morn
 	db 15,ZUBAT
@@ -1039,7 +1039,7 @@ WildMons1: ; 0x2a5e9
 	db 18,RATICATE
 	db 18,RATICATE
 
-	db $03,$3d ; Ice Path 1F
+	db GROUP_ICE_PATH_1F, MAP_ICE_PATH_1F
 	db $05,$05,$05 ; encounter rates: morn/day/nite
 	; morn
 	db 21,SWINUB
@@ -1066,7 +1066,7 @@ WildMons1: ; 0x2a5e9
 	db 22,GOLBAT
 	db 22,GOLBAT
 
-	db $03,$3e ; Ice Path B1F
+	db GROUP_ICE_PATH_B1F, MAP_ICE_PATH_B1F
 	db $05,$05,$05 ; encounter rates: morn/day/nite
 	; morn
 	db 22,SWINUB
@@ -1093,7 +1093,7 @@ WildMons1: ; 0x2a5e9
 	db 23,GOLBAT
 	db 22,SNEASEL
 
-	db $03,$3f ; Ice Path B2F, Mahogany side
+	db GROUP_ICE_PATH_B2F_MAHOGANY_SIDE, MAP_ICE_PATH_B2F_MAHOGANY_SIDE
 	db $05,$05,$05 ; encounter rates: morn/day/nite
 	; morn
 	db 23,SWINUB
@@ -1120,7 +1120,7 @@ WildMons1: ; 0x2a5e9
 	db 22,SNEASEL
 	db 24,SNEASEL
 
-	db $03,$40 ; Ice Path B2F, Blackthorn side
+	db GROUP_ICE_PATH_B2F_BLACKTHORN_SIDE, MAP_ICE_PATH_B2F_BLACKTHORN_SIDE
 	db $05,$05,$05 ; encounter rates: morn/day/nite
 	; morn
 	db 23,SWINUB
@@ -1147,7 +1147,7 @@ WildMons1: ; 0x2a5e9
 	db 22,SNEASEL
 	db 24,SNEASEL
 
-	db $03,$41 ; Ice Path B3F
+	db GROUP_ICE_PATH_B3F, MAP_ICE_PATH_B3F
 	db $05,$05,$05 ; encounter rates: morn/day/nite
 	; morn
 	db 24,SWINUB
@@ -1174,7 +1174,7 @@ WildMons1: ; 0x2a5e9
 	db 24,SNEASEL
 	db 26,SNEASEL
 
-	db $03,$42 ; Whirl Island NW
+	db GROUP_WHIRL_ISLAND_NW, MAP_WHIRL_ISLAND_NW
 	db $0f,$0f,$0f ; encounter rates: morn/day/nite
 	; morn
 	db 22,KRABBY
@@ -1201,7 +1201,7 @@ WildMons1: ; 0x2a5e9
 	db 24,GOLBAT
 	db 24,GOLBAT
 
-	db $03,$43 ; Whirl Island NE
+	db GROUP_WHIRL_ISLAND_NE, MAP_WHIRL_ISLAND_NE
 	db $0f,$0f,$0f ; encounter rates: morn/day/nite
 	; morn
 	db 22,KRABBY
@@ -1228,7 +1228,7 @@ WildMons1: ; 0x2a5e9
 	db 24,GOLBAT
 	db 24,GOLBAT
 
-	db $03,$44 ; Whirl Island SW
+	db GROUP_WHIRL_ISLAND_SW, MAP_WHIRL_ISLAND_SW
 	db $0f,$0f,$0f ; encounter rates: morn/day/nite
 	; morn
 	db 22,KRABBY
@@ -1255,7 +1255,7 @@ WildMons1: ; 0x2a5e9
 	db 24,GOLBAT
 	db 24,GOLBAT
 
-	db $03,$45 ; Whirl Island, interior
+	db GROUP_WHIRL_ISLAND_CAVE, MAP_WHIRL_ISLAND_CAVE
 	db $0f,$0f,$0f ; encounter rates: morn/day/nite
 	; morn
 	db 22,KRABBY
@@ -1282,7 +1282,7 @@ WildMons1: ; 0x2a5e9
 	db 24,GOLBAT
 	db 24,GOLBAT
 
-	db $03,$46 ; Whirl Island SE
+	db GROUP_WHIRL_ISLAND_SE, MAP_WHIRL_ISLAND_SE
 	db $0f,$0f,$0f ; encounter rates: morn/day/nite
 	; morn
 	db 22,KRABBY
@@ -1309,7 +1309,7 @@ WildMons1: ; 0x2a5e9
 	db 24,GOLBAT
 	db 24,GOLBAT
 
-	db $03,$47 ; Whirl Island B1F
+	db GROUP_WHIRL_ISLAND_B1F, MAP_WHIRL_ISLAND_B1F
 	db $0f,$0f,$0f ; encounter rates: morn/day/nite
 	; morn
 	db 23,KRABBY
@@ -1336,7 +1336,7 @@ WildMons1: ; 0x2a5e9
 	db 25,GOLBAT
 	db 25,GOLBAT
 
-	db $03,$48 ; Whirl Island B2F
+	db GROUP_WHIRL_ISLAND_B2F, MAP_WHIRL_ISLAND_B2F
 	db $0f,$0f,$0f ; encounter rates: morn/day/nite
 	; morn
 	db 24,KRABBY
@@ -1363,7 +1363,7 @@ WildMons1: ; 0x2a5e9
 	db 26,GOLBAT
 	db 26,GOLBAT
 
-	db $03,$49 ; Whirl Island, Lugia's chamber
+	db GROUP_WHIRL_ISLAND_LUGIA_CHAMBER, MAP_WHIRL_ISLAND_LUGIA_CHAMBER
 	db $0f,$0f,$0f ; encounter rates: morn/day/nite
 	; morn
 	db 25,KRABBY
@@ -1390,7 +1390,7 @@ WildMons1: ; 0x2a5e9
 	db 27,GOLBAT
 	db 27,GOLBAT
 
-	db $03,$4a ; Silver Cave 1
+	db GROUP_SILVER_CAVE_ROOM_1, MAP_SILVER_CAVE_ROOM_1
 	db $0f,$0f,$0f ; encounter rates: morn/day/nite
 	; morn
 	db 43,GRAVELER
@@ -1417,7 +1417,7 @@ WildMons1: ; 0x2a5e9
 	db 46,GOLBAT
 	db 46,GOLBAT
 
-	db $03,$4b ; Silver Cave 2
+	db GROUP_SILVER_CAVE_ROOM_2, MAP_SILVER_CAVE_ROOM_2
 	db $0f,$0f,$0f ; encounter rates: morn/day/nite
 	; morn
 	db 48,GOLBAT
@@ -1444,7 +1444,7 @@ WildMons1: ; 0x2a5e9
 	db 45,MISDREAVUS
 	db 45,MISDREAVUS
 
-	db $03,$4c ; Silver Cave 3
+	db GROUP_SILVER_CAVE_ROOM_3, MAP_SILVER_CAVE_ROOM_3
 	db $0f,$0f,$0f ; encounter rates: morn/day/nite
 	; morn
 	db 51,GOLBAT
@@ -1471,7 +1471,7 @@ WildMons1: ; 0x2a5e9
 	db 53,GOLBAT
 	db 53,GOLBAT
 
-	db $03,$4d ; Silver Cave item rooms
+	db GROUP_SILVER_CAVE_ITEM_ROOMS, MAP_SILVER_CAVE_ITEM_ROOMS
 	db $0f,$0f,$0f ; encounter rates: morn/day/nite
 	; morn
 	db 48,GOLBAT
@@ -1498,7 +1498,7 @@ WildMons1: ; 0x2a5e9
 	db 50,PARASECT
 	db 52,PARASECT
 
-	db $03,$4e ; Dark Cave, Violet entrance
+	db GROUP_DARK_CAVE_VIOLET_ENTRANCE, MAP_DARK_CAVE_VIOLET_ENTRANCE
 	db $0a,$0a,$0a ; encounter rates: morn/day/nite
 	; morn
 	db 3,GEODUDE
@@ -1525,7 +1525,7 @@ WildMons1: ; 0x2a5e9
 	db 4,ZUBAT
 	db 4,DUNSPARCE
 
-	db $03,$4f ; Dark Cave, Blackthorn entrance
+	db GROUP_DARK_CAVE_BLACKTHORN_ENTRANCE, MAP_DARK_CAVE_BLACKTHORN_ENTRANCE
 	db $0a,$0a,$0a ; encounter rates: morn/day/nite
 	; morn
 	db 23,GEODUDE
@@ -1552,7 +1552,7 @@ WildMons1: ; 0x2a5e9
 	db 23,GOLBAT
 	db 23,GOLBAT
 
-	db $18,$03 ; Route 29
+	db GROUP_ROUTE_29, MAP_ROUTE_29
 	db $19,$19,$19 ; encounter rates: morn/day/nite
 	; morn
 	db 2,PIDGEY
@@ -1579,7 +1579,7 @@ WildMons1: ; 0x2a5e9
 	db 3,HOOTHOOT
 	db 3,HOOTHOOT
 
-	db $1a,$01 ; Route 30
+	db GROUP_ROUTE_30, MAP_ROUTE_30
 	db $19,$19,$19 ; encounter rates: morn/day/nite
 	; morn
 	db 3,LEDYBA
@@ -1606,7 +1606,7 @@ WildMons1: ; 0x2a5e9
 	db 4,HOOTHOOT
 	db 4,HOOTHOOT
 
-	db $1a,$02 ; Route 31
+	db GROUP_ROUTE_31, MAP_ROUTE_31
 	db $19,$19,$19 ; encounter rates: morn/day/nite
 	; morn
 	db 4,LEDYBA
@@ -1633,7 +1633,7 @@ WildMons1: ; 0x2a5e9
 	db 5,GASTLY
 	db 5,GASTLY
 
-	db $0a,$01 ; Route 32
+	db GROUP_ROUTE_32, MAP_ROUTE_32
 	db $19,$19,$19 ; encounter rates: morn/day/nite
 	; morn
 	db 4,EKANS
@@ -1660,7 +1660,7 @@ WildMons1: ; 0x2a5e9
 	db 7,GASTLY
 	db 7,GASTLY
 
-	db $08,$06 ; Route 33
+	db GROUP_ROUTE_33, MAP_ROUTE_33
 	db $19,$19,$19 ; encounter rates: morn/day/nite
 	; morn
 	db 6,RATTATA
@@ -1687,7 +1687,7 @@ WildMons1: ; 0x2a5e9
 	db 7,RATTATA
 	db 7,RATTATA
 
-	db $0b,$01 ; Route 34
+	db GROUP_ROUTE_34, MAP_ROUTE_34
 	db $19,$19,$19 ; encounter rates: morn/day/nite
 	; morn
 	db 10,SNUBBULL
@@ -1714,7 +1714,7 @@ WildMons1: ; 0x2a5e9
 	db 10,DITTO
 	db 10,DITTO
 
-	db $0a,$02 ; Route 35
+	db GROUP_ROUTE_35, MAP_ROUTE_35
 	db $19,$19,$19 ; encounter rates: morn/day/nite
 	; morn
 	db 12,SNUBBULL
@@ -1741,7 +1741,7 @@ WildMons1: ; 0x2a5e9
 	db 10,DITTO
 	db 12,YANMA
 
-	db $0a,$03 ; Route 36
+	db GROUP_ROUTE_36, MAP_ROUTE_36
 	db $19,$19,$19 ; encounter rates: morn/day/nite
 	; morn
 	db 4,LEDYBA
@@ -1768,7 +1768,7 @@ WildMons1: ; 0x2a5e9
 	db 5,GASTLY
 	db 5,GASTLY
 
-	db $0a,$04 ; Route 37
+	db GROUP_ROUTE_37, MAP_ROUTE_37
 	db $19,$19,$19 ; encounter rates: morn/day/nite
 	; morn
 	db 13,LEDYBA
@@ -1795,7 +1795,7 @@ WildMons1: ; 0x2a5e9
 	db 15,ARIADOS
 	db 15,ARIADOS
 
-	db $01,$0c ; Route 38
+	db GROUP_ROUTE_38, MAP_ROUTE_38
 	db $19,$19,$19 ; encounter rates: morn/day/nite
 	; morn
 	db 16,RATTATA
@@ -1822,7 +1822,7 @@ WildMons1: ; 0x2a5e9
 	db 16,MEOWTH
 	db 16,MEOWTH
 
-	db $01,$0d ; Route 39
+	db GROUP_ROUTE_39, MAP_ROUTE_39
 	db $05,$05,$05 ; encounter rates: morn/day/nite
 	; morn
 	db 16,RATTATA
@@ -1849,7 +1849,7 @@ WildMons1: ; 0x2a5e9
 	db 18,MEOWTH
 	db 18,MEOWTH
 
-	db $02,$05 ; Route 42
+	db GROUP_ROUTE_42, MAP_ROUTE_42
 	db $19,$19,$19 ; encounter rates: morn/day/nite
 	; morn
 	db 13,EKANS
@@ -1876,7 +1876,7 @@ WildMons1: ; 0x2a5e9
 	db 16,GOLBAT
 	db 16,GOLBAT
 
-	db $09,$05 ; Route 43
+	db GROUP_ROUTE_43, MAP_ROUTE_43
 	db $19,$19,$19 ; encounter rates: morn/day/nite
 	; morn
 	db 15,SENTRET
@@ -1903,7 +1903,7 @@ WildMons1: ; 0x2a5e9
 	db 17,VENOMOTH
 	db 17,VENOMOTH
 
-	db $02,$06 ; Route 44
+	db GROUP_ROUTE_44, MAP_ROUTE_44
 	db $19,$19,$19 ; encounter rates: morn/day/nite
 	; morn
 	db 23,TANGELA
@@ -1930,7 +1930,7 @@ WildMons1: ; 0x2a5e9
 	db 26,POLIWHIRL
 	db 26,POLIWHIRL
 
-	db $05,$08 ; Route 45
+	db GROUP_ROUTE_45, MAP_ROUTE_45
 	db $19,$19,$19 ; encounter rates: morn/day/nite
 	; morn
 	db 23,GEODUDE
@@ -1957,7 +1957,7 @@ WildMons1: ; 0x2a5e9
 	db 27,GRAVELER
 	db 27,GRAVELER
 
-	db $05,$09 ; Route 46
+	db GROUP_ROUTE_46, MAP_ROUTE_46
 	db $19,$19,$19 ; encounter rates: morn/day/nite
 	; morn
 	db 2,GEODUDE
@@ -1984,7 +1984,7 @@ WildMons1: ; 0x2a5e9
 	db 2,RATTATA
 	db 2,RATTATA
 
-	db $13,$02 ; Silver Cave outside
+	db GROUP_SILVER_CAVE_OUTSIDE, MAP_SILVER_CAVE_OUTSIDE
 	db $19,$19,$19 ; encounter rates: morn/day/nite
 	; morn
 	db 41,TANGELA
@@ -2016,229 +2016,229 @@ WildMons1: ; 0x2a5e9
 WildMons2: ; 0x2b11d
 ; Johto Pokémon in water
 
-	db $03,$16 ; Ruins of Alph (outside)
+	db GROUP_RUINS_OF_ALPH_OUTSIDE, MAP_RUINS_OF_ALPH_OUTSIDE
 	db $05 ; encounter rate
 	db 15,WOOPER
 	db 20,QUAGSIRE
 	db 15,QUAGSIRE
 
-	db $03,$25 ; Union Cave 1F
+	db GROUP_UNION_CAVE_1F, MAP_UNION_CAVE_1F
 	db $05 ; encounter rate
 	db 15,WOOPER
 	db 20,QUAGSIRE
 	db 15,QUAGSIRE
 
-	db $03,$26 ; Union Cave B1F
+	db GROUP_UNION_CAVE_B1F, MAP_UNION_CAVE_B1F
 	db $05 ; encounter rate
 	db 15,WOOPER
 	db 20,QUAGSIRE
 	db 15,QUAGSIRE
 
-	db $03,$27 ; Union Cave B2F
+	db GROUP_UNION_CAVE_B2F, MAP_UNION_CAVE_B2F
 	db $0a ; encounter rate
 	db 15,TENTACOOL
 	db 20,QUAGSIRE
 	db 20,TENTACRUEL
 
-	db $03,$28 ; Slowpoke Well B1F
+	db GROUP_SLOWPOKE_WELL_B1F, MAP_SLOWPOKE_WELL_B1F
 	db $05 ; encounter rate
 	db 15,SLOWPOKE
 	db 20,SLOWPOKE
 	db 10,SLOWPOKE
 
-	db $03,$29 ; Slowpoke Well B2F
+	db GROUP_SLOWPOKE_WELL_B2F, MAP_SLOWPOKE_WELL_B2F
 	db $05 ; encounter rate
 	db 15,SLOWPOKE
 	db 20,SLOWPOKE
 	db 20,SLOWBRO
 
-	db $03,$34 ; Ilex Forest
+	db GROUP_ILEX_FOREST, MAP_ILEX_FOREST
 	db $05 ; encounter rate
 	db 15,PSYDUCK
 	db 10,PSYDUCK
 	db 15,GOLDUCK
 
-	db $03,$39 ; Mount Mortar 1F
+	db GROUP_MOUNT_MORTAR_1F_OUTSIDE, MAP_MOUNT_MORTAR_1F_OUTSIDE
 	db $0a ; encounter rate
 	db 15,GOLDEEN
 	db 20,MARILL
 	db 20,SEAKING
 
-	db $03,$3b ; Mount Mortar 2F (inside)
+	db GROUP_MOUNT_MORTAR_2F_INSIDE, MAP_MOUNT_MORTAR_2F_INSIDE
 	db $05 ; encounter rate
 	db 20,GOLDEEN
 	db 25,MARILL
 	db 25,SEAKING
 
-	db $03,$3c ; Mount Mortar B1F
+	db GROUP_MOUNT_MORTAR_B1F, MAP_MOUNT_MORTAR_B1F
 	db $05 ; encounter rate
 	db 15,GOLDEEN
 	db 20,MARILL
 	db 20,SEAKING
 
-	db $03,$44 ; Whirl Island SW
+	db GROUP_WHIRL_ISLAND_SW, MAP_WHIRL_ISLAND_SW
 	db $0a ; encounter rate
 	db 20,TENTACOOL
 	db 15,HORSEA
 	db 20,TENTACRUEL
 
-	db $03,$48 ; Whirl Island B2F
+	db GROUP_WHIRL_ISLAND_B2F, MAP_WHIRL_ISLAND_B2F
 	db $0a ; encounter rate
 	db 15,HORSEA
 	db 20,HORSEA
 	db 20,TENTACRUEL
 
-	db $03,$49 ; Whirl Island, Lugia's chamber
+	db GROUP_WHIRL_ISLAND_LUGIA_CHAMBER, MAP_WHIRL_ISLAND_LUGIA_CHAMBER
 	db $0a ; encounter rate
 	db 20,HORSEA
 	db 20,TENTACRUEL
 	db 20,SEADRA
 
-	db $03,$4b ; Silver Cave 2
+	db GROUP_SILVER_CAVE_ROOM_2, MAP_SILVER_CAVE_ROOM_2
 	db $05 ; encounter rate
 	db 35,SEAKING
 	db 35,GOLDUCK
 	db 35,GOLDEEN
 
-	db $03,$4e ; Dark Cave, Violet entrance
+	db GROUP_DARK_CAVE_VIOLET_ENTRANCE, MAP_DARK_CAVE_VIOLET_ENTRANCE
 	db $05 ; encounter rate
 	db 15,MAGIKARP
 	db 10,MAGIKARP
 	db 5,MAGIKARP
 
-	db $03,$4f ; Dark Cave, Blackthorn entrance
+	db GROUP_DARK_CAVE_BLACKTHORN_ENTRANCE, MAP_DARK_CAVE_BLACKTHORN_ENTRANCE
 	db $05 ; encounter rate
 	db 15,MAGIKARP
 	db 10,MAGIKARP
 	db 5,MAGIKARP
 
-	db $03,$51 ; Dragon1s Den B1F
+	db GROUP_DRAGONS_DEN_B1F, MAP_DRAGONS_DEN_B1F
 	db $0a ; encounter rate
 	db 15,MAGIKARP
 	db 10,MAGIKARP
 	db 10,DRATINI
 
-	db $0f,$01 ; Olivine Port
+	db GROUP_OLIVINE_PORT, MAP_OLIVINE_PORT
 	db $05 ; encounter rate
 	db 20,TENTACOOL
 	db 15,TENTACOOL
 	db 20,TENTACRUEL
 
-	db $1a,$01 ; Route 30
+	db GROUP_ROUTE_30, MAP_ROUTE_30
 	db $05 ; encounter rate
 	db 20,POLIWAG
 	db 15,POLIWAG
 	db 20,POLIWHIRL
 
-	db $1a,$02 ; Route 31
+	db GROUP_ROUTE_31, MAP_ROUTE_31
 	db $05 ; encounter rate
 	db 20,POLIWAG
 	db 15,POLIWAG
 	db 20,POLIWHIRL
 
-	db $0a,$01 ; Route 32
+	db GROUP_ROUTE_32, MAP_ROUTE_32
 	db $0f ; encounter rate
 	db 15,TENTACOOL
 	db 20,QUAGSIRE
 	db 20,TENTACRUEL
 
-	db $0b,$01 ; Route 34
+	db GROUP_ROUTE_34, MAP_ROUTE_34
 	db $0f ; encounter rate
 	db 20,TENTACOOL
 	db 15,TENTACOOL
 	db 20,TENTACRUEL
 
-	db $0a,$02 ; Route 35
+	db GROUP_ROUTE_35, MAP_ROUTE_35
 	db $0a ; encounter rate
 	db 20,PSYDUCK
 	db 15,PSYDUCK
 	db 20,GOLDUCK
 
-	db $16,$01 ; Route 40
+	db GROUP_ROUTE_40, MAP_ROUTE_40
 	db $0f ; encounter rate
 	db 20,TENTACOOL
 	db 15,TENTACOOL
 	db 20,TENTACRUEL
 
-	db $16,$02 ; Route 41
+	db GROUP_ROUTE_41, MAP_ROUTE_41
 	db $0f ; encounter rate
 	db 20,TENTACOOL
 	db 20,TENTACRUEL
 	db 20,MANTINE
 
-	db $02,$05 ; Route 42
+	db GROUP_ROUTE_42, MAP_ROUTE_42
 	db $0a ; encounter rate
 	db 20,GOLDEEN
 	db 15,GOLDEEN
 	db 20,SEAKING
 
-	db $09,$05 ; Route 43
+	db GROUP_ROUTE_43, MAP_ROUTE_43
 	db $05 ; encounter rate
 	db 20,MAGIKARP
 	db 15,MAGIKARP
 	db 10,MAGIKARP
 
-	db $02,$06 ; Route 44
+	db GROUP_ROUTE_44, MAP_ROUTE_44
 	db $05 ; encounter rate
 	db 25,POLIWAG
 	db 20,POLIWAG
 	db 25,POLIWHIRL
 
-	db $05,$08 ; Route 45
+	db GROUP_ROUTE_45, MAP_ROUTE_45
 	db $05 ; encounter rate
 	db 20,MAGIKARP
 	db 15,MAGIKARP
 	db 5,MAGIKARP
 
-	db $18,$04 ; New Bark Town
+	db GROUP_NEW_BARK_TOWN, MAP_NEW_BARK_TOWN
 	db $0f ; encounter rate
 	db 20,TENTACOOL
 	db 15,TENTACOOL
 	db 20,TENTACRUEL
 
-	db $1a,$03 ; Cherrygrove City
+	db GROUP_CHERRYGROVE_CITY, MAP_CHERRYGROVE_CITY
 	db $0f ; encounter rate
 	db 20,TENTACOOL
 	db 15,TENTACOOL
 	db 20,TENTACRUEL
 
-	db $0a,$05 ; Violet City
+	db GROUP_VIOLET_CITY, MAP_VIOLET_CITY
 	db $05 ; encounter rate
 	db 20,POLIWAG
 	db 15,POLIWAG
 	db 20,POLIWHIRL
 
-	db $16,$03 ; Cianwood City
+	db GROUP_CIANWOOD_CITY, MAP_CIANWOOD_CITY
 	db $0f ; encounter rate
 	db 20,TENTACOOL
 	db 15,TENTACOOL
 	db 20,TENTACRUEL
 
-	db $01,$0e ; Olivine City
+	db GROUP_OLIVINE_CITY, MAP_OLIVINE_CITY
 	db $0f ; encounter rate
 	db 20,TENTACOOL
 	db 15,TENTACOOL
 	db 20,TENTACRUEL
 
-	db $04,$09 ; Ecruteak City
+	db GROUP_ECRUTEAK_CITY, MAP_ECRUTEAK_CITY
 	db $05 ; encounter rate
 	db 20,POLIWAG
 	db 15,POLIWAG
 	db 20,POLIWHIRL
 
-	db $09,$06 ; Lake of Rage
+	db GROUP_LAKE_OF_RAGE, MAP_LAKE_OF_RAGE
 	db $0f ; encounter rate
 	db 15,MAGIKARP
 	db 10,MAGIKARP
 	db 15,GYARADOS
 
-	db $05,$0a ; Blackthorn City
+	db GROUP_BLACKTHORN_CITY, MAP_BLACKTHORN_CITY
 	db $0a ; encounter rate
 	db 15,MAGIKARP
 	db 10,MAGIKARP
 	db 5,MAGIKARP
 
-	db $13,$02 ; Silver Cave outside
+	db GROUP_SILVER_CAVE_OUTSIDE, MAP_SILVER_CAVE_OUTSIDE
 	db $05 ; encounter rate
 	db 35,POLIWHIRL
 	db 40,POLIWHIRL
@@ -2249,7 +2249,7 @@ WildMons2: ; 0x2b11d
 WildMons3: ; 0x2b274
 ; Kanto Pokémon in grass
 
-	db $03,$54 ; Diglett's Cave
+	db GROUP_DIGLETTS_CAVE, MAP_DIGLETTS_CAVE
 	db $0a,$05,$14 ; encounter rates: morn/day/nite
 	; morn
 	db 3,DIGLETT
@@ -2276,7 +2276,7 @@ WildMons3: ; 0x2b274
 	db 32,DUGTRIO
 	db 32,DUGTRIO
 
-	db $03,$55 ; Mount Moon
+	db GROUP_MOUNT_MOON, MAP_MOUNT_MOON
 	db $0f,$0f,$0f ; encounter rates: morn/day/nite
 	; morn
 	db 6,ZUBAT
@@ -2303,7 +2303,7 @@ WildMons3: ; 0x2b274
 	db 12,CLEFAIRY
 	db 12,CLEFAIRY
 
-	db $03,$57 ; Rock Tunnel 1F
+	db GROUP_ROCK_TUNNEL_1F, MAP_ROCK_TUNNEL_1F
 	db $0f,$0f,$0f ; encounter rates: morn/day/nite
 	; morn
 	db 10,CUBONE
@@ -2330,7 +2330,7 @@ WildMons3: ; 0x2b274
 	db 15,ZUBAT
 	db 15,ZUBAT
 
-	db $03,$58 ; Rock Tunnel B1F
+	db GROUP_ROCK_TUNNEL_B1F, MAP_ROCK_TUNNEL_B1F
 	db $0f,$0f,$0f ; encounter rates: morn/day/nite
 	; morn
 	db 12,CUBONE
@@ -2357,7 +2357,7 @@ WildMons3: ; 0x2b274
 	db 15,GOLBAT
 	db 15,GOLBAT
 
-	db $03,$5b ; Victory Road
+	db GROUP_VICTORY_ROAD, MAP_VICTORY_ROAD
 	db $0f,$0f,$0f ; encounter rates: morn/day/nite
 	; morn
 	db 34,GRAVELER
@@ -2384,7 +2384,7 @@ WildMons3: ; 0x2b274
 	db 40,GRAVELER
 	db 40,GRAVELER
 
-	db $03,$53 ; Tohjo Falls
+	db GROUP_TOHJO_FALLS, MAP_TOHJO_FALLS
 	db $0f,$0f,$0f ; encounter rates: morn/day/nite
 	; morn
 	db 22,ZUBAT
@@ -2411,7 +2411,7 @@ WildMons3: ; 0x2b274
 	db 23,SLOWPOKE
 	db 23,SLOWPOKE
 
-	db $0d,$01 ; Route 1
+	db GROUP_ROUTE_1, MAP_ROUTE_1
 	db $19,$19,$19 ; encounter rates: morn/day/nite
 	; morn
 	db 2,PIDGEY
@@ -2438,7 +2438,7 @@ WildMons3: ; 0x2b274
 	db 4,HOOTHOOT
 	db 4,HOOTHOOT
 
-	db $17,$01 ; Route 2
+	db GROUP_ROUTE_2, MAP_ROUTE_2
 	db $19,$19,$19 ; encounter rates: morn/day/nite
 	; morn
 	db 3,CATERPIE
@@ -2465,7 +2465,7 @@ WildMons3: ; 0x2b274
 	db 4,NOCTOWL
 	db 4,NOCTOWL
 
-	db $0e,$01 ; Route 3
+	db GROUP_ROUTE_3, MAP_ROUTE_3
 	db $19,$19,$19 ; encounter rates: morn/day/nite
 	; morn
 	db 5,SPEAROW
@@ -2492,7 +2492,7 @@ WildMons3: ; 0x2b274
 	db 6,CLEFAIRY
 	db 6,CLEFAIRY
 
-	db $07,$0c ; Route 4
+	db GROUP_ROUTE_4, MAP_ROUTE_4
 	db $19,$19,$19 ; encounter rates: morn/day/nite
 	; morn
 	db 5,SPEAROW
@@ -2519,7 +2519,7 @@ WildMons3: ; 0x2b274
 	db 6,CLEFAIRY
 	db 6,CLEFAIRY
 
-	db $19,$01 ; Route 5
+	db GROUP_ROUTE_5, MAP_ROUTE_5
 	db $19,$19,$19 ; encounter rates: morn/day/nite
 	; morn
 	db 13,PIDGEY
@@ -2546,7 +2546,7 @@ WildMons3: ; 0x2b274
 	db 14,ABRA
 	db 14,ABRA
 
-	db $0c,$01 ; Route 6
+	db GROUP_ROUTE_6, MAP_ROUTE_6
 	db $19,$19,$19 ; encounter rates: morn/day/nite
 	; morn
 	db 13,RATTATA
@@ -2573,7 +2573,7 @@ WildMons3: ; 0x2b274
 	db 15,RATICATE
 	db 15,RATICATE
 
-	db $15,$01 ; Route 7
+	db GROUP_ROUTE_7, MAP_ROUTE_7
 	db $19,$19,$19 ; encounter rates: morn/day/nite
 	; morn
 	db 17,RATTATA
@@ -2600,7 +2600,7 @@ WildMons3: ; 0x2b274
 	db 16,ABRA
 	db 16,ABRA
 
-	db $12,$01 ; Route 8
+	db GROUP_ROUTE_8, MAP_ROUTE_8
 	db $19,$19,$19 ; encounter rates: morn/day/nite
 	; morn
 	db 17,SNUBBULL
@@ -2627,7 +2627,7 @@ WildMons3: ; 0x2b274
 	db 18,KADABRA
 	db 18,KADABRA
 
-	db $07,$0d ; Route 9
+	db GROUP_ROUTE_9, MAP_ROUTE_9
 	db $19,$19,$19 ; encounter rates: morn/day/nite
 	; morn
 	db 15,RATTATA
@@ -2654,7 +2654,7 @@ WildMons3: ; 0x2b274
 	db 18,RATICATE
 	db 18,RATICATE
 
-	db $07,$0e ; Route 10
+	db GROUP_ROUTE_10_NORTH, MAP_ROUTE_10_NORTH
 	db $19,$19,$19 ; encounter rates: morn/day/nite
 	; morn
 	db 15,SPEAROW
@@ -2681,7 +2681,7 @@ WildMons3: ; 0x2b274
 	db 16,ELECTABUZZ
 	db 16,ELECTABUZZ
 
-	db $0c,$02 ; Route 11
+	db GROUP_ROUTE_11, MAP_ROUTE_11
 	db $19,$19,$19 ; encounter rates: morn/day/nite
 	; morn
 	db 14,HOPPIP
@@ -2708,7 +2708,7 @@ WildMons3: ; 0x2b274
 	db 16,HYPNO
 	db 16,HYPNO
 
-	db $11,$01 ; Route 13
+	db GROUP_ROUTE_13, MAP_ROUTE_13
 	db $19,$19,$19 ; encounter rates: morn/day/nite
 	; morn
 	db 23,NIDORINO
@@ -2735,7 +2735,7 @@ WildMons3: ; 0x2b274
 	db 25,QUAGSIRE
 	db 25,CHANSEY
 
-	db $11,$02 ; Route 14
+	db GROUP_ROUTE_14, MAP_ROUTE_14
 	db $19,$19,$19 ; encounter rates: morn/day/nite
 	; morn
 	db 26,NIDORINO
@@ -2762,7 +2762,7 @@ WildMons3: ; 0x2b274
 	db 28,QUAGSIRE
 	db 28,CHANSEY
 
-	db $11,$03 ; Route 15
+	db GROUP_ROUTE_15, MAP_ROUTE_15
 	db $19,$19,$19 ; encounter rates: morn/day/nite
 	; morn
 	db 23,NIDORINO
@@ -2789,7 +2789,7 @@ WildMons3: ; 0x2b274
 	db 25,QUAGSIRE
 	db 25,CHANSEY
 
-	db $15,$02 ; Route 16
+	db GROUP_ROUTE_16, MAP_ROUTE_16
 	db $19,$19,$19 ; encounter rates: morn/day/nite
 	; morn
 	db 26,GRIMER
@@ -2816,7 +2816,7 @@ WildMons3: ; 0x2b274
 	db 30,MUK
 	db 30,MUK
 
-	db $15,$03 ; Route 17
+	db GROUP_ROUTE_17, MAP_ROUTE_17
 	db $19,$19,$19 ; encounter rates: morn/day/nite
 	; morn
 	db 30,FEAROW
@@ -2843,7 +2843,7 @@ WildMons3: ; 0x2b274
 	db 33,MUK
 	db 33,MUK
 
-	db $11,$04 ; Route 18
+	db GROUP_ROUTE_18, MAP_ROUTE_18
 	db $19,$19,$19 ; encounter rates: morn/day/nite
 	; morn
 	db 26,GRIMER
@@ -2870,7 +2870,7 @@ WildMons3: ; 0x2b274
 	db 30,MUK
 	db 30,MUK
 
-	db $06,$07 ; Route 21
+	db GROUP_ROUTE_21, MAP_ROUTE_21
 	db $0f,$0f,$0f ; encounter rates: morn/day/nite
 	; morn
 	db 30,TANGELA
@@ -2897,7 +2897,7 @@ WildMons3: ; 0x2b274
 	db 28,TANGELA
 	db 28,TANGELA
 
-	db $17,$02 ; Route 22
+	db GROUP_ROUTE_22, MAP_ROUTE_22
 	db $19,$19,$19 ; encounter rates: morn/day/nite
 	; morn
 	db 3,RATTATA
@@ -2924,7 +2924,7 @@ WildMons3: ; 0x2b274
 	db 7,RATTATA
 	db 7,RATTATA
 
-	db $07,$0f ; Route 24
+	db GROUP_ROUTE_24, MAP_ROUTE_24
 	db $19,$19,$19 ; encounter rates: morn/day/nite
 	; morn
 	db 8,CATERPIE
@@ -2951,7 +2951,7 @@ WildMons3: ; 0x2b274
 	db 14,GLOOM
 	db 14,GLOOM
 
-	db $07,$10 ; Route 25
+	db GROUP_ROUTE_25, MAP_ROUTE_25
 	db $19,$19,$19 ; encounter rates: morn/day/nite
 	; morn
 	db 10,CATERPIE
@@ -2978,7 +2978,7 @@ WildMons3: ; 0x2b274
 	db 14,NOCTOWL
 	db 14,NOCTOWL
 
-	db $18,$01 ; Route 26
+	db GROUP_ROUTE_26, MAP_ROUTE_26
 	db $19,$19,$19 ; encounter rates: morn/day/nite
 	; morn
 	db 28,DODUO
@@ -3005,7 +3005,7 @@ WildMons3: ; 0x2b274
 	db 30,QUAGSIRE
 	db 30,QUAGSIRE
 
-	db $18,$02 ; Route 27
+	db GROUP_ROUTE_27, MAP_ROUTE_27
 	db $19,$19,$19 ; encounter rates: morn/day/nite
 	; morn
 	db 28,DODUO
@@ -3032,7 +3032,7 @@ WildMons3: ; 0x2b274
 	db 32,NOCTOWL
 	db 32,NOCTOWL
 
-	db $13,$01 ; Route 28
+	db GROUP_ROUTE_28, MAP_ROUTE_28
 	db $19,$19,$19 ; encounter rates: morn/day/nite
 	; morn
 	db 39,TANGELA
@@ -3064,145 +3064,145 @@ WildMons3: ; 0x2b274
 WildMons4: ; 0x2b7f7
 ; Kanto Pokémon in water
 
-	db $03,$53 ; Tohjo Falls
+	db GROUP_TOHJO_FALLS, MAP_TOHJO_FALLS
 	db $0a ; encounter rate
 	db 20,GOLDEEN
 	db 20,SLOWPOKE
 	db 20,SEAKING
 
-	db $0f,$02 ; Vermilion Port
+	db GROUP_VERMILION_PORT, MAP_VERMILION_PORT
 	db $05 ; encounter rate
 	db 35,TENTACOOL
 	db 30,TENTACOOL
 	db 35,TENTACRUEL
 
-	db $07,$0c ; Route 4
+	db GROUP_ROUTE_4, MAP_ROUTE_4
 	db $0a ; encounter rate
 	db 10,GOLDEEN
 	db 5,GOLDEEN
 	db 10,SEAKING
 
-	db $0c,$01 ; Route 6
+	db GROUP_ROUTE_6, MAP_ROUTE_6
 	db $05 ; encounter rate
 	db 10,PSYDUCK
 	db 5,PSYDUCK
 	db 10,GOLDUCK
 
-	db $07,$0d ; Route 9
+	db GROUP_ROUTE_9, MAP_ROUTE_9
 	db $0a ; encounter rate
 	db 15,GOLDEEN
 	db 10,GOLDEEN
 	db 15,SEAKING
 
-	db $07,$0e ; Route 10
+	db GROUP_ROUTE_10_NORTH, MAP_ROUTE_10_NORTH
 	db $0a ; encounter rate
 	db 15,GOLDEEN
 	db 10,GOLDEEN
 	db 15,SEAKING
 
-	db $12,$02 ; Route 12
+	db GROUP_ROUTE_12, MAP_ROUTE_12
 	db $0f ; encounter rate
 	db 25,TENTACOOL
 	db 25,QUAGSIRE
 	db 25,TENTACRUEL
 
-	db $11,$01 ; Route 13
+	db GROUP_ROUTE_13, MAP_ROUTE_13
 	db $0f ; encounter rate
 	db 25,TENTACOOL
 	db 25,QUAGSIRE
 	db 25,TENTACRUEL
 
-	db $06,$05 ; Route 19
+	db GROUP_ROUTE_19, MAP_ROUTE_19
 	db $0f ; encounter rate
 	db 35,TENTACOOL
 	db 30,TENTACOOL
 	db 35,TENTACRUEL
 
-	db $06,$06 ; Route 20
+	db GROUP_ROUTE_20, MAP_ROUTE_20
 	db $0f ; encounter rate
 	db 35,TENTACOOL
 	db 30,TENTACOOL
 	db 35,TENTACRUEL
 
-	db $06,$07 ; Route 21
+	db GROUP_ROUTE_21, MAP_ROUTE_21
 	db $0f ; encounter rate
 	db 35,TENTACOOL
 	db 30,TENTACOOL
 	db 35,TENTACRUEL
 
-	db $17,$02 ; Route 22
+	db GROUP_ROUTE_22, MAP_ROUTE_22
 	db $05 ; encounter rate
 	db 10,POLIWAG
 	db 5,POLIWAG
 	db 10,POLIWHIRL
 
-	db $07,$0f ; Route 24
+	db GROUP_ROUTE_24, MAP_ROUTE_24
 	db $0a ; encounter rate
 	db 10,GOLDEEN
 	db 5,GOLDEEN
 	db 10,SEAKING
 
-	db $07,$10 ; Route 25
+	db GROUP_ROUTE_25, MAP_ROUTE_25
 	db $0a ; encounter rate
 	db 10,GOLDEEN
 	db 5,GOLDEEN
 	db 10,SEAKING
 
-	db $18,$01 ; Route 26
+	db GROUP_ROUTE_26, MAP_ROUTE_26
 	db $0f ; encounter rate
 	db 30,TENTACOOL
 	db 25,TENTACOOL
 	db 30,TENTACRUEL
 
-	db $18,$02 ; Route 27
+	db GROUP_ROUTE_27, MAP_ROUTE_27
 	db $0f ; encounter rate
 	db 20,TENTACOOL
 	db 15,TENTACOOL
 	db 20,TENTACRUEL
 
-	db $13,$01 ; Route 28
+	db GROUP_ROUTE_28, MAP_ROUTE_28
 	db $05 ; encounter rate
 	db 40,POLIWAG
 	db 35,POLIWAG
 	db 40,POLIWHIRL
 
-	db $0d,$02 ; Pallet Town
+	db GROUP_PALLET_TOWN, MAP_PALLET_TOWN
 	db $0f ; encounter rate
 	db 35,TENTACOOL
 	db 30,TENTACOOL
 	db 35,TENTACRUEL
 
-	db $17,$03 ; Viridian City
+	db GROUP_VIRIDIAN_CITY, MAP_VIRIDIAN_CITY
 	db $05 ; encounter rate
 	db 10,POLIWAG
 	db 5,POLIWAG
 	db 10,POLIWHIRL
 
-	db $07,$11 ; Cerulean City
+	db GROUP_CERULEAN_CITY, MAP_CERULEAN_CITY
 	db $0a ; encounter rate
 	db 10,GOLDEEN
 	db 5,GOLDEEN
 	db 10,SEAKING
 
-	db $0c,$03 ; Vermilion City
+	db GROUP_VERMILION_CITY, MAP_VERMILION_CITY
 	db $0f ; encounter rate
 	db 35,TENTACOOL
 	db 30,TENTACOOL
 	db 35,TENTACRUEL
 
-	db $15,$04 ; Celadon City
+	db GROUP_CELADON_CITY, MAP_CELADON_CITY
 	db $05 ; encounter rate
 	db 20,GRIMER
 	db 15,GRIMER
 	db 15,MUK
 
-	db $11,$05 ; Fuchsia City
+	db GROUP_FUCHSIA_CITY, MAP_FUCHSIA_CITY
 	db $05 ; encounter rate
 	db 20,MAGIKARP
 	db 15,MAGIKARP
 	db 10,MAGIKARP
 
-	db $06,$08 ; Cinnabar Island
+	db GROUP_CINNABAR_ISLAND, MAP_CINNABAR_ISLAND
 	db $0f ; encounter rate
 	db 35,TENTACOOL
 	db 30,TENTACOOL
@@ -3214,7 +3214,7 @@ WildMons5: ; 0x2b8d0
 ; swarms in grass
 
 ; Dunsparce swarm
-	db $03,$4e ; Dark Cave, Violet Entrance
+	db GROUP_DARK_CAVE_VIOLET_ENTRANCE, MAP_DARK_CAVE_VIOLET_ENTRANCE
 	db $0a,$0a,$0a ; encounter rates: morn/day/nite
 	; morn
 	db 3,GEODUDE
@@ -3242,7 +3242,7 @@ WildMons5: ; 0x2b8d0
 	db 4,DUNSPARCE
 
 ; Yanma swarm
-	db $0a,$02 ; Route 35
+	db GROUP_ROUTE_35, MAP_ROUTE_35
 	db $19,$19,$19 ; encounter rates: morn/day/nite
 	; morn
 	db 12,NIDORAN_M
