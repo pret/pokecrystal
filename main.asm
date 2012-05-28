@@ -82730,8 +82730,9 @@ UnknownScript_0x192c0a: ; 0x192c0a
 	closetext
 	loadmovesprites
 	checkcode $9
-	if_not_equal $1, $6c20
+	if_not_equal $1, UnknownScript_0x192c20
 	spriteface $0, $2
+UnknownScript_0x192c20: ; 0x192c20
 	loadfont
 	2writetext UnknownText_0x193278
 	closetext
@@ -95655,13 +95656,14 @@ UnknownScript_0x1a0f5a: ; 0x1a0f5a
 UnknownScript_0x1a0f5b: ; 0x1a0f5b
 	checkbit2 $001b
 	iftrue UnknownScript_0x1a0f64
+UnknownScript_0x1a0f61: ; 0x1a0f61
 	disappear $8
 	return
 ; 0x1a0f64
 
 UnknownScript_0x1a0f64: ; 0x1a0f64
 	checkcode $b
-	if_not_equal $2, $4f61
+	if_not_equal $2, UnknownScript_0x1a0f61
 	appear $8
 	return
 ; 0x1a0f6d
