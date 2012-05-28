@@ -5483,7 +5483,7 @@ class Connection:
             # 0xc703 + (current_map_height + 3) * (current_map_width + 6) + x_movement_of_the_connection_strip_in_blocks
             x_movement_of_the_connection_strip_in_blocks = strip_destination - (0xc703 + (current_map_height + 3) * (current_map_width + 6))
             xmov = x_movement_of_the_connection_strip_in_blocks
-            output += "($C703 + (((" + self_constant_label + "_HEIGHT * 3) * (" + self_constant_label + "_WIDTH + 6)) + " + str(xmov) + "))"
+            output += "($C703 + (((" + self_constant_label + "_HEIGHT + 3) * (" + self_constant_label + "_WIDTH + 6)) + " + str(xmov) + "))"
         elif ldirection == "east":
             # strip_destination =
             #   0xc700 + (current_map_width + 6) * (y_movement_of_the_connection_strip_in_blocks + 3)
@@ -5530,23 +5530,25 @@ class Connection:
         #elif not ((xoffset % -2) == 0):
         #    raise Exception, "tauwasser was wrong about xoffset for north/south? it's not divisible by -2: " + str(xoffset)
 
-        if ldirection == "south":
-            output += "db 0"
-        elif ldirection == "north":
-            output += "db ((" + map_constant_label + "_HEIGHT * 2) - 1)"
-        else:
-            output += "db "+str(yoffset)
+        output += "db "
 
-        output += " ; yoffset\n"
+        if ldirection == "south":
+            output += "0"
+        elif ldirection == "north":
+            output += "((" + map_constant_label + "_HEIGHT * 2) - 1)"
+        else:
+            output += str(yoffset)
+
+        output += ", "
 
         if ldirection == "east":
-            output += "db 0"
+            output += "0"
         elif ldirection == "west":
-            output += "db ((" + map_constant_label + "_WIDTH * 2) - 1)"
+            output += "((" + map_constant_label + "_WIDTH * 2) - 1)"
         else:
-            output += "db "+str(xoffset)
+            output += str(xoffset)
 
-        output += " ; xoffset\n"
+        output += " ; yoffset, xoffset\n"
 
         window = self.window
 
