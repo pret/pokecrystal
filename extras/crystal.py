@@ -1283,6 +1283,21 @@ def generate_map_constants():
     print groups
     print maps
 
+def generate_map_constants_dimensions():
+    """ Generate _WIDTH and _HEIGHT properties.
+    """
+    global map_internal_ids
+    output = ""
+    if map_internal_ids == None or map_internal_ids == {}:
+        generate_map_constant_labels()
+    for (id, each) in map_internal_ids.items():
+        map_group = each["map_group"]
+        map_id    = each["map_id"]
+        label = each["label"].replace("-", "_").replace("é", "e").upper()
+        output += label + "_HEIGHT EQU %d\n" % (map_names[map_group][map_id]["header_new"].second_map_header.height.byte)
+        output += label + "_WIDTH EQU %d\n" % (map_names[map_group][map_id]["header_new"].second_map_header.width.byte)
+    return output
+
 from pokemon_constants import pokemon_constants
 
 def get_pokemon_constant_by_id(id):
@@ -4899,6 +4914,8 @@ class SecondMapHeader:
             # 12 bytes each?
             current_address += connection.size
 
+        self.last_address = current_address
+
         return True
 
     def get_dependencies(self, recompute=False, global_dependencies=set()):
@@ -4913,10 +4930,11 @@ class SecondMapHeader:
         return dependencies
 
     def to_asm(self):
+        self_constant_label = get_map_constant_label(map_group=self.map_group, map_id=self.map_id)
         output = "; border block\n"
         output += "db " + self.border_block.to_asm() + "\n\n"
         output += "; height, width\n"
-        output += "db " + self.height.to_asm() + ", " + self.width.to_asm() + "\n\n"
+        output += "db " + self_constant_label + "_HEIGHT, " + self_constant_label + "_WIDTH\n\n"
         output += "; blockdata (bank-then-pointer)\n"
         thing = ScriptPointerLabelBeforeBank(address=self.address+3, map_group=self.map_group, map_id=self.map_id, debug=self.debug).to_asm()
         output += "dbw " + thing.split(", ")[0] + ", "+thing.split(", ")[1] + "\n\n"
@@ -4925,8 +4943,15 @@ class SecondMapHeader:
         output += "dbw " + thing.split(", ")[0] + ", " + thing.split(", ")[1] + "\n\n"
         output += "; map event header (bank-then-pointer)\n"
         output += "dw " + PointerLabelParam(address=self.address+9, bank=self.event_bank, map_group=self.map_group, map_id=self.map_id, debug=self.debug).to_asm() + "\n\n"
+
         output += "; connections\n"
-        output += "db " + self.connection_byte.to_asm()
+        dir_results = []
+        connection_options = [0b1000, 0b0100, 0b0010, 0b0001]
+        dirs = ["NORTH", "SOUTH", "WEST", "EAST"]
+        for (id, each) in enumerate(dirs):
+            if ((connection_options[id] & self.connection_byte.byte) != 0):
+                dir_results.append(each)
+        output += "db " + " | ".join(dir_results)
 
         if self.connection_byte == 0:
             return output
@@ -5204,7 +5229,7 @@ class Connection:
             x_movement_of_the_connection_strip_in_blocks = None
             y_movement_of_the_connection_strip_in_blocks = None
 
-            # the below code makes sure there's an equation to calculte strip_destination
+            # the below code makes sure there's an equation to calculate strip_destination
             # 11:05 <comet> Above: C803h + xoffset
             # 11:05 <comet> Below: C803h + (m.height + 3) * (m.width + 6) + xoffset
             # 11:05 <comet> Left: C800h + (m.width + 6) * (yoffset + 3)
@@ -5308,8 +5333,11 @@ class Connection:
         connected_map_height        = connected_second_map_header.height.byte
         connected_map_width         = connected_second_map_header.width.byte
 
-        connection_strip_length = str(self.connection_strip_length)
-        connected_map_width  = str(self.connected_map_width)
+        connection_strip_length = self.connection_strip_length
+        connected_map_width     = self.connected_map_width
+
+        current_map_height      = self.smh.height.byte
+        current_map_width       = self.smh.width.byte
 
         map_constant_label          = get_map_constant_label(map_group=connected_map_group_id, map_id=connected_map_id)
         self_constant_label         = get_map_constant_label(map_group=self.smh.map_group, map_id=self.smh.map_id)
@@ -5325,6 +5353,9 @@ class Connection:
                   + "\n"
 
         output += "db %s, %s ; connected map (group, id)\n" % (map_group_label, map_label)
+
+        yoffset = self.yoffset
+        xoffset = self.xoffset
 
         # According to JohtoMap, the calculation for tile data pointer is:
         #   int p = otherMap.tileDataLocation;
@@ -5383,7 +5414,7 @@ class Connection:
             elif ((p + xoffset + (current_map_height * 2))%0x4000 + 0x4000) == strip_pointer:
                 method = "west3"
                 p += xoffset + (current_map_height * 2)
-                otuput += "(" + get_label_for(connected_second_map_header.blockdata.address) + " + " + str(xoffset) + " + (" + map_constant_label + "_HEIGHT * 2))"
+                output += "(" + get_label_for(connected_second_map_header.blockdata.address) + " + " + str(xoffset) + " + (" + map_constant_label + "_HEIGHT * 2))"
             elif (p%0x4000)+0x4000 != strip_pointer:
                 # worst case scenario: dunno what to do
                 method = "west4"
@@ -5431,16 +5462,8 @@ class Connection:
                 p += 2 * (100 - 4 * connected_map_width)
                 output += "(" + get_label_for(connected_second_map_header.blockdata.address) + " + ((100 - (" + map_constant_label + "_WIDTH * 4)) * 2))"
 
-        output += "; strip pointer\n"
+        output += " ; strip pointer\n"
 
-        # 10:19 <comet> memoryotherpointer is <comet> what johtomap calls OMDL (in ram where the tiles start getting pulled from the other map)
-        # 10:42 <comet> it would be a good idea to rename otherpointer strippointer or striploc
-        # 10:42 <comet> since thats more accurate
-        # 11:05 <comet> Above: C803h + xoffset
-        # 11:05 <comet> Below: C803h + (m.height + 3) * (m.width + 6) + xoffset
-        # 11:05 <comet> Left: C800h + (m.width + 6) * (yoffset + 3)
-        # 11:05 <comet> Right: C7FDh + (m.width + 6) * (yoffset + 4)
-        #
         # tauwasser calls this "connection strip destination" and lin calls this "memoryOtherPointer"
         #   Points to the upper left block of the connection strip
         #   (The bank the Blockdata is in, is loaded out of the Mapheader of the connected Map.)
@@ -5448,8 +5471,35 @@ class Connection:
         #   (depending on the connection's direction)
         strip_destination = self.strip_destination
 
-        output += "db %s, %s ; (connection strip length, connected map width)\n" % \
-                  (connection_strip_length, connected_map_width)
+        output += "dw "
+        
+        # i am not convinced about these calculations
+        if ldirection == "north":
+            x_movement_of_the_connection_strip_in_blocks = strip_destination - 0xC703
+            xmov = x_movement_of_the_connection_strip_in_blocks
+            output += "($C703 + " + str(xmov) + ")"
+        elif ldirection == "south":
+            # strip_destination =
+            # 0xc703 + (current_map_height + 3) * (current_map_width + 6) + x_movement_of_the_connection_strip_in_blocks
+            x_movement_of_the_connection_strip_in_blocks = strip_destination - (0xc703 + (current_map_height + 3) * (current_map_width + 6))
+            xmov = x_movement_of_the_connection_strip_in_blocks
+            output += "($C703 + (((" + self_constant_label + "_HEIGHT * 3) * (" + self_constant_label + "_WIDTH + 6)) + " + str(xmov) + "))"
+        elif ldirection == "east":
+            # strip_destination =
+            #   0xc700 + (current_map_width + 6) * (y_movement_of_the_connection_strip_in_blocks + 3)
+            y_movement_of_the_connection_strip_in_blocks = (strip_destination - 0xc700) / (current_map_width + 6) - 3
+            ymov = y_movement_of_the_connection_strip_in_blocks
+            output += "($C700 + ((" + self_constant_label + "_WIDTH + 6) * (" + str(ymov) + " + 3)))"
+        elif ldirection == "west":
+            # strip_destination =
+            # 0xc6fd + (current_map_width + 6) * (y_movement_of_the_connection_strip_in_blocks + 4)
+            y_movement_of_the_connection_strip_in_blocks = (strip_destination - 0xc6fd) / (current_map_width + 6) - 4
+            ymov = y_movement_of_the_connection_strip_in_blocks
+            output += "($C6FD + ((" + self_constant_label + "_WIDTH + 6) * (" + str(ymov) + " + 4)))"
+
+        output += " ; strip destination\n"
+
+        output += "db " + str(connection_strip_length,) + ", " + map_constant_label + "_WIDTH ; (connection strip length, connected map width)\n"
 
         #if ldirection in ["east", "west"]:
         #    Y_movement_of_connection_strip_in_blocks = 
@@ -5468,15 +5518,6 @@ class Connection:
         #elif not ((yoffset % -2) == 0):
         #    raise Exception, "tauwasser was wrong about yoffset for west/east? it's not divisible by -2: " + str(yoffset)
 
-        if ldirection == "south":
-            output += "db 0"
-        elif ldirection == "north":
-            output += "db ((" + map_constant_label + "_HEIGHT * 2) - 1)"
-        else: # TODO: better formula for yoffset?
-            output += "db "+str(yoffset)
-
-        output += " ; yoffset\n"
-
         # Left: (Width_of_connected_map * 2) - 1
         # Right: 0
         # Above/Below: (X_movement_of_connection_strip_in_blocks * -2)
@@ -5489,17 +5530,60 @@ class Connection:
         #elif not ((xoffset % -2) == 0):
         #    raise Exception, "tauwasser was wrong about xoffset for north/south? it's not divisible by -2: " + str(xoffset)
 
+        if ldirection == "south":
+            output += "db 0"
+        elif ldirection == "north":
+            output += "db ((" + map_constant_label + "_HEIGHT * 2) - 1)"
+        else:
+            output += "db "+str(yoffset)
+
+        output += " ; yoffset\n"
+
         if ldirection == "east":
             output += "db 0"
         elif ldirection == "west":
             output += "db ((" + map_constant_label + "_WIDTH * 2) - 1)"
-        else: # TODO: better formula for x offset?
+        else:
             output += "db "+str(xoffset)
 
         output += " ; xoffset\n"
 
-        # TODO
         window = self.window
+
+        output += "dw "
+            
+        # let's also check the window equations
+        # tauwasser calls this "window" and lin calls this "memoryCurrentPointer"
+        # Position of the upper left block after entering the Map
+        #
+        # tauwasser's formula for windows:
+        #   Above: C701h + Height_of_connected_map * (Width_of_connected_map + 6)
+        #   Left: C706h + 2 * Width_of_connected_map
+        #   Below/Right: C707h + Width_of_connected_map
+        window_worked = False
+        if ldirection == "north":
+            # tauwasser's formula: 0xc701 + connected_map_height * (connected_map_width + 6)
+            window_start = 0xc801
+            if window == window_start + (connected_map_height * 6) + (connected_map_height * connected_map_width):
+                window_worked = True
+                output += "($C801 + ((" + map_constant_label + "_HEIGHT * 6) + (" + map_constant_label + "_HEIGHT * " + map_constant_label + "_WIDTH)))"
+        elif ldirection == "east":
+            window_start = 0xc807
+            if window == (window_start + connected_map_width):
+                window_worked = True
+                output += "($C807 + " + map_constant_label + "_WIDTH)"
+        elif ldirection == "south":
+            window_start = 0xc807
+            if window == (window_start + connected_map_width):
+                window_worked = True
+                output += "($C807 + " + map_constant_label + "_WIDTH)"
+        elif ldirection == "west":
+            window_start = 0xc807
+            if window == (window_start + xoffset):
+                window_worked = True
+                output += "($C807 + " + str(xoffset) + ")"
+
+        output += " ; window"
 
         return output
 
