@@ -15728,6 +15728,7 @@ UnknownScript_0x5809d: ; 0x5809d
 	musicfadeout $2905, $1
 ; 0x580a2
 
+; probably not a script?
 UnknownScript_0x580a2: ; 0x580a2
 	db $e5
 	itemtotext THUNDERSTONE, $42
@@ -79718,13 +79719,14 @@ UnknownScript_0x190013: ; 0x190013
 	applymovement $0, MovementData_0x1900a7
 	stopfollow
 	spriteface $0, $3
-	2call $402f
+	2call UnknownScript_0x19002f
 	applymovement $2, MovementData_0x1900ad
 	end
 ; 0x19002e
 
 UnknownScript_0x19002e: ; 0x19002e
 	faceplayer
+UnknownScript_0x19002f: ; 0x19002f
 	checkbit1 $0022
 	iftrue UnknownScript_0x190039
 	2call UnknownScript_0x190040
@@ -80011,6 +80013,7 @@ UnknownScript_0x19046c: ; 0x19046c
 
 UnknownScript_0x19046f: ; 0x19046f
 	faceplayer
+UnknownScript_0x190470: ; 0x190470
 	loadfont
 	checkbit1 $005d
 	iftrue UnknownScript_0x1904a5
@@ -80066,7 +80069,7 @@ UnknownScript_0x1904ab: ; 0x1904ab
 	applymovement $0, MovementData_0x190789
 	stopfollow
 	spriteface $0, $0
-	2call $4470
+	2call UnknownScript_0x190470
 	applymovement $9, MovementData_0x19078c
 	applymovement $9, MovementData_0x19078e
 	end
