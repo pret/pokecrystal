@@ -4760,7 +4760,7 @@ class MapHeader:
 
     def to_asm(self):
         output  = "; bank, tileset, permission\n"
-        output += "db " + ", ".join([self.bank.to_asm(), self.tileset.to_asm(), self.permission.to_asm()])
+        output += "db " + ", ".join(["BANK(" + self.second_map_header.label.name + ")", self.tileset.to_asm(), self.permission.to_asm()])
         output += "\n\n; second map header\n"
         output += "dw " + PointerLabelParam(address=self.address+3).to_asm() #TODO: should we include bank=self.bank.byte ??
         output += "\n\n; location on world map, music, time of day, fishing group\n"
