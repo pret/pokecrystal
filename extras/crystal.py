@@ -5472,7 +5472,7 @@ class Connection:
         strip_destination = self.strip_destination
 
         output += "dw "
-        
+
         # i am not convinced about these calculations
         if ldirection == "north":
             x_movement_of_the_connection_strip_in_blocks = strip_destination - 0xC703
@@ -5483,20 +5483,27 @@ class Connection:
             # 0xc703 + (current_map_height + 3) * (current_map_width + 6) + x_movement_of_the_connection_strip_in_blocks
             x_movement_of_the_connection_strip_in_blocks = strip_destination - (0xc703 + (current_map_height + 3) * (current_map_width + 6))
             xmov = x_movement_of_the_connection_strip_in_blocks
-            output += "($C703 + (((" + self_constant_label + "_HEIGHT + 3) * (" + self_constant_label + "_WIDTH + 6)) + " + str(xmov) + "))"
+            #output += "($C703 + (((" + self_constant_label + "_HEIGHT + 3) * (" + self_constant_label + "_WIDTH + 6)) + " + str(xmov) + "))"
+
+            # xmov = strip_destination - (0xc703 + (current_map_height + 3) * (current_map_width + 6))
+            #difference = 0xC715 + xmov + 6*current_map_height + 3*current_map_width + current_map_width*current_map_height
+            #difference = 50965 + ymov + 6*current_map_height + 3*current_map_width + current_map_width*current_map_height
+
+            output += "($C703 + " + str(xmov) + " + ((" + self_constant_label + "_HEIGHT + 3) * (" + self_constant_label + "_WIDTH + 6)))"
         elif ldirection == "east":
             # strip_destination =
             #   0xc700 + (current_map_width + 6) * (y_movement_of_the_connection_strip_in_blocks + 3)
             y_movement_of_the_connection_strip_in_blocks = (strip_destination - 0xc700) / (current_map_width + 6) - 3
             ymov = y_movement_of_the_connection_strip_in_blocks
-            output += "($C700 + ((" + self_constant_label + "_WIDTH + 6) * (" + str(ymov) + " + 3)))"
+            #output += "($C700 + ((" + self_constant_label + "_WIDTH + 6) * (" + str(ymov) + " + 3)) + "+str(ymov)+")"
+            output += "$%.2x" % (strip_destination)
         elif ldirection == "west":
             # strip_destination =
             # 0xc6fd + (current_map_width + 6) * (y_movement_of_the_connection_strip_in_blocks + 4)
-            y_movement_of_the_connection_strip_in_blocks = (strip_destination - 0xc6fd) / (current_map_width + 6) - 4
+            y_movement_of_the_connection_strip_in_blocks = (strip_destination - 0xc700) / (current_map_width + 6) - 3
             ymov = y_movement_of_the_connection_strip_in_blocks
-            output += "($C6FD + ((" + self_constant_label + "_WIDTH + 6) * (" + str(ymov) + " + 4)))"
-
+            #output += "($C700 + ((" + self_constant_label + "_WIDTH + 6) * (" + str(ymov) + " + 4)) - 4)"
+            output += "$%.2x" % (strip_destination)
         output += " ; strip destination\n"
 
         output += "db " + str(connection_strip_length,) + ", " + map_constant_label + "_WIDTH ; (connection strip length, connected map width)\n"
