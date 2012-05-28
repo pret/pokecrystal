@@ -19072,16 +19072,20 @@ UnknownScript_0x5afc7: ; 0x5afc7
 	2call UnknownScript_0x5b06b
 	winlosstext TrainerSailorHuey1WhenBeatenText, $0000
 	copybytetovar $d9f4
-	if_equal $3, $6fe2
-	if_equal $2, $6fe8
-	if_equal $1, $6fee
-	if_equal $0, $6ff4
+	if_equal $3, UnknownScript_0x5afe2
+	if_equal $2, UnknownScript_0x5afe8
+	if_equal $1, UnknownScript_0x5afee
+	if_equal $0, UnknownScript_0x5aff4
+UnknownScript_0x5afe2: ; 0x5afe2
 	checkbit1 $00cd
 	iftrue UnknownScript_0x5b01b
+UnknownScript_0x5afe8: ; 0x5afe8
 	checkbit1 $0044
 	iftrue UnknownScript_0x5b00e
+UnknownScript_0x5afee: ; 0x5afee
 	checkbit1 $0021
 	iftrue UnknownScript_0x5b001
+UnknownScript_0x5aff4: ; 0x5aff4
 	loadtrainer SAILOR, HUEY1
 	startbattle
 	returnafterbattle
@@ -19704,19 +19708,24 @@ UnknownScript_0x5c088: ; 0x5c088
 	2call UnknownScript_0x5c114
 	winlosstext TrainerSchoolboyJack1WhenBeatenText, $0000
 	copybytetovar $d9f2
-	if_equal $4, $40a7
-	if_equal $3, $40ad
-	if_equal $2, $40b3
-	if_equal $1, $40b9
-	if_equal $0, $40bf
+	if_equal $4, UnknownScript_0x5c0a7
+	if_equal $3, UnknownScript_0x5c0ad
+	if_equal $2, UnknownScript_0x5c0b3
+	if_equal $1, UnknownScript_0x5c0b9
+	if_equal $0, UnknownScript_0x5c0bf
+UnknownScript_0x5c0a7: ; 0x5c0a7
 	checkbit1 $00cd
 	iftrue UnknownScript_0x5c0f3
+UnknownScript_0x5c0ad: ; 0x5c0ad
 	checkbit1 $0044
 	iftrue UnknownScript_0x5c0e6
+UnknownScript_0x5c0b3: ; 0x5c0b3
 	checkbit1 $0021
 	iftrue UnknownScript_0x5c0d9
+UnknownScript_0x5c0b9: ; 0x5c0b9
 	checkbit2 $0047
 	iftrue UnknownScript_0x5c0cc
+UnknownScript_0x5c0bf: ; 0x5c0bf
 	loadtrainer SCHOOLBOY, JACK1
 	startbattle
 	returnafterbattle
@@ -31093,7 +31102,7 @@ UnknownScript_0x6eb89: ; 0x6eb89
 
 UnknownScript_0x6eb8f: ; 0x6eb8f
 	copybytetovar $d964
-	if_equal $1, $6bba
+	if_equal $1, UnknownScript_0x6ebba
 	if_equal $2, UnknownScript_0x6ebd9
 	if_equal $3, UnknownScript_0x6ec02
 	if_equal $4, UnknownScript_0x6ec2b
@@ -31103,6 +31112,7 @@ UnknownScript_0x6eb8f: ; 0x6eb8f
 	if_equal $8, UnknownScript_0x6ed0e
 	if_equal $9, UnknownScript_0x6ed50
 	if_equal $a, UnknownScript_0x6ed96
+UnknownScript_0x6ebba: ; 0x6ebba
 	faceplayer
 	loadfont
 	2writetext UnknownText_0x6f06f
@@ -32105,8 +32115,9 @@ UnknownScript_0x70063: ; 0x70063
 	loadpokedata GYARADOS, 30
 	writecode $3, $7
 	startbattle
-	if_equal $1, $407a
+	if_equal $1, UnknownScript_0x7007a
 	disappear $a
+UnknownScript_0x7007a: ; 0x7007a
 	returnafterbattle
 	loadfont
 	giveitem RED_SCALE, $1
@@ -39769,13 +39780,14 @@ UnknownScript_0x7803d: ; 0x7803d
 	special $0020
 	closetext
 	loadmovesprites
-	if_equal $1, $405a
+	if_equal $1, UnknownScript_0x7805a
 	clearbit2 $0005
 	checkcode $9
 	if_equal $3, UnknownScript_0x7805b
 	applymovement $8, MovementData_0x78333
 	playsound $001f
 	disappear $8
+UnknownScript_0x7805a: ; 0x7805a
 	end
 ; 0x7805b
 
@@ -39853,19 +39865,24 @@ UnknownScript_0x780bd: ; 0x780bd
 	2call UnknownScript_0x7814f
 	winlosstext TrainerCamperTodd1WhenBeatenText, $0000
 	copybytetovar $d9fe
-	if_equal $4, $40dc
-	if_equal $3, $40e2
-	if_equal $2, $40e8
-	if_equal $1, $40ee
-	if_equal $0, $40f4
+	if_equal $4, UnknownScript_0x780dc
+	if_equal $3, UnknownScript_0x780e2
+	if_equal $2, UnknownScript_0x780e8
+	if_equal $1, UnknownScript_0x780ee
+	if_equal $0, UnknownScript_0x780f4
+UnknownScript_0x780dc: ; 0x780dc
 	checkbit1 $00cd
 	iftrue UnknownScript_0x78128
+UnknownScript_0x780e2: ; 0x780e2
 	checkbit1 $0044
 	iftrue UnknownScript_0x7811b
+UnknownScript_0x780e8: ; 0x780e8
 	checkbit2 $004b
 	iftrue UnknownScript_0x7810e
+UnknownScript_0x780ee: ; 0x780ee
 	checkbit2 $0045
 	iftrue UnknownScript_0x78101
+UnknownScript_0x780f4: ; 0x780f4
 	loadtrainer CAMPER, TODD1
 	startbattle
 	returnafterbattle
@@ -40004,19 +40021,24 @@ UnknownScript_0x7819f: ; 0x7819f
 	2call UnknownScript_0x78240
 	winlosstext TrainerPicnickerGina1WhenBeatenText, $0000
 	copybytetovar $d9ff
-	if_equal $4, $41be
-	if_equal $3, $41c4
-	if_equal $2, $41ca
-	if_equal $1, $41d0
-	if_equal $0, $41d6
+	if_equal $4, UnknownScript_0x781be
+	if_equal $3, UnknownScript_0x781c4
+	if_equal $2, UnknownScript_0x781ca
+	if_equal $1, UnknownScript_0x781d0
+	if_equal $0, UnknownScript_0x781d6
+UnknownScript_0x781be: ; 0x781be
 	checkbit1 $00cd
 	iftrue UnknownScript_0x7820a
+UnknownScript_0x781c4: ; 0x781c4
 	checkbit1 $0044
 	iftrue UnknownScript_0x781fd
+UnknownScript_0x781ca: ; 0x781ca
 	checkbit1 $0021
 	iftrue UnknownScript_0x781f0
+UnknownScript_0x781d0: ; 0x781d0
 	checkbit2 $0049
 	iftrue UnknownScript_0x781e3
+UnknownScript_0x781d6: ; 0x781d6
 	loadtrainer PICNICKER, GINA1
 	startbattle
 	returnafterbattle
@@ -44414,7 +44436,7 @@ UnknownScript_0x7cc8b: ; 0x7cc8b
 
 UnknownScript_0x7cc8d: ; 0x7cc8d
 	copybytetovar $d963
-	if_equal $0, $4cb0
+	if_equal $0, UnknownScript_0x7ccb0
 	if_equal $1, UnknownScript_0x7ccd7
 	if_equal $2, UnknownScript_0x7ccf2
 	if_equal $3, UnknownScript_0x7cd0d
@@ -44422,6 +44444,7 @@ UnknownScript_0x7cc8d: ; 0x7cc8d
 	if_equal $5, UnknownScript_0x7cd43
 	if_equal $6, UnknownScript_0x7cd5e
 	if_equal $7, UnknownScript_0x7cd79
+UnknownScript_0x7ccb0: ; 0x7ccb0
 	playsound $001f
 	2call UnknownScript_0x7ce11
 	2call UnknownScript_0x7ce19
@@ -65744,7 +65767,7 @@ UnknownScript_0x9e3e0: ; 0x9e3e0
 UnknownScript_0x9e3e2: ; 0x9e3e2
 	writebyte $2
 	special $0086
-	if_equal $3, $74e4
+	if_equal $3, $74e4 ; wtf ?
 	loadfont
 	2writetext UnknownText_0x9e5ab
 	keeptextopen
@@ -65759,7 +65782,7 @@ UnknownScript_0x9e3fc: ; 0x9e3fc
 	writebyte $1
 	special $0088
 	if_equal $1, UnknownScript_0x9e40f
-	if_equal $2, $64a5
+	if_equal $2, UnknownScript_0x9e4a5
 	2jump UnknownScript_0x9e4b0
 ; 0x9e40f
 
@@ -65836,6 +65859,7 @@ UnknownScript_0x9e49e: ; 0x9e49e
 	2writetext UnknownText_0x9ec3d
 	yesorno
 	iffalse UnknownScript_0x9e4a8
+UnknownScript_0x9e4a5: ; 0x9e4a5
 	2writetext UnknownText_0x9e886
 UnknownScript_0x9e4a8: ; 0x9e4a8
 	writebyte $1
@@ -68379,11 +68403,11 @@ UnknownScript_0x180053: ; 0x180053
 	checkbit2 $005d
 	iftrue UnknownScript_0x18012b
 	checkcode $b
-	if_equal $0, $412b
-	if_equal $2, $412b
-	if_equal $4, $412b
-	if_equal $5, $412b
-	if_equal $6, $412b
+	if_equal $0, UnknownScript_0x18012b
+	if_equal $2, UnknownScript_0x18012b
+	if_equal $4, UnknownScript_0x18012b
+	if_equal $5, UnknownScript_0x18012b
+	if_equal $6, UnknownScript_0x18012b
 	moveperson $5, $11, $9
 	appear $5
 	spriteface $0, $0
@@ -68393,7 +68417,7 @@ UnknownScript_0x180053: ; 0x180053
 	applymovement $5, MovementData_0x180164
 	playmusic $001f
 	spriteface $0, $3
-	2jump $40ce
+	2jump UnknownScript_0x1800ce
 ; 0x180094
 
 UnknownScript_0x180094: ; 0x180094
@@ -68415,6 +68439,7 @@ UnknownScript_0x180094: ; 0x180094
 	applymovement $5, MovementData_0x18016b
 	playmusic $001f
 	spriteface $0, $2
+UnknownScript_0x1800ce: ; 0x1800ce
 	loadfont
 	2writetext UnknownText_0x1801f5
 	closetext
@@ -80159,19 +80184,24 @@ UnknownScript_0x19057d: ; 0x19057d
 	2call UnknownScript_0x19060f
 	winlosstext TrainerFisherRalph1WhenBeatenText, $0000
 	copybytetovar $d9fb
-	if_equal $4, $459c
-	if_equal $3, $45a2
-	if_equal $2, $45a8
-	if_equal $1, $45ae
-	if_equal $0, $45b4
+	if_equal $4, UnknownScript_0x19059c
+	if_equal $3, UnknownScript_0x1905a2
+	if_equal $2, UnknownScript_0x1905a8
+	if_equal $1, UnknownScript_0x1905ae
+	if_equal $0, UnknownScript_0x1905b4
+UnknownScript_0x19059c: ; 0x19059c
 	checkbit1 $00cd
 	iftrue UnknownScript_0x1905e8
+UnknownScript_0x1905a2: ; 0x1905a2
 	checkbit1 $0044
 	iftrue UnknownScript_0x1905db
+UnknownScript_0x1905a8: ; 0x1905a8
 	checkbit2 $004a
 	iftrue UnknownScript_0x1905ce
+UnknownScript_0x1905ae: ; 0x1905ae
 	checkbit2 $0048
 	iftrue UnknownScript_0x1905c1
+UnknownScript_0x1905b4: ; 0x1905b4
 	loadtrainer FISHER, RALPH1
 	startbattle
 	returnafterbattle
@@ -80337,19 +80367,24 @@ UnknownScript_0x19066d: ; 0x19066d
 	2call UnknownScript_0x1906f9
 	winlosstext TrainerPicnickerLiz1WhenBeatenText, $0000
 	copybytetovar $d9fc
-	if_equal $4, $468c
-	if_equal $3, $4692
-	if_equal $2, $4698
-	if_equal $1, $469e
-	if_equal $0, $46a4
+	if_equal $4, UnknownScript_0x19068c
+	if_equal $3, UnknownScript_0x190692
+	if_equal $2, UnknownScript_0x190698
+	if_equal $1, UnknownScript_0x19069e
+	if_equal $0, UnknownScript_0x1906a4
+UnknownScript_0x19068c: ; 0x19068c
 	checkbit1 $0044
 	iftrue UnknownScript_0x1906d8
+UnknownScript_0x190692: ; 0x190692
 	checkbit1 $0021
 	iftrue UnknownScript_0x1906cb
+UnknownScript_0x190698: ; 0x190698
 	checkbit1 $0022
 	iftrue UnknownScript_0x1906be
+UnknownScript_0x19069e: ; 0x19069e
 	checkbit2 $0048
 	iftrue UnknownScript_0x1906b1
+UnknownScript_0x1906a4: ; 0x1906a4
 	loadtrainer PICNICKER, LIZ1
 	startbattle
 	returnafterbattle
@@ -83598,11 +83633,11 @@ UnknownScript_0x1935d3: ; 0x1935d3
 MapMobileBattleRoomSignpost0Script: ; 0x1935da
 	refreshscreen $0
 	special $009f
-	if_equal $1, $7619
+	if_equal $1, UnknownScript_0x193619
 	special $009b
 	iffalse UnknownScript_0x193624
 	if_equal $1, UnknownScript_0x1935f4
-	if_equal $2, $760d
+	if_equal $2, UnknownScript_0x19360d
 	2jump UnknownScript_0x193624
 ; 0x1935f4
 
@@ -83617,10 +83652,12 @@ UnknownScript_0x1935f4: ; 0x1935f4
 	special $0031
 	special $003d
 	refreshscreen $0
+UnknownScript_0x19360d: ; 0x19360d
 	special $009d
 	special $001b
 	special $009c
 	iftrue UnknownScript_0x193624
+UnknownScript_0x193619: ; 0x193619
 	special $00a2
 	2writetext UnknownText_0x193626
 	closetext
@@ -83894,19 +83931,24 @@ UnknownScript_0x194140: ; 0x194140
 	2call UnknownScript_0x1941e1
 	winlosstext TrainerSchoolboyAlan1WhenBeatenText, $0000
 	copybytetovar $da02
-	if_equal $4, $415f
-	if_equal $3, $4165
-	if_equal $2, $416b
-	if_equal $1, $4171
-	if_equal $0, $4177
+	if_equal $4, UnknownScript_0x19415f
+	if_equal $3, UnknownScript_0x194165
+	if_equal $2, UnknownScript_0x19416b
+	if_equal $1, UnknownScript_0x194171
+	if_equal $0, UnknownScript_0x194177
+UnknownScript_0x19415f: ; 0x19415f
 	checkbit1 $00cd
 	iftrue UnknownScript_0x1941ab
+UnknownScript_0x194165: ; 0x194165
 	checkbit1 $0044
 	iftrue UnknownScript_0x19419e
+UnknownScript_0x19416b: ; 0x19416b
 	checkbit2 $004b
 	iftrue UnknownScript_0x194191
+UnknownScript_0x194171: ; 0x194171
 	checkbit2 $0047
 	iftrue UnknownScript_0x194184
+UnknownScript_0x194177: ; 0x194177
 	loadtrainer SCHOOLBOY, ALAN1
 	startbattle
 	returnafterbattle
@@ -91293,19 +91335,24 @@ UnknownScript_0x19c9bb: ; 0x19c9bb
 	2call UnknownScript_0x19c91b
 	winlosstext TrainerBug_catcherArnie1WhenBeatenText, $0000
 	copybytetovar $da01
-	if_equal $4, $49da
-	if_equal $3, $49e0
-	if_equal $2, $49e6
-	if_equal $1, $49ec
-	if_equal $0, $49f2
+	if_equal $4, UnknownScript_0x19c9da
+	if_equal $3, UnknownScript_0x19c9e0
+	if_equal $2, UnknownScript_0x19c9e6
+	if_equal $1, UnknownScript_0x19c9ec
+	if_equal $0, UnknownScript_0x19c9f2
+UnknownScript_0x19c9da: ; 0x19c9da
 	checkbit1 $00cd
 	iftrue UnknownScript_0x19ca26
+UnknownScript_0x19c9e0: ; 0x19c9e0
 	checkbit1 $0044
 	iftrue UnknownScript_0x19ca19
+UnknownScript_0x19c9e6: ; 0x19c9e6
 	checkbit2 $004b
 	iftrue UnknownScript_0x19ca0c
+UnknownScript_0x19c9ec: ; 0x19c9ec
 	checkbit2 $004a
 	iftrue UnknownScript_0x19c9ff
+UnknownScript_0x19c9f2: ; 0x19c9f2
 	loadtrainer BUG_CATCHER, ARNIE1
 	startbattle
 	returnafterbattle
@@ -91774,16 +91821,20 @@ UnknownScript_0x19d0cf: ; 0x19d0cf
 	2call UnknownScript_0x19d144
 	winlosstext TrainerPokemaniacBrent1WhenBeatenText, $0000
 	copybytetovar $da07
-	if_equal $3, $50ea
-	if_equal $2, $50f0
-	if_equal $1, $50f6
-	if_equal $0, $50fc
+	if_equal $3, UnknownScript_0x19d0ea
+	if_equal $2, UnknownScript_0x19d0f0
+	if_equal $1, UnknownScript_0x19d0f6
+	if_equal $0, UnknownScript_0x19d0fc
+UnknownScript_0x19d0ea: ; 0x19d0ea
 	checkbit1 $00cd
 	iftrue UnknownScript_0x19d123
+UnknownScript_0x19d0f0: ; 0x19d0f0
 	checkbit1 $0044
 	iftrue UnknownScript_0x19d116
+UnknownScript_0x19d0f6: ; 0x19d0f6
 	checkbit1 $0022
 	iftrue UnknownScript_0x19d109
+UnknownScript_0x19d0fc: ; 0x19d0fc
 	loadtrainer POKEMANIAC, BRENT1
 	startbattle
 	returnafterbattle
@@ -91966,16 +92017,20 @@ UnknownScript_0x19d1c1: ; 0x19d1c1
 	2call UnknownScript_0x19d251
 	winlosstext TrainerPicnickerTiffany3WhenBeatenText, $0000
 	copybytetovar $da08
-	if_equal $3, $51dc
-	if_equal $2, $51e2
-	if_equal $1, $51e8
-	if_equal $0, $51ee
+	if_equal $3, UnknownScript_0x19d1dc
+	if_equal $2, UnknownScript_0x19d1e2
+	if_equal $1, UnknownScript_0x19d1e8
+	if_equal $0, UnknownScript_0x19d1ee
+UnknownScript_0x19d1dc: ; 0x19d1dc
 	checkbit1 $00cd
 	iftrue UnknownScript_0x19d215
+UnknownScript_0x19d1e2: ; 0x19d1e2
 	checkbit1 $0044
 	iftrue UnknownScript_0x19d208
+UnknownScript_0x19d1e8: ; 0x19d1e8
 	checkbit1 $0021
 	iftrue UnknownScript_0x19d1fb
+UnknownScript_0x19d1ee: ; 0x19d1ee
 	loadtrainer PICNICKER, TIFFANY3
 	startbattle
 	returnafterbattle
@@ -92341,13 +92396,16 @@ UnknownScript_0x19d86a: ; 0x19d86a
 	2call UnknownScript_0x19d8f7
 	winlosstext TrainerBird_keeperVance1WhenBeatenText, $0000
 	copybytetovar $da09
-	if_equal $2, $5881
-	if_equal $1, $5887
-	if_equal $0, $588d
+	if_equal $2, UnknownScript_0x19d881
+	if_equal $1, UnknownScript_0x19d887
+	if_equal $0, UnknownScript_0x19d88d
+UnknownScript_0x19d881: ; 0x19d881
 	checkbit1 $00cd
 	iftrue UnknownScript_0x19d8a7
+UnknownScript_0x19d887: ; 0x19d887
 	checkbit1 $0044
 	iftrue UnknownScript_0x19d89a
+UnknownScript_0x19d88d: ; 0x19d88d
 	loadtrainer BIRD_KEEPER, VANCE1
 	startbattle
 	returnafterbattle
@@ -92534,13 +92592,16 @@ UnknownScript_0x19d96e: ; 0x19d96e
 	2call UnknownScript_0x19d8f7
 	winlosstext TrainerFisherWilton1WhenBeatenText, $0000
 	copybytetovar $da0a
-	if_equal $2, $5985
-	if_equal $1, $598b
-	if_equal $0, $5991
+	if_equal $2, UnknownScript_0x19d985
+	if_equal $1, UnknownScript_0x19d98b
+	if_equal $0, UnknownScript_0x19d991
+UnknownScript_0x19d985: ; 0x19d985
 	checkbit1 $00cd
 	iftrue UnknownScript_0x19d9ab
+UnknownScript_0x19d98b: ; 0x19d98b
 	checkbit1 $0044
 	iftrue UnknownScript_0x19d99e
+UnknownScript_0x19d991: ; 0x19d991
 	loadtrainer FISHER, WILTON1
 	startbattle
 	returnafterbattle
@@ -93197,13 +93258,16 @@ UnknownScript_0x19e1b8: ; 0x19e1b8
 	2call UnknownScript_0x19e133
 	winlosstext TrainerHikerParry3WhenBeatenText, $0000
 	copybytetovar $da0c
-	if_equal $2, $61cf
-	if_equal $1, $61d5
-	if_equal $0, $61db
+	if_equal $2, UnknownScript_0x19e1cf
+	if_equal $1, UnknownScript_0x19e1d5
+	if_equal $0, UnknownScript_0x19e1db
+UnknownScript_0x19e1cf: ; 0x19e1c
 	checkbit1 $00cd
 	iftrue UnknownScript_0x19e1f5
+UnknownScript_0x19e1d5: ; 0x19e1d5
 	checkbit1 $0044
 	iftrue UnknownScript_0x19e1e8
+UnknownScript_0x19e1db: ; 0x19e1db
 	loadtrainer HIKER, PARRY3
 	startbattle
 	returnafterbattle
@@ -95073,13 +95137,16 @@ UnknownScript_0x1a08ff: ; 0x1a08ff
 	2call UnknownScript_0x1a096f
 	winlosstext TrainerBird_keeperJose2WhenBeatenText, $0000
 	copybytetovar $d9f7
-	if_equal $2, $4916
-	if_equal $1, $491c
-	if_equal $0, $4922
+	if_equal $2, UnknownScript_0x1a0916
+	if_equal $1, UnknownScript_0x1a091c
+	if_equal $0, UnknownScript_0x1a0922
+UnknownScript_0x1a0916: ; 0x1a0916
 	checkbit1 $00cd
 	iftrue UnknownScript_0x1a093c
+UnknownScript_0x1a091c: ; 0x1a091c
 	checkbit1 $0044
 	iftrue UnknownScript_0x1a092f
+UnknownScript_0x1a0922: ; 0x1a0922
 	loadtrainer BIRD_KEEPER, JOSE2
 	startbattle
 	returnafterbattle
@@ -95271,13 +95338,16 @@ UnknownScript_0x1a09e9: ; 0x1a09e9
 	2call UnknownScript_0x1a0a47
 	winlosstext TrainerCooltrainerfReena1WhenBeatenText, $0000
 	copybytetovar $d9f8
-	if_equal $2, $4a00
-	if_equal $1, $4a06
-	if_equal $0, $4a0c
+	if_equal $2, UnknownScript_0x1a0a00
+	if_equal $1, UnknownScript_0x1a0a06
+	if_equal $0, UnknownScript_0x1a0a0c
+UnknownScript_0x1a0a00: ; 0x1a0a00
 	checkbit1 $00cd
 	iftrue UnknownScript_0x1a0a26
+UnknownScript_0x1a0a06: ; 0x1a0a06
 	checkbit1 $0044
 	iftrue UnknownScript_0x1a0a19
+UnknownScript_0x1a0a0c: ; 0x1a0a0c
 	loadtrainer COOLTRAINERF, REENA1
 	startbattle
 	returnafterbattle
@@ -96082,19 +96152,24 @@ UnknownScript_0x1a16e0: ; 0x1a16e0
 	2call UnknownScript_0x1a179b
 	winlosstext TrainerYoungsterJoey1WhenBeatenText, $0000
 	copybytetovar $d9f9
-	if_equal $4, $56ff
-	if_equal $3, $5705
-	if_equal $2, $570b
-	if_equal $1, $5711
-	if_equal $0, $5717
+	if_equal $4, UnknownScript_0x1a16ff
+	if_equal $3, UnknownScript_0x1a1705
+	if_equal $2, UnknownScript_0x1a170b
+	if_equal $1, UnknownScript_0x1a1711
+	if_equal $0, UnknownScript_0x1a1717
+UnknownScript_0x1a16ff: ; 0x1a16ff
 	checkbit1 $0044
 	iftrue UnknownScript_0x1a174b
+UnknownScript_0x1a1705: ; 0x1a1705
 	checkbit1 $0021
 	iftrue UnknownScript_0x1a173e
+UnknownScript_0x1a170b: ; 0x1a170b
 	checkbit2 $0047
 	iftrue UnknownScript_0x1a1731
+UnknownScript_0x1a1711: ; 0x1a1711
 	checkbit2 $0046
 	iftrue UnknownScript_0x1a1724
+UnknownScript_0x1a1717: ; 0x1a717
 	loadtrainer YOUNGSTER, JOEY1
 	startbattle
 	returnafterbattle
@@ -96619,19 +96694,24 @@ UnknownScript_0x1a1d82: ; 0x1a1d82
 	2call UnknownScript_0x1a1e23
 	winlosstext TrainerLassDana1WhenBeatenText, $0000
 	copybytetovar $da03
-	if_equal $4, $5da1
-	if_equal $3, $5da7
-	if_equal $2, $5dad
-	if_equal $1, $5db3
-	if_equal $0, $5db9
+	if_equal $4, UnknownScript_0x1a1da1
+	if_equal $3, UnknownScript_0x1a1da7
+	if_equal $2, UnknownScript_0x1a1dad
+	if_equal $1, UnknownScript_0x1a1db3
+	if_equal $0, UnknownScript_0x1a1db9
+UnknownScript_0x1a1da1: ; 0x1a1da1
 	checkbit1 $00cd
 	iftrue UnknownScript_0x1a1ded
+UnknownScript_0x1a1da7: ; 0x1a1da7
 	checkbit1 $0044
 	iftrue UnknownScript_0x1a1de0
+UnknownScript_0x1a1dad: ; 0x1a1dad
 	checkbit1 $0021
 	iftrue UnknownScript_0x1a1dd3
+UnknownScript_0x1a1db3: ; 0x1a1db3
 	checkbit2 $0045
 	iftrue UnknownScript_0x1a1dc6
+UnknownScript_0x1a1db9: ; 0x1a1db9
 	loadtrainer LASS, DANA1
 	startbattle
 	returnafterbattle
@@ -96784,19 +96864,24 @@ UnknownScript_0x1a1e75: ; 0x1a1e75
 	2call UnknownScript_0x1a1f01
 	winlosstext TrainerSchoolboyChad1WhenBeatenText, $0000
 	copybytetovar $da04
-	if_equal $4, $5e94
-	if_equal $3, $5e9a
-	if_equal $2, $5ea0
-	if_equal $1, $5ea6
-	if_equal $0, $5eac
+	if_equal $4, UnknownScript_0x1a1e94
+	if_equal $3, UnknownScript_0x1a1e9a
+	if_equal $2, UnknownScript_0x1a1ea0
+	if_equal $1, UnknownScript_0x1a1ea6
+	if_equal $0, UnknownScript_0x1a1eac
+UnknownScript_0x1a1e94: ; 0x1a1e94
 	checkbit1 $00cd
 	iftrue UnknownScript_0x1a1ee0
+UnknownScript_0x1a1e9a: ; 0x1a1e9a
 	checkbit1 $0044
 	iftrue UnknownScript_0x1a1ed3
+UnknownScript_0x1a1ea0: ; 0x1a1ea0
 	checkbit1 $0021
 	iftrue UnknownScript_0x1a1ec6
+UnknownScript_0x1a1ea6: ; 0x1a1ea6
 	checkbit2 $0049
 	iftrue UnknownScript_0x1a1eb9
+UnknownScript_0x1a1eac: ; 0x1a1eac
 	loadtrainer SCHOOLBOY, CHAD1
 	startbattle
 	returnafterbattle
@@ -98646,13 +98731,16 @@ UnknownScript_0x1a4d79: ; 0x1a4d79
 	2call UnknownScript_0x1a4dd7
 	winlosstext TrainerCooltrainermGaven3WhenBeatenText, $0000
 	copybytetovar $d9f5
-	if_equal $2, $4d90
-	if_equal $1, $4d96
-	if_equal $0, $4d9c
+	if_equal $2, UnknownScript_0x1a4d90
+	if_equal $1, UnknownScript_0x1a4d96
+	if_equal $0, UnknownScript_0x1a4d9c
+UnknownScript_0x1a4d90: ; 0x1a4d90
 	checkbit1 $00cd
 	iftrue UnknownScript_0x1a4db6
+UnknownScript_0x1a4d96: ; 0x1a4d96
 	checkbit1 $0044
 	iftrue UnknownScript_0x1a4da9
+UnknownScript_0x1a4d9c: ; 0x1a4d9c
 	loadtrainer COOLTRAINERM, GAVEN3
 	startbattle
 	returnafterbattle
@@ -98793,13 +98881,16 @@ UnknownScript_0x1a4e35: ; 0x1a4e35
 	2call UnknownScript_0x1a4e93
 	winlosstext TrainerCooltrainerfBeth1WhenBeatenText, $0000
 	copybytetovar $d9f6
-	if_equal $2, $4e4c
-	if_equal $1, $4e52
-	if_equal $0, $4e58
+	if_equal $2, UnknownScript_0x1a4e4c
+	if_equal $1, UnknownScript_0x1a4e52
+	if_equal $0, UnknownScript_0x1a4e58
+UnknownScript_0x1a4e4c: ; 0x1a4e4c
 	checkbit1 $00cd
 	iftrue UnknownScript_0x1a4e72
+UnknownScript_0x1a4e52: ; 0x1a4e52
 	checkbit1 $0044
 	iftrue UnknownScript_0x1a4e65
+UnknownScript_0x1a4e58: ; 0x1a4e58
 	loadtrainer COOLTRAINERF, BETH1
 	startbattle
 	returnafterbattle
@@ -99217,19 +99308,24 @@ UnknownScript_0x1a5493: ; 0x1a5493
 	2call UnknownScript_0x1a5564
 	winlosstext TrainerBug_catcherWade1WhenBeatenText, $0000
 	copybytetovar $d9fa
-	if_equal $4, $54b2
-	if_equal $3, $54b8
-	if_equal $2, $54be
-	if_equal $1, $54c4
-	if_equal $0, $54ca
+	if_equal $4, UnknownScript_0x1a54b2
+	if_equal $3, UnknownScript_0x1a54b8
+	if_equal $2, UnknownScript_0x1a54be
+	if_equal $1, UnknownScript_0x1a54c4
+	if_equal $0, UnknownScript_0x1a54ca
+UnknownScript_0x1a54b2: ; 0x1a54b2
 	checkbit1 $0044
 	iftrue UnknownScript_0x1a54fe
+UnknownScript_0x1a54b8: ; 0x1a54b8
 	checkbit1 $0021
 	iftrue UnknownScript_0x1a54f1
+UnknownScript_0x1a54be: ; 0x1a54be
 	checkbit2 $0049
 	iftrue UnknownScript_0x1a54e4
+UnknownScript_0x1a54c4: ; 0x1a54c4
 	checkbit2 $0046
 	iftrue UnknownScript_0x1a54d7
+UnknownScript_0x1a54ca: ; 0x1a54ca
 	loadtrainer BUG_CATCHER, WADE1
 	startbattle
 	returnafterbattle
@@ -102671,16 +102767,20 @@ UnknownScript_0x1a927f: ; 0x1a927f
 	2call UnknownScript_0x1a9309
 	winlosstext TrainerFisherTully1WhenBeatenText, $0000
 	copybytetovar $da06
-	if_equal $3, $529a
-	if_equal $2, $52a0
-	if_equal $1, $52a6
-	if_equal $0, $52ac
+	if_equal $3, UnknownScript_0x1a929a
+	if_equal $2, UnknownScript_0x1a92a0
+	if_equal $1, UnknownScript_0x1a92a6
+	if_equal $0, UnknownScript_0x1a92ac
+UnknownScript_0x1a929a: ; 0x1a929a
 	checkbit1 $00cd
 	iftrue UnknownScript_0x1a92d3
+UnknownScript_0x1a92a0: ; 0x1a92a0
 	checkbit1 $0044
 	iftrue UnknownScript_0x1a92c6
+UnknownScript_0x1a92a6: ; 0x1a92a6
 	checkbit1 $0022
 	iftrue UnknownScript_0x1a92b9
+UnknownScript_0x1a92ac: ; 0x1a92ac
 	loadtrainer FISHER, TULLY1
 	startbattle
 	returnafterbattle
@@ -103093,13 +103193,16 @@ UnknownScript_0x1a96da: ; 0x1a96da
 	2call UnknownScript_0x1a9767
 	winlosstext TrainerPicnickerErin1WhenBeatenText, $0000
 	copybytetovar $da0d
-	if_equal $2, $56f1
-	if_equal $1, $56f7
-	if_equal $0, $56fd
+	if_equal $2, UnknownScript_0x1a96f1
+	if_equal $1, UnknownScript_0x1a96f7
+	if_equal $0, UnknownScript_0x1a96fd
+UnknownScript_0x1a96f1: ; 0x1a96f1
 	checkbit1 $00cd
 	iftrue UnknownScript_0x1a9717
+UnknownScript_0x1a96f7: ; 0x1a96f7
 	checkbit1 $0044
 	iftrue UnknownScript_0x1a970a
+UnknownScript_0x1a96fd: ; 0x1a96fd
 	loadtrainer PICNICKER, ERIN1
 	startbattle
 	returnafterbattle
@@ -105188,19 +105291,24 @@ UnknownScript_0x1ac051: ; 0x1ac051
 	2call UnknownScript_0x1ac0e3
 	winlosstext TrainerHikerAnthony2WhenBeatenText, $0000
 	copybytetovar $d9fd
-	if_equal $4, $4070
-	if_equal $3, $4076
-	if_equal $2, $407c
-	if_equal $1, $4082
-	if_equal $0, $4088
+	if_equal $4, UnknownScript_0x1ac070
+	if_equal $3, UnknownScript_0x1ac076
+	if_equal $2, UnknownScript_0x1ac07c
+	if_equal $1, UnknownScript_0x1ac082
+	if_equal $0, UnknownScript_0x1ac088
+UnknownScript_0x1ac070: ; 0x1ac070
 	checkbit1 $00cd
 	iftrue UnknownScript_0x1ac0bc
+UnknownScript_0x1ac076: ; 0x1ac076
 	checkbit1 $0044
 	iftrue UnknownScript_0x1ac0af
+UnknownScript_0x1ac07c: ; 0x1ac07c
 	checkbit1 $0021
 	iftrue UnknownScript_0x1ac0a2
+UnknownScript_0x1ac082: ; 0x1ac082
 	checkbit2 $0047
 	iftrue UnknownScript_0x1ac095
+UnknownScript_0x1ac088: ; 0x1ac088
 	loadtrainer HIKER, ANTHONY2
 	startbattle
 	returnafterbattle
