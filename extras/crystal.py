@@ -4952,8 +4952,10 @@ class SecondMapHeader:
             if ((connection_options[id] & self.connection_byte.byte) != 0):
                 dir_results.append(each)
         output += "db " + " | ".join(dir_results)
+        if len(dir_results) == 0:
+            output += "0"
 
-        if self.connection_byte == 0:
+        if self.connection_byte.byte == 0 or len(dir_results) == 0:
             return output
         else:
             output += "\n\n"
@@ -5449,7 +5451,7 @@ class Connection:
             elif ((p + (connected_map_height - connection_strip_length) * connected_map_width)%0x4000)+0x4000 == strip_pointer:
                 p += (connected_map_height - connection_strip_length) * connected_map_width
                 method = "east2"
-                this_part = "((" + map_constant_label + "_HEIGHT - " + connection_strip_length + ") * " + map_constant_label + "_WIDTH)"
+                this_part = "((" + map_constant_label + "_HEIGHT - " + str(connection_strip_length) + ") * " + map_constant_label + "_WIDTH)"
                 output += "(" + get_label_for(connected_second_map_header.blockdata.address) + " + " + this_part +  ")"
             elif ((p + 100 - 4 * connected_map_width)%0x4000) + 0x4000 == strip_pointer:
                 method = "east3"
@@ -7139,7 +7141,8 @@ class Incbin:
         try:
             start = eval(start)
         except Exception, e:
-            raise Exception, "problem with evaluating interval range"
+            print "start is: " + str(start)
+            raise Exception, "problem with evaluating interval range: " + str(e)
 
         start_hex = hex(start).replace("0x", "$")
 
