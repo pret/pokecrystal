@@ -47107,10 +47107,10 @@ INCBIN "baserom.gbc",$94000,$94034 - $94000
 
 MapHeader_0x94034: ; 0x94034
 	; bank, tileset, permission
-	db $25, $7, 3
+	db BANK(OlivinePokeCenter1F_SecondMapHeader), $7, 3
 
 	; second map header
-	dw $5ba0
+	dw OlivinePokeCenter1F_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
 	db $1b, $9, 1, 1
@@ -47120,7 +47120,7 @@ MapHeader_0x94034: ; 0x94034
 
 OlivineGym_MapHeader: ; 0x9403d
 	; bank, tileset, permission
-	db $25, $12, 3
+	db BANK(OlivineGym_SecondMapHeader), $12, 3
 
 	; second map header
 	dw OlivineGym_SecondMapHeader
@@ -47131,7 +47131,7 @@ OlivineGym_MapHeader: ; 0x9403d
 
 OlivineVoltorbHouse_MapHeader: ; 0x94046
 	; bank, tileset, permission
-	db $25, $5, 3
+	db BANK(OlivineVoltorbHouse_SecondMapHeader), $5, 3
 
 	; second map header
 	dw OlivineVoltorbHouse_SecondMapHeader
@@ -47142,7 +47142,7 @@ OlivineVoltorbHouse_MapHeader: ; 0x94046
 
 OlivineHouseBeta_MapHeader: ; 0x9404f
 	; bank, tileset, permission
-	db $25, $5, 3
+	db BANK(OlivineHouseBeta_SecondMapHeader), $5, 3
 
 	; second map header
 	dw OlivineHouseBeta_SecondMapHeader
@@ -47153,7 +47153,7 @@ OlivineHouseBeta_MapHeader: ; 0x9404f
 
 OlivinePunishmentSpeechHouse_MapHeader: ; 0x94058
 	; bank, tileset, permission
-	db $25, $5, 3
+	db BANK(OlivinePunishmentSpeechHouse_SecondMapHeader), $5, 3
 
 	; second map header
 	dw OlivinePunishmentSpeechHouse_SecondMapHeader
@@ -47164,7 +47164,7 @@ OlivinePunishmentSpeechHouse_MapHeader: ; 0x94058
 
 OlivineGoodRodHouse_MapHeader: ; 0x94061
 	; bank, tileset, permission
-	db $25, $5, 3
+	db BANK(OlivineGoodRodHouse_SecondMapHeader), $5, 3
 
 	; second map header
 	dw OlivineGoodRodHouse_SecondMapHeader
@@ -47197,7 +47197,7 @@ OlivineMart_MapHeader: ; 0x94073
 
 Route38EcruteakGate_MapHeader: ; 0x9407c
 	; bank, tileset, permission
-	db $25, $8, 6
+	db BANK(Route38EcruteakGate_SecondMapHeader), $8, 6
 
 	; second map header
 	dw Route38EcruteakGate_SecondMapHeader
@@ -47208,7 +47208,7 @@ Route38EcruteakGate_MapHeader: ; 0x9407c
 
 Route39Barn_MapHeader: ; 0x94085
 	; bank, tileset, permission
-	db $25, $10, 3
+	db BANK(Route39Barn_SecondMapHeader), $10, 3
 
 	; second map header
 	dw Route39Barn_SecondMapHeader
@@ -47219,7 +47219,7 @@ Route39Barn_MapHeader: ; 0x94085
 
 Route39Farmhouse_MapHeader: ; 0x9408e
 	; bank, tileset, permission
-	db $25, $5, 3
+	db BANK(Route39Farmhouse_SecondMapHeader), $5, 3
 
 	; second map header
 	dw Route39Farmhouse_SecondMapHeader
@@ -47230,7 +47230,7 @@ Route39Farmhouse_MapHeader: ; 0x9408e
 
 Route38_MapHeader: ; 0x94097
 	; bank, tileset, permission
-	db $25, $1, 2
+	db BANK(Route38_SecondMapHeader), $1, 2
 
 	; second map header
 	dw Route38_SecondMapHeader
@@ -47241,7 +47241,7 @@ Route38_MapHeader: ; 0x94097
 
 Route39_MapHeader: ; 0x940a0
 	; bank, tileset, permission
-	db $25, $1, 2
+	db BANK(Route39_SecondMapHeader), $1, 2
 
 	; second map header
 	dw Route39_SecondMapHeader
@@ -47252,7 +47252,7 @@ Route39_MapHeader: ; 0x940a0
 
 OlivineCity_MapHeader: ; 0x940a9
 	; bank, tileset, permission
-	db $25, $1, 1
+	db BANK(OlivineCity_SecondMapHeader), $1, 1
 
 	; second map header
 	dw OlivineCity_SecondMapHeader
@@ -47263,7 +47263,7 @@ OlivineCity_MapHeader: ; 0x940a9
 
 MahoganyRedGyaradosSpeechHouse_MapHeader: ; 0x940b2
 	; bank, tileset, permission
-	db $25, $5, 3
+	db BANK(MahoganyRedGyaradosSpeechHouse_SecondMapHeader), $5, 3
 
 	; second map header
 	dw MahoganyRedGyaradosSpeechHouse_SecondMapHeader
@@ -47285,7 +47285,7 @@ MahoganyGym_MapHeader: ; 0x940bb
 
 MahoganyPokeCenter1F_MapHeader: ; 0x940c4
 	; bank, tileset, permission
-	db $25, $7, 3
+	db BANK(MahoganyPokeCenter1F_SecondMapHeader), $7, 3
 
 	; second map header
 	dw MahoganyPokeCenter1F_SecondMapHeader
@@ -47296,7 +47296,7 @@ MahoganyPokeCenter1F_MapHeader: ; 0x940c4
 
 Route42EcruteakGate_MapHeader: ; 0x940cd
 	; bank, tileset, permission
-	db $25, $8, 6
+	db BANK(Route42EcruteakGate_SecondMapHeader), $8, 6
 
 	; second map header
 	dw Route42EcruteakGate_SecondMapHeader
@@ -47307,7 +47307,7 @@ Route42EcruteakGate_MapHeader: ; 0x940cd
 
 Route42_MapHeader: ; 0x940d6
 	; bank, tileset, permission
-	db $25, $1, 2
+	db BANK(Route42_SecondMapHeader), $1, 2
 
 	; second map header
 	dw Route42_SecondMapHeader
@@ -47318,7 +47318,7 @@ Route42_MapHeader: ; 0x940d6
 
 Route44_MapHeader: ; 0x940df
 	; bank, tileset, permission
-	db $25, $1, 2
+	db BANK(Route44_SecondMapHeader), $1, 2
 
 	; second map header
 	dw Route44_SecondMapHeader
@@ -47329,7 +47329,7 @@ Route44_MapHeader: ; 0x940df
 
 MahoganyTown_MapHeader: ; 0x940e8
 	; bank, tileset, permission
-	db $25, $1, 1
+	db BANK(MahoganyTown_SecondMapHeader), $1, 1
 
 	; second map header
 	dw MahoganyTown_SecondMapHeader
@@ -47340,7 +47340,7 @@ MahoganyTown_MapHeader: ; 0x940e8
 
 SproutTower1F_MapHeader: ; 0x940f1
 	; bank, tileset, permission
-	db $25, $17, 7
+	db BANK(SproutTower1F_SecondMapHeader), $17, 7
 
 	; second map header
 	dw SproutTower1F_SecondMapHeader
@@ -47351,7 +47351,7 @@ SproutTower1F_MapHeader: ; 0x940f1
 
 SproutTower2F_MapHeader: ; 0x940fa
 	; bank, tileset, permission
-	db $25, $17, 7
+	db BANK(SproutTower2F_SecondMapHeader), $17, 7
 
 	; second map header
 	dw SproutTower2F_SecondMapHeader
@@ -47362,7 +47362,7 @@ SproutTower2F_MapHeader: ; 0x940fa
 
 SproutTower3F_MapHeader: ; 0x94103
 	; bank, tileset, permission
-	db $25, $17, 7
+	db BANK(SproutTower3F_SecondMapHeader), $17, 7
 
 	; second map header
 	dw SproutTower3F_SecondMapHeader
@@ -47373,7 +47373,7 @@ SproutTower3F_MapHeader: ; 0x94103
 
 TinTower1F_MapHeader: ; 0x9410c
 	; bank, tileset, permission
-	db $25, $17, 7
+	db BANK(TinTower1F_SecondMapHeader), $17, 7
 
 	; second map header
 	dw TinTower1F_SecondMapHeader
@@ -47384,7 +47384,7 @@ TinTower1F_MapHeader: ; 0x9410c
 
 TinTower2F_MapHeader: ; 0x94115
 	; bank, tileset, permission
-	db $25, $17, 7
+	db BANK(TinTower2F_SecondMapHeader), $17, 7
 
 	; second map header
 	dw TinTower2F_SecondMapHeader
@@ -47395,7 +47395,7 @@ TinTower2F_MapHeader: ; 0x94115
 
 TinTower3F_MapHeader: ; 0x9411e
 	; bank, tileset, permission
-	db $25, $17, 7
+	db BANK(TinTower3F_SecondMapHeader), $17, 7
 
 	; second map header
 	dw TinTower3F_SecondMapHeader
@@ -47406,7 +47406,7 @@ TinTower3F_MapHeader: ; 0x9411e
 
 TinTower4F_MapHeader: ; 0x94127
 	; bank, tileset, permission
-	db $25, $17, 7
+	db BANK(TinTower4F_SecondMapHeader), $17, 7
 
 	; second map header
 	dw TinTower4F_SecondMapHeader
@@ -47417,7 +47417,7 @@ TinTower4F_MapHeader: ; 0x94127
 
 TinTower5F_MapHeader: ; 0x94130
 	; bank, tileset, permission
-	db $25, $17, 7
+	db BANK(TinTower5F_SecondMapHeader), $17, 7
 
 	; second map header
 	dw TinTower5F_SecondMapHeader
@@ -47428,7 +47428,7 @@ TinTower5F_MapHeader: ; 0x94130
 
 TinTower6F_MapHeader: ; 0x94139
 	; bank, tileset, permission
-	db $25, $17, 7
+	db BANK(TinTower6F_SecondMapHeader), $17, 7
 
 	; second map header
 	dw TinTower6F_SecondMapHeader
@@ -47439,7 +47439,7 @@ TinTower6F_MapHeader: ; 0x94139
 
 TinTower7F_MapHeader: ; 0x94142
 	; bank, tileset, permission
-	db $25, $17, 7
+	db BANK(TinTower7F_SecondMapHeader), $17, 7
 
 	; second map header
 	dw TinTower7F_SecondMapHeader
@@ -47450,7 +47450,7 @@ TinTower7F_MapHeader: ; 0x94142
 
 TinTower8F_MapHeader: ; 0x9414b
 	; bank, tileset, permission
-	db $25, $17, 7
+	db BANK(TinTower8F_SecondMapHeader), $17, 7
 
 	; second map header
 	dw TinTower8F_SecondMapHeader
@@ -47461,7 +47461,7 @@ TinTower8F_MapHeader: ; 0x9414b
 
 TinTower9F_MapHeader: ; 0x94154
 	; bank, tileset, permission
-	db $25, $17, 7
+	db BANK(TinTower9F_SecondMapHeader), $17, 7
 
 	; second map header
 	dw TinTower9F_SecondMapHeader
@@ -47472,7 +47472,7 @@ TinTower9F_MapHeader: ; 0x94154
 
 BurnedTower1F_MapHeader: ; 0x9415d
 	; bank, tileset, permission
-	db $25, $17, 7
+	db BANK(BurnedTower1F_SecondMapHeader), $17, 7
 
 	; second map header
 	dw BurnedTower1F_SecondMapHeader
@@ -47483,7 +47483,7 @@ BurnedTower1F_MapHeader: ; 0x9415d
 
 BurnedTowerB1F_MapHeader: ; 0x94166
 	; bank, tileset, permission
-	db $25, $18, 4
+	db BANK(BurnedTowerB1F_SecondMapHeader), $18, 4
 
 	; second map header
 	dw BurnedTowerB1F_SecondMapHeader
@@ -47494,7 +47494,7 @@ BurnedTowerB1F_MapHeader: ; 0x94166
 
 NationalPark_MapHeader: ; 0x9416f
 	; bank, tileset, permission
-	db $25, $19, 2
+	db BANK(NationalPark_SecondMapHeader), $19, 2
 
 	; second map header
 	dw NationalPark_SecondMapHeader
@@ -47505,7 +47505,7 @@ NationalPark_MapHeader: ; 0x9416f
 
 NationalParkBugContest_MapHeader: ; 0x94178
 	; bank, tileset, permission
-	db $25, $19, 2
+	db BANK(NationalParkBugContest_SecondMapHeader), $19, 2
 
 	; second map header
 	dw NationalParkBugContest_SecondMapHeader
@@ -47571,7 +47571,7 @@ RadioTower5F_MapHeader: ; 0x941a5
 
 RuinsofAlphOutside_MapHeader: ; 0x941ae
 	; bank, tileset, permission
-	db $25, $1, 2
+	db BANK(RuinsofAlphOutside_SecondMapHeader), $1, 2
 
 	; second map header
 	dw RuinsofAlphOutside_SecondMapHeader
@@ -47692,7 +47692,7 @@ RuinsofAlphAerodactylItemRoom_MapHeader: ; 0x94208
 
 RuinsofAlphHoOhWordRoom_MapHeader: ; 0x94211
 	; bank, tileset, permission
-	db $25, $21, 7
+	db BANK(RuinsofAlphHoOhWordRoom_SecondMapHeader), $21, 7
 
 	; second map header
 	dw RuinsofAlphHoOhWordRoom_SecondMapHeader
@@ -47703,7 +47703,7 @@ RuinsofAlphHoOhWordRoom_MapHeader: ; 0x94211
 
 RuinsofAlphKabutoWordRoom_MapHeader: ; 0x9421a
 	; bank, tileset, permission
-	db $25, $22, 7
+	db BANK(RuinsofAlphKabutoWordRoom_SecondMapHeader), $22, 7
 
 	; second map header
 	dw RuinsofAlphKabutoWordRoom_SecondMapHeader
@@ -47714,7 +47714,7 @@ RuinsofAlphKabutoWordRoom_MapHeader: ; 0x9421a
 
 RuinsofAlphOmanyteWordRoom_MapHeader: ; 0x94223
 	; bank, tileset, permission
-	db $25, $23, 7
+	db BANK(RuinsofAlphOmanyteWordRoom_SecondMapHeader), $23, 7
 
 	; second map header
 	dw RuinsofAlphOmanyteWordRoom_SecondMapHeader
@@ -47725,7 +47725,7 @@ RuinsofAlphOmanyteWordRoom_MapHeader: ; 0x94223
 
 RuinsofAlphAerodactylWordRoom_MapHeader: ; 0x9422c
 	; bank, tileset, permission
-	db $25, $24, 7
+	db BANK(RuinsofAlphAerodactylWordRoom_SecondMapHeader), $24, 7
 
 	; second map header
 	dw RuinsofAlphAerodactylWordRoom_SecondMapHeader
@@ -47736,7 +47736,7 @@ RuinsofAlphAerodactylWordRoom_MapHeader: ; 0x9422c
 
 UnionCave1F_MapHeader: ; 0x94235
 	; bank, tileset, permission
-	db $25, $18, 4
+	db BANK(UnionCave1F_SecondMapHeader), $18, 4
 
 	; second map header
 	dw UnionCave1F_SecondMapHeader
@@ -47747,7 +47747,7 @@ UnionCave1F_MapHeader: ; 0x94235
 
 UnionCaveB1F_MapHeader: ; 0x9423e
 	; bank, tileset, permission
-	db $25, $18, 4
+	db BANK(UnionCaveB1F_SecondMapHeader), $18, 4
 
 	; second map header
 	dw UnionCaveB1F_SecondMapHeader
@@ -47758,7 +47758,7 @@ UnionCaveB1F_MapHeader: ; 0x9423e
 
 UnionCaveB2F_MapHeader: ; 0x94247
 	; bank, tileset, permission
-	db $25, $18, 4
+	db BANK(UnionCaveB2F_SecondMapHeader), $18, 4
 
 	; second map header
 	dw UnionCaveB2F_SecondMapHeader
@@ -47769,7 +47769,7 @@ UnionCaveB2F_MapHeader: ; 0x94247
 
 SlowpokeWellB1F_MapHeader: ; 0x94250
 	; bank, tileset, permission
-	db $25, $18, 4
+	db BANK(SlowpokeWellB1F_SecondMapHeader), $18, 4
 
 	; second map header
 	dw SlowpokeWellB1F_SecondMapHeader
@@ -47780,7 +47780,7 @@ SlowpokeWellB1F_MapHeader: ; 0x94250
 
 SlowpokeWellB2F_MapHeader: ; 0x94259
 	; bank, tileset, permission
-	db $25, $18, 4
+	db BANK(SlowpokeWellB2F_SecondMapHeader), $18, 4
 
 	; second map header
 	dw SlowpokeWellB2F_SecondMapHeader
@@ -47791,7 +47791,7 @@ SlowpokeWellB2F_MapHeader: ; 0x94259
 
 OlivineLighthouse1F_MapHeader: ; 0x94262
 	; bank, tileset, permission
-	db $25, $13, 7
+	db BANK(OlivineLighthouse1F_SecondMapHeader), $13, 7
 
 	; second map header
 	dw OlivineLighthouse1F_SecondMapHeader
@@ -47802,7 +47802,7 @@ OlivineLighthouse1F_MapHeader: ; 0x94262
 
 OlivineLighthouse2F_MapHeader: ; 0x9426b
 	; bank, tileset, permission
-	db $25, $13, 7
+	db BANK(OlivineLighthouse2F_SecondMapHeader), $13, 7
 
 	; second map header
 	dw OlivineLighthouse2F_SecondMapHeader
@@ -47813,7 +47813,7 @@ OlivineLighthouse2F_MapHeader: ; 0x9426b
 
 OlivineLighthouse3F_MapHeader: ; 0x94274
 	; bank, tileset, permission
-	db $25, $13, 7
+	db BANK(OlivineLighthouse3F_SecondMapHeader), $13, 7
 
 	; second map header
 	dw OlivineLighthouse3F_SecondMapHeader
@@ -47824,7 +47824,7 @@ OlivineLighthouse3F_MapHeader: ; 0x94274
 
 OlivineLighthouse4F_MapHeader: ; 0x9427d
 	; bank, tileset, permission
-	db $25, $13, 7
+	db BANK(OlivineLighthouse4F_SecondMapHeader), $13, 7
 
 	; second map header
 	dw OlivineLighthouse4F_SecondMapHeader
@@ -47835,7 +47835,7 @@ OlivineLighthouse4F_MapHeader: ; 0x9427d
 
 OlivineLighthouse5F_MapHeader: ; 0x94286
 	; bank, tileset, permission
-	db $25, $13, 7
+	db BANK(OlivineLighthouse5F_SecondMapHeader), $13, 7
 
 	; second map header
 	dw OlivineLighthouse5F_SecondMapHeader
@@ -47846,7 +47846,7 @@ OlivineLighthouse5F_MapHeader: ; 0x94286
 
 OlivineLighthouse6F_MapHeader: ; 0x9428f
 	; bank, tileset, permission
-	db $25, $13, 7
+	db BANK(OlivineLighthouse6F_SecondMapHeader), $13, 7
 
 	; second map header
 	dw OlivineLighthouse6F_SecondMapHeader
@@ -47857,7 +47857,7 @@ OlivineLighthouse6F_MapHeader: ; 0x9428f
 
 MahoganyMart1F_MapHeader: ; 0x94298
 	; bank, tileset, permission
-	db $25, $10, 3
+	db BANK(MahoganyMart1F_SecondMapHeader), $10, 3
 
 	; second map header
 	dw MahoganyMart1F_SecondMapHeader
@@ -47912,7 +47912,7 @@ IlexForest_MapHeader: ; 0x942bc
 
 WarehouseEntrance_MapHeader: ; 0x942c5
 	; bank, tileset, permission
-	db $25, $8, 7
+	db BANK(WarehouseEntrance_SecondMapHeader), $8, 7
 
 	; second map header
 	dw WarehouseEntrance_SecondMapHeader
@@ -48154,7 +48154,7 @@ SilverCaveRoom1_MapHeader: ; 0x94382
 
 SilverCaveRoom2_MapHeader: ; 0x9438b
 	; bank, tileset, permission
-	db $25, $18, 4
+	db BANK(SilverCaveRoom2_SecondMapHeader), $18, 4
 
 	; second map header
 	dw SilverCaveRoom2_SecondMapHeader
@@ -48165,7 +48165,7 @@ SilverCaveRoom2_MapHeader: ; 0x9438b
 
 SilverCaveRoom3_MapHeader: ; 0x94394
 	; bank, tileset, permission
-	db $25, $18, 4
+	db BANK(SilverCaveRoom3_SecondMapHeader), $18, 4
 
 	; second map header
 	dw SilverCaveRoom3_SecondMapHeader
@@ -48176,7 +48176,7 @@ SilverCaveRoom3_MapHeader: ; 0x94394
 
 SilverCaveItemRooms_MapHeader: ; 0x9439d
 	; bank, tileset, permission
-	db $25, $18, 4
+	db BANK(SilverCaveItemRooms_SecondMapHeader), $18, 4
 
 	; second map header
 	dw SilverCaveItemRooms_SecondMapHeader
@@ -48209,7 +48209,7 @@ DarkCaveBlackthornEntrance_MapHeader: ; 0x943af
 
 DragonsDen1F_MapHeader: ; 0x943b8
 	; bank, tileset, permission
-	db $25, $18, 4
+	db BANK(DragonsDen1F_SecondMapHeader), $18, 4
 
 	; second map header
 	dw DragonsDen1F_SecondMapHeader
@@ -48220,7 +48220,7 @@ DragonsDen1F_MapHeader: ; 0x943b8
 
 DragonsDenB1F_MapHeader: ; 0x943c1
 	; bank, tileset, permission
-	db $25, $1, 4
+	db BANK(DragonsDenB1F_SecondMapHeader), $1, 4
 
 	; second map header
 	dw DragonsDenB1F_SecondMapHeader
@@ -48242,7 +48242,7 @@ DragonShrine_MapHeader: ; 0x943ca
 
 TohjoFalls_MapHeader: ; 0x943d3
 	; bank, tileset, permission
-	db $25, $18, 4
+	db BANK(TohjoFalls_SecondMapHeader), $18, 4
 
 	; second map header
 	dw TohjoFalls_SecondMapHeader
@@ -48253,7 +48253,7 @@ TohjoFalls_MapHeader: ; 0x943d3
 
 DiglettsCave_MapHeader: ; 0x943dc
 	; bank, tileset, permission
-	db $25, $18, 4
+	db BANK(DiglettsCave_SecondMapHeader), $18, 4
 
 	; second map header
 	dw DiglettsCave_SecondMapHeader
@@ -48264,7 +48264,7 @@ DiglettsCave_MapHeader: ; 0x943dc
 
 MountMoon_MapHeader: ; 0x943e5
 	; bank, tileset, permission
-	db $25, $18, 4
+	db BANK(MountMoon_SecondMapHeader), $18, 4
 
 	; second map header
 	dw MountMoon_SecondMapHeader
@@ -48308,7 +48308,7 @@ RockTunnelB1F_MapHeader: ; 0x94400
 
 SafariZoneFuchsiaGateBeta_MapHeader: ; 0x94409
 	; bank, tileset, permission
-	db $25, $8, 3
+	db BANK(SafariZoneFuchsiaGateBeta_SecondMapHeader), $8, 3
 
 	; second map header
 	dw SafariZoneFuchsiaGateBeta_SecondMapHeader
@@ -48319,7 +48319,7 @@ SafariZoneFuchsiaGateBeta_MapHeader: ; 0x94409
 
 SafariZoneBeta_MapHeader: ; 0x94412
 	; bank, tileset, permission
-	db $25, $19, 4
+	db BANK(SafariZoneBeta_SecondMapHeader), $19, 4
 
 	; second map header
 	dw SafariZoneBeta_SecondMapHeader
@@ -48330,7 +48330,7 @@ SafariZoneBeta_MapHeader: ; 0x94412
 
 VictoryRoad_MapHeader: ; 0x9441b
 	; bank, tileset, permission
-	db $25, $18, 4
+	db BANK(VictoryRoad_SecondMapHeader), $18, 4
 
 	; second map header
 	dw VictoryRoad_SecondMapHeader
@@ -48341,7 +48341,7 @@ VictoryRoad_MapHeader: ; 0x9441b
 
 EcruteakHouse_MapHeader: ; 0x94424
 	; bank, tileset, permission
-	db $25, $17, 3
+	db BANK(EcruteakHouse_SecondMapHeader), $17, 3
 
 	; second map header
 	dw EcruteakHouse_SecondMapHeader
@@ -48352,7 +48352,7 @@ EcruteakHouse_MapHeader: ; 0x94424
 
 WiseTriosRoom_MapHeader: ; 0x9442d
 	; bank, tileset, permission
-	db $25, $10, 3
+	db BANK(WiseTriosRoom_SecondMapHeader), $10, 3
 
 	; second map header
 	dw WiseTriosRoom_SecondMapHeader
@@ -48363,7 +48363,7 @@ WiseTriosRoom_MapHeader: ; 0x9442d
 
 EcruteakPokeCenter1F_MapHeader: ; 0x94436
 	; bank, tileset, permission
-	db $25, $7, 3
+	db BANK(EcruteakPokeCenter1F_SecondMapHeader), $7, 3
 
 	; second map header
 	dw EcruteakPokeCenter1F_SecondMapHeader
@@ -48374,7 +48374,7 @@ EcruteakPokeCenter1F_MapHeader: ; 0x94436
 
 EcruteakLugiaSpeechHouse_MapHeader: ; 0x9443f
 	; bank, tileset, permission
-	db $25, $10, 3
+	db BANK(EcruteakLugiaSpeechHouse_SecondMapHeader), $10, 3
 
 	; second map header
 	dw EcruteakLugiaSpeechHouse_SecondMapHeader
@@ -48385,7 +48385,7 @@ EcruteakLugiaSpeechHouse_MapHeader: ; 0x9443f
 
 DanceTheatre_MapHeader: ; 0x94448
 	; bank, tileset, permission
-	db $25, $10, 3
+	db BANK(DanceTheatre_SecondMapHeader), $10, 3
 
 	; second map header
 	dw DanceTheatre_SecondMapHeader
@@ -48407,7 +48407,7 @@ EcruteakMart_MapHeader: ; 0x94451
 
 EcruteakGym_MapHeader: ; 0x9445a
 	; bank, tileset, permission
-	db $25, $17, 3
+	db BANK(EcruteakGym_SecondMapHeader), $17, 3
 
 	; second map header
 	dw EcruteakGym_SecondMapHeader
@@ -48418,7 +48418,7 @@ EcruteakGym_MapHeader: ; 0x9445a
 
 EcruteakItemfinderHouse_MapHeader: ; 0x94463
 	; bank, tileset, permission
-	db $25, $10, 3
+	db BANK(EcruteakItemfinderHouse_SecondMapHeader), $10, 3
 
 	; second map header
 	dw EcruteakItemfinderHouse_SecondMapHeader
@@ -48429,7 +48429,7 @@ EcruteakItemfinderHouse_MapHeader: ; 0x94463
 
 EcruteakCity_MapHeader: ; 0x9446c
 	; bank, tileset, permission
-	db $25, $1, 1
+	db BANK(EcruteakCity_SecondMapHeader), $1, 1
 
 	; second map header
 	dw EcruteakCity_SecondMapHeader
@@ -48462,7 +48462,7 @@ BlackthornGym2F_MapHeader: ; 0x9447e
 
 BlackthornDragonSpeechHouse_MapHeader: ; 0x94487
 	; bank, tileset, permission
-	db $25, $5, 3
+	db BANK(BlackthornDragonSpeechHouse_SecondMapHeader), $5, 3
 
 	; second map header
 	dw BlackthornDragonSpeechHouse_SecondMapHeader
@@ -48473,7 +48473,7 @@ BlackthornDragonSpeechHouse_MapHeader: ; 0x94487
 
 BlackthornDodrioTradeHouse_MapHeader: ; 0x94490
 	; bank, tileset, permission
-	db $25, $5, 3
+	db BANK(BlackthornDodrioTradeHouse_SecondMapHeader), $5, 3
 
 	; second map header
 	dw BlackthornDodrioTradeHouse_SecondMapHeader
@@ -48495,7 +48495,7 @@ BlackthornMart_MapHeader: ; 0x94499
 
 BlackthornPokeCenter1F_MapHeader: ; 0x944a2
 	; bank, tileset, permission
-	db $25, $7, 3
+	db BANK(BlackthornPokeCenter1F_SecondMapHeader), $7, 3
 
 	; second map header
 	dw BlackthornPokeCenter1F_SecondMapHeader
@@ -48506,7 +48506,7 @@ BlackthornPokeCenter1F_MapHeader: ; 0x944a2
 
 MoveDeletersHouse_MapHeader: ; 0x944ab
 	; bank, tileset, permission
-	db $25, $5, 3
+	db BANK(MoveDeletersHouse_SecondMapHeader), $5, 3
 
 	; second map header
 	dw MoveDeletersHouse_SecondMapHeader
@@ -48517,7 +48517,7 @@ MoveDeletersHouse_MapHeader: ; 0x944ab
 
 Route45_MapHeader: ; 0x944b4
 	; bank, tileset, permission
-	db $25, $1, 2
+	db BANK(Route45_SecondMapHeader), $1, 2
 
 	; second map header
 	dw Route45_SecondMapHeader
@@ -48528,7 +48528,7 @@ Route45_MapHeader: ; 0x944b4
 
 Route46_MapHeader: ; 0x944bd
 	; bank, tileset, permission
-	db $25, $1, 2
+	db BANK(Route46_SecondMapHeader), $1, 2
 
 	; second map header
 	dw Route46_SecondMapHeader
@@ -48539,7 +48539,7 @@ Route46_MapHeader: ; 0x944bd
 
 BlackthornCity_MapHeader: ; 0x944c6
 	; bank, tileset, permission
-	db $25, $1, 1
+	db BANK(BlackthornCity_SecondMapHeader), $1, 1
 
 	; second map header
 	dw BlackthornCity_SecondMapHeader
@@ -48550,7 +48550,7 @@ BlackthornCity_MapHeader: ; 0x944c6
 
 CinnabarPokeCenter1F_MapHeader: ; 0x944cf
 	; bank, tileset, permission
-	db $25, $7, 3
+	db BANK(CinnabarPokeCenter1F_SecondMapHeader), $7, 3
 
 	; second map header
 	dw CinnabarPokeCenter1F_SecondMapHeader
@@ -48561,7 +48561,7 @@ CinnabarPokeCenter1F_MapHeader: ; 0x944cf
 
 CinnabarPokeCenter2FBeta_MapHeader: ; 0x944d8
 	; bank, tileset, permission
-	db $25, $7, 3
+	db BANK(CinnabarPokeCenter2FBeta_SecondMapHeader), $7, 3
 
 	; second map header
 	dw CinnabarPokeCenter2FBeta_SecondMapHeader
@@ -48572,7 +48572,7 @@ CinnabarPokeCenter2FBeta_MapHeader: ; 0x944d8
 
 Route19FuchsiaGate_MapHeader: ; 0x944e1
 	; bank, tileset, permission
-	db $25, $8, 6
+	db BANK(Route19FuchsiaGate_SecondMapHeader), $8, 6
 
 	; second map header
 	dw Route19FuchsiaGate_SecondMapHeader
@@ -48583,7 +48583,7 @@ Route19FuchsiaGate_MapHeader: ; 0x944e1
 
 SeafoamGym_MapHeader: ; 0x944ea
 	; bank, tileset, permission
-	db $25, $18, 3
+	db BANK(SeafoamGym_SecondMapHeader), $18, 3
 
 	; second map header
 	dw SeafoamGym_SecondMapHeader
@@ -48594,7 +48594,7 @@ SeafoamGym_MapHeader: ; 0x944ea
 
 Route19_MapHeader: ; 0x944f3
 	; bank, tileset, permission
-	db $25, $3, 2
+	db BANK(Route19_SecondMapHeader), $3, 2
 
 	; second map header
 	dw Route19_SecondMapHeader
@@ -48605,7 +48605,7 @@ Route19_MapHeader: ; 0x944f3
 
 Route20_MapHeader: ; 0x944fc
 	; bank, tileset, permission
-	db $25, $3, 2
+	db BANK(Route20_SecondMapHeader), $3, 2
 
 	; second map header
 	dw Route20_SecondMapHeader
@@ -48616,7 +48616,7 @@ Route20_MapHeader: ; 0x944fc
 
 Route21_MapHeader: ; 0x94505
 	; bank, tileset, permission
-	db $25, $3, 2
+	db BANK(Route21_SecondMapHeader), $3, 2
 
 	; second map header
 	dw Route21_SecondMapHeader
@@ -48627,7 +48627,7 @@ Route21_MapHeader: ; 0x94505
 
 CinnabarIsland_MapHeader: ; 0x9450e
 	; bank, tileset, permission
-	db $25, $3, 1
+	db BANK(CinnabarIsland_SecondMapHeader), $3, 1
 
 	; second map header
 	dw CinnabarIsland_SecondMapHeader
@@ -48638,7 +48638,7 @@ CinnabarIsland_MapHeader: ; 0x9450e
 
 CeruleanGymBadgeSpeechHouse_MapHeader: ; 0x94517
 	; bank, tileset, permission
-	db $25, $5, 3
+	db BANK(CeruleanGymBadgeSpeechHouse_SecondMapHeader), $5, 3
 
 	; second map header
 	dw CeruleanGymBadgeSpeechHouse_SecondMapHeader
@@ -48649,7 +48649,7 @@ CeruleanGymBadgeSpeechHouse_MapHeader: ; 0x94517
 
 CeruleanPoliceStation_MapHeader: ; 0x94520
 	; bank, tileset, permission
-	db $25, $5, 3
+	db BANK(CeruleanPoliceStation_SecondMapHeader), $5, 3
 
 	; second map header
 	dw CeruleanPoliceStation_SecondMapHeader
@@ -48660,7 +48660,7 @@ CeruleanPoliceStation_MapHeader: ; 0x94520
 
 CeruleanTradeSpeechHouse_MapHeader: ; 0x94529
 	; bank, tileset, permission
-	db $25, $5, 3
+	db BANK(CeruleanTradeSpeechHouse_SecondMapHeader), $5, 3
 
 	; second map header
 	dw CeruleanTradeSpeechHouse_SecondMapHeader
@@ -48671,7 +48671,7 @@ CeruleanTradeSpeechHouse_MapHeader: ; 0x94529
 
 CeruleanPokeCenter1F_MapHeader: ; 0x94532
 	; bank, tileset, permission
-	db $25, $7, 3
+	db BANK(CeruleanPokeCenter1F_SecondMapHeader), $7, 3
 
 	; second map header
 	dw CeruleanPokeCenter1F_SecondMapHeader
@@ -48682,7 +48682,7 @@ CeruleanPokeCenter1F_MapHeader: ; 0x94532
 
 CeruleanPokeCenter2FBeta_MapHeader: ; 0x9453b
 	; bank, tileset, permission
-	db $25, $7, 3
+	db BANK(CeruleanPokeCenter2FBeta_SecondMapHeader), $7, 3
 
 	; second map header
 	dw CeruleanPokeCenter2FBeta_SecondMapHeader
@@ -48693,7 +48693,7 @@ CeruleanPokeCenter2FBeta_MapHeader: ; 0x9453b
 
 CeruleanGym_MapHeader: ; 0x94544
 	; bank, tileset, permission
-	db $25, $9, 3
+	db BANK(CeruleanGym_SecondMapHeader), $9, 3
 
 	; second map header
 	dw CeruleanGym_SecondMapHeader
@@ -48715,7 +48715,7 @@ CeruleanMart_MapHeader: ; 0x9454d
 
 Route10PokeCenter1F_MapHeader: ; 0x94556
 	; bank, tileset, permission
-	db $25, $7, 3
+	db BANK(Route10PokeCenter1F_SecondMapHeader), $7, 3
 
 	; second map header
 	dw Route10PokeCenter1F_SecondMapHeader
@@ -48726,7 +48726,7 @@ Route10PokeCenter1F_MapHeader: ; 0x94556
 
 Route10PokeCenter2FBeta_MapHeader: ; 0x9455f
 	; bank, tileset, permission
-	db $25, $7, 3
+	db BANK(Route10PokeCenter2FBeta_SecondMapHeader), $7, 3
 
 	; second map header
 	dw Route10PokeCenter2FBeta_SecondMapHeader
@@ -48748,7 +48748,7 @@ PowerPlant_MapHeader: ; 0x94568
 
 BillsHouse_MapHeader: ; 0x94571
 	; bank, tileset, permission
-	db $25, $5, 3
+	db BANK(BillsHouse_SecondMapHeader), $5, 3
 
 	; second map header
 	dw BillsHouse_SecondMapHeader
@@ -48759,7 +48759,7 @@ BillsHouse_MapHeader: ; 0x94571
 
 Route4_MapHeader: ; 0x9457a
 	; bank, tileset, permission
-	db $25, $3, 2
+	db BANK(Route4_SecondMapHeader), $3, 2
 
 	; second map header
 	dw Route4_SecondMapHeader
@@ -48770,7 +48770,7 @@ Route4_MapHeader: ; 0x9457a
 
 Route9_MapHeader: ; 0x94583
 	; bank, tileset, permission
-	db $25, $3, 2
+	db BANK(Route9_SecondMapHeader), $3, 2
 
 	; second map header
 	dw Route9_SecondMapHeader
@@ -48781,7 +48781,7 @@ Route9_MapHeader: ; 0x94583
 
 Route10North_MapHeader: ; 0x9458c
 	; bank, tileset, permission
-	db $25, $3, 2
+	db BANK(Route10North_SecondMapHeader), $3, 2
 
 	; second map header
 	dw Route10North_SecondMapHeader
@@ -48792,7 +48792,7 @@ Route10North_MapHeader: ; 0x9458c
 
 Route24_MapHeader: ; 0x94595
 	; bank, tileset, permission
-	db $25, $3, 2
+	db BANK(Route24_SecondMapHeader), $3, 2
 
 	; second map header
 	dw Route24_SecondMapHeader
@@ -48803,7 +48803,7 @@ Route24_MapHeader: ; 0x94595
 
 Route25_MapHeader: ; 0x9459e
 	; bank, tileset, permission
-	db $25, $3, 2
+	db BANK(Route25_SecondMapHeader), $3, 2
 
 	; second map header
 	dw Route25_SecondMapHeader
@@ -48814,7 +48814,7 @@ Route25_MapHeader: ; 0x9459e
 
 CeruleanCity_MapHeader: ; 0x945a7
 	; bank, tileset, permission
-	db $25, $3, 1
+	db BANK(CeruleanCity_SecondMapHeader), $3, 1
 
 	; second map header
 	dw CeruleanCity_SecondMapHeader
@@ -48825,7 +48825,7 @@ CeruleanCity_MapHeader: ; 0x945a7
 
 AzaleaPokeCenter1F_MapHeader: ; 0x945b0
 	; bank, tileset, permission
-	db $25, $7, 3
+	db BANK(AzaleaPokeCenter1F_SecondMapHeader), $7, 3
 
 	; second map header
 	dw AzaleaPokeCenter1F_SecondMapHeader
@@ -48836,7 +48836,7 @@ AzaleaPokeCenter1F_MapHeader: ; 0x945b0
 
 CharcoalKiln_MapHeader: ; 0x945b9
 	; bank, tileset, permission
-	db $25, $5, 3
+	db BANK(CharcoalKiln_SecondMapHeader), $5, 3
 
 	; second map header
 	dw CharcoalKiln_SecondMapHeader
@@ -48858,7 +48858,7 @@ AzaleaMart_MapHeader: ; 0x945c2
 
 KurtsHouse_MapHeader: ; 0x945cb
 	; bank, tileset, permission
-	db $25, $10, 3
+	db BANK(KurtsHouse_SecondMapHeader), $10, 3
 
 	; second map header
 	dw KurtsHouse_SecondMapHeader
@@ -48880,7 +48880,7 @@ AzaleaGym_MapHeader: ; 0x945d4
 
 Route33_MapHeader: ; 0x945dd
 	; bank, tileset, permission
-	db $25, $2, 2
+	db BANK(Route33_SecondMapHeader), $2, 2
 
 	; second map header
 	dw Route33_SecondMapHeader
@@ -48891,7 +48891,7 @@ Route33_MapHeader: ; 0x945dd
 
 AzaleaTown_MapHeader: ; 0x945e6
 	; bank, tileset, permission
-	db $25, $2, 1
+	db BANK(AzaleaTown_SecondMapHeader), $2, 1
 
 	; second map header
 	dw AzaleaTown_SecondMapHeader
@@ -48902,7 +48902,7 @@ AzaleaTown_MapHeader: ; 0x945e6
 
 LakeofRageHiddenPowerHouse_MapHeader: ; 0x945ef
 	; bank, tileset, permission
-	db $25, $5, 3
+	db BANK(LakeofRageHiddenPowerHouse_SecondMapHeader), $5, 3
 
 	; second map header
 	dw LakeofRageHiddenPowerHouse_SecondMapHeader
@@ -48913,7 +48913,7 @@ LakeofRageHiddenPowerHouse_MapHeader: ; 0x945ef
 
 LakeofRageMagikarpHouse_MapHeader: ; 0x945f8
 	; bank, tileset, permission
-	db $25, $5, 3
+	db BANK(LakeofRageMagikarpHouse_SecondMapHeader), $5, 3
 
 	; second map header
 	dw LakeofRageMagikarpHouse_SecondMapHeader
@@ -48924,7 +48924,7 @@ LakeofRageMagikarpHouse_MapHeader: ; 0x945f8
 
 Route43MahoganyGate_MapHeader: ; 0x94601
 	; bank, tileset, permission
-	db $25, $8, 6
+	db BANK(Route43MahoganyGate_SecondMapHeader), $8, 6
 
 	; second map header
 	dw Route43MahoganyGate_SecondMapHeader
@@ -48935,7 +48935,7 @@ Route43MahoganyGate_MapHeader: ; 0x94601
 
 Route43Gate_MapHeader: ; 0x9460a
 	; bank, tileset, permission
-	db $25, $8, 6
+	db BANK(Route43Gate_SecondMapHeader), $8, 6
 
 	; second map header
 	dw Route43Gate_SecondMapHeader
@@ -48946,7 +48946,7 @@ Route43Gate_MapHeader: ; 0x9460a
 
 Route43_MapHeader: ; 0x94613
 	; bank, tileset, permission
-	db $25, $1, 2
+	db BANK(Route43_SecondMapHeader), $1, 2
 
 	; second map header
 	dw Route43_SecondMapHeader
@@ -48957,7 +48957,7 @@ Route43_MapHeader: ; 0x94613
 
 LakeofRage_MapHeader: ; 0x9461c
 	; bank, tileset, permission
-	db $25, $1, 1
+	db BANK(LakeofRage_SecondMapHeader), $1, 1
 
 	; second map header
 	dw LakeofRage_SecondMapHeader
@@ -48968,7 +48968,7 @@ LakeofRage_MapHeader: ; 0x9461c
 
 Route32_MapHeader: ; 0x94625
 	; bank, tileset, permission
-	db $25, $1, 2
+	db BANK(Route32_SecondMapHeader), $1, 2
 
 	; second map header
 	dw Route32_SecondMapHeader
@@ -48979,7 +48979,7 @@ Route32_MapHeader: ; 0x94625
 
 Route35_MapHeader: ; 0x9462e
 	; bank, tileset, permission
-	db $25, $1, 2
+	db BANK(Route35_SecondMapHeader), $1, 2
 
 	; second map header
 	dw Route35_SecondMapHeader
@@ -48990,7 +48990,7 @@ Route35_MapHeader: ; 0x9462e
 
 Route36_MapHeader: ; 0x94637
 	; bank, tileset, permission
-	db $25, $1, 2
+	db BANK(Route36_SecondMapHeader), $1, 2
 
 	; second map header
 	dw Route36_SecondMapHeader
@@ -49001,7 +49001,7 @@ Route36_MapHeader: ; 0x94637
 
 Route37_MapHeader: ; 0x94640
 	; bank, tileset, permission
-	db $25, $1, 2
+	db BANK(Route37_SecondMapHeader), $1, 2
 
 	; second map header
 	dw Route37_SecondMapHeader
@@ -49012,7 +49012,7 @@ Route37_MapHeader: ; 0x94640
 
 VioletCity_MapHeader: ; 0x94649
 	; bank, tileset, permission
-	db $25, $1, 1
+	db BANK(VioletCity_SecondMapHeader), $1, 1
 
 	; second map header
 	dw VioletCity_SecondMapHeader
@@ -49056,7 +49056,7 @@ EarlsPokemonAcademy_MapHeader: ; 0x94664
 
 VioletNicknameSpeechHouse_MapHeader: ; 0x9466d
 	; bank, tileset, permission
-	db $25, $10, 3
+	db BANK(VioletNicknameSpeechHouse_SecondMapHeader), $10, 3
 
 	; second map header
 	dw VioletNicknameSpeechHouse_SecondMapHeader
@@ -49067,7 +49067,7 @@ VioletNicknameSpeechHouse_MapHeader: ; 0x9466d
 
 VioletPokeCenter1F_MapHeader: ; 0x94676
 	; bank, tileset, permission
-	db $25, $7, 3
+	db BANK(VioletPokeCenter1F_SecondMapHeader), $7, 3
 
 	; second map header
 	dw VioletPokeCenter1F_SecondMapHeader
@@ -49078,7 +49078,7 @@ VioletPokeCenter1F_MapHeader: ; 0x94676
 
 VioletOnixTradeHouse_MapHeader: ; 0x9467f
 	; bank, tileset, permission
-	db $25, $10, 3
+	db BANK(VioletOnixTradeHouse_SecondMapHeader), $10, 3
 
 	; second map header
 	dw VioletOnixTradeHouse_SecondMapHeader
@@ -49089,7 +49089,7 @@ VioletOnixTradeHouse_MapHeader: ; 0x9467f
 
 Route32RuinsofAlphGate_MapHeader: ; 0x94688
 	; bank, tileset, permission
-	db $25, $8, 6
+	db BANK(Route32RuinsofAlphGate_SecondMapHeader), $8, 6
 
 	; second map header
 	dw Route32RuinsofAlphGate_SecondMapHeader
@@ -49100,7 +49100,7 @@ Route32RuinsofAlphGate_MapHeader: ; 0x94688
 
 Route32PokeCenter1F_MapHeader: ; 0x94691
 	; bank, tileset, permission
-	db $25, $7, 3
+	db BANK(Route32PokeCenter1F_SecondMapHeader), $7, 3
 
 	; second map header
 	dw Route32PokeCenter1F_SecondMapHeader
@@ -49111,7 +49111,7 @@ Route32PokeCenter1F_MapHeader: ; 0x94691
 
 Route35Goldenrodgate_MapHeader: ; 0x9469a
 	; bank, tileset, permission
-	db $25, $8, 6
+	db BANK(Route35Goldenrodgate_SecondMapHeader), $8, 6
 
 	; second map header
 	dw Route35Goldenrodgate_SecondMapHeader
@@ -49122,7 +49122,7 @@ Route35Goldenrodgate_MapHeader: ; 0x9469a
 
 Route35NationalParkgate_MapHeader: ; 0x946a3
 	; bank, tileset, permission
-	db $25, $8, 3
+	db BANK(Route35NationalParkgate_SecondMapHeader), $8, 3
 
 	; second map header
 	dw Route35NationalParkgate_SecondMapHeader
@@ -49133,7 +49133,7 @@ Route35NationalParkgate_MapHeader: ; 0x946a3
 
 Route36RuinsofAlphgate_MapHeader: ; 0x946ac
 	; bank, tileset, permission
-	db $25, $8, 6
+	db BANK(Route36RuinsofAlphgate_SecondMapHeader), $8, 6
 
 	; second map header
 	dw Route36RuinsofAlphgate_SecondMapHeader
@@ -49144,7 +49144,7 @@ Route36RuinsofAlphgate_MapHeader: ; 0x946ac
 
 Route36NationalParkgate_MapHeader: ; 0x946b5
 	; bank, tileset, permission
-	db $25, $8, 3
+	db BANK(Route36NationalParkgate_SecondMapHeader), $8, 3
 
 	; second map header
 	dw Route36NationalParkgate_SecondMapHeader
@@ -49155,7 +49155,7 @@ Route36NationalParkgate_MapHeader: ; 0x946b5
 
 Route34_MapHeader: ; 0x946be
 	; bank, tileset, permission
-	db $25, $2, 2
+	db BANK(Route34_SecondMapHeader), $2, 2
 
 	; second map header
 	dw Route34_SecondMapHeader
@@ -49166,7 +49166,7 @@ Route34_MapHeader: ; 0x946be
 
 GoldenrodCity_MapHeader: ; 0x946c7
 	; bank, tileset, permission
-	db $25, $2, 1
+	db BANK(GoldenrodCity_SecondMapHeader), $2, 1
 
 	; second map header
 	dw GoldenrodCity_SecondMapHeader
@@ -49188,7 +49188,7 @@ GoldenrodGym_MapHeader: ; 0x946d0
 
 GoldenrodBikeShop_MapHeader: ; 0x946d9
 	; bank, tileset, permission
-	db $25, $12, 3
+	db BANK(GoldenrodBikeShop_SecondMapHeader), $12, 3
 
 	; second map header
 	dw GoldenrodBikeShop_SecondMapHeader
@@ -49199,7 +49199,7 @@ GoldenrodBikeShop_MapHeader: ; 0x946d9
 
 GoldenrodHappinessRater_MapHeader: ; 0x946e2
 	; bank, tileset, permission
-	db $25, $5, 3
+	db BANK(GoldenrodHappinessRater_SecondMapHeader), $5, 3
 
 	; second map header
 	dw GoldenrodHappinessRater_SecondMapHeader
@@ -49210,7 +49210,7 @@ GoldenrodHappinessRater_MapHeader: ; 0x946e2
 
 GoldenrodBillsHouse_MapHeader: ; 0x946eb
 	; bank, tileset, permission
-	db $25, $5, 3
+	db BANK(GoldenrodBillsHouse_SecondMapHeader), $5, 3
 
 	; second map header
 	dw GoldenrodBillsHouse_SecondMapHeader
@@ -49221,7 +49221,7 @@ GoldenrodBillsHouse_MapHeader: ; 0x946eb
 
 GoldenrodMagnetTrainStation_MapHeader: ; 0x946f4
 	; bank, tileset, permission
-	db $25, $11, 3
+	db BANK(GoldenrodMagnetTrainStation_SecondMapHeader), $11, 3
 
 	; second map header
 	dw GoldenrodMagnetTrainStation_SecondMapHeader
@@ -49232,7 +49232,7 @@ GoldenrodMagnetTrainStation_MapHeader: ; 0x946f4
 
 GoldenrodFlowerShop_MapHeader: ; 0x946fd
 	; bank, tileset, permission
-	db $25, $5, 3
+	db BANK(GoldenrodFlowerShop_SecondMapHeader), $5, 3
 
 	; second map header
 	dw GoldenrodFlowerShop_SecondMapHeader
@@ -49243,7 +49243,7 @@ GoldenrodFlowerShop_MapHeader: ; 0x946fd
 
 GoldenrodPPSpeechHouse_MapHeader: ; 0x94706
 	; bank, tileset, permission
-	db $25, $5, 3
+	db BANK(GoldenrodPPSpeechHouse_SecondMapHeader), $5, 3
 
 	; second map header
 	dw GoldenrodPPSpeechHouse_SecondMapHeader
@@ -49254,7 +49254,7 @@ GoldenrodPPSpeechHouse_MapHeader: ; 0x94706
 
 GoldenrodNameRatersHouse_MapHeader: ; 0x9470f
 	; bank, tileset, permission
-	db $25, $5, 3
+	db BANK(GoldenrodNameRatersHouse_SecondMapHeader), $5, 3
 
 	; second map header
 	dw GoldenrodNameRatersHouse_SecondMapHeader
@@ -49364,7 +49364,7 @@ GoldenrodGameCorner_MapHeader: ; 0x94760
 
 GoldenrodPokeCenter1F_MapHeader: ; 0x94769
 	; bank, tileset, permission
-	db $25, $7, 3
+	db BANK(GoldenrodPokeCenter1F_SecondMapHeader), $7, 3
 
 	; second map header
 	dw GoldenrodPokeCenter1F_SecondMapHeader
@@ -49375,7 +49375,7 @@ GoldenrodPokeCenter1F_MapHeader: ; 0x94769
 
 GoldenrodPokeComCenter2FMobile_MapHeader: ; 0x94772
 	; bank, tileset, permission
-	db $25, $15, 3
+	db BANK(GoldenrodPokeComCenter2FMobile_SecondMapHeader), $15, 3
 
 	; second map header
 	dw GoldenrodPokeComCenter2FMobile_SecondMapHeader
@@ -49386,7 +49386,7 @@ GoldenrodPokeComCenter2FMobile_MapHeader: ; 0x94772
 
 IlexForestAzaleaGate_MapHeader: ; 0x9477b
 	; bank, tileset, permission
-	db $25, $8, 6
+	db BANK(IlexForestAzaleaGate_SecondMapHeader), $8, 6
 
 	; second map header
 	dw IlexForestAzaleaGate_SecondMapHeader
@@ -49397,7 +49397,7 @@ IlexForestAzaleaGate_MapHeader: ; 0x9477b
 
 Route34IlexForestGate_MapHeader: ; 0x94784
 	; bank, tileset, permission
-	db $25, $8, 6
+	db BANK(Route34IlexForestGate_SecondMapHeader), $8, 6
 
 	; second map header
 	dw Route34IlexForestGate_SecondMapHeader
@@ -49408,7 +49408,7 @@ Route34IlexForestGate_MapHeader: ; 0x94784
 
 DayCare_MapHeader: ; 0x9478d
 	; bank, tileset, permission
-	db $25, $5, 3
+	db BANK(DayCare_SecondMapHeader), $5, 3
 
 	; second map header
 	dw DayCare_SecondMapHeader
@@ -49419,7 +49419,7 @@ DayCare_MapHeader: ; 0x9478d
 
 Route6_MapHeader: ; 0x94796
 	; bank, tileset, permission
-	db $25, $3, 2
+	db BANK(Route6_SecondMapHeader), $3, 2
 
 	; second map header
 	dw Route6_SecondMapHeader
@@ -49430,7 +49430,7 @@ Route6_MapHeader: ; 0x94796
 
 Route11_MapHeader: ; 0x9479f
 	; bank, tileset, permission
-	db $25, $3, 2
+	db BANK(Route11_SecondMapHeader), $3, 2
 
 	; second map header
 	dw Route11_SecondMapHeader
@@ -49441,7 +49441,7 @@ Route11_MapHeader: ; 0x9479f
 
 VermilionCity_MapHeader: ; 0x947a8
 	; bank, tileset, permission
-	db $25, $3, 1
+	db BANK(VermilionCity_SecondMapHeader), $3, 1
 
 	; second map header
 	dw VermilionCity_SecondMapHeader
@@ -49452,7 +49452,7 @@ VermilionCity_MapHeader: ; 0x947a8
 
 VermilionHouseFishingSpeechHouse_MapHeader: ; 0x947b1
 	; bank, tileset, permission
-	db $25, $5, 3
+	db BANK(VermilionHouseFishingSpeechHouse_SecondMapHeader), $5, 3
 
 	; second map header
 	dw VermilionHouseFishingSpeechHouse_SecondMapHeader
@@ -49463,7 +49463,7 @@ VermilionHouseFishingSpeechHouse_MapHeader: ; 0x947b1
 
 VermilionPokeCenter1F_MapHeader: ; 0x947ba
 	; bank, tileset, permission
-	db $25, $7, 3
+	db BANK(VermilionPokeCenter1F_SecondMapHeader), $7, 3
 
 	; second map header
 	dw VermilionPokeCenter1F_SecondMapHeader
@@ -49474,7 +49474,7 @@ VermilionPokeCenter1F_MapHeader: ; 0x947ba
 
 VermilionPokeCenter2FBeta_MapHeader: ; 0x947c3
 	; bank, tileset, permission
-	db $25, $7, 3
+	db BANK(VermilionPokeCenter2FBeta_SecondMapHeader), $7, 3
 
 	; second map header
 	dw VermilionPokeCenter2FBeta_SecondMapHeader
@@ -49485,7 +49485,7 @@ VermilionPokeCenter2FBeta_MapHeader: ; 0x947c3
 
 PokemonFanClub_MapHeader: ; 0x947cc
 	; bank, tileset, permission
-	db $25, $5, 3
+	db BANK(PokemonFanClub_SecondMapHeader), $5, 3
 
 	; second map header
 	dw PokemonFanClub_SecondMapHeader
@@ -49496,7 +49496,7 @@ PokemonFanClub_MapHeader: ; 0x947cc
 
 VermilionMagnetTrainSpeechHouse_MapHeader: ; 0x947d5
 	; bank, tileset, permission
-	db $25, $5, 3
+	db BANK(VermilionMagnetTrainSpeechHouse_SecondMapHeader), $5, 3
 
 	; second map header
 	dw VermilionMagnetTrainSpeechHouse_SecondMapHeader
@@ -49518,7 +49518,7 @@ VermilionMart_MapHeader: ; 0x947de
 
 VermilionHouseDiglettsCaveSpeechHouse_MapHeader: ; 0x947e7
 	; bank, tileset, permission
-	db $25, $5, 3
+	db BANK(VermilionHouseDiglettsCaveSpeechHouse_SecondMapHeader), $5, 3
 
 	; second map header
 	dw VermilionHouseDiglettsCaveSpeechHouse_SecondMapHeader
@@ -49540,7 +49540,7 @@ VermilionGym_MapHeader: ; 0x947f0
 
 Route6SaffronGate_MapHeader: ; 0x947f9
 	; bank, tileset, permission
-	db $25, $8, 6
+	db BANK(Route6SaffronGate_SecondMapHeader), $8, 6
 
 	; second map header
 	dw Route6SaffronGate_SecondMapHeader
@@ -49551,7 +49551,7 @@ Route6SaffronGate_MapHeader: ; 0x947f9
 
 Route6UndergroundEntrance_MapHeader: ; 0x94802
 	; bank, tileset, permission
-	db $25, $8, 6
+	db BANK(Route6UndergroundEntrance_SecondMapHeader), $8, 6
 
 	; second map header
 	dw Route6UndergroundEntrance_SecondMapHeader
@@ -49562,7 +49562,7 @@ Route6UndergroundEntrance_MapHeader: ; 0x94802
 
 Route1_MapHeader: ; 0x9480b
 	; bank, tileset, permission
-	db $25, $3, 2
+	db BANK(Route1_SecondMapHeader), $3, 2
 
 	; second map header
 	dw Route1_SecondMapHeader
@@ -49573,7 +49573,7 @@ Route1_MapHeader: ; 0x9480b
 
 PalletTown_MapHeader: ; 0x94814
 	; bank, tileset, permission
-	db $25, $3, 1
+	db BANK(PalletTown_SecondMapHeader), $3, 1
 
 	; second map header
 	dw PalletTown_SecondMapHeader
@@ -49584,7 +49584,7 @@ PalletTown_MapHeader: ; 0x94814
 
 RedsHouse1F_MapHeader: ; 0x9481d
 	; bank, tileset, permission
-	db $25, $6, 3
+	db BANK(RedsHouse1F_SecondMapHeader), $6, 3
 
 	; second map header
 	dw RedsHouse1F_SecondMapHeader
@@ -49595,7 +49595,7 @@ RedsHouse1F_MapHeader: ; 0x9481d
 
 RedsHouse2F_MapHeader: ; 0x94826
 	; bank, tileset, permission
-	db $25, $6, 3
+	db BANK(RedsHouse2F_SecondMapHeader), $6, 3
 
 	; second map header
 	dw RedsHouse2F_SecondMapHeader
@@ -49606,7 +49606,7 @@ RedsHouse2F_MapHeader: ; 0x94826
 
 BluesHouse_MapHeader: ; 0x9482f
 	; bank, tileset, permission
-	db $25, $5, 3
+	db BANK(BluesHouse_SecondMapHeader), $5, 3
 
 	; second map header
 	dw BluesHouse_SecondMapHeader
@@ -49628,7 +49628,7 @@ OaksLab_MapHeader: ; 0x94838
 
 Route3_MapHeader: ; 0x94841
 	; bank, tileset, permission
-	db $25, $3, 2
+	db BANK(Route3_SecondMapHeader), $3, 2
 
 	; second map header
 	dw Route3_SecondMapHeader
@@ -49639,7 +49639,7 @@ Route3_MapHeader: ; 0x94841
 
 PewterCity_MapHeader: ; 0x9484a
 	; bank, tileset, permission
-	db $25, $3, 1
+	db BANK(PewterCity_SecondMapHeader), $3, 1
 
 	; second map header
 	dw PewterCity_SecondMapHeader
@@ -49650,7 +49650,7 @@ PewterCity_MapHeader: ; 0x9484a
 
 PewterNidoranSpeechHouse_MapHeader: ; 0x94853
 	; bank, tileset, permission
-	db $25, $5, 3
+	db BANK(PewterNidoranSpeechHouse_SecondMapHeader), $5, 3
 
 	; second map header
 	dw PewterNidoranSpeechHouse_SecondMapHeader
@@ -49661,7 +49661,7 @@ PewterNidoranSpeechHouse_MapHeader: ; 0x94853
 
 PewterGym_MapHeader: ; 0x9485c
 	; bank, tileset, permission
-	db $25, $17, 3
+	db BANK(PewterGym_SecondMapHeader), $17, 3
 
 	; second map header
 	dw PewterGym_SecondMapHeader
@@ -49683,7 +49683,7 @@ PewterMart_MapHeader: ; 0x94865
 
 PewterPokeCenter1F_MapHeader: ; 0x9486e
 	; bank, tileset, permission
-	db $25, $7, 3
+	db BANK(PewterPokeCenter1F_SecondMapHeader), $7, 3
 
 	; second map header
 	dw PewterPokeCenter1F_SecondMapHeader
@@ -49694,7 +49694,7 @@ PewterPokeCenter1F_MapHeader: ; 0x9486e
 
 PewterPokeCEnter2FBeta_MapHeader: ; 0x94877
 	; bank, tileset, permission
-	db $25, $7, 3
+	db BANK(PewterPokeCEnter2FBeta_SecondMapHeader), $7, 3
 
 	; second map header
 	dw PewterPokeCEnter2FBeta_SecondMapHeader
@@ -49705,7 +49705,7 @@ PewterPokeCEnter2FBeta_MapHeader: ; 0x94877
 
 PewterSnoozeSpeechHouse_MapHeader: ; 0x94880
 	; bank, tileset, permission
-	db $25, $5, 3
+	db BANK(PewterSnoozeSpeechHouse_SecondMapHeader), $5, 3
 
 	; second map header
 	dw PewterSnoozeSpeechHouse_SecondMapHeader
@@ -49716,7 +49716,7 @@ PewterSnoozeSpeechHouse_MapHeader: ; 0x94880
 
 OlivinePort_MapHeader: ; 0x94889
 	; bank, tileset, permission
-	db $25, $9, 2
+	db BANK(OlivinePort_SecondMapHeader), $9, 2
 
 	; second map header
 	dw OlivinePort_SecondMapHeader
@@ -49727,7 +49727,7 @@ OlivinePort_MapHeader: ; 0x94889
 
 VermilionPort_MapHeader: ; 0x94892
 	; bank, tileset, permission
-	db $25, $9, 2
+	db BANK(VermilionPort_SecondMapHeader), $9, 2
 
 	; second map header
 	dw VermilionPort_SecondMapHeader
@@ -49738,7 +49738,7 @@ VermilionPort_MapHeader: ; 0x94892
 
 FastShip1F_MapHeader: ; 0x9489b
 	; bank, tileset, permission
-	db $25, $13, 3
+	db BANK(FastShip1F_SecondMapHeader), $13, 3
 
 	; second map header
 	dw FastShip1F_SecondMapHeader
@@ -49749,7 +49749,7 @@ FastShip1F_MapHeader: ; 0x9489b
 
 FastShipCabins_NNW_NNE_NE_MapHeader: ; 0x948a4
 	; bank, tileset, permission
-	db $25, $13, 3
+	db BANK(FastShipCabins_NNW_NNE_NE_SecondMapHeader), $13, 3
 
 	; second map header
 	dw FastShipCabins_NNW_NNE_NE_SecondMapHeader
@@ -49760,7 +49760,7 @@ FastShipCabins_NNW_NNE_NE_MapHeader: ; 0x948a4
 
 FastShipCabins_SW_SSW_NW_MapHeader: ; 0x948ad
 	; bank, tileset, permission
-	db $25, $13, 3
+	db BANK(FastShipCabins_SW_SSW_NW_SecondMapHeader), $13, 3
 
 	; second map header
 	dw FastShipCabins_SW_SSW_NW_SecondMapHeader
@@ -49771,7 +49771,7 @@ FastShipCabins_SW_SSW_NW_MapHeader: ; 0x948ad
 
 FastShipCabins_SE_SSE_CaptainsCabin_MapHeader: ; 0x948b6
 	; bank, tileset, permission
-	db $25, $13, 3
+	db BANK(FastShipCabins_SE_SSE_CaptainsCabin_SecondMapHeader), $13, 3
 
 	; second map header
 	dw FastShipCabins_SE_SSE_CaptainsCabin_SecondMapHeader
@@ -49782,7 +49782,7 @@ FastShipCabins_SE_SSE_CaptainsCabin_MapHeader: ; 0x948b6
 
 FastShipB1F_MapHeader: ; 0x948bf
 	; bank, tileset, permission
-	db $25, $13, 3
+	db BANK(FastShipB1F_SecondMapHeader), $13, 3
 
 	; second map header
 	dw FastShipB1F_SecondMapHeader
@@ -49815,7 +49815,7 @@ VermilionPortPassage_MapHeader: ; 0x948d1
 
 MountMoonSquare_MapHeader: ; 0x948da
 	; bank, tileset, permission
-	db $25, $3, 2
+	db BANK(MountMoonSquare_SecondMapHeader), $3, 2
 
 	; second map header
 	dw MountMoonSquare_SecondMapHeader
@@ -49826,7 +49826,7 @@ MountMoonSquare_MapHeader: ; 0x948da
 
 MountMoonGiftShop_MapHeader: ; 0x948e3
 	; bank, tileset, permission
-	db $25, $10, 3
+	db BANK(MountMoonGiftShop_SecondMapHeader), $10, 3
 
 	; second map header
 	dw MountMoonGiftShop_SecondMapHeader
@@ -49837,7 +49837,7 @@ MountMoonGiftShop_MapHeader: ; 0x948e3
 
 TinTowerRoof_MapHeader: ; 0x948ec
 	; bank, tileset, permission
-	db $25, $17, 2
+	db BANK(TinTowerRoof_SecondMapHeader), $17, 2
 
 	; second map header
 	dw TinTowerRoof_SecondMapHeader
@@ -49848,7 +49848,7 @@ TinTowerRoof_MapHeader: ; 0x948ec
 
 Route23_MapHeader: ; 0x948f5
 	; bank, tileset, permission
-	db $25, $3, 1
+	db BANK(Route23_SecondMapHeader), $3, 1
 
 	; second map header
 	dw Route23_SecondMapHeader
@@ -49859,7 +49859,7 @@ Route23_MapHeader: ; 0x948f5
 
 IndigoPlateauPokeCenter1F_MapHeader: ; 0x948fe
 	; bank, tileset, permission
-	db $25, $7, 3
+	db BANK(IndigoPlateauPokeCenter1F_SecondMapHeader), $7, 3
 
 	; second map header
 	dw IndigoPlateauPokeCenter1F_SecondMapHeader
@@ -49914,7 +49914,7 @@ KarensRoom_MapHeader: ; 0x94922
 
 LancesRoom_MapHeader: ; 0x9492b
 	; bank, tileset, permission
-	db $25, $12, 3
+	db BANK(LancesRoom_SecondMapHeader), $12, 3
 
 	; second map header
 	dw LancesRoom_SecondMapHeader
@@ -49936,7 +49936,7 @@ HallOfFame_MapHeader: ; 0x94934
 
 Route13_MapHeader: ; 0x9493d
 	; bank, tileset, permission
-	db $25, $3, 2
+	db BANK(Route13_SecondMapHeader), $3, 2
 
 	; second map header
 	dw Route13_SecondMapHeader
@@ -49947,7 +49947,7 @@ Route13_MapHeader: ; 0x9493d
 
 Route14_MapHeader: ; 0x94946
 	; bank, tileset, permission
-	db $25, $3, 2
+	db BANK(Route14_SecondMapHeader), $3, 2
 
 	; second map header
 	dw Route14_SecondMapHeader
@@ -49958,7 +49958,7 @@ Route14_MapHeader: ; 0x94946
 
 Route15_MapHeader: ; 0x9494f
 	; bank, tileset, permission
-	db $25, $3, 2
+	db BANK(Route15_SecondMapHeader), $3, 2
 
 	; second map header
 	dw Route15_SecondMapHeader
@@ -49969,7 +49969,7 @@ Route15_MapHeader: ; 0x9494f
 
 Route18_MapHeader: ; 0x94958
 	; bank, tileset, permission
-	db $25, $3, 2
+	db BANK(Route18_SecondMapHeader), $3, 2
 
 	; second map header
 	dw Route18_SecondMapHeader
@@ -49980,7 +49980,7 @@ Route18_MapHeader: ; 0x94958
 
 FuchsiaCity_MapHeader: ; 0x94961
 	; bank, tileset, permission
-	db $25, $3, 1
+	db BANK(FuchsiaCity_SecondMapHeader), $3, 1
 
 	; second map header
 	dw FuchsiaCity_SecondMapHeader
@@ -50024,7 +50024,7 @@ FuchsiaGym_MapHeader: ; 0x9497c
 
 FuchsiaBillSpeechHouse_MapHeader: ; 0x94985
 	; bank, tileset, permission
-	db $25, $5, 3
+	db BANK(FuchsiaBillSpeechHouse_SecondMapHeader), $5, 3
 
 	; second map header
 	dw FuchsiaBillSpeechHouse_SecondMapHeader
@@ -50035,7 +50035,7 @@ FuchsiaBillSpeechHouse_MapHeader: ; 0x94985
 
 FuchsiaPokeCenter1F_MapHeader: ; 0x9498e
 	; bank, tileset, permission
-	db $25, $7, 3
+	db BANK(FuchsiaPokeCenter1F_SecondMapHeader), $7, 3
 
 	; second map header
 	dw FuchsiaPokeCenter1F_SecondMapHeader
@@ -50046,7 +50046,7 @@ FuchsiaPokeCenter1F_MapHeader: ; 0x9498e
 
 FuchsiaPokeCenter2FBeta_MapHeader: ; 0x94997
 	; bank, tileset, permission
-	db $25, $7, 3
+	db BANK(FuchsiaPokeCenter2FBeta_SecondMapHeader), $7, 3
 
 	; second map header
 	dw FuchsiaPokeCenter2FBeta_SecondMapHeader
@@ -50057,7 +50057,7 @@ FuchsiaPokeCenter2FBeta_MapHeader: ; 0x94997
 
 SafariZoneWardensHome_MapHeader: ; 0x949a0
 	; bank, tileset, permission
-	db $25, $5, 3
+	db BANK(SafariZoneWardensHome_SecondMapHeader), $5, 3
 
 	; second map header
 	dw SafariZoneWardensHome_SecondMapHeader
@@ -50068,7 +50068,7 @@ SafariZoneWardensHome_MapHeader: ; 0x949a0
 
 Route15FuchsiaGate_MapHeader: ; 0x949a9
 	; bank, tileset, permission
-	db $25, $8, 6
+	db BANK(Route15FuchsiaGate_SecondMapHeader), $8, 6
 
 	; second map header
 	dw Route15FuchsiaGate_SecondMapHeader
@@ -50079,7 +50079,7 @@ Route15FuchsiaGate_MapHeader: ; 0x949a9
 
 Route8_MapHeader: ; 0x949b2
 	; bank, tileset, permission
-	db $25, $3, 2
+	db BANK(Route8_SecondMapHeader), $3, 2
 
 	; second map header
 	dw Route8_SecondMapHeader
@@ -50090,7 +50090,7 @@ Route8_MapHeader: ; 0x949b2
 
 Route12_MapHeader: ; 0x949bb
 	; bank, tileset, permission
-	db $25, $3, 2
+	db BANK(Route12_SecondMapHeader), $3, 2
 
 	; second map header
 	dw Route12_SecondMapHeader
@@ -50101,7 +50101,7 @@ Route12_MapHeader: ; 0x949bb
 
 Route10South_MapHeader: ; 0x949c4
 	; bank, tileset, permission
-	db $25, $3, 2
+	db BANK(Route10South_SecondMapHeader), $3, 2
 
 	; second map header
 	dw Route10South_SecondMapHeader
@@ -50112,7 +50112,7 @@ Route10South_MapHeader: ; 0x949c4
 
 LavenderTown_MapHeader: ; 0x949cd
 	; bank, tileset, permission
-	db $25, $3, 1
+	db BANK(LavenderTown_SecondMapHeader), $3, 1
 
 	; second map header
 	dw LavenderTown_SecondMapHeader
@@ -50123,7 +50123,7 @@ LavenderTown_MapHeader: ; 0x949cd
 
 LavenderPokeCenter1F_MapHeader: ; 0x949d6
 	; bank, tileset, permission
-	db $25, $7, 3
+	db BANK(LavenderPokeCenter1F_SecondMapHeader), $7, 3
 
 	; second map header
 	dw LavenderPokeCenter1F_SecondMapHeader
@@ -50134,7 +50134,7 @@ LavenderPokeCenter1F_MapHeader: ; 0x949d6
 
 LavenderPokeCenter2FBeta_MapHeader: ; 0x949df
 	; bank, tileset, permission
-	db $25, $7, 3
+	db BANK(LavenderPokeCenter2FBeta_SecondMapHeader), $7, 3
 
 	; second map header
 	dw LavenderPokeCenter2FBeta_SecondMapHeader
@@ -50145,7 +50145,7 @@ LavenderPokeCenter2FBeta_MapHeader: ; 0x949df
 
 MrFujisHouse_MapHeader: ; 0x949e8
 	; bank, tileset, permission
-	db $25, $5, 3
+	db BANK(MrFujisHouse_SecondMapHeader), $5, 3
 
 	; second map header
 	dw MrFujisHouse_SecondMapHeader
@@ -50156,7 +50156,7 @@ MrFujisHouse_MapHeader: ; 0x949e8
 
 LavenderTownSpeechHouse_MapHeader: ; 0x949f1
 	; bank, tileset, permission
-	db $25, $5, 3
+	db BANK(LavenderTownSpeechHouse_SecondMapHeader), $5, 3
 
 	; second map header
 	dw LavenderTownSpeechHouse_SecondMapHeader
@@ -50167,7 +50167,7 @@ LavenderTownSpeechHouse_MapHeader: ; 0x949f1
 
 LavenderNameRater_MapHeader: ; 0x949fa
 	; bank, tileset, permission
-	db $25, $5, 3
+	db BANK(LavenderNameRater_SecondMapHeader), $5, 3
 
 	; second map header
 	dw LavenderNameRater_SecondMapHeader
@@ -50189,7 +50189,7 @@ LavenderMart_MapHeader: ; 0x94a03
 
 SoulHouse_MapHeader: ; 0x94a0c
 	; bank, tileset, permission
-	db $25, $5, 3
+	db BANK(SoulHouse_SecondMapHeader), $5, 3
 
 	; second map header
 	dw SoulHouse_SecondMapHeader
@@ -50211,7 +50211,7 @@ LavRadioTower1F_MapHeader: ; 0x94a15
 
 Route8SaffronGate_MapHeader: ; 0x94a1e
 	; bank, tileset, permission
-	db $25, $8, 6
+	db BANK(Route8SaffronGate_SecondMapHeader), $8, 6
 
 	; second map header
 	dw Route8SaffronGate_SecondMapHeader
@@ -50222,7 +50222,7 @@ Route8SaffronGate_MapHeader: ; 0x94a1e
 
 Route12SuperRodHouse_MapHeader: ; 0x94a27
 	; bank, tileset, permission
-	db $25, $5, 3
+	db BANK(Route12SuperRodHouse_SecondMapHeader), $5, 3
 
 	; second map header
 	dw Route12SuperRodHouse_SecondMapHeader
@@ -50233,7 +50233,7 @@ Route12SuperRodHouse_MapHeader: ; 0x94a27
 
 Route28_MapHeader: ; 0x94a30
 	; bank, tileset, permission
-	db $25, $3, 2
+	db BANK(Route28_SecondMapHeader), $3, 2
 
 	; second map header
 	dw Route28_SecondMapHeader
@@ -50244,7 +50244,7 @@ Route28_MapHeader: ; 0x94a30
 
 SilverCaveOutside_MapHeader: ; 0x94a39
 	; bank, tileset, permission
-	db $25, $3, 1
+	db BANK(SilverCaveOutside_SecondMapHeader), $3, 1
 
 	; second map header
 	dw SilverCaveOutside_SecondMapHeader
@@ -50255,7 +50255,7 @@ SilverCaveOutside_MapHeader: ; 0x94a39
 
 SilverCavePokeCenter1F_MapHeader: ; 0x94a42
 	; bank, tileset, permission
-	db $25, $7, 3
+	db BANK(SilverCavePokeCenter1F_SecondMapHeader), $7, 3
 
 	; second map header
 	dw SilverCavePokeCenter1F_SecondMapHeader
@@ -50266,7 +50266,7 @@ SilverCavePokeCenter1F_MapHeader: ; 0x94a42
 
 Route28FamousSpeechHouse_MapHeader: ; 0x94a4b
 	; bank, tileset, permission
-	db $25, $5, 3
+	db BANK(Route28FamousSpeechHouse_SecondMapHeader), $5, 3
 
 	; second map header
 	dw Route28FamousSpeechHouse_SecondMapHeader
@@ -50277,7 +50277,7 @@ Route28FamousSpeechHouse_MapHeader: ; 0x94a4b
 
 PokeCenter2F_MapHeader: ; 0x94a54
 	; bank, tileset, permission
-	db $25, $7, 3
+	db BANK(PokeCenter2F_SecondMapHeader), $7, 3
 
 	; second map header
 	dw PokeCenter2F_SecondMapHeader
@@ -50288,7 +50288,7 @@ PokeCenter2F_MapHeader: ; 0x94a54
 
 TradeCenter_MapHeader: ; 0x94a5d
 	; bank, tileset, permission
-	db $25, $8, 3
+	db BANK(TradeCenter_SecondMapHeader), $8, 3
 
 	; second map header
 	dw TradeCenter_SecondMapHeader
@@ -50299,7 +50299,7 @@ TradeCenter_MapHeader: ; 0x94a5d
 
 Colosseum_MapHeader: ; 0x94a66
 	; bank, tileset, permission
-	db $25, $8, 3
+	db BANK(Colosseum_SecondMapHeader), $8, 3
 
 	; second map header
 	dw Colosseum_SecondMapHeader
@@ -50310,7 +50310,7 @@ Colosseum_MapHeader: ; 0x94a66
 
 TimeCapsule_MapHeader: ; 0x94a6f
 	; bank, tileset, permission
-	db $25, $8, 3
+	db BANK(TimeCapsule_SecondMapHeader), $8, 3
 
 	; second map header
 	dw TimeCapsule_SecondMapHeader
@@ -50343,7 +50343,7 @@ MobileBattleRoom_MapHeader: ; 0x94a81
 
 Route7_MapHeader: ; 0x94a8a
 	; bank, tileset, permission
-	db $25, $3, 2
+	db BANK(Route7_SecondMapHeader), $3, 2
 
 	; second map header
 	dw Route7_SecondMapHeader
@@ -50354,7 +50354,7 @@ Route7_MapHeader: ; 0x94a8a
 
 Route16_MapHeader: ; 0x94a93
 	; bank, tileset, permission
-	db $25, $3, 2
+	db BANK(Route16_SecondMapHeader), $3, 2
 
 	; second map header
 	dw Route16_SecondMapHeader
@@ -50365,7 +50365,7 @@ Route16_MapHeader: ; 0x94a93
 
 Route17_MapHeader: ; 0x94a9c
 	; bank, tileset, permission
-	db $25, $3, 2
+	db BANK(Route17_SecondMapHeader), $3, 2
 
 	; second map header
 	dw Route17_SecondMapHeader
@@ -50376,7 +50376,7 @@ Route17_MapHeader: ; 0x94a9c
 
 CeladonCity_MapHeader: ; 0x94aa5
 	; bank, tileset, permission
-	db $25, $3, 1
+	db BANK(CeladonCity_SecondMapHeader), $3, 1
 
 	; second map header
 	dw CeladonCity_SecondMapHeader
@@ -50508,7 +50508,7 @@ CeladonMansionRoof_MapHeader: ; 0x94b08
 
 CeladonMansionRoofHouse_MapHeader: ; 0x94b11
 	; bank, tileset, permission
-	db $25, $5, 3
+	db BANK(CeladonMansionRoofHouse_SecondMapHeader), $5, 3
 
 	; second map header
 	dw CeladonMansionRoofHouse_SecondMapHeader
@@ -50519,7 +50519,7 @@ CeladonMansionRoofHouse_MapHeader: ; 0x94b11
 
 CeladonPokeCenter1F_MapHeader: ; 0x94b1a
 	; bank, tileset, permission
-	db $25, $7, 3
+	db BANK(CeladonPokeCenter1F_SecondMapHeader), $7, 3
 
 	; second map header
 	dw CeladonPokeCenter1F_SecondMapHeader
@@ -50530,7 +50530,7 @@ CeladonPokeCenter1F_MapHeader: ; 0x94b1a
 
 CeladonPokeCenter2FBeta_MapHeader: ; 0x94b23
 	; bank, tileset, permission
-	db $25, $7, 3
+	db BANK(CeladonPokeCenter2FBeta_SecondMapHeader), $7, 3
 
 	; second map header
 	dw CeladonPokeCenter2FBeta_SecondMapHeader
@@ -50563,7 +50563,7 @@ CeladonGameCornerPrizeRoom_MapHeader: ; 0x94b35
 
 CeladonGym_MapHeader: ; 0x94b3e
 	; bank, tileset, permission
-	db $25, $11, 3
+	db BANK(CeladonGym_SecondMapHeader), $11, 3
 
 	; second map header
 	dw CeladonGym_SecondMapHeader
@@ -50585,7 +50585,7 @@ CeladonCafe_MapHeader: ; 0x94b47
 
 Route16FuchsiaSpeechHouse_MapHeader: ; 0x94b50
 	; bank, tileset, permission
-	db $25, $5, 3
+	db BANK(Route16FuchsiaSpeechHouse_SecondMapHeader), $5, 3
 
 	; second map header
 	dw Route16FuchsiaSpeechHouse_SecondMapHeader
@@ -50596,7 +50596,7 @@ Route16FuchsiaSpeechHouse_MapHeader: ; 0x94b50
 
 Route16Gate_MapHeader: ; 0x94b59
 	; bank, tileset, permission
-	db $25, $8, 6
+	db BANK(Route16Gate_SecondMapHeader), $8, 6
 
 	; second map header
 	dw Route16Gate_SecondMapHeader
@@ -50607,7 +50607,7 @@ Route16Gate_MapHeader: ; 0x94b59
 
 Route7SaffronGate_MapHeader: ; 0x94b62
 	; bank, tileset, permission
-	db $25, $8, 6
+	db BANK(Route7SaffronGate_SecondMapHeader), $8, 6
 
 	; second map header
 	dw Route7SaffronGate_SecondMapHeader
@@ -50618,7 +50618,7 @@ Route7SaffronGate_MapHeader: ; 0x94b62
 
 Route1718Gate_MapHeader: ; 0x94b6b
 	; bank, tileset, permission
-	db $25, $8, 6
+	db BANK(Route1718Gate_SecondMapHeader), $8, 6
 
 	; second map header
 	dw Route1718Gate_SecondMapHeader
@@ -50629,7 +50629,7 @@ Route1718Gate_MapHeader: ; 0x94b6b
 
 Route40_MapHeader: ; 0x94b74
 	; bank, tileset, permission
-	db $25, $1, 2
+	db BANK(Route40_SecondMapHeader), $1, 2
 
 	; second map header
 	dw Route40_SecondMapHeader
@@ -50640,7 +50640,7 @@ Route40_MapHeader: ; 0x94b74
 
 Route41_MapHeader: ; 0x94b7d
 	; bank, tileset, permission
-	db $25, $1, 2
+	db BANK(Route41_SecondMapHeader), $1, 2
 
 	; second map header
 	dw Route41_SecondMapHeader
@@ -50651,7 +50651,7 @@ Route41_MapHeader: ; 0x94b7d
 
 CianwoodCity_MapHeader: ; 0x94b86
 	; bank, tileset, permission
-	db $25, $1, 1
+	db BANK(CianwoodCity_SecondMapHeader), $1, 1
 
 	; second map header
 	dw CianwoodCity_SecondMapHeader
@@ -50662,7 +50662,7 @@ CianwoodCity_MapHeader: ; 0x94b86
 
 ManiasHouse_MapHeader: ; 0x94b8f
 	; bank, tileset, permission
-	db $25, $5, 3
+	db BANK(ManiasHouse_SecondMapHeader), $5, 3
 
 	; second map header
 	dw ManiasHouse_SecondMapHeader
@@ -50673,7 +50673,7 @@ ManiasHouse_MapHeader: ; 0x94b8f
 
 CianwoodGym_MapHeader: ; 0x94b98
 	; bank, tileset, permission
-	db $25, $17, 3
+	db BANK(CianwoodGym_SecondMapHeader), $17, 3
 
 	; second map header
 	dw CianwoodGym_SecondMapHeader
@@ -50684,7 +50684,7 @@ CianwoodGym_MapHeader: ; 0x94b98
 
 CianwoodPokeCenter1F_MapHeader: ; 0x94ba1
 	; bank, tileset, permission
-	db $25, $7, 3
+	db BANK(CianwoodPokeCenter1F_SecondMapHeader), $7, 3
 
 	; second map header
 	dw CianwoodPokeCenter1F_SecondMapHeader
@@ -50695,7 +50695,7 @@ CianwoodPokeCenter1F_MapHeader: ; 0x94ba1
 
 CianwoodPharmacy_MapHeader: ; 0x94baa
 	; bank, tileset, permission
-	db $25, $5, 3
+	db BANK(CianwoodPharmacy_SecondMapHeader), $5, 3
 
 	; second map header
 	dw CianwoodPharmacy_SecondMapHeader
@@ -50706,7 +50706,7 @@ CianwoodPharmacy_MapHeader: ; 0x94baa
 
 CianwoodCityPhotoStudio_MapHeader: ; 0x94bb3
 	; bank, tileset, permission
-	db $25, $5, 3
+	db BANK(CianwoodCityPhotoStudio_SecondMapHeader), $5, 3
 
 	; second map header
 	dw CianwoodCityPhotoStudio_SecondMapHeader
@@ -50717,7 +50717,7 @@ CianwoodCityPhotoStudio_MapHeader: ; 0x94bb3
 
 CianwoodLugiaSpeechHouse_MapHeader: ; 0x94bbc
 	; bank, tileset, permission
-	db $25, $5, 3
+	db BANK(CianwoodLugiaSpeechHouse_SecondMapHeader), $5, 3
 
 	; second map header
 	dw CianwoodLugiaSpeechHouse_SecondMapHeader
@@ -50728,7 +50728,7 @@ CianwoodLugiaSpeechHouse_MapHeader: ; 0x94bbc
 
 PokeSeersHouse_MapHeader: ; 0x94bc5
 	; bank, tileset, permission
-	db $25, $5, 3
+	db BANK(PokeSeersHouse_SecondMapHeader), $5, 3
 
 	; second map header
 	dw PokeSeersHouse_SecondMapHeader
@@ -50739,7 +50739,7 @@ PokeSeersHouse_MapHeader: ; 0x94bc5
 
 BattleTower1F_MapHeader: ; 0x94bce
 	; bank, tileset, permission
-	db $25, $16, 3
+	db BANK(BattleTower1F_SecondMapHeader), $16, 3
 
 	; second map header
 	dw BattleTower1F_SecondMapHeader
@@ -50750,7 +50750,7 @@ BattleTower1F_MapHeader: ; 0x94bce
 
 BattleTowerBattleRoom_MapHeader: ; 0x94bd7
 	; bank, tileset, permission
-	db $25, $16, 3
+	db BANK(BattleTowerBattleRoom_SecondMapHeader), $16, 3
 
 	; second map header
 	dw BattleTowerBattleRoom_SecondMapHeader
@@ -50761,7 +50761,7 @@ BattleTowerBattleRoom_MapHeader: ; 0x94bd7
 
 BattleTowerElevator_MapHeader: ; 0x94be0
 	; bank, tileset, permission
-	db $25, $16, 3
+	db BANK(BattleTowerElevator_SecondMapHeader), $16, 3
 
 	; second map header
 	dw BattleTowerElevator_SecondMapHeader
@@ -50772,7 +50772,7 @@ BattleTowerElevator_MapHeader: ; 0x94be0
 
 BattleTowerHallway_MapHeader: ; 0x94be9
 	; bank, tileset, permission
-	db $25, $16, 3
+	db BANK(BattleTowerHallway_SecondMapHeader), $16, 3
 
 	; second map header
 	dw BattleTowerHallway_SecondMapHeader
@@ -50783,7 +50783,7 @@ BattleTowerHallway_MapHeader: ; 0x94be9
 
 Route40BattleTowerGate_MapHeader: ; 0x94bf2
 	; bank, tileset, permission
-	db $25, $8, 6
+	db BANK(Route40BattleTowerGate_SecondMapHeader), $8, 6
 
 	; second map header
 	dw Route40BattleTowerGate_SecondMapHeader
@@ -50794,7 +50794,7 @@ Route40BattleTowerGate_MapHeader: ; 0x94bf2
 
 BattleTowerOutside_MapHeader: ; 0x94bfb
 	; bank, tileset, permission
-	db $25, $4, 2
+	db BANK(BattleTowerOutside_SecondMapHeader), $4, 2
 
 	; second map header
 	dw BattleTowerOutside_SecondMapHeader
@@ -50805,7 +50805,7 @@ BattleTowerOutside_MapHeader: ; 0x94bfb
 
 Route2_MapHeader: ; 0x94c04
 	; bank, tileset, permission
-	db $25, $3, 2
+	db BANK(Route2_SecondMapHeader), $3, 2
 
 	; second map header
 	dw Route2_SecondMapHeader
@@ -50816,7 +50816,7 @@ Route2_MapHeader: ; 0x94c04
 
 Route22_MapHeader: ; 0x94c0d
 	; bank, tileset, permission
-	db $25, $3, 2
+	db BANK(Route22_SecondMapHeader), $3, 2
 
 	; second map header
 	dw Route22_SecondMapHeader
@@ -50827,7 +50827,7 @@ Route22_MapHeader: ; 0x94c0d
 
 ViridianCity_MapHeader: ; 0x94c16
 	; bank, tileset, permission
-	db $25, $3, 1
+	db BANK(ViridianCity_SecondMapHeader), $3, 1
 
 	; second map header
 	dw ViridianCity_SecondMapHeader
@@ -50838,7 +50838,7 @@ ViridianCity_MapHeader: ; 0x94c16
 
 ViridianGym_MapHeader: ; 0x94c1f
 	; bank, tileset, permission
-	db $25, $11, 3
+	db BANK(ViridianGym_SecondMapHeader), $11, 3
 
 	; second map header
 	dw ViridianGym_SecondMapHeader
@@ -50849,7 +50849,7 @@ ViridianGym_MapHeader: ; 0x94c1f
 
 ViridianNicknameSpeechHouse_MapHeader: ; 0x94c28
 	; bank, tileset, permission
-	db $25, $5, 3
+	db BANK(ViridianNicknameSpeechHouse_SecondMapHeader), $5, 3
 
 	; second map header
 	dw ViridianNicknameSpeechHouse_SecondMapHeader
@@ -50860,7 +50860,7 @@ ViridianNicknameSpeechHouse_MapHeader: ; 0x94c28
 
 TrainerHouse1F_MapHeader: ; 0x94c31
 	; bank, tileset, permission
-	db $25, $5, 3
+	db BANK(TrainerHouse1F_SecondMapHeader), $5, 3
 
 	; second map header
 	dw TrainerHouse1F_SecondMapHeader
@@ -50893,7 +50893,7 @@ ViridianMart_MapHeader: ; 0x94c43
 
 ViridianPokeCenter1F_MapHeader: ; 0x94c4c
 	; bank, tileset, permission
-	db $25, $7, 3
+	db BANK(ViridianPokeCenter1F_SecondMapHeader), $7, 3
 
 	; second map header
 	dw ViridianPokeCenter1F_SecondMapHeader
@@ -50904,7 +50904,7 @@ ViridianPokeCenter1F_MapHeader: ; 0x94c4c
 
 ViridianPokeCenter2FBeta_MapHeader: ; 0x94c55
 	; bank, tileset, permission
-	db $25, $7, 3
+	db BANK(ViridianPokeCenter2FBeta_SecondMapHeader), $7, 3
 
 	; second map header
 	dw ViridianPokeCenter2FBeta_SecondMapHeader
@@ -50915,7 +50915,7 @@ ViridianPokeCenter2FBeta_MapHeader: ; 0x94c55
 
 Route2NuggetSpeechHouse_MapHeader: ; 0x94c5e
 	; bank, tileset, permission
-	db $25, $5, 3
+	db BANK(Route2NuggetSpeechHouse_SecondMapHeader), $5, 3
 
 	; second map header
 	dw Route2NuggetSpeechHouse_SecondMapHeader
@@ -50926,7 +50926,7 @@ Route2NuggetSpeechHouse_MapHeader: ; 0x94c5e
 
 Route2Gate_MapHeader: ; 0x94c67
 	; bank, tileset, permission
-	db $25, $8, 6
+	db BANK(Route2Gate_SecondMapHeader), $8, 6
 
 	; second map header
 	dw Route2Gate_SecondMapHeader
@@ -50937,7 +50937,7 @@ Route2Gate_MapHeader: ; 0x94c67
 
 VictoryRoadGate_MapHeader: ; 0x94c70
 	; bank, tileset, permission
-	db $25, $8, 6
+	db BANK(VictoryRoadGate_SecondMapHeader), $8, 6
 
 	; second map header
 	dw VictoryRoadGate_SecondMapHeader
@@ -50948,7 +50948,7 @@ VictoryRoadGate_MapHeader: ; 0x94c70
 
 Route26_MapHeader: ; 0x94c79
 	; bank, tileset, permission
-	db $25, $1, 2
+	db BANK(Route26_SecondMapHeader), $1, 2
 
 	; second map header
 	dw Route26_SecondMapHeader
@@ -50959,7 +50959,7 @@ Route26_MapHeader: ; 0x94c79
 
 Route27_MapHeader: ; 0x94c82
 	; bank, tileset, permission
-	db $25, $1, 2
+	db BANK(Route27_SecondMapHeader), $1, 2
 
 	; second map header
 	dw Route27_SecondMapHeader
@@ -50970,7 +50970,7 @@ Route27_MapHeader: ; 0x94c82
 
 Route29_MapHeader: ; 0x94c8b
 	; bank, tileset, permission
-	db $25, $1, 2
+	db BANK(Route29_SecondMapHeader), $1, 2
 
 	; second map header
 	dw Route29_SecondMapHeader
@@ -50981,7 +50981,7 @@ Route29_MapHeader: ; 0x94c8b
 
 NewBarkTown_MapHeader: ; 0x94c94
 	; bank, tileset, permission
-	db $25, $1, 1
+	db BANK(NewBarkTown_SecondMapHeader), $1, 1
 
 	; second map header
 	dw NewBarkTown_SecondMapHeader
@@ -51003,7 +51003,7 @@ ElmsLab_MapHeader: ; 0x94c9d
 
 KrissHouse1F_MapHeader: ; 0x94ca6
 	; bank, tileset, permission
-	db $25, $6, 3
+	db BANK(KrissHouse1F_SecondMapHeader), $6, 3
 
 	; second map header
 	dw KrissHouse1F_SecondMapHeader
@@ -51014,7 +51014,7 @@ KrissHouse1F_MapHeader: ; 0x94ca6
 
 KrissHouse2F_MapHeader: ; 0x94caf
 	; bank, tileset, permission
-	db $25, $14, 3
+	db BANK(KrissHouse2F_SecondMapHeader), $14, 3
 
 	; second map header
 	dw KrissHouse2F_SecondMapHeader
@@ -51025,7 +51025,7 @@ KrissHouse2F_MapHeader: ; 0x94caf
 
 KrissNeighborsHouse_MapHeader: ; 0x94cb8
 	; bank, tileset, permission
-	db $25, $5, 3
+	db BANK(KrissNeighborsHouse_SecondMapHeader), $5, 3
 
 	; second map header
 	dw KrissNeighborsHouse_SecondMapHeader
@@ -51036,7 +51036,7 @@ KrissNeighborsHouse_MapHeader: ; 0x94cb8
 
 ElmsHouse_MapHeader: ; 0x94cc1
 	; bank, tileset, permission
-	db $25, $6, 3
+	db BANK(ElmsHouse_SecondMapHeader), $6, 3
 
 	; second map header
 	dw ElmsHouse_SecondMapHeader
@@ -51047,7 +51047,7 @@ ElmsHouse_MapHeader: ; 0x94cc1
 
 Route26HealSpeechHouse_MapHeader: ; 0x94cca
 	; bank, tileset, permission
-	db $25, $5, 3
+	db BANK(Route26HealSpeechHouse_SecondMapHeader), $5, 3
 
 	; second map header
 	dw Route26HealSpeechHouse_SecondMapHeader
@@ -51058,7 +51058,7 @@ Route26HealSpeechHouse_MapHeader: ; 0x94cca
 
 Route26DayofWeekSiblingsHouse_MapHeader: ; 0x94cd3
 	; bank, tileset, permission
-	db $25, $5, 3
+	db BANK(Route26DayofWeekSiblingsHouse_SecondMapHeader), $5, 3
 
 	; second map header
 	dw Route26DayofWeekSiblingsHouse_SecondMapHeader
@@ -51069,7 +51069,7 @@ Route26DayofWeekSiblingsHouse_MapHeader: ; 0x94cd3
 
 Route27SandstormHouse_MapHeader: ; 0x94cdc
 	; bank, tileset, permission
-	db $25, $5, 3
+	db BANK(Route27SandstormHouse_SecondMapHeader), $5, 3
 
 	; second map header
 	dw Route27SandstormHouse_SecondMapHeader
@@ -51080,7 +51080,7 @@ Route27SandstormHouse_MapHeader: ; 0x94cdc
 
 Route2946Gate_MapHeader: ; 0x94ce5
 	; bank, tileset, permission
-	db $25, $8, 6
+	db BANK(Route2946Gate_SecondMapHeader), $8, 6
 
 	; second map header
 	dw Route2946Gate_SecondMapHeader
@@ -51091,7 +51091,7 @@ Route2946Gate_MapHeader: ; 0x94ce5
 
 Route5_MapHeader: ; 0x94cee
 	; bank, tileset, permission
-	db $25, $3, 2
+	db BANK(Route5_SecondMapHeader), $3, 2
 
 	; second map header
 	dw Route5_SecondMapHeader
@@ -51102,7 +51102,7 @@ Route5_MapHeader: ; 0x94cee
 
 SaffronCity_MapHeader: ; 0x94cf7
 	; bank, tileset, permission
-	db $25, $3, 1
+	db BANK(SaffronCity_SecondMapHeader), $3, 1
 
 	; second map header
 	dw SaffronCity_SecondMapHeader
@@ -51113,7 +51113,7 @@ SaffronCity_MapHeader: ; 0x94cf7
 
 FightingDojo_MapHeader: ; 0x94d00
 	; bank, tileset, permission
-	db $25, $11, 3
+	db BANK(FightingDojo_SecondMapHeader), $11, 3
 
 	; second map header
 	dw FightingDojo_SecondMapHeader
@@ -51146,7 +51146,7 @@ SaffronMart_MapHeader: ; 0x94d12
 
 SaffronPokeCenter1F_MapHeader: ; 0x94d1b
 	; bank, tileset, permission
-	db $25, $7, 3
+	db BANK(SaffronPokeCenter1F_SecondMapHeader), $7, 3
 
 	; second map header
 	dw SaffronPokeCenter1F_SecondMapHeader
@@ -51157,7 +51157,7 @@ SaffronPokeCenter1F_MapHeader: ; 0x94d1b
 
 SaffronPokeCenter2FBeta_MapHeader: ; 0x94d24
 	; bank, tileset, permission
-	db $25, $7, 3
+	db BANK(SaffronPokeCenter2FBeta_SecondMapHeader), $7, 3
 
 	; second map header
 	dw SaffronPokeCenter2FBeta_SecondMapHeader
@@ -51168,7 +51168,7 @@ SaffronPokeCenter2FBeta_MapHeader: ; 0x94d24
 
 MrPsychicsHouse_MapHeader: ; 0x94d2d
 	; bank, tileset, permission
-	db $25, $5, 3
+	db BANK(MrPsychicsHouse_SecondMapHeader), $5, 3
 
 	; second map header
 	dw MrPsychicsHouse_SecondMapHeader
@@ -51179,7 +51179,7 @@ MrPsychicsHouse_MapHeader: ; 0x94d2d
 
 SaffronTrainStation_MapHeader: ; 0x94d36
 	; bank, tileset, permission
-	db $25, $11, 3
+	db BANK(SaffronTrainStation_SecondMapHeader), $11, 3
 
 	; second map header
 	dw SaffronTrainStation_SecondMapHeader
@@ -51201,7 +51201,7 @@ SilphCo1F_MapHeader: ; 0x94d3f
 
 CopycatsHouse1F_MapHeader: ; 0x94d48
 	; bank, tileset, permission
-	db $25, $6, 3
+	db BANK(CopycatsHouse1F_SecondMapHeader), $6, 3
 
 	; second map header
 	dw CopycatsHouse1F_SecondMapHeader
@@ -51212,7 +51212,7 @@ CopycatsHouse1F_MapHeader: ; 0x94d48
 
 CopycatsHouse2F_MapHeader: ; 0x94d51
 	; bank, tileset, permission
-	db $25, $6, 3
+	db BANK(CopycatsHouse2F_SecondMapHeader), $6, 3
 
 	; second map header
 	dw CopycatsHouse2F_SecondMapHeader
@@ -51223,7 +51223,7 @@ CopycatsHouse2F_MapHeader: ; 0x94d51
 
 Route5UndergroundEntrance_MapHeader: ; 0x94d5a
 	; bank, tileset, permission
-	db $25, $8, 6
+	db BANK(Route5UndergroundEntrance_SecondMapHeader), $8, 6
 
 	; second map header
 	dw Route5UndergroundEntrance_SecondMapHeader
@@ -51234,7 +51234,7 @@ Route5UndergroundEntrance_MapHeader: ; 0x94d5a
 
 Route5SaffronCityGate_MapHeader: ; 0x94d63
 	; bank, tileset, permission
-	db $25, $8, 6
+	db BANK(Route5SaffronCityGate_SecondMapHeader), $8, 6
 
 	; second map header
 	dw Route5SaffronCityGate_SecondMapHeader
@@ -51245,7 +51245,7 @@ Route5SaffronCityGate_MapHeader: ; 0x94d63
 
 Route5CleanseTagSpeechHouse_MapHeader: ; 0x94d6c
 	; bank, tileset, permission
-	db $25, $5, 3
+	db BANK(Route5CleanseTagSpeechHouse_SecondMapHeader), $5, 3
 
 	; second map header
 	dw Route5CleanseTagSpeechHouse_SecondMapHeader
@@ -51256,7 +51256,7 @@ Route5CleanseTagSpeechHouse_MapHeader: ; 0x94d6c
 
 Route30_MapHeader: ; 0x94d75
 	; bank, tileset, permission
-	db $25, $1, 2
+	db BANK(Route30_SecondMapHeader), $1, 2
 
 	; second map header
 	dw Route30_SecondMapHeader
@@ -51267,7 +51267,7 @@ Route30_MapHeader: ; 0x94d75
 
 Route31_MapHeader: ; 0x94d7e
 	; bank, tileset, permission
-	db $25, $1, 2
+	db BANK(Route31_SecondMapHeader), $1, 2
 
 	; second map header
 	dw Route31_SecondMapHeader
@@ -51278,7 +51278,7 @@ Route31_MapHeader: ; 0x94d7e
 
 CherrygroveCity_MapHeader: ; 0x94d87
 	; bank, tileset, permission
-	db $25, $1, 1
+	db BANK(CherrygroveCity_SecondMapHeader), $1, 1
 
 	; second map header
 	dw CherrygroveCity_SecondMapHeader
@@ -51300,7 +51300,7 @@ CherrygroveMart_MapHeader: ; 0x94d90
 
 CherrygrovePokeCenter1F_MapHeader: ; 0x94d99
 	; bank, tileset, permission
-	db $25, $7, 3
+	db BANK(CherrygrovePokeCenter1F_SecondMapHeader), $7, 3
 
 	; second map header
 	dw CherrygrovePokeCenter1F_SecondMapHeader
@@ -51311,7 +51311,7 @@ CherrygrovePokeCenter1F_MapHeader: ; 0x94d99
 
 CherrygroveGymSpeechHouse_MapHeader: ; 0x94da2
 	; bank, tileset, permission
-	db $25, $5, 3
+	db BANK(CherrygroveGymSpeechHouse_SecondMapHeader), $5, 3
 
 	; second map header
 	dw CherrygroveGymSpeechHouse_SecondMapHeader
@@ -51322,7 +51322,7 @@ CherrygroveGymSpeechHouse_MapHeader: ; 0x94da2
 
 GuideGentsHouse_MapHeader: ; 0x94dab
 	; bank, tileset, permission
-	db $25, $5, 3
+	db BANK(GuideGentsHouse_SecondMapHeader), $5, 3
 
 	; second map header
 	dw GuideGentsHouse_SecondMapHeader
@@ -51333,7 +51333,7 @@ GuideGentsHouse_MapHeader: ; 0x94dab
 
 CherrygroveEvolutionSpeechHouse_MapHeader: ; 0x94db4
 	; bank, tileset, permission
-	db $25, $5, 3
+	db BANK(CherrygroveEvolutionSpeechHouse_SecondMapHeader), $5, 3
 
 	; second map header
 	dw CherrygroveEvolutionSpeechHouse_SecondMapHeader
@@ -51344,7 +51344,7 @@ CherrygroveEvolutionSpeechHouse_MapHeader: ; 0x94db4
 
 Route30BerrySpeechHouse_MapHeader: ; 0x94dbd
 	; bank, tileset, permission
-	db $25, $5, 3
+	db BANK(Route30BerrySpeechHouse_SecondMapHeader), $5, 3
 
 	; second map header
 	dw Route30BerrySpeechHouse_SecondMapHeader
@@ -51366,7 +51366,7 @@ MrPokemonsHouse_MapHeader: ; 0x94dc6
 
 Route31VioletGate_MapHeader: ; 0x94dcf
 	; bank, tileset, permission
-	db $25, $8, 6
+	db BANK(Route31VioletGate_SecondMapHeader), $8, 6
 
 	; second map header
 	dw Route31VioletGate_SecondMapHeader
