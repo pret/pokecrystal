@@ -71224,7 +71224,7 @@ UnknownScript_0x18508f: ; 0x18508f
 	pause 15
 	writebyte $f3
 	special $0097
-	iftrue $50b6
+	iftrue UnknownScript_0x1850b6
 	applymovement $3, MovementData_0x1851d0
 	spriteface $0, $2
 	cry RAIKOU
@@ -71234,9 +71234,10 @@ UnknownScript_0x18508f: ; 0x18508f
 	disappear $3
 	playsound $0023
 	waitbutton
+UnknownScript_0x1850b6: ; 0x1850b6
 	writebyte $f4
 	special $0097
-	iftrue $50d7
+	iftrue UnknownScript_0x1850d7
 	applymovement $4, MovementData_0x1851da
 	spriteface $0, $3
 	cry ENTEI
@@ -71246,6 +71247,7 @@ UnknownScript_0x18508f: ; 0x18508f
 	disappear $4
 	playsound $0023
 	waitbutton
+UnknownScript_0x1850d7: ; 0x1850d7
 	spriteface $0, $1
 	pause 10
 	applymovement $0, MovementData_0x1851e8
