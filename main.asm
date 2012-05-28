@@ -78303,9 +78303,9 @@ KurtsHouse_MapScriptHeader: ; 0x18e14f
 
 UnknownScript_0x18e154: ; 0x18e154
 	checkbit1 $002b
-	iffalse $6177
+	iffalse UnknownScript_0x18e177
 	checkbit1 $00c0
-	iftrue $6177
+	iftrue UnknownScript_0x18e177
 	checkbit2 $0050
 	iftrue UnknownScript_0x18e16f
 	disappear $5
@@ -78320,6 +78320,7 @@ UnknownScript_0x18e16f: ; 0x18e16f
 	appear $5
 	disappear $3
 	appear $6
+UnknownScript_0x18e177: ; 0x18e177
 	return
 ; 0x18e178
 
@@ -78327,7 +78328,7 @@ UnknownScript_0x18e178: ; 0x18e178
 	faceplayer
 	loadfont
 	checkbit1 $0035
-	iftrue $61cc
+	iftrue UnknownScript_0x18e1cc
 	checkbit1 $002b
 	iftrue UnknownScript_0x18e1bf
 	2writetext UnknownText_0x18e473
@@ -78364,8 +78365,9 @@ UnknownScript_0x18e1bf: ; 0x18e1bf
 	verbosegiveitem LURE_BALL, 1
 	iffalse $62b2
 	setbit1 $0035
+UnknownScript_0x18e1cc: ; 0x18e1cc
 	checkbit1 $0000
-	iftrue $629f
+	iftrue UnknownScript_0x18e29f
 	checkbit1 $0258
 	iftrue UnknownScript_0x18e2b4
 	checkbit1 $0259
@@ -78382,12 +78384,14 @@ UnknownScript_0x18e1bf: ; 0x18e1bf
 	iftrue UnknownScript_0x18e338
 	checkbit1 $00be
 	iftrue UnknownScript_0x18e34e
+UnknownScript_0x18e202: ; 0x18e202
 	checkbit1 $0001
-	iftrue $6212
+	iftrue UnknownScript_0x18e212
 	checkbit1 $0002
-	iftrue $6212
+	iftrue UnknownScript_0x18e212
 	2writetext UnknownText_0x18e6c9
 	closetext
+UnknownScript_0x18e212: ; 0x18e212
 	checkitem RED_APRICORN
 	iftrue UnknownScript_0x18e249
 	checkitem BLU_APRICORN
@@ -78466,6 +78470,7 @@ UnknownScript_0x18e293: ; 0x18e293
 UnknownScript_0x18e299: ; 0x18e299
 	setbit1 $0000
 	setbit2 $0050
+UnknownScript_0x18e29f: ; 0x18e29f
 	2writetext UnknownText_0x18e779
 	closetext
 	loadmovesprites
@@ -78490,7 +78495,7 @@ UnknownScript_0x18e2ae: ; 0x18e2ae
 
 UnknownScript_0x18e2b4: ; 0x18e2b4
 	checkbit2 $0050
-	iftrue $63c5
+	iftrue UnknownScript_0x18e3c5
 	2writetext UnknownText_0x18e7fb
 	keeptextopen
 	verbosegiveitem2 LEVEL_BALL
@@ -78503,7 +78508,7 @@ UnknownScript_0x18e2c4: ; 0x18e2c4
 
 UnknownScript_0x18e2ca: ; 0x18e2ca
 	checkbit2 $0050
-	iftrue $63c5
+	iftrue UnknownScript_0x18e3c5
 	2writetext UnknownText_0x18e7fb
 	keeptextopen
 	verbosegiveitem2 LURE_BALL
@@ -78516,7 +78521,7 @@ UnknownScript_0x18e2da: ; 0x18e2da
 
 UnknownScript_0x18e2e0: ; 0x18e2e0
 	checkbit2 $0050
-	iftrue $63c5
+	iftrue UnknownScript_0x18e3c5
 	2writetext UnknownText_0x18e7fb
 	keeptextopen
 	verbosegiveitem2 MOON_BALL
@@ -78529,7 +78534,7 @@ UnknownScript_0x18e2f0: ; 0x18e2f0
 
 UnknownScript_0x18e2f6: ; 0x18e2f6
 	checkbit2 $0050
-	iftrue $63c5
+	iftrue UnknownScript_0x18e3c5
 	2writetext UnknownText_0x18e7fb
 	keeptextopen
 	verbosegiveitem2 FRIEND_BALL
@@ -78542,7 +78547,7 @@ UnknownScript_0x18e306: ; 0x18e306
 
 UnknownScript_0x18e30c: ; 0x18e30c
 	checkbit2 $0050
-	iftrue $63c5
+	iftrue UnknownScript_0x18e3c5
 	2writetext UnknownText_0x18e7fb
 	keeptextopen
 	verbosegiveitem2 FAST_BALL
@@ -78555,7 +78560,7 @@ UnknownScript_0x18e31c: ; 0x18e31c
 
 UnknownScript_0x18e322: ; 0x18e322
 	checkbit2 $0050
-	iftrue $63c5
+	iftrue UnknownScript_0x18e3c5
 	2writetext UnknownText_0x18e7fb
 	keeptextopen
 	verbosegiveitem2 HEAVY_BALL
@@ -78568,7 +78573,7 @@ UnknownScript_0x18e332: ; 0x18e332
 
 UnknownScript_0x18e338: ; 0x18e338
 	checkbit2 $0050
-	iftrue $63c5
+	iftrue UnknownScript_0x18e3c5
 	2writetext UnknownText_0x18e7fb
 	keeptextopen
 	verbosegiveitem2 LOVE_BALL
@@ -78583,7 +78588,7 @@ UnknownScript_0x18e34e: ; 0x18e34e
 	checkbit1 $00bf
 	iftrue UnknownScript_0x18e368
 	checkitem GS_BALL
-	iffalse $6202
+	iffalse UnknownScript_0x18e202
 	2writetext UnknownText_0x18e8ab
 	closetext
 	loadmovesprites
@@ -78640,6 +78645,7 @@ UnknownScript_0x18e3bd: ; 0x18e3bd
 	loadfont
 	checkbit1 $00bf
 	iftrue UnknownScript_0x18e3e0
+UnknownScript_0x18e3c5: ; 0x18e3c5
 	checkbit1 $00bb
 	iffalse UnknownScript_0x18e3d4
 	2writetext UnknownText_0x18e7d8
