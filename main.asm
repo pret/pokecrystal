@@ -14628,6 +14628,7 @@ GoldenrodDeptStore6F_MapScriptHeader: ; 0x563f3
 MapGoldenrodDeptStore6FSignpost5Script: ; 0x563f5
 	loadfont
 	2writetext UnknownText_0x564cb
+UnknownScript_0x563f9: ; 0x563f9
 	special $0051
 	loadmenudata $6478
 	interpretmenu2
@@ -14675,21 +14676,22 @@ UnknownScript_0x5645d: ; 0x5645d
 	2writetext UnknownText_0x564ef
 	keeptextopen
 	itemnotify
-	2jump $63f9
+	2jump UnknownScript_0x563f9
 ; 0x5646a
 
 UnknownScript_0x5646a: ; 0x5646a
 	2writetext UnknownText_0x56512
 	closetext
-	2jump $63f9
+	2jump UnknownScript_0x563f9
 ; 0x56471
 
 UnknownScript_0x56471: ; 0x56471
 	2writetext UnknownText_0x5652b
 	closetext
-	2jump $63f9
+	2jump UnknownScript_0x563f9
 ; 0x56478
 
+; menu data
 INCBIN "baserom.gbc",$56478,$564bf - $56478
 
 UnknownScript_0x564bf: ; 0x564bf
@@ -15147,6 +15149,7 @@ UnknownScript_0x56c28: ; 0x56c28
 	checkitem COIN_CASE
 	iffalse UnknownScript_0x56cc3
 	2writetext UnknownText_0x56e8b
+UnknownScript_0x56c36: ; 056c36
 	special $004f
 	loadmenudata $6cc9
 	interpretmenu2
@@ -15204,7 +15207,7 @@ UnknownScript_0x56ca6: ; 0x56ca6
 	playsound $0022
 	2writetext UnknownText_0x56ebd
 	closetext
-	2jump $6c36
+	2jump UnknownScript_0x56c36
 ; 0x56cb1
 
 UnknownScript_0x56cb1: ; 0x56cb1
@@ -15235,6 +15238,7 @@ UnknownScript_0x56cc3: ; 0x56cc3
 	end
 ; 0x56cc9
 
+; menu data
 INCBIN "baserom.gbc",$56cc9,$38
 
 UnknownScript_0x56d01: ; 0x56d01
@@ -15244,6 +15248,7 @@ UnknownScript_0x56d01: ; 0x56d01
 	closetext
 	checkitem COIN_CASE
 	iffalse UnknownScript_0x56cc3
+UnknownScript_0x56d0c: ; 0x56d0c
 	2writetext UnknownText_0x56e8b
 	special $004f
 	loadmenudata $6db0
@@ -15271,7 +15276,7 @@ UnknownScript_0x56d26: ; 0x56d26
 	special $0039
 	givepoke ABRA, $5, $0, $0
 	takecoins 100
-	2jump $6d0c
+	2jump UnknownScript_0x56d0c
 ; 0x56d54
 
 UnknownScript_0x56d54: ; 0x56d54
@@ -15290,7 +15295,7 @@ UnknownScript_0x56d54: ; 0x56d54
 	special $0039
 	givepoke CUBONE, $f, $0, $0
 	takecoins 800
-	2jump $6d0c
+	2jump UnknownScript_0x56d0c
 ; 0x56d82
 
 UnknownScript_0x56d82: ; 0x56d82
@@ -15309,9 +15314,10 @@ UnknownScript_0x56d82: ; 0x56d82
 	special $0039
 	givepoke WOBBUFFET, $f, $0, $0
 	takecoins 1500
-	2jump $6d0c
+	2jump UnknownScript_0x56d0c
 ; 0x56db0
 
+; menu data
 INCBIN "baserom.gbc",$56db0,$56df1 - $56db0
 
 UnknownScript_0x56df1: ; 0x56df1
@@ -15628,17 +15634,18 @@ UnknownScript_0x5802c: ; 0x5802c
 UnknownScript_0x58031: ; 0x58031
 	spriteface $3, $1
 	spriteface $0, $0
-	2jump $4044
+	2jump UnknownScript_0x58044
 ; 0x5803a
 
 UnknownScript_0x5803a: ; 0x5803a
 	spriteface $3, $2
 	spriteface $0, $3
-	2jump $4044
+	2jump UnknownScript_0x58044
 ; 0x58043
 
 UnknownScript_0x58043: ; 0x58043
 	faceplayer
+UnknownScript_0x58044: ; 0x58044
 	loadfont
 	2writetext UnknownText_0x580c7
 	closetext
@@ -19055,11 +19062,12 @@ TrainerSailorHuey1WhenTalkScript: ; 0x5af91
 	iftrue UnknownScript_0x5afb0
 	setbit1 $0263
 	2call UnknownScript_0x5b053
-	2jump $6fb3
+	2jump UnknownScript_0x5afb3
 ; 0x5afb0
 
 UnknownScript_0x5afb0: ; 0x5afb0
 	2call UnknownScript_0x5b057
+UnknownScript_0x5afb3: ; 0x5afb3
 	askforphonenumber $7
 	if_equal $1, UnknownScript_0x5b067
 	if_equal $2, UnknownScript_0x5b063
@@ -19691,11 +19699,12 @@ TrainerSchoolboyJack1WhenTalkScript: ; 0x5c04e
 	keeptextopen
 	setbit1 $025f
 	2call UnknownScript_0x5c0fc
-	2jump $4074
+	2jump UnknownScript_0x5c074
 ; 0x5c071
 
 UnknownScript_0x5c071: ; 0x5c071
 	2call UnknownScript_0x5c100
+UnknownScript_0x5c074: ; 0x5c074
 	askforphonenumber $5
 	if_equal $1, UnknownScript_0x5c110
 	if_equal $2, UnknownScript_0x5c10c
@@ -19869,11 +19878,12 @@ TrainerPokefanfBeverly1WhenTalkScript: ; 0x5c138
 	keeptextopen
 	setbit1 $0261
 	2call UnknownScript_0x5c18f
-	2jump $4163
+	2jump UnknownScript_0x5c163
 ; 0x5c160
 
 UnknownScript_0x5c160: ; 0x5c160
 	2call UnknownScript_0x5c193
+UnknownScript_0x5c163: ; 0x5c163
 	askforphonenumber $6
 	if_equal $1, UnknownScript_0x5c1a3
 	if_equal $2, UnknownScript_0x5c19f
@@ -24157,6 +24167,7 @@ MapGoldenrodPokeComCenter2FMobileSignpost0Script: ; 0x625da
 	loadfont
 	2writetext UnknownText_0x627ee
 	closetext
+UnknownScript_0x625df: ; 0x625df
 	reloadmappart
 	loadmenudata $6602
 	interpretmenu2
@@ -24170,14 +24181,14 @@ UnknownScript_0x625f0: ; 0x625f0
 	loadfont
 	2writetext UnknownText_0x62828
 	closetext
-	2jump $65df
+	2jump UnknownScript_0x625df
 ; 0x625f8
 
 UnknownScript_0x625f8: ; 0x625f8
 	loadfont
 	2writetext UnknownText_0x628f4
 	closetext
-	2jump $65df
+	2jump UnknownScript_0x625df
 ; 0x62600
 
 UnknownScript_0x62600: ; 0x62600
@@ -24191,6 +24202,7 @@ MapGoldenrodPokeComCenter2FMobileSignpost1Script: ; 0x62624
 	loadfont
 	2writetext UnknownText_0x62989
 	closetext
+UnknownScript_0x62629: ; 0x62629
 	reloadmappart
 	loadmenudata $664c
 	interpretmenu2
@@ -24204,14 +24216,14 @@ UnknownScript_0x6263a: ; 0x6263a
 	loadfont
 	2writetext UnknownText_0x629ae
 	closetext
-	2jump $6629
+	2jump UnknownScript_0x62629
 ; 0x62642
 
 UnknownScript_0x62642: ; 0x62642
 	loadfont
 	2writetext UnknownText_0x62a5a
 	closetext
-	2jump $6629
+	2jump UnknownScript_0x62629
 ; 0x6264a
 
 UnknownScript_0x6264a: ; 0x6264a
@@ -24219,6 +24231,7 @@ UnknownScript_0x6264a: ; 0x6264a
 	end
 ; 0x6264c
 
+; menu data
 INCBIN "baserom.gbc",$6264c,$25
 
 MapGoldenrodPokeComCenter2FMobileSignpost2Script: ; 0x62671
@@ -25459,6 +25472,7 @@ UnknownScript_0x68a9c: ; 0x68a9c
 MapEarlsPokemonAcademySignpost3Script: ; 0x68a9f
 	loadfont
 	2writetext UnknownText_0x68eb2
+UnknownScript_0x68aa3: ; 0x68aa3
 	loadmenudata $4ae1
 	interpretmenu
 	writebackup
@@ -25474,33 +25488,34 @@ MapEarlsPokemonAcademySignpost3Script: ; 0x68a9f
 UnknownScript_0x68abe: ; 0x68abe
 	2writetext UnknownText_0x68efe
 	closetext
-	2jump $4aa3
+	2jump UnknownScript_0x68aa3
 ; 0x68ac5
 
 UnknownScript_0x68ac5: ; 0x68ac5
 	2writetext UnknownText_0x68f80
 	closetext
-	2jump $4aa3
+	2jump UnknownScript_0x68aa3
 ; 0x68acc
 
 UnknownScript_0x68acc: ; 0x68acc
 	2writetext UnknownText_0x68fe2
 	closetext
-	2jump $4aa3
+	2jump UnknownScript_0x68aa3
 ; 0x68ad3
 
 UnknownScript_0x68ad3: ; 0x68ad3
 	2writetext UnknownText_0x69055
 	closetext
-	2jump $4aa3
+	2jump UnknownScript_0x68aa3
 ; 0x68ada
 
 UnknownScript_0x68ada: ; 0x68ada
 	2writetext UnknownText_0x690cb
 	closetext
-	2jump $4aa3
+	2jump UnknownScript_0x68aa3
 ; 0x68ae1
 
+; menu data
 INCBIN "baserom.gbc",$68ae1,$2a
 
 UnknownScript_0x68b0b: ; 0x68b0b
@@ -25864,6 +25879,7 @@ UnknownScript_0x694cc: ; 0x694cc
 	checkbit1 $002c
 	iftrue UnknownScript_0x6953a
 	2writetext UnknownText_0x69555
+UnknownScript_0x694d7: ; 0x694d7
 	yesorno
 	iffalse UnknownScript_0x69531
 	checkcode $1
@@ -25924,7 +25940,7 @@ UnknownScript_0x69531: ; 0x69531
 
 UnknownScript_0x6953a: ; 0x6953a
 	2writetext UnknownText_0x69712
-	2jump $54d7
+	2jump UnknownScript_0x694d7
 ; 0x69540
 
 UnknownScript_0x69540: ; 0x69540
@@ -26625,6 +26641,7 @@ UnknownScript_0x6a204: ; 0x6a204
 	if_less_than $1, UnknownScript_0x6a271
 	special $0016
 	clearbit1 $0308
+UnknownScript_0x6a234: ; 0x6a234
 	setbit2 $0011
 	special $003c
 	2writetext UnknownText_0x6a39d
@@ -26676,7 +26693,7 @@ UnknownScript_0x6a271: ; 0x6a271
 	playsound $000c
 	waitbutton
 	keeptextopen
-	2jump $6234
+	2jump UnknownScript_0x6a234
 ; 0x6a2a3
 
 UnknownScript_0x6a2a3: ; 0x6a2a3
@@ -29373,7 +29390,7 @@ UnknownScript_0x6cf90: ; 0x6cf90
 
 UnknownScript_0x6cf95: ; 0x6cf95
 	moveperson $4, $9, $d
-	2jump $4fac
+	2jump UnknownScript_0x6cfac
 ; 0x6cf9c
 
 UnknownScript_0x6cf9c: ; 0x6cf9c
@@ -29381,6 +29398,7 @@ UnknownScript_0x6cf9c: ; 0x6cf9c
 	moveperson $2, $15, $10
 	moveperson $5, $a, $d
 	moveperson $4, $a, $d
+UnknownScript_0x6cfac: ; 0x6cfac
 	appear $3
 	appear $2
 	loadfont
@@ -29480,12 +29498,13 @@ UnknownScript_0x6d07a: ; 0x6d07a
 
 UnknownScript_0x6d085: ; 0x6d085
 	spriteface $0, $1
-	2jump $5091
+	2jump UnknownScript_0x6d091
 ; 0x6d08b
 
 UnknownScript_0x6d08b: ; 0x6d08b
 	spriteface $0, $3
 	spriteface $4, $2
+UnknownScript_0x6d091: ; 0x6d091
 	loadfont
 	2writetext UnknownText_0x6da97
 	closetext
@@ -30418,11 +30437,12 @@ UnknownScript_0x6e048: ; 0x6e048
 
 UnknownScript_0x6e04b: ; 0x6e04b
 	applymovement $0, MovementData_0x6e133
-	2jump $6056
+	2jump UnknownScript_0x6e056
 ; 0x6e052
 
 UnknownScript_0x6e052: ; 0x6e052
 	applymovement $0, MovementData_0x6e13a
+UnknownScript_0x6e056: ; 0x6e056
 	pause 30
 	showemote $0, $3, 15
 	playmusic $0039
@@ -31487,12 +31507,13 @@ MapIlexForestSignpost0Script: ; 0x6ee24
 MapIlexForestSignpost4Script: ; 0x6ee27
 	checkbit1 $00c0
 	iftrue UnknownScript_0x6ee30
-	2jump $6e35
+	2jump UnknownScript_0x6ee35
 ; 0x6ee30
 
 UnknownScript_0x6ee30: ; 0x6ee30
 	checkitem GS_BALL
 	iftrue UnknownScript_0x6ee38
+UnknownScript_0x6ee35: ; 0x6ee35
 	jumptext UnknownText_0x6f358
 ; 0x6ee38
 
@@ -32077,6 +32098,7 @@ UnknownScript_0x70022: ; 0x70022
 	2writetext UnknownText_0x701b4
 	yesorno
 	iffalse UnknownScript_0x7004e
+UnknownScript_0x70035: ; 0x70035
 	2writetext UnknownText_0x702c6
 	closetext
 	loadmovesprites
@@ -32103,7 +32125,7 @@ UnknownScript_0x70057: ; 0x70057
 	2writetext UnknownText_0x703a5
 	yesorno
 	iffalse UnknownScript_0x7004e
-	2jump $4035
+	2jump UnknownScript_0x70035
 ; 0x70063
 
 UnknownScript_0x70063: ; 0x70063
@@ -33124,6 +33146,7 @@ UnknownScript_0x7117d: ; 0x7117d
 MapCeladonDeptStore6FSignpost5Script: ; 0x71180
 	loadfont
 	2writetext UnknownText_0x71250
+UnknownScript_0x71184: ; 0x71184
 	special $0051
 	loadmenudata $5203
 	interpretmenu2
@@ -33171,21 +33194,22 @@ UnknownScript_0x711e8: ; 0x711e8
 	2writetext UnknownText_0x71274
 	keeptextopen
 	itemnotify
-	2jump $5184
+	2jump UnknownScript_0x71184
 ; 0x711f5
 
 UnknownScript_0x711f5: ; 0x711f5
 	2writetext UnknownText_0x7128e
 	closetext
-	2jump $5184
+	2jump UnknownScript_0x71184
 ; 0x711fc
 
 UnknownScript_0x711fc: ; 0x711fc
 	2writetext UnknownText_0x712a7
 	closetext
-	2jump $5184
+	2jump UnknownScript_0x71184
 ; 0x71203
 
+; menu data
 INCBIN "baserom.gbc",$71203,$47
 
 MapCeladonDeptStore6FSignpost0Script: ; 0x7124a
@@ -33929,11 +33953,12 @@ UnknownScript_0x71e48: ; 0x71e48
 	checkcode $9
 	if_equal $1, UnknownScript_0x71e5a
 	applymovement $6, MovementData_0x71e6b
-	2jump $5e5e
+	2jump UnknownScript_0x71e5e
 ; 0x71e5a
 
 UnknownScript_0x71e5a: ; 0x71e5a
 	applymovement $6, MovementData_0x71e65
+UnknownScript_0x71e5e: ; 0x71e5e
 	disappear $6
 	playsound $0023
 	waitbutton
@@ -34421,6 +34446,7 @@ MapCeladonGameCornerPrizeRoomSignpost0Script: ; 0x726ef
 	checkitem COIN_CASE
 	iffalse UnknownScript_0x7278a
 	2writetext UnknownText_0x72974
+UnknownScript_0x726fd: ; 0x726fd
 	special $004f
 	loadmenudata $6790
 	interpretmenu2
@@ -34478,7 +34504,7 @@ UnknownScript_0x7276d: ; 0x7276d
 	playsound $0022
 	2writetext UnknownText_0x729ad
 	closetext
-	2jump $66fd
+	2jump UnknownScript_0x726fd
 ; 0x72778
 
 UnknownScript_0x72778: ; 0x72778
@@ -34509,6 +34535,7 @@ UnknownScript_0x7278a: ; 0x7278a
 	end
 ; 0x72790
 
+; menu data
 INCBIN "baserom.gbc",$72790,$38
 
 MapCeladonGameCornerPrizeRoomSignpost1Script: ; 0x727c8
@@ -34518,6 +34545,7 @@ MapCeladonGameCornerPrizeRoomSignpost1Script: ; 0x727c8
 	closetext
 	checkitem COIN_CASE
 	iffalse UnknownScript_0x7278a
+UnknownScript_0x727d3: ; 0x727d3
 	2writetext UnknownText_0x72974
 	special $004f
 	loadmenudata $6877
@@ -34545,7 +34573,7 @@ UnknownScript_0x727ed: ; 0x727ed
 	special $0039
 	givepoke PIKACHU, $19, $0, $0
 	takecoins 2222
-	2jump $67d3
+	2jump UnknownScript_0x727d3
 ; 0x7281b
 
 UnknownScript_0x7281b: ; 0x7281b
@@ -34564,7 +34592,7 @@ UnknownScript_0x7281b: ; 0x7281b
 	special $0039
 	givepoke PORYGON, $f, $0, $0
 	takecoins 5555
-	2jump $67d3
+	2jump UnknownScript_0x727d3
 ; 0x72849
 
 UnknownScript_0x72849: ; 0x72849
@@ -34583,9 +34611,10 @@ UnknownScript_0x72849: ; 0x72849
 	special $0039
 	givepoke LARVITAR, $28, $0, $0
 	takecoins 8888
-	2jump $67d3
+	2jump UnknownScript_0x727d3
 ; 0x72877
 
+; menu data
 INCBIN "baserom.gbc",$72877,$41
 
 UnknownText_0x728b8: ; 0x728b8
@@ -38137,7 +38166,7 @@ UnknownScript_0x75ebb: ; 0x75ebb
 	2writetext UnknownText_0x76284
 	closetext
 	loadmovesprites
-	2jump $5f09
+	2jump UnknownScript_0x75f09
 ; 0x75f03
 
 UnknownScript_0x75f03: ; 0x75f03
@@ -38145,6 +38174,7 @@ UnknownScript_0x75f03: ; 0x75f03
 	2writetext UnknownText_0x762c6
 	closetext
 	loadmovesprites
+UnknownScript_0x75f09: ; 0x75f09
 	spriteface $5, $0
 	applymovement $3, MovementData_0x76010
 	loadfont
@@ -39848,11 +39878,12 @@ TrainerCamperTodd1WhenTalkScript: ; 0x7807d
 	keeptextopen
 	setbit1 $027d
 	2call UnknownScript_0x78137
-	2jump $40a9
+	2jump UnknownScript_0x780a9
 ; 0x780a6
 
 UnknownScript_0x780a6: ; 0x780a6
 	2call UnknownScript_0x7813b
+UnknownScript_0x780a9: ; 0x780a9
 	askforphonenumber $14
 	if_equal $1, UnknownScript_0x7814b
 	if_equal $2, UnknownScript_0x78147
@@ -40004,11 +40035,12 @@ TrainerPicnickerGina1WhenTalkScript: ; 0x7815f
 	keeptextopen
 	setbit1 $027f
 	2call UnknownScript_0x78228
-	2jump $418b
+	2jump UnknownScript_0x7818b
 ; 0x78188
 
 UnknownScript_0x78188: ; 0x78188
 	2call UnknownScript_0x7822c
+UnknownScript_0x7818b: ; 0x7818b
 	askforphonenumber $15
 	if_equal $1, UnknownScript_0x7823c
 	if_equal $2, UnknownScript_0x78238
@@ -40756,10 +40788,11 @@ UnknownScript_0x78b8c: ; 0x78b8c
 	spriteface $2, $3
 	loadfont
 	2writetext UnknownText_0x78fb6
+UnknownScript_0x78b9b: ; 0x78b9b
 	yesorno
 	iftrue UnknownScript_0x78ba5
 	2writetext UnknownText_0x7911a
-	2jump $4b9b
+	2jump UnknownScript_0x78b9b
 ; 0x78ba5
 
 UnknownScript_0x78ba5: ; 0x78ba5
@@ -40831,7 +40864,7 @@ UnknownScript_0x78c22: ; 0x78c22
 	writebyte $b0
 	special $0043
 	iftrue UnknownScript_0x78dee
-	2jump $4c41
+	2jump UnknownScript_0x78c41
 ; 0x78c35
 
 UnknownScript_0x78c35: ; 0x78c35
@@ -42112,11 +42145,12 @@ UnknownScript_0x7a4d8: ; 0x7a4d8
 	checkbit1 $0000
 	iffalse UnknownScript_0x7a4f2
 	applymovement $2, MovementData_0x7a5fc
-	2jump $64f6
+	2jump UnknownScript_0x7a4f6
 ; 0x7a4f2
 
 UnknownScript_0x7a4f2: ; 0x7a4f2
 	applymovement $2, MovementData_0x7a5fe
+UnknownScript_0x7a4f6: ; 0x7a4f6
 	loadfont
 	2writetext UnknownText_0x7a604
 	keeptextopen
@@ -42193,7 +42227,7 @@ UnknownScript_0x7a56b: ; 0x7a56b
 
 UnknownScript_0x7a572: ; 0x7a572
 	playmusic $004e
-	2jump $64f6
+	2jump UnknownScript_0x7a4f6
 ; 0x7a578
 
 UnknownRawText_0x7a578: ; 0x7a578
@@ -62911,11 +62945,12 @@ UnknownScript_0x9b38b: ; 0x9b38b
 	special $0067
 	iffalse UnknownScript_0x9b3a6
 	trainertotext CAL, CAL2, $0
-	2jump $73aa
+	2jump UnknownScript_0x9b3aa
 ; 0x9b3a6
 
 UnknownScript_0x9b3a6: ; 0x9b3a6
 	trainertotext CAL, CAL3, $0
+UnknownScript_0x9b3aa: ; 0x9b3aa
 	2writetext UnknownText_0x9b46a
 	keeptextopen
 	2writetext UnknownText_0x9b487
@@ -63392,11 +63427,12 @@ UnknownScript_0x9b9fc: ; 0x9b9fc
 
 UnknownScript_0x9b9fd: ; 0x9b9fd
 	spriteface $0, $2
-	2jump $7a04
+	2jump UnknownScript_0x9ba04
 ; 0x9ba03
 
 UnknownScript_0x9ba03: ; 0x9ba03
 	faceplayer
+UnknownScript_0x9ba04: ; 0x9ba04
 	loadfont
 	2writetext UnknownText_0x9ba29
 	keeptextopen
@@ -65810,13 +65846,14 @@ UnknownScript_0x9e40f: ; 0x9e40f
 	loadmovesprites
 	writebyte $1e
 	special $0086
-	2jump $6454
+	2jump UnknownScript_0x9e454
 ; 0x9e44e
 
 UnknownScript_0x9e44e: ; 0x9e44e
 	loadmovesprites
 	writebyte $8
 	special $0086
+UnknownScript_0x9e454: ; 0x9e454
 	musicfadeout $0000, $8
 	domaptrigger GROUP_BATTLE_TOWER_BATTLE_ROOM, MAP_BATTLE_TOWER_BATTLE_ROOM, $0
 	domaptrigger GROUP_BATTLE_TOWER_ELEVATOR, MAP_BATTLE_TOWER_ELEVATOR, $0
@@ -65908,11 +65945,12 @@ UnknownScript_0x9e4ea: ; 0x9e4ea
 	special $0086
 	if_equal $0, UnknownScript_0x9e512
 	2writetext UnknownText_0x9ecb0
-	2jump $6515
+	2jump UnknownScript_0x9e515
 ; 0x9e512
 
 UnknownScript_0x9e512: ; 0x9e512
 	2writetext UnknownText_0x9ec6d
+UnknownScript_0x9e515: ; 0x9e515
 	yesorno
 	iffalse UnknownScript_0x9e3fc
 	2writetext UnknownText_0x9ef79
@@ -69339,12 +69377,13 @@ UnknownScript_0x180e53: ; 0x180e53
 UnknownScript_0x180e6a: ; 0x180e6a
 	special $006a
 	applymovement $0, MovementData_0x180f38
-	2jump $4e7b
+	2jump UnknownScript_0x180e7b
 ; 0x180e74
 
 UnknownScript_0x180e74: ; 0x180e74
 	special $006a
 	applymovement $0, MovementData_0x180f3c
+UnknownScript_0x180e7b: ; 0x180e7b
 	spriteface $2, $2
 	loadfont
 	2writetext UnknownText_0x180f67
@@ -71336,20 +71375,22 @@ UnknownScript_0x185050: ; 0x185050
 	special $0097
 	iftrue UnknownScript_0x185065
 	appear $3
-	2jump $5067
+	2jump UnknownScript_0x185067
 ; 0x185065
 
 UnknownScript_0x185065: ; 0x185065
 	disappear $3
+UnknownScript_0x185067: ; 0x185067
 	writebyte $f4
 	special $0097
 	iftrue UnknownScript_0x185074
 	appear $4
-	2jump $5076
+	2jump UnknownScript_0x185076
 ; 0x185074
 
 UnknownScript_0x185074: ; 0x185074
 	disappear $4
+UnknownScript_0x185076: ; 0x185076
 	return
 ; 0x185077
 
@@ -72547,11 +72588,12 @@ UnknownScript_0x186212: ; 0x186212
 	checkcode $9
 	if_equal $1, UnknownScript_0x186226
 	applymovement $a, MovementData_0x186263
-	2jump $622a
+	2jump UnknownScript_0x18622a
 ; 0x186226
 
 UnknownScript_0x186226: ; 0x186226
 	applymovement $a, MovementData_0x18625c
+UnknownScript_0x18622a: ; 0x18622a
 	disappear $a
 	playsound $0023
 	waitbutton
@@ -77093,13 +77135,14 @@ UnknownScript_0x18c8b8: ; 0x18c8b8
 	2writetext UnknownText_0x18caf1
 	closetext
 	loadmovesprites
-	2jump $48f9
+	2jump UnknownScript_0x18c8f9
 ; 0x18c8f4
 
 UnknownScript_0x18c8f4: ; 0x18c8f4
 	2writetext UnknownText_0x18ca8b
 	closetext
 	loadmovesprites
+UnknownScript_0x18c8f9: ; 0x18c8f9
 	applymovement $3, MovementData_0x18c9b3
 	special $006a
 	pause 30
@@ -78788,13 +78831,14 @@ UnknownScript_0x18e378: ; 0x18e378
 	spriteface $0, $0
 	playsound $0018
 	applymovement $2, MovementData_0x18e466
-	2jump $63ac
+	2jump UnknownScript_0x18e3ac
 ; 0x18e3a2
 
 UnknownScript_0x18e3a2: ; 0x18e3a2
 	spriteface $0, $0
 	playsound $0018
 	applymovement $2, MovementData_0x18e46c
+UnknownScript_0x18e3ac: ; 0x18e3ac
 	playsound $0023
 	disappear $2
 	clearbit1 $07a4
@@ -80167,11 +80211,12 @@ TrainerFisherRalph1WhenTalkScript: ; 0x19053d
 	keeptextopen
 	setbit1 $0277
 	2call UnknownScript_0x1905f7
-	2jump $4569
+	2jump UnknownScript_0x190569
 ; 0x190566
 
 UnknownScript_0x190566: ; 0x190566
 	2call UnknownScript_0x1905fb
+UnknownScript_0x190569: ; 0x190569
 	askforphonenumber $11
 	if_equal $1, UnknownScript_0x19060b
 	if_equal $2, UnknownScript_0x190607
@@ -80350,11 +80395,12 @@ TrainerPicnickerLiz1WhenTalkScript: ; 0x190633
 	keeptextopen
 	setbit1 $0279
 	2call UnknownScript_0x1906e1
-	2jump $4659
+	2jump UnknownScript_0x190659
 ; 0x190656
 
 UnknownScript_0x190656: ; 0x190656
 	2call UnknownScript_0x1906e5
+UnknownScript_0x190659: ; 0x190659
 	askforphonenumber $12
 	if_equal $1, UnknownScript_0x1906f5
 	if_equal $2, UnknownScript_0x1906f1
@@ -82280,11 +82326,12 @@ UnknownScript_0x192909: ; 0x192909
 
 UnknownScript_0x192911: ; 0x192911
 	2writetext UnknownText_0x192f75
-	2jump $691a
+	2jump UnknownScript_0x19291a
 ; 0x192917
 
 UnknownScript_0x192917: ; 0x192917
 	2writetext UnknownText_0x192fd1
+UnknownScript_0x19291a: ; 0x19291a
 	special $0008
 UnknownScript_0x19291d: ; 0x19291d
 	loadmovesprites
@@ -82392,11 +82439,12 @@ UnknownScript_0x1929be: ; 0x1929be
 
 UnknownScript_0x1929c6: ; 0x1929c6
 	2writetext UnknownText_0x192f75
-	2jump $69cf
+	2jump UnknownScript_0x1929cf
 ; 0x1929cc
 
 UnknownScript_0x1929cc: ; 0x1929cc
 	2writetext UnknownText_0x192fd1
+UnknownScript_0x1929cf: ; 0x1929cf
 	special $0008
 UnknownScript_0x1929d2: ; 0x1929d2
 	loadmovesprites
@@ -82524,7 +82572,7 @@ UnknownScript_0x192a91: ; 0x192a91
 
 UnknownScript_0x192a99: ; 0x192a99
 	2writetext UnknownText_0x192f75
-	2jump $6aa2
+	2jump UnknownScript_0x192aa2
 ; 0x192a9f
 
 UnknownScript_0x192a9f: ; 0x192a9f
@@ -82713,18 +82761,19 @@ UnknownScript_0x192bec: ; 0x192bec
 	if_equal $2, UnknownScript_0x192c0a
 	applymovement2 MovementData_0x192d33
 	applymovement $0, MovementData_0x192d2d
-	2jump $6c11
+	2jump UnknownScript_0x192c11
 ; 0x192c00
 
 UnknownScript_0x192c00: ; 0x192c00
 	applymovement2 MovementData_0x192d36
 	applymovement $0, MovementData_0x192d2f
-	2jump $6c11
+	2jump UnknownScript_0x192c11
 ; 0x192c0a
 
 UnknownScript_0x192c0a: ; 0x192c0a
 	applymovement2 MovementData_0x192d33
 	applymovement $0, MovementData_0x192d31
+UnknownScript_0x192c11: ; 0x192c11
 	loadfont
 	2writetext UnknownText_0x193266
 	closetext
@@ -82761,7 +82810,7 @@ UnknownScript_0x192c4e: ; 0x192c4e
 	applymovement $4, MovementData_0x192d08
 	applymovement $0, MovementData_0x192cf9
 	applymovement $4, MovementData_0x192d01
-	2jump $6c8c
+	2jump UnknownScript_0x192c8c
 ; 0x192c66
 
 UnknownScript_0x192c66: ; 0x192c66
@@ -82776,6 +82825,7 @@ UnknownScript_0x192c66: ; 0x192c66
 	special $0038
 	applymovement $0, MovementData_0x192cfc
 	applymovement $4, MovementData_0x192d01
+UnknownScript_0x192c8c: ; 0x192c8c
 	dotrigger $0
 	domaptrigger GROUP_TIME_CAPSULE, MAP_TIME_CAPSULE, $0
 	end
@@ -83915,11 +83965,12 @@ TrainerSchoolboyAlan1WhenTalkScript: ; 0x194100
 	keeptextopen
 	setbit1 $0285
 	2call UnknownScript_0x1941c9
-	2jump $412c
+	2jump UnknownScript_0x19412c
 ; 0x194129
 
 UnknownScript_0x194129: ; 0x194129
 	2call UnknownScript_0x1941cd
+UnknownScript_0x19412c: ; 0x19412c
 	askforphonenumber $18
 	if_equal $1, UnknownScript_0x1941dd
 	if_equal $2, UnknownScript_0x1941d9
@@ -85601,12 +85652,13 @@ UnknownScript_0x195db9: ; 0x195db9
 	playsound $009c
 	waitbutton
 	setbit2 $0027
-	2jump $5e02
+	2jump UnknownScript_0x195e02
 ; 0x195e00
 
 UnknownScript_0x195e00: ; 0x195e00
 	faceplayer
 	loadfont
+UnknownScript_0x195e02: ; 0x195e02
 	checkbit1 $00dd
 	iftrue UnknownScript_0x195e15
 	2writetext UnknownText_0x196002
@@ -87204,7 +87256,7 @@ UnknownScript_0x198018: ; 0x198018
 	appear $b
 	applymovement $b, MovementData_0x198134
 	spriteface $0, $0
-	2jump $4049
+	2jump UnknownScript_0x198049
 ; 0x198034
 
 UnknownScript_0x198034: ; 0x198034
@@ -87215,6 +87267,7 @@ UnknownScript_0x198034: ; 0x198034
 	appear $b
 	applymovement $b, MovementData_0x19813c
 	spriteface $0, $1
+UnknownScript_0x198049: ; 0x198049
 	playmusic $001f
 	loadfont
 	2writetext UnknownText_0x19814d
@@ -87781,11 +87834,12 @@ UnknownScript_0x1989a6: ; 0x1989a6
 	checkcode $9
 	if_equal $2, UnknownScript_0x1989c6
 	applymovement $10, MovementData_0x198a5f
-	2jump $49ca
+	2jump UnknownScript_0x1989ca
 ; 0x1989c6
 
 UnknownScript_0x1989c6: ; 0x1989c6
 	applymovement $10, MovementData_0x198a63
+UnknownScript_0x1989ca: ; 0x1989ca
 	playsound $001f
 	disappear $10
 	clearbit1 $076b
@@ -90638,7 +90692,7 @@ UnknownScript_0x19c11a: ; 0x19c11a
 	2writetext UnknownText_0x19c608
 	closetext
 	loadmovesprites
-	2jump $412f
+	2jump UnknownScript_0x19c12f
 ; 0x19c126
 
 UnknownScript_0x19c126: ; 0x19c126
@@ -90647,6 +90701,7 @@ UnknownScript_0x19c126: ; 0x19c126
 	2writetext UnknownText_0x19c59e
 	closetext
 	loadmovesprites
+UnknownScript_0x19c12f: ; 0x19c12f
 	playsound $0041
 	applymovement $0, MovementData_0x19c1d4
 	spriteface $0, $2
@@ -91119,11 +91174,12 @@ TrainerJugglerIrwin1WhenTalkScript: ; 0x19c8cf
 	keeptextopen
 	setbit1 $0281
 	2call UnknownScript_0x19c903
-	2jump $48ef
+	2jump UnknownScript_0x19c8ef
 ; 0x19c8ec
 
 UnknownScript_0x19c8ec: ; 0x19c8ec
 	2call UnknownScript_0x19c907
+UnknownScript_0x19c8ef: ; 0x19c8ef
 	askforphonenumber $16
 	if_equal $1, UnknownScript_0x19c917
 	if_equal $2, UnknownScript_0x19c913
@@ -91319,11 +91375,12 @@ TrainerBug_catcherArnie1WhenTalkScript: ; 0x19c97b
 	keeptextopen
 	setbit1 $0283
 	2call UnknownScript_0x19c903
-	2jump $49a7
+	2jump UnknownScript_0x19c9a7
 ; 0x19c9a4
 
 UnknownScript_0x19c9a4: ; 0x19c9a4
 	2call UnknownScript_0x19c907
+UnknownScript_0x19c9a7: ; 0x19c9a7
 	askforphonenumber $17
 	if_equal $1, UnknownScript_0x19c917
 	if_equal $2, UnknownScript_0x19c913
@@ -91805,11 +91862,12 @@ TrainerPokemaniacBrent1WhenTalkScript: ; 0x19d095
 	keeptextopen
 	setbit1 $0291
 	2call UnknownScript_0x19d12c
-	2jump $50bb
+	2jump UnknownScript_0x19d0bb
 ; 0x19d0b8
 
 UnknownScript_0x19d0b8: ; 0x19d0b8
 	2call UnknownScript_0x19d130
+UnknownScript_0x19d0bb: ; 0x19d0bb
 	askforphonenumber $1e
 	if_equal $1, UnknownScript_0x19d140
 	if_equal $2, UnknownScript_0x19d13c
@@ -92001,11 +92059,12 @@ TrainerPicnickerTiffany3WhenTalkScript: ; 0x19d17c
 	keeptextopen
 	setbit1 $0293
 	2call UnknownScript_0x19d239
-	2jump $51ad
+	2jump UnknownScript_0x19d1ad
 ; 0x19d1aa
 
 UnknownScript_0x19d1aa: ; 0x19d1aa
 	2call UnknownScript_0x19d23d
+UnknownScript_0x19d1ad: ; 0x19d1ad
 	askforphonenumber $1f
 	if_equal $1, UnknownScript_0x19d24d
 	if_equal $2, UnknownScript_0x19d249
@@ -92380,11 +92439,12 @@ TrainerBird_keeperVance1WhenTalkScript: ; 0x19d830
 	keeptextopen
 	setbit1 $0295
 	2call UnknownScript_0x19d8df
-	2jump $5856
+	2jump UnknownScript_0x19d856
 ; 0x19d853
 
 UnknownScript_0x19d853: ; 0x19d853
 	2call UnknownScript_0x19d8e3
+UnknownScript_0x19d856: ; 0x19d856
 	askforphonenumber $20
 	if_equal $1, UnknownScript_0x19d8f3
 	if_equal $2, UnknownScript_0x19d8ef
@@ -92576,11 +92636,12 @@ TrainerFisherWilton1WhenTalkScript: ; 0x19d92e
 	keeptextopen
 	setbit1 $0297
 	2call UnknownScript_0x19d8df
-	2jump $595a
+	2jump UnknownScript_0x19d95a
 ; 0x19d957
 
 UnknownScript_0x19d957: ; 0x19d957
 	2call UnknownScript_0x19d8e3
+UnknownScript_0x19d95a: ; 0x19d95a
 	askforphonenumber $21
 	if_equal $1, UnknownScript_0x19d8f3
 	if_equal $2, UnknownScript_0x19d8ef
@@ -93046,11 +93107,12 @@ TrainerBlackbeltKenji3WhenTalkScript: ; 0x19e0ad
 	closetext
 	setbit1 $0299
 	2call UnknownScript_0x19e11b
-	2jump $60d0
+	2jump UnknownScript_0x19e0d0
 ; 0x19e0cd
 
 UnknownScript_0x19e0cd: ; 0x19e0cd
 	2call UnknownScript_0x19e11f
+UnknownScript_0x19e0d0: ; 0x19e0d0
 	askforphonenumber $22
 	if_equal $1, UnknownScript_0x19e12f
 	if_equal $2, UnknownScript_0x19e12b
@@ -93242,11 +93304,12 @@ TrainerHikerParry3WhenTalkScript: ; 0x19e17e
 	keeptextopen
 	setbit1 $029b
 	2call UnknownScript_0x19e11b
-	2jump $61a4
+	2jump UnknownScript_0x19e1a4
 ; 0x19e1a1
 
 UnknownScript_0x19e1a1: ; 0x19e1a1
 	2call UnknownScript_0x19e11f
+UnknownScript_0x19e1a4: ; 0x19e1a4
 	askforphonenumber $23
 	if_equal $1, UnknownScript_0x19e12f
 	if_equal $2, UnknownScript_0x19e12b
@@ -95034,13 +95097,14 @@ UnknownScript_0x1a0873: ; 0x1a0873
 	spriteface $a, $2
 	showemote $0, $a, 15
 	applymovement $a, MovementData_0x1a0a66
-	2jump $488c
+	2jump UnknownScript_0x1a088c
 ; 0x1a0881
 
 UnknownScript_0x1a0881: ; 0x1a0881
 	spriteface $a, $2
 	showemote $0, $a, 15
 	applymovement $a, MovementData_0x1a0a69
+UnknownScript_0x1a088c: ; 0x1a088c
 	spriteface $0, $3
 	loadfont
 	2writetext UnknownText_0x1a0a6b
@@ -95121,11 +95185,12 @@ TrainerBird_keeperJose2WhenTalkScript: ; 0x1a08bf
 	keeptextopen
 	setbit1 $026f
 	2call UnknownScript_0x1a0957
-	2jump $48eb
+	2jump UnknownScript_0x1a08eb
 ; 0x1a08e8
 
 UnknownScript_0x1a08e8: ; 0x1a08e8
 	2call UnknownScript_0x1a095b
+UnknownScript_0x1a08eb: ; 0x1a08eb
 	askforphonenumber $d
 	if_equal $1, UnknownScript_0x1a096b
 	if_equal $2, UnknownScript_0x1a0967
@@ -95322,11 +95387,12 @@ TrainerCooltrainerfReena1WhenTalkScript: ; 0x1a09af
 	keeptextopen
 	setbit1 $0271
 	2call UnknownScript_0x1a0a2f
-	2jump $49d5
+	2jump UnknownScript_0x1a09d5
 ; 0x1a09d2
 
 UnknownScript_0x1a09d2: ; 0x1a09d2
 	2call UnknownScript_0x1a0a33
+UnknownScript_0x1a09d5: ; 0x1a09d5
 	askforphonenumber $e
 	if_equal $1, UnknownScript_0x1a0a43
 	if_equal $2, UnknownScript_0x1a0a3f
@@ -96137,11 +96203,12 @@ TrainerYoungsterJoey1WhenTalkScript: ; 0x1a16a6
 	keeptextopen
 	setbit1 $0273
 	2call UnknownScript_0x1a1783
-	2jump $56cc
+	2jump UnknownScript_0x1a16cc
 ; 0x1a16c9
 
 UnknownScript_0x1a16c9: ; 0x1a16c9
 	2call UnknownScript_0x1a1787
+UnknownScript_0x1a16cc: ; 0x1a16cc
 	askforphonenumber $f
 	if_equal $1, UnknownScript_0x1a1797
 	if_equal $2, UnknownScript_0x1a1793
@@ -96679,11 +96746,12 @@ TrainerLassDana1WhenTalkScript: ; 0x1a1d42
 	keeptextopen
 	setbit1 $0289
 	2call UnknownScript_0x1a1e0b
-	2jump $5d6e
+	2jump UnknownScript_0x1a1d6e
 ; 0x1a1d6b
 
 UnknownScript_0x1a1d6b: ; 0x1a1d6b
 	2call UnknownScript_0x1a1e0f
+UnknownScript_0x1a1d6e: ; 0x1a1d6e
 	askforphonenumber $1a
 	if_equal $1, UnknownScript_0x1a1e1f
 	if_equal $2, UnknownScript_0x1a1e1b
@@ -96849,11 +96917,12 @@ TrainerSchoolboyChad1WhenTalkScript: ; 0x1a1e3b
 	keeptextopen
 	setbit1 $028b
 	2call UnknownScript_0x1a1ee9
-	2jump $5e61
+	2jump UnknownScript_0x1a1e61
 ; 0x1a1e5e
 
 UnknownScript_0x1a1e5e: ; 0x1a1e5e
 	2call UnknownScript_0x1a1eed
+UnknownScript_0x1a1e61: ; 0x1a1e61
 	askforphonenumber $1b
 	if_equal $1, UnknownScript_0x1a1efd
 	if_equal $2, UnknownScript_0x1a1ef9
@@ -98716,11 +98785,12 @@ TrainerCooltrainermGaven3WhenTalkScript: ; 0x1a4d3f
 	keeptextopen
 	setbit1 $026b
 	2call UnknownScript_0x1a4dbf
-	2jump $4d65
+	2jump UnknownScript_0x1a4d65
 ; 0x1a4d62
 
 UnknownScript_0x1a4d62: ; 0x1a4d62
 	2call UnknownScript_0x1a4dc3
+UnknownScript_0x1a4d65: ; 0x1a4d65
 	askforphonenumber $b
 	if_equal $1, UnknownScript_0x1a4dd3
 	if_equal $2, UnknownScript_0x1a4dcf
@@ -98866,11 +98936,12 @@ TrainerCooltrainerfBeth1WhenTalkScript: ; 0x1a4dfb
 	keeptextopen
 	setbit1 $026d
 	2call UnknownScript_0x1a4e7b
-	2jump $4e21
+	2jump UnknownScript_0x1a4e21
 ; 0x1a4e1e
 
 UnknownScript_0x1a4e1e: ; 0x1a4e1e
 	2call UnknownScript_0x1a4e7f
+UnknownScript_0x1a4e21: ; 0x1a4e21
 	askforphonenumber $c
 	if_equal $1, UnknownScript_0x1a4e8f
 	if_equal $2, UnknownScript_0x1a4e8b
@@ -99293,11 +99364,12 @@ TrainerBug_catcherWade1WhenTalkScript: ; 0x1a5453
 	closetext
 	setbit1 $0275
 	2call UnknownScript_0x1a554c
-	2jump $547f
+	2jump UnknownScript_0x1a547f
 ; 0x1a547c
 
 UnknownScript_0x1a547c: ; 0x1a547c
 	2call UnknownScript_0x1a5550
+UnknownScript_0x1a547f: ; 0x1a547f
 	askforphonenumber $10
 	if_equal $1, UnknownScript_0x1a5560
 	if_equal $2, UnknownScript_0x1a555c
@@ -99766,11 +99838,12 @@ TrainerPokefanmDerek1WhenTalkScript: ; 0x1a5b0b
 	keeptextopen
 	setbit1 $028d
 	2call UnknownScript_0x1a5b62
-	2jump $5b36
+	2jump UnknownScript_0x1a5b36
 ; 0x1a5b33
 
 UnknownScript_0x1a5b33: ; 0x1a5b33
 	2call UnknownScript_0x1a5b66
+UnknownScript_0x1a5b36: ; 0x1a5b36
 	askforphonenumber $1c
 	if_equal $1, UnknownScript_0x1a5b76
 	if_equal $2, UnknownScript_0x1a5b72
@@ -102752,11 +102825,12 @@ TrainerFisherTully1WhenTalkScript: ; 0x1a923f
 	keeptextopen
 	setbit1 $028f
 	2call UnknownScript_0x1a92f1
-	2jump $526b
+	2jump UnknownScript_0x1a926b
 ; 0x1a9268
 
 UnknownScript_0x1a9268: ; 0x1a9268
 	2call UnknownScript_0x1a92f5
+UnknownScript_0x1a926b: ; 0x1a926b
 	askforphonenumber $1d
 	if_equal $1, UnknownScript_0x1a9305
 	if_equal $2, UnknownScript_0x1a9301
@@ -103178,11 +103252,12 @@ TrainerPicnickerErin1WhenTalkScript: ; 0x1a96a0
 	keeptextopen
 	setbit1 $029d
 	2call UnknownScript_0x1a974f
-	2jump $56c6
+	2jump UnknownScript_0x1a96c6
 ; 0x1a96c3
 
 UnknownScript_0x1a96c3: ; 0x1a96c3
 	2call UnknownScript_0x1a9753
+UnknownScript_0x1a96c6: ; 0x1a96c6
 	askforphonenumber $24
 	if_equal $1, UnknownScript_0x1a9763
 	if_equal $2, UnknownScript_0x1a975f
@@ -105276,11 +105351,12 @@ TrainerHikerAnthony2WhenTalkScript: ; 0x1ac011
 	keeptextopen
 	setbit1 $027b
 	2call UnknownScript_0x1ac0cb
-	2jump $403d
+	2jump UnknownScript_0x1ac03d
 ; 0x1ac03a
 
 UnknownScript_0x1ac03a: ; 0x1ac03a
 	2call UnknownScript_0x1ac0cf
+UnknownScript_0x1ac03d: ; 0x1ac03d
 	askforphonenumber $13
 	if_equal $1, UnknownScript_0x1ac0df
 	if_equal $2, UnknownScript_0x1ac0db
