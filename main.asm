@@ -15,7 +15,31 @@ IncGradGBPalTable_01: ; 0x52f
     db %11100100
     db %11100100
 
-INCBIN "baserom.gbc",$538,$26ef - $538
+INCBIN "baserom.gbc",$538,$1273 - $538
+
+Char5CText: ; 0x1273
+	db "TM@"
+Char5DText: ; 0x1276
+	db "TRAINER@"
+Char5BText: ; 0x127e
+	db "PC@"
+
+INCBIN "baserom.gbc",$1281,$1293 - $1281
+
+Char56Text: ; 0x1293
+	db "…@"
+Char5AText: ; 0x1295
+	db "Enemy @"
+
+INCBIN "baserom.gbc",$129c,$1356 - $129c
+
+Char5F: ; 0x1356
+; ends a Pokédex entry
+    ld [hl],"."
+    pop hl
+    ret
+
+INCBIN "baserom.gbc",$135a,$26ef - $135a
 
 UnknownScript_0x26ef: ; 0x26ef
 	jumptextfaceplayer $26f2
