@@ -110,7 +110,11 @@ class BinaryBlob(object):
         r += "label=\""+self.label+"\", "
         r += "start_address="+hex(self.start_address)+", "
         r += "size="+str(self.end_address - self.start_address)+", "
-        r += "located="+str(len(self.locations) > 0)
+        locnum = len(self.locations)
+        if locnum == 1:
+            r += "located="+hex(self.locations[0])
+        else:
+            r += "located="+str(locnum)
         r += ")"
 
         return r
@@ -170,9 +174,9 @@ def scan_red_asm(bank_stop=3, debug=True):
     current_bank          = 0
 
     current_label         = None
-    latest_label          = None
+    latest_label          = "ignore me"
     current_start_address = None
-    latest_start_address  = None
+    latest_start_address  = 0
     latest_line           = ""
 
     for line in redsrc:
@@ -192,8 +196,9 @@ def scan_red_asm(bank_stop=3, debug=True):
                 current_start_address = get_address_from_line_comment(line, \
                                         bank=current_bank)
 
-                if current_label != None and current_start_address != None and \
-                   current_start_address != 0 and current_start_address != latest_start_address:
+                if current_label != None and current_start_address != None and latest_start_address != None \
+                   and current_start_address != 0 and current_start_address != latest_start_address \
+                   and (current_start_address - latest_start_address) > 1:
                     if latest_label != None:
                         if latest_label not in ["Char52", "PokeCenterSignText", "DefaultNamesPlayer", "Unnamed_6a12"]:
                             blob = BinaryBlob(label=latest_label,      \
@@ -225,4 +230,6 @@ for blob in found_blobs:
     print blob
 
 print "Found " + str(len(found_blobs)) + " possibly copied functions."
+
+print [hex(x) for x in found_blobs[10].locations]
 

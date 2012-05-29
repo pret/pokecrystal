@@ -342,7 +342,16 @@ SpecialsPointers: ; 0xc029
 	dbw $24,$4a88
 	dbw $03,$4224
 
-INCBIN "baserom.gbc",$c224,$ffff - $c224
+INCBIN "baserom.gbc",$c224,$c644 - $c224
+
+; prints a leading zero unless they are turned off in the flags
+PrintNumber_PrintLeadingZero: ; c644
+    bit 7,d ; print leading zeroes?
+    ret z 
+    ld [hl],"0"
+    ret
+
+INCBIN "baserom.gbc",$c64a,$ffff - $c64a
 
 ;UnknownText_0xffff: ; 0xffff
 ;	db $0, $21, "ふまひ?へKぷへ", $57
