@@ -23,3 +23,13 @@ class RomStr(str):
         """returns hex values from rom starting at offset until the given byte"""
         return self.interval(offset, self.find(chr(byte), offset) - offset, strings=strings)
 
+class AsmList(list):
+    """simple wrapper to prevent all asm lines from being shown on screen"""
+
+    def length(self):
+        """len(self)"""
+        return len(self)
+
+    def __repr__(self):
+        return "AsmList(too long)"
+

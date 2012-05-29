@@ -230,7 +230,8 @@ def map_name_cleaner(input):
                  replace("hooh", "HoOh").\
                  replace(" ", "")
 
-from romstr import RomStr
+from romstr import RomStr, AsmList
+
 rom = RomStr(None)
 
 def direct_load_rom(filename="../baserom.gbc"):
@@ -251,16 +252,6 @@ def load_rom(filename="../baserom.gbc"):
         return direct_load_rom(filename=filename)
     elif os.lstat(filename).st_size != len(rom):
         return direct_load_rom(filename)
-
-class AsmList(list):
-    """simple wrapper to prevent all asm lines from being shown on screen"""
-
-    def length(self):
-        """len(self)"""
-        return len(self)
-
-    def __repr__(self):
-        return "AsmList(too long)"
 
 
 def load_asm(filename="../main.asm"):
