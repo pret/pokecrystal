@@ -133,7 +133,17 @@ INCBIN "baserom.gbc",$3105,$4000-$3105
 
 SECTION "bank1",DATA,BANK[$1]
 
-INCBIN "baserom.gbc",$4000,$4000
+INCBIN "baserom.gbc",$4000,$617c - $4000
+
+IntroFadePalettes: ; 0x617c
+    db %01010100
+    db %10101000
+    db %11111100
+    db %11111000
+    db %11110100
+    db %11100100
+
+INCBIN "baserom.gbc",$6182,$8000 - $6182
 
 SECTION "bank2",DATA,BANK[$2]
 
