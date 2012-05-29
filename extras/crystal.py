@@ -7188,6 +7188,14 @@ class AsmSection:
         self.parse()
     def parse(self):
         line    = self.line
+
+        if not "bank" in line:
+            self.bank_id      = -1
+            self.address      = -1
+            self.last_address = None
+            self.end_address  = None
+            return
+
         bank_id = int(line.split("\"")[1].split("bank")[1], 16)
         self.bank_id  = bank_id
         start_address = bank_id * 0x4000
@@ -7827,6 +7835,8 @@ def line_has_comment_address(line, returnable={}, bank=None):
         for c in offset_piece.replace("x", ""):
             if c not in valid:
                 return False
+        if len(offset_piece) == 0:
+            return None
         offset = int(offset_piece, 16)
     #filter out blanks/duds
     elif token in ["$", "0x", "x"]:
