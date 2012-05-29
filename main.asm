@@ -1,6 +1,21 @@
 SECTION "bank0",HOME
 
-INCBIN "baserom.gbc",$00,$26ef - $00
+INCBIN "baserom.gbc",$00,$52f - $00
+
+IncGradGBPalTable_01: ; 0x52f
+    db %11111111 ;BG Pal
+    db %11111111 ;OBJ Pal 1
+    db %11111111 ;OBJ Pal 2
+                 ;and so on...
+    db %11111110
+    db %11111110
+    db %11111000
+
+    db %11111001
+    db %11100100
+    db %11100100
+
+INCBIN "baserom.gbc",$538,$26ef - $538
 
 UnknownScript_0x26ef: ; 0x26ef
 	jumptextfaceplayer $26f2
