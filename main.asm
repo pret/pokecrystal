@@ -111569,11 +111569,7 @@ INCBIN "baserom.gbc",$1d1931,$26cf
 
 SECTION "bank75",DATA,BANK[$75]
 
-INCBIN "baserom.gbc",$1D4000,$4000
-
 SECTION "bank76",DATA,BANK[$76]
-
-INCBIN "baserom.gbc",$1D8000,$4000
 
 SECTION "bank77",DATA,BANK[$77]
 
@@ -111585,11 +111581,7 @@ INCBIN "baserom.gbc",$1E0000,$4000
 
 SECTION "bank79",DATA,BANK[$79]
 
-INCBIN "baserom.gbc",$1E4000,$4000
-
 SECTION "bank7A",DATA,BANK[$7A]
-
-INCBIN "baserom.gbc",$1E8000,$4000
 
 SECTION "bank7B",DATA,BANK[$7B]
 
