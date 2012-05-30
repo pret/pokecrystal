@@ -12,6 +12,7 @@ pokecrystal.o: pokecrystal.asm main.tx constants.asm wram.asm ${TEXTFILES}
 
 pokecrystal.gbc: pokecrystal.o
 	rgblink -o $@ $<
+	rgbfix -Cjv -i BYTE -k 01 -l 0x33 -m 0x10 -p 0 -r 3 -t PM_CRYSTAL $@
 	cmp baserom.gbc $@
 
 clean:

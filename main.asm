@@ -1,6 +1,14 @@
 SECTION "bank0",HOME
 
-INCBIN "baserom.gbc",$00,$52f - $00
+INCBIN "baserom.gbc",0,$100
+
+SECTION "romheader",HOME[$100]
+	nop
+	jp $016e
+
+SECTION "start",HOME[$150]
+
+INCBIN "baserom.gbc",$150,$52f - $150
 
 IncGradGBPalTable_01: ; 0x52f
     db %11111111 ;BG Pal
