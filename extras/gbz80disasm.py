@@ -581,6 +581,7 @@ load_labels()
 
 def find_label(local_address, bank_id=0):
     global all_labels
+    return None
     #keep an integer
     if type(local_address) == str:
         local_address1 = int(local_address.replace("$", "0x"), 16)
