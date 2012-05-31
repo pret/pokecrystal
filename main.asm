@@ -256,7 +256,35 @@ StringCmp: ; 31db
 	ret
 ; 0x31e4
 
-INCBIN "baserom.gbc",$31e4,$4000 - $31e4
+INCBIN "baserom.gbc",$31e4,$335f - $31e4
+
+CountSetBits: ; 0x335f
+; function to count how many bits are set in a string of bytes
+; INPUT:
+; hl = address of string of bytes
+; b = length of string of bytes
+; OUTPUT:
+; [$d265] = number of set bits
+	ld c, $0
+.loop\@
+	ld a, [hli]
+	ld e, a
+	ld d, $8
+.innerLoop\@ ; count how many bits are set in the current byte
+	srl e
+	ld a, $0
+	adc c
+	ld c, a
+	dec d
+	jr nz, .innerLoop\@
+	dec b
+	jr nz, .loop\@ ; 0x336f $f0
+	ld a, c
+	ld [$d265], a
+	ret
+; 0x3376
+
+INCBIN "baserom.gbc",$3376,$4000 - $3376
 
 SECTION "bank1",DATA,BANK[$1]
 
