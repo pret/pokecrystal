@@ -23,7 +23,30 @@ IncGradGBPalTable_01: ; 0x52f
     db %11100100
     db %11100100
 
-INCBIN "baserom.gbc",$538,$1273 - $538
+INCBIN "baserom.gbc",$538,$56d - $538
+
+DisabeLCD: ; 56d
+	xor a
+	ld [$ff00+$f], a
+	ld a, [$ff00+$ff]
+	ld b, a
+	res 0, a
+	ld [$ff00+$ff], a
+.asm_577
+	ld a, [$ff00+$44]
+	cp $91
+	jr nz, .asm_577 ; 0x57b $fa
+	ld a, [$ff00+$40]
+	and $7f
+	ld [$ff00+$40], a
+	xor a
+	ld [$ff00+$f], a
+	ld a, b
+	ld [$ff00+$ff], a
+	ret
+; 0x58a
+
+INCBIN "baserom.gbc",$58a,$1273 - $58a
 
 Char5CText: ; 0x1273
 	db "TM@"
