@@ -100,7 +100,8 @@ class BinaryBlob(object):
             self.debug = debug
 
         self.parse_from_red()
-        self.find_in_crystal()
+        # self.find_in_crystal()
+        self.find_by_first_bytes()
 
     def __repr__(self):
         """ A beautiful poem.
@@ -113,6 +114,8 @@ class BinaryBlob(object):
         locnum = len(self.locations)
         if locnum == 1:
             r += "located="+hex(self.locations[0])
+        elif locnum <= 5:
+            r += "located="+str([hex(x) for x in self.locations])
         else:
             r += "located="+str(locnum)
         r += ")"
@@ -144,6 +147,29 @@ class BinaryBlob(object):
 
         finditer       = findall_iter(self.bytes, cryrom)
         self.locations = [match for match in finditer]
+
+        if len(self.locations) > 0:
+            found_blobs.append(self)
+
+            if self.debug:
+                print self.label + ": found " + str(len(self.locations)) + " matches."
+
+    def find_by_first_bytes(self):
+        """ Finds this blob in Crystal based on the first n bytes.
+        """
+
+        # how many bytes to match
+        first_n = 3
+
+        # no match
+        if len(self.bytes) <= first_n:
+            return
+
+        finditer       = findall_iter(self.bytes[0:first_n], cryrom)
+        self.locations = [match for match in finditer]
+
+        # filter out locations that suck
+        self.locations = [i for i in self.locations if abs(self.start_address - i) <= 0x8000]
 
         if len(self.locations) > 0:
             found_blobs.append(self)
@@ -191,7 +217,7 @@ def scan_red_asm(bank_stop=3, debug=True):
                 print "scan_red_asm: switching to bank " + str(current_bank)
 
         elif line[0:6] != "INCBIN":
-            if ":" in line:
+            if ":" in line and not ";XXX:" in line and not " ; XXX:" in line:
                 current_label         = get_label_from_line(line)
                 current_start_address = get_address_from_line_comment(line, \
                                         bank=current_bank)
@@ -222,7 +248,7 @@ def scan_red_asm(bank_stop=3, debug=True):
 
             break
 
-scan_red_asm()
+scan_red_asm(bank_stop=3)
 
 print "================================"
 
