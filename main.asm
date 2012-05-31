@@ -234,15 +234,29 @@ AddNTimes: ; 0x30fe
 
 INCBIN "baserom.gbc",$3105,$313d-$3105
 
+PrintLetterDelay: ; 313d
 ; This function is used to wait a short period after printing a letter to the
 ; screen unless the player presses the A/B button or the delay is turned off
-; through the [$cfcc] or [$cfcf] flags. In pokered, these were [$d730] and
-; [$d358].
-PrintLetterDelay: ; 313d
+; through the [$cfcc] or [$cfcf] flags.
 	INCBIN "baserom.gbc",$313d,$318c - $313d
 ; 0x318c
 
-INCBIN "baserom.gbc",$318c,$4000 - $318c
+INCBIN "baserom.gbc",$318c,$31db - $318c
+
+StringCmp: ; 31db
+; Compare strings, c bytes in length, at de and hl.
+; Often used to compare big endian numbers in battle calculations.
+	ld a, [de]
+	cp [hl]
+	ret nz
+	inc de
+	inc hl
+	dec c
+	jr nz, StringCmp
+	ret
+; 0x31e4
+
+INCBIN "baserom.gbc",$31e4,$4000 - $31e4
 
 SECTION "bank1",DATA,BANK[$1]
 
