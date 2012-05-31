@@ -241,7 +241,23 @@ PrintLetterDelay: ; 313d
 	INCBIN "baserom.gbc",$313d,$318c - $313d
 ; 0x318c
 
-INCBIN "baserom.gbc",$318c,$31db - $318c
+CopyDataUntil: ; 318c
+; Copies [hl, bc) to [de, bc - hl).
+; In other words, the source data is from hl up to but not including bc,
+; and the destination is de.
+    ld a, [hli]
+    ld [de], a
+    inc de
+    ld a, h
+    cp b
+    jr nz, CopyDataUntil
+    ld a, l
+    cp c
+    jr nz, CopyDataUntil
+    ret
+; 0x3198
+
+INCBIN "baserom.gbc",$3198,$31db - $3198
 
 StringCmp: ; 31db
 ; Compare strings, c bytes in length, at de and hl.
