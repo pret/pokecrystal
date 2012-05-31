@@ -305,7 +305,13 @@ AddNTimes: ; 0x30fe
 	ret
 ; 0x3105
 
-INCBIN "baserom.gbc",$3105,$313d-$3105
+INCBIN "baserom.gbc",$3105,$3119-$3105
+
+Multiply: ; 0x3119
+	INCBIN "baserom.gbc",$3119,$3124 - $3119
+; 0x3124
+
+INCBIN "baserom.gbc",$3124,$313d - $3124
 
 PrintLetterDelay: ; 313d
 ; This function is used to wait a short period after printing a letter to the
