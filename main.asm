@@ -184,7 +184,17 @@ AddNTimes: ; 0x30fe
 	ret
 ; 0x3105
 
-INCBIN "baserom.gbc",$3105,$4000-$3105
+INCBIN "baserom.gbc",$3105,$313d-$3105
+
+; This function is used to wait a short period after printing a letter to the
+; screen unless the player presses the A/B button or the delay is turned off
+; through the [$cfcc] or [$cfcf] flags. In pokered, these were [$d730] and
+; [$d358].
+PrintLetterDelay: ; 313d
+	INCBIN "baserom.gbc",$313d,$318c - $313d
+; 0x318c
+
+INCBIN "baserom.gbc",$318c,$4000 - $318c
 
 SECTION "bank1",DATA,BANK[$1]
 
@@ -230,7 +240,21 @@ CheckShininess: ; 0x8a68
 	and a ; clear carry flag
 	ret
 
-INCBIN "baserom.gbc",$8a88,$c000-$8a88
+INCBIN "baserom.gbc",$8a88,$9a52-$8a88
+
+CopyData: ; 0x9a52
+; copy bc bytes of data from hl to de
+	ld a, [hli]
+	ld [de], a
+	inc de
+	dec bc
+	ld a, c
+	or b
+	jr nz, CopyData
+	ret
+; 0x9a5b
+
+INCBIN "baserom.gbc",$9a5b,$c000 - $9a5b
 
 SECTION "bank3",DATA,BANK[$3]
 
