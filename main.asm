@@ -69,7 +69,19 @@ EnableLCD: ; 58a
 	ret
 ; 0x591
 
-INCBIN "baserom.gbc",$591,$1273 - $591
+INCBIN "baserom.gbc",$591,$101e - $591
+
+NPlaceChar: ; 0x101e
+; place a row of width c of identical characters
+    ld d,c
+.loop\@
+    ld [hli],a
+    dec d
+    jr nz,.loop\@
+    ret
+; 0x1024
+
+INCBIN "baserom.gbc",$1024,$1273 - $1024
 
 Char5CText: ; 0x1273
 	db "TM@"
