@@ -47408,7 +47408,44 @@ INCBIN "baserom.gbc",$84000,$4000
 
 SECTION "bank22",DATA,BANK[$22]
 
-INCBIN "baserom.gbc",$88000,$3170
+INCBIN "baserom.gbc",$88000,$896ff - $88000
+
+ClearScreenArea: ; 0x896ff
+; clears an area of the screen
+; INPUT:
+; hl = address of upper left corner of the area
+; b = height
+; c = width
+	ld a,  $7f    ; blank tile
+	ld de, 20     ; screen width
+.loop\@
+	push bc
+	push hl
+.innerLoop\@
+	ld [hli], a
+	dec c
+	jr nz, .innerLoop\@
+	pop hl
+	pop bc
+	add hl, de
+	dec b
+	jr nz, .loop\@
+	dec hl
+	inc c
+	inc c
+.asm_89713
+	ld a, $36
+	ld [hli], a
+	dec c
+	ret z
+	ld a, $18
+	ld [hli], a
+	dec c
+	jr nz, .asm_89713 ; 0x8971c $f5
+	ret
+; 0x8971f
+
+INCBIN "baserom.gbc",$8971f,$8b170 - $8971f
 
 SpecialDratini: ; 0x8b170
 ; if $c2dd is 0 or 1, change the moveset of the last Dratini in the party.
