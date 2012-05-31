@@ -8,7 +8,23 @@ SECTION "romheader",HOME[$100]
 
 SECTION "start",HOME[$150]
 
-INCBIN "baserom.gbc",$150,$52f - $150
+INCBIN "baserom.gbc",$150,$45a - $150
+
+DelayFrame: ; 0x45a
+; delay for one frame
+	ld a, $1
+	ld [$cfb3], a ; was H_VBLANKOCCURRED
+
+; wait for the next Vblank, halting to conserve battery
+.halt\@
+	db $76, $00 ; XXX this is a hack--rgbasm adds a nop after this instr even when ints are enabled
+	ld a, [$cfb3]
+	and a
+	jr nz, .halt\@ ; 0x465 $f8
+	ret
+; 0x468
+
+INCBIN "baserom.gbc",$468,$52f - $468
 
 IncGradGBPalTable_01: ; 0x52f
     db %11111111 ;BG Pal
