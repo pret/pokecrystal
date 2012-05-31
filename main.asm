@@ -365,7 +365,38 @@ CountSetBits: ; 0x335f
 	ret
 ; 0x3376
 
-INCBIN "baserom.gbc",$3376,$4000 - $3376
+INCBIN "baserom.gbc",$3376,$38f2 - $3376
+
+PrintBCDDigit: ; 38f2
+    and a, %00001111
+    and a
+    jr z, .zeroDigit\@
+.nonzeroDigit\@
+    bit 7, b ; have any non-space characters been printed?
+    jr z, .outputDigit\@
+; if bit 7 is set, then no numbers have been printed yet
+    bit 5, b ; print the currency symbol?
+    jr z, .skipCurrencySymbol\@
+    ld [hl], "¥"
+    inc hl
+    res 5, b
+.skipCurrencySymbol\@
+    res 7, b ; unset 7 to indicate that a nonzero digit has been reached
+.outputDigit\@
+    add a, "0"
+    ld [hli], a
+    jp PrintLetterDelay
+.zeroDigit\@
+    bit 7, b ; either printing leading zeroes or already reached a nonzero digit?
+    jr z, .outputDigit\@ ; if so, print a zero digit
+    bit 6, b ; left or right alignment?
+    ret nz
+    ld a, " "
+    ld [hli], a ; if right-aligned, "print" a space by advancing the pointer
+    ret
+; 0x3917
+
+INCBIN "baserom.gbc",$3917,$4000 - $3917
 
 SECTION "bank1",DATA,BANK[$1]
 
