@@ -41,7 +41,7 @@ IncGradGBPalTable_01: ; 0x52f
 
 INCBIN "baserom.gbc",$538,$56d - $538
 
-DisabeLCD: ; 56d
+DisableLCD: ; 56d
 	xor a
 	ld [$ff00+$f], a
 	ld a, [$ff00+$ff]
