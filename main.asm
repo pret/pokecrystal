@@ -278,7 +278,7 @@ CountSetBits: ; 0x335f
 	dec d
 	jr nz, .innerLoop\@
 	dec b
-	jr nz, .loop\@ ; 0x336f $f0
+	jr nz, .loop\@
 	ld a, c
 	ld [$d265], a
 	ret
