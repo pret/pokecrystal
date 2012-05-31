@@ -35,17 +35,17 @@ DelayFrames: ; 0x468
 INCBIN "baserom.gbc",$46f,$52f - $46f
 
 IncGradGBPalTable_01: ; 0x52f
-    db %11111111 ;BG Pal
-    db %11111111 ;OBJ Pal 1
-    db %11111111 ;OBJ Pal 2
-                 ;and so on...
-    db %11111110
-    db %11111110
-    db %11111000
+	db %11111111 ;BG Pal
+	db %11111111 ;OBJ Pal 1
+	db %11111111 ;OBJ Pal 2
+	             ;and so on...
+	db %11111110
+	db %11111110
+	db %11111000
 
-    db %11111001
-    db %11100100
-    db %11100100
+	db %11111001
+	db %11100100
+	db %11100100
 
 INCBIN "baserom.gbc",$538,$56d - $538
 
@@ -85,51 +85,51 @@ TextBoxBorder: ; ff1
 ; height b
 ; width c
 
-    ; first row
-    push hl
-    ld a, "┌"
-    ld [hli], a
-    inc a    ; horizontal border ─
-    call NPlaceChar
-    inc a    ; upper-right border ┐
-    ld [hl], a
+	; first row
+	push hl
+	ld a, "┌"
+	ld [hli], a
+	inc a    ; horizontal border ─
+	call NPlaceChar
+	inc a    ; upper-right border ┐
+	ld [hl], a
 
-    ; middle rows
-    pop hl
-    ld de, 20
-    add hl, de ; skip the top row
+	; middle rows
+	pop hl
+	ld de, 20
+	add hl, de ; skip the top row
 
 .PlaceRow\@
-    push hl
-    ld a, "│"
-    ld [hli], a
-    ld a, " "
-    call NPlaceChar
-    ld [hl], "│"
+	push hl
+	ld a, "│"
+	ld [hli], a
+	ld a, " "
+	call NPlaceChar
+	ld [hl], "│"
 
-    pop hl
-    ld de, 20
-    add hl, de ; move to next row
-    dec b
-    jr nz, .PlaceRow\@
+	pop hl
+	ld de, 20
+	add hl, de ; move to next row
+	dec b
+	jr nz, .PlaceRow\@
 
-    ; bottom row
-    ld a, "└"
-    ld [hli], a
-    ld a, "─"
-    call NPlaceChar
-    ld [hl], "┘"
-    ret
+	; bottom row
+	ld a, "└"
+	ld [hli], a
+	ld a, "─"
+	call NPlaceChar
+	ld [hl], "┘"
+	ret
 ; 0x101e
 
 NPlaceChar: ; 0x101e
 ; place a row of width c of identical characters
-    ld d,c
+	ld d,c
 .loop\@
-    ld [hli],a
-    dec d
-    jr nz,.loop\@
-    ret
+	ld [hli],a
+	dec d
+	jr nz,.loop\@
+	ret
 ; 0x1024
 
 INCBIN "baserom.gbc",$1024,$1273 - $1024
@@ -152,9 +152,9 @@ INCBIN "baserom.gbc",$129c,$1356 - $129c
 
 Char5F: ; 0x1356
 ; ends a Pokédex entry
-    ld [hl],"."
-    pop hl
-    ret
+	ld [hl],"."
+	pop hl
+	ret
 
 INCBIN "baserom.gbc",$135a,$26ef - $135a
 
@@ -264,23 +264,23 @@ IsInArray: ; 30e1
 ; searches an array at hl for the value in a.
 ; skips (de - 1) bytes between reads, so to check every byte, de should be 1.
 ; if found, returns count in b and sets carry.
-    ld b,0
-    ld c,a
+	ld b,0
+	ld c,a
 .loop\@
-    ld a,[hl]
-    cp a,$FF
-    jr z,.NotInArray\@
-    cp c
-    jr z,.InArray\@
-    inc b
-    add hl,de
-    jr .loop\@
+	ld a,[hl]
+	cp a,$FF
+	jr z,.NotInArray\@
+	cp c
+	jr z,.InArray\@
+	inc b
+	add hl,de
+	jr .loop\@
 .NotInArray\@
-    and a
-    ret
+	and a
+	ret
 .InArray\@
-    scf
-    ret
+	scf
+	ret
 ; 0x30f4
 
 INCBIN "baserom.gbc",$30f4,$30f7 - $30f4
@@ -318,16 +318,16 @@ CopyDataUntil: ; 318c
 ; Copies [hl, bc) to [de, bc - hl).
 ; In other words, the source data is from hl up to but not including bc,
 ; and the destination is de.
-    ld a, [hli]
-    ld [de], a
-    inc de
-    ld a, h
-    cp b
-    jr nz, CopyDataUntil
-    ld a, l
-    cp c
-    jr nz, CopyDataUntil
-    ret
+	ld a, [hli]
+	ld [de], a
+	inc de
+	ld a, h
+	cp b
+	jr nz, CopyDataUntil
+	ld a, l
+	cp c
+	jr nz, CopyDataUntil
+	ret
 ; 0x3198
 
 INCBIN "baserom.gbc",$3198,$31db - $3198
@@ -389,71 +389,71 @@ PrintBCDNumber: ; 38bb
 ; bits 0-4: length of BCD number in bytes
 ; Note that bits 5 and 7 are modified during execution. The above reflects
 ; their meaning at the beginning of the functions's execution.
-    ld b, c ; save flags in b
-    res 7, c
-    res 6, c
-    res 5, c ; c now holds the length
-    bit 5, b
-    jr z, .loop\@
-    bit 7, b
-    jr nz, .loop\@
-    ld [hl], "¥"
-    inc hl
+	ld b, c ; save flags in b
+	res 7, c
+	res 6, c
+	res 5, c ; c now holds the length
+	bit 5, b
+	jr z, .loop\@
+	bit 7, b
+	jr nz, .loop\@
+	ld [hl], "¥"
+	inc hl
 .loop\@
-    ld a, [de]
-    swap a
-    call PrintBCDDigit ; print upper digit
-    ld a, [de]
-    call PrintBCDDigit ; print lower digit
-    inc de
-    dec c
-    jr nz, .loop\@
-    bit 7, b ; were any non-zero digits printed?
-    jr z, .done\@ ; if so, we are done
+	ld a, [de]
+	swap a
+	call PrintBCDDigit ; print upper digit
+	ld a, [de]
+	call PrintBCDDigit ; print lower digit
+	inc de
+	dec c
+	jr nz, .loop\@
+	bit 7, b ; were any non-zero digits printed?
+	jr z, .done\@ ; if so, we are done
 .numberEqualsZero\@ ; if every digit of the BCD number is zero
-    bit 6, b ; left or right alignment?
-    jr nz, .skipRightAlignmentAdjustment\@
-    dec hl ; if the string is right-aligned, it needs to be moved back one space
+	bit 6, b ; left or right alignment?
+	jr nz, .skipRightAlignmentAdjustment\@
+	dec hl ; if the string is right-aligned, it needs to be moved back one space
 .skipRightAlignmentAdjustment\@
-    bit 5, b
-    jr z, .skipCurrencySymbol\@
-    ld [hl], "¥" ; currency symbol
-    inc hl
+	bit 5, b
+	jr z, .skipCurrencySymbol\@
+	ld [hl], "¥" ; currency symbol
+	inc hl
 .skipCurrencySymbol\@
-    ld [hl], "0"
-    call PrintLetterDelay
-    inc hl
+	ld [hl], "0"
+	call PrintLetterDelay
+	inc hl
 .done\@
-    ret
+	ret
 ; 0x38f2
 
 PrintBCDDigit: ; 38f2
-    and a, %00001111
-    and a
-    jr z, .zeroDigit\@
+	and a, %00001111
+	and a
+	jr z, .zeroDigit\@
 .nonzeroDigit\@
-    bit 7, b ; have any non-space characters been printed?
-    jr z, .outputDigit\@
+	bit 7, b ; have any non-space characters been printed?
+	jr z, .outputDigit\@
 ; if bit 7 is set, then no numbers have been printed yet
-    bit 5, b ; print the currency symbol?
-    jr z, .skipCurrencySymbol\@
-    ld [hl], "¥"
-    inc hl
-    res 5, b
+	bit 5, b ; print the currency symbol?
+	jr z, .skipCurrencySymbol\@
+	ld [hl], "¥"
+	inc hl
+	res 5, b
 .skipCurrencySymbol\@
-    res 7, b ; unset 7 to indicate that a nonzero digit has been reached
+	res 7, b ; unset 7 to indicate that a nonzero digit has been reached
 .outputDigit\@
-    add a, "0"
-    ld [hli], a
-    jp PrintLetterDelay
+	add a, "0"
+	ld [hli], a
+	jp PrintLetterDelay
 .zeroDigit\@
-    bit 7, b ; either printing leading zeroes or already reached a nonzero digit?
-    jr z, .outputDigit\@ ; if so, print a zero digit
-    bit 6, b ; left or right alignment?
-    ret nz
-    ld a, " "
-    ld [hli], a ; if right-aligned, "print" a space by advancing the pointer
-    ret
+	bit 7, b ; either printing leading zeroes or already reached a nonzero digit?
+	jr z, .outputDigit\@ ; if so, print a zero digit
+	bit 6, b ; left or right alignment?
+	ret nz
+	ld a, " "
+	ld [hli], a ; if right-aligned, "print" a space by advancing the pointer
+	ret
 ; 0x3917
 
 INCBIN "baserom.gbc",$3917,$4000 - $3917
@@ -463,12 +463,12 @@ SECTION "bank1",DATA,BANK[$1]
 INCBIN "baserom.gbc",$4000,$617c - $4000
 
 IntroFadePalettes: ; 0x617c
-    db %01010100
-    db %10101000
-    db %11111100
-    db %11111000
-    db %11110100
-    db %11100100
+	db %01010100
+	db %10101000
+	db %11111100
+	db %11111000
+	db %11110100
+	db %11100100
 
 INCBIN "baserom.gbc",$6182,$8000 - $6182
 
@@ -695,18 +695,14 @@ SpecialsPointers: ; 0xc029
 
 INCBIN "baserom.gbc",$c224,$c644 - $c224
 
-; prints a leading zero unless they are turned off in the flags
 PrintNumber_PrintLeadingZero: ; c644
-    bit 7,d ; print leading zeroes?
-    ret z 
-    ld [hl],"0"
-    ret
+; prints a leading zero unless they are turned off in the flags
+	bit 7, d ; print leading zeroes?
+	ret z 
+	ld [hl], "0"
+	ret
 
 INCBIN "baserom.gbc",$c64a,$ffff - $c64a
-
-;UnknownText_0xffff: ; 0xffff
-;	db $0, $21, "ふまひ?へKぷへ", $57
-;; 0x1000a
 
 SECTION "bank4",DATA,BANK[$4]
 
