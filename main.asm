@@ -62,7 +62,14 @@ DisabeLCD: ; 56d
 	ret
 ; 0x58a
 
-INCBIN "baserom.gbc",$58a,$1273 - $58a
+EnableLCD: ; 58a
+	ld a, [$ff40]
+	set 7, a
+	ld [$ff40], a
+	ret
+; 0x591
+
+INCBIN "baserom.gbc",$591,$1273 - $591
 
 Char5CText: ; 0x1273
 	db "TM@"
