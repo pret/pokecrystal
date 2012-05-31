@@ -220,7 +220,17 @@ IsInArray: ; 30e1
     ret
 ; 0x30f4
 
-INCBIN "baserom.gbc",$30f4,$30fe - $30f4
+INCBIN "baserom.gbc",$30f4,$30f7 - $30f4
+
+AddNTimesCopied: ; 0x30f7
+	and a
+	ret z
+.loop
+	add hl, bc
+	dec a
+	jr nz, .loop
+	ret
+; 0x30fe
 
 AddNTimes: ; 0x30fe
 	and a
