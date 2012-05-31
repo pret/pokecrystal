@@ -24,7 +24,15 @@ DelayFrame: ; 0x45a
 	ret
 ; 0x468
 
-INCBIN "baserom.gbc",$468,$52f - $468
+DelayFrames: ; 0x468
+; wait n frames, where n is the value in c
+	call DelayFrame
+	dec c
+	jr nz, DelayFrames
+	ret
+; 0x46f
+
+INCBIN "baserom.gbc",$46f,$52f - $46f
 
 IncGradGBPalTable_01: ; 0x52f
     db %11111111 ;BG Pal
