@@ -195,7 +195,32 @@ GetFarHalfword: ; 0x305d
 	ret
 ; 0x306b
 
-INCBIN "baserom.gbc",$306b,$30fe-$306b
+INCBIN "baserom.gbc",$306b,$30e1-$306b
+
+IsInArray: ; 30e1
+; searches an array at hl for the value in a.
+; skips (de - 1) bytes between reads, so to check every byte, de should be 1.
+; if found, returns count in b and sets carry.
+    ld b,0
+    ld c,a
+.loop\@
+    ld a,[hl]
+    cp a,$FF
+    jr z,.NotInArray\@
+    cp c
+    jr z,.InArray\@
+    inc b
+    add hl,de
+    jr .loop\@
+.NotInArray\@
+    and a
+    ret
+.InArray\@
+    scf
+    ret
+; 0x30f4
+
+INCBIN "baserom.gbc",$30f4,$30fe - $30f4
 
 AddNTimes: ; 0x30fe
 	and a
