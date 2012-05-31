@@ -311,7 +311,11 @@ Multiply: ; 0x3119
 	INCBIN "baserom.gbc",$3119,$3124 - $3119
 ; 0x3124
 
-INCBIN "baserom.gbc",$3124,$313d - $3124
+Divide: ; 0x3124
+	INCBIN "baserom.gbc",$3124,$3136 - $3124
+; 0x3136
+
+INCBIN "baserom.gbc",$3136,$313d - $3136
 
 PrintLetterDelay: ; 313d
 ; This function is used to wait a short period after printing a letter to the
@@ -699,7 +703,10 @@ SpecialsPointers: ; 0xc029
 	dbw $24,$4a88
 	dbw $03,$4224
 
-INCBIN "baserom.gbc",$c224,$c644 - $c224
+INCBIN "baserom.gbc",$c224,$c5d2 - $c224
+
+PrintNumber_PrintDigit: ; c5d2
+INCBIN "baserom.gbc",$c5d2,$c644 - $c5d2
 
 PrintNumber_PrintLeadingZero: ; c644
 ; prints a leading zero unless they are turned off in the flags
@@ -708,7 +715,22 @@ PrintNumber_PrintLeadingZero: ; c644
 	ld [hl], "0"
 	ret
 
-INCBIN "baserom.gbc",$c64a,$ffff - $c64a
+PrintNumber_AdvancePointer: ; c64a
+; increments the pointer unless leading zeroes are not being printed,
+; the number is left-aligned, and no nonzero digits have been printed yet
+	bit 7, d ; print leading zeroes?
+	jr nz, .incrementPointer\@
+	bit 6, d ; left alignment or right alignment?
+	jr z, .incrementPointer\@
+	ld a, [$ffb3] ; was H_PASTLEADINGZEROES
+	and a
+	ret z
+.incrementPointer\@
+	inc hl
+	ret
+; 0xc658
+
+INCBIN "baserom.gbc",$c658,$ffff - $c658
 
 SECTION "bank4",DATA,BANK[$4]
 
