@@ -69,7 +69,50 @@ EnableLCD: ; 58a
 	ret
 ; 0x591
 
-INCBIN "baserom.gbc",$591,$101e - $591
+INCBIN "baserom.gbc",$591,$ff1 - $591
+
+TextBoxBorder: ; ff1
+; draw a text box
+; upper-left corner at coordinates hl
+; height b
+; width c
+
+    ; first row
+    push hl
+    ld a, "┌"
+    ld [hli], a
+    inc a    ; horizontal border ─
+    call NPlaceChar
+    inc a    ; upper-right border ┐
+    ld [hl], a
+
+    ; middle rows
+    pop hl
+    ld de, 20
+    add hl, de ; skip the top row
+
+.PlaceRow\@
+    push hl
+    ld a, "│"
+    ld [hli], a
+    ld a, " "
+    call NPlaceChar
+    ld [hl], "│"
+
+    pop hl
+    ld de, 20
+    add hl, de ; move to next row
+    dec b
+    jr nz, .PlaceRow\@
+
+    ; bottom row
+    ld a, "└"
+    ld [hli], a
+    ld a, "─"
+    call NPlaceChar
+    ld [hl], "┘"
+    ret
+; 0x101e
 
 NPlaceChar: ; 0x101e
 ; place a row of width c of identical characters
