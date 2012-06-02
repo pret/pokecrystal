@@ -122,6 +122,7 @@ earlier:
 ```bash
 cd ~
 wget http://peak.telecommunity.com/dist/ez_setup.py
+sudo python ez_setup.py
 easy_install unittest2
 ```
 
