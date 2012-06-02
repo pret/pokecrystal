@@ -1,12 +1,15 @@
-Know ASM, but not your way around linux?  Want to help or just try out building pokecrystal on Windows, but got stuck 
-somewhere along the way?  Fear not, for..  whatever, just follow this tutorial.
+#### Windows
 
-1. Get `cygwin`.  Cygwin provides a virtual linux enviorment on Windows systems.    Just get `setup.exe`: 
+Follow these instructions to install `pokecrystal` on Microsoft Windows. Once installed, you can run `make` to compile `main.asm` into a ROM.
+
+1. Get `cygwin`. Cygwin provides a virtual linux environment on Windows systems. Just get `setup.exe`: 
 http://cygwin.com/install.html
+
    During the install:
+
    I.   Keep the defaults
-   II.  It shouldn't matter which mirror you choose.  http://mirrors.kernel.org worked for me.
-   III. Now you'll be presented with a package selection screen.  Select the following packages.  You may use the 
+   II.  It shouldn't matter which mirror you choose. http://mirrors.kernel.org worked for me.
+   III. Now you'll be presented with a package selection screen. Select the following packages. You may use the 
 search.
         * `python` (installed by default)
         * `gcc`, `gcc-core` (under devel)
@@ -17,32 +20,53 @@ search.
         * `mercurial` (optional, if you wish to work with pokered as well)
         * `nano` (optional, a simple terminal text editor)
    IV.  Finish the install.  Might take a sec while all packages are downloading.
+
 2. Launch `cygwin`.
-   Hopefully you know your way around the linux terminal.  If not, a crash course:
+
+   Hopefully you know your way around the linux terminal. If not, a crash course:
+
    * `ls` - list directory
    * `pwd` - write current directory
    * `cd` - change directory
-3. First of all, we need to build `rgbds`, the GB compiler.  Type:
+
+3. The next step is building `rgbds`, the GB compiler. Type:
        $ git clone git://github.com/bentley/rgbds.git
        $ cd rgbds
        $ YACC=byacc make
        $ export PATH=$PATH:`pwd`
        $ echo "export PATH=$PATH:`pwd`" >> ~/.bashrc
-   At this point, you should be able to close cygwin, reopen it and successfully run `rgbasm`.
+
+       # check if rgbasm is installed now
+       $ which rgbasm
+   (If that fails, you can download binaries here:
+       http://diyhpl.us/~bryan/irc/pokered/rgbds/rgbds-5d6559f15f549c117ef80cbe7f4cb93669a2e5e3.zip
+   )
+
+   The next step is to install `unittest2`, unless you installed python2.7 earlier:
        $ cd ~
        $ wget http://peak.telecommunity.com/dist/ez_setup.py
        $ easy_install unittest2
-   Now we should be able to build `pokecrystal` for the first time.
+
+   Now you should be able to build `pokecrystal` for the first time.
        $ cd ~
        $ git clone https://github.com/kanzure/pokecrystal.git
        $ cd pokecrystal
-   Please download a Pokemon Crystal ROM and save it as `C:\cygwin\home\(your username)\pokecrystal\baserom.gbc`
+
+   The final requirement is downloading a Pokemon Crystal ROM:
+       Pokemon - Crystal Version (UE) (V1.0) [C][!].gbc
+       md5: 9f2922b235a5eeb78d65594e82ef5dde
+   Save it as `C:\cygwin\home\(your username)\pokecrystal\baserom.gbc`.
+
+   To compile the ROM from ASM source:
        $ make
-   This will take between 5 and 15 seconds, depending on your computer.
-   If you see `cmp baserom.gbc pokecrystal.gbc` as the last line, the build was successful!  Rejoice!
+
+   This will take between 3 and 15 seconds, depending on your computer.
+
+   If you see `cmp baserom.gbc pokecrystal.gbc` as the last line, the build was successful! Rejoice! Otherwise it will show you an error message.
+
    Now you may try messing around with `main.asm`, or just do whatever you wanted to.
+
    To build again, you should use the following command:
        $ make clean && make
 
-Feel free to ask us on #skeetendo if something goes wrong (remember to tell where)!
-
+   Feel free to ask us on nucleus.kafuka.org #skeetendo if something goes wrong (remember to tell where)!
