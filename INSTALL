@@ -1,0 +1,48 @@
+Know ASM, but not your way around linux?  Want to help or just try out building pokecrystal on Windows, but got stuck 
+somewhere along the way?  Fear not, for..  whatever, just follow this tutorial.
+
+1. Get `cygwin`.  Cygwin provides a virtual linux enviorment on Windows systems.    Just get `setup.exe`: 
+http://cygwin.com/install.html
+   During the install:
+   I.   Keep the defaults
+   II.  It shouldn't matter which mirror you choose.  http://mirrors.kernel.org worked for me.
+   III. Now you'll be presented with a package selection screen.  Select the following packages.  You may use the 
+search.
+        * `python` (installed by default)
+        * `gcc`, `gcc-core` (under devel)
+        * `byacc` (under devel)
+        * `make` (under devel)
+        * `wget` (under web)
+        * `git` (under devel)
+        * `mercurial` (optional, if you wish to work with pokered as well)
+        * `nano` (optional, a simple terminal text editor)
+   IV.  Finish the install.  Might take a sec while all packages are downloading.
+2. Launch `cygwin`.
+   Hopefully you know your way around the linux terminal.  If not, a crash course:
+   * `ls` - list directory
+   * `pwd` - write current directory
+   * `cd` - change directory
+3. First of all, we need to build `rgbds`, the GB compiler.  Type:
+       $ git clone git://github.com/bentley/rgbds.git
+       $ cd rgbds
+       $ YACC=byacc make
+       $ export PATH=$PATH:`pwd`
+       $ echo "export PATH=$PATH:`pwd`" >> ~/.bashrc
+   At this point, you should be able to close cygwin, reopen it and successfully run `rgbasm`.
+       $ cd ~
+       $ wget http://peak.telecommunity.com/dist/ez_setup.py
+       $ easy_install unittest2
+   Now we should be able to build `pokecrystal` for the first time.
+       $ cd ~
+       $ git clone https://github.com/kanzure/pokecrystal.git
+       $ cd pokecrystal
+   Please download a Pokemon Crystal ROM and save it as `C:\cygwin\home\(your username)\pokecrystal\baserom.gbc`
+       $ make
+   This will take between 5 and 15 seconds, depending on your computer.
+   If you see `cmp baserom.gbc pokecrystal.gbc` as the last line, the build was successful!  Rejoice!
+   Now you may try messing around with `main.asm`, or just do whatever you wanted to.
+   To build again, you should use the following command:
+       $ make clean && make
+
+Feel free to ask us on #skeetendo if something goes wrong (remember to tell where)!
+
