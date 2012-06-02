@@ -81,7 +81,7 @@ pwd
 cd /away/we/go
 ```
 
-The next step is building `rgbds`, the GB compiler. Type:
+The next step is building `rgbds`, the GB assembler. Type:
 
 ```bash
 # download rgbds source code
@@ -164,7 +164,8 @@ make clean; make
 ```
 
 Feel free to ask us on nucleus.kafuka.org #skeetendo if something goes wrong
-(remember to tell where)!
+(remember to tell where)! Don't know how to use IRC? Try
+[mibbit](http://mibbit.com/) or something.
 
 # Contributing changes
 
