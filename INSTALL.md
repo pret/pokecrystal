@@ -60,8 +60,6 @@ packages (hint: there's a search box).
 
   7. `mercurial` (optional, if you wish to work with pokered as well)
 
-  8. `vim` (optional, a simple terminal text editor)
-
 Let cygwin finish the install.  Might take a sec while all packages are
 downloading.
 
