@@ -108,7 +108,7 @@ unzip rgbds.zip
 
 # make rgbds accessible for all time
 export PATH=$PATH:`pwd`/rgbds
-echo "export PATH=$PATH:`pwd/rgbds`" >> ~/.bashrc
+echo "export PATH=$PATH:`pwd`/rgbds" >> ~/.bashrc
 
 # clean up that zip file
 rm rgbds.zip
