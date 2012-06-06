@@ -586,6 +586,21 @@ OTPartyMon5Nickname: ; d416
 OTPartyMon6Nickname: ; d421
 	ds 11
 
+SECTION "Events",BSS[$dad4]
+
+HoOhEvent: ; dad4
+	ds 1
+LugiaEvent: ; dad5
+	ds 1
+
+; TODO
+;SuicuneEvent: ; dad8 (tin tower)
+;TeamRocketAzaleaTownAttackEvent: ; db51
+;SudowoodoEvent: ; db51
+;PoliceAtElmsLabEvent: ; db52
+;SalesmanMahoganyTownEvent: ; db5c
+;RedGyaradosEvent: ; db5c
+
 SECTION "BoxNames",BSS[$db75]
 ; 8 chars + $50
 Box1Name: ; 0xdb75
