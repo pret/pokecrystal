@@ -1,34 +1,563 @@
+SECTION "OtherTrainerParty",BSS[$d280]
+
+OTPartyMonHeader: ; d280
+TotalBeltMons: ; d280
+	ds 1
+
+OTPartyMonSpecies: ; d281
+OTPartyMon1Species: ; d281
+	ds 1
+OTPartyMon2Species: ; d282
+	ds 1
+OTPartyMon3Species: ; d283
+	ds 1
+OTPartyMon4Species: ; d284
+	ds 1
+OTPartyMon5Species: ; d285
+	ds 1
+OTPartyMon6Species: ; d286
+	ds 1
+OTPartyMonsEnd: ; d287
+	ds 1
+
+OTPartyMon1:
+OTPartyMon1Species2: ; d288
+	ds 1
+OTPartyMon1Item: ; d289
+	ds 1
+
+OTPartyMon1Moves: ; d28a
+OTPartyMon1Move1: ; d28a
+	ds 1
+OTPartyMon1Move2: ; d28b
+	ds 1
+OTPartyMon1Move3: ; d28c
+	ds 1
+OTPartyMon1Move4: ; d28d
+	ds 1
+	
+OTPartyMon1ID: ; d28e
+	ds 2
+OTPartyMon1Exp: ; d290
+	ds 3
+OTPartyMon1HPExp: ; d293
+	ds 2
+OTPartyMon1AtkExp: ; d295
+	ds 2
+OTPartyMon1DefExp: ; d297
+	ds 2
+OTPartyMon1SpdExp: ; d299
+	ds 2
+OTPartyMon1SpclExp: ; d29b
+	ds 2
+
+OTPartyMon1DVs: ; d29d
+OTPartyMon1AtkDefDV: ; d29d
+	ds 1
+OTPartyMon1SpdSpclDV: ; d29e
+	ds 1
+
+OTPartyMon1PP: ; d29f
+OTPartyMon1PPMove1: ; d29f
+	ds 1
+OTPartyMon1PPMove2: ; d2a0
+	ds 1
+OTPartyMon1PPMove3: ; d2a1
+	ds 1
+OTPartyMon1PPMove4: ; d2a2
+	ds 1
+
+OTPartyMon1Happiness: ; d2a3
+	ds 1
+OTPartyMon1PokerusStatus: ; d2a4
+	ds 1
+
+OTPartyMon1CaughtData: ; d2a5
+OTPartyMon1CaughtGender: ; d2a5
+OTPartyMon1CaughtLocation: ; d2a5
+	ds 1
+OTPartyMon1CaughtTime: ; d2a6
+	ds 1
+OTPartyMon1Level: ; d2a7
+	ds 1
+	
+OTPartyMon1Status: ; d2a8
+	ds 1
+OTPartyMon1Unused: ; d2a9
+	ds 1
+OTPartyMon1CurHP: ; d2aa
+	ds 2
+OTPartyMon1MaxHP: ; d2ac
+	ds 2
+OTPartyMon1Atk: ; d2ae
+	ds 2
+OTPartyMon1Def: ; d2b0
+	ds 2
+OTPartyMon1Spd: ; d2b2
+	ds 2
+OTPartyMon1SpclAtk: ; d2b4
+	ds 2
+OTPartyMon1SpclDef: ; d2b6
+	ds 2
+
+OTPartyMon2: ; d2b8
+OTPartyMon2Species2: ; d2b8
+	ds 1
+OTPartyMon2Item: ; d2b9
+	ds 1
+
+OTPartyMon2Moves: ; d2ba
+OTPartyMon2Move1: ; d2ba
+	ds 1
+OTPartyMon2Move2: ; d2bb
+	ds 1
+OTPartyMon2Move3: ; d2bc
+	ds 1
+OTPartyMon2Move4: ; d2bd
+	ds 1
+	
+OTPartyMon2ID: ; d2be
+	ds 2
+OTPartyMon2Exp: ; d2c0
+	ds 3
+OTPartyMon2HPExp: ; d2c3
+	ds 2
+OTPartyMon2AtkExp: ; d2c5
+	ds 2
+OTPartyMon2DefExp: ; d2c7
+	ds 2
+OTPartyMon2SpdExp: ; d2c9
+	ds 2
+OTPartyMon2SpclExp: ; d2cb
+	ds 2
+
+OTPartyMon2DVs: ; d2cd
+OTPartyMon2AtkDefDV: ; d2cd
+	ds 1
+OTPartyMon2SpdSpclDV: ; d2ce
+	ds 1
+
+OTPartyMon2PP: ; d2cf
+OTPartyMon2PPMove1: ; d2cf
+	ds 1
+OTPartyMon2PPMove2: ; d2d0
+	ds 1
+OTPartyMon2PPMove3: ; d2d1
+	ds 1
+OTPartyMon2PPMove4: ; d2d2
+	ds 1
+
+OTPartyMon2Happiness: ; d2d3
+	ds 1
+OTPartyMon2PokerusStatus: ; d2d4
+	ds 1
+
+OTPartyMon2CaughtData: ; d2d5
+OTPartyMon2CaughtGender: ; d2d5
+OTPartyMon2CaughtLocation: ; d2d5
+	ds 1
+OTPartyMon2CaughtTime: ; d2d6
+	ds 1
+OTPartyMon2Level: ; d2d7
+	ds 1
+	
+OTPartyMon2Status: ; d2d8
+	ds 1
+OTPartyMon2Unused: ; d2d9
+	ds 1
+OTPartyMon2CurHP: ; d2da
+	ds 2
+OTPartyMon2MaxHP: ; d2dc
+	ds 2
+OTPartyMon2Atk: ; d2de
+	ds 2
+OTPartyMon2Def: ; d2e0
+	ds 2
+OTPartyMon2Spd: ; d2e2
+	ds 2
+OTPartyMon2SpclAtk: ; d2e4
+	ds 2
+OTPartyMon2SpclDef: ; d2e6
+	ds 2
+
+OTPartyMon3: ; d2e8
+OTPartyMon3Species2: ; d2e8
+	ds 1
+OTPartyMon3Item: ; d2e9
+	ds 1
+
+OTPartyMon3Moves: ; d2ea
+OTPartyMon3Move1: ; d2ea
+	ds 1
+OTPartyMon3Move2: ; d2eb
+	ds 1
+OTPartyMon3Move3: ; d2ec
+	ds 1
+OTPartyMon3Move4: ; d2ed
+	ds 1
+	
+OTPartyMon3ID: ; d2ee
+	ds 2
+OTPartyMon3Exp: ; d2f0
+	ds 3
+OTPartyMon3HPExp: ; d2f3
+	ds 2
+OTPartyMon3AtkExp: ; d2f5
+	ds 2
+OTPartyMon3DefExp: ; d2f7
+	ds 2
+OTPartyMon3SpdExp: ; d2f9
+	ds 2
+OTPartyMon3SpclExp: ; d2fb
+	ds 2
+
+OTPartyMon3DVs: ; d2fd
+OTPartyMon3AtkDefDV: ; d2fd
+	ds 1
+OTPartyMon3SpdSpclDV: ; d2fe
+	ds 1
+
+OTPartyMon3PP: ; d2ff
+OTPartyMon3PPMove1: ; d2ff
+	ds 1
+OTPartyMon3PPMove2: ; d300
+	ds 1
+OTPartyMon3PPMove3: ; d301
+	ds 1
+OTPartyMon3PPMove4: ; d302
+	ds 1
+
+OTPartyMon3Happiness: ; d303
+	ds 1
+OTPartyMon3PokerusStatus: ; d304
+	ds 1
+
+OTPartyMon3CaughtData: ; d305
+OTPartyMon3CaughtGender: ; d305
+OTPartyMon3CaughtLocation: ; d305
+	ds 1
+OTPartyMon3CaughtTime: ; d306
+	ds 1
+OTPartyMon3Level: ; d307
+	ds 1
+	
+OTPartyMon3Status: ; d308
+	ds 1
+OTPartyMon3Unused: ; d309
+	ds 1
+OTPartyMon3CurHP: ; d30a
+	ds 2
+OTPartyMon3MaxHP: ; d30c
+	ds 2
+OTPartyMon3Atk: ; d30e
+	ds 2
+OTPartyMon3Def: ; d310
+	ds 2
+OTPartyMon3Spd: ; d312
+	ds 2
+OTPartyMon3SpclAtk: ; d314
+	ds 2
+OTPartyMon3SpclDef: ; d316
+	ds 2
+
+OTPartyMon4: ; d318
+OTPartyMon4Species2: ; d318
+	ds 1
+OTPartyMon4Item: ; d319
+	ds 1
+
+OTPartyMon4Moves: ; d31a
+OTPartyMon4Move1: ; d31a
+	ds 1
+OTPartyMon4Move2: ; d31b
+	ds 1
+OTPartyMon4Move3: ; d31c
+	ds 1
+OTPartyMon4Move4: ; d31d
+	ds 1
+	
+OTPartyMon4ID: ; d31e
+	ds 2
+OTPartyMon4Exp: ; d320
+	ds 3
+OTPartyMon4HPExp: ; d323
+	ds 2
+OTPartyMon4AtkExp: ; d325
+	ds 2
+OTPartyMon4DefExp: ; d327
+	ds 2
+OTPartyMon4SpdExp: ; d329
+	ds 2
+OTPartyMon4SpclExp: ; d32b
+	ds 2
+
+OTPartyMon4DVs: ; d32d
+OTPartyMon4AtkDefDV: ; d32d
+	ds 1
+OTPartyMon4SpdSpclDV: ; d32e
+	ds 1
+
+OTPartyMon4PP: ; d32f
+OTPartyMon4PPMove1: ; d32f
+	ds 1
+OTPartyMon4PPMove2: ; d330
+	ds 1
+OTPartyMon4PPMove3: ; d331
+	ds 1
+OTPartyMon4PPMove4: ; d332
+	ds 1
+
+OTPartyMon4Happiness: ; d333
+	ds 1
+OTPartyMon4PokerusStatus: ; d334
+	ds 1
+
+OTPartyMon4CaughtData: ; d335
+OTPartyMon4CaughtGender: ; d335
+OTPartyMon4CaughtLocation: ; d335
+	ds 1
+OTPartyMon4CaughtTime: ; d336
+	ds 1
+OTPartyMon4Level: ; d337
+	ds 1
+	
+OTPartyMon4Status: ; d338
+	ds 1
+OTPartyMon4Unused: ; d339
+	ds 1
+OTPartyMon4CurHP: ; d33a
+	ds 2
+OTPartyMon4MaxHP: ; d33c
+	ds 2
+OTPartyMon4Atk: ; d33e
+	ds 2
+OTPartyMon4Def: ; d340
+	ds 2
+OTPartyMon4Spd: ; d342
+	ds 2
+OTPartyMon4SpclAtk: ; d344
+	ds 2
+OTPartyMon4SpclDef: ; d346
+	ds 2
+
+OTPartyMon5: ; d348
+OTPartyMon5Species2: ; d348
+	ds 1
+OTPartyMon5Item: ; d349
+	ds 1
+
+OTPartyMon5Moves: ; d34a
+OTPartyMon5Move1: ; d34a
+	ds 1
+OTPartyMon5Move2: ; d34b
+	ds 1
+OTPartyMon5Move3: ; d34c
+	ds 1
+OTPartyMon5Move4: ; d34d
+	ds 1
+	
+OTPartyMon5ID: ; d34e
+	ds 2
+OTPartyMon5Exp: ; d350
+	ds 3
+OTPartyMon5HPExp: ; d353
+	ds 2
+OTPartyMon5AtkExp: ; d355
+	ds 2
+OTPartyMon5DefExp: ; d357
+	ds 2
+OTPartyMon5SpdExp: ; d359
+	ds 2
+OTPartyMon5SpclExp: ; d35b
+	ds 2
+
+OTPartyMon5DVs: ; d35d
+OTPartyMon5AtkDefDV: ; d35d
+	ds 1
+OTPartyMon5SpdSpclDV: ; d35e
+	ds 1
+
+OTPartyMon5PP: ; d35f
+OTPartyMon5PPMove1: ; d35f
+	ds 1
+OTPartyMon5PPMove2: ; d360
+	ds 1
+OTPartyMon5PPMove3: ; d361
+	ds 1
+OTPartyMon5PPMove4: ; d362
+	ds 1
+
+OTPartyMon5Happiness: ; d363
+	ds 1
+OTPartyMon5PokerusStatus: ; d364
+	ds 1
+
+OTPartyMon5CaughtData: ; d365
+OTPartyMon5CaughtGender: ; d365
+OTPartyMon5CaughtLocation: ; d365
+	ds 1
+OTPartyMon5CaughtTime: ; d366
+	ds 1
+OTPartyMon5Level: ; d367
+	ds 1
+	
+OTPartyMon5Status: ; d368
+	ds 1
+OTPartyMon5Unused: ; d369
+	ds 1
+OTPartyMon5CurHP: ; d36a
+	ds 2
+OTPartyMon5MaxHP: ; d36c
+	ds 2
+OTPartyMon5Atk: ; d36e
+	ds 2
+OTPartyMon5Def: ; d370
+	ds 2
+OTPartyMon5Spd: ; d372
+	ds 2
+OTPartyMon5SpclAtk: ; d374
+	ds 2
+OTPartyMon5SpclDef: ; d376
+	ds 2
+
+OTPartyMon6: ; d378
+OTPartyMon6Species2: ; d378
+	ds 1
+OTPartyMon6Item: ; d379
+	ds 1
+
+OTPartyMon6Moves: ; d37a
+OTPartyMon6Move1: ; d37a
+	ds 1
+OTPartyMon6Move2: ; d37b
+	ds 1
+OTPartyMon6Move3: ; d37c
+	ds 1
+OTPartyMon6Move4: ; d37d
+	ds 1
+	
+OTPartyMon6ID: ; d37e
+	ds 2
+OTPartyMon6Exp: ; d380
+	ds 3
+OTPartyMon6HPExp: ; d383
+	ds 2
+OTPartyMon6AtkExp: ; d385
+	ds 2
+OTPartyMon6DefExp: ; d387
+	ds 2
+OTPartyMon6SpdExp: ; d389
+	ds 2
+OTPartyMon6SpclExp: ; d38b
+	ds 2
+
+OTPartyMon6DVs: ; d38d
+OTPartyMon6AtkDefDV: ; d38d
+	ds 1
+OTPartyMon6SpdSpclDV: ; d38e
+	ds 1
+
+OTPartyMon6PP: ; d38f
+OTPartyMon6PPMove1: ; d38f
+	ds 1
+OTPartyMon6PPMove2: ; d390
+	ds 1
+OTPartyMon6PPMove3: ; d391
+	ds 1
+OTPartyMon6PPMove4: ; d392
+	ds 1
+
+OTPartyMon6Happiness: ; d393
+	ds 1
+OTPartyMon6PokerusStatus: ; d394
+	ds 1
+
+OTPartyMon6CaughtData: ; d395
+OTPartyMon6CaughtGender: ; d395
+OTPartyMon6CaughtLocation: ; d395
+	ds 1
+OTPartyMon6CaughtTime: ; d396
+	ds 1
+OTPartyMon6Level: ; d397
+	ds 1
+	
+OTPartyMon6Status: ; d398
+	ds 1
+OTPartyMon6Unused: ; d399
+	ds 1
+OTPartyMon6CurHP: ; d39a
+	ds 2
+OTPartyMon6MaxHP: ; d39c
+	ds 2
+OTPartyMon6Atk: ; d39e
+	ds 2
+OTPartyMon6Def: ; d3a0
+	ds 2
+OTPartyMon6Spd: ; d3a2
+	ds 2
+OTPartyMon6SpclAtk: ; d3a4
+	ds 2
+OTPartyMon6SpclDef: ; d3a6
+	ds 2
+
+OTPartyMonOT:
+OTPartyMon1OT: ; d3a8
+	ds 11
+OTPartyMon2OT: ; d3b3
+	ds 11
+OTPartyMon3OT: ; d3be
+	ds 11
+OTPartyMon4OT: ; d3c9
+	ds 11
+OTPartyMon5OT: ; d3d4
+	ds 11
+OTPartyMon6OT: ; d3df
+	ds 11
+
+OTPartyMonNicknames:
+OTPartyMon1Nickname: ; d3ea
+	ds 11
+OTPartyMon2Nickname: ; d3f5
+	ds 11
+OTPartyMon3Nickname: ; d400
+	ds 11
+OTPartyMon4Nickname: ; d40b
+	ds 11
+OTPartyMon5Nickname: ; d416
+	ds 11
+OTPartyMon6Nickname: ; d421
+	ds 11
+
 SECTION "BoxNames",BSS[$db75]
 ; 8 chars + $50
 Box1Name: ; 0xdb75
-ds 9;
+	ds 9
 Box2Name: ; 0xdbce
-ds 9;
+	ds 9
 Box3Name: ; 0xdbd7
-ds 9;
+	ds 9
 Box4Name: ; 0xdbe0
-ds 9;
+	ds 9
 Box5Name: ; 0xdbe9
-ds 9;
+	ds 9
 Box6Name: ; 0xdbf2
-ds 9;
+	ds 9
 Box7Name: ; 0xdbfb
-ds 9;
+	ds 9
 Box8Name: ; 0xdc04
-ds 9;
+	ds 9
 Box9Name: ; 0xdc0d
-ds 9;
+	ds 9
 Box10Name: ; 0xdc16
-ds 9;
+	ds 9
 Box11Name: ; 0xdc1f
-ds 9;
+	ds 9
 Box12Name: ; 0xdb28
-ds 9;
+	ds 9
 Box13Name: ; 0xdb31
-ds 9;
+	ds 9
 Box14Name: ; 0xdb3a
-ds 9;
-
+	ds 9
 
 SECTION "PlayerParty",BSS[$dcd7]
 
