@@ -1,3 +1,61 @@
+SECTION "BattleMons",BSS[$c62a]
+
+BattleMonSpecies: ; c62a
+	ds 3 ; wtf?
+BattleMonItem: ; c62d
+	ds 1
+
+BattleMonMoves:
+BattleMonMove1: ; c62e
+	ds 1
+BattleMonMove2: ; c62f
+	ds 1
+BattleMonMove3: ; c630
+	ds 1
+BattleMonMove4: ; c631
+	ds 1
+
+BattleMonDVs:
+BattleMonAtkDefDV: ; c632
+	ds 1
+BattleMonSpdSpclDV: ; c633
+	ds 1
+
+BattleMonPP:
+BattleMonPPMove1: ; c634
+	ds 1
+BattleMonPPMove2: ; c635
+	ds 1
+BattleMonPPMove3: ; c636
+	ds 1
+BattleMonPPMove4: ; c637
+	ds 1
+
+BattleMonHappiness: ; c638
+	ds 1
+BattleMonLevel: ; c639
+	ds 1
+
+; TODO this is probably wrong
+EnemyMonPokerusStatus: ; c63a
+	ds 2 ; dunno
+
+BattleMonHP: ; c63c
+	ds 2
+BattleMonMaxHP: ; c63e
+	ds 2
+
+BattleMonAtk: ; c640
+	ds 2
+BattleMonDef: ; c642
+	ds 2
+BattleMonSpd: ; c644
+	ds 2
+BattleMonSpclAtk: ; c646
+	ds 2
+BattleMonSpclDef: ; c648
+	ds 2
+
 SECTION "OtherTrainerParty",BSS[$d280]
 
 OTPartyMonHeader: ; d280
