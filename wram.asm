@@ -588,6 +588,9 @@ OTPartyMon6Nickname: ; d421
 
 SECTION "Events",BSS[$dad4]
 
+;RoomDecorations: ; dac6
+;	db 7
+
 HoOhEvent: ; dad4
 	ds 1
 LugiaEvent: ; dad5
