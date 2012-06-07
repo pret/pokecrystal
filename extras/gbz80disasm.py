@@ -180,7 +180,7 @@ temp_opt_table = [
   [ "LD A, L", 0x7d, 0 ],
   [ "LD A, [$FF00+C]", 0xf2, 0 ],
   [ "LD A, [$FF00+x]", 0xf0, 1 ],
-#  [ "LDH A, [x]", 0xf0, 1 ], #rgbds has trouble with this one?
+#  [ "LDH A, [x]", 0xf0, 1 ], # rgbds has trouble with this one?
   [ "LD A, [BC]", 0xa, 0 ],
   [ "LD A, [DE]", 0x1a, 0 ],
 #  [ "LD A, [HL+]", 0x2a, 0 ],
@@ -534,7 +534,7 @@ temp_opt_table = [
   [ "E", 0x100, -1 ],
 ]
 
-#construct real opt_table
+# construct a more useful version of opt_table
 opt_table = {}
 for line in temp_opt_table:
     opt_table[line[1]] = [line[0], line[2]]
@@ -550,7 +550,6 @@ end_08_scripts_with = [
 relative_jumps = [0x38, 0x30, 0x20, 0x28, 0x18, 0xc3, 0xda, 0xc2] 
 relative_unconditional_jumps = [0xc3, 0x18]
 
-#TODO: replace call and a pointer with call and a label
 call_commands = [0xdc, 0xd4, 0xc4, 0xcc, 0xcd]
 
 all_labels = {}
@@ -563,14 +562,16 @@ def load_labels(filename="labels.json"):
 load_labels()
 
 def find_label(local_address, bank_id=0):
-    global all_labels
     return None
-    #keep an integer
+
+    global all_labels
+
+    # keep an integer
     if type(local_address) == str:
         local_address1 = int(local_address.replace("$", "0x"), 16)
     else: local_address1 = local_address
 
-    #turn local_address into a string
+    # turn local_address into a string
     if type(local_address) == str:
         if "0x" in local_address: local_address = local_address.replace("0x", "$")
         elif not "$" in local_address: local_address = "$" + local_address
@@ -585,7 +586,7 @@ def find_label(local_address, bank_id=0):
     return None
 
 def asm_label(address):
-    # why using a random value when you can use the eff. address?
+    # why using a random value when you can use the address?
     return ".ASM_" + hex(address)[2:]
 
 def output_bank_opcodes(original_offset, max_byte_count=0x4000):
@@ -785,7 +786,7 @@ def output_bank_opcodes(original_offset, max_byte_count=0x4000):
                 is_data = False
                 keep_reading = True
         else:
-#        if is_data and keep_reading:
+        #if is_data and keep_reading:
             output += spacing + "db $" + hex(ord(rom[offset]))[2:] #+ " ; " + hex(offset)
             output += "\n"
             offset += 1
@@ -810,7 +811,8 @@ def output_bank_opcodes(original_offset, max_byte_count=0x4000):
 
 def has_outstanding_labels(byte_labels):
     """
-    if a label is used once, it means it has to be called or specified later
+    If a label is used once in the asm output, then that means it has to be
+    called or specified later.
     """
     for label_line in byte_labels.keys():
         real_line = byte_labels[label_line]
