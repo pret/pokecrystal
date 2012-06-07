@@ -10,13 +10,6 @@ from romstr import RomStr
 
 spacing = "\t"
 
-# this was originally for renaming freeze maps for a unique name
-def random_hash():
-    available_chars = string.hexdigits[:16]
-    return ''.join(
-        random.choice(available_chars)
-        for dummy in xrange(5))
-
 def load_rom(filename="../baserom.gbc"):
     """loads bytes into memory"""
     global rom
@@ -598,9 +591,6 @@ def find_label(local_address, bank_id=0):
             if label_entry["bank_id"] == bank_id or (local_address1 < 0x8000 and (label_entry["bank_id"] == 0 or label_entry["bank_id"] == 1)):
                 return label_entry["label"]
     return None
-
-def random_asm_label():
-    return ".ASM_" + random_hash()
 
 def asm_label(address):
     # why using a random value when you can use the eff. address?
