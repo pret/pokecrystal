@@ -534,14 +534,6 @@ temp_opt_table = [
   [ "E", 0x100, -1 ],
 ]
 
-#find conflicts
-conflict_table = {}
-for line in temp_opt_table:
-    if line[1] in conflict_table.keys():
-        print "CONFLICT: " + line[0] + " ($" + hex(line[1])[2:] + ") .... " + conflict_table[line[1]]
-    else:
-        conflict_table[line[1]] = line[0]
-
 #construct real opt_table
 opt_table = {}
 for line in temp_opt_table:
@@ -831,19 +823,6 @@ def all_outstanding_labels_are_reverse(byte_labels, offset):
         if line["definition"] == False:
             if not label_id < offset: return False
     return True
-
-def text_asm_pretty_printer(label, address_of_08, include_08=True):
-    """returns (output, end_address)"""
-    output = label + ": ; " + hex(address_of_08) + "\n"
-    if include_08:
-        output += spacing + "db $08 ; asm\n"
-        results = output_bank_opcodes(address_of_08 + 1)
-    else:
-        results = output_bank_opcodes(address_of_08)
-    output += results[0]
-    end_address = results[1]
-
-    return (output, end_address)
 
 if __name__ == "__main__":
     load_rom()
