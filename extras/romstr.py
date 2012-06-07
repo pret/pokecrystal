@@ -182,7 +182,6 @@ class Asm:
                 byte_labels[offset]["name"] = line_label
                 byte_labels[offset]["usage"] = 0 
             byte_labels[offset]["definition"] = True
-        output += .. add label here (well, not really)
 
             #find out if there's a two byte key like this
             temp_maybe = maybe_byte
@@ -214,7 +213,8 @@ class Asm:
     
                         current_byte_number += 2
                         offset += 2
-    
+   
+                        asm_commands.append({"address": offset, "command": opstr})
             output += spacing + opstr #+ " ; " + hex(offset)
             output += "\n"
     
@@ -345,17 +345,13 @@ class Asm:
             #offset += 1
             #current_byte_number += 1
     
-        #clean up unused labels
+        # clean up unused labels.. used to be in 'output', but is now in asm_commands
         for label_line in byte_labels.keys():
             address = label_line
             label_line = byte_labels[label_line]
             if label_line["usage"] == 0:
                 output = output.replace((label_line["name"] + "\n").lower(), "")
-    
-        #add the offset of the final location
-        output += "; " + hex(offset)
-    
-        return (output, offset, last_hl_address, last_a_address, used_3d97)
+                raise NotImplementedError   
 
     def __str__(self):
         """ ASM pretty printer.
