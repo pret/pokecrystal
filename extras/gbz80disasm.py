@@ -6,26 +6,24 @@ from copy import copy, deepcopy
 from ctypes import c_int8
 import json
 import random
+from romstr import RomStr
+
 spacing = "\t"
 
-#this was originally for renaming freeze maps for a unique name
+# this was originally for renaming freeze maps for a unique name
 def random_hash():
     available_chars = string.hexdigits[:16]
     return ''.join(
         random.choice(available_chars)
         for dummy in xrange(5))
 
-class RomStr(str):
-    """simple wrapper to prevent a giant rom from being shown on screen"""
-    def __repr__(self):
-        return "RomStr(too long)"
 def load_rom(filename="../baserom.gbc"):
     """loads bytes into memory"""
     global rom
     file_handler = open(filename, "r") 
     rom = RomStr(file_handler.read())
     file_handler.close()
-    return rom    
+    return rom
 
 temp_opt_table = [
   [ "ADC A", 0x8f, 0 ],
