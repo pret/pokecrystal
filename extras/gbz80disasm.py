@@ -559,7 +559,6 @@ def load_labels(filename="labels.json"):
         all_labels = json.loads(open(filename, "r").read())
     else:
         print "You must run analyze_incbins.scan_for_predefined_labels() to create \"labels.json\"."
-load_labels()
 
 def find_label(local_address, bank_id=0):
     return None
@@ -827,5 +826,6 @@ def all_outstanding_labels_are_reverse(byte_labels, offset):
     return True
 
 if __name__ == "__main__":
+    load_labels()
     load_rom()
     print output_bank_opcodes(int(sys.argv[1], 16))[0]
