@@ -6,15 +6,18 @@ from copy import copy, deepcopy
 from ctypes import c_int8
 import json
 import random
-from romstr import RomStr
 
 spacing = "\t"
+
+class XRomStr(str):
+    def __repr__(self):
+        return "RomStr(too long)"
 
 def load_rom(filename="../baserom.gbc"):
     """loads bytes into memory"""
     global rom
     file_handler = open(filename, "r") 
-    rom = RomStr(file_handler.read())
+    rom = XRomStr(file_handler.read())
     file_handler.close()
     return rom
 
