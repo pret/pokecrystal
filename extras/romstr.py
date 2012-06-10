@@ -150,7 +150,7 @@ class Asm:
         asm_commands = {}
 
         offset = start_address
-        
+
         last_hl_address = None
         last_a_address  = None
         used_3d97       = False
@@ -161,16 +161,20 @@ class Asm:
             # read the current opcode byte
             current_byte = ord(rom[offset])
             current_byte_number = len(asm_commands.keys())
-            
-            # setup this next/upcoming command
-            asm_command = {
-                "address": offset,
 
+            # setup this next/upcoming command
+            if offset in asm_commands.keys():
+                asm_command = asm_commands[offset]
+            else:
+                asm_command = {}
+
+            asm_command["address"] = offset
+
+            if not "references" in asm_command.keys():
                 # This counts how many times relative jumps reference this
                 # byte. This is used to determine whether or not to print out a
                 # label later.
-                "references": 0,
-            }
+                asm_command["references"] = 0
 
             # some commands have two opcodes
             next_byte = ord(rom[offset+1])
@@ -185,7 +189,7 @@ class Asm:
                     op_code = possible_opcode
                 else:
                     op_code = current_byte
-                
+
                 op = opt_table[op_code]
 
                 opstr = op[0].lower()
@@ -195,29 +199,35 @@ class Asm:
                 asm_command["id"] = op_code
                 asm_command["format"] = opstr
                 asm_command["opnumberthing"] = optype
-                
+
                 if "x" in opstr:
                     for x in range(0, opstr.count("x")):
                         insertion = ord(rom[offset + 1])
+
+                        # Certain opcodes will have a local relative jump label
+                        # here instead of a raw hex value, but this is
+                        # controlled through asm output.
                         insertion = "$" + hex(insertion)[2:]
-    
+
                         opstr = opstr[:opstr.find("x")].lower() + insertion + opstr[opstr.find("x")+1:].lower()
-    
+
                         current_byte_number += 1
-                        offset += 1 
+                        offset += 1
 
                 if "?" in opstr:
                     for y in range(0, opstr.count("?")):
                         byte1 = ord(rom[offset + 1])
                         byte2 = ord(rom[offset + 2])
-    
+
                         number = byte1
                         number += byte2 << 8;
-    
+
+                        # In most cases, you can use a label here. Labels will
+                        # be shown during asm output.
                         insertion = "$%.4x" % (number)
-    
+
                         opstr = opstr[:opstr.find("?")].lower() + insertion + opstr[opstr.find("?")+1:].lower()
-    
+
                         current_byte_number += 2
                         offset += 2
 
@@ -227,19 +237,35 @@ class Asm:
                     # generate a label for the byte we're jumping to
                     target_address = offset + 2 + c_int8(ord(rom[offset + 1])).value
 
-                    if target_address in byte_labels.keys():
-                        byte_labels[target_address]["usage"] = 1 + byte_labels[target_address]["usage"]
-                        line_label2 = byte_labels[target_address]["name"]
+                    if target_address in asm_commands.keys():
+                        asm_commands[target_address]["references"] += 1
+                        remote_label = "asm_" + hex(target_address)
+                        asm_commands[target_address]["current_label"] = remote_label
+                        asm_command["remote_label"] = remote_label
 
+                        asm_command["use_remote_label"] = True
                     else:
-                        line_label2 = asm_label(target_address)
-                        byte_labels[target_address] = {}
-                        byte_labels[target_address]["name"] = line_label2
-                        byte_labels[target_address]["usage"] = 1
-                        byte_labels[target_address]["definition"] = False
+                        remote_label = "asm_" + hex(target_address)
 
-                    insertion = line_label2.lower()
-                    include_comment = True
+                        # This remote address might not be part of this
+                        # function.
+                        asm_commands[target_address] = {
+                            "references": 1,
+                            "current_label": remote_label,
+                        }
+                        # Also, target_address can be negative (before the
+                        # start_address that the user originally requested),
+                        # and it shouldn't be shown on asm output because the
+                        # intermediate bytes (between a negative target_address
+                        # and start_address) won't be disassembled.
+
+                        # Don't know yet if this remote address is part of this
+                        # function or not. When the remote address is not part
+                        # of this function, the label name should not be used,
+                        # because that label will not be disassembled in the
+                        # output, until the user asks it to.
+                        asm_command["use_remote_label"] = "unknown"
+                        asm_command["remote_label"] = remote_label
                 elif current_byte == 0x3e:
                     last_a_address = ord(rom[offset + 1])
 
@@ -253,7 +279,7 @@ class Asm:
                 if current_byte == 0xcd:
                     if number == 0x3d97:
                         used_3d97 = True
-                
+
                 if current_byte == 0xc3 or current_byte in relative_unconditional_jumps:
                     if current_byte == 0xc3:
                         if number == 0x3d97:
@@ -280,9 +306,9 @@ class Asm:
                 # ROM probably doesn't represent instructions.
                 asm_command["type"] = "data" # db
                 asm_command["value"] = current_byte
-            
+
             # save this new command in the list
-            asm_commands[current_byte_number] = asm_command
+            asm_commands[asm_command["address"]] = asm_command
 
     def __str__(self):
         """ ASM pretty printer.
