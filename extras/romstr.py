@@ -121,7 +121,7 @@ class Asm:
         # check more edge cases
         if not start_address >= 0:
             raise Exception, "start_address must be at least 0"
-        elif not end_address >= 0:
+        elif end_address != None and not end_address >= 0:
             raise Exception, "end_address must be at least 0"
 
         self.rom           = rom
@@ -157,7 +157,7 @@ class Asm:
 
         keep_reading    = True
 
-        while offset <= end_address and keep_reading:
+        while (end_address != 0 and offset <= end_address) or keep_reading:
             # read the current opcode byte
             current_byte = ord(rom[offset])
             current_byte_number = len(asm_commands.keys())
@@ -176,11 +176,19 @@ class Asm:
                 # label later.
                 asm_command["references"] = 0
 
+                print "debug1"
+
             # some commands have two opcodes
             next_byte = ord(rom[offset+1])
 
+            print "offset: \t\t" + hex(offset)
+            print "current_byte: \t\t" + hex(current_byte)
+            print "next_byte: \t\t" + hex(next_byte)
+
             # all two-byte opcodes also have their first byte in there somewhere
-            if current_byte in opt_table.keys():
+            if (current_byte in opt_table.keys()) or ((current_byte + (next_byte << 8)) in opt_table.keys()):
+                print "debug2"
+
                 # this might be a two-byte opcode
                 possible_opcode = current_byte + (next_byte << 8)
 
@@ -195,12 +203,15 @@ class Asm:
                 opstr = op[0].lower()
                 optype = op[1]
 
+                print "opstr: " + opstr
+
                 asm_command["type"] = "op"
                 asm_command["id"] = op_code
                 asm_command["format"] = opstr
                 asm_command["opnumberthing"] = optype
 
                 if "x" in opstr:
+                    print "debug3"
                     for x in range(0, opstr.count("x")):
                         insertion = ord(rom[offset + 1])
 
@@ -215,6 +226,7 @@ class Asm:
                         offset += 1
 
                 if "?" in opstr:
+                    print "debug4"
                     for y in range(0, opstr.count("?")):
                         byte1 = ord(rom[offset + 1])
                         byte2 = ord(rom[offset + 2])
@@ -234,10 +246,13 @@ class Asm:
                 # Check for relative jumps, construct the formatted asm line.
                 # Also set the usage of labels.
                 if current_byte in [0x18, 0x20] or current_byte in relative_jumps: # jr or jr nz
+                    print "debug5"
+
                     # generate a label for the byte we're jumping to
                     target_address = offset + 2 + c_int8(ord(rom[offset + 1])).value
 
                     if target_address in asm_commands.keys():
+                        print "debug6"
                         asm_commands[target_address]["references"] += 1
                         remote_label = "asm_" + hex(target_address)
                         asm_commands[target_address]["current_label"] = remote_label
@@ -245,6 +260,7 @@ class Asm:
 
                         asm_command["use_remote_label"] = True
                     else:
+                        print "debug7"
                         remote_label = "asm_" + hex(target_address)
 
                         # This remote address might not be part of this
@@ -281,6 +297,7 @@ class Asm:
                         used_3d97 = True
 
                 if current_byte == 0xc3 or current_byte in relative_unconditional_jumps:
+                    print "debug8"
                     if current_byte == 0xc3:
                         if number == 0x3d97:
                             used_3d97 = True
@@ -291,6 +308,7 @@ class Asm:
 
                 # stop reading at a jump, relative jump or return
                 if current_byte in end_08_scripts_with:
+                    print "debug9"
                     is_data = False
 
                     if not has_outstanding_labels(byte_labels) and all_outstanding_labels_are_reverse(byte_labels, offset):
@@ -306,9 +324,12 @@ class Asm:
                 # ROM probably doesn't represent instructions.
                 asm_command["type"] = "data" # db
                 asm_command["value"] = current_byte
+                keep_reading = False
 
-            # save this new command in the list
-            asm_commands[asm_command["address"]] = asm_command
+        # save this new command in the list
+        asm_commands[asm_command["address"]] = asm_command
+        self.asm_commands = asm_commands
+        print "debug10"
 
     def __str__(self):
         """ ASM pretty printer.
