@@ -1,4 +1,6 @@
 from gbz80disasm import opt_table, end_08_scripts_with, relative_jumps, relative_unconditional_jumps, call_commands
+from ctypes import c_int8
+from copy import copy, deepcopy
 
 class RomStr(str):
     """ Simple wrapper to prevent a giant rom from being shown on screen.
@@ -245,7 +247,7 @@ class Asm:
 
                 # Check for relative jumps, construct the formatted asm line.
                 # Also set the usage of labels.
-                if current_byte in [0x18, 0x20] or current_byte in relative_jumps: # jr or jr nz
+                if current_byte in [0x18, 0x20] + relative_jumps: # jr or jr nz
                     print "debug5"
 
                     # generate a label for the byte we're jumping to
@@ -325,6 +327,9 @@ class Asm:
                 asm_command["type"] = "data" # db
                 asm_command["value"] = current_byte
                 keep_reading = False
+
+            # jump forward by a byte
+            offset += 1
 
         # save this new command in the list
         asm_commands[asm_command["address"]] = asm_command
