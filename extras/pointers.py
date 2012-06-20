@@ -2,6 +2,14 @@
     depedency loops.
 """
 
+def calculate_bank(address):
+    """you are too lazy to divide on your own?"""
+    if type(address) == str: 
+        address = int(address, 16)
+    #if 0x4000 <= address <= 0x7FFF:
+    #    raise Exception, "bank 1 does not exist"
+    return int(address) / 0x4000
+
 def calculate_pointer(short_pointer, bank=None):
     """calculates the full address given a 4-byte pointer and bank byte"""
     short_pointer = int(short_pointer)

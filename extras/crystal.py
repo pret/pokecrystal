@@ -302,15 +302,7 @@ def load_map_group_offsets():
         map_group_offsets.append(offset)
     return map_group_offsets
 
-def calculate_bank(address):
-    """you are too lazy to divide on your own?"""
-    if type(address) == str:
-        address = int(address, 16)
-    if 0x4000 <= address <= 0x7FFF:
-        raise Exception, "bank 1 does not exist"
-    return int(address) / 0x4000
-
-from pointers import calculate_pointer
+from pointers import calculate_bank, calculate_pointer
 
 def calculate_pointer_from_bytes_at(address, bank=False):
     """calculates a pointer from 2 bytes at a location
