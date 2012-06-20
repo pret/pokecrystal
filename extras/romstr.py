@@ -222,6 +222,8 @@ class Asm:
                 asm_command["format"] = opstr
                 asm_command["opnumberthing"] = optype
 
+                opstr2 = None
+
                 if "x" in opstr:
                     for x in range(0, opstr.count("x")):
                         insertion = ord(rom[offset + 1])
@@ -248,7 +250,17 @@ class Asm:
                         # be shown during asm output.
                         insertion = "$%.4x" % (number)
 
+                        base_opstr = copy(opstr)
+
                         opstr = opstr[:opstr.find("?")].lower() + insertion + opstr[opstr.find("?")+1:].lower()
+
+                        # This version of the formatted string has labels. In
+                        # the future, the actual labels should be parsed
+                        # straight out of the "main.asm" file.
+                        target_address = number % 0x4000
+                        insertion = "asm_" + hex(target_address)
+                        opstr2 = base_opstr[:base_opstr.find("?")].lower() + insertion + base_opstr[base_opstr.find("?")+1:].lower()
+                        asm_command["formatted_with_labels"] = opstr2
 
                         current_byte_number += 2
                         offset += 2
