@@ -201,8 +201,6 @@ class Asm:
 
             # all two-byte opcodes also have their first byte in there somewhere
             if (current_byte in opt_table.keys()) or ((current_byte + (next_byte << 8)) in opt_table.keys()):
-                print "debug2"
-
                 # this might be a two-byte opcode
                 possible_opcode = current_byte + (next_byte << 8)
 
@@ -225,7 +223,6 @@ class Asm:
                 asm_command["opnumberthing"] = optype
 
                 if "x" in opstr:
-                    print "debug3"
                     for x in range(0, opstr.count("x")):
                         insertion = ord(rom[offset + 1])
 
@@ -240,7 +237,6 @@ class Asm:
                         offset += 1
 
                 if "?" in opstr:
-                    print "debug4"
                     for y in range(0, opstr.count("?")):
                         byte1 = ord(rom[offset + 1])
                         byte2 = ord(rom[offset + 2])
@@ -260,21 +256,24 @@ class Asm:
                 # Check for relative jumps, construct the formatted asm line.
                 # Also set the usage of labels.
                 if current_byte in [0x18, 0x20] + relative_jumps: # jr or jr nz
-                    print "debug5"
-
                     # generate a label for the byte we're jumping to
                     target_address = offset + 2 + c_int8(ord(rom[offset + 1])).value
 
                     if target_address in asm_commands.keys():
-                        print "debug6"
                         asm_commands[target_address]["references"] += 1
                         remote_label = "asm_" + hex(target_address)
                         asm_commands[target_address]["current_label"] = remote_label
                         asm_command["remote_label"] = remote_label
 
-                        asm_command["use_remote_label"] = True
+                        # Not sure how to set this, can't be True because an
+                        # address referenced multiple times will use a label
+                        # despite the label not necessarily being used in the
+                        # output. The "use_remote_label" values should be
+                        # calculated when rendering the asm output, based on
+                        # which addresses and which op codes will be displayed
+                        # (within the range).
+                        asm_command["use_remote_label"] = "unknown"
                     else:
-                        print "debug7"
                         remote_label = "asm_" + hex(target_address)
 
                         # This remote address might not be part of this
@@ -311,7 +310,6 @@ class Asm:
                         used_3d97 = True
 
                 if current_byte == 0xc3 or current_byte in relative_unconditional_jumps:
-                    print "debug8"
                     if current_byte == 0xc3:
                         if number == 0x3d97:
                             used_3d97 = True
@@ -322,7 +320,6 @@ class Asm:
 
                 # stop reading at a jump, relative jump or return
                 if current_byte in end_08_scripts_with:
-                    print "debug9"
                     is_data = False
 
                     if not self.has_outstanding_labels(asm_commands, offset):
