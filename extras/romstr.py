@@ -1,7 +1,8 @@
-import sys
+import sys, os, time, datetime, json
 from gbz80disasm import opt_table
 from ctypes import c_int8
 from copy import copy, deepcopy
+from labels import get_label_from_line, get_address_from_line_comment
 
 relative_jumps = [0x38, 0x30, 0x20, 0x28, 0x18, 0xc3, 0xda, 0xc2, 0x32]
 relative_unconditional_jumps = [0xc3, 0x18]
@@ -21,6 +22,10 @@ class RomStr(str):
     """ Simple wrapper to prevent a giant rom from being shown on screen.
     """
 
+    def __init__(self, *args, **kwargs):
+        self.load_labels()
+        str.__init__(self)
+
     def __repr__(self):
         """ Simplifies this object so that the output doesn't overflow stdout.
         """
@@ -39,6 +44,51 @@ class RomStr(str):
         bytes = file_handler.read()
         file_handler.close()
         return RomStr(bytes)
+
+    def load_labels(self, filename="labels.json"):
+        """ Loads labels from labels.json, or parses the source code file and
+            generates new labels.
+        """
+        # blank out the hash
+        self.labels = {}
+
+        # check if the labels file exists
+        file_existence = os.path.exists(filename)
+
+        generate_labels = False
+
+        # determine if the labels file needs to be regenerated
+        if file_existence:
+            modified = os.path.getmtime(filename)
+            modified = datetime.datetime.fromtimestamp(modified)
+            current  = datetime.datetime.fromtimestamp(time.time())
+
+            is_old = (current - modified) > datetime.timedelta(days=3)
+
+            if is_old:
+                generate_labels = True
+        else:
+            generate_labels = True
+
+        # scan the asm source code for labels
+        if generate_labels:
+            asm = open("../main.asm", "r").read().split("\n")
+
+            for line in asm:
+                label = get_label_from_line(line)
+
+                if label:
+                    address = get_address_from_line_comment(line)
+
+                    self.labels[address] = label
+
+            content = json.dumps(self.labels)
+            file_handler = open(filename, "w")
+            file_handler.write(content)
+            file_handler.close()
+
+        # load the labels from the file
+        self.labels = json.loads(open(filename, "r").read())
 
     def length(self):
         """ len(self)
@@ -103,9 +153,9 @@ class RomStr(str):
         elif end_address != None and size == None:
             size = end_address - start_address
 
-        return Asm(start_address=start_address, end_address=end_address, size=size, max_size=max_size, debug=debug, rom=self)
+        return DisAsm(start_address=start_address, end_address=end_address, size=size, max_size=max_size, debug=debug, rom=self)
 
-class Asm:
+class DisAsm:
     """ z80 disassembler
     """
 
