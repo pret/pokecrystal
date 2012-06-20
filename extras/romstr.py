@@ -1,6 +1,18 @@
-from gbz80disasm import opt_table, end_08_scripts_with, relative_jumps, relative_unconditional_jumps, call_commands
+from gbz80disasm import opt_table
 from ctypes import c_int8
 from copy import copy, deepcopy
+
+relative_jumps = [0x38, 0x30, 0x20, 0x28, 0x18, 0xc3, 0xda, 0xc2]
+relative_unconditional_jumps = [0xc3, 0x18]
+call_commands = [0xdc, 0xd4, 0xc4, 0xcc, 0xcd]
+end_08_scripts_with = [
+    0xe9, # jp hl
+    0xc9, # ret
+] # possibly also:
+    # 0xc3, # jp
+    # 0xc18, # jr
+    # 0xda, 0xe9, 0xd2, 0xc2, 0xca, 0xc3, 0x38, 0x30, 0x20, 0x28, 0x18, 0xd8,
+    # 0xd0, 0xc0, 0xc8, 0xc9
 
 class RomStr(str):
     """ Simple wrapper to prevent a giant rom from being shown on screen.
@@ -304,7 +316,7 @@ class Asm:
                         if number == 0x3d97:
                             used_3d97 = True
 
-                    if not has_outstanding_labels(byte_labels) or all_outstanding_labels_are_reverse(byte_labels, offset):
+                    if not self.has_outstanding_labels(asm_commands, offset):
                         keep_reading = False
                         break
 
@@ -313,7 +325,7 @@ class Asm:
                     print "debug9"
                     is_data = False
 
-                    if not has_outstanding_labels(byte_labels) and all_outstanding_labels_are_reverse(byte_labels, offset):
+                    if not self.has_outstanding_labels(asm_commands, offset):
                         keep_reading = False
                         break
                     else:
@@ -328,13 +340,25 @@ class Asm:
                 asm_command["value"] = current_byte
                 keep_reading = False
 
+            # save this new command in the list
+            asm_commands[asm_command["address"]] = asm_command
+
             # jump forward by a byte
             offset += 1
 
-        # save this new command in the list
-        asm_commands[asm_command["address"]] = asm_command
+        # also save the last command if necessary
+        if asm_commands[asm_commands.keys()[-1]] is not asm_command:
+            asm_commands[asm_command["address"]] = asm_command
+
+        # store the set of commands on this object
         self.asm_commands = asm_commands
+
         print "debug10"
+
+    def has_outstanding_labels(self, asm_commands, offset):
+        """ Checks if there are any labels that haven't yet been created.
+        """ # is this really necessary??
+        return False
 
     def __str__(self):
         """ ASM pretty printer.
