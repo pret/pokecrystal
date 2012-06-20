@@ -1,3 +1,4 @@
+import sys
 from gbz80disasm import opt_table
 from ctypes import c_int8
 from copy import copy, deepcopy
@@ -73,7 +74,11 @@ class RomStr(str):
             that will be parsed, so that large patches of data aren't parsed as
             code.
         """
+        if "0x" in address:
+            address = int(address, 16)
+
         start_address = address
+
         if start_address == None:
             raise Exception, "address must be given"
 
@@ -421,3 +426,7 @@ class AsmList(list):
         """
         return "AsmList(too long)"
 
+if __name__ == "__main__":
+    cryrom = RomStr(open("../pokecrystal.gbc", "r").read());
+    asm = cryrom.to_asm(sys.argv[1])
+    print asm
