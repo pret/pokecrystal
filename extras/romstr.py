@@ -296,6 +296,10 @@ class DisAsm:
                         if op_code in relative_jumps:
                             target_address = offset + 2 + c_int8(ord(rom[offset + 1])).value
                             insertion = "asm_" + hex(target_address)
+
+                            if str(target_address) in self.rom.labels.keys():
+                                insertion = self.rom.labels[str(target_address)]
+
                             opstr2 = base_opstr[:base_opstr.find("x")].lower() + insertion + base_opstr[base_opstr.find("x")+1:].lower()
                             asm_command["formatted_with_labels"] = opstr2
 
@@ -321,6 +325,10 @@ class DisAsm:
                         # straight out of the "main.asm" file.
                         target_address = number % 0x4000
                         insertion = "asm_" + hex(target_address)
+
+                        if str(target_address) in self.rom.labels.keys():
+                            insertion = self.rom.labels[str(target_address)]
+
                         opstr2 = base_opstr[:base_opstr.find("?")].lower() + insertion + base_opstr[base_opstr.find("?")+1:].lower()
                         asm_command["formatted_with_labels"] = opstr2
 
