@@ -2,7 +2,7 @@ from gbz80disasm import opt_table
 from ctypes import c_int8
 from copy import copy, deepcopy
 
-relative_jumps = [0x38, 0x30, 0x20, 0x28, 0x18, 0xc3, 0xda, 0xc2]
+relative_jumps = [0x38, 0x30, 0x20, 0x28, 0x18, 0xc3, 0xda, 0xc2, 0x32]
 relative_unconditional_jumps = [0xc3, 0x18]
 call_commands = [0xdc, 0xd4, 0xc4, 0xcc, 0xcd]
 end_08_scripts_with = [
@@ -13,6 +13,8 @@ end_08_scripts_with = [
     # 0xc18, # jr
     # 0xda, 0xe9, 0xd2, 0xc2, 0xca, 0xc3, 0x38, 0x30, 0x20, 0x28, 0x18, 0xd8,
     # 0xd0, 0xc0, 0xc8, 0xc9
+
+spacing = "\t"
 
 class RomStr(str):
     """ Simple wrapper to prevent a giant rom from being shown on screen.
@@ -190,14 +192,13 @@ class Asm:
                 # label later.
                 asm_command["references"] = 0
 
-                print "debug1"
-
             # some commands have two opcodes
             next_byte = ord(rom[offset+1])
 
-            print "offset: \t\t" + hex(offset)
-            print "current_byte: \t\t" + hex(current_byte)
-            print "next_byte: \t\t" + hex(next_byte)
+            if self.debug:
+                print "offset: \t\t" + hex(offset)
+                print "current_byte: \t\t" + hex(current_byte)
+                print "next_byte: \t\t" + hex(next_byte)
 
             # all two-byte opcodes also have their first byte in there somewhere
             if (current_byte in opt_table.keys()) or ((current_byte + (next_byte << 8)) in opt_table.keys()):
@@ -215,7 +216,8 @@ class Asm:
                 opstr = op[0].lower()
                 optype = op[1]
 
-                print "opstr: " + opstr
+                if self.debug:
+                    print "opstr: " + opstr
 
                 asm_command["type"] = "op"
                 asm_command["id"] = op_code
@@ -223,6 +225,7 @@ class Asm:
                 asm_command["opnumberthing"] = optype
 
                 opstr2 = None
+                base_opstr = copy(opstr)
 
                 if "x" in opstr:
                     for x in range(0, opstr.count("x")):
@@ -234,6 +237,12 @@ class Asm:
                         insertion = "$" + hex(insertion)[2:]
 
                         opstr = opstr[:opstr.find("x")].lower() + insertion + opstr[opstr.find("x")+1:].lower()
+
+                        if op_code in relative_jumps:
+                            target_address = offset + 2 + c_int8(ord(rom[offset + 1])).value
+                            insertion = "asm_" + hex(target_address)
+                            opstr2 = base_opstr[:base_opstr.find("x")].lower() + insertion + base_opstr[base_opstr.find("x")+1:].lower()
+                            asm_command["formatted_with_labels"] = opstr2
 
                         current_byte_number += 1
                         offset += 1
@@ -249,8 +258,6 @@ class Asm:
                         # In most cases, you can use a label here. Labels will
                         # be shown during asm output.
                         insertion = "$%.4x" % (number)
-
-                        base_opstr = copy(opstr)
 
                         opstr = opstr[:opstr.find("?")].lower() + insertion + opstr[opstr.find("?")+1:].lower()
 
@@ -269,7 +276,7 @@ class Asm:
                 # Also set the usage of labels.
                 if current_byte in [0x18, 0x20] + relative_jumps: # jr or jr nz
                     # generate a label for the byte we're jumping to
-                    target_address = offset + 2 + c_int8(ord(rom[offset + 1])).value
+                    target_address = offset + 1 + c_int8(ord(rom[offset])).value
 
                     if target_address in asm_commands.keys():
                         asm_commands[target_address]["references"] += 1
@@ -293,6 +300,7 @@ class Asm:
                         asm_commands[target_address] = {
                             "references": 1,
                             "current_label": remote_label,
+                            "address": target_address,
                         }
                         # Also, target_address can be negative (before the
                         # start_address that the user originally requested),
@@ -362,7 +370,7 @@ class Asm:
         # store the set of commands on this object
         self.asm_commands = asm_commands
 
-        print "debug10"
+        self.end_address = offset + 1
 
     def has_outstanding_labels(self, asm_commands, offset):
         """ Checks if there are any labels that haven't yet been created.
@@ -372,7 +380,32 @@ class Asm:
     def __str__(self):
         """ ASM pretty printer.
         """
-        raise NotImplementedError, "zzzzzz"
+        output = ""
+
+        for (key, line) in self.asm_commands.items():
+            # skip anything from before the beginning
+            if key < self.start_address:
+                continue
+
+            # show a label
+            if line["references"] > 0 and "current_label" in line.keys():
+                if line["address"] == self.start_address:
+                    output += "thing: ; " + hex(line["address"]) + "\n"
+                else:
+                    output += spacing + "." + line["current_label"] + "\@ ; " + hex(line["address"]) + "\n"
+
+            # show the actual line
+            if line.has_key("formatted_with_labels"):
+                output += spacing + line["formatted_with_labels"]
+            elif line.has_key("formatted"):
+                output += spacing + line["formatted"]
+            #output += " ; to " +
+            output += "\n"
+
+        # show the next address after this chunk
+        output += "; " + hex(self.end_address)
+
+        return output
 
 class AsmList(list):
     """ Simple wrapper to prevent all asm lines from being shown on screen.
