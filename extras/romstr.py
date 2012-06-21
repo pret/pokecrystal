@@ -397,10 +397,6 @@ class DisAsm:
                         if number == 0x3d97:
                             used_3d97 = True
 
-                    if not self.has_outstanding_labels(asm_commands, offset):
-                        keep_reading = False
-                        break
-
                 # stop reading at a jump, relative jump or return
                 if current_byte in end_08_scripts_with:
                     is_data = False
@@ -455,7 +451,7 @@ class DisAsm:
                 if line["address"] == self.start_address:
                     output += "thing: ; " + hex(line["address"]) + "\n"
                 else:
-                    output += spacing + "." + line["current_label"] + "\@ ; " + hex(line["address"]) + "\n"
+                    output += "." + line["current_label"] + "\@ ; " + hex(line["address"]) + "\n"
 
             # show the actual line
             if line.has_key("formatted_with_labels"):
