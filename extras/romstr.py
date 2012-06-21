@@ -11,9 +11,9 @@ end_08_scripts_with = [
     0xe9, # jp hl
     0xc9, # ret
 ] # possibly also:
-    # 0xc3, # jp
+    # 0xc3,  # jp
     # 0xc18, # jr
-    # 0xda, 0xe9, 0xd2, 0xc2, 0xca, 0xc3, 0x38, 0x30, 0x20, 0x28, 0x18, 0xd8,
+    # 0xda, 0xe9, 0xd2, 0xc2, 0xca, 0x38, 0x30, 0x20, 0x28, 0x18, 0xd8,
     # 0xd0, 0xc0, 0xc8, 0xc9
 
 spacing = "\t"
@@ -124,7 +124,7 @@ class RomStr(str):
             that will be parsed, so that large patches of data aren't parsed as
             code.
         """
-        if "0x" in address:
+        if type(address) == str and "0x" in address:
             address = int(address, 16)
 
         start_address = address
@@ -302,6 +302,7 @@ class DisAsm:
 
                             opstr2 = base_opstr[:base_opstr.find("x")].lower() + insertion + base_opstr[base_opstr.find("x")+1:].lower()
                             asm_command["formatted_with_labels"] = opstr2
+                            asm_command["target_address"] = target_address
 
                         current_byte_number += 1
                         offset += 1
@@ -331,6 +332,7 @@ class DisAsm:
 
                         opstr2 = base_opstr[:base_opstr.find("?")].lower() + insertion + base_opstr[base_opstr.find("?")+1:].lower()
                         asm_command["formatted_with_labels"] = opstr2
+                        asm_command["target_address"] = target_address
 
                         current_byte_number += 2
                         offset += 2
@@ -423,18 +425,31 @@ class DisAsm:
             offset += 1
 
         # also save the last command if necessary
-        if asm_commands[asm_commands.keys()[-1]] is not asm_command:
+        if len(asm_commands.keys()) > 0 and asm_commands[asm_commands.keys()[-1]] is not asm_command:
             asm_commands[asm_command["address"]] = asm_command
 
         # store the set of commands on this object
         self.asm_commands = asm_commands
 
-        self.end_address = offset + 1
+        self.end_address  = offset + 1
+        self.last_address = self.end_address
 
     def has_outstanding_labels(self, asm_commands, offset):
         """ Checks if there are any labels that haven't yet been created.
         """ # is this really necessary??
         return False
+
+    def used_addresses(self):
+        """ Returns a list of unique addresses that this function will probably
+            call.
+        """
+        addresses = set()
+
+        for (id, command) in self.asm_commands.items():
+            if command.has_key("target_address"):
+                addresses.add(command["target_address"])
+
+        return addresses
 
     def __str__(self):
         """ ASM pretty printer.
