@@ -28,7 +28,7 @@ class RomGraph(nx.DiGraph):
     start_address = 0x150
 
     # and where is a good place to stop?
-    end_address = 0x4000 * 0x01 # only do the first bank? sure..
+    end_address = 0x4000 * 0x03 # only do the first bank? sure..
 
     # where is the rom stored?
     rompath = "../baserom.gbc"
@@ -68,10 +68,10 @@ class RomGraph(nx.DiGraph):
         count = 0
 
         while True:
-            if count > 100:
+            if count > 3000:
                 break
 
-            if address < self.end_address and address not in functions.keys():
+            if address < self.end_address and (address not in functions.keys()) and address >= 0x150:
                 # address is okay to parse at, keep going
                 pass
             elif len(other_addresses) > 0:
@@ -83,6 +83,17 @@ class RomGraph(nx.DiGraph):
 
             # parse the asm
             func = self.rom.to_asm(address)
+
+            # check if there are any nops (probably not a function)
+            nops = 0
+            for (id, command) in func.asm_commands.items():
+                if command.has_key("id") and command["id"] == 0x0:
+                    nops += 1
+
+                    # skip this function
+                    if nops > 1:
+                        address = 0
+                        continue
 
             # store this parsed function
             functions[address] = func
@@ -97,7 +108,8 @@ class RomGraph(nx.DiGraph):
                     other_addresses.update([used_address])
 
                 # add this other address to the graph
-                self.add_node(used_address)
+                if used_address > 100:
+                    self.add_node(used_address)
 
                 # add this as an edge between the two nodes
                 self.add_edge(address, used_address)
@@ -120,9 +132,14 @@ class RomGraph(nx.DiGraph):
         """
         import networkx.readwrite.json_graph as json_graph
         content = json_graph.dumps(self)
-        fh = open("graphs.json", "w")
+        fh = open("crystal/crystal.json", "w")
         fh.write(content)
         fh.close()
+
+    def to_gephi(self):
+        """ Generates a gexf file.
+        """
+        nx.write_gexf(self, "graph.gexf")
 
 class RedGraph(RomGraph):
     """ Not implemented. Go away.
@@ -140,4 +157,4 @@ class CryGraph(RomGraph):
 if __name__ == "__main__":
     crygraph = CryGraph()
     crygraph.pretty_printer()
-    crygraph.to_d3()
+    crygraph.to_gephi()
