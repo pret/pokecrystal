@@ -49,6 +49,8 @@ class RomStr(str):
         """ Loads labels from labels.json, or parses the source code file and
             generates new labels.
         """
+        filename = os.path.dirname(__file__) + "/" + filename
+
         # blank out the hash
         self.labels = {}
 
