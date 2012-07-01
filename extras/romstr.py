@@ -50,7 +50,7 @@ class RomStr(str):
         """ Loads labels from labels.json, or parses the source code file and
             generates new labels.
         """
-        filename = os.path.dirname(__file__) + "/" + filename
+        filename = os.path.join(os.path.dirname(__file__), filename)
 
         # blank out the hash
         self.labels = {}
@@ -75,7 +75,7 @@ class RomStr(str):
 
         # scan the asm source code for labels
         if generate_labels:
-            asm = open(os.path.dirname(__file__) + "/../main.asm", "r").read().split("\n")
+            asm = open(os.path.join(os.path.dirname(__file__), "../main.asm"), "r").read().split("\n")
 
             for line in asm:
                 label = get_label_from_line(line)
