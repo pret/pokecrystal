@@ -72,7 +72,7 @@ class RomStr(str):
 
         # scan the asm source code for labels
         if generate_labels:
-            asm = open("../main.asm", "r").read().split("\n")
+            asm = open(os.path.dirname(__file__) + "/../main.asm", "r").read().split("\n")
 
             for line in asm:
                 label = get_label_from_line(line)
@@ -446,7 +446,7 @@ class DisAsm:
         addresses = set()
 
         for (id, command) in self.asm_commands.items():
-            if command.has_key("target_address"):
+            if command.has_key("target_address") and command["id"] in call_commands:
                 addresses.add(command["target_address"])
 
         return addresses
