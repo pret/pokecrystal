@@ -23,7 +23,8 @@ class RomStr(str):
     """
 
     def __init__(self, *args, **kwargs):
-        self.load_labels()
+        if "labels" in kwargs.keys() and kwargs["labels"] == True:
+            self.load_labels()
         str.__init__(self)
 
     def __repr__(self):
