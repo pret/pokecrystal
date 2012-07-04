@@ -30130,228 +30130,228 @@ UnknownScript_0x6c65b: ; 0x6c65b
 
 SecurityCamera1a: ; 0x6c65e
 	checkbit1 $02e4
-	iftrue UnknownScript_0x6c8b8
-	2call UnknownScript_0x6c8e3
+	iftrue NoSecurityCamera
+	2call PlaySecurityCameraSounds
 	checkbit1 $06da
-	iftrue UnknownScript_0x6c8b8
+	iftrue NoSecurityCamera
 	showemote $0, $0, 15
 	playmusic $0039
 	moveperson $2, $13, $2
 	appear $2
 	spriteface $0, $2
-	applymovement $2, MovementData_0x6cacd
-	2call UnknownScript_0x6c8b9
-	if_equal $1, UnknownScript_0x6c8b8
-	2call UnknownScript_0x6c8e3
+	applymovement $2, SecurityCameraMovement1
+	2call TrainerCameraGrunt1
+	if_equal $1, NoSecurityCamera
+	2call PlaySecurityCameraSounds
 	showemote $0, $0, 15
 	playmusic $0039
 	moveperson $2, $13, $2
 	appear $2
-	applymovement $2, MovementData_0x6cacd
-	2call UnknownScript_0x6c8ce
-	if_equal $1, UnknownScript_0x6c8b8
+	applymovement $2, SecurityCameraMovement1
+	2call TrainerCameraGrunt2
+	if_equal $1, NoSecurityCamera
 	setbit1 $02e4
 	end
 ; 0x6c6a7
 
 SecurityCamera1b: ; 0x6c6a7
 	checkbit1 $02e4
-	iftrue UnknownScript_0x6c8b8
-	2call UnknownScript_0x6c8e3
+	iftrue NoSecurityCamera
+	2call PlaySecurityCameraSounds
 	checkbit1 $06da
-	iftrue UnknownScript_0x6c8b8
+	iftrue NoSecurityCamera
 	showemote $0, $0, 15
 	playmusic $0039
 	moveperson $2, $13, $3
 	appear $2
 	spriteface $0, $2
-	applymovement $2, MovementData_0x6cacd
-	2call UnknownScript_0x6c8b9
-	if_equal $1, UnknownScript_0x6c8b8
-	2call UnknownScript_0x6c8e3
+	applymovement $2, SecurityCameraMovement1
+	2call TrainerCameraGrunt1
+	if_equal $1, NoSecurityCamera
+	2call PlaySecurityCameraSounds
 	showemote $0, $0, 15
 	playmusic $0039
 	moveperson $2, $13, $3
 	appear $2
-	applymovement $2, MovementData_0x6cacd
-	2call UnknownScript_0x6c8ce
-	if_equal $1, UnknownScript_0x6c8b8
+	applymovement $2, SecurityCameraMovement1
+	2call TrainerCameraGrunt2
+	if_equal $1, NoSecurityCamera
 	setbit1 $02e4
 	end
 ; 0x6c6f0
 
 SecurityCamera2a: ; 0x6c6f0
 	checkbit1 $02e5
-	iftrue UnknownScript_0x6c8b8
-	2call UnknownScript_0x6c8e3
+	iftrue NoSecurityCamera
+	2call PlaySecurityCameraSounds
 	checkbit1 $06da
-	iftrue UnknownScript_0x6c8b8
+	iftrue NoSecurityCamera
 	showemote $0, $0, 15
 	playmusic $0039
 	moveperson $2, $4, $7
 	appear $2
 	spriteface $0, $2
-	applymovement $2, MovementData_0x6cad2
-	2call UnknownScript_0x6c8b9
-	if_equal $1, UnknownScript_0x6c8b8
-	2call UnknownScript_0x6c8e3
+	applymovement $2, SecurityCameraMovement2
+	2call TrainerCameraGrunt1
+	if_equal $1, NoSecurityCamera
+	2call PlaySecurityCameraSounds
 	showemote $0, $0, 15
 	playmusic $0039
 	spriteface $0, $3
 	moveperson $2, $c, $5
 	appear $2
-	applymovement $2, MovementData_0x6cada
-	2call UnknownScript_0x6c8ce
-	if_equal $1, UnknownScript_0x6c8b8
+	applymovement $2, SecurityCameraMovement3
+	2call TrainerCameraGrunt2
+	if_equal $1, NoSecurityCamera
 	setbit1 $02e5
 	end
 ; 0x6c73c
 
 SecurityCamera2b: ; 0x6c73c
 	checkbit1 $02e5
-	iftrue UnknownScript_0x6c8b8
-	2call UnknownScript_0x6c8e3
+	iftrue NoSecurityCamera
+	2call PlaySecurityCameraSounds
 	checkbit1 $06da
-	iftrue UnknownScript_0x6c8b8
+	iftrue NoSecurityCamera
 	showemote $0, $0, 15
 	playmusic $0039
 	moveperson $2, $4, $8
 	appear $2
 	spriteface $0, $2
-	applymovement $2, MovementData_0x6cae3
-	2call UnknownScript_0x6c8b9
-	if_equal $1, UnknownScript_0x6c8b8
-	2call UnknownScript_0x6c8e3
+	applymovement $2, SecurityCameraMovement4
+	2call TrainerCameraGrunt1
+	if_equal $1, NoSecurityCamera
+	2call PlaySecurityCameraSounds
 	showemote $0, $0, 15
 	playmusic $0039
 	spriteface $0, $3
 	moveperson $2, $c, $5
 	appear $2
-	applymovement $2, MovementData_0x6caea
-	2call UnknownScript_0x6c8ce
-	if_equal $1, UnknownScript_0x6c8b8
+	applymovement $2, SecurityCameraMovement5
+	2call TrainerCameraGrunt2
+	if_equal $1, NoSecurityCamera
 	setbit1 $02e5
 	end
 ; 0x6c788
 
 SecurityCamera3a: ; 0x6c788
 	checkbit1 $02e6
-	iftrue UnknownScript_0x6c8b8
-	2call UnknownScript_0x6c8e3
+	iftrue NoSecurityCamera
+	2call PlaySecurityCameraSounds
 	checkbit1 $06da
-	iftrue UnknownScript_0x6c8b8
+	iftrue NoSecurityCamera
 	showemote $0, $0, 15
 	playmusic $0039
 	moveperson $2, $13, $6
 	appear $2
 	spriteface $0, $2
-	applymovement $2, MovementData_0x6cacd
-	2call UnknownScript_0x6c8b9
-	if_equal $1, UnknownScript_0x6c8b8
-	2call UnknownScript_0x6c8e3
+	applymovement $2, SecurityCameraMovement1
+	2call TrainerCameraGrunt1
+	if_equal $1, NoSecurityCamera
+	2call PlaySecurityCameraSounds
 	showemote $0, $0, 15
 	playmusic $0039
 	spriteface $0, $3
 	moveperson $2, $19, $b
 	appear $2
-	applymovement $2, MovementData_0x6caf2
-	2call UnknownScript_0x6c8ce
-	if_equal $1, UnknownScript_0x6c8b8
+	applymovement $2, SecurityCameraMovement6
+	2call TrainerCameraGrunt2
+	if_equal $1, NoSecurityCamera
 	setbit1 $02e6
 	end
 ; 0x6c7d4
 
 SecurityCamera3b: ; 0x6c7d4
 	checkbit1 $02e6
-	iftrue UnknownScript_0x6c8b8
-	2call UnknownScript_0x6c8e3
+	iftrue NoSecurityCamera
+	2call PlaySecurityCameraSounds
 	checkbit1 $06da
-	iftrue UnknownScript_0x6c8b8
+	iftrue NoSecurityCamera
 	showemote $0, $0, 15
 	playmusic $0039
 	moveperson $2, $13, $7
 	appear $2
 	spriteface $0, $2
-	applymovement $2, MovementData_0x6cacd
-	2call UnknownScript_0x6c8b9
-	if_equal $1, UnknownScript_0x6c8b8
-	2call UnknownScript_0x6c8e3
+	applymovement $2, SecurityCameraMovement1
+	2call TrainerCameraGrunt1
+	if_equal $1, NoSecurityCamera
+	2call PlaySecurityCameraSounds
 	showemote $0, $0, 15
 	playmusic $0039
 	spriteface $0, $3
 	moveperson $2, $19, $c
 	appear $2
-	applymovement $2, MovementData_0x6cafa
-	2call UnknownScript_0x6c8ce
-	if_equal $1, UnknownScript_0x6c8b8
+	applymovement $2, SecurityCameraMovement7
+	2call TrainerCameraGrunt2
+	if_equal $1, NoSecurityCamera
 	setbit1 $02e6
 	end
 ; 0x6c820
 
 SecurityCamera4: ; 0x6c820
 	checkbit1 $02e7
-	iftrue UnknownScript_0x6c8b8
-	2call UnknownScript_0x6c8e3
+	iftrue NoSecurityCamera
+	2call PlaySecurityCameraSounds
 	checkbit1 $06da
-	iftrue UnknownScript_0x6c8b8
+	iftrue NoSecurityCamera
 	showemote $0, $0, 15
 	playmusic $0039
 	moveperson $2, $11, $10
 	appear $2
 	spriteface $0, $2
-	applymovement $2, MovementData_0x6cacd
-	2call UnknownScript_0x6c8b9
-	if_equal $1, UnknownScript_0x6c8b8
-	2call UnknownScript_0x6c8e3
+	applymovement $2, SecurityCameraMovement1
+	2call TrainerCameraGrunt1
+	if_equal $1, NoSecurityCamera
+	2call PlaySecurityCameraSounds
 	showemote $0, $0, 15
 	playmusic $0039
 	spriteface $0, $3
 	moveperson $2, $19, $b
 	appear $2
-	applymovement $2, MovementData_0x6cb02
-	2call UnknownScript_0x6c8ce
-	if_equal $1, UnknownScript_0x6c8b8
+	applymovement $2, SecurityCameraMovement8
+	2call TrainerCameraGrunt2
+	if_equal $1, NoSecurityCamera
 	setbit1 $02e7
 	end
 ; 0x6c86c
 
 SecurityCamera5: ; 0x6c86c
 	checkbit1 $02e8
-	iftrue UnknownScript_0x6c8b8
-	2call UnknownScript_0x6c8e3
+	iftrue NoSecurityCamera
+	2call PlaySecurityCameraSounds
 	checkbit1 $06da
-	iftrue UnknownScript_0x6c8b8
+	iftrue NoSecurityCamera
 	showemote $0, $0, 15
 	playmusic $0039
 	moveperson $2, $3, $10
 	appear $2
 	spriteface $0, $2
-	applymovement $2, MovementData_0x6cacd
-	2call UnknownScript_0x6c8b9
-	if_equal $1, UnknownScript_0x6c8b8
-	2call UnknownScript_0x6c8e3
+	applymovement $2, SecurityCameraMovement1
+	2call TrainerCameraGrunt1
+	if_equal $1, NoSecurityCamera
+	2call PlaySecurityCameraSounds
 	showemote $0, $0, 15
 	playmusic $0039
 	spriteface $0, $3
 	moveperson $2, $e, $10
 	appear $2
-	applymovement $2, MovementData_0x6cb0c
-	2call UnknownScript_0x6c8ce
-	if_equal $1, UnknownScript_0x6c8b8
+	applymovement $2, SecurityCameraMovement9
+	2call TrainerCameraGrunt2
+	if_equal $1, NoSecurityCamera
 	setbit1 $02e8
 	end
 ; 0x6c8b8
 
-UnknownScript_0x6c8b8: ; 0x6c8b8
+NoSecurityCamera: ; 0x6c8b8
 	end
 ; 0x6c8b9
 
-UnknownScript_0x6c8b9: ; 0x6c8b9
+TrainerCameraGrunt1: ; 0x6c8b9
 	loadfont
-	2writetext UnknownText_0x6cb12
+	2writetext TrainerCameraGrunt1WhenSeenText
 	closetext
 	loadmovesprites
-	winlosstext UnknownText_0x6cb28, $0000
+	winlosstext TrainerCameraGrunt1WhenBeatenText, $0000
 	setlasttalked $2
 	loadtrainer GRUNTM, 20
 	startbattle
@@ -30360,12 +30360,12 @@ UnknownScript_0x6c8b9: ; 0x6c8b9
 	end
 ; 0x6c8ce
 
-UnknownScript_0x6c8ce: ; 0x6c8ce
+TrainerCameraGrunt2: ; 0x6c8ce
 	loadfont
-	2writetext UnknownText_0x6cb39
+	2writetext TrainerCameraGrunt2WhenSeenText
 	closetext
 	loadmovesprites
-	winlosstext UnknownText_0x6cb59, $0000
+	winlosstext TrainerCameraGrunt2WhenBeatenText, $0000
 	setlasttalked $2
 	loadtrainer GRUNTM, 21
 	startbattle
@@ -30374,7 +30374,7 @@ UnknownScript_0x6c8ce: ; 0x6c8ce
 	end
 ; 0x6c8e3
 
-UnknownScript_0x6c8e3: ; 0x6c8e3
+PlaySecurityCameraSounds: ; 0x6c8e3
 	playsound $0030
 	pause 10
 	playsound $0030
@@ -30658,7 +30658,7 @@ TrainerGruntM16WhenTalkScript: ; 0x6ca8e
 ; 0x6ca96
 
 MapTeamRocketBaseB1FSignpost5Script: ; 0x6ca96
-	jumptext UnknownText_0x6cd7c
+	jumptext SecurityCameraText
 ; 0x6ca99
 
 MapTeamRocketBaseB1FSignpost7Script: ; 0x6ca99
@@ -30707,7 +30707,7 @@ MapTeamRocketBaseB1FSignpostItem8: ; 0x6caca
 	
 ; 0x6cacd
 
-MovementData_0x6cacd: ; 0x6cacd
+SecurityCameraMovement1: ; 0x6cacd
 	big_step_right
 	big_step_right
 	big_step_right
@@ -30715,7 +30715,7 @@ MovementData_0x6cacd: ; 0x6cacd
 	step_end
 ; 0x6cad2
 
-MovementData_0x6cad2: ; 0x6cad2
+SecurityCameraMovement2: ; 0x6cad2
 	big_step_up
 	big_step_right
 	big_step_up
@@ -30726,7 +30726,7 @@ MovementData_0x6cad2: ; 0x6cad2
 	step_end
 ; 0x6cada
 
-MovementData_0x6cada: ; 0x6cada
+SecurityCameraMovement3: ; 0x6cada
 	big_step_left
 	big_step_left
 	big_step_left
@@ -30738,7 +30738,8 @@ MovementData_0x6cada: ; 0x6cada
 	step_end
 ; 0x6cae3
 
-MovementData_0x6cae3: ; 0x6cae3
+SecurityCameraMovement4: ; 0x6cae3
+; he jumps over a trap
 	jump_step_up
 	big_step_right
 	big_step_up
@@ -30748,7 +30749,7 @@ MovementData_0x6cae3: ; 0x6cae3
 	step_end
 ; 0x6caea
 
-MovementData_0x6caea: ; 0x6caea
+SecurityCameraMovement5: ; 0x6caea
 	big_step_left
 	big_step_left
 	big_step_left
@@ -30759,7 +30760,7 @@ MovementData_0x6caea: ; 0x6caea
 	step_end
 ; 0x6caf2
 
-MovementData_0x6caf2: ; 0x6caf2
+SecurityCameraMovement6: ; 0x6caf2
 	big_step_up
 	big_step_up
 	big_step_right
@@ -30770,7 +30771,7 @@ MovementData_0x6caf2: ; 0x6caf2
 	step_end
 ; 0x6cafa
 
-MovementData_0x6cafa: ; 0x6cafa
+SecurityCameraMovement7: ; 0x6cafa
 	big_step_up
 	big_step_up
 	big_step_up
@@ -30781,7 +30782,7 @@ MovementData_0x6cafa: ; 0x6cafa
 	step_end
 ; 0x6cb02
 
-MovementData_0x6cb02: ; 0x6cb02
+SecurityCameraMovement8: ; 0x6cb02
 	big_step_down
 	big_step_down
 	big_step_right
@@ -30794,7 +30795,7 @@ MovementData_0x6cb02: ; 0x6cb02
 	step_end
 ; 0x6cb0c
 
-MovementData_0x6cb0c: ; 0x6cb0c
+SecurityCameraMovement9: ; 0x6cb0c
 	big_step_left
 	big_step_left
 	big_step_left
@@ -30803,21 +30804,21 @@ MovementData_0x6cb0c: ; 0x6cb0c
 	step_end
 ; 0x6cb12
 
-UnknownText_0x6cb12: ; 0x6cb12
+TrainerCameraGrunt1WhenSeenText: ; 0x6cb12
 	db $0, "Hey!", $4f
 	db "Intruder alert!", $57
 ; 0x6cb28
 
-UnknownText_0x6cb28: ; 0x6cb28
+TrainerCameraGrunt1WhenBeatenText: ; 0x6cb28
 	db $0, "Dang… I failed…", $57
 ; 0x6cb39
 
-UnknownText_0x6cb39: ; 0x6cb39
+TrainerCameraGrunt2WhenSeenText: ; 0x6cb39
 	db $0, "It's my turn!", $4f
 	db "There's no escape!", $57
 ; 0x6cb59
 
-UnknownText_0x6cb59: ; 0x6cb59
+TrainerCameraGrunt2WhenBeatenText: ; 0x6cb59
 	db $0, "Surveillance cams", $4f
 	db "are in the #MON", $55
 	db "statues.", $51
@@ -30873,7 +30874,7 @@ UnknownText_0x6cd1b: ; 0x6cd1b
 	db "courage and walk.", $57
 ; 0x6cd7c
 
-UnknownText_0x6cd7c: ; 0x6cd7c
+SecurityCameraText: ; 0x6cd7c
 	db $0, "It's a PERSIAN", $4f
 	db "statue…", $51
 	db "Its eyes are oddly", $4f
