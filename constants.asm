@@ -1533,6 +1533,15 @@ HM_05         EQU $F7
 HM_06         EQU $F8
 HM_07         EQU $F9
 
+; days of the week
+MONDAY    EQU $00
+TUESDAY   EQU $01
+WEDNESDAY EQU $02
+THURSDAY  EQU $03
+FRIDAY    EQU $04
+SATURDAY  EQU $05
+SUNDAY    EQU $06
+
 ; trainer groups
 FALKNER      EQU $01
 WHITNEY      EQU $02
