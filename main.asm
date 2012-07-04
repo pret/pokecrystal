@@ -14309,20 +14309,19 @@ TrainerBeautySamanthaWhenTalkScript: ; 0x540ef
 	end
 ; 0x540f7
 
-UnknownScript_0x540f7: ; 0x540f7
+GoldenrodGymGuyScript: ; 0x540f7
 	faceplayer
 	checkbit1 $04bf
-	iftrue UnknownScript_0x54105
+	iftrue .GoldenrodGymGuyWinScript
 	loadfont
-	2writetext UnknownText_0x5463a
+	2writetext GoldenrodGymGuyText
 	closetext
 	loadmovesprites
 	end
-; 0x54105
 
-UnknownScript_0x54105: ; 0x54105
+.GoldenrodGymGuyWinScript
 	loadfont
-	2writetext UnknownText_0x546a7
+	2writetext GoldenrodGymGuyWinText
 	closetext
 	loadmovesprites
 	end
@@ -14505,7 +14504,7 @@ UnknownText_0x5460b: ; 0x5460b
 	db "on any type…", $57
 ; 0x5463a
 
-UnknownText_0x5463a: ; 0x5463a
+GoldenrodGymGuyText: ; 0x5463a
 	db $0, "Yo! CHAMP in", $4f
 	db "making!", $51
 	db "This GYM is home", $4f
@@ -14516,7 +14515,7 @@ UnknownText_0x5463a: ; 0x5463a
 	db "#MON.", $57
 ; 0x546a7
 
-UnknownText_0x546a7: ; 0x546a7
+GoldenrodGymGuyWinText: ; 0x546a7
 	db $0, "You won? Great! I", $4f
 	db "was busy admiring", $55
 	db "the ladies here.", $57
@@ -14547,7 +14546,7 @@ GoldenrodGym_MapEventHeader: ; 0x546dd
 	person_event $28, 10, 13, $8, $0, 255, 255, $92, 1, TrainerLassBridget, $ffff
 	person_event $2a, 6, 4, $6, $0, 255, 255, $92, 3, TrainerBeautyVictoria, $ffff
 	person_event $2a, 9, 23, $6, $0, 255, 255, $92, 3, TrainerBeautySamantha, $ffff
-	person_event $48, 19, 9, $6, $0, 255, 255, $80, 0, UnknownScript_0x540f7, $ffff
+	person_event $48, 19, 9, $6, $0, 255, 255, $80, 0, GoldenrodGymGuyScript, $ffff
 ; 0x5474d
 
 GoldenrodBikeShop_MapScriptHeader: ; 0x5474d
@@ -26852,19 +26851,18 @@ TrainerBird_keeperAbeWhenTalkScript: ; 0x68447
 	end
 ; 0x6844f
 
-UnknownScript_0x6844f: ; 0x6844f
+VioletGymGuyScript: ; 0x6844f
 	faceplayer
 	loadfont
 	checkbit1 $04bd
-	iftrue UnknownScript_0x6845d
-	2writetext UnknownText_0x688f9
+	iftrue .VioletGymGuyWinScript
+	2writetext VioletGymGuyText
 	closetext
 	loadmovesprites
 	end
-; 0x6845d
 
-UnknownScript_0x6845d: ; 0x6845d
-	2writetext UnknownText_0x689c8
+.VioletGymGuyWinScript
+	2writetext VioletGymGuyWinText
 	closetext
 	loadmovesprites
 	end
@@ -26998,7 +26996,7 @@ UnknownText_0x688c7: ; 0x688c7
 	db "rookie trainer…", $57
 ; 0x688f9
 
-UnknownText_0x688f9: ; 0x688f9
+VioletGymGuyText: ; 0x688f9
 	db $0, "Hey! I'm no train-", $4f
 	db "er but I can give", $55
 	db "some advice!", $51
@@ -27014,7 +27012,7 @@ UnknownText_0x688f9: ; 0x688f9
 	db "this in mind.", $57
 ; 0x689c8
 
-UnknownText_0x689c8: ; 0x689c8
+VioletGymGuyWinText: ; 0x689c8
 	db $0, "Nice battle! Keep", $4f
 	db "it up, and you'll", $51
 	db "be the CHAMP in no", $4f
@@ -27043,7 +27041,7 @@ VioletGym_MapEventHeader: ; 0x68a0c
 	person_event $12, 5, 9, $6, $0, 255, 255, $90, 0, UnknownScript_0x683c2, $ffff
 	person_event $27, 10, 11, $8, $2, 255, 255, $92, 3, TrainerBird_keeperRod, $ffff
 	person_event $27, 14, 6, $9, $2, 255, 255, $92, 3, TrainerBird_keeperAbe, $ffff
-	person_event $48, 17, 11, $6, $0, 255, 255, $80, 0, UnknownScript_0x6844f, $ffff
+	person_event $48, 17, 11, $6, $0, 255, 255, $80, 0, VioletGymGuyScript, $ffff
 ; 0x68a5a
 
 EarlsPokemonAcademy_MapScriptHeader: ; 0x68a5a
@@ -35824,8 +35822,8 @@ UnknownScript_0x72184: ; 0x72184
 	end
 ; 0x7218d
 
-UnknownScript_0x7218d: ; 0x7218d
-	jumptextfaceplayer UnknownText_0x72425
+CeladonGymGuyScript: ; 0x7218d
+	jumptextfaceplayer CeladonGymGuyText
 ; 0x72190
 
 UnknownScript_0x72190: ; 0x72190
@@ -35951,7 +35949,7 @@ UnknownText_0x723d9: ; 0x723d9
 	db "too.", $57
 ; 0x72425
 
-UnknownText_0x72425: ; 0x72425
+CeladonGymGuyText: ; 0x72425
 	db $0, "Hey! CHAMP in", $4f
 	db "making!", $51
 	db "Are you playing", $4f
@@ -36058,7 +36056,7 @@ CeladonGameCorner_MapEventHeader: ; 0x725a4
 	person_event $3b, 11, 15, $9, $0, 255, 255, $a0, 0, UnknownScript_0x72139, $ffff
 	person_event $3a, 14, 12, $8, $0, 255, 2, $80, 0, UnknownScript_0x72144, $ffff
 	person_event $3a, 14, 12, $8, $0, 255, 4, $80, 0, UnknownScript_0x72144, $ffff
-	person_event $48, 7, 15, $6, $0, 255, 255, $80, 0, UnknownScript_0x7218d, $ffff
+	person_event $48, 7, 15, $6, $0, 255, 255, $80, 0, CeladonGymGuyScript, $ffff
 	person_event $2f, 12, 6, $8, $0, 255, 255, $a0, 0, UnknownScript_0x72190, $ffff
 ; 0x726e7
 
@@ -63746,19 +63744,18 @@ TrainerMediumGraceWhenTalkScript: ; 0x99e31
 	end
 ; 0x99e39
 
-UnknownScript_0x99e39: ; 0x99e39
+EcruteakGymGuyScript: ; 0x99e39
 	faceplayer
 	loadfont
 	checkbit1 $04c0
-	iftrue UnknownScript_0x99e47
-	2writetext UnknownText_0x9a3e8
+	iftrue .EcruteakGymGuyWinScript
+	2writetext EcruteakGymGuyText
 	closetext
 	loadmovesprites
 	end
-; 0x99e47
 
-UnknownScript_0x99e47: ; 0x99e47
-	2writetext UnknownText_0x9a452
+.EcruteakGymGuyWinScript
+	2writetext EcruteakGymGuyWinText
 	closetext
 	loadmovesprites
 	end
@@ -63940,7 +63937,7 @@ UnknownText_0x9a38a: ; 0x9a38a
 	db "before our eyes!", $57
 ; 0x9a3e8
 
-UnknownText_0x9a3e8: ; 0x9a3e8
+EcruteakGymGuyText: ; 0x9a3e8
 	db $0, "The trainers here", $4f
 	db "have secret mo-", $55
 	db "tives.", $51
@@ -63950,7 +63947,7 @@ UnknownText_0x9a3e8: ; 0x9a3e8
 	db "ECRUTEAK.", $57
 ; 0x9a452
 
-UnknownText_0x9a452: ; 0x9a452
+EcruteakGymGuyWinText: ; 0x9a452
 	db $0, "Whew, ", $52, ".", $4f
 	db "You did great!", $51
 	db "I was cowering in", $4f
@@ -64021,7 +64018,7 @@ EcruteakGym_MapEventHeader: ; 0x9a4e9
 	person_event $3e, 17, 7, $9, $0, 255, 255, $92, 3, TrainerSagePing, $ffff
 	person_event $30, 9, 11, $8, $0, 255, 255, $b2, 1, TrainerMediumMartha, $ffff
 	person_event $30, 13, 11, $8, $0, 255, 255, $b2, 1, TrainerMediumGrace, $ffff
-	person_event $48, 19, 11, $6, $0, 255, 255, $80, 0, UnknownScript_0x99e39, $ffff
+	person_event $48, 19, 11, $6, $0, 255, 255, $80, 0, EcruteakGymGuyScript, $ffff
 	person_event $2f, 18, 8, $6, $0, 255, 255, $a0, 0, UnknownScript_0x26ef, $07a8
 ; 0x9a5f9
 
@@ -64231,19 +64228,18 @@ UnknownScript_0x9aa51: ; 0x9aa51
 	end
 ; 0x9aa57
 
-UnknownScript_0x9aa57: ; 0x9aa57
+ViridianGymGuyScript: ; 0x9aa57
 	faceplayer
 	loadfont
 	checkbit1 $04cc
-	iftrue UnknownScript_0x9aa65
-	2writetext UnknownText_0x9acee
+	iftrue .ViridianGymGuyWinScript
+	2writetext ViridianGymGuyText
 	closetext
 	loadmovesprites
 	end
-; 0x9aa65
 
-UnknownScript_0x9aa65: ; 0x9aa65
-	2writetext UnknownText_0x9ada0
+.ViridianGymGuyWinScript
+	2writetext ViridianGymGuyWinText
 	closetext
 	loadmovesprites
 	end
@@ -64318,7 +64314,7 @@ UnknownText_0x9acab: ; 0x9acab
 	db "you. Got it?", $57
 ; 0x9acee
 
-UnknownText_0x9acee: ; 0x9acee
+ViridianGymGuyText: ; 0x9acee
 	db $0, "Yo, CHAMP in", $4f
 	db "making!", $51
 	db "How's it going?", $4f
@@ -64333,7 +64329,7 @@ UnknownText_0x9acee: ; 0x9acee
 	db "you've got!", $57
 ; 0x9ada0
 
-UnknownText_0x9ada0: ; 0x9ada0
+ViridianGymGuyWinText: ; 0x9ada0
 	db $0, "Man, you are truly", $4f
 	db "tough…", $51
 	db "That was a heck of", $4f
@@ -64362,7 +64358,7 @@ ViridianGym_MapEventHeader: ; 0x9ae04
 	; people-events
 	db 2
 	person_event $7, 7, 9, $6, $0, 255, 255, $0, 0, UnknownScript_0x9aa26, $0776
-	person_event $48, 17, 11, $6, $0, 255, 255, $90, 0, UnknownScript_0x9aa57, $0776
+	person_event $48, 17, 11, $6, $0, 255, 255, $90, 0, ViridianGymGuyScript, $0776
 ; 0x9ae38
 
 ViridianNicknameSpeechHouse_MapScriptHeader: ; 0x9ae38
@@ -65345,30 +65341,30 @@ UnknownScript_0x9c184: ; 0x9c184
 	jumpstd $0013
 ; 0x9c187
 
-UnknownScript_0x9c187: ; 0x9c187
+OlivineGymGuyScript: ; 0x9c187
 	faceplayer
 	checkbit1 $04c1
-	iftrue UnknownScript_0x9c19b
+	iftrue .OlivineGymGuyWinScript
 	checkbit1 $0020
-	iffalse UnknownScript_0x9c1a2
+	iffalse .OlivineGymGuyPreScript
 	loadfont
-	2writetext UnknownText_0x9c402
+	2writetext OlivineGymGuyText
 	closetext
 	loadmovesprites
 	end
 ; 0x9c19b
 
-UnknownScript_0x9c19b: ; 0x9c19b
+.OlivineGymGuyWinScript
 	loadfont
-	2writetext UnknownText_0x9c451
+	2writetext OlivineGymGuyWinText
 	closetext
 	loadmovesprites
 	end
 ; 0x9c1a2
 
-UnknownScript_0x9c1a2: ; 0x9c1a2
+.OlivineGymGuyPreScript
 	loadfont
-	2writetext UnknownText_0x9c4a8
+	2writetext OlivineGymGuyPreText
 	closetext
 	loadmovesprites
 	end
@@ -65445,7 +65441,7 @@ UnknownText_0x9c3d1: ; 0x9c3d1
 	db "but good luck…", $57
 ; 0x9c402
 
-UnknownText_0x9c402: ; 0x9c402
+OlivineGymGuyText: ; 0x9c402
 	db $0, "JASMINE uses the", $4f
 	db "newly discovered", $55
 	db "steel-type.", $51
@@ -65453,7 +65449,7 @@ UnknownText_0x9c402: ; 0x9c402
 	db "much about it.", $57
 ; 0x9c451
 
-UnknownText_0x9c451: ; 0x9c451
+OlivineGymGuyWinText: ; 0x9c451
 	db $0, "That was awesome.", $51
 	db "The steel-type,", $4f
 	db "huh?", $51
@@ -65462,7 +65458,7 @@ UnknownText_0x9c451: ; 0x9c451
 	db "unknown kind!", $57
 ; 0x9c4a8
 
-UnknownText_0x9c4a8: ; 0x9c4a8
+OlivineGymGuyPreText: ; 0x9c4a8
 	db $0, "JASMINE, the GYM", $4f
 	db "LEADER, is at the", $55
 	db "LIGHTHOUSE.", $51
@@ -65493,7 +65489,7 @@ OlivineGym_MapEventHeader: ; 0x9c526
 	; people-events
 	db 2
 	person_event $17, 7, 9, $6, $0, 255, 255, $80, 0, UnknownScript_0x9c12f, $06d3
-	person_event $48, 17, 11, $6, $0, 255, 255, $80, 0, UnknownScript_0x9c187, $ffff
+	person_event $48, 17, 11, $6, $0, 255, 255, $80, 0, OlivineGymGuyScript, $ffff
 ; 0x9c55a
 
 OlivineVoltorbHouse_MapScriptHeader: ; 0x9c55a
@@ -67019,20 +67015,19 @@ UnknownScript_0x9dbd2: ; 0x9dbd2
 	jumptextfaceplayer UnknownText_0x9dbed
 ; 0x9dbd5
 
-UnknownScript_0x9dbd5: ; 0x9dbd5
+CianwoodGymGuyScript: ; 0x9dbd5
 	faceplayer
 	checkbit1 $04c2
-	iftrue UnknownScript_0x9dbe3
+	iftrue .CianwoodGymGuyWinScript
 	loadfont
-	2writetext UnknownText_0x9dc33
+	2writetext CianwoodGymGuyText
 	closetext
 	loadmovesprites
 	end
-; 0x9dbe3
 
-UnknownScript_0x9dbe3: ; 0x9dbe3
+.CianwoodGymGuyWinScript
 	loadfont
-	2writetext UnknownText_0x9ddc5
+	2writetext CianwoodGymGuyWinText
 	closetext
 	loadmovesprites
 	end
@@ -67050,7 +67045,7 @@ UnknownText_0x9dbed: ; 0x9dbed
 	db "rare #MON.", $57
 ; 0x9dc33
 
-UnknownText_0x9dc33: ; 0x9dc33
+CianwoodGymGuyText: ; 0x9dc33
 	db $0, "The #MON GYM", $4f
 	db "trainers here are", $55
 	db "macho bullies.", $51
@@ -67079,7 +67074,7 @@ UnknownText_0x9dc33: ; 0x9dc33
 	db "go outside.", $57
 ; 0x9ddc5
 
-UnknownText_0x9ddc5: ; 0x9ddc5
+CianwoodGymGuyWinText: ; 0x9ddc5
 	db $0, $52, "! You won!", $4f
 	db "I could tell by", $55
 	db "looking at you!", $57
@@ -67137,7 +67132,7 @@ CianwoodPokeCenter1F_MapEventHeader: ; 0x9df4e
 	db 4
 	person_event $37, 5, 7, $6, $0, 255, 255, $0, 0, UnknownScript_0x9dbcf, $ffff
 	person_event $28, 9, 5, $4, $10, 255, 255, $a0, 0, UnknownScript_0x9dbd2, $ffff
-	person_event $48, 7, 9, $6, $0, 255, 255, $80, 0, UnknownScript_0x9dbd5, $ffff
+	person_event $48, 7, 9, $6, $0, 255, 255, $80, 0, CianwoodGymGuyScript, $ffff
 	person_event $2b, 10, 12, $5, $1, 255, 255, $90, 0, UnknownScript_0x9dbea, $ffff
 ; 0x9df97
 
@@ -74883,19 +74878,18 @@ TrainerSwimmermParkerWhenTalkScript: ; 0x18849a
 	end
 ; 0x1884a2
 
-UnknownScript_0x1884a2: ; 0x1884a2
+CeruleanGymGuyScript: ; 0x1884a2
 	faceplayer
 	loadfont
 	checkbit1 $04c6
-	iftrue UnknownScript_0x1884b0
-	2writetext UnknownText_0x1889a7
+	iftrue .CeruleanGymGuyWinScript
+	2writetext CeruleanGymGuyText
 	closetext
 	loadmovesprites
 	end
-; 0x1884b0
 
-UnknownScript_0x1884b0: ; 0x1884b0
-	2writetext UnknownText_0x1889fa
+.CeruleanGymGuyWinScript
+	2writetext CeruleanGymGuyWinText
 	closetext
 	loadmovesprites
 	end
@@ -75108,7 +75102,7 @@ UnknownText_0x188943: ; 0x188943
 	db "you'll be crushed!", $57
 ; 0x1889a7
 
-UnknownText_0x1889a7: ; 0x1889a7
+CeruleanGymGuyText: ; 0x1889a7
 	db $0, "Yo! CHAMP in", $4f
 	db "making!", $51
 	db "Since MISTY was", $4f
@@ -75117,7 +75111,7 @@ UnknownText_0x1889a7: ; 0x1889a7
 	db "He-he-he.", $57
 ; 0x1889fa
 
-UnknownText_0x1889fa: ; 0x1889fa
+CeruleanGymGuyWinText: ; 0x1889fa
 	db $0, "Hoo, you showed me", $4f
 	db "how tough you are.", $51
 	db "As always, that", $4f
@@ -75150,7 +75144,7 @@ CeruleanGym_MapEventHeader: ; 0x188a51
 	person_event $32, 10, 8, $9, $0, 255, 255, $a2, 3, TrainerSwimmerfDiana, $076f
 	person_event $32, 13, 5, $9, $0, 255, 255, $a2, 1, TrainerSwimmerfBriana, $076f
 	person_event $31, 13, 12, $8, $0, 255, 255, $82, 3, TrainerSwimmermParker, $076f
-	person_event $48, 17, 11, $6, $0, 255, 255, $90, 0, UnknownScript_0x1884a2, $076f
+	person_event $48, 17, 11, $6, $0, 255, 255, $90, 0, CeruleanGymGuyScript, $076f
 ; 0x188abe
 
 CeruleanMart_MapScriptHeader: ; 0x188abe
@@ -76349,19 +76343,18 @@ TrainerPsychicJaredWhenTalkScript: ; 0x189cb3
 	end
 ; 0x189cbb
 
-UnknownScript_0x189cbb: ; 0x189cbb
+SaffronGymGuyScript: ; 0x189cbb
 	faceplayer
 	loadfont
 	checkbit1 $04ca
-	iftrue UnknownScript_0x189cc9
-	2writetext UnknownText_0x18a201
+	iftrue .SaffronGymGuyWinScript
+	2writetext SaffronGymGuyText
 	closetext
 	loadmovesprites
 	end
-; 0x189cc9
 
-UnknownScript_0x189cc9: ; 0x189cc9
-	2writetext UnknownText_0x18a2a0
+.SaffronGymGuyWinScript
+	2writetext SaffronGymGuyWinText
 	closetext
 	loadmovesprites
 	end
@@ -76512,7 +76505,7 @@ UnknownText_0x18a1b3: ; 0x18a1b3
 	db "SABRINA.", $57
 ; 0x18a201
 
-UnknownText_0x18a201: ; 0x18a201
+SaffronGymGuyText: ; 0x18a201
 	db $0, "Yo, CHAMP in", $4f
 	db "making!", $51
 	db "A trainer as", $4f
@@ -76526,7 +76519,7 @@ UnknownText_0x18a201: ; 0x18a201
 	db "Good luck!", $57
 ; 0x18a2a0
 
-UnknownText_0x18a2a0: ; 0x18a2a0
+SaffronGymGuyWinText: ; 0x18a2a0
 	db $0, "That was another", $4f
 	db "fantastic battle!", $57
 ; 0x18a2c4
@@ -76584,7 +76577,7 @@ SaffronGym_MapEventHeader: ; 0x18a2c4
 	person_event $27, 20, 7, $a, $0, 255, 255, $92, 3, TrainerPsychicFranklin, $ffff
 	person_event $30, 8, 7, $a, $0, 255, 255, $b2, 2, TrainerMediumDoris, $ffff
 	person_event $27, 8, 21, $a, $0, 255, 255, $92, 2, TrainerPsychicJared, $ffff
-	person_event $48, 18, 13, $6, $0, 255, 255, $90, 0, UnknownScript_0x189cbb, $ffff
+	person_event $48, 18, 13, $6, $0, 255, 255, $90, 0, SaffronGymGuyScript, $ffff
 ; 0x18a3bd
 
 SaffronMart_MapScriptHeader: ; 0x18a3bd
@@ -81115,20 +81108,19 @@ TrainerBug_catcherJoshWhenTalkScript: ; 0x18ecde
 	end
 ; 0x18ece6
 
-UnknownScript_0x18ece6: ; 0x18ece6
+AzaleaGymGuyScript: ; 0x18ece6
 	faceplayer
 	checkbit1 $04be
-	iftrue UnknownScript_0x18ecf4
+	iftrue .AzaleaGymGuyWinScript
 	loadfont
-	2writetext UnknownText_0x18f296
+	2writetext AzaleaGymGuyText
 	closetext
 	loadmovesprites
 	end
-; 0x18ecf4
 
-UnknownScript_0x18ecf4: ; 0x18ecf4
+.AzaleaGymGuyWinScript
 	loadfont
-	2writetext UnknownText_0x18f359
+	2writetext AzaleaGymGuyWinText
 	closetext
 	loadmovesprites
 	end
@@ -81302,7 +81294,7 @@ UnknownText_0x18f269: ; 0x18f269
 	db "a shame.", $57
 ; 0x18f296
 
-UnknownText_0x18f296: ; 0x18f296
+AzaleaGymGuyText: ; 0x18f296
 	db $0, "Yo, challenger!", $51
 	db "BUGSY's young, but", $4f
 	db "his knowledge of", $51
@@ -81319,7 +81311,7 @@ UnknownText_0x18f296: ; 0x18f296
 	db "tive too.", $57
 ; 0x18f359
 
-UnknownText_0x18f359: ; 0x18f359
+AzaleaGymGuyWinText: ; 0x18f359
 	db $0, "Well done! That", $4f
 	db "was a great clash", $51
 	db "of talented young", $4f
@@ -81354,7 +81346,7 @@ AzaleaGym_MapEventHeader: ; 0x18f3cc
 	person_event $25, 6, 4, $6, $0, 255, 255, $b2, 3, TrainerBug_catcherJosh, $ffff
 	person_event $26, 14, 8, $6, $0, 255, 255, $82, 1, TrainerTwinsAmyandmay1, $ffff
 	person_event $26, 14, 9, $6, $0, 255, 255, $82, 1, TrainerTwinsAmyandmay2, $ffff
-	person_event $48, 17, 11, $6, $0, 255, 255, $80, 0, UnknownScript_0x18ece6, $ffff
+	person_event $48, 17, 11, $6, $0, 255, 255, $80, 0, AzaleaGymGuyScript, $ffff
 ; 0x18f441
 
 SECTION "bank64",DATA,BANK[$64]
@@ -83550,19 +83542,18 @@ TrainerJugglerHortonWhenTalkScript: ; 0x192113
 	end
 ; 0x19211b
 
-UnknownScript_0x19211b: ; 0x19211b
+VermilionGymGuyScript: ; 0x19211b
 	faceplayer
 	loadfont
 	checkbit1 $04c7
-	iftrue UnknownScript_0x192129
-	2writetext UnknownText_0x192517
+	iftrue .VermilionGymGuyWinScript
+	2writetext VermilionGymGuyText
 	closetext
 	loadmovesprites
 	end
-; 0x192129
 
-UnknownScript_0x192129: ; 0x192129
-	2writetext UnknownText_0x1925df
+.VermilionGymGuyWinScript
+	2writetext VermilionGymGuyWinText
 	closetext
 	loadmovesprites
 	end
@@ -83689,7 +83680,7 @@ UnknownText_0x1924d6: ; 0x1924d6
 	db "LT.SURGE is tough.", $57
 ; 0x192517
 
-UnknownText_0x192517: ; 0x192517
+VermilionGymGuyText: ; 0x192517
 	db $0, "Yo! CHAMP in", $4f
 	db "making!", $51
 	db "You lucked out", $4f
@@ -83706,7 +83697,7 @@ UnknownText_0x192517: ; 0x192517
 	db "LT.SURGE.", $57
 ; 0x1925df
 
-UnknownText_0x1925df: ; 0x1925df
+VermilionGymGuyWinText: ; 0x1925df
 	db $0, "Whew! That was an", $4f
 	db "electrifying bout!", $51
 	db "It sure made me", $4f
@@ -83756,7 +83747,7 @@ VermilionGym_MapEventHeader: ; 0x19263d
 	person_event $40, 12, 12, $8, $0, 255, 255, $92, 4, TrainerGentlemanGregory, $ffff
 	person_event $2c, 11, 8, $6, $3, 255, 255, $82, 3, TrainerGuitaristVincent, $ffff
 	person_event $2b, 14, 4, $9, $0, 255, 255, $92, 4, TrainerJugglerHorton, $ffff
-	person_event $48, 19, 11, $6, $0, 255, 255, $90, 1, UnknownScript_0x19211b, $ffff
+	person_event $48, 19, 11, $6, $0, 255, 255, $90, 1, VermilionGymGuyScript, $ffff
 ; 0x1926e3
 
 Route6SaffronGate_MapScriptHeader: ; 0x1926e3
@@ -86520,19 +86511,18 @@ TrainerCooltrainerfLolaWhenTalkScript: ; 0x194ece
 	end
 ; 0x194ed6
 
-UnknownScript_0x194ed6: ; 0x194ed6
+BlackthornGymGuyScript: ; 0x194ed6
 	faceplayer
 	loadfont
 	checkbit1 $04c4
-	iftrue UnknownScript_0x194ee4
-	2writetext UnknownText_0x195544
+	iftrue .BlackthornGymGuyWinScript
+	2writetext BlackthornGymGuyText
 	closetext
 	loadmovesprites
 	end
-; 0x194ee4
 
-UnknownScript_0x194ee4: ; 0x194ee4
-	2writetext UnknownText_0x195632
+.BlackthornGymGuyWinScript
+	2writetext BlackthornGymGuyWinText
 	closetext
 	loadmovesprites
 	end
@@ -86713,7 +86703,7 @@ UnknownText_0x195516: ; 0x195516
 	db "type moves.", $57
 ; 0x195544
 
-UnknownText_0x195544: ; 0x195544
+BlackthornGymGuyText: ; 0x195544
 	db $0, "Yo! CHAMP in", $4f
 	db "making!", $51
 	db "It's been a long", $4f
@@ -86732,7 +86722,7 @@ UnknownText_0x195544: ; 0x195544
 	db "ice-type moves.", $57
 ; 0x195632
 
-UnknownText_0x195632: ; 0x195632
+BlackthornGymGuyWinText: ; 0x195632
 	db $0, "You were great to", $4f
 	db "beat CLAIR!", $51
 	db "All that's left is", $4f
@@ -86771,7 +86761,7 @@ BlackthornGym1F_MapEventHeader: ; 0x1956ae
 	person_event $23, 10, 10, $6, $0, 255, 255, $82, 3, TrainerCooltrainermMike, $ffff
 	person_event $23, 18, 5, $6, $0, 255, 255, $82, 3, TrainerCooltrainermPaul, $ffff
 	person_event $24, 6, 13, $6, $0, 255, 255, $82, 1, TrainerCooltrainerfLola, $ffff
-	person_event $48, 19, 11, $6, $0, 255, 255, $80, 0, UnknownScript_0x194ed6, $ffff
+	person_event $48, 19, 11, $6, $0, 255, 255, $80, 0, BlackthornGymGuyScript, $ffff
 ; 0x195722
 
 BlackthornGym2F_MapScriptHeader: ; 0x195722
@@ -87500,19 +87490,18 @@ UnknownScript_0x195efd: ; 0x195efd
 	end
 ; 0x195f03
 
-UnknownScript_0x195f03: ; 0x195f03
+FuchsiaGymGuyScript: ; 0x195f03
 	faceplayer
 	loadfont
 	checkbit1 $04c9
-	iftrue UnknownScript_0x195f11
-	2writetext UnknownText_0x196299
+	iftrue .FuchsiaGymGuyWinScript
+	2writetext FuchsiaGymGuyText
 	closetext
 	loadmovesprites
 	end
-; 0x195f11
 
-UnknownScript_0x195f11: ; 0x195f11
-	2writetext UnknownText_0x196325
+.FuchsiaGymGuyWinScript
+	2writetext FuchsiaGymGuyWinText
 	closetext
 	loadmovesprites
 	end
@@ -87656,7 +87645,7 @@ UnknownText_0x19626b: ; 0x19626b
 	db "what, huh?", $57
 ; 0x196299
 
-UnknownText_0x196299: ; 0x196299
+FuchsiaGymGuyText: ; 0x196299
 	db $0, "Yo, CHAMP in", $4f
 	db "making!", $51
 	db "Whoops! Take a", $4f
@@ -87668,7 +87657,7 @@ UnknownText_0x196299: ; 0x196299
 	db "the real JANINE?", $57
 ; 0x196325
 
-UnknownText_0x196325: ; 0x196325
+FuchsiaGymGuyWinText: ; 0x196325
 	db $0, "That was a great", $4f
 	db "battle, trainer", $55
 	db "from JOHTO!", $57
@@ -87698,7 +87687,7 @@ FuchsiaGym_MapEventHeader: ; 0x196353
 	person_event $f8, 15, 9, $a, $0, 255, 255, $90, 0, UnknownScript_0x195e55, $ffff
 	person_event $f9, 8, 13, $a, $0, 255, 255, $90, 0, UnknownScript_0x195e8f, $ffff
 	person_event $fa, 6, 8, $a, $0, 255, 255, $90, 0, UnknownScript_0x195ec9, $ffff
-	person_event $48, 19, 11, $6, $0, 255, 255, $90, 0, UnknownScript_0x195f03, $ffff
+	person_event $48, 19, 11, $6, $0, 255, 255, $90, 0, FuchsiaGymGuyScript, $ffff
 ; 0x1963bb
 
 FuchsiaBillSpeechHouse_MapScriptHeader: ; 0x1963bb
@@ -90600,19 +90589,18 @@ TrainerBoarderDouglasWhenTalkScript: ; 0x199b61
 	end
 ; 0x199b69
 
-UnknownScript_0x199b69: ; 0x199b69
+MahoganyGymGuyScript: ; 0x199b69
 	faceplayer
 	loadfont
 	checkbit1 $04c3
-	iftrue UnknownScript_0x199b77
-	2writetext UnknownText_0x19a1bf
+	iftrue .MahoganyGymGuyWinScript
+	2writetext MahoganyGymGuyText
 	closetext
 	loadmovesprites
 	end
-; 0x199b77
 
-UnknownScript_0x199b77: ; 0x199b77
-	2writetext UnknownText_0x19a275
+.MahoganyGymGuyWinScript
+	2writetext MahoganyGymGuyWinText
 	closetext
 	loadmovesprites
 	end
@@ -90795,7 +90783,7 @@ UnknownText_0x19a18f: ; 0x19a18f
 	db "about my skiing…", $57
 ; 0x19a1bf
 
-UnknownText_0x19a1bf: ; 0x19a1bf
+MahoganyGymGuyText: ; 0x19a1bf
 	db $0, "PRYCE is a veteran", $4f
 	db "who has trained", $51
 	db "#MON for some", $4f
@@ -90810,7 +90798,7 @@ UnknownText_0x19a1bf: ; 0x19a1bf
 	db "ambition!", $57
 ; 0x19a275
 
-UnknownText_0x19a275: ; 0x19a275
+MahoganyGymGuyWinText: ; 0x19a275
 	db $0, "PRYCE is some-", $4f
 	db "thing, but you're", $55
 	db "something else!", $51
@@ -90845,7 +90833,7 @@ MahoganyGym_MapEventHeader: ; 0x19a2df
 	person_event $2a, 21, 13, $7, $0, 255, 255, $82, 1, TrainerSkierClarissa, $ffff
 	person_event $2c, 13, 9, $6, $0, 255, 255, $92, 1, TrainerBoarderBrad, $ffff
 	person_event $2c, 8, 6, $a, $0, 255, 255, $92, 1, TrainerBoarderDouglas, $ffff
-	person_event $48, 19, 11, $6, $0, 255, 255, $80, 0, UnknownScript_0x199b69, $ffff
+	person_event $48, 19, 11, $6, $0, 255, 255, $80, 0, MahoganyGymGuyScript, $ffff
 ; 0x19a354
 
 MahoganyPokeCenter1F_MapScriptHeader: ; 0x19a354
@@ -99366,19 +99354,18 @@ TrainerCamperJerryWhenTalkScript: ; 0x1a28a4
 	end
 ; 0x1a28ac
 
-UnknownScript_0x1a28ac: ; 0x1a28ac
+PewterGymGuyScript: ; 0x1a28ac
 	faceplayer
 	loadfont
 	checkbit1 $04c5
-	iftrue UnknownScript_0x1a28ba
-	2writetext UnknownText_0x1a2c6e
+	iftrue .PewterGymGuyWinScript
+	2writetext PewterGymGuyText
 	closetext
 	loadmovesprites
 	end
-; 0x1a28ba
 
-UnknownScript_0x1a28ba: ; 0x1a28ba
-	2writetext UnknownText_0x1a2d07
+.PewterGymGuyWinScript
+	2writetext PewterGymGuyWinText
 	closetext
 	loadmovesprites
 	end
@@ -99478,7 +99465,7 @@ UnknownText_0x1a2c0f: ; 0x1a2c0f
 	db "seriously.", $57
 ; 0x1a2c6e
 
-UnknownText_0x1a2c6e: ; 0x1a2c6e
+PewterGymGuyText: ; 0x1a2c6e
 	db $0, "Yo! CHAMP in", $4f
 	db "making! You're", $51
 	db "really rocking.", $4f
@@ -99491,7 +99478,7 @@ UnknownText_0x1a2c6e: ; 0x1a2c6e
 	db "GYM LEADERS.", $57
 ; 0x1a2d07
 
-UnknownText_0x1a2d07: ; 0x1a2d07
+PewterGymGuyWinText: ; 0x1a2d07
 	db $0, "Yo! CHAMP in", $4f
 	db "making! That GYM", $51
 	db "didn't give you", $4f
@@ -99523,7 +99510,7 @@ PewterGym_MapEventHeader: ; 0x1a2d88
 	db 3
 	person_event $1a, 5, 9, $6, $0, 255, 255, $b0, 0, UnknownScript_0x1a2864, $ffff
 	person_event $27, 9, 6, $9, $0, 255, 255, $a2, 3, TrainerCamperJerry, $ffff
-	person_event $48, 15, 10, $6, $0, 255, 255, $90, 1, UnknownScript_0x1a28ac, $ffff
+	person_event $48, 15, 10, $6, $0, 255, 255, $90, 1, PewterGymGuyScript, $ffff
 ; 0x1a2dc9
 
 PewterMart_MapScriptHeader: ; 0x1a2dc9
@@ -106867,20 +106854,19 @@ UnknownScript_0x1ab52b: ; 0x1ab52b
 	end
 ; 0x1ab531
 
-UnknownScript_0x1ab531: ; 0x1ab531
+SeafoamGymGuyScript: ; 0x1ab531
 	faceplayer
 	loadfont
 	checkbit1 $00d5
-	iftrue UnknownScript_0x1ab542
-	2writetext UnknownText_0x1ab759
+	iftrue .TalkedToSeafoamGymGuyScript
+	2writetext SeafoamGymGuyWinText
 	closetext
 	loadmovesprites
 	setbit1 $00d5
 	end
-; 0x1ab542
 
-UnknownScript_0x1ab542: ; 0x1ab542
-	2writetext UnknownText_0x1ab806
+.TalkedToSeafoamGymGuyScript
+	2writetext SeafoamGymGuyWinText2
 	closetext
 	loadmovesprites
 	end
@@ -106936,7 +106922,7 @@ UnknownText_0x1ab71c: ; 0x1ab71c
 	db "Just you watch!", $57
 ; 0x1ab759
 
-UnknownText_0x1ab759: ; 0x1ab759
+SeafoamGymGuyWinText: ; 0x1ab759
 	db $0, "Yo!", $51
 	db "… Huh? It's over", $4f
 	db "already?", $51
@@ -106951,7 +106937,7 @@ UnknownText_0x1ab759: ; 0x1ab759
 	db "I knew you'd win!", $57
 ; 0x1ab806
 
-UnknownText_0x1ab806: ; 0x1ab806
+SeafoamGymGuyWinText2: ; 0x1ab806
 	db $0, "A #MON GYM can", $4f
 	db "be anywhere as", $51
 	db "long as the GYM", $4f
@@ -106977,7 +106963,7 @@ SeafoamGym_MapEventHeader: ; 0x1ab865
 	; people-events
 	db 2
 	person_event $d, 6, 9, $6, $0, 255, 255, $b0, 0, UnknownScript_0x1ab4fb, $ffff
-	person_event $48, 9, 10, $7, $0, 255, 255, $90, 0, UnknownScript_0x1ab531, $0777
+	person_event $48, 9, 10, $7, $0, 255, 255, $90, 0, SeafoamGymGuyScript, $0777
 ; 0x1ab88a
 
 SECTION "bank6B",DATA,BANK[$6B]
