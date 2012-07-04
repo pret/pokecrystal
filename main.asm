@@ -30128,7 +30128,7 @@ UnknownScript_0x6c65b: ; 0x6c65b
 	return
 ; 0x6c65e
 
-UnknownScript_0x6c65e: ; 0x6c65e
+SecurityCamera1a: ; 0x6c65e
 	checkbit1 $02e4
 	iftrue UnknownScript_0x6c8b8
 	2call UnknownScript_0x6c8e3
@@ -30154,7 +30154,7 @@ UnknownScript_0x6c65e: ; 0x6c65e
 	end
 ; 0x6c6a7
 
-UnknownScript_0x6c6a7: ; 0x6c6a7
+SecurityCamera1b: ; 0x6c6a7
 	checkbit1 $02e4
 	iftrue UnknownScript_0x6c8b8
 	2call UnknownScript_0x6c8e3
@@ -30180,7 +30180,7 @@ UnknownScript_0x6c6a7: ; 0x6c6a7
 	end
 ; 0x6c6f0
 
-UnknownScript_0x6c6f0: ; 0x6c6f0
+SecurityCamera2a: ; 0x6c6f0
 	checkbit1 $02e5
 	iftrue UnknownScript_0x6c8b8
 	2call UnknownScript_0x6c8e3
@@ -30207,7 +30207,7 @@ UnknownScript_0x6c6f0: ; 0x6c6f0
 	end
 ; 0x6c73c
 
-UnknownScript_0x6c73c: ; 0x6c73c
+SecurityCamera2b: ; 0x6c73c
 	checkbit1 $02e5
 	iftrue UnknownScript_0x6c8b8
 	2call UnknownScript_0x6c8e3
@@ -30234,7 +30234,7 @@ UnknownScript_0x6c73c: ; 0x6c73c
 	end
 ; 0x6c788
 
-UnknownScript_0x6c788: ; 0x6c788
+SecurityCamera3a: ; 0x6c788
 	checkbit1 $02e6
 	iftrue UnknownScript_0x6c8b8
 	2call UnknownScript_0x6c8e3
@@ -30261,7 +30261,7 @@ UnknownScript_0x6c788: ; 0x6c788
 	end
 ; 0x6c7d4
 
-UnknownScript_0x6c7d4: ; 0x6c7d4
+SecurityCamera3b: ; 0x6c7d4
 	checkbit1 $02e6
 	iftrue UnknownScript_0x6c8b8
 	2call UnknownScript_0x6c8e3
@@ -30288,7 +30288,7 @@ UnknownScript_0x6c7d4: ; 0x6c7d4
 	end
 ; 0x6c820
 
-UnknownScript_0x6c820: ; 0x6c820
+SecurityCamera4: ; 0x6c820
 	checkbit1 $02e7
 	iftrue UnknownScript_0x6c8b8
 	2call UnknownScript_0x6c8e3
@@ -30315,7 +30315,7 @@ UnknownScript_0x6c820: ; 0x6c820
 	end
 ; 0x6c86c
 
-UnknownScript_0x6c86c: ; 0x6c86c
+SecurityCamera5: ; 0x6c86c
 	checkbit1 $02e8
 	iftrue UnknownScript_0x6c8b8
 	2call UnknownScript_0x6c8e3
@@ -30389,205 +30389,183 @@ UnknownScript_0x6c8e3: ; 0x6c8e3
 	end
 ; 0x6c900
 
-UnknownScript_0x6c900: ; 0x6c900
+ExplodingTrap1: ; 0x6c900
 	checkbit1 $02e9
-	iftrue UnknownScript_0x6ca6d
-	2call UnknownScript_0x6ca5a
+	iftrue NoExplodingTrap
+	2call KoffingExplodingTrap
 	returnafterbattle
 	setbit1 $02e9
 	end
-; 0x6c90e
 
-UnknownScript_0x6c90e: ; 0x6c90e
+ExplodingTrap2: ; 0x6c90e
 	checkbit1 $02ea
-	iftrue UnknownScript_0x6ca6d
-	2call UnknownScript_0x6ca34
+	iftrue NoExplodingTrap
+	2call VoltorbExplodingTrap
 	returnafterbattle
 	setbit1 $02ea
 	end
-; 0x6c91c
 
-UnknownScript_0x6c91c: ; 0x6c91c
+ExplodingTrap3: ; 0x6c91c
 	checkbit1 $02eb
-	iftrue UnknownScript_0x6ca6d
-	2call UnknownScript_0x6ca47
+	iftrue NoExplodingTrap
+	2call GeodudeExplodingTrap
 	returnafterbattle
 	setbit1 $02eb
 	end
-; 0x6c92a
 
-UnknownScript_0x6c92a: ; 0x6c92a
+ExplodingTrap4: ; 0x6c92a
 	checkbit1 $02ec
-	iftrue UnknownScript_0x6ca6d
-	2call UnknownScript_0x6ca34
+	iftrue NoExplodingTrap
+	2call VoltorbExplodingTrap
 	returnafterbattle
 	setbit1 $02ec
 	end
-; 0x6c938
 
-UnknownScript_0x6c938: ; 0x6c938
+ExplodingTrap5: ; 0x6c938
 	checkbit1 $02ed
-	iftrue UnknownScript_0x6ca6d
-	2call UnknownScript_0x6ca47
+	iftrue NoExplodingTrap
+	2call GeodudeExplodingTrap
 	returnafterbattle
 	setbit1 $02ed
 	end
-; 0x6c946
 
-UnknownScript_0x6c946: ; 0x6c946
+ExplodingTrap6: ; 0x6c946
 	checkbit1 $02ee
-	iftrue UnknownScript_0x6ca6d
-	2call UnknownScript_0x6ca5a
+	iftrue NoExplodingTrap
+	2call KoffingExplodingTrap
 	returnafterbattle
 	setbit1 $02ee
 	end
-; 0x6c954
 
-UnknownScript_0x6c954: ; 0x6c954
+ExplodingTrap7: ; 0x6c954
 	checkbit1 $02ef
-	iftrue UnknownScript_0x6ca6d
-	2call UnknownScript_0x6ca34
+	iftrue NoExplodingTrap
+	2call VoltorbExplodingTrap
 	returnafterbattle
 	setbit1 $02ef
 	end
-; 0x6c962
 
-UnknownScript_0x6c962: ; 0x6c962
+ExplodingTrap8: ; 0x6c962
 	checkbit1 $02f0
-	iftrue UnknownScript_0x6ca6d
-	2call UnknownScript_0x6ca5a
+	iftrue NoExplodingTrap
+	2call KoffingExplodingTrap
 	returnafterbattle
 	setbit1 $02f0
 	end
-; 0x6c970
 
-UnknownScript_0x6c970: ; 0x6c970
+ExplodingTrap9: ; 0x6c970
 	checkbit1 $02f1
-	iftrue UnknownScript_0x6ca6d
-	2call UnknownScript_0x6ca5a
+	iftrue NoExplodingTrap
+	2call KoffingExplodingTrap
 	returnafterbattle
 	setbit1 $02f1
 	end
-; 0x6c97e
 
-UnknownScript_0x6c97e: ; 0x6c97e
+ExplodingTrap10: ; 0x6c97e
 	checkbit1 $02f2
-	iftrue UnknownScript_0x6ca6d
-	2call UnknownScript_0x6ca34
+	iftrue NoExplodingTrap
+	2call VoltorbExplodingTrap
 	returnafterbattle
 	setbit1 $02f2
 	end
-; 0x6c98c
 
-UnknownScript_0x6c98c: ; 0x6c98c
+ExplodingTrap11: ; 0x6c98c
 	checkbit1 $02f3
-	iftrue UnknownScript_0x6ca6d
-	2call UnknownScript_0x6ca47
+	iftrue NoExplodingTrap
+	2call GeodudeExplodingTrap
 	returnafterbattle
 	setbit1 $02f3
 	end
-; 0x6c99a
 
-UnknownScript_0x6c99a: ; 0x6c99a
+ExplodingTrap12: ; 0x6c99a
 	checkbit1 $02f4
-	iftrue UnknownScript_0x6ca6d
-	2call UnknownScript_0x6ca47
+	iftrue NoExplodingTrap
+	2call GeodudeExplodingTrap
 	returnafterbattle
 	setbit1 $02f4
 	end
-; 0x6c9a8
 
-UnknownScript_0x6c9a8: ; 0x6c9a8
+ExplodingTrap13: ; 0x6c9a8
 	checkbit1 $02f5
-	iftrue UnknownScript_0x6ca6d
-	2call UnknownScript_0x6ca47
+	iftrue NoExplodingTrap
+	2call GeodudeExplodingTrap
 	returnafterbattle
 	setbit1 $02f5
 	end
-; 0x6c9b6
 
-UnknownScript_0x6c9b6: ; 0x6c9b6
+ExplodingTrap14: ; 0x6c9b6
 	checkbit1 $02f6
-	iftrue UnknownScript_0x6ca6d
-	2call UnknownScript_0x6ca5a
+	iftrue NoExplodingTrap
+	2call KoffingExplodingTrap
 	returnafterbattle
 	setbit1 $02f6
 	end
-; 0x6c9c4
 
-UnknownScript_0x6c9c4: ; 0x6c9c4
+ExplodingTrap15: ; 0x6c9c4
 	checkbit1 $02f7
-	iftrue UnknownScript_0x6ca6d
-	2call UnknownScript_0x6ca34
+	iftrue NoExplodingTrap
+	2call VoltorbExplodingTrap
 	returnafterbattle
 	setbit1 $02f7
 	end
-; 0x6c9d2
 
-UnknownScript_0x6c9d2: ; 0x6c9d2
+ExplodingTrap16: ; 0x6c9d2
 	checkbit1 $02f8
-	iftrue UnknownScript_0x6ca6d
-	2call UnknownScript_0x6ca5a
+	iftrue NoExplodingTrap
+	2call KoffingExplodingTrap
 	returnafterbattle
 	setbit1 $02f8
 	end
-; 0x6c9e0
 
-UnknownScript_0x6c9e0: ; 0x6c9e0
+ExplodingTrap17: ; 0x6c9e0
 	checkbit1 $02f9
-	iftrue UnknownScript_0x6ca6d
-	2call UnknownScript_0x6ca34
+	iftrue NoExplodingTrap
+	2call VoltorbExplodingTrap
 	returnafterbattle
 	setbit1 $02f9
 	end
-; 0x6c9ee
 
-UnknownScript_0x6c9ee: ; 0x6c9ee
+ExplodingTrap18: ; 0x6c9ee
 	checkbit1 $02fa
-	iftrue UnknownScript_0x6ca6d
-	2call UnknownScript_0x6ca47
+	iftrue NoExplodingTrap
+	2call GeodudeExplodingTrap
 	returnafterbattle
 	setbit1 $02fa
 	end
-; 0x6c9fc
 
-UnknownScript_0x6c9fc: ; 0x6c9fc
+ExplodingTrap19: ; 0x6c9fc
 	checkbit1 $02fb
-	iftrue UnknownScript_0x6ca6d
-	2call UnknownScript_0x6ca47
+	iftrue NoExplodingTrap
+	2call GeodudeExplodingTrap
 	returnafterbattle
 	setbit1 $02fb
 	end
-; 0x6ca0a
 
-UnknownScript_0x6ca0a: ; 0x6ca0a
+ExplodingTrap20: ; 0x6ca0a
 	checkbit1 $02fc
-	iftrue UnknownScript_0x6ca6d
-	2call UnknownScript_0x6ca34
+	iftrue NoExplodingTrap
+	2call VoltorbExplodingTrap
 	returnafterbattle
 	setbit1 $02fc
 	end
-; 0x6ca18
 
-UnknownScript_0x6ca18: ; 0x6ca18
+ExplodingTrap21: ; 0x6ca18
 	checkbit1 $02fd
-	iftrue UnknownScript_0x6ca6d
-	2call UnknownScript_0x6ca5a
+	iftrue NoExplodingTrap
+	2call KoffingExplodingTrap
 	returnafterbattle
 	setbit1 $02fd
 	end
-; 0x6ca26
 
-UnknownScript_0x6ca26: ; 0x6ca26
+ExplodingTrap22: ; 0x6ca26
 	checkbit1 $02fe
-	iftrue UnknownScript_0x6ca6d
-	2call UnknownScript_0x6ca34
+	iftrue NoExplodingTrap
+	2call VoltorbExplodingTrap
 	returnafterbattle
 	setbit1 $02fe
 	end
-; 0x6ca34
 
-UnknownScript_0x6ca34: ; 0x6ca34
+VoltorbExplodingTrap: ; 0x6ca34
 	special $002e
 	cry VOLTORB
 	special $0031
@@ -30596,9 +30574,8 @@ UnknownScript_0x6ca34: ; 0x6ca34
 	loadpokedata VOLTORB, 23
 	startbattle
 	end
-; 0x6ca47
 
-UnknownScript_0x6ca47: ; 0x6ca47
+GeodudeExplodingTrap: ; 0x6ca47
 	special $002e
 	cry GEODUDE
 	special $0031
@@ -30607,9 +30584,8 @@ UnknownScript_0x6ca47: ; 0x6ca47
 	loadpokedata GEODUDE, 21
 	startbattle
 	end
-; 0x6ca5a
 
-UnknownScript_0x6ca5a: ; 0x6ca5a
+KoffingExplodingTrap: ; 0x6ca5a
 	special $002e
 	cry KOFFING
 	special $0031
@@ -30618,9 +30594,8 @@ UnknownScript_0x6ca5a: ; 0x6ca5a
 	loadpokedata KOFFING, 21
 	startbattle
 	end
-; 0x6ca6d
 
-UnknownScript_0x6ca6d: ; 0x6ca6d
+NoExplodingTrap: ; 0x6ca6d
 	end
 ; 0x6ca6e
 
@@ -30928,36 +30903,40 @@ TeamRocketBaseB1F_MapEventHeader: ; 0x6cdeb
 
 	; xy triggers
 	db 30
-	xy_trigger 0, $2, $18, $0, UnknownScript_0x6c65e, $0, $0
-	xy_trigger 0, $3, $18, $0, UnknownScript_0x6c6a7, $0, $0
-	xy_trigger 0, $2, $6, $0, UnknownScript_0x6c6f0, $0, $0
-	xy_trigger 0, $3, $6, $0, UnknownScript_0x6c73c, $0, $0
-	xy_trigger 0, $6, $18, $0, UnknownScript_0x6c788, $0, $0
-	xy_trigger 0, $7, $18, $0, UnknownScript_0x6c7d4, $0, $0
-	xy_trigger 0, $10, $16, $0, UnknownScript_0x6c820, $0, $0
-	xy_trigger 0, $10, $8, $0, UnknownScript_0x6c86c, $0, $0
-	xy_trigger 0, $7, $2, $0, UnknownScript_0x6c900, $0, $0
-	xy_trigger 0, $7, $3, $0, UnknownScript_0x6c90e, $0, $0
-	xy_trigger 0, $7, $4, $0, UnknownScript_0x6c91c, $0, $0
-	xy_trigger 0, $8, $1, $0, UnknownScript_0x6c92a, $0, $0
-	xy_trigger 0, $8, $3, $0, UnknownScript_0x6c938, $0, $0
-	xy_trigger 0, $8, $5, $0, UnknownScript_0x6c946, $0, $0
-	xy_trigger 0, $9, $3, $0, UnknownScript_0x6c954, $0, $0
-	xy_trigger 0, $9, $4, $0, UnknownScript_0x6c962, $0, $0
-	xy_trigger 0, $a, $1, $0, UnknownScript_0x6c970, $0, $0
-	xy_trigger 0, $a, $2, $0, UnknownScript_0x6c97e, $0, $0
-	xy_trigger 0, $a, $3, $0, UnknownScript_0x6c98c, $0, $0
-	xy_trigger 0, $a, $5, $0, UnknownScript_0x6c99a, $0, $0
-	xy_trigger 0, $b, $2, $0, UnknownScript_0x6c9a8, $0, $0
-	xy_trigger 0, $b, $4, $0, UnknownScript_0x6c9b6, $0, $0
-	xy_trigger 0, $c, $1, $0, UnknownScript_0x6c9c4, $0, $0
-	xy_trigger 0, $c, $2, $0, UnknownScript_0x6c9d2, $0, $0
-	xy_trigger 0, $c, $4, $0, UnknownScript_0x6c9e0, $0, $0
-	xy_trigger 0, $c, $5, $0, UnknownScript_0x6c9ee, $0, $0
-	xy_trigger 0, $d, $1, $0, UnknownScript_0x6c9fc, $0, $0
-	xy_trigger 0, $d, $3, $0, UnknownScript_0x6ca0a, $0, $0
-	xy_trigger 0, $d, $4, $0, UnknownScript_0x6ca18, $0, $0
-	xy_trigger 0, $d, $5, $0, UnknownScript_0x6ca26, $0, $0
+	; There are five security cameras in the base.
+	; Walking in front of one triggers two Rocket Grunts.
+	xy_trigger 0, $2, $18, $0, SecurityCamera1a, $0, $0
+	xy_trigger 0, $3, $18, $0, SecurityCamera1b, $0, $0
+	xy_trigger 0, $2, $6, $0, SecurityCamera2a, $0, $0
+	xy_trigger 0, $3, $6, $0, SecurityCamera2b, $0, $0
+	xy_trigger 0, $6, $18, $0, SecurityCamera3a, $0, $0
+	xy_trigger 0, $7, $18, $0, SecurityCamera3b, $0, $0
+	xy_trigger 0, $10, $16, $0, SecurityCamera4, $0, $0
+	xy_trigger 0, $10, $8, $0, SecurityCamera5, $0, $0
+	; There are spots on the floor that trigger a Pokémon battle.
+	; Each Pokémon (Voltorb, Koffing, Geodude) knows Selfdestruct.
+	xy_trigger 0, $7, $2, $0, ExplodingTrap1, $0, $0
+	xy_trigger 0, $7, $3, $0, ExplodingTrap2, $0, $0
+	xy_trigger 0, $7, $4, $0, ExplodingTrap3, $0, $0
+	xy_trigger 0, $8, $1, $0, ExplodingTrap4, $0, $0
+	xy_trigger 0, $8, $3, $0, ExplodingTrap5, $0, $0
+	xy_trigger 0, $8, $5, $0, ExplodingTrap6, $0, $0
+	xy_trigger 0, $9, $3, $0, ExplodingTrap7, $0, $0
+	xy_trigger 0, $9, $4, $0, ExplodingTrap8, $0, $0
+	xy_trigger 0, $a, $1, $0, ExplodingTrap9, $0, $0
+	xy_trigger 0, $a, $2, $0, ExplodingTrap10, $0, $0
+	xy_trigger 0, $a, $3, $0, ExplodingTrap11, $0, $0
+	xy_trigger 0, $a, $5, $0, ExplodingTrap12, $0, $0
+	xy_trigger 0, $b, $2, $0, ExplodingTrap13, $0, $0
+	xy_trigger 0, $b, $4, $0, ExplodingTrap14, $0, $0
+	xy_trigger 0, $c, $1, $0, ExplodingTrap15, $0, $0
+	xy_trigger 0, $c, $2, $0, ExplodingTrap16, $0, $0
+	xy_trigger 0, $c, $4, $0, ExplodingTrap17, $0, $0
+	xy_trigger 0, $c, $5, $0, ExplodingTrap18, $0, $0
+	xy_trigger 0, $d, $1, $0, ExplodingTrap19, $0, $0
+	xy_trigger 0, $d, $3, $0, ExplodingTrap20, $0, $0
+	xy_trigger 0, $d, $4, $0, ExplodingTrap21, $0, $0
+	xy_trigger 0, $d, $5, $0, ExplodingTrap22, $0, $0
 
 	; signposts
 	db 9
@@ -72658,15 +72637,15 @@ UnknownScript_0x184947: ; 0x184947
 	end
 ; 0x1849a6
 
-UnknownScript_0x1849a6: ; 0x1849a6
+SageLiScript: ; 0x1849a6
 	faceplayer
 	loadfont
 	checkbit1 $0014
 	iftrue UnknownScript_0x1849d1
-	2writetext UnknownText_0x184be0
+	2writetext TrainerSageLiWhenSeenText
 	closetext
 	loadmovesprites
-	winlosstext UnknownText_0x184cb2, $0000
+	winlosstext TrainerSageLiWhenBeatenText, $0000
 	loadtrainer SAGE, LI
 	startbattle
 	returnafterbattle
@@ -72852,7 +72831,7 @@ UnknownText_0x184bc8: ; 0x184bc8
 	db "ESCAPE ROPE!", $57
 ; 0x184be0
 
-UnknownText_0x184be0: ; 0x184be0
+TrainerSageLiWhenSeenText: ; 0x184be0
 	db $0, "So good of you to", $4f
 	db "come here!", $51
 	db "SPROUT TOWER is a", $4f
@@ -72869,7 +72848,7 @@ UnknownText_0x184be0: ; 0x184be0
 	db "you!", $57
 ; 0x184cb2
 
-UnknownText_0x184cb2: ; 0x184cb2
+TrainerSageLiWhenBeatenText: ; 0x184cb2
 	db $0, "Ah, excellent!", $57
 ; 0x184cc2
 
@@ -72988,7 +72967,7 @@ SproutTower3F_MapEventHeader: ; 0x184f8e
 	db 7
 	person_event $3e, 17, 12, $9, $0, 255, 255, $92, 3, TrainerSageJin, $ffff
 	person_event $3e, 12, 12, $6, $0, 255, 255, $92, 2, TrainerSageTroy, $ffff
-	person_event $3e, 6, 14, $6, $0, 255, 255, $90, 0, UnknownScript_0x1849a6, $ffff
+	person_event $3e, 6, 14, $6, $0, 255, 255, $90, 0, SageLiScript, $ffff
 	person_event $3e, 15, 15, $8, $0, 255, 255, $92, 3, TrainerSageNeal, $ffff
 	person_event $54, 18, 10, $1, $0, 255, 255, $1, 0, ItemFragment_0x184a19, $0649
 	person_event $54, 5, 18, $1, $0, 255, 255, $1, 0, ItemFragment_0x184a1b, $064a
