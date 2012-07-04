@@ -17854,7 +17854,7 @@ UnknownScript_0x587a8: ; 0x587a8
 	faceplayer
 	loadfont
 	checkcode $e
-	if_equal $1a, UnknownScript_0x587cf
+	if_equal 26, UnknownScript_0x587cf
 	checkbit1 $0327
 	iftrue UnknownScript_0x587c9
 	checkbit1 $02a1
@@ -18642,7 +18642,7 @@ UnknownScript_0x591d1: ; 0x591d1
 	faceplayer
 	loadfont
 	checkcode $e
-	if_equal $1a, UnknownScript_0x591df
+	if_equal 26, UnknownScript_0x591df
 	2writetext UnknownText_0x59311
 	closetext
 	loadmovesprites
@@ -18660,7 +18660,7 @@ UnknownScript_0x591e5: ; 0x591e5
 	faceplayer
 	loadfont
 	checkcode $e
-	if_equal $1a, UnknownScript_0x5920b
+	if_equal 26, UnknownScript_0x5920b
 	checkbit2 $000c
 	iftrue UnknownScript_0x59205
 	checkbit1 $002e
@@ -18697,7 +18697,7 @@ UnknownScript_0x59214: ; 0x59214
 	faceplayer
 	loadfont
 	checkcode $e
-	if_equal $1a, UnknownScript_0x5922e
+	if_equal 26, UnknownScript_0x5922e
 	checkbit1 $002e
 	iftrue UnknownScript_0x59228
 	2writetext UnknownText_0x5954f
@@ -18725,7 +18725,7 @@ MapRuinsofAlphResearchCenterSignpost1Script: ; 0x59234
 	checkbit1 $0704
 	iftrue UnknownScript_0x59241
 	checkcode $e
-	if_equal $1a, UnknownScript_0x59247
+	if_equal 26, UnknownScript_0x59247
 UnknownScript_0x59241: ; 0x59241
 	2writetext UnknownText_0x597b6
 	closetext
@@ -18745,7 +18745,7 @@ MapRuinsofAlphResearchCenterSignpost2Script: ; 0x5924d
 	checkbit1 $0704
 	iftrue UnknownScript_0x5925a
 	checkcode $e
-	if_equal $1a, UnknownScript_0x59260
+	if_equal 26, UnknownScript_0x59260
 UnknownScript_0x5925a: ; 0x5925a
 	2writetext UnknownText_0x5980e
 	closetext
