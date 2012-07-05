@@ -16014,7 +16014,7 @@ GoldenrodDeptStore5F_MapScriptHeader: ; 0x5608b
 
 UnknownScript_0x56090: ; 0x56090
 	checkcode $b
-	if_equal MONDAY, UnknownScript_0x56099
+	if_equal SUNDAY, UnknownScript_0x56099
 	disappear $7
 	return
 ; 0x56099
@@ -16068,7 +16068,7 @@ UnknownScript_0x560ce: ; 0x560ce
 	faceplayer
 	loadfont
 	checkcode $b
-	if_not_equal MONDAY, UnknownScript_0x56112
+	if_not_equal SUNDAY, UnknownScript_0x56112
 	checkbit2 $005b
 	iftrue UnknownScript_0x56112
 	special $0059
@@ -16750,8 +16750,8 @@ UnknownScript_0x56bf9: ; 0x56bf9
 	checkitem COIN_CASE
 	iffalse UnknownScript_0x56c0e
 	checkcode $b
-	if_equal THURSDAY, UnknownScript_0x56c11
-	if_equal SUNDAY, UnknownScript_0x56c11
+	if_equal WEDNESDAY, UnknownScript_0x56c11
+	if_equal SATURDAY, UnknownScript_0x56c11
 UnknownScript_0x56c0e: ; 0x56c0e
 	appear $d
 	return
@@ -19903,7 +19903,7 @@ UnknownScript_0x5a30d: ; 0x5a30d
 	checkbit2 $0059
 	iftrue UnknownScript_0x5a319
 	checkcode $b
-	if_equal SATURDAY, UnknownScript_0x5a31c
+	if_equal FRIDAY, UnknownScript_0x5a31c
 UnknownScript_0x5a319: ; 0x5a319
 	disappear $7
 	return
@@ -28215,9 +28215,9 @@ UnknownScript_0x6a1ac: ; 0x6a1ac
 
 UnknownScript_0x6a1af: ; 0x6a1af
 	checkcode $b
-	if_equal WEDNESDAY, UnknownScript_0x6a1ca
-	if_equal FRIDAY, UnknownScript_0x6a1ca
-	if_equal SUNDAY, UnknownScript_0x6a1ca
+	if_equal TUESDAY, UnknownScript_0x6a1ca
+	if_equal THURSDAY, UnknownScript_0x6a1ca
+	if_equal SATURDAY, UnknownScript_0x6a1ca
 	checkbit2 $0011
 	iftrue UnknownScript_0x6a1ac
 	disappear $2
@@ -28263,10 +28263,10 @@ UnknownScript_0x6a1ee: ; 0x6a1ee
 
 UnknownScript_0x6a204: ; 0x6a204
 	checkcode $b
+	if_equal SUNDAY, UnknownScript_0x6a2c7
 	if_equal MONDAY, UnknownScript_0x6a2c7
-	if_equal TUESDAY, UnknownScript_0x6a2c7
-	if_equal THURSDAY, UnknownScript_0x6a2c7
-	if_equal SATURDAY, UnknownScript_0x6a2c7
+	if_equal WEDNESDAY, UnknownScript_0x6a2c7
+	if_equal FRIDAY, UnknownScript_0x6a2c7
 	faceplayer
 	loadfont
 	checkbit2 $0051
@@ -28730,9 +28730,9 @@ UnknownScript_0x6ab23: ; 0x6ab23
 	checkbit1 $02d2
 	iftrue UnknownScript_0x6ab46
 	checkcode $b
-	if_equal WEDNESDAY, UnknownScript_0x6ab42
-	if_equal FRIDAY, UnknownScript_0x6ab42
-	if_equal SUNDAY, UnknownScript_0x6ab42
+	if_equal TUESDAY, UnknownScript_0x6ab42
+	if_equal THURSDAY, UnknownScript_0x6ab42
+	if_equal SATURDAY, UnknownScript_0x6ab42
 	checkbit2 $0011
 	iftrue UnknownScript_0x6ab42
 	disappear $2
@@ -28829,10 +28829,10 @@ UnknownScript_0x6abdc: ; 0x6abdc
 
 UnknownScript_0x6abe0: ; 0x6abe0
 	checkcode $b
+	if_equal SUNDAY, UnknownScript_0x6acf1
 	if_equal MONDAY, UnknownScript_0x6acf1
-	if_equal TUESDAY, UnknownScript_0x6acf1
-	if_equal THURSDAY, UnknownScript_0x6acf1
-	if_equal SATURDAY, UnknownScript_0x6acf1
+	if_equal WEDNESDAY, UnknownScript_0x6acf1
+	if_equal FRIDAY, UnknownScript_0x6acf1
 	faceplayer
 	loadfont
 	checkbit2 $0051
@@ -33696,7 +33696,7 @@ UnknownScript_0x70012: ; 0x70012
 
 UnknownScript_0x70016: ; 0x70016
 	checkcode $b
-	if_equal THURSDAY, UnknownScript_0x7001f
+	if_equal WEDNESDAY, UnknownScript_0x7001f
 	disappear $b
 	return
 ; 0x7001f
@@ -33941,7 +33941,7 @@ UnknownScript_0x7010e: ; 0x7010e
 	checkbit1 $006b
 	iftrue UnknownScript_0x7013c
 	checkcode $b
-	if_not_equal THURSDAY, UnknownScript_0x70142
+	if_not_equal WEDNESDAY, UnknownScript_0x70142
 	checkbit1 $006a
 	iftrue UnknownScript_0x70129
 	2writetext UnknownText_0x70784
@@ -37986,11 +37986,11 @@ UnknownScript_0x7491f: ; 0x7491f
 	checkbit1 $0030
 	iffalse UnknownScript_0x7494e
 	checkcode $b
-	if_equal MONDAY, UnknownScript_0x74977
 	if_equal SUNDAY, UnknownScript_0x74977
+	if_equal SATURDAY, UnknownScript_0x74977
+	if_equal TUESDAY, UnknownScript_0x74981
 	if_equal WEDNESDAY, UnknownScript_0x74981
 	if_equal THURSDAY, UnknownScript_0x74981
-	if_equal FRIDAY, UnknownScript_0x74981
 UnknownScript_0x7494e: ; 0x7494e
 	2writetext UnknownText_0x74a9c
 	yesorno
@@ -38058,11 +38058,11 @@ UnknownScript_0x7499c: ; 0x7499c
 	checkbit1 $0030
 	iffalse UnknownScript_0x749c0
 	checkcode $b
-	if_equal MONDAY, UnknownScript_0x749f2
 	if_equal SUNDAY, UnknownScript_0x749f2
+	if_equal SATURDAY, UnknownScript_0x749f2
+	if_equal TUESDAY, UnknownScript_0x749f8
 	if_equal WEDNESDAY, UnknownScript_0x749f8
 	if_equal THURSDAY, UnknownScript_0x749f8
-	if_equal FRIDAY, UnknownScript_0x749f8
 UnknownScript_0x749c0: ; 0x749c0
 	2writetext UnknownText_0x74a9c
 	yesorno
@@ -38426,11 +38426,11 @@ UnknownScript_0x74e20: ; 0x74e20
 	spriteface $0, $2
 	loadfont
 	checkcode $b
+	if_equal MONDAY, UnknownScript_0x74e72
 	if_equal TUESDAY, UnknownScript_0x74e72
-	if_equal WEDNESDAY, UnknownScript_0x74e72
+	if_equal THURSDAY, UnknownScript_0x74e7c
 	if_equal FRIDAY, UnknownScript_0x74e7c
 	if_equal SATURDAY, UnknownScript_0x74e7c
-	if_equal SUNDAY, UnknownScript_0x74e7c
 	2writetext UnknownText_0x74f4d
 	yesorno
 	iffalse UnknownScript_0x74e8d
@@ -38495,11 +38495,11 @@ UnknownScript_0x74e97: ; 0x74e97
 	checkbit1 $0000
 	iftrue UnknownScript_0x74e1a
 	checkcode $b
+	if_equal MONDAY, UnknownScript_0x74eda
 	if_equal TUESDAY, UnknownScript_0x74eda
-	if_equal WEDNESDAY, UnknownScript_0x74eda
+	if_equal THURSDAY, UnknownScript_0x74ee0
 	if_equal FRIDAY, UnknownScript_0x74ee0
 	if_equal SATURDAY, UnknownScript_0x74ee0
-	if_equal SUNDAY, UnknownScript_0x74ee0
 	2writetext UnknownText_0x74f4d
 	yesorno
 	iffalse UnknownScript_0x74e87
@@ -41105,7 +41105,7 @@ UnknownScript_0x7709a: ; 0x7709a
 	checkbit2 $0058
 	iftrue UnknownScript_0x77117
 	checkcode $b
-	if_not_equal TUESDAY, UnknownScript_0x77117
+	if_not_equal MONDAY, UnknownScript_0x77117
 	checktime $4
 	iffalse UnknownScript_0x77117
 	appear $2
@@ -44883,12 +44883,12 @@ UnknownScript_0x7c07d: ; 0x7c07d
 
 UnknownScript_0x7c082: ; 0x7c082
 	checkcode $b
-	if_equal TUESDAY, UnknownScript_0x7c0a5
-	if_equal WEDNESDAY, UnknownScript_0x7c0b5
-	if_equal THURSDAY, UnknownScript_0x7c0be
-	if_equal FRIDAY, UnknownScript_0x7c0c7
-	if_equal SATURDAY, UnknownScript_0x7c0d0
-	if_equal SUNDAY, UnknownScript_0x7c0d9
+	if_equal MONDAY, UnknownScript_0x7c0a5
+	if_equal TUESDAY, UnknownScript_0x7c0b5
+	if_equal WEDNESDAY, UnknownScript_0x7c0be
+	if_equal THURSDAY, UnknownScript_0x7c0c7
+	if_equal FRIDAY, UnknownScript_0x7c0d0
+	if_equal SATURDAY, UnknownScript_0x7c0d9
 	disappear $7
 	disappear $8
 	appear $9
@@ -45067,8 +45067,8 @@ TrainerPokemaniacDonaldWhenTalkScript: ; 0x7c12a
 UnknownScript_0x7c132: ; 0x7c132
 	loadfont
 	checkcode $b
-	if_equal MONDAY, UnknownScript_0x7c140
 	if_equal SUNDAY, UnknownScript_0x7c140
+	if_equal SATURDAY, UnknownScript_0x7c140
 	2jump UnknownScript_0x7c300
 ; 0x7c140
 
@@ -45083,7 +45083,7 @@ UnknownScript_0x7c146: ; 0x7c146
 	checkbit2 $0056
 	iftrue UnknownScript_0x7c300
 	checkcode $b
-	if_equal TUESDAY, UnknownScript_0x7c156
+	if_equal MONDAY, UnknownScript_0x7c156
 	2jump UnknownScript_0x7c300
 ; 0x7c156
 
@@ -45098,9 +45098,9 @@ UnknownScript_0x7c156: ; 0x7c156
 UnknownScript_0x7c161: ; 0x7c161
 	loadfont
 	checkcode $b
-	if_equal WEDNESDAY, UnknownScript_0x7c173
-	if_equal FRIDAY, UnknownScript_0x7c173
-	if_equal SUNDAY, UnknownScript_0x7c173
+	if_equal TUESDAY, UnknownScript_0x7c173
+	if_equal THURSDAY, UnknownScript_0x7c173
+	if_equal SATURDAY, UnknownScript_0x7c173
 	2jump UnknownScript_0x7c300
 ; 0x7c173
 
@@ -45190,9 +45190,9 @@ UnknownScript_0x7c208: ; 0x7c208
 UnknownScript_0x7c20e: ; 0x7c20e
 	loadfont
 	checkcode $b
-	if_equal MONDAY, UnknownScript_0x7c220
-	if_equal THURSDAY, UnknownScript_0x7c220
-	if_equal SATURDAY, UnknownScript_0x7c220
+	if_equal SUNDAY, UnknownScript_0x7c220
+	if_equal WEDNESDAY, UnknownScript_0x7c220
+	if_equal FRIDAY, UnknownScript_0x7c220
 	2jump UnknownScript_0x7c300
 ; 0x7c220
 
@@ -70093,11 +70093,11 @@ UnknownScript_0x180053: ; 0x180053
 	checkbit2 $005d
 	iftrue UnknownScript_0x18012b
 	checkcode $b
-	if_equal MONDAY, UnknownScript_0x18012b
-	if_equal WEDNESDAY, UnknownScript_0x18012b
+	if_equal SUNDAY, UnknownScript_0x18012b
+	if_equal TUESDAY, UnknownScript_0x18012b
+	if_equal THURSDAY, UnknownScript_0x18012b
 	if_equal FRIDAY, UnknownScript_0x18012b
 	if_equal SATURDAY, UnknownScript_0x18012b
-	if_equal SUNDAY, UnknownScript_0x18012b
 	moveperson $5, $11, $9
 	appear $5
 	spriteface $0, $0
@@ -70116,11 +70116,11 @@ UnknownScript_0x180094: ; 0x180094
 	checkbit2 $005d
 	iftrue UnknownScript_0x18012b
 	checkcode $b
-	if_equal MONDAY, UnknownScript_0x18012b
-	if_equal WEDNESDAY, UnknownScript_0x18012b
+	if_equal SUNDAY, UnknownScript_0x18012b
+	if_equal TUESDAY, UnknownScript_0x18012b
+	if_equal THURSDAY, UnknownScript_0x18012b
 	if_equal FRIDAY, UnknownScript_0x18012b
 	if_equal SATURDAY, UnknownScript_0x18012b
-	if_equal SUNDAY, UnknownScript_0x18012b
 	appear $5
 	spriteface $0, $0
 	showemote $0, $0, 15
@@ -78748,8 +78748,8 @@ UnknownScript_0x18c89f: ; 0x18c89f
 
 UnknownScript_0x18c8a8: ; 0x18c8a8
 	checkcode $b
-	if_equal WEDNESDAY, UnknownScript_0x18c8b5
-	if_equal FRIDAY, UnknownScript_0x18c8b5
+	if_equal TUESDAY, UnknownScript_0x18c8b5
+	if_equal THURSDAY, UnknownScript_0x18c8b5
 	disappear $4
 	return
 ; 0x18c8b5
@@ -81649,7 +81649,7 @@ UnknownScript_0x190462: ; 0x190462
 
 UnknownScript_0x190463: ; 0x190463
 	checkcode $b
-	if_equal SATURDAY, UnknownScript_0x19046c
+	if_equal FRIDAY, UnknownScript_0x19046c
 	disappear $e
 	return
 ; 0x19046c
@@ -82253,7 +82253,7 @@ UnknownScript_0x190739: ; 0x190739
 	checkbit1 $0063
 	iftrue UnknownScript_0x190767
 	checkcode $b
-	if_not_equal SATURDAY, UnknownScript_0x19076d
+	if_not_equal FRIDAY, UnknownScript_0x19076d
 	checkbit1 $0062
 	iftrue UnknownScript_0x190754
 	2writetext UnknownText_0x1911c1
@@ -85428,7 +85428,7 @@ UnknownScript_0x19400e: ; 0x19400e
 
 UnknownScript_0x19400f: ; 0x19400f
 	checkcode $b
-	if_equal FRIDAY, UnknownScript_0x194018
+	if_equal THURSDAY, UnknownScript_0x194018
 	disappear $8
 	return
 ; 0x194018
@@ -85787,7 +85787,7 @@ UnknownScript_0x194201: ; 0x194201
 	checkbit1 $0067
 	iftrue UnknownScript_0x19422f
 	checkcode $b
-	if_not_equal FRIDAY, UnknownScript_0x194235
+	if_not_equal THURSDAY, UnknownScript_0x194235
 	checkbit1 $0066
 	iftrue UnknownScript_0x19421c
 	2writetext UnknownText_0x194800
@@ -89392,8 +89392,8 @@ UnknownScript_0x1988e8: ; 0x1988e8
 	checkitem COIN_CASE
 	iffalse UnknownScript_0x1988fd
 	checkcode $b
-	if_equal THURSDAY, UnknownScript_0x198900
-	if_equal SUNDAY, UnknownScript_0x198900
+	if_equal WEDNESDAY, UnknownScript_0x198900
+	if_equal SATURDAY, UnknownScript_0x198900
 UnknownScript_0x1988fd: ; 0x1988fd
 	disappear $10
 	return
@@ -97376,7 +97376,7 @@ UnknownScript_0x1a0f61: ; 0x1a0f61
 
 UnknownScript_0x1a0f64: ; 0x1a0f64
 	checkcode $b
-	if_not_equal WEDNESDAY, UnknownScript_0x1a0f61
+	if_not_equal TUESDAY, UnknownScript_0x1a0f61
 	appear $8
 	return
 ; 0x1a0f6d
@@ -97527,7 +97527,7 @@ UnknownScript_0x1a1049: ; 0x1a1049
 	checkbit1 $0065
 	iftrue UnknownScript_0x1a1077
 	checkcode $b
-	if_not_equal WEDNESDAY, UnknownScript_0x1a107d
+	if_not_equal TUESDAY, UnknownScript_0x1a107d
 	checkbit1 $0064
 	iftrue UnknownScript_0x1a1064
 	2writetext UnknownText_0x1a13b2
@@ -100032,7 +100032,7 @@ UnknownScript_0x1a46d8: ; 0x1a46d8
 
 UnknownScript_0x1a46dc: ; 0x1a46dc
 	checkcode $b
-	if_equal SUNDAY, UnknownScript_0x1a46e5
+	if_equal SATURDAY, UnknownScript_0x1a46e5
 	disappear $9
 	return
 ; 0x1a46e5
@@ -100113,7 +100113,7 @@ UnknownScript_0x1a472b: ; 0x1a472b
 	checkbit1 $006d
 	iftrue UnknownScript_0x1a4759
 	checkcode $b
-	if_not_equal SUNDAY, UnknownScript_0x1a475f
+	if_not_equal SATURDAY, UnknownScript_0x1a475f
 	checkbit1 $006c
 	iftrue UnknownScript_0x1a4746
 	2writetext UnknownText_0x1a4a27
@@ -101891,7 +101891,7 @@ Route40_MapScriptHeader: ; 0x1a6160
 UnknownScript_0x1a6165: ; 0x1a6165
 	clearbit1 $07cf
 	checkcode $b
-	if_equal TUESDAY, UnknownScript_0x1a6171
+	if_equal MONDAY, UnknownScript_0x1a6171
 	disappear $a
 	return
 ; 0x1a6171
@@ -102045,7 +102045,7 @@ UnknownScript_0x1a61d9: ; 0x1a61d9
 	checkbit1 $006f
 	iftrue UnknownScript_0x1a6207
 	checkcode $b
-	if_not_equal TUESDAY, UnknownScript_0x1a620d
+	if_not_equal MONDAY, UnknownScript_0x1a620d
 	checkbit1 $006e
 	iftrue UnknownScript_0x1a61f4
 	2writetext UnknownText_0x1a6606
@@ -104099,7 +104099,7 @@ Route37_MapScriptHeader: ; 0x1a8d72
 
 UnknownScript_0x1a8d77: ; 0x1a8d77
 	checkcode $b
-	if_equal MONDAY, UnknownScript_0x1a8d80
+	if_equal SUNDAY, UnknownScript_0x1a8d80
 	disappear $6
 	return
 ; 0x1a8d80
@@ -104202,7 +104202,7 @@ UnknownScript_0x1a8dbf: ; 0x1a8dbf
 	checkbit1 $0069
 	iftrue UnknownScript_0x1a8dfa
 	checkcode $b
-	if_not_equal MONDAY, UnknownScript_0x1a8e00
+	if_not_equal SUNDAY, UnknownScript_0x1a8e00
 	checkbit1 $0068
 	iftrue UnknownScript_0x1a8dda
 	2writetext UnknownText_0x1a8fc8
