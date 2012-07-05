@@ -9464,7 +9464,7 @@ PokefanMTrainerGroupHeader: ; 0x3b78a
 
 KimonoGirlTrainerGroupHeader: ; 0x3b84b
 	; NAOKO1 (2) at 0x3b84b
-	db "NAOKO@"
+	db "NAOKO@" ; unused
 	db $00 ; data type
 	db 20, SKIPLOOM
 	db 20, VULPIX
@@ -15226,7 +15226,7 @@ UnknownScript_0x54be4: ; 0x54be4
 	2writetext UnknownText_0x54dae
 	playsound $0002
 	waitbutton
-	givepoke EEVEE, $14, $0, $0
+	givepoke EEVEE, 20, 0, 0
 	setbit1 $004f
 	2writetext UnknownText_0x54dc1
 	closetext
@@ -17267,9 +17267,9 @@ UnknownScript_0x56d26: ; 0x56d26
 	playsound $0022
 	2writetext UnknownText_0x56ebd
 	closetext
-	writebyte $3f
+	writebyte ABRA
 	special $0039
-	givepoke ABRA, $5, $0, $0
+	givepoke ABRA, 5, 0, 0
 	takecoins 100
 	2jump UnknownScript_0x56d0c
 ; 0x56d54
@@ -17286,9 +17286,9 @@ UnknownScript_0x56d54: ; 0x56d54
 	playsound $0022
 	2writetext UnknownText_0x56ebd
 	closetext
-	writebyte $68
+	writebyte CUBONE
 	special $0039
-	givepoke CUBONE, $f, $0, $0
+	givepoke CUBONE, 15, 0, 0
 	takecoins 800
 	2jump UnknownScript_0x56d0c
 ; 0x56d82
@@ -17305,9 +17305,9 @@ UnknownScript_0x56d82: ; 0x56d82
 	playsound $0022
 	2writetext UnknownText_0x56ebd
 	closetext
-	writebyte $ca
+	writebyte WOBBUFFET
 	special $0039
-	givepoke WOBBUFFET, $f, $0, $0
+	givepoke WOBBUFFET, 15, 0, 0
 	takecoins 1500
 	2jump UnknownScript_0x56d0c
 ; 0x56db0
@@ -25227,7 +25227,7 @@ UnknownScript_0x60c3a: ; 0x60c3a
 	checkbit1 $0020
 	iftrue UnknownScript_0x60c51
 	2writetext UnknownText_0x60f03
-	writebyte $b5
+	writebyte AMPHAROS
 	special $005f
 	keeptextopen
 	2writetext UnknownText_0x60f19
@@ -28350,8 +28350,8 @@ UnknownScript_0x69d37: ; 0x69d37
 	2writetext UnknownText_0x69eb8
 	playsound $0091
 	waitbutton
-	givepoke SPEAROW, $a, $0, $1, $5db9, $5dbf
-	givepokeitem GivePokeItem_0x69d98
+	givepoke SPEAROW, 10, 0, 1, GiftSpearowName, GiftSpearowOTName
+	givepokeitem GiftSpearowMail
 	setbit1 $0050
 UnknownScript_0x69d73: ; 0x69d73
 	2writetext UnknownText_0x69ed6
@@ -28386,11 +28386,17 @@ UnknownScript_0x69d92: ; 0x69d92
 UnknownScript_0x69d96: ; 0x69d96
 	loadmovesprites
 	end
-; 0x69d98
 
-GivePokeItem_0x69d98: ; 0x69d98
+GiftSpearowMail: ; 0x69d98
+	db FLOWER_MAIL
+	db "DARK CAVE leads", $4E
+	db "to another road@"
+GiftSpearowName: ; 0x69db9
+	db "KENYA@"
+GiftSpearowOTName: ; 0x69dbf
+	db "RANDY@"
 
-INCBIN "baserom.gbc",$69d98,$2e
+	db 0 ; 0x69dc5 XXX is there a reason for this?
 
 UnknownScript_0x69dc6: ; 0x69dc6
 	faceplayer
@@ -33002,7 +33008,7 @@ IlexForest_MapScriptHeader: ; 0x6eafe
 UnknownScript_0x6eb03: ; 0x6eb03
 	checkbit1 $0010
 	iftrue UnknownScript_0x6eb34
-	copybytetovar $d964
+	copybytetovar FarfetchdPosition
 	if_equal $1, UnknownScript_0x6eb35
 	if_equal $2, UnknownScript_0x6eb3c
 	if_equal $3, UnknownScript_0x6eb43
@@ -33096,7 +33102,7 @@ UnknownScript_0x6eb89: ; 0x6eb89
 ; 0x6eb8f
 
 UnknownScript_0x6eb8f: ; 0x6eb8f
-	copybytetovar $d964
+	copybytetovar FarfetchdPosition
 	if_equal $1, UnknownScript_0x6ebba
 	if_equal $2, UnknownScript_0x6ebd9
 	if_equal $3, UnknownScript_0x6ec02
@@ -33120,7 +33126,7 @@ UnknownScript_0x6ebba: ; 0x6ebba
 	moveperson $2, $f, $19
 	disappear $2
 	appear $2
-	loadvar $d964, $2
+	loadvar FarfetchdPosition, $2
 	end
 ; 0x6ebd9
 
@@ -33131,7 +33137,7 @@ UnknownScript_0x6ebd9: ; 0x6ebd9
 	moveperson $2, $14, $18
 	disappear $2
 	appear $2
-	loadvar $d964, $3
+	loadvar FarfetchdPosition, $3
 	end
 ; 0x6ebf1
 
@@ -33140,7 +33146,7 @@ UnknownScript_0x6ebf1: ; 0x6ebf1
 	moveperson $2, $f, $1d
 	disappear $2
 	appear $2
-	loadvar $d964, $8
+	loadvar FarfetchdPosition, $8
 	end
 ; 0x6ec02
 
@@ -33151,7 +33157,7 @@ UnknownScript_0x6ec02: ; 0x6ec02
 	moveperson $2, $1d, $16
 	disappear $2
 	appear $2
-	loadvar $d964, $4
+	loadvar FarfetchdPosition, $4
 	end
 ; 0x6ec1a
 
@@ -33160,7 +33166,7 @@ UnknownScript_0x6ec1a: ; 0x6ec1a
 	moveperson $2, $f, $19
 	disappear $2
 	appear $2
-	loadvar $d964, $2
+	loadvar FarfetchdPosition, $2
 	end
 ; 0x6ec2b
 
@@ -33171,7 +33177,7 @@ UnknownScript_0x6ec2b: ; 0x6ec2b
 	moveperson $2, $1c, $1f
 	disappear $2
 	appear $2
-	loadvar $d964, $5
+	loadvar FarfetchdPosition, $5
 	end
 ; 0x6ec43
 
@@ -33180,7 +33186,7 @@ UnknownScript_0x6ec43: ; 0x6ec43
 	moveperson $2, $14, $18
 	disappear $2
 	appear $2
-	loadvar $d964, $3
+	loadvar FarfetchdPosition, $3
 	end
 ; 0x6ec54
 
@@ -33193,7 +33199,7 @@ UnknownScript_0x6ec54: ; 0x6ec54
 	moveperson $2, $18, $23
 	disappear $2
 	appear $2
-	loadvar $d964, $6
+	loadvar FarfetchdPosition, $6
 	end
 ; 0x6ec74
 
@@ -33202,7 +33208,7 @@ UnknownScript_0x6ec74: ; 0x6ec74
 	moveperson $2, $16, $1f
 	disappear $2
 	appear $2
-	loadvar $d964, $7
+	loadvar FarfetchdPosition, $7
 	end
 ; 0x6ec85
 
@@ -33211,7 +33217,7 @@ UnknownScript_0x6ec85: ; 0x6ec85
 	moveperson $2, $1d, $16
 	disappear $2
 	appear $2
-	loadvar $d964, $4
+	loadvar FarfetchdPosition, $4
 	end
 ; 0x6ec96
 
@@ -33220,7 +33226,7 @@ UnknownScript_0x6ec96: ; 0x6ec96
 	moveperson $2, $1d, $16
 	disappear $2
 	appear $2
-	loadvar $d964, $4
+	loadvar FarfetchdPosition, $4
 	end
 ; 0x6eca7
 
@@ -33231,7 +33237,7 @@ UnknownScript_0x6eca7: ; 0x6eca7
 	moveperson $2, $16, $1f
 	disappear $2
 	appear $2
-	loadvar $d964, $7
+	loadvar FarfetchdPosition, $7
 	end
 ; 0x6ecbf
 
@@ -33240,7 +33246,7 @@ UnknownScript_0x6ecbf: ; 0x6ecbf
 	moveperson $2, $1c, $1f
 	disappear $2
 	appear $2
-	loadvar $d964, $5
+	loadvar FarfetchdPosition, $5
 	end
 ; 0x6ecd0
 
@@ -33252,7 +33258,7 @@ UnknownScript_0x6ecd0: ; 0x6ecd0
 	moveperson $2, $f, $1d
 	disappear $2
 	appear $2
-	loadvar $d964, $8
+	loadvar FarfetchdPosition, $8
 	end
 ; 0x6ecec
 
@@ -33261,7 +33267,7 @@ UnknownScript_0x6ecec: ; 0x6ecec
 	moveperson $2, $18, $23
 	disappear $2
 	appear $2
-	loadvar $d964, $6
+	loadvar FarfetchdPosition, $6
 	end
 ; 0x6ecfd
 
@@ -33270,7 +33276,7 @@ UnknownScript_0x6ecfd: ; 0x6ecfd
 	moveperson $2, $1c, $1f
 	disappear $2
 	appear $2
-	loadvar $d964, $5
+	loadvar FarfetchdPosition, $5
 	end
 ; 0x6ed0e
 
@@ -33283,7 +33289,7 @@ UnknownScript_0x6ed0e: ; 0x6ed0e
 	moveperson $2, $a, $23
 	disappear $2
 	appear $2
-	loadvar $d964, $9
+	loadvar FarfetchdPosition, $9
 	end
 ; 0x6ed2e
 
@@ -33292,7 +33298,7 @@ UnknownScript_0x6ed2e: ; 0x6ed2e
 	moveperson $2, $16, $1f
 	disappear $2
 	appear $2
-	loadvar $d964, $7
+	loadvar FarfetchdPosition, $7
 	end
 ; 0x6ed3f
 
@@ -33301,7 +33307,7 @@ UnknownScript_0x6ed3f: ; 0x6ed3f
 	moveperson $2, $f, $19
 	disappear $2
 	appear $2
-	loadvar $d964, $2
+	loadvar FarfetchdPosition, $2
 	end
 ; 0x6ed50
 
@@ -33313,7 +33319,7 @@ UnknownScript_0x6ed50: ; 0x6ed50
 	moveperson $2, $6, $1c
 	disappear $2
 	appear $2
-	loadvar $d964, $a
+	loadvar FarfetchdPosition, $a
 	appear $4
 	setbit1 $06f7
 	setbit1 $0029
@@ -33325,7 +33331,7 @@ UnknownScript_0x6ed74: ; 0x6ed74
 	moveperson $2, $f, $1d
 	disappear $2
 	appear $2
-	loadvar $d964, $8
+	loadvar FarfetchdPosition, $8
 	end
 ; 0x6ed85
 
@@ -33334,7 +33340,7 @@ UnknownScript_0x6ed85: ; 0x6ed85
 	moveperson $2, $f, $1d
 	disappear $2
 	appear $2
-	loadvar $d964, $8
+	loadvar FarfetchdPosition, $8
 	end
 ; 0x6ed96
 
@@ -36544,9 +36550,9 @@ UnknownScript_0x727ed: ; 0x727ed
 	playsound $0022
 	2writetext UnknownText_0x729ad
 	closetext
-	writebyte $19
+	writebyte PIKACHU
 	special $0039
-	givepoke PIKACHU, $19, $0, $0
+	givepoke PIKACHU, 25, 0, 0
 	takecoins 2222
 	2jump UnknownScript_0x727d3
 ; 0x7281b
@@ -36563,9 +36569,9 @@ UnknownScript_0x7281b: ; 0x7281b
 	playsound $0022
 	2writetext UnknownText_0x729ad
 	closetext
-	writebyte $89
+	writebyte PORYGON
 	special $0039
-	givepoke PORYGON, $f, $0, $0
+	givepoke PORYGON, 15, 0, 0
 	takecoins 5555
 	2jump UnknownScript_0x727d3
 ; 0x72849
@@ -36582,9 +36588,9 @@ UnknownScript_0x72849: ; 0x72849
 	playsound $0022
 	2writetext UnknownText_0x729ad
 	closetext
-	writebyte $f6
+	writebyte LARVITAR
 	special $0039
-	givepoke LARVITAR, $28, $0, $0
+	givepoke LARVITAR, 40, 0, 0
 	takecoins 8888
 	2jump UnknownScript_0x727d3
 ; 0x72877
@@ -42820,10 +42826,10 @@ UnknownScript_0x78bfa: ; 0x78bfa
 	iftrue UnknownScript_0x78e03
 	checkbit1 $0077
 	iffalse UnknownScript_0x78c35
-	writebyte $af
+	writebyte TOGEPI
 	special $0043
 	iftrue UnknownScript_0x78dee
-	writebyte $b0
+	writebyte TOGETIC
 	special $0043
 	iftrue UnknownScript_0x78dee
 	2writetext UnknownText_0x79a40
@@ -42833,10 +42839,10 @@ UnknownScript_0x78bfa: ; 0x78bfa
 ; 0x78c22
 
 UnknownScript_0x78c22: ; 0x78c22
-	writebyte $af
+	writebyte TOGEPI
 	special $0043
 	iftrue UnknownScript_0x78dee
-	writebyte $b0
+	writebyte TOGETIC
 	special $0043
 	iftrue UnknownScript_0x78dee
 	2jump UnknownScript_0x78c41
@@ -42897,7 +42903,7 @@ UnknownScript_0x78c73: ; 0x78c73
 	playsound $0002
 	waitbutton
 	keeptextopen
-	givepoke CYNDAQUIL, $5, BERRY, $0
+	givepoke CYNDAQUIL, 5, BERRY, 0
 	loadmovesprites
 	checkcode $9
 	if_equal $3, UnknownScript_0x78d33
@@ -42928,7 +42934,7 @@ UnknownScript_0x78cb5: ; 0x78cb5
 	playsound $0002
 	waitbutton
 	keeptextopen
-	givepoke TOTODILE, $5, BERRY, $0
+	givepoke TOTODILE, 5, BERRY, 0
 	loadmovesprites
 	applymovement $0, MovementData_0x78fab
 	2jump UnknownScript_0x78d33
@@ -42957,7 +42963,7 @@ UnknownScript_0x78cf1: ; 0x78cf1
 	playsound $0002
 	waitbutton
 	keeptextopen
-	givepoke CHIKORITA, $5, BERRY, $0
+	givepoke CHIKORITA, 5, BERRY, 0
 	loadmovesprites
 	applymovement $0, MovementData_0x78fb0
 	2jump UnknownScript_0x78d33
@@ -45223,7 +45229,7 @@ UnknownScript_0x7c043: ; 0x7c043
 	clearbit1 $02e0
 	clearbit1 $02e1
 	writebyte $0
-	copyvartobyte $d963
+	copyvartobyte UndergroundSwitchPositions
 	return
 ; 0x7c076
 
@@ -46335,9 +46341,9 @@ MapUndergroundPathSwitchRoomEntrancesSignpost0Script: ; 0x7cbab
 	2writetext UnknownText_0x7d617
 	yesorno
 	iffalse UnknownScript_0x7cc8b
-	copybytetovar $d963
+	copybytetovar UndergroundSwitchPositions
 	addvar $1
-	copyvartobyte $d963
+	copyvartobyte UndergroundSwitchPositions
 	setbit1 $02d3
 	2jump UnknownScript_0x7cc8d
 ; 0x7cbcb
@@ -46346,9 +46352,9 @@ UnknownScript_0x7cbcb: ; 0x7cbcb
 	2writetext UnknownText_0x7d62d
 	yesorno
 	iffalse UnknownScript_0x7cc8b
-	copybytetovar $d963
-	addvar $ff
-	copyvartobyte $d963
+	copybytetovar UndergroundSwitchPositions
+	addvar -1
+	copyvartobyte UndergroundSwitchPositions
 	clearbit1 $02d3
 	2jump UnknownScript_0x7cc8d
 ; 0x7cbe0
@@ -46362,9 +46368,9 @@ MapUndergroundPathSwitchRoomEntrancesSignpost1Script: ; 0x7cbe0
 	2writetext UnknownText_0x7d617
 	yesorno
 	iffalse UnknownScript_0x7cc8b
-	copybytetovar $d963
+	copybytetovar UndergroundSwitchPositions
 	addvar $2
-	copyvartobyte $d963
+	copyvartobyte UndergroundSwitchPositions
 	setbit1 $02d4
 	2jump UnknownScript_0x7cc8d
 ; 0x7cc00
@@ -46373,9 +46379,9 @@ UnknownScript_0x7cc00: ; 0x7cc00
 	2writetext UnknownText_0x7d62d
 	yesorno
 	iffalse UnknownScript_0x7cc8b
-	copybytetovar $d963
-	addvar $fe
-	copyvartobyte $d963
+	copybytetovar UndergroundSwitchPositions
+	addvar -2
+	copyvartobyte UndergroundSwitchPositions
 	clearbit1 $02d4
 	2jump UnknownScript_0x7cc8d
 ; 0x7cc15
@@ -46389,9 +46395,9 @@ MapUndergroundPathSwitchRoomEntrancesSignpost2Script: ; 0x7cc15
 	2writetext UnknownText_0x7d617
 	yesorno
 	iffalse UnknownScript_0x7cc8b
-	copybytetovar $d963
+	copybytetovar UndergroundSwitchPositions
 	addvar $3
-	copyvartobyte $d963
+	copyvartobyte UndergroundSwitchPositions
 	setbit1 $02d5
 	2jump UnknownScript_0x7cc8d
 ; 0x7cc35
@@ -46400,9 +46406,9 @@ UnknownScript_0x7cc35: ; 0x7cc35
 	2writetext UnknownText_0x7d62d
 	yesorno
 	iffalse UnknownScript_0x7cc8b
-	copybytetovar $d963
-	addvar $fd
-	copyvartobyte $d963
+	copybytetovar UndergroundSwitchPositions
+	addvar -3
+	copyvartobyte UndergroundSwitchPositions
 	clearbit1 $02d5
 	2jump UnknownScript_0x7cc8d
 ; 0x7cc4a
@@ -46417,7 +46423,7 @@ MapUndergroundPathSwitchRoomEntrancesSignpost3Script: ; 0x7cc4a
 	yesorno
 	iffalse UnknownScript_0x7cc8b
 	writebyte $7
-	copyvartobyte $d963
+	copyvartobyte UndergroundSwitchPositions
 	setbit1 $02d6
 	setbit1 $02d3
 	setbit1 $02d4
@@ -46430,7 +46436,7 @@ UnknownScript_0x7cc70: ; 0x7cc70
 	yesorno
 	iffalse UnknownScript_0x7cc8b
 	writebyte $0
-	copyvartobyte $d963
+	copyvartobyte UndergroundSwitchPositions
 	clearbit1 $02d6
 	clearbit1 $02d3
 	clearbit1 $02d4
@@ -46444,7 +46450,7 @@ UnknownScript_0x7cc8b: ; 0x7cc8b
 ; 0x7cc8d
 
 UnknownScript_0x7cc8d: ; 0x7cc8d
-	copybytetovar $d963
+	copybytetovar UndergroundSwitchPositions
 	if_equal $0, UnknownScript_0x7ccb0
 	if_equal $1, UnknownScript_0x7ccd7
 	if_equal $2, UnknownScript_0x7ccf2
@@ -46571,7 +46577,7 @@ UnknownScript_0x7cd79: ; 0x7cd79
 	reloadmappart
 	loadmovesprites
 	writebyte $6
-	copyvartobyte $d963
+	copyvartobyte UndergroundSwitchPositions
 	end
 ; 0x7cda5
 
@@ -47215,7 +47221,7 @@ UnknownScript_0x7d950: ; 0x7d950
 	clearbit1 $02e0
 	clearbit1 $02e1
 	writebyte $0
-	copyvartobyte $d963
+	copyvartobyte UndergroundSwitchPositions
 	return
 ; 0x7d983
 
@@ -47839,7 +47845,7 @@ UnknownScript_0x7e217: ; 0x7e217
 	2writetext UnknownText_0x7e355
 	playsound $0002
 	waitbutton
-	givepoke TYROGUE, $a, $0, $0
+	givepoke TYROGUE, 10, 0, 0
 	setbit1 $0061
 UnknownScript_0x7e231: ; 0x7e231
 	2writetext UnknownText_0x7e36a
@@ -66354,7 +66360,7 @@ UnknownScript_0x9ccaa: ; 0x9ccaa
 	checkbit1 $003d
 	iftrue UnknownScript_0x9cd25
 	2writetext UnknownText_0x9cd70
-	writebyte $f1
+	writebyte MILTANK
 	special $005f
 	keeptextopen
 	2writetext UnknownText_0x9cd80
@@ -66373,9 +66379,9 @@ UnknownScript_0x9ccc6: ; 0x9ccc6
 	checkitem BERRY
 	iffalse UnknownScript_0x9cd19
 	takeitem BERRY, 1
-	copybytetovar $d962
+	copybytetovar MooMooBerries
 	addvar $1
-	copyvartobyte $d962
+	copyvartobyte MooMooBerries
 	if_equal $3, UnknownScript_0x9ccf0
 	if_equal $5, UnknownScript_0x9ccfa
 	if_equal $7, UnknownScript_0x9cd04
@@ -73380,7 +73386,7 @@ UnknownScript_0x185050: ; 0x185050
 	checkbit1 $0335
 	iftrue UnknownScript_0x185077
 	appear $2
-	writebyte $f3
+	writebyte RAIKOU
 	special $0097
 	iftrue UnknownScript_0x185065
 	appear $3
@@ -73390,7 +73396,7 @@ UnknownScript_0x185050: ; 0x185050
 UnknownScript_0x185065: ; 0x185065
 	disappear $3
 UnknownScript_0x185067: ; 0x185067
-	writebyte $f4
+	writebyte ENTEI
 	special $0097
 	iftrue UnknownScript_0x185074
 	appear $4
@@ -73423,7 +73429,7 @@ UnknownScript_0x18508e: ; 0x18508e
 UnknownScript_0x18508f: ; 0x18508f
 	applymovement $0, MovementData_0x1851cb
 	pause 15
-	writebyte $f3
+	writebyte RAIKOU
 	special $0097
 	iftrue UnknownScript_0x1850b6
 	applymovement $3, MovementData_0x1851d0
@@ -73436,7 +73442,7 @@ UnknownScript_0x18508f: ; 0x18508f
 	playsound $0023
 	waitbutton
 UnknownScript_0x1850b6: ; 0x1850b6
-	writebyte $f4
+	writebyte ENTEI
 	special $0097
 	iftrue UnknownScript_0x1850d7
 	applymovement $4, MovementData_0x1851da
@@ -79762,7 +79768,7 @@ UnknownScript_0x18d1c5: ; 0x18d1c5
 	2writetext UnknownText_0x18d697
 	playsound $0002
 	waitbutton
-	givepoke DRATINI, $f, $0, $0
+	givepoke DRATINI, 15, 0, 0
 	checkbit1 $00c1
 	special $0094
 	setbit1 $00bd
@@ -91418,7 +91424,7 @@ UnknownScript_0x19a6d7: ; 0x19a6d7
 ; 0x19a6e0
 
 UnknownScript_0x19a6e0: ; 0x19a6e0
-	writebyte $81
+	writebyte MAGIKARP
 	special $0042
 	iffalse UnknownScript_0x19a6d7
 	2writetext UnknownText_0x19a93e
@@ -101547,7 +101553,7 @@ UnknownScript_0x1a5570: ; 0x1a5570
 UnknownScript_0x1a5584: ; 0x1a5584
 	2writetext UnknownText_0x1a5761
 	keeptextopen
-	checkpokeitem $55cd
+	checkpokeitem ReceivedSpearowMailText
 	if_equal $0, UnknownScript_0x1a55b5
 	if_equal $2, UnknownScript_0x1a55c1
 	if_equal $3, UnknownScript_0x1a55bb
@@ -101594,15 +101600,10 @@ UnknownScript_0x1a55c7: ; 0x1a55c7
 	closetext
 	loadmovesprites
 	end
-; 0x1a55cd
 
-UnknownScript_0x1a55cd: ; 0x1a55cd
-	reloadmapmusic
-	playrammusic
-	end
-; 0x1a55d0
-
-INCBIN "baserom.gbc",$1a55d0,$1a55ed - $1a55d0
+ReceivedSpearowMailText: ; 0x1a55cd
+	db "DARK CAVE leads",$4E
+	db "to another road@"
 
 UnknownScript_0x1a55ed: ; 0x1a55ed
 	jumptextfaceplayer UnknownText_0x1a59d5
