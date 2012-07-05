@@ -592,6 +592,14 @@ PlayerID: ; 0xd47b
 PlayerName: ; 0xd47d
 	ds 11
 
+SECTION "scriptram",BSS[$d962]
+MooMooBerries: ; 0xd962
+	ds 1 ; how many berries fed to MooMoo
+UndergroundSwitchPositions: ; 0xd963
+	ds 1 ; which positions the switches are in
+FarfetchdPosition: ; 0xd964
+	ds 1 ; which position the ilex farfetch'd is in
+
 SECTION "Events",BSS[$dad4]
 
 ;RoomDecorations: ; dac6
