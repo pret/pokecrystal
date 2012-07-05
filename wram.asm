@@ -641,6 +641,19 @@ Box13Name: ; 0xdb31
 Box14Name: ; 0xdb3a
 	ds 9
 
+SECTION "PlayerMapInfo", BSS[$dcb4]
+
+WarpNumber: ; 0xdcb4
+	ds 1
+MapGroup: ; 0xdcb5
+	ds 1 ; map group of current map
+MapNumber: ; 0xdcb6
+	ds 1 ; map number of current map
+YCoord: ; 0xdcb7
+	ds 1 ; current y coordinate relative to top-left corner of current map
+XCoord: ; 0xdcb8
+	ds 1 ; current x coordinate relative to top-left corner of current map
+
 SECTION "PlayerParty",BSS[$dcd7]
 
 PartyCount: ; 0xdcd7

@@ -654,7 +654,7 @@ SpecialsPointers: ; 0xc029
 	dbw $0a,$6567
 	dbw $05,$4209
 	dbw $3e,$7841
-	dbw $03,$443d
+	dbw BANK(SpecialSnorlaxAwake),SpecialSnorlaxAwake
 	dbw $01,$7413
 	dbw $01,$7418
 	dbw $01,$741d
@@ -728,7 +728,58 @@ SpecialsPointers: ; 0xc029
 	dbw $24,$4a88
 	dbw $03,$4224
 
-INCBIN "baserom.gbc",$c224,$c5d2 - $c224
+INCBIN "baserom.gbc",$c224,$c43d - $c224
+
+SpecialSnorlaxAwake: ; 0xc43d
+; Check if the Poké Flute channel is playing, and if the player is standing
+; next to Snorlax.
+
+; outputs:
+; $c2dd is 1 if the conditions are met, otherwise 0.
+
+; check background music
+	ld a, [$c2c0]
+	cp $40 ; Poké Flute Channel
+	jr nz, .nope
+
+	ld a, [XCoord]
+	ld b, a
+	ld a, [YCoord]
+	ld c, a
+
+	ld hl, .ProximityCoords
+.loop
+	ld a, [hli]
+	cp $ff
+	jr z, .nope
+	cp b
+	jr nz, .nextcoord
+	ld a, [hli]
+	cp c
+	jr nz, .loop
+
+	ld a, $1
+	jr .done
+
+.nextcoord
+	inc hl
+	jr .loop
+
+.nope
+	xor a
+.done
+	ld [$c2dd], a
+	ret
+
+.ProximityCoords
+	db $21,$08
+	db $22,$0a
+	db $23,$0a
+	db $24,$08
+	db $24,$09
+	db $ff
+
+INCBIN "baserom.gbc",$c472,$c5d2 - $c472
 
 PrintNumber_PrintDigit: ; c5d2
 INCBIN "baserom.gbc",$c5d2,$c644 - $c5d2
