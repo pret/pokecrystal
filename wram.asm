@@ -586,6 +586,12 @@ OTPartyMon5Nickname: ; d416
 OTPartyMon6Nickname: ; d421
 	ds 11
 
+SECTION "Player",BSS[$d47b]
+PlayerID: ; 0xd47b
+	ds 2
+PlayerName: ; 0xd47d
+	ds 11
+
 SECTION "Events",BSS[$dad4]
 
 ;RoomDecorations: ; dac6

@@ -162,7 +162,32 @@ UnknownScript_0x26ef: ; 0x26ef
 	jumptextfaceplayer $26f2
 ; 0x26f2
 
-INCBIN "baserom.gbc",$26f2,$3026-$26f2
+INCBIN "baserom.gbc",$26f2,$2fcb-$26f2
+
+Function2fcb: ; 0x2fcb
+	cp $4
+	jr c, Function2fd1
+	jr Function2fe1
+
+Function2fd1: ; 0x2fd1
+	push af
+	ld a, $1
+	ld [$6000], a ; latch clock data
+	ld a, $a
+	ld [$0000], a ; enable ram/clock write protect
+	pop af
+	ld [$4000], a ; select external ram bank
+	ret
+
+Function2fe1: ; 0x2fe1
+	push af
+	ld a, $0
+	ld [$6000], a ; prepare to latch clock data
+	ld [$0000], a ; disable ram/clock write protect
+	pop af
+	ret
+
+INCBIN "baserom.gbc",$2fec,$3026-$2fec
 
 CopyBytes: ; 0x3026
 ; copy bc bytes from hl to de
@@ -683,7 +708,7 @@ SpecialsPointers: ; 0xc029
 	dbw $22,$6fd4
 	dbw BANK(SpecialDratini),SpecialDratini
 	dbw $04,$5485
-	dbw $12,$66e8
+	dbw BANK(SpecialBeastsCheck),SpecialBeastsCheck
 	dbw $12,$6711
 	dbw $03,$4225
 	dbw $5c,$4bd2
@@ -13811,7 +13836,259 @@ INCBIN "baserom.gbc",$4456e,$3a92
 
 SECTION "bank12",DATA,BANK[$12]
 
-INCBIN "baserom.gbc",$48000,$4C000 - $48000
+INCBIN "baserom.gbc",$48000,$4a6e8 - $48000
+
+SpecialBeastsCheck: ; 0x4a6e8
+; Check if the player owns all three legendary beasts.
+; They must exist in either party or PC, and have the player's OT and ID.
+
+; outputs:
+; $c2dd is 1 if the Pokémon exist, otherwise 0.
+
+	ld a, RAIKOU
+	ld [$c2dd], a
+	call CheckOwnMonAnywhere
+	jr nc, .notexist
+
+	ld a, ENTEI
+	ld [$c2dd], a
+	call CheckOwnMonAnywhere
+	jr nc, .notexist
+
+	ld a, SUICUNE
+	ld [$c2dd], a
+	call CheckOwnMonAnywhere
+	jr nc, .notexist
+
+	; they exist
+	ld a, $1
+	ld [$c2dd], a
+	ret
+
+.notexist
+	xor a
+	ld [$c2dd], a
+	ret
+
+Function_4a711: ; 0x4a711
+	call CheckOwnMonAnywhere
+	jr c, .asm_4a71b ; 0x4a714 $5
+	xor a
+	ld [$c2dd], a
+	ret
+.asm_4a71b
+	ld a, $1
+	ld [$c2dd], a
+	ret
+
+CheckOwnMonAnywhere: ; 0x4a721
+	ld a, [PartyCount]
+	and a
+	ret z ; no pokémon in party
+
+	ld d, a
+	ld e, $0
+	ld hl, PartyMon1Species
+	ld bc, PartyMon1OT
+
+; run CheckOwnMon on each Pokémon in the party
+.loop
+	call CheckOwnMon
+	ret c ; found!
+
+	push bc
+	ld bc, PartyMon2 - PartyMon1
+	add hl, bc
+	pop bc
+	call UpdateOTPointer
+	dec d
+	jr nz, .loop ; 0x4a73d $f0
+
+; XXX the below could use some cleanup
+; run CheckOwnMon on each Pokémon in the PC
+	ld a, $1
+	call Function2fcb
+	ld a, [$ad10]
+	and a
+	jr z, .asm_4a766 ; 0x4a748 $1c
+	ld d, a
+	ld hl, $ad26
+	ld bc, $afa6
+.asm_4a751
+	call CheckOwnMon
+	jr nc, .asm_4a75a ; 0x4a754 $4
+	call Function2fe1
+	ret
+.asm_4a75a
+	push bc
+	ld bc, $0020
+	add hl, bc
+	pop bc
+	call UpdateOTPointer
+	dec d
+	jr nz, .asm_4a751 ; 0x4a764 $eb
+.asm_4a766
+	call Function2fe1
+	ld c, $0
+.asm_4a76b
+	ld a, [$db72]
+	and $f
+	cp c
+	jr z, .asm_4a7af ; 0x4a771 $3c
+	ld hl, $6810
+	ld b, $0
+	add hl, bc
+	add hl, bc
+	add hl, bc
+	ld a, [hli]
+	call Function2fcb
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	ld a, [hl]
+	and a
+	jr z, .asm_4a7af ; 0x4a784 $29
+	push bc
+	push hl
+	ld de, $0016
+	add hl, de
+	ld d, h
+	ld e, l
+	pop hl
+	push de
+	ld de, $0296
+	add hl, de
+	ld b, h
+	ld c, l
+	pop hl
+	ld d, a
+.asm_4a798
+	call CheckOwnMon
+	jr nc, .asm_4a7a2 ; 0x4a79b $5
+	pop bc
+	call Function2fe1
+	ret
+.asm_4a7a2
+	push bc
+	ld bc, $0020
+	add hl, bc
+	pop bc
+	call UpdateOTPointer
+	dec d
+	jr nz, .asm_4a798 ; 0x4a7ac $ea
+	pop bc
+.asm_4a7af
+	inc c
+	ld a, c
+	cp $e
+	jr c, .asm_4a76b ; 0x4a7b3 $b6
+	call Function2fe1
+	and a ; clear carry
+	ret
+
+CheckOwnMon: ; 0x4a7ba
+; Check if a Pokémon belongs to the player and is of a specific species.
+
+; inputs:
+; hl, pointer to PartyMonNSpecies
+; bc, pointer to PartyMonNOT
+; $c2dd should contain the species we're looking for
+
+; outputs:
+; sets carry if monster matches species, ID, and OT name.
+
+	push bc
+	push hl
+	push de
+	ld d, b
+	ld e, c
+
+; check species
+	ld a, [$c2dd] ; species we're looking for
+	ld b, [hl] ; species we have
+	cp b
+	jr nz, .notfound ; species doesn't match
+
+; check ID number
+	ld bc, PartyMon1ID - PartyMon1Species
+	add hl, bc ; now hl points to ID number
+	ld a, [PlayerID]
+	cp [hl]
+	jr nz, .notfound ; ID doesn't match
+	inc hl
+	ld a, [PlayerID + 1]
+	cp [hl]
+	jr nz, .notfound ; ID doesn't match
+
+; check OT
+; This only checks five characters, which is fine for the Japanese version,
+; but in the English version the player name is 7 characters, so this is wrong.
+
+	ld hl, PlayerName
+
+	ld a, [de]
+	cp [hl]
+	jr nz, .notfound
+	cp "@"
+	jr z, .found ; reached end of string
+	inc hl
+	inc de
+
+	ld a, [de]
+	cp [hl]
+	jr nz, .notfound
+	cp $50
+	jr z, .found
+	inc hl
+	inc de
+
+	ld a, [de]
+	cp [hl]
+	jr nz, .notfound
+	cp $50
+	jr z, .found
+	inc hl
+	inc de
+
+	ld a, [de]
+	cp [hl]
+	jr nz, .notfound
+	cp $50
+	jr z, .found
+	inc hl
+	inc de
+
+	ld a, [de]
+	cp [hl]
+	jr z, .found
+
+.notfound
+	pop de
+	pop hl
+	pop bc
+	and a ; clear carry
+	ret
+.found
+	pop de
+	pop hl
+	pop bc
+	scf
+	ret
+
+; 0x4a810
+INCBIN "baserom.gbc", $4a810, $4a83a - $4a810
+
+UpdateOTPointer: ; 0x4a83a
+	push hl
+	ld hl, PartyMon2OT - PartyMon1OT
+	add hl, bc
+	ld b, h
+	ld c, l
+	pop hl
+	ret
+; 0x4a843
+
+INCBIN "baserom.gbc",$4a843,$4C000 - $4a843
 
 SECTION "bank13",DATA,BANK[$13]
 
