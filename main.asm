@@ -660,7 +660,7 @@ SpecialsPointers: ; 0xc029
 	dbw $01,$741d
 	dbw $03,$4472
 	dbw $09,$65ee
-	dbw $03,$4478
+	dbw BANK(SpecialGameboyCheck),SpecialGameboyCheck
 	dbw $03,$44b9
 	dbw $05,$6dc7
 	dbw $0a,$62a0
@@ -779,7 +779,28 @@ SpecialSnorlaxAwake: ; 0xc43d
 	db $24,$09
 	db $ff
 
-INCBIN "baserom.gbc",$c472,$c5d2 - $c472
+INCBIN "baserom.gbc",$c472,$c478 - $c472
+
+SpecialGameboyCheck: ; 0xc478
+	ld a, [$ff00+$e6]
+	and a
+	jr nz, .color
+	ld a, [$ff00+$e7]
+	and a
+	jr nz, .unknown
+	xor a
+	jr .done
+.unknown ; XXX what is this?
+	ld a, $1
+	jr .done
+
+.color
+	ld a, $2
+.done
+	ld [$c2dd], a
+	ret
+
+INCBIN "baserom.gbc",$c48f,$c5d2 - $c48f
 
 PrintNumber_PrintDigit: ; c5d2
 INCBIN "baserom.gbc",$c5d2,$c644 - $c5d2
