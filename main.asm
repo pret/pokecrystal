@@ -17267,7 +17267,7 @@ UnknownScript_0x56d26: ; 0x56d26
 	playsound $0022
 	2writetext UnknownText_0x56ebd
 	closetext
-	writebyte $3f
+	writebyte ABRA
 	special $0039
 	givepoke ABRA, 5, 0, 0
 	takecoins 100
@@ -17286,7 +17286,7 @@ UnknownScript_0x56d54: ; 0x56d54
 	playsound $0022
 	2writetext UnknownText_0x56ebd
 	closetext
-	writebyte $68
+	writebyte CUBONE
 	special $0039
 	givepoke CUBONE, 15, 0, 0
 	takecoins 800
@@ -17305,7 +17305,7 @@ UnknownScript_0x56d82: ; 0x56d82
 	playsound $0022
 	2writetext UnknownText_0x56ebd
 	closetext
-	writebyte $ca
+	writebyte WOBBUFFET
 	special $0039
 	givepoke WOBBUFFET, 15, 0, 0
 	takecoins 1500
@@ -25227,7 +25227,7 @@ UnknownScript_0x60c3a: ; 0x60c3a
 	checkbit1 $0020
 	iftrue UnknownScript_0x60c51
 	2writetext UnknownText_0x60f03
-	writebyte $b5
+	writebyte AMPHAROS
 	special $005f
 	keeptextopen
 	2writetext UnknownText_0x60f19
@@ -36550,7 +36550,7 @@ UnknownScript_0x727ed: ; 0x727ed
 	playsound $0022
 	2writetext UnknownText_0x729ad
 	closetext
-	writebyte $19
+	writebyte PIKACHU
 	special $0039
 	givepoke PIKACHU, 25, 0, 0
 	takecoins 2222
@@ -36569,7 +36569,7 @@ UnknownScript_0x7281b: ; 0x7281b
 	playsound $0022
 	2writetext UnknownText_0x729ad
 	closetext
-	writebyte $89
+	writebyte PORYGON
 	special $0039
 	givepoke PORYGON, 15, 0, 0
 	takecoins 5555
@@ -36588,7 +36588,7 @@ UnknownScript_0x72849: ; 0x72849
 	playsound $0022
 	2writetext UnknownText_0x729ad
 	closetext
-	writebyte $f6
+	writebyte LARVITAR
 	special $0039
 	givepoke LARVITAR, 40, 0, 0
 	takecoins 8888
@@ -42826,10 +42826,10 @@ UnknownScript_0x78bfa: ; 0x78bfa
 	iftrue UnknownScript_0x78e03
 	checkbit1 $0077
 	iffalse UnknownScript_0x78c35
-	writebyte $af
+	writebyte TOGEPI
 	special $0043
 	iftrue UnknownScript_0x78dee
-	writebyte $b0
+	writebyte TOGETIC
 	special $0043
 	iftrue UnknownScript_0x78dee
 	2writetext UnknownText_0x79a40
@@ -42839,10 +42839,10 @@ UnknownScript_0x78bfa: ; 0x78bfa
 ; 0x78c22
 
 UnknownScript_0x78c22: ; 0x78c22
-	writebyte $af
+	writebyte TOGEPI
 	special $0043
 	iftrue UnknownScript_0x78dee
-	writebyte $b0
+	writebyte TOGETIC
 	special $0043
 	iftrue UnknownScript_0x78dee
 	2jump UnknownScript_0x78c41
@@ -66360,7 +66360,7 @@ UnknownScript_0x9ccaa: ; 0x9ccaa
 	checkbit1 $003d
 	iftrue UnknownScript_0x9cd25
 	2writetext UnknownText_0x9cd70
-	writebyte $f1
+	writebyte MILTANK
 	special $005f
 	keeptextopen
 	2writetext UnknownText_0x9cd80
@@ -73386,7 +73386,7 @@ UnknownScript_0x185050: ; 0x185050
 	checkbit1 $0335
 	iftrue UnknownScript_0x185077
 	appear $2
-	writebyte $f3
+	writebyte RAIKOU
 	special $0097
 	iftrue UnknownScript_0x185065
 	appear $3
@@ -73396,7 +73396,7 @@ UnknownScript_0x185050: ; 0x185050
 UnknownScript_0x185065: ; 0x185065
 	disappear $3
 UnknownScript_0x185067: ; 0x185067
-	writebyte $f4
+	writebyte ENTEI
 	special $0097
 	iftrue UnknownScript_0x185074
 	appear $4
@@ -73429,7 +73429,7 @@ UnknownScript_0x18508e: ; 0x18508e
 UnknownScript_0x18508f: ; 0x18508f
 	applymovement $0, MovementData_0x1851cb
 	pause 15
-	writebyte $f3
+	writebyte RAIKOU
 	special $0097
 	iftrue UnknownScript_0x1850b6
 	applymovement $3, MovementData_0x1851d0
@@ -73442,7 +73442,7 @@ UnknownScript_0x18508f: ; 0x18508f
 	playsound $0023
 	waitbutton
 UnknownScript_0x1850b6: ; 0x1850b6
-	writebyte $f4
+	writebyte ENTEI
 	special $0097
 	iftrue UnknownScript_0x1850d7
 	applymovement $4, MovementData_0x1851da
@@ -91424,7 +91424,7 @@ UnknownScript_0x19a6d7: ; 0x19a6d7
 ; 0x19a6e0
 
 UnknownScript_0x19a6e0: ; 0x19a6e0
-	writebyte $81
+	writebyte MAGIKARP
 	special $0042
 	iffalse UnknownScript_0x19a6d7
 	2writetext UnknownText_0x19a93e
@@ -101553,7 +101553,7 @@ UnknownScript_0x1a5570: ; 0x1a5570
 UnknownScript_0x1a5584: ; 0x1a5584
 	2writetext UnknownText_0x1a5761
 	keeptextopen
-	checkpokeitem $55cd
+	checkpokeitem ReceivedSpearowMailText
 	if_equal $0, UnknownScript_0x1a55b5
 	if_equal $2, UnknownScript_0x1a55c1
 	if_equal $3, UnknownScript_0x1a55bb
@@ -101600,15 +101600,10 @@ UnknownScript_0x1a55c7: ; 0x1a55c7
 	closetext
 	loadmovesprites
 	end
-; 0x1a55cd
 
-UnknownScript_0x1a55cd: ; 0x1a55cd
-	reloadmapmusic
-	playrammusic
-	end
-; 0x1a55d0
-
-INCBIN "baserom.gbc",$1a55d0,$1a55ed - $1a55d0
+ReceivedSpearowMailText: ; 0x1a55cd
+	db "DARK CAVE leads",$4E
+	db "to another road@"
 
 UnknownScript_0x1a55ed: ; 0x1a55ed
 	jumptextfaceplayer UnknownText_0x1a59d5
