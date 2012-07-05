@@ -15226,7 +15226,7 @@ UnknownScript_0x54be4: ; 0x54be4
 	2writetext UnknownText_0x54dae
 	playsound $0002
 	waitbutton
-	givepoke EEVEE, $14, $0, $0
+	givepoke EEVEE, 20, 0, 0
 	setbit1 $004f
 	2writetext UnknownText_0x54dc1
 	closetext
@@ -17269,7 +17269,7 @@ UnknownScript_0x56d26: ; 0x56d26
 	closetext
 	writebyte $3f
 	special $0039
-	givepoke ABRA, $5, $0, $0
+	givepoke ABRA, 5, 0, 0
 	takecoins 100
 	2jump UnknownScript_0x56d0c
 ; 0x56d54
@@ -17288,7 +17288,7 @@ UnknownScript_0x56d54: ; 0x56d54
 	closetext
 	writebyte $68
 	special $0039
-	givepoke CUBONE, $f, $0, $0
+	givepoke CUBONE, 15, 0, 0
 	takecoins 800
 	2jump UnknownScript_0x56d0c
 ; 0x56d82
@@ -17307,7 +17307,7 @@ UnknownScript_0x56d82: ; 0x56d82
 	closetext
 	writebyte $ca
 	special $0039
-	givepoke WOBBUFFET, $f, $0, $0
+	givepoke WOBBUFFET, 15, 0, 0
 	takecoins 1500
 	2jump UnknownScript_0x56d0c
 ; 0x56db0
@@ -28350,8 +28350,8 @@ UnknownScript_0x69d37: ; 0x69d37
 	2writetext UnknownText_0x69eb8
 	playsound $0091
 	waitbutton
-	givepoke SPEAROW, $a, $0, $1, $5db9, $5dbf
-	givepokeitem GivePokeItem_0x69d98
+	givepoke SPEAROW, 10, 0, 1, GiftSpearowName, GiftSpearowOTName
+	givepokeitem GiftSpearowMail
 	setbit1 $0050
 UnknownScript_0x69d73: ; 0x69d73
 	2writetext UnknownText_0x69ed6
@@ -28386,11 +28386,17 @@ UnknownScript_0x69d92: ; 0x69d92
 UnknownScript_0x69d96: ; 0x69d96
 	loadmovesprites
 	end
-; 0x69d98
 
-GivePokeItem_0x69d98: ; 0x69d98
+GiftSpearowMail: ; 0x69d98
+	db FLOWER_MAIL
+	db "DARK CAVE leads", $4E
+	db "to another road@"
+GiftSpearowName: ; 0x69db9
+	db "KENYA@"
+GiftSpearowOTName: ; 0x69dbf
+	db "RANDY@"
 
-INCBIN "baserom.gbc",$69d98,$2e
+	db 0 ; 0x69dc5 XXX is there a reason for this?
 
 UnknownScript_0x69dc6: ; 0x69dc6
 	faceplayer
@@ -36546,7 +36552,7 @@ UnknownScript_0x727ed: ; 0x727ed
 	closetext
 	writebyte $19
 	special $0039
-	givepoke PIKACHU, $19, $0, $0
+	givepoke PIKACHU, 25, 0, 0
 	takecoins 2222
 	2jump UnknownScript_0x727d3
 ; 0x7281b
@@ -36565,7 +36571,7 @@ UnknownScript_0x7281b: ; 0x7281b
 	closetext
 	writebyte $89
 	special $0039
-	givepoke PORYGON, $f, $0, $0
+	givepoke PORYGON, 15, 0, 0
 	takecoins 5555
 	2jump UnknownScript_0x727d3
 ; 0x72849
@@ -36584,7 +36590,7 @@ UnknownScript_0x72849: ; 0x72849
 	closetext
 	writebyte $f6
 	special $0039
-	givepoke LARVITAR, $28, $0, $0
+	givepoke LARVITAR, 40, 0, 0
 	takecoins 8888
 	2jump UnknownScript_0x727d3
 ; 0x72877
@@ -42897,7 +42903,7 @@ UnknownScript_0x78c73: ; 0x78c73
 	playsound $0002
 	waitbutton
 	keeptextopen
-	givepoke CYNDAQUIL, $5, BERRY, $0
+	givepoke CYNDAQUIL, 5, BERRY, 0
 	loadmovesprites
 	checkcode $9
 	if_equal $3, UnknownScript_0x78d33
@@ -42928,7 +42934,7 @@ UnknownScript_0x78cb5: ; 0x78cb5
 	playsound $0002
 	waitbutton
 	keeptextopen
-	givepoke TOTODILE, $5, BERRY, $0
+	givepoke TOTODILE, 5, BERRY, 0
 	loadmovesprites
 	applymovement $0, MovementData_0x78fab
 	2jump UnknownScript_0x78d33
@@ -42957,7 +42963,7 @@ UnknownScript_0x78cf1: ; 0x78cf1
 	playsound $0002
 	waitbutton
 	keeptextopen
-	givepoke CHIKORITA, $5, BERRY, $0
+	givepoke CHIKORITA, 5, BERRY, 0
 	loadmovesprites
 	applymovement $0, MovementData_0x78fb0
 	2jump UnknownScript_0x78d33
@@ -47839,7 +47845,7 @@ UnknownScript_0x7e217: ; 0x7e217
 	2writetext UnknownText_0x7e355
 	playsound $0002
 	waitbutton
-	givepoke TYROGUE, $a, $0, $0
+	givepoke TYROGUE, 10, 0, 0
 	setbit1 $0061
 UnknownScript_0x7e231: ; 0x7e231
 	2writetext UnknownText_0x7e36a
@@ -79762,7 +79768,7 @@ UnknownScript_0x18d1c5: ; 0x18d1c5
 	2writetext UnknownText_0x18d697
 	playsound $0002
 	waitbutton
-	givepoke DRATINI, $f, $0, $0
+	givepoke DRATINI, 15, 0, 0
 	checkbit1 $00c1
 	special $0094
 	setbit1 $00bd
