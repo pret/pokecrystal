@@ -162,7 +162,32 @@ UnknownScript_0x26ef: ; 0x26ef
 	jumptextfaceplayer $26f2
 ; 0x26f2
 
-INCBIN "baserom.gbc",$26f2,$3026-$26f2
+INCBIN "baserom.gbc",$26f2,$2fcb-$26f2
+
+Function2fcb: ; 0x2fcb
+	cp $4
+	jr c, Function2fd1
+	jr Function2fe1
+
+Function2fd1: ; 0x2fd1
+	push af
+	ld a, $1
+	ld [$6000], a ; latch clock data
+	ld a, $a
+	ld [$0000], a ; enable ram/clock write protect
+	pop af
+	ld [$4000], a ; select external ram bank
+	ret
+
+Function2fe1: ; 0x2fe1
+	push af
+	ld a, $0
+	ld [$6000], a ; prepare to latch clock data
+	ld [$0000], a ; disable ram/clock write protect
+	pop af
+	ret
+
+INCBIN "baserom.gbc",$2fec,$3026-$2fec
 
 CopyBytes: ; 0x3026
 ; copy bc bytes from hl to de
@@ -629,13 +654,13 @@ SpecialsPointers: ; 0xc029
 	dbw $0a,$6567
 	dbw $05,$4209
 	dbw $3e,$7841
-	dbw $03,$443d
+	dbw BANK(SpecialSnorlaxAwake),SpecialSnorlaxAwake
 	dbw $01,$7413
 	dbw $01,$7418
 	dbw $01,$741d
 	dbw $03,$4472
 	dbw $09,$65ee
-	dbw $03,$4478
+	dbw BANK(SpecialGameboyCheck),SpecialGameboyCheck
 	dbw $03,$44b9
 	dbw $05,$6dc7
 	dbw $0a,$62a0
@@ -683,8 +708,8 @@ SpecialsPointers: ; 0xc029
 	dbw $22,$6fd4
 	dbw BANK(SpecialDratini),SpecialDratini
 	dbw $04,$5485
-	dbw $12,$66e8
-	dbw $12,$6711
+	dbw BANK(SpecialBeastsCheck),SpecialBeastsCheck
+	dbw BANK(SpecialMonCheck),SpecialMonCheck
 	dbw $03,$4225
 	dbw $5c,$4bd2
 	dbw $40,$766e
@@ -703,7 +728,79 @@ SpecialsPointers: ; 0xc029
 	dbw $24,$4a88
 	dbw $03,$4224
 
-INCBIN "baserom.gbc",$c224,$c5d2 - $c224
+INCBIN "baserom.gbc",$c224,$c43d - $c224
+
+SpecialSnorlaxAwake: ; 0xc43d
+; Check if the Poké Flute channel is playing, and if the player is standing
+; next to Snorlax.
+
+; outputs:
+; $c2dd is 1 if the conditions are met, otherwise 0.
+
+; check background music
+	ld a, [$c2c0]
+	cp $40 ; Poké Flute Channel
+	jr nz, .nope
+
+	ld a, [XCoord]
+	ld b, a
+	ld a, [YCoord]
+	ld c, a
+
+	ld hl, .ProximityCoords
+.loop
+	ld a, [hli]
+	cp $ff
+	jr z, .nope
+	cp b
+	jr nz, .nextcoord
+	ld a, [hli]
+	cp c
+	jr nz, .loop
+
+	ld a, $1
+	jr .done
+
+.nextcoord
+	inc hl
+	jr .loop
+
+.nope
+	xor a
+.done
+	ld [$c2dd], a
+	ret
+
+.ProximityCoords
+	db $21,$08
+	db $22,$0a
+	db $23,$0a
+	db $24,$08
+	db $24,$09
+	db $ff
+
+INCBIN "baserom.gbc",$c472,$c478 - $c472
+
+SpecialGameboyCheck: ; 0xc478
+	ld a, [$ff00+$e6]
+	and a
+	jr nz, .color
+	ld a, [$ff00+$e7]
+	and a
+	jr nz, .unknown
+	xor a
+	jr .done
+.unknown ; XXX what is this?
+	ld a, $1
+	jr .done
+
+.color
+	ld a, $2
+.done
+	ld [$c2dd], a
+	ret
+
+INCBIN "baserom.gbc",$c48f,$c5d2 - $c48f
 
 PrintNumber_PrintDigit: ; c5d2
 INCBIN "baserom.gbc",$c5d2,$c644 - $c5d2
@@ -13811,7 +13908,267 @@ INCBIN "baserom.gbc",$4456e,$3a92
 
 SECTION "bank12",DATA,BANK[$12]
 
-INCBIN "baserom.gbc",$48000,$4C000 - $48000
+INCBIN "baserom.gbc",$48000,$4a6e8 - $48000
+
+SpecialBeastsCheck: ; 0x4a6e8
+; Check if the player owns all three legendary beasts.
+; They must exist in either party or PC, and have the player's OT and ID.
+
+; outputs:
+; $c2dd is 1 if the Pokémon exist, otherwise 0.
+
+	ld a, RAIKOU
+	ld [$c2dd], a
+	call CheckOwnMonAnywhere
+	jr nc, .notexist
+
+	ld a, ENTEI
+	ld [$c2dd], a
+	call CheckOwnMonAnywhere
+	jr nc, .notexist
+
+	ld a, SUICUNE
+	ld [$c2dd], a
+	call CheckOwnMonAnywhere
+	jr nc, .notexist
+
+	; they exist
+	ld a, $1
+	ld [$c2dd], a
+	ret
+
+.notexist
+	xor a
+	ld [$c2dd], a
+	ret
+
+SpecialMonCheck: ; 0x4a711
+; Check if a Pokémon exists in PC or party.
+; It must exist in either party or PC, and have the player's OT and ID.
+
+; inputs:
+; $c2dd contains species to search for
+	call CheckOwnMonAnywhere
+	jr c, .exists
+
+	; doesn't exist
+	xor a
+	ld [$c2dd], a
+	ret
+
+.exists
+	ld a, $1
+	ld [$c2dd], a
+	ret
+
+CheckOwnMonAnywhere: ; 0x4a721
+	ld a, [PartyCount]
+	and a
+	ret z ; no pokémon in party
+
+	ld d, a
+	ld e, $0
+	ld hl, PartyMon1Species
+	ld bc, PartyMon1OT
+
+; run CheckOwnMon on each Pokémon in the party
+.loop
+	call CheckOwnMon
+	ret c ; found!
+
+	push bc
+	ld bc, PartyMon2 - PartyMon1
+	add hl, bc
+	pop bc
+	call UpdateOTPointer
+	dec d
+	jr nz, .loop ; 0x4a73d $f0
+
+; XXX the below could use some cleanup
+; run CheckOwnMon on each Pokémon in the PC
+	ld a, $1
+	call Function2fcb
+	ld a, [$ad10]
+	and a
+	jr z, .asm_4a766 ; 0x4a748 $1c
+	ld d, a
+	ld hl, $ad26
+	ld bc, $afa6
+.asm_4a751
+	call CheckOwnMon
+	jr nc, .asm_4a75a ; 0x4a754 $4
+	call Function2fe1
+	ret
+.asm_4a75a
+	push bc
+	ld bc, $0020
+	add hl, bc
+	pop bc
+	call UpdateOTPointer
+	dec d
+	jr nz, .asm_4a751 ; 0x4a764 $eb
+.asm_4a766
+	call Function2fe1
+	ld c, $0
+.asm_4a76b
+	ld a, [$db72]
+	and $f
+	cp c
+	jr z, .asm_4a7af ; 0x4a771 $3c
+	ld hl, $6810
+	ld b, $0
+	add hl, bc
+	add hl, bc
+	add hl, bc
+	ld a, [hli]
+	call Function2fcb
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	ld a, [hl]
+	and a
+	jr z, .asm_4a7af ; 0x4a784 $29
+	push bc
+	push hl
+	ld de, $0016
+	add hl, de
+	ld d, h
+	ld e, l
+	pop hl
+	push de
+	ld de, $0296
+	add hl, de
+	ld b, h
+	ld c, l
+	pop hl
+	ld d, a
+.asm_4a798
+	call CheckOwnMon
+	jr nc, .asm_4a7a2 ; 0x4a79b $5
+	pop bc
+	call Function2fe1
+	ret
+.asm_4a7a2
+	push bc
+	ld bc, $0020
+	add hl, bc
+	pop bc
+	call UpdateOTPointer
+	dec d
+	jr nz, .asm_4a798 ; 0x4a7ac $ea
+	pop bc
+.asm_4a7af
+	inc c
+	ld a, c
+	cp $e
+	jr c, .asm_4a76b ; 0x4a7b3 $b6
+	call Function2fe1
+	and a ; clear carry
+	ret
+
+CheckOwnMon: ; 0x4a7ba
+; Check if a Pokémon belongs to the player and is of a specific species.
+
+; inputs:
+; hl, pointer to PartyMonNSpecies
+; bc, pointer to PartyMonNOT
+; $c2dd should contain the species we're looking for
+
+; outputs:
+; sets carry if monster matches species, ID, and OT name.
+
+	push bc
+	push hl
+	push de
+	ld d, b
+	ld e, c
+
+; check species
+	ld a, [$c2dd] ; species we're looking for
+	ld b, [hl] ; species we have
+	cp b
+	jr nz, .notfound ; species doesn't match
+
+; check ID number
+	ld bc, PartyMon1ID - PartyMon1Species
+	add hl, bc ; now hl points to ID number
+	ld a, [PlayerID]
+	cp [hl]
+	jr nz, .notfound ; ID doesn't match
+	inc hl
+	ld a, [PlayerID + 1]
+	cp [hl]
+	jr nz, .notfound ; ID doesn't match
+
+; check OT
+; This only checks five characters, which is fine for the Japanese version,
+; but in the English version the player name is 7 characters, so this is wrong.
+
+	ld hl, PlayerName
+
+	ld a, [de]
+	cp [hl]
+	jr nz, .notfound
+	cp "@"
+	jr z, .found ; reached end of string
+	inc hl
+	inc de
+
+	ld a, [de]
+	cp [hl]
+	jr nz, .notfound
+	cp $50
+	jr z, .found
+	inc hl
+	inc de
+
+	ld a, [de]
+	cp [hl]
+	jr nz, .notfound
+	cp $50
+	jr z, .found
+	inc hl
+	inc de
+
+	ld a, [de]
+	cp [hl]
+	jr nz, .notfound
+	cp $50
+	jr z, .found
+	inc hl
+	inc de
+
+	ld a, [de]
+	cp [hl]
+	jr z, .found
+
+.notfound
+	pop de
+	pop hl
+	pop bc
+	and a ; clear carry
+	ret
+.found
+	pop de
+	pop hl
+	pop bc
+	scf
+	ret
+
+; 0x4a810
+INCBIN "baserom.gbc", $4a810, $4a83a - $4a810
+
+UpdateOTPointer: ; 0x4a83a
+	push hl
+	ld hl, PartyMon2OT - PartyMon1OT
+	add hl, bc
+	ld b, h
+	ld c, l
+	pop hl
+	ret
+; 0x4a843
+
+INCBIN "baserom.gbc",$4a843,$4C000 - $4a843
 
 SECTION "bank13",DATA,BANK[$13]
 
@@ -14309,20 +14666,19 @@ TrainerBeautySamanthaWhenTalkScript: ; 0x540ef
 	end
 ; 0x540f7
 
-UnknownScript_0x540f7: ; 0x540f7
+GoldenrodGymGuyScript: ; 0x540f7
 	faceplayer
 	checkbit1 $04bf
-	iftrue UnknownScript_0x54105
+	iftrue .GoldenrodGymGuyWinScript
 	loadfont
-	2writetext UnknownText_0x5463a
+	2writetext GoldenrodGymGuyText
 	closetext
 	loadmovesprites
 	end
-; 0x54105
 
-UnknownScript_0x54105: ; 0x54105
+.GoldenrodGymGuyWinScript
 	loadfont
-	2writetext UnknownText_0x546a7
+	2writetext GoldenrodGymGuyWinText
 	closetext
 	loadmovesprites
 	end
@@ -14505,7 +14861,7 @@ UnknownText_0x5460b: ; 0x5460b
 	db "on any type…", $57
 ; 0x5463a
 
-UnknownText_0x5463a: ; 0x5463a
+GoldenrodGymGuyText: ; 0x5463a
 	db $0, "Yo! CHAMP in", $4f
 	db "making!", $51
 	db "This GYM is home", $4f
@@ -14516,7 +14872,7 @@ UnknownText_0x5463a: ; 0x5463a
 	db "#MON.", $57
 ; 0x546a7
 
-UnknownText_0x546a7: ; 0x546a7
+GoldenrodGymGuyWinText: ; 0x546a7
 	db $0, "You won? Great! I", $4f
 	db "was busy admiring", $55
 	db "the ladies here.", $57
@@ -14547,7 +14903,7 @@ GoldenrodGym_MapEventHeader: ; 0x546dd
 	person_event $28, 10, 13, $8, $0, 255, 255, $92, 1, TrainerLassBridget, $ffff
 	person_event $2a, 6, 4, $6, $0, 255, 255, $92, 3, TrainerBeautyVictoria, $ffff
 	person_event $2a, 9, 23, $6, $0, 255, 255, $92, 3, TrainerBeautySamantha, $ffff
-	person_event $48, 19, 9, $6, $0, 255, 255, $80, 0, UnknownScript_0x540f7, $ffff
+	person_event $48, 19, 9, $6, $0, 255, 255, $80, 0, GoldenrodGymGuyScript, $ffff
 ; 0x5474d
 
 GoldenrodBikeShop_MapScriptHeader: ; 0x5474d
@@ -16015,7 +16371,7 @@ GoldenrodDeptStore5F_MapScriptHeader: ; 0x5608b
 
 UnknownScript_0x56090: ; 0x56090
 	checkcode $b
-	if_equal $0, UnknownScript_0x56099
+	if_equal SUNDAY, UnknownScript_0x56099
 	disappear $7
 	return
 ; 0x56099
@@ -16069,7 +16425,7 @@ UnknownScript_0x560ce: ; 0x560ce
 	faceplayer
 	loadfont
 	checkcode $b
-	if_not_equal $0, UnknownScript_0x56112
+	if_not_equal SUNDAY, UnknownScript_0x56112
 	checkbit2 $005b
 	iftrue UnknownScript_0x56112
 	special $0059
@@ -16751,8 +17107,8 @@ UnknownScript_0x56bf9: ; 0x56bf9
 	checkitem COIN_CASE
 	iffalse UnknownScript_0x56c0e
 	checkcode $b
-	if_equal $3, UnknownScript_0x56c11
-	if_equal $6, UnknownScript_0x56c11
+	if_equal WEDNESDAY, UnknownScript_0x56c11
+	if_equal SATURDAY, UnknownScript_0x56c11
 UnknownScript_0x56c0e: ; 0x56c0e
 	appear $d
 	return
@@ -17855,7 +18211,7 @@ UnknownScript_0x587a8: ; 0x587a8
 	faceplayer
 	loadfont
 	checkcode $e
-	if_equal $1a, UnknownScript_0x587cf
+	if_equal 26, UnknownScript_0x587cf
 	checkbit1 $0327
 	iftrue UnknownScript_0x587c9
 	checkbit1 $02a1
@@ -18643,7 +18999,7 @@ UnknownScript_0x591d1: ; 0x591d1
 	faceplayer
 	loadfont
 	checkcode $e
-	if_equal $1a, UnknownScript_0x591df
+	if_equal 26, UnknownScript_0x591df
 	2writetext UnknownText_0x59311
 	closetext
 	loadmovesprites
@@ -18661,7 +19017,7 @@ UnknownScript_0x591e5: ; 0x591e5
 	faceplayer
 	loadfont
 	checkcode $e
-	if_equal $1a, UnknownScript_0x5920b
+	if_equal 26, UnknownScript_0x5920b
 	checkbit2 $000c
 	iftrue UnknownScript_0x59205
 	checkbit1 $002e
@@ -18698,7 +19054,7 @@ UnknownScript_0x59214: ; 0x59214
 	faceplayer
 	loadfont
 	checkcode $e
-	if_equal $1a, UnknownScript_0x5922e
+	if_equal 26, UnknownScript_0x5922e
 	checkbit1 $002e
 	iftrue UnknownScript_0x59228
 	2writetext UnknownText_0x5954f
@@ -18726,7 +19082,7 @@ MapRuinsofAlphResearchCenterSignpost1Script: ; 0x59234
 	checkbit1 $0704
 	iftrue UnknownScript_0x59241
 	checkcode $e
-	if_equal $1a, UnknownScript_0x59247
+	if_equal 26, UnknownScript_0x59247
 UnknownScript_0x59241: ; 0x59241
 	2writetext UnknownText_0x597b6
 	closetext
@@ -18746,7 +19102,7 @@ MapRuinsofAlphResearchCenterSignpost2Script: ; 0x5924d
 	checkbit1 $0704
 	iftrue UnknownScript_0x5925a
 	checkcode $e
-	if_equal $1a, UnknownScript_0x59260
+	if_equal 26, UnknownScript_0x59260
 UnknownScript_0x5925a: ; 0x5925a
 	2writetext UnknownText_0x5980e
 	closetext
@@ -19904,7 +20260,7 @@ UnknownScript_0x5a30d: ; 0x5a30d
 	checkbit2 $0059
 	iftrue UnknownScript_0x5a319
 	checkcode $b
-	if_equal $5, UnknownScript_0x5a31c
+	if_equal FRIDAY, UnknownScript_0x5a31c
 UnknownScript_0x5a319: ; 0x5a319
 	disappear $7
 	return
@@ -26852,19 +27208,18 @@ TrainerBird_keeperAbeWhenTalkScript: ; 0x68447
 	end
 ; 0x6844f
 
-UnknownScript_0x6844f: ; 0x6844f
+VioletGymGuyScript: ; 0x6844f
 	faceplayer
 	loadfont
 	checkbit1 $04bd
-	iftrue UnknownScript_0x6845d
-	2writetext UnknownText_0x688f9
+	iftrue .VioletGymGuyWinScript
+	2writetext VioletGymGuyText
 	closetext
 	loadmovesprites
 	end
-; 0x6845d
 
-UnknownScript_0x6845d: ; 0x6845d
-	2writetext UnknownText_0x689c8
+.VioletGymGuyWinScript
+	2writetext VioletGymGuyWinText
 	closetext
 	loadmovesprites
 	end
@@ -26998,7 +27353,7 @@ UnknownText_0x688c7: ; 0x688c7
 	db "rookie trainer…", $57
 ; 0x688f9
 
-UnknownText_0x688f9: ; 0x688f9
+VioletGymGuyText: ; 0x688f9
 	db $0, "Hey! I'm no train-", $4f
 	db "er but I can give", $55
 	db "some advice!", $51
@@ -27014,7 +27369,7 @@ UnknownText_0x688f9: ; 0x688f9
 	db "this in mind.", $57
 ; 0x689c8
 
-UnknownText_0x689c8: ; 0x689c8
+VioletGymGuyWinText: ; 0x689c8
 	db $0, "Nice battle! Keep", $4f
 	db "it up, and you'll", $51
 	db "be the CHAMP in no", $4f
@@ -27043,7 +27398,7 @@ VioletGym_MapEventHeader: ; 0x68a0c
 	person_event $12, 5, 9, $6, $0, 255, 255, $90, 0, UnknownScript_0x683c2, $ffff
 	person_event $27, 10, 11, $8, $2, 255, 255, $92, 3, TrainerBird_keeperRod, $ffff
 	person_event $27, 14, 6, $9, $2, 255, 255, $92, 3, TrainerBird_keeperAbe, $ffff
-	person_event $48, 17, 11, $6, $0, 255, 255, $80, 0, UnknownScript_0x6844f, $ffff
+	person_event $48, 17, 11, $6, $0, 255, 255, $80, 0, VioletGymGuyScript, $ffff
 ; 0x68a5a
 
 EarlsPokemonAcademy_MapScriptHeader: ; 0x68a5a
@@ -28217,9 +28572,9 @@ UnknownScript_0x6a1ac: ; 0x6a1ac
 
 UnknownScript_0x6a1af: ; 0x6a1af
 	checkcode $b
-	if_equal $2, UnknownScript_0x6a1ca
-	if_equal $4, UnknownScript_0x6a1ca
-	if_equal $6, UnknownScript_0x6a1ca
+	if_equal TUESDAY, UnknownScript_0x6a1ca
+	if_equal THURSDAY, UnknownScript_0x6a1ca
+	if_equal SATURDAY, UnknownScript_0x6a1ca
 	checkbit2 $0011
 	iftrue UnknownScript_0x6a1ac
 	disappear $2
@@ -28265,10 +28620,10 @@ UnknownScript_0x6a1ee: ; 0x6a1ee
 
 UnknownScript_0x6a204: ; 0x6a204
 	checkcode $b
-	if_equal $0, UnknownScript_0x6a2c7
-	if_equal $1, UnknownScript_0x6a2c7
-	if_equal $3, UnknownScript_0x6a2c7
-	if_equal $5, UnknownScript_0x6a2c7
+	if_equal SUNDAY, UnknownScript_0x6a2c7
+	if_equal MONDAY, UnknownScript_0x6a2c7
+	if_equal WEDNESDAY, UnknownScript_0x6a2c7
+	if_equal FRIDAY, UnknownScript_0x6a2c7
 	faceplayer
 	loadfont
 	checkbit2 $0051
@@ -28732,9 +29087,9 @@ UnknownScript_0x6ab23: ; 0x6ab23
 	checkbit1 $02d2
 	iftrue UnknownScript_0x6ab46
 	checkcode $b
-	if_equal $2, UnknownScript_0x6ab42
-	if_equal $4, UnknownScript_0x6ab42
-	if_equal $6, UnknownScript_0x6ab42
+	if_equal TUESDAY, UnknownScript_0x6ab42
+	if_equal THURSDAY, UnknownScript_0x6ab42
+	if_equal SATURDAY, UnknownScript_0x6ab42
 	checkbit2 $0011
 	iftrue UnknownScript_0x6ab42
 	disappear $2
@@ -28831,10 +29186,10 @@ UnknownScript_0x6abdc: ; 0x6abdc
 
 UnknownScript_0x6abe0: ; 0x6abe0
 	checkcode $b
-	if_equal $0, UnknownScript_0x6acf1
-	if_equal $1, UnknownScript_0x6acf1
-	if_equal $3, UnknownScript_0x6acf1
-	if_equal $5, UnknownScript_0x6acf1
+	if_equal SUNDAY, UnknownScript_0x6acf1
+	if_equal MONDAY, UnknownScript_0x6acf1
+	if_equal WEDNESDAY, UnknownScript_0x6acf1
+	if_equal FRIDAY, UnknownScript_0x6acf1
 	faceplayer
 	loadfont
 	checkbit2 $0051
@@ -30130,230 +30485,230 @@ UnknownScript_0x6c65b: ; 0x6c65b
 	return
 ; 0x6c65e
 
-UnknownScript_0x6c65e: ; 0x6c65e
+SecurityCamera1a: ; 0x6c65e
 	checkbit1 $02e4
-	iftrue UnknownScript_0x6c8b8
-	2call UnknownScript_0x6c8e3
+	iftrue NoSecurityCamera
+	2call PlaySecurityCameraSounds
 	checkbit1 $06da
-	iftrue UnknownScript_0x6c8b8
+	iftrue NoSecurityCamera
 	showemote $0, $0, 15
 	playmusic $0039
 	moveperson $2, $13, $2
 	appear $2
 	spriteface $0, $2
-	applymovement $2, MovementData_0x6cacd
-	2call UnknownScript_0x6c8b9
-	if_equal $1, UnknownScript_0x6c8b8
-	2call UnknownScript_0x6c8e3
+	applymovement $2, SecurityCameraMovement1
+	2call TrainerCameraGrunt1
+	if_equal $1, NoSecurityCamera
+	2call PlaySecurityCameraSounds
 	showemote $0, $0, 15
 	playmusic $0039
 	moveperson $2, $13, $2
 	appear $2
-	applymovement $2, MovementData_0x6cacd
-	2call UnknownScript_0x6c8ce
-	if_equal $1, UnknownScript_0x6c8b8
+	applymovement $2, SecurityCameraMovement1
+	2call TrainerCameraGrunt2
+	if_equal $1, NoSecurityCamera
 	setbit1 $02e4
 	end
 ; 0x6c6a7
 
-UnknownScript_0x6c6a7: ; 0x6c6a7
+SecurityCamera1b: ; 0x6c6a7
 	checkbit1 $02e4
-	iftrue UnknownScript_0x6c8b8
-	2call UnknownScript_0x6c8e3
+	iftrue NoSecurityCamera
+	2call PlaySecurityCameraSounds
 	checkbit1 $06da
-	iftrue UnknownScript_0x6c8b8
+	iftrue NoSecurityCamera
 	showemote $0, $0, 15
 	playmusic $0039
 	moveperson $2, $13, $3
 	appear $2
 	spriteface $0, $2
-	applymovement $2, MovementData_0x6cacd
-	2call UnknownScript_0x6c8b9
-	if_equal $1, UnknownScript_0x6c8b8
-	2call UnknownScript_0x6c8e3
+	applymovement $2, SecurityCameraMovement1
+	2call TrainerCameraGrunt1
+	if_equal $1, NoSecurityCamera
+	2call PlaySecurityCameraSounds
 	showemote $0, $0, 15
 	playmusic $0039
 	moveperson $2, $13, $3
 	appear $2
-	applymovement $2, MovementData_0x6cacd
-	2call UnknownScript_0x6c8ce
-	if_equal $1, UnknownScript_0x6c8b8
+	applymovement $2, SecurityCameraMovement1
+	2call TrainerCameraGrunt2
+	if_equal $1, NoSecurityCamera
 	setbit1 $02e4
 	end
 ; 0x6c6f0
 
-UnknownScript_0x6c6f0: ; 0x6c6f0
+SecurityCamera2a: ; 0x6c6f0
 	checkbit1 $02e5
-	iftrue UnknownScript_0x6c8b8
-	2call UnknownScript_0x6c8e3
+	iftrue NoSecurityCamera
+	2call PlaySecurityCameraSounds
 	checkbit1 $06da
-	iftrue UnknownScript_0x6c8b8
+	iftrue NoSecurityCamera
 	showemote $0, $0, 15
 	playmusic $0039
 	moveperson $2, $4, $7
 	appear $2
 	spriteface $0, $2
-	applymovement $2, MovementData_0x6cad2
-	2call UnknownScript_0x6c8b9
-	if_equal $1, UnknownScript_0x6c8b8
-	2call UnknownScript_0x6c8e3
+	applymovement $2, SecurityCameraMovement2
+	2call TrainerCameraGrunt1
+	if_equal $1, NoSecurityCamera
+	2call PlaySecurityCameraSounds
 	showemote $0, $0, 15
 	playmusic $0039
 	spriteface $0, $3
 	moveperson $2, $c, $5
 	appear $2
-	applymovement $2, MovementData_0x6cada
-	2call UnknownScript_0x6c8ce
-	if_equal $1, UnknownScript_0x6c8b8
+	applymovement $2, SecurityCameraMovement3
+	2call TrainerCameraGrunt2
+	if_equal $1, NoSecurityCamera
 	setbit1 $02e5
 	end
 ; 0x6c73c
 
-UnknownScript_0x6c73c: ; 0x6c73c
+SecurityCamera2b: ; 0x6c73c
 	checkbit1 $02e5
-	iftrue UnknownScript_0x6c8b8
-	2call UnknownScript_0x6c8e3
+	iftrue NoSecurityCamera
+	2call PlaySecurityCameraSounds
 	checkbit1 $06da
-	iftrue UnknownScript_0x6c8b8
+	iftrue NoSecurityCamera
 	showemote $0, $0, 15
 	playmusic $0039
 	moveperson $2, $4, $8
 	appear $2
 	spriteface $0, $2
-	applymovement $2, MovementData_0x6cae3
-	2call UnknownScript_0x6c8b9
-	if_equal $1, UnknownScript_0x6c8b8
-	2call UnknownScript_0x6c8e3
+	applymovement $2, SecurityCameraMovement4
+	2call TrainerCameraGrunt1
+	if_equal $1, NoSecurityCamera
+	2call PlaySecurityCameraSounds
 	showemote $0, $0, 15
 	playmusic $0039
 	spriteface $0, $3
 	moveperson $2, $c, $5
 	appear $2
-	applymovement $2, MovementData_0x6caea
-	2call UnknownScript_0x6c8ce
-	if_equal $1, UnknownScript_0x6c8b8
+	applymovement $2, SecurityCameraMovement5
+	2call TrainerCameraGrunt2
+	if_equal $1, NoSecurityCamera
 	setbit1 $02e5
 	end
 ; 0x6c788
 
-UnknownScript_0x6c788: ; 0x6c788
+SecurityCamera3a: ; 0x6c788
 	checkbit1 $02e6
-	iftrue UnknownScript_0x6c8b8
-	2call UnknownScript_0x6c8e3
+	iftrue NoSecurityCamera
+	2call PlaySecurityCameraSounds
 	checkbit1 $06da
-	iftrue UnknownScript_0x6c8b8
+	iftrue NoSecurityCamera
 	showemote $0, $0, 15
 	playmusic $0039
 	moveperson $2, $13, $6
 	appear $2
 	spriteface $0, $2
-	applymovement $2, MovementData_0x6cacd
-	2call UnknownScript_0x6c8b9
-	if_equal $1, UnknownScript_0x6c8b8
-	2call UnknownScript_0x6c8e3
+	applymovement $2, SecurityCameraMovement1
+	2call TrainerCameraGrunt1
+	if_equal $1, NoSecurityCamera
+	2call PlaySecurityCameraSounds
 	showemote $0, $0, 15
 	playmusic $0039
 	spriteface $0, $3
 	moveperson $2, $19, $b
 	appear $2
-	applymovement $2, MovementData_0x6caf2
-	2call UnknownScript_0x6c8ce
-	if_equal $1, UnknownScript_0x6c8b8
+	applymovement $2, SecurityCameraMovement6
+	2call TrainerCameraGrunt2
+	if_equal $1, NoSecurityCamera
 	setbit1 $02e6
 	end
 ; 0x6c7d4
 
-UnknownScript_0x6c7d4: ; 0x6c7d4
+SecurityCamera3b: ; 0x6c7d4
 	checkbit1 $02e6
-	iftrue UnknownScript_0x6c8b8
-	2call UnknownScript_0x6c8e3
+	iftrue NoSecurityCamera
+	2call PlaySecurityCameraSounds
 	checkbit1 $06da
-	iftrue UnknownScript_0x6c8b8
+	iftrue NoSecurityCamera
 	showemote $0, $0, 15
 	playmusic $0039
 	moveperson $2, $13, $7
 	appear $2
 	spriteface $0, $2
-	applymovement $2, MovementData_0x6cacd
-	2call UnknownScript_0x6c8b9
-	if_equal $1, UnknownScript_0x6c8b8
-	2call UnknownScript_0x6c8e3
+	applymovement $2, SecurityCameraMovement1
+	2call TrainerCameraGrunt1
+	if_equal $1, NoSecurityCamera
+	2call PlaySecurityCameraSounds
 	showemote $0, $0, 15
 	playmusic $0039
 	spriteface $0, $3
 	moveperson $2, $19, $c
 	appear $2
-	applymovement $2, MovementData_0x6cafa
-	2call UnknownScript_0x6c8ce
-	if_equal $1, UnknownScript_0x6c8b8
+	applymovement $2, SecurityCameraMovement7
+	2call TrainerCameraGrunt2
+	if_equal $1, NoSecurityCamera
 	setbit1 $02e6
 	end
 ; 0x6c820
 
-UnknownScript_0x6c820: ; 0x6c820
+SecurityCamera4: ; 0x6c820
 	checkbit1 $02e7
-	iftrue UnknownScript_0x6c8b8
-	2call UnknownScript_0x6c8e3
+	iftrue NoSecurityCamera
+	2call PlaySecurityCameraSounds
 	checkbit1 $06da
-	iftrue UnknownScript_0x6c8b8
+	iftrue NoSecurityCamera
 	showemote $0, $0, 15
 	playmusic $0039
 	moveperson $2, $11, $10
 	appear $2
 	spriteface $0, $2
-	applymovement $2, MovementData_0x6cacd
-	2call UnknownScript_0x6c8b9
-	if_equal $1, UnknownScript_0x6c8b8
-	2call UnknownScript_0x6c8e3
+	applymovement $2, SecurityCameraMovement1
+	2call TrainerCameraGrunt1
+	if_equal $1, NoSecurityCamera
+	2call PlaySecurityCameraSounds
 	showemote $0, $0, 15
 	playmusic $0039
 	spriteface $0, $3
 	moveperson $2, $19, $b
 	appear $2
-	applymovement $2, MovementData_0x6cb02
-	2call UnknownScript_0x6c8ce
-	if_equal $1, UnknownScript_0x6c8b8
+	applymovement $2, SecurityCameraMovement8
+	2call TrainerCameraGrunt2
+	if_equal $1, NoSecurityCamera
 	setbit1 $02e7
 	end
 ; 0x6c86c
 
-UnknownScript_0x6c86c: ; 0x6c86c
+SecurityCamera5: ; 0x6c86c
 	checkbit1 $02e8
-	iftrue UnknownScript_0x6c8b8
-	2call UnknownScript_0x6c8e3
+	iftrue NoSecurityCamera
+	2call PlaySecurityCameraSounds
 	checkbit1 $06da
-	iftrue UnknownScript_0x6c8b8
+	iftrue NoSecurityCamera
 	showemote $0, $0, 15
 	playmusic $0039
 	moveperson $2, $3, $10
 	appear $2
 	spriteface $0, $2
-	applymovement $2, MovementData_0x6cacd
-	2call UnknownScript_0x6c8b9
-	if_equal $1, UnknownScript_0x6c8b8
-	2call UnknownScript_0x6c8e3
+	applymovement $2, SecurityCameraMovement1
+	2call TrainerCameraGrunt1
+	if_equal $1, NoSecurityCamera
+	2call PlaySecurityCameraSounds
 	showemote $0, $0, 15
 	playmusic $0039
 	spriteface $0, $3
 	moveperson $2, $e, $10
 	appear $2
-	applymovement $2, MovementData_0x6cb0c
-	2call UnknownScript_0x6c8ce
-	if_equal $1, UnknownScript_0x6c8b8
+	applymovement $2, SecurityCameraMovement9
+	2call TrainerCameraGrunt2
+	if_equal $1, NoSecurityCamera
 	setbit1 $02e8
 	end
 ; 0x6c8b8
 
-UnknownScript_0x6c8b8: ; 0x6c8b8
+NoSecurityCamera: ; 0x6c8b8
 	end
 ; 0x6c8b9
 
-UnknownScript_0x6c8b9: ; 0x6c8b9
+TrainerCameraGrunt1: ; 0x6c8b9
 	loadfont
-	2writetext UnknownText_0x6cb12
+	2writetext TrainerCameraGrunt1WhenSeenText
 	closetext
 	loadmovesprites
-	winlosstext UnknownText_0x6cb28, $0000
+	winlosstext TrainerCameraGrunt1WhenBeatenText, $0000
 	setlasttalked $2
 	loadtrainer GRUNTM, 20
 	startbattle
@@ -30362,12 +30717,12 @@ UnknownScript_0x6c8b9: ; 0x6c8b9
 	end
 ; 0x6c8ce
 
-UnknownScript_0x6c8ce: ; 0x6c8ce
+TrainerCameraGrunt2: ; 0x6c8ce
 	loadfont
-	2writetext UnknownText_0x6cb39
+	2writetext TrainerCameraGrunt2WhenSeenText
 	closetext
 	loadmovesprites
-	winlosstext UnknownText_0x6cb59, $0000
+	winlosstext TrainerCameraGrunt2WhenBeatenText, $0000
 	setlasttalked $2
 	loadtrainer GRUNTM, 21
 	startbattle
@@ -30376,7 +30731,7 @@ UnknownScript_0x6c8ce: ; 0x6c8ce
 	end
 ; 0x6c8e3
 
-UnknownScript_0x6c8e3: ; 0x6c8e3
+PlaySecurityCameraSounds: ; 0x6c8e3
 	playsound $0030
 	pause 10
 	playsound $0030
@@ -30391,205 +30746,183 @@ UnknownScript_0x6c8e3: ; 0x6c8e3
 	end
 ; 0x6c900
 
-UnknownScript_0x6c900: ; 0x6c900
+ExplodingTrap1: ; 0x6c900
 	checkbit1 $02e9
-	iftrue UnknownScript_0x6ca6d
-	2call UnknownScript_0x6ca5a
+	iftrue NoExplodingTrap
+	2call KoffingExplodingTrap
 	returnafterbattle
 	setbit1 $02e9
 	end
-; 0x6c90e
 
-UnknownScript_0x6c90e: ; 0x6c90e
+ExplodingTrap2: ; 0x6c90e
 	checkbit1 $02ea
-	iftrue UnknownScript_0x6ca6d
-	2call UnknownScript_0x6ca34
+	iftrue NoExplodingTrap
+	2call VoltorbExplodingTrap
 	returnafterbattle
 	setbit1 $02ea
 	end
-; 0x6c91c
 
-UnknownScript_0x6c91c: ; 0x6c91c
+ExplodingTrap3: ; 0x6c91c
 	checkbit1 $02eb
-	iftrue UnknownScript_0x6ca6d
-	2call UnknownScript_0x6ca47
+	iftrue NoExplodingTrap
+	2call GeodudeExplodingTrap
 	returnafterbattle
 	setbit1 $02eb
 	end
-; 0x6c92a
 
-UnknownScript_0x6c92a: ; 0x6c92a
+ExplodingTrap4: ; 0x6c92a
 	checkbit1 $02ec
-	iftrue UnknownScript_0x6ca6d
-	2call UnknownScript_0x6ca34
+	iftrue NoExplodingTrap
+	2call VoltorbExplodingTrap
 	returnafterbattle
 	setbit1 $02ec
 	end
-; 0x6c938
 
-UnknownScript_0x6c938: ; 0x6c938
+ExplodingTrap5: ; 0x6c938
 	checkbit1 $02ed
-	iftrue UnknownScript_0x6ca6d
-	2call UnknownScript_0x6ca47
+	iftrue NoExplodingTrap
+	2call GeodudeExplodingTrap
 	returnafterbattle
 	setbit1 $02ed
 	end
-; 0x6c946
 
-UnknownScript_0x6c946: ; 0x6c946
+ExplodingTrap6: ; 0x6c946
 	checkbit1 $02ee
-	iftrue UnknownScript_0x6ca6d
-	2call UnknownScript_0x6ca5a
+	iftrue NoExplodingTrap
+	2call KoffingExplodingTrap
 	returnafterbattle
 	setbit1 $02ee
 	end
-; 0x6c954
 
-UnknownScript_0x6c954: ; 0x6c954
+ExplodingTrap7: ; 0x6c954
 	checkbit1 $02ef
-	iftrue UnknownScript_0x6ca6d
-	2call UnknownScript_0x6ca34
+	iftrue NoExplodingTrap
+	2call VoltorbExplodingTrap
 	returnafterbattle
 	setbit1 $02ef
 	end
-; 0x6c962
 
-UnknownScript_0x6c962: ; 0x6c962
+ExplodingTrap8: ; 0x6c962
 	checkbit1 $02f0
-	iftrue UnknownScript_0x6ca6d
-	2call UnknownScript_0x6ca5a
+	iftrue NoExplodingTrap
+	2call KoffingExplodingTrap
 	returnafterbattle
 	setbit1 $02f0
 	end
-; 0x6c970
 
-UnknownScript_0x6c970: ; 0x6c970
+ExplodingTrap9: ; 0x6c970
 	checkbit1 $02f1
-	iftrue UnknownScript_0x6ca6d
-	2call UnknownScript_0x6ca5a
+	iftrue NoExplodingTrap
+	2call KoffingExplodingTrap
 	returnafterbattle
 	setbit1 $02f1
 	end
-; 0x6c97e
 
-UnknownScript_0x6c97e: ; 0x6c97e
+ExplodingTrap10: ; 0x6c97e
 	checkbit1 $02f2
-	iftrue UnknownScript_0x6ca6d
-	2call UnknownScript_0x6ca34
+	iftrue NoExplodingTrap
+	2call VoltorbExplodingTrap
 	returnafterbattle
 	setbit1 $02f2
 	end
-; 0x6c98c
 
-UnknownScript_0x6c98c: ; 0x6c98c
+ExplodingTrap11: ; 0x6c98c
 	checkbit1 $02f3
-	iftrue UnknownScript_0x6ca6d
-	2call UnknownScript_0x6ca47
+	iftrue NoExplodingTrap
+	2call GeodudeExplodingTrap
 	returnafterbattle
 	setbit1 $02f3
 	end
-; 0x6c99a
 
-UnknownScript_0x6c99a: ; 0x6c99a
+ExplodingTrap12: ; 0x6c99a
 	checkbit1 $02f4
-	iftrue UnknownScript_0x6ca6d
-	2call UnknownScript_0x6ca47
+	iftrue NoExplodingTrap
+	2call GeodudeExplodingTrap
 	returnafterbattle
 	setbit1 $02f4
 	end
-; 0x6c9a8
 
-UnknownScript_0x6c9a8: ; 0x6c9a8
+ExplodingTrap13: ; 0x6c9a8
 	checkbit1 $02f5
-	iftrue UnknownScript_0x6ca6d
-	2call UnknownScript_0x6ca47
+	iftrue NoExplodingTrap
+	2call GeodudeExplodingTrap
 	returnafterbattle
 	setbit1 $02f5
 	end
-; 0x6c9b6
 
-UnknownScript_0x6c9b6: ; 0x6c9b6
+ExplodingTrap14: ; 0x6c9b6
 	checkbit1 $02f6
-	iftrue UnknownScript_0x6ca6d
-	2call UnknownScript_0x6ca5a
+	iftrue NoExplodingTrap
+	2call KoffingExplodingTrap
 	returnafterbattle
 	setbit1 $02f6
 	end
-; 0x6c9c4
 
-UnknownScript_0x6c9c4: ; 0x6c9c4
+ExplodingTrap15: ; 0x6c9c4
 	checkbit1 $02f7
-	iftrue UnknownScript_0x6ca6d
-	2call UnknownScript_0x6ca34
+	iftrue NoExplodingTrap
+	2call VoltorbExplodingTrap
 	returnafterbattle
 	setbit1 $02f7
 	end
-; 0x6c9d2
 
-UnknownScript_0x6c9d2: ; 0x6c9d2
+ExplodingTrap16: ; 0x6c9d2
 	checkbit1 $02f8
-	iftrue UnknownScript_0x6ca6d
-	2call UnknownScript_0x6ca5a
+	iftrue NoExplodingTrap
+	2call KoffingExplodingTrap
 	returnafterbattle
 	setbit1 $02f8
 	end
-; 0x6c9e0
 
-UnknownScript_0x6c9e0: ; 0x6c9e0
+ExplodingTrap17: ; 0x6c9e0
 	checkbit1 $02f9
-	iftrue UnknownScript_0x6ca6d
-	2call UnknownScript_0x6ca34
+	iftrue NoExplodingTrap
+	2call VoltorbExplodingTrap
 	returnafterbattle
 	setbit1 $02f9
 	end
-; 0x6c9ee
 
-UnknownScript_0x6c9ee: ; 0x6c9ee
+ExplodingTrap18: ; 0x6c9ee
 	checkbit1 $02fa
-	iftrue UnknownScript_0x6ca6d
-	2call UnknownScript_0x6ca47
+	iftrue NoExplodingTrap
+	2call GeodudeExplodingTrap
 	returnafterbattle
 	setbit1 $02fa
 	end
-; 0x6c9fc
 
-UnknownScript_0x6c9fc: ; 0x6c9fc
+ExplodingTrap19: ; 0x6c9fc
 	checkbit1 $02fb
-	iftrue UnknownScript_0x6ca6d
-	2call UnknownScript_0x6ca47
+	iftrue NoExplodingTrap
+	2call GeodudeExplodingTrap
 	returnafterbattle
 	setbit1 $02fb
 	end
-; 0x6ca0a
 
-UnknownScript_0x6ca0a: ; 0x6ca0a
+ExplodingTrap20: ; 0x6ca0a
 	checkbit1 $02fc
-	iftrue UnknownScript_0x6ca6d
-	2call UnknownScript_0x6ca34
+	iftrue NoExplodingTrap
+	2call VoltorbExplodingTrap
 	returnafterbattle
 	setbit1 $02fc
 	end
-; 0x6ca18
 
-UnknownScript_0x6ca18: ; 0x6ca18
+ExplodingTrap21: ; 0x6ca18
 	checkbit1 $02fd
-	iftrue UnknownScript_0x6ca6d
-	2call UnknownScript_0x6ca5a
+	iftrue NoExplodingTrap
+	2call KoffingExplodingTrap
 	returnafterbattle
 	setbit1 $02fd
 	end
-; 0x6ca26
 
-UnknownScript_0x6ca26: ; 0x6ca26
+ExplodingTrap22: ; 0x6ca26
 	checkbit1 $02fe
-	iftrue UnknownScript_0x6ca6d
-	2call UnknownScript_0x6ca34
+	iftrue NoExplodingTrap
+	2call VoltorbExplodingTrap
 	returnafterbattle
 	setbit1 $02fe
 	end
-; 0x6ca34
 
-UnknownScript_0x6ca34: ; 0x6ca34
+VoltorbExplodingTrap: ; 0x6ca34
 	special $002e
 	cry VOLTORB
 	special $0031
@@ -30598,9 +30931,8 @@ UnknownScript_0x6ca34: ; 0x6ca34
 	loadpokedata VOLTORB, 23
 	startbattle
 	end
-; 0x6ca47
 
-UnknownScript_0x6ca47: ; 0x6ca47
+GeodudeExplodingTrap: ; 0x6ca47
 	special $002e
 	cry GEODUDE
 	special $0031
@@ -30609,9 +30941,8 @@ UnknownScript_0x6ca47: ; 0x6ca47
 	loadpokedata GEODUDE, 21
 	startbattle
 	end
-; 0x6ca5a
 
-UnknownScript_0x6ca5a: ; 0x6ca5a
+KoffingExplodingTrap: ; 0x6ca5a
 	special $002e
 	cry KOFFING
 	special $0031
@@ -30620,9 +30951,8 @@ UnknownScript_0x6ca5a: ; 0x6ca5a
 	loadpokedata KOFFING, 21
 	startbattle
 	end
-; 0x6ca6d
 
-UnknownScript_0x6ca6d: ; 0x6ca6d
+NoExplodingTrap: ; 0x6ca6d
 	end
 ; 0x6ca6e
 
@@ -30685,7 +31015,7 @@ TrainerGruntM16WhenTalkScript: ; 0x6ca8e
 ; 0x6ca96
 
 MapTeamRocketBaseB1FSignpost5Script: ; 0x6ca96
-	jumptext UnknownText_0x6cd7c
+	jumptext SecurityCameraText
 ; 0x6ca99
 
 MapTeamRocketBaseB1FSignpost7Script: ; 0x6ca99
@@ -30734,7 +31064,7 @@ MapTeamRocketBaseB1FSignpostItem8: ; 0x6caca
 	
 ; 0x6cacd
 
-MovementData_0x6cacd: ; 0x6cacd
+SecurityCameraMovement1: ; 0x6cacd
 	big_step_right
 	big_step_right
 	big_step_right
@@ -30742,7 +31072,7 @@ MovementData_0x6cacd: ; 0x6cacd
 	step_end
 ; 0x6cad2
 
-MovementData_0x6cad2: ; 0x6cad2
+SecurityCameraMovement2: ; 0x6cad2
 	big_step_up
 	big_step_right
 	big_step_up
@@ -30753,7 +31083,7 @@ MovementData_0x6cad2: ; 0x6cad2
 	step_end
 ; 0x6cada
 
-MovementData_0x6cada: ; 0x6cada
+SecurityCameraMovement3: ; 0x6cada
 	big_step_left
 	big_step_left
 	big_step_left
@@ -30765,7 +31095,8 @@ MovementData_0x6cada: ; 0x6cada
 	step_end
 ; 0x6cae3
 
-MovementData_0x6cae3: ; 0x6cae3
+SecurityCameraMovement4: ; 0x6cae3
+; he jumps over a trap
 	jump_step_up
 	big_step_right
 	big_step_up
@@ -30775,7 +31106,7 @@ MovementData_0x6cae3: ; 0x6cae3
 	step_end
 ; 0x6caea
 
-MovementData_0x6caea: ; 0x6caea
+SecurityCameraMovement5: ; 0x6caea
 	big_step_left
 	big_step_left
 	big_step_left
@@ -30786,7 +31117,7 @@ MovementData_0x6caea: ; 0x6caea
 	step_end
 ; 0x6caf2
 
-MovementData_0x6caf2: ; 0x6caf2
+SecurityCameraMovement6: ; 0x6caf2
 	big_step_up
 	big_step_up
 	big_step_right
@@ -30797,7 +31128,7 @@ MovementData_0x6caf2: ; 0x6caf2
 	step_end
 ; 0x6cafa
 
-MovementData_0x6cafa: ; 0x6cafa
+SecurityCameraMovement7: ; 0x6cafa
 	big_step_up
 	big_step_up
 	big_step_up
@@ -30808,7 +31139,7 @@ MovementData_0x6cafa: ; 0x6cafa
 	step_end
 ; 0x6cb02
 
-MovementData_0x6cb02: ; 0x6cb02
+SecurityCameraMovement8: ; 0x6cb02
 	big_step_down
 	big_step_down
 	big_step_right
@@ -30821,7 +31152,7 @@ MovementData_0x6cb02: ; 0x6cb02
 	step_end
 ; 0x6cb0c
 
-MovementData_0x6cb0c: ; 0x6cb0c
+SecurityCameraMovement9: ; 0x6cb0c
 	big_step_left
 	big_step_left
 	big_step_left
@@ -30830,21 +31161,21 @@ MovementData_0x6cb0c: ; 0x6cb0c
 	step_end
 ; 0x6cb12
 
-UnknownText_0x6cb12: ; 0x6cb12
+TrainerCameraGrunt1WhenSeenText: ; 0x6cb12
 	db $0, "Hey!", $4f
 	db "Intruder alert!", $57
 ; 0x6cb28
 
-UnknownText_0x6cb28: ; 0x6cb28
+TrainerCameraGrunt1WhenBeatenText: ; 0x6cb28
 	db $0, "Dang… I failed…", $57
 ; 0x6cb39
 
-UnknownText_0x6cb39: ; 0x6cb39
+TrainerCameraGrunt2WhenSeenText: ; 0x6cb39
 	db $0, "It's my turn!", $4f
 	db "There's no escape!", $57
 ; 0x6cb59
 
-UnknownText_0x6cb59: ; 0x6cb59
+TrainerCameraGrunt2WhenBeatenText: ; 0x6cb59
 	db $0, "Surveillance cams", $4f
 	db "are in the #MON", $55
 	db "statues.", $51
@@ -30900,7 +31231,7 @@ UnknownText_0x6cd1b: ; 0x6cd1b
 	db "courage and walk.", $57
 ; 0x6cd7c
 
-UnknownText_0x6cd7c: ; 0x6cd7c
+SecurityCameraText: ; 0x6cd7c
 	db $0, "It's a PERSIAN", $4f
 	db "statue…", $51
 	db "Its eyes are oddly", $4f
@@ -30930,36 +31261,40 @@ TeamRocketBaseB1F_MapEventHeader: ; 0x6cdeb
 
 	; xy triggers
 	db 30
-	xy_trigger 0, $2, $18, $0, UnknownScript_0x6c65e, $0, $0
-	xy_trigger 0, $3, $18, $0, UnknownScript_0x6c6a7, $0, $0
-	xy_trigger 0, $2, $6, $0, UnknownScript_0x6c6f0, $0, $0
-	xy_trigger 0, $3, $6, $0, UnknownScript_0x6c73c, $0, $0
-	xy_trigger 0, $6, $18, $0, UnknownScript_0x6c788, $0, $0
-	xy_trigger 0, $7, $18, $0, UnknownScript_0x6c7d4, $0, $0
-	xy_trigger 0, $10, $16, $0, UnknownScript_0x6c820, $0, $0
-	xy_trigger 0, $10, $8, $0, UnknownScript_0x6c86c, $0, $0
-	xy_trigger 0, $7, $2, $0, UnknownScript_0x6c900, $0, $0
-	xy_trigger 0, $7, $3, $0, UnknownScript_0x6c90e, $0, $0
-	xy_trigger 0, $7, $4, $0, UnknownScript_0x6c91c, $0, $0
-	xy_trigger 0, $8, $1, $0, UnknownScript_0x6c92a, $0, $0
-	xy_trigger 0, $8, $3, $0, UnknownScript_0x6c938, $0, $0
-	xy_trigger 0, $8, $5, $0, UnknownScript_0x6c946, $0, $0
-	xy_trigger 0, $9, $3, $0, UnknownScript_0x6c954, $0, $0
-	xy_trigger 0, $9, $4, $0, UnknownScript_0x6c962, $0, $0
-	xy_trigger 0, $a, $1, $0, UnknownScript_0x6c970, $0, $0
-	xy_trigger 0, $a, $2, $0, UnknownScript_0x6c97e, $0, $0
-	xy_trigger 0, $a, $3, $0, UnknownScript_0x6c98c, $0, $0
-	xy_trigger 0, $a, $5, $0, UnknownScript_0x6c99a, $0, $0
-	xy_trigger 0, $b, $2, $0, UnknownScript_0x6c9a8, $0, $0
-	xy_trigger 0, $b, $4, $0, UnknownScript_0x6c9b6, $0, $0
-	xy_trigger 0, $c, $1, $0, UnknownScript_0x6c9c4, $0, $0
-	xy_trigger 0, $c, $2, $0, UnknownScript_0x6c9d2, $0, $0
-	xy_trigger 0, $c, $4, $0, UnknownScript_0x6c9e0, $0, $0
-	xy_trigger 0, $c, $5, $0, UnknownScript_0x6c9ee, $0, $0
-	xy_trigger 0, $d, $1, $0, UnknownScript_0x6c9fc, $0, $0
-	xy_trigger 0, $d, $3, $0, UnknownScript_0x6ca0a, $0, $0
-	xy_trigger 0, $d, $4, $0, UnknownScript_0x6ca18, $0, $0
-	xy_trigger 0, $d, $5, $0, UnknownScript_0x6ca26, $0, $0
+	; There are five security cameras in the base.
+	; Walking in front of one triggers two Rocket Grunts.
+	xy_trigger 0, $2, $18, $0, SecurityCamera1a, $0, $0
+	xy_trigger 0, $3, $18, $0, SecurityCamera1b, $0, $0
+	xy_trigger 0, $2, $6, $0, SecurityCamera2a, $0, $0
+	xy_trigger 0, $3, $6, $0, SecurityCamera2b, $0, $0
+	xy_trigger 0, $6, $18, $0, SecurityCamera3a, $0, $0
+	xy_trigger 0, $7, $18, $0, SecurityCamera3b, $0, $0
+	xy_trigger 0, $10, $16, $0, SecurityCamera4, $0, $0
+	xy_trigger 0, $10, $8, $0, SecurityCamera5, $0, $0
+	; There are spots on the floor that trigger a Pokémon battle.
+	; Each Pokémon (Voltorb, Koffing, Geodude) knows Selfdestruct.
+	xy_trigger 0, $7, $2, $0, ExplodingTrap1, $0, $0
+	xy_trigger 0, $7, $3, $0, ExplodingTrap2, $0, $0
+	xy_trigger 0, $7, $4, $0, ExplodingTrap3, $0, $0
+	xy_trigger 0, $8, $1, $0, ExplodingTrap4, $0, $0
+	xy_trigger 0, $8, $3, $0, ExplodingTrap5, $0, $0
+	xy_trigger 0, $8, $5, $0, ExplodingTrap6, $0, $0
+	xy_trigger 0, $9, $3, $0, ExplodingTrap7, $0, $0
+	xy_trigger 0, $9, $4, $0, ExplodingTrap8, $0, $0
+	xy_trigger 0, $a, $1, $0, ExplodingTrap9, $0, $0
+	xy_trigger 0, $a, $2, $0, ExplodingTrap10, $0, $0
+	xy_trigger 0, $a, $3, $0, ExplodingTrap11, $0, $0
+	xy_trigger 0, $a, $5, $0, ExplodingTrap12, $0, $0
+	xy_trigger 0, $b, $2, $0, ExplodingTrap13, $0, $0
+	xy_trigger 0, $b, $4, $0, ExplodingTrap14, $0, $0
+	xy_trigger 0, $c, $1, $0, ExplodingTrap15, $0, $0
+	xy_trigger 0, $c, $2, $0, ExplodingTrap16, $0, $0
+	xy_trigger 0, $c, $4, $0, ExplodingTrap17, $0, $0
+	xy_trigger 0, $c, $5, $0, ExplodingTrap18, $0, $0
+	xy_trigger 0, $d, $1, $0, ExplodingTrap19, $0, $0
+	xy_trigger 0, $d, $3, $0, ExplodingTrap20, $0, $0
+	xy_trigger 0, $d, $4, $0, ExplodingTrap21, $0, $0
+	xy_trigger 0, $d, $5, $0, ExplodingTrap22, $0, $0
 
 	; signposts
 	db 9
@@ -33718,7 +34053,7 @@ UnknownScript_0x70012: ; 0x70012
 
 UnknownScript_0x70016: ; 0x70016
 	checkcode $b
-	if_equal $3, UnknownScript_0x7001f
+	if_equal WEDNESDAY, UnknownScript_0x7001f
 	disappear $b
 	return
 ; 0x7001f
@@ -33963,7 +34298,7 @@ UnknownScript_0x7010e: ; 0x7010e
 	checkbit1 $006b
 	iftrue UnknownScript_0x7013c
 	checkcode $b
-	if_not_equal $3, UnknownScript_0x70142
+	if_not_equal WEDNESDAY, UnknownScript_0x70142
 	checkbit1 $006a
 	iftrue UnknownScript_0x70129
 	2writetext UnknownText_0x70784
@@ -35574,7 +35909,7 @@ UnknownScript_0x71e2e: ; 0x71e2e
 	loadfont
 	2writetext UnknownText_0x71f22
 	keeptextopen
-	writebyte $f5
+	writebyte SUICUNE
 	special $0097
 	iffalse UnknownScript_0x71e46
 	special $0096
@@ -35824,8 +36159,8 @@ UnknownScript_0x72184: ; 0x72184
 	end
 ; 0x7218d
 
-UnknownScript_0x7218d: ; 0x7218d
-	jumptextfaceplayer UnknownText_0x72425
+CeladonGymGuyScript: ; 0x7218d
+	jumptextfaceplayer CeladonGymGuyText
 ; 0x72190
 
 UnknownScript_0x72190: ; 0x72190
@@ -35951,7 +36286,7 @@ UnknownText_0x723d9: ; 0x723d9
 	db "too.", $57
 ; 0x72425
 
-UnknownText_0x72425: ; 0x72425
+CeladonGymGuyText: ; 0x72425
 	db $0, "Hey! CHAMP in", $4f
 	db "making!", $51
 	db "Are you playing", $4f
@@ -36058,7 +36393,7 @@ CeladonGameCorner_MapEventHeader: ; 0x725a4
 	person_event $3b, 11, 15, $9, $0, 255, 255, $a0, 0, UnknownScript_0x72139, $ffff
 	person_event $3a, 14, 12, $8, $0, 255, 2, $80, 0, UnknownScript_0x72144, $ffff
 	person_event $3a, 14, 12, $8, $0, 255, 4, $80, 0, UnknownScript_0x72144, $ffff
-	person_event $48, 7, 15, $6, $0, 255, 255, $80, 0, UnknownScript_0x7218d, $ffff
+	person_event $48, 7, 15, $6, $0, 255, 255, $80, 0, CeladonGymGuyScript, $ffff
 	person_event $2f, 12, 6, $8, $0, 255, 255, $a0, 0, UnknownScript_0x72190, $ffff
 ; 0x726e7
 
@@ -38008,11 +38343,11 @@ UnknownScript_0x7491f: ; 0x7491f
 	checkbit1 $0030
 	iffalse UnknownScript_0x7494e
 	checkcode $b
-	if_equal $0, UnknownScript_0x74977
-	if_equal $6, UnknownScript_0x74977
-	if_equal $2, UnknownScript_0x74981
-	if_equal $3, UnknownScript_0x74981
-	if_equal $4, UnknownScript_0x74981
+	if_equal SUNDAY, UnknownScript_0x74977
+	if_equal SATURDAY, UnknownScript_0x74977
+	if_equal TUESDAY, UnknownScript_0x74981
+	if_equal WEDNESDAY, UnknownScript_0x74981
+	if_equal THURSDAY, UnknownScript_0x74981
 UnknownScript_0x7494e: ; 0x7494e
 	2writetext UnknownText_0x74a9c
 	yesorno
@@ -38080,11 +38415,11 @@ UnknownScript_0x7499c: ; 0x7499c
 	checkbit1 $0030
 	iffalse UnknownScript_0x749c0
 	checkcode $b
-	if_equal $0, UnknownScript_0x749f2
-	if_equal $6, UnknownScript_0x749f2
-	if_equal $2, UnknownScript_0x749f8
-	if_equal $3, UnknownScript_0x749f8
-	if_equal $4, UnknownScript_0x749f8
+	if_equal SUNDAY, UnknownScript_0x749f2
+	if_equal SATURDAY, UnknownScript_0x749f2
+	if_equal TUESDAY, UnknownScript_0x749f8
+	if_equal WEDNESDAY, UnknownScript_0x749f8
+	if_equal THURSDAY, UnknownScript_0x749f8
 UnknownScript_0x749c0: ; 0x749c0
 	2writetext UnknownText_0x74a9c
 	yesorno
@@ -38448,11 +38783,11 @@ UnknownScript_0x74e20: ; 0x74e20
 	spriteface $0, $2
 	loadfont
 	checkcode $b
-	if_equal $1, UnknownScript_0x74e72
-	if_equal $2, UnknownScript_0x74e72
-	if_equal $4, UnknownScript_0x74e7c
-	if_equal $5, UnknownScript_0x74e7c
-	if_equal $6, UnknownScript_0x74e7c
+	if_equal MONDAY, UnknownScript_0x74e72
+	if_equal TUESDAY, UnknownScript_0x74e72
+	if_equal THURSDAY, UnknownScript_0x74e7c
+	if_equal FRIDAY, UnknownScript_0x74e7c
+	if_equal SATURDAY, UnknownScript_0x74e7c
 	2writetext UnknownText_0x74f4d
 	yesorno
 	iffalse UnknownScript_0x74e8d
@@ -38517,11 +38852,11 @@ UnknownScript_0x74e97: ; 0x74e97
 	checkbit1 $0000
 	iftrue UnknownScript_0x74e1a
 	checkcode $b
-	if_equal $1, UnknownScript_0x74eda
-	if_equal $2, UnknownScript_0x74eda
-	if_equal $4, UnknownScript_0x74ee0
-	if_equal $5, UnknownScript_0x74ee0
-	if_equal $6, UnknownScript_0x74ee0
+	if_equal MONDAY, UnknownScript_0x74eda
+	if_equal TUESDAY, UnknownScript_0x74eda
+	if_equal THURSDAY, UnknownScript_0x74ee0
+	if_equal FRIDAY, UnknownScript_0x74ee0
+	if_equal SATURDAY, UnknownScript_0x74ee0
 	2writetext UnknownText_0x74f4d
 	yesorno
 	iffalse UnknownScript_0x74e87
@@ -41127,7 +41462,7 @@ UnknownScript_0x7709a: ; 0x7709a
 	checkbit2 $0058
 	iftrue UnknownScript_0x77117
 	checkcode $b
-	if_not_equal $1, UnknownScript_0x77117
+	if_not_equal MONDAY, UnknownScript_0x77117
 	checktime $4
 	iffalse UnknownScript_0x77117
 	appear $2
@@ -44905,12 +45240,12 @@ UnknownScript_0x7c07d: ; 0x7c07d
 
 UnknownScript_0x7c082: ; 0x7c082
 	checkcode $b
-	if_equal $1, UnknownScript_0x7c0a5
-	if_equal $2, UnknownScript_0x7c0b5
-	if_equal $3, UnknownScript_0x7c0be
-	if_equal $4, UnknownScript_0x7c0c7
-	if_equal $5, UnknownScript_0x7c0d0
-	if_equal $6, UnknownScript_0x7c0d9
+	if_equal MONDAY, UnknownScript_0x7c0a5
+	if_equal TUESDAY, UnknownScript_0x7c0b5
+	if_equal WEDNESDAY, UnknownScript_0x7c0be
+	if_equal THURSDAY, UnknownScript_0x7c0c7
+	if_equal FRIDAY, UnknownScript_0x7c0d0
+	if_equal SATURDAY, UnknownScript_0x7c0d9
 	disappear $7
 	disappear $8
 	appear $9
@@ -45089,8 +45424,8 @@ TrainerPokemaniacDonaldWhenTalkScript: ; 0x7c12a
 UnknownScript_0x7c132: ; 0x7c132
 	loadfont
 	checkcode $b
-	if_equal $0, UnknownScript_0x7c140
-	if_equal $6, UnknownScript_0x7c140
+	if_equal SUNDAY, UnknownScript_0x7c140
+	if_equal SATURDAY, UnknownScript_0x7c140
 	2jump UnknownScript_0x7c300
 ; 0x7c140
 
@@ -45105,7 +45440,7 @@ UnknownScript_0x7c146: ; 0x7c146
 	checkbit2 $0056
 	iftrue UnknownScript_0x7c300
 	checkcode $b
-	if_equal $1, UnknownScript_0x7c156
+	if_equal MONDAY, UnknownScript_0x7c156
 	2jump UnknownScript_0x7c300
 ; 0x7c156
 
@@ -45120,9 +45455,9 @@ UnknownScript_0x7c156: ; 0x7c156
 UnknownScript_0x7c161: ; 0x7c161
 	loadfont
 	checkcode $b
-	if_equal $2, UnknownScript_0x7c173
-	if_equal $4, UnknownScript_0x7c173
-	if_equal $6, UnknownScript_0x7c173
+	if_equal TUESDAY, UnknownScript_0x7c173
+	if_equal THURSDAY, UnknownScript_0x7c173
+	if_equal SATURDAY, UnknownScript_0x7c173
 	2jump UnknownScript_0x7c300
 ; 0x7c173
 
@@ -45212,9 +45547,9 @@ UnknownScript_0x7c208: ; 0x7c208
 UnknownScript_0x7c20e: ; 0x7c20e
 	loadfont
 	checkcode $b
-	if_equal $0, UnknownScript_0x7c220
-	if_equal $3, UnknownScript_0x7c220
-	if_equal $5, UnknownScript_0x7c220
+	if_equal SUNDAY, UnknownScript_0x7c220
+	if_equal WEDNESDAY, UnknownScript_0x7c220
+	if_equal FRIDAY, UnknownScript_0x7c220
 	2jump UnknownScript_0x7c300
 ; 0x7c220
 
@@ -63746,19 +64081,18 @@ TrainerMediumGraceWhenTalkScript: ; 0x99e31
 	end
 ; 0x99e39
 
-UnknownScript_0x99e39: ; 0x99e39
+EcruteakGymGuyScript: ; 0x99e39
 	faceplayer
 	loadfont
 	checkbit1 $04c0
-	iftrue UnknownScript_0x99e47
-	2writetext UnknownText_0x9a3e8
+	iftrue .EcruteakGymGuyWinScript
+	2writetext EcruteakGymGuyText
 	closetext
 	loadmovesprites
 	end
-; 0x99e47
 
-UnknownScript_0x99e47: ; 0x99e47
-	2writetext UnknownText_0x9a452
+.EcruteakGymGuyWinScript
+	2writetext EcruteakGymGuyWinText
 	closetext
 	loadmovesprites
 	end
@@ -63940,7 +64274,7 @@ UnknownText_0x9a38a: ; 0x9a38a
 	db "before our eyes!", $57
 ; 0x9a3e8
 
-UnknownText_0x9a3e8: ; 0x9a3e8
+EcruteakGymGuyText: ; 0x9a3e8
 	db $0, "The trainers here", $4f
 	db "have secret mo-", $55
 	db "tives.", $51
@@ -63950,7 +64284,7 @@ UnknownText_0x9a3e8: ; 0x9a3e8
 	db "ECRUTEAK.", $57
 ; 0x9a452
 
-UnknownText_0x9a452: ; 0x9a452
+EcruteakGymGuyWinText: ; 0x9a452
 	db $0, "Whew, ", $52, ".", $4f
 	db "You did great!", $51
 	db "I was cowering in", $4f
@@ -64021,7 +64355,7 @@ EcruteakGym_MapEventHeader: ; 0x9a4e9
 	person_event $3e, 17, 7, $9, $0, 255, 255, $92, 3, TrainerSagePing, $ffff
 	person_event $30, 9, 11, $8, $0, 255, 255, $b2, 1, TrainerMediumMartha, $ffff
 	person_event $30, 13, 11, $8, $0, 255, 255, $b2, 1, TrainerMediumGrace, $ffff
-	person_event $48, 19, 11, $6, $0, 255, 255, $80, 0, UnknownScript_0x99e39, $ffff
+	person_event $48, 19, 11, $6, $0, 255, 255, $80, 0, EcruteakGymGuyScript, $ffff
 	person_event $2f, 18, 8, $6, $0, 255, 255, $a0, 0, UnknownScript_0x26ef, $07a8
 ; 0x9a5f9
 
@@ -64231,19 +64565,18 @@ UnknownScript_0x9aa51: ; 0x9aa51
 	end
 ; 0x9aa57
 
-UnknownScript_0x9aa57: ; 0x9aa57
+ViridianGymGuyScript: ; 0x9aa57
 	faceplayer
 	loadfont
 	checkbit1 $04cc
-	iftrue UnknownScript_0x9aa65
-	2writetext UnknownText_0x9acee
+	iftrue .ViridianGymGuyWinScript
+	2writetext ViridianGymGuyText
 	closetext
 	loadmovesprites
 	end
-; 0x9aa65
 
-UnknownScript_0x9aa65: ; 0x9aa65
-	2writetext UnknownText_0x9ada0
+.ViridianGymGuyWinScript
+	2writetext ViridianGymGuyWinText
 	closetext
 	loadmovesprites
 	end
@@ -64318,7 +64651,7 @@ UnknownText_0x9acab: ; 0x9acab
 	db "you. Got it?", $57
 ; 0x9acee
 
-UnknownText_0x9acee: ; 0x9acee
+ViridianGymGuyText: ; 0x9acee
 	db $0, "Yo, CHAMP in", $4f
 	db "making!", $51
 	db "How's it going?", $4f
@@ -64333,7 +64666,7 @@ UnknownText_0x9acee: ; 0x9acee
 	db "you've got!", $57
 ; 0x9ada0
 
-UnknownText_0x9ada0: ; 0x9ada0
+ViridianGymGuyWinText: ; 0x9ada0
 	db $0, "Man, you are truly", $4f
 	db "tough…", $51
 	db "That was a heck of", $4f
@@ -64362,7 +64695,7 @@ ViridianGym_MapEventHeader: ; 0x9ae04
 	; people-events
 	db 2
 	person_event $7, 7, 9, $6, $0, 255, 255, $0, 0, UnknownScript_0x9aa26, $0776
-	person_event $48, 17, 11, $6, $0, 255, 255, $90, 0, UnknownScript_0x9aa57, $0776
+	person_event $48, 17, 11, $6, $0, 255, 255, $90, 0, ViridianGymGuyScript, $0776
 ; 0x9ae38
 
 ViridianNicknameSpeechHouse_MapScriptHeader: ; 0x9ae38
@@ -65345,30 +65678,30 @@ UnknownScript_0x9c184: ; 0x9c184
 	jumpstd $0013
 ; 0x9c187
 
-UnknownScript_0x9c187: ; 0x9c187
+OlivineGymGuyScript: ; 0x9c187
 	faceplayer
 	checkbit1 $04c1
-	iftrue UnknownScript_0x9c19b
+	iftrue .OlivineGymGuyWinScript
 	checkbit1 $0020
-	iffalse UnknownScript_0x9c1a2
+	iffalse .OlivineGymGuyPreScript
 	loadfont
-	2writetext UnknownText_0x9c402
+	2writetext OlivineGymGuyText
 	closetext
 	loadmovesprites
 	end
 ; 0x9c19b
 
-UnknownScript_0x9c19b: ; 0x9c19b
+.OlivineGymGuyWinScript
 	loadfont
-	2writetext UnknownText_0x9c451
+	2writetext OlivineGymGuyWinText
 	closetext
 	loadmovesprites
 	end
 ; 0x9c1a2
 
-UnknownScript_0x9c1a2: ; 0x9c1a2
+.OlivineGymGuyPreScript
 	loadfont
-	2writetext UnknownText_0x9c4a8
+	2writetext OlivineGymGuyPreText
 	closetext
 	loadmovesprites
 	end
@@ -65445,7 +65778,7 @@ UnknownText_0x9c3d1: ; 0x9c3d1
 	db "but good luck…", $57
 ; 0x9c402
 
-UnknownText_0x9c402: ; 0x9c402
+OlivineGymGuyText: ; 0x9c402
 	db $0, "JASMINE uses the", $4f
 	db "newly discovered", $55
 	db "steel-type.", $51
@@ -65453,7 +65786,7 @@ UnknownText_0x9c402: ; 0x9c402
 	db "much about it.", $57
 ; 0x9c451
 
-UnknownText_0x9c451: ; 0x9c451
+OlivineGymGuyWinText: ; 0x9c451
 	db $0, "That was awesome.", $51
 	db "The steel-type,", $4f
 	db "huh?", $51
@@ -65462,7 +65795,7 @@ UnknownText_0x9c451: ; 0x9c451
 	db "unknown kind!", $57
 ; 0x9c4a8
 
-UnknownText_0x9c4a8: ; 0x9c4a8
+OlivineGymGuyPreText: ; 0x9c4a8
 	db $0, "JASMINE, the GYM", $4f
 	db "LEADER, is at the", $55
 	db "LIGHTHOUSE.", $51
@@ -65493,7 +65826,7 @@ OlivineGym_MapEventHeader: ; 0x9c526
 	; people-events
 	db 2
 	person_event $17, 7, 9, $6, $0, 255, 255, $80, 0, UnknownScript_0x9c12f, $06d3
-	person_event $48, 17, 11, $6, $0, 255, 255, $80, 0, UnknownScript_0x9c187, $ffff
+	person_event $48, 17, 11, $6, $0, 255, 255, $80, 0, OlivineGymGuyScript, $ffff
 ; 0x9c55a
 
 OlivineVoltorbHouse_MapScriptHeader: ; 0x9c55a
@@ -67019,20 +67352,19 @@ UnknownScript_0x9dbd2: ; 0x9dbd2
 	jumptextfaceplayer UnknownText_0x9dbed
 ; 0x9dbd5
 
-UnknownScript_0x9dbd5: ; 0x9dbd5
+CianwoodGymGuyScript: ; 0x9dbd5
 	faceplayer
 	checkbit1 $04c2
-	iftrue UnknownScript_0x9dbe3
+	iftrue .CianwoodGymGuyWinScript
 	loadfont
-	2writetext UnknownText_0x9dc33
+	2writetext CianwoodGymGuyText
 	closetext
 	loadmovesprites
 	end
-; 0x9dbe3
 
-UnknownScript_0x9dbe3: ; 0x9dbe3
+.CianwoodGymGuyWinScript
 	loadfont
-	2writetext UnknownText_0x9ddc5
+	2writetext CianwoodGymGuyWinText
 	closetext
 	loadmovesprites
 	end
@@ -67050,7 +67382,7 @@ UnknownText_0x9dbed: ; 0x9dbed
 	db "rare #MON.", $57
 ; 0x9dc33
 
-UnknownText_0x9dc33: ; 0x9dc33
+CianwoodGymGuyText: ; 0x9dc33
 	db $0, "The #MON GYM", $4f
 	db "trainers here are", $55
 	db "macho bullies.", $51
@@ -67079,7 +67411,7 @@ UnknownText_0x9dc33: ; 0x9dc33
 	db "go outside.", $57
 ; 0x9ddc5
 
-UnknownText_0x9ddc5: ; 0x9ddc5
+CianwoodGymGuyWinText: ; 0x9ddc5
 	db $0, $52, "! You won!", $4f
 	db "I could tell by", $55
 	db "looking at you!", $57
@@ -67137,7 +67469,7 @@ CianwoodPokeCenter1F_MapEventHeader: ; 0x9df4e
 	db 4
 	person_event $37, 5, 7, $6, $0, 255, 255, $0, 0, UnknownScript_0x9dbcf, $ffff
 	person_event $28, 9, 5, $4, $10, 255, 255, $a0, 0, UnknownScript_0x9dbd2, $ffff
-	person_event $48, 7, 9, $6, $0, 255, 255, $80, 0, UnknownScript_0x9dbd5, $ffff
+	person_event $48, 7, 9, $6, $0, 255, 255, $80, 0, CianwoodGymGuyScript, $ffff
 	person_event $2b, 10, 12, $5, $1, 255, 255, $90, 0, UnknownScript_0x9dbea, $ffff
 ; 0x9df97
 
@@ -70118,11 +70450,11 @@ UnknownScript_0x180053: ; 0x180053
 	checkbit2 $005d
 	iftrue UnknownScript_0x18012b
 	checkcode $b
-	if_equal $0, UnknownScript_0x18012b
-	if_equal $2, UnknownScript_0x18012b
-	if_equal $4, UnknownScript_0x18012b
-	if_equal $5, UnknownScript_0x18012b
-	if_equal $6, UnknownScript_0x18012b
+	if_equal SUNDAY, UnknownScript_0x18012b
+	if_equal TUESDAY, UnknownScript_0x18012b
+	if_equal THURSDAY, UnknownScript_0x18012b
+	if_equal FRIDAY, UnknownScript_0x18012b
+	if_equal SATURDAY, UnknownScript_0x18012b
 	moveperson $5, $11, $9
 	appear $5
 	spriteface $0, $0
@@ -70141,11 +70473,11 @@ UnknownScript_0x180094: ; 0x180094
 	checkbit2 $005d
 	iftrue UnknownScript_0x18012b
 	checkcode $b
-	if_equal $0, UnknownScript_0x18012b
-	if_equal $2, UnknownScript_0x18012b
-	if_equal $4, UnknownScript_0x18012b
-	if_equal $5, UnknownScript_0x18012b
-	if_equal $6, UnknownScript_0x18012b
+	if_equal SUNDAY, UnknownScript_0x18012b
+	if_equal TUESDAY, UnknownScript_0x18012b
+	if_equal THURSDAY, UnknownScript_0x18012b
+	if_equal FRIDAY, UnknownScript_0x18012b
+	if_equal SATURDAY, UnknownScript_0x18012b
 	appear $5
 	spriteface $0, $0
 	showemote $0, $0, 15
@@ -72663,15 +72995,15 @@ UnknownScript_0x184947: ; 0x184947
 	end
 ; 0x1849a6
 
-UnknownScript_0x1849a6: ; 0x1849a6
+SageLiScript: ; 0x1849a6
 	faceplayer
 	loadfont
 	checkbit1 $0014
 	iftrue UnknownScript_0x1849d1
-	2writetext UnknownText_0x184be0
+	2writetext TrainerSageLiWhenSeenText
 	closetext
 	loadmovesprites
-	winlosstext UnknownText_0x184cb2, $0000
+	winlosstext TrainerSageLiWhenBeatenText, $0000
 	loadtrainer SAGE, LI
 	startbattle
 	returnafterbattle
@@ -72857,7 +73189,7 @@ UnknownText_0x184bc8: ; 0x184bc8
 	db "ESCAPE ROPE!", $57
 ; 0x184be0
 
-UnknownText_0x184be0: ; 0x184be0
+TrainerSageLiWhenSeenText: ; 0x184be0
 	db $0, "So good of you to", $4f
 	db "come here!", $51
 	db "SPROUT TOWER is a", $4f
@@ -72874,7 +73206,7 @@ UnknownText_0x184be0: ; 0x184be0
 	db "you!", $57
 ; 0x184cb2
 
-UnknownText_0x184cb2: ; 0x184cb2
+TrainerSageLiWhenBeatenText: ; 0x184cb2
 	db $0, "Ah, excellent!", $57
 ; 0x184cc2
 
@@ -72993,7 +73325,7 @@ SproutTower3F_MapEventHeader: ; 0x184f8e
 	db 7
 	person_event $3e, 17, 12, $9, $0, 255, 255, $92, 3, TrainerSageJin, $ffff
 	person_event $3e, 12, 12, $6, $0, 255, 255, $92, 2, TrainerSageTroy, $ffff
-	person_event $3e, 6, 14, $6, $0, 255, 255, $90, 0, UnknownScript_0x1849a6, $ffff
+	person_event $3e, 6, 14, $6, $0, 255, 255, $90, 0, SageLiScript, $ffff
 	person_event $3e, 15, 15, $8, $0, 255, 255, $92, 3, TrainerSageNeal, $ffff
 	person_event $54, 18, 10, $1, $0, 255, 255, $1, 0, ItemFragment_0x184a19, $0649
 	person_event $54, 5, 18, $1, $0, 255, 255, $1, 0, ItemFragment_0x184a1b, $064a
@@ -74883,19 +75215,18 @@ TrainerSwimmermParkerWhenTalkScript: ; 0x18849a
 	end
 ; 0x1884a2
 
-UnknownScript_0x1884a2: ; 0x1884a2
+CeruleanGymGuyScript: ; 0x1884a2
 	faceplayer
 	loadfont
 	checkbit1 $04c6
-	iftrue UnknownScript_0x1884b0
-	2writetext UnknownText_0x1889a7
+	iftrue .CeruleanGymGuyWinScript
+	2writetext CeruleanGymGuyText
 	closetext
 	loadmovesprites
 	end
-; 0x1884b0
 
-UnknownScript_0x1884b0: ; 0x1884b0
-	2writetext UnknownText_0x1889fa
+.CeruleanGymGuyWinScript
+	2writetext CeruleanGymGuyWinText
 	closetext
 	loadmovesprites
 	end
@@ -75108,7 +75439,7 @@ UnknownText_0x188943: ; 0x188943
 	db "you'll be crushed!", $57
 ; 0x1889a7
 
-UnknownText_0x1889a7: ; 0x1889a7
+CeruleanGymGuyText: ; 0x1889a7
 	db $0, "Yo! CHAMP in", $4f
 	db "making!", $51
 	db "Since MISTY was", $4f
@@ -75117,7 +75448,7 @@ UnknownText_0x1889a7: ; 0x1889a7
 	db "He-he-he.", $57
 ; 0x1889fa
 
-UnknownText_0x1889fa: ; 0x1889fa
+CeruleanGymGuyWinText: ; 0x1889fa
 	db $0, "Hoo, you showed me", $4f
 	db "how tough you are.", $51
 	db "As always, that", $4f
@@ -75150,7 +75481,7 @@ CeruleanGym_MapEventHeader: ; 0x188a51
 	person_event $32, 10, 8, $9, $0, 255, 255, $a2, 3, TrainerSwimmerfDiana, $076f
 	person_event $32, 13, 5, $9, $0, 255, 255, $a2, 1, TrainerSwimmerfBriana, $076f
 	person_event $31, 13, 12, $8, $0, 255, 255, $82, 3, TrainerSwimmermParker, $076f
-	person_event $48, 17, 11, $6, $0, 255, 255, $90, 0, UnknownScript_0x1884a2, $076f
+	person_event $48, 17, 11, $6, $0, 255, 255, $90, 0, CeruleanGymGuyScript, $076f
 ; 0x188abe
 
 CeruleanMart_MapScriptHeader: ; 0x188abe
@@ -75790,7 +76121,7 @@ UnknownScript_0x189553: ; 0x189553
 	2call UnknownScript_0x1896a5
 	special $004d
 	iffalse UnknownScript_0x1896aa
-	if_not_equal $6c, UnknownScript_0x1896c6
+	if_not_equal LICKITUNG, UnknownScript_0x1896c6
 	2call UnknownScript_0x1896b0
 	setbit1 $031b
 	2jump UnknownScript_0x18963b
@@ -75805,7 +76136,7 @@ UnknownScript_0x189592: ; 0x189592
 	2call UnknownScript_0x1896a5
 	special $004d
 	iffalse UnknownScript_0x1896aa
-	if_not_equal $2b, UnknownScript_0x1896c6
+	if_not_equal ODDISH, UnknownScript_0x1896c6
 	2call UnknownScript_0x1896b0
 	setbit1 $031c
 	2jump UnknownScript_0x189652
@@ -75820,7 +76151,7 @@ UnknownScript_0x1895b3: ; 0x1895b3
 	2call UnknownScript_0x1896a5
 	special $004d
 	iffalse UnknownScript_0x1896aa
-	if_not_equal $78, UnknownScript_0x1896c6
+	if_not_equal STARYU, UnknownScript_0x1896c6
 	2call UnknownScript_0x1896b0
 	setbit1 $031d
 	2jump UnknownScript_0x189669
@@ -75837,7 +76168,7 @@ UnknownScript_0x1895d4: ; 0x1895d4
 	2call UnknownScript_0x1896a5
 	special $004d
 	iffalse UnknownScript_0x1896aa
-	if_not_equal $3a, UnknownScript_0x1896c6
+	if_not_equal GROWLITHE, UnknownScript_0x1896c6
 	2call UnknownScript_0x1896b0
 	setbit1 $031e
 	2jump UnknownScript_0x189680
@@ -75852,7 +76183,7 @@ UnknownScript_0x1895f9: ; 0x1895f9
 	2call UnknownScript_0x1896a5
 	special $004d
 	iffalse UnknownScript_0x1896aa
-	if_not_equal $25, UnknownScript_0x1896c6
+	if_not_equal VULPIX, UnknownScript_0x1896c6
 	2call UnknownScript_0x1896b0
 	setbit1 $031e
 	2jump UnknownScript_0x189680
@@ -75867,7 +76198,7 @@ UnknownScript_0x18961a: ; 0x18961a
 	2call UnknownScript_0x1896a5
 	special $004d
 	iffalse UnknownScript_0x1896aa
-	if_not_equal $ac, UnknownScript_0x1896c6
+	if_not_equal PICHU, UnknownScript_0x1896c6
 	2call UnknownScript_0x1896b0
 	setbit1 $031f
 	2jump UnknownScript_0x189697
@@ -76349,19 +76680,18 @@ TrainerPsychicJaredWhenTalkScript: ; 0x189cb3
 	end
 ; 0x189cbb
 
-UnknownScript_0x189cbb: ; 0x189cbb
+SaffronGymGuyScript: ; 0x189cbb
 	faceplayer
 	loadfont
 	checkbit1 $04ca
-	iftrue UnknownScript_0x189cc9
-	2writetext UnknownText_0x18a201
+	iftrue .SaffronGymGuyWinScript
+	2writetext SaffronGymGuyText
 	closetext
 	loadmovesprites
 	end
-; 0x189cc9
 
-UnknownScript_0x189cc9: ; 0x189cc9
-	2writetext UnknownText_0x18a2a0
+.SaffronGymGuyWinScript
+	2writetext SaffronGymGuyWinText
 	closetext
 	loadmovesprites
 	end
@@ -76512,7 +76842,7 @@ UnknownText_0x18a1b3: ; 0x18a1b3
 	db "SABRINA.", $57
 ; 0x18a201
 
-UnknownText_0x18a201: ; 0x18a201
+SaffronGymGuyText: ; 0x18a201
 	db $0, "Yo, CHAMP in", $4f
 	db "making!", $51
 	db "A trainer as", $4f
@@ -76526,7 +76856,7 @@ UnknownText_0x18a201: ; 0x18a201
 	db "Good luck!", $57
 ; 0x18a2a0
 
-UnknownText_0x18a2a0: ; 0x18a2a0
+SaffronGymGuyWinText: ; 0x18a2a0
 	db $0, "That was another", $4f
 	db "fantastic battle!", $57
 ; 0x18a2c4
@@ -76584,7 +76914,7 @@ SaffronGym_MapEventHeader: ; 0x18a2c4
 	person_event $27, 20, 7, $a, $0, 255, 255, $92, 3, TrainerPsychicFranklin, $ffff
 	person_event $30, 8, 7, $a, $0, 255, 255, $b2, 2, TrainerMediumDoris, $ffff
 	person_event $27, 8, 21, $a, $0, 255, 255, $92, 2, TrainerPsychicJared, $ffff
-	person_event $48, 18, 13, $6, $0, 255, 255, $90, 0, UnknownScript_0x189cbb, $ffff
+	person_event $48, 18, 13, $6, $0, 255, 255, $90, 0, SaffronGymGuyScript, $ffff
 ; 0x18a3bd
 
 SaffronMart_MapScriptHeader: ; 0x18a3bd
@@ -78775,8 +79105,8 @@ UnknownScript_0x18c89f: ; 0x18c89f
 
 UnknownScript_0x18c8a8: ; 0x18c8a8
 	checkcode $b
-	if_equal $2, UnknownScript_0x18c8b5
-	if_equal $4, UnknownScript_0x18c8b5
+	if_equal TUESDAY, UnknownScript_0x18c8b5
+	if_equal THURSDAY, UnknownScript_0x18c8b5
 	disappear $4
 	return
 ; 0x18c8b5
@@ -81115,20 +81445,19 @@ TrainerBug_catcherJoshWhenTalkScript: ; 0x18ecde
 	end
 ; 0x18ece6
 
-UnknownScript_0x18ece6: ; 0x18ece6
+AzaleaGymGuyScript: ; 0x18ece6
 	faceplayer
 	checkbit1 $04be
-	iftrue UnknownScript_0x18ecf4
+	iftrue .AzaleaGymGuyWinScript
 	loadfont
-	2writetext UnknownText_0x18f296
+	2writetext AzaleaGymGuyText
 	closetext
 	loadmovesprites
 	end
-; 0x18ecf4
 
-UnknownScript_0x18ecf4: ; 0x18ecf4
+.AzaleaGymGuyWinScript
 	loadfont
-	2writetext UnknownText_0x18f359
+	2writetext AzaleaGymGuyWinText
 	closetext
 	loadmovesprites
 	end
@@ -81302,7 +81631,7 @@ UnknownText_0x18f269: ; 0x18f269
 	db "a shame.", $57
 ; 0x18f296
 
-UnknownText_0x18f296: ; 0x18f296
+AzaleaGymGuyText: ; 0x18f296
 	db $0, "Yo, challenger!", $51
 	db "BUGSY's young, but", $4f
 	db "his knowledge of", $51
@@ -81319,7 +81648,7 @@ UnknownText_0x18f296: ; 0x18f296
 	db "tive too.", $57
 ; 0x18f359
 
-UnknownText_0x18f359: ; 0x18f359
+AzaleaGymGuyWinText: ; 0x18f359
 	db $0, "Well done! That", $4f
 	db "was a great clash", $51
 	db "of talented young", $4f
@@ -81354,7 +81683,7 @@ AzaleaGym_MapEventHeader: ; 0x18f3cc
 	person_event $25, 6, 4, $6, $0, 255, 255, $b2, 3, TrainerBug_catcherJosh, $ffff
 	person_event $26, 14, 8, $6, $0, 255, 255, $82, 1, TrainerTwinsAmyandmay1, $ffff
 	person_event $26, 14, 9, $6, $0, 255, 255, $82, 1, TrainerTwinsAmyandmay2, $ffff
-	person_event $48, 17, 11, $6, $0, 255, 255, $80, 0, UnknownScript_0x18ece6, $ffff
+	person_event $48, 17, 11, $6, $0, 255, 255, $80, 0, AzaleaGymGuyScript, $ffff
 ; 0x18f441
 
 SECTION "bank64",DATA,BANK[$64]
@@ -81677,7 +82006,7 @@ UnknownScript_0x190462: ; 0x190462
 
 UnknownScript_0x190463: ; 0x190463
 	checkcode $b
-	if_equal $5, UnknownScript_0x19046c
+	if_equal FRIDAY, UnknownScript_0x19046c
 	disappear $e
 	return
 ; 0x19046c
@@ -82281,7 +82610,7 @@ UnknownScript_0x190739: ; 0x190739
 	checkbit1 $0063
 	iftrue UnknownScript_0x190767
 	checkcode $b
-	if_not_equal $5, UnknownScript_0x19076d
+	if_not_equal FRIDAY, UnknownScript_0x19076d
 	checkbit1 $0062
 	iftrue UnknownScript_0x190754
 	2writetext UnknownText_0x1911c1
@@ -83550,19 +83879,18 @@ TrainerJugglerHortonWhenTalkScript: ; 0x192113
 	end
 ; 0x19211b
 
-UnknownScript_0x19211b: ; 0x19211b
+VermilionGymGuyScript: ; 0x19211b
 	faceplayer
 	loadfont
 	checkbit1 $04c7
-	iftrue UnknownScript_0x192129
-	2writetext UnknownText_0x192517
+	iftrue .VermilionGymGuyWinScript
+	2writetext VermilionGymGuyText
 	closetext
 	loadmovesprites
 	end
-; 0x192129
 
-UnknownScript_0x192129: ; 0x192129
-	2writetext UnknownText_0x1925df
+.VermilionGymGuyWinScript
+	2writetext VermilionGymGuyWinText
 	closetext
 	loadmovesprites
 	end
@@ -83689,7 +84017,7 @@ UnknownText_0x1924d6: ; 0x1924d6
 	db "LT.SURGE is tough.", $57
 ; 0x192517
 
-UnknownText_0x192517: ; 0x192517
+VermilionGymGuyText: ; 0x192517
 	db $0, "Yo! CHAMP in", $4f
 	db "making!", $51
 	db "You lucked out", $4f
@@ -83706,7 +84034,7 @@ UnknownText_0x192517: ; 0x192517
 	db "LT.SURGE.", $57
 ; 0x1925df
 
-UnknownText_0x1925df: ; 0x1925df
+VermilionGymGuyWinText: ; 0x1925df
 	db $0, "Whew! That was an", $4f
 	db "electrifying bout!", $51
 	db "It sure made me", $4f
@@ -83756,7 +84084,7 @@ VermilionGym_MapEventHeader: ; 0x19263d
 	person_event $40, 12, 12, $8, $0, 255, 255, $92, 4, TrainerGentlemanGregory, $ffff
 	person_event $2c, 11, 8, $6, $3, 255, 255, $82, 3, TrainerGuitaristVincent, $ffff
 	person_event $2b, 14, 4, $9, $0, 255, 255, $92, 4, TrainerJugglerHorton, $ffff
-	person_event $48, 19, 11, $6, $0, 255, 255, $90, 1, UnknownScript_0x19211b, $ffff
+	person_event $48, 19, 11, $6, $0, 255, 255, $90, 1, VermilionGymGuyScript, $ffff
 ; 0x1926e3
 
 Route6SaffronGate_MapScriptHeader: ; 0x1926e3
@@ -85457,7 +85785,7 @@ UnknownScript_0x19400e: ; 0x19400e
 
 UnknownScript_0x19400f: ; 0x19400f
 	checkcode $b
-	if_equal $4, UnknownScript_0x194018
+	if_equal THURSDAY, UnknownScript_0x194018
 	disappear $8
 	return
 ; 0x194018
@@ -85816,7 +86144,7 @@ UnknownScript_0x194201: ; 0x194201
 	checkbit1 $0067
 	iftrue UnknownScript_0x19422f
 	checkcode $b
-	if_not_equal $4, UnknownScript_0x194235
+	if_not_equal THURSDAY, UnknownScript_0x194235
 	checkbit1 $0066
 	iftrue UnknownScript_0x19421c
 	2writetext UnknownText_0x194800
@@ -86520,19 +86848,18 @@ TrainerCooltrainerfLolaWhenTalkScript: ; 0x194ece
 	end
 ; 0x194ed6
 
-UnknownScript_0x194ed6: ; 0x194ed6
+BlackthornGymGuyScript: ; 0x194ed6
 	faceplayer
 	loadfont
 	checkbit1 $04c4
-	iftrue UnknownScript_0x194ee4
-	2writetext UnknownText_0x195544
+	iftrue .BlackthornGymGuyWinScript
+	2writetext BlackthornGymGuyText
 	closetext
 	loadmovesprites
 	end
-; 0x194ee4
 
-UnknownScript_0x194ee4: ; 0x194ee4
-	2writetext UnknownText_0x195632
+.BlackthornGymGuyWinScript
+	2writetext BlackthornGymGuyWinText
 	closetext
 	loadmovesprites
 	end
@@ -86713,7 +87040,7 @@ UnknownText_0x195516: ; 0x195516
 	db "type moves.", $57
 ; 0x195544
 
-UnknownText_0x195544: ; 0x195544
+BlackthornGymGuyText: ; 0x195544
 	db $0, "Yo! CHAMP in", $4f
 	db "making!", $51
 	db "It's been a long", $4f
@@ -86732,7 +87059,7 @@ UnknownText_0x195544: ; 0x195544
 	db "ice-type moves.", $57
 ; 0x195632
 
-UnknownText_0x195632: ; 0x195632
+BlackthornGymGuyWinText: ; 0x195632
 	db $0, "You were great to", $4f
 	db "beat CLAIR!", $51
 	db "All that's left is", $4f
@@ -86771,7 +87098,7 @@ BlackthornGym1F_MapEventHeader: ; 0x1956ae
 	person_event $23, 10, 10, $6, $0, 255, 255, $82, 3, TrainerCooltrainermMike, $ffff
 	person_event $23, 18, 5, $6, $0, 255, 255, $82, 3, TrainerCooltrainermPaul, $ffff
 	person_event $24, 6, 13, $6, $0, 255, 255, $82, 1, TrainerCooltrainerfLola, $ffff
-	person_event $48, 19, 11, $6, $0, 255, 255, $80, 0, UnknownScript_0x194ed6, $ffff
+	person_event $48, 19, 11, $6, $0, 255, 255, $80, 0, BlackthornGymGuyScript, $ffff
 ; 0x195722
 
 BlackthornGym2F_MapScriptHeader: ; 0x195722
@@ -87500,19 +87827,18 @@ UnknownScript_0x195efd: ; 0x195efd
 	end
 ; 0x195f03
 
-UnknownScript_0x195f03: ; 0x195f03
+FuchsiaGymGuyScript: ; 0x195f03
 	faceplayer
 	loadfont
 	checkbit1 $04c9
-	iftrue UnknownScript_0x195f11
-	2writetext UnknownText_0x196299
+	iftrue .FuchsiaGymGuyWinScript
+	2writetext FuchsiaGymGuyText
 	closetext
 	loadmovesprites
 	end
-; 0x195f11
 
-UnknownScript_0x195f11: ; 0x195f11
-	2writetext UnknownText_0x196325
+.FuchsiaGymGuyWinScript
+	2writetext FuchsiaGymGuyWinText
 	closetext
 	loadmovesprites
 	end
@@ -87656,7 +87982,7 @@ UnknownText_0x19626b: ; 0x19626b
 	db "what, huh?", $57
 ; 0x196299
 
-UnknownText_0x196299: ; 0x196299
+FuchsiaGymGuyText: ; 0x196299
 	db $0, "Yo, CHAMP in", $4f
 	db "making!", $51
 	db "Whoops! Take a", $4f
@@ -87668,7 +87994,7 @@ UnknownText_0x196299: ; 0x196299
 	db "the real JANINE?", $57
 ; 0x196325
 
-UnknownText_0x196325: ; 0x196325
+FuchsiaGymGuyWinText: ; 0x196325
 	db $0, "That was a great", $4f
 	db "battle, trainer", $55
 	db "from JOHTO!", $57
@@ -87698,7 +88024,7 @@ FuchsiaGym_MapEventHeader: ; 0x196353
 	person_event $f8, 15, 9, $a, $0, 255, 255, $90, 0, UnknownScript_0x195e55, $ffff
 	person_event $f9, 8, 13, $a, $0, 255, 255, $90, 0, UnknownScript_0x195e8f, $ffff
 	person_event $fa, 6, 8, $a, $0, 255, 255, $90, 0, UnknownScript_0x195ec9, $ffff
-	person_event $48, 19, 11, $6, $0, 255, 255, $90, 0, UnknownScript_0x195f03, $ffff
+	person_event $48, 19, 11, $6, $0, 255, 255, $90, 0, FuchsiaGymGuyScript, $ffff
 ; 0x1963bb
 
 FuchsiaBillSpeechHouse_MapScriptHeader: ; 0x1963bb
@@ -89423,8 +89749,8 @@ UnknownScript_0x1988e8: ; 0x1988e8
 	checkitem COIN_CASE
 	iffalse UnknownScript_0x1988fd
 	checkcode $b
-	if_equal $3, UnknownScript_0x198900
-	if_equal $6, UnknownScript_0x198900
+	if_equal WEDNESDAY, UnknownScript_0x198900
+	if_equal SATURDAY, UnknownScript_0x198900
 UnknownScript_0x1988fd: ; 0x1988fd
 	disappear $10
 	return
@@ -90600,19 +90926,18 @@ TrainerBoarderDouglasWhenTalkScript: ; 0x199b61
 	end
 ; 0x199b69
 
-UnknownScript_0x199b69: ; 0x199b69
+MahoganyGymGuyScript: ; 0x199b69
 	faceplayer
 	loadfont
 	checkbit1 $04c3
-	iftrue UnknownScript_0x199b77
-	2writetext UnknownText_0x19a1bf
+	iftrue .MahoganyGymGuyWinScript
+	2writetext MahoganyGymGuyText
 	closetext
 	loadmovesprites
 	end
-; 0x199b77
 
-UnknownScript_0x199b77: ; 0x199b77
-	2writetext UnknownText_0x19a275
+.MahoganyGymGuyWinScript
+	2writetext MahoganyGymGuyWinText
 	closetext
 	loadmovesprites
 	end
@@ -90795,7 +91120,7 @@ UnknownText_0x19a18f: ; 0x19a18f
 	db "about my skiing…", $57
 ; 0x19a1bf
 
-UnknownText_0x19a1bf: ; 0x19a1bf
+MahoganyGymGuyText: ; 0x19a1bf
 	db $0, "PRYCE is a veteran", $4f
 	db "who has trained", $51
 	db "#MON for some", $4f
@@ -90810,7 +91135,7 @@ UnknownText_0x19a1bf: ; 0x19a1bf
 	db "ambition!", $57
 ; 0x19a275
 
-UnknownText_0x19a275: ; 0x19a275
+MahoganyGymGuyWinText: ; 0x19a275
 	db $0, "PRYCE is some-", $4f
 	db "thing, but you're", $55
 	db "something else!", $51
@@ -90845,7 +91170,7 @@ MahoganyGym_MapEventHeader: ; 0x19a2df
 	person_event $2a, 21, 13, $7, $0, 255, 255, $82, 1, TrainerSkierClarissa, $ffff
 	person_event $2c, 13, 9, $6, $0, 255, 255, $92, 1, TrainerBoarderBrad, $ffff
 	person_event $2c, 8, 6, $a, $0, 255, 255, $92, 1, TrainerBoarderDouglas, $ffff
-	person_event $48, 19, 11, $6, $0, 255, 255, $80, 0, UnknownScript_0x199b69, $ffff
+	person_event $48, 19, 11, $6, $0, 255, 255, $80, 0, MahoganyGymGuyScript, $ffff
 ; 0x19a354
 
 MahoganyPokeCenter1F_MapScriptHeader: ; 0x19a354
@@ -97408,7 +97733,7 @@ UnknownScript_0x1a0f61: ; 0x1a0f61
 
 UnknownScript_0x1a0f64: ; 0x1a0f64
 	checkcode $b
-	if_not_equal $2, UnknownScript_0x1a0f61
+	if_not_equal TUESDAY, UnknownScript_0x1a0f61
 	appear $8
 	return
 ; 0x1a0f6d
@@ -97559,7 +97884,7 @@ UnknownScript_0x1a1049: ; 0x1a1049
 	checkbit1 $0065
 	iftrue UnknownScript_0x1a1077
 	checkcode $b
-	if_not_equal $2, UnknownScript_0x1a107d
+	if_not_equal TUESDAY, UnknownScript_0x1a107d
 	checkbit1 $0064
 	iftrue UnknownScript_0x1a1064
 	2writetext UnknownText_0x1a13b2
@@ -99366,19 +99691,18 @@ TrainerCamperJerryWhenTalkScript: ; 0x1a28a4
 	end
 ; 0x1a28ac
 
-UnknownScript_0x1a28ac: ; 0x1a28ac
+PewterGymGuyScript: ; 0x1a28ac
 	faceplayer
 	loadfont
 	checkbit1 $04c5
-	iftrue UnknownScript_0x1a28ba
-	2writetext UnknownText_0x1a2c6e
+	iftrue .PewterGymGuyWinScript
+	2writetext PewterGymGuyText
 	closetext
 	loadmovesprites
 	end
-; 0x1a28ba
 
-UnknownScript_0x1a28ba: ; 0x1a28ba
-	2writetext UnknownText_0x1a2d07
+.PewterGymGuyWinScript
+	2writetext PewterGymGuyWinText
 	closetext
 	loadmovesprites
 	end
@@ -99478,7 +99802,7 @@ UnknownText_0x1a2c0f: ; 0x1a2c0f
 	db "seriously.", $57
 ; 0x1a2c6e
 
-UnknownText_0x1a2c6e: ; 0x1a2c6e
+PewterGymGuyText: ; 0x1a2c6e
 	db $0, "Yo! CHAMP in", $4f
 	db "making! You're", $51
 	db "really rocking.", $4f
@@ -99491,7 +99815,7 @@ UnknownText_0x1a2c6e: ; 0x1a2c6e
 	db "GYM LEADERS.", $57
 ; 0x1a2d07
 
-UnknownText_0x1a2d07: ; 0x1a2d07
+PewterGymGuyWinText: ; 0x1a2d07
 	db $0, "Yo! CHAMP in", $4f
 	db "making! That GYM", $51
 	db "didn't give you", $4f
@@ -99523,7 +99847,7 @@ PewterGym_MapEventHeader: ; 0x1a2d88
 	db 3
 	person_event $1a, 5, 9, $6, $0, 255, 255, $b0, 0, UnknownScript_0x1a2864, $ffff
 	person_event $27, 9, 6, $9, $0, 255, 255, $a2, 3, TrainerCamperJerry, $ffff
-	person_event $48, 15, 10, $6, $0, 255, 255, $90, 1, UnknownScript_0x1a28ac, $ffff
+	person_event $48, 15, 10, $6, $0, 255, 255, $90, 1, PewterGymGuyScript, $ffff
 ; 0x1a2dc9
 
 PewterMart_MapScriptHeader: ; 0x1a2dc9
@@ -100065,7 +100389,7 @@ UnknownScript_0x1a46d8: ; 0x1a46d8
 
 UnknownScript_0x1a46dc: ; 0x1a46dc
 	checkcode $b
-	if_equal $6, UnknownScript_0x1a46e5
+	if_equal SATURDAY, UnknownScript_0x1a46e5
 	disappear $9
 	return
 ; 0x1a46e5
@@ -100146,7 +100470,7 @@ UnknownScript_0x1a472b: ; 0x1a472b
 	checkbit1 $006d
 	iftrue UnknownScript_0x1a4759
 	checkcode $b
-	if_not_equal $6, UnknownScript_0x1a475f
+	if_not_equal SATURDAY, UnknownScript_0x1a475f
 	checkbit1 $006c
 	iftrue UnknownScript_0x1a4746
 	2writetext UnknownText_0x1a4a27
@@ -101924,7 +102248,7 @@ Route40_MapScriptHeader: ; 0x1a6160
 UnknownScript_0x1a6165: ; 0x1a6165
 	clearbit1 $07cf
 	checkcode $b
-	if_equal $1, UnknownScript_0x1a6171
+	if_equal MONDAY, UnknownScript_0x1a6171
 	disappear $a
 	return
 ; 0x1a6171
@@ -102078,7 +102402,7 @@ UnknownScript_0x1a61d9: ; 0x1a61d9
 	checkbit1 $006f
 	iftrue UnknownScript_0x1a6207
 	checkcode $b
-	if_not_equal $1, UnknownScript_0x1a620d
+	if_not_equal MONDAY, UnknownScript_0x1a620d
 	checkbit1 $006e
 	iftrue UnknownScript_0x1a61f4
 	2writetext UnknownText_0x1a6606
@@ -104132,7 +104456,7 @@ Route37_MapScriptHeader: ; 0x1a8d72
 
 UnknownScript_0x1a8d77: ; 0x1a8d77
 	checkcode $b
-	if_equal $0, UnknownScript_0x1a8d80
+	if_equal SUNDAY, UnknownScript_0x1a8d80
 	disappear $6
 	return
 ; 0x1a8d80
@@ -104235,7 +104559,7 @@ UnknownScript_0x1a8dbf: ; 0x1a8dbf
 	checkbit1 $0069
 	iftrue UnknownScript_0x1a8dfa
 	checkcode $b
-	if_not_equal $0, UnknownScript_0x1a8e00
+	if_not_equal SUNDAY, UnknownScript_0x1a8e00
 	checkbit1 $0068
 	iftrue UnknownScript_0x1a8dda
 	2writetext UnknownText_0x1a8fc8
@@ -106867,20 +107191,19 @@ UnknownScript_0x1ab52b: ; 0x1ab52b
 	end
 ; 0x1ab531
 
-UnknownScript_0x1ab531: ; 0x1ab531
+SeafoamGymGuyScript: ; 0x1ab531
 	faceplayer
 	loadfont
 	checkbit1 $00d5
-	iftrue UnknownScript_0x1ab542
-	2writetext UnknownText_0x1ab759
+	iftrue .TalkedToSeafoamGymGuyScript
+	2writetext SeafoamGymGuyWinText
 	closetext
 	loadmovesprites
 	setbit1 $00d5
 	end
-; 0x1ab542
 
-UnknownScript_0x1ab542: ; 0x1ab542
-	2writetext UnknownText_0x1ab806
+.TalkedToSeafoamGymGuyScript
+	2writetext SeafoamGymGuyWinText2
 	closetext
 	loadmovesprites
 	end
@@ -106936,7 +107259,7 @@ UnknownText_0x1ab71c: ; 0x1ab71c
 	db "Just you watch!", $57
 ; 0x1ab759
 
-UnknownText_0x1ab759: ; 0x1ab759
+SeafoamGymGuyWinText: ; 0x1ab759
 	db $0, "Yo!", $51
 	db "… Huh? It's over", $4f
 	db "already?", $51
@@ -106951,7 +107274,7 @@ UnknownText_0x1ab759: ; 0x1ab759
 	db "I knew you'd win!", $57
 ; 0x1ab806
 
-UnknownText_0x1ab806: ; 0x1ab806
+SeafoamGymGuyWinText2: ; 0x1ab806
 	db $0, "A #MON GYM can", $4f
 	db "be anywhere as", $51
 	db "long as the GYM", $4f
@@ -106977,7 +107300,7 @@ SeafoamGym_MapEventHeader: ; 0x1ab865
 	; people-events
 	db 2
 	person_event $d, 6, 9, $6, $0, 255, 255, $b0, 0, UnknownScript_0x1ab4fb, $ffff
-	person_event $48, 9, 10, $7, $0, 255, 255, $90, 0, UnknownScript_0x1ab531, $0777
+	person_event $48, 9, 10, $7, $0, 255, 255, $90, 0, SeafoamGymGuyScript, $0777
 ; 0x1ab88a
 
 SECTION "bank6B",DATA,BANK[$6B]
