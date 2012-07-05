@@ -709,7 +709,7 @@ SpecialsPointers: ; 0xc029
 	dbw BANK(SpecialDratini),SpecialDratini
 	dbw $04,$5485
 	dbw BANK(SpecialBeastsCheck),SpecialBeastsCheck
-	dbw $12,$6711
+	dbw BANK(SpecialMonCheck),SpecialMonCheck
 	dbw $03,$4225
 	dbw $5c,$4bd2
 	dbw $40,$766e
@@ -13870,13 +13870,21 @@ SpecialBeastsCheck: ; 0x4a6e8
 	ld [$c2dd], a
 	ret
 
-Function_4a711: ; 0x4a711
+SpecialMonCheck: ; 0x4a711
+; Check if a Pokémon exists in PC or party.
+; It must exist in either party or PC, and have the player's OT and ID.
+
+; inputs:
+; $c2dd contains species to search for
 	call CheckOwnMonAnywhere
-	jr c, .asm_4a71b ; 0x4a714 $5
+	jr c, .exists
+
+	; doesn't exist
 	xor a
 	ld [$c2dd], a
 	ret
-.asm_4a71b
+
+.exists
 	ld a, $1
 	ld [$c2dd], a
 	ret
@@ -35829,7 +35837,7 @@ UnknownScript_0x71e2e: ; 0x71e2e
 	loadfont
 	2writetext UnknownText_0x71f22
 	keeptextopen
-	writebyte $f5
+	writebyte SUICUNE
 	special $0097
 	iffalse UnknownScript_0x71e46
 	special $0096
