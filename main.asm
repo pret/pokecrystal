@@ -33008,7 +33008,7 @@ IlexForest_MapScriptHeader: ; 0x6eafe
 UnknownScript_0x6eb03: ; 0x6eb03
 	checkbit1 $0010
 	iftrue UnknownScript_0x6eb34
-	copybytetovar $d964
+	copybytetovar FarfetchdPosition
 	if_equal $1, UnknownScript_0x6eb35
 	if_equal $2, UnknownScript_0x6eb3c
 	if_equal $3, UnknownScript_0x6eb43
@@ -33102,7 +33102,7 @@ UnknownScript_0x6eb89: ; 0x6eb89
 ; 0x6eb8f
 
 UnknownScript_0x6eb8f: ; 0x6eb8f
-	copybytetovar $d964
+	copybytetovar FarfetchdPosition
 	if_equal $1, UnknownScript_0x6ebba
 	if_equal $2, UnknownScript_0x6ebd9
 	if_equal $3, UnknownScript_0x6ec02
@@ -33126,7 +33126,7 @@ UnknownScript_0x6ebba: ; 0x6ebba
 	moveperson $2, $f, $19
 	disappear $2
 	appear $2
-	loadvar $d964, $2
+	loadvar FarfetchdPosition, $2
 	end
 ; 0x6ebd9
 
@@ -33137,7 +33137,7 @@ UnknownScript_0x6ebd9: ; 0x6ebd9
 	moveperson $2, $14, $18
 	disappear $2
 	appear $2
-	loadvar $d964, $3
+	loadvar FarfetchdPosition, $3
 	end
 ; 0x6ebf1
 
@@ -33146,7 +33146,7 @@ UnknownScript_0x6ebf1: ; 0x6ebf1
 	moveperson $2, $f, $1d
 	disappear $2
 	appear $2
-	loadvar $d964, $8
+	loadvar FarfetchdPosition, $8
 	end
 ; 0x6ec02
 
@@ -33157,7 +33157,7 @@ UnknownScript_0x6ec02: ; 0x6ec02
 	moveperson $2, $1d, $16
 	disappear $2
 	appear $2
-	loadvar $d964, $4
+	loadvar FarfetchdPosition, $4
 	end
 ; 0x6ec1a
 
@@ -33166,7 +33166,7 @@ UnknownScript_0x6ec1a: ; 0x6ec1a
 	moveperson $2, $f, $19
 	disappear $2
 	appear $2
-	loadvar $d964, $2
+	loadvar FarfetchdPosition, $2
 	end
 ; 0x6ec2b
 
@@ -33177,7 +33177,7 @@ UnknownScript_0x6ec2b: ; 0x6ec2b
 	moveperson $2, $1c, $1f
 	disappear $2
 	appear $2
-	loadvar $d964, $5
+	loadvar FarfetchdPosition, $5
 	end
 ; 0x6ec43
 
@@ -33186,7 +33186,7 @@ UnknownScript_0x6ec43: ; 0x6ec43
 	moveperson $2, $14, $18
 	disappear $2
 	appear $2
-	loadvar $d964, $3
+	loadvar FarfetchdPosition, $3
 	end
 ; 0x6ec54
 
@@ -33199,7 +33199,7 @@ UnknownScript_0x6ec54: ; 0x6ec54
 	moveperson $2, $18, $23
 	disappear $2
 	appear $2
-	loadvar $d964, $6
+	loadvar FarfetchdPosition, $6
 	end
 ; 0x6ec74
 
@@ -33208,7 +33208,7 @@ UnknownScript_0x6ec74: ; 0x6ec74
 	moveperson $2, $16, $1f
 	disappear $2
 	appear $2
-	loadvar $d964, $7
+	loadvar FarfetchdPosition, $7
 	end
 ; 0x6ec85
 
@@ -33217,7 +33217,7 @@ UnknownScript_0x6ec85: ; 0x6ec85
 	moveperson $2, $1d, $16
 	disappear $2
 	appear $2
-	loadvar $d964, $4
+	loadvar FarfetchdPosition, $4
 	end
 ; 0x6ec96
 
@@ -33226,7 +33226,7 @@ UnknownScript_0x6ec96: ; 0x6ec96
 	moveperson $2, $1d, $16
 	disappear $2
 	appear $2
-	loadvar $d964, $4
+	loadvar FarfetchdPosition, $4
 	end
 ; 0x6eca7
 
@@ -33237,7 +33237,7 @@ UnknownScript_0x6eca7: ; 0x6eca7
 	moveperson $2, $16, $1f
 	disappear $2
 	appear $2
-	loadvar $d964, $7
+	loadvar FarfetchdPosition, $7
 	end
 ; 0x6ecbf
 
@@ -33246,7 +33246,7 @@ UnknownScript_0x6ecbf: ; 0x6ecbf
 	moveperson $2, $1c, $1f
 	disappear $2
 	appear $2
-	loadvar $d964, $5
+	loadvar FarfetchdPosition, $5
 	end
 ; 0x6ecd0
 
@@ -33258,7 +33258,7 @@ UnknownScript_0x6ecd0: ; 0x6ecd0
 	moveperson $2, $f, $1d
 	disappear $2
 	appear $2
-	loadvar $d964, $8
+	loadvar FarfetchdPosition, $8
 	end
 ; 0x6ecec
 
@@ -33267,7 +33267,7 @@ UnknownScript_0x6ecec: ; 0x6ecec
 	moveperson $2, $18, $23
 	disappear $2
 	appear $2
-	loadvar $d964, $6
+	loadvar FarfetchdPosition, $6
 	end
 ; 0x6ecfd
 
@@ -33276,7 +33276,7 @@ UnknownScript_0x6ecfd: ; 0x6ecfd
 	moveperson $2, $1c, $1f
 	disappear $2
 	appear $2
-	loadvar $d964, $5
+	loadvar FarfetchdPosition, $5
 	end
 ; 0x6ed0e
 
@@ -33289,7 +33289,7 @@ UnknownScript_0x6ed0e: ; 0x6ed0e
 	moveperson $2, $a, $23
 	disappear $2
 	appear $2
-	loadvar $d964, $9
+	loadvar FarfetchdPosition, $9
 	end
 ; 0x6ed2e
 
@@ -33298,7 +33298,7 @@ UnknownScript_0x6ed2e: ; 0x6ed2e
 	moveperson $2, $16, $1f
 	disappear $2
 	appear $2
-	loadvar $d964, $7
+	loadvar FarfetchdPosition, $7
 	end
 ; 0x6ed3f
 
@@ -33307,7 +33307,7 @@ UnknownScript_0x6ed3f: ; 0x6ed3f
 	moveperson $2, $f, $19
 	disappear $2
 	appear $2
-	loadvar $d964, $2
+	loadvar FarfetchdPosition, $2
 	end
 ; 0x6ed50
 
@@ -33319,7 +33319,7 @@ UnknownScript_0x6ed50: ; 0x6ed50
 	moveperson $2, $6, $1c
 	disappear $2
 	appear $2
-	loadvar $d964, $a
+	loadvar FarfetchdPosition, $a
 	appear $4
 	setbit1 $06f7
 	setbit1 $0029
@@ -33331,7 +33331,7 @@ UnknownScript_0x6ed74: ; 0x6ed74
 	moveperson $2, $f, $1d
 	disappear $2
 	appear $2
-	loadvar $d964, $8
+	loadvar FarfetchdPosition, $8
 	end
 ; 0x6ed85
 
@@ -33340,7 +33340,7 @@ UnknownScript_0x6ed85: ; 0x6ed85
 	moveperson $2, $f, $1d
 	disappear $2
 	appear $2
-	loadvar $d964, $8
+	loadvar FarfetchdPosition, $8
 	end
 ; 0x6ed96
 
@@ -45229,7 +45229,7 @@ UnknownScript_0x7c043: ; 0x7c043
 	clearbit1 $02e0
 	clearbit1 $02e1
 	writebyte $0
-	copyvartobyte $d963
+	copyvartobyte UndergroundSwitchPositions
 	return
 ; 0x7c076
 
@@ -46341,9 +46341,9 @@ MapUndergroundPathSwitchRoomEntrancesSignpost0Script: ; 0x7cbab
 	2writetext UnknownText_0x7d617
 	yesorno
 	iffalse UnknownScript_0x7cc8b
-	copybytetovar $d963
+	copybytetovar UndergroundSwitchPositions
 	addvar $1
-	copyvartobyte $d963
+	copyvartobyte UndergroundSwitchPositions
 	setbit1 $02d3
 	2jump UnknownScript_0x7cc8d
 ; 0x7cbcb
@@ -46352,9 +46352,9 @@ UnknownScript_0x7cbcb: ; 0x7cbcb
 	2writetext UnknownText_0x7d62d
 	yesorno
 	iffalse UnknownScript_0x7cc8b
-	copybytetovar $d963
-	addvar $ff
-	copyvartobyte $d963
+	copybytetovar UndergroundSwitchPositions
+	addvar -1
+	copyvartobyte UndergroundSwitchPositions
 	clearbit1 $02d3
 	2jump UnknownScript_0x7cc8d
 ; 0x7cbe0
@@ -46368,9 +46368,9 @@ MapUndergroundPathSwitchRoomEntrancesSignpost1Script: ; 0x7cbe0
 	2writetext UnknownText_0x7d617
 	yesorno
 	iffalse UnknownScript_0x7cc8b
-	copybytetovar $d963
+	copybytetovar UndergroundSwitchPositions
 	addvar $2
-	copyvartobyte $d963
+	copyvartobyte UndergroundSwitchPositions
 	setbit1 $02d4
 	2jump UnknownScript_0x7cc8d
 ; 0x7cc00
@@ -46379,9 +46379,9 @@ UnknownScript_0x7cc00: ; 0x7cc00
 	2writetext UnknownText_0x7d62d
 	yesorno
 	iffalse UnknownScript_0x7cc8b
-	copybytetovar $d963
-	addvar $fe
-	copyvartobyte $d963
+	copybytetovar UndergroundSwitchPositions
+	addvar -2
+	copyvartobyte UndergroundSwitchPositions
 	clearbit1 $02d4
 	2jump UnknownScript_0x7cc8d
 ; 0x7cc15
@@ -46395,9 +46395,9 @@ MapUndergroundPathSwitchRoomEntrancesSignpost2Script: ; 0x7cc15
 	2writetext UnknownText_0x7d617
 	yesorno
 	iffalse UnknownScript_0x7cc8b
-	copybytetovar $d963
+	copybytetovar UndergroundSwitchPositions
 	addvar $3
-	copyvartobyte $d963
+	copyvartobyte UndergroundSwitchPositions
 	setbit1 $02d5
 	2jump UnknownScript_0x7cc8d
 ; 0x7cc35
@@ -46406,9 +46406,9 @@ UnknownScript_0x7cc35: ; 0x7cc35
 	2writetext UnknownText_0x7d62d
 	yesorno
 	iffalse UnknownScript_0x7cc8b
-	copybytetovar $d963
-	addvar $fd
-	copyvartobyte $d963
+	copybytetovar UndergroundSwitchPositions
+	addvar -3
+	copyvartobyte UndergroundSwitchPositions
 	clearbit1 $02d5
 	2jump UnknownScript_0x7cc8d
 ; 0x7cc4a
@@ -46423,7 +46423,7 @@ MapUndergroundPathSwitchRoomEntrancesSignpost3Script: ; 0x7cc4a
 	yesorno
 	iffalse UnknownScript_0x7cc8b
 	writebyte $7
-	copyvartobyte $d963
+	copyvartobyte UndergroundSwitchPositions
 	setbit1 $02d6
 	setbit1 $02d3
 	setbit1 $02d4
@@ -46436,7 +46436,7 @@ UnknownScript_0x7cc70: ; 0x7cc70
 	yesorno
 	iffalse UnknownScript_0x7cc8b
 	writebyte $0
-	copyvartobyte $d963
+	copyvartobyte UndergroundSwitchPositions
 	clearbit1 $02d6
 	clearbit1 $02d3
 	clearbit1 $02d4
@@ -46450,7 +46450,7 @@ UnknownScript_0x7cc8b: ; 0x7cc8b
 ; 0x7cc8d
 
 UnknownScript_0x7cc8d: ; 0x7cc8d
-	copybytetovar $d963
+	copybytetovar UndergroundSwitchPositions
 	if_equal $0, UnknownScript_0x7ccb0
 	if_equal $1, UnknownScript_0x7ccd7
 	if_equal $2, UnknownScript_0x7ccf2
@@ -46577,7 +46577,7 @@ UnknownScript_0x7cd79: ; 0x7cd79
 	reloadmappart
 	loadmovesprites
 	writebyte $6
-	copyvartobyte $d963
+	copyvartobyte UndergroundSwitchPositions
 	end
 ; 0x7cda5
 
@@ -47221,7 +47221,7 @@ UnknownScript_0x7d950: ; 0x7d950
 	clearbit1 $02e0
 	clearbit1 $02e1
 	writebyte $0
-	copyvartobyte $d963
+	copyvartobyte UndergroundSwitchPositions
 	return
 ; 0x7d983
 
@@ -66379,9 +66379,9 @@ UnknownScript_0x9ccc6: ; 0x9ccc6
 	checkitem BERRY
 	iffalse UnknownScript_0x9cd19
 	takeitem BERRY, 1
-	copybytetovar $d962
+	copybytetovar MooMooBerries
 	addvar $1
-	copyvartobyte $d962
+	copyvartobyte MooMooBerries
 	if_equal $3, UnknownScript_0x9ccf0
 	if_equal $5, UnknownScript_0x9ccfa
 	if_equal $7, UnknownScript_0x9cd04
