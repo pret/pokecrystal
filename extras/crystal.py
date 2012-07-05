@@ -1947,9 +1947,9 @@ class GivePoke(Command):
     end = False
     param_types = {
                   0: {"name": "pokemon", "class": PokemonParam},
-                  1: {"name": "level", "class": SingleByteParam},
+                  1: {"name": "level", "class": DecimalParam},
                   2: {"name": "item", "class": ItemLabelByte},
-                  3: {"name": "trainer", "class": SingleByteParam},
+                  3: {"name": "trainer", "class": DecimalParam},
                   4: {"name": "trainer_name_pointer", "class": MultiByteParam}, #should probably use TextLabelParam
                   5: {"name": "pkmn_nickname", "class": MultiByteParam}, #XXX TextLabelParam ?
                   }
