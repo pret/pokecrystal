@@ -9464,7 +9464,7 @@ PokefanMTrainerGroupHeader: ; 0x3b78a
 
 KimonoGirlTrainerGroupHeader: ; 0x3b84b
 	; NAOKO1 (2) at 0x3b84b
-	db "NAOKO@"
+	db "NAOKO@" ; unused
 	db $00 ; data type
 	db 20, SKIPLOOM
 	db 20, VULPIX
