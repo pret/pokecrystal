@@ -75764,7 +75764,7 @@ UnknownScript_0x189553: ; 0x189553
 	2call UnknownScript_0x1896a5
 	special $004d
 	iffalse UnknownScript_0x1896aa
-	if_not_equal $6c, UnknownScript_0x1896c6
+	if_not_equal LICKITUNG, UnknownScript_0x1896c6
 	2call UnknownScript_0x1896b0
 	setbit1 $031b
 	2jump UnknownScript_0x18963b
@@ -75779,7 +75779,7 @@ UnknownScript_0x189592: ; 0x189592
 	2call UnknownScript_0x1896a5
 	special $004d
 	iffalse UnknownScript_0x1896aa
-	if_not_equal $2b, UnknownScript_0x1896c6
+	if_not_equal ODDISH, UnknownScript_0x1896c6
 	2call UnknownScript_0x1896b0
 	setbit1 $031c
 	2jump UnknownScript_0x189652
@@ -75794,7 +75794,7 @@ UnknownScript_0x1895b3: ; 0x1895b3
 	2call UnknownScript_0x1896a5
 	special $004d
 	iffalse UnknownScript_0x1896aa
-	if_not_equal $78, UnknownScript_0x1896c6
+	if_not_equal STARYU, UnknownScript_0x1896c6
 	2call UnknownScript_0x1896b0
 	setbit1 $031d
 	2jump UnknownScript_0x189669
@@ -75811,7 +75811,7 @@ UnknownScript_0x1895d4: ; 0x1895d4
 	2call UnknownScript_0x1896a5
 	special $004d
 	iffalse UnknownScript_0x1896aa
-	if_not_equal $3a, UnknownScript_0x1896c6
+	if_not_equal GROWLITHE, UnknownScript_0x1896c6
 	2call UnknownScript_0x1896b0
 	setbit1 $031e
 	2jump UnknownScript_0x189680
@@ -75826,7 +75826,7 @@ UnknownScript_0x1895f9: ; 0x1895f9
 	2call UnknownScript_0x1896a5
 	special $004d
 	iffalse UnknownScript_0x1896aa
-	if_not_equal $25, UnknownScript_0x1896c6
+	if_not_equal VULPIX, UnknownScript_0x1896c6
 	2call UnknownScript_0x1896b0
 	setbit1 $031e
 	2jump UnknownScript_0x189680
@@ -75841,7 +75841,7 @@ UnknownScript_0x18961a: ; 0x18961a
 	2call UnknownScript_0x1896a5
 	special $004d
 	iffalse UnknownScript_0x1896aa
-	if_not_equal $ac, UnknownScript_0x1896c6
+	if_not_equal PICHU, UnknownScript_0x1896c6
 	2call UnknownScript_0x1896b0
 	setbit1 $031f
 	2jump UnknownScript_0x189697
