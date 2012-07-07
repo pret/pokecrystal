@@ -661,7 +661,7 @@ SpecialsPointers: ; 0xc029
 	dbw $03,$4472
 	dbw $09,$65ee
 	dbw BANK(SpecialGameboyCheck),SpecialGameboyCheck
-	dbw $03,$44b9
+	dbw BANK(SpecialTrainerHouse),SpecialTrainerHouse
 	dbw $05,$6dc7
 	dbw $0a,$62a0
 	dbw $03,$448f
@@ -800,7 +800,16 @@ SpecialGameboyCheck: ; 0xc478
 	ld [$c2dd], a
 	ret
 
-INCBIN "baserom.gbc",$c48f,$c5d2 - $c48f
+INCBIN "baserom.gbc",$c48f,$c4b9 - $c48f
+
+SpecialTrainerHouse: ; 0xc4b9
+	ld a, 0
+	call Function2fcb
+	ld a, [$abfd] ; XXX what is this memory location?
+	ld [$c2dd], a
+	jp Function2fe1
+
+INCBIN "baserom.gbc",$c4c7,$c5d2 - $c4c7
 
 PrintNumber_PrintDigit: ; c5d2
 INCBIN "baserom.gbc",$c5d2,$c644 - $c5d2
