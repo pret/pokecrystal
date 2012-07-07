@@ -13917,7 +13917,104 @@ INCBIN "baserom.gbc",$4456e,$3a92
 
 SECTION "bank12",DATA,BANK[$12]
 
-INCBIN "baserom.gbc",$48000,$4a6e8 - $48000
+INCBIN "baserom.gbc",$48000,$49d24 - $48000
+
+ContinueText: ; 0x49d24
+	db "CONTINUE@"
+NewGameText: ; 0x49d2d
+	db "NEW GAME@"
+OptionText: ; 0x49d36
+	db "OPTION@"
+MysteryGiftText: ; 0x49d3d
+	db "MYSTERY GIFT@"
+MobileText: ; 0x49d4a
+	db "MOBILE@"
+MobileStudiumText: ; 0x49d51
+	db "MOBILE STUDIUM@"
+
+Label49d60: ; 0x49d60
+	dw $5eee ; XXX is this ContinueASM?
+	dw $5ee0 ; XXX is this NewGameASM?
+	dw $5ee7 ; XXX is this OptionASM?
+	dw $5ef5 ; XXX is this MysteryGiftASM?
+	dw $5efc ; XXX is this MobileASM?
+	dw $6496 ; XXX is this MobileStudiumASM?
+
+NewGameMenu: ; 0x49d6c
+	db 2
+	db NEW_GAME
+	db OPTION
+	db $ff
+
+ContinueMenu: ; 0x49d70
+	db 3
+	db CONTINUE
+	db NEW_GAME
+	db OPTION
+	db $ff
+
+MobileMysteryMenu: ; 0x49d75
+	db 5
+	db CONTINUE
+	db NEW_GAME
+	db OPTION
+	db MYSTERY_GIFT
+	db MOBILE
+	db $ff
+
+MobileMenu: ; 0x49d7c
+	db 4
+	db CONTINUE
+	db NEW_GAME
+	db OPTION
+	db MOBILE
+	db $ff
+
+MobileStudiumMenu: ; 0x49d82
+	db 5
+	db CONTINUE
+	db NEW_GAME
+	db OPTION
+	db MOBILE
+	db MOBILE_STUDIUM
+	db $ff
+
+MysteryMobileStudiumMenu: ; 0x49d89
+	db 6
+	db CONTINUE
+	db NEW_GAME
+	db OPTION
+	db MYSTERY_GIFT
+	db MOBILE
+	db MOBILE_STUDIUM
+	db $ff
+
+MysteryMenu: ; 0x49d91
+	db 4
+	db CONTINUE
+	db NEW_GAME
+	db OPTION
+	db MYSTERY_GIFT
+	db $ff
+
+MysteryStudiumMenu: ; 0x49d97
+	db 5
+	db CONTINUE
+	db NEW_GAME
+	db OPTION
+	db MYSTERY_GIFT
+	db MOBILE_STUDIUM
+	db $ff
+
+StudiumMenu: ; 0x49d9e
+	db 4
+	db CONTINUE
+	db NEW_GAME
+	db OPTION
+	db MOBILE_STUDIUM
+	db $ff
+
+INCBIN "baserom.gbc",$49da4,$4a6e8 - $49da4
 
 SpecialBeastsCheck: ; 0x4a6e8
 ; Check if the player owns all three legendary beasts.
