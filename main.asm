@@ -162,7 +162,163 @@ UnknownScript_0x26ef: ; 0x26ef
 	jumptextfaceplayer $26f2
 ; 0x26f2
 
-INCBIN "baserom.gbc",$26f2,$2fcb-$26f2
+INCBIN "baserom.gbc",$26f2,$2bed-$26f2
+
+GetMapHeaderPointer: ; 0x2bed
+; Prior to calling this function, you must have switched banks so that
+; MapHeaderPointers is visible.
+
+; inputs:
+; b = map group, c = map number
+; XXX de = ???
+
+; outputs:
+; hl points to the map header
+	push bc ; save map number for later
+
+	; get pointer to map group
+	dec b
+	ld c, b
+	ld b, $0
+	ld hl, MapHeaderPointers
+	add hl, bc
+	add hl, bc
+
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	pop bc ; restore map number
+
+	; find the cth map header
+	dec c
+	ld b, $0
+	ld a, OlivineGym_MapHeader - MapHeader_0x94034
+	call AddNTimes
+	ret
+
+GetMapHeaderMember: ; 0x2c04
+; Extract a pointer from the current map's header.
+
+; inputs:
+; de = offset of desired pointer within the mapheader
+
+; outputs:
+; bc = pointer from the current map's 
+; (e.g., de = $0003 would return a pointer to the secondary map header)
+
+	ld a, [MapGroup]
+	ld b, a
+	ld a, [MapNumber]
+	ld c, a
+
+	; bankswitch
+	ld a, [$ff00+$9d]
+	push af
+	ld a, BANK(MapHeaderPointers)
+	rst $10
+
+	call GetMapHeaderPointer
+	add hl, de
+	ld c, [hl]
+	inc hl
+	ld b, [hl]
+
+	; bankswitch back
+	pop af
+	rst $10
+	ret
+; 0x2c1c
+
+INCBIN "baserom.gbc",$2c1c,$2c7d-$2c1c
+
+GetSecondaryMapHeaderPointer: ; 0x2c7d
+; returns the current map's secondary map header pointer in hl.
+	push bc
+	push de
+	ld de, $0003 ; secondary map header pointer (offset within header)
+	call GetMapHeaderMember
+	ld l, c
+	ld h, b
+	pop de
+	pop bc
+	ret
+
+INCBIN "baserom.gbc",$2c8a,$2e6f-$2c8a
+
+BitTable1Func: ; 0x2e6f
+	ld hl, $da72
+	call BitTableFunc
+	ret
+
+BitTableFunc: ; 0x2e76
+; Perform a function on a bit in memory.
+
+; inputs:
+; b: function
+;    0 clear bit
+;    1 set bit
+;    2 check bit
+; de: bit number
+; hl: index within bit table
+
+	; get index within the byte
+	ld a, e
+	and $7
+
+	; shift de right by three bits (get the index within memory)
+	srl d
+	rr e
+	srl d
+	rr e
+	srl d
+	rr e
+	add hl, de
+
+	; implement a decoder
+	ld c, $1
+	rrca
+	jr nc, .one
+	rlc c
+.one
+	rrca
+	jr nc, .two
+	rlc c
+	rlc c
+.two
+	rrca
+	jr nc, .three
+	swap c
+.three
+
+	; check b's value: 0, 1, 2
+	ld a, b
+	cp 1
+	jr c, .clearbit ; 0
+	jr z, .setbit ; 1
+
+	; check bit
+	ld a, [hl]
+	and c
+	ld c, a
+	ret
+
+.setbit
+	; set bit
+	ld a, [hl]
+	or c
+	ld [hl], a
+	ret
+
+.clearbit
+	; clear bit
+	ld a, c
+	cpl
+	and [hl]
+	ld [hl], a
+	ret
+; 0x2ead
+
+INCBIN "baserom.gbc",$2ead,$2fcb-$2ead
 
 Function2fcb: ; 0x2fcb
 	cp $4
@@ -699,7 +855,7 @@ SpecialsPointers: ; 0xc029
 	dbw $5f,$52ce
 	dbw $5f,$753d
 	dbw $40,$7612
-	dbw $22,$6ddb
+	dbw BANK(SpecialHoOhChamber),SpecialHoOhChamber
 	dbw $40,$6142
 	dbw $12,$589a
 	dbw $12,$5bf9
@@ -49205,7 +49361,22 @@ ClearScreenArea: ; 0x896ff
 	ret
 ; 0x8971f
 
-INCBIN "baserom.gbc",$8971f,$8b170 - $8971f
+INCBIN "baserom.gbc",$8971f,$8addb - $8971f
+
+SpecialHoOhChamber: ; 0x8addb
+	ld hl, PartySpecies
+	ld a, [hl]
+	cp HO_OH ; is Ho-oh the first Pokémon in the party?
+	jr nz, .done ; if not, we're done
+	call GetSecondaryMapHeaderPointer
+	ld de, $0326
+	ld b, $1
+	call BitTable1Func
+.done
+	ret
+; 0x8adef
+
+INCBIN "baserom.gbc",$8adef,$8b170 - $8adef
 
 SpecialDratini: ; 0x8b170
 ; if $c2dd is 0 or 1, change the moveset of the last Dratini in the party.
@@ -49330,7 +49501,34 @@ INCBIN "baserom.gbc",$90000,$4000
 
 SECTION "bank25",DATA,BANK[$25]
 
-INCBIN "baserom.gbc",$94000,$94034 - $94000
+MapHeaderPointers: ; 0x94000
+; pointers to the first map header of each map group
+	dw MapHeader_0x94034
+	dw MahoganyRedGyaradosSpeechHouse_MapHeader
+	dw SproutTower1F_MapHeader
+	dw EcruteakHouse_MapHeader
+	dw BlackthornGym1F_MapHeader
+	dw CinnabarPokeCenter1F_MapHeader
+	dw CeruleanGymBadgeSpeechHouse_MapHeader
+	dw AzaleaPokeCenter1F_MapHeader
+	dw LakeofRageHiddenPowerHouse_MapHeader
+	dw Route32_MapHeader
+	dw Route34_MapHeader
+	dw Route6_MapHeader
+	dw Route1_MapHeader
+	dw Route3_MapHeader
+	dw OlivinePort_MapHeader
+	dw Route23_MapHeader
+	dw Route13_MapHeader
+	dw Route8_MapHeader
+	dw Route28_MapHeader
+	dw PokeCenter2F_MapHeader
+	dw Route7_MapHeader
+	dw Route40_MapHeader
+	dw Route2_MapHeader
+	dw Route26_MapHeader
+	dw Route5_MapHeader
+	dw Route30_MapHeader
 
 MapHeader_0x94034: ; 0x94034
 	; bank, tileset, permission
