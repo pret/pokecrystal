@@ -70403,7 +70403,357 @@ INCBIN "baserom.gbc",$110000,$4000
 
 SECTION "bank45",DATA,BANK[$45]
 
-INCBIN "baserom.gbc",$114000,$4000
+INCBIN "baserom.gbc",$114000,$117a7f - $114000
+
+; everything from here to the end of the bank is related to the
+; Mobile Stadium option from the continue/newgame menu.
+; XXX better function names
+Function117a7f: ; 0x117a7f
+	ld a, [$ff00+$aa]
+	push af
+	ld a, $1
+	ld [$ff00+$aa], a
+	call Function117a8d
+	pop af
+	ld [$ff00+$aa], a
+	ret
+; 0x117a8d
+
+Function117a8d: ; 0x117a8d
+	call Function117a94
+	call Function117acd
+	ret
+; 0x117a94
+
+Function117a94: ; 0x117a94
+	xor a
+	ld [$cf63], a
+	ld [$cf64], a
+	ld [$cf65], a
+	ld [$cf66], a
+	call $31f3
+	call $300b
+	ld a, $5c
+	ld hl, $6e78
+	rst $8
+	ld a, $41
+	ld hl, $4000
+	rst $8
+	ret
+; 0x117ab4
+
+Function117ab4: ; 0x117ab4
+	call $31f3
+	call $300b
+	ld a, $5c
+	ld hl, $6e78
+	rst $8
+	ld a, $5c
+	ld hl, $6eb9
+	rst $8
+	ld a, $41
+	ld hl, $4061
+	rst $8
+	ret
+; 0x117acd
+
+Function117acd: ; 0x117acd
+	call $0a57
+	ld a, [$cf63]
+	bit 7, a
+	jr nz, .asm_117ae2 ; 0x117ad5 $b
+	call Function117ae9
+	ld a, $41
+	ld hl, $4000
+	rst $8
+	jr Function117acd
+.asm_117ae2
+	call $31f3
+	call $300b
+	ret
+
+Function117ae9: ; 0x117ae9
+	ld a, [$cf63]
+	ld e, a
+	ld d, $0
+	ld hl, Pointers117af8
+	add hl, de
+	add hl, de
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	jp [hl]
+
+Pointers117af8: ; 0x117af8
+	dw Function117b06
+	dw Function117b14
+	dw Function117b28
+	dw Function117b31
+	dw Function117b4f
+	dw Function117bb6
+	dw Function117c4a
+
+Function117b06:
+	ld a, $5c
+	ld hl, $6eb9
+	rst $8
+	ld a, $10
+	ld [$cf64], a
+	jp Function117cdd
+
+Function117b14:
+	ld hl, $cf64
+	dec [hl]
+	ret nz
+	ld hl, Data117cbc
+	call $1d35
+	call $1cbb
+	call $1cfd
+	jp Function117cdd
+
+Function117b28:
+	ld hl, MobileStadiumEntryText
+	call $1057
+	jp Function117cdd
+
+Function117b31:
+	ld hl, Data117cc4
+	call $1d35
+	call $1cbb
+	call $1cfd
+	ld hl, $c550
+	ld de, YesNo117ccc
+	call $1078
+	ld hl, $c54f
+	ld a, "▶"
+	ld [hl], a
+	jp Function117cdd
+
+Function117b4f:
+	ld a, [$ff00+$a7]
+	cp $2
+	jr z, .asm_117ba4 ; 0x117b53 $4f
+	cp $1
+	jr z, .asm_117b8c ; 0x117b57 $33
+	cp $80
+	jr z, .asm_117b76 ; 0x117b5b $19
+	cp $40
+	ret nz
+	ld a, [$cf64]
+	and a
+	ret z
+	dec a
+	ld [$cf64], a
+	ld hl, $c54f
+	ld a, "▶"
+	ld [hl], a
+	ld hl, $c577
+	ld a, " "
+	ld [hl], a
+	ret
+.asm_117b76
+	ld a, [$cf64]
+	and a
+	ret nz
+	inc a
+	ld [$cf64], a
+	ld hl, $c54f
+	ld a, " "
+	ld [hl], a
+	ld hl, $c577
+	ld a, "▶"
+	ld [hl], a
+	ret
+.asm_117b8c
+	call $2009
+	ld a, [$cf64]
+	and a
+	jr nz, .asm_117ba4 ; 0x117b93 $f
+	call $1c07
+	call $1c07
+	ld a, $41
+	ld hl, $4061
+	rst $8
+	jp Function117cdd
+.asm_117ba4
+	call $1c07
+	call $1c07
+	ld a, $41
+	ld hl, $4061
+	rst $8
+	ld a, $80
+	ld [$cf63], a
+	ret
+
+Function117bb6:
+	call Function117c89
+	ld a, $1
+	ld [$ff00+$d4], a
+	ld a, $46
+	ld hl, $4284
+	rst $8
+	call $300b
+	ld a, [$c300]
+	and a
+	jr z, .asm_117be7 ; 0x117bca $1b
+	cp $a
+	jr z, .asm_117be1 ; 0x117bce $11
+.asm_117bd0
+	ld a, $2
+	ld [$c303], a
+	ld a, $5f
+	ld hl, $7555
+	rst $8
+	ld a, $80
+	ld [$cf63], a
+	ret
+.asm_117be1
+	ld a, $80
+	ld [$cf63], a
+	ret
+.asm_117be7
+	ld a, [$ff00+$70]
+	push af
+	ld a, $3
+	ld [$ff00+$70], a
+	ld a, [$cd89]
+	and $1
+	jr nz, .asm_117c16 ; 0x117bf3 $21
+	ld a, [$d000]
+	cp $fe
+	jr nz, .asm_117c16 ; 0x117bfa $1a
+	ld a, [$d001]
+	cp $f
+	jr nz, .asm_117c16 ; 0x117c01 $13
+	ld hl, $dfec
+	ld de, $cd69
+	ld c, $10
+.asm_117c0b
+	ld a, [de]
+	inc de
+	cp [hl]
+	jr nz, .asm_117c16 ; 0x117c0e $6
+	inc hl
+	dec c
+	jr nz, .asm_117c0b ; 0x117c12 $f7
+	jr .asm_117c20 ; 0x117c14 $a
+.asm_117c16
+	pop af
+	ld [$ff00+$70], a
+	ld a, $d3
+	ld [$c300], a
+	jr .asm_117bd0 ; 0x117c1e $b0
+.asm_117c20
+	pop af
+	ld [$ff00+$70], a
+	ld a, $5c
+	ld hl, $6eb9
+	rst $8
+	ld a, [$ff00+$70]
+	push af
+	ld a, $3
+	ld [$ff00+$70], a
+	ld a, $7
+	call $2fcb
+	ld hl, $d002
+	ld de, $b000
+	ld bc, $1000
+	call $3026
+	call $2fe1
+	pop af
+	ld [$ff00+$70], a
+	jp Function117cdd
+
+Function117c4a:
+	ld hl, Data117cbc
+	call $1d35
+	call $1cbb
+	call $1cfd
+	ld a, $41
+	ld hl, $4061
+	rst $8
+	ld hl, MobileStadiumSuccessText
+	call $1057
+	ld a, [$ff00+$70]
+	push af
+	ld a, $5
+	ld [$ff00+$70], a
+	ld hl, $d000
+	ld de, $0008
+	ld c, $8
+.asm_117c71
+	push hl
+	ld a, $ff
+	ld [hli], a
+	ld a, " "
+	ld [hl], a
+	pop hl
+	add hl, de
+	dec c
+	jr nz, .asm_117c71 ; 0x117c7b $f4
+	call $04b6
+	pop af
+	ld [$ff00+$70], a
+	ld a, $80
+	ld [$cf63], a
+	ret
+
+Function117c89:
+	ld a, $7
+	call Function2fcb
+	ld l, $0
+	ld h, l
+	ld de, $b000
+	ld bc, $0ffc
+.asm_117c97
+	push bc
+	ld a, [de]
+	inc de
+	ld c, a
+	ld b, $0
+	add hl, bc
+	pop bc
+	dec bc
+	ld a, b
+	or c
+	jr nz, .asm_117c97 ; 0x117ca2 $f3
+	ld a, l
+	ld [$cd83], a
+	ld a, h
+	ld [$cd84], a
+	ld hl, $bfea
+	ld de, $cd69
+	ld bc, $0010
+	call CopyBytes
+	call Function2fe1
+	ret
+
+Data117cbc: ; 0x117cbc
+	db $40,$0c,$00,$11,$13,$00,$00,$00
+
+Data117cc4: ; 0x117cc4
+	db $40,$07,$0e,$0b,$13,$00,$00,$00 ; XXX what is this
+
+YesNo117ccc: ; 0x117ccc
+	db "はい", $4e ; Yes
+	db "いいえ@"   ; No
+
+MobileStadiumEntryText: ; 0x117cd3
+	db $16
+	dw _MobileStadiumEntryText
+	db BANK(_MobileStadiumEntryText)
+	db "@"
+
+MobileStadiumSuccessText: ; 0x117cd8
+	db $16
+	dw _MobileStadiumSuccessText
+	db BANK(_MobileStadiumSuccessText)
+	db "@"
+
+Function117cdd: ; 0x117cdd
+	ld hl,$cf63
+	inc [hl]
+	ret
 
 SECTION "bank46",DATA,BANK[$46]
 
@@ -111125,7 +111475,24 @@ INCBIN "baserom.gbc",$1C0000,$4000
 
 SECTION "bank71",DATA,BANK[$71]
 
-INCBIN "baserom.gbc",$1C4000,$4000
+INCBIN "baserom.gbc",$1c4000,$1c50c2 - $1c4000
+
+_MobileStadiumEntryText: ; 0x1c50c2
+	db 0, "Data for use in", $4f
+	db "the MOBILE STADIUM", $51
+	db "of the N64 #MON", $4f
+	db "STADIUM 2 can be", $55
+	db "read here.", $51
+	db "Read the data?", $57
+_MobileStadiumSuccessText: ; 0x1c5121
+	db 0, "Data transfer is", $4f
+	db "complete.", $51
+	db "We hope you enjoy", $4f
+	db "MOBILE STADIUM", $51
+	db "battles in the N64", $4f
+	db "#MON STADIUM 2.", $51, $57
+
+INCBIN "baserom.gbc",$1c5182, $1c8000 - $1c5182
 
 SECTION "bank72",DATA,BANK[$72]
 
