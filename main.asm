@@ -14806,36 +14806,36 @@ TrainerLassCarrie: ; 0x5408c
 	db LASS, CARRIE
 
 	; text when seen
-	dw TrainerLassCarrieWhenSeenText
+	dw LassCarrieSeenText
 
 	; text when trainer beaten
-	dw TrainerLassCarrieWhenBeatenText
+	dw LassCarrieBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerLassCarrieWhenTalkScript
+	dw LassCarrieScript
 ; 0x54098
 
-TrainerLassCarrieWhenTalkScript: ; 0x54098
+LassCarrieScript: ; 0x54098
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x543f6
+	2writetext LassCarrieOWText
 	closetext
 	loadmovesprites
 	end
 ; 0x540a0
 
-UnknownScript_0x540a0: ; 0x540a0
+WhitneyCriesScript: ; 0x540a0
 	showemote $0, $4, 15
-	applymovement $4, MovementData_0x5411c
+	applymovement $4, BridgetWalksUpMovement
 	spriteface $0, $0
 	loadfont
-	2writetext UnknownText_0x544d4
+	2writetext BridgetWhitneyCriesText
 	closetext
 	loadmovesprites
-	applymovement $4, MovementData_0x5411f
+	applymovement $4, BridgetWalksAwayMovement
 	dotrigger $0
 	clearbit1 $0028
 	end
@@ -14849,22 +14849,22 @@ TrainerLassBridget: ; 0x540bb
 	db LASS, BRIDGET
 
 	; text when seen
-	dw TrainerLassBridgetWhenSeenText
+	dw LassBridgetSeenText
 
 	; text when trainer beaten
-	dw TrainerLassBridgetWhenBeatenText
+	dw LassBridgetBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerLassBridgetWhenTalkScript
+	dw LassBridgetScript
 ; 0x540c7
 
-TrainerLassBridgetWhenTalkScript: ; 0x540c7
+LassBridgetScript: ; 0x540c7
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x54470
+	2writetext LassBridgetOWText
 	closetext
 	loadmovesprites
 	end
@@ -14878,22 +14878,22 @@ TrainerBeautyVictoria: ; 0x540cf
 	db BEAUTY, VICTORIA
 
 	; text when seen
-	dw TrainerBeautyVictoriaWhenSeenText
+	dw BeautyVictoriaSeenText
 
 	; text when trainer beaten
-	dw TrainerBeautyVictoriaWhenBeatenText
+	dw BeautyVictoriaBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerBeautyVictoriaWhenTalkScript
+	dw BeautyVictoriaScript
 ; 0x540db
 
-TrainerBeautyVictoriaWhenTalkScript: ; 0x540db
+BeautyVictoriaScript: ; 0x540db
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x5458f
+	2writetext BeautyVictoriaOWText
 	closetext
 	loadmovesprites
 	end
@@ -14907,22 +14907,22 @@ TrainerBeautySamantha: ; 0x540e3
 	db BEAUTY, SAMANTHA
 
 	; text when seen
-	dw TrainerBeautySamanthaWhenSeenText
+	dw BeautySamanthaSeenText
 
 	; text when trainer beaten
-	dw TrainerBeautySamanthaWhenBeatenText
+	dw BeautySamanthaBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerBeautySamanthaWhenTalkScript
+	dw BeautySamanthaScript
 ; 0x540ef
 
-TrainerBeautySamanthaWhenTalkScript: ; 0x540ef
+BeautySamanthaScript: ; 0x540ef
 	talkaftercancel
 	loadfont
-	2writetext UnknownText_0x5460b
+	2writetext BeautySamanthaOWText
 	closetext
 	loadmovesprites
 	end
@@ -14957,13 +14957,13 @@ UnknownScript_0x54115: ; 0x54115
 	jumpstd $002e
 ; 0x5411c
 
-MovementData_0x5411c: ; 0x5411c
+BridgetWalksUpMovement: ; 0x5411c
 	step_left
 	turn_head_up
 	step_end
 ; 0x5411f
 
-MovementData_0x5411f: ; 0x5411f
+BridgetWalksAwayMovement: ; 0x5411f
 	step_right
 	turn_head_left
 	step_end
@@ -15040,24 +15040,24 @@ UnknownText_0x54360: ; 0x54360
 	db "again! Bye-bye!", $57
 ; 0x5439b
 
-TrainerLassCarrieWhenSeenText: ; 0x5439b
+LassCarrieSeenText: ; 0x5439b
 	db $0, "Don't let my", $4f
 	db "#MON's cute", $51
 	db "looks fool you.", $4f
 	db "They can whip you!", $57
 ; 0x543d6
 
-TrainerLassCarrieWhenBeatenText: ; 0x543d6
+LassCarrieBeatenText: ; 0x543d6
 	db $0, "Darn… I thought", $4f
 	db "you were weak…", $57
 ; 0x543f6
 
-UnknownText_0x543f6: ; 0x543f6
+LassCarrieOWText: ; 0x543f6
 	db $0, "Do my #MON", $4f
 	db "think I'm cute?", $57
 ; 0x54411
 
-TrainerLassBridgetWhenSeenText: ; 0x54411
+LassBridgetSeenText: ; 0x54411
 	db $0, "I like cute #-", $4f
 	db "MON better than", $55
 	db "strong #MON.", $51
@@ -15065,11 +15065,11 @@ TrainerLassBridgetWhenSeenText: ; 0x54411
 	db "and cute #MON!", $57
 ; 0x5445f
 
-TrainerLassBridgetWhenBeatenText: ; 0x5445f
+LassBridgetBeatenText: ; 0x5445f
 	db $0, "Oh, no, no, no!", $57
 ; 0x54470
 
-UnknownText_0x54470: ; 0x54470
+LassBridgetOWText: ; 0x54470
 	db $0, "I'm trying to beat", $4f
 	db "WHITNEY, but…", $55
 	db "It's depressing.", $51
@@ -15079,7 +15079,7 @@ UnknownText_0x54470: ; 0x54470
 	db "time!", $57
 ; 0x544d4
 
-UnknownText_0x544d4: ; 0x544d4
+BridgetWhitneyCriesText: ; 0x544d4
 	db $0, "Oh, no. You made", $4f
 	db "WHITNEY cry.", $51
 	db "It's OK. She'll", $4f
@@ -15088,36 +15088,36 @@ UnknownText_0x544d4: ; 0x544d4
 	db "she loses.", $57
 ; 0x5452d
 
-TrainerBeautyVictoriaWhenSeenText: ; 0x5452d
+BeautyVictoriaSeenText: ; 0x5452d
 	db $0, "Oh, you are a cute", $4f
 	db "little trainer! ", $51
 	db "I like you, but I", $4f
 	db "won't hold back!", $57
 ; 0x54574
 
-TrainerBeautyVictoriaWhenBeatenText: ; 0x54574
+BeautyVictoriaBeatenText: ; 0x54574
 	db $0, "Let's see… Oops,", $4f
 	db "it's over?", $57
 ; 0x5458f
 
-UnknownText_0x5458f: ; 0x5458f
+BeautyVictoriaOWText: ; 0x5458f
 	db $0, "Wow, you must be", $4f
 	db "good to beat me!", $55
 	db "Keep it up!", $57
 ; 0x545be
 
-TrainerBeautySamanthaWhenSeenText: ; 0x545be
+BeautySamanthaSeenText: ; 0x545be
 	db $0, "Give it your best", $4f
 	db "shot, or I'll take", $55
 	db "you down!", $57
 ; 0x545ed
 
-TrainerBeautySamanthaWhenBeatenText: ; 0x545ed
+BeautySamanthaBeatenText: ; 0x545ed
 	db $0, "No! Oh, MEOWTH,", $4f
 	db "I'm so sorry!", $57
 ; 0x5460b
 
-UnknownText_0x5460b: ; 0x5460b
+BeautySamanthaOWText: ; 0x5460b
 	db $0, "I taught MEOWTH", $4f
 	db "moves for taking", $55
 	db "on any type…", $57
@@ -15151,7 +15151,7 @@ GoldenrodGym_MapEventHeader: ; 0x546dd
 
 	; xy triggers
 	db 1
-	xy_trigger 1, $5, $8, $0, UnknownScript_0x540a0, $0, $0
+	xy_trigger 1, $5, $8, $0, WhitneyCriesScript, $0, $0
 
 	; signposts
 	db 2
@@ -17960,19 +17960,19 @@ TrainerPsychicNathan: ; 0x58089
 	db PSYCHIC_T, NATHAN
 
 	; text when seen
-	dw TrainerPsychicNathanWhenSeenText
+	dw PsychicNathanSeenText
 
 	; text when trainer beaten
-	dw TrainerPsychicNathanWhenBeatenText
+	dw PsychicNathanBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerPsychicNathanWhenTalkScript
+	dw PsychicNathanScript
 ; 0x58095
 
-TrainerPsychicNathanWhenTalkScript: ; 0x58095
+PsychicNathanScript: ; 0x58095
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x5830e
@@ -18077,12 +18077,12 @@ UnknownText_0x58250: ; 0x58250
 	db "mystery…", $57
 ; 0x582eb
 
-TrainerPsychicNathanWhenSeenText: ; 0x582eb
+PsychicNathanSeenText: ; 0x582eb
 	db $0, "Hmmm… This is a", $4f
 	db "strange place.", $57
 ; 0x5830b
 
-TrainerPsychicNathanWhenBeatenText: ; 0x5830b
+PsychicNathanBeatenText: ; 0x5830b
 	db $0, "…", $57
 ; 0x5830e
 
@@ -19973,19 +19973,19 @@ TrainerPokemaniacLarry: ; 0x59b9c
 	db POKEMANIAC, LARRY
 
 	; text when seen
-	dw TrainerPokemaniacLarryWhenSeenText
+	dw PokemaniacLarrySeenText
 
 	; text when trainer beaten
-	dw TrainerPokemaniacLarryWhenBeatenText
+	dw PokemaniacLarryBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerPokemaniacLarryWhenTalkScript
+	dw PokemaniacLarryScript
 ; 0x59ba8
 
-TrainerPokemaniacLarryWhenTalkScript: ; 0x59ba8
+PokemaniacLarryScript: ; 0x59ba8
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x59d31
@@ -20002,19 +20002,19 @@ TrainerHikerRussell: ; 0x59bb0
 	db HIKER, RUSSELL
 
 	; text when seen
-	dw TrainerHikerRussellWhenSeenText
+	dw HikerRussellSeenText
 
 	; text when trainer beaten
-	dw TrainerHikerRussellWhenBeatenText
+	dw HikerRussellBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerHikerRussellWhenTalkScript
+	dw HikerRussellScript
 ; 0x59bbc
 
-TrainerHikerRussellWhenTalkScript: ; 0x59bbc
+HikerRussellScript: ; 0x59bbc
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x59c6c
@@ -20031,19 +20031,19 @@ TrainerHikerDaniel: ; 0x59bc4
 	db HIKER, DANIEL
 
 	; text when seen
-	dw TrainerHikerDanielWhenSeenText
+	dw HikerDanielSeenText
 
 	; text when trainer beaten
-	dw TrainerHikerDanielWhenBeatenText
+	dw HikerDanielBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerHikerDanielWhenTalkScript
+	dw HikerDanielScript
 ; 0x59bd0
 
-TrainerHikerDanielWhenTalkScript: ; 0x59bd0
+HikerDanielScript: ; 0x59bd0
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x59dc9
@@ -20060,19 +20060,19 @@ TrainerFirebreatherBill: ; 0x59bd8
 	db FIREBREATHER, BILL
 
 	; text when seen
-	dw TrainerFirebreatherBillWhenSeenText
+	dw FirebreatherBillSeenText
 
 	; text when trainer beaten
-	dw TrainerFirebreatherBillWhenBeatenText
+	dw FirebreatherBillBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerFirebreatherBillWhenTalkScript
+	dw FirebreatherBillScript
 ; 0x59be4
 
-TrainerFirebreatherBillWhenTalkScript: ; 0x59be4
+FirebreatherBillScript: ; 0x59be4
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x59e6f
@@ -20089,19 +20089,19 @@ TrainerFirebreatherRay: ; 0x59bec
 	db FIREBREATHER, RAY
 
 	; text when seen
-	dw TrainerFirebreatherRayWhenSeenText
+	dw FirebreatherRaySeenText
 
 	; text when trainer beaten
-	dw TrainerFirebreatherRayWhenBeatenText
+	dw FirebreatherRayBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerFirebreatherRayWhenTalkScript
+	dw FirebreatherRayScript
 ; 0x59bf8
 
-TrainerFirebreatherRayWhenTalkScript: ; 0x59bf8
+FirebreatherRayScript: ; 0x59bf8
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x59efc
@@ -20130,7 +20130,7 @@ UnknownScript_0x59c08: ; 0x59c08
 	jumptext UnknownText_0x59f29
 ; 0x59c0b
 
-TrainerHikerRussellWhenSeenText: ; 0x59c0b
+HikerRussellSeenText: ; 0x59c0b
 	db $0, "You're headed to", $4f
 	db "AZALEA, are you?", $51
 	db "Let my #MON see", $4f
@@ -20138,7 +20138,7 @@ TrainerHikerRussellWhenSeenText: ; 0x59c0b
 	db "enough to battle.", $57
 ; 0x59c5f
 
-TrainerHikerRussellWhenBeatenText: ; 0x59c5f
+HikerRussellBeatenText: ; 0x59c5f
 	db $0, "Oh, oh, oh!", $57
 ; 0x59c6c
 
@@ -20150,7 +20150,7 @@ UnknownText_0x59c6c: ; 0x59c6c
 	db "get tougher!", $57
 ; 0x59cb5
 
-TrainerPokemaniacLarryWhenSeenText: ; 0x59cb5
+PokemaniacLarrySeenText: ; 0x59cb5
 	db $0, "I roam far and", $4f
 	db "wide in search of", $55
 	db "#MON.", $51
@@ -20160,7 +20160,7 @@ TrainerPokemaniacLarryWhenSeenText: ; 0x59cb5
 	db "collecting rival!", $57
 ; 0x59d1b
 
-TrainerPokemaniacLarryWhenBeatenText: ; 0x59d1b
+PokemaniacLarryBeatenText: ; 0x59d1b
 	db $0, "Ugh. My poor #-", $4f
 	db "MON…", $57
 ; 0x59d31
@@ -20172,14 +20172,14 @@ UnknownText_0x59d31: ; 0x59d31
 	db "inside the cave.", $57
 ; 0x59d73
 
-TrainerHikerDanielWhenSeenText: ; 0x59d73
+HikerDanielSeenText: ; 0x59d73
 	db $0, "Whoa! What a", $4f
 	db "surprise!", $51
 	db "I didn't expect to", $4f
 	db "see anyone here!", $57
 ; 0x59dae
 
-TrainerHikerDanielWhenBeatenText: ; 0x59dae
+HikerDanielBeatenText: ; 0x59dae
 	db $0, "Whoa! I'm beaten", $4f
 	db "big time!", $57
 ; 0x59dc9
@@ -20192,7 +20192,7 @@ UnknownText_0x59dc9: ; 0x59dc9
 	db "the poor #MON.", $57
 ; 0x59e15
 
-TrainerFirebreatherBillWhenSeenText: ; 0x59e15
+FirebreatherBillSeenText: ; 0x59e15
 	db $0, "ZUBAT's SUPERSONIC", $4f
 	db "keeps confusing", $55
 	db "my #MON.", $51
@@ -20200,7 +20200,7 @@ TrainerFirebreatherBillWhenSeenText: ; 0x59e15
 	db "upset about that!", $57
 ; 0x59e60
 
-TrainerFirebreatherBillWhenBeatenText: ; 0x59e60
+FirebreatherBillBeatenText: ; 0x59e60
 	db $0, "I flamed out!", $57
 ; 0x59e6f
 
@@ -20211,7 +20211,7 @@ UnknownText_0x59e6f: ; 0x59e6f
 	db "the cave.", $57
 ; 0x59eaf
 
-TrainerFirebreatherRayWhenSeenText: ; 0x59eaf
+FirebreatherRaySeenText: ; 0x59eaf
 	db $0, "If it's light, a", $4f
 	db "cave isn't scary.", $51
 	db "If you're strong,", $4f
@@ -20219,7 +20219,7 @@ TrainerFirebreatherRayWhenSeenText: ; 0x59eaf
 	db "scary.", $57
 ; 0x59ef4
 
-TrainerFirebreatherRayWhenBeatenText: ; 0x59ef4
+FirebreatherRayBeatenText: ; 0x59ef4
 	db $0, "FLASH!", $57
 ; 0x59efc
 
@@ -20279,19 +20279,19 @@ TrainerPokemaniacAndrew: ; 0x59fc6
 	db POKEMANIAC, ANDREW
 
 	; text when seen
-	dw TrainerPokemaniacAndrewWhenSeenText
+	dw PokemaniacAndrewSeenText
 
 	; text when trainer beaten
-	dw TrainerPokemaniacAndrewWhenBeatenText
+	dw PokemaniacAndrewBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerPokemaniacAndrewWhenTalkScript
+	dw PokemaniacAndrewScript
 ; 0x59fd2
 
-TrainerPokemaniacAndrewWhenTalkScript: ; 0x59fd2
+PokemaniacAndrewScript: ; 0x59fd2
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x5a181
@@ -20308,19 +20308,19 @@ TrainerPokemaniacCalvin: ; 0x59fda
 	db POKEMANIAC, CALVIN
 
 	; text when seen
-	dw TrainerPokemaniacCalvinWhenSeenText
+	dw PokemaniacCalvinSeenText
 
 	; text when trainer beaten
-	dw TrainerPokemaniacCalvinWhenBeatenText
+	dw PokemaniacCalvinBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerPokemaniacCalvinWhenTalkScript
+	dw PokemaniacCalvinScript
 ; 0x59fe6
 
-TrainerPokemaniacCalvinWhenTalkScript: ; 0x59fe6
+PokemaniacCalvinScript: ; 0x59fe6
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x5a230
@@ -20337,19 +20337,19 @@ TrainerHikerPhillip: ; 0x59fee
 	db HIKER, PHILLIP
 
 	; text when seen
-	dw TrainerHikerPhillipWhenSeenText
+	dw HikerPhillipSeenText
 
 	; text when trainer beaten
-	dw TrainerHikerPhillipWhenBeatenText
+	dw HikerPhillipBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerHikerPhillipWhenTalkScript
+	dw HikerPhillipScript
 ; 0x59ffa
 
-TrainerHikerPhillipWhenTalkScript: ; 0x59ffa
+HikerPhillipScript: ; 0x59ffa
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x5a073
@@ -20366,19 +20366,19 @@ TrainerHikerLeonard: ; 0x5a002
 	db HIKER, LEONARD
 
 	; text when seen
-	dw TrainerHikerLeonardWhenSeenText
+	dw HikerLeonardSeenText
 
 	; text when trainer beaten
-	dw TrainerHikerLeonardWhenBeatenText
+	dw HikerLeonardBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerHikerLeonardWhenTalkScript
+	dw HikerLeonardScript
 ; 0x5a00e
 
-TrainerHikerLeonardWhenTalkScript: ; 0x5a00e
+HikerLeonardScript: ; 0x5a00e
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x5a0fb
@@ -20399,7 +20399,7 @@ UnknownScript_0x5a01a: ; 0x5a01a
 	jumpstd $000e
 ; 0x5a01d
 
-TrainerHikerPhillipWhenSeenText: ; 0x5a01d
+HikerPhillipSeenText: ; 0x5a01d
 	db $0, "It's been a while", $4f
 	db "since I last saw", $55
 	db "another person.", $51
@@ -20407,7 +20407,7 @@ TrainerHikerPhillipWhenSeenText: ; 0x5a01d
 	db "Let's battle!", $57
 ; 0x5a06a
 
-TrainerHikerPhillipWhenBeatenText: ; 0x5a06a
+HikerPhillipBeatenText: ; 0x5a06a
 	db $0, "Uurggh…", $57
 ; 0x5a073
 
@@ -20419,12 +20419,12 @@ UnknownText_0x5a073: ; 0x5a073
 	db "soooo hungry!", $57
 ; 0x5a0bf
 
-TrainerHikerLeonardWhenSeenText: ; 0x5a0bf
+HikerLeonardSeenText: ; 0x5a0bf
 	db $0, "What do you know!", $4f
 	db "A visitor!", $57
 ; 0x5a0dd
 
-TrainerHikerLeonardWhenBeatenText: ; 0x5a0dd
+HikerLeonardBeatenText: ; 0x5a0dd
 	db $0, "Wahahah! You're a", $4f
 	db "feisty one!", $57
 ; 0x5a0fb
@@ -20437,13 +20437,13 @@ UnknownText_0x5a0fb: ; 0x5a0fb
 	db "room, you see.", $57
 ; 0x5a14a
 
-TrainerPokemaniacAndrewWhenSeenText: ; 0x5a14a
+PokemaniacAndrewSeenText: ; 0x5a14a
 	db $0, "Who's there?", $51
 	db "Leave me and my", $4f
 	db "#MON alone!", $57
 ; 0x5a173
 
-TrainerPokemaniacAndrewWhenBeatenText: ; 0x5a173
+PokemaniacAndrewBeatenText: ; 0x5a173
 	db $0, "Go…", $4f
 	db "Go away!", $57
 ; 0x5a181
@@ -20454,7 +20454,7 @@ UnknownText_0x5a181: ; 0x5a181
 	db "lirious with joy.", $57
 ; 0x5a1b0
 
-TrainerPokemaniacCalvinWhenSeenText: ; 0x5a1b0
+PokemaniacCalvinSeenText: ; 0x5a1b0
 	db $0, "I came all the way", $4f
 	db "here to conduct my", $55
 	db "#MON research.", $51
@@ -20463,7 +20463,7 @@ TrainerPokemaniacCalvinWhenSeenText: ; 0x5a1b0
 	db "real battle!", $57
 ; 0x5a217
 
-TrainerPokemaniacCalvinWhenBeatenText: ; 0x5a217
+PokemaniacCalvinBeatenText: ; 0x5a217
 	db $0, "You demonstrated", $4f
 	db "on me!", $57
 ; 0x5a230
@@ -20552,19 +20552,19 @@ TrainerCooltrainermNick: ; 0x5a32e
 	db COOLTRAINERM, NICK
 
 	; text when seen
-	dw TrainerCooltrainermNickWhenSeenText
+	dw CooltrainermNickSeenText
 
 	; text when trainer beaten
-	dw TrainerCooltrainermNickWhenBeatenText
+	dw CooltrainermNickBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerCooltrainermNickWhenTalkScript
+	dw CooltrainermNickScript
 ; 0x5a33a
 
-TrainerCooltrainermNickWhenTalkScript: ; 0x5a33a
+CooltrainermNickScript: ; 0x5a33a
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x5a3f0
@@ -20581,19 +20581,19 @@ TrainerCooltrainerfGwen: ; 0x5a342
 	db COOLTRAINERF, GWEN
 
 	; text when seen
-	dw TrainerCooltrainerfGwenWhenSeenText
+	dw CooltrainerfGwenSeenText
 
 	; text when trainer beaten
-	dw TrainerCooltrainerfGwenWhenBeatenText
+	dw CooltrainerfGwenBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerCooltrainerfGwenWhenTalkScript
+	dw CooltrainerfGwenScript
 ; 0x5a34e
 
-TrainerCooltrainerfGwenWhenTalkScript: ; 0x5a34e
+CooltrainerfGwenScript: ; 0x5a34e
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x5a488
@@ -20610,19 +20610,19 @@ TrainerCooltrainerfEmma: ; 0x5a356
 	db COOLTRAINERF, EMMA
 
 	; text when seen
-	dw TrainerCooltrainerfEmmaWhenSeenText
+	dw CooltrainerfEmmaSeenText
 
 	; text when trainer beaten
-	dw TrainerCooltrainerfEmmaWhenBeatenText
+	dw CooltrainerfEmmaBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerCooltrainerfEmmaWhenTalkScript
+	dw CooltrainerfEmmaScript
 ; 0x5a362
 
-TrainerCooltrainerfEmmaWhenTalkScript: ; 0x5a362
+CooltrainerfEmmaScript: ; 0x5a362
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x5a52b
@@ -20639,7 +20639,7 @@ ItemFragment_0x5a36c: ; 0x5a36c
 	db HYPER_POTION, 1
 ; 0x5a36e
 
-TrainerCooltrainermNickWhenSeenText: ; 0x5a36e
+CooltrainermNickSeenText: ; 0x5a36e
 	db $0, "There are two", $4f
 	db "kinds of people.", $51
 	db "Those who have", $4f
@@ -20649,7 +20649,7 @@ TrainerCooltrainermNickWhenSeenText: ; 0x5a36e
 	db "person are you?", $57
 ; 0x5a3d5
 
-TrainerCooltrainermNickWhenBeatenText: ; 0x5a3d5
+CooltrainermNickBeatenText: ; 0x5a3d5
 	db $0, "You've got", $4f
 	db "dazzling style!", $57
 ; 0x5a3f0
@@ -20662,12 +20662,12 @@ UnknownText_0x5a3f0: ; 0x5a3f0
 	db "getting better!", $57
 ; 0x5a444
 
-TrainerCooltrainerfGwenWhenSeenText: ; 0x5a444
+CooltrainerfGwenSeenText: ; 0x5a444
 	db $0, "I'm in training.", $4f
 	db "Care for a round?", $57
 ; 0x5a467
 
-TrainerCooltrainerfGwenWhenBeatenText: ; 0x5a467
+CooltrainerfGwenBeatenText: ; 0x5a467
 	db $0, "Aww, no! You're", $4f
 	db "too good for me.", $57
 ; 0x5a488
@@ -20678,7 +20678,7 @@ UnknownText_0x5a488: ; 0x5a488
 	db "improve.", $57
 ; 0x5a4b6
 
-TrainerCooltrainerfEmmaWhenSeenText: ; 0x5a4b6
+CooltrainerfEmmaSeenText: ; 0x5a4b6
 	db $0, "If the #MON I", $4f
 	db "liked were there,", $55
 	db "I'd go anywhere.", $51
@@ -20686,7 +20686,7 @@ TrainerCooltrainerfEmmaWhenSeenText: ; 0x5a4b6
 	db "trainer does.", $57
 ; 0x5a507
 
-TrainerCooltrainerfEmmaWhenBeatenText: ; 0x5a507
+CooltrainerfEmmaBeatenText: ; 0x5a507
 	db $0, "I'd rather pet my", $4f
 	db "babies than this!", $57
 ; 0x5a52b
@@ -20743,19 +20743,19 @@ TrainerGruntM29: ; 0x5a5d8
 	db GRUNTM, 29
 
 	; text when seen
-	dw TrainerGruntM29WhenSeenText
+	dw GruntM29SeenText
 
 	; text when trainer beaten
-	dw TrainerGruntM29WhenBeatenText
+	dw GruntM29BeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerGruntM29WhenTalkScript
+	dw GruntM29Script
 ; 0x5a5e4
 
-TrainerGruntM29WhenTalkScript: ; 0x5a5e4
+GruntM29Script: ; 0x5a5e4
 	talkaftercancel
 	loadfont
 	2writetext TrainerGruntM29SlowpokeProfitText
@@ -20772,19 +20772,19 @@ TrainerGruntM1: ; 0x5a5ec
 	db GRUNTM, 1
 
 	; text when seen
-	dw TrainerGruntM1WhenSeenText
+	dw GruntM1SeenText
 
 	; text when trainer beaten
-	dw TrainerGruntM1WhenBeatenText
+	dw GruntM1BeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerGruntM1WhenTalkScript
+	dw GruntM1Script
 ; 0x5a5f8
 
-TrainerGruntM1WhenTalkScript: ; 0x5a5f8
+GruntM1Script: ; 0x5a5f8
 	loadfont
 	2writetext TrainerGruntM1WhenTalkText
 	closetext
@@ -20833,19 +20833,19 @@ TrainerGruntM2: ; 0x5a659
 	db GRUNTM, 2
 
 	; text when seen
-	dw TrainerGruntM2WhenSeenText
+	dw GruntM2SeenText
 
 	; text when trainer beaten
-	dw TrainerGruntM2WhenBeatenText
+	dw GruntM2BeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerGruntM2WhenTalkScript
+	dw GruntM2Script
 ; 0x5a665
 
-TrainerGruntM2WhenTalkScript: ; 0x5a665
+GruntM2Script: ; 0x5a665
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x5aaf2
@@ -20862,19 +20862,19 @@ TrainerGruntF1: ; 0x5a66d
 	db GRUNTF, 1
 
 	; text when seen
-	dw TrainerGruntF1WhenSeenText
+	dw GruntF1SeenText
 
 	; text when trainer beaten
-	dw TrainerGruntF1WhenBeatenText
+	dw GruntF1BeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerGruntF1WhenTalkScript
+	dw GruntF1Script
 ; 0x5a679
 
-TrainerGruntF1WhenTalkScript: ; 0x5a679
+GruntF1Script: ; 0x5a679
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x5ab8d
@@ -20971,7 +20971,7 @@ KurtLeaveSlowpokeWellText: ; 0x5a7ca
 	db "of here.", $57
 ; 0x5a825
 
-TrainerGruntM29WhenSeenText: ; 0x5a825
+GruntM29SeenText: ; 0x5a825
 	db $0, "Darn! I was stand-", $4f
 	db "ing guard up top", $51
 	db "when some old coot", $4f
@@ -20984,7 +20984,7 @@ TrainerGruntM29WhenSeenText: ; 0x5a825
 	db "it out on you!", $57
 ; 0x5a8cc
 
-TrainerGruntM29WhenBeatenText: ; 0x5a8cc
+GruntM29BeatenText: ; 0x5a8cc
 	db $0, "Arrgh! This is NOT", $4f
 	db "my day!", $57
 ; 0x5a8e8
@@ -21002,14 +21002,14 @@ TrainerGruntM29SlowpokeProfitText: ; 0x5a8e8
 	db "thing for money!", $57
 ; 0x5a98b
 
-TrainerGruntM1WhenSeenText: ; 0x5a98b
+GruntM1SeenText: ; 0x5a98b
 	db $0, "What do you want?", $51
 	db "If you interrupt", $4f
 	db "our work, don't", $55
 	db "expect any mercy!", $57
 ; 0x5a9d0
 
-TrainerGruntM1WhenBeatenText: ; 0x5a9d0
+GruntM1BeatenText: ; 0x5a9d0
 	db $0, "You did OK today,", $4f
 	db "but wait till next", $55
 	db "time!", $57
@@ -21027,7 +21027,7 @@ TrainerGruntM1WhenTalkText: ; 0x5a9fc
 	db "stir up trouble!", $57
 ; 0x5aa8d
 
-TrainerGruntM2WhenSeenText: ; 0x5aa8d
+GruntM2SeenText: ; 0x5aa8d
 	db $0, "Quit taking SLOW-", $4f
 	db "POKETAILS?", $51
 	db "If we obeyed you,", $4f
@@ -21035,7 +21035,7 @@ TrainerGruntM2WhenSeenText: ; 0x5aa8d
 	db "would be ruined!", $57
 ; 0x5aadf
 
-TrainerGruntM2WhenBeatenText: ; 0x5aadf
+GruntM2BeatenText: ; 0x5aadf
 	db $0, "Just…", $4f
 	db "Too strong…", $57
 ; 0x5aaf2
@@ -21048,13 +21048,13 @@ UnknownText_0x5aaf2: ; 0x5aaf2
 	db "ROCKET GRUNT!", $57
 ; 0x5ab43
 
-TrainerGruntF1WhenSeenText: ; 0x5ab43
+GruntF1SeenText: ; 0x5ab43
 	db $0, "Stop taking TAILS?", $51
 	db "Yeah, just try to", $4f
 	db "defeat all of us!", $57
 ; 0x5ab7b
 
-TrainerGruntF1WhenBeatenText: ; 0x5ab7b
+GruntF1BeatenText: ; 0x5ab7b
 	db $0, "You rotten brat!", $57
 ; 0x5ab8d
 
@@ -21267,19 +21267,19 @@ TrainerGentlemanAlfred: ; 0x5af71
 	db GENTLEMAN, ALFRED
 
 	; text when seen
-	dw TrainerGentlemanAlfredWhenSeenText
+	dw GentlemanAlfredSeenText
 
 	; text when trainer beaten
-	dw TrainerGentlemanAlfredWhenBeatenText
+	dw GentlemanAlfredBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerGentlemanAlfredWhenTalkScript
+	dw GentlemanAlfredScript
 ; 0x5af7d
 
-TrainerGentlemanAlfredWhenTalkScript: ; 0x5af7d
+GentlemanAlfredScript: ; 0x5af7d
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x5b13e
@@ -21296,19 +21296,19 @@ TrainerSailorHuey1: ; 0x5af85
 	db SAILOR, HUEY1
 
 	; text when seen
-	dw TrainerSailorHuey1WhenSeenText
+	dw SailorHuey1SeenText
 
 	; text when trainer beaten
-	dw TrainerSailorHuey1WhenBeatenText
+	dw SailorHuey1BeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerSailorHuey1WhenTalkScript
+	dw SailorHuey1Script
 ; 0x5af91
 
-TrainerSailorHuey1WhenTalkScript: ; 0x5af91
+SailorHuey1Script: ; 0x5af91
 	writecode $17, $7
 	talkaftercancel
 	loadfont
@@ -21336,7 +21336,7 @@ UnknownScript_0x5afb3: ; 0x5afb3
 
 UnknownScript_0x5afc7: ; 0x5afc7
 	2call UnknownScript_0x5b06b
-	winlosstext TrainerSailorHuey1WhenBeatenText, $0000
+	winlosstext SailorHuey1BeatenText, $0000
 	copybytetovar $d9f4
 	if_equal $3, UnknownScript_0x5afe2
 	if_equal $2, UnknownScript_0x5afe8
@@ -21455,13 +21455,13 @@ UnknownScript_0x5b076: ; 0x5b076
 	end
 ; 0x5b07a
 
-TrainerSailorHuey1WhenSeenText: ; 0x5b07a
+SailorHuey1SeenText: ; 0x5b07a
 	db $0, "Men of the sea are", $4f
 	db "always spoiling", $55
 	db "for a good fight!", $57
 ; 0x5b0b0
 
-TrainerSailorHuey1WhenBeatenText: ; 0x5b0b0
+SailorHuey1BeatenText: ; 0x5b0b0
 	db $0, "Urf!", $4f
 	db "I lose!", $57
 ; 0x5b0be
@@ -21474,12 +21474,12 @@ UnknownText_0x5b0be: ; 0x5b0be
 	db "with me?", $57
 ; 0x5b0f8
 
-TrainerGentlemanAlfredWhenSeenText: ; 0x5b0f8
+GentlemanAlfredSeenText: ; 0x5b0f8
 	db $0, "Hm? This is no", $4f
 	db "place for playing.", $57
 ; 0x5b11b
 
-TrainerGentlemanAlfredWhenBeatenText: ; 0x5b11b
+GentlemanAlfredBeatenText: ; 0x5b11b
 	db $0, "Ah! I can see that", $4f
 	db "you're serious.", $57
 ; 0x5b13e
@@ -21543,19 +21543,19 @@ TrainerBird_keeperTheo: ; 0x5b23d
 	db BIRD_KEEPER, THEO
 
 	; text when seen
-	dw TrainerBird_keeperTheoWhenSeenText
+	dw Bird_keeperTheoSeenText
 
 	; text when trainer beaten
-	dw TrainerBird_keeperTheoWhenBeatenText
+	dw Bird_keeperTheoBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerBird_keeperTheoWhenTalkScript
+	dw Bird_keeperTheoScript
 ; 0x5b249
 
-TrainerBird_keeperTheoWhenTalkScript: ; 0x5b249
+Bird_keeperTheoScript: ; 0x5b249
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x5b2df
@@ -21572,19 +21572,19 @@ TrainerGentlemanPreston: ; 0x5b251
 	db GENTLEMAN, PRESTON
 
 	; text when seen
-	dw TrainerGentlemanPrestonWhenSeenText
+	dw GentlemanPrestonSeenText
 
 	; text when trainer beaten
-	dw TrainerGentlemanPrestonWhenBeatenText
+	dw GentlemanPrestonBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerGentlemanPrestonWhenTalkScript
+	dw GentlemanPrestonScript
 ; 0x5b25d
 
-TrainerGentlemanPrestonWhenTalkScript: ; 0x5b25d
+GentlemanPrestonScript: ; 0x5b25d
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x5b457
@@ -21601,19 +21601,19 @@ TrainerSailorTerrell: ; 0x5b265
 	db SAILOR, TERRELL
 
 	; text when seen
-	dw TrainerSailorTerrellWhenSeenText
+	dw SailorTerrellSeenText
 
 	; text when trainer beaten
-	dw TrainerSailorTerrellWhenBeatenText
+	dw SailorTerrellBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerSailorTerrellWhenTalkScript
+	dw SailorTerrellScript
 ; 0x5b271
 
-TrainerSailorTerrellWhenTalkScript: ; 0x5b271
+SailorTerrellScript: ; 0x5b271
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x5b384
@@ -21626,14 +21626,14 @@ ItemFragment_0x5b279: ; 0x5b279
 	db ETHER, 1
 ; 0x5b27b
 
-TrainerBird_keeperTheoWhenSeenText: ; 0x5b27b
+Bird_keeperTheoSeenText: ; 0x5b27b
 	db $0, "Why are you here?", $4f
 	db "Are you just going", $51
 	db "to gawk? I suggest", $4f
 	db "that you leave!", $57
 ; 0x5b2c4
 
-TrainerBird_keeperTheoWhenBeatenText: ; 0x5b2c4
+Bird_keeperTheoBeatenText: ; 0x5b2c4
 	db $0, "You really are", $4f
 	db "concerned…", $57
 ; 0x5b2df
@@ -21647,13 +21647,13 @@ UnknownText_0x5b2df: ; 0x5b2df
 	db "there…", $57
 ; 0x5b333
 
-TrainerSailorTerrellWhenSeenText: ; 0x5b333
+SailorTerrellSeenText: ; 0x5b333
 	db $0, "Sailors are both", $4f
 	db "kind and strong.", $55
 	db "How about you?", $57
 ; 0x5b365
 
-TrainerSailorTerrellWhenBeatenText: ; 0x5b365
+SailorTerrellBeatenText: ; 0x5b365
 	db $0, "You are both kind", $4f
 	db "and strong…", $57
 ; 0x5b384
@@ -21668,14 +21668,14 @@ UnknownText_0x5b384: ; 0x5b384
 	db "noticing.", $57
 ; 0x5b3f4
 
-TrainerGentlemanPrestonWhenSeenText: ; 0x5b3f4
+GentlemanPrestonSeenText: ; 0x5b3f4
 	db $0, "I travel the world", $4f
 	db "to train my #-", $55
 	db "MON. I wish to", $55
 	db "battle with you.", $57
 ; 0x5b437
 
-TrainerGentlemanPrestonWhenBeatenText: ; 0x5b437
+GentlemanPrestonBeatenText: ; 0x5b437
 	db $0, "…sigh… I must", $4f
 	db "train some more…", $57
 ; 0x5b457
@@ -21732,19 +21732,19 @@ TrainerLassConnie1: ; 0x5b4ea
 	db LASS, CONNIE1
 
 	; text when seen
-	dw TrainerLassConnie1WhenSeenText
+	dw LassConnie1SeenText
 
 	; text when trainer beaten
-	dw TrainerLassConnie1WhenBeatenText
+	dw LassConnie1BeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerLassConnie1WhenTalkScript
+	dw LassConnie1Script
 ; 0x5b4f6
 
-TrainerLassConnie1WhenTalkScript: ; 0x5b4f6
+LassConnie1Script: ; 0x5b4f6
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x5b63c
@@ -21761,19 +21761,19 @@ TrainerSailorKent: ; 0x5b4fe
 	db SAILOR, KENT
 
 	; text when seen
-	dw TrainerSailorKentWhenSeenText
+	dw SailorKentSeenText
 
 	; text when trainer beaten
-	dw TrainerSailorKentWhenBeatenText
+	dw SailorKentBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerSailorKentWhenTalkScript
+	dw SailorKentScript
 ; 0x5b50a
 
-TrainerSailorKentWhenTalkScript: ; 0x5b50a
+SailorKentScript: ; 0x5b50a
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x5b584
@@ -21782,7 +21782,7 @@ TrainerSailorKentWhenTalkScript: ; 0x5b50a
 	end
 ; 0x5b512
 
-TrainerSailorKentWhenSeenText: ; 0x5b512
+SailorKentSeenText: ; 0x5b512
 	db $0, "JASMINE must be", $4f
 	db "worried sick about", $55
 	db "the #MON here.", $51
@@ -21790,7 +21790,7 @@ TrainerSailorKentWhenSeenText: ; 0x5b512
 	db "smile these days.", $57
 ; 0x5b565
 
-TrainerSailorKentWhenBeatenText: ; 0x5b565
+SailorKentBeatenText: ; 0x5b565
 	db $0, "I can't manage a", $4f
 	db "smile either…", $57
 ; 0x5b584
@@ -21802,7 +21802,7 @@ UnknownText_0x5b584: ; 0x5b584
 	db "CIANWOOD.", $57
 ; 0x5b5c5
 
-TrainerLassConnie1WhenSeenText: ; 0x5b5c5
+LassConnie1SeenText: ; 0x5b5c5
 	db $0, "JASMINE is this", $4f
 	db "city's GYM LEADER.", $51
 	db "I mean to bring", $4f
@@ -21811,7 +21811,7 @@ TrainerLassConnie1WhenSeenText: ; 0x5b5c5
 	db "get in my way!", $57
 ; 0x5b62b
 
-TrainerLassConnie1WhenBeatenText: ; 0x5b62b
+LassConnie1BeatenText: ; 0x5b62b
 	db $0, "Aaack! My #MON!", $57
 ; 0x5b63c
 
@@ -21931,19 +21931,19 @@ TrainerSchoolboyJack1: ; 0x5c042
 	db SCHOOLBOY, JACK1
 
 	; text when seen
-	dw TrainerSchoolboyJack1WhenSeenText
+	dw SchoolboyJack1SeenText
 
 	; text when trainer beaten
-	dw TrainerSchoolboyJack1WhenBeatenText
+	dw SchoolboyJack1BeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerSchoolboyJack1WhenTalkScript
+	dw SchoolboyJack1Script
 ; 0x5c04e
 
-TrainerSchoolboyJack1WhenTalkScript: ; 0x5c04e
+SchoolboyJack1Script: ; 0x5c04e
 	writecode $17, $5
 	talkaftercancel
 	loadfont
@@ -21973,7 +21973,7 @@ UnknownScript_0x5c074: ; 0x5c074
 
 UnknownScript_0x5c088: ; 0x5c088
 	2call UnknownScript_0x5c114
-	winlosstext TrainerSchoolboyJack1WhenBeatenText, $0000
+	winlosstext SchoolboyJack1BeatenText, $0000
 	copybytetovar $d9f2
 	if_equal $4, UnknownScript_0x5c0a7
 	if_equal $3, UnknownScript_0x5c0ad
@@ -22079,19 +22079,19 @@ TrainerPokefanmWilliam: ; 0x5c118
 	db POKEFANM, WILLIAM
 
 	; text when seen
-	dw TrainerPokefanmWilliamWhenSeenText
+	dw PokefanmWilliamSeenText
 
 	; text when trainer beaten
-	dw TrainerPokefanmWilliamWhenBeatenText
+	dw PokefanmWilliamBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerPokefanmWilliamWhenTalkScript
+	dw PokefanmWilliamScript
 ; 0x5c124
 
-TrainerPokefanmWilliamWhenTalkScript: ; 0x5c124
+PokefanmWilliamScript: ; 0x5c124
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x5c645
@@ -22108,19 +22108,19 @@ TrainerPokefanfBeverly1: ; 0x5c12c
 	db POKEFANF, BEVERLY1
 
 	; text when seen
-	dw TrainerPokefanfBeverly1WhenSeenText
+	dw PokefanfBeverly1SeenText
 
 	; text when trainer beaten
-	dw TrainerPokefanfBeverly1WhenBeatenText
+	dw PokefanfBeverly1BeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerPokefanfBeverly1WhenTalkScript
+	dw PokefanfBeverly1Script
 ; 0x5c138
 
-TrainerPokefanfBeverly1WhenTalkScript: ; 0x5c138
+PokefanfBeverly1Script: ; 0x5c138
 	writecode $17, $6
 	talkaftercancel
 	loadfont
@@ -22217,19 +22217,19 @@ TrainerLassKrise: ; 0x5c1af
 	db LASS, KRISE
 
 	; text when seen
-	dw TrainerLassKriseWhenSeenText
+	dw LassKriseSeenText
 
 	; text when trainer beaten
-	dw TrainerLassKriseWhenBeatenText
+	dw LassKriseBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerLassKriseWhenTalkScript
+	dw LassKriseScript
 ; 0x5c1bb
 
-TrainerLassKriseWhenTalkScript: ; 0x5c1bb
+LassKriseScript: ; 0x5c1bb
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x5c71d
@@ -22336,7 +22336,7 @@ UnknownText_0x5c42a: ; 0x5c42a
 	db "BOXES.", $57
 ; 0x5c47e
 
-TrainerSchoolboyJack1WhenSeenText: ; 0x5c47e
+SchoolboyJack1SeenText: ; 0x5c47e
 	db $0, "The world of", $4f
 	db "#MON is deep.", $51
 	db "There are still", $4f
@@ -22346,7 +22346,7 @@ TrainerSchoolboyJack1WhenSeenText: ; 0x5c47e
 	db "than you do!", $57
 ; 0x5c4e4
 
-TrainerSchoolboyJack1WhenBeatenText: ; 0x5c4e4
+SchoolboyJack1BeatenText: ; 0x5c4e4
 	db $0, "Wha-wha-what?", $57
 ; 0x5c4f3
 
@@ -22360,7 +22360,7 @@ UnknownText_0x5c4f3: ; 0x5c4f3
 	db "level up faster.", $57
 ; 0x5c552
 
-TrainerPokefanfBeverly1WhenSeenText: ; 0x5c552
+PokefanfBeverly1SeenText: ; 0x5c552
 	db $0, "My #MON are", $4f
 	db "simply darling.", $51
 	db "Let me tell you", $4f
@@ -22368,7 +22368,7 @@ TrainerPokefanfBeverly1WhenSeenText: ; 0x5c552
 	db "darlings make me.", $57
 ; 0x5c59e
 
-TrainerPokefanfBeverly1WhenBeatenText: ; 0x5c59e
+PokefanfBeverly1BeatenText: ; 0x5c59e
 	db $0, "I can beat you in", $4f
 	db "pride, but…", $57
 ; 0x5c5bd
@@ -22379,7 +22379,7 @@ UnknownText_0x5c5bd: ; 0x5c5bd
 	db "cute, too.", $57
 ; 0x5c5e9
 
-TrainerPokefanmWilliamWhenSeenText: ; 0x5c5e9
+PokefanmWilliamSeenText: ; 0x5c5e9
 	db $0, "We adore our #-", $4f
 	db "MON, even if they", $55
 	db "dislike us.", $51
@@ -22387,7 +22387,7 @@ TrainerPokefanmWilliamWhenSeenText: ; 0x5c5e9
 	db "a FAN is about.", $57
 ; 0x5c639
 
-TrainerPokefanmWilliamWhenBeatenText: ; 0x5c639
+PokefanmWilliamBeatenText: ; 0x5c639
 	db $0, "M-my #MON!", $57
 ; 0x5c645
 
@@ -22407,13 +22407,13 @@ UnknownText_0x5c68a: ; 0x5c68a
 	db "MARILL of my own…", $57
 ; 0x5c6e4
 
-TrainerLassKriseWhenSeenText: ; 0x5c6e4
+LassKriseSeenText: ; 0x5c6e4
 	db $0, "Hello? Why are you", $4f
 	db "staring at me?", $51
 	db "Oh, a battle?", $57
 ; 0x5c715
 
-TrainerLassKriseWhenBeatenText: ; 0x5c715
+LassKriseBeatenText: ; 0x5c715
 	db $0, "…Hmmm…", $57
 ; 0x5c71d
 
@@ -22940,19 +22940,19 @@ TrainerGruntM3: ; 0x5ce57
 	db GRUNTM, 3
 
 	; text when seen
-	dw TrainerGruntM3WhenSeenText
+	dw GruntM3SeenText
 
 	; text when trainer beaten
-	dw TrainerGruntM3WhenBeatenText
+	dw GruntM3BeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerGruntM3WhenTalkScript
+	dw GruntM3Script
 ; 0x5ce63
 
-TrainerGruntM3WhenTalkScript: ; 0x5ce63
+GruntM3Script: ; 0x5ce63
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x5d5a2
@@ -23168,7 +23168,7 @@ UnknownText_0x5d4ac: ; 0x5d4ac
 	db "though.", $57
 ; 0x5d4f4
 
-TrainerGruntM3WhenSeenText: ; 0x5d4f4
+GruntM3SeenText: ; 0x5d4f4
 	db $0, "We've finally", $4f
 	db "taken over the", $55
 	db "RADIO TOWER!", $51
@@ -23180,7 +23180,7 @@ TrainerGruntM3WhenSeenText: ; 0x5d4f4
 	db "how scary we are!", $57
 ; 0x5d582
 
-TrainerGruntM3WhenBeatenText: ; 0x5d582
+GruntM3BeatenText: ; 0x5d582
 	db $0, "Too strong! We", $4f
 	db "must watch you…", $57
 ; 0x5d5a2
@@ -23297,19 +23297,19 @@ TrainerGruntM4: ; 0x5d725
 	db GRUNTM, 4
 
 	; text when seen
-	dw TrainerGruntM4WhenSeenText
+	dw GruntM4SeenText
 
 	; text when trainer beaten
-	dw TrainerGruntM4WhenBeatenText
+	dw GruntM4BeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerGruntM4WhenTalkScript
+	dw GruntM4Script
 ; 0x5d731
 
-TrainerGruntM4WhenTalkScript: ; 0x5d731
+GruntM4Script: ; 0x5d731
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x5db07
@@ -23326,19 +23326,19 @@ TrainerGruntM5: ; 0x5d739
 	db GRUNTM, 5
 
 	; text when seen
-	dw TrainerGruntM5WhenSeenText
+	dw GruntM5SeenText
 
 	; text when trainer beaten
-	dw TrainerGruntM5WhenBeatenText
+	dw GruntM5BeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerGruntM5WhenTalkScript
+	dw GruntM5Script
 ; 0x5d745
 
-TrainerGruntM5WhenTalkScript: ; 0x5d745
+GruntM5Script: ; 0x5d745
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x5db99
@@ -23355,19 +23355,19 @@ TrainerGruntM6: ; 0x5d74d
 	db GRUNTM, 6
 
 	; text when seen
-	dw TrainerGruntM6WhenSeenText
+	dw GruntM6SeenText
 
 	; text when trainer beaten
-	dw TrainerGruntM6WhenBeatenText
+	dw GruntM6BeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerGruntM6WhenTalkScript
+	dw GruntM6Script
 ; 0x5d759
 
-TrainerGruntM6WhenTalkScript: ; 0x5d759
+GruntM6Script: ; 0x5d759
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x5dc00
@@ -23384,19 +23384,19 @@ TrainerGruntF2: ; 0x5d761
 	db GRUNTF, 2
 
 	; text when seen
-	dw TrainerGruntF2WhenSeenText
+	dw GruntF2SeenText
 
 	; text when trainer beaten
-	dw TrainerGruntF2WhenBeatenText
+	dw GruntF2BeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerGruntF2WhenTalkScript
+	dw GruntF2Script
 ; 0x5d76d
 
-TrainerGruntF2WhenTalkScript: ; 0x5d76d
+GruntF2Script: ; 0x5d76d
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x5dcd0
@@ -23712,7 +23712,7 @@ UnknownText_0x5da44: ; 0x5da44
 	db "as he was before.", $57
 ; 0x5da9b
 
-TrainerGruntM4WhenSeenText: ; 0x5da9b
+GruntM4SeenText: ; 0x5da9b
 	db $0, "Three years ago,", $4f
 	db "TEAM ROCKET was", $55
 	db "forced to disband.", $51
@@ -23720,7 +23720,7 @@ TrainerGruntM4WhenSeenText: ; 0x5da9b
 	db "comeback here!", $57
 ; 0x5daf1
 
-TrainerGruntM4WhenBeatenText: ; 0x5daf1
+GruntM4BeatenText: ; 0x5daf1
 	db $0, "Gwah! Don't get", $4f
 	db "cute!", $57
 ; 0x5db07
@@ -23731,7 +23731,7 @@ UnknownText_0x5db07: ; 0x5db07
 	db "for our comeback!", $57
 ; 0x5db39
 
-TrainerGruntM5WhenSeenText: ; 0x5db39
+GruntM5SeenText: ; 0x5db39
 	db $0, "We're TEAM ROCKET,", $4f
 	db "the exploiters of", $55
 	db "#MON!", $51
@@ -23739,7 +23739,7 @@ TrainerGruntM5WhenSeenText: ; 0x5db39
 	db "evil! Scared?", $57
 ; 0x5db80
 
-TrainerGruntM5WhenBeatenText: ; 0x5db80
+GruntM5BeatenText: ; 0x5db80
 	db $0, "You think you're a", $4f
 	db "hero?", $57
 ; 0x5db99
@@ -23750,12 +23750,12 @@ UnknownText_0x5db99: ; 0x5db99
 	db "whatever we like.", $57
 ; 0x5dbcd
 
-TrainerGruntM6WhenSeenText: ; 0x5dbcd
+GruntM6SeenText: ; 0x5dbcd
 	db $0, "Hey, hey! Keep out", $4f
 	db "of our way!", $57
 ; 0x5dbed
 
-TrainerGruntM6WhenBeatenText: ; 0x5dbed
+GruntM6BeatenText: ; 0x5dbed
 	db $0, "Arggh. I give up.", $57
 ; 0x5dc00
 
@@ -23768,7 +23768,7 @@ UnknownText_0x5dc00: ; 0x5dc00
 	db "what that is?", $57
 ; 0x5dc64
 
-TrainerGruntF2WhenSeenText: ; 0x5dc64
+GruntF2SeenText: ; 0x5dc64
 	db $0, "Hahaha!", $51
 	db "How boring.", $4f
 	db "It was far too", $51
@@ -23778,7 +23778,7 @@ TrainerGruntF2WhenSeenText: ; 0x5dc64
 	db "amused!", $57
 ; 0x5dcbf
 
-TrainerGruntF2WhenBeatenText: ; 0x5dcbf
+GruntF2BeatenText: ; 0x5dcbf
 	db $0, "Wh-who are you?", $57
 ; 0x5dcd0
 
@@ -24122,19 +24122,19 @@ TrainerGruntM7: ; 0x5e5a3
 	db GRUNTM, 7
 
 	; text when seen
-	dw TrainerGruntM7WhenSeenText
+	dw GruntM7SeenText
 
 	; text when trainer beaten
-	dw TrainerGruntM7WhenBeatenText
+	dw GruntM7BeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerGruntM7WhenTalkScript
+	dw GruntM7Script
 ; 0x5e5af
 
-TrainerGruntM7WhenTalkScript: ; 0x5e5af
+GruntM7Script: ; 0x5e5af
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x5e8d0
@@ -24151,19 +24151,19 @@ TrainerGruntM8: ; 0x5e5b7
 	db GRUNTM, 8
 
 	; text when seen
-	dw TrainerGruntM8WhenSeenText
+	dw GruntM8SeenText
 
 	; text when trainer beaten
-	dw TrainerGruntM8WhenBeatenText
+	dw GruntM8BeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerGruntM8WhenTalkScript
+	dw GruntM8Script
 ; 0x5e5c3
 
-TrainerGruntM8WhenTalkScript: ; 0x5e5c3
+GruntM8Script: ; 0x5e5c3
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x5e944
@@ -24180,19 +24180,19 @@ TrainerGruntM9: ; 0x5e5cb
 	db GRUNTM, 9
 
 	; text when seen
-	dw TrainerGruntM9WhenSeenText
+	dw GruntM9SeenText
 
 	; text when trainer beaten
-	dw TrainerGruntM9WhenBeatenText
+	dw GruntM9BeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerGruntM9WhenTalkScript
+	dw GruntM9Script
 ; 0x5e5d7
 
-TrainerGruntM9WhenTalkScript: ; 0x5e5d7
+GruntM9Script: ; 0x5e5d7
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x5e9d0
@@ -24209,19 +24209,19 @@ TrainerScientistMarc: ; 0x5e5df
 	db SCIENTIST, MARC
 
 	; text when seen
-	dw TrainerScientistMarcWhenSeenText
+	dw ScientistMarcSeenText
 
 	; text when trainer beaten
-	dw TrainerScientistMarcWhenBeatenText
+	dw ScientistMarcBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerScientistMarcWhenTalkScript
+	dw ScientistMarcScript
 ; 0x5e5eb
 
-TrainerScientistMarcWhenTalkScript: ; 0x5e5eb
+ScientistMarcScript: ; 0x5e5eb
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x5ea61
@@ -24328,7 +24328,7 @@ UnknownText_0x5e85c: ; 0x5e85c
 	db "marvelous!", $57
 ; 0x5e878
 
-TrainerGruntM7WhenSeenText: ; 0x5e878
+GruntM7SeenText: ; 0x5e878
 	db $0, "I've been given", $4f
 	db "strict orders.", $51
 	db "I'm to crush any-", $4f
@@ -24336,7 +24336,7 @@ TrainerGruntM7WhenSeenText: ; 0x5e878
 	db "TEAM ROCKET!", $57
 ; 0x5e8c8
 
-TrainerGruntM7WhenBeatenText: ; 0x5e8c8
+GruntM7BeatenText: ; 0x5e8c8
 	db $0, "What?!", $57
 ; 0x5e8d0
 
@@ -24347,13 +24347,13 @@ UnknownText_0x5e8d0: ; 0x5e8d0
 	db "for this…", $57
 ; 0x5e904
 
-TrainerGruntM8WhenSeenText: ; 0x5e904
+GruntM8SeenText: ; 0x5e904
 	db $0, "It feels great", $4f
 	db "ordering #MON", $55
 	db "to commit crimes.", $57
 ; 0x5e934
 
-TrainerGruntM8WhenBeatenText: ; 0x5e934
+GruntM8BeatenText: ; 0x5e934
 	db $0, "You're kidding!", $57
 ; 0x5e944
 
@@ -24364,14 +24364,14 @@ UnknownText_0x5e944: ; 0x5e944
 	db "useless #MON!", $57
 ; 0x5e97d
 
-TrainerGruntM9WhenSeenText: ; 0x5e97d
+GruntM9SeenText: ; 0x5e97d
 	db $0, "Why did the shut-", $4f
 	db "ter open? Did you", $51
 	db "have something to", $4f
 	db "do with this?", $57
 ; 0x5e9c2
 
-TrainerGruntM9WhenBeatenText: ; 0x5e9c2
+GruntM9BeatenText: ; 0x5e9c2
 	db $0, "I'm done for!", $57
 ; 0x5e9d0
 
@@ -24382,13 +24382,13 @@ UnknownText_0x5e9d0: ; 0x5e9d0
 	db "How could you?", $57
 ; 0x5ea14
 
-TrainerScientistMarcWhenSeenText: ; 0x5ea14
+ScientistMarcSeenText: ; 0x5ea14
 	db $0, "An unknown child", $4f
 	db "wandering here?", $51
 	db "Who are you?", $57
 ; 0x5ea43
 
-TrainerScientistMarcWhenBeatenText: ; 0x5ea43
+ScientistMarcBeatenText: ; 0x5ea43
 	db $0, "Tch! I took you", $4f
 	db "too lightly!", $57
 ; 0x5ea61
@@ -24511,19 +24511,19 @@ TrainerGruntM10: ; 0x5ebbc
 	db GRUNTM, 10
 
 	; text when seen
-	dw TrainerGruntM10WhenSeenText
+	dw GruntM10SeenText
 
 	; text when trainer beaten
-	dw TrainerGruntM10WhenBeatenText
+	dw GruntM10BeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerGruntM10WhenTalkScript
+	dw GruntM10Script
 ; 0x5ebc8
 
-TrainerGruntM10WhenTalkScript: ; 0x5ebc8
+GruntM10Script: ; 0x5ebc8
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x5ede2
@@ -24540,19 +24540,19 @@ TrainerExecutivem2: ; 0x5ebd0
 	db EXECUTIVEM, 2
 
 	; text when seen
-	dw TrainerExecutivem2WhenSeenText
+	dw Executivem2SeenText
 
 	; text when trainer beaten
-	dw TrainerExecutivem2WhenBeatenText
+	dw Executivem2BeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerExecutivem2WhenTalkScript
+	dw Executivem2Script
 ; 0x5ebdc
 
-TrainerExecutivem2WhenTalkScript: ; 0x5ebdc
+Executivem2Script: ; 0x5ebdc
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x5ee69
@@ -24569,19 +24569,19 @@ TrainerGruntF4: ; 0x5ebe4
 	db GRUNTF, 4
 
 	; text when seen
-	dw TrainerGruntF4WhenSeenText
+	dw GruntF4SeenText
 
 	; text when trainer beaten
-	dw TrainerGruntF4WhenBeatenText
+	dw GruntF4BeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerGruntF4WhenTalkScript
+	dw GruntF4Script
 ; 0x5ebf0
 
-TrainerGruntF4WhenTalkScript: ; 0x5ebf0
+GruntF4Script: ; 0x5ebf0
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x5ef31
@@ -24598,19 +24598,19 @@ TrainerScientistRich: ; 0x5ebf8
 	db SCIENTIST, RICH
 
 	; text when seen
-	dw TrainerScientistRichWhenSeenText
+	dw ScientistRichSeenText
 
 	; text when trainer beaten
-	dw TrainerScientistRichWhenBeatenText
+	dw ScientistRichBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerScientistRichWhenTalkScript
+	dw ScientistRichScript
 ; 0x5ec04
 
-TrainerScientistRichWhenTalkScript: ; 0x5ec04
+ScientistRichScript: ; 0x5ec04
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x5efcb
@@ -24667,7 +24667,7 @@ UnknownText_0x5ed66: ; 0x5ed66
 	db $0, "MEOWTH: Meowth…", $57
 ; 0x5ed77
 
-TrainerGruntM10WhenSeenText: ; 0x5ed77
+GruntM10SeenText: ; 0x5ed77
 	db $0, "You plan to rescue", $4f
 	db "the DIRECTOR?", $51
 	db "That won't be pos-", $4f
@@ -24675,7 +24675,7 @@ TrainerGruntM10WhenSeenText: ; 0x5ed77
 	db "going to beat you!", $57
 ; 0x5edcf
 
-TrainerGruntM10WhenBeatenText: ; 0x5edcf
+GruntM10BeatenText: ; 0x5edcf
 	db $0, "No! Unbelievable!", $57
 ; 0x5ede2
 
@@ -24684,7 +24684,7 @@ UnknownText_0x5ede2: ; 0x5ede2
 	db "it! I was beaten!", $57
 ; 0x5ee04
 
-TrainerExecutivem2WhenSeenText: ; 0x5ee04
+Executivem2SeenText: ; 0x5ee04
 	db $0, "Stop! I'm known as", $4f
 	db "the TEAM ROCKET", $55
 	db "fortress!", $51
@@ -24692,7 +24692,7 @@ TrainerExecutivem2WhenSeenText: ; 0x5ee04
 	db "another step!", $57
 ; 0x5ee50
 
-TrainerExecutivem2WhenBeatenText: ; 0x5ee50
+Executivem2BeatenText: ; 0x5ee50
 	db $0, "The fortress came", $4f
 	db "down!", $57
 ; 0x5ee69
@@ -24706,7 +24706,7 @@ UnknownText_0x5ee69: ; 0x5ee69
 	db "back.", $57
 ; 0x5eec4
 
-TrainerGruntF4WhenSeenText: ; 0x5eec4
+GruntF4SeenText: ; 0x5eec4
 	db $0, "Don't I think", $4f
 	db "#MON are cute?", $51
 	db "I'll think my", $4f
@@ -24715,7 +24715,7 @@ TrainerGruntF4WhenSeenText: ; 0x5eec4
 	db "yours!", $57
 ; 0x5ef15
 
-TrainerGruntF4WhenBeatenText: ; 0x5ef15
+GruntF4BeatenText: ; 0x5ef15
 	db $0, "Oh, no! They're so", $4f
 	db "useless!", $57
 ; 0x5ef31
@@ -24727,14 +24727,14 @@ UnknownText_0x5ef31: ; 0x5ef31
 	db "#MON?", $57
 ; 0x5ef62
 
-TrainerScientistRichWhenSeenText: ; 0x5ef62
+ScientistRichSeenText: ; 0x5ef62
 	db $0, "Most excellent.", $51
 	db "This RADIO TOWER", $4f
 	db "will fulfill our", $55
 	db "grand design.", $57
 ; 0x5efa3
 
-TrainerScientistRichWhenBeatenText: ; 0x5efa3
+ScientistRichBeatenText: ; 0x5efa3
 	db $0, "Hmmm…", $51
 	db "All grand plans", $4f
 	db "come with snags.", $57
@@ -24865,19 +24865,19 @@ TrainerExecutivef1: ; 0x6005a
 	db EXECUTIVEF, 1
 
 	; text when seen
-	dw TrainerExecutivef1WhenSeenText
+	dw Executivef1SeenText
 
 	; text when trainer beaten
-	dw TrainerExecutivef1WhenBeatenText
+	dw Executivef1BeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerExecutivef1WhenTalkScript
+	dw Executivef1Script
 ; 0x60066
 
-TrainerExecutivef1WhenTalkScript: ; 0x60066
+Executivef1Script: ; 0x60066
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x60358
@@ -25050,7 +25050,7 @@ UnknownText_0x60246: ; 0x60246
 	db "get that far.", $57
 ; 0x602cb
 
-TrainerExecutivef1WhenSeenText: ; 0x602cb
+Executivef1SeenText: ; 0x602cb
 	db $0, "Remember me from", $4f
 	db "the HIDEOUT in", $55
 	db "MAHOGANY TOWN?", $51
@@ -25058,7 +25058,7 @@ TrainerExecutivef1WhenSeenText: ; 0x602cb
 	db "won't this time.", $57
 ; 0x6031e
 
-TrainerExecutivef1WhenBeatenText: ; 0x6031e
+Executivef1BeatenText: ; 0x6031e
 	db $0, "This can't be", $4f
 	db "happening!", $51
 	db "I fought hard, but", $4f
@@ -25239,19 +25239,19 @@ TrainerBird_keeperDenis: ; 0x60982
 	db BIRD_KEEPER, DENIS
 
 	; text when seen
-	dw TrainerBird_keeperDenisWhenSeenText
+	dw Bird_keeperDenisSeenText
 
 	; text when trainer beaten
-	dw TrainerBird_keeperDenisWhenBeatenText
+	dw Bird_keeperDenisBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerBird_keeperDenisWhenTalkScript
+	dw Bird_keeperDenisScript
 ; 0x6098e
 
-TrainerBird_keeperDenisWhenTalkScript: ; 0x6098e
+Bird_keeperDenisScript: ; 0x6098e
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x60ac3
@@ -25268,19 +25268,19 @@ TrainerSailorErnest: ; 0x60996
 	db SAILOR, ERNEST
 
 	; text when seen
-	dw TrainerSailorErnestWhenSeenText
+	dw SailorErnestSeenText
 
 	; text when trainer beaten
-	dw TrainerSailorErnestWhenBeatenText
+	dw SailorErnestBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerSailorErnestWhenTalkScript
+	dw SailorErnestScript
 ; 0x609a2
 
-TrainerSailorErnestWhenTalkScript: ; 0x609a2
+SailorErnestScript: ; 0x609a2
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x60a1f
@@ -25307,14 +25307,14 @@ MapOlivineLighthouse5FSignpostItem0: ; 0x609b0
 	
 ; 0x609b3
 
-TrainerSailorErnestWhenSeenText: ; 0x609b3
+SailorErnestSeenText: ; 0x609b3
 	db $0, "I wanted to battle", $4f
 	db "JASMINE, but she's", $51
 	db "not up to it now.", $4f
 	db "So, how about you?", $57
 ; 0x609fe
 
-TrainerSailorErnestWhenBeatenText: ; 0x609fe
+SailorErnestBeatenText: ; 0x609fe
 	db $0, "Whoa, whoa. You're", $4f
 	db "overwhelming!", $57
 ; 0x60a1f
@@ -25327,14 +25327,14 @@ UnknownText_0x60a1f: ; 0x60a1f
 	db "compassionate.", $57
 ; 0x60a74
 
-TrainerBird_keeperDenisWhenSeenText: ; 0x60a74
+Bird_keeperDenisSeenText: ; 0x60a74
 	db $0, "We're pretty high", $4f
 	db "up here. My bird", $51
 	db "#MON are in", $4f
 	db "prime form.", $57
 ; 0x60aaf
 
-TrainerBird_keeperDenisWhenBeatenText: ; 0x60aaf
+Bird_keeperDenisBeatenText: ; 0x60aaf
 	db $0, "Oops…They crashed…", $57
 ; 0x60ac3
 
@@ -27057,19 +27057,19 @@ TrainerYoungsterOwen: ; 0x68002
 	db YOUNGSTER, OWEN
 
 	; text when seen
-	dw TrainerYoungsterOwenWhenSeenText
+	dw YoungsterOwenSeenText
 
 	; text when trainer beaten
-	dw TrainerYoungsterOwenWhenBeatenText
+	dw YoungsterOwenBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerYoungsterOwenWhenTalkScript
+	dw YoungsterOwenScript
 ; 0x6800e
 
-TrainerYoungsterOwenWhenTalkScript: ; 0x6800e
+YoungsterOwenScript: ; 0x6800e
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x680b2
@@ -27086,19 +27086,19 @@ TrainerYoungsterJason: ; 0x68016
 	db YOUNGSTER, JASON
 
 	; text when seen
-	dw TrainerYoungsterJasonWhenSeenText
+	dw YoungsterJasonSeenText
 
 	; text when trainer beaten
-	dw TrainerYoungsterJasonWhenBeatenText
+	dw YoungsterJasonBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerYoungsterJasonWhenTalkScript
+	dw YoungsterJasonScript
 ; 0x68022
 
-TrainerYoungsterJasonWhenTalkScript: ; 0x68022
+YoungsterJasonScript: ; 0x68022
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x6814a
@@ -27115,19 +27115,19 @@ TrainerPsychicHerman: ; 0x6802a
 	db PSYCHIC_T, HERMAN
 
 	; text when seen
-	dw TrainerPsychicHermanWhenSeenText
+	dw PsychicHermanSeenText
 
 	; text when trainer beaten
-	dw TrainerPsychicHermanWhenBeatenText
+	dw PsychicHermanBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerPsychicHermanWhenTalkScript
+	dw PsychicHermanScript
 ; 0x68036
 
-TrainerPsychicHermanWhenTalkScript: ; 0x68036
+PsychicHermanScript: ; 0x68036
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x6817b
@@ -27144,19 +27144,19 @@ TrainerPsychicFidel: ; 0x6803e
 	db PSYCHIC_T, FIDEL
 
 	; text when seen
-	dw TrainerPsychicFidelWhenSeenText
+	dw PsychicFidelSeenText
 
 	; text when trainer beaten
-	dw TrainerPsychicFidelWhenBeatenText
+	dw PsychicFidelBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerPsychicFidelWhenTalkScript
+	dw PsychicFidelScript
 ; 0x6804a
 
-TrainerPsychicFidelWhenTalkScript: ; 0x6804a
+PsychicFidelScript: ; 0x6804a
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x681ec
@@ -27179,14 +27179,14 @@ MapRoute11SignpostItem1: ; 0x68057
 	
 ; 0x6805a
 
-TrainerYoungsterOwenWhenSeenText: ; 0x6805a
+YoungsterOwenSeenText: ; 0x6805a
 	db $0, "There's no cheat-", $4f
 	db "ing in #MON.", $51
 	db "Let's keep it fair", $4f
 	db "and square!", $57
 ; 0x68097
 
-TrainerYoungsterOwenWhenBeatenText: ; 0x68097
+YoungsterOwenBeatenText: ; 0x68097
 	db $0, "Huh? How did this", $4f
 	db "happen?", $57
 ; 0x680b2
@@ -27198,14 +27198,14 @@ UnknownText_0x680b2: ; 0x680b2
 	db "this at all.", $57
 ; 0x680f3
 
-TrainerYoungsterJasonWhenSeenText: ; 0x680f3
+YoungsterJasonSeenText: ; 0x680f3
 	db $0, "It itches and", $4f
 	db "tickles a bit when", $51
 	db "I wear shorts in", $4f
 	db "the grass.", $57
 ; 0x68131
 
-TrainerYoungsterJasonWhenBeatenText: ; 0x68131
+YoungsterJasonBeatenText: ; 0x68131
 	db $0, "Aiyaaah!", $4f
 	db "I got stomped!", $57
 ; 0x6814a
@@ -27216,11 +27216,11 @@ UnknownText_0x6814a: ; 0x6814a
 	db "the grass.", $57
 ; 0x68175
 
-TrainerPsychicHermanWhenSeenText: ; 0x68175
+PsychicHermanSeenText: ; 0x68175
 	db $0, "…", $57
 ; 0x68178
 
-TrainerPsychicHermanWhenBeatenText: ; 0x68178
+PsychicHermanBeatenText: ; 0x68178
 	db $0, "…", $57
 ; 0x6817b
 
@@ -27230,13 +27230,13 @@ UnknownText_0x6817b: ; 0x6817b
 	db "my eyes closed…", $57
 ; 0x681a1
 
-TrainerPsychicFidelWhenSeenText: ; 0x681a1
+PsychicFidelSeenText: ; 0x681a1
 	db $0, "I can see it…", $51
 	db "Everything to see", $4f
 	db "about you…", $57
 ; 0x681cd
 
-TrainerPsychicFidelWhenBeatenText: ; 0x681cd
+PsychicFidelBeatenText: ; 0x681cd
 	db $0, "I couldn't foresee", $4f
 	db "your power…", $57
 ; 0x681ec
@@ -27420,19 +27420,19 @@ TrainerBird_keeperRod: ; 0x68427
 	db BIRD_KEEPER, ROD
 
 	; text when seen
-	dw TrainerBird_keeperRodWhenSeenText
+	dw Bird_keeperRodSeenText
 
 	; text when trainer beaten
-	dw TrainerBird_keeperRodWhenBeatenText
+	dw Bird_keeperRodBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerBird_keeperRodWhenTalkScript
+	dw Bird_keeperRodScript
 ; 0x68433
 
-TrainerBird_keeperRodWhenTalkScript: ; 0x68433
+Bird_keeperRodScript: ; 0x68433
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x68837
@@ -27449,19 +27449,19 @@ TrainerBird_keeperAbe: ; 0x6843b
 	db BIRD_KEEPER, ABE
 
 	; text when seen
-	dw TrainerBird_keeperAbeWhenSeenText
+	dw Bird_keeperAbeSeenText
 
 	; text when trainer beaten
-	dw TrainerBird_keeperAbeWhenBeatenText
+	dw Bird_keeperAbeBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerBird_keeperAbeWhenTalkScript
+	dw Bird_keeperAbeScript
 ; 0x68447
 
-TrainerBird_keeperAbeWhenTalkScript: ; 0x68447
+Bird_keeperAbeScript: ; 0x68447
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x688c7
@@ -27576,7 +27576,7 @@ UnknownText_0x68735: ; 0x68735
 	db "master!", $57
 ; 0x687cd
 
-TrainerBird_keeperRodWhenSeenText: ; 0x687cd
+Bird_keeperRodSeenText: ; 0x687cd
 	db $0, "The keyword is", $4f
 	db "guts!", $51
 	db "Those here are", $4f
@@ -27586,7 +27586,7 @@ TrainerBird_keeperRodWhenSeenText: ; 0x687cd
 	db "Come on!", $57
 ; 0x6882f
 
-TrainerBird_keeperRodWhenBeatenText: ; 0x6882f
+Bird_keeperRodBeatenText: ; 0x6882f
 	db $0, "Gaaah!", $57
 ; 0x68837
 
@@ -27598,13 +27598,13 @@ UnknownText_0x68837: ; 0x68837
 	db "beat me!", $57
 ; 0x6887f
 
-TrainerBird_keeperAbeWhenSeenText: ; 0x6887f
+Bird_keeperAbeSeenText: ; 0x6887f
 	db $0, "Let me see if you", $4f
 	db "are good enough to", $55
 	db "face FALKNER!", $57
 ; 0x688b3
 
-TrainerBird_keeperAbeWhenBeatenText: ; 0x688b3
+Bird_keeperAbeBeatenText: ; 0x688b3
 	db $0, "This can't be", $4f
 	db "true!", $57
 ; 0x688c7
@@ -30206,19 +30206,19 @@ TrainerBikerDwayne: ; 0x6c002
 	db BIKER, DWAYNE
 
 	; text when seen
-	dw TrainerBikerDwayneWhenSeenText
+	dw BikerDwayneSeenText
 
 	; text when trainer beaten
-	dw TrainerBikerDwayneWhenBeatenText
+	dw BikerDwayneBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerBikerDwayneWhenTalkScript
+	dw BikerDwayneScript
 ; 0x6c00e
 
-TrainerBikerDwayneWhenTalkScript: ; 0x6c00e
+BikerDwayneScript: ; 0x6c00e
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x6c0c8
@@ -30235,19 +30235,19 @@ TrainerBikerHarris: ; 0x6c016
 	db BIKER, HARRIS
 
 	; text when seen
-	dw TrainerBikerHarrisWhenSeenText
+	dw BikerHarrisSeenText
 
 	; text when trainer beaten
-	dw TrainerBikerHarrisWhenBeatenText
+	dw BikerHarrisBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerBikerHarrisWhenTalkScript
+	dw BikerHarrisScript
 ; 0x6c022
 
-TrainerBikerHarrisWhenTalkScript: ; 0x6c022
+BikerHarrisScript: ; 0x6c022
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x6c143
@@ -30264,19 +30264,19 @@ TrainerBikerZeke: ; 0x6c02a
 	db BIKER, ZEKE
 
 	; text when seen
-	dw TrainerBikerZekeWhenSeenText
+	dw BikerZekeSeenText
 
 	; text when trainer beaten
-	dw TrainerBikerZekeWhenBeatenText
+	dw BikerZekeBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerBikerZekeWhenTalkScript
+	dw BikerZekeScript
 ; 0x6c036
 
-TrainerBikerZekeWhenTalkScript: ; 0x6c036
+BikerZekeScript: ; 0x6c036
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x6c1a3
@@ -30293,19 +30293,19 @@ TrainerSupernerdSam: ; 0x6c03e
 	db SUPER_NERD, SAM
 
 	; text when seen
-	dw TrainerSupernerdSamWhenSeenText
+	dw SupernerdSamSeenText
 
 	; text when trainer beaten
-	dw TrainerSupernerdSamWhenBeatenText
+	dw SupernerdSamBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerSupernerdSamWhenTalkScript
+	dw SupernerdSamScript
 ; 0x6c04a
 
-TrainerSupernerdSamWhenTalkScript: ; 0x6c04a
+SupernerdSamScript: ; 0x6c04a
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x6c219
@@ -30322,19 +30322,19 @@ TrainerSupernerdTom: ; 0x6c052
 	db SUPER_NERD, TOM
 
 	; text when seen
-	dw TrainerSupernerdTomWhenSeenText
+	dw SupernerdTomSeenText
 
 	; text when trainer beaten
-	dw TrainerSupernerdTomWhenBeatenText
+	dw SupernerdTomBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerSupernerdTomWhenTalkScript
+	dw SupernerdTomScript
 ; 0x6c05e
 
-TrainerSupernerdTomWhenTalkScript: ; 0x6c05e
+SupernerdTomScript: ; 0x6c05e
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x6c27e
@@ -30355,7 +30355,7 @@ UnknownScript_0x6c06c: ; 0x6c06c
 	fruittree $1b
 ; 0x6c06e
 
-TrainerBikerDwayneWhenSeenText: ; 0x6c06e
+BikerDwayneSeenText: ; 0x6c06e
 	db $0, "We're the KANTO", $4f
 	db "#MON FEDERATION", $55
 	db "trainer group.", $51
@@ -30363,7 +30363,7 @@ TrainerBikerDwayneWhenSeenText: ; 0x6c06e
 	db "under our wheels!", $57
 ; 0x6c0be
 
-TrainerBikerDwayneWhenBeatenText: ; 0x6c0be
+BikerDwayneBeatenText: ; 0x6c0be
 	db $0, "S-sorry!", $57
 ; 0x6c0c8
 
@@ -30373,14 +30373,14 @@ UnknownText_0x6c0c8: ; 0x6c0c8
 	db "never fall!", $57
 ; 0x6c0f4
 
-TrainerBikerHarrisWhenSeenText: ; 0x6c0f4
+BikerHarrisSeenText: ; 0x6c0f4
 	db $0, "The cops shut down", $4f
 	db "our UNDERGROUND", $51
 	db "PATH! That really", $4f
 	db "fries me!", $57
 ; 0x6c134
 
-TrainerBikerHarrisWhenBeatenText: ; 0x6c134
+BikerHarrisBeatenText: ; 0x6c134
 	db $0, "F-forgive me!", $57
 ; 0x6c143
 
@@ -30389,14 +30389,14 @@ UnknownText_0x6c143: ; 0x6c143
 	db "punk from JOHTO…", $57
 ; 0x6c167
 
-TrainerBikerZekeWhenSeenText: ; 0x6c167
+BikerZekeSeenText: ; 0x6c167
 	db $0, "We're the KANTO", $4f
 	db "#MON FEDERA-", $55
 	db "TION!", $55
 	db "Right on!", $57
 ; 0x6c194
 
-TrainerBikerZekeWhenBeatenText: ; 0x6c194
+BikerZekeBeatenText: ; 0x6c194
 	db $0, "Yikes! Sorry!", $57
 ; 0x6c1a3
 
@@ -30406,12 +30406,12 @@ UnknownText_0x6c1a3: ; 0x6c1a3
 	db "from now on…", $57
 ; 0x6c1d0
 
-TrainerSupernerdSamWhenSeenText: ; 0x6c1d0
+SupernerdSamSeenText: ; 0x6c1d0
 	db $0, "How does the MAG-", $4f
 	db "NET TRAIN work?", $57
 ; 0x6c1f3
 
-TrainerSupernerdSamWhenBeatenText: ; 0x6c1f3
+SupernerdSamBeatenText: ; 0x6c1f3
 	db $0, "I just want to see", $4f
 	db "the MAGNET TRAIN…", $57
 ; 0x6c219
@@ -30421,12 +30421,12 @@ UnknownText_0x6c219: ; 0x6c219
 	db "nets is awesome!", $57
 ; 0x6c23d
 
-TrainerSupernerdTomWhenSeenText: ; 0x6c23d
+SupernerdTomSeenText: ; 0x6c23d
 	db $0, "Hm… You've got", $4f
 	db "many GYM BADGES.", $57
 ; 0x6c25d
 
-TrainerSupernerdTomWhenBeatenText: ; 0x6c25d
+SupernerdTomBeatenText: ; 0x6c25d
 	db $0, "Just as I thought…", $4f
 	db "You're tough!", $57
 ; 0x6c27e
@@ -30973,10 +30973,10 @@ NoSecurityCamera: ; 0x6c8b8
 
 TrainerCameraGrunt1: ; 0x6c8b9
 	loadfont
-	2writetext TrainerCameraGrunt1WhenSeenText
+	2writetext CameraGrunt1SeenText
 	closetext
 	loadmovesprites
-	winlosstext TrainerCameraGrunt1WhenBeatenText, $0000
+	winlosstext CameraGrunt1BeatenText, $0000
 	setlasttalked $2
 	loadtrainer GRUNTM, 20
 	startbattle
@@ -30987,10 +30987,10 @@ TrainerCameraGrunt1: ; 0x6c8b9
 
 TrainerCameraGrunt2: ; 0x6c8ce
 	loadfont
-	2writetext TrainerCameraGrunt2WhenSeenText
+	2writetext CameraGrunt2SeenText
 	closetext
 	loadmovesprites
-	winlosstext TrainerCameraGrunt2WhenBeatenText, $0000
+	winlosstext CameraGrunt2BeatenText, $0000
 	setlasttalked $2
 	loadtrainer GRUNTM, 21
 	startbattle
@@ -31232,19 +31232,19 @@ TrainerScientistJed: ; 0x6ca6e
 	db SCIENTIST, JED
 
 	; text when seen
-	dw TrainerScientistJedWhenSeenText
+	dw ScientistJedSeenText
 
 	; text when trainer beaten
-	dw TrainerScientistJedWhenBeatenText
+	dw ScientistJedBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerScientistJedWhenTalkScript
+	dw ScientistJedScript
 ; 0x6ca7a
 
-TrainerScientistJedWhenTalkScript: ; 0x6ca7a
+ScientistJedScript: ; 0x6ca7a
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x6cc16
@@ -31261,19 +31261,19 @@ TrainerGruntM16: ; 0x6ca82
 	db GRUNTM, 16
 
 	; text when seen
-	dw TrainerGruntM16WhenSeenText
+	dw GruntM16SeenText
 
 	; text when trainer beaten
-	dw TrainerGruntM16WhenBeatenText
+	dw GruntM16BeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerGruntM16WhenTalkScript
+	dw GruntM16Script
 ; 0x6ca8e
 
-TrainerGruntM16WhenTalkScript: ; 0x6ca8e
+GruntM16Script: ; 0x6ca8e
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x6cd1b
@@ -31429,21 +31429,21 @@ SecurityCameraMovement9: ; 0x6cb0c
 	step_end
 ; 0x6cb12
 
-TrainerCameraGrunt1WhenSeenText: ; 0x6cb12
+CameraGrunt1SeenText: ; 0x6cb12
 	db $0, "Hey!", $4f
 	db "Intruder alert!", $57
 ; 0x6cb28
 
-TrainerCameraGrunt1WhenBeatenText: ; 0x6cb28
+CameraGrunt1BeatenText: ; 0x6cb28
 	db $0, "Dang… I failed…", $57
 ; 0x6cb39
 
-TrainerCameraGrunt2WhenSeenText: ; 0x6cb39
+CameraGrunt2SeenText: ; 0x6cb39
 	db $0, "It's my turn!", $4f
 	db "There's no escape!", $57
 ; 0x6cb59
 
-TrainerCameraGrunt2WhenBeatenText: ; 0x6cb59
+CameraGrunt2BeatenText: ; 0x6cb59
 	db $0, "Surveillance cams", $4f
 	db "are in the #MON", $55
 	db "statues.", $51
@@ -31452,7 +31452,7 @@ TrainerCameraGrunt2WhenBeatenText: ; 0x6cb59
 	db "a secret switch.", $57
 ; 0x6cbbb
 
-TrainerScientistJedWhenSeenText: ; 0x6cbbb
+ScientistJedSeenText: ; 0x6cbbb
 	db $0, "This was once a", $4f
 	db "ninja hideout.", $51
 	db "There are traps to", $4f
@@ -31460,7 +31460,7 @@ TrainerScientistJedWhenSeenText: ; 0x6cbbb
 	db "like you.", $57
 ; 0x6cc0b
 
-TrainerScientistJedWhenBeatenText: ; 0x6cc0b
+ScientistJedBeatenText: ; 0x6cc0b
 	db $0, "I get it…", $57
 ; 0x6cc16
 
@@ -31477,7 +31477,7 @@ UnknownText_0x6cc16: ; 0x6cc16
 	db "trance.", $57
 ; 0x6ccb7
 
-TrainerGruntM16WhenSeenText: ; 0x6ccb7
+GruntM16SeenText: ; 0x6ccb7
 	db $0, "Heheh. Feeling", $4f
 	db "lucky, punk?", $51
 	db "Go ahead, take", $4f
@@ -31486,7 +31486,7 @@ TrainerGruntM16WhenSeenText: ; 0x6ccb7
 	db "set in the floor!", $57
 ; 0x6cd12
 
-TrainerGruntM16WhenBeatenText: ; 0x6cd12
+GruntM16BeatenText: ; 0x6cd12
 	db $0, "Kaboom!", $57
 ; 0x6cd1b
 
@@ -31784,19 +31784,19 @@ TrainerGruntM17: ; 0x6d0c5
 	db GRUNTM, 17
 
 	; text when seen
-	dw TrainerGruntM17WhenSeenText
+	dw GruntM17SeenText
 
 	; text when trainer beaten
-	dw TrainerGruntM17WhenBeatenText
+	dw GruntM17BeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerGruntM17WhenTalkScript
+	dw GruntM17Script
 ; 0x6d0d1
 
-TrainerGruntM17WhenTalkScript: ; 0x6d0d1
+GruntM17Script: ; 0x6d0d1
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x6db88
@@ -31813,19 +31813,19 @@ TrainerGruntM18: ; 0x6d0d9
 	db GRUNTM, 18
 
 	; text when seen
-	dw TrainerGruntM18WhenSeenText
+	dw GruntM18SeenText
 
 	; text when trainer beaten
-	dw TrainerGruntM18WhenBeatenText
+	dw GruntM18BeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerGruntM18WhenTalkScript
+	dw GruntM18Script
 ; 0x6d0e5
 
-TrainerGruntM18WhenTalkScript: ; 0x6d0e5
+GruntM18Script: ; 0x6d0e5
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x6dc1a
@@ -31842,19 +31842,19 @@ TrainerGruntM19: ; 0x6d0ed
 	db GRUNTM, 19
 
 	; text when seen
-	dw TrainerGruntM19WhenSeenText
+	dw GruntM19SeenText
 
 	; text when trainer beaten
-	dw TrainerGruntM19WhenBeatenText
+	dw GruntM19BeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerGruntM19WhenTalkScript
+	dw GruntM19Script
 ; 0x6d0f9
 
-TrainerGruntM19WhenTalkScript: ; 0x6d0f9
+GruntM19Script: ; 0x6d0f9
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x6dcd1
@@ -32432,7 +32432,7 @@ UnknownText_0x6daf7: ; 0x6daf7
 	db "best for #MON.", $57
 ; 0x6db22
 
-TrainerGruntM17WhenSeenText: ; 0x6db22
+GruntM17SeenText: ; 0x6db22
 	db $0, "The door won't", $4f
 	db "open?", $51
 	db "Well, duh.", $4f
@@ -32441,7 +32441,7 @@ TrainerGruntM17WhenSeenText: ; 0x6db22
 	db "TEAM ROCKET knows.", $57
 ; 0x6db79
 
-TrainerGruntM17WhenBeatenText: ; 0x6db79
+GruntM17BeatenText: ; 0x6db79
 	db $0, "What? I lost?", $57
 ; 0x6db88
 
@@ -32453,14 +32453,14 @@ UnknownText_0x6db88: ; 0x6db88
 	db "for you.", $57
 ; 0x6dbca
 
-TrainerGruntM18WhenSeenText: ; 0x6dbca
+GruntM18SeenText: ; 0x6dbca
 	db $0, "Oh, a kid? I don't", $4f
 	db "really like this,", $51
 	db "but eliminate you", $4f
 	db "I must.", $57
 ; 0x6dc09
 
-TrainerGruntM18WhenBeatenText: ; 0x6dc09
+GruntM18BeatenText: ; 0x6dc09
 	db $0, "I knew I'd lose…", $57
 ; 0x6dc1a
 
@@ -32476,12 +32476,12 @@ UnknownText_0x6dc1a: ; 0x6dc1a
 	db "creamed me…", $57
 ; 0x6dcb0
 
-TrainerGruntM19WhenSeenText: ; 0x6dcb0
+GruntM19SeenText: ; 0x6dcb0
 	db $0, "You rotten little", $4f
 	db "pest!", $57
 ; 0x6dcc9
 
-TrainerGruntM19WhenBeatenText: ; 0x6dcc9
+GruntM19BeatenText: ; 0x6dcc9
 	db $0, "Grrrr…", $57
 ; 0x6dcd1
 
@@ -32730,19 +32730,19 @@ TrainerGruntF5: ; 0x6e09b
 	db GRUNTF, 5
 
 	; text when seen
-	dw TrainerGruntF5WhenSeenText
+	dw GruntF5SeenText
 
 	; text when trainer beaten
-	dw TrainerGruntF5WhenBeatenText
+	dw GruntF5BeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerGruntF5WhenTalkScript
+	dw GruntF5Script
 ; 0x6e0a7
 
-TrainerGruntF5WhenTalkScript: ; 0x6e0a7
+GruntF5Script: ; 0x6e0a7
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x6e611
@@ -32760,19 +32760,19 @@ TrainerGruntM28: ; 0x6e0b2
 	db GRUNTM, 28
 
 	; text when seen
-	dw TrainerGruntM28WhenSeenText
+	dw GruntM28SeenText
 
 	; text when trainer beaten
-	dw TrainerGruntM28WhenBeatenText
+	dw GruntM28BeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerGruntM28WhenTalkScript
+	dw GruntM28Script
 ; 0x6e0be
 
-TrainerGruntM28WhenTalkScript: ; 0x6e0be
+GruntM28Script: ; 0x6e0be
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x6e737
@@ -32790,19 +32790,19 @@ TrainerScientistRoss: ; 0x6e0c9
 	db SCIENTIST, ROSS
 
 	; text when seen
-	dw TrainerScientistRossWhenSeenText
+	dw ScientistRossSeenText
 
 	; text when trainer beaten
-	dw TrainerScientistRossWhenBeatenText
+	dw ScientistRossBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerScientistRossWhenTalkScript
+	dw ScientistRossScript
 ; 0x6e0d5
 
-TrainerScientistRossWhenTalkScript: ; 0x6e0d5
+ScientistRossScript: ; 0x6e0d5
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x6e822
@@ -32819,19 +32819,19 @@ TrainerScientistMitch: ; 0x6e0dd
 	db SCIENTIST, MITCH
 
 	; text when seen
-	dw TrainerScientistMitchWhenSeenText
+	dw ScientistMitchSeenText
 
 	; text when trainer beaten
-	dw TrainerScientistMitchWhenBeatenText
+	dw ScientistMitchBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerScientistMitchWhenTalkScript
+	dw ScientistMitchScript
 ; 0x6e0e9
 
-TrainerScientistMitchWhenTalkScript: ; 0x6e0e9
+ScientistMitchScript: ; 0x6e0e9
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x6e90a
@@ -33098,7 +33098,7 @@ UnknownText_0x6e585: ; 0x6e585
 	db "HAIL GIOVANNI.", $57
 ; 0x6e5af
 
-TrainerGruntF5WhenSeenText: ; 0x6e5af
+GruntF5SeenText: ; 0x6e5af
 	db $0, "Do I know the", $4f
 	db "password?", $51
 	db "Maybe.", $51
@@ -33106,7 +33106,7 @@ TrainerGruntF5WhenSeenText: ; 0x6e5af
 	db "going to get it!", $57
 ; 0x6e5f1
 
-TrainerGruntF5WhenBeatenText: ; 0x6e5f1
+GruntF5BeatenText: ; 0x6e5f1
 	db $0, "All right. Stop.", $4f
 	db "I'll tell you.", $57
 ; 0x6e611
@@ -33120,7 +33120,7 @@ UnknownText_0x6e611: ; 0x6e611
 	db "two passwords.", $57
 ; 0x6e671
 
-TrainerGruntM28WhenSeenText: ; 0x6e671
+GruntM28SeenText: ; 0x6e671
 	db $0, "Hyuck-hyuck-hyuck!", $51
 	db "You're challenging", $4f
 	db "me to a battle?", $51
@@ -33133,7 +33133,7 @@ TrainerGruntM28WhenSeenText: ; 0x6e671
 	db "boss's room!", $57
 ; 0x6e717
 
-TrainerGruntM28WhenBeatenText: ; 0x6e717
+GruntM28BeatenText: ; 0x6e717
 	db $0, "Hyuck-hyuck-hyuck!", $4f
 	db "You're good!", $57
 ; 0x6e737
@@ -33146,7 +33146,7 @@ UnknownText_0x6e737: ; 0x6e737
 	db "RATICATE TAIL.", $57
 ; 0x6e78d
 
-TrainerScientistRossWhenSeenText: ; 0x6e78d
+ScientistRossSeenText: ; 0x6e78d
 	db $0, "I used to work for", $4f
 	db "SILPH, but now I", $51
 	db "run research for", $4f
@@ -33156,7 +33156,7 @@ TrainerScientistRossWhenSeenText: ; 0x6e78d
 	db "be punished.", $57
 ; 0x6e802
 
-TrainerScientistRossWhenBeatenText: ; 0x6e802
+ScientistRossBeatenText: ; 0x6e802
 	db $0, "A mere tactical", $4f
 	db "error cost me…", $57
 ; 0x6e822
@@ -33173,13 +33173,13 @@ UnknownText_0x6e822: ; 0x6e822
 	db "nothing.", $57
 ; 0x6e8ac
 
-TrainerScientistMitchWhenSeenText: ; 0x6e8ac
+ScientistMitchSeenText: ; 0x6e8ac
 	db $0, "I don't care that", $4f
 	db "#MON are hurt", $55
 	db "by our experiment.", $57
 ; 0x6e8df
 
-TrainerScientistMitchWhenBeatenText: ; 0x6e8df
+ScientistMitchBeatenText: ; 0x6e8df
 	db $0, "Thinking is my", $4f
 	db "strong suit, not", $55
 	db "battling.", $57
@@ -33681,19 +33681,19 @@ TrainerBug_catcherWayne: ; 0x6edf9
 	db BUG_CATCHER, WAYNE
 
 	; text when seen
-	dw TrainerBug_catcherWayneWhenSeenText
+	dw Bug_catcherWayneSeenText
 
 	; text when trainer beaten
-	dw TrainerBug_catcherWayneWhenBeatenText
+	dw Bug_catcherWayneBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerBug_catcherWayneWhenTalkScript
+	dw Bug_catcherWayneScript
 ; 0x6ee05
 
-TrainerBug_catcherWayneWhenTalkScript: ; 0x6ee05
+Bug_catcherWayneScript: ; 0x6ee05
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x6f571
@@ -34227,14 +34227,14 @@ UnknownText_0x6f452: ; 0x6f452
 	db "I'm going!", $57
 ; 0x6f515
 
-TrainerBug_catcherWayneWhenSeenText: ; 0x6f515
+Bug_catcherWayneSeenText: ; 0x6f515
 	db $0, "Don't sneak up on", $4f
 	db "me like that!", $51
 	db "You frightened a", $4f
 	db "#MON away!", $57
 ; 0x6f551
 
-TrainerBug_catcherWayneWhenBeatenText: ; 0x6f551
+Bug_catcherWayneBeatenText: ; 0x6f551
 	db $0, "I hadn't seen that", $4f
 	db "#MON before…", $57
 ; 0x6f571
@@ -34452,19 +34452,19 @@ TrainerFisherAndre: ; 0x700be
 	db FISHER, ANDRE
 
 	; text when seen
-	dw TrainerFisherAndreWhenSeenText
+	dw FisherAndreSeenText
 
 	; text when trainer beaten
-	dw TrainerFisherAndreWhenBeatenText
+	dw FisherAndreBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerFisherAndreWhenTalkScript
+	dw FisherAndreScript
 ; 0x700ca
 
-TrainerFisherAndreWhenTalkScript: ; 0x700ca
+FisherAndreScript: ; 0x700ca
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x7058f
@@ -34481,19 +34481,19 @@ TrainerFisherRaymond: ; 0x700d2
 	db FISHER, RAYMOND
 
 	; text when seen
-	dw TrainerFisherRaymondWhenSeenText
+	dw FisherRaymondSeenText
 
 	; text when trainer beaten
-	dw TrainerFisherRaymondWhenBeatenText
+	dw FisherRaymondBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerFisherRaymondWhenTalkScript
+	dw FisherRaymondScript
 ; 0x700de
 
-TrainerFisherRaymondWhenTalkScript: ; 0x700de
+FisherRaymondScript: ; 0x700de
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x70611
@@ -34510,19 +34510,19 @@ TrainerCooltrainermAaron: ; 0x700e6
 	db COOLTRAINERM, AARON
 
 	; text when seen
-	dw TrainerCooltrainermAaronWhenSeenText
+	dw CooltrainermAaronSeenText
 
 	; text when trainer beaten
-	dw TrainerCooltrainermAaronWhenBeatenText
+	dw CooltrainermAaronBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerCooltrainermAaronWhenTalkScript
+	dw CooltrainermAaronScript
 ; 0x700f2
 
-TrainerCooltrainermAaronWhenTalkScript: ; 0x700f2
+CooltrainermAaronScript: ; 0x700f2
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x7069c
@@ -34539,19 +34539,19 @@ TrainerCooltrainerfLois: ; 0x700fa
 	db COOLTRAINERF, LOIS
 
 	; text when seen
-	dw TrainerCooltrainerfLoisWhenSeenText
+	dw CooltrainerfLoisSeenText
 
 	; text when trainer beaten
-	dw TrainerCooltrainerfLoisWhenBeatenText
+	dw CooltrainerfLoisBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerCooltrainerfLoisWhenTalkScript
+	dw CooltrainerfLoisScript
 ; 0x70106
 
-TrainerCooltrainerfLoisWhenTalkScript: ; 0x70106
+CooltrainerfLoisScript: ; 0x70106
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x70752
@@ -34726,13 +34726,13 @@ UnknownText_0x704bb: ; 0x704bb
 	db "usually blue?", $57
 ; 0x70522
 
-TrainerFisherAndreWhenSeenText: ; 0x70522
+FisherAndreSeenText: ; 0x70522
 	db $0, "Let me battle with", $4f
 	db "the #MON I just", $55
 	db "caught!", $57
 ; 0x7054e
 
-TrainerFisherAndreWhenBeatenText: ; 0x7054e
+FisherAndreBeatenText: ; 0x7054e
 	db $0, "I might be an ex-", $4f
 	db "pert angler, but", $51
 	db "I stink as a #-", $4f
@@ -34745,14 +34745,14 @@ UnknownText_0x7058f: ; 0x7058f
 	db "#MON all day.", $57
 ; 0x705c0
 
-TrainerFisherRaymondWhenSeenText: ; 0x705c0
+FisherRaymondSeenText: ; 0x705c0
 	db $0, "No matter what I", $4f
 	db "do, all I catch", $51
 	db "are the same #-", $4f
 	db "MON…", $57
 ; 0x705f7
 
-TrainerFisherRaymondWhenBeatenText: ; 0x705f7
+FisherRaymondBeatenText: ; 0x705f7
 	db $0, "My line's all", $4f
 	db "tangled up…", $57
 ; 0x70611
@@ -34762,7 +34762,7 @@ UnknownText_0x70611: ; 0x70611
 	db "any good #MON?", $57
 ; 0x70632
 
-TrainerCooltrainermAaronWhenSeenText: ; 0x70632
+CooltrainermAaronSeenText: ; 0x70632
 	db $0, "If a trainer spots", $4f
 	db "another trainer,", $51
 	db "he has to make a", $4f
@@ -34771,7 +34771,7 @@ TrainerCooltrainermAaronWhenSeenText: ; 0x70632
 	db "destiny.", $57
 ; 0x70688
 
-TrainerCooltrainermAaronWhenBeatenText: ; 0x70688
+CooltrainermAaronBeatenText: ; 0x70688
 	db $0, "Whew…", $4f
 	db "Good battle.", $57
 ; 0x7069c
@@ -34783,7 +34783,7 @@ UnknownText_0x7069c: ; 0x7069c
 	db "constant battling.", $57
 ; 0x706df
 
-TrainerCooltrainerfLoisWhenSeenText: ; 0x706df
+CooltrainerfLoisSeenText: ; 0x706df
 	db $0, "What happened to", $4f
 	db "the red GYARADOS?", $51
 	db "It's gone?", $51
@@ -34793,7 +34793,7 @@ TrainerCooltrainerfLoisWhenSeenText: ; 0x706df
 	db "battle!", $57
 ; 0x70745
 
-TrainerCooltrainerfLoisWhenBeatenText: ; 0x70745
+CooltrainerfLoisBeatenText: ; 0x70745
 	db $0, "Good going!", $57
 ; 0x70752
 
@@ -36994,19 +36994,19 @@ TrainerLassMichelle: ; 0x72ab4
 	db LASS, MICHELLE
 
 	; text when seen
-	dw TrainerLassMichelleWhenSeenText
+	dw LassMichelleSeenText
 
 	; text when trainer beaten
-	dw TrainerLassMichelleWhenBeatenText
+	dw LassMichelleBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerLassMichelleWhenTalkScript
+	dw LassMichelleScript
 ; 0x72ac0
 
-TrainerLassMichelleWhenTalkScript: ; 0x72ac0
+LassMichelleScript: ; 0x72ac0
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x72e30
@@ -37023,19 +37023,19 @@ TrainerPicnickerTanya: ; 0x72ac8
 	db PICNICKER, TANYA
 
 	; text when seen
-	dw TrainerPicnickerTanyaWhenSeenText
+	dw PicnickerTanyaSeenText
 
 	; text when trainer beaten
-	dw TrainerPicnickerTanyaWhenBeatenText
+	dw PicnickerTanyaBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerPicnickerTanyaWhenTalkScript
+	dw PicnickerTanyaScript
 ; 0x72ad4
 
-TrainerPicnickerTanyaWhenTalkScript: ; 0x72ad4
+PicnickerTanyaScript: ; 0x72ad4
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x72e8e
@@ -37052,19 +37052,19 @@ TrainerBeautyJulia: ; 0x72adc
 	db BEAUTY, JULIA
 
 	; text when seen
-	dw TrainerBeautyJuliaWhenSeenText
+	dw BeautyJuliaSeenText
 
 	; text when trainer beaten
-	dw TrainerBeautyJuliaWhenBeatenText
+	dw BeautyJuliaBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerBeautyJuliaWhenTalkScript
+	dw BeautyJuliaScript
 ; 0x72ae8
 
-TrainerBeautyJuliaWhenTalkScript: ; 0x72ae8
+BeautyJuliaScript: ; 0x72ae8
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x72f01
@@ -37081,19 +37081,19 @@ TrainerTwinsJoandzoe1: ; 0x72af0
 	db TWINS, JOANDZOE1
 
 	; text when seen
-	dw TrainerTwinsJoandzoe1WhenSeenText
+	dw TwinsJoandzoe1SeenText
 
 	; text when trainer beaten
-	dw TrainerTwinsJoandzoe1WhenBeatenText
+	dw TwinsJoandzoe1BeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerTwinsJoandzoe1WhenTalkScript
+	dw TwinsJoandzoe1Script
 ; 0x72afc
 
-TrainerTwinsJoandzoe1WhenTalkScript: ; 0x72afc
+TwinsJoandzoe1Script: ; 0x72afc
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x72f70
@@ -37110,19 +37110,19 @@ TrainerTwinsJoandzoe2: ; 0x72b04
 	db TWINS, JOANDZOE2
 
 	; text when seen
-	dw TrainerTwinsJoandzoe2WhenSeenText
+	dw TwinsJoandzoe2SeenText
 
 	; text when trainer beaten
-	dw TrainerTwinsJoandzoe2WhenBeatenText
+	dw TwinsJoandzoe2BeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerTwinsJoandzoe2WhenTalkScript
+	dw TwinsJoandzoe2Script
 ; 0x72b10
 
-TrainerTwinsJoandzoe2WhenTalkScript: ; 0x72b10
+TwinsJoandzoe2Script: ; 0x72b10
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x72fc0
@@ -37203,13 +37203,13 @@ UnknownText_0x72d8f: ; 0x72d8f
 	db "to do better…", $57
 ; 0x72dfc
 
-TrainerLassMichelleWhenSeenText: ; 0x72dfc
+LassMichelleSeenText: ; 0x72dfc
 	db $0, "Do you think a", $4f
 	db "girls-only GYM", $55
 	db "is rare?", $57
 ; 0x72e24
 
-TrainerLassMichelleWhenBeatenText: ; 0x72e24
+LassMichelleBeatenText: ; 0x72e24
 	db $0, "Oh, bleah!", $57
 ; 0x72e30
 
@@ -37218,13 +37218,13 @@ UnknownText_0x72e30: ; 0x72e30
 	db "less, that's all!", $57
 ; 0x72e53
 
-TrainerPicnickerTanyaWhenSeenText: ; 0x72e53
+PicnickerTanyaSeenText: ; 0x72e53
 	db $0, "Oh, a battle?", $4f
 	db "That's kind of", $55
 	db "scary, but OK!", $57
 ; 0x72e7f
 
-TrainerPicnickerTanyaWhenBeatenText: ; 0x72e7f
+PicnickerTanyaBeatenText: ; 0x72e7f
 	db $0, "Oh, that's it?", $57
 ; 0x72e8e
 
@@ -37235,13 +37235,13 @@ UnknownText_0x72e8e: ; 0x72e8e
 	db "win!", $57
 ; 0x72ec5
 
-TrainerBeautyJuliaWhenSeenText: ; 0x72ec5
+BeautyJuliaSeenText: ; 0x72ec5
 	db $0, "Were you looking", $4f
 	db "at these flowers", $55
 	db "or at me?", $57
 ; 0x72ef2
 
-TrainerBeautyJuliaWhenBeatenText: ; 0x72ef2
+BeautyJuliaBeatenText: ; 0x72ef2
 	db $0, "How annoying!", $57
 ; 0x72f01
 
@@ -37251,13 +37251,13 @@ UnknownText_0x72f01: ; 0x72f01
 	db "like ERIKA?", $57
 ; 0x72f32
 
-TrainerTwinsJoandzoe1WhenSeenText: ; 0x72f32
+TwinsJoandzoe1SeenText: ; 0x72f32
 	db $0, "We'll show you", $4f
 	db "#MON moves that", $55
 	db "ERIKA taught us!", $57
 ; 0x72f62
 
-TrainerTwinsJoandzoe1WhenBeatenText: ; 0x72f62
+TwinsJoandzoe1BeatenText: ; 0x72f62
 	db $0, "Oh… We lost…", $57
 ; 0x72f70
 
@@ -37266,12 +37266,12 @@ UnknownText_0x72f70: ; 0x72f70
 	db "back for us!", $57
 ; 0x72f91
 
-TrainerTwinsJoandzoe2WhenSeenText: ; 0x72f91
+TwinsJoandzoe2SeenText: ; 0x72f91
 	db $0, "We're going to", $4f
 	db "protect ERIKA!", $57
 ; 0x72faf
 
-TrainerTwinsJoandzoe2WhenBeatenText: ; 0x72faf
+TwinsJoandzoe2BeatenText: ; 0x72faf
 	db $0, "We couldn't win…", $57
 ; 0x72fc0
 
@@ -39650,19 +39650,19 @@ TrainerCooltrainermSean: ; 0x75579
 	db COOLTRAINERM, SEAN
 
 	; text when seen
-	dw TrainerCooltrainermSeanWhenSeenText
+	dw CooltrainermSeanSeenText
 
 	; text when trainer beaten
-	dw TrainerCooltrainermSeanWhenBeatenText
+	dw CooltrainermSeanBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerCooltrainermSeanWhenTalkScript
+	dw CooltrainermSeanScript
 ; 0x75585
 
-TrainerCooltrainermSeanWhenTalkScript: ; 0x75585
+CooltrainermSeanScript: ; 0x75585
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x7567b
@@ -39679,19 +39679,19 @@ TrainerCooltrainerfCarol: ; 0x7558d
 	db COOLTRAINERF, CAROL
 
 	; text when seen
-	dw TrainerCooltrainerfCarolWhenSeenText
+	dw CooltrainerfCarolSeenText
 
 	; text when trainer beaten
-	dw TrainerCooltrainerfCarolWhenBeatenText
+	dw CooltrainerfCarolBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerCooltrainerfCarolWhenTalkScript
+	dw CooltrainerfCarolScript
 ; 0x75599
 
-TrainerCooltrainerfCarolWhenTalkScript: ; 0x75599
+CooltrainerfCarolScript: ; 0x75599
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x756f7
@@ -39708,19 +39708,19 @@ TrainerPokemaniacEthan: ; 0x755a1
 	db POKEMANIAC, ETHAN
 
 	; text when seen
-	dw TrainerPokemaniacEthanWhenSeenText
+	dw PokemaniacEthanSeenText
 
 	; text when trainer beaten
-	dw TrainerPokemaniacEthanWhenBeatenText
+	dw PokemaniacEthanBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerPokemaniacEthanWhenTalkScript
+	dw PokemaniacEthanScript
 ; 0x755ad
 
-TrainerPokemaniacEthanWhenTalkScript: ; 0x755ad
+PokemaniacEthanScript: ; 0x755ad
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x7574b
@@ -39737,19 +39737,19 @@ TrainerHikerNoland: ; 0x755b5
 	db HIKER, NOLAND
 
 	; text when seen
-	dw TrainerHikerNolandWhenSeenText
+	dw HikerNolandSeenText
 
 	; text when trainer beaten
-	dw TrainerHikerNolandWhenBeatenText
+	dw HikerNolandBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerHikerNolandWhenTalkScript
+	dw HikerNolandScript
 ; 0x755c1
 
-TrainerHikerNolandWhenTalkScript: ; 0x755c1
+HikerNolandScript: ; 0x755c1
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x757d4
@@ -39766,19 +39766,19 @@ TrainerGentlemanEdward: ; 0x755c9
 	db GENTLEMAN, EDWARD
 
 	; text when seen
-	dw TrainerGentlemanEdwardWhenSeenText
+	dw GentlemanEdwardSeenText
 
 	; text when trainer beaten
-	dw TrainerGentlemanEdwardWhenBeatenText
+	dw GentlemanEdwardBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerGentlemanEdwardWhenTalkScript
+	dw GentlemanEdwardScript
 ; 0x755d5
 
-TrainerGentlemanEdwardWhenTalkScript: ; 0x755d5
+GentlemanEdwardScript: ; 0x755d5
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x75937
@@ -39795,19 +39795,19 @@ TrainerBurglarCorey: ; 0x755dd
 	db BURGLAR, COREY
 
 	; text when seen
-	dw TrainerBurglarCoreyWhenSeenText
+	dw BurglarCoreySeenText
 
 	; text when trainer beaten
-	dw TrainerBurglarCoreyWhenBeatenText
+	dw BurglarCoreyBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerBurglarCoreyWhenTalkScript
+	dw BurglarCoreyScript
 ; 0x755e9
 
-TrainerBurglarCoreyWhenTalkScript: ; 0x755e9
+BurglarCoreyScript: ; 0x755e9
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x75996
@@ -39874,12 +39874,12 @@ MovementData_0x7563c: ; 0x7563c
 	step_end
 ; 0x75643
 
-TrainerCooltrainermSeanWhenSeenText: ; 0x75643
+CooltrainermSeanSeenText: ; 0x75643
 	db $0, "I'm going to KANTO", $4f
 	db "to test my skills.", $57
 ; 0x75669
 
-TrainerCooltrainermSeanWhenBeatenText: ; 0x75669
+CooltrainermSeanBeatenText: ; 0x75669
 	db $0, "I wanted to win!", $57
 ; 0x7567b
 
@@ -39890,12 +39890,12 @@ UnknownText_0x7567b: ; 0x7567b
 	db "LEADERS.", $57
 ; 0x756b3
 
-TrainerCooltrainerfCarolWhenSeenText: ; 0x756b3
+CooltrainerfCarolSeenText: ; 0x756b3
 	db $0, "I'm training to", $4f
 	db "become the CHAMP!", $57
 ; 0x756d5
 
-TrainerCooltrainerfCarolWhenBeatenText: ; 0x756d5
+CooltrainerfCarolBeatenText: ; 0x756d5
 	db $0, "What's so differ-", $4f
 	db "ent between us?", $57
 ; 0x756f7
@@ -39905,13 +39905,13 @@ UnknownText_0x756f7: ; 0x756f7
 	db "you someday!", $57
 ; 0x75716
 
-TrainerPokemaniacEthanWhenSeenText: ; 0x75716
+PokemaniacEthanSeenText: ; 0x75716
 	db $0, "Do you know LILY?", $4f
 	db "She's a hot DJ in", $55
 	db "KANTO.", $57
 ; 0x75741
 
-TrainerPokemaniacEthanWhenBeatenText: ; 0x75741
+PokemaniacEthanBeatenText: ; 0x75741
 	db $0, "Gyaaaah!", $57
 ; 0x7574b
 
@@ -39923,12 +39923,12 @@ UnknownText_0x7574b: ; 0x7574b
 	db "programs!", $57
 ; 0x75797
 
-TrainerHikerNolandWhenSeenText: ; 0x75797
+HikerNolandSeenText: ; 0x75797
 	db $0, "Are you alone?", $4f
 	db "Then let's battle!", $57
 ; 0x757b9
 
-TrainerHikerNolandWhenBeatenText: ; 0x757b9
+HikerNolandBeatenText: ; 0x757b9
 	db $0, "That's too much to", $4f
 	db "handle!", $57
 ; 0x757d4
@@ -39964,13 +39964,13 @@ UnknownText_0x758b1: ; 0x758b1
 	db "exhausting!", $57
 ; 0x758f1
 
-TrainerGentlemanEdwardWhenSeenText: ; 0x758f1
+GentlemanEdwardSeenText: ; 0x758f1
 	db $0, "Oh, no. I've lost", $4f
 	db "something that's", $55
 	db "very important.", $57
 ; 0x75923
 
-TrainerGentlemanEdwardWhenBeatenText: ; 0x75923
+GentlemanEdwardBeatenText: ; 0x75923
 	db $0, "I… I can't find", $4f
 	db "it…", $57
 ; 0x75937
@@ -39982,12 +39982,12 @@ UnknownText_0x75937: ; 0x75937
 	db "about it!", $57
 ; 0x75970
 
-TrainerBurglarCoreyWhenSeenText: ; 0x75970
+BurglarCoreySeenText: ; 0x75970
 	db $0, "Yeehaw!", $4f
 	db "Lucky!", $57
 ; 0x75980
 
-TrainerBurglarCoreyWhenBeatenText: ; 0x75980
+BurglarCoreyBeatenText: ; 0x75980
 	db $0, "How unlucky!", $4f
 	db "I lost!", $57
 ; 0x75996
@@ -40045,19 +40045,19 @@ TrainerFirebreatherLyle: ; 0x75a4f
 	db FIREBREATHER, LYLE
 
 	; text when seen
-	dw TrainerFirebreatherLyleWhenSeenText
+	dw FirebreatherLyleSeenText
 
 	; text when trainer beaten
-	dw TrainerFirebreatherLyleWhenBeatenText
+	dw FirebreatherLyleBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerFirebreatherLyleWhenTalkScript
+	dw FirebreatherLyleScript
 ; 0x75a5b
 
-TrainerFirebreatherLyleWhenTalkScript: ; 0x75a5b
+FirebreatherLyleScript: ; 0x75a5b
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x75b52
@@ -40074,19 +40074,19 @@ TrainerBug_catcherKen: ; 0x75a63
 	db BUG_CATCHER, KEN
 
 	; text when seen
-	dw TrainerBug_catcherKenWhenSeenText
+	dw Bug_catcherKenSeenText
 
 	; text when trainer beaten
-	dw TrainerBug_catcherKenWhenBeatenText
+	dw Bug_catcherKenBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerBug_catcherKenWhenTalkScript
+	dw Bug_catcherKenScript
 ; 0x75a6f
 
-TrainerBug_catcherKenWhenTalkScript: ; 0x75a6f
+Bug_catcherKenScript: ; 0x75a6f
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x75bd5
@@ -40103,19 +40103,19 @@ TrainerBeautyCassie: ; 0x75a77
 	db BEAUTY, CASSIE
 
 	; text when seen
-	dw TrainerBeautyCassieWhenSeenText
+	dw BeautyCassieSeenText
 
 	; text when trainer beaten
-	dw TrainerBeautyCassieWhenBeatenText
+	dw BeautyCassieBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerBeautyCassieWhenTalkScript
+	dw BeautyCassieScript
 ; 0x75a83
 
-TrainerBeautyCassieWhenTalkScript: ; 0x75a83
+BeautyCassieScript: ; 0x75a83
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x75c43
@@ -40132,19 +40132,19 @@ TrainerGuitaristClyde: ; 0x75a8b
 	db GUITARIST, CLYDE
 
 	; text when seen
-	dw TrainerGuitaristClydeWhenSeenText
+	dw GuitaristClydeSeenText
 
 	; text when trainer beaten
-	dw TrainerGuitaristClydeWhenBeatenText
+	dw GuitaristClydeBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerGuitaristClydeWhenTalkScript
+	dw GuitaristClydeScript
 ; 0x75a97
 
-TrainerGuitaristClydeWhenTalkScript: ; 0x75a97
+GuitaristClydeScript: ; 0x75a97
 	talkaftercancel
 	special $00a0
 	iftrue UnknownScript_0x75aa5
@@ -40216,13 +40216,13 @@ MapFastShipCabins_SW_SSW_NWSignpost2Script: ; 0x75b01
 	jumpstd $000d
 ; 0x75b04
 
-TrainerFirebreatherLyleWhenSeenText: ; 0x75b04
+FirebreatherLyleSeenText: ; 0x75b04
 	db $0, "I'm going to KANTO", $4f
 	db "to put on fire-", $55
 	db "breathing shows!", $57
 ; 0x75b38
 
-TrainerFirebreatherLyleWhenBeatenText: ; 0x75b38
+FirebreatherLyleBeatenText: ; 0x75b38
 	db $0, "Fizzle… The", $4f
 	db "flame's tiny…", $57
 ; 0x75b52
@@ -40234,13 +40234,13 @@ UnknownText_0x75b52: ; 0x75b52
 	db "Really?", $57
 ; 0x75b8e
 
-TrainerBug_catcherKenWhenSeenText: ; 0x75b8e
+Bug_catcherKenSeenText: ; 0x75b8e
 	db $0, "I'm visiting my", $4f
 	db "grandma to catch", $55
 	db "me some bugs!", $57
 ; 0x75bbd
 
-TrainerBug_catcherKenWhenBeatenText: ; 0x75bbd
+Bug_catcherKenBeatenText: ; 0x75bbd
 	db $0, "Ooh, wow.", $4f
 	db "You're tough!", $57
 ; 0x75bd5
@@ -40251,13 +40251,13 @@ UnknownText_0x75bd5: ; 0x75bd5
 	db "trees of JOHTO!", $57
 ; 0x75c07
 
-TrainerBeautyCassieWhenSeenText: ; 0x75c07
+BeautyCassieSeenText: ; 0x75c07
 	db $0, "I'm trying to", $4f
 	db "forget my woes.", $55
 	db "Let's battle!", $57
 ; 0x75c32
 
-TrainerBeautyCassieWhenBeatenText: ; 0x75c32
+BeautyCassieBeatenText: ; 0x75c32
 	db $0, "My heart weeps…", $57
 ; 0x75c43
 
@@ -40270,14 +40270,14 @@ UnknownText_0x75c43: ; 0x75c43
 	db "for grieving.", $57
 ; 0x75ca6
 
-TrainerGuitaristClydeWhenSeenText: ; 0x75ca6
+GuitaristClydeSeenText: ; 0x75ca6
 	db $0, "I'm going to audi-", $4f
 	db "tion my songs at", $51
 	db "GOLDENROD's RADIO", $4f
 	db "STATION.", $57
 ; 0x75ce4
 
-TrainerGuitaristClydeWhenBeatenText: ; 0x75ce4
+GuitaristClydeBeatenText: ; 0x75ce4
 	db $0, "Yowza!", $4f
 	db "Total distortion!", $57
 ; 0x75cfe
@@ -40497,19 +40497,19 @@ TrainerPokefanmColin: ; 0x75f75
 	db POKEFANM, COLIN
 
 	; text when seen
-	dw TrainerPokefanmColinWhenSeenText
+	dw PokefanmColinSeenText
 
 	; text when trainer beaten
-	dw TrainerPokefanmColinWhenBeatenText
+	dw PokefanmColinBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerPokefanmColinWhenTalkScript
+	dw PokefanmColinScript
 ; 0x75f81
 
-TrainerPokefanmColinWhenTalkScript: ; 0x75f81
+PokefanmColinScript: ; 0x75f81
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x7635b
@@ -40526,19 +40526,19 @@ TrainerTwinsMegandpeg1: ; 0x75f89
 	db TWINS, MEGANDPEG1
 
 	; text when seen
-	dw TrainerTwinsMegandpeg1WhenSeenText
+	dw TwinsMegandpeg1SeenText
 
 	; text when trainer beaten
-	dw TrainerTwinsMegandpeg1WhenBeatenText
+	dw TwinsMegandpeg1BeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerTwinsMegandpeg1WhenTalkScript
+	dw TwinsMegandpeg1Script
 ; 0x75f95
 
-TrainerTwinsMegandpeg1WhenTalkScript: ; 0x75f95
+TwinsMegandpeg1Script: ; 0x75f95
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x763c2
@@ -40555,19 +40555,19 @@ TrainerTwinsMegandpeg2: ; 0x75f9d
 	db TWINS, MEGANDPEG2
 
 	; text when seen
-	dw TrainerTwinsMegandpeg2WhenSeenText
+	dw TwinsMegandpeg2SeenText
 
 	; text when trainer beaten
-	dw TrainerTwinsMegandpeg2WhenBeatenText
+	dw TwinsMegandpeg2BeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerTwinsMegandpeg2WhenTalkScript
+	dw TwinsMegandpeg2Script
 ; 0x75fa9
 
-TrainerTwinsMegandpeg2WhenTalkScript: ; 0x75fa9
+TwinsMegandpeg2Script: ; 0x75fa9
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x76428
@@ -40584,19 +40584,19 @@ TrainerPsychicRodney: ; 0x75fb1
 	db PSYCHIC_T, RODNEY
 
 	; text when seen
-	dw TrainerPsychicRodneyWhenSeenText
+	dw PsychicRodneySeenText
 
 	; text when trainer beaten
-	dw TrainerPsychicRodneyWhenBeatenText
+	dw PsychicRodneyBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerPsychicRodneyWhenTalkScript
+	dw PsychicRodneyScript
 ; 0x75fbd
 
-TrainerPsychicRodneyWhenTalkScript: ; 0x75fbd
+PsychicRodneyScript: ; 0x75fbd
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x76497
@@ -40613,19 +40613,19 @@ TrainerPokefanmJeremy: ; 0x75fc5
 	db POKEFANM, JEREMY
 
 	; text when seen
-	dw TrainerPokefanmJeremyWhenSeenText
+	dw PokefanmJeremySeenText
 
 	; text when trainer beaten
-	dw TrainerPokefanmJeremyWhenBeatenText
+	dw PokefanmJeremyBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerPokefanmJeremyWhenTalkScript
+	dw PokefanmJeremyScript
 ; 0x75fd1
 
-TrainerPokefanmJeremyWhenTalkScript: ; 0x75fd1
+PokefanmJeremyScript: ; 0x75fd1
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x7651c
@@ -40642,19 +40642,19 @@ TrainerPokefanfGeorgia: ; 0x75fd9
 	db POKEFANF, GEORGIA
 
 	; text when seen
-	dw TrainerPokefanfGeorgiaWhenSeenText
+	dw PokefanfGeorgiaSeenText
 
 	; text when trainer beaten
-	dw TrainerPokefanfGeorgiaWhenBeatenText
+	dw PokefanfGeorgiaBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerPokefanfGeorgiaWhenTalkScript
+	dw PokefanfGeorgiaScript
 ; 0x75fe5
 
-TrainerPokefanfGeorgiaWhenTalkScript: ; 0x75fe5
+PokefanfGeorgiaScript: ; 0x75fe5
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x76596
@@ -40671,19 +40671,19 @@ TrainerSupernerdShawn: ; 0x75fed
 	db SUPER_NERD, SHAWN
 
 	; text when seen
-	dw TrainerSupernerdShawnWhenSeenText
+	dw SupernerdShawnSeenText
 
 	; text when trainer beaten
-	dw TrainerSupernerdShawnWhenBeatenText
+	dw SupernerdShawnBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerSupernerdShawnWhenTalkScript
+	dw SupernerdShawnScript
 ; 0x75ff9
 
-TrainerSupernerdShawnWhenTalkScript: ; 0x75ff9
+SupernerdShawnScript: ; 0x75ff9
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x7660f
@@ -40803,12 +40803,12 @@ UnknownText_0x7630d: ; 0x7630d
 	db "playing!", $57
 ; 0x76329
 
-TrainerPokefanmColinWhenSeenText: ; 0x76329
+PokefanmColinSeenText: ; 0x76329
 	db $0, "Hey, kid! Want to", $4f
 	db "battle with me?", $57
 ; 0x7634c
 
-TrainerPokefanmColinWhenBeatenText: ; 0x7634c
+PokefanmColinBeatenText: ; 0x7634c
 	db $0, "You're strong!", $57
 ; 0x7635b
 
@@ -40819,13 +40819,13 @@ UnknownText_0x7635b: ; 0x7635b
 	db "worried?", $57
 ; 0x7638e
 
-TrainerTwinsMegandpeg1WhenSeenText: ; 0x7638e
+TwinsMegandpeg1SeenText: ; 0x7638e
 	db $0, "You think I'm a", $4f
 	db "baby?", $55
 	db "That's not fair!", $57
 ; 0x763b4
 
-TrainerTwinsMegandpeg1WhenBeatenText: ; 0x763b4
+TwinsMegandpeg1BeatenText: ; 0x763b4
 	db $0, "Oh! We lost!", $57
 ; 0x763c2
 
@@ -40835,13 +40835,13 @@ UnknownText_0x763c2: ; 0x763c2
 	db "girls!", $57
 ; 0x763e9
 
-TrainerTwinsMegandpeg2WhenSeenText: ; 0x763e9
+TwinsMegandpeg2SeenText: ; 0x763e9
 	db $0, "I'm not a baby!", $51
 	db "That's not nice to", $4f
 	db "say to a lady!", $57
 ; 0x7641a
 
-TrainerTwinsMegandpeg2WhenBeatenText: ; 0x7641a
+TwinsMegandpeg2BeatenText: ; 0x7641a
 	db $0, "Oh! We lost!", $57
 ; 0x76428
 
@@ -40851,13 +40851,13 @@ UnknownText_0x76428: ; 0x76428
 	db "grown-ups!", $57
 ; 0x76455
 
-TrainerPsychicRodneyWhenSeenText: ; 0x76455
+PsychicRodneySeenText: ; 0x76455
 	db $0, "Ssh! My brain is", $4f
 	db "picking up radio", $55
 	db "signals!", $57
 ; 0x76481
 
-TrainerPsychicRodneyWhenBeatenText: ; 0x76481
+PsychicRodneyBeatenText: ; 0x76481
 	db $0, "…I hear some-", $4f
 	db "thing!", $57
 ; 0x76497
@@ -40868,13 +40868,13 @@ UnknownText_0x76497: ; 0x76497
 	db "on the FAST SHIP.", $57
 ; 0x764ce
 
-TrainerPokefanmJeremyWhenSeenText: ; 0x764ce
+PokefanmJeremySeenText: ; 0x764ce
 	db $0, "What do you think?", $4f
 	db "My #MON are", $55
 	db "beautiful, yes?", $57
 ; 0x764fe
 
-TrainerPokefanmJeremyWhenBeatenText: ; 0x764fe
+PokefanmJeremyBeatenText: ; 0x764fe
 	db $0, "Oh, no! My beauti-", $4f
 	db "ful #MON!", $57
 ; 0x7651c
@@ -40885,13 +40885,13 @@ UnknownText_0x7651c: ; 0x7651c
 	db "fix them up nice!", $57
 ; 0x7654f
 
-TrainerPokefanfGeorgiaWhenSeenText: ; 0x7654f
+PokefanfGeorgiaSeenText: ; 0x7654f
 	db $0, "I'm going to shop", $4f
 	db "at the DEPT.STORE", $55
 	db "and then…", $57
 ; 0x7657d
 
-TrainerPokefanfGeorgiaWhenBeatenText: ; 0x7657d
+PokefanfGeorgiaBeatenText: ; 0x7657d
 	db $0, "What was I going", $4f
 	db "to do?", $57
 ; 0x76596
@@ -40902,13 +40902,13 @@ UnknownText_0x76596: ; 0x76596
 	db "of DAY-CARE!", $57
 ; 0x765c7
 
-TrainerSupernerdShawnWhenSeenText: ; 0x765c7
+SupernerdShawnSeenText: ; 0x765c7
 	db $0, "What kinds of #", $4f
 	db "BALLS do you have", $55
 	db "with you?", $57
 ; 0x765f4
 
-TrainerSupernerdShawnWhenBeatenText: ; 0x765f4
+SupernerdShawnBeatenText: ; 0x765f4
 	db $0, "Wait! Stop! Don't!", $4f
 	db "Please!", $57
 ; 0x7660f
@@ -41062,19 +41062,19 @@ TrainerSailorJeff: ; 0x767a6
 	db SAILOR, JEFF
 
 	; text when seen
-	dw TrainerSailorJeffWhenSeenText
+	dw SailorJeffSeenText
 
 	; text when trainer beaten
-	dw TrainerSailorJeffWhenBeatenText
+	dw SailorJeffBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerSailorJeffWhenTalkScript
+	dw SailorJeffScript
 ; 0x767b2
 
-TrainerSailorJeffWhenTalkScript: ; 0x767b2
+SailorJeffScript: ; 0x767b2
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x76a38
@@ -41091,19 +41091,19 @@ TrainerPicnickerDebra: ; 0x767ba
 	db PICNICKER, DEBRA
 
 	; text when seen
-	dw TrainerPicnickerDebraWhenSeenText
+	dw PicnickerDebraSeenText
 
 	; text when trainer beaten
-	dw TrainerPicnickerDebraWhenBeatenText
+	dw PicnickerDebraBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerPicnickerDebraWhenTalkScript
+	dw PicnickerDebraScript
 ; 0x767c6
 
-TrainerPicnickerDebraWhenTalkScript: ; 0x767c6
+PicnickerDebraScript: ; 0x767c6
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x76a99
@@ -41120,19 +41120,19 @@ TrainerJugglerFritz: ; 0x767ce
 	db JUGGLER, FRITZ
 
 	; text when seen
-	dw TrainerJugglerFritzWhenSeenText
+	dw JugglerFritzSeenText
 
 	; text when trainer beaten
-	dw TrainerJugglerFritzWhenBeatenText
+	dw JugglerFritzBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerJugglerFritzWhenTalkScript
+	dw JugglerFritzScript
 ; 0x767da
 
-TrainerJugglerFritzWhenTalkScript: ; 0x767da
+JugglerFritzScript: ; 0x767da
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x76b02
@@ -41149,19 +41149,19 @@ TrainerSailorGarrett: ; 0x767e2
 	db SAILOR, GARRETT
 
 	; text when seen
-	dw TrainerSailorGarrettWhenSeenText
+	dw SailorGarrettSeenText
 
 	; text when trainer beaten
-	dw TrainerSailorGarrettWhenBeatenText
+	dw SailorGarrettBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerSailorGarrettWhenTalkScript
+	dw SailorGarrettScript
 ; 0x767ee
 
-TrainerSailorGarrettWhenTalkScript: ; 0x767ee
+SailorGarrettScript: ; 0x767ee
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x76b7a
@@ -41178,19 +41178,19 @@ TrainerFisherJonah: ; 0x767f6
 	db FISHER, JONAH
 
 	; text when seen
-	dw TrainerFisherJonahWhenSeenText
+	dw FisherJonahSeenText
 
 	; text when trainer beaten
-	dw TrainerFisherJonahWhenBeatenText
+	dw FisherJonahBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerFisherJonahWhenTalkScript
+	dw FisherJonahScript
 ; 0x76802
 
-TrainerFisherJonahWhenTalkScript: ; 0x76802
+FisherJonahScript: ; 0x76802
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x76c22
@@ -41207,19 +41207,19 @@ TrainerBlackbeltWai: ; 0x7680a
 	db BLACKBELT_T, WAI
 
 	; text when seen
-	dw TrainerBlackbeltWaiWhenSeenText
+	dw BlackbeltWaiSeenText
 
 	; text when trainer beaten
-	dw TrainerBlackbeltWaiWhenBeatenText
+	dw BlackbeltWaiBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerBlackbeltWaiWhenTalkScript
+	dw BlackbeltWaiScript
 ; 0x76816
 
-TrainerBlackbeltWaiWhenTalkScript: ; 0x76816
+BlackbeltWaiScript: ; 0x76816
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x76c9e
@@ -41236,19 +41236,19 @@ TrainerSailorKenneth: ; 0x7681e
 	db SAILOR, KENNETH
 
 	; text when seen
-	dw TrainerSailorKennethWhenSeenText
+	dw SailorKennethSeenText
 
 	; text when trainer beaten
-	dw TrainerSailorKennethWhenBeatenText
+	dw SailorKennethBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerSailorKennethWhenTalkScript
+	dw SailorKennethScript
 ; 0x7682a
 
-TrainerSailorKennethWhenTalkScript: ; 0x7682a
+SailorKennethScript: ; 0x7682a
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x76d5f
@@ -41265,19 +41265,19 @@ TrainerTeacherShirley: ; 0x76832
 	db TEACHER, SHIRLEY
 
 	; text when seen
-	dw TrainerTeacherShirleyWhenSeenText
+	dw TeacherShirleySeenText
 
 	; text when trainer beaten
-	dw TrainerTeacherShirleyWhenBeatenText
+	dw TeacherShirleyBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerTeacherShirleyWhenTalkScript
+	dw TeacherShirleyScript
 ; 0x7683e
 
-TrainerTeacherShirleyWhenTalkScript: ; 0x7683e
+TeacherShirleyScript: ; 0x7683e
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x76de1
@@ -41294,19 +41294,19 @@ TrainerSchoolboyNate: ; 0x76846
 	db SCHOOLBOY, NATE
 
 	; text when seen
-	dw TrainerSchoolboyNateWhenSeenText
+	dw SchoolboyNateSeenText
 
 	; text when trainer beaten
-	dw TrainerSchoolboyNateWhenBeatenText
+	dw SchoolboyNateBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerSchoolboyNateWhenTalkScript
+	dw SchoolboyNateScript
 ; 0x76852
 
-TrainerSchoolboyNateWhenTalkScript: ; 0x76852
+SchoolboyNateScript: ; 0x76852
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x76e3d
@@ -41323,19 +41323,19 @@ TrainerSchoolboyRicky: ; 0x7685a
 	db SCHOOLBOY, RICKY
 
 	; text when seen
-	dw TrainerSchoolboyRickyWhenSeenText
+	dw SchoolboyRickySeenText
 
 	; text when trainer beaten
-	dw TrainerSchoolboyRickyWhenBeatenText
+	dw SchoolboyRickyBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerSchoolboyRickyWhenTalkScript
+	dw SchoolboyRickyScript
 ; 0x76866
 
-TrainerSchoolboyRickyWhenTalkScript: ; 0x76866
+SchoolboyRickyScript: ; 0x76866
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x76eb6
@@ -41403,13 +41403,13 @@ UnknownText_0x7699d: ; 0x7699d
 	db "CAPTAIN's cabin.", $57
 ; 0x769ed
 
-TrainerSailorJeffWhenSeenText: ; 0x769ed
+SailorJeffSeenText: ; 0x769ed
 	db $0, "Nothing beats a", $4f
 	db "battle when I'm", $55
 	db "on my break.", $57
 ; 0x76a1a
 
-TrainerSailorJeffWhenBeatenText: ; 0x76a1a
+SailorJeffBeatenText: ; 0x76a1a
 	db $0, "Win or lose, my", $4f
 	db "break's over!", $57
 ; 0x76a38
@@ -41420,12 +41420,12 @@ UnknownText_0x76a38: ; 0x76a38
 	db "serious.", $57
 ; 0x76a63
 
-TrainerPicnickerDebraWhenSeenText: ; 0x76a63
+PicnickerDebraSeenText: ; 0x76a63
 	db $0, "I'm so bored.", $4f
 	db "Want to battle?", $57
 ; 0x76a81
 
-TrainerPicnickerDebraWhenBeatenText: ; 0x76a81
+PicnickerDebraBeatenText: ; 0x76a81
 	db $0, "Yow! You're too", $4f
 	db "strong!", $57
 ; 0x76a99
@@ -41437,12 +41437,12 @@ UnknownText_0x76a99: ; 0x76a99
 	db "in KANTO.", $57
 ; 0x76ad7
 
-TrainerJugglerFritzWhenSeenText: ; 0x76ad7
+JugglerFritzSeenText: ; 0x76ad7
 	db $0, "Urrf…", $4f
 	db "I'm seasick!", $57
 ; 0x76aea
 
-TrainerJugglerFritzWhenBeatenText: ; 0x76aea
+JugglerFritzBeatenText: ; 0x76aea
 	db $0, "I can't move any-", $4f
 	db "more…", $57
 ; 0x76b02
@@ -41454,12 +41454,12 @@ UnknownText_0x76b02: ; 0x76b02
 	db "MAGNET TRAIN.", $57
 ; 0x76b40
 
-TrainerSailorGarrettWhenSeenText: ; 0x76b40
+SailorGarrettSeenText: ; 0x76b40
 	db $0, "This is where we", $4f
 	db "sailors work!", $57
 ; 0x76b60
 
-TrainerSailorGarrettWhenBeatenText: ; 0x76b60
+SailorGarrettBeatenText: ; 0x76b60
 	db $0, "I lost on my home", $4f
 	db "field…", $57
 ; 0x76b7a
@@ -41471,7 +41471,7 @@ UnknownText_0x76b7a: ; 0x76b7a
 	db "OLIVINE CITY.", $57
 ; 0x76bbc
 
-TrainerFisherJonahWhenSeenText: ; 0x76bbc
+FisherJonahSeenText: ; 0x76bbc
 	db $0, "Even though we're", $4f
 	db "out on the sea, I", $55
 	db "can't fish!", $51
@@ -41479,7 +41479,7 @@ TrainerFisherJonahWhenSeenText: ; 0x76bbc
 	db "Let's battle!", $57
 ; 0x76c08
 
-TrainerFisherJonahWhenBeatenText: ; 0x76c08
+FisherJonahBeatenText: ; 0x76c08
 	db $0, "I… I'm not bored", $4f
 	db "anymore…", $57
 ; 0x76c22
@@ -41489,14 +41489,14 @@ UnknownText_0x76c22: ; 0x76c22
 	db "VERMILION's pier.", $57
 ; 0x76c47
 
-TrainerBlackbeltWaiWhenSeenText: ; 0x76c47
+BlackbeltWaiSeenText: ; 0x76c47
 	db $0, "I'm building up my", $4f
 	db "legs by bracing", $51
 	db "against the ship's", $4f
 	db "rocking!", $57
 ; 0x76c85
 
-TrainerBlackbeltWaiWhenBeatenText: ; 0x76c85
+BlackbeltWaiBeatenText: ; 0x76c85
 	db $0, "Rocked and rolled", $4f
 	db "over!", $57
 ; 0x76c9e
@@ -41510,14 +41510,14 @@ UnknownText_0x76c9e: ; 0x76c9e
 	db "cave somewhere.", $57
 ; 0x76cf9
 
-TrainerSailorKennethWhenSeenText: ; 0x76cf9
+SailorKennethSeenText: ; 0x76cf9
 	db $0, "I'm a sailor man!", $51
 	db "But I'm training", $4f
 	db "#MON, so I can", $55
 	db "become the CHAMP!", $57
 ; 0x76d3c
 
-TrainerSailorKennethWhenBeatenText: ; 0x76d3c
+SailorKennethBeatenText: ; 0x76d3c
 	db $0, "My lack of train-", $4f
 	db "ing is obvious…", $57
 ; 0x76d5f
@@ -41531,12 +41531,12 @@ UnknownText_0x76d5f: ; 0x76d5f
 	db "so good!", $57
 ; 0x76db6
 
-TrainerTeacherShirleyWhenSeenText: ; 0x76db6
+TeacherShirleySeenText: ; 0x76db6
 	db $0, "Don't lay a finger", $4f
 	db "on my students!", $57
 ; 0x76dd9
 
-TrainerTeacherShirleyWhenBeatenText: ; 0x76dd9
+TeacherShirleyBeatenText: ; 0x76dd9
 	db $0, "Aaack!", $57
 ; 0x76de1
 
@@ -41546,12 +41546,12 @@ UnknownText_0x76de1: ; 0x76de1
 	db "outside VIOLET.", $57
 ; 0x76e14
 
-TrainerSchoolboyNateWhenSeenText: ; 0x76e14
+SchoolboyNateSeenText: ; 0x76e14
 	db $0, "Do you know the", $4f
 	db "RUINS OF ALPH?", $57
 ; 0x76e34
 
-TrainerSchoolboyNateWhenBeatenText: ; 0x76e34
+SchoolboyNateBeatenText: ; 0x76e34
 	db $0, "Yaargh!", $57
 ; 0x76e3d
 
@@ -41561,13 +41561,13 @@ UnknownText_0x76e3d: ; 0x76e3d
 	db "inside the RUINS.", $57
 ; 0x76e6f
 
-TrainerSchoolboyRickyWhenSeenText: ; 0x76e6f
+SchoolboyRickySeenText: ; 0x76e6f
 	db $0, "There are some odd", $4f
 	db "stone panels in", $55
 	db "the RUINS OF ALPH.", $57
 ; 0x76ea6
 
-TrainerSchoolboyRickyWhenBeatenText: ; 0x76ea6
+SchoolboyRickyBeatenText: ; 0x76ea6
 	db $0, "I was done in!", $57
 ; 0x76eb6
 
@@ -42093,19 +42093,19 @@ TrainerCamperTodd1: ; 0x78071
 	db CAMPER, TODD1
 
 	; text when seen
-	dw TrainerCamperTodd1WhenSeenText
+	dw CamperTodd1SeenText
 
 	; text when trainer beaten
-	dw TrainerCamperTodd1WhenBeatenText
+	dw CamperTodd1BeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerCamperTodd1WhenTalkScript
+	dw CamperTodd1Script
 ; 0x7807d
 
-TrainerCamperTodd1WhenTalkScript: ; 0x7807d
+CamperTodd1Script: ; 0x7807d
 	writecode $17, $14
 	talkaftercancel
 	loadfont
@@ -42137,7 +42137,7 @@ UnknownScript_0x780a9: ; 0x780a9
 
 UnknownScript_0x780bd: ; 0x780bd
 	2call UnknownScript_0x7814f
-	winlosstext TrainerCamperTodd1WhenBeatenText, $0000
+	winlosstext CamperTodd1BeatenText, $0000
 	copybytetovar $d9fe
 	if_equal $4, UnknownScript_0x780dc
 	if_equal $3, UnknownScript_0x780e2
@@ -42250,19 +42250,19 @@ TrainerPicnickerGina1: ; 0x78153
 	db PICNICKER, GINA1
 
 	; text when seen
-	dw TrainerPicnickerGina1WhenSeenText
+	dw PicnickerGina1SeenText
 
 	; text when trainer beaten
-	dw TrainerPicnickerGina1WhenBeatenText
+	dw PicnickerGina1BeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerPicnickerGina1WhenTalkScript
+	dw PicnickerGina1Script
 ; 0x7815f
 
-TrainerPicnickerGina1WhenTalkScript: ; 0x7815f
+PicnickerGina1Script: ; 0x7815f
 	writecode $17, $15
 	talkaftercancel
 	loadfont
@@ -42294,7 +42294,7 @@ UnknownScript_0x7818b: ; 0x7818b
 
 UnknownScript_0x7819f: ; 0x7819f
 	2call UnknownScript_0x78240
-	winlosstext TrainerPicnickerGina1WhenBeatenText, $0000
+	winlosstext PicnickerGina1BeatenText, $0000
 	copybytetovar $d9ff
 	if_equal $4, UnknownScript_0x781be
 	if_equal $3, UnknownScript_0x781c4
@@ -42457,19 +42457,19 @@ TrainerYoungsterSamuel: ; 0x7827c
 	db YOUNGSTER, SAMUEL
 
 	; text when seen
-	dw TrainerYoungsterSamuelWhenSeenText
+	dw YoungsterSamuelSeenText
 
 	; text when trainer beaten
-	dw TrainerYoungsterSamuelWhenBeatenText
+	dw YoungsterSamuelBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerYoungsterSamuelWhenTalkScript
+	dw YoungsterSamuelScript
 ; 0x78288
 
-TrainerYoungsterSamuelWhenTalkScript: ; 0x78288
+YoungsterSamuelScript: ; 0x78288
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x783d8
@@ -42486,19 +42486,19 @@ TrainerYoungsterIan: ; 0x78290
 	db YOUNGSTER, IAN
 
 	; text when seen
-	dw TrainerYoungsterIanWhenSeenText
+	dw YoungsterIanSeenText
 
 	; text when trainer beaten
-	dw TrainerYoungsterIanWhenBeatenText
+	dw YoungsterIanBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerYoungsterIanWhenTalkScript
+	dw YoungsterIanScript
 ; 0x7829c
 
-TrainerYoungsterIanWhenTalkScript: ; 0x7829c
+YoungsterIanScript: ; 0x7829c
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x78469
@@ -42515,19 +42515,19 @@ TrainerPokefanmBrandon: ; 0x782a4
 	db POKEFANM, BRANDON
 
 	; text when seen
-	dw TrainerPokefanmBrandonWhenSeenText
+	dw PokefanmBrandonSeenText
 
 	; text when trainer beaten
-	dw TrainerPokefanmBrandonWhenBeatenText
+	dw PokefanmBrandonBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerPokefanmBrandonWhenTalkScript
+	dw PokefanmBrandonScript
 ; 0x782b0
 
-TrainerPokefanmBrandonWhenTalkScript: ; 0x782b0
+PokefanmBrandonScript: ; 0x782b0
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x786fc
@@ -42544,19 +42544,19 @@ TrainerCooltrainerfIrene: ; 0x782b8
 	db COOLTRAINERF, IRENE
 
 	; text when seen
-	dw TrainerCooltrainerfIreneWhenSeenText
+	dw CooltrainerfIreneSeenText
 
 	; text when trainer beaten
-	dw TrainerCooltrainerfIreneWhenBeatenText
+	dw CooltrainerfIreneBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerCooltrainerfIreneWhenTalkScript
+	dw CooltrainerfIreneScript
 ; 0x782c4
 
-TrainerCooltrainerfIreneWhenTalkScript: ; 0x782c4
+CooltrainerfIreneScript: ; 0x782c4
 	talkaftercancel
 	loadfont
 	checkbit1 $0070
@@ -42582,19 +42582,19 @@ TrainerCooltrainerfJenn: ; 0x782d8
 	db COOLTRAINERF, JENN
 
 	; text when seen
-	dw TrainerCooltrainerfJennWhenSeenText
+	dw CooltrainerfJennSeenText
 
 	; text when trainer beaten
-	dw TrainerCooltrainerfJennWhenBeatenText
+	dw CooltrainerfJennBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerCooltrainerfJennWhenTalkScript
+	dw CooltrainerfJennScript
 ; 0x782e4
 
-TrainerCooltrainerfJennWhenTalkScript: ; 0x782e4
+CooltrainerfJennScript: ; 0x782e4
 	talkaftercancel
 	loadfont
 	checkbit1 $0070
@@ -42620,19 +42620,19 @@ TrainerCooltrainerfKate: ; 0x782f8
 	db COOLTRAINERF, KATE
 
 	; text when seen
-	dw TrainerCooltrainerfKateWhenSeenText
+	dw CooltrainerfKateSeenText
 
 	; text when trainer beaten
-	dw TrainerCooltrainerfKateWhenBeatenText
+	dw CooltrainerfKateBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerCooltrainerfKateWhenTalkScript
+	dw CooltrainerfKateScript
 ; 0x78304
 
-TrainerCooltrainerfKateWhenTalkScript: ; 0x78304
+CooltrainerfKateScript: ; 0x78304
 	talkaftercancel
 	loadfont
 	checkbit1 $0070
@@ -42698,12 +42698,12 @@ MovementData_0x78337: ; 0x78337
 	step_end
 ; 0x7833d
 
-TrainerYoungsterSamuelWhenSeenText: ; 0x7833d
+YoungsterSamuelSeenText: ; 0x7833d
 	db $0, "This is where I do", $4f
 	db "my training!", $57
 ; 0x7835e
 
-TrainerYoungsterSamuelWhenBeatenText: ; 0x7835e
+YoungsterSamuelBeatenText: ; 0x7835e
 	db $0, "Beaten by a", $4f
 	db "passing stranger!", $57
 ; 0x7837d
@@ -42725,12 +42725,12 @@ UnknownText_0x783d8: ; 0x783d8
 	db "a GYM LEADER.", $57
 ; 0x78425
 
-TrainerYoungsterIanWhenSeenText: ; 0x78425
+YoungsterIanSeenText: ; 0x78425
 	db $0, "I'm the best in my", $4f
 	db "class at #MON.", $57
 ; 0x78447
 
-TrainerYoungsterIanWhenBeatenText: ; 0x78447
+YoungsterIanBeatenText: ; 0x78447
 	db $0, "No! There are bet-", $4f
 	db "ter trainers…", $57
 ; 0x78469
@@ -42741,14 +42741,14 @@ UnknownText_0x78469: ; 0x78469
 	db "in my class.", $57
 ; 0x7849b
 
-TrainerCamperTodd1WhenSeenText: ; 0x7849b
+CamperTodd1SeenText: ; 0x7849b
 	db $0, "I'm confident in", $4f
 	db "my ability to", $55
 	db "raise #MON.", $51
 	db "Want to see?", $57
 ; 0x784d3
 
-TrainerCamperTodd1WhenBeatenText: ; 0x784d3
+CamperTodd1BeatenText: ; 0x784d3
 	db $0, "Did I screw up my", $4f
 	db "training?", $57
 ; 0x784f0
@@ -42767,13 +42767,13 @@ UnknownText_0x78532: ; 0x78532
 	db "up on a rooftop.", $57
 ; 0x7856d
 
-TrainerPicnickerGina1WhenSeenText: ; 0x7856d
+PicnickerGina1SeenText: ; 0x7856d
 	db $0, "Are you a trainer?", $51
 	db "Let's have a", $4f
 	db "practice battle.", $57
 ; 0x7859e
 
-TrainerPicnickerGina1WhenBeatenText: ; 0x7859e
+PicnickerGina1BeatenText: ; 0x7859e
 	db $0, "Oh, no! I just", $4f
 	db "can't win…", $57
 ; 0x785b8
@@ -42808,7 +42808,7 @@ UnknownText_0x7866a: ; 0x7866a
 	db "viduals.", $57
 ; 0x78696
 
-TrainerPokefanmBrandonWhenSeenText: ; 0x78696
+PokefanmBrandonSeenText: ; 0x78696
 	db $0, "I just got my", $4f
 	db "#MON back from", $55
 	db "DAY-CARE.", $51
@@ -42816,7 +42816,7 @@ TrainerPokefanmBrandonWhenSeenText: ; 0x78696
 	db "stronger it got!", $57
 ; 0x786e1
 
-TrainerPokefanmBrandonWhenBeatenText: ; 0x786e1
+PokefanmBrandonBeatenText: ; 0x786e1
 	db $0, "Why does it end", $4f
 	db "this way?", $57
 ; 0x786fc
@@ -42829,12 +42829,12 @@ UnknownText_0x786fc: ; 0x786fc
 	db "to no end!", $57
 ; 0x78743
 
-TrainerCooltrainerfIreneWhenSeenText: ; 0x78743
+CooltrainerfIreneSeenText: ; 0x78743
 	db $0, "IRENE: Kyaaah!", $4f
 	db "Someone found us!", $57
 ; 0x78765
 
-TrainerCooltrainerfIreneWhenBeatenText: ; 0x78765
+CooltrainerfIreneBeatenText: ; 0x78765
 	db $0, "IRENE: Ohhh!", $4f
 	db "Too strong!", $57
 ; 0x7877f
@@ -42852,13 +42852,13 @@ UnknownText_0x787ad: ; 0x787ad
 	db "little getaway!", $57
 ; 0x787eb
 
-TrainerCooltrainerfJennWhenSeenText: ; 0x787eb
+CooltrainerfJennSeenText: ; 0x787eb
 	db $0, "JENN: You can't", $4f
 	db "beat IRENE and go", $55
 	db "unpunished!", $57
 ; 0x78819
 
-TrainerCooltrainerfJennWhenBeatenText: ; 0x78819
+CooltrainerfJennBeatenText: ; 0x78819
 	db $0, "JENN: So sorry,", $4f
 	db "IRENE! Sis!", $57
 ; 0x78836
@@ -42875,13 +42875,13 @@ UnknownText_0x78866: ; 0x78866
 	db "stronger.", $57
 ; 0x78890
 
-TrainerCooltrainerfKateWhenSeenText: ; 0x78890
+CooltrainerfKateSeenText: ; 0x78890
 	db $0, "KATE: You sure", $4f
 	db "were mean to my", $55
 	db "little sisters!", $57
 ; 0x788c0
 
-TrainerCooltrainerfKateWhenBeatenText: ; 0x788c0
+CooltrainerfKateBeatenText: ; 0x788c0
 	db $0, "KATE: No! I can't", $4f
 	db "believe I lost.", $57
 ; 0x788e2
@@ -45581,19 +45581,19 @@ TrainerSupernerdEric: ; 0x7c0e2
 	db SUPER_NERD, ERIC
 
 	; text when seen
-	dw TrainerSupernerdEricWhenSeenText
+	dw SupernerdEricSeenText
 
 	; text when trainer beaten
-	dw TrainerSupernerdEricWhenBeatenText
+	dw SupernerdEricBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerSupernerdEricWhenTalkScript
+	dw SupernerdEricScript
 ; 0x7c0ee
 
-TrainerSupernerdEricWhenTalkScript: ; 0x7c0ee
+SupernerdEricScript: ; 0x7c0ee
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x7c36c
@@ -45610,19 +45610,19 @@ TrainerSupernerdTeru: ; 0x7c0f6
 	db SUPER_NERD, TERU
 
 	; text when seen
-	dw TrainerSupernerdTeruWhenSeenText
+	dw SupernerdTeruSeenText
 
 	; text when trainer beaten
-	dw TrainerSupernerdTeruWhenBeatenText
+	dw SupernerdTeruBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerSupernerdTeruWhenTalkScript
+	dw SupernerdTeruScript
 ; 0x7c102
 
-TrainerSupernerdTeruWhenTalkScript: ; 0x7c102
+SupernerdTeruScript: ; 0x7c102
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x7c410
@@ -45639,19 +45639,19 @@ TrainerPokemaniacIssac: ; 0x7c10a
 	db POKEMANIAC, ISSAC
 
 	; text when seen
-	dw TrainerPokemaniacIssacWhenSeenText
+	dw PokemaniacIssacSeenText
 
 	; text when trainer beaten
-	dw TrainerPokemaniacIssacWhenBeatenText
+	dw PokemaniacIssacBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerPokemaniacIssacWhenTalkScript
+	dw PokemaniacIssacScript
 ; 0x7c116
 
-TrainerPokemaniacIssacWhenTalkScript: ; 0x7c116
+PokemaniacIssacScript: ; 0x7c116
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x7c498
@@ -45668,19 +45668,19 @@ TrainerPokemaniacDonald: ; 0x7c11e
 	db POKEMANIAC, DONALD
 
 	; text when seen
-	dw TrainerPokemaniacDonaldWhenSeenText
+	dw PokemaniacDonaldSeenText
 
 	; text when trainer beaten
-	dw TrainerPokemaniacDonaldWhenBeatenText
+	dw PokemaniacDonaldBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerPokemaniacDonaldWhenTalkScript
+	dw PokemaniacDonaldScript
 ; 0x7c12a
 
-TrainerPokemaniacDonaldWhenTalkScript: ; 0x7c12a
+PokemaniacDonaldScript: ; 0x7c12a
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x7c52f
@@ -45992,7 +45992,7 @@ MapWarehouseEntranceSignpostItem4: ; 0x7c311
 	
 ; 0x7c314
 
-TrainerSupernerdEricWhenSeenText: ; 0x7c314
+SupernerdEricSeenText: ; 0x7c314
 	db $0, "I got booted out", $4f
 	db "of the GAME COR-", $55
 	db "NER.", $51
@@ -46001,7 +46001,7 @@ TrainerSupernerdEricWhenSeenText: ; 0x7c314
 	db "#MON…", $57
 ; 0x7c361
 
-TrainerSupernerdEricWhenBeatenText: ; 0x7c361
+SupernerdEricBeatenText: ; 0x7c361
 	db $0, "…Grumble…", $57
 ; 0x7c36c
 
@@ -46011,7 +46011,7 @@ UnknownText_0x7c36c: ; 0x7c36c
 	db "square…", $57
 ; 0x7c39a
 
-TrainerSupernerdTeruWhenSeenText: ; 0x7c39a
+SupernerdTeruSeenText: ; 0x7c39a
 	db $0, "Do you consider", $4f
 	db "type alignments in", $55
 	db "battle?", $51
@@ -46021,7 +46021,7 @@ TrainerSupernerdTeruWhenSeenText: ; 0x7c39a
 	db "in battle.", $57
 ; 0x7c403
 
-TrainerSupernerdTeruWhenBeatenText: ; 0x7c403
+SupernerdTeruBeatenText: ; 0x7c403
 	db $0, "Ow, ow, ow!", $57
 ; 0x7c410
 
@@ -46032,14 +46032,14 @@ UnknownText_0x7c410: ; 0x7c410
 	db "type of #MON.", $57
 ; 0x7c452
 
-TrainerPokemaniacIssacWhenSeenText: ; 0x7c452
+PokemaniacIssacSeenText: ; 0x7c452
 	db $0, "My #MON just", $4f
 	db "got a haircut!", $51
 	db "I'll show you how", $4f
 	db "strong it is!", $57
 ; 0x7c48e
 
-TrainerPokemaniacIssacWhenBeatenText: ; 0x7c48e
+PokemaniacIssacBeatenText: ; 0x7c48e
 	db $0, "Aiyeeee!", $57
 ; 0x7c498
 
@@ -46050,14 +46050,14 @@ UnknownText_0x7c498: ; 0x7c498
 	db "haircuts.", $57
 ; 0x7c4d1
 
-TrainerPokemaniacDonaldWhenSeenText: ; 0x7c4d1
+PokemaniacDonaldSeenText: ; 0x7c4d1
 	db $0, "I think you have", $4f
 	db "some rare #MON", $55
 	db "with you.", $51
 	db "Let me see them!", $57
 ; 0x7c50d
 
-TrainerPokemaniacDonaldWhenBeatenText: ; 0x7c50d
+PokemaniacDonaldBeatenText: ; 0x7c50d
 	db $0, "Gaah! I lost!", $4f
 	db "That makes me mad!", $57
 ; 0x7c52f
@@ -46428,19 +46428,19 @@ TrainerGruntM11: ; 0x7cb33
 	db GRUNTM, 11
 
 	; text when seen
-	dw TrainerGruntM11WhenSeenText
+	dw GruntM11SeenText
 
 	; text when trainer beaten
-	dw TrainerGruntM11WhenBeatenText
+	dw GruntM11BeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerGruntM11WhenTalkScript
+	dw GruntM11Script
 ; 0x7cb3f
 
-TrainerGruntM11WhenTalkScript: ; 0x7cb3f
+GruntM11Script: ; 0x7cb3f
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x7d290
@@ -46457,19 +46457,19 @@ TrainerGruntM25: ; 0x7cb47
 	db GRUNTM, 25
 
 	; text when seen
-	dw TrainerGruntM25WhenSeenText
+	dw GruntM25SeenText
 
 	; text when trainer beaten
-	dw TrainerGruntM25WhenBeatenText
+	dw GruntM25BeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerGruntM25WhenTalkScript
+	dw GruntM25Script
 ; 0x7cb53
 
-TrainerGruntM25WhenTalkScript: ; 0x7cb53
+GruntM25Script: ; 0x7cb53
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x7d347
@@ -46486,19 +46486,19 @@ TrainerBurglarDuncan: ; 0x7cb5b
 	db BURGLAR, DUNCAN
 
 	; text when seen
-	dw TrainerBurglarDuncanWhenSeenText
+	dw BurglarDuncanSeenText
 
 	; text when trainer beaten
-	dw TrainerBurglarDuncanWhenBeatenText
+	dw BurglarDuncanBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerBurglarDuncanWhenTalkScript
+	dw BurglarDuncanScript
 ; 0x7cb67
 
-TrainerBurglarDuncanWhenTalkScript: ; 0x7cb67
+BurglarDuncanScript: ; 0x7cb67
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x7d3cf
@@ -46515,19 +46515,19 @@ TrainerBurglarEddie: ; 0x7cb6f
 	db BURGLAR, EDDIE
 
 	; text when seen
-	dw TrainerBurglarEddieWhenSeenText
+	dw BurglarEddieSeenText
 
 	; text when trainer beaten
-	dw TrainerBurglarEddieWhenBeatenText
+	dw BurglarEddieBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerBurglarEddieWhenTalkScript
+	dw BurglarEddieScript
 ; 0x7cb7b
 
-TrainerBurglarEddieWhenTalkScript: ; 0x7cb7b
+BurglarEddieScript: ; 0x7cb7b
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x7d45b
@@ -46544,19 +46544,19 @@ TrainerGruntM13: ; 0x7cb83
 	db GRUNTM, 13
 
 	; text when seen
-	dw TrainerGruntM13WhenSeenText
+	dw GruntM13SeenText
 
 	; text when trainer beaten
-	dw TrainerGruntM13WhenBeatenText
+	dw GruntM13BeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerGruntM13WhenTalkScript
+	dw GruntM13Script
 ; 0x7cb8f
 
-TrainerGruntM13WhenTalkScript: ; 0x7cb8f
+GruntM13Script: ; 0x7cb8f
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x7d51f
@@ -46573,19 +46573,19 @@ TrainerGruntF3: ; 0x7cb97
 	db GRUNTF, 3
 
 	; text when seen
-	dw TrainerGruntF3WhenSeenText
+	dw GruntF3SeenText
 
 	; text when trainer beaten
-	dw TrainerGruntF3WhenBeatenText
+	dw GruntF3BeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerGruntF3WhenTalkScript
+	dw GruntF3Script
 ; 0x7cba3
 
-TrainerGruntF3WhenTalkScript: ; 0x7cba3
+GruntF3Script: ; 0x7cba3
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x7d5e6
@@ -47119,14 +47119,14 @@ UnknownText_0x7d1d0: ; 0x7d1d0
 	db "down there.", $57
 ; 0x7d22b
 
-TrainerGruntM11WhenSeenText: ; 0x7d22b
+GruntM11SeenText: ; 0x7d22b
 	db $0, "Open one shutter,", $4f
 	db "another closes.", $51
 	db "Bet you can't get", $4f
 	db "where you want!", $57
 ; 0x7d26f
 
-TrainerGruntM11WhenBeatenText: ; 0x7d26f
+GruntM11BeatenText: ; 0x7d26f
 	db $0, "Drat! I was sunk", $4f
 	db "by indecision!", $57
 ; 0x7d290
@@ -47138,7 +47138,7 @@ UnknownText_0x7d290: ; 0x7d290
 	db "press first, but…", $57
 ; 0x7d2d8
 
-TrainerGruntM25WhenSeenText: ; 0x7d2d8
+GruntM25SeenText: ; 0x7d2d8
 	db $0, "Kwahaha!", $51
 	db "Confounded by the", $4f
 	db "shutters, are we?", $51
@@ -47147,7 +47147,7 @@ TrainerGruntM25WhenSeenText: ; 0x7d2d8
 	db "can beat me!", $57
 ; 0x7d335
 
-TrainerGruntM25WhenBeatenText: ; 0x7d335
+GruntM25BeatenText: ; 0x7d335
 	db $0, "Uwww…", $4f
 	db "I blew it.", $57
 ; 0x7d347
@@ -47161,12 +47161,12 @@ UnknownText_0x7d347: ; 0x7d347
 	db "open and close.", $57
 ; 0x7d3ae
 
-TrainerBurglarDuncanWhenSeenText: ; 0x7d3ae
+BurglarDuncanSeenText: ; 0x7d3ae
 	db $0, "Fork over your", $4f
 	db "goodies!", $57
 ; 0x7d3c7
 
-TrainerBurglarDuncanWhenBeatenText: ; 0x7d3c7
+BurglarDuncanBeatenText: ; 0x7d3c7
 	db $0, "Mercy!", $57
 ; 0x7d3cf
 
@@ -47176,7 +47176,7 @@ UnknownText_0x7d3cf: ; 0x7d3cf
 	db "crime, kid!", $57
 ; 0x7d3fb
 
-TrainerBurglarEddieWhenSeenText: ; 0x7d3fb
+BurglarEddieSeenText: ; 0x7d3fb
 	db $0, "They ditched this", $4f
 	db "project before", $55
 	db "they finished.", $51
@@ -47184,7 +47184,7 @@ TrainerBurglarEddieWhenSeenText: ; 0x7d3fb
 	db "leftover loot.", $57
 ; 0x7d44c
 
-TrainerBurglarEddieWhenBeatenText: ; 0x7d44c
+BurglarEddieBeatenText: ; 0x7d44c
 	db $0, "Over the top!", $57
 ; 0x7d45b
 
@@ -47197,7 +47197,7 @@ UnknownText_0x7d45b: ; 0x7d45b
 	db "down there.", $57
 ; 0x7d4b2
 
-TrainerGruntM13WhenSeenText: ; 0x7d4b2
+GruntM13SeenText: ; 0x7d4b2
 	db $0, "I don't care if", $4f
 	db "you're lost.", $51
 	db "You show up here,", $4f
@@ -47205,7 +47205,7 @@ TrainerGruntM13WhenSeenText: ; 0x7d4b2
 	db "a victim!", $57
 ; 0x7d4fc
 
-TrainerGruntM13WhenBeatenText: ; 0x7d4fc
+GruntM13BeatenText: ; 0x7d4fc
 	db $0, "Urk! Yeah, think", $4f
 	db "you're cool, huh?", $57
 ; 0x7d51f
@@ -47221,7 +47221,7 @@ UnknownText_0x7d554: ; 0x7d554
 	db "SWITCH 1.", $57
 ; 0x7d56b
 
-TrainerGruntF3WhenSeenText: ; 0x7d56b
+GruntF3SeenText: ; 0x7d56b
 	db $0, "Are you lost? No,", $4f
 	db "you can't be.", $51
 	db "You don't have", $4f
@@ -47231,7 +47231,7 @@ TrainerGruntF3WhenSeenText: ; 0x7d56b
 	db "scared about!", $57
 ; 0x7d5d6
 
-TrainerGruntF3WhenBeatenText: ; 0x7d5d6
+GruntF3BeatenText: ; 0x7d5d6
 	db $0, "How could you?", $57
 ; 0x7d5e6
 
@@ -47495,19 +47495,19 @@ TrainerGruntM24: ; 0x7d983
 	db GRUNTM, 24
 
 	; text when seen
-	dw TrainerGruntM24WhenSeenText
+	dw GruntM24SeenText
 
 	; text when trainer beaten
-	dw TrainerGruntM24WhenBeatenText
+	dw GruntM24BeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerGruntM24WhenTalkScript
+	dw GruntM24Script
 ; 0x7d98f
 
-TrainerGruntM24WhenTalkScript: ; 0x7d98f
+GruntM24Script: ; 0x7d98f
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x7da48
@@ -47524,19 +47524,19 @@ TrainerGruntM14: ; 0x7d997
 	db GRUNTM, 14
 
 	; text when seen
-	dw TrainerGruntM14WhenSeenText
+	dw GruntM14SeenText
 
 	; text when trainer beaten
-	dw TrainerGruntM14WhenBeatenText
+	dw GruntM14BeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerGruntM14WhenTalkScript
+	dw GruntM14Script
 ; 0x7d9a3
 
-TrainerGruntM14WhenTalkScript: ; 0x7d9a3
+GruntM14Script: ; 0x7d9a3
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x7db01
@@ -47553,19 +47553,19 @@ TrainerGruntM15: ; 0x7d9ab
 	db GRUNTM, 15
 
 	; text when seen
-	dw TrainerGruntM15WhenSeenText
+	dw GruntM15SeenText
 
 	; text when trainer beaten
-	dw TrainerGruntM15WhenBeatenText
+	dw GruntM15BeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerGruntM15WhenTalkScript
+	dw GruntM15Script
 ; 0x7d9b7
 
-TrainerGruntM15WhenTalkScript: ; 0x7d9b7
+GruntM15Script: ; 0x7d9b7
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x7db8e
@@ -47607,7 +47607,7 @@ ItemFragment_0x7d9e8: ; 0x7d9e8
 	db ULTRA_BALL, 1
 ; 0x7d9ea
 
-TrainerGruntM24WhenSeenText: ; 0x7d9ea
+GruntM24SeenText: ; 0x7d9ea
 	db $0, "How did you get", $4f
 	db "this far?", $51
 	db "I guess it can't", $4f
@@ -47615,7 +47615,7 @@ TrainerGruntM24WhenSeenText: ; 0x7d9ea
 	db "dispose of you.", $57
 ; 0x7da34
 
-TrainerGruntM24WhenBeatenText: ; 0x7da34
+GruntM24BeatenText: ; 0x7da34
 	db $0, "I got disposed of…", $57
 ; 0x7da48
 
@@ -47628,7 +47628,7 @@ UnknownText_0x7da48: ; 0x7da48
 	db "it takes.", $57
 ; 0x7daa7
 
-TrainerGruntM14WhenSeenText: ; 0x7daa7
+GruntM14SeenText: ; 0x7daa7
 	db $0, "You're not going", $4f
 	db "any farther!", $51
 	db "I don't show mercy", $4f
@@ -47636,7 +47636,7 @@ TrainerGruntM14WhenSeenText: ; 0x7daa7
 	db "even brats!", $57
 ; 0x7daf6
 
-TrainerGruntM14WhenBeatenText: ; 0x7daf6
+GruntM14BeatenText: ; 0x7daf6
 	db $0, "Blast it!", $57
 ; 0x7db01
 
@@ -47646,14 +47646,14 @@ UnknownText_0x7db01: ; 0x7db01
 	db "GIOVANNI!", $57
 ; 0x7db27
 
-TrainerGruntM15WhenSeenText: ; 0x7db27
+GruntM15SeenText: ; 0x7db27
 	db $0, "Hyuck-hyuck-hyuck!", $4f
 	db "I remember you!", $51
 	db "You got me good", $4f
 	db "at our hideout!", $57
 ; 0x7db6b
 
-TrainerGruntM15WhenBeatenText: ; 0x7db6b
+GruntM15BeatenText: ; 0x7db6b
 	db $0, "Hyuck-hyuck-hyuck!", $4f
 	db "So, that's how?", $57
 ; 0x7db8e
@@ -47797,19 +47797,19 @@ TrainerPokemaniacMiller: ; 0x7de51
 	db POKEMANIAC, MILLER
 
 	; text when seen
-	dw TrainerPokemaniacMillerWhenSeenText
+	dw PokemaniacMillerSeenText
 
 	; text when trainer beaten
-	dw TrainerPokemaniacMillerWhenBeatenText
+	dw PokemaniacMillerBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerPokemaniacMillerWhenTalkScript
+	dw PokemaniacMillerScript
 ; 0x7de5d
 
-TrainerPokemaniacMillerWhenTalkScript: ; 0x7de5d
+PokemaniacMillerScript: ; 0x7de5d
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x7debd
@@ -47826,19 +47826,19 @@ TrainerSupernerdMarkus: ; 0x7de65
 	db SUPER_NERD, MARKUS
 
 	; text when seen
-	dw TrainerSupernerdMarkusWhenSeenText
+	dw SupernerdMarkusSeenText
 
 	; text when trainer beaten
-	dw TrainerSupernerdMarkusWhenBeatenText
+	dw SupernerdMarkusBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerSupernerdMarkusWhenTalkScript
+	dw SupernerdMarkusScript
 ; 0x7de71
 
-TrainerSupernerdMarkusWhenTalkScript: ; 0x7de71
+SupernerdMarkusScript: ; 0x7de71
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x7df97
@@ -47885,12 +47885,12 @@ MapMountMortar1FInsideSignpostItem0: ; 0x7de8a
 	
 ; 0x7de8d
 
-TrainerPokemaniacMillerWhenSeenText: ; 0x7de8d
+PokemaniacMillerSeenText: ; 0x7de8d
 	db $0, "I'm not losing", $4f
 	db "this time!", $57
 ; 0x7dea7
 
-TrainerPokemaniacMillerWhenBeatenText: ; 0x7dea7
+PokemaniacMillerBeatenText: ; 0x7dea7
 	db $0, "I lost to some", $4f
 	db "kid…?", $57
 ; 0x7debd
@@ -47908,11 +47908,11 @@ UnknownText_0x7debd: ; 0x7debd
 	db "wonder how he is?", $57
 ; 0x7df6a
 
-TrainerSupernerdMarkusWhenSeenText: ; 0x7df6a
+SupernerdMarkusSeenText: ; 0x7df6a
 	db $0, "Hey! HUGH!", $57
 ; 0x7df76
 
-TrainerSupernerdMarkusWhenBeatenText: ; 0x7df76
+SupernerdMarkusBeatenText: ; 0x7df76
 	db $0, "I mistook you for", $4f
 	db "someone else…", $57
 ; 0x7df97
@@ -47978,19 +47978,19 @@ TrainerSupernerdHugh: ; 0x7e0ca
 	db SUPER_NERD, HUGH
 
 	; text when seen
-	dw TrainerSupernerdHughWhenSeenText
+	dw SupernerdHughSeenText
 
 	; text when trainer beaten
-	dw TrainerSupernerdHughWhenBeatenText
+	dw SupernerdHughBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerSupernerdHughWhenTalkScript
+	dw SupernerdHughScript
 ; 0x7e0d6
 
-TrainerSupernerdHughWhenTalkScript: ; 0x7e0d6
+SupernerdHughScript: ; 0x7e0d6
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x7e10e
@@ -48029,11 +48029,11 @@ MapMountMortar2FInsideSignpostItem0: ; 0x7e0ea
 	
 ; 0x7e0ed
 
-TrainerSupernerdHughWhenSeenText: ; 0x7e0ed
+SupernerdHughSeenText: ; 0x7e0ed
 	db $0, "Yo! MARKUS!", $57
 ; 0x7e0fa
 
-TrainerSupernerdHughWhenBeatenText: ; 0x7e0fa
+SupernerdHughBeatenText: ; 0x7e0fa
 	db $0, "Sorry, my mistake.", $57
 ; 0x7e10e
 
@@ -63084,19 +63084,19 @@ TrainerSageGaku: ; 0x985c6
 	db SAGE, GAKU
 
 	; text when seen
-	dw TrainerSageGakuWhenSeenText
+	dw SageGakuSeenText
 
 	; text when trainer beaten
-	dw TrainerSageGakuWhenBeatenText
+	dw SageGakuBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerSageGakuWhenTalkScript
+	dw SageGakuScript
 ; 0x985d2
 
-TrainerSageGakuWhenTalkScript: ; 0x985d2
+SageGakuScript: ; 0x985d2
 	loadfont
 	2writetext UnknownText_0x98938
 	closetext
@@ -63112,19 +63112,19 @@ TrainerSageMasa: ; 0x985d9
 	db SAGE, MASA
 
 	; text when seen
-	dw TrainerSageMasaWhenSeenText
+	dw SageMasaSeenText
 
 	; text when trainer beaten
-	dw TrainerSageMasaWhenBeatenText
+	dw SageMasaBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerSageMasaWhenTalkScript
+	dw SageMasaScript
 ; 0x985e5
 
-TrainerSageMasaWhenTalkScript: ; 0x985e5
+SageMasaScript: ; 0x985e5
 	loadfont
 	2writetext UnknownText_0x98a35
 	closetext
@@ -63140,19 +63140,19 @@ TrainerSageKoji: ; 0x985ec
 	db SAGE, KOJI
 
 	; text when seen
-	dw TrainerSageKojiWhenSeenText
+	dw SageKojiSeenText
 
 	; text when trainer beaten
-	dw TrainerSageKojiWhenBeatenText
+	dw SageKojiBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerSageKojiWhenTalkScript
+	dw SageKojiScript
 ; 0x985f8
 
-TrainerSageKojiWhenTalkScript: ; 0x985f8
+SageKojiScript: ; 0x985f8
 	checkbit1 $0334
 	iftrue UnknownScript_0x9861b
 	pause 10
@@ -63236,7 +63236,7 @@ UnknownText_0x987af: ; 0x987af
 	db "#MON.", $57
 ; 0x987ed
 
-TrainerSageGakuWhenSeenText: ; 0x987ed
+SageGakuSeenText: ; 0x987ed
 	db $0, "Legend has it that", $4f
 	db "upon the emergence", $51
 	db "of a trainer who", $4f
@@ -63258,7 +63258,7 @@ TrainerSageGakuWhenSeenText: ; 0x987ed
 	db "inside!", $57
 ; 0x98914
 
-TrainerSageGakuWhenBeatenText: ; 0x98914
+SageGakuBeatenText: ; 0x98914
 	db $0, "Stronger than we", $4f
 	db "thought? Perhaps…", $57
 ; 0x98938
@@ -63275,14 +63275,14 @@ UnknownText_0x98938: ; 0x98938
 	db "while they sleep…", $57
 ; 0x989d2
 
-TrainerSageMasaWhenSeenText: ; 0x989d2
+SageMasaSeenText: ; 0x989d2
 	db $0, "Can you be trusted", $4f
 	db "with the truth?", $51
 	db "I must ascertain", $4f
 	db "your worthiness.", $57
 ; 0x98a18
 
-TrainerSageMasaWhenBeatenText: ; 0x98a18
+SageMasaBeatenText: ; 0x98a18
 	db $0, "…I will tell you", $4f
 	db "the truth…", $57
 ; 0x98a35
@@ -63323,12 +63323,12 @@ UnknownText_0x98a35: ; 0x98a35
 	db "came to be.", $57
 ; 0x98c42
 
-TrainerSageKojiWhenSeenText: ; 0x98c42
+SageKojiSeenText: ; 0x98c42
 	db $0, "Let me see your", $4f
 	db "power!", $57
 ; 0x98c5a
 
-TrainerSageKojiWhenBeatenText: ; 0x98c5a
+SageKojiBeatenText: ; 0x98c5a
 	db $0, "Too strong!", $4f
 	db "Why?", $57
 ; 0x98c6c
@@ -63688,19 +63688,19 @@ TrainerKimono_girlNaoko2: ; 0x99462
 	db KIMONO_GIRL, NAOKO2
 
 	; text when seen
-	dw TrainerKimono_girlNaoko2WhenSeenText
+	dw Kimono_girlNaoko2SeenText
 
 	; text when trainer beaten
-	dw TrainerKimono_girlNaoko2WhenBeatenText
+	dw Kimono_girlNaoko2BeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerKimono_girlNaoko2WhenTalkScript
+	dw Kimono_girlNaoko2Script
 ; 0x9946e
 
-TrainerKimono_girlNaoko2WhenTalkScript: ; 0x9946e
+Kimono_girlNaoko2Script: ; 0x9946e
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x99579
@@ -63717,19 +63717,19 @@ TrainerKimono_girlSayo: ; 0x99476
 	db KIMONO_GIRL, SAYO
 
 	; text when seen
-	dw TrainerKimono_girlSayoWhenSeenText
+	dw Kimono_girlSayoSeenText
 
 	; text when trainer beaten
-	dw TrainerKimono_girlSayoWhenBeatenText
+	dw Kimono_girlSayoBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerKimono_girlSayoWhenTalkScript
+	dw Kimono_girlSayoScript
 ; 0x99482
 
-TrainerKimono_girlSayoWhenTalkScript: ; 0x99482
+Kimono_girlSayoScript: ; 0x99482
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x9960b
@@ -63746,19 +63746,19 @@ TrainerKimono_girlZuki: ; 0x9948a
 	db KIMONO_GIRL, ZUKI
 
 	; text when seen
-	dw TrainerKimono_girlZukiWhenSeenText
+	dw Kimono_girlZukiSeenText
 
 	; text when trainer beaten
-	dw TrainerKimono_girlZukiWhenBeatenText
+	dw Kimono_girlZukiBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerKimono_girlZukiWhenTalkScript
+	dw Kimono_girlZukiScript
 ; 0x99496
 
-TrainerKimono_girlZukiWhenTalkScript: ; 0x99496
+Kimono_girlZukiScript: ; 0x99496
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x99688
@@ -63775,19 +63775,19 @@ TrainerKimono_girlKuni: ; 0x9949e
 	db KIMONO_GIRL, KUNI
 
 	; text when seen
-	dw TrainerKimono_girlKuniWhenSeenText
+	dw Kimono_girlKuniSeenText
 
 	; text when trainer beaten
-	dw TrainerKimono_girlKuniWhenBeatenText
+	dw Kimono_girlKuniBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerKimono_girlKuniWhenTalkScript
+	dw Kimono_girlKuniScript
 ; 0x994aa
 
-TrainerKimono_girlKuniWhenTalkScript: ; 0x994aa
+Kimono_girlKuniScript: ; 0x994aa
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x99714
@@ -63804,19 +63804,19 @@ TrainerKimono_girlMiki: ; 0x994b2
 	db KIMONO_GIRL, MIKI
 
 	; text when seen
-	dw TrainerKimono_girlMikiWhenSeenText
+	dw Kimono_girlMikiSeenText
 
 	; text when trainer beaten
-	dw TrainerKimono_girlMikiWhenBeatenText
+	dw Kimono_girlMikiBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerKimono_girlMikiWhenTalkScript
+	dw Kimono_girlMikiScript
 ; 0x994be
 
-TrainerKimono_girlMikiWhenTalkScript: ; 0x994be
+Kimono_girlMikiScript: ; 0x994be
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x997a8
@@ -63900,13 +63900,13 @@ MapDanceTheatreSignpost1Script: ; 0x9952b
 	jumptext UnknownText_0x99b79
 ; 0x9952e
 
-TrainerKimono_girlNaoko2WhenSeenText: ; 0x9952e
+Kimono_girlNaoko2SeenText: ; 0x9952e
 	db $0, "You have lovely", $4f
 	db "#MON. May I see", $55
 	db "them in battle?", $57
 ; 0x9955f
 
-TrainerKimono_girlNaoko2WhenBeatenText: ; 0x9955f
+Kimono_girlNaoko2BeatenText: ; 0x9955f
 	db $0, "Oh, you are very", $4f
 	db "strong.", $57
 ; 0x99579
@@ -63917,14 +63917,14 @@ UnknownText_0x99579: ; 0x99579
 	db "to see you again.", $57
 ; 0x995ae
 
-TrainerKimono_girlSayoWhenSeenText: ; 0x995ae
+Kimono_girlSayoSeenText: ; 0x995ae
 	db $0, "I always dance", $4f
 	db "with my #MON.", $51
 	db "Of course, I also", $4f
 	db "train them.", $57
 ; 0x995ea
 
-TrainerKimono_girlSayoWhenBeatenText: ; 0x995ea
+Kimono_girlSayoBeatenText: ; 0x995ea
 	db $0, "Oh, so close!", $4f
 	db "I almost had you.", $57
 ; 0x9960b
@@ -63936,14 +63936,14 @@ UnknownText_0x9960b: ; 0x9960b
 	db "MON.", $57
 ; 0x9963f
 
-TrainerKimono_girlZukiWhenSeenText: ; 0x9963f
+Kimono_girlZukiSeenText: ; 0x9963f
 	db $0, "Isn't my barrette", $4f
 	db "pretty?", $51
 	db "Oh. A #MON", $4f
 	db "battle?", $57
 ; 0x9966c
 
-TrainerKimono_girlZukiWhenBeatenText: ; 0x9966c
+Kimono_girlZukiBeatenText: ; 0x9966c
 	db $0, "I don't have any", $4f
 	db "#MON left…", $57
 ; 0x99688
@@ -63954,13 +63954,13 @@ UnknownText_0x99688: ; 0x99688
 	db "rette every month.", $57
 ; 0x996c0
 
-TrainerKimono_girlKuniWhenSeenText: ; 0x996c0
+Kimono_girlKuniSeenText: ; 0x996c0
 	db $0, "Oh, you're a cute", $4f
 	db "trainer. Would you", $55
 	db "like to battle?", $57
 ; 0x996f5
 
-TrainerKimono_girlKuniWhenBeatenText: ; 0x996f5
+Kimono_girlKuniBeatenText: ; 0x996f5
 	db $0, "You're stronger", $4f
 	db "than you look.", $57
 ; 0x99714
@@ -63972,13 +63972,13 @@ UnknownText_0x99714: ; 0x99714
 	db "I guess I'm not.", $57
 ; 0x9975c
 
-TrainerKimono_girlMikiWhenSeenText: ; 0x9975c
+Kimono_girlMikiSeenText: ; 0x9975c
 	db $0, "Do you like my", $4f
 	db "dancing? I'm good", $55
 	db "at #MON too.", $57
 ; 0x9978a
 
-TrainerKimono_girlMikiWhenBeatenText: ; 0x9978a
+Kimono_girlMikiBeatenText: ; 0x9978a
 	db $0, "Ooh, you're good", $4f
 	db "at #MON too.", $57
 ; 0x997a8
@@ -64283,19 +64283,19 @@ TrainerSageJeffrey: ; 0x99de9
 	db SAGE, JEFFREY
 
 	; text when seen
-	dw TrainerSageJeffreyWhenSeenText
+	dw SageJeffreySeenText
 
 	; text when trainer beaten
-	dw TrainerSageJeffreyWhenBeatenText
+	dw SageJeffreyBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerSageJeffreyWhenTalkScript
+	dw SageJeffreyScript
 ; 0x99df5
 
-TrainerSageJeffreyWhenTalkScript: ; 0x99df5
+SageJeffreyScript: ; 0x99df5
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x9a263
@@ -64312,19 +64312,19 @@ TrainerSagePing: ; 0x99dfd
 	db SAGE, PING
 
 	; text when seen
-	dw TrainerSagePingWhenSeenText
+	dw SagePingSeenText
 
 	; text when trainer beaten
-	dw TrainerSagePingWhenBeatenText
+	dw SagePingBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerSagePingWhenTalkScript
+	dw SagePingScript
 ; 0x99e09
 
-TrainerSagePingWhenTalkScript: ; 0x99e09
+SagePingScript: ; 0x99e09
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x9a2b7
@@ -64341,19 +64341,19 @@ TrainerMediumMartha: ; 0x99e11
 	db MEDIUM, MARTHA
 
 	; text when seen
-	dw TrainerMediumMarthaWhenSeenText
+	dw MediumMarthaSeenText
 
 	; text when trainer beaten
-	dw TrainerMediumMarthaWhenBeatenText
+	dw MediumMarthaBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerMediumMarthaWhenTalkScript
+	dw MediumMarthaScript
 ; 0x99e1d
 
-TrainerMediumMarthaWhenTalkScript: ; 0x99e1d
+MediumMarthaScript: ; 0x99e1d
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x9a318
@@ -64370,19 +64370,19 @@ TrainerMediumGrace: ; 0x99e25
 	db MEDIUM, GRACE
 
 	; text when seen
-	dw TrainerMediumGraceWhenSeenText
+	dw MediumGraceSeenText
 
 	; text when trainer beaten
-	dw TrainerMediumGraceWhenBeatenText
+	dw MediumGraceBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerMediumGraceWhenTalkScript
+	dw MediumGraceScript
 ; 0x99e31
 
-TrainerMediumGraceWhenTalkScript: ; 0x99e31
+MediumGraceScript: ; 0x99e31
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x9a38a
@@ -64512,7 +64512,7 @@ UnknownText_0x9a145: ; 0x9a145
 	db "that…", $57
 ; 0x9a1bd
 
-TrainerSageJeffreyWhenSeenText: ; 0x9a1bd
+SageJeffreySeenText: ; 0x9a1bd
 	db $0, "I spent the spring", $4f
 	db "with my #MON.", $51
 	db "Then summer, fall", $4f
@@ -64523,7 +64523,7 @@ TrainerSageJeffreyWhenSeenText: ; 0x9a1bd
 	db "for a long time.", $57
 ; 0x9a23d
 
-TrainerSageJeffreyWhenBeatenText: ; 0x9a23d
+SageJeffreyBeatenText: ; 0x9a23d
 	db $0, "Wins and losses, I", $4f
 	db "experienced both.", $57
 ; 0x9a263
@@ -64533,13 +64533,13 @@ UnknownText_0x9a263: ; 0x9a263
 	db "come from?", $57
 ; 0x9a27e
 
-TrainerSagePingWhenSeenText: ; 0x9a27e
+SagePingSeenText: ; 0x9a27e
 	db $0, "Can you inflict", $4f
 	db "any damage on our", $55
 	db "#MON?", $57
 ; 0x9a2a7
 
-TrainerSagePingWhenBeatenText: ; 0x9a2a7
+SagePingBeatenText: ; 0x9a2a7
 	db $0, "Ah! Well done!", $57
 ; 0x9a2b7
 
@@ -64551,11 +64551,11 @@ UnknownText_0x9a2b7: ; 0x9a2b7
 	db "them!", $57
 ; 0x9a2fb
 
-TrainerMediumMarthaWhenSeenText: ; 0x9a2fb
+MediumMarthaSeenText: ; 0x9a2fb
 	db $0, "I shall win!", $57
 ; 0x9a309
 
-TrainerMediumMarthaWhenBeatenText: ; 0x9a309
+MediumMarthaBeatenText: ; 0x9a309
 	db $0, "I, I, I lost!", $57
 ; 0x9a318
 
@@ -64564,14 +64564,14 @@ UnknownText_0x9a318: ; 0x9a318
 	db "to win most--will!", $57
 ; 0x9a33e
 
-TrainerMediumGraceWhenSeenText: ; 0x9a33e
+MediumGraceSeenText: ; 0x9a33e
 	db $0, "Stumped by our in-", $4f
 	db "visible floor?", $51
 	db "Defeat me if you", $4f
 	db "want a hint!", $57
 ; 0x9a37f
 
-TrainerMediumGraceWhenBeatenText: ; 0x9a37f
+MediumGraceBeatenText: ; 0x9a37f
 	db $0, "Wha-what?", $57
 ; 0x9a38a
 
@@ -67346,19 +67346,19 @@ TrainerBlackbeltYoshi: ; 0x9d690
 	db BLACKBELT_T, YOSHI
 
 	; text when seen
-	dw TrainerBlackbeltYoshiWhenSeenText
+	dw BlackbeltYoshiSeenText
 
 	; text when trainer beaten
-	dw TrainerBlackbeltYoshiWhenBeatenText
+	dw BlackbeltYoshiBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerBlackbeltYoshiWhenTalkScript
+	dw BlackbeltYoshiScript
 ; 0x9d69c
 
-TrainerBlackbeltYoshiWhenTalkScript: ; 0x9d69c
+BlackbeltYoshiScript: ; 0x9d69c
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x9d9fa
@@ -67375,19 +67375,19 @@ TrainerBlackbeltLao: ; 0x9d6a4
 	db BLACKBELT_T, LAO
 
 	; text when seen
-	dw TrainerBlackbeltLaoWhenSeenText
+	dw BlackbeltLaoSeenText
 
 	; text when trainer beaten
-	dw TrainerBlackbeltLaoWhenBeatenText
+	dw BlackbeltLaoBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerBlackbeltLaoWhenTalkScript
+	dw BlackbeltLaoScript
 ; 0x9d6b0
 
-TrainerBlackbeltLaoWhenTalkScript: ; 0x9d6b0
+BlackbeltLaoScript: ; 0x9d6b0
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x9da61
@@ -67404,19 +67404,19 @@ TrainerBlackbeltNob: ; 0x9d6b8
 	db BLACKBELT_T, NOB
 
 	; text when seen
-	dw TrainerBlackbeltNobWhenSeenText
+	dw BlackbeltNobSeenText
 
 	; text when trainer beaten
-	dw TrainerBlackbeltNobWhenBeatenText
+	dw BlackbeltNobBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerBlackbeltNobWhenTalkScript
+	dw BlackbeltNobScript
 ; 0x9d6c4
 
-TrainerBlackbeltNobWhenTalkScript: ; 0x9d6c4
+BlackbeltNobScript: ; 0x9d6c4
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x9dac0
@@ -67433,19 +67433,19 @@ TrainerBlackbeltLung: ; 0x9d6cc
 	db BLACKBELT_T, LUNG
 
 	; text when seen
-	dw TrainerBlackbeltLungWhenSeenText
+	dw BlackbeltLungSeenText
 
 	; text when trainer beaten
-	dw TrainerBlackbeltLungWhenBeatenText
+	dw BlackbeltLungBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerBlackbeltLungWhenTalkScript
+	dw BlackbeltLungScript
 ; 0x9d6d8
 
-TrainerBlackbeltLungWhenTalkScript: ; 0x9d6d8
+BlackbeltLungScript: ; 0x9d6d8
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x9db14
@@ -67552,7 +67552,7 @@ UnknownText_0x9d930: ; 0x9d930
 	db "hours a day!", $57
 ; 0x9d997
 
-TrainerBlackbeltYoshiWhenSeenText: ; 0x9d997
+BlackbeltYoshiSeenText: ; 0x9d997
 	db $0, "My #MON and I", $4f
 	db "are bound togeth-", $55
 	db "er by friendship.", $51
@@ -67560,7 +67560,7 @@ TrainerBlackbeltYoshiWhenSeenText: ; 0x9d997
 	db "never be broken!", $57
 ; 0x9d9e9
 
-TrainerBlackbeltYoshiWhenBeatenText: ; 0x9d9e9
+BlackbeltYoshiBeatenText: ; 0x9d9e9
 	db $0, "This isn't real!", $57
 ; 0x9d9fa
 
@@ -67570,12 +67570,12 @@ UnknownText_0x9d9fa: ; 0x9d9fa
 	db "your #MON too!", $57
 ; 0x9da2e
 
-TrainerBlackbeltLaoWhenSeenText: ; 0x9da2e
+BlackbeltLaoSeenText: ; 0x9da2e
 	db $0, "We martial artists", $4f
 	db "fear nothing!", $57
 ; 0x9da50
 
-TrainerBlackbeltLaoWhenBeatenText: ; 0x9da50
+BlackbeltLaoBeatenText: ; 0x9da50
 	db $0, "That's shocking!", $57
 ; 0x9da61
 
@@ -67585,13 +67585,13 @@ UnknownText_0x9da61: ; 0x9da61
 	db "chics…", $57
 ; 0x9da8a
 
-TrainerBlackbeltNobWhenSeenText: ; 0x9da8a
+BlackbeltNobSeenText: ; 0x9da8a
 	db $0, "Words are useless.", $4f
 	db "Let your fists do", $55
 	db "the talking!", $57
 ; 0x9dabd
 
-TrainerBlackbeltNobWhenBeatenText: ; 0x9dabd
+BlackbeltNobBeatenText: ; 0x9dabd
 	db $0, "…", $57
 ; 0x9dac0
 
@@ -67600,13 +67600,13 @@ UnknownText_0x9dac0: ; 0x9dac0
 	db "I'm speechless!", $57
 ; 0x9dad9
 
-TrainerBlackbeltLungWhenSeenText: ; 0x9dad9
+BlackbeltLungSeenText: ; 0x9dad9
 	db $0, "My raging fists", $4f
 	db "will shatter your", $55
 	db "#MON!", $57
 ; 0x9db02
 
-TrainerBlackbeltLungWhenBeatenText: ; 0x9db02
+BlackbeltLungBeatenText: ; 0x9db02
 	db $0, "I got shattered!", $57
 ; 0x9db14
 
@@ -73339,19 +73339,19 @@ TrainerSageChow: ; 0x18450a
 	db SAGE, CHOW
 
 	; text when seen
-	dw TrainerSageChowWhenSeenText
+	dw SageChowSeenText
 
 	; text when trainer beaten
-	dw TrainerSageChowWhenBeatenText
+	dw SageChowBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerSageChowWhenTalkScript
+	dw SageChowScript
 ; 0x184516
 
-TrainerSageChowWhenTalkScript: ; 0x184516
+SageChowScript: ; 0x184516
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x184583
@@ -73368,7 +73368,7 @@ MapSproutTower1FSignpost1Script: ; 0x184520
 	jumptext UnknownText_0x1846d6
 ; 0x184523
 
-TrainerSageChowWhenSeenText: ; 0x184523
+SageChowSeenText: ; 0x184523
 	db $0, "We stand guard in", $4f
 	db "this tower.", $51
 	db "Here, we express", $4f
@@ -73376,7 +73376,7 @@ TrainerSageChowWhenSeenText: ; 0x184523
 	db "honor all #MON.", $57
 ; 0x184574
 
-TrainerSageChowWhenBeatenText: ; 0x184574
+SageChowBeatenText: ; 0x184574
 	db $0, "Th-Thank you!", $57
 ; 0x184583
 
@@ -73468,19 +73468,19 @@ TrainerSageNico: ; 0x18477c
 	db SAGE, NICO
 
 	; text when seen
-	dw TrainerSageNicoWhenSeenText
+	dw SageNicoSeenText
 
 	; text when trainer beaten
-	dw TrainerSageNicoWhenBeatenText
+	dw SageNicoBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerSageNicoWhenTalkScript
+	dw SageNicoScript
 ; 0x184788
 
-TrainerSageNicoWhenTalkScript: ; 0x184788
+SageNicoScript: ; 0x184788
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x1847ff
@@ -73497,19 +73497,19 @@ TrainerSageEdmond: ; 0x184790
 	db SAGE, EDMOND
 
 	; text when seen
-	dw TrainerSageEdmondWhenSeenText
+	dw SageEdmondSeenText
 
 	; text when trainer beaten
-	dw TrainerSageEdmondWhenBeatenText
+	dw SageEdmondBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerSageEdmondWhenTalkScript
+	dw SageEdmondScript
 ; 0x18479c
 
-TrainerSageEdmondWhenTalkScript: ; 0x18479c
+SageEdmondScript: ; 0x18479c
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x18486f
@@ -73526,13 +73526,13 @@ ItemFragment_0x1847a7: ; 0x1847a7
 	db X_ACCURACY, 1
 ; 0x1847a9
 
-TrainerSageNicoWhenSeenText: ; 0x1847a9
+SageNicoSeenText: ; 0x1847a9
 	db $0, "However hard we", $4f
 	db "battle, the TOWER", $55
 	db "will stand strong.", $57
 ; 0x1847df
 
-TrainerSageNicoWhenBeatenText: ; 0x1847df
+SageNicoBeatenText: ; 0x1847df
 	db $0, "I fought hard but", $4f
 	db "I'm too weak.", $57
 ; 0x1847ff
@@ -73544,12 +73544,12 @@ UnknownText_0x1847ff: ; 0x1847ff
 	db "earthquakes.", $57
 ; 0x184841
 
-TrainerSageEdmondWhenSeenText: ; 0x184841
+SageEdmondSeenText: ; 0x184841
 	db $0, "…Sway like leaves", $4f
 	db "in the wind…", $57
 ; 0x184861
 
-TrainerSageEdmondWhenBeatenText: ; 0x184861
+SageEdmondBeatenText: ; 0x184861
 	db $0, "Oh, I'm weak!", $57
 ; 0x18486f
 
@@ -73660,10 +73660,10 @@ SageLiScript: ; 0x1849a6
 	loadfont
 	checkbit1 $0014
 	iftrue UnknownScript_0x1849d1
-	2writetext TrainerSageLiWhenSeenText
+	2writetext SageLiSeenText
 	closetext
 	loadmovesprites
-	winlosstext TrainerSageLiWhenBeatenText, $0000
+	winlosstext SageLiBeatenText, $0000
 	loadtrainer SAGE, LI
 	startbattle
 	returnafterbattle
@@ -73694,19 +73694,19 @@ TrainerSageJin: ; 0x1849d7
 	db SAGE, JIN
 
 	; text when seen
-	dw TrainerSageJinWhenSeenText
+	dw SageJinSeenText
 
 	; text when trainer beaten
-	dw TrainerSageJinWhenBeatenText
+	dw SageJinBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerSageJinWhenTalkScript
+	dw SageJinScript
 ; 0x1849e3
 
-TrainerSageJinWhenTalkScript: ; 0x1849e3
+SageJinScript: ; 0x1849e3
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x184dfa
@@ -73723,19 +73723,19 @@ TrainerSageTroy: ; 0x1849eb
 	db SAGE, TROY
 
 	; text when seen
-	dw TrainerSageTroyWhenSeenText
+	dw SageTroySeenText
 
 	; text when trainer beaten
-	dw TrainerSageTroyWhenBeatenText
+	dw SageTroyBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerSageTroyWhenTalkScript
+	dw SageTroyScript
 ; 0x1849f7
 
-TrainerSageTroyWhenTalkScript: ; 0x1849f7
+SageTroyScript: ; 0x1849f7
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x184ea4
@@ -73752,19 +73752,19 @@ TrainerSageNeal: ; 0x1849ff
 	db SAGE, NEAL
 
 	; text when seen
-	dw TrainerSageNealWhenSeenText
+	dw SageNealSeenText
 
 	; text when trainer beaten
-	dw TrainerSageNealWhenBeatenText
+	dw SageNealBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerSageNealWhenTalkScript
+	dw SageNealScript
 ; 0x184a0b
 
-TrainerSageNealWhenTalkScript: ; 0x184a0b
+SageNealScript: ; 0x184a0b
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x184f12
@@ -73849,7 +73849,7 @@ UnknownText_0x184bc8: ; 0x184bc8
 	db "ESCAPE ROPE!", $57
 ; 0x184be0
 
-TrainerSageLiWhenSeenText: ; 0x184be0
+SageLiSeenText: ; 0x184be0
 	db $0, "So good of you to", $4f
 	db "come here!", $51
 	db "SPROUT TOWER is a", $4f
@@ -73866,7 +73866,7 @@ TrainerSageLiWhenSeenText: ; 0x184be0
 	db "you!", $57
 ; 0x184cb2
 
-TrainerSageLiWhenBeatenText: ; 0x184cb2
+SageLiBeatenText: ; 0x184cb2
 	db $0, "Ah, excellent!", $57
 ; 0x184cc2
 
@@ -73895,13 +73895,13 @@ UnknownText_0x184d88: ; 0x184d88
 	db "journey.", $57
 ; 0x184db6
 
-TrainerSageJinWhenSeenText: ; 0x184db6
+SageJinSeenText: ; 0x184db6
 	db $0, "I train to find", $4f
 	db "enlightenment in", $55
 	db "#MON!", $57
 ; 0x184dde
 
-TrainerSageJinWhenBeatenText: ; 0x184dde
+SageJinBeatenText: ; 0x184dde
 	db $0, "My training is", $4f
 	db "incomplete…", $57
 ; 0x184dfa
@@ -73916,13 +73916,13 @@ UnknownText_0x184dfa: ; 0x184dfa
 	db "the #MON.", $57
 ; 0x184e60
 
-TrainerSageTroyWhenSeenText: ; 0x184e60
+SageTroySeenText: ; 0x184e60
 	db $0, "Let me see how", $4f
 	db "much you trust", $55
 	db "your #MON.", $57
 ; 0x184e8a
 
-TrainerSageTroyWhenBeatenText: ; 0x184e8a
+SageTroyBeatenText: ; 0x184e8a
 	db $0, "Yes, your trust is", $4f
 	db "real!", $57
 ; 0x184ea4
@@ -73932,13 +73932,13 @@ UnknownText_0x184ea4: ; 0x184ea4
 	db "the ELDER.", $57
 ; 0x184ec1
 
-TrainerSageNealWhenSeenText: ; 0x184ec1
+SageNealSeenText: ; 0x184ec1
 	db $0, "The ELDER's HM", $4f
 	db "lights even pitch-", $55
 	db "black darkness.", $57
 ; 0x184ef3
 
-TrainerSageNealWhenBeatenText: ; 0x184ef3
+SageNealBeatenText: ; 0x184ef3
 	db $0, "It is my head that", $4f
 	db "is bright!", $57
 ; 0x184f12
@@ -75796,19 +75796,19 @@ TrainerSwimmerfDiana: ; 0x188466
 	db SWIMMERF, DIANA
 
 	; text when seen
-	dw TrainerSwimmerfDianaWhenSeenText
+	dw SwimmerfDianaSeenText
 
 	; text when trainer beaten
-	dw TrainerSwimmerfDianaWhenBeatenText
+	dw SwimmerfDianaBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerSwimmerfDianaWhenTalkScript
+	dw SwimmerfDianaScript
 ; 0x188472
 
-TrainerSwimmerfDianaWhenTalkScript: ; 0x188472
+SwimmerfDianaScript: ; 0x188472
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x188856
@@ -75825,19 +75825,19 @@ TrainerSwimmerfBriana: ; 0x18847a
 	db SWIMMERF, BRIANA
 
 	; text when seen
-	dw TrainerSwimmerfBrianaWhenSeenText
+	dw SwimmerfBrianaSeenText
 
 	; text when trainer beaten
-	dw TrainerSwimmerfBrianaWhenBeatenText
+	dw SwimmerfBrianaBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerSwimmerfBrianaWhenTalkScript
+	dw SwimmerfBrianaScript
 ; 0x188486
 
-TrainerSwimmerfBrianaWhenTalkScript: ; 0x188486
+SwimmerfBrianaScript: ; 0x188486
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x1888c0
@@ -75854,19 +75854,19 @@ TrainerSwimmermParker: ; 0x18848e
 	db SWIMMERM, PARKER
 
 	; text when seen
-	dw TrainerSwimmermParkerWhenSeenText
+	dw SwimmermParkerSeenText
 
 	; text when trainer beaten
-	dw TrainerSwimmermParkerWhenBeatenText
+	dw SwimmermParkerBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerSwimmermParkerWhenTalkScript
+	dw SwimmermParkerScript
 ; 0x18849a
 
-TrainerSwimmermParkerWhenTalkScript: ; 0x18849a
+SwimmermParkerScript: ; 0x18849a
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x188943
@@ -76045,13 +76045,13 @@ UnknownText_0x188782: ; 0x188782
 	db "skilled trainers.", $57
 ; 0x18880a
 
-TrainerSwimmerfDianaWhenSeenText: ; 0x18880a
+SwimmerfDianaSeenText: ; 0x18880a
 	db $0, "Sorry about being", $4f
 	db "away. Let's get on", $55
 	db "with it!", $57
 ; 0x188838
 
-TrainerSwimmerfDianaWhenBeatenText: ; 0x188838
+SwimmerfDianaBeatenText: ; 0x188838
 	db $0, "I give up! You're", $4f
 	db "the winner!", $57
 ; 0x188856
@@ -76061,13 +76061,13 @@ UnknownText_0x188856: ; 0x188856
 	db "quietly.", $57
 ; 0x188870
 
-TrainerSwimmerfBrianaWhenSeenText: ; 0x188870
+SwimmerfBrianaSeenText: ; 0x188870
 	db $0, "Don't let my ele-", $4f
 	db "gant swimming un-", $55
 	db "nerve you.", $57
 ; 0x18889f
 
-TrainerSwimmerfBrianaWhenBeatenText: ; 0x18889f
+SwimmerfBrianaBeatenText: ; 0x18889f
 	db $0, "Ooh, you calmly", $4f
 	db "disposed of me…", $57
 ; 0x1888c0
@@ -76080,13 +76080,13 @@ UnknownText_0x1888c0: ; 0x1888c0
 	db "complacent.", $57
 ; 0x188912
 
-TrainerSwimmermParkerWhenSeenText: ; 0x188912
+SwimmermParkerSeenText: ; 0x188912
 	db $0, "Glub…", $51
 	db "I'm first! Come", $4f
 	db "and get me!", $57
 ; 0x188934
 
-TrainerSwimmermParkerWhenBeatenText: ; 0x188934
+SwimmermParkerBeatenText: ; 0x188934
 	db $0, "This can't be…", $57
 ; 0x188943
 
@@ -77232,19 +77232,19 @@ TrainerMediumRebecca: ; 0x189c6b
 	db MEDIUM, REBECCA
 
 	; text when seen
-	dw TrainerMediumRebeccaWhenSeenText
+	dw MediumRebeccaSeenText
 
 	; text when trainer beaten
-	dw TrainerMediumRebeccaWhenBeatenText
+	dw MediumRebeccaBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerMediumRebeccaWhenTalkScript
+	dw MediumRebeccaScript
 ; 0x189c77
 
-TrainerMediumRebeccaWhenTalkScript: ; 0x189c77
+MediumRebeccaScript: ; 0x189c77
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x18a034
@@ -77261,19 +77261,19 @@ TrainerPsychicFranklin: ; 0x189c7f
 	db PSYCHIC_T, FRANKLIN
 
 	; text when seen
-	dw TrainerPsychicFranklinWhenSeenText
+	dw PsychicFranklinSeenText
 
 	; text when trainer beaten
-	dw TrainerPsychicFranklinWhenBeatenText
+	dw PsychicFranklinBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerPsychicFranklinWhenTalkScript
+	dw PsychicFranklinScript
 ; 0x189c8b
 
-TrainerPsychicFranklinWhenTalkScript: ; 0x189c8b
+PsychicFranklinScript: ; 0x189c8b
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x18a0a6
@@ -77290,19 +77290,19 @@ TrainerMediumDoris: ; 0x189c93
 	db MEDIUM, DORIS
 
 	; text when seen
-	dw TrainerMediumDorisWhenSeenText
+	dw MediumDorisSeenText
 
 	; text when trainer beaten
-	dw TrainerMediumDorisWhenBeatenText
+	dw MediumDorisBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerMediumDorisWhenTalkScript
+	dw MediumDorisScript
 ; 0x189c9f
 
-TrainerMediumDorisWhenTalkScript: ; 0x189c9f
+MediumDorisScript: ; 0x189c9f
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x18a136
@@ -77319,19 +77319,19 @@ TrainerPsychicJared: ; 0x189ca7
 	db PSYCHIC_T, JARED
 
 	; text when seen
-	dw TrainerPsychicJaredWhenSeenText
+	dw PsychicJaredSeenText
 
 	; text when trainer beaten
-	dw TrainerPsychicJaredWhenBeatenText
+	dw PsychicJaredBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerPsychicJaredWhenTalkScript
+	dw PsychicJaredScript
 ; 0x189cb3
 
-TrainerPsychicJaredWhenTalkScript: ; 0x189cb3
+PsychicJaredScript: ; 0x189cb3
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x18a1b3
@@ -77433,13 +77433,13 @@ UnknownText_0x189f6c: ; 0x189f6c
 	db "power…", $57
 ; 0x189fe9
 
-TrainerMediumRebeccaWhenSeenText: ; 0x189fe9
+MediumRebeccaSeenText: ; 0x189fe9
 	db $0, "The power of all", $4f
 	db "those you defeated", $55
 	db "comes to me!", $57
 ; 0x18a01b
 
-TrainerMediumRebeccaWhenBeatenText: ; 0x18a01b
+MediumRebeccaBeatenText: ; 0x18a01b
 	db $0, "Strong…", $4f
 	db "Far too strong…", $57
 ; 0x18a034
@@ -77449,13 +77449,13 @@ UnknownText_0x18a034: ; 0x18a034
 	db "of your power?", $57
 ; 0x18a057
 
-TrainerPsychicFranklinWhenSeenText: ; 0x18a057
+PsychicFranklinSeenText: ; 0x18a057
 	db $0, "Psychic power is", $4f
 	db "the power of your", $55
 	db "soul.", $57
 ; 0x18a081
 
-TrainerPsychicFranklinWhenBeatenText: ; 0x18a081
+PsychicFranklinBeatenText: ; 0x18a081
 	db $0, "Your soul has more", $4f
 	db "power than mine!", $57
 ; 0x18a0a6
@@ -77466,14 +77466,14 @@ UnknownText_0x18a0a6: ; 0x18a0a6
 	db "your abilities.", $57
 ; 0x18a0dd
 
-TrainerMediumDorisWhenSeenText: ; 0x18a0dd
+MediumDorisSeenText: ; 0x18a0dd
 	db $0, "Fufufufu…", $4f
 	db "I see it clearly.", $51
 	db "I can see into", $4f
 	db "your soul!", $57
 ; 0x18a114
 
-TrainerMediumDorisWhenBeatenText: ; 0x18a114
+MediumDorisBeatenText: ; 0x18a114
 	db $0, "Though I read you,", $4f
 	db "I still lost…", $57
 ; 0x18a136
@@ -77484,13 +77484,13 @@ UnknownText_0x18a136: ; 0x18a136
 	db "would lose to you.", $57
 ; 0x18a16c
 
-TrainerPsychicJaredWhenSeenText: ; 0x18a16c
+PsychicJaredSeenText: ; 0x18a16c
 	db $0, "The FIGHTING DOJO", $4f
 	db "next door was once", $55
 	db "this city's GYM.", $57
 ; 0x18a1a2
 
-TrainerPsychicJaredWhenBeatenText: ; 0x18a1a2
+PsychicJaredBeatenText: ; 0x18a1a2
 	db $0, "I was no match…", $57
 ; 0x18a1b3
 
@@ -79827,19 +79827,19 @@ TrainerCooltrainermDarin: ; 0x18c90a
 	db COOLTRAINERM, DARIN
 
 	; text when seen
-	dw TrainerCooltrainermDarinWhenSeenText
+	dw CooltrainermDarinSeenText
 
 	; text when trainer beaten
-	dw TrainerCooltrainermDarinWhenBeatenText
+	dw CooltrainermDarinBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerCooltrainermDarinWhenTalkScript
+	dw CooltrainermDarinScript
 ; 0x18c916
 
-TrainerCooltrainermDarinWhenTalkScript: ; 0x18c916
+CooltrainermDarinScript: ; 0x18c916
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x18cd82
@@ -79856,19 +79856,19 @@ TrainerCooltrainerfCara: ; 0x18c91e
 	db COOLTRAINERF, CARA
 
 	; text when seen
-	dw TrainerCooltrainerfCaraWhenSeenText
+	dw CooltrainerfCaraSeenText
 
 	; text when trainer beaten
-	dw TrainerCooltrainerfCaraWhenBeatenText
+	dw CooltrainerfCaraBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerCooltrainerfCaraWhenTalkScript
+	dw CooltrainerfCaraScript
 ; 0x18c92a
 
-TrainerCooltrainerfCaraWhenTalkScript: ; 0x18c92a
+CooltrainerfCaraScript: ; 0x18c92a
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x18ce11
@@ -79887,20 +79887,20 @@ TrainerTwinsLeaandpia1: ; 0x18c946
 	db TWINS, LEAANDPIA1
 
 	; text when seen
-	dw TrainerTwinsLeaandpia1WhenSeenText
+	dw TwinsLeaandpia1SeenText
 
 	; text when trainer beaten
-	;dw TrainerTwinsLeaandpia1WhenBeatenText
+	;dw TwinsLeaandpia1BeatenText
 	dw $4f06
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerTwinsLeaandpia1WhenTalkScript
+	dw TwinsLeaandpia1Script
 ; 0x18c952
 
-TrainerTwinsLeaandpia1WhenTalkScript: ; 0x18c952
+TwinsLeaandpia1Script: ; 0x18c952
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x18cf0f
@@ -80089,12 +80089,12 @@ UnknownText_0x18cd2d: ; 0x18cd2d
 	db "of my way…", $57
 ; 0x18cd53
 
-TrainerCooltrainermDarinWhenSeenText: ; 0x18cd53
+CooltrainermDarinSeenText: ; 0x18cd53
 	db $0, "You! How dare you", $4f
 	db "enter uninvited!", $57
 ; 0x18cd77
 
-TrainerCooltrainermDarinWhenBeatenText: ; 0x18cd77
+CooltrainermDarinBeatenText: ; 0x18cd77
 	db $0, "S-strong!", $57
 ; 0x18cd82
 
@@ -80107,12 +80107,12 @@ UnknownText_0x18cd82: ; 0x18cd82
 	db "to just go in!", $57
 ; 0x18cde4
 
-TrainerCooltrainerfCaraWhenSeenText: ; 0x18cde4
+CooltrainerfCaraSeenText: ; 0x18cde4
 	db $0, "You shouldn't be", $4f
 	db "in here!", $57
 ; 0x18cdfe
 
-TrainerCooltrainerfCaraWhenBeatenText: ; 0x18cdfe
+CooltrainerfCaraBeatenText: ; 0x18cdfe
 	db $0, "Oh yikes, I lost!", $57
 ; 0x18ce11
 
@@ -80134,7 +80134,7 @@ UnknownText_0x18ceab: ; 0x18ceab
 	db "don't know.", $57
 ; 0x18cec9
 
-TrainerTwinsLeaandpia1WhenBeatenText: ; 0x18cec9
+TwinsLeaandpia1BeatenText: ; 0x18cec9
 	db $0, "Ouchies.", $57
 ; 0x18ced3
 
@@ -80143,7 +80143,7 @@ UnknownText_0x18ced3: ; 0x18ced3
 	db "to battle LANCE.", $57
 ; 0x18cef8
 
-TrainerTwinsLeaandpia1WhenSeenText: ; 0x18cef8
+TwinsLeaandpia1SeenText: ; 0x18cef8
 	db $0, "Who are you?", $57
 ; 0x18cf06
 
@@ -81968,19 +81968,19 @@ TrainerTwinsAmyandmay1: ; 0x18ec82
 	db TWINS, AMYANDMAY1
 
 	; text when seen
-	dw TrainerTwinsAmyandmay1WhenSeenText
+	dw TwinsAmyandmay1SeenText
 
 	; text when trainer beaten
-	dw TrainerTwinsAmyandmay1WhenBeatenText
+	dw TwinsAmyandmay1BeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerTwinsAmyandmay1WhenTalkScript
+	dw TwinsAmyandmay1Script
 ; 0x18ec8e
 
-TrainerTwinsAmyandmay1WhenTalkScript: ; 0x18ec8e
+TwinsAmyandmay1Script: ; 0x18ec8e
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x18f1fc
@@ -81997,19 +81997,19 @@ TrainerTwinsAmyandmay2: ; 0x18ec96
 	db TWINS, AMYANDMAY2
 
 	; text when seen
-	dw TrainerTwinsAmyandmay2WhenSeenText
+	dw TwinsAmyandmay2SeenText
 
 	; text when trainer beaten
-	dw TrainerTwinsAmyandmay2WhenBeatenText
+	dw TwinsAmyandmay2BeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerTwinsAmyandmay2WhenTalkScript
+	dw TwinsAmyandmay2Script
 ; 0x18eca2
 
-TrainerTwinsAmyandmay2WhenTalkScript: ; 0x18eca2
+TwinsAmyandmay2Script: ; 0x18eca2
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x18f269
@@ -82026,19 +82026,19 @@ TrainerBug_catcherBug_catcher_benny: ; 0x18ecaa
 	db BUG_CATCHER, BUG_CATCHER_BENNY
 
 	; text when seen
-	dw TrainerBug_catcherBug_catcher_bennyWhenSeenText
+	dw Bug_catcherBug_catcher_bennySeenText
 
 	; text when trainer beaten
-	dw TrainerBug_catcherBug_catcher_bennyWhenBeatenText
+	dw Bug_catcherBug_catcher_bennyBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerBug_catcherBug_catcher_bennyWhenTalkScript
+	dw Bug_catcherBug_catcher_bennyScript
 ; 0x18ecb6
 
-TrainerBug_catcherBug_catcher_bennyWhenTalkScript: ; 0x18ecb6
+Bug_catcherBug_catcher_bennyScript: ; 0x18ecb6
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x18f053
@@ -82055,19 +82055,19 @@ TrainerBug_catcherAl: ; 0x18ecbe
 	db BUG_CATCHER, AL
 
 	; text when seen
-	dw TrainerBug_catcherAlWhenSeenText
+	dw Bug_catcherAlSeenText
 
 	; text when trainer beaten
-	dw TrainerBug_catcherAlWhenBeatenText
+	dw Bug_catcherAlBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerBug_catcherAlWhenTalkScript
+	dw Bug_catcherAlScript
 ; 0x18ecca
 
-TrainerBug_catcherAlWhenTalkScript: ; 0x18ecca
+Bug_catcherAlScript: ; 0x18ecca
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x18f0d3
@@ -82084,19 +82084,19 @@ TrainerBug_catcherJosh: ; 0x18ecd2
 	db BUG_CATCHER, JOSH
 
 	; text when seen
-	dw TrainerBug_catcherJoshWhenSeenText
+	dw Bug_catcherJoshSeenText
 
 	; text when trainer beaten
-	dw TrainerBug_catcherJoshWhenBeatenText
+	dw Bug_catcherJoshBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerBug_catcherJoshWhenTalkScript
+	dw Bug_catcherJoshScript
 ; 0x18ecde
 
-TrainerBug_catcherJoshWhenTalkScript: ; 0x18ecde
+Bug_catcherJoshScript: ; 0x18ecde
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x18f17e
@@ -82201,14 +82201,14 @@ UnknownText_0x18ef98: ; 0x18ef98
 	db "ites thoroughly.", $57
 ; 0x18eff8
 
-TrainerBug_catcherBug_catcher_bennyWhenSeenText: ; 0x18eff8
+Bug_catcherBug_catcher_bennySeenText: ; 0x18eff8
 	db $0, "Bug #MON evolve", $4f
 	db "young. So they get", $51
 	db "stronger that much", $4f
 	db "faster.", $57
 ; 0x18f037
 
-TrainerBug_catcherBug_catcher_bennyWhenBeatenText: ; 0x18f037
+Bug_catcherBug_catcher_bennyBeatenText: ; 0x18f037
 	db $0, "Just evolving", $4f
 	db "isn't enough!", $57
 ; 0x18f053
@@ -82219,14 +82219,14 @@ UnknownText_0x18f053: ; 0x18f053
 	db "evolve. Really!", $57
 ; 0x18f081
 
-TrainerBug_catcherAlWhenSeenText: ; 0x18f081
+Bug_catcherAlSeenText: ; 0x18f081
 	db $0, "Bug #MON are", $4f
 	db "cool and tough!", $51
 	db "I'll prove it to", $4f
 	db "you!", $57
 ; 0x18f0b4
 
-TrainerBug_catcherAlWhenBeatenText: ; 0x18f0b4
+Bug_catcherAlBeatenText: ; 0x18f0b4
 	db $0, "You proved how", $4f
 	db "tough you are…", $57
 ; 0x18f0d3
@@ -82239,7 +82239,7 @@ UnknownText_0x18f0d3: ; 0x18f0d3
 	db "I don't know why…", $57
 ; 0x18f118
 
-TrainerBug_catcherJoshWhenSeenText: ; 0x18f118
+Bug_catcherJoshSeenText: ; 0x18f118
 	db $0, "You saved all the", $4f
 	db "SLOWPOKE? Whew,", $55
 	db "you're mighty!", $51
@@ -82248,7 +82248,7 @@ TrainerBug_catcherJoshWhenSeenText: ; 0x18f118
 	db "tough too!", $57
 ; 0x18f174
 
-TrainerBug_catcherJoshWhenBeatenText: ; 0x18f174
+Bug_catcherJoshBeatenText: ; 0x18f174
 	db $0, "Urrgggh!", $57
 ; 0x18f17e
 
@@ -82258,13 +82258,13 @@ UnknownText_0x18f17e: ; 0x18f17e
 	db "moves…", $57
 ; 0x18f1a9
 
-TrainerTwinsAmyandmay1WhenSeenText: ; 0x18f1a9
+TwinsAmyandmay1SeenText: ; 0x18f1a9
 	db $0, "AMY: Hi! Are you", $4f
 	db "challenging the", $55
 	db "LEADER? No way!", $57
 ; 0x18f1db
 
-TrainerTwinsAmyandmay1WhenBeatenText: ; 0x18f1db
+TwinsAmyandmay1BeatenText: ; 0x18f1db
 	db $0, "AMY & MAY: Oh,", $4f
 	db "double goodness!", $57
 ; 0x18f1fc
@@ -82274,13 +82274,13 @@ UnknownText_0x18f1fc: ; 0x18f1fc
 	db "really strong!", $57
 ; 0x18f217
 
-TrainerTwinsAmyandmay2WhenSeenText: ; 0x18f217
+TwinsAmyandmay2SeenText: ; 0x18f217
 	db $0, "MAY: You want to", $4f
 	db "see the LEADER?", $55
 	db "We come first!", $57
 ; 0x18f248
 
-TrainerTwinsAmyandmay2WhenBeatenText: ; 0x18f248
+TwinsAmyandmay2BeatenText: ; 0x18f248
 	db $0, "AMY & MAY: Oh,", $4f
 	db "double goodness!", $57
 ; 0x18f269
@@ -82793,19 +82793,19 @@ TrainerCamperRoland: ; 0x190509
 	db CAMPER, ROLAND
 
 	; text when seen
-	dw TrainerCamperRolandWhenSeenText
+	dw CamperRolandSeenText
 
 	; text when trainer beaten
-	dw TrainerCamperRolandWhenBeatenText
+	dw CamperRolandBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerCamperRolandWhenTalkScript
+	dw CamperRolandScript
 ; 0x190515
 
-TrainerCamperRolandWhenTalkScript: ; 0x190515
+CamperRolandScript: ; 0x190515
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x190faa
@@ -82822,19 +82822,19 @@ TrainerFisherJustin: ; 0x19051d
 	db FISHER, JUSTIN
 
 	; text when seen
-	dw TrainerFisherJustinWhenSeenText
+	dw FisherJustinSeenText
 
 	; text when trainer beaten
-	dw TrainerFisherJustinWhenBeatenText
+	dw FisherJustinBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerFisherJustinWhenTalkScript
+	dw FisherJustinScript
 ; 0x190529
 
-TrainerFisherJustinWhenTalkScript: ; 0x190529
+FisherJustinScript: ; 0x190529
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x190b4e
@@ -82851,19 +82851,19 @@ TrainerFisherRalph1: ; 0x190531
 	db FISHER, RALPH1
 
 	; text when seen
-	dw TrainerFisherRalph1WhenSeenText
+	dw FisherRalph1SeenText
 
 	; text when trainer beaten
-	dw TrainerFisherRalph1WhenBeatenText
+	dw FisherRalph1BeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerFisherRalph1WhenTalkScript
+	dw FisherRalph1Script
 ; 0x19053d
 
-TrainerFisherRalph1WhenTalkScript: ; 0x19053d
+FisherRalph1Script: ; 0x19053d
 	writecode $17, $11
 	talkaftercancel
 	loadfont
@@ -82895,7 +82895,7 @@ UnknownScript_0x190569: ; 0x190569
 
 UnknownScript_0x19057d: ; 0x19057d
 	2call UnknownScript_0x19060f
-	winlosstext TrainerFisherRalph1WhenBeatenText, $0000
+	winlosstext FisherRalph1BeatenText, $0000
 	copybytetovar $d9fb
 	if_equal $4, UnknownScript_0x19059c
 	if_equal $3, UnknownScript_0x1905a2
@@ -83008,19 +83008,19 @@ TrainerFisherHenry: ; 0x190613
 	db FISHER, HENRY
 
 	; text when seen
-	dw TrainerFisherHenryWhenSeenText
+	dw FisherHenrySeenText
 
 	; text when trainer beaten
-	dw TrainerFisherHenryWhenBeatenText
+	dw FisherHenryBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerFisherHenryWhenTalkScript
+	dw FisherHenryScript
 ; 0x19061f
 
-TrainerFisherHenryWhenTalkScript: ; 0x19061f
+FisherHenryScript: ; 0x19061f
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x190df2
@@ -83037,19 +83037,19 @@ TrainerPicnickerLiz1: ; 0x190627
 	db PICNICKER, LIZ1
 
 	; text when seen
-	dw TrainerPicnickerLiz1WhenSeenText
+	dw PicnickerLiz1SeenText
 
 	; text when trainer beaten
-	dw TrainerPicnickerLiz1WhenBeatenText
+	dw PicnickerLiz1BeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerPicnickerLiz1WhenTalkScript
+	dw PicnickerLiz1Script
 ; 0x190633
 
-TrainerPicnickerLiz1WhenTalkScript: ; 0x190633
+PicnickerLiz1Script: ; 0x190633
 	writecode $17, $12
 	talkaftercancel
 	loadfont
@@ -83079,7 +83079,7 @@ UnknownScript_0x190659: ; 0x190659
 
 UnknownScript_0x19066d: ; 0x19066d
 	2call UnknownScript_0x1906f9
-	winlosstext TrainerPicnickerLiz1WhenBeatenText, $0000
+	winlosstext PicnickerLiz1BeatenText, $0000
 	copybytetovar $d9fc
 	if_equal $4, UnknownScript_0x19068c
 	if_equal $3, UnknownScript_0x190692
@@ -83185,19 +83185,19 @@ TrainerYoungsterAlbert: ; 0x1906fd
 	db YOUNGSTER, ALBERT
 
 	; text when seen
-	dw TrainerYoungsterAlbertWhenSeenText
+	dw YoungsterAlbertSeenText
 
 	; text when trainer beaten
-	dw TrainerYoungsterAlbertWhenBeatenText
+	dw YoungsterAlbertBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerYoungsterAlbertWhenTalkScript
+	dw YoungsterAlbertScript
 ; 0x190709
 
-TrainerYoungsterAlbertWhenTalkScript: ; 0x190709
+YoungsterAlbertScript: ; 0x190709
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x190e82
@@ -83214,19 +83214,19 @@ TrainerYoungsterGordon: ; 0x190711
 	db YOUNGSTER, GORDON
 
 	; text when seen
-	dw TrainerYoungsterGordonWhenSeenText
+	dw YoungsterGordonSeenText
 
 	; text when trainer beaten
-	dw TrainerYoungsterGordonWhenBeatenText
+	dw YoungsterGordonBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerYoungsterGordonWhenTalkScript
+	dw YoungsterGordonScript
 ; 0x19071d
 
-TrainerYoungsterGordonWhenTalkScript: ; 0x19071d
+YoungsterGordonScript: ; 0x19071d
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x190f49
@@ -83243,19 +83243,19 @@ TrainerBird_keeperPeter: ; 0x190725
 	db BIRD_KEEPER, PETER
 
 	; text when seen
-	dw TrainerBird_keeperPeterWhenSeenText
+	dw Bird_keeperPeterSeenText
 
 	; text when trainer beaten
-	dw TrainerBird_keeperPeterWhenBeatenText
+	dw Bird_keeperPeterBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerBird_keeperPeterWhenTalkScript
+	dw Bird_keeperPeterScript
 ; 0x190731
 
-TrainerBird_keeperPeterWhenTalkScript: ; 0x190731
+Bird_keeperPeterScript: ; 0x190731
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x1910d4
@@ -83442,13 +83442,13 @@ UnknownText_0x190afc: ; 0x190afc
 	db "Then scram. Shoo!", $57
 ; 0x190b21
 
-TrainerFisherJustinWhenSeenText: ; 0x190b21
+FisherJustinSeenText: ; 0x190b21
 	db $0, "Whoa!", $51
 	db "You made me lose", $4f
 	db "that fish!", $57
 ; 0x190b44
 
-TrainerFisherJustinWhenBeatenText: ; 0x190b44
+FisherJustinBeatenText: ; 0x190b44
 	db $0, "Sploosh!", $57
 ; 0x190b4e
 
@@ -83459,7 +83459,7 @@ UnknownText_0x190b4e: ; 0x190b4e
 	db "MON is the same.", $57
 ; 0x190b8f
 
-TrainerFisherRalph1WhenSeenText: ; 0x190b8f
+FisherRalph1SeenText: ; 0x190b8f
 	db $0, "I'm really good at", $4f
 	db "both fishing and", $55
 	db "#MON.", $51
@@ -83467,7 +83467,7 @@ TrainerFisherRalph1WhenSeenText: ; 0x190b8f
 	db "lose to any kid!", $57
 ; 0x190bda
 
-TrainerFisherRalph1WhenBeatenText: ; 0x190bda
+FisherRalph1BeatenText: ; 0x190bda
 	db $0, "Tch! I tried to", $4f
 	db "rush things…", $57
 ; 0x190bf8
@@ -83529,12 +83529,12 @@ UnknownText_0x190d92: ; 0x190d92
 
 ; --- end a segment of possibly unused texts
 
-TrainerFisherHenryWhenSeenText: ; 0x190dcf
+FisherHenrySeenText: ; 0x190dcf
 	db $0, "My #MON?", $4f
 	db "Freshly caught!", $57
 ; 0x190de9
 
-TrainerFisherHenryWhenBeatenText: ; 0x190de9
+FisherHenryBeatenText: ; 0x190de9
 	db $0, "SPLASH?", $57
 ; 0x190df2
 
@@ -83545,14 +83545,14 @@ UnknownText_0x190df2: ; 0x190df2
 	db "raised ones.", $57
 ; 0x190e2e
 
-TrainerYoungsterAlbertWhenSeenText: ; 0x190e2e
+YoungsterAlbertSeenText: ; 0x190e2e
 	db $0, "I haven't seen you", $4f
 	db "around before.", $51
 	db "So you think you", $4f
 	db "are pretty tough?", $57
 ; 0x190e73
 
-TrainerYoungsterAlbertWhenBeatenText: ; 0x190e73
+YoungsterAlbertBeatenText: ; 0x190e73
 	db $0, "You're strong!", $57
 ; 0x190e82
 
@@ -83565,7 +83565,7 @@ UnknownText_0x190e82: ; 0x190e82
 	db "as everyone else.", $57
 ; 0x190ee8
 
-TrainerYoungsterGordonWhenSeenText: ; 0x190ee8
+YoungsterGordonSeenText: ; 0x190ee8
 	db $0, "I found some good", $4f
 	db "#MON in the", $55
 	db "grass!", $51
@@ -83573,7 +83573,7 @@ TrainerYoungsterGordonWhenSeenText: ; 0x190ee8
 	db "it for me!", $57
 ; 0x190f2b
 
-TrainerYoungsterGordonWhenBeatenText: ; 0x190f2b
+YoungsterGordonBeatenText: ; 0x190f2b
 	db $0, "Darn. I thought I", $4f
 	db "could win.", $57
 ; 0x190f49
@@ -83583,12 +83583,12 @@ UnknownText_0x190f49: ; 0x190f49
 	db "of clingy things.", $57
 ; 0x190f6e
 
-TrainerCamperRolandWhenSeenText: ; 0x190f6e
+CamperRolandSeenText: ; 0x190f6e
 	db $0, "That glance…", $4f
 	db "It's intriguing.", $57
 ; 0x190f8c
 
-TrainerCamperRolandWhenBeatenText: ; 0x190f8c
+CamperRolandBeatenText: ; 0x190f8c
 	db $0, "Hmmm. This is", $4f
 	db "disappointing.", $57
 ; 0x190faa
@@ -83599,7 +83599,7 @@ UnknownText_0x190faa: ; 0x190faa
 	db "avoid eye contact.", $57
 ; 0x190fdf
 
-TrainerPicnickerLiz1WhenSeenText: ; 0x190fdf
+PicnickerLiz1SeenText: ; 0x190fdf
 	db $0, "Uh-huh. Yeah, and", $4f
 	db "you know…", $51
 	db "Pardon? Battle?", $4f
@@ -83608,7 +83608,7 @@ TrainerPicnickerLiz1WhenSeenText: ; 0x190fdf
 	db "make it fast.", $57
 ; 0x19103e
 
-TrainerPicnickerLiz1WhenBeatenText: ; 0x19103e
+PicnickerLiz1BeatenText: ; 0x19103e
 	db $0, "Oh! I've got to", $4f
 	db "relieve my anger!", $57
 ; 0x191060
@@ -83618,13 +83618,13 @@ UnknownText_0x191060: ; 0x191060
 	db "nice chat too.", $57
 ; 0x19107f
 
-TrainerBird_keeperPeterWhenSeenText: ; 0x19107f
+Bird_keeperPeterSeenText: ; 0x19107f
 	db $0, "That BADGE! It's", $4f
 	db "from VIOLET CITY!", $51
 	db "You beat FALKNER?", $57
 ; 0x1910b4
 
-TrainerBird_keeperPeterWhenBeatenText: ; 0x1910b4
+Bird_keeperPeterBeatenText: ; 0x1910b4
 	db $0, "I know what my", $4f
 	db "weaknesses are.", $57
 ; 0x1910d4
@@ -84460,19 +84460,19 @@ TrainerGentlemanGregory: ; 0x1920df
 	db GENTLEMAN, GREGORY
 
 	; text when seen
-	dw TrainerGentlemanGregoryWhenSeenText
+	dw GentlemanGregorySeenText
 
 	; text when trainer beaten
-	dw TrainerGentlemanGregoryWhenBeatenText
+	dw GentlemanGregoryBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerGentlemanGregoryWhenTalkScript
+	dw GentlemanGregoryScript
 ; 0x1920eb
 
-TrainerGentlemanGregoryWhenTalkScript: ; 0x1920eb
+GentlemanGregoryScript: ; 0x1920eb
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x1923b0
@@ -84489,19 +84489,19 @@ TrainerGuitaristVincent: ; 0x1920f3
 	db GUITARIST, VINCENT
 
 	; text when seen
-	dw TrainerGuitaristVincentWhenSeenText
+	dw GuitaristVincentSeenText
 
 	; text when trainer beaten
-	dw TrainerGuitaristVincentWhenBeatenText
+	dw GuitaristVincentBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerGuitaristVincentWhenTalkScript
+	dw GuitaristVincentScript
 ; 0x1920ff
 
-TrainerGuitaristVincentWhenTalkScript: ; 0x1920ff
+GuitaristVincentScript: ; 0x1920ff
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x19244b
@@ -84518,19 +84518,19 @@ TrainerJugglerHorton: ; 0x192107
 	db JUGGLER, HORTON
 
 	; text when seen
-	dw TrainerJugglerHortonWhenSeenText
+	dw JugglerHortonSeenText
 
 	; text when trainer beaten
-	dw TrainerJugglerHortonWhenBeatenText
+	dw JugglerHortonBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerJugglerHortonWhenTalkScript
+	dw JugglerHortonScript
 ; 0x192113
 
-TrainerJugglerHortonWhenTalkScript: ; 0x192113
+JugglerHortonScript: ; 0x192113
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x1924d6
@@ -84619,14 +84619,14 @@ UnknownText_0x192303: ; 0x192303
 	db "are still at it!", $57
 ; 0x192356
 
-TrainerGentlemanGregoryWhenSeenText: ; 0x192356
+GentlemanGregorySeenText: ; 0x192356
 	db $0, "You're here to", $4f
 	db "defeat LT.SURGE?", $51
 	db "Not if I can help", $4f
 	db "it!", $57
 ; 0x19238c
 
-TrainerGentlemanGregoryWhenBeatenText: ; 0x19238c
+GentlemanGregoryBeatenText: ; 0x19238c
 	db $0, "Sorry I failed", $4f
 	db "you, LT.SURGE,", $55
 	db "sir!", $57
@@ -84639,7 +84639,7 @@ UnknownText_0x1923b0: ; 0x1923b0
 	db "life.", $57
 ; 0x1923e8
 
-TrainerGuitaristVincentWhenSeenText: ; 0x1923e8
+GuitaristVincentSeenText: ; 0x1923e8
 	db $0, "LT.SURGE recog-", $4f
 	db "nized my potential", $51
 	db "with electric", $4f
@@ -84648,7 +84648,7 @@ TrainerGuitaristVincentWhenSeenText: ; 0x1923e8
 	db "me?", $57
 ; 0x192437
 
-TrainerGuitaristVincentWhenBeatenText: ; 0x192437
+GuitaristVincentBeatenText: ; 0x192437
 	db $0, "Ooh, how shocking!", $57
 ; 0x19244b
 
@@ -84659,13 +84659,13 @@ UnknownText_0x19244b: ; 0x19244b
 	db "toast…", $57
 ; 0x192487
 
-TrainerJugglerHortonWhenSeenText: ; 0x192487
+JugglerHortonSeenText: ; 0x192487
 	db $0, "I'm going to take", $4f
 	db "you down! Prepare", $55
 	db "to be shocked!", $57
 ; 0x1924ba
 
-TrainerJugglerHortonWhenBeatenText: ; 0x1924ba
+JugglerHortonBeatenText: ; 0x1924ba
 	db $0, "Gwaaah!", $4f
 	db "I was overpowered…", $57
 ; 0x1924d6
@@ -86604,19 +86604,19 @@ TrainerSchoolboyAlan1: ; 0x1940f4
 	db SCHOOLBOY, ALAN1
 
 	; text when seen
-	dw TrainerSchoolboyAlan1WhenSeenText
+	dw SchoolboyAlan1SeenText
 
 	; text when trainer beaten
-	dw TrainerSchoolboyAlan1WhenBeatenText
+	dw SchoolboyAlan1BeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerSchoolboyAlan1WhenTalkScript
+	dw SchoolboyAlan1Script
 ; 0x194100
 
-TrainerSchoolboyAlan1WhenTalkScript: ; 0x194100
+SchoolboyAlan1Script: ; 0x194100
 	writecode $17, $18
 	talkaftercancel
 	loadfont
@@ -86648,7 +86648,7 @@ UnknownScript_0x19412c: ; 0x19412c
 
 UnknownScript_0x194140: ; 0x194140
 	2call UnknownScript_0x1941e1
-	winlosstext TrainerSchoolboyAlan1WhenBeatenText, $0000
+	winlosstext SchoolboyAlan1BeatenText, $0000
 	copybytetovar $da02
 	if_equal $4, UnknownScript_0x19415f
 	if_equal $3, UnknownScript_0x194165
@@ -86777,19 +86777,19 @@ TrainerPsychicMark: ; 0x1941ed
 	db PSYCHIC_T, MARK
 
 	; text when seen
-	dw TrainerPsychicMarkWhenSeenText
+	dw PsychicMarkSeenText
 
 	; text when trainer beaten
-	dw TrainerPsychicMarkWhenBeatenText
+	dw PsychicMarkBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerPsychicMarkWhenTalkScript
+	dw PsychicMarkScript
 ; 0x1941f9
 
-TrainerPsychicMarkWhenTalkScript: ; 0x1941f9
+PsychicMarkScript: ; 0x1941f9
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x19471e
@@ -87017,12 +87017,12 @@ UnknownText_0x19469e: ; 0x19469e
 	db "really a #MON?", $57
 ; 0x1946ed
 
-TrainerPsychicMarkWhenSeenText: ; 0x1946ed
+PsychicMarkSeenText: ; 0x1946ed
 	db $0, "I'm going to read", $4f
 	db "your thoughts!", $57
 ; 0x19470e
 
-TrainerPsychicMarkWhenBeatenText: ; 0x19470e
+PsychicMarkBeatenText: ; 0x19470e
 	db $0, "I misread you!", $57
 ; 0x19471e
 
@@ -87033,13 +87033,13 @@ UnknownText_0x19471e: ; 0x19471e
 	db "was thinking.", $57
 ; 0x194760
 
-TrainerSchoolboyAlan1WhenSeenText: ; 0x194760
+SchoolboyAlan1SeenText: ; 0x194760
 	db $0, "Thanks to my stud-", $4f
 	db "ies, I'm ready for", $55
 	db "any #MON!", $57
 ; 0x194790
 
-TrainerSchoolboyAlan1WhenBeatenText: ; 0x194790
+SchoolboyAlan1BeatenText: ; 0x194790
 	db $0, "Oops! Computation", $4f
 	db "error?", $57
 ; 0x1947aa
@@ -87429,19 +87429,19 @@ TrainerCooltrainermPaul: ; 0x194e9a
 	db COOLTRAINERM, PAUL
 
 	; text when seen
-	dw TrainerCooltrainermPaulWhenSeenText
+	dw CooltrainermPaulSeenText
 
 	; text when trainer beaten
-	dw TrainerCooltrainermPaulWhenBeatenText
+	dw CooltrainermPaulBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerCooltrainermPaulWhenTalkScript
+	dw CooltrainermPaulScript
 ; 0x194ea6
 
-TrainerCooltrainermPaulWhenTalkScript: ; 0x194ea6
+CooltrainermPaulScript: ; 0x194ea6
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x1953f1
@@ -87458,19 +87458,19 @@ TrainerCooltrainermMike: ; 0x194eae
 	db COOLTRAINERM, MIKE
 
 	; text when seen
-	dw TrainerCooltrainermMikeWhenSeenText
+	dw CooltrainermMikeSeenText
 
 	; text when trainer beaten
-	dw TrainerCooltrainermMikeWhenBeatenText
+	dw CooltrainermMikeBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerCooltrainermMikeWhenTalkScript
+	dw CooltrainermMikeScript
 ; 0x194eba
 
-TrainerCooltrainermMikeWhenTalkScript: ; 0x194eba
+CooltrainermMikeScript: ; 0x194eba
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x195467
@@ -87487,19 +87487,19 @@ TrainerCooltrainerfLola: ; 0x194ec2
 	db COOLTRAINERF, LOLA
 
 	; text when seen
-	dw TrainerCooltrainerfLolaWhenSeenText
+	dw CooltrainerfLolaSeenText
 
 	; text when trainer beaten
-	dw TrainerCooltrainerfLolaWhenBeatenText
+	dw CooltrainerfLolaBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerCooltrainerfLolaWhenTalkScript
+	dw CooltrainerfLolaScript
 ; 0x194ece
 
-TrainerCooltrainerfLolaWhenTalkScript: ; 0x194ece
+CooltrainerfLolaScript: ; 0x194ece
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x195516
@@ -87643,14 +87643,14 @@ UnknownText_0x195272: ; 0x195272
 	db "thing you've got.", $57
 ; 0x195396
 
-TrainerCooltrainermPaulWhenSeenText: ; 0x195396
+CooltrainermPaulSeenText: ; 0x195396
 	db $0, "Your first battle", $4f
 	db "against dragons?", $51
 	db "I'll show you how", $4f
 	db "tough they are!", $57
 ; 0x1953db
 
-TrainerCooltrainermPaulWhenBeatenText: ; 0x1953db
+CooltrainermPaulBeatenText: ; 0x1953db
 	db $0, "My dragon #MON", $4f
 	db "lost?", $57
 ; 0x1953f1
@@ -87662,13 +87662,13 @@ UnknownText_0x1953f1: ; 0x1953f1
 	db "Not a chance!", $57
 ; 0x19542f
 
-TrainerCooltrainermMikeWhenSeenText: ; 0x19542f
+CooltrainermMikeSeenText: ; 0x19542f
 	db $0, "My chance of", $4f
 	db "losing? Not even", $55
 	db "one percent!", $57
 ; 0x19545b
 
-TrainerCooltrainermMikeWhenBeatenText: ; 0x19545b
+CooltrainermMikeBeatenText: ; 0x19545b
 	db $0, "That's odd.", $57
 ; 0x195467
 
@@ -87679,7 +87679,7 @@ UnknownText_0x195467: ; 0x195467
 	db "me!", $57
 ; 0x19549d
 
-TrainerCooltrainerfLolaWhenSeenText: ; 0x19549d
+CooltrainerfLolaSeenText: ; 0x19549d
 	db $0, "Dragons are sacred", $4f
 	db "#MON.", $51
 	db "They are full of", $4f
@@ -87690,7 +87690,7 @@ TrainerCooltrainerfLolaWhenSeenText: ; 0x19549d
 	db "them.", $57
 ; 0x19550a
 
-TrainerCooltrainerfLolaWhenBeatenText: ; 0x19550a
+CooltrainerfLolaBeatenText: ; 0x19550a
 	db $0, "Way to go!", $57
 ; 0x195516
 
@@ -87792,19 +87792,19 @@ TrainerCooltrainermCody: ; 0x195761
 	db COOLTRAINERM, CODY
 
 	; text when seen
-	dw TrainerCooltrainermCodyWhenSeenText
+	dw CooltrainermCodySeenText
 
 	; text when trainer beaten
-	dw TrainerCooltrainermCodyWhenBeatenText
+	dw CooltrainermCodyBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerCooltrainermCodyWhenTalkScript
+	dw CooltrainermCodyScript
 ; 0x19576d
 
-TrainerCooltrainermCodyWhenTalkScript: ; 0x19576d
+CooltrainermCodyScript: ; 0x19576d
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x1957d5
@@ -87821,19 +87821,19 @@ TrainerCooltrainerfFran: ; 0x195775
 	db COOLTRAINERF, FRAN
 
 	; text when seen
-	dw TrainerCooltrainerfFranWhenSeenText
+	dw CooltrainerfFranSeenText
 
 	; text when trainer beaten
-	dw TrainerCooltrainerfFranWhenBeatenText
+	dw CooltrainerfFranBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerCooltrainerfFranWhenTalkScript
+	dw CooltrainerfFranScript
 ; 0x195781
 
-TrainerCooltrainerfFranWhenTalkScript: ; 0x195781
+CooltrainerfFranScript: ; 0x195781
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x195883
@@ -87842,13 +87842,13 @@ TrainerCooltrainerfFranWhenTalkScript: ; 0x195781
 	end
 ; 0x195789
 
-TrainerCooltrainermCodyWhenSeenText: ; 0x195789
+CooltrainermCodySeenText: ; 0x195789
 	db $0, "It's not as if we", $4f
 	db "all use dragon-", $55
 	db "type #MON.", $57
 ; 0x1957b6
 
-TrainerCooltrainermCodyWhenBeatenText: ; 0x1957b6
+CooltrainermCodyBeatenText: ; 0x1957b6
 	db $0, "Rats! If only I", $4f
 	db "had a dragon!", $57
 ; 0x1957d5
@@ -87862,7 +87862,7 @@ UnknownText_0x1957d5: ; 0x1957d5
 	db "it.", $57
 ; 0x19582b
 
-TrainerCooltrainerfFranWhenSeenText: ; 0x19582b
+CooltrainerfFranSeenText: ; 0x19582b
 	db $0, "I can't allow a", $4f
 	db "nameless trainer", $55
 	db "past me!", $51
@@ -87870,7 +87870,7 @@ TrainerCooltrainerfFranWhenSeenText: ; 0x19582b
 	db "livid if I did!", $57
 ; 0x195874
 
-TrainerCooltrainerfFranWhenBeatenText: ; 0x195874
+CooltrainerfFranBeatenText: ; 0x195874
 	db $0, "Awww… I lost…", $57
 ; 0x195883
 
@@ -91449,19 +91449,19 @@ TrainerSkierRoxanne: ; 0x199b05
 	db SKIER, ROXANNE
 
 	; text when seen
-	dw TrainerSkierRoxanneWhenSeenText
+	dw SkierRoxanneSeenText
 
 	; text when trainer beaten
-	dw TrainerSkierRoxanneWhenBeatenText
+	dw SkierRoxanneBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerSkierRoxanneWhenTalkScript
+	dw SkierRoxanneScript
 ; 0x199b11
 
-TrainerSkierRoxanneWhenTalkScript: ; 0x199b11
+SkierRoxanneScript: ; 0x199b11
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x19a116
@@ -91478,19 +91478,19 @@ TrainerSkierClarissa: ; 0x199b19
 	db SKIER, CLARISSA
 
 	; text when seen
-	dw TrainerSkierClarissaWhenSeenText
+	dw SkierClarissaSeenText
 
 	; text when trainer beaten
-	dw TrainerSkierClarissaWhenBeatenText
+	dw SkierClarissaBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerSkierClarissaWhenTalkScript
+	dw SkierClarissaScript
 ; 0x199b25
 
-TrainerSkierClarissaWhenTalkScript: ; 0x199b25
+SkierClarissaScript: ; 0x199b25
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x19a18f
@@ -91507,19 +91507,19 @@ TrainerBoarderRonald: ; 0x199b2d
 	db BOARDER, RONALD
 
 	; text when seen
-	dw TrainerBoarderRonaldWhenSeenText
+	dw BoarderRonaldSeenText
 
 	; text when trainer beaten
-	dw TrainerBoarderRonaldWhenBeatenText
+	dw BoarderRonaldBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerBoarderRonaldWhenTalkScript
+	dw BoarderRonaldScript
 ; 0x199b39
 
-TrainerBoarderRonaldWhenTalkScript: ; 0x199b39
+BoarderRonaldScript: ; 0x199b39
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x199f2d
@@ -91536,19 +91536,19 @@ TrainerBoarderBrad: ; 0x199b41
 	db BOARDER, BRAD
 
 	; text when seen
-	dw TrainerBoarderBradWhenSeenText
+	dw BoarderBradSeenText
 
 	; text when trainer beaten
-	dw TrainerBoarderBradWhenBeatenText
+	dw BoarderBradBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerBoarderBradWhenTalkScript
+	dw BoarderBradScript
 ; 0x199b4d
 
-TrainerBoarderBradWhenTalkScript: ; 0x199b4d
+BoarderBradScript: ; 0x199b4d
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x199fdd
@@ -91565,19 +91565,19 @@ TrainerBoarderDouglas: ; 0x199b55
 	db BOARDER, DOUGLAS
 
 	; text when seen
-	dw TrainerBoarderDouglasWhenSeenText
+	dw BoarderDouglasSeenText
 
 	; text when trainer beaten
-	dw TrainerBoarderDouglasWhenBeatenText
+	dw BoarderDouglasBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerBoarderDouglasWhenTalkScript
+	dw BoarderDouglasScript
 ; 0x199b61
 
-TrainerBoarderDouglasWhenTalkScript: ; 0x199b61
+BoarderDouglasScript: ; 0x199b61
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x19a047
@@ -91687,13 +91687,13 @@ UnknownText_0x199e59: ; 0x199e59
 	db "together!", $57
 ; 0x199ee1
 
-TrainerBoarderRonaldWhenSeenText: ; 0x199ee1
+BoarderRonaldSeenText: ; 0x199ee1
 	db $0, "I'll freeze your", $4f
 	db "#MON, so you", $55
 	db "can't do a thing!", $57
 ; 0x199f10
 
-TrainerBoarderRonaldWhenBeatenText: ; 0x199f10
+BoarderRonaldBeatenText: ; 0x199f10
 	db $0, "Darn. I couldn't", $4f
 	db "do a thing.", $57
 ; 0x199f2d
@@ -91705,7 +91705,7 @@ UnknownText_0x199f2d: ; 0x199f2d
 	db "frozen.", $57
 ; 0x199f65
 
-TrainerBoarderBradWhenSeenText: ; 0x199f65
+BoarderBradSeenText: ; 0x199f65
 	db $0, "This GYM has a", $4f
 	db "slippery floor.", $51
 	db "It's fun, isn't", $4f
@@ -91715,7 +91715,7 @@ TrainerBoarderBradWhenSeenText: ; 0x199f65
 	db "here!", $57
 ; 0x199fbd
 
-TrainerBoarderBradWhenBeatenText: ; 0x199fbd
+BoarderBradBeatenText: ; 0x199fbd
 	db $0, "Do you see how", $4f
 	db "serious we are?", $57
 ; 0x199fdd
@@ -91726,12 +91726,12 @@ UnknownText_0x199fdd: ; 0x199fdd
 	db "with my #MON!", $57
 ; 0x19a00f
 
-TrainerBoarderDouglasWhenSeenText: ; 0x19a00f
+BoarderDouglasSeenText: ; 0x19a00f
 	db $0, "I know PRYCE's", $4f
 	db "secret.", $57
 ; 0x19a026
 
-TrainerBoarderDouglasWhenBeatenText: ; 0x19a026
+BoarderDouglasBeatenText: ; 0x19a026
 	db $0, "OK. I'll tell you", $4f
 	db "PRYCE's secret.", $57
 ; 0x19a047
@@ -91745,14 +91745,14 @@ UnknownText_0x19a047: ; 0x19a047
 	db "mind and body.", $57
 ; 0x19a0ae
 
-TrainerSkierRoxanneWhenSeenText: ; 0x19a0ae
+SkierRoxanneSeenText: ; 0x19a0ae
 	db $0, "To get to PRYCE,", $4f
 	db "our GYM LEADER,", $51
 	db "you need to think", $4f
 	db "before you skate.", $57
 ; 0x19a0f4
 
-TrainerSkierRoxanneWhenBeatenText: ; 0x19a0f4
+SkierRoxanneBeatenText: ; 0x19a0f4
 	db $0, "I wouldn't lose to", $4f
 	db "you in skiing!", $57
 ; 0x19a116
@@ -91764,12 +91764,12 @@ UnknownText_0x19a116: ; 0x19a116
 	db "in this GYM.", $57
 ; 0x19a157
 
-TrainerSkierClarissaWhenSeenText: ; 0x19a157
+SkierClarissaSeenText: ; 0x19a157
 	db $0, "Check out my", $4f
 	db "parallel turn!", $57
 ; 0x19a174
 
-TrainerSkierClarissaWhenBeatenText: ; 0x19a174
+SkierClarissaBeatenText: ; 0x19a174
 	db $0, "No! You made me", $4f
 	db "wipe out!", $57
 ; 0x19a18f
@@ -93785,19 +93785,19 @@ TrainerBird_keeperBryan: ; 0x19c8af
 	db BIRD_KEEPER, BRYAN
 
 	; text when seen
-	dw TrainerBird_keeperBryanWhenSeenText
+	dw Bird_keeperBryanSeenText
 
 	; text when trainer beaten
-	dw TrainerBird_keeperBryanWhenBeatenText
+	dw Bird_keeperBryanBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerBird_keeperBryanWhenTalkScript
+	dw Bird_keeperBryanScript
 ; 0x19c8bb
 
-TrainerBird_keeperBryanWhenTalkScript: ; 0x19c8bb
+Bird_keeperBryanScript: ; 0x19c8bb
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x19cc87
@@ -93814,19 +93814,19 @@ TrainerJugglerIrwin1: ; 0x19c8c3
 	db JUGGLER, IRWIN1
 
 	; text when seen
-	dw TrainerJugglerIrwin1WhenSeenText
+	dw JugglerIrwin1SeenText
 
 	; text when trainer beaten
-	dw TrainerJugglerIrwin1WhenBeatenText
+	dw JugglerIrwin1BeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerJugglerIrwin1WhenTalkScript
+	dw JugglerIrwin1Script
 ; 0x19c8cf
 
-TrainerJugglerIrwin1WhenTalkScript: ; 0x19c8cf
+JugglerIrwin1Script: ; 0x19c8cf
 	writecode $17, $16
 	talkaftercancel
 	loadfont
@@ -93895,19 +93895,19 @@ TrainerCamperIvan: ; 0x19c91f
 	db CAMPER, IVAN
 
 	; text when seen
-	dw TrainerCamperIvanWhenSeenText
+	dw CamperIvanSeenText
 
 	; text when trainer beaten
-	dw TrainerCamperIvanWhenBeatenText
+	dw CamperIvanBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerCamperIvanWhenTalkScript
+	dw CamperIvanScript
 ; 0x19c92b
 
-TrainerCamperIvanWhenTalkScript: ; 0x19c92b
+CamperIvanScript: ; 0x19c92b
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x19cac4
@@ -93924,19 +93924,19 @@ TrainerCamperElliot: ; 0x19c933
 	db CAMPER, ELLIOT
 
 	; text when seen
-	dw TrainerCamperElliotWhenSeenText
+	dw CamperElliotSeenText
 
 	; text when trainer beaten
-	dw TrainerCamperElliotWhenBeatenText
+	dw CamperElliotBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerCamperElliotWhenTalkScript
+	dw CamperElliotScript
 ; 0x19c93f
 
-TrainerCamperElliotWhenTalkScript: ; 0x19c93f
+CamperElliotScript: ; 0x19c93f
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x19cb47
@@ -93953,19 +93953,19 @@ TrainerPicnickerBrooke: ; 0x19c947
 	db PICNICKER, BROOKE
 
 	; text when seen
-	dw TrainerPicnickerBrookeWhenSeenText
+	dw PicnickerBrookeSeenText
 
 	; text when trainer beaten
-	dw TrainerPicnickerBrookeWhenBeatenText
+	dw PicnickerBrookeBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerPicnickerBrookeWhenTalkScript
+	dw PicnickerBrookeScript
 ; 0x19c953
 
-TrainerPicnickerBrookeWhenTalkScript: ; 0x19c953
+PicnickerBrookeScript: ; 0x19c953
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x19cbba
@@ -93982,19 +93982,19 @@ TrainerPicnickerKim: ; 0x19c95b
 	db PICNICKER, KIM
 
 	; text when seen
-	dw TrainerPicnickerKimWhenSeenText
+	dw PicnickerKimSeenText
 
 	; text when trainer beaten
-	dw TrainerPicnickerKimWhenBeatenText
+	dw PicnickerKimBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerPicnickerKimWhenTalkScript
+	dw PicnickerKimScript
 ; 0x19c967
 
-TrainerPicnickerKimWhenTalkScript: ; 0x19c967
+PicnickerKimScript: ; 0x19c967
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x19cc21
@@ -94011,19 +94011,19 @@ TrainerBug_catcherArnie1: ; 0x19c96f
 	db BUG_CATCHER, ARNIE1
 
 	; text when seen
-	dw TrainerBug_catcherArnie1WhenSeenText
+	dw Bug_catcherArnie1SeenText
 
 	; text when trainer beaten
-	dw TrainerBug_catcherArnie1WhenBeatenText
+	dw Bug_catcherArnie1BeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerBug_catcherArnie1WhenTalkScript
+	dw Bug_catcherArnie1Script
 ; 0x19c97b
 
-TrainerBug_catcherArnie1WhenTalkScript: ; 0x19c97b
+Bug_catcherArnie1Script: ; 0x19c97b
 	writecode $17, $17
 	talkaftercancel
 	loadfont
@@ -94055,7 +94055,7 @@ UnknownScript_0x19c9a7: ; 0x19c9a7
 
 UnknownScript_0x19c9bb: ; 0x19c9bb
 	2call UnknownScript_0x19c91b
-	winlosstext TrainerBug_catcherArnie1WhenBeatenText, $0000
+	winlosstext Bug_catcherArnie1BeatenText, $0000
 	copybytetovar $da01
 	if_equal $4, UnknownScript_0x19c9da
 	if_equal $3, UnknownScript_0x19c9e0
@@ -94133,19 +94133,19 @@ TrainerFirebreatherWalt: ; 0x19ca35
 	db FIREBREATHER, WALT
 
 	; text when seen
-	dw TrainerFirebreatherWaltWhenSeenText
+	dw FirebreatherWaltSeenText
 
 	; text when trainer beaten
-	dw TrainerFirebreatherWaltWhenBeatenText
+	dw FirebreatherWaltBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerFirebreatherWaltWhenTalkScript
+	dw FirebreatherWaltScript
 ; 0x19ca41
 
-TrainerFirebreatherWaltWhenTalkScript: ; 0x19ca41
+FirebreatherWaltScript: ; 0x19ca41
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x19cebc
@@ -94200,14 +94200,14 @@ UnknownScript_0x19ca7e: ; 0x19ca7e
 	fruittree $b
 ; 0x19ca80
 
-TrainerCamperIvanWhenSeenText: ; 0x19ca80
+CamperIvanSeenText: ; 0x19ca80
 	db $0, "I've been getting", $4f
 	db "#MON data off", $51
 	db "my radio. I think", $4f
 	db "I'm good.", $57
 ; 0x19cabb
 
-TrainerCamperIvanWhenBeatenText: ; 0x19cabb
+CamperIvanBeatenText: ; 0x19cabb
 	db $0, "I give!", $57
 ; 0x19cac4
 
@@ -94217,13 +94217,13 @@ UnknownText_0x19cac4: ; 0x19cac4
 	db "of wild #MON.", $57
 ; 0x19caf8
 
-TrainerCamperElliotWhenSeenText: ; 0x19caf8
+CamperElliotSeenText: ; 0x19caf8
 	db $0, "I'm gonna show my", $4f
 	db "girlfriend I'm hot", $55
 	db "stuff!", $57
 ; 0x19cb23
 
-TrainerCamperElliotWhenBeatenText: ; 0x19cb23
+CamperElliotBeatenText: ; 0x19cb23
 	db $0, "I wish you would", $4f
 	db "have lost for me…", $57
 ; 0x19cb47
@@ -94234,13 +94234,13 @@ UnknownText_0x19cb47: ; 0x19cb47
 	db "girlfriend…", $57
 ; 0x19cb74
 
-TrainerPicnickerBrookeWhenSeenText: ; 0x19cb74
+PicnickerBrookeSeenText: ; 0x19cb74
 	db $0, "My boyfriend's", $4f
 	db "weak, so I can't", $55
 	db "rely on him.", $57
 ; 0x19cba0
 
-TrainerPicnickerBrookeWhenBeatenText: ; 0x19cba0
+PicnickerBrookeBeatenText: ; 0x19cba0
 	db $0, "Oh, my! You're so", $4f
 	db "strong!", $57
 ; 0x19cbba
@@ -94251,12 +94251,12 @@ UnknownText_0x19cbba: ; 0x19cbba
 	db "my boyfriend.", $57
 ; 0x19cbea
 
-TrainerPicnickerKimWhenSeenText: ; 0x19cbea
+PicnickerKimSeenText: ; 0x19cbea
 	db $0, "Are you going to", $4f
 	db "the GYM? Me too!", $57
 ; 0x19cc0d
 
-TrainerPicnickerKimWhenBeatenText: ; 0x19cc0d
+PicnickerKimBeatenText: ; 0x19cc0d
 	db $0, "Oh. I couldn't", $4f
 	db "win…", $57
 ; 0x19cc21
@@ -94267,12 +94267,12 @@ UnknownText_0x19cc21: ; 0x19cc21
 	db "them.", $57
 ; 0x19cc4d
 
-TrainerBird_keeperBryanWhenSeenText: ; 0x19cc4d
+Bird_keeperBryanSeenText: ; 0x19cc4d
 	db $0, "What kinds of", $4f
 	db "BALLS do you use?", $57
 ; 0x19cc6e
 
-TrainerBird_keeperBryanWhenBeatenText: ; 0x19cc6e
+Bird_keeperBryanBeatenText: ; 0x19cc6e
 	db $0, "Yikes! Not fast", $4f
 	db "enough!", $57
 ; 0x19cc87
@@ -94290,12 +94290,12 @@ UnknownText_0x19cc87: ; 0x19cc87
 	db "custom BALL.", $57
 ; 0x19cd1e
 
-TrainerJugglerIrwin1WhenSeenText: ; 0x19cd1e
+JugglerIrwin1SeenText: ; 0x19cd1e
 	db $0, "Behold my graceful", $4f
 	db "BALL dexterity!", $57
 ; 0x19cd42
 
-TrainerJugglerIrwin1WhenBeatenText: ; 0x19cd42
+JugglerIrwin1BeatenText: ; 0x19cd42
 	db $0, "Whew! That was a", $4f
 	db "jolt!", $57
 ; 0x19cd5a
@@ -94308,13 +94308,13 @@ UnknownText_0x19cd5a: ; 0x19cd5a
 	db "electrified me!", $57
 ; 0x19cdaa
 
-TrainerBug_catcherArnie1WhenSeenText: ; 0x19cdaa
+Bug_catcherArnie1SeenText: ; 0x19cdaa
 	db $0, "I'll go anywhere", $4f
 	db "if bug #MON", $55
 	db "appear there.", $57
 ; 0x19cdd5
 
-TrainerBug_catcherArnie1WhenBeatenText: ; 0x19cdd5
+Bug_catcherArnie1BeatenText: ; 0x19cdd5
 	db $0, "Huh? I shouldn't", $4f
 	db "have lost that…", $57
 ; 0x19cdf6
@@ -94333,12 +94333,12 @@ UnknownText_0x19ce38: ; 0x19ce38
 	db "I can't move.", $57
 ; 0x19ce76
 
-TrainerFirebreatherWaltWhenSeenText: ; 0x19ce76
+FirebreatherWaltSeenText: ; 0x19ce76
 	db $0, "I'm practicing my", $4f
 	db "fire breathing.", $57
 ; 0x19ce98
 
-TrainerFirebreatherWaltWhenBeatenText: ; 0x19ce98
+FirebreatherWaltBeatenText: ; 0x19ce98
 	db $0, "Ow! I scorched the", $4f
 	db "tip of my nose!", $57
 ; 0x19cebc
@@ -94442,19 +94442,19 @@ TrainerCamperSpencer: ; 0x19d061
 	db CAMPER, SPENCER
 
 	; text when seen
-	dw TrainerCamperSpencerWhenSeenText
+	dw CamperSpencerSeenText
 
 	; text when trainer beaten
-	dw TrainerCamperSpencerWhenBeatenText
+	dw CamperSpencerBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerCamperSpencerWhenTalkScript
+	dw CamperSpencerScript
 ; 0x19d06d
 
-TrainerCamperSpencerWhenTalkScript: ; 0x19d06d
+CamperSpencerScript: ; 0x19d06d
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x19d57e
@@ -94471,19 +94471,19 @@ TrainerPokemaniacBen: ; 0x19d075
 	db POKEMANIAC, BEN
 
 	; text when seen
-	dw TrainerPokemaniacBenWhenSeenText
+	dw PokemaniacBenSeenText
 
 	; text when trainer beaten
-	dw TrainerPokemaniacBenWhenBeatenText
+	dw PokemaniacBenBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerPokemaniacBenWhenTalkScript
+	dw PokemaniacBenScript
 ; 0x19d081
 
-TrainerPokemaniacBenWhenTalkScript: ; 0x19d081
+PokemaniacBenScript: ; 0x19d081
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x19d2d2
@@ -94500,19 +94500,19 @@ TrainerPokemaniacBrent1: ; 0x19d089
 	db POKEMANIAC, BRENT1
 
 	; text when seen
-	dw TrainerPokemaniacBrent1WhenSeenText
+	dw PokemaniacBrent1SeenText
 
 	; text when trainer beaten
-	dw TrainerPokemaniacBrent1WhenBeatenText
+	dw PokemaniacBrent1BeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerPokemaniacBrent1WhenTalkScript
+	dw PokemaniacBrent1Script
 ; 0x19d095
 
-TrainerPokemaniacBrent1WhenTalkScript: ; 0x19d095
+PokemaniacBrent1Script: ; 0x19d095
 	writecode $17, $1e
 	talkaftercancel
 	loadfont
@@ -94542,7 +94542,7 @@ UnknownScript_0x19d0bb: ; 0x19d0bb
 
 UnknownScript_0x19d0cf: ; 0x19d0cf
 	2call UnknownScript_0x19d144
-	winlosstext TrainerPokemaniacBrent1WhenBeatenText, $0000
+	winlosstext PokemaniacBrent1BeatenText, $0000
 	copybytetovar $da07
 	if_equal $3, UnknownScript_0x19d0ea
 	if_equal $2, UnknownScript_0x19d0f0
@@ -94635,19 +94635,19 @@ TrainerPokemaniacRon: ; 0x19d148
 	db POKEMANIAC, RON
 
 	; text when seen
-	dw TrainerPokemaniacRonWhenSeenText
+	dw PokemaniacRonSeenText
 
 	; text when trainer beaten
-	dw TrainerPokemaniacRonWhenBeatenText
+	dw PokemaniacRonBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerPokemaniacRonWhenTalkScript
+	dw PokemaniacRonScript
 ; 0x19d154
 
-TrainerPokemaniacRonWhenTalkScript: ; 0x19d154
+PokemaniacRonScript: ; 0x19d154
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x19d3f8
@@ -94664,19 +94664,19 @@ TrainerFisherMarvin: ; 0x19d15c
 	db FISHER, MARVIN
 
 	; text when seen
-	dw TrainerFisherMarvinWhenSeenText
+	dw FisherMarvinSeenText
 
 	; text when trainer beaten
-	dw TrainerFisherMarvinWhenBeatenText
+	dw FisherMarvinBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerFisherMarvinWhenTalkScript
+	dw FisherMarvinScript
 ; 0x19d168
 
-TrainerFisherMarvinWhenTalkScript: ; 0x19d168
+FisherMarvinScript: ; 0x19d168
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x19d4d3
@@ -94693,19 +94693,19 @@ TrainerPicnickerTiffany3: ; 0x19d170
 	db PICNICKER, TIFFANY3
 
 	; text when seen
-	dw TrainerPicnickerTiffany3WhenSeenText
+	dw PicnickerTiffany3SeenText
 
 	; text when trainer beaten
-	dw TrainerPicnickerTiffany3WhenBeatenText
+	dw PicnickerTiffany3BeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerPicnickerTiffany3WhenTalkScript
+	dw PicnickerTiffany3Script
 ; 0x19d17c
 
-TrainerPicnickerTiffany3WhenTalkScript: ; 0x19d17c
+PicnickerTiffany3Script: ; 0x19d17c
 	writecode $17, $1f
 	talkaftercancel
 	loadfont
@@ -94739,7 +94739,7 @@ UnknownScript_0x19d1ad: ; 0x19d1ad
 
 UnknownScript_0x19d1c1: ; 0x19d1c1
 	2call UnknownScript_0x19d251
-	winlosstext TrainerPicnickerTiffany3WhenBeatenText, $0000
+	winlosstext PicnickerTiffany3BeatenText, $0000
 	copybytetovar $da08
 	if_equal $3, UnknownScript_0x19d1dc
 	if_equal $2, UnknownScript_0x19d1e2
@@ -94874,7 +94874,7 @@ ItemFragment_0x19d268: ; 0x19d268
 	db MAX_ETHER, 1
 ; 0x19d26a
 
-TrainerPokemaniacBenWhenSeenText: ; 0x19d26a
+PokemaniacBenSeenText: ; 0x19d26a
 	db $0, "I love #MON!", $51
 	db "That's why I", $4f
 	db "started--and why", $51
@@ -94882,7 +94882,7 @@ TrainerPokemaniacBenWhenSeenText: ; 0x19d26a
 	db "lecting #MON!", $57
 ; 0x19d2b4
 
-TrainerPokemaniacBenWhenBeatenText: ; 0x19d2b4
+PokemaniacBenBeatenText: ; 0x19d2b4
 	db $0, "How could you do", $4f
 	db "this to me?", $57
 ; 0x19d2d2
@@ -94895,12 +94895,12 @@ UnknownText_0x19d2d2: ; 0x19d2d2
 	db "I bet she's cute!", $57
 ; 0x19d319
 
-TrainerPokemaniacBrent1WhenSeenText: ; 0x19d319
+PokemaniacBrent1SeenText: ; 0x19d319
 	db $0, "Hey! Do you have", $4f
 	db "any rare #MON?", $57
 ; 0x19d33a
 
-TrainerPokemaniacBrent1WhenBeatenText: ; 0x19d33a
+PokemaniacBrent1BeatenText: ; 0x19d33a
 	db $0, "Oh, my poor #-", $4f
 	db "MON! Darlings!", $57
 ; 0x19d359
@@ -94911,7 +94911,7 @@ UnknownText_0x19d359: ; 0x19d359
 	db "rare #MON.", $57
 ; 0x19d386
 
-TrainerPokemaniacRonWhenSeenText: ; 0x19d386
+PokemaniacRonSeenText: ; 0x19d386
 	db $0, "Would you get", $4f
 	db "this?", $51
 	db "Some ", $53, " guy", $4f
@@ -94921,7 +94921,7 @@ TrainerPokemaniacRonWhenSeenText: ; 0x19d386
 	db "MON's great!", $57
 ; 0x19d3d6
 
-TrainerPokemaniacRonWhenBeatenText: ; 0x19d3d6
+PokemaniacRonBeatenText: ; 0x19d3d6
 	db $0, "My NIDOKING did", $4f
 	db "pretty right on!", $57
 ; 0x19d3f8
@@ -94936,7 +94936,7 @@ UnknownText_0x19d3f8: ; 0x19d3f8
 	db "most powerful one.", $57
 ; 0x19d461
 
-TrainerFisherMarvinWhenSeenText: ; 0x19d461
+FisherMarvinSeenText: ; 0x19d461
 	db $0, "I'm in a slump.", $51
 	db "Maybe it's the", $4f
 	db "gear I'm using.", $51
@@ -94944,7 +94944,7 @@ TrainerFisherMarvinWhenSeenText: ; 0x19d461
 	db "change of pace!", $57
 ; 0x19d4b0
 
-TrainerFisherMarvinWhenBeatenText: ; 0x19d4b0
+FisherMarvinBeatenText: ; 0x19d4b0
 	db $0, "I lost, but I feel", $4f
 	db "better anyway.", $57
 ; 0x19d4d3
@@ -94959,13 +94959,13 @@ UnknownText_0x19d4d3: ; 0x19d4d3
 	db "ULTRA BALL.", $57
 ; 0x19d535
 
-TrainerCamperSpencerWhenSeenText: ; 0x19d535
+CamperSpencerSeenText: ; 0x19d535
 	db $0, "I can do so much", $4f
 	db "with my #MON--", $55
 	db "it's super-fun!", $57
 ; 0x19d565
 
-TrainerCamperSpencerWhenBeatenText: ; 0x19d565
+CamperSpencerBeatenText: ; 0x19d565
 	db $0, "Losing isn't fun", $4f
 	db "at all…", $57
 ; 0x19d57e
@@ -94977,14 +94977,14 @@ UnknownText_0x19d57e: ; 0x19d57e
 	db "to camp there.", $57
 ; 0x19d5c1
 
-TrainerPicnickerTiffany3WhenSeenText: ; 0x19d5c1
+PicnickerTiffany3SeenText: ; 0x19d5c1
 	db $0, "Are you going to", $4f
 	db "LAKE OF RAGE too?", $51
 	db "Let's play for a ", $4f
 	db "little while!", $57
 ; 0x19d604
 
-TrainerPicnickerTiffany3WhenBeatenText: ; 0x19d604
+PicnickerTiffany3BeatenText: ; 0x19d604
 	db $0, "I played too much!", $57
 ; 0x19d618
 
@@ -95077,19 +95077,19 @@ TrainerBird_keeperVance1: ; 0x19d824
 	db BIRD_KEEPER, VANCE1
 
 	; text when seen
-	dw TrainerBird_keeperVance1WhenSeenText
+	dw Bird_keeperVance1SeenText
 
 	; text when trainer beaten
-	dw TrainerBird_keeperVance1WhenBeatenText
+	dw Bird_keeperVance1BeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerBird_keeperVance1WhenTalkScript
+	dw Bird_keeperVance1Script
 ; 0x19d830
 
-TrainerBird_keeperVance1WhenTalkScript: ; 0x19d830
+Bird_keeperVance1Script: ; 0x19d830
 	writecode $17, $20
 	talkaftercancel
 	loadfont
@@ -95119,7 +95119,7 @@ UnknownScript_0x19d856: ; 0x19d856
 
 UnknownScript_0x19d86a: ; 0x19d86a
 	2call UnknownScript_0x19d8f7
-	winlosstext TrainerBird_keeperVance1WhenBeatenText, $0000
+	winlosstext Bird_keeperVance1BeatenText, $0000
 	copybytetovar $da09
 	if_equal $2, UnknownScript_0x19d881
 	if_equal $1, UnknownScript_0x19d887
@@ -95243,19 +95243,19 @@ TrainerPsychicPhil: ; 0x19d90e
 	db PSYCHIC_T, PHIL
 
 	; text when seen
-	dw TrainerPsychicPhilWhenSeenText
+	dw PsychicPhilSeenText
 
 	; text when trainer beaten
-	dw TrainerPsychicPhilWhenBeatenText
+	dw PsychicPhilBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerPsychicPhilWhenTalkScript
+	dw PsychicPhilScript
 ; 0x19d91a
 
-TrainerPsychicPhilWhenTalkScript: ; 0x19d91a
+PsychicPhilScript: ; 0x19d91a
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x19dcfc
@@ -95272,19 +95272,19 @@ TrainerFisherWilton1: ; 0x19d922
 	db FISHER, WILTON1
 
 	; text when seen
-	dw TrainerFisherWilton1WhenSeenText
+	dw FisherWilton1SeenText
 
 	; text when trainer beaten
-	dw TrainerFisherWilton1WhenBeatenText
+	dw FisherWilton1BeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerFisherWilton1WhenTalkScript
+	dw FisherWilton1Script
 ; 0x19d92e
 
-TrainerFisherWilton1WhenTalkScript: ; 0x19d92e
+FisherWilton1Script: ; 0x19d92e
 	writecode $17, $21
 	talkaftercancel
 	loadfont
@@ -95316,7 +95316,7 @@ UnknownScript_0x19d95a: ; 0x19d95a
 
 UnknownScript_0x19d96e: ; 0x19d96e
 	2call UnknownScript_0x19d8f7
-	winlosstext TrainerFisherWilton1WhenBeatenText, $0000
+	winlosstext FisherWilton1BeatenText, $0000
 	copybytetovar $da0a
 	if_equal $2, UnknownScript_0x19d985
 	if_equal $1, UnknownScript_0x19d98b
@@ -95393,19 +95393,19 @@ TrainerFisherEdgar: ; 0x19d9ea
 	db FISHER, EDGAR
 
 	; text when seen
-	dw TrainerFisherEdgarWhenSeenText
+	dw FisherEdgarSeenText
 
 	; text when trainer beaten
-	dw TrainerFisherEdgarWhenBeatenText
+	dw FisherEdgarBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerFisherEdgarWhenTalkScript
+	dw FisherEdgarScript
 ; 0x19d9f6
 
-TrainerFisherEdgarWhenTalkScript: ; 0x19d9f6
+FisherEdgarScript: ; 0x19d9f6
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x19db6f
@@ -95422,19 +95422,19 @@ TrainerCooltrainerfCybil: ; 0x19d9fe
 	db COOLTRAINERF, CYBIL
 
 	; text when seen
-	dw TrainerCooltrainerfCybilWhenSeenText
+	dw CooltrainerfCybilSeenText
 
 	; text when trainer beaten
-	dw TrainerCooltrainerfCybilWhenBeatenText
+	dw CooltrainerfCybilBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerCooltrainerfCybilWhenTalkScript
+	dw CooltrainerfCybilScript
 ; 0x19da0a
 
-TrainerCooltrainerfCybilWhenTalkScript: ; 0x19da0a
+CooltrainerfCybilScript: ; 0x19da0a
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x19df4d
@@ -95451,19 +95451,19 @@ TrainerPokemaniacZach: ; 0x19da12
 	db POKEMANIAC, ZACH
 
 	; text when seen
-	dw TrainerPokemaniacZachWhenSeenText
+	dw PokemaniacZachSeenText
 
 	; text when trainer beaten
-	dw TrainerPokemaniacZachWhenBeatenText
+	dw PokemaniacZachBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerPokemaniacZachWhenTalkScript
+	dw PokemaniacZachScript
 ; 0x19da1e
 
-TrainerPokemaniacZachWhenTalkScript: ; 0x19da1e
+PokemaniacZachScript: ; 0x19da1e
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x19dd7e
@@ -95480,19 +95480,19 @@ TrainerCooltrainermAllen: ; 0x19da26
 	db COOLTRAINERM, ALLEN
 
 	; text when seen
-	dw TrainerCooltrainermAllenWhenSeenText
+	dw CooltrainermAllenSeenText
 
 	; text when trainer beaten
-	dw TrainerCooltrainermAllenWhenBeatenText
+	dw CooltrainermAllenBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerCooltrainermAllenWhenTalkScript
+	dw CooltrainermAllenScript
 ; 0x19da32
 
-TrainerCooltrainermAllenWhenTalkScript: ; 0x19da32
+CooltrainermAllenScript: ; 0x19da32
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x19de66
@@ -95531,14 +95531,14 @@ MapRoute44SignpostItem2: ; 0x19da48
 	
 ; 0x19da4b
 
-TrainerFisherWilton1WhenSeenText: ; 0x19da4b
+FisherWilton1SeenText: ; 0x19da4b
 	db $0, "Aack! You made me", $4f
 	db "lose a POLIWAG!", $51
 	db "What are you going", $4f
 	db "to do about it?", $57
 ; 0x19da91
 
-TrainerFisherWilton1WhenBeatenText: ; 0x19da91
+FisherWilton1BeatenText: ; 0x19da91
 	db $0, "Just forget about", $4f
 	db "it.", $57
 ; 0x19daa8
@@ -95551,7 +95551,7 @@ UnknownText_0x19daa8: ; 0x19daa8
 	db "been 16 feet long!", $57
 ; 0x19daf7
 
-TrainerFisherEdgarWhenSeenText: ; 0x19daf7
+FisherEdgarSeenText: ; 0x19daf7
 	db $0, "I fish until I", $4f
 	db "can't anymore.", $51
 	db "I also battle", $4f
@@ -95561,7 +95561,7 @@ TrainerFisherEdgarWhenSeenText: ; 0x19daf7
 	db "with my #MON.", $57
 ; 0x19db55
 
-TrainerFisherEdgarWhenBeatenText: ; 0x19db55
+FisherEdgarBeatenText: ; 0x19db55
 	db $0, "Hmmmm… ", $4f
 	db "This isn't right.", $57
 ; 0x19db6f
@@ -95573,13 +95573,13 @@ UnknownText_0x19db6f: ; 0x19db6f
 	db "again for a while.", $57
 ; 0x19dbaf
 
-TrainerBird_keeperVance1WhenSeenText: ; 0x19dbaf
+Bird_keeperVance1SeenText: ; 0x19dbaf
 	db $0, "Do you know about", $4f
 	db "the legendary bird", $55
 	db "#MON?", $57
 ; 0x19dbdb
 
-TrainerBird_keeperVance1WhenBeatenText: ; 0x19dbdb
+Bird_keeperVance1BeatenText: ; 0x19dbdb
 	db $0, "Whew! You're hot", $4f
 	db "stuff.", $57
 ; 0x19dbf3
@@ -95603,12 +95603,12 @@ UnknownText_0x19dc67: ; 0x19dc67
 	db "you last time.", $57
 ; 0x19dcc4
 
-TrainerPsychicPhilWhenSeenText: ; 0x19dcc4
+PsychicPhilSeenText: ; 0x19dcc4
 	db $0, "I'm gonna win,", $4f
 	db "for sure!", $57
 ; 0x19dcdd
 
-TrainerPsychicPhilWhenBeatenText: ; 0x19dcdd
+PsychicPhilBeatenText: ; 0x19dcdd
 	db $0, "Arrgh… That's a", $4f
 	db "shocking loss…", $57
 ; 0x19dcfc
@@ -95619,13 +95619,13 @@ UnknownText_0x19dcfc: ; 0x19dcfc
 	db "on your side.", $57
 ; 0x19dd2c
 
-TrainerPokemaniacZachWhenSeenText: ; 0x19dd2c
+PokemaniacZachSeenText: ; 0x19dd2c
 	db $0, "I'll do anything", $4f
 	db "to get my hands on", $55
 	db "rare #MON!", $57
 ; 0x19dd5b
 
-TrainerPokemaniacZachWhenBeatenText: ; 0x19dd5b
+PokemaniacZachBeatenText: ; 0x19dd5b
 	db $0, "Oooh, your #MON", $4f
 	db "are so appealing.", $57
 ; 0x19dd7e
@@ -95639,7 +95639,7 @@ UnknownText_0x19dd7e: ; 0x19dd7e
 	db "that's not true?", $57
 ; 0x19dddc
 
-TrainerCooltrainermAllenWhenSeenText: ; 0x19dddc
+CooltrainermAllenSeenText: ; 0x19dddc
 	db $0, "I can tell you're", $4f
 	db "a good trainer by", $55
 	db "looking at you.", $51
@@ -95648,7 +95648,7 @@ TrainerCooltrainermAllenWhenSeenText: ; 0x19dddc
 	db "that you are too.", $57
 ; 0x19de43
 
-TrainerCooltrainermAllenWhenBeatenText: ; 0x19de43
+CooltrainermAllenBeatenText: ; 0x19de43
 	db $0, "Tch! It's a total", $4f
 	db "loss on my part.", $57
 ; 0x19de66
@@ -95666,14 +95666,14 @@ UnknownText_0x19de66: ; 0x19de66
 	db "me.", $57
 ; 0x19deed
 
-TrainerCooltrainerfCybilWhenSeenText: ; 0x19deed
+CooltrainerfCybilSeenText: ; 0x19deed
 	db $0, "You look strong.", $51
 	db "Good trainers seek", $4f
 	db "tough opponents", $55
 	db "instinctively.", $57
 ; 0x19df31
 
-TrainerCooltrainerfCybilWhenBeatenText: ; 0x19df31
+CooltrainerfCybilBeatenText: ; 0x19df31
 	db $0, "Nope! This won't", $4f
 	db "do at all.", $57
 ; 0x19df4d
@@ -95746,19 +95746,19 @@ TrainerBlackbeltKenji3: ; 0x19e0a1
 	db BLACKBELT_T, KENJI3
 
 	; text when seen
-	dw TrainerBlackbeltKenji3WhenSeenText
+	dw BlackbeltKenji3SeenText
 
 	; text when trainer beaten
-	dw TrainerBlackbeltKenji3WhenBeatenText
+	dw BlackbeltKenji3BeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerBlackbeltKenji3WhenTalkScript
+	dw BlackbeltKenji3Script
 ; 0x19e0ad
 
-TrainerBlackbeltKenji3WhenTalkScript: ; 0x19e0ad
+BlackbeltKenji3Script: ; 0x19e0ad
 	writecode $17, $22
 	talkaftercancel
 	loadfont
@@ -95884,19 +95884,19 @@ TrainerHikerErik: ; 0x19e14a
 	db HIKER, ERIK
 
 	; text when seen
-	dw TrainerHikerErikWhenSeenText
+	dw HikerErikSeenText
 
 	; text when trainer beaten
-	dw TrainerHikerErikWhenBeatenText
+	dw HikerErikBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerHikerErikWhenTalkScript
+	dw HikerErikScript
 ; 0x19e156
 
-TrainerHikerErikWhenTalkScript: ; 0x19e156
+HikerErikScript: ; 0x19e156
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x19e301
@@ -95913,19 +95913,19 @@ TrainerHikerMichael: ; 0x19e15e
 	db HIKER, MICHAEL
 
 	; text when seen
-	dw TrainerHikerMichaelWhenSeenText
+	dw HikerMichaelSeenText
 
 	; text when trainer beaten
-	dw TrainerHikerMichaelWhenBeatenText
+	dw HikerMichaelBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerHikerMichaelWhenTalkScript
+	dw HikerMichaelScript
 ; 0x19e16a
 
-TrainerHikerMichaelWhenTalkScript: ; 0x19e16a
+HikerMichaelScript: ; 0x19e16a
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x19e3b1
@@ -95942,19 +95942,19 @@ TrainerHikerParry3: ; 0x19e172
 	db HIKER, PARRY3
 
 	; text when seen
-	dw TrainerHikerParry3WhenSeenText
+	dw HikerParry3SeenText
 
 	; text when trainer beaten
-	dw TrainerHikerParry3WhenBeatenText
+	dw HikerParry3BeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerHikerParry3WhenTalkScript
+	dw HikerParry3Script
 ; 0x19e17e
 
-TrainerHikerParry3WhenTalkScript: ; 0x19e17e
+HikerParry3Script: ; 0x19e17e
 	writecode $17, $23
 	talkaftercancel
 	loadfont
@@ -95984,7 +95984,7 @@ UnknownScript_0x19e1a4: ; 0x19e1a4
 
 UnknownScript_0x19e1b8: ; 0x19e1b8
 	2call UnknownScript_0x19e133
-	winlosstext TrainerHikerParry3WhenBeatenText, $0000
+	winlosstext HikerParry3BeatenText, $0000
 	copybytetovar $da0c
 	if_equal $2, UnknownScript_0x19e1cf
 	if_equal $1, UnknownScript_0x19e1d5
@@ -96052,19 +96052,19 @@ TrainerHikerTimothy: ; 0x19e22d
 	db HIKER, TIMOTHY
 
 	; text when seen
-	dw TrainerHikerTimothyWhenSeenText
+	dw HikerTimothySeenText
 
 	; text when trainer beaten
-	dw TrainerHikerTimothyWhenBeatenText
+	dw HikerTimothyBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerHikerTimothyWhenTalkScript
+	dw HikerTimothyScript
 ; 0x19e239
 
-TrainerHikerTimothyWhenTalkScript: ; 0x19e239
+HikerTimothyScript: ; 0x19e239
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x19e4f1
@@ -96081,19 +96081,19 @@ TrainerCooltrainermRyan: ; 0x19e241
 	db COOLTRAINERM, RYAN
 
 	; text when seen
-	dw TrainerCooltrainermRyanWhenSeenText
+	dw CooltrainermRyanSeenText
 
 	; text when trainer beaten
-	dw TrainerCooltrainermRyanWhenBeatenText
+	dw CooltrainermRyanBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerCooltrainermRyanWhenTalkScript
+	dw CooltrainermRyanScript
 ; 0x19e24d
 
-TrainerCooltrainermRyanWhenTalkScript: ; 0x19e24d
+CooltrainermRyanScript: ; 0x19e24d
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x19e70d
@@ -96110,19 +96110,19 @@ TrainerCooltrainerfKelly: ; 0x19e255
 	db COOLTRAINERF, KELLY
 
 	; text when seen
-	dw TrainerCooltrainerfKellyWhenSeenText
+	dw CooltrainerfKellySeenText
 
 	; text when trainer beaten
-	dw TrainerCooltrainerfKellyWhenBeatenText
+	dw CooltrainerfKellyBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerCooltrainerfKellyWhenTalkScript
+	dw CooltrainerfKellyScript
 ; 0x19e261
 
-TrainerCooltrainerfKellyWhenTalkScript: ; 0x19e261
+CooltrainerfKellyScript: ; 0x19e261
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x19e7d1
@@ -96192,7 +96192,7 @@ MapRoute45SignpostItem1: ; 0x19e29e
 	
 ; 0x19e2a1
 
-TrainerHikerErikWhenSeenText: ; 0x19e2a1
+HikerErikSeenText: ; 0x19e2a1
 	db $0, "Be prepared for", $4f
 	db "anything!", $51
 	db "Let me see if your", $4f
@@ -96200,7 +96200,7 @@ TrainerHikerErikWhenSeenText: ; 0x19e2a1
 	db "raised properly!", $57
 ; 0x19e2ef
 
-TrainerHikerErikWhenBeatenText: ; 0x19e2ef
+HikerErikBeatenText: ; 0x19e2ef
 	db $0, "Oh, I lost that!", $57
 ; 0x19e301
 
@@ -96211,7 +96211,7 @@ UnknownText_0x19e301: ; 0x19e301
 	db "some more.", $57
 ; 0x19e33d
 
-TrainerHikerMichaelWhenSeenText: ; 0x19e33d
+HikerMichaelSeenText: ; 0x19e33d
 	db $0, "Yo! You're spunky!", $4f
 	db "But you know what?", $51
 	db "When it comes to", $4f
@@ -96219,7 +96219,7 @@ TrainerHikerMichaelWhenSeenText: ; 0x19e33d
 	db "I'm the man!", $57
 ; 0x19e392
 
-TrainerHikerMichaelWhenBeatenText: ; 0x19e392
+HikerMichaelBeatenText: ; 0x19e392
 	db $0, "My #MON weren't", $4f
 	db "spunky enough!", $57
 ; 0x19e3b1
@@ -96232,12 +96232,12 @@ UnknownText_0x19e3b1: ; 0x19e3b1
 	db "I can't help it!", $57
 ; 0x19e3fd
 
-TrainerHikerParry3WhenSeenText: ; 0x19e3fd
+HikerParry3SeenText: ; 0x19e3fd
 	db $0, "My #MON are", $4f
 	db "power packed!", $57
 ; 0x19e418
 
-TrainerHikerParry3WhenBeatenText: ; 0x19e418
+HikerParry3BeatenText: ; 0x19e418
 	db $0, "Wahahah! I'm the", $4f
 	db "big loser!", $57
 ; 0x19e434
@@ -96249,7 +96249,7 @@ UnknownText_0x19e434: ; 0x19e434
 	db "ahead with power!", $57
 ; 0x19e47a
 
-TrainerHikerTimothyWhenSeenText: ; 0x19e47a
+HikerTimothySeenText: ; 0x19e47a
 	db $0, "Why do I climb", $4f
 	db "mountains?", $51
 	db "Because they're", $4f
@@ -96260,7 +96260,7 @@ TrainerHikerTimothyWhenSeenText: ; 0x19e47a
 	db "there!", $57
 ; 0x19e4d6
 
-TrainerHikerTimothyWhenBeatenText: ; 0x19e4d6
+HikerTimothyBeatenText: ; 0x19e4d6
 	db $0, "Losses…", $4f
 	db "They're there too!", $57
 ; 0x19e4f1
@@ -96282,14 +96282,14 @@ UnknownText_0x19e52c: ; 0x19e52c
 	db "when we last met.", $57
 ; 0x19e59c
 
-TrainerBlackbeltKenji3WhenSeenText: ; 0x19e59c
+BlackbeltKenji3SeenText: ; 0x19e59c
 	db $0, "I was training", $4f
 	db "here alone.", $51
 	db "Behold the fruits", $4f
 	db "of my labor!", $57
 ; 0x19e5d7
 
-TrainerBlackbeltKenji3WhenBeatenText: ; 0x19e5d7
+BlackbeltKenji3BeatenText: ; 0x19e5d7
 	db $0, "Waaaargh!", $57
 ; 0x19e5e2
 
@@ -96316,13 +96316,13 @@ UnknownText_0x19e66c: ; 0x19e66c
 	db "train again!", $57
 ; 0x19e6cb
 
-TrainerCooltrainermRyanWhenSeenText: ; 0x19e6cb
+CooltrainermRyanSeenText: ; 0x19e6cb
 	db $0, "What are your", $4f
 	db "thoughts on rais-", $55
 	db "ing #MON?", $57
 ; 0x19e6f6
 
-TrainerCooltrainermRyanWhenBeatenText: ; 0x19e6f6
+CooltrainermRyanBeatenText: ; 0x19e6f6
 	db $0, "You've won my", $4f
 	db "respect.", $57
 ; 0x19e70d
@@ -96336,7 +96336,7 @@ UnknownText_0x19e70d: ; 0x19e70d
 	db "tough situations.", $57
 ; 0x19e76f
 
-TrainerCooltrainerfKellyWhenSeenText: ; 0x19e76f
+CooltrainerfKellySeenText: ; 0x19e76f
 	db $0, "What is your", $4f
 	db "battle strategy?", $51
 	db "It is foolish to", $4f
@@ -96344,7 +96344,7 @@ TrainerCooltrainerfKellyWhenSeenText: ; 0x19e76f
 	db "indiscriminately.", $57
 ; 0x19e7c2
 
-TrainerCooltrainerfKellyWhenBeatenText: ; 0x19e7c2
+CooltrainerfKellyBeatenText: ; 0x19e7c2
 	db $0, "Fine. I lost.", $57
 ; 0x19e7d1
 
@@ -96453,19 +96453,19 @@ TrainerSwimmerfDawn: ; 0x19e9fd
 	db SWIMMERF, DAWN
 
 	; text when seen
-	dw TrainerSwimmerfDawnWhenSeenText
+	dw SwimmerfDawnSeenText
 
 	; text when trainer beaten
-	dw TrainerSwimmerfDawnWhenBeatenText
+	dw SwimmerfDawnBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerSwimmerfDawnWhenTalkScript
+	dw SwimmerfDawnScript
 ; 0x19ea09
 
-TrainerSwimmerfDawnWhenTalkScript: ; 0x19ea09
+SwimmerfDawnScript: ; 0x19ea09
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x19ebad
@@ -96482,19 +96482,19 @@ TrainerSwimmermHarold: ; 0x19ea11
 	db SWIMMERM, HAROLD
 
 	; text when seen
-	dw TrainerSwimmermHaroldWhenSeenText
+	dw SwimmermHaroldSeenText
 
 	; text when trainer beaten
-	dw TrainerSwimmermHaroldWhenBeatenText
+	dw SwimmermHaroldBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerSwimmermHaroldWhenTalkScript
+	dw SwimmermHaroldScript
 ; 0x19ea1d
 
-TrainerSwimmermHaroldWhenTalkScript: ; 0x19ea1d
+SwimmermHaroldScript: ; 0x19ea1d
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x19eab4
@@ -96511,19 +96511,19 @@ TrainerSwimmermJerome: ; 0x19ea25
 	db SWIMMERM, JEROME
 
 	; text when seen
-	dw TrainerSwimmermJeromeWhenSeenText
+	dw SwimmermJeromeSeenText
 
 	; text when trainer beaten
-	dw TrainerSwimmermJeromeWhenBeatenText
+	dw SwimmermJeromeBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerSwimmermJeromeWhenTalkScript
+	dw SwimmermJeromeScript
 ; 0x19ea31
 
-TrainerSwimmermJeromeWhenTalkScript: ; 0x19ea31
+SwimmermJeromeScript: ; 0x19ea31
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x19ec7e
@@ -96540,19 +96540,19 @@ TrainerSwimmermTucker: ; 0x19ea39
 	db SWIMMERM, TUCKER
 
 	; text when seen
-	dw TrainerSwimmermTuckerWhenSeenText
+	dw SwimmermTuckerSeenText
 
 	; text when trainer beaten
-	dw TrainerSwimmermTuckerWhenBeatenText
+	dw SwimmermTuckerBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerSwimmermTuckerWhenTalkScript
+	dw SwimmermTuckerScript
 ; 0x19ea45
 
-TrainerSwimmermTuckerWhenTalkScript: ; 0x19ea45
+SwimmermTuckerScript: ; 0x19ea45
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x19eb3b
@@ -96605,13 +96605,13 @@ MapRoute19Signpost1Script: ; 0x19ea78
 	jumptext UnknownText_0x19ede5
 ; 0x19ea7b
 
-TrainerSwimmermHaroldWhenSeenText: ; 0x19ea7b
+SwimmermHaroldSeenText: ; 0x19ea7b
 	db $0, "Have you ever gone", $4f
 	db "swimming in the", $55
 	db "sea at night?", $57
 ; 0x19eaad
 
-TrainerSwimmermHaroldWhenBeatenText: ; 0x19eaad
+SwimmermHaroldBeatenText: ; 0x19eaad
 	db $0, "Glub…", $57
 ; 0x19eab4
 
@@ -96622,14 +96622,14 @@ UnknownText_0x19eab4: ; 0x19eab4
 	db "swallow you up.", $57
 ; 0x19eafa
 
-TrainerSwimmermTuckerWhenSeenText: ; 0x19eafa
+SwimmermTuckerSeenText: ; 0x19eafa
 	db $0, "Pant, pant…", $4f
 	db "Just… a little…", $51
 	db "farther… to…", $4f
 	db "FUCHSIA…", $57
 ; 0x19eb2d
 
-TrainerSwimmermTuckerWhenBeatenText: ; 0x19eb2d
+SwimmermTuckerBeatenText: ; 0x19eb2d
 	db $0, "I'm drowning!", $57
 ; 0x19eb3b
 
@@ -96639,12 +96639,12 @@ UnknownText_0x19eb3b: ; 0x19eb3b
 	db "FUCHSIA… Gasp…", $57
 ; 0x19eb6f
 
-TrainerSwimmerfDawnWhenSeenText: ; 0x19eb6f
+SwimmerfDawnSeenText: ; 0x19eb6f
 	db $0, "I'm disgusted by", $4f
 	db "wimpy people!", $57
 ; 0x19eb8e
 
-TrainerSwimmerfDawnWhenBeatenText: ; 0x19eb8e
+SwimmerfDawnBeatenText: ; 0x19eb8e
 	db $0, "I could beat you", $4f
 	db "at swimming…", $57
 ; 0x19ebad
@@ -96659,7 +96659,7 @@ UnknownText_0x19ebad: ; 0x19ebad
 	db "is! What a wimp!", $57
 ; 0x19ec19
 
-TrainerSwimmermJeromeWhenSeenText: ; 0x19ec19
+SwimmermJeromeSeenText: ; 0x19ec19
 	db $0, "Swimming?", $4f
 	db "I'm lousy at it.", $51
 	db "I'm just splashing", $4f
@@ -96667,7 +96667,7 @@ TrainerSwimmermJeromeWhenSeenText: ; 0x19ec19
 	db "shallow waters.", $57
 ; 0x19ec66
 
-TrainerSwimmermJeromeWhenBeatenText: ; 0x19ec66
+SwimmermJeromeBeatenText: ; 0x19ec66
 	db $0, "I thought I could", $4f
 	db "win.", $57
 ; 0x19ec7e
@@ -96828,19 +96828,19 @@ TrainerSchoolboyDudley: ; 0x19ef20
 	db SCHOOLBOY, DUDLEY
 
 	; text when seen
-	dw TrainerSchoolboyDudleyWhenSeenText
+	dw SchoolboyDudleySeenText
 
 	; text when trainer beaten
-	dw TrainerSchoolboyDudleyWhenBeatenText
+	dw SchoolboyDudleyBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerSchoolboyDudleyWhenTalkScript
+	dw SchoolboyDudleyScript
 ; 0x19ef2c
 
-TrainerSchoolboyDudleyWhenTalkScript: ; 0x19ef2c
+SchoolboyDudleyScript: ; 0x19ef2c
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x19f1b5
@@ -96857,19 +96857,19 @@ TrainerLassEllen: ; 0x19ef34
 	db LASS, ELLEN
 
 	; text when seen
-	dw TrainerLassEllenWhenSeenText
+	dw LassEllenSeenText
 
 	; text when trainer beaten
-	dw TrainerLassEllenWhenBeatenText
+	dw LassEllenBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerLassEllenWhenTalkScript
+	dw LassEllenScript
 ; 0x19ef40
 
-TrainerLassEllenWhenTalkScript: ; 0x19ef40
+LassEllenScript: ; 0x19ef40
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x19f208
@@ -96886,19 +96886,19 @@ TrainerSchoolboyJoe: ; 0x19ef48
 	db SCHOOLBOY, JOE
 
 	; text when seen
-	dw TrainerSchoolboyJoeWhenSeenText
+	dw SchoolboyJoeSeenText
 
 	; text when trainer beaten
-	dw TrainerSchoolboyJoeWhenBeatenText
+	dw SchoolboyJoeBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerSchoolboyJoeWhenTalkScript
+	dw SchoolboyJoeScript
 ; 0x19ef54
 
-TrainerSchoolboyJoeWhenTalkScript: ; 0x19ef54
+SchoolboyJoeScript: ; 0x19ef54
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x19f25c
@@ -96915,19 +96915,19 @@ TrainerLassLaura: ; 0x19ef5c
 	db LASS, LAURA
 
 	; text when seen
-	dw TrainerLassLauraWhenSeenText
+	dw LassLauraSeenText
 
 	; text when trainer beaten
-	dw TrainerLassLauraWhenBeatenText
+	dw LassLauraBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerLassLauraWhenTalkScript
+	dw LassLauraScript
 ; 0x19ef68
 
-TrainerLassLauraWhenTalkScript: ; 0x19ef68
+LassLauraScript: ; 0x19ef68
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x19f2a6
@@ -96944,19 +96944,19 @@ TrainerCamperLloyd: ; 0x19ef70
 	db CAMPER, LLOYD
 
 	; text when seen
-	dw TrainerCamperLloydWhenSeenText
+	dw CamperLloydSeenText
 
 	; text when trainer beaten
-	dw TrainerCamperLloydWhenBeatenText
+	dw CamperLloydBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerCamperLloydWhenTalkScript
+	dw CamperLloydScript
 ; 0x19ef7c
 
-TrainerCamperLloydWhenTalkScript: ; 0x19ef7c
+CamperLloydScript: ; 0x19ef7c
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x19f2f8
@@ -96973,19 +96973,19 @@ TrainerLassShannon: ; 0x19ef84
 	db LASS, SHANNON
 
 	; text when seen
-	dw TrainerLassShannonWhenSeenText
+	dw LassShannonSeenText
 
 	; text when trainer beaten
-	dw TrainerLassShannonWhenBeatenText
+	dw LassShannonBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerLassShannonWhenTalkScript
+	dw LassShannonScript
 ; 0x19ef90
 
-TrainerLassShannonWhenTalkScript: ; 0x19ef90
+LassShannonScript: ; 0x19ef90
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x19f35b
@@ -97002,19 +97002,19 @@ TrainerSupernerdPat: ; 0x19ef98
 	db SUPER_NERD, PAT
 
 	; text when seen
-	dw TrainerSupernerdPatWhenSeenText
+	dw SupernerdPatSeenText
 
 	; text when trainer beaten
-	dw TrainerSupernerdPatWhenBeatenText
+	dw SupernerdPatBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerSupernerdPatWhenTalkScript
+	dw SupernerdPatScript
 ; 0x19efa4
 
-TrainerSupernerdPatWhenTalkScript: ; 0x19efa4
+SupernerdPatScript: ; 0x19efa4
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x19f41a
@@ -97143,7 +97143,7 @@ UnknownText_0x19f006: ; 0x19f006
 	db "CERULEAN.", $57
 ; 0x19f14d
 
-TrainerSchoolboyDudleyWhenSeenText: ; 0x19f14d
+SchoolboyDudleySeenText: ; 0x19f14d
 	db $0, "Beat the six of us", $4f
 	db "trainers to win a", $55
 	db "fabulous prize!", $51
@@ -97151,7 +97151,7 @@ TrainerSchoolboyDudleyWhenSeenText: ; 0x19f14d
 	db "what it takes?", $57
 ; 0x19f1a2
 
-TrainerSchoolboyDudleyWhenBeatenText: ; 0x19f1a2
+SchoolboyDudleyBeatenText: ; 0x19f1a2
 	db $0, "Whoo! Good stuff.", $57
 ; 0x19f1b5
 
@@ -97160,12 +97160,12 @@ UnknownText_0x19f1b5: ; 0x19f1b5
 	db "I have no regrets.", $57
 ; 0x19f1d8
 
-TrainerLassEllenWhenSeenText: ; 0x19f1d8
+LassEllenSeenText: ; 0x19f1d8
 	db $0, "I'm second.", $4f
 	db "Now it's serious!", $57
 ; 0x19f1f5
 
-TrainerLassEllenWhenBeatenText: ; 0x19f1f5
+LassEllenBeatenText: ; 0x19f1f5
 	db $0, "How could I lose?", $57
 ; 0x19f208
 
@@ -97174,12 +97174,12 @@ UnknownText_0x19f208: ; 0x19f208
 	db "I have no regrets.", $57
 ; 0x19f22b
 
-TrainerSchoolboyJoeWhenSeenText: ; 0x19f22b
+SchoolboyJoeSeenText: ; 0x19f22b
 	db $0, "Here's No. 3!", $4f
 	db "I won't be easy.", $57
 ; 0x19f249
 
-TrainerSchoolboyJoeWhenBeatenText: ; 0x19f249
+SchoolboyJoeBeatenText: ; 0x19f249
 	db $0, "Ow! Stomped flat!", $57
 ; 0x19f25c
 
@@ -97188,12 +97188,12 @@ UnknownText_0x19f25c: ; 0x19f25c
 	db "I have no regrets.", $57
 ; 0x19f27f
 
-TrainerLassLauraWhenSeenText: ; 0x19f27f
+LassLauraSeenText: ; 0x19f27f
 	db $0, "I'm No. 4!", $4f
 	db "Getting tired?", $57
 ; 0x19f299
 
-TrainerLassLauraWhenBeatenText: ; 0x19f299
+LassLauraBeatenText: ; 0x19f299
 	db $0, "I lost too…", $57
 ; 0x19f2a6
 
@@ -97202,12 +97202,12 @@ UnknownText_0x19f2a6: ; 0x19f2a6
 	db "I have no regrets.", $57
 ; 0x19f2c9
 
-TrainerCamperLloydWhenSeenText: ; 0x19f2c9
+CamperLloydSeenText: ; 0x19f2c9
 	db $0, "OK! I'm No. 5.", $4f
 	db "I'll stomp you!", $57
 ; 0x19f2e7
 
-TrainerCamperLloydWhenBeatenText: ; 0x19f2e7
+CamperLloydBeatenText: ; 0x19f2e7
 	db $0, "Whoa! Too much.", $57
 ; 0x19f2f8
 
@@ -97216,13 +97216,13 @@ UnknownText_0x19f2f8: ; 0x19f2f8
 	db "I have no regrets.", $57
 ; 0x19f31b
 
-TrainerLassShannonWhenSeenText: ; 0x19f31b
+LassShannonSeenText: ; 0x19f31b
 	db $0, "I'm the last in", $4f
 	db "line, but I tell", $55
 	db "you, I'm tough!", $57
 ; 0x19f34b
 
-TrainerLassShannonWhenBeatenText: ; 0x19f34b
+LassShannonBeatenText: ; 0x19f34b
 	db $0, "You're kidding.", $57
 ; 0x19f35b
 
@@ -97231,7 +97231,7 @@ UnknownText_0x19f35b: ; 0x19f35b
 	db "I have no regrets.", $57
 ; 0x19f37e
 
-TrainerSupernerdPatWhenSeenText: ; 0x19f37e
+SupernerdPatSeenText: ; 0x19f37e
 	db $0, "Mufufufu…", $51
 	db "I have nothing to", $4f
 	db "do with the six-", $55
@@ -97242,7 +97242,7 @@ TrainerSupernerdPatWhenSeenText: ; 0x19f37e
 	db "all the battles.", $57
 ; 0x19f401
 
-TrainerSupernerdPatWhenBeatenText: ; 0x19f401
+SupernerdPatBeatenText: ; 0x19f401
 	db $0, "Aren't you tired", $4f
 	db "at all?", $57
 ; 0x19f41a
@@ -97792,19 +97792,19 @@ TrainerPsychicGilbert: ; 0x1a089f
 	db PSYCHIC_T, GILBERT
 
 	; text when seen
-	dw TrainerPsychicGilbertWhenSeenText
+	dw PsychicGilbertSeenText
 
 	; text when trainer beaten
-	dw TrainerPsychicGilbertWhenBeatenText
+	dw PsychicGilbertBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerPsychicGilbertWhenTalkScript
+	dw PsychicGilbertScript
 ; 0x1a08ab
 
-TrainerPsychicGilbertWhenTalkScript: ; 0x1a08ab
+PsychicGilbertScript: ; 0x1a08ab
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x1a0dd2
@@ -97821,19 +97821,19 @@ TrainerBird_keeperJose2: ; 0x1a08b3
 	db BIRD_KEEPER, JOSE2
 
 	; text when seen
-	dw TrainerBird_keeperJose2WhenSeenText
+	dw Bird_keeperJose2SeenText
 
 	; text when trainer beaten
-	dw TrainerBird_keeperJose2WhenBeatenText
+	dw Bird_keeperJose2BeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerBird_keeperJose2WhenTalkScript
+	dw Bird_keeperJose2Script
 ; 0x1a08bf
 
-TrainerBird_keeperJose2WhenTalkScript: ; 0x1a08bf
+Bird_keeperJose2Script: ; 0x1a08bf
 	writecode $17, $d
 	talkaftercancel
 	loadfont
@@ -97865,7 +97865,7 @@ UnknownScript_0x1a08eb: ; 0x1a08eb
 
 UnknownScript_0x1a08ff: ; 0x1a08ff
 	2call UnknownScript_0x1a096f
-	winlosstext TrainerBird_keeperJose2WhenBeatenText, $0000
+	winlosstext Bird_keeperJose2BeatenText, $0000
 	copybytetovar $d9f7
 	if_equal $2, UnknownScript_0x1a0916
 	if_equal $1, UnknownScript_0x1a091c
@@ -97967,19 +97967,19 @@ TrainerCooltrainermBlake: ; 0x1a097b
 	db COOLTRAINERM, BLAKE
 
 	; text when seen
-	dw TrainerCooltrainermBlakeWhenSeenText
+	dw CooltrainermBlakeSeenText
 
 	; text when trainer beaten
-	dw TrainerCooltrainermBlakeWhenBeatenText
+	dw CooltrainermBlakeBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerCooltrainermBlakeWhenTalkScript
+	dw CooltrainermBlakeScript
 ; 0x1a0987
 
-TrainerCooltrainermBlakeWhenTalkScript: ; 0x1a0987
+CooltrainermBlakeScript: ; 0x1a0987
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x1a0b0b
@@ -97996,19 +97996,19 @@ TrainerCooltrainermBrian: ; 0x1a098f
 	db COOLTRAINERM, BRIAN
 
 	; text when seen
-	dw TrainerCooltrainermBrianWhenSeenText
+	dw CooltrainermBrianSeenText
 
 	; text when trainer beaten
-	dw TrainerCooltrainermBrianWhenBeatenText
+	dw CooltrainermBrianBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerCooltrainermBrianWhenTalkScript
+	dw CooltrainermBrianScript
 ; 0x1a099b
 
-TrainerCooltrainermBrianWhenTalkScript: ; 0x1a099b
+CooltrainermBrianScript: ; 0x1a099b
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x1a0bac
@@ -98025,19 +98025,19 @@ TrainerCooltrainerfReena1: ; 0x1a09a3
 	db COOLTRAINERF, REENA1
 
 	; text when seen
-	dw TrainerCooltrainerfReena1WhenSeenText
+	dw CooltrainerfReena1SeenText
 
 	; text when trainer beaten
-	dw TrainerCooltrainerfReena1WhenBeatenText
+	dw CooltrainerfReena1BeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerCooltrainerfReena1WhenTalkScript
+	dw CooltrainerfReena1Script
 ; 0x1a09af
 
-TrainerCooltrainerfReena1WhenTalkScript: ; 0x1a09af
+CooltrainerfReena1Script: ; 0x1a09af
 	writecode $17, $e
 	talkaftercancel
 	loadfont
@@ -98067,7 +98067,7 @@ UnknownScript_0x1a09d5: ; 0x1a09d5
 
 UnknownScript_0x1a09e9: ; 0x1a09e9
 	2call UnknownScript_0x1a0a47
-	winlosstext TrainerCooltrainerfReena1WhenBeatenText, $0000
+	winlosstext CooltrainerfReena1BeatenText, $0000
 	copybytetovar $d9f8
 	if_equal $2, UnknownScript_0x1a0a00
 	if_equal $1, UnknownScript_0x1a0a06
@@ -98147,19 +98147,19 @@ TrainerCooltrainerfMegan: ; 0x1a0a4b
 	db COOLTRAINERF, MEGAN
 
 	; text when seen
-	dw TrainerCooltrainerfMeganWhenSeenText
+	dw CooltrainerfMeganSeenText
 
 	; text when trainer beaten
-	dw TrainerCooltrainerfMeganWhenBeatenText
+	dw CooltrainerfMeganBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerCooltrainerfMeganWhenTalkScript
+	dw CooltrainerfMeganScript
 ; 0x1a0a57
 
-TrainerCooltrainerfMeganWhenTalkScript: ; 0x1a0a57
+CooltrainerfMeganScript: ; 0x1a0a57
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x1a0cce
@@ -98205,13 +98205,13 @@ UnknownText_0x1a0a71: ; 0x1a0a71
 	db "GEAR MAP and see.", $57
 ; 0x1a0ad9
 
-TrainerCooltrainermBlakeWhenSeenText: ; 0x1a0ad9
+CooltrainermBlakeSeenText: ; 0x1a0ad9
 	db $0, "You look pretty", $4f
 	db "strong.", $55
 	db "Let me battle you!", $57
 ; 0x1a0b05
 
-TrainerCooltrainermBlakeWhenBeatenText: ; 0x1a0b05
+CooltrainermBlakeBeatenText: ; 0x1a0b05
 	db $0, "Yow!", $57
 ; 0x1a0b0b
 
@@ -98225,12 +98225,12 @@ UnknownText_0x1a0b0b: ; 0x1a0b0b
 	db "something cool.", $57
 ; 0x1a0b7c
 
-TrainerCooltrainermBrianWhenSeenText: ; 0x1a0b7c
+CooltrainermBrianSeenText: ; 0x1a0b7c
 	db $0, "Hm? You're good,", $4f
 	db "aren't you?", $57
 ; 0x1a0b98
 
-TrainerCooltrainermBrianWhenBeatenText: ; 0x1a0b98
+CooltrainermBrianBeatenText: ; 0x1a0b98
 	db $0, "Just as I thought!", $57
 ; 0x1a0bac
 
@@ -98240,14 +98240,14 @@ UnknownText_0x1a0bac: ; 0x1a0bac
 	db "good trainers.", $57
 ; 0x1a0bdf
 
-TrainerCooltrainerfReena1WhenSeenText: ; 0x1a0bdf
+CooltrainerfReena1SeenText: ; 0x1a0bdf
 	db $0, "You shouldn't", $4f
 	db "underestimate the", $51
 	db "wild #MON in", $4f
 	db "these parts.", $57
 ; 0x1a0c19
 
-TrainerCooltrainerfReena1WhenBeatenText: ; 0x1a0c19
+CooltrainerfReena1BeatenText: ; 0x1a0c19
 	db $0, "Oh! You're much", $4f
 	db "too strong!", $57
 ; 0x1a0c35
@@ -98259,14 +98259,14 @@ UnknownText_0x1a0c35: ; 0x1a0c35
 	db "either.", $57
 ; 0x1a0c73
 
-TrainerCooltrainerfMeganWhenSeenText: ; 0x1a0c73
+CooltrainerfMeganSeenText: ; 0x1a0c73
 	db $0, "It's rare to see", $4f
 	db "anyone come here.", $51
 	db "Are you training", $4f
 	db "on your own?", $57
 ; 0x1a0cb4
 
-TrainerCooltrainerfMeganWhenBeatenText: ; 0x1a0cb4
+CooltrainerfMeganBeatenText: ; 0x1a0cb4
 	db $0, "Oh! You're really", $4f
 	db "strong!", $57
 ; 0x1a0cce
@@ -98283,7 +98283,7 @@ UnknownText_0x1a0cce: ; 0x1a0cce
 	db "later on.", $57
 ; 0x1a0d55
 
-TrainerPsychicGilbertWhenSeenText: ; 0x1a0d55
+PsychicGilbertSeenText: ; 0x1a0d55
 	db $0, "Don't say a thing!", $51
 	db "Let me guess what", $4f
 	db "you're thinking.", $51
@@ -98293,7 +98293,7 @@ TrainerPsychicGilbertWhenSeenText: ; 0x1a0d55
 	db "LEAGUE challenge!", $57
 ; 0x1a0dc1
 
-TrainerPsychicGilbertWhenBeatenText: ; 0x1a0dc1
+PsychicGilbertBeatenText: ; 0x1a0dc1
 	db $0, "You're too much!", $57
 ; 0x1a0dd2
 
@@ -98305,12 +98305,12 @@ UnknownText_0x1a0dd2: ; 0x1a0dd2
 	db "premonition says.", $57
 ; 0x1a0e22
 
-TrainerBird_keeperJose2WhenSeenText: ; 0x1a0e22
+Bird_keeperJose2SeenText: ; 0x1a0e22
 	db $0, "Tweet! Tweet!", $4f
 	db "Tetweet!", $57
 ; 0x1a0e3a
 
-TrainerBird_keeperJose2WhenBeatenText: ; 0x1a0e3a
+Bird_keeperJose2BeatenText: ; 0x1a0e3a
 	db $0, "Tweet!", $57
 ; 0x1a0e42
 
@@ -98841,19 +98841,19 @@ TrainerYoungsterJoey1: ; 0x1a169a
 	db YOUNGSTER, JOEY1
 
 	; text when seen
-	dw TrainerYoungsterJoey1WhenSeenText
+	dw YoungsterJoey1SeenText
 
 	; text when trainer beaten
-	dw TrainerYoungsterJoey1WhenBeatenText
+	dw YoungsterJoey1BeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerYoungsterJoey1WhenTalkScript
+	dw YoungsterJoey1Script
 ; 0x1a16a6
 
-TrainerYoungsterJoey1WhenTalkScript: ; 0x1a16a6
+YoungsterJoey1Script: ; 0x1a16a6
 	writecode $17, $f
 	talkaftercancel
 	loadfont
@@ -98883,7 +98883,7 @@ UnknownScript_0x1a16cc: ; 0x1a16cc
 
 UnknownScript_0x1a16e0: ; 0x1a16e0
 	2call UnknownScript_0x1a179b
-	winlosstext TrainerYoungsterJoey1WhenBeatenText, $0000
+	winlosstext YoungsterJoey1BeatenText, $0000
 	copybytetovar $d9f9
 	if_equal $4, UnknownScript_0x1a16ff
 	if_equal $3, UnknownScript_0x1a1705
@@ -99023,19 +99023,19 @@ TrainerYoungsterMikey: ; 0x1a17aa
 	db YOUNGSTER, MIKEY
 
 	; text when seen
-	dw TrainerYoungsterMikeyWhenSeenText
+	dw YoungsterMikeySeenText
 
 	; text when trainer beaten
-	dw TrainerYoungsterMikeyWhenBeatenText
+	dw YoungsterMikeyBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerYoungsterMikeyWhenTalkScript
+	dw YoungsterMikeyScript
 ; 0x1a17b6
 
-TrainerYoungsterMikeyWhenTalkScript: ; 0x1a17b6
+YoungsterMikeyScript: ; 0x1a17b6
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x1a197d
@@ -99052,19 +99052,19 @@ TrainerBug_catcherDon: ; 0x1a17be
 	db BUG_CATCHER, DON
 
 	; text when seen
-	dw TrainerBug_catcherDonWhenSeenText
+	dw Bug_catcherDonSeenText
 
 	; text when trainer beaten
-	dw TrainerBug_catcherDonWhenBeatenText
+	dw Bug_catcherDonBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerBug_catcherDonWhenTalkScript
+	dw Bug_catcherDonScript
 ; 0x1a17ca
 
-TrainerBug_catcherDonWhenTalkScript: ; 0x1a17ca
+Bug_catcherDonScript: ; 0x1a17ca
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x1a1a1c
@@ -99154,7 +99154,7 @@ UnknownText_0x1a181c: ; 0x1a181c
 	db "Leave me alone!", $57
 ; 0x1a1849
 
-TrainerYoungsterJoey1WhenSeenText: ; 0x1a1849
+YoungsterJoey1SeenText: ; 0x1a1849
 	db $0, "I just lost, so", $4f
 	db "I'm trying to find", $55
 	db "more #MON.", $51
@@ -99163,7 +99163,7 @@ TrainerYoungsterJoey1WhenSeenText: ; 0x1a1849
 	db "let's battle!", $57
 ; 0x1a18a2
 
-TrainerYoungsterJoey1WhenBeatenText: ; 0x1a18a2
+YoungsterJoey1BeatenText: ; 0x1a18a2
 	db $0, "Ack! I lost again!", $4f
 	db "Doggone it!", $57
 ; 0x1a18c2
@@ -99178,14 +99178,14 @@ UnknownText_0x1a18c2: ; 0x1a18c2
 	db "matter what!", $57
 ; 0x1a1928
 
-TrainerYoungsterMikeyWhenSeenText: ; 0x1a1928
+YoungsterMikeySeenText: ; 0x1a1928
 	db $0, "You're a #MON", $4f
 	db "trainer, right?", $51
 	db "Then you have to", $4f
 	db "battle!", $57
 ; 0x1a195f
 
-TrainerYoungsterMikeyWhenBeatenText: ; 0x1a195f
+YoungsterMikeyBeatenText: ; 0x1a195f
 	db $0, "That's strange.", $4f
 	db "I won before.", $57
 ; 0x1a197d
@@ -99199,13 +99199,13 @@ UnknownText_0x1a197d: ; 0x1a197d
 	db "to get better.", $57
 ; 0x1a19d8
 
-TrainerBug_catcherDonWhenSeenText: ; 0x1a19d8
+Bug_catcherDonSeenText: ; 0x1a19d8
 	db $0, "Instead of a bug", $4f
 	db "#MON, I found", $55
 	db "a trainer!", $57
 ; 0x1a1a03
 
-TrainerBug_catcherDonWhenBeatenText: ; 0x1a1a03
+Bug_catcherDonBeatenText: ; 0x1a1a03
 	db $0, "Argh! You're too", $4f
 	db "strong!", $57
 ; 0x1a1a1c
@@ -99324,19 +99324,19 @@ TrainerBird_keeperToby: ; 0x1a1d0e
 	db BIRD_KEEPER, TOBY
 
 	; text when seen
-	dw TrainerBird_keeperTobyWhenSeenText
+	dw Bird_keeperTobySeenText
 
 	; text when trainer beaten
-	dw TrainerBird_keeperTobyWhenBeatenText
+	dw Bird_keeperTobyBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerBird_keeperTobyWhenTalkScript
+	dw Bird_keeperTobyScript
 ; 0x1a1d1a
 
-TrainerBird_keeperTobyWhenTalkScript: ; 0x1a1d1a
+Bird_keeperTobyScript: ; 0x1a1d1a
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x1a1f86
@@ -99353,19 +99353,19 @@ TrainerSailorHarry: ; 0x1a1d22
 	db SAILOR, HARRY
 
 	; text when seen
-	dw TrainerSailorHarryWhenSeenText
+	dw SailorHarrySeenText
 
 	; text when trainer beaten
-	dw TrainerSailorHarryWhenBeatenText
+	dw SailorHarryBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerSailorHarryWhenTalkScript
+	dw SailorHarryScript
 ; 0x1a1d2e
 
-TrainerSailorHarryWhenTalkScript: ; 0x1a1d2e
+SailorHarryScript: ; 0x1a1d2e
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x1a220c
@@ -99382,19 +99382,19 @@ TrainerLassDana1: ; 0x1a1d36
 	db LASS, DANA1
 
 	; text when seen
-	dw TrainerLassDana1WhenSeenText
+	dw LassDana1SeenText
 
 	; text when trainer beaten
-	dw TrainerLassDana1WhenBeatenText
+	dw LassDana1BeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerLassDana1WhenTalkScript
+	dw LassDana1Script
 ; 0x1a1d42
 
-TrainerLassDana1WhenTalkScript: ; 0x1a1d42
+LassDana1Script: ; 0x1a1d42
 	writecode $17, $1a
 	talkaftercancel
 	loadfont
@@ -99426,7 +99426,7 @@ UnknownScript_0x1a1d6e: ; 0x1a1d6e
 
 UnknownScript_0x1a1d82: ; 0x1a1d82
 	2call UnknownScript_0x1a1e23
-	winlosstext TrainerLassDana1WhenBeatenText, $0000
+	winlosstext LassDana1BeatenText, $0000
 	copybytetovar $da03
 	if_equal $4, UnknownScript_0x1a1da1
 	if_equal $3, UnknownScript_0x1a1da7
@@ -99555,19 +99555,19 @@ TrainerSchoolboyChad1: ; 0x1a1e2f
 	db SCHOOLBOY, CHAD1
 
 	; text when seen
-	dw TrainerSchoolboyChad1WhenSeenText
+	dw SchoolboyChad1SeenText
 
 	; text when trainer beaten
-	dw TrainerSchoolboyChad1WhenBeatenText
+	dw SchoolboyChad1BeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerSchoolboyChad1WhenTalkScript
+	dw SchoolboyChad1Script
 ; 0x1a1e3b
 
-TrainerSchoolboyChad1WhenTalkScript: ; 0x1a1e3b
+SchoolboyChad1Script: ; 0x1a1e3b
 	writecode $17, $1b
 	talkaftercancel
 	loadfont
@@ -99597,7 +99597,7 @@ UnknownScript_0x1a1e61: ; 0x1a1e61
 
 UnknownScript_0x1a1e75: ; 0x1a1e75
 	2call UnknownScript_0x1a1f01
-	winlosstext TrainerSchoolboyChad1WhenBeatenText, $0000
+	winlosstext SchoolboyChad1BeatenText, $0000
 	copybytetovar $da04
 	if_equal $4, UnknownScript_0x1a1e94
 	if_equal $3, UnknownScript_0x1a1e9a
@@ -99703,19 +99703,19 @@ TrainerBeautyValerie: ; 0x1a1f05
 	db BEAUTY, VALERIE
 
 	; text when seen
-	dw TrainerBeautyValerieWhenSeenText
+	dw BeautyValerieSeenText
 
 	; text when trainer beaten
-	dw TrainerBeautyValerieWhenBeatenText
+	dw BeautyValerieBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerBeautyValerieWhenTalkScript
+	dw BeautyValerieScript
 ; 0x1a1f11
 
-TrainerBeautyValerieWhenTalkScript: ; 0x1a1f11
+BeautyValerieScript: ; 0x1a1f11
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x1a2185
@@ -99732,19 +99732,19 @@ TrainerBeautyOlivia: ; 0x1a1f19
 	db BEAUTY, OLIVIA
 
 	; text when seen
-	dw TrainerBeautyOliviaWhenSeenText
+	dw BeautyOliviaSeenText
 
 	; text when trainer beaten
-	dw TrainerBeautyOliviaWhenBeatenText
+	dw BeautyOliviaBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerBeautyOliviaWhenTalkScript
+	dw BeautyOliviaScript
 ; 0x1a1f25
 
-TrainerBeautyOliviaWhenTalkScript: ; 0x1a1f25
+BeautyOliviaScript: ; 0x1a1f25
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x1a229a
@@ -99765,13 +99765,13 @@ UnknownScript_0x1a1f33: ; 0x1a1f33
 	fruittree $3
 ; 0x1a1f35
 
-TrainerBird_keeperTobyWhenSeenText: ; 0x1a1f35
+Bird_keeperTobySeenText: ; 0x1a1f35
 	db $0, "Fly high into the", $4f
 	db "sky, my beloved", $55
 	db "bird #MON!", $57
 ; 0x1a1f63
 
-TrainerBird_keeperTobyWhenBeatenText: ; 0x1a1f63
+Bird_keeperTobyBeatenText: ; 0x1a1f63
 	db $0, "I feel like just", $4f
 	db "flying away now.", $57
 ; 0x1a1f86
@@ -99783,13 +99783,13 @@ UnknownText_0x1a1f86: ; 0x1a1f86
 	db "how to FLY.", $57
 ; 0x1a1fc5
 
-TrainerSchoolboyChad1WhenSeenText: ; 0x1a1fc5
+SchoolboyChad1SeenText: ; 0x1a1fc5
 	db $0, "Let me try some-", $4f
 	db "thing I learned", $55
 	db "today.", $57
 ; 0x1a1fee
 
-TrainerSchoolboyChad1WhenBeatenText: ; 0x1a1fee
+SchoolboyChad1BeatenText: ; 0x1a1fee
 	db $0, "I didn't study", $4f
 	db "enough, I guess.", $57
 ; 0x1a200e
@@ -99804,7 +99804,7 @@ UnknownText_0x1a200e: ; 0x1a200e
 	db "concentrate.", $57
 ; 0x1a207d
 
-TrainerLassDana1WhenSeenText: ; 0x1a207d
+LassDana1SeenText: ; 0x1a207d
 	db $0, "You seem to be", $4f
 	db "good at #MON.", $51
 	db "If you are, how", $4f
@@ -99812,7 +99812,7 @@ TrainerLassDana1WhenSeenText: ; 0x1a207d
 	db "some advice?", $57
 ; 0x1a20c8
 
-TrainerLassDana1WhenBeatenText: ; 0x1a20c8
+LassDana1BeatenText: ; 0x1a20c8
 	db $0, "I see. So you can", $4f
 	db "battle that way.", $57
 ; 0x1a20ec
@@ -99825,14 +99825,14 @@ UnknownText_0x1a20ec: ; 0x1a20ec
 	db "flavor.", $57
 ; 0x1a2130
 
-TrainerBeautyValerieWhenSeenText: ; 0x1a2130
+BeautyValerieSeenText: ; 0x1a2130
 	db $0, "Hi! Aren't you a", $4f
 	db "cute trainer!", $51
 	db "May I see your", $4f
 	db "#MON?", $57
 ; 0x1a2164
 
-TrainerBeautyValerieWhenBeatenText: ; 0x1a2164
+BeautyValerieBeatenText: ; 0x1a2164
 	db $0, "I'm glad I got to", $4f
 	db "see your #MON!", $57
 ; 0x1a2185
@@ -99843,14 +99843,14 @@ UnknownText_0x1a2185: ; 0x1a2185
 	db "soothe my nerves.", $57
 ; 0x1a21b7
 
-TrainerSailorHarryWhenSeenText: ; 0x1a21b7
+SailorHarrySeenText: ; 0x1a21b7
 	db $0, "I've been over-", $4f
 	db "seas, so I know", $51
 	db "about all sorts of", $4f
 	db "#MON!", $57
 ; 0x1a21f0
 
-TrainerSailorHarryWhenBeatenText: ; 0x1a21f0
+SailorHarryBeatenText: ; 0x1a21f0
 	db $0, "Your skill is", $4f
 	db "world class!", $57
 ; 0x1a220c
@@ -99862,13 +99862,13 @@ UnknownText_0x1a220c: ; 0x1a220c
 	db "with #MON.", $57
 ; 0x1a224c
 
-TrainerBeautyOliviaWhenSeenText: ; 0x1a224c
+BeautyOliviaSeenText: ; 0x1a224c
 	db $0, "Don't you think my", $4f
 	db "#MON and I are", $55
 	db "beautiful?", $57
 ; 0x1a2279
 
-TrainerBeautyOliviaWhenBeatenText: ; 0x1a2279
+BeautyOliviaBeatenText: ; 0x1a2279
 	db $0, "We drink MOOMOO", $4f
 	db "MILK every day.", $57
 ; 0x1a229a
@@ -99945,19 +99945,19 @@ TrainerPokefanmAlex: ; 0x1a2432
 	db POKEFANM, ALEX
 
 	; text when seen
-	dw TrainerPokefanmAlexWhenSeenText
+	dw PokefanmAlexSeenText
 
 	; text when trainer beaten
-	dw TrainerPokefanmAlexWhenBeatenText
+	dw PokefanmAlexBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerPokefanmAlexWhenTalkScript
+	dw PokefanmAlexScript
 ; 0x1a243e
 
-TrainerPokefanmAlexWhenTalkScript: ; 0x1a243e
+PokefanmAlexScript: ; 0x1a243e
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x1a24e3
@@ -99974,19 +99974,19 @@ TrainerPokefanmJoshua: ; 0x1a2446
 	db POKEFANM, JOSHUA
 
 	; text when seen
-	dw TrainerPokefanmJoshuaWhenSeenText
+	dw PokefanmJoshuaSeenText
 
 	; text when trainer beaten
-	dw TrainerPokefanmJoshuaWhenBeatenText
+	dw PokefanmJoshuaBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerPokefanmJoshuaWhenTalkScript
+	dw PokefanmJoshuaScript
 ; 0x1a2452
 
-TrainerPokefanmJoshuaWhenTalkScript: ; 0x1a2452
+PokefanmJoshuaScript: ; 0x1a2452
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x1a254f
@@ -100003,19 +100003,19 @@ TrainerBird_keeperPerry: ; 0x1a245a
 	db BIRD_KEEPER, PERRY
 
 	; text when seen
-	dw TrainerBird_keeperPerryWhenSeenText
+	dw Bird_keeperPerrySeenText
 
 	; text when trainer beaten
-	dw TrainerBird_keeperPerryWhenBeatenText
+	dw Bird_keeperPerryBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerBird_keeperPerryWhenTalkScript
+	dw Bird_keeperPerryScript
 ; 0x1a2466
 
-TrainerBird_keeperPerryWhenTalkScript: ; 0x1a2466
+Bird_keeperPerryScript: ; 0x1a2466
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x1a25db
@@ -100032,19 +100032,19 @@ TrainerBird_keeperBret: ; 0x1a246e
 	db BIRD_KEEPER, BRET
 
 	; text when seen
-	dw TrainerBird_keeperBretWhenSeenText
+	dw Bird_keeperBretSeenText
 
 	; text when trainer beaten
-	dw TrainerBird_keeperBretWhenBeatenText
+	dw Bird_keeperBretBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerBird_keeperBretWhenTalkScript
+	dw Bird_keeperBretScript
 ; 0x1a247a
 
-TrainerBird_keeperBretWhenTalkScript: ; 0x1a247a
+Bird_keeperBretScript: ; 0x1a247a
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x1a2662
@@ -100061,19 +100061,19 @@ TrainerHikerKenny: ; 0x1a2482
 	db HIKER, KENNY
 
 	; text when seen
-	dw TrainerHikerKennyWhenSeenText
+	dw HikerKennySeenText
 
 	; text when trainer beaten
-	dw TrainerHikerKennyWhenBeatenText
+	dw HikerKennyBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerHikerKennyWhenTalkScript
+	dw HikerKennyScript
 ; 0x1a248e
 
-TrainerHikerKennyWhenTalkScript: ; 0x1a248e
+HikerKennyScript: ; 0x1a248e
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x1a26c2
@@ -100100,12 +100100,12 @@ MapRoute13SignpostItem3: ; 0x1a249f
 	
 ; 0x1a24a2
 
-TrainerPokefanmAlexWhenSeenText: ; 0x1a24a2
+PokefanmAlexSeenText: ; 0x1a24a2
 	db $0, "Bow down before my", $4f
 	db "regal #MON!", $57
 ; 0x1a24c2
 
-TrainerPokefanmAlexWhenBeatenText: ; 0x1a24c2
+PokefanmAlexBeatenText: ; 0x1a24c2
 	db $0, "How… How dare you", $4f
 	db "mock royalty!", $57
 ; 0x1a24e3
@@ -100116,13 +100116,13 @@ UnknownText_0x1a24e3: ; 0x1a24e3
 	db "a king?", $57
 ; 0x1a250f
 
-TrainerPokefanmJoshuaWhenSeenText: ; 0x1a250f
+PokefanmJoshuaSeenText: ; 0x1a250f
 	db $0, "Nihihi! Would you", $4f
 	db "like to battle my", $55
 	db "PIKACHU gang?", $57
 ; 0x1a2542
 
-TrainerPokefanmJoshuaWhenBeatenText: ; 0x1a2542
+PokefanmJoshuaBeatenText: ; 0x1a2542
 	db $0, "PI-PIKACHU!", $57
 ; 0x1a254f
 
@@ -100133,13 +100133,13 @@ UnknownText_0x1a254f: ; 0x1a254f
 	db "still the best.", $57
 ; 0x1a2591
 
-TrainerBird_keeperPerryWhenSeenText: ; 0x1a2591
+Bird_keeperPerrySeenText: ; 0x1a2591
 	db $0, "Agility is the key", $4f
 	db "attribute of bird", $55
 	db "#MON.", $57
 ; 0x1a25bd
 
-TrainerBird_keeperPerryWhenBeatenText: ; 0x1a25bd
+Bird_keeperPerryBeatenText: ; 0x1a25bd
 	db $0, "You beat me with", $4f
 	db "your speed…", $57
 ; 0x1a25db
@@ -100150,14 +100150,14 @@ UnknownText_0x1a25db: ; 0x1a25db
 	db "trained.", $57
 ; 0x1a2604
 
-TrainerBird_keeperBretWhenSeenText: ; 0x1a2604
+Bird_keeperBretSeenText: ; 0x1a2604
 	db $0, "Check out my #-", $4f
 	db "MON. Just look at", $51
 	db "their coloring and", $4f
 	db "their plumage.", $57
 ; 0x1a2649
 
-TrainerBird_keeperBretWhenBeatenText: ; 0x1a2649
+Bird_keeperBretBeatenText: ; 0x1a2649
 	db $0, "Shoot!", $4f
 	db "Not good enough!", $57
 ; 0x1a2662
@@ -100167,13 +100167,13 @@ UnknownText_0x1a2662: ; 0x1a2662
 	db "#MON get happy.", $57
 ; 0x1a2686
 
-TrainerHikerKennyWhenSeenText: ; 0x1a2686
+HikerKennySeenText: ; 0x1a2686
 	db $0, "I should go to", $4f
 	db "ROCK TUNNEL to get", $55
 	db "myself an ONIX.", $57
 ; 0x1a26b9
 
-TrainerHikerKennyWhenBeatenText: ; 0x1a26b9
+HikerKennyBeatenText: ; 0x1a26b9
 	db $0, "I lost…", $57
 ; 0x1a26c2
 
@@ -100330,19 +100330,19 @@ TrainerCamperJerry: ; 0x1a2898
 	db CAMPER, JERRY
 
 	; text when seen
-	dw TrainerCamperJerryWhenSeenText
+	dw CamperJerrySeenText
 
 	; text when trainer beaten
-	dw TrainerCamperJerryWhenBeatenText
+	dw CamperJerryBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerCamperJerryWhenTalkScript
+	dw CamperJerryScript
 ; 0x1a28a4
 
-TrainerCamperJerryWhenTalkScript: ; 0x1a28a4
+CamperJerryScript: ; 0x1a28a4
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x1a2c0f
@@ -100436,7 +100436,7 @@ UnknownText_0x1a2ada: ; 0x1a2ada
 	db "er too.", $57
 ; 0x1a2b62
 
-TrainerCamperJerryWhenSeenText: ; 0x1a2b62
+CamperJerrySeenText: ; 0x1a2b62
 	db $0, "The trainers of", $4f
 	db "this GYM use rock-", $55
 	db "type #MON.", $51
@@ -100448,7 +100448,7 @@ TrainerCamperJerryWhenSeenText: ; 0x1a2b62
 	db "ready for this?", $57
 ; 0x1a2bf1
 
-TrainerCamperJerryWhenBeatenText: ; 0x1a2bf1
+CamperJerryBeatenText: ; 0x1a2bf1
 	db $0, "I have to win", $4f
 	db "these battles…", $57
 ; 0x1a2c0f
@@ -101393,19 +101393,19 @@ TrainerCooltrainermJake: ; 0x1a4d1f
 	db COOLTRAINERM, JAKE
 
 	; text when seen
-	dw TrainerCooltrainermJakeWhenSeenText
+	dw CooltrainermJakeSeenText
 
 	; text when trainer beaten
-	dw TrainerCooltrainermJakeWhenBeatenText
+	dw CooltrainermJakeBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerCooltrainermJakeWhenTalkScript
+	dw CooltrainermJakeScript
 ; 0x1a4d2b
 
-TrainerCooltrainermJakeWhenTalkScript: ; 0x1a4d2b
+CooltrainermJakeScript: ; 0x1a4d2b
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x1a4f08
@@ -101422,19 +101422,19 @@ TrainerCooltrainermGaven3: ; 0x1a4d33
 	db COOLTRAINERM, GAVEN3
 
 	; text when seen
-	dw TrainerCooltrainermGaven3WhenSeenText
+	dw CooltrainermGaven3SeenText
 
 	; text when trainer beaten
-	dw TrainerCooltrainermGaven3WhenBeatenText
+	dw CooltrainermGaven3BeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerCooltrainermGaven3WhenTalkScript
+	dw CooltrainermGaven3Script
 ; 0x1a4d3f
 
-TrainerCooltrainermGaven3WhenTalkScript: ; 0x1a4d3f
+CooltrainermGaven3Script: ; 0x1a4d3f
 	writecode $17, $b
 	talkaftercancel
 	loadfont
@@ -101464,7 +101464,7 @@ UnknownScript_0x1a4d65: ; 0x1a4d65
 
 UnknownScript_0x1a4d79: ; 0x1a4d79
 	2call UnknownScript_0x1a4dd7
-	winlosstext TrainerCooltrainermGaven3WhenBeatenText, $0000
+	winlosstext CooltrainermGaven3BeatenText, $0000
 	copybytetovar $d9f5
 	if_equal $2, UnknownScript_0x1a4d90
 	if_equal $1, UnknownScript_0x1a4d96
@@ -101544,19 +101544,19 @@ TrainerCooltrainerfJoyce: ; 0x1a4ddb
 	db COOLTRAINERF, JOYCE
 
 	; text when seen
-	dw TrainerCooltrainerfJoyceWhenSeenText
+	dw CooltrainerfJoyceSeenText
 
 	; text when trainer beaten
-	dw TrainerCooltrainerfJoyceWhenBeatenText
+	dw CooltrainerfJoyceBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerCooltrainerfJoyceWhenTalkScript
+	dw CooltrainerfJoyceScript
 ; 0x1a4de7
 
-TrainerCooltrainerfJoyceWhenTalkScript: ; 0x1a4de7
+CooltrainerfJoyceScript: ; 0x1a4de7
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x1a50d7
@@ -101573,19 +101573,19 @@ TrainerCooltrainerfBeth1: ; 0x1a4def
 	db COOLTRAINERF, BETH1
 
 	; text when seen
-	dw TrainerCooltrainerfBeth1WhenSeenText
+	dw CooltrainerfBeth1SeenText
 
 	; text when trainer beaten
-	dw TrainerCooltrainerfBeth1WhenBeatenText
+	dw CooltrainerfBeth1BeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerCooltrainerfBeth1WhenTalkScript
+	dw CooltrainerfBeth1Script
 ; 0x1a4dfb
 
-TrainerCooltrainerfBeth1WhenTalkScript: ; 0x1a4dfb
+CooltrainerfBeth1Script: ; 0x1a4dfb
 	writecode $17, $c
 	talkaftercancel
 	loadfont
@@ -101615,7 +101615,7 @@ UnknownScript_0x1a4e21: ; 0x1a4e21
 
 UnknownScript_0x1a4e35: ; 0x1a4e35
 	2call UnknownScript_0x1a4e93
-	winlosstext TrainerCooltrainerfBeth1WhenBeatenText, $0000
+	winlosstext CooltrainerfBeth1BeatenText, $0000
 	copybytetovar $d9f6
 	if_equal $2, UnknownScript_0x1a4e4c
 	if_equal $1, UnknownScript_0x1a4e52
@@ -101695,19 +101695,19 @@ TrainerPsychicRichard: ; 0x1a4e97
 	db PSYCHIC_T, RICHARD
 
 	; text when seen
-	dw TrainerPsychicRichardWhenSeenText
+	dw PsychicRichardSeenText
 
 	; text when trainer beaten
-	dw TrainerPsychicRichardWhenBeatenText
+	dw PsychicRichardBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerPsychicRichardWhenTalkScript
+	dw PsychicRichardScript
 ; 0x1a4ea3
 
-TrainerPsychicRichardWhenTalkScript: ; 0x1a4ea3
+PsychicRichardScript: ; 0x1a4ea3
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x1a5278
@@ -101724,19 +101724,19 @@ TrainerFisherScott: ; 0x1a4eab
 	db FISHER, SCOTT
 
 	; text when seen
-	dw TrainerFisherScottWhenSeenText
+	dw FisherScottSeenText
 
 	; text when trainer beaten
-	dw TrainerFisherScottWhenBeatenText
+	dw FisherScottBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerFisherScottWhenTalkScript
+	dw FisherScottScript
 ; 0x1a4eb7
 
-TrainerFisherScottWhenTalkScript: ; 0x1a4eb7
+FisherScottScript: ; 0x1a4eb7
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x1a5326
@@ -101757,14 +101757,14 @@ ItemFragment_0x1a4ec4: ; 0x1a4ec4
 	db MAX_ELIXER, 1
 ; 0x1a4ec6
 
-TrainerCooltrainermJakeWhenSeenText: ; 0x1a4ec6
+CooltrainermJakeSeenText: ; 0x1a4ec6
 	db $0, "I'm making my", $4f
 	db "final preparations", $51
 	db "for the #MON", $4f
 	db "LEAGUE.", $57
 ; 0x1a4efc
 
-TrainerCooltrainermJakeWhenBeatenText: ; 0x1a4efc
+CooltrainermJakeBeatenText: ; 0x1a4efc
 	db $0, "I blew it!", $57
 ; 0x1a4f08
 
@@ -101780,13 +101780,13 @@ UnknownText_0x1a4f08: ; 0x1a4f08
 	db "than GYM LEADERS.", $57
 ; 0x1a4f97
 
-TrainerCooltrainermGaven3WhenSeenText: ; 0x1a4f97
+CooltrainermGaven3SeenText: ; 0x1a4f97
 	db $0, "By experiencing", $4f
 	db "tough battles, you", $55
 	db "gain power.", $57
 ; 0x1a4fc7
 
-TrainerCooltrainermGaven3WhenBeatenText: ; 0x1a4fc7
+CooltrainermGaven3BeatenText: ; 0x1a4fc7
 	db $0, "Gaah! Life is even", $4f
 	db "tougher!", $57
 ; 0x1a4fe4
@@ -101802,7 +101802,7 @@ UnknownText_0x1a4fe4: ; 0x1a4fe4
 	db "goes there!", $57
 ; 0x1a505c
 
-TrainerCooltrainerfJoyceWhenSeenText: ; 0x1a505c
+CooltrainerfJoyceSeenText: ; 0x1a505c
 	db $0, "Since you've come", $4f
 	db "this far, you must", $55
 	db "be good.", $51
@@ -101811,7 +101811,7 @@ TrainerCooltrainerfJoyceWhenSeenText: ; 0x1a505c
 	db "thing I've got!", $57
 ; 0x1a50bd
 
-TrainerCooltrainerfJoyceWhenBeatenText: ; 0x1a50bd
+CooltrainerfJoyceBeatenText: ; 0x1a50bd
 	db $0, "No! I don't", $4f
 	db "believe this!", $57
 ; 0x1a50d7
@@ -101825,7 +101825,7 @@ UnknownText_0x1a50d7: ; 0x1a50d7
 	db "harder next time.", $57
 ; 0x1a5136
 
-TrainerCooltrainerfBeth1WhenSeenText: ; 0x1a5136
+CooltrainerfBeth1SeenText: ; 0x1a5136
 	db $0, "I lost to a train-", $4f
 	db "er named ", $53, ".", $51
 	db "He was really", $4f
@@ -101837,7 +101837,7 @@ TrainerCooltrainerfBeth1WhenSeenText: ; 0x1a5136
 	db "his #MON.", $57
 ; 0x1a51bf
 
-TrainerCooltrainerfBeth1WhenBeatenText: ; 0x1a51bf
+CooltrainerfBeth1BeatenText: ; 0x1a51bf
 	db $0, "#MON aren't", $4f
 	db "tools of war.", $57
 ; 0x1a51d9
@@ -101848,7 +101848,7 @@ UnknownText_0x1a51d9: ; 0x1a51d9
 	db "partners.", $57
 ; 0x1a5204
 
-TrainerPsychicRichardWhenSeenText: ; 0x1a5204
+PsychicRichardSeenText: ; 0x1a5204
 	db $0, "Wow, look at all", $4f
 	db "those BADGES!", $55
 	db "I'm impressed.", $51
@@ -101858,7 +101858,7 @@ TrainerPsychicRichardWhenSeenText: ; 0x1a5204
 	db "right?", $57
 ; 0x1a526a
 
-TrainerPsychicRichardWhenBeatenText: ; 0x1a526a
+PsychicRichardBeatenText: ; 0x1a526a
 	db $0, "Good battle!", $57
 ; 0x1a5278
 
@@ -101870,7 +101870,7 @@ UnknownText_0x1a5278: ; 0x1a5278
 	db "complacent.", $57
 ; 0x1a52c4
 
-TrainerFisherScottWhenSeenText: ; 0x1a52c4
+FisherScottSeenText: ; 0x1a52c4
 	db $0, "I'm feeling great", $4f
 	db "today!", $51
 	db "I feel like I", $4f
@@ -101878,7 +101878,7 @@ TrainerFisherScottWhenSeenText: ; 0x1a52c4
 	db "the LEAGUE CHAMP!", $57
 ; 0x1a530d
 
-TrainerFisherScottWhenBeatenText: ; 0x1a530d
+FisherScottBeatenText: ; 0x1a530d
 	db $0, "No! Not in this", $4f
 	db "battle!", $57
 ; 0x1a5326
@@ -101999,19 +101999,19 @@ TrainerBug_catcherWade1: ; 0x1a5447
 	db BUG_CATCHER, WADE1
 
 	; text when seen
-	dw TrainerBug_catcherWade1WhenSeenText
+	dw Bug_catcherWade1SeenText
 
 	; text when trainer beaten
-	dw TrainerBug_catcherWade1WhenBeatenText
+	dw Bug_catcherWade1BeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerBug_catcherWade1WhenTalkScript
+	dw Bug_catcherWade1Script
 ; 0x1a5453
 
-TrainerBug_catcherWade1WhenTalkScript: ; 0x1a5453
+Bug_catcherWade1Script: ; 0x1a5453
 	writecode $17, $10
 	talkaftercancel
 	loadfont
@@ -102043,7 +102043,7 @@ UnknownScript_0x1a547f: ; 0x1a547f
 
 UnknownScript_0x1a5493: ; 0x1a5493
 	2call UnknownScript_0x1a5564
-	winlosstext TrainerBug_catcherWade1WhenBeatenText, $0000
+	winlosstext Bug_catcherWade1BeatenText, $0000
 	copybytetovar $d9fa
 	if_equal $4, UnknownScript_0x1a54b2
 	if_equal $3, UnknownScript_0x1a54b8
@@ -102294,13 +102294,13 @@ UnknownText_0x1a55ff: ; 0x1a55ff
 	db "explore it.", $57
 ; 0x1a5635
 
-TrainerBug_catcherWade1WhenSeenText: ; 0x1a5635
+Bug_catcherWade1SeenText: ; 0x1a5635
 	db $0, "I caught a bunch", $4f
 	db "of #MON. Let me", $55
 	db "battle with you!", $57
 ; 0x1a5668
 
-TrainerBug_catcherWade1WhenBeatenText: ; 0x1a5668
+Bug_catcherWade1BeatenText: ; 0x1a5668
 	db $0, "Awwwww…", $57
 ; 0x1a5671
 
@@ -102468,19 +102468,19 @@ TrainerPokefanmDerek1: ; 0x1a5aff
 	db POKEFANM, DEREK1
 
 	; text when seen
-	dw TrainerPokefanmDerek1WhenSeenText
+	dw PokefanmDerek1SeenText
 
 	; text when trainer beaten
-	dw TrainerPokefanmDerek1WhenBeatenText
+	dw PokefanmDerek1BeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerPokefanmDerek1WhenTalkScript
+	dw PokefanmDerek1Script
 ; 0x1a5b0b
 
-TrainerPokefanmDerek1WhenTalkScript: ; 0x1a5b0b
+PokefanmDerek1Script: ; 0x1a5b0b
 	writecode $17, $1c
 	talkaftercancel
 	loadfont
@@ -102577,19 +102577,19 @@ TrainerPokefanfRuth: ; 0x1a5b82
 	db POKEFANF, RUTH
 
 	; text when seen
-	dw TrainerPokefanfRuthWhenSeenText
+	dw PokefanfRuthSeenText
 
 	; text when trainer beaten
-	dw TrainerPokefanfRuthWhenBeatenText
+	dw PokefanfRuthBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerPokefanfRuthWhenTalkScript
+	dw PokefanfRuthScript
 ; 0x1a5b8e
 
-TrainerPokefanfRuthWhenTalkScript: ; 0x1a5b8e
+PokefanfRuthScript: ; 0x1a5b8e
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x1a5db2
@@ -102606,19 +102606,19 @@ TrainerSailorEugene: ; 0x1a5b96
 	db SAILOR, EUGENE
 
 	; text when seen
-	dw TrainerSailorEugeneWhenSeenText
+	dw SailorEugeneSeenText
 
 	; text when trainer beaten
-	dw TrainerSailorEugeneWhenBeatenText
+	dw SailorEugeneBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerSailorEugeneWhenTalkScript
+	dw SailorEugeneScript
 ; 0x1a5ba2
 
-TrainerSailorEugeneWhenTalkScript: ; 0x1a5ba2
+SailorEugeneScript: ; 0x1a5ba2
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x1a5c4d
@@ -102635,19 +102635,19 @@ TrainerPsychicNorman: ; 0x1a5baa
 	db PSYCHIC_T, NORMAN
 
 	; text when seen
-	dw TrainerPsychicNormanWhenSeenText
+	dw PsychicNormanSeenText
 
 	; text when trainer beaten
-	dw TrainerPsychicNormanWhenBeatenText
+	dw PsychicNormanBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerPsychicNormanWhenTalkScript
+	dw PsychicNormanScript
 ; 0x1a5bb6
 
-TrainerPsychicNormanWhenTalkScript: ; 0x1a5bb6
+PsychicNormanScript: ; 0x1a5bb6
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x1a5e57
@@ -102715,14 +102715,14 @@ UnknownText_0x1a5bf9: ; 0x1a5bf9
 	db $0, "MILTANK: Mooo!", $57
 ; 0x1a5c09
 
-TrainerSailorEugeneWhenSeenText: ; 0x1a5c09
+SailorEugeneSeenText: ; 0x1a5c09
 	db $0, "I just got back to", $4f
 	db "OLIVINE.", $51
 	db "So how about a", $4f
 	db "#MON battle?", $57
 ; 0x1a5c42
 
-TrainerSailorEugeneWhenBeatenText: ; 0x1a5c42
+SailorEugeneBeatenText: ; 0x1a5c42
 	db $0, "Awaaargh!", $57
 ; 0x1a5c4d
 
@@ -102735,13 +102735,13 @@ UnknownText_0x1a5c4d: ; 0x1a5c4d
 	db "voyages.", $57
 ; 0x1a5ca5
 
-TrainerPokefanmDerek1WhenSeenText: ; 0x1a5ca5
+PokefanmDerek1SeenText: ; 0x1a5ca5
 	db $0, "This is a good", $4f
 	db "time to brag about", $55
 	db "my PIKACHU!", $57
 ; 0x1a5cd4
 
-TrainerPokefanmDerek1WhenBeatenText: ; 0x1a5cd4
+PokefanmDerek1BeatenText: ; 0x1a5cd4
 	db $0, "I had no time to", $4f
 	db "show off PIKACHU…", $57
 ; 0x1a5cf8
@@ -102755,7 +102755,7 @@ UnknownText_0x1a5cf8: ; 0x1a5cf8
 	db "people brag!", $57
 ; 0x1a5d5b
 
-TrainerPokefanfRuthWhenSeenText: ; 0x1a5d5b
+PokefanfRuthSeenText: ; 0x1a5d5b
 	db $0, "Such darling", $4f
 	db "#MON.", $51
 	db "Let's show our", $4f
@@ -102763,7 +102763,7 @@ TrainerPokefanfRuthWhenSeenText: ; 0x1a5d5b
 	db "at the same time.", $57
 ; 0x1a5d9d
 
-TrainerPokefanfRuthWhenBeatenText: ; 0x1a5d9d
+PokefanfRuthBeatenText: ; 0x1a5d9d
 	db $0, "I don't mind", $4f
 	db "losing.", $57
 ; 0x1a5db2
@@ -102780,13 +102780,13 @@ UnknownText_0x1a5dec: ; 0x1a5dec
 	db "Don't you agree?", $57
 ; 0x1a5e0c
 
-TrainerPsychicNormanWhenSeenText: ; 0x1a5e0c
+PsychicNormanSeenText: ; 0x1a5e0c
 	db $0, "Let me see what", $4f
 	db "your #MON are", $55
 	db "capable of.", $57
 ; 0x1a5e37
 
-TrainerPsychicNormanWhenBeatenText: ; 0x1a5e37
+PsychicNormanBeatenText: ; 0x1a5e37
 	db $0, "Ooh, your #MON", $4f
 	db "have potential.", $57
 ; 0x1a5e57
@@ -102921,19 +102921,19 @@ TrainerSwimmerfElaine: ; 0x1a6174
 	db SWIMMERF, ELAINE
 
 	; text when seen
-	dw TrainerSwimmerfElaineWhenSeenText
+	dw SwimmerfElaineSeenText
 
 	; text when trainer beaten
-	dw TrainerSwimmerfElaineWhenBeatenText
+	dw SwimmerfElaineBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerSwimmerfElaineWhenTalkScript
+	dw SwimmerfElaineScript
 ; 0x1a6180
 
-TrainerSwimmerfElaineWhenTalkScript: ; 0x1a6180
+SwimmerfElaineScript: ; 0x1a6180
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x1a637b
@@ -102950,19 +102950,19 @@ TrainerSwimmerfPaula: ; 0x1a6188
 	db SWIMMERF, PAULA
 
 	; text when seen
-	dw TrainerSwimmerfPaulaWhenSeenText
+	dw SwimmerfPaulaSeenText
 
 	; text when trainer beaten
-	dw TrainerSwimmerfPaulaWhenBeatenText
+	dw SwimmerfPaulaBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerSwimmerfPaulaWhenTalkScript
+	dw SwimmerfPaulaScript
 ; 0x1a6194
 
-TrainerSwimmerfPaulaWhenTalkScript: ; 0x1a6194
+SwimmerfPaulaScript: ; 0x1a6194
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x1a63f5
@@ -102979,19 +102979,19 @@ TrainerSwimmermSimon: ; 0x1a619c
 	db SWIMMERM, SIMON
 
 	; text when seen
-	dw TrainerSwimmermSimonWhenSeenText
+	dw SwimmermSimonSeenText
 
 	; text when trainer beaten
-	dw TrainerSwimmermSimonWhenBeatenText
+	dw SwimmermSimonBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerSwimmermSimonWhenTalkScript
+	dw SwimmermSimonScript
 ; 0x1a61a8
 
-TrainerSwimmermSimonWhenTalkScript: ; 0x1a61a8
+SwimmermSimonScript: ; 0x1a61a8
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x1a6282
@@ -103008,19 +103008,19 @@ TrainerSwimmermRandall: ; 0x1a61b0
 	db SWIMMERM, RANDALL
 
 	; text when seen
-	dw TrainerSwimmermRandallWhenSeenText
+	dw SwimmermRandallSeenText
 
 	; text when trainer beaten
-	dw TrainerSwimmermRandallWhenBeatenText
+	dw SwimmermRandallBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerSwimmermRandallWhenTalkScript
+	dw SwimmermRandallScript
 ; 0x1a61bc
 
-TrainerSwimmermRandallWhenTalkScript: ; 0x1a61bc
+SwimmermRandallScript: ; 0x1a61bc
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x1a62fa
@@ -103131,14 +103131,14 @@ MovementData_0x1a622a: ; 0x1a622a
 	step_end
 ; 0x1a622f
 
-TrainerSwimmermSimonWhenSeenText: ; 0x1a622f
+SwimmermSimonSeenText: ; 0x1a622f
 	db $0, "You have to warm", $4f
 	db "up before going", $55
 	db "into the water.", $51
 	db "That's basic.", $57
 ; 0x1a626e
 
-TrainerSwimmermSimonWhenBeatenText: ; 0x1a626e
+SwimmermSimonBeatenText: ; 0x1a626e
 	db $0, "OK! Uncle! I give!", $57
 ; 0x1a6282
 
@@ -103148,14 +103148,14 @@ UnknownText_0x1a6282: ; 0x1a6282
 	db "away from here.", $57
 ; 0x1a62b4
 
-TrainerSwimmermRandallWhenSeenText: ; 0x1a62b4
+SwimmermRandallSeenText: ; 0x1a62b4
 	db $0, "Hey, you're young", $4f
 	db "and fit!", $51
 	db "Don't ride your", $4f
 	db "#MON! Swim!", $57
 ; 0x1a62ea
 
-TrainerSwimmermRandallWhenBeatenText: ; 0x1a62ea
+SwimmermRandallBeatenText: ; 0x1a62ea
 	db $0, "Uh-oh. I lost…", $57
 ; 0x1a62fa
 
@@ -103165,14 +103165,14 @@ UnknownText_0x1a62fa: ; 0x1a62fa
 	db "It's healthy.", $57
 ; 0x1a632d
 
-TrainerSwimmerfElaineWhenSeenText: ; 0x1a632d
+SwimmerfElaineSeenText: ; 0x1a632d
 	db $0, "Are you going to", $4f
 	db "CIANWOOD?", $51
 	db "How about a quick", $4f
 	db "battle first?", $57
 ; 0x1a6369
 
-TrainerSwimmerfElaineWhenBeatenText: ; 0x1a6369
+SwimmerfElaineBeatenText: ; 0x1a6369
 	db $0, "I lost that one!", $57
 ; 0x1a637b
 
@@ -103182,14 +103182,14 @@ UnknownText_0x1a637b: ; 0x1a637b
 	db "you. Yeah!", $57
 ; 0x1a63a9
 
-TrainerSwimmerfPaulaWhenSeenText: ; 0x1a63a9
+SwimmerfPaulaSeenText: ; 0x1a63a9
 	db $0, "No inner tube for", $4f
 	db "me.", $51
 	db "I'm hanging on to", $4f
 	db "a sea #MON!", $57
 ; 0x1a63dd
 
-TrainerSwimmerfPaulaWhenBeatenText: ; 0x1a63dd
+SwimmerfPaulaBeatenText: ; 0x1a63dd
 	db $0, "Ooh, I'm feeling", $4f
 	db "dizzy!", $57
 ; 0x1a63f5
@@ -103335,19 +103335,19 @@ TrainerSwimmerfKaylee: ; 0x1a6841
 	db SWIMMERF, KAYLEE
 
 	; text when seen
-	dw TrainerSwimmerfKayleeWhenSeenText
+	dw SwimmerfKayleeSeenText
 
 	; text when trainer beaten
-	dw TrainerSwimmerfKayleeWhenBeatenText
+	dw SwimmerfKayleeBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerSwimmerfKayleeWhenTalkScript
+	dw SwimmerfKayleeScript
 ; 0x1a684d
 
-TrainerSwimmerfKayleeWhenTalkScript: ; 0x1a684d
+SwimmerfKayleeScript: ; 0x1a684d
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x1a6c7f
@@ -103364,19 +103364,19 @@ TrainerSwimmerfSusie: ; 0x1a6855
 	db SWIMMERF, SUSIE
 
 	; text when seen
-	dw TrainerSwimmerfSusieWhenSeenText
+	dw SwimmerfSusieSeenText
 
 	; text when trainer beaten
-	dw TrainerSwimmerfSusieWhenBeatenText
+	dw SwimmerfSusieBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerSwimmerfSusieWhenTalkScript
+	dw SwimmerfSusieScript
 ; 0x1a6861
 
-TrainerSwimmerfSusieWhenTalkScript: ; 0x1a6861
+SwimmerfSusieScript: ; 0x1a6861
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x1a6d11
@@ -103393,19 +103393,19 @@ TrainerSwimmerfDenise: ; 0x1a6869
 	db SWIMMERF, DENISE
 
 	; text when seen
-	dw TrainerSwimmerfDeniseWhenSeenText
+	dw SwimmerfDeniseSeenText
 
 	; text when trainer beaten
-	dw TrainerSwimmerfDeniseWhenBeatenText
+	dw SwimmerfDeniseBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerSwimmerfDeniseWhenTalkScript
+	dw SwimmerfDeniseScript
 ; 0x1a6875
 
-TrainerSwimmerfDeniseWhenTalkScript: ; 0x1a6875
+SwimmerfDeniseScript: ; 0x1a6875
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x1a6d79
@@ -103422,19 +103422,19 @@ TrainerSwimmerfKara: ; 0x1a687d
 	db SWIMMERF, KARA
 
 	; text when seen
-	dw TrainerSwimmerfKaraWhenSeenText
+	dw SwimmerfKaraSeenText
 
 	; text when trainer beaten
-	dw TrainerSwimmerfKaraWhenBeatenText
+	dw SwimmerfKaraBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerSwimmerfKaraWhenTalkScript
+	dw SwimmerfKaraScript
 ; 0x1a6889
 
-TrainerSwimmerfKaraWhenTalkScript: ; 0x1a6889
+SwimmerfKaraScript: ; 0x1a6889
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x1a6e58
@@ -103451,19 +103451,19 @@ TrainerSwimmerfWendy: ; 0x1a6891
 	db SWIMMERF, WENDY
 
 	; text when seen
-	dw TrainerSwimmerfWendyWhenSeenText
+	dw SwimmerfWendySeenText
 
 	; text when trainer beaten
-	dw TrainerSwimmerfWendyWhenBeatenText
+	dw SwimmerfWendyBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerSwimmerfWendyWhenTalkScript
+	dw SwimmerfWendyScript
 ; 0x1a689d
 
-TrainerSwimmerfWendyWhenTalkScript: ; 0x1a689d
+SwimmerfWendyScript: ; 0x1a689d
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x1a6ec2
@@ -103480,19 +103480,19 @@ TrainerSwimmermCharlie: ; 0x1a68a5
 	db SWIMMERM, CHARLIE
 
 	; text when seen
-	dw TrainerSwimmermCharlieWhenSeenText
+	dw SwimmermCharlieSeenText
 
 	; text when trainer beaten
-	dw TrainerSwimmermCharlieWhenBeatenText
+	dw SwimmermCharlieBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerSwimmermCharlieWhenTalkScript
+	dw SwimmermCharlieScript
 ; 0x1a68b1
 
-TrainerSwimmermCharlieWhenTalkScript: ; 0x1a68b1
+SwimmermCharlieScript: ; 0x1a68b1
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x1a696e
@@ -103509,19 +103509,19 @@ TrainerSwimmermGeorge: ; 0x1a68b9
 	db SWIMMERM, GEORGE
 
 	; text when seen
-	dw TrainerSwimmermGeorgeWhenSeenText
+	dw SwimmermGeorgeSeenText
 
 	; text when trainer beaten
-	dw TrainerSwimmermGeorgeWhenBeatenText
+	dw SwimmermGeorgeBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerSwimmermGeorgeWhenTalkScript
+	dw SwimmermGeorgeScript
 ; 0x1a68c5
 
-TrainerSwimmermGeorgeWhenTalkScript: ; 0x1a68c5
+SwimmermGeorgeScript: ; 0x1a68c5
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x1a69d4
@@ -103538,19 +103538,19 @@ TrainerSwimmermBerke: ; 0x1a68cd
 	db SWIMMERM, BERKE
 
 	; text when seen
-	dw TrainerSwimmermBerkeWhenSeenText
+	dw SwimmermBerkeSeenText
 
 	; text when trainer beaten
-	dw TrainerSwimmermBerkeWhenBeatenText
+	dw SwimmermBerkeBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerSwimmermBerkeWhenTalkScript
+	dw SwimmermBerkeScript
 ; 0x1a68d9
 
-TrainerSwimmermBerkeWhenTalkScript: ; 0x1a68d9
+SwimmermBerkeScript: ; 0x1a68d9
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x1a6aa4
@@ -103567,19 +103567,19 @@ TrainerSwimmermKirk: ; 0x1a68e1
 	db SWIMMERM, KIRK
 
 	; text when seen
-	dw TrainerSwimmermKirkWhenSeenText
+	dw SwimmermKirkSeenText
 
 	; text when trainer beaten
-	dw TrainerSwimmermKirkWhenBeatenText
+	dw SwimmermKirkBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerSwimmermKirkWhenTalkScript
+	dw SwimmermKirkScript
 ; 0x1a68ed
 
-TrainerSwimmermKirkWhenTalkScript: ; 0x1a68ed
+SwimmermKirkScript: ; 0x1a68ed
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x1a6b6c
@@ -103596,19 +103596,19 @@ TrainerSwimmermMathew: ; 0x1a68f5
 	db SWIMMERM, MATHEW
 
 	; text when seen
-	dw TrainerSwimmermMathewWhenSeenText
+	dw SwimmermMathewSeenText
 
 	; text when trainer beaten
-	dw TrainerSwimmermMathewWhenBeatenText
+	dw SwimmermMathewBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerSwimmermMathewWhenTalkScript
+	dw SwimmermMathewScript
 ; 0x1a6901
 
-TrainerSwimmermMathewWhenTalkScript: ; 0x1a6901
+SwimmermMathewScript: ; 0x1a6901
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x1a6bed
@@ -103626,7 +103626,7 @@ MapRoute41SignpostItem0: ; 0x1a690c
 	db MAX_ETHER
 ; 0x1a690f
 
-TrainerSwimmermCharlieWhenSeenText: ; 0x1a690f
+SwimmermCharlieSeenText: ; 0x1a690f
 	db $0, "The water's warm", $4f
 	db "here. I'm loose", $55
 	db "and limber.", $51
@@ -103634,7 +103634,7 @@ TrainerSwimmermCharlieWhenSeenText: ; 0x1a690f
 	db "you on!", $57
 ; 0x1a6952
 
-TrainerSwimmermCharlieWhenBeatenText: ; 0x1a6952
+SwimmermCharlieBeatenText: ; 0x1a6952
 	db $0, "Yikes! I've got", $4f
 	db "prune skin!", $57
 ; 0x1a696e
@@ -103645,13 +103645,13 @@ UnknownText_0x1a696e: ; 0x1a696e
 	db "this?", $57
 ; 0x1a6999
 
-TrainerSwimmermGeorgeWhenSeenText: ; 0x1a6999
+SwimmermGeorgeSeenText: ; 0x1a6999
 	db $0, "I'm a bit tired.", $4f
 	db "If I win, lend me", $55
 	db "your #MON.", $57
 ; 0x1a69c7
 
-TrainerSwimmermGeorgeWhenBeatenText: ; 0x1a69c7
+SwimmermGeorgeBeatenText: ; 0x1a69c7
 	db $0, "Pant, pant…", $57
 ; 0x1a69d4
 
@@ -103664,7 +103664,7 @@ UnknownText_0x1a69d4: ; 0x1a69d4
 	db "What should I do?", $57
 ; 0x1a6a2e
 
-TrainerSwimmermBerkeWhenSeenText: ; 0x1a6a2e
+SwimmermBerkeSeenText: ; 0x1a6a2e
 	db $0, "See those islands", $4f
 	db "that are blocked", $55
 	db "by whirlpools?", $51
@@ -103672,7 +103672,7 @@ TrainerSwimmermBerkeWhenSeenText: ; 0x1a6a2e
 	db "be a secret!", $57
 ; 0x1a6a80
 
-TrainerSwimmermBerkeWhenBeatenText: ; 0x1a6a80
+SwimmermBerkeBeatenText: ; 0x1a6a80
 	db $0, "What's the secret", $4f
 	db "to your strength?", $57
 ; 0x1a6aa4
@@ -103688,14 +103688,14 @@ UnknownText_0x1a6aa4: ; 0x1a6aa4
 	db "silver wings.", $57
 ; 0x1a6b26
 
-TrainerSwimmermKirkWhenSeenText: ; 0x1a6b26
+SwimmermKirkSeenText: ; 0x1a6b26
 	db $0, "The waves are wild", $4f
 	db "here.", $51
 	db "They tire you out", $4f
 	db "while you swim.", $57
 ; 0x1a6b62
 
-TrainerSwimmermKirkWhenBeatenText: ; 0x1a6b62
+SwimmermKirkBeatenText: ; 0x1a6b62
 	db $0, "I'm beat!", $57
 ; 0x1a6b6c
 
@@ -103705,13 +103705,13 @@ UnknownText_0x1a6b6c: ; 0x1a6b6c
 	db "that island.", $57
 ; 0x1a6b9d
 
-TrainerSwimmermMathewWhenSeenText: ; 0x1a6b9d
+SwimmermMathewSeenText: ; 0x1a6b9d
 	db $0, "Are you seeking", $4f
 	db "the secrets of", $55
 	db "WHIRL ISLANDS?", $57
 ; 0x1a6bcc
 
-TrainerSwimmermMathewWhenBeatenText: ; 0x1a6bcc
+SwimmermMathewBeatenText: ; 0x1a6bcc
 	db $0, "Ooh, you've got", $4f
 	db "great endurance!", $57
 ; 0x1a6bed
@@ -103723,14 +103723,14 @@ UnknownText_0x1a6bed: ; 0x1a6bed
 	db "inside!", $57
 ; 0x1a6c24
 
-TrainerSwimmerfKayleeWhenSeenText: ; 0x1a6c24
+SwimmerfKayleeSeenText: ; 0x1a6c24
 	db $0, "I'm on my way to", $4f
 	db "WHIRL ISLANDS.", $51
 	db "I'm going explor-", $4f
 	db "ing with friends.", $57
 ; 0x1a6c67
 
-TrainerSwimmerfKayleeWhenBeatenText: ; 0x1a6c67
+SwimmerfKayleeBeatenText: ; 0x1a6c67
 	db $0, "Is that how you do", $4f
 	db "it?", $57
 ; 0x1a6c7f
@@ -103744,13 +103744,13 @@ UnknownText_0x1a6c7f: ; 0x1a6c7f
 	db "could be?", $57
 ; 0x1a6cda
 
-TrainerSwimmerfSusieWhenSeenText: ; 0x1a6cda
+SwimmerfSusieSeenText: ; 0x1a6cda
 	db $0, "You look so ele-", $4f
 	db "gant, riding your", $55
 	db "#MON.", $57
 ; 0x1a6d04
 
-TrainerSwimmerfSusieWhenBeatenText: ; 0x1a6d04
+SwimmerfSusieBeatenText: ; 0x1a6d04
 	db $0, "I'm crushed…", $57
 ; 0x1a6d11
 
@@ -103760,13 +103760,13 @@ UnknownText_0x1a6d11: ; 0x1a6d11
 	db "riding a LAPRAS?", $57
 ; 0x1a6d46
 
-TrainerSwimmerfDeniseWhenSeenText: ; 0x1a6d46
+SwimmerfDeniseSeenText: ; 0x1a6d46
 	db $0, "The weather is so", $4f
 	db "beautiful, I'm in", $55
 	db "a daze!", $57
 ; 0x1a6d72
 
-TrainerSwimmerfDeniseWhenBeatenText: ; 0x1a6d72
+SwimmerfDeniseBeatenText: ; 0x1a6d72
 	db $0, "Ohhh!", $57
 ; 0x1a6d79
 
@@ -103779,7 +103779,7 @@ UnknownText_0x1a6d79: ; 0x1a6d79
 	db "the water.", $57
 ; 0x1a6dd0
 
-TrainerSwimmerfKaraWhenSeenText: ; 0x1a6dd0
+SwimmerfKaraSeenText: ; 0x1a6dd0
 	db $0, "If you need to", $4f
 	db "rest, just tread", $55
 	db "water.", $51
@@ -103789,7 +103789,7 @@ TrainerSwimmerfKaraWhenSeenText: ; 0x1a6dd0
 	db "strong.", $57
 ; 0x1a6e33
 
-TrainerSwimmerfKaraWhenBeatenText: ; 0x1a6e33
+SwimmerfKaraBeatenText: ; 0x1a6e33
 	db $0, "Oh! You have more", $4f
 	db "energy than I do.", $57
 ; 0x1a6e58
@@ -103800,13 +103800,13 @@ UnknownText_0x1a6e58: ; 0x1a6e58
 	db "ISLANDS.", $57
 ; 0x1a6e85
 
-TrainerSwimmerfWendyWhenSeenText: ; 0x1a6e85
+SwimmerfWendySeenText: ; 0x1a6e85
 	db $0, "At night, STARYU", $4f
 	db "gather near the", $55
 	db "water's surface.", $57
 ; 0x1a6eb7
 
-TrainerSwimmerfWendyWhenBeatenText: ; 0x1a6eb7
+SwimmerfWendyBeatenText: ; 0x1a6eb7
 	db $0, "Oh, dear…", $57
 ; 0x1a6ec2
 
@@ -103866,19 +103866,19 @@ TrainerFisherKyle: ; 0x1a6fb5
 	db FISHER, KYLE
 
 	; text when seen
-	dw TrainerFisherKyleWhenSeenText
+	dw FisherKyleSeenText
 
 	; text when trainer beaten
-	dw TrainerFisherKyleWhenBeatenText
+	dw FisherKyleBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerFisherKyleWhenTalkScript
+	dw FisherKyleScript
 ; 0x1a6fc1
 
-TrainerFisherKyleWhenTalkScript: ; 0x1a6fc1
+FisherKyleScript: ; 0x1a6fc1
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x1a7238
@@ -103895,19 +103895,19 @@ TrainerFisherMartin: ; 0x1a6fc9
 	db FISHER, MARTIN
 
 	; text when seen
-	dw TrainerFisherMartinWhenSeenText
+	dw FisherMartinSeenText
 
 	; text when trainer beaten
-	dw TrainerFisherMartinWhenBeatenText
+	dw FisherMartinBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerFisherMartinWhenTalkScript
+	dw FisherMartinScript
 ; 0x1a6fd5
 
-TrainerFisherMartinWhenTalkScript: ; 0x1a6fd5
+FisherMartinScript: ; 0x1a6fd5
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x1a704c
@@ -103924,19 +103924,19 @@ TrainerFisherStephen: ; 0x1a6fdd
 	db FISHER, STEPHEN
 
 	; text when seen
-	dw TrainerFisherStephenWhenSeenText
+	dw FisherStephenSeenText
 
 	; text when trainer beaten
-	dw TrainerFisherStephenWhenBeatenText
+	dw FisherStephenBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerFisherStephenWhenTalkScript
+	dw FisherStephenScript
 ; 0x1a6fe9
 
-TrainerFisherStephenWhenTalkScript: ; 0x1a6fe9
+FisherStephenScript: ; 0x1a6fe9
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x1a70d4
@@ -103953,19 +103953,19 @@ TrainerFisherBarney: ; 0x1a6ff1
 	db FISHER, BARNEY
 
 	; text when seen
-	dw TrainerFisherBarneyWhenSeenText
+	dw FisherBarneySeenText
 
 	; text when trainer beaten
-	dw TrainerFisherBarneyWhenBeatenText
+	dw FisherBarneyBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerFisherBarneyWhenTalkScript
+	dw FisherBarneyScript
 ; 0x1a6ffd
 
-TrainerFisherBarneyWhenTalkScript: ; 0x1a6ffd
+FisherBarneyScript: ; 0x1a6ffd
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x1a716d
@@ -103996,13 +103996,13 @@ MapRoute12SignpostItem2: ; 0x1a700f
 	
 ; 0x1a7012
 
-TrainerFisherMartinWhenSeenText: ; 0x1a7012
+FisherMartinSeenText: ; 0x1a7012
 	db $0, "Patience is the", $4f
 	db "key to both fish-", $55
 	db "ing and #MON.", $57
 ; 0x1a7043
 
-TrainerFisherMartinWhenBeatenText: ; 0x1a7043
+FisherMartinBeatenText: ; 0x1a7043
 	db $0, "Gwaaah!", $57
 ; 0x1a704c
 
@@ -104011,14 +104011,14 @@ UnknownText_0x1a704c: ; 0x1a704c
 	db "for fishing…", $57
 ; 0x1a706b
 
-TrainerFisherStephenWhenSeenText: ; 0x1a706b
+FisherStephenSeenText: ; 0x1a706b
 	db $0, "I feel so content,", $4f
 	db "fishing while lis-", $55
 	db "tening to some", $55
 	db "tunes on my radio.", $57
 ; 0x1a70b4
 
-TrainerFisherStephenWhenBeatenText: ; 0x1a70b4
+FisherStephenBeatenText: ; 0x1a70b4
 	db $0, "My stupid radio", $4f
 	db "distracted me!", $57
 ; 0x1a70d4
@@ -104030,13 +104030,13 @@ UnknownText_0x1a70d4: ; 0x1a70d4
 	db "good variety here.", $57
 ; 0x1a711d
 
-TrainerFisherBarneyWhenSeenText: ; 0x1a711d
+FisherBarneySeenText: ; 0x1a711d
 	db $0, "What's most impor-", $4f
 	db "tant in our every-", $55
 	db "day lives?", $57
 ; 0x1a714e
 
-TrainerFisherBarneyWhenBeatenText: ; 0x1a714e
+FisherBarneyBeatenText: ; 0x1a714e
 	db $0, "The answer is", $4f
 	db "coming up next!", $57
 ; 0x1a716d
@@ -104054,11 +104054,11 @@ UnknownText_0x1a716d: ; 0x1a716d
 	db "out of commission.", $57
 ; 0x1a7214
 
-TrainerFisherKyleWhenSeenText: ; 0x1a7214
+FisherKyleSeenText: ; 0x1a7214
 	db $0, "Do you remember?", $57
 ; 0x1a7226
 
-TrainerFisherKyleWhenBeatenText: ; 0x1a7226
+FisherKyleBeatenText: ; 0x1a7226
 	db $0, "You do remember?", $57
 ; 0x1a7238
 
@@ -105129,19 +105129,19 @@ TrainerTwinsAnnandanne1: ; 0x1a8d83
 	db TWINS, ANNANDANNE1
 
 	; text when seen
-	dw TrainerTwinsAnnandanne1WhenSeenText
+	dw TwinsAnnandanne1SeenText
 
 	; text when trainer beaten
-	dw TrainerTwinsAnnandanne1WhenBeatenText
+	dw TwinsAnnandanne1BeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerTwinsAnnandanne1WhenTalkScript
+	dw TwinsAnnandanne1Script
 ; 0x1a8d8f
 
-TrainerTwinsAnnandanne1WhenTalkScript: ; 0x1a8d8f
+TwinsAnnandanne1Script: ; 0x1a8d8f
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x1a8e62
@@ -105158,19 +105158,19 @@ TrainerTwinsAnnandanne2: ; 0x1a8d97
 	db TWINS, ANNANDANNE2
 
 	; text when seen
-	dw TrainerTwinsAnnandanne2WhenSeenText
+	dw TwinsAnnandanne2SeenText
 
 	; text when trainer beaten
-	dw TrainerTwinsAnnandanne2WhenBeatenText
+	dw TwinsAnnandanne2BeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerTwinsAnnandanne2WhenTalkScript
+	dw TwinsAnnandanne2Script
 ; 0x1a8da3
 
-TrainerTwinsAnnandanne2WhenTalkScript: ; 0x1a8da3
+TwinsAnnandanne2Script: ; 0x1a8da3
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x1a8eec
@@ -105187,19 +105187,19 @@ TrainerPsychicGreg: ; 0x1a8dab
 	db PSYCHIC_T, GREG
 
 	; text when seen
-	dw TrainerPsychicGregWhenSeenText
+	dw PsychicGregSeenText
 
 	; text when trainer beaten
-	dw TrainerPsychicGregWhenBeatenText
+	dw PsychicGregBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerPsychicGregWhenTalkScript
+	dw PsychicGregScript
 ; 0x1a8db7
 
-TrainerPsychicGregWhenTalkScript: ; 0x1a8db7
+PsychicGregScript: ; 0x1a8db7
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x1a8f80
@@ -105278,13 +105278,13 @@ MapRoute37SignpostItem1: ; 0x1a8e0f
 	
 ; 0x1a8e12
 
-TrainerTwinsAnnandanne1WhenSeenText: ; 0x1a8e12
+TwinsAnnandanne1SeenText: ; 0x1a8e12
 	db $0, "ANN: ANNE and I", $4f
 	db "are in this to-", $55
 	db "gether!", $57
 ; 0x1a8e3b
 
-TrainerTwinsAnnandanne1WhenBeatenText: ; 0x1a8e3b
+TwinsAnnandanne1BeatenText: ; 0x1a8e3b
 	db $0, "ANN & ANNE: Nnn… A", $4f
 	db "little too strong.", $57
 ; 0x1a8e62
@@ -105296,13 +105296,13 @@ UnknownText_0x1a8e62: ; 0x1a8e62
 	db "thinking.", $57
 ; 0x1a8e9c
 
-TrainerTwinsAnnandanne2WhenSeenText: ; 0x1a8e9c
+TwinsAnnandanne2SeenText: ; 0x1a8e9c
 	db $0, "ANNE: ANN and I", $4f
 	db "are in this to-", $55
 	db "gether!", $57
 ; 0x1a8ec5
 
-TrainerTwinsAnnandanne2WhenBeatenText: ; 0x1a8ec5
+TwinsAnnandanne2BeatenText: ; 0x1a8ec5
 	db $0, "ANN & ANNE: Nnn… A", $4f
 	db "little too strong.", $57
 ; 0x1a8eec
@@ -105313,7 +105313,7 @@ UnknownText_0x1a8eec: ; 0x1a8eec
 	db "our #MON.", $57
 ; 0x1a8f1b
 
-TrainerPsychicGregWhenSeenText: ; 0x1a8f1b
+PsychicGregSeenText: ; 0x1a8f1b
 	db $0, "#MON can't do a", $4f
 	db "thing if they are", $55
 	db "asleep.", $51
@@ -105321,7 +105321,7 @@ TrainerPsychicGregWhenSeenText: ; 0x1a8f1b
 	db "scary that is!", $57
 ; 0x1a8f65
 
-TrainerPsychicGregWhenBeatenText: ; 0x1a8f65
+PsychicGregBeatenText: ; 0x1a8f65
 	db $0, "I lost. That's", $4f
 	db "pretty sad…", $57
 ; 0x1a8f80
@@ -105455,19 +105455,19 @@ TrainerFisherTully1: ; 0x1a9233
 	db FISHER, TULLY1
 
 	; text when seen
-	dw TrainerFisherTully1WhenSeenText
+	dw FisherTully1SeenText
 
 	; text when trainer beaten
-	dw TrainerFisherTully1WhenBeatenText
+	dw FisherTully1BeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerFisherTully1WhenTalkScript
+	dw FisherTully1Script
 ; 0x1a923f
 
-TrainerFisherTully1WhenTalkScript: ; 0x1a923f
+FisherTully1Script: ; 0x1a923f
 	writecode $17, $1d
 	talkaftercancel
 	loadfont
@@ -105499,7 +105499,7 @@ UnknownScript_0x1a926b: ; 0x1a926b
 
 UnknownScript_0x1a927f: ; 0x1a927f
 	2call UnknownScript_0x1a9309
-	winlosstext TrainerFisherTully1WhenBeatenText, $0000
+	winlosstext FisherTully1BeatenText, $0000
 	copybytetovar $da06
 	if_equal $3, UnknownScript_0x1a929a
 	if_equal $2, UnknownScript_0x1a92a0
@@ -105615,19 +105615,19 @@ TrainerPokemaniacShane: ; 0x1a9315
 	db POKEMANIAC, SHANE
 
 	; text when seen
-	dw TrainerPokemaniacShaneWhenSeenText
+	dw PokemaniacShaneSeenText
 
 	; text when trainer beaten
-	dw TrainerPokemaniacShaneWhenBeatenText
+	dw PokemaniacShaneBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerPokemaniacShaneWhenTalkScript
+	dw PokemaniacShaneScript
 ; 0x1a9321
 
-TrainerPokemaniacShaneWhenTalkScript: ; 0x1a9321
+PokemaniacShaneScript: ; 0x1a9321
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x1a94d6
@@ -105644,19 +105644,19 @@ TrainerHikerBenjamin: ; 0x1a9329
 	db HIKER, BENJAMIN
 
 	; text when seen
-	dw TrainerHikerBenjaminWhenSeenText
+	dw HikerBenjaminSeenText
 
 	; text when trainer beaten
-	dw TrainerHikerBenjaminWhenBeatenText
+	dw HikerBenjaminBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerHikerBenjaminWhenTalkScript
+	dw HikerBenjaminScript
 ; 0x1a9335
 
-TrainerHikerBenjaminWhenTalkScript: ; 0x1a9335
+HikerBenjaminScript: ; 0x1a9335
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x1a943f
@@ -105719,13 +105719,13 @@ MovementData_0x1a9356: ; 0x1a9356
 	step_end
 ; 0x1a935f
 
-TrainerFisherTully1WhenSeenText: ; 0x1a935f
+FisherTully1SeenText: ; 0x1a935f
 	db $0, "Let me demonstrate", $4f
 	db "the power of the", $55
 	db "#MON I caught!", $57
 ; 0x1a9393
 
-TrainerFisherTully1WhenBeatenText: ; 0x1a9393
+FisherTully1BeatenText: ; 0x1a9393
 	db $0, "What? That's not", $4f
 	db "right.", $57
 ; 0x1a93ab
@@ -105739,13 +105739,13 @@ UnknownText_0x1a93ab: ; 0x1a93ab
 	db "part of fishing!", $57
 ; 0x1a9408
 
-TrainerHikerBenjaminWhenSeenText: ; 0x1a9408
+HikerBenjaminSeenText: ; 0x1a9408
 	db $0, "Ah, it's good to", $4f
 	db "be outside!", $55
 	db "I feel so free!", $57
 ; 0x1a9435
 
-TrainerHikerBenjaminWhenBeatenText: ; 0x1a9435
+HikerBenjaminBeatenText: ; 0x1a9435
 	db $0, "Gahahah!", $57
 ; 0x1a943f
 
@@ -105756,14 +105756,14 @@ UnknownText_0x1a943f: ; 0x1a943f
 	db "sky!", $57
 ; 0x1a947c
 
-TrainerPokemaniacShaneWhenSeenText: ; 0x1a947c
+PokemaniacShaneSeenText: ; 0x1a947c
 	db $0, "HEY!", $51
 	db "This is my secret", $4f
 	db "place! Get lost,", $55
 	db "you outsider!", $57
 ; 0x1a94b3
 
-TrainerPokemaniacShaneWhenBeatenText: ; 0x1a94b3
+PokemaniacShaneBeatenText: ; 0x1a94b3
 	db $0, "I should have used", $4f
 	db "my MOON STONE…", $57
 ; 0x1a94d6
@@ -105855,19 +105855,19 @@ TrainerCamperTed: ; 0x1a9680
 	db CAMPER, TED
 
 	; text when seen
-	dw TrainerCamperTedWhenSeenText
+	dw CamperTedSeenText
 
 	; text when trainer beaten
-	dw TrainerCamperTedWhenBeatenText
+	dw CamperTedBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerCamperTedWhenTalkScript
+	dw CamperTedScript
 ; 0x1a968c
 
-TrainerCamperTedWhenTalkScript: ; 0x1a968c
+CamperTedScript: ; 0x1a968c
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x1a9851
@@ -105884,19 +105884,19 @@ TrainerPicnickerErin1: ; 0x1a9694
 	db PICNICKER, ERIN1
 
 	; text when seen
-	dw TrainerPicnickerErin1WhenSeenText
+	dw PicnickerErin1SeenText
 
 	; text when trainer beaten
-	dw TrainerPicnickerErin1WhenBeatenText
+	dw PicnickerErin1BeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerPicnickerErin1WhenTalkScript
+	dw PicnickerErin1Script
 ; 0x1a96a0
 
-TrainerPicnickerErin1WhenTalkScript: ; 0x1a96a0
+PicnickerErin1Script: ; 0x1a96a0
 	writecode $17, $24
 	talkaftercancel
 	loadfont
@@ -105926,7 +105926,7 @@ UnknownScript_0x1a96c6: ; 0x1a96c6
 
 UnknownScript_0x1a96da: ; 0x1a96da
 	2call UnknownScript_0x1a9767
-	winlosstext TrainerPicnickerErin1WhenBeatenText, $0000
+	winlosstext PicnickerErin1BeatenText, $0000
 	copybytetovar $da0d
 	if_equal $2, UnknownScript_0x1a96f1
 	if_equal $1, UnknownScript_0x1a96f7
@@ -106040,19 +106040,19 @@ TrainerHikerBailey: ; 0x1a9776
 	db HIKER, BAILEY
 
 	; text when seen
-	dw TrainerHikerBaileyWhenSeenText
+	dw HikerBaileySeenText
 
 	; text when trainer beaten
-	dw TrainerHikerBaileyWhenBeatenText
+	dw HikerBaileyBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerHikerBaileyWhenTalkScript
+	dw HikerBaileyScript
 ; 0x1a9782
 
-TrainerHikerBaileyWhenTalkScript: ; 0x1a9782
+HikerBaileyScript: ; 0x1a9782
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x1a97e8
@@ -106077,13 +106077,13 @@ UnknownScript_0x1a9791: ; 0x1a9791
 	fruittree $a
 ; 0x1a9793
 
-TrainerHikerBaileyWhenSeenText: ; 0x1a9793
+HikerBaileySeenText: ; 0x1a9793
 	db $0, "Awright! I'll show", $4f
 	db "you the power of", $55
 	db "mountain #MON!", $57
 ; 0x1a97c6
 
-TrainerHikerBaileyWhenBeatenText: ; 0x1a97c6
+HikerBaileyBeatenText: ; 0x1a97c6
 	db $0, "Mercy! You showed", $4f
 	db "me your power!", $57
 ; 0x1a97e8
@@ -106094,14 +106094,14 @@ UnknownText_0x1a97e8: ; 0x1a97e8
 	db "are like that.", $57
 ; 0x1a9819
 
-TrainerCamperTedWhenSeenText: ; 0x1a9819
+CamperTedSeenText: ; 0x1a9819
 	db $0, "I'm raising #-", $4f
 	db "MON too!", $51
 	db "Will you battle", $4f
 	db "with me?", $57
 ; 0x1a984a
 
-TrainerCamperTedWhenBeatenText: ; 0x1a984a
+CamperTedBeatenText: ; 0x1a984a
 	db $0, "Wha…?", $57
 ; 0x1a9851
 
@@ -106112,14 +106112,14 @@ UnknownText_0x1a9851: ; 0x1a9851
 	db "admit I lost.", $57
 ; 0x1a988f
 
-TrainerPicnickerErin1WhenSeenText: ; 0x1a988f
+PicnickerErin1SeenText: ; 0x1a988f
 	db $0, "I raise #MON", $4f
 	db "too!", $51
 	db "Will you battle", $4f
 	db "with me?", $57
 ; 0x1a98bb
 
-TrainerPicnickerErin1WhenBeatenText: ; 0x1a98bb
+PicnickerErin1BeatenText: ; 0x1a98bb
 	db $0, "Oh, rats!", $57
 ; 0x1a98c6
 
@@ -106698,19 +106698,19 @@ TrainerTeacherColette: ; 0x1aa569
 	db TEACHER, COLETTE
 
 	; text when seen
-	dw TrainerTeacherColetteWhenSeenText
+	dw TeacherColetteSeenText
 
 	; text when trainer beaten
-	dw TrainerTeacherColetteWhenBeatenText
+	dw TeacherColetteBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerTeacherColetteWhenTalkScript
+	dw TeacherColetteScript
 ; 0x1aa575
 
-TrainerTeacherColetteWhenTalkScript: ; 0x1aa575
+TeacherColetteScript: ; 0x1aa575
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x1aa60d
@@ -106727,19 +106727,19 @@ TrainerTeacherHillary: ; 0x1aa57d
 	db TEACHER, HILLARY
 
 	; text when seen
-	dw TrainerTeacherHillaryWhenSeenText
+	dw TeacherHillarySeenText
 
 	; text when trainer beaten
-	dw TrainerTeacherHillaryWhenBeatenText
+	dw TeacherHillaryBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerTeacherHillaryWhenTalkScript
+	dw TeacherHillaryScript
 ; 0x1aa589
 
-TrainerTeacherHillaryWhenTalkScript: ; 0x1aa589
+TeacherHillaryScript: ; 0x1aa589
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x1aa6ca
@@ -106756,19 +106756,19 @@ TrainerSchoolboyKipp: ; 0x1aa591
 	db SCHOOLBOY, KIPP
 
 	; text when seen
-	dw TrainerSchoolboyKippWhenSeenText
+	dw SchoolboyKippSeenText
 
 	; text when trainer beaten
-	dw TrainerSchoolboyKippWhenBeatenText
+	dw SchoolboyKippBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerSchoolboyKippWhenTalkScript
+	dw SchoolboyKippScript
 ; 0x1aa59d
 
-TrainerSchoolboyKippWhenTalkScript: ; 0x1aa59d
+SchoolboyKippScript: ; 0x1aa59d
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x1aa740
@@ -106785,19 +106785,19 @@ TrainerSchoolboyTommy: ; 0x1aa5a5
 	db SCHOOLBOY, TOMMY
 
 	; text when seen
-	dw TrainerSchoolboyTommyWhenSeenText
+	dw SchoolboyTommySeenText
 
 	; text when trainer beaten
-	dw TrainerSchoolboyTommyWhenBeatenText
+	dw SchoolboyTommyBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerSchoolboyTommyWhenTalkScript
+	dw SchoolboyTommyScript
 ; 0x1aa5b1
 
-TrainerSchoolboyTommyWhenTalkScript: ; 0x1aa5b1
+SchoolboyTommyScript: ; 0x1aa5b1
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x1aa7bc
@@ -106814,19 +106814,19 @@ TrainerSchoolboyJohnny: ; 0x1aa5b9
 	db SCHOOLBOY, JOHNNY
 
 	; text when seen
-	dw TrainerSchoolboyJohnnyWhenSeenText
+	dw SchoolboyJohnnySeenText
 
 	; text when trainer beaten
-	dw TrainerSchoolboyJohnnyWhenBeatenText
+	dw SchoolboyJohnnyBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerSchoolboyJohnnyWhenTalkScript
+	dw SchoolboyJohnnyScript
 ; 0x1aa5c5
 
-TrainerSchoolboyJohnnyWhenTalkScript: ; 0x1aa5c5
+SchoolboyJohnnyScript: ; 0x1aa5c5
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x1aa84a
@@ -106843,19 +106843,19 @@ TrainerSchoolboyBilly: ; 0x1aa5cd
 	db SCHOOLBOY, BILLY
 
 	; text when seen
-	dw TrainerSchoolboyBillyWhenSeenText
+	dw SchoolboyBillySeenText
 
 	; text when trainer beaten
-	dw TrainerSchoolboyBillyWhenBeatenText
+	dw SchoolboyBillyBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerSchoolboyBillyWhenTalkScript
+	dw SchoolboyBillyScript
 ; 0x1aa5d9
 
-TrainerSchoolboyBillyWhenTalkScript: ; 0x1aa5d9
+SchoolboyBillyScript: ; 0x1aa5d9
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x1aa8b0
@@ -106872,12 +106872,12 @@ ItemFragment_0x1aa5e4: ; 0x1aa5e4
 	db PP_UP, 1
 ; 0x1aa5e6
 
-TrainerTeacherColetteWhenSeenText: ; 0x1aa5e6
+TeacherColetteSeenText: ; 0x1aa5e6
 	db $0, "Have you forgotten", $4f
 	db "anything?", $57
 ; 0x1aa604
 
-TrainerTeacherColetteWhenBeatenText: ; 0x1aa604
+TeacherColetteBeatenText: ; 0x1aa604
 	db $0, "Kyaaah!", $57
 ; 0x1aa60d
 
@@ -106888,7 +106888,7 @@ UnknownText_0x1aa60d: ; 0x1aa60d
 	db "things.", $57
 ; 0x1aa64b
 
-TrainerTeacherHillaryWhenSeenText: ; 0x1aa64b
+TeacherHillarySeenText: ; 0x1aa64b
 	db $0, "On sunny days, I", $4f
 	db "think that the", $51
 	db "kids would rather", $4f
@@ -106897,7 +106897,7 @@ TrainerTeacherHillaryWhenSeenText: ; 0x1aa64b
 	db "studying in class.", $57
 ; 0x1aa6b3
 
-TrainerTeacherHillaryWhenBeatenText: ; 0x1aa6b3
+TeacherHillaryBeatenText: ; 0x1aa6b3
 	db $0, "I didn't want to", $4f
 	db "lose…", $57
 ; 0x1aa6ca
@@ -106908,12 +106908,12 @@ UnknownText_0x1aa6ca: ; 0x1aa6ca
 	db "is just as vital.", $57
 ; 0x1aa703
 
-TrainerSchoolboyKippWhenSeenText: ; 0x1aa703
+SchoolboyKippSeenText: ; 0x1aa703
 	db $0, "Hang on. I have to", $4f
 	db "phone my mom.", $57
 ; 0x1aa725
 
-TrainerSchoolboyKippWhenBeatenText: ; 0x1aa725
+SchoolboyKippBeatenText: ; 0x1aa725
 	db $0, "Sorry, Mom!", $4f
 	db "I was beaten!", $57
 ; 0x1aa740
@@ -106925,12 +106925,12 @@ UnknownText_0x1aa740: ; 0x1aa740
 	db "all the time.", $57
 ; 0x1aa784
 
-TrainerSchoolboyTommyWhenSeenText: ; 0x1aa784
+SchoolboyTommySeenText: ; 0x1aa784
 	db $0, "Let's battle.", $4f
 	db "I won't lose!", $57
 ; 0x1aa79f
 
-TrainerSchoolboyTommyWhenBeatenText: ; 0x1aa79f
+SchoolboyTommyBeatenText: ; 0x1aa79f
 	db $0, "I forgot to do my", $4f
 	db "homework!", $57
 ; 0x1aa7bc
@@ -106941,14 +106941,14 @@ UnknownText_0x1aa7bc: ; 0x1aa7bc
 	db "Japanese class.", $57
 ; 0x1aa7f1
 
-TrainerSchoolboyJohnnyWhenSeenText: ; 0x1aa7f1
+SchoolboyJohnnySeenText: ; 0x1aa7f1
 	db $0, "We're on a field", $4f
 	db "trip to LAVENDER", $51
 	db "RADIO TOWER for", $4f
 	db "social studies.", $57
 ; 0x1aa833
 
-TrainerSchoolboyJohnnyWhenBeatenText: ; 0x1aa833
+SchoolboyJohnnyBeatenText: ; 0x1aa833
 	db $0, "You're wickedly", $4f
 	db "tough!", $57
 ; 0x1aa84a
@@ -106959,12 +106959,12 @@ UnknownText_0x1aa84a: ; 0x1aa84a
 	db "take a break.", $57
 ; 0x1aa87a
 
-TrainerSchoolboyBillyWhenSeenText: ; 0x1aa87a
+SchoolboyBillySeenText: ; 0x1aa87a
 	db $0, "My favorite class", $4f
 	db "is gym!", $57
 ; 0x1aa895
 
-TrainerSchoolboyBillyWhenBeatenText: ; 0x1aa895
+SchoolboyBillyBeatenText: ; 0x1aa895
 	db $0, "Oh, no!", $4f
 	db "How could I lose?", $57
 ; 0x1aa8b0
@@ -107334,19 +107334,19 @@ TrainerCamperDean: ; 0x1aaf27
 	db CAMPER, DEAN
 
 	; text when seen
-	dw TrainerCamperDeanWhenSeenText
+	dw CamperDeanSeenText
 
 	; text when trainer beaten
-	dw TrainerCamperDeanWhenBeatenText
+	dw CamperDeanBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerCamperDeanWhenTalkScript
+	dw CamperDeanScript
 ; 0x1aaf33
 
-TrainerCamperDeanWhenTalkScript: ; 0x1aaf33
+CamperDeanScript: ; 0x1aaf33
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x1aafd9
@@ -107363,19 +107363,19 @@ TrainerPicnickerHeidi: ; 0x1aaf3b
 	db PICNICKER, HEIDI
 
 	; text when seen
-	dw TrainerPicnickerHeidiWhenSeenText
+	dw PicnickerHeidiSeenText
 
 	; text when trainer beaten
-	dw TrainerPicnickerHeidiWhenBeatenText
+	dw PicnickerHeidiBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerPicnickerHeidiWhenTalkScript
+	dw PicnickerHeidiScript
 ; 0x1aaf47
 
-TrainerPicnickerHeidiWhenTalkScript: ; 0x1aaf47
+PicnickerHeidiScript: ; 0x1aaf47
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x1ab07c
@@ -107392,19 +107392,19 @@ TrainerCamperSid: ; 0x1aaf4f
 	db CAMPER, SID
 
 	; text when seen
-	dw TrainerCamperSidWhenSeenText
+	dw CamperSidSeenText
 
 	; text when trainer beaten
-	dw TrainerCamperSidWhenBeatenText
+	dw CamperSidBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerCamperSidWhenTalkScript
+	dw CamperSidScript
 ; 0x1aaf5b
 
-TrainerCamperSidWhenTalkScript: ; 0x1aaf5b
+CamperSidScript: ; 0x1aaf5b
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x1ab0f6
@@ -107421,19 +107421,19 @@ TrainerPicnickerEdna: ; 0x1aaf63
 	db PICNICKER, EDNA
 
 	; text when seen
-	dw TrainerPicnickerEdnaWhenSeenText
+	dw PicnickerEdnaSeenText
 
 	; text when trainer beaten
-	dw TrainerPicnickerEdnaWhenBeatenText
+	dw PicnickerEdnaBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerPicnickerEdnaWhenTalkScript
+	dw PicnickerEdnaScript
 ; 0x1aaf6f
 
-TrainerPicnickerEdnaWhenTalkScript: ; 0x1aaf6f
+PicnickerEdnaScript: ; 0x1aaf6f
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x1ab15f
@@ -107450,19 +107450,19 @@ TrainerHikerTim: ; 0x1aaf77
 	db HIKER, TIM
 
 	; text when seen
-	dw TrainerHikerTimWhenSeenText
+	dw HikerTimSeenText
 
 	; text when trainer beaten
-	dw TrainerHikerTimWhenBeatenText
+	dw HikerTimBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerHikerTimWhenTalkScript
+	dw HikerTimScript
 ; 0x1aaf83
 
-TrainerHikerTimWhenTalkScript: ; 0x1aaf83
+HikerTimScript: ; 0x1aaf83
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x1ab210
@@ -107479,19 +107479,19 @@ TrainerHikerSidney: ; 0x1aaf8b
 	db HIKER, SIDNEY
 
 	; text when seen
-	dw TrainerHikerSidneyWhenSeenText
+	dw HikerSidneySeenText
 
 	; text when trainer beaten
-	dw TrainerHikerSidneyWhenBeatenText
+	dw HikerSidneyBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerHikerSidneyWhenTalkScript
+	dw HikerSidneyScript
 ; 0x1aaf97
 
-TrainerHikerSidneyWhenTalkScript: ; 0x1aaf97
+HikerSidneyScript: ; 0x1aaf97
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x1ab278
@@ -107510,12 +107510,12 @@ MapRoute9SignpostItem1: ; 0x1aafa2
 	
 ; 0x1aafa5
 
-TrainerCamperDeanWhenSeenText: ; 0x1aafa5
+CamperDeanSeenText: ; 0x1aafa5
 	db $0, "I came to explore", $4f
 	db "ROCK TUNNEL.", $57
 ; 0x1aafc5
 
-TrainerCamperDeanWhenBeatenText: ; 0x1aafc5
+CamperDeanBeatenText: ; 0x1aafc5
 	db $0, "Whoa! Danger, man.", $57
 ; 0x1aafd9
 
@@ -107529,14 +107529,14 @@ UnknownText_0x1aafd9: ; 0x1aafd9
 	db "CENTER right away.", $57
 ; 0x1ab03f
 
-TrainerPicnickerHeidiWhenSeenText: ; 0x1ab03f
+PicnickerHeidiSeenText: ; 0x1ab03f
 	db $0, "Have you ever been", $4f
 	db "to a picnic?", $51
 	db "They're so much", $4f
 	db "fun!", $57
 ; 0x1ab074
 
-TrainerPicnickerHeidiWhenBeatenText: ; 0x1ab074
+PicnickerHeidiBeatenText: ; 0x1ab074
 	db $0, "Ohhhh!", $57
 ; 0x1ab07c
 
@@ -107547,12 +107547,12 @@ UnknownText_0x1ab07c: ; 0x1ab07c
 	db "They're delicious!", $57
 ; 0x1ab0c2
 
-TrainerCamperSidWhenSeenText: ; 0x1ab0c2
+CamperSidSeenText: ; 0x1ab0c2
 	db $0, "Hey, you!", $4f
 	db "Don't litter!", $57
 ; 0x1ab0da
 
-TrainerCamperSidWhenBeatenText: ; 0x1ab0da
+CamperSidBeatenText: ; 0x1ab0da
 	db $0, "I was just point-", $4f
 	db "ing out…", $57
 ; 0x1ab0f6
@@ -107563,13 +107563,13 @@ UnknownText_0x1ab0f6: ; 0x1ab0f6
 	db "my mistake.", $57
 ; 0x1ab127
 
-TrainerPicnickerEdnaWhenSeenText: ; 0x1ab127
+PicnickerEdnaSeenText: ; 0x1ab127
 	db $0, "People shouldn't", $4f
 	db "leave any litter", $55
 	db "behind.", $57
 ; 0x1ab151
 
-TrainerPicnickerEdnaWhenBeatenText: ; 0x1ab151
+PicnickerEdnaBeatenText: ; 0x1ab151
 	db $0, "Ohh… I lost…", $57
 ; 0x1ab15f
 
@@ -107580,7 +107580,7 @@ UnknownText_0x1ab15f: ; 0x1ab15f
 	db "even more vital.", $57
 ; 0x1ab1a8
 
-TrainerHikerTimWhenSeenText: ; 0x1ab1a8
+HikerTimSeenText: ; 0x1ab1a8
 	db $0, "She'll be coming", $4f
 	db "'round MT.SILVER", $55
 	db "when she comes…", $51
@@ -107588,7 +107588,7 @@ TrainerHikerTimWhenSeenText: ; 0x1ab1a8
 	db "JOHTO, right?", $57
 ; 0x1ab1f7
 
-TrainerHikerTimWhenBeatenText: ; 0x1ab1f7
+HikerTimBeatenText: ; 0x1ab1f7
 	db $0, "I was too busy", $4f
 	db "singing…", $57
 ; 0x1ab210
@@ -107598,14 +107598,14 @@ UnknownText_0x1ab210: ; 0x1ab210
 	db "concentration.", $57
 ; 0x1ab232
 
-TrainerHikerSidneyWhenSeenText: ; 0x1ab232
+HikerSidneySeenText: ; 0x1ab232
 	db $0, "I'll tell you a", $4f
 	db "secret.", $51
 	db "But first, we", $4f
 	db "battle!", $57
 ; 0x1ab260
 
-TrainerHikerSidneyWhenBeatenText: ; 0x1ab260
+HikerSidneyBeatenText: ; 0x1ab260
 	db $0, "Oh, dang!", $4f
 	db "I lost that…", $57
 ; 0x1ab278
@@ -107980,19 +107980,19 @@ TrainerHikerAnthony2: ; 0x1ac005
 	db HIKER, ANTHONY2
 
 	; text when seen
-	dw TrainerHikerAnthony2WhenSeenText
+	dw HikerAnthony2SeenText
 
 	; text when trainer beaten
-	dw TrainerHikerAnthony2WhenBeatenText
+	dw HikerAnthony2BeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerHikerAnthony2WhenTalkScript
+	dw HikerAnthony2Script
 ; 0x1ac011
 
-TrainerHikerAnthony2WhenTalkScript: ; 0x1ac011
+HikerAnthony2Script: ; 0x1ac011
 	writecode $17, $13
 	talkaftercancel
 	loadfont
@@ -108024,7 +108024,7 @@ UnknownScript_0x1ac03d: ; 0x1ac03d
 
 UnknownScript_0x1ac051: ; 0x1ac051
 	2call UnknownScript_0x1ac0e3
-	winlosstext TrainerHikerAnthony2WhenBeatenText, $0000
+	winlosstext HikerAnthony2BeatenText, $0000
 	copybytetovar $d9fd
 	if_equal $4, UnknownScript_0x1ac070
 	if_equal $3, UnknownScript_0x1ac076
@@ -108137,14 +108137,14 @@ UnknownScript_0x1ac0ea: ; 0x1ac0ea
 	fruittree $6
 ; 0x1ac0ec
 
-TrainerHikerAnthony2WhenSeenText: ; 0x1ac0ec
+HikerAnthony2SeenText: ; 0x1ac0ec
 	db $0, "I came through the", $4f
 	db "tunnel, but I", $51
 	db "still have plenty", $4f
 	db "of energy left.", $57
 ; 0x1ac130
 
-TrainerHikerAnthony2WhenBeatenText: ; 0x1ac130
+HikerAnthony2BeatenText: ; 0x1ac130
 	db $0, "Whoa! You've got", $4f
 	db "more zip than me!", $57
 ; 0x1ac153
@@ -108218,19 +108218,19 @@ TrainerBug_catcherRob: ; 0x1ac2bc
 	db BUG_CATCHER, ROB
 
 	; text when seen
-	dw TrainerBug_catcherRobWhenSeenText
+	dw Bug_catcherRobSeenText
 
 	; text when trainer beaten
-	dw TrainerBug_catcherRobWhenBeatenText
+	dw Bug_catcherRobBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerBug_catcherRobWhenTalkScript
+	dw Bug_catcherRobScript
 ; 0x1ac2c8
 
-TrainerBug_catcherRobWhenTalkScript: ; 0x1ac2c8
+Bug_catcherRobScript: ; 0x1ac2c8
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x1ac34d
@@ -108247,19 +108247,19 @@ TrainerBug_catcherEd: ; 0x1ac2d0
 	db BUG_CATCHER, ED
 
 	; text when seen
-	dw TrainerBug_catcherEdWhenSeenText
+	dw Bug_catcherEdSeenText
 
 	; text when trainer beaten
-	dw TrainerBug_catcherEdWhenBeatenText
+	dw Bug_catcherEdBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerBug_catcherEdWhenTalkScript
+	dw Bug_catcherEdScript
 ; 0x1ac2dc
 
-TrainerBug_catcherEdWhenTalkScript: ; 0x1ac2dc
+Bug_catcherEdScript: ; 0x1ac2dc
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x1ac3cf
@@ -108276,19 +108276,19 @@ TrainerBug_catcherDoug: ; 0x1ac2e4
 	db BUG_CATCHER, DOUG
 
 	; text when seen
-	dw TrainerBug_catcherDougWhenSeenText
+	dw Bug_catcherDougSeenText
 
 	; text when trainer beaten
-	dw TrainerBug_catcherDougWhenBeatenText
+	dw Bug_catcherDougBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerBug_catcherDougWhenTalkScript
+	dw Bug_catcherDougScript
 ; 0x1ac2f0
 
-TrainerBug_catcherDougWhenTalkScript: ; 0x1ac2f0
+Bug_catcherDougScript: ; 0x1ac2f0
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x1ac423
@@ -108349,13 +108349,13 @@ MapRoute2SignpostItem5: ; 0x1ac311
 	
 ; 0x1ac314
 
-TrainerBug_catcherRobWhenSeenText: ; 0x1ac314
+Bug_catcherRobSeenText: ; 0x1ac314
 	db $0, "My bug #MON are", $4f
 	db "tough. Prepare to", $55
 	db "lose!", $57
 ; 0x1ac33d
 
-TrainerBug_catcherRobWhenBeatenText: ; 0x1ac33d
+Bug_catcherRobBeatenText: ; 0x1ac33d
 	db $0, "I was whipped…", $57
 ; 0x1ac34d
 
@@ -108365,14 +108365,14 @@ UnknownText_0x1ac34d: ; 0x1ac34d
 	db "#MON.", $57
 ; 0x1ac376
 
-TrainerBug_catcherEdWhenSeenText: ; 0x1ac376
+Bug_catcherEdSeenText: ; 0x1ac376
 	db $0, "If you walk in", $4f
 	db "tall grass wearing", $51
 	db "shorts, do you get", $4f
 	db "nicks and cuts?", $57
 ; 0x1ac3bc
 
-TrainerBug_catcherEdWhenBeatenText: ; 0x1ac3bc
+Bug_catcherEdBeatenText: ; 0x1ac3bc
 	db $0, "Ouch, ouch, ouch!", $57
 ; 0x1ac3cf
 
@@ -108382,12 +108382,12 @@ UnknownText_0x1ac3cf: ; 0x1ac3cf
 	db "take a bath.", $57
 ; 0x1ac3fa
 
-TrainerBug_catcherDougWhenSeenText: ; 0x1ac3fa
+Bug_catcherDougSeenText: ; 0x1ac3fa
 	db $0, "Why don't girls", $4f
 	db "like bug #MON?", $57
 ; 0x1ac419
 
-TrainerBug_catcherDougWhenBeatenText: ; 0x1ac419
+Bug_catcherDougBeatenText: ; 0x1ac419
 	db $0, "No good!", $57
 ; 0x1ac423
 
@@ -108462,19 +108462,19 @@ TrainerSchoolboyDanny: ; 0x1ac556
 	db SCHOOLBOY, DANNY
 
 	; text when seen
-	dw TrainerSchoolboyDannyWhenSeenText
+	dw SchoolboyDannySeenText
 
 	; text when trainer beaten
-	dw TrainerSchoolboyDannyWhenBeatenText
+	dw SchoolboyDannyBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerSchoolboyDannyWhenTalkScript
+	dw SchoolboyDannyScript
 ; 0x1ac562
 
-TrainerSchoolboyDannyWhenTalkScript: ; 0x1ac562
+SchoolboyDannyScript: ; 0x1ac562
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x1ac5d7
@@ -108491,19 +108491,19 @@ TrainerCooltrainerfQuinn: ; 0x1ac56a
 	db COOLTRAINERF, QUINN
 
 	; text when seen
-	dw TrainerCooltrainerfQuinnWhenSeenText
+	dw CooltrainerfQuinnSeenText
 
 	; text when trainer beaten
-	dw TrainerCooltrainerfQuinnWhenBeatenText
+	dw CooltrainerfQuinnBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerCooltrainerfQuinnWhenTalkScript
+	dw CooltrainerfQuinnScript
 ; 0x1ac576
 
-TrainerCooltrainerfQuinnWhenTalkScript: ; 0x1ac576
+CooltrainerfQuinnScript: ; 0x1ac576
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x1ac640
@@ -108520,13 +108520,13 @@ UnknownScript_0x1ac581: ; 0x1ac581
 	fruittree $1a
 ; 0x1ac583
 
-TrainerSchoolboyDannyWhenSeenText: ; 0x1ac583
+SchoolboyDannySeenText: ; 0x1ac583
 	db $0, "If trainers meet,", $4f
 	db "the first thing to", $55
 	db "do is battle.", $57
 ; 0x1ac5b7
 
-TrainerSchoolboyDannyWhenBeatenText: ; 0x1ac5b7
+SchoolboyDannyBeatenText: ; 0x1ac5b7
 	db $0, "Awww… I've got a", $4f
 	db "losing record…", $57
 ; 0x1ac5d7
@@ -108538,12 +108538,12 @@ UnknownText_0x1ac5d7: ; 0x1ac5d7
 	db "meet.", $57
 ; 0x1ac615
 
-TrainerCooltrainerfQuinnWhenSeenText: ; 0x1ac615
+CooltrainerfQuinnSeenText: ; 0x1ac615
 	db $0, "You there!", $4f
 	db "Want to battle?", $57
 ; 0x1ac631
 
-TrainerCooltrainerfQuinnWhenBeatenText: ; 0x1ac631
+CooltrainerfQuinnBeatenText: ; 0x1ac631
 	db $0, "Down and out…", $57
 ; 0x1ac640
 
@@ -108697,19 +108697,19 @@ TrainerSwimmermSeth: ; 0x1ac814
 	db SWIMMERM, SETH
 
 	; text when seen
-	dw TrainerSwimmermSethWhenSeenText
+	dw SwimmermSethSeenText
 
 	; text when trainer beaten
-	dw TrainerSwimmermSethWhenBeatenText
+	dw SwimmermSethBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerSwimmermSethWhenTalkScript
+	dw SwimmermSethScript
 ; 0x1ac820
 
-TrainerSwimmermSethWhenTalkScript: ; 0x1ac820
+SwimmermSethScript: ; 0x1ac820
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x1ac873
@@ -108726,19 +108726,19 @@ TrainerSwimmerfNikki: ; 0x1ac828
 	db SWIMMERF, NIKKI
 
 	; text when seen
-	dw TrainerSwimmerfNikkiWhenSeenText
+	dw SwimmerfNikkiSeenText
 
 	; text when trainer beaten
-	dw TrainerSwimmerfNikkiWhenBeatenText
+	dw SwimmerfNikkiBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerSwimmerfNikkiWhenTalkScript
+	dw SwimmerfNikkiScript
 ; 0x1ac834
 
-TrainerSwimmerfNikkiWhenTalkScript: ; 0x1ac834
+SwimmerfNikkiScript: ; 0x1ac834
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x1ac8f1
@@ -108755,19 +108755,19 @@ TrainerFisherArnold: ; 0x1ac83c
 	db FISHER, ARNOLD
 
 	; text when seen
-	dw TrainerFisherArnoldWhenSeenText
+	dw FisherArnoldSeenText
 
 	; text when trainer beaten
-	dw TrainerFisherArnoldWhenBeatenText
+	dw FisherArnoldBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerFisherArnoldWhenTalkScript
+	dw FisherArnoldScript
 ; 0x1ac848
 
-TrainerFisherArnoldWhenTalkScript: ; 0x1ac848
+FisherArnoldScript: ; 0x1ac848
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x1ac95c
@@ -108776,12 +108776,12 @@ TrainerFisherArnoldWhenTalkScript: ; 0x1ac848
 	end
 ; 0x1ac850
 
-TrainerSwimmermSethWhenSeenText: ; 0x1ac850
+SwimmermSethSeenText: ; 0x1ac850
 	db $0, "Land ho! Gotta", $4f
 	db "keep going!", $57
 ; 0x1ac86c
 
-TrainerSwimmermSethWhenBeatenText: ; 0x1ac86c
+SwimmermSethBeatenText: ; 0x1ac86c
 	db $0, "Glug…", $57
 ; 0x1ac873
 
@@ -108791,13 +108791,13 @@ UnknownText_0x1ac873: ; 0x1ac873
 	db "volcano.", $57
 ; 0x1ac8a0
 
-TrainerSwimmerfNikkiWhenSeenText: ; 0x1ac8a0
+SwimmerfNikkiSeenText: ; 0x1ac8a0
 	db $0, "If I win, you have", $4f
 	db "to help me with my", $55
 	db "suntan lotion!", $57
 ; 0x1ac8d6
 
-TrainerSwimmerfNikkiWhenBeatenText: ; 0x1ac8d6
+SwimmerfNikkiBeatenText: ; 0x1ac8d6
 	db $0, "I'm worried about", $4f
 	db "sunburn…", $57
 ; 0x1ac8f1
@@ -108808,12 +108808,12 @@ UnknownText_0x1ac8f1: ; 0x1ac8f1
 	db "caused by the sun.", $57
 ; 0x1ac927
 
-TrainerFisherArnoldWhenSeenText: ; 0x1ac927
+FisherArnoldSeenText: ; 0x1ac927
 	db $0, "I'm bored by fish-", $4f
 	db "ing. Let's battle!", $57
 ; 0x1ac94c
 
-TrainerFisherArnoldWhenBeatenText: ; 0x1ac94c
+FisherArnoldBeatenText: ; 0x1ac94c
 	db $0, "Utter failure…", $57
 ; 0x1ac95c
 
@@ -109005,19 +109005,19 @@ TrainerSwimmerfNicole: ; 0x1acd29
 	db SWIMMERF, NICOLE
 
 	; text when seen
-	dw TrainerSwimmerfNicoleWhenSeenText
+	dw SwimmerfNicoleSeenText
 
 	; text when trainer beaten
-	dw TrainerSwimmerfNicoleWhenBeatenText
+	dw SwimmerfNicoleBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerSwimmerfNicoleWhenTalkScript
+	dw SwimmerfNicoleScript
 ; 0x1acd35
 
-TrainerSwimmerfNicoleWhenTalkScript: ; 0x1acd35
+SwimmerfNicoleScript: ; 0x1acd35
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x1acd93
@@ -109034,19 +109034,19 @@ TrainerSwimmerfLori: ; 0x1acd3d
 	db SWIMMERF, LORI
 
 	; text when seen
-	dw TrainerSwimmerfLoriWhenSeenText
+	dw SwimmerfLoriSeenText
 
 	; text when trainer beaten
-	dw TrainerSwimmerfLoriWhenBeatenText
+	dw SwimmerfLoriBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerSwimmerfLoriWhenTalkScript
+	dw SwimmerfLoriScript
 ; 0x1acd49
 
-TrainerSwimmerfLoriWhenTalkScript: ; 0x1acd49
+SwimmerfLoriScript: ; 0x1acd49
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x1ace15
@@ -109063,19 +109063,19 @@ TrainerSwimmermCameron: ; 0x1acd51
 	db SWIMMERM, CAMERON
 
 	; text when seen
-	dw TrainerSwimmermCameronWhenSeenText
+	dw SwimmermCameronSeenText
 
 	; text when trainer beaten
-	dw TrainerSwimmermCameronWhenBeatenText
+	dw SwimmermCameronBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerSwimmermCameronWhenTalkScript
+	dw SwimmermCameronScript
 ; 0x1acd5d
 
-TrainerSwimmermCameronWhenTalkScript: ; 0x1acd5d
+SwimmermCameronScript: ; 0x1acd5d
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x1ace8b
@@ -109088,12 +109088,12 @@ MapRoute20Signpost0Script: ; 0x1acd65
 	jumptext UnknownText_0x1acec2
 ; 0x1acd68
 
-TrainerSwimmerfNicoleWhenSeenText: ; 0x1acd68
+SwimmerfNicoleSeenText: ; 0x1acd68
 	db $0, "I feel so much", $4f
 	db "lighter in water.", $57
 ; 0x1acd8a
 
-TrainerSwimmerfNicoleWhenBeatenText: ; 0x1acd8a
+SwimmerfNicoleBeatenText: ; 0x1acd8a
 	db $0, "Oh, no!", $57
 ; 0x1acd93
 
@@ -109104,14 +109104,14 @@ UnknownText_0x1acd93: ; 0x1acd93
 	db "for you.", $57
 ; 0x1acdd0
 
-TrainerSwimmerfLoriWhenSeenText: ; 0x1acdd0
+SwimmerfLoriSeenText: ; 0x1acdd0
 	db $0, "What an impressive", $4f
 	db "collection of GYM", $51
 	db "BADGES. We should", $4f
 	db "battle!", $57
 ; 0x1ace10
 
-TrainerSwimmerfLoriWhenBeatenText: ; 0x1ace10
+SwimmerfLoriBeatenText: ; 0x1ace10
 	db $0, "No!", $57
 ; 0x1ace15
 
@@ -109121,14 +109121,14 @@ UnknownText_0x1ace15: ; 0x1ace15
 	db "you use in water.", $57
 ; 0x1ace4b
 
-TrainerSwimmermCameronWhenSeenText: ; 0x1ace4b
+SwimmermCameronSeenText: ; 0x1ace4b
 	db $0, "I guess it's im-", $4f
 	db "possible to swim", $51
 	db "all the way to", $4f
 	db "JOHTO.", $57
 ; 0x1ace83
 
-TrainerSwimmermCameronWhenBeatenText: ; 0x1ace83
+SwimmermCameronBeatenText: ; 0x1ace83
 	db $0, "Aiyah!", $57
 ; 0x1ace8b
 
@@ -109183,19 +109183,19 @@ TrainerBird_keeperBoris: ; 0x1acf31
 	db BIRD_KEEPER, BORIS
 
 	; text when seen
-	dw TrainerBird_keeperBorisWhenSeenText
+	dw Bird_keeperBorisSeenText
 
 	; text when trainer beaten
-	dw TrainerBird_keeperBorisWhenBeatenText
+	dw Bird_keeperBorisBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerBird_keeperBorisWhenTalkScript
+	dw Bird_keeperBorisScript
 ; 0x1acf3d
 
-TrainerBird_keeperBorisWhenTalkScript: ; 0x1acf3d
+Bird_keeperBorisScript: ; 0x1acf3d
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x1acfa5
@@ -109212,19 +109212,19 @@ TrainerBird_keeperBob: ; 0x1acf45
 	db BIRD_KEEPER, BOB
 
 	; text when seen
-	dw TrainerBird_keeperBobWhenSeenText
+	dw Bird_keeperBobSeenText
 
 	; text when trainer beaten
-	dw TrainerBird_keeperBobWhenBeatenText
+	dw Bird_keeperBobBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerBird_keeperBobWhenTalkScript
+	dw Bird_keeperBobScript
 ; 0x1acf51
 
-TrainerBird_keeperBobWhenTalkScript: ; 0x1acf51
+Bird_keeperBobScript: ; 0x1acf51
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x1ad00d
@@ -109237,14 +109237,14 @@ MapRoute18Signpost0Script: ; 0x1acf59
 	jumptext UnknownText_0x1ad051
 ; 0x1acf5c
 
-TrainerBird_keeperBorisWhenSeenText: ; 0x1acf5c
+Bird_keeperBorisSeenText: ; 0x1acf5c
 	db $0, "If you're looking", $4f
 	db "for #MON, you", $51
 	db "have to look in", $4f
 	db "the tall grass.", $57
 ; 0x1acf9c
 
-TrainerBird_keeperBorisWhenBeatenText: ; 0x1acf9c
+Bird_keeperBorisBeatenText: ; 0x1acf9c
 	db $0, "Ayieee!", $57
 ; 0x1acfa5
 
@@ -109254,13 +109254,13 @@ UnknownText_0x1acfa5: ; 0x1acfa5
 	db "fun to battle.", $57
 ; 0x1acfd7
 
-TrainerBird_keeperBobWhenSeenText: ; 0x1acfd7
+Bird_keeperBobSeenText: ; 0x1acfd7
 	db $0, "CYCLING ROAD is a", $4f
 	db "quick shortcut to", $55
 	db "CELADON.", $57
 ; 0x1ad005
 
-TrainerBird_keeperBobWhenBeatenText: ; 0x1ad005
+Bird_keeperBobBeatenText: ; 0x1ad005
 	db $0, "…Whew!", $57
 ; 0x1ad00d
 
@@ -109325,19 +109325,19 @@ TrainerBikerCharles: ; 0x1ad0b2
 	db BIKER, CHARLES
 
 	; text when seen
-	dw TrainerBikerCharlesWhenSeenText
+	dw BikerCharlesSeenText
 
 	; text when trainer beaten
-	dw TrainerBikerCharlesWhenBeatenText
+	dw BikerCharlesBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerBikerCharlesWhenTalkScript
+	dw BikerCharlesScript
 ; 0x1ad0be
 
-TrainerBikerCharlesWhenTalkScript: ; 0x1ad0be
+BikerCharlesScript: ; 0x1ad0be
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x1ad293
@@ -109354,19 +109354,19 @@ TrainerBikerRiley: ; 0x1ad0c6
 	db BIKER, RILEY
 
 	; text when seen
-	dw TrainerBikerRileyWhenSeenText
+	dw BikerRileySeenText
 
 	; text when trainer beaten
-	dw TrainerBikerRileyWhenBeatenText
+	dw BikerRileyBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerBikerRileyWhenTalkScript
+	dw BikerRileyScript
 ; 0x1ad0d2
 
-TrainerBikerRileyWhenTalkScript: ; 0x1ad0d2
+BikerRileyScript: ; 0x1ad0d2
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x1ad13b
@@ -109383,19 +109383,19 @@ TrainerBikerJoel: ; 0x1ad0da
 	db BIKER, JOEL
 
 	; text when seen
-	dw TrainerBikerJoelWhenSeenText
+	dw BikerJoelSeenText
 
 	; text when trainer beaten
-	dw TrainerBikerJoelWhenBeatenText
+	dw BikerJoelBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerBikerJoelWhenTalkScript
+	dw BikerJoelScript
 ; 0x1ad0e6
 
-TrainerBikerJoelWhenTalkScript: ; 0x1ad0e6
+BikerJoelScript: ; 0x1ad0e6
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x1ad196
@@ -109412,19 +109412,19 @@ TrainerBikerGlenn: ; 0x1ad0ee
 	db BIKER, GLENN
 
 	; text when seen
-	dw TrainerBikerGlennWhenSeenText
+	dw BikerGlennSeenText
 
 	; text when trainer beaten
-	dw TrainerBikerGlennWhenBeatenText
+	dw BikerGlennBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerBikerGlennWhenTalkScript
+	dw BikerGlennScript
 ; 0x1ad0fa
 
-TrainerBikerGlennWhenTalkScript: ; 0x1ad0fa
+BikerGlennScript: ; 0x1ad0fa
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x1ad225
@@ -109445,12 +109445,12 @@ MapRoute17SignpostItem1: ; 0x1ad105
 	
 ; 0x1ad108
 
-TrainerBikerRileyWhenSeenText: ; 0x1ad108
+BikerRileySeenText: ; 0x1ad108
 	db $0, "Hey, you! You're", $4f
 	db "from JOHTO, huh?", $57
 ; 0x1ad12a
 
-TrainerBikerRileyWhenBeatenText: ; 0x1ad12a
+BikerRileyBeatenText: ; 0x1ad12a
 	db $0, "Whoa, you kick!", $57
 ; 0x1ad13b
 
@@ -109459,12 +109459,12 @@ UnknownText_0x1ad13b: ; 0x1ad13b
 	db "you JOHTO punk!", $57
 ; 0x1ad15c
 
-TrainerBikerJoelWhenSeenText: ; 0x1ad15c
+BikerJoelSeenText: ; 0x1ad15c
 	db $0, "Wow. That's a cool", $4f
 	db "BICYCLE!", $57
 ; 0x1ad178
 
-TrainerBikerJoelWhenBeatenText: ; 0x1ad178
+BikerJoelBeatenText: ; 0x1ad178
 	db $0, "But you don't just", $4f
 	db "look cool…", $57
 ; 0x1ad196
@@ -109477,12 +109477,12 @@ UnknownText_0x1ad196: ; 0x1ad196
 	db "harder…", $57
 ; 0x1ad1e0
 
-TrainerBikerGlennWhenSeenText: ; 0x1ad1e0
+BikerGlennSeenText: ; 0x1ad1e0
 	db $0, "Hey! Want to have", $4f
 	db "a speed battle?", $57
 ; 0x1ad203
 
-TrainerBikerGlennWhenBeatenText: ; 0x1ad203
+BikerGlennBeatenText: ; 0x1ad203
 	db $0, "Yikes! You've got", $4f
 	db "awesome torque!", $57
 ; 0x1ad225
@@ -109493,12 +109493,12 @@ UnknownText_0x1ad225: ; 0x1ad225
 	db "on CYCLING ROAD.", $57
 ; 0x1ad25c
 
-TrainerBikerCharlesWhenSeenText: ; 0x1ad25c
+BikerCharlesSeenText: ; 0x1ad25c
 	db $0, "We're fearless", $4f
 	db "highway stars!", $57
 ; 0x1ad27a
 
-TrainerBikerCharlesWhenBeatenText: ; 0x1ad27a
+BikerCharlesBeatenText: ; 0x1ad27a
 	db $0, "Arrrgh! Crash and", $4f
 	db "burn!", $57
 ; 0x1ad293
@@ -109674,19 +109674,19 @@ TrainerPokefanmCarter: ; 0x1ad486
 	db POKEFANM, CARTER
 
 	; text when seen
-	dw TrainerPokefanmCarterWhenSeenText
+	dw PokefanmCarterSeenText
 
 	; text when trainer beaten
-	dw TrainerPokefanmCarterWhenBeatenText
+	dw PokefanmCarterBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerPokefanmCarterWhenTalkScript
+	dw PokefanmCarterScript
 ; 0x1ad492
 
-TrainerPokefanmCarterWhenTalkScript: ; 0x1ad492
+PokefanmCarterScript: ; 0x1ad492
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x1ad508
@@ -109703,19 +109703,19 @@ TrainerBird_keeperRoy: ; 0x1ad49a
 	db BIRD_KEEPER, ROY
 
 	; text when seen
-	dw TrainerBird_keeperRoyWhenSeenText
+	dw Bird_keeperRoySeenText
 
 	; text when trainer beaten
-	dw TrainerBird_keeperRoyWhenBeatenText
+	dw Bird_keeperRoyBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerBird_keeperRoyWhenTalkScript
+	dw Bird_keeperRoyScript
 ; 0x1ad4a6
 
-TrainerBird_keeperRoyWhenTalkScript: ; 0x1ad4a6
+Bird_keeperRoyScript: ; 0x1ad4a6
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x1ad5a4
@@ -109732,19 +109732,19 @@ TrainerPokefanmTrevor: ; 0x1ad4ae
 	db POKEFANM, TREVOR
 
 	; text when seen
-	dw TrainerPokefanmTrevorWhenSeenText
+	dw PokefanmTrevorSeenText
 
 	; text when trainer beaten
-	dw TrainerPokefanmTrevorWhenBeatenText
+	dw PokefanmTrevorBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerPokefanmTrevorWhenTalkScript
+	dw PokefanmTrevorScript
 ; 0x1ad4ba
 
-TrainerPokefanmTrevorWhenTalkScript: ; 0x1ad4ba
+PokefanmTrevorScript: ; 0x1ad4ba
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x1ad660
@@ -109753,14 +109753,14 @@ TrainerPokefanmTrevorWhenTalkScript: ; 0x1ad4ba
 	end
 ; 0x1ad4c2
 
-TrainerPokefanmCarterWhenSeenText: ; 0x1ad4c2
+PokefanmCarterSeenText: ; 0x1ad4c2
 	db $0, "Let me tell you,", $4f
 	db "I had a hard time", $51
 	db "catching my prized", $4f
 	db "#MON.", $57
 ; 0x1ad4ff
 
-TrainerPokefanmCarterWhenBeatenText: ; 0x1ad4ff
+PokefanmCarterBeatenText: ; 0x1ad4ff
 	db $0, "Awaaah!", $57
 ; 0x1ad508
 
@@ -109771,13 +109771,13 @@ UnknownText_0x1ad508: ; 0x1ad508
 	db "well-balanced mix.", $57
 ; 0x1ad552
 
-TrainerBird_keeperRoyWhenSeenText: ; 0x1ad552
+Bird_keeperRoySeenText: ; 0x1ad552
 	db $0, "My dream is to fly", $4f
 	db "with my beloved", $55
 	db "bird #MON.", $57
 ; 0x1ad581
 
-TrainerBird_keeperRoyWhenBeatenText: ; 0x1ad581
+Bird_keeperRoyBeatenText: ; 0x1ad581
 	db $0, "I can dream, but I", $4f
 	db "can't ever fly…", $57
 ; 0x1ad5a4
@@ -109789,7 +109789,7 @@ UnknownText_0x1ad5a4: ; 0x1ad5a4
 	db "you? I envy you.", $57
 ; 0x1ad5e4
 
-TrainerPokefanmTrevorWhenSeenText: ; 0x1ad5e4
+PokefanmTrevorSeenText: ; 0x1ad5e4
 	db $0, "Hi. Did you know…?", $51
 	db "#MON get more", $4f
 	db "friendly if you", $51
@@ -109798,7 +109798,7 @@ TrainerPokefanmTrevorWhenSeenText: ; 0x1ad5e4
 	db "remember.", $57
 ; 0x1ad640
 
-TrainerPokefanmTrevorWhenBeatenText: ; 0x1ad640
+PokefanmTrevorBeatenText: ; 0x1ad640
 	db $0, "Where did I meet", $4f
 	db "this PSYDUCK?", $57
 ; 0x1ad660
@@ -109991,19 +109991,19 @@ TrainerPokefanmRex: ; 0x1ad929
 	db POKEFANM, REX
 
 	; text when seen
-	dw TrainerPokefanmRexWhenSeenText
+	dw PokefanmRexSeenText
 
 	; text when trainer beaten
-	dw TrainerPokefanmRexWhenBeatenText
+	dw PokefanmRexBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerPokefanmRexWhenTalkScript
+	dw PokefanmRexScript
 ; 0x1ad935
 
-TrainerPokefanmRexWhenTalkScript: ; 0x1ad935
+PokefanmRexScript: ; 0x1ad935
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x1ad9ff
@@ -110020,19 +110020,19 @@ TrainerPokefanmAllan: ; 0x1ad93d
 	db POKEFANM, ALLAN
 
 	; text when seen
-	dw TrainerPokefanmAllanWhenSeenText
+	dw PokefanmAllanSeenText
 
 	; text when trainer beaten
-	dw TrainerPokefanmAllanWhenBeatenText
+	dw PokefanmAllanBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerPokefanmAllanWhenTalkScript
+	dw PokefanmAllanScript
 ; 0x1ad949
 
-TrainerPokefanmAllanWhenTalkScript: ; 0x1ad949
+PokefanmAllanScript: ; 0x1ad949
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x1ada88
@@ -110062,13 +110062,13 @@ UnknownText_0x1ad99b: ; 0x1ad99b
 	db "VERMILION CITY", $57
 ; 0x1ad9cc
 
-TrainerPokefanmRexWhenSeenText: ; 0x1ad9cc
+PokefanmRexSeenText: ; 0x1ad9cc
 	db $0, "My PHANPY is the", $4f
 	db "cutest in the", $55
 	db "world.", $57
 ; 0x1ad9f3
 
-TrainerPokefanmRexWhenBeatenText: ; 0x1ad9f3
+PokefanmRexBeatenText: ; 0x1ad9f3
 	db $0, "My PHANPY!", $57
 ; 0x1ad9ff
 
@@ -110080,13 +110080,13 @@ UnknownText_0x1ad9ff: ; 0x1ad9ff
 	db "your heart melt?", $57
 ; 0x1ada4f
 
-TrainerPokefanmAllanWhenSeenText: ; 0x1ada4f
+PokefanmAllanSeenText: ; 0x1ada4f
 	db $0, "My TEDDIURSA is", $4f
 	db "the cutest in the", $55
 	db "world.", $57
 ; 0x1ada79
 
-TrainerPokefanmAllanWhenBeatenText: ; 0x1ada79
+PokefanmAllanBeatenText: ; 0x1ada79
 	db $0, "My TEDDIURSA!", $57
 ; 0x1ada88
 
@@ -110318,19 +110318,19 @@ TrainerFirebreatherOtis: ; 0x1adf65
 	db FIREBREATHER, OTIS
 
 	; text when seen
-	dw TrainerFirebreatherOtisWhenSeenText
+	dw FirebreatherOtisSeenText
 
 	; text when trainer beaten
-	dw TrainerFirebreatherOtisWhenBeatenText
+	dw FirebreatherOtisBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerFirebreatherOtisWhenTalkScript
+	dw FirebreatherOtisScript
 ; 0x1adf71
 
-TrainerFirebreatherOtisWhenTalkScript: ; 0x1adf71
+FirebreatherOtisScript: ; 0x1adf71
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x1adff7
@@ -110347,19 +110347,19 @@ TrainerYoungsterWarren: ; 0x1adf79
 	db YOUNGSTER, WARREN
 
 	; text when seen
-	dw TrainerYoungsterWarrenWhenSeenText
+	dw YoungsterWarrenSeenText
 
 	; text when trainer beaten
-	dw TrainerYoungsterWarrenWhenBeatenText
+	dw YoungsterWarrenBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerYoungsterWarrenWhenTalkScript
+	dw YoungsterWarrenScript
 ; 0x1adf85
 
-TrainerYoungsterWarrenWhenTalkScript: ; 0x1adf85
+YoungsterWarrenScript: ; 0x1adf85
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x1ae051
@@ -110376,19 +110376,19 @@ TrainerYoungsterJimmy: ; 0x1adf8d
 	db YOUNGSTER, JIMMY
 
 	; text when seen
-	dw TrainerYoungsterJimmyWhenSeenText
+	dw YoungsterJimmySeenText
 
 	; text when trainer beaten
-	dw TrainerYoungsterJimmyWhenBeatenText
+	dw YoungsterJimmyBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerYoungsterJimmyWhenTalkScript
+	dw YoungsterJimmyScript
 ; 0x1adf99
 
-TrainerYoungsterJimmyWhenTalkScript: ; 0x1adf99
+YoungsterJimmyScript: ; 0x1adf99
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x1ae0a9
@@ -110405,19 +110405,19 @@ TrainerFirebreatherBurt: ; 0x1adfa1
 	db FIREBREATHER, BURT
 
 	; text when seen
-	dw TrainerFirebreatherBurtWhenSeenText
+	dw FirebreatherBurtSeenText
 
 	; text when trainer beaten
-	dw TrainerFirebreatherBurtWhenBeatenText
+	dw FirebreatherBurtBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerFirebreatherBurtWhenTalkScript
+	dw FirebreatherBurtScript
 ; 0x1adfad
 
-TrainerFirebreatherBurtWhenTalkScript: ; 0x1adfad
+FirebreatherBurtScript: ; 0x1adfad
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x1ae118
@@ -110430,12 +110430,12 @@ MapRoute3Signpost0Script: ; 0x1adfb5
 	jumptext UnknownText_0x1ae163
 ; 0x1adfb8
 
-TrainerFirebreatherOtisWhenSeenText: ; 0x1adfb8
+FirebreatherOtisSeenText: ; 0x1adfb8
 	db $0, "Ah! The weather's", $4f
 	db "as fine as ever.", $57
 ; 0x1adfdb
 
-TrainerFirebreatherOtisWhenBeatenText: ; 0x1adfdb
+FirebreatherOtisBeatenText: ; 0x1adfdb
 	db $0, "It's sunny, but", $4f
 	db "I'm all wet…", $57
 ; 0x1adff7
@@ -110446,12 +110446,12 @@ UnknownText_0x1adff7: ; 0x1adff7
 	db "ignition…", $57
 ; 0x1ae021
 
-TrainerYoungsterWarrenWhenSeenText: ; 0x1ae021
+YoungsterWarrenSeenText: ; 0x1ae021
 	db $0, "Hmmm… I don't know", $4f
 	db "what to do…", $57
 ; 0x1ae040
 
-TrainerYoungsterWarrenWhenBeatenText: ; 0x1ae040
+YoungsterWarrenBeatenText: ; 0x1ae040
 	db $0, "I knew I'd lose…", $57
 ; 0x1ae051
 
@@ -110461,12 +110461,12 @@ UnknownText_0x1ae051: ; 0x1ae051
 	db "take you on…", $57
 ; 0x1ae082
 
-TrainerYoungsterJimmyWhenSeenText: ; 0x1ae082
+YoungsterJimmySeenText: ; 0x1ae082
 	db $0, "I can run like the", $4f
 	db "wind!", $57
 ; 0x1ae09c
 
-TrainerYoungsterJimmyWhenBeatenText: ; 0x1ae09c
+YoungsterJimmyBeatenText: ; 0x1ae09c
 	db $0, "Blown away!", $57
 ; 0x1ae0a9
 
@@ -110477,12 +110477,12 @@ UnknownText_0x1ae0a9: ; 0x1ae0a9
 	db "policy.", $57
 ; 0x1ae0e7
 
-TrainerFirebreatherBurtWhenSeenText: ; 0x1ae0e7
+FirebreatherBurtSeenText: ; 0x1ae0e7
 	db $0, "Step right up and", $4f
 	db "take a look!", $57
 ; 0x1ae107
 
-TrainerFirebreatherBurtWhenBeatenText: ; 0x1ae107
+FirebreatherBurtBeatenText: ; 0x1ae107
 	db $0, "Yow! That's hot!", $57
 ; 0x1ae118
 
@@ -110539,19 +110539,19 @@ TrainerBird_keeperHank: ; 0x1ae1d0
 	db BIRD_KEEPER, HANK
 
 	; text when seen
-	dw TrainerBird_keeperHankWhenSeenText
+	dw Bird_keeperHankSeenText
 
 	; text when trainer beaten
-	dw TrainerBird_keeperHankWhenBeatenText
+	dw Bird_keeperHankBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerBird_keeperHankWhenTalkScript
+	dw Bird_keeperHankScript
 ; 0x1ae1dc
 
-TrainerBird_keeperHankWhenTalkScript: ; 0x1ae1dc
+Bird_keeperHankScript: ; 0x1ae1dc
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x1ae258
@@ -110568,19 +110568,19 @@ TrainerPicnickerHope: ; 0x1ae1e4
 	db PICNICKER, HOPE
 
 	; text when seen
-	dw TrainerPicnickerHopeWhenSeenText
+	dw PicnickerHopeSeenText
 
 	; text when trainer beaten
-	dw TrainerPicnickerHopeWhenBeatenText
+	dw PicnickerHopeBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerPicnickerHopeWhenTalkScript
+	dw PicnickerHopeScript
 ; 0x1ae1f0
 
-TrainerPicnickerHopeWhenTalkScript: ; 0x1ae1f0
+PicnickerHopeScript: ; 0x1ae1f0
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x1ae320
@@ -110597,19 +110597,19 @@ TrainerPicnickerSharon: ; 0x1ae1f8
 	db PICNICKER, SHARON
 
 	; text when seen
-	dw TrainerPicnickerSharonWhenSeenText
+	dw PicnickerSharonSeenText
 
 	; text when trainer beaten
-	dw TrainerPicnickerSharonWhenBeatenText
+	dw PicnickerSharonBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerPicnickerSharonWhenTalkScript
+	dw PicnickerSharonScript
 ; 0x1ae204
 
-TrainerPicnickerSharonWhenTalkScript: ; 0x1ae204
+PicnickerSharonScript: ; 0x1ae204
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x1ae369
@@ -110632,13 +110632,13 @@ MapRoute4SignpostItem1: ; 0x1ae211
 	
 ; 0x1ae214
 
-TrainerBird_keeperHankWhenSeenText: ; 0x1ae214
+Bird_keeperHankSeenText: ; 0x1ae214
 	db $0, "I'm raising my", $4f
 	db "#MON. Want to", $55
 	db "battle with me?", $57
 ; 0x1ae241
 
-TrainerBird_keeperHankWhenBeatenText: ; 0x1ae241
+Bird_keeperHankBeatenText: ; 0x1ae241
 	db $0, "Ack! I lost that", $4f
 	db "one…", $57
 ; 0x1ae258
@@ -110654,14 +110654,14 @@ UnknownText_0x1ae258: ; 0x1ae258
 	db "it.", $57
 ; 0x1ae2ce
 
-TrainerPicnickerHopeWhenSeenText: ; 0x1ae2ce
+PicnickerHopeSeenText: ; 0x1ae2ce
 	db $0, "I have a feeling", $4f
 	db "that I can win.", $51
 	db "Let's see if I'm", $4f
 	db "right!", $57
 ; 0x1ae306
 
-TrainerPicnickerHopeWhenBeatenText: ; 0x1ae306
+PicnickerHopeBeatenText: ; 0x1ae306
 	db $0, "Aww, you are too", $4f
 	db "strong.", $57
 ; 0x1ae320
@@ -110673,12 +110673,12 @@ UnknownText_0x1ae320: ; 0x1ae320
 	db "they be?", $57
 ; 0x1ae35e
 
-TrainerPicnickerSharonWhenSeenText: ; 0x1ae35e
+PicnickerSharonSeenText: ; 0x1ae35e
 	db $0, "Um…", $4f
 	db "I…", $57
 ; 0x1ae366
 
-TrainerPicnickerSharonWhenBeatenText: ; 0x1ae366
+PicnickerSharonBeatenText: ; 0x1ae366
 	db $0, "…", $57
 ; 0x1ae369
 
@@ -110733,19 +110733,19 @@ TrainerHikerJim: ; 0x1ae3f6
 	db HIKER, JIM
 
 	; text when seen
-	dw TrainerHikerJimWhenSeenText
+	dw HikerJimSeenText
 
 	; text when trainer beaten
-	dw TrainerHikerJimWhenBeatenText
+	dw HikerJimBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerHikerJimWhenTalkScript
+	dw HikerJimScript
 ; 0x1ae402
 
-TrainerHikerJimWhenTalkScript: ; 0x1ae402
+HikerJimScript: ; 0x1ae402
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x1ae43b
@@ -110762,19 +110762,19 @@ TrainerPokefanmRobert: ; 0x1ae40a
 	db POKEFANM, ROBERT
 
 	; text when seen
-	dw TrainerPokefanmRobertWhenSeenText
+	dw PokefanmRobertSeenText
 
 	; text when trainer beaten
-	dw TrainerPokefanmRobertWhenBeatenText
+	dw PokefanmRobertBeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
-	dw TrainerPokefanmRobertWhenTalkScript
+	dw PokefanmRobertScript
 ; 0x1ae416
 
-TrainerPokefanmRobertWhenTalkScript: ; 0x1ae416
+PokefanmRobertScript: ; 0x1ae416
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x1ae4a9
@@ -110787,11 +110787,11 @@ MapRoute10SouthSignpost0Script: ; 0x1ae41e
 	jumptext UnknownText_0x1ae4dc
 ; 0x1ae421
 
-TrainerHikerJimWhenSeenText: ; 0x1ae421
+HikerJimSeenText: ; 0x1ae421
 	db $0, "Hahahah!", $57
 ; 0x1ae42b
 
-TrainerHikerJimWhenBeatenText: ; 0x1ae42b
+HikerJimBeatenText: ; 0x1ae42b
 	db $0, "Hahaha-hachoo!", $57
 ; 0x1ae43b
 
@@ -110801,13 +110801,13 @@ UnknownText_0x1ae43b: ; 0x1ae43b
 	db "Ahahah-CHOO!", $57
 ; 0x1ae468
 
-TrainerPokefanmRobertWhenSeenText: ; 0x1ae468
+PokefanmRobertSeenText: ; 0x1ae468
 	db $0, "You like #MON,", $4f
 	db "don't you?", $51
 	db "Me too!", $57
 ; 0x1ae48a
 
-TrainerPokefanmRobertWhenBeatenText: ; 0x1ae48a
+PokefanmRobertBeatenText: ; 0x1ae48a
 	db $0, "I'd have to say", $4f
 	db "that's my loss.", $57
 ; 0x1ae4a9
