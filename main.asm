@@ -71110,8 +71110,8 @@ INCBIN "baserom.gbc",$D4000,$4000
 
 SECTION "bank36",DATA,BANK[$36]
 
-Font:
-INCBIN "gfx/font.1bpp",$0,$400
+FontInversed:
+INCBIN "gfx/font_inversed.1bpp",$0,$400
 
 INCBIN "baserom.gbc",$D8400,$4000-$400
 
@@ -71145,7 +71145,16 @@ INCBIN "baserom.gbc",$F4000,$4000
 
 SECTION "bank3E",DATA,BANK[$3E]
 
-INCBIN "baserom.gbc",$F8000,$4000
+FontExtra:
+INCBIN "gfx/font_extra.2bpp",$0,$200
+
+Font:
+INCBIN "gfx/font.1bpp",$0,$400
+
+FontBattleExtra:
+INCBIN "gfx/font_battle_extra.2bpp",$0,$200
+
+INCBIN "baserom.gbc",$F8800,$4000-$800
 
 SECTION "bank3F",DATA,BANK[$3F]
 
