@@ -71110,7 +71110,10 @@ INCBIN "baserom.gbc",$D4000,$4000
 
 SECTION "bank36",DATA,BANK[$36]
 
-INCBIN "baserom.gbc",$D8000,$4000
+Font:
+INCBIN "gfx/font.1bpp",$0,$400
+
+INCBIN "baserom.gbc",$D8400,$4000-$400
 
 SECTION "bank37",DATA,BANK[$37]
 
