@@ -132,7 +132,139 @@ NPlaceChar: ; 0x101e
 	ret
 ; 0x1024
 
-INCBIN "baserom.gbc",$1024,$1273 - $1024
+INCBIN "baserom.gbc",$1024,$1078 - $1024
+
+PlaceString:
+	push hl
+PlaceNextChar:
+	ld a, [de]
+	cp "@"
+	jr nz, CheckDict
+	ld b, h
+	ld c, l
+	pop hl
+	ret
+	pop de
+
+NextChar: ; 1083
+	inc de
+	jp PlaceNextChar
+
+CheckDict:
+	cp $15
+	jp z, $117b
+	cp $4f
+	jp z, $12ea
+	cp $4e
+	jp z, $12a7
+	cp $16
+	jp z, $12b9
+	and a
+	jp z, $1383
+	cp $4c
+	jp z, $1337
+	cp $4b
+	jp z, $131f
+	cp $51 ; Player name
+	jp z, $12f2
+	cp $49
+	jp z, $1186 
+	cp $52 ; Mother name
+	jp z, $118d
+	cp $53
+	jp z, $1194
+	cp $35
+	jp z, $11e8
+	cp $36
+	jp z, $11ef
+	cp $37
+	jp z, $11f6
+	cp $38
+	jp z, $119b
+	cp $39
+	jp z, $11a2
+	cp $54
+	jp z, $11c5
+	cp $5b
+	jp z, $11b7
+	cp $5e
+	jp z, $11be
+	cp $5c
+	jp z, $11b0
+	cp $5d
+	jp z, $11a9
+	cp $23
+	jp z, $11cc
+	cp $22
+	jp z, $12b0
+	cp $55
+	jp z, $1345
+	cp $56
+	jp z, $11d3
+	cp $57
+	jp z, $137c
+	cp $58
+	jp z, $135a
+	cp $4a
+	jp z, $11da
+	cp $24
+	jp z, $11e1
+	cp $25
+	jp z, NextChar
+	cp $1f
+	jr nz, .asm_1122
+	ld a, $7f
+.asm_1122
+	cp $5f
+	jp z, Char5F
+	cp $59
+	jp z, $11fd
+	cp $5a
+	jp z, $1203
+	cp $3f
+	jp z, $121b
+	cp $14
+	jp z, $1252
+	cp $e4
+	jr z, .asm_1174 ; 0x113d $35
+	cp $e5
+	jr z, .asm_1174 ; 0x1141 $31
+	jr .asm_114c ; 0x1143 $7
+	ld b, a
+	call $13c6
+	jp NextChar
+.asm_114c
+	cp $60
+	jr nc, .asm_1174 ; 0x114e $24
+	cp $40
+	jr nc, .asm_1165 ; 0x1152 $11
+	cp $20
+	jr nc, .asm_115c ; 0x1156 $4
+	add $80
+	jr .asm_115e ; 0x115a $2
+.asm_115c
+	add $90
+.asm_115e
+	ld b, $e5
+	call $13c6
+	jr .asm_1174 ; 0x1163 $f
+.asm_1165
+	cp $44
+	jr nc, .asm_116d ; 0x1167 $4
+	add $59
+	jr .asm_116f ; 0x116b $2
+.asm_116d
+	add $86
+.asm_116f
+	ld b, $e4
+	call $13c6
+.asm_1174
+	ld [hli], a
+	call $313d
+	jp NextChar
+; 0x117b
+
+INCBIN "baserom.gbc",$117b,$1273 - $117b
 
 Char5CText: ; 0x1273
 	db "TM@"
