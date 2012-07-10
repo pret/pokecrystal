@@ -10189,7 +10189,89 @@ MysticalmanTrainerGroupHeader: ; 0x3ba4c
 
 SECTION "bankF",DATA,BANK[$F]
 
-INCBIN "baserom.gbc",$3C000,$40000 - $3C000
+INCBIN "baserom.gbc",$3C000,$3fc8b - $3C000
+
+; I have no clue what most of this does
+
+BattleStartMessage:
+	ld a, [$d22d]
+	dec a
+	jr z, .asm_3fcaa ; 0x3fc8f $19
+	ld de, $005e
+	call $3c23
+	call $3c55
+	ld c, $14
+	call $0468
+	ld a, $e
+	ld hl, $5939
+	rst $8
+	ld hl, $47a9
+	jr .asm_3fd0e ; 0x3fca8 $64
+.asm_3fcaa
+	call $5a79
+	jr nc, .asm_3fcc2 ; 0x3fcad $13
+	xor a
+	ld [$cfca], a
+	ld a, $1
+	ld [$ff00+$e4], a
+	ld a, $1
+	ld [$c689], a
+	ld de, $0101
+	call $6e17
+.asm_3fcc2
+	ld a, $f
+	ld hl, $6b38
+	rst $8
+	jr c, .messageSelection ; 0x3fcc8 $21
+	ld a, $13
+	ld hl, $6a44
+	rst $8
+	jr c, .asm_3fce0 ; 0x3fcd0 $e
+	ld hl, $c4ac
+	ld d, $0
+	ld e, $1
+	ld a, $47
+	call $2d83
+	jr .messageSelection ; 0x3fcde $b
+.asm_3fce0
+	ld a, $f
+	ld [$c2bd], a
+	ld a, [$d204]
+	call $37b6
+.messageSelection
+	ld a, [$d230]
+	cp $4
+	jr nz, .asm_3fcfd ; 0x3fcf0 $b
+	ld a, $41
+	ld hl, $6086
+	rst $8
+	ld hl, HookedPokemonAttackedText
+	jr .asm_3fd0e ; 0x3fcfb $11
+.asm_3fcfd
+	ld hl, PokemonFellFromTreeText
+	cp $8
+	jr z, .asm_3fd0e ; 0x3fd02 $a
+	ld hl, WildPokemonAppearedText2
+	cp $b
+	jr z, .asm_3fd0e ; 0x3fd09 $3
+	ld hl, WildPokemonAppearedText
+.asm_3fd0e
+	push hl
+	ld a, $b
+	ld hl, $4000
+	rst $8
+	pop hl
+	call $3ad5
+	call $7830
+	ret nz
+	ld c, $2
+	ld a, $13
+	ld hl, $6a0a
+	rst $8
+	ret
+; 0x3fd26
+
+INCBIN "baserom.gbc",$3fd26,$40000 - $3fd26
 
 SECTION "bank10",DATA,BANK[$10]
 
@@ -50163,14 +50245,14 @@ BattleText_0x80730: ; 0x80730
 	db $0, "!", $58
 ; 0x80746
 
-BattleText_0x80746: ; 0x80746
+WildPokemonAppearedText: ; 0x80746
 	db $0, "Wild @"
 	text_from_ram $c616
 	db $0, $4f
 	db "appeared!", $58
 ; 0x8075c
 
-BattleText_0x8075c: ; 0x8075c
+HookedPokemonAttackedText: ; 0x8075c
 	db $0, "The hooked", $4f
 	db "@"
 	text_from_ram $c616
@@ -50178,13 +50260,13 @@ BattleText_0x8075c: ; 0x8075c
 	db "attacked!", $58
 ; 0x80778
 
-BattleText_0x80778: ; 0x80778
+PokemonFellFromTreeText: ; 0x80778
 	text_from_ram $c616
 	db $0, " fell", $4f
 	db "out of the tree!", $58
 ; 0x80793
 
-BattleText_0x80793: ; 0x80793
+WildPokemonAppearedText2: ; 0x80793
 	db $0, "Wild @"
 	text_from_ram $c616
 	db $0, $4f
