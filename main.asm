@@ -264,7 +264,69 @@ CheckDict:
 	jp NextChar
 ; 0x117b
 
-INCBIN "baserom.gbc",$117b,$1273 - $117b
+INCBIN "baserom.gbc",$117b,$1203 - $117b
+
+Char5D:
+	ld a, [$ff00+$e4]
+	push de
+	and a
+	jr nz, .asm_120e ; 0x1207 $5
+	ld de, $c621
+	jr .asm_126a ; 0x120c $5c
+.asm_120e
+	ld de, Char5AText ; Enemy
+	call $1078
+	ld h, b
+	ld l, c
+	ld de, $c616
+	jr .asm_126a ; 0x1219 $4f
+	push de
+	ld a, [$c2dc]
+	and a
+	jr nz, .asm_124d ; 0x1220 $2b
+	ld a, [$d233]
+	cp $9
+	jr z, .asm_1248 ; 0x1227 $1f
+	cp $2a
+	jr z, .asm_1248 ; 0x122b $1b
+	ld de, $c656
+	call $1078
+	ld h, b
+	ld l, c
+	ld de, $12a2
+	call $1078
+	push bc
+	ld hl, $5939
+	ld a, $e
+	rst $8
+	pop hl
+	ld de, $d073
+	jr .asm_126a ; 0x1246 $22
+.asm_1248
+	ld de, $d493
+	jr .asm_126a ; 0x124b $1d
+.asm_124d
+	ld de, $c656
+	jr .asm_126a ; 0x1250 $18
+	push de
+	ld de, $d47d
+	call $1078
+	ld h, b
+	ld l, c
+	ld a, [$d472]
+	bit 0, a
+	ld de, $12a5
+	jr z, .asm_126a ; 0x1263 $5
+	ld de, $12a6
+	jr .asm_126a ; 0x1268 $0
+.asm_126a
+	call $1078
+	ld h, b
+	ld l, c
+	pop de
+	jp $1083
+; 0x1273
+
 
 Char5CText: ; 0x1273
 	db "TM@"
