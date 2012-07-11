@@ -758,7 +758,88 @@ CountSetBits: ; 0x335f
 	ret
 ; 0x3376
 
-INCBIN "baserom.gbc",$3376,$38bb - $3376
+INCBIN "baserom.gbc",$3376,$33ab - $3376
+
+MoveItemPointerTable: ; 33ab
+	dbw $14, $7384
+	dbw BANK(MoveNames), MoveNames
+	dbw $00, $0000
+	dbw BANK(ItemNames), ItemNames
+	dbw $00, $ddff
+	dbw $00, $d3a8
+	dbw $0b, $41ef
+	dbw $04, $4b52
+
+GetMoveItemName; 33c3
+	ld a, [$ff00+$9d]
+	push af
+	push hl
+	push bc
+	push de
+	ld a, [$cf61]
+	cp $1
+	jr nz, .asm_33e1 ; 0x33ce $11
+	ld a, [$cf60]
+	ld [$d265], a
+	call $343b
+	ld hl, $000b
+	add hl, de
+	ld e, l
+	ld d, h
+	jr .asm_3403 ; 0x33df $22
+.asm_33e1
+	ld a, [$cf61]
+	dec a
+	ld e, a
+	ld d, $0
+	ld hl, MoveItemPointerTable
+	add hl, de
+	add hl, de
+	add hl, de
+	ld a, [hli]
+	rst $10 ; Bankswitch
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	ld a, [$cf60]
+	dec a
+	call GetNthString
+	ld de, $d073
+	ld bc, $000d
+	call $3026
+.asm_3403
+	ld a, e
+	ld [$d102], a
+	ld a, d
+	ld [$d103], a
+	pop de
+	pop bc
+	pop hl
+	pop af
+	rst $10
+	ret
+; 0x3411
+
+INCBIN "baserom.gbc",$3411,$3411 - $3411
+
+GetNthString: ; 3411
+; Starting at hl, this function returns the start address of the ath string.
+	and a
+	ret z
+	push bc
+	ld b, a
+	ld c, "@"
+.readChar
+	ld a, [hli]
+	cp c
+	jr nz, .readChar ; 0x3419 $fc
+	dec b
+	jr nz, .readChar ; 0x341c $f9
+	pop bc
+	ret
+; 0x3420
+
+INCBIN "baserom.gbc",$3420,$38bb - $3420
 
 PrintBCDNumber: ; 38bb
 ; function to print a BCD (Binary-coded decimal) number
@@ -113759,6 +113840,7 @@ INCBIN "baserom.gbc",$1c5182, $1c8000 - $1c5182
 
 SECTION "bank72",DATA,BANK[$72]
 
+ItemNames:
 	db "MASTER BALL@"
 	db "ULTRA BALL@"
 	db "BRIGHTPOWDER@"
@@ -114771,6 +114853,7 @@ TeruSama32Desc:
 TeruSama33Desc:
 	db "?@"
 
+MoveNames:
 	db "POUND@"
 	db "KARATE CHOP@"
 	db "DOUBLESLAP@"
