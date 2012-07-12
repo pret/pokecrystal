@@ -839,8 +839,27 @@ GetNthString: ; 3411
 	ret
 ; 0x3420
 
-INCBIN "baserom.gbc",$3420,$38bb - $3420
+INCBIN "baserom.gbc",$3420,$346a - $3420
 
+GetItemName: ; 346a
+	ld a, [$d265] ; Get the item
+	cp $bf ; Is it a TM?
+	jr nc, .tm ; 0x346f $d
+	ld [$cf60], a
+	ld a, $4 ; Item names
+	ld [$cf61], a
+	call $33c3
+	jr .nottm ; 0x347c $3
+.tm
+	call $3487
+.nottm
+	ld de, $d073
+	pop bc
+	pop hl
+	ret
+; 0x3487
+
+INCBIN "baserom.gbc",$3487,$38bb - $3487
 PrintBCDNumber: ; 38bb
 ; function to print a BCD (Binary-coded decimal) number
 ; de = address of BCD number
