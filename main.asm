@@ -760,17 +760,17 @@ CountSetBits: ; 0x335f
 
 INCBIN "baserom.gbc",$3376,$33ab - $3376
 
-MoveItemPointerTable: ; 33ab
-	dbw $14, $7384
+NamesPointerTable: ; 33ab
+	dbw BANK(PokemonNames), PokemonNames
 	dbw BANK(MoveNames), MoveNames
 	dbw $00, $0000
 	dbw BANK(ItemNames), ItemNames
 	dbw $00, $ddff
 	dbw $00, $d3a8
-	dbw $0b, $41ef
+	dbw BANK(TrainerClassNames), TrainerClassNames
 	dbw $04, $4b52
 
-GetMoveItemName; 33c3
+GetName: ; 33c3
 	ld a, [$ff00+$9d]
 	push af
 	push hl
@@ -792,7 +792,7 @@ GetMoveItemName; 33c3
 	dec a
 	ld e, a
 	ld d, $0
-	ld hl, MoveItemPointerTable
+	ld hl, NamesPointerTable
 	add hl, de
 	add hl, de
 	add hl, de
@@ -839,20 +839,22 @@ GetNthString: ; 3411
 	ret
 ; 0x3420
 
-INCBIN "baserom.gbc",$3420,$346a - $3420
+INCBIN "baserom.gbc",$3420,$3468 - $3420
 
-GetItemName: ; 346a
+GetItemName: ; 3468
+	push hl
+	push bc
 	ld a, [$d265] ; Get the item
 	cp $bf ; Is it a TM?
 	jr nc, .tm ; 0x346f $d
 	ld [$cf60], a
 	ld a, $4 ; Item names
 	ld [$cf61], a
-	call $33c3
-	jr .nottm ; 0x347c $3
+	call GetName
+	jr .copied ; 0x347c $3
 .tm
 	call $3487
-.nottm
+.copied
 	ld de, $d073
 	pop bc
 	pop hl
@@ -5444,7 +5446,78 @@ INCBIN "baserom.gbc",$2b930,$2c000 - $2b930
 
 SECTION "bankB",DATA,BANK[$B]
 
-INCBIN "baserom.gbc",$2C000,$30000 - $2C000
+INCBIN "baserom.gbc",$2C000,$2c1ef - $2C000
+
+TrainerClassNames: ; 2c1ef
+	db "LEADER@"
+	db "LEADER@"
+	db "LEADER@"
+	db "LEADER@"
+	db "LEADER@"
+	db "LEADER@"
+	db "LEADER@"
+	db "LEADER@"
+	db "RIVAL@"
+	db "#MON PROF.@"
+	db "ELITE FOUR@"
+	db $4a, " TRAINER@"
+	db "ELITE FOUR@"
+	db "ELITE FOUR@"
+	db "ELITE FOUR@"
+	db "CHAMPION@"
+	db "LEADER@"
+	db "LEADER@"
+	db "LEADER@"
+	db "SCIENTIST@"
+	db "LEADER@"
+	db "YOUNGSTER@"
+	db "SCHOOLBOY@"
+	db "BIRD KEEPER@"
+	db "LASS@"
+	db "LEADER@"
+	db "COOLTRAINER@"
+	db "COOLTRAINER@"
+	db "BEAUTY@"
+	db "#MANIAC@"
+	db "ROCKET@"
+	db "GENTLEMAN@"
+	db "SKIER@"
+	db "TEACHER@"
+	db "LEADER@"
+	db "BUG CATCHER@"
+	db "FISHER@"
+	db "SWIMMER♂@"
+	db "SWIMMER♀@"
+	db "SAILOR@"
+	db "SUPER NERD@"
+	db "RIVAL@"
+	db "GUITARIST@"
+	db "HIKER@"
+	db "BIKER@"
+	db "LEADER@"
+	db "BURGLAR@"
+	db "FIREBREATHER@"
+	db "JUGGLER@"
+	db "BLACKBELT@"
+	db "ROCKET@"
+	db "PSYCHIC@"
+	db "PICNICKER@"
+	db "CAMPER@"
+	db "ROCKET@"
+	db "SAGE@"
+	db "MEDIUM@"
+	db "BOARDER@"
+	db "#FAN@"
+	db "KIMONO GIRL@"
+	db "TWINS@"
+	db "#FAN@"
+	db $4a, " TRAINER@"
+	db "LEADER@"
+	db "OFFICER@"
+	db "ROCKET@"
+	db "MYSTICALMAN@"
+
+INCBIN "baserom.gbc",$2C41a,$30000 - $2C41a
 
 SECTION "bankC",DATA,BANK[$C]
 
@@ -15466,6 +15539,7 @@ Dark:
 
 INCBIN "baserom.gbc",$50A28,$53384 - $50A28
 
+PokemonNames:
 	db "BULBASAUR@"
 	db "IVYSAUR@@@"
 	db "VENUSAUR@@"
