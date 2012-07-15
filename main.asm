@@ -73187,15 +73187,11 @@ YesNo117ccc: ; 0x117ccc
 	db "いいえ@"   ; No
 
 MobileStadiumEntryText: ; 0x117cd3
-	db $16
-	dw _MobileStadiumEntryText
-	db BANK(_MobileStadiumEntryText)
+	TX_FAR _MobileStadiumEntryText
 	db "@"
 
 MobileStadiumSuccessText: ; 0x117cd8
-	db $16
-	dw _MobileStadiumSuccessText
-	db BANK(_MobileStadiumSuccessText)
+	TX_FAR _MobileStadiumSuccessText
 	db "@"
 
 Function117cdd: ; 0x117cdd
