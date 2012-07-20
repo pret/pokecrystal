@@ -77,7 +77,54 @@ EnableLCD: ; 58a
 	ret
 ; 0x591
 
-INCBIN "baserom.gbc",$591,$ff1 - $591
+INCBIN "baserom.gbc",$591,$e8d - $591
+
+; copy bc bytes from a:hl to de
+FarCopyBytes:
+	ld [$ff00+$8b], a
+	ld a, [$ff00+$9d] ; save old bank
+	push af
+	ld a, [$ff00+$8b]
+	rst $10
+	call CopyBytes
+	pop af
+	rst $10
+	ret
+; 0xe9b
+
+; copy bc*2 source bytes from a:hl to de, doubling each byte in process
+FarCopyBytesDouble: ; e9b
+	ld [$ff00+$8b], a
+	ld a, [$ff00+$9d] ; save current bank
+	push af
+	ld a, [$ff00+$8b]
+	rst $10 ; bankswitch
+	ld a, h ; switcheroo, de <> hl
+	ld h, d
+	ld d, a
+	ld a, l
+	ld l, e
+	ld e, a
+	inc b
+	inc c
+	jr .dec ; 0xeab $4
+.loop
+	ld a, [de]
+	inc de
+	ld [hli], a ; write twice
+	ld [hli], a
+.dec
+	dec c
+	jr nz, .loop
+	dec b
+	jr nz, .loop
+	pop af
+	rst $10
+	ret
+; 0xeba
+
+
+INCBIN "baserom.gbc",$eba,$ff1 - $eba
 
 TextBoxBorder: ; ff1
 ; draw a text box
