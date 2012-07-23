@@ -1,8 +1,56 @@
 SECTION "bank0",HOME
+SECTION "rst0",HOME[$0]
+    di
+    jp Start
 
-INCBIN "baserom.gbc",0,$100
+SECTION "rst8",HOME[$8]
+    jp $2d63
+
+SECTION "rst10",HOME[$10] ; Bankswitch
+    ld [$ff9d], a
+    ld [$2000], a
+    ret
+
+SECTION "rst18",HOME[$18] ; Unused
+    rst $38
+
+SECTION "rst20",HOME[$20] ; Unused
+    rst $38
+
+SECTION "rst28",HOME[$28] ; Jump from pointer table
+    push de
+    ld e, a
+    ld d, 00
+    add hl, de
+    add hl, de
+    ld a, [hli]
+    ld h, [hl]
+    ld l, a
+    pop de
+    jp [hl] ; (actually jp hl)
+
+; rst30 is midst rst28
+
+SECTION "rst38",HOME[$38] ; Unused
+    rst $38
+
+SECTION "vblank",HOME[$40] ; vblank interrupt
+    jp $0283
+
+SECTION "lcd",HOME[$48] ; lcd interrupt
+    jp $0552
+    
+SECTION "timer",HOME[$50] ; timer interrupt
+    jp $3e93
+
+SECTION "serial",HOME[$58] ; serial interrupt
+    jp $06ef
+    
+SECTION "joypad",HOME[$60] ; joypad interrupt
+    jp $092e
 
 SECTION "romheader",HOME[$100]
+Start:
 	nop
 	jp $016e
 
