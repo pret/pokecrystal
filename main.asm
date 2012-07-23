@@ -32872,10 +32872,10 @@ UnknownScript_0x6cfac: ; 0x6cfac
 	closetext
 	loadmovesprites
 	applymovement $4, MovementData_0x6d267
-; 0x6d073
-
-UnknownScript_0x6d073: ; 0x6d073
 	disappear $4
+; 0x6d075
+
+UnknownScript_0x6d075: ; 0x6d075
 	applymovement $0, MovementData_0x6d271
 	end
 ; 0x6d07a
@@ -33691,8 +33691,8 @@ TeamRocketBaseB2F_MapEventHeader: ; 0x6de44
 	xy_trigger 0, $d, $4, $0, UnknownScript_0x6d08b, $0, $0
 	xy_trigger 1, $b, $e, $0, UnknownScript_0x6cf95, $0, $0
 	xy_trigger 1, $b, $f, $0, UnknownScript_0x6cf9c, $0, $0
-	xy_trigger 2, $c, $e, $0, UnknownScript_0x6d073, $0, $0
-	xy_trigger 2, $c, $f, $0, UnknownScript_0x6d073, $0, $0
+	xy_trigger 2, $c, $e, $0, UnknownScript_0x6d075, $0, $0
+	xy_trigger 2, $c, $f, $0, UnknownScript_0x6d075, $0, $0
 	xy_trigger 2, $3, $c, $0, UnknownScript_0x6d07a, $0, $0
 	xy_trigger 2, $a, $c, $0, UnknownScript_0x6d07a, $0, $0
 	xy_trigger 2, $b, $c, $0, UnknownScript_0x6d07a, $0, $0
