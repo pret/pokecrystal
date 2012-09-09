@@ -447,11 +447,16 @@ Char5F: ; 0x1356
 
 INCBIN "baserom.gbc",$135a,$26ef - $135a
 
-UnknownScript_0x26ef: ; 0x26ef
-	jumptextfaceplayer $26f2
+ObjectEvent: ; 0x26ef
+	jumptextfaceplayer ObjectEventText
 ; 0x26f2
 
-INCBIN "baserom.gbc",$26f2,$2bed-$26f2
+
+ObjectEventText:
+	TX_FAR _ObjectEventText
+	db "@"
+
+INCBIN "baserom.gbc",$26f7,$2bed-$26f7
 
 GetMapHeaderPointer: ; 0x2bed
 ; Prior to calling this function, you must have switched banks so that
@@ -26412,7 +26417,7 @@ RadioTower5F_MapEventHeader: ; 0x60906
 	; people-events
 	db 5
 	person_event $40, 10, 7, $3, $0, 255, 255, $0, 0, UnknownScript_0x60046, $ffff
-	person_event $35, 9, 17, $8, $0, 255, 255, $0, 0, UnknownScript_0x26ef, $06ce
+	person_event $35, 9, 17, $8, $0, 255, 255, $0, 0, ObjectEvent, $06ce
 	person_event $36, 6, 21, $8, $0, 255, 255, $82, 1, TrainerExecutivef1, $06ce
 	person_event $2c, 9, 17, $8, $0, 255, 255, $80, 0, UnknownScript_0x600fb, $06d0
 	person_event $54, 9, 12, $1, $0, 255, 255, $1, 0, ItemFragment_0x600fe, $07cd
@@ -27590,7 +27595,7 @@ GoldenrodPokeCenter1F_MapEventHeader: ; 0x62564
 	; people-events
 	db 5
 	person_event $37, 5, 7, $6, $0, 255, 255, $0, 0, UnknownScript_0x60f91, $ffff
-	person_event $38, 12, 20, $6, $0, 255, 255, $90, 0, UnknownScript_0x26ef, $ffff
+	person_event $38, 12, 20, $6, $0, 255, 255, $90, 0, ObjectEvent, $ffff
 	person_event $3, 5, 10, $6, $0, 255, 255, $a0, 0, UnknownScript_0x6101e, $ffff
 	person_event $28, 8, 5, $5, $1, 255, 255, $0, 0, UnknownScript_0x61021, $ffff
 	person_event $2e, 9, 11, $6, $0, 255, 255, $b0, 0, UnknownScript_0x61024, $ffff
@@ -31919,8 +31924,8 @@ MahoganyMart1F_MapEventHeader: ; 0x6c5fb
 	db 5
 	person_event $4b, 7, 8, $6, $0, 255, 255, $0, 0, UnknownScript_0x6c367, $06da
 	person_event $41, 10, 5, $3, $0, 255, 255, $0, 0, UnknownScript_0x6c37b, $06da
-	person_event $1e, 10, 8, $8, $0, 255, 255, $0, 0, UnknownScript_0x26ef, $06d5
-	person_event $4f, 10, 7, $8, $0, 255, 255, $0, 0, UnknownScript_0x26ef, $06d5
+	person_event $1e, 10, 8, $8, $0, 255, 255, $0, 0, ObjectEvent, $06d5
+	person_event $4f, 10, 7, $8, $0, 255, 255, $0, 0, ObjectEvent, $06d5
 	person_event $30, 7, 5, $9, $0, 255, 255, $0, 0, UnknownScript_0x6c3ee, $0736
 ; 0x6c651
 
@@ -32773,7 +32778,7 @@ TeamRocketBaseB1F_MapEventHeader: ; 0x6cdeb
 
 	; people-events
 	db 6
-	person_event $35, 4, 4, $6, $0, 255, 255, $0, 0, UnknownScript_0x26ef, $06d9
+	person_event $35, 4, 4, $6, $0, 255, 255, $0, 0, ObjectEvent, $06d9
 	person_event $35, 8, 6, $9, $0, 255, 255, $2, 3, TrainerGruntM16, $06da
 	person_event $3c, 16, 22, $8, $0, 255, 255, $92, 3, TrainerScientistJed, $06da
 	person_event $54, 10, 31, $1, $0, 255, 255, $1, 0, ItemFragment_0x6cac4, $0669
@@ -33773,16 +33778,16 @@ TeamRocketBaseB2F_MapEventHeader: ; 0x6de44
 
 	; people-events
 	db 14
-	person_event $35, 20, 24, $7, $0, 255, 255, $0, 0, UnknownScript_0x26ef, $06de
-	person_event $36, 20, 24, $7, $0, 255, 255, $80, 0, UnknownScript_0x26ef, $06dd
-	person_event $1e, 17, 9, $6, $0, 255, 255, $0, 0, UnknownScript_0x26ef, $06d6
-	person_event $4f, 17, 13, $9, $0, 255, 255, $0, 0, UnknownScript_0x26ef, $06df
+	person_event $35, 20, 24, $7, $0, 255, 255, $0, 0, ObjectEvent, $06de
+	person_event $36, 20, 24, $7, $0, 255, 255, $80, 0, ObjectEvent, $06dd
+	person_event $1e, 17, 9, $6, $0, 255, 255, $0, 0, ObjectEvent, $06d6
+	person_event $4f, 17, 13, $9, $0, 255, 255, $0, 0, ObjectEvent, $06df
 	person_event $9b, 9, 11, $16, $0, 255, 255, $0, 0, UnknownScript_0x6d101, $06e0
 	person_event $9b, 11, 11, $16, $0, 255, 255, $0, 0, UnknownScript_0x6d12c, $06e1
 	person_event $9b, 13, 11, $16, $0, 255, 255, $0, 0, UnknownScript_0x6d157, $06e2
-	person_event $9b, 9, 26, $16, $0, 255, 255, $0, 0, UnknownScript_0x26ef, $06e0
-	person_event $9b, 11, 26, $16, $0, 255, 255, $0, 0, UnknownScript_0x26ef, $06e1
-	person_event $9b, 13, 26, $16, $0, 255, 255, $0, 0, UnknownScript_0x26ef, $06e2
+	person_event $9b, 9, 26, $16, $0, 255, 255, $0, 0, ObjectEvent, $06e0
+	person_event $9b, 11, 26, $16, $0, 255, 255, $0, 0, ObjectEvent, $06e1
+	person_event $9b, 13, 26, $16, $0, 255, 255, $0, 0, ObjectEvent, $06e2
 	person_event $35, 17, 29, $6, $0, 255, 255, $2, 3, TrainerGruntM17, $06da
 	person_event $35, 5, 8, $a, $0, 255, 255, $2, 1, TrainerGruntM18, $06da
 	person_event $35, 18, 25, $8, $0, 255, 255, $2, 4, TrainerGruntM19, $06da
@@ -34438,14 +34443,14 @@ TeamRocketBaseB3F_MapEventHeader: ; 0x6e9e4
 	; people-events
 	db 14
 	person_event $1e, 18, 29, $6, $0, 255, 255, $0, 0, UnknownScript_0x6dffc, $06d7
-	person_event $35, 7, 12, $7, $0, 255, 255, $0, 0, UnknownScript_0x26ef, $06db
+	person_event $35, 7, 12, $7, $0, 255, 255, $0, 0, ObjectEvent, $06db
 	person_event $9e, 6, 11, $16, $0, 255, 255, $90, 0, UnknownScript_0x6e091, $06da
 	person_event $36, 11, 25, $7, $0, 255, 255, $82, 0, TrainerGruntF5, $06da
 	person_event $35, 18, 9, $a, $0, 255, 255, $2, 3, TrainerGruntM28, $06da
 	person_event $3c, 15, 27, $7, $0, 255, 255, $92, 0, TrainerScientistRoss, $06da
 	person_event $3c, 19, 15, $9, $0, 255, 255, $92, 3, TrainerScientistMitch, $06da
 	person_event $35, 18, 28, $6, $0, 255, 255, $0, 0, UnknownScript_0x6e048, $06da
-	person_event $4, 9, 8, $6, $0, 255, 255, $0, 0, UnknownScript_0x26ef, $06c0
+	person_event $4, 9, 8, $6, $0, 255, 255, $0, 0, ObjectEvent, $06c0
 	person_event $54, 16, 5, $1, $0, 255, 255, $1, 0, ItemFragment_0x6e120, $066d
 	person_event $54, 16, 7, $1, $0, 255, 255, $1, 0, ItemFragment_0x6e122, $066e
 	person_event $54, 13, 32, $1, $0, 255, 255, $1, 0, ItemFragment_0x6e124, $066f
@@ -35476,7 +35481,7 @@ IlexForest_MapEventHeader: ; 0x6f5e7
 	person_event $41, 32, 9, $9, $0, 255, 255, $0, 0, UnknownScript_0x6edae, $06f4
 	person_event $2c, 18, 19, $9, $0, 255, 255, $0, 0, UnknownScript_0x6edde, $ffff
 	person_event $54, 36, 24, $1, $0, 255, 255, $1, 0, ItemFragment_0x6ee10, $0671
-	person_event $b, 33, 12, $7, $0, 255, 255, $0, 0, UnknownScript_0x26ef, $07a5
+	person_event $b, 33, 12, $7, $0, 255, 255, $0, 0, ObjectEvent, $07a5
 	person_event $28, 28, 7, $9, $0, 255, 255, $a0, 0, UnknownScript_0x6ee0d, $06ed
 	person_event $27, 5, 16, $7, $0, 255, 255, $a2, 0, TrainerBug_catcherWayne, $ffff
 	person_event $54, 21, 13, $1, $0, 255, 255, $1, 0, ItemFragment_0x6ee12, $07b9
@@ -39240,7 +39245,7 @@ MountMoon_MapEventHeader: ; 0x74356
 
 	; people-events
 	db 1
-	person_event $4, 7, 11, $8, $0, 255, 255, $0, 0, UnknownScript_0x26ef, $077a
+	person_event $4, 7, 11, $8, $0, 255, 255, $0, 0, ObjectEvent, $077a
 ; 0x74391
 
 Underground_MapScriptHeader: ; 0x74391
@@ -39715,7 +39720,7 @@ VictoryRoad_MapEventHeader: ; 0x74802
 
 	; people-events
 	db 6
-	person_event $4, 17, 22, $7, $0, 255, 255, $0, 0, UnknownScript_0x26ef, $06c2
+	person_event $4, 17, 22, $7, $0, 255, 255, $0, 0, ObjectEvent, $06c2
 	person_event $54, 32, 7, $1, $0, 255, 255, $1, 0, ItemFragment_0x74529, $06a3
 	person_event $54, 52, 16, $1, $0, 255, 255, $1, 0, ItemFragment_0x7452b, $06a4
 	person_event $54, 33, 22, $1, $0, 255, 255, $1, 0, ItemFragment_0x7452d, $06a5
@@ -40832,7 +40837,7 @@ FastShip1F_MapEventHeader: ; 0x754f1
 	person_event $49, 6, 29, $6, $0, 255, 255, $0, 0, UnknownScript_0x75160, $ffff
 	person_event $49, 11, 18, $9, $0, 255, 255, $0, 0, UnknownScript_0x751d0, $ffff
 	person_event $49, 21, 26, $5, $2, 255, 255, $0, 0, UnknownScript_0x751e4, $ffff
-	person_event $40, 10, 23, $9, $0, 255, 255, $0, 0, UnknownScript_0x26ef, $072c
+	person_event $40, 10, 23, $9, $0, 255, 255, $0, 0, ObjectEvent, $072c
 ; 0x75577
 
 FastShipCabins_NNW_NNE_NE_MapScriptHeader: ; 0x75577
@@ -43072,8 +43077,8 @@ MountMoonSquare_MapEventHeader: ; 0x77158
 
 	; people-events
 	db 3
-	person_event $4d, 10, 10, $6, $0, 255, 255, $0, 0, UnknownScript_0x26ef, $0779
-	person_event $4d, 10, 11, $6, $0, 255, 255, $0, 0, UnknownScript_0x26ef, $0779
+	person_event $4d, 10, 10, $6, $0, 255, 255, $0, 0, ObjectEvent, $0779
+	person_event $4d, 10, 11, $6, $0, 255, 255, $0, 0, ObjectEvent, $0779
 	person_event $59, 11, 11, $18, $0, 255, 255, $0, 0, UnknownScript_0x7711e, $0778
 ; 0x771a6
 
@@ -48515,7 +48520,7 @@ UndergroundPathSwitchRoomEntrances_MapEventHeader: ; 0x7d689
 	person_event $2b, 31, 23, $6, $0, 255, 255, $0, 0, UnknownScript_0x7ca7a, $ffff
 	person_event $54, 16, 5, $1, $0, 255, 255, $1, 0, ItemFragment_0x7ce7d, $0673
 	person_event $54, 13, 18, $1, $0, 255, 255, $1, 0, ItemFragment_0x7ce7f, $0674
-	person_event $4, 7, 27, $6, $0, 255, 255, $0, 0, UnknownScript_0x26ef, $06c1
+	person_event $4, 7, 27, $6, $0, 255, 255, $0, 0, ObjectEvent, $06c1
 ; 0x7d779
 
 GoldenrodDeptStoreB1F_MapScriptHeader: ; 0x7d779
@@ -65946,7 +65951,7 @@ EcruteakPokeCenter1F_MapEventHeader: ; 0x992dc
 	person_event $2d, 10, 11, $a, $0, 255, 255, $0, 0, UnknownScript_0x98eb3, $ffff
 	person_event $24, 8, 5, $3, $0, 255, 255, $0, 0, UnknownScript_0x98ebf, $ffff
 	person_event $48, 5, 11, $6, $0, 255, 255, $a0, 0, UnknownScript_0x98ec2, $ffff
-	person_event $8, 11, 4, $9, $0, 255, 255, $0, 0, UnknownScript_0x26ef, $0713
+	person_event $8, 11, 4, $9, $0, 255, 255, $0, 0, ObjectEvent, $0713
 ; 0x99332
 
 EcruteakLugiaSpeechHouse_MapScriptHeader: ; 0x99332
@@ -67006,7 +67011,7 @@ EcruteakGym_MapEventHeader: ; 0x9a4e9
 	person_event $30, 9, 11, $8, $0, 255, 255, $b2, 1, TrainerMediumMartha, $ffff
 	person_event $30, 13, 11, $8, $0, 255, 255, $b2, 1, TrainerMediumGrace, $ffff
 	person_event $48, 19, 11, $6, $0, 255, 255, $80, 0, EcruteakGymGuyScript, $ffff
-	person_event $2f, 18, 8, $6, $0, 255, 255, $a0, 0, UnknownScript_0x26ef, $07a8
+	person_event $2f, 18, 8, $6, $0, 255, 255, $a0, 0, ObjectEvent, $07a8
 ; 0x9a5f9
 
 EcruteakItemfinderHouse_MapScriptHeader: ; 0x9a5f9
@@ -67770,8 +67775,8 @@ TrainerHouseB1F_MapEventHeader: ; 0x9b5b8
 
 	; people-events
 	db 2
-	person_event $42, 5, 11, $6, $0, 255, 255, $a0, 0, UnknownScript_0x26ef, $ffff
-	person_event $1, 15, 10, $8, $0, 255, 255, $80, 0, UnknownScript_0x26ef, $ffff
+	person_event $42, 5, 11, $6, $0, 255, 255, $a0, 0, ObjectEvent, $ffff
+	person_event $1, 15, 10, $8, $0, 255, 255, $80, 0, ObjectEvent, $ffff
 ; 0x9b5e5
 
 ViridianMart_MapScriptHeader: ; 0x9b5e5
@@ -71328,8 +71333,8 @@ BattleTowerBattleRoom_MapEventHeader: ; 0x9f52e
 
 	; people-events
 	db 2
-	person_event $27, 4, 8, $6, $0, 255, 255, $0, 0, UnknownScript_0x26ef, $0791
-	person_event $42, 10, 5, $9, $0, 255, 255, $0, 0, UnknownScript_0x26ef, $ffff
+	person_event $27, 4, 8, $6, $0, 255, 255, $0, 0, ObjectEvent, $0791
+	person_event $42, 10, 5, $9, $0, 255, 255, $0, 0, ObjectEvent, $ffff
 ; 0x9f558
 
 BattleTowerElevator_MapScriptHeader: ; 0x9f558
@@ -71734,7 +71739,7 @@ BattleTowerOutside_MapEventHeader: ; 0x9fb5f
 	person_event $66, 16, 10, $7, $0, 255, 255, $80, 0, UnknownScript_0x9f85f, $ffff
 	person_event $2a, 15, 17, $2, $11, 255, 255, $a0, 0, UnknownScript_0x9f862, $ffff
 	person_event $49, 22, 16, $5, $1, 255, 255, $0, 0, UnknownScript_0x9f865, $07cf
-	person_event $28, 28, 16, $3, $0, 255, 255, $a0, 0, UnknownScript_0x26ef, $ffff
+	person_event $28, 28, 16, $3, $0, 255, 255, $a0, 0, ObjectEvent, $ffff
 ; 0x9fbb2
 
 SECTION "bank28",DATA,BANK[$28]
@@ -73289,15 +73294,11 @@ YesNo117ccc: ; 0x117ccc
 	db "いいえ@"   ; No
 
 MobileStadiumEntryText: ; 0x117cd3
-	db $16
-	dw _MobileStadiumEntryText
-	db BANK(_MobileStadiumEntryText)
+	TX_FAR _MobileStadiumEntryText
 	db "@"
 
 MobileStadiumSuccessText: ; 0x117cd8
-	db $16
-	dw _MobileStadiumSuccessText
-	db BANK(_MobileStadiumSuccessText)
+	TX_FAR _MobileStadiumSuccessText
 	db "@"
 
 Function117cdd: ; 0x117cdd
@@ -73733,7 +73734,7 @@ IndigoPlateauPokeCenter1F_MapEventHeader: ; 0x180441
 	person_event $37, 11, 7, $6, $0, 255, 255, $0, 0, UnknownScript_0x18012c, $ffff
 	person_event $39, 11, 15, $6, $0, 255, 255, $0, 0, UnknownScript_0x18012f, $ffff
 	person_event $23, 15, 15, $2, $22, 255, 255, $0, 0, UnknownScript_0x180136, $ffff
-	person_event $4, 13, 20, $7, $0, 255, 255, $0, 0, UnknownScript_0x26ef, $077b
+	person_event $4, 13, 20, $7, $0, 255, 255, $0, 0, ObjectEvent, $077b
 	person_event $2f, 13, 5, $6, $0, 255, 255, $90, 0, UnknownScript_0x180139, $077c
 	person_event $91, 13, 4, $16, $0, 255, 255, $b0, 0, UnknownScript_0x18015a, $077c
 ; 0x1804b9
@@ -74696,8 +74697,8 @@ LancesRoom_MapEventHeader: ; 0x1813f4
 	; people-events
 	db 3
 	person_event $1e, 7, 9, $6, $0, 255, 255, $0, 0, $4e7b, $ffff
-	person_event $29, 11, 8, $7, $0, 255, 255, $a0, 0, UnknownScript_0x26ef, $075f
-	person_event $5, 11, 8, $7, $0, 255, 255, $0, 0, UnknownScript_0x26ef, $075f
+	person_event $29, 11, 8, $7, $0, 255, 255, $a0, 0, ObjectEvent, $075f
+	person_event $5, 11, 8, $7, $0, 255, 255, $0, 0, ObjectEvent, $075f
 ; 0x181445
 
 HallOfFame_MapScriptHeader: ; 0x181445
@@ -74821,7 +74822,7 @@ HallOfFame_MapEventHeader: ; 0x181678
 
 	; people-events
 	db 1
-	person_event $1e, 16, 8, $7, $0, 255, 255, $0, 0, UnknownScript_0x26ef, $ffff
+	person_event $1e, 16, 8, $7, $0, 255, 255, $0, 0, ObjectEvent, $ffff
 ; 0x181695
 
 BulbasaurPokedexEntry: ; 0x181695
@@ -76341,7 +76342,7 @@ SproutTower3F_MapEventHeader: ; 0x184f8e
 	person_event $3e, 15, 15, $8, $0, 255, 255, $92, 3, TrainerSageNeal, $ffff
 	person_event $54, 18, 10, $1, $0, 255, 255, $1, 0, ItemFragment_0x184a19, $0649
 	person_event $54, 5, 18, $1, $0, 255, 255, $1, 0, ItemFragment_0x184a1b, $064a
-	person_event $4, 8, 14, $7, $0, 255, 255, $0, 0, UnknownScript_0x26ef, $06c4
+	person_event $4, 8, 14, $7, $0, 255, 255, $0, 0, ObjectEvent, $06c4
 ; 0x18501a
 
 TinTower1F_MapScriptHeader: ; 0x18501a
@@ -76860,9 +76861,9 @@ TinTower1F_MapEventHeader: ; 0x18598c
 
 	; people-events
 	db 10
-	person_event $63, 13, 13, $1, $0, 255, 255, $90, 0, UnknownScript_0x26ef, $07b2
-	person_event $65, 13, 11, $1, $0, 255, 255, $b0, 0, UnknownScript_0x26ef, $07b4
-	person_event $64, 13, 16, $1, $0, 255, 255, $80, 0, UnknownScript_0x26ef, $07b3
+	person_event $63, 13, 13, $1, $0, 255, 255, $90, 0, ObjectEvent, $07b2
+	person_event $65, 13, 11, $1, $0, 255, 255, $b0, 0, ObjectEvent, $07b4
+	person_event $64, 13, 16, $1, $0, 255, 255, $80, 0, ObjectEvent, $07b3
 	person_event $2b, 7, 12, $3, $0, 255, 255, $90, 0, UnknownScript_0x1851c8, $07b5
 	person_event $3e, 13, 9, $3, $0, 255, 255, $0, 0, UnknownScript_0x185173, $07b6
 	person_event $3e, 15, 15, $3, $0, 255, 255, $0, 0, UnknownScript_0x185176, $07b6
@@ -77495,7 +77496,7 @@ BurnedTower1F_MapEventHeader: ; 0x1860b2
 	db 5
 	person_event $59, 8, 19, $18, $0, 255, 255, $0, 0, UnknownScript_0x185cc2, $ffff
 	person_event $2b, 16, 16, $3, $0, 255, 255, $90, 0, UnknownScript_0x185cbc, $0765
-	person_event $4, 13, 12, $8, $0, 255, 255, $2, 3, UnknownScript_0x26ef, $06c5
+	person_event $4, 13, 12, $8, $0, 255, 255, $2, 3, ObjectEvent, $06c5
 	person_event $15, 18, 18, $2, $11, 255, 255, $b0, 0, UnknownScript_0x185cbf, $0764
 	person_event $54, 6, 18, $1, $0, 255, 255, $1, 0, ItemFragment_0x185ccb, $0656
 ; 0x186151
@@ -77757,12 +77758,12 @@ BurnedTowerB1F_MapEventHeader: ; 0x1863de
 	; people-events
 	db 9
 	person_event $5a, 12, 21, $19, $0, 255, 255, $0, 0, UnknownScript_0x186233, $ffff
-	person_event $65, 7, 11, $16, $0, 255, 255, $b0, 0, UnknownScript_0x26ef, $074a
-	person_event $64, 7, 16, $16, $0, 255, 255, $80, 0, UnknownScript_0x26ef, $074a
-	person_event $63, 8, 14, $16, $0, 255, 255, $90, 0, UnknownScript_0x26ef, $074a
-	person_event $65, 7, 11, $6, $0, 255, 255, $d0, 0, UnknownScript_0x26ef, $074b
-	person_event $64, 7, 16, $6, $0, 255, 255, $d0, 0, UnknownScript_0x26ef, $074b
-	person_event $63, 8, 14, $6, $0, 255, 255, $d0, 0, UnknownScript_0x26ef, $074b
+	person_event $65, 7, 11, $16, $0, 255, 255, $b0, 0, ObjectEvent, $074a
+	person_event $64, 7, 16, $16, $0, 255, 255, $80, 0, ObjectEvent, $074a
+	person_event $63, 8, 14, $16, $0, 255, 255, $90, 0, ObjectEvent, $074a
+	person_event $65, 7, 11, $6, $0, 255, 255, $d0, 0, ObjectEvent, $074b
+	person_event $64, 7, 16, $6, $0, 255, 255, $d0, 0, ObjectEvent, $074b
+	person_event $63, 8, 14, $6, $0, 255, 255, $d0, 0, ObjectEvent, $074b
 	person_event $54, 8, 20, $1, $0, 255, 255, $1, 0, ItemFragment_0x186231, $0657
 	person_event $2b, 16, 14, $7, $0, 255, 255, $90, 0, UnknownScript_0x186212, $07aa
 ; 0x18647f
@@ -78488,7 +78489,7 @@ CeruleanGym_MapEventHeader: ; 0x188a51
 
 	; people-events
 	db 6
-	person_event $35, 14, 8, $6, $0, 255, 255, $0, 0, UnknownScript_0x26ef, $076d
+	person_event $35, 14, 8, $6, $0, 255, 255, $0, 0, ObjectEvent, $076d
 	person_event $1d, 7, 9, $6, $0, 255, 255, $80, 0, UnknownScript_0x188432, $076f
 	person_event $32, 10, 8, $9, $0, 255, 255, $a2, 3, TrainerSwimmerfDiana, $076f
 	person_event $32, 13, 5, $9, $0, 255, 255, $a2, 1, TrainerSwimmerfBriana, $076f
@@ -82545,7 +82546,7 @@ DragonsDenB1F_MapEventHeader: ; 0x18cf73
 	; people-events
 	db 9
 	person_event $54, 20, 39, $1, $0, 255, 255, $0, 0, UnknownScript_0x18c95a, $06a8
-	person_event $19, 34, 18, $7, $0, 255, 255, $90, 0, UnknownScript_0x26ef, $06d8
+	person_event $19, 34, 18, $7, $0, 255, 255, $90, 0, ObjectEvent, $06d8
 	person_event $4, 27, 24, $2, $22, 255, 255, $0, 0, UnknownScript_0x18c97e, $06c6
 	person_event $23, 12, 24, $7, $0, 255, 255, $82, 4, TrainerCooltrainermDarin, $ffff
 	person_event $24, 12, 12, $6, $0, 255, 255, $82, 3, TrainerCooltrainerfCara, $ffff
@@ -83149,7 +83150,7 @@ DragonShrine_MapEventHeader: ; 0x18dabc
 	person_event $9, 5, 9, $6, $0, 255, 255, $0, 0, UnknownScript_0x18d1a5, $0000
 	person_event $9, 8, 6, $9, $0, 255, 255, $0, 0, UnknownScript_0x18d205, $0000
 	person_event $9, 8, 11, $8, $0, 255, 255, $0, 0, UnknownScript_0x18d20d, $0000
-	person_event $19, 12, 8, $7, $0, 255, 255, $90, 0, UnknownScript_0x26ef, $0790
+	person_event $19, 12, 8, $7, $0, 255, 255, $90, 0, ObjectEvent, $0790
 ; 0x18db00
 
 TohjoFalls_MapScriptHeader: ; 0x18db00
@@ -89504,7 +89505,7 @@ Route36_MapEventHeader: ; 0x194a66
 	person_event $5d, 8, 25, $1, $0, 255, 255, $0, 0, UnknownScript_0x194247, $ffff
 	person_event $27, 10, 50, $2, $11, 255, 255, $0, 0, UnknownScript_0x194201, $075a
 	person_event $28, 16, 37, $6, $0, 255, 255, $90, 0, UnknownScript_0x19408c, $0769
-	person_event $63, 10, 25, $1, $0, 255, 255, $90, 0, UnknownScript_0x26ef, $07b0
+	person_event $63, 10, 25, $1, $0, 255, 255, $90, 0, ObjectEvent, $07b0
 ; 0x194b19
 
 FuchsiaCity_MapScriptHeader: ; 0x194b19
@@ -92174,7 +92175,7 @@ MrPokemonsHouse_MapEventHeader: ; 0x1975ef
 	; people-events
 	db 2
 	person_event $40, 9, 7, $9, $0, 255, 255, $0, 0, UnknownScript_0x196e97, $ffff
-	person_event $5, 9, 10, $7, $0, 255, 255, $0, 0, UnknownScript_0x26ef, $06c9
+	person_event $5, 9, 10, $7, $0, 255, 255, $0, 0, ObjectEvent, $06c9
 ; 0x197632
 
 Route31VioletGate_MapScriptHeader: ; 0x197632
@@ -92726,7 +92727,7 @@ AzaleaTown_MapEventHeader: ; 0x1987c1
 	person_event $45, 13, 33, $1, $0, 255, 255, $0, 0, UnknownScript_0x1980cb, $06f9
 	person_event $45, 19, 19, $1, $0, 255, 255, $0, 0, UnknownScript_0x1980cb, $06f9
 	person_event $5d, 6, 12, $1, $0, 255, 255, $0, 0, UnknownScript_0x19812f, $ffff
-	person_event $f6, 14, 15, $8, $0, 255, 255, $0, 0, UnknownScript_0x26ef, $06bf
+	person_event $f6, 14, 15, $8, $0, 255, 255, $0, 0, ObjectEvent, $06bf
 	person_event $f6, 20, 14, $6, $0, 255, 255, $0, 0, UnknownScript_0x1980ae, $06fc
 	person_event $62, 9, 10, $8, $0, 255, 255, $0, 0, UnknownScript_0x19810c, $07a4
 ; 0x1988d0
@@ -96118,7 +96119,7 @@ CherrygroveCity_MapEventHeader: ; 0x19c829
 	; people-events
 	db 5
 	person_event $2f, 10, 36, $6, $0, 255, 255, $0, 0, UnknownScript_0x19c013, $06fe
-	person_event $4, 10, 43, $3, $0, 255, 255, $0, 0, UnknownScript_0x26ef, $06be
+	person_event $4, 10, 43, $3, $0, 255, 255, $0, 0, ObjectEvent, $06be
 	person_event $29, 16, 31, $5, $1, 255, 255, $90, 0, UnknownScript_0x19c146, $ffff
 	person_event $27, 11, 27, $5, $1, 255, 255, $80, 0, UnknownScript_0x19c15a, $ffff
 	person_event $3a, 16, 11, $9, $0, 255, 255, $a0, 0, UnknownScript_0x19c16e, $ffff
@@ -99667,8 +99668,8 @@ Route25_MapEventHeader: ; 0x19f58f
 
 	; people-events
 	db 11
-	person_event $1d, 13, 50, $8, $0, 255, 255, $80, 0, UnknownScript_0x26ef, $076e
-	person_event $23, 14, 50, $8, $0, 255, 255, $a0, 0, UnknownScript_0x26ef, $076e
+	person_event $1d, 13, 50, $8, $0, 255, 255, $80, 0, ObjectEvent, $076e
+	person_event $23, 14, 50, $8, $0, 255, 255, $a0, 0, ObjectEvent, $076e
 	person_event $27, 12, 16, $6, $0, 255, 255, $92, 3, TrainerSchoolboyDudley, $ffff
 	person_event $28, 15, 20, $7, $0, 255, 255, $92, 3, TrainerLassEllen, $ffff
 	person_event $27, 12, 25, $6, $0, 255, 255, $92, 1, TrainerSchoolboyJoe, $ffff
@@ -100088,8 +100089,8 @@ CianwoodCity_MapEventHeader: ; 0x1a0772
 	person_event $59, 31, 14, $18, $0, 255, 255, $0, 0, UnknownScript_0x1a00d1, $ffff
 	person_event $59, 23, 8, $18, $0, 255, 255, $0, 0, UnknownScript_0x1a00d1, $ffff
 	person_event $2e, 50, 14, $5, $1, 255, 255, $0, 0, UnknownScript_0x1a0084, $ffff
-	person_event $2b, 25, 15, $7, $0, 255, 255, $90, 0, UnknownScript_0x26ef, $07ad
-	person_event $63, 18, 14, $1, $0, 255, 255, $90, 0, UnknownScript_0x26ef, $07ae
+	person_event $2b, 25, 15, $7, $0, 255, 255, $90, 0, ObjectEvent, $07ad
+	person_event $63, 18, 14, $1, $0, 255, 255, $90, 0, ObjectEvent, $07ae
 ; 0x1a0867
 
 Route27_MapScriptHeader: ; 0x1a0867
@@ -101655,8 +101656,8 @@ Route30_MapEventHeader: ; 0x1a1c54
 	person_event $27, 27, 9, $6, $0, 255, 255, $92, 1, TrainerYoungsterMikey, $ffff
 	person_event $25, 11, 5, $6, $0, 255, 255, $b2, 3, TrainerBug_catcherDon, $ffff
 	person_event $27, 34, 11, $5, $1, 255, 255, $80, 0, UnknownScript_0x1a17d2, $ffff
-	person_event $4c, 28, 9, $6, $0, 255, 255, $80, 0, UnknownScript_0x26ef, $0714
-	person_event $4c, 29, 9, $7, $0, 255, 255, $90, 0, UnknownScript_0x26ef, $0714
+	person_event $4c, 28, 9, $6, $0, 255, 255, $80, 0, ObjectEvent, $0714
+	person_event $4c, 29, 9, $7, $0, 255, 255, $90, 0, ObjectEvent, $0714
 	person_event $5d, 43, 9, $1, $0, 255, 255, $0, 0, UnknownScript_0x1a17f7, $ffff
 	person_event $5d, 9, 15, $1, $0, 255, 255, $0, 0, UnknownScript_0x1a17f9, $ffff
 	person_event $24, 17, 6, $6, $0, 255, 255, $0, 0, UnknownScript_0x1a17e6, $ffff
@@ -107449,7 +107450,7 @@ OlivineCity_MapEventHeader: ; 0x1a8cce
 	person_event $49, 31, 30, $4, $10, 255, 255, $0, 0, UnknownScript_0x1a88a3, $ffff
 	person_event $66, 17, 24, $3, $0, 255, 255, $80, 0, UnknownScript_0x1a88a6, $ffff
 	person_event $49, 25, 21, $2, $11, 255, 255, $0, 0, UnknownScript_0x1a88ba, $ffff
-	person_event $f5, 15, 14, $6, $0, 255, 255, $0, 0, UnknownScript_0x26ef, $06c3
+	person_event $f5, 15, 14, $6, $0, 255, 255, $0, 0, ObjectEvent, $06c3
 ; 0x1a8d72
 
 Route37_MapScriptHeader: ; 0x1a8d72
@@ -108191,7 +108192,7 @@ Route42_MapEventHeader: ; 0x1a95c9
 	person_event $5d, 20, 33, $1, $0, 255, 255, $0, 0, UnknownScript_0x1a9351, $ffff
 	person_event $54, 8, 10, $1, $0, 255, 255, $1, 0, ItemFragment_0x1a9349, $06b3
 	person_event $54, 12, 37, $1, $0, 255, 255, $1, 0, ItemFragment_0x1a934b, $06b4
-	person_event $63, 20, 30, $1, $0, 255, 255, $90, 0, UnknownScript_0x26ef, $07af
+	person_event $63, 20, 30, $1, $0, 255, 255, $90, 0, ObjectEvent, $07af
 ; 0x1a967e
 
 Route46_MapScriptHeader: ; 0x1a967e
@@ -114252,7 +114253,7 @@ UnknownText_0x1c46dc: ; 0x1c46dc
 	db $0, "Corrupted event!", $58
 ; 0x1c46ee
 
-UnknownText_0x1c46ee: ; 0x1c46ee
+_ObjectEventText: ; 0x1c46ee
 	db $0, "Object event", $57
 ; 0x1c46fc
 
