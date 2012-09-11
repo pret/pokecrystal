@@ -5617,7 +5617,84 @@ TrainerClassNames: ; 2c1ef
 	db "ROCKET@"
 	db "MYSTICALMAN@"
 
-INCBIN "baserom.gbc",$2C41a,$30000 - $2C41a
+INCBIN "baserom.gbc",$2C41a,$2ee8f - $2C41a
+
+; XXX this is not the start of the routine
+	ld a, [$d22f] ; are we fighting a trainer?
+	and a
+	jr nz, .trainermusic
+	ld a, $72
+	ld hl, $6ea1
+	rst $8 ; XXX check region
+	ld a, e
+	and a
+	jr nz, .kantowild
+	ld de, $0029 ; johto daytime wild battle music
+	ld a, [$d269] ; check time of day
+	cp $2 ; nighttime?
+	jr nz, .done ; if no, then done
+	ld de, $004a ; johto nighttime wild battle music
+	jr .done
+.kantowild
+	ld de, $0008 ; kanto wild battle music
+	jr .done
+.trainermusic
+	ld de, $002f ; lance battle music
+	cp CHAMPION
+	jr z, .done
+	cp RED
+	jr z, .done
+	; really, they should have included admins and scientists here too...
+	ld de, $0031 ; rocket battle music
+	cp GRUNTM
+	jr z, .done
+	cp GRUNTF
+	jr z, .done
+	ld de, $0006 ; kanto gym leader battle music
+	ld a, $f
+	ld hl, $5123
+	rst $8 ; XXX check if kanto gym leader
+	jr c, .done
+	ld de, $002e ; johto gym leader battle music
+	ld a, $f
+	ld hl, $5128
+	rst $8 ; XXX check if johto gym leader / elite four member
+	jr c, .done
+	ld de, $0030 ; rival battle music
+	ld a, [$d22f]
+	cp RIVAL1
+	jr z, .done
+	cp RIVAL2
+	jr nz, .othertrainer
+	ld a, [$d231] ; which rival are we fighting?
+	cp $4
+	jr c, .done ; if it's not the fight inside Indigo Plateau, we're done
+	ld de, $002f ; rival indigo plateau battle music
+	jr .done
+
+.othertrainer
+	ld a, [$c2dc]
+	and a
+	jr nz, .linkbattle ; XXX link battle?
+	ld a, $72
+	ld hl, $6ea1
+	rst $8
+	ld a, e
+	and a
+	jr nz, .kantotrainer
+.linkbattle
+	ld de, $002a ; johto trainer battle music
+	jr .done
+.kantotrainer
+	ld de, $0007 ; kanto trainer battle music
+.done
+	call $3b97
+	pop bc
+	pop de
+	pop hl
+	ret
+
+INCBIN "baserom.gbc",$2ef18,$30000 - $2ef18
 
 SECTION "bankC",DATA,BANK[$C]
 
