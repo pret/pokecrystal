@@ -376,9 +376,9 @@ Char5D:
 	ld de, $c616
 	jr .asm_126a ; 0x1219 $4f
 	push de
-	ld a, [$c2dc]
+	ld a, [InLinkBattle]
 	and a
-	jr nz, .asm_124d ; 0x1220 $2b
+	jr nz, .linkbattle
 	ld a, [$d233]
 	cp $9
 	jr z, .asm_1248 ; 0x1227 $1f
@@ -400,7 +400,7 @@ Char5D:
 .asm_1248
 	ld de, $d493
 	jr .asm_126a ; 0x124b $1d
-.asm_124d
+.linkbattle
 	ld de, $c656
 	jr .asm_126a ; 0x1250 $18
 	push de
@@ -5697,9 +5697,9 @@ INCBIN "baserom.gbc",$2C41a,$2ee8f - $2C41a
 	jr .done
 
 .othertrainer
-	ld a, [$c2dc]
+	ld a, [InLinkBattle]
 	and a
-	jr nz, .linkbattle ; XXX link battle?
+	jr nz, .linkbattle
 	ld a, BANK(RegionCheck)
 	ld hl, RegionCheck
 	rst $8
