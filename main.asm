@@ -5620,6 +5620,7 @@ TrainerClassNames: ; 2c1ef
 INCBIN "baserom.gbc",$2C41a,$2ee8f - $2C41a
 
 ; XXX this is not the start of the routine
+; determine what music plays in battle
 	ld a, [$d22f] ; are we fighting a trainer?
 	and a
 	jr nz, .trainermusic
@@ -5638,28 +5639,33 @@ INCBIN "baserom.gbc",$2C41a,$2ee8f - $2C41a
 .kantowild
 	ld de, $0008 ; kanto wild battle music
 	jr .done
+
 .trainermusic
 	ld de, $002f ; lance battle music
 	cp CHAMPION
 	jr z, .done
 	cp RED
 	jr z, .done
+
 	; really, they should have included admins and scientists here too...
 	ld de, $0031 ; rocket battle music
 	cp GRUNTM
 	jr z, .done
 	cp GRUNTF
 	jr z, .done
+
 	ld de, $0006 ; kanto gym leader battle music
-	ld a, $f
-	ld hl, $5123
-	rst $8 ; XXX check if kanto gym leader
+	ld a, BANK(IsKantoGymLeader)
+	ld hl, IsKantoGymLeader
+	rst $8
 	jr c, .done
+
 	ld de, $002e ; johto gym leader battle music
-	ld a, $f
-	ld hl, $5128
-	rst $8 ; XXX check if johto gym leader / elite four member
+	ld a, BANK(IsJohtoGymLeader)
+	ld hl, IsJohtoGymLeader
+	rst $8
 	jr c, .done
+
 	ld de, $0030 ; rival battle music
 	ld a, [$d22f]
 	cp RIVAL1
@@ -10539,7 +10545,62 @@ MysticalmanTrainerGroupHeader: ; 0x3ba4c
 
 SECTION "bankF",DATA,BANK[$F]
 
-INCBIN "baserom.gbc",$3C000,$3ddc2 - $3C000
+INCBIN "baserom.gbc",$3C000,$3d123 - $3C000
+
+; These functions check if the current opponent is a gym leader or one of a
+; few other special trainers.
+
+; Note: KantoGymLeaders is a subset of JohtoGymLeaders. If you wish to
+; differentiate between the two, call IsKantoGymLeader first.
+
+; The Lance and Red entries are unused for music checks; those trainers are
+; accounted for elsewhere.
+
+IsKantoGymLeader: ; 0x3d123
+	ld hl, KantoGymLeaders
+	jr IsGymLeaderCommon
+
+IsJohtoGymLeader: ; 0x3d128
+	ld hl, JohtoGymLeaders
+IsGymLeaderCommon:
+	push de
+	ld a, [$d22f]
+	ld de, $0001
+	call IsInArray
+	pop de
+	ret
+; 0x3d137
+
+JohtoGymLeaders:
+	db FALKNER
+	db WHITNEY
+	db BUGSY
+	db MORTY
+	db PRYCE
+	db JASMINE
+	db CHUCK
+	db CLAIR
+	db WILL
+	db BRUNO
+	db KAREN
+	db KOGA
+; fallthrough
+; these two entries are unused
+	db CHAMPION
+	db RED
+; fallthrough
+KantoGymLeaders:
+	db BROCK
+	db MISTY
+	db LT_SURGE
+	db ERIKA
+	db JANINE
+	db SABRINA
+	db BLAINE
+	db BLUE
+	db $ff
+
+INCBIN "baserom.gbc",$3d14e,$3ddc2 - $3d14e
 
 	ld hl, RecoveredUsingText
 	jp $3ad5
