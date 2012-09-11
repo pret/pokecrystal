@@ -1,3 +1,8 @@
+SECTION "linkbattle",BSS[$c2dc]
+
+InLinkBattle: ; 0xc2dc
+	ds 1 ; nonzero when in a link battle
+
 SECTION "BattleMons",BSS[$c62a]
 
 BattleMonSpecies: ; c62a
