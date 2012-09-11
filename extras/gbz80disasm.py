@@ -561,7 +561,9 @@ def load_labels(filename="labels.json"):
     if os.path.exists(filename):
         all_labels = json.loads(open(filename, "r").read())
     else:
-        print "You must run analyze_incbins.scan_for_predefined_labels() to create \"labels.json\"."
+        print "You must run crystal.scan_for_predefined_labels() to create \"labels.json\". Trying..."
+        import crystal
+        crystal.scan_for_predefined_labels()
 
 def find_label(local_address, bank_id=0):
     return None
