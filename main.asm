@@ -491,20 +491,22 @@ GetMapHeaderPointer: ; 0x2bed
 	ret
 
 GetMapHeaderMember: ; 0x2c04
-; Extract a pointer from the current map's header.
+; Extract data from the current map's header.
 
 ; inputs:
-; de = offset of desired pointer within the mapheader
+; de = offset of desired data within the mapheader
 
 ; outputs:
-; bc = pointer from the current map's 
+; bc = data from the current map's header
 ; (e.g., de = $0003 would return a pointer to the secondary map header)
 
 	ld a, [MapGroup]
 	ld b, a
 	ld a, [MapNumber]
 	ld c, a
+	; fallthrough
 
+GetAnyMapHeaderMember: ; 0x2c0c
 	; bankswitch
 	ld a, [$ff00+$9d]
 	push af
@@ -537,7 +539,23 @@ GetSecondaryMapHeaderPointer: ; 0x2c7d
 	pop bc
 	ret
 
-INCBIN "baserom.gbc",$2c8a,$2e6f-$2c8a
+INCBIN "baserom.gbc",$2c8a,$2caf-$2c8a
+
+GetWorldMapLocation: ; 0x2caf
+; given a map group/id in bc, return its location on the Pokégear map.
+	push hl
+	push de
+	push bc
+	ld de, 5
+	call GetAnyMapHeaderMember
+	ld a, c
+	pop bc
+	pop de
+	pop hl
+	ret
+; 0x2cbd
+
+INCBIN "baserom.gbc",$2cbd,$2e6f-$2cbd
 
 BitTable1Func: ; 0x2e6f
 	ld hl, $da72
@@ -5624,8 +5642,8 @@ INCBIN "baserom.gbc",$2C41a,$2ee8f - $2C41a
 	ld a, [$d22f] ; are we fighting a trainer?
 	and a
 	jr nz, .trainermusic
-	ld a, $72
-	ld hl, $6ea1
+	ld a, BANK(RegionCheck)
+	ld hl, RegionCheck
 	rst $8 ; XXX check region
 	ld a, e
 	and a
@@ -5682,8 +5700,8 @@ INCBIN "baserom.gbc",$2C41a,$2ee8f - $2C41a
 	ld a, [$c2dc]
 	and a
 	jr nz, .linkbattle ; XXX link battle?
-	ld a, $72
-	ld hl, $6ea1
+	ld a, BANK(RegionCheck)
+	ld hl, RegionCheck
 	rst $8
 	ld a, e
 	and a
@@ -116995,7 +117013,36 @@ INCBIN "baserom.gbc",$1CA896,$1CAA43-$1CA896
 	db "BATTLE",$1F,"TOWER@"
 	db "SPECIAL@"
 
-INCBIN "baserom.gbc",$1CAEA1,$40
+RegionCheck: ; 0x1caea1
+; Checks if the player is in Kanto or Johto.
+; If in Johto, returns 0 in e.
+; If in Kanto, returns 1 in e.
+	ld a, [MapGroup]
+	ld b, a
+	ld a, [MapNumber]
+	ld c, a
+	call GetWorldMapLocation
+	cp $5f ; on S.S. Aqua
+	jr z, .johto
+	cp $0 ; special
+	jr nz, .checkagain
+; XXX if in map $00, load map group / map id from... where???
+	ld a, [$dcad]
+	ld b, a
+	ld a, [$dcae]
+	ld c, a
+	call GetWorldMapLocation
+.checkagain
+	cp $2f ; Pallet Town
+	jr c, .johto
+	cp $58 ; Victory Road
+	jr c, .kanto
+.johto
+	ld e, 0
+	ret
+.kanto
+	ld e, 1
+	ret
 
 SECTION "bank73",DATA,BANK[$73]
 
