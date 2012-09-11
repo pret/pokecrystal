@@ -491,20 +491,22 @@ GetMapHeaderPointer: ; 0x2bed
 	ret
 
 GetMapHeaderMember: ; 0x2c04
-; Extract a pointer from the current map's header.
+; Extract data from the current map's header.
 
 ; inputs:
-; de = offset of desired pointer within the mapheader
+; de = offset of desired data within the mapheader
 
 ; outputs:
-; bc = pointer from the current map's 
+; bc = data from the current map's header
 ; (e.g., de = $0003 would return a pointer to the secondary map header)
 
 	ld a, [MapGroup]
 	ld b, a
 	ld a, [MapNumber]
 	ld c, a
+	; fallthrough
 
+GetAnyMapHeaderMember: ; 0x2c0c
 	; bankswitch
 	ld a, [$ff00+$9d]
 	push af
@@ -537,7 +539,23 @@ GetSecondaryMapHeaderPointer: ; 0x2c7d
 	pop bc
 	ret
 
-INCBIN "baserom.gbc",$2c8a,$2e6f-$2c8a
+INCBIN "baserom.gbc",$2c8a,$2caf-$2c8a
+
+GetWorldMapLocation: ; 0x2caf
+; given a map group/id in bc, return its location on the Pokégear map.
+	push hl
+	push de
+	push bc
+	ld de, 5
+	call GetAnyMapHeaderMember
+	ld a, c
+	pop bc
+	pop de
+	pop hl
+	ret
+; 0x2cbd
+
+INCBIN "baserom.gbc",$2cbd,$2e6f-$2cbd
 
 BitTable1Func: ; 0x2e6f
 	ld hl, $da72
@@ -5617,7 +5635,90 @@ TrainerClassNames: ; 2c1ef
 	db "ROCKET@"
 	db "MYSTICALMAN@"
 
-INCBIN "baserom.gbc",$2C41a,$30000 - $2C41a
+INCBIN "baserom.gbc",$2C41a,$2ee8f - $2C41a
+
+; XXX this is not the start of the routine
+; determine what music plays in battle
+	ld a, [OtherTrainerClass] ; are we fighting a trainer?
+	and a
+	jr nz, .trainermusic
+	ld a, BANK(RegionCheck)
+	ld hl, RegionCheck
+	rst $8
+	ld a, e
+	and a
+	jr nz, .kantowild
+	ld de, $0029 ; johto daytime wild battle music
+	ld a, [TimeOfDay] ; check time of day
+	cp $2 ; nighttime?
+	jr nz, .done ; if no, then done
+	ld de, $004a ; johto nighttime wild battle music
+	jr .done
+.kantowild
+	ld de, $0008 ; kanto wild battle music
+	jr .done
+
+.trainermusic
+	ld de, $002f ; lance battle music
+	cp CHAMPION
+	jr z, .done
+	cp RED
+	jr z, .done
+
+	; really, they should have included admins and scientists here too...
+	ld de, $0031 ; rocket battle music
+	cp GRUNTM
+	jr z, .done
+	cp GRUNTF
+	jr z, .done
+
+	ld de, $0006 ; kanto gym leader battle music
+	ld a, BANK(IsKantoGymLeader)
+	ld hl, IsKantoGymLeader
+	rst $8
+	jr c, .done
+
+	ld de, $002e ; johto gym leader battle music
+	ld a, BANK(IsJohtoGymLeader)
+	ld hl, IsJohtoGymLeader
+	rst $8
+	jr c, .done
+
+	ld de, $0030 ; rival battle music
+	ld a, [OtherTrainerClass]
+	cp RIVAL1
+	jr z, .done
+	cp RIVAL2
+	jr nz, .othertrainer
+	ld a, [OtherTrainerID] ; which rival are we fighting?
+	cp $4
+	jr c, .done ; if it's not the fight inside Indigo Plateau, we're done
+	ld de, $002f ; rival indigo plateau battle music
+	jr .done
+
+.othertrainer
+	ld a, [$c2dc]
+	and a
+	jr nz, .linkbattle ; XXX link battle?
+	ld a, BANK(RegionCheck)
+	ld hl, RegionCheck
+	rst $8
+	ld a, e
+	and a
+	jr nz, .kantotrainer
+.linkbattle
+	ld de, $002a ; johto trainer battle music
+	jr .done
+.kantotrainer
+	ld de, $0007 ; kanto trainer battle music
+.done
+	call $3b97
+	pop bc
+	pop de
+	pop hl
+	ret
+
+INCBIN "baserom.gbc",$2ef18,$30000 - $2ef18
 
 SECTION "bankC",DATA,BANK[$C]
 
@@ -10462,7 +10563,62 @@ MysticalmanTrainerGroupHeader: ; 0x3ba4c
 
 SECTION "bankF",DATA,BANK[$F]
 
-INCBIN "baserom.gbc",$3C000,$3ddc2 - $3C000
+INCBIN "baserom.gbc",$3C000,$3d123 - $3C000
+
+; These functions check if the current opponent is a gym leader or one of a
+; few other special trainers.
+
+; Note: KantoGymLeaders is a subset of JohtoGymLeaders. If you wish to
+; differentiate between the two, call IsKantoGymLeader first.
+
+; The Lance and Red entries are unused for music checks; those trainers are
+; accounted for elsewhere.
+
+IsKantoGymLeader: ; 0x3d123
+	ld hl, KantoGymLeaders
+	jr IsGymLeaderCommon
+
+IsJohtoGymLeader: ; 0x3d128
+	ld hl, JohtoGymLeaders
+IsGymLeaderCommon:
+	push de
+	ld a, [$d22f]
+	ld de, $0001
+	call IsInArray
+	pop de
+	ret
+; 0x3d137
+
+JohtoGymLeaders:
+	db FALKNER
+	db WHITNEY
+	db BUGSY
+	db MORTY
+	db PRYCE
+	db JASMINE
+	db CHUCK
+	db CLAIR
+	db WILL
+	db BRUNO
+	db KAREN
+	db KOGA
+; fallthrough
+; these two entries are unused
+	db CHAMPION
+	db RED
+; fallthrough
+KantoGymLeaders:
+	db BROCK
+	db MISTY
+	db LT_SURGE
+	db ERIKA
+	db JANINE
+	db SABRINA
+	db BLAINE
+	db BLUE
+	db $ff
+
+INCBIN "baserom.gbc",$3d14e,$3ddc2 - $3d14e
 
 	ld hl, RecoveredUsingText
 	jp $3ad5
@@ -116857,7 +117013,37 @@ INCBIN "baserom.gbc",$1CA896,$1CAA43-$1CA896
 	db "BATTLE",$1F,"TOWER@"
 	db "SPECIAL@"
 
-INCBIN "baserom.gbc",$1CAEA1,$40
+RegionCheck: ; 0x1caea1
+; Checks if the player is in Kanto or Johto.
+; If in Johto, returns 0 in e.
+; If in Kanto, returns 1 in e.
+	ld a, [MapGroup]
+	ld b, a
+	ld a, [MapNumber]
+	ld c, a
+	call GetWorldMapLocation
+	cp $5f ; on S.S. Aqua
+	jr z, .johto
+	cp $0 ; special
+	jr nz, .checkagain
+
+; If in map $00, load map group / map id from backup locations
+	ld a, [BackupMapGroup]
+	ld b, a
+	ld a, [BackupMapNumber]
+	ld c, a
+	call GetWorldMapLocation
+.checkagain
+	cp $2f ; Pallet Town
+	jr c, .johto
+	cp $58 ; Victory Road
+	jr c, .kanto
+.johto
+	ld e, 0
+	ret
+.kanto
+	ld e, 1
+	ret
 
 SECTION "bank73",DATA,BANK[$73]
 

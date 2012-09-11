@@ -56,6 +56,30 @@ BattleMonSpclAtk: ; c646
 BattleMonSpclDef: ; c648
 	ds 2
 
+SECTION "OtherTrainerClass",BSS[$d22f]
+
+OtherTrainerClass: ; 0xd22f
+; class (Youngster, Bug Catcher, etc.) of opposing trainer
+; 0 if opponent is a wild Pokémon, not a trainer
+	ds 1
+
+Wramd230: ; 0xd230
+; XXX what is this for
+	ds 1
+
+OtherTrainerID: ; 0xd231
+; which trainer of the class that you're fighting
+; (Joey, Mikey, Albert, etc.)
+	ds 1
+
+SECTION "Timeofday",BSS[$d269]
+
+TimeOfDay: ; 0xd269
+; 0 if morn
+; 1 if day
+; 2 if nite
+	ds 1
+
 SECTION "OtherTrainerParty",BSS[$d280]
 
 OTPartyMonHeader: ; d280
@@ -648,6 +672,15 @@ Box13Name: ; 0xdb31
 	ds 9
 Box14Name: ; 0xdb3a
 	ds 9
+
+SECTION "BackupMapInfo", BSS[$dcad]
+
+; used on maps like second floor pokécenter, which are reused, so we know which
+; map to return to
+BackupMapGroup: ; 0xdcad
+	ds 1
+BackupMapNumber: ; 0xdcae
+	ds 1
 
 SECTION "PlayerMapInfo", BSS[$dcb4]
 
