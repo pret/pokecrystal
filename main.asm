@@ -5639,17 +5639,17 @@ INCBIN "baserom.gbc",$2C41a,$2ee8f - $2C41a
 
 ; XXX this is not the start of the routine
 ; determine what music plays in battle
-	ld a, [$d22f] ; are we fighting a trainer?
+	ld a, [OtherTrainerClass] ; are we fighting a trainer?
 	and a
 	jr nz, .trainermusic
 	ld a, BANK(RegionCheck)
 	ld hl, RegionCheck
-	rst $8 ; XXX check region
+	rst $8
 	ld a, e
 	and a
 	jr nz, .kantowild
 	ld de, $0029 ; johto daytime wild battle music
-	ld a, [$d269] ; check time of day
+	ld a, [TimeOfDay] ; check time of day
 	cp $2 ; nighttime?
 	jr nz, .done ; if no, then done
 	ld de, $004a ; johto nighttime wild battle music
@@ -5685,12 +5685,12 @@ INCBIN "baserom.gbc",$2C41a,$2ee8f - $2C41a
 	jr c, .done
 
 	ld de, $0030 ; rival battle music
-	ld a, [$d22f]
+	ld a, [OtherTrainerClass]
 	cp RIVAL1
 	jr z, .done
 	cp RIVAL2
 	jr nz, .othertrainer
-	ld a, [$d231] ; which rival are we fighting?
+	ld a, [OtherTrainerID] ; which rival are we fighting?
 	cp $4
 	jr c, .done ; if it's not the fight inside Indigo Plateau, we're done
 	ld de, $002f ; rival indigo plateau battle music
@@ -117026,10 +117026,11 @@ RegionCheck: ; 0x1caea1
 	jr z, .johto
 	cp $0 ; special
 	jr nz, .checkagain
-; XXX if in map $00, load map group / map id from... where???
-	ld a, [$dcad]
+
+; If in map $00, load map group / map id from backup locations
+	ld a, [BackupMapGroup]
 	ld b, a
-	ld a, [$dcae]
+	ld a, [BackupMapNumber]
 	ld c, a
 	call GetWorldMapLocation
 .checkagain
