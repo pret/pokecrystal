@@ -128,16 +128,26 @@ EnableLCD: ; 58a
 INCBIN "baserom.gbc",$591,$984 - $591
 
 GetJoypadState; 984
+; stores joypad state in $ffa8
+; 0 is off, 1 is on
+; bit 0: A
+;     1: B
+;     2: SELECT
+;     3: START
+;     4: RIGHT
+;     5: LEFT
+;     6: UP
+;     7: DOWN
 	push af
 	push hl
 	push de
 	push bc
-	ld a,[$c2c7]
+	ld a, [$c2c7]
 	cp a, $ff
 	jr z, .asm_9a7
-	ld a,[$ff00+$a4]
+	ld a, [$ff00+$a4] ; input mask (usually 00)
 	ld b, a
-	ld a,[$ff00+$a8]
+	ld a, [$ff00+$a8] ; joypad
 	ld e, a
 	xor b
 	ld d, a
@@ -149,14 +159,14 @@ GetJoypadState; 984
 	ld c, a
 	ld a, b
 	ld [$ff00+$a8], a
-.asm_9a2
+.quit
 	pop bc
 	pop de
 	pop hl
 	pop af
 	ret
 .asm_9a7
-	ld a,[$ff00+$9d]
+	ld a, [$ff00+$9d]
 	push af
 	ld a, [$c2ca]
 	rst $10
@@ -171,7 +181,7 @@ GetJoypadState; 984
 	ld [$c2cb], a
 	pop af
 	rst $10
-	jr .asm_9a2
+	jr .quit
 .asm_9c2
 	ld a, [hli]
 	cp a, $ff
@@ -200,7 +210,7 @@ GetJoypadState; 984
 	ld a, b
 	ld [$ff00+$a7], a
 	ld [$ff00+$a8], a
-	jr .asm_9a2
+	jr .quit
 	ld [$c2ca], a
 	ld a, l
 	ld [$c2c8], a
@@ -218,6 +228,7 @@ GetJoypadState; 984
 ;a0a
 
 Functiona0a:
+; clears $c2c7-$c2cb
 	xor a
 	ld [$c2ca], a
 	ld [$c2c8], a
@@ -903,10 +914,26 @@ AddNTimes: ; 0x30fe
 INCBIN "baserom.gbc",$3105,$3119-$3105
 
 Multiply: ; 0x3119
+; function to do multiplication
+; all values are big endian
+; INPUT
+; ffb4-ffb6 =  multiplicand
+; ffb7 = multiplier
+; OUTPUT
+; ffb3-ffb6 = product
 	INCBIN "baserom.gbc",$3119,$3124 - $3119
 ; 0x3124
 
 Divide: ; 0x3124
+; function to do division
+; all values are big endian
+; INPUT
+; ffb3-ffb6 = dividend
+; ffb7 = divisor
+; b = number of bytes in the dividend (starting from ffb3)
+; OUTPUT
+; ffb4-ffb6 = quotient
+; ffb7 = remainder
 	INCBIN "baserom.gbc",$3124,$3136 - $3124
 ; 0x3136
 
@@ -914,8 +941,9 @@ INCBIN "baserom.gbc",$3136,$313d - $3136
 
 PrintLetterDelay: ; 313d
 ; This function is used to wait a short period after printing a letter to the
-; screen unless the player presses the A/B button or the delay is turned off
-; through the [$cfcc] or [$cfcf] flags.
+; screen unless the delay is turned off through bit 4 (on) in [$cfcc] or bit
+; 1 (off) in [$cfcf]. If A and B are pressed, bits 0-2 in [$cfcc] and bit 0 in
+; [$cfcf] are checked.
 	ld a, [$cfcc]
 	bit 4, a
 	ret nz
@@ -933,31 +961,31 @@ PrintLetterDelay: ; 313d
 	bit 0, a
 	jr z, .asm_3160
 	ld a, [$cfcc]
-	and a, $07
+	and a, $07		; takes bits 0-2 of $cfcc
 	jr .asm_3162
 .asm_3160
 	ld a, $01
 .asm_3162
 	ld [$cfb2], a
-.joypad
+.checkjoypad
 	call GetJoypadState
 	ld a, [$c2d7]
 	and a
 	jr nz, .asm_317f
 	ld a, [$ff00+$a8]	; joypad
-	bit 0, a			; a
-	jr z, .asm_3176
-	jr .asm_317a
-.asm_3176
-	bit 1, a			; b
+	bit 0, a			; is a pressed?
+	jr z, .anotpressed
+	jr .delay
+.anotpressed
+	bit 1, a			; is b pressed?
 	jr z, .asm_317f
-.asm_317a
+.delay
 	call DelayFrame
 	jr .end
 .asm_317f
 	ld a, [$cfb2]
 	and a
-	jr nz, .joypad
+	jr nz, .checkjoypad
 .end
 	pop af
 	ld [$ff00+$d8], a
@@ -10732,7 +10760,7 @@ IsJohtoGymLeader: ; 0x3d128
 	ld hl, JohtoGymLeaders
 IsGymLeaderCommon:
 	push de
-	ld a, [$d22f]
+	ld a, [OtherTrainerClass]
 	ld de, $0001
 	call IsInArray
 	pop de
@@ -10802,7 +10830,7 @@ Function3e8eb: ; 3e8eb
 	ld a, [hl]
 	jr .asm_3e945
 .asm_3e925
-	ld a, [$d230]
+	ld a, [BattleType]
 	cp a, $0a
 	ld a, [$d241]
 	jr z, .asm_3e945
@@ -10838,7 +10866,7 @@ Function3e8eb: ; 3e8eb
 	ld a, [$d22d]
 	dec a
 	jr nz, .asm_3e9a8
-	ld a, [$d230]
+	ld a, [BattleType]
 	cp a, $05
 	jr nz, .asm_3e996
 	call $7a01
@@ -10882,22 +10910,22 @@ Function3e8eb: ; 3e8eb
 	jr nz, .asm_3ea1a
 	ld a, [EnemyMonSpecies]
 	cp a, UNOWN
-	jr nz, .asm_3e9c8
+	jr nz, .notunown
 	ld hl, EnemyMonDVs
 	ld a, $2d
 	call $2d83
 	call CheckUnownLetter
 	jr c, .asm_3e9a0
-.asm_3e9c8
+.notunown
 	ld a, [EnemyMonSpecies]
 	cp a, MAGIKARP
 	jr nz, .asm_3ea1a
-	ld de, $d20c
+	ld de, EnemyMonDVs
 	ld bc, PlayerID
-	ld hl, Functionfbbfc
-	ld a, BANK(Functionfbbfc)
+	ld hl, CalcMagikarpLength
+	ld a, BANK(CalcMagikarpLength)
 	rst $08
-	ld a, [$d1ea]
+	ld a, [$d1ea] ; Magikarp's length
 	cp a, $06
 	jr nz, .asm_3e9fe
 	call $2f8c
@@ -10957,7 +10985,7 @@ Function3e8eb: ; 3e8eb
 	ld [hli], a
 	ld a, [$d219] ; EnemyMonMaxHP + 1
 	ld [hl], a
-	ld a, [$d230]
+	ld a, [BattleType]
 	cp a, $05
 	jr nz, .asm_3ea90
 	call $7a01
@@ -11069,22 +11097,22 @@ Function3e8eb: ; 3e8eb
 ; 3eb38
 
 CheckSleepingWildMon: ; 3eb38
-	ld a, [$d230]
-	cp a, $08 ; headbutt encounter?
-	jr nz, .asm_3eb5b
+	ld a, [BattleType]
+	cp a, $08 ; headbutt
+	jr nz, .notsleeping
 	ld hl, SleepingWildMonMornTable
 	ld a, [TimeOfDay]
-	cp a, $01
-	jr c, .asm_3eb51
+	cp a, $01 ; day
+	jr c, .check
 	ld hl, SleepingWildMonDayTable
-	jr z, .asm_3eb51
+	jr z, .check
 	ld hl, SleepingWildMonNiteTable
-.asm_3eb51
+.check
 	ld a, [EnemyMonSpecies]
 	ld de, $0001
 	call IsInArray
 	ret c
-.asm_3eb5b
+.notsleeping
 	and a
 	ret
 ; 3eb5d
@@ -11123,11 +11151,12 @@ SleepingWildMonMornTable ; 3eb6f
 ; 3eb75
 
 CheckUnownLetter: ; 3eb75
+; returns carry if not a valid letter
 	ld a, [$def3]
 	ld c, a
 	ld de, $0000
 .asm_3eb7c
-	srl c
+	srl c ; bit 0 off?
 	jr nc, .asm_3eb96
 	ld hl, UnownLetterPointerTable
 	add hl, de
@@ -11141,16 +11170,16 @@ CheckUnownLetter: ; 3eb75
 	call IsInArray
 	pop bc
 	pop de
-	jr c, .asm_3eb9f
+	jr c, .end
 .asm_3eb96
 	inc e
 	inc e
 	ld a, e
-	cp a, $08
+	cp a, $08 ; has the end of the table been reached?
 	jr c, .asm_3eb7c
 	scf
 	ret
-.asm_3eb9f
+.end
 	and a
 	ret
 	
@@ -73649,18 +73678,23 @@ INCBIN "gfx/font_battle_extra.2bpp",$0,$200
 
 INCBIN "baserom.gbc",$F8800,$3bfc-$800
 
-Functionfbbfc ; fbbfc
-;input:
-;	d: $d2
-;	e: $0c
-;	b: $d4 ; PlayerID
-;	c: $7b ; PlayerID
-;	a: BANK(Functionfbbfc) $3e
+CalcMagikarpLength: ; fbbfc
+; Stores Magikarp's length at $d1ea-$d1eb in big endian
+; 
+; input:
+;   de: EnemyMonDVs
+;   bc: PlayerID
+; output:
+;   $d1ea-$d1eb: length
+;
+; does a whole bunch of arbitrary nonsense
+; cycles through a table of arbitrary values
+; http://web.archive.org/web/20110628181718/http://upokecenter.com/games/gs/guides/magikarp.php
 	ld h, b
 	ld l, c
 	ld a, [hli]
 	ld b, a
-	ld c, [hl] ; ld bc, [bc]
+	ld c, [hl] ; ld bc, [PlayerID]
 	rrc b
 	rrc c
 	ld a, [de]
@@ -73668,35 +73702,35 @@ Functionfbbfc ; fbbfc
 	rrca
 	rrca
 	xor b
-	ld b, a
+	ld b, a ; b = rrcrrc(atkdefdv) xor rrc(hipid)
 	ld a, [de]
 	rrca
 	rrca
 	xor c
-	ld c, a
+	ld c, a ; c = rrcrrc(spdspcdv) xor rrc(lopid)
 	ld a, b
 	and a
-	jr nz, .asm_fbc21
+	jr nz, .loadtable
 	ld a, c
 	cp a, $0a
-	jr nc, .asm_fbc21
-	ld hl, $00be
-	add hl, bc
-	ld d, h
+	jr nc, .loadtable
+	ld hl, $00be ; if bc < $000a
+	add hl, bc   ; hl = $00be + bc
+	ld d, h      ; de = hl
 	ld e, l
-	jr .asm_fbc78
-.asm_fbc21
-	ld hl, Tablefbca8
+	jr .endtable
+.loadtable
+	ld hl, MagikarpLengthTable
 	ld a, $02
 	ld [$d265], a
-.asm_fbc29
+.readtable
 	ld a, [hli]
 	ld e, a
 	ld a, [hli]
 	ld d, a
-	call Functionfbc9a
-	jr nc, .asm_fbc63
-	call Functionfbca1
+	call BLessThanD ; checks value against the table
+	jr nc, .advancetable
+	call BCMinusDE
 	ld a, b
 	ld [$ff00+$b3], a
 	ld a, c
@@ -73706,7 +73740,7 @@ Functionfbbfc ; fbbfc
 	ld b, $02
 	call Divide
 	ld a, [$ff00+$b6]
-	ld c, a
+	ld c, a ; c = bc / [hl]
 	xor a
 	ld [$ff00+$b4], a
 	ld [$ff00+$b5], a
@@ -73714,7 +73748,7 @@ Functionfbbfc ; fbbfc
 	ld [$ff00+$b6], a
 	ld a, [$d265]
 	ld [$ff00+$b7], a
-	call Multiply
+	call Multiply ; $64 * (2 + number of rows down the table)
 	ld b, $00
 	ld a, [$ff00+$b6]
 	add c
@@ -73722,40 +73756,40 @@ Functionfbbfc ; fbbfc
 	ld a, [$ff00+$b5]
 	adc b
 	ld d, a
-	jr .asm_fbc78
-.asm_fbc63
-	inc hl
+	jr .endtable
+.advancetable
+	inc hl ; aligning to next byte triplet
 	ld a, [$d265]
 	inc a
 	ld [$d265], a
 	cp a, $10
-	jr c, .asm_fbc29
-	call Functionfbca1
+	jr c, .readtable
+	call BCMinusDE
 	ld hl, $0640
 	add hl, bc
 	ld d, h
 	ld e, l
-.asm_fbc78
+.endtable
 	ld h, d
 	ld l, e
 	add hl, hl
 	add hl, hl
 	add hl, de
-	add hl, hl
+	add hl, hl ; hl = de * 10
 	ld de, $ff02
 	ld a, $ff
-.asm_fbc83
+.loop
 	inc a
-	add hl, de
-	jr c, .asm_fbc83
+	add hl, de ; - 254
+	jr c, .loop
 	ld d, $00
-.asm_fbc89 ; mod $0c
+.modloop ; mod $0c
 	cp a, $0c
-	jr c, .asm_fbc92
+	jr c, .done
 	sub a, $0c
 	inc d
-	jr .asm_fbc89
-.asm_fbc92
+	jr .modloop
+.done
 	ld e, a
 	ld hl, $d1ea
 	ld [hl], d
@@ -73764,17 +73798,23 @@ Functionfbbfc ; fbbfc
 	ret
 ; fbc9a
 
-Functionfbc9a: ; fbc9a
+BLessThanD: ; fbc9a
+; returns carry if b < d
 	ld a, b
 	cp d
 	ret c
 	ret nc
+; fbc9e
+
+CLessThanE: ;fbc9e
+; unused
 	ld a, c
 	cp e
 	ret
 ; fbca1
 
-Functionfbca1: ; fbca1
+BCMinusDE: ; fbca1
+; stores bc - de in bc
 	ld a, c
 	sub e
 	ld c, a
@@ -73782,18 +73822,28 @@ Functionfbca1: ; fbca1
 	sbc d
 	ld b, a
 	ret
-; fbcab
+; fbca8
 
-Tablefbca8: ; fbca8
-	db $6e, $00, $01, $36, $01, $02, $c6, $02
-	db $04, $96, $0a, $14, $1e, $1e, $32, $2e
-	db $45, $64, $c6, $7f, $96, $5e, $ba, $96
-	db $6e, $e1, $64, $f6, $f4, $32, $c6, $fc
-	db $14, $ba, $fe, $05, $82, $ff
-	db $02, $e6, $ff
-; fbcd1
+MagikarpLengthTable: ; fbca8
+; stored in sets of 3
+; first two values are little endian
+; third value is the divisor
+	db $6e, $00, $01
+	db $36, $01, $02
+	db $c6, $02, $04
+	db $96, $0a, $14
+	db $1e, $1e, $32
+	db $2e, $45, $64
+	db $c6, $7f, $96
+	db $5e, $ba, $96
+	db $6e, $e1, $64
+	db $f6, $f4, $32
+	db $c6, $fc, $14
+	db $ba, $fe, $05
+	db $82, $ff, $02
+; fbccf
 
-INCBIN "baserom.gbc",$FBCD1,$fc000-$fbcd1
+INCBIN "baserom.gbc",$FBCCF,$fc000-$fbccf
 
 SECTION "bank3F",DATA,BANK[$3F]
 

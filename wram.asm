@@ -130,8 +130,9 @@ OtherTrainerClass: ; 0xd22f
 ; 0 if opponent is a wild Pokémon, not a trainer
 	ds 1
 
-Wramd230: ; 0xd230
-; XXX what is this for
+BattleType: ; 0xd230
+; 00 trainer
+; 08 headbutt
 	ds 1
 
 OtherTrainerID: ; 0xd231
@@ -139,7 +140,7 @@ OtherTrainerID: ; 0xd231
 ; (Joey, Mikey, Albert, etc.)
 	ds 1
 
-SECTION "Timeofday",BSS[$d269]
+SECTION "TimeOfDay",BSS[$d269]
 
 TimeOfDay: ; 0xd269
 ; 0 if morn
@@ -686,14 +687,14 @@ PlayerName: ; 0xd47d
 PlayerSprite: ; 0xd4d8
 	ds 1
 
-SECTION "Misc",BSS[$d857]
+SECTION "Status",BSS[$d84e]
 Money: ; d84e
 	ds 3
 
 Badges: ; d857
 	ds 2
 	
-SECTION "Items",BSS[$d8bd]
+SECTION "Items",BSS[$d859]
 TMsHMs: ; d859
 	ds 57
 
@@ -702,9 +703,9 @@ NumItems: ; d892
 Items: ; d893
 	ds 69
 
-NumKeyItems: ; d88c
+NumKeyItems: ; d8bc
 	ds 1
-KeyItems: ; d88d
+KeyItems: ; d8bd
 	ds 13
 	
 NumBalls: ; d8d7
@@ -801,12 +802,13 @@ PartySpecies: ; 0xdcd8
 	ds 1 ; any empty slots including the 7th must be FF
 	     ; or the routine will keep going
 		 
-		 
+PartyMons:
 PartyMon1:
 PartyMon1Species: ; 0xdcdf
 	ds 1
 PartyMon1Item: ; 0xdce0
 	ds 1
+
 PartyMon1Moves: ; 0xdce1
 PartyMon1Move1: ; 0xdce1
 	ds 1
@@ -816,6 +818,7 @@ PartyMon1Move3: ; 0xdce3
 	ds 1
 PartyMon1Move4: ; 0xdce4
 	ds 1
+
 PartyMon1ID: ; 0xdce5
 	ds 2
 PartyMon1Exp: ; 0xdce7
