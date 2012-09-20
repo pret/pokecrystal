@@ -6,7 +6,10 @@ InLinkBattle: ; 0xc2dc
 SECTION "BattleMons",BSS[$c62a]
 
 BattleMonSpecies: ; c62a
-	ds 3 ; wtf?
+	ds 1
+	ds 1
+BattleMonSpecies2: ; c62c
+	ds 1
 BattleMonItem: ; c62d
 	ds 1
 
@@ -41,9 +44,8 @@ BattleMonHappiness: ; c638
 BattleMonLevel: ; c639
 	ds 1
 
-; TODO this is probably wrong
-EnemyMonPokerusStatus: ; c63a
-	ds 2 ; dunno
+BattleMonStatus: ; c63a
+	ds 2
 
 BattleMonHP: ; c63c
 	ds 2
@@ -61,6 +63,66 @@ BattleMonSpclAtk: ; c646
 BattleMonSpclDef: ; c648
 	ds 2
 
+SECTION "EnemyMon",BSS[$d204]
+
+EnemyMonSpecies: ; d204
+	ds 1
+	ds 1
+EnemyMonSpecies2: ; d206
+	ds 1
+EnemyMonItem: ; d207
+	ds 1
+
+EnemyMonMoves:
+EnemyMonMove1: ; d208
+	ds 1
+EnemyMonMove2: ; d209
+	ds 1
+EnemyMonMove3: ; d20a
+	ds 1
+EnemyMonMove4: ; d20b
+	ds 1
+
+EnemyMonDVs:
+EnemyMonAtkDefDV: ; d20c
+	ds 1
+EnemyMonSpdSpclDV: ; d20d
+	ds 1
+	
+EnemyMonPP:
+EnemyMonPPMove1: ; d20e
+	ds 1
+EnemyMonPPMove2: ; d20f
+	ds 1
+EnemyMonPPMove3: ; d210
+	ds 1
+EnemyMonPPMove4: ; d211
+	ds 1
+	
+EnemyMonHappiness: ; d212
+	ds 1
+EnemyMonLevel: ; d213
+	ds 1
+	
+EnemyMonStatus: ; d214
+	ds 2
+	
+EnemyMonHP: ; d216
+	ds 2
+EnemyMonMaxHP: ; d218
+	ds 2
+
+EnemyMonAtk: ; d21a
+	ds 2
+EnemyMonDef: ; d21c
+	ds 2
+EnemyMonSpd: ; d21e
+	ds 2
+EnemyMonSpclAtk: ; d220
+	ds 2
+EnemyMonSpclDef: ; d222
+	ds 2
+
 SECTION "OtherTrainerClass",BSS[$d22f]
 
 OtherTrainerClass: ; 0xd22f
@@ -68,8 +130,9 @@ OtherTrainerClass: ; 0xd22f
 ; 0 if opponent is a wild Pokémon, not a trainer
 	ds 1
 
-Wramd230: ; 0xd230
-; XXX what is this for
+BattleType: ; 0xd230
+; 00 trainer
+; 08 headbutt
 	ds 1
 
 OtherTrainerID: ; 0xd231
@@ -77,7 +140,7 @@ OtherTrainerID: ; 0xd231
 ; (Joey, Mikey, Albert, etc.)
 	ds 1
 
-SECTION "Timeofday",BSS[$d269]
+SECTION "TimeOfDay",BSS[$d269]
 
 TimeOfDay: ; 0xd269
 ; 0 if morn
@@ -621,6 +684,35 @@ PlayerID: ; 0xd47b
 PlayerName: ; 0xd47d
 	ds 11
 
+PlayerSprite: ; 0xd4d8
+	ds 1
+
+SECTION "Status",BSS[$d84e]
+Money: ; d84e
+	ds 3
+
+Badges: ; d857
+	ds 2
+	
+SECTION "Items",BSS[$d859]
+TMsHMs: ; d859
+	ds 57
+
+NumItems: ; d892
+	ds 1
+Items: ; d893
+	ds 69
+
+NumKeyItems: ; d8bc
+	ds 1
+KeyItems: ; d8bd
+	ds 13
+	
+NumBalls: ; d8d7
+	ds 1
+Balls: ; d8d8
+	ds 25
+
 SECTION "scriptram",BSS[$d962]
 MooMooBerries: ; 0xd962
 	ds 1 ; how many berries fed to MooMoo
@@ -710,12 +802,13 @@ PartySpecies: ; 0xdcd8
 	ds 1 ; any empty slots including the 7th must be FF
 	     ; or the routine will keep going
 		 
-		 
+PartyMons:
 PartyMon1:
 PartyMon1Species: ; 0xdcdf
 	ds 1
 PartyMon1Item: ; 0xdce0
 	ds 1
+
 PartyMon1Moves: ; 0xdce1
 PartyMon1Move1: ; 0xdce1
 	ds 1
@@ -725,6 +818,7 @@ PartyMon1Move3: ; 0xdce3
 	ds 1
 PartyMon1Move4: ; 0xdce4
 	ds 1
+
 PartyMon1ID: ; 0xdce5
 	ds 2
 PartyMon1Exp: ; 0xdce7
