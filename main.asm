@@ -1608,7 +1608,26 @@ PrintNumber_AdvancePointer: ; c64a
 	ret
 ; 0xc658
 
-INCBIN "baserom.gbc",$c658,$ffff - $c658
+INCBIN "baserom.gbc",$c658,$c721 - $c658
+
+CheckFlag: ; c721
+; checks flag id in de
+; returns carry if flag is not set
+	ld b, $02 ; check flag
+	ld a, BANK(GetFlag)
+	ld hl, GetFlag
+	rst $08
+	ld a, c
+	and a
+	jr nz, .isset
+	scf
+	ret
+.isset
+	xor a
+	ret
+; c731
+
+INCBIN "baserom.gbc",$c658,$ffff - $c731
 
 SECTION "bank4",DATA,BANK[$4]
 
@@ -51298,7 +51317,260 @@ Route12SuperRodHouse_MapEventHeader: ; 0x7f60b
 
 SECTION "bank20",DATA,BANK[$20]
 
-INCBIN "baserom.gbc",$80000,$80730-$80000
+INCBIN "baserom.gbc",$80000,$80430-$80000
+
+GetFlag: ; 80430
+; takes flag id in de
+; stores flag location in de
+; extra input:
+;    b = 0: reset flag
+;      = 1: set flag
+;      > 1: check flag
+;
+	ld a, d
+	cp $00 ; less than 256 flag entries
+	jr z, .start
+	jr c, .read
+	jr .invalid
+.start
+	ld a, e
+	cp $a2 ; number of flag entries
+	jr c, .read
+.invalid
+	xor a
+	ld e, a
+	ld d, a
+.read
+	ld hl, Flags
+	add hl, de ; skip three
+	add hl, de ; bytes for
+	add hl, de ; each step
+	ld e, [hl]
+	inc hl
+	ld d, [hl]
+	inc hl
+	ld c, [hl] ; flag bit
+	ld a, b
+	cp $01
+	jr c, .reset ; b = 0
+	jr z, .set   ; b = 1
+	ld a, [de]   ; b > 1
+	and c
+	ld c, a
+	ret
+.set
+	ld a, [de]
+	or c
+	ld [de], a
+	ret
+.reset
+	ld a, c
+	cpl ; AND all bits except the one in question
+	ld c, a
+	ld a, [de]
+	and c
+	ld [de], a
+	ret
+; 80462
+	
+Flags: ; 80462
+	dwb $d957, %00000010
+	dwb $d957, %00000001
+	dwb $d957, %00000100
+	dwb $d957, %00001000
+	dwb $d957, %10000000
+	
+	dwb $def5, %01000000
+	dwb $def5, %00000001
+	
+	dwb $df2c, %00000001
+	
+	dwb $d854, %00000001
+	dwb $d854, %10000000
+	
+	dwb $dc39, %00000001
+	
+	dwb $d84c, %00000001
+	dwb $d84c, %00000010
+	dwb $d84c, %00001000
+	dwb $d84c, %00010000
+	dwb $d84c, %01000000
+	dwb $d84c, %10000000
+	
+	dwb $d84d, %00000100
+	dwb $d84d, %00000010
+	dwb $d84d, %00000001
+	dwb $d84d, %00010000
+	dwb $d84d, %00100000
+	dwb $d84d, %01000000
+	dwb $d84d, %10000000
+	
+	dwb $dbf5, %00000001
+	dwb $dbf5, %00000010
+	dwb $dbf5, %00000100
+	
+	; johto badges
+	dwb $d857, %00000001 ; $1b
+	dwb $d857, %00000010 ; $1c
+	dwb $d857, %00000100 ; $1d
+	dwb $d857, %00001000 ; $1e
+	dwb $d857, %00010000 ; $1f
+	dwb $d857, %00100000 ; $20
+	dwb $d857, %01000000 ; $21
+	dwb $d857, %10000000 ; $22
+	
+	; kanto badges
+	dwb $d858, %00000001 ; $23
+	dwb $d858, %00000010 ; $24
+	dwb $d858, %00000100 ; $25
+	dwb $d858, %00001000 ; $26
+	dwb $d858, %00010000 ; $27
+	dwb $d858, %00100000 ; $28
+	dwb $d858, %01000000 ; $29
+	dwb $d858, %10000000 ; $2a
+	
+	dwb $def3, %00000001
+	dwb $def3, %00000010
+	dwb $def3, %00000100
+	dwb $def3, %00001000
+	dwb $def3, %00010000
+	dwb $def3, %00100000
+	dwb $def3, %01000000
+	dwb $def3, %10000000
+	
+	dwb $dca5, %00000001
+	dwb $dca5, %00000010
+	dwb $dca5, %00000100
+	dwb $dca5, %00001000
+	dwb $dca5, %00010000
+	dwb $dca5, %00100000
+	dwb $dca5, %01000000
+	dwb $dca5, %10000000
+	
+	dwb $dca6, %00000001
+	dwb $dca6, %00000010
+	dwb $dca6, %00000100
+	dwb $dca6, %00001000
+	dwb $dca6, %00010000
+	dwb $dca6, %00100000
+	dwb $dca6, %01000000
+	dwb $dca6, %10000000
+	
+	dwb $dca7, %00000001
+	dwb $dca7, %00000010
+	dwb $dca7, %00000100
+	dwb $dca7, %00001000
+	dwb $dca7, %00010000
+	dwb $dca7, %00100000
+	dwb $dca7, %01000000
+	dwb $dca7, %10000000
+	
+	dwb $dca7, %00000001
+	dwb $dca7, %00000010
+	dwb $dca7, %00000100
+	dwb $dca7, %00001000
+	dwb $dca7, %00010000
+	
+	dwb $dc9d, %00000001
+	dwb $d84d, %00001000
+	
+	dwb $dc1e, %00000001
+	dwb $dc1e, %00000010
+	dwb $dc1e, %00000100
+	dwb $dc1e, %00001000
+	dwb $dc1e, %00010000
+	dwb $dc1e, %00100000
+	dwb $dc1e, %01000000
+	dwb $dc1e, %10000000
+	
+	dwb $dc1f, %00000001
+	dwb $dc1f, %00000010
+	dwb $dc1f, %00000100
+	dwb $dc1f, %00001000
+	dwb $dc1f, %00010000
+	dwb $dc1f, %00100000
+	dwb $dc1f, %01000000
+	dwb $dc1f, %10000000
+	
+	dwb $dc20, %00000001
+	dwb $dc20, %00000010
+	
+	dwb $cfbc, %10000000
+	dwb $d472, %00000001
+	dwb $dbf3, %00000100
+	
+	dwb $dc4c, %00000001
+	dwb $dc4c, %00000010
+	dwb $dc4c, %00000100
+	dwb $dc4c, %00001000
+	dwb $dc4c, %00010000
+	dwb $dc4c, %00100000
+	dwb $dc4c, %01000000
+	dwb $dc4c, %10000000
+	
+	dwb $dc4d, %00000001
+	dwb $dc4d, %00000010
+	dwb $dc4d, %00000100
+	dwb $dc4d, %00001000
+	dwb $dc4d, %00010000
+	dwb $dc4d, %00100000
+	dwb $dc4d, %01000000
+	dwb $dc4d, %10000000
+	
+	dwb $dc4e, %00000001
+	dwb $dc4e, %00000010
+	dwb $dc4e, %00000100
+	dwb $dc4e, %00001000
+	dwb $dc4e, %00010000
+	dwb $dc4e, %00100000
+	dwb $dc4e, %01000000
+	dwb $dc4e, %10000000
+	
+	dwb $dc50, %00000001
+	dwb $dc50, %00000010
+	dwb $dc50, %00000100
+	dwb $dc50, %00001000
+	dwb $dc50, %00010000
+	dwb $dc50, %00100000
+	dwb $dc50, %01000000
+	dwb $dc50, %10000000
+	
+	dwb $dc51, %00000001
+	dwb $dc51, %00000010
+	
+	dwb $dc54, %00000001
+	dwb $dc54, %00000010
+	dwb $dc54, %00000100
+	dwb $dc54, %00001000
+	dwb $dc54, %00010000
+	dwb $dc54, %00100000
+	dwb $dc54, %01000000
+	dwb $dc54, %10000000
+	
+	dwb $dc55, %00000001
+	dwb $dc55, %00000010
+	dwb $dc55, %00000100
+	dwb $dc55, %00001000
+	dwb $dc55, %00010000
+	dwb $dc55, %00100000
+	dwb $dc55, %01000000
+	dwb $dc55, %10000000
+	
+	dwb $dc56, %00000001
+	dwb $dc56, %00000010
+	dwb $dc56, %00000100
+	dwb $dc56, %00001000
+	dwb $dc56, %00010000
+	dwb $dc56, %00100000
+	dwb $dc56, %01000000
+	dwb $dc56, %10000000
+	
+	dwb $d45b, %00000100
+	dwb $dc20, %00000100
+	dwb $dc20, %00001000
+; 80648
+
+INCBIN "baserom.gbc",$80648,$80730-$80648
 
 BattleText_0x80730: ; 0x80730
 	db $0, $52, " picked up", $4f
@@ -74089,22 +74361,20 @@ BCMinusDE: ; fbca1
 ; fbca8
 
 MagikarpLengthTable: ; fbca8
-; stored in sets of 3
-; first two values are little endian
 ; third value is the divisor
-	db $6e, $00, $01
-	db $36, $01, $02
-	db $c6, $02, $04
-	db $96, $0a, $14
-	db $1e, $1e, $32
-	db $2e, $45, $64
-	db $c6, $7f, $96
-	db $5e, $ba, $96
-	db $6e, $e1, $64
-	db $f6, $f4, $32
-	db $c6, $fc, $14
-	db $ba, $fe, $05
-	db $82, $ff, $02
+	dwb $006e, $01
+	dwb $0136, $02
+	dwb $02c6, $04
+	dwb $0a96, $14
+	dwb $1e1e, $32
+	dwb $452e, $64
+	dwb $7fc6, $96
+	dwb $ba5e, $96
+	dwb $e16e, $64
+	dwb $f4f6, $32
+	dwb $fcc6, $14
+	dwb $feba, $05
+	dwb $ff82, $02
 ; fbccf
 
 INCBIN "baserom.gbc",$FBCCF,$fc000-$fbccf
