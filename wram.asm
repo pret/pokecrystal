@@ -691,8 +691,11 @@ SECTION "Status",BSS[$d84e]
 Money: ; d84e
 	ds 3
 
-Badges: ; d857
-	ds 2
+Badges:
+JohtoBadges: ; d857
+	ds 1
+KantoBadges: ; d858
+	ds 1
 	
 SECTION "Items",BSS[$d859]
 TMsHMs: ; d859
@@ -763,11 +766,11 @@ Box10Name: ; 0xdc16
 	ds 9
 Box11Name: ; 0xdc1f
 	ds 9
-Box12Name: ; 0xdb28
+Box12Name: ; 0xdc28
 	ds 9
-Box13Name: ; 0xdb31
+Box13Name: ; 0xdc31
 	ds 9
-Box14Name: ; 0xdb3a
+Box14Name: ; 0xdc3a
 	ds 9
 
 SECTION "BackupMapInfo", BSS[$dcad]

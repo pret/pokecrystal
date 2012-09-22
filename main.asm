@@ -743,7 +743,31 @@ BitTableFunc: ; 0x2e76
 	ret
 ; 0x2ead
 
-INCBIN "baserom.gbc",$2ead,$2fcb-$2ead
+INCBIN "baserom.gbc",$2ead,$2fb1-$2ead
+
+Function2fb1: ; 2fb1
+	push bc
+	ld c, a
+	xor a
+	sub c
+.asm_2fb5
+	sub c
+	jr nc, .asm_2fb5
+	add c
+	ld b, a
+	push bc
+.asm_2fbb
+	call $2f8c
+	ld a, [$ff00+$e1]
+	ld c, a
+	add b
+	jr c, .asm_2fbb
+	ld a, c
+	pop bc
+	call $3110
+	pop bc
+	ret
+; 2fcb
 
 Function2fcb: ; 0x2fcb
 	cp $4
@@ -10972,7 +10996,7 @@ Function3e8eb: ; 3e8eb
 	bit 3, a
 	jp nz, .asm_3ea90
 .asm_3ea44
-	call CheckSleepingWildMon
+	call CheckSleepingTreeMon
 	ld a, $07
 	jr c, .asm_3ea4c
 	xor a
@@ -11096,17 +11120,17 @@ Function3e8eb: ; 3e8eb
 	ret
 ; 3eb38
 
-CheckSleepingWildMon: ; 3eb38
+CheckSleepingTreeMon: ; 3eb38
 	ld a, [BattleType]
 	cp a, $08 ; headbutt
 	jr nz, .notsleeping
-	ld hl, SleepingWildMonMornTable
+	ld hl, SleepingTreeMonMornTable
 	ld a, [TimeOfDay]
 	cp a, $01 ; day
 	jr c, .check
-	ld hl, SleepingWildMonDayTable
+	ld hl, SleepingTreeMonDayTable
 	jr z, .check
-	ld hl, SleepingWildMonNiteTable
+	ld hl, SleepingTreeMonNiteTable
 .check
 	ld a, [EnemyMonSpecies]
 	ld de, $0001
@@ -11117,7 +11141,7 @@ CheckSleepingWildMon: ; 3eb38
 	ret
 ; 3eb5d
 
-SleepingWildMonNiteTable: ; 3eb5d
+SleepingTreeMonNiteTable: ; 3eb5d
 	db CATERPIE
 	db METAPOD
 	db BUTTERFREE
@@ -11132,7 +11156,7 @@ SleepingWildMonNiteTable: ; 3eb5d
 	db $ff ; end
 ; 3eb69
 
-SleepingWildMonDayTable: ; 3eb69
+SleepingTreeMonDayTable: ; 3eb69
 	db VENONAT
 	db HOOTHOOT
 	db NOCTOWL
@@ -11141,7 +11165,7 @@ SleepingWildMonDayTable: ; 3eb69
 	db $ff ; end
 ; 3eb6f
 
-SleepingWildMonMornTable ; 3eb6f
+SleepingTreeMonMornTable ; 3eb6f
 	db VENONAT
 	db HOOTHOOT
 	db NOCTOWL
@@ -73600,7 +73624,247 @@ INCBIN "baserom.gbc",$B4000,$4000
 
 SECTION "bank2E",DATA,BANK[$2E]
 
-INCBIN "baserom.gbc",$B8000,$4000
+INCBIN "baserom.gbc",$B8000,$b8219 - $b8000
+
+Functionb8219: ; b8219
+; deals strictly with rockmon encounter
+	xor a
+	ld [$d22e], a
+	ld [$d143], a
+	ld hl, WildRockMonMapTable
+	call GetTreeMonEncounterTable
+	jr nc, .quit
+	call LoadWildTreeMonData
+	jr nc, .quit
+	ld a, $0a
+	call $2fb1
+	cp a, $04
+	jr nc, .quit
+	call $441f
+	jr nc, .quit
+	ret
+.quit
+	xor a
+	ret
+; b823e
+
+db $05 ; ????
+
+GetTreeMonEncounterTable: ; b823f
+; reads a map-sensitive encounter table
+; compares current map with maps in the table
+; if there is a match, encounter table # is loaded into a
+	ld a, [MapNumber]
+	ld e, a
+	ld a, [MapGroup]
+	ld d, a
+.loop
+	ld a, [hli]
+	cp a, $ff
+	jr z, .quit
+	cp d
+	jr nz, .skip2
+	ld a, [hli]
+	cp e
+	jr nz, .skip1
+	jr .end
+.skip2
+	inc hl
+.skip1
+	inc hl
+	jr .loop
+.quit
+	xor a
+	ret
+.end
+	ld a, [hl]
+	scf
+	ret
+; b825e
+
+INCBIN "baserom.gbc",$B825E,$b82c5 - $b825e
+
+WildRockMonMapTable: ; b82c5
+	db GROUP_CIANWOOD_CITY, MAP_CIANWOOD_CITY, $07
+	db GROUP_ROUTE_40, MAP_ROUTE_40, $07
+	db GROUP_DARK_CAVE_VIOLET_ENTRANCE, MAP_DARK_CAVE_VIOLET_ENTRANCE, $07
+	db GROUP_SLOWPOKE_WELL_B1F, MAP_SLOWPOKE_WELL_B1F, $07
+	db $ff ; end
+; b82d2
+
+LoadWildTreeMonData: ; b82d2
+; input: a = table number
+; returns wildtreemontable pointer in hl
+; sets carry if successful
+	cp a, $08 ; which table?
+	jr nc, .quit ; only 8 tables
+	and a
+	jr z, .quit ; 0 is invalid
+	ld e, a
+	ld d, $00
+	ld hl, WildTreeMonPointerTable
+	add hl, de
+	add hl, de
+	ld a, [hli] ; store pointer in hl
+	ld h, [hl]
+	ld l, a
+	scf
+	ret
+.quit
+	xor a
+	ret
+; b82e8
+
+WildTreeMonPointerTable: ; b82e8
+; seems to point to "normal" tree encounter data
+; as such only odd-numbered tables are used
+; rockmon is 13th
+	dw WildTreeMonTable1  ; filler
+	dw WildTreeMonTable1  ; 1
+	dw WildTreeMonTable3  ; 2
+	dw WildTreeMonTable5  ; 3
+	dw WildTreeMonTable7  ; 4
+	dw WildTreeMonTable9  ; 5
+	dw WildTreeMonTable11 ; 6
+	dw WildRockMonTable   ; 7
+	dw WildTreeMonTable1  ; 8
+; b82fa
+
+; structure: % species level
+
+WildTreeMonTable1: ; b82fa
+	db 50, SPEAROW, 10
+	db 15, SPEAROW, 10
+	db 15, SPEAROW, 10
+	db 10, AIPOM, 10
+	db 5, AIPOM, 10
+	db 5, AIPOM, 10
+	db $ff ; end
+; b830d
+
+WildTreeMonTable2 ; b830d
+; unused
+	db 50, SPEAROW, 10
+	db 15, HERACROSS, 10
+	db 15, HERACROSS, 10
+	db 10, AIPOM, 10
+	db 5, AIPOM, 10
+	db 5, AIPOM, 10
+	db $ff ; end
+; b8320
+
+WildTreeMonTable3: ; b8320
+	db 50, SPEAROW, 10
+	db 15, EKANS, 10
+	db 15, SPEAROW, 10
+	db 10, AIPOM, 10
+	db 5, AIPOM, 10
+	db 5, AIPOM, 10
+	db $ff ; end
+; b8333
+
+WildTreeMonTable4: ; b8333
+; unused
+	db 50, SPEAROW, 10
+	db 15, HERACROSS, 10
+	db 15, HERACROSS, 10
+	db 10, AIPOM, 10
+	db 5, AIPOM, 10
+	db 5, AIPOM, 10
+	db $ff ; end
+; b8346
+
+WildTreeMonTable5: ; b8346
+	db 50, HOOTHOOT, 10
+	db 15, SPINARAK, 10
+	db 15, LEDYBA, 10
+	db 10, EXEGGCUTE, 10
+	db 5, EXEGGCUTE, 10
+	db 5, EXEGGCUTE, 10
+	db $ff ; end
+; b8359
+
+WildTreeMonTable6: ; b8359
+; unused
+	db 50, HOOTHOOT, 10
+	db 15, PINECO, 10
+	db 15, PINECO, 10
+	db 10, EXEGGCUTE, 10
+	db 5, EXEGGCUTE, 10
+	db 5, EXEGGCUTE, 10
+	db $ff ; end
+; b836c
+
+WildTreeMonTable7: ; b836c
+	db 50, HOOTHOOT, 10
+	db 15, EKANS, 10
+	db 15, HOOTHOOT, 10
+	db 10, EXEGGCUTE, 10
+	db 5, EXEGGCUTE, 10
+	db 5, EXEGGCUTE, 10
+	db $ff ; end
+; b837f
+
+WildTreeMonTable8: ; b837f
+; unused
+	db 50, HOOTHOOT, 10
+	db 15, PINECO, 10
+	db 15, PINECO, 10
+	db 10, EXEGGCUTE, 10
+	db 5, EXEGGCUTE, 10
+	db 5, EXEGGCUTE, 10
+	db $ff ; end
+; b8392
+
+WildTreeMonTable9: ; b8392
+	db 50, HOOTHOOT, 10
+	db 15, VENONAT, 10
+	db 15, HOOTHOOT, 10
+	db 10, EXEGGCUTE, 10
+	db 5, EXEGGCUTE, 10
+	db 5, EXEGGCUTE, 10
+	db $ff ; end
+; b83a5
+
+WildTreeMonTable10: ; b83a5
+; unused
+	db 50, HOOTHOOT, 10
+	db 15, PINECO, 10
+	db 15, PINECO, 10
+	db 10, EXEGGCUTE, 10
+	db 5, EXEGGCUTE, 10
+	db 5, EXEGGCUTE, 10
+	db $ff ; end
+; b83b8
+
+WildTreeMonTable11: ; b83b8
+	db 50, HOOTHOOT, 10
+	db 15, PINECO, 10
+	db 15, PINECO, 10
+	db 10, NOCTOWL, 10
+	db 5, BUTTERFREE, 10
+	db 5, BEEDRILL, 10
+	db $ff ; end
+; b83cb
+
+WildTreeMonTable12; b83cb
+; unused
+	db 50, HOOTHOOT, 10
+	db 15, CATERPIE, 10
+	db 15, WEEDLE, 10
+	db 10, HOOTHOOT, 10
+	db 5, METAPOD, 10
+	db 5, KAKUNA, 10
+	db $ff ; end
+; b83de
+
+WildRockMonTable: ; b83de
+	db 90, KRABBY, 15
+	db 10, SHUCKLE, 15
+	db $ff ; end
+; b83e5
+
+INCBIN "baserom.gbc",$B83E5,$bc000 - $b83e5
 
 SECTION "bank2F",DATA,BANK[$2F]
 

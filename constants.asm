@@ -1,5 +1,10 @@
 _CRYSTAL EQU 1
 
+dwb: MACRO
+	dw \1
+	db \2
+	ENDM
+
 TX_FAR: MACRO
 	db $16
 	dw \1
