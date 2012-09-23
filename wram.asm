@@ -106,11 +106,18 @@ EnemyMonLevel: ; d213
 	
 EnemyMonStatus: ; d214
 	ds 2
-	
-EnemyMonHP: ; d216
-	ds 2
-EnemyMonMaxHP: ; d218
-	ds 2
+
+EnemyMonHP:
+EnemyMonHPHi: ; d216
+	ds 1
+EnemyMonHPLo: ; d217
+	ds 1
+
+EnemyMonMaxHP:
+EnemyMonMaxHPHi: ; d218
+	ds 1
+EnemyMonMaxHPLo: ; d219
+	ds 1
 
 EnemyMonAtk: ; d21a
 	ds 2
@@ -131,8 +138,8 @@ OtherTrainerClass: ; 0xd22f
 	ds 1
 
 BattleType: ; 0xd230
-; 00 trainer
-; 08 headbutt
+; 00 normal
+; 08 headbutt/rock smash. probably bit 3
 	ds 1
 
 OtherTrainerID: ; 0xd231
@@ -686,6 +693,14 @@ PlayerName: ; 0xd47d
 
 PlayerSprite: ; 0xd4d8
 	ds 1
+	
+PlayerDirection: ; d4de
+; uses bits 2 and 3 / $0c / %00001100
+; %00 down
+; %01 up
+; %10 left
+; $11 right
+	ds 1
 
 SECTION "Status",BSS[$d84e]
 Money: ; d84e
@@ -715,6 +730,11 @@ NumBalls: ; d8d7
 	ds 1
 Balls: ; d8d8
 	ds 25
+	
+SECTION "overworld",BSS[$d95d]
+PlayerState: ; d95d
+; surfing = $04
+	ds 1
 
 SECTION "scriptram",BSS[$d962]
 MooMooBerries: ; 0xd962

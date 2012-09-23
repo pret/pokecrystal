@@ -913,9 +913,9 @@ IsInArray: ; 30e1
 	ret
 ; 0x30f4
 
-INCBIN "baserom.gbc",$30f4,$30f7 - $30f4
-
-AddNTimesCopied: ; 0x30f7
+SkipNames: ; 0x30f4
+; skips n names where n = a
+	ld bc, $000b ; name length
 	and a
 	ret z
 .loop
@@ -926,6 +926,7 @@ AddNTimesCopied: ; 0x30f7
 ; 0x30fe
 
 AddNTimes: ; 0x30fe
+; adds bc n times where n = a
 	and a
 	ret z
 .loop
@@ -1263,7 +1264,25 @@ PrintBCDDigit: ; 38f2
 	ret
 ; 0x3917
 
-INCBIN "baserom.gbc",$3917,$4000 - $3917
+Function3917: ; 3917
+	push bc
+	ld hl, $dcdf
+	ld c, a
+	ld b, $00
+	add hl, bc
+	ld a, [$d109]
+	call Function3927
+	pop bc
+	ret
+; 3927
+
+Function3927: ; 3927
+; a is typically [$d109]
+	ld bc, $0030
+	jp AddNTimes
+; 392d
+
+INCBIN "baserom.gbc",$392d,$4000 - $392d
 
 SECTION "bank1",DATA,BANK[$1]
 
@@ -1627,7 +1646,7 @@ CheckFlag: ; c721
 	ret
 ; c731
 
-INCBIN "baserom.gbc",$c658,$ffff - $c731
+INCBIN "baserom.gbc",$c731,$ffff - $c731
 
 SECTION "bank4",DATA,BANK[$4]
 
@@ -10869,7 +10888,7 @@ Function3e8eb: ; 3e8eb
 	jr z, .asm_3e925
 	ld a, [$d109]
 	ld hl, $d289
-	call $3927
+	call Function3927
 	ld a, [hl]
 	jr .asm_3e945
 .asm_3e925
@@ -11024,9 +11043,9 @@ Function3e8eb: ; 3e8eb
 	ld [hli], a
 	xor a
 	ld [hli], a
-	ld a, [$d218] ; EnemyMonMaxHP
+	ld a, [EnemyMonMaxHPHi]
 	ld [hli], a
-	ld a, [$d219] ; EnemyMonMaxHP + 1
+	ld a, [EnemyMonMaxHPLo]
 	ld [hl], a
 	ld a, [BattleType]
 	cp a, $05
@@ -11036,20 +11055,20 @@ Function3e8eb: ; 3e8eb
 	and a
 	jr z, .asm_3ea6e
 	ld a, [hl]
-	ld [$d217], a ; EnemyMonHP + 1
+	ld [EnemyMonHPLo], a
 	jr .asm_3ea90
 .asm_3ea6e
-	ld a, [$d217] ; EnemyMonHP + 1
+	ld a, [EnemyMonHPLo]
 	ld [hl], a
 	jr .asm_3ea90
 .asm_3ea74
 	ld hl, $d2ab
 	ld a, [$d109]
-	call $3927
+	call Function3927
 	ld a, [hld]
-	ld [$d217], a ; EnemyMonHP + 1
+	ld [EnemyMonHPLo], a
 	ld a, [hld]
-	ld [$d216], a ; EnemyMonHP
+	ld [EnemyMonHPHi], a
 	ld a, [$d109]
 	ld [$c663], a
 	dec hl
@@ -11069,7 +11088,7 @@ Function3e8eb: ; 3e8eb
 	jr nz, .asm_3eab6
 	ld hl, OTPartyMon1Moves
 	ld a, [$d109]
-	call $3927
+	call Function3927
 	ld bc, $0004
 	call CopyBytes
 	jr .asm_3eac5
@@ -11096,7 +11115,7 @@ Function3e8eb: ; 3e8eb
 .asm_3ead9
 	ld hl, $d29f
 	ld a, [$d109]
-	call $3927
+	call Function3927
 	ld de, EnemyMonPP
 	ld bc, $0004
 	call CopyBytes
@@ -51457,7 +51476,6 @@ Flags: ; 80462
 	dwb $dca6, %10000000
 	
 	dwb $dca7, %00000001
-	dwb $dca7, %00000010
 	dwb $dca7, %00000100
 	dwb $dca7, %00001000
 	dwb $dca7, %00010000
@@ -51465,11 +51483,10 @@ Flags: ; 80462
 	dwb $dca7, %01000000
 	dwb $dca7, %10000000
 	
-	dwb $dca7, %00000001
-	dwb $dca7, %00000010
-	dwb $dca7, %00000100
-	dwb $dca7, %00001000
-	dwb $dca7, %00010000
+	dwb $dca8, %00000001
+	dwb $dca8, %00000010
+	dwb $dca8, %00000100
+	dwb $dca8, %00010000
 	
 	dwb $dc9d, %00000001
 	dwb $d84d, %00001000
