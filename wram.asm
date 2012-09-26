@@ -106,11 +106,18 @@ EnemyMonLevel: ; d213
 	
 EnemyMonStatus: ; d214
 	ds 2
-	
-EnemyMonHP: ; d216
-	ds 2
-EnemyMonMaxHP: ; d218
-	ds 2
+
+EnemyMonHP:
+EnemyMonHPHi: ; d216
+	ds 1
+EnemyMonHPLo: ; d217
+	ds 1
+
+EnemyMonMaxHP:
+EnemyMonMaxHPHi: ; d218
+	ds 1
+EnemyMonMaxHPLo: ; d219
+	ds 1
 
 EnemyMonAtk: ; d21a
 	ds 2
@@ -131,8 +138,8 @@ OtherTrainerClass: ; 0xd22f
 	ds 1
 
 BattleType: ; 0xd230
-; 00 trainer
-; 08 headbutt
+; 00 normal
+; 08 headbutt/rock smash. probably bit 3
 	ds 1
 
 OtherTrainerID: ; 0xd231
@@ -686,13 +693,24 @@ PlayerName: ; 0xd47d
 
 PlayerSprite: ; 0xd4d8
 	ds 1
+	
+PlayerDirection: ; d4de
+; uses bits 2 and 3 / $0c / %00001100
+; %00 down
+; %01 up
+; %10 left
+; $11 right
+	ds 1
 
 SECTION "Status",BSS[$d84e]
 Money: ; d84e
 	ds 3
 
-Badges: ; d857
-	ds 2
+Badges:
+JohtoBadges: ; d857
+	ds 1
+KantoBadges: ; d858
+	ds 1
 	
 SECTION "Items",BSS[$d859]
 TMsHMs: ; d859
@@ -712,6 +730,14 @@ NumBalls: ; d8d7
 	ds 1
 Balls: ; d8d8
 	ds 25
+	
+SECTION "overworld",BSS[$d95d]
+PlayerState: ; d95d
+; $00: normal
+; $01: bicycle
+; $04: surf
+; $08: surf (pikachu)
+	ds 1
 
 SECTION "scriptram",BSS[$d962]
 MooMooBerries: ; 0xd962
@@ -763,11 +789,11 @@ Box10Name: ; 0xdc16
 	ds 9
 Box11Name: ; 0xdc1f
 	ds 9
-Box12Name: ; 0xdb28
+Box12Name: ; 0xdc28
 	ds 9
-Box13Name: ; 0xdb31
+Box13Name: ; 0xdc31
 	ds 9
-Box14Name: ; 0xdb3a
+Box14Name: ; 0xdc3a
 	ds 9
 
 SECTION "BackupMapInfo", BSS[$dcad]

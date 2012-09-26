@@ -1,5 +1,22 @@
 _CRYSTAL EQU 1
 
+dwb: MACRO
+	dw \1
+	db \2
+	ENDM
+
+callab: MACRO
+	ld hl, \1
+	ld a, BANK(\1)
+	rst $08
+	ENDM
+
+callba: MACRO
+	ld a, BANK(\1)
+	ld hl, \1
+	rst $08
+	ENDM
+
 TX_FAR: MACRO
 	db $16
 	dw \1
@@ -257,6 +274,8 @@ TYRANITAR  EQU 248
 LUGIA      EQU 249
 HO_OH      EQU 250
 CELEBI     EQU 251
+
+EGG        EQU 253
 
 ; move name constants
 POUND        EQU $01
@@ -2983,3 +3002,7 @@ OPTION         EQU 2
 MYSTERY_GIFT   EQU 3
 MOBILE         EQU 4
 MOBILE_STUDIUM EQU 5
+
+; name length
+PLAYER_NAME_LENGTH EQU 8
+PKMN_NAME_LENGTH EQU 11

@@ -241,7 +241,7 @@ Functiona0a:
 INCBIN "baserom.gbc",$a1b,$e8d - $a1b
 
 ; copy bc bytes from a:hl to de
-FarCopyBytes:
+FarCopyBytes: ; e8d
 	ld [$ff00+$8b], a
 	ld a, [$ff00+$9d] ; save old bank
 	push af
@@ -743,7 +743,31 @@ BitTableFunc: ; 0x2e76
 	ret
 ; 0x2ead
 
-INCBIN "baserom.gbc",$2ead,$2fcb-$2ead
+INCBIN "baserom.gbc",$2ead,$2fb1-$2ead
+
+Function2fb1: ; 2fb1
+	push bc
+	ld c, a
+	xor a
+	sub c
+.asm_2fb5
+	sub c
+	jr nc, .asm_2fb5
+	add c
+	ld b, a
+	push bc
+.asm_2fbb
+	call $2f8c
+	ld a, [$ff00+$e1]
+	ld c, a
+	add b
+	jr c, .asm_2fbb
+	ld a, c
+	pop bc
+	call $3110
+	pop bc
+	ret
+; 2fcb
 
 Function2fcb: ; 0x2fcb
 	cp $4
@@ -889,9 +913,9 @@ IsInArray: ; 30e1
 	ret
 ; 0x30f4
 
-INCBIN "baserom.gbc",$30f4,$30f7 - $30f4
-
-AddNTimesCopied: ; 0x30f7
+SkipNames: ; 0x30f4
+; skips n names where n = a
+	ld bc, $000b ; name length
 	and a
 	ret z
 .loop
@@ -902,6 +926,7 @@ AddNTimesCopied: ; 0x30f7
 ; 0x30fe
 
 AddNTimes: ; 0x30fe
+; adds bc n times where n = a
 	and a
 	ret z
 .loop
@@ -1239,7 +1264,25 @@ PrintBCDDigit: ; 38f2
 	ret
 ; 0x3917
 
-INCBIN "baserom.gbc",$3917,$4000 - $3917
+Function3917: ; 3917
+	push bc
+	ld hl, $dcdf
+	ld c, a
+	ld b, $00
+	add hl, bc
+	ld a, [$d109]
+	call Function3927
+	pop bc
+	ret
+; 3927
+
+Function3927: ; 3927
+; a is typically [$d109]
+	ld bc, $0030
+	jp AddNTimes
+; 392d
+
+INCBIN "baserom.gbc",$392d,$4000 - $392d
 
 SECTION "bank1",DATA,BANK[$1]
 
@@ -1584,7 +1627,26 @@ PrintNumber_AdvancePointer: ; c64a
 	ret
 ; 0xc658
 
-INCBIN "baserom.gbc",$c658,$ffff - $c658
+INCBIN "baserom.gbc",$c658,$c721 - $c658
+
+CheckFlag: ; c721
+; checks flag id in de
+; returns carry if flag is not set
+	ld b, $02 ; check flag
+	ld a, BANK(GetFlag)
+	ld hl, GetFlag
+	rst $08
+	ld a, c
+	and a
+	jr nz, .isset
+	scf
+	ret
+.isset
+	xor a
+	ret
+; c731
+
+INCBIN "baserom.gbc",$c731,$ffff - $c731
 
 SECTION "bank4",DATA,BANK[$4]
 
@@ -10826,7 +10888,7 @@ Function3e8eb: ; 3e8eb
 	jr z, .asm_3e925
 	ld a, [$d109]
 	ld hl, $d289
-	call $3927
+	call Function3927
 	ld a, [hl]
 	jr .asm_3e945
 .asm_3e925
@@ -10972,7 +11034,7 @@ Function3e8eb: ; 3e8eb
 	bit 3, a
 	jp nz, .asm_3ea90
 .asm_3ea44
-	call CheckSleepingWildMon
+	call CheckSleepingTreeMon
 	ld a, $07
 	jr c, .asm_3ea4c
 	xor a
@@ -10981,9 +11043,9 @@ Function3e8eb: ; 3e8eb
 	ld [hli], a
 	xor a
 	ld [hli], a
-	ld a, [$d218] ; EnemyMonMaxHP
+	ld a, [EnemyMonMaxHPHi]
 	ld [hli], a
-	ld a, [$d219] ; EnemyMonMaxHP + 1
+	ld a, [EnemyMonMaxHPLo]
 	ld [hl], a
 	ld a, [BattleType]
 	cp a, $05
@@ -10993,20 +11055,20 @@ Function3e8eb: ; 3e8eb
 	and a
 	jr z, .asm_3ea6e
 	ld a, [hl]
-	ld [$d217], a ; EnemyMonHP + 1
+	ld [EnemyMonHPLo], a
 	jr .asm_3ea90
 .asm_3ea6e
-	ld a, [$d217] ; EnemyMonHP + 1
+	ld a, [EnemyMonHPLo]
 	ld [hl], a
 	jr .asm_3ea90
 .asm_3ea74
 	ld hl, $d2ab
 	ld a, [$d109]
-	call $3927
+	call Function3927
 	ld a, [hld]
-	ld [$d217], a ; EnemyMonHP + 1
+	ld [EnemyMonHPLo], a
 	ld a, [hld]
-	ld [$d216], a ; EnemyMonHP
+	ld [EnemyMonHPHi], a
 	ld a, [$d109]
 	ld [$c663], a
 	dec hl
@@ -11026,7 +11088,7 @@ Function3e8eb: ; 3e8eb
 	jr nz, .asm_3eab6
 	ld hl, OTPartyMon1Moves
 	ld a, [$d109]
-	call $3927
+	call Function3927
 	ld bc, $0004
 	call CopyBytes
 	jr .asm_3eac5
@@ -11053,7 +11115,7 @@ Function3e8eb: ; 3e8eb
 .asm_3ead9
 	ld hl, $d29f
 	ld a, [$d109]
-	call $3927
+	call Function3927
 	ld de, EnemyMonPP
 	ld bc, $0004
 	call CopyBytes
@@ -11096,17 +11158,17 @@ Function3e8eb: ; 3e8eb
 	ret
 ; 3eb38
 
-CheckSleepingWildMon: ; 3eb38
+CheckSleepingTreeMon: ; 3eb38
 	ld a, [BattleType]
 	cp a, $08 ; headbutt
 	jr nz, .notsleeping
-	ld hl, SleepingWildMonMornTable
+	ld hl, SleepingTreeMonMornTable
 	ld a, [TimeOfDay]
 	cp a, $01 ; day
 	jr c, .check
-	ld hl, SleepingWildMonDayTable
+	ld hl, SleepingTreeMonDayTable
 	jr z, .check
-	ld hl, SleepingWildMonNiteTable
+	ld hl, SleepingTreeMonNiteTable
 .check
 	ld a, [EnemyMonSpecies]
 	ld de, $0001
@@ -11117,7 +11179,7 @@ CheckSleepingWildMon: ; 3eb38
 	ret
 ; 3eb5d
 
-SleepingWildMonNiteTable: ; 3eb5d
+SleepingTreeMonNiteTable: ; 3eb5d
 	db CATERPIE
 	db METAPOD
 	db BUTTERFREE
@@ -11132,7 +11194,7 @@ SleepingWildMonNiteTable: ; 3eb5d
 	db $ff ; end
 ; 3eb69
 
-SleepingWildMonDayTable: ; 3eb69
+SleepingTreeMonDayTable: ; 3eb69
 	db VENONAT
 	db HOOTHOOT
 	db NOCTOWL
@@ -11141,7 +11203,7 @@ SleepingWildMonDayTable: ; 3eb69
 	db $ff ; end
 ; 3eb6f
 
-SleepingWildMonMornTable ; 3eb6f
+SleepingTreeMonMornTable ; 3eb6f
 	db VENONAT
 	db HOOTHOOT
 	db NOCTOWL
@@ -51274,7 +51336,263 @@ Route12SuperRodHouse_MapEventHeader: ; 0x7f60b
 
 SECTION "bank20",DATA,BANK[$20]
 
-INCBIN "baserom.gbc",$80000,$80730-$80000
+INCBIN "baserom.gbc",$80000,$80430-$80000
+
+GetFlag: ; 80430
+; engine flags, not script related
+; takes flag id in de, mode in b
+; can either check, set or reset a flag
+; check: stores flag in c
+; set/reset: no output
+;
+;    b = 0: reset flag
+;      = 1: set flag
+;      > 1: check flag
+;
+	ld a, d
+	cp $00 ; is the flag id > 256?
+	jr z, .start ; no
+	jr c, .read ; carry is never set
+	jr .invalid ; yes
+.start
+	ld a, e
+	cp $a2 ; $a2 flag ids
+	jr c, .read
+.invalid
+; uses flag 0
+	xor a
+	ld e, a
+	ld d, a
+.read
+	ld hl, Flags
+	add hl, de ; skip three
+	add hl, de ; bytes per
+	add hl, de ; flag
+	ld e, [hl]
+	inc hl
+	ld d, [hl]
+	inc hl
+	ld c, [hl] ; flag bit
+	ld a, b
+	cp $01
+	jr c, .reset ; b = 0
+	jr z, .set   ; b = 1
+	ld a, [de]   ; b > 1
+	and c
+	ld c, a
+	ret
+.set
+	ld a, [de]
+	or c
+	ld [de], a
+	ret
+.reset
+	ld a, c
+	cpl ; AND all bits except the one in question
+	ld c, a
+	ld a, [de]
+	and c
+	ld [de], a
+	ret
+; 80462
+	
+Flags: ; 80462
+; location, bit
+	dwb $d957, %00000010
+	dwb $d957, %00000001
+	dwb $d957, %00000100
+	dwb $d957, %00001000
+	dwb $d957, %10000000
+	
+	dwb $def5, %01000000
+	dwb $def5, %00000001
+	
+	dwb $df2c, %00000001
+	
+	dwb $d854, %00000001
+	dwb $d854, %10000000
+	
+	dwb $dc39, %00000001
+	
+	dwb $d84c, %00000001
+	dwb $d84c, %00000010
+	dwb $d84c, %00001000
+	dwb $d84c, %00010000
+	dwb $d84c, %01000000
+	dwb $d84c, %10000000
+	
+	dwb $d84d, %00000100 ; bug catching contest timeup
+	dwb $d84d, %00000010
+	dwb $d84d, %00000001
+	dwb $d84d, %00010000
+	dwb $d84d, %00100000
+	dwb $d84d, %01000000
+	dwb $d84d, %10000000
+	
+	dwb $dbf5, %00000001
+	dwb $dbf5, %00000010
+	dwb $dbf5, %00000100 ; downhill (cycling road)
+	
+	; johto badges
+	dwb $d857, %00000001 ; $1b
+	dwb $d857, %00000010 ; $1c
+	dwb $d857, %00000100 ; $1d
+	dwb $d857, %00001000 ; $1e
+	dwb $d857, %00010000 ; $1f
+	dwb $d857, %00100000 ; $20
+	dwb $d857, %01000000 ; $21
+	dwb $d857, %10000000 ; $22
+	
+	; kanto badges
+	dwb $d858, %00000001 ; $23
+	dwb $d858, %00000010 ; $24
+	dwb $d858, %00000100 ; $25
+	dwb $d858, %00001000 ; $26
+	dwb $d858, %00010000 ; $27
+	dwb $d858, %00100000 ; $28
+	dwb $d858, %01000000 ; $29
+	dwb $d858, %10000000 ; $2a
+	
+	dwb $def3, %00000001
+	dwb $def3, %00000010
+	dwb $def3, %00000100
+	dwb $def3, %00001000
+	dwb $def3, %00010000
+	dwb $def3, %00100000
+	dwb $def3, %01000000
+	dwb $def3, %10000000
+	
+	dwb $dca5, %00000001
+	dwb $dca5, %00000010
+	dwb $dca5, %00000100
+	dwb $dca5, %00001000
+	dwb $dca5, %00010000
+	dwb $dca5, %00100000
+	dwb $dca5, %01000000
+	dwb $dca5, %10000000
+	
+	dwb $dca6, %00000001
+	dwb $dca6, %00000010
+	dwb $dca6, %00000100
+	dwb $dca6, %00001000
+	dwb $dca6, %00010000
+	dwb $dca6, %00100000
+	dwb $dca6, %01000000
+	dwb $dca6, %10000000
+	
+	dwb $dca7, %00000001
+	dwb $dca7, %00000100
+	dwb $dca7, %00001000
+	dwb $dca7, %00010000
+	dwb $dca7, %00100000
+	dwb $dca7, %01000000
+	dwb $dca7, %10000000
+	
+	dwb $dca8, %00000001
+	dwb $dca8, %00000010
+	dwb $dca8, %00000100
+	dwb $dca8, %00010000
+	
+	dwb $dc9d, %00000001
+	dwb $d84d, %00001000
+	
+	dwb $dc1e, %00000001
+	dwb $dc1e, %00000010
+	dwb $dc1e, %00000100
+	dwb $dc1e, %00001000
+	dwb $dc1e, %00010000
+	dwb $dc1e, %00100000
+	dwb $dc1e, %01000000
+	dwb $dc1e, %10000000
+	
+	dwb $dc1f, %00000001
+	dwb $dc1f, %00000010
+	dwb $dc1f, %00000100
+	dwb $dc1f, %00001000
+	dwb $dc1f, %00010000
+	dwb $dc1f, %00100000
+	dwb $dc1f, %01000000
+	dwb $dc1f, %10000000
+	
+	dwb $dc20, %00000001
+	dwb $dc20, %00000010
+	
+	dwb $cfbc, %10000000
+	dwb $d472, %00000001 ; 0 if boy, 1 if girl
+	dwb $dbf3, %00000100
+	
+	dwb $dc4c, %00000001
+	dwb $dc4c, %00000010
+	dwb $dc4c, %00000100
+	dwb $dc4c, %00001000
+	dwb $dc4c, %00010000
+	dwb $dc4c, %00100000
+	dwb $dc4c, %01000000
+	dwb $dc4c, %10000000
+	
+	dwb $dc4d, %00000001
+	dwb $dc4d, %00000010
+	dwb $dc4d, %00000100
+	dwb $dc4d, %00001000
+	dwb $dc4d, %00010000
+	dwb $dc4d, %00100000
+	dwb $dc4d, %01000000
+	dwb $dc4d, %10000000
+	
+	dwb $dc4e, %00000001
+	dwb $dc4e, %00000010
+	dwb $dc4e, %00000100
+	dwb $dc4e, %00001000
+	dwb $dc4e, %00010000
+	dwb $dc4e, %00100000
+	dwb $dc4e, %01000000
+	dwb $dc4e, %10000000
+	
+	dwb $dc50, %00000001
+	dwb $dc50, %00000010
+	dwb $dc50, %00000100
+	dwb $dc50, %00001000
+	dwb $dc50, %00010000
+	dwb $dc50, %00100000
+	dwb $dc50, %01000000
+	dwb $dc50, %10000000
+	
+	dwb $dc51, %00000001
+	dwb $dc51, %00000010
+	
+	dwb $dc54, %00000001
+	dwb $dc54, %00000010
+	dwb $dc54, %00000100
+	dwb $dc54, %00001000
+	dwb $dc54, %00010000
+	dwb $dc54, %00100000
+	dwb $dc54, %01000000
+	dwb $dc54, %10000000
+	
+	dwb $dc55, %00000001
+	dwb $dc55, %00000010
+	dwb $dc55, %00000100
+	dwb $dc55, %00001000
+	dwb $dc55, %00010000
+	dwb $dc55, %00100000
+	dwb $dc55, %01000000
+	dwb $dc55, %10000000
+	
+	dwb $dc56, %00000001
+	dwb $dc56, %00000010
+	dwb $dc56, %00000100
+	dwb $dc56, %00001000
+	dwb $dc56, %00010000
+	dwb $dc56, %00100000
+	dwb $dc56, %01000000
+	dwb $dc56, %10000000
+	
+	dwb $d45b, %00000100
+	dwb $dc20, %00000100
+	dwb $dc20, %00001000 ; $a1
+; 80648
+
+INCBIN "baserom.gbc",$80648,$80730-$80648
 
 BattleText_0x80730: ; 0x80730
 	db $0, $52, " picked up", $4f
@@ -73600,7 +73918,247 @@ INCBIN "baserom.gbc",$B4000,$4000
 
 SECTION "bank2E",DATA,BANK[$2E]
 
-INCBIN "baserom.gbc",$B8000,$4000
+INCBIN "baserom.gbc",$B8000,$b8219 - $b8000
+
+Functionb8219: ; b8219
+; deals strictly with rockmon encounter
+	xor a
+	ld [$d22e], a
+	ld [$d143], a
+	ld hl, WildRockMonMapTable
+	call GetTreeMonEncounterTable
+	jr nc, .quit
+	call LoadWildTreeMonData
+	jr nc, .quit
+	ld a, $0a
+	call $2fb1
+	cp a, $04
+	jr nc, .quit
+	call $441f
+	jr nc, .quit
+	ret
+.quit
+	xor a
+	ret
+; b823e
+
+db $05 ; ????
+
+GetTreeMonEncounterTable: ; b823f
+; reads a map-sensitive encounter table
+; compares current map with maps in the table
+; if there is a match, encounter table # is loaded into a
+	ld a, [MapNumber]
+	ld e, a
+	ld a, [MapGroup]
+	ld d, a
+.loop
+	ld a, [hli]
+	cp a, $ff
+	jr z, .quit
+	cp d
+	jr nz, .skip2
+	ld a, [hli]
+	cp e
+	jr nz, .skip1
+	jr .end
+.skip2
+	inc hl
+.skip1
+	inc hl
+	jr .loop
+.quit
+	xor a
+	ret
+.end
+	ld a, [hl]
+	scf
+	ret
+; b825e
+
+INCBIN "baserom.gbc",$B825E,$b82c5 - $b825e
+
+WildRockMonMapTable: ; b82c5
+	db GROUP_CIANWOOD_CITY, MAP_CIANWOOD_CITY, $07
+	db GROUP_ROUTE_40, MAP_ROUTE_40, $07
+	db GROUP_DARK_CAVE_VIOLET_ENTRANCE, MAP_DARK_CAVE_VIOLET_ENTRANCE, $07
+	db GROUP_SLOWPOKE_WELL_B1F, MAP_SLOWPOKE_WELL_B1F, $07
+	db $ff ; end
+; b82d2
+
+LoadWildTreeMonData: ; b82d2
+; input: a = table number
+; returns wildtreemontable pointer in hl
+; sets carry if successful
+	cp a, $08 ; which table?
+	jr nc, .quit ; only 8 tables
+	and a
+	jr z, .quit ; 0 is invalid
+	ld e, a
+	ld d, $00
+	ld hl, WildTreeMonPointerTable
+	add hl, de
+	add hl, de
+	ld a, [hli] ; store pointer in hl
+	ld h, [hl]
+	ld l, a
+	scf
+	ret
+.quit
+	xor a
+	ret
+; b82e8
+
+WildTreeMonPointerTable: ; b82e8
+; seems to point to "normal" tree encounter data
+; as such only odd-numbered tables are used
+; rockmon is 13th
+	dw WildTreeMonTable1  ; filler
+	dw WildTreeMonTable1  ; 1
+	dw WildTreeMonTable3  ; 2
+	dw WildTreeMonTable5  ; 3
+	dw WildTreeMonTable7  ; 4
+	dw WildTreeMonTable9  ; 5
+	dw WildTreeMonTable11 ; 6
+	dw WildRockMonTable   ; 7
+	dw WildTreeMonTable1  ; 8
+; b82fa
+
+; structure: % species level
+
+WildTreeMonTable1: ; b82fa
+	db 50, SPEAROW, 10
+	db 15, SPEAROW, 10
+	db 15, SPEAROW, 10
+	db 10, AIPOM, 10
+	db 5, AIPOM, 10
+	db 5, AIPOM, 10
+	db $ff ; end
+; b830d
+
+WildTreeMonTable2 ; b830d
+; unused
+	db 50, SPEAROW, 10
+	db 15, HERACROSS, 10
+	db 15, HERACROSS, 10
+	db 10, AIPOM, 10
+	db 5, AIPOM, 10
+	db 5, AIPOM, 10
+	db $ff ; end
+; b8320
+
+WildTreeMonTable3: ; b8320
+	db 50, SPEAROW, 10
+	db 15, EKANS, 10
+	db 15, SPEAROW, 10
+	db 10, AIPOM, 10
+	db 5, AIPOM, 10
+	db 5, AIPOM, 10
+	db $ff ; end
+; b8333
+
+WildTreeMonTable4: ; b8333
+; unused
+	db 50, SPEAROW, 10
+	db 15, HERACROSS, 10
+	db 15, HERACROSS, 10
+	db 10, AIPOM, 10
+	db 5, AIPOM, 10
+	db 5, AIPOM, 10
+	db $ff ; end
+; b8346
+
+WildTreeMonTable5: ; b8346
+	db 50, HOOTHOOT, 10
+	db 15, SPINARAK, 10
+	db 15, LEDYBA, 10
+	db 10, EXEGGCUTE, 10
+	db 5, EXEGGCUTE, 10
+	db 5, EXEGGCUTE, 10
+	db $ff ; end
+; b8359
+
+WildTreeMonTable6: ; b8359
+; unused
+	db 50, HOOTHOOT, 10
+	db 15, PINECO, 10
+	db 15, PINECO, 10
+	db 10, EXEGGCUTE, 10
+	db 5, EXEGGCUTE, 10
+	db 5, EXEGGCUTE, 10
+	db $ff ; end
+; b836c
+
+WildTreeMonTable7: ; b836c
+	db 50, HOOTHOOT, 10
+	db 15, EKANS, 10
+	db 15, HOOTHOOT, 10
+	db 10, EXEGGCUTE, 10
+	db 5, EXEGGCUTE, 10
+	db 5, EXEGGCUTE, 10
+	db $ff ; end
+; b837f
+
+WildTreeMonTable8: ; b837f
+; unused
+	db 50, HOOTHOOT, 10
+	db 15, PINECO, 10
+	db 15, PINECO, 10
+	db 10, EXEGGCUTE, 10
+	db 5, EXEGGCUTE, 10
+	db 5, EXEGGCUTE, 10
+	db $ff ; end
+; b8392
+
+WildTreeMonTable9: ; b8392
+	db 50, HOOTHOOT, 10
+	db 15, VENONAT, 10
+	db 15, HOOTHOOT, 10
+	db 10, EXEGGCUTE, 10
+	db 5, EXEGGCUTE, 10
+	db 5, EXEGGCUTE, 10
+	db $ff ; end
+; b83a5
+
+WildTreeMonTable10: ; b83a5
+; unused
+	db 50, HOOTHOOT, 10
+	db 15, PINECO, 10
+	db 15, PINECO, 10
+	db 10, EXEGGCUTE, 10
+	db 5, EXEGGCUTE, 10
+	db 5, EXEGGCUTE, 10
+	db $ff ; end
+; b83b8
+
+WildTreeMonTable11: ; b83b8
+	db 50, HOOTHOOT, 10
+	db 15, PINECO, 10
+	db 15, PINECO, 10
+	db 10, NOCTOWL, 10
+	db 5, BUTTERFREE, 10
+	db 5, BEEDRILL, 10
+	db $ff ; end
+; b83cb
+
+WildTreeMonTable12; b83cb
+; unused
+	db 50, HOOTHOOT, 10
+	db 15, CATERPIE, 10
+	db 15, WEEDLE, 10
+	db 10, HOOTHOOT, 10
+	db 5, METAPOD, 10
+	db 5, KAKUNA, 10
+	db $ff ; end
+; b83de
+
+WildRockMonTable: ; b83de
+	db 90, KRABBY, 15
+	db 10, SHUCKLE, 15
+	db $ff ; end
+; b83e5
+
+INCBIN "baserom.gbc",$B83E5,$bc000 - $b83e5
 
 SECTION "bank2F",DATA,BANK[$2F]
 
@@ -73825,22 +74383,20 @@ BCMinusDE: ; fbca1
 ; fbca8
 
 MagikarpLengthTable: ; fbca8
-; stored in sets of 3
-; first two values are little endian
 ; third value is the divisor
-	db $6e, $00, $01
-	db $36, $01, $02
-	db $c6, $02, $04
-	db $96, $0a, $14
-	db $1e, $1e, $32
-	db $2e, $45, $64
-	db $c6, $7f, $96
-	db $5e, $ba, $96
-	db $6e, $e1, $64
-	db $f6, $f4, $32
-	db $c6, $fc, $14
-	db $ba, $fe, $05
-	db $82, $ff, $02
+	dwb $006e, $01
+	dwb $0136, $02
+	dwb $02c6, $04
+	dwb $0a96, $14
+	dwb $1e1e, $32
+	dwb $452e, $64
+	dwb $7fc6, $96
+	dwb $ba5e, $96
+	dwb $e16e, $64
+	dwb $f4f6, $32
+	dwb $fcc6, $14
+	dwb $feba, $05
+	dwb $ff82, $02
 ; fbccf
 
 INCBIN "baserom.gbc",$FBCCF,$fc000-$fbccf
@@ -114938,7 +115494,9 @@ INCBIN "baserom.gbc",$1BC000,$4000
 
 SECTION "bank70",DATA,BANK[$70]
 
-INCBIN "baserom.gbc",$1C0000,$4000
+INCBIN "baserom.gbc",$1C0000,$1c1ec9-$1c0000
+
+INCBIN "baserom.gbc",$1C1EC9,$1c4000-$1c1ec9 ; empty
 
 SECTION "bank71",DATA,BANK[$71]
 
