@@ -5,6 +5,18 @@ dwb: MACRO
 	db \2
 	ENDM
 
+callab: MACRO
+	ld hl, \1
+	ld a, BANK(\1)
+	rst $08
+	ENDM
+
+callba: MACRO
+	ld a, BANK(\1)
+	ld hl, \1
+	rst $08
+	ENDM
+
 TX_FAR: MACRO
 	db $16
 	dw \1

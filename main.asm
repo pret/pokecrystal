@@ -241,7 +241,7 @@ Functiona0a:
 INCBIN "baserom.gbc",$a1b,$e8d - $a1b
 
 ; copy bc bytes from a:hl to de
-FarCopyBytes:
+FarCopyBytes: ; e8d
 	ld [$ff00+$8b], a
 	ld a, [$ff00+$9d] ; save old bank
 	push af
@@ -51339,31 +51339,35 @@ SECTION "bank20",DATA,BANK[$20]
 INCBIN "baserom.gbc",$80000,$80430-$80000
 
 GetFlag: ; 80430
-; takes flag id in de
-; stores flag location in de
-; extra input:
+; engine flags, not script related
+; takes flag id in de, mode in b
+; can either check, set or reset a flag
+; check: stores flag in c
+; set/reset: no output
+;
 ;    b = 0: reset flag
 ;      = 1: set flag
 ;      > 1: check flag
 ;
 	ld a, d
-	cp $00 ; less than 256 flag entries
-	jr z, .start
-	jr c, .read
-	jr .invalid
+	cp $00 ; is the flag id > 256?
+	jr z, .start ; no
+	jr c, .read ; carry is never set
+	jr .invalid ; yes
 .start
 	ld a, e
-	cp $a2 ; number of flag entries
+	cp $a2 ; $a2 flag ids
 	jr c, .read
 .invalid
+; uses flag 0
 	xor a
 	ld e, a
 	ld d, a
 .read
 	ld hl, Flags
 	add hl, de ; skip three
-	add hl, de ; bytes for
-	add hl, de ; each step
+	add hl, de ; bytes per
+	add hl, de ; flag
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
@@ -51393,6 +51397,7 @@ GetFlag: ; 80430
 ; 80462
 	
 Flags: ; 80462
+; location, bit
 	dwb $d957, %00000010
 	dwb $d957, %00000001
 	dwb $d957, %00000100
@@ -51416,7 +51421,7 @@ Flags: ; 80462
 	dwb $d84c, %01000000
 	dwb $d84c, %10000000
 	
-	dwb $d84d, %00000100
+	dwb $d84d, %00000100 ; bug catching contest timeup
 	dwb $d84d, %00000010
 	dwb $d84d, %00000001
 	dwb $d84d, %00010000
@@ -51426,7 +51431,7 @@ Flags: ; 80462
 	
 	dwb $dbf5, %00000001
 	dwb $dbf5, %00000010
-	dwb $dbf5, %00000100
+	dwb $dbf5, %00000100 ; downhill (cycling road)
 	
 	; johto badges
 	dwb $d857, %00000001 ; $1b
@@ -51513,7 +51518,7 @@ Flags: ; 80462
 	dwb $dc20, %00000010
 	
 	dwb $cfbc, %10000000
-	dwb $d472, %00000001
+	dwb $d472, %00000001 ; 0 if boy, 1 if girl
 	dwb $dbf3, %00000100
 	
 	dwb $dc4c, %00000001
@@ -51584,7 +51589,7 @@ Flags: ; 80462
 	
 	dwb $d45b, %00000100
 	dwb $dc20, %00000100
-	dwb $dc20, %00001000
+	dwb $dc20, %00001000 ; $a1
 ; 80648
 
 INCBIN "baserom.gbc",$80648,$80730-$80648
@@ -115489,7 +115494,9 @@ INCBIN "baserom.gbc",$1BC000,$4000
 
 SECTION "bank70",DATA,BANK[$70]
 
-INCBIN "baserom.gbc",$1C0000,$4000
+INCBIN "baserom.gbc",$1C0000,$1c1ec9-$1c0000
+
+INCBIN "baserom.gbc",$1C1EC9,$1c4000-$1c1ec9 ; empty
 
 SECTION "bank71",DATA,BANK[$71]
 

@@ -733,7 +733,10 @@ Balls: ; d8d8
 	
 SECTION "overworld",BSS[$d95d]
 PlayerState: ; d95d
-; surfing = $04
+; $00: normal
+; $01: bicycle
+; $04: surf
+; $08: surf (pikachu)
 	ds 1
 
 SECTION "scriptram",BSS[$d962]
