@@ -1,53 +1,53 @@
 SECTION "bank0",HOME
 SECTION "rst0",HOME[$0]
-    di
-    jp Start
+	di
+	jp Start
 
 SECTION "rst8",HOME[$8]
-    jp $2d63
+	jp $2d63
 
 SECTION "rst10",HOME[$10] ; Bankswitch
-    ld [$ff9d], a
-    ld [$2000], a
-    ret
+	ld [$ff9d], a
+	ld [$2000], a
+	ret
 
 SECTION "rst18",HOME[$18] ; Unused
-    rst $38
+	rst $38
 
 SECTION "rst20",HOME[$20] ; Unused
-    rst $38
+	rst $38
 
 SECTION "rst28",HOME[$28] ; Jump from pointer table
-    push de
-    ld e, a
-    ld d, 00
-    add hl, de
-    add hl, de
-    ld a, [hli]
-    ld h, [hl]
-    ld l, a
-    pop de
-    jp [hl] ; (actually jp hl)
+	push de
+	ld e, a
+	ld d, 00
+	add hl, de
+	add hl, de
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	pop de
+	jp [hl] ; (actually jp hl)
 
 ; rst30 is midst rst28
 
 SECTION "rst38",HOME[$38] ; Unused
-    rst $38
+	rst $38
 
 SECTION "vblank",HOME[$40] ; vblank interrupt
-    jp $0283
+	jp $0283
 
 SECTION "lcd",HOME[$48] ; lcd interrupt
-    jp $0552
+	jp $0552
 
 SECTION "timer",HOME[$50] ; timer interrupt
-    jp $3e93
+	jp $3e93
 
 SECTION "serial",HOME[$58] ; serial interrupt
-    jp $06ef
+	jp $06ef
 
 SECTION "joypad",HOME[$60] ; joypad interrupt
-    jp $092e
+	jp $092e
 
 SECTION "romheader",HOME[$100]
 Start:
@@ -1714,31 +1714,31 @@ TechnicalMachines: ; 0x1167a
 INCBIN "baserom.gbc",$116b3,$11ce7 - $116b3
 
 NameInputLower:
-    db "a b c d e f g h i"
-    db "j k l m n o p q r"
-    db "s t u v w x y z  "
-    db "× ( ) : ; [ ] ", $e1, " ", $e2
-    db "UPPER  DEL   END "
+	db "a b c d e f g h i"
+	db "j k l m n o p q r"
+	db "s t u v w x y z  "
+	db "× ( ) : ; [ ] ", $e1, " ", $e2
+	db "UPPER  DEL   END "
 BoxNameInputLower:
-    db "a b c d e f g h i"
-    db "j k l m n o p q r"
-    db "s t u v w x y z  "
-    db "é 'd 'l 'm 'r 's 't 'v 0"
-    db "1 2 3 4 5 6 7 8 9"
-    db "UPPER  DEL   END "
+	db "a b c d e f g h i"
+	db "j k l m n o p q r"
+	db "s t u v w x y z  "
+	db "é 'd 'l 'm 'r 's 't 'v 0"
+	db "1 2 3 4 5 6 7 8 9"
+	db "UPPER  DEL   END "
 NameInputUpper:
-    db "A B C D E F G H I"
-    db "J K L M N O P Q R"
-    db "S T U V W X Y Z  "
-    db "- ? ! / . ,      "
-    db "lower  DEL   END "
+	db "A B C D E F G H I"
+	db "J K L M N O P Q R"
+	db "S T U V W X Y Z  "
+	db "- ? ! / . ,      "
+	db "lower  DEL   END "
 BoxNameInputUpper:
-    db "A B C D E F G H I"
-    db "J K L M N O P Q R"
-    db "S T U V W X Y Z  "
-    db "× ( ) : ; [ ] ", $e1, " ", $e2
-    db "- ? ! ♂ ♀ / . , &"
-    db "lower  DEL   END "
+	db "A B C D E F G H I"
+	db "J K L M N O P Q R"
+	db "S T U V W X Y Z  "
+	db "× ( ) : ; [ ] ", $e1, " ", $e2
+	db "- ? ! ♂ ♀ / . , &"
+	db "lower  DEL   END "
 
 
 INCBIN "baserom.gbc",$11e5d,$14000 - $11e5d
@@ -16407,43 +16407,43 @@ dw Normal, Normal, Normal, Normal, Normal, Normal, Normal, Normal, Normal
 dw UnknownType, Fire, Water, Grass, Electric, Psychic, Ice, Dragon, Dark
 
 Normal:
-    db "NORMAL@"
+	db "NORMAL@"
 Fighting:
-    db "FIGHTING@"
+	db "FIGHTING@"
 Flying:
-    db "FLYING@"
+	db "FLYING@"
 Poison:
-    db "POISON@"
+	db "POISON@"
 UnknownType:
-    db "???@"
+	db "???@"
 Fire:
-    db "FIRE@"
+	db "FIRE@"
 Water:
-    db "WATER@"
+	db "WATER@"
 Grass:
-    db "GRASS@"
+	db "GRASS@"
 Electric:
-    db "ELECTRIC@"
+	db "ELECTRIC@"
 Psychic:
-    db "PSYCHIC@"
+	db "PSYCHIC@"
 Ice:
-    db "ICE@"
+	db "ICE@"
 Ground:
-    db "GROUND@"
+	db "GROUND@"
 Rock:
-    db "ROCK@"
+	db "ROCK@"
 Bird:
-    db "BIRD@"
+	db "BIRD@"
 Bug:
-    db "BUG@"
+	db "BUG@"
 Ghost:
-    db "GHOST@"
+	db "GHOST@"
 Steel:
-    db "STEEL@"
+	db "STEEL@"
 Dragon:
-    db "DRAGON@"
+	db "DRAGON@"
 Dark:
-    db "DARK@"
+	db "DARK@"
 
 INCBIN "baserom.gbc",$50A28,$53384 - $50A28
 
@@ -52892,19 +52892,19 @@ dw Saturday
 dw Sunday
 
 Sunday:
-    db " SUNDAY@"
+	db " SUNDAY@"
 Monday:
-    db " MONDAY@"
+	db " MONDAY@"
 Tuesday:
-    db " TUESDAY@"
+	db " TUESDAY@"
 Wednesday:
-    db "WEDNESDAY@"
+	db "WEDNESDAY@"
 Thursday:
-    db "THURSDAY@"
+	db "THURSDAY@"
 Friday:
-    db " FRIDAY@"
+	db " FRIDAY@"
 Saturday:
-    db "SATURDAY@"
+	db "SATURDAY@"
 
 INCBIN "baserom.gbc",$90A3F,$94000-$90A3F
 
