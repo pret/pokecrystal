@@ -39,13 +39,13 @@ SECTION "vblank",HOME[$40] ; vblank interrupt
 
 SECTION "lcd",HOME[$48] ; lcd interrupt
     jp $0552
-    
+
 SECTION "timer",HOME[$50] ; timer interrupt
     jp $3e93
 
 SECTION "serial",HOME[$58] ; serial interrupt
     jp $06ef
-    
+
 SECTION "joypad",HOME[$60] ; joypad interrupt
     jp $092e
 
@@ -376,7 +376,7 @@ CheckDict:
 	cp $51 ; Player name
 	jp z, $12f2
 	cp $49
-	jp z, $1186 
+	jp z, $1186
 	cp $52 ; Mother name
 	jp z, $118d
 	cp $53
@@ -1608,7 +1608,7 @@ INCBIN "baserom.gbc",$c5d2,$c644 - $c5d2
 PrintNumber_PrintLeadingZero: ; c644
 ; prints a leading zero unless they are turned off in the flags
 	bit 7, d ; print leading zeroes?
-	ret z 
+	ret z
 	ld [hl], "0"
 	ret
 
@@ -31503,7 +31503,7 @@ UnknownScript_0x6ac10: ; 0x6ac10
 
 UnknownScript_0x6ac41: ; 0x6ac41
 	checkcode $1
-	if_greater_than $6, UnknownScript_0x6ac4d 
+	if_greater_than $6, UnknownScript_0x6ac4d
 	checkcode $10
 	if_equal $0, UnknownScript_0x6ac85
 UnknownScript_0x6ac4d: ; 0x6ac4d
@@ -74238,7 +74238,7 @@ INCBIN "baserom.gbc",$F8800,$3bfc-$800
 
 CalcMagikarpLength: ; fbbfc
 ; Stores Magikarp's length at $d1ea-$d1eb in big endian
-; 
+;
 ; input:
 ;   de: EnemyMonDVs
 ;   bc: PlayerID
