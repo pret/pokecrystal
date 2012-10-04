@@ -227,7 +227,7 @@ GetJoypadState; 984
 	ret
 ;a0a
 
-Functiona0a:
+Functiona0a: ; a0a
 ; clears $c2c7-$c2cb
 	xor a
 	ld [$c2ca], a
