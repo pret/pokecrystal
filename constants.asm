@@ -5,6 +5,10 @@ dwb: MACRO
 	db \2
 	ENDM
 
+dn: MACRO
+	db \1 << 4 + \2
+	ENDM
+
 callab: MACRO
 	ld hl, \1
 	ld a, BANK(\1)
