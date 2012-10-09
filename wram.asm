@@ -1,4 +1,4 @@
-SECTION "audio",BSS[$c100]
+SECTION "audio",BSS[$c101]
 ; channel structure:
 ; $00: music id lo
 ; $01: music id hi
@@ -30,10 +30,10 @@ Channel1NoteLength: ; c11a
 	ds 2
 Channel1LR: ; c11c
 	ds 1
-	ds 16
+	ds 17
 Channel1Tempo: ; c12e
 	ds 1
-	ds 3
+	ds 4
 
 Channel2: ; c133
 	ds 50
@@ -52,6 +52,7 @@ Channel7: ; c22d
 Channel8: ; c25f
 	ds 50
 
+	ds 7
 
 MusicHeaderBuffer: ; c298
 	ds 1
@@ -67,6 +68,8 @@ Volume: ; c29a
 ;   bit 2-0 - SO1 output level (volume) (# 0-7)
 	ds 1
 
+	ds 2
+	
 MusicID:
 MusicIDLo: ; c29d
 	ds 1
@@ -76,6 +79,8 @@ MusicIDHi: ; c29e
 MusicBank: ; c29f
 	ds 1
 
+	ds 7
+	
 MusicLength: ; c2a7
 ; fades out when counter hits this value
 ; $00 = infinite
@@ -832,6 +837,8 @@ SECTION "Status",BSS[$d84e]
 Money: ; d84e
 	ds 3
 
+	ds 6
+	
 Badges:
 JohtoBadges: ; d857
 	ds 1
@@ -1380,9 +1387,10 @@ PartyMon6Nickname: ; 0xde78
 	ds 11
 
 SECTION "Breeding",BSS[$def5]
-BreedOssan: ; def5
+DaycareMan: ; def5
 ; bit 7: active
 ; bit 6: monsters are compatible
+; bit 5: egg ready
 ; bit 0: monster 1 in daycare
 	ds 1
 
@@ -1396,7 +1404,7 @@ Breedmon1Species: ; df0c
 	ds 1
 	ds 31
 
-BreedObasan: ; df2c
+DaycareLady: ; df2c
 ; bit 7: active
 ; bit 0: monster 2 in daycare
 	ds 1
