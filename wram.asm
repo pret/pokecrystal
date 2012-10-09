@@ -1378,3 +1378,52 @@ PartyMon5Nickname: ; 0xde6d
 	ds 11
 PartyMon6Nickname: ; 0xde78
 	ds 11
+
+SECTION "Breeding",BSS[$def5]
+BreedOssan: ; def5
+; bit 7: active
+; bit 6: monsters are compatible
+; bit 0: monster 1 in daycare
+	ds 1
+
+BreedMon1:
+BreedMon1Nick: ; def6
+	ds 11
+BreedMon1OT: ; df01
+	ds 11
+BreedMon1Stats:
+Breedmon1Species: ; df0c
+	ds 1
+	ds 31
+
+BreedObasan: ; df2c
+; bit 7: active
+; bit 0: monster 2 in daycare
+	ds 1
+
+StepsToEgg: ; df2d
+	ds 1
+DittoInDaycare: ; df2e
+;  z: yes
+; nz: no
+	ds 1
+
+BreedMon2:
+BreedMon2Nick: ; df2f
+	ds 11
+BreedMon2OT: ; df3a
+	ds 11
+BreedMon2Stats:
+BreedMon1Species: ; df45
+	ds 1
+	ds 31
+
+EggNick: ; df65
+; EGG@
+	ds 11
+EggOT: ; df70
+	ds 11
+EggStats:
+EggSpecies: ; df7b
+	ds 1
+	ds 31

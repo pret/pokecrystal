@@ -51480,7 +51480,7 @@ Flags: ; 80462
 	
 	;   $def5  %10000000 ; daycare 1 on
 	dwb $def5, %01000000 ; monster 1 and 2 are compatible
-	;   $def5  %???????? ; egg is ready
+	;   $def5  %00100000 ; egg is ready
 	dwb $def5, %00000001 ; monster 1 in daycare
 	
 	;   $df2c  %10000000 = daycare 2 on
