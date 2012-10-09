@@ -1285,7 +1285,74 @@ Function3927: ; 3927
 	jp AddNTimes
 ; 392d
 
-INCBIN "baserom.gbc",$392d,$4000 - $392d
+INCBIN "baserom.gbc",$392d,$3b86 - $392d
+
+LoadMusicHeader: ; 3b86
+; store music header in ram
+; input:
+;   a: bank
+;   de: address
+	ld [$ff00+$9d], a
+	ld [$2000], a ; bankswitch
+	ld a, [de]
+	ld [MusicHeaderBuffer], a
+	ld a, $3a ; manual bank restore
+	ld [$ff00+$9d], a
+	ld [$2000], a ; bankswitch
+	ret
+; 3b97
+
+StartMusic: ; 3b97
+; input:
+;   e = song number
+	push hl
+	push de
+	push bc
+	push af
+	ld a, [$ff00+$9d] ; save bank
+	push af
+	ld a, BANK(LoadMusic)
+	ld [$ff00+$9d], a
+	ld [$2000], a ; bankswitch
+	ld a, e ; song number
+	and a
+	jr z, .nomusic
+	call LoadMusic
+	jr .end
+.nomusic
+	call SoundRestart
+.end
+	pop af
+	ld [$ff00+$9d], a ; restore bank
+	ld [$2000], a
+	pop af
+	pop bc
+	pop de
+	pop hl
+	ret
+; 3bbc
+
+INCBIN "baserom.gbc",$3bbc,$3c97 - $3bbc
+
+MaxVolume: ; 3c97
+	ld a, $77 ; max
+	ld [Volume], a
+	ret
+; 3c9d
+
+LowVolume: ; 3c9d
+	ld a, $33 ; 40%
+	ld [Volume], a
+	ret
+; 3ca3
+
+VolumeOff: ; 3ca3
+	xor a
+	ld [Volume], a
+	ret
+; 3ca8
+
+INCBIN "baserom.gbc",$3ca8,$4000 - $3ca8
 
 SECTION "bank1",DATA,BANK[$1]
 
@@ -74217,7 +74284,488 @@ INCBIN "baserom.gbc",$E4000,$4000
 
 SECTION "bank3A",DATA,BANK[$3A]
 
-INCBIN "baserom.gbc",$E8000,$4000
+SoundRestart: ; e8000
+; restart sound operation
+; clear all relevant registers
+	push hl
+	push de
+	push bc
+	push af
+	call MusicOff
+	ld hl, $ff24 ; channel control registers
+	xor a
+	ld [hli], a ; ff24 ; volume/vin
+	ld [hli], a ; ff25 ; stereo channels
+	ld a, $80 ; all channels on
+	ld [hli], a ; ff26 ; mono channels
+
+	ld hl, $ff10 ; sound channel registers
+	ld e, $04 ; number of channels
+.clearsound
+;   sound channel   1     2     3     4
+	xor a
+	ld [hli], a ; $ff10, $ff15, $ff1a, $ff1f ; sweep = 0
+
+	ld [hli], a ; $ff11, $ff16, $ff1b, $ff20 ; length/wavepattern = 0
+	ld a, $08
+	ld [hli], a ; $ff12, $ff17, $ff1c, $ff21 ; envelope = 0
+	xor a
+	ld [hli], a ; $ff13, $ff18, $ff1d, $ff22 ; frequency lo = 0
+	ld a, $80
+	ld [hli], a ; $ff14, $ff19, $ff1e, $ff23 ; restart sound (freq hi = 0)
+	dec e
+	jr nz, .clearsound
+
+	ld hl, $c101 ; start of channel data
+	ld de, $01bf ; length ($ * 8 channels)
+.clearchannels ; clear $c101-$c2bf
+	xor a
+	ld [hli], a
+	dec de
+	ld a, e
+	or d
+	jr nz, .clearchannels
+	ld a, $77 ; max
+	ld [Volume], a
+	call MusicOn
+	pop af
+	pop bc
+	pop de
+	pop hl
+	ret
+; e803d
+
+INCBIN "baserom.gbc",$e803d,$e8051 - $e803d
+
+MusicOn: ; e8051
+	ld a, $01
+	ld [$c100], a
+	ret
+; e8057
+
+MusicOff: ; e8057
+	xor a
+	ld [$c100], a
+	ret
+; e805c
+
+INCBIN "baserom.gbc",$e805c,$e8b11 - $e805c
+
+StartChannel: ; e8b11
+	call SetLRTracks
+	ld hl, $0003
+	add hl, bc
+	set 0, [hl] ; channel on
+	ret
+; e8b1b
+
+SetLRTracks: ; e8b1b
+; input:
+;   bc = Channels ($c101)
+; seems to be redundant since this is overwritten by stereo data later
+	push de
+	ld a, [CurMusicChannel]
+	and a, $03 ; bit 0-1
+	ld e, a
+	ld d, $00
+	call GetLRTracks ; hl = mono / stereo table
+	add hl, de       ; + channel #
+	ld a, [hl]       ; get result
+	ld hl, Channel1LR - Channel1
+	add hl, bc
+	ld [hl], a ; set tracks
+	pop de
+	ret
+; e8b30
+
+LoadMusic: ; e8b30
+; load music
+	call MusicOff
+	ld hl, MusicID
+	ld [hl], e ; song number
+	inc hl
+	ld [hl], d ; MusicIDHi (always $00)
+	ld hl, Music
+	add hl, de ; three
+	add hl, de ; byte
+	add hl, de ; pointer
+	ld a, [hli]
+	ld [MusicBank], a
+	ld e, [hl]
+	inc hl
+	ld d, [hl] ; music header address
+	call GetByteFromMusicHeader ; store first byte of music header in [a]
+	rlca
+	rlca
+	and a, $03 ; get number of channels
+	inc a
+.loop
+; start playing channels
+	push af
+	call LoadChannel
+	call StartChannel
+	pop af
+	dec a
+	jr nz, .loop
+	xor a
+	ld [$c2b5], a
+	ld [$c2b8], a
+	ld [$c2b9], a
+	ld [$c2ba], a
+	ld [$c2bb], a
+	ld [$c2a0], a
+	ld [$c2a1], a
+	ld [$c2a2], a
+	ld [$c2a4], a
+	call MusicOn
+	ret
+; e8b79
+
+INCBIN "baserom.gbc",$e8b79,$e8d1b - $e8b79
+
+LoadChannel: ; e8d1b
+; prep channel for use
+	; get pointer to current channel
+	call GetByteFromMusicHeader
+	inc de
+	and a, $07 ; bit 0-2 (current channel)
+	ld [CurMusicChannel], a
+	ld c, a
+	ld b, $00
+	ld hl, ChannelPointers
+	add hl, bc
+	add hl, bc
+	ld c, [hl]
+	inc hl
+	ld b, [hl] ; bc = channel pointer
+	ld hl, $0003
+	add hl, bc
+	res 0, [hl] ; channel off
+	call ChannelInit
+	; load music pointer
+	ld hl, Channel1MusicAddress - Channel1
+	add hl, bc
+	call GetByteFromMusicHeader
+	ld [hli], a
+	inc de
+	call GetByteFromMusicHeader
+	ld [hl], a
+	inc de
+	; load music id
+	ld hl, Channel1MusicID - Channel1
+	add hl, bc
+	ld a, [MusicIDLo]
+	ld [hli], a
+	ld a, [MusicIDHi]
+	ld [hl], a
+	; load music bank
+	ld hl, Channel1MusicBank - Channel1
+	add hl, bc
+	ld a, [MusicBank]
+	ld [hl], a
+	ret
+; e8d5b
+
+ChannelInit: ; e8d5b
+; make sure channel is clean
+; set default tempo and note length in case nothing is loaded
+; input:
+;   bc = channel struct pointer
+	push de
+	xor a
+	ld hl, $0000
+	add hl, bc
+	ld e, $32 ; channel struct length
+; clear channel struct
+.loop
+	ld [hli], a
+	dec e
+	jr nz, .loop
+	ld hl, $0019 ; note length
+	add hl, bc
+	xor a
+	ld [hli], a
+	inc a
+	ld [hl], a ; default note length $100
+	ld hl, $002d ; tempo
+	add hl, bc
+	ld [hl], a ; default tempo $01 (fast)
+	pop de
+	ret
+; e8d76
+
+GetByteFromMusicHeader: ; e8d76
+; input:
+;   de = address of current spot in music header
+; output:
+;   a
+	ld a, [MusicBank]
+	call LoadMusicHeader
+	ld a, [MusicHeaderBuffer]
+	ret
+; e8d80
+
+INCBIN "baserom.gbc",$e8d80,$e8fc2 - $e8d80
+
+GetLRTracks: ; e8fc2
+; gets the default sound l/r channels
+; stores mono/stereo table in hl
+	ld a, [Options]
+	bit 5, a ; stereo
+	; made redundant, could have had a purpose in gold
+	jr nz, .stereo
+	ld hl, MonoTracks
+	ret
+.stereo
+	ld hl, StereoTracks
+	ret
+; e8fd1
+
+MonoTracks: ; e8fd1
+; bit corresponds to track #
+; top nybble: right channel
+; bottom nybble: left channel
+	db $11, $22, $44, $88
+; e8fd5
+
+StereoTracks: ; e8fd5
+; seems to be wrong
+; figure out what this is actually for
+; might be default then clears one nybble based on song id
+	db $11, $22, $44, $88
+; e8fd9
+
+ChannelPointers: ; e8fd9
+; mono channels
+	dw Channel1
+	dw Channel2
+	dw Channel3
+	dw Channel4
+; stereo channels
+	dw Channel5
+	dw Channel6
+	dw Channel7
+	dw Channel8
+; e8fe9
+
+; identical in function to SoundRestart but cleaner
+INCBIN "baserom.gbc",$e8fe9,$e900a - $e8fe9
+
+PlayTrainerEncounterMusic: ; e900a
+; input: e = trainer type
+	; turn music off for one frame
+	xor a
+	ld [MusicLength], a ; $00 = infinite
+	push de
+	ld de, $0000
+	call StartMusic
+	call DelayFrame
+	; play new song
+	call MaxVolume
+	pop de
+	ld d, $00
+	ld hl, TrainerEncounterMusic
+	add hl, de
+	ld e, [hl]
+	call StartMusic
+	ret
+; e9027
+
+TrainerEncounterMusic: ; e9027
+	db MUSIC_HIKER_ENCOUNTER
+	db MUSIC_YOUNGSTER_ENCOUNTER	; falkner
+	db MUSIC_LASS_ENCOUNTER			; whitney
+	db MUSIC_YOUNGSTER_ENCOUNTER	; bugsy
+	db MUSIC_OFFICER_ENCOUNTER		; morty
+	db MUSIC_OFFICER_ENCOUNTER		; pryce
+	db MUSIC_LASS_ENCOUNTER			; jasmine
+	db MUSIC_OFFICER_ENCOUNTER		; chuck
+	db MUSIC_BEAUTY_ENCOUNTER		; clair
+	db MUSIC_RIVAL_ENCOUNTER		; rival1
+	db MUSIC_HIKER_ENCOUNTER		; pokemon_prof
+	db MUSIC_HIKER_ENCOUNTER		; will
+	db MUSIC_HIKER_ENCOUNTER		; cal
+	db MUSIC_OFFICER_ENCOUNTER		; bruno
+	db MUSIC_HIKER_ENCOUNTER		; karen
+	db MUSIC_HIKER_ENCOUNTER		; koga
+	db MUSIC_OFFICER_ENCOUNTER		; champion
+	db MUSIC_YOUNGSTER_ENCOUNTER	; brock
+	db MUSIC_LASS_ENCOUNTER			; misty
+	db MUSIC_OFFICER_ENCOUNTER		; lt_surge
+	db MUSIC_ROCKET_ENCOUNTER		; scientist
+	db MUSIC_OFFICER_ENCOUNTER		; erika
+	db MUSIC_YOUNGSTER_ENCOUNTER	; youngster
+	db MUSIC_YOUNGSTER_ENCOUNTER	; schoolboy
+	db MUSIC_YOUNGSTER_ENCOUNTER	; bird_keeper
+	db MUSIC_LASS_ENCOUNTER			; lass
+	db MUSIC_LASS_ENCOUNTER			; janine
+	db MUSIC_HIKER_ENCOUNTER		; cooltrainerm
+	db MUSIC_BEAUTY_ENCOUNTER		; cooltrainerf
+	db MUSIC_BEAUTY_ENCOUNTER		; beauty
+	db MUSIC_POKEMANIAC_ENCOUNTER	; pokemaniac
+	db MUSIC_ROCKET_ENCOUNTER		; gruntm
+	db MUSIC_HIKER_ENCOUNTER		; gentleman
+	db MUSIC_BEAUTY_ENCOUNTER		; skier
+	db MUSIC_BEAUTY_ENCOUNTER		; teacher
+	db MUSIC_BEAUTY_ENCOUNTER		; sabrina
+	db MUSIC_YOUNGSTER_ENCOUNTER	; bug_catcher
+	db MUSIC_HIKER_ENCOUNTER		; fisher
+	db MUSIC_HIKER_ENCOUNTER		; swimmerm
+	db MUSIC_BEAUTY_ENCOUNTER		; swimmerf
+	db MUSIC_HIKER_ENCOUNTER		; sailor
+	db MUSIC_POKEMANIAC_ENCOUNTER	; super_nerd
+	db MUSIC_RIVAL_ENCOUNTER		; rival2
+	db MUSIC_HIKER_ENCOUNTER		; guitarist
+	db MUSIC_HIKER_ENCOUNTER		; hiker
+	db MUSIC_HIKER_ENCOUNTER		; biker
+	db MUSIC_OFFICER_ENCOUNTER		; blaine
+	db MUSIC_POKEMANIAC_ENCOUNTER	; burglar
+	db MUSIC_HIKER_ENCOUNTER		; firebreather
+	db MUSIC_POKEMANIAC_ENCOUNTER	; juggler
+	db MUSIC_HIKER_ENCOUNTER		; blackbelt_t
+	db MUSIC_ROCKET_ENCOUNTER		; executivem
+	db MUSIC_YOUNGSTER_ENCOUNTER	; psychic_t
+	db MUSIC_LASS_ENCOUNTER			; picnicker
+	db MUSIC_YOUNGSTER_ENCOUNTER	; camper
+	db MUSIC_ROCKET_ENCOUNTER		; executivef
+	db MUSIC_SAGE_ENCOUNTER			; sage
+	db MUSIC_SAGE_ENCOUNTER			; medium
+	db MUSIC_HIKER_ENCOUNTER		; boarder
+	db MUSIC_HIKER_ENCOUNTER		; pokefanm
+	db MUSIC_KIMONO_ENCOUNTER		; kimono_girl
+	db MUSIC_LASS_ENCOUNTER			; twins
+	db MUSIC_BEAUTY_ENCOUNTER		; pokefanf
+	db MUSIC_HIKER_ENCOUNTER		; red
+	db MUSIC_RIVAL_ENCOUNTER		; blue
+	db MUSIC_HIKER_ENCOUNTER		; officer
+	db MUSIC_ROCKET_ENCOUNTER		; gruntf
+	db MUSIC_HIKER_ENCOUNTER		; mysticalman
+	db MUSIC_HIKER_ENCOUNTER
+	db MUSIC_HIKER_ENCOUNTER
+	db MUSIC_HIKER_ENCOUNTER
+; e906e
+
+Music: ; e906e
+; bank, address
+	dbw BANK(NoMusic), NoMusic
+	dbw $3a, $7808
+	dbw $3b, $4000
+	dbw $3b, $42ca
+	dbw $3b, $4506
+	dbw $3b, $75f0
+	dbw $3b, $4720
+	dbw $3b, $49fa
+	dbw $3b, $506d
+	dbw $3b, $55c6
+	dbw $3d, $7411
+	dbw $3b, $579b
+	dbw $3b, $582d
+	dbw $3c, $4697
+	dbw $3b, $772f
+	dbw $3b, $58dd
+	dbw $3b, $5b29
+	dbw $3b, $5bd8
+	dbw $3b, $5d6d
+	dbw $3b, $6119
+	dbw $3c, $45bf
+	dbw $3d, $4000
+	dbw $3d, $435b
+	dbw $3a, $7eab
+	dbw $3d, $4518
+	dbw $3d, $462c
+	dbw $3d, $4815
+	dbw $3d, $48ae
+	dbw $3d, $4b0c
+	dbw $3d, $4c9f
+	dbw $3d, $4dea
+	dbw $3d, $4f79
+	dbw $3d, $5127
+	dbw $3d, $518a
+	dbw $3c, $46e1
+	dbw $3d, $54e8
+	dbw $07, $731c
+	dbw $3d, $57e8
+	dbw $3d, $5b03
+	dbw $3d, $79b8
+	dbw $3d, $5c60
+	dbw $3d, $5dc5
+	dbw $3d, $6096
+	dbw $3b, $7c01
+	dbw $3b, $72d0
+	dbw $3c, $4000
+	dbw $3a, $650d
+	dbw $3a, $69c1
+	dbw $3a, $574f
+	dbw $3a, $5b6f
+	dbw $3a, $6040
+	dbw $3a, $62be
+	dbw $3c, $4386
+	dbw $3a, $54e9
+	dbw $3a, $6d99
+	dbw $3d, $66c3
+	dbw $3b, $6e3e
+	dbw $3d, $74a2
+	dbw $3a, $7de1
+	dbw $3b, $635e
+	dbw $3a, $72d3
+	dbw $3a, $7453
+	dbw $3a, $7676
+	dbw $3b, $645f
+	dbw $3d, $7b13
+	dbw $3d, $6811
+	dbw $3d, $6974
+	dbw $3d, $6a99
+	dbw $3b, $6569
+	dbw $3b, $66c5
+	dbw $3b, $6852
+	dbw $3b, $694b
+	dbw $3b, $6b75
+	dbw $3b, $6ce8
+	dbw $3d, $605c
+	dbw $3b, $6dcb
+	dbw $3d, $4602
+	dbw $3b, $6fb2
+	dbw $3d, $6bf2
+	dbw $3d, $6c72
+	dbw $3d, $6d79
+	dbw $3d, $6e23
+	dbw $3d, $7055
+	dbw $3d, $7308
+	dbw $3d, $78fd
+	dbw $3a, $7d9e
+	dbw $3d, $766d
+	dbw $3b, $79bc
+	dbw $3b, $7b3e
+	dbw $3d, $7c16
+	dbw $3b, $75b1
+	dbw $3c, $47fd
+	dbw $33, $7d9e
+	dbw $07, $7a8d
+	dbw $5e, $401f
+	dbw $07, $7c87
+	dbw $5e, $4153
+	dbw $5e, $443b
+	dbw $5e, $46e8
+	dbw $5e, $4889
+	dbw $5e, $4b81
+	dbw $5e, $548b
+	dbw $5e, $561d
+; e91a3
+
+NoMusic: ; e91a3
+; (nothing)
+	dbw $c0, NoMusic_Ch0
+	dbw $01, NoMusic_Ch1
+	dbw $02, NoMusic_Ch2
+	dbw $03, NoMusic_Ch3
+NoMusic_Ch0:
+NoMusic_Ch1:
+NoMusic_Ch2:
+NoMusic_Ch3: ; e91af
+	db $ff ; end
+; e91b0
+
+INCBIN "baserom.gbc",$e91b0,$ec000-$e91b0
 
 SECTION "bank3B",DATA,BANK[$3B]
 

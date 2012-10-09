@@ -1,3 +1,87 @@
+SECTION "audio",BSS[$c100]
+; channel structure:
+; $00: music id lo
+; $01: music id hi
+;
+; $03: channel flags? bit 0 = on/off
+;
+; $06: address of music data
+;
+; $19: note length lo
+; $1a: note length hi
+; $1b: lr tracks (bit corresponds to track #)
+;
+; $2d: tempo
+
+Channels:
+Channel1:
+Channel1MusicID: ; c101
+	ds 2
+Channel1MusicBank: ; c103
+	ds 1
+; $03 = channel flags?
+	ds 1
+; note/octave????
+	ds 2
+Channel1MusicAddress: ; c107
+	ds 2
+	ds 17
+Channel1NoteLength: ; c11a
+	ds 2
+Channel1LR: ; c11c
+	ds 1
+	ds 16
+Channel1Tempo: ; c12e
+	ds 1
+	ds 3
+
+Channel2: ; c133
+	ds 50
+Channel3: ; c165
+	ds 50
+Channel4: ; c197
+	ds 50
+
+StereoChannels:
+Channel5: ; c1c9
+	ds 50
+Channel6: ; c1fb
+	ds 50
+Channel7: ; c22d
+	ds 50
+Channel8: ; c25f
+	ds 50
+
+
+MusicHeaderBuffer: ; c298
+	ds 1
+CurMusicChannel: ; c299
+	ds 1
+
+Volume: ; c29a
+; corresponds to $ff24
+; Channel control / ON-OFF / Volume (R/W)
+;   bit 7 - Vin->SO2 ON/OFF
+;   bit 6-4 - SO2 output level (volume) (# 0-7)
+;   bit 3 - Vin->SO1 ON/OFF
+;   bit 2-0 - SO1 output level (volume) (# 0-7)
+	ds 1
+
+MusicID:
+MusicIDLo: ; c29d
+	ds 1
+MusicIDHi: ; c29e
+	ds 1
+
+MusicBank: ; c29f
+	ds 1
+
+MusicLength: ; c2a7
+; fades out when counter hits this value
+; $00 = infinite
+	ds 1
+
+
 SECTION "linkbattle",BSS[$c2dc]
 
 InLinkBattle: ; 0xc2dc
@@ -62,6 +146,48 @@ BattleMonSpclAtk: ; c646
 	ds 2
 BattleMonSpclDef: ; c648
 	ds 2
+
+SECTION "Engine",BSS[$cfcc]
+Options: ; cfcc
+; bit 0-2: number of frames to delay when printing text
+;   fast 1; mid 3; slow 5
+; bit 3-4: unused
+; bit 5: stereo off/on
+; bit 6: battle style shift/set
+; bit 7: battle scene off/on
+	ds 1
+
+TextBoxFrame: ; cfce
+; bits 0-2: textbox frame 0-7
+	ds 1
+
+GBPrinter: ; cfd0
+; bit 0-6: brightness
+;   lightest: $00
+;   lighter:  $20
+;   normal:   $40 (default)
+;   darker:   $60
+;   darkest:  $7F
+	ds 1
+
+Options2: ; cfd1
+; bit 1: menu account off/on
+	ds 1
+
+
+VramState: ; d0ed
+; bit 0: overworld sprite updating on/off
+; bit 6: something to do with text
+; bit 7: on when surf initiates
+;        flickers when climbing waterfall
+	ds 1
+
+
+CurPartyMon: ; d109
+; contains which monster in your party
+; is being dealt with at the moment
+; 0-5
+	ds 1
 
 SECTION "EnemyMon",BSS[$d204]
 
