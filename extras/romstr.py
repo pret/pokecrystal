@@ -93,6 +93,16 @@ class RomStr(str):
         # load the labels from the file
         self.labels = json.loads(open(filename, "r").read())
 
+    def get_address_for(self, label):
+        """ Returns the address of a label. This is slow and could be improved
+        dramatically.
+        """
+        label = str(label)
+        for address in self.labels.keys():
+            if self.labels[address] == label:
+                return address
+        return None
+
     def length(self):
         """ len(self)
         """
