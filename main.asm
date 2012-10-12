@@ -211,7 +211,10 @@ GetJoypadState; 984
 	ld [$ff00+$a7], a
 	ld [$ff00+$a8], a
 	jr .quit
-	ld [$c2ca], a
+; 9ee
+
+Function9ee: ; 9ee
+	ld [$c2ca], a ; bank?
 	ld a, l
 	ld [$c2c8], a
 	ld a, h
@@ -225,7 +228,7 @@ GetJoypadState; 984
 	ld a, $ff
 	ld [$c2c7], a
 	ret
-;a0a
+; a0a
 
 Functiona0a: ; a0a
 ; clears $c2c7-$c2cb
@@ -236,7 +239,7 @@ Functiona0a: ; a0a
 	ld [$c2cb], a
 	ld [$c2c7], a
 	ret
-;a1b
+; a1b
 
 INCBIN "baserom.gbc",$a1b,$e8d - $a1b
 
@@ -1282,7 +1285,131 @@ Function3927: ; 3927
 	jp AddNTimes
 ; 392d
 
-INCBIN "baserom.gbc",$392d,$4000 - $392d
+INCBIN "baserom.gbc",$392d,$3b86 - $392d
+
+LoadMusicHeader: ; 3b86
+; store music header in ram
+; input:
+;   a: bank
+;   de: address
+	ld [$ff00+$9d], a
+	ld [$2000], a ; bankswitch
+	ld a, [de]
+	ld [MusicHeaderBuffer], a
+	ld a, $3a ; manual bank restore
+	ld [$ff00+$9d], a
+	ld [$2000], a ; bankswitch
+	ret
+; 3b97
+
+StartMusic: ; 3b97
+; input:
+;   e = song number
+	push hl
+	push de
+	push bc
+	push af
+	ld a, [$ff00+$9d] ; save bank
+	push af
+	ld a, BANK(LoadMusic)
+	ld [$ff00+$9d], a
+	ld [$2000], a ; bankswitch
+	ld a, e ; song number
+	and a
+	jr z, .nomusic
+	call LoadMusic
+	jr .end
+.nomusic
+	call SoundRestart
+.end
+	pop af
+	ld [$ff00+$9d], a ; restore bank
+	ld [$2000], a
+	pop af
+	pop bc
+	pop de
+	pop hl
+	ret
+; 3bbc
+
+INCBIN "baserom.gbc",$3bbc,$3c23 - $3bbc
+
+StartSFX: ; 3c23
+; not sure why this was written differently from StartMusic
+; input: de = sfx id
+	push hl
+	push de
+	push bc
+	push af
+	call CheckSFX ; is something already playing?
+	jr nc, .asm_3c32
+	ld a, [CurSFX] ; i guess sfx order is by priority
+	cp e
+	jr c, .quit
+.asm_3c32
+	ld a, [$ff00+$9d] ; save bank
+	push af
+	ld a, $3a ; music bank
+	ld [$ff00+$9d], a
+	ld [$2000], a ; bankswitch
+	ld a, e
+	ld [CurSFX], a
+	call LoadSFX
+	pop af
+	ld [$ff00+$9d], a ; restore bank
+	ld [$2000], a ; bankswitch
+.quit
+	pop af
+	pop bc
+	pop de
+	pop hl
+	ret
+; 3c4e
+
+INCBIN "baserom.gbc",$3c4e,$3c97-$3c4e
+
+MaxVolume: ; 3c97
+	ld a, $77 ; max
+	ld [Volume], a
+	ret
+; 3c9d
+
+LowVolume: ; 3c9d
+	ld a, $33 ; 40%
+	ld [Volume], a
+	ret
+; 3ca3
+
+VolumeOff: ; 3ca3
+	xor a
+	ld [Volume], a
+	ret
+; 3ca8
+
+INCBIN "baserom.gbc",$3ca8,$3dde - $3ca8
+
+CheckSFX: ; 3dde
+; returns carry if sfx channels are active
+	ld a, [$c1cc] ; 1
+	bit 0, a
+	jr nz, .quit
+	ld a, [$c1fe] ; 2
+	bit 0, a
+	jr nz, .quit
+	ld a, [$c230] ; 3
+	bit 0, a
+	jr nz, .quit
+	ld a, [$c262] ; 4
+	bit 0, a
+	jr nz, .quit
+	and a
+	ret
+.quit
+	scf
+	ret
+; 3dfe
+
+INCBIN "baserom.gbc",$3dfe,$4000 - $3dfe
 
 SECTION "bank1",DATA,BANK[$1]
 
@@ -1629,12 +1756,13 @@ PrintNumber_AdvancePointer: ; c64a
 
 INCBIN "baserom.gbc",$c658,$c721 - $c658
 
-CheckFlag: ; c721
+CheckFlag2: ; c721
+; uses bittable2
 ; checks flag id in de
 ; returns carry if flag is not set
 	ld b, $02 ; check flag
-	ld a, BANK(GetFlag)
-	ld hl, GetFlag
+	ld a, BANK(GetFlag2)
+	ld hl, GetFlag2
 	rst $08
 	ld a, c
 	and a
@@ -51338,8 +51466,8 @@ SECTION "bank20",DATA,BANK[$20]
 
 INCBIN "baserom.gbc",$80000,$80430-$80000
 
-GetFlag: ; 80430
-; engine flags, not script related
+GetFlag2: ; 80430
+; uses bittable2
 ; takes flag id in de, mode in b
 ; can either check, set or reset a flag
 ; check: stores flag in c
@@ -51397,168 +51525,171 @@ GetFlag: ; 80430
 ; 80462
 	
 Flags: ; 80462
+; bittable2
 ; location, bit
-	dwb $d957, %00000010
-	dwb $d957, %00000001
-	dwb $d957, %00000100
-	dwb $d957, %00001000
-	dwb $d957, %10000000
+
+	; pokegear
+	dwb $d957, %00000010 ; radio card
+	dwb $d957, %00000001 ; map card
+	dwb $d957, %00000100 ; phone card
+	dwb $d957, %00001000 ; expn card
+	dwb $d957, %10000000 ; on/off
 	
-	dwb $def5, %01000000
-	dwb $def5, %00000001
+	;   $def5  %10000000 ; daycare 1 on
+	dwb $def5, %01000000 ; monster 1 and 2 are compatible
+	;   $def5  %00100000 ; egg is ready
+	dwb $def5, %00000001 ; monster 1 in daycare
 	
-	dwb $df2c, %00000001
+	;   $df2c  %10000000 = daycare 2 on
+	dwb $df2c, %00000001 ; monster 2 in daycare
 	
-	dwb $d854, %00000001
-	dwb $d854, %10000000
+	dwb $d854, %00000001 ; mom saving money
+	dwb $d854, %10000000 ; dst
 	
 	dwb $dc39, %00000001
 	
-	dwb $d84c, %00000001
-	dwb $d84c, %00000010
-	dwb $d84c, %00001000
-	dwb $d84c, %00010000
-	dwb $d84c, %01000000
-	dwb $d84c, %10000000
-	
-	dwb $d84d, %00000100 ; bug catching contest timeup
-	dwb $d84d, %00000010
-	dwb $d84d, %00000001
+	dwb $d84c, %00000001 ; pokedex
+	dwb $d84c, %00000010 ; unown dex
+	dwb $d84c, %00001000 ; pokerus
+	dwb $d84c, %00010000 ; rocket signal on ch20
+	dwb $d84c, %01000000 ; credits skip
+	dwb $d84c, %10000000 ; bug contest on
+	dwb $d84d, %00000100 ; bug contest timer
+	dwb $d84d, %00000010 ; rockets in radio tower
+	dwb $d84d, %00000001 ; bike shop call enabled (1024 bike steps reqd)
 	dwb $d84d, %00010000
-	dwb $d84d, %00100000
+	dwb $d84d, %00100000 ; give pokerus; berry -> berry juice when trading?
 	dwb $d84d, %01000000
-	dwb $d84d, %10000000
+	dwb $d84d, %10000000 ; rockets in mahogany
 	
-	dwb $dbf5, %00000001
-	dwb $dbf5, %00000010
+	dwb $dbf5, %00000001 ; strength active
+	dwb $dbf5, %00000010 ; always on bike (cant surf)
 	dwb $dbf5, %00000100 ; downhill (cycling road)
 	
-	; johto badges
-	dwb $d857, %00000001 ; $1b
-	dwb $d857, %00000010 ; $1c
-	dwb $d857, %00000100 ; $1d
-	dwb $d857, %00001000 ; $1e
-	dwb $d857, %00010000 ; $1f
-	dwb $d857, %00100000 ; $20
-	dwb $d857, %01000000 ; $21
-	dwb $d857, %10000000 ; $22
+	dwb JohtoBadges, %00000001 ; zephyrbadge
+	dwb JohtoBadges, %00000010 ; hivebadge
+	dwb JohtoBadges, %00000100 ; plainbadge
+	dwb JohtoBadges, %00001000 ; fogbadge
+	dwb JohtoBadges, %00010000 ; mineralbadge
+	dwb JohtoBadges, %00100000 ; stormbadge
+	dwb JohtoBadges, %01000000 ; glacierbadge
+	dwb JohtoBadges, %10000000 ; risingbadge
 	
-	; kanto badges
-	dwb $d858, %00000001 ; $23
-	dwb $d858, %00000010 ; $24
-	dwb $d858, %00000100 ; $25
-	dwb $d858, %00001000 ; $26
-	dwb $d858, %00010000 ; $27
-	dwb $d858, %00100000 ; $28
-	dwb $d858, %01000000 ; $29
-	dwb $d858, %10000000 ; $2a
+	dwb KantoBadges, %00000001 ; boulderbadge
+	dwb KantoBadges, %00000010 ; cascadebadge
+	dwb KantoBadges, %00000100 ; thunderbadge
+	dwb KantoBadges, %00001000 ; rainbowbadge
+	dwb KantoBadges, %00010000 ; soulbadge
+	dwb KantoBadges, %00100000 ; marshbadge
+	dwb KantoBadges, %01000000 ; volcanobadge
+	dwb KantoBadges, %10000000 ; earthbadge
 	
-	dwb $def3, %00000001
-	dwb $def3, %00000010
-	dwb $def3, %00000100
-	dwb $def3, %00001000
-	dwb $def3, %00010000
-	dwb $def3, %00100000
-	dwb $def3, %01000000
-	dwb $def3, %10000000
+	; unown sets
+	dwb $def3, %00000001 ; 1
+	dwb $def3, %00000010 ; 2
+	dwb $def3, %00000100 ; 3
+	dwb $def3, %00001000 ; 4
+	dwb $def3, %00010000 ; 5
+	dwb $def3, %00100000 ; 6
+	dwb $def3, %01000000 ; 7
+	dwb $def3, %10000000 ; 8
 	
-	dwb $dca5, %00000001
-	dwb $dca5, %00000010
-	dwb $dca5, %00000100
-	dwb $dca5, %00001000
-	dwb $dca5, %00010000
-	dwb $dca5, %00100000
-	dwb $dca5, %01000000
-	dwb $dca5, %10000000
+	; fly
+	dwb $dca5, %00000001 ; your house
+	dwb $dca5, %00000010 ; viridian pokecenter
+	dwb $dca5, %00000100 ; pallet
+	dwb $dca5, %00001000 ; viridian
+	dwb $dca5, %00010000 ; pewter
+	dwb $dca5, %00100000 ; cerulean
+	dwb $dca5, %01000000 ; rock tunnel
+	dwb $dca5, %10000000 ; vermilion
+	dwb $dca6, %00000001 ; lavender
+	dwb $dca6, %00000010 ; saffron
+	dwb $dca6, %00000100 ; celadon
+	dwb $dca6, %00001000 ; fuchsia
+	dwb $dca6, %00010000 ; cinnabar
+	dwb $dca6, %00100000 ; indigo plateau
+	dwb $dca6, %01000000 ; new bark
+	dwb $dca6, %10000000 ; cherrygrove
+	dwb $dca7, %00000001 ; violet
+	dwb $dca7, %00000100 ; azalea
+	dwb $dca7, %00001000 ; cianwood
+	dwb $dca7, %00010000 ; goldenrod
+	dwb $dca7, %00100000 ; olivine
+	dwb $dca7, %01000000 ; ecruteak
+	dwb $dca7, %10000000 ; mahogany
+	dwb $dca8, %00000001 ; lake of rage
+	dwb $dca8, %00000010 ; blackthorn
+	dwb $dca8, %00000100 ; silver cave
+	dwb $dca8, %00010000 ; unused
 	
-	dwb $dca6, %00000001
-	dwb $dca6, %00000010
-	dwb $dca6, %00000100
-	dwb $dca6, %00001000
-	dwb $dca6, %00010000
-	dwb $dca6, %00100000
-	dwb $dca6, %01000000
-	dwb $dca6, %10000000
-	
-	dwb $dca7, %00000001
-	dwb $dca7, %00000100
-	dwb $dca7, %00001000
-	dwb $dca7, %00010000
-	dwb $dca7, %00100000
-	dwb $dca7, %01000000
-	dwb $dca7, %10000000
-	
-	dwb $dca8, %00000001
-	dwb $dca8, %00000010
-	dwb $dca8, %00000100
-	dwb $dca8, %00010000
-	
-	dwb $dc9d, %00000001
+	dwb $dc9d, %00000001 ; lucky number show
 	dwb $d84d, %00001000
 	
-	dwb $dc1e, %00000001
+	dwb $dc1e, %00000001 ; kurt making balls
 	dwb $dc1e, %00000010
-	dwb $dc1e, %00000100
-	dwb $dc1e, %00001000
-	dwb $dc1e, %00010000
-	dwb $dc1e, %00100000
-	dwb $dc1e, %01000000
-	dwb $dc1e, %10000000
+	dwb $dc1e, %00000100 ; special wilddata?
+	dwb $dc1e, %00001000 ; time capsule (24h wait)
+	dwb $dc1e, %00010000 ; all fruit trees
+	dwb $dc1e, %00100000 ; shuckle given
+	dwb $dc1e, %01000000 ; goldenrod underground merchant closed
+	dwb $dc1e, %10000000 ; fought in trainer hall today
 	
-	dwb $dc1f, %00000001
-	dwb $dc1f, %00000010
-	dwb $dc1f, %00000100
-	dwb $dc1f, %00001000
-	dwb $dc1f, %00010000
-	dwb $dc1f, %00100000
+	dwb $dc1f, %00000001 ; mt moon square clefairy
+	dwb $dc1f, %00000010 ; union cave lapras
+	dwb $dc1f, %00000100 ; goldenrod underground haircut used
+	dwb $dc1f, %00001000 ; goldenrod mall happiness event floor05 person07
+	dwb $dc1f, %00010000 ; tea in blues house
+	dwb $dc1f, %00100000 ; indigo plateau rival fight
 	dwb $dc1f, %01000000
 	dwb $dc1f, %10000000
 	
-	dwb $dc20, %00000001
-	dwb $dc20, %00000010
+	dwb $dc20, %00000001 ; $60
+	dwb $dc20, %00000010 ; goldenrod dept store sale is on
 	
-	dwb $cfbc, %10000000
-	dwb $d472, %00000001 ; 0 if boy, 1 if girl
-	dwb $dbf3, %00000100
+	dwb $cfbc, %10000000 ; $62
 	
-	dwb $dc4c, %00000001
-	dwb $dc4c, %00000010
-	dwb $dc4c, %00000100
-	dwb $dc4c, %00001000
-	dwb $dc4c, %00010000
-	dwb $dc4c, %00100000
-	dwb $dc4c, %01000000
-	dwb $dc4c, %10000000
+	dwb $d472, %00000001 ; player is female
 	
-	dwb $dc4d, %00000001
-	dwb $dc4d, %00000010
-	dwb $dc4d, %00000100
-	dwb $dc4d, %00001000
-	dwb $dc4d, %00010000
-	dwb $dc4d, %00100000
-	dwb $dc4d, %01000000
-	dwb $dc4d, %10000000
+	dwb $dbf3, %00000100 ; have gs ball after kurt examined it
 	
-	dwb $dc4e, %00000001
-	dwb $dc4e, %00000010
-	dwb $dc4e, %00000100
-	dwb $dc4e, %00001000
-	dwb $dc4e, %00010000
-	dwb $dc4e, %00100000
-	dwb $dc4e, %01000000
-	dwb $dc4e, %10000000
+	; rematches
+	dwb $dc4c, %00000001 ; jack
+	dwb $dc4c, %00000010 ; huey
+	dwb $dc4c, %00000100 ; gaven
+	dwb $dc4c, %00001000 ; beth
+	dwb $dc4c, %00010000 ; jose
+	dwb $dc4c, %00100000 ; reena
+	dwb $dc4c, %01000000 ; joey
+	dwb $dc4c, %10000000 ; wade
+	dwb $dc4d, %00000001 ; ralph
+	dwb $dc4d, %00000010 ; liz
+	dwb $dc4d, %00000100 ; anthony
+	dwb $dc4d, %00001000 ; todd
+	dwb $dc4d, %00010000 ; gina
+	dwb $dc4d, %00100000 ; arnie
+	dwb $dc4d, %01000000 ; alan
+	dwb $dc4d, %10000000 ; dana
+	dwb $dc4e, %00000001 ; chad
+	dwb $dc4e, %00000010 ; tully
+	dwb $dc4e, %00000100 ; brent
+	dwb $dc4e, %00001000 ; tiffany
+	dwb $dc4e, %00010000 ; vance
+	dwb $dc4e, %00100000 ; wilton
+	dwb $dc4e, %01000000 ; parry
+	dwb $dc4e, %10000000 ; erin
 	
-	dwb $dc50, %00000001
-	dwb $dc50, %00000010
-	dwb $dc50, %00000100
-	dwb $dc50, %00001000
-	dwb $dc50, %00010000
-	dwb $dc50, %00100000
-	dwb $dc50, %01000000
-	dwb $dc50, %10000000
+	dwb $dc50, %00000001 ; beverly has nugget
+	dwb $dc50, %00000010 ; jose has star piece
+	dwb $dc50, %00000100 ; wade has item (see bittable1 $032b-e)
+	dwb $dc50, %00001000 ; gina has leaf stone
+	dwb $dc50, %00010000 ; alan has fire stone
+	dwb $dc50, %00100000 ; liz has thunderstone
+	dwb $dc50, %01000000 ; derek has nugget
+	dwb $dc50, %10000000 ; tully has water stone
 	
-	dwb $dc51, %00000001
-	dwb $dc51, %00000010
+	dwb $dc51, %00000001 ; tiffany has pink bow
+	dwb $dc51, %00000010 ; wilton has item (see bittable1 $032f-31)
 	
 	dwb $dc54, %00000001
 	dwb $dc54, %00000010
@@ -51587,9 +51718,10 @@ Flags: ; 80462
 	dwb $dc56, %01000000
 	dwb $dc56, %10000000
 	
-	dwb $d45b, %00000100
-	dwb $dc20, %00000100
-	dwb $dc20, %00001000 ; $a1
+	dwb $d45b, %00000100 ; female player has been transformed into male
+	
+	dwb $dc20, %00000100 ; dunsparce swarm
+	dwb $dc20, %00001000 ; yanma swarm
 ; 80648
 
 INCBIN "baserom.gbc",$80648,$80730-$80648
@@ -74209,7 +74341,799 @@ INCBIN "baserom.gbc",$E4000,$4000
 
 SECTION "bank3A",DATA,BANK[$3A]
 
-INCBIN "baserom.gbc",$E8000,$4000
+SoundRestart: ; e8000
+; restart sound operation
+; clear all relevant registers
+	push hl
+	push de
+	push bc
+	push af
+	call MusicOff
+	ld hl, $ff24 ; channel control registers
+	xor a
+	ld [hli], a ; ff24 ; volume/vin
+	ld [hli], a ; ff25 ; sfx channels
+	ld a, $80 ; all channels on
+	ld [hli], a ; ff26 ; music channels
+
+	ld hl, $ff10 ; sound channel registers
+	ld e, $04 ; number of channels
+.clearsound
+;   sound channel   1     2     3     4
+	xor a
+	ld [hli], a ; $ff10, $ff15, $ff1a, $ff1f ; sweep = 0
+
+	ld [hli], a ; $ff11, $ff16, $ff1b, $ff20 ; length/wavepattern = 0
+	ld a, $08
+	ld [hli], a ; $ff12, $ff17, $ff1c, $ff21 ; envelope = 0
+	xor a
+	ld [hli], a ; $ff13, $ff18, $ff1d, $ff22 ; frequency lo = 0
+	ld a, $80
+	ld [hli], a ; $ff14, $ff19, $ff1e, $ff23 ; restart sound (freq hi = 0)
+	dec e
+	jr nz, .clearsound
+
+	ld hl, $c101 ; start of channel data
+	ld de, $01bf ; length ($ * 8 channels)
+.clearchannels ; clear $c101-$c2bf
+	xor a
+	ld [hli], a
+	dec de
+	ld a, e
+	or d
+	jr nz, .clearchannels
+	ld a, $77 ; max
+	ld [Volume], a
+	call MusicOn
+	pop af
+	pop bc
+	pop de
+	pop hl
+	ret
+; e803d
+
+INCBIN "baserom.gbc",$e803d,$e8051 - $e803d
+
+MusicOn: ; e8051
+	ld a, $01
+	ld [$c100], a
+	ret
+; e8057
+
+MusicOff: ; e8057
+	xor a
+	ld [$c100], a
+	ret
+; e805c
+
+INCBIN "baserom.gbc",$e805c,$e8b11 - $e805c
+
+StartChannel: ; e8b11
+	call SetLRTracks
+	ld hl, $0003
+	add hl, bc
+	set 0, [hl] ; channel on
+	ret
+; e8b1b
+
+SetLRTracks: ; e8b1b
+; input:
+;   bc = Channels ($c101)
+; seems to be redundant since this is overwritten by stereo data later
+	push de
+	ld a, [CurMusicChannel]
+	and a, $03 ; bit 0-1
+	ld e, a
+	ld d, $00
+	call GetLRTracks ; hl = mono / stereo table
+	add hl, de       ; + channel #
+	ld a, [hl]       ; get result
+	ld hl, Channel1LR - Channel1
+	add hl, bc
+	ld [hl], a ; set tracks
+	pop de
+	ret
+; e8b30
+
+LoadMusic: ; e8b30
+; load music
+	call MusicOff
+	ld hl, MusicID
+	ld [hl], e ; song number
+	inc hl
+	ld [hl], d ; MusicIDHi (always $00)
+	ld hl, Music
+	add hl, de ; three
+	add hl, de ; byte
+	add hl, de ; pointer
+	ld a, [hli]
+	ld [MusicBank], a
+	ld e, [hl]
+	inc hl
+	ld d, [hl] ; music header address
+	call GetByteFromMusicHeader ; store first byte of music header in [a]
+	rlca
+	rlca
+	and a, $03 ; get number of channels
+	inc a
+.loop
+; start playing channels
+	push af
+	call LoadChannel
+	call StartChannel
+	pop af
+	dec a
+	jr nz, .loop
+	xor a
+	ld [$c2b5], a
+	ld [$c2b8], a
+	ld [$c2b9], a
+	ld [$c2ba], a
+	ld [$c2bb], a
+	ld [$c2a0], a
+	ld [$c2a1], a
+	ld [$c2a2], a
+	ld [$c2a4], a
+	call MusicOn
+	ret
+; e8b79
+
+INCBIN "baserom.gbc",$e8b79,$e8c04 - $e8b79
+
+LoadSFX: ; e8c04
+; clear channels if they aren't already
+	call MusicOff
+	ld hl, $c1cc ; ch5 on
+	bit 0, [hl]
+	jr z, .ch6
+	res 0, [hl]
+	xor a
+	ld [$ff00+$11], a ; length/wavepattern = 0
+	ld a, $08
+	ld [$ff00+$12], a ; envelope = 0
+	xor a
+	ld [$ff00+$13], a ; frequency lo = 0
+	ld a, $80
+	ld [$ff00+$14], a ; restart sound (freq hi = 0)
+	xor a
+	ld [$c29c], a ; ????
+	ld [$ff00+$10], a ; sweep = 0
+.ch6
+	ld hl, $c1fe ; ch6 on
+	bit 0, [hl]
+	jr z, .ch7
+	res 0, [hl]
+	xor a
+	ld [$ff00+$16], a ; length/wavepattern = 0
+	ld a, $08
+	ld [$ff00+$17], a ; envelope = 0
+	xor a
+	ld [$ff00+$18], a ; frequency lo = 0
+	ld a, $80
+	ld [$ff00+$19], a ; restart sound (freq hi = 0)
+.ch7
+	ld hl, $c230 ; ch7 on
+	bit 0, [hl]
+	jr z, .ch8
+	res 0, [hl]
+	xor a
+	ld [$ff00+$1a], a ; sound mode #3 off
+	ld [$ff00+$1b], a ; length/wavepattern = 0
+	ld a, $08
+	ld [$ff00+$1c], a ; envelope = 0
+	xor a
+	ld [$ff00+$1d], a ; frequency lo = 0
+	ld a, $80
+	ld [$ff00+$1e], a ; restart sound (freq hi = 0)
+.ch8
+	ld hl, $c262 ; ch8 on
+	bit 0, [hl]
+	jr z, .chscleared
+	res 0, [hl]
+	xor a
+	ld [$ff00+$20], a ; length/wavepattern = 0
+	ld a, $08
+	ld [$ff00+$21], a ; envelope = 0
+	xor a
+	ld [$ff00+$22], a ; frequency lo = 0
+	ld a, $80
+	ld [$ff00+$23], a ; restart sound (freq hi = 0)
+	xor a
+	ld [$c2a0], a
+	ld [$c2a1], a
+.chscleared
+; start reading sfx header for # chs
+	ld hl, MusicID
+	ld [hl], e
+	inc hl
+	ld [hl], d
+	ld hl, SFX
+	add hl, de ; three
+	add hl, de ; byte
+	add hl, de ; pointers
+	ld a, [hli]
+	ld [MusicBank], a ; get bank
+	ld e, [hl] ; get address
+	inc hl
+	ld d, [hl]
+	call GetByteFromMusicHeader ; get # channels
+	rlca
+	rlca
+	and a, $03 ; bit 0-1
+	inc a ; # channels -> # loops
+.startchannels
+	push af
+	call LoadChannel ; bc = current channel
+	ld hl, $0003
+	add hl, bc
+	set 3, [hl] ; not sure what bit 3 does
+	call StartChannel
+	pop af
+	dec a
+	jr nz, .startchannels
+	call MusicOn
+	xor a
+	ld [$c2b6], a
+	ret
+; e8ca6
+
+INCBIN "baserom.gbc",$e8ca6,$e8d1b - $e8ca6
+
+LoadChannel: ; e8d1b
+; prep channel for use
+	; get pointer to current channel
+	call GetByteFromMusicHeader
+	inc de
+	and a, $07 ; bit 0-2 (current channel)
+	ld [CurMusicChannel], a
+	ld c, a
+	ld b, $00
+	ld hl, ChannelPointers
+	add hl, bc
+	add hl, bc
+	ld c, [hl]
+	inc hl
+	ld b, [hl] ; bc = channel pointer
+	ld hl, $0003
+	add hl, bc
+	res 0, [hl] ; channel off
+	call ChannelInit
+	; load music pointer
+	ld hl, Channel1MusicAddress - Channel1
+	add hl, bc
+	call GetByteFromMusicHeader
+	ld [hli], a
+	inc de
+	call GetByteFromMusicHeader
+	ld [hl], a
+	inc de
+	; load music id
+	ld hl, Channel1MusicID - Channel1
+	add hl, bc
+	ld a, [MusicIDLo]
+	ld [hli], a
+	ld a, [MusicIDHi]
+	ld [hl], a
+	; load music bank
+	ld hl, Channel1MusicBank - Channel1
+	add hl, bc
+	ld a, [MusicBank]
+	ld [hl], a
+	ret
+; e8d5b
+
+ChannelInit: ; e8d5b
+; make sure channel is clean
+; set default tempo and note length in case nothing is loaded
+; input:
+;   bc = channel struct pointer
+	push de
+	xor a
+	ld hl, $0000
+	add hl, bc
+	ld e, Channel2 - Channel1 ; channel struct length
+; clear channel struct
+.loop
+	ld [hli], a
+	dec e
+	jr nz, .loop
+	ld hl, Channel1NoteLength - Channel1
+	add hl, bc
+	xor a
+	ld [hli], a
+	inc a
+	ld [hl], a ; default note length $100
+	ld hl, Channel1Tempo - Channel1
+	add hl, bc
+	ld [hl], a ; default tempo $01 (fast)
+	pop de
+	ret
+; e8d76
+
+GetByteFromMusicHeader: ; e8d76
+; input:
+;   de = address of current spot in music header
+; output:
+;   a
+	ld a, [MusicBank]
+	call LoadMusicHeader
+	ld a, [MusicHeaderBuffer]
+	ret
+; e8d80
+
+INCBIN "baserom.gbc",$e8d80,$e8fc2 - $e8d80
+
+GetLRTracks: ; e8fc2
+; gets the default sound l/r channels
+; stores mono/stereo table in hl
+	ld a, [Options]
+	bit 5, a ; stereo
+	; made redundant, could have had a purpose in gold
+	jr nz, .stereo
+	ld hl, MonoTracks
+	ret
+.stereo
+	ld hl, StereoTracks
+	ret
+; e8fd1
+
+MonoTracks: ; e8fd1
+; bit corresponds to track #
+; top nybble: right channel
+; bottom nybble: left channel
+	db $11, $22, $44, $88
+; e8fd5
+
+StereoTracks: ; e8fd5
+; seems to be wrong
+; figure out what this is actually for
+; might be default then clears one nybble based on song id
+	db $11, $22, $44, $88
+; e8fd9
+
+ChannelPointers: ; e8fd9
+; music channels
+	dw Channel1
+	dw Channel2
+	dw Channel3
+	dw Channel4
+; sfx channels
+	dw Channel5
+	dw Channel6
+	dw Channel7
+	dw Channel8
+; e8fe9
+
+; identical in function to SoundRestart but cleaner
+INCBIN "baserom.gbc",$e8fe9,$e900a - $e8fe9
+
+PlayTrainerEncounterMusic: ; e900a
+; input: e = trainer type
+	; turn music off for one frame
+	xor a
+	ld [MusicLength], a ; $00 = infinite
+	push de
+	ld de, $0000
+	call StartMusic
+	call DelayFrame
+	; play new song
+	call MaxVolume
+	pop de
+	ld d, $00
+	ld hl, TrainerEncounterMusic
+	add hl, de
+	ld e, [hl]
+	call StartMusic
+	ret
+; e9027
+
+TrainerEncounterMusic: ; e9027
+	db MUSIC_HIKER_ENCOUNTER
+	db MUSIC_YOUNGSTER_ENCOUNTER	; falkner
+	db MUSIC_LASS_ENCOUNTER			; whitney
+	db MUSIC_YOUNGSTER_ENCOUNTER	; bugsy
+	db MUSIC_OFFICER_ENCOUNTER		; morty
+	db MUSIC_OFFICER_ENCOUNTER		; pryce
+	db MUSIC_LASS_ENCOUNTER			; jasmine
+	db MUSIC_OFFICER_ENCOUNTER		; chuck
+	db MUSIC_BEAUTY_ENCOUNTER		; clair
+	db MUSIC_RIVAL_ENCOUNTER		; rival1
+	db MUSIC_HIKER_ENCOUNTER		; pokemon_prof
+	db MUSIC_HIKER_ENCOUNTER		; will
+	db MUSIC_HIKER_ENCOUNTER		; cal
+	db MUSIC_OFFICER_ENCOUNTER		; bruno
+	db MUSIC_HIKER_ENCOUNTER		; karen
+	db MUSIC_HIKER_ENCOUNTER		; koga
+	db MUSIC_OFFICER_ENCOUNTER		; champion
+	db MUSIC_YOUNGSTER_ENCOUNTER	; brock
+	db MUSIC_LASS_ENCOUNTER			; misty
+	db MUSIC_OFFICER_ENCOUNTER		; lt_surge
+	db MUSIC_ROCKET_ENCOUNTER		; scientist
+	db MUSIC_OFFICER_ENCOUNTER		; erika
+	db MUSIC_YOUNGSTER_ENCOUNTER	; youngster
+	db MUSIC_YOUNGSTER_ENCOUNTER	; schoolboy
+	db MUSIC_YOUNGSTER_ENCOUNTER	; bird_keeper
+	db MUSIC_LASS_ENCOUNTER			; lass
+	db MUSIC_LASS_ENCOUNTER			; janine
+	db MUSIC_HIKER_ENCOUNTER		; cooltrainerm
+	db MUSIC_BEAUTY_ENCOUNTER		; cooltrainerf
+	db MUSIC_BEAUTY_ENCOUNTER		; beauty
+	db MUSIC_POKEMANIAC_ENCOUNTER	; pokemaniac
+	db MUSIC_ROCKET_ENCOUNTER		; gruntm
+	db MUSIC_HIKER_ENCOUNTER		; gentleman
+	db MUSIC_BEAUTY_ENCOUNTER		; skier
+	db MUSIC_BEAUTY_ENCOUNTER		; teacher
+	db MUSIC_BEAUTY_ENCOUNTER		; sabrina
+	db MUSIC_YOUNGSTER_ENCOUNTER	; bug_catcher
+	db MUSIC_HIKER_ENCOUNTER		; fisher
+	db MUSIC_HIKER_ENCOUNTER		; swimmerm
+	db MUSIC_BEAUTY_ENCOUNTER		; swimmerf
+	db MUSIC_HIKER_ENCOUNTER		; sailor
+	db MUSIC_POKEMANIAC_ENCOUNTER	; super_nerd
+	db MUSIC_RIVAL_ENCOUNTER		; rival2
+	db MUSIC_HIKER_ENCOUNTER		; guitarist
+	db MUSIC_HIKER_ENCOUNTER		; hiker
+	db MUSIC_HIKER_ENCOUNTER		; biker
+	db MUSIC_OFFICER_ENCOUNTER		; blaine
+	db MUSIC_POKEMANIAC_ENCOUNTER	; burglar
+	db MUSIC_HIKER_ENCOUNTER		; firebreather
+	db MUSIC_POKEMANIAC_ENCOUNTER	; juggler
+	db MUSIC_HIKER_ENCOUNTER		; blackbelt_t
+	db MUSIC_ROCKET_ENCOUNTER		; executivem
+	db MUSIC_YOUNGSTER_ENCOUNTER	; psychic_t
+	db MUSIC_LASS_ENCOUNTER			; picnicker
+	db MUSIC_YOUNGSTER_ENCOUNTER	; camper
+	db MUSIC_ROCKET_ENCOUNTER		; executivef
+	db MUSIC_SAGE_ENCOUNTER			; sage
+	db MUSIC_SAGE_ENCOUNTER			; medium
+	db MUSIC_HIKER_ENCOUNTER		; boarder
+	db MUSIC_HIKER_ENCOUNTER		; pokefanm
+	db MUSIC_KIMONO_ENCOUNTER		; kimono_girl
+	db MUSIC_LASS_ENCOUNTER			; twins
+	db MUSIC_BEAUTY_ENCOUNTER		; pokefanf
+	db MUSIC_HIKER_ENCOUNTER		; red
+	db MUSIC_RIVAL_ENCOUNTER		; blue
+	db MUSIC_HIKER_ENCOUNTER		; officer
+	db MUSIC_ROCKET_ENCOUNTER		; gruntf
+	db MUSIC_HIKER_ENCOUNTER		; mysticalman
+	db MUSIC_HIKER_ENCOUNTER
+	db MUSIC_HIKER_ENCOUNTER
+	db MUSIC_HIKER_ENCOUNTER
+; e906e
+
+Music: ; e906e
+; bank, address
+	dbw BANK(NoMusic), NoMusic
+	dbw $3a, $7808
+	dbw $3b, $4000
+	dbw $3b, $42ca
+	dbw $3b, $4506
+	dbw $3b, $75f0
+	dbw $3b, $4720
+	dbw $3b, $49fa
+	dbw $3b, $506d
+	dbw $3b, $55c6
+	dbw $3d, $7411
+	dbw $3b, $579b
+	dbw $3b, $582d
+	dbw $3c, $4697
+	dbw $3b, $772f
+	dbw $3b, $58dd
+	dbw $3b, $5b29
+	dbw $3b, $5bd8
+	dbw $3b, $5d6d
+	dbw $3b, $6119
+	dbw $3c, $45bf
+	dbw $3d, $4000
+	dbw $3d, $435b
+	dbw $3a, $7eab
+	dbw $3d, $4518
+	dbw $3d, $462c
+	dbw $3d, $4815
+	dbw $3d, $48ae
+	dbw $3d, $4b0c
+	dbw $3d, $4c9f
+	dbw $3d, $4dea
+	dbw $3d, $4f79
+	dbw $3d, $5127
+	dbw $3d, $518a
+	dbw $3c, $46e1
+	dbw $3d, $54e8
+	dbw $07, $731c
+	dbw $3d, $57e8
+	dbw $3d, $5b03
+	dbw $3d, $79b8
+	dbw $3d, $5c60
+	dbw $3d, $5dc5
+	dbw $3d, $6096
+	dbw $3b, $7c01
+	dbw $3b, $72d0
+	dbw $3c, $4000
+	dbw $3a, $650d
+	dbw $3a, $69c1
+	dbw $3a, $574f
+	dbw $3a, $5b6f
+	dbw $3a, $6040
+	dbw $3a, $62be
+	dbw $3c, $4386
+	dbw $3a, $54e9
+	dbw $3a, $6d99
+	dbw $3d, $66c3
+	dbw $3b, $6e3e
+	dbw $3d, $74a2
+	dbw $3a, $7de1
+	dbw $3b, $635e
+	dbw $3a, $72d3
+	dbw $3a, $7453
+	dbw $3a, $7676
+	dbw $3b, $645f
+	dbw $3d, $7b13
+	dbw $3d, $6811
+	dbw $3d, $6974
+	dbw $3d, $6a99
+	dbw $3b, $6569
+	dbw $3b, $66c5
+	dbw $3b, $6852
+	dbw $3b, $694b
+	dbw $3b, $6b75
+	dbw $3b, $6ce8
+	dbw $3d, $605c
+	dbw $3b, $6dcb
+	dbw $3d, $4602
+	dbw $3b, $6fb2
+	dbw $3d, $6bf2
+	dbw $3d, $6c72
+	dbw $3d, $6d79
+	dbw $3d, $6e23
+	dbw $3d, $7055
+	dbw $3d, $7308
+	dbw $3d, $78fd
+	dbw $3a, $7d9e
+	dbw $3d, $766d
+	dbw $3b, $79bc
+	dbw $3b, $7b3e
+	dbw $3d, $7c16
+	dbw $3b, $75b1
+	dbw $3c, $47fd
+	dbw $33, $7d9e
+	dbw $07, $7a8d
+	dbw $5e, $401f
+	dbw $07, $7c87
+	dbw $5e, $4153
+	dbw $5e, $443b
+	dbw $5e, $46e8
+	dbw $5e, $4889
+	dbw $5e, $4b81
+	dbw $5e, $548b
+	dbw $5e, $561d
+; e91a3
+
+NoMusic: ; e91a3
+; (nothing)
+	dbw $c0, NoMusic_Ch0
+	dbw $01, NoMusic_Ch1
+	dbw $02, NoMusic_Ch2
+	dbw $03, NoMusic_Ch3
+NoMusic_Ch0:
+NoMusic_Ch1:
+NoMusic_Ch2:
+NoMusic_Ch3: ; e91af
+	db $ff ; end
+; e91b0
+
+INCBIN "baserom.gbc",$e91b0,$e927c-$e91b0
+
+SFX: ; e927c
+	dbw $3c, $4b3f ; dex fanfare 50-79
+	dbw $3c, $4c2f ; item
+	dbw $3c, $4c89 ; caught mon
+	dbw $3c, $4941 ; pokeballs placed on table
+	dbw $3c, $4947 ; potion
+	dbw $3c, $494a ; full heal
+	dbw $3c, $494d ; menu
+	dbw $3c, $4950 ; read text
+	dbw $3c, $4950 ; read text
+	dbw $3c, $4bd5 ; dex fanfare 20-49
+	dbw $3c, $4cea ; dex fanfare 80-109
+	dbw $3c, $4953 ; poison
+	dbw $3c, $4956 ; got safari balls
+	dbw $3c, $4959 ; boot pc
+	dbw $3c, $495c ; shut down pc
+	dbw $3c, $495f ; choose pc option
+	dbw $3c, $4962 ; bide / escape rope
+	dbw $3c, $4965 ; push button
+	dbw $3c, $4968 ; second part of itemfinder
+	dbw $3c, $496b ; warp to
+	dbw $3c, $496e ; warp from
+	dbw $3c, $4971 ; change dex mode
+	dbw $3c, $4974 ; jump over ledge
+	dbw $3c, $4977 ; grass rustle
+	dbw $3c, $497a ; fly
+	dbw $3c, $497d ; wrong
+	dbw $3c, $4983 ; squeak
+	dbw $3c, $4986 ; strength
+	dbw $3c, $4989 ; boat
+	dbw $3c, $498f ; wall open
+	dbw $3c, $4992 ; place puzzle piece down
+	dbw $3c, $4995 ; enter door
+	dbw $3c, $4998 ; switch pokemon
+	dbw $3c, $499e ; score tally? ; sounds like something out of game corner
+	dbw $3c, $49a4 ; buy/sell
+	dbw $3c, $49ad ; exit building
+	dbw $3c, $49aa ; bump
+	dbw $3c, $49b0 ; save
+	dbw $3c, $49f8 ; pokeflute
+	dbw $3c, $49fb ; elevator end
+	dbw $3c, $49fe ; throw ball
+	dbw $3c, $4a04 ; smokescreen
+	dbw $3c, $4a0a ;	; something skidding on water?
+	dbw $3c, $4a10 ; run
+	dbw $3c, $4a13 ; slot machine start
+	dbw $3c, $4dbe ; fanfare
+	dbw $3c, $4a3d ; peck
+	dbw $3c, $4a40 ; kinesis
+	dbw $3c, $4a43 ; lick
+	dbw $3c, $4a46 ; pound
+	dbw $3c, $4a49 ; move puzzle piece
+	dbw $3c, $4a4c ; comet punch
+	dbw $3c, $4a4f ; mega punch
+	dbw $3c, $4a52 ; scratch
+	dbw $3c, $4a55 ; vicegrip
+	dbw $3c, $4a58 ; razor wind
+	dbw $3c, $4a5b ; cut
+	dbw $3c, $4a5e ; wing attack
+	dbw $3c, $4a61 ; whirlwind
+	dbw $3c, $4a64 ; bind
+	dbw $3c, $4a67 ; vine whip
+	dbw $3c, $4a6a ; double kick
+	dbw $3c, $4a6d ; mega kick
+	dbw $3c, $4a70 ; headbutt
+	dbw $3c, $4a73 ; horn attack
+	dbw $3c, $4a76 ; tackle
+	dbw $3c, $4a79 ; poison sting
+	dbw $3c, $4a7c ; poisonpowder
+	dbw $3c, $4a7f ; doubleslap
+	dbw $3c, $4a82 ; bite
+	dbw $3c, $4a88 ; jump kick
+	dbw $3c, $4a8b ; stomp
+	dbw $3c, $4a8e ; tail whip
+	dbw $3c, $4a91 ; karate chop
+	dbw $3c, $4a94 ; submission
+	dbw $3c, $4a97 ; water gun
+	dbw $3c, $4a9d ; swords dance
+	dbw $3c, $4aa0 ; thunder
+	dbw $3c, $4aa3 ; supersonic
+	dbw $3c, $4aac ; leer
+	dbw $3c, $4ab5 ; ember
+	dbw $3c, $4abb ; bubblebeam
+	dbw $3c, $4ac4 ; hydro pump
+	dbw $3c, $4aca ; surf
+	dbw $3c, $4ad3 ; psybeam
+	dbw $3c, $4adc ; leech seed
+	dbw $3c, $4ae5 ; thundershock
+	dbw $3c, $4aee ; psychic
+	dbw $3c, $4af7 ; screech
+	dbw $3c, $4afd ; bone club
+	dbw $3c, $4b03 ; sharpen
+	dbw $3c, $4b09 ; egg bomb
+	dbw $3c, $4b12 ; sing
+	dbw $3c, $4b18 ; sky attack
+	dbw $3c, $4b21 ; hyper beam
+	dbw $3c, $4b24 ; shine
+	dbw $3c, $4a1c ; 
+	dbw $3c, $4a1f ; $60
+	dbw $3c, $4a22 ; tap
+	dbw $3c, $4a25 ; tap
+	dbw $3c, $4a28 ; burn ; that is not a burn
+	dbw $3c, $4a2b ; 
+	dbw $3c, $4a2e ; similar to $60
+	dbw $3c, $4a31 ; get coin from slots
+	dbw $3c, $4a34 ; pay day
+	dbw $3c, $4a3a ; metronome
+	dbw $3c, $4a19 ; call
+	dbw $3c, $4b2d ; hang up
+	dbw $3c, $4b30 ; no signal
+	dbw $3c, $4b2a ; sandstorm
+	dbw $3c, $4b33 ; elevator
+	dbw $3c, $52b4 ; protect
+	dbw $3c, $52f6 ; sketch
+	dbw $3c, $5314 ; rain dance
+	dbw $3c, $5334 ; aeroblast
+	dbw $3c, $5352 ; spark
+	dbw $3c, $5360 ; curse
+	dbw $3c, $537d ; rage
+	dbw $3c, $539c ; thief
+	dbw $3c, $53b0 ; thief
+	dbw $3c, $53ca ; spider web
+	dbw $3c, $53f7 ; mind reader
+	dbw $3c, $541d ; nighmare
+	dbw $3c, $5453 ; snore
+	dbw $3c, $5469 ; sweet kiss
+	dbw $3c, $547f ; sweet kiss
+	dbw $3c, $54a5 ; belly drum
+	dbw $3c, $54ba ;
+	dbw $3c, $54d0 ; sludge bomb
+	dbw $3c, $54f5 ; foresight
+	dbw $3c, $5515 ; spite
+	dbw $3c, $553a ; outrage
+	dbw $3c, $554d ; perish song
+	dbw $3c, $5570 ; giga drain
+	dbw $3c, $55b4 ; attract
+	dbw $3c, $55cc ; kinesis
+	dbw $3c, $55de ; zap cannon
+	dbw $3c, $55ef ; mean look
+	dbw $3c, $5621 ; heal bell
+	dbw $3c, $5637 ; return
+	dbw $3c, $5653 ; exp bar
+	dbw $3c, $567f ; milk drink
+	dbw $3c, $569f ; present
+	dbw $3c, $56b9 ; morning sun
+	dbw $3c, $4b3f ; level up
+	dbw $3c, $4b86 ; key item
+	dbw $3c, $4d56 ; fanfare
+	dbw $3c, $4dc7 ; register phone #
+	dbw $3c, $4e26 ; 3rd place
+	dbw $3c, $4e66 ; get egg from daycare man
+	dbw $3c, $4e66 ; get egg from daycare lady
+	dbw $3c, $4edc ; move deleted
+	dbw $3c, $4f5e ; 2nd place
+	dbw $3c, $4fe2 ; 1st place
+	dbw $3c, $5069 ; choose a card
+	dbw $3c, $5104 ; get tm
+	dbw $3c, $517d ; get badge
+	dbw $3c, $5236 ; quit slots
+	dbw $3c, $5775 ; nothing
+	dbw $3c, $5878 ; dex fanfare <20
+	dbw $3c, $58d2 ; dex fanfare 140-169
+	dbw $3c, $5951 ; dex fanfare 170-199
+	dbw $3c, $59d6 ; dex fanfare 200-229
+	dbw $3c, $5a66 ; dex fanfare >=230
+	dbw $3c, $5784 ; evolved
+	dbw $3c, $579b ; master ball
+	dbw $3c, $57c0 ; egg crack
+	dbw $3c, $57d9 ; charizard fireball (gs intro)
+	dbw $3c, $57ff ; pokemon appears (gs intro)
+	dbw $3c, $5818 ; flash
+	dbw $3c, $5846 ; game freak logo
+	dbw $3c, $5b33 ; not very effective
+	dbw $3c, $5b40 ; damage
+	dbw $3c, $5b50 ; super effective
+	dbw $3c, $5b63 ; ball bounce
+	dbw $3c, $56df ; moonlight
+	dbw $3c, $56fd ; encore
+	dbw $3c, $5721 ; beat up
+	dbw $3c, $574c ; batom pass
+	dbw $3c, $4944 ; ball wiggle
+	dbw $3c, $5734 ; sweet scent
+	dbw $3c, $5bb3 ; sweet scent
+	dbw $3c, $5bec ; hit end of exp bar
+	dbw $3c, $5c10 ; give trademon
+	dbw $3c, $5c3e ; get trademon
+	dbw $3c, $5c6c ; train arrived
+	dbw $3c, $675b ; stop slot
+	dbw $3c, $5cb4 ; 2 boops
+	dbw $3c, $6769 ; glass ting
+	dbw $3c, $6773 ; 2 glass ting
+	dbw $5e, $582d ; intro unown 1
+	dbw $5e, $583e ; intro unown 2
+	dbw $5e, $584f ; intro unown 3
+	dbw $5e, $586e ; boop
+	dbw $5e, $5888 ; game freak ditto transform
+	dbw $5e, $58a0 ; intro suicune 1
+	dbw $5e, $58aa ; intro pichu
+	dbw $5e, $58c0 ; intro suicune 2
+	dbw $5e, $58f4 ; intro suicune 3
+	dbw $5e, $5907 ; game freak ditto bounce
+	dbw $5e, $591d ; intro suicune 4
+	dbw $5e, $5942 ; game freak presents
+	dbw $5e, $5961 ; tingle
+	dbw $3c, $5cd0 ; sand?
+	dbw $5e, $597c ; two pc beeps
+	dbw $5e, $5992 ; 4 note ditty
+	dbw $5e, $59cb ; twinkle
+; e94e9
+
+INCBIN "baserom.gbc",$e94e9,$ebfc3 - $e94e9
 
 SECTION "bank3B",DATA,BANK[$3B]
 
