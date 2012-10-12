@@ -86,7 +86,7 @@ MusicLength: ; c2a7
 ; $00 = infinite
 	ds 1
 	
-	ds 24
+	ds 23
 	
 CurSFX: ; c2bf
 ; id of sfx currently playing

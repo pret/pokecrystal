@@ -74497,6 +74497,7 @@ LoadSFX: ; e8c04
 	ld [$ff00+$14], a ; restart sound (freq hi = 0)
 	xor a
 	ld [$c29c], a ; ????
+	ld [$ff00+$10], a ; sweep = 0
 .ch6
 	ld hl, $c1fe ; ch6 on
 	bit 0, [hl]
@@ -74516,6 +74517,7 @@ LoadSFX: ; e8c04
 	jr z, .ch8
 	res 0, [hl]
 	xor a
+	ld [$ff00+$1a], a ; sound mode #3 off
 	ld [$ff00+$1b], a ; length/wavepattern = 0
 	ld a, $08
 	ld [$ff00+$1c], a ; envelope = 0
@@ -74629,19 +74631,19 @@ ChannelInit: ; e8d5b
 	xor a
 	ld hl, $0000
 	add hl, bc
-	ld e, $32 ; channel struct length
+	ld e, Channel2 - Channel1 ; channel struct length
 ; clear channel struct
 .loop
 	ld [hli], a
 	dec e
 	jr nz, .loop
-	ld hl, $0019 ; note length
+	ld hl, Channel1NoteLength - Channel1
 	add hl, bc
 	xor a
 	ld [hli], a
 	inc a
 	ld [hl], a ; default note length $100
-	ld hl, $002d ; tempo
+	ld hl, Channel1Tempo - Channel1
 	add hl, bc
 	ld [hl], a ; default tempo $01 (fast)
 	pop de
