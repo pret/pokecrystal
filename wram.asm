@@ -42,7 +42,7 @@ Channel3: ; c165
 Channel4: ; c197
 	ds 50
 
-StereoChannels:
+SFXChannels:
 Channel5: ; c1c9
 	ds 50
 Channel6: ; c1fb
@@ -84,6 +84,12 @@ MusicBank: ; c29f
 MusicLength: ; c2a7
 ; fades out when counter hits this value
 ; $00 = infinite
+	ds 1
+	
+	ds 24
+	
+CurSFX: ; c2bf
+; id of sfx currently playing
 	ds 1
 
 
