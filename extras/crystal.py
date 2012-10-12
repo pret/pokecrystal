@@ -7673,31 +7673,6 @@ class Label:
         self.address_is_in_file = new_asm.does_address_have_label(self.address)
         return self.address_is_in_file
 
-    def get_line_number_from_raw_file(self):
-        """ Reads the asm file to figure out the line number.
-
-        Note that this label might not be in the file yet, like
-        if this is a newly generated label. However, if crystal.py
-        has been run before and manipulated main.asm, then it is
-        possible that this label is already in the file.
-        """
-        lineno = old_is_label_in_asm(self.name)
-        if lineno:
-            self.line_number = lineno
-            self.is_in_file = True
-            return lineno
-        else:
-            self.line_number = None
-            self.is_in_file = False
-        return None
-
-    def old_check_is_in_file(self):
-        """ Reads the asm file to figure out if this label
-        is already inserted or not.
-        """
-        self.get_line_number_from_raw_file()
-        return self.is_in_file
-
     def old_check_address_is_in_file(self):
         """ Checks whether or not the address of the object is
         already in the file. This might happen if the label name
@@ -7732,27 +7707,6 @@ class Label:
 from labels import remove_quoted_text, line_has_comment_address, \
                    line_has_label, get_label_from_line, \
                    get_address_from_line_comment
-
-def old_is_label_in_asm(label):
-    """ Returns the line number or returns None if the
-    label is not in the file. This is an "old" method
-    because it looks directly at the list of lines
-    rather than reading a globally shared instance of
-    the Asm class.
-    """
-
-    # line numbering begins at 1 in vim
-    i = 1
-
-    # check if any line starts with this label
-    for line in asm:
-        if line_has_label(line):
-            thislabel = get_label_from_line(line)
-            if thislabel == label:
-                return i
-        i += 1
-
-    return False
 
 def find_labels_without_addresses():
     """scans the asm source and finds labels that are unmarked"""
