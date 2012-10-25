@@ -45211,18 +45211,18 @@ UnknownScript_0x78ba5: ; 0x78ba5
 	end
 ; 0x78be0
 
-UnknownScript_0x78be0: ; 0x78be0
+ProfElmScript: ; 0x78be0
 	faceplayer
 	loadfont
 	checkbit1 $0024
 	iftrue UnknownScript_0x78bee
 	checkbit1 $0044
-	iftrue UnknownScript_0x78e2f
+	iftrue ElmGiveTicketScript
 UnknownScript_0x78bee: ; 0x78bee
 	checkbit1 $007c
 	iftrue UnknownScript_0x78bfa
 	checkbit2 $0022
-	iftrue UnknownScript_0x78e1c
+	iftrue ElmGiveMasterBallScript
 UnknownScript_0x78bfa: ; 0x78bfa
 	checkbit1 $0056
 	iftrue UnknownScript_0x78e16
@@ -45232,10 +45232,10 @@ UnknownScript_0x78bfa: ; 0x78bfa
 	iffalse UnknownScript_0x78c35
 	writebyte TOGEPI
 	special $0043
-	iftrue UnknownScript_0x78dee
+	iftrue ShowElmTogepiScript
 	writebyte TOGETIC
 	special $0043
-	iftrue UnknownScript_0x78dee
+	iftrue ShowElmTogepiScript
 	2writetext UnknownText_0x79a40
 	closetext
 	loadmovesprites
@@ -45245,10 +45245,10 @@ UnknownScript_0x78bfa: ; 0x78bfa
 UnknownScript_0x78c22: ; 0x78c22
 	writebyte TOGEPI
 	special $0043
-	iftrue UnknownScript_0x78dee
+	iftrue ShowElmTogepiScript
 	writebyte TOGETIC
 	special $0043
-	iftrue UnknownScript_0x78dee
+	iftrue ShowElmTogepiScript
 	2jump UnknownScript_0x78c41
 ; 0x78c35
 
@@ -45259,34 +45259,34 @@ UnknownScript_0x78c35: ; 0x78c35
 	iftrue UnknownScript_0x78c22
 UnknownScript_0x78c41: ; 0x78c41
 	checkbit1 $002d ; why are we checking it again?
-	iftrue UnknownScript_0x78de8
+	iftrue ElmWaitingEggHatchScript
 	checkbit2 $001b
-	iftrue UnknownScript_0x78de2
+	iftrue ElmAideHasEggScript
 	checkbit1 $001f
-	iftrue UnknownScript_0x78ddc
+	iftrue ElmStudyingEggScript
 	checkbit1 $001e
-	iftrue UnknownScript_0x78da2
+	iftrue ElmAfterTheftScript
 	checkbit1 $001a
-	iftrue UnknownScript_0x78d67
+	iftrue ElmDescribesMrPokemonScript
 	2writetext UnknownText_0x79375
 	closetext
 	loadmovesprites
 	end
 ; 0x78c65
 
-UnknownScript_0x78c65: ; 0x78c65
+LabTryToLeaveScript: ; 0x78c65
 	spriteface $2, $0
 	loadfont
-	2writetext UnknownText_0x793a7
+	2writetext LabWhereGoingText
 	closetext
 	loadmovesprites
 	applymovement $0, MovementData_0x78f70
 	end
 ; 0x78c73
 
-UnknownScript_0x78c73: ; 0x78c73
+CyndaquilPokeBallScript: ; 0x78c73
 	checkbit1 $001a
-	iftrue UnknownScript_0x78d6d
+	iftrue LookAtElmPokeBallScript
 	spriteface $2, $0
 	refreshscreen $0
 	pokepic CYNDAQUIL
@@ -45294,30 +45294,30 @@ UnknownScript_0x78c73: ; 0x78c73
 	closetext
 	pokepicyesorno
 	loadfont
-	2writetext UnknownText_0x793c8
+	2writetext TakeCyndaquilText
 	yesorno
-	iffalse UnknownScript_0x78d2d
+	iffalse DidntChooseStarterScript
 	disappear $4
 	setbit1 $001b
-	2writetext UnknownText_0x79487
+	2writetext ChoseStarterText
 	keeptextopen
 	waitbutton
 	pokenamemem CYNDAQUIL, $0
-	2writetext UnknownText_0x794ad
+	2writetext ReceivedStarterText
 	playsound $0002
 	waitbutton
 	keeptextopen
 	givepoke CYNDAQUIL, 5, BERRY, 0
 	loadmovesprites
 	checkcode $9
-	if_equal $3, UnknownScript_0x78d33
-	applymovement $0, MovementData_0x78fa7
-	2jump UnknownScript_0x78d33
+	if_equal $3, ElmDirectionsScript
+	applymovement $0, AfterCyndaquilMovement
+	2jump ElmDirectionsScript
 ; 0x78cb5
 
-UnknownScript_0x78cb5: ; 0x78cb5
+TotodilePokeBallScript: ; 0x78cb5
 	checkbit1 $001a
-	iftrue UnknownScript_0x78d6d
+	iftrue LookAtElmPokeBallScript
 	spriteface $2, $0
 	refreshscreen $0
 	pokepic TOTODILE
@@ -45325,28 +45325,28 @@ UnknownScript_0x78cb5: ; 0x78cb5
 	closetext
 	pokepicyesorno
 	loadfont
-	2writetext UnknownText_0x793f3
+	2writetext TakeTotodileText
 	yesorno
-	iffalse UnknownScript_0x78d2d
+	iffalse DidntChooseStarterScript
 	disappear $5
 	setbit1 $001c
-	2writetext UnknownText_0x79487
+	2writetext ChoseStarterText
 	keeptextopen
 	waitbutton
 	pokenamemem TOTODILE, $0
-	2writetext UnknownText_0x794ad
+	2writetext ReceivedStarterText
 	playsound $0002
 	waitbutton
 	keeptextopen
 	givepoke TOTODILE, 5, BERRY, 0
 	loadmovesprites
-	applymovement $0, MovementData_0x78fab
-	2jump UnknownScript_0x78d33
+	applymovement $0, AfterTotodileMovement
+	2jump ElmDirectionsScript
 ; 0x78cf1
 
-UnknownScript_0x78cf1: ; 0x78cf1
+ChikoritaPokeBallScript: ; 0x78cf1
 	checkbit1 $001a
-	iftrue UnknownScript_0x78d6d
+	iftrue LookAtElmPokeBallScript
 	spriteface $2, $0
 	refreshscreen $0
 	pokepic CHIKORITA
@@ -45354,53 +45354,53 @@ UnknownScript_0x78cf1: ; 0x78cf1
 	closetext
 	pokepicyesorno
 	loadfont
-	2writetext UnknownText_0x7941f
+	2writetext TakeChikoritaText
 	yesorno
-	iffalse UnknownScript_0x78d2d
+	iffalse DidntChooseStarterScript
 	disappear $6
 	setbit1 $001d
-	2writetext UnknownText_0x79487
+	2writetext ChoseStarterText
 	keeptextopen
 	waitbutton
 	pokenamemem CHIKORITA, $0
-	2writetext UnknownText_0x794ad
+	2writetext ReceivedStarterText
 	playsound $0002
 	waitbutton
 	keeptextopen
 	givepoke CHIKORITA, 5, BERRY, 0
 	loadmovesprites
-	applymovement $0, MovementData_0x78fb0
-	2jump UnknownScript_0x78d33
+	applymovement $0, AfterChikoritaMovement
+	2jump ElmDirectionsScript
 ; 0x78d2d
 
-UnknownScript_0x78d2d: ; 0x78d2d
-	2writetext UnknownText_0x7944d
+DidntChooseStarterScript: ; 0x78d2d
+	2writetext DidntChooseStarterText
 	closetext
 	loadmovesprites
 	end
 ; 0x78d33
 
-UnknownScript_0x78d33: ; 0x78d33
+ElmDirectionsScript: ; 0x78d33
 	spriteface $0, $1
 	loadfont
-	2writetext UnknownText_0x794c0
+	2writetext ElmDirectionsText1
 	closetext
 	loadmovesprites
 	addcellnum $4
 	loadfont
-	2writetext UnknownText_0x795f3
+	2writetext GotElmsNumberText
 	playsound $0093
 	waitbutton
 	closetext
 	loadmovesprites
 	spriteface $2, $2
 	loadfont
-	2writetext UnknownText_0x79581
+	2writetext ElmDirectionsText2
 	closetext
 	loadmovesprites
 	spriteface $2, $0
 	loadfont
-	2writetext UnknownText_0x795db
+	2writetext ElmDirectionsText3
 	closetext
 	loadmovesprites
 	setbit1 $001a
@@ -45410,16 +45410,16 @@ UnknownScript_0x78d33: ; 0x78d33
 	end
 ; 0x78d67
 
-UnknownScript_0x78d67: ; 0x78d67
-	2writetext UnknownText_0x7960d
+ElmDescribesMrPokemonScript: ; 0x78d67
+	2writetext ElmDescribesMrPokemonText
 	closetext
 	loadmovesprites
 	end
 ; 0x78d6d
 
-UnknownScript_0x78d6d: ; 0x78d6d
+LookAtElmPokeBallScript: ; 0x78d6d
 	loadfont
-	2writetext UnknownText_0x79668
+	2writetext ElmPokeBallText
 	closetext
 	loadmovesprites
 	end
@@ -45455,78 +45455,78 @@ UnknownScript_0x78d8a: ; 0x78d8a
 	end
 ; 0x78d9f
 
-UnknownScript_0x78d9f: ; 0x78d9f
+ElmAfterTheftDoneScript: ; 0x78d9f
 	closetext
 	loadmovesprites
 	end
 ; 0x78da2
 
-UnknownScript_0x78da2: ; 0x78da2
-	2writetext UnknownText_0x796cd
+ElmAfterTheftScript: ; 0x78da2
+	2writetext ElmAfterTheftText1
 	checkitem MYSTERY_EGG
-	iffalse UnknownScript_0x78d9f
+	iffalse ElmAfterTheftDoneScript
 	keeptextopen
-	2writetext UnknownText_0x79712
+	2writetext ElmAfterTheftText2
 	closetext
 	takeitem MYSTERY_EGG, 1
-	2call UnknownScript_0x78e3f
-	2writetext UnknownText_0x79739
+	2call ElmJumpBackScript1
+	2writetext ElmAfterTheftText3
 	closetext
-	2call UnknownScript_0x78e53
-	2writetext UnknownText_0x79745
+	2call ElmJumpBackScript2
+	2writetext ElmAfterTheftText4
 	keeptextopen
-	2writetext UnknownText_0x79780
+	2writetext ElmAfterTheftText5
 	keeptextopen
 	setbit1 $001f
 	setbit2 $0010
 	domaptrigger GROUP_ROUTE_29, MAP_ROUTE_29, $1
 	clearbit1 $0715
 	setbit1 $0714
-	2writetext UnknownText_0x798cf
+	2writetext ElmAfterTheftText6
 	closetext
 	loadmovesprites
 	dotrigger $6
 	end
 ; 0x78ddc
 
-UnknownScript_0x78ddc: ; 0x78ddc
-	2writetext UnknownText_0x7993c
+ElmStudyingEggScript: ; 0x78ddc
+	2writetext ElmStudyingEggText
 	closetext
 	loadmovesprites
 	end
 ; 0x78de2
 
-UnknownScript_0x78de2: ; 0x78de2
-	2writetext UnknownText_0x7997d
+ElmAideHasEggScript: ; 0x78de2
+	2writetext ElmAideHasEggText
 	closetext
 	loadmovesprites
 	end
 ; 0x78de8
 
-UnknownScript_0x78de8: ; 0x78de8
-	2writetext UnknownText_0x79a1b
+ElmWaitingEggHatchScript: ; 0x78de8
+	2writetext ElmWaitingEggHatchText
 	closetext
 	loadmovesprites
 	end
 ; 0x78dee
 
-UnknownScript_0x78dee: ; 0x78dee
-	2writetext UnknownText_0x79a72
+ShowElmTogepiScript: ; 0x78dee
+	2writetext ShowElmTogepiText1
 	closetext
 	loadmovesprites
 	showemote $0, $2, 15
 	setbit1 $0055
 	loadfont
-	2writetext UnknownText_0x79a8b
+	2writetext ShowElmTogepiText2
 	keeptextopen
-	2writetext UnknownText_0x79a9f
+	2writetext ShowElmTogepiText3
 	keeptextopen
 UnknownScript_0x78e03: ; 0x78e03
-	2writetext UnknownText_0x79b1c
+	2writetext ElmGiveEverstoneText1
 	keeptextopen
 	verbosegiveitem EVERSTONE, 1
 	iffalse UnknownScript_0x78e1a
-	2writetext UnknownText_0x79b8d
+	2writetext ElmGiveEverstoneText2
 	closetext
 	loadmovesprites
 	setbit1 $0056
@@ -45541,31 +45541,31 @@ UnknownScript_0x78e1a: ; 0x78e1a
 	end
 ; 0x78e1c
 
-UnknownScript_0x78e1c: ; 0x78e1c
-	2writetext UnknownText_0x79cd0
+ElmGiveMasterBallScript: ; 0x78e1c
+	2writetext ElmGiveMasterBallText1
 	keeptextopen
 	verbosegiveitem MASTER_BALL, 1
-	iffalse UnknownScript_0x78e2d
+	iffalse .notdone
 	setbit1 $007c
-	2writetext UnknownText_0x79d31
+	2writetext ElmGiveMasterBallText2
 	closetext
-UnknownScript_0x78e2d: ; 0x78e2d
+.notdone
 	loadmovesprites
 	end
 ; 0x78e2f
 
-UnknownScript_0x78e2f: ; 0x78e2f
-	2writetext UnknownText_0x79df3
+ElmGiveTicketScript: ; 0x78e2f
+	2writetext ElmGiveTicketText1
 	keeptextopen
 	verbosegiveitem S_S_TICKET, 1
 	setbit1 $0024
-	2writetext UnknownText_0x79e6f
+	2writetext ElmGiveTicketText2
 	closetext
 	loadmovesprites
 	end
 ; 0x78e3f
 
-UnknownScript_0x78e3f: ; 0x78e3f
+ElmJumpBackScript1: ; 0x78e3f
 	loadmovesprites
 	checkcode $9
 	if_equal $0, UnknownScript_0x78e6d
@@ -45575,7 +45575,7 @@ UnknownScript_0x78e3f: ; 0x78e3f
 	end
 ; 0x78e53
 
-UnknownScript_0x78e53: ; 0x78e53
+ElmJumpBackScript2: ; 0x78e53
 	loadmovesprites
 	checkcode $9
 	if_equal $0, UnknownScript_0x78e67
@@ -45673,7 +45673,7 @@ UnknownScript_0x78ee2: ; 0x78ee2
 	end
 ; 0x78ee6
 
-UnknownScript_0x78ee6: ; 0x78ee6
+ElmsAideScript: ; 0x78ee6
 	faceplayer
 	loadfont
 	checkbit1 $002d
@@ -45713,7 +45713,7 @@ UnknownScript_0x78f12: ; 0x78f12
 	applymovement $0, MovementData_0x78f72
 ; 0x78f16
 
-UnknownScript_0x78f16: ; 0x78f16
+MeetCopScript: ; 0x78f16
 	applymovement $0, MovementData_0x78f74
 	spriteface $7, $2
 	loadfont
@@ -45893,14 +45893,14 @@ MovementData_0x78fa2: ; 0x78fa2
 	step_end
 ; 0x78fa7
 
-MovementData_0x78fa7: ; 0x78fa7
+AfterCyndaquilMovement: ; 0x78fa7
 	step_left
 	step_up
 	turn_head_up
 	step_end
 ; 0x78fab
 
-MovementData_0x78fab: ; 0x78fab
+AfterTotodileMovement: ; 0x78fab
 	step_left
 	step_left
 	step_up
@@ -45908,7 +45908,7 @@ MovementData_0x78fab: ; 0x78fab
 	step_end
 ; 0x78fb0
 
-MovementData_0x78fb0: ; 0x78fb0
+AfterChikoritaMovement: ; 0x78fb0
 	step_left
 	step_left
 	step_left
@@ -46014,50 +46014,50 @@ UnknownText_0x79375: ; 0x79375
 	db "#MON battle it!", $57
 ; 0x793a7
 
-UnknownText_0x793a7: ; 0x793a7
+LabWhereGoingText: ; 0x793a7
 	db $0, "ELM: Wait! Where", $4f
 	db "are you going?", $57
 ; 0x793c8
 
-UnknownText_0x793c8: ; 0x793c8
+TakeCyndaquilText: ; 0x793c8
 	db $0, "ELM: You'll take", $4f
 	db "CYNDAQUIL, the", $55
 	db "fire #MON?", $57
 ; 0x793f3
 
-UnknownText_0x793f3: ; 0x793f3
+TakeTotodileText: ; 0x793f3
 	db $0, "ELM: Do you want", $4f
 	db "TOTODILE, the", $55
 	db "water #MON?", $57
 ; 0x7941f
 
-UnknownText_0x7941f: ; 0x7941f
+TakeChikoritaText: ; 0x7941f
 	db $0, "ELM: So, you like", $4f
 	db "CHIKORITA, the", $55
 	db "grass #MON?", $57
 ; 0x7944d
 
-UnknownText_0x7944d: ; 0x7944d
+DidntChooseStarterText: ; 0x7944d
 	db $0, "ELM: Think it over", $4f
 	db "carefully.", $51
 	db "Your partner is", $4f
 	db "important.", $57
 ; 0x79487
 
-UnknownText_0x79487: ; 0x79487
+ChoseStarterText: ; 0x79487
 	db $0, "ELM: I think", $4f
 	db "that's a great", $55
 	db "#MON too!", $57
 ; 0x794ad
 
-UnknownText_0x794ad: ; 0x794ad
+ReceivedStarterText: ; 0x794ad
 	db $0, $52, " received", $4f
 	db "@"
 	text_from_ram $d099
 	db $0, "!", $57
 ; 0x794c0
 
-UnknownText_0x794c0: ; 0x794c0
+ElmDirectionsText1: ; 0x794c0
 	db $0, "MR.#MON lives a", $4f
 	db "little bit beyond", $51
 	db "CHERRYGROVE, the", $4f
@@ -46072,7 +46072,7 @@ UnknownText_0x794c0: ; 0x794c0
 	db "anything comes up!", $57
 ; 0x79581
 
-UnknownText_0x79581: ; 0x79581
+ElmDirectionsText2: ; 0x79581
 	db $0, "If your #MON is", $4f
 	db "hurt, you should", $51
 	db "heal it with this", $4f
@@ -46081,17 +46081,17 @@ UnknownText_0x79581: ; 0x79581
 	db "it anytime.", $57
 ; 0x795db
 
-UnknownText_0x795db: ; 0x795db
+ElmDirectionsText3: ; 0x795db
 	db $0, $14, ", I'm", $4f
 	db "counting on you!", $57
 ; 0x795f3
 
-UnknownText_0x795f3: ; 0x795f3
+GotElmsNumberText: ; 0x795f3
 	db $0, $52, " got ELM's", $4f
 	db "phone number.", $57
 ; 0x7960d
 
-UnknownText_0x7960d: ; 0x7960d
+ElmDescribesMrPokemonText: ; 0x7960d
 	db $0, "MR.#MON goes", $4f
 	db "everywhere and", $55
 	db "finds rarities.", $51
@@ -46100,7 +46100,7 @@ UnknownText_0x7960d: ; 0x7960d
 	db "not very useful…", $57
 ; 0x79668
 
-UnknownText_0x79668: ; 0x79668
+ElmPokeBallText: ; 0x79668
 	db $0, "It contains a", $4f
 	db "#MON caught by", $55
 	db "PROF.ELM.", $57
@@ -46116,7 +46116,7 @@ UnknownText_0x796aa: ; 0x796aa
 	db "heal your #MON?", $57
 ; 0x796cd
 
-UnknownText_0x796cd: ; 0x796cd
+ElmAfterTheftText1: ; 0x796cd
 	db $0, "ELM: ", $14, ", this", $4f
 	db "is terrible…", $51
 	db "Oh, yes, what was", $4f
@@ -46124,24 +46124,24 @@ UnknownText_0x796cd: ; 0x796cd
 	db "discovery?", $57
 ; 0x79712
 
-UnknownText_0x79712: ; 0x79712
+ElmAfterTheftText2: ; 0x79712
 	db $0, $52, " handed", $4f
 	db "the MYSTERY EGG to", $55
 	db "PROF.ELM.", $57
 ; 0x79739
 
-UnknownText_0x79739: ; 0x79739
+ElmAfterTheftText3: ; 0x79739
 	db $0, "ELM: This?", $57
 ; 0x79745
 
-UnknownText_0x79745: ; 0x79745
+ElmAfterTheftText4: ; 0x79745
 	db $0, "But… Is it a", $4f
 	db "#MON EGG?", $51
 	db "If it is, it is a", $4f
 	db "great discovery!", $57
 ; 0x79780
 
-UnknownText_0x79780: ; 0x79780
+ElmAfterTheftText5: ; 0x79780
 	db $0, "ELM: What?!?", $51
 	db "PROF.OAK gave you", $4f
 	db "a #DEX?", $51
@@ -46167,7 +46167,7 @@ UnknownText_0x79780: ; 0x79780
 	db "in VIOLET CITY.", $57
 ; 0x798cf
 
-UnknownText_0x798cf: ; 0x798cf
+ElmAfterTheftText6: ; 0x798cf
 	db $0, "…", $14, ". The", $4f
 	db "road to the", $51
 	db "championship will", $4f
@@ -46177,14 +46177,14 @@ UnknownText_0x798cf: ; 0x798cf
 	db "talk to your mom.", $57
 ; 0x7993c
 
-UnknownText_0x7993c: ; 0x7993c
+ElmStudyingEggText: ; 0x7993c
 	db $0, "ELM: Don't give", $4f
 	db "up! I'll call if", $51
 	db "I learn anything", $4f
 	db "about that EGG!", $57
 ; 0x7997d
 
-UnknownText_0x7997d: ; 0x7997d
+ElmAideHasEggText: ; 0x7997d
 	db $0, "ELM: ", $14, "?", $4f
 	db "Didn't you meet my", $55
 	db "assistant?", $51
@@ -46197,7 +46197,7 @@ UnknownText_0x7997d: ; 0x7997d
 	db "catch him there.", $57
 ; 0x79a1b
 
-UnknownText_0x79a1b: ; 0x79a1b
+ElmWaitingEggHatchText: ; 0x79a1b
 	db $0, "ELM: Hey, has that", $4f
 	db "EGG changed any?", $57
 ; 0x79a40
@@ -46209,17 +46209,17 @@ UnknownText_0x79a40: ; 0x79a40
 	db "#MON?", $57
 ; 0x79a72
 
-UnknownText_0x79a72: ; 0x79a72
+ShowElmTogepiText1: ; 0x79a72
 	db $0, "ELM: ", $14, ", you", $4f
 	db "look great!", $57
 ; 0x79a8b
 
-UnknownText_0x79a8b: ; 0x79a8b
+ShowElmTogepiText2: ; 0x79a8b
 	db $0, "What?", $4f
 	db "That #MON!?!", $57
 ; 0x79a9f
 
-UnknownText_0x79a9f: ; 0x79a9f
+ShowElmTogepiText3: ; 0x79a9f
 	db $0, "The EGG hatched!", $4f
 	db "So, #MON are", $55
 	db "born from EGGS…", $51
@@ -46230,7 +46230,7 @@ UnknownText_0x79a9f: ; 0x79a9f
 	db "to be done.", $57
 ; 0x79b1c
 
-UnknownText_0x79b1c: ; 0x79b1c
+ElmGiveEverstoneText1: ; 0x79b1c
 	db $0, "Thanks, ", $14, "!", $4f
 	db "You're helping", $51
 	db "unravel #MON", $4f
@@ -46240,7 +46240,7 @@ UnknownText_0x79b1c: ; 0x79b1c
 	db "our appreciation.", $57
 ; 0x79b8d
 
-UnknownText_0x79b8d: ; 0x79b8d
+ElmGiveEverstoneText2: ; 0x79b8d
 	db $0, "That's an", $4f
 	db "EVERSTONE.", $51
 	db "Some species of", $4f
@@ -46272,7 +46272,7 @@ UnknownText_0x79c65: ; 0x79c65
 	db "itself.", $57
 ; 0x79cd0
 
-UnknownText_0x79cd0: ; 0x79cd0
+ElmGiveMasterBallText1: ; 0x79cd0
 	db $0, "ELM: Hi, ", $14, "!", $4f
 	db "Thanks to you, my", $51
 	db "research is going", $4f
@@ -46282,7 +46282,7 @@ UnknownText_0x79cd0: ; 0x79cd0
 	db "appreciation.", $57
 ; 0x79d31
 
-UnknownText_0x79d31: ; 0x79d31
+ElmGiveMasterBallText2: ; 0x79d31
 	db $0, "The MASTER BALL is", $4f
 	db "the best!", $51
 	db "It's the ultimate", $4f
@@ -46298,7 +46298,7 @@ UnknownText_0x79d31: ; 0x79d31
 	db "can, ", $14, "!", $57
 ; 0x79df3
 
-UnknownText_0x79df3: ; 0x79df3
+ElmGiveTicketText1: ; 0x79df3
 	db $0, "ELM: ", $14, "!", $4f
 	db "There you are!", $51
 	db "I called because I", $4f
@@ -46310,7 +46310,7 @@ UnknownText_0x79df3: ; 0x79df3
 	db "#MON in KANTO.", $57
 ; 0x79e6f
 
-UnknownText_0x79e6f: ; 0x79e6f
+ElmGiveTicketText2: ; 0x79e6f
 	db $0, "The ship departs", $4f
 	db "from OLIVINE CITY.", $51
 	db "But you knew that", $4f
@@ -46467,9 +46467,9 @@ ElmsLab_MapEventHeader: ; 0x7a3de
 
 	; xy triggers
 	db 8
-	xy_trigger 1, $6, $4, $0, UnknownScript_0x78c65, $0, $0
-	xy_trigger 1, $6, $5, $0, UnknownScript_0x78c65, $0, $0
-	xy_trigger 3, $5, $4, $0, UnknownScript_0x78f16, $0, $0
+	xy_trigger 1, $6, $4, $0, LabTryToLeaveScript, $0, $0
+	xy_trigger 1, $6, $5, $0, LabTryToLeaveScript, $0, $0
+	xy_trigger 3, $5, $4, $0, MeetCopScript, $0, $0
 	xy_trigger 3, $5, $5, $0, UnknownScript_0x78f12, $0, $0
 	xy_trigger 5, $8, $4, $0, UnknownScript_0x78e7f, $0, $0
 	xy_trigger 5, $8, $5, $0, UnknownScript_0x78e8e, $0, $0
@@ -46497,11 +46497,11 @@ ElmsLab_MapEventHeader: ; 0x7a3de
 
 	; people-events
 	db 6
-	person_event $10, 6, 9, $6, $0, 255, 255, $0, 0, UnknownScript_0x78be0, $ffff
-	person_event $3c, 13, 6, $3, $0, 255, 255, $90, 0, UnknownScript_0x78ee6, $0701
-	person_event $54, 7, 10, $1, $0, 255, 255, $0, 0, UnknownScript_0x78c73, $0640
-	person_event $54, 7, 11, $1, $0, 255, 255, $0, 0, UnknownScript_0x78cb5, $0641
-	person_event $54, 7, 12, $1, $0, 255, 255, $0, 0, UnknownScript_0x78cf1, $0642
+	person_event $10, 6, 9, $6, $0, 255, 255, $0, 0, ProfElmScript, $ffff
+	person_event $3c, 13, 6, $3, $0, 255, 255, $90, 0, ElmsAideScript, $0701
+	person_event $54, 7, 10, $1, $0, 255, 255, $0, 0, CyndaquilPokeBallScript, $0640
+	person_event $54, 7, 11, $1, $0, 255, 255, $0, 0, TotodilePokeBallScript, $0641
+	person_event $54, 7, 12, $1, $0, 255, 255, $0, 0, ChikoritaPokeBallScript, $0642
 	person_event $43, 7, 9, $7, $0, 255, 255, $90, 0, $4f1a, $0702
 ; 0x7a4cc
 
