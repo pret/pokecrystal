@@ -1287,15 +1287,15 @@ Function3927: ; 3927
 
 INCBIN "baserom.gbc",$392d,$3b86 - $392d
 
-LoadMusicHeader: ; 3b86
-; store music header in ram
+LoadMusicByte: ; 3b86
+; load music data into CurMusicByte
 ; input:
 ;   a: bank
 ;   de: address
 	ld [$ff00+$9d], a
 	ld [$2000], a ; bankswitch
 	ld a, [de]
-	ld [MusicHeaderBuffer], a
+	ld [CurMusicByte], a
 	ld a, $3a ; manual bank restore
 	ld [$ff00+$9d], a
 	ld [$2000], a ; bankswitch
@@ -1335,15 +1335,18 @@ StartMusic: ; 3b97
 INCBIN "baserom.gbc",$3bbc,$3c23 - $3bbc
 
 StartSFX: ; 3c23
-; not sure why this was written differently from StartMusic
+; sfx id order is by priority (highest to lowest)
+; to disable this, remove the check!
 ; input: de = sfx id
 	push hl
 	push de
 	push bc
 	push af
-	call CheckSFX ; is something already playing?
+	; is something already playing?
+	call CheckSFX
 	jr nc, .asm_3c32
-	ld a, [CurSFX] ; i guess sfx order is by priority
+	; only play sfx if it has priority
+	ld a, [CurSFX]
 	cp e
 	jr c, .quit
 .asm_3c32
@@ -74421,14 +74424,14 @@ SetLRTracks: ; e8b1b
 ;   bc = Channels ($c101)
 ; seems to be redundant since this is overwritten by stereo data later
 	push de
-	ld a, [CurMusicChannel]
+	ld a, [CurChannel]
 	and a, $03 ; bit 0-1
 	ld e, a
 	ld d, $00
 	call GetLRTracks ; hl = mono / stereo table
 	add hl, de       ; + channel #
 	ld a, [hl]       ; get result
-	ld hl, Channel1LR - Channel1
+	ld hl, Channel1Tracks - Channel1
 	add hl, bc
 	ld [hl], a ; set tracks
 	pop de
@@ -74451,7 +74454,7 @@ LoadMusic: ; e8b30
 	ld e, [hl]
 	inc hl
 	ld d, [hl] ; music header address
-	call GetByteFromMusicHeader ; store first byte of music header in [a]
+	call FarLoadMusicByte ; store first byte of music header in [a]
 	rlca
 	rlca
 	and a, $03 ; get number of channels
@@ -74556,7 +74559,7 @@ LoadSFX: ; e8c04
 	ld e, [hl] ; get address
 	inc hl
 	ld d, [hl]
-	call GetByteFromMusicHeader ; get # channels
+	call FarLoadMusicByte ; get # channels
 	rlca
 	rlca
 	and a, $03 ; bit 0-1
@@ -74582,10 +74585,10 @@ INCBIN "baserom.gbc",$e8ca6,$e8d1b - $e8ca6
 LoadChannel: ; e8d1b
 ; prep channel for use
 	; get pointer to current channel
-	call GetByteFromMusicHeader
+	call FarLoadMusicByte
 	inc de
 	and a, $07 ; bit 0-2 (current channel)
-	ld [CurMusicChannel], a
+	ld [CurChannel], a
 	ld c, a
 	ld b, $00
 	ld hl, ChannelPointers
@@ -74601,10 +74604,10 @@ LoadChannel: ; e8d1b
 	; load music pointer
 	ld hl, Channel1MusicAddress - Channel1
 	add hl, bc
-	call GetByteFromMusicHeader
+	call FarLoadMusicByte
 	ld [hli], a
 	inc de
-	call GetByteFromMusicHeader
+	call FarLoadMusicByte
 	ld [hl], a
 	inc de
 	; load music id
@@ -74637,27 +74640,27 @@ ChannelInit: ; e8d5b
 	ld [hli], a
 	dec e
 	jr nz, .loop
-	ld hl, Channel1NoteLength - Channel1
+	ld hl, Channel1Tempo - Channel1
 	add hl, bc
 	xor a
 	ld [hli], a
 	inc a
 	ld [hl], a ; default note length $100
-	ld hl, Channel1Tempo - Channel1
+	ld hl, Channel1NoteLength - Channel1
 	add hl, bc
 	ld [hl], a ; default tempo $01 (fast)
 	pop de
 	ret
 ; e8d76
 
-GetByteFromMusicHeader: ; e8d76
+FarLoadMusicByte: ; e8d76
 ; input:
 ;   de = address of current spot in music header
 ; output:
 ;   a
 	ld a, [MusicBank]
-	call LoadMusicHeader
-	ld a, [MusicHeaderBuffer]
+	call LoadMusicByte
+	ld a, [CurMusicByte]
 	ret
 ; e8d80
 
@@ -74711,7 +74714,7 @@ PlayTrainerEncounterMusic: ; e900a
 ; input: e = trainer type
 	; turn music off for one frame
 	xor a
-	ld [MusicLength], a ; $00 = infinite
+	ld [MusicFade], a ; $00 = infinite
 	push de
 	ld de, $0000
 	call StartMusic
