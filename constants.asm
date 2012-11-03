@@ -9,6 +9,10 @@ dn: MACRO
 	db \1 << 4 + \2
 	ENDM
 
+bigdw: MACRO
+	dw ((\1)/$100) + (((\1)&$ff)*$100)
+	ENDM
+
 callab: MACRO
 	ld hl, \1
 	ld a, BANK(\1)
@@ -3188,7 +3192,8 @@ NOTE_15 EQU $0e
 NOTE_16 EQU $0f
 
 octave: MACRO
-	db $d0 + \1
+; $d0-$d7
+	db $d8 - \1
 	ENDM
 notetype: MACRO
 	db $d8
@@ -3201,8 +3206,7 @@ forceoctave: MACRO
 	ENDM
 tempo: MACRO
 	db $da
-	db \1
-	db \2
+	bigdw \1
 	ENDM
 dutycycle: MACRO
 	db $db
@@ -3251,7 +3255,7 @@ volume: MACRO
 	ENDM
 tone: MACRO
 	db $e6
-	dw \1
+	bigdw \1
 	ENDM
 unknownmusic0xe7: MACRO
 	db $e7
@@ -3263,11 +3267,11 @@ unknownmusic0xe8: MACRO
 	ENDM
 globaltempo : MACRO
 	db $e9
-	dw \1
+	bigdw \1
 	ENDM
 restartchannel: MACRO
 	db $ea
-	dw \1
+	bigdw \1
 	ENDM
 newsong: MACRO
 	db $eb

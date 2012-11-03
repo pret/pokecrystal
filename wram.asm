@@ -72,9 +72,12 @@ Channel1Intensity: ; c110
 ;	hi: pressure
 ;   lo: velocity
 	ds 1
-Channel1Frequency: ; c111
+Channel1Frequency:
 ; 11 bits
-	ds 2
+Channel1FrequencyLo: ; c111
+	ds 1
+Channel1FrequencyHi: ; c112
+	ds 1
 Channel1Pitch: ; c113
 ; 0: rest
 ; 1: C

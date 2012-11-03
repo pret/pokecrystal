@@ -74346,7 +74346,7 @@ SECTION "bank3A",DATA,BANK[$3A]
 
 SoundRestart: ; e8000
 ; restart sound operation
-; clear all relevant registers
+; clear all relevant hardware registers & wram
 	push hl
 	push de
 	push bc
@@ -74362,7 +74362,7 @@ SoundRestart: ; e8000
 	ld hl, $ff10 ; sound channel registers
 	ld e, $04 ; number of channels
 .clearsound
-;   sound channel   1     2     3     4
+;   sound channel   1      2      3      4
 	xor a
 	ld [hli], a ; $ff10, $ff15, $ff1a, $ff1f ; sweep = 0
 
@@ -74376,8 +74376,8 @@ SoundRestart: ; e8000
 	dec e
 	jr nz, .clearsound
 
-	ld hl, $c101 ; start of channel data
-	ld de, $01bf ; length ($ * 8 channels)
+	ld hl, Channel1 ; start of channel data
+	ld de, $01bf ; length of area to clear (entire sound wram area)
 .clearchannels ; clear $c101-$c2bf
 	xor a
 	ld [hli], a
@@ -74395,45 +74395,2251 @@ SoundRestart: ; e8000
 	ret
 ; e803d
 
-INCBIN "baserom.gbc",$e803d,$e8051 - $e803d
+MusicFadeRestart: ; e803d
+; restart but keep the music id to fade in to
+	ld a, [MusicFadeIDHi]
+	push af
+	ld a, [MusicFadeIDLo]
+	push af
+	call SoundRestart
+	pop af
+	ld [MusicFadeIDLo], a
+	pop af
+	ld [MusicFadeIDHi], a
+	ret
+; e8051
 
 MusicOn: ; e8051
 	ld a, $01
-	ld [$c100], a
+	ld [MusicPlaying], a
 	ret
 ; e8057
 
 MusicOff: ; e8057
 	xor a
-	ld [$c100], a
+	ld [MusicPlaying], a
 	ret
 ; e805c
 
-INCBIN "baserom.gbc",$e805c,$e8b11 - $e805c
+UpdateSound: ; e805c
+; called once per frame
+	; no use updating audio if it's not playing
+	ld a, [MusicPlaying]
+	and a
+	ret z
+	; start at ch1
+	xor a
+	ld [CurChannel], a ; just
+	ld [SoundOutput], a ; off
+	ld bc, Channel1
+.loop
+	; is the channel active?
+	ld hl, Channel1Flags - Channel1
+	add hl, bc
+	bit 0, [hl]
+	jp z, .nextchannel
+	; check time left in the current note
+	ld hl, Channel1NoteDuration - Channel1
+	add hl, bc
+	ld a, [hl]
+	cp a, $02 ; 1 or 0?
+	jr c, .noteover
+	dec [hl]
+	jr .asm_e8093
+.noteover
+	; reset vibrato delay
+	ld hl, Channel1VibratoDelay - Channel1
+	add hl, bc
+	ld a, [hl]
+	ld hl, Channel1VibratoDelayCount - Channel1
+	add hl, bc
+	ld [hl], a
+	; turn vibrato off for now
+	ld hl, Channel1Flags2 - Channel1
+	add hl, bc
+	res 1, [hl]
+	; get next note
+	call ParseMusic
+.asm_e8093
+	; 
+	call Functione84f9
+	; duty cycle
+	ld hl, Channel1DutyCycle - Channel1
+	add hl, bc
+	ld a, [hli]
+	ld [$c292], a
+	; intensity
+	ld a, [hli]
+	ld [$c293], a
+	; frequency
+	ld a, [hli]
+	ld [$c294], a
+	ld a, [hl]
+	ld [$c295], a
+	;
+	call Functione8466 ; handle vibrato and other things
+	call HandleNoise
+	; turn off music when playing sfx?
+	ld a, [SFXPriority]
+	and a
+	jr z, .next
+	; are we in a sfx channel right now?
+	ld a, [CurChannel]
+	cp a, $04
+	jr nc, .next
+	; are any sfx channels active?
+	; if so, mute 
+	ld hl, $c1cc ; Channel5Flags
+	bit 0, [hl]
+	jr nz, .restnote
+	ld hl, $c1fe ; Channel6Flags
+	bit 0, [hl]
+	jr nz, .restnote
+	ld hl, $c230 ; Channel7Flags
+	bit 0, [hl]
+	jr nz, .restnote
+	ld hl, $c262 ; Channel8Flags
+	bit 0, [hl]
+	jr z, .next
+.restnote
+	ld hl, Channel1NoteFlags - Channel1
+	add hl, bc
+	set 5, [hl] ; Rest
+.next
+	; are we in a sfx channel right now?
+	ld a, [CurChannel]
+	cp a, $04 ; sfx
+	jr nc, .asm_e80ee
+	ld hl, $00cb
+	add hl, bc
+	bit 0, [hl]
+	jr nz, .asm_e80fc
+.asm_e80ee
+	call UpdateChannels
+	ld hl, Channel1Tracks - Channel1
+	add hl, bc
+	ld a, [SoundOutput]
+	or [hl]
+	ld [SoundOutput], a
+.asm_e80fc
+	; clear note flags
+	ld hl, Channel1NoteFlags - Channel1
+	add hl, bc
+	xor a
+	ld [hl], a
+.nextchannel
+	; next channel
+	ld hl, Channel2 - Channel1
+	add hl, bc
+	ld c, l
+	ld b, h
+	ld a, [CurChannel]
+	inc a
+	ld [CurChannel], a
+	cp a, $08 ; are we done?
+	jp nz, .loop ; do it all again
+	; writing to hardware registers?
+	call Functione8307
+	; fade music in/out
+	call FadeMusic
+	; write volume to hardware register
+	ld a, [Volume]
+	ld [$ff00+$24], a
+	; write SO on/off to hardware register
+	ld a, [SoundOutput]
+	ld [$ff00+$25], a
+	ret
+; e8125
+
+UpdateChannels: ; e8125
+	ld hl, .ChannelFnPtrs
+	ld a, [CurChannel]
+	and a, $07
+	add a
+	ld e, a
+	ld d, $00
+	add hl, de
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	jp [hl]
+
+.ChannelFnPtrs
+	dw .Channel1
+	dw .Channel2
+	dw .Channel3
+	dw .Channel4
+; sfx ch ptrs are identical to music chs
+; ..except 5
+	dw .Channel5
+	dw .Channel6
+	dw .Channel7
+	dw .Channel8
+
+.Channel1
+	ld a, [$c2a6]
+	bit 7, a
+	ret nz
+.Channel5
+	ld hl, Channel1NoteFlags - Channel1
+	add hl, bc
+	bit 3, [hl]
+	jr z, .asm_e8159
+	;
+	ld a, [SoundInput]
+	ld [$ff00+$10], a
+.asm_e8159
+	bit 5, [hl] ; rest
+	jr nz, .ch1rest
+	bit 4, [hl]
+	jr nz, .asm_e81a2
+	bit 1, [hl]
+	jr nz, .asm_e816b
+	bit 6, [hl]
+	jr nz, .asm_e8184
+	jr .asm_e8175
+.asm_e816b
+	ld a, [$c294]
+	ld [$ff00+$13], a
+	ld a, [$c295]
+	ld [$ff00+$14], a
+.asm_e8175
+	bit 0, [hl]
+	ret z
+	ld a, [$c292]
+	ld d, a
+	ld a, [$ff00+$11]
+	and a, $3f ; sound length
+	or d
+	ld [$ff00+$11], a
+	ret
+.asm_e8184
+	ld a, [$c292]
+	ld d, a
+	ld a, [$ff00+$11]
+	and a, $3f ; sound length
+	or d
+	ld [$ff00+$11], a
+	ld a, [$c294]
+	ld [$ff00+$13], a
+	ret
+.ch1rest
+	ld a, [$ff00+$26]
+	and a, %10001110 ; ch1 off
+	ld [$ff00+$26], a
+	ld hl, $ff10
+	call ClearChannel
+	ret
+.asm_e81a2
+	ld hl, $c292
+	ld a, $3f ; sound length
+	or [hl]
+	ld [$ff00+$11], a
+	ld a, [$c293]
+	ld [$ff00+$12], a
+	ld a, [$c294]
+	ld [$ff00+$13], a
+	ld a, [$c295]
+	or a, $80
+	ld [$ff00+$14], a
+	ret
+
+.Channel2
+.Channel6
+	ld hl, Channel1NoteFlags - Channel1
+	add hl, bc
+	bit 5, [hl] ; rest
+	jr nz, .ch2rest
+	bit 4, [hl]
+	jr nz, .asm_e8204
+	bit 6, [hl]
+	jr nz, .asm_e81e6
+	bit 0, [hl]
+	ret z
+	ld a, [$c292]
+	ld d, a
+	ld a, [$ff00+$16]
+	and a, $3f ; sound length
+	or d
+	ld [$ff00+$16], a
+	ret
+.asm_e81db ; unused
+	ld a, [$c294]
+	ld [$ff00+$18], a
+	ld a, [$c295]
+	ld [$ff00+$19], a
+	ret
+.asm_e81e6
+	ld a, [$c292]
+	ld d, a
+	ld a, [$ff00+$16]
+	and a, $3f ; sound length
+	or d
+	ld [$ff00+$16], a
+	ld a, [$c294]
+	ld [$ff00+$18], a
+	ret
+.ch2rest
+	ld a, [$ff00+$26]
+	and a, %10001101 ; ch2 off
+	ld [$ff00+$26], a
+	ld hl, $ff15
+	call ClearChannel
+	ret
+.asm_e8204
+	ld hl, $c292
+	ld a, $3f ; sound length
+	or [hl]
+	ld [$ff00+$16], a
+	ld a, [$c293]
+	ld [$ff00+$17], a
+	ld a, [$c294]
+	ld [$ff00+$18], a
+	ld a, [$c295]
+	or a, $80 ; initial (restart)
+	ld [$ff00+$19], a
+	ret
+
+.Channel3
+.Channel7
+	ld hl, Channel1NoteFlags - Channel1
+	add hl, bc
+	bit 5, [hl] ; rest
+	jr nz, .ch3rest
+	bit 4, [hl]
+	jr nz, .asm_e824d
+	bit 6, [hl]
+	jr nz, .asm_e823a
+	ret
+.asm_e822f ; unused
+	ld a, [$c294]
+	ld [$ff00+$1d], a
+	ld a, [$c295]
+	ld [$ff00+$1e], a
+	ret
+.asm_e823a
+	ld a, [$c294]
+	ld [$ff00+$1d], a
+	ret
+.ch3rest
+	ld a, [$ff00+$26]
+	and a, %10001011 ; ch3 off
+	ld [$ff00+$26], a
+	ld hl, $ff1a
+	call ClearChannel
+	ret
+.asm_e824d
+	ld a, $3f
+	ld [$ff00+$1b], a
+	xor a
+	ld [$ff00+$1a], a
+	call .asm_e8268
+	ld a, $80
+	ld [$ff00+$1a], a
+	ld a, [$c294]
+	ld [$ff00+$1d], a
+	ld a, [$c295]
+	or a, $80
+	ld [$ff00+$1e], a
+	ret
+.asm_e8268
+	push hl
+	ld a, [$c293]
+	and a, $0f ; only 0-9 are valid
+	ld l, a
+	ld h, $00
+	; hl << 4
+	; each wavepattern is $0f bytes long
+	; so seeking is done in $10s
+	add hl, hl
+	add hl, hl
+	add hl, hl
+	add hl, hl
+	ld de, WaveSamples
+	add hl, de
+	; load wavepattern into $ff30-$ff3f
+	ld a, [hli]
+	ld [$ff00+$30], a
+	ld a, [hli]
+	ld [$ff00+$31], a
+	ld a, [hli]
+	ld [$ff00+$32], a
+	ld a, [hli]
+	ld [$ff00+$33], a
+	ld a, [hli]
+	ld [$ff00+$34], a
+	ld a, [hli]
+	ld [$ff00+$35], a
+	ld a, [hli]
+	ld [$ff00+$36], a
+	ld a, [hli]
+	ld [$ff00+$37], a
+	ld a, [hli]
+	ld [$ff00+$38], a
+	ld a, [hli]
+	ld [$ff00+$39], a
+	ld a, [hli]
+	ld [$ff00+$3a], a
+	ld a, [hli]
+	ld [$ff00+$3b], a
+	ld a, [hli]
+	ld [$ff00+$3c], a
+	ld a, [hli]
+	ld [$ff00+$3d], a
+	ld a, [hli]
+	ld [$ff00+$3e], a
+	ld a, [hli]
+	ld [$ff00+$3f], a
+	pop hl
+	ld a, [$c293]
+	and a, $f0
+	sla a
+	ld [$ff00+$1c], a
+	ret
+
+.Channel4
+.Channel8
+	ld hl, Channel1NoteFlags - Channel1
+	add hl, bc
+	bit 5, [hl] ; rest
+	jr nz, .ch4rest
+	bit 4, [hl]
+	jr nz, .asm_e82d4
+	ret
+.asm_e82c1 ; unused
+	ld a, [$c294]
+	ld [$ff00+$22], a
+	ret
+.ch4rest
+	ld a, [$ff00+$26]
+	and a, %10000111 ; ch4 off
+	ld [$ff00+$26], a
+	ld hl, $ff1f
+	call ClearChannel
+	ret
+.asm_e82d4
+	ld a, $3f ; sound length
+	ld [$ff00+$20], a
+	ld a, [$c293]
+	ld [$ff00+$21], a
+	ld a, [$c294]
+	ld [$ff00+$22], a
+	ld a, $80
+	ld [$ff00+$23], a
+	ret
+; e82e7
+
+_CheckSFX: ; e82e7
+; return carry if any sfx channels are active
+	ld hl, $c1cc ; Channel5Flags
+	bit 0, [hl]
+	jr nz, .sfxon
+	ld hl, $c1fe ; Channel6Flags
+	bit 0, [hl]
+	jr nz, .sfxon
+	ld hl, $c230 ; Channel7Flags
+	bit 0, [hl]
+	jr nz, .sfxon
+	ld hl, $c262 ; Channel8Flags
+	bit 0, [hl]
+	jr nz, .sfxon
+	and a
+	ret
+.sfxon
+	scf
+	ret
+; e8307
+
+Functione8307: ; e8307
+; what is $c2a6?
+	ld a, [$c2a6]
+	bit 7, a
+	ret z
+	and a, $7f
+	ld d, a
+	call _CheckSFX
+	jr c, .asm_e8335
+	and a
+	jr z, .asm_e8323
+	cp a, $10
+	jr z, .asm_e831e
+	jr .asm_e8335
+.asm_e831e
+	ld hl, Tablee8354
+	jr .updatehw
+.asm_e8323
+	ld hl, Tablee8350
+.updatehw
+	xor a
+	ld [$ff00+$10], a ; sweep off
+	ld a, [hli]
+	ld [$ff00+$11], a ; sound length / duty cycle
+	ld a, [hli]
+	ld [$ff00+$12], a ; ch1 volume envelope
+	ld a, [hli]
+	ld [$ff00+$13], a ; ch1 frequency lo
+	ld a, [hli]
+	ld [$ff00+$14], a ; ch1 frequency hi
+.asm_e8335
+	ld a, d
+	inc a
+	cp a, $1e
+	jr c, .asm_e833c
+	xor a
+.asm_e833c
+	or a, $80
+	ld [$c2a6], a
+	; is hw ch1 on?
+	ld a, [SoundOutput]
+	and a, $11
+	ret nz
+	; if not, turn it on
+	ld a, [SoundOutput]
+	or a, $11
+	ld [SoundOutput], a
+	ret
+; e8350
+
+Tablee8350: ; e8350
+	db $80 ; duty 50%
+	db $e2 ; volume $e, envelope decrease sweep 2
+	db $50 ; frequency: $750
+	db $87 ; restart sound
+; e8354
+
+Tablee8354: ; e8354
+	db $80 ; duty 50%
+	db $e2 ; volume $e, envelope decrease sweep 2
+	db $ee ; frequency: $6ee
+	db $86 ; restart sound
+; e8358
+
+FadeMusic: ; e8358
+; fade music if applicable
+; usage:
+;	write to MusicFade
+;	song fades out at the given rate
+;	load song id in MusicFadeID
+;	fade new song in
+; notes:
+;	max # frames per volume level is $3f
+
+	; fading?
+	ld a, [MusicFade]
+	and a
+	ret z
+	; has the count ended?
+	ld a, [MusicFadeCount]
+	and a
+	jr z, .update
+	; count down
+	dec a
+	ld [MusicFadeCount], a
+	ret
+.update
+	ld a, [MusicFade]
+	ld d, a
+	; get new count
+	and a, $3f
+	ld [MusicFadeCount], a
+	; get SO1 volume
+	ld a, [Volume]
+	and a, $07
+	; which way are we fading?
+	bit 7, d
+	jr nz, .fadein
+	; fading out
+	and a
+	jr z, .novolume
+	dec a
+	jr .updatevolume
+.novolume
+	; make sure volume is off
+	xor a
+	ld [Volume], a
+	; did we just get on a bike?
+	ld a, [PlayerState]
+	cp a, $01 ; bicycle
+	jr z, .bicycle
+	push bc
+	; restart sound
+	call MusicFadeRestart
+	; get new song id
+	ld a, [MusicFadeIDLo]
+	and a
+	jr z, .quit ; this assumes there are fewer than 256 songs!
+	ld e, a
+	ld a, [MusicFadeIDHi]
+	ld d, a
+	; load new song
+	call LoadMusic
+.quit
+	; cleanup
+	pop bc
+	; stop fading
+	xor a
+	ld [MusicFade], a
+	ret
+.bicycle
+	push bc
+	; restart sound
+	call MusicFadeRestart
+	; this turns the volume up
+	; turn it back down
+	xor a
+	ld [Volume], a
+	; get new song id
+	ld a, [MusicFadeIDLo]
+	ld e, a
+	ld a, [MusicFadeIDHi]
+	ld d, a
+	; load new song
+	call LoadMusic
+	pop bc
+	; fade in
+	ld hl, MusicFade
+	set 7, [hl]
+	ret
+.fadein
+	; are we done?
+	cp a, $07
+	jr nc, .maxvolume
+	; inc volume
+	inc a
+	jr .updatevolume
+.maxvolume
+	; we're done
+	xor a
+	ld [MusicFade], a
+	ret
+.updatevolume
+	; hi = lo
+	ld d, a
+	swap a
+	or d
+	ld [Volume], a
+	ret
+; e83d1
+
+LoadNote: ; e83d1
+	; check mute??
+	ld hl, Channel1Flags2 - Channel1
+	add hl, bc
+	bit 1, [hl]
+	ret z
+	; get note duration
+	ld hl, Channel1NoteDuration - Channel1
+	add hl, bc
+	ld a, [hl]
+	ld hl, $c297 ; ????
+	sub [hl]
+	jr nc, .ok
+	ld a, $01
+.ok
+	ld [hl], a
+	; get frequency
+	ld hl, Channel1Frequency - Channel1
+	add hl, bc
+	ld e, [hl]
+	inc hl
+	ld d, [hl]
+	; ????
+	ld hl, $0021
+	add hl, bc
+	ld a, e
+	sub [hl]
+	ld e, a
+	ld a, d
+	sbc a, $00
+	ld d, a
+	; ????
+	ld hl, $0022
+	add hl, bc
+	sub [hl]
+	jr nc, .asm_e8420
+	; ????
+	ld hl, Channel1Flags3 - Channel1
+	add hl, bc
+	set 1, [hl]
+	; get frequency
+	ld hl, Channel1Frequency - Channel1
+	add hl, bc
+	ld e, [hl]
+	inc hl
+	ld d, [hl]
+	; ????
+	ld hl, $0021
+	add hl, bc
+	ld a, [hl]
+	sub e
+	ld e, a
+	ld a, d
+	sbc a, $00
+	ld d, a
+	; ????
+	ld hl, $0022
+	add hl, bc
+	ld a, [hl]
+	sub d
+	ld d, a
+	jr .asm_e843e
+.asm_e8420
+	; ????
+	ld hl, Channel1Flags3 - Channel1
+	add hl, bc
+	res 1, [hl]
+	; get frequency
+	ld hl, Channel1Frequency - Channel1
+	add hl, bc
+	ld e, [hl]
+	inc hl
+	ld d, [hl]
+	; ????
+	ld hl, $0021
+	add hl, bc
+	ld a, e
+	sub [hl]
+	ld e, a
+	ld a, d
+	sbc a, $00
+	ld d, a
+	; ????
+	ld hl, $0022
+	add hl, bc
+	sub [hl]
+	ld d, a
+.asm_e843e
+	push bc
+	ld hl, $c297
+	ld b, $00 ; loop count
+.loop
+	inc b
+	ld a, e
+	sub [hl]
+	ld e, a
+	jr nc, .loop
+	ld a, d
+	and a
+	jr z, .quit
+	dec d
+	jr .loop
+.quit
+	ld a, e ; result
+	add [hl]
+	ld d, b ; loop count
+	; ????
+	pop bc
+	ld hl, $0023
+	add hl, bc
+	ld [hl], d
+	ld hl, $0024
+	add hl, bc
+	ld [hl], a
+	; clear ????
+	ld hl, $0025
+	add hl, bc
+	xor a
+	ld [hl], a
+	ret
+; e8466
+
+Functione8466: ; e8466
+; handle vibrato and other things
+; unknowns: $c292, $c294
+	ld hl, Channel1Flags2 - Channel1
+	add hl, bc
+	bit 2, [hl]
+	jr z, .next
+	ld hl, $001c
+	add hl, bc
+	ld a, [hl]
+	rlca
+	rlca
+	ld [hl], a
+	and a, $c0
+	ld [$c292], a
+	ld hl, Channel1NoteFlags - Channel1
+	add hl, bc
+	set 0, [hl]
+.next
+	ld hl, Channel1Flags2 - Channel1
+	add hl, bc
+	bit 4, [hl]
+	jr z, .vibrato
+	ld hl, $0027
+	add hl, bc
+	ld e, [hl]
+	inc hl
+	ld d, [hl]
+	ld hl, $c294
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	add hl, de
+	ld e, l
+	ld d, h
+	ld hl, $c294
+	ld [hl], e
+	inc hl
+	ld [hl], d
+.vibrato
+	; is vibrato on?
+	ld hl, Channel1Flags2 - Channel1
+	add hl, bc
+	bit 0, [hl] ; vibrato
+	jr z, .quit
+	; is vibrato active for this note yet?
+	; is the delay over?
+	ld hl, Channel1VibratoDelayCount - Channel1
+	add hl, bc
+	ld a, [hl]
+	and a
+	jr nz, .subexit
+	; is the extent nonzero?
+	ld hl, Channel1VibratoExtent - Channel1
+	add hl, bc
+	ld a, [hl]
+	and a
+	jr z, .quit
+	; save it for later
+	ld d, a
+	; is it time to toggle vibrato up/down?
+	ld hl, Channel1VibratoRate - Channel1
+	add hl, bc
+	ld a, [hl]
+	and a, $0f ; count
+	jr z, .toggle
+.subexit
+	dec [hl]
+	jr .quit
+.toggle
+	; refresh count
+	ld a, [hl]
+	swap [hl]
+	or [hl]
+	ld [hl], a
+	; ????
+	ld a, [$c294]
+	ld e, a
+	; toggle vibrato up/down
+	ld hl, Channel1Flags3 - Channel1
+	add hl, bc
+	bit 0, [hl] ; vibrato up/down
+	jr z, .down
+; up
+	; vibrato down
+	res 0, [hl]
+	; get the delay
+	ld a, d
+	and a, $0f ; lo
+	;
+	ld d, a
+	ld a, e
+	sub d
+	jr nc, .asm_e84ef
+	ld a, $00
+	jr .asm_e84ef
+.down
+	; vibrato up
+	set 0, [hl]
+	; get the delay
+	ld a, d
+	and a, $f0 ; hi
+	swap a ; move it to lo
+	;
+	add e
+	jr nc, .asm_e84ef
+	ld a, $ff
+.asm_e84ef
+	ld [$c294], a
+	;
+	ld hl, Channel1NoteFlags - Channel1
+	add hl, bc
+	set 6, [hl]
+.quit
+	ret
+; e84f9
+
+Functione84f9: ; e84f9
+	; quit if ????
+	ld hl, Channel1Flags2 - Channel1
+	add hl, bc
+	bit 1, [hl]
+	ret z
+	; de = Frequency
+	ld hl, Channel1Frequency - Channel1
+	add hl, bc
+	ld e, [hl]
+	inc hl
+	ld d, [hl]
+	; 
+	ld hl, Channel1Flags3 - Channel1
+	add hl, bc
+	bit 1, [hl]
+	jr z, .next
+	;
+	ld hl, $0023
+	add hl, bc
+	ld l, [hl]
+	ld h, $00
+	add hl, de
+	ld d, h
+	ld e, l
+	; get ????
+	ld hl, $0024
+	add hl, bc
+	ld a, [hl]
+	; add it to ????
+	ld hl, $0025
+	add hl, bc
+	add [hl]
+	ld [hl], a
+	ld a, $00
+	adc e
+	ld e, a
+	ld a, $00
+	adc d
+	ld d, a
+	;
+	ld hl, $0022
+	add hl, bc
+	ld a, [hl]
+	cp d
+	jp c, .quit1
+	jr nz, .quit2
+	ld hl, $0021
+	add hl, bc
+	ld a, [hl]
+	cp e
+	jp c, .quit1
+	jr .quit2
+.next
+	ld a, e
+	ld hl, $0023
+	add hl, bc
+	ld e, [hl]
+	sub e
+	ld e, a
+	ld a, d
+	sbc a, $00
+	ld d, a
+	ld hl, $0024
+	add hl, bc
+	ld a, [hl]
+	add a
+	ld [hl], a
+	ld a, e
+	sbc a, $00
+	ld e, a
+	ld a, d
+	sbc a, $00
+	ld d,a
+	ld hl, $0022
+	add hl, bc
+	ld a, d
+	cp [hl]
+	jr c, .quit1
+	jr nz, .quit2
+	ld hl, $0021
+	add hl, bc
+	ld a, e
+	cp [hl]
+	jr nc, .quit2
+.quit1
+	ld hl, Channel1Flags2 - Channel1
+	add hl, bc
+	res 1, [hl]
+	ld hl, Channel1Flags3 - Channel1
+	add hl, bc
+	res 1, [hl]
+	ret
+.quit2
+	ld hl, Channel1Frequency - Channel1
+	add hl, bc
+	ld [hl], e
+	inc hl
+	ld [hl], d
+	ld hl, Channel1NoteFlags - Channel1
+	add hl, bc
+	set 1, [hl]
+	set 0, [hl]
+	ret
+; e858c
+
+HandleNoise: ; e858c
+	; is noise sampling on?
+	ld hl, Channel1Flags - Channel1
+	add hl, bc
+	bit 4, [hl] ; noise sampling
+	ret z
+	; are we in a sfx channel?
+	ld a, [CurChannel]
+	bit 2, a ; sfx
+	jr nz, .next
+	; is ch8 on? (noise)
+	ld hl, $c262 ; Channel8Flags
+	bit 0, [hl] ; on?
+	jr z, .next
+	; is ch8 playing noise?
+	bit 4, [hl]
+	ret nz ; quit if so
+	; 
+.next
+	ld a, [$c2a2]
+	and a
+	jr z, ReadNoiseSample
+	dec a
+	ld [$c2a2], a
+	ret
+; e85af
+
+ReadNoiseSample: ; e85af
+; sample struct:
+;	[wx] [yy] [zz]
+;	w: ? either 2 or 3
+;	x: ? 0-7
+;	zzyy: pointer to sample data
+;		NOTE: these seem to have $4000 added to them later
+
+	; de = NoiseSampleAddress
+	ld hl, NoiseSampleAddress
+	ld e, [hl]
+	inc hl
+	ld d, [hl]
+	; is it empty?
+	ld a, e
+	or d
+	jr z, .quit
+	; get the noise sample
+	ld a, [de]
+	inc de
+	; are we done?
+	cp a, $ff
+	jr z, .quit
+	;
+	and a, $0f ; bottom nybble
+	inc a
+	ld [$c2a2], a
+	ld a, [de]
+	inc de
+	ld [$c293], a
+	ld a, [de]
+	inc de
+	ld [$c294], a
+	xor a
+	ld [$c295], a
+	;
+	ld hl, NoiseSampleAddress
+	ld [hl], e
+	inc hl
+	ld [hl], d
+	ld hl, Channel1NoteFlags - Channel1
+	add hl, bc
+	set 4, [hl]
+	ret
+.quit
+	ret
+; e85e1
+
+ParseMusic: ; e85e1
+; parses until a note is read or the song is ended
+	call GetMusicByte ; store next byte in a
+	cp a, $ff ; is the song over?
+	jr z, .readff
+	cp a, $d0 ; is it a note?
+	jr c, .readnote
+	; then it's a command
+.readcommand
+	call ParseCommand
+	jr ParseMusic ; start over
+
+.readnote
+; CurMusicByte contains current note
+; special notes
+	ld hl, Channel1Flags - Channel1
+	add hl, bc
+	bit 3, [hl]
+	jp nz, Functione8698
+	bit 5, [hl]
+	jp nz, Functione8698
+	bit 4, [hl] ; noise sample
+	jp nz, GetNoiseSample
+; normal note
+	; set note duration (bottom nybble)
+	ld a, [CurMusicByte]
+	and a, $0f
+	call SetNoteDuration
+	; get note pitch (top nybble)
+	ld a, [CurMusicByte]
+	swap a
+	and a, $0f
+	jr z, .rest ; pitch $0 -> rest
+	; update pitch
+	ld hl, Channel1Pitch - Channel1
+	add hl, bc
+	ld [hl], a
+	; store pitch in e
+	ld e, a
+	; store octave in d
+	ld hl, Channel1Octave - Channel1
+	add hl, bc
+	ld d, [hl]
+	; update frequency
+	call GetFrequency
+	ld hl, Channel1Frequency - Channel1
+	add hl, bc
+	ld [hl], e
+	inc hl
+	ld [hl], d
+	; ????
+	ld hl, Channel1NoteFlags - Channel1
+	add hl, bc
+	set 4, [hl]
+	jp LoadNote
+.rest
+; note = rest
+	ld hl, Channel1NoteFlags - Channel1
+	add hl, bc
+	set 5, [hl] ; Rest
+	ret
+;
+.readff
+; $ff is reached in music data
+	ld hl, Channel1Flags - Channel1
+	add hl, bc
+	bit 1, [hl] ; in a subroutine?
+	jr nz, .readcommand ; execute 
+	ld a, [CurChannel]
+	cp a, $04 ; channels 0-3?
+	jr nc, .asm_e8651
+	; ????
+	ld hl, $00cb
+	add hl, bc
+	bit 0, [hl]
+	jr nz, .ok
+.asm_e8651
+	ld hl, Channel1Flags - Channel1
+	add hl, bc
+	bit 5, [hl]
+	call nz, RestoreVolume
+	; end music
+	ld a, [CurChannel]
+	cp a, $04 ; channel 5?
+	jr nz, .ok
+	; ????
+	xor a
+	ld [$ff00+$10], a ; sweep = 0
+.ok
+; stop playing
+	; turn channel off
+	ld hl, Channel1Flags - Channel1
+	add hl, bc
+	res 0, [hl]
+	; note = rest
+	ld hl, Channel1NoteFlags - Channel1
+	add hl, bc
+	set 5, [hl]
+	; clear music id & bank
+	ld hl, Channel1MusicID - Channel1
+	add hl, bc
+	xor a
+	ld [hli], a ; id hi
+	ld [hli], a ; id lo
+	ld [hli], a ; bank
+	ret
+; e8679
+
+RestoreVolume: ; e8679
+	; ch5 only
+	ld a, [CurChannel]
+	cp a, $04
+	ret nz
+	xor a
+	ld hl, $c222
+	ld [hli], a
+	ld [hl], a
+	ld hl, $c286
+	ld [hli], a
+	ld [hl], a
+	ld a, [LastVolume]
+	ld [Volume], a
+	xor a
+	ld [LastVolume], a
+	ld [SFXPriority], a
+	ret
+; e8698
+
+Functione8698: ; e8698
+	; turn noise sampling on
+	ld hl, Channel1NoteFlags - Channel1
+	add hl, bc
+	set 4, [hl] ; noise sample
+	; update note duration
+	ld a, [CurMusicByte]
+	call SetNoteDuration ; top nybble doesnt matter?
+	; update intensity from next param
+	call GetMusicByte
+	ld hl, Channel1Intensity - Channel1
+	add hl, bc
+	ld [hl], a
+	; update lo frequency from next param
+	call GetMusicByte
+	ld hl, Channel1FrequencyLo - Channel1
+	add hl, bc
+	ld [hl], a
+	; are we on the last channel? (noise sampling)
+	ld a, [CurChannel]
+	and a, $03
+	cp a, $03
+	ret z
+	; update hi frequency from next param
+	call GetMusicByte
+	ld hl, Channel1FrequencyHi - Channel1
+	add hl, bc
+	ld [hl], a
+	ret
+; e86c5
+
+GetNoiseSample: ; e86c5
+; load ptr to sample header in NoiseSampleAddress
+	; are we on the last channel?
+	ld a, [CurChannel]
+	and a, $03
+	cp a, $03
+	; ret if not
+	ret nz
+	; update note duration
+	ld a, [CurMusicByte]
+	and a, $0f
+	call SetNoteDuration
+	; check current channel
+	ld a, [CurChannel]
+	bit 2, a ; are we in a sfx channel?
+	jr nz, .sfx
+	ld hl, $c262 ; Channel8Flags
+	bit 0, [hl] ; is ch8 on? (noise)
+	ret nz
+	ld a, [MusicNoiseSampleSet]
+	jr .next
+.sfx
+	ld a, [SFXNoiseSampleSet]
+.next
+	; load noise sample set id into de
+	ld e, a
+	ld d, $00
+	; load ptr to noise sample set in hl
+	ld hl, NoiseSampleSetsPointers
+	add hl, de
+	add hl, de
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	; get pitch
+	ld a, [CurMusicByte]
+	swap a
+	; non-rest note?
+	and a, $0f
+	ret z
+	; use 'pitch' to seek noise sample set
+	ld e, a
+	ld d, $00
+	add hl, de
+	add hl, de
+	; load sample pointer into NoiseSampleAddress
+	ld a, [hli]
+	ld [NoiseSampleAddressLo], a
+	ld a, [hl]
+	ld [NoiseSampleAddressHi], a
+	; clear ????
+	xor a
+	ld [$c2a2], a
+	ret
+; e870f
+
+ParseCommand ; e870f
+	; reload command
+	ld a, [CurMusicByte]
+	; get command #
+	sub a, $d0 ; first command
+	ld e, a
+	ld d, $00
+	; seek command pointer
+	ld hl, MusicCommands
+	add hl, de
+	add hl, de
+	; jump to the new pointer
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	jp [hl]
+; e8720
+
+MusicCommands: ; e8720
+; pointer to each command in order
+	; octaves
+	dw MusicD0 ; octave 8
+	dw MusicD0 ; octave 7
+	dw MusicD0 ; octave 6
+	dw MusicD0 ; octave 5
+	dw MusicD0 ; octave 4
+	dw MusicD0 ; octave 3
+	dw MusicD0 ; octave 2
+	dw MusicD0 ; octave 1
+	dw MusicD8 ; note length + intensity
+	dw MusicD9 ; set starting octave
+	dw MusicDA ; tempo
+	dw MusicDB ; duty cycle
+	dw MusicDC ; intensity
+	dw MusicDD ; update sound status
+	dw MusicDE ; ???? + duty cycle
+	dw MusicDF ; 
+	dw MusicE0 ; 
+	dw MusicE1 ; vibrato
+	dw MusicE2 ;
+	dw MusicE3 ; music noise sampling
+	dw MusicE4 ; force panning
+	dw MusicE5 ; volume
+	dw MusicE6 ; tune
+	dw MusicE7 ;
+	dw MusicE8 ;
+	dw MusicE9 ; global tempo
+	dw MusicEA ; restart current channel from header
+	dw MusicEB ; new song
+	dw MusicEC ; sfx priority on
+	dw MusicED ; sfx priority off
+	dw MusicEE ;
+	dw MusicEF ; stereo panning
+	dw MusicF0 ; sfx noise sampling
+	dw MusicF1 ; nothing
+	dw MusicF1 ; nothing
+	dw MusicF1 ; nothing
+	dw MusicF1 ; nothing
+	dw MusicF1 ; nothing
+	dw MusicF1 ; nothing
+	dw MusicF1 ; nothing
+	dw MusicF1 ; nothing
+	dw MusicF9 ;
+	dw MusicFA ; 
+	dw MusicFB ;
+	dw MusicFC ; jump
+	dw MusicFD ; loop
+	dw MusicFE ; call
+	dw MusicFF ; return
+; e8780
+
+MusicF1: ; e8780
+	ret
+; e8781
+
+MusicFF: ; e8781
+; called when $ff is encountered w/ subroutine flag set
+; end music stream
+; return to caller of the subroutine
+	; reset subroutine flag
+	ld hl, Channel1Flags - Channel1
+	add hl, bc
+	res 1, [hl]
+	; copy LastMusicAddress to MusicAddress
+	ld hl, Channel1LastMusicAddress - Channel1
+	add hl, bc
+	ld e, [hl]
+	inc hl
+	ld d, [hl]
+	ld hl, Channel1MusicAddress - Channel1
+	add hl, bc
+	ld [hl], e
+	inc hl
+	ld [hl], d
+	ret
+; e8796
+
+MusicFE: ; e8796
+; call music stream (subroutine)
+; parameters: ll hh ; pointer to subroutine
+	; get pointer from next 2 bytes
+	call GetMusicByte
+	ld e, a
+	call GetMusicByte
+	ld d, a
+	push de
+	; copy MusicAddress to LastMusicAddress
+	ld hl, Channel1MusicAddress - Channel1
+	add hl, bc
+	ld e, [hl]
+	inc hl
+	ld d, [hl]
+	ld hl, Channel1LastMusicAddress - Channel1
+	add hl, bc
+	ld [hl], e
+	inc hl
+	ld [hl], d
+	; load pointer into MusicAddress
+	pop de
+	ld hl, Channel1MusicAddress - Channel1
+	add hl, bc
+	ld [hl], e
+	inc hl
+	ld [hl], d
+	; set subroutine flag
+	ld hl, Channel1Flags - Channel1
+	add hl, bc
+	set 1, [hl]
+	ret
+; e87bc
+
+MusicFC: ; e87bc
+; jump
+; parameters: ll hh ; pointer
+	; get pointer from next 2 bytes
+	call GetMusicByte
+	ld e, a
+	call GetMusicByte
+	ld d, a
+	ld hl, Channel1MusicAddress - Channel1
+	add hl, bc
+	ld [hl], e
+	inc hl
+	ld [hl], d
+	ret
+; e87cc
+
+MusicFD: ; e87cc
+; loops xx - 1 times
+; 	00: infinite
+; params: 3
+;	xx ll hh
+;		xx : loop count
+;   	ll hh : pointer
+
+	; get loop count
+	call GetMusicByte
+	ld hl, Channel1Flags - Channel1
+	add hl, bc
+	bit 2, [hl] ; has the loop been initiated?
+	jr nz, .checkloop
+	and a ; loop counter 0 = infinite
+	jr z, .loop
+	; initiate loop
+	dec a
+	set 2, [hl] ; set loop flag
+	ld hl, Channel1LoopCount - Channel1
+	add hl, bc
+	ld [hl], a ; store loop counter
+.checkloop
+	ld hl, Channel1LoopCount - Channel1
+	add hl, bc
+	ld a, [hl]
+	and a ; are we done?
+	jr z, .endloop
+	dec [hl]
+.loop
+	; get pointer
+	call GetMusicByte
+	ld e, a
+	call GetMusicByte
+	ld d, a
+	; load new pointer into MusicAddress
+	ld hl, Channel1MusicAddress - Channel1
+	add hl, bc
+	ld [hl], e
+	inc hl
+	ld [hl], d
+	ret
+
+.endloop
+	; reset loop flag
+	ld hl, Channel1Flags - Channel1
+	add hl, bc
+	res 2, [hl]
+	; skip to next command
+	ld hl, Channel1MusicAddress - Channel1
+	add hl, bc
+	ld e, [hl]
+	inc hl
+	ld d, [hl]
+	inc de ; skip
+	inc de ; pointer
+	ld [hl], d
+	dec hl
+	ld [hl], e
+	ret
+; e880e
+
+MusicFA: ; e880e
+; set condition for a jump
+; used with FB
+; params: 1
+;	xx ; condition
+
+	; set condition
+	call GetMusicByte
+	ld hl, Channel1Condition - Channel1
+	add hl, bc
+	ld [hl], a
+	ret
+; e8817
+
+MusicFB: ; e8817
+; conditional jump
+; used with FA
+; params: 3
+; 	xx: condition
+;	ll hh: pointer
+
+; check condition
+	; a = condition
+	call GetMusicByte
+	; if existing condition matches, jump to new address
+	ld hl, Channel1Condition - Channel1
+	add hl, bc
+	cp [hl]
+	jr z, .jump
+; skip to next command
+	; get address
+	ld hl, Channel1MusicAddress - Channel1
+	add hl, bc
+	ld e, [hl]
+	inc hl
+	ld d, [hl]
+	; skip pointer
+	inc de
+	inc de
+	; update address
+	ld [hl], d
+	dec hl
+	ld [hl], e
+	ret
+.jump
+; jump to the new address
+	; get pointer
+	call GetMusicByte
+	ld e, a
+	call GetMusicByte
+	ld d, a
+	; update pointer in MusicAddress
+	ld hl, Channel1MusicAddress - Channel1
+	add hl, bc
+	ld [hl], e
+	inc hl
+	ld [hl], d
+	ret
+; e883e
+
+MusicEE; e883e
+; conditional jump
+; checks a byte in ram corresponding to the current channel
+; doesn't seem to be set by any commands
+; params: 2
+;		ll hh ; pointer
+
+; if ????, jump
+	; get channel
+	ld a, [CurChannel]
+	and a, $03 ; ch0-3
+	ld e, a
+	ld d, $00
+	; hl = $c2b8 + channel id
+	ld hl, $c2b8
+	add hl, de
+	; if set, jump
+	ld a, [hl]
+	and a
+	jr nz, .jump
+; skip to next command
+	; get address
+	ld hl, Channel1MusicAddress - Channel1
+	add hl, bc
+	ld e, [hl]
+	inc hl
+	ld d, [hl]
+	; skip pointer
+	inc de
+	inc de
+	; update address
+	ld [hl], d
+	dec hl
+	ld [hl], e
+	ret
+.jump
+	; reset jump flag
+	ld [hl], $00
+	; de = pointer
+	call GetMusicByte
+	ld e, a
+	call GetMusicByte
+	ld d, a
+	; update address
+	ld hl, Channel1MusicAddress - Channel1
+	add hl, bc
+	ld [hl], e
+	inc hl
+	ld [hl], d
+	ret
+; e886d
+
+MusicF9: ; e886d
+; sets some flag
+; seems to be unused
+; params: 0
+	ld a, $01
+	ld [$c2b5], a
+	ret
+; e8873
+
+MusicE2: ; e8873
+; seems to have been dummied out
+; params: 1
+	call GetMusicByte
+	ld hl, $002c
+	add hl, bc
+	ld [hl], a
+	ld hl, Channel1Flags2 - Channel1
+	add hl, bc
+	set 3, [hl]
+	ret
+; e8882
+
+MusicE1: ; e8882
+; vibrato
+; params: 2
+;	1: [xx]
+	; delay in frames
+;	2: [yz]
+	; y: extent
+	; z: rate (# frames per cycle)
+
+	; set vibrato flag?
+	ld hl, Channel1Flags2 - Channel1
+	add hl, bc
+	set 0, [hl]
+	; start at lower frequency (extent is positive)
+	ld hl, Channel1Flags3 - Channel1
+	add hl, bc
+	res 0, [hl]
+	; get delay
+	call GetMusicByte
+; update delay
+	ld hl, Channel1VibratoDelay - Channel1
+	add hl, bc
+	ld [hl], a
+; update delay count
+	ld hl, Channel1VibratoDelayCount - Channel1
+	add hl, bc
+	ld [hl], a
+; update extent
+; this is split into halves only to get added back together at the last second
+	; get extent/rate
+	call GetMusicByte
+	ld hl, Channel1VibratoExtent - Channel1
+	add hl, bc
+	ld d, a
+	; get top nybble
+	and a, $f0
+	swap a
+	srl a ; halve
+	ld e, a
+	adc a, $00 ; round up
+	swap a
+	or e
+	ld [hl], a
+; update rate
+	ld hl, Channel1VibratoRate - Channel1
+	add hl, bc
+	; get bottom nybble
+	ld a, d
+	and a, $0f
+	ld d, a
+	swap a
+	or d
+	ld [hl], a
+	ret
+; e88bd
+
+MusicE0: ; e88bd
+; ????
+; params: 2
+	call GetMusicByte
+	ld [$c297], a
+	call GetMusicByte
+	ld d, a
+	and a, $0f
+	ld e, a
+	ld a, d
+	swap a
+	and a, $0f
+	ld d, a
+	call GetFrequency
+	ld hl, $0021
+	add hl, bc
+	ld [hl], e
+	ld hl, $0022
+	add hl, bc
+	ld [hl], d
+	ld hl, Channel1Flags2 - Channel1
+	add hl, bc
+	set 1, [hl]
+	ret
+; e88e4
+
+MusicE6: ; e88e4
+; tone
+; params: 2
+	ld hl, Channel1Flags2 - Channel1
+	add hl, bc
+	set 4, [hl]
+	ld hl, $0028
+	add hl, bc
+	call GetMusicByte
+	ld [hld], a
+	call GetMusicByte
+	ld [hl], a
+	ret
+; e88f7
+
+MusicE7: ; e88f7
+; shrug
+; params: 1
+	ld hl, Channel1Flags2 - Channel1
+	add hl, bc
+	set 6, [hl]
+	call GetMusicByte
+	ld hl, $0029
+	add hl, bc
+	ld [hl], a
+	ret
+; e8906
+
+MusicDE: ; e8906
+; ???? + duty cycle
+; params: 1
+	;
+	ld hl, Channel1Flags2 - Channel1
+	add hl, bc
+	set 2, [hl] ; duty cycle
+	;
+	call GetMusicByte
+	rrca
+	rrca
+	ld hl, $001c
+	add hl, bc
+	ld [hl], a
+	; update duty cycle
+	and a, $c0 ; only uses top 2 bits
+	ld hl, Channel1DutyCycle - Channel1
+	add hl, bc
+	ld [hl], a
+	ret
+; e891e
+
+MusicE8: ; e891e
+; shrug
+; params: 1
+	ld hl, Channel1Flags2 - Channel1
+	add hl, bc
+	set 5, [hl]
+	call GetMusicByte
+	ld hl, $002a
+	add hl, bc
+	ld [hl], a
+	ret
+; e892d
+
+MusicDF: ; e892d
+; toggle something
+; params: none
+	ld hl, Channel1Flags - Channel1
+	add hl, bc
+	bit 3, [hl]
+	jr z, .on
+	res 3, [hl]
+	ret
+.on
+	set 3, [hl]
+	ret
+; e893b
+
+MusicE3: ; e893b
+; toggle music noise sampling
+; can't be used as a straight toggle since the param is not read from on->off
+; params:
+; 	noise on: 1
+; 	noise off: 0
+	; check if noise sampling is on
+	ld hl, Channel1Flags - Channel1
+	add hl, bc
+	bit 4, [hl]
+	jr z, .on
+	; turn noise sampling off
+	res 4, [hl]
+	ret
+.on
+	; turn noise sampling on
+	set 4, [hl]
+	call GetMusicByte
+	ld [MusicNoiseSampleSet], a
+	ret
+; e894f
+
+MusicF0: ; e894f
+; toggle sfx noise sampling
+; params:
+;	on: 1
+; 	off: 0
+	; check if noise sampling is on
+	ld hl, Channel1Flags - Channel1
+	add hl, bc
+	bit 4, [hl]
+	jr z, .on
+	; turn noise sampling off
+	res 4, [hl]
+	ret
+.on
+	; turn noise sampling on
+	set 4, [hl]
+	call GetMusicByte
+	ld [SFXNoiseSampleSet], a
+	ret
+; e8963
+
+MusicD8: ; e8963
+; note length
+;	# frames per 16th note
+; intensity: see MusicDC
+; params: 2
+	; note length
+	call GetMusicByte
+	ld hl, $002d
+	add hl, bc
+	ld [hl], a
+	ld a, [CurChannel]
+	and a, $03
+	cp a, $03
+	ret z
+	; intensity
+	call MusicDC
+	ret
+; e8977
+
+MusicDD: ; e8977
+; update sound status
+; params: 1
+	call GetMusicByte
+	ld [SoundInput], a
+	ld hl, Channel1NoteFlags - Channel1
+	add hl, bc
+	set 3, [hl]
+	ret
+; e8984
+
+MusicDB: ; e8984
+; duty cycle
+; params: 1
+	call GetMusicByte
+	rrca
+	rrca
+	and a, $c0
+	ld hl, Channel1DutyCycle - Channel1
+	add hl, bc
+	ld [hl], a
+	ret
+; e8991
+
+MusicDC: ; e8991
+; intensity
+; params: 1
+;	hi: pressure
+;   lo: velocity
+	call GetMusicByte
+	ld hl, Channel1Intensity - Channel1
+	add hl, bc
+	ld [hl], a
+	ret
+; e899a
+
+MusicDA: ; e899a
+; global tempo
+; params: 2
+;	de: tempo
+	call GetMusicByte
+	ld d, a
+	call GetMusicByte
+	ld e, a
+	call SetGlobalTempo
+	ret
+; e89a6
+
+MusicD0: ; e89a6
+; used by d0-d7
+; set octave based on lo nybble of the command
+	ld hl, Channel1Octave - Channel1
+	add hl, bc
+	ld a, [CurMusicByte] ; get current command
+	and a, $07
+	ld [hl], a
+	ret
+; e89b1
+
+MusicD9: ; e89b1
+; set starting octave
+; this forces all notes up by the starting octave
+; params: 1
+	call GetMusicByte
+	ld hl, Channel1StartingOctave - Channel1
+	add hl, bc
+	ld [hl], a
+	ret
+; e89ba
+
+MusicEF: ; e89ba
+; stereo panning
+; params: 1
+	; stereo on?
+	ld a, [Options]
+	bit 5, a ; stereo
+	jr nz, MusicE4
+	; skip param
+	call GetMusicByte
+	ret
+; e89c5
+
+MusicE4: ; e89c5
+; force panning
+; params: 1
+	call SetLRTracks
+	call GetMusicByte
+	ld hl, Channel1Tracks - Channel1
+	add hl, bc
+	and [hl]
+	ld [hl], a
+	ret
+; e89d2
+
+MusicE5: ; e89d2
+; set volume
+; params: 1
+;	see Volume
+	; read param even if it's not used
+	call GetMusicByte
+	; is the song fading?
+	ld a, [MusicFade]
+	and a
+	ret nz
+	; reload param
+	ld a, [CurMusicByte]
+	; set volume
+	ld [Volume], a
+	ret
+; e89e1
+
+MusicE9: ; e89e1
+; set global tempo to current channel tempo +- param
+; params: 1 signed
+	call GetMusicByte
+	ld e, a
+	; check sign
+	cp a, $80
+	jr nc, .negative
+;positive
+	ld d, $00
+	jr .ok
+.negative
+	ld d, $ff
+.ok
+	ld hl, Channel1Tempo - Channel1
+	add hl, bc
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	add hl, de
+	ld e, l
+	ld d, h
+	call SetGlobalTempo
+	ret
+; e89fd
+
+MusicEC: ; e89fd
+; turn sfx priority on
+; params: none
+	ld a, $01
+	ld [SFXPriority], a
+	ret
+; e8a03
+
+MusicED: ; e8a03
+; turn sfx priority off
+; params: none
+	xor a
+	ld [SFXPriority], a
+	ret
+; e8a08
+
+MusicEA: ; e8a08
+; restart current channel from channel header (same bank)
+; params: 2 (5)
+; ll hh: pointer to new channel header
+;	header format: 0x yy zz
+;		x: channel # (0-3)
+;		zzyy: pointer to new music data
+
+	; update music id
+	ld hl, Channel1MusicID - Channel1
+	add hl, bc
+	ld a, [hli]
+	ld [MusicIDLo], a
+	ld a, [hl]
+	ld [MusicIDHi], a
+	; update music bank
+	ld hl, Channel1MusicBank - Channel1
+	add hl, bc
+	ld a, [hl]
+	ld [MusicBank], a
+	; get pointer to new channel header
+	call GetMusicByte
+	ld l, a
+	call GetMusicByte
+	ld h, a
+	ld e, [hl]
+	inc hl
+	ld d, [hl]
+	push bc ; save current channel
+	call LoadChannel
+	call StartChannel
+	pop bc ; restore current channel
+	ret
+; e8a30
+
+MusicEB: ; e8a30
+; new song
+; params: 2
+;	de: song id
+	call GetMusicByte
+	ld e, a
+	call GetMusicByte
+	ld d, a
+	push bc
+	call LoadMusic
+	pop bc
+	ret
+; e8a3e
+
+GetMusicByte: ; e8a3e
+; returns byte from current address in a
+; advances to next byte in music data
+; input: bc = start of current channel
+	push hl
+	push de
+	; load address into de
+	ld hl, Channel1MusicAddress - Channel1
+	add hl, bc
+	ld a, [hli]
+	ld e, a
+	ld d, [hl]
+	; load bank into a
+	ld hl, Channel1MusicBank - Channel1
+	add hl, bc
+	ld a, [hl]
+	; get byte
+	call LoadMusicByte ; load data into CurMusicByte
+	inc de ; advance to next byte for next time this is called
+	; update channeldata address
+	ld hl, Channel1MusicAddress - Channel1
+	add hl, bc
+	ld a, e
+	ld [hli], a
+	ld [hl], d
+	; cleanup
+	pop de
+	pop hl
+	; store channeldata in a
+	ld a, [CurMusicByte]
+	ret
+; e8a5d
+
+GetFrequency: ; e8a5d
+; generate frequency
+; input:
+; 	d: octave
+;	e: pitch
+; output:
+; 	de: frequency
+
+; get octave
+	; get starting octave
+	ld hl, Channel1StartingOctave - Channel1
+	add hl, bc
+	ld a, [hl]
+	swap a ; hi nybble
+	and a, $0f
+	; add current octave
+	add d
+	push af ; we'll use this later
+	; get starting octave
+	ld hl, Channel1StartingOctave - Channel1
+	add hl, bc
+	ld a, [hl]
+	and a, $0f ; lo nybble
+	; 
+	ld l, a ; ok
+	ld d, $00
+	ld h, d
+	add hl, de ; add current pitch
+	add hl, hl ; skip 2 bytes for each
+	ld de, FrequencyTable
+	add hl, de
+	ld e, [hl]
+	inc hl
+	ld d, [hl]
+	; get our octave
+	pop af
+.loop
+	; [7 - octave] loops
+	cp a, $07
+	jr nc, .ok
+	; sra de
+	sra d
+	rr e
+	inc a
+	jr .loop
+.ok
+	ld a, d
+	and a, $07 ; top 3 bits for frequency (11 total)
+	ld d, a
+	ret
+; e8a8d
+
+SetNoteDuration: ; e8a8d
+; input: a = note duration in 16ths
+	; store delay units in de
+	inc a
+	ld e, a
+	ld d, $00
+	; store NoteLength in a
+	ld hl, Channel1NoteLength - Channel1
+	add hl, bc
+	ld a, [hl]
+	; multiply NoteLength by delay units
+	ld l, $00 ; just multiply
+	call MultiplySimple
+	ld a, l ; % $100
+	; store Tempo in de
+	ld hl, Channel1Tempo - Channel1
+	add hl, bc
+	ld e, [hl]
+	inc hl
+	ld d, [hl]
+	; add ???? to the next result
+	ld hl, $0016
+	add hl, bc
+	ld l, [hl]
+	; multiply Tempo by last result (NoteLength * delay % $100)
+	call MultiplySimple
+	; copy result to de
+	ld e, l
+	ld d, h
+	; store result in ????
+	ld hl, $0016
+	add hl, bc
+	ld [hl], e
+	; store result in NoteDuration
+	ld hl, Channel1NoteDuration - Channel1
+	add hl, bc
+	ld [hl], d
+	ret
+; e8ab8
+
+MultiplySimple: ; e8ab8
+; multiplies a and de
+; adds the result to l
+; stores the result in hl
+	ld h, $00
+.loop
+	; halve a
+	srl a
+	; is there a remainder?
+	jr nc, .skip
+	; add it to the result
+	add hl, de
+.skip
+	; add de, de
+	sla e
+	rl d
+	; are we done?
+	and a
+	jr nz, .loop
+	ret
+; e8ac7
+
+SetGlobalTempo: ; e8ac7
+	push bc ; save current channel
+	; are we dealing with music or sfx?
+	ld a, [CurChannel]
+	cp a, $04
+	jr nc, .sfxchannels
+	ld bc, Channel1
+	call SetTempo
+	ld bc, Channel2
+	call SetTempo
+	ld bc, Channel3
+	call SetTempo
+	ld bc, Channel4
+	call SetTempo
+	jr .end
+.sfxchannels
+	ld bc, Channel5
+	call SetTempo
+	ld bc, Channel6
+	call SetTempo
+	ld bc, Channel7
+	call SetTempo
+	ld bc, Channel8
+	call SetTempo
+.end
+	pop bc ; restore current channel
+	ret
+; e8b03
+
+SetTempo: ; e8b03
+; input:
+; 	de: note length
+	; update Tempo
+	ld hl, Channel1Tempo - Channel1
+	add hl, bc
+	ld [hl], e
+	inc hl
+	ld [hl], d
+	; clear ????
+	xor a
+	ld hl, $0016
+	add hl, bc
+	ld [hl], a
+	ret
+; e8b11
 
 StartChannel: ; e8b11
 	call SetLRTracks
-	ld hl, $0003
+	ld hl, Channel1Flags - Channel1
 	add hl, bc
-	set 0, [hl] ; channel on
+	set 0, [hl] ; turn channel on
 	ret
 ; e8b1b
 
 SetLRTracks: ; e8b1b
-; input:
-;   bc = Channels ($c101)
+; set tracks for a the current channel to default
 ; seems to be redundant since this is overwritten by stereo data later
 	push de
+	; store current channel in de
 	ld a, [CurChannel]
-	and a, $03 ; bit 0-1
+	and a, $03
 	ld e, a
 	ld d, $00
-	call GetLRTracks ; hl = mono / stereo table
-	add hl, de       ; + channel #
-	ld a, [hl]       ; get result
+	; get this channel's lr tracks
+	call GetLRTracks
+	add hl, de ; de = channel 0-3
+	ld a, [hl]
+	; load lr tracks into Tracks
 	ld hl, Channel1Tracks - Channel1
 	add hl, bc
-	ld [hl], a ; set tracks
+	ld [hl], a
 	pop de
 	ret
 ; e8b30
@@ -74454,7 +76660,7 @@ LoadMusic: ; e8b30
 	ld e, [hl]
 	inc hl
 	ld d, [hl] ; music header address
-	call FarLoadMusicByte ; store first byte of music header in [a]
+	call FarLoadMusicByte ; store first byte of music header in a
 	rlca
 	rlca
 	and a, $03 ; get number of channels
@@ -74473,23 +76679,116 @@ LoadMusic: ; e8b30
 	ld [$c2b9], a
 	ld [$c2ba], a
 	ld [$c2bb], a
-	ld [$c2a0], a
-	ld [$c2a1], a
+	ld [NoiseSampleAddressLo], a
+	ld [NoiseSampleAddressHi], a
 	ld [$c2a2], a
-	ld [$c2a4], a
+	ld [MusicNoiseSampleSet], a
 	call MusicOn
 	ret
 ; e8b79
 
-INCBIN "baserom.gbc",$e8b79,$e8c04 - $e8b79
+PlayCry: ; e8b79
+; input: de = cry id
+	call MusicOff
+	; load cry id
+	ld hl, MusicID
+	ld [hl], e
+	inc hl
+	ld [hl], d
+	; seek pointer table
+	ld hl, Cries
+	add hl, de
+	add hl, de
+	add hl, de
+	; get bank
+	ld a, [hli]
+	ld [MusicBank], a
+	; get address
+	ld e, [hl]
+	inc hl
+	ld d, [hl]
+; read cry header
+	; get byte at bank:address
+	call FarLoadMusicByte
+	; get top 2 bits (# chs)
+	rlca
+	rlca
+	and a, $03
+	inc a ; ch count -> loop count
+.loop
+	push af
+	call LoadChannel
+	ld hl, Channel1Flags - Channel1
+	add hl, bc
+	set 5, [hl]
+	ld hl, Channel1Flags2 - Channel1
+	add hl, bc
+	set 4, [hl]
+	ld hl, $0027
+	add hl, bc
+	ld a, [$c2b0]
+	ld [hli], a
+	ld a, [$c2b1]
+	ld [hl], a
+	; are we on the last channel? (music & sfx)
+	ld a, [CurChannel]
+	and a, $03
+	cp a, $03
+	jr nc, .start
+	; update tempo
+	ld hl, Channel1Tempo - Channel1
+	add hl, bc
+	ld a, [$c2b2]
+	ld [hli], a
+	ld a, [$c2b3]
+	ld [hl], a
+.start
+	call StartChannel
+	ld a, [$c2bc]
+	and a
+	jr z, .next
+; play cry from the side of the monster it's coming from (stereo only)
+; outside of battles cries play on both tracks
+	; is stereo on?
+	ld a, [Options]
+	bit 5, a ; stereo
+	jr z, .next
+	; and [Tracks], [CryTracks]
+	ld hl, Channel1Tracks - Channel1
+	add hl, bc
+	ld a, [hl]
+	ld hl, CryTracks
+	and a, [hl]
+	ld hl, Channel1Tracks - Channel1
+	add hl, bc
+	ld [hl], a
+.next
+	pop af
+	dec a
+	jr nz, .loop
+	; save current volume
+	ld a, [LastVolume]
+	and a
+	jr nz, .end
+	ld a, [Volume]
+	ld [LastVolume], a
+	; cries have max volume
+	ld a, $77
+	ld [Volume], a
+.end
+	ld a, $01 ; stop playing music
+	ld [SFXPriority], a
+	call MusicOn
+	ret
+; e8c04
 
 LoadSFX: ; e8c04
 ; clear channels if they aren't already
 	call MusicOff
-	ld hl, $c1cc ; ch5 on
-	bit 0, [hl]
+	ld hl, $c1cc ; Channel5Flags
+	bit 0, [hl] ; ch5 on?
 	jr z, .ch6
-	res 0, [hl]
+	res 0, [hl] ; turn it off
 	xor a
 	ld [$ff00+$11], a ; length/wavepattern = 0
 	ld a, $08
@@ -74499,13 +76798,13 @@ LoadSFX: ; e8c04
 	ld a, $80
 	ld [$ff00+$14], a ; restart sound (freq hi = 0)
 	xor a
-	ld [$c29c], a ; ????
+	ld [SoundInput], a ; global sound off
 	ld [$ff00+$10], a ; sweep = 0
 .ch6
-	ld hl, $c1fe ; ch6 on
+	ld hl, $c1fe ; ch6 on?
 	bit 0, [hl]
 	jr z, .ch7
-	res 0, [hl]
+	res 0, [hl] ; turn it off
 	xor a
 	ld [$ff00+$16], a ; length/wavepattern = 0
 	ld a, $08
@@ -74515,10 +76814,10 @@ LoadSFX: ; e8c04
 	ld a, $80
 	ld [$ff00+$19], a ; restart sound (freq hi = 0)
 .ch7
-	ld hl, $c230 ; ch7 on
+	ld hl, $c230 ; ch7 on?
 	bit 0, [hl]
 	jr z, .ch8
-	res 0, [hl]
+	res 0, [hl] ; turn it off
 	xor a
 	ld [$ff00+$1a], a ; sound mode #3 off
 	ld [$ff00+$1b], a ; length/wavepattern = 0
@@ -74529,10 +76828,10 @@ LoadSFX: ; e8c04
 	ld a, $80
 	ld [$ff00+$1e], a ; restart sound (freq hi = 0)
 .ch8
-	ld hl, $c262 ; ch8 on
+	ld hl, $c262 ; ch8 on?
 	bit 0, [hl]
 	jr z, .chscleared
-	res 0, [hl]
+	res 0, [hl] ; turn it off
 	xor a
 	ld [$ff00+$20], a ; length/wavepattern = 0
 	ld a, $08
@@ -74542,8 +76841,8 @@ LoadSFX: ; e8c04
 	ld a, $80
 	ld [$ff00+$23], a ; restart sound (freq hi = 0)
 	xor a
-	ld [$c2a0], a
-	ld [$c2a1], a
+	ld [NoiseSampleAddressLo], a
+	ld [NoiseSampleAddressHi], a
 .chscleared
 ; start reading sfx header for # chs
 	ld hl, MusicID
@@ -74554,36 +76853,41 @@ LoadSFX: ; e8c04
 	add hl, de ; three
 	add hl, de ; byte
 	add hl, de ; pointers
+	; get bank
 	ld a, [hli]
-	ld [MusicBank], a ; get bank
-	ld e, [hl] ; get address
+	ld [MusicBank], a
+	; get address
+	ld e, [hl]
 	inc hl
 	ld d, [hl]
-	call FarLoadMusicByte ; get # channels
-	rlca
-	rlca
-	and a, $03 ; bit 0-1
+	; get # channels
+	call FarLoadMusicByte
+	rlca ; top 2
+	rlca ; bits
+	and a, $03
 	inc a ; # channels -> # loops
 .startchannels
 	push af
 	call LoadChannel ; bc = current channel
-	ld hl, $0003
+	ld hl, Channel1Flags - Channel1
 	add hl, bc
-	set 3, [hl] ; not sure what bit 3 does
+	set 3, [hl]
 	call StartChannel
 	pop af
 	dec a
 	jr nz, .startchannels
 	call MusicOn
 	xor a
-	ld [$c2b6], a
+	ld [SFXPriority], a
 	ret
 ; e8ca6
 
-INCBIN "baserom.gbc",$e8ca6,$e8d1b - $e8ca6
+INCBIN "baserom.gbc", $e8ca6, $e8d1b - $e8ca6
 
 LoadChannel: ; e8d1b
 ; prep channel for use
+; input:
+; 	de: 
 	; get pointer to current channel
 	call FarLoadMusicByte
 	inc de
@@ -74597,7 +76901,7 @@ LoadChannel: ; e8d1b
 	ld c, [hl]
 	inc hl
 	ld b, [hl] ; bc = channel pointer
-	ld hl, $0003
+	ld hl, Channel1Flags - Channel1
 	add hl, bc
 	res 0, [hl] ; channel off
 	call ChannelInit
@@ -74626,45 +76930,392 @@ LoadChannel: ; e8d1b
 ; e8d5b
 
 ChannelInit: ; e8d5b
-; make sure channel is clean
+; make sure channel is cleared
 ; set default tempo and note length in case nothing is loaded
 ; input:
 ;   bc = channel struct pointer
 	push de
 	xor a
-	ld hl, $0000
+	; get channel struct location and length
+	ld hl, Channel1MusicID - Channel1 ; start
 	add hl, bc
 	ld e, Channel2 - Channel1 ; channel struct length
-; clear channel struct
+	; clear channel
 .loop
 	ld [hli], a
 	dec e
 	jr nz, .loop
+	; set tempo to default ($100)
 	ld hl, Channel1Tempo - Channel1
 	add hl, bc
 	xor a
 	ld [hli], a
 	inc a
-	ld [hl], a ; default note length $100
+	ld [hl], a
+	; set note length to default ($01) (fast)
 	ld hl, Channel1NoteLength - Channel1
 	add hl, bc
-	ld [hl], a ; default tempo $01 (fast)
+	ld [hl], a
 	pop de
 	ret
 ; e8d76
 
 FarLoadMusicByte: ; e8d76
 ; input:
-;   de = address of current spot in music header
+;   de = current music address
 ; output:
-;   a
+;   a = CurMusicByte
 	ld a, [MusicBank]
 	call LoadMusicByte
 	ld a, [CurMusicByte]
 	ret
 ; e8d80
 
-INCBIN "baserom.gbc",$e8d80,$e8fc2 - $e8d80
+FrequencyTable: ; e8d80
+	dw $0000 ; filler
+	dw $f82c
+	dw $f89d
+	dw $f907
+	dw $f96b
+	dw $f9ca
+	dw $fa23
+	dw $fa77
+	dw $fac7
+	dw $fb12
+	dw $fb58
+	dw $fb9b
+	dw $fbda
+	dw $fc16
+	dw $fc4e
+	dw $fc83
+	dw $fcb5
+	dw $fce5
+	dw $fd11
+	dw $fd3b
+	dw $fd63
+	dw $fd89
+	dw $fdac
+	dw $fdcd
+	dw $fded
+; e8db2
+
+WaveSamples: ; e8db2
+	; these are streams of 32 4-bit values used as wavepatterns
+	; nothing interesting here!
+	db $02, $46, $8a, $ce, $ff, $fe, $ed, $dc, $cb, $a9, $87, $65, $44, $33, $22, $11
+	db $02, $46, $8a, $ce, $ef, $ff, $fe, $ee, $dd, $cb, $a9, $87, $65, $43, $22, $11
+	db $13, $69, $bd, $ee, $ee, $ff, $ff, $ed, $de, $ff, $ff, $ee, $ee, $db, $96, $31
+	db $02, $46, $8a, $cd, $ef, $fe, $de, $ff, $ee, $dc, $ba, $98, $76, $54, $32, $10
+	db $01, $23, $45, $67, $8a, $cd, $ee, $f7, $7f, $ee, $dc, $a8, $76, $54, $32, $10
+	db $00, $11, $22, $33, $44, $33, $22, $11, $ff, $ee, $cc, $aa, $88, $aa, $cc, $ee
+	db $02, $46, $8a, $ce, $cb, $a9, $87, $65, $ff, $fe, $ed, $dc, $44, $33, $22, $11
+	db $c0, $a9, $87, $f5, $ff, $fe, $ed, $dc, $44, $33, $22, $f1, $02, $46, $8a, $ce
+	db $44, $33, $22, $1f, $00, $46, $8a, $ce, $f8, $fe, $ed, $dc, $cb, $a9, $87, $65
+	db $11, $00, $00, $08, $00, $13, $57, $9a, $b4, $ba, $a9, $98, $87, $65, $43, $21
+; e8e52
+
+NoiseSampleSetsPointers: ; e8e52
+	dw NoiseSampleSets0
+	dw NoiseSampleSets1
+	dw NoiseSampleSets2
+	dw NoiseSampleSets3
+	dw NoiseSampleSets4
+	dw NoiseSampleSets5
+; e8e5e
+
+NoiseSampleSets:
+NoiseSampleSets0: ; e8e5e
+	dw NoiseSampleSet00 ; rest
+	dw NoiseSampleSet01 ; c
+	dw NoiseSampleSet02 ; c#
+	dw NoiseSampleSet03 ; d
+	dw NoiseSampleSet04 ; d#
+	dw NoiseSampleSet05 ; e
+	dw NoiseSampleSet06 ; f
+	dw NoiseSampleSet07 ; f#
+	dw NoiseSampleSet08 ; g
+	dw NoiseSampleSet09 ; g#
+	dw NoiseSampleSet10 ; a
+	dw NoiseSampleSet11 ; a#
+	dw NoiseSampleSet12 ; b
+NoiseSampleSets1: ; e8e78
+	dw NoiseSampleSet00
+	dw NoiseSampleSet08
+	dw NoiseSampleSet09
+	dw NoiseSampleSet10
+	dw NoiseSampleSet11
+	dw NoiseSampleSet12
+	dw NoiseSampleSet13
+	dw NoiseSampleSet14
+	dw NoiseSampleSet15
+	dw NoiseSampleSet16
+	dw NoiseSampleSet17
+	dw NoiseSampleSet18
+	dw NoiseSampleSet19
+NoiseSampleSets2: ; e8e92
+	dw NoiseSampleSet00
+	dw NoiseSampleSet01
+	dw NoiseSampleSet17
+	dw NoiseSampleSet18
+	dw NoiseSampleSet19
+	dw NoiseSampleSet05
+	dw NoiseSampleSet06
+	dw NoiseSampleSet07
+	dw NoiseSampleSet08
+	dw NoiseSampleSet09
+	dw NoiseSampleSet10
+	dw NoiseSampleSet11
+	dw NoiseSampleSet12
+NoiseSampleSets3: ; e8eac
+	dw NoiseSampleSet21
+	dw NoiseSampleSet22
+	dw NoiseSampleSet23
+	dw NoiseSampleSet24
+	dw NoiseSampleSet25
+	dw NoiseSampleSet26
+	dw NoiseSampleSet20
+	dw NoiseSampleSet27
+	dw NoiseSampleSet28
+	dw NoiseSampleSet29
+	dw NoiseSampleSet21
+	dw NoiseSampleSet37
+	dw NoiseSampleSet34
+NoiseSampleSets4: ; e8ec6
+	dw NoiseSampleSet21
+	dw NoiseSampleSet20
+	dw NoiseSampleSet23
+	dw NoiseSampleSet24
+	dw NoiseSampleSet25
+	dw NoiseSampleSet33
+	dw NoiseSampleSet26
+	dw NoiseSampleSet35
+	dw NoiseSampleSet31
+	dw NoiseSampleSet32
+	dw NoiseSampleSet36
+	dw NoiseSampleSet37
+	dw NoiseSampleSet30
+NoiseSampleSets5: ; e8ee0
+	dw NoiseSampleSet00
+	dw NoiseSampleSet17
+	dw NoiseSampleSet18
+	dw NoiseSampleSet19
+	dw NoiseSampleSet27
+	dw NoiseSampleSet28
+	dw NoiseSampleSet29
+	dw NoiseSampleSet05
+	dw NoiseSampleSet06
+	dw NoiseSampleSet30
+	dw NoiseSampleSet24
+	dw NoiseSampleSet23
+	dw NoiseSampleSet37
+; e8efa
+
+NoiseSampleSet00: ; e8efa
+; unused
+	db $20, $11, $00
+	db $ff ; end
+; e8efe
+
+NoiseSampleSet01: ; e8efe
+	db $20, $c1, $33
+	db $ff ; end
+; e8f02
+
+NoiseSampleSet02: ; e8f02
+	db $20, $b1, $33
+	db $ff ; end
+; e8f06
+
+NoiseSampleSet03: ; e8f06
+	db $20, $a1, $33
+	db $ff ; end
+; e8f0a
+
+NoiseSampleSet04: ; e8f0a
+	db $20, $81, $33
+	db $ff ; end
+; e8f0e
+
+NoiseSampleSet05: ; e8f0e
+	db $27, $84, $37
+	db $26, $84, $36
+	db $25, $83, $35
+	db $24, $83, $34
+	db $23, $82, $33
+	db $22, $81, $32
+	db $ff ; end
+; e8f21
+
+NoiseSampleSet06: ; e8f21
+	db $20, $51, $2a
+	db $ff ; end
+; e8f25
+
+NoiseSampleSet07: ; e8f25
+	db $21, $41, $2b
+	db $20, $61, $2a
+	db $ff ; end
+; e8f2c
+
+NoiseSampleSet08: ; e8f2c
+	db $20, $81, $10
+	db $ff ; end
+; e8f30
+
+NoiseSampleSet09: ; e8f30
+	db $20, $82, $23
+	db $ff ; end
+; e8f34
+
+NoiseSampleSet10: ; e8f34
+	db $20, $82, $25
+	db $ff ; end
+; e8f38
+
+NoiseSampleSet11: ; e8f38
+	db $20, $82, $26
+	db $ff ; end
+; e8f3c
+
+NoiseSampleSet12: ; e8f3c
+	db $20, $a1, $10
+	db $ff ; end
+; e8f40
+
+NoiseSampleSet13: ; e8f40
+	db $20, $a2, $11
+	db $ff ; end
+; e8f44
+
+NoiseSampleSet14: ; e8f44
+	db $20, $a2, $50
+	db $ff ; end
+; e8f48
+
+NoiseSampleSet15: ; e8f48
+	db $20, $a1, $18
+	db $20, $31, $33
+	db $ff ; end
+; e8f4f
+
+NoiseSampleSet16: ; e8f4f
+	db $22, $91, $28
+	db $20, $71, $18
+	db $ff ; end
+; e8f56
+
+NoiseSampleSet17: ; e8f56
+	db $20, $91, $22
+	db $ff ; end
+; e8f5a
+
+NoiseSampleSet18: ; e8f5a
+	db $20, $71, $22
+	db $ff ; end
+; e8f5e
+
+NoiseSampleSet19: ; e8f5e
+	db $20, $61, $22
+	db $ff ; end
+; e8f62
+
+NoiseSampleSet20: ; e8f62
+	db $20, $11, $11
+	db $ff ; end
+; e8f66
+
+NoiseSampleSet21: ; e8f66
+	db $ff
+; e8f67
+
+NoiseSampleSet22: ; e8f67
+	db $20, $91, $33
+	db $ff ; end
+; e8f6b
+
+NoiseSampleSet23: ; e8f6b
+	db $20, $51, $32
+	db $ff ; end
+; e8f6f
+
+NoiseSampleSet24: ; e8f6f
+	db $20, $81, $31
+	db $ff ; end
+; e8f73
+
+NoiseSampleSet25: ; e8f73
+	db $20, $88, $6b
+	db $20, $71, $00
+	db $ff ; end
+; e8f7a
+
+NoiseSampleSet26: ; e8f7a
+	db $30, $91, $18
+	db $ff ; end
+; e8f7e
+
+NoiseSampleSet27: ; e8f7e
+	db $27, $92, $10
+	db $ff ; end
+; e8f82
+
+NoiseSampleSet28: ; e8f82
+	db $33, $91, $00
+	db $33, $11, $00
+	db $ff ; end
+; e8f89
+
+NoiseSampleSet29: ; e8f89
+	db $33, $91, $11
+	db $33, $11, $00
+	db $ff ; end
+; e8f90
+
+NoiseSampleSet30: ; e8f90
+	db $33, $88, $15
+	db $20, $65, $12
+	db $ff ; end
+; e8f97
+
+NoiseSampleSet31: ; e8f97
+	db $33, $51, $21
+	db $33, $11, $11
+	db $ff ; end
+; e8f9e
+
+NoiseSampleSet32: ; e8f9e
+	db $33, $51, $50
+	db $33, $11, $11
+	db $ff ; end
+; e8fa5
+
+NoiseSampleSet33: ; e8fa5
+	db $20, $a1, $31
+	db $ff ; end
+; e8fa9
+
+NoiseSampleSet34: ; e8fa9
+	db $20, $84, $12
+	db $ff ; end
+; e8fad
+
+NoiseSampleSet35: ; e8fad
+	db $33, $81, $00
+	db $33, $11, $00
+	db $ff ; end
+; e8fb4
+
+NoiseSampleSet36: ; e8fb4
+	db $33, $81, $21
+	db $33, $11, $11
+	db $ff ; end
+; e8fbb
+
+NoiseSampleSet37: ; e8fbb
+	db $20, $a8, $6b
+	db $20, $71, $00
+	db $ff ; end
+; e8fc2
 
 GetLRTracks: ; e8fc2
 ; gets the default sound l/r channels
@@ -74682,15 +77333,14 @@ GetLRTracks: ; e8fc2
 
 MonoTracks: ; e8fd1
 ; bit corresponds to track #
-; top nybble: right channel
-; bottom nybble: left channel
+; hi: left channel
+; lo: right channel
 	db $11, $22, $44, $88
 ; e8fd5
 
 StereoTracks: ; e8fd5
-; seems to be wrong
-; figure out what this is actually for
-; might be default then clears one nybble based on song id
+; made redundant
+; seems to be modified on a per-song basis
 	db $11, $22, $44, $88
 ; e8fd9
 
@@ -74707,16 +77357,50 @@ ChannelPointers: ; e8fd9
 	dw Channel8
 ; e8fe9
 
-; identical in function to SoundRestart but cleaner
-INCBIN "baserom.gbc",$e8fe9,$e900a - $e8fe9
+ClearChannels: ; e8fe9
+; runs ClearChannel for all 4 channels
+; doesn't seem to be used, but functionally identical to SoundRestart
+	ld hl, $ff24
+	xor a
+	ld [hli], a
+	ld [hli], a
+	ld a, $80
+	ld [hli], a
+	ld hl, $ff10
+	ld e, $04
+.loop
+	call ClearChannel
+	dec e
+	jr nz, .loop
+	ret
+; e8ffe
+
+ClearChannel: ; e8ffe
+; input: hl = beginning hw sound register ($ff10, $ff15, $ff1a, $ff1f)
+; output: 00 00 80 00 80
+
+;   sound channel   1      2      3      4
+	xor a
+	ld [hli], a ; $ff10, $ff15, $ff1a, $ff1f ; sweep = 0
+
+	ld [hli], a ; $ff11, $ff16, $ff1b, $ff20 ; length/wavepattern = 0
+	ld a, $08
+	ld [hli], a ; $ff12, $ff17, $ff1c, $ff21 ; envelope = 0
+	xor a
+	ld [hli], a ; $ff13, $ff18, $ff1d, $ff22 ; frequency lo = 0
+	ld a, $80
+	ld [hli], a ; $ff14, $ff19, $ff1e, $ff23 ; restart sound (freq hi = 0)
+	ret
+; e900a
 
 PlayTrainerEncounterMusic: ; e900a
 ; input: e = trainer type
-	; turn music off for one frame
+	; turn fade off
 	xor a
-	ld [MusicFade], a ; $00 = infinite
+	ld [MusicFade], a
+	; play nothing for one frame
 	push de
-	ld de, $0000
+	ld de, $0000 ; id: Music_Nothing
 	call StartMusic
 	call DelayFrame
 	; play new song
@@ -74805,9 +77489,8 @@ TrainerEncounterMusic: ; e9027
 ; e906e
 
 Music: ; e906e
-; bank, address
-	dbw BANK(NoMusic), NoMusic
-	dbw $3a, $7808
+	dbw BANK(Music_Nothing), Music_Nothing ; 0xe91a3
+	dbw BANK(Music_TitleScreen), Music_TitleScreen ; 0xeb808
 	dbw $3b, $4000
 	dbw $3b, $42ca
 	dbw $3b, $4506
@@ -74829,7 +77512,7 @@ Music: ; e906e
 	dbw $3c, $45bf
 	dbw $3d, $4000
 	dbw $3d, $435b
-	dbw $3a, $7eab
+	dbw BANK(Music_TrainerVictory), Music_TrainerVictory ; 0xebeab
 	dbw $3d, $4518
 	dbw $3d, $462c
 	dbw $3d, $4815
@@ -74852,23 +77535,23 @@ Music: ; e906e
 	dbw $3b, $7c01
 	dbw $3b, $72d0
 	dbw $3c, $4000
-	dbw $3a, $650d
-	dbw $3a, $69c1
-	dbw $3a, $574f
-	dbw $3a, $5b6f
-	dbw $3a, $6040
-	dbw $3a, $62be
+	dbw BANK(Music_JohtoGymLeaderBattle), Music_JohtoGymLeaderBattle ; 0xea50d
+	dbw BANK(Music_ChampionBattle), Music_ChampionBattle ; 0xea9c1
+	dbw BANK(Music_RivalBattle), Music_RivalBattle ; 0xe974f
+	dbw BANK(Music_RocketBattle), Music_RocketBattle ; 0xe9b6f
+	dbw BANK(Music_ElmsLab), Music_ElmsLab ; 0xea040
+	dbw BANK(Music_DarkCave), Music_DarkCave
 	dbw $3c, $4386
-	dbw $3a, $54e9
-	dbw $3a, $6d99
+	dbw BANK(Music_Route36), Music_Route36 ; 0xe94e9
+	dbw BANK(Music_SSAqua), Music_SSAqua ; 0xead99
 	dbw $3d, $66c3
 	dbw $3b, $6e3e
 	dbw $3d, $74a2
-	dbw $3a, $7de1
+	dbw BANK(Music_LookPokemaniac), Music_LookPokemaniac ; 0xebde1
 	dbw $3b, $635e
-	dbw $3a, $72d3
-	dbw $3a, $7453
-	dbw $3a, $7676
+	dbw BANK(Music_NewBarkTown), Music_NewBarkTown ; 0xeb2d3
+	dbw BANK(Music_GoldenrodCity), Music_GoldenrodCity ; 0xeb453
+	dbw BANK(Music_VermilionCity), Music_VermilionCity ; 0xeb676
 	dbw $3b, $645f
 	dbw $3d, $7b13
 	dbw $3d, $6811
@@ -74891,7 +77574,7 @@ Music: ; e906e
 	dbw $3d, $7055
 	dbw $3d, $7308
 	dbw $3d, $78fd
-	dbw $3a, $7d9e
+	dbw BANK(Music_RuinsOfAlphInterior), Music_RuinsOfAlphInterior ; 0xebd9e
 	dbw $3d, $766d
 	dbw $3b, $79bc
 	dbw $3b, $7b3e
@@ -74911,20 +77594,91 @@ Music: ; e906e
 	dbw $5e, $561d
 ; e91a3
 
-NoMusic: ; e91a3
-; (nothing)
-	dbw $c0, NoMusic_Ch0
-	dbw $01, NoMusic_Ch1
-	dbw $02, NoMusic_Ch2
-	dbw $03, NoMusic_Ch3
-NoMusic_Ch0:
-NoMusic_Ch1:
-NoMusic_Ch2:
-NoMusic_Ch3: ; e91af
-	db $ff ; end
-; e91b0
+Music_Nothing: ; 0xe91a3
+	dbw $c0, Music_Nothing_Ch1
+	dbw $01, Music_Nothing_Ch2
+	dbw $02, Music_Nothing_Ch3
+	dbw $03, Music_Nothing_Ch4
+;0xe91af
 
-INCBIN "baserom.gbc",$e91b0,$e927c-$e91b0
+Music_Nothing_Ch1: ; 0xe91af
+Music_Nothing_Ch2: ; 0xe91af
+Music_Nothing_Ch3: ; 0xe91af
+Music_Nothing_Ch4: ; 0xe91af
+	endchannel ; end
+; 0xe91b0
+
+Cries: ; e91b0
+; 3-byte pointers
+	dbw $3c, $747d
+	dbw $3c, $7486
+	dbw $3c, $748f
+	dbw $3c, $7498
+	dbw $3c, $74a1
+	dbw $3c, $74aa
+	dbw $3c, $74b3
+	dbw $3c, $74bc
+	dbw $3c, $74c5
+	dbw $3c, $74ce
+	dbw $3c, $74d7
+	dbw $3c, $74e0
+	dbw $3c, $74e9
+	dbw $3c, $74f2
+	dbw $3c, $74fb
+	dbw $3c, $7504
+	dbw $3c, $750d
+	dbw $3c, $7516
+	dbw $3c, $751f
+	dbw $3c, $7528
+	dbw $3c, $7531
+	dbw $3c, $753a
+	dbw $3c, $7543
+	dbw $3c, $754c
+	dbw $3c, $7555
+	dbw $3c, $755e
+	dbw $3c, $7567
+	dbw $3c, $7570
+	dbw $3c, $7579
+	dbw $3c, $7582
+	dbw $3c, $758b
+	dbw $3c, $7594
+	dbw $3c, $759d
+	dbw $3c, $75a6
+	dbw $3c, $75af
+	dbw $3c, $75b8
+	dbw $3c, $75c1
+	dbw $3c, $75ca
+	dbw $3c, $6d81
+	dbw $3c, $6d96
+	dbw $3c, $6d8a
+	dbw $3c, $6dde
+	dbw $3c, $6d9f
+	dbw $3c, $6dc0
+	dbw $3c, $6d90
+	dbw $3c, $6da8
+	dbw $3c, $6db1
+	dbw $3c, $6db7
+	dbw $3c, $6dc6
+	dbw $3c, $6dcf
+	dbw $3c, $6e35
+	dbw $3c, $6dd8
+	dbw $3c, $6e3e
+	dbw $3c, $6de7
+	dbw $3c, $6ded
+	dbw $3c, $6e6b
+	dbw $3c, $6df6
+	dbw $3c, $6e74
+	dbw $3c, $6e08
+	dbw $3c, $6e11
+	dbw $3c, $6e1a
+	dbw $3c, $6e23
+	dbw $3c, $6e2c
+	dbw $3c, $6e62
+	dbw $3c, $6e47
+	dbw $3c, $6e50
+	dbw $3c, $6e59
+	dbw $3c, $6dff
+; e927c
 
 SFX: ; e927c
 	dbw $3c, $4b3f ; dex fanfare 50-79
@@ -75136,7 +77890,7243 @@ SFX: ; e927c
 	dbw $5e, $59cb ; twinkle
 ; e94e9
 
-INCBIN "baserom.gbc",$e94e9,$ebfc3 - $e94e9
+Music_Route36: ; 0xe94e9
+	dbw $c0, Music_Route36_Ch1
+	dbw $01, Music_Route36_Ch2
+	dbw $02, Music_Route36_Ch3
+	dbw $03, Music_Route36_Ch4
+; 0xe94f5
+
+Music_Route36_Ch1: ; 0xe94f5
+	tempo $0090
+	volume $77
+	dutycycle $03
+	tone $0001
+	vibrato $10, $15
+	stereopanning $0f
+	notetype $0c, $b3
+	octave 3
+	note $13
+	note $15
+	note $60
+	note $50
+	intensity $b5
+	note $67
+	intensity $b3
+	note $65
+	note $b0
+	note $a0
+	intensity $5d
+	note $b3
+	intensity $b5
+	note $63
+	note $a1
+	note $81
+	note $61
+	note $51
+	note $61
+	note $a1
+	note $41
+	note $b3
+	note $a3
+	note $81
+	note $b3
+	note $63
+	note $a1
+	note $81
+	note $61
+	note $51
+	note $61
+	note $a1
+	note $81
+	note $b3
+	note $a3
+	octave 4
+	note $43
+	octave 3
+	note $b1
+	intensity $b6
+	octave 4
+	note $69
+	intensity $b5
+	note $11
+	note $61
+	note $11
+	octave 3
+	note $b1
+	octave 4
+	note $43
+	note $33
+	note $11
+	octave 3
+	note $b3
+	intensity $b4
+	note $a1
+	octave 4
+	note $31
+	octave 3
+	note $71
+	note $a1
+	octave 4
+	note $31
+	octave 3
+	note $71
+	note $a1
+	octave 4
+	note $31
+	intensity $a4
+	octave 3
+	note $a1
+	octave 4
+	note $31
+	note $71
+	octave 3
+	note $a1
+	octave 4
+	note $31
+	note $71
+	octave 3
+	note $a1
+	octave 4
+	note $31
+	stereopanning $f0
+	intensity $95
+	octave 3
+	note $35
+	octave 2
+	note $a5
+	octave 3
+	note $33
+	octave 2
+	note $a5
+	octave 3
+	note $35
+	note $53
+	intensity $b5
+	note $35
+	note $a5
+	note $83
+	intensity $a5
+	octave 2
+	note $a5
+	octave 3
+	note $75
+	note $53
+	note $35
+	octave 2
+	note $a5
+	octave 3
+	note $33
+	intensity $b5
+	note $75
+	note $55
+	note $23
+	note $35
+	note $a5
+	note $83
+	octave 2
+	note $a5
+	octave 3
+	note $75
+	note $33
+	note $15
+	note $85
+	note $11
+	note $51
+	intensity $b7
+	note $15
+	note $83
+	note $31
+	note $51
+	note $81
+	note $a1
+	note $91
+	note $a1
+	octave 4
+	note $35
+	note $11
+	octave 3
+	note $c1
+	note $a5
+	note $35
+	stereopanning $0f
+	intensity $b5
+	note $41
+	note $51
+	loopchannel $00, $5517 ; end
+; 0xe95af
+
+Music_Route36_Ch2: ; 0xe95af
+	dutycycle $03
+	vibrato $10, $36
+	stereopanning $f0
+	notetype $0c, $c2
+	octave 3
+	note $61
+	note $10
+	note $60
+	intensity $c7
+	note $a7
+	note $13
+	intensity $c3
+	octave 4
+	note $11
+	octave 3
+	note $a0
+	octave 4
+	note $10
+	intensity $c7
+	note $67
+	octave 3
+	note $83
+	intensity $c7
+	octave 4
+	note $19
+	intensity $c4
+	octave 3
+	note $a1
+	octave 4
+	note $11
+	note $a1
+	note $82
+	intensity $c2
+	note $40
+	intensity $c7
+	note $4b
+	note $19
+	intensity $c4
+	octave 3
+	note $a1
+	octave 4
+	note $11
+	note $61
+	intensity $c2
+	note $41
+	note $40
+	note $60
+	intensity $c7
+	note $8b
+	note $a9
+	intensity $c4
+	note $61
+	note $a1
+	octave 5
+	note $11
+	octave 4
+	note $b2
+	note $a0
+	intensity $c7
+	note $87
+	note $b3
+	intensity $b0
+	note $af
+	intensity $b7
+	note $af
+	stereopanning $0f
+	intensity $a4
+	octave 3
+	note $a5
+	note $85
+	note $73
+	note $55
+	note $75
+	note $83
+	intensity $b3
+	note $a1
+	note $70
+	note $a0
+	intensity $b7
+	octave 4
+	note $3b
+	intensity $a4
+	octave 3
+	note $71
+	note $30
+	note $70
+	intensity $a7
+	note $ab
+	intensity $c7
+	note $a5
+	note $85
+	note $73
+	note $c5
+	note $a5
+	note $83
+	intensity $c3
+	note $a1
+	note $70
+	note $a0
+	intensity $c7
+	octave 4
+	note $3b
+	intensity $c3
+	octave 3
+	note $71
+	note $30
+	note $70
+	intensity $c7
+	note $ab
+	intensity $c2
+	note $81
+	note $50
+	note $80
+	intensity $b0
+	octave 4
+	note $11
+	intensity $b7
+	note $19
+	intensity $c5
+	octave 3
+	note $81
+	note $50
+	note $80
+	intensity $c7
+	octave 4
+	note $17
+	note $23
+	stereopanning $ff
+	note $35
+	note $a5
+	note $81
+	note $71
+	intensity $b0
+	note $33
+	intensity $b7
+	note $37
+	stereopanning $f0
+	intensity $c4
+	octave 3
+	note $70
+	note $80
+	note $a0
+	note $c0
+	loopchannel $00, $55ce ; end
+; 0xe966b
+
+Music_Route36_Ch3: ; 0xe966b
+	notetype $0c, $25
+	octave 3
+	note $60
+	note $02
+	note $60
+	note $00
+	octave 4
+	note $13
+	octave 3
+	note $11
+	note $61
+	note $11
+	note $40
+	note $02
+	note $40
+	note $00
+	octave 4
+	note $63
+	octave 2
+	note $b1
+	octave 3
+	note $41
+	note $51
+	note $63
+	note $11
+	note $63
+	note $11
+	note $61
+	note $11
+	note $83
+	note $41
+	note $83
+	note $41
+	note $81
+	note $41
+	note $63
+	note $11
+	note $63
+	note $11
+	note $61
+	note $11
+	note $83
+	note $41
+	note $83
+	note $41
+	note $81
+	note $41
+	note $a3
+	note $61
+	note $a3
+	note $61
+	note $a1
+	note $61
+	note $b3
+	note $81
+	note $b3
+	note $81
+	note $b1
+	note $81
+	note $73
+	note $31
+	note $73
+	note $31
+	note $71
+	note $31
+	note $33
+	octave 2
+	note $a1
+	octave 3
+	note $33
+	octave 2
+	note $a1
+	octave 3
+	note $31
+	octave 2
+	note $a1
+	octave 3
+	note $73
+	note $31
+	note $73
+	note $31
+	note $71
+	note $31
+	note $83
+	note $51
+	note $83
+	note $51
+	note $81
+	note $51
+	note $73
+	note $31
+	note $73
+	note $31
+	note $71
+	note $31
+	note $73
+	note $31
+	note $73
+	note $31
+	note $51
+	note $a1
+	note $73
+	note $31
+	note $73
+	note $31
+	note $71
+	note $31
+	note $83
+	note $51
+	note $83
+	note $51
+	note $81
+	note $51
+	note $73
+	note $31
+	note $73
+	note $31
+	note $71
+	note $31
+	note $73
+	note $31
+	note $73
+	note $31
+	note $71
+	note $31
+	note $83
+	note $11
+	note $83
+	note $11
+	note $81
+	note $11
+	note $83
+	note $11
+	note $83
+	note $11
+	note $51
+	note $81
+	note $a5
+	octave 4
+	note $73
+	octave 3
+	note $31
+	note $a1
+	octave 4
+	note $31
+	note $12
+	note $50
+	note $75
+	octave 3
+	note $31
+	note $41
+	note $51
+	loopchannel $00, $5684 ; end
+; 0xe9709
+
+Music_Route36_Ch4: ; 0xe9709
+	togglenoise
+	db $01
+	notetype $0c, $fe
+	note $34
+	note $57
+	callchannel $5741
+	callchannel $5734
+	callchannel $573b
+	callchannel $5734
+	callchannel $5741
+	loopchannel $02, $5713
+	note $b3
+	note $a1
+	note $63
+	note $c0
+	note $c0
+	note $a3
+	loopchannel $0b, $5723
+	callchannel $5741
+	loopchannel $00, $5713 ; end
+; 0xe9734
+
+INCBIN "baserom.gbc",$e9734,$e974f - $e9734
+
+Music_RivalBattle: ; 0xe974f
+	dbw $80, Music_RivalBattle_Ch1
+	dbw $01, Music_RivalBattle_Ch2
+	dbw $02, Music_RivalBattle_Ch3
+; 0xe9758
+
+Music_RivalBattle_Ch1: ; 0xe9758
+	tempo $0066
+	volume $77
+	dutycycle $03
+	tone $0002
+	vibrato $08, $15
+	notetype $0c, $b2
+	octave 3
+	note $71
+	note $b3
+	intensity $b7
+	note $b9
+	intensity $b2
+	note $71
+	octave 4
+	note $23
+	intensity $b7
+	note $25
+	note $53
+	intensity $b2
+	octave 2
+	note $b5
+	intensity $b7
+	octave 3
+	note $25
+	intensity $b2
+	note $43
+	loopchannel $03, $5777
+	intensity $b2
+	octave 2
+	note $b1
+	octave 3
+	note $23
+	intensity $b7
+	note $29
+	intensity $b2
+	octave 3
+	note $95
+	intensity $b7
+	note $c5
+	intensity $b2
+	octave 4
+	note $23
+	loopchannel $03, $578f
+	intensity $b2
+	octave 3
+	note $91
+	note $c3
+	intensity $4d
+	note $c9
+	intensity $b7
+	note $b5
+	note $75
+	note $43
+	note $63
+	note $73
+	note $91
+	note $b5
+	intensity $b2
+	note $60
+	note $40
+	note $20
+	note $40
+	intensity $b7
+	note $63
+	intensity $b2
+	note $90
+	note $70
+	note $60
+	note $70
+	intensity $b7
+	note $93
+	intensity $b6
+	note $91
+	note $b1
+	note $c1
+	note $b1
+	note $c1
+	octave 4
+	note $21
+	octave 3
+	note $c1
+	octave 4
+	note $51
+	intensity $b7
+	octave 3
+	note $b5
+	note $75
+	note $b3
+	octave 4
+	note $23
+	octave 3
+	note $c3
+	note $b1
+	note $95
+	note $65
+	octave 4
+	note $25
+	octave 3
+	note $93
+	intensity $b5
+	note $21
+	note $61
+	note $91
+	octave 4
+	note $11
+	note $21
+	octave 3
+	note $91
+	note $61
+	note $91
+	intensity $b7
+	note $79
+	intensity $b4
+	octave 2
+	note $c1
+	octave 3
+	note $41
+	note $71
+	intensity $b7
+	note $63
+	note $43
+	note $21
+	note $45
+	intensity $a0
+	note $67
+	intensity $a7
+	note $67
+	intensity $a0
+	octave 2
+	note $b7
+	intensity $a7
+	note $b7
+	intensity $b7
+	octave 3
+	note $79
+	intensity $b5
+	octave 2
+	note $c1
+	octave 3
+	note $41
+	note $71
+	note $61
+	note $41
+	note $21
+	note $41
+	note $91
+	note $71
+	note $61
+	note $91
+	intensity $a0
+	note $bf
+	intensity $a7
+	note $bf
+	intensity $a0
+	note $c7
+	intensity $a7
+	note $c3
+	intensity $b7
+	note $93
+	intensity $b5
+	octave 4
+	note $51
+	note $41
+	note $21
+	octave 3
+	note $c1
+	octave 4
+	note $71
+	note $51
+	note $41
+	note $21
+	octave 3
+	note $b1
+	note $51
+	note $b1
+	octave 4
+	note $41
+	note $51
+	note $41
+	octave 3
+	note $b1
+	octave 4
+	note $41
+	octave 3
+	note $b1
+	octave 4
+	note $41
+	note $51
+	note $41
+	octave 3
+	note $b1
+	note $41
+	note $b1
+	octave 4
+	note $41
+	loopchannel $02, $5837
+	intensity $94
+	octave 3
+	note $47
+	octave 2
+	note $b7
+	octave 3
+	note $87
+	note $67
+	intensity $96
+	octave 2
+	note $97
+	note $b7
+	note $c7
+	octave 3
+	note $27
+	intensity $b7
+	octave 4
+	note $47
+	octave 3
+	note $b7
+	octave 4
+	note $87
+	note $67
+	octave 3
+	note $97
+	note $b7
+	note $c7
+	octave 4
+	note $27
+	intensity $a0
+	note $47
+	intensity $a7
+	note $47
+	intensity $a0
+	octave 3
+	note $87
+	intensity $a7
+	note $87
+	intensity $b7
+	note $47
+	note $27
+	note $43
+	note $23
+	octave 2
+	note $c3
+	octave 3
+	note $23
+	intensity $c7
+	octave 2
+	note $b5
+	octave 3
+	note $25
+	note $43
+	note $55
+	note $45
+	note $23
+	note $95
+	note $55
+	note $43
+	note $25
+	note $45
+	note $33
+	octave 2
+	note $95
+	note $c5
+	octave 3
+	note $23
+	note $35
+	note $25
+	octave 2
+	note $c3
+	octave 3
+	note $75
+	note $35
+	note $23
+	octave 2
+	note $c5
+	octave 3
+	note $29
+	loopchannel $00, $57a6 ; end
+; 0xe98af
+
+Music_RivalBattle_Ch2: ; 0xe98af
+	dutycycle $03
+	vibrato $08, $36
+	tone $0001
+	notetype $0c, $c2
+	octave 4
+	note $50
+	note $40
+	note $30
+	note $20
+	note $30
+	note $20
+	note $10
+	octave 3
+	note $c0
+	octave 4
+	note $10
+	octave 3
+	note $c0
+	note $b0
+	note $a0
+	note $b0
+	note $a0
+	note $90
+	note $80
+	note $90
+	note $80
+	note $70
+	note $60
+	note $70
+	note $60
+	note $50
+	note $40
+	note $50
+	note $40
+	note $30
+	note $20
+	note $30
+	note $20
+	note $10
+	octave 2
+	note $c0
+	intensity $c2
+	octave 4
+	note $45
+	intensity $c7
+	octave 3
+	note $75
+	intensity $c2
+	note $93
+	intensity $c2
+	note $45
+	intensity $c7
+	note $75
+	intensity $c2
+	note $93
+	loopchannel $02, $58ea
+	intensity $c2
+	note $41
+	note $73
+	intensity $c7
+	note $77
+	intensity $a2
+	note $c0
+	octave 4
+	note $10
+	intensity $c2
+	note $25
+	intensity $c7
+	note $55
+	intensity $c2
+	note $73
+	loopchannel $03, $5903
+	intensity $c2
+	note $21
+	note $53
+	intensity $b0
+	note $53
+	intensity $b7
+	note $55
+	callchannel $59e0
+	intensity $b0
+	note $97
+	intensity $b7
+	note $97
+	callchannel $59e0
+	intensity $4e
+	note $97
+	intensity $b7
+	note $97
+	intensity $b0
+	octave 3
+	note $c9
+	intensity $b7
+	note $c5
+	intensity $b0
+	octave 4
+	note $27
+	octave 3
+	note $c7
+	intensity $b0
+	note $b9
+	intensity $b7
+	note $b5
+	intensity $2f
+	note $49
+	intensity $b7
+	note $45
+	intensity $b0
+	note $c9
+	intensity $b7
+	note $c5
+	intensity $c7
+	octave 4
+	note $27
+	octave 3
+	note $c7
+	intensity $b0
+	octave 4
+	note $4f
+	intensity $b7
+	note $4f
+	intensity $b0
+	note $53
+	intensity $b7
+	note $55
+	intensity $c7
+	note $51
+	note $91
+	note $c1
+	octave 5
+	note $27
+	octave 4
+	note $c7
+	intensity $b0
+	note $b9
+	intensity $b7
+	note $b5
+	intensity $b0
+	note $a9
+	intensity $b7
+	note $a5
+	intensity $b0
+	note $99
+	intensity $b7
+	note $95
+	intensity $b0
+	note $89
+	intensity $b7
+	note $85
+	intensity $a4
+	octave 3
+	note $87
+	note $47
+	note $b7
+	note $97
+	intensity $a6
+	octave 2
+	note $c7
+	octave 3
+	note $27
+	note $47
+	note $67
+	intensity $c7
+	octave 4
+	note $87
+	note $47
+	note $b7
+	note $97
+	octave 3
+	note $c7
+	octave 4
+	note $27
+	note $47
+	note $67
+	intensity $b0
+	note $8f
+	note $4f
+	octave 3
+	note $c7
+	note $b7
+	note $97
+	intensity $c7
+	note $67
+	intensity $c2
+	octave 3
+	note $b5
+	intensity $c7
+	octave 4
+	note $25
+	intensity $c2
+	note $43
+	loopchannel $03, $59a6
+	intensity $c2
+	octave 3
+	note $b1
+	octave 4
+	note $23
+	intensity $b7
+	note $25
+	intensity $9a
+	note $23
+	intensity $c2
+	octave 3
+	note $95
+	intensity $c7
+	note $c5
+	intensity $c2
+	octave 4
+	note $23
+	loopchannel $03, $59c1
+	intensity $c2
+	octave 3
+	note $91
+	note $c3
+	intensity $c7
+	note $c5
+	intensity $6a
+	octave 4
+	note $33
+	loopchannel $00, $591a ; end
+; 0xe99e0
+
+INCBIN "baserom.gbc",$e99e0,$e99fb - $e99e0
+
+Music_RivalBattle_Ch3: ; 0xe99fb
+	notetype $0c, $19
+	octave 3
+	note $71
+	note $b1
+	note $01
+	note $b9
+	octave 3
+	note $71
+	octave 4
+	note $21
+	note $01
+	note $25
+	octave 3
+	note $21
+	note $31
+	note $41
+	note $21
+	note $41
+	note $73
+	note $51
+	note $41
+	note $21
+	loopchannel $04, $5a0c
+	octave 3
+	note $21
+	octave 2
+	note $c1
+	octave 3
+	note $21
+	note $53
+	note $31
+	note $21
+	octave 2
+	note $c1
+	loopchannel $03, $5a17
+	octave 3
+	note $21
+	note $51
+	note $21
+	octave 2
+	note $c3
+	octave 3
+	note $11
+	note $21
+	note $31
+	callchannel $5b47
+	octave 2
+	note $b1
+	octave 4
+	note $21
+	octave 2
+	note $b1
+	octave 3
+	note $c1
+	octave 2
+	note $b1
+	octave 3
+	note $b1
+	octave 2
+	note $b1
+	octave 3
+	note $91
+	callchannel $5b50
+	note $21
+	note $91
+	octave 4
+	note $21
+	octave 3
+	note $93
+	note $21
+	note $11
+	octave 2
+	note $c1
+	callchannel $5b47
+	octave 2
+	note $b1
+	octave 3
+	note $b1
+	octave 2
+	note $b1
+	octave 3
+	note $91
+	octave 2
+	note $b1
+	octave 3
+	note $71
+	octave 2
+	note $b1
+	octave 3
+	note $61
+	callchannel $5b50
+	note $21
+	note $91
+	loopchannel $04, $5a66
+	callchannel $5b5c
+	note $91
+	note $71
+	octave 2
+	note $b1
+	octave 3
+	note $61
+	loopchannel $04, $5a71
+	octave 2
+	note $b1
+	octave 3
+	note $71
+	octave 2
+	note $b1
+	octave 3
+	note $71
+	octave 2
+	note $b1
+	octave 3
+	note $71
+	note $61
+	note $41
+	callchannel $5b5c
+	octave 2
+	note $c1
+	octave 3
+	note $31
+	callchannel $5b65
+	octave 3
+	note $41
+	octave 4
+	note $41
+	callchannel $5b65
+	octave 3
+	note $41
+	note $b1
+	note $51
+	note $c1
+	octave 4
+	note $51
+	octave 3
+	note $51
+	note $c1
+	octave 4
+	note $51
+	octave 3
+	note $51
+	octave 4
+	note $51
+	octave 3
+	note $51
+	note $c1
+	octave 4
+	note $51
+	octave 3
+	note $51
+	note $51
+	note $71
+	note $81
+	note $91
+	note $41
+	note $b1
+	loopchannel $04, $5ab3
+	note $41
+	note $a1
+	loopchannel $04, $5ab9
+	note $41
+	note $91
+	loopchannel $04, $5abf
+	note $41
+	note $81
+	loopchannel $0c, $5ac5
+	octave 2
+	note $c1
+	octave 3
+	note $41
+	loopchannel $04, $5acb
+	octave 2
+	note $c1
+	octave 3
+	note $71
+	loopchannel $04, $5ad3
+	note $41
+	note $81
+	note $b1
+	note $41
+	note $81
+	note $b1
+	note $41
+	note $b1
+	note $41
+	note $81
+	note $b1
+	note $41
+	note $81
+	note $b1
+	note $41
+	note $b1
+	octave 2
+	note $c1
+	octave 3
+	note $81
+	note $c1
+	octave 2
+	note $c1
+	octave 3
+	note $81
+	note $c1
+	octave 2
+	note $c1
+	octave 3
+	note $c1
+	octave 2
+	note $c1
+	octave 3
+	note $91
+	note $c1
+	octave 2
+	note $c1
+	octave 4
+	note $41
+	note $21
+	octave 3
+	note $c1
+	note $91
+	note $87
+	note $47
+	note $b7
+	note $87
+	octave 2
+	note $c7
+	octave 3
+	note $27
+	note $47
+	note $67
+	octave 2
+	note $b1
+	octave 3
+	note $41
+	loopchannel $07, $5b10
+	note $51
+	note $41
+	octave 2
+	note $b1
+	octave 3
+	note $41
+	loopchannel $06, $5b1a
+	octave 2
+	note $b1
+	octave 3
+	note $71
+	note $61
+	note $51
+	octave 2
+	note $91
+	octave 3
+	note $21
+	loopchannel $07, $5b28
+	note $31
+	note $21
+	octave 2
+	note $91
+	octave 3
+	note $21
+	loopchannel $04, $5b32
+	octave 2
+	note $c1
+	note $91
+	note $c1
+	octave 3
+	note $63
+	note $51
+	note $41
+	note $31
+	loopchannel $00, $5a30 ; end
+; 0xe9b47
+
+INCBIN "baserom.gbc",$e9b47,$e9b6f - $e9b47
+
+Music_RocketBattle: ; 0xe9b6f
+	dbw $80, Music_RocketBattle_Ch1
+	dbw $01, Music_RocketBattle_Ch2
+	dbw $02, Music_RocketBattle_Ch3
+; 0xe9b78
+
+Music_RocketBattle_Ch1: ; 0xe9b78
+	tempo $0065
+	volume $77
+	dutycycle $03
+	tone $0002
+	vibrato $10, $15
+	notetype $0c, $b2
+	octave 4
+	note $50
+	note $40
+	note $30
+	note $20
+	note $30
+	note $20
+	note $10
+	octave 3
+	note $c0
+	octave 4
+	note $10
+	octave 3
+	note $c0
+	note $b0
+	note $a0
+	note $b0
+	note $a0
+	note $90
+	note $80
+	note $90
+	note $80
+	note $70
+	note $60
+	note $70
+	note $60
+	note $50
+	note $40
+	note $50
+	note $40
+	note $30
+	note $20
+	note $30
+	note $20
+	note $10
+	octave 2
+	note $c0
+	intensity $b2
+	octave 3
+	note $15
+	note $13
+	note $51
+	intensity $b7
+	note $33
+	loopchannel $03, $5bad
+	intensity $b2
+	note $15
+	note $15
+	intensity $b7
+	note $33
+	intensity $b2
+	octave 4
+	note $55
+	note $53
+	note $81
+	intensity $b7
+	note $63
+	loopchannel $03, $5bc1
+	intensity $b2
+	note $55
+	note $53
+	intensity $b7
+	note $31
+	note $43
+	intensity $b3
+	octave 4
+	note $11
+	octave 3
+	note $51
+	note $51
+	note $b1
+	note $61
+	note $61
+	note $a1
+	note $31
+	note $31
+	octave 4
+	note $11
+	octave 3
+	note $51
+	note $51
+	note $a1
+	note $51
+	note $31
+	note $51
+	note $61
+	note $51
+	note $61
+	intensity $b5
+	note $83
+	intensity $b3
+	note $81
+	note $61
+	note $41
+	note $31
+	note $21
+	note $31
+	intensity $b5
+	note $43
+	intensity $b3
+	note $41
+	note $31
+	note $61
+	octave 4
+	note $51
+	octave 3
+	note $51
+	note $51
+	octave 4
+	note $31
+	octave 3
+	note $61
+	note $61
+	octave 4
+	note $11
+	octave 3
+	note $31
+	note $31
+	octave 4
+	note $51
+	octave 3
+	note $51
+	note $51
+	octave 4
+	note $31
+	octave 3
+	note $51
+	note $31
+	note $51
+	note $61
+	note $51
+	note $61
+	intensity $b5
+	note $83
+	intensity $b3
+	note $81
+	note $61
+	octave 4
+	note $11
+	note $31
+	note $11
+	note $31
+	intensity $b5
+	note $63
+	intensity $b2
+	octave 3
+	note $61
+	note $81
+	note $93
+	intensity $b5
+	note $33
+	note $13
+	note $33
+	note $51
+	intensity $b2
+	note $61
+	note $a3
+	intensity $b7
+	note $a3
+	intensity $b5
+	note $a1
+	note $81
+	note $63
+	note $33
+	note $13
+	note $33
+	note $51
+	note $61
+	note $51
+	note $31
+	note $11
+	note $b1
+	note $81
+	note $a1
+	note $b1
+	intensity $b7
+	octave 4
+	note $55
+	note $33
+	octave 3
+	note $81
+	note $b3
+	note $a5
+	note $83
+	note $51
+	note $63
+	note $55
+	note $35
+	note $43
+	intensity $a0
+	note $57
+	intensity $a7
+	note $57
+	intensity $b7
+	octave 2
+	note $a7
+	note $87
+	note $a7
+	note $b7
+	note $a7
+	note $87
+	note $a7
+	octave 3
+	note $27
+	note $37
+	note $27
+	octave 2
+	note $b7
+	note $a7
+	octave 3
+	note $37
+	note $27
+	note $37
+	note $57
+	octave 2
+	note $b5
+	octave 3
+	note $35
+	note $13
+	intensity $b5
+	octave 2
+	note $b1
+	octave 3
+	note $11
+	note $31
+	note $51
+	note $61
+	note $81
+	note $a1
+	note $b1
+	note $a1
+	note $51
+	note $a1
+	note $b1
+	note $a1
+	note $51
+	note $31
+	note $51
+	note $a1
+	note $51
+	note $a1
+	octave 4
+	note $21
+	note $31
+	note $21
+	octave 3
+	note $b1
+	note $81
+	intensity $b2
+	note $55
+	note $55
+	note $53
+	note $55
+	note $53
+	intensity $b7
+	note $81
+	note $63
+	intensity $b2
+	note $55
+	note $53
+	intensity $b7
+	note $81
+	note $63
+	intensity $b2
+	note $55
+	octave 4
+	note $30
+	note $40
+	intensity $a0
+	note $57
+	intensity $b2
+	octave 3
+	note $65
+	note $63
+	intensity $b7
+	note $b1
+	note $83
+	intensity $b2
+	note $65
+	note $63
+	intensity $b7
+	note $a1
+	note $83
+	loopchannel $02, $5cc5
+	intensity $b2
+	note $65
+	octave 4
+	note $30
+	note $50
+	intensity $a0
+	note $67
+	intensity $b3
+	note $31
+	octave 3
+	note $a1
+	note $51
+	note $a3
+	note $a1
+	intensity $b7
+	octave 4
+	note $33
+	intensity $b3
+	note $41
+	octave 3
+	note $b1
+	note $81
+	note $b3
+	note $b1
+	intensity $b7
+	octave 4
+	note $33
+	intensity $b3
+	note $51
+	note $11
+	octave 3
+	note $a1
+	octave 4
+	note $13
+	note $11
+	intensity $b7
+	note $43
+	intensity $a0
+	note $53
+	intensity $a7
+	note $55
+	intensity $a0
+	octave 3
+	note $95
+	intensity $b3
+	note $11
+	note $51
+	note $51
+	octave 2
+	note $b1
+	octave 3
+	note $61
+	note $61
+	octave 2
+	note $a1
+	octave 3
+	note $31
+	note $31
+	note $11
+	note $51
+	note $51
+	octave 2
+	note $a1
+	octave 3
+	note $51
+	note $31
+	note $11
+	note $11
+	octave 2
+	note $b1
+	octave 3
+	note $11
+	intensity $b5
+	note $33
+	intensity $b3
+	note $31
+	note $11
+	octave 2
+	note $b1
+	octave 3
+	note $31
+	note $21
+	note $31
+	intensity $b5
+	note $43
+	intensity $b3
+	note $41
+	note $31
+	note $61
+	loopchannel $00, $5c02 ; end
+; 0xe9d3e
+
+Music_RocketBattle_Ch2: ; 0xe9d3e
+	dutycycle $03
+	vibrato $08, $36
+	tone $0001
+	notetype $0c, $b2
+	octave 4
+	note $a3
+	note $b3
+	note $c3
+	octave 5
+	note $10
+	intensity $82
+	octave 4
+	note $90
+	note $a0
+	note $90
+	intensity $c2
+	octave 5
+	note $20
+	intensity $92
+	octave 4
+	note $90
+	note $a0
+	note $90
+	intensity $c2
+	octave 5
+	note $30
+	intensity $a2
+	octave 4
+	note $90
+	note $a0
+	note $90
+	intensity $c2
+	octave 5
+	note $40
+	intensity $b2
+	octave 4
+	note $90
+	note $a0
+	note $90
+	intensity $c2
+	octave 5
+	note $50
+	octave 4
+	note $90
+	note $a0
+	note $90
+	intensity $c2
+	octave 3
+	note $a5
+	note $a3
+	octave 4
+	note $11
+	intensity $c7
+	octave 3
+	note $b3
+	loopchannel $03, $5d7b
+	intensity $c2
+	note $a5
+	note $a5
+	intensity $4a
+	note $93
+	intensity $c2
+	octave 4
+	note $a5
+	note $a3
+	octave 5
+	note $11
+	intensity $c7
+	octave 4
+	note $b3
+	loopchannel $03, $5d91
+	intensity $c2
+	note $a5
+	note $a3
+	intensity $c7
+	note $81
+	note $93
+	callchannel $5ea0
+	intensity $b0
+	note $6f
+	intensity $b7
+	note $6f
+	callchannel $5ea0
+	intensity $b0
+	note $67
+	intensity $b7
+	note $67
+	intensity $b0
+	note $b7
+	intensity $b7
+	note $b7
+	intensity $c4
+	octave 3
+	note $a1
+	note $81
+	note $a1
+	intensity $c7
+	octave 4
+	note $13
+	octave 3
+	note $b1
+	note $a1
+	note $81
+	intensity $c2
+	note $a1
+	octave 4
+	note $13
+	intensity $b0
+	note $15
+	intensity $b7
+	note $13
+	intensity $c4
+	octave 3
+	note $b1
+	note $a1
+	note $b1
+	intensity $c7
+	octave 4
+	note $33
+	note $11
+	octave 3
+	note $b1
+	note $a1
+	intensity $c2
+	note $b1
+	octave 4
+	note $33
+	intensity $b0
+	note $33
+	intensity $b7
+	note $35
+	intensity $4f
+	note $a5
+	intensity $a0
+	note $85
+	note $63
+	note $55
+	note $65
+	note $83
+	note $a5
+	note $b5
+	note $93
+	note $a5
+	intensity $a7
+	note $a9
+	intensity $3f
+	octave 3
+	note $37
+	intensity $b7
+	note $37
+	intensity $3f
+	note $27
+	intensity $b7
+	note $27
+	intensity $3f
+	note $37
+	intensity $b7
+	note $37
+	intensity $3f
+	note $57
+	intensity $b7
+	note $57
+	intensity $4e
+	note $67
+	intensity $a0
+	note $67
+	note $5f
+	note $6f
+	note $af
+	intensity $3f
+	note $6f
+	intensity $c7
+	octave 4
+	note $37
+	note $27
+	intensity $b0
+	note $57
+	intensity $b7
+	note $57
+	intensity $3c
+	note $a5
+	intensity $c7
+	note $a9
+	intensity $c2
+	octave 3
+	note $a5
+	note $a5
+	note $a3
+	note $a5
+	note $a3
+	intensity $c7
+	octave 4
+	note $11
+	octave 3
+	note $b3
+	intensity $c2
+	note $a5
+	note $a3
+	intensity $c7
+	octave 4
+	note $11
+	octave 3
+	note $b3
+	intensity $c2
+	note $a5
+	intensity $c7
+	octave 4
+	note $80
+	note $90
+	note $a7
+	intensity $c2
+	octave 3
+	note $b5
+	note $b3
+	intensity $c7
+	octave 4
+	note $31
+	note $13
+	loopchannel $03, $5e5a
+	intensity $c2
+	octave 3
+	note $b5
+	intensity $c7
+	octave 4
+	note $80
+	note $a0
+	note $b7
+	intensity $c7
+	note $a5
+	note $85
+	note $a3
+	note $b5
+	octave 5
+	note $35
+	octave 4
+	note $b3
+	note $a5
+	note $85
+	intensity $c5
+	note $a3
+	intensity $b0
+	note $a7
+	intensity $b7
+	note $a7
+	intensity $c6
+	octave 3
+	note $a5
+	note $95
+	note $53
+	note $a5
+	note $95
+	note $53
+	intensity $b0
+	note $67
+	intensity $b7
+	note $67
+	intensity $3d
+	note $b7
+	intensity $c7
+	note $b7
+	loopchannel $00, $5db1 ; end
+; 0xe9ea0
+
+INCBIN "baserom.gbc",$e9ea0,$e9eaa -$e9ea0
+
+Music_RocketBattle_Ch3: ; 0xe9eaa
+	notetype $0c, $19
+	octave 3
+	note $a1
+	octave 4
+	note $51
+	octave 3
+	note $91
+	octave 4
+	note $51
+	octave 3
+	note $81
+	octave 4
+	note $51
+	octave 3
+	note $71
+	octave 4
+	note $51
+	octave 3
+	note $61
+	octave 4
+	note $51
+	octave 3
+	note $51
+	octave 4
+	note $51
+	octave 2
+	note $c1
+	octave 3
+	note $11
+	octave 2
+	note $c1
+	note $b1
+	callchannel $5fe6
+	loopchannel $03, $5ecc
+	octave 2
+	note $a1
+	octave 3
+	note $51
+	note $31
+	octave 2
+	note $a1
+	octave 3
+	note $81
+	note $61
+	note $51
+	note $31
+	callchannel $5fe6
+	loopchannel $03, $5edf
+	octave 2
+	note $a1
+	octave 3
+	note $51
+	note $31
+	octave 2
+	note $a1
+	octave 3
+	note $81
+	octave 2
+	note $81
+	note $a1
+	note $b1
+	callchannel $5ff3
+	callchannel $6010
+	octave 3
+	note $61
+	callchannel $601d
+	callchannel $5ff3
+	callchannel $6010
+	octave 3
+	note $b1
+	octave 2
+	note $b1
+	octave 3
+	note $61
+	octave 2
+	note $b1
+	octave 3
+	note $61
+	octave 2
+	note $b1
+	octave 3
+	note $61
+	note $51
+	note $31
+	callchannel $602a
+	octave 2
+	note $a1
+	octave 3
+	note $51
+	note $a1
+	octave 2
+	note $a1
+	octave 3
+	note $51
+	note $a1
+	octave 2
+	note $a1
+	octave 3
+	note $51
+	octave 2
+	note $b1
+	octave 3
+	note $61
+	loopchannel $05, $5f25
+	note $b1
+	octave 2
+	note $b1
+	octave 3
+	note $61
+	note $b1
+	octave 2
+	note $b1
+	octave 3
+	note $b1
+	callchannel $602a
+	octave 2
+	note $a1
+	octave 3
+	note $51
+	octave 2
+	note $a1
+	octave 3
+	note $51
+	octave 2
+	note $a1
+	octave 3
+	note $61
+	note $51
+	note $31
+	callchannel $602a
+	callchannel $602a
+	octave 2
+	note $a1
+	octave 3
+	note $51
+	note $31
+	octave 2
+	note $b1
+	note $a1
+	octave 3
+	note $31
+	note $81
+	note $61
+	loopchannel $07, $5f4e
+	octave 2
+	note $a1
+	octave 3
+	note $51
+	note $31
+	octave 2
+	note $b1
+	note $a1
+	octave 3
+	note $a1
+	note $81
+	note $61
+	octave 2
+	note $b1
+	octave 3
+	note $61
+	loopchannel $04, $5f6a
+	octave 2
+	note $b1
+	octave 3
+	note $61
+	note $81
+	note $61
+	note $51
+	note $31
+	note $21
+	note $31
+	octave 2
+	note $a1
+	octave 3
+	note $51
+	loopchannel $0d, $5f7c
+	octave 2
+	note $a1
+	octave 3
+	note $53
+	note $31
+	note $11
+	octave 2
+	note $b1
+	octave 2
+	note $a1
+	octave 3
+	note $51
+	loopchannel $04, $5f8c
+	octave 2
+	note $a1
+	octave 4
+	note $31
+	octave 3
+	note $a1
+	note $b3
+	note $a1
+	note $81
+	note $b1
+	octave 2
+	note $b1
+	octave 3
+	note $61
+	loopchannel $07, $5f9e
+	note $51
+	note $61
+	octave 2
+	note $b1
+	octave 3
+	note $61
+	loopchannel $05, $5fa8
+	octave 3
+	note $b1
+	octave 4
+	note $33
+	note $11
+	octave 3
+	note $b1
+	note $81
+	callchannel $6033
+	octave 3
+	note $51
+	callchannel $6010
+	octave 3
+	note $61
+	callchannel $6033
+	octave 3
+	note $a1
+	octave 2
+	note $a1
+	octave 3
+	note $51
+	octave 2
+	note $a1
+	octave 3
+	note $51
+	octave 2
+	note $a1
+	octave 3
+	note $51
+	octave 2
+	note $a1
+	octave 3
+	note $51
+	callchannel $5ff3
+	callchannel $6010
+	octave 3
+	note $61
+	callchannel $601d
+	loopchannel $00, $5efe ; end
+; 0xe9fe6
+
+INCBIN "baserom.gbc",$e9fe6,$ea040 -$e9fe6
+
+Music_ElmsLab: ; 0xea040
+	dbw $c0, Music_ElmsLab_Ch1
+	dbw $01, Music_ElmsLab_Ch2
+	dbw $02, Music_ElmsLab_Ch3
+	dbw $03, Music_ElmsLab_Ch4
+; 0xea04c
+
+Music_ElmsLab_Ch1: ; 0xea04c
+	tempo $0090
+	volume $77
+	dutycycle $03
+	tone $0001
+	vibrato $10, $15
+	stereopanning $f0
+	notetype $0c, $b2
+	octave 2
+	note $61
+	note $81
+	note $a1
+	note $c1
+	intensity $b6
+	octave 3
+	note $17
+	intensity $b2
+	octave 2
+	note $b1
+	note $a1
+	note $81
+	octave 3
+	note $17
+	note $63
+	note $63
+	note $67
+	note $a3
+	note $a3
+	note $a1
+	note $01
+	note $a1
+	note $91
+	note $a1
+	intensity $b7
+	octave 4
+	note $13
+	intensity $b5
+	octave 3
+	note $c1
+	octave 4
+	note $11
+	intensity $b4
+	note $67
+	intensity $b5
+	octave 3
+	note $a1
+	note $91
+	note $a1
+	note $61
+	intensity $b7
+	note $67
+	intensity $b5
+	note $a1
+	note $81
+	note $61
+	intensity $b2
+	note $83
+	intensity $b5
+	note $a1
+	note $91
+	note $a1
+	intensity $b7
+	note $63
+	intensity $b5
+	note $13
+	intensity $b7
+	note $37
+	intensity $b4
+	note $61
+	note $51
+	note $31
+	note $61
+	intensity $b7
+	note $57
+	intensity $b4
+	note $81
+	note $61
+	note $51
+	note $81
+	intensity $b7
+	note $67
+	intensity $b4
+	note $81
+	note $a1
+	note $b1
+	note $a1
+	intensity $b2
+	note $83
+	intensity $b4
+	note $61
+	note $a1
+	note $81
+	note $61
+	note $51
+	intensity $b2
+	note $85
+	intensity $b7
+	note $63
+	octave 4
+	note $11
+	octave 3
+	note $63
+	note $31
+	note $b3
+	note $a3
+	intensity $b4
+	note $81
+	note $61
+	note $81
+	intensity $b2
+	note $a5
+	intensity $b7
+	note $53
+	note $b1
+	note $55
+	intensity $b3
+	note $61
+	note $51
+	note $61
+	note $81
+	note $a1
+	note $a1
+	note $81
+	intensity $b2
+	note $55
+	intensity $b4
+	note $63
+	octave 4
+	note $13
+	octave 3
+	note $61
+	octave 4
+	note $11
+	note $31
+	note $11
+	octave 3
+	note $b1
+	note $a1
+	intensity $b7
+	note $b7
+	octave 4
+	note $53
+	note $33
+	note $13
+	octave 3
+	note $b3
+	octave 4
+	note $13
+	note $33
+	note $43
+	note $53
+	intensity $b4
+	octave 3
+	note $a1
+	note $61
+	octave 4
+	note $11
+	octave 3
+	note $61
+	note $a1
+	note $61
+	octave 4
+	note $11
+	octave 3
+	note $61
+	note $a1
+	note $61
+	octave 4
+	note $11
+	octave 3
+	note $61
+	note $a1
+	intensity $b2
+	note $61
+	note $63
+	loopchannel $00, $6075 ; end
+; 0xea128
+
+Music_ElmsLab_Ch2: ; 0xea128
+	dutycycle $03
+	vibrato $10, $26
+	stereopanning $0f
+	notetype $0c, $c3
+	octave 4
+	note $61
+	note $51
+	note $31
+	octave 3
+	note $c1
+	intensity $c5
+	octave 4
+	note $17
+	intensity $c3
+	octave 3
+	note $b1
+	note $a1
+	note $81
+	note $51
+	intensity $c2
+	note $65
+	octave 4
+	note $13
+	note $13
+	note $17
+	note $13
+	note $13
+	note $11
+	stereopanning $ff
+	intensity $c6
+	octave 4
+	note $65
+	intensity $c2
+	note $51
+	note $61
+	note $51
+	note $61
+	note $81
+	intensity $c7
+	note $a5
+	intensity $c2
+	note $61
+	intensity $c7
+	note $17
+	intensity $c7
+	note $35
+	intensity $c3
+	note $21
+	note $31
+	note $21
+	note $31
+	note $51
+	intensity $c7
+	note $65
+	intensity $c3
+	note $11
+	intensity $c7
+	octave 3
+	note $a9
+	intensity $c3
+	note $b1
+	note $b1
+	octave 4
+	note $31
+	intensity $c5
+	note $13
+	octave 3
+	note $b5
+	intensity $c3
+	octave 4
+	note $11
+	note $11
+	note $51
+	intensity $c4
+	note $33
+	note $15
+	intensity $c2
+	note $31
+	note $31
+	note $61
+	note $81
+	note $61
+	note $51
+	note $61
+	intensity $c2
+	note $83
+	intensity $c6
+	note $13
+	note $33
+	intensity $c4
+	note $55
+	intensity $c3
+	note $61
+	note $61
+	note $81
+	intensity $c7
+	note $a3
+	intensity $c3
+	note $81
+	note $71
+	note $81
+	note $71
+	note $80
+	note $61
+	intensity $c7
+	note $3a
+	intensity $c3
+	note $51
+	note $51
+	note $61
+	intensity $c7
+	note $83
+	intensity $c3
+	note $61
+	note $51
+	note $61
+	note $81
+	note $60
+	note $31
+	intensity $c7
+	note $1a
+	intensity $c4
+	note $61
+	note $61
+	note $81
+	intensity $c7
+	note $a3
+	intensity $c4
+	note $81
+	note $61
+	note $b1
+	note $a1
+	note $b0
+	octave 5
+	note $11
+	note $34
+	intensity $c3
+	note $51
+	note $31
+	intensity $c7
+	note $13
+	octave 4
+	note $b3
+	note $a3
+	note $83
+	octave 5
+	note $13
+	octave 4
+	note $b3
+	note $a3
+	note $83
+	intensity $b0
+	note $67
+	intensity $a0
+	note $67
+	intensity $a7
+	note $69
+	intensity $c2
+	note $11
+	note $61
+	intensity $c4
+	octave 3
+	note $51
+	loopchannel $00, $614f ; end
+; 0xea1fd
+
+Music_ElmsLab_Ch3: ; 0xea1fd
+	stereopanning $0f
+	notetype $0c, $25
+	note $07
+	note $0d
+	octave 3
+	note $11
+	note $61
+	note $a1
+	note $11
+	note $a1
+	note $61
+	note $a1
+	note $11
+	note $a1
+	note $61
+	note $a1
+	note $11
+	note $a1
+	note $61
+	note $11
+	note $31
+	note $51
+	note $61
+	note $a1
+	note $11
+	note $a1
+	note $61
+	note $a1
+	note $11
+	note $a1
+	note $61
+	note $a1
+	note $11
+	note $a1
+	note $61
+	note $a1
+	note $51
+	octave 4
+	note $11
+	octave 3
+	note $31
+	note $a1
+	octave 2
+	note $a1
+	octave 3
+	note $a1
+	note $31
+	note $a1
+	note $31
+	note $51
+	note $61
+	note $a1
+	note $11
+	note $a1
+	note $61
+	note $11
+	note $31
+	note $51
+	note $61
+	note $b1
+	note $31
+	note $b1
+	note $61
+	note $b1
+	note $31
+	note $b1
+	note $81
+	octave 4
+	note $11
+	octave 3
+	note $51
+	octave 4
+	note $11
+	octave 3
+	note $81
+	octave 4
+	note $11
+	octave 3
+	note $51
+	note $a1
+	note $b1
+	octave 4
+	note $31
+	octave 3
+	note $61
+	octave 4
+	note $31
+	octave 3
+	note $b1
+	octave 4
+	note $31
+	octave 3
+	note $61
+	note $c1
+	octave 4
+	note $11
+	note $01
+	note $13
+	octave 3
+	note $b3
+	note $83
+	note $61
+	note $a1
+	note $11
+	note $a1
+	note $61
+	note $a1
+	note $11
+	note $a1
+	note $81
+	note $b1
+	note $31
+	note $b1
+	note $81
+	note $b1
+	note $31
+	note $a1
+	note $51
+	note $81
+	note $11
+	note $81
+	note $51
+	note $81
+	note $11
+	note $81
+	note $61
+	note $a1
+	note $11
+	note $a1
+	note $61
+	note $a1
+	note $81
+	note $51
+	note $61
+	note $a1
+	note $11
+	note $a1
+	note $61
+	note $a1
+	note $11
+	note $a1
+	note $81
+	note $b1
+	note $31
+	note $b1
+	note $81
+	note $b1
+	note $a1
+	note $81
+	note $13
+	note $33
+	note $53
+	note $83
+	note $53
+	note $63
+	note $73
+	note $83
+	note $61
+	note $a1
+	note $11
+	note $a1
+	note $61
+	note $a1
+	note $11
+	note $a1
+	note $61
+	note $a1
+	note $11
+	note $a1
+	note $61
+	note $11
+	note $61
+	note $a1
+	loopchannel $00, $6216 ; end
+; 0xea2b1
+
+Music_ElmsLab_Ch4: ; 0xea2b1
+	stereopanning $f0
+	togglenoise
+	db $00
+	notetype $0c, $0f
+	note $01
+	note $83
+	loopchannel $00, $62b9 ; end
+; 0xea2be
+
+Music_DarkCave: ; 0xea2be
+	dbw $c0, Music_DarkCave_Ch1
+	dbw $01, Music_DarkCave_Ch2
+	dbw $02, Music_DarkCave_Ch3
+	dbw $03, Music_DarkCave_Ch4
+; 0xea2ca
+
+Music_DarkCave_Ch1: ; 0xea2ca
+	tempo $0080
+	volume $77
+	dutycycle $03
+	tone $0001
+	vibrato $11, $15
+	stereopanning $f0
+	notetype $0c, $a7
+	note $0f
+	loopchannel $04, $62dc
+	octave 3
+	note $4f
+	note $3f
+	note $2f
+	note $1f
+	intensity $a3
+	callchannel $6333
+	loopchannel $03, $62e8
+	intensity $b7
+	note $97
+	note $47
+	note $87
+	note $37
+	note $67
+	note $27
+	note $47
+	note $87
+	note $97
+	note $47
+	note $87
+	note $37
+	note $67
+	note $27
+	note $47
+	note $17
+	intensity $a3
+	callchannel $6333
+	loopchannel $02, $6303
+	note $0f
+	note $07
+	intensity $b7
+	octave 2
+	note $61
+	note $81
+	note $93
+	octave 3
+	note $4f
+	note $07
+	octave 2
+	note $91
+	note $81
+	note $93
+	octave 3
+	note $4f
+	note $81
+	note $05
+	note $61
+	note $81
+	note $93
+	note $8f
+	note $61
+	note $05
+	note $91
+	note $81
+	note $93
+	intensity $a3
+	callchannel $6333
+	loopchannel $02, $6328
+	loopchannel $00, $62e8 ; end
+; 0xea333
+
+INCBIN "baserom.gbc",$ea333,$ea36a - $ea333
+
+Music_DarkCave_Ch2: ; 0xea36a
+	dutycycle $01
+	vibrato $12, $36
+	stereopanning $0f
+	notetype $0c, $a7
+	note $0f
+	loopchannel $04, $6374
+	octave 3
+	note $8f
+	note $bf
+	note $6f
+	note $8f
+	note $0f
+	loopchannel $04, $637e
+	note $07
+	stereopanning $ff
+	intensity $c7
+	octave 5
+	note $17
+	intensity $c4
+	note $31
+	note $11
+	octave 4
+	note $b1
+	note $83
+	note $b1
+	octave 5
+	note $33
+	intensity $b0
+	note $23
+	intensity $b7
+	note $2b
+	intensity $59
+	note $17
+	intensity $c7
+	note $17
+	note $07
+	intensity $c7
+	note $17
+	intensity $c4
+	note $31
+	note $11
+	octave 4
+	note $b1
+	note $81
+	note $81
+	note $b1
+	octave 5
+	note $33
+	intensity $c7
+	note $2b
+	intensity $c3
+	note $11
+	note $21
+	intensity $b0
+	note $49
+	intensity $b7
+	note $45
+	stereopanning $0f
+	intensity $c4
+	octave 4
+	note $63
+	note $41
+	note $31
+	note $43
+	note $31
+	note $11
+	note $31
+	note $11
+	octave 3
+	note $b1
+	octave 4
+	note $11
+	note $33
+	note $11
+	octave 3
+	note $b1
+	octave 4
+	note $27
+	octave 3
+	note $b7
+	intensity $b0
+	octave 4
+	note $41
+	note $31
+	note $11
+	octave 3
+	note $b1
+	octave 4
+	note $17
+	note $63
+	note $41
+	note $31
+	note $43
+	note $31
+	note $11
+	note $31
+	note $11
+	octave 3
+	note $b1
+	octave 4
+	note $11
+	note $33
+	note $11
+	octave 3
+	note $b1
+	octave 4
+	note $23
+	note $11
+	note $21
+	note $11
+	note $21
+	octave 3
+	note $b1
+	octave 4
+	note $21
+	intensity $b0
+	note $17
+	intensity $b7
+	note $17
+	intensity $c7
+	stereopanning $ff
+	note $07
+	octave 5
+	note $17
+	intensity $c4
+	note $31
+	note $11
+	octave 4
+	note $b1
+	note $83
+	note $b1
+	octave 5
+	note $33
+	intensity $49
+	note $27
+	intensity $c7
+	note $27
+	intensity $b0
+	note $17
+	intensity $b7
+	note $17
+	note $07
+	intensity $c7
+	note $17
+	intensity $c4
+	note $31
+	note $11
+	octave 4
+	note $b1
+	note $81
+	note $81
+	note $b1
+	octave 5
+	note $33
+	intensity $b0
+	note $27
+	intensity $b7
+	note $27
+	intensity $b0
+	note $17
+	intensity $b7
+	note $17
+	intensity $c7
+	note $0f
+	stereopanning $0f
+	note $07
+	octave 3
+	note $b1
+	octave 4
+	note $11
+	note $23
+	note $1f
+	note $07
+	note $21
+	note $11
+	note $23
+	note $1f
+	intensity $c2
+	note $47
+	intensity $c7
+	octave 3
+	note $b1
+	octave 4
+	note $11
+	note $23
+	note $1f
+	intensity $c2
+	octave 3
+	note $b7
+	intensity $c7
+	octave 4
+	note $21
+	note $11
+	intensity $c4
+	note $2f
+	note $03
+	note $0f
+	note $0f
+	note $0f
+	intensity $b7
+	octave 5
+	note $4f
+	note $3f
+	note $6f
+	note $4f
+	loopchannel $00, $637e ; end
+; 0xea46e
+
+Music_DarkCave_Ch3: ; 0xea46e
+	notetype $0c, $27
+	callchannel $64ce
+	loopchannel $02, $6471
+	callchannel $64ce
+	loopchannel $07, $6478
+	callchannel $64c3
+	octave 3
+	note $13
+	note $81
+	note $43
+	note $81
+	note $43
+	note $61
+	note $01
+	octave 2
+	note $bb
+	callchannel $64c3
+	octave 3
+	note $13
+	note $81
+	note $43
+	note $81
+	note $43
+	note $61
+	note $01
+	octave 2
+	note $b3
+	octave 3
+	note $21
+	note $11
+	note $23
+	callchannel $64a7
+	callchannel $64a7
+	loopchannel $00, $6478 ; end
+; 0xea4a7
+
+INCBIN "baserom.gbc",$ea4a7,$ea4ea - $ea4a7
+
+Music_DarkCave_Ch4: ; 0xea4ea
+	togglenoise
+	db $03
+	notetype $0c, $ef
+	endchannel ; end
+; 0xea4f0
+
+INCBIN "baserom.gbc",$ea4f0,$ea50d - $ea4f0
+
+Music_JohtoGymLeaderBattle: ; 0xea50d
+	dbw $80, Music_JohtoGymLeaderBattle_Ch1
+	dbw $01, Music_JohtoGymLeaderBattle_Ch2
+	dbw $02, Music_JohtoGymLeaderBattle_Ch3
+; 0xea516
+
+Music_JohtoGymLeaderBattle_Ch1: ; 0xea516
+	tempo $0065
+	volume $77
+	dutycycle $03
+	tone $0002
+	vibrato $12, $15
+	notetype $0c, $b2
+	octave 3
+	note $b0
+	note $a0
+	note $90
+	note $a0
+	loopchannel $04, $6526
+	note $20
+	note $10
+	octave 2
+	note $b0
+	octave 3
+	note $10
+	loopchannel $03, $652f
+	intensity $4b
+	note $23
+	intensity $b2
+	note $35
+	note $45
+	note $13
+	note $65
+	note $35
+	note $43
+	note $35
+	note $45
+	note $13
+	note $65
+	note $85
+	intensity $b7
+	note $13
+	intensity $b2
+	note $85
+	note $95
+	note $63
+	note $95
+	note $65
+	note $93
+	note $85
+	note $95
+	note $63
+	note $95
+	octave 4
+	note $15
+	octave 3
+	note $91
+	note $61
+	intensity $b5
+	note $35
+	note $85
+	note $61
+	note $81
+	note $93
+	note $83
+	note $63
+	note $83
+	intensity $b7
+	note $9b
+	intensity $b2
+	note $83
+	intensity $b7
+	octave 4
+	note $2b
+	intensity $b2
+	note $13
+	intensity $b5
+	octave 3
+	note $35
+	note $85
+	note $61
+	note $81
+	note $93
+	note $83
+	note $63
+	note $83
+	intensity $b7
+	note $97
+	note $87
+	note $67
+	note $47
+	intensity $70
+	note $17
+	intensity $77
+	note $17
+	intensity $b4
+	note $41
+	note $51
+	note $65
+	note $81
+	note $43
+	intensity $77
+	octave 2
+	note $b7
+	note $b7
+	intensity $c5
+	octave 3
+	note $81
+	note $91
+	note $b5
+	note $b1
+	note $93
+	intensity $c7
+	note $87
+	note $63
+	note $51
+	note $21
+	intensity $a0
+	note $17
+	intensity $a7
+	note $17
+	intensity $b2
+	note $65
+	note $63
+	note $51
+	note $63
+	note $65
+	note $65
+	note $61
+	note $91
+	note $55
+	note $53
+	note $61
+	note $51
+	note $21
+	note $15
+	note $15
+	note $13
+	note $65
+	note $61
+	note $91
+	note $51
+	note $61
+	note $91
+	note $61
+	note $13
+	note $65
+	note $51
+	note $91
+	note $51
+	note $83
+	note $53
+	note $61
+	note $51
+	note $61
+	note $85
+	note $83
+	octave 4
+	note $11
+	octave 3
+	note $81
+	note $11
+	note $15
+	note $15
+	note $13
+	note $25
+	note $25
+	note $23
+	note $35
+	note $35
+	note $33
+	note $45
+	note $45
+	note $43
+	intensity $80
+	note $8f
+	intensity $90
+	note $9f
+	intensity $a0
+	note $a7
+	note $b1
+	note $a1
+	note $91
+	note $a1
+	intensity $b0
+	note $b7
+	note $c1
+	note $b1
+	note $a1
+	octave 4
+	note $21
+	intensity $b7
+	note $17
+	note $23
+	note $13
+	octave 3
+	note $91
+	octave 4
+	note $11
+	octave 3
+	note $91
+	octave 4
+	note $41
+	octave 3
+	note $91
+	octave 4
+	note $21
+	octave 3
+	note $91
+	octave 4
+	note $11
+	note $93
+	note $43
+	note $93
+	note $43
+	note $43
+	octave 3
+	note $93
+	octave 4
+	note $43
+	octave 3
+	note $93
+	note $97
+	note $a3
+	note $93
+	note $41
+	note $91
+	note $41
+	octave 4
+	note $21
+	octave 3
+	note $41
+	note $a1
+	note $41
+	note $81
+	octave 4
+	note $23
+	octave 3
+	note $93
+	octave 4
+	note $23
+	octave 3
+	note $93
+	note $93
+	note $23
+	note $93
+	note $23
+	note $c7
+	note $a7
+	note $97
+	note $77
+	intensity $b4
+	note $a3
+	octave 4
+	note $23
+	octave 3
+	note $c3
+	octave 4
+	note $53
+	intensity $92
+	note $41
+	note $41
+	note $41
+	note $41
+	intensity $b2
+	note $41
+	note $41
+	note $41
+	note $41
+	intensity $c2
+	note $4f
+	intensity $50
+	octave 3
+	note $1f
+	note $6f
+	note $5f
+	intensity $97
+	note $49
+	intensity $b4
+	octave 2
+	note $b1
+	octave 3
+	note $41
+	note $71
+	loopchannel $00, $655d ; end
+; 0xea65f
+
+Music_JohtoGymLeaderBattle_Ch2: ; 0xea65f
+	dutycycle $03
+	vibrato $08, $36
+	tone $0001
+	notetype $0c, $c2
+	octave 4
+	note $70
+	note $60
+	note $50
+	note $b0
+	loopchannel $04, $666a
+	note $70
+	note $60
+	note $70
+	note $b0
+	loopchannel $04, $6673
+	note $a5
+	octave 3
+	note $b5
+	note $83
+	octave 4
+	note $35
+	octave 3
+	note $a5
+	note $b3
+	note $a5
+	note $b5
+	note $83
+	octave 4
+	note $35
+	note $45
+	intensity $b0
+	octave 3
+	note $43
+	intensity $c2
+	octave 4
+	note $31
+	intensity $92
+	octave 3
+	note $31
+	note $31
+	intensity $c2
+	octave 4
+	note $43
+	intensity $92
+	octave 3
+	note $31
+	intensity $c2
+	octave 4
+	note $13
+	note $81
+	notetype $0c, $92
+	octave 3
+	note $31
+	note $31
+	intensity $c2
+	octave 4
+	note $33
+	intensity $92
+	octave 3
+	note $31
+	intensity $c2
+	octave 4
+	note $41
+	intensity $92
+	octave 3
+	note $41
+	intensity $c2
+	octave 4
+	note $31
+	intensity $92
+	octave 3
+	note $31
+	note $31
+	intensity $c2
+	octave 4
+	note $43
+	intensity $92
+	octave 3
+	note $31
+	intensity $c2
+	octave 4
+	note $11
+	intensity $92
+	octave 3
+	note $41
+	intensity $c2
+	octave 4
+	note $81
+	intensity $92
+	octave 3
+	note $61
+	note $61
+	intensity $c2
+	octave 4
+	note $91
+	intensity $92
+	octave 3
+	note $61
+	note $61
+	intensity $c2
+	octave 4
+	note $71
+	intensity $b2
+	octave 3
+	note $90
+	note $a0
+	intensity $c7
+	note $b7
+	intensity $c4
+	octave 4
+	note $31
+	note $11
+	octave 3
+	note $b1
+	octave 4
+	note $11
+	intensity $c7
+	note $27
+	intensity $c4
+	note $61
+	note $41
+	note $21
+	note $41
+	intensity $b0
+	note $65
+	intensity $b7
+	note $65
+	intensity $c2
+	note $43
+	intensity $b0
+	note $95
+	intensity $b7
+	note $95
+	intensity $c2
+	note $63
+	intensity $c7
+	octave 3
+	note $b7
+	intensity $c4
+	octave 4
+	note $31
+	note $11
+	octave 3
+	note $b1
+	octave 4
+	note $11
+	intensity $c7
+	note $27
+	intensity $c4
+	note $61
+	note $41
+	note $21
+	note $41
+	intensity $b0
+	note $2f
+	intensity $b7
+	note $2f
+	intensity $a4
+	octave 3
+	note $65
+	note $45
+	note $63
+	intensity $c6
+	octave 4
+	note $15
+	octave 3
+	note $b5
+	octave 4
+	note $13
+	intensity $a4
+	octave 3
+	note $25
+	note $15
+	note $23
+	intensity $c6
+	octave 4
+	note $25
+	note $15
+	note $23
+	intensity $3c
+	note $19
+	intensity $b7
+	note $15
+	intensity $b0
+	note $57
+	intensity $b7
+	note $57
+	intensity $b0
+	octave 3
+	note $2f
+	octave 2
+	note $b7
+	octave 3
+	note $25
+	note $41
+	note $1f
+	note $5f
+	intensity $a0
+	octave 5
+	note $23
+	intensity $a7
+	octave 5
+	note $2b
+	intensity $b7
+	octave 4
+	note $b7
+	octave 5
+	note $25
+	note $41
+	intensity $a0
+	note $17
+	intensity $a7
+	note $17
+	intensity $3e
+	note $55
+	intensity $a6
+	note $59
+	intensity $c2
+	octave 3
+	note $65
+	note $65
+	note $63
+	note $75
+	note $75
+	note $73
+	note $85
+	note $85
+	note $83
+	note $95
+	note $95
+	note $93
+	intensity $90
+	octave 4
+	note $1f
+	intensity $a0
+	note $2f
+	intensity $b0
+	note $3f
+	intensity $b7
+	note $47
+	intensity $4c
+	note $45
+	intensity $c2
+	note $70
+	note $80
+	intensity $c7
+	note $97
+	note $a1
+	note $91
+	note $71
+	note $a1
+	note $93
+	octave 5
+	note $13
+	octave 4
+	note $a3
+	note $93
+	octave 5
+	note $43
+	octave 4
+	note $93
+	octave 5
+	note $43
+	octave 4
+	note $93
+	octave 5
+	note $41
+	note $21
+	note $11
+	note $21
+	note $11
+	octave 4
+	note $a1
+	note $91
+	note $a1
+	note $47
+	note $51
+	note $41
+	note $21
+	note $51
+	note $43
+	note $93
+	note $53
+	note $23
+	note $93
+	note $23
+	note $93
+	note $23
+	note $a1
+	note $91
+	note $71
+	note $51
+	note $41
+	note $51
+	note $41
+	note $21
+	note $47
+	note $27
+	octave 3
+	note $c7
+	note $a7
+	octave 4
+	note $43
+	note $93
+	note $53
+	note $a3
+	intensity $c0
+	note $97
+	intensity $c7
+	note $97
+	intensity $c2
+	note $9f
+	intensity $80
+	octave 3
+	note $6f
+	octave 4
+	note $1f
+	octave 3
+	note $cf
+	note $8f
+	loopchannel $00, $66ee ; end
+; 0xea7f4
+
+Music_JohtoGymLeaderBattle_Ch3: ; 0xea7f4
+	notetype $0c, $19
+	octave 4
+	note $60
+	note $00
+	octave 3
+	note $a1
+	octave 4
+	note $60
+	note $00
+	octave 3
+	note $91
+	octave 4
+	note $60
+	note $00
+	octave 3
+	note $81
+	octave 4
+	note $60
+	note $00
+	octave 3
+	note $71
+	octave 4
+	note $90
+	note $00
+	octave 3
+	note $61
+	octave 4
+	note $90
+	note $00
+	octave 3
+	note $51
+	note $61
+	note $81
+	note $93
+	callchannel $6952
+	note $81
+	note $31
+	note $61
+	note $81
+	note $91
+	note $91
+	note $81
+	note $61
+	note $81
+	note $31
+	note $61
+	note $81
+	note $91
+	note $41
+	note $73
+	callchannel $6952
+	note $81
+	note $31
+	note $61
+	note $81
+	note $91
+	note $91
+	note $81
+	note $61
+	note $81
+	note $31
+	note $61
+	note $81
+	note $91
+	octave 4
+	note $11
+	octave 3
+	note $b1
+	note $91
+	callchannel $6963
+	callchannel $6963
+	callchannel $696a
+	note $21
+	note $91
+	note $21
+	note $91
+	note $21
+	note $b1
+	note $a1
+	note $91
+	callchannel $6963
+	note $31
+	note $81
+	note $31
+	note $81
+	note $31
+	note $81
+	note $91
+	note $81
+	callchannel $696a
+	callchannel $696a
+	note $11
+	note $81
+	note $b1
+	note $11
+	note $41
+	note $61
+	note $81
+	note $b1
+	callchannel $6971
+	callchannel $696a
+	callchannel $6978
+	octave 3
+	note $81
+	note $91
+	note $61
+	callchannel $6971
+	note $11
+	note $81
+	note $11
+	note $81
+	note $11
+	note $51
+	note $61
+	note $81
+	callchannel $696a
+	callchannel $6978
+	octave 3
+	note $11
+	note $21
+	note $91
+	callchannel $6971
+	note $11
+	note $81
+	note $11
+	note $81
+	note $61
+	note $51
+	note $61
+	note $81
+	callchannel $696a
+	callchannel $6978
+	octave 3
+	note $61
+	octave 2
+	note $b1
+	octave 3
+	note $91
+	callchannel $6971
+	note $11
+	note $81
+	note $11
+	octave 4
+	note $11
+	octave 3
+	note $b1
+	note $81
+	note $61
+	note $81
+	callchannel $6983
+	note $01
+	callchannel $6990
+	octave 4
+	note $21
+	callchannel $699c
+	note $01
+	note $41
+	note $b1
+	octave 4
+	note $41
+	octave 3
+	note $41
+	note $b1
+	octave 4
+	note $41
+	octave 3
+	note $41
+	octave 4
+	note $41
+	callchannel $6983
+	note $81
+	callchannel $6990
+	note $91
+	callchannel $699c
+	note $a1
+	octave 4
+	note $41
+	octave 3
+	note $b1
+	note $41
+	octave 4
+	note $41
+	octave 3
+	note $41
+	octave 4
+	note $41
+	note $33
+	callchannel $69a9
+	note $41
+	note $91
+	note $41
+	octave 4
+	note $21
+	octave 3
+	note $41
+	note $a1
+	note $41
+	note $91
+	callchannel $69a9
+	note $41
+	note $91
+	note $41
+	note $91
+	note $41
+	note $a1
+	note $91
+	note $71
+	callchannel $69b1
+	note $21
+	note $71
+	note $21
+	octave 4
+	note $21
+	octave 3
+	note $21
+	note $a1
+	note $21
+	note $81
+	callchannel $69b1
+	note $21
+	note $71
+	note $21
+	note $71
+	note $21
+	note $41
+	note $51
+	note $a1
+	callchannel $69a9
+	note $41
+	note $91
+	note $41
+	note $91
+	note $41
+	note $91
+	note $a1
+	octave 4
+	note $21
+	octave 3
+	note $41
+	note $91
+	note $41
+	note $a1
+	note $41
+	note $c1
+	note $41
+	octave 4
+	note $21
+	octave 3
+	note $91
+	note $41
+	note $71
+	note $91
+	note $a1
+	note $a1
+	note $91
+	note $71
+	note $91
+	note $41
+	note $71
+	note $91
+	note $71
+	note $71
+	note $51
+	note $71
+	callchannel $69b8
+	note $61
+	note $11
+	note $41
+	note $61
+	note $41
+	note $41
+	note $21
+	note $41
+	callchannel $69b8
+	note $61
+	note $11
+	note $41
+	note $61
+	note $41
+	note $71
+	note $61
+	note $41
+	loopchannel $00, $683f ; end
+; 0xea952
+
+INCBIN "baserom.gbc",$ea952,$ea9c1 - $ea952
+
+Music_ChampionBattle: ; 0xea9c1
+	dbw $80, Music_ChampionBattle_Ch1
+	dbw $01, Music_ChampionBattle_Ch2
+	dbw $02, Music_ChampionBattle_Ch3
+; 0xea9ca
+
+Music_ChampionBattle_Ch1: ; 0xea9ca
+	tempo $0062
+	volume $77
+	dutycycle $03
+	tone $0002
+	vibrato $12, $15
+	notetype $0c, $b2
+	octave 2
+	note $b7
+	note $b7
+	note $b7
+	note $b3
+	intensity $b7
+	note $c3
+	callchannel $6aee
+	octave 3
+	note $43
+	loopchannel $02, $69e2
+	callchannel $6aee
+	octave 3
+	note $53
+	callchannel $6afc
+	loopchannel $03, $69f0
+	callchannel $6b06
+	callchannel $6afc
+	loopchannel $07, $69fa
+	callchannel $6b06
+	intensity $b2
+	note $b1
+	note $b1
+	intensity $b7
+	octave 3
+	note $43
+	intensity $b2
+	octave 2
+	note $b1
+	note $b1
+	intensity $b7
+	octave 3
+	note $53
+	intensity $b2
+	octave 2
+	note $b1
+	note $b1
+	intensity $b7
+	octave 3
+	note $73
+	intensity $b2
+	octave 2
+	note $b1
+	note $b1
+	intensity $b7
+	octave 3
+	note $93
+	intensity $a0
+	note $b7
+	octave 2
+	note $b7
+	octave 3
+	note $cb
+	intensity $b2
+	note $b0
+	note $c0
+	octave 4
+	note $10
+	note $20
+	callchannel $6b0f
+	note $51
+	note $51
+	intensity $b7
+	note $73
+	intensity $b2
+	note $51
+	note $51
+	intensity $b7
+	note $93
+	loopchannel $02, $6a3d
+	intensity $b2
+	note $51
+	note $51
+	intensity $b7
+	note $c3
+	callchannel $6b0f
+	note $51
+	note $51
+	intensity $b7
+	note $73
+	intensity $b2
+	note $51
+	note $51
+	intensity $b7
+	note $93
+	intensity $b2
+	note $51
+	note $51
+	intensity $b7
+	note $c3
+	intensity $b2
+	note $51
+	note $51
+	intensity $b7
+	octave 4
+	note $53
+	callchannel $6b24
+	note $c3
+	note $93
+	callchannel $6b24
+	octave 4
+	note $33
+	note $33
+	intensity $a0
+	octave 3
+	note $b7
+	octave 2
+	note $b7
+	octave 3
+	note $77
+	octave 2
+	note $77
+	intensity $60
+	note $cf
+	intensity $70
+	note $cf
+	intensity $80
+	octave 3
+	note $2f
+	intensity $a0
+	note $4f
+	intensity $b4
+	octave 4
+	note $73
+	note $63
+	note $53
+	note $43
+	note $33
+	note $23
+	note $73
+	note $73
+	note $73
+	note $63
+	note $53
+	note $43
+	note $71
+	note $91
+	note $41
+	note $51
+	note $73
+	note $73
+	note $0f
+	intensity $90
+	octave 3
+	note $77
+	intensity $b4
+	note $53
+	note $53
+	intensity $90
+	note $4f
+	note $2f
+	intensity $b2
+	octave 2
+	note $b1
+	note $b1
+	intensity $b7
+	octave 3
+	note $43
+	loopchannel $04, $6ab1
+	intensity $b2
+	note $11
+	note $11
+	intensity $b7
+	note $43
+	loopchannel $02, $6abe
+	intensity $b2
+	note $11
+	note $11
+	intensity $b7
+	note $73
+	intensity $b2
+	note $11
+	note $11
+	intensity $b7
+	note $93
+	callchannel $6b31
+	octave 3
+	note $41
+	note $41
+	intensity $b7
+	note $c3
+	callchannel $6b31
+	octave 3
+	note $41
+	note $41
+	intensity $b7
+	octave 4
+	note $33
+	loopchannel $00, $6a35 ; end
+; 0xeaaee
+
+INCBIN "baserom.gbc",$eaaee,$eab4a - $eaaee
+
+Music_ChampionBattle_Ch2: ; 0xeab4a
+	dutycycle $03
+	vibrato $08, $36
+	tone $0001
+	notetype $0c, $c2
+	octave 3
+	note $47
+	note $47
+	note $47
+	note $43
+	intensity $c7
+	note $33
+	callchannel $6c4f
+	note $b3
+	callchannel $6c4f
+	note $c3
+	callchannel $6c4f
+	octave 4
+	note $23
+	callchannel $6c5c
+	note $33
+	callchannel $6c5c
+	note $63
+	callchannel $6c5c
+	note $33
+	intensity $c2
+	note $41
+	note $41
+	intensity $c7
+	note $b3
+	intensity $c2
+	note $41
+	note $41
+	intensity $c7
+	note $c3
+	intensity $c2
+	note $41
+	note $41
+	intensity $c7
+	octave 4
+	note $13
+	intensity $c2
+	octave 3
+	note $41
+	note $41
+	intensity $c7
+	octave 4
+	note $23
+	note $47
+	octave 3
+	note $47
+	octave 4
+	note $57
+	intensity $3c
+	note $57
+	intensity $c5
+	note $45
+	octave 3
+	note $b5
+	octave 4
+	note $41
+	note $31
+	note $23
+	note $13
+	octave 3
+	note $c3
+	note $b3
+	intensity $c7
+	note $c7
+	octave 4
+	note $57
+	intensity $c2
+	octave 3
+	note $91
+	note $91
+	intensity $c7
+	note $c3
+	intensity $c2
+	note $91
+	note $91
+	intensity $c7
+	octave 4
+	note $23
+	intensity $c5
+	note $45
+	octave 3
+	note $b5
+	octave 4
+	note $41
+	note $31
+	note $23
+	note $13
+	octave 3
+	note $c3
+	note $b1
+	note $c1
+	intensity $c7
+	octave 4
+	note $57
+	note $97
+	note $57
+	note $c7
+	callchannel $6c79
+	note $53
+	note $53
+	callchannel $6c79
+	note $73
+	note $73
+	intensity $c7
+	note $47
+	octave 3
+	note $47
+	octave 4
+	note $27
+	octave 3
+	note $27
+	intensity $b0
+	note $4f
+	note $4f
+	note $6f
+	note $7f
+	intensity $c4
+	octave 5
+	note $43
+	note $33
+	note $23
+	note $13
+	note $41
+	note $31
+	note $21
+	note $11
+	octave 4
+	note $c3
+	note $c3
+	loopchannel $02, $6bef
+	intensity $b0
+	octave 3
+	note $4f
+	note $cf
+	note $bf
+	note $9f
+	intensity $c2
+	note $41
+	note $41
+	intensity $c7
+	note $b3
+	intensity $c2
+	note $41
+	note $41
+	intensity $c7
+	note $c3
+	intensity $c2
+	note $41
+	note $41
+	intensity $c7
+	note $b3
+	intensity $c2
+	note $41
+	note $41
+	intensity $c7
+	note $a3
+	intensity $c2
+	note $41
+	note $41
+	intensity $c7
+	note $b3
+	intensity $c2
+	note $41
+	note $41
+	intensity $c7
+	note $c3
+	intensity $c2
+	note $41
+	note $41
+	intensity $c7
+	octave 4
+	note $23
+	intensity $c2
+	octave 3
+	note $41
+	note $41
+	intensity $c7
+	octave 4
+	note $33
+	intensity $b0
+	note $47
+	note $57
+	note $77
+	note $57
+	note $47
+	note $57
+	note $77
+	note $97
+	loopchannel $00, $6b9d ; end
+; 0xeac4f
+
+INCBIN "baserom.gbc",$eac4f,$eac85 - $eac4f
+
+Music_ChampionBattle_Ch3: ; 0xeac85
+	notetype $0c, $14
+	octave 3
+	note $40
+	note $06
+	loopchannel $03, $6c88
+	note $40
+	note $02
+	note $53
+	callchannel $6d61
+	callchannel $6d61
+	callchannel $6d61
+	callchannel $6d6f
+	note $33
+	callchannel $6d6f
+	note $a3
+	callchannel $6d6f
+	note $33
+	note $40
+	note $00
+	note $40
+	note $00
+	note $b3
+	note $40
+	note $00
+	note $40
+	note $00
+	note $b3
+	note $40
+	note $00
+	note $40
+	note $00
+	note $c3
+	note $40
+	note $00
+	note $40
+	note $00
+	octave 4
+	note $23
+	note $47
+	octave 3
+	note $47
+	note $c3
+	note $81
+	note $c1
+	note $71
+	note $b1
+	note $61
+	note $a1
+	note $41
+	note $b1
+	loopchannel $08, $6cc6
+	note $51
+	note $c1
+	loopchannel $05, $6ccc
+	note $51
+	octave 4
+	note $11
+	octave 3
+	note $a1
+	note $c1
+	note $81
+	note $a1
+	note $41
+	note $b1
+	loopchannel $08, $6cda
+	note $51
+	note $c1
+	loopchannel $08, $6ce0
+	callchannel $6d83
+	octave 3
+	note $41
+	note $51
+	note $41
+	note $51
+	note $41
+	octave 4
+	note $31
+	note $21
+	note $11
+	callchannel $6d83
+	octave 3
+	note $41
+	note $b1
+	note $41
+	note $b1
+	note $41
+	octave 4
+	note $31
+	note $21
+	note $11
+	octave 3
+	note $b7
+	note $47
+	note $c7
+	note $47
+	note $41
+	note $71
+	loopchannel $10, $6d05
+	callchannel $6d8e
+	octave 3
+	note $51
+	note $c1
+	octave 4
+	note $41
+	note $51
+	note $71
+	octave 3
+	note $c1
+	octave 4
+	note $41
+	note $51
+	callchannel $6d8e
+	octave 3
+	note $51
+	note $c1
+	loopchannel $04, $6d1d
+	note $41
+	note $b1
+	loopchannel $05, $6d24
+	note $c1
+	octave 4
+	note $41
+	octave 3
+	note $41
+	note $01
+	note $41
+	note $01
+	note $51
+	note $c1
+	loopchannel $05, $6d32
+	octave 4
+	note $21
+	note $51
+	octave 3
+	note $51
+	note $01
+	note $51
+	note $01
+	note $41
+	note $91
+	loopchannel $08, $6d40
+	note $41
+	note $b1
+	loopchannel $07, $6d46
+	note $c1
+	note $b1
+	octave 3
+	note $41
+	note $b1
+	octave 4
+	note $31
+	note $41
+	loopchannel $07, $6d4e
+	note $21
+	octave 3
+	note $c1
+	note $b1
+	note $91
+	loopchannel $00, $6cc6 ; end
+; 0xead61
+
+INCBIN "baserom.gbc",$ead61,$ead99 - $ead61
+
+Music_SSAqua: ; 0xead99
+	dbw $c0, Music_SSAqua_Ch1
+	dbw $01, Music_SSAqua_Ch2
+	dbw $02, Music_SSAqua_Ch3
+	dbw $03, Music_SSAqua_Ch4
+; 0xeada5
+
+Music_SSAqua_Ch1: ; 0xeada5
+	tempo $0075
+	volume $77
+	stereopanning $0f
+	tone $0001
+	vibrato $12, $33
+	dutycycle $02
+	notetype $06, $97
+	octave 2
+	note $80
+	note $00
+	note $80
+	note $00
+	octave 2
+	note $8f
+	note $07
+	note $81
+	note $01
+	notetype $0c, $97
+	note $81
+	note $89
+	note $03
+	notetype $06, $97
+	note $80
+	note $00
+	note $80
+	note $00
+	note $8f
+	note $07
+	note $81
+	note $01
+	notetype $0c, $97
+	note $81
+	note $87
+	note $07
+	dutycycle $01
+	intensity $61
+	callchannel $6ff5
+	octave 5
+	note $80
+	octave 4
+	note $c0
+	note $a0
+	note $80
+	octave 5
+	note $80
+	octave 4
+	note $c0
+	note $a0
+	note $80
+	octave 5
+	note $80
+	octave 4
+	note $c0
+	note $a0
+	note $80
+	octave 5
+	note $80
+	octave 4
+	note $c0
+	note $a0
+	note $80
+	callchannel $6ff5
+	callchannel $703e
+	note $0f
+	note $0f
+	note $0f
+	intensity $97
+	note $0d
+	notetype $06, $97
+	note $30
+	note $00
+	octave 3
+	note $b0
+	note $00
+	notetype $0c, $97
+	note $0f
+	note $0f
+	intensity $95
+	note $01
+	octave 4
+	note $10
+	note $50
+	note $80
+	note $00
+	note $50
+	note $10
+	octave 3
+	note $50
+	note $10
+	note $50
+	note $80
+	octave 4
+	note $10
+	note $50
+	note $80
+	octave 5
+	note $10
+	octave 4
+	note $55
+	note $31
+	note $10
+	note $30
+	note $70
+	note $a0
+	octave 5
+	note $10
+	note $30
+	octave 4
+	note $80
+	note $70
+	dutycycle $02
+	intensity $97
+	note $87
+	note $77
+	note $57
+	note $37
+	octave 3
+	note $c7
+	note $b1
+	note $01
+	note $c0
+	note $00
+	octave 4
+	note $71
+	intensity $75
+	octave 5
+	note $a3
+	note $73
+	note $33
+	octave 4
+	note $b1
+	notetype $06, $97
+	note $30
+	note $00
+	octave 3
+	note $b0
+	note $00
+	intensity $97
+	note $8f
+	note $af
+	note $c3
+	note $03
+	note $c3
+	note $03
+	octave 4
+	note $57
+	note $87
+	note $70
+	vibrato $00, $00
+	intensity $88
+	note $89
+	vibrato $02, $23
+	intensity $87
+	note $88
+	vibrato $08, $33
+	note $13
+	note $53
+	note $13
+	note $3b
+	note $7b
+	note $07
+	octave 2
+	note $c1
+	octave 3
+	note $31
+	note $71
+	note $a1
+	note $31
+	note $71
+	note $a1
+	octave 4
+	note $31
+	note $71
+	notetype $0c, $97
+	note $06
+	note $0f
+	note $0f
+	note $87
+	note $70
+	note $30
+	octave 3
+	note $a0
+	octave 4
+	note $30
+	octave 3
+	note $a0
+	note $70
+	note $30
+	octave 2
+	note $a0
+	note $c0
+	octave 3
+	note $30
+	note $70
+	note $a0
+	note $30
+	note $70
+	note $a0
+	octave 4
+	note $30
+	note $70
+	note $06
+	note $0f
+	note $01
+	note $51
+	note $80
+	note $00
+	note $50
+	notetype $06, $97
+	note $00
+	note $10
+	note $23
+	octave 3
+	note $c1
+	note $01
+	note $a2
+	note $00
+	note $81
+	note $01
+	note $71
+	note $31
+	octave 2
+	note $a1
+	octave 3
+	note $31
+	note $a1
+	note $71
+	note $31
+	note $a1
+	octave 4
+	note $31
+	octave 3
+	note $a1
+	note $71
+	note $a1
+	octave 4
+	note $11
+	note $31
+	note $71
+	note $a1
+	loopchannel $00, $6dbc ; end
+; 0xeaeca
+
+Music_SSAqua_Ch2: ; 0xeaeca
+	stereopanning $f0
+	dutycycle $02
+	vibrato $08, $33
+	notetype $0c, $b7
+	note $01
+	notetype $0c, $b7
+	dutycycle $01
+	intensity $61
+	callchannel $6ff5
+	callchannel $703e
+	dutycycle $02
+	intensity $d7
+	callchannel $6fe0
+	note $c0
+	note $00
+	note $80
+	note $02
+	octave 3
+	note $85
+	note $80
+	note $c0
+	octave 4
+	note $20
+	note $50
+	forceoctave $0c
+	callchannel $6fe0
+	forceoctave $00
+	octave 3
+	note $c0
+	note $00
+	note $80
+	note $02
+	octave 4
+	note $85
+	note $01
+	dutycycle $03
+	intensity $b7
+	octave 3
+	note $c0
+	octave 4
+	note $10
+	callchannel $6f88
+	note $83
+	note $03
+	note $87
+	note $a7
+	note $c7
+	notetype $0c, $b7
+	octave 5
+	note $19
+	note $31
+	note $11
+	octave 4
+	note $81
+	note $c5
+	note $a5
+	note $01
+	octave 3
+	note $c0
+	octave 4
+	note $10
+	callchannel $6f88
+	note $83
+	note $03
+	note $87
+	note $a7
+	note $c7
+	octave 5
+	note $40
+	vibrato $00, $00
+	intensity $98
+	note $59
+	vibrato $04, $23
+	intensity $97
+	note $58
+	vibrato $08, $23
+	note $33
+	note $13
+	octave 4
+	note $83
+	note $cb
+	note $ab
+	note $03
+	dutycycle $00
+	note $c1
+	note $a1
+	callchannel $6fd5
+	notetype $06, $b7
+	note $90
+	note $aa
+	note $81
+	note $71
+	note $8b
+	note $03
+	note $03
+	note $51
+	note $01
+	note $51
+	note $01
+	note $81
+	note $01
+	note $a1
+	note $01
+	note $51
+	note $01
+	note $71
+	note $01
+	note $81
+	note $01
+	note $af
+	note $bb
+	note $c1
+	note $a1
+	callchannel $6fd5
+	notetype $06, $b7
+	note $90
+	note $aa
+	note $c3
+	note $8b
+	note $03
+	note $03
+	octave 5
+	note $13
+	note $31
+	note $01
+	note $11
+	note $00
+	octave 4
+	note $b0
+	note $c3
+	note $a1
+	note $01
+	note $83
+	note $51
+	note $01
+	note $77
+	note $87
+	note $a7
+	note $07
+	loopchannel $00, $6ed5 ; end
+; 0xeaf88
+
+INCBIN "baserom.gbc", $eaf88, $eb056 - $eaf88
+
+Music_SSAqua_Ch3: ; 0xeb056
+	stereopanning $ff
+	vibrato $08, $34
+	notetype $06, $15
+	octave 2
+	note $80
+	note $00
+	note $80
+	note $00
+	note $8f
+	note $07
+	note $81
+	note $01
+	notetype $0c, $15
+	note $81
+	note $89
+	note $03
+	notetype $06, $15
+	note $80
+	note $00
+	note $80
+	note $00
+	note $8f
+	note $07
+	note $81
+	note $01
+	notetype $0c, $15
+	note $81
+	note $87
+	note $c0
+	octave 3
+	note $20
+	note $30
+	note $80
+	note $30
+	note $80
+	note $c0
+	octave 4
+	note $50
+	callchannel $714d
+	callchannel $714d
+	note $81
+	note $01
+	octave 3
+	note $80
+	note $02
+	octave 2
+	note $81
+	note $01
+	octave 3
+	note $80
+	note $02
+	octave 2
+	note $81
+	note $01
+	octave 3
+	note $80
+	note $02
+	octave 2
+	note $81
+	note $01
+	octave 3
+	note $80
+	note $00
+	octave 2
+	note $80
+	note $00
+	loopchannel $04, $708d
+	callchannel $7172
+	callchannel $7172
+	callchannel $7230
+	octave 3
+	note $51
+	note $01
+	octave 4
+	note $50
+	note $02
+	octave 3
+	note $41
+	note $01
+	octave 4
+	note $40
+	note $02
+	octave 3
+	note $31
+	note $01
+	octave 4
+	note $30
+	note $02
+	octave 3
+	note $41
+	note $01
+	octave 4
+	note $40
+	note $02
+	octave 2
+	note $a1
+	note $01
+	octave 4
+	note $10
+	note $02
+	octave 2
+	note $a1
+	note $01
+	octave 4
+	note $10
+	note $02
+	octave 2
+	note $a1
+	note $01
+	octave 4
+	note $20
+	note $02
+	octave 2
+	note $a1
+	note $01
+	octave 4
+	note $20
+	note $02
+	octave 3
+	note $31
+	note $01
+	octave 4
+	note $80
+	note $02
+	octave 3
+	note $31
+	note $01
+	octave 4
+	note $80
+	note $02
+	octave 3
+	note $31
+	note $01
+	octave 4
+	note $70
+	note $02
+	octave 3
+	note $31
+	note $01
+	octave 4
+	note $70
+	note $02
+	callchannel $7230
+	octave 3
+	note $51
+	note $01
+	octave 4
+	note $50
+	note $02
+	octave 3
+	note $51
+	note $01
+	octave 4
+	note $40
+	note $02
+	octave 2
+	note $a1
+	note $01
+	octave 4
+	note $20
+	note $02
+	octave 2
+	note $a1
+	note $01
+	octave 4
+	note $20
+	note $02
+	octave 3
+	note $11
+	note $01
+	octave 4
+	note $80
+	note $02
+	octave 3
+	note $11
+	note $01
+	octave 4
+	note $80
+	note $02
+	octave 3
+	note $21
+	note $01
+	octave 4
+	note $80
+	note $02
+	octave 3
+	note $21
+	note $01
+	octave 4
+	note $80
+	note $02
+	octave 3
+	note $31
+	note $01
+	octave 4
+	note $80
+	note $02
+	octave 3
+	note $31
+	note $01
+	octave 4
+	note $80
+	note $02
+	octave 3
+	note $31
+	note $01
+	octave 4
+	note $70
+	note $02
+	octave 3
+	note $31
+	note $01
+	octave 2
+	note $80
+	note $00
+	note $80
+	note $00
+	loopchannel $00, $7063 ; end
+; 0xeb14d
+
+INCBIN "baserom.gbc", $eb14d, $eb249 - $eb14d
+
+Music_SSAqua_Ch4: ; 0xeb249
+	togglenoise
+	db $03
+	notetype $0c, $01
+	note $90
+	note $80
+	note $80
+	note $80
+	note $80
+	note $80
+	note $80
+	note $80
+	note $80
+	note $80
+	note $80
+	note $80
+	note $80
+	note $80
+	note $90
+	note $80
+	loopchannel $0c, $724e
+	callchannel $72ae
+	callchannel $72ae
+	callchannel $72ae
+	callchannel $72bb
+	callchannel $72ae
+	callchannel $72ae
+	callchannel $72ae
+	callchannel $72bb
+	callchannel $72ae
+	callchannel $72ae
+	callchannel $72ae
+	callchannel $72bb
+	callchannel $72ae
+	callchannel $72ae
+	callchannel $72ae
+	callchannel $72c7
+	callchannel $72ae
+	callchannel $72ae
+	callchannel $72ae
+	callchannel $72bb
+	callchannel $72ae
+	callchannel $72ae
+	callchannel $72ae
+	callchannel $72c7
+	loopchannel $00, $724e ; end
+; 0xeb2ae
+
+INCBIN "baserom.gbc",$eb2ae,$eb2d3 - $eb2ae
+
+Music_NewBarkTown: ; 0xeb2d3
+	dbw $80, Music_NewBarkTown_Ch1
+	dbw $01, Music_NewBarkTown_Ch2
+	dbw $02, Music_NewBarkTown_Ch3
+; 0xeb2dc
+
+INCBIN "baserom.gbc", $eb2dc, $eb2dd - $eb2dc
+
+Music_NewBarkTown_Ch1: ; 0xeb2dd
+	tempo $00bb
+	volume $77
+	stereopanning $0f
+	vibrato $12, $23
+	notetype $0c, $87
+	note $03
+	dutycycle $00
+	callchannel $7349
+	octave 3
+	note $20
+	note $00
+	octave 2
+	note $a0
+	note $00
+	octave 3
+	note $81
+	note $71
+	dutycycle $02
+	intensity $82
+	note $50
+	note $70
+	note $50
+	note $30
+	note $20
+	octave 2
+	note $c0
+	note $a0
+	note $80
+	dutycycle $00
+	intensity $87
+	callchannel $7349
+	octave 3
+	note $20
+	note $00
+	octave 2
+	note $a0
+	note $00
+	octave 3
+	note $51
+	dutycycle $02
+	intensity $82
+	note $20
+	note $00
+	octave 2
+	note $a0
+	octave 3
+	note $20
+	note $50
+	note $80
+	note $a0
+	octave 4
+	note $20
+	note $50
+	note $a0
+	dutycycle $01
+	intensity $5e
+	callchannel $737c
+	callchannel $737c
+	callchannel $737c
+	octave 2
+	note $81
+	note $c1
+	octave 3
+	note $31
+	note $73
+	note $83
+	note $31
+	octave 2
+	note $a1
+	octave 3
+	note $21
+	note $51
+	note $83
+	note $a3
+	note $c1
+	intensity $87
+	loopchannel $00, $72eb ; end
+; 0xeb349
+
+INCBIN "baserom.gbc", $eb349, $eb38d - $eb349
+
+Music_NewBarkTown_Ch2: ; 0xeb38d
+	stereopanning $ff
+	vibrato $12, $23
+	notetype $06, $a7
+	note $07
+	dutycycle $02
+	notetype $06, $a7
+	callchannel $73bf
+	callchannel $73bf
+	callchannel $73f2
+	intensity $87
+	octave 5
+	note $c5
+	note $a5
+	intensity $77
+	octave 6
+	note $33
+	note $2f
+	callchannel $73f2
+	intensity $87
+	octave 5
+	note $c5
+	note $a5
+	intensity $77
+	octave 6
+	note $33
+	note $5f
+	loopchannel $00, $7396 ; end
+; 0xeb3bf
+
+INCBIN "baserom.gbc", $eb3bf, $eb400 - $eb3bf
+
+Music_NewBarkTown_Ch3: ; 0xeb400
+	stereopanning $f0
+	notetype $0c, $10
+	octave 5
+	note $31
+	note $51
+	vibrato $16, $23
+	note $73
+	note $a3
+	note $81
+	note $71
+	note $51
+	note $81
+	note $75
+	note $31
+	octave 4
+	note $a5
+	note $80
+	note $a0
+	note $c3
+	octave 5
+	note $33
+	note $51
+	note $31
+	note $21
+	note $31
+	note $55
+	note $71
+	note $53
+	note $01
+	note $30
+	note $50
+	note $73
+	note $a3
+	note $b1
+	note $a1
+	note $81
+	note $b1
+	note $a5
+	octave 6
+	note $21
+	note $35
+	octave 5
+	note $50
+	note $70
+	note $85
+	note $a1
+	note $c7
+	note $a5
+	note $80
+	note $70
+	note $53
+	note $03
+	intensity $25
+	vibrato $12, $53
+	octave 2
+	note $8f
+	note $af
+	note $8f
+	note $af
+	note $8f
+	note $af
+	note $8f
+	note $ad
+	intensity $10
+	vibrato $16, $23
+	octave 5
+	note $30
+	note $50
+	loopchannel $00, $7408 ; end
+; 0xeb453
+
+Music_GoldenrodCity: ; 0xeb453
+	dbw $c0, Music_GoldenrodCity_Ch1
+	dbw $01, Music_GoldenrodCity_Ch2
+	dbw $02, Music_GoldenrodCity_Ch3
+	dbw $03, Music_GoldenrodCity_Ch4
+; 0xeb45f
+
+Music_GoldenrodCity_Ch1: ; 0xeb45f
+	stereopanning $0f
+	tempo $00b0
+	volume $77
+	notetype $0c, $97
+	note $0f
+	note $0f
+	note $0f
+	note $0f
+	dutycycle $00
+	callchannel $74a9
+	octave 3
+	note $90
+	octave 4
+	note $10
+	note $40
+	note $70
+	note $40
+	note $70
+	note $90
+	octave 5
+	note $10
+	intensity $71
+	dutycycle $00
+	callchannel $74d1
+	intensity $77
+	note $41
+	note $61
+	note $71
+	note $93
+	intensity $71
+	callchannel $74d1
+	note $40
+	note $70
+	intensity $77
+	octave 5
+	note $11
+	octave 4
+	note $91
+	note $71
+	note $41
+	dutycycle $02
+	intensity $97
+	callchannel $74a9
+	note $13
+	octave 3
+	note $91
+	octave 4
+	note $11
+	loopchannel $00, $746d ; end
+; 0xeb4a9
+
+INCBIN "baserom.gbc", $eb4a9, $eb519 - $eb4a9
+
+Music_GoldenrodCity_Ch2: ; 0xeb519
+	stereopanning $f0
+	vibrato $12, $23
+	dutycycle $02
+	notetype $0c, $97
+	intensity $97
+	callchannel $7555
+	octave 4
+	note $61
+	note $71
+	note $91
+	note $61
+	note $47
+	callchannel $7555
+	note $91
+	note $b1
+	octave 5
+	note $11
+	note $21
+	note $47
+	dutycycle $02
+	intensity $77
+	callchannel $7572
+	octave 4
+	note $91
+	note $b1
+	note $c1
+	octave 5
+	note $13
+	dutycycle $03
+	intensity $77
+	callchannel $7572
+	note $61
+	note $41
+	note $21
+	note $11
+	octave 4
+	note $91
+	loopchannel $00, $7523 ; end
+; 0xeb555
+
+INCBIN "baserom.gbc", $eb555, $eb584 - $eb555
+
+Music_GoldenrodCity_Ch3: ; 0xeb584
+	stereopanning $ff
+	vibrato $08, $23
+	notetype $0c, $25
+	callchannel $75aa
+	callchannel $75aa
+	callchannel $75d2
+	note $02
+	octave 3
+	note $10
+	note $40
+	note $80
+	note $90
+	note $41
+	callchannel $75d2
+	note $00
+	octave 3
+	note $91
+	note $71
+	note $41
+	octave 2
+	note $91
+	loopchannel $00, $758c ; end
+; 0xeb5aa
+
+INCBIN "baserom.gbc", $eb5aa, $eb606 - $eb5aa
+
+Music_GoldenrodCity_Ch4: ; 0xeb606
+	togglenoise
+	db $03
+	notetype $0c, $0f
+	note $0f
+	note $0f
+	note $07
+	note $31
+	note $71
+	note $30
+	note $30
+	note $71
+	note $41
+	note $71
+	note $31
+	note $71
+	note $41
+	note $71
+	note $31
+	note $71
+	loopchannel $03, $7613
+	callchannel $7663
+	callchannel $766d
+	note $80
+	note $80
+	note $71
+	callchannel $766d
+	note $31
+	note $71
+	callchannel $766d
+	note $30
+	note $30
+	note $71
+	callchannel $766d
+	note $31
+	note $30
+	note $30
+	callchannel $766d
+	note $80
+	note $80
+	note $71
+	callchannel $766d
+	note $31
+	note $71
+	callchannel $766d
+	note $30
+	note $30
+	note $71
+	callchannel $766d
+	note $31
+	note $30
+	note $30
+	note $41
+	note $71
+	note $31
+	note $71
+	note $41
+	note $71
+	note $31
+	note $71
+	loopchannel $03, $7650
+	callchannel $7663
+	loopchannel $00, $7613 ; end
+; 0xeb663
+
+INCBIN "baserom.gbc", $eb663, $eb676 - $eb663
+
+Music_VermilionCity: ; 0xeb676
+	dbw $80, Music_VermilionCity_Ch1
+	dbw $01, Music_VermilionCity_Ch2
+	dbw $02, Music_VermilionCity_Ch3
+; 0xeb67f
+
+INCBIN "baserom.gbc", $eb67f, $eb680 - $eb67f
+
+Music_VermilionCity_Ch1: ; 0xeb680
+	stereopanning $0f
+	tempo $00b0
+	volume $77
+	dutycycle $02
+	notetype $0c, $65
+	octave 4
+	note $c3
+	note $93
+	note $73
+	note $53
+	note $33
+	octave 3
+	note $c3
+	note $a1
+	note $c0
+	octave 4
+	note $30
+	note $50
+	note $90
+	note $c0
+	octave 5
+	note $30
+	vibrato $10, $23
+	dutycycle $01
+	notetype $0c, $85
+	callchannel $76f9
+	note $63
+	octave 4
+	note $33
+	note $23
+	note $53
+	callchannel $76f9
+	callchannel $7701
+	dutycycle $02
+	notetype $0c, $85
+	callchannel $76f9
+	note $63
+	octave 4
+	note $33
+	note $50
+	note $20
+	octave 3
+	note $a0
+	note $50
+	octave 4
+	note $20
+	octave 3
+	note $a0
+	note $50
+	note $10
+	callchannel $76f9
+	callchannel $7701
+	intensity $93
+	dutycycle $00
+	note $01
+	note $71
+	note $01
+	note $71
+	note $01
+	note $71
+	note $01
+	note $71
+	callchannel $770c
+	callchannel $770c
+	intensity $87
+	dutycycle $02
+	octave 4
+	note $37
+	octave 3
+	note $97
+	note $57
+	note $c7
+	note $a3
+	note $93
+	note $73
+	note $53
+	octave 2
+	note $c3
+	note $93
+	note $c3
+	octave 3
+	note $33
+	loopchannel $00, $76a0 ; end
+; 0xeb6f9
+
+INCBIN "baserom.gbc", $eb6f9, $eb721 - $eb6f9
+
+Music_VermilionCity_Ch2: ; 0xeb721
+	stereopanning $ff
+	dutycycle $03
+	notetype $0c, $77
+	vibrato $10, $23
+	octave 5
+	note $53
+	note $33
+	octave 4
+	note $c3
+	note $93
+	note $73
+	note $53
+	note $73
+	note $93
+	notetype $0c, $97
+	callchannel $7768
+	note $91
+	callchannel $7768
+	note $51
+	intensity $b7
+	octave 3
+	note $c3
+	octave 4
+	note $23
+	note $33
+	note $53
+	callchannel $777e
+	callchannel $777e
+	note $75
+	note $50
+	note $70
+	note $57
+	note $a5
+	note $90
+	note $a0
+	note $97
+	note $9d
+	notetype $06, $57
+	note $00
+	octave 4
+	note $50
+	note $90
+	note $c0
+	notetype $0c, $87
+	octave 5
+	note $5f
+	loopchannel $00, $7735 ; end
+; 0xeb768
+
+INCBIN "baserom.gbc", $eb768, $eb785 - $eb768
+
+Music_VermilionCity_Ch3: ; 0xeb785
+	stereopanning $f0
+	vibrato $22, $23
+	notetype $0c, $25
+	octave 2
+	note $53
+	note $c3
+	octave 3
+	note $53
+	note $c3
+	note $33
+	note $53
+	note $31
+	octave 3
+	note $c0
+	note $90
+	note $70
+	note $50
+	note $30
+	octave 2
+	note $c0
+	notetype $0c, $22
+	callchannel $77de
+	octave 5
+	note $a5
+	intensity $24
+	note $50
+	note $90
+	callchannel $77de
+	note $a7
+	intensity $14
+	octave 3
+	note $33
+	note $23
+	octave 2
+	note $c3
+	note $a3
+	octave 3
+	note $31
+	note $03
+	note $30
+	note $30
+	callchannel $77f5
+	octave 4
+	note $31
+	octave 3
+	note $31
+	note $01
+	note $31
+	callchannel $77f5
+	intensity $25
+	octave 3
+	note $57
+	octave 4
+	note $57
+	octave 3
+	note $c7
+	octave 4
+	note $57
+	octave 2
+	note $5f
+	octave 3
+	note $5d
+	intensity $22
+	octave 5
+	note $50
+	note $90
+	loopchannel $00, $779e ; end
+; 0xeb7de
+
+INCBIN "baserom.gbc", $eb7de, $eb808 - $eb7de
+
+Music_TitleScreen: ; 0xeb808
+	dbw $c0, Music_TitleScreen_Ch1
+	dbw $01, Music_TitleScreen_Ch2
+	dbw $02, Music_TitleScreen_Ch3
+	dbw $03, Music_TitleScreen_Ch4
+; 0xeb814
+
+Music_TitleScreen_Ch1: ; 0xeb814
+	tempo $0086
+	volume $77
+	dutycycle $03
+	tone $0002
+	vibrato $10, $12
+	stereopanning $f0
+	notetype $0c, $a7
+	intensity $a0
+	octave 3
+	note $03
+	intensity $a7
+	octave 2
+	note $80
+	note $01
+	note $a0
+	note $c7
+	note $83
+	octave 3
+	note $10
+	note $01
+	note $30
+	note $57
+	note $13
+	octave 2
+	note $c0
+	note $01
+	octave 3
+	note $10
+	octave 2
+	note $c7
+	note $a3
+	note $a0
+	note $01
+	note $c0
+	octave 3
+	note $15
+	note $53
+	note $71
+	stereopanning $ff
+	octave 4
+	note $80
+	stereopanning $f0
+	octave 3
+	note $34
+	octave 2
+	note $c1
+	octave 3
+	note $33
+	octave 2
+	note $c3
+	octave 3
+	note $15
+	note $65
+	note $13
+	note $35
+	intensity $b7
+	note $40
+	note $50
+	note $65
+	note $50
+	note $40
+	note $37
+	notetype $08, $a7
+	note $13
+	octave 2
+	note $c3
+	octave 3
+	note $13
+	note $38
+	octave 2
+	note $c2
+	octave 3
+	note $35
+	octave 2
+	note $c5
+	octave 3
+	note $12
+	note $35
+	note $52
+	note $53
+	note $53
+	note $13
+	notetype $08, $a0
+	octave 2
+	note $c5
+	notetype $08, $a7
+	note $c5
+	notetype $08, $a7
+	octave 3
+	note $63
+	note $53
+	note $13
+	notetype $08, $a0
+	note $35
+	notetype $08, $a7
+	note $35
+	notetype $08, $a7
+	note $02
+	octave 2
+	note $c2
+	octave 3
+	note $12
+	note $32
+	note $38
+	octave 2
+	note $c2
+	octave 3
+	note $35
+	octave 2
+	note $c5
+	octave 3
+	note $18
+	note $68
+	note $15
+	note $38
+	notetype $0c, $b7
+	note $40
+	note $50
+	note $65
+	note $50
+	note $40
+	note $37
+	notetype $08, $a7
+	note $13
+	octave 2
+	note $c3
+	octave 3
+	note $13
+	note $38
+	octave 2
+	note $c2
+	octave 3
+	note $38
+	notetype $08, $b7
+	note $82
+	note $a3
+	note $83
+	note $63
+	note $65
+	note $55
+	note $38
+	note $62
+	note $82
+	note $35
+	note $82
+	notetype $08, $54
+	octave 2
+	note $82
+	note $c2
+	notetype $08, $94
+	octave 3
+	note $32
+	note $82
+	tempo $0088
+	notetype $08, $b4
+	note $62
+	note $a2
+	notetype $08, $d4
+	octave 4
+	note $12
+	note $62
+	tempo $008a
+	notetype $08, $b4
+	note $38
+	note $18
+	octave 3
+	note $b5
+	notetype $0c, $b7
+	note $60
+	note $50
+	note $30
+	note $50
+	note $63
+	octave 4
+	note $33
+	note $63
+	note $55
+	octave 3
+	note $81
+	notetype $08, $b7
+	note $a3
+	note $83
+	note $63
+	note $8b
+	octave 4
+	note $15
+	tempo $0088
+	note $25
+	tempo $0086
+	callchannel $796d
+	octave 4
+	note $13
+	note $13
+	note $23
+	callchannel $796d
+	octave 4
+	note $13
+	note $13
+	note $23
+	callchannel $796d
+	octave 3
+	note $53
+	note $53
+	note $13
+	notetype $0c, $a0
+	note $35
+	notetype $0c, $a7
+	note $39
+	intensity $a0
+	note $17
+	intensity $a7
+	note $17
+	intensity $a0
+	octave 2
+	note $c7
+	intensity $a7
+	note $c7
+	octave 3
+	note $17
+	octave 2
+	note $c7
+	octave 3
+	note $37
+	octave 2
+	note $c7
+	octave 3
+	note $17
+	note $67
+	note $a7
+	note $85
+	note $80
+	note $70
+	note $67
+	note $57
+	intensity $a0
+	note $3f
+	intensity $a7
+	note $3f
+	intensity $a3
+	octave 2
+	note $80
+	note $02
+	note $80
+	note $04
+	note $80
+	note $80
+	note $80
+	note $02
+	note $80
+	note $02
+	note $80
+	note $02
+	notetype $08, $b2
+	note $a1
+	note $a1
+	note $a1
+	note $a1
+	note $a1
+	note $71
+	notetype $0c, $b7
+	note $80
+	note $02
+	octave 1
+	note $80
+	note $0a
+	endchannel ; end
+; 0xeb96d
+
+INCBIN "baserom.gbc",$eb96d,$eb984 - $eb96d
+
+Music_TitleScreen_Ch2: ; 0xeb984
+	dutycycle $03
+	vibrato $14, $12
+	notetype $0c, $c7
+	intensity $a4
+	octave 1
+	note $80
+	octave 2
+	note $30
+	note $80
+	octave 3
+	note $10
+	intensity $c2
+	octave 3
+	note $c0
+	note $01
+	note $a0
+	intensity $b0
+	note $85
+	intensity $b7
+	note $85
+	note $0f
+	note $0f
+	intensity $c7
+	octave 4
+	note $10
+	note $01
+	note $30
+	note $57
+	note $71
+	note $50
+	note $70
+	octave 3
+	note $85
+	note $c1
+	octave 4
+	note $37
+	stereopanning $f0
+	intensity $97
+	octave 2
+	note $a3
+	note $63
+	stereopanning $ff
+	intensity $c7
+	octave 4
+	note $65
+	note $50
+	note $40
+	note $37
+	stereopanning $f0
+	intensity $97
+	octave 2
+	note $a5
+	octave 3
+	note $11
+	stereopanning $0f
+	intensity $a3
+	octave 4
+	note $33
+	note $31
+	note $13
+	note $11
+	octave 3
+	note $c3
+	stereopanning $ff
+	intensity $c7
+	octave 3
+	note $85
+	note $c1
+	octave 4
+	note $37
+	stereopanning $f0
+	intensity $97
+	octave 2
+	note $a1
+	note $63
+	note $a1
+	stereopanning $ff
+	notetype $08, $c7
+	octave 4
+	note $13
+	octave 3
+	note $c3
+	octave 4
+	note $13
+	note $3b
+	stereopanning $f0
+	notetype $08, $b7
+	octave 2
+	note $a8
+	stereopanning $0f
+	notetype $0c, $c7
+	note $80
+	note $a0
+	note $c5
+	note $50
+	note $70
+	note $83
+	notetype $0c, $4b
+	note $a3
+	stereopanning $ff
+	notetype $0c, $c7
+	octave 3
+	note $85
+	note $c1
+	octave 4
+	note $37
+	stereopanning $f0
+	intensity $97
+	octave 2
+	note $a1
+	note $65
+	stereopanning $ff
+	intensity $c7
+	octave 4
+	note $65
+	note $50
+	note $40
+	note $37
+	stereopanning $f0
+	intensity $97
+	octave 3
+	note $11
+	octave 2
+	note $a5
+	note $c5
+	note $81
+	notetype $08, $c7
+	note $63
+	note $83
+	note $63
+	stereopanning $ff
+	octave 3
+	note $88
+	note $c2
+	octave 4
+	note $3b
+	stereopanning $f0
+	notetype $08, $a7
+	octave 3
+	note $33
+	note $13
+	note $33
+	stereopanning $ff
+	notetype $08, $c7
+	octave 4
+	note $63
+	note $53
+	note $63
+	note $88
+	note $b2
+	notetype $0c, $b0
+	note $87
+	notetype $0c, $b7
+	note $87
+	intensity $c6
+	note $a3
+	intensity $5d
+	note $a3
+	intensity $c7
+	note $b5
+	intensity $c3
+	note $61
+	intensity $c7
+	note $67
+	intensity $a7
+	octave 3
+	note $b7
+	intensity $c7
+	octave 4
+	note $b3
+	note $c3
+	octave 5
+	note $15
+	intensity $c3
+	octave 4
+	note $81
+	intensity $c7
+	note $87
+	intensity $a7
+	octave 3
+	note $57
+	intensity $c7
+	octave 5
+	note $13
+	note $23
+	tone $0001
+	stereopanning $0f
+	callchannel $7ae7
+	note $23
+	callchannel $7ae7
+	note $23
+	callchannel $7ae7
+	octave 4
+	note $a3
+	stereopanning $ff
+	tone $0000
+	notetype $0c, $b0
+	octave 3
+	note $c5
+	notetype $0c, $b7
+	note $c9
+	intensity $c7
+	note $a7
+	note $65
+	note $50
+	note $40
+	note $37
+	note $87
+	note $67
+	note $a7
+	intensity $b0
+	note $87
+	intensity $b7
+	note $87
+	intensity $c7
+	note $67
+	octave 4
+	note $65
+	note $50
+	note $40
+	note $37
+	octave 2
+	note $c7
+	octave 3
+	note $17
+	note $a5
+	note $60
+	note $a0
+	intensity $b0
+	note $8f
+	intensity $b7
+	note $8f
+	intensity $c2
+	octave 4
+	note $80
+	note $02
+	note $80
+	note $04
+	note $80
+	note $80
+	note $80
+	note $02
+	note $80
+	note $02
+	intensity $90
+	note $83
+	notetype $08, $c2
+	octave 3
+	note $61
+	note $61
+	note $61
+	note $61
+	note $61
+	note $71
+	notetype $0c, $c7
+	note $80
+	note $02
+	octave 2
+	note $80
+	note $0a
+	endchannel ; end
+; 0xebae7
+
+INCBIN "baserom.gbc",$ebae7,$ebb01 - $ebae7
+
+Music_TitleScreen_Ch3: ; 0xebb01
+	stereopanning $0f
+	vibrato $10, $14
+	tone $0001
+	notetype $0c, $16
+	octave 3
+	octave 3
+	note $03
+	octave 2
+	note $81
+	note $30
+	note $20
+	note $30
+	note $00
+	note $81
+	note $30
+	note $00
+	note $31
+	note $81
+	note $31
+	note $61
+	note $10
+	octave 1
+	note $c0
+	octave 2
+	note $10
+	note $00
+	note $61
+	note $10
+	note $00
+	note $11
+	note $61
+	note $11
+	note $81
+	note $30
+	note $20
+	note $30
+	note $00
+	note $81
+	note $30
+	note $00
+	note $31
+	note $81
+	note $31
+	note $a1
+	note $60
+	note $50
+	note $60
+	note $00
+	note $a1
+	note $61
+	note $a3
+	octave 3
+	note $11
+	octave 2
+	note $83
+	note $31
+	note $83
+	note $31
+	note $81
+	note $31
+	note $a3
+	note $61
+	note $a3
+	note $61
+	note $a1
+	octave 3
+	note $11
+	octave 2
+	note $c3
+	note $81
+	note $c3
+	note $81
+	note $c1
+	note $81
+	note $83
+	note $c1
+	note $a3
+	note $c1
+	octave 3
+	note $13
+	octave 2
+	note $83
+	note $31
+	note $83
+	note $31
+	note $81
+	note $31
+	note $a3
+	note $61
+	note $a3
+	note $61
+	note $a1
+	octave 3
+	note $11
+	octave 2
+	note $c3
+	note $81
+	note $c3
+	note $81
+	note $c1
+	octave 3
+	note $11
+	octave 2
+	note $c3
+	note $81
+	note $c3
+	note $81
+	octave 3
+	note $33
+	octave 2
+	note $83
+	note $31
+	note $83
+	note $31
+	note $81
+	note $31
+	note $a3
+	note $61
+	note $a3
+	note $61
+	note $a1
+	octave 3
+	note $11
+	octave 2
+	note $c3
+	note $81
+	note $c3
+	note $81
+	note $c1
+	note $81
+	octave 3
+	note $33
+	octave 2
+	note $81
+	octave 3
+	note $33
+	octave 2
+	note $81
+	octave 3
+	note $31
+	octave 2
+	note $a1
+	note $83
+	note $31
+	note $83
+	note $31
+	note $81
+	note $31
+	note $a3
+	note $61
+	note $a3
+	note $61
+	note $a1
+	octave 3
+	note $11
+	octave 2
+	note $c3
+	note $81
+	note $c3
+	note $81
+	octave 3
+	note $31
+	octave 2
+	note $81
+	note $81
+	note $31
+	note $81
+	note $a1
+	note $a1
+	note $61
+	note $a1
+	octave 3
+	note $11
+	note $35
+	octave 2
+	note $b5
+	octave 3
+	note $63
+	note $b5
+	note $65
+	note $33
+	note $55
+	note $15
+	note $53
+	octave 4
+	note $15
+	octave 3
+	note $85
+	note $53
+	note $30
+	note $00
+	stereopanning $ff
+	notetype $0c, $16
+	tone $0000
+	octave 4
+	note $a1
+	octave 5
+	note $31
+	note $a5
+	note $81
+	note $71
+	note $30
+	note $01
+	note $50
+	note $73
+	notetype $08, $16
+	octave 3
+	note $13
+	note $13
+	note $23
+	notetype $0c, $16
+	note $30
+	note $00
+	octave 4
+	note $a1
+	octave 5
+	note $31
+	note $a5
+	note $81
+	note $71
+	note $c0
+	note $01
+	note $a0
+	note $a3
+	notetype $08, $16
+	octave 3
+	note $13
+	note $13
+	note $23
+	notetype $0c, $16
+	note $30
+	note $00
+	notetype $0c, $16
+	octave 4
+	note $a1
+	octave 5
+	note $31
+	note $85
+	note $51
+	note $81
+	note $70
+	note $50
+	note $35
+	tone $0001
+	notetype $08, $16
+	octave 3
+	note $13
+	note $13
+	note $51
+	note $71
+	stereopanning $0f
+	notetype $0c, $16
+	note $8f
+	note $6f
+	note $87
+	note $35
+	note $30
+	note $50
+	note $61
+	note $6b
+	note $50
+	note $40
+	note $37
+	note $87
+	note $67
+	note $a7
+	note $87
+	note $35
+	note $30
+	note $50
+	note $6f
+	note $80
+	note $02
+	note $80
+	note $04
+	note $80
+	note $80
+	note $80
+	note $02
+	note $80
+	note $02
+	note $80
+	note $04
+	note $80
+	note $80
+	note $80
+	note $02
+	octave 2
+	note $80
+	note $02
+	note $80
+	note $04
+	note $80
+	note $80
+	note $80
+	note $02
+	note $80
+	note $02
+	note $80
+	note $02
+	notetype $08, $16
+	note $61
+	note $61
+	note $61
+	note $61
+	note $61
+	note $a1
+	notetype $0c, $16
+	note $80
+	note $02
+	octave 1
+	note $80
+	note $0a
+	endchannel ; end
+; 0xebc5c
+
+Music_TitleScreen_Ch4: ; 0xebc5c
+	togglenoise
+	db $05
+	stereopanning $f0
+	notetype $0c, $03
+	note $11
+	note $10
+	note $10
+	note $11
+	note $10
+	note $10
+	note $10
+	note $10
+	note $15
+	note $11
+	note $10
+	note $10
+	note $11
+	note $10
+	note $10
+	note $10
+	note $10
+	note $12
+	note $10
+	note $10
+	note $10
+	note $11
+	note $10
+	note $10
+	note $11
+	note $10
+	note $10
+	note $10
+	note $10
+	note $13
+	note $41
+	note $11
+	note $10
+	note $10
+	note $11
+	note $10
+	note $10
+	note $10
+	note $10
+	note $11
+	notetype $06, $30
+	note $30
+	note $20
+	note $20
+	note $20
+	note $20
+	note $10
+	note $10
+	notetype $0c, $fe
+	note $77
+	note $7d
+	callchannel $7d81
+	callchannel $7d81
+	note $11
+	note $41
+	note $11
+	note $41
+	note $41
+	note $10
+	note $10
+	note $11
+	notetype $06, $20
+	note $20
+	note $10
+	note $10
+	notetype $0c, $fe
+	note $77
+	note $7d
+	note $11
+	note $41
+	note $11
+	note $61
+	note $41
+	note $10
+	note $10
+	note $11
+	note $11
+	callchannel $7d81
+	note $11
+	note $41
+	note $11
+	note $41
+	note $41
+	note $10
+	note $10
+	note $11
+	note $10
+	note $10
+	callchannel $7d77
+	callchannel $7d81
+	callchannel $7d81
+	note $11
+	note $41
+	note $11
+	note $41
+	note $41
+	note $10
+	note $10
+	note $11
+	notetype $06, $20
+	note $30
+	note $30
+	note $20
+	notetype $0c, $fe
+	note $77
+	note $7d
+	callchannel $7d81
+	note $11
+	note $41
+	note $11
+	note $61
+	note $41
+	note $10
+	note $10
+	note $11
+	note $10
+	note $10
+	note $11
+	note $41
+	note $11
+	note $41
+	note $41
+	note $10
+	note $10
+	note $11
+	notetype $06, $30
+	note $30
+	note $20
+	note $20
+	notetype $0c, $a1
+	note $43
+	note $a3
+	note $41
+	note $a3
+	note $a1
+	note $43
+	note $a3
+	note $41
+	note $a1
+	note $a1
+	note $a1
+	note $43
+	note $a3
+	note $41
+	note $a3
+	note $a3
+	note $a3
+	note $a1
+	note $30
+	note $30
+	note $20
+	note $20
+	note $10
+	note $10
+	callchannel $7d8b
+	callchannel $7d93
+	note $20
+	note $30
+	note $30
+	note $20
+	notetype $0c, $fe
+	note $8b
+	note $7d
+	callchannel $7d93
+	note $30
+	note $30
+	note $20
+	note $20
+	notetype $0c, $fe
+	note $8b
+	note $7d
+	callchannel $7d93
+	note $20
+	note $20
+	note $20
+	note $20
+	notetype $0c, $9f
+	note $0f
+	loopchannel $06, $7d40
+	note $0b
+	notetype $06, $30
+	note $20
+	note $30
+	note $20
+	note $30
+	note $20
+	note $10
+	note $10
+	notetype $0c, $13
+	note $15
+	note $10
+	note $10
+	note $13
+	note $13
+	note $15
+	note $10
+	note $10
+	note $13
+	note $13
+	note $15
+	note $10
+	note $10
+	note $13
+	note $13
+	note $13
+	notetype $08, $11
+	note $11
+	note $11
+	notetype $06, $20
+	note $20
+	note $30
+	note $30
+	note $20
+	note $20
+	note $10
+	note $10
+	notetype $0c, $13
+	note $c3
+	endchannel ; end
+; 0xebd77
+
+INCBIN "baserom.gbc",$ebd77,$ebd9e - $ebd77
+
+Music_RuinsOfAlphInterior: ; 0xebd9e
+	dbw $80, Music_RuinsOfAlphInterior_Ch1
+	dbw $01, Music_RuinsOfAlphInterior_Ch2
+	dbw $02, Music_RuinsOfAlphInterior_Ch3
+; 0xebda7
+
+Music_RuinsOfAlphInterior_Ch1: ; 0xebda7
+	tempo $00e0
+	volume $77
+	dutycycle $00
+	stereopanning $f0
+	notetype $0c, $44
+	note $00
+	loopchannel $00, $7dc2 ; end
+; 0xebdb8
+
+Music_RuinsOfAlphInterior_Ch2: ; 0xebdb8
+	tone $0002
+	dutycycle $00
+	stereopanning $0f
+	notetype $0c, $a4
+	octave 4
+	note $13
+	octave 3
+	note $b3
+	octave 4
+	note $21
+	note $41
+	note $11
+	octave 3
+	note $b1
+	octave 4
+	note $13
+	octave 3
+	note $b3
+	loopchannel $00, $7dc2 ; end
+; 0xebdd4
+
+Music_RuinsOfAlphInterior_Ch3: ; 0xebdd4
+	notetype $0c, $10
+	octave 2
+	note $91
+	octave 3
+	note $21
+	note $51
+	note $09
+	loopchannel $00, $7dd7 ; end
+; 0xebde1
+
+Music_LookPokemaniac: ; 0xebde1
+	dbw $80, Music_LookPokemaniac_Ch1
+	dbw $01, Music_LookPokemaniac_Ch2
+	dbw $02, Music_LookPokemaniac_Ch3
+; 0xebdea
+
+Music_LookPokemaniac_Ch1: ; 0xebdea
+	stereopanning $0f
+	tempo $0090
+	volume $77
+	vibrato $02, $33
+	tone $0002
+	notetype $0c, $b3
+	note $07
+	note $03
+	octave 3
+	note $b0
+	note $02
+	note $b0
+	note $02
+	loopchannel $04, $7dfb
+	note $03
+	note $80
+	note $02
+	note $80
+	note $02
+	loopchannel $04, $7dfb
+	loopchannel $00, $7dfb ; end
+; 0xebe12
+
+Music_LookPokemaniac_Ch2: ; 0xebe12
+	stereopanning $ff
+	vibrato $02, $33
+	tone $0001
+	notetype $0c, $b3
+	octave 2
+	note $a0
+	note $70
+	note $40
+	note $10
+	octave 1
+	note $a3
+	octave 2
+	note $11
+	note $01
+	octave 3
+	note $70
+	note $02
+	note $a0
+	note $02
+	octave 1
+	note $81
+	note $01
+	octave 3
+	note $10
+	note $02
+	note $40
+	note $02
+	loopchannel $02, $7e24
+	octave 1
+	note $a1
+	note $01
+	octave 3
+	note $40
+	note $02
+	note $70
+	note $02
+	octave 1
+	note $51
+	note $01
+	octave 2
+	note $a0
+	note $02
+	octave 3
+	note $10
+	note $02
+	loopchannel $02, $7e38
+	loopchannel $00, $7e24 ; end
+; 0xebe51
+
+Music_LookPokemaniac_Ch3: ; 0xebe51
+	stereopanning $f0
+	vibrato $06, $33
+	notetype $0c, $15
+	octave 4
+	note $10
+	note $40
+	note $70
+	note $a0
+	octave 5
+	note $13
+	intensity $10
+	callchannel $7e70
+	intensity $14
+	callchannel $7e70
+	intensity $10
+	loopchannel $00, $7e62 ; end
+; 0xebe70
+
+INCBIN "baserom.gbc",$ebe70,$ebeab - $ebe70
+
+Music_TrainerVictory: ; 0xebeab
+	dbw $80, Music_TrainerVictory_Ch1
+	dbw $01, Music_TrainerVictory_Ch2
+	dbw $02, Music_TrainerVictory_Ch3
+; 0xebeb4
+
+Music_TrainerVictory_Ch1: ; 0xebeb4
+	tempo $0078
+	volume $77
+	dutycycle $02
+	tone $0001
+	notetype $08, $b1
+	octave 4
+	note $51
+	note $51
+	note $51
+	note $51
+	note $71
+	note $81
+	intensity $b6
+	note $ab
+	stereopanning $0f
+	intensity $72
+	callchannel $7f11
+	intensity $51
+	note $21
+	note $51
+	note $71
+	note $a1
+	note $c1
+	octave 4
+	note $21
+	intensity $72
+	octave 3
+	note $a1
+	note $01
+	octave 4
+	note $21
+	note $55
+	loopchannel $02, $7ecd
+	callchannel $7f11
+	note $a1
+	note $01
+	note $61
+	note $a5
+	note $b1
+	note $01
+	note $81
+	note $b5
+	intensity $72
+	octave 4
+	note $31
+	note $21
+	octave 3
+	note $a1
+	loopchannel $03, $7ef2
+	note $71
+	note $a1
+	octave 4
+	note $31
+	octave 4
+	note $21
+	octave 3
+	note $c1
+	note $a1
+	loopchannel $03, $7f01
+	note $51
+	note $71
+	note $81
+	loopchannel $00, $7ecd ; end
+; 0xebf11
+
+INCBIN "baserom.gbc",$ebf11, $ebf1b - $ebf11
+
+Music_TrainerVictory_Ch2: ; 0xebf1b
+	vibrato $12, $34
+	dutycycle $03
+	notetype $08, $d1
+	octave 4
+	note $a1
+	note $a1
+	note $a1
+	note $a1
+	note $c1
+	octave 5
+	note $21
+	intensity $d6
+	note $3b
+	stereopanning $f0
+	notetype $08, $82
+	callchannel $7f56
+	note $71
+	note $01
+	note $81
+	note $a5
+	note $51
+	note $01
+	note $71
+	note $85
+	loopchannel $02, $7f30
+	callchannel $7f56
+	note $61
+	note $01
+	note $11
+	note $65
+	note $81
+	note $01
+	note $31
+	note $85
+	notetype $0c, $88
+	note $7f
+	note $5f
+	loopchannel $00, $7f30 ; end
+; 0xebf56
+
+INCBIN "baserom.gbc", $ebf56, $ebf64 - $ebf56
+
+Music_TrainerVictory_Ch3: ; 0xebf64
+	notetype $08, $25
+	octave 3
+	note $85
+	note $80
+	note $00
+	note $80
+	note $00
+	note $80
+	note $00
+	note $75
+	note $31
+	note $21
+	octave 2
+	note $c1
+	callchannel $7fb1
+	octave 3
+	note $21
+	note $01
+	note $21
+	note $a1
+	note $71
+	note $21
+	octave 2
+	note $a1
+	note $01
+	octave 3
+	note $a0
+	note $00
+	note $a5
+	loopchannel $02, $7f74
+	callchannel $7fb1
+	octave 3
+	note $11
+	note $01
+	note $11
+	note $a1
+	note $61
+	note $11
+	note $31
+	note $01
+	note $31
+	octave 4
+	note $31
+	octave 3
+	note $b1
+	note $81
+	note $31
+	note $71
+	note $a1
+	octave 4
+	note $3b
+	octave 3
+	note $a1
+	note $71
+	note $31
+	octave 2
+	note $a1
+	octave 3
+	note $31
+	note $51
+	note $ab
+	note $81
+	note $51
+	note $21
+	loopchannel $00, $7f74 ; end
+; 0xebfb1
+
+INCBIN "baserom.gbc",$ebfb1,$ebfc3 - $ebfb1
 
 SECTION "bank3B",DATA,BANK[$3B]
 
