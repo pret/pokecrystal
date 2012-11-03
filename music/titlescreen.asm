@@ -1,0 +1,1 @@
+INCBIN "baserom.gbc",$eb808,$ebd9e - $eb808

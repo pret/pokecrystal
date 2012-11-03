@@ -1,0 +1,1 @@
+INCBIN "baserom.gbc",$ea2be,$ea50d - $ea2be

@@ -3198,7 +3198,6 @@ octave: MACRO
 notetype: MACRO
 	db $d8
 	db \1
-	db \2
 	ENDM
 forceoctave: MACRO
 	db $d9
