@@ -1,0 +1,1 @@
+INCBIN "baserom.gbc",$ebde1,$ebeab - $ebde1

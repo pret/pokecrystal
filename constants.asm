@@ -9,6 +9,10 @@ dn: MACRO
 	db \1 << 4 + \2
 	ENDM
 
+bigdw: MACRO
+	dw ((\1)/$100) + (((\1)&$ff)*$100)
+	ENDM
+
 callab: MACRO
 	ld hl, \1
 	ld a, BANK(\1)
@@ -3115,3 +3119,230 @@ MUSIC_BATTLE_TOWER_THEME EQU 99
 MUSIC_SUICUNE_BATTLE EQU 100
 MUSIC_BATTLE_TOWER_LOBBY EQU 101
 MUSIC_MOBILE_CENTER EQU 102
+
+; sound
+_4CH1 EQU $c0
+_3CH1 EQU $80
+_2CH1 EQU $40
+_1CH1 EQU $00
+_3CH2 EQU $81
+_2CH2 EQU $41
+_1CH2 EQU $01
+_2CH3 EQU $42
+_1CH3 EQU $02
+_1CH4 EQU $03
+
+_4CH5 EQU $c4
+_3CH5 EQU $84
+_2CH5 EQU $44
+_1CH5 EQU $04
+_3CH6 EQU $85
+_2CH6 EQU $45
+_1CH6 EQU $05
+_2CH7 EQU $46
+_1CH7 EQU $06
+_1CH8 EQU $07
+
+_CH2 EQU $01
+_CH3 EQU $02
+_CH4 EQU $03
+_CH5 EQU $04
+_CH6 EQU $05
+_CH7 EQU $06
+_CH8 EQU $07
+
+note: MACRO
+	db \1
+	ENDM
+; eventually replace with this:
+; note: MACRO
+	; db NOTE_\1 + NOTE_\2
+	; ENDM
+
+NOTE_RST EQU $00
+NOTE_C EQU $10
+NOTE_C# EQU $20
+NOTE_D EQU $30
+NOTE_D# EQU $40
+NOTE_E EQU $50
+NOTE_F EQU $60
+NOTE_F# EQU $70
+NOTE_G EQU $80
+NOTE_G# EQU $90
+NOTE_A EQU $a0
+NOTE_A# EQU $b0
+NOTE_B EQU $c0
+
+; 16ths
+NOTE_1 EQU $00
+NOTE_2 EQU $01
+NOTE_3 EQU $02
+NOTE_4 EQU $03
+NOTE_5 EQU $04
+NOTE_6 EQU $05
+NOTE_7 EQU $06
+NOTE_8 EQU $07
+NOTE_9 EQU $08
+NOTE_10 EQU $09
+NOTE_11 EQU $0a
+NOTE_12 EQU $0b
+NOTE_13 EQU $0c
+NOTE_14 EQU $0d
+NOTE_15 EQU $0e
+NOTE_16 EQU $0f
+
+octave: MACRO
+; $d0-$d7
+	db $d8 - \1
+	ENDM
+notetype: MACRO
+	db $d8
+	db \1
+	ENDM
+forceoctave: MACRO
+	db $d9
+	db \1
+	ENDM
+tempo: MACRO
+	db $da
+	bigdw \1
+	ENDM
+dutycycle: MACRO
+	db $db
+	db \1
+	ENDM
+intensity: MACRO
+	db $dc
+	db \1
+	ENDM
+soundinput: MACRO
+	db $dd
+	db \1
+	ENDM
+unknownmusic0xde: MACRO
+	db $de
+	db \1
+	ENDM
+unknownmusic0xdf: MACRO
+	db $df
+	ENDM
+unknownmusic0xe0: MACRO
+	db $e0
+	db \1
+	db \2
+	db \3
+	ENDM
+vibrato: MACRO
+	db $e1
+	db \1
+	db \2
+	ENDM
+unknownmusic0xe2: MACRO
+	db $e2
+	db \1
+	ENDM
+togglenoise: MACRO
+	db $e3
+	ENDM
+panning: MACRO
+	db $e4
+	db \1
+	ENDM
+volume: MACRO
+	db $e5
+	db \1
+	ENDM
+tone: MACRO
+	db $e6
+	bigdw \1
+	ENDM
+unknownmusic0xe7: MACRO
+	db $e7
+	db \1
+	ENDM
+unknownmusic0xe8: MACRO
+	db $e8
+	db \1
+	ENDM
+globaltempo : MACRO
+	db $e9
+	bigdw \1
+	ENDM
+restartchannel: MACRO
+	db $ea
+	bigdw \1
+	ENDM
+newsong: MACRO
+	db $eb
+	dw \1
+	ENDM
+sfxpriorityon: MACRO
+	db $ec
+	ENDM
+sfxpriorityoff: MACRO
+	db $ed
+	ENDM
+unknownmusic0xee: MACRO
+	db $ee
+	dw \1
+	ENDM
+stereopanning: MACRO
+	db $ef
+	db \1
+	ENDM
+sfxtogglenoise: MACRO
+	db $f0
+	db \1
+	ENDM
+music0xf1: MACRO
+	db $f1
+	ENDM
+music0xf2: MACRO
+	db $f2
+	ENDM
+music0xf3: MACRO
+	db $f3
+	ENDM
+music0xf4: MACRO
+	db $f4
+	ENDM
+music0xf5: MACRO
+	db $f5
+	ENDM
+music0xf6: MACRO
+	db $f6
+	ENDM
+music0xf7: MACRO
+	db $f7
+	ENDM
+music0xf8: MACRO
+	db $f8
+	ENDM
+unknownmusic0xf9: MACRO
+	db $f9
+	ENDM
+setcondition: MACRO
+	db $fa
+	db \1
+	ENDM
+jumpif: MACRO
+	db $fb
+	db \1
+	dw \2
+	ENDM
+jumpchannel: MACRO
+	db $fc
+	dw \1
+	ENDM
+loopchannel: MACRO
+	db $fd
+	db \1
+	dw \2
+	ENDM
+callchannel: MACRO
+	db $fe
+	dw \1
+	ENDM
+endchannel: MACRO
+	db $ff
+	ENDM
