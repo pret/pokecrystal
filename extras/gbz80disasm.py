@@ -16,7 +16,7 @@ class XRomStr(str):
 def load_rom(filename="../baserom.gbc"):
     """loads bytes into memory"""
     global rom
-    file_handler = open(filename, "r") 
+    file_handler = open(filename, "rb") 
     rom = XRomStr(file_handler.read())
     file_handler.close()
     return rom
@@ -275,7 +275,7 @@ temp_opt_table = [
   [ "LD DE, ?", 0x11, 2 ],
   [ "LD HL, ?", 0x21, 2 ],
   [ "LD SP, ?", 0x31, 2 ],
-#  [ "LD [?], SP", 0x8, 2 ],
+  [ "LD [?], SP", 0x8, 2 ],
   [ "LD [?], A", 0xea, 2 ],
   [ "NOP", 0x0, 0 ],
   [ "OR A", 0xb7, 0 ],
