@@ -78131,7 +78131,47 @@ INCBIN "baserom.gbc",$FBCCF,$fc000-$fbccf
 
 SECTION "bank3F",DATA,BANK[$3F]
 
-INCBIN "baserom.gbc",$FC000,$4000
+INCBIN "baserom.gbc",$FC000,$fcdc2-$fc000
+
+LoadTradesPointer: ; 0xfcdc2
+	ld d, 0
+	push de
+	ld a, [$cf63]
+	and $f
+	swap a
+	ld e, a
+	ld d, $0
+	ld hl, Trades
+	add hl, de
+	add hl, de
+	pop de
+	add hl, de
+	ret
+; 0xfcdd7
+
+INCBIN "baserom.gbc",$fcdd7,$fce58-$fcdd7
+
+Trades: ; 0xfce58
+; byte 1: dialog
+; byte 2: givemon
+; byte 3: getmon
+; bytes 4-14 nickname
+; bytes 15-16 DVs
+; byte 17 held item
+; bytes 18-19 ID
+; bytes 20-30 OT name
+; byte 31 gender
+; byte 32 XXX always zero?
+
+	db 0,ABRA,MACHOP,"MUSCLE@@@@@",$37,$66,GOLD_BERRY,$54,$92,"MIKE@@@@@@@",0,0
+	db 0,BELLSPROUT,ONIX,"ROCKY@@@@@@",$96,$66,BITTER_BERRY,$1e,$bf,"KYLE@@@@@@@",0,0
+	db 1,KRABBY,VOLTORB,"VOLTY@@@@@@",$98,$88,PRZCUREBERRY,$05,$72,"TIM@@@@@@@@",0,0
+	db 3,DRAGONAIR,DODRIO,"DORIS@@@@@@",$77,$66,SMOKE_BALL,$1b,$01,"EMY@@@@@@@@",2,0
+	db 2,HAUNTER,XATU,"PAUL@@@@@@@",$96,$86,MYSTERYBERRY,$00,$3d,"CHRIS@@@@@@",0,0
+	db 3,CHANSEY,AERODACTYL,"AEROY@@@@@@",$96,$66,GOLD_BERRY,$7b,$67,"KIM@@@@@@@@",0,0
+	db 0,DUGTRIO,MAGNETON,"MAGGIE@@@@@",$96,$66,METAL_COAT,$a2,$c3,"FOREST@@@@@",0,0
+
+INCBIN "baserom.gbc",$fcf38,$fd1d2-$fcf38
 
 SECTION "bank40",DATA,BANK[$40]
 
