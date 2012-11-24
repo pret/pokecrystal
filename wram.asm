@@ -1115,7 +1115,7 @@ StartSecond: ; d4b9
 CurDay: ; d4cb
 	ds 1
 
-	ds 11
+	ds 12
 
 PlayerSprite: ; 0xd4d8
 	ds 1
