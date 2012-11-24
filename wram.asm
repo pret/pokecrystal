@@ -278,6 +278,25 @@ SECTION "linkbattle",BSS[$c2dc]
 InLinkBattle: ; 0xc2dc
 	ds 1 ; nonzero when in a link battle
 
+SECTION "tiles",BSS[$c2fa]
+TileDown: ; c2fa
+	ds 1
+TileUp: ; c2fb
+	ds 1
+TileLeft: ; c2fc
+	ds 1
+TileRight: ; c2fd
+	ds 1
+
+TilePermissions: ; c2fe
+; set if tile behavior prevents
+; you from walking in that direction
+; bit 3: down
+; bit 2: up
+; bit 1: left
+; bit 0: right
+	ds 1
+
 SECTION "BattleMons",BSS[$c62a]
 
 BattleMonSpecies: ; c62a
@@ -338,6 +357,10 @@ BattleMonSpclAtk: ; c646
 BattleMonSpclDef: ; c648
 	ds 2
 
+SECTION "prng",BSS[$c6e5]
+LinkBattleRNCount: ; c6e5
+	ds 1
+
 SECTION "Engine",BSS[$cfcc]
 Options: ; cfcc
 ; bit 0-2: number of frames to delay when printing text
@@ -347,9 +370,13 @@ Options: ; cfcc
 ; bit 6: battle style shift/set
 ; bit 7: battle scene off/on
 	ds 1
+	
+	ds 1
 
 TextBoxFrame: ; cfce
 ; bits 0-2: textbox frame 0-7
+	ds 1
+	
 	ds 1
 
 GBPrinter: ; cfd0
@@ -365,6 +392,16 @@ Options2: ; cfd1
 ; bit 1: menu account off/on
 	ds 1
 
+	ds 161
+	
+StringBuffer1: ; d073
+	ds 19
+StringBuffer2: ; d086
+	ds 19
+StringBuffer3: ; d099
+	ds 19
+	
+	ds 65
 
 VramState: ; d0ed
 ; bit 0: overworld sprite updating on/off
@@ -373,12 +410,35 @@ VramState: ; d0ed
 ;        flickers when climbing waterfall
 	ds 1
 
+	ds 26
+	
+CurPartySpecies: ; d108
+	ds 1
 
 CurPartyMon: ; d109
-; contains which monster in your party
+; contains which monster in a party
 ; is being dealt with at the moment
 ; 0-5
 	ds 1
+
+	ds 57
+
+CurPartyLevel: ; d143
+	ds 1
+
+	ds 166
+
+Buffer1:
+MagikarpLength:
+MagikarpLengthHi: ; d1ea
+	ds 1
+Buffer2:
+MagikarpLengthLo: ; d1eb
+	ds 1
+
+SECTION "prng2",BSS[$d1fa]
+LinkBattleRNs: ; d1fa
+	ds 10
 
 SECTION "EnemyMon",BSS[$d204]
 
@@ -447,7 +507,15 @@ EnemyMonSpclAtk: ; d220
 EnemyMonSpclDef: ; d222
 	ds 2
 
-SECTION "OtherTrainerClass",BSS[$d22f]
+SECTION "Battle",BSS[$d22d]
+
+BattleClass: ; d22d
+; 0: wild battle
+; 1: 
+; 2: trainer battle
+	ds 1
+	
+	ds 1
 
 OtherTrainerClass: ; 0xd22f
 ; class (Youngster, Bug Catcher, etc.) of opposing trainer
@@ -455,14 +523,35 @@ OtherTrainerClass: ; 0xd22f
 	ds 1
 
 BattleType: ; 0xd230
-; 00 normal
-; 08 headbutt/rock smash. probably bit 3
+; $00 normal
+; $01
+; $02
+; $03 dude
+; $04 fishing
+; $05 roaming
+; $06
+; $07 shiny
+; $08 headbutt/rock smash
+; $09
+; $0a force Item1
+; $0b
+; $0c suicune
 	ds 1
 
 OtherTrainerID: ; 0xd231
 ; which trainer of the class that you're fighting
 ; (Joey, Mikey, Albert, etc.)
 	ds 1
+
+	ds 2
+
+UnownLetter: ; d234
+	ds 1
+
+	ds 1
+
+CurBaseStats: ; d236
+	ds 32
 
 SECTION "TimeOfDay",BSS[$d269]
 
@@ -1002,15 +1091,37 @@ OTPartyMon5Nickname: ; d416
 OTPartyMon6Nickname: ; d421
 	ds 11
 
+
 SECTION "Player",BSS[$d47b]
 PlayerID: ; 0xd47b
 	ds 2
 PlayerName: ; 0xd47d
 	ds 11
 
+	ds 46
+	
+; init time set at newgame
+StartDay: ; d4b6
+	ds 1
+StartHour: ; d4b7
+	ds 1
+StartMinute: ; d4b8
+	ds 1
+StartSecond: ; d4b9
+	ds 1
+
+	ds 17
+
+CurDay: ; d4cb
+	ds 1
+
+	ds 12
+
 PlayerSprite: ; 0xd4d8
 	ds 1
-	
+
+	ds 5
+
 PlayerDirection: ; d4de
 ; uses bits 2 and 3 / $0c / %00001100
 ; %00 down
@@ -1572,6 +1683,16 @@ PartyMon5Nickname: ; 0xde6d
 PartyMon6Nickname: ; 0xde78
 	ds 11
 
+SECTION "Pokedex",BSS[$de99]
+PokedexSeen: ; de99
+	ds 32
+PokedexCaught: ; deb9
+	ds 32
+UnownDex: ; ded9
+	ds 26
+UnownUnlockedGroups: ; def3
+	ds 1
+
 SECTION "Breeding",BSS[$def5]
 DaycareMan: ; def5
 ; bit 7: active
@@ -1621,3 +1742,43 @@ EggStats:
 EggSpecies: ; df7b
 	ds 1
 	ds 31
+
+SECTION "RoamMons",BSS[$dfcf]
+RoamMon1Species: ; dfcf
+	ds 1
+RoamMon1Level: ; dfd0
+	ds 1
+RoamMon1MapGroup: ; dfd1
+	ds 1
+RoamMon1MapNumber: ; dfd2
+	ds 1
+RoamMon1CurHP: ; dfd3
+	ds 1
+RoamMon1DVs: ; dfd4
+	ds 2
+
+RoamMon2Species: ; dfd6
+	ds 1
+RoamMon2Level: ; dfd7
+	ds 1
+RoamMon2MapGroup: ; dfd8
+	ds 1
+RoamMon2MapNumber: ; dfd9
+	ds 1
+RoamMon2CurHP: ; dfda
+	ds 1
+RoamMon2DVs: ; dfdb
+	ds 2
+
+RoamMon3Species: ; dfdd
+	ds 1
+RoamMon3Level: ; dfde
+	ds 1
+RoamMon3MapGroup: ; dfdf
+	ds 1
+RoamMon3MapNumber: ; dfe0
+	ds 1
+RoamMon3CurHP: ; dfe1
+	ds 1
+RoamMon3DVs: ; dfe2
+	ds 2
