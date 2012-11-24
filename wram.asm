@@ -357,7 +357,7 @@ BattleMonSpclAtk: ; c646
 BattleMonSpclDef: ; c648
 	ds 2
 
-SECTION "prng",BSSS[$c6e5]
+SECTION "prng",BSS[$c6e5]
 LinkBattleRNCount: ; c6e5
 	ds 1
 
