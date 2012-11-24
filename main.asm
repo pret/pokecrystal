@@ -561,7 +561,56 @@ Char5F: ; 0x1356
 	pop hl
 	ret
 
-INCBIN "baserom.gbc",$135a,$26ef - $135a
+INCBIN "baserom.gbc",$135a,$185d - $135a
+
+GetTileType: ; 185d
+; checks the properties of a tile
+; input: a = tile id
+	push de
+	push hl
+	ld hl, TileTypeTable
+	ld e, a
+	ld d, $00
+	add hl, de
+	ld a, [$ff00+$9d] ; current bank
+	push af
+	ld a, BANK(TileTypeTable)
+	rst $10
+	ld e, [hl] ; get tile type
+	pop af
+	rst $10 ; return to current bank
+	ld a, e
+	and a, $0f ; lo nybble only
+	pop hl
+	pop de
+	ret
+; 1875
+
+INCBIN "baserom.gbc",$1875,$261f - $1875
+
+PushScriptPointer: ; 261f
+; used to call a script from asm
+; input:
+;	a: bank
+;	hl: address
+
+; bank
+	ld [$d439], a ; ScriptBank
+	
+; address
+	ld a, l
+	ld [$d43a], a ; ScriptAddressLo
+	ld a, h
+	ld [$d43b], a ; ScriptAddressHi
+	
+	ld a, $ff
+	ld [$d438], a
+	
+	scf
+	ret
+; 2631
+
+INCBIN "baserom.gbc",$2631,$26ef - $2631
 
 ObjectEvent: ; 0x26ef
 	jumptextfaceplayer ObjectEventText
@@ -891,7 +940,20 @@ GetFarHalfword: ; 0x305d
 	ret
 ; 0x306b
 
-INCBIN "baserom.gbc",$306b,$30e1-$306b
+INCBIN "baserom.gbc",$306b,$30d6-$306b
+
+CopyName1: ; 30d6
+	ld hl, StringBuffer2
+; 30d9
+CopyName2: ; 30d9
+.loop
+	ld a, [de]
+	inc de
+	ld [hli], a
+	cp "@"
+	jr nz, .loop
+	ret
+; 30e1
 
 IsInArray: ; 30e1
 ; searches an array at hl for the value in a.
@@ -1185,7 +1247,32 @@ GetItemName: ; 3468
 	ret
 ; 0x3487
 
-INCBIN "baserom.gbc",$3487,$38bb - $3487
+INCBIN "baserom.gbc",$3487,$38a2 - $3487
+
+GetNick: ; 38a2
+; get the nickname of a partymon
+; write nick to StringBuffer1
+
+; input: a = which mon (0-5)
+
+	push hl
+	push bc
+	; skip [a] nicks
+	call SkipNames
+	ld de, StringBuffer1
+	; write nick
+	push de
+	ld bc, PKMN_NAME_LENGTH
+	call CopyBytes
+	; error-check
+	pop de
+	callab CheckNickErrors
+	; we're done
+	pop bc
+	pop hl
+	ret
+; 38bb
+
 PrintBCDNumber: ; 38bb
 ; function to print a BCD (Binary-coded decimal) number
 ; de = address of BCD number
@@ -1425,8 +1512,89 @@ IntroFadePalettes: ; 0x617c
 	db %11111000
 	db %11110100
 	db %11100100
+; 6182
 
-INCBIN "baserom.gbc",$6182,$8000 - $6182
+INCBIN "baserom.gbc",$6182,$669f - $6182
+
+CheckNickErrors: ; 669f
+; error-check monster nick before use
+; must be a peace offering to gamesharkers
+
+; input: de = nick location
+
+	push bc
+	push de
+	ld b, PKMN_NAME_LENGTH
+
+.checkchar
+; end of nick?
+	ld a, [de]
+	cp "@" ; terminator
+	jr z, .end
+
+; check if this char is a text command
+	ld hl, .textcommands
+	dec hl
+.loop
+; next entry
+	inc hl
+; reached end of commands table?
+	ld a, [hl]
+	cp a, $ff
+	jr z, .done
+
+; is the current char between this value (inclusive)...
+	ld a, [de]
+	cp [hl]
+	inc hl
+	jr c, .loop
+; ...and this one?
+	cp [hl]
+	jr nc, .loop
+
+; replace it with a "?"
+	ld a, "?"
+	ld [de], a
+	jr .loop
+
+.done
+; next char
+	inc de
+; reached end of nick without finding a terminator?
+	dec b
+	jr nz, .checkchar
+
+; change nick to "?@"
+	pop de
+	push de
+	ld a, "?"
+	ld [de], a
+	inc de
+	ld a, "@"
+	ld [de], a
+.end
+; if the nick has any errors at this point it's out of our hands
+	pop de
+	pop bc
+	ret
+; 66cf
+
+.textcommands ; 66cf
+; table definining which characters
+; are actually text commands
+; format:
+;       >=   <
+	db $00, $05
+	db $14, $19
+	db $1d, $26
+	db $35, $3a
+	db $3f, $40
+	db $49, $5d
+	db $5e, $7f
+	db $ff ; end
+; 66de
+
+INCBIN "baserom.gbc",$66de,$8000 - $66de
 
 SECTION "bank2",DATA,BANK[$2]
 
@@ -1757,16 +1925,29 @@ PrintNumber_AdvancePointer: ; c64a
 	ret
 ; 0xc658
 
-INCBIN "baserom.gbc",$c658,$c721 - $c658
+INCBIN "baserom.gbc",$c658,$c706 - $c658
+
+GetPartyNick: ; c706
+; write CurPartyMon nickname to StringBuffer1-3
+	ld hl, PartyMon1Nickname
+	ld a, $02
+	ld [$cf5f], a
+	ld a, [CurPartyMon]
+	call GetNick
+	call CopyName1
+; copy text from StringBuffer2 to StringBuffer3
+	ld de, StringBuffer2
+	ld hl, StringBuffer3
+	call CopyName2
+	ret
+; c721
 
 CheckFlag2: ; c721
-; uses bittable2
-; checks flag id in de
-; returns carry if flag is not set
+; using bittable2
+; check flag id in de
+; return carry if flag is not set
 	ld b, $02 ; check flag
-	ld a, BANK(GetFlag2)
-	ld hl, GetFlag2
-	rst $08
+	callba GetFlag2
 	ld a, c
 	and a
 	jr nz, .isset
@@ -1777,7 +1958,226 @@ CheckFlag2: ; c721
 	ret
 ; c731
 
-INCBIN "baserom.gbc",$c731,$ffff - $c731
+CheckBadge: ; c731
+; input: a = badge flag id ($1b-$2b)
+	call CheckFlag2
+	ret nc
+	ld hl, BadgeRequiredText
+	call $1d67 ; push text to queue
+	scf
+	ret
+; c73d
+
+BadgeRequiredText: ; c73d
+	TX_FAR _BadgeRequiredText	; Sorry! A new BADGE
+	db "@"						; is required.
+; c742
+
+CheckPartyMove: ; c742
+; checks if a pokemon in your party has a move
+; e = partymon being checked
+
+; input: d = move id
+	ld e, $00 ; mon #
+	xor a
+	ld [CurPartyMon], a
+.checkmon
+; check for valid species
+	ld c, e
+	ld b, $00
+	ld hl, PartySpecies
+	add hl, bc
+	ld a, [hl]
+	and a ; no id
+	jr z, .quit
+	cp a, $ff ; terminator
+	jr z, .quit
+	cp a, EGG
+	jr z, .nextmon
+; navigate to appropriate move table
+	ld bc, PartyMon2 - PartyMon1
+	ld hl, PartyMon1Moves
+	ld a, e
+	call AddNTimes
+	ld b, $04 ; number of moves
+.checkmove
+	ld a, [hli]
+	cp d ; move id
+	jr z, .end
+	dec b ; how many moves left?
+	jr nz, .checkmove
+.nextmon
+	inc e ; mon #
+	jr .checkmon
+.end
+	ld a, e
+	ld [CurPartyMon], a ; which mon has the move
+	xor a
+	ret
+.quit
+	scf
+	ret
+; c779
+
+INCBIN "baserom.gbc",$c779,$c986 - $c779
+
+UsedSurfScript: ; c986
+; print "[MON] used SURF!"
+	2writetext UsedSurfText
+	closetext
+	loadmovesprites
+; this does absolutely nothing
+	3callasm BANK(Functionc9a2), Functionc9a2
+; write surftype to PlayerState
+	copybytetovar $d1eb ; Buffer2
+	writevarcode VAR_MOVEMENT
+; update sprite tiles
+	special SPECIAL_UPDATESPRITETILES
+; start surf music
+	special SPECIAL_BIKESURFMUSIC
+; step into the water
+	special SPECIAL_LOADFACESTEP ; (slow_step_x, step_end)
+	applymovement $00, $d007 ; PLAYER, MovementBuffer
+	end
+; c9a2
+
+Functionc9a2: ; c9a2
+	callba Function1060bb ; empty
+	ret
+; c9a9
+
+UsedSurfText: ; c9a9
+	TX_FAR _UsedSurfText ; [MONSTER] used
+	db "@"	       ; SURF!
+; c9ae
+
+CantSurfText: ; c9ae
+	TX_FAR _CantSurfText ; You can't SURF
+	db "@"	       ; here.
+; c9b3
+
+AlreadySurfingText: ; c9b3
+	TX_FAR _AlreadySurfingText ; You're already
+	db "@"		     ; SURFING.
+; c9b8
+
+GetSurfType: ; c9b8
+; get surfmon species
+	ld a, [CurPartyMon]
+	ld e, a
+	ld d, $00
+	ld hl, PartySpecies
+	add hl, de
+; is pikachu surfing?
+	ld a, [hl]
+	cp PIKACHU
+	ld a, PLAYER_SURF_PIKA
+	ret z
+	ld a, PLAYER_SURF
+	ret
+; c9cb
+
+CheckDirection: ; c9cb
+; set carry if a tile permission prevents you
+; from moving in the direction you are facing
+
+; get player direction
+	ld a, [PlayerDirection]
+	and a, %00001100 ; bits 2 and 3 contain direction
+	rrca
+	rrca
+	ld e, a
+	ld d, $00
+	ld hl, .DirectionTable
+	add hl, de
+; can you walk in this direction?
+	ld a, [TilePermissions]
+	and [hl]
+	jr nz, .quit
+	xor a
+	ret
+.quit
+	scf
+	ret
+; c9e3
+
+.DirectionTable ; c9e3
+	db %00001000 ; down
+	db %00000100 ; up
+	db %00000010 ; left
+	db %00000001 ; right
+; c9e7
+
+CheckSurfOW: ; c9e7
+; called when checking a tile in the overworld
+; check if you can surf
+; return carry if conditions are met
+
+; can we surf?
+	ld a, [PlayerState]
+	; are you already surfing (pikachu)?
+	cp PLAYER_SURF_PIKA
+	jr z, .quit
+	; are you already surfing (normal)?
+	cp PLAYER_SURF
+	jr z, .quit
+	; are you facing a surf tile?
+	ld a, [$d03e] ; buffer for the tile you are facing (used for other things too)
+	call GetTileType
+	cp $01 ; surfable
+	jr nz, .quit
+	; does this contradict tile permissions?
+	call CheckDirection
+	jr c, .quit
+	; do you have fog badge?
+	ld de, $001e ; FLAG_FOG_BADGE
+	call CheckFlag2
+	jr c, .quit
+	; do you have a monster with surf?
+	ld d, SURF
+	call CheckPartyMove
+	jr c, .quit
+	; can you get off the bike (cycling road)?
+	ld hl, $dbf5 ; overworld flags
+	bit 1, [hl] ; always on bike (can't surf)
+	jr nz, .quit
+	
+; load surftype into MovementType
+	call GetSurfType
+	ld [$d1eb], a ; MovementType
+	
+; get surfmon nick
+	call GetPartyNick
+	
+; run AskSurfScript
+	ld a, BANK(AskSurfScript)
+	ld hl, AskSurfScript
+	call PushScriptPointer
+
+; conditions were met
+	scf
+	ret
+	
+.quit
+; conditions were not met
+	xor a
+	ret
+; ca2c
+
+AskSurfScript: ; ca2c
+	loadfont
+	2writetext AskSurfText
+	yesorno
+	iftrue UsedSurfScript
+	loadmovesprites
+	end
+
+AskSurfText: ; ca36
+	TX_FAR _AskSurfText	; The water is calm.
+	db "@"				; Want to SURF?
+; ca3b
+
+INCBIN "baserom.gbc",$ca3b,$10000 - $ca3b
 
 SECTION "bank4",DATA,BANK[$4]
 
@@ -16527,7 +16927,49 @@ INCBIN "baserom.gbc",$4a843,$4C000 - $4a843
 
 SECTION "bank13",DATA,BANK[$13]
 
-INCBIN "baserom.gbc",$4C000,$50000 - $4C000
+INCBIN "baserom.gbc",$4C000,$4ce1f - $4C000
+
+TileTypeTable: ; 4ce1f
+; 256 tiletypes
+; 01 = surfable
+	db $00, $00, $00, $00, $00, $00, $00, $0f
+	db $00, $00, $00, $00, $00, $00, $00, $0f
+	db $00, $00, $1f, $00, $00, $1f, $00, $00
+	db $00, $00, $1f, $00, $00, $1f, $00, $00
+	db $01, $01, $11, $00, $11, $01, $01, $0f
+	db $01, $01, $11, $00, $11, $01, $01, $0f
+	db $01, $01, $01, $01, $01, $01, $01, $01
+	db $01, $01, $01, $01, $01, $01, $01, $01
+	
+	db $00, $00, $00, $00, $00, $00, $00, $00
+	db $00, $00, $00, $00, $00, $00, $00, $00
+	db $00, $00, $00, $00, $00, $00, $00, $00
+	db $00, $00, $00, $00, $00, $00, $00, $00
+	db $00, $00, $0f, $00, $00, $00, $00, $00
+	db $00, $00, $0f, $00, $00, $00, $00, $00
+	db $00, $00, $00, $00, $00, $00, $00, $00
+	db $00, $00, $00, $00, $00, $00, $00, $00
+	
+	db $0f, $0f, $0f, $0f, $0f, $00, $00, $00
+	db $0f, $0f, $0f, $0f, $0f, $00, $00, $00
+	db $0f, $0f, $0f, $0f, $0f, $0f, $0f, $0f
+	db $0f, $0f, $0f, $0f, $0f, $0f, $0f, $0f
+	db $00, $00, $00, $00, $00, $00, $00, $00
+	db $00, $00, $00, $00, $00, $00, $00, $00
+	db $00, $00, $00, $00, $00, $00, $00, $00
+	db $00, $00, $00, $00, $00, $00, $00, $00
+	
+	db $01, $01, $01, $01, $01, $01, $01, $01
+	db $01, $01, $01, $01, $01, $01, $01, $01
+	db $00, $00, $00, $00, $00, $00, $00, $00
+	db $00, $00, $00, $00, $00, $00, $00, $00
+	db $00, $00, $00, $00, $00, $00, $00, $00
+	db $00, $00, $00, $00, $00, $00, $00, $00
+	db $00, $00, $00, $00, $00, $00, $00, $00
+	db $00, $00, $00, $00, $00, $00, $00, $0f
+; 4cf1f
+
+INCBIN "baserom.gbc",$4cf1f,$50000 - $4cf1f
 
 SECTION "bank14",DATA,BANK[$14]
 
@@ -78179,7 +78621,14 @@ INCBIN "baserom.gbc",$100000,$4000
 
 SECTION "bank41",DATA,BANK[$41]
 
-INCBIN "baserom.gbc",$104000,$4000
+INCBIN "baserom.gbc",$104000,$1060bb - $104000
+
+Function1060bb: ; 1060bb
+; commented out
+	ret
+; 1060bc
+
+INCBIN "baserom.gbc",$1060bc,$108000 - $1060bc
 
 SECTION "bank42",DATA,BANK[$42]
 
@@ -119262,9 +119711,39 @@ INCBIN "baserom.gbc",$1BC000,$4000
 
 SECTION "bank70",DATA,BANK[$70]
 
-INCBIN "baserom.gbc",$1C0000,$1c1ec9-$1c0000
+INCBIN "baserom.gbc",$1C0000,$1c05a7-$1c0000
 
-INCBIN "baserom.gbc",$1C1EC9,$1c4000-$1c1ec9 ; empty
+_BadgeRequiredText: ; 1c05a7
+	db $0, "Sorry! A new BADGE", $4f
+	db "is required.", $58
+; 1c05c8
+
+INCBIN "baserom.gbc",$1c05c8,$1c062f-$1c05c8
+
+_UsedSurfText: ; 1c062f
+	dbw $1, StringBuffer2
+	db $0, " used", $4f
+	db "SURF!", $57
+; 1c063f
+
+_CantSurfText: ; 1c063f
+	db $0, "You can't SURF", $4f
+	db "here.", $58
+; 1c0654
+
+_AlreadySurfingText: ; 1c0654
+	db $0, "You're already", $4f
+	db "SURFING.", $58
+; 1c066c
+
+_AskSurfText ; 1c066c
+	db $0, "The water is calm.", $4f
+	db "Want to SURF?", $57
+; 1c068e
+
+INCBIN "baserom.gbc",$1c068e,$1c1ec9-$1c068e
+
+INCBIN "baserom.gbc",$1c1ec9,$1c4000-$1c1ec9 ; empty
 
 SECTION "bank71",DATA,BANK[$71]
 
