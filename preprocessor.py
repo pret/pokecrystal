@@ -490,12 +490,6 @@ def macro_translator(macro, token, line):
     else:
         allowed_lengths = [allowed_length]
 
-    if macro.macro_name == "notetype":
-        allowed_lengths = [1,2]
-    elif macro.macro_name == "togglenoise" \
-    or macro.macro_name == "sfxtogglenoise":
-        allowed_lengths = [0,1]
-
     assert len(params) in allowed_lengths, \
            "mismatched number of parameters on this line: " + \
            original_line

@@ -2990,8 +2990,6 @@ music_commands_new = {
 music_command_enders = [0xEA, 0xEB, 0xEE, 0xFC, 0xFF,]
 # special case for 0xFD (if loopchannel.count = 0, break)
 
-
-
 def create_music_command_classes(debug=False):
     klasses = [GivePoke]
     for (byte, cmd) in music_commands_new.items():
@@ -3010,6 +3008,10 @@ def create_music_command_classes(debug=False):
         klass_name = cmd_name+"Command"
         klass = classobj(klass_name, (Command,), params)
         globals()[klass_name] = klass
+        if klass.macro_name == "notetype":
+            klass.allowed_lengths = [1, 2]
+        elif klass.macro_name in ["togglenoise", "sfxtogglenoise"]:
+            klass.allowed_lengths = [0, 1]
         klasses.append(klass)
     # later an individual klass will be instantiated to handle something
     return klasses
