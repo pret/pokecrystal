@@ -2284,7 +2284,21 @@ INCBIN "baserom.gbc",$18000,$1C000 - $18000
 
 SECTION "bank7",DATA,BANK[$7]
 
-INCBIN "baserom.gbc",$1C000,$20000 - $1C000
+INCBIN "baserom.gbc",$1c000, $1f31c - $1c000
+
+Music_Credits: ; 0x1f31c
+INCLUDE "music/credits.asm"
+; 0x1fa8d
+
+Music_Clair: ; 0x1fa8d
+INCLUDE "music/clair.asm"
+; 0x1fc87
+
+Music_MobileAdapter: ; 0x1fc87
+INCLUDE "music/mobileadapter.asm"
+; 0x1ff6c
+
+INCBIN "baserom.gbc",$1ff6c, $20000 - $1ff6c
 
 SECTION "bank8",DATA,BANK[$8]
 
@@ -18772,7 +18786,7 @@ MapGoldenrodNameRatersHouseSignpost2Script: ; 0x55787
 	jumpstd $000c
 ; 0x5578a
 
-INCLUDE "text/sweethoney.tx"
+INCLUDE "text/sweethoney.asm"
 
 GoldenrodNameRatersHouse_MapEventHeader: ; 0x55953
 	; filler
@@ -74755,7 +74769,13 @@ INCBIN "baserom.gbc",$C8000,$4000
 
 SECTION "bank33",DATA,BANK[$33]
 
-INCBIN "baserom.gbc",$CC000,$4000
+INCBIN "baserom.gbc",$cc000, $cfd9e - $cc000
+
+Music_PostCredits: ; 0xcfd9e
+INCLUDE "music/postcredits.asm"
+; 0xcff04
+
+INCBIN "baserom.gbc",$cff04, $d0000 - $cff04
 
 SECTION "bank34",DATA,BANK[$34]
 
@@ -77933,107 +77953,107 @@ TrainerEncounterMusic: ; e9027
 Music: ; e906e
 	dbw BANK(Music_Nothing), Music_Nothing ; 0xe91a3
 	dbw BANK(Music_TitleScreen), Music_TitleScreen ; 0xeb808
-	dbw $3b, $4000
-	dbw $3b, $42ca
-	dbw $3b, $4506
-	dbw $3b, $75f0
-	dbw $3b, $4720
-	dbw $3b, $49fa
-	dbw $3b, $506d
-	dbw $3b, $55c6
-	dbw $3d, $7411
-	dbw $3b, $579b
-	dbw $3b, $582d
-	dbw $3c, $4697
-	dbw $3b, $772f
-	dbw $3b, $58dd
-	dbw $3b, $5b29
-	dbw $3b, $5bd8
-	dbw $3b, $5d6d
-	dbw $3b, $6119
-	dbw $3c, $45bf
-	dbw $3d, $4000
-	dbw $3d, $435b
+	dbw BANK(Music_Route1), Music_Route1 ; 0xec000
+	dbw BANK(Music_Route3), Music_Route3 ; 0xec2ca
+	dbw BANK(Music_Route12), Music_Route12 ; 0xec506
+	dbw BANK(Music_MagnetTrain), Music_MagnetTrain ; 0xef5f0
+	dbw BANK(Music_KantoGymLeaderBattle), Music_KantoGymLeaderBattle ; 0xec720
+	dbw BANK(Music_KantoTrainerBattle), Music_KantoTrainerBattle ; 0xec9fa
+	dbw BANK(Music_KantoWildPokemonBattle), Music_KantoWildPokemonBattle ; 0xed06d
+	dbw BANK(Music_PokemonCenter), Music_PokemonCenter ; 0xed5c6
+	dbw BANK(Music_LookHiker), Music_LookHiker ; 0xf7411
+	dbw BANK(Music_LookLass), Music_LookLass ; 0xed79b
+	dbw BANK(Music_LookOfficer), Music_LookOfficer ; 0xed82d
+	dbw BANK(Music_HealPokemon), Music_HealPokemon ; 0xf0697
+	dbw BANK(Music_LavenderTown), Music_LavenderTown ; 0xef72f
+	dbw BANK(Music_Route2), Music_Route2 ; 0xed8dd
+	dbw BANK(Music_MtMoon), Music_MtMoon ; 0xedb29
+	dbw BANK(Music_ShowMeAround), Music_ShowMeAround ; 0xedbd8
+	dbw BANK(Music_GameCorner), Music_GameCorner ; 0xedd6d
+	dbw BANK(Music_Bicycle), Music_Bicycle ; 0xee119
+	dbw BANK(Music_HallOfFame), Music_HallOfFame ; 0xf05bf
+	dbw BANK(Music_ViridianCity), Music_ViridianCity ; 0xf4000
+	dbw BANK(Music_CeladonCity), Music_CeladonCity ; 0xf435b
 	dbw BANK(Music_TrainerVictory), Music_TrainerVictory ; 0xebeab
-	dbw $3d, $4518
-	dbw $3d, $462c
-	dbw $3d, $4815
-	dbw $3d, $48ae
-	dbw $3d, $4b0c
-	dbw $3d, $4c9f
-	dbw $3d, $4dea
-	dbw $3d, $4f79
-	dbw $3d, $5127
-	dbw $3d, $518a
-	dbw $3c, $46e1
-	dbw $3d, $54e8
-	dbw $07, $731c
-	dbw $3d, $57e8
-	dbw $3d, $5b03
-	dbw $3d, $79b8
-	dbw $3d, $5c60
-	dbw $3d, $5dc5
-	dbw $3d, $6096
-	dbw $3b, $7c01
-	dbw $3b, $72d0
-	dbw $3c, $4000
+	dbw BANK(Music_WildPokemonVictory), Music_WildPokemonVictory ; 0xf4518
+	dbw BANK(Music_GymLeaderVictory), Music_GymLeaderVictory ; 0xf462c
+	dbw BANK(Music_MtMoonSquare), Music_MtMoonSquare ; 0xf4815
+	dbw BANK(Music_Gym), Music_Gym ; 0xf48ae
+	dbw BANK(Music_PalletTown), Music_PalletTown ; 0xf4b0c
+	dbw BANK(Music_ProfOaksPokemonTalk), Music_ProfOaksPokemonTalk ; 0xf4c9f
+	dbw BANK(Music_ProfOak), Music_ProfOak ; 0xf4dea
+	dbw BANK(Music_LookRival), Music_LookRival ; 0xf4f79
+	dbw BANK(Music_AfterTheRivalFight), Music_AfterTheRivalFight ; 0xf5127
+	dbw BANK(Music_Surf), Music_Surf ; 0xf518a
+	dbw BANK(Music_Evolution), Music_Evolution ; 0xf06e1
+	dbw BANK(Music_NationalPark), Music_NationalPark ; 0xf54e8
+	dbw BANK(Music_Credits), Music_Credits ; 0x1f31c
+	dbw BANK(Music_AzaleaTown), Music_AzaleaTown ; 0xf57e8
+	dbw BANK(Music_CherrygroveCity), Music_CherrygroveCity ; 0xf5b03
+	dbw BANK(Music_LookKimonoGirl), Music_LookKimonoGirl ; 0xf79b8
+	dbw BANK(Music_UnionCave), Music_UnionCave ; 0xf5c60
+	dbw BANK(Music_JohtoWildPokemonBattle), Music_JohtoWildPokemonBattle ; 0xf5dc5
+	dbw BANK(Music_JohtoTrainerBattle), Music_JohtoTrainerBattle ; 0xf6096
+	dbw BANK(Music_Route30), Music_Route30 ; 0xefc01
+	dbw BANK(Music_EcruteakCity), Music_EcruteakCity ; 0xef2d0
+	dbw BANK(Music_VioletCity), Music_VioletCity ; 0xf0000
 	dbw BANK(Music_JohtoGymLeaderBattle), Music_JohtoGymLeaderBattle ; 0xea50d
 	dbw BANK(Music_ChampionBattle), Music_ChampionBattle ; 0xea9c1
 	dbw BANK(Music_RivalBattle), Music_RivalBattle ; 0xe974f
 	dbw BANK(Music_RocketBattle), Music_RocketBattle ; 0xe9b6f
 	dbw BANK(Music_ElmsLab), Music_ElmsLab ; 0xea040
-	dbw BANK(Music_DarkCave), Music_DarkCave ; 0x
-	dbw $3c, $4386
+	dbw BANK(Music_DarkCave), Music_DarkCave ; 0xea2be
+	dbw BANK(Music_Route29), Music_Route29 ; 0xf0386
 	dbw BANK(Music_Route36), Music_Route36 ; 0xe94e9
 	dbw BANK(Music_SSAqua), Music_SSAqua ; 0xead99
-	dbw $3d, $66c3
-	dbw $3b, $6e3e
-	dbw $3d, $74a2
+	dbw BANK(Music_LookYoungster), Music_LookYoungster ; 0xf66c3
+	dbw BANK(Music_LookBeauty), Music_LookBeauty ; 0xeee3e
+	dbw BANK(Music_LookRocket), Music_LookRocket ; 0xf74a2
 	dbw BANK(Music_LookPokemaniac), Music_LookPokemaniac ; 0xebde1
-	dbw $3b, $635e
+	dbw BANK(Music_LookSage), Music_LookSage ; 0xee35e
 	dbw BANK(Music_NewBarkTown), Music_NewBarkTown ; 0xeb2d3
 	dbw BANK(Music_GoldenrodCity), Music_GoldenrodCity ; 0xeb453
 	dbw BANK(Music_VermilionCity), Music_VermilionCity ; 0xeb676
-	dbw $3b, $645f
-	dbw $3d, $7b13
-	dbw $3d, $6811
-	dbw $3d, $6974
-	dbw $3d, $6a99
-	dbw $3b, $6569
-	dbw $3b, $66c5
-	dbw $3b, $6852
-	dbw $3b, $694b
-	dbw $3b, $6b75
-	dbw $3b, $6ce8
-	dbw $3d, $605c
-	dbw $3b, $6dcb
-	dbw $3d, $4602
-	dbw $3b, $6fb2
-	dbw $3d, $6bf2
-	dbw $3d, $6c72
-	dbw $3d, $6d79
-	dbw $3d, $6e23
-	dbw $3d, $7055
-	dbw $3d, $7308
-	dbw $3d, $78fd
+	dbw BANK(Music_PokemonChannel), Music_PokemonChannel ; 0xee45f
+	dbw BANK(Music_PokeFluteChannel), Music_PokeFluteChannel ; 0xf7b13
+	dbw BANK(Music_TinTower), Music_TinTower ; 0xf6811
+	dbw BANK(Music_SproutTower), Music_SproutTower ; 0xf6974
+	dbw BANK(Music_BurnedTower), Music_BurnedTower ; 0xf6a99
+	dbw BANK(Music_Lighthouse), Music_Lighthouse ; 0xee569
+	dbw BANK(Music_LakeOfRage), Music_LakeOfRage ; 0xee6c5
+	dbw BANK(Music_IndigoPlateau), Music_IndigoPlateau ; 0xee852
+	dbw BANK(Music_Route37), Music_Route37 ; 0xee94b
+	dbw BANK(Music_RocketHideout), Music_RocketHideout ; 0xeeb75
+	dbw BANK(Music_DragonsDen), Music_DragonsDen ; 0xeece8
+	dbw BANK(Music_JohtoWildPokemonBattleNight), Music_JohtoWildPokemonBattleNight ; 0xf605c
+	dbw BANK(Music_RuinsOfAlphRadioSignal), Music_RuinsOfAlphRadioSignal ; 0xeedcb
+	dbw BANK(Music_SuccessfulCapture), Music_SuccessfulCapture ; 0xf4602
+	dbw BANK(Music_Route26), Music_Route26 ; 0xeefb2
+	dbw BANK(Music_Mom), Music_Mom ; 0xf6bf2
+	dbw BANK(Music_VictoryRoad), Music_VictoryRoad ; 0xf6c72
+	dbw BANK(Music_PokemonLullaby), Music_PokemonLullaby ; 0xf6d79
+	dbw BANK(Music_PokemonMarch), Music_PokemonMarch ; 0xf6e23
+	dbw BANK(Music_GoldSilverOpening), Music_GoldSilverOpening ; 0xf7055
+	dbw BANK(Music_GoldSilverOpening2), Music_GoldSilverOpening2 ; 0xf7308
+	dbw BANK(Music_MainMenu), Music_MainMenu ; 0xf78fd
 	dbw BANK(Music_RuinsOfAlphInterior), Music_RuinsOfAlphInterior ; 0xebd9e
-	dbw $3d, $766d
-	dbw $3b, $79bc
-	dbw $3b, $7b3e
-	dbw $3d, $7c16
-	dbw $3b, $75b1
-	dbw $3c, $47fd
-	dbw $33, $7d9e
-	dbw $07, $7a8d
-	dbw $5e, $401f
-	dbw $07, $7c87
-	dbw $5e, $4153
-	dbw $5e, $443b
-	dbw $5e, $46e8
-	dbw $5e, $4889
-	dbw $5e, $4b81
-	dbw $5e, $548b
-	dbw $5e, $561d
+	dbw BANK(Music_RocketTheme), Music_RocketTheme ; 0xf766d
+	dbw BANK(Music_DancingHall), Music_DancingHall ; 0xef9bc
+	dbw BANK(Music_BugCatchingContestResults), Music_BugCatchingContestResults ; 0xefb3e
+	dbw BANK(Music_BugCatchingContest), Music_BugCatchingContest ; 0xf7c16
+	dbw BANK(Music_LakeOfRageRocketsRadioSignal), Music_LakeOfRageRocketsRadioSignal ; 0xef5b1
+	dbw BANK(Music_Printer), Music_Printer ; 0xf07fd
+	dbw BANK(Music_PostCredits), Music_PostCredits ; 0xcfd9e
+	dbw BANK(Music_Clair), Music_Clair ; 0x1fa8d
+	dbw BANK(Music_MobileAdapterMenu), Music_MobileAdapterMenu ; 0x17801f
+	dbw BANK(Music_MobileAdapter), Music_MobileAdapter ; 0x1fc87
+	dbw BANK(Music_BuenasPassword), Music_BuenasPassword ; 0x178153
+	dbw BANK(Music_LookMysticalMan), Music_LookMysticalMan ; 0x17843b
+	dbw BANK(Music_CrystalOpening), Music_CrystalOpening ; 0x1786e8
+	dbw BANK(Music_BattleTowerTheme), Music_BattleTowerTheme ; 0x178889
+	dbw BANK(Music_SuicuneBattle), Music_SuicuneBattle ; 0x178b81
+	dbw BANK(Music_BattleTowerLobby), Music_BattleTowerLobby ; 0x17948b
+	dbw BANK(Music_MobileCenter), Music_MobileCenter ; 0x17961d
 ; e91a3
 
 Music_Nothing: ; 0xe91a3
@@ -78383,15 +78403,313 @@ INCLUDE "music/trainervictory.asm"
 
 SECTION "bank3B",DATA,BANK[$3B]
 
-INCBIN "baserom.gbc",$EC000,$4000
+Music_Route1: ; 0xec000
+INCLUDE "music/route1.asm"
+; 0xec2ca
+
+Music_Route3: ; 0xec2ca
+INCLUDE "music/route3.asm"
+; 0xec506
+
+Music_Route12: ; 0xec506
+INCLUDE "music/route12.asm"
+; 0xec720
+
+Music_KantoGymLeaderBattle: ; 0xec720
+INCLUDE "music/kantogymleaderbattle.asm"
+; 0xec9fa
+
+Music_KantoTrainerBattle: ; 0xec9fa
+INCLUDE "music/kantotrainerbattle.asm"
+; 0xed06d
+
+Music_KantoWildPokemonBattle: ; 0xed06d
+INCLUDE "music/kantowildpokemonbattle.asm"
+; 0xed5c6
+
+Music_PokemonCenter: ; 0xed5c6
+INCLUDE "music/pokemoncenter.asm"
+; 0xed79b
+
+Music_LookLass: ; 0xed79b
+INCLUDE "music/looklass.asm"
+; 0xed82d
+
+Music_LookOfficer: ; 0xed82d
+INCLUDE "music/lookofficer.asm"
+; 0xed8dd
+
+Music_Route2: ; 0xed8dd
+INCLUDE "music/route2.asm"
+; 0xedb29
+
+Music_MtMoon: ; 0xedb29
+INCLUDE "music/mtmoon.asm"
+; 0xedbd8
+
+Music_ShowMeAround: ; 0xedbd8
+INCLUDE "music/showmearound.asm"
+; 0xedd6d
+
+Music_GameCorner: ; 0xedd6d
+INCLUDE "music/gamecorner.asm"
+; 0xee119
+
+Music_Bicycle: ; 0xee119
+INCLUDE "music/bicycle.asm"
+; 0xee35e
+
+Music_LookSage: ; 0xee35e
+INCLUDE "music/looksage.asm"
+; 0xee45f
+
+Music_PokemonChannel: ; 0xee45f
+INCLUDE "music/pokemonchannel.asm"
+; 0xee569
+
+Music_Lighthouse: ; 0xee569
+INCLUDE "music/lighthouse.asm"
+; 0xee6c5
+
+Music_LakeOfRage: ; 0xee6c5
+INCLUDE "music/lakeofrage.asm"
+; 0xee852
+
+Music_IndigoPlateau: ; 0xee852
+INCLUDE "music/indigoplateau.asm"
+; 0xee94b
+
+Music_Route37: ; 0xee94b
+INCLUDE "music/route37.asm"
+; 0xeeb75
+
+Music_RocketHideout: ; 0xeeb75
+INCLUDE "music/rockethideout.asm"
+; 0xeece8
+
+Music_DragonsDen: ; 0xeece8
+INCLUDE "music/dragonsden.asm"
+; 0xeedcb
+
+Music_RuinsOfAlphRadioSignal: ; 0xeedcb
+INCLUDE "music/ruinsofalphradiosignal.asm"
+; 0xeee3e
+
+Music_LookBeauty: ; 0xeee3e
+INCLUDE "music/lookbeauty.asm"
+; 0xeefb2
+
+Music_Route26: ; 0xeefb2
+INCLUDE "music/route26.asm"
+; 0xef2d0
+
+Music_EcruteakCity: ; 0xef2d0
+INCLUDE "music/ecruteakcity.asm"
+; 0xef5b1
+
+Music_LakeOfRageRocketsRadioSignal: ; 0xef5b1
+INCLUDE "music/lakeofragerocketsradiosignal.asm"
+; 0xef5f0
+
+Music_MagnetTrain: ; 0xef5f0
+INCLUDE "music/magnettrain.asm"
+; 0xef72f
+
+Music_LavenderTown: ; 0xef72f
+INCLUDE "music/lavendertown.asm"
+; 0xef9bc
+
+Music_DancingHall: ; 0xef9bc
+INCLUDE "music/dancinghall.asm"
+; 0xefb3e
+
+Music_BugCatchingContestResults: ; 0xefb3e
+INCLUDE "music/bugcatchingcontestresults.asm"
+; 0xefc01
+
+Music_Route30: ; 0xefc01
+INCLUDE "music/route30.asm"
+; 0xefef5
 
 SECTION "bank3C",DATA,BANK[$3C]
 
-INCBIN "baserom.gbc",$F0000,$4000
+Music_VioletCity: ; 0xf0000
+INCLUDE "music/violetcity.asm"
+; 0xf0386
+
+Music_Route29: ; 0xf0386
+INCLUDE "music/route29.asm"
+; 0xf05bf
+
+Music_HallOfFame: ; 0xf05bf
+INCLUDE "music/halloffame.asm"
+; 0xf0697
+
+Music_HealPokemon: ; 0xf0697
+INCLUDE "music/healpokemon.asm"
+; 0xf06e1
+
+Music_Evolution: ; 0xf06e1
+INCLUDE "music/evolution.asm"
+; 0xf07fd
+
+Music_Printer: ; 0xf07fd
+INCLUDE "music/printer.asm"
+; 0xf0941
+
+INCBIN "baserom.gbc", $f0941, $f3fb6 - $f0941
 
 SECTION "bank3D",DATA,BANK[$3D]
 
-INCBIN "baserom.gbc",$F4000,$4000
+Music_ViridianCity: ; 0xf4000
+INCLUDE "music/viridiancity.asm"
+; 0xf435b
+
+Music_CeladonCity: ; 0xf435b
+INCLUDE "music/celadoncity.asm"
+; 0xf4518
+
+Music_WildPokemonVictory: ; 0xf4518
+INCLUDE "music/wildpokemonvictory.asm"
+; 0xf4602
+
+Music_SuccessfulCapture: ; 0xf4602
+INCLUDE "music/successfulcapture.asm"
+; 0xf462c
+
+Music_GymLeaderVictory: ; 0xf462c
+INCLUDE "music/gymleadervictory.asm"
+; 0xf4815
+
+Music_MtMoonSquare: ; 0xf4815
+INCLUDE "music/mtmoonsquare.asm"
+; 0xf48ae
+
+Music_Gym: ; 0xf48ae
+INCLUDE "music/gym.asm"
+; 0xf4b0c
+
+Music_PalletTown: ; 0xf4b0c
+INCLUDE "music/pallettown.asm"
+; 0xf4c9f
+
+Music_ProfOaksPokemonTalk: ; 0xf4c9f
+INCLUDE "music/profoakspokemontalk.asm"
+; 0xf4dea
+
+Music_ProfOak: ; 0xf4dea
+INCLUDE "music/profoak.asm"
+; 0xf4f79
+
+Music_LookRival: ; 0xf4f79
+INCLUDE "music/lookrival.asm"
+; 0xf5127
+
+Music_AfterTheRivalFight: ; 0xf5127
+INCLUDE "music/aftertherivalfight.asm"
+; 0xf518a
+
+Music_Surf: ; 0xf518a
+INCLUDE "music/surf.asm"
+; 0xf54e8
+
+Music_NationalPark: ; 0xf54e8
+INCLUDE "music/nationalpark.asm"
+; 0xf57e8
+
+Music_AzaleaTown: ; 0xf57e8
+INCLUDE "music/azaleatown.asm"
+; 0xf5b03
+
+Music_CherrygroveCity: ; 0xf5b03
+INCLUDE "music/cherrygrovecity.asm"
+; 0xf5c60
+
+Music_UnionCave: ; 0xf5c60
+INCLUDE "music/unioncave.asm"
+; 0xf5dc5
+
+Music_JohtoWildPokemonBattle: ; 0xf5dc5
+INCLUDE "music/johtowildpokemonbattle.asm"
+; 0xf605c
+
+Music_JohtoWildPokemonBattleNight: ; 0xf605c
+INCLUDE "music/johtowildpokemonbattlenight.asm"
+; 0xf6096
+
+Music_JohtoTrainerBattle: ; 0xf6096
+INCLUDE "music/johtotrainerbattle.asm"
+; 0xf66c3
+
+Music_LookYoungster: ; 0xf66c3
+INCLUDE "music/lookyoungster.asm"
+; 0xf6811
+
+Music_TinTower: ; 0xf6811
+INCLUDE "music/tintower.asm"
+; 0xf6974
+
+Music_SproutTower: ; 0xf6974
+INCLUDE "music/sprouttower.asm"
+; 0xf6a99
+
+Music_BurnedTower: ; 0xf6a99
+INCLUDE "music/burnedtower.asm"
+; 0xf6bf2
+
+Music_Mom: ; 0xf6bf2
+INCLUDE "music/mom.asm"
+; 0xf6c72
+
+Music_VictoryRoad: ; 0xf6c72
+INCLUDE "music/victoryroad.asm"
+; 0xf6d79
+
+Music_PokemonLullaby: ; 0xf6d79
+INCLUDE "music/pokemonlullaby.asm"
+; 0xf6e23
+
+Music_PokemonMarch: ; 0xf6e23
+INCLUDE "music/pokemonmarch.asm"
+; 0xf7055
+
+Music_GoldSilverOpening: ; 0xf7055
+INCLUDE "music/goldsilveropening.asm"
+; 0xf7308
+
+Music_GoldSilverOpening2: ; 0xf7308
+INCLUDE "music/goldsilveropening2.asm"
+; 0xf7411
+
+Music_LookHiker: ; 0xf7411
+INCLUDE "music/lookhiker.asm"
+; 0xf74a2
+
+Music_LookRocket: ; 0xf74a2
+; RocketTheme borrows heavily from this song
+INCLUDE "music/lookrocket.asm"
+; 0xf766d
+
+Music_RocketTheme: ; 0xf766d
+; borrows heavily from LookRocket
+INCLUDE "music/rockettheme.asm"
+; 0xf78fd
+
+Music_MainMenu: ; 0xf78fd
+INCLUDE "music/mainmenu.asm"
+; 0xf79b8
+
+Music_LookKimonoGirl: ; 0xf79b8
+INCLUDE "music/lookkimonogirl.asm"
+; 0xf7b13
+
+Music_PokeFluteChannel: ; 0xf7b13
+INCLUDE "music/pokeflutechannel.asm"
+; 0xf7c16
+
+Music_BugCatchingContest: ; 0xf7c16
+INCLUDE "music/bugcatchingcontest.asm"
+; 0xf7ef3
 
 SECTION "bank3E",DATA,BANK[$3E]
 
@@ -79090,7 +79408,41 @@ INCBIN "baserom.gbc",$174000,$4000
 
 SECTION "bank5E",DATA,BANK[$5E]
 
-INCBIN "baserom.gbc",$178000,$4000
+INCBIN "baserom.gbc", $178000, $1f
+
+Music_MobileAdapterMenu: ; 0x17801f
+INCLUDE "music/mobileadaptermenu.asm"
+; 0x178153
+
+Music_BuenasPassword: ; 0x178153
+INCLUDE "music/buenaspassword.asm"
+; 0x17843b
+
+Music_LookMysticalMan: ; 0x17843b
+INCLUDE "music/lookmysticalman.asm"
+; 0x1786e8
+
+Music_CrystalOpening: ; 0x1786e8
+INCLUDE "music/crystalopening.asm"
+; 0x178889
+
+Music_BattleTowerTheme: ; 0x178889
+INCLUDE "music/battletowertheme.asm"
+; 0x178b81
+
+Music_SuicuneBattle: ; 0x178b81
+INCLUDE "music/suicunebattle.asm"
+; 0x17948b
+
+Music_BattleTowerLobby: ; 0x17948b
+INCLUDE "music/battletowerlobby.asm"
+; 0x17961d
+
+Music_MobileCenter: ; 0x17961d
+INCLUDE "music/mobilecenter.asm"
+; 0x17982d
+
+INCBIN "baserom.gbc",$17982d, $17b629 - $17982d
 
 SECTION "bank5F",DATA,BANK[$5F]
 
