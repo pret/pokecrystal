@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 # utilities to help disassemble pokémon crystal
-import sys, os, inspect, md5, json
+import sys, os, inspect, hashlib, json
 from copy import copy, deepcopy
 import subprocess
 from new import classobj
@@ -7971,7 +7971,9 @@ class TestCram(unittest.TestCase):
         "ROM file must have the correct md5 sum"
         rom = self.rom
         correct = "9f2922b235a5eeb78d65594e82ef5dde"
-        md5sum = md5.md5(rom).hexdigest()
+        md5 = hashlib.md5()
+        md5.update(rom)
+        md5sum = md5.hexdigest()
         self.assertEqual(md5sum, correct)
 
     def test_bizarre_http_presence(self):
