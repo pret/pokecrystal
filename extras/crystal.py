@@ -2934,6 +2934,87 @@ def create_command_classes(debug=False):
     return klasses
 command_classes = create_command_classes()
 
+
+
+music_commands_new = {
+    0xD0: ["octave8"],
+    0xD1: ["octave7"],
+    0xD2: ["octave6"],
+    0xD3: ["octave5"],
+    0xD4: ["octave4"],
+    0xD5: ["octave3"],
+    0xD6: ["octave2"],
+    0xD7: ["octave1"],
+    0xD8: ["notetype", ["note_length", SingleByteParam], ["intensity", SingleByteParam]], # only 1 param on ch3
+    0xD9: ["forceoctave", ["octave", SingleByteParam]],
+    0xDA: ["tempo", ["tempo", MultiByteParam]],
+    0xDB: ["dutycycle", ["duty_cycle", SingleByteParam]],
+    0xDC: ["intensity", ["intensity", SingleByteParam]],
+    0xDD: ["soundinput", ["input", SingleByteParam]],
+    0xDE: ["unknownmusic0xde", ["unknown", SingleByteParam]], # also updates duty cycle
+    0xDF: ["unknownmusic0xdf"],
+    0xE0: ["unknownmusic0xe0", ["unknown", SingleByteParam], ["unknown", SingleByteParam]],
+    0xE1: ["vibrato", ["delay", SingleByteParam], ["extent", SingleByteParam]],
+    0xE2: ["unknownmusic0xe2", ["unknown", SingleByteParam]],
+    0xE3: ["togglenoise", ["id", SingleByteParam]], # this can have 0-1 params!
+    0xE4: ["panning", ["tracks", SingleByteParam]],
+    0xE5: ["volume", ["volume", SingleByteParam]],
+    0xE6: ["tone", ["tone", MultiByteParam]], # big endian
+    0xE7: ["unknownmusic0xe7", ["unknown", SingleByteParam]],
+    0xE8: ["unknownmusic0xe8", ["unknown", SingleByteParam]],
+    0xE9: ["globaltempo", ["value", MultiByteParam]],
+    0xEA: ["restartchannel", ["address", PointerLabelParam]],
+    0xEB: ["newsong", ["id", MultiByteParam]],
+    0xEC: ["sfxpriorityon"],
+    0xED: ["sfxpriorityoff"],
+    0xEE: ["unknownmusic0xee", ["address", PointerLabelParam]],
+    0xEF: ["stereopanning", ["tracks", SingleByteParam]],
+    0xF0: ["sfxtogglenoise", ["id", SingleByteParam]], # 0-1 params
+    0xF1: ["music0xf1"], # nothing
+    0xF2: ["music0xf2"], # nothing
+    0xF3: ["music0xf3"], # nothing
+    0xF4: ["music0xf4"], # nothing
+    0xF5: ["music0xf5"], # nothing
+    0xF6: ["music0xf6"], # nothing
+    0xF7: ["music0xf7"], # nothing
+    0xF8: ["music0xf8"], # nothing
+    0xF9: ["unknownmusic0xf9"],
+    0xFA: ["setcondition", ["condition", SingleByteParam]],
+    0xFB: ["jumpif", ["condition", SingleByteParam], ["address", PointerLabelParam]],
+    0xFC: ["jumpchannel", ["address", PointerLabelParam]],
+    0xFD: ["loopchannel", ["count", SingleByteParam], ["address", PointerLabelParam]],
+    0xFE: ["callchannel", ["address", PointerLabelParam]],
+    0xFF: ["endchannel"],
+}
+
+music_command_enders = [0xEA, 0xEB, 0xEE, 0xFC, 0xFF,]
+# special case for 0xFD (if loopchannel.count = 0, break)
+
+
+
+def create_music_command_classes(debug=False):
+    klasses = [GivePoke]
+    for (byte, cmd) in music_commands_new.items():
+        cmd_name = cmd[0].replace(" ", "_")
+        params = {"id": byte, "size": 1, "end": byte in music_command_enders, "macro_name": cmd_name}
+        params["param_types"] = {}
+        if len(cmd) > 1:
+            param_types = cmd[1:]
+            for (i, each) in enumerate(param_types):
+                thing = {"name": each[0], "class": each[1]}
+                params["param_types"][i] = thing
+                if debug:
+                    print "each is: " + str(each)
+                    print "thing[class] is: " + str(thing["class"])
+                params["size"] += thing["class"].size
+        klass_name = cmd_name+"Command"
+        klass = classobj(klass_name, (Command,), params)
+        globals()[klass_name] = klass
+        klasses.append(klass)
+    # later an individual klass will be instantiated to handle something
+    return klasses
+music_classes = create_music_command_classes()
+
 def generate_macros(filename="../script_macros.asm"):
     """generates all macros based on commands
     this is dumped into script_macros.asm"""
