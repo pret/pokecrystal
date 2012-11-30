@@ -552,34 +552,34 @@ def include_file(asm):
         read_line(line)
 
 def read_line(l):
-        # strip and store any comment on this line
-        if ";" in l:
-            asm, comment = separate_comment(l)
+    # strip and store any comment on this line
+    if ";" in l:
+        asm, comment = separate_comment(l)
+    else:
+        asm     = l
+        comment = None
+
+    # handle INCLUDE as a special case either at the start of the line or
+    # after the first character in the line (like a tab)
+    if "INCLUDE \"" in [asm[0:9], asm[1:9]]:
+        include_file(asm)
+
+    # convert text to bytes when a quote appears (not in a comment)
+    elif "\"" in asm:
+        quote_translator(asm)
+
+    # check against other preprocessor features
+    else:
+        macro, token = macro_test(asm)
+
+        if macro:
+            macro_translator(macro, token, asm)
         else:
-            asm     = l
-            comment = None
+            sys.stdout.write(asm)
 
-        # handle INCLUDE as a special case either at the start of the line or
-        # after the first character in the line (like a tab)
-        if "INCLUDE \"" in [asm[0:9], asm[1:9]]:
-            include_file(asm)
-
-        # convert text to bytes when a quote appears (not in a comment)
-        elif "\"" in asm:
-            quote_translator(asm)
-
-        # check against other preprocessor features
-        else:
-            macro, token = macro_test(asm)
-
-            if macro:
-                macro_translator(macro, token, asm)
-            else:
-                sys.stdout.write(asm)
-
-        # show line comment
-        if comment != None:
-            sys.stdout.write(comment)
+    # show line comment
+    if comment != None:
+        sys.stdout.write(comment)
 
 for l in sys.stdin:
     read_line(l)
