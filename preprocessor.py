@@ -552,6 +552,7 @@ def include_file(asm):
         read_line(line)
 
 def read_line(l):
+    """Preprocesses a given line of asm."""
     # strip and store any comment on this line
     if ";" in l:
         asm, comment = separate_comment(l)
@@ -581,5 +582,18 @@ def read_line(l):
     if comment != None:
         sys.stdout.write(comment)
 
-for l in sys.stdin:
-    read_line(l)
+def preprocess(lines=None):
+    """Main entry point for the preprocessor."""
+    if not lines:
+        # read each line from stdin
+        lines = sys.stdin
+    elif not isinstance(lines, list):
+        # split up the input into individual lines
+        lines = lines.split("\n")
+
+    for l in lines:
+        read_line(l)
+
+# only run against stdin when not included as a module
+if __name__ == "__main__":
+    preprocess()
