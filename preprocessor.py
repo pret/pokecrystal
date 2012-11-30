@@ -559,8 +559,9 @@ def read_line(l):
             asm     = l
             comment = None
 
-        # handle INCLUDE as a special case
-        if "INCLUDE \"" in asm:
+        # handle INCLUDE as a special case either at the start of the line or
+        # after the first character in the line (like a tab)
+        if "INCLUDE \"" in [asm[0:9], asm[1:9]]:
             include_file(asm)
 
         # convert text to bytes when a quote appears (not in a comment)
