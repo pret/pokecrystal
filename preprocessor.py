@@ -15,7 +15,8 @@ from extras.crystal import command_classes, \
                     ItemFragment, \
                     TextEndingCommand, \
                     text_command_classes, \
-                    movement_command_classes
+                    movement_command_classes, \
+                    music_classes
 
 macros = command_classes + \
     [
@@ -25,8 +26,9 @@ macros = command_classes + \
     PeopleEvent,
     DataByteWordMacro,
     ItemFragment,
-    ] + [x[1] for x in text_command_classes] \
-    + movement_command_classes
+    ] + [x[1] for x in text_command_classes] + \
+    movement_command_classes + \
+    music_classes
 
 chars = {
 "ガ": 0x05,
@@ -329,8 +331,8 @@ def quote_translator(asm):
 
     # skip asm that actually does use ASCII in quotes
     lowasm = asms[0].lower()
+    
     if "section" in lowasm \
-    or "include" in lowasm \
     or "incbin" in lowasm:
         sys.stdout.write(asm)
         return
@@ -488,6 +490,12 @@ def macro_translator(macro, token, line):
     else:
         allowed_lengths = [allowed_length]
 
+    if macro.macro_name == "notetype":
+        allowed_lengths = [1,2]
+    elif macro.macro_name == "togglenoise" \
+    or macro.macro_name == "sfxtogglenoise":
+        allowed_lengths = [0,1]
+
     assert len(params) in allowed_lengths, \
            "mismatched number of parameters on this line: " + \
            original_line
@@ -543,27 +551,42 @@ def macro_translator(macro, token, line):
 
             index += 1
 
-for l in sys.stdin:
-    # strip and store any comment on this line
-    if ";" in l:
-        asm, comment = separate_comment(l)
-    else:
-        asm     = l
-        comment = None
 
-    # convert text to bytes when a quote appears (not in a comment)
-    if "\"" in asm:
-        quote_translator(asm)
+def include_file(asm):
+    filename = asm.split("\"")
+    filename = filename[1].replace("\"","").replace("\n","")
+    lines = open(filename, 'r').readlines()
+    for line in lines:
+        read_line(line)
 
-    # check against other preprocessor features
-    else:
-        macro, token = macro_test(asm)
-
-        if macro:
-            macro_translator(macro, token, asm)
+def read_line(l):
+        # strip and store any comment on this line
+        if ";" in l:
+            asm, comment = separate_comment(l)
         else:
-            sys.stdout.write(asm)
+            asm     = l
+            comment = None
+        
+        if "INCLUDE \"" in asm:
+            include_file(asm)
+    
+        elif "\"" in asm:
+             # convert text to bytes when a quote appears (not in a comment)
+            quote_translator(asm)
+        
+    
+        # check against other preprocessor features
+        else:
+            macro, token = macro_test(asm)
+    
+            if macro:
+                macro_translator(macro, token, asm)
+            else:
+                sys.stdout.write(asm)
+    
+        # show line comment
+        if comment != None:
+            sys.stdout.write(comment)
 
-    # show line comment
-    if comment != None:
-        sys.stdout.write(comment)
+for l in sys.stdin:
+    read_line(l)
