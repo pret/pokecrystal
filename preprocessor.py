@@ -180,7 +180,6 @@ chars = {
 "ょ": 0xE2,
 "ー": 0xE3,
 
-
 "@": 0x50,
 "#": 0x54,
 "…": 0x75,
@@ -331,7 +330,7 @@ def quote_translator(asm):
 
     # skip asm that actually does use ASCII in quotes
     lowasm = asms[0].lower()
-    
+
     if "section" in lowasm \
     or "incbin" in lowasm:
         sys.stdout.write(asm)
@@ -442,7 +441,6 @@ def macro_translator(macro, token, line):
     # write out a comment showing the original line
     sys.stdout.write("; original_line: " + original_line)
 
-
     # "db" is a macro because of TextEndingCommand
     # rgbasm can handle "db" so no preprocessing is required
     # (don't check its param count)
@@ -545,7 +543,6 @@ def macro_translator(macro, token, line):
 
             index += 1
 
-
 def include_file(asm):
     filename = asm.split("\"")
     filename = filename[1].replace("\"","").replace("\n","")
@@ -560,24 +557,23 @@ def read_line(l):
         else:
             asm     = l
             comment = None
-        
+
         if "INCLUDE \"" in asm:
             include_file(asm)
-    
+
         elif "\"" in asm:
              # convert text to bytes when a quote appears (not in a comment)
             quote_translator(asm)
-        
-    
+
         # check against other preprocessor features
         else:
             macro, token = macro_test(asm)
-    
+
             if macro:
                 macro_translator(macro, token, asm)
             else:
                 sys.stdout.write(asm)
-    
+
         # show line comment
         if comment != None:
             sys.stdout.write(comment)
