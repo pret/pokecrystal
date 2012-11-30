@@ -544,6 +544,7 @@ def macro_translator(macro, token, line):
             index += 1
 
 def include_file(asm):
+    """This is more reliable than rgbasm/rgbds including files on its own."""
     filename = asm.split("\"")
     filename = filename[1].replace("\"","").replace("\n","")
     lines = open(filename, 'r').readlines()
@@ -558,11 +559,12 @@ def read_line(l):
             asm     = l
             comment = None
 
+        # handle INCLUDE as a special case
         if "INCLUDE \"" in asm:
             include_file(asm)
 
+        # convert text to bytes when a quote appears (not in a comment)
         elif "\"" in asm:
-             # convert text to bytes when a quote appears (not in a comment)
             quote_translator(asm)
 
         # check against other preprocessor features
