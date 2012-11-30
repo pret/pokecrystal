@@ -408,6 +408,7 @@ def macro_test(asm):
 def macro_translator(macro, token, line):
     """ Converts a line with a macro into a rgbasm-compatible line.
     """
+
     assert macro.macro_name == token, "macro/token mismatch"
 
     original_line = line
@@ -545,14 +546,17 @@ def macro_translator(macro, token, line):
 
 def include_file(asm):
     """This is more reliable than rgbasm/rgbds including files on its own."""
+
     filename = asm.split("\"")
     filename = filename[1].replace("\"","").replace("\n","")
     lines = open(filename, 'r').readlines()
+
     for line in lines:
         read_line(line)
 
 def read_line(l):
     """Preprocesses a given line of asm."""
+
     # strip and store any comment on this line
     if ";" in l:
         asm, comment = separate_comment(l)
@@ -584,6 +588,7 @@ def read_line(l):
 
 def preprocess(lines=None):
     """Main entry point for the preprocessor."""
+
     if not lines:
         # read each line from stdin
         lines = sys.stdin
