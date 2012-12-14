@@ -593,7 +593,7 @@ def asm_label(address):
     # why using a random value when you can use the address?
     return ".ASM_" + hex(address)[2:]
 
-def output_bank_opcodes(original_offset, max_byte_count=0x4000):
+def output_bank_opcodes(original_offset, max_byte_count=0x4000, debug = False):
     #fs = current_address
     #b = bank_byte
     #in = input_data  -- rom
@@ -601,11 +601,14 @@ def output_bank_opcodes(original_offset, max_byte_count=0x4000):
     #i = offset
     #ad = end_address
     #a, oa = current_byte_number
-
+    
+    load_labels()
+    load_rom()
+    
     bank_id = 0
     if original_offset > 0x8000:
         bank_id = original_offset / 0x4000
-    print "bank id is: " + str(bank_id)
+    if debug: print "bank id is: " + str(bank_id)
 
     last_hl_address = None #for when we're scanning the main map script
     last_a_address = None
@@ -830,7 +833,7 @@ def all_outstanding_labels_are_reverse(byte_labels, offset):
             if not label_id < offset: return False
     return True
 
+
+
 if __name__ == "__main__":
-    load_labels()
-    load_rom()
     print output_bank_opcodes(int(sys.argv[1], 16))[0]
