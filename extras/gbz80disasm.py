@@ -719,6 +719,19 @@ def output_bank_opcodes(original_offset, max_byte_count=0x4000):
                         last_a_address = ord(rom[offset + 1])
 
                     opstr = opstr[:opstr.find("x")].lower() + insertion + opstr[opstr.find("x")+1:].lower()
+
+                    # because the $ff00+$ff syntax is silly
+                    if opstr.count("$") > 0 and "+" in opstr:
+                        first_orig = opstr.split("$")[1].split("+")[0]
+                        first_num = "0x"+first_orig
+                        first_val = int(first_num, 16)
+                        second_orig = opstr.split("+$")[1].split("]")[0]
+                        second_num = "0x"+second_orig
+                        second_val = int(second_num, 16)
+                        combined_val = "$" + hex(first_val + second_val)[2:]
+                        replacetron = "[$"+first_orig+"+$"+second_orig+"]"
+                        opstr = opstr.replace(replacetron, "["+combined_val+"]")
+
                     output += spacing + opstr
                     if include_comment:
                         output += " ; " + hex(offset)
