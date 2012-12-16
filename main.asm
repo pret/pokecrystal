@@ -99,22 +99,22 @@ INCBIN "baserom.gbc",$538,$56d - $538
 
 DisableLCD: ; 56d
 	xor a
-	ld [$ff00+$f], a
-	ld a, [$ff00+$ff]
+	ld [$ff0f], a
+	ld a, [$ffff]
 	ld b, a
 	res 0, a
-	ld [$ff00+$ff], a
+	ld [$ffff], a
 .asm_577
-	ld a, [$ff00+$44]
+	ld a, [$ff44]
 	cp $91
 	jr nz, .asm_577 ; 0x57b $fa
-	ld a, [$ff00+$40]
+	ld a, [$ff40]
 	and $7f
-	ld [$ff00+$40], a
+	ld [$ff40], a
 	xor a
-	ld [$ff00+$f], a
+	ld [$ff0f], a
 	ld a, b
-	ld [$ff00+$ff], a
+	ld [$ffff], a
 	ret
 ; 0x58a
 
@@ -145,20 +145,20 @@ GetJoypadState; 984
 	ld a, [$c2c7]
 	cp a, $ff
 	jr z, .asm_9a7
-	ld a, [$ff00+$a4] ; input mask (usually 00)
+	ld a, [$ffa4] ; input mask (usually 00)
 	ld b, a
-	ld a, [$ff00+$a8] ; joypad
+	ld a, [$ffa8] ; joypad
 	ld e, a
 	xor b
 	ld d, a
 	and e
-	ld [$ff00+$a6], a
+	ld [$ffa6], a
 	ld a, d
 	and b
-	ld [$ff00+$a7], a
+	ld [$ffa7], a
 	ld c, a
 	ld a, b
-	ld [$ff00+$a8], a
+	ld [$ffa8], a
 .quit
 	pop bc
 	pop de
@@ -166,7 +166,7 @@ GetJoypadState; 984
 	pop af
 	ret
 .asm_9a7
-	ld a, [$ff00+$9d]
+	ld a, [$ff9d]
 	push af
 	ld a, [$c2ca]
 	rst $10
@@ -208,8 +208,8 @@ GetJoypadState; 984
 	pop af
 	rst $10
 	ld a, b
-	ld [$ff00+$a7], a
-	ld [$ff00+$a8], a
+	ld [$ffa7], a
+	ld [$ffa8], a
 	jr .quit
 ; 9ee
 
@@ -222,9 +222,9 @@ Function9ee: ; 9ee
 	xor a
 	ld [$c2cb], a
 	xor a
-	ld [$ff00+$a7], a
-	ld [$ff00+$a6], a
-	ld [$ff00+$a8], a
+	ld [$ffa7], a
+	ld [$ffa6], a
+	ld [$ffa8], a
 	ld a, $ff
 	ld [$c2c7], a
 	ret
@@ -245,10 +245,10 @@ INCBIN "baserom.gbc",$a1b,$e8d - $a1b
 
 ; copy bc bytes from a:hl to de
 FarCopyBytes: ; e8d
-	ld [$ff00+$8b], a
-	ld a, [$ff00+$9d] ; save old bank
+	ld [$ff8b], a
+	ld a, [$ff9d] ; save old bank
 	push af
-	ld a, [$ff00+$8b]
+	ld a, [$ff8b]
 	rst $10
 	call CopyBytes
 	pop af
@@ -258,10 +258,10 @@ FarCopyBytes: ; e8d
 
 ; copy bc*2 source bytes from a:hl to de, doubling each byte in process
 FarCopyBytesDouble: ; e9b
-	ld [$ff00+$8b], a
-	ld a, [$ff00+$9d] ; save current bank
+	ld [$ff8b], a
+	ld a, [$ff9d] ; save current bank
 	push af
-	ld a, [$ff00+$8b]
+	ld a, [$ff8b]
 	rst $10 ; bankswitch
 	ld a, h ; switcheroo, de <> hl
 	ld h, d
@@ -478,7 +478,7 @@ CheckDict:
 INCBIN "baserom.gbc",$117b,$1203 - $117b
 
 Char5D:
-	ld a, [$ff00+$e4]
+	ld a, [$ffe4]
 	push de
 	and a
 	jr nz, .asm_120e ; 0x1207 $5
@@ -572,7 +572,7 @@ GetTileType: ; 185d
 	ld e, a
 	ld d, $00
 	add hl, de
-	ld a, [$ff00+$9d] ; current bank
+	ld a, [$ff9d] ; current bank
 	push af
 	ld a, BANK(TileTypeTable)
 	rst $10
@@ -673,7 +673,7 @@ GetMapHeaderMember: ; 0x2c04
 
 GetAnyMapHeaderMember: ; 0x2c0c
 	; bankswitch
-	ld a, [$ff00+$9d]
+	ld a, [$ff9d]
 	push af
 	ld a, BANK(MapHeaderPointers)
 	rst $10
@@ -810,7 +810,7 @@ Function2fb1: ; 2fb1
 	push bc
 .asm_2fbb
 	call $2f8c
-	ld a, [$ff00+$e1]
+	ld a, [$ffe1]
 	ld c, a
 	add b
 	jr c, .asm_2fbb
@@ -902,31 +902,31 @@ ByteFill: ; 0x3041
 GetFarByte: ; 0x304d
 ; retrieve a single byte from a:hl, and return it in a.
 	; bankswitch to new bank
-	ld [$ff00+$8b], a
-	ld a, [$ff00+$9d]
+	ld [$ff8b], a
+	ld a, [$ff9d]
 	push af
-	ld a, [$ff00+$8b]
+	ld a, [$ff8b]
 	rst $10
 
 	; get byte from new bank
 	ld a, [hl]
-	ld [$ff00+$8b], a
+	ld [$ff8b], a
 
 	; bankswitch to previous bank
 	pop af
 	rst $10
 
 	; return retrieved value in a
-	ld a, [$ff00+$8b]
+	ld a, [$ff8b]
 	ret
 
 GetFarHalfword: ; 0x305d
 ; retrieve a halfword from a:hl, and return it in hl.
 	; bankswitch to new bank
-	ld [$ff00+$8b], a
-	ld a, [$ff00+$9d]
+	ld [$ff8b], a
+	ld a, [$ff9d]
 	push af
-	ld a, [$ff00+$8b]
+	ld a, [$ff8b]
 	rst $10
 
 	; get halfword from new bank, put it in hl
@@ -1062,7 +1062,7 @@ PrintLetterDelay: ; 313d
 	ld a, [$c2d7]
 	and a
 	jr nz, .asm_317f
-	ld a, [$ff00+$a8]	; joypad
+	ld a, [$ffa8]	; joypad
 	bit 0, a			; is a pressed?
 	jr z, .anotpressed
 	jr .delay
@@ -1078,7 +1078,7 @@ PrintLetterDelay: ; 313d
 	jr nz, .checkjoypad
 .end
 	pop af
-	ld [$ff00+$d8], a
+	ld [$ffd8], a
 	pop bc
 	pop de
 	pop hl
@@ -1157,7 +1157,7 @@ NamesPointerTable: ; 33ab
 	dbw $04, $4b52
 
 GetName: ; 33c3
-	ld a, [$ff00+$9d]
+	ld a, [$ff9d]
 	push af
 	push hl
 	push bc
@@ -1379,12 +1379,12 @@ LoadMusicByte: ; 3b86
 ; input:
 ;   a: bank
 ;   de: address
-	ld [$ff00+$9d], a
+	ld [$ff9d], a
 	ld [$2000], a ; bankswitch
 	ld a, [de]
 	ld [CurMusicByte], a
 	ld a, $3a ; manual bank restore
-	ld [$ff00+$9d], a
+	ld [$ff9d], a
 	ld [$2000], a ; bankswitch
 	ret
 ; 3b97
@@ -1396,10 +1396,10 @@ StartMusic: ; 3b97
 	push de
 	push bc
 	push af
-	ld a, [$ff00+$9d] ; save bank
+	ld a, [$ff9d] ; save bank
 	push af
 	ld a, BANK(LoadMusic)
-	ld [$ff00+$9d], a
+	ld [$ff9d], a
 	ld [$2000], a ; bankswitch
 	ld a, e ; song number
 	and a
@@ -1410,7 +1410,7 @@ StartMusic: ; 3b97
 	call SoundRestart
 .end
 	pop af
-	ld [$ff00+$9d], a ; restore bank
+	ld [$ff9d], a ; restore bank
 	ld [$2000], a
 	pop af
 	pop bc
@@ -1437,16 +1437,16 @@ StartSFX: ; 3c23
 	cp e
 	jr c, .quit
 .asm_3c32
-	ld a, [$ff00+$9d] ; save bank
+	ld a, [$ff9d] ; save bank
 	push af
 	ld a, $3a ; music bank
-	ld [$ff00+$9d], a
+	ld [$ff9d], a
 	ld [$2000], a ; bankswitch
 	ld a, e
 	ld [CurSFX], a
 	call LoadSFX
 	pop af
-	ld [$ff00+$9d], a ; restore bank
+	ld [$ff9d], a ; restore bank
 	ld [$2000], a ; bankswitch
 .quit
 	pop af
@@ -1871,10 +1871,10 @@ SpecialSnorlaxAwake: ; 0xc43d
 INCBIN "baserom.gbc",$c472,$c478 - $c472
 
 SpecialGameboyCheck: ; 0xc478
-	ld a, [$ff00+$e6]
+	ld a, [$ffe6]
 	and a
 	jr nz, .color
-	ld a, [$ff00+$e7]
+	ld a, [$ffe7]
 	and a
 	jr nz, .unknown
 	xor a
@@ -11845,7 +11845,7 @@ BattleStartMessage:
 	xor a
 	ld [$cfca], a
 	ld a, $1
-	ld [$ff00+$e4], a
+	ld [$ffe4], a
 	ld a, $1
 	ld [$c689], a
 	ld de, $0101
@@ -75006,10 +75006,10 @@ UpdateSound: ; e805c
 	call FadeMusic
 	; write volume to hardware register
 	ld a, [Volume]
-	ld [$ff00+$24], a
+	ld [$ff24], a
 	; write SO on/off to hardware register
 	ld a, [SoundOutput]
-	ld [$ff00+$25], a
+	ld [$ff25], a
 	ret
 ; e8125
 
@@ -75049,7 +75049,7 @@ UpdateChannels: ; e8125
 	jr z, .asm_e8159
 	;
 	ld a, [SoundInput]
-	ld [$ff00+$10], a
+	ld [$ff10], a
 .asm_e8159
 	bit 5, [hl] ; rest
 	jr nz, .ch1rest
@@ -75062,33 +75062,33 @@ UpdateChannels: ; e8125
 	jr .asm_e8175
 .asm_e816b
 	ld a, [$c294]
-	ld [$ff00+$13], a
+	ld [$ff13], a
 	ld a, [$c295]
-	ld [$ff00+$14], a
+	ld [$ff14], a
 .asm_e8175
 	bit 0, [hl]
 	ret z
 	ld a, [$c292]
 	ld d, a
-	ld a, [$ff00+$11]
+	ld a, [$ff11]
 	and a, $3f ; sound length
 	or d
-	ld [$ff00+$11], a
+	ld [$ff11], a
 	ret
 .asm_e8184
 	ld a, [$c292]
 	ld d, a
-	ld a, [$ff00+$11]
+	ld a, [$ff11]
 	and a, $3f ; sound length
 	or d
-	ld [$ff00+$11], a
+	ld [$ff11], a
 	ld a, [$c294]
-	ld [$ff00+$13], a
+	ld [$ff13], a
 	ret
 .ch1rest
-	ld a, [$ff00+$26]
+	ld a, [$ff26]
 	and a, %10001110 ; ch1 off
-	ld [$ff00+$26], a
+	ld [$ff26], a
 	ld hl, $ff10
 	call ClearChannel
 	ret
@@ -75096,14 +75096,14 @@ UpdateChannels: ; e8125
 	ld hl, $c292
 	ld a, $3f ; sound length
 	or [hl]
-	ld [$ff00+$11], a
+	ld [$ff11], a
 	ld a, [$c293]
-	ld [$ff00+$12], a
+	ld [$ff12], a
 	ld a, [$c294]
-	ld [$ff00+$13], a
+	ld [$ff13], a
 	ld a, [$c295]
 	or a, $80
-	ld [$ff00+$14], a
+	ld [$ff14], a
 	ret
 
 .Channel2
@@ -75120,31 +75120,31 @@ UpdateChannels: ; e8125
 	ret z
 	ld a, [$c292]
 	ld d, a
-	ld a, [$ff00+$16]
+	ld a, [$ff16]
 	and a, $3f ; sound length
 	or d
-	ld [$ff00+$16], a
+	ld [$ff16], a
 	ret
 .asm_e81db ; unused
 	ld a, [$c294]
-	ld [$ff00+$18], a
+	ld [$ff18], a
 	ld a, [$c295]
-	ld [$ff00+$19], a
+	ld [$ff19], a
 	ret
 .asm_e81e6
 	ld a, [$c292]
 	ld d, a
-	ld a, [$ff00+$16]
+	ld a, [$ff16]
 	and a, $3f ; sound length
 	or d
-	ld [$ff00+$16], a
+	ld [$ff16], a
 	ld a, [$c294]
-	ld [$ff00+$18], a
+	ld [$ff18], a
 	ret
 .ch2rest
-	ld a, [$ff00+$26]
+	ld a, [$ff26]
 	and a, %10001101 ; ch2 off
-	ld [$ff00+$26], a
+	ld [$ff26], a
 	ld hl, $ff15
 	call ClearChannel
 	ret
@@ -75152,14 +75152,14 @@ UpdateChannels: ; e8125
 	ld hl, $c292
 	ld a, $3f ; sound length
 	or [hl]
-	ld [$ff00+$16], a
+	ld [$ff16], a
 	ld a, [$c293]
-	ld [$ff00+$17], a
+	ld [$ff17], a
 	ld a, [$c294]
-	ld [$ff00+$18], a
+	ld [$ff18], a
 	ld a, [$c295]
 	or a, $80 ; initial (restart)
-	ld [$ff00+$19], a
+	ld [$ff19], a
 	ret
 
 .Channel3
@@ -75175,34 +75175,34 @@ UpdateChannels: ; e8125
 	ret
 .asm_e822f ; unused
 	ld a, [$c294]
-	ld [$ff00+$1d], a
+	ld [$ff1d], a
 	ld a, [$c295]
-	ld [$ff00+$1e], a
+	ld [$ff1e], a
 	ret
 .asm_e823a
 	ld a, [$c294]
-	ld [$ff00+$1d], a
+	ld [$ff1d], a
 	ret
 .ch3rest
-	ld a, [$ff00+$26]
+	ld a, [$ff26]
 	and a, %10001011 ; ch3 off
-	ld [$ff00+$26], a
+	ld [$ff26], a
 	ld hl, $ff1a
 	call ClearChannel
 	ret
 .asm_e824d
 	ld a, $3f
-	ld [$ff00+$1b], a
+	ld [$ff1b], a
 	xor a
-	ld [$ff00+$1a], a
+	ld [$ff1a], a
 	call .asm_e8268
 	ld a, $80
-	ld [$ff00+$1a], a
+	ld [$ff1a], a
 	ld a, [$c294]
-	ld [$ff00+$1d], a
+	ld [$ff1d], a
 	ld a, [$c295]
 	or a, $80
-	ld [$ff00+$1e], a
+	ld [$ff1e], a
 	ret
 .asm_e8268
 	push hl
@@ -75221,42 +75221,42 @@ UpdateChannels: ; e8125
 	add hl, de
 	; load wavepattern into $ff30-$ff3f
 	ld a, [hli]
-	ld [$ff00+$30], a
+	ld [$ff30], a
 	ld a, [hli]
-	ld [$ff00+$31], a
+	ld [$ff31], a
 	ld a, [hli]
-	ld [$ff00+$32], a
+	ld [$ff32], a
 	ld a, [hli]
-	ld [$ff00+$33], a
+	ld [$ff33], a
 	ld a, [hli]
-	ld [$ff00+$34], a
+	ld [$ff34], a
 	ld a, [hli]
-	ld [$ff00+$35], a
+	ld [$ff35], a
 	ld a, [hli]
-	ld [$ff00+$36], a
+	ld [$ff36], a
 	ld a, [hli]
-	ld [$ff00+$37], a
+	ld [$ff37], a
 	ld a, [hli]
-	ld [$ff00+$38], a
+	ld [$ff38], a
 	ld a, [hli]
-	ld [$ff00+$39], a
+	ld [$ff39], a
 	ld a, [hli]
-	ld [$ff00+$3a], a
+	ld [$ff3a], a
 	ld a, [hli]
-	ld [$ff00+$3b], a
+	ld [$ff3b], a
 	ld a, [hli]
-	ld [$ff00+$3c], a
+	ld [$ff3c], a
 	ld a, [hli]
-	ld [$ff00+$3d], a
+	ld [$ff3d], a
 	ld a, [hli]
-	ld [$ff00+$3e], a
+	ld [$ff3e], a
 	ld a, [hli]
-	ld [$ff00+$3f], a
+	ld [$ff3f], a
 	pop hl
 	ld a, [$c293]
 	and a, $f0
 	sla a
-	ld [$ff00+$1c], a
+	ld [$ff1c], a
 	ret
 
 .Channel4
@@ -75270,24 +75270,24 @@ UpdateChannels: ; e8125
 	ret
 .asm_e82c1 ; unused
 	ld a, [$c294]
-	ld [$ff00+$22], a
+	ld [$ff22], a
 	ret
 .ch4rest
-	ld a, [$ff00+$26]
+	ld a, [$ff26]
 	and a, %10000111 ; ch4 off
-	ld [$ff00+$26], a
+	ld [$ff26], a
 	ld hl, $ff1f
 	call ClearChannel
 	ret
 .asm_e82d4
 	ld a, $3f ; sound length
-	ld [$ff00+$20], a
+	ld [$ff20], a
 	ld a, [$c293]
-	ld [$ff00+$21], a
+	ld [$ff21], a
 	ld a, [$c294]
-	ld [$ff00+$22], a
+	ld [$ff22], a
 	ld a, $80
-	ld [$ff00+$23], a
+	ld [$ff23], a
 	ret
 ; e82e7
 
@@ -75333,15 +75333,15 @@ Functione8307: ; e8307
 	ld hl, Tablee8350
 .updatehw
 	xor a
-	ld [$ff00+$10], a ; sweep off
+	ld [$ff10], a ; sweep off
 	ld a, [hli]
-	ld [$ff00+$11], a ; sound length / duty cycle
+	ld [$ff11], a ; sound length / duty cycle
 	ld a, [hli]
-	ld [$ff00+$12], a ; ch1 volume envelope
+	ld [$ff12], a ; ch1 volume envelope
 	ld a, [hli]
-	ld [$ff00+$13], a ; ch1 frequency lo
+	ld [$ff13], a ; ch1 frequency lo
 	ld a, [hli]
-	ld [$ff00+$14], a ; ch1 frequency hi
+	ld [$ff14], a ; ch1 frequency hi
 .asm_e8335
 	ld a, d
 	inc a
@@ -75990,7 +75990,7 @@ ParseMusic: ; e85e1
 	jr nz, .ok
 	; ????
 	xor a
-	ld [$ff00+$10], a ; sweep = 0
+	ld [$ff10], a ; sweep = 0
 .ok
 ; stop playing
 	; turn channel off
@@ -77252,56 +77252,56 @@ LoadSFX: ; e8c04
 	jr z, .ch6
 	res 0, [hl] ; turn it off
 	xor a
-	ld [$ff00+$11], a ; length/wavepattern = 0
+	ld [$ff11], a ; length/wavepattern = 0
 	ld a, $08
-	ld [$ff00+$12], a ; envelope = 0
+	ld [$ff12], a ; envelope = 0
 	xor a
-	ld [$ff00+$13], a ; frequency lo = 0
+	ld [$ff13], a ; frequency lo = 0
 	ld a, $80
-	ld [$ff00+$14], a ; restart sound (freq hi = 0)
+	ld [$ff14], a ; restart sound (freq hi = 0)
 	xor a
 	ld [SoundInput], a ; global sound off
-	ld [$ff00+$10], a ; sweep = 0
+	ld [$ff10], a ; sweep = 0
 .ch6
 	ld hl, $c1fe ; ch6 on?
 	bit 0, [hl]
 	jr z, .ch7
 	res 0, [hl] ; turn it off
 	xor a
-	ld [$ff00+$16], a ; length/wavepattern = 0
+	ld [$ff16], a ; length/wavepattern = 0
 	ld a, $08
-	ld [$ff00+$17], a ; envelope = 0
+	ld [$ff17], a ; envelope = 0
 	xor a
-	ld [$ff00+$18], a ; frequency lo = 0
+	ld [$ff18], a ; frequency lo = 0
 	ld a, $80
-	ld [$ff00+$19], a ; restart sound (freq hi = 0)
+	ld [$ff19], a ; restart sound (freq hi = 0)
 .ch7
 	ld hl, $c230 ; ch7 on?
 	bit 0, [hl]
 	jr z, .ch8
 	res 0, [hl] ; turn it off
 	xor a
-	ld [$ff00+$1a], a ; sound mode #3 off
-	ld [$ff00+$1b], a ; length/wavepattern = 0
+	ld [$ff1a], a ; sound mode #3 off
+	ld [$ff1b], a ; length/wavepattern = 0
 	ld a, $08
-	ld [$ff00+$1c], a ; envelope = 0
+	ld [$ff1c], a ; envelope = 0
 	xor a
-	ld [$ff00+$1d], a ; frequency lo = 0
+	ld [$ff1d], a ; frequency lo = 0
 	ld a, $80
-	ld [$ff00+$1e], a ; restart sound (freq hi = 0)
+	ld [$ff1e], a ; restart sound (freq hi = 0)
 .ch8
 	ld hl, $c262 ; ch8 on?
 	bit 0, [hl]
 	jr z, .chscleared
 	res 0, [hl] ; turn it off
 	xor a
-	ld [$ff00+$20], a ; length/wavepattern = 0
+	ld [$ff20], a ; length/wavepattern = 0
 	ld a, $08
-	ld [$ff00+$21], a ; envelope = 0
+	ld [$ff21], a ; envelope = 0
 	xor a
-	ld [$ff00+$22], a ; frequency lo = 0
+	ld [$ff22], a ; frequency lo = 0
 	ld a, $80
-	ld [$ff00+$23], a ; restart sound (freq hi = 0)
+	ld [$ff23], a ; restart sound (freq hi = 0)
 	xor a
 	ld [NoiseSampleAddressLo], a
 	ld [NoiseSampleAddressHi], a
@@ -78778,28 +78778,28 @@ CalcMagikarpLength: ; fbbfc
 	jr nc, .advancetable
 	call BCMinusDE
 	ld a, b
-	ld [$ff00+$b3], a
+	ld [$ffb3], a
 	ld a, c
-	ld [$ff00+$b4], a
+	ld [$ffb4], a
 	ld a, [hl]
-	ld [$ff00+$b7], a
+	ld [$ffb7], a
 	ld b, $02
 	call Divide
-	ld a, [$ff00+$b6]
+	ld a, [$ffb6]
 	ld c, a ; c = bc / [hl]
 	xor a
-	ld [$ff00+$b4], a
-	ld [$ff00+$b5], a
+	ld [$ffb4], a
+	ld [$ffb5], a
 	ld a, $64
-	ld [$ff00+$b6], a
+	ld [$ffb6], a
 	ld a, [$d265]
-	ld [$ff00+$b7], a
+	ld [$ffb7], a
 	call Multiply ; $64 * (2 + number of rows down the table)
 	ld b, $00
-	ld a, [$ff00+$b6]
+	ld a, [$ffb6]
 	add c
 	ld e, a
-	ld a, [$ff00+$b5]
+	ld a, [$ffb5]
 	adc b
 	ld d, a
 	jr .endtable
@@ -78968,13 +78968,13 @@ INCBIN "baserom.gbc",$114000,$117a7f - $114000
 ; Mobile Stadium option from the continue/newgame menu.
 ; XXX better function names
 Function117a7f: ; 0x117a7f
-	ld a, [$ff00+$aa]
+	ld a, [$ffaa]
 	push af
 	ld a, $1
-	ld [$ff00+$aa], a
+	ld [$ffaa], a
 	call Function117a8d
 	pop af
-	ld [$ff00+$aa], a
+	ld [$ffaa], a
 	ret
 ; 0x117a8d
 
@@ -79089,7 +79089,7 @@ Function117b31:
 	jp Function117cdd
 
 Function117b4f:
-	ld a, [$ff00+$a7]
+	ld a, [$ffa7]
 	cp $2
 	jr z, .asm_117ba4 ; 0x117b53 $4f
 	cp $1
@@ -79147,7 +79147,7 @@ Function117b4f:
 Function117bb6:
 	call Function117c89
 	ld a, $1
-	ld [$ff00+$d4], a
+	ld [$ffd4], a
 	ld a, $46
 	ld hl, $4284
 	rst $8
@@ -79171,10 +79171,10 @@ Function117bb6:
 	ld [$cf63], a
 	ret
 .asm_117be7
-	ld a, [$ff00+$70]
+	ld a, [$ff70]
 	push af
 	ld a, $3
-	ld [$ff00+$70], a
+	ld [$ff70], a
 	ld a, [$cd89]
 	and $1
 	jr nz, .asm_117c16 ; 0x117bf3 $21
@@ -79198,20 +79198,20 @@ Function117bb6:
 	jr .asm_117c20 ; 0x117c14 $a
 .asm_117c16
 	pop af
-	ld [$ff00+$70], a
+	ld [$ff70], a
 	ld a, $d3
 	ld [$c300], a
 	jr .asm_117bd0 ; 0x117c1e $b0
 .asm_117c20
 	pop af
-	ld [$ff00+$70], a
+	ld [$ff70], a
 	ld a, $5c
 	ld hl, $6eb9
 	rst $8
-	ld a, [$ff00+$70]
+	ld a, [$ff70]
 	push af
 	ld a, $3
-	ld [$ff00+$70], a
+	ld [$ff70], a
 	ld a, $7
 	call $2fcb
 	ld hl, $d002
@@ -79220,7 +79220,7 @@ Function117bb6:
 	call $3026
 	call $2fe1
 	pop af
-	ld [$ff00+$70], a
+	ld [$ff70], a
 	jp Function117cdd
 
 Function117c4a:
@@ -79233,10 +79233,10 @@ Function117c4a:
 	rst $8
 	ld hl, MobileStadiumSuccessText
 	call $1057
-	ld a, [$ff00+$70]
+	ld a, [$ff70]
 	push af
 	ld a, $5
-	ld [$ff00+$70], a
+	ld [$ff70], a
 	ld hl, $d000
 	ld de, $0008
 	ld c, $8
@@ -79252,7 +79252,7 @@ Function117c4a:
 	jr nz, .asm_117c71 ; 0x117c7b $f4
 	call $04b6
 	pop af
-	ld [$ff00+$70], a
+	ld [$ff70], a
 	ld a, $80
 	ld [$cf63], a
 	ret
