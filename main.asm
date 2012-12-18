@@ -29973,7 +29973,7 @@ UnknownScript_0x683ec: ; 0x683ec
 	setbit1 $03fb
 	setbit1 $03fc
 	domaptrigger GROUP_ELMS_LAB, MAP_ELMS_LAB, $2
-	specialphonecall $3, $0
+	specialphonecall $3
 	2writetext UnknownText_0x685c8
 	keeptextopen
 	verbosegiveitem TM_31, 1
@@ -80785,7 +80785,7 @@ UnknownScript_0x181454: ; 0x181454
 	special $001b
 	checkbit1 $0024
 	iftrue UnknownScript_0x181497
-	specialphonecall $5, $0
+	specialphonecall $5
 UnknownScript_0x181497: ; 0x181497
 	halloffame
 	end
@@ -88760,7 +88760,7 @@ UnknownScript_0x18d100: ; 0x18d100
 	playsound $009c
 	waitbutton
 	special $003d
-	specialphonecall $8, $0
+	specialphonecall $8
 	dotrigger $1
 	domaptrigger GROUP_DRAGONS_DEN_B1F, MAP_DRAGONS_DEN_B1F, $1
 	2writetext UnknownText_0x18d9f2
@@ -97972,7 +97972,7 @@ UnknownScript_0x196ec9: ; 0x196ec9
 	dotrigger $1
 	domaptrigger GROUP_CHERRYGROVE_CITY, MAP_CHERRYGROVE_CITY, $1
 	domaptrigger GROUP_ELMS_LAB, MAP_ELMS_LAB, $3
-	specialphonecall $2, $0
+	specialphonecall $2
 	clearbit1 $0702
 	checkbit1 $001c
 	iftrue UnknownScript_0x196f49
@@ -110381,7 +110381,7 @@ UnknownScript_0x1a543c: ; 0x1a543c
 ; 0x1a5443
 
 UnknownScript_0x1a5443: ; 0x1a5443
-	specialphonecall $7, $0
+	specialphonecall $7
 	return
 ; 0x1a5447
 

@@ -2894,7 +2894,7 @@ pksv_crystal_more = {
     0x99: ["hangup"],
     0x9A: ["describedecoration", ["byte", SingleByteParam]],
     0x9B: ["fruittree", ["tree_id", SingleByteParam]],
-    0x9C: ["specialphonecall", ["call_id", SingleByteParam], ["wtf", SingleByteParam]],
+    0x9C: ["specialphonecall", ["call_id", MultiByteParam]],
     0x9D: ["checkphonecall"],
     0x9E: ["verbosegiveitem", ["item", ItemLabelByte], ["quantity", DecimalParam]],
     0x9F: ["verbosegiveitem2", ["item", ItemLabelByte]],
