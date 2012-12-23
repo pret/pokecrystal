@@ -283,10 +283,28 @@ CurMusic: ; c2c0
 ; id of music currently playing
 	ds 1
 
+SECTION "auto",BSS[$c2c7]
+InputType: ; c2c7
+; 00 normal
+; ff auto
+	ds 1
+AutoInputAddress: ; c2c8
+	ds 2
+AutoInputBank: ; c2ca
+	ds 1
+AutoInputLength: ; c2cb
+	ds 1
 
 SECTION "linkbattle",BSS[$c2dc]
 InLinkBattle: ; c2dc
-	ds 1 ; nonzero when in a link battle
+; 0 not in link battle
+; 1 link battle
+; 4 mobile battle
+	ds 1
+
+SECTION "scriptengine",BSS[$c2dd]
+ScriptVar: ; c2dd
+	ds 1
 
 
 SECTION "tiles",BSS[$c2fa]
@@ -652,10 +670,17 @@ TileX: ; cf83
 
 
 
-SECTION "VBlank",BSS[$cfb3]
+SECTION "VBlank",BSS[$cfb2]
+TextDelayFrames: ; cfb2
+	ds 1
 VBlankOccurred: ; cfb3
 	ds 1
 
+	ds 8
+
+GameTimerPause: ; cfbc
+; bit 0
+	ds 1
 
 SECTION "Engine",BSS[$cfc2]
 FXAnimID:
@@ -674,7 +699,8 @@ TileAnimationTimer: ; cfc6
 Options: ; cfcc
 ; bit 0-2: number of frames to delay when printing text
 ;   fast 1; mid 3; slow 5
-; bit 3-4: unused
+; bit 3: ?
+; bit 4: no text delay
 ; bit 5: stereo off/on
 ; bit 6: battle style shift/set
 ; bit 7: battle scene off/on
@@ -902,9 +928,10 @@ CurBaseStats: ; d236
 SECTION "TimeOfDay",BSS[$d269]
 
 TimeOfDay: ; d269
-; 0 if morn
-; 1 if day
-; 2 if nite
+; 0 morn
+; 1 day
+; 2 nite
+; 3 darkness
 	ds 1
 
 SECTION "OtherTrainerParty",BSS[$d280]
@@ -1460,7 +1487,7 @@ StartSecond: ; d4b9
 	
 GameTimeCap: ; d4c3
 	ds 1
-GameTimeHours: ; 14c4
+GameTimeHours: ; d4c4
 	ds 2
 GameTimeMinutes: ; d4c6
 	ds 1
@@ -1489,7 +1516,18 @@ PlayerDirection: ; d4de
 ; $11 right
 	ds 1
 
-SECTION "Status",BSS[$d84e]
+SECTION "Status",BSS[$d841]
+TimeOfDayPal: ; d841
+	ds 1
+	ds 4
+; d846
+	ds 1
+	ds 1
+CurTimeOfDay: ; d848
+	ds 1
+	
+	ds 5
+
 Money: ; d84e
 	ds 3
 
