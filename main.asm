@@ -2532,7 +2532,7 @@ SpecialsPointers: ; 0xc029
 	dbw BANK(SpecialGameboyCheck),SpecialGameboyCheck
 	dbw BANK(SpecialTrainerHouse),SpecialTrainerHouse
 	dbw $05,$6dc7
-	dbw $0a,$62a0
+	dbw BANK(SpecialRoamMons), SpecialRoamMons
 	dbw $03,$448f
 	dbw $03,$449f
 	dbw $03,$44ac
@@ -4248,7 +4248,54 @@ INCBIN "baserom.gbc",$24000,$28000 - $24000
 
 SECTION "bankA",DATA,BANK[$A]
 
-INCBIN "baserom.gbc",$28000,$2A5e9 - $28000
+INCBIN "baserom.gbc",$28000,$2a2a0 - $28000
+
+SpecialRoamMons: ; 2a2a0
+; initialize RoamMon structs
+; include commented-out parts from the gs function
+
+; species
+	ld a, RAIKOU
+	ld [RoamMon1Species], a
+	ld a, ENTEI
+	ld [RoamMon2Species], a
+;	ld a, SUICUNE
+;	ld [RoamMon3Species], a
+
+; level
+	ld a, 40
+	ld [RoamMon1Level], a
+	ld [RoamMon2Level], a
+;	ld [RoamMon3Level], a
+
+; raikou starting map
+	ld a, GROUP_ROUTE_42
+	ld [RoamMon1MapGroup], a
+	ld a, MAP_ROUTE_42
+	ld [RoamMon1MapNumber], a
+
+; entei starting map
+	ld a, GROUP_ROUTE_37
+	ld [RoamMon2MapGroup], a
+	ld a, MAP_ROUTE_37
+	ld [RoamMon2MapNumber], a
+
+; suicune starting map
+;	ld a, GROUP_ROUTE_38
+;	ld [RoamMon3MapGroup], a
+;	ld a, MAP_ROUTE_38
+;	ld [RoamMon3MapNumber], a
+
+; hp
+	xor a ; generate new stats
+	ld [RoamMon1CurHP], a
+	ld [RoamMon2CurHP], a
+;	ld [RoamMon3CurHP], a
+
+	ret
+; 2a2ce
+
+INCBIN "baserom.gbc",$2a2ce,$2a5e9 - $2a2ce
 
 WildMons1: ; 0x2a5e9
 ; Johto Pokémon in grass
@@ -7332,130 +7379,130 @@ INCBIN "baserom.gbc",$30000,$34000 - $30000
 
 SECTION "bankD",DATA,BANK[$D]
 
-INCBIN "baserom.gbc",$34000,$34BB1 - $34000
+INCBIN "baserom.gbc",$34000,$34bb1 - $34000
 
-TypeEffects: ; 0x34BB1
-; format: attacking type, defending type, damage multiplier
-; multiplier is a (decimal) fixed-point number
-;	$14 is *2.0
-;	$05 is *0.5
-;	$00 is *0
+TypeEffects: ; 34bb1
+; multiplier /= 10 (20 = 2.0 etc)
 
-	db NORMAL,ROCK,$05
-	db NORMAL,STEEL,$05
-	db FIRE,FIRE,$05
-	db FIRE,WATER,$05
-	db FIRE,GRASS,$14
-	db FIRE,ICE,$14
-	db FIRE,BUG,$14
-	db FIRE,ROCK,$05
-	db FIRE,DRAGON,$05
-	db FIRE,STEEL,$14
-	db WATER,FIRE,$14
-	db WATER,WATER,$05
-	db WATER,GRASS,$05
-	db WATER,GROUND,$14
-	db WATER,ROCK,$14
-	db WATER,DRAGON,$05
-	db ELECTRIC,WATER,$14
-	db ELECTRIC,ELECTRIC,$05
-	db ELECTRIC,GRASS,$05
-	db ELECTRIC,GROUND,$00
-	db ELECTRIC,FLYING,$14
-	db ELECTRIC,DRAGON,$05
-	db GRASS,FIRE,$05
-	db GRASS,WATER,$14
-	db GRASS,GRASS,$05
-	db GRASS,POISON,$05
-	db GRASS,GROUND,$14
-	db GRASS,FLYING,$05
-	db GRASS,BUG,$05
-	db GRASS,ROCK,$14
-	db GRASS,DRAGON,$05
-	db GRASS,STEEL,$05
-	db ICE,WATER,$05
-	db ICE,GRASS,$14
-	db ICE,ICE,$05
-	db ICE,GROUND,$14
-	db ICE,FLYING,$14
-	db ICE,DRAGON,$14
-	db ICE,STEEL,$05
-	db ICE,FIRE,$05
-	db FIGHTING,NORMAL,$14
-	db FIGHTING,ICE,$14
-	db FIGHTING,POISON,$05
-	db FIGHTING,FLYING,$05
-	db FIGHTING,PSYCHIC,$05
-	db FIGHTING,BUG,$05
-	db FIGHTING,ROCK,$14
-	db FIGHTING,DARK,$14
-	db FIGHTING,STEEL,$14
-	db POISON,GRASS,$14
-	db POISON,POISON,$05
-	db POISON,GROUND,$05
-	db POISON,ROCK,$05
-	db POISON,GHOST,$05
-	db POISON,STEEL,$00
-	db GROUND,FIRE,$14
-	db GROUND,ELECTRIC,$14
-	db GROUND,GRASS,$05
-	db GROUND,POISON,$14
-	db GROUND,FLYING,$00
-	db GROUND,BUG,$05
-	db GROUND,ROCK,$14
-	db GROUND,STEEL,$14
-	db FLYING,ELECTRIC,$05
-	db FLYING,GRASS,$14
-	db FLYING,FIGHTING,$14
-	db FLYING,BUG,$14
-	db FLYING,ROCK,$05
-	db FLYING,STEEL,$05
-	db PSYCHIC,FIGHTING,$14
-	db PSYCHIC,POISON,$14
-	db PSYCHIC,PSYCHIC,$05
-	db PSYCHIC,DARK,$00
-	db PSYCHIC,STEEL,$05
-	db BUG,FIRE,$05
-	db BUG,GRASS,$14
-	db BUG,FIGHTING,$05
-	db BUG,POISON,$05
-	db BUG,FLYING,$05
-	db BUG,PSYCHIC,$14
-	db BUG,GHOST,$05
-	db BUG,DARK,$14
-	db BUG,STEEL,$05
-	db ROCK,FIRE,$14
-	db ROCK,ICE,$14
-	db ROCK,FIGHTING,$05
-	db ROCK,GROUND,$05
-	db ROCK,FLYING,$14
-	db ROCK,BUG,$14
-	db ROCK,STEEL,$05
-	db GHOST,NORMAL,$00
-	db GHOST,PSYCHIC,$14
-	db GHOST,DARK,$05
-	db GHOST,STEEL,$05
-	db GHOST,GHOST,$14
-	db DRAGON,DRAGON,$14
-	db DRAGON,STEEL,$05
-	db DARK,FIGHTING,$05
-	db DARK,PSYCHIC,$14
-	db DARK,GHOST,$14
-	db DARK,DARK,$05
-	db DARK,STEEL,$05
-	db STEEL,FIRE,$05
-	db STEEL,WATER,$05
-	db STEEL,ELECTRIC,$05
-	db STEEL,ICE,$14
-	db STEEL,ROCK,$14
-	db STEEL,STEEL,$05
-	db $FE ; foresight
-	db NORMAL,GHOST,$00
-	db FIGHTING,GHOST,$00
-	db $FF ; end
-	; 0x34CFD
+;	  attacker  defender	*=
 
-INCBIN "baserom.gbc",$34CFD,$38000 - $34CFD
+	db NORMAL,	 ROCK,		05
+	db NORMAL,	 STEEL,		05
+	db FIRE,	 FIRE,		05
+	db FIRE,	 WATER,		05
+	db FIRE,	 GRASS,		20
+	db FIRE,	 ICE,		20
+	db FIRE,	 BUG,		20
+	db FIRE,	 ROCK,		05
+	db FIRE,	 DRAGON,	05
+	db FIRE,	 STEEL,		20
+	db WATER,	 FIRE,		20
+	db WATER,	 WATER,		05
+	db WATER,	 GRASS,		05
+	db WATER,	 GROUND,	20
+	db WATER,	 ROCK,		20
+	db WATER,	 DRAGON,	05
+	db ELECTRIC, WATER,		20
+	db ELECTRIC, ELECTRIC,	05
+	db ELECTRIC, GRASS,		05
+	db ELECTRIC, GROUND,	00
+	db ELECTRIC, FLYING,	20
+	db ELECTRIC, DRAGON,	05
+	db GRASS,	 FIRE,		05
+	db GRASS,	 WATER,		20
+	db GRASS,	 GRASS,		05
+	db GRASS,	 POISON,	05
+	db GRASS,	 GROUND,	20
+	db GRASS,	 FLYING,	05
+	db GRASS,	 BUG,		05
+	db GRASS,	 ROCK,		20
+	db GRASS,	 DRAGON,	05
+	db GRASS,	 STEEL,		05
+	db ICE,		 WATER,		05
+	db ICE,		 GRASS,		20
+	db ICE,		 ICE,		05
+	db ICE,		 GROUND,	20
+	db ICE,		 FLYING,	20
+	db ICE,		 DRAGON,	20
+	db ICE,		 STEEL,		05
+	db ICE,		 FIRE,		05
+	db FIGHTING, NORMAL,	20
+	db FIGHTING, ICE,		20
+	db FIGHTING, POISON,	05
+	db FIGHTING, FLYING,	05
+	db FIGHTING, PSYCHIC,	05
+	db FIGHTING, BUG,		05
+	db FIGHTING, ROCK,		20
+	db FIGHTING, DARK,		20
+	db FIGHTING, STEEL,		20
+	db POISON,	 GRASS,		20
+	db POISON,	 POISON,	05
+	db POISON,	 GROUND,	05
+	db POISON,	 ROCK,		05
+	db POISON,	 GHOST,		05
+	db POISON,	 STEEL,		00
+	db GROUND,	 FIRE,		20
+	db GROUND,	 ELECTRIC,	20
+	db GROUND,	 GRASS,		05
+	db GROUND,	 POISON,	20
+	db GROUND,	 FLYING,	00
+	db GROUND,	 BUG,		05
+	db GROUND,	 ROCK,		20
+	db GROUND,	 STEEL,		20
+	db FLYING,	 ELECTRIC,	05
+	db FLYING,	 GRASS,		20
+	db FLYING,	 FIGHTING,	20
+	db FLYING,	 BUG,		20
+	db FLYING,	 ROCK,		05
+	db FLYING,	 STEEL,		05
+	db PSYCHIC,	 FIGHTING,	20
+	db PSYCHIC,	 POISON,	20
+	db PSYCHIC,	 PSYCHIC,	05
+	db PSYCHIC,	 DARK,		00
+	db PSYCHIC,	 STEEL,		05
+	db BUG,		 FIRE,		05
+	db BUG,		 GRASS,		20
+	db BUG,		 FIGHTING,	05
+	db BUG,		 POISON,	05
+	db BUG,		 FLYING,	05
+	db BUG,		 PSYCHIC,	20
+	db BUG,		 GHOST,		05
+	db BUG,		 DARK,		20
+	db BUG,		 STEEL,		05
+	db ROCK,	 FIRE,		20
+	db ROCK,	 ICE,		20
+	db ROCK,	 FIGHTING,	05
+	db ROCK,	 GROUND,	05
+	db ROCK,	 FLYING,	20
+	db ROCK,	 BUG,		20
+	db ROCK,	 STEEL,		05
+	db GHOST,	 NORMAL,	00
+	db GHOST,	 PSYCHIC,	20
+	db GHOST,	 DARK,		05
+	db GHOST,	 STEEL,		05
+	db GHOST,	 GHOST,		20
+	db DRAGON,	 DRAGON,	20
+	db DRAGON,	 STEEL,		05
+	db DARK,	 FIGHTING,	05
+	db DARK,	 PSYCHIC,	20
+	db DARK,	 GHOST,		20
+	db DARK,	 DARK,		05
+	db DARK,	 STEEL,		05
+	db STEEL,	 FIRE,		05
+	db STEEL,	 WATER,		05
+	db STEEL,	 ELECTRIC,	05
+	db STEEL,	 ICE,		20
+	db STEEL,	 ROCK,		20
+	db STEEL,	 STEEL,		05
+
+	db $fe ; foresight
+	db NORMAL,	 GHOST,		00
+	db FIGHTING, GHOST,		00
+
+	db $ff ; end
+; 34cfd
+
+INCBIN "baserom.gbc",$34cfd,$38000 - $34cfd
 
 SECTION "bankE",DATA,BANK[$E]
 
