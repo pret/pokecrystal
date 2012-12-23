@@ -11414,7 +11414,7 @@ INCBIN "baserom.gbc",$3ddc8,$3e8eb - $3ddc8
 Function3e8eb: ; 3e8eb
 ;part of battle init
 	xor a
-	ld hl, EnemyMonSpecies2
+	ld hl, EnemyMonSpecies
 	ld bc, $0027
 	call ByteFill
 	ld a, [InLinkBattle]
@@ -11423,8 +11423,8 @@ Function3e8eb: ; 3e8eb
 	ld a, [$cfc0]
 	bit 0, a
 	jp nz, $5abd
-	ld a, [EnemyMonSpecies]
-	ld [EnemyMonSpecies2], a
+	ld a, [TempEnemyMonSpecies]
+	ld [EnemyMonSpecies], a
 	ld [$cf60], a
 	ld [$d108], a
 	call $3856
@@ -11515,7 +11515,7 @@ Function3e8eb: ; 3e8eb
 	ld a, [$d22d]
 	dec a
 	jr nz, .asm_3ea1a
-	ld a, [EnemyMonSpecies]
+	ld a, [TempEnemyMonSpecies]
 	cp a, UNOWN
 	jr nz, .notunown
 	ld hl, EnemyMonDVs
@@ -11524,7 +11524,7 @@ Function3e8eb: ; 3e8eb
 	call CheckUnownLetter
 	jr c, .asm_3e9a0
 .notunown
-	ld a, [EnemyMonSpecies]
+	ld a, [TempEnemyMonSpecies]
 	cp a, MAGIKARP
 	jr nz, .asm_3ea1a
 	ld de, EnemyMonDVs
@@ -11679,7 +11679,7 @@ Function3e8eb: ; 3e8eb
 	inc de
 	ld a, [$d240]
 	ld [de], a
-	ld a, [EnemyMonSpecies]
+	ld a, [TempEnemyMonSpecies]
 	ld [$d265], a
 	call $343b
 	ld a, [$d22d]
@@ -11689,7 +11689,7 @@ Function3e8eb: ; 3e8eb
 	ld de, $c616
 	ld bc, $000b
 	call CopyBytes
-	ld a, [EnemyMonSpecies]
+	ld a, [TempEnemyMonSpecies]
 	dec a
 	ld c, a
 	ld b, $01
@@ -11715,7 +11715,7 @@ CheckSleepingTreeMon: ; 3eb38
 	jr z, .check
 	ld hl, SleepingTreeMonNiteTable
 .check
-	ld a, [EnemyMonSpecies]
+	ld a, [TempEnemyMonSpecies]
 	ld de, $0001
 	call IsInArray
 	ret c
