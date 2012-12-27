@@ -141,40 +141,40 @@ INCBIN "baserom.gbc",$547,$568 - $547
 
 DisableLCD: ; 568
 ; don't need to do anything if lcd is already off
-	ld a, [$ff00+$40] ; LCDC
+	ld a, [$ff40] ; LCDC
 	bit 7, a ; lcd enable
 	ret z
 	
 ; reset ints
 	xor a
-	ld [$ff00+$f], a ; IF
+	ld [$ff0f], a ; IF
 	
 ; save enabled ints
-	ld a, [$ff00+$ff] ; IE
+	ld a, [$ffff] ; IE
 	ld b, a
 	
 ; disable vblank
 	res 0, a ; vblank
-	ld [$ff00+$ff], a ; IE
+	ld [$ffff], a ; IE
 	
 .wait
 ; wait until vblank
-	ld a, [$ff00+$44] ; LY
+	ld a, [$ff44] ; LY
 	cp 145 ; >144 (ensure beginning of vblank)
 	jr nz, .wait
 	
 ; turn lcd off
-	ld a, [$ff00+$40] ; LCDC
+	ld a, [$ff40] ; LCDC
 	and %01111111 ; lcd enable off
-	ld [$ff00+$40], a ; LCDC
+	ld [$ff40], a ; LCDC
 	
 ; reset ints
 	xor a
-	ld [$ff00+$f], a ; IF
+	ld [$ff0f], a ; IF
 	
 ; restore enabled ints
 	ld a, b
-	ld [$ff00+$ff], a ; IE
+	ld [$ffff], a ; IE
 	ret
 ; 58a
 
@@ -228,25 +228,25 @@ GetClock: ; 5b7
 	ld [hl], $8 ; S
 	ld a, [de]
 	and $3f
-	ld [$ff00+$91], a
+	ld [$ff91], a
 ; minutes
 	ld [hl], $9 ; M
 	ld a, [de]
 	and $3f
-	ld [$ff00+$90], a
+	ld [$ff90], a
 ; hours
 	ld [hl], $a ; H
 	ld a, [de]
 	and $1f
-	ld [$ff00+$8f], a
+	ld [$ff8f], a
 ; day lo
 	ld [hl], $b ; DL
 	ld a, [de]
-	ld [$ff00+$8e], a
+	ld [$ff8e], a
 ; day hi
 	ld [hl], $c ; DH
 	ld a, [de]
-	ld [$ff00+$8d], a
+	ld [$ff8d], a
 	
 ; cleanup
 	call CloseSRAM ; unlatch clock, disable clock r/w
@@ -259,16 +259,16 @@ FixDays: ; 5e8
 ; mod by 140
 
 ; check if day count > 255 (bit 8 set)
-	ld a, [$ff00+$8d] ; DH
+	ld a, [$ff8d] ; DH
 	bit 0, a
 	jr z, .daylo
 ; reset dh (bit 8)
 	res 0, a
-	ld [$ff00+$8d], a ; DH
+	ld [$ff8d], a ; DH
 	
 ; mod 140
 ; mod twice since bit 8 (DH) was set
-	ld a, [$ff00+$8e] ; DL
+	ld a, [$ff8e] ; DL
 .modh
 	sub 140
 	jr nc, .modh
@@ -278,7 +278,7 @@ FixDays: ; 5e8
 	add 140
 	
 ; update dl
-	ld [$ff00+$8e], a ; DL
+	ld [$ff8e], a ; DL
 
 ; unknown output
 	ld a, $40 ; %1000000
@@ -286,7 +286,7 @@ FixDays: ; 5e8
 
 .daylo
 ; quit if fewer than 140 days have passed
-	ld a, [$ff00+$8e] ; DL
+	ld a, [$ff8e] ; DL
 	cp 140
 	jr c, .quit
 	
@@ -297,7 +297,7 @@ FixDays: ; 5e8
 	add 140
 	
 ; update dl
-	ld [$ff00+$8e], a ; DL
+	ld [$ff8e], a ; DL
 	
 ; unknown output
 	ld a, $20 ; %100000
@@ -322,7 +322,7 @@ FixTime: ; 61d
 ; store time in CurDay, $ff94, $ff96, $ff98
 
 ; second
-	ld a, [$ff00+$91] ; S
+	ld a, [$ff91] ; S
 	ld c, a
 	ld a, [StartSecond]
 	add c
@@ -330,11 +330,11 @@ FixTime: ; 61d
 	jr nc, .updatesec
 	add 60
 .updatesec
-	ld [$ff00+$98], a
+	ld [$ff98], a
 	
 ; minute
 	ccf ; carry is set, so turn it off
-	ld a, [$ff00+$90] ; M
+	ld a, [$ff90] ; M
 	ld c, a
 	ld a, [StartMinute]
 	adc c
@@ -342,11 +342,11 @@ FixTime: ; 61d
 	jr nc, .updatemin
 	add 60
 .updatemin
-	ld [$ff00+$96], a
+	ld [$ff96], a
 	
 ; hour
 	ccf ; carry is set, so turn it off
-	ld a, [$ff00+$8f] ; H
+	ld a, [$ff8f] ; H
 	ld c, a
 	ld a, [StartHour]
 	adc c
@@ -354,11 +354,11 @@ FixTime: ; 61d
 	jr nc, .updatehr
 	add 24
 .updatehr
-	ld [$ff00+$94], a
+	ld [$ff94], a
 	
 ; day
 	ccf ; carry is set, so turn it off
-	ld a, [$ff00+$8e] ; DL
+	ld a, [$ff8e] ; DL
 	ld c, a
 	ld a, [StartDay]
 	adc c
@@ -393,23 +393,23 @@ SetClock: ; 691
 	
 ; seconds
 	ld [hl], $8 ; S
-	ld a, [$ff00+$91]
+	ld a, [$ff91]
 	ld [de], a
 ; minutes
 	ld [hl], $9 ; M
-	ld a, [$ff00+$90]
+	ld a, [$ff90]
 	ld [de], a
 ; hours
 	ld [hl], $a ; H
-	ld a, [$ff00+$8f]
+	ld a, [$ff8f]
 	ld [de], a
 ; day lo
 	ld [hl], $b ; DL
-	ld a, [$ff00+$8e]
+	ld a, [$ff8e]
 	ld [de], a
 ; day hi
 	ld [hl], $c ; DH
-	ld a, [$ff00+$8d]
+	ld a, [$ff8d]
 	res 6, a ; make sure timer is active
 	ld [de], a
 	
@@ -481,7 +481,7 @@ GetJoypadPublic: ; 984
 ; struct: [input][duration]
 
 ; save bank
-	ld a, [$ff00+$9d]
+	ld a, [$ff9d]
 	push af
 ; 
 	ld a, [AutoInputBank]
@@ -591,11 +591,11 @@ DmgToCgbBGPals: ; c9f
 ; exists to forego reinserting cgb-converted image data
 
 ; input: a -> bgp
-	ld [$ff00+$47], a ; bgp
+	ld [$ff47], a ; bgp
 	push af
 	
 ; check cgb
-	ld a, [$ff00+$e6]
+	ld a, [$ffe6]
 	and a
 	jr z, .end
 	
@@ -603,27 +603,27 @@ DmgToCgbBGPals: ; c9f
 	push de
 	push bc
 ; save wram bank
-	ld a, [$ff00+$70]
+	ld a, [$ff70]
 	push af
 ; wram bank 5
 	ld a, 5
-	ld [$ff00+$70], a
+	ld [$ff70], a
 
 ; copy & reorder bg pal buffer
 	ld hl, BGPals ; to
 	ld de, Unkn1Pals ; from
 ; order
-	ld a, [$ff00+$47] ; bgp
+	ld a, [$ff47] ; bgp
 	ld b, a
 ; # pals
 	ld c, 8 ; all pals
 	call CopyPals
 ; request pal update
 	ld a, $1
-	ld [$ff00+$e5], a
+	ld [$ffe5], a
 ; restore wram bank
 	pop af
-	ld [$ff00+$70], a
+	ld [$ff70], a
 	pop bc
 	pop de
 	pop hl
@@ -639,12 +639,12 @@ DmgToCgbObjPals: ; ccb
 ; input: d -> obp1
 ;		 e -> obp2
 	ld a, e
-	ld [$ff00+$48], a ; obp0
+	ld [$ff48], a ; obp0
 	ld a, d
-	ld [$ff00+$49], a ; obp1
+	ld [$ff49], a ; obp1
 	
 ; check cgb
-	ld a, [$ff00+$e6]
+	ld a, [$ffe6]
 	and a
 	ret z
 	
@@ -652,11 +652,11 @@ DmgToCgbObjPals: ; ccb
 	push de
 	push bc
 ; save wram bank
-	ld a, [$ff00+$70]
+	ld a, [$ff70]
 	push af
 ; wram bank 5
 	ld a, $5
-	ld [$ff00+$70], a
+	ld [$ff70], a
 	
 ; copy & reorder obj pal buffer
 	; to
@@ -664,17 +664,17 @@ DmgToCgbObjPals: ; ccb
 	; from
 	ld de, Unkn2Pals
 ; order
-	ld a, [$ff00+$48] ; obp0
+	ld a, [$ff48] ; obp0
 	ld b, a
 ; # pals
 	ld c, 8 ; all pals
 	call CopyPals
 ; request pal update
 	ld a, $1
-	ld [$ff00+$e5], a
+	ld [$ffe5], a
 ; restore wram bank
 	pop af
-	ld [$ff00+$70], a
+	ld [$ff70], a
 	pop bc
 	pop de
 	pop hl
@@ -1240,7 +1240,7 @@ Predef: ; 2d83
 	ld [$cfb4], a
 	
 ; save bank
-	ld a, [$ff00+$9d] ; current bank
+	ld a, [$ff9d] ; current bank
 	push af
 	
 ; get Predef function to call
@@ -1733,12 +1733,12 @@ GetSGBLayout: ; 3340
 ; load sgb packets unless gb
 
 ; check cgb
-	ld a, [$ff00+$e6]
+	ld a, [$ffe6]
 	and a
 	jr nz, .dosgb
 	
 ; check sgb
-	ld a, [$ff00+$e7]
+	ld a, [$ffe7]
 	and a
 	ret z
 	
@@ -3063,7 +3063,7 @@ INCBIN "baserom.gbc",$14000,$14032 - $14000
 
 GetTimeOfDay: ; 14032
 ; get time of day based on the current hour
-	ld a, [$ff00+$94] ; hour
+	ld a, [$ff94] ; hour
 	ld hl, TimeOfDayTable
 	
 .check
@@ -54369,11 +54369,11 @@ TimeOfDayPals: ; 8c011
 	ld hl, $d038 ; Unkn1Pals + 7 pals
 	
 ; save wram bank
-	ld a, [$ff00+$70] ; wram bank
+	ld a, [$ff70] ; wram bank
 	ld b, a
 ; wram bank 5
 	ld a, 5
-	ld [$ff00+$70], a ; wram bank
+	ld [$ff70], a ; wram bank
 	
 ; push palette
 	ld c, 4 ; NUM_PAL_COLORS
@@ -54388,7 +54388,7 @@ TimeOfDayPals: ; 8c011
 	
 ; restore wram bank
 	ld a, b
-	ld [$ff00+$70], a ; wram bank
+	ld [$ff70], a ; wram bank
 	
 	
 ; update sgb pals
@@ -54400,11 +54400,11 @@ TimeOfDayPals: ; 8c011
 	ld hl, $d03f ; last byte in Unkn1Pals
 	
 ; save wram bank
-	ld a, [$ff00+$70] ; wram bank
+	ld a, [$ff70] ; wram bank
 	ld d, a
 ; wram bank 5
 	ld a, 5
-	ld [$ff00+$70], a ; wram bank
+	ld [$ff70], a ; wram bank
 	
 ; pop palette
 	ld e, 4 ; NUM_PAL_COLORS
@@ -54419,7 +54419,7 @@ TimeOfDayPals: ; 8c011
 	
 ; restore wram bank
 	ld a, d
-	ld [$ff00+$70], a ; wram bank
+	ld [$ff70], a ; wram bank
 	
 ; update palettes
 	call UpdateTimePals
@@ -54516,7 +54516,7 @@ INCBIN "baserom.gbc",$8c15e,$8c17c - $8c15e
 
 GetTimePalFade: ; 8c17c
 ; check cgb
-	ld a, [$ff00+$e6]
+	ld a, [$ffe6]
 	and a
 	jr nz, .cgb
 	
