@@ -80,13 +80,34 @@ DelayFrames: ; 0x468
 	ret
 ; 0x46f
 
-INCBIN "baserom.gbc",$46f,$52f - $46f
+RTC: ; 46f
+; update time and time-sensitive palettes
 
-IncGradGBPalTable_01: ; 0x52f
-	db %11111111 ;BG Pal
-	db %11111111 ;OBJ Pal 1
-	db %11111111 ;OBJ Pal 2
-	             ;and so on...
+; rtc enabled?
+	ld a, [$c2ce]
+	cp $0
+	ret z
+	
+; update clock
+	call UpdateTime
+	
+; obj update on?
+	ld a, [VramState]
+	bit 0, a ; obj update
+	ret z
+	
+; update palettes
+	callab TimeOfDayPals
+	ret
+; 485
+
+INCBIN "baserom.gbc",$485,$52f - $485
+
+IncGradGBPalTable_01: ; 52f
+	db %11111111 ; bgp
+	db %11111111 ; obp1
+	db %11111111 ; obp2
+	             ; and so on...
 	db %11111110
 	db %11111110
 	db %11111000
@@ -94,154 +115,627 @@ IncGradGBPalTable_01: ; 0x52f
 	db %11111001
 	db %11100100
 	db %11100100
+	
+	db %11100100
+	db %11010000
+	db %11100000
+	
+	db %11100100
+	db %11010000
+	db %11100000
+	
+	db %10010000
+	db %10000000
+	db %10010000
+	
+	db %01000000
+	db %01000000
+	db %01000000
+	
+	db %00000000
+	db %00000000
+	db %00000000
+; 547
 
-INCBIN "baserom.gbc",$538,$56d - $538
+INCBIN "baserom.gbc",$547,$568 - $547
 
-DisableLCD: ; 56d
+DisableLCD: ; 568
+; don't need to do anything if lcd is already off
+	ld a, [$ff00+$40] ; LCDC
+	bit 7, a ; lcd enable
+	ret z
+	
+; reset ints
 	xor a
-	ld [$ff0f], a
-	ld a, [$ffff]
+	ld [$ff00+$f], a ; IF
+	
+; save enabled ints
+	ld a, [$ff00+$ff] ; IE
 	ld b, a
-	res 0, a
-	ld [$ffff], a
-.asm_577
-	ld a, [$ff44]
-	cp $91
-	jr nz, .asm_577 ; 0x57b $fa
-	ld a, [$ff40]
-	and $7f
-	ld [$ff40], a
+	
+; disable vblank
+	res 0, a ; vblank
+	ld [$ff00+$ff], a ; IE
+	
+.wait
+; wait until vblank
+	ld a, [$ff00+$44] ; LY
+	cp 145 ; >144 (ensure beginning of vblank)
+	jr nz, .wait
+	
+; turn lcd off
+	ld a, [$ff00+$40] ; LCDC
+	and %01111111 ; lcd enable off
+	ld [$ff00+$40], a ; LCDC
+	
+; reset ints
 	xor a
-	ld [$ff0f], a
+	ld [$ff00+$f], a ; IF
+	
+; restore enabled ints
 	ld a, b
-	ld [$ffff], a
+	ld [$ff00+$ff], a ; IE
 	ret
-; 0x58a
+; 58a
 
 EnableLCD: ; 58a
-	ld a, [$ff40]
-	set 7, a
-	ld [$ff40], a
+	ld a, [$ff40] ; LCDC
+	set 7, a ; lcd enable
+	ld [$ff40], a ; LCDC
 	ret
-; 0x591
+; 591
 
-INCBIN "baserom.gbc",$591,$984 - $591
+AskTimer: ; 591
+	INCBIN "baserom.gbc",$591,$59c - $591
+; 59c
 
-GetJoypadState; 984
-; stores joypad state in $ffa8
-; 0 is off, 1 is on
-; bit 0: A
-;     1: B
-;     2: SELECT
-;     3: START
-;     4: RIGHT
-;     5: LEFT
-;     6: UP
-;     7: DOWN
+LatchClock: ; 59c
+; latch clock counter data
+	ld a, $0
+	ld [$6000], a
+	ld a, $1
+	ld [$6000], a
+	ret
+; 5a7
+
+UpdateTime: ; 5a7
+; get rtc data
+	call GetClock
+; condense days to one byte, update rtc w/ new day count
+	call FixDays
+; add game time to rtc time
+	call FixTime
+; update time of day (0 = morn, 1 = day, 2 = nite)
+	callba GetTimeOfDay
+	ret
+; 5b7
+
+GetClock: ; 5b7
+; store clock data in $ff8d-$ff91
+
+; enable clock r/w
+	ld a, $a
+	ld [$0000], a
+	
+; get clock data
+; stored 'backwards' in hram
+	
+	call LatchClock
+	ld hl, $4000
+	ld de, $a000
+	
+; seconds
+	ld [hl], $8 ; S
+	ld a, [de]
+	and $3f
+	ld [$ff00+$91], a
+; minutes
+	ld [hl], $9 ; M
+	ld a, [de]
+	and $3f
+	ld [$ff00+$90], a
+; hours
+	ld [hl], $a ; H
+	ld a, [de]
+	and $1f
+	ld [$ff00+$8f], a
+; day lo
+	ld [hl], $b ; DL
+	ld a, [de]
+	ld [$ff00+$8e], a
+; day hi
+	ld [hl], $c ; DH
+	ld a, [de]
+	ld [$ff00+$8d], a
+	
+; cleanup
+	call CloseSRAM ; unlatch clock, disable clock r/w
+	ret
+; 5e8
+
+
+FixDays: ; 5e8
+; fix day count
+; mod by 140
+
+; check if day count > 255 (bit 8 set)
+	ld a, [$ff00+$8d] ; DH
+	bit 0, a
+	jr z, .daylo
+; reset dh (bit 8)
+	res 0, a
+	ld [$ff00+$8d], a ; DH
+	
+; mod 140
+; mod twice since bit 8 (DH) was set
+	ld a, [$ff00+$8e] ; DL
+.modh
+	sub 140
+	jr nc, .modh
+.modl
+	sub 140
+	jr nc, .modl
+	add 140
+	
+; update dl
+	ld [$ff00+$8e], a ; DL
+
+; unknown output
+	ld a, $40 ; %1000000
+	jr .set
+
+.daylo
+; quit if fewer than 140 days have passed
+	ld a, [$ff00+$8e] ; DL
+	cp 140
+	jr c, .quit
+	
+; mod 140
+.mod
+	sub 140
+	jr nc, .mod
+	add 140
+	
+; update dl
+	ld [$ff00+$8e], a ; DL
+	
+; unknown output
+	ld a, $20 ; %100000
+	
+.set
+; update clock with modded day value
+	push af
+	call SetClock
+	pop af
+	scf
+	ret
+	
+.quit
+	xor a
+	ret
+; 61d
+
+
+FixTime: ; 61d
+; add ingame time (set at newgame) to current time
+;				  day     hr    min    sec
+; store time in CurDay, $ff94, $ff96, $ff98
+
+; second
+	ld a, [$ff00+$91] ; S
+	ld c, a
+	ld a, [StartSecond]
+	add c
+	sub 60
+	jr nc, .updatesec
+	add 60
+.updatesec
+	ld [$ff00+$98], a
+	
+; minute
+	ccf ; carry is set, so turn it off
+	ld a, [$ff00+$90] ; M
+	ld c, a
+	ld a, [StartMinute]
+	adc c
+	sub 60
+	jr nc, .updatemin
+	add 60
+.updatemin
+	ld [$ff00+$96], a
+	
+; hour
+	ccf ; carry is set, so turn it off
+	ld a, [$ff00+$8f] ; H
+	ld c, a
+	ld a, [StartHour]
+	adc c
+	sub 24
+	jr nc, .updatehr
+	add 24
+.updatehr
+	ld [$ff00+$94], a
+	
+; day
+	ccf ; carry is set, so turn it off
+	ld a, [$ff00+$8e] ; DL
+	ld c, a
+	ld a, [StartDay]
+	adc c
+	ld [CurDay], a
+	ret
+; 658
+
+
+INCBIN "baserom.gbc",$658,$691 - $658
+
+
+SetClock: ; 691
+; set clock data from hram
+
+; enable clock r/w
+	ld a, $a
+	ld [$0000], a
+	
+; set clock data
+; stored 'backwards' in hram
+
+	call LatchClock
+	ld hl, $4000
+	ld de, $a000
+	
+; seems to be a halt check that got partially commented out
+; this block is totally pointless
+	ld [hl], $c
+	ld a, [de]
+	bit 6, a ; halt
+	ld [de], a
+	
+; seconds
+	ld [hl], $8 ; S
+	ld a, [$ff00+$91]
+	ld [de], a
+; minutes
+	ld [hl], $9 ; M
+	ld a, [$ff00+$90]
+	ld [de], a
+; hours
+	ld [hl], $a ; H
+	ld a, [$ff00+$8f]
+	ld [de], a
+; day lo
+	ld [hl], $b ; DL
+	ld a, [$ff00+$8e]
+	ld [de], a
+; day hi
+	ld [hl], $c ; DH
+	ld a, [$ff00+$8d]
+	res 6, a ; make sure timer is active
+	ld [de], a
+	
+; cleanup
+	call CloseSRAM ; unlatch clock, disable clock r/w
+	ret
+; 6c4
+
+INCBIN "baserom.gbc",$6c4,$984 - $6c4
+
+GetJoypadPublic: ; 984
+; update mirror joypad input from $ffa4 (real input)
+
+; $ffa6: released
+; $ffa7: pressed
+; $ffa8: input
+
+; bit 0 A
+;     1 B
+;     2 SELECT
+;     3 START
+;     4 RIGHT
+;     5 LEFT
+;     6 UP
+;     7 DOWN
+
 	push af
 	push hl
 	push de
 	push bc
-	ld a, [$c2c7]
-	cp a, $ff
-	jr z, .asm_9a7
-	ld a, [$ffa4] ; input mask (usually 00)
+	
+; automated input?
+	ld a, [InputType]
+	cp a, $ff ; INPUT_AUTO
+	jr z, .auto
+
+; get input
+	ld a, [$ffa4] ; real input
 	ld b, a
-	ld a, [$ffa8] ; joypad
+	ld a, [$ffa8] ; last frame mirror
 	ld e, a
+	
+; released
 	xor b
 	ld d, a
 	and e
 	ld [$ffa6], a
+	
+; pressed
 	ld a, d
 	and b
 	ld [$ffa7], a
+	
+; leftover from pasted code
 	ld c, a
+	
+; 
 	ld a, b
-	ld [$ffa8], a
+	ld [$ffa8], a ; frame input
 .quit
 	pop bc
 	pop de
 	pop hl
 	pop af
-	ret
-.asm_9a7
-	ld a, [$ff9d]
+	ret	
+
+.auto
+; use predetermined input feed (used in catch tutorial)
+; struct: [input][duration]
+
+; save bank
+	ld a, [$ff00+$9d]
 	push af
-	ld a, [$c2ca]
+; 
+	ld a, [AutoInputBank]
 	rst $10
-	ld hl, $c2c8
+; 
+	ld hl, AutoInputAddress ; AutoInputAddress-9
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	ld a, [$c2cb]
+	
+; update when frame count hits 0
+	ld a, [AutoInputLength]
 	and a
-	jr z, .asm_9c2
+	jr z, .updateauto
+	
+; until then, do nothing
 	dec a
-	ld [$c2cb], a
+	ld [AutoInputLength], a
+; restore bank
 	pop af
 	rst $10
+; we're done
 	jr .quit
-.asm_9c2
+	
+.updateauto
+; get input
 	ld a, [hli]
+; stop?
 	cp a, $ff
-	jr z, .asm_9e0
+	jr z, .stopinput
 	ld b, a
+	
+; duration
 	ld a, [hli]
-	ld [$c2cb], a
+	ld [AutoInputLength], a
+; duration $ff = end at input
 	cp a, $ff
-	jr nz, .asm_9d6
+	jr nz, .next
+	
+; no input
 	dec hl
 	dec hl
-	ld b, $00
-	jr .asm_9e5
-.asm_9d6
+	ld b, $00 ; no input
+	jr .finishauto
+	
+.next
+; output recorded
 	ld a, l
-	ld [$c2c8], a
+	ld [AutoInputAddress], a
 	ld a, h
-	ld [$c2c9], a
-	jr .asm_9e5
-.asm_9e0
-	call Functiona0a
-	ld b, $00
-.asm_9e5
+	ld [AutoInputAddress+1], a
+	jr .finishauto
+	
+.stopinput
+	call StopAutoInput
+	ld b, $00 ; no input
+	
+.finishauto
+; restore bank
 	pop af
 	rst $10
+; update mirrors
 	ld a, b
-	ld [$ffa7], a
-	ld [$ffa8], a
+	ld [$ffa7], a ; pressed
+	ld [$ffa8], a ; input
 	jr .quit
 ; 9ee
 
-Function9ee: ; 9ee
-	ld [$c2ca], a ; bank?
+StartAutoInput: ; 9ee
+; start auto input stream at a:hl
+; bank
+	ld [AutoInputBank], a
+; address
 	ld a, l
-	ld [$c2c8], a
+	ld [AutoInputAddress], a
 	ld a, h
-	ld [$c2c9], a
+	ld [AutoInputAddress+1], a
+; don't wait to update
 	xor a
-	ld [$c2cb], a
+	ld [AutoInputLength], a
+; clear input mirrors
 	xor a
-	ld [$ffa7], a
-	ld [$ffa6], a
-	ld [$ffa8], a
-	ld a, $ff
-	ld [$c2c7], a
+	ld [$ffa7], a ; pressed
+	ld [$ffa6], a ; released
+	ld [$ffa8], a ; input
+; start reading input stream instead of player input
+	ld a, $ff ; INPUT_AUTO
+	ld [InputType], a
 	ret
 ; a0a
 
-Functiona0a: ; a0a
-; clears $c2c7-$c2cb
+StopAutoInput: ; a0a
+; clear autoinput ram
 	xor a
-	ld [$c2ca], a
-	ld [$c2c8], a
-	ld [$c2c9], a
-	ld [$c2cb], a
-	ld [$c2c7], a
+	ld [AutoInputBank], a
+	ld [AutoInputAddress], a
+	ld [AutoInputAddress+1], a
+	ld [AutoInputLength], a
+; normal input
+	ld [InputType], a
 	ret
 ; a1b
 
-INCBIN "baserom.gbc",$a1b,$e8d - $a1b
+INCBIN "baserom.gbc",$a1b,$c9f - $a1b
+
+DmgToCgbBGPals: ; c9f
+; exists to forego reinserting cgb-converted image data
+
+; input: a -> bgp
+	ld [$ff00+$47], a ; bgp
+	push af
+	
+; check cgb
+	ld a, [$ff00+$e6]
+	and a
+	jr z, .end
+	
+	push hl
+	push de
+	push bc
+; save wram bank
+	ld a, [$ff00+$70]
+	push af
+; wram bank 5
+	ld a, 5
+	ld [$ff00+$70], a
+
+; copy & reorder bg pal buffer
+	ld hl, BGPals ; to
+	ld de, Unkn1Pals ; from
+; order
+	ld a, [$ff00+$47] ; bgp
+	ld b, a
+; # pals
+	ld c, 8 ; all pals
+	call CopyPals
+; request pal update
+	ld a, $1
+	ld [$ff00+$e5], a
+; restore wram bank
+	pop af
+	ld [$ff00+$70], a
+	pop bc
+	pop de
+	pop hl
+.end
+	pop af
+	ret
+; ccb
+
+
+DmgToCgbObjPals: ; ccb
+; exists to forego reinserting cgb-converted image data
+
+; input: d -> obp1
+;		 e -> obp2
+	ld a, e
+	ld [$ff00+$48], a ; obp0
+	ld a, d
+	ld [$ff00+$49], a ; obp1
+	
+; check cgb
+	ld a, [$ff00+$e6]
+	and a
+	ret z
+	
+	push hl
+	push de
+	push bc
+; save wram bank
+	ld a, [$ff00+$70]
+	push af
+; wram bank 5
+	ld a, $5
+	ld [$ff00+$70], a
+	
+; copy & reorder obj pal buffer
+	; to
+	ld hl, OBPals
+	; from
+	ld de, Unkn2Pals
+; order
+	ld a, [$ff00+$48] ; obp0
+	ld b, a
+; # pals
+	ld c, 8 ; all pals
+	call CopyPals
+; request pal update
+	ld a, $1
+	ld [$ff00+$e5], a
+; restore wram bank
+	pop af
+	ld [$ff00+$70], a
+	pop bc
+	pop de
+	pop hl
+	ret
+; cf8
+
+INCBIN "baserom.gbc",$cf8,$d50 - $cf8
+
+CopyPals: ; d50
+; copy c palettes in order b from de to hl
+
+	push bc
+	ld c, 4 ; NUM_PAL_COLORS
+.loop
+	push de
+	push hl
+	
+; get pal color
+	ld a, b
+	and %11 ; color
+; 2 bytes per color
+	add a
+	ld l, a
+	ld h, $0
+	add hl, de
+	ld e, [hl]
+	inc hl
+	ld d, [hl]
+	
+; dest
+	pop hl
+; write color
+	ld [hl], e
+	inc hl
+	ld [hl], d
+	inc hl
+; next pal color
+	srl b
+	srl b
+; source
+	pop de
+; done pal?
+	dec c
+	jr nz, .loop
+	
+; de += 8 (next pal)
+	ld a, 8 ; NUM_PAL_COLORS * 2 ; bytes per pal
+	add e
+	jr nc, .ok
+	inc d
+.ok
+	ld e, a
+	
+; how many more pals?
+	pop bc
+	dec c
+	jr nz, CopyPals
+	ret
+; d79
+
+INCBIN "baserom.gbc",$d79,$e8d - $d79
 
 ; copy bc bytes from a:hl to de
 FarCopyBytes: ; e8d
@@ -720,7 +1214,82 @@ GetWorldMapLocation: ; 0x2caf
 	ret
 ; 0x2cbd
 
-INCBIN "baserom.gbc",$2cbd,$2e6f-$2cbd
+INCBIN "baserom.gbc",$2cbd,$2d83-$2cbd
+
+Predef: ; 2d83
+; call a function from given id a
+
+; relies on $cfb4-8
+
+; this function is somewhat unreadable at a glance
+; the execution flow is as follows:
+;	save bank
+;	get function from id
+;	call function
+;	restore bank
+; these are pushed to the stack in reverse
+
+; most of the $cfbx trickery is just juggling hl (which is preserved)
+; this allows hl, de and bc to be passed to the function
+
+; input:
+;	a: id
+;	parameters bc, de, hl
+
+; store id
+	ld [$cfb4], a
+	
+; save bank
+	ld a, [$ff00+$9d] ; current bank
+	push af
+	
+; get Predef function to call
+; GetPredefFn also stores hl in $cfb5-6
+	ld a, BANK(GetPredefFn)
+	rst $10
+	call GetPredefFn
+; switch bank to Predef function
+	rst $10
+	
+; clean up after Predef call
+	ld hl, .cleanup
+	push hl
+	
+; call Predef function from ret
+	ld a, [$cfb7]
+	ld h, a
+	ld a, [$cfb8]
+	ld l, a
+	push hl
+	
+; get hl back
+	ld a, [$cfb5]
+	ld h, a
+	ld a, [$cfb6]
+	ld l, a
+	ret
+
+.cleanup
+; store hl
+	ld a, h
+	ld [$cfb5], a
+	ld a, l
+	ld [$cfb6], a
+	
+; restore bank
+	pop hl ; popping a pushed af. h = a (old bank)
+	ld a, h
+	rst $10
+	
+; get hl back
+	ld a, [$cfb5]
+	ld h, a
+	ld a, [$cfb6]
+	ld l, a
+	ret
+; 2dba
+
+INCBIN "baserom.gbc",$2dba,$2e6f-$2dba
 
 BitTable1Func: ; 0x2e6f
 	ld hl, $da72
@@ -821,28 +1390,40 @@ Function2fb1: ; 2fb1
 	ret
 ; 2fcb
 
-Function2fcb: ; 0x2fcb
-	cp $4
-	jr c, Function2fd1
-	jr Function2fe1
+GetSRAMBank: ; 2fcb
+; load sram bank a
+; if invalid bank, sram is disabled
+	cp NUM_SRAM_BANKS
+	jr c, OpenSRAM
+	jr CloseSRAM
+; 2fd1
 
-Function2fd1: ; 0x2fd1
+OpenSRAM: ; 2fd1
+; switch to sram bank a
 	push af
+; latch clock data
 	ld a, $1
-	ld [$6000], a ; latch clock data
+	ld [$6000], a
+; enable sram/clock write
 	ld a, $a
-	ld [$0000], a ; enable ram/clock write protect
+	ld [$0000], a
+; select sram bank
 	pop af
-	ld [$4000], a ; select external ram bank
+	ld [$4000], a
 	ret
+; 2fe1
 
-Function2fe1: ; 0x2fe1
+CloseSRAM: ; 2fe1
+; preserve a
 	push af
 	ld a, $0
-	ld [$6000], a ; prepare to latch clock data
-	ld [$0000], a ; disable ram/clock write protect
+; reset clock latch for next time
+	ld [$6000], a
+; disable sram/clock write
+	ld [$0000], a
 	pop af
 	ret
+; 2fef
 
 INCBIN "baserom.gbc",$2fec,$3026-$2fec
 
@@ -1030,60 +1611,90 @@ Divide: ; 0x3124
 INCBIN "baserom.gbc",$3136,$313d - $3136
 
 PrintLetterDelay: ; 313d
-; This function is used to wait a short period after printing a letter to the
-; screen unless the delay is turned off through bit 4 (on) in [$cfcc] or bit
-; 1 (off) in [$cfcf]. If A and B are pressed, bits 0-2 in [$cfcc] and bit 0 in
-; [$cfcf] are checked.
-	ld a, [$cfcc]
-	bit 4, a
+; wait some frames before printing the next letter
+; the text speed setting in Options is actually a frame count
+; 	fast: 1 frame
+; 	mid:  3 frames
+; 	slow: 5 frames
+; $cfcf[!0] and A or B override text speed with a one-frame delay
+; Options[4] and $cfcf[!1] disable the delay
+
+; delay off?
+	ld a, [Options]
+	bit 4, a ; delay off
 	ret nz
+	
+; non-scrolling text?
 	ld a, [$cfcf]
 	bit 1, a
 	ret z
+	
 	push hl
 	push de
 	push bc
+	
+; save oam update status
 	ld hl, $ffd8
 	ld a, [hl]
 	push af
+; orginally turned oam update off, commented out
+;	ld a, 1
 	ld [hl], a
+	
+; force fast scroll?
 	ld a, [$cfcf]
 	bit 0, a
-	jr z, .asm_3160
-	ld a, [$cfcc]
-	and a, $07		; takes bits 0-2 of $cfcc
-	jr .asm_3162
-.asm_3160
-	ld a, $01
-.asm_3162
-	ld [$cfb2], a
+	jr z, .fast
+	
+; text speed
+	ld a, [Options]
+	and a, %111 ; # frames to delay
+	jr .updatedelay
+	
+.fast
+	ld a, 1
+.updatedelay
+	ld [TextDelayFrames], a
+	
 .checkjoypad
-	call GetJoypadState
+	call GetJoypadPublic
+	
+; input override
 	ld a, [$c2d7]
 	and a
-	jr nz, .asm_317f
-	ld a, [$ffa8]	; joypad
-	bit 0, a			; is a pressed?
-	jr z, .anotpressed
+	jr nz, .wait
+	
+; wait one frame if holding a
+	ld a, [$ffa8] ; joypad
+	bit 0, a ; A
+	jr z, .checkb
 	jr .delay
-.anotpressed
-	bit 1, a			; is b pressed?
-	jr z, .asm_317f
+	
+.checkb
+; wait one frame if holding b
+	bit 1, a ; B
+	jr z, .wait
+	
 .delay
 	call DelayFrame
 	jr .end
-.asm_317f
-	ld a, [$cfb2]
+	
+.wait
+; wait until frame counter hits 0 or the loop is broken
+; this is a bad way to do this
+	ld a, [TextDelayFrames]
 	and a
 	jr nz, .checkjoypad
+	
 .end
+; restore oam update flag (not touched in this fn anymore)
 	pop af
 	ld [$ffd8], a
 	pop bc
 	pop de
 	pop hl
 	ret
-;318c
+; 318c
 
 CopyDataUntil: ; 318c
 ; Copies [hl, bc) to [de, bc - hl).
@@ -1116,7 +1727,27 @@ StringCmp: ; 31db
 	ret
 ; 0x31e4
 
-INCBIN "baserom.gbc",$31e4,$335f - $31e4
+INCBIN "baserom.gbc",$31e4,$3340 - $31e4
+
+GetSGBLayout: ; 3340
+; load sgb packets unless gb
+
+; check cgb
+	ld a, [$ff00+$e6]
+	and a
+	jr nz, .dosgb
+	
+; check sgb
+	ld a, [$ff00+$e7]
+	and a
+	ret z
+	
+.dosgb
+	ld a, $31 ; LoadSGBLayout
+	jp Predef
+; 334e
+
+INCBIN "baserom.gbc",$334e,$335f - $334e
 
 CountSetBits: ; 0x335f
 ; function to count how many bits are set in a string of bytes
@@ -1456,7 +2087,36 @@ StartSFX: ; 3c23
 	ret
 ; 3c4e
 
-INCBIN "baserom.gbc",$3c4e,$3c97-$3c4e
+INCBIN "baserom.gbc",$3c4e,$3c55-$3c4e
+
+WaitSFX: ; 3c55
+; infinite loop until sfx is done playing
+	push hl
+	
+.loop
+	; ch5 on?
+	ld hl, $c1cc ; Channel5Flags
+	bit 0, [hl]
+	jr nz, .loop
+	; ch6 on?
+	ld hl, $c1fe ; Channel6Flags
+	bit 0, [hl]
+	jr nz, .loop
+	; ch7 on?
+	ld hl, $c230 ; Channel7Flags
+	bit 0, [hl]
+	jr nz, .loop
+	; ch8 on?
+	ld hl, $c262 ; Channel8Flags
+	bit 0, [hl]
+	jr nz, .loop
+	
+	; we're done
+	pop hl
+	ret
+; 3c74
+
+INCBIN "baserom.gbc",$3c74,$3c97-$3c74
 
 MaxVolume: ; 3c97
 	ld a, $77 ; max
@@ -1598,7 +2258,125 @@ INCBIN "baserom.gbc",$66de,$8000 - $66de
 
 SECTION "bank2",DATA,BANK[$2]
 
-INCBIN "baserom.gbc",$8000,$a68
+INCBIN "baserom.gbc",$8000,$854b - $8000
+
+GetPredefFn: ; 854b
+; input:
+;	[$cfb4] id
+
+; save hl for later
+	ld a, h
+	ld [$cfb5], a
+	ld a, l
+	ld [$cfb6], a
+	
+	push de
+	
+; get id
+	ld a, [$cfb4]
+	ld e, a
+	ld d, $0
+	ld hl, PredefPointers
+; seek
+	add hl, de
+	add hl, de
+	add hl, de
+	
+	pop de
+	
+; store address in [$cfb7-8]
+; addr lo
+	ld a, [hli]
+	ld [$cfb8], a
+; addr hi
+	ld a, [hli]
+	ld [$cfb7], a
+; get bank
+	ld a, [hl]
+	ret
+; 856b
+
+PredefPointers: ; 856b
+; $4b Predef pointers
+; address, bank
+	dwb $6508, $01
+	dwb $747a, $01
+	dwb $4658, $03
+	dwb $57c1, $13
+	dwb $4699, $03
+	dwb $5a6d, $03
+	dwb $588c, $03
+	dwb $5a96, $03
+	dwb $5b3f, $03
+	dwb $5e6e, $03
+	dwb $5f8c, $03
+	dwb $46e0, $03
+	dwb $6167, $03
+	dwb $617b, $03
+	dwb $5639, $04
+	dwb $566a, $04
+	dwb $4eef, $0a
+	dwb $4b3e, $0b
+	dwb $5f48, $0f
+	dwb $6f6e, $0b
+	dwb $5873, $0f
+	dwb $6036, $0f
+	dwb $74c1, $0f
+	dwb $7390, $0f
+	dwb $743d, $0f
+	dwb $747c, $0f
+	dwb $6487, $10
+	dwb $64e1, $10
+	dwb $61e6, $10
+	dwb $4f63, $0a
+	dwb $4f24, $0a
+	dwb $484a, $14
+	dwb $4d6f, $14
+	dwb $4d2e, $14
+	dwb $4cdb, $14
+	dwb $4c50, $14
+	dwb $4bdd, $14
+	dwb $5c8a, $13
+	dwb $4b0a, $14
+	dwb $4b0e, $14
+	dwb $4b7b, $14
+	dwb $4964, $14
+	dwb $493a, $14
+	dwb $4953, $14
+	dwb $490d, $14
+	dwb $5040, $14
+	dwb $7cdd, $32
+	dwb $40d5, $33
+	dwb $5853, $02
+	dwb $464c, $02
+	dwb $5d11, $24
+	dwb $4a88, $02
+	dwb $420f, $23
+	dwb $4000, $23
+	dwb $4000, $23
+	dwb $40d6, $33
+	dwb $40d5, $33
+	dwb $40d5, $33
+	dwb $51d0, $3f
+	dwb $6a6c, $04
+	dwb $5077, $14
+	dwb $516c, $14
+	dwb $508b, $14
+	dwb $520d, $14
+	dwb $525d, $14
+	dwb $47d3, $0d
+	dwb $7908, $3e
+	dwb $7877, $3e
+	dwb $4000, $34
+	dwb $4d0a, $14
+	dwb $40a3, $34
+	dwb $408e, $34
+	dwb $4669, $34
+	dwb $466e, $34
+	dwb $43ff, $2d
+; 864c
+
+INCBIN "baserom.gbc",$864c,$8a68 - $864c
 
 CheckShininess: ; 0x8a68
 ; given a pointer to Attack/Defense DV in bc, determine if monster is shiny.
@@ -1706,7 +2484,7 @@ SpecialsPointers: ; 0xc029
 	dbw $00,$0e4a
 	dbw $03,$4230
 	dbw $03,$4252
-	dbw $00,$3c55
+	dbw BANK(WaitSFX),WaitSFX
 	dbw $00,$3cdf
 	dbw $00,$3d47
 	dbw $04,$6324
@@ -1752,7 +2530,7 @@ SpecialsPointers: ; 0xc029
 	dbw BANK(SpecialGameboyCheck),SpecialGameboyCheck
 	dbw BANK(SpecialTrainerHouse),SpecialTrainerHouse
 	dbw $05,$6dc7
-	dbw $0a,$62a0
+	dbw BANK(SpecialRoamMons), SpecialRoamMons
 	dbw $03,$448f
 	dbw $03,$449f
 	dbw $03,$44ac
@@ -1824,7 +2602,7 @@ SpecialSnorlaxAwake: ; 0xc43d
 ; next to Snorlax.
 
 ; outputs:
-; $c2dd is 1 if the conditions are met, otherwise 0.
+; ScriptVar is 1 if the conditions are met, otherwise 0.
 
 ; check background music
 	ld a, [$c2c0]
@@ -1857,7 +2635,7 @@ SpecialSnorlaxAwake: ; 0xc43d
 .nope
 	xor a
 .done
-	ld [$c2dd], a
+	ld [ScriptVar], a
 	ret
 
 .ProximityCoords
@@ -1870,33 +2648,38 @@ SpecialSnorlaxAwake: ; 0xc43d
 
 INCBIN "baserom.gbc",$c472,$c478 - $c472
 
-SpecialGameboyCheck: ; 0xc478
+SpecialGameboyCheck: ; c478
+; check cgb
 	ld a, [$ffe6]
 	and a
-	jr nz, .color
+	jr nz, .cgb
+; check sgb
 	ld a, [$ffe7]
 	and a
-	jr nz, .unknown
+	jr nz, .sgb
+; gb
 	xor a
 	jr .done
-.unknown ; XXX what is this?
-	ld a, $1
+	
+.sgb
+	ld a, 1
 	jr .done
 
-.color
-	ld a, $2
+.cgb
+	ld a, 2
+	
 .done
-	ld [$c2dd], a
+	ld [ScriptVar], a
 	ret
 
 INCBIN "baserom.gbc",$c48f,$c4b9 - $c48f
 
 SpecialTrainerHouse: ; 0xc4b9
 	ld a, 0
-	call Function2fcb
+	call GetSRAMBank
 	ld a, [$abfd] ; XXX what is this memory location?
-	ld [$c2dd], a
-	jp Function2fe1
+	ld [ScriptVar], a
+	jp CloseSRAM
 
 INCBIN "baserom.gbc",$c4c7,$c5d2 - $c4c7
 
@@ -2276,7 +3059,43 @@ INCBIN "baserom.gbc",$11e5d,$14000 - $11e5d
 
 SECTION "bank5",DATA,BANK[$5]
 
-INCBIN "baserom.gbc",$14000,$18000 - $14000
+INCBIN "baserom.gbc",$14000,$14032 - $14000
+
+GetTimeOfDay: ; 14032
+; get time of day based on the current hour
+	ld a, [$ff00+$94] ; hour
+	ld hl, TimeOfDayTable
+	
+.check
+; if we're within the given time period,
+; get the corresponding time of day
+	cp [hl]
+	jr c, .match
+; else, get the next entry
+	inc hl
+	inc hl
+; try again
+	jr .check
+	
+.match
+; get time of day
+	inc hl
+	ld a, [hl]
+	ld [TimeOfDay], a
+	ret
+; 14044
+
+TimeOfDayTable: ; 14044
+; boundaries for the time of day
+; 04-09 morn | 10-17 day | 18-03 nite
+;	   hr, time of day
+	db 04, $02 ; NITE
+	db 10, $00 ; MORN
+	db 18, $01 ; DAY
+	db 24, $02 ; NITE
+; 1404c
+
+INCBIN "baserom.gbc",$1404c,$18000 - $1404c
 
 SECTION "bank6",DATA,BANK[$6]
 
@@ -3427,7 +4246,54 @@ INCBIN "baserom.gbc",$24000,$28000 - $24000
 
 SECTION "bankA",DATA,BANK[$A]
 
-INCBIN "baserom.gbc",$28000,$2A5e9 - $28000
+INCBIN "baserom.gbc",$28000,$2a2a0 - $28000
+
+SpecialRoamMons: ; 2a2a0
+; initialize RoamMon structs
+; include commented-out parts from the gs function
+
+; species
+	ld a, RAIKOU
+	ld [RoamMon1Species], a
+	ld a, ENTEI
+	ld [RoamMon2Species], a
+;	ld a, SUICUNE
+;	ld [RoamMon3Species], a
+
+; level
+	ld a, 40
+	ld [RoamMon1Level], a
+	ld [RoamMon2Level], a
+;	ld [RoamMon3Level], a
+
+; raikou starting map
+	ld a, GROUP_ROUTE_42
+	ld [RoamMon1MapGroup], a
+	ld a, MAP_ROUTE_42
+	ld [RoamMon1MapNumber], a
+
+; entei starting map
+	ld a, GROUP_ROUTE_37
+	ld [RoamMon2MapGroup], a
+	ld a, MAP_ROUTE_37
+	ld [RoamMon2MapNumber], a
+
+; suicune starting map
+;	ld a, GROUP_ROUTE_38
+;	ld [RoamMon3MapGroup], a
+;	ld a, MAP_ROUTE_38
+;	ld [RoamMon3MapNumber], a
+
+; hp
+	xor a ; generate new stats
+	ld [RoamMon1CurHP], a
+	ld [RoamMon2CurHP], a
+;	ld [RoamMon3CurHP], a
+
+	ret
+; 2a2ce
+
+INCBIN "baserom.gbc",$2a2ce,$2a5e9 - $2a2ce
 
 WildMons1: ; 0x2a5e9
 ; Johto Pokémon in grass
@@ -6511,130 +7377,130 @@ INCBIN "baserom.gbc",$30000,$34000 - $30000
 
 SECTION "bankD",DATA,BANK[$D]
 
-INCBIN "baserom.gbc",$34000,$34BB1 - $34000
+INCBIN "baserom.gbc",$34000,$34bb1 - $34000
 
-TypeEffects: ; 0x34BB1
-; format: attacking type, defending type, damage multiplier
-; multiplier is a (decimal) fixed-point number
-;	$14 is *2.0
-;	$05 is *0.5
-;	$00 is *0
+TypeEffects: ; 34bb1
+; multiplier /= 10 (20 = 2.0 etc)
 
-	db NORMAL,ROCK,$05
-	db NORMAL,STEEL,$05
-	db FIRE,FIRE,$05
-	db FIRE,WATER,$05
-	db FIRE,GRASS,$14
-	db FIRE,ICE,$14
-	db FIRE,BUG,$14
-	db FIRE,ROCK,$05
-	db FIRE,DRAGON,$05
-	db FIRE,STEEL,$14
-	db WATER,FIRE,$14
-	db WATER,WATER,$05
-	db WATER,GRASS,$05
-	db WATER,GROUND,$14
-	db WATER,ROCK,$14
-	db WATER,DRAGON,$05
-	db ELECTRIC,WATER,$14
-	db ELECTRIC,ELECTRIC,$05
-	db ELECTRIC,GRASS,$05
-	db ELECTRIC,GROUND,$00
-	db ELECTRIC,FLYING,$14
-	db ELECTRIC,DRAGON,$05
-	db GRASS,FIRE,$05
-	db GRASS,WATER,$14
-	db GRASS,GRASS,$05
-	db GRASS,POISON,$05
-	db GRASS,GROUND,$14
-	db GRASS,FLYING,$05
-	db GRASS,BUG,$05
-	db GRASS,ROCK,$14
-	db GRASS,DRAGON,$05
-	db GRASS,STEEL,$05
-	db ICE,WATER,$05
-	db ICE,GRASS,$14
-	db ICE,ICE,$05
-	db ICE,GROUND,$14
-	db ICE,FLYING,$14
-	db ICE,DRAGON,$14
-	db ICE,STEEL,$05
-	db ICE,FIRE,$05
-	db FIGHTING,NORMAL,$14
-	db FIGHTING,ICE,$14
-	db FIGHTING,POISON,$05
-	db FIGHTING,FLYING,$05
-	db FIGHTING,PSYCHIC,$05
-	db FIGHTING,BUG,$05
-	db FIGHTING,ROCK,$14
-	db FIGHTING,DARK,$14
-	db FIGHTING,STEEL,$14
-	db POISON,GRASS,$14
-	db POISON,POISON,$05
-	db POISON,GROUND,$05
-	db POISON,ROCK,$05
-	db POISON,GHOST,$05
-	db POISON,STEEL,$00
-	db GROUND,FIRE,$14
-	db GROUND,ELECTRIC,$14
-	db GROUND,GRASS,$05
-	db GROUND,POISON,$14
-	db GROUND,FLYING,$00
-	db GROUND,BUG,$05
-	db GROUND,ROCK,$14
-	db GROUND,STEEL,$14
-	db FLYING,ELECTRIC,$05
-	db FLYING,GRASS,$14
-	db FLYING,FIGHTING,$14
-	db FLYING,BUG,$14
-	db FLYING,ROCK,$05
-	db FLYING,STEEL,$05
-	db PSYCHIC,FIGHTING,$14
-	db PSYCHIC,POISON,$14
-	db PSYCHIC,PSYCHIC,$05
-	db PSYCHIC,DARK,$00
-	db PSYCHIC,STEEL,$05
-	db BUG,FIRE,$05
-	db BUG,GRASS,$14
-	db BUG,FIGHTING,$05
-	db BUG,POISON,$05
-	db BUG,FLYING,$05
-	db BUG,PSYCHIC,$14
-	db BUG,GHOST,$05
-	db BUG,DARK,$14
-	db BUG,STEEL,$05
-	db ROCK,FIRE,$14
-	db ROCK,ICE,$14
-	db ROCK,FIGHTING,$05
-	db ROCK,GROUND,$05
-	db ROCK,FLYING,$14
-	db ROCK,BUG,$14
-	db ROCK,STEEL,$05
-	db GHOST,NORMAL,$00
-	db GHOST,PSYCHIC,$14
-	db GHOST,DARK,$05
-	db GHOST,STEEL,$05
-	db GHOST,GHOST,$14
-	db DRAGON,DRAGON,$14
-	db DRAGON,STEEL,$05
-	db DARK,FIGHTING,$05
-	db DARK,PSYCHIC,$14
-	db DARK,GHOST,$14
-	db DARK,DARK,$05
-	db DARK,STEEL,$05
-	db STEEL,FIRE,$05
-	db STEEL,WATER,$05
-	db STEEL,ELECTRIC,$05
-	db STEEL,ICE,$14
-	db STEEL,ROCK,$14
-	db STEEL,STEEL,$05
-	db $FE ; foresight
-	db NORMAL,GHOST,$00
-	db FIGHTING,GHOST,$00
-	db $FF ; end
-	; 0x34CFD
+;	  attacker  defender	*=
 
-INCBIN "baserom.gbc",$34CFD,$38000 - $34CFD
+	db NORMAL,	 ROCK,		05
+	db NORMAL,	 STEEL,		05
+	db FIRE,	 FIRE,		05
+	db FIRE,	 WATER,		05
+	db FIRE,	 GRASS,		20
+	db FIRE,	 ICE,		20
+	db FIRE,	 BUG,		20
+	db FIRE,	 ROCK,		05
+	db FIRE,	 DRAGON,	05
+	db FIRE,	 STEEL,		20
+	db WATER,	 FIRE,		20
+	db WATER,	 WATER,		05
+	db WATER,	 GRASS,		05
+	db WATER,	 GROUND,	20
+	db WATER,	 ROCK,		20
+	db WATER,	 DRAGON,	05
+	db ELECTRIC, WATER,		20
+	db ELECTRIC, ELECTRIC,	05
+	db ELECTRIC, GRASS,		05
+	db ELECTRIC, GROUND,	00
+	db ELECTRIC, FLYING,	20
+	db ELECTRIC, DRAGON,	05
+	db GRASS,	 FIRE,		05
+	db GRASS,	 WATER,		20
+	db GRASS,	 GRASS,		05
+	db GRASS,	 POISON,	05
+	db GRASS,	 GROUND,	20
+	db GRASS,	 FLYING,	05
+	db GRASS,	 BUG,		05
+	db GRASS,	 ROCK,		20
+	db GRASS,	 DRAGON,	05
+	db GRASS,	 STEEL,		05
+	db ICE,		 WATER,		05
+	db ICE,		 GRASS,		20
+	db ICE,		 ICE,		05
+	db ICE,		 GROUND,	20
+	db ICE,		 FLYING,	20
+	db ICE,		 DRAGON,	20
+	db ICE,		 STEEL,		05
+	db ICE,		 FIRE,		05
+	db FIGHTING, NORMAL,	20
+	db FIGHTING, ICE,		20
+	db FIGHTING, POISON,	05
+	db FIGHTING, FLYING,	05
+	db FIGHTING, PSYCHIC,	05
+	db FIGHTING, BUG,		05
+	db FIGHTING, ROCK,		20
+	db FIGHTING, DARK,		20
+	db FIGHTING, STEEL,		20
+	db POISON,	 GRASS,		20
+	db POISON,	 POISON,	05
+	db POISON,	 GROUND,	05
+	db POISON,	 ROCK,		05
+	db POISON,	 GHOST,		05
+	db POISON,	 STEEL,		00
+	db GROUND,	 FIRE,		20
+	db GROUND,	 ELECTRIC,	20
+	db GROUND,	 GRASS,		05
+	db GROUND,	 POISON,	20
+	db GROUND,	 FLYING,	00
+	db GROUND,	 BUG,		05
+	db GROUND,	 ROCK,		20
+	db GROUND,	 STEEL,		20
+	db FLYING,	 ELECTRIC,	05
+	db FLYING,	 GRASS,		20
+	db FLYING,	 FIGHTING,	20
+	db FLYING,	 BUG,		20
+	db FLYING,	 ROCK,		05
+	db FLYING,	 STEEL,		05
+	db PSYCHIC,	 FIGHTING,	20
+	db PSYCHIC,	 POISON,	20
+	db PSYCHIC,	 PSYCHIC,	05
+	db PSYCHIC,	 DARK,		00
+	db PSYCHIC,	 STEEL,		05
+	db BUG,		 FIRE,		05
+	db BUG,		 GRASS,		20
+	db BUG,		 FIGHTING,	05
+	db BUG,		 POISON,	05
+	db BUG,		 FLYING,	05
+	db BUG,		 PSYCHIC,	20
+	db BUG,		 GHOST,		05
+	db BUG,		 DARK,		20
+	db BUG,		 STEEL,		05
+	db ROCK,	 FIRE,		20
+	db ROCK,	 ICE,		20
+	db ROCK,	 FIGHTING,	05
+	db ROCK,	 GROUND,	05
+	db ROCK,	 FLYING,	20
+	db ROCK,	 BUG,		20
+	db ROCK,	 STEEL,		05
+	db GHOST,	 NORMAL,	00
+	db GHOST,	 PSYCHIC,	20
+	db GHOST,	 DARK,		05
+	db GHOST,	 STEEL,		05
+	db GHOST,	 GHOST,		20
+	db DRAGON,	 DRAGON,	20
+	db DRAGON,	 STEEL,		05
+	db DARK,	 FIGHTING,	05
+	db DARK,	 PSYCHIC,	20
+	db DARK,	 GHOST,		20
+	db DARK,	 DARK,		05
+	db DARK,	 STEEL,		05
+	db STEEL,	 FIRE,		05
+	db STEEL,	 WATER,		05
+	db STEEL,	 ELECTRIC,	05
+	db STEEL,	 ICE,		20
+	db STEEL,	 ROCK,		20
+	db STEEL,	 STEEL,		05
+
+	db $fe ; foresight
+	db NORMAL,	 GHOST,		00
+	db FIGHTING, GHOST,		00
+
+	db $ff ; end
+; 34cfd
+
+INCBIN "baserom.gbc",$34cfd,$38000 - $34cfd
 
 SECTION "bankE",DATA,BANK[$E]
 
@@ -11831,7 +12697,7 @@ BattleStartMessage:
 	jr z, .asm_3fcaa ; 0x3fc8f $19
 	ld de, $005e
 	call $3c23
-	call $3c55
+	call WaitSFX
 	ld c, $14
 	call $0468
 	ld a, $e
@@ -16684,31 +17550,31 @@ SpecialBeastsCheck: ; 0x4a6e8
 ; They must exist in either party or PC, and have the player's OT and ID.
 
 ; outputs:
-; $c2dd is 1 if the Pokémon exist, otherwise 0.
+; ScriptVar is 1 if the Pokémon exist, otherwise 0.
 
 	ld a, RAIKOU
-	ld [$c2dd], a
+	ld [ScriptVar], a
 	call CheckOwnMonAnywhere
 	jr nc, .notexist
 
 	ld a, ENTEI
-	ld [$c2dd], a
+	ld [ScriptVar], a
 	call CheckOwnMonAnywhere
 	jr nc, .notexist
 
 	ld a, SUICUNE
-	ld [$c2dd], a
+	ld [ScriptVar], a
 	call CheckOwnMonAnywhere
 	jr nc, .notexist
 
 	; they exist
 	ld a, $1
-	ld [$c2dd], a
+	ld [ScriptVar], a
 	ret
 
 .notexist
 	xor a
-	ld [$c2dd], a
+	ld [ScriptVar], a
 	ret
 
 SpecialMonCheck: ; 0x4a711
@@ -16716,18 +17582,18 @@ SpecialMonCheck: ; 0x4a711
 ; It must exist in either party or PC, and have the player's OT and ID.
 
 ; inputs:
-; $c2dd contains species to search for
+; ScriptVar contains species to search for
 	call CheckOwnMonAnywhere
 	jr c, .exists
 
 	; doesn't exist
 	xor a
-	ld [$c2dd], a
+	ld [ScriptVar], a
 	ret
 
 .exists
 	ld a, $1
-	ld [$c2dd], a
+	ld [ScriptVar], a
 	ret
 
 CheckOwnMonAnywhere: ; 0x4a721
@@ -16756,7 +17622,7 @@ CheckOwnMonAnywhere: ; 0x4a721
 ; XXX the below could use some cleanup
 ; run CheckOwnMon on each Pokémon in the PC
 	ld a, $1
-	call Function2fcb
+	call GetSRAMBank
 	ld a, [$ad10]
 	and a
 	jr z, .asm_4a766 ; 0x4a748 $1c
@@ -16766,7 +17632,7 @@ CheckOwnMonAnywhere: ; 0x4a721
 .asm_4a751
 	call CheckOwnMon
 	jr nc, .asm_4a75a ; 0x4a754 $4
-	call Function2fe1
+	call CloseSRAM
 	ret
 .asm_4a75a
 	push bc
@@ -16777,7 +17643,7 @@ CheckOwnMonAnywhere: ; 0x4a721
 	dec d
 	jr nz, .asm_4a751 ; 0x4a764 $eb
 .asm_4a766
-	call Function2fe1
+	call CloseSRAM
 	ld c, $0
 .asm_4a76b
 	ld a, [$db72]
@@ -16790,7 +17656,7 @@ CheckOwnMonAnywhere: ; 0x4a721
 	add hl, bc
 	add hl, bc
 	ld a, [hli]
-	call Function2fcb
+	call GetSRAMBank
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -16815,7 +17681,7 @@ CheckOwnMonAnywhere: ; 0x4a721
 	call CheckOwnMon
 	jr nc, .asm_4a7a2 ; 0x4a79b $5
 	pop bc
-	call Function2fe1
+	call CloseSRAM
 	ret
 .asm_4a7a2
 	push bc
@@ -16831,7 +17697,7 @@ CheckOwnMonAnywhere: ; 0x4a721
 	ld a, c
 	cp $e
 	jr c, .asm_4a76b ; 0x4a7b3 $b6
-	call Function2fe1
+	call CloseSRAM
 	and a ; clear carry
 	ret
 
@@ -16841,7 +17707,7 @@ CheckOwnMon: ; 0x4a7ba
 ; inputs:
 ; hl, pointer to PartyMonNSpecies
 ; bc, pointer to PartyMonNOT
-; $c2dd should contain the species we're looking for
+; ScriptVar should contain the species we're looking for
 
 ; outputs:
 ; sets carry if monster matches species, ID, and OT name.
@@ -16853,7 +17719,7 @@ CheckOwnMon: ; 0x4a7ba
 	ld e, c
 
 ; check species
-	ld a, [$c2dd] ; species we're looking for
+	ld a, [ScriptVar] ; species we're looking for
 	ld b, [hl] ; species we have
 	cp b
 	jr nz, .notfound ; species doesn't match
@@ -53353,11 +54219,11 @@ SpecialHoOhChamber: ; 0x8addb
 INCBIN "baserom.gbc",$8adef,$8b170 - $8adef
 
 SpecialDratini: ; 0x8b170
-; if $c2dd is 0 or 1, change the moveset of the last Dratini in the party.
+; if ScriptVar is 0 or 1, change the moveset of the last Dratini in the party.
 ;  0: give it a special moveset with Extremespeed.
 ;  1: give it the normal moveset of a level 15 Dratini.
 
-	ld a, [$c2dd]
+	ld a, [ScriptVar]
 	cp $2
 	ret nc
 	ld bc, PartyCount
@@ -53384,7 +54250,7 @@ SpecialDratini: ; 0x8b170
 
 .GiveMoveset
 	push hl
-	ld a, [$c2dd]
+	ld a, [ScriptVar]
 	ld hl, .Movesets
 	ld bc, .Moveset1 - .Moveset0
 	call AddNTimes
@@ -53467,7 +54333,381 @@ INCBIN "baserom.gbc",$8b1e1,$8c000-$8b1e1
 
 SECTION "bank23",DATA,BANK[$23]
 
-INCBIN "baserom.gbc",$8C000,$4000
+INCBIN "baserom.gbc",$8c000,$8c011 - $8c000
+
+TimeOfDayPals: ; 8c011
+; return carry if pals are changed
+
+; forced pals?
+	ld hl, $d846
+	bit 7, [hl]
+	jr nz, .dontchange
+	
+; do we need to bother updating?
+	ld a, [TimeOfDay]
+	ld hl, CurTimeOfDay
+	cp [hl]
+	jr z, .dontchange
+	
+; if so, the time of day has changed
+	ld a, [TimeOfDay]
+	ld [CurTimeOfDay], a
+	
+; get palette id
+	call GetTimePalette
+	
+; same palette as before?
+	ld hl, TimeOfDayPal
+	cp [hl]
+	jr z, .dontchange
+	
+; update palette id
+	ld [TimeOfDayPal], a
+	
+	
+; save bg palette 8
+	ld hl, $d038 ; Unkn1Pals + 7 pals
+	
+; save wram bank
+	ld a, [$ff00+$70] ; wram bank
+	ld b, a
+; wram bank 5
+	ld a, 5
+	ld [$ff00+$70], a ; wram bank
+	
+; push palette
+	ld c, 4 ; NUM_PAL_COLORS
+.push
+	ld d, [hl]
+	inc hl
+	ld e, [hl]
+	inc hl
+	push de
+	dec c
+	jr nz, .push
+	
+; restore wram bank
+	ld a, b
+	ld [$ff00+$70], a ; wram bank
+	
+	
+; update sgb pals
+	ld b, $9
+	call GetSGBLayout
+	
+	
+; restore bg palette 8
+	ld hl, $d03f ; last byte in Unkn1Pals
+	
+; save wram bank
+	ld a, [$ff00+$70] ; wram bank
+	ld d, a
+; wram bank 5
+	ld a, 5
+	ld [$ff00+$70], a ; wram bank
+	
+; pop palette
+	ld e, 4 ; NUM_PAL_COLORS
+.pop
+	pop bc
+	ld [hl], c
+	dec hl
+	ld [hl], b
+	dec hl
+	dec e
+	jr nz, .pop
+	
+; restore wram bank
+	ld a, d
+	ld [$ff00+$70], a ; wram bank
+	
+; update palettes
+	call UpdateTimePals
+	call DelayFrame
+	
+; successful change
+	scf
+	ret
+	
+.dontchange
+; no change occurred
+	and a
+	ret
+; 8c070
+
+
+UpdateTimePals: ; 8c070
+	ld c, $9 ; normal
+	call GetTimePalFade
+	call DmgToCgbTimePals
+	ret
+; 8c079
+
+INCBIN "baserom.gbc",$8c079,$8c117 - $8c079
+
+GetTimePalette: ; 8c117
+; get time of day
+	ld a, [TimeOfDay]
+	ld e, a
+	ld d, $0
+; get fn ptr
+	ld hl, .TimePalettes
+	add hl, de
+	add hl, de
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+; go
+	jp [hl]
+; 8c126
+
+.TimePalettes
+	dw .MorningPalette
+	dw .DayPalette
+	dw .NitePalette
+	dw .DarknessPalette
+
+.MorningPalette ; 8c12e
+	ld a, [$d847]
+	and %00000011 ; 0
+	ret
+; 8c134
+
+.DayPalette ; 8c134
+	ld a, [$d847]
+	and %00001100 ; 1
+	srl a
+	srl a
+	ret
+; 8c13e
+
+.NitePalette ; 8c13e
+	ld a, [$d847]
+	and %00110000 ; 2
+	swap a
+	ret
+; 8c146
+
+.DarknessPalette ; 8c146
+	ld a, [$d847]
+	and %11000000 ; 3
+	rlca
+	rlca
+	ret
+; 8c14e
+
+
+DmgToCgbTimePals: ; 8c14e
+	push hl
+	push de
+	ld a, [hli]
+	call DmgToCgbBGPals
+	ld a, [hli]
+	ld e, a
+	ld a, [hli]
+	ld d, a
+	call DmgToCgbObjPals
+	pop de
+	pop hl
+	ret
+; 8c15e
+
+INCBIN "baserom.gbc",$8c15e,$8c17c - $8c15e
+
+GetTimePalFade: ; 8c17c
+; check cgb
+	ld a, [$ff00+$e6]
+	and a
+	jr nz, .cgb
+	
+; else: dmg
+
+; index
+	ld a, [TimeOfDayPal]
+	and %11
+	
+; get fade table
+	push bc
+	ld c, a
+	ld b, $0
+	ld hl, .dmgfades
+	add hl, bc
+	add hl, bc
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	pop bc
+	
+; get place in fade table
+	ld b, $0
+	add hl, bc
+	ret
+	
+.cgb
+	ld hl, .cgbfade
+	ld b, $0
+	add hl, bc
+	ret
+; 8c19e
+
+.dmgfades ; 8c19e
+	dw .morn
+	dw .day
+	dw .nite
+	dw .darkness
+; 8c1a6
+
+.morn ; 8c1a6
+	db %11111111
+	db %11111111
+	db %11111111
+	
+	db %11111110
+	db %11111110
+	db %11111110
+	
+	db %11111001
+	db %11100100
+	db %11100100
+	
+	db %11100100
+	db %11010000
+	db %11010000
+	
+	db %10010000
+	db %10000000
+	db %10000000
+	
+	db %01000000
+	db %01000000
+	db %01000000
+	
+	db %00000000
+	db %00000000
+	db %00000000
+; 8c1bb
+
+.day ; 8c1bb
+	db %11111111
+	db %11111111
+	db %11111111
+	
+	db %11111110
+	db %11111110
+	db %11111110
+	
+	db %11111001
+	db %11100100
+	db %11100100
+	
+	db %11100100
+	db %11010000
+	db %11010000
+	
+	db %10010000
+	db %10000000
+	db %10000000
+	
+	db %01000000
+	db %01000000
+	db %01000000
+	
+	db %00000000
+	db %00000000
+	db %00000000
+; 8c1d0
+
+.nite ; 8c1d0
+	db %11111111
+	db %11111111
+	db %11111111
+	
+	db %11111110
+	db %11111110
+	db %11111110
+	
+	db %11111001
+	db %11100100
+	db %11100100
+	
+	db %11101001
+	db %11010000
+	db %11010000
+	
+	db %10010000
+	db %10000000
+	db %10000000
+	
+	db %01000000
+	db %01000000
+	db %01000000
+	
+	db %00000000
+	db %00000000
+	db %00000000
+; 8c1e5
+
+.darkness ; 8c1e5
+	db %11111111
+	db %11111111
+	db %11111111
+	
+	db %11111110
+	db %11111110
+	db %11111111
+	
+	db %11111110
+	db %11100100
+	db %11111111
+	
+	db %11111101
+	db %11010000
+	db %11111111
+	
+	db %11111101
+	db %10000000
+	db %11111111
+	
+	db %00000000
+	db %01000000
+	db %00000000
+	
+	db %00000000
+	db %00000000
+	db %00000000
+; 8c1fa
+
+.cgbfade ; 8c1fa
+	db %11111111
+	db %11111111
+	db %11111111
+	
+	db %11111110
+	db %11111110
+	db %11111110
+	
+	db %11111001
+	db %11111001
+	db %11111001
+	
+	db %11100100
+	db %11100100
+	db %11100100
+	
+	db %10010000
+	db %10010000
+	db %10010000
+	
+	db %01000000
+	db %01000000
+	db %01000000
+	
+	db %00000000
+	db %00000000
+	db %00000000
+; 8c20f
+
+INCBIN "baserom.gbc",$8c20f,$8ff0d - $8c20f
 
 SECTION "bank24",DATA,BANK[$24]
 
@@ -72756,7 +73996,7 @@ UnknownText_0x9f1e5: ; 0x9f1e5
 	db $0, "One or more of", $4f
 	db "your #MON's", $55
 	db "levels exceeds @"
-	deciram $c2dd, $13
+	deciram ScriptVar, $13
 	db $0, ".", $57
 ; 0x9f217
 
@@ -72767,7 +74007,7 @@ UnknownText_0x9f217: ; 0x9f217
 	db "ROOM under L70.", $51
 	db "This BATTLE ROOM", $4f
 	db "is for L@"
-	deciram $c2dd, $13
+	deciram ScriptVar, $13
 	db $0, ".", $57
 ; 0x9f264
 
@@ -78736,6 +79976,8 @@ CalcMagikarpLength: ; fbbfc
 ; does a whole bunch of arbitrary nonsense
 ; cycles through a table of arbitrary values
 ; http://web.archive.org/web/20110628181718/http://upokecenter.com/games/gs/guides/magikarp.php
+
+; b = rrcrrc(atkdefdv) xor rrc(pidhi)
 	ld h, b
 	ld l, c
 	ld a, [hli]
@@ -78748,35 +79990,45 @@ CalcMagikarpLength: ; fbbfc
 	rrca
 	rrca
 	xor b
-	ld b, a ; b = rrcrrc(atkdefdv) xor rrc(hipid)
+	ld b, a
+	
+; c = rrcrrc(spdspcdv) xor rrc(pidlo)
 	ld a, [de]
 	rrca
 	rrca
 	xor c
-	ld c, a ; c = rrcrrc(spdspcdv) xor rrc(lopid)
+	ld c, a
+	
+; if bc < $000a:
 	ld a, b
 	and a
 	jr nz, .loadtable
 	ld a, c
 	cp a, $0a
 	jr nc, .loadtable
-	ld hl, $00be ; if bc < $000a
-	add hl, bc   ; hl = $00be + bc
-	ld d, h      ; de = hl
+	
+; de = hl = bc + $be
+	ld hl, $00be
+	add hl, bc
+	ld d, h
 	ld e, l
 	jr .endtable
+	
 .loadtable
-	ld hl, MagikarpLengthTable
+	ld hl, .MagikarpLengthTable
 	ld a, $02
 	ld [$d265], a
+	
 .readtable
 	ld a, [hli]
 	ld e, a
 	ld a, [hli]
 	ld d, a
-	call BLessThanD ; checks value against the table
+	call .BLessThanD
 	jr nc, .advancetable
-	call BCMinusDE
+	
+; c = bc / [hl]
+	call .BCMinusDE
 	ld a, b
 	ld [$ffb3], a
 	ld a, c
@@ -78786,7 +80038,9 @@ CalcMagikarpLength: ; fbbfc
 	ld b, $02
 	call Divide
 	ld a, [$ffb6]
-	ld c, a ; c = bc / [hl]
+	ld c, a
+	
+; de = c + $64 * (2 + number of rows down the table)
 	xor a
 	ld [$ffb4], a
 	ld [$ffb5], a
@@ -78794,7 +80048,7 @@ CalcMagikarpLength: ; fbbfc
 	ld [$ffb6], a
 	ld a, [$d265]
 	ld [$ffb7], a
-	call Multiply ; $64 * (2 + number of rows down the table)
+	call Multiply
 	ld b, $00
 	ld a, [$ffb6]
 	add c
@@ -78803,18 +80057,21 @@ CalcMagikarpLength: ; fbbfc
 	adc b
 	ld d, a
 	jr .endtable
+	
 .advancetable
-	inc hl ; aligning to next byte triplet
+	inc hl ; align to next triplet
 	ld a, [$d265]
 	inc a
 	ld [$d265], a
 	cp a, $10
 	jr c, .readtable
-	call BCMinusDE
+	
+	call .BCMinusDE
 	ld hl, $0640
 	add hl, bc
 	ld d, h
 	ld e, l
+	
 .endtable
 	ld h, d
 	ld l, e
@@ -78822,19 +80079,24 @@ CalcMagikarpLength: ; fbbfc
 	add hl, hl
 	add hl, de
 	add hl, hl ; hl = de * 10
+	
 	ld de, $ff02
 	ld a, $ff
 .loop
 	inc a
 	add hl, de ; - 254
 	jr c, .loop
+	
 	ld d, $00
-.modloop ; mod $0c
+	
+; mod $0c
+.modloop
 	cp a, $0c
 	jr c, .done
 	sub a, $0c
 	inc d
 	jr .modloop
+	
 .done
 	ld e, a
 	ld hl, $d1ea
@@ -78844,23 +80106,23 @@ CalcMagikarpLength: ; fbbfc
 	ret
 ; fbc9a
 
-BLessThanD: ; fbc9a
-; returns carry if b < d
+.BLessThanD ; fbc9a
+; return carry if b < d
 	ld a, b
 	cp d
 	ret c
 	ret nc
 ; fbc9e
 
-CLessThanE: ;fbc9e
+.CLessThanE ; fbc9e
 ; unused
 	ld a, c
 	cp e
 	ret
 ; fbca1
 
-BCMinusDE: ; fbca1
-; stores bc - de in bc
+.BCMinusDE ; fbca1
+; bc -= de
 	ld a, c
 	sub e
 	ld c, a
@@ -78870,8 +80132,8 @@ BCMinusDE: ; fbca1
 	ret
 ; fbca8
 
-MagikarpLengthTable: ; fbca8
-; third value is the divisor
+.MagikarpLengthTable ; fbca8
+;		????, divisor
 	dwb $006e, $01
 	dwb $0136, $02
 	dwb $02c6, $04
@@ -79213,12 +80475,12 @@ Function117bb6:
 	ld a, $3
 	ld [$ff70], a
 	ld a, $7
-	call $2fcb
+	call GetSRAMBank
 	ld hl, $d002
 	ld de, $b000
 	ld bc, $1000
 	call $3026
-	call $2fe1
+	call CloseSRAM
 	pop af
 	ld [$ff70], a
 	jp Function117cdd
@@ -79259,7 +80521,7 @@ Function117c4a:
 
 Function117c89:
 	ld a, $7
-	call Function2fcb
+	call GetSRAMBank
 	ld l, $0
 	ld h, l
 	ld de, $b000
@@ -79284,7 +80546,7 @@ Function117c89:
 	ld de, $cd69
 	ld bc, $0010
 	call CopyBytes
-	call Function2fe1
+	call CloseSRAM
 	ret
 
 Data117cbc: ; 0x117cbc
@@ -123957,7 +125219,37 @@ SECTION "bank76",DATA,BANK[$76]
 
 SECTION "bank77",DATA,BANK[$77]
 
-INCBIN "baserom.gbc",$1DC000,$4000
+INCBIN "baserom.gbc",$1dc000,$1de29f - $1dc000
+
+DudeAutoInput_A: ; 1de29f
+	db NO_INPUT, $50
+	db BUTTON_A, $00
+	db NO_INPUT, $ff ; end
+; 1de2a5
+	
+DudeAutoInput_RightA: ; 1de2a5
+	db NO_INPUT, $08
+	db D_RIGHT,  $00
+	db NO_INPUT, $08
+	db BUTTON_A, $00
+	db NO_INPUT, $ff ; end
+; 1de2af
+	
+DudeAutoInput_DownA: ; 1de2af
+	db NO_INPUT, $fe
+	db NO_INPUT, $fe
+	db NO_INPUT, $fe
+	db NO_INPUT, $fe
+	db D_DOWN,   $00
+	db NO_INPUT, $fe
+	db NO_INPUT, $fe
+	db NO_INPUT, $fe
+	db NO_INPUT, $fe
+	db BUTTON_A, $00
+	db NO_INPUT, $ff ; end
+; 1de2c5
+
+INCBIN "baserom.gbc",$1de2c5,$1e0000 - $1de2c5
 
 SECTION "bank78",DATA,BANK[$78]
 

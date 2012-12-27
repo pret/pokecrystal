@@ -3293,3 +3293,24 @@ BATTLETYPE_SHINY EQU $07
 BATTLETYPE_TREE EQU $08
 BATTLETYPE_FORCEITEM EQU $0a
 BATTLETYPE_SUICUNE EQU $0c
+
+
+; joypad
+NO_INPUT EQU %00000000
+BUTTON_A EQU %00000001
+BUTTON_B EQU %00000010
+SELECT   EQU %00000100
+START    EQU %00001000
+D_RIGHT  EQU %00010000
+D_LEFT   EQU %00100000
+D_UP     EQU %01000000
+D_DOWN   EQU %10000000
+
+; mbc
+NUM_SRAM_BANKS EQU 4
+
+; provisional wram bank 5 labels
+Unkn1Pals EQU $d000 ; 8 4-color palettes little endian)
+Unkn2Pals EQU $d040 ; 8 4-color palettes little endian)
+BGPals    EQU $d080 ; 8 4-color palettes little endian)
+OBPals    EQU $d0c0 ; 8 4-color palettes little endian)
