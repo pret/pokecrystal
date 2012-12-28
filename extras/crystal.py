@@ -5131,7 +5131,7 @@ class Connection:
 
         if "header_new" in map_names[connected_map_group_id][connected_map_id].keys():
             # the below code ensures that there's an equation to handle strip_pointer
-            
+
             ldirection = self.direction.lower()
             connected_map_header        = map_names[connected_map_group_id][connected_map_id]["header_new"]
             connected_second_map_header = connected_map_header.second_map_header
@@ -5216,7 +5216,7 @@ class Connection:
             # convert the address to a 2-byte pointer
             intermediate_p = p
             p = (p % 0x4000) + 0x4000
-            
+
             data = {
                 "strip_pointer": strip_pointer,
                 "strip_length": connection_strip_length,
@@ -5231,19 +5231,19 @@ class Connection:
                 "connected_map_group_id": connected_map_group_id,
                 "connected_map_id": connected_map_id,
                 "connected_map_label": map_names[connected_map_group_id][connected_map_id]["label"],
-                
+
                 "current_map_width": self.smh.width.byte,
                 "current_map_height": self.smh.height.byte,
                 "current_map_label": map_names[self.smh.map_group][self.smh.map_id]["label"],
                 "current_map_group_id": self.smh.map_group,
                 "current_map_id": self.smh.map_id,
-                
+
                 "difference": strip_pointer - ((connected_second_map_header.blockdata.address%0x4000)+0x4000),
                 "direction": ldirection,
                 "method": method,
             }
             strip_pointer_data.append(data)
-    
+
             if p != strip_pointer:
                 print "method: " + method + " direction: " + ldirection
                 print "other map blockdata address: " + hex(connected_second_map_header.blockdata.address)
@@ -5274,7 +5274,7 @@ class Connection:
 
                 # this will only happen if there's a bad formula
                 raise Exception, "tauwasser strip_pointer calculation was wrong? strip_pointer="+hex(strip_pointer) + " p="+hex(p)
-            
+
             calculated_destination = None
             method = "strip_destination_default"
             x_movement_of_the_connection_strip_in_blocks = None
@@ -5357,7 +5357,7 @@ class Connection:
                 "connected_map_group_id": connected_map_group_id,
                 "connected_map_id": connected_map_id,
                 "connected_map_label": map_names[connected_map_group_id][connected_map_id]["label"],
-                
+
                 "current_map_width": self.smh.width.byte,
                 "current_map_height": self.smh.height.byte,
                 "current_map_label": map_names[self.smh.map_group][self.smh.map_id]["label"],
@@ -5366,7 +5366,7 @@ class Connection:
 
                 "y_movement_of_the_connection_strip_in_blocks": y_movement_of_the_connection_strip_in_blocks,
                 "x_movement_of_the_connection_strip_in_blocks": x_movement_of_the_connection_strip_in_blocks,
-                
+
                 "direction": ldirection,
                 "method": method,
             }
@@ -5560,9 +5560,9 @@ class Connection:
         output += "db " + str(connection_strip_length,) + ", " + map_constant_label + "_WIDTH ; (connection strip length, connected map width)\n"
 
         #if ldirection in ["east", "west"]:
-        #    Y_movement_of_connection_strip_in_blocks = 
+        #    Y_movement_of_connection_strip_in_blocks =
         #elif direction in ["north", "south"]:
-        #    X_movement_of_connection_strip_in_blocks = 
+        #    X_movement_of_connection_strip_in_blocks =
 
         # Above: (Height_of_connected_map * 2) - 1
         # Below: 0
@@ -5611,7 +5611,7 @@ class Connection:
         window = self.window
 
         output += "dw "
-            
+
         # let's also check the window equations
         # tauwasser calls this "window" and lin calls this "memoryCurrentPointer"
         # Position of the upper left block after entering the Map
