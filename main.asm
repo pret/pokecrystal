@@ -17915,7 +17915,7 @@ BulbasaurBaseStats: ; 0x51424
 	db 100 ; unknown 
 	db 20 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 5 , 5 ; frontpic dimensions 
+	dn 5, 5 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 3 ; growth rate 
 	dn MONSTER, PLANT ; egg groups 
@@ -17946,7 +17946,7 @@ IvysaurBaseStats: ; 0x51444
 	db 100 ; unknown 
 	db 20 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 6 , 6 ; frontpic dimensions 
+	dn 6, 6 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 3 ; growth rate 
 	dn MONSTER, PLANT ; egg groups 
@@ -17977,7 +17977,7 @@ VenusaurBaseStats: ; 0x51464
 	db 100 ; unknown 
 	db 20 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 7 , 7 ; frontpic dimensions 
+	dn 7, 7 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 3 ; growth rate 
 	dn MONSTER, PLANT ; egg groups 
@@ -18008,7 +18008,7 @@ CharmanderBaseStats: ; 0x51484
 	db 100 ; unknown 
 	db 20 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 5 , 5 ; frontpic dimensions 
+	dn 5, 5 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 3 ; growth rate 
 	dn MONSTER, REPTILE ; egg groups 
@@ -18039,7 +18039,7 @@ CharmeleonBaseStats: ; 0x514a4
 	db 100 ; unknown 
 	db 20 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 6 , 6 ; frontpic dimensions 
+	dn 6, 6 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 3 ; growth rate 
 	dn MONSTER, REPTILE ; egg groups 
@@ -18070,7 +18070,7 @@ CharizardBaseStats: ; 0x514c4
 	db 100 ; unknown 
 	db 20 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 7 , 7 ; frontpic dimensions 
+	dn 7, 7 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 3 ; growth rate 
 	dn MONSTER, REPTILE ; egg groups 
@@ -18101,7 +18101,7 @@ SquirtleBaseStats: ; 0x514e4
 	db 100 ; unknown 
 	db 20 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 5 , 5 ; frontpic dimensions 
+	dn 5, 5 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 3 ; growth rate 
 	dn MONSTER, AMPHIBIAN ; egg groups 
@@ -18132,7 +18132,7 @@ WartortleBaseStats: ; 0x51504
 	db 100 ; unknown 
 	db 20 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 6 , 6 ; frontpic dimensions 
+	dn 6, 6 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 3 ; growth rate 
 	dn MONSTER, AMPHIBIAN ; egg groups 
@@ -18163,7 +18163,7 @@ BlastoiseBaseStats: ; 0x51524
 	db 100 ; unknown 
 	db 20 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 7 , 7 ; frontpic dimensions 
+	dn 7, 7 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 3 ; growth rate 
 	dn MONSTER, AMPHIBIAN ; egg groups 
@@ -18194,7 +18194,7 @@ CaterpieBaseStats: ; 0x51544
 	db 100 ; unknown 
 	db 15 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 5 , 5 ; frontpic dimensions 
+	dn 5, 5 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 0 ; growth rate 
 	dn INSECT, INSECT ; egg groups 
@@ -18225,7 +18225,7 @@ MetapodBaseStats: ; 0x51564
 	db 100 ; unknown 
 	db 15 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 5 , 5 ; frontpic dimensions 
+	dn 5, 5 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 0 ; growth rate 
 	dn INSECT, INSECT ; egg groups 
@@ -18256,7 +18256,7 @@ ButterfreeBaseStats: ; 0x51584
 	db 100 ; unknown 
 	db 15 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 7 , 7 ; frontpic dimensions 
+	dn 7, 7 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 0 ; growth rate 
 	dn INSECT, INSECT ; egg groups 
@@ -18287,7 +18287,7 @@ WeedleBaseStats: ; 0x515a4
 	db 100 ; unknown 
 	db 15 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 5 , 5 ; frontpic dimensions 
+	dn 5, 5 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 0 ; growth rate 
 	dn INSECT, INSECT ; egg groups 
@@ -18318,7 +18318,7 @@ KakunaBaseStats: ; 0x515c4
 	db 100 ; unknown 
 	db 15 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 5 , 5 ; frontpic dimensions 
+	dn 5, 5 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 0 ; growth rate 
 	dn INSECT, INSECT ; egg groups 
@@ -18349,7 +18349,7 @@ BeedrillBaseStats: ; 0x515e4
 	db 100 ; unknown 
 	db 15 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 7 , 7 ; frontpic dimensions 
+	dn 7, 7 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 0 ; growth rate 
 	dn INSECT, INSECT ; egg groups 
@@ -18380,7 +18380,7 @@ PidgeyBaseStats: ; 0x51604
 	db 100 ; unknown 
 	db 15 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 5 , 5 ; frontpic dimensions 
+	dn 5, 5 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 3 ; growth rate 
 	dn AVIAN, AVIAN ; egg groups 
@@ -18411,7 +18411,7 @@ PidgeottoBaseStats: ; 0x51624
 	db 100 ; unknown 
 	db 15 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 6 , 6 ; frontpic dimensions 
+	dn 6, 6 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 3 ; growth rate 
 	dn AVIAN, AVIAN ; egg groups 
@@ -18442,7 +18442,7 @@ PidgeotBaseStats: ; 0x51644
 	db 100 ; unknown 
 	db 15 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 7 , 7 ; frontpic dimensions 
+	dn 7, 7 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 3 ; growth rate 
 	dn AVIAN, AVIAN ; egg groups 
@@ -18473,7 +18473,7 @@ RattataBaseStats: ; 0x51664
 	db 100 ; unknown 
 	db 15 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 5 , 5 ; frontpic dimensions 
+	dn 5, 5 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 0 ; growth rate 
 	dn FIELD, FIELD ; egg groups 
@@ -18504,7 +18504,7 @@ RaticateBaseStats: ; 0x51684
 	db 100 ; unknown 
 	db 15 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 6 , 6 ; frontpic dimensions 
+	dn 6, 6 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 0 ; growth rate 
 	dn FIELD, FIELD ; egg groups 
@@ -18535,7 +18535,7 @@ SpearowBaseStats: ; 0x516a4
 	db 100 ; unknown 
 	db 15 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 5 , 5 ; frontpic dimensions 
+	dn 5, 5 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 0 ; growth rate 
 	dn AVIAN, AVIAN ; egg groups 
@@ -18566,7 +18566,7 @@ FearowBaseStats: ; 0x516c4
 	db 100 ; unknown 
 	db 15 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 7 , 7 ; frontpic dimensions 
+	dn 7, 7 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 0 ; growth rate 
 	dn AVIAN, AVIAN ; egg groups 
@@ -18597,7 +18597,7 @@ EkansBaseStats: ; 0x516e4
 	db 100 ; unknown 
 	db 20 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 5 , 5 ; frontpic dimensions 
+	dn 5, 5 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 0 ; growth rate 
 	dn FIELD, REPTILE ; egg groups 
@@ -18628,7 +18628,7 @@ ArbokBaseStats: ; 0x51704
 	db 100 ; unknown 
 	db 20 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 7 , 7 ; frontpic dimensions 
+	dn 7, 7 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 0 ; growth rate 
 	dn FIELD, REPTILE ; egg groups 
@@ -18659,7 +18659,7 @@ PikachuBaseStats: ; 0x51724
 	db 100 ; unknown 
 	db 10 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 5 , 5 ; frontpic dimensions 
+	dn 5, 5 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 0 ; growth rate 
 	dn FIELD, FAIRY ; egg groups 
@@ -18690,7 +18690,7 @@ RaichuBaseStats: ; 0x51744
 	db 100 ; unknown 
 	db 10 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 7 , 7 ; frontpic dimensions 
+	dn 7, 7 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 0 ; growth rate 
 	dn FIELD, FAIRY ; egg groups 
@@ -18721,7 +18721,7 @@ SandshrewBaseStats: ; 0x51764
 	db 100 ; unknown 
 	db 20 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 5 , 5 ; frontpic dimensions 
+	dn 5, 5 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 0 ; growth rate 
 	dn FIELD, FIELD ; egg groups 
@@ -18752,7 +18752,7 @@ SandslashBaseStats: ; 0x51784
 	db 100 ; unknown 
 	db 20 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 6 , 6 ; frontpic dimensions 
+	dn 6, 6 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 0 ; growth rate 
 	dn FIELD, FIELD ; egg groups 
@@ -18783,7 +18783,7 @@ Nidoran_FBaseStats: ; 0x517a4
 	db 100 ; unknown 
 	db 20 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 5 , 5 ; frontpic dimensions 
+	dn 5, 5 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 3 ; growth rate 
 	dn MONSTER, FIELD ; egg groups 
@@ -18814,7 +18814,7 @@ NidorinaBaseStats: ; 0x517c4
 	db 100 ; unknown 
 	db 20 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 6 , 6 ; frontpic dimensions 
+	dn 6, 6 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 3 ; growth rate 
 	dn NO_EGGS, NO_EGGS ; egg groups 
@@ -18845,7 +18845,7 @@ NidoqueenBaseStats: ; 0x517e4
 	db 100 ; unknown 
 	db 20 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 7 , 7 ; frontpic dimensions 
+	dn 7, 7 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 3 ; growth rate 
 	dn NO_EGGS, NO_EGGS ; egg groups 
@@ -18876,7 +18876,7 @@ Nidoran_MBaseStats: ; 0x51804
 	db 100 ; unknown 
 	db 20 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 5 , 5 ; frontpic dimensions 
+	dn 5, 5 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 3 ; growth rate 
 	dn MONSTER, FIELD ; egg groups 
@@ -18907,7 +18907,7 @@ NidorinoBaseStats: ; 0x51824
 	db 100 ; unknown 
 	db 20 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 6 , 6 ; frontpic dimensions 
+	dn 6, 6 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 3 ; growth rate 
 	dn MONSTER, FIELD ; egg groups 
@@ -18938,7 +18938,7 @@ NidokingBaseStats: ; 0x51844
 	db 100 ; unknown 
 	db 20 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 7 , 7 ; frontpic dimensions 
+	dn 7, 7 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 3 ; growth rate 
 	dn MONSTER, FIELD ; egg groups 
@@ -18969,7 +18969,7 @@ ClefairyBaseStats: ; 0x51864
 	db 100 ; unknown 
 	db 10 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 5 , 5 ; frontpic dimensions 
+	dn 5, 5 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 4 ; growth rate 
 	dn FAIRY, FAIRY ; egg groups 
@@ -19000,7 +19000,7 @@ ClefableBaseStats: ; 0x51884
 	db 100 ; unknown 
 	db 10 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 6 , 6 ; frontpic dimensions 
+	dn 6, 6 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 4 ; growth rate 
 	dn FAIRY, FAIRY ; egg groups 
@@ -19031,7 +19031,7 @@ VulpixBaseStats: ; 0x518a4
 	db 100 ; unknown 
 	db 20 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 6 , 6 ; frontpic dimensions 
+	dn 6, 6 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 0 ; growth rate 
 	dn FIELD, FIELD ; egg groups 
@@ -19062,7 +19062,7 @@ NinetalesBaseStats: ; 0x518c4
 	db 100 ; unknown 
 	db 20 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 7 , 7 ; frontpic dimensions 
+	dn 7, 7 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 0 ; growth rate 
 	dn FIELD, FIELD ; egg groups 
@@ -19093,7 +19093,7 @@ JigglypuffBaseStats: ; 0x518e4
 	db 100 ; unknown 
 	db 10 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 5 , 5 ; frontpic dimensions 
+	dn 5, 5 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 4 ; growth rate 
 	dn FAIRY, FAIRY ; egg groups 
@@ -19124,7 +19124,7 @@ WigglytuffBaseStats: ; 0x51904
 	db 100 ; unknown 
 	db 10 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 6 , 6 ; frontpic dimensions 
+	dn 6, 6 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 4 ; growth rate 
 	dn FAIRY, FAIRY ; egg groups 
@@ -19155,7 +19155,7 @@ ZubatBaseStats: ; 0x51924
 	db 100 ; unknown 
 	db 15 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 5 , 5 ; frontpic dimensions 
+	dn 5, 5 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 0 ; growth rate 
 	dn AVIAN, AVIAN ; egg groups 
@@ -19186,7 +19186,7 @@ GolbatBaseStats: ; 0x51944
 	db 100 ; unknown 
 	db 15 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 7 , 7 ; frontpic dimensions 
+	dn 7, 7 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 0 ; growth rate 
 	dn AVIAN, AVIAN ; egg groups 
@@ -19217,7 +19217,7 @@ OddishBaseStats: ; 0x51964
 	db 100 ; unknown 
 	db 20 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 5 , 5 ; frontpic dimensions 
+	dn 5, 5 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 3 ; growth rate 
 	dn PLANT, PLANT ; egg groups 
@@ -19248,7 +19248,7 @@ GloomBaseStats: ; 0x51984
 	db 100 ; unknown 
 	db 20 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 6 , 6 ; frontpic dimensions 
+	dn 6, 6 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 3 ; growth rate 
 	dn PLANT, PLANT ; egg groups 
@@ -19279,7 +19279,7 @@ VileplumeBaseStats: ; 0x519a4
 	db 100 ; unknown 
 	db 20 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 7 , 7 ; frontpic dimensions 
+	dn 7, 7 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 3 ; growth rate 
 	dn PLANT, PLANT ; egg groups 
@@ -19310,7 +19310,7 @@ ParasBaseStats: ; 0x519c4
 	db 100 ; unknown 
 	db 20 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 5 , 5 ; frontpic dimensions 
+	dn 5, 5 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 0 ; growth rate 
 	dn INSECT, PLANT ; egg groups 
@@ -19341,7 +19341,7 @@ ParasectBaseStats: ; 0x519e4
 	db 100 ; unknown 
 	db 20 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 7 , 7 ; frontpic dimensions 
+	dn 7, 7 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 0 ; growth rate 
 	dn INSECT, PLANT ; egg groups 
@@ -19372,7 +19372,7 @@ VenonatBaseStats: ; 0x51a04
 	db 100 ; unknown 
 	db 20 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 5 , 5 ; frontpic dimensions 
+	dn 5, 5 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 0 ; growth rate 
 	dn INSECT, INSECT ; egg groups 
@@ -19403,7 +19403,7 @@ VenomothBaseStats: ; 0x51a24
 	db 100 ; unknown 
 	db 20 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 7 , 7 ; frontpic dimensions 
+	dn 7, 7 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 0 ; growth rate 
 	dn INSECT, INSECT ; egg groups 
@@ -19434,7 +19434,7 @@ DiglettBaseStats: ; 0x51a44
 	db 100 ; unknown 
 	db 20 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 5 , 5 ; frontpic dimensions 
+	dn 5, 5 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 0 ; growth rate 
 	dn FIELD, FIELD ; egg groups 
@@ -19465,7 +19465,7 @@ DugtrioBaseStats: ; 0x51a64
 	db 100 ; unknown 
 	db 20 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 7 , 7 ; frontpic dimensions 
+	dn 7, 7 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 0 ; growth rate 
 	dn FIELD, FIELD ; egg groups 
@@ -19496,7 +19496,7 @@ MeowthBaseStats: ; 0x51a84
 	db 100 ; unknown 
 	db 20 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 5 , 5 ; frontpic dimensions 
+	dn 5, 5 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 0 ; growth rate 
 	dn FIELD, FIELD ; egg groups 
@@ -19527,7 +19527,7 @@ PersianBaseStats: ; 0x51aa4
 	db 100 ; unknown 
 	db 20 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 7 , 7 ; frontpic dimensions 
+	dn 7, 7 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 0 ; growth rate 
 	dn FIELD, FIELD ; egg groups 
@@ -19558,7 +19558,7 @@ PsyduckBaseStats: ; 0x51ac4
 	db 100 ; unknown 
 	db 20 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 5 , 5 ; frontpic dimensions 
+	dn 5, 5 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 0 ; growth rate 
 	dn AMPHIBIAN, FIELD ; egg groups 
@@ -19589,7 +19589,7 @@ GolduckBaseStats: ; 0x51ae4
 	db 100 ; unknown 
 	db 20 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 7 , 7 ; frontpic dimensions 
+	dn 7, 7 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 0 ; growth rate 
 	dn AMPHIBIAN, FIELD ; egg groups 
@@ -19620,7 +19620,7 @@ MankeyBaseStats: ; 0x51b04
 	db 100 ; unknown 
 	db 20 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 5 , 5 ; frontpic dimensions 
+	dn 5, 5 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 0 ; growth rate 
 	dn FIELD, FIELD ; egg groups 
@@ -19651,7 +19651,7 @@ PrimeapeBaseStats: ; 0x51b24
 	db 100 ; unknown 
 	db 20 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 7 , 7 ; frontpic dimensions 
+	dn 7, 7 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 0 ; growth rate 
 	dn FIELD, FIELD ; egg groups 
@@ -19682,7 +19682,7 @@ GrowlitheBaseStats: ; 0x51b44
 	db 100 ; unknown 
 	db 20 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 5 , 5 ; frontpic dimensions 
+	dn 5, 5 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 5 ; growth rate 
 	dn FIELD, FIELD ; egg groups 
@@ -19713,7 +19713,7 @@ ArcanineBaseStats: ; 0x51b64
 	db 100 ; unknown 
 	db 20 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 7 , 7 ; frontpic dimensions 
+	dn 7, 7 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 5 ; growth rate 
 	dn FIELD, FIELD ; egg groups 
@@ -19744,7 +19744,7 @@ PoliwagBaseStats: ; 0x51b84
 	db 100 ; unknown 
 	db 20 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 5 , 5 ; frontpic dimensions 
+	dn 5, 5 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 3 ; growth rate 
 	dn AMPHIBIAN, AMPHIBIAN ; egg groups 
@@ -19775,7 +19775,7 @@ PoliwhirlBaseStats: ; 0x51ba4
 	db 100 ; unknown 
 	db 20 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 6 , 6 ; frontpic dimensions 
+	dn 6, 6 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 3 ; growth rate 
 	dn AMPHIBIAN, AMPHIBIAN ; egg groups 
@@ -19806,7 +19806,7 @@ PoliwrathBaseStats: ; 0x51bc4
 	db 100 ; unknown 
 	db 20 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 7 , 7 ; frontpic dimensions 
+	dn 7, 7 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 3 ; growth rate 
 	dn AMPHIBIAN, AMPHIBIAN ; egg groups 
@@ -19837,7 +19837,7 @@ AbraBaseStats: ; 0x51be4
 	db 100 ; unknown 
 	db 20 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 5 , 5 ; frontpic dimensions 
+	dn 5, 5 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 3 ; growth rate 
 	dn HUMANSHAPE, HUMANSHAPE ; egg groups 
@@ -19868,7 +19868,7 @@ KadabraBaseStats: ; 0x51c04
 	db 100 ; unknown 
 	db 20 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 6 , 6 ; frontpic dimensions 
+	dn 6, 6 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 3 ; growth rate 
 	dn HUMANSHAPE, HUMANSHAPE ; egg groups 
@@ -19899,7 +19899,7 @@ AlakazamBaseStats: ; 0x51c24
 	db 100 ; unknown 
 	db 20 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 7 , 7 ; frontpic dimensions 
+	dn 7, 7 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 3 ; growth rate 
 	dn HUMANSHAPE, HUMANSHAPE ; egg groups 
@@ -19930,7 +19930,7 @@ MachopBaseStats: ; 0x51c44
 	db 100 ; unknown 
 	db 20 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 5 , 5 ; frontpic dimensions 
+	dn 5, 5 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 3 ; growth rate 
 	dn HUMANSHAPE, HUMANSHAPE ; egg groups 
@@ -19961,7 +19961,7 @@ MachokeBaseStats: ; 0x51c64
 	db 100 ; unknown 
 	db 20 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 7 , 7 ; frontpic dimensions 
+	dn 7, 7 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 3 ; growth rate 
 	dn HUMANSHAPE, HUMANSHAPE ; egg groups 
@@ -19992,7 +19992,7 @@ MachampBaseStats: ; 0x51c84
 	db 100 ; unknown 
 	db 20 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 7 , 7 ; frontpic dimensions 
+	dn 7, 7 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 3 ; growth rate 
 	dn HUMANSHAPE, HUMANSHAPE ; egg groups 
@@ -20023,7 +20023,7 @@ BellsproutBaseStats: ; 0x51ca4
 	db 100 ; unknown 
 	db 20 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 5 , 5 ; frontpic dimensions 
+	dn 5, 5 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 3 ; growth rate 
 	dn PLANT, PLANT ; egg groups 
@@ -20054,7 +20054,7 @@ WeepinbellBaseStats: ; 0x51cc4
 	db 100 ; unknown 
 	db 20 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 6 , 6 ; frontpic dimensions 
+	dn 6, 6 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 3 ; growth rate 
 	dn PLANT, PLANT ; egg groups 
@@ -20085,7 +20085,7 @@ VictreebelBaseStats: ; 0x51ce4
 	db 100 ; unknown 
 	db 20 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 7 , 7 ; frontpic dimensions 
+	dn 7, 7 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 3 ; growth rate 
 	dn PLANT, PLANT ; egg groups 
@@ -20116,7 +20116,7 @@ TentacoolBaseStats: ; 0x51d04
 	db 100 ; unknown 
 	db 20 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 5 , 5 ; frontpic dimensions 
+	dn 5, 5 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 5 ; growth rate 
 	dn INVERTEBRATE, INVERTEBRATE ; egg groups 
@@ -20147,7 +20147,7 @@ TentacruelBaseStats: ; 0x51d24
 	db 100 ; unknown 
 	db 20 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 6 , 6 ; frontpic dimensions 
+	dn 6, 6 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 5 ; growth rate 
 	dn INVERTEBRATE, INVERTEBRATE ; egg groups 
@@ -20178,7 +20178,7 @@ GeodudeBaseStats: ; 0x51d44
 	db 100 ; unknown 
 	db 15 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 5 , 5 ; frontpic dimensions 
+	dn 5, 5 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 3 ; growth rate 
 	dn INANIMATE, INANIMATE ; egg groups 
@@ -20209,7 +20209,7 @@ GravelerBaseStats: ; 0x51d64
 	db 100 ; unknown 
 	db 15 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 6 , 6 ; frontpic dimensions 
+	dn 6, 6 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 3 ; growth rate 
 	dn INANIMATE, INANIMATE ; egg groups 
@@ -20240,7 +20240,7 @@ GolemBaseStats: ; 0x51d84
 	db 100 ; unknown 
 	db 15 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 6 , 6 ; frontpic dimensions 
+	dn 6, 6 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 3 ; growth rate 
 	dn INANIMATE, INANIMATE ; egg groups 
@@ -20271,7 +20271,7 @@ PonytaBaseStats: ; 0x51da4
 	db 100 ; unknown 
 	db 20 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 6 , 6 ; frontpic dimensions 
+	dn 6, 6 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 0 ; growth rate 
 	dn FIELD, FIELD ; egg groups 
@@ -20302,7 +20302,7 @@ RapidashBaseStats: ; 0x51dc4
 	db 100 ; unknown 
 	db 20 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 7 , 7 ; frontpic dimensions 
+	dn 7, 7 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 0 ; growth rate 
 	dn FIELD, FIELD ; egg groups 
@@ -20333,7 +20333,7 @@ SlowpokeBaseStats: ; 0x51de4
 	db 100 ; unknown 
 	db 20 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 5 , 5 ; frontpic dimensions 
+	dn 5, 5 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 0 ; growth rate 
 	dn MONSTER, AMPHIBIAN ; egg groups 
@@ -20364,7 +20364,7 @@ SlowbroBaseStats: ; 0x51e04
 	db 100 ; unknown 
 	db 20 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 7 , 7 ; frontpic dimensions 
+	dn 7, 7 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 0 ; growth rate 
 	dn MONSTER, AMPHIBIAN ; egg groups 
@@ -20395,7 +20395,7 @@ MagnemiteBaseStats: ; 0x51e24
 	db 100 ; unknown 
 	db 20 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 5 , 5 ; frontpic dimensions 
+	dn 5, 5 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 0 ; growth rate 
 	dn INANIMATE, INANIMATE ; egg groups 
@@ -20426,7 +20426,7 @@ MagnetonBaseStats: ; 0x51e44
 	db 100 ; unknown 
 	db 20 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 6 , 6 ; frontpic dimensions 
+	dn 6, 6 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 0 ; growth rate 
 	dn INANIMATE, INANIMATE ; egg groups 
@@ -20457,7 +20457,7 @@ Farfetch_DBaseStats: ; 0x51e64
 	db 100 ; unknown 
 	db 20 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 6 , 6 ; frontpic dimensions 
+	dn 6, 6 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 0 ; growth rate 
 	dn AVIAN, FIELD ; egg groups 
@@ -20488,7 +20488,7 @@ DoduoBaseStats: ; 0x51e84
 	db 100 ; unknown 
 	db 20 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 5 , 5 ; frontpic dimensions 
+	dn 5, 5 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 0 ; growth rate 
 	dn AVIAN, AVIAN ; egg groups 
@@ -20519,7 +20519,7 @@ DodrioBaseStats: ; 0x51ea4
 	db 100 ; unknown 
 	db 20 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 7 , 7 ; frontpic dimensions 
+	dn 7, 7 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 0 ; growth rate 
 	dn AVIAN, AVIAN ; egg groups 
@@ -20550,7 +20550,7 @@ SeelBaseStats: ; 0x51ec4
 	db 100 ; unknown 
 	db 20 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 6 , 6 ; frontpic dimensions 
+	dn 6, 6 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 0 ; growth rate 
 	dn AMPHIBIAN, FIELD ; egg groups 
@@ -20581,7 +20581,7 @@ DewgongBaseStats: ; 0x51ee4
 	db 100 ; unknown 
 	db 20 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 7 , 7 ; frontpic dimensions 
+	dn 7, 7 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 0 ; growth rate 
 	dn AMPHIBIAN, FIELD ; egg groups 
@@ -20612,7 +20612,7 @@ GrimerBaseStats: ; 0x51f04
 	db 100 ; unknown 
 	db 20 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 5 , 5 ; frontpic dimensions 
+	dn 5, 5 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 0 ; growth rate 
 	dn AMORPHOUS, AMORPHOUS ; egg groups 
@@ -20643,7 +20643,7 @@ MukBaseStats: ; 0x51f24
 	db 100 ; unknown 
 	db 20 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 7 , 7 ; frontpic dimensions 
+	dn 7, 7 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 0 ; growth rate 
 	dn AMORPHOUS, AMORPHOUS ; egg groups 
@@ -20674,7 +20674,7 @@ ShellderBaseStats: ; 0x51f44
 	db 100 ; unknown 
 	db 20 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 5 , 5 ; frontpic dimensions 
+	dn 5, 5 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 5 ; growth rate 
 	dn INVERTEBRATE, INVERTEBRATE ; egg groups 
@@ -20705,7 +20705,7 @@ CloysterBaseStats: ; 0x51f64
 	db 100 ; unknown 
 	db 20 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 7 , 7 ; frontpic dimensions 
+	dn 7, 7 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 5 ; growth rate 
 	dn INVERTEBRATE, INVERTEBRATE ; egg groups 
@@ -20736,7 +20736,7 @@ GastlyBaseStats: ; 0x51f84
 	db 100 ; unknown 
 	db 20 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 7 , 7 ; frontpic dimensions 
+	dn 7, 7 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 3 ; growth rate 
 	dn AMORPHOUS, AMORPHOUS ; egg groups 
@@ -20767,7 +20767,7 @@ HaunterBaseStats: ; 0x51fa4
 	db 100 ; unknown 
 	db 20 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 6 , 6 ; frontpic dimensions 
+	dn 6, 6 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 3 ; growth rate 
 	dn AMORPHOUS, AMORPHOUS ; egg groups 
@@ -20798,7 +20798,7 @@ GengarBaseStats: ; 0x51fc4
 	db 100 ; unknown 
 	db 20 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 6 , 6 ; frontpic dimensions 
+	dn 6, 6 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 3 ; growth rate 
 	dn AMORPHOUS, AMORPHOUS ; egg groups 
@@ -20829,7 +20829,7 @@ OnixBaseStats: ; 0x51fe4
 	db 100 ; unknown 
 	db 25 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 7 , 7 ; frontpic dimensions 
+	dn 7, 7 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 0 ; growth rate 
 	dn INANIMATE, INANIMATE ; egg groups 
@@ -20860,7 +20860,7 @@ DrowzeeBaseStats: ; 0x52004
 	db 100 ; unknown 
 	db 20 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 6 , 6 ; frontpic dimensions 
+	dn 6, 6 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 0 ; growth rate 
 	dn HUMANSHAPE, HUMANSHAPE ; egg groups 
@@ -20891,7 +20891,7 @@ HypnoBaseStats: ; 0x52024
 	db 100 ; unknown 
 	db 20 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 7 , 7 ; frontpic dimensions 
+	dn 7, 7 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 0 ; growth rate 
 	dn HUMANSHAPE, HUMANSHAPE ; egg groups 
@@ -20922,7 +20922,7 @@ KrabbyBaseStats: ; 0x52044
 	db 100 ; unknown 
 	db 20 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 5 , 5 ; frontpic dimensions 
+	dn 5, 5 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 0 ; growth rate 
 	dn INVERTEBRATE, INVERTEBRATE ; egg groups 
@@ -20953,7 +20953,7 @@ KinglerBaseStats: ; 0x52064
 	db 100 ; unknown 
 	db 20 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 7 , 7 ; frontpic dimensions 
+	dn 7, 7 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 0 ; growth rate 
 	dn INVERTEBRATE, INVERTEBRATE ; egg groups 
@@ -20984,7 +20984,7 @@ VoltorbBaseStats: ; 0x52084
 	db 100 ; unknown 
 	db 20 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 5 , 5 ; frontpic dimensions 
+	dn 5, 5 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 0 ; growth rate 
 	dn INANIMATE, INANIMATE ; egg groups 
@@ -21015,7 +21015,7 @@ ElectrodeBaseStats: ; 0x520a4
 	db 100 ; unknown 
 	db 20 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 5 , 5 ; frontpic dimensions 
+	dn 5, 5 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 0 ; growth rate 
 	dn INANIMATE, INANIMATE ; egg groups 
@@ -21046,7 +21046,7 @@ ExeggcuteBaseStats: ; 0x520c4
 	db 100 ; unknown 
 	db 20 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 7 , 7 ; frontpic dimensions 
+	dn 7, 7 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 5 ; growth rate 
 	dn PLANT, PLANT ; egg groups 
@@ -21077,7 +21077,7 @@ ExeggutorBaseStats: ; 0x520e4
 	db 100 ; unknown 
 	db 20 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 7 , 7 ; frontpic dimensions 
+	dn 7, 7 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 5 ; growth rate 
 	dn PLANT, PLANT ; egg groups 
@@ -21108,7 +21108,7 @@ CuboneBaseStats: ; 0x52104
 	db 100 ; unknown 
 	db 20 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 5 , 5 ; frontpic dimensions 
+	dn 5, 5 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 0 ; growth rate 
 	dn MONSTER, MONSTER ; egg groups 
@@ -21139,7 +21139,7 @@ MarowakBaseStats: ; 0x52124
 	db 100 ; unknown 
 	db 20 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 6 , 6 ; frontpic dimensions 
+	dn 6, 6 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 0 ; growth rate 
 	dn MONSTER, MONSTER ; egg groups 
@@ -21170,7 +21170,7 @@ HitmonleeBaseStats: ; 0x52144
 	db 100 ; unknown 
 	db 25 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 7 , 7 ; frontpic dimensions 
+	dn 7, 7 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 0 ; growth rate 
 	dn HUMANSHAPE, HUMANSHAPE ; egg groups 
@@ -21201,7 +21201,7 @@ HitmonchanBaseStats: ; 0x52164
 	db 100 ; unknown 
 	db 25 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 6 , 6 ; frontpic dimensions 
+	dn 6, 6 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 0 ; growth rate 
 	dn HUMANSHAPE, HUMANSHAPE ; egg groups 
@@ -21232,7 +21232,7 @@ LickitungBaseStats: ; 0x52184
 	db 100 ; unknown 
 	db 20 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 7 , 7 ; frontpic dimensions 
+	dn 7, 7 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 0 ; growth rate 
 	dn MONSTER, MONSTER ; egg groups 
@@ -21263,7 +21263,7 @@ KoffingBaseStats: ; 0x521a4
 	db 100 ; unknown 
 	db 20 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 6 , 6 ; frontpic dimensions 
+	dn 6, 6 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 0 ; growth rate 
 	dn AMORPHOUS, AMORPHOUS ; egg groups 
@@ -21294,7 +21294,7 @@ WeezingBaseStats: ; 0x521c4
 	db 100 ; unknown 
 	db 20 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 7 , 7 ; frontpic dimensions 
+	dn 7, 7 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 0 ; growth rate 
 	dn AMORPHOUS, AMORPHOUS ; egg groups 
@@ -21325,7 +21325,7 @@ RhyhornBaseStats: ; 0x521e4
 	db 100 ; unknown 
 	db 20 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 7 , 7 ; frontpic dimensions 
+	dn 7, 7 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 5 ; growth rate 
 	dn MONSTER, FIELD ; egg groups 
@@ -21356,7 +21356,7 @@ RhydonBaseStats: ; 0x52204
 	db 100 ; unknown 
 	db 20 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 7 , 7 ; frontpic dimensions 
+	dn 7, 7 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 5 ; growth rate 
 	dn MONSTER, FIELD ; egg groups 
@@ -21387,7 +21387,7 @@ ChanseyBaseStats: ; 0x52224
 	db 100 ; unknown 
 	db 40 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 6 , 6 ; frontpic dimensions 
+	dn 6, 6 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 4 ; growth rate 
 	dn FAIRY, FAIRY ; egg groups 
@@ -21418,7 +21418,7 @@ TangelaBaseStats: ; 0x52244
 	db 100 ; unknown 
 	db 20 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 6 , 6 ; frontpic dimensions 
+	dn 6, 6 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 0 ; growth rate 
 	dn PLANT, PLANT ; egg groups 
@@ -21449,7 +21449,7 @@ KangaskhanBaseStats: ; 0x52264
 	db 100 ; unknown 
 	db 20 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 7 , 7 ; frontpic dimensions 
+	dn 7, 7 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 0 ; growth rate 
 	dn MONSTER, MONSTER ; egg groups 
@@ -21480,7 +21480,7 @@ HorseaBaseStats: ; 0x52284
 	db 100 ; unknown 
 	db 20 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 5 , 5 ; frontpic dimensions 
+	dn 5, 5 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 0 ; growth rate 
 	dn AMPHIBIAN, REPTILE ; egg groups 
@@ -21511,7 +21511,7 @@ SeadraBaseStats: ; 0x522a4
 	db 100 ; unknown 
 	db 20 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 6 , 6 ; frontpic dimensions 
+	dn 6, 6 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 0 ; growth rate 
 	dn AMPHIBIAN, REPTILE ; egg groups 
@@ -21542,7 +21542,7 @@ GoldeenBaseStats: ; 0x522c4
 	db 100 ; unknown 
 	db 20 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 6 , 6 ; frontpic dimensions 
+	dn 6, 6 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 0 ; growth rate 
 	dn FISH, FISH ; egg groups 
@@ -21573,7 +21573,7 @@ SeakingBaseStats: ; 0x522e4
 	db 100 ; unknown 
 	db 20 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 7 , 7 ; frontpic dimensions 
+	dn 7, 7 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 0 ; growth rate 
 	dn FISH, FISH ; egg groups 
@@ -21604,7 +21604,7 @@ StaryuBaseStats: ; 0x52304
 	db 100 ; unknown 
 	db 20 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 6 , 6 ; frontpic dimensions 
+	dn 6, 6 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 5 ; growth rate 
 	dn INVERTEBRATE, INVERTEBRATE ; egg groups 
@@ -21635,7 +21635,7 @@ StarmieBaseStats: ; 0x52324
 	db 100 ; unknown 
 	db 20 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 6 , 6 ; frontpic dimensions 
+	dn 6, 6 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 5 ; growth rate 
 	dn INVERTEBRATE, INVERTEBRATE ; egg groups 
@@ -21666,7 +21666,7 @@ Mr__MimeBaseStats: ; 0x52344
 	db 100 ; unknown 
 	db 25 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 6 , 6 ; frontpic dimensions 
+	dn 6, 6 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 0 ; growth rate 
 	dn HUMANSHAPE, HUMANSHAPE ; egg groups 
@@ -21697,7 +21697,7 @@ ScytherBaseStats: ; 0x52364
 	db 100 ; unknown 
 	db 25 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 7 , 7 ; frontpic dimensions 
+	dn 7, 7 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 0 ; growth rate 
 	dn INSECT, INSECT ; egg groups 
@@ -21728,7 +21728,7 @@ JynxBaseStats: ; 0x52384
 	db 100 ; unknown 
 	db 25 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 6 , 6 ; frontpic dimensions 
+	dn 6, 6 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 0 ; growth rate 
 	dn HUMANSHAPE, HUMANSHAPE ; egg groups 
@@ -21759,7 +21759,7 @@ ElectabuzzBaseStats: ; 0x523a4
 	db 100 ; unknown 
 	db 25 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 6 , 6 ; frontpic dimensions 
+	dn 6, 6 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 0 ; growth rate 
 	dn HUMANSHAPE, HUMANSHAPE ; egg groups 
@@ -21790,7 +21790,7 @@ MagmarBaseStats: ; 0x523c4
 	db 100 ; unknown 
 	db 25 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 6 , 6 ; frontpic dimensions 
+	dn 6, 6 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 0 ; growth rate 
 	dn HUMANSHAPE, HUMANSHAPE ; egg groups 
@@ -21821,7 +21821,7 @@ PinsirBaseStats: ; 0x523e4
 	db 100 ; unknown 
 	db 25 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 7 , 7 ; frontpic dimensions 
+	dn 7, 7 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 5 ; growth rate 
 	dn INSECT, INSECT ; egg groups 
@@ -21852,7 +21852,7 @@ TaurosBaseStats: ; 0x52404
 	db 100 ; unknown 
 	db 20 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 7 , 7 ; frontpic dimensions 
+	dn 7, 7 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 5 ; growth rate 
 	dn FIELD, FIELD ; egg groups 
@@ -21883,7 +21883,7 @@ MagikarpBaseStats: ; 0x52424
 	db 100 ; unknown 
 	db 5 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 6 , 6 ; frontpic dimensions 
+	dn 6, 6 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 5 ; growth rate 
 	dn FISH, REPTILE ; egg groups 
@@ -21914,7 +21914,7 @@ GyaradosBaseStats: ; 0x52444
 	db 100 ; unknown 
 	db 5 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 7 , 7 ; frontpic dimensions 
+	dn 7, 7 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 5 ; growth rate 
 	dn FISH, REPTILE ; egg groups 
@@ -21945,7 +21945,7 @@ LaprasBaseStats: ; 0x52464
 	db 100 ; unknown 
 	db 40 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 7 , 7 ; frontpic dimensions 
+	dn 7, 7 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 5 ; growth rate 
 	dn MONSTER, AMPHIBIAN ; egg groups 
@@ -21976,7 +21976,7 @@ DittoBaseStats: ; 0x52484
 	db 100 ; unknown 
 	db 20 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 5 , 5 ; frontpic dimensions 
+	dn 5, 5 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 0 ; growth rate 
 	dn LADIES_MAN, LADIES_MAN ; egg groups 
@@ -22007,7 +22007,7 @@ EeveeBaseStats: ; 0x524a4
 	db 100 ; unknown 
 	db 35 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 5 , 5 ; frontpic dimensions 
+	dn 5, 5 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 0 ; growth rate 
 	dn FIELD, FIELD ; egg groups 
@@ -22038,7 +22038,7 @@ VaporeonBaseStats: ; 0x524c4
 	db 100 ; unknown 
 	db 35 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 6 , 6 ; frontpic dimensions 
+	dn 6, 6 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 0 ; growth rate 
 	dn FIELD, FIELD ; egg groups 
@@ -22069,7 +22069,7 @@ JolteonBaseStats: ; 0x524e4
 	db 100 ; unknown 
 	db 35 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 6 , 6 ; frontpic dimensions 
+	dn 6, 6 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 0 ; growth rate 
 	dn FIELD, FIELD ; egg groups 
@@ -22100,7 +22100,7 @@ FlareonBaseStats: ; 0x52504
 	db 100 ; unknown 
 	db 35 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 6 , 6 ; frontpic dimensions 
+	dn 6, 6 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 0 ; growth rate 
 	dn FIELD, FIELD ; egg groups 
@@ -22131,7 +22131,7 @@ PorygonBaseStats: ; 0x52524
 	db 100 ; unknown 
 	db 20 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 6 , 6 ; frontpic dimensions 
+	dn 6, 6 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 0 ; growth rate 
 	dn INANIMATE, INANIMATE ; egg groups 
@@ -22162,7 +22162,7 @@ OmanyteBaseStats: ; 0x52544
 	db 100 ; unknown 
 	db 30 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 5 , 5 ; frontpic dimensions 
+	dn 5, 5 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 0 ; growth rate 
 	dn AMPHIBIAN, INVERTEBRATE ; egg groups 
@@ -22193,7 +22193,7 @@ OmastarBaseStats: ; 0x52564
 	db 100 ; unknown 
 	db 30 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 6 , 6 ; frontpic dimensions 
+	dn 6, 6 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 0 ; growth rate 
 	dn AMPHIBIAN, INVERTEBRATE ; egg groups 
@@ -22224,7 +22224,7 @@ KabutoBaseStats: ; 0x52584
 	db 100 ; unknown 
 	db 30 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 5 , 5 ; frontpic dimensions 
+	dn 5, 5 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 0 ; growth rate 
 	dn AMPHIBIAN, INVERTEBRATE ; egg groups 
@@ -22255,7 +22255,7 @@ KabutopsBaseStats: ; 0x525a4
 	db 100 ; unknown 
 	db 30 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 6 , 6 ; frontpic dimensions 
+	dn 6, 6 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 0 ; growth rate 
 	dn AMPHIBIAN, INVERTEBRATE ; egg groups 
@@ -22286,7 +22286,7 @@ AerodactylBaseStats: ; 0x525c4
 	db 100 ; unknown 
 	db 35 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 7 , 7 ; frontpic dimensions 
+	dn 7, 7 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 5 ; growth rate 
 	dn AVIAN, AVIAN ; egg groups 
@@ -22317,7 +22317,7 @@ SnorlaxBaseStats: ; 0x525e4
 	db 100 ; unknown 
 	db 40 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 7 , 7 ; frontpic dimensions 
+	dn 7, 7 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 5 ; growth rate 
 	dn MONSTER, MONSTER ; egg groups 
@@ -22348,7 +22348,7 @@ ArticunoBaseStats: ; 0x52604
 	db 100 ; unknown 
 	db 80 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 7 , 7 ; frontpic dimensions 
+	dn 7, 7 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 5 ; growth rate 
 	dn NO_EGGS, NO_EGGS ; egg groups 
@@ -22379,7 +22379,7 @@ ZapdosBaseStats: ; 0x52624
 	db 100 ; unknown 
 	db 80 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 7 , 7 ; frontpic dimensions 
+	dn 7, 7 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 5 ; growth rate 
 	dn NO_EGGS, NO_EGGS ; egg groups 
@@ -22410,7 +22410,7 @@ MoltresBaseStats: ; 0x52644
 	db 100 ; unknown 
 	db 80 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 7 , 7 ; frontpic dimensions 
+	dn 7, 7 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 5 ; growth rate 
 	dn NO_EGGS, NO_EGGS ; egg groups 
@@ -22441,7 +22441,7 @@ DratiniBaseStats: ; 0x52664
 	db 100 ; unknown 
 	db 40 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 5 , 5 ; frontpic dimensions 
+	dn 5, 5 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 5 ; growth rate 
 	dn AMPHIBIAN, REPTILE ; egg groups 
@@ -22472,7 +22472,7 @@ DragonairBaseStats: ; 0x52684
 	db 100 ; unknown 
 	db 40 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 6 , 6 ; frontpic dimensions 
+	dn 6, 6 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 5 ; growth rate 
 	dn AMPHIBIAN, REPTILE ; egg groups 
@@ -22503,7 +22503,7 @@ DragoniteBaseStats: ; 0x526a4
 	db 100 ; unknown 
 	db 40 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 7 , 7 ; frontpic dimensions 
+	dn 7, 7 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 5 ; growth rate 
 	dn AMPHIBIAN, REPTILE ; egg groups 
@@ -22534,7 +22534,7 @@ MewtwoBaseStats: ; 0x526c4
 	db 100 ; unknown 
 	db 120 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 7 , 7 ; frontpic dimensions 
+	dn 7, 7 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 5 ; growth rate 
 	dn NO_EGGS, NO_EGGS ; egg groups 
@@ -22565,7 +22565,7 @@ MewBaseStats: ; 0x526e4
 	db 100 ; unknown 
 	db 120 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 5 , 5 ; frontpic dimensions 
+	dn 5, 5 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 3 ; growth rate 
 	dn NO_EGGS, NO_EGGS ; egg groups 
@@ -22596,7 +22596,7 @@ ChikoritaBaseStats: ; 0x52704
 	db 100 ; unknown 
 	db 20 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 5 , 5 ; frontpic dimensions 
+	dn 5, 5 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 3 ; growth rate 
 	dn MONSTER, PLANT ; egg groups 
@@ -22627,7 +22627,7 @@ BayleefBaseStats: ; 0x52724
 	db 100 ; unknown 
 	db 20 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 6 , 6 ; frontpic dimensions 
+	dn 6, 6 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 3 ; growth rate 
 	dn MONSTER, PLANT ; egg groups 
@@ -22658,7 +22658,7 @@ MeganiumBaseStats: ; 0x52744
 	db 100 ; unknown 
 	db 20 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 7 , 7 ; frontpic dimensions 
+	dn 7, 7 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 3 ; growth rate 
 	dn MONSTER, PLANT ; egg groups 
@@ -22689,7 +22689,7 @@ CyndaquilBaseStats: ; 0x52764
 	db 100 ; unknown 
 	db 20 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 5 , 5 ; frontpic dimensions 
+	dn 5, 5 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 3 ; growth rate 
 	dn FIELD, FIELD ; egg groups 
@@ -22720,7 +22720,7 @@ QuilavaBaseStats: ; 0x52784
 	db 100 ; unknown 
 	db 20 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 6 , 6 ; frontpic dimensions 
+	dn 6, 6 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 3 ; growth rate 
 	dn FIELD, FIELD ; egg groups 
@@ -22751,7 +22751,7 @@ TyphlosionBaseStats: ; 0x527a4
 	db 100 ; unknown 
 	db 20 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 7 , 7 ; frontpic dimensions 
+	dn 7, 7 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 3 ; growth rate 
 	dn FIELD, FIELD ; egg groups 
@@ -22782,7 +22782,7 @@ TotodileBaseStats: ; 0x527c4
 	db 100 ; unknown 
 	db 20 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 5 , 5 ; frontpic dimensions 
+	dn 5, 5 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 3 ; growth rate 
 	dn MONSTER, AMPHIBIAN ; egg groups 
@@ -22813,7 +22813,7 @@ CroconawBaseStats: ; 0x527e4
 	db 100 ; unknown 
 	db 20 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 6 , 6 ; frontpic dimensions 
+	dn 6, 6 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 3 ; growth rate 
 	dn MONSTER, AMPHIBIAN ; egg groups 
@@ -22844,7 +22844,7 @@ FeraligatrBaseStats: ; 0x52804
 	db 100 ; unknown 
 	db 20 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 7 , 7 ; frontpic dimensions 
+	dn 7, 7 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 3 ; growth rate 
 	dn MONSTER, AMPHIBIAN ; egg groups 
@@ -22875,7 +22875,7 @@ SentretBaseStats: ; 0x52824
 	db 100 ; unknown 
 	db 15 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 6 , 6 ; frontpic dimensions 
+	dn 6, 6 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 0 ; growth rate 
 	dn FIELD, FIELD ; egg groups 
@@ -22906,7 +22906,7 @@ FurretBaseStats: ; 0x52844
 	db 100 ; unknown 
 	db 15 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 6 , 6 ; frontpic dimensions 
+	dn 6, 6 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 0 ; growth rate 
 	dn FIELD, FIELD ; egg groups 
@@ -22937,7 +22937,7 @@ HoothootBaseStats: ; 0x52864
 	db 100 ; unknown 
 	db 15 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 5 , 5 ; frontpic dimensions 
+	dn 5, 5 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 0 ; growth rate 
 	dn AVIAN, AVIAN ; egg groups 
@@ -22968,7 +22968,7 @@ NoctowlBaseStats: ; 0x52884
 	db 100 ; unknown 
 	db 15 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 7 , 7 ; frontpic dimensions 
+	dn 7, 7 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 0 ; growth rate 
 	dn AVIAN, AVIAN ; egg groups 
@@ -22999,7 +22999,7 @@ LedybaBaseStats: ; 0x528a4
 	db 100 ; unknown 
 	db 15 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 6 , 6 ; frontpic dimensions 
+	dn 6, 6 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 4 ; growth rate 
 	dn INSECT, INSECT ; egg groups 
@@ -23030,7 +23030,7 @@ LedianBaseStats: ; 0x528c4
 	db 100 ; unknown 
 	db 15 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 6 , 6 ; frontpic dimensions 
+	dn 6, 6 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 4 ; growth rate 
 	dn INSECT, INSECT ; egg groups 
@@ -23061,7 +23061,7 @@ SpinarakBaseStats: ; 0x528e4
 	db 100 ; unknown 
 	db 15 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 5 , 5 ; frontpic dimensions 
+	dn 5, 5 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 4 ; growth rate 
 	dn INSECT, INSECT ; egg groups 
@@ -23092,7 +23092,7 @@ AriadosBaseStats: ; 0x52904
 	db 100 ; unknown 
 	db 15 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 7 , 7 ; frontpic dimensions 
+	dn 7, 7 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 4 ; growth rate 
 	dn INSECT, INSECT ; egg groups 
@@ -23123,7 +23123,7 @@ CrobatBaseStats: ; 0x52924
 	db 100 ; unknown 
 	db 15 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 7 , 7 ; frontpic dimensions 
+	dn 7, 7 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 0 ; growth rate 
 	dn AVIAN, AVIAN ; egg groups 
@@ -23154,7 +23154,7 @@ ChinchouBaseStats: ; 0x52944
 	db 100 ; unknown 
 	db 20 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 6 , 6 ; frontpic dimensions 
+	dn 6, 6 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 5 ; growth rate 
 	dn FISH, FISH ; egg groups 
@@ -23185,7 +23185,7 @@ LanturnBaseStats: ; 0x52964
 	db 100 ; unknown 
 	db 20 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 6 , 6 ; frontpic dimensions 
+	dn 6, 6 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 5 ; growth rate 
 	dn FISH, FISH ; egg groups 
@@ -23216,7 +23216,7 @@ PichuBaseStats: ; 0x52984
 	db 100 ; unknown 
 	db 10 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 5 , 5 ; frontpic dimensions 
+	dn 5, 5 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 0 ; growth rate 
 	dn NO_EGGS, NO_EGGS ; egg groups 
@@ -23247,7 +23247,7 @@ CleffaBaseStats: ; 0x529a4
 	db 100 ; unknown 
 	db 10 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 5 , 5 ; frontpic dimensions 
+	dn 5, 5 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 4 ; growth rate 
 	dn NO_EGGS, NO_EGGS ; egg groups 
@@ -23278,7 +23278,7 @@ IgglybuffBaseStats: ; 0x529c4
 	db 100 ; unknown 
 	db 10 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 5 , 5 ; frontpic dimensions 
+	dn 5, 5 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 4 ; growth rate 
 	dn NO_EGGS, NO_EGGS ; egg groups 
@@ -23309,7 +23309,7 @@ TogepiBaseStats: ; 0x529e4
 	db 100 ; unknown 
 	db 10 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 5 , 5 ; frontpic dimensions 
+	dn 5, 5 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 4 ; growth rate 
 	dn NO_EGGS, NO_EGGS ; egg groups 
@@ -23340,7 +23340,7 @@ TogeticBaseStats: ; 0x52a04
 	db 100 ; unknown 
 	db 10 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 7 , 7 ; frontpic dimensions 
+	dn 7, 7 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 4 ; growth rate 
 	dn AVIAN, FAIRY ; egg groups 
@@ -23371,7 +23371,7 @@ NatuBaseStats: ; 0x52a24
 	db 100 ; unknown 
 	db 20 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 5 , 5 ; frontpic dimensions 
+	dn 5, 5 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 0 ; growth rate 
 	dn AVIAN, AVIAN ; egg groups 
@@ -23402,7 +23402,7 @@ XatuBaseStats: ; 0x52a44
 	db 100 ; unknown 
 	db 20 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 6 , 6 ; frontpic dimensions 
+	dn 6, 6 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 0 ; growth rate 
 	dn AVIAN, AVIAN ; egg groups 
@@ -23433,7 +23433,7 @@ MareepBaseStats: ; 0x52a64
 	db 100 ; unknown 
 	db 20 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 5 , 5 ; frontpic dimensions 
+	dn 5, 5 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 3 ; growth rate 
 	dn MONSTER, FIELD ; egg groups 
@@ -23464,7 +23464,7 @@ FlaaffyBaseStats: ; 0x52a84
 	db 100 ; unknown 
 	db 20 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 6 , 6 ; frontpic dimensions 
+	dn 6, 6 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 3 ; growth rate 
 	dn MONSTER, FIELD ; egg groups 
@@ -23495,7 +23495,7 @@ AmpharosBaseStats: ; 0x52aa4
 	db 100 ; unknown 
 	db 20 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 7 , 7 ; frontpic dimensions 
+	dn 7, 7 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 3 ; growth rate 
 	dn MONSTER, FIELD ; egg groups 
@@ -23526,7 +23526,7 @@ BellossomBaseStats: ; 0x52ac4
 	db 100 ; unknown 
 	db 20 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 7 , 7 ; frontpic dimensions 
+	dn 7, 7 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 3 ; growth rate 
 	dn PLANT, PLANT ; egg groups 
@@ -23557,7 +23557,7 @@ MarillBaseStats: ; 0x52ae4
 	db 100 ; unknown 
 	db 20 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 5 , 5 ; frontpic dimensions 
+	dn 5, 5 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 4 ; growth rate 
 	dn AMPHIBIAN, FAIRY ; egg groups 
@@ -23588,7 +23588,7 @@ AzumarillBaseStats: ; 0x52b04
 	db 100 ; unknown 
 	db 20 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 7 , 7 ; frontpic dimensions 
+	dn 7, 7 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 4 ; growth rate 
 	dn AMPHIBIAN, FAIRY ; egg groups 
@@ -23619,7 +23619,7 @@ SudowoodoBaseStats: ; 0x52b24
 	db 100 ; unknown 
 	db 20 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 6 , 6 ; frontpic dimensions 
+	dn 6, 6 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 0 ; growth rate 
 	dn INANIMATE, INANIMATE ; egg groups 
@@ -23650,7 +23650,7 @@ PolitoedBaseStats: ; 0x52b44
 	db 100 ; unknown 
 	db 20 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 7 , 7 ; frontpic dimensions 
+	dn 7, 7 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 3 ; growth rate 
 	dn AMPHIBIAN, AMPHIBIAN ; egg groups 
@@ -23681,7 +23681,7 @@ HoppipBaseStats: ; 0x52b64
 	db 100 ; unknown 
 	db 20 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 5 , 5 ; frontpic dimensions 
+	dn 5, 5 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 3 ; growth rate 
 	dn FAIRY, PLANT ; egg groups 
@@ -23712,7 +23712,7 @@ SkiploomBaseStats: ; 0x52b84
 	db 100 ; unknown 
 	db 20 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 6 , 6 ; frontpic dimensions 
+	dn 6, 6 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 3 ; growth rate 
 	dn FAIRY, PLANT ; egg groups 
@@ -23743,7 +23743,7 @@ JumpluffBaseStats: ; 0x52ba4
 	db 100 ; unknown 
 	db 20 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 7 , 7 ; frontpic dimensions 
+	dn 7, 7 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 3 ; growth rate 
 	dn FAIRY, PLANT ; egg groups 
@@ -23774,7 +23774,7 @@ AipomBaseStats: ; 0x52bc4
 	db 100 ; unknown 
 	db 20 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 5 , 5 ; frontpic dimensions 
+	dn 5, 5 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 4 ; growth rate 
 	dn FIELD, FIELD ; egg groups 
@@ -23805,7 +23805,7 @@ SunkernBaseStats: ; 0x52be4
 	db 100 ; unknown 
 	db 20 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 5 , 5 ; frontpic dimensions 
+	dn 5, 5 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 3 ; growth rate 
 	dn PLANT, PLANT ; egg groups 
@@ -23836,7 +23836,7 @@ SunfloraBaseStats: ; 0x52c04
 	db 100 ; unknown 
 	db 20 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 6 , 6 ; frontpic dimensions 
+	dn 6, 6 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 3 ; growth rate 
 	dn PLANT, PLANT ; egg groups 
@@ -23867,7 +23867,7 @@ YanmaBaseStats: ; 0x52c24
 	db 100 ; unknown 
 	db 20 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 6 , 6 ; frontpic dimensions 
+	dn 6, 6 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 0 ; growth rate 
 	dn INSECT, INSECT ; egg groups 
@@ -23898,7 +23898,7 @@ WooperBaseStats: ; 0x52c44
 	db 100 ; unknown 
 	db 20 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 5 , 5 ; frontpic dimensions 
+	dn 5, 5 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 0 ; growth rate 
 	dn AMPHIBIAN, FIELD ; egg groups 
@@ -23929,7 +23929,7 @@ QuagsireBaseStats: ; 0x52c64
 	db 100 ; unknown 
 	db 20 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 6 , 6 ; frontpic dimensions 
+	dn 6, 6 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 0 ; growth rate 
 	dn AMPHIBIAN, FIELD ; egg groups 
@@ -23960,7 +23960,7 @@ EspeonBaseStats: ; 0x52c84
 	db 100 ; unknown 
 	db 35 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 6 , 6 ; frontpic dimensions 
+	dn 6, 6 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 0 ; growth rate 
 	dn FIELD, FIELD ; egg groups 
@@ -23991,7 +23991,7 @@ UmbreonBaseStats: ; 0x52ca4
 	db 100 ; unknown 
 	db 35 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 6 , 6 ; frontpic dimensions 
+	dn 6, 6 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 0 ; growth rate 
 	dn FIELD, FIELD ; egg groups 
@@ -24022,7 +24022,7 @@ MurkrowBaseStats: ; 0x52cc4
 	db 100 ; unknown 
 	db 20 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 6 , 6 ; frontpic dimensions 
+	dn 6, 6 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 3 ; growth rate 
 	dn AVIAN, AVIAN ; egg groups 
@@ -24053,7 +24053,7 @@ SlowkingBaseStats: ; 0x52ce4
 	db 100 ; unknown 
 	db 20 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 7 , 7 ; frontpic dimensions 
+	dn 7, 7 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 0 ; growth rate 
 	dn MONSTER, AMPHIBIAN ; egg groups 
@@ -24084,7 +24084,7 @@ MisdreavusBaseStats: ; 0x52d04
 	db 100 ; unknown 
 	db 25 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 6 , 6 ; frontpic dimensions 
+	dn 6, 6 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 4 ; growth rate 
 	dn AMORPHOUS, AMORPHOUS ; egg groups 
@@ -24115,7 +24115,7 @@ UnownBaseStats: ; 0x52d24
 	db 100 ; unknown 
 	db 40 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 5 , 5 ; frontpic dimensions 
+	dn 5, 5 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 0 ; growth rate 
 	dn NO_EGGS, NO_EGGS ; egg groups 
@@ -24146,7 +24146,7 @@ WobbuffetBaseStats: ; 0x52d44
 	db 100 ; unknown 
 	db 20 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 6 , 6 ; frontpic dimensions 
+	dn 6, 6 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 0 ; growth rate 
 	dn AMORPHOUS, AMORPHOUS ; egg groups 
@@ -24177,7 +24177,7 @@ GirafarigBaseStats: ; 0x52d64
 	db 100 ; unknown 
 	db 20 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 7 , 7 ; frontpic dimensions 
+	dn 7, 7 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 0 ; growth rate 
 	dn FIELD, FIELD ; egg groups 
@@ -24208,7 +24208,7 @@ PinecoBaseStats: ; 0x52d84
 	db 100 ; unknown 
 	db 20 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 5 , 5 ; frontpic dimensions 
+	dn 5, 5 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 0 ; growth rate 
 	dn INSECT, INSECT ; egg groups 
@@ -24239,7 +24239,7 @@ ForretressBaseStats: ; 0x52da4
 	db 100 ; unknown 
 	db 20 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 7 , 7 ; frontpic dimensions 
+	dn 7, 7 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 0 ; growth rate 
 	dn INSECT, INSECT ; egg groups 
@@ -24270,7 +24270,7 @@ DunsparceBaseStats: ; 0x52dc4
 	db 100 ; unknown 
 	db 20 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 6 , 6 ; frontpic dimensions 
+	dn 6, 6 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 0 ; growth rate 
 	dn FIELD, FIELD ; egg groups 
@@ -24301,7 +24301,7 @@ GligarBaseStats: ; 0x52de4
 	db 100 ; unknown 
 	db 20 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 6 , 6 ; frontpic dimensions 
+	dn 6, 6 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 3 ; growth rate 
 	dn INSECT, INSECT ; egg groups 
@@ -24332,7 +24332,7 @@ SteelixBaseStats: ; 0x52e04
 	db 100 ; unknown 
 	db 25 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 7 , 7 ; frontpic dimensions 
+	dn 7, 7 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 0 ; growth rate 
 	dn INANIMATE, INANIMATE ; egg groups 
@@ -24363,7 +24363,7 @@ SnubbullBaseStats: ; 0x52e24
 	db 100 ; unknown 
 	db 20 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 6 , 6 ; frontpic dimensions 
+	dn 6, 6 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 4 ; growth rate 
 	dn FIELD, FAIRY ; egg groups 
@@ -24394,7 +24394,7 @@ GranbullBaseStats: ; 0x52e44
 	db 100 ; unknown 
 	db 20 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 6 , 6 ; frontpic dimensions 
+	dn 6, 6 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 4 ; growth rate 
 	dn FIELD, FAIRY ; egg groups 
@@ -24425,7 +24425,7 @@ QwilfishBaseStats: ; 0x52e64
 	db 100 ; unknown 
 	db 20 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 5 , 5 ; frontpic dimensions 
+	dn 5, 5 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 0 ; growth rate 
 	dn FISH, FISH ; egg groups 
@@ -24456,7 +24456,7 @@ ScizorBaseStats: ; 0x52e84
 	db 100 ; unknown 
 	db 25 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 7 , 7 ; frontpic dimensions 
+	dn 7, 7 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 0 ; growth rate 
 	dn INSECT, INSECT ; egg groups 
@@ -24487,7 +24487,7 @@ ShuckleBaseStats: ; 0x52ea4
 	db 100 ; unknown 
 	db 20 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 5 , 5 ; frontpic dimensions 
+	dn 5, 5 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 3 ; growth rate 
 	dn INSECT, INSECT ; egg groups 
@@ -24518,7 +24518,7 @@ HeracrossBaseStats: ; 0x52ec4
 	db 100 ; unknown 
 	db 25 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 6 , 6 ; frontpic dimensions 
+	dn 6, 6 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 5 ; growth rate 
 	dn INSECT, INSECT ; egg groups 
@@ -24549,7 +24549,7 @@ SneaselBaseStats: ; 0x52ee4
 	db 100 ; unknown 
 	db 20 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 6 , 6 ; frontpic dimensions 
+	dn 6, 6 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 3 ; growth rate 
 	dn FIELD, FIELD ; egg groups 
@@ -24580,7 +24580,7 @@ TeddiursaBaseStats: ; 0x52f04
 	db 100 ; unknown 
 	db 20 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 5 , 5 ; frontpic dimensions 
+	dn 5, 5 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 0 ; growth rate 
 	dn FIELD, FIELD ; egg groups 
@@ -24611,7 +24611,7 @@ UrsaringBaseStats: ; 0x52f24
 	db 100 ; unknown 
 	db 20 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 7 , 7 ; frontpic dimensions 
+	dn 7, 7 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 0 ; growth rate 
 	dn FIELD, FIELD ; egg groups 
@@ -24642,7 +24642,7 @@ SlugmaBaseStats: ; 0x52f44
 	db 100 ; unknown 
 	db 20 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 5 , 5 ; frontpic dimensions 
+	dn 5, 5 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 0 ; growth rate 
 	dn AMORPHOUS, AMORPHOUS ; egg groups 
@@ -24673,7 +24673,7 @@ MagcargoBaseStats: ; 0x52f64
 	db 100 ; unknown 
 	db 20 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 6 , 6 ; frontpic dimensions 
+	dn 6, 6 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 0 ; growth rate 
 	dn AMORPHOUS, AMORPHOUS ; egg groups 
@@ -24704,7 +24704,7 @@ SwinubBaseStats: ; 0x52f84
 	db 100 ; unknown 
 	db 20 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 5 , 5 ; frontpic dimensions 
+	dn 5, 5 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 5 ; growth rate 
 	dn FIELD, FIELD ; egg groups 
@@ -24735,7 +24735,7 @@ PiloswineBaseStats: ; 0x52fa4
 	db 100 ; unknown 
 	db 20 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 6 , 6 ; frontpic dimensions 
+	dn 6, 6 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 5 ; growth rate 
 	dn FIELD, FIELD ; egg groups 
@@ -24766,7 +24766,7 @@ CorsolaBaseStats: ; 0x52fc4
 	db 100 ; unknown 
 	db 20 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 6 , 6 ; frontpic dimensions 
+	dn 6, 6 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 4 ; growth rate 
 	dn AMPHIBIAN, INVERTEBRATE ; egg groups 
@@ -24797,7 +24797,7 @@ RemoraidBaseStats: ; 0x52fe4
 	db 100 ; unknown 
 	db 20 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 5 , 5 ; frontpic dimensions 
+	dn 5, 5 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 0 ; growth rate 
 	dn AMPHIBIAN, FISH ; egg groups 
@@ -24828,7 +24828,7 @@ OctilleryBaseStats: ; 0x53004
 	db 100 ; unknown 
 	db 20 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 6 , 6 ; frontpic dimensions 
+	dn 6, 6 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 0 ; growth rate 
 	dn AMPHIBIAN, FISH ; egg groups 
@@ -24859,7 +24859,7 @@ DelibirdBaseStats: ; 0x53024
 	db 100 ; unknown 
 	db 20 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 6 , 6 ; frontpic dimensions 
+	dn 6, 6 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 4 ; growth rate 
 	dn AMPHIBIAN, FIELD ; egg groups 
@@ -24890,7 +24890,7 @@ MantineBaseStats: ; 0x53044
 	db 100 ; unknown 
 	db 25 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 7 , 7 ; frontpic dimensions 
+	dn 7, 7 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 5 ; growth rate 
 	dn AMPHIBIAN, AMPHIBIAN ; egg groups 
@@ -24921,7 +24921,7 @@ SkarmoryBaseStats: ; 0x53064
 	db 100 ; unknown 
 	db 25 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 7 , 7 ; frontpic dimensions 
+	dn 7, 7 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 5 ; growth rate 
 	dn AVIAN, AVIAN ; egg groups 
@@ -24952,7 +24952,7 @@ HoundourBaseStats: ; 0x53084
 	db 100 ; unknown 
 	db 20 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 6 , 6 ; frontpic dimensions 
+	dn 6, 6 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 5 ; growth rate 
 	dn FIELD, FIELD ; egg groups 
@@ -24983,7 +24983,7 @@ HoundoomBaseStats: ; 0x530a4
 	db 100 ; unknown 
 	db 20 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 7 , 7 ; frontpic dimensions 
+	dn 7, 7 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 5 ; growth rate 
 	dn FIELD, FIELD ; egg groups 
@@ -25014,7 +25014,7 @@ KingdraBaseStats: ; 0x530c4
 	db 100 ; unknown 
 	db 20 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 7 , 7 ; frontpic dimensions 
+	dn 7, 7 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 0 ; growth rate 
 	dn AMPHIBIAN, REPTILE ; egg groups 
@@ -25045,7 +25045,7 @@ PhanpyBaseStats: ; 0x530e4
 	db 100 ; unknown 
 	db 20 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 5 , 5 ; frontpic dimensions 
+	dn 5, 5 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 0 ; growth rate 
 	dn FIELD, FIELD ; egg groups 
@@ -25076,7 +25076,7 @@ DonphanBaseStats: ; 0x53104
 	db 100 ; unknown 
 	db 20 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 7 , 7 ; frontpic dimensions 
+	dn 7, 7 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 0 ; growth rate 
 	dn FIELD, FIELD ; egg groups 
@@ -25107,7 +25107,7 @@ Porygon2BaseStats: ; 0x53124
 	db 100 ; unknown 
 	db 20 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 6 , 6 ; frontpic dimensions 
+	dn 6, 6 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 0 ; growth rate 
 	dn INANIMATE, INANIMATE ; egg groups 
@@ -25138,7 +25138,7 @@ StantlerBaseStats: ; 0x53144
 	db 100 ; unknown 
 	db 20 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 7 , 7 ; frontpic dimensions 
+	dn 7, 7 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 5 ; growth rate 
 	dn FIELD, FIELD ; egg groups 
@@ -25169,7 +25169,7 @@ SmeargleBaseStats: ; 0x53164
 	db 100 ; unknown 
 	db 20 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 7 , 7 ; frontpic dimensions 
+	dn 7, 7 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 4 ; growth rate 
 	dn FIELD, FIELD ; egg groups 
@@ -25200,7 +25200,7 @@ TyrogueBaseStats: ; 0x53184
 	db 100 ; unknown 
 	db 25 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 5 , 5 ; frontpic dimensions 
+	dn 5, 5 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 0 ; growth rate 
 	dn NO_EGGS, NO_EGGS ; egg groups 
@@ -25231,7 +25231,7 @@ HitmontopBaseStats: ; 0x531a4
 	db 100 ; unknown 
 	db 25 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 7 , 7 ; frontpic dimensions 
+	dn 7, 7 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 0 ; growth rate 
 	dn HUMANSHAPE, HUMANSHAPE ; egg groups 
@@ -25262,7 +25262,7 @@ SmoochumBaseStats: ; 0x531c4
 	db 100 ; unknown 
 	db 25 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 5 , 5 ; frontpic dimensions 
+	dn 5, 5 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 0 ; growth rate 
 	dn NO_EGGS, NO_EGGS ; egg groups 
@@ -25293,7 +25293,7 @@ ElekidBaseStats: ; 0x531e4
 	db 100 ; unknown 
 	db 25 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 6 , 6 ; frontpic dimensions 
+	dn 6, 6 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 0 ; growth rate 
 	dn NO_EGGS, NO_EGGS ; egg groups 
@@ -25324,7 +25324,7 @@ MagbyBaseStats: ; 0x53204
 	db 100 ; unknown 
 	db 25 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 6 , 6 ; frontpic dimensions 
+	dn 6, 6 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 0 ; growth rate 
 	dn NO_EGGS, NO_EGGS ; egg groups 
@@ -25355,7 +25355,7 @@ MiltankBaseStats: ; 0x53224
 	db 100 ; unknown 
 	db 20 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 6 , 6 ; frontpic dimensions 
+	dn 6, 6 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 5 ; growth rate 
 	dn FIELD, FIELD ; egg groups 
@@ -25386,7 +25386,7 @@ BlisseyBaseStats: ; 0x53244
 	db 100 ; unknown 
 	db 40 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 7 , 7 ; frontpic dimensions 
+	dn 7, 7 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 4 ; growth rate 
 	dn FAIRY, FAIRY ; egg groups 
@@ -25417,7 +25417,7 @@ RaikouBaseStats: ; 0x53264
 	db 100 ; unknown 
 	db 80 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 7 , 7 ; frontpic dimensions 
+	dn 7, 7 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 5 ; growth rate 
 	dn NO_EGGS, NO_EGGS ; egg groups 
@@ -25448,7 +25448,7 @@ EnteiBaseStats: ; 0x53284
 	db 100 ; unknown 
 	db 80 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 7 , 7 ; frontpic dimensions 
+	dn 7, 7 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 5 ; growth rate 
 	dn NO_EGGS, NO_EGGS ; egg groups 
@@ -25479,7 +25479,7 @@ SuicuneBaseStats: ; 0x532a4
 	db 100 ; unknown 
 	db 80 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 7 , 7 ; frontpic dimensions 
+	dn 7, 7 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 5 ; growth rate 
 	dn NO_EGGS, NO_EGGS ; egg groups 
@@ -25510,7 +25510,7 @@ LarvitarBaseStats: ; 0x532c4
 	db 100 ; unknown 
 	db 40 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 5 , 5 ; frontpic dimensions 
+	dn 5, 5 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 5 ; growth rate 
 	dn MONSTER, MONSTER ; egg groups 
@@ -25541,7 +25541,7 @@ PupitarBaseStats: ; 0x532e4
 	db 100 ; unknown 
 	db 40 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 6 , 6 ; frontpic dimensions 
+	dn 6, 6 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 5 ; growth rate 
 	dn MONSTER, MONSTER ; egg groups 
@@ -25572,7 +25572,7 @@ TyranitarBaseStats: ; 0x53304
 	db 100 ; unknown 
 	db 40 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 7 , 7 ; frontpic dimensions 
+	dn 7, 7 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 5 ; growth rate 
 	dn MONSTER, MONSTER ; egg groups 
@@ -25603,7 +25603,7 @@ LugiaBaseStats: ; 0x53324
 	db 100 ; unknown 
 	db 120 ; step cycles to hatch 
 	db 5 ; unknown 
-	dn 7 , 7 ; frontpic dimensions 
+	dn 7, 7 ; frontpic dimensions 
 	db 0, 0, 0, 0 ; padding 
 	db 5 ; growth rate 
 	dn NO_EGGS, NO_EGGS ; egg groups 
