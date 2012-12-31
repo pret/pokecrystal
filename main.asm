@@ -17907,18 +17907,18 @@ BulbasaurBaseStats: ; 0x51424
 	;   hp  atk  def  spd  sat  sdf
 
 	db GRASS, POISON
-	db 45 ; catch rate 
-	db 64 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 31 ; gender 
-	db 100 ; unknown 
-	db 20 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 5, 5 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 3 ; growth rate 
-	dn MONSTER, PLANT ; egg groups 
+	db 45 ; catch rate
+	db 64 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 31 ; gender
+	db 100 ; unknown
+	db 20 ; step cycles to hatch
+	db 5 ; unknown
+	dn 5, 5 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 3 ; growth rate
+	dn MONSTER, PLANT ; egg groups
 
 	; tmhm
 	db %00100110
@@ -17938,18 +17938,18 @@ IvysaurBaseStats: ; 0x51444
 	;   hp  atk  def  spd  sat  sdf
 
 	db GRASS, POISON
-	db 45 ; catch rate 
-	db 141 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 31 ; gender 
-	db 100 ; unknown 
-	db 20 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 6, 6 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 3 ; growth rate 
-	dn MONSTER, PLANT ; egg groups 
+	db 45 ; catch rate
+	db 141 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 31 ; gender
+	db 100 ; unknown
+	db 20 ; step cycles to hatch
+	db 5 ; unknown
+	dn 6, 6 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 3 ; growth rate
+	dn MONSTER, PLANT ; egg groups
 
 	; tmhm
 	db %00100110
@@ -17969,18 +17969,18 @@ VenusaurBaseStats: ; 0x51464
 	;   hp  atk  def  spd  sat  sdf
 
 	db GRASS, POISON
-	db 45 ; catch rate 
-	db 208 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 31 ; gender 
-	db 100 ; unknown 
-	db 20 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 7, 7 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 3 ; growth rate 
-	dn MONSTER, PLANT ; egg groups 
+	db 45 ; catch rate
+	db 208 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 31 ; gender
+	db 100 ; unknown
+	db 20 ; step cycles to hatch
+	db 5 ; unknown
+	dn 7, 7 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 3 ; growth rate
+	dn MONSTER, PLANT ; egg groups
 
 	; tmhm
 	db %00110110
@@ -18000,18 +18000,18 @@ CharmanderBaseStats: ; 0x51484
 	;   hp  atk  def  spd  sat  sdf
 
 	db FIRE, FIRE
-	db 45 ; catch rate 
-	db 65 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 31 ; gender 
-	db 100 ; unknown 
-	db 20 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 5, 5 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 3 ; growth rate 
-	dn MONSTER, REPTILE ; egg groups 
+	db 45 ; catch rate
+	db 65 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 31 ; gender
+	db 100 ; unknown
+	db 20 ; step cycles to hatch
+	db 5 ; unknown
+	dn 5, 5 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 3 ; growth rate
+	dn MONSTER, REPTILE ; egg groups
 
 	; tmhm
 	db %10100111
@@ -18031,18 +18031,18 @@ CharmeleonBaseStats: ; 0x514a4
 	;   hp  atk  def  spd  sat  sdf
 
 	db FIRE, FIRE
-	db 45 ; catch rate 
-	db 142 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 31 ; gender 
-	db 100 ; unknown 
-	db 20 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 6, 6 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 3 ; growth rate 
-	dn MONSTER, REPTILE ; egg groups 
+	db 45 ; catch rate
+	db 142 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 31 ; gender
+	db 100 ; unknown
+	db 20 ; step cycles to hatch
+	db 5 ; unknown
+	dn 6, 6 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 3 ; growth rate
+	dn MONSTER, REPTILE ; egg groups
 
 	; tmhm
 	db %10100111
@@ -18062,18 +18062,18 @@ CharizardBaseStats: ; 0x514c4
 	;   hp  atk  def  spd  sat  sdf
 
 	db FIRE, FLYING
-	db 45 ; catch rate 
-	db 209 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 31 ; gender 
-	db 100 ; unknown 
-	db 20 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 7, 7 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 3 ; growth rate 
-	dn MONSTER, REPTILE ; egg groups 
+	db 45 ; catch rate
+	db 209 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 31 ; gender
+	db 100 ; unknown
+	db 20 ; step cycles to hatch
+	db 5 ; unknown
+	dn 7, 7 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 3 ; growth rate
+	dn MONSTER, REPTILE ; egg groups
 
 	; tmhm
 	db %10110111
@@ -18093,18 +18093,18 @@ SquirtleBaseStats: ; 0x514e4
 	;   hp  atk  def  spd  sat  sdf
 
 	db WATER, WATER
-	db 45 ; catch rate 
-	db 66 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 31 ; gender 
-	db 100 ; unknown 
-	db 20 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 5, 5 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 3 ; growth rate 
-	dn MONSTER, AMPHIBIAN ; egg groups 
+	db 45 ; catch rate
+	db 66 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 31 ; gender
+	db 100 ; unknown
+	db 20 ; step cycles to hatch
+	db 5 ; unknown
+	dn 5, 5 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 3 ; growth rate
+	dn MONSTER, AMPHIBIAN ; egg groups
 
 	; tmhm
 	db %10101111
@@ -18124,18 +18124,18 @@ WartortleBaseStats: ; 0x51504
 	;   hp  atk  def  spd  sat  sdf
 
 	db WATER, WATER
-	db 45 ; catch rate 
-	db 143 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 31 ; gender 
-	db 100 ; unknown 
-	db 20 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 6, 6 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 3 ; growth rate 
-	dn MONSTER, AMPHIBIAN ; egg groups 
+	db 45 ; catch rate
+	db 143 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 31 ; gender
+	db 100 ; unknown
+	db 20 ; step cycles to hatch
+	db 5 ; unknown
+	dn 6, 6 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 3 ; growth rate
+	dn MONSTER, AMPHIBIAN ; egg groups
 
 	; tmhm
 	db %10101111
@@ -18155,18 +18155,18 @@ BlastoiseBaseStats: ; 0x51524
 	;   hp  atk  def  spd  sat  sdf
 
 	db WATER, WATER
-	db 45 ; catch rate 
-	db 210 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 31 ; gender 
-	db 100 ; unknown 
-	db 20 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 7, 7 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 3 ; growth rate 
-	dn MONSTER, AMPHIBIAN ; egg groups 
+	db 45 ; catch rate
+	db 210 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 31 ; gender
+	db 100 ; unknown
+	db 20 ; step cycles to hatch
+	db 5 ; unknown
+	dn 7, 7 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 3 ; growth rate
+	dn MONSTER, AMPHIBIAN ; egg groups
 
 	; tmhm
 	db %10111111
@@ -18186,18 +18186,18 @@ CaterpieBaseStats: ; 0x51544
 	;   hp  atk  def  spd  sat  sdf
 
 	db BUG, BUG
-	db 255 ; catch rate 
-	db 53 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 127 ; gender 
-	db 100 ; unknown 
-	db 15 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 5, 5 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 0 ; growth rate 
-	dn INSECT, INSECT ; egg groups 
+	db 255 ; catch rate
+	db 53 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 127 ; gender
+	db 100 ; unknown
+	db 15 ; step cycles to hatch
+	db 5 ; unknown
+	dn 5, 5 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 0 ; growth rate
+	dn INSECT, INSECT ; egg groups
 
 	; tmhm
 	db %00000000
@@ -18217,18 +18217,18 @@ MetapodBaseStats: ; 0x51564
 	;   hp  atk  def  spd  sat  sdf
 
 	db BUG, BUG
-	db 120 ; catch rate 
-	db 72 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 127 ; gender 
-	db 100 ; unknown 
-	db 15 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 5, 5 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 0 ; growth rate 
-	dn INSECT, INSECT ; egg groups 
+	db 120 ; catch rate
+	db 72 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 127 ; gender
+	db 100 ; unknown
+	db 15 ; step cycles to hatch
+	db 5 ; unknown
+	dn 5, 5 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 0 ; growth rate
+	dn INSECT, INSECT ; egg groups
 
 	; tmhm
 	db %00000000
@@ -18248,18 +18248,18 @@ ButterfreeBaseStats: ; 0x51584
 	;   hp  atk  def  spd  sat  sdf
 
 	db BUG, FLYING
-	db 45 ; catch rate 
-	db 160 ; base exp 
-	db NO_ITEM ; item 1 
-	db SILVERPOWDER ; item 2 
-	db 127 ; gender 
-	db 100 ; unknown 
-	db 15 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 7, 7 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 0 ; growth rate 
-	dn INSECT, INSECT ; egg groups 
+	db 45 ; catch rate
+	db 160 ; base exp
+	db NO_ITEM ; item 1
+	db SILVERPOWDER ; item 2
+	db 127 ; gender
+	db 100 ; unknown
+	db 15 ; step cycles to hatch
+	db 5 ; unknown
+	dn 7, 7 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 0 ; growth rate
+	dn INSECT, INSECT ; egg groups
 
 	; tmhm
 	db %00100100
@@ -18279,18 +18279,18 @@ WeedleBaseStats: ; 0x515a4
 	;   hp  atk  def  spd  sat  sdf
 
 	db BUG, POISON
-	db 255 ; catch rate 
-	db 52 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 127 ; gender 
-	db 100 ; unknown 
-	db 15 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 5, 5 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 0 ; growth rate 
-	dn INSECT, INSECT ; egg groups 
+	db 255 ; catch rate
+	db 52 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 127 ; gender
+	db 100 ; unknown
+	db 15 ; step cycles to hatch
+	db 5 ; unknown
+	dn 5, 5 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 0 ; growth rate
+	dn INSECT, INSECT ; egg groups
 
 	; tmhm
 	db %00000000
@@ -18310,18 +18310,18 @@ KakunaBaseStats: ; 0x515c4
 	;   hp  atk  def  spd  sat  sdf
 
 	db BUG, POISON
-	db 120 ; catch rate 
-	db 71 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 127 ; gender 
-	db 100 ; unknown 
-	db 15 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 5, 5 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 0 ; growth rate 
-	dn INSECT, INSECT ; egg groups 
+	db 120 ; catch rate
+	db 71 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 127 ; gender
+	db 100 ; unknown
+	db 15 ; step cycles to hatch
+	db 5 ; unknown
+	dn 5, 5 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 0 ; growth rate
+	dn INSECT, INSECT ; egg groups
 
 	; tmhm
 	db %00000000
@@ -18341,18 +18341,18 @@ BeedrillBaseStats: ; 0x515e4
 	;   hp  atk  def  spd  sat  sdf
 
 	db BUG, POISON
-	db 45 ; catch rate 
-	db 159 ; base exp 
-	db NO_ITEM ; item 1 
-	db POISON_BARB ; item 2 
-	db 127 ; gender 
-	db 100 ; unknown 
-	db 15 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 7, 7 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 0 ; growth rate 
-	dn INSECT, INSECT ; egg groups 
+	db 45 ; catch rate
+	db 159 ; base exp
+	db NO_ITEM ; item 1
+	db POISON_BARB ; item 2
+	db 127 ; gender
+	db 100 ; unknown
+	db 15 ; step cycles to hatch
+	db 5 ; unknown
+	dn 7, 7 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 0 ; growth rate
+	dn INSECT, INSECT ; egg groups
 
 	; tmhm
 	db %00100100
@@ -18372,18 +18372,18 @@ PidgeyBaseStats: ; 0x51604
 	;   hp  atk  def  spd  sat  sdf
 
 	db NORMAL, FLYING
-	db 255 ; catch rate 
-	db 55 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 127 ; gender 
-	db 100 ; unknown 
-	db 15 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 5, 5 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 3 ; growth rate 
-	dn AVIAN, AVIAN ; egg groups 
+	db 255 ; catch rate
+	db 55 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 127 ; gender
+	db 100 ; unknown
+	db 15 ; step cycles to hatch
+	db 5 ; unknown
+	dn 5, 5 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 3 ; growth rate
+	dn AVIAN, AVIAN ; egg groups
 
 	; tmhm
 	db %00100100
@@ -18403,18 +18403,18 @@ PidgeottoBaseStats: ; 0x51624
 	;   hp  atk  def  spd  sat  sdf
 
 	db NORMAL, FLYING
-	db 120 ; catch rate 
-	db 113 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 127 ; gender 
-	db 100 ; unknown 
-	db 15 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 6, 6 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 3 ; growth rate 
-	dn AVIAN, AVIAN ; egg groups 
+	db 120 ; catch rate
+	db 113 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 127 ; gender
+	db 100 ; unknown
+	db 15 ; step cycles to hatch
+	db 5 ; unknown
+	dn 6, 6 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 3 ; growth rate
+	dn AVIAN, AVIAN ; egg groups
 
 	; tmhm
 	db %00100100
@@ -18434,18 +18434,18 @@ PidgeotBaseStats: ; 0x51644
 	;   hp  atk  def  spd  sat  sdf
 
 	db NORMAL, FLYING
-	db 45 ; catch rate 
-	db 172 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 127 ; gender 
-	db 100 ; unknown 
-	db 15 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 7, 7 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 3 ; growth rate 
-	dn AVIAN, AVIAN ; egg groups 
+	db 45 ; catch rate
+	db 172 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 127 ; gender
+	db 100 ; unknown
+	db 15 ; step cycles to hatch
+	db 5 ; unknown
+	dn 7, 7 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 3 ; growth rate
+	dn AVIAN, AVIAN ; egg groups
 
 	; tmhm
 	db %00100100
@@ -18465,18 +18465,18 @@ RattataBaseStats: ; 0x51664
 	;   hp  atk  def  spd  sat  sdf
 
 	db NORMAL, NORMAL
-	db 255 ; catch rate 
-	db 57 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 127 ; gender 
-	db 100 ; unknown 
-	db 15 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 5, 5 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 0 ; growth rate 
-	dn FIELD, FIELD ; egg groups 
+	db 255 ; catch rate
+	db 57 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 127 ; gender
+	db 100 ; unknown
+	db 15 ; step cycles to hatch
+	db 5 ; unknown
+	dn 5, 5 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 0 ; growth rate
+	dn FIELD, FIELD ; egg groups
 
 	; tmhm
 	db %10100110
@@ -18496,18 +18496,18 @@ RaticateBaseStats: ; 0x51684
 	;   hp  atk  def  spd  sat  sdf
 
 	db NORMAL, NORMAL
-	db 90 ; catch rate 
-	db 116 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 127 ; gender 
-	db 100 ; unknown 
-	db 15 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 6, 6 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 0 ; growth rate 
-	dn FIELD, FIELD ; egg groups 
+	db 90 ; catch rate
+	db 116 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 127 ; gender
+	db 100 ; unknown
+	db 15 ; step cycles to hatch
+	db 5 ; unknown
+	dn 6, 6 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 0 ; growth rate
+	dn FIELD, FIELD ; egg groups
 
 	; tmhm
 	db %10110110
@@ -18527,18 +18527,18 @@ SpearowBaseStats: ; 0x516a4
 	;   hp  atk  def  spd  sat  sdf
 
 	db NORMAL, FLYING
-	db 255 ; catch rate 
-	db 58 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 127 ; gender 
-	db 100 ; unknown 
-	db 15 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 5, 5 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 0 ; growth rate 
-	dn AVIAN, AVIAN ; egg groups 
+	db 255 ; catch rate
+	db 58 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 127 ; gender
+	db 100 ; unknown
+	db 15 ; step cycles to hatch
+	db 5 ; unknown
+	dn 5, 5 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 0 ; growth rate
+	dn AVIAN, AVIAN ; egg groups
 
 	; tmhm
 	db %00100100
@@ -18558,18 +18558,18 @@ FearowBaseStats: ; 0x516c4
 	;   hp  atk  def  spd  sat  sdf
 
 	db NORMAL, FLYING
-	db 90 ; catch rate 
-	db 162 ; base exp 
-	db NO_ITEM ; item 1 
-	db SHARP_BEAK ; item 2 
-	db 127 ; gender 
-	db 100 ; unknown 
-	db 15 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 7, 7 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 0 ; growth rate 
-	dn AVIAN, AVIAN ; egg groups 
+	db 90 ; catch rate
+	db 162 ; base exp
+	db NO_ITEM ; item 1
+	db SHARP_BEAK ; item 2
+	db 127 ; gender
+	db 100 ; unknown
+	db 15 ; step cycles to hatch
+	db 5 ; unknown
+	dn 7, 7 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 0 ; growth rate
+	dn AVIAN, AVIAN ; egg groups
 
 	; tmhm
 	db %00100100
@@ -18589,18 +18589,18 @@ EkansBaseStats: ; 0x516e4
 	;   hp  atk  def  spd  sat  sdf
 
 	db POISON, POISON
-	db 255 ; catch rate 
-	db 62 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 127 ; gender 
-	db 100 ; unknown 
-	db 20 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 5, 5 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 0 ; growth rate 
-	dn FIELD, REPTILE ; egg groups 
+	db 255 ; catch rate
+	db 62 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 127 ; gender
+	db 100 ; unknown
+	db 20 ; step cycles to hatch
+	db 5 ; unknown
+	dn 5, 5 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 0 ; growth rate
+	dn FIELD, REPTILE ; egg groups
 
 	; tmhm
 	db %00100110
@@ -18620,18 +18620,18 @@ ArbokBaseStats: ; 0x51704
 	;   hp  atk  def  spd  sat  sdf
 
 	db POISON, POISON
-	db 90 ; catch rate 
-	db 147 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 127 ; gender 
-	db 100 ; unknown 
-	db 20 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 7, 7 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 0 ; growth rate 
-	dn FIELD, REPTILE ; egg groups 
+	db 90 ; catch rate
+	db 147 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 127 ; gender
+	db 100 ; unknown
+	db 20 ; step cycles to hatch
+	db 5 ; unknown
+	dn 7, 7 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 0 ; growth rate
+	dn FIELD, REPTILE ; egg groups
 
 	; tmhm
 	db %00100110
@@ -18651,18 +18651,18 @@ PikachuBaseStats: ; 0x51724
 	;   hp  atk  def  spd  sat  sdf
 
 	db ELECTRIC, ELECTRIC
-	db 190 ; catch rate 
-	db 82 ; base exp 
-	db NO_ITEM ; item 1 
-	db BERRY ; item 2 
-	db 127 ; gender 
-	db 100 ; unknown 
-	db 10 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 5, 5 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 0 ; growth rate 
-	dn FIELD, FAIRY ; egg groups 
+	db 190 ; catch rate
+	db 82 ; base exp
+	db NO_ITEM ; item 1
+	db BERRY ; item 2
+	db 127 ; gender
+	db 100 ; unknown
+	db 10 ; step cycles to hatch
+	db 5 ; unknown
+	dn 5, 5 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 0 ; growth rate
+	dn FIELD, FAIRY ; egg groups
 
 	; tmhm
 	db %01101111
@@ -18682,18 +18682,18 @@ RaichuBaseStats: ; 0x51744
 	;   hp  atk  def  spd  sat  sdf
 
 	db ELECTRIC, ELECTRIC
-	db 75 ; catch rate 
-	db 122 ; base exp 
-	db NO_ITEM ; item 1 
-	db BERRY ; item 2 
-	db 127 ; gender 
-	db 100 ; unknown 
-	db 10 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 7, 7 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 0 ; growth rate 
-	dn FIELD, FAIRY ; egg groups 
+	db 75 ; catch rate
+	db 122 ; base exp
+	db NO_ITEM ; item 1
+	db BERRY ; item 2
+	db 127 ; gender
+	db 100 ; unknown
+	db 10 ; step cycles to hatch
+	db 5 ; unknown
+	dn 7, 7 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 0 ; growth rate
+	dn FIELD, FAIRY ; egg groups
 
 	; tmhm
 	db %01101111
@@ -18713,18 +18713,18 @@ SandshrewBaseStats: ; 0x51764
 	;   hp  atk  def  spd  sat  sdf
 
 	db GROUND, GROUND
-	db 255 ; catch rate 
-	db 93 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 127 ; gender 
-	db 100 ; unknown 
-	db 20 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 5, 5 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 0 ; growth rate 
-	dn FIELD, FIELD ; egg groups 
+	db 255 ; catch rate
+	db 93 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 127 ; gender
+	db 100 ; unknown
+	db 20 ; step cycles to hatch
+	db 5 ; unknown
+	dn 5, 5 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 0 ; growth rate
+	dn FIELD, FIELD ; egg groups
 
 	; tmhm
 	db %10101111
@@ -18744,18 +18744,18 @@ SandslashBaseStats: ; 0x51784
 	;   hp  atk  def  spd  sat  sdf
 
 	db GROUND, GROUND
-	db 90 ; catch rate 
-	db 163 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 127 ; gender 
-	db 100 ; unknown 
-	db 20 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 6, 6 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 0 ; growth rate 
-	dn FIELD, FIELD ; egg groups 
+	db 90 ; catch rate
+	db 163 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 127 ; gender
+	db 100 ; unknown
+	db 20 ; step cycles to hatch
+	db 5 ; unknown
+	dn 6, 6 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 0 ; growth rate
+	dn FIELD, FIELD ; egg groups
 
 	; tmhm
 	db %10101111
@@ -18775,18 +18775,18 @@ Nidoran_FBaseStats: ; 0x517a4
 	;   hp  atk  def  spd  sat  sdf
 
 	db POISON, POISON
-	db 235 ; catch rate 
-	db 59 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 254 ; gender 
-	db 100 ; unknown 
-	db 20 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 5, 5 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 3 ; growth rate 
-	dn MONSTER, FIELD ; egg groups 
+	db 235 ; catch rate
+	db 59 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 254 ; gender
+	db 100 ; unknown
+	db 20 ; step cycles to hatch
+	db 5 ; unknown
+	dn 5, 5 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 3 ; growth rate
+	dn MONSTER, FIELD ; egg groups
 
 	; tmhm
 	db %00100110
@@ -18806,18 +18806,18 @@ NidorinaBaseStats: ; 0x517c4
 	;   hp  atk  def  spd  sat  sdf
 
 	db POISON, POISON
-	db 120 ; catch rate 
-	db 117 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 254 ; gender 
-	db 100 ; unknown 
-	db 20 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 6, 6 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 3 ; growth rate 
-	dn NO_EGGS, NO_EGGS ; egg groups 
+	db 120 ; catch rate
+	db 117 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 254 ; gender
+	db 100 ; unknown
+	db 20 ; step cycles to hatch
+	db 5 ; unknown
+	dn 6, 6 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 3 ; growth rate
+	dn NO_EGGS, NO_EGGS ; egg groups
 
 	; tmhm
 	db %10100110
@@ -18837,18 +18837,18 @@ NidoqueenBaseStats: ; 0x517e4
 	;   hp  atk  def  spd  sat  sdf
 
 	db POISON, GROUND
-	db 45 ; catch rate 
-	db 194 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 254 ; gender 
-	db 100 ; unknown 
-	db 20 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 7, 7 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 3 ; growth rate 
-	dn NO_EGGS, NO_EGGS ; egg groups 
+	db 45 ; catch rate
+	db 194 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 254 ; gender
+	db 100 ; unknown
+	db 20 ; step cycles to hatch
+	db 5 ; unknown
+	dn 7, 7 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 3 ; growth rate
+	dn NO_EGGS, NO_EGGS ; egg groups
 
 	; tmhm
 	db %10110111
@@ -18868,18 +18868,18 @@ Nidoran_MBaseStats: ; 0x51804
 	;   hp  atk  def  spd  sat  sdf
 
 	db POISON, POISON
-	db 235 ; catch rate 
-	db 60 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 0 ; gender 
-	db 100 ; unknown 
-	db 20 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 5, 5 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 3 ; growth rate 
-	dn MONSTER, FIELD ; egg groups 
+	db 235 ; catch rate
+	db 60 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 0 ; gender
+	db 100 ; unknown
+	db 20 ; step cycles to hatch
+	db 5 ; unknown
+	dn 5, 5 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 3 ; growth rate
+	dn MONSTER, FIELD ; egg groups
 
 	; tmhm
 	db %00100110
@@ -18899,18 +18899,18 @@ NidorinoBaseStats: ; 0x51824
 	;   hp  atk  def  spd  sat  sdf
 
 	db POISON, POISON
-	db 120 ; catch rate 
-	db 118 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 0 ; gender 
-	db 100 ; unknown 
-	db 20 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 6, 6 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 3 ; growth rate 
-	dn MONSTER, FIELD ; egg groups 
+	db 120 ; catch rate
+	db 118 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 0 ; gender
+	db 100 ; unknown
+	db 20 ; step cycles to hatch
+	db 5 ; unknown
+	dn 6, 6 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 3 ; growth rate
+	dn MONSTER, FIELD ; egg groups
 
 	; tmhm
 	db %10100110
@@ -18930,18 +18930,18 @@ NidokingBaseStats: ; 0x51844
 	;   hp  atk  def  spd  sat  sdf
 
 	db POISON, GROUND
-	db 45 ; catch rate 
-	db 195 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 0 ; gender 
-	db 100 ; unknown 
-	db 20 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 7, 7 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 3 ; growth rate 
-	dn MONSTER, FIELD ; egg groups 
+	db 45 ; catch rate
+	db 195 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 0 ; gender
+	db 100 ; unknown
+	db 20 ; step cycles to hatch
+	db 5 ; unknown
+	dn 7, 7 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 3 ; growth rate
+	dn MONSTER, FIELD ; egg groups
 
 	; tmhm
 	db %10110111
@@ -18961,18 +18961,18 @@ ClefairyBaseStats: ; 0x51864
 	;   hp  atk  def  spd  sat  sdf
 
 	db NORMAL, NORMAL
-	db 150 ; catch rate 
-	db 68 ; base exp 
-	db MYSTERYBERRY ; item 1 
-	db MOON_STONE ; item 2 
-	db 191 ; gender 
-	db 100 ; unknown 
-	db 10 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 5, 5 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 4 ; growth rate 
-	dn FAIRY, FAIRY ; egg groups 
+	db 150 ; catch rate
+	db 68 ; base exp
+	db MYSTERYBERRY ; item 1
+	db MOON_STONE ; item 2
+	db 191 ; gender
+	db 100 ; unknown
+	db 10 ; step cycles to hatch
+	db 5 ; unknown
+	dn 5, 5 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 4 ; growth rate
+	dn FAIRY, FAIRY ; egg groups
 
 	; tmhm
 	db %01101111
@@ -18992,18 +18992,18 @@ ClefableBaseStats: ; 0x51884
 	;   hp  atk  def  spd  sat  sdf
 
 	db NORMAL, NORMAL
-	db 25 ; catch rate 
-	db 129 ; base exp 
-	db MYSTERYBERRY ; item 1 
-	db MOON_STONE ; item 2 
-	db 191 ; gender 
-	db 100 ; unknown 
-	db 10 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 6, 6 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 4 ; growth rate 
-	dn FAIRY, FAIRY ; egg groups 
+	db 25 ; catch rate
+	db 129 ; base exp
+	db MYSTERYBERRY ; item 1
+	db MOON_STONE ; item 2
+	db 191 ; gender
+	db 100 ; unknown
+	db 10 ; step cycles to hatch
+	db 5 ; unknown
+	dn 6, 6 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 4 ; growth rate
+	dn FAIRY, FAIRY ; egg groups
 
 	; tmhm
 	db %01101111
@@ -19023,18 +19023,18 @@ VulpixBaseStats: ; 0x518a4
 	;   hp  atk  def  spd  sat  sdf
 
 	db FIRE, FIRE
-	db 190 ; catch rate 
-	db 63 ; base exp 
-	db BURNT_BERRY ; item 1 
-	db BURNT_BERRY ; item 2 
-	db 191 ; gender 
-	db 100 ; unknown 
-	db 20 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 6, 6 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 0 ; growth rate 
-	dn FIELD, FIELD ; egg groups 
+	db 190 ; catch rate
+	db 63 ; base exp
+	db BURNT_BERRY ; item 1
+	db BURNT_BERRY ; item 2
+	db 191 ; gender
+	db 100 ; unknown
+	db 20 ; step cycles to hatch
+	db 5 ; unknown
+	dn 6, 6 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 0 ; growth rate
+	dn FIELD, FIELD ; egg groups
 
 	; tmhm
 	db %00100110
@@ -19054,18 +19054,18 @@ NinetalesBaseStats: ; 0x518c4
 	;   hp  atk  def  spd  sat  sdf
 
 	db FIRE, FIRE
-	db 75 ; catch rate 
-	db 178 ; base exp 
-	db BURNT_BERRY ; item 1 
-	db BURNT_BERRY ; item 2 
-	db 191 ; gender 
-	db 100 ; unknown 
-	db 20 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 7, 7 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 0 ; growth rate 
-	dn FIELD, FIELD ; egg groups 
+	db 75 ; catch rate
+	db 178 ; base exp
+	db BURNT_BERRY ; item 1
+	db BURNT_BERRY ; item 2
+	db 191 ; gender
+	db 100 ; unknown
+	db 20 ; step cycles to hatch
+	db 5 ; unknown
+	dn 7, 7 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 0 ; growth rate
+	dn FIELD, FIELD ; egg groups
 
 	; tmhm
 	db %00110110
@@ -19085,18 +19085,18 @@ JigglypuffBaseStats: ; 0x518e4
 	;   hp  atk  def  spd  sat  sdf
 
 	db NORMAL, NORMAL
-	db 170 ; catch rate 
-	db 76 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 191 ; gender 
-	db 100 ; unknown 
-	db 10 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 5, 5 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 4 ; growth rate 
-	dn FAIRY, FAIRY ; egg groups 
+	db 170 ; catch rate
+	db 76 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 191 ; gender
+	db 100 ; unknown
+	db 10 ; step cycles to hatch
+	db 5 ; unknown
+	dn 5, 5 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 4 ; growth rate
+	dn FAIRY, FAIRY ; egg groups
 
 	; tmhm
 	db %01101111
@@ -19116,18 +19116,18 @@ WigglytuffBaseStats: ; 0x51904
 	;   hp  atk  def  spd  sat  sdf
 
 	db NORMAL, NORMAL
-	db 50 ; catch rate 
-	db 109 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 191 ; gender 
-	db 100 ; unknown 
-	db 10 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 6, 6 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 4 ; growth rate 
-	dn FAIRY, FAIRY ; egg groups 
+	db 50 ; catch rate
+	db 109 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 191 ; gender
+	db 100 ; unknown
+	db 10 ; step cycles to hatch
+	db 5 ; unknown
+	dn 6, 6 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 4 ; growth rate
+	dn FAIRY, FAIRY ; egg groups
 
 	; tmhm
 	db %01101111
@@ -19147,18 +19147,18 @@ ZubatBaseStats: ; 0x51924
 	;   hp  atk  def  spd  sat  sdf
 
 	db POISON, FLYING
-	db 255 ; catch rate 
-	db 54 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 127 ; gender 
-	db 100 ; unknown 
-	db 15 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 5, 5 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 0 ; growth rate 
-	dn AVIAN, AVIAN ; egg groups 
+	db 255 ; catch rate
+	db 54 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 127 ; gender
+	db 100 ; unknown
+	db 15 ; step cycles to hatch
+	db 5 ; unknown
+	dn 5, 5 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 0 ; growth rate
+	dn AVIAN, AVIAN ; egg groups
 
 	; tmhm
 	db %00100100
@@ -19178,18 +19178,18 @@ GolbatBaseStats: ; 0x51944
 	;   hp  atk  def  spd  sat  sdf
 
 	db POISON, FLYING
-	db 90 ; catch rate 
-	db 171 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 127 ; gender 
-	db 100 ; unknown 
-	db 15 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 7, 7 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 0 ; growth rate 
-	dn AVIAN, AVIAN ; egg groups 
+	db 90 ; catch rate
+	db 171 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 127 ; gender
+	db 100 ; unknown
+	db 15 ; step cycles to hatch
+	db 5 ; unknown
+	dn 7, 7 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 0 ; growth rate
+	dn AVIAN, AVIAN ; egg groups
 
 	; tmhm
 	db %00100100
@@ -19209,18 +19209,18 @@ OddishBaseStats: ; 0x51964
 	;   hp  atk  def  spd  sat  sdf
 
 	db GRASS, POISON
-	db 255 ; catch rate 
-	db 78 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 127 ; gender 
-	db 100 ; unknown 
-	db 20 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 5, 5 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 3 ; growth rate 
-	dn PLANT, PLANT ; egg groups 
+	db 255 ; catch rate
+	db 78 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 127 ; gender
+	db 100 ; unknown
+	db 20 ; step cycles to hatch
+	db 5 ; unknown
+	dn 5, 5 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 3 ; growth rate
+	dn PLANT, PLANT ; egg groups
 
 	; tmhm
 	db %00100100
@@ -19240,18 +19240,18 @@ GloomBaseStats: ; 0x51984
 	;   hp  atk  def  spd  sat  sdf
 
 	db GRASS, POISON
-	db 120 ; catch rate 
-	db 132 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 127 ; gender 
-	db 100 ; unknown 
-	db 20 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 6, 6 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 3 ; growth rate 
-	dn PLANT, PLANT ; egg groups 
+	db 120 ; catch rate
+	db 132 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 127 ; gender
+	db 100 ; unknown
+	db 20 ; step cycles to hatch
+	db 5 ; unknown
+	dn 6, 6 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 3 ; growth rate
+	dn PLANT, PLANT ; egg groups
 
 	; tmhm
 	db %00100100
@@ -19271,18 +19271,18 @@ VileplumeBaseStats: ; 0x519a4
 	;   hp  atk  def  spd  sat  sdf
 
 	db GRASS, POISON
-	db 45 ; catch rate 
-	db 184 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 127 ; gender 
-	db 100 ; unknown 
-	db 20 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 7, 7 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 3 ; growth rate 
-	dn PLANT, PLANT ; egg groups 
+	db 45 ; catch rate
+	db 184 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 127 ; gender
+	db 100 ; unknown
+	db 20 ; step cycles to hatch
+	db 5 ; unknown
+	dn 7, 7 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 3 ; growth rate
+	dn PLANT, PLANT ; egg groups
 
 	; tmhm
 	db %00100100
@@ -19302,18 +19302,18 @@ ParasBaseStats: ; 0x519c4
 	;   hp  atk  def  spd  sat  sdf
 
 	db BUG, GRASS
-	db 190 ; catch rate 
-	db 70 ; base exp 
-	db TINYMUSHROOM ; item 1 
-	db BIG_MUSHROOM ; item 2 
-	db 127 ; gender 
-	db 100 ; unknown 
-	db 20 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 5, 5 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 0 ; growth rate 
-	dn INSECT, PLANT ; egg groups 
+	db 190 ; catch rate
+	db 70 ; base exp
+	db TINYMUSHROOM ; item 1
+	db BIG_MUSHROOM ; item 2
+	db 127 ; gender
+	db 100 ; unknown
+	db 20 ; step cycles to hatch
+	db 5 ; unknown
+	dn 5, 5 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 0 ; growth rate
+	dn INSECT, PLANT ; egg groups
 
 	; tmhm
 	db %10100100
@@ -19333,18 +19333,18 @@ ParasectBaseStats: ; 0x519e4
 	;   hp  atk  def  spd  sat  sdf
 
 	db BUG, GRASS
-	db 75 ; catch rate 
-	db 128 ; base exp 
-	db TINYMUSHROOM ; item 1 
-	db BIG_MUSHROOM ; item 2 
-	db 127 ; gender 
-	db 100 ; unknown 
-	db 20 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 7, 7 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 0 ; growth rate 
-	dn INSECT, PLANT ; egg groups 
+	db 75 ; catch rate
+	db 128 ; base exp
+	db TINYMUSHROOM ; item 1
+	db BIG_MUSHROOM ; item 2
+	db 127 ; gender
+	db 100 ; unknown
+	db 20 ; step cycles to hatch
+	db 5 ; unknown
+	dn 7, 7 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 0 ; growth rate
+	dn INSECT, PLANT ; egg groups
 
 	; tmhm
 	db %10100100
@@ -19364,18 +19364,18 @@ VenonatBaseStats: ; 0x51a04
 	;   hp  atk  def  spd  sat  sdf
 
 	db BUG, POISON
-	db 190 ; catch rate 
-	db 75 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 127 ; gender 
-	db 100 ; unknown 
-	db 20 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 5, 5 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 0 ; growth rate 
-	dn INSECT, INSECT ; egg groups 
+	db 190 ; catch rate
+	db 75 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 127 ; gender
+	db 100 ; unknown
+	db 20 ; step cycles to hatch
+	db 5 ; unknown
+	dn 5, 5 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 0 ; growth rate
+	dn INSECT, INSECT ; egg groups
 
 	; tmhm
 	db %00100100
@@ -19395,18 +19395,18 @@ VenomothBaseStats: ; 0x51a24
 	;   hp  atk  def  spd  sat  sdf
 
 	db BUG, POISON
-	db 75 ; catch rate 
-	db 138 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 127 ; gender 
-	db 100 ; unknown 
-	db 20 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 7, 7 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 0 ; growth rate 
-	dn INSECT, INSECT ; egg groups 
+	db 75 ; catch rate
+	db 138 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 127 ; gender
+	db 100 ; unknown
+	db 20 ; step cycles to hatch
+	db 5 ; unknown
+	dn 7, 7 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 0 ; growth rate
+	dn INSECT, INSECT ; egg groups
 
 	; tmhm
 	db %00100100
@@ -19426,18 +19426,18 @@ DiglettBaseStats: ; 0x51a44
 	;   hp  atk  def  spd  sat  sdf
 
 	db GROUND, GROUND
-	db 255 ; catch rate 
-	db 81 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 127 ; gender 
-	db 100 ; unknown 
-	db 20 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 5, 5 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 0 ; growth rate 
-	dn FIELD, FIELD ; egg groups 
+	db 255 ; catch rate
+	db 81 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 127 ; gender
+	db 100 ; unknown
+	db 20 ; step cycles to hatch
+	db 5 ; unknown
+	dn 5, 5 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 0 ; growth rate
+	dn FIELD, FIELD ; egg groups
 
 	; tmhm
 	db %10100100
@@ -19457,18 +19457,18 @@ DugtrioBaseStats: ; 0x51a64
 	;   hp  atk  def  spd  sat  sdf
 
 	db GROUND, GROUND
-	db 50 ; catch rate 
-	db 153 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 127 ; gender 
-	db 100 ; unknown 
-	db 20 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 7, 7 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 0 ; growth rate 
-	dn FIELD, FIELD ; egg groups 
+	db 50 ; catch rate
+	db 153 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 127 ; gender
+	db 100 ; unknown
+	db 20 ; step cycles to hatch
+	db 5 ; unknown
+	dn 7, 7 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 0 ; growth rate
+	dn FIELD, FIELD ; egg groups
 
 	; tmhm
 	db %10100100
@@ -19488,18 +19488,18 @@ MeowthBaseStats: ; 0x51a84
 	;   hp  atk  def  spd  sat  sdf
 
 	db NORMAL, NORMAL
-	db 255 ; catch rate 
-	db 69 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 127 ; gender 
-	db 100 ; unknown 
-	db 20 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 5, 5 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 0 ; growth rate 
-	dn FIELD, FIELD ; egg groups 
+	db 255 ; catch rate
+	db 69 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 127 ; gender
+	db 100 ; unknown
+	db 20 ; step cycles to hatch
+	db 5 ; unknown
+	dn 5, 5 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 0 ; growth rate
+	dn FIELD, FIELD ; egg groups
 
 	; tmhm
 	db %01100110
@@ -19519,18 +19519,18 @@ PersianBaseStats: ; 0x51aa4
 	;   hp  atk  def  spd  sat  sdf
 
 	db NORMAL, NORMAL
-	db 90 ; catch rate 
-	db 148 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 127 ; gender 
-	db 100 ; unknown 
-	db 20 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 7, 7 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 0 ; growth rate 
-	dn FIELD, FIELD ; egg groups 
+	db 90 ; catch rate
+	db 148 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 127 ; gender
+	db 100 ; unknown
+	db 20 ; step cycles to hatch
+	db 5 ; unknown
+	dn 7, 7 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 0 ; growth rate
+	dn FIELD, FIELD ; egg groups
 
 	; tmhm
 	db %01110110
@@ -19550,18 +19550,18 @@ PsyduckBaseStats: ; 0x51ac4
 	;   hp  atk  def  spd  sat  sdf
 
 	db WATER, WATER
-	db 190 ; catch rate 
-	db 80 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 127 ; gender 
-	db 100 ; unknown 
-	db 20 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 5, 5 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 0 ; growth rate 
-	dn AMPHIBIAN, FIELD ; egg groups 
+	db 190 ; catch rate
+	db 80 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 127 ; gender
+	db 100 ; unknown
+	db 20 ; step cycles to hatch
+	db 5 ; unknown
+	dn 5, 5 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 0 ; growth rate
+	dn AMPHIBIAN, FIELD ; egg groups
 
 	; tmhm
 	db %10100111
@@ -19581,18 +19581,18 @@ GolduckBaseStats: ; 0x51ae4
 	;   hp  atk  def  spd  sat  sdf
 
 	db WATER, WATER
-	db 75 ; catch rate 
-	db 174 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 127 ; gender 
-	db 100 ; unknown 
-	db 20 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 7, 7 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 0 ; growth rate 
-	dn AMPHIBIAN, FIELD ; egg groups 
+	db 75 ; catch rate
+	db 174 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 127 ; gender
+	db 100 ; unknown
+	db 20 ; step cycles to hatch
+	db 5 ; unknown
+	dn 7, 7 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 0 ; growth rate
+	dn AMPHIBIAN, FIELD ; egg groups
 
 	; tmhm
 	db %10100111
@@ -19612,18 +19612,18 @@ MankeyBaseStats: ; 0x51b04
 	;   hp  atk  def  spd  sat  sdf
 
 	db FIGHTING, FIGHTING
-	db 190 ; catch rate 
-	db 74 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 127 ; gender 
-	db 100 ; unknown 
-	db 20 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 5, 5 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 0 ; growth rate 
-	dn FIELD, FIELD ; egg groups 
+	db 190 ; catch rate
+	db 74 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 127 ; gender
+	db 100 ; unknown
+	db 20 ; step cycles to hatch
+	db 5 ; unknown
+	dn 5, 5 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 0 ; growth rate
+	dn FIELD, FIELD ; egg groups
 
 	; tmhm
 	db %10100111
@@ -19643,18 +19643,18 @@ PrimeapeBaseStats: ; 0x51b24
 	;   hp  atk  def  spd  sat  sdf
 
 	db FIGHTING, FIGHTING
-	db 75 ; catch rate 
-	db 149 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 127 ; gender 
-	db 100 ; unknown 
-	db 20 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 7, 7 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 0 ; growth rate 
-	dn FIELD, FIELD ; egg groups 
+	db 75 ; catch rate
+	db 149 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 127 ; gender
+	db 100 ; unknown
+	db 20 ; step cycles to hatch
+	db 5 ; unknown
+	dn 7, 7 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 0 ; growth rate
+	dn FIELD, FIELD ; egg groups
 
 	; tmhm
 	db %10100111
@@ -19674,18 +19674,18 @@ GrowlitheBaseStats: ; 0x51b44
 	;   hp  atk  def  spd  sat  sdf
 
 	db FIRE, FIRE
-	db 190 ; catch rate 
-	db 91 ; base exp 
-	db BURNT_BERRY ; item 1 
-	db BURNT_BERRY ; item 2 
-	db 63 ; gender 
-	db 100 ; unknown 
-	db 20 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 5, 5 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 5 ; growth rate 
-	dn FIELD, FIELD ; egg groups 
+	db 190 ; catch rate
+	db 91 ; base exp
+	db BURNT_BERRY ; item 1
+	db BURNT_BERRY ; item 2
+	db 63 ; gender
+	db 100 ; unknown
+	db 20 ; step cycles to hatch
+	db 5 ; unknown
+	dn 5, 5 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 5 ; growth rate
+	dn FIELD, FIELD ; egg groups
 
 	; tmhm
 	db %10110110
@@ -19705,18 +19705,18 @@ ArcanineBaseStats: ; 0x51b64
 	;   hp  atk  def  spd  sat  sdf
 
 	db FIRE, FIRE
-	db 75 ; catch rate 
-	db 213 ; base exp 
-	db BURNT_BERRY ; item 1 
-	db BURNT_BERRY ; item 2 
-	db 63 ; gender 
-	db 100 ; unknown 
-	db 20 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 7, 7 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 5 ; growth rate 
-	dn FIELD, FIELD ; egg groups 
+	db 75 ; catch rate
+	db 213 ; base exp
+	db BURNT_BERRY ; item 1
+	db BURNT_BERRY ; item 2
+	db 63 ; gender
+	db 100 ; unknown
+	db 20 ; step cycles to hatch
+	db 5 ; unknown
+	dn 7, 7 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 5 ; growth rate
+	dn FIELD, FIELD ; egg groups
 
 	; tmhm
 	db %10110110
@@ -19736,18 +19736,18 @@ PoliwagBaseStats: ; 0x51b84
 	;   hp  atk  def  spd  sat  sdf
 
 	db WATER, WATER
-	db 255 ; catch rate 
-	db 77 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 127 ; gender 
-	db 100 ; unknown 
-	db 20 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 5, 5 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 3 ; growth rate 
-	dn AMPHIBIAN, AMPHIBIAN ; egg groups 
+	db 255 ; catch rate
+	db 77 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 127 ; gender
+	db 100 ; unknown
+	db 20 ; step cycles to hatch
+	db 5 ; unknown
+	dn 5, 5 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 3 ; growth rate
+	dn AMPHIBIAN, AMPHIBIAN ; egg groups
 
 	; tmhm
 	db %00100110
@@ -19767,18 +19767,18 @@ PoliwhirlBaseStats: ; 0x51ba4
 	;   hp  atk  def  spd  sat  sdf
 
 	db WATER, WATER
-	db 120 ; catch rate 
-	db 131 ; base exp 
-	db NO_ITEM ; item 1 
-	db KINGS_ROCK ; item 2 
-	db 127 ; gender 
-	db 100 ; unknown 
-	db 20 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 6, 6 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 3 ; growth rate 
-	dn AMPHIBIAN, AMPHIBIAN ; egg groups 
+	db 120 ; catch rate
+	db 131 ; base exp
+	db NO_ITEM ; item 1
+	db KINGS_ROCK ; item 2
+	db 127 ; gender
+	db 100 ; unknown
+	db 20 ; step cycles to hatch
+	db 5 ; unknown
+	dn 6, 6 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 3 ; growth rate
+	dn AMPHIBIAN, AMPHIBIAN ; egg groups
 
 	; tmhm
 	db %10100110
@@ -19798,18 +19798,18 @@ PoliwrathBaseStats: ; 0x51bc4
 	;   hp  atk  def  spd  sat  sdf
 
 	db WATER, FIGHTING
-	db 45 ; catch rate 
-	db 185 ; base exp 
-	db NO_ITEM ; item 1 
-	db KINGS_ROCK ; item 2 
-	db 127 ; gender 
-	db 100 ; unknown 
-	db 20 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 7, 7 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 3 ; growth rate 
-	dn AMPHIBIAN, AMPHIBIAN ; egg groups 
+	db 45 ; catch rate
+	db 185 ; base exp
+	db NO_ITEM ; item 1
+	db KINGS_ROCK ; item 2
+	db 127 ; gender
+	db 100 ; unknown
+	db 20 ; step cycles to hatch
+	db 5 ; unknown
+	dn 7, 7 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 3 ; growth rate
+	dn AMPHIBIAN, AMPHIBIAN ; egg groups
 
 	; tmhm
 	db %10100111
@@ -19829,18 +19829,18 @@ AbraBaseStats: ; 0x51be4
 	;   hp  atk  def  spd  sat  sdf
 
 	db PSYCHIC, PSYCHIC
-	db 200 ; catch rate 
-	db 73 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 63 ; gender 
-	db 100 ; unknown 
-	db 20 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 5, 5 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 3 ; growth rate 
-	dn HUMANSHAPE, HUMANSHAPE ; egg groups 
+	db 200 ; catch rate
+	db 73 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 63 ; gender
+	db 100 ; unknown
+	db 20 ; step cycles to hatch
+	db 5 ; unknown
+	dn 5, 5 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 3 ; growth rate
+	dn HUMANSHAPE, HUMANSHAPE ; egg groups
 
 	; tmhm
 	db %01100111
@@ -19860,18 +19860,18 @@ KadabraBaseStats: ; 0x51c04
 	;   hp  atk  def  spd  sat  sdf
 
 	db PSYCHIC, PSYCHIC
-	db 100 ; catch rate 
-	db 145 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 63 ; gender 
-	db 100 ; unknown 
-	db 20 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 6, 6 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 3 ; growth rate 
-	dn HUMANSHAPE, HUMANSHAPE ; egg groups 
+	db 100 ; catch rate
+	db 145 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 63 ; gender
+	db 100 ; unknown
+	db 20 ; step cycles to hatch
+	db 5 ; unknown
+	dn 6, 6 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 3 ; growth rate
+	dn HUMANSHAPE, HUMANSHAPE ; egg groups
 
 	; tmhm
 	db %01100111
@@ -19891,18 +19891,18 @@ AlakazamBaseStats: ; 0x51c24
 	;   hp  atk  def  spd  sat  sdf
 
 	db PSYCHIC, PSYCHIC
-	db 50 ; catch rate 
-	db 186 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 63 ; gender 
-	db 100 ; unknown 
-	db 20 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 7, 7 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 3 ; growth rate 
-	dn HUMANSHAPE, HUMANSHAPE ; egg groups 
+	db 50 ; catch rate
+	db 186 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 63 ; gender
+	db 100 ; unknown
+	db 20 ; step cycles to hatch
+	db 5 ; unknown
+	dn 7, 7 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 3 ; growth rate
+	dn HUMANSHAPE, HUMANSHAPE ; egg groups
 
 	; tmhm
 	db %01100111
@@ -19922,18 +19922,18 @@ MachopBaseStats: ; 0x51c44
 	;   hp  atk  def  spd  sat  sdf
 
 	db FIGHTING, FIGHTING
-	db 180 ; catch rate 
-	db 88 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 63 ; gender 
-	db 100 ; unknown 
-	db 20 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 5, 5 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 3 ; growth rate 
-	dn HUMANSHAPE, HUMANSHAPE ; egg groups 
+	db 180 ; catch rate
+	db 88 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 63 ; gender
+	db 100 ; unknown
+	db 20 ; step cycles to hatch
+	db 5 ; unknown
+	dn 5, 5 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 3 ; growth rate
+	dn HUMANSHAPE, HUMANSHAPE ; egg groups
 
 	; tmhm
 	db %10100111
@@ -19953,18 +19953,18 @@ MachokeBaseStats: ; 0x51c64
 	;   hp  atk  def  spd  sat  sdf
 
 	db FIGHTING, FIGHTING
-	db 90 ; catch rate 
-	db 146 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 63 ; gender 
-	db 100 ; unknown 
-	db 20 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 7, 7 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 3 ; growth rate 
-	dn HUMANSHAPE, HUMANSHAPE ; egg groups 
+	db 90 ; catch rate
+	db 146 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 63 ; gender
+	db 100 ; unknown
+	db 20 ; step cycles to hatch
+	db 5 ; unknown
+	dn 7, 7 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 3 ; growth rate
+	dn HUMANSHAPE, HUMANSHAPE ; egg groups
 
 	; tmhm
 	db %10100111
@@ -19984,18 +19984,18 @@ MachampBaseStats: ; 0x51c84
 	;   hp  atk  def  spd  sat  sdf
 
 	db FIGHTING, FIGHTING
-	db 45 ; catch rate 
-	db 193 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 63 ; gender 
-	db 100 ; unknown 
-	db 20 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 7, 7 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 3 ; growth rate 
-	dn HUMANSHAPE, HUMANSHAPE ; egg groups 
+	db 45 ; catch rate
+	db 193 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 63 ; gender
+	db 100 ; unknown
+	db 20 ; step cycles to hatch
+	db 5 ; unknown
+	dn 7, 7 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 3 ; growth rate
+	dn HUMANSHAPE, HUMANSHAPE ; egg groups
 
 	; tmhm
 	db %10100111
@@ -20015,18 +20015,18 @@ BellsproutBaseStats: ; 0x51ca4
 	;   hp  atk  def  spd  sat  sdf
 
 	db GRASS, POISON
-	db 255 ; catch rate 
-	db 84 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 127 ; gender 
-	db 100 ; unknown 
-	db 20 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 5, 5 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 3 ; growth rate 
-	dn PLANT, PLANT ; egg groups 
+	db 255 ; catch rate
+	db 84 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 127 ; gender
+	db 100 ; unknown
+	db 20 ; step cycles to hatch
+	db 5 ; unknown
+	dn 5, 5 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 3 ; growth rate
+	dn PLANT, PLANT ; egg groups
 
 	; tmhm
 	db %00100100
@@ -20046,18 +20046,18 @@ WeepinbellBaseStats: ; 0x51cc4
 	;   hp  atk  def  spd  sat  sdf
 
 	db GRASS, POISON
-	db 120 ; catch rate 
-	db 151 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 127 ; gender 
-	db 100 ; unknown 
-	db 20 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 6, 6 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 3 ; growth rate 
-	dn PLANT, PLANT ; egg groups 
+	db 120 ; catch rate
+	db 151 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 127 ; gender
+	db 100 ; unknown
+	db 20 ; step cycles to hatch
+	db 5 ; unknown
+	dn 6, 6 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 3 ; growth rate
+	dn PLANT, PLANT ; egg groups
 
 	; tmhm
 	db %00100100
@@ -20077,18 +20077,18 @@ VictreebelBaseStats: ; 0x51ce4
 	;   hp  atk  def  spd  sat  sdf
 
 	db GRASS, POISON
-	db 45 ; catch rate 
-	db 191 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 127 ; gender 
-	db 100 ; unknown 
-	db 20 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 7, 7 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 3 ; growth rate 
-	dn PLANT, PLANT ; egg groups 
+	db 45 ; catch rate
+	db 191 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 127 ; gender
+	db 100 ; unknown
+	db 20 ; step cycles to hatch
+	db 5 ; unknown
+	dn 7, 7 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 3 ; growth rate
+	dn PLANT, PLANT ; egg groups
 
 	; tmhm
 	db %00100100
@@ -20108,18 +20108,18 @@ TentacoolBaseStats: ; 0x51d04
 	;   hp  atk  def  spd  sat  sdf
 
 	db WATER, POISON
-	db 190 ; catch rate 
-	db 105 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 127 ; gender 
-	db 100 ; unknown 
-	db 20 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 5, 5 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 5 ; growth rate 
-	dn INVERTEBRATE, INVERTEBRATE ; egg groups 
+	db 190 ; catch rate
+	db 105 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 127 ; gender
+	db 100 ; unknown
+	db 20 ; step cycles to hatch
+	db 5 ; unknown
+	dn 5, 5 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 5 ; growth rate
+	dn INVERTEBRATE, INVERTEBRATE ; egg groups
 
 	; tmhm
 	db %00100100
@@ -20139,18 +20139,18 @@ TentacruelBaseStats: ; 0x51d24
 	;   hp  atk  def  spd  sat  sdf
 
 	db WATER, POISON
-	db 60 ; catch rate 
-	db 205 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 127 ; gender 
-	db 100 ; unknown 
-	db 20 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 6, 6 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 5 ; growth rate 
-	dn INVERTEBRATE, INVERTEBRATE ; egg groups 
+	db 60 ; catch rate
+	db 205 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 127 ; gender
+	db 100 ; unknown
+	db 20 ; step cycles to hatch
+	db 5 ; unknown
+	dn 6, 6 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 5 ; growth rate
+	dn INVERTEBRATE, INVERTEBRATE ; egg groups
 
 	; tmhm
 	db %00100100
@@ -20170,18 +20170,18 @@ GeodudeBaseStats: ; 0x51d44
 	;   hp  atk  def  spd  sat  sdf
 
 	db ROCK, GROUND
-	db 255 ; catch rate 
-	db 86 ; base exp 
-	db NO_ITEM ; item 1 
-	db EVERSTONE ; item 2 
-	db 127 ; gender 
-	db 100 ; unknown 
-	db 15 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 5, 5 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 3 ; growth rate 
-	dn INANIMATE, INANIMATE ; egg groups 
+	db 255 ; catch rate
+	db 86 ; base exp
+	db NO_ITEM ; item 1
+	db EVERSTONE ; item 2
+	db 127 ; gender
+	db 100 ; unknown
+	db 15 ; step cycles to hatch
+	db 5 ; unknown
+	dn 5, 5 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 3 ; growth rate
+	dn INANIMATE, INANIMATE ; egg groups
 
 	; tmhm
 	db %10101111
@@ -20201,18 +20201,18 @@ GravelerBaseStats: ; 0x51d64
 	;   hp  atk  def  spd  sat  sdf
 
 	db ROCK, GROUND
-	db 120 ; catch rate 
-	db 134 ; base exp 
-	db NO_ITEM ; item 1 
-	db EVERSTONE ; item 2 
-	db 127 ; gender 
-	db 100 ; unknown 
-	db 15 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 6, 6 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 3 ; growth rate 
-	dn INANIMATE, INANIMATE ; egg groups 
+	db 120 ; catch rate
+	db 134 ; base exp
+	db NO_ITEM ; item 1
+	db EVERSTONE ; item 2
+	db 127 ; gender
+	db 100 ; unknown
+	db 15 ; step cycles to hatch
+	db 5 ; unknown
+	dn 6, 6 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 3 ; growth rate
+	dn INANIMATE, INANIMATE ; egg groups
 
 	; tmhm
 	db %10101111
@@ -20232,18 +20232,18 @@ GolemBaseStats: ; 0x51d84
 	;   hp  atk  def  spd  sat  sdf
 
 	db ROCK, GROUND
-	db 45 ; catch rate 
-	db 177 ; base exp 
-	db NO_ITEM ; item 1 
-	db EVERSTONE ; item 2 
-	db 127 ; gender 
-	db 100 ; unknown 
-	db 15 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 6, 6 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 3 ; growth rate 
-	dn INANIMATE, INANIMATE ; egg groups 
+	db 45 ; catch rate
+	db 177 ; base exp
+	db NO_ITEM ; item 1
+	db EVERSTONE ; item 2
+	db 127 ; gender
+	db 100 ; unknown
+	db 15 ; step cycles to hatch
+	db 5 ; unknown
+	dn 6, 6 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 3 ; growth rate
+	dn INANIMATE, INANIMATE ; egg groups
 
 	; tmhm
 	db %10111111
@@ -20263,18 +20263,18 @@ PonytaBaseStats: ; 0x51da4
 	;   hp  atk  def  spd  sat  sdf
 
 	db FIRE, FIRE
-	db 190 ; catch rate 
-	db 152 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 127 ; gender 
-	db 100 ; unknown 
-	db 20 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 6, 6 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 0 ; growth rate 
-	dn FIELD, FIELD ; egg groups 
+	db 190 ; catch rate
+	db 152 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 127 ; gender
+	db 100 ; unknown
+	db 20 ; step cycles to hatch
+	db 5 ; unknown
+	dn 6, 6 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 0 ; growth rate
+	dn FIELD, FIELD ; egg groups
 
 	; tmhm
 	db %00100110
@@ -20294,18 +20294,18 @@ RapidashBaseStats: ; 0x51dc4
 	;   hp  atk  def  spd  sat  sdf
 
 	db FIRE, FIRE
-	db 60 ; catch rate 
-	db 192 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 127 ; gender 
-	db 100 ; unknown 
-	db 20 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 7, 7 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 0 ; growth rate 
-	dn FIELD, FIELD ; egg groups 
+	db 60 ; catch rate
+	db 192 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 127 ; gender
+	db 100 ; unknown
+	db 20 ; step cycles to hatch
+	db 5 ; unknown
+	dn 7, 7 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 0 ; growth rate
+	dn FIELD, FIELD ; egg groups
 
 	; tmhm
 	db %00100110
@@ -20325,18 +20325,18 @@ SlowpokeBaseStats: ; 0x51de4
 	;   hp  atk  def  spd  sat  sdf
 
 	db WATER, PSYCHIC
-	db 190 ; catch rate 
-	db 99 ; base exp 
-	db NO_ITEM ; item 1 
-	db KINGS_ROCK ; item 2 
-	db 127 ; gender 
-	db 100 ; unknown 
-	db 20 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 5, 5 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 0 ; growth rate 
-	dn MONSTER, AMPHIBIAN ; egg groups 
+	db 190 ; catch rate
+	db 99 ; base exp
+	db NO_ITEM ; item 1
+	db KINGS_ROCK ; item 2
+	db 127 ; gender
+	db 100 ; unknown
+	db 20 ; step cycles to hatch
+	db 5 ; unknown
+	dn 5, 5 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 0 ; growth rate
+	dn MONSTER, AMPHIBIAN ; egg groups
 
 	; tmhm
 	db %01100110
@@ -20356,18 +20356,18 @@ SlowbroBaseStats: ; 0x51e04
 	;   hp  atk  def  spd  sat  sdf
 
 	db WATER, PSYCHIC
-	db 75 ; catch rate 
-	db 164 ; base exp 
-	db NO_ITEM ; item 1 
-	db KINGS_ROCK ; item 2 
-	db 127 ; gender 
-	db 100 ; unknown 
-	db 20 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 7, 7 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 0 ; growth rate 
-	dn MONSTER, AMPHIBIAN ; egg groups 
+	db 75 ; catch rate
+	db 164 ; base exp
+	db NO_ITEM ; item 1
+	db KINGS_ROCK ; item 2
+	db 127 ; gender
+	db 100 ; unknown
+	db 20 ; step cycles to hatch
+	db 5 ; unknown
+	dn 7, 7 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 0 ; growth rate
+	dn MONSTER, AMPHIBIAN ; egg groups
 
 	; tmhm
 	db %11100111
@@ -20387,18 +20387,18 @@ MagnemiteBaseStats: ; 0x51e24
 	;   hp  atk  def  spd  sat  sdf
 
 	db ELECTRIC, STEEL
-	db 190 ; catch rate 
-	db 89 ; base exp 
-	db NO_ITEM ; item 1 
-	db METAL_COAT ; item 2 
-	db 255 ; gender 
-	db 100 ; unknown 
-	db 20 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 5, 5 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 0 ; growth rate 
-	dn INANIMATE, INANIMATE ; egg groups 
+	db 190 ; catch rate
+	db 89 ; base exp
+	db NO_ITEM ; item 1
+	db METAL_COAT ; item 2
+	db 255 ; gender
+	db 100 ; unknown
+	db 20 ; step cycles to hatch
+	db 5 ; unknown
+	dn 5, 5 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 0 ; growth rate
+	dn INANIMATE, INANIMATE ; egg groups
 
 	; tmhm
 	db %01101100
@@ -20418,18 +20418,18 @@ MagnetonBaseStats: ; 0x51e44
 	;   hp  atk  def  spd  sat  sdf
 
 	db ELECTRIC, STEEL
-	db 60 ; catch rate 
-	db 161 ; base exp 
-	db NO_ITEM ; item 1 
-	db METAL_COAT ; item 2 
-	db 255 ; gender 
-	db 100 ; unknown 
-	db 20 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 6, 6 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 0 ; growth rate 
-	dn INANIMATE, INANIMATE ; egg groups 
+	db 60 ; catch rate
+	db 161 ; base exp
+	db NO_ITEM ; item 1
+	db METAL_COAT ; item 2
+	db 255 ; gender
+	db 100 ; unknown
+	db 20 ; step cycles to hatch
+	db 5 ; unknown
+	dn 6, 6 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 0 ; growth rate
+	dn INANIMATE, INANIMATE ; egg groups
 
 	; tmhm
 	db %01101100
@@ -20449,18 +20449,18 @@ Farfetch_DBaseStats: ; 0x51e64
 	;   hp  atk  def  spd  sat  sdf
 
 	db NORMAL, FLYING
-	db 45 ; catch rate 
-	db 94 ; base exp 
-	db NO_ITEM ; item 1 
-	db STICK ; item 2 
-	db 127 ; gender 
-	db 100 ; unknown 
-	db 20 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 6, 6 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 0 ; growth rate 
-	dn AVIAN, FIELD ; egg groups 
+	db 45 ; catch rate
+	db 94 ; base exp
+	db NO_ITEM ; item 1
+	db STICK ; item 2
+	db 127 ; gender
+	db 100 ; unknown
+	db 20 ; step cycles to hatch
+	db 5 ; unknown
+	dn 6, 6 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 0 ; growth rate
+	dn AVIAN, FIELD ; egg groups
 
 	; tmhm
 	db %00100110
@@ -20480,18 +20480,18 @@ DoduoBaseStats: ; 0x51e84
 	;   hp  atk  def  spd  sat  sdf
 
 	db NORMAL, FLYING
-	db 190 ; catch rate 
-	db 96 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 127 ; gender 
-	db 100 ; unknown 
-	db 20 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 5, 5 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 0 ; growth rate 
-	dn AVIAN, AVIAN ; egg groups 
+	db 190 ; catch rate
+	db 96 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 127 ; gender
+	db 100 ; unknown
+	db 20 ; step cycles to hatch
+	db 5 ; unknown
+	dn 5, 5 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 0 ; growth rate
+	dn AVIAN, AVIAN ; egg groups
 
 	; tmhm
 	db %00100100
@@ -20511,18 +20511,18 @@ DodrioBaseStats: ; 0x51ea4
 	;   hp  atk  def  spd  sat  sdf
 
 	db NORMAL, FLYING
-	db 45 ; catch rate 
-	db 158 ; base exp 
-	db NO_ITEM ; item 1 
-	db SHARP_BEAK ; item 2 
-	db 127 ; gender 
-	db 100 ; unknown 
-	db 20 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 7, 7 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 0 ; growth rate 
-	dn AVIAN, AVIAN ; egg groups 
+	db 45 ; catch rate
+	db 158 ; base exp
+	db NO_ITEM ; item 1
+	db SHARP_BEAK ; item 2
+	db 127 ; gender
+	db 100 ; unknown
+	db 20 ; step cycles to hatch
+	db 5 ; unknown
+	dn 7, 7 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 0 ; growth rate
+	dn AVIAN, AVIAN ; egg groups
 
 	; tmhm
 	db %00100100
@@ -20542,18 +20542,18 @@ SeelBaseStats: ; 0x51ec4
 	;   hp  atk  def  spd  sat  sdf
 
 	db WATER, WATER
-	db 190 ; catch rate 
-	db 100 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 127 ; gender 
-	db 100 ; unknown 
-	db 20 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 6, 6 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 0 ; growth rate 
-	dn AMPHIBIAN, FIELD ; egg groups 
+	db 190 ; catch rate
+	db 100 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 127 ; gender
+	db 100 ; unknown
+	db 20 ; step cycles to hatch
+	db 5 ; unknown
+	dn 6, 6 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 0 ; growth rate
+	dn AMPHIBIAN, FIELD ; egg groups
 
 	; tmhm
 	db %00100110
@@ -20573,18 +20573,18 @@ DewgongBaseStats: ; 0x51ee4
 	;   hp  atk  def  spd  sat  sdf
 
 	db WATER, ICE
-	db 75 ; catch rate 
-	db 176 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 127 ; gender 
-	db 100 ; unknown 
-	db 20 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 7, 7 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 0 ; growth rate 
-	dn AMPHIBIAN, FIELD ; egg groups 
+	db 75 ; catch rate
+	db 176 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 127 ; gender
+	db 100 ; unknown
+	db 20 ; step cycles to hatch
+	db 5 ; unknown
+	dn 7, 7 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 0 ; growth rate
+	dn AMPHIBIAN, FIELD ; egg groups
 
 	; tmhm
 	db %00100110
@@ -20604,18 +20604,18 @@ GrimerBaseStats: ; 0x51f04
 	;   hp  atk  def  spd  sat  sdf
 
 	db POISON, POISON
-	db 190 ; catch rate 
-	db 90 ; base exp 
-	db NO_ITEM ; item 1 
-	db NUGGET ; item 2 
-	db 127 ; gender 
-	db 100 ; unknown 
-	db 20 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 5, 5 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 0 ; growth rate 
-	dn AMORPHOUS, AMORPHOUS ; egg groups 
+	db 190 ; catch rate
+	db 90 ; base exp
+	db NO_ITEM ; item 1
+	db NUGGET ; item 2
+	db 127 ; gender
+	db 100 ; unknown
+	db 20 ; step cycles to hatch
+	db 5 ; unknown
+	dn 5, 5 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 0 ; growth rate
+	dn AMORPHOUS, AMORPHOUS ; egg groups
 
 	; tmhm
 	db %01100101
@@ -20635,18 +20635,18 @@ MukBaseStats: ; 0x51f24
 	;   hp  atk  def  spd  sat  sdf
 
 	db POISON, POISON
-	db 75 ; catch rate 
-	db 157 ; base exp 
-	db NO_ITEM ; item 1 
-	db NUGGET ; item 2 
-	db 127 ; gender 
-	db 100 ; unknown 
-	db 20 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 7, 7 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 0 ; growth rate 
-	dn AMORPHOUS, AMORPHOUS ; egg groups 
+	db 75 ; catch rate
+	db 157 ; base exp
+	db NO_ITEM ; item 1
+	db NUGGET ; item 2
+	db 127 ; gender
+	db 100 ; unknown
+	db 20 ; step cycles to hatch
+	db 5 ; unknown
+	dn 7, 7 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 0 ; growth rate
+	dn AMORPHOUS, AMORPHOUS ; egg groups
 
 	; tmhm
 	db %01100101
@@ -20666,18 +20666,18 @@ ShellderBaseStats: ; 0x51f44
 	;   hp  atk  def  spd  sat  sdf
 
 	db WATER, WATER
-	db 190 ; catch rate 
-	db 97 ; base exp 
-	db PEARL ; item 1 
-	db BIG_PEARL ; item 2 
-	db 127 ; gender 
-	db 100 ; unknown 
-	db 20 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 5, 5 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 5 ; growth rate 
-	dn INVERTEBRATE, INVERTEBRATE ; egg groups 
+	db 190 ; catch rate
+	db 97 ; base exp
+	db PEARL ; item 1
+	db BIG_PEARL ; item 2
+	db 127 ; gender
+	db 100 ; unknown
+	db 20 ; step cycles to hatch
+	db 5 ; unknown
+	dn 5, 5 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 5 ; growth rate
+	dn INVERTEBRATE, INVERTEBRATE ; egg groups
 
 	; tmhm
 	db %00100100
@@ -20697,18 +20697,18 @@ CloysterBaseStats: ; 0x51f64
 	;   hp  atk  def  spd  sat  sdf
 
 	db WATER, ICE
-	db 60 ; catch rate 
-	db 203 ; base exp 
-	db PEARL ; item 1 
-	db BIG_PEARL ; item 2 
-	db 127 ; gender 
-	db 100 ; unknown 
-	db 20 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 7, 7 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 5 ; growth rate 
-	dn INVERTEBRATE, INVERTEBRATE ; egg groups 
+	db 60 ; catch rate
+	db 203 ; base exp
+	db PEARL ; item 1
+	db BIG_PEARL ; item 2
+	db 127 ; gender
+	db 100 ; unknown
+	db 20 ; step cycles to hatch
+	db 5 ; unknown
+	dn 7, 7 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 5 ; growth rate
+	dn INVERTEBRATE, INVERTEBRATE ; egg groups
 
 	; tmhm
 	db %00100100
@@ -20728,18 +20728,18 @@ GastlyBaseStats: ; 0x51f84
 	;   hp  atk  def  spd  sat  sdf
 
 	db GHOST, POISON
-	db 190 ; catch rate 
-	db 95 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 127 ; gender 
-	db 100 ; unknown 
-	db 20 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 7, 7 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 3 ; growth rate 
-	dn AMORPHOUS, AMORPHOUS ; egg groups 
+	db 190 ; catch rate
+	db 95 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 127 ; gender
+	db 100 ; unknown
+	db 20 ; step cycles to hatch
+	db 5 ; unknown
+	dn 7, 7 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 3 ; growth rate
+	dn AMORPHOUS, AMORPHOUS ; egg groups
 
 	; tmhm
 	db %01100100
@@ -20759,18 +20759,18 @@ HaunterBaseStats: ; 0x51fa4
 	;   hp  atk  def  spd  sat  sdf
 
 	db GHOST, POISON
-	db 90 ; catch rate 
-	db 126 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 127 ; gender 
-	db 100 ; unknown 
-	db 20 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 6, 6 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 3 ; growth rate 
-	dn AMORPHOUS, AMORPHOUS ; egg groups 
+	db 90 ; catch rate
+	db 126 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 127 ; gender
+	db 100 ; unknown
+	db 20 ; step cycles to hatch
+	db 5 ; unknown
+	dn 6, 6 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 3 ; growth rate
+	dn AMORPHOUS, AMORPHOUS ; egg groups
 
 	; tmhm
 	db %01100100
@@ -20790,18 +20790,18 @@ GengarBaseStats: ; 0x51fc4
 	;   hp  atk  def  spd  sat  sdf
 
 	db GHOST, POISON
-	db 45 ; catch rate 
-	db 190 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 127 ; gender 
-	db 100 ; unknown 
-	db 20 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 6, 6 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 3 ; growth rate 
-	dn AMORPHOUS, AMORPHOUS ; egg groups 
+	db 45 ; catch rate
+	db 190 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 127 ; gender
+	db 100 ; unknown
+	db 20 ; step cycles to hatch
+	db 5 ; unknown
+	dn 6, 6 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 3 ; growth rate
+	dn AMORPHOUS, AMORPHOUS ; egg groups
 
 	; tmhm
 	db %11100111
@@ -20821,18 +20821,18 @@ OnixBaseStats: ; 0x51fe4
 	;   hp  atk  def  spd  sat  sdf
 
 	db ROCK, GROUND
-	db 45 ; catch rate 
-	db 108 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 127 ; gender 
-	db 100 ; unknown 
-	db 25 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 7, 7 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 0 ; growth rate 
-	dn INANIMATE, INANIMATE ; egg groups 
+	db 45 ; catch rate
+	db 108 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 127 ; gender
+	db 100 ; unknown
+	db 25 ; step cycles to hatch
+	db 5 ; unknown
+	dn 7, 7 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 0 ; growth rate
+	dn INANIMATE, INANIMATE ; egg groups
 
 	; tmhm
 	db %10110110
@@ -20852,18 +20852,18 @@ DrowzeeBaseStats: ; 0x52004
 	;   hp  atk  def  spd  sat  sdf
 
 	db PSYCHIC, PSYCHIC
-	db 190 ; catch rate 
-	db 102 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 127 ; gender 
-	db 100 ; unknown 
-	db 20 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 6, 6 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 0 ; growth rate 
-	dn HUMANSHAPE, HUMANSHAPE ; egg groups 
+	db 190 ; catch rate
+	db 102 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 127 ; gender
+	db 100 ; unknown
+	db 20 ; step cycles to hatch
+	db 5 ; unknown
+	dn 6, 6 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 0 ; growth rate
+	dn HUMANSHAPE, HUMANSHAPE ; egg groups
 
 	; tmhm
 	db %01100111
@@ -20883,18 +20883,18 @@ HypnoBaseStats: ; 0x52024
 	;   hp  atk  def  spd  sat  sdf
 
 	db PSYCHIC, PSYCHIC
-	db 75 ; catch rate 
-	db 165 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 127 ; gender 
-	db 100 ; unknown 
-	db 20 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 7, 7 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 0 ; growth rate 
-	dn HUMANSHAPE, HUMANSHAPE ; egg groups 
+	db 75 ; catch rate
+	db 165 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 127 ; gender
+	db 100 ; unknown
+	db 20 ; step cycles to hatch
+	db 5 ; unknown
+	dn 7, 7 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 0 ; growth rate
+	dn HUMANSHAPE, HUMANSHAPE ; egg groups
 
 	; tmhm
 	db %01100111
@@ -20914,18 +20914,18 @@ KrabbyBaseStats: ; 0x52044
 	;   hp  atk  def  spd  sat  sdf
 
 	db WATER, WATER
-	db 225 ; catch rate 
-	db 115 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 127 ; gender 
-	db 100 ; unknown 
-	db 20 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 5, 5 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 0 ; growth rate 
-	dn INVERTEBRATE, INVERTEBRATE ; egg groups 
+	db 225 ; catch rate
+	db 115 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 127 ; gender
+	db 100 ; unknown
+	db 20 ; step cycles to hatch
+	db 5 ; unknown
+	dn 5, 5 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 0 ; growth rate
+	dn INVERTEBRATE, INVERTEBRATE ; egg groups
 
 	; tmhm
 	db %10100100
@@ -20945,18 +20945,18 @@ KinglerBaseStats: ; 0x52064
 	;   hp  atk  def  spd  sat  sdf
 
 	db WATER, WATER
-	db 60 ; catch rate 
-	db 206 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 127 ; gender 
-	db 100 ; unknown 
-	db 20 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 7, 7 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 0 ; growth rate 
-	dn INVERTEBRATE, INVERTEBRATE ; egg groups 
+	db 60 ; catch rate
+	db 206 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 127 ; gender
+	db 100 ; unknown
+	db 20 ; step cycles to hatch
+	db 5 ; unknown
+	dn 7, 7 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 0 ; growth rate
+	dn INVERTEBRATE, INVERTEBRATE ; egg groups
 
 	; tmhm
 	db %10100100
@@ -20976,18 +20976,18 @@ VoltorbBaseStats: ; 0x52084
 	;   hp  atk  def  spd  sat  sdf
 
 	db ELECTRIC, ELECTRIC
-	db 190 ; catch rate 
-	db 103 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 255 ; gender 
-	db 100 ; unknown 
-	db 20 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 5, 5 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 0 ; growth rate 
-	dn INANIMATE, INANIMATE ; egg groups 
+	db 190 ; catch rate
+	db 103 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 255 ; gender
+	db 100 ; unknown
+	db 20 ; step cycles to hatch
+	db 5 ; unknown
+	dn 5, 5 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 0 ; growth rate
+	dn INANIMATE, INANIMATE ; egg groups
 
 	; tmhm
 	db %01101110
@@ -21007,18 +21007,18 @@ ElectrodeBaseStats: ; 0x520a4
 	;   hp  atk  def  spd  sat  sdf
 
 	db ELECTRIC, ELECTRIC
-	db 60 ; catch rate 
-	db 150 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 255 ; gender 
-	db 100 ; unknown 
-	db 20 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 5, 5 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 0 ; growth rate 
-	dn INANIMATE, INANIMATE ; egg groups 
+	db 60 ; catch rate
+	db 150 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 255 ; gender
+	db 100 ; unknown
+	db 20 ; step cycles to hatch
+	db 5 ; unknown
+	dn 5, 5 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 0 ; growth rate
+	dn INANIMATE, INANIMATE ; egg groups
 
 	; tmhm
 	db %01101110
@@ -21038,18 +21038,18 @@ ExeggcuteBaseStats: ; 0x520c4
 	;   hp  atk  def  spd  sat  sdf
 
 	db GRASS, PSYCHIC
-	db 90 ; catch rate 
-	db 98 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 127 ; gender 
-	db 100 ; unknown 
-	db 20 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 7, 7 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 5 ; growth rate 
-	dn PLANT, PLANT ; egg groups 
+	db 90 ; catch rate
+	db 98 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 127 ; gender
+	db 100 ; unknown
+	db 20 ; step cycles to hatch
+	db 5 ; unknown
+	dn 7, 7 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 5 ; growth rate
+	dn PLANT, PLANT ; egg groups
 
 	; tmhm
 	db %00101100
@@ -21069,18 +21069,18 @@ ExeggutorBaseStats: ; 0x520e4
 	;   hp  atk  def  spd  sat  sdf
 
 	db GRASS, PSYCHIC
-	db 45 ; catch rate 
-	db 212 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 127 ; gender 
-	db 100 ; unknown 
-	db 20 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 7, 7 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 5 ; growth rate 
-	dn PLANT, PLANT ; egg groups 
+	db 45 ; catch rate
+	db 212 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 127 ; gender
+	db 100 ; unknown
+	db 20 ; step cycles to hatch
+	db 5 ; unknown
+	dn 7, 7 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 5 ; growth rate
+	dn PLANT, PLANT ; egg groups
 
 	; tmhm
 	db %00101110
@@ -21100,18 +21100,18 @@ CuboneBaseStats: ; 0x52104
 	;   hp  atk  def  spd  sat  sdf
 
 	db GROUND, GROUND
-	db 190 ; catch rate 
-	db 87 ; base exp 
-	db NO_ITEM ; item 1 
-	db THICK_CLUB ; item 2 
-	db 127 ; gender 
-	db 100 ; unknown 
-	db 20 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 5, 5 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 0 ; growth rate 
-	dn MONSTER, MONSTER ; egg groups 
+	db 190 ; catch rate
+	db 87 ; base exp
+	db NO_ITEM ; item 1
+	db THICK_CLUB ; item 2
+	db 127 ; gender
+	db 100 ; unknown
+	db 20 ; step cycles to hatch
+	db 5 ; unknown
+	dn 5, 5 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 0 ; growth rate
+	dn MONSTER, MONSTER ; egg groups
 
 	; tmhm
 	db %10100111
@@ -21131,18 +21131,18 @@ MarowakBaseStats: ; 0x52124
 	;   hp  atk  def  spd  sat  sdf
 
 	db GROUND, GROUND
-	db 75 ; catch rate 
-	db 124 ; base exp 
-	db NO_ITEM ; item 1 
-	db THICK_CLUB ; item 2 
-	db 127 ; gender 
-	db 100 ; unknown 
-	db 20 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 6, 6 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 0 ; growth rate 
-	dn MONSTER, MONSTER ; egg groups 
+	db 75 ; catch rate
+	db 124 ; base exp
+	db NO_ITEM ; item 1
+	db THICK_CLUB ; item 2
+	db 127 ; gender
+	db 100 ; unknown
+	db 20 ; step cycles to hatch
+	db 5 ; unknown
+	dn 6, 6 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 0 ; growth rate
+	dn MONSTER, MONSTER ; egg groups
 
 	; tmhm
 	db %10100111
@@ -21162,18 +21162,18 @@ HitmonleeBaseStats: ; 0x52144
 	;   hp  atk  def  spd  sat  sdf
 
 	db FIGHTING, FIGHTING
-	db 45 ; catch rate 
-	db 139 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 0 ; gender 
-	db 100 ; unknown 
-	db 25 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 7, 7 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 0 ; growth rate 
-	dn HUMANSHAPE, HUMANSHAPE ; egg groups 
+	db 45 ; catch rate
+	db 139 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 0 ; gender
+	db 100 ; unknown
+	db 25 ; step cycles to hatch
+	db 5 ; unknown
+	dn 7, 7 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 0 ; growth rate
+	dn HUMANSHAPE, HUMANSHAPE ; egg groups
 
 	; tmhm
 	db %10100111
@@ -21193,18 +21193,18 @@ HitmonchanBaseStats: ; 0x52164
 	;   hp  atk  def  spd  sat  sdf
 
 	db FIGHTING, FIGHTING
-	db 45 ; catch rate 
-	db 140 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 0 ; gender 
-	db 100 ; unknown 
-	db 25 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 6, 6 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 0 ; growth rate 
-	dn HUMANSHAPE, HUMANSHAPE ; egg groups 
+	db 45 ; catch rate
+	db 140 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 0 ; gender
+	db 100 ; unknown
+	db 25 ; step cycles to hatch
+	db 5 ; unknown
+	dn 6, 6 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 0 ; growth rate
+	dn HUMANSHAPE, HUMANSHAPE ; egg groups
 
 	; tmhm
 	db %10100111
@@ -21224,18 +21224,18 @@ LickitungBaseStats: ; 0x52184
 	;   hp  atk  def  spd  sat  sdf
 
 	db NORMAL, NORMAL
-	db 45 ; catch rate 
-	db 127 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 127 ; gender 
-	db 100 ; unknown 
-	db 20 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 7, 7 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 0 ; growth rate 
-	dn MONSTER, MONSTER ; egg groups 
+	db 45 ; catch rate
+	db 127 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 127 ; gender
+	db 100 ; unknown
+	db 20 ; step cycles to hatch
+	db 5 ; unknown
+	dn 7, 7 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 0 ; growth rate
+	dn MONSTER, MONSTER ; egg groups
 
 	; tmhm
 	db %10101111
@@ -21255,18 +21255,18 @@ KoffingBaseStats: ; 0x521a4
 	;   hp  atk  def  spd  sat  sdf
 
 	db POISON, POISON
-	db 190 ; catch rate 
-	db 114 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 127 ; gender 
-	db 100 ; unknown 
-	db 20 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 6, 6 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 0 ; growth rate 
-	dn AMORPHOUS, AMORPHOUS ; egg groups 
+	db 190 ; catch rate
+	db 114 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 127 ; gender
+	db 100 ; unknown
+	db 20 ; step cycles to hatch
+	db 5 ; unknown
+	dn 6, 6 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 0 ; growth rate
+	dn AMORPHOUS, AMORPHOUS ; egg groups
 
 	; tmhm
 	db %01101100
@@ -21286,18 +21286,18 @@ WeezingBaseStats: ; 0x521c4
 	;   hp  atk  def  spd  sat  sdf
 
 	db POISON, POISON
-	db 60 ; catch rate 
-	db 173 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 127 ; gender 
-	db 100 ; unknown 
-	db 20 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 7, 7 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 0 ; growth rate 
-	dn AMORPHOUS, AMORPHOUS ; egg groups 
+	db 60 ; catch rate
+	db 173 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 127 ; gender
+	db 100 ; unknown
+	db 20 ; step cycles to hatch
+	db 5 ; unknown
+	dn 7, 7 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 0 ; growth rate
+	dn AMORPHOUS, AMORPHOUS ; egg groups
 
 	; tmhm
 	db %01101100
@@ -21317,18 +21317,18 @@ RhyhornBaseStats: ; 0x521e4
 	;   hp  atk  def  spd  sat  sdf
 
 	db GROUND, ROCK
-	db 120 ; catch rate 
-	db 135 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 127 ; gender 
-	db 100 ; unknown 
-	db 20 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 7, 7 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 5 ; growth rate 
-	dn MONSTER, FIELD ; egg groups 
+	db 120 ; catch rate
+	db 135 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 127 ; gender
+	db 100 ; unknown
+	db 20 ; step cycles to hatch
+	db 5 ; unknown
+	dn 7, 7 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 5 ; growth rate
+	dn MONSTER, FIELD ; egg groups
 
 	; tmhm
 	db %11111110
@@ -21348,18 +21348,18 @@ RhydonBaseStats: ; 0x52204
 	;   hp  atk  def  spd  sat  sdf
 
 	db GROUND, ROCK
-	db 60 ; catch rate 
-	db 204 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 127 ; gender 
-	db 100 ; unknown 
-	db 20 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 7, 7 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 5 ; growth rate 
-	dn MONSTER, FIELD ; egg groups 
+	db 60 ; catch rate
+	db 204 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 127 ; gender
+	db 100 ; unknown
+	db 20 ; step cycles to hatch
+	db 5 ; unknown
+	dn 7, 7 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 5 ; growth rate
+	dn MONSTER, FIELD ; egg groups
 
 	; tmhm
 	db %11111111
@@ -21379,18 +21379,18 @@ ChanseyBaseStats: ; 0x52224
 	;   hp  atk  def  spd  sat  sdf
 
 	db NORMAL, NORMAL
-	db 30 ; catch rate 
-	db 255 ; base exp 
-	db NO_ITEM ; item 1 
-	db LUCKY_EGG ; item 2 
-	db 254 ; gender 
-	db 100 ; unknown 
-	db 40 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 6, 6 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 4 ; growth rate 
-	dn FAIRY, FAIRY ; egg groups 
+	db 30 ; catch rate
+	db 255 ; base exp
+	db NO_ITEM ; item 1
+	db LUCKY_EGG ; item 2
+	db 254 ; gender
+	db 100 ; unknown
+	db 40 ; step cycles to hatch
+	db 5 ; unknown
+	dn 6, 6 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 4 ; growth rate
+	dn FAIRY, FAIRY ; egg groups
 
 	; tmhm
 	db %11101111
@@ -21410,18 +21410,18 @@ TangelaBaseStats: ; 0x52244
 	;   hp  atk  def  spd  sat  sdf
 
 	db GRASS, GRASS
-	db 45 ; catch rate 
-	db 166 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 127 ; gender 
-	db 100 ; unknown 
-	db 20 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 6, 6 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 0 ; growth rate 
-	dn PLANT, PLANT ; egg groups 
+	db 45 ; catch rate
+	db 166 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 127 ; gender
+	db 100 ; unknown
+	db 20 ; step cycles to hatch
+	db 5 ; unknown
+	dn 6, 6 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 0 ; growth rate
+	dn PLANT, PLANT ; egg groups
 
 	; tmhm
 	db %00100110
@@ -21441,18 +21441,18 @@ KangaskhanBaseStats: ; 0x52264
 	;   hp  atk  def  spd  sat  sdf
 
 	db NORMAL, NORMAL
-	db 45 ; catch rate 
-	db 175 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 254 ; gender 
-	db 100 ; unknown 
-	db 20 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 7, 7 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 0 ; growth rate 
-	dn MONSTER, MONSTER ; egg groups 
+	db 45 ; catch rate
+	db 175 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 254 ; gender
+	db 100 ; unknown
+	db 20 ; step cycles to hatch
+	db 5 ; unknown
+	dn 7, 7 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 0 ; growth rate
+	dn MONSTER, MONSTER ; egg groups
 
 	; tmhm
 	db %11110111
@@ -21472,18 +21472,18 @@ HorseaBaseStats: ; 0x52284
 	;   hp  atk  def  spd  sat  sdf
 
 	db WATER, WATER
-	db 225 ; catch rate 
-	db 83 ; base exp 
-	db NO_ITEM ; item 1 
-	db DRAGON_SCALE ; item 2 
-	db 127 ; gender 
-	db 100 ; unknown 
-	db 20 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 5, 5 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 0 ; growth rate 
-	dn AMPHIBIAN, REPTILE ; egg groups 
+	db 225 ; catch rate
+	db 83 ; base exp
+	db NO_ITEM ; item 1
+	db DRAGON_SCALE ; item 2
+	db 127 ; gender
+	db 100 ; unknown
+	db 20 ; step cycles to hatch
+	db 5 ; unknown
+	dn 5, 5 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 0 ; growth rate
+	dn AMPHIBIAN, REPTILE ; egg groups
 
 	; tmhm
 	db %00100110
@@ -21503,18 +21503,18 @@ SeadraBaseStats: ; 0x522a4
 	;   hp  atk  def  spd  sat  sdf
 
 	db WATER, WATER
-	db 75 ; catch rate 
-	db 155 ; base exp 
-	db NO_ITEM ; item 1 
-	db DRAGON_SCALE ; item 2 
-	db 127 ; gender 
-	db 100 ; unknown 
-	db 20 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 6, 6 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 0 ; growth rate 
-	dn AMPHIBIAN, REPTILE ; egg groups 
+	db 75 ; catch rate
+	db 155 ; base exp
+	db NO_ITEM ; item 1
+	db DRAGON_SCALE ; item 2
+	db 127 ; gender
+	db 100 ; unknown
+	db 20 ; step cycles to hatch
+	db 5 ; unknown
+	dn 6, 6 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 0 ; growth rate
+	dn AMPHIBIAN, REPTILE ; egg groups
 
 	; tmhm
 	db %00100110
@@ -21534,18 +21534,18 @@ GoldeenBaseStats: ; 0x522c4
 	;   hp  atk  def  spd  sat  sdf
 
 	db WATER, WATER
-	db 225 ; catch rate 
-	db 111 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 127 ; gender 
-	db 100 ; unknown 
-	db 20 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 6, 6 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 0 ; growth rate 
-	dn FISH, FISH ; egg groups 
+	db 225 ; catch rate
+	db 111 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 127 ; gender
+	db 100 ; unknown
+	db 20 ; step cycles to hatch
+	db 5 ; unknown
+	dn 6, 6 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 0 ; growth rate
+	dn FISH, FISH ; egg groups
 
 	; tmhm
 	db %00100100
@@ -21565,18 +21565,18 @@ SeakingBaseStats: ; 0x522e4
 	;   hp  atk  def  spd  sat  sdf
 
 	db WATER, WATER
-	db 60 ; catch rate 
-	db 170 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 127 ; gender 
-	db 100 ; unknown 
-	db 20 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 7, 7 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 0 ; growth rate 
-	dn FISH, FISH ; egg groups 
+	db 60 ; catch rate
+	db 170 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 127 ; gender
+	db 100 ; unknown
+	db 20 ; step cycles to hatch
+	db 5 ; unknown
+	dn 7, 7 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 0 ; growth rate
+	dn FISH, FISH ; egg groups
 
 	; tmhm
 	db %00100100
@@ -21596,18 +21596,18 @@ StaryuBaseStats: ; 0x52304
 	;   hp  atk  def  spd  sat  sdf
 
 	db WATER, WATER
-	db 225 ; catch rate 
-	db 106 ; base exp 
-	db STARDUST ; item 1 
-	db STAR_PIECE ; item 2 
-	db 255 ; gender 
-	db 100 ; unknown 
-	db 20 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 6, 6 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 5 ; growth rate 
-	dn INVERTEBRATE, INVERTEBRATE ; egg groups 
+	db 225 ; catch rate
+	db 106 ; base exp
+	db STARDUST ; item 1
+	db STAR_PIECE ; item 2
+	db 255 ; gender
+	db 100 ; unknown
+	db 20 ; step cycles to hatch
+	db 5 ; unknown
+	dn 6, 6 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 5 ; growth rate
+	dn INVERTEBRATE, INVERTEBRATE ; egg groups
 
 	; tmhm
 	db %01100100
@@ -21627,18 +21627,18 @@ StarmieBaseStats: ; 0x52324
 	;   hp  atk  def  spd  sat  sdf
 
 	db WATER, PSYCHIC
-	db 60 ; catch rate 
-	db 207 ; base exp 
-	db STARDUST ; item 1 
-	db STAR_PIECE ; item 2 
-	db 255 ; gender 
-	db 100 ; unknown 
-	db 20 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 6, 6 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 5 ; growth rate 
-	dn INVERTEBRATE, INVERTEBRATE ; egg groups 
+	db 60 ; catch rate
+	db 207 ; base exp
+	db STARDUST ; item 1
+	db STAR_PIECE ; item 2
+	db 255 ; gender
+	db 100 ; unknown
+	db 20 ; step cycles to hatch
+	db 5 ; unknown
+	dn 6, 6 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 5 ; growth rate
+	dn INVERTEBRATE, INVERTEBRATE ; egg groups
 
 	; tmhm
 	db %01100100
@@ -21658,18 +21658,18 @@ Mr__MimeBaseStats: ; 0x52344
 	;   hp  atk  def  spd  sat  sdf
 
 	db PSYCHIC, PSYCHIC
-	db 45 ; catch rate 
-	db 136 ; base exp 
-	db NO_ITEM ; item 1 
-	db MYSTERYBERRY ; item 2 
-	db 127 ; gender 
-	db 100 ; unknown 
-	db 25 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 6, 6 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 0 ; growth rate 
-	dn HUMANSHAPE, HUMANSHAPE ; egg groups 
+	db 45 ; catch rate
+	db 136 ; base exp
+	db NO_ITEM ; item 1
+	db MYSTERYBERRY ; item 2
+	db 127 ; gender
+	db 100 ; unknown
+	db 25 ; step cycles to hatch
+	db 5 ; unknown
+	dn 6, 6 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 0 ; growth rate
+	dn HUMANSHAPE, HUMANSHAPE ; egg groups
 
 	; tmhm
 	db %01100111
@@ -21689,18 +21689,18 @@ ScytherBaseStats: ; 0x52364
 	;   hp  atk  def  spd  sat  sdf
 
 	db BUG, FLYING
-	db 45 ; catch rate 
-	db 187 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 127 ; gender 
-	db 100 ; unknown 
-	db 25 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 7, 7 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 0 ; growth rate 
-	dn INSECT, INSECT ; egg groups 
+	db 45 ; catch rate
+	db 187 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 127 ; gender
+	db 100 ; unknown
+	db 25 ; step cycles to hatch
+	db 5 ; unknown
+	dn 7, 7 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 0 ; growth rate
+	dn INSECT, INSECT ; egg groups
 
 	; tmhm
 	db %10100110
@@ -21720,18 +21720,18 @@ JynxBaseStats: ; 0x52384
 	;   hp  atk  def  spd  sat  sdf
 
 	db ICE, PSYCHIC
-	db 45 ; catch rate 
-	db 137 ; base exp 
-	db ICE_BERRY ; item 1 
-	db ICE_BERRY ; item 2 
-	db 254 ; gender 
-	db 100 ; unknown 
-	db 25 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 6, 6 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 0 ; growth rate 
-	dn HUMANSHAPE, HUMANSHAPE ; egg groups 
+	db 45 ; catch rate
+	db 137 ; base exp
+	db ICE_BERRY ; item 1
+	db ICE_BERRY ; item 2
+	db 254 ; gender
+	db 100 ; unknown
+	db 25 ; step cycles to hatch
+	db 5 ; unknown
+	dn 6, 6 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 0 ; growth rate
+	dn HUMANSHAPE, HUMANSHAPE ; egg groups
 
 	; tmhm
 	db %00100111
@@ -21751,18 +21751,18 @@ ElectabuzzBaseStats: ; 0x523a4
 	;   hp  atk  def  spd  sat  sdf
 
 	db ELECTRIC, ELECTRIC
-	db 45 ; catch rate 
-	db 156 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 63 ; gender 
-	db 100 ; unknown 
-	db 25 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 6, 6 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 0 ; growth rate 
-	dn HUMANSHAPE, HUMANSHAPE ; egg groups 
+	db 45 ; catch rate
+	db 156 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 63 ; gender
+	db 100 ; unknown
+	db 25 ; step cycles to hatch
+	db 5 ; unknown
+	dn 6, 6 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 0 ; growth rate
+	dn HUMANSHAPE, HUMANSHAPE ; egg groups
 
 	; tmhm
 	db %11100111
@@ -21782,18 +21782,18 @@ MagmarBaseStats: ; 0x523c4
 	;   hp  atk  def  spd  sat  sdf
 
 	db FIRE, FIRE
-	db 45 ; catch rate 
-	db 167 ; base exp 
-	db BURNT_BERRY ; item 1 
-	db BURNT_BERRY ; item 2 
-	db 63 ; gender 
-	db 100 ; unknown 
-	db 25 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 6, 6 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 0 ; growth rate 
-	dn HUMANSHAPE, HUMANSHAPE ; egg groups 
+	db 45 ; catch rate
+	db 167 ; base exp
+	db BURNT_BERRY ; item 1
+	db BURNT_BERRY ; item 2
+	db 63 ; gender
+	db 100 ; unknown
+	db 25 ; step cycles to hatch
+	db 5 ; unknown
+	dn 6, 6 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 0 ; growth rate
+	dn HUMANSHAPE, HUMANSHAPE ; egg groups
 
 	; tmhm
 	db %10100111
@@ -21813,18 +21813,18 @@ PinsirBaseStats: ; 0x523e4
 	;   hp  atk  def  spd  sat  sdf
 
 	db BUG, BUG
-	db 45 ; catch rate 
-	db 200 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 127 ; gender 
-	db 100 ; unknown 
-	db 25 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 7, 7 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 5 ; growth rate 
-	dn INSECT, INSECT ; egg groups 
+	db 45 ; catch rate
+	db 200 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 127 ; gender
+	db 100 ; unknown
+	db 25 ; step cycles to hatch
+	db 5 ; unknown
+	dn 7, 7 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 5 ; growth rate
+	dn INSECT, INSECT ; egg groups
 
 	; tmhm
 	db %10100110
@@ -21844,18 +21844,18 @@ TaurosBaseStats: ; 0x52404
 	;   hp  atk  def  spd  sat  sdf
 
 	db NORMAL, NORMAL
-	db 45 ; catch rate 
-	db 211 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 0 ; gender 
-	db 100 ; unknown 
-	db 20 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 7, 7 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 5 ; growth rate 
-	dn FIELD, FIELD ; egg groups 
+	db 45 ; catch rate
+	db 211 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 0 ; gender
+	db 100 ; unknown
+	db 20 ; step cycles to hatch
+	db 5 ; unknown
+	dn 7, 7 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 5 ; growth rate
+	dn FIELD, FIELD ; egg groups
 
 	; tmhm
 	db %11100110
@@ -21875,18 +21875,18 @@ MagikarpBaseStats: ; 0x52424
 	;   hp  atk  def  spd  sat  sdf
 
 	db WATER, WATER
-	db 255 ; catch rate 
-	db 20 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 127 ; gender 
-	db 100 ; unknown 
-	db 5 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 6, 6 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 5 ; growth rate 
-	dn FISH, REPTILE ; egg groups 
+	db 255 ; catch rate
+	db 20 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 127 ; gender
+	db 100 ; unknown
+	db 5 ; step cycles to hatch
+	db 5 ; unknown
+	dn 6, 6 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 5 ; growth rate
+	dn FISH, REPTILE ; egg groups
 
 	; tmhm
 	db %00000000
@@ -21906,18 +21906,18 @@ GyaradosBaseStats: ; 0x52444
 	;   hp  atk  def  spd  sat  sdf
 
 	db WATER, FLYING
-	db 45 ; catch rate 
-	db 214 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 127 ; gender 
-	db 100 ; unknown 
-	db 5 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 7, 7 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 5 ; growth rate 
-	dn FISH, REPTILE ; egg groups 
+	db 45 ; catch rate
+	db 214 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 127 ; gender
+	db 100 ; unknown
+	db 5 ; step cycles to hatch
+	db 5 ; unknown
+	dn 7, 7 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 5 ; growth rate
+	dn FISH, REPTILE ; egg groups
 
 	; tmhm
 	db %11110110
@@ -21937,18 +21937,18 @@ LaprasBaseStats: ; 0x52464
 	;   hp  atk  def  spd  sat  sdf
 
 	db WATER, ICE
-	db 45 ; catch rate 
-	db 219 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 127 ; gender 
-	db 100 ; unknown 
-	db 40 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 7, 7 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 5 ; growth rate 
-	dn MONSTER, AMPHIBIAN ; egg groups 
+	db 45 ; catch rate
+	db 219 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 127 ; gender
+	db 100 ; unknown
+	db 40 ; step cycles to hatch
+	db 5 ; unknown
+	dn 7, 7 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 5 ; growth rate
+	dn MONSTER, AMPHIBIAN ; egg groups
 
 	; tmhm
 	db %11100110
@@ -21968,18 +21968,18 @@ DittoBaseStats: ; 0x52484
 	;   hp  atk  def  spd  sat  sdf
 
 	db NORMAL, NORMAL
-	db 35 ; catch rate 
-	db 61 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 255 ; gender 
-	db 100 ; unknown 
-	db 20 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 5, 5 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 0 ; growth rate 
-	dn LADIES_MAN, LADIES_MAN ; egg groups 
+	db 35 ; catch rate
+	db 61 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 255 ; gender
+	db 100 ; unknown
+	db 20 ; step cycles to hatch
+	db 5 ; unknown
+	dn 5, 5 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 0 ; growth rate
+	dn LADIES_MAN, LADIES_MAN ; egg groups
 
 	; tmhm
 	db %00000000
@@ -21999,18 +21999,18 @@ EeveeBaseStats: ; 0x524a4
 	;   hp  atk  def  spd  sat  sdf
 
 	db NORMAL, NORMAL
-	db 45 ; catch rate 
-	db 92 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 31 ; gender 
-	db 100 ; unknown 
-	db 35 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 5, 5 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 0 ; growth rate 
-	dn FIELD, FIELD ; egg groups 
+	db 45 ; catch rate
+	db 92 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 31 ; gender
+	db 100 ; unknown
+	db 35 ; step cycles to hatch
+	db 5 ; unknown
+	dn 5, 5 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 0 ; growth rate
+	dn FIELD, FIELD ; egg groups
 
 	; tmhm
 	db %00100110
@@ -22030,18 +22030,18 @@ VaporeonBaseStats: ; 0x524c4
 	;   hp  atk  def  spd  sat  sdf
 
 	db WATER, WATER
-	db 45 ; catch rate 
-	db 196 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 31 ; gender 
-	db 100 ; unknown 
-	db 35 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 6, 6 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 0 ; growth rate 
-	dn FIELD, FIELD ; egg groups 
+	db 45 ; catch rate
+	db 196 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 31 ; gender
+	db 100 ; unknown
+	db 35 ; step cycles to hatch
+	db 5 ; unknown
+	dn 6, 6 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 0 ; growth rate
+	dn FIELD, FIELD ; egg groups
 
 	; tmhm
 	db %00110110
@@ -22061,18 +22061,18 @@ JolteonBaseStats: ; 0x524e4
 	;   hp  atk  def  spd  sat  sdf
 
 	db ELECTRIC, ELECTRIC
-	db 45 ; catch rate 
-	db 197 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 31 ; gender 
-	db 100 ; unknown 
-	db 35 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 6, 6 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 0 ; growth rate 
-	dn FIELD, FIELD ; egg groups 
+	db 45 ; catch rate
+	db 197 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 31 ; gender
+	db 100 ; unknown
+	db 35 ; step cycles to hatch
+	db 5 ; unknown
+	dn 6, 6 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 0 ; growth rate
+	dn FIELD, FIELD ; egg groups
 
 	; tmhm
 	db %01110110
@@ -22092,18 +22092,18 @@ FlareonBaseStats: ; 0x52504
 	;   hp  atk  def  spd  sat  sdf
 
 	db FIRE, FIRE
-	db 45 ; catch rate 
-	db 198 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 31 ; gender 
-	db 100 ; unknown 
-	db 35 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 6, 6 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 0 ; growth rate 
-	dn FIELD, FIELD ; egg groups 
+	db 45 ; catch rate
+	db 198 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 31 ; gender
+	db 100 ; unknown
+	db 35 ; step cycles to hatch
+	db 5 ; unknown
+	dn 6, 6 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 0 ; growth rate
+	dn FIELD, FIELD ; egg groups
 
 	; tmhm
 	db %01110110
@@ -22123,18 +22123,18 @@ PorygonBaseStats: ; 0x52524
 	;   hp  atk  def  spd  sat  sdf
 
 	db NORMAL, NORMAL
-	db 45 ; catch rate 
-	db 130 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 255 ; gender 
-	db 100 ; unknown 
-	db 20 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 6, 6 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 0 ; growth rate 
-	dn INANIMATE, INANIMATE ; egg groups 
+	db 45 ; catch rate
+	db 130 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 255 ; gender
+	db 100 ; unknown
+	db 20 ; step cycles to hatch
+	db 5 ; unknown
+	dn 6, 6 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 0 ; growth rate
+	dn INANIMATE, INANIMATE ; egg groups
 
 	; tmhm
 	db %01100100
@@ -22154,18 +22154,18 @@ OmanyteBaseStats: ; 0x52544
 	;   hp  atk  def  spd  sat  sdf
 
 	db ROCK, WATER
-	db 45 ; catch rate 
-	db 120 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 31 ; gender 
-	db 100 ; unknown 
-	db 30 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 5, 5 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 0 ; growth rate 
-	dn AMPHIBIAN, INVERTEBRATE ; egg groups 
+	db 45 ; catch rate
+	db 120 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 31 ; gender
+	db 100 ; unknown
+	db 30 ; step cycles to hatch
+	db 5 ; unknown
+	dn 5, 5 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 0 ; growth rate
+	dn AMPHIBIAN, INVERTEBRATE ; egg groups
 
 	; tmhm
 	db %10101110
@@ -22185,18 +22185,18 @@ OmastarBaseStats: ; 0x52564
 	;   hp  atk  def  spd  sat  sdf
 
 	db ROCK, WATER
-	db 45 ; catch rate 
-	db 199 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 31 ; gender 
-	db 100 ; unknown 
-	db 30 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 6, 6 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 0 ; growth rate 
-	dn AMPHIBIAN, INVERTEBRATE ; egg groups 
+	db 45 ; catch rate
+	db 199 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 31 ; gender
+	db 100 ; unknown
+	db 30 ; step cycles to hatch
+	db 5 ; unknown
+	dn 6, 6 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 0 ; growth rate
+	dn AMPHIBIAN, INVERTEBRATE ; egg groups
 
 	; tmhm
 	db %10101110
@@ -22216,18 +22216,18 @@ KabutoBaseStats: ; 0x52584
 	;   hp  atk  def  spd  sat  sdf
 
 	db ROCK, WATER
-	db 45 ; catch rate 
-	db 119 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 31 ; gender 
-	db 100 ; unknown 
-	db 30 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 5, 5 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 0 ; growth rate 
-	dn AMPHIBIAN, INVERTEBRATE ; egg groups 
+	db 45 ; catch rate
+	db 119 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 31 ; gender
+	db 100 ; unknown
+	db 30 ; step cycles to hatch
+	db 5 ; unknown
+	dn 5, 5 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 0 ; growth rate
+	dn AMPHIBIAN, INVERTEBRATE ; egg groups
 
 	; tmhm
 	db %10101100
@@ -22247,18 +22247,18 @@ KabutopsBaseStats: ; 0x525a4
 	;   hp  atk  def  spd  sat  sdf
 
 	db ROCK, WATER
-	db 45 ; catch rate 
-	db 201 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 31 ; gender 
-	db 100 ; unknown 
-	db 30 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 6, 6 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 0 ; growth rate 
-	dn AMPHIBIAN, INVERTEBRATE ; egg groups 
+	db 45 ; catch rate
+	db 201 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 31 ; gender
+	db 100 ; unknown
+	db 30 ; step cycles to hatch
+	db 5 ; unknown
+	dn 6, 6 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 0 ; growth rate
+	dn AMPHIBIAN, INVERTEBRATE ; egg groups
 
 	; tmhm
 	db %10101110
@@ -22278,18 +22278,18 @@ AerodactylBaseStats: ; 0x525c4
 	;   hp  atk  def  spd  sat  sdf
 
 	db ROCK, FLYING
-	db 45 ; catch rate 
-	db 202 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 31 ; gender 
-	db 100 ; unknown 
-	db 35 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 7, 7 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 5 ; growth rate 
-	dn AVIAN, AVIAN ; egg groups 
+	db 45 ; catch rate
+	db 202 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 31 ; gender
+	db 100 ; unknown
+	db 35 ; step cycles to hatch
+	db 5 ; unknown
+	dn 7, 7 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 5 ; growth rate
+	dn AVIAN, AVIAN ; egg groups
 
 	; tmhm
 	db %10110110
@@ -22309,18 +22309,18 @@ SnorlaxBaseStats: ; 0x525e4
 	;   hp  atk  def  spd  sat  sdf
 
 	db NORMAL, NORMAL
-	db 25 ; catch rate 
-	db 154 ; base exp 
-	db LEFTOVERS ; item 1 
-	db LEFTOVERS ; item 2 
-	db 31 ; gender 
-	db 100 ; unknown 
-	db 40 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 7, 7 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 5 ; growth rate 
-	dn MONSTER, MONSTER ; egg groups 
+	db 25 ; catch rate
+	db 154 ; base exp
+	db LEFTOVERS ; item 1
+	db LEFTOVERS ; item 2
+	db 31 ; gender
+	db 100 ; unknown
+	db 40 ; step cycles to hatch
+	db 5 ; unknown
+	dn 7, 7 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 5 ; growth rate
+	dn MONSTER, MONSTER ; egg groups
 
 	; tmhm
 	db %11101111
@@ -22340,18 +22340,18 @@ ArticunoBaseStats: ; 0x52604
 	;   hp  atk  def  spd  sat  sdf
 
 	db ICE, FLYING
-	db 3 ; catch rate 
-	db 215 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 255 ; gender 
-	db 100 ; unknown 
-	db 80 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 7, 7 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 5 ; growth rate 
-	dn NO_EGGS, NO_EGGS ; egg groups 
+	db 3 ; catch rate
+	db 215 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 255 ; gender
+	db 100 ; unknown
+	db 80 ; step cycles to hatch
+	db 5 ; unknown
+	dn 7, 7 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 5 ; growth rate
+	dn NO_EGGS, NO_EGGS ; egg groups
 
 	; tmhm
 	db %10110100
@@ -22371,18 +22371,18 @@ ZapdosBaseStats: ; 0x52624
 	;   hp  atk  def  spd  sat  sdf
 
 	db ELECTRIC, FLYING
-	db 3 ; catch rate 
-	db 216 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 255 ; gender 
-	db 100 ; unknown 
-	db 80 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 7, 7 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 5 ; growth rate 
-	dn NO_EGGS, NO_EGGS ; egg groups 
+	db 3 ; catch rate
+	db 216 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 255 ; gender
+	db 100 ; unknown
+	db 80 ; step cycles to hatch
+	db 5 ; unknown
+	dn 7, 7 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 5 ; growth rate
+	dn NO_EGGS, NO_EGGS ; egg groups
 
 	; tmhm
 	db %11110100
@@ -22402,18 +22402,18 @@ MoltresBaseStats: ; 0x52644
 	;   hp  atk  def  spd  sat  sdf
 
 	db FIRE, FLYING
-	db 3 ; catch rate 
-	db 217 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 255 ; gender 
-	db 100 ; unknown 
-	db 80 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 7, 7 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 5 ; growth rate 
-	dn NO_EGGS, NO_EGGS ; egg groups 
+	db 3 ; catch rate
+	db 217 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 255 ; gender
+	db 100 ; unknown
+	db 80 ; step cycles to hatch
+	db 5 ; unknown
+	dn 7, 7 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 5 ; growth rate
+	dn NO_EGGS, NO_EGGS ; egg groups
 
 	; tmhm
 	db %10110100
@@ -22433,18 +22433,18 @@ DratiniBaseStats: ; 0x52664
 	;   hp  atk  def  spd  sat  sdf
 
 	db DRAGON, DRAGON
-	db 45 ; catch rate 
-	db 67 ; base exp 
-	db NO_ITEM ; item 1 
-	db DRAGON_SCALE ; item 2 
-	db 127 ; gender 
-	db 100 ; unknown 
-	db 40 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 5, 5 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 5 ; growth rate 
-	dn AMPHIBIAN, REPTILE ; egg groups 
+	db 45 ; catch rate
+	db 67 ; base exp
+	db NO_ITEM ; item 1
+	db DRAGON_SCALE ; item 2
+	db 127 ; gender
+	db 100 ; unknown
+	db 40 ; step cycles to hatch
+	db 5 ; unknown
+	dn 5, 5 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 5 ; growth rate
+	dn AMPHIBIAN, REPTILE ; egg groups
 
 	; tmhm
 	db %01100110
@@ -22464,18 +22464,18 @@ DragonairBaseStats: ; 0x52684
 	;   hp  atk  def  spd  sat  sdf
 
 	db DRAGON, DRAGON
-	db 45 ; catch rate 
-	db 144 ; base exp 
-	db NO_ITEM ; item 1 
-	db DRAGON_SCALE ; item 2 
-	db 127 ; gender 
-	db 100 ; unknown 
-	db 40 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 6, 6 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 5 ; growth rate 
-	dn AMPHIBIAN, REPTILE ; egg groups 
+	db 45 ; catch rate
+	db 144 ; base exp
+	db NO_ITEM ; item 1
+	db DRAGON_SCALE ; item 2
+	db 127 ; gender
+	db 100 ; unknown
+	db 40 ; step cycles to hatch
+	db 5 ; unknown
+	dn 6, 6 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 5 ; growth rate
+	dn AMPHIBIAN, REPTILE ; egg groups
 
 	; tmhm
 	db %01100110
@@ -22495,18 +22495,18 @@ DragoniteBaseStats: ; 0x526a4
 	;   hp  atk  def  spd  sat  sdf
 
 	db DRAGON, FLYING
-	db 45 ; catch rate 
-	db 218 ; base exp 
-	db NO_ITEM ; item 1 
-	db DRAGON_SCALE ; item 2 
-	db 127 ; gender 
-	db 100 ; unknown 
-	db 40 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 7, 7 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 5 ; growth rate 
-	dn AMPHIBIAN, REPTILE ; egg groups 
+	db 45 ; catch rate
+	db 218 ; base exp
+	db NO_ITEM ; item 1
+	db DRAGON_SCALE ; item 2
+	db 127 ; gender
+	db 100 ; unknown
+	db 40 ; step cycles to hatch
+	db 5 ; unknown
+	dn 7, 7 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 5 ; growth rate
+	dn AMPHIBIAN, REPTILE ; egg groups
 
 	; tmhm
 	db %11100111
@@ -22526,18 +22526,18 @@ MewtwoBaseStats: ; 0x526c4
 	;   hp  atk  def  spd  sat  sdf
 
 	db PSYCHIC, PSYCHIC
-	db 3 ; catch rate 
-	db 220 ; base exp 
-	db NO_ITEM ; item 1 
-	db BERSERK_GENE ; item 2 
-	db 255 ; gender 
-	db 100 ; unknown 
-	db 120 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 7, 7 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 5 ; growth rate 
-	dn NO_EGGS, NO_EGGS ; egg groups 
+	db 3 ; catch rate
+	db 220 ; base exp
+	db NO_ITEM ; item 1
+	db BERSERK_GENE ; item 2
+	db 255 ; gender
+	db 100 ; unknown
+	db 120 ; step cycles to hatch
+	db 5 ; unknown
+	dn 7, 7 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 5 ; growth rate
+	dn NO_EGGS, NO_EGGS ; egg groups
 
 	; tmhm
 	db %11100111
@@ -22557,18 +22557,18 @@ MewBaseStats: ; 0x526e4
 	;   hp  atk  def  spd  sat  sdf
 
 	db PSYCHIC, PSYCHIC
-	db 45 ; catch rate 
-	db 64 ; base exp 
-	db NO_ITEM ; item 1 
-	db MIRACLEBERRY ; item 2 
-	db 255 ; gender 
-	db 100 ; unknown 
-	db 120 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 5, 5 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 3 ; growth rate 
-	dn NO_EGGS, NO_EGGS ; egg groups 
+	db 45 ; catch rate
+	db 64 ; base exp
+	db NO_ITEM ; item 1
+	db MIRACLEBERRY ; item 2
+	db 255 ; gender
+	db 100 ; unknown
+	db 120 ; step cycles to hatch
+	db 5 ; unknown
+	dn 5, 5 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 3 ; growth rate
+	dn NO_EGGS, NO_EGGS ; egg groups
 
 	; tmhm
 	db %11111111
@@ -22588,18 +22588,18 @@ ChikoritaBaseStats: ; 0x52704
 	;   hp  atk  def  spd  sat  sdf
 
 	db GRASS, GRASS
-	db 45 ; catch rate 
-	db 64 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 31 ; gender 
-	db 100 ; unknown 
-	db 20 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 5, 5 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 3 ; growth rate 
-	dn MONSTER, PLANT ; egg groups 
+	db 45 ; catch rate
+	db 64 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 31 ; gender
+	db 100 ; unknown
+	db 20 ; step cycles to hatch
+	db 5 ; unknown
+	dn 5, 5 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 3 ; growth rate
+	dn MONSTER, PLANT ; egg groups
 
 	; tmhm
 	db %00100110
@@ -22619,18 +22619,18 @@ BayleefBaseStats: ; 0x52724
 	;   hp  atk  def  spd  sat  sdf
 
 	db GRASS, GRASS
-	db 45 ; catch rate 
-	db 141 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 31 ; gender 
-	db 100 ; unknown 
-	db 20 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 6, 6 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 3 ; growth rate 
-	dn MONSTER, PLANT ; egg groups 
+	db 45 ; catch rate
+	db 141 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 31 ; gender
+	db 100 ; unknown
+	db 20 ; step cycles to hatch
+	db 5 ; unknown
+	dn 6, 6 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 3 ; growth rate
+	dn MONSTER, PLANT ; egg groups
 
 	; tmhm
 	db %10100110
@@ -22650,18 +22650,18 @@ MeganiumBaseStats: ; 0x52744
 	;   hp  atk  def  spd  sat  sdf
 
 	db GRASS, GRASS
-	db 45 ; catch rate 
-	db 208 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 31 ; gender 
-	db 100 ; unknown 
-	db 20 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 7, 7 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 3 ; growth rate 
-	dn MONSTER, PLANT ; egg groups 
+	db 45 ; catch rate
+	db 208 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 31 ; gender
+	db 100 ; unknown
+	db 20 ; step cycles to hatch
+	db 5 ; unknown
+	dn 7, 7 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 3 ; growth rate
+	dn MONSTER, PLANT ; egg groups
 
 	; tmhm
 	db %10100110
@@ -22681,18 +22681,18 @@ CyndaquilBaseStats: ; 0x52764
 	;   hp  atk  def  spd  sat  sdf
 
 	db FIRE, FIRE
-	db 45 ; catch rate 
-	db 65 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 31 ; gender 
-	db 100 ; unknown 
-	db 20 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 5, 5 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 3 ; growth rate 
-	dn FIELD, FIELD ; egg groups 
+	db 45 ; catch rate
+	db 65 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 31 ; gender
+	db 100 ; unknown
+	db 20 ; step cycles to hatch
+	db 5 ; unknown
+	dn 5, 5 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 3 ; growth rate
+	dn FIELD, FIELD ; egg groups
 
 	; tmhm
 	db %00101110
@@ -22712,18 +22712,18 @@ QuilavaBaseStats: ; 0x52784
 	;   hp  atk  def  spd  sat  sdf
 
 	db FIRE, FIRE
-	db 45 ; catch rate 
-	db 142 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 31 ; gender 
-	db 100 ; unknown 
-	db 20 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 6, 6 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 3 ; growth rate 
-	dn FIELD, FIELD ; egg groups 
+	db 45 ; catch rate
+	db 142 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 31 ; gender
+	db 100 ; unknown
+	db 20 ; step cycles to hatch
+	db 5 ; unknown
+	dn 6, 6 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 3 ; growth rate
+	dn FIELD, FIELD ; egg groups
 
 	; tmhm
 	db %10111110
@@ -22743,18 +22743,18 @@ TyphlosionBaseStats: ; 0x527a4
 	;   hp  atk  def  spd  sat  sdf
 
 	db FIRE, FIRE
-	db 45 ; catch rate 
-	db 209 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 31 ; gender 
-	db 100 ; unknown 
-	db 20 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 7, 7 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 3 ; growth rate 
-	dn FIELD, FIELD ; egg groups 
+	db 45 ; catch rate
+	db 209 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 31 ; gender
+	db 100 ; unknown
+	db 20 ; step cycles to hatch
+	db 5 ; unknown
+	dn 7, 7 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 3 ; growth rate
+	dn FIELD, FIELD ; egg groups
 
 	; tmhm
 	db %10111111
@@ -22774,18 +22774,18 @@ TotodileBaseStats: ; 0x527c4
 	;   hp  atk  def  spd  sat  sdf
 
 	db WATER, WATER
-	db 45 ; catch rate 
-	db 66 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 31 ; gender 
-	db 100 ; unknown 
-	db 20 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 5, 5 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 3 ; growth rate 
-	dn MONSTER, AMPHIBIAN ; egg groups 
+	db 45 ; catch rate
+	db 66 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 31 ; gender
+	db 100 ; unknown
+	db 20 ; step cycles to hatch
+	db 5 ; unknown
+	dn 5, 5 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 3 ; growth rate
+	dn MONSTER, AMPHIBIAN ; egg groups
 
 	; tmhm
 	db %00100111
@@ -22805,18 +22805,18 @@ CroconawBaseStats: ; 0x527e4
 	;   hp  atk  def  spd  sat  sdf
 
 	db WATER, WATER
-	db 45 ; catch rate 
-	db 143 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 31 ; gender 
-	db 100 ; unknown 
-	db 20 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 6, 6 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 3 ; growth rate 
-	dn MONSTER, AMPHIBIAN ; egg groups 
+	db 45 ; catch rate
+	db 143 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 31 ; gender
+	db 100 ; unknown
+	db 20 ; step cycles to hatch
+	db 5 ; unknown
+	dn 6, 6 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 3 ; growth rate
+	dn MONSTER, AMPHIBIAN ; egg groups
 
 	; tmhm
 	db %10110111
@@ -22836,18 +22836,18 @@ FeraligatrBaseStats: ; 0x52804
 	;   hp  atk  def  spd  sat  sdf
 
 	db WATER, WATER
-	db 45 ; catch rate 
-	db 210 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 31 ; gender 
-	db 100 ; unknown 
-	db 20 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 7, 7 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 3 ; growth rate 
-	dn MONSTER, AMPHIBIAN ; egg groups 
+	db 45 ; catch rate
+	db 210 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 31 ; gender
+	db 100 ; unknown
+	db 20 ; step cycles to hatch
+	db 5 ; unknown
+	dn 7, 7 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 3 ; growth rate
+	dn MONSTER, AMPHIBIAN ; egg groups
 
 	; tmhm
 	db %10110111
@@ -22867,18 +22867,18 @@ SentretBaseStats: ; 0x52824
 	;   hp  atk  def  spd  sat  sdf
 
 	db NORMAL, NORMAL
-	db 255 ; catch rate 
-	db 57 ; base exp 
-	db NO_ITEM ; item 1 
-	db BERRY ; item 2 
-	db 127 ; gender 
-	db 100 ; unknown 
-	db 15 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 6, 6 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 0 ; growth rate 
-	dn FIELD, FIELD ; egg groups 
+	db 255 ; catch rate
+	db 57 ; base exp
+	db NO_ITEM ; item 1
+	db BERRY ; item 2
+	db 127 ; gender
+	db 100 ; unknown
+	db 15 ; step cycles to hatch
+	db 5 ; unknown
+	dn 6, 6 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 0 ; growth rate
+	dn FIELD, FIELD ; egg groups
 
 	; tmhm
 	db %00101111
@@ -22898,18 +22898,18 @@ FurretBaseStats: ; 0x52844
 	;   hp  atk  def  spd  sat  sdf
 
 	db NORMAL, NORMAL
-	db 90 ; catch rate 
-	db 116 ; base exp 
-	db BERRY ; item 1 
-	db GOLD_BERRY ; item 2 
-	db 127 ; gender 
-	db 100 ; unknown 
-	db 15 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 6, 6 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 0 ; growth rate 
-	dn FIELD, FIELD ; egg groups 
+	db 90 ; catch rate
+	db 116 ; base exp
+	db BERRY ; item 1
+	db GOLD_BERRY ; item 2
+	db 127 ; gender
+	db 100 ; unknown
+	db 15 ; step cycles to hatch
+	db 5 ; unknown
+	dn 6, 6 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 0 ; growth rate
+	dn FIELD, FIELD ; egg groups
 
 	; tmhm
 	db %00101111
@@ -22929,18 +22929,18 @@ HoothootBaseStats: ; 0x52864
 	;   hp  atk  def  spd  sat  sdf
 
 	db NORMAL, FLYING
-	db 255 ; catch rate 
-	db 58 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 127 ; gender 
-	db 100 ; unknown 
-	db 15 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 5, 5 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 0 ; growth rate 
-	dn AVIAN, AVIAN ; egg groups 
+	db 255 ; catch rate
+	db 58 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 127 ; gender
+	db 100 ; unknown
+	db 15 ; step cycles to hatch
+	db 5 ; unknown
+	dn 5, 5 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 0 ; growth rate
+	dn AVIAN, AVIAN ; egg groups
 
 	; tmhm
 	db %00100100
@@ -22960,18 +22960,18 @@ NoctowlBaseStats: ; 0x52884
 	;   hp  atk  def  spd  sat  sdf
 
 	db NORMAL, FLYING
-	db 90 ; catch rate 
-	db 162 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 127 ; gender 
-	db 100 ; unknown 
-	db 15 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 7, 7 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 0 ; growth rate 
-	dn AVIAN, AVIAN ; egg groups 
+	db 90 ; catch rate
+	db 162 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 127 ; gender
+	db 100 ; unknown
+	db 15 ; step cycles to hatch
+	db 5 ; unknown
+	dn 7, 7 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 0 ; growth rate
+	dn AVIAN, AVIAN ; egg groups
 
 	; tmhm
 	db %00100100
@@ -22991,18 +22991,18 @@ LedybaBaseStats: ; 0x528a4
 	;   hp  atk  def  spd  sat  sdf
 
 	db BUG, FLYING
-	db 255 ; catch rate 
-	db 54 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 127 ; gender 
-	db 100 ; unknown 
-	db 15 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 6, 6 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 4 ; growth rate 
-	dn INSECT, INSECT ; egg groups 
+	db 255 ; catch rate
+	db 54 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 127 ; gender
+	db 100 ; unknown
+	db 15 ; step cycles to hatch
+	db 5 ; unknown
+	dn 6, 6 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 4 ; growth rate
+	dn INSECT, INSECT ; egg groups
 
 	; tmhm
 	db %00101111
@@ -23022,18 +23022,18 @@ LedianBaseStats: ; 0x528c4
 	;   hp  atk  def  spd  sat  sdf
 
 	db BUG, FLYING
-	db 90 ; catch rate 
-	db 134 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 127 ; gender 
-	db 100 ; unknown 
-	db 15 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 6, 6 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 4 ; growth rate 
-	dn INSECT, INSECT ; egg groups 
+	db 90 ; catch rate
+	db 134 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 127 ; gender
+	db 100 ; unknown
+	db 15 ; step cycles to hatch
+	db 5 ; unknown
+	dn 6, 6 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 4 ; growth rate
+	dn INSECT, INSECT ; egg groups
 
 	; tmhm
 	db %00101111
@@ -23053,18 +23053,18 @@ SpinarakBaseStats: ; 0x528e4
 	;   hp  atk  def  spd  sat  sdf
 
 	db BUG, POISON
-	db 255 ; catch rate 
-	db 54 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 127 ; gender 
-	db 100 ; unknown 
-	db 15 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 5, 5 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 4 ; growth rate 
-	dn INSECT, INSECT ; egg groups 
+	db 255 ; catch rate
+	db 54 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 127 ; gender
+	db 100 ; unknown
+	db 15 ; step cycles to hatch
+	db 5 ; unknown
+	dn 5, 5 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 4 ; growth rate
+	dn INSECT, INSECT ; egg groups
 
 	; tmhm
 	db %00100100
@@ -23084,18 +23084,18 @@ AriadosBaseStats: ; 0x52904
 	;   hp  atk  def  spd  sat  sdf
 
 	db BUG, POISON
-	db 90 ; catch rate 
-	db 134 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 127 ; gender 
-	db 100 ; unknown 
-	db 15 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 7, 7 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 4 ; growth rate 
-	dn INSECT, INSECT ; egg groups 
+	db 90 ; catch rate
+	db 134 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 127 ; gender
+	db 100 ; unknown
+	db 15 ; step cycles to hatch
+	db 5 ; unknown
+	dn 7, 7 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 4 ; growth rate
+	dn INSECT, INSECT ; egg groups
 
 	; tmhm
 	db %00100100
@@ -23115,18 +23115,18 @@ CrobatBaseStats: ; 0x52924
 	;   hp  atk  def  spd  sat  sdf
 
 	db POISON, FLYING
-	db 90 ; catch rate 
-	db 204 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 127 ; gender 
-	db 100 ; unknown 
-	db 15 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 7, 7 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 0 ; growth rate 
-	dn AVIAN, AVIAN ; egg groups 
+	db 90 ; catch rate
+	db 204 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 127 ; gender
+	db 100 ; unknown
+	db 15 ; step cycles to hatch
+	db 5 ; unknown
+	dn 7, 7 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 0 ; growth rate
+	dn AVIAN, AVIAN ; egg groups
 
 	; tmhm
 	db %00100100
@@ -23146,18 +23146,18 @@ ChinchouBaseStats: ; 0x52944
 	;   hp  atk  def  spd  sat  sdf
 
 	db WATER, ELECTRIC
-	db 190 ; catch rate 
-	db 90 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 127 ; gender 
-	db 100 ; unknown 
-	db 20 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 6, 6 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 5 ; growth rate 
-	dn FISH, FISH ; egg groups 
+	db 190 ; catch rate
+	db 90 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 127 ; gender
+	db 100 ; unknown
+	db 20 ; step cycles to hatch
+	db 5 ; unknown
+	dn 6, 6 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 5 ; growth rate
+	dn FISH, FISH ; egg groups
 
 	; tmhm
 	db %01100100
@@ -23177,18 +23177,18 @@ LanturnBaseStats: ; 0x52964
 	;   hp  atk  def  spd  sat  sdf
 
 	db WATER, ELECTRIC
-	db 75 ; catch rate 
-	db 156 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 127 ; gender 
-	db 100 ; unknown 
-	db 20 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 6, 6 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 5 ; growth rate 
-	dn FISH, FISH ; egg groups 
+	db 75 ; catch rate
+	db 156 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 127 ; gender
+	db 100 ; unknown
+	db 20 ; step cycles to hatch
+	db 5 ; unknown
+	dn 6, 6 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 5 ; growth rate
+	dn FISH, FISH ; egg groups
 
 	; tmhm
 	db %01100100
@@ -23208,18 +23208,18 @@ PichuBaseStats: ; 0x52984
 	;   hp  atk  def  spd  sat  sdf
 
 	db ELECTRIC, ELECTRIC
-	db 190 ; catch rate 
-	db 42 ; base exp 
-	db NO_ITEM ; item 1 
-	db BERRY ; item 2 
-	db 127 ; gender 
-	db 100 ; unknown 
-	db 10 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 5, 5 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 0 ; growth rate 
-	dn NO_EGGS, NO_EGGS ; egg groups 
+	db 190 ; catch rate
+	db 42 ; base exp
+	db NO_ITEM ; item 1
+	db BERRY ; item 2
+	db 127 ; gender
+	db 100 ; unknown
+	db 10 ; step cycles to hatch
+	db 5 ; unknown
+	dn 5, 5 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 0 ; growth rate
+	dn NO_EGGS, NO_EGGS ; egg groups
 
 	; tmhm
 	db %01101110
@@ -23239,18 +23239,18 @@ CleffaBaseStats: ; 0x529a4
 	;   hp  atk  def  spd  sat  sdf
 
 	db NORMAL, NORMAL
-	db 150 ; catch rate 
-	db 37 ; base exp 
-	db MYSTERYBERRY ; item 1 
-	db MOON_STONE ; item 2 
-	db 191 ; gender 
-	db 100 ; unknown 
-	db 10 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 5, 5 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 4 ; growth rate 
-	dn NO_EGGS, NO_EGGS ; egg groups 
+	db 150 ; catch rate
+	db 37 ; base exp
+	db MYSTERYBERRY ; item 1
+	db MOON_STONE ; item 2
+	db 191 ; gender
+	db 100 ; unknown
+	db 10 ; step cycles to hatch
+	db 5 ; unknown
+	dn 5, 5 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 4 ; growth rate
+	dn NO_EGGS, NO_EGGS ; egg groups
 
 	; tmhm
 	db %01101110
@@ -23270,18 +23270,18 @@ IgglybuffBaseStats: ; 0x529c4
 	;   hp  atk  def  spd  sat  sdf
 
 	db NORMAL, NORMAL
-	db 170 ; catch rate 
-	db 39 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 191 ; gender 
-	db 100 ; unknown 
-	db 10 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 5, 5 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 4 ; growth rate 
-	dn NO_EGGS, NO_EGGS ; egg groups 
+	db 170 ; catch rate
+	db 39 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 191 ; gender
+	db 100 ; unknown
+	db 10 ; step cycles to hatch
+	db 5 ; unknown
+	dn 5, 5 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 4 ; growth rate
+	dn NO_EGGS, NO_EGGS ; egg groups
 
 	; tmhm
 	db %01101110
@@ -23301,18 +23301,18 @@ TogepiBaseStats: ; 0x529e4
 	;   hp  atk  def  spd  sat  sdf
 
 	db NORMAL, NORMAL
-	db 190 ; catch rate 
-	db 74 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 31 ; gender 
-	db 100 ; unknown 
-	db 10 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 5, 5 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 4 ; growth rate 
-	dn NO_EGGS, NO_EGGS ; egg groups 
+	db 190 ; catch rate
+	db 74 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 31 ; gender
+	db 100 ; unknown
+	db 10 ; step cycles to hatch
+	db 5 ; unknown
+	dn 5, 5 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 4 ; growth rate
+	dn NO_EGGS, NO_EGGS ; egg groups
 
 	; tmhm
 	db %11101110
@@ -23332,18 +23332,18 @@ TogeticBaseStats: ; 0x52a04
 	;   hp  atk  def  spd  sat  sdf
 
 	db NORMAL, FLYING
-	db 75 ; catch rate 
-	db 114 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 31 ; gender 
-	db 100 ; unknown 
-	db 10 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 7, 7 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 4 ; growth rate 
-	dn AVIAN, FAIRY ; egg groups 
+	db 75 ; catch rate
+	db 114 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 31 ; gender
+	db 100 ; unknown
+	db 10 ; step cycles to hatch
+	db 5 ; unknown
+	dn 7, 7 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 4 ; growth rate
+	dn AVIAN, FAIRY ; egg groups
 
 	; tmhm
 	db %11101110
@@ -23363,18 +23363,18 @@ NatuBaseStats: ; 0x52a24
 	;   hp  atk  def  spd  sat  sdf
 
 	db PSYCHIC, FLYING
-	db 190 ; catch rate 
-	db 73 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 127 ; gender 
-	db 100 ; unknown 
-	db 20 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 5, 5 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 0 ; growth rate 
-	dn AVIAN, AVIAN ; egg groups 
+	db 190 ; catch rate
+	db 73 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 127 ; gender
+	db 100 ; unknown
+	db 20 ; step cycles to hatch
+	db 5 ; unknown
+	dn 5, 5 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 0 ; growth rate
+	dn AVIAN, AVIAN ; egg groups
 
 	; tmhm
 	db %00100100
@@ -23394,18 +23394,18 @@ XatuBaseStats: ; 0x52a44
 	;   hp  atk  def  spd  sat  sdf
 
 	db PSYCHIC, FLYING
-	db 75 ; catch rate 
-	db 171 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 127 ; gender 
-	db 100 ; unknown 
-	db 20 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 6, 6 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 0 ; growth rate 
-	dn AVIAN, AVIAN ; egg groups 
+	db 75 ; catch rate
+	db 171 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 127 ; gender
+	db 100 ; unknown
+	db 20 ; step cycles to hatch
+	db 5 ; unknown
+	dn 6, 6 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 0 ; growth rate
+	dn AVIAN, AVIAN ; egg groups
 
 	; tmhm
 	db %00100100
@@ -23425,18 +23425,18 @@ MareepBaseStats: ; 0x52a64
 	;   hp  atk  def  spd  sat  sdf
 
 	db ELECTRIC, ELECTRIC
-	db 235 ; catch rate 
-	db 59 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 127 ; gender 
-	db 100 ; unknown 
-	db 20 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 5, 5 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 3 ; growth rate 
-	dn MONSTER, FIELD ; egg groups 
+	db 235 ; catch rate
+	db 59 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 127 ; gender
+	db 100 ; unknown
+	db 20 ; step cycles to hatch
+	db 5 ; unknown
+	dn 5, 5 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 3 ; growth rate
+	dn MONSTER, FIELD ; egg groups
 
 	; tmhm
 	db %01100110
@@ -23456,18 +23456,18 @@ FlaaffyBaseStats: ; 0x52a84
 	;   hp  atk  def  spd  sat  sdf
 
 	db ELECTRIC, ELECTRIC
-	db 120 ; catch rate 
-	db 117 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 127 ; gender 
-	db 100 ; unknown 
-	db 20 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 6, 6 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 3 ; growth rate 
-	dn MONSTER, FIELD ; egg groups 
+	db 120 ; catch rate
+	db 117 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 127 ; gender
+	db 100 ; unknown
+	db 20 ; step cycles to hatch
+	db 5 ; unknown
+	dn 6, 6 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 3 ; growth rate
+	dn MONSTER, FIELD ; egg groups
 
 	; tmhm
 	db %11100111
@@ -23487,18 +23487,18 @@ AmpharosBaseStats: ; 0x52aa4
 	;   hp  atk  def  spd  sat  sdf
 
 	db ELECTRIC, ELECTRIC
-	db 45 ; catch rate 
-	db 194 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 127 ; gender 
-	db 100 ; unknown 
-	db 20 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 7, 7 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 3 ; growth rate 
-	dn MONSTER, FIELD ; egg groups 
+	db 45 ; catch rate
+	db 194 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 127 ; gender
+	db 100 ; unknown
+	db 20 ; step cycles to hatch
+	db 5 ; unknown
+	dn 7, 7 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 3 ; growth rate
+	dn MONSTER, FIELD ; egg groups
 
 	; tmhm
 	db %11100111
@@ -23518,18 +23518,18 @@ BellossomBaseStats: ; 0x52ac4
 	;   hp  atk  def  spd  sat  sdf
 
 	db GRASS, GRASS
-	db 45 ; catch rate 
-	db 184 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 127 ; gender 
-	db 100 ; unknown 
-	db 20 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 7, 7 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 3 ; growth rate 
-	dn PLANT, PLANT ; egg groups 
+	db 45 ; catch rate
+	db 184 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 127 ; gender
+	db 100 ; unknown
+	db 20 ; step cycles to hatch
+	db 5 ; unknown
+	dn 7, 7 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 3 ; growth rate
+	dn PLANT, PLANT ; egg groups
 
 	; tmhm
 	db %00100100
@@ -23549,18 +23549,18 @@ MarillBaseStats: ; 0x52ae4
 	;   hp  atk  def  spd  sat  sdf
 
 	db WATER, WATER
-	db 190 ; catch rate 
-	db 58 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 127 ; gender 
-	db 100 ; unknown 
-	db 20 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 5, 5 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 4 ; growth rate 
-	dn AMPHIBIAN, FAIRY ; egg groups 
+	db 190 ; catch rate
+	db 58 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 127 ; gender
+	db 100 ; unknown
+	db 20 ; step cycles to hatch
+	db 5 ; unknown
+	dn 5, 5 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 4 ; growth rate
+	dn AMPHIBIAN, FAIRY ; egg groups
 
 	; tmhm
 	db %00101111
@@ -23580,18 +23580,18 @@ AzumarillBaseStats: ; 0x52b04
 	;   hp  atk  def  spd  sat  sdf
 
 	db WATER, WATER
-	db 75 ; catch rate 
-	db 153 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 127 ; gender 
-	db 100 ; unknown 
-	db 20 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 7, 7 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 4 ; growth rate 
-	dn AMPHIBIAN, FAIRY ; egg groups 
+	db 75 ; catch rate
+	db 153 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 127 ; gender
+	db 100 ; unknown
+	db 20 ; step cycles to hatch
+	db 5 ; unknown
+	dn 7, 7 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 4 ; growth rate
+	dn AMPHIBIAN, FAIRY ; egg groups
 
 	; tmhm
 	db %10101111
@@ -23611,18 +23611,18 @@ SudowoodoBaseStats: ; 0x52b24
 	;   hp  atk  def  spd  sat  sdf
 
 	db ROCK, ROCK
-	db 65 ; catch rate 
-	db 135 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 127 ; gender 
-	db 100 ; unknown 
-	db 20 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 6, 6 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 0 ; growth rate 
-	dn INANIMATE, INANIMATE ; egg groups 
+	db 65 ; catch rate
+	db 135 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 127 ; gender
+	db 100 ; unknown
+	db 20 ; step cycles to hatch
+	db 5 ; unknown
+	dn 6, 6 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 0 ; growth rate
+	dn INANIMATE, INANIMATE ; egg groups
 
 	; tmhm
 	db %10101111
@@ -23642,18 +23642,18 @@ PolitoedBaseStats: ; 0x52b44
 	;   hp  atk  def  spd  sat  sdf
 
 	db WATER, WATER
-	db 45 ; catch rate 
-	db 185 ; base exp 
-	db NO_ITEM ; item 1 
-	db KINGS_ROCK ; item 2 
-	db 127 ; gender 
-	db 100 ; unknown 
-	db 20 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 7, 7 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 3 ; growth rate 
-	dn AMPHIBIAN, AMPHIBIAN ; egg groups 
+	db 45 ; catch rate
+	db 185 ; base exp
+	db NO_ITEM ; item 1
+	db KINGS_ROCK ; item 2
+	db 127 ; gender
+	db 100 ; unknown
+	db 20 ; step cycles to hatch
+	db 5 ; unknown
+	dn 7, 7 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 3 ; growth rate
+	dn AMPHIBIAN, AMPHIBIAN ; egg groups
 
 	; tmhm
 	db %10100111
@@ -23673,18 +23673,18 @@ HoppipBaseStats: ; 0x52b64
 	;   hp  atk  def  spd  sat  sdf
 
 	db GRASS, FLYING
-	db 255 ; catch rate 
-	db 74 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 127 ; gender 
-	db 100 ; unknown 
-	db 20 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 5, 5 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 3 ; growth rate 
-	dn FAIRY, PLANT ; egg groups 
+	db 255 ; catch rate
+	db 74 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 127 ; gender
+	db 100 ; unknown
+	db 20 ; step cycles to hatch
+	db 5 ; unknown
+	dn 5, 5 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 3 ; growth rate
+	dn FAIRY, PLANT ; egg groups
 
 	; tmhm
 	db %00100110
@@ -23704,18 +23704,18 @@ SkiploomBaseStats: ; 0x52b84
 	;   hp  atk  def  spd  sat  sdf
 
 	db GRASS, FLYING
-	db 120 ; catch rate 
-	db 136 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 127 ; gender 
-	db 100 ; unknown 
-	db 20 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 6, 6 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 3 ; growth rate 
-	dn FAIRY, PLANT ; egg groups 
+	db 120 ; catch rate
+	db 136 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 127 ; gender
+	db 100 ; unknown
+	db 20 ; step cycles to hatch
+	db 5 ; unknown
+	dn 6, 6 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 3 ; growth rate
+	dn FAIRY, PLANT ; egg groups
 
 	; tmhm
 	db %00100110
@@ -23735,18 +23735,18 @@ JumpluffBaseStats: ; 0x52ba4
 	;   hp  atk  def  spd  sat  sdf
 
 	db GRASS, FLYING
-	db 45 ; catch rate 
-	db 176 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 127 ; gender 
-	db 100 ; unknown 
-	db 20 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 7, 7 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 3 ; growth rate 
-	dn FAIRY, PLANT ; egg groups 
+	db 45 ; catch rate
+	db 176 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 127 ; gender
+	db 100 ; unknown
+	db 20 ; step cycles to hatch
+	db 5 ; unknown
+	dn 7, 7 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 3 ; growth rate
+	dn FAIRY, PLANT ; egg groups
 
 	; tmhm
 	db %00100110
@@ -23766,18 +23766,18 @@ AipomBaseStats: ; 0x52bc4
 	;   hp  atk  def  spd  sat  sdf
 
 	db NORMAL, NORMAL
-	db 45 ; catch rate 
-	db 94 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 127 ; gender 
-	db 100 ; unknown 
-	db 20 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 5, 5 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 4 ; growth rate 
-	dn FIELD, FIELD ; egg groups 
+	db 45 ; catch rate
+	db 94 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 127 ; gender
+	db 100 ; unknown
+	db 20 ; step cycles to hatch
+	db 5 ; unknown
+	dn 5, 5 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 4 ; growth rate
+	dn FIELD, FIELD ; egg groups
 
 	; tmhm
 	db %11100111
@@ -23797,18 +23797,18 @@ SunkernBaseStats: ; 0x52be4
 	;   hp  atk  def  spd  sat  sdf
 
 	db GRASS, GRASS
-	db 235 ; catch rate 
-	db 52 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 127 ; gender 
-	db 100 ; unknown 
-	db 20 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 5, 5 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 3 ; growth rate 
-	dn PLANT, PLANT ; egg groups 
+	db 235 ; catch rate
+	db 52 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 127 ; gender
+	db 100 ; unknown
+	db 20 ; step cycles to hatch
+	db 5 ; unknown
+	dn 5, 5 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 3 ; growth rate
+	dn PLANT, PLANT ; egg groups
 
 	; tmhm
 	db %00100100
@@ -23828,18 +23828,18 @@ SunfloraBaseStats: ; 0x52c04
 	;   hp  atk  def  spd  sat  sdf
 
 	db GRASS, GRASS
-	db 120 ; catch rate 
-	db 146 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 127 ; gender 
-	db 100 ; unknown 
-	db 20 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 6, 6 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 3 ; growth rate 
-	dn PLANT, PLANT ; egg groups 
+	db 120 ; catch rate
+	db 146 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 127 ; gender
+	db 100 ; unknown
+	db 20 ; step cycles to hatch
+	db 5 ; unknown
+	dn 6, 6 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 3 ; growth rate
+	dn PLANT, PLANT ; egg groups
 
 	; tmhm
 	db %00100100
@@ -23859,18 +23859,18 @@ YanmaBaseStats: ; 0x52c24
 	;   hp  atk  def  spd  sat  sdf
 
 	db BUG, FLYING
-	db 75 ; catch rate 
-	db 147 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 127 ; gender 
-	db 100 ; unknown 
-	db 20 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 6, 6 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 0 ; growth rate 
-	dn INSECT, INSECT ; egg groups 
+	db 75 ; catch rate
+	db 147 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 127 ; gender
+	db 100 ; unknown
+	db 20 ; step cycles to hatch
+	db 5 ; unknown
+	dn 6, 6 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 0 ; growth rate
+	dn INSECT, INSECT ; egg groups
 
 	; tmhm
 	db %00100110
@@ -23890,18 +23890,18 @@ WooperBaseStats: ; 0x52c44
 	;   hp  atk  def  spd  sat  sdf
 
 	db WATER, GROUND
-	db 255 ; catch rate 
-	db 52 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 127 ; gender 
-	db 100 ; unknown 
-	db 20 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 5, 5 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 0 ; growth rate 
-	dn AMPHIBIAN, FIELD ; egg groups 
+	db 255 ; catch rate
+	db 52 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 127 ; gender
+	db 100 ; unknown
+	db 20 ; step cycles to hatch
+	db 5 ; unknown
+	dn 5, 5 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 0 ; growth rate
+	dn AMPHIBIAN, FIELD ; egg groups
 
 	; tmhm
 	db %10101111
@@ -23921,18 +23921,18 @@ QuagsireBaseStats: ; 0x52c64
 	;   hp  atk  def  spd  sat  sdf
 
 	db WATER, GROUND
-	db 90 ; catch rate 
-	db 137 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 127 ; gender 
-	db 100 ; unknown 
-	db 20 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 6, 6 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 0 ; growth rate 
-	dn AMPHIBIAN, FIELD ; egg groups 
+	db 90 ; catch rate
+	db 137 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 127 ; gender
+	db 100 ; unknown
+	db 20 ; step cycles to hatch
+	db 5 ; unknown
+	dn 6, 6 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 0 ; growth rate
+	dn AMPHIBIAN, FIELD ; egg groups
 
 	; tmhm
 	db %10101111
@@ -23952,18 +23952,18 @@ EspeonBaseStats: ; 0x52c84
 	;   hp  atk  def  spd  sat  sdf
 
 	db PSYCHIC, PSYCHIC
-	db 45 ; catch rate 
-	db 197 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 31 ; gender 
-	db 100 ; unknown 
-	db 35 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 6, 6 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 0 ; growth rate 
-	dn FIELD, FIELD ; egg groups 
+	db 45 ; catch rate
+	db 197 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 31 ; gender
+	db 100 ; unknown
+	db 35 ; step cycles to hatch
+	db 5 ; unknown
+	dn 6, 6 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 0 ; growth rate
+	dn FIELD, FIELD ; egg groups
 
 	; tmhm
 	db %01100110
@@ -23983,18 +23983,18 @@ UmbreonBaseStats: ; 0x52ca4
 	;   hp  atk  def  spd  sat  sdf
 
 	db DARK, DARK
-	db 45 ; catch rate 
-	db 197 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 31 ; gender 
-	db 100 ; unknown 
-	db 35 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 6, 6 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 0 ; growth rate 
-	dn FIELD, FIELD ; egg groups 
+	db 45 ; catch rate
+	db 197 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 31 ; gender
+	db 100 ; unknown
+	db 35 ; step cycles to hatch
+	db 5 ; unknown
+	dn 6, 6 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 0 ; growth rate
+	dn FIELD, FIELD ; egg groups
 
 	; tmhm
 	db %01100110
@@ -24014,18 +24014,18 @@ MurkrowBaseStats: ; 0x52cc4
 	;   hp  atk  def  spd  sat  sdf
 
 	db DARK, FLYING
-	db 30 ; catch rate 
-	db 107 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 127 ; gender 
-	db 100 ; unknown 
-	db 20 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 6, 6 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 3 ; growth rate 
-	dn AVIAN, AVIAN ; egg groups 
+	db 30 ; catch rate
+	db 107 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 127 ; gender
+	db 100 ; unknown
+	db 20 ; step cycles to hatch
+	db 5 ; unknown
+	dn 6, 6 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 3 ; growth rate
+	dn AVIAN, AVIAN ; egg groups
 
 	; tmhm
 	db %00100100
@@ -24045,18 +24045,18 @@ SlowkingBaseStats: ; 0x52ce4
 	;   hp  atk  def  spd  sat  sdf
 
 	db WATER, PSYCHIC
-	db 70 ; catch rate 
-	db 164 ; base exp 
-	db NO_ITEM ; item 1 
-	db KINGS_ROCK ; item 2 
-	db 127 ; gender 
-	db 100 ; unknown 
-	db 20 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 7, 7 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 0 ; growth rate 
-	dn MONSTER, AMPHIBIAN ; egg groups 
+	db 70 ; catch rate
+	db 164 ; base exp
+	db NO_ITEM ; item 1
+	db KINGS_ROCK ; item 2
+	db 127 ; gender
+	db 100 ; unknown
+	db 20 ; step cycles to hatch
+	db 5 ; unknown
+	dn 7, 7 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 0 ; growth rate
+	dn MONSTER, AMPHIBIAN ; egg groups
 
 	; tmhm
 	db %11100111
@@ -24076,18 +24076,18 @@ MisdreavusBaseStats: ; 0x52d04
 	;   hp  atk  def  spd  sat  sdf
 
 	db GHOST, GHOST
-	db 45 ; catch rate 
-	db 147 ; base exp 
-	db NO_ITEM ; item 1 
-	db SPELL_TAG ; item 2 
-	db 127 ; gender 
-	db 100 ; unknown 
-	db 25 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 6, 6 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 4 ; growth rate 
-	dn AMORPHOUS, AMORPHOUS ; egg groups 
+	db 45 ; catch rate
+	db 147 ; base exp
+	db NO_ITEM ; item 1
+	db SPELL_TAG ; item 2
+	db 127 ; gender
+	db 100 ; unknown
+	db 25 ; step cycles to hatch
+	db 5 ; unknown
+	dn 6, 6 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 4 ; growth rate
+	dn AMORPHOUS, AMORPHOUS ; egg groups
 
 	; tmhm
 	db %01100110
@@ -24107,18 +24107,18 @@ UnownBaseStats: ; 0x52d24
 	;   hp  atk  def  spd  sat  sdf
 
 	db PSYCHIC, PSYCHIC
-	db 225 ; catch rate 
-	db 61 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 255 ; gender 
-	db 100 ; unknown 
-	db 40 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 5, 5 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 0 ; growth rate 
-	dn NO_EGGS, NO_EGGS ; egg groups 
+	db 225 ; catch rate
+	db 61 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 255 ; gender
+	db 100 ; unknown
+	db 40 ; step cycles to hatch
+	db 5 ; unknown
+	dn 5, 5 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 0 ; growth rate
+	dn NO_EGGS, NO_EGGS ; egg groups
 
 	; tmhm
 	db %00000000
@@ -24138,18 +24138,18 @@ WobbuffetBaseStats: ; 0x52d44
 	;   hp  atk  def  spd  sat  sdf
 
 	db PSYCHIC, PSYCHIC
-	db 45 ; catch rate 
-	db 177 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 127 ; gender 
-	db 100 ; unknown 
-	db 20 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 6, 6 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 0 ; growth rate 
-	dn AMORPHOUS, AMORPHOUS ; egg groups 
+	db 45 ; catch rate
+	db 177 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 127 ; gender
+	db 100 ; unknown
+	db 20 ; step cycles to hatch
+	db 5 ; unknown
+	dn 6, 6 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 0 ; growth rate
+	dn AMORPHOUS, AMORPHOUS ; egg groups
 
 	; tmhm
 	db %00000000
@@ -24169,18 +24169,18 @@ GirafarigBaseStats: ; 0x52d64
 	;   hp  atk  def  spd  sat  sdf
 
 	db NORMAL, PSYCHIC
-	db 60 ; catch rate 
-	db 149 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 127 ; gender 
-	db 100 ; unknown 
-	db 20 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 7, 7 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 0 ; growth rate 
-	dn FIELD, FIELD ; egg groups 
+	db 60 ; catch rate
+	db 149 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 127 ; gender
+	db 100 ; unknown
+	db 20 ; step cycles to hatch
+	db 5 ; unknown
+	dn 7, 7 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 0 ; growth rate
+	dn FIELD, FIELD ; egg groups
 
 	; tmhm
 	db %11100110
@@ -24200,18 +24200,18 @@ PinecoBaseStats: ; 0x52d84
 	;   hp  atk  def  spd  sat  sdf
 
 	db BUG, BUG
-	db 190 ; catch rate 
-	db 60 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 127 ; gender 
-	db 100 ; unknown 
-	db 20 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 5, 5 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 0 ; growth rate 
-	dn INSECT, INSECT ; egg groups 
+	db 190 ; catch rate
+	db 60 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 127 ; gender
+	db 100 ; unknown
+	db 20 ; step cycles to hatch
+	db 5 ; unknown
+	dn 5, 5 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 0 ; growth rate
+	dn INSECT, INSECT ; egg groups
 
 	; tmhm
 	db %10101110
@@ -24231,18 +24231,18 @@ ForretressBaseStats: ; 0x52da4
 	;   hp  atk  def  spd  sat  sdf
 
 	db BUG, STEEL
-	db 75 ; catch rate 
-	db 118 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 127 ; gender 
-	db 100 ; unknown 
-	db 20 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 7, 7 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 0 ; growth rate 
-	dn INSECT, INSECT ; egg groups 
+	db 75 ; catch rate
+	db 118 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 127 ; gender
+	db 100 ; unknown
+	db 20 ; step cycles to hatch
+	db 5 ; unknown
+	dn 7, 7 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 0 ; growth rate
+	dn INSECT, INSECT ; egg groups
 
 	; tmhm
 	db %10101110
@@ -24262,18 +24262,18 @@ DunsparceBaseStats: ; 0x52dc4
 	;   hp  atk  def  spd  sat  sdf
 
 	db NORMAL, NORMAL
-	db 190 ; catch rate 
-	db 75 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 127 ; gender 
-	db 100 ; unknown 
-	db 20 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 6, 6 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 0 ; growth rate 
-	dn FIELD, FIELD ; egg groups 
+	db 190 ; catch rate
+	db 75 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 127 ; gender
+	db 100 ; unknown
+	db 20 ; step cycles to hatch
+	db 5 ; unknown
+	dn 6, 6 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 0 ; growth rate
+	dn FIELD, FIELD ; egg groups
 
 	; tmhm
 	db %11101110
@@ -24293,18 +24293,18 @@ GligarBaseStats: ; 0x52de4
 	;   hp  atk  def  spd  sat  sdf
 
 	db GROUND, FLYING
-	db 60 ; catch rate 
-	db 108 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 127 ; gender 
-	db 100 ; unknown 
-	db 20 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 6, 6 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 3 ; growth rate 
-	dn INSECT, INSECT ; egg groups 
+	db 60 ; catch rate
+	db 108 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 127 ; gender
+	db 100 ; unknown
+	db 20 ; step cycles to hatch
+	db 5 ; unknown
+	dn 6, 6 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 3 ; growth rate
+	dn INSECT, INSECT ; egg groups
 
 	; tmhm
 	db %10100110
@@ -24324,18 +24324,18 @@ SteelixBaseStats: ; 0x52e04
 	;   hp  atk  def  spd  sat  sdf
 
 	db STEEL, GROUND
-	db 25 ; catch rate 
-	db 196 ; base exp 
-	db NO_ITEM ; item 1 
-	db METAL_COAT ; item 2 
-	db 127 ; gender 
-	db 100 ; unknown 
-	db 25 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 7, 7 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 0 ; growth rate 
-	dn INANIMATE, INANIMATE ; egg groups 
+	db 25 ; catch rate
+	db 196 ; base exp
+	db NO_ITEM ; item 1
+	db METAL_COAT ; item 2
+	db 127 ; gender
+	db 100 ; unknown
+	db 25 ; step cycles to hatch
+	db 5 ; unknown
+	dn 7, 7 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 0 ; growth rate
+	dn INANIMATE, INANIMATE ; egg groups
 
 	; tmhm
 	db %10111110
@@ -24355,18 +24355,18 @@ SnubbullBaseStats: ; 0x52e24
 	;   hp  atk  def  spd  sat  sdf
 
 	db NORMAL, NORMAL
-	db 190 ; catch rate 
-	db 63 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 191 ; gender 
-	db 100 ; unknown 
-	db 20 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 6, 6 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 4 ; growth rate 
-	dn FIELD, FAIRY ; egg groups 
+	db 190 ; catch rate
+	db 63 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 191 ; gender
+	db 100 ; unknown
+	db 20 ; step cycles to hatch
+	db 5 ; unknown
+	dn 6, 6 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 4 ; growth rate
+	dn FIELD, FAIRY ; egg groups
 
 	; tmhm
 	db %11110111
@@ -24386,18 +24386,18 @@ GranbullBaseStats: ; 0x52e44
 	;   hp  atk  def  spd  sat  sdf
 
 	db NORMAL, NORMAL
-	db 75 ; catch rate 
-	db 178 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 191 ; gender 
-	db 100 ; unknown 
-	db 20 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 6, 6 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 4 ; growth rate 
-	dn FIELD, FAIRY ; egg groups 
+	db 75 ; catch rate
+	db 178 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 191 ; gender
+	db 100 ; unknown
+	db 20 ; step cycles to hatch
+	db 5 ; unknown
+	dn 6, 6 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 4 ; growth rate
+	dn FIELD, FAIRY ; egg groups
 
 	; tmhm
 	db %11110111
@@ -24417,18 +24417,18 @@ QwilfishBaseStats: ; 0x52e64
 	;   hp  atk  def  spd  sat  sdf
 
 	db WATER, POISON
-	db 45 ; catch rate 
-	db 100 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 127 ; gender 
-	db 100 ; unknown 
-	db 20 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 5, 5 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 0 ; growth rate 
-	dn FISH, FISH ; egg groups 
+	db 45 ; catch rate
+	db 100 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 127 ; gender
+	db 100 ; unknown
+	db 20 ; step cycles to hatch
+	db 5 ; unknown
+	dn 5, 5 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 0 ; growth rate
+	dn FISH, FISH ; egg groups
 
 	; tmhm
 	db %00101110
@@ -24448,18 +24448,18 @@ ScizorBaseStats: ; 0x52e84
 	;   hp  atk  def  spd  sat  sdf
 
 	db BUG, STEEL
-	db 25 ; catch rate 
-	db 200 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 127 ; gender 
-	db 100 ; unknown 
-	db 25 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 7, 7 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 0 ; growth rate 
-	dn INSECT, INSECT ; egg groups 
+	db 25 ; catch rate
+	db 200 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 127 ; gender
+	db 100 ; unknown
+	db 25 ; step cycles to hatch
+	db 5 ; unknown
+	dn 7, 7 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 0 ; growth rate
+	dn INSECT, INSECT ; egg groups
 
 	; tmhm
 	db %10100110
@@ -24479,18 +24479,18 @@ ShuckleBaseStats: ; 0x52ea4
 	;   hp  atk  def  spd  sat  sdf
 
 	db BUG, ROCK
-	db 190 ; catch rate 
-	db 80 ; base exp 
-	db BERRY ; item 1 
-	db BERRY ; item 2 
-	db 127 ; gender 
-	db 100 ; unknown 
-	db 20 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 5, 5 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 3 ; growth rate 
-	dn INSECT, INSECT ; egg groups 
+	db 190 ; catch rate
+	db 80 ; base exp
+	db BERRY ; item 1
+	db BERRY ; item 2
+	db 127 ; gender
+	db 100 ; unknown
+	db 20 ; step cycles to hatch
+	db 5 ; unknown
+	dn 5, 5 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 3 ; growth rate
+	dn INSECT, INSECT ; egg groups
 
 	; tmhm
 	db %10101110
@@ -24510,18 +24510,18 @@ HeracrossBaseStats: ; 0x52ec4
 	;   hp  atk  def  spd  sat  sdf
 
 	db BUG, FIGHTING
-	db 45 ; catch rate 
-	db 200 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 127 ; gender 
-	db 100 ; unknown 
-	db 25 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 6, 6 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 5 ; growth rate 
-	dn INSECT, INSECT ; egg groups 
+	db 45 ; catch rate
+	db 200 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 127 ; gender
+	db 100 ; unknown
+	db 25 ; step cycles to hatch
+	db 5 ; unknown
+	dn 6, 6 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 5 ; growth rate
+	dn INSECT, INSECT ; egg groups
 
 	; tmhm
 	db %10100110
@@ -24541,18 +24541,18 @@ SneaselBaseStats: ; 0x52ee4
 	;   hp  atk  def  spd  sat  sdf
 
 	db DARK, ICE
-	db 60 ; catch rate 
-	db 132 ; base exp 
-	db NO_ITEM ; item 1 
-	db QUICK_CLAW ; item 2 
-	db 127 ; gender 
-	db 100 ; unknown 
-	db 20 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 6, 6 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 3 ; growth rate 
-	dn FIELD, FIELD ; egg groups 
+	db 60 ; catch rate
+	db 132 ; base exp
+	db NO_ITEM ; item 1
+	db QUICK_CLAW ; item 2
+	db 127 ; gender
+	db 100 ; unknown
+	db 20 ; step cycles to hatch
+	db 5 ; unknown
+	dn 6, 6 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 3 ; growth rate
+	dn FIELD, FIELD ; egg groups
 
 	; tmhm
 	db %10100111
@@ -24572,18 +24572,18 @@ TeddiursaBaseStats: ; 0x52f04
 	;   hp  atk  def  spd  sat  sdf
 
 	db NORMAL, NORMAL
-	db 120 ; catch rate 
-	db 124 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 127 ; gender 
-	db 100 ; unknown 
-	db 20 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 5, 5 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 0 ; growth rate 
-	dn FIELD, FIELD ; egg groups 
+	db 120 ; catch rate
+	db 124 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 127 ; gender
+	db 100 ; unknown
+	db 20 ; step cycles to hatch
+	db 5 ; unknown
+	dn 5, 5 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 0 ; growth rate
+	dn FIELD, FIELD ; egg groups
 
 	; tmhm
 	db %11111111
@@ -24603,18 +24603,18 @@ UrsaringBaseStats: ; 0x52f24
 	;   hp  atk  def  spd  sat  sdf
 
 	db NORMAL, NORMAL
-	db 60 ; catch rate 
-	db 189 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 127 ; gender 
-	db 100 ; unknown 
-	db 20 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 7, 7 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 0 ; growth rate 
-	dn FIELD, FIELD ; egg groups 
+	db 60 ; catch rate
+	db 189 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 127 ; gender
+	db 100 ; unknown
+	db 20 ; step cycles to hatch
+	db 5 ; unknown
+	dn 7, 7 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 0 ; growth rate
+	dn FIELD, FIELD ; egg groups
 
 	; tmhm
 	db %11111111
@@ -24634,18 +24634,18 @@ SlugmaBaseStats: ; 0x52f44
 	;   hp  atk  def  spd  sat  sdf
 
 	db FIRE, FIRE
-	db 190 ; catch rate 
-	db 78 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 127 ; gender 
-	db 100 ; unknown 
-	db 20 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 5, 5 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 0 ; growth rate 
-	dn AMORPHOUS, AMORPHOUS ; egg groups 
+	db 190 ; catch rate
+	db 78 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 127 ; gender
+	db 100 ; unknown
+	db 20 ; step cycles to hatch
+	db 5 ; unknown
+	dn 5, 5 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 0 ; growth rate
+	dn AMORPHOUS, AMORPHOUS ; egg groups
 
 	; tmhm
 	db %10101100
@@ -24665,18 +24665,18 @@ MagcargoBaseStats: ; 0x52f64
 	;   hp  atk  def  spd  sat  sdf
 
 	db FIRE, ROCK
-	db 75 ; catch rate 
-	db 154 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 127 ; gender 
-	db 100 ; unknown 
-	db 20 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 6, 6 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 0 ; growth rate 
-	dn AMORPHOUS, AMORPHOUS ; egg groups 
+	db 75 ; catch rate
+	db 154 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 127 ; gender
+	db 100 ; unknown
+	db 20 ; step cycles to hatch
+	db 5 ; unknown
+	dn 6, 6 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 0 ; growth rate
+	dn AMORPHOUS, AMORPHOUS ; egg groups
 
 	; tmhm
 	db %10101100
@@ -24696,18 +24696,18 @@ SwinubBaseStats: ; 0x52f84
 	;   hp  atk  def  spd  sat  sdf
 
 	db ICE, GROUND
-	db 225 ; catch rate 
-	db 78 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 127 ; gender 
-	db 100 ; unknown 
-	db 20 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 5, 5 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 5 ; growth rate 
-	dn FIELD, FIELD ; egg groups 
+	db 225 ; catch rate
+	db 78 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 127 ; gender
+	db 100 ; unknown
+	db 20 ; step cycles to hatch
+	db 5 ; unknown
+	dn 5, 5 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 5 ; growth rate
+	dn FIELD, FIELD ; egg groups
 
 	; tmhm
 	db %10110110
@@ -24727,18 +24727,18 @@ PiloswineBaseStats: ; 0x52fa4
 	;   hp  atk  def  spd  sat  sdf
 
 	db ICE, GROUND
-	db 75 ; catch rate 
-	db 160 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 127 ; gender 
-	db 100 ; unknown 
-	db 20 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 6, 6 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 5 ; growth rate 
-	dn FIELD, FIELD ; egg groups 
+	db 75 ; catch rate
+	db 160 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 127 ; gender
+	db 100 ; unknown
+	db 20 ; step cycles to hatch
+	db 5 ; unknown
+	dn 6, 6 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 5 ; growth rate
+	dn FIELD, FIELD ; egg groups
 
 	; tmhm
 	db %10110110
@@ -24758,18 +24758,18 @@ CorsolaBaseStats: ; 0x52fc4
 	;   hp  atk  def  spd  sat  sdf
 
 	db WATER, ROCK
-	db 60 ; catch rate 
-	db 113 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 191 ; gender 
-	db 100 ; unknown 
-	db 20 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 6, 6 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 4 ; growth rate 
-	dn AMPHIBIAN, INVERTEBRATE ; egg groups 
+	db 60 ; catch rate
+	db 113 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 191 ; gender
+	db 100 ; unknown
+	db 20 ; step cycles to hatch
+	db 5 ; unknown
+	dn 6, 6 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 4 ; growth rate
+	dn AMPHIBIAN, INVERTEBRATE ; egg groups
 
 	; tmhm
 	db %10101110
@@ -24789,18 +24789,18 @@ RemoraidBaseStats: ; 0x52fe4
 	;   hp  atk  def  spd  sat  sdf
 
 	db WATER, WATER
-	db 190 ; catch rate 
-	db 78 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 127 ; gender 
-	db 100 ; unknown 
-	db 20 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 5, 5 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 0 ; growth rate 
-	dn AMPHIBIAN, FISH ; egg groups 
+	db 190 ; catch rate
+	db 78 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 127 ; gender
+	db 100 ; unknown
+	db 20 ; step cycles to hatch
+	db 5 ; unknown
+	dn 5, 5 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 0 ; growth rate
+	dn AMPHIBIAN, FISH ; egg groups
 
 	; tmhm
 	db %00100100
@@ -24820,18 +24820,18 @@ OctilleryBaseStats: ; 0x53004
 	;   hp  atk  def  spd  sat  sdf
 
 	db WATER, WATER
-	db 75 ; catch rate 
-	db 164 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 127 ; gender 
-	db 100 ; unknown 
-	db 20 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 6, 6 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 0 ; growth rate 
-	dn AMPHIBIAN, FISH ; egg groups 
+	db 75 ; catch rate
+	db 164 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 127 ; gender
+	db 100 ; unknown
+	db 20 ; step cycles to hatch
+	db 5 ; unknown
+	dn 6, 6 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 0 ; growth rate
+	dn AMPHIBIAN, FISH ; egg groups
 
 	; tmhm
 	db %00100100
@@ -24851,18 +24851,18 @@ DelibirdBaseStats: ; 0x53024
 	;   hp  atk  def  spd  sat  sdf
 
 	db ICE, FLYING
-	db 45 ; catch rate 
-	db 183 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 127 ; gender 
-	db 100 ; unknown 
-	db 20 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 6, 6 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 4 ; growth rate 
-	dn AMPHIBIAN, FIELD ; egg groups 
+	db 45 ; catch rate
+	db 183 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 127 ; gender
+	db 100 ; unknown
+	db 20 ; step cycles to hatch
+	db 5 ; unknown
+	dn 6, 6 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 4 ; growth rate
+	dn AMPHIBIAN, FIELD ; egg groups
 
 	; tmhm
 	db %00100110
@@ -24882,18 +24882,18 @@ MantineBaseStats: ; 0x53044
 	;   hp  atk  def  spd  sat  sdf
 
 	db WATER, FLYING
-	db 25 ; catch rate 
-	db 168 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 127 ; gender 
-	db 100 ; unknown 
-	db 25 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 7, 7 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 5 ; growth rate 
-	dn AMPHIBIAN, AMPHIBIAN ; egg groups 
+	db 25 ; catch rate
+	db 168 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 127 ; gender
+	db 100 ; unknown
+	db 25 ; step cycles to hatch
+	db 5 ; unknown
+	dn 7, 7 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 5 ; growth rate
+	dn AMPHIBIAN, AMPHIBIAN ; egg groups
 
 	; tmhm
 	db %00100110
@@ -24913,18 +24913,18 @@ SkarmoryBaseStats: ; 0x53064
 	;   hp  atk  def  spd  sat  sdf
 
 	db STEEL, FLYING
-	db 25 ; catch rate 
-	db 168 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 127 ; gender 
-	db 100 ; unknown 
-	db 25 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 7, 7 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 5 ; growth rate 
-	dn AVIAN, AVIAN ; egg groups 
+	db 25 ; catch rate
+	db 168 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 127 ; gender
+	db 100 ; unknown
+	db 25 ; step cycles to hatch
+	db 5 ; unknown
+	dn 7, 7 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 5 ; growth rate
+	dn AVIAN, AVIAN ; egg groups
 
 	; tmhm
 	db %00100100
@@ -24944,18 +24944,18 @@ HoundourBaseStats: ; 0x53084
 	;   hp  atk  def  spd  sat  sdf
 
 	db DARK, FIRE
-	db 120 ; catch rate 
-	db 114 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 127 ; gender 
-	db 100 ; unknown 
-	db 20 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 6, 6 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 5 ; growth rate 
-	dn FIELD, FIELD ; egg groups 
+	db 120 ; catch rate
+	db 114 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 127 ; gender
+	db 100 ; unknown
+	db 20 ; step cycles to hatch
+	db 5 ; unknown
+	dn 6, 6 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 5 ; growth rate
+	dn FIELD, FIELD ; egg groups
 
 	; tmhm
 	db %10110110
@@ -24975,18 +24975,18 @@ HoundoomBaseStats: ; 0x530a4
 	;   hp  atk  def  spd  sat  sdf
 
 	db DARK, FIRE
-	db 45 ; catch rate 
-	db 204 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 127 ; gender 
-	db 100 ; unknown 
-	db 20 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 7, 7 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 5 ; growth rate 
-	dn FIELD, FIELD ; egg groups 
+	db 45 ; catch rate
+	db 204 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 127 ; gender
+	db 100 ; unknown
+	db 20 ; step cycles to hatch
+	db 5 ; unknown
+	dn 7, 7 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 5 ; growth rate
+	dn FIELD, FIELD ; egg groups
 
 	; tmhm
 	db %10110110
@@ -25006,18 +25006,18 @@ KingdraBaseStats: ; 0x530c4
 	;   hp  atk  def  spd  sat  sdf
 
 	db WATER, DRAGON
-	db 45 ; catch rate 
-	db 207 ; base exp 
-	db NO_ITEM ; item 1 
-	db DRAGON_SCALE ; item 2 
-	db 127 ; gender 
-	db 100 ; unknown 
-	db 20 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 7, 7 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 0 ; growth rate 
-	dn AMPHIBIAN, REPTILE ; egg groups 
+	db 45 ; catch rate
+	db 207 ; base exp
+	db NO_ITEM ; item 1
+	db DRAGON_SCALE ; item 2
+	db 127 ; gender
+	db 100 ; unknown
+	db 20 ; step cycles to hatch
+	db 5 ; unknown
+	dn 7, 7 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 0 ; growth rate
+	dn AMPHIBIAN, REPTILE ; egg groups
 
 	; tmhm
 	db %00100110
@@ -25037,18 +25037,18 @@ PhanpyBaseStats: ; 0x530e4
 	;   hp  atk  def  spd  sat  sdf
 
 	db GROUND, GROUND
-	db 120 ; catch rate 
-	db 124 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 127 ; gender 
-	db 100 ; unknown 
-	db 20 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 5, 5 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 0 ; growth rate 
-	dn FIELD, FIELD ; egg groups 
+	db 120 ; catch rate
+	db 124 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 127 ; gender
+	db 100 ; unknown
+	db 20 ; step cycles to hatch
+	db 5 ; unknown
+	dn 5, 5 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 0 ; growth rate
+	dn FIELD, FIELD ; egg groups
 
 	; tmhm
 	db %10111110
@@ -25068,18 +25068,18 @@ DonphanBaseStats: ; 0x53104
 	;   hp  atk  def  spd  sat  sdf
 
 	db GROUND, GROUND
-	db 60 ; catch rate 
-	db 189 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 127 ; gender 
-	db 100 ; unknown 
-	db 20 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 7, 7 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 0 ; growth rate 
-	dn FIELD, FIELD ; egg groups 
+	db 60 ; catch rate
+	db 189 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 127 ; gender
+	db 100 ; unknown
+	db 20 ; step cycles to hatch
+	db 5 ; unknown
+	dn 7, 7 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 0 ; growth rate
+	dn FIELD, FIELD ; egg groups
 
 	; tmhm
 	db %10111110
@@ -25099,18 +25099,18 @@ Porygon2BaseStats: ; 0x53124
 	;   hp  atk  def  spd  sat  sdf
 
 	db NORMAL, NORMAL
-	db 45 ; catch rate 
-	db 180 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 255 ; gender 
-	db 100 ; unknown 
-	db 20 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 6, 6 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 0 ; growth rate 
-	dn INANIMATE, INANIMATE ; egg groups 
+	db 45 ; catch rate
+	db 180 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 255 ; gender
+	db 100 ; unknown
+	db 20 ; step cycles to hatch
+	db 5 ; unknown
+	dn 6, 6 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 0 ; growth rate
+	dn INANIMATE, INANIMATE ; egg groups
 
 	; tmhm
 	db %01100100
@@ -25130,18 +25130,18 @@ StantlerBaseStats: ; 0x53144
 	;   hp  atk  def  spd  sat  sdf
 
 	db NORMAL, NORMAL
-	db 45 ; catch rate 
-	db 165 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 127 ; gender 
-	db 100 ; unknown 
-	db 20 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 7, 7 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 5 ; growth rate 
-	dn FIELD, FIELD ; egg groups 
+	db 45 ; catch rate
+	db 165 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 127 ; gender
+	db 100 ; unknown
+	db 20 ; step cycles to hatch
+	db 5 ; unknown
+	dn 7, 7 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 5 ; growth rate
+	dn FIELD, FIELD ; egg groups
 
 	; tmhm
 	db %00110110
@@ -25161,18 +25161,18 @@ SmeargleBaseStats: ; 0x53164
 	;   hp  atk  def  spd  sat  sdf
 
 	db NORMAL, NORMAL
-	db 45 ; catch rate 
-	db 106 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 127 ; gender 
-	db 100 ; unknown 
-	db 20 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 7, 7 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 4 ; growth rate 
-	dn FIELD, FIELD ; egg groups 
+	db 45 ; catch rate
+	db 106 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 127 ; gender
+	db 100 ; unknown
+	db 20 ; step cycles to hatch
+	db 5 ; unknown
+	dn 7, 7 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 4 ; growth rate
+	dn FIELD, FIELD ; egg groups
 
 	; tmhm
 	db %00000000
@@ -25192,18 +25192,18 @@ TyrogueBaseStats: ; 0x53184
 	;   hp  atk  def  spd  sat  sdf
 
 	db FIGHTING, FIGHTING
-	db 75 ; catch rate 
-	db 91 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 0 ; gender 
-	db 100 ; unknown 
-	db 25 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 5, 5 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 0 ; growth rate 
-	dn NO_EGGS, NO_EGGS ; egg groups 
+	db 75 ; catch rate
+	db 91 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 0 ; gender
+	db 100 ; unknown
+	db 25 ; step cycles to hatch
+	db 5 ; unknown
+	dn 5, 5 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 0 ; growth rate
+	dn NO_EGGS, NO_EGGS ; egg groups
 
 	; tmhm
 	db %10100110
@@ -25223,18 +25223,18 @@ HitmontopBaseStats: ; 0x531a4
 	;   hp  atk  def  spd  sat  sdf
 
 	db FIGHTING, FIGHTING
-	db 45 ; catch rate 
-	db 138 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 0 ; gender 
-	db 100 ; unknown 
-	db 25 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 7, 7 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 0 ; growth rate 
-	dn HUMANSHAPE, HUMANSHAPE ; egg groups 
+	db 45 ; catch rate
+	db 138 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 0 ; gender
+	db 100 ; unknown
+	db 25 ; step cycles to hatch
+	db 5 ; unknown
+	dn 7, 7 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 0 ; growth rate
+	dn HUMANSHAPE, HUMANSHAPE ; egg groups
 
 	; tmhm
 	db %10100110
@@ -25254,18 +25254,18 @@ SmoochumBaseStats: ; 0x531c4
 	;   hp  atk  def  spd  sat  sdf
 
 	db ICE, PSYCHIC
-	db 45 ; catch rate 
-	db 87 ; base exp 
-	db ICE_BERRY ; item 1 
-	db ICE_BERRY ; item 2 
-	db 254 ; gender 
-	db 100 ; unknown 
-	db 25 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 5, 5 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 0 ; growth rate 
-	dn NO_EGGS, NO_EGGS ; egg groups 
+	db 45 ; catch rate
+	db 87 ; base exp
+	db ICE_BERRY ; item 1
+	db ICE_BERRY ; item 2
+	db 254 ; gender
+	db 100 ; unknown
+	db 25 ; step cycles to hatch
+	db 5 ; unknown
+	dn 5, 5 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 0 ; growth rate
+	dn NO_EGGS, NO_EGGS ; egg groups
 
 	; tmhm
 	db %00100101
@@ -25285,18 +25285,18 @@ ElekidBaseStats: ; 0x531e4
 	;   hp  atk  def  spd  sat  sdf
 
 	db ELECTRIC, ELECTRIC
-	db 45 ; catch rate 
-	db 106 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 63 ; gender 
-	db 100 ; unknown 
-	db 25 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 6, 6 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 0 ; growth rate 
-	dn NO_EGGS, NO_EGGS ; egg groups 
+	db 45 ; catch rate
+	db 106 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 63 ; gender
+	db 100 ; unknown
+	db 25 ; step cycles to hatch
+	db 5 ; unknown
+	dn 6, 6 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 0 ; growth rate
+	dn NO_EGGS, NO_EGGS ; egg groups
 
 	; tmhm
 	db %01100111
@@ -25316,18 +25316,18 @@ MagbyBaseStats: ; 0x53204
 	;   hp  atk  def  spd  sat  sdf
 
 	db FIRE, FIRE
-	db 45 ; catch rate 
-	db 117 ; base exp 
-	db BURNT_BERRY ; item 1 
-	db BURNT_BERRY ; item 2 
-	db 63 ; gender 
-	db 100 ; unknown 
-	db 25 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 6, 6 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 0 ; growth rate 
-	dn NO_EGGS, NO_EGGS ; egg groups 
+	db 45 ; catch rate
+	db 117 ; base exp
+	db BURNT_BERRY ; item 1
+	db BURNT_BERRY ; item 2
+	db 63 ; gender
+	db 100 ; unknown
+	db 25 ; step cycles to hatch
+	db 5 ; unknown
+	dn 6, 6 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 0 ; growth rate
+	dn NO_EGGS, NO_EGGS ; egg groups
 
 	; tmhm
 	db %00100111
@@ -25347,18 +25347,18 @@ MiltankBaseStats: ; 0x53224
 	;   hp  atk  def  spd  sat  sdf
 
 	db NORMAL, NORMAL
-	db 45 ; catch rate 
-	db 200 ; base exp 
-	db MOOMOO_MILK ; item 1 
-	db MOOMOO_MILK ; item 2 
-	db 254 ; gender 
-	db 100 ; unknown 
-	db 20 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 6, 6 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 5 ; growth rate 
-	dn FIELD, FIELD ; egg groups 
+	db 45 ; catch rate
+	db 200 ; base exp
+	db MOOMOO_MILK ; item 1
+	db MOOMOO_MILK ; item 2
+	db 254 ; gender
+	db 100 ; unknown
+	db 20 ; step cycles to hatch
+	db 5 ; unknown
+	dn 6, 6 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 5 ; growth rate
+	dn FIELD, FIELD ; egg groups
 
 	; tmhm
 	db %11101111
@@ -25378,18 +25378,18 @@ BlisseyBaseStats: ; 0x53244
 	;   hp  atk  def  spd  sat  sdf
 
 	db NORMAL, NORMAL
-	db 30 ; catch rate 
-	db 255 ; base exp 
-	db NO_ITEM ; item 1 
-	db LUCKY_EGG ; item 2 
-	db 254 ; gender 
-	db 100 ; unknown 
-	db 40 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 7, 7 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 4 ; growth rate 
-	dn FAIRY, FAIRY ; egg groups 
+	db 30 ; catch rate
+	db 255 ; base exp
+	db NO_ITEM ; item 1
+	db LUCKY_EGG ; item 2
+	db 254 ; gender
+	db 100 ; unknown
+	db 40 ; step cycles to hatch
+	db 5 ; unknown
+	dn 7, 7 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 4 ; growth rate
+	dn FAIRY, FAIRY ; egg groups
 
 	; tmhm
 	db %11101111
@@ -25409,18 +25409,18 @@ RaikouBaseStats: ; 0x53264
 	;   hp  atk  def  spd  sat  sdf
 
 	db ELECTRIC, ELECTRIC
-	db 3 ; catch rate 
-	db 216 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 255 ; gender 
-	db 100 ; unknown 
-	db 80 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 7, 7 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 5 ; growth rate 
-	dn NO_EGGS, NO_EGGS ; egg groups 
+	db 3 ; catch rate
+	db 216 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 255 ; gender
+	db 100 ; unknown
+	db 80 ; step cycles to hatch
+	db 5 ; unknown
+	dn 7, 7 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 5 ; growth rate
+	dn NO_EGGS, NO_EGGS ; egg groups
 
 	; tmhm
 	db %11110110
@@ -25440,18 +25440,18 @@ EnteiBaseStats: ; 0x53284
 	;   hp  atk  def  spd  sat  sdf
 
 	db FIRE, FIRE
-	db 3 ; catch rate 
-	db 217 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 255 ; gender 
-	db 100 ; unknown 
-	db 80 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 7, 7 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 5 ; growth rate 
-	dn NO_EGGS, NO_EGGS ; egg groups 
+	db 3 ; catch rate
+	db 217 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 255 ; gender
+	db 100 ; unknown
+	db 80 ; step cycles to hatch
+	db 5 ; unknown
+	dn 7, 7 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 5 ; growth rate
+	dn NO_EGGS, NO_EGGS ; egg groups
 
 	; tmhm
 	db %10110110
@@ -25471,18 +25471,18 @@ SuicuneBaseStats: ; 0x532a4
 	;   hp  atk  def  spd  sat  sdf
 
 	db WATER, WATER
-	db 3 ; catch rate 
-	db 215 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 255 ; gender 
-	db 100 ; unknown 
-	db 80 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 7, 7 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 5 ; growth rate 
-	dn NO_EGGS, NO_EGGS ; egg groups 
+	db 3 ; catch rate
+	db 215 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 255 ; gender
+	db 100 ; unknown
+	db 80 ; step cycles to hatch
+	db 5 ; unknown
+	dn 7, 7 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 5 ; growth rate
+	dn NO_EGGS, NO_EGGS ; egg groups
 
 	; tmhm
 	db %10110110
@@ -25502,18 +25502,18 @@ LarvitarBaseStats: ; 0x532c4
 	;   hp  atk  def  spd  sat  sdf
 
 	db ROCK, GROUND
-	db 45 ; catch rate 
-	db 67 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 127 ; gender 
-	db 100 ; unknown 
-	db 40 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 5, 5 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 5 ; growth rate 
-	dn MONSTER, MONSTER ; egg groups 
+	db 45 ; catch rate
+	db 67 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 127 ; gender
+	db 100 ; unknown
+	db 40 ; step cycles to hatch
+	db 5 ; unknown
+	dn 5, 5 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 5 ; growth rate
+	dn MONSTER, MONSTER ; egg groups
 
 	; tmhm
 	db %00100110
@@ -25533,18 +25533,18 @@ PupitarBaseStats: ; 0x532e4
 	;   hp  atk  def  spd  sat  sdf
 
 	db ROCK, GROUND
-	db 45 ; catch rate 
-	db 144 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 127 ; gender 
-	db 100 ; unknown 
-	db 40 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 6, 6 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 5 ; growth rate 
-	dn MONSTER, MONSTER ; egg groups 
+	db 45 ; catch rate
+	db 144 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 127 ; gender
+	db 100 ; unknown
+	db 40 ; step cycles to hatch
+	db 5 ; unknown
+	dn 6, 6 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 5 ; growth rate
+	dn MONSTER, MONSTER ; egg groups
 
 	; tmhm
 	db %00100110
@@ -25564,18 +25564,18 @@ TyranitarBaseStats: ; 0x53304
 	;   hp  atk  def  spd  sat  sdf
 
 	db ROCK, DARK
-	db 45 ; catch rate 
-	db 218 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 127 ; gender 
-	db 100 ; unknown 
-	db 40 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 7, 7 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 5 ; growth rate 
-	dn MONSTER, MONSTER ; egg groups 
+	db 45 ; catch rate
+	db 218 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 127 ; gender
+	db 100 ; unknown
+	db 40 ; step cycles to hatch
+	db 5 ; unknown
+	dn 7, 7 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 5 ; growth rate
+	dn MONSTER, MONSTER ; egg groups
 
 	; tmhm
 	db %10110111
@@ -25595,18 +25595,18 @@ LugiaBaseStats: ; 0x53324
 	;   hp  atk  def  spd  sat  sdf
 
 	db PSYCHIC, FLYING
-	db 3 ; catch rate 
-	db 220 ; base exp 
-	db NO_ITEM ; item 1 
-	db NO_ITEM ; item 2 
-	db 255 ; gender 
-	db 100 ; unknown 
-	db 120 ; step cycles to hatch 
-	db 5 ; unknown 
-	dn 7, 7 ; frontpic dimensions 
-	db 0, 0, 0, 0 ; padding 
-	db 5 ; growth rate 
-	dn NO_EGGS, NO_EGGS ; egg groups 
+	db 3 ; catch rate
+	db 220 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	db 255 ; gender
+	db 100 ; unknown
+	db 120 ; step cycles to hatch
+	db 5 ; unknown
+	dn 7, 7 ; frontpic dimensions
+	db 0, 0, 0, 0 ; padding
+	db 5 ; growth rate
+	dn NO_EGGS, NO_EGGS ; egg groups
 
 	; tmhm
 	db %11110110
