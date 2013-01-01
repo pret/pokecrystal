@@ -271,7 +271,7 @@ SFXPriority: ; c2b6
 ; if nonzero, turn off music when playing sfx
 	ds 1
 	ds 6
-CryTracks ; c2bd
+CryTracks: ; c2bd
 ; plays only in left or right track depending on what side the monster is on
 ; both tracks active outside of battle
 	ds 1

@@ -86366,7 +86366,109 @@ LoadSFX: ; e8c04
 	ret
 ; e8ca6
 
-INCBIN "baserom.gbc", $e8ca6, $e8d1b - $e8ca6
+
+PlaySFX: ; e8ca6
+; play sfx de
+
+	call MusicOff
+	
+; standard procedure if stereo's off
+	ld a, [Options]
+	bit 5, a
+	jp z, LoadSFX
+	
+; else, let's go ahead with this
+	ld hl, MusicID
+	ld [hl], e
+	inc hl
+	ld [hl], d
+	
+; get sfx ptr
+	ld hl, SFX
+	add hl, de
+	add hl, de
+	add hl, de
+	
+; bank
+	ld a, [hli]
+	ld [MusicBank], a
+; address
+	ld e, [hl]
+	inc hl
+	ld d, [hl]
+	
+; bit 2-3
+	call FarLoadMusicByte
+	rlca
+	rlca
+	and 3 ; ch1-4
+	inc a
+	
+.loop
+	push af
+	call LoadChannel
+	
+	ld hl, Channel1Flags - Channel1
+	add hl, bc
+	set 3, [hl]
+	
+	push de
+	; get tracks for this channel
+	ld a, [CurChannel]
+	and 3 ; ch1-4
+	ld e, a
+	ld d, $0
+	call GetLRTracks
+	add hl, de
+	ld a, [hl]
+	ld hl, $c2bc
+	and [hl]
+	
+	ld hl, Channel1Tracks - Channel1
+	add hl, bc
+	ld [hl], a
+	
+	ld hl, $0030 ; $c131 - Channel1
+	add hl, bc
+	ld [hl], a
+	
+	ld a, [CryTracks]
+	cp 2 ; ch 1-2
+	jr c, .asm_e8d0c
+	
+; ch3-4
+	ld a, [$c2be]
+	
+	ld hl, $002e ; $c12f - Channel1
+	add hl, bc
+	ld [hl], a
+	
+	ld hl, $002f ; $c130 - Channel1
+	add hl, bc
+	ld [hl], a
+	
+	ld hl, Channel1Flags2 - Channel1
+	add hl, bc
+	set 7, [hl]
+	
+.asm_e8d0c
+	pop de
+	
+; turn channel on
+	ld hl, Channel1Flags - Channel1
+	add hl, bc
+	set 0, [hl] ; on
+	
+; done?
+	pop af
+	dec a
+	jr nz, .loop
+	
+; we're done
+	call MusicOn
+	ret
+; e8d1b
+
 
 LoadChannel: ; e8d1b
 ; prep channel for use
