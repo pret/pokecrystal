@@ -593,6 +593,9 @@ class Decompressed:
 		
 		self.decompress()
 		
+		debug = False
+		if debug: print '(' + hex(self.start) + ', ' + hex(self.start + self.address) + ')'
+		
 		# only transpose pic
 		self.pic = []
 		self.animtiles = []
@@ -1179,16 +1182,10 @@ def decompress_all():
 	return
 
 
-def export_decompressed(address, mode='horiz', filename = 'de.2bpp', size = None, debug = True):
+def decompress_from_address(address, mode='horiz', filename = 'de.2bpp', size = None):
 	"""write decompressed data from an address to a 2bpp file"""
-	
-	if debug: print 'decompressing ' + hex(address)
 	image = Decompressed(rom, mode, size, address)
-	
-	if debug: print 'export to ' + filename + '\n'
 	to_file(filename, image.pic)
-	
-	return image.pic
 
 
 def decompress_file(filein, fileout, mode = 'horiz', size = None):
@@ -1225,21 +1222,38 @@ def compress_monster_frontpic(id, fileout):
 	
 	cpr = Compressed(image, mode, 5)
 	
-	to_file('old.2bpp', cpr.output)
+	out = '../gfx/frontpics/cpr/' + str(id).zfill(3) + '.cpr'
+	
+	to_file(out, cpr.output)
 
 
 
 
 parser = argparse.ArgumentParser()
 parser.add_argument('cmd', nargs='?', metavar='cmd', type=str)
-parser.add_argument('addr', nargs='?', metavar='addr', type=str)
-parser.add_argument('mode', nargs='?', metavar='mode', type=str)
-parser.add_argument('fname', nargs='?', metavar='fname', type=str)
+parser.add_argument('arg1', nargs='?', metavar='arg1', type=str)
+parser.add_argument('arg2', nargs='?', metavar='arg2', type=str)
+parser.add_argument('arg3', nargs='?', metavar='arg3', type=str)
 args = parser.parse_args()
 
+debug = True
+
 if args.cmd == 'de':
-	# python gfx.py de [addr] [fname] [mode]
-	print hex_dump(export_decompressed(int(args.addr,16), args.mode, args.fname))
+	# python gfx.py de [addr] [fileout] [mode]
+	addr = int(args.arg1,16)
+	fileout = args.arg2
+	mode = args.arg3
+	decompress_from_address(addr, fileout, mode)
+	if debug: print 'decompressed to ' + args.arg2 + ' from ' + hex(int(args.arg1,16)) + '!'
+	
+elif args.cmd == 'cpr':
+	# python gfx.py cpr [filein] [fileout] [mode]
+	filein = args.arg1
+	fileout = args.arg2
+	mode = args.arg3
+	compress_file(filein, fileout, mode)
+	if debug: print 'compressed ' + filein + ' to ' + fileout + '!'
+	
 else:
 	decompress_all()
-	print 'decompressed known gfx to ../gfx/!'
+	if debug: print 'decompressed known gfx to ../gfx/!'
