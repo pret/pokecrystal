@@ -594,7 +594,8 @@ class Decompressed:
 		self.decompress()
 		
 		debug = False
-		if debug: print '(' + hex(self.start) + ', ' + hex(self.start + self.address) + ')'
+		# print tuple containing start and end address
+		if debug: print '(' + hex(self.start) + ', ' + hex(self.start + self.address+1) + '),'
 		
 		# only transpose pic
 		self.pic = []
@@ -1155,7 +1156,7 @@ def decompress_title():
 		to_file(filename, gfx.output)
 
 
-def decompress_all():
+def decompress_all(debug = False):
 	"""decompress all known compressed data in baserom"""
 	#mkdir_p('../gfx/')
 	#mkdir_p('../gfx/frontpics/')
@@ -1167,16 +1168,24 @@ def decompress_all():
 	#mkdir_p('../gfx/intro/')
 	#mkdir_p('../gfx/title/')
 	
+	if debug: print 'fronts'
 	decompress_monsters(front)
+	if debug: print 'backs'
 	decompress_monsters(back)
+	if debug: print 'unown fronts'
 	decompress_unowns(front)
+	if debug: print 'unown backs'
 	decompress_unowns(back)
 	
+	if debug: print 'trainers'
 	decompress_trainers()
 	
+	if debug: print 'fx'
 	decompress_fx()
 	
+	if debug: print 'intro'
 	decompress_intro()
+	if debug: print 'title'
 	decompress_title()
 	
 	return
@@ -1228,32 +1237,32 @@ def compress_monster_frontpic(id, fileout):
 
 
 
-
-parser = argparse.ArgumentParser()
-parser.add_argument('cmd', nargs='?', metavar='cmd', type=str)
-parser.add_argument('arg1', nargs='?', metavar='arg1', type=str)
-parser.add_argument('arg2', nargs='?', metavar='arg2', type=str)
-parser.add_argument('arg3', nargs='?', metavar='arg3', type=str)
-args = parser.parse_args()
-
-debug = True
-
-if args.cmd == 'de':
-	# python gfx.py de [addr] [fileout] [mode]
-	addr = int(args.arg1,16)
-	fileout = args.arg2
-	mode = args.arg3
-	decompress_from_address(addr, fileout, mode)
-	if debug: print 'decompressed to ' + args.arg2 + ' from ' + hex(int(args.arg1,16)) + '!'
+if __name__ == "__main__":
+	parser = argparse.ArgumentParser()
+	parser.add_argument('cmd', nargs='?', metavar='cmd', type=str)
+	parser.add_argument('arg1', nargs='?', metavar='arg1', type=str)
+	parser.add_argument('arg2', nargs='?', metavar='arg2', type=str)
+	parser.add_argument('arg3', nargs='?', metavar='arg3', type=str)
+	args = parser.parse_args()
 	
-elif args.cmd == 'cpr':
-	# python gfx.py cpr [filein] [fileout] [mode]
-	filein = args.arg1
-	fileout = args.arg2
-	mode = args.arg3
-	compress_file(filein, fileout, mode)
-	if debug: print 'compressed ' + filein + ' to ' + fileout + '!'
+	debug = True
 	
-else:
-	decompress_all()
-	if debug: print 'decompressed known gfx to ../gfx/!'
+	if args.cmd == 'de':
+		# python gfx.py de [addr] [fileout] [mode]
+		addr = int(args.arg1,16)
+		fileout = args.arg2
+		mode = args.arg3
+		decompress_from_address(addr, fileout, mode)
+		if debug: print 'decompressed to ' + args.arg2 + ' from ' + hex(int(args.arg1,16)) + '!'
+		
+	elif args.cmd == 'cpr':
+		# python gfx.py cpr [filein] [fileout] [mode]
+		filein = args.arg1
+		fileout = args.arg2
+		mode = args.arg3
+		compress_file(filein, fileout, mode)
+		if debug: print 'compressed ' + filein + ' to ' + fileout + '!'
+		
+	else:
+		decompress_all()
+		if debug: print 'decompressed known gfx to ../gfx/!'
