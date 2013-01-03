@@ -1155,18 +1155,44 @@ def decompress_title():
 		gfx = Decompressed( rom, 'horiz', None, address )
 		to_file(filename, gfx.output)
 
+def decompress_tilesets():
+	tileset_headers = 0x4d596
+	len_tileset = 15
+	num_tilesets = 0x25
+	for tileset in range(num_tilesets):
+		ptr = tileset*len_tileset + tileset_headers
+		address = (ord(rom[ptr])*0x4000) + (((ord(rom[ptr+1]))+ord(rom[ptr+2])*0x100)&0x3fff)
+		tiles = Decompressed( rom, 'horiz', None, address )
+		filename = '../gfx/tilesets/'+str(tileset).zfill(2)+'.2bpp'
+		to_file( filename, tiles.output )
+		#print '(' + hex(address) + ', '+ hex(address+tiles.address+1) + '),'
+
+misc = [
+	('player', 0x2BA1A, 'vert'),
+	('dude', 0x2BBAA, 'vert'),
+	('town_map', 0xF8BA0, 'horiz'),
+	('pokegear', 0x1DE2E4, 'horiz'),
+	('pokegear_sprites', 0x914DD, 'horiz'),
+]
+def decompress_misc():
+	for name, address, mode in misc:
+		filename = '../gfx/misc/' + name + '.2bpp'
+		gfx = Decompressed( rom, mode, None, address )
+		to_file(filename, gfx.output)
 
 def decompress_all(debug = False):
 	"""decompress all known compressed data in baserom"""
+	
 	#mkdir_p('../gfx/')
 	#mkdir_p('../gfx/frontpics/')
-	#mkdir_p('../gfx/backpics/')
 	#mkdir_p('../gfx/anim/')
+	#mkdir_p('../gfx/backpics/')
 	#mkdir_p('../gfx/trainers/')
 	#mkdir_p('../gfx/fx/')
-	#mkdir_p('../gfx/misc/')
 	#mkdir_p('../gfx/intro/')
 	#mkdir_p('../gfx/title/')
+	mkdir_p('../gfx/tilesets/')
+	#mkdir_p('../gfx/misc/')
 	
 	if debug: print 'fronts'
 	decompress_monsters(front)
@@ -1185,8 +1211,15 @@ def decompress_all(debug = False):
 	
 	if debug: print 'intro'
 	decompress_intro()
+	
 	if debug: print 'title'
 	decompress_title()
+	
+	if debug: print 'tilesets'
+	decompress_tilesets()
+	
+	if debug: print 'misc'
+	decompress_misc()
 	
 	return
 
