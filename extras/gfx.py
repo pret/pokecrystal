@@ -144,16 +144,16 @@ def to_file(filename, data):
 # and the count (bits 0-4)
 # followed by additional params
 
-cpr_lit = 0
+lz_lit = 0
 # print literal for [count] bytes
 
-cpr_iter = 1
+lz_iter = 1
 # print one byte [count] times
 
-cpr_alt = 2
+lz_alt = 2
 # print alternating bytes (2 params) for [count] bytes
 
-cpr_zeros = 3
+lz_zeros = 3
 # print 00 for [count] bytes
 
 # repeater control commands have a signed parameter used to determine the start point
@@ -161,21 +161,21 @@ cpr_zeros = 3
 # positive values are added to the start address of the decompressed data
 # and negative values are subtracted from the current position
 
-cpr_repeat = 4
+lz_repeat = 4
 # print [count] bytes from decompressed data
 
-cpr_flip = 5
+lz_flip = 5
 # print [count] bytes from decompressed data in bit order 01234567
 
-cpr_reverse = 6
+lz_reverse = 6
 # print [count] bytes from decompressed data backwards
 
-cpr_hi = 7
+lz_hi = 7
 # -used when the count exceeds 5 bits. uses a 10-bit count instead
 # -bits 2-4 now contain the control code, bits 0-1 are bits 8-9 of the count
 # -the following byte contains bits 0-7 of the count
 
-cpr_end = 0xff
+lz_end = 0xff
 # if 0xff is encountered the decompression ends
 
 # since frontpics have animation tiles lumped onto them,
@@ -272,7 +272,7 @@ class Compressed:
 		self.doLiterals()
 		
 		# done
-		self.output.append(cpr_end)
+		self.output.append(lz_end)
 	
 	
 	def getCurByte(self):
@@ -294,10 +294,10 @@ class Compressed:
 	
 	def doLiterals(self):
 		if len(self.literals) > lowmax:
-			self.output.append( (cpr_hi << 5) | (cpr_lit << 2) | ((len(self.literals) - 1) >> 8) )
+			self.output.append( (lz_hi << 5) | (lz_lit << 2) | ((len(self.literals) - 1) >> 8) )
 			self.output.append( (len(self.literals) - 1) & 0xff )
 		elif len(self.literals) > 0:
-			self.output.append( (cpr_lit << 5) | (len(self.literals) - 1) )
+			self.output.append( (lz_lit << 5) | (len(self.literals) - 1) )
 		for byte in self.literals:
 			self.output.append(byte)
 		self.literals = []	
@@ -416,14 +416,14 @@ class Compressed:
 				# decide which side we're copying from
 				if (self.address - repeat[1]) <= 0x80:
 					self.doLiterals()
-					self.stream.append( (cpr_repeat << 5) | length - 1 )
+					self.stream.append( (lz_repeat << 5) | length - 1 )
 					
 					# wrong?
 					self.stream.append( (((self.address - repeat[1])^0xff)+1)&0xff )
 
 				else:
 					self.doLiterals()
-					self.stream.append( (cpr_repeat << 5) | length - 1 )
+					self.stream.append( (lz_repeat << 5) | length - 1 )
 					
 					# wrong?
 					self.stream.append(repeat[1]>>8)
@@ -453,10 +453,10 @@ class Compressed:
 	
 	def doWhitespace(self):
 		if (len(self.zeros) + 1) >= lowmax:
-			self.stream.append( (cpr_hi << 5) | (cpr_zeros << 2) | ((len(self.zeros) - 1) >> 8) )
+			self.stream.append( (lz_hi << 5) | (lz_zeros << 2) | ((len(self.zeros) - 1) >> 8) )
 			self.stream.append( (len(self.zeros) - 1) & 0xff )
 		elif len(self.zeros) > 1:
-			self.stream.append( cpr_zeros << 5 | (len(self.zeros) - 1) )
+			self.stream.append( lz_zeros << 5 | (len(self.zeros) - 1) )
 		else:
 			raise Exception, "checkWhitespace() should prevent this from happening"
 	
@@ -509,12 +509,12 @@ class Compressed:
 		num_alts = len(self.iters) + 1
 		
 		if num_alts > lowmax:
-			self.stream.append( (cpr_hi << 5) | (cpr_alt << 2) | ((num_alts - 1) >> 8) )
+			self.stream.append( (lz_hi << 5) | (lz_alt << 2) | ((num_alts - 1) >> 8) )
 			self.stream.append( num_alts & 0xff )
 			self.stream.append( self.alts[0] )
 			self.stream.append( self.alts[1] )
 		elif num_alts > 2:
-			self.stream.append( (cpr_alt << 5) | (num_alts - 1) )
+			self.stream.append( (lz_alt << 5) | (num_alts - 1) )
 			self.stream.append( self.alts[0] )
 			self.stream.append( self.alts[1] )
 		else:
@@ -551,13 +551,13 @@ class Compressed:
 			self.next()
 		
 		if (len(self.iters) - 1) >= lowmax:
-			self.stream.append( (cpr_hi << 5) | (cpr_iter << 2) | ((len(self.iters)-1) >> 8) )
+			self.stream.append( (lz_hi << 5) | (lz_iter << 2) | ((len(self.iters)-1) >> 8) )
 			self.stream.append( (len(self.iters) - 1) & 0xff )
 			self.stream.append( iter )
 		elif len(self.iters) > 3:
 			# 3 or fewer isn't worth the trouble and actually longer
 			# if part of a larger literal set
-			self.stream.append( (cpr_iter << 5) | (len(self.iters) - 1) )
+			self.stream.append( (lz_iter << 5) | (len(self.iters) - 1) )
 			self.stream.append( iter )
 		else:
 			self.address = original_address
@@ -579,11 +579,11 @@ class Decompressed:
 	splits output into pic [size] and animation tiles if applicable
 	data can be fed in from rom if [start] is specified"""
 	
-	def __init__(self, cpr = None, mode = None, size = None, start = 0):
+	def __init__(self, lz = None, mode = None, size = None, start = 0):
 		# todo: play nice with Compressed
 	
-		assert cpr, 'need something to compress!'
-		self.cpr = cpr
+		assert lz, 'need something to compress!'
+		self.lz = lz
 		
 		self.byte = None
 		self.address = 0
@@ -621,12 +621,12 @@ class Decompressed:
 		while True:
 			self.getCurByte()
 			
-			if (self.byte == cpr_end):
+			if (self.byte == lz_end):
 				break
 			
 			self.cmd = (self.byte & 0b11100000) >> 5
 			
-			if self.cmd == cpr_hi: # 10-bit param
+			if self.cmd == lz_hi: # 10-bit param
 				self.cmd = (self.byte & 0b00011100) >> 2
 				self.length = (self.byte & 0b00000011) << 8
 				self.next()
@@ -635,13 +635,13 @@ class Decompressed:
 				self.length = (self.byte & 0b00011111) + 1
 			
 			# literals
-			if self.cmd == cpr_lit:
+			if self.cmd == lz_lit:
 				self.doLiteral()
-			elif self.cmd == cpr_iter:
+			elif self.cmd == lz_iter:
 				self.doIter()
-			elif self.cmd == cpr_alt:
+			elif self.cmd == lz_alt:
 				self.doAlt()
-			elif self.cmd == cpr_zeros:
+			elif self.cmd == lz_zeros:
 				self.doZeros()
 				
 			else: # repeaters
@@ -654,11 +654,11 @@ class Decompressed:
 					self.next()
 					self.displacement += self.byte
 				
-				if self.cmd == cpr_flip:
+				if self.cmd == lz_flip:
 					self.doFlip()
-				elif self.cmd == cpr_reverse:
+				elif self.cmd == lz_reverse:
 					self.doReverse()
-				else: # cpr_repeat
+				else: # lz_repeat
 					self.doRepeat()
 			
 			self.address += 1
@@ -666,7 +666,7 @@ class Decompressed:
 	
 	
 	def getCurByte(self):
-		self.byte = ord(self.cpr[self.start+self.address])
+		self.byte = ord(self.lz[self.start+self.address])
 	
 	def next(self):
 		self.address += 1
@@ -1191,7 +1191,7 @@ def decompress_all(debug = False):
 	#mkdir_p('../gfx/fx/')
 	#mkdir_p('../gfx/intro/')
 	#mkdir_p('../gfx/title/')
-	mkdir_p('../gfx/tilesets/')
+	#mkdir_p('../gfx/tilesets/')
 	#mkdir_p('../gfx/misc/')
 	
 	if debug: print 'fronts'
@@ -1245,9 +1245,9 @@ def compress_file(filein, fileout, mode = 'horiz'):
 	image = f.read()
 	f.close()
 	
-	cpr = Compressed(image, mode)
+	lz = Compressed(image, mode)
 	
-	to_file(fileout, cpr.output)
+	to_file(fileout, lz.output)
 
 
 
@@ -1262,11 +1262,11 @@ def compress_monster_frontpic(id, fileout):
 	anim = open(fanim, 'rb').read()
 	image = pic + anim
 	
-	cpr = Compressed(image, mode, 5)
+	lz = Compressed(image, mode, 5)
 	
-	out = '../gfx/frontpics/cpr/' + str(id).zfill(3) + '.cpr'
+	out = '../gfx/frontpics/lz/' + str(id).zfill(3) + '.lz'
 	
-	to_file(out, cpr.output)
+	to_file(out, lz.output)
 
 
 
@@ -1288,14 +1288,19 @@ if __name__ == "__main__":
 		decompress_from_address(addr, fileout, mode)
 		if debug: print 'decompressed to ' + args.arg2 + ' from ' + hex(int(args.arg1,16)) + '!'
 		
-	elif args.cmd == 'cpr':
-		# python gfx.py cpr [filein] [fileout] [mode]
+	elif args.cmd == 'lz':
+		# python gfx.py lz [filein] [fileout] [mode]
 		filein = args.arg1
 		fileout = args.arg2
 		mode = args.arg3
 		compress_file(filein, fileout, mode)
 		if debug: print 'compressed ' + filein + ' to ' + fileout + '!'
-		
+	
+	elif args.cmd == 'lzf':
+		# python gfx.py lzf [id] [fileout]
+		compress_monster_frontpic(int(args.arg1), args.arg2)
+	
 	else:
+		# python gfx.py
 		decompress_all()
 		if debug: print 'decompressed known gfx to ../gfx/!'
