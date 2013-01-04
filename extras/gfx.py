@@ -1270,6 +1270,19 @@ def compress_monster_frontpic(id, fileout):
 
 
 
+def get_uncompressed_gfx(start, num_tiles, filename):
+	"""grab tiles directly from rom and write to file"""
+	bytes_per_tile = 0x10
+	length = num_tiles*bytes_per_tile
+	end = start + length
+	rom = load_rom()
+	image = []
+	for address in range(start,end):
+		image.append(ord(rom[address]))
+	to_file(filename, image)
+
+
+
 if __name__ == "__main__":
 	parser = argparse.ArgumentParser()
 	parser.add_argument('cmd', nargs='?', metavar='cmd', type=str)
@@ -1299,6 +1312,10 @@ if __name__ == "__main__":
 	elif args.cmd == 'lzf':
 		# python gfx.py lzf [id] [fileout]
 		compress_monster_frontpic(int(args.arg1), args.arg2)
+	
+	elif args.cmd == 'un':
+		# python gfx.py un [address] [num_tiles] [filename]
+		get_uncompressed_gfx(int(args.arg1,16), int(args.arg2), args.arg3)
 	
 	else:
 		# python gfx.py
