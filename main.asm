@@ -3101,26 +3101,26 @@ INCBIN "baserom.gbc",$1404c,$18000 - $1404c
 SECTION "bank6",DATA,BANK[$6]
 
 Tileset03GFX: ; 18000
-INCBIN "gfx/tilesets/cpr/03.cpr"
+INCBIN "gfx/tilesets/lz/03.lz"
 ; 18605
 
 INCBIN "baserom.gbc", $18605, $19006 - $18605
 
 Tileset00GFX:
 Tileset01GFX: ; 19006
-INCBIN "gfx/tilesets/cpr/01.cpr"
+INCBIN "gfx/tilesets/lz/01.lz"
 ; 19c0d
 
 INCBIN "baserom.gbc", $19c0d, $1a60e - $19c0d
 
 Tileset29GFX: ; 1a60e
-INCBIN "gfx/tilesets/cpr/29.cpr"
+INCBIN "gfx/tilesets/lz/29.lz"
 ; 1af38
 
 INCBIN "baserom.gbc", $1af38, $1b43e - $1af38
 
 Tileset20GFX: ; 1b43e
-INCBIN "gfx/tilesets/cpr/20.cpr"
+INCBIN "gfx/tilesets/lz/20.lz"
 ; 1b8f1
 
 INCBIN "baserom.gbc", $1b8f1, $1c000 - $1b8f1
@@ -3131,31 +3131,31 @@ SECTION "bank7",DATA,BANK[$7]
 INCBIN "baserom.gbc", $1c000, $1c30c - $1c000
 
 Tileset07GFX: ; 1c30c
-INCBIN "gfx/tilesets/cpr/07.cpr"
+INCBIN "gfx/tilesets/lz/07.lz"
 ; 1c73b
 
 INCBIN "baserom.gbc", $1c73b, $1cc3c - $1c73b
 
 Tileset09GFX: ; 1cc3c
-INCBIN "gfx/tilesets/cpr/09.cpr"
+INCBIN "gfx/tilesets/lz/09.lz"
 ; 1d047
 
 INCBIN "baserom.gbc", $1d047, $1d54c - $1d047
 
 Tileset06GFX: ; 1d54c
-INCBIN "gfx/tilesets/cpr/06.cpr"
+INCBIN "gfx/tilesets/lz/06.lz"
 ; 1d924
 
 INCBIN "baserom.gbc", $1d924, $1de2c - $1d924
 
 Tileset13GFX: ; 1de2c
-INCBIN "gfx/tilesets/cpr/13.cpr"
+INCBIN "gfx/tilesets/lz/13.lz"
 ; 1e58c
 
 INCBIN "baserom.gbc", $1e58c, $1ea8c - $1e58c
 
 Tileset24GFX: ; 1ea8c
-INCBIN "gfx/tilesets/cpr/24.cpr"
+INCBIN "gfx/tilesets/lz/24.lz"
 ; 1ee0e
 
 INCBIN "baserom.gbc", $1ee0e, $1f31c - $1ee0e
@@ -3180,31 +3180,31 @@ SECTION "bank8",DATA,BANK[$8]
 INCBIN "baserom.gbc", $20000, $20181 - $20000
 
 Tileset23GFX: ; 20181
-INCBIN "gfx/tilesets/cpr/23.cpr"
+INCBIN "gfx/tilesets/lz/23.lz"
 ; 206d2
 
 INCBIN "baserom.gbc", $206d2, $20be1 - $206d2
 
 Tileset10GFX: ; 20be1
-INCBIN "gfx/tilesets/cpr/10.cpr"
+INCBIN "gfx/tilesets/lz/10.lz"
 ; 213e0
 
 INCBIN "baserom.gbc", $213e0, $218e1 - $213e0
 
 Tileset12GFX: ; 218e1
-INCBIN "gfx/tilesets/cpr/12.cpr"
+INCBIN "gfx/tilesets/lz/12.lz"
 ; 22026
 
 INCBIN "baserom.gbc", $22026, $22531 - $22026
 
 Tileset14GFX: ; 22531
-INCBIN "gfx/tilesets/cpr/14.cpr"
+INCBIN "gfx/tilesets/lz/14.lz"
 ; 22ae2
 
 INCBIN "baserom.gbc", $22ae2, $22ff1 - $22ae2
 
 Tileset17GFX: ; 22ff1
-INCBIN "gfx/tilesets/cpr/17.cpr"
+INCBIN "gfx/tilesets/lz/17.lz"
 ; 23391
 
 INCBIN "baserom.gbc",$23391,$23b11 - $23391
@@ -7300,13 +7300,13 @@ WildMons6: ; 0x2b92f
 INCBIN "baserom.gbc", $2b930, $2ba1a - $2b930
 
 PlayerGFX: ; 2ba1a
-INCBIN "gfx/misc/cpr/player.cpr"
+INCBIN "gfx/misc/lz/player.lz"
 ; 2bba0
 
 INCBIN "baserom.gbc", $2bba0, $2bbaa - $2bba0
 
 DudeGFX: ; 2bbaa
-INCBIN "gfx/misc/cpr/dude.cpr"
+INCBIN "gfx/misc/lz/dude.lz"
 ; 2bce0
 
 INCBIN "baserom.gbc", $2bce0, $2c000 - $2bce0
@@ -7474,31 +7474,31 @@ INCBIN "baserom.gbc",$2ef18,$30000 - $2ef18
 SECTION "bankC",DATA,BANK[$C]
 
 Tileset15GFX: ; 30000
-INCBIN "gfx/tilesets/cpr/15.cpr"
+INCBIN "gfx/tilesets/lz/15.lz"
 ; 304d7
 
 INCBIN "baserom.gbc", $304d7, $309e0 - $304d7
 
 Tileset25GFX: ; 309e0
-INCBIN "gfx/tilesets/cpr/25.cpr"
+INCBIN "gfx/tilesets/lz/25.lz"
 ; 30e78
 
 INCBIN "baserom.gbc", $30e78, $31380 - $30e78
 
 Tileset27GFX: ; 31380
-INCBIN "gfx/tilesets/cpr/27.cpr"
+INCBIN "gfx/tilesets/lz/27.lz"
 ; 318dc
 
 INCBIN "baserom.gbc", $318dc, $31de0 - $318dc
 
 Tileset28GFX: ; 31de0
-INCBIN "gfx/tilesets/cpr/28.cpr"
+INCBIN "gfx/tilesets/lz/28.lz"
 ; 321a6
 
 INCBIN "baserom.gbc", $321a6, $326b0 - $321a6
 
 Tileset30GFX: ; 326b0
-INCBIN "gfx/tilesets/cpr/30.cpr"
+INCBIN "gfx/tilesets/lz/30.lz"
 ; 329ed
 
 INCBIN "baserom.gbc",$329ed,$34000 - $329ed
@@ -62077,235 +62077,235 @@ INCBIN "baserom.gbc", $84000, $84a2e - $84000
 
 FX00GFX:
 FX01GFX: ; 84a2e
-INCBIN "gfx/fx/cpr/001.cpr"
+INCBIN "gfx/fx/lz/001.lz"
 ; 84b15
 
 INCBIN "baserom.gbc", $84b15, $84b1e - $84b15
 
 FX02GFX: ; 84b1e
-INCBIN "gfx/fx/cpr/002.cpr"
+INCBIN "gfx/fx/lz/002.lz"
 ; 84b7a
 
 INCBIN "baserom.gbc", $84b7a, $84b7e - $84b7a
 
 FX03GFX: ; 84b7e
-INCBIN "gfx/fx/cpr/003.cpr"
+INCBIN "gfx/fx/lz/003.lz"
 ; 84bd0
 
 INCBIN "baserom.gbc", $84bd0, $84bde - $84bd0
 
 FX04GFX: ; 84bde
-INCBIN "gfx/fx/cpr/004.cpr"
+INCBIN "gfx/fx/lz/004.lz"
 ; 84ca5
 
 INCBIN "baserom.gbc", $84ca5, $84cae - $84ca5
 
 FX05GFX: ; 84cae
-INCBIN "gfx/fx/cpr/005.cpr"
+INCBIN "gfx/fx/lz/005.lz"
 ; 84de2
 
 INCBIN "baserom.gbc", $84de2, $84dee - $84de2
 
 FX07GFX: ; 84dee
-INCBIN "gfx/fx/cpr/007.cpr"
+INCBIN "gfx/fx/lz/007.lz"
 ; 84e70
 
 INCBIN "baserom.gbc", $84e70, $84e7e - $84e70
 
 FX08GFX: ; 84e7e
-INCBIN "gfx/fx/cpr/008.cpr"
+INCBIN "gfx/fx/lz/008.lz"
 ; 84ed4
 
 INCBIN "baserom.gbc", $84ed4, $84ede - $84ed4
 
 FX10GFX: ; 84ede
-INCBIN "gfx/fx/cpr/010.cpr"
+INCBIN "gfx/fx/lz/010.lz"
 ; 84f13
 
 INCBIN "baserom.gbc", $84f13, $84f1e - $84f13
 
 FX09GFX: ; 84f1e
-INCBIN "gfx/fx/cpr/009.cpr"
+INCBIN "gfx/fx/lz/009.lz"
 ; 85009
 
 INCBIN "baserom.gbc", $85009, $8500e - $85009
 
 FX12GFX: ; 8500e
-INCBIN "gfx/fx/cpr/012.cpr"
+INCBIN "gfx/fx/lz/012.lz"
 ; 8506f
 
 INCBIN "baserom.gbc", $8506f, $8507e - $8506f
 
 FX06GFX: ; 8507e
-INCBIN "gfx/fx/cpr/006.cpr"
+INCBIN "gfx/fx/lz/006.lz"
 ; 8515c
 
 INCBIN "baserom.gbc", $8515c, $8515e - $8515c
 
 FX11GFX: ; 8515e
-INCBIN "gfx/fx/cpr/011.cpr"
+INCBIN "gfx/fx/lz/011.lz"
 ; 851ad
 
 INCBIN "baserom.gbc", $851ad, $851ae - $851ad
 
 FX13GFX: ; 851ae
-INCBIN "gfx/fx/cpr/013.cpr"
+INCBIN "gfx/fx/lz/013.lz"
 ; 85243
 
 INCBIN "baserom.gbc", $85243, $8524e - $85243
 
 FX14GFX: ; 8524e
-INCBIN "gfx/fx/cpr/014.cpr"
+INCBIN "gfx/fx/lz/014.lz"
 ; 852ff
 
 INCBIN "baserom.gbc", $852ff, $8530e - $852ff
 
 FX24GFX: ; 8530e
-INCBIN "gfx/fx/cpr/024.cpr"
+INCBIN "gfx/fx/lz/024.lz"
 ; 8537c
 
 INCBIN "baserom.gbc", $8537c, $8537e - $8537c
 
 FX15GFX: ; 8537e
-INCBIN "gfx/fx/cpr/015.cpr"
+INCBIN "gfx/fx/lz/015.lz"
 ; 8539a
 
 INCBIN "baserom.gbc", $8539a, $8539e - $8539a
 
 FX16GFX: ; 8539e
-INCBIN "gfx/fx/cpr/016.cpr"
+INCBIN "gfx/fx/lz/016.lz"
 ; 8542d
 
 INCBIN "baserom.gbc", $8542d, $8542e - $8542d
 
 FX17GFX: ; 8542e
-INCBIN "gfx/fx/cpr/017.cpr"
+INCBIN "gfx/fx/lz/017.lz"
 ; 85477
 
 INCBIN "baserom.gbc", $85477, $8547e - $85477
 
 FX18GFX: ; 8547e
-INCBIN "gfx/fx/cpr/018.cpr"
+INCBIN "gfx/fx/lz/018.lz"
 ; 854eb
 
 INCBIN "baserom.gbc", $854eb, $854ee - $854eb
 
 FX19GFX: ; 854ee
-INCBIN "gfx/fx/cpr/019.cpr"
+INCBIN "gfx/fx/lz/019.lz"
 ; 855a9
 
 INCBIN "baserom.gbc", $855a9, $855ae - $855a9
 
 FX20GFX: ; 855ae
-INCBIN "gfx/fx/cpr/020.cpr"
+INCBIN "gfx/fx/lz/020.lz"
 ; 85627
 
 INCBIN "baserom.gbc", $85627, $8562e - $85627
 
 FX22GFX: ; 8562e
-INCBIN "gfx/fx/cpr/022.cpr"
+INCBIN "gfx/fx/lz/022.lz"
 ; 856ec
 
 INCBIN "baserom.gbc", $856ec, $856ee - $856ec
 
 FX21GFX: ; 856ee
-INCBIN "gfx/fx/cpr/021.cpr"
+INCBIN "gfx/fx/lz/021.lz"
 ; 85767
 
 INCBIN "baserom.gbc", $85767, $8576e - $85767
 
 FX23GFX: ; 8576e
-INCBIN "gfx/fx/cpr/023.cpr"
+INCBIN "gfx/fx/lz/023.lz"
 ; 857d0
 
 INCBIN "baserom.gbc", $857d0, $857de - $857d0
 
 FX26GFX: ; 857de
-INCBIN "gfx/fx/cpr/026.cpr"
+INCBIN "gfx/fx/lz/026.lz"
 ; 85838
 
 INCBIN "baserom.gbc", $85838, $8583e - $85838
 
 FX27GFX: ; 8583e
-INCBIN "gfx/fx/cpr/027.cpr"
+INCBIN "gfx/fx/lz/027.lz"
 ; 858b0
 
 INCBIN "baserom.gbc", $858b0, $858be - $858b0
 
 FX28GFX: ; 858be
-INCBIN "gfx/fx/cpr/028.cpr"
+INCBIN "gfx/fx/lz/028.lz"
 ; 85948
 
 INCBIN "baserom.gbc", $85948, $8594e - $85948
 
 FX29GFX: ; 8594e
-INCBIN "gfx/fx/cpr/029.cpr"
+INCBIN "gfx/fx/lz/029.lz"
 ; 859a8
 
 INCBIN "baserom.gbc", $859a8, $859ae - $859a8
 
 FX30GFX: ; 859ae
-INCBIN "gfx/fx/cpr/030.cpr"
+INCBIN "gfx/fx/lz/030.lz"
 ; 859ff
 
 INCBIN "baserom.gbc", $859ff, $85a0e - $859ff
 
 FX31GFX: ; 85a0e
-INCBIN "gfx/fx/cpr/031.cpr"
+INCBIN "gfx/fx/lz/031.lz"
 ; 85ba1
 
 INCBIN "baserom.gbc", $85ba1, $85bae - $85ba1
 
 FX32GFX: ; 85bae
-INCBIN "gfx/fx/cpr/032.cpr"
+INCBIN "gfx/fx/lz/032.lz"
 ; 85d09
 
 INCBIN "baserom.gbc", $85d09, $85d0e - $85d09
 
 FX33GFX: ; 85d0e
-INCBIN "gfx/fx/cpr/033.cpr"
+INCBIN "gfx/fx/lz/033.lz"
 ; 85def
 
 INCBIN "baserom.gbc", $85def, $85dfe - $85def
 
 FX34GFX: ; 85dfe
-INCBIN "gfx/fx/cpr/034.cpr"
+INCBIN "gfx/fx/lz/034.lz"
 ; 85e96
 
 INCBIN "baserom.gbc", $85e96, $85e9e - $85e96
 
 FX25GFX: ; 85e9e
-INCBIN "gfx/fx/cpr/025.cpr"
+INCBIN "gfx/fx/lz/025.lz"
 ; 85fb8
 
 INCBIN "baserom.gbc", $85fb8, $85fbe - $85fb8
 
 FX35GFX: ; 85fbe
-INCBIN "gfx/fx/cpr/035.cpr"
+INCBIN "gfx/fx/lz/035.lz"
 ; 86099
 
 INCBIN "baserom.gbc", $86099, $8609e - $86099
 
 FX36GFX: ; 8609e
-INCBIN "gfx/fx/cpr/036.cpr"
+INCBIN "gfx/fx/lz/036.lz"
 ; 86174
 
 INCBIN "baserom.gbc", $86174, $8617e - $86174
 
 FX37GFX: ; 8617e
-INCBIN "gfx/fx/cpr/037.cpr"
+INCBIN "gfx/fx/lz/037.lz"
 ; 862eb
 
 INCBIN "baserom.gbc", $862eb, $862ee - $862eb
 
 FX38GFX: ; 862ee
-INCBIN "gfx/fx/cpr/038.cpr"
+INCBIN "gfx/fx/lz/038.lz"
 ; 8637f
 
 INCBIN "baserom.gbc", $8637f, $8638e - $8637f
 
 FX39GFX: ; 8638e
-INCBIN "gfx/fx/cpr/039.cpr"
+INCBIN "gfx/fx/lz/039.lz"
 ; 8640b
 
 INCBIN "baserom.gbc", $8640b, $88000 - $8640b
@@ -62891,7 +62891,7 @@ Saturday:
 INCBIN "baserom.gbc", $90a3f, $914dd - $90a3f
 
 PokegearSpritesGFX: ; 914dd
-INCBIN "gfx/misc/cpr/pokegear_sprites.cpr"
+INCBIN "gfx/misc/lz/pokegear_sprites.lz"
 ; 91507
 
 INCBIN "baserom.gbc", $91507, $93a31 - $91507
@@ -83904,32 +83904,32 @@ GoldenrodDeptStoreRoof_BlockData: ; 0xb1b22
 SECTION "bank2D",DATA,BANK[$2D]
 
 Tileset21GFX: ; b4000
-INCBIN "gfx/tilesets/cpr/21.cpr"
+INCBIN "gfx/tilesets/lz/21.lz"
 ; b4893
 
 INCBIN "baserom.gbc", $b4893, $b4da0 - $b4893
 
 Tileset22GFX: ; b4da0
-INCBIN "gfx/tilesets/cpr/22.cpr"
+INCBIN "gfx/tilesets/lz/22.lz"
 ; b50d1
 
 INCBIN "baserom.gbc", $b50d1, $b55e0 - $b50d1
 
 Tileset08GFX: ; b55e0
-INCBIN "gfx/tilesets/cpr/08.cpr"
+INCBIN "gfx/tilesets/lz/08.lz"
 ; b59db
 
 INCBIN "baserom.gbc", $b59db, $b5ee0 - $b59db
 
 Tileset02GFX:
 Tileset04GFX: ; b5ee0
-INCBIN "gfx/tilesets/cpr/04.cpr"
+INCBIN "gfx/tilesets/lz/04.lz"
 ; b6ae7
 
 INCBIN "baserom.gbc", $b6ae7, $b74e8 - $b6ae7
 
 Tileset16GFX: ; b74e8
-INCBIN "gfx/tilesets/cpr/16.cpr"
+INCBIN "gfx/tilesets/lz/16.lz"
 ; b799a
 
 INCBIN "baserom.gbc", $b799a, $b8000 - $b799a
@@ -84223,31 +84223,31 @@ INCBIN "baserom.gbc",$D8400,$4000-$400
 SECTION "bank37",DATA,BANK[$37]
 
 Tileset31GFX: ; dc000
-INCBIN "gfx/tilesets/cpr/31.cpr"
+INCBIN "gfx/tilesets/lz/31.lz"
 ; dc3ce
 
 INCBIN "baserom.gbc", $dc3ce, $dc3d0 - $dc3ce
 
 Tileset18GFX: ; dc3d0
-INCBIN "gfx/tilesets/cpr/18.cpr"
+INCBIN "gfx/tilesets/lz/18.lz"
 ; dcc4e
 
 INCBIN "baserom.gbc", $dcc4e, $dd150 - $dcc4e
 
 Tileset05GFX: ; dd150
-INCBIN "gfx/tilesets/cpr/05.cpr"
+INCBIN "gfx/tilesets/lz/05.lz"
 ; dd5f8
 
 INCBIN "baserom.gbc", $dd5f8, $ddb00 - $dd5f8
 
 Tileset19GFX: ; ddb00
-INCBIN "gfx/tilesets/cpr/19.cpr"
+INCBIN "gfx/tilesets/lz/19.lz"
 ; ddf64
 
 INCBIN "baserom.gbc", $ddf64, $de570 - $ddf64
 
 Tileset11GFX: ; de570
-INCBIN "gfx/tilesets/cpr/11.cpr"
+INCBIN "gfx/tilesets/lz/11.lz"
 ; de98a
 
 INCBIN "baserom.gbc", $de98a, $e0000 - $de98a
@@ -84263,157 +84263,157 @@ SECTION "bank39",DATA,BANK[$39]
 INCBIN "baserom.gbc", $e4000, $e555d - $e4000
 
 IntroSuicuneRunGFX: ; e555d
-INCBIN "gfx/intro/cpr/suicune_run.cpr"
+INCBIN "gfx/intro/lz/suicune_run.lz"
 ; e592b
 
 INCBIN "baserom.gbc", $e592b, $e592d - $e592b
 
 IntroPichuWooperGFX: ; e592d
-INCBIN "gfx/intro/cpr/pichu_wooper.cpr"
+INCBIN "gfx/intro/lz/pichu_wooper.lz"
 ; e5c70
 
 INCBIN "baserom.gbc", $e5c70, $e5c7d - $e5c70
 
 IntroBackgroundGFX: ; e5c7d
-INCBIN "gfx/intro/cpr/background.cpr"
+INCBIN "gfx/intro/lz/background.lz"
 ; e5e69
 
 INCBIN "baserom.gbc", $e5e69, $e5e6d - $e5e69
 
 IntroTilemap004: ; e5e6d
-INCBIN "gfx/intro/cpr/004.cpr"
+INCBIN "gfx/intro/lz/004.lz"
 ; e5ec5
 
 INCBIN "baserom.gbc", $e5ec5, $e5ecd - $e5ec5
 
 IntroTilemap003: ; e5ecd
-INCBIN "gfx/intro/cpr/003.cpr"
+INCBIN "gfx/intro/lz/003.lz"
 ; e5ed9
 
 INCBIN "baserom.gbc", $e5ed9, $e5f5d - $e5ed9
 
 IntroUnownsGFX: ; e5f5d
-INCBIN "gfx/intro/cpr/unowns.cpr"
+INCBIN "gfx/intro/lz/unowns.lz"
 ; e6348
 
 INCBIN "baserom.gbc", $e6348, $e634d - $e6348
 
 IntroPulseGFX: ; e634d
-INCBIN "gfx/intro/cpr/pulse.cpr"
+INCBIN "gfx/intro/lz/pulse.lz"
 ; e63d4
 
 INCBIN "baserom.gbc", $e63d4, $e63dd - $e63d4
 
 IntroTilemap002: ; e63dd
-INCBIN "gfx/intro/cpr/002.cpr"
+INCBIN "gfx/intro/lz/002.lz"
 ; e6418
 
 INCBIN "baserom.gbc", $e6418, $e641d - $e6418
 
 IntroTilemap001: ; e641d
-INCBIN "gfx/intro/cpr/001.cpr"
+INCBIN "gfx/intro/lz/001.lz"
 ; e6429
 
 INCBIN "baserom.gbc", $e6429, $e642d - $e6429
 
 IntroTilemap006: ; e642d
-INCBIN "gfx/intro/cpr/006.cpr"
+INCBIN "gfx/intro/lz/006.lz"
 ; e6472
 
 INCBIN "baserom.gbc", $e6472, $e647d - $e6472
 
 IntroTilemap005: ; e647d
-INCBIN "gfx/intro/cpr/005.cpr"
+INCBIN "gfx/intro/lz/005.lz"
 ; e6498
 
 INCBIN "baserom.gbc", $e6498, $e649d - $e6498
 
 IntroTilemap008: ; e649d
-INCBIN "gfx/intro/cpr/008.cpr"
+INCBIN "gfx/intro/lz/008.lz"
 ; e6550
 
 INCBIN "baserom.gbc", $e6550, $e655d - $e6550
 
 IntroTilemap007: ; e655d
-INCBIN "gfx/intro/cpr/007.cpr"
+INCBIN "gfx/intro/lz/007.lz"
 ; e65a4
 
 INCBIN "baserom.gbc", $e65a4, $e662d - $e65a4
 
 IntroCrystalUnownsGFX: ; e662d
-INCBIN "gfx/intro/cpr/crystal_unowns.cpr"
+INCBIN "gfx/intro/lz/crystal_unowns.lz"
 ; e6720
 
 INCBIN "baserom.gbc", $e6720, $e672d - $e6720
 
 IntroTilemap017: ; e672d
-INCBIN "gfx/intro/cpr/017.cpr"
+INCBIN "gfx/intro/lz/017.lz"
 ; e6761
 
 INCBIN "baserom.gbc", $e6761, $e676d - $e6761
 
 IntroTilemap015: ; e676d
-INCBIN "gfx/intro/cpr/015.cpr"
+INCBIN "gfx/intro/lz/015.lz"
 ; e6794
 
 INCBIN "baserom.gbc", $e6794, $e681d - $e6794
 
 IntroSuicuneCloseGFX: ; e681d
-INCBIN "gfx/intro/cpr/suicune_close.cpr"
+INCBIN "gfx/intro/lz/suicune_close.lz"
 ; e6c37
 
 INCBIN "baserom.gbc", $e6c37, $e6c3d - $e6c37
 
 IntroTilemap012: ; e6c3d
-INCBIN "gfx/intro/cpr/012.cpr"
+INCBIN "gfx/intro/lz/012.lz"
 ; e6d0a
 
 INCBIN "baserom.gbc", $e6d0a, $e6d0d - $e6d0a
 
 IntroTilemap011: ; e6d0d
-INCBIN "gfx/intro/cpr/011.cpr"
+INCBIN "gfx/intro/lz/011.lz"
 ; e6d65
 
 INCBIN "baserom.gbc", $e6d65, $e6ded - $e6d65
 
 IntroSuicuneJumpGFX: ; e6ded
-INCBIN "gfx/intro/cpr/suicune_jump.cpr"
+INCBIN "gfx/intro/lz/suicune_jump.lz"
 ; e72a7
 
 INCBIN "baserom.gbc", $e72a7, $e72ad - $e72a7
 
 IntroSuicuneBackGFX: ; e72ad
-INCBIN "gfx/intro/cpr/suicune_back.cpr"
+INCBIN "gfx/intro/lz/suicune_back.lz"
 ; e7648
 
 INCBIN "baserom.gbc", $e7648, $e764d - $e7648
 
 IntroTilemap010: ; e764d
-INCBIN "gfx/intro/cpr/010.cpr"
+INCBIN "gfx/intro/lz/010.lz"
 ; e76a0
 
 INCBIN "baserom.gbc", $e76a0, $e76ad - $e76a0
 
 IntroTilemap009: ; e76ad
-INCBIN "gfx/intro/cpr/009.cpr"
+INCBIN "gfx/intro/lz/009.lz"
 ; e76bb
 
 INCBIN "baserom.gbc", $e76bb, $e76bd - $e76bb
 
 IntroTilemap014: ; e76bd
-INCBIN "gfx/intro/cpr/014.cpr"
+INCBIN "gfx/intro/lz/014.lz"
 ; e778b
 
 INCBIN "baserom.gbc", $e778b, $e778d - $e778b
 
 IntroTilemap013: ; e778d
-INCBIN "gfx/intro/cpr/013.cpr"
+INCBIN "gfx/intro/lz/013.lz"
 ; e77d9
 
 INCBIN "baserom.gbc", $e77d9, $e785d - $e77d9
 
 IntroUnownBackGFX: ; e785d
-INCBIN "gfx/intro/cpr/unown_back.cpr"
+INCBIN "gfx/intro/lz/unown_back.lz"
 ; e799a
 
 INCBIN "baserom.gbc", $e799a, $e7a70 - $e799a
@@ -88443,7 +88443,7 @@ INCBIN "gfx/font_battle_extra.2bpp",$0,$200
 INCBIN "baserom.gbc", $f8800, $f8ba0 - $f8800
 
 TownMapGFX: ; f8ba0
-INCBIN "gfx/misc/cpr/town_map.cpr"
+INCBIN "gfx/misc/lz/town_map.lz"
 ; f8ea2
 
 INCBIN "baserom.gbc", $f8ea2, $fbbfc - $f8ea2
@@ -88699,7 +88699,7 @@ SECTION "bank42",DATA,BANK[$42]
 INCBIN "baserom.gbc", $108000, $109407 - $108000
 
 IntroLogoGFX: ; 109407
-INCBIN "gfx/intro/cpr/logo.cpr"
+INCBIN "gfx/intro/lz/logo.lz"
 ; 10983f
 
 INCBIN "baserom.gbc", $10983f, $10c000 - $10983f
@@ -88710,19 +88710,19 @@ SECTION "bank43",DATA,BANK[$43]
 INCBIN "baserom.gbc", $10c000, $10ef46 - $10c000
 
 TitleSuicuneGFX: ; 10ef46
-INCBIN "gfx/title/cpr/suicune.cpr"
+INCBIN "gfx/title/lz/suicune.lz"
 ; 10f31b
 
 INCBIN "baserom.gbc", $10f31b, $10f326 - $10f31b
 
 TitleLogoGFX: ; 10f326
-INCBIN "gfx/title/cpr/logo.cpr"
+INCBIN "gfx/title/lz/logo.lz"
 ; 10fced
 
 INCBIN "baserom.gbc", $10fced, $10fcee - $10fced
 
 TitleCrystalGFX: ; 10fcee
-INCBIN "gfx/title/cpr/crystal.cpr"
+INCBIN "gfx/title/lz/crystal.lz"
 ; 10fed7
 
 INCBIN "baserom.gbc", $10fed7, $110000 - $10fed7
@@ -89604,31 +89604,31 @@ PicPointers: ; 120000
 ; 1205ee
 
 HoOhFrontpic: ; 1205ee
-INCBIN "gfx/frontpics/cpr/250.cpr"
+INCBIN "gfx/frontpics/lz/250.lz"
 MachampFrontpic: ; 120b05
-INCBIN "gfx/frontpics/cpr/068.cpr"
+INCBIN "gfx/frontpics/lz/068.lz"
 NinetalesFrontpic: ; 121012
-INCBIN "gfx/frontpics/cpr/038.cpr"
+INCBIN "gfx/frontpics/lz/038.lz"
 FeraligatrFrontpic: ; 1214dd
-INCBIN "gfx/frontpics/cpr/160.cpr"
+INCBIN "gfx/frontpics/lz/160.lz"
 NidokingFrontpic: ; 121976
-INCBIN "gfx/frontpics/cpr/034.cpr"
+INCBIN "gfx/frontpics/lz/034.lz"
 RaikouFrontpic: ; 121e00
-INCBIN "gfx/frontpics/cpr/243.cpr"
+INCBIN "gfx/frontpics/lz/243.lz"
 LugiaFrontpic: ; 12226e
-INCBIN "gfx/frontpics/cpr/249.cpr"
+INCBIN "gfx/frontpics/lz/249.lz"
 ArticunoFrontpic: ; 1226d6
-INCBIN "gfx/frontpics/cpr/144.cpr"
+INCBIN "gfx/frontpics/lz/144.lz"
 TaurosFrontpic: ; 122b2d
-INCBIN "gfx/frontpics/cpr/128.cpr"
+INCBIN "gfx/frontpics/lz/128.lz"
 VenusaurFrontpic: ; 122f81
-INCBIN "gfx/frontpics/cpr/003.cpr"
+INCBIN "gfx/frontpics/lz/003.lz"
 EnteiFrontpic: ; 1233cb
-INCBIN "gfx/frontpics/cpr/244.cpr"
+INCBIN "gfx/frontpics/lz/244.lz"
 SuicuneFrontpic: ; 123810
-INCBIN "gfx/frontpics/cpr/245.cpr"
+INCBIN "gfx/frontpics/lz/245.lz"
 TyphlosionFrontpic: ; 123c4d
-INCBIN "gfx/frontpics/cpr/157.cpr"
+INCBIN "gfx/frontpics/lz/157.lz"
 ; 123ffa
 
 
@@ -89690,37 +89690,37 @@ UnownPicPointers: ; 124000
 ; 12409c
 
 BlastoiseFrontpic: ; 12409c
-INCBIN "gfx/frontpics/cpr/009.cpr"
+INCBIN "gfx/frontpics/lz/009.lz"
 RapidashFrontpic: ; 1244d8
-INCBIN "gfx/frontpics/cpr/078.cpr"
+INCBIN "gfx/frontpics/lz/078.lz"
 MeganiumFrontpic: ; 124904
-INCBIN "gfx/frontpics/cpr/154.cpr"
+INCBIN "gfx/frontpics/lz/154.lz"
 NidoqueenFrontpic: ; 124d24
-INCBIN "gfx/frontpics/cpr/031.cpr"
+INCBIN "gfx/frontpics/lz/031.lz"
 HitmonleeFrontpic: ; 125142
-INCBIN "gfx/frontpics/cpr/106.cpr"
+INCBIN "gfx/frontpics/lz/106.lz"
 ScizorFrontpic: ; 12555c
-INCBIN "gfx/frontpics/cpr/212.cpr"
+INCBIN "gfx/frontpics/lz/212.lz"
 BeedrillFrontpic: ; 125976
-INCBIN "gfx/frontpics/cpr/015.cpr"
+INCBIN "gfx/frontpics/lz/015.lz"
 ArcanineFrontpic: ; 125d84
-INCBIN "gfx/frontpics/cpr/059.cpr"
+INCBIN "gfx/frontpics/lz/059.lz"
 TyranitarFrontpic: ; 126183
-INCBIN "gfx/frontpics/cpr/248.cpr"
+INCBIN "gfx/frontpics/lz/248.lz"
 MoltresFrontpic: ; 126580
-INCBIN "gfx/frontpics/cpr/146.cpr"
+INCBIN "gfx/frontpics/lz/146.lz"
 ZapdosFrontpic: ; 12697c
-INCBIN "gfx/frontpics/cpr/145.cpr"
+INCBIN "gfx/frontpics/lz/145.lz"
 ArbokFrontpic: ; 126d70
-INCBIN "gfx/frontpics/cpr/024.cpr"
+INCBIN "gfx/frontpics/lz/024.lz"
 MewtwoFrontpic: ; 127161
-INCBIN "gfx/frontpics/cpr/150.cpr"
+INCBIN "gfx/frontpics/lz/150.lz"
 FearowFrontpic: ; 127551
-INCBIN "gfx/frontpics/cpr/022.cpr"
+INCBIN "gfx/frontpics/lz/022.lz"
 CharizardFrontpic: ; 127937
-INCBIN "gfx/frontpics/cpr/006.cpr"
+INCBIN "gfx/frontpics/lz/006.lz"
 QuilavaFrontpic: ; 127d1c
-INCBIN "gfx/frontpics/cpr/156.cpr"
+INCBIN "gfx/frontpics/lz/156.lz"
 ; 127ffe
 
 
@@ -89797,86 +89797,86 @@ TrainerPicPointers: ; 128000
 ; 1280c9
 
 SteelixFrontpic: ; 1280c9
-INCBIN "gfx/frontpics/cpr/208.cpr"
+INCBIN "gfx/frontpics/lz/208.lz"
 AlakazamFrontpic: ; 1284ad
-INCBIN "gfx/frontpics/cpr/065.cpr"
+INCBIN "gfx/frontpics/lz/065.lz"
 GyaradosFrontpic: ; 128886
-INCBIN "gfx/frontpics/cpr/130.cpr"
+INCBIN "gfx/frontpics/lz/130.lz"
 KangaskhanFrontpic: ; 128c54
-INCBIN "gfx/frontpics/cpr/115.cpr"
+INCBIN "gfx/frontpics/lz/115.lz"
 RhydonFrontpic: ; 12901e
-INCBIN "gfx/frontpics/cpr/112.cpr"
+INCBIN "gfx/frontpics/lz/112.lz"
 GolduckFrontpic: ; 1293d7
-INCBIN "gfx/frontpics/cpr/055.cpr"
+INCBIN "gfx/frontpics/lz/055.lz"
 RhyhornFrontpic: ; 12977f
-INCBIN "gfx/frontpics/cpr/111.cpr"
+INCBIN "gfx/frontpics/lz/111.lz"
 PidgeotFrontpic: ; 129b1d
-INCBIN "gfx/frontpics/cpr/018.cpr"
+INCBIN "gfx/frontpics/lz/018.lz"
 SlowbroFrontpic: ; 129eb5
-INCBIN "gfx/frontpics/cpr/080.cpr"
+INCBIN "gfx/frontpics/lz/080.lz"
 ButterfreeFrontpic: ; 12a24a
-INCBIN "gfx/frontpics/cpr/012.cpr"
+INCBIN "gfx/frontpics/lz/012.lz"
 WeezingFrontpic: ; 12a5d7
-INCBIN "gfx/frontpics/cpr/110.cpr"
+INCBIN "gfx/frontpics/lz/110.lz"
 CloysterFrontpic: ; 12a964
-INCBIN "gfx/frontpics/cpr/091.cpr"
+INCBIN "gfx/frontpics/lz/091.lz"
 SkarmoryFrontpic: ; 12acf0
-INCBIN "gfx/frontpics/cpr/227.cpr"
+INCBIN "gfx/frontpics/lz/227.lz"
 DewgongFrontpic: ; 12b06d
-INCBIN "gfx/frontpics/cpr/087.cpr"
+INCBIN "gfx/frontpics/lz/087.lz"
 VictreebelFrontpic: ; 12b3e9
-INCBIN "gfx/frontpics/cpr/071.cpr"
+INCBIN "gfx/frontpics/lz/071.lz"
 RaichuFrontpic: ; 12b765
-INCBIN "gfx/frontpics/cpr/026.cpr"
+INCBIN "gfx/frontpics/lz/026.lz"
 PrimeapeFrontpic: ; 12bae0
-INCBIN "gfx/frontpics/cpr/057.cpr"
+INCBIN "gfx/frontpics/lz/057.lz"
 OmastarBackpic: ; 12be51
-INCBIN "gfx/backpics/cpr/139.cpr"
+INCBIN "gfx/backpics/lz/139.lz"
 ; 12bffe
 
 
 SECTION "bank4b",DATA,BANK[$4b]
 
 DodrioFrontpic: ; 12c000
-INCBIN "gfx/frontpics/cpr/085.cpr"
+INCBIN "gfx/frontpics/lz/085.lz"
 SlowkingFrontpic: ; 12c371
-INCBIN "gfx/frontpics/cpr/199.cpr"
+INCBIN "gfx/frontpics/lz/199.lz"
 HitmontopFrontpic: ; 12c6df
-INCBIN "gfx/frontpics/cpr/237.cpr"
+INCBIN "gfx/frontpics/lz/237.lz"
 OnixFrontpic: ; 12ca47
-INCBIN "gfx/frontpics/cpr/095.cpr"
+INCBIN "gfx/frontpics/lz/095.lz"
 BlisseyFrontpic: ; 12cdac
-INCBIN "gfx/frontpics/cpr/242.cpr"
+INCBIN "gfx/frontpics/lz/242.lz"
 MachokeFrontpic: ; 12d10f
-INCBIN "gfx/frontpics/cpr/067.cpr"
+INCBIN "gfx/frontpics/lz/067.lz"
 DragoniteFrontpic: ; 12d46e
-INCBIN "gfx/frontpics/cpr/149.cpr"
+INCBIN "gfx/frontpics/lz/149.lz"
 PoliwrathFrontpic: ; 12d7ca
-INCBIN "gfx/frontpics/cpr/062.cpr"
+INCBIN "gfx/frontpics/lz/062.lz"
 ScytherFrontpic: ; 12db25
-INCBIN "gfx/frontpics/cpr/123.cpr"
+INCBIN "gfx/frontpics/lz/123.lz"
 AerodactylFrontpic: ; 12de7b
-INCBIN "gfx/frontpics/cpr/142.cpr"
+INCBIN "gfx/frontpics/lz/142.lz"
 SeakingFrontpic: ; 12e1cc
-INCBIN "gfx/frontpics/cpr/119.cpr"
+INCBIN "gfx/frontpics/lz/119.lz"
 MukFrontpic: ; 12e51c
-INCBIN "gfx/frontpics/cpr/089.cpr"
+INCBIN "gfx/frontpics/lz/089.lz"
 CroconawFrontpic: ; 12e86a
-INCBIN "gfx/frontpics/cpr/159.cpr"
+INCBIN "gfx/frontpics/lz/159.lz"
 HypnoFrontpic: ; 12ebb6
-INCBIN "gfx/frontpics/cpr/097.cpr"
+INCBIN "gfx/frontpics/lz/097.lz"
 NidorinoFrontpic: ; 12eefb
-INCBIN "gfx/frontpics/cpr/033.cpr"
+INCBIN "gfx/frontpics/lz/033.lz"
 SandslashFrontpic: ; 12f23c
-INCBIN "gfx/frontpics/cpr/028.cpr"
+INCBIN "gfx/frontpics/lz/028.lz"
 JolteonFrontpic: ; 12f575
-INCBIN "gfx/frontpics/cpr/135.cpr"
+INCBIN "gfx/frontpics/lz/135.lz"
 DonphanFrontpic: ; 12f8ac
-INCBIN "gfx/frontpics/cpr/232.cpr"
+INCBIN "gfx/frontpics/lz/232.lz"
 PinsirFrontpic: ; 12fbdf
-INCBIN "gfx/frontpics/cpr/127.cpr"
+INCBIN "gfx/frontpics/lz/127.lz"
 UnownEFrontpic: ; 12ff0e
-INCBIN "gfx/frontpics/cpr/201e.cpr"
+INCBIN "gfx/frontpics/lz/201e.lz"
 ; 130000
 
 
@@ -89884,1175 +89884,1175 @@ INCBIN "gfx/frontpics/cpr/201e.cpr"
 SECTION "bank4C",DATA,BANK[$4C]
 
 GolbatFrontpic: ; 130000
-INCBIN "gfx/frontpics/cpr/042.cpr"
+INCBIN "gfx/frontpics/lz/042.lz"
 KinglerFrontpic: ; 13032e
-INCBIN "gfx/frontpics/cpr/099.cpr"
+INCBIN "gfx/frontpics/lz/099.lz"
 ExeggcuteFrontpic: ; 13065a
-INCBIN "gfx/frontpics/cpr/102.cpr"
+INCBIN "gfx/frontpics/lz/102.lz"
 MagcargoFrontpic: ; 130982
-INCBIN "gfx/frontpics/cpr/219.cpr"
+INCBIN "gfx/frontpics/lz/219.lz"
 PersianFrontpic: ; 130ca1
-INCBIN "gfx/frontpics/cpr/053.cpr"
+INCBIN "gfx/frontpics/lz/053.lz"
 StantlerFrontpic: ; 130fbf
-INCBIN "gfx/frontpics/cpr/234.cpr"
+INCBIN "gfx/frontpics/lz/234.lz"
 RaticateFrontpic: ; 1312dd
-INCBIN "gfx/frontpics/cpr/020.cpr"
+INCBIN "gfx/frontpics/lz/020.lz"
 VenomothFrontpic: ; 1315fa
-INCBIN "gfx/frontpics/cpr/049.cpr"
+INCBIN "gfx/frontpics/lz/049.lz"
 PolitoedFrontpic: ; 131916
-INCBIN "gfx/frontpics/cpr/186.cpr"
+INCBIN "gfx/frontpics/lz/186.lz"
 ElectabuzzFrontpic: ; 131c32
-INCBIN "gfx/frontpics/cpr/125.cpr"
+INCBIN "gfx/frontpics/lz/125.lz"
 MantineFrontpic: ; 131f4b
-INCBIN "gfx/frontpics/cpr/226.cpr"
+INCBIN "gfx/frontpics/lz/226.lz"
 LickitungFrontpic: ; 132260
-INCBIN "gfx/frontpics/cpr/108.cpr"
+INCBIN "gfx/frontpics/lz/108.lz"
 KingdraFrontpic: ; 132573
-INCBIN "gfx/frontpics/cpr/230.cpr"
+INCBIN "gfx/frontpics/lz/230.lz"
 CharmeleonFrontpic: ; 132881
-INCBIN "gfx/frontpics/cpr/005.cpr"
+INCBIN "gfx/frontpics/lz/005.lz"
 KadabraFrontpic: ; 132b8b
-INCBIN "gfx/frontpics/cpr/064.cpr"
+INCBIN "gfx/frontpics/lz/064.lz"
 ExeggutorFrontpic: ; 132e90
-INCBIN "gfx/frontpics/cpr/103.cpr"
+INCBIN "gfx/frontpics/lz/103.lz"
 GastlyFrontpic: ; 133194
-INCBIN "gfx/frontpics/cpr/092.cpr"
+INCBIN "gfx/frontpics/lz/092.lz"
 AzumarillFrontpic: ; 133492
-INCBIN "gfx/frontpics/cpr/184.cpr"
+INCBIN "gfx/frontpics/lz/184.lz"
 ParasectFrontpic: ; 13378f
-INCBIN "gfx/frontpics/cpr/047.cpr"
+INCBIN "gfx/frontpics/lz/047.lz"
 MrMimeFrontpic: ; 133a8a
-INCBIN "gfx/frontpics/cpr/122.cpr"
+INCBIN "gfx/frontpics/lz/122.lz"
 HeracrossFrontpic: ; 133d7b
-INCBIN "gfx/frontpics/cpr/214.cpr"
+INCBIN "gfx/frontpics/lz/214.lz"
 ; 133fff
 
 
 SECTION "bank4d",DATA,BANK[$4d]
 
 AriadosFrontpic: ; 134000
-INCBIN "gfx/frontpics/cpr/168.cpr"
+INCBIN "gfx/frontpics/lz/168.lz"
 NoctowlFrontpic: ; 1342eb
-INCBIN "gfx/frontpics/cpr/164.cpr"
+INCBIN "gfx/frontpics/lz/164.lz"
 WartortleFrontpic: ; 1345d2
-INCBIN "gfx/frontpics/cpr/008.cpr"
+INCBIN "gfx/frontpics/lz/008.lz"
 LaprasFrontpic: ; 1348b7
-INCBIN "gfx/frontpics/cpr/131.cpr"
+INCBIN "gfx/frontpics/lz/131.lz"
 GolemFrontpic: ; 134b97
-INCBIN "gfx/frontpics/cpr/076.cpr"
+INCBIN "gfx/frontpics/lz/076.lz"
 PoliwhirlFrontpic: ; 134e76
-INCBIN "gfx/frontpics/cpr/061.cpr"
+INCBIN "gfx/frontpics/lz/061.lz"
 UrsaringFrontpic: ; 13514e
-INCBIN "gfx/frontpics/cpr/217.cpr"
+INCBIN "gfx/frontpics/lz/217.lz"
 HoundoomFrontpic: ; 135425
-INCBIN "gfx/frontpics/cpr/229.cpr"
+INCBIN "gfx/frontpics/lz/229.lz"
 KabutopsFrontpic: ; 1356fc
-INCBIN "gfx/frontpics/cpr/141.cpr"
+INCBIN "gfx/frontpics/lz/141.lz"
 AmpharosFrontpic: ; 1359d1
-INCBIN "gfx/frontpics/cpr/181.cpr"
+INCBIN "gfx/frontpics/lz/181.lz"
 NidorinaFrontpic: ; 135ca2
-INCBIN "gfx/frontpics/cpr/030.cpr"
+INCBIN "gfx/frontpics/lz/030.lz"
 FlareonFrontpic: ; 135f6d
-INCBIN "gfx/frontpics/cpr/136.cpr"
+INCBIN "gfx/frontpics/lz/136.lz"
 FarfetchDFrontpic: ; 136237
-INCBIN "gfx/frontpics/cpr/083.cpr"
+INCBIN "gfx/frontpics/lz/083.lz"
 VileplumeFrontpic: ; 1364ff
-INCBIN "gfx/frontpics/cpr/045.cpr"
+INCBIN "gfx/frontpics/lz/045.lz"
 BayleefFrontpic: ; 1367c3
-INCBIN "gfx/frontpics/cpr/153.cpr"
+INCBIN "gfx/frontpics/lz/153.lz"
 MagmarFrontpic: ; 136a82
-INCBIN "gfx/frontpics/cpr/126.cpr"
+INCBIN "gfx/frontpics/lz/126.lz"
 TentacruelFrontpic: ; 136d41
-INCBIN "gfx/frontpics/cpr/073.cpr"
+INCBIN "gfx/frontpics/lz/073.lz"
 ElekidFrontpic: ; 136fff
-INCBIN "gfx/frontpics/cpr/239.cpr"
+INCBIN "gfx/frontpics/lz/239.lz"
 JumpluffFrontpic: ; 1372bd
-INCBIN "gfx/frontpics/cpr/189.cpr"
+INCBIN "gfx/frontpics/lz/189.lz"
 MarowakFrontpic: ; 13757a
-INCBIN "gfx/frontpics/cpr/105.cpr"
+INCBIN "gfx/frontpics/lz/105.lz"
 VulpixFrontpic: ; 137836
-INCBIN "gfx/frontpics/cpr/037.cpr"
+INCBIN "gfx/frontpics/lz/037.lz"
 GligarFrontpic: ; 137aed
-INCBIN "gfx/frontpics/cpr/207.cpr"
+INCBIN "gfx/frontpics/lz/207.lz"
 DunsparceFrontpic: ; 137da1
-INCBIN "gfx/frontpics/cpr/206.cpr"
+INCBIN "gfx/frontpics/lz/206.lz"
 ; 137fff
 
 
 SECTION "bank4E",DATA,BANK[$4E]
 
 VaporeonFrontpic: ; 138000
-INCBIN "gfx/frontpics/cpr/134.cpr"
+INCBIN "gfx/frontpics/lz/134.lz"
 GirafarigFrontpic: ; 1382b3
-INCBIN "gfx/frontpics/cpr/203.cpr"
+INCBIN "gfx/frontpics/lz/203.lz"
 DrowzeeFrontpic: ; 138562
-INCBIN "gfx/frontpics/cpr/096.cpr"
+INCBIN "gfx/frontpics/lz/096.lz"
 SneaselFrontpic: ; 13880e
-INCBIN "gfx/frontpics/cpr/215.cpr"
+INCBIN "gfx/frontpics/lz/215.lz"
 BellossomFrontpic: ; 138ab4
-INCBIN "gfx/frontpics/cpr/182.cpr"
+INCBIN "gfx/frontpics/lz/182.lz"
 SnorlaxFrontpic: ; 138d5a
-INCBIN "gfx/frontpics/cpr/143.cpr"
+INCBIN "gfx/frontpics/lz/143.lz"
 WigglytuffFrontpic: ; 138fff
-INCBIN "gfx/frontpics/cpr/040.cpr"
+INCBIN "gfx/frontpics/lz/040.lz"
 YanmaFrontpic: ; 13929d
-INCBIN "gfx/frontpics/cpr/193.cpr"
+INCBIN "gfx/frontpics/lz/193.lz"
 SmeargleFrontpic: ; 139539
-INCBIN "gfx/frontpics/cpr/235.cpr"
+INCBIN "gfx/frontpics/lz/235.lz"
 ClefableFrontpic: ; 1397d4
-INCBIN "gfx/frontpics/cpr/036.cpr"
+INCBIN "gfx/frontpics/lz/036.lz"
 PonytaFrontpic: ; 139a6e
-INCBIN "gfx/frontpics/cpr/077.cpr"
+INCBIN "gfx/frontpics/lz/077.lz"
 MurkrowFrontpic: ; 139d07
-INCBIN "gfx/frontpics/cpr/198.cpr"
+INCBIN "gfx/frontpics/lz/198.lz"
 GravelerFrontpic: ; 139fa0
-INCBIN "gfx/frontpics/cpr/075.cpr"
+INCBIN "gfx/frontpics/lz/075.lz"
 StarmieFrontpic: ; 13a238
-INCBIN "gfx/frontpics/cpr/121.cpr"
+INCBIN "gfx/frontpics/lz/121.lz"
 PidgeottoFrontpic: ; 13a4cf
-INCBIN "gfx/frontpics/cpr/017.cpr"
+INCBIN "gfx/frontpics/lz/017.lz"
 LedybaFrontpic: ; 13a762
-INCBIN "gfx/frontpics/cpr/165.cpr"
+INCBIN "gfx/frontpics/lz/165.lz"
 GengarFrontpic: ; 13a9f4
-INCBIN "gfx/frontpics/cpr/094.cpr"
+INCBIN "gfx/frontpics/lz/094.lz"
 OmastarFrontpic: ; 13ac85
-INCBIN "gfx/frontpics/cpr/139.cpr"
+INCBIN "gfx/frontpics/lz/139.lz"
 PiloswineFrontpic: ; 13af15
-INCBIN "gfx/frontpics/cpr/221.cpr"
+INCBIN "gfx/frontpics/lz/221.lz"
 DugtrioFrontpic: ; 13b1a2
-INCBIN "gfx/frontpics/cpr/051.cpr"
+INCBIN "gfx/frontpics/lz/051.lz"
 MagnetonFrontpic: ; 13b42d
-INCBIN "gfx/frontpics/cpr/082.cpr"
+INCBIN "gfx/frontpics/lz/082.lz"
 DragonairFrontpic: ; 13b6b5
-INCBIN "gfx/frontpics/cpr/148.cpr"
+INCBIN "gfx/frontpics/lz/148.lz"
 ForretressFrontpic: ; 13b93b
-INCBIN "gfx/frontpics/cpr/205.cpr"
+INCBIN "gfx/frontpics/lz/205.lz"
 TogeticFrontpic: ; 13bbc1
-INCBIN "gfx/frontpics/cpr/176.cpr"
+INCBIN "gfx/frontpics/lz/176.lz"
 KangaskhanBackpic: ; 13be45
-INCBIN "gfx/backpics/cpr/115.cpr"
+INCBIN "gfx/backpics/lz/115.lz"
 ; 13c000
 
 
 SECTION "bank4f",DATA,BANK[$4f]
 
 SeelFrontpic: ; 13c000
-INCBIN "gfx/frontpics/cpr/086.cpr"
+INCBIN "gfx/frontpics/lz/086.lz"
 CrobatFrontpic: ; 13c284
-INCBIN "gfx/frontpics/cpr/169.cpr"
+INCBIN "gfx/frontpics/lz/169.lz"
 ChanseyFrontpic: ; 13c502
-INCBIN "gfx/frontpics/cpr/113.cpr"
+INCBIN "gfx/frontpics/lz/113.lz"
 TangelaFrontpic: ; 13c77c
-INCBIN "gfx/frontpics/cpr/114.cpr"
+INCBIN "gfx/frontpics/lz/114.lz"
 SnubbullFrontpic: ; 13c9f5
-INCBIN "gfx/frontpics/cpr/209.cpr"
+INCBIN "gfx/frontpics/lz/209.lz"
 GranbullFrontpic: ; 13cc6e
-INCBIN "gfx/frontpics/cpr/210.cpr"
+INCBIN "gfx/frontpics/lz/210.lz"
 MiltankFrontpic: ; 13cee2
-INCBIN "gfx/frontpics/cpr/241.cpr"
+INCBIN "gfx/frontpics/lz/241.lz"
 HaunterFrontpic: ; 13d153
-INCBIN "gfx/frontpics/cpr/093.cpr"
+INCBIN "gfx/frontpics/lz/093.lz"
 SunfloraFrontpic: ; 13d3c3
-INCBIN "gfx/frontpics/cpr/192.cpr"
+INCBIN "gfx/frontpics/lz/192.lz"
 UmbreonFrontpic: ; 13d62e
-INCBIN "gfx/frontpics/cpr/197.cpr"
+INCBIN "gfx/frontpics/lz/197.lz"
 ChikoritaFrontpic: ; 13d898
-INCBIN "gfx/frontpics/cpr/152.cpr"
+INCBIN "gfx/frontpics/lz/152.lz"
 GoldeenFrontpic: ; 13dafc
-INCBIN "gfx/frontpics/cpr/118.cpr"
+INCBIN "gfx/frontpics/lz/118.lz"
 EspeonFrontpic: ; 13dd5e
-INCBIN "gfx/frontpics/cpr/196.cpr"
+INCBIN "gfx/frontpics/lz/196.lz"
 XatuFrontpic: ; 13dfbc
-INCBIN "gfx/frontpics/cpr/178.cpr"
+INCBIN "gfx/frontpics/lz/178.lz"
 MewFrontpic: ; 13e213
-INCBIN "gfx/frontpics/cpr/151.cpr"
+INCBIN "gfx/frontpics/lz/151.lz"
 OctilleryFrontpic: ; 13e46a
-INCBIN "gfx/frontpics/cpr/224.cpr"
+INCBIN "gfx/frontpics/lz/224.lz"
 JynxFrontpic: ; 13e6c0
-INCBIN "gfx/frontpics/cpr/124.cpr"
+INCBIN "gfx/frontpics/lz/124.lz"
 WobbuffetFrontpic: ; 13e915
-INCBIN "gfx/frontpics/cpr/202.cpr"
+INCBIN "gfx/frontpics/lz/202.lz"
 DelibirdFrontpic: ; 13eb68
-INCBIN "gfx/frontpics/cpr/225.cpr"
+INCBIN "gfx/frontpics/lz/225.lz"
 LedianFrontpic: ; 13edba
-INCBIN "gfx/frontpics/cpr/166.cpr"
+INCBIN "gfx/frontpics/lz/166.lz"
 GloomFrontpic: ; 13f00b
-INCBIN "gfx/frontpics/cpr/044.cpr"
+INCBIN "gfx/frontpics/lz/044.lz"
 FlaaffyFrontpic: ; 13f257
-INCBIN "gfx/frontpics/cpr/180.cpr"
+INCBIN "gfx/frontpics/lz/180.lz"
 IvysaurFrontpic: ; 13f4a2
-INCBIN "gfx/frontpics/cpr/002.cpr"
+INCBIN "gfx/frontpics/lz/002.lz"
 FurretFrontpic: ; 13f6ec
-INCBIN "gfx/frontpics/cpr/162.cpr"
+INCBIN "gfx/frontpics/lz/162.lz"
 CyndaquilFrontpic: ; 13f931
-INCBIN "gfx/frontpics/cpr/155.cpr"
+INCBIN "gfx/frontpics/lz/155.lz"
 HitmonchanFrontpic: ; 13fb74
-INCBIN "gfx/frontpics/cpr/107.cpr"
+INCBIN "gfx/frontpics/lz/107.lz"
 QuagsireFrontpic: ; 13fdb7
-INCBIN "gfx/frontpics/cpr/195.cpr"
+INCBIN "gfx/frontpics/lz/195.lz"
 ; 13fff7
 
 
 SECTION "bank50",DATA,BANK[$50]
 
 EkansFrontpic: ; 140000
-INCBIN "gfx/frontpics/cpr/023.cpr"
+INCBIN "gfx/frontpics/lz/023.lz"
 SudowoodoFrontpic: ; 14023f
-INCBIN "gfx/frontpics/cpr/185.cpr"
+INCBIN "gfx/frontpics/lz/185.lz"
 PikachuFrontpic: ; 14047d
-INCBIN "gfx/frontpics/cpr/025.cpr"
+INCBIN "gfx/frontpics/lz/025.lz"
 SeadraFrontpic: ; 1406b7
-INCBIN "gfx/frontpics/cpr/117.cpr"
+INCBIN "gfx/frontpics/lz/117.lz"
 MagbyFrontpic: ; 1408f1
-INCBIN "gfx/frontpics/cpr/240.cpr"
+INCBIN "gfx/frontpics/lz/240.lz"
 WeepinbellFrontpic: ; 140b2a
-INCBIN "gfx/frontpics/cpr/070.cpr"
+INCBIN "gfx/frontpics/lz/070.lz"
 TotodileFrontpic: ; 140d61
-INCBIN "gfx/frontpics/cpr/158.cpr"
+INCBIN "gfx/frontpics/lz/158.lz"
 CorsolaFrontpic: ; 140f92
-INCBIN "gfx/frontpics/cpr/222.cpr"
+INCBIN "gfx/frontpics/lz/222.lz"
 FirebreatherPic: ; 1411c1
-INCBIN "gfx/trainers/cpr/047.cpr"
+INCBIN "gfx/trainers/lz/047.lz"
 MachopFrontpic: ; 1413e9
-INCBIN "gfx/frontpics/cpr/066.cpr"
+INCBIN "gfx/frontpics/lz/066.lz"
 ChinchouFrontpic: ; 141602
-INCBIN "gfx/frontpics/cpr/170.cpr"
+INCBIN "gfx/frontpics/lz/170.lz"
 RattataFrontpic: ; 141819
-INCBIN "gfx/frontpics/cpr/019.cpr"
+INCBIN "gfx/frontpics/lz/019.lz"
 ChampionPic: ; 141a2f
-INCBIN "gfx/trainers/cpr/015.cpr"
+INCBIN "gfx/trainers/lz/015.lz"
 SpearowFrontpic: ; 141c43
-INCBIN "gfx/frontpics/cpr/021.cpr"
+INCBIN "gfx/frontpics/lz/021.lz"
 MagikarpFrontpic: ; 141e54
-INCBIN "gfx/frontpics/cpr/129.cpr"
+INCBIN "gfx/frontpics/lz/129.lz"
 CharmanderFrontpic: ; 142065
-INCBIN "gfx/frontpics/cpr/004.cpr"
+INCBIN "gfx/frontpics/lz/004.lz"
 CuboneFrontpic: ; 142275
-INCBIN "gfx/frontpics/cpr/104.cpr"
+INCBIN "gfx/frontpics/lz/104.lz"
 BlackbeltTPic: ; 142484
-INCBIN "gfx/trainers/cpr/049.cpr"
+INCBIN "gfx/trainers/lz/049.lz"
 BikerPic: ; 142692
-INCBIN "gfx/trainers/cpr/044.cpr"
+INCBIN "gfx/trainers/lz/044.lz"
 NidoranMFrontpic: ; 14289f
-INCBIN "gfx/frontpics/cpr/032.cpr"
+INCBIN "gfx/frontpics/lz/032.lz"
 PorygonFrontpic: ; 142aab
-INCBIN "gfx/frontpics/cpr/137.cpr"
+INCBIN "gfx/frontpics/lz/137.lz"
 BrunoPic: ; 142cb5
-INCBIN "gfx/trainers/cpr/012.cpr"
+INCBIN "gfx/trainers/lz/012.lz"
 GrimerFrontpic: ; 142ebe
-INCBIN "gfx/frontpics/cpr/088.cpr"
+INCBIN "gfx/frontpics/lz/088.lz"
 StaryuFrontpic: ; 1430c4
-INCBIN "gfx/frontpics/cpr/120.cpr"
+INCBIN "gfx/frontpics/lz/120.lz"
 HikerPic: ; 1432c9
-INCBIN "gfx/trainers/cpr/043.cpr"
+INCBIN "gfx/trainers/lz/043.lz"
 MeowthFrontpic: ; 1434cd
-INCBIN "gfx/frontpics/cpr/052.cpr"
+INCBIN "gfx/frontpics/lz/052.lz"
 Porygon2Frontpic: ; 1436d1
-INCBIN "gfx/frontpics/cpr/233.cpr"
+INCBIN "gfx/frontpics/lz/233.lz"
 SandshrewFrontpic: ; 1438d2
-INCBIN "gfx/frontpics/cpr/027.cpr"
+INCBIN "gfx/frontpics/lz/027.lz"
 NidoranFFrontpic: ; 143ad2
-INCBIN "gfx/frontpics/cpr/029.cpr"
+INCBIN "gfx/frontpics/lz/029.lz"
 PidgeyFrontpic: ; 143ccc
-INCBIN "gfx/frontpics/cpr/016.cpr"
+INCBIN "gfx/frontpics/lz/016.lz"
 ParasectBackpic: ; 143ec6
-INCBIN "gfx/backpics/cpr/047.cpr"
+INCBIN "gfx/backpics/lz/047.lz"
 ; 144000
 
 SECTION "bank51",DATA,BANK[$51]
 
 MisdreavusFrontpic: ; 144000
-INCBIN "gfx/frontpics/cpr/200.cpr"
+INCBIN "gfx/frontpics/lz/200.lz"
 HoundourFrontpic: ; 1441f7
-INCBIN "gfx/frontpics/cpr/228.cpr"
+INCBIN "gfx/frontpics/lz/228.lz"
 MankeyFrontpic: ; 1443ee
-INCBIN "gfx/frontpics/cpr/056.cpr"
+INCBIN "gfx/frontpics/lz/056.lz"
 CelebiFrontpic: ; 1445e1
-INCBIN "gfx/frontpics/cpr/251.cpr"
+INCBIN "gfx/frontpics/lz/251.lz"
 MediumPic: ; 1447d1
-INCBIN "gfx/trainers/cpr/056.cpr"
+INCBIN "gfx/trainers/lz/056.lz"
 PinecoFrontpic: ; 1449c0
-INCBIN "gfx/frontpics/cpr/204.cpr"
+INCBIN "gfx/frontpics/lz/204.lz"
 KrabbyFrontpic: ; 144bae
-INCBIN "gfx/frontpics/cpr/098.cpr"
+INCBIN "gfx/frontpics/lz/098.lz"
 FisherPic: ; 144d9a
-INCBIN "gfx/trainers/cpr/036.cpr"
+INCBIN "gfx/trainers/lz/036.lz"
 JigglypuffFrontpic: ; 144f83
-INCBIN "gfx/frontpics/cpr/039.cpr"
+INCBIN "gfx/frontpics/lz/039.lz"
 ParasFrontpic: ; 14516a
-INCBIN "gfx/frontpics/cpr/046.cpr"
+INCBIN "gfx/frontpics/lz/046.lz"
 NidokingBackpic: ; 145350
-INCBIN "gfx/backpics/cpr/034.cpr"
+INCBIN "gfx/backpics/lz/034.lz"
 PokefanmPic: ; 145535
-INCBIN "gfx/trainers/cpr/058.cpr"
+INCBIN "gfx/trainers/lz/058.lz"
 BoarderPic: ; 14571a
-INCBIN "gfx/trainers/cpr/057.cpr"
+INCBIN "gfx/trainers/lz/057.lz"
 PsyduckFrontpic: ; 1458fe
-INCBIN "gfx/frontpics/cpr/054.cpr"
+INCBIN "gfx/frontpics/lz/054.lz"
 SquirtleFrontpic: ; 145ae2
-INCBIN "gfx/frontpics/cpr/007.cpr"
+INCBIN "gfx/frontpics/lz/007.lz"
 MachampBackpic: ; 145cc5
-INCBIN "gfx/backpics/cpr/068.cpr"
+INCBIN "gfx/backpics/lz/068.lz"
 KoffingFrontpic: ; 145ea7
-INCBIN "gfx/frontpics/cpr/109.cpr"
+INCBIN "gfx/frontpics/lz/109.lz"
 VenonatFrontpic: ; 146089
-INCBIN "gfx/frontpics/cpr/048.cpr"
+INCBIN "gfx/frontpics/lz/048.lz"
 ExeggutorBackpic: ; 14626a
-INCBIN "gfx/backpics/cpr/103.cpr"
+INCBIN "gfx/backpics/lz/103.lz"
 LanturnFrontpic: ; 146442
-INCBIN "gfx/frontpics/cpr/171.cpr"
+INCBIN "gfx/frontpics/lz/171.lz"
 TyrogueFrontpic: ; 14661a
-INCBIN "gfx/frontpics/cpr/236.cpr"
+INCBIN "gfx/frontpics/lz/236.lz"
 SkiploomFrontpic: ; 1467f0
-INCBIN "gfx/frontpics/cpr/188.cpr"
+INCBIN "gfx/frontpics/lz/188.lz"
 MareepFrontpic: ; 1469c4
-INCBIN "gfx/frontpics/cpr/179.cpr"
+INCBIN "gfx/frontpics/lz/179.lz"
 ChuckPic: ; 146b97
-INCBIN "gfx/trainers/cpr/006.cpr"
+INCBIN "gfx/trainers/lz/006.lz"
 EeveeFrontpic: ; 146d68
-INCBIN "gfx/frontpics/cpr/133.cpr"
+INCBIN "gfx/frontpics/lz/133.lz"
 ButterfreeBackpic: ; 146f39
-INCBIN "gfx/backpics/cpr/012.cpr"
+INCBIN "gfx/backpics/lz/012.lz"
 ZubatFrontpic: ; 147108
-INCBIN "gfx/frontpics/cpr/041.cpr"
+INCBIN "gfx/frontpics/lz/041.lz"
 KimonoGirlPic: ; 1472d7
-INCBIN "gfx/trainers/cpr/059.cpr"
+INCBIN "gfx/trainers/lz/059.lz"
 AlakazamBackpic: ; 1474a5
-INCBIN "gfx/backpics/cpr/065.cpr"
+INCBIN "gfx/backpics/lz/065.lz"
 AipomFrontpic: ; 147672
-INCBIN "gfx/frontpics/cpr/190.cpr"
+INCBIN "gfx/frontpics/lz/190.lz"
 AbraFrontpic: ; 14783f
-INCBIN "gfx/frontpics/cpr/063.cpr"
+INCBIN "gfx/frontpics/lz/063.lz"
 HitmontopBackpic: ; 147a0a
-INCBIN "gfx/backpics/cpr/237.cpr"
+INCBIN "gfx/backpics/lz/237.lz"
 CloysterBackpic: ; 147bd4
-INCBIN "gfx/backpics/cpr/091.cpr"
+INCBIN "gfx/backpics/lz/091.lz"
 HoothootFrontpic: ; 147d9e
-INCBIN "gfx/frontpics/cpr/163.cpr"
+INCBIN "gfx/frontpics/lz/163.lz"
 UnownFBackpic: ; 147f67
-INCBIN "gfx/backpics/cpr/201f.cpr"
+INCBIN "gfx/backpics/lz/201f.lz"
 ; 148000
 
 
 SECTION "bank52",DATA,BANK[$52]
 
 DodrioBackpic: ; 148000
-INCBIN "gfx/backpics/cpr/085.cpr"
+INCBIN "gfx/backpics/lz/085.lz"
 ClefairyFrontpic: ; 1481c7
-INCBIN "gfx/frontpics/cpr/035.cpr"
+INCBIN "gfx/frontpics/lz/035.lz"
 SlugmaFrontpic: ; 14838d
-INCBIN "gfx/frontpics/cpr/218.cpr"
+INCBIN "gfx/frontpics/lz/218.lz"
 GrowlitheFrontpic: ; 148553
-INCBIN "gfx/frontpics/cpr/058.cpr"
+INCBIN "gfx/frontpics/lz/058.lz"
 SlowpokeFrontpic: ; 148718
-INCBIN "gfx/frontpics/cpr/079.cpr"
+INCBIN "gfx/frontpics/lz/079.lz"
 SmoochumFrontpic: ; 1488dd
-INCBIN "gfx/frontpics/cpr/238.cpr"
+INCBIN "gfx/frontpics/lz/238.lz"
 JugglerPic: ; 148aa2
-INCBIN "gfx/trainers/cpr/048.cpr"
+INCBIN "gfx/trainers/lz/048.lz"
 MarillFrontpic: ; 148c66
-INCBIN "gfx/frontpics/cpr/183.cpr"
+INCBIN "gfx/frontpics/lz/183.lz"
 GuitaristPic: ; 148e29
-INCBIN "gfx/trainers/cpr/042.cpr"
+INCBIN "gfx/trainers/lz/042.lz"
 PokefanfPic: ; 148fec
-INCBIN "gfx/trainers/cpr/061.cpr"
+INCBIN "gfx/trainers/lz/061.lz"
 VenomothBackpic: ; 1491ae
-INCBIN "gfx/backpics/cpr/049.cpr"
+INCBIN "gfx/backpics/lz/049.lz"
 ClairPic: ; 149370
-INCBIN "gfx/trainers/cpr/007.cpr"
+INCBIN "gfx/trainers/lz/007.lz"
 PokemaniacPic: ; 149531
-INCBIN "gfx/trainers/cpr/029.cpr"
+INCBIN "gfx/trainers/lz/029.lz"
 OmanyteFrontpic: ; 1496f1
-INCBIN "gfx/frontpics/cpr/138.cpr"
+INCBIN "gfx/frontpics/lz/138.lz"
 SkierPic: ; 1498af
-INCBIN "gfx/trainers/cpr/032.cpr"
+INCBIN "gfx/trainers/lz/032.lz"
 PupitarFrontpic: ; 149a6d
-INCBIN "gfx/frontpics/cpr/247.cpr"
+INCBIN "gfx/frontpics/lz/247.lz"
 BellsproutFrontpic: ; 149c2b
-INCBIN "gfx/frontpics/cpr/069.cpr"
+INCBIN "gfx/frontpics/lz/069.lz"
 ShellderFrontpic: ; 149de6
-INCBIN "gfx/frontpics/cpr/090.cpr"
+INCBIN "gfx/frontpics/lz/090.lz"
 TentacoolFrontpic: ; 149fa0
-INCBIN "gfx/frontpics/cpr/072.cpr"
+INCBIN "gfx/frontpics/lz/072.lz"
 CleffaFrontpic: ; 14a159
-INCBIN "gfx/frontpics/cpr/173.cpr"
+INCBIN "gfx/frontpics/lz/173.lz"
 GyaradosBackpic: ; 14a30c
-INCBIN "gfx/backpics/cpr/130.cpr"
+INCBIN "gfx/backpics/lz/130.lz"
 NinetalesBackpic: ; 14a4bf
-INCBIN "gfx/backpics/cpr/038.cpr"
+INCBIN "gfx/backpics/lz/038.lz"
 YanmaBackpic: ; 14a670
-INCBIN "gfx/backpics/cpr/193.cpr"
+INCBIN "gfx/backpics/lz/193.lz"
 PinsirBackpic: ; 14a821
-INCBIN "gfx/backpics/cpr/127.cpr"
+INCBIN "gfx/backpics/lz/127.lz"
 LassPic: ; 14a9ce
-INCBIN "gfx/trainers/cpr/024.cpr"
+INCBIN "gfx/trainers/lz/024.lz"
 ClefableBackpic: ; 14ab7a
-INCBIN "gfx/backpics/cpr/036.cpr"
+INCBIN "gfx/backpics/lz/036.lz"
 DoduoFrontpic: ; 14ad26
-INCBIN "gfx/frontpics/cpr/084.cpr"
+INCBIN "gfx/frontpics/lz/084.lz"
 FeraligatrBackpic: ; 14aed2
-INCBIN "gfx/backpics/cpr/160.cpr"
+INCBIN "gfx/backpics/lz/160.lz"
 DratiniFrontpic: ; 14b07d
-INCBIN "gfx/frontpics/cpr/147.cpr"
+INCBIN "gfx/frontpics/lz/147.lz"
 MagnetonBackpic: ; 14b228
-INCBIN "gfx/backpics/cpr/082.cpr"
+INCBIN "gfx/backpics/lz/082.lz"
 QwilfishFrontpic: ; 14b3d1
-INCBIN "gfx/frontpics/cpr/211.cpr"
+INCBIN "gfx/frontpics/lz/211.lz"
 SuicuneBackpic: ; 14b579
-INCBIN "gfx/backpics/cpr/245.cpr"
+INCBIN "gfx/backpics/lz/245.lz"
 SlowkingBackpic: ; 14b720
-INCBIN "gfx/backpics/cpr/199.cpr"
+INCBIN "gfx/backpics/lz/199.lz"
 ElekidBackpic: ; 14b8c6
-INCBIN "gfx/backpics/cpr/239.cpr"
+INCBIN "gfx/backpics/lz/239.lz"
 CelebiBackpic: ; 14ba6b
-INCBIN "gfx/backpics/cpr/251.cpr"
+INCBIN "gfx/backpics/lz/251.lz"
 KrabbyBackpic: ; 14bc0f
-INCBIN "gfx/backpics/cpr/098.cpr"
+INCBIN "gfx/backpics/lz/098.lz"
 BugCatcherPic: ; 14bdb2
-INCBIN "gfx/trainers/cpr/035.cpr"
+INCBIN "gfx/trainers/lz/035.lz"
 SnorlaxBackpic: ; 14bf55
-INCBIN "gfx/backpics/cpr/143.cpr"
+INCBIN "gfx/backpics/lz/143.lz"
 ; 14bffb
 
 
 SECTION "bank53",DATA,BANK[$53]
 
 VenusaurBackpic: ; 14c000
-INCBIN "gfx/backpics/cpr/003.cpr"
+INCBIN "gfx/backpics/lz/003.lz"
 MoltresBackpic: ; 14c1a2
-INCBIN "gfx/backpics/cpr/146.cpr"
+INCBIN "gfx/backpics/lz/146.lz"
 SunfloraBackpic: ; 14c342
-INCBIN "gfx/backpics/cpr/192.cpr"
+INCBIN "gfx/backpics/lz/192.lz"
 PhanpyFrontpic: ; 14c4e1
-INCBIN "gfx/frontpics/cpr/231.cpr"
+INCBIN "gfx/frontpics/lz/231.lz"
 RhydonBackpic: ; 14c67f
-INCBIN "gfx/backpics/cpr/112.cpr"
+INCBIN "gfx/backpics/lz/112.lz"
 LarvitarFrontpic: ; 14c81c
-INCBIN "gfx/frontpics/cpr/246.cpr"
+INCBIN "gfx/frontpics/lz/246.lz"
 TyranitarBackpic: ; 14c9b9
-INCBIN "gfx/backpics/cpr/248.cpr"
+INCBIN "gfx/backpics/lz/248.lz"
 SandslashBackpic: ; 14cb56
-INCBIN "gfx/backpics/cpr/028.cpr"
+INCBIN "gfx/backpics/lz/028.lz"
 SeadraBackpic: ; 14ccf2
-INCBIN "gfx/backpics/cpr/117.cpr"
+INCBIN "gfx/backpics/lz/117.lz"
 TwinsPic: ; 14ce8e
-INCBIN "gfx/trainers/cpr/060.cpr"
+INCBIN "gfx/trainers/lz/060.lz"
 FarfetchDBackpic: ; 14d02a
-INCBIN "gfx/backpics/cpr/083.cpr"
+INCBIN "gfx/backpics/lz/083.lz"
 NidoranMBackpic: ; 14d1c5
-INCBIN "gfx/backpics/cpr/032.cpr"
+INCBIN "gfx/backpics/lz/032.lz"
 LedybaBackpic: ; 14d360
-INCBIN "gfx/backpics/cpr/165.cpr"
+INCBIN "gfx/backpics/lz/165.lz"
 CyndaquilBackpic: ; 14d4fb
-INCBIN "gfx/backpics/cpr/155.cpr"
+INCBIN "gfx/backpics/lz/155.lz"
 BayleefBackpic: ; 14d695
-INCBIN "gfx/backpics/cpr/153.cpr"
+INCBIN "gfx/backpics/lz/153.lz"
 OddishFrontpic: ; 14d82c
-INCBIN "gfx/frontpics/cpr/043.cpr"
+INCBIN "gfx/frontpics/lz/043.lz"
 RapidashBackpic: ; 14d9c0
-INCBIN "gfx/backpics/cpr/078.cpr"
+INCBIN "gfx/backpics/lz/078.lz"
 DoduoBackpic: ; 14db54
-INCBIN "gfx/backpics/cpr/084.cpr"
+INCBIN "gfx/backpics/lz/084.lz"
 HoppipFrontpic: ; 14dce8
-INCBIN "gfx/frontpics/cpr/187.cpr"
+INCBIN "gfx/frontpics/lz/187.lz"
 MankeyBackpic: ; 14de7b
-INCBIN "gfx/backpics/cpr/056.cpr"
+INCBIN "gfx/backpics/lz/056.lz"
 MagmarBackpic: ; 14e00e
-INCBIN "gfx/backpics/cpr/126.cpr"
+INCBIN "gfx/backpics/lz/126.lz"
 HypnoBackpic: ; 14e1a0
-INCBIN "gfx/backpics/cpr/097.cpr"
+INCBIN "gfx/backpics/lz/097.lz"
 QuilavaBackpic: ; 14e331
-INCBIN "gfx/backpics/cpr/156.cpr"
+INCBIN "gfx/backpics/lz/156.lz"
 CroconawBackpic: ; 14e4c1
-INCBIN "gfx/backpics/cpr/159.cpr"
+INCBIN "gfx/backpics/lz/159.lz"
 SandshrewBackpic: ; 14e650
-INCBIN "gfx/backpics/cpr/027.cpr"
+INCBIN "gfx/backpics/lz/027.lz"
 SailorPic: ; 14e7dd
-INCBIN "gfx/trainers/cpr/039.cpr"
+INCBIN "gfx/trainers/lz/039.lz"
 BeautyPic: ; 14e969
-INCBIN "gfx/trainers/cpr/028.cpr"
+INCBIN "gfx/trainers/lz/028.lz"
 ShellderBackpic: ; 14eaf5
-INCBIN "gfx/backpics/cpr/090.cpr"
+INCBIN "gfx/backpics/lz/090.lz"
 ZubatBackpic: ; 14ec80
-INCBIN "gfx/backpics/cpr/041.cpr"
+INCBIN "gfx/backpics/lz/041.lz"
 TeddiursaFrontpic: ; 14ee0b
-INCBIN "gfx/frontpics/cpr/216.cpr"
+INCBIN "gfx/frontpics/lz/216.lz"
 CuboneBackpic: ; 14ef96
-INCBIN "gfx/backpics/cpr/104.cpr"
+INCBIN "gfx/backpics/lz/104.lz"
 GruntmPic: ; 14f120
-INCBIN "gfx/trainers/cpr/030.cpr"
+INCBIN "gfx/trainers/lz/030.lz"
 GloomBackpic: ; 14f2aa
-INCBIN "gfx/backpics/cpr/044.cpr"
+INCBIN "gfx/backpics/lz/044.lz"
 MagcargoBackpic: ; 14f434
-INCBIN "gfx/backpics/cpr/219.cpr"
+INCBIN "gfx/backpics/lz/219.lz"
 KabutopsBackpic: ; 14f5be
-INCBIN "gfx/backpics/cpr/141.cpr"
+INCBIN "gfx/backpics/lz/141.lz"
 BeedrillBackpic: ; 14f748
-INCBIN "gfx/backpics/cpr/015.cpr"
+INCBIN "gfx/backpics/lz/015.lz"
 ArcanineBackpic: ; 14f8d2
-INCBIN "gfx/backpics/cpr/059.cpr"
+INCBIN "gfx/backpics/lz/059.lz"
 FlareonBackpic: ; 14fa5b
-INCBIN "gfx/backpics/cpr/136.cpr"
+INCBIN "gfx/backpics/lz/136.lz"
 GoldeenBackpic: ; 14fbe4
-INCBIN "gfx/backpics/cpr/118.cpr"
+INCBIN "gfx/backpics/lz/118.lz"
 BulbasaurFrontpic: ; 14fd6d
-INCBIN "gfx/frontpics/cpr/001.cpr"
+INCBIN "gfx/frontpics/lz/001.lz"
 StarmieBackpic: ; 14fef5
-INCBIN "gfx/backpics/cpr/121.cpr"
+INCBIN "gfx/backpics/lz/121.lz"
 ; 150000
 
 
 SECTION "bank54",DATA,BANK[$54]
 
 OmanyteBackpic: ; 150000
-INCBIN "gfx/backpics/cpr/138.cpr"
+INCBIN "gfx/backpics/lz/138.lz"
 PidgeyBackpic: ; 150188
-INCBIN "gfx/backpics/cpr/016.cpr"
+INCBIN "gfx/backpics/lz/016.lz"
 ScientistPic: ; 15030f
-INCBIN "gfx/trainers/cpr/019.cpr"
+INCBIN "gfx/trainers/lz/019.lz"
 QwilfishBackpic: ; 150496
-INCBIN "gfx/backpics/cpr/211.cpr"
+INCBIN "gfx/backpics/lz/211.lz"
 GligarBackpic: ; 15061c
-INCBIN "gfx/backpics/cpr/207.cpr"
+INCBIN "gfx/backpics/lz/207.lz"
 TyphlosionBackpic: ; 1507a1
-INCBIN "gfx/backpics/cpr/157.cpr"
+INCBIN "gfx/backpics/lz/157.lz"
 CharmeleonBackpic: ; 150925
-INCBIN "gfx/backpics/cpr/005.cpr"
+INCBIN "gfx/backpics/lz/005.lz"
 NidoqueenBackpic: ; 150aa9
-INCBIN "gfx/backpics/cpr/031.cpr"
+INCBIN "gfx/backpics/lz/031.lz"
 PichuFrontpic: ; 150c2c
-INCBIN "gfx/frontpics/cpr/172.cpr"
+INCBIN "gfx/frontpics/lz/172.lz"
 ElectabuzzBackpic: ; 150dae
-INCBIN "gfx/backpics/cpr/125.cpr"
+INCBIN "gfx/backpics/lz/125.lz"
 LedianBackpic: ; 150f30
-INCBIN "gfx/backpics/cpr/166.cpr"
+INCBIN "gfx/backpics/lz/166.lz"
 PupitarBackpic: ; 1510b1
-INCBIN "gfx/backpics/cpr/247.cpr"
+INCBIN "gfx/backpics/lz/247.lz"
 HeracrossBackpic: ; 151232
-INCBIN "gfx/backpics/cpr/214.cpr"
+INCBIN "gfx/backpics/lz/214.lz"
 UnownDFrontpic: ; 1513b3
-INCBIN "gfx/frontpics/cpr/201d.cpr"
+INCBIN "gfx/frontpics/lz/201d.lz"
 MiltankBackpic: ; 151534
-INCBIN "gfx/backpics/cpr/241.cpr"
+INCBIN "gfx/backpics/lz/241.lz"
 SteelixBackpic: ; 1516b4
-INCBIN "gfx/backpics/cpr/208.cpr"
+INCBIN "gfx/backpics/lz/208.lz"
 PersianBackpic: ; 151834
-INCBIN "gfx/backpics/cpr/053.cpr"
+INCBIN "gfx/backpics/lz/053.lz"
 LtSurgePic: ; 1519b3
-INCBIN "gfx/trainers/cpr/018.cpr"
+INCBIN "gfx/trainers/lz/018.lz"
 TeacherPic: ; 151b31
-INCBIN "gfx/trainers/cpr/033.cpr"
+INCBIN "gfx/trainers/lz/033.lz"
 EggPic: ; 151caf
-INCBIN "gfx/frontpics/cpr/egg.cpr"
+INCBIN "gfx/frontpics/lz/egg.lz"
 EeveeBackpic: ; 151e2d
-INCBIN "gfx/backpics/cpr/133.cpr"
+INCBIN "gfx/backpics/lz/133.lz"
 ShuckleFrontpic: ; 151fa9
-INCBIN "gfx/frontpics/cpr/213.cpr"
+INCBIN "gfx/frontpics/lz/213.lz"
 PonytaBackpic: ; 152124
-INCBIN "gfx/backpics/cpr/077.cpr"
+INCBIN "gfx/backpics/lz/077.lz"
 RemoraidFrontpic: ; 15229f
-INCBIN "gfx/frontpics/cpr/223.cpr"
+INCBIN "gfx/frontpics/lz/223.lz"
 PoliwagFrontpic: ; 15241a
-INCBIN "gfx/frontpics/cpr/060.cpr"
+INCBIN "gfx/frontpics/lz/060.lz"
 OnixBackpic: ; 152595
-INCBIN "gfx/backpics/cpr/095.cpr"
+INCBIN "gfx/backpics/lz/095.lz"
 KoffingBackpic: ; 15270f
-INCBIN "gfx/backpics/cpr/109.cpr"
+INCBIN "gfx/backpics/lz/109.lz"
 BirdKeeperPic: ; 152889
-INCBIN "gfx/trainers/cpr/023.cpr"
+INCBIN "gfx/trainers/lz/023.lz"
 FalknerPic: ; 152a03
-INCBIN "gfx/trainers/cpr/000.cpr"
+INCBIN "gfx/trainers/lz/000.lz"
 KarenPic: ; 152b7b
-INCBIN "gfx/trainers/cpr/013.cpr"
+INCBIN "gfx/trainers/lz/013.lz"
 NidorinaBackpic: ; 152cf3
-INCBIN "gfx/backpics/cpr/030.cpr"
+INCBIN "gfx/backpics/lz/030.lz"
 TentacruelBackpic: ; 152e6a
-INCBIN "gfx/backpics/cpr/073.cpr"
+INCBIN "gfx/backpics/lz/073.lz"
 GrowlitheBackpic: ; 152fe1
-INCBIN "gfx/backpics/cpr/058.cpr"
+INCBIN "gfx/backpics/lz/058.lz"
 KogaPic: ; 153158
-INCBIN "gfx/trainers/cpr/014.cpr"
+INCBIN "gfx/trainers/lz/014.lz"
 MachokeBackpic: ; 1532cf
-INCBIN "gfx/backpics/cpr/067.cpr"
+INCBIN "gfx/backpics/lz/067.lz"
 RaichuBackpic: ; 153446
-INCBIN "gfx/backpics/cpr/026.cpr"
+INCBIN "gfx/backpics/lz/026.lz"
 PoliwrathBackpic: ; 1535bd
-INCBIN "gfx/backpics/cpr/062.cpr"
+INCBIN "gfx/backpics/lz/062.lz"
 SwimmermPic: ; 153733
-INCBIN "gfx/trainers/cpr/037.cpr"
+INCBIN "gfx/trainers/lz/037.lz"
 SunkernFrontpic: ; 1538a8
-INCBIN "gfx/frontpics/cpr/191.cpr"
+INCBIN "gfx/frontpics/lz/191.lz"
 NidorinoBackpic: ; 153a1b
-INCBIN "gfx/backpics/cpr/033.cpr"
+INCBIN "gfx/backpics/lz/033.lz"
 MysticalmanPic: ; 153b8e
-INCBIN "gfx/trainers/cpr/066.cpr"
+INCBIN "gfx/trainers/lz/066.lz"
 CooltrainerfPic: ; 153d00
-INCBIN "gfx/trainers/cpr/027.cpr"
+INCBIN "gfx/trainers/lz/027.lz"
 ElectrodeFrontpic: ; 153e72
-INCBIN "gfx/frontpics/cpr/101.cpr"
+INCBIN "gfx/frontpics/lz/101.lz"
 ; 153fe3
 
 
 SECTION "bank55",DATA,BANK[$55]
 
 SudowoodoBackpic: ; 154000
-INCBIN "gfx/backpics/cpr/185.cpr"
+INCBIN "gfx/backpics/lz/185.lz"
 FlaaffyBackpic: ; 154171
-INCBIN "gfx/backpics/cpr/180.cpr"
+INCBIN "gfx/backpics/lz/180.lz"
 SentretFrontpic: ; 1542e2
-INCBIN "gfx/frontpics/cpr/161.cpr"
+INCBIN "gfx/frontpics/lz/161.lz"
 TogeticBackpic: ; 154453
-INCBIN "gfx/backpics/cpr/176.cpr"
+INCBIN "gfx/backpics/lz/176.lz"
 BugsyPic: ; 1545c3
-INCBIN "gfx/trainers/cpr/002.cpr"
+INCBIN "gfx/trainers/lz/002.lz"
 MarowakBackpic: ; 154733
-INCBIN "gfx/backpics/cpr/105.cpr"
+INCBIN "gfx/backpics/lz/105.lz"
 GeodudeBackpic: ; 1548a3
-INCBIN "gfx/backpics/cpr/074.cpr"
+INCBIN "gfx/backpics/lz/074.lz"
 ScytherBackpic: ; 154a12
-INCBIN "gfx/backpics/cpr/123.cpr"
+INCBIN "gfx/backpics/lz/123.lz"
 VileplumeBackpic: ; 154b80
-INCBIN "gfx/backpics/cpr/045.cpr"
+INCBIN "gfx/backpics/lz/045.lz"
 HitmonchanBackpic: ; 154cee
-INCBIN "gfx/backpics/cpr/107.cpr"
+INCBIN "gfx/backpics/lz/107.lz"
 JumpluffBackpic: ; 154e5b
-INCBIN "gfx/backpics/cpr/189.cpr"
+INCBIN "gfx/backpics/lz/189.lz"
 CooltrainermPic: ; 154fc7
-INCBIN "gfx/trainers/cpr/026.cpr"
+INCBIN "gfx/trainers/lz/026.lz"
 BlastoiseBackpic: ; 155132
-INCBIN "gfx/backpics/cpr/009.cpr"
+INCBIN "gfx/backpics/lz/009.lz"
 MisdreavusBackpic: ; 15529d
-INCBIN "gfx/backpics/cpr/200.cpr"
+INCBIN "gfx/backpics/lz/200.lz"
 TyrogueBackpic: ; 155407
-INCBIN "gfx/backpics/cpr/236.cpr"
+INCBIN "gfx/backpics/lz/236.lz"
 GeodudeFrontpic: ; 155570
-INCBIN "gfx/frontpics/cpr/074.cpr"
+INCBIN "gfx/frontpics/lz/074.lz"
 ScizorBackpic: ; 1556d9
-INCBIN "gfx/backpics/cpr/212.cpr"
+INCBIN "gfx/backpics/lz/212.lz"
 GirafarigBackpic: ; 155842
-INCBIN "gfx/backpics/cpr/203.cpr"
+INCBIN "gfx/backpics/lz/203.lz"
 StantlerBackpic: ; 1559aa
-INCBIN "gfx/backpics/cpr/234.cpr"
+INCBIN "gfx/backpics/lz/234.lz"
 SmeargleBackpic: ; 155b12
-INCBIN "gfx/backpics/cpr/235.cpr"
+INCBIN "gfx/backpics/lz/235.lz"
 CharizardBackpic: ; 155c7a
-INCBIN "gfx/backpics/cpr/006.cpr"
+INCBIN "gfx/backpics/lz/006.lz"
 KadabraBackpic: ; 155de2
-INCBIN "gfx/backpics/cpr/064.cpr"
+INCBIN "gfx/backpics/lz/064.lz"
 PrimeapeBackpic: ; 155f49
-INCBIN "gfx/backpics/cpr/057.cpr"
+INCBIN "gfx/backpics/lz/057.lz"
 FurretBackpic: ; 1560b0
-INCBIN "gfx/backpics/cpr/162.cpr"
+INCBIN "gfx/backpics/lz/162.lz"
 WartortleBackpic: ; 156216
-INCBIN "gfx/backpics/cpr/008.cpr"
+INCBIN "gfx/backpics/lz/008.lz"
 ExeggcuteBackpic: ; 15637c
-INCBIN "gfx/backpics/cpr/102.cpr"
+INCBIN "gfx/backpics/lz/102.lz"
 IgglybuffFrontpic: ; 1564e2
-INCBIN "gfx/frontpics/cpr/174.cpr"
+INCBIN "gfx/frontpics/lz/174.lz"
 RaticateBackpic: ; 156647
-INCBIN "gfx/backpics/cpr/020.cpr"
+INCBIN "gfx/backpics/lz/020.lz"
 VulpixBackpic: ; 1567ac
-INCBIN "gfx/backpics/cpr/037.cpr"
+INCBIN "gfx/backpics/lz/037.lz"
 EkansBackpic: ; 156911
-INCBIN "gfx/backpics/cpr/023.cpr"
+INCBIN "gfx/backpics/lz/023.lz"
 SeakingBackpic: ; 156a75
-INCBIN "gfx/backpics/cpr/119.cpr"
+INCBIN "gfx/backpics/lz/119.lz"
 BurglarPic: ; 156bd9
-INCBIN "gfx/trainers/cpr/046.cpr"
+INCBIN "gfx/trainers/lz/046.lz"
 PsyduckBackpic: ; 156d3d
-INCBIN "gfx/backpics/cpr/054.cpr"
+INCBIN "gfx/backpics/lz/054.lz"
 PikachuBackpic: ; 156ea1
-INCBIN "gfx/backpics/cpr/025.cpr"
+INCBIN "gfx/backpics/lz/025.lz"
 KabutoFrontpic: ; 157003
-INCBIN "gfx/frontpics/cpr/140.cpr"
+INCBIN "gfx/frontpics/lz/140.lz"
 MareepBackpic: ; 157164
-INCBIN "gfx/backpics/cpr/179.cpr"
+INCBIN "gfx/backpics/lz/179.lz"
 RemoraidBackpic: ; 1572c5
-INCBIN "gfx/backpics/cpr/223.cpr"
+INCBIN "gfx/backpics/lz/223.lz"
 DittoFrontpic: ; 157426
-INCBIN "gfx/frontpics/cpr/132.cpr"
+INCBIN "gfx/frontpics/lz/132.lz"
 KingdraBackpic: ; 157586
-INCBIN "gfx/backpics/cpr/230.cpr"
+INCBIN "gfx/backpics/lz/230.lz"
 CamperPic: ; 1576e6
-INCBIN "gfx/trainers/cpr/053.cpr"
+INCBIN "gfx/trainers/lz/053.lz"
 WooperFrontpic: ; 157846
-INCBIN "gfx/frontpics/cpr/194.cpr"
+INCBIN "gfx/frontpics/lz/194.lz"
 ClefairyBackpic: ; 1579a6
-INCBIN "gfx/backpics/cpr/035.cpr"
+INCBIN "gfx/backpics/lz/035.lz"
 VenonatBackpic: ; 157b05
-INCBIN "gfx/backpics/cpr/048.cpr"
+INCBIN "gfx/backpics/lz/048.lz"
 BellossomBackpic: ; 157c64
-INCBIN "gfx/backpics/cpr/182.cpr"
+INCBIN "gfx/backpics/lz/182.lz"
 Rival1Pic: ; 157dc2
-INCBIN "gfx/trainers/cpr/008.cpr"
+INCBIN "gfx/trainers/lz/008.lz"
 SwinubBackpic: ; 157f20
-INCBIN "gfx/backpics/cpr/220.cpr"
+INCBIN "gfx/backpics/lz/220.lz"
 ; 158000
 
 
 SECTION "bank56",DATA,BANK[$56]
 
 MewtwoBackpic: ; 158000
-INCBIN "gfx/backpics/cpr/150.cpr"
+INCBIN "gfx/backpics/lz/150.lz"
 PokemonProfPic: ; 15815e
-INCBIN "gfx/trainers/cpr/009.cpr"
+INCBIN "gfx/trainers/lz/009.lz"
 CalPic: ; 1582bc
-INCBIN "gfx/trainers/cpr/011.cpr"
+INCBIN "gfx/trainers/lz/011.lz"
 SwimmerfPic: ; 158419
-INCBIN "gfx/trainers/cpr/038.cpr"
+INCBIN "gfx/trainers/lz/038.lz"
 DiglettFrontpic: ; 158576
-INCBIN "gfx/frontpics/cpr/050.cpr"
+INCBIN "gfx/frontpics/lz/050.lz"
 OfficerPic: ; 1586d3
-INCBIN "gfx/trainers/cpr/064.cpr"
+INCBIN "gfx/trainers/lz/064.lz"
 MukBackpic: ; 15882f
-INCBIN "gfx/backpics/cpr/089.cpr"
+INCBIN "gfx/backpics/lz/089.lz"
 DelibirdBackpic: ; 15898a
-INCBIN "gfx/backpics/cpr/225.cpr"
+INCBIN "gfx/backpics/lz/225.lz"
 SabrinaPic: ; 158ae5
-INCBIN "gfx/trainers/cpr/034.cpr"
+INCBIN "gfx/trainers/lz/034.lz"
 MagikarpBackpic: ; 158c3f
-INCBIN "gfx/backpics/cpr/129.cpr"
+INCBIN "gfx/backpics/lz/129.lz"
 AriadosBackpic: ; 158d98
-INCBIN "gfx/backpics/cpr/168.cpr"
+INCBIN "gfx/backpics/lz/168.lz"
 SneaselBackpic: ; 158ef1
-INCBIN "gfx/backpics/cpr/215.cpr"
+INCBIN "gfx/backpics/lz/215.lz"
 UmbreonBackpic: ; 159049
-INCBIN "gfx/backpics/cpr/197.cpr"
+INCBIN "gfx/backpics/lz/197.lz"
 MurkrowBackpic: ; 1591a0
-INCBIN "gfx/backpics/cpr/198.cpr"
+INCBIN "gfx/backpics/lz/198.lz"
 IvysaurBackpic: ; 1592f7
-INCBIN "gfx/backpics/cpr/002.cpr"
+INCBIN "gfx/backpics/lz/002.lz"
 SlowbroBackpic: ; 15944e
-INCBIN "gfx/backpics/cpr/080.cpr"
+INCBIN "gfx/backpics/lz/080.lz"
 PsychicTPic: ; 1595a4
-INCBIN "gfx/trainers/cpr/051.cpr"
+INCBIN "gfx/trainers/lz/051.lz"
 GolduckBackpic: ; 1596fa
-INCBIN "gfx/backpics/cpr/055.cpr"
+INCBIN "gfx/backpics/lz/055.lz"
 WeezingBackpic: ; 15984f
-INCBIN "gfx/backpics/cpr/110.cpr"
+INCBIN "gfx/backpics/lz/110.lz"
 EnteiBackpic: ; 1599a3
-INCBIN "gfx/backpics/cpr/244.cpr"
+INCBIN "gfx/backpics/lz/244.lz"
 GruntfPic: ; 159af7
-INCBIN "gfx/trainers/cpr/065.cpr"
+INCBIN "gfx/trainers/lz/065.lz"
 HorseaFrontpic: ; 159c4a
-INCBIN "gfx/frontpics/cpr/116.cpr"
+INCBIN "gfx/frontpics/lz/116.lz"
 PidgeotBackpic: ; 159d9d
-INCBIN "gfx/backpics/cpr/018.cpr"
+INCBIN "gfx/backpics/lz/018.lz"
 HoOhBackpic: ; 159ef0
-INCBIN "gfx/backpics/cpr/250.cpr"
+INCBIN "gfx/backpics/lz/250.lz"
 PoliwhirlBackpic: ; 15a041
-INCBIN "gfx/backpics/cpr/061.cpr"
+INCBIN "gfx/backpics/lz/061.lz"
 MewBackpic: ; 15a191
-INCBIN "gfx/backpics/cpr/151.cpr"
+INCBIN "gfx/backpics/lz/151.lz"
 MachopBackpic: ; 15a2e0
-INCBIN "gfx/backpics/cpr/066.cpr"
+INCBIN "gfx/backpics/lz/066.lz"
 AbraBackpic: ; 15a42f
-INCBIN "gfx/backpics/cpr/063.cpr"
+INCBIN "gfx/backpics/lz/063.lz"
 AerodactylBackpic: ; 15a57e
-INCBIN "gfx/backpics/cpr/142.cpr"
+INCBIN "gfx/backpics/lz/142.lz"
 KakunaFrontpic: ; 15a6cc
-INCBIN "gfx/frontpics/cpr/014.cpr"
+INCBIN "gfx/frontpics/lz/014.lz"
 DugtrioBackpic: ; 15a81a
-INCBIN "gfx/backpics/cpr/051.cpr"
+INCBIN "gfx/backpics/lz/051.lz"
 WeepinbellBackpic: ; 15a968
-INCBIN "gfx/backpics/cpr/070.cpr"
+INCBIN "gfx/backpics/lz/070.lz"
 NidoranFBackpic: ; 15aab6
-INCBIN "gfx/backpics/cpr/029.cpr"
+INCBIN "gfx/backpics/lz/029.lz"
 GravelerBackpic: ; 15ac04
-INCBIN "gfx/backpics/cpr/075.cpr"
+INCBIN "gfx/backpics/lz/075.lz"
 AipomBackpic: ; 15ad51
-INCBIN "gfx/backpics/cpr/190.cpr"
+INCBIN "gfx/backpics/lz/190.lz"
 EspeonBackpic: ; 15ae9e
-INCBIN "gfx/backpics/cpr/196.cpr"
+INCBIN "gfx/backpics/lz/196.lz"
 WeedleFrontpic: ; 15afeb
-INCBIN "gfx/frontpics/cpr/013.cpr"
+INCBIN "gfx/frontpics/lz/013.lz"
 TotodileBackpic: ; 15b138
-INCBIN "gfx/backpics/cpr/158.cpr"
+INCBIN "gfx/backpics/lz/158.lz"
 SnubbullBackpic: ; 15b284
-INCBIN "gfx/backpics/cpr/209.cpr"
+INCBIN "gfx/backpics/lz/209.lz"
 KinglerBackpic: ; 15b3cf
-INCBIN "gfx/backpics/cpr/099.cpr"
+INCBIN "gfx/backpics/lz/099.lz"
 GengarBackpic: ; 15b51a
-INCBIN "gfx/backpics/cpr/094.cpr"
+INCBIN "gfx/backpics/lz/094.lz"
 RattataBackpic: ; 15b664
-INCBIN "gfx/backpics/cpr/019.cpr"
+INCBIN "gfx/backpics/lz/019.lz"
 YoungsterPic: ; 15b7ad
-INCBIN "gfx/trainers/cpr/021.cpr"
+INCBIN "gfx/trainers/lz/021.lz"
 WillPic: ; 15b8f5
-INCBIN "gfx/trainers/cpr/010.cpr"
+INCBIN "gfx/trainers/lz/010.lz"
 SchoolboyPic: ; 15ba3d
-INCBIN "gfx/trainers/cpr/022.cpr"
+INCBIN "gfx/trainers/lz/022.lz"
 MagnemiteFrontpic: ; 15bb84
-INCBIN "gfx/frontpics/cpr/081.cpr"
+INCBIN "gfx/frontpics/lz/081.lz"
 ErikaPic: ; 15bccb
-INCBIN "gfx/trainers/cpr/020.cpr"
+INCBIN "gfx/trainers/lz/020.lz"
 JaninePic: ; 15be10
-INCBIN "gfx/trainers/cpr/025.cpr"
+INCBIN "gfx/trainers/lz/025.lz"
 MagnemiteBackpic: ; 15bf54
-INCBIN "gfx/backpics/cpr/081.cpr"
+INCBIN "gfx/backpics/lz/081.lz"
 ; 15bffa
 
 
 SECTION "bank57",DATA,BANK[$57]
 
 HoothootBackpic: ; 15c000
-INCBIN "gfx/backpics/cpr/163.cpr"
+INCBIN "gfx/backpics/lz/163.lz"
 NoctowlBackpic: ; 15c144
-INCBIN "gfx/backpics/cpr/164.cpr"
+INCBIN "gfx/backpics/lz/164.lz"
 MortyPic: ; 15c287
-INCBIN "gfx/trainers/cpr/003.cpr"
+INCBIN "gfx/trainers/lz/003.lz"
 SlugmaBackpic: ; 15c3ca
-INCBIN "gfx/backpics/cpr/218.cpr"
+INCBIN "gfx/backpics/lz/218.lz"
 KabutoBackpic: ; 15c50d
-INCBIN "gfx/backpics/cpr/140.cpr"
+INCBIN "gfx/backpics/lz/140.lz"
 VictreebelBackpic: ; 15c650
-INCBIN "gfx/backpics/cpr/071.cpr"
+INCBIN "gfx/backpics/lz/071.lz"
 MeowthBackpic: ; 15c792
-INCBIN "gfx/backpics/cpr/052.cpr"
+INCBIN "gfx/backpics/lz/052.lz"
 MeganiumBackpic: ; 15c8d4
-INCBIN "gfx/backpics/cpr/154.cpr"
+INCBIN "gfx/backpics/lz/154.lz"
 PicnickerPic: ; 15ca16
-INCBIN "gfx/trainers/cpr/052.cpr"
+INCBIN "gfx/trainers/lz/052.lz"
 LickitungBackpic: ; 15cb58
-INCBIN "gfx/backpics/cpr/108.cpr"
+INCBIN "gfx/backpics/lz/108.lz"
 TogepiFrontpic: ; 15cc99
-INCBIN "gfx/frontpics/cpr/175.cpr"
+INCBIN "gfx/frontpics/lz/175.lz"
 SuperNerdPic: ; 15cdda
-INCBIN "gfx/trainers/cpr/040.cpr"
+INCBIN "gfx/trainers/lz/040.lz"
 HaunterBackpic: ; 15cf1b
-INCBIN "gfx/backpics/cpr/093.cpr"
+INCBIN "gfx/backpics/lz/093.lz"
 XatuBackpic: ; 15d05b
-INCBIN "gfx/backpics/cpr/178.cpr"
+INCBIN "gfx/backpics/lz/178.lz"
 RedPic: ; 15d19b
-INCBIN "gfx/trainers/cpr/062.cpr"
+INCBIN "gfx/trainers/lz/062.lz"
 Porygon2Backpic: ; 15d2db
-INCBIN "gfx/backpics/cpr/233.cpr"
+INCBIN "gfx/backpics/lz/233.lz"
 JasminePic: ; 15d41b
-INCBIN "gfx/trainers/cpr/005.cpr"
+INCBIN "gfx/trainers/lz/005.lz"
 PinecoBackpic: ; 15d55a
-INCBIN "gfx/backpics/cpr/204.cpr"
+INCBIN "gfx/backpics/lz/204.lz"
 MetapodFrontpic: ; 15d699
-INCBIN "gfx/frontpics/cpr/011.cpr"
+INCBIN "gfx/frontpics/lz/011.lz"
 SeelBackpic: ; 15d7d6
-INCBIN "gfx/backpics/cpr/086.cpr"
+INCBIN "gfx/backpics/lz/086.lz"
 QuagsireBackpic: ; 15d913
-INCBIN "gfx/backpics/cpr/195.cpr"
+INCBIN "gfx/backpics/lz/195.lz"
 WhitneyPic: ; 15da4f
-INCBIN "gfx/trainers/cpr/001.cpr"
+INCBIN "gfx/trainers/lz/001.lz"
 JolteonBackpic: ; 15db8b
-INCBIN "gfx/backpics/cpr/135.cpr"
+INCBIN "gfx/backpics/lz/135.lz"
 CaterpieFrontpic: ; 15dcc6
-INCBIN "gfx/frontpics/cpr/010.cpr"
+INCBIN "gfx/frontpics/lz/010.lz"
 HoppipBackpic: ; 15ddff
-INCBIN "gfx/backpics/cpr/187.cpr"
+INCBIN "gfx/backpics/lz/187.lz"
 BluePic: ; 15df37
-INCBIN "gfx/trainers/cpr/063.cpr"
+INCBIN "gfx/trainers/lz/063.lz"
 GranbullBackpic: ; 15e06f
-INCBIN "gfx/backpics/cpr/210.cpr"
+INCBIN "gfx/backpics/lz/210.lz"
 GentlemanPic: ; 15e1a7
-INCBIN "gfx/trainers/cpr/031.cpr"
+INCBIN "gfx/trainers/lz/031.lz"
 ExecutivemPic: ; 15e2dd
-INCBIN "gfx/trainers/cpr/050.cpr"
+INCBIN "gfx/trainers/lz/050.lz"
 SpearowBackpic: ; 15e413
-INCBIN "gfx/backpics/cpr/021.cpr"
+INCBIN "gfx/backpics/lz/021.lz"
 SunkernBackpic: ; 15e549
-INCBIN "gfx/backpics/cpr/191.cpr"
+INCBIN "gfx/backpics/lz/191.lz"
 LaprasBackpic: ; 15e67e
-INCBIN "gfx/backpics/cpr/131.cpr"
+INCBIN "gfx/backpics/lz/131.lz"
 MagbyBackpic: ; 15e7b2
-INCBIN "gfx/backpics/cpr/240.cpr"
+INCBIN "gfx/backpics/lz/240.lz"
 DragonairBackpic: ; 15e8e6
-INCBIN "gfx/backpics/cpr/148.cpr"
+INCBIN "gfx/backpics/lz/148.lz"
 ZapdosBackpic: ; 15ea19
-INCBIN "gfx/backpics/cpr/145.cpr"
+INCBIN "gfx/backpics/lz/145.lz"
 ChikoritaBackpic: ; 15eb4c
-INCBIN "gfx/backpics/cpr/152.cpr"
+INCBIN "gfx/backpics/lz/152.lz"
 CorsolaBackpic: ; 15ec7f
-INCBIN "gfx/backpics/cpr/222.cpr"
+INCBIN "gfx/backpics/lz/222.lz"
 ChinchouBackpic: ; 15edb2
-INCBIN "gfx/backpics/cpr/170.cpr"
+INCBIN "gfx/backpics/lz/170.lz"
 ChanseyBackpic: ; 15eee4
-INCBIN "gfx/backpics/cpr/113.cpr"
+INCBIN "gfx/backpics/lz/113.lz"
 SkiploomBackpic: ; 15f014
-INCBIN "gfx/backpics/cpr/188.cpr"
+INCBIN "gfx/backpics/lz/188.lz"
 SpinarakFrontpic: ; 15f142
-INCBIN "gfx/frontpics/cpr/167.cpr"
+INCBIN "gfx/frontpics/lz/167.lz"
 Rival2Pic: ; 15f270
-INCBIN "gfx/trainers/cpr/041.cpr"
+INCBIN "gfx/trainers/lz/041.lz"
 UnownWFrontpic: ; 15f39e
-INCBIN "gfx/frontpics/cpr/201w.cpr"
+INCBIN "gfx/frontpics/lz/201w.lz"
 CharmanderBackpic: ; 15f4cb
-INCBIN "gfx/backpics/cpr/004.cpr"
+INCBIN "gfx/backpics/lz/004.lz"
 RhyhornBackpic: ; 15f5f8
-INCBIN "gfx/backpics/cpr/111.cpr"
+INCBIN "gfx/backpics/lz/111.lz"
 UnownCFrontpic: ; 15f724
-INCBIN "gfx/frontpics/cpr/201c.cpr"
+INCBIN "gfx/frontpics/lz/201c.lz"
 MistyPic: ; 15f850
-INCBIN "gfx/trainers/cpr/017.cpr"
+INCBIN "gfx/trainers/lz/017.lz"
 BlainePic: ; 15f97c
-INCBIN "gfx/trainers/cpr/045.cpr"
+INCBIN "gfx/trainers/lz/045.lz"
 UnownZFrontpic: ; 15faa7
-INCBIN "gfx/frontpics/cpr/201z.cpr"
+INCBIN "gfx/frontpics/lz/201z.lz"
 SwinubFrontpic: ; 15fbd2
-INCBIN "gfx/frontpics/cpr/220.cpr"
+INCBIN "gfx/frontpics/lz/220.lz"
 LarvitarBackpic: ; 15fcfc
-INCBIN "gfx/backpics/cpr/246.cpr"
+INCBIN "gfx/backpics/lz/246.lz"
 PorygonBackpic: ; 15fe26
-INCBIN "gfx/backpics/cpr/137.cpr"
+INCBIN "gfx/backpics/lz/137.lz"
 UnownHBackpic: ; 15ff4f
-INCBIN "gfx/backpics/cpr/201h.cpr"
+INCBIN "gfx/backpics/lz/201h.lz"
 ; 15ffff
 
 
 SECTION "bank58",DATA,BANK[$58]
 
 ParasBackpic: ; 160000
-INCBIN "gfx/backpics/cpr/046.cpr"
+INCBIN "gfx/backpics/lz/046.lz"
 VaporeonBackpic: ; 160128
-INCBIN "gfx/backpics/cpr/134.cpr"
+INCBIN "gfx/backpics/lz/134.lz"
 TentacoolBackpic: ; 160250
-INCBIN "gfx/backpics/cpr/072.cpr"
+INCBIN "gfx/backpics/lz/072.lz"
 ExecutivefPic: ; 160377
-INCBIN "gfx/trainers/cpr/054.cpr"
+INCBIN "gfx/trainers/lz/054.lz"
 BulbasaurBackpic: ; 16049b
-INCBIN "gfx/backpics/cpr/001.cpr"
+INCBIN "gfx/backpics/lz/001.lz"
 SmoochumBackpic: ; 1605bd
-INCBIN "gfx/backpics/cpr/238.cpr"
+INCBIN "gfx/backpics/lz/238.lz"
 PichuBackpic: ; 1606de
-INCBIN "gfx/backpics/cpr/172.cpr"
+INCBIN "gfx/backpics/lz/172.lz"
 HoundoomBackpic: ; 1607ff
-INCBIN "gfx/backpics/cpr/229.cpr"
+INCBIN "gfx/backpics/lz/229.lz"
 BellsproutBackpic: ; 160920
-INCBIN "gfx/backpics/cpr/069.cpr"
+INCBIN "gfx/backpics/lz/069.lz"
 GrimerBackpic: ; 160a3f
-INCBIN "gfx/backpics/cpr/088.cpr"
+INCBIN "gfx/backpics/lz/088.lz"
 LanturnBackpic: ; 160b5d
-INCBIN "gfx/backpics/cpr/171.cpr"
+INCBIN "gfx/backpics/lz/171.lz"
 PidgeottoBackpic: ; 160c7b
-INCBIN "gfx/backpics/cpr/017.cpr"
+INCBIN "gfx/backpics/lz/017.lz"
 StaryuBackpic: ; 160d98
-INCBIN "gfx/backpics/cpr/120.cpr"
+INCBIN "gfx/backpics/lz/120.lz"
 MrMimeBackpic: ; 160eb5
-INCBIN "gfx/backpics/cpr/122.cpr"
+INCBIN "gfx/backpics/lz/122.lz"
 CaterpieBackpic: ; 160fd2
-INCBIN "gfx/backpics/cpr/010.cpr"
+INCBIN "gfx/backpics/lz/010.lz"
 VoltorbFrontpic: ; 1610ee
-INCBIN "gfx/frontpics/cpr/100.cpr"
+INCBIN "gfx/frontpics/lz/100.lz"
 LugiaBackpic: ; 161208
-INCBIN "gfx/backpics/cpr/249.cpr"
+INCBIN "gfx/backpics/lz/249.lz"
 PrycePic: ; 161322
-INCBIN "gfx/trainers/cpr/004.cpr"
+INCBIN "gfx/trainers/lz/004.lz"
 BrockPic: ; 16143c
-INCBIN "gfx/trainers/cpr/016.cpr"
+INCBIN "gfx/trainers/lz/016.lz"
 UnownGFrontpic: ; 161555
-INCBIN "gfx/frontpics/cpr/201g.cpr"
+INCBIN "gfx/frontpics/lz/201g.lz"
 ArbokBackpic: ; 16166e
-INCBIN "gfx/backpics/cpr/024.cpr"
+INCBIN "gfx/backpics/lz/024.lz"
 PolitoedBackpic: ; 161785
-INCBIN "gfx/backpics/cpr/186.cpr"
+INCBIN "gfx/backpics/lz/186.lz"
 DragoniteBackpic: ; 16189c
-INCBIN "gfx/backpics/cpr/149.cpr"
+INCBIN "gfx/backpics/lz/149.lz"
 HitmonleeBackpic: ; 1619b3
-INCBIN "gfx/backpics/cpr/106.cpr"
+INCBIN "gfx/backpics/lz/106.lz"
 NatuFrontpic: ; 161ac9
-INCBIN "gfx/frontpics/cpr/177.cpr"
+INCBIN "gfx/frontpics/lz/177.lz"
 UrsaringBackpic: ; 161bde
-INCBIN "gfx/backpics/cpr/217.cpr"
+INCBIN "gfx/backpics/lz/217.lz"
 SagePic: ; 161cf3
-INCBIN "gfx/trainers/cpr/055.cpr"
+INCBIN "gfx/trainers/lz/055.lz"
 TeddiursaBackpic: ; 161e07
-INCBIN "gfx/backpics/cpr/216.cpr"
+INCBIN "gfx/backpics/lz/216.lz"
 PhanpyBackpic: ; 161f1b
-INCBIN "gfx/backpics/cpr/231.cpr"
+INCBIN "gfx/backpics/lz/231.lz"
 UnownVFrontpic: ; 16202e
-INCBIN "gfx/frontpics/cpr/201v.cpr"
+INCBIN "gfx/frontpics/lz/201v.lz"
 KakunaBackpic: ; 162141
-INCBIN "gfx/backpics/cpr/014.cpr"
+INCBIN "gfx/backpics/lz/014.lz"
 WobbuffetBackpic: ; 162254
-INCBIN "gfx/backpics/cpr/202.cpr"
+INCBIN "gfx/backpics/lz/202.lz"
 TogepiBackpic: ; 162362
-INCBIN "gfx/backpics/cpr/175.cpr"
+INCBIN "gfx/backpics/lz/175.lz"
 CrobatBackpic: ; 162470
-INCBIN "gfx/backpics/cpr/169.cpr"
+INCBIN "gfx/backpics/lz/169.lz"
 BlisseyBackpic: ; 16257d
-INCBIN "gfx/backpics/cpr/242.cpr"
+INCBIN "gfx/backpics/lz/242.lz"
 AmpharosBackpic: ; 162689
-INCBIN "gfx/backpics/cpr/181.cpr"
+INCBIN "gfx/backpics/lz/181.lz"
 IgglybuffBackpic: ; 162793
-INCBIN "gfx/backpics/cpr/174.cpr"
+INCBIN "gfx/backpics/lz/174.lz"
 AzumarillBackpic: ; 16289c
-INCBIN "gfx/backpics/cpr/184.cpr"
+INCBIN "gfx/backpics/lz/184.lz"
 OctilleryBackpic: ; 1629a4
-INCBIN "gfx/backpics/cpr/224.cpr"
+INCBIN "gfx/backpics/lz/224.lz"
 UnownSFrontpic: ; 162aab
-INCBIN "gfx/frontpics/cpr/201s.cpr"
+INCBIN "gfx/frontpics/lz/201s.lz"
 HorseaBackpic: ; 162bb0
-INCBIN "gfx/backpics/cpr/116.cpr"
+INCBIN "gfx/backpics/lz/116.lz"
 SentretBackpic: ; 162cb5
-INCBIN "gfx/backpics/cpr/161.cpr"
+INCBIN "gfx/backpics/lz/161.lz"
 UnownOFrontpic: ; 162dba
-INCBIN "gfx/frontpics/cpr/201o.cpr"
+INCBIN "gfx/frontpics/lz/201o.lz"
 UnownTFrontpic: ; 162ebe
-INCBIN "gfx/frontpics/cpr/201t.cpr"
+INCBIN "gfx/frontpics/lz/201t.lz"
 WigglytuffBackpic: ; 162fc1
-INCBIN "gfx/backpics/cpr/040.cpr"
+INCBIN "gfx/backpics/lz/040.lz"
 ArticunoBackpic: ; 1630c3
-INCBIN "gfx/backpics/cpr/144.cpr"
+INCBIN "gfx/backpics/lz/144.lz"
 DittoBackpic: ; 1631c3
-INCBIN "gfx/backpics/cpr/132.cpr"
+INCBIN "gfx/backpics/lz/132.lz"
 WeedleBackpic: ; 1632c3
-INCBIN "gfx/backpics/cpr/013.cpr"
+INCBIN "gfx/backpics/lz/013.lz"
 UnownHFrontpic: ; 1633c3
-INCBIN "gfx/frontpics/cpr/201h.cpr"
+INCBIN "gfx/frontpics/lz/201h.lz"
 CleffaBackpic: ; 1634c0
-INCBIN "gfx/backpics/cpr/173.cpr"
+INCBIN "gfx/backpics/lz/173.lz"
 DrowzeeBackpic: ; 1635bc
-INCBIN "gfx/backpics/cpr/096.cpr"
+INCBIN "gfx/backpics/lz/096.lz"
 GastlyBackpic: ; 1636b7
-INCBIN "gfx/backpics/cpr/092.cpr"
+INCBIN "gfx/backpics/lz/092.lz"
 FearowBackpic: ; 1637b1
-INCBIN "gfx/backpics/cpr/022.cpr"
+INCBIN "gfx/backpics/lz/022.lz"
 MarillBackpic: ; 1638aa
-INCBIN "gfx/backpics/cpr/183.cpr"
+INCBIN "gfx/backpics/lz/183.lz"
 DratiniBackpic: ; 1639a3
-INCBIN "gfx/backpics/cpr/147.cpr"
+INCBIN "gfx/backpics/lz/147.lz"
 ElectrodeBackpic: ; 163a9c
-INCBIN "gfx/backpics/cpr/101.cpr"
+INCBIN "gfx/backpics/lz/101.lz"
 SkarmoryBackpic: ; 163b92
-INCBIN "gfx/backpics/cpr/227.cpr"
+INCBIN "gfx/backpics/lz/227.lz"
 MetapodBackpic: ; 163c88
-INCBIN "gfx/backpics/cpr/011.cpr"
+INCBIN "gfx/backpics/lz/011.lz"
 JigglypuffBackpic: ; 163d7d
-INCBIN "gfx/backpics/cpr/039.cpr"
+INCBIN "gfx/backpics/lz/039.lz"
 OddishBackpic: ; 163e72
-INCBIN "gfx/backpics/cpr/043.cpr"
+INCBIN "gfx/backpics/lz/043.lz"
 UnownDBackpic: ; 163f66
-INCBIN "gfx/backpics/cpr/201d.cpr"
+INCBIN "gfx/backpics/lz/201d.lz"
 ; 163ffc
 
 
 SECTION "bank59",DATA,BANK[$59]
 
 SpinarakBackpic: ; 164000
-INCBIN "gfx/backpics/cpr/167.cpr"
+INCBIN "gfx/backpics/lz/167.lz"
 RaikouBackpic: ; 1640f3
-INCBIN "gfx/backpics/cpr/243.cpr"
+INCBIN "gfx/backpics/lz/243.lz"
 UnownKFrontpic: ; 1641e6
-INCBIN "gfx/frontpics/cpr/201k.cpr"
+INCBIN "gfx/frontpics/lz/201k.lz"
 HoundourBackpic: ; 1642d7
-INCBIN "gfx/backpics/cpr/228.cpr"
+INCBIN "gfx/backpics/lz/228.lz"
 PoliwagBackpic: ; 1643c7
-INCBIN "gfx/backpics/cpr/060.cpr"
+INCBIN "gfx/backpics/lz/060.lz"
 SquirtleBackpic: ; 1644b7
-INCBIN "gfx/backpics/cpr/007.cpr"
+INCBIN "gfx/backpics/lz/007.lz"
 ShuckleBackpic: ; 1645a6
-INCBIN "gfx/backpics/cpr/213.cpr"
+INCBIN "gfx/backpics/lz/213.lz"
 DewgongBackpic: ; 164692
-INCBIN "gfx/backpics/cpr/087.cpr"
+INCBIN "gfx/backpics/lz/087.lz"
 UnownBFrontpic: ; 16477e
-INCBIN "gfx/frontpics/cpr/201b.cpr"
+INCBIN "gfx/frontpics/lz/201b.lz"
 SlowpokeBackpic: ; 164869
-INCBIN "gfx/backpics/cpr/079.cpr"
+INCBIN "gfx/backpics/lz/079.lz"
 DunsparceBackpic: ; 164954
-INCBIN "gfx/backpics/cpr/206.cpr"
+INCBIN "gfx/backpics/lz/206.lz"
 DonphanBackpic: ; 164a3e
-INCBIN "gfx/backpics/cpr/232.cpr"
+INCBIN "gfx/backpics/lz/232.lz"
 WooperBackpic: ; 164b27
-INCBIN "gfx/backpics/cpr/194.cpr"
+INCBIN "gfx/backpics/lz/194.lz"
 TaurosBackpic: ; 164c10
-INCBIN "gfx/backpics/cpr/128.cpr"
+INCBIN "gfx/backpics/lz/128.lz"
 UnownXFrontpic: ; 164cf7
-INCBIN "gfx/frontpics/cpr/201x.cpr"
+INCBIN "gfx/frontpics/lz/201x.lz"
 UnownNFrontpic: ; 164ddd
-INCBIN "gfx/frontpics/cpr/201n.cpr"
+INCBIN "gfx/frontpics/lz/201n.lz"
 TangelaBackpic: ; 164ec3
-INCBIN "gfx/backpics/cpr/114.cpr"
+INCBIN "gfx/backpics/lz/114.lz"
 VoltorbBackpic: ; 164fa8
-INCBIN "gfx/backpics/cpr/100.cpr"
+INCBIN "gfx/backpics/lz/100.lz"
 UnownJFrontpic: ; 16508d
-INCBIN "gfx/frontpics/cpr/201j.cpr"
+INCBIN "gfx/frontpics/lz/201j.lz"
 MantineBackpic: ; 165172
-INCBIN "gfx/backpics/cpr/226.cpr"
+INCBIN "gfx/backpics/lz/226.lz"
 UnownLFrontpic: ; 16524a
-INCBIN "gfx/frontpics/cpr/201l.cpr"
+INCBIN "gfx/frontpics/lz/201l.lz"
 PiloswineBackpic: ; 16531d
-INCBIN "gfx/backpics/cpr/221.cpr"
+INCBIN "gfx/backpics/lz/221.lz"
 UnownMFrontpic: ; 1653ef
-INCBIN "gfx/frontpics/cpr/201m.cpr"
+INCBIN "gfx/frontpics/lz/201m.lz"
 UnownFFrontpic: ; 1654bf
-INCBIN "gfx/frontpics/cpr/201f.cpr"
+INCBIN "gfx/frontpics/lz/201f.lz"
 NatuBackpic: ; 16558e
-INCBIN "gfx/backpics/cpr/177.cpr"
+INCBIN "gfx/backpics/lz/177.lz"
 UnownAFrontpic: ; 165659
-INCBIN "gfx/frontpics/cpr/201a.cpr"
+INCBIN "gfx/frontpics/lz/201a.lz"
 GolemBackpic: ; 165724
-INCBIN "gfx/backpics/cpr/076.cpr"
+INCBIN "gfx/backpics/lz/076.lz"
 UnownUFrontpic: ; 1657ea
-INCBIN "gfx/frontpics/cpr/201u.cpr"
+INCBIN "gfx/frontpics/lz/201u.lz"
 DiglettBackpic: ; 1658aa
-INCBIN "gfx/backpics/cpr/050.cpr"
+INCBIN "gfx/backpics/lz/050.lz"
 UnownQFrontpic: ; 165969
-INCBIN "gfx/frontpics/cpr/201q.cpr"
+INCBIN "gfx/frontpics/lz/201q.lz"
 UnownPFrontpic: ; 165a26
-INCBIN "gfx/frontpics/cpr/201p.cpr"
+INCBIN "gfx/frontpics/lz/201p.lz"
 UnownCBackpic: ; 165adf
-INCBIN "gfx/backpics/cpr/201c.cpr"
+INCBIN "gfx/backpics/lz/201c.lz"
 JynxBackpic: ; 165b93
-INCBIN "gfx/backpics/cpr/124.cpr"
+INCBIN "gfx/backpics/lz/124.lz"
 GolbatBackpic: ; 165c46
-INCBIN "gfx/backpics/cpr/042.cpr"
+INCBIN "gfx/backpics/lz/042.lz"
 UnownYFrontpic: ; 165cf6
-INCBIN "gfx/frontpics/cpr/201y.cpr"
+INCBIN "gfx/frontpics/lz/201y.lz"
 UnownGBackpic: ; 165da3
-INCBIN "gfx/backpics/cpr/201g.cpr"
+INCBIN "gfx/backpics/lz/201g.lz"
 UnownIFrontpic: ; 165e47
-INCBIN "gfx/frontpics/cpr/201i.cpr"
+INCBIN "gfx/frontpics/lz/201i.lz"
 UnownVBackpic: ; 165eea
-INCBIN "gfx/backpics/cpr/201v.cpr"
+INCBIN "gfx/backpics/lz/201v.lz"
 ForretressBackpic: ; 165f86
-INCBIN "gfx/backpics/cpr/205.cpr"
+INCBIN "gfx/backpics/lz/205.lz"
 UnownSBackpic: ; 166019
-INCBIN "gfx/backpics/cpr/201s.cpr"
+INCBIN "gfx/backpics/lz/201s.lz"
 UnownRFrontpic: ; 1660ab
-INCBIN "gfx/frontpics/cpr/201r.cpr"
+INCBIN "gfx/frontpics/lz/201r.lz"
 UnownEBackpic: ; 16613d
-INCBIN "gfx/backpics/cpr/201e.cpr"
+INCBIN "gfx/backpics/lz/201e.lz"
 UnownJBackpic: ; 1661c9
-INCBIN "gfx/backpics/cpr/201j.cpr"
+INCBIN "gfx/backpics/lz/201j.lz"
 UnownBBackpic: ; 16624c
-INCBIN "gfx/backpics/cpr/201b.cpr"
+INCBIN "gfx/backpics/lz/201b.lz"
 UnownOBackpic: ; 1662cf
-INCBIN "gfx/backpics/cpr/201o.cpr"
+INCBIN "gfx/backpics/lz/201o.lz"
 UnownZBackpic: ; 166351
-INCBIN "gfx/backpics/cpr/201z.cpr"
+INCBIN "gfx/backpics/lz/201z.lz"
 UnownWBackpic: ; 1663d0
-INCBIN "gfx/backpics/cpr/201w.cpr"
+INCBIN "gfx/backpics/lz/201w.lz"
 UnownNBackpic: ; 16644e
-INCBIN "gfx/backpics/cpr/201n.cpr"
+INCBIN "gfx/backpics/lz/201n.lz"
 UnownABackpic: ; 1664c9
-INCBIN "gfx/backpics/cpr/201a.cpr"
+INCBIN "gfx/backpics/lz/201a.lz"
 UnownMBackpic: ; 166544
-INCBIN "gfx/backpics/cpr/201m.cpr"
+INCBIN "gfx/backpics/lz/201m.lz"
 UnownKBackpic: ; 1665bd
-INCBIN "gfx/backpics/cpr/201k.cpr"
+INCBIN "gfx/backpics/lz/201k.lz"
 UnownTBackpic: ; 166632
-INCBIN "gfx/backpics/cpr/201t.cpr"
+INCBIN "gfx/backpics/lz/201t.lz"
 UnownXBackpic: ; 1666a6
-INCBIN "gfx/backpics/cpr/201x.cpr"
+INCBIN "gfx/backpics/lz/201x.lz"
 UnownLBackpic: ; 166717
-INCBIN "gfx/backpics/cpr/201l.cpr"
+INCBIN "gfx/backpics/lz/201l.lz"
 UnownUBackpic: ; 166783
-INCBIN "gfx/backpics/cpr/201u.cpr"
+INCBIN "gfx/backpics/lz/201u.lz"
 UnownQBackpic: ; 1667ee
-INCBIN "gfx/backpics/cpr/201q.cpr"
+INCBIN "gfx/backpics/lz/201q.lz"
 UnownYBackpic: ; 166857
-INCBIN "gfx/backpics/cpr/201y.cpr"
+INCBIN "gfx/backpics/lz/201y.lz"
 UnownPBackpic: ; 1668bd
-INCBIN "gfx/backpics/cpr/201p.cpr"
+INCBIN "gfx/backpics/lz/201p.lz"
 UnownIBackpic: ; 16691b
-INCBIN "gfx/backpics/cpr/201i.cpr"
+INCBIN "gfx/backpics/lz/201i.lz"
 UnownRBackpic: ; 166979
-INCBIN "gfx/backpics/cpr/201r.cpr"
+INCBIN "gfx/backpics/lz/201r.lz"
 ; 1669d3
 
 
@@ -137154,7 +137154,7 @@ Tileset33GFX:
 Tileset34GFX:
 Tileset35GFX:
 Tileset36GFX: ; 1dc5a1
-INCBIN "gfx/tilesets/cpr/26.cpr"
+INCBIN "gfx/tilesets/lz/26.lz"
 ; 1dd1a8
 
 INCBIN "baserom.gbc", $1dd1a8, $1de29f - $1dd1a8
@@ -137192,7 +137192,7 @@ DudeAutoInput_DownA: ; 1de2af
 INCBIN "baserom.gbc",$1de2c5,$1de2e4 - $1de2c5
 
 PokegearGFX: ; 1de2e4
-INCBIN "gfx/misc/cpr/pokegear.cpr"
+INCBIN "gfx/misc/lz/pokegear.lz"
 ; 1de5c6
 
 INCBIN "baserom.gbc",$1de5c6,$1e0000 - $1de5c6
