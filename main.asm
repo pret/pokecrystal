@@ -89189,1965 +89189,1345 @@ INCBIN "baserom.gbc",$11C000,$4000
 
 SECTION "bank48",DATA,BANK[$48]
 
-PicPointers: ; 120000
-	dbw BANK(BulbasaurFrontpic) - $36, BulbasaurFrontpic ; 14fd6d
-	dbw BANK(BulbasaurBackpic) - $36, BulbasaurBackpic ; 16049b
-	dbw BANK(IvysaurFrontpic) - $36, IvysaurFrontpic ; 13f4a2
-	dbw BANK(IvysaurBackpic) - $36, IvysaurBackpic ; 1592f7
-	dbw BANK(VenusaurFrontpic) - $36, VenusaurFrontpic ; 122f81
-	dbw BANK(VenusaurBackpic) - $36, VenusaurBackpic ; 14c000
-	dbw BANK(CharmanderFrontpic) - $36, CharmanderFrontpic ; 142065
-	dbw BANK(CharmanderBackpic) - $36, CharmanderBackpic ; 15f4cb
-	dbw BANK(CharmeleonFrontpic) - $36, CharmeleonFrontpic ; 132881
-	dbw BANK(CharmeleonBackpic) - $36, CharmeleonBackpic ; 150925
-	dbw BANK(CharizardFrontpic) - $36, CharizardFrontpic ; 127937
-	dbw BANK(CharizardBackpic) - $36, CharizardBackpic ; 155c7a
-	dbw BANK(SquirtleFrontpic) - $36, SquirtleFrontpic ; 145ae2
-	dbw BANK(SquirtleBackpic) - $36, SquirtleBackpic ; 1644b7
-	dbw BANK(WartortleFrontpic) - $36, WartortleFrontpic ; 1345d2
-	dbw BANK(WartortleBackpic) - $36, WartortleBackpic ; 156216
-	dbw BANK(BlastoiseFrontpic) - $36, BlastoiseFrontpic ; 12409c
-	dbw BANK(BlastoiseBackpic) - $36, BlastoiseBackpic ; 155132
-	dbw BANK(CaterpieFrontpic) - $36, CaterpieFrontpic ; 15dcc6
-	dbw BANK(CaterpieBackpic) - $36, CaterpieBackpic ; 160fd2
-	dbw BANK(MetapodFrontpic) - $36, MetapodFrontpic ; 15d699
-	dbw BANK(MetapodBackpic) - $36, MetapodBackpic ; 163c88
-	dbw BANK(ButterfreeFrontpic) - $36, ButterfreeFrontpic ; 12a24a
-	dbw BANK(ButterfreeBackpic) - $36, ButterfreeBackpic ; 146f39
-	dbw BANK(WeedleFrontpic) - $36, WeedleFrontpic ; 15afeb
-	dbw BANK(WeedleBackpic) - $36, WeedleBackpic ; 1632c3
-	dbw BANK(KakunaFrontpic) - $36, KakunaFrontpic ; 15a6cc
-	dbw BANK(KakunaBackpic) - $36, KakunaBackpic ; 162141
-	dbw BANK(BeedrillFrontpic) - $36, BeedrillFrontpic ; 125976
-	dbw BANK(BeedrillBackpic) - $36, BeedrillBackpic ; 14f748
-	dbw BANK(PidgeyFrontpic) - $36, PidgeyFrontpic ; 143ccc
-	dbw BANK(PidgeyBackpic) - $36, PidgeyBackpic ; 150188
-	dbw BANK(PidgeottoFrontpic) - $36, PidgeottoFrontpic ; 13a4cf
-	dbw BANK(PidgeottoBackpic) - $36, PidgeottoBackpic ; 160c7b
-	dbw BANK(PidgeotFrontpic) - $36, PidgeotFrontpic ; 129b1d
-	dbw BANK(PidgeotBackpic) - $36, PidgeotBackpic ; 159d9d
-	dbw BANK(RattataFrontpic) - $36, RattataFrontpic ; 141819
-	dbw BANK(RattataBackpic) - $36, RattataBackpic ; 15b664
-	dbw BANK(RaticateFrontpic) - $36, RaticateFrontpic ; 1312dd
-	dbw BANK(RaticateBackpic) - $36, RaticateBackpic ; 156647
-	dbw BANK(SpearowFrontpic) - $36, SpearowFrontpic ; 141c43
-	dbw BANK(SpearowBackpic) - $36, SpearowBackpic ; 15e413
-	dbw BANK(FearowFrontpic) - $36, FearowFrontpic ; 127551
-	dbw BANK(FearowBackpic) - $36, FearowBackpic ; 1637b1
-	dbw BANK(EkansFrontpic) - $36, EkansFrontpic ; 140000
-	dbw BANK(EkansBackpic) - $36, EkansBackpic ; 156911
-	dbw BANK(ArbokFrontpic) - $36, ArbokFrontpic ; 126d70
-	dbw BANK(ArbokBackpic) - $36, ArbokBackpic ; 16166e
-	dbw BANK(PikachuFrontpic) - $36, PikachuFrontpic ; 14047d
-	dbw BANK(PikachuBackpic) - $36, PikachuBackpic ; 156ea1
-	dbw BANK(RaichuFrontpic) - $36, RaichuFrontpic ; 12b765
-	dbw BANK(RaichuBackpic) - $36, RaichuBackpic ; 153446
-	dbw BANK(SandshrewFrontpic) - $36, SandshrewFrontpic ; 1438d2
-	dbw BANK(SandshrewBackpic) - $36, SandshrewBackpic ; 14e650
-	dbw BANK(SandslashFrontpic) - $36, SandslashFrontpic ; 12f23c
-	dbw BANK(SandslashBackpic) - $36, SandslashBackpic ; 14cb56
-	dbw BANK(NidoranFFrontpic) - $36, NidoranFFrontpic ; 143ad2
-	dbw BANK(NidoranFBackpic) - $36, NidoranFBackpic ; 15aab6
-	dbw BANK(NidorinaFrontpic) - $36, NidorinaFrontpic ; 135ca2
-	dbw BANK(NidorinaBackpic) - $36, NidorinaBackpic ; 152cf3
-	dbw BANK(NidoqueenFrontpic) - $36, NidoqueenFrontpic ; 124d24
-	dbw BANK(NidoqueenBackpic) - $36, NidoqueenBackpic ; 150aa9
-	dbw BANK(NidoranMFrontpic) - $36, NidoranMFrontpic ; 14289f
-	dbw BANK(NidoranMBackpic) - $36, NidoranMBackpic ; 14d1c5
-	dbw BANK(NidorinoFrontpic) - $36, NidorinoFrontpic ; 12eefb
-	dbw BANK(NidorinoBackpic) - $36, NidorinoBackpic ; 153a1b
-	dbw BANK(NidokingFrontpic) - $36, NidokingFrontpic ; 121976
-	dbw BANK(NidokingBackpic) - $36, NidokingBackpic ; 145350
-	dbw BANK(ClefairyFrontpic) - $36, ClefairyFrontpic ; 1481c7
-	dbw BANK(ClefairyBackpic) - $36, ClefairyBackpic ; 1579a6
-	dbw BANK(ClefableFrontpic) - $36, ClefableFrontpic ; 1397d4
-	dbw BANK(ClefableBackpic) - $36, ClefableBackpic ; 14ab7a
-	dbw BANK(VulpixFrontpic) - $36, VulpixFrontpic ; 137836
-	dbw BANK(VulpixBackpic) - $36, VulpixBackpic ; 1567ac
-	dbw BANK(NinetalesFrontpic) - $36, NinetalesFrontpic ; 121012
-	dbw BANK(NinetalesBackpic) - $36, NinetalesBackpic ; 14a4bf
-	dbw BANK(JigglypuffFrontpic) - $36, JigglypuffFrontpic ; 144f83
-	dbw BANK(JigglypuffBackpic) - $36, JigglypuffBackpic ; 163d7d
-	dbw BANK(WigglytuffFrontpic) - $36, WigglytuffFrontpic ; 138fff
-	dbw BANK(WigglytuffBackpic) - $36, WigglytuffBackpic ; 162fc1
-	dbw BANK(ZubatFrontpic) - $36, ZubatFrontpic ; 147108
-	dbw BANK(ZubatBackpic) - $36, ZubatBackpic ; 14ec80
-	dbw BANK(GolbatFrontpic) - $36, GolbatFrontpic ; 130000
-	dbw BANK(GolbatBackpic) - $36, GolbatBackpic ; 165c46
-	dbw BANK(OddishFrontpic) - $36, OddishFrontpic ; 14d82c
-	dbw BANK(OddishBackpic) - $36, OddishBackpic ; 163e72
-	dbw BANK(GloomFrontpic) - $36, GloomFrontpic ; 13f00b
-	dbw BANK(GloomBackpic) - $36, GloomBackpic ; 14f2aa
-	dbw BANK(VileplumeFrontpic) - $36, VileplumeFrontpic ; 1364ff
-	dbw BANK(VileplumeBackpic) - $36, VileplumeBackpic ; 154b80
-	dbw BANK(ParasFrontpic) - $36, ParasFrontpic ; 14516a
-	dbw BANK(ParasBackpic) - $36, ParasBackpic ; 160000
-	dbw BANK(ParasectFrontpic) - $36, ParasectFrontpic ; 13378f
-	dbw BANK(ParasectBackpic) - $36, ParasectBackpic ; 143ec6
-	dbw BANK(VenonatFrontpic) - $36, VenonatFrontpic ; 146089
-	dbw BANK(VenonatBackpic) - $36, VenonatBackpic ; 157b05
-	dbw BANK(VenomothFrontpic) - $36, VenomothFrontpic ; 1315fa
-	dbw BANK(VenomothBackpic) - $36, VenomothBackpic ; 1491ae
-	dbw BANK(DiglettFrontpic) - $36, DiglettFrontpic ; 158576
-	dbw BANK(DiglettBackpic) - $36, DiglettBackpic ; 1658aa
-	dbw BANK(DugtrioFrontpic) - $36, DugtrioFrontpic ; 13b1a2
-	dbw BANK(DugtrioBackpic) - $36, DugtrioBackpic ; 15a81a
-	dbw BANK(MeowthFrontpic) - $36, MeowthFrontpic ; 1434cd
-	dbw BANK(MeowthBackpic) - $36, MeowthBackpic ; 15c792
-	dbw BANK(PersianFrontpic) - $36, PersianFrontpic ; 130ca1
-	dbw BANK(PersianBackpic) - $36, PersianBackpic ; 151834
-	dbw BANK(PsyduckFrontpic) - $36, PsyduckFrontpic ; 1458fe
-	dbw BANK(PsyduckBackpic) - $36, PsyduckBackpic ; 156d3d
-	dbw BANK(GolduckFrontpic) - $36, GolduckFrontpic ; 1293d7
-	dbw BANK(GolduckBackpic) - $36, GolduckBackpic ; 1596fa
-	dbw BANK(MankeyFrontpic) - $36, MankeyFrontpic ; 1443ee
-	dbw BANK(MankeyBackpic) - $36, MankeyBackpic ; 14de7b
-	dbw BANK(PrimeapeFrontpic) - $36, PrimeapeFrontpic ; 12bae0
-	dbw BANK(PrimeapeBackpic) - $36, PrimeapeBackpic ; 155f49
-	dbw BANK(GrowlitheFrontpic) - $36, GrowlitheFrontpic ; 148553
-	dbw BANK(GrowlitheBackpic) - $36, GrowlitheBackpic ; 152fe1
-	dbw BANK(ArcanineFrontpic) - $36, ArcanineFrontpic ; 125d84
-	dbw BANK(ArcanineBackpic) - $36, ArcanineBackpic ; 14f8d2
-	dbw BANK(PoliwagFrontpic) - $36, PoliwagFrontpic ; 15241a
-	dbw BANK(PoliwagBackpic) - $36, PoliwagBackpic ; 1643c7
-	dbw BANK(PoliwhirlFrontpic) - $36, PoliwhirlFrontpic ; 134e76
-	dbw BANK(PoliwhirlBackpic) - $36, PoliwhirlBackpic ; 15a041
-	dbw BANK(PoliwrathFrontpic) - $36, PoliwrathFrontpic ; 12d7ca
-	dbw BANK(PoliwrathBackpic) - $36, PoliwrathBackpic ; 1535bd
-	dbw BANK(AbraFrontpic) - $36, AbraFrontpic ; 14783f
-	dbw BANK(AbraBackpic) - $36, AbraBackpic ; 15a42f
-	dbw BANK(KadabraFrontpic) - $36, KadabraFrontpic ; 132b8b
-	dbw BANK(KadabraBackpic) - $36, KadabraBackpic ; 155de2
-	dbw BANK(AlakazamFrontpic) - $36, AlakazamFrontpic ; 1284ad
-	dbw BANK(AlakazamBackpic) - $36, AlakazamBackpic ; 1474a5
-	dbw BANK(MachopFrontpic) - $36, MachopFrontpic ; 1413e9
-	dbw BANK(MachopBackpic) - $36, MachopBackpic ; 15a2e0
-	dbw BANK(MachokeFrontpic) - $36, MachokeFrontpic ; 12d10f
-	dbw BANK(MachokeBackpic) - $36, MachokeBackpic ; 1532cf
-	dbw BANK(MachampFrontpic) - $36, MachampFrontpic ; 120b05
-	dbw BANK(MachampBackpic) - $36, MachampBackpic ; 145cc5
-	dbw BANK(BellsproutFrontpic) - $36, BellsproutFrontpic ; 149c2b
-	dbw BANK(BellsproutBackpic) - $36, BellsproutBackpic ; 160920
-	dbw BANK(WeepinbellFrontpic) - $36, WeepinbellFrontpic ; 140b2a
-	dbw BANK(WeepinbellBackpic) - $36, WeepinbellBackpic ; 15a968
-	dbw BANK(VictreebelFrontpic) - $36, VictreebelFrontpic ; 12b3e9
-	dbw BANK(VictreebelBackpic) - $36, VictreebelBackpic ; 15c650
-	dbw BANK(TentacoolFrontpic) - $36, TentacoolFrontpic ; 149fa0
-	dbw BANK(TentacoolBackpic) - $36, TentacoolBackpic ; 160250
-	dbw BANK(TentacruelFrontpic) - $36, TentacruelFrontpic ; 136d41
-	dbw BANK(TentacruelBackpic) - $36, TentacruelBackpic ; 152e6a
-	dbw BANK(GeodudeFrontpic) - $36, GeodudeFrontpic ; 155570
-	dbw BANK(GeodudeBackpic) - $36, GeodudeBackpic ; 1548a3
-	dbw BANK(GravelerFrontpic) - $36, GravelerFrontpic ; 139fa0
-	dbw BANK(GravelerBackpic) - $36, GravelerBackpic ; 15ac04
-	dbw BANK(GolemFrontpic) - $36, GolemFrontpic ; 134b97
-	dbw BANK(GolemBackpic) - $36, GolemBackpic ; 165724
-	dbw BANK(PonytaFrontpic) - $36, PonytaFrontpic ; 139a6e
-	dbw BANK(PonytaBackpic) - $36, PonytaBackpic ; 152124
-	dbw BANK(RapidashFrontpic) - $36, RapidashFrontpic ; 1244d8
-	dbw BANK(RapidashBackpic) - $36, RapidashBackpic ; 14d9c0
-	dbw BANK(SlowpokeFrontpic) - $36, SlowpokeFrontpic ; 148718
-	dbw BANK(SlowpokeBackpic) - $36, SlowpokeBackpic ; 164869
-	dbw BANK(SlowbroFrontpic) - $36, SlowbroFrontpic ; 129eb5
-	dbw BANK(SlowbroBackpic) - $36, SlowbroBackpic ; 15944e
-	dbw BANK(MagnemiteFrontpic) - $36, MagnemiteFrontpic ; 15bb84
-	dbw BANK(MagnemiteBackpic) - $36, MagnemiteBackpic ; 15bf54
-	dbw BANK(MagnetonFrontpic) - $36, MagnetonFrontpic ; 13b42d
-	dbw BANK(MagnetonBackpic) - $36, MagnetonBackpic ; 14b228
-	dbw BANK(FarfetchDFrontpic) - $36, FarfetchDFrontpic ; 136237
-	dbw BANK(FarfetchDBackpic) - $36, FarfetchDBackpic ; 14d02a
-	dbw BANK(DoduoFrontpic) - $36, DoduoFrontpic ; 14ad26
-	dbw BANK(DoduoBackpic) - $36, DoduoBackpic ; 14db54
-	dbw BANK(DodrioFrontpic) - $36, DodrioFrontpic ; 12c000
-	dbw BANK(DodrioBackpic) - $36, DodrioBackpic ; 148000
-	dbw BANK(SeelFrontpic) - $36, SeelFrontpic ; 13c000
-	dbw BANK(SeelBackpic) - $36, SeelBackpic ; 15d7d6
-	dbw BANK(DewgongFrontpic) - $36, DewgongFrontpic ; 12b06d
-	dbw BANK(DewgongBackpic) - $36, DewgongBackpic ; 164692
-	dbw BANK(GrimerFrontpic) - $36, GrimerFrontpic ; 142ebe
-	dbw BANK(GrimerBackpic) - $36, GrimerBackpic ; 160a3f
-	dbw BANK(MukFrontpic) - $36, MukFrontpic ; 12e51c
-	dbw BANK(MukBackpic) - $36, MukBackpic ; 15882f
-	dbw BANK(ShellderFrontpic) - $36, ShellderFrontpic ; 149de6
-	dbw BANK(ShellderBackpic) - $36, ShellderBackpic ; 14eaf5
-	dbw BANK(CloysterFrontpic) - $36, CloysterFrontpic ; 12a964
-	dbw BANK(CloysterBackpic) - $36, CloysterBackpic ; 147bd4
-	dbw BANK(GastlyFrontpic) - $36, GastlyFrontpic ; 133194
-	dbw BANK(GastlyBackpic) - $36, GastlyBackpic ; 1636b7
-	dbw BANK(HaunterFrontpic) - $36, HaunterFrontpic ; 13d153
-	dbw BANK(HaunterBackpic) - $36, HaunterBackpic ; 15cf1b
-	dbw BANK(GengarFrontpic) - $36, GengarFrontpic ; 13a9f4
-	dbw BANK(GengarBackpic) - $36, GengarBackpic ; 15b51a
-	dbw BANK(OnixFrontpic) - $36, OnixFrontpic ; 12ca47
-	dbw BANK(OnixBackpic) - $36, OnixBackpic ; 152595
-	dbw BANK(DrowzeeFrontpic) - $36, DrowzeeFrontpic ; 138562
-	dbw BANK(DrowzeeBackpic) - $36, DrowzeeBackpic ; 1635bc
-	dbw BANK(HypnoFrontpic) - $36, HypnoFrontpic ; 12ebb6
-	dbw BANK(HypnoBackpic) - $36, HypnoBackpic ; 14e1a0
-	dbw BANK(KrabbyFrontpic) - $36, KrabbyFrontpic ; 144bae
-	dbw BANK(KrabbyBackpic) - $36, KrabbyBackpic ; 14bc0f
-	dbw BANK(KinglerFrontpic) - $36, KinglerFrontpic ; 13032e
-	dbw BANK(KinglerBackpic) - $36, KinglerBackpic ; 15b3cf
-	dbw BANK(VoltorbFrontpic) - $36, VoltorbFrontpic ; 1610ee
-	dbw BANK(VoltorbBackpic) - $36, VoltorbBackpic ; 164fa8
-	dbw BANK(ElectrodeFrontpic) - $36, ElectrodeFrontpic ; 153e72
-	dbw BANK(ElectrodeBackpic) - $36, ElectrodeBackpic ; 163a9c
-	dbw BANK(ExeggcuteFrontpic) - $36, ExeggcuteFrontpic ; 13065a
-	dbw BANK(ExeggcuteBackpic) - $36, ExeggcuteBackpic ; 15637c
-	dbw BANK(ExeggutorFrontpic) - $36, ExeggutorFrontpic ; 132e90
-	dbw BANK(ExeggutorBackpic) - $36, ExeggutorBackpic ; 14626a
-	dbw BANK(CuboneFrontpic) - $36, CuboneFrontpic ; 142275
-	dbw BANK(CuboneBackpic) - $36, CuboneBackpic ; 14ef96
-	dbw BANK(MarowakFrontpic) - $36, MarowakFrontpic ; 13757a
-	dbw BANK(MarowakBackpic) - $36, MarowakBackpic ; 154733
-	dbw BANK(HitmonleeFrontpic) - $36, HitmonleeFrontpic ; 125142
-	dbw BANK(HitmonleeBackpic) - $36, HitmonleeBackpic ; 1619b3
-	dbw BANK(HitmonchanFrontpic) - $36, HitmonchanFrontpic ; 13fb74
-	dbw BANK(HitmonchanBackpic) - $36, HitmonchanBackpic ; 154cee
-	dbw BANK(LickitungFrontpic) - $36, LickitungFrontpic ; 132260
-	dbw BANK(LickitungBackpic) - $36, LickitungBackpic ; 15cb58
-	dbw BANK(KoffingFrontpic) - $36, KoffingFrontpic ; 145ea7
-	dbw BANK(KoffingBackpic) - $36, KoffingBackpic ; 15270f
-	dbw BANK(WeezingFrontpic) - $36, WeezingFrontpic ; 12a5d7
-	dbw BANK(WeezingBackpic) - $36, WeezingBackpic ; 15984f
-	dbw BANK(RhyhornFrontpic) - $36, RhyhornFrontpic ; 12977f
-	dbw BANK(RhyhornBackpic) - $36, RhyhornBackpic ; 15f5f8
-	dbw BANK(RhydonFrontpic) - $36, RhydonFrontpic ; 12901e
-	dbw BANK(RhydonBackpic) - $36, RhydonBackpic ; 14c67f
-	dbw BANK(ChanseyFrontpic) - $36, ChanseyFrontpic ; 13c502
-	dbw BANK(ChanseyBackpic) - $36, ChanseyBackpic ; 15eee4
-	dbw BANK(TangelaFrontpic) - $36, TangelaFrontpic ; 13c77c
-	dbw BANK(TangelaBackpic) - $36, TangelaBackpic ; 164ec3
-	dbw BANK(KangaskhanFrontpic) - $36, KangaskhanFrontpic ; 128c54
-	dbw BANK(KangaskhanBackpic) - $36, KangaskhanBackpic ; 13be45
-	dbw BANK(HorseaFrontpic) - $36, HorseaFrontpic ; 159c4a
-	dbw BANK(HorseaBackpic) - $36, HorseaBackpic ; 162bb0
-	dbw BANK(SeadraFrontpic) - $36, SeadraFrontpic ; 1406b7
-	dbw BANK(SeadraBackpic) - $36, SeadraBackpic ; 14ccf2
-	dbw BANK(GoldeenFrontpic) - $36, GoldeenFrontpic ; 13dafc
-	dbw BANK(GoldeenBackpic) - $36, GoldeenBackpic ; 14fbe4
-	dbw BANK(SeakingFrontpic) - $36, SeakingFrontpic ; 12e1cc
-	dbw BANK(SeakingBackpic) - $36, SeakingBackpic ; 156a75
-	dbw BANK(StaryuFrontpic) - $36, StaryuFrontpic ; 1430c4
-	dbw BANK(StaryuBackpic) - $36, StaryuBackpic ; 160d98
-	dbw BANK(StarmieFrontpic) - $36, StarmieFrontpic ; 13a238
-	dbw BANK(StarmieBackpic) - $36, StarmieBackpic ; 14fef5
-	dbw BANK(MrMimeFrontpic) - $36, MrMimeFrontpic ; 133a8a
-	dbw BANK(MrMimeBackpic) - $36, MrMimeBackpic ; 160eb5
-	dbw BANK(ScytherFrontpic) - $36, ScytherFrontpic ; 12db25
-	dbw BANK(ScytherBackpic) - $36, ScytherBackpic ; 154a12
-	dbw BANK(JynxFrontpic) - $36, JynxFrontpic ; 13e6c0
-	dbw BANK(JynxBackpic) - $36, JynxBackpic ; 165b93
-	dbw BANK(ElectabuzzFrontpic) - $36, ElectabuzzFrontpic ; 131c32
-	dbw BANK(ElectabuzzBackpic) - $36, ElectabuzzBackpic ; 150dae
-	dbw BANK(MagmarFrontpic) - $36, MagmarFrontpic ; 136a82
-	dbw BANK(MagmarBackpic) - $36, MagmarBackpic ; 14e00e
-	dbw BANK(PinsirFrontpic) - $36, PinsirFrontpic ; 12fbdf
-	dbw BANK(PinsirBackpic) - $36, PinsirBackpic ; 14a821
-	dbw BANK(TaurosFrontpic) - $36, TaurosFrontpic ; 122b2d
-	dbw BANK(TaurosBackpic) - $36, TaurosBackpic ; 164c10
-	dbw BANK(MagikarpFrontpic) - $36, MagikarpFrontpic ; 141e54
-	dbw BANK(MagikarpBackpic) - $36, MagikarpBackpic ; 158c3f
-	dbw BANK(GyaradosFrontpic) - $36, GyaradosFrontpic ; 128886
-	dbw BANK(GyaradosBackpic) - $36, GyaradosBackpic ; 14a30c
-	dbw BANK(LaprasFrontpic) - $36, LaprasFrontpic ; 1348b7
-	dbw BANK(LaprasBackpic) - $36, LaprasBackpic ; 15e67e
-	dbw BANK(DittoFrontpic) - $36, DittoFrontpic ; 157426
-	dbw BANK(DittoBackpic) - $36, DittoBackpic ; 1631c3
-	dbw BANK(EeveeFrontpic) - $36, EeveeFrontpic ; 146d68
-	dbw BANK(EeveeBackpic) - $36, EeveeBackpic ; 151e2d
-	dbw BANK(VaporeonFrontpic) - $36, VaporeonFrontpic ; 138000
-	dbw BANK(VaporeonBackpic) - $36, VaporeonBackpic ; 160128
-	dbw BANK(JolteonFrontpic) - $36, JolteonFrontpic ; 12f575
-	dbw BANK(JolteonBackpic) - $36, JolteonBackpic ; 15db8b
-	dbw BANK(FlareonFrontpic) - $36, FlareonFrontpic ; 135f6d
-	dbw BANK(FlareonBackpic) - $36, FlareonBackpic ; 14fa5b
-	dbw BANK(PorygonFrontpic) - $36, PorygonFrontpic ; 142aab
-	dbw BANK(PorygonBackpic) - $36, PorygonBackpic ; 15fe26
-	dbw BANK(OmanyteFrontpic) - $36, OmanyteFrontpic ; 1496f1
-	dbw BANK(OmanyteBackpic) - $36, OmanyteBackpic ; 150000
-	dbw BANK(OmastarFrontpic) - $36, OmastarFrontpic ; 13ac85
-	dbw BANK(OmastarBackpic) - $36, OmastarBackpic ; 12be51
-	dbw BANK(KabutoFrontpic) - $36, KabutoFrontpic ; 157003
-	dbw BANK(KabutoBackpic) - $36, KabutoBackpic ; 15c50d
-	dbw BANK(KabutopsFrontpic) - $36, KabutopsFrontpic ; 1356fc
-	dbw BANK(KabutopsBackpic) - $36, KabutopsBackpic ; 14f5be
-	dbw BANK(AerodactylFrontpic) - $36, AerodactylFrontpic ; 12de7b
-	dbw BANK(AerodactylBackpic) - $36, AerodactylBackpic ; 15a57e
-	dbw BANK(SnorlaxFrontpic) - $36, SnorlaxFrontpic ; 138d5a
-	dbw BANK(SnorlaxBackpic) - $36, SnorlaxBackpic ; 14bf55
-	dbw BANK(ArticunoFrontpic) - $36, ArticunoFrontpic ; 1226d6
-	dbw BANK(ArticunoBackpic) - $36, ArticunoBackpic ; 1630c3
-	dbw BANK(ZapdosFrontpic) - $36, ZapdosFrontpic ; 12697c
-	dbw BANK(ZapdosBackpic) - $36, ZapdosBackpic ; 15ea19
-	dbw BANK(MoltresFrontpic) - $36, MoltresFrontpic ; 126580
-	dbw BANK(MoltresBackpic) - $36, MoltresBackpic ; 14c1a2
-	dbw BANK(DratiniFrontpic) - $36, DratiniFrontpic ; 14b07d
-	dbw BANK(DratiniBackpic) - $36, DratiniBackpic ; 1639a3
-	dbw BANK(DragonairFrontpic) - $36, DragonairFrontpic ; 13b6b5
-	dbw BANK(DragonairBackpic) - $36, DragonairBackpic ; 15e8e6
-	dbw BANK(DragoniteFrontpic) - $36, DragoniteFrontpic ; 12d46e
-	dbw BANK(DragoniteBackpic) - $36, DragoniteBackpic ; 16189c
-	dbw BANK(MewtwoFrontpic) - $36, MewtwoFrontpic ; 127161
-	dbw BANK(MewtwoBackpic) - $36, MewtwoBackpic ; 158000
-	dbw BANK(MewFrontpic) - $36, MewFrontpic ; 13e213
-	dbw BANK(MewBackpic) - $36, MewBackpic ; 15a191
-	dbw BANK(ChikoritaFrontpic) - $36, ChikoritaFrontpic ; 13d898
-	dbw BANK(ChikoritaBackpic) - $36, ChikoritaBackpic ; 15eb4c
-	dbw BANK(BayleefFrontpic) - $36, BayleefFrontpic ; 1367c3
-	dbw BANK(BayleefBackpic) - $36, BayleefBackpic ; 14d695
-	dbw BANK(MeganiumFrontpic) - $36, MeganiumFrontpic ; 124904
-	dbw BANK(MeganiumBackpic) - $36, MeganiumBackpic ; 15c8d4
-	dbw BANK(CyndaquilFrontpic) - $36, CyndaquilFrontpic ; 13f931
-	dbw BANK(CyndaquilBackpic) - $36, CyndaquilBackpic ; 14d4fb
-	dbw BANK(QuilavaFrontpic) - $36, QuilavaFrontpic ; 127d1c
-	dbw BANK(QuilavaBackpic) - $36, QuilavaBackpic ; 14e331
-	dbw BANK(TyphlosionFrontpic) - $36, TyphlosionFrontpic ; 123c4d
-	dbw BANK(TyphlosionBackpic) - $36, TyphlosionBackpic ; 1507a1
-	dbw BANK(TotodileFrontpic) - $36, TotodileFrontpic ; 140d61
-	dbw BANK(TotodileBackpic) - $36, TotodileBackpic ; 15b138
-	dbw BANK(CroconawFrontpic) - $36, CroconawFrontpic ; 12e86a
-	dbw BANK(CroconawBackpic) - $36, CroconawBackpic ; 14e4c1
-	dbw BANK(FeraligatrFrontpic) - $36, FeraligatrFrontpic ; 1214dd
-	dbw BANK(FeraligatrBackpic) - $36, FeraligatrBackpic ; 14aed2
-	dbw BANK(SentretFrontpic) - $36, SentretFrontpic ; 1542e2
-	dbw BANK(SentretBackpic) - $36, SentretBackpic ; 162cb5
-	dbw BANK(FurretFrontpic) - $36, FurretFrontpic ; 13f6ec
-	dbw BANK(FurretBackpic) - $36, FurretBackpic ; 1560b0
-	dbw BANK(HoothootFrontpic) - $36, HoothootFrontpic ; 147d9e
-	dbw BANK(HoothootBackpic) - $36, HoothootBackpic ; 15c000
-	dbw BANK(NoctowlFrontpic) - $36, NoctowlFrontpic ; 1342eb
-	dbw BANK(NoctowlBackpic) - $36, NoctowlBackpic ; 15c144
-	dbw BANK(LedybaFrontpic) - $36, LedybaFrontpic ; 13a762
-	dbw BANK(LedybaBackpic) - $36, LedybaBackpic ; 14d360
-	dbw BANK(LedianFrontpic) - $36, LedianFrontpic ; 13edba
-	dbw BANK(LedianBackpic) - $36, LedianBackpic ; 150f30
-	dbw BANK(SpinarakFrontpic) - $36, SpinarakFrontpic ; 15f142
-	dbw BANK(SpinarakBackpic) - $36, SpinarakBackpic ; 164000
-	dbw BANK(AriadosFrontpic) - $36, AriadosFrontpic ; 134000
-	dbw BANK(AriadosBackpic) - $36, AriadosBackpic ; 158d98
-	dbw BANK(CrobatFrontpic) - $36, CrobatFrontpic ; 13c284
-	dbw BANK(CrobatBackpic) - $36, CrobatBackpic ; 162470
-	dbw BANK(ChinchouFrontpic) - $36, ChinchouFrontpic ; 141602
-	dbw BANK(ChinchouBackpic) - $36, ChinchouBackpic ; 15edb2
-	dbw BANK(LanturnFrontpic) - $36, LanturnFrontpic ; 146442
-	dbw BANK(LanturnBackpic) - $36, LanturnBackpic ; 160b5d
-	dbw BANK(PichuFrontpic) - $36, PichuFrontpic ; 150c2c
-	dbw BANK(PichuBackpic) - $36, PichuBackpic ; 1606de
-	dbw BANK(CleffaFrontpic) - $36, CleffaFrontpic ; 14a159
-	dbw BANK(CleffaBackpic) - $36, CleffaBackpic ; 1634c0
-	dbw BANK(IgglybuffFrontpic) - $36, IgglybuffFrontpic ; 1564e2
-	dbw BANK(IgglybuffBackpic) - $36, IgglybuffBackpic ; 162793
-	dbw BANK(TogepiFrontpic) - $36, TogepiFrontpic ; 15cc99
-	dbw BANK(TogepiBackpic) - $36, TogepiBackpic ; 162362
-	dbw BANK(TogeticFrontpic) - $36, TogeticFrontpic ; 13bbc1
-	dbw BANK(TogeticBackpic) - $36, TogeticBackpic ; 154453
-	dbw BANK(NatuFrontpic) - $36, NatuFrontpic ; 161ac9
-	dbw BANK(NatuBackpic) - $36, NatuBackpic ; 16558e
-	dbw BANK(XatuFrontpic) - $36, XatuFrontpic ; 13dfbc
-	dbw BANK(XatuBackpic) - $36, XatuBackpic ; 15d05b
-	dbw BANK(MareepFrontpic) - $36, MareepFrontpic ; 1469c4
-	dbw BANK(MareepBackpic) - $36, MareepBackpic ; 157164
-	dbw BANK(FlaaffyFrontpic) - $36, FlaaffyFrontpic ; 13f257
-	dbw BANK(FlaaffyBackpic) - $36, FlaaffyBackpic ; 154171
-	dbw BANK(AmpharosFrontpic) - $36, AmpharosFrontpic ; 1359d1
-	dbw BANK(AmpharosBackpic) - $36, AmpharosBackpic ; 162689
-	dbw BANK(BellossomFrontpic) - $36, BellossomFrontpic ; 138ab4
-	dbw BANK(BellossomBackpic) - $36, BellossomBackpic ; 157c64
-	dbw BANK(MarillFrontpic) - $36, MarillFrontpic ; 148c66
-	dbw BANK(MarillBackpic) - $36, MarillBackpic ; 1638aa
-	dbw BANK(AzumarillFrontpic) - $36, AzumarillFrontpic ; 133492
-	dbw BANK(AzumarillBackpic) - $36, AzumarillBackpic ; 16289c
-	dbw BANK(SudowoodoFrontpic) - $36, SudowoodoFrontpic ; 14023f
-	dbw BANK(SudowoodoBackpic) - $36, SudowoodoBackpic ; 154000
-	dbw BANK(PolitoedFrontpic) - $36, PolitoedFrontpic ; 131916
-	dbw BANK(PolitoedBackpic) - $36, PolitoedBackpic ; 161785
-	dbw BANK(HoppipFrontpic) - $36, HoppipFrontpic ; 14dce8
-	dbw BANK(HoppipBackpic) - $36, HoppipBackpic ; 15ddff
-	dbw BANK(SkiploomFrontpic) - $36, SkiploomFrontpic ; 1467f0
-	dbw BANK(SkiploomBackpic) - $36, SkiploomBackpic ; 15f014
-	dbw BANK(JumpluffFrontpic) - $36, JumpluffFrontpic ; 1372bd
-	dbw BANK(JumpluffBackpic) - $36, JumpluffBackpic ; 154e5b
-	dbw BANK(AipomFrontpic) - $36, AipomFrontpic ; 147672
-	dbw BANK(AipomBackpic) - $36, AipomBackpic ; 15ad51
-	dbw BANK(SunkernFrontpic) - $36, SunkernFrontpic ; 1538a8
-	dbw BANK(SunkernBackpic) - $36, SunkernBackpic ; 15e549
-	dbw BANK(SunfloraFrontpic) - $36, SunfloraFrontpic ; 13d3c3
-	dbw BANK(SunfloraBackpic) - $36, SunfloraBackpic ; 14c342
-	dbw BANK(YanmaFrontpic) - $36, YanmaFrontpic ; 13929d
-	dbw BANK(YanmaBackpic) - $36, YanmaBackpic ; 14a670
-	dbw BANK(WooperFrontpic) - $36, WooperFrontpic ; 157846
-	dbw BANK(WooperBackpic) - $36, WooperBackpic ; 164b27
-	dbw BANK(QuagsireFrontpic) - $36, QuagsireFrontpic ; 13fdb7
-	dbw BANK(QuagsireBackpic) - $36, QuagsireBackpic ; 15d913
-	dbw BANK(EspeonFrontpic) - $36, EspeonFrontpic ; 13dd5e
-	dbw BANK(EspeonBackpic) - $36, EspeonBackpic ; 15ae9e
-	dbw BANK(UmbreonFrontpic) - $36, UmbreonFrontpic ; 13d62e
-	dbw BANK(UmbreonBackpic) - $36, UmbreonBackpic ; 159049
-	dbw BANK(MurkrowFrontpic) - $36, MurkrowFrontpic ; 139d07
-	dbw BANK(MurkrowBackpic) - $36, MurkrowBackpic ; 1591a0
-	dbw BANK(SlowkingFrontpic) - $36, SlowkingFrontpic ; 12c371
-	dbw BANK(SlowkingBackpic) - $36, SlowkingBackpic ; 14b720
-	dbw BANK(MisdreavusFrontpic) - $36, MisdreavusFrontpic ; 144000
-	dbw BANK(MisdreavusBackpic) - $36, MisdreavusBackpic ; 15529d
-	dbw $ff, $ffff ; unowns use their own table
-	dbw $ff, $ffff ; see UnownPicPointers
-	dbw BANK(WobbuffetFrontpic) - $36, WobbuffetFrontpic ; 13e915
-	dbw BANK(WobbuffetBackpic) - $36, WobbuffetBackpic ; 162254
-	dbw BANK(GirafarigFrontpic) - $36, GirafarigFrontpic ; 1382b3
-	dbw BANK(GirafarigBackpic) - $36, GirafarigBackpic ; 155842
-	dbw BANK(PinecoFrontpic) - $36, PinecoFrontpic ; 1449c0
-	dbw BANK(PinecoBackpic) - $36, PinecoBackpic ; 15d55a
-	dbw BANK(ForretressFrontpic) - $36, ForretressFrontpic ; 13b93b
-	dbw BANK(ForretressBackpic) - $36, ForretressBackpic ; 165f86
-	dbw BANK(DunsparceFrontpic) - $36, DunsparceFrontpic ; 137da1
-	dbw BANK(DunsparceBackpic) - $36, DunsparceBackpic ; 164954
-	dbw BANK(GligarFrontpic) - $36, GligarFrontpic ; 137aed
-	dbw BANK(GligarBackpic) - $36, GligarBackpic ; 15061c
-	dbw BANK(SteelixFrontpic) - $36, SteelixFrontpic ; 1280c9
-	dbw BANK(SteelixBackpic) - $36, SteelixBackpic ; 1516b4
-	dbw BANK(SnubbullFrontpic) - $36, SnubbullFrontpic ; 13c9f5
-	dbw BANK(SnubbullBackpic) - $36, SnubbullBackpic ; 15b284
-	dbw BANK(GranbullFrontpic) - $36, GranbullFrontpic ; 13cc6e
-	dbw BANK(GranbullBackpic) - $36, GranbullBackpic ; 15e06f
-	dbw BANK(QwilfishFrontpic) - $36, QwilfishFrontpic ; 14b3d1
-	dbw BANK(QwilfishBackpic) - $36, QwilfishBackpic ; 150496
-	dbw BANK(ScizorFrontpic) - $36, ScizorFrontpic ; 12555c
-	dbw BANK(ScizorBackpic) - $36, ScizorBackpic ; 1556d9
-	dbw BANK(ShuckleFrontpic) - $36, ShuckleFrontpic ; 151fa9
-	dbw BANK(ShuckleBackpic) - $36, ShuckleBackpic ; 1645a6
-	dbw BANK(HeracrossFrontpic) - $36, HeracrossFrontpic ; 133d7b
-	dbw BANK(HeracrossBackpic) - $36, HeracrossBackpic ; 151232
-	dbw BANK(SneaselFrontpic) - $36, SneaselFrontpic ; 13880e
-	dbw BANK(SneaselBackpic) - $36, SneaselBackpic ; 158ef1
-	dbw BANK(TeddiursaFrontpic) - $36, TeddiursaFrontpic ; 14ee0b
-	dbw BANK(TeddiursaBackpic) - $36, TeddiursaBackpic ; 161e07
-	dbw BANK(UrsaringFrontpic) - $36, UrsaringFrontpic ; 13514e
-	dbw BANK(UrsaringBackpic) - $36, UrsaringBackpic ; 161bde
-	dbw BANK(SlugmaFrontpic) - $36, SlugmaFrontpic ; 14838d
-	dbw BANK(SlugmaBackpic) - $36, SlugmaBackpic ; 15c3ca
-	dbw BANK(MagcargoFrontpic) - $36, MagcargoFrontpic ; 130982
-	dbw BANK(MagcargoBackpic) - $36, MagcargoBackpic ; 14f434
-	dbw BANK(SwinubFrontpic) - $36, SwinubFrontpic ; 15fbd2
-	dbw BANK(SwinubBackpic) - $36, SwinubBackpic ; 157f20
-	dbw BANK(PiloswineFrontpic) - $36, PiloswineFrontpic ; 13af15
-	dbw BANK(PiloswineBackpic) - $36, PiloswineBackpic ; 16531d
-	dbw BANK(CorsolaFrontpic) - $36, CorsolaFrontpic ; 140f92
-	dbw BANK(CorsolaBackpic) - $36, CorsolaBackpic ; 15ec7f
-	dbw BANK(RemoraidFrontpic) - $36, RemoraidFrontpic ; 15229f
-	dbw BANK(RemoraidBackpic) - $36, RemoraidBackpic ; 1572c5
-	dbw BANK(OctilleryFrontpic) - $36, OctilleryFrontpic ; 13e46a
-	dbw BANK(OctilleryBackpic) - $36, OctilleryBackpic ; 1629a4
-	dbw BANK(DelibirdFrontpic) - $36, DelibirdFrontpic ; 13eb68
-	dbw BANK(DelibirdBackpic) - $36, DelibirdBackpic ; 15898a
-	dbw BANK(MantineFrontpic) - $36, MantineFrontpic ; 131f4b
-	dbw BANK(MantineBackpic) - $36, MantineBackpic ; 165172
-	dbw BANK(SkarmoryFrontpic) - $36, SkarmoryFrontpic ; 12acf0
-	dbw BANK(SkarmoryBackpic) - $36, SkarmoryBackpic ; 163b92
-	dbw BANK(HoundourFrontpic) - $36, HoundourFrontpic ; 1441f7
-	dbw BANK(HoundourBackpic) - $36, HoundourBackpic ; 1642d7
-	dbw BANK(HoundoomFrontpic) - $36, HoundoomFrontpic ; 135425
-	dbw BANK(HoundoomBackpic) - $36, HoundoomBackpic ; 1607ff
-	dbw BANK(KingdraFrontpic) - $36, KingdraFrontpic ; 132573
-	dbw BANK(KingdraBackpic) - $36, KingdraBackpic ; 157586
-	dbw BANK(PhanpyFrontpic) - $36, PhanpyFrontpic ; 14c4e1
-	dbw BANK(PhanpyBackpic) - $36, PhanpyBackpic ; 161f1b
-	dbw BANK(DonphanFrontpic) - $36, DonphanFrontpic ; 12f8ac
-	dbw BANK(DonphanBackpic) - $36, DonphanBackpic ; 164a3e
-	dbw BANK(Porygon2Frontpic) - $36, Porygon2Frontpic ; 1436d1
-	dbw BANK(Porygon2Backpic) - $36, Porygon2Backpic ; 15d2db
-	dbw BANK(StantlerFrontpic) - $36, StantlerFrontpic ; 130fbf
-	dbw BANK(StantlerBackpic) - $36, StantlerBackpic ; 1559aa
-	dbw BANK(SmeargleFrontpic) - $36, SmeargleFrontpic ; 139539
-	dbw BANK(SmeargleBackpic) - $36, SmeargleBackpic ; 155b12
-	dbw BANK(TyrogueFrontpic) - $36, TyrogueFrontpic ; 14661a
-	dbw BANK(TyrogueBackpic) - $36, TyrogueBackpic ; 155407
-	dbw BANK(HitmontopFrontpic) - $36, HitmontopFrontpic ; 12c6df
-	dbw BANK(HitmontopBackpic) - $36, HitmontopBackpic ; 147a0a
-	dbw BANK(SmoochumFrontpic) - $36, SmoochumFrontpic ; 1488dd
-	dbw BANK(SmoochumBackpic) - $36, SmoochumBackpic ; 1605bd
-	dbw BANK(ElekidFrontpic) - $36, ElekidFrontpic ; 136fff
-	dbw BANK(ElekidBackpic) - $36, ElekidBackpic ; 14b8c6
-	dbw BANK(MagbyFrontpic) - $36, MagbyFrontpic ; 1408f1
-	dbw BANK(MagbyBackpic) - $36, MagbyBackpic ; 15e7b2
-	dbw BANK(MiltankFrontpic) - $36, MiltankFrontpic ; 13cee2
-	dbw BANK(MiltankBackpic) - $36, MiltankBackpic ; 151534
-	dbw BANK(BlisseyFrontpic) - $36, BlisseyFrontpic ; 12cdac
-	dbw BANK(BlisseyBackpic) - $36, BlisseyBackpic ; 16257d
-	dbw BANK(RaikouFrontpic) - $36, RaikouFrontpic ; 121e00
-	dbw BANK(RaikouBackpic) - $36, RaikouBackpic ; 1640f3
-	dbw BANK(EnteiFrontpic) - $36, EnteiFrontpic ; 1233cb
-	dbw BANK(EnteiBackpic) - $36, EnteiBackpic ; 1599a3
-	dbw BANK(SuicuneFrontpic) - $36, SuicuneFrontpic ; 123810
-	dbw BANK(SuicuneBackpic) - $36, SuicuneBackpic ; 14b579
-	dbw BANK(LarvitarFrontpic) - $36, LarvitarFrontpic ; 14c81c
-	dbw BANK(LarvitarBackpic) - $36, LarvitarBackpic ; 15fcfc
-	dbw BANK(PupitarFrontpic) - $36, PupitarFrontpic ; 149a6d
-	dbw BANK(PupitarBackpic) - $36, PupitarBackpic ; 1510b1
-	dbw BANK(TyranitarFrontpic) - $36, TyranitarFrontpic ; 126183
-	dbw BANK(TyranitarBackpic) - $36, TyranitarBackpic ; 14c9b9
-	dbw BANK(LugiaFrontpic) - $36, LugiaFrontpic ; 12226e
-	dbw BANK(LugiaBackpic) - $36, LugiaBackpic ; 161208
-	dbw BANK(HoOhFrontpic) - $36, HoOhFrontpic ; 1205ee
-	dbw BANK(HoOhBackpic) - $36, HoOhBackpic ; 159ef0
-	dbw BANK(CelebiFrontpic) - $36, CelebiFrontpic ; 1445e1
-	dbw BANK(CelebiBackpic) - $36, CelebiBackpic ; 14ba6b
-	dbw $ff, $ffff ; unused
-	dbw $ff, $ffff ; unused
-	dbw BANK(EggPic) - $36, 	EggPic ; 151caf
-	dbw $ff, $ffff ; unused
-; 1205ee
+PicPointers:
+	dbw BANK(BulbasaurFrontpic)   - $36, BulbasaurFrontpic
+	dbw BANK(BulbasaurBackpic)    - $36, BulbasaurBackpic
+	dbw BANK(IvysaurFrontpic)     - $36, IvysaurFrontpic
+	dbw BANK(IvysaurBackpic)      - $36, IvysaurBackpic
+	dbw BANK(VenusaurFrontpic)    - $36, VenusaurFrontpic
+	dbw BANK(VenusaurBackpic)     - $36, VenusaurBackpic
+	dbw BANK(CharmanderFrontpic)  - $36, CharmanderFrontpic
+	dbw BANK(CharmanderBackpic)   - $36, CharmanderBackpic
+	dbw BANK(CharmeleonFrontpic)  - $36, CharmeleonFrontpic
+	dbw BANK(CharmeleonBackpic)   - $36, CharmeleonBackpic
+	dbw BANK(CharizardFrontpic)   - $36, CharizardFrontpic
+	dbw BANK(CharizardBackpic)    - $36, CharizardBackpic
+	dbw BANK(SquirtleFrontpic)    - $36, SquirtleFrontpic
+	dbw BANK(SquirtleBackpic)     - $36, SquirtleBackpic
+	dbw BANK(WartortleFrontpic)   - $36, WartortleFrontpic
+	dbw BANK(WartortleBackpic)    - $36, WartortleBackpic
+	dbw BANK(BlastoiseFrontpic)   - $36, BlastoiseFrontpic
+	dbw BANK(BlastoiseBackpic)    - $36, BlastoiseBackpic
+	dbw BANK(CaterpieFrontpic)    - $36, CaterpieFrontpic
+	dbw BANK(CaterpieBackpic)     - $36, CaterpieBackpic
+	dbw BANK(MetapodFrontpic)     - $36, MetapodFrontpic
+	dbw BANK(MetapodBackpic)      - $36, MetapodBackpic
+	dbw BANK(ButterfreeFrontpic)  - $36, ButterfreeFrontpic
+	dbw BANK(ButterfreeBackpic)   - $36, ButterfreeBackpic
+	dbw BANK(WeedleFrontpic)      - $36, WeedleFrontpic
+	dbw BANK(WeedleBackpic)       - $36, WeedleBackpic
+	dbw BANK(KakunaFrontpic)      - $36, KakunaFrontpic
+	dbw BANK(KakunaBackpic)       - $36, KakunaBackpic
+	dbw BANK(BeedrillFrontpic)    - $36, BeedrillFrontpic
+	dbw BANK(BeedrillBackpic)     - $36, BeedrillBackpic
+	dbw BANK(PidgeyFrontpic)      - $36, PidgeyFrontpic
+	dbw BANK(PidgeyBackpic)       - $36, PidgeyBackpic
+	dbw BANK(PidgeottoFrontpic)   - $36, PidgeottoFrontpic
+	dbw BANK(PidgeottoBackpic)    - $36, PidgeottoBackpic
+	dbw BANK(PidgeotFrontpic)     - $36, PidgeotFrontpic
+	dbw BANK(PidgeotBackpic)      - $36, PidgeotBackpic
+	dbw BANK(RattataFrontpic)     - $36, RattataFrontpic
+	dbw BANK(RattataBackpic)      - $36, RattataBackpic
+	dbw BANK(RaticateFrontpic)    - $36, RaticateFrontpic
+	dbw BANK(RaticateBackpic)     - $36, RaticateBackpic
+	dbw BANK(SpearowFrontpic)     - $36, SpearowFrontpic
+	dbw BANK(SpearowBackpic)      - $36, SpearowBackpic
+	dbw BANK(FearowFrontpic)      - $36, FearowFrontpic
+	dbw BANK(FearowBackpic)       - $36, FearowBackpic
+	dbw BANK(EkansFrontpic)       - $36, EkansFrontpic
+	dbw BANK(EkansBackpic)        - $36, EkansBackpic
+	dbw BANK(ArbokFrontpic)       - $36, ArbokFrontpic
+	dbw BANK(ArbokBackpic)        - $36, ArbokBackpic
+	dbw BANK(PikachuFrontpic)     - $36, PikachuFrontpic
+	dbw BANK(PikachuBackpic)      - $36, PikachuBackpic
+	dbw BANK(RaichuFrontpic)      - $36, RaichuFrontpic
+	dbw BANK(RaichuBackpic)       - $36, RaichuBackpic
+	dbw BANK(SandshrewFrontpic)   - $36, SandshrewFrontpic
+	dbw BANK(SandshrewBackpic)    - $36, SandshrewBackpic
+	dbw BANK(SandslashFrontpic)   - $36, SandslashFrontpic
+	dbw BANK(SandslashBackpic)    - $36, SandslashBackpic
+	dbw BANK(NidoranFFrontpic)    - $36, NidoranFFrontpic
+	dbw BANK(NidoranFBackpic)     - $36, NidoranFBackpic
+	dbw BANK(NidorinaFrontpic)    - $36, NidorinaFrontpic
+	dbw BANK(NidorinaBackpic)     - $36, NidorinaBackpic
+	dbw BANK(NidoqueenFrontpic)   - $36, NidoqueenFrontpic
+	dbw BANK(NidoqueenBackpic)    - $36, NidoqueenBackpic
+	dbw BANK(NidoranMFrontpic)    - $36, NidoranMFrontpic
+	dbw BANK(NidoranMBackpic)     - $36, NidoranMBackpic
+	dbw BANK(NidorinoFrontpic)    - $36, NidorinoFrontpic
+	dbw BANK(NidorinoBackpic)     - $36, NidorinoBackpic
+	dbw BANK(NidokingFrontpic)    - $36, NidokingFrontpic
+	dbw BANK(NidokingBackpic)     - $36, NidokingBackpic
+	dbw BANK(ClefairyFrontpic)    - $36, ClefairyFrontpic
+	dbw BANK(ClefairyBackpic)     - $36, ClefairyBackpic
+	dbw BANK(ClefableFrontpic)    - $36, ClefableFrontpic
+	dbw BANK(ClefableBackpic)     - $36, ClefableBackpic
+	dbw BANK(VulpixFrontpic)      - $36, VulpixFrontpic
+	dbw BANK(VulpixBackpic)       - $36, VulpixBackpic
+	dbw BANK(NinetalesFrontpic)   - $36, NinetalesFrontpic
+	dbw BANK(NinetalesBackpic)    - $36, NinetalesBackpic
+	dbw BANK(JigglypuffFrontpic)  - $36, JigglypuffFrontpic
+	dbw BANK(JigglypuffBackpic)   - $36, JigglypuffBackpic
+	dbw BANK(WigglytuffFrontpic)  - $36, WigglytuffFrontpic
+	dbw BANK(WigglytuffBackpic)   - $36, WigglytuffBackpic
+	dbw BANK(ZubatFrontpic)       - $36, ZubatFrontpic
+	dbw BANK(ZubatBackpic)        - $36, ZubatBackpic
+	dbw BANK(GolbatFrontpic)      - $36, GolbatFrontpic
+	dbw BANK(GolbatBackpic)       - $36, GolbatBackpic
+	dbw BANK(OddishFrontpic)      - $36, OddishFrontpic
+	dbw BANK(OddishBackpic)       - $36, OddishBackpic
+	dbw BANK(GloomFrontpic)       - $36, GloomFrontpic
+	dbw BANK(GloomBackpic)        - $36, GloomBackpic
+	dbw BANK(VileplumeFrontpic)   - $36, VileplumeFrontpic
+	dbw BANK(VileplumeBackpic)    - $36, VileplumeBackpic
+	dbw BANK(ParasFrontpic)       - $36, ParasFrontpic
+	dbw BANK(ParasBackpic)        - $36, ParasBackpic
+	dbw BANK(ParasectFrontpic)    - $36, ParasectFrontpic
+	dbw BANK(ParasectBackpic)     - $36, ParasectBackpic
+	dbw BANK(VenonatFrontpic)     - $36, VenonatFrontpic
+	dbw BANK(VenonatBackpic)      - $36, VenonatBackpic
+	dbw BANK(VenomothFrontpic)    - $36, VenomothFrontpic
+	dbw BANK(VenomothBackpic)     - $36, VenomothBackpic
+	dbw BANK(DiglettFrontpic)     - $36, DiglettFrontpic
+	dbw BANK(DiglettBackpic)      - $36, DiglettBackpic
+	dbw BANK(DugtrioFrontpic)     - $36, DugtrioFrontpic
+	dbw BANK(DugtrioBackpic)      - $36, DugtrioBackpic
+	dbw BANK(MeowthFrontpic)      - $36, MeowthFrontpic
+	dbw BANK(MeowthBackpic)       - $36, MeowthBackpic
+	dbw BANK(PersianFrontpic)     - $36, PersianFrontpic
+	dbw BANK(PersianBackpic)      - $36, PersianBackpic
+	dbw BANK(PsyduckFrontpic)     - $36, PsyduckFrontpic
+	dbw BANK(PsyduckBackpic)      - $36, PsyduckBackpic
+	dbw BANK(GolduckFrontpic)     - $36, GolduckFrontpic
+	dbw BANK(GolduckBackpic)      - $36, GolduckBackpic
+	dbw BANK(MankeyFrontpic)      - $36, MankeyFrontpic
+	dbw BANK(MankeyBackpic)       - $36, MankeyBackpic
+	dbw BANK(PrimeapeFrontpic)    - $36, PrimeapeFrontpic
+	dbw BANK(PrimeapeBackpic)     - $36, PrimeapeBackpic
+	dbw BANK(GrowlitheFrontpic)   - $36, GrowlitheFrontpic
+	dbw BANK(GrowlitheBackpic)    - $36, GrowlitheBackpic
+	dbw BANK(ArcanineFrontpic)    - $36, ArcanineFrontpic
+	dbw BANK(ArcanineBackpic)     - $36, ArcanineBackpic
+	dbw BANK(PoliwagFrontpic)     - $36, PoliwagFrontpic
+	dbw BANK(PoliwagBackpic)      - $36, PoliwagBackpic
+	dbw BANK(PoliwhirlFrontpic)   - $36, PoliwhirlFrontpic
+	dbw BANK(PoliwhirlBackpic)    - $36, PoliwhirlBackpic
+	dbw BANK(PoliwrathFrontpic)   - $36, PoliwrathFrontpic
+	dbw BANK(PoliwrathBackpic)    - $36, PoliwrathBackpic
+	dbw BANK(AbraFrontpic)        - $36, AbraFrontpic
+	dbw BANK(AbraBackpic)         - $36, AbraBackpic
+	dbw BANK(KadabraFrontpic)     - $36, KadabraFrontpic
+	dbw BANK(KadabraBackpic)      - $36, KadabraBackpic
+	dbw BANK(AlakazamFrontpic)    - $36, AlakazamFrontpic
+	dbw BANK(AlakazamBackpic)     - $36, AlakazamBackpic
+	dbw BANK(MachopFrontpic)      - $36, MachopFrontpic
+	dbw BANK(MachopBackpic)       - $36, MachopBackpic
+	dbw BANK(MachokeFrontpic)     - $36, MachokeFrontpic
+	dbw BANK(MachokeBackpic)      - $36, MachokeBackpic
+	dbw BANK(MachampFrontpic)     - $36, MachampFrontpic
+	dbw BANK(MachampBackpic)      - $36, MachampBackpic
+	dbw BANK(BellsproutFrontpic)  - $36, BellsproutFrontpic
+	dbw BANK(BellsproutBackpic)   - $36, BellsproutBackpic
+	dbw BANK(WeepinbellFrontpic)  - $36, WeepinbellFrontpic
+	dbw BANK(WeepinbellBackpic)   - $36, WeepinbellBackpic
+	dbw BANK(VictreebelFrontpic)  - $36, VictreebelFrontpic
+	dbw BANK(VictreebelBackpic)   - $36, VictreebelBackpic
+	dbw BANK(TentacoolFrontpic)   - $36, TentacoolFrontpic
+	dbw BANK(TentacoolBackpic)    - $36, TentacoolBackpic
+	dbw BANK(TentacruelFrontpic)  - $36, TentacruelFrontpic
+	dbw BANK(TentacruelBackpic)   - $36, TentacruelBackpic
+	dbw BANK(GeodudeFrontpic)     - $36, GeodudeFrontpic
+	dbw BANK(GeodudeBackpic)      - $36, GeodudeBackpic
+	dbw BANK(GravelerFrontpic)    - $36, GravelerFrontpic
+	dbw BANK(GravelerBackpic)     - $36, GravelerBackpic
+	dbw BANK(GolemFrontpic)       - $36, GolemFrontpic
+	dbw BANK(GolemBackpic)        - $36, GolemBackpic
+	dbw BANK(PonytaFrontpic)      - $36, PonytaFrontpic
+	dbw BANK(PonytaBackpic)       - $36, PonytaBackpic
+	dbw BANK(RapidashFrontpic)    - $36, RapidashFrontpic
+	dbw BANK(RapidashBackpic)     - $36, RapidashBackpic
+	dbw BANK(SlowpokeFrontpic)    - $36, SlowpokeFrontpic
+	dbw BANK(SlowpokeBackpic)     - $36, SlowpokeBackpic
+	dbw BANK(SlowbroFrontpic)     - $36, SlowbroFrontpic
+	dbw BANK(SlowbroBackpic)      - $36, SlowbroBackpic
+	dbw BANK(MagnemiteFrontpic)   - $36, MagnemiteFrontpic
+	dbw BANK(MagnemiteBackpic)    - $36, MagnemiteBackpic
+	dbw BANK(MagnetonFrontpic)    - $36, MagnetonFrontpic
+	dbw BANK(MagnetonBackpic)     - $36, MagnetonBackpic
+	dbw BANK(FarfetchDFrontpic)   - $36, FarfetchDFrontpic
+	dbw BANK(FarfetchDBackpic)    - $36, FarfetchDBackpic
+	dbw BANK(DoduoFrontpic)       - $36, DoduoFrontpic
+	dbw BANK(DoduoBackpic)        - $36, DoduoBackpic
+	dbw BANK(DodrioFrontpic)      - $36, DodrioFrontpic
+	dbw BANK(DodrioBackpic)       - $36, DodrioBackpic
+	dbw BANK(SeelFrontpic)        - $36, SeelFrontpic
+	dbw BANK(SeelBackpic)         - $36, SeelBackpic
+	dbw BANK(DewgongFrontpic)     - $36, DewgongFrontpic
+	dbw BANK(DewgongBackpic)      - $36, DewgongBackpic
+	dbw BANK(GrimerFrontpic)      - $36, GrimerFrontpic
+	dbw BANK(GrimerBackpic)       - $36, GrimerBackpic
+	dbw BANK(MukFrontpic)         - $36, MukFrontpic
+	dbw BANK(MukBackpic)          - $36, MukBackpic
+	dbw BANK(ShellderFrontpic)    - $36, ShellderFrontpic
+	dbw BANK(ShellderBackpic)     - $36, ShellderBackpic
+	dbw BANK(CloysterFrontpic)    - $36, CloysterFrontpic
+	dbw BANK(CloysterBackpic)     - $36, CloysterBackpic
+	dbw BANK(GastlyFrontpic)      - $36, GastlyFrontpic
+	dbw BANK(GastlyBackpic)       - $36, GastlyBackpic
+	dbw BANK(HaunterFrontpic)     - $36, HaunterFrontpic
+	dbw BANK(HaunterBackpic)      - $36, HaunterBackpic
+	dbw BANK(GengarFrontpic)      - $36, GengarFrontpic
+	dbw BANK(GengarBackpic)       - $36, GengarBackpic
+	dbw BANK(OnixFrontpic)        - $36, OnixFrontpic
+	dbw BANK(OnixBackpic)         - $36, OnixBackpic
+	dbw BANK(DrowzeeFrontpic)     - $36, DrowzeeFrontpic
+	dbw BANK(DrowzeeBackpic)      - $36, DrowzeeBackpic
+	dbw BANK(HypnoFrontpic)       - $36, HypnoFrontpic
+	dbw BANK(HypnoBackpic)        - $36, HypnoBackpic
+	dbw BANK(KrabbyFrontpic)      - $36, KrabbyFrontpic
+	dbw BANK(KrabbyBackpic)       - $36, KrabbyBackpic
+	dbw BANK(KinglerFrontpic)     - $36, KinglerFrontpic
+	dbw BANK(KinglerBackpic)      - $36, KinglerBackpic
+	dbw BANK(VoltorbFrontpic)     - $36, VoltorbFrontpic
+	dbw BANK(VoltorbBackpic)      - $36, VoltorbBackpic
+	dbw BANK(ElectrodeFrontpic)   - $36, ElectrodeFrontpic
+	dbw BANK(ElectrodeBackpic)    - $36, ElectrodeBackpic
+	dbw BANK(ExeggcuteFrontpic)   - $36, ExeggcuteFrontpic
+	dbw BANK(ExeggcuteBackpic)    - $36, ExeggcuteBackpic
+	dbw BANK(ExeggutorFrontpic)   - $36, ExeggutorFrontpic
+	dbw BANK(ExeggutorBackpic)    - $36, ExeggutorBackpic
+	dbw BANK(CuboneFrontpic)      - $36, CuboneFrontpic
+	dbw BANK(CuboneBackpic)       - $36, CuboneBackpic
+	dbw BANK(MarowakFrontpic)     - $36, MarowakFrontpic
+	dbw BANK(MarowakBackpic)      - $36, MarowakBackpic
+	dbw BANK(HitmonleeFrontpic)   - $36, HitmonleeFrontpic
+	dbw BANK(HitmonleeBackpic)    - $36, HitmonleeBackpic
+	dbw BANK(HitmonchanFrontpic)  - $36, HitmonchanFrontpic
+	dbw BANK(HitmonchanBackpic)   - $36, HitmonchanBackpic
+	dbw BANK(LickitungFrontpic)   - $36, LickitungFrontpic
+	dbw BANK(LickitungBackpic)    - $36, LickitungBackpic
+	dbw BANK(KoffingFrontpic)     - $36, KoffingFrontpic
+	dbw BANK(KoffingBackpic)      - $36, KoffingBackpic
+	dbw BANK(WeezingFrontpic)     - $36, WeezingFrontpic
+	dbw BANK(WeezingBackpic)      - $36, WeezingBackpic
+	dbw BANK(RhyhornFrontpic)     - $36, RhyhornFrontpic
+	dbw BANK(RhyhornBackpic)      - $36, RhyhornBackpic
+	dbw BANK(RhydonFrontpic)      - $36, RhydonFrontpic
+	dbw BANK(RhydonBackpic)       - $36, RhydonBackpic
+	dbw BANK(ChanseyFrontpic)     - $36, ChanseyFrontpic
+	dbw BANK(ChanseyBackpic)      - $36, ChanseyBackpic
+	dbw BANK(TangelaFrontpic)     - $36, TangelaFrontpic
+	dbw BANK(TangelaBackpic)      - $36, TangelaBackpic
+	dbw BANK(KangaskhanFrontpic)  - $36, KangaskhanFrontpic
+	dbw BANK(KangaskhanBackpic)   - $36, KangaskhanBackpic
+	dbw BANK(HorseaFrontpic)      - $36, HorseaFrontpic
+	dbw BANK(HorseaBackpic)       - $36, HorseaBackpic
+	dbw BANK(SeadraFrontpic)      - $36, SeadraFrontpic
+	dbw BANK(SeadraBackpic)       - $36, SeadraBackpic
+	dbw BANK(GoldeenFrontpic)     - $36, GoldeenFrontpic
+	dbw BANK(GoldeenBackpic)      - $36, GoldeenBackpic
+	dbw BANK(SeakingFrontpic)     - $36, SeakingFrontpic
+	dbw BANK(SeakingBackpic)      - $36, SeakingBackpic
+	dbw BANK(StaryuFrontpic)      - $36, StaryuFrontpic
+	dbw BANK(StaryuBackpic)       - $36, StaryuBackpic
+	dbw BANK(StarmieFrontpic)     - $36, StarmieFrontpic
+	dbw BANK(StarmieBackpic)      - $36, StarmieBackpic
+	dbw BANK(MrMimeFrontpic)      - $36, MrMimeFrontpic
+	dbw BANK(MrMimeBackpic)       - $36, MrMimeBackpic
+	dbw BANK(ScytherFrontpic)     - $36, ScytherFrontpic
+	dbw BANK(ScytherBackpic)      - $36, ScytherBackpic
+	dbw BANK(JynxFrontpic)        - $36, JynxFrontpic
+	dbw BANK(JynxBackpic)         - $36, JynxBackpic
+	dbw BANK(ElectabuzzFrontpic)  - $36, ElectabuzzFrontpic
+	dbw BANK(ElectabuzzBackpic)   - $36, ElectabuzzBackpic
+	dbw BANK(MagmarFrontpic)      - $36, MagmarFrontpic
+	dbw BANK(MagmarBackpic)       - $36, MagmarBackpic
+	dbw BANK(PinsirFrontpic)      - $36, PinsirFrontpic
+	dbw BANK(PinsirBackpic)       - $36, PinsirBackpic
+	dbw BANK(TaurosFrontpic)      - $36, TaurosFrontpic
+	dbw BANK(TaurosBackpic)       - $36, TaurosBackpic
+	dbw BANK(MagikarpFrontpic)    - $36, MagikarpFrontpic
+	dbw BANK(MagikarpBackpic)     - $36, MagikarpBackpic
+	dbw BANK(GyaradosFrontpic)    - $36, GyaradosFrontpic
+	dbw BANK(GyaradosBackpic)     - $36, GyaradosBackpic
+	dbw BANK(LaprasFrontpic)      - $36, LaprasFrontpic
+	dbw BANK(LaprasBackpic)       - $36, LaprasBackpic
+	dbw BANK(DittoFrontpic)       - $36, DittoFrontpic
+	dbw BANK(DittoBackpic)        - $36, DittoBackpic
+	dbw BANK(EeveeFrontpic)       - $36, EeveeFrontpic
+	dbw BANK(EeveeBackpic)        - $36, EeveeBackpic
+	dbw BANK(VaporeonFrontpic)    - $36, VaporeonFrontpic
+	dbw BANK(VaporeonBackpic)     - $36, VaporeonBackpic
+	dbw BANK(JolteonFrontpic)     - $36, JolteonFrontpic
+	dbw BANK(JolteonBackpic)      - $36, JolteonBackpic
+	dbw BANK(FlareonFrontpic)     - $36, FlareonFrontpic
+	dbw BANK(FlareonBackpic)      - $36, FlareonBackpic
+	dbw BANK(PorygonFrontpic)     - $36, PorygonFrontpic
+	dbw BANK(PorygonBackpic)      - $36, PorygonBackpic
+	dbw BANK(OmanyteFrontpic)     - $36, OmanyteFrontpic
+	dbw BANK(OmanyteBackpic)      - $36, OmanyteBackpic
+	dbw BANK(OmastarFrontpic)     - $36, OmastarFrontpic
+	dbw BANK(OmastarBackpic)      - $36, OmastarBackpic
+	dbw BANK(KabutoFrontpic)      - $36, KabutoFrontpic
+	dbw BANK(KabutoBackpic)       - $36, KabutoBackpic
+	dbw BANK(KabutopsFrontpic)    - $36, KabutopsFrontpic
+	dbw BANK(KabutopsBackpic)     - $36, KabutopsBackpic
+	dbw BANK(AerodactylFrontpic)  - $36, AerodactylFrontpic
+	dbw BANK(AerodactylBackpic)   - $36, AerodactylBackpic
+	dbw BANK(SnorlaxFrontpic)     - $36, SnorlaxFrontpic
+	dbw BANK(SnorlaxBackpic)      - $36, SnorlaxBackpic
+	dbw BANK(ArticunoFrontpic)    - $36, ArticunoFrontpic
+	dbw BANK(ArticunoBackpic)     - $36, ArticunoBackpic
+	dbw BANK(ZapdosFrontpic)      - $36, ZapdosFrontpic
+	dbw BANK(ZapdosBackpic)       - $36, ZapdosBackpic
+	dbw BANK(MoltresFrontpic)     - $36, MoltresFrontpic
+	dbw BANK(MoltresBackpic)      - $36, MoltresBackpic
+	dbw BANK(DratiniFrontpic)     - $36, DratiniFrontpic
+	dbw BANK(DratiniBackpic)      - $36, DratiniBackpic
+	dbw BANK(DragonairFrontpic)   - $36, DragonairFrontpic
+	dbw BANK(DragonairBackpic)    - $36, DragonairBackpic
+	dbw BANK(DragoniteFrontpic)   - $36, DragoniteFrontpic
+	dbw BANK(DragoniteBackpic)    - $36, DragoniteBackpic
+	dbw BANK(MewtwoFrontpic)      - $36, MewtwoFrontpic
+	dbw BANK(MewtwoBackpic)       - $36, MewtwoBackpic
+	dbw BANK(MewFrontpic)         - $36, MewFrontpic
+	dbw BANK(MewBackpic)          - $36, MewBackpic
+	dbw BANK(ChikoritaFrontpic)   - $36, ChikoritaFrontpic
+	dbw BANK(ChikoritaBackpic)    - $36, ChikoritaBackpic
+	dbw BANK(BayleefFrontpic)     - $36, BayleefFrontpic
+	dbw BANK(BayleefBackpic)      - $36, BayleefBackpic
+	dbw BANK(MeganiumFrontpic)    - $36, MeganiumFrontpic
+	dbw BANK(MeganiumBackpic)     - $36, MeganiumBackpic
+	dbw BANK(CyndaquilFrontpic)   - $36, CyndaquilFrontpic
+	dbw BANK(CyndaquilBackpic)    - $36, CyndaquilBackpic
+	dbw BANK(QuilavaFrontpic)     - $36, QuilavaFrontpic
+	dbw BANK(QuilavaBackpic)      - $36, QuilavaBackpic
+	dbw BANK(TyphlosionFrontpic)  - $36, TyphlosionFrontpic
+	dbw BANK(TyphlosionBackpic)   - $36, TyphlosionBackpic
+	dbw BANK(TotodileFrontpic)    - $36, TotodileFrontpic
+	dbw BANK(TotodileBackpic)     - $36, TotodileBackpic
+	dbw BANK(CroconawFrontpic)    - $36, CroconawFrontpic
+	dbw BANK(CroconawBackpic)     - $36, CroconawBackpic
+	dbw BANK(FeraligatrFrontpic)  - $36, FeraligatrFrontpic
+	dbw BANK(FeraligatrBackpic)   - $36, FeraligatrBackpic
+	dbw BANK(SentretFrontpic)     - $36, SentretFrontpic
+	dbw BANK(SentretBackpic)      - $36, SentretBackpic
+	dbw BANK(FurretFrontpic)      - $36, FurretFrontpic
+	dbw BANK(FurretBackpic)       - $36, FurretBackpic
+	dbw BANK(HoothootFrontpic)    - $36, HoothootFrontpic
+	dbw BANK(HoothootBackpic)     - $36, HoothootBackpic
+	dbw BANK(NoctowlFrontpic)     - $36, NoctowlFrontpic
+	dbw BANK(NoctowlBackpic)      - $36, NoctowlBackpic
+	dbw BANK(LedybaFrontpic)      - $36, LedybaFrontpic
+	dbw BANK(LedybaBackpic)       - $36, LedybaBackpic
+	dbw BANK(LedianFrontpic)      - $36, LedianFrontpic
+	dbw BANK(LedianBackpic)       - $36, LedianBackpic
+	dbw BANK(SpinarakFrontpic)    - $36, SpinarakFrontpic
+	dbw BANK(SpinarakBackpic)     - $36, SpinarakBackpic
+	dbw BANK(AriadosFrontpic)     - $36, AriadosFrontpic
+	dbw BANK(AriadosBackpic)      - $36, AriadosBackpic
+	dbw BANK(CrobatFrontpic)      - $36, CrobatFrontpic
+	dbw BANK(CrobatBackpic)       - $36, CrobatBackpic
+	dbw BANK(ChinchouFrontpic)    - $36, ChinchouFrontpic
+	dbw BANK(ChinchouBackpic)     - $36, ChinchouBackpic
+	dbw BANK(LanturnFrontpic)     - $36, LanturnFrontpic
+	dbw BANK(LanturnBackpic)      - $36, LanturnBackpic
+	dbw BANK(PichuFrontpic)       - $36, PichuFrontpic
+	dbw BANK(PichuBackpic)        - $36, PichuBackpic
+	dbw BANK(CleffaFrontpic)      - $36, CleffaFrontpic
+	dbw BANK(CleffaBackpic)       - $36, CleffaBackpic
+	dbw BANK(IgglybuffFrontpic)   - $36, IgglybuffFrontpic
+	dbw BANK(IgglybuffBackpic)    - $36, IgglybuffBackpic
+	dbw BANK(TogepiFrontpic)      - $36, TogepiFrontpic
+	dbw BANK(TogepiBackpic)       - $36, TogepiBackpic
+	dbw BANK(TogeticFrontpic)     - $36, TogeticFrontpic
+	dbw BANK(TogeticBackpic)      - $36, TogeticBackpic
+	dbw BANK(NatuFrontpic)        - $36, NatuFrontpic
+	dbw BANK(NatuBackpic)         - $36, NatuBackpic
+	dbw BANK(XatuFrontpic)        - $36, XatuFrontpic
+	dbw BANK(XatuBackpic)         - $36, XatuBackpic
+	dbw BANK(MareepFrontpic)      - $36, MareepFrontpic
+	dbw BANK(MareepBackpic)       - $36, MareepBackpic
+	dbw BANK(FlaaffyFrontpic)     - $36, FlaaffyFrontpic
+	dbw BANK(FlaaffyBackpic)      - $36, FlaaffyBackpic
+	dbw BANK(AmpharosFrontpic)    - $36, AmpharosFrontpic
+	dbw BANK(AmpharosBackpic)     - $36, AmpharosBackpic
+	dbw BANK(BellossomFrontpic)   - $36, BellossomFrontpic
+	dbw BANK(BellossomBackpic)    - $36, BellossomBackpic
+	dbw BANK(MarillFrontpic)      - $36, MarillFrontpic
+	dbw BANK(MarillBackpic)       - $36, MarillBackpic
+	dbw BANK(AzumarillFrontpic)   - $36, AzumarillFrontpic
+	dbw BANK(AzumarillBackpic)    - $36, AzumarillBackpic
+	dbw BANK(SudowoodoFrontpic)   - $36, SudowoodoFrontpic
+	dbw BANK(SudowoodoBackpic)    - $36, SudowoodoBackpic
+	dbw BANK(PolitoedFrontpic)    - $36, PolitoedFrontpic
+	dbw BANK(PolitoedBackpic)     - $36, PolitoedBackpic
+	dbw BANK(HoppipFrontpic)      - $36, HoppipFrontpic
+	dbw BANK(HoppipBackpic)       - $36, HoppipBackpic
+	dbw BANK(SkiploomFrontpic)    - $36, SkiploomFrontpic
+	dbw BANK(SkiploomBackpic)     - $36, SkiploomBackpic
+	dbw BANK(JumpluffFrontpic)    - $36, JumpluffFrontpic
+	dbw BANK(JumpluffBackpic)     - $36, JumpluffBackpic
+	dbw BANK(AipomFrontpic)       - $36, AipomFrontpic
+	dbw BANK(AipomBackpic)        - $36, AipomBackpic
+	dbw BANK(SunkernFrontpic)     - $36, SunkernFrontpic
+	dbw BANK(SunkernBackpic)      - $36, SunkernBackpic
+	dbw BANK(SunfloraFrontpic)    - $36, SunfloraFrontpic
+	dbw BANK(SunfloraBackpic)     - $36, SunfloraBackpic
+	dbw BANK(YanmaFrontpic)       - $36, YanmaFrontpic
+	dbw BANK(YanmaBackpic)        - $36, YanmaBackpic
+	dbw BANK(WooperFrontpic)      - $36, WooperFrontpic
+	dbw BANK(WooperBackpic)       - $36, WooperBackpic
+	dbw BANK(QuagsireFrontpic)    - $36, QuagsireFrontpic
+	dbw BANK(QuagsireBackpic)     - $36, QuagsireBackpic
+	dbw BANK(EspeonFrontpic)      - $36, EspeonFrontpic
+	dbw BANK(EspeonBackpic)       - $36, EspeonBackpic
+	dbw BANK(UmbreonFrontpic)     - $36, UmbreonFrontpic
+	dbw BANK(UmbreonBackpic)      - $36, UmbreonBackpic
+	dbw BANK(MurkrowFrontpic)     - $36, MurkrowFrontpic
+	dbw BANK(MurkrowBackpic)      - $36, MurkrowBackpic
+	dbw BANK(SlowkingFrontpic)    - $36, SlowkingFrontpic
+	dbw BANK(SlowkingBackpic)     - $36, SlowkingBackpic
+	dbw BANK(MisdreavusFrontpic)  - $36, MisdreavusFrontpic
+	dbw BANK(MisdreavusBackpic)   - $36, MisdreavusBackpic
+	dbw $ff, $ffff ; Unown pics have their own table
+	dbw $ff, $ffff      ; See UnownPicPointers
+	dbw BANK(WobbuffetFrontpic)   - $36, WobbuffetFrontpic
+	dbw BANK(WobbuffetBackpic)    - $36, WobbuffetBackpic
+	dbw BANK(GirafarigFrontpic)   - $36, GirafarigFrontpic
+	dbw BANK(GirafarigBackpic)    - $36, GirafarigBackpic
+	dbw BANK(PinecoFrontpic)      - $36, PinecoFrontpic
+	dbw BANK(PinecoBackpic)       - $36, PinecoBackpic
+	dbw BANK(ForretressFrontpic)  - $36, ForretressFrontpic
+	dbw BANK(ForretressBackpic)   - $36, ForretressBackpic
+	dbw BANK(DunsparceFrontpic)   - $36, DunsparceFrontpic
+	dbw BANK(DunsparceBackpic)    - $36, DunsparceBackpic
+	dbw BANK(GligarFrontpic)      - $36, GligarFrontpic
+	dbw BANK(GligarBackpic)       - $36, GligarBackpic
+	dbw BANK(SteelixFrontpic)     - $36, SteelixFrontpic
+	dbw BANK(SteelixBackpic)      - $36, SteelixBackpic
+	dbw BANK(SnubbullFrontpic)    - $36, SnubbullFrontpic
+	dbw BANK(SnubbullBackpic)     - $36, SnubbullBackpic
+	dbw BANK(GranbullFrontpic)    - $36, GranbullFrontpic
+	dbw BANK(GranbullBackpic)     - $36, GranbullBackpic
+	dbw BANK(QwilfishFrontpic)    - $36, QwilfishFrontpic
+	dbw BANK(QwilfishBackpic)     - $36, QwilfishBackpic
+	dbw BANK(ScizorFrontpic)      - $36, ScizorFrontpic
+	dbw BANK(ScizorBackpic)       - $36, ScizorBackpic
+	dbw BANK(ShuckleFrontpic)     - $36, ShuckleFrontpic
+	dbw BANK(ShuckleBackpic)      - $36, ShuckleBackpic
+	dbw BANK(HeracrossFrontpic)   - $36, HeracrossFrontpic
+	dbw BANK(HeracrossBackpic)    - $36, HeracrossBackpic
+	dbw BANK(SneaselFrontpic)     - $36, SneaselFrontpic
+	dbw BANK(SneaselBackpic)      - $36, SneaselBackpic
+	dbw BANK(TeddiursaFrontpic)   - $36, TeddiursaFrontpic
+	dbw BANK(TeddiursaBackpic)    - $36, TeddiursaBackpic
+	dbw BANK(UrsaringFrontpic)    - $36, UrsaringFrontpic
+	dbw BANK(UrsaringBackpic)     - $36, UrsaringBackpic
+	dbw BANK(SlugmaFrontpic)      - $36, SlugmaFrontpic
+	dbw BANK(SlugmaBackpic)       - $36, SlugmaBackpic
+	dbw BANK(MagcargoFrontpic)    - $36, MagcargoFrontpic
+	dbw BANK(MagcargoBackpic)     - $36, MagcargoBackpic
+	dbw BANK(SwinubFrontpic)      - $36, SwinubFrontpic
+	dbw BANK(SwinubBackpic)       - $36, SwinubBackpic
+	dbw BANK(PiloswineFrontpic)   - $36, PiloswineFrontpic
+	dbw BANK(PiloswineBackpic)    - $36, PiloswineBackpic
+	dbw BANK(CorsolaFrontpic)     - $36, CorsolaFrontpic
+	dbw BANK(CorsolaBackpic)      - $36, CorsolaBackpic
+	dbw BANK(RemoraidFrontpic)    - $36, RemoraidFrontpic
+	dbw BANK(RemoraidBackpic)     - $36, RemoraidBackpic
+	dbw BANK(OctilleryFrontpic)   - $36, OctilleryFrontpic
+	dbw BANK(OctilleryBackpic)    - $36, OctilleryBackpic
+	dbw BANK(DelibirdFrontpic)    - $36, DelibirdFrontpic
+	dbw BANK(DelibirdBackpic)     - $36, DelibirdBackpic
+	dbw BANK(MantineFrontpic)     - $36, MantineFrontpic
+	dbw BANK(MantineBackpic)      - $36, MantineBackpic
+	dbw BANK(SkarmoryFrontpic)    - $36, SkarmoryFrontpic
+	dbw BANK(SkarmoryBackpic)     - $36, SkarmoryBackpic
+	dbw BANK(HoundourFrontpic)    - $36, HoundourFrontpic
+	dbw BANK(HoundourBackpic)     - $36, HoundourBackpic
+	dbw BANK(HoundoomFrontpic)    - $36, HoundoomFrontpic
+	dbw BANK(HoundoomBackpic)     - $36, HoundoomBackpic
+	dbw BANK(KingdraFrontpic)     - $36, KingdraFrontpic
+	dbw BANK(KingdraBackpic)      - $36, KingdraBackpic
+	dbw BANK(PhanpyFrontpic)      - $36, PhanpyFrontpic
+	dbw BANK(PhanpyBackpic)       - $36, PhanpyBackpic
+	dbw BANK(DonphanFrontpic)     - $36, DonphanFrontpic
+	dbw BANK(DonphanBackpic)      - $36, DonphanBackpic
+	dbw BANK(Porygon2Frontpic)    - $36, Porygon2Frontpic
+	dbw BANK(Porygon2Backpic)     - $36, Porygon2Backpic
+	dbw BANK(StantlerFrontpic)    - $36, StantlerFrontpic
+	dbw BANK(StantlerBackpic)     - $36, StantlerBackpic
+	dbw BANK(SmeargleFrontpic)    - $36, SmeargleFrontpic
+	dbw BANK(SmeargleBackpic)     - $36, SmeargleBackpic
+	dbw BANK(TyrogueFrontpic)     - $36, TyrogueFrontpic
+	dbw BANK(TyrogueBackpic)      - $36, TyrogueBackpic
+	dbw BANK(HitmontopFrontpic)   - $36, HitmontopFrontpic
+	dbw BANK(HitmontopBackpic)    - $36, HitmontopBackpic
+	dbw BANK(SmoochumFrontpic)    - $36, SmoochumFrontpic
+	dbw BANK(SmoochumBackpic)     - $36, SmoochumBackpic
+	dbw BANK(ElekidFrontpic)      - $36, ElekidFrontpic
+	dbw BANK(ElekidBackpic)       - $36, ElekidBackpic
+	dbw BANK(MagbyFrontpic)       - $36, MagbyFrontpic
+	dbw BANK(MagbyBackpic)        - $36, MagbyBackpic
+	dbw BANK(MiltankFrontpic)     - $36, MiltankFrontpic
+	dbw BANK(MiltankBackpic)      - $36, MiltankBackpic
+	dbw BANK(BlisseyFrontpic)     - $36, BlisseyFrontpic
+	dbw BANK(BlisseyBackpic)      - $36, BlisseyBackpic
+	dbw BANK(RaikouFrontpic)      - $36, RaikouFrontpic
+	dbw BANK(RaikouBackpic)       - $36, RaikouBackpic
+	dbw BANK(EnteiFrontpic)       - $36, EnteiFrontpic
+	dbw BANK(EnteiBackpic)        - $36, EnteiBackpic
+	dbw BANK(SuicuneFrontpic)     - $36, SuicuneFrontpic
+	dbw BANK(SuicuneBackpic)      - $36, SuicuneBackpic
+	dbw BANK(LarvitarFrontpic)    - $36, LarvitarFrontpic
+	dbw BANK(LarvitarBackpic)     - $36, LarvitarBackpic
+	dbw BANK(PupitarFrontpic)     - $36, PupitarFrontpic
+	dbw BANK(PupitarBackpic)      - $36, PupitarBackpic
+	dbw BANK(TyranitarFrontpic)   - $36, TyranitarFrontpic
+	dbw BANK(TyranitarBackpic)    - $36, TyranitarBackpic
+	dbw BANK(LugiaFrontpic)       - $36, LugiaFrontpic
+	dbw BANK(LugiaBackpic)        - $36, LugiaBackpic
+	dbw BANK(HoOhFrontpic)        - $36, HoOhFrontpic
+	dbw BANK(HoOhBackpic)         - $36, HoOhBackpic
+	dbw BANK(CelebiFrontpic)      - $36, CelebiFrontpic
+	dbw BANK(CelebiBackpic)       - $36, CelebiBackpic
+	dbw                             $ff, $ffff ; unused
+	dbw                             $ff, $ffff ; unused
+	dbw BANK(EggPic)              - $36, EggPic
+	dbw                             $ff, $ffff ; unused
 
-HoOhFrontpic: ; 1205ee
-INCBIN "gfx/frontpics/lz/250.lz"
-MachampFrontpic: ; 120b05
-INCBIN "gfx/frontpics/lz/068.lz"
-NinetalesFrontpic: ; 121012
-INCBIN "gfx/frontpics/lz/038.lz"
-FeraligatrFrontpic: ; 1214dd
-INCBIN "gfx/frontpics/lz/160.lz"
-NidokingFrontpic: ; 121976
-INCBIN "gfx/frontpics/lz/034.lz"
-RaikouFrontpic: ; 121e00
-INCBIN "gfx/frontpics/lz/243.lz"
-LugiaFrontpic: ; 12226e
-INCBIN "gfx/frontpics/lz/249.lz"
-ArticunoFrontpic: ; 1226d6
-INCBIN "gfx/frontpics/lz/144.lz"
-TaurosFrontpic: ; 122b2d
-INCBIN "gfx/frontpics/lz/128.lz"
-VenusaurFrontpic: ; 122f81
-INCBIN "gfx/frontpics/lz/003.lz"
-EnteiFrontpic: ; 1233cb
-INCBIN "gfx/frontpics/lz/244.lz"
-SuicuneFrontpic: ; 123810
-INCBIN "gfx/frontpics/lz/245.lz"
-TyphlosionFrontpic: ; 123c4d
-INCBIN "gfx/frontpics/lz/157.lz"
+
+HoOhFrontpic:        INCBIN "gfx/frontpics/lz/250.lz"
+MachampFrontpic:     INCBIN "gfx/frontpics/lz/068.lz"
+NinetalesFrontpic:   INCBIN "gfx/frontpics/lz/038.lz"
+FeraligatrFrontpic:  INCBIN "gfx/frontpics/lz/160.lz"
+NidokingFrontpic:    INCBIN "gfx/frontpics/lz/034.lz"
+RaikouFrontpic:      INCBIN "gfx/frontpics/lz/243.lz"
+LugiaFrontpic:       INCBIN "gfx/frontpics/lz/249.lz"
+ArticunoFrontpic:    INCBIN "gfx/frontpics/lz/144.lz"
+TaurosFrontpic:      INCBIN "gfx/frontpics/lz/128.lz"
+VenusaurFrontpic:    INCBIN "gfx/frontpics/lz/003.lz"
+EnteiFrontpic:       INCBIN "gfx/frontpics/lz/244.lz"
+SuicuneFrontpic:     INCBIN "gfx/frontpics/lz/245.lz"
+TyphlosionFrontpic:  INCBIN "gfx/frontpics/lz/157.lz"
 ; 123ffa
 
 
 SECTION "bank49",DATA,BANK[$49]
 
-UnownPicPointers: ; 124000
-	dbw BANK(UnownAFrontpic) - $36, UnownAFrontpic ; 165659
-	dbw BANK(UnownABackpic) - $36, UnownABackpic ; 165659
-	dbw BANK(UnownBFrontpic) - $36, UnownBFrontpic ; 16477e
-	dbw BANK(UnownBBackpic) - $36, UnownBBackpic ; 16477e
-	dbw BANK(UnownCFrontpic) - $36, UnownCFrontpic ; 15f724
-	dbw BANK(UnownCBackpic) - $36, UnownCBackpic ; 15f724
-	dbw BANK(UnownDFrontpic) - $36, UnownDFrontpic ; 1513b3
-	dbw BANK(UnownDBackpic) - $36, UnownDBackpic ; 1513b3
-	dbw BANK(UnownEFrontpic) - $36, UnownEFrontpic ; 12ff0e
-	dbw BANK(UnownEBackpic) - $36, UnownEBackpic ; 12ff0e
-	dbw BANK(UnownFFrontpic) - $36, UnownFFrontpic ; 1654bf
-	dbw BANK(UnownFBackpic) - $36, UnownFBackpic ; 1654bf
-	dbw BANK(UnownGFrontpic) - $36, UnownGFrontpic ; 161555
-	dbw BANK(UnownGBackpic) - $36, UnownGBackpic ; 161555
-	dbw BANK(UnownHFrontpic) - $36, UnownHFrontpic ; 1633c3
-	dbw BANK(UnownHBackpic) - $36, UnownHBackpic ; 1633c3
-	dbw BANK(UnownIFrontpic) - $36, UnownIFrontpic ; 165e47
-	dbw BANK(UnownIBackpic) - $36, UnownIBackpic ; 165e47
-	dbw BANK(UnownJFrontpic) - $36, UnownJFrontpic ; 16508d
-	dbw BANK(UnownJBackpic) - $36, UnownJBackpic ; 16508d
-	dbw BANK(UnownKFrontpic) - $36, UnownKFrontpic ; 1641e6
-	dbw BANK(UnownKBackpic) - $36, UnownKBackpic ; 1641e6
-	dbw BANK(UnownLFrontpic) - $36, UnownLFrontpic ; 16524a
-	dbw BANK(UnownLBackpic) - $36, UnownLBackpic ; 16524a
-	dbw BANK(UnownMFrontpic) - $36, UnownMFrontpic ; 1653ef
-	dbw BANK(UnownMBackpic) - $36, UnownMBackpic ; 1653ef
-	dbw BANK(UnownNFrontpic) - $36, UnownNFrontpic ; 164ddd
-	dbw BANK(UnownNBackpic) - $36, UnownNBackpic ; 164ddd
-	dbw BANK(UnownOFrontpic) - $36, UnownOFrontpic ; 162dba
-	dbw BANK(UnownOBackpic) - $36, UnownOBackpic ; 162dba
-	dbw BANK(UnownPFrontpic) - $36, UnownPFrontpic ; 165a26
-	dbw BANK(UnownPBackpic) - $36, UnownPBackpic ; 165a26
-	dbw BANK(UnownQFrontpic) - $36, UnownQFrontpic ; 165969
-	dbw BANK(UnownQBackpic) - $36, UnownQBackpic ; 165969
-	dbw BANK(UnownRFrontpic) - $36, UnownRFrontpic ; 1660ab
-	dbw BANK(UnownRBackpic) - $36, UnownRBackpic ; 1660ab
-	dbw BANK(UnownSFrontpic) - $36, UnownSFrontpic ; 162aab
-	dbw BANK(UnownSBackpic) - $36, UnownSBackpic ; 162aab
-	dbw BANK(UnownTFrontpic) - $36, UnownTFrontpic ; 162ebe
-	dbw BANK(UnownTBackpic) - $36, UnownTBackpic ; 162ebe
-	dbw BANK(UnownUFrontpic) - $36, UnownUFrontpic ; 1657ea
-	dbw BANK(UnownUBackpic) - $36, UnownUBackpic ; 1657ea
-	dbw BANK(UnownVFrontpic) - $36, UnownVFrontpic ; 16202e
-	dbw BANK(UnownVBackpic) - $36, UnownVBackpic ; 16202e
-	dbw BANK(UnownWFrontpic) - $36, UnownWFrontpic ; 15f39e
-	dbw BANK(UnownWBackpic) - $36, UnownWBackpic ; 15f39e
-	dbw BANK(UnownXFrontpic) - $36, UnownXFrontpic ; 164cf7
-	dbw BANK(UnownXBackpic) - $36, UnownXBackpic ; 164cf7
-	dbw BANK(UnownYFrontpic) - $36, UnownYFrontpic ; 165cf6
-	dbw BANK(UnownYBackpic) - $36, UnownYBackpic ; 165cf6
-	dbw BANK(UnownZFrontpic) - $36, UnownZFrontpic ; 15faa7
-	dbw BANK(UnownZBackpic) - $36, UnownZBackpic ; 15faa7
-; 12409c
+UnownPicPointers:
+	dbw BANK(UnownAFrontpic) - $36, UnownAFrontpic
+	dbw BANK(UnownABackpic)  - $36, UnownABackpic
+	dbw BANK(UnownBFrontpic) - $36, UnownBFrontpic
+	dbw BANK(UnownBBackpic)  - $36, UnownBBackpic
+	dbw BANK(UnownCFrontpic) - $36, UnownCFrontpic
+	dbw BANK(UnownCBackpic)  - $36, UnownCBackpic
+	dbw BANK(UnownDFrontpic) - $36, UnownDFrontpic
+	dbw BANK(UnownDBackpic)  - $36, UnownDBackpic
+	dbw BANK(UnownEFrontpic) - $36, UnownEFrontpic
+	dbw BANK(UnownEBackpic)  - $36, UnownEBackpic
+	dbw BANK(UnownFFrontpic) - $36, UnownFFrontpic
+	dbw BANK(UnownFBackpic)  - $36, UnownFBackpic
+	dbw BANK(UnownGFrontpic) - $36, UnownGFrontpic
+	dbw BANK(UnownGBackpic)  - $36, UnownGBackpic
+	dbw BANK(UnownHFrontpic) - $36, UnownHFrontpic
+	dbw BANK(UnownHBackpic)  - $36, UnownHBackpic
+	dbw BANK(UnownIFrontpic) - $36, UnownIFrontpic
+	dbw BANK(UnownIBackpic)  - $36, UnownIBackpic
+	dbw BANK(UnownJFrontpic) - $36, UnownJFrontpic
+	dbw BANK(UnownJBackpic)  - $36, UnownJBackpic
+	dbw BANK(UnownKFrontpic) - $36, UnownKFrontpic
+	dbw BANK(UnownKBackpic)  - $36, UnownKBackpic
+	dbw BANK(UnownLFrontpic) - $36, UnownLFrontpic
+	dbw BANK(UnownLBackpic)  - $36, UnownLBackpic
+	dbw BANK(UnownMFrontpic) - $36, UnownMFrontpic
+	dbw BANK(UnownMBackpic)  - $36, UnownMBackpic
+	dbw BANK(UnownNFrontpic) - $36, UnownNFrontpic
+	dbw BANK(UnownNBackpic)  - $36, UnownNBackpic
+	dbw BANK(UnownOFrontpic) - $36, UnownOFrontpic
+	dbw BANK(UnownOBackpic)  - $36, UnownOBackpic
+	dbw BANK(UnownPFrontpic) - $36, UnownPFrontpic
+	dbw BANK(UnownPBackpic)  - $36, UnownPBackpic
+	dbw BANK(UnownQFrontpic) - $36, UnownQFrontpic
+	dbw BANK(UnownQBackpic)  - $36, UnownQBackpic
+	dbw BANK(UnownRFrontpic) - $36, UnownRFrontpic
+	dbw BANK(UnownRBackpic)  - $36, UnownRBackpic
+	dbw BANK(UnownSFrontpic) - $36, UnownSFrontpic
+	dbw BANK(UnownSBackpic)  - $36, UnownSBackpic
+	dbw BANK(UnownTFrontpic) - $36, UnownTFrontpic
+	dbw BANK(UnownTBackpic)  - $36, UnownTBackpic
+	dbw BANK(UnownUFrontpic) - $36, UnownUFrontpic
+	dbw BANK(UnownUBackpic)  - $36, UnownUBackpic
+	dbw BANK(UnownVFrontpic) - $36, UnownVFrontpic
+	dbw BANK(UnownVBackpic)  - $36, UnownVBackpic
+	dbw BANK(UnownWFrontpic) - $36, UnownWFrontpic
+	dbw BANK(UnownWBackpic)  - $36, UnownWBackpic
+	dbw BANK(UnownXFrontpic) - $36, UnownXFrontpic
+	dbw BANK(UnownXBackpic)  - $36, UnownXBackpic
+	dbw BANK(UnownYFrontpic) - $36, UnownYFrontpic
+	dbw BANK(UnownYBackpic)  - $36, UnownYBackpic
+	dbw BANK(UnownZFrontpic) - $36, UnownZFrontpic
+	dbw BANK(UnownZBackpic)  - $36, UnownZBackpic
 
-BlastoiseFrontpic: ; 12409c
-INCBIN "gfx/frontpics/lz/009.lz"
-RapidashFrontpic: ; 1244d8
-INCBIN "gfx/frontpics/lz/078.lz"
-MeganiumFrontpic: ; 124904
-INCBIN "gfx/frontpics/lz/154.lz"
-NidoqueenFrontpic: ; 124d24
-INCBIN "gfx/frontpics/lz/031.lz"
-HitmonleeFrontpic: ; 125142
-INCBIN "gfx/frontpics/lz/106.lz"
-ScizorFrontpic: ; 12555c
-INCBIN "gfx/frontpics/lz/212.lz"
-BeedrillFrontpic: ; 125976
-INCBIN "gfx/frontpics/lz/015.lz"
-ArcanineFrontpic: ; 125d84
-INCBIN "gfx/frontpics/lz/059.lz"
-TyranitarFrontpic: ; 126183
-INCBIN "gfx/frontpics/lz/248.lz"
-MoltresFrontpic: ; 126580
-INCBIN "gfx/frontpics/lz/146.lz"
-ZapdosFrontpic: ; 12697c
-INCBIN "gfx/frontpics/lz/145.lz"
-ArbokFrontpic: ; 126d70
-INCBIN "gfx/frontpics/lz/024.lz"
-MewtwoFrontpic: ; 127161
-INCBIN "gfx/frontpics/lz/150.lz"
-FearowFrontpic: ; 127551
-INCBIN "gfx/frontpics/lz/022.lz"
-CharizardFrontpic: ; 127937
-INCBIN "gfx/frontpics/lz/006.lz"
-QuilavaFrontpic: ; 127d1c
-INCBIN "gfx/frontpics/lz/156.lz"
+
+BlastoiseFrontpic:   INCBIN "gfx/frontpics/lz/009.lz"
+RapidashFrontpic:    INCBIN "gfx/frontpics/lz/078.lz"
+MeganiumFrontpic:    INCBIN "gfx/frontpics/lz/154.lz"
+NidoqueenFrontpic:   INCBIN "gfx/frontpics/lz/031.lz"
+HitmonleeFrontpic:   INCBIN "gfx/frontpics/lz/106.lz"
+ScizorFrontpic:      INCBIN "gfx/frontpics/lz/212.lz"
+BeedrillFrontpic:    INCBIN "gfx/frontpics/lz/015.lz"
+ArcanineFrontpic:    INCBIN "gfx/frontpics/lz/059.lz"
+TyranitarFrontpic:   INCBIN "gfx/frontpics/lz/248.lz"
+MoltresFrontpic:     INCBIN "gfx/frontpics/lz/146.lz"
+ZapdosFrontpic:      INCBIN "gfx/frontpics/lz/145.lz"
+ArbokFrontpic:       INCBIN "gfx/frontpics/lz/024.lz"
+MewtwoFrontpic:      INCBIN "gfx/frontpics/lz/150.lz"
+FearowFrontpic:      INCBIN "gfx/frontpics/lz/022.lz"
+CharizardFrontpic:   INCBIN "gfx/frontpics/lz/006.lz"
+QuilavaFrontpic:     INCBIN "gfx/frontpics/lz/156.lz"
 ; 127ffe
 
 
 SECTION "bank4a",DATA,BANK[$4a]
 
-TrainerPicPointers: ; 128000
-	dbw BANK(FalknerPic) - $36, FalknerPic ; 152a03
-	dbw BANK(WhitneyPic) - $36, WhitneyPic ; 15da4f
-	dbw BANK(BugsyPic) - $36, BugsyPic ; 1545c3
-	dbw BANK(MortyPic) - $36, MortyPic ; 15c287
-	dbw BANK(PrycePic) - $36, PrycePic ; 161322
-	dbw BANK(JasminePic) - $36, JasminePic ; 15d41b
-	dbw BANK(ChuckPic) - $36, ChuckPic ; 146b97
-	dbw BANK(ClairPic) - $36, ClairPic ; 149370
-	dbw BANK(Rival1Pic) - $36, Rival1Pic ; 157dc2
-	dbw BANK(PokemonProfPic) - $36, PokemonProfPic ; 15815e
-	dbw BANK(WillPic) - $36, WillPic ; 15b8f5
-	dbw BANK(CalPic) - $36, CalPic ; 1582bc
-	dbw BANK(BrunoPic) - $36, BrunoPic ; 142cb5
-	dbw BANK(KarenPic) - $36, KarenPic ; 152b7b
-	dbw BANK(KogaPic) - $36, KogaPic ; 153158
-	dbw BANK(ChampionPic) - $36, ChampionPic ; 141a2f
-	dbw BANK(BrockPic) - $36, BrockPic ; 16143c
-	dbw BANK(MistyPic) - $36, MistyPic ; 15f850
-	dbw BANK(LtSurgePic) - $36, LtSurgePic ; 1519b3
-	dbw BANK(ScientistPic) - $36, ScientistPic ; 15030f
-	dbw BANK(ErikaPic) - $36, ErikaPic ; 15bccb
-	dbw BANK(YoungsterPic) - $36, YoungsterPic ; 15b7ad
-	dbw BANK(SchoolboyPic) - $36, SchoolboyPic ; 15ba3d
-	dbw BANK(BirdKeeperPic) - $36, BirdKeeperPic ; 152889
-	dbw BANK(LassPic) - $36, LassPic ; 14a9ce
-	dbw BANK(JaninePic) - $36, JaninePic ; 15be10
-	dbw BANK(CooltrainermPic) - $36, CooltrainermPic ; 154fc7
-	dbw BANK(CooltrainerfPic) - $36, CooltrainerfPic ; 153d00
-	dbw BANK(BeautyPic) - $36, BeautyPic ; 14e969
-	dbw BANK(PokemaniacPic) - $36, PokemaniacPic ; 149531
-	dbw BANK(GruntmPic) - $36, GruntmPic ; 14f120
-	dbw BANK(GentlemanPic) - $36, GentlemanPic ; 15e1a7
-	dbw BANK(SkierPic) - $36, SkierPic ; 1498af
-	dbw BANK(TeacherPic) - $36, TeacherPic ; 151b31
-	dbw BANK(SabrinaPic) - $36, SabrinaPic ; 158ae5
-	dbw BANK(BugCatcherPic) - $36, BugCatcherPic ; 14bdb2
-	dbw BANK(FisherPic) - $36, FisherPic ; 144d9a
-	dbw BANK(SwimmermPic) - $36, SwimmermPic ; 153733
-	dbw BANK(SwimmerfPic) - $36, SwimmerfPic ; 158419
-	dbw BANK(SailorPic) - $36, SailorPic ; 14e7dd
-	dbw BANK(SuperNerdPic) - $36, SuperNerdPic ; 15cdda
-	dbw BANK(Rival2Pic) - $36, Rival2Pic ; 15f270
-	dbw BANK(GuitaristPic) - $36, GuitaristPic ; 148e29
-	dbw BANK(HikerPic) - $36, HikerPic ; 1432c9
-	dbw BANK(BikerPic) - $36, BikerPic ; 142692
-	dbw BANK(BlainePic) - $36, BlainePic ; 15f97c
-	dbw BANK(BurglarPic) - $36, BurglarPic ; 156bd9
-	dbw BANK(FirebreatherPic) - $36, FirebreatherPic ; 1411c1
-	dbw BANK(JugglerPic) - $36, JugglerPic ; 148aa2
-	dbw BANK(BlackbeltTPic) - $36, BlackbeltTPic ; 142484
-	dbw BANK(ExecutivemPic) - $36, ExecutivemPic ; 15e2dd
-	dbw BANK(PsychicTPic) - $36, PsychicTPic ; 1595a4
-	dbw BANK(PicnickerPic) - $36, PicnickerPic ; 15ca16
-	dbw BANK(CamperPic) - $36, CamperPic ; 1576e6
-	dbw BANK(ExecutivefPic) - $36, ExecutivefPic ; 160377
-	dbw BANK(SagePic) - $36, SagePic ; 161cf3
-	dbw BANK(MediumPic) - $36, MediumPic ; 1447d1
-	dbw BANK(BoarderPic) - $36, BoarderPic ; 14571a
-	dbw BANK(PokefanmPic) - $36, PokefanmPic ; 145535
-	dbw BANK(KimonoGirlPic) - $36, KimonoGirlPic ; 1472d7
-	dbw BANK(TwinsPic) - $36, TwinsPic ; 14ce8e
-	dbw BANK(PokefanfPic) - $36, PokefanfPic ; 148fec
-	dbw BANK(RedPic) - $36, RedPic ; 15d19b
-	dbw BANK(BluePic) - $36, BluePic ; 15df37
-	dbw BANK(OfficerPic) - $36, OfficerPic ; 1586d3
-	dbw BANK(GruntfPic) - $36, GruntfPic ; 159af7
-	dbw BANK(MysticalmanPic) - $36, MysticalmanPic ; 153b8e
-; 1280c9
+TrainerPicPointers:
+	dbw BANK(FalknerPic)          - $36, FalknerPic
+	dbw BANK(WhitneyPic)          - $36, WhitneyPic
+	dbw BANK(BugsyPic)            - $36, BugsyPic
+	dbw BANK(MortyPic)            - $36, MortyPic
+	dbw BANK(PrycePic)            - $36, PrycePic
+	dbw BANK(JasminePic)          - $36, JasminePic
+	dbw BANK(ChuckPic)            - $36, ChuckPic
+	dbw BANK(ClairPic)            - $36, ClairPic
+	dbw BANK(Rival1Pic)           - $36, Rival1Pic
+	dbw BANK(PokemonProfPic)      - $36, PokemonProfPic
+	dbw BANK(WillPic)             - $36, WillPic
+	dbw BANK(CalPic)              - $36, CalPic
+	dbw BANK(BrunoPic)            - $36, BrunoPic
+	dbw BANK(KarenPic)            - $36, KarenPic
+	dbw BANK(KogaPic)             - $36, KogaPic
+	dbw BANK(ChampionPic)         - $36, ChampionPic
+	dbw BANK(BrockPic)            - $36, BrockPic
+	dbw BANK(MistyPic)            - $36, MistyPic
+	dbw BANK(LtSurgePic)          - $36, LtSurgePic
+	dbw BANK(ScientistPic)        - $36, ScientistPic
+	dbw BANK(ErikaPic)            - $36, ErikaPic
+	dbw BANK(YoungsterPic)        - $36, YoungsterPic
+	dbw BANK(SchoolboyPic)        - $36, SchoolboyPic
+	dbw BANK(BirdKeeperPic)       - $36, BirdKeeperPic
+	dbw BANK(LassPic)             - $36, LassPic
+	dbw BANK(JaninePic)           - $36, JaninePic
+	dbw BANK(CooltrainermPic)     - $36, CooltrainermPic
+	dbw BANK(CooltrainerfPic)     - $36, CooltrainerfPic
+	dbw BANK(BeautyPic)           - $36, BeautyPic
+	dbw BANK(PokemaniacPic)       - $36, PokemaniacPic
+	dbw BANK(GruntmPic)           - $36, GruntmPic
+	dbw BANK(GentlemanPic)        - $36, GentlemanPic
+	dbw BANK(SkierPic)            - $36, SkierPic
+	dbw BANK(TeacherPic)          - $36, TeacherPic
+	dbw BANK(SabrinaPic)          - $36, SabrinaPic
+	dbw BANK(BugCatcherPic)       - $36, BugCatcherPic
+	dbw BANK(FisherPic)           - $36, FisherPic
+	dbw BANK(SwimmermPic)         - $36, SwimmermPic
+	dbw BANK(SwimmerfPic)         - $36, SwimmerfPic
+	dbw BANK(SailorPic)           - $36, SailorPic
+	dbw BANK(SuperNerdPic)        - $36, SuperNerdPic
+	dbw BANK(Rival2Pic)           - $36, Rival2Pic
+	dbw BANK(GuitaristPic)        - $36, GuitaristPic
+	dbw BANK(HikerPic)            - $36, HikerPic
+	dbw BANK(BikerPic)            - $36, BikerPic
+	dbw BANK(BlainePic)           - $36, BlainePic
+	dbw BANK(BurglarPic)          - $36, BurglarPic
+	dbw BANK(FirebreatherPic)     - $36, FirebreatherPic
+	dbw BANK(JugglerPic)          - $36, JugglerPic
+	dbw BANK(BlackbeltTPic)       - $36, BlackbeltTPic
+	dbw BANK(ExecutivemPic)       - $36, ExecutivemPic
+	dbw BANK(PsychicTPic)         - $36, PsychicTPic
+	dbw BANK(PicnickerPic)        - $36, PicnickerPic
+	dbw BANK(CamperPic)           - $36, CamperPic
+	dbw BANK(ExecutivefPic)       - $36, ExecutivefPic
+	dbw BANK(SagePic)             - $36, SagePic
+	dbw BANK(MediumPic)           - $36, MediumPic
+	dbw BANK(BoarderPic)          - $36, BoarderPic
+	dbw BANK(PokefanmPic)         - $36, PokefanmPic
+	dbw BANK(KimonoGirlPic)       - $36, KimonoGirlPic
+	dbw BANK(TwinsPic)            - $36, TwinsPic
+	dbw BANK(PokefanfPic)         - $36, PokefanfPic
+	dbw BANK(RedPic)              - $36, RedPic
+	dbw BANK(BluePic)             - $36, BluePic
+	dbw BANK(OfficerPic)          - $36, OfficerPic
+	dbw BANK(GruntfPic)           - $36, GruntfPic
+	dbw BANK(MysticalmanPic)      - $36, MysticalmanPic
 
-SteelixFrontpic: ; 1280c9
-INCBIN "gfx/frontpics/lz/208.lz"
-AlakazamFrontpic: ; 1284ad
-INCBIN "gfx/frontpics/lz/065.lz"
-GyaradosFrontpic: ; 128886
-INCBIN "gfx/frontpics/lz/130.lz"
-KangaskhanFrontpic: ; 128c54
-INCBIN "gfx/frontpics/lz/115.lz"
-RhydonFrontpic: ; 12901e
-INCBIN "gfx/frontpics/lz/112.lz"
-GolduckFrontpic: ; 1293d7
-INCBIN "gfx/frontpics/lz/055.lz"
-RhyhornFrontpic: ; 12977f
-INCBIN "gfx/frontpics/lz/111.lz"
-PidgeotFrontpic: ; 129b1d
-INCBIN "gfx/frontpics/lz/018.lz"
-SlowbroFrontpic: ; 129eb5
-INCBIN "gfx/frontpics/lz/080.lz"
-ButterfreeFrontpic: ; 12a24a
-INCBIN "gfx/frontpics/lz/012.lz"
-WeezingFrontpic: ; 12a5d7
-INCBIN "gfx/frontpics/lz/110.lz"
-CloysterFrontpic: ; 12a964
-INCBIN "gfx/frontpics/lz/091.lz"
-SkarmoryFrontpic: ; 12acf0
-INCBIN "gfx/frontpics/lz/227.lz"
-DewgongFrontpic: ; 12b06d
-INCBIN "gfx/frontpics/lz/087.lz"
-VictreebelFrontpic: ; 12b3e9
-INCBIN "gfx/frontpics/lz/071.lz"
-RaichuFrontpic: ; 12b765
-INCBIN "gfx/frontpics/lz/026.lz"
-PrimeapeFrontpic: ; 12bae0
-INCBIN "gfx/frontpics/lz/057.lz"
-OmastarBackpic: ; 12be51
-INCBIN "gfx/backpics/lz/139.lz"
+
+SteelixFrontpic:     INCBIN "gfx/frontpics/lz/208.lz"
+AlakazamFrontpic:    INCBIN "gfx/frontpics/lz/065.lz"
+GyaradosFrontpic:    INCBIN "gfx/frontpics/lz/130.lz"
+KangaskhanFrontpic:  INCBIN "gfx/frontpics/lz/115.lz"
+RhydonFrontpic:      INCBIN "gfx/frontpics/lz/112.lz"
+GolduckFrontpic:     INCBIN "gfx/frontpics/lz/055.lz"
+RhyhornFrontpic:     INCBIN "gfx/frontpics/lz/111.lz"
+PidgeotFrontpic:     INCBIN "gfx/frontpics/lz/018.lz"
+SlowbroFrontpic:     INCBIN "gfx/frontpics/lz/080.lz"
+ButterfreeFrontpic:  INCBIN "gfx/frontpics/lz/012.lz"
+WeezingFrontpic:     INCBIN "gfx/frontpics/lz/110.lz"
+CloysterFrontpic:    INCBIN "gfx/frontpics/lz/091.lz"
+SkarmoryFrontpic:    INCBIN "gfx/frontpics/lz/227.lz"
+DewgongFrontpic:     INCBIN "gfx/frontpics/lz/087.lz"
+VictreebelFrontpic:  INCBIN "gfx/frontpics/lz/071.lz"
+RaichuFrontpic:      INCBIN "gfx/frontpics/lz/026.lz"
+PrimeapeFrontpic:    INCBIN "gfx/frontpics/lz/057.lz"
+OmastarBackpic:      INCBIN "gfx/backpics/lz/139.lz"
 ; 12bffe
 
 
 SECTION "bank4b",DATA,BANK[$4b]
 
-DodrioFrontpic: ; 12c000
-INCBIN "gfx/frontpics/lz/085.lz"
-SlowkingFrontpic: ; 12c371
-INCBIN "gfx/frontpics/lz/199.lz"
-HitmontopFrontpic: ; 12c6df
-INCBIN "gfx/frontpics/lz/237.lz"
-OnixFrontpic: ; 12ca47
-INCBIN "gfx/frontpics/lz/095.lz"
-BlisseyFrontpic: ; 12cdac
-INCBIN "gfx/frontpics/lz/242.lz"
-MachokeFrontpic: ; 12d10f
-INCBIN "gfx/frontpics/lz/067.lz"
-DragoniteFrontpic: ; 12d46e
-INCBIN "gfx/frontpics/lz/149.lz"
-PoliwrathFrontpic: ; 12d7ca
-INCBIN "gfx/frontpics/lz/062.lz"
-ScytherFrontpic: ; 12db25
-INCBIN "gfx/frontpics/lz/123.lz"
-AerodactylFrontpic: ; 12de7b
-INCBIN "gfx/frontpics/lz/142.lz"
-SeakingFrontpic: ; 12e1cc
-INCBIN "gfx/frontpics/lz/119.lz"
-MukFrontpic: ; 12e51c
-INCBIN "gfx/frontpics/lz/089.lz"
-CroconawFrontpic: ; 12e86a
-INCBIN "gfx/frontpics/lz/159.lz"
-HypnoFrontpic: ; 12ebb6
-INCBIN "gfx/frontpics/lz/097.lz"
-NidorinoFrontpic: ; 12eefb
-INCBIN "gfx/frontpics/lz/033.lz"
-SandslashFrontpic: ; 12f23c
-INCBIN "gfx/frontpics/lz/028.lz"
-JolteonFrontpic: ; 12f575
-INCBIN "gfx/frontpics/lz/135.lz"
-DonphanFrontpic: ; 12f8ac
-INCBIN "gfx/frontpics/lz/232.lz"
-PinsirFrontpic: ; 12fbdf
-INCBIN "gfx/frontpics/lz/127.lz"
-UnownEFrontpic: ; 12ff0e
-INCBIN "gfx/frontpics/lz/201e.lz"
+DodrioFrontpic:      INCBIN "gfx/frontpics/lz/085.lz"
+SlowkingFrontpic:    INCBIN "gfx/frontpics/lz/199.lz"
+HitmontopFrontpic:   INCBIN "gfx/frontpics/lz/237.lz"
+OnixFrontpic:        INCBIN "gfx/frontpics/lz/095.lz"
+BlisseyFrontpic:     INCBIN "gfx/frontpics/lz/242.lz"
+MachokeFrontpic:     INCBIN "gfx/frontpics/lz/067.lz"
+DragoniteFrontpic:   INCBIN "gfx/frontpics/lz/149.lz"
+PoliwrathFrontpic:   INCBIN "gfx/frontpics/lz/062.lz"
+ScytherFrontpic:     INCBIN "gfx/frontpics/lz/123.lz"
+AerodactylFrontpic:  INCBIN "gfx/frontpics/lz/142.lz"
+SeakingFrontpic:     INCBIN "gfx/frontpics/lz/119.lz"
+MukFrontpic:         INCBIN "gfx/frontpics/lz/089.lz"
+CroconawFrontpic:    INCBIN "gfx/frontpics/lz/159.lz"
+HypnoFrontpic:       INCBIN "gfx/frontpics/lz/097.lz"
+NidorinoFrontpic:    INCBIN "gfx/frontpics/lz/033.lz"
+SandslashFrontpic:   INCBIN "gfx/frontpics/lz/028.lz"
+JolteonFrontpic:     INCBIN "gfx/frontpics/lz/135.lz"
+DonphanFrontpic:     INCBIN "gfx/frontpics/lz/232.lz"
+PinsirFrontpic:      INCBIN "gfx/frontpics/lz/127.lz"
+UnownEFrontpic:      INCBIN "gfx/frontpics/lz/201e.lz"
 ; 130000
-
 
 
 SECTION "bank4C",DATA,BANK[$4C]
 
-GolbatFrontpic: ; 130000
-INCBIN "gfx/frontpics/lz/042.lz"
-KinglerFrontpic: ; 13032e
-INCBIN "gfx/frontpics/lz/099.lz"
-ExeggcuteFrontpic: ; 13065a
-INCBIN "gfx/frontpics/lz/102.lz"
-MagcargoFrontpic: ; 130982
-INCBIN "gfx/frontpics/lz/219.lz"
-PersianFrontpic: ; 130ca1
-INCBIN "gfx/frontpics/lz/053.lz"
-StantlerFrontpic: ; 130fbf
-INCBIN "gfx/frontpics/lz/234.lz"
-RaticateFrontpic: ; 1312dd
-INCBIN "gfx/frontpics/lz/020.lz"
-VenomothFrontpic: ; 1315fa
-INCBIN "gfx/frontpics/lz/049.lz"
-PolitoedFrontpic: ; 131916
-INCBIN "gfx/frontpics/lz/186.lz"
-ElectabuzzFrontpic: ; 131c32
-INCBIN "gfx/frontpics/lz/125.lz"
-MantineFrontpic: ; 131f4b
-INCBIN "gfx/frontpics/lz/226.lz"
-LickitungFrontpic: ; 132260
-INCBIN "gfx/frontpics/lz/108.lz"
-KingdraFrontpic: ; 132573
-INCBIN "gfx/frontpics/lz/230.lz"
-CharmeleonFrontpic: ; 132881
-INCBIN "gfx/frontpics/lz/005.lz"
-KadabraFrontpic: ; 132b8b
-INCBIN "gfx/frontpics/lz/064.lz"
-ExeggutorFrontpic: ; 132e90
-INCBIN "gfx/frontpics/lz/103.lz"
-GastlyFrontpic: ; 133194
-INCBIN "gfx/frontpics/lz/092.lz"
-AzumarillFrontpic: ; 133492
-INCBIN "gfx/frontpics/lz/184.lz"
-ParasectFrontpic: ; 13378f
-INCBIN "gfx/frontpics/lz/047.lz"
-MrMimeFrontpic: ; 133a8a
-INCBIN "gfx/frontpics/lz/122.lz"
-HeracrossFrontpic: ; 133d7b
-INCBIN "gfx/frontpics/lz/214.lz"
+GolbatFrontpic:      INCBIN "gfx/frontpics/lz/042.lz"
+KinglerFrontpic:     INCBIN "gfx/frontpics/lz/099.lz"
+ExeggcuteFrontpic:   INCBIN "gfx/frontpics/lz/102.lz"
+MagcargoFrontpic:    INCBIN "gfx/frontpics/lz/219.lz"
+PersianFrontpic:     INCBIN "gfx/frontpics/lz/053.lz"
+StantlerFrontpic:    INCBIN "gfx/frontpics/lz/234.lz"
+RaticateFrontpic:    INCBIN "gfx/frontpics/lz/020.lz"
+VenomothFrontpic:    INCBIN "gfx/frontpics/lz/049.lz"
+PolitoedFrontpic:    INCBIN "gfx/frontpics/lz/186.lz"
+ElectabuzzFrontpic:  INCBIN "gfx/frontpics/lz/125.lz"
+MantineFrontpic:     INCBIN "gfx/frontpics/lz/226.lz"
+LickitungFrontpic:   INCBIN "gfx/frontpics/lz/108.lz"
+KingdraFrontpic:     INCBIN "gfx/frontpics/lz/230.lz"
+CharmeleonFrontpic:  INCBIN "gfx/frontpics/lz/005.lz"
+KadabraFrontpic:     INCBIN "gfx/frontpics/lz/064.lz"
+ExeggutorFrontpic:   INCBIN "gfx/frontpics/lz/103.lz"
+GastlyFrontpic:      INCBIN "gfx/frontpics/lz/092.lz"
+AzumarillFrontpic:   INCBIN "gfx/frontpics/lz/184.lz"
+ParasectFrontpic:    INCBIN "gfx/frontpics/lz/047.lz"
+MrMimeFrontpic:      INCBIN "gfx/frontpics/lz/122.lz"
+HeracrossFrontpic:   INCBIN "gfx/frontpics/lz/214.lz"
 ; 133fff
 
 
 SECTION "bank4d",DATA,BANK[$4d]
 
-AriadosFrontpic: ; 134000
-INCBIN "gfx/frontpics/lz/168.lz"
-NoctowlFrontpic: ; 1342eb
-INCBIN "gfx/frontpics/lz/164.lz"
-WartortleFrontpic: ; 1345d2
-INCBIN "gfx/frontpics/lz/008.lz"
-LaprasFrontpic: ; 1348b7
-INCBIN "gfx/frontpics/lz/131.lz"
-GolemFrontpic: ; 134b97
-INCBIN "gfx/frontpics/lz/076.lz"
-PoliwhirlFrontpic: ; 134e76
-INCBIN "gfx/frontpics/lz/061.lz"
-UrsaringFrontpic: ; 13514e
-INCBIN "gfx/frontpics/lz/217.lz"
-HoundoomFrontpic: ; 135425
-INCBIN "gfx/frontpics/lz/229.lz"
-KabutopsFrontpic: ; 1356fc
-INCBIN "gfx/frontpics/lz/141.lz"
-AmpharosFrontpic: ; 1359d1
-INCBIN "gfx/frontpics/lz/181.lz"
-NidorinaFrontpic: ; 135ca2
-INCBIN "gfx/frontpics/lz/030.lz"
-FlareonFrontpic: ; 135f6d
-INCBIN "gfx/frontpics/lz/136.lz"
-FarfetchDFrontpic: ; 136237
-INCBIN "gfx/frontpics/lz/083.lz"
-VileplumeFrontpic: ; 1364ff
-INCBIN "gfx/frontpics/lz/045.lz"
-BayleefFrontpic: ; 1367c3
-INCBIN "gfx/frontpics/lz/153.lz"
-MagmarFrontpic: ; 136a82
-INCBIN "gfx/frontpics/lz/126.lz"
-TentacruelFrontpic: ; 136d41
-INCBIN "gfx/frontpics/lz/073.lz"
-ElekidFrontpic: ; 136fff
-INCBIN "gfx/frontpics/lz/239.lz"
-JumpluffFrontpic: ; 1372bd
-INCBIN "gfx/frontpics/lz/189.lz"
-MarowakFrontpic: ; 13757a
-INCBIN "gfx/frontpics/lz/105.lz"
-VulpixFrontpic: ; 137836
-INCBIN "gfx/frontpics/lz/037.lz"
-GligarFrontpic: ; 137aed
-INCBIN "gfx/frontpics/lz/207.lz"
-DunsparceFrontpic: ; 137da1
-INCBIN "gfx/frontpics/lz/206.lz"
+AriadosFrontpic:     INCBIN "gfx/frontpics/lz/168.lz"
+NoctowlFrontpic:     INCBIN "gfx/frontpics/lz/164.lz"
+WartortleFrontpic:   INCBIN "gfx/frontpics/lz/008.lz"
+LaprasFrontpic:      INCBIN "gfx/frontpics/lz/131.lz"
+GolemFrontpic:       INCBIN "gfx/frontpics/lz/076.lz"
+PoliwhirlFrontpic:   INCBIN "gfx/frontpics/lz/061.lz"
+UrsaringFrontpic:    INCBIN "gfx/frontpics/lz/217.lz"
+HoundoomFrontpic:    INCBIN "gfx/frontpics/lz/229.lz"
+KabutopsFrontpic:    INCBIN "gfx/frontpics/lz/141.lz"
+AmpharosFrontpic:    INCBIN "gfx/frontpics/lz/181.lz"
+NidorinaFrontpic:    INCBIN "gfx/frontpics/lz/030.lz"
+FlareonFrontpic:     INCBIN "gfx/frontpics/lz/136.lz"
+FarfetchDFrontpic:   INCBIN "gfx/frontpics/lz/083.lz"
+VileplumeFrontpic:   INCBIN "gfx/frontpics/lz/045.lz"
+BayleefFrontpic:     INCBIN "gfx/frontpics/lz/153.lz"
+MagmarFrontpic:      INCBIN "gfx/frontpics/lz/126.lz"
+TentacruelFrontpic:  INCBIN "gfx/frontpics/lz/073.lz"
+ElekidFrontpic:      INCBIN "gfx/frontpics/lz/239.lz"
+JumpluffFrontpic:    INCBIN "gfx/frontpics/lz/189.lz"
+MarowakFrontpic:     INCBIN "gfx/frontpics/lz/105.lz"
+VulpixFrontpic:      INCBIN "gfx/frontpics/lz/037.lz"
+GligarFrontpic:      INCBIN "gfx/frontpics/lz/207.lz"
+DunsparceFrontpic:   INCBIN "gfx/frontpics/lz/206.lz"
 ; 137fff
 
 
 SECTION "bank4E",DATA,BANK[$4E]
 
-VaporeonFrontpic: ; 138000
-INCBIN "gfx/frontpics/lz/134.lz"
-GirafarigFrontpic: ; 1382b3
-INCBIN "gfx/frontpics/lz/203.lz"
-DrowzeeFrontpic: ; 138562
-INCBIN "gfx/frontpics/lz/096.lz"
-SneaselFrontpic: ; 13880e
-INCBIN "gfx/frontpics/lz/215.lz"
-BellossomFrontpic: ; 138ab4
-INCBIN "gfx/frontpics/lz/182.lz"
-SnorlaxFrontpic: ; 138d5a
-INCBIN "gfx/frontpics/lz/143.lz"
-WigglytuffFrontpic: ; 138fff
-INCBIN "gfx/frontpics/lz/040.lz"
-YanmaFrontpic: ; 13929d
-INCBIN "gfx/frontpics/lz/193.lz"
-SmeargleFrontpic: ; 139539
-INCBIN "gfx/frontpics/lz/235.lz"
-ClefableFrontpic: ; 1397d4
-INCBIN "gfx/frontpics/lz/036.lz"
-PonytaFrontpic: ; 139a6e
-INCBIN "gfx/frontpics/lz/077.lz"
-MurkrowFrontpic: ; 139d07
-INCBIN "gfx/frontpics/lz/198.lz"
-GravelerFrontpic: ; 139fa0
-INCBIN "gfx/frontpics/lz/075.lz"
-StarmieFrontpic: ; 13a238
-INCBIN "gfx/frontpics/lz/121.lz"
-PidgeottoFrontpic: ; 13a4cf
-INCBIN "gfx/frontpics/lz/017.lz"
-LedybaFrontpic: ; 13a762
-INCBIN "gfx/frontpics/lz/165.lz"
-GengarFrontpic: ; 13a9f4
-INCBIN "gfx/frontpics/lz/094.lz"
-OmastarFrontpic: ; 13ac85
-INCBIN "gfx/frontpics/lz/139.lz"
-PiloswineFrontpic: ; 13af15
-INCBIN "gfx/frontpics/lz/221.lz"
-DugtrioFrontpic: ; 13b1a2
-INCBIN "gfx/frontpics/lz/051.lz"
-MagnetonFrontpic: ; 13b42d
-INCBIN "gfx/frontpics/lz/082.lz"
-DragonairFrontpic: ; 13b6b5
-INCBIN "gfx/frontpics/lz/148.lz"
-ForretressFrontpic: ; 13b93b
-INCBIN "gfx/frontpics/lz/205.lz"
-TogeticFrontpic: ; 13bbc1
-INCBIN "gfx/frontpics/lz/176.lz"
-KangaskhanBackpic: ; 13be45
-INCBIN "gfx/backpics/lz/115.lz"
+VaporeonFrontpic:    INCBIN "gfx/frontpics/lz/134.lz"
+GirafarigFrontpic:   INCBIN "gfx/frontpics/lz/203.lz"
+DrowzeeFrontpic:     INCBIN "gfx/frontpics/lz/096.lz"
+SneaselFrontpic:     INCBIN "gfx/frontpics/lz/215.lz"
+BellossomFrontpic:   INCBIN "gfx/frontpics/lz/182.lz"
+SnorlaxFrontpic:     INCBIN "gfx/frontpics/lz/143.lz"
+WigglytuffFrontpic:  INCBIN "gfx/frontpics/lz/040.lz"
+YanmaFrontpic:       INCBIN "gfx/frontpics/lz/193.lz"
+SmeargleFrontpic:    INCBIN "gfx/frontpics/lz/235.lz"
+ClefableFrontpic:    INCBIN "gfx/frontpics/lz/036.lz"
+PonytaFrontpic:      INCBIN "gfx/frontpics/lz/077.lz"
+MurkrowFrontpic:     INCBIN "gfx/frontpics/lz/198.lz"
+GravelerFrontpic:    INCBIN "gfx/frontpics/lz/075.lz"
+StarmieFrontpic:     INCBIN "gfx/frontpics/lz/121.lz"
+PidgeottoFrontpic:   INCBIN "gfx/frontpics/lz/017.lz"
+LedybaFrontpic:      INCBIN "gfx/frontpics/lz/165.lz"
+GengarFrontpic:      INCBIN "gfx/frontpics/lz/094.lz"
+OmastarFrontpic:     INCBIN "gfx/frontpics/lz/139.lz"
+PiloswineFrontpic:   INCBIN "gfx/frontpics/lz/221.lz"
+DugtrioFrontpic:     INCBIN "gfx/frontpics/lz/051.lz"
+MagnetonFrontpic:    INCBIN "gfx/frontpics/lz/082.lz"
+DragonairFrontpic:   INCBIN "gfx/frontpics/lz/148.lz"
+ForretressFrontpic:  INCBIN "gfx/frontpics/lz/205.lz"
+TogeticFrontpic:     INCBIN "gfx/frontpics/lz/176.lz"
+KangaskhanBackpic:   INCBIN "gfx/backpics/lz/115.lz"
 ; 13c000
 
 
 SECTION "bank4f",DATA,BANK[$4f]
 
-SeelFrontpic: ; 13c000
-INCBIN "gfx/frontpics/lz/086.lz"
-CrobatFrontpic: ; 13c284
-INCBIN "gfx/frontpics/lz/169.lz"
-ChanseyFrontpic: ; 13c502
-INCBIN "gfx/frontpics/lz/113.lz"
-TangelaFrontpic: ; 13c77c
-INCBIN "gfx/frontpics/lz/114.lz"
-SnubbullFrontpic: ; 13c9f5
-INCBIN "gfx/frontpics/lz/209.lz"
-GranbullFrontpic: ; 13cc6e
-INCBIN "gfx/frontpics/lz/210.lz"
-MiltankFrontpic: ; 13cee2
-INCBIN "gfx/frontpics/lz/241.lz"
-HaunterFrontpic: ; 13d153
-INCBIN "gfx/frontpics/lz/093.lz"
-SunfloraFrontpic: ; 13d3c3
-INCBIN "gfx/frontpics/lz/192.lz"
-UmbreonFrontpic: ; 13d62e
-INCBIN "gfx/frontpics/lz/197.lz"
-ChikoritaFrontpic: ; 13d898
-INCBIN "gfx/frontpics/lz/152.lz"
-GoldeenFrontpic: ; 13dafc
-INCBIN "gfx/frontpics/lz/118.lz"
-EspeonFrontpic: ; 13dd5e
-INCBIN "gfx/frontpics/lz/196.lz"
-XatuFrontpic: ; 13dfbc
-INCBIN "gfx/frontpics/lz/178.lz"
-MewFrontpic: ; 13e213
-INCBIN "gfx/frontpics/lz/151.lz"
-OctilleryFrontpic: ; 13e46a
-INCBIN "gfx/frontpics/lz/224.lz"
-JynxFrontpic: ; 13e6c0
-INCBIN "gfx/frontpics/lz/124.lz"
-WobbuffetFrontpic: ; 13e915
-INCBIN "gfx/frontpics/lz/202.lz"
-DelibirdFrontpic: ; 13eb68
-INCBIN "gfx/frontpics/lz/225.lz"
-LedianFrontpic: ; 13edba
-INCBIN "gfx/frontpics/lz/166.lz"
-GloomFrontpic: ; 13f00b
-INCBIN "gfx/frontpics/lz/044.lz"
-FlaaffyFrontpic: ; 13f257
-INCBIN "gfx/frontpics/lz/180.lz"
-IvysaurFrontpic: ; 13f4a2
-INCBIN "gfx/frontpics/lz/002.lz"
-FurretFrontpic: ; 13f6ec
-INCBIN "gfx/frontpics/lz/162.lz"
-CyndaquilFrontpic: ; 13f931
-INCBIN "gfx/frontpics/lz/155.lz"
-HitmonchanFrontpic: ; 13fb74
-INCBIN "gfx/frontpics/lz/107.lz"
-QuagsireFrontpic: ; 13fdb7
-INCBIN "gfx/frontpics/lz/195.lz"
+SeelFrontpic:        INCBIN "gfx/frontpics/lz/086.lz"
+CrobatFrontpic:      INCBIN "gfx/frontpics/lz/169.lz"
+ChanseyFrontpic:     INCBIN "gfx/frontpics/lz/113.lz"
+TangelaFrontpic:     INCBIN "gfx/frontpics/lz/114.lz"
+SnubbullFrontpic:    INCBIN "gfx/frontpics/lz/209.lz"
+GranbullFrontpic:    INCBIN "gfx/frontpics/lz/210.lz"
+MiltankFrontpic:     INCBIN "gfx/frontpics/lz/241.lz"
+HaunterFrontpic:     INCBIN "gfx/frontpics/lz/093.lz"
+SunfloraFrontpic:    INCBIN "gfx/frontpics/lz/192.lz"
+UmbreonFrontpic:     INCBIN "gfx/frontpics/lz/197.lz"
+ChikoritaFrontpic:   INCBIN "gfx/frontpics/lz/152.lz"
+GoldeenFrontpic:     INCBIN "gfx/frontpics/lz/118.lz"
+EspeonFrontpic:      INCBIN "gfx/frontpics/lz/196.lz"
+XatuFrontpic:        INCBIN "gfx/frontpics/lz/178.lz"
+MewFrontpic:         INCBIN "gfx/frontpics/lz/151.lz"
+OctilleryFrontpic:   INCBIN "gfx/frontpics/lz/224.lz"
+JynxFrontpic:        INCBIN "gfx/frontpics/lz/124.lz"
+WobbuffetFrontpic:   INCBIN "gfx/frontpics/lz/202.lz"
+DelibirdFrontpic:    INCBIN "gfx/frontpics/lz/225.lz"
+LedianFrontpic:      INCBIN "gfx/frontpics/lz/166.lz"
+GloomFrontpic:       INCBIN "gfx/frontpics/lz/044.lz"
+FlaaffyFrontpic:     INCBIN "gfx/frontpics/lz/180.lz"
+IvysaurFrontpic:     INCBIN "gfx/frontpics/lz/002.lz"
+FurretFrontpic:      INCBIN "gfx/frontpics/lz/162.lz"
+CyndaquilFrontpic:   INCBIN "gfx/frontpics/lz/155.lz"
+HitmonchanFrontpic:  INCBIN "gfx/frontpics/lz/107.lz"
+QuagsireFrontpic:    INCBIN "gfx/frontpics/lz/195.lz"
 ; 13fff7
 
 
 SECTION "bank50",DATA,BANK[$50]
 
-EkansFrontpic: ; 140000
-INCBIN "gfx/frontpics/lz/023.lz"
-SudowoodoFrontpic: ; 14023f
-INCBIN "gfx/frontpics/lz/185.lz"
-PikachuFrontpic: ; 14047d
-INCBIN "gfx/frontpics/lz/025.lz"
-SeadraFrontpic: ; 1406b7
-INCBIN "gfx/frontpics/lz/117.lz"
-MagbyFrontpic: ; 1408f1
-INCBIN "gfx/frontpics/lz/240.lz"
-WeepinbellFrontpic: ; 140b2a
-INCBIN "gfx/frontpics/lz/070.lz"
-TotodileFrontpic: ; 140d61
-INCBIN "gfx/frontpics/lz/158.lz"
-CorsolaFrontpic: ; 140f92
-INCBIN "gfx/frontpics/lz/222.lz"
-FirebreatherPic: ; 1411c1
-INCBIN "gfx/trainers/lz/047.lz"
-MachopFrontpic: ; 1413e9
-INCBIN "gfx/frontpics/lz/066.lz"
-ChinchouFrontpic: ; 141602
-INCBIN "gfx/frontpics/lz/170.lz"
-RattataFrontpic: ; 141819
-INCBIN "gfx/frontpics/lz/019.lz"
-ChampionPic: ; 141a2f
-INCBIN "gfx/trainers/lz/015.lz"
-SpearowFrontpic: ; 141c43
-INCBIN "gfx/frontpics/lz/021.lz"
-MagikarpFrontpic: ; 141e54
-INCBIN "gfx/frontpics/lz/129.lz"
-CharmanderFrontpic: ; 142065
-INCBIN "gfx/frontpics/lz/004.lz"
-CuboneFrontpic: ; 142275
-INCBIN "gfx/frontpics/lz/104.lz"
-BlackbeltTPic: ; 142484
-INCBIN "gfx/trainers/lz/049.lz"
-BikerPic: ; 142692
-INCBIN "gfx/trainers/lz/044.lz"
-NidoranMFrontpic: ; 14289f
-INCBIN "gfx/frontpics/lz/032.lz"
-PorygonFrontpic: ; 142aab
-INCBIN "gfx/frontpics/lz/137.lz"
-BrunoPic: ; 142cb5
-INCBIN "gfx/trainers/lz/012.lz"
-GrimerFrontpic: ; 142ebe
-INCBIN "gfx/frontpics/lz/088.lz"
-StaryuFrontpic: ; 1430c4
-INCBIN "gfx/frontpics/lz/120.lz"
-HikerPic: ; 1432c9
-INCBIN "gfx/trainers/lz/043.lz"
-MeowthFrontpic: ; 1434cd
-INCBIN "gfx/frontpics/lz/052.lz"
-Porygon2Frontpic: ; 1436d1
-INCBIN "gfx/frontpics/lz/233.lz"
-SandshrewFrontpic: ; 1438d2
-INCBIN "gfx/frontpics/lz/027.lz"
-NidoranFFrontpic: ; 143ad2
-INCBIN "gfx/frontpics/lz/029.lz"
-PidgeyFrontpic: ; 143ccc
-INCBIN "gfx/frontpics/lz/016.lz"
-ParasectBackpic: ; 143ec6
-INCBIN "gfx/backpics/lz/047.lz"
+EkansFrontpic:       INCBIN "gfx/frontpics/lz/023.lz"
+SudowoodoFrontpic:   INCBIN "gfx/frontpics/lz/185.lz"
+PikachuFrontpic:     INCBIN "gfx/frontpics/lz/025.lz"
+SeadraFrontpic:      INCBIN "gfx/frontpics/lz/117.lz"
+MagbyFrontpic:       INCBIN "gfx/frontpics/lz/240.lz"
+WeepinbellFrontpic:  INCBIN "gfx/frontpics/lz/070.lz"
+TotodileFrontpic:    INCBIN "gfx/frontpics/lz/158.lz"
+CorsolaFrontpic:     INCBIN "gfx/frontpics/lz/222.lz"
+FirebreatherPic:     INCBIN "gfx/trainers/lz/047.lz"
+MachopFrontpic:      INCBIN "gfx/frontpics/lz/066.lz"
+ChinchouFrontpic:    INCBIN "gfx/frontpics/lz/170.lz"
+RattataFrontpic:     INCBIN "gfx/frontpics/lz/019.lz"
+ChampionPic:         INCBIN "gfx/trainers/lz/015.lz"
+SpearowFrontpic:     INCBIN "gfx/frontpics/lz/021.lz"
+MagikarpFrontpic:    INCBIN "gfx/frontpics/lz/129.lz"
+CharmanderFrontpic:  INCBIN "gfx/frontpics/lz/004.lz"
+CuboneFrontpic:      INCBIN "gfx/frontpics/lz/104.lz"
+BlackbeltTPic:       INCBIN "gfx/trainers/lz/049.lz"
+BikerPic:            INCBIN "gfx/trainers/lz/044.lz"
+NidoranMFrontpic:    INCBIN "gfx/frontpics/lz/032.lz"
+PorygonFrontpic:     INCBIN "gfx/frontpics/lz/137.lz"
+BrunoPic:            INCBIN "gfx/trainers/lz/012.lz"
+GrimerFrontpic:      INCBIN "gfx/frontpics/lz/088.lz"
+StaryuFrontpic:      INCBIN "gfx/frontpics/lz/120.lz"
+HikerPic:            INCBIN "gfx/trainers/lz/043.lz"
+MeowthFrontpic:      INCBIN "gfx/frontpics/lz/052.lz"
+Porygon2Frontpic:    INCBIN "gfx/frontpics/lz/233.lz"
+SandshrewFrontpic:   INCBIN "gfx/frontpics/lz/027.lz"
+NidoranFFrontpic:    INCBIN "gfx/frontpics/lz/029.lz"
+PidgeyFrontpic:      INCBIN "gfx/frontpics/lz/016.lz"
+ParasectBackpic:     INCBIN "gfx/backpics/lz/047.lz"
 ; 144000
+
 
 SECTION "bank51",DATA,BANK[$51]
 
-MisdreavusFrontpic: ; 144000
-INCBIN "gfx/frontpics/lz/200.lz"
-HoundourFrontpic: ; 1441f7
-INCBIN "gfx/frontpics/lz/228.lz"
-MankeyFrontpic: ; 1443ee
-INCBIN "gfx/frontpics/lz/056.lz"
-CelebiFrontpic: ; 1445e1
-INCBIN "gfx/frontpics/lz/251.lz"
-MediumPic: ; 1447d1
-INCBIN "gfx/trainers/lz/056.lz"
-PinecoFrontpic: ; 1449c0
-INCBIN "gfx/frontpics/lz/204.lz"
-KrabbyFrontpic: ; 144bae
-INCBIN "gfx/frontpics/lz/098.lz"
-FisherPic: ; 144d9a
-INCBIN "gfx/trainers/lz/036.lz"
-JigglypuffFrontpic: ; 144f83
-INCBIN "gfx/frontpics/lz/039.lz"
-ParasFrontpic: ; 14516a
-INCBIN "gfx/frontpics/lz/046.lz"
-NidokingBackpic: ; 145350
-INCBIN "gfx/backpics/lz/034.lz"
-PokefanmPic: ; 145535
-INCBIN "gfx/trainers/lz/058.lz"
-BoarderPic: ; 14571a
-INCBIN "gfx/trainers/lz/057.lz"
-PsyduckFrontpic: ; 1458fe
-INCBIN "gfx/frontpics/lz/054.lz"
-SquirtleFrontpic: ; 145ae2
-INCBIN "gfx/frontpics/lz/007.lz"
-MachampBackpic: ; 145cc5
-INCBIN "gfx/backpics/lz/068.lz"
-KoffingFrontpic: ; 145ea7
-INCBIN "gfx/frontpics/lz/109.lz"
-VenonatFrontpic: ; 146089
-INCBIN "gfx/frontpics/lz/048.lz"
-ExeggutorBackpic: ; 14626a
-INCBIN "gfx/backpics/lz/103.lz"
-LanturnFrontpic: ; 146442
-INCBIN "gfx/frontpics/lz/171.lz"
-TyrogueFrontpic: ; 14661a
-INCBIN "gfx/frontpics/lz/236.lz"
-SkiploomFrontpic: ; 1467f0
-INCBIN "gfx/frontpics/lz/188.lz"
-MareepFrontpic: ; 1469c4
-INCBIN "gfx/frontpics/lz/179.lz"
-ChuckPic: ; 146b97
-INCBIN "gfx/trainers/lz/006.lz"
-EeveeFrontpic: ; 146d68
-INCBIN "gfx/frontpics/lz/133.lz"
-ButterfreeBackpic: ; 146f39
-INCBIN "gfx/backpics/lz/012.lz"
-ZubatFrontpic: ; 147108
-INCBIN "gfx/frontpics/lz/041.lz"
-KimonoGirlPic: ; 1472d7
-INCBIN "gfx/trainers/lz/059.lz"
-AlakazamBackpic: ; 1474a5
-INCBIN "gfx/backpics/lz/065.lz"
-AipomFrontpic: ; 147672
-INCBIN "gfx/frontpics/lz/190.lz"
-AbraFrontpic: ; 14783f
-INCBIN "gfx/frontpics/lz/063.lz"
-HitmontopBackpic: ; 147a0a
-INCBIN "gfx/backpics/lz/237.lz"
-CloysterBackpic: ; 147bd4
-INCBIN "gfx/backpics/lz/091.lz"
-HoothootFrontpic: ; 147d9e
-INCBIN "gfx/frontpics/lz/163.lz"
-UnownFBackpic: ; 147f67
-INCBIN "gfx/backpics/lz/201f.lz"
+MisdreavusFrontpic:  INCBIN "gfx/frontpics/lz/200.lz"
+HoundourFrontpic:    INCBIN "gfx/frontpics/lz/228.lz"
+MankeyFrontpic:      INCBIN "gfx/frontpics/lz/056.lz"
+CelebiFrontpic:      INCBIN "gfx/frontpics/lz/251.lz"
+MediumPic:           INCBIN "gfx/trainers/lz/056.lz"
+PinecoFrontpic:      INCBIN "gfx/frontpics/lz/204.lz"
+KrabbyFrontpic:      INCBIN "gfx/frontpics/lz/098.lz"
+FisherPic:           INCBIN "gfx/trainers/lz/036.lz"
+JigglypuffFrontpic:  INCBIN "gfx/frontpics/lz/039.lz"
+ParasFrontpic:       INCBIN "gfx/frontpics/lz/046.lz"
+NidokingBackpic:     INCBIN "gfx/backpics/lz/034.lz"
+PokefanmPic:         INCBIN "gfx/trainers/lz/058.lz"
+BoarderPic:          INCBIN "gfx/trainers/lz/057.lz"
+PsyduckFrontpic:     INCBIN "gfx/frontpics/lz/054.lz"
+SquirtleFrontpic:    INCBIN "gfx/frontpics/lz/007.lz"
+MachampBackpic:      INCBIN "gfx/backpics/lz/068.lz"
+KoffingFrontpic:     INCBIN "gfx/frontpics/lz/109.lz"
+VenonatFrontpic:     INCBIN "gfx/frontpics/lz/048.lz"
+ExeggutorBackpic:    INCBIN "gfx/backpics/lz/103.lz"
+LanturnFrontpic:     INCBIN "gfx/frontpics/lz/171.lz"
+TyrogueFrontpic:     INCBIN "gfx/frontpics/lz/236.lz"
+SkiploomFrontpic:    INCBIN "gfx/frontpics/lz/188.lz"
+MareepFrontpic:      INCBIN "gfx/frontpics/lz/179.lz"
+ChuckPic:            INCBIN "gfx/trainers/lz/006.lz"
+EeveeFrontpic:       INCBIN "gfx/frontpics/lz/133.lz"
+ButterfreeBackpic:   INCBIN "gfx/backpics/lz/012.lz"
+ZubatFrontpic:       INCBIN "gfx/frontpics/lz/041.lz"
+KimonoGirlPic:       INCBIN "gfx/trainers/lz/059.lz"
+AlakazamBackpic:     INCBIN "gfx/backpics/lz/065.lz"
+AipomFrontpic:       INCBIN "gfx/frontpics/lz/190.lz"
+AbraFrontpic:        INCBIN "gfx/frontpics/lz/063.lz"
+HitmontopBackpic:    INCBIN "gfx/backpics/lz/237.lz"
+CloysterBackpic:     INCBIN "gfx/backpics/lz/091.lz"
+HoothootFrontpic:    INCBIN "gfx/frontpics/lz/163.lz"
+UnownFBackpic:       INCBIN "gfx/backpics/lz/201f.lz"
 ; 148000
 
 
 SECTION "bank52",DATA,BANK[$52]
 
-DodrioBackpic: ; 148000
-INCBIN "gfx/backpics/lz/085.lz"
-ClefairyFrontpic: ; 1481c7
-INCBIN "gfx/frontpics/lz/035.lz"
-SlugmaFrontpic: ; 14838d
-INCBIN "gfx/frontpics/lz/218.lz"
-GrowlitheFrontpic: ; 148553
-INCBIN "gfx/frontpics/lz/058.lz"
-SlowpokeFrontpic: ; 148718
-INCBIN "gfx/frontpics/lz/079.lz"
-SmoochumFrontpic: ; 1488dd
-INCBIN "gfx/frontpics/lz/238.lz"
-JugglerPic: ; 148aa2
-INCBIN "gfx/trainers/lz/048.lz"
-MarillFrontpic: ; 148c66
-INCBIN "gfx/frontpics/lz/183.lz"
-GuitaristPic: ; 148e29
-INCBIN "gfx/trainers/lz/042.lz"
-PokefanfPic: ; 148fec
-INCBIN "gfx/trainers/lz/061.lz"
-VenomothBackpic: ; 1491ae
-INCBIN "gfx/backpics/lz/049.lz"
-ClairPic: ; 149370
-INCBIN "gfx/trainers/lz/007.lz"
-PokemaniacPic: ; 149531
-INCBIN "gfx/trainers/lz/029.lz"
-OmanyteFrontpic: ; 1496f1
-INCBIN "gfx/frontpics/lz/138.lz"
-SkierPic: ; 1498af
-INCBIN "gfx/trainers/lz/032.lz"
-PupitarFrontpic: ; 149a6d
-INCBIN "gfx/frontpics/lz/247.lz"
-BellsproutFrontpic: ; 149c2b
-INCBIN "gfx/frontpics/lz/069.lz"
-ShellderFrontpic: ; 149de6
-INCBIN "gfx/frontpics/lz/090.lz"
-TentacoolFrontpic: ; 149fa0
-INCBIN "gfx/frontpics/lz/072.lz"
-CleffaFrontpic: ; 14a159
-INCBIN "gfx/frontpics/lz/173.lz"
-GyaradosBackpic: ; 14a30c
-INCBIN "gfx/backpics/lz/130.lz"
-NinetalesBackpic: ; 14a4bf
-INCBIN "gfx/backpics/lz/038.lz"
-YanmaBackpic: ; 14a670
-INCBIN "gfx/backpics/lz/193.lz"
-PinsirBackpic: ; 14a821
-INCBIN "gfx/backpics/lz/127.lz"
-LassPic: ; 14a9ce
-INCBIN "gfx/trainers/lz/024.lz"
-ClefableBackpic: ; 14ab7a
-INCBIN "gfx/backpics/lz/036.lz"
-DoduoFrontpic: ; 14ad26
-INCBIN "gfx/frontpics/lz/084.lz"
-FeraligatrBackpic: ; 14aed2
-INCBIN "gfx/backpics/lz/160.lz"
-DratiniFrontpic: ; 14b07d
-INCBIN "gfx/frontpics/lz/147.lz"
-MagnetonBackpic: ; 14b228
-INCBIN "gfx/backpics/lz/082.lz"
-QwilfishFrontpic: ; 14b3d1
-INCBIN "gfx/frontpics/lz/211.lz"
-SuicuneBackpic: ; 14b579
-INCBIN "gfx/backpics/lz/245.lz"
-SlowkingBackpic: ; 14b720
-INCBIN "gfx/backpics/lz/199.lz"
-ElekidBackpic: ; 14b8c6
-INCBIN "gfx/backpics/lz/239.lz"
-CelebiBackpic: ; 14ba6b
-INCBIN "gfx/backpics/lz/251.lz"
-KrabbyBackpic: ; 14bc0f
-INCBIN "gfx/backpics/lz/098.lz"
-BugCatcherPic: ; 14bdb2
-INCBIN "gfx/trainers/lz/035.lz"
-SnorlaxBackpic: ; 14bf55
-INCBIN "gfx/backpics/lz/143.lz"
+DodrioBackpic:       INCBIN "gfx/backpics/lz/085.lz"
+ClefairyFrontpic:    INCBIN "gfx/frontpics/lz/035.lz"
+SlugmaFrontpic:      INCBIN "gfx/frontpics/lz/218.lz"
+GrowlitheFrontpic:   INCBIN "gfx/frontpics/lz/058.lz"
+SlowpokeFrontpic:    INCBIN "gfx/frontpics/lz/079.lz"
+SmoochumFrontpic:    INCBIN "gfx/frontpics/lz/238.lz"
+JugglerPic:          INCBIN "gfx/trainers/lz/048.lz"
+MarillFrontpic:      INCBIN "gfx/frontpics/lz/183.lz"
+GuitaristPic:        INCBIN "gfx/trainers/lz/042.lz"
+PokefanfPic:         INCBIN "gfx/trainers/lz/061.lz"
+VenomothBackpic:     INCBIN "gfx/backpics/lz/049.lz"
+ClairPic:            INCBIN "gfx/trainers/lz/007.lz"
+PokemaniacPic:       INCBIN "gfx/trainers/lz/029.lz"
+OmanyteFrontpic:     INCBIN "gfx/frontpics/lz/138.lz"
+SkierPic:            INCBIN "gfx/trainers/lz/032.lz"
+PupitarFrontpic:     INCBIN "gfx/frontpics/lz/247.lz"
+BellsproutFrontpic:  INCBIN "gfx/frontpics/lz/069.lz"
+ShellderFrontpic:    INCBIN "gfx/frontpics/lz/090.lz"
+TentacoolFrontpic:   INCBIN "gfx/frontpics/lz/072.lz"
+CleffaFrontpic:      INCBIN "gfx/frontpics/lz/173.lz"
+GyaradosBackpic:     INCBIN "gfx/backpics/lz/130.lz"
+NinetalesBackpic:    INCBIN "gfx/backpics/lz/038.lz"
+YanmaBackpic:        INCBIN "gfx/backpics/lz/193.lz"
+PinsirBackpic:       INCBIN "gfx/backpics/lz/127.lz"
+LassPic:             INCBIN "gfx/trainers/lz/024.lz"
+ClefableBackpic:     INCBIN "gfx/backpics/lz/036.lz"
+DoduoFrontpic:       INCBIN "gfx/frontpics/lz/084.lz"
+FeraligatrBackpic:   INCBIN "gfx/backpics/lz/160.lz"
+DratiniFrontpic:     INCBIN "gfx/frontpics/lz/147.lz"
+MagnetonBackpic:     INCBIN "gfx/backpics/lz/082.lz"
+QwilfishFrontpic:    INCBIN "gfx/frontpics/lz/211.lz"
+SuicuneBackpic:      INCBIN "gfx/backpics/lz/245.lz"
+SlowkingBackpic:     INCBIN "gfx/backpics/lz/199.lz"
+ElekidBackpic:       INCBIN "gfx/backpics/lz/239.lz"
+CelebiBackpic:       INCBIN "gfx/backpics/lz/251.lz"
+KrabbyBackpic:       INCBIN "gfx/backpics/lz/098.lz"
+BugCatcherPic:       INCBIN "gfx/trainers/lz/035.lz"
+SnorlaxBackpic:      INCBIN "gfx/backpics/lz/143.lz"
 ; 14bffb
 
 
 SECTION "bank53",DATA,BANK[$53]
 
-VenusaurBackpic: ; 14c000
-INCBIN "gfx/backpics/lz/003.lz"
-MoltresBackpic: ; 14c1a2
-INCBIN "gfx/backpics/lz/146.lz"
-SunfloraBackpic: ; 14c342
-INCBIN "gfx/backpics/lz/192.lz"
-PhanpyFrontpic: ; 14c4e1
-INCBIN "gfx/frontpics/lz/231.lz"
-RhydonBackpic: ; 14c67f
-INCBIN "gfx/backpics/lz/112.lz"
-LarvitarFrontpic: ; 14c81c
-INCBIN "gfx/frontpics/lz/246.lz"
-TyranitarBackpic: ; 14c9b9
-INCBIN "gfx/backpics/lz/248.lz"
-SandslashBackpic: ; 14cb56
-INCBIN "gfx/backpics/lz/028.lz"
-SeadraBackpic: ; 14ccf2
-INCBIN "gfx/backpics/lz/117.lz"
-TwinsPic: ; 14ce8e
-INCBIN "gfx/trainers/lz/060.lz"
-FarfetchDBackpic: ; 14d02a
-INCBIN "gfx/backpics/lz/083.lz"
-NidoranMBackpic: ; 14d1c5
-INCBIN "gfx/backpics/lz/032.lz"
-LedybaBackpic: ; 14d360
-INCBIN "gfx/backpics/lz/165.lz"
-CyndaquilBackpic: ; 14d4fb
-INCBIN "gfx/backpics/lz/155.lz"
-BayleefBackpic: ; 14d695
-INCBIN "gfx/backpics/lz/153.lz"
-OddishFrontpic: ; 14d82c
-INCBIN "gfx/frontpics/lz/043.lz"
-RapidashBackpic: ; 14d9c0
-INCBIN "gfx/backpics/lz/078.lz"
-DoduoBackpic: ; 14db54
-INCBIN "gfx/backpics/lz/084.lz"
-HoppipFrontpic: ; 14dce8
-INCBIN "gfx/frontpics/lz/187.lz"
-MankeyBackpic: ; 14de7b
-INCBIN "gfx/backpics/lz/056.lz"
-MagmarBackpic: ; 14e00e
-INCBIN "gfx/backpics/lz/126.lz"
-HypnoBackpic: ; 14e1a0
-INCBIN "gfx/backpics/lz/097.lz"
-QuilavaBackpic: ; 14e331
-INCBIN "gfx/backpics/lz/156.lz"
-CroconawBackpic: ; 14e4c1
-INCBIN "gfx/backpics/lz/159.lz"
-SandshrewBackpic: ; 14e650
-INCBIN "gfx/backpics/lz/027.lz"
-SailorPic: ; 14e7dd
-INCBIN "gfx/trainers/lz/039.lz"
-BeautyPic: ; 14e969
-INCBIN "gfx/trainers/lz/028.lz"
-ShellderBackpic: ; 14eaf5
-INCBIN "gfx/backpics/lz/090.lz"
-ZubatBackpic: ; 14ec80
-INCBIN "gfx/backpics/lz/041.lz"
-TeddiursaFrontpic: ; 14ee0b
-INCBIN "gfx/frontpics/lz/216.lz"
-CuboneBackpic: ; 14ef96
-INCBIN "gfx/backpics/lz/104.lz"
-GruntmPic: ; 14f120
-INCBIN "gfx/trainers/lz/030.lz"
-GloomBackpic: ; 14f2aa
-INCBIN "gfx/backpics/lz/044.lz"
-MagcargoBackpic: ; 14f434
-INCBIN "gfx/backpics/lz/219.lz"
-KabutopsBackpic: ; 14f5be
-INCBIN "gfx/backpics/lz/141.lz"
-BeedrillBackpic: ; 14f748
-INCBIN "gfx/backpics/lz/015.lz"
-ArcanineBackpic: ; 14f8d2
-INCBIN "gfx/backpics/lz/059.lz"
-FlareonBackpic: ; 14fa5b
-INCBIN "gfx/backpics/lz/136.lz"
-GoldeenBackpic: ; 14fbe4
-INCBIN "gfx/backpics/lz/118.lz"
-BulbasaurFrontpic: ; 14fd6d
-INCBIN "gfx/frontpics/lz/001.lz"
-StarmieBackpic: ; 14fef5
-INCBIN "gfx/backpics/lz/121.lz"
+VenusaurBackpic:     INCBIN "gfx/backpics/lz/003.lz"
+MoltresBackpic:      INCBIN "gfx/backpics/lz/146.lz"
+SunfloraBackpic:     INCBIN "gfx/backpics/lz/192.lz"
+PhanpyFrontpic:      INCBIN "gfx/frontpics/lz/231.lz"
+RhydonBackpic:       INCBIN "gfx/backpics/lz/112.lz"
+LarvitarFrontpic:    INCBIN "gfx/frontpics/lz/246.lz"
+TyranitarBackpic:    INCBIN "gfx/backpics/lz/248.lz"
+SandslashBackpic:    INCBIN "gfx/backpics/lz/028.lz"
+SeadraBackpic:       INCBIN "gfx/backpics/lz/117.lz"
+TwinsPic:            INCBIN "gfx/trainers/lz/060.lz"
+FarfetchDBackpic:    INCBIN "gfx/backpics/lz/083.lz"
+NidoranMBackpic:     INCBIN "gfx/backpics/lz/032.lz"
+LedybaBackpic:       INCBIN "gfx/backpics/lz/165.lz"
+CyndaquilBackpic:    INCBIN "gfx/backpics/lz/155.lz"
+BayleefBackpic:      INCBIN "gfx/backpics/lz/153.lz"
+OddishFrontpic:      INCBIN "gfx/frontpics/lz/043.lz"
+RapidashBackpic:     INCBIN "gfx/backpics/lz/078.lz"
+DoduoBackpic:        INCBIN "gfx/backpics/lz/084.lz"
+HoppipFrontpic:      INCBIN "gfx/frontpics/lz/187.lz"
+MankeyBackpic:       INCBIN "gfx/backpics/lz/056.lz"
+MagmarBackpic:       INCBIN "gfx/backpics/lz/126.lz"
+HypnoBackpic:        INCBIN "gfx/backpics/lz/097.lz"
+QuilavaBackpic:      INCBIN "gfx/backpics/lz/156.lz"
+CroconawBackpic:     INCBIN "gfx/backpics/lz/159.lz"
+SandshrewBackpic:    INCBIN "gfx/backpics/lz/027.lz"
+SailorPic:           INCBIN "gfx/trainers/lz/039.lz"
+BeautyPic:           INCBIN "gfx/trainers/lz/028.lz"
+ShellderBackpic:     INCBIN "gfx/backpics/lz/090.lz"
+ZubatBackpic:        INCBIN "gfx/backpics/lz/041.lz"
+TeddiursaFrontpic:   INCBIN "gfx/frontpics/lz/216.lz"
+CuboneBackpic:       INCBIN "gfx/backpics/lz/104.lz"
+GruntmPic:           INCBIN "gfx/trainers/lz/030.lz"
+GloomBackpic:        INCBIN "gfx/backpics/lz/044.lz"
+MagcargoBackpic:     INCBIN "gfx/backpics/lz/219.lz"
+KabutopsBackpic:     INCBIN "gfx/backpics/lz/141.lz"
+BeedrillBackpic:     INCBIN "gfx/backpics/lz/015.lz"
+ArcanineBackpic:     INCBIN "gfx/backpics/lz/059.lz"
+FlareonBackpic:      INCBIN "gfx/backpics/lz/136.lz"
+GoldeenBackpic:      INCBIN "gfx/backpics/lz/118.lz"
+BulbasaurFrontpic:   INCBIN "gfx/frontpics/lz/001.lz"
+StarmieBackpic:      INCBIN "gfx/backpics/lz/121.lz"
 ; 150000
 
 
 SECTION "bank54",DATA,BANK[$54]
 
-OmanyteBackpic: ; 150000
-INCBIN "gfx/backpics/lz/138.lz"
-PidgeyBackpic: ; 150188
-INCBIN "gfx/backpics/lz/016.lz"
-ScientistPic: ; 15030f
-INCBIN "gfx/trainers/lz/019.lz"
-QwilfishBackpic: ; 150496
-INCBIN "gfx/backpics/lz/211.lz"
-GligarBackpic: ; 15061c
-INCBIN "gfx/backpics/lz/207.lz"
-TyphlosionBackpic: ; 1507a1
-INCBIN "gfx/backpics/lz/157.lz"
-CharmeleonBackpic: ; 150925
-INCBIN "gfx/backpics/lz/005.lz"
-NidoqueenBackpic: ; 150aa9
-INCBIN "gfx/backpics/lz/031.lz"
-PichuFrontpic: ; 150c2c
-INCBIN "gfx/frontpics/lz/172.lz"
-ElectabuzzBackpic: ; 150dae
-INCBIN "gfx/backpics/lz/125.lz"
-LedianBackpic: ; 150f30
-INCBIN "gfx/backpics/lz/166.lz"
-PupitarBackpic: ; 1510b1
-INCBIN "gfx/backpics/lz/247.lz"
-HeracrossBackpic: ; 151232
-INCBIN "gfx/backpics/lz/214.lz"
-UnownDFrontpic: ; 1513b3
-INCBIN "gfx/frontpics/lz/201d.lz"
-MiltankBackpic: ; 151534
-INCBIN "gfx/backpics/lz/241.lz"
-SteelixBackpic: ; 1516b4
-INCBIN "gfx/backpics/lz/208.lz"
-PersianBackpic: ; 151834
-INCBIN "gfx/backpics/lz/053.lz"
-LtSurgePic: ; 1519b3
-INCBIN "gfx/trainers/lz/018.lz"
-TeacherPic: ; 151b31
-INCBIN "gfx/trainers/lz/033.lz"
-EggPic: ; 151caf
-INCBIN "gfx/frontpics/lz/egg.lz"
-EeveeBackpic: ; 151e2d
-INCBIN "gfx/backpics/lz/133.lz"
-ShuckleFrontpic: ; 151fa9
-INCBIN "gfx/frontpics/lz/213.lz"
-PonytaBackpic: ; 152124
-INCBIN "gfx/backpics/lz/077.lz"
-RemoraidFrontpic: ; 15229f
-INCBIN "gfx/frontpics/lz/223.lz"
-PoliwagFrontpic: ; 15241a
-INCBIN "gfx/frontpics/lz/060.lz"
-OnixBackpic: ; 152595
-INCBIN "gfx/backpics/lz/095.lz"
-KoffingBackpic: ; 15270f
-INCBIN "gfx/backpics/lz/109.lz"
-BirdKeeperPic: ; 152889
-INCBIN "gfx/trainers/lz/023.lz"
-FalknerPic: ; 152a03
-INCBIN "gfx/trainers/lz/000.lz"
-KarenPic: ; 152b7b
-INCBIN "gfx/trainers/lz/013.lz"
-NidorinaBackpic: ; 152cf3
-INCBIN "gfx/backpics/lz/030.lz"
-TentacruelBackpic: ; 152e6a
-INCBIN "gfx/backpics/lz/073.lz"
-GrowlitheBackpic: ; 152fe1
-INCBIN "gfx/backpics/lz/058.lz"
-KogaPic: ; 153158
-INCBIN "gfx/trainers/lz/014.lz"
-MachokeBackpic: ; 1532cf
-INCBIN "gfx/backpics/lz/067.lz"
-RaichuBackpic: ; 153446
-INCBIN "gfx/backpics/lz/026.lz"
-PoliwrathBackpic: ; 1535bd
-INCBIN "gfx/backpics/lz/062.lz"
-SwimmermPic: ; 153733
-INCBIN "gfx/trainers/lz/037.lz"
-SunkernFrontpic: ; 1538a8
-INCBIN "gfx/frontpics/lz/191.lz"
-NidorinoBackpic: ; 153a1b
-INCBIN "gfx/backpics/lz/033.lz"
-MysticalmanPic: ; 153b8e
-INCBIN "gfx/trainers/lz/066.lz"
-CooltrainerfPic: ; 153d00
-INCBIN "gfx/trainers/lz/027.lz"
-ElectrodeFrontpic: ; 153e72
-INCBIN "gfx/frontpics/lz/101.lz"
+OmanyteBackpic:      INCBIN "gfx/backpics/lz/138.lz"
+PidgeyBackpic:       INCBIN "gfx/backpics/lz/016.lz"
+ScientistPic:        INCBIN "gfx/trainers/lz/019.lz"
+QwilfishBackpic:     INCBIN "gfx/backpics/lz/211.lz"
+GligarBackpic:       INCBIN "gfx/backpics/lz/207.lz"
+TyphlosionBackpic:   INCBIN "gfx/backpics/lz/157.lz"
+CharmeleonBackpic:   INCBIN "gfx/backpics/lz/005.lz"
+NidoqueenBackpic:    INCBIN "gfx/backpics/lz/031.lz"
+PichuFrontpic:       INCBIN "gfx/frontpics/lz/172.lz"
+ElectabuzzBackpic:   INCBIN "gfx/backpics/lz/125.lz"
+LedianBackpic:       INCBIN "gfx/backpics/lz/166.lz"
+PupitarBackpic:      INCBIN "gfx/backpics/lz/247.lz"
+HeracrossBackpic:    INCBIN "gfx/backpics/lz/214.lz"
+UnownDFrontpic:      INCBIN "gfx/frontpics/lz/201d.lz"
+MiltankBackpic:      INCBIN "gfx/backpics/lz/241.lz"
+SteelixBackpic:      INCBIN "gfx/backpics/lz/208.lz"
+PersianBackpic:      INCBIN "gfx/backpics/lz/053.lz"
+LtSurgePic:          INCBIN "gfx/trainers/lz/018.lz"
+TeacherPic:          INCBIN "gfx/trainers/lz/033.lz"
+EggPic:              INCBIN "gfx/frontpics/lz/egg.lz"
+EeveeBackpic:        INCBIN "gfx/backpics/lz/133.lz"
+ShuckleFrontpic:     INCBIN "gfx/frontpics/lz/213.lz"
+PonytaBackpic:       INCBIN "gfx/backpics/lz/077.lz"
+RemoraidFrontpic:    INCBIN "gfx/frontpics/lz/223.lz"
+PoliwagFrontpic:     INCBIN "gfx/frontpics/lz/060.lz"
+OnixBackpic:         INCBIN "gfx/backpics/lz/095.lz"
+KoffingBackpic:      INCBIN "gfx/backpics/lz/109.lz"
+BirdKeeperPic:       INCBIN "gfx/trainers/lz/023.lz"
+FalknerPic:          INCBIN "gfx/trainers/lz/000.lz"
+KarenPic:            INCBIN "gfx/trainers/lz/013.lz"
+NidorinaBackpic:     INCBIN "gfx/backpics/lz/030.lz"
+TentacruelBackpic:   INCBIN "gfx/backpics/lz/073.lz"
+GrowlitheBackpic:    INCBIN "gfx/backpics/lz/058.lz"
+KogaPic:             INCBIN "gfx/trainers/lz/014.lz"
+MachokeBackpic:      INCBIN "gfx/backpics/lz/067.lz"
+RaichuBackpic:       INCBIN "gfx/backpics/lz/026.lz"
+PoliwrathBackpic:    INCBIN "gfx/backpics/lz/062.lz"
+SwimmermPic:         INCBIN "gfx/trainers/lz/037.lz"
+SunkernFrontpic:     INCBIN "gfx/frontpics/lz/191.lz"
+NidorinoBackpic:     INCBIN "gfx/backpics/lz/033.lz"
+MysticalmanPic:      INCBIN "gfx/trainers/lz/066.lz"
+CooltrainerfPic:     INCBIN "gfx/trainers/lz/027.lz"
+ElectrodeFrontpic:   INCBIN "gfx/frontpics/lz/101.lz"
 ; 153fe3
 
 
 SECTION "bank55",DATA,BANK[$55]
 
-SudowoodoBackpic: ; 154000
-INCBIN "gfx/backpics/lz/185.lz"
-FlaaffyBackpic: ; 154171
-INCBIN "gfx/backpics/lz/180.lz"
-SentretFrontpic: ; 1542e2
-INCBIN "gfx/frontpics/lz/161.lz"
-TogeticBackpic: ; 154453
-INCBIN "gfx/backpics/lz/176.lz"
-BugsyPic: ; 1545c3
-INCBIN "gfx/trainers/lz/002.lz"
-MarowakBackpic: ; 154733
-INCBIN "gfx/backpics/lz/105.lz"
-GeodudeBackpic: ; 1548a3
-INCBIN "gfx/backpics/lz/074.lz"
-ScytherBackpic: ; 154a12
-INCBIN "gfx/backpics/lz/123.lz"
-VileplumeBackpic: ; 154b80
-INCBIN "gfx/backpics/lz/045.lz"
-HitmonchanBackpic: ; 154cee
-INCBIN "gfx/backpics/lz/107.lz"
-JumpluffBackpic: ; 154e5b
-INCBIN "gfx/backpics/lz/189.lz"
-CooltrainermPic: ; 154fc7
-INCBIN "gfx/trainers/lz/026.lz"
-BlastoiseBackpic: ; 155132
-INCBIN "gfx/backpics/lz/009.lz"
-MisdreavusBackpic: ; 15529d
-INCBIN "gfx/backpics/lz/200.lz"
-TyrogueBackpic: ; 155407
-INCBIN "gfx/backpics/lz/236.lz"
-GeodudeFrontpic: ; 155570
-INCBIN "gfx/frontpics/lz/074.lz"
-ScizorBackpic: ; 1556d9
-INCBIN "gfx/backpics/lz/212.lz"
-GirafarigBackpic: ; 155842
-INCBIN "gfx/backpics/lz/203.lz"
-StantlerBackpic: ; 1559aa
-INCBIN "gfx/backpics/lz/234.lz"
-SmeargleBackpic: ; 155b12
-INCBIN "gfx/backpics/lz/235.lz"
-CharizardBackpic: ; 155c7a
-INCBIN "gfx/backpics/lz/006.lz"
-KadabraBackpic: ; 155de2
-INCBIN "gfx/backpics/lz/064.lz"
-PrimeapeBackpic: ; 155f49
-INCBIN "gfx/backpics/lz/057.lz"
-FurretBackpic: ; 1560b0
-INCBIN "gfx/backpics/lz/162.lz"
-WartortleBackpic: ; 156216
-INCBIN "gfx/backpics/lz/008.lz"
-ExeggcuteBackpic: ; 15637c
-INCBIN "gfx/backpics/lz/102.lz"
-IgglybuffFrontpic: ; 1564e2
-INCBIN "gfx/frontpics/lz/174.lz"
-RaticateBackpic: ; 156647
-INCBIN "gfx/backpics/lz/020.lz"
-VulpixBackpic: ; 1567ac
-INCBIN "gfx/backpics/lz/037.lz"
-EkansBackpic: ; 156911
-INCBIN "gfx/backpics/lz/023.lz"
-SeakingBackpic: ; 156a75
-INCBIN "gfx/backpics/lz/119.lz"
-BurglarPic: ; 156bd9
-INCBIN "gfx/trainers/lz/046.lz"
-PsyduckBackpic: ; 156d3d
-INCBIN "gfx/backpics/lz/054.lz"
-PikachuBackpic: ; 156ea1
-INCBIN "gfx/backpics/lz/025.lz"
-KabutoFrontpic: ; 157003
-INCBIN "gfx/frontpics/lz/140.lz"
-MareepBackpic: ; 157164
-INCBIN "gfx/backpics/lz/179.lz"
-RemoraidBackpic: ; 1572c5
-INCBIN "gfx/backpics/lz/223.lz"
-DittoFrontpic: ; 157426
-INCBIN "gfx/frontpics/lz/132.lz"
-KingdraBackpic: ; 157586
-INCBIN "gfx/backpics/lz/230.lz"
-CamperPic: ; 1576e6
-INCBIN "gfx/trainers/lz/053.lz"
-WooperFrontpic: ; 157846
-INCBIN "gfx/frontpics/lz/194.lz"
-ClefairyBackpic: ; 1579a6
-INCBIN "gfx/backpics/lz/035.lz"
-VenonatBackpic: ; 157b05
-INCBIN "gfx/backpics/lz/048.lz"
-BellossomBackpic: ; 157c64
-INCBIN "gfx/backpics/lz/182.lz"
-Rival1Pic: ; 157dc2
-INCBIN "gfx/trainers/lz/008.lz"
-SwinubBackpic: ; 157f20
-INCBIN "gfx/backpics/lz/220.lz"
+SudowoodoBackpic:    INCBIN "gfx/backpics/lz/185.lz"
+FlaaffyBackpic:      INCBIN "gfx/backpics/lz/180.lz"
+SentretFrontpic:     INCBIN "gfx/frontpics/lz/161.lz"
+TogeticBackpic:      INCBIN "gfx/backpics/lz/176.lz"
+BugsyPic:            INCBIN "gfx/trainers/lz/002.lz"
+MarowakBackpic:      INCBIN "gfx/backpics/lz/105.lz"
+GeodudeBackpic:      INCBIN "gfx/backpics/lz/074.lz"
+ScytherBackpic:      INCBIN "gfx/backpics/lz/123.lz"
+VileplumeBackpic:    INCBIN "gfx/backpics/lz/045.lz"
+HitmonchanBackpic:   INCBIN "gfx/backpics/lz/107.lz"
+JumpluffBackpic:     INCBIN "gfx/backpics/lz/189.lz"
+CooltrainermPic:     INCBIN "gfx/trainers/lz/026.lz"
+BlastoiseBackpic:    INCBIN "gfx/backpics/lz/009.lz"
+MisdreavusBackpic:   INCBIN "gfx/backpics/lz/200.lz"
+TyrogueBackpic:      INCBIN "gfx/backpics/lz/236.lz"
+GeodudeFrontpic:     INCBIN "gfx/frontpics/lz/074.lz"
+ScizorBackpic:       INCBIN "gfx/backpics/lz/212.lz"
+GirafarigBackpic:    INCBIN "gfx/backpics/lz/203.lz"
+StantlerBackpic:     INCBIN "gfx/backpics/lz/234.lz"
+SmeargleBackpic:     INCBIN "gfx/backpics/lz/235.lz"
+CharizardBackpic:    INCBIN "gfx/backpics/lz/006.lz"
+KadabraBackpic:      INCBIN "gfx/backpics/lz/064.lz"
+PrimeapeBackpic:     INCBIN "gfx/backpics/lz/057.lz"
+FurretBackpic:       INCBIN "gfx/backpics/lz/162.lz"
+WartortleBackpic:    INCBIN "gfx/backpics/lz/008.lz"
+ExeggcuteBackpic:    INCBIN "gfx/backpics/lz/102.lz"
+IgglybuffFrontpic:   INCBIN "gfx/frontpics/lz/174.lz"
+RaticateBackpic:     INCBIN "gfx/backpics/lz/020.lz"
+VulpixBackpic:       INCBIN "gfx/backpics/lz/037.lz"
+EkansBackpic:        INCBIN "gfx/backpics/lz/023.lz"
+SeakingBackpic:      INCBIN "gfx/backpics/lz/119.lz"
+BurglarPic:          INCBIN "gfx/trainers/lz/046.lz"
+PsyduckBackpic:      INCBIN "gfx/backpics/lz/054.lz"
+PikachuBackpic:      INCBIN "gfx/backpics/lz/025.lz"
+KabutoFrontpic:      INCBIN "gfx/frontpics/lz/140.lz"
+MareepBackpic:       INCBIN "gfx/backpics/lz/179.lz"
+RemoraidBackpic:     INCBIN "gfx/backpics/lz/223.lz"
+DittoFrontpic:       INCBIN "gfx/frontpics/lz/132.lz"
+KingdraBackpic:      INCBIN "gfx/backpics/lz/230.lz"
+CamperPic:           INCBIN "gfx/trainers/lz/053.lz"
+WooperFrontpic:      INCBIN "gfx/frontpics/lz/194.lz"
+ClefairyBackpic:     INCBIN "gfx/backpics/lz/035.lz"
+VenonatBackpic:      INCBIN "gfx/backpics/lz/048.lz"
+BellossomBackpic:    INCBIN "gfx/backpics/lz/182.lz"
+Rival1Pic:           INCBIN "gfx/trainers/lz/008.lz"
+SwinubBackpic:       INCBIN "gfx/backpics/lz/220.lz"
 ; 158000
 
 
 SECTION "bank56",DATA,BANK[$56]
 
-MewtwoBackpic: ; 158000
-INCBIN "gfx/backpics/lz/150.lz"
-PokemonProfPic: ; 15815e
-INCBIN "gfx/trainers/lz/009.lz"
-CalPic: ; 1582bc
-INCBIN "gfx/trainers/lz/011.lz"
-SwimmerfPic: ; 158419
-INCBIN "gfx/trainers/lz/038.lz"
-DiglettFrontpic: ; 158576
-INCBIN "gfx/frontpics/lz/050.lz"
-OfficerPic: ; 1586d3
-INCBIN "gfx/trainers/lz/064.lz"
-MukBackpic: ; 15882f
-INCBIN "gfx/backpics/lz/089.lz"
-DelibirdBackpic: ; 15898a
-INCBIN "gfx/backpics/lz/225.lz"
-SabrinaPic: ; 158ae5
-INCBIN "gfx/trainers/lz/034.lz"
-MagikarpBackpic: ; 158c3f
-INCBIN "gfx/backpics/lz/129.lz"
-AriadosBackpic: ; 158d98
-INCBIN "gfx/backpics/lz/168.lz"
-SneaselBackpic: ; 158ef1
-INCBIN "gfx/backpics/lz/215.lz"
-UmbreonBackpic: ; 159049
-INCBIN "gfx/backpics/lz/197.lz"
-MurkrowBackpic: ; 1591a0
-INCBIN "gfx/backpics/lz/198.lz"
-IvysaurBackpic: ; 1592f7
-INCBIN "gfx/backpics/lz/002.lz"
-SlowbroBackpic: ; 15944e
-INCBIN "gfx/backpics/lz/080.lz"
-PsychicTPic: ; 1595a4
-INCBIN "gfx/trainers/lz/051.lz"
-GolduckBackpic: ; 1596fa
-INCBIN "gfx/backpics/lz/055.lz"
-WeezingBackpic: ; 15984f
-INCBIN "gfx/backpics/lz/110.lz"
-EnteiBackpic: ; 1599a3
-INCBIN "gfx/backpics/lz/244.lz"
-GruntfPic: ; 159af7
-INCBIN "gfx/trainers/lz/065.lz"
-HorseaFrontpic: ; 159c4a
-INCBIN "gfx/frontpics/lz/116.lz"
-PidgeotBackpic: ; 159d9d
-INCBIN "gfx/backpics/lz/018.lz"
-HoOhBackpic: ; 159ef0
-INCBIN "gfx/backpics/lz/250.lz"
-PoliwhirlBackpic: ; 15a041
-INCBIN "gfx/backpics/lz/061.lz"
-MewBackpic: ; 15a191
-INCBIN "gfx/backpics/lz/151.lz"
-MachopBackpic: ; 15a2e0
-INCBIN "gfx/backpics/lz/066.lz"
-AbraBackpic: ; 15a42f
-INCBIN "gfx/backpics/lz/063.lz"
-AerodactylBackpic: ; 15a57e
-INCBIN "gfx/backpics/lz/142.lz"
-KakunaFrontpic: ; 15a6cc
-INCBIN "gfx/frontpics/lz/014.lz"
-DugtrioBackpic: ; 15a81a
-INCBIN "gfx/backpics/lz/051.lz"
-WeepinbellBackpic: ; 15a968
-INCBIN "gfx/backpics/lz/070.lz"
-NidoranFBackpic: ; 15aab6
-INCBIN "gfx/backpics/lz/029.lz"
-GravelerBackpic: ; 15ac04
-INCBIN "gfx/backpics/lz/075.lz"
-AipomBackpic: ; 15ad51
-INCBIN "gfx/backpics/lz/190.lz"
-EspeonBackpic: ; 15ae9e
-INCBIN "gfx/backpics/lz/196.lz"
-WeedleFrontpic: ; 15afeb
-INCBIN "gfx/frontpics/lz/013.lz"
-TotodileBackpic: ; 15b138
-INCBIN "gfx/backpics/lz/158.lz"
-SnubbullBackpic: ; 15b284
-INCBIN "gfx/backpics/lz/209.lz"
-KinglerBackpic: ; 15b3cf
-INCBIN "gfx/backpics/lz/099.lz"
-GengarBackpic: ; 15b51a
-INCBIN "gfx/backpics/lz/094.lz"
-RattataBackpic: ; 15b664
-INCBIN "gfx/backpics/lz/019.lz"
-YoungsterPic: ; 15b7ad
-INCBIN "gfx/trainers/lz/021.lz"
-WillPic: ; 15b8f5
-INCBIN "gfx/trainers/lz/010.lz"
-SchoolboyPic: ; 15ba3d
-INCBIN "gfx/trainers/lz/022.lz"
-MagnemiteFrontpic: ; 15bb84
-INCBIN "gfx/frontpics/lz/081.lz"
-ErikaPic: ; 15bccb
-INCBIN "gfx/trainers/lz/020.lz"
-JaninePic: ; 15be10
-INCBIN "gfx/trainers/lz/025.lz"
-MagnemiteBackpic: ; 15bf54
-INCBIN "gfx/backpics/lz/081.lz"
+MewtwoBackpic:       INCBIN "gfx/backpics/lz/150.lz"
+PokemonProfPic:      INCBIN "gfx/trainers/lz/009.lz"
+CalPic:              INCBIN "gfx/trainers/lz/011.lz"
+SwimmerfPic:         INCBIN "gfx/trainers/lz/038.lz"
+DiglettFrontpic:     INCBIN "gfx/frontpics/lz/050.lz"
+OfficerPic:          INCBIN "gfx/trainers/lz/064.lz"
+MukBackpic:          INCBIN "gfx/backpics/lz/089.lz"
+DelibirdBackpic:     INCBIN "gfx/backpics/lz/225.lz"
+SabrinaPic:          INCBIN "gfx/trainers/lz/034.lz"
+MagikarpBackpic:     INCBIN "gfx/backpics/lz/129.lz"
+AriadosBackpic:      INCBIN "gfx/backpics/lz/168.lz"
+SneaselBackpic:      INCBIN "gfx/backpics/lz/215.lz"
+UmbreonBackpic:      INCBIN "gfx/backpics/lz/197.lz"
+MurkrowBackpic:      INCBIN "gfx/backpics/lz/198.lz"
+IvysaurBackpic:      INCBIN "gfx/backpics/lz/002.lz"
+SlowbroBackpic:      INCBIN "gfx/backpics/lz/080.lz"
+PsychicTPic:         INCBIN "gfx/trainers/lz/051.lz"
+GolduckBackpic:      INCBIN "gfx/backpics/lz/055.lz"
+WeezingBackpic:      INCBIN "gfx/backpics/lz/110.lz"
+EnteiBackpic:        INCBIN "gfx/backpics/lz/244.lz"
+GruntfPic:           INCBIN "gfx/trainers/lz/065.lz"
+HorseaFrontpic:      INCBIN "gfx/frontpics/lz/116.lz"
+PidgeotBackpic:      INCBIN "gfx/backpics/lz/018.lz"
+HoOhBackpic:         INCBIN "gfx/backpics/lz/250.lz"
+PoliwhirlBackpic:    INCBIN "gfx/backpics/lz/061.lz"
+MewBackpic:          INCBIN "gfx/backpics/lz/151.lz"
+MachopBackpic:       INCBIN "gfx/backpics/lz/066.lz"
+AbraBackpic:         INCBIN "gfx/backpics/lz/063.lz"
+AerodactylBackpic:   INCBIN "gfx/backpics/lz/142.lz"
+KakunaFrontpic:      INCBIN "gfx/frontpics/lz/014.lz"
+DugtrioBackpic:      INCBIN "gfx/backpics/lz/051.lz"
+WeepinbellBackpic:   INCBIN "gfx/backpics/lz/070.lz"
+NidoranFBackpic:     INCBIN "gfx/backpics/lz/029.lz"
+GravelerBackpic:     INCBIN "gfx/backpics/lz/075.lz"
+AipomBackpic:        INCBIN "gfx/backpics/lz/190.lz"
+EspeonBackpic:       INCBIN "gfx/backpics/lz/196.lz"
+WeedleFrontpic:      INCBIN "gfx/frontpics/lz/013.lz"
+TotodileBackpic:     INCBIN "gfx/backpics/lz/158.lz"
+SnubbullBackpic:     INCBIN "gfx/backpics/lz/209.lz"
+KinglerBackpic:      INCBIN "gfx/backpics/lz/099.lz"
+GengarBackpic:       INCBIN "gfx/backpics/lz/094.lz"
+RattataBackpic:      INCBIN "gfx/backpics/lz/019.lz"
+YoungsterPic:        INCBIN "gfx/trainers/lz/021.lz"
+WillPic:             INCBIN "gfx/trainers/lz/010.lz"
+SchoolboyPic:        INCBIN "gfx/trainers/lz/022.lz"
+MagnemiteFrontpic:   INCBIN "gfx/frontpics/lz/081.lz"
+ErikaPic:            INCBIN "gfx/trainers/lz/020.lz"
+JaninePic:           INCBIN "gfx/trainers/lz/025.lz"
+MagnemiteBackpic:    INCBIN "gfx/backpics/lz/081.lz"
 ; 15bffa
 
 
 SECTION "bank57",DATA,BANK[$57]
 
-HoothootBackpic: ; 15c000
-INCBIN "gfx/backpics/lz/163.lz"
-NoctowlBackpic: ; 15c144
-INCBIN "gfx/backpics/lz/164.lz"
-MortyPic: ; 15c287
-INCBIN "gfx/trainers/lz/003.lz"
-SlugmaBackpic: ; 15c3ca
-INCBIN "gfx/backpics/lz/218.lz"
-KabutoBackpic: ; 15c50d
-INCBIN "gfx/backpics/lz/140.lz"
-VictreebelBackpic: ; 15c650
-INCBIN "gfx/backpics/lz/071.lz"
-MeowthBackpic: ; 15c792
-INCBIN "gfx/backpics/lz/052.lz"
-MeganiumBackpic: ; 15c8d4
-INCBIN "gfx/backpics/lz/154.lz"
-PicnickerPic: ; 15ca16
-INCBIN "gfx/trainers/lz/052.lz"
-LickitungBackpic: ; 15cb58
-INCBIN "gfx/backpics/lz/108.lz"
-TogepiFrontpic: ; 15cc99
-INCBIN "gfx/frontpics/lz/175.lz"
-SuperNerdPic: ; 15cdda
-INCBIN "gfx/trainers/lz/040.lz"
-HaunterBackpic: ; 15cf1b
-INCBIN "gfx/backpics/lz/093.lz"
-XatuBackpic: ; 15d05b
-INCBIN "gfx/backpics/lz/178.lz"
-RedPic: ; 15d19b
-INCBIN "gfx/trainers/lz/062.lz"
-Porygon2Backpic: ; 15d2db
-INCBIN "gfx/backpics/lz/233.lz"
-JasminePic: ; 15d41b
-INCBIN "gfx/trainers/lz/005.lz"
-PinecoBackpic: ; 15d55a
-INCBIN "gfx/backpics/lz/204.lz"
-MetapodFrontpic: ; 15d699
-INCBIN "gfx/frontpics/lz/011.lz"
-SeelBackpic: ; 15d7d6
-INCBIN "gfx/backpics/lz/086.lz"
-QuagsireBackpic: ; 15d913
-INCBIN "gfx/backpics/lz/195.lz"
-WhitneyPic: ; 15da4f
-INCBIN "gfx/trainers/lz/001.lz"
-JolteonBackpic: ; 15db8b
-INCBIN "gfx/backpics/lz/135.lz"
-CaterpieFrontpic: ; 15dcc6
-INCBIN "gfx/frontpics/lz/010.lz"
-HoppipBackpic: ; 15ddff
-INCBIN "gfx/backpics/lz/187.lz"
-BluePic: ; 15df37
-INCBIN "gfx/trainers/lz/063.lz"
-GranbullBackpic: ; 15e06f
-INCBIN "gfx/backpics/lz/210.lz"
-GentlemanPic: ; 15e1a7
-INCBIN "gfx/trainers/lz/031.lz"
-ExecutivemPic: ; 15e2dd
-INCBIN "gfx/trainers/lz/050.lz"
-SpearowBackpic: ; 15e413
-INCBIN "gfx/backpics/lz/021.lz"
-SunkernBackpic: ; 15e549
-INCBIN "gfx/backpics/lz/191.lz"
-LaprasBackpic: ; 15e67e
-INCBIN "gfx/backpics/lz/131.lz"
-MagbyBackpic: ; 15e7b2
-INCBIN "gfx/backpics/lz/240.lz"
-DragonairBackpic: ; 15e8e6
-INCBIN "gfx/backpics/lz/148.lz"
-ZapdosBackpic: ; 15ea19
-INCBIN "gfx/backpics/lz/145.lz"
-ChikoritaBackpic: ; 15eb4c
-INCBIN "gfx/backpics/lz/152.lz"
-CorsolaBackpic: ; 15ec7f
-INCBIN "gfx/backpics/lz/222.lz"
-ChinchouBackpic: ; 15edb2
-INCBIN "gfx/backpics/lz/170.lz"
-ChanseyBackpic: ; 15eee4
-INCBIN "gfx/backpics/lz/113.lz"
-SkiploomBackpic: ; 15f014
-INCBIN "gfx/backpics/lz/188.lz"
-SpinarakFrontpic: ; 15f142
-INCBIN "gfx/frontpics/lz/167.lz"
-Rival2Pic: ; 15f270
-INCBIN "gfx/trainers/lz/041.lz"
-UnownWFrontpic: ; 15f39e
-INCBIN "gfx/frontpics/lz/201w.lz"
-CharmanderBackpic: ; 15f4cb
-INCBIN "gfx/backpics/lz/004.lz"
-RhyhornBackpic: ; 15f5f8
-INCBIN "gfx/backpics/lz/111.lz"
-UnownCFrontpic: ; 15f724
-INCBIN "gfx/frontpics/lz/201c.lz"
-MistyPic: ; 15f850
-INCBIN "gfx/trainers/lz/017.lz"
-BlainePic: ; 15f97c
-INCBIN "gfx/trainers/lz/045.lz"
-UnownZFrontpic: ; 15faa7
-INCBIN "gfx/frontpics/lz/201z.lz"
-SwinubFrontpic: ; 15fbd2
-INCBIN "gfx/frontpics/lz/220.lz"
-LarvitarBackpic: ; 15fcfc
-INCBIN "gfx/backpics/lz/246.lz"
-PorygonBackpic: ; 15fe26
-INCBIN "gfx/backpics/lz/137.lz"
-UnownHBackpic: ; 15ff4f
-INCBIN "gfx/backpics/lz/201h.lz"
+HoothootBackpic:     INCBIN "gfx/backpics/lz/163.lz"
+NoctowlBackpic:      INCBIN "gfx/backpics/lz/164.lz"
+MortyPic:            INCBIN "gfx/trainers/lz/003.lz"
+SlugmaBackpic:       INCBIN "gfx/backpics/lz/218.lz"
+KabutoBackpic:       INCBIN "gfx/backpics/lz/140.lz"
+VictreebelBackpic:   INCBIN "gfx/backpics/lz/071.lz"
+MeowthBackpic:       INCBIN "gfx/backpics/lz/052.lz"
+MeganiumBackpic:     INCBIN "gfx/backpics/lz/154.lz"
+PicnickerPic:        INCBIN "gfx/trainers/lz/052.lz"
+LickitungBackpic:    INCBIN "gfx/backpics/lz/108.lz"
+TogepiFrontpic:      INCBIN "gfx/frontpics/lz/175.lz"
+SuperNerdPic:        INCBIN "gfx/trainers/lz/040.lz"
+HaunterBackpic:      INCBIN "gfx/backpics/lz/093.lz"
+XatuBackpic:         INCBIN "gfx/backpics/lz/178.lz"
+RedPic:              INCBIN "gfx/trainers/lz/062.lz"
+Porygon2Backpic:     INCBIN "gfx/backpics/lz/233.lz"
+JasminePic:          INCBIN "gfx/trainers/lz/005.lz"
+PinecoBackpic:       INCBIN "gfx/backpics/lz/204.lz"
+MetapodFrontpic:     INCBIN "gfx/frontpics/lz/011.lz"
+SeelBackpic:         INCBIN "gfx/backpics/lz/086.lz"
+QuagsireBackpic:     INCBIN "gfx/backpics/lz/195.lz"
+WhitneyPic:          INCBIN "gfx/trainers/lz/001.lz"
+JolteonBackpic:      INCBIN "gfx/backpics/lz/135.lz"
+CaterpieFrontpic:    INCBIN "gfx/frontpics/lz/010.lz"
+HoppipBackpic:       INCBIN "gfx/backpics/lz/187.lz"
+BluePic:             INCBIN "gfx/trainers/lz/063.lz"
+GranbullBackpic:     INCBIN "gfx/backpics/lz/210.lz"
+GentlemanPic:        INCBIN "gfx/trainers/lz/031.lz"
+ExecutivemPic:       INCBIN "gfx/trainers/lz/050.lz"
+SpearowBackpic:      INCBIN "gfx/backpics/lz/021.lz"
+SunkernBackpic:      INCBIN "gfx/backpics/lz/191.lz"
+LaprasBackpic:       INCBIN "gfx/backpics/lz/131.lz"
+MagbyBackpic:        INCBIN "gfx/backpics/lz/240.lz"
+DragonairBackpic:    INCBIN "gfx/backpics/lz/148.lz"
+ZapdosBackpic:       INCBIN "gfx/backpics/lz/145.lz"
+ChikoritaBackpic:    INCBIN "gfx/backpics/lz/152.lz"
+CorsolaBackpic:      INCBIN "gfx/backpics/lz/222.lz"
+ChinchouBackpic:     INCBIN "gfx/backpics/lz/170.lz"
+ChanseyBackpic:      INCBIN "gfx/backpics/lz/113.lz"
+SkiploomBackpic:     INCBIN "gfx/backpics/lz/188.lz"
+SpinarakFrontpic:    INCBIN "gfx/frontpics/lz/167.lz"
+Rival2Pic:           INCBIN "gfx/trainers/lz/041.lz"
+UnownWFrontpic:      INCBIN "gfx/frontpics/lz/201w.lz"
+CharmanderBackpic:   INCBIN "gfx/backpics/lz/004.lz"
+RhyhornBackpic:      INCBIN "gfx/backpics/lz/111.lz"
+UnownCFrontpic:      INCBIN "gfx/frontpics/lz/201c.lz"
+MistyPic:            INCBIN "gfx/trainers/lz/017.lz"
+BlainePic:           INCBIN "gfx/trainers/lz/045.lz"
+UnownZFrontpic:      INCBIN "gfx/frontpics/lz/201z.lz"
+SwinubFrontpic:      INCBIN "gfx/frontpics/lz/220.lz"
+LarvitarBackpic:     INCBIN "gfx/backpics/lz/246.lz"
+PorygonBackpic:      INCBIN "gfx/backpics/lz/137.lz"
+UnownHBackpic:       INCBIN "gfx/backpics/lz/201h.lz"
 ; 15ffff
 
 
 SECTION "bank58",DATA,BANK[$58]
 
-ParasBackpic: ; 160000
-INCBIN "gfx/backpics/lz/046.lz"
-VaporeonBackpic: ; 160128
-INCBIN "gfx/backpics/lz/134.lz"
-TentacoolBackpic: ; 160250
-INCBIN "gfx/backpics/lz/072.lz"
-ExecutivefPic: ; 160377
-INCBIN "gfx/trainers/lz/054.lz"
-BulbasaurBackpic: ; 16049b
-INCBIN "gfx/backpics/lz/001.lz"
-SmoochumBackpic: ; 1605bd
-INCBIN "gfx/backpics/lz/238.lz"
-PichuBackpic: ; 1606de
-INCBIN "gfx/backpics/lz/172.lz"
-HoundoomBackpic: ; 1607ff
-INCBIN "gfx/backpics/lz/229.lz"
-BellsproutBackpic: ; 160920
-INCBIN "gfx/backpics/lz/069.lz"
-GrimerBackpic: ; 160a3f
-INCBIN "gfx/backpics/lz/088.lz"
-LanturnBackpic: ; 160b5d
-INCBIN "gfx/backpics/lz/171.lz"
-PidgeottoBackpic: ; 160c7b
-INCBIN "gfx/backpics/lz/017.lz"
-StaryuBackpic: ; 160d98
-INCBIN "gfx/backpics/lz/120.lz"
-MrMimeBackpic: ; 160eb5
-INCBIN "gfx/backpics/lz/122.lz"
-CaterpieBackpic: ; 160fd2
-INCBIN "gfx/backpics/lz/010.lz"
-VoltorbFrontpic: ; 1610ee
-INCBIN "gfx/frontpics/lz/100.lz"
-LugiaBackpic: ; 161208
-INCBIN "gfx/backpics/lz/249.lz"
-PrycePic: ; 161322
-INCBIN "gfx/trainers/lz/004.lz"
-BrockPic: ; 16143c
-INCBIN "gfx/trainers/lz/016.lz"
-UnownGFrontpic: ; 161555
-INCBIN "gfx/frontpics/lz/201g.lz"
-ArbokBackpic: ; 16166e
-INCBIN "gfx/backpics/lz/024.lz"
-PolitoedBackpic: ; 161785
-INCBIN "gfx/backpics/lz/186.lz"
-DragoniteBackpic: ; 16189c
-INCBIN "gfx/backpics/lz/149.lz"
-HitmonleeBackpic: ; 1619b3
-INCBIN "gfx/backpics/lz/106.lz"
-NatuFrontpic: ; 161ac9
-INCBIN "gfx/frontpics/lz/177.lz"
-UrsaringBackpic: ; 161bde
-INCBIN "gfx/backpics/lz/217.lz"
-SagePic: ; 161cf3
-INCBIN "gfx/trainers/lz/055.lz"
-TeddiursaBackpic: ; 161e07
-INCBIN "gfx/backpics/lz/216.lz"
-PhanpyBackpic: ; 161f1b
-INCBIN "gfx/backpics/lz/231.lz"
-UnownVFrontpic: ; 16202e
-INCBIN "gfx/frontpics/lz/201v.lz"
-KakunaBackpic: ; 162141
-INCBIN "gfx/backpics/lz/014.lz"
-WobbuffetBackpic: ; 162254
-INCBIN "gfx/backpics/lz/202.lz"
-TogepiBackpic: ; 162362
-INCBIN "gfx/backpics/lz/175.lz"
-CrobatBackpic: ; 162470
-INCBIN "gfx/backpics/lz/169.lz"
-BlisseyBackpic: ; 16257d
-INCBIN "gfx/backpics/lz/242.lz"
-AmpharosBackpic: ; 162689
-INCBIN "gfx/backpics/lz/181.lz"
-IgglybuffBackpic: ; 162793
-INCBIN "gfx/backpics/lz/174.lz"
-AzumarillBackpic: ; 16289c
-INCBIN "gfx/backpics/lz/184.lz"
-OctilleryBackpic: ; 1629a4
-INCBIN "gfx/backpics/lz/224.lz"
-UnownSFrontpic: ; 162aab
-INCBIN "gfx/frontpics/lz/201s.lz"
-HorseaBackpic: ; 162bb0
-INCBIN "gfx/backpics/lz/116.lz"
-SentretBackpic: ; 162cb5
-INCBIN "gfx/backpics/lz/161.lz"
-UnownOFrontpic: ; 162dba
-INCBIN "gfx/frontpics/lz/201o.lz"
-UnownTFrontpic: ; 162ebe
-INCBIN "gfx/frontpics/lz/201t.lz"
-WigglytuffBackpic: ; 162fc1
-INCBIN "gfx/backpics/lz/040.lz"
-ArticunoBackpic: ; 1630c3
-INCBIN "gfx/backpics/lz/144.lz"
-DittoBackpic: ; 1631c3
-INCBIN "gfx/backpics/lz/132.lz"
-WeedleBackpic: ; 1632c3
-INCBIN "gfx/backpics/lz/013.lz"
-UnownHFrontpic: ; 1633c3
-INCBIN "gfx/frontpics/lz/201h.lz"
-CleffaBackpic: ; 1634c0
-INCBIN "gfx/backpics/lz/173.lz"
-DrowzeeBackpic: ; 1635bc
-INCBIN "gfx/backpics/lz/096.lz"
-GastlyBackpic: ; 1636b7
-INCBIN "gfx/backpics/lz/092.lz"
-FearowBackpic: ; 1637b1
-INCBIN "gfx/backpics/lz/022.lz"
-MarillBackpic: ; 1638aa
-INCBIN "gfx/backpics/lz/183.lz"
-DratiniBackpic: ; 1639a3
-INCBIN "gfx/backpics/lz/147.lz"
-ElectrodeBackpic: ; 163a9c
-INCBIN "gfx/backpics/lz/101.lz"
-SkarmoryBackpic: ; 163b92
-INCBIN "gfx/backpics/lz/227.lz"
-MetapodBackpic: ; 163c88
-INCBIN "gfx/backpics/lz/011.lz"
-JigglypuffBackpic: ; 163d7d
-INCBIN "gfx/backpics/lz/039.lz"
-OddishBackpic: ; 163e72
-INCBIN "gfx/backpics/lz/043.lz"
-UnownDBackpic: ; 163f66
-INCBIN "gfx/backpics/lz/201d.lz"
+ParasBackpic:        INCBIN "gfx/backpics/lz/046.lz"
+VaporeonBackpic:     INCBIN "gfx/backpics/lz/134.lz"
+TentacoolBackpic:    INCBIN "gfx/backpics/lz/072.lz"
+ExecutivefPic:       INCBIN "gfx/trainers/lz/054.lz"
+BulbasaurBackpic:    INCBIN "gfx/backpics/lz/001.lz"
+SmoochumBackpic:     INCBIN "gfx/backpics/lz/238.lz"
+PichuBackpic:        INCBIN "gfx/backpics/lz/172.lz"
+HoundoomBackpic:     INCBIN "gfx/backpics/lz/229.lz"
+BellsproutBackpic:   INCBIN "gfx/backpics/lz/069.lz"
+GrimerBackpic:       INCBIN "gfx/backpics/lz/088.lz"
+LanturnBackpic:      INCBIN "gfx/backpics/lz/171.lz"
+PidgeottoBackpic:    INCBIN "gfx/backpics/lz/017.lz"
+StaryuBackpic:       INCBIN "gfx/backpics/lz/120.lz"
+MrMimeBackpic:       INCBIN "gfx/backpics/lz/122.lz"
+CaterpieBackpic:     INCBIN "gfx/backpics/lz/010.lz"
+VoltorbFrontpic:     INCBIN "gfx/frontpics/lz/100.lz"
+LugiaBackpic:        INCBIN "gfx/backpics/lz/249.lz"
+PrycePic:            INCBIN "gfx/trainers/lz/004.lz"
+BrockPic:            INCBIN "gfx/trainers/lz/016.lz"
+UnownGFrontpic:      INCBIN "gfx/frontpics/lz/201g.lz"
+ArbokBackpic:        INCBIN "gfx/backpics/lz/024.lz"
+PolitoedBackpic:     INCBIN "gfx/backpics/lz/186.lz"
+DragoniteBackpic:    INCBIN "gfx/backpics/lz/149.lz"
+HitmonleeBackpic:    INCBIN "gfx/backpics/lz/106.lz"
+NatuFrontpic:        INCBIN "gfx/frontpics/lz/177.lz"
+UrsaringBackpic:     INCBIN "gfx/backpics/lz/217.lz"
+SagePic:             INCBIN "gfx/trainers/lz/055.lz"
+TeddiursaBackpic:    INCBIN "gfx/backpics/lz/216.lz"
+PhanpyBackpic:       INCBIN "gfx/backpics/lz/231.lz"
+UnownVFrontpic:      INCBIN "gfx/frontpics/lz/201v.lz"
+KakunaBackpic:       INCBIN "gfx/backpics/lz/014.lz"
+WobbuffetBackpic:    INCBIN "gfx/backpics/lz/202.lz"
+TogepiBackpic:       INCBIN "gfx/backpics/lz/175.lz"
+CrobatBackpic:       INCBIN "gfx/backpics/lz/169.lz"
+BlisseyBackpic:      INCBIN "gfx/backpics/lz/242.lz"
+AmpharosBackpic:     INCBIN "gfx/backpics/lz/181.lz"
+IgglybuffBackpic:    INCBIN "gfx/backpics/lz/174.lz"
+AzumarillBackpic:    INCBIN "gfx/backpics/lz/184.lz"
+OctilleryBackpic:    INCBIN "gfx/backpics/lz/224.lz"
+UnownSFrontpic:      INCBIN "gfx/frontpics/lz/201s.lz"
+HorseaBackpic:       INCBIN "gfx/backpics/lz/116.lz"
+SentretBackpic:      INCBIN "gfx/backpics/lz/161.lz"
+UnownOFrontpic:      INCBIN "gfx/frontpics/lz/201o.lz"
+UnownTFrontpic:      INCBIN "gfx/frontpics/lz/201t.lz"
+WigglytuffBackpic:   INCBIN "gfx/backpics/lz/040.lz"
+ArticunoBackpic:     INCBIN "gfx/backpics/lz/144.lz"
+DittoBackpic:        INCBIN "gfx/backpics/lz/132.lz"
+WeedleBackpic:       INCBIN "gfx/backpics/lz/013.lz"
+UnownHFrontpic:      INCBIN "gfx/frontpics/lz/201h.lz"
+CleffaBackpic:       INCBIN "gfx/backpics/lz/173.lz"
+DrowzeeBackpic:      INCBIN "gfx/backpics/lz/096.lz"
+GastlyBackpic:       INCBIN "gfx/backpics/lz/092.lz"
+FearowBackpic:       INCBIN "gfx/backpics/lz/022.lz"
+MarillBackpic:       INCBIN "gfx/backpics/lz/183.lz"
+DratiniBackpic:      INCBIN "gfx/backpics/lz/147.lz"
+ElectrodeBackpic:    INCBIN "gfx/backpics/lz/101.lz"
+SkarmoryBackpic:     INCBIN "gfx/backpics/lz/227.lz"
+MetapodBackpic:      INCBIN "gfx/backpics/lz/011.lz"
+JigglypuffBackpic:   INCBIN "gfx/backpics/lz/039.lz"
+OddishBackpic:       INCBIN "gfx/backpics/lz/043.lz"
+UnownDBackpic:       INCBIN "gfx/backpics/lz/201d.lz"
 ; 163ffc
 
 
 SECTION "bank59",DATA,BANK[$59]
 
-SpinarakBackpic: ; 164000
-INCBIN "gfx/backpics/lz/167.lz"
-RaikouBackpic: ; 1640f3
-INCBIN "gfx/backpics/lz/243.lz"
-UnownKFrontpic: ; 1641e6
-INCBIN "gfx/frontpics/lz/201k.lz"
-HoundourBackpic: ; 1642d7
-INCBIN "gfx/backpics/lz/228.lz"
-PoliwagBackpic: ; 1643c7
-INCBIN "gfx/backpics/lz/060.lz"
-SquirtleBackpic: ; 1644b7
-INCBIN "gfx/backpics/lz/007.lz"
-ShuckleBackpic: ; 1645a6
-INCBIN "gfx/backpics/lz/213.lz"
-DewgongBackpic: ; 164692
-INCBIN "gfx/backpics/lz/087.lz"
-UnownBFrontpic: ; 16477e
-INCBIN "gfx/frontpics/lz/201b.lz"
-SlowpokeBackpic: ; 164869
-INCBIN "gfx/backpics/lz/079.lz"
-DunsparceBackpic: ; 164954
-INCBIN "gfx/backpics/lz/206.lz"
-DonphanBackpic: ; 164a3e
-INCBIN "gfx/backpics/lz/232.lz"
-WooperBackpic: ; 164b27
-INCBIN "gfx/backpics/lz/194.lz"
-TaurosBackpic: ; 164c10
-INCBIN "gfx/backpics/lz/128.lz"
-UnownXFrontpic: ; 164cf7
-INCBIN "gfx/frontpics/lz/201x.lz"
-UnownNFrontpic: ; 164ddd
-INCBIN "gfx/frontpics/lz/201n.lz"
-TangelaBackpic: ; 164ec3
-INCBIN "gfx/backpics/lz/114.lz"
-VoltorbBackpic: ; 164fa8
-INCBIN "gfx/backpics/lz/100.lz"
-UnownJFrontpic: ; 16508d
-INCBIN "gfx/frontpics/lz/201j.lz"
-MantineBackpic: ; 165172
-INCBIN "gfx/backpics/lz/226.lz"
-UnownLFrontpic: ; 16524a
-INCBIN "gfx/frontpics/lz/201l.lz"
-PiloswineBackpic: ; 16531d
-INCBIN "gfx/backpics/lz/221.lz"
-UnownMFrontpic: ; 1653ef
-INCBIN "gfx/frontpics/lz/201m.lz"
-UnownFFrontpic: ; 1654bf
-INCBIN "gfx/frontpics/lz/201f.lz"
-NatuBackpic: ; 16558e
-INCBIN "gfx/backpics/lz/177.lz"
-UnownAFrontpic: ; 165659
-INCBIN "gfx/frontpics/lz/201a.lz"
-GolemBackpic: ; 165724
-INCBIN "gfx/backpics/lz/076.lz"
-UnownUFrontpic: ; 1657ea
-INCBIN "gfx/frontpics/lz/201u.lz"
-DiglettBackpic: ; 1658aa
-INCBIN "gfx/backpics/lz/050.lz"
-UnownQFrontpic: ; 165969
-INCBIN "gfx/frontpics/lz/201q.lz"
-UnownPFrontpic: ; 165a26
-INCBIN "gfx/frontpics/lz/201p.lz"
-UnownCBackpic: ; 165adf
-INCBIN "gfx/backpics/lz/201c.lz"
-JynxBackpic: ; 165b93
-INCBIN "gfx/backpics/lz/124.lz"
-GolbatBackpic: ; 165c46
-INCBIN "gfx/backpics/lz/042.lz"
-UnownYFrontpic: ; 165cf6
-INCBIN "gfx/frontpics/lz/201y.lz"
-UnownGBackpic: ; 165da3
-INCBIN "gfx/backpics/lz/201g.lz"
-UnownIFrontpic: ; 165e47
-INCBIN "gfx/frontpics/lz/201i.lz"
-UnownVBackpic: ; 165eea
-INCBIN "gfx/backpics/lz/201v.lz"
-ForretressBackpic: ; 165f86
-INCBIN "gfx/backpics/lz/205.lz"
-UnownSBackpic: ; 166019
-INCBIN "gfx/backpics/lz/201s.lz"
-UnownRFrontpic: ; 1660ab
-INCBIN "gfx/frontpics/lz/201r.lz"
-UnownEBackpic: ; 16613d
-INCBIN "gfx/backpics/lz/201e.lz"
-UnownJBackpic: ; 1661c9
-INCBIN "gfx/backpics/lz/201j.lz"
-UnownBBackpic: ; 16624c
-INCBIN "gfx/backpics/lz/201b.lz"
-UnownOBackpic: ; 1662cf
-INCBIN "gfx/backpics/lz/201o.lz"
-UnownZBackpic: ; 166351
-INCBIN "gfx/backpics/lz/201z.lz"
-UnownWBackpic: ; 1663d0
-INCBIN "gfx/backpics/lz/201w.lz"
-UnownNBackpic: ; 16644e
-INCBIN "gfx/backpics/lz/201n.lz"
-UnownABackpic: ; 1664c9
-INCBIN "gfx/backpics/lz/201a.lz"
-UnownMBackpic: ; 166544
-INCBIN "gfx/backpics/lz/201m.lz"
-UnownKBackpic: ; 1665bd
-INCBIN "gfx/backpics/lz/201k.lz"
-UnownTBackpic: ; 166632
-INCBIN "gfx/backpics/lz/201t.lz"
-UnownXBackpic: ; 1666a6
-INCBIN "gfx/backpics/lz/201x.lz"
-UnownLBackpic: ; 166717
-INCBIN "gfx/backpics/lz/201l.lz"
-UnownUBackpic: ; 166783
-INCBIN "gfx/backpics/lz/201u.lz"
-UnownQBackpic: ; 1667ee
-INCBIN "gfx/backpics/lz/201q.lz"
-UnownYBackpic: ; 166857
-INCBIN "gfx/backpics/lz/201y.lz"
-UnownPBackpic: ; 1668bd
-INCBIN "gfx/backpics/lz/201p.lz"
-UnownIBackpic: ; 16691b
-INCBIN "gfx/backpics/lz/201i.lz"
-UnownRBackpic: ; 166979
-INCBIN "gfx/backpics/lz/201r.lz"
+SpinarakBackpic:     INCBIN "gfx/backpics/lz/167.lz"
+RaikouBackpic:       INCBIN "gfx/backpics/lz/243.lz"
+UnownKFrontpic:      INCBIN "gfx/frontpics/lz/201k.lz"
+HoundourBackpic:     INCBIN "gfx/backpics/lz/228.lz"
+PoliwagBackpic:      INCBIN "gfx/backpics/lz/060.lz"
+SquirtleBackpic:     INCBIN "gfx/backpics/lz/007.lz"
+ShuckleBackpic:      INCBIN "gfx/backpics/lz/213.lz"
+DewgongBackpic:      INCBIN "gfx/backpics/lz/087.lz"
+UnownBFrontpic:      INCBIN "gfx/frontpics/lz/201b.lz"
+SlowpokeBackpic:     INCBIN "gfx/backpics/lz/079.lz"
+DunsparceBackpic:    INCBIN "gfx/backpics/lz/206.lz"
+DonphanBackpic:      INCBIN "gfx/backpics/lz/232.lz"
+WooperBackpic:       INCBIN "gfx/backpics/lz/194.lz"
+TaurosBackpic:       INCBIN "gfx/backpics/lz/128.lz"
+UnownXFrontpic:      INCBIN "gfx/frontpics/lz/201x.lz"
+UnownNFrontpic:      INCBIN "gfx/frontpics/lz/201n.lz"
+TangelaBackpic:      INCBIN "gfx/backpics/lz/114.lz"
+VoltorbBackpic:      INCBIN "gfx/backpics/lz/100.lz"
+UnownJFrontpic:      INCBIN "gfx/frontpics/lz/201j.lz"
+MantineBackpic:      INCBIN "gfx/backpics/lz/226.lz"
+UnownLFrontpic:      INCBIN "gfx/frontpics/lz/201l.lz"
+PiloswineBackpic:    INCBIN "gfx/backpics/lz/221.lz"
+UnownMFrontpic:      INCBIN "gfx/frontpics/lz/201m.lz"
+UnownFFrontpic:      INCBIN "gfx/frontpics/lz/201f.lz"
+NatuBackpic:         INCBIN "gfx/backpics/lz/177.lz"
+UnownAFrontpic:      INCBIN "gfx/frontpics/lz/201a.lz"
+GolemBackpic:        INCBIN "gfx/backpics/lz/076.lz"
+UnownUFrontpic:      INCBIN "gfx/frontpics/lz/201u.lz"
+DiglettBackpic:      INCBIN "gfx/backpics/lz/050.lz"
+UnownQFrontpic:      INCBIN "gfx/frontpics/lz/201q.lz"
+UnownPFrontpic:      INCBIN "gfx/frontpics/lz/201p.lz"
+UnownCBackpic:       INCBIN "gfx/backpics/lz/201c.lz"
+JynxBackpic:         INCBIN "gfx/backpics/lz/124.lz"
+GolbatBackpic:       INCBIN "gfx/backpics/lz/042.lz"
+UnownYFrontpic:      INCBIN "gfx/frontpics/lz/201y.lz"
+UnownGBackpic:       INCBIN "gfx/backpics/lz/201g.lz"
+UnownIFrontpic:      INCBIN "gfx/frontpics/lz/201i.lz"
+UnownVBackpic:       INCBIN "gfx/backpics/lz/201v.lz"
+ForretressBackpic:   INCBIN "gfx/backpics/lz/205.lz"
+UnownSBackpic:       INCBIN "gfx/backpics/lz/201s.lz"
+UnownRFrontpic:      INCBIN "gfx/frontpics/lz/201r.lz"
+UnownEBackpic:       INCBIN "gfx/backpics/lz/201e.lz"
+UnownJBackpic:       INCBIN "gfx/backpics/lz/201j.lz"
+UnownBBackpic:       INCBIN "gfx/backpics/lz/201b.lz"
+UnownOBackpic:       INCBIN "gfx/backpics/lz/201o.lz"
+UnownZBackpic:       INCBIN "gfx/backpics/lz/201z.lz"
+UnownWBackpic:       INCBIN "gfx/backpics/lz/201w.lz"
+UnownNBackpic:       INCBIN "gfx/backpics/lz/201n.lz"
+UnownABackpic:       INCBIN "gfx/backpics/lz/201a.lz"
+UnownMBackpic:       INCBIN "gfx/backpics/lz/201m.lz"
+UnownKBackpic:       INCBIN "gfx/backpics/lz/201k.lz"
+UnownTBackpic:       INCBIN "gfx/backpics/lz/201t.lz"
+UnownXBackpic:       INCBIN "gfx/backpics/lz/201x.lz"
+UnownLBackpic:       INCBIN "gfx/backpics/lz/201l.lz"
+UnownUBackpic:       INCBIN "gfx/backpics/lz/201u.lz"
+UnownQBackpic:       INCBIN "gfx/backpics/lz/201q.lz"
+UnownYBackpic:       INCBIN "gfx/backpics/lz/201y.lz"
+UnownPBackpic:       INCBIN "gfx/backpics/lz/201p.lz"
+UnownIBackpic:       INCBIN "gfx/backpics/lz/201i.lz"
+UnownRBackpic:       INCBIN "gfx/backpics/lz/201r.lz"
 ; 1669d3
 
 
@@ -91216,6 +90596,7 @@ INCBIN "gfx/backpics/lz/201y.lz"
 INCBIN "gfx/backpics/lz/201p.lz"
 INCBIN "gfx/backpics/lz/201i.lz"
 INCBIN "gfx/backpics/lz/201r.lz"
+
 
 SECTION "bank5B",DATA,BANK[$5B]
 
