@@ -135096,7 +135096,294 @@ ItemNames:
 	db "TERU-SAMA@"
 	db "?@"
 
-INCBIN "baserom.gbc",$1C8955,$1C8B85-$1C8955
+GetItemDescription: ; 0x1c8955
+	ld a, [$cf60]
+	cp TM_01
+	jr c, .nomovedesc ; if not a TM, use a predefined string
+	ld [$d106], a
+	push de
+	ld a, $b     ; XXX replace this with BANK(label)
+	ld hl, $47b6 ; XXX replace this with label
+	rst $8
+	pop hl
+	ld a, [$d265]
+	ld [$cf60], a
+	ld a, $11
+	call Predef
+	ret
+
+.nomovedesc
+	push de
+	ld hl, ItemDescriptions
+	ld a, [$cf60]
+	dec a
+	ld c, a
+	ld b, $0
+	add hl, bc
+	add hl, bc
+	ld e, [hl]
+	inc hl
+	ld d, [hl]
+	pop hl
+	jp PlaceString
+; 0x1c8987
+
+ItemDescriptions:
+	dw MasterBallDesc
+	dw UltraBallDesc
+	dw BrightpowderDesc
+	dw GreatBallDesc
+	dw PokeBallDesc
+	dw TeruSama1Desc
+	dw BicycleDesc
+	dw MoonStoneDesc
+	dw AntidoteDesc
+	dw BurnHealDesc
+	dw IceHealDesc
+	dw AwakeningDesc
+	dw ParlyzHealDesc
+	dw FullRestoreDesc
+	dw MaxPotionDesc
+	dw HyperPotionDesc
+	dw SuperPotionDesc
+	dw PotionDesc
+	dw EscapeRopeDesc
+	dw RepelDesc
+	dw MaxElixerDesc
+	dw FireStoneDesc
+	dw ThunderStoneDesc
+	dw WaterStoneDesc
+	dw TeruSama2Desc
+	dw HPUpDesc
+	dw ProteinDesc
+	dw IronDesc
+	dw CarbosDesc
+	dw LuckyPunchDesc
+	dw CalciumDesc
+	dw RareCandyDesc
+	dw XAccuracyDesc
+	dw LeafStoneDesc
+	dw MetalPowderDesc
+	dw NuggetDesc
+	dw PokeDollDesc
+	dw FullHealDesc
+	dw ReviveDesc
+	dw MaxReviveDesc
+	dw GuardSpecDesc
+	dw SuperRepelDesc
+	dw MaxRepelDesc
+	dw DireHitDesc
+	dw TeruSama3Desc
+	dw FreshWaterDesc
+	dw SodaPopDesc
+	dw LemonadeDesc
+	dw XAttackDesc
+	dw TeruSama4Desc
+	dw XDefendDesc
+	dw XSpeedDesc
+	dw XSpecialDesc
+	dw CoinCaseDesc
+	dw ItemfinderDesc
+	dw TeruSama5Desc
+	dw ExpShareDesc
+	dw OldRodDesc
+	dw GoodRodDesc
+	dw SilverLeafDesc
+	dw SuperRodDesc
+	dw PPUpDesc
+	dw EtherDesc
+	dw MaxEtherDesc
+	dw ElixerDesc
+	dw RedScaleDesc
+	dw SecretPotionDesc
+	dw SSTicketDesc
+	dw MysteryEggDesc
+	dw ClearBellDesc
+	dw SilverWingDesc
+	dw MoomooMilkDesc
+	dw QuickClawDesc
+	dw PsnCureBerryDesc
+	dw GoldLeafDesc
+	dw SoftSandDesc
+	dw SharpBeakDesc
+	dw PrzCureBerryDesc
+	dw BurntBerryDesc
+	dw IceBerryDesc
+	dw PoisonBarbDesc
+	dw KingsRockDesc
+	dw BitterBerryDesc
+	dw MintBerryDesc
+	dw RedApricornDesc
+	dw TinyMushroomDesc
+	dw BigMushroomDesc
+	dw SilverPowderDesc
+	dw BluApricornDesc
+	dw TeruSama6Desc
+	dw AmuletCoinDesc
+	dw YlwApricornDesc
+	dw GrnApricornDesc
+	dw CleanseTagDesc
+	dw MysticWaterDesc
+	dw TwistedSpoonDesc
+	dw WhtApricornDesc
+	dw BlackbeltDesc
+	dw BlkApricornDesc
+	dw TeruSama7Desc
+	dw PnkApricornDesc
+	dw BlackGlassesDesc
+	dw SlowpokeTailDesc
+	dw PinkBowDesc
+	dw StickDesc
+	dw SmokeBallDesc
+	dw NeverMeltIceDesc
+	dw MagnetDesc
+	dw MiracleBerryDesc
+	dw PearlDesc
+	dw BigPearlDesc
+	dw EverStoneDesc
+	dw SpellTagDesc
+	dw RageCandyBarDesc
+	dw GSBallDesc
+	dw BlueCardDesc
+	dw MiracleSeedDesc
+	dw ThickClubDesc
+	dw FocusBandDesc
+	dw TeruSama8Desc
+	dw EnergyPowderDesc
+	dw EnergyRootDesc
+	dw HealPowderDesc
+	dw RevivalHerbDesc
+	dw HardStoneDesc
+	dw LuckyEggDesc
+	dw CardKeyDesc
+	dw MachinePartDesc
+	dw EggTicketDesc
+	dw LostItemDesc
+	dw StardustDesc
+	dw StarPieceDesc
+	dw BasementKeyDesc
+	dw PassDesc
+	dw TeruSama9Desc
+	dw TeruSama10Desc
+	dw TeruSama11Desc
+	dw CharcoalDesc
+	dw BerryJuiceDesc
+	dw ScopeLensDesc
+	dw TeruSama12Desc
+	dw TeruSama13Desc
+	dw MetalCoatDesc
+	dw DragonFangDesc
+	dw TeruSama14Desc
+	dw LeftoversDesc
+	dw TeruSama15Desc
+	dw TeruSama16Desc
+	dw TeruSama17Desc
+	dw MysteryBerryDesc
+	dw DragonScaleDesc
+	dw BerserkGeneDesc
+	dw TeruSama18Desc
+	dw TeruSama19Desc
+	dw TeruSama20Desc
+	dw SacredAshDesc
+	dw HeavyBallDesc
+	dw FlowerMailDesc
+	dw LevelBallDesc
+	dw LureBallDesc
+	dw FastBallDesc
+	dw TeruSama21Desc
+	dw LightBallDesc
+	dw FriendBallDesc
+	dw MoonBallDesc
+	dw LoveBallDesc
+	dw NormalBoxDesc
+	dw GorgeousBoxDesc
+	dw SunStoneDesc
+	dw PolkadotBowDesc
+	dw TeruSama22Desc
+	dw UpGradeDesc
+	dw BerryDesc
+	dw GoldBerryDesc
+	dw SquirtBottleDesc
+	dw TeruSama23Desc
+	dw ParkBallDesc
+	dw RainbowWingDesc
+	dw TeruSama24Desc
+	dw BrickPieceDesc
+	dw SurfMailDesc
+	dw LiteBlueMailDesc
+	dw PortraitMailDesc
+	dw LovelyMailDesc
+	dw EonMailDesc
+	dw MorphMailDesc
+	dw BlueSkyMailDesc
+	dw MusicMailDesc
+	dw MewMailDesc
+	dw TeruSama25Desc
+	dw TeruSama26Desc
+	dw TeruSama26Desc
+	dw TeruSama26Desc
+	dw TeruSama26Desc
+	dw TeruSama26Desc
+	dw TeruSama27Desc
+	dw TeruSama27Desc
+	dw TeruSama27Desc
+	dw TeruSama27Desc
+	dw TeruSama27Desc
+	dw TeruSama27Desc
+	dw TeruSama27Desc
+	dw TeruSama27Desc
+	dw TeruSama27Desc
+	dw TeruSama27Desc
+	dw TeruSama27Desc
+	dw TeruSama27Desc
+	dw TeruSama27Desc
+	dw TeruSama27Desc
+	dw TeruSama27Desc
+	dw TeruSama27Desc
+	dw TeruSama27Desc
+	dw TeruSama27Desc
+	dw TeruSama27Desc
+	dw TeruSama27Desc
+	dw TeruSama27Desc
+	dw TeruSama27Desc
+	dw TeruSama27Desc
+	dw TeruSama27Desc
+	dw TeruSama27Desc
+	dw TeruSama28Desc
+	dw TeruSama28Desc
+	dw TeruSama28Desc
+	dw TeruSama28Desc
+	dw TeruSama28Desc
+	dw TeruSama28Desc
+	dw TeruSama28Desc
+	dw TeruSama28Desc
+	dw TeruSama28Desc
+	dw TeruSama28Desc
+	dw TeruSama28Desc
+	dw TeruSama28Desc
+	dw TeruSama28Desc
+	dw TeruSama28Desc
+	dw TeruSama28Desc
+	dw TeruSama28Desc
+	dw TeruSama28Desc
+	dw TeruSama28Desc
+	dw TeruSama28Desc
+	dw TeruSama28Desc
+	dw TeruSama28Desc
+	dw TeruSama28Desc
+	dw TeruSama28Desc
+	dw TeruSama28Desc
+	dw TeruSama28Desc
+	dw TeruSama28Desc
+	dw TeruSama28Desc
+	dw TeruSama28Desc
+	dw TeruSama28Desc
+	dw TeruSama28Desc
+	dw TeruSama29Desc
+	dw TeruSama30Desc
+	dw TeruSama31Desc
+	dw TeruSama32Desc
+	dw TeruSama33Desc
 
 MasterBallDesc:
 	db "The best BALL. It",$4E
@@ -136104,9 +136391,52 @@ MoveNames:
 	db "WHIRLPOOL@"
 	db "BEAT UP@"
 
-INCBIN "baserom.gbc",$1CA896,$1ca8c3-$1CA896
+GetLandmarkCoords: ; 0x1ca896
+; given a landmark id in e, return the y coord in d, and the x coord in e.
+	push hl
+	ld l, e
+	ld h, $0
+	add hl, hl
+	add hl, hl
+	ld de, Landmarks
+	add hl, de
+	ld a, [hli]
+	ld e, a
+	ld d, [hl]
+	pop hl
+	ret
+
+
+GetLandmarkName: ; 0x1ca8a5
+; given a landmark id in e, copy its name to $d073.
+	push hl
+	push de
+	push bc
+	ld l, e
+	ld h, $0
+	add hl, hl
+	add hl, hl
+	ld de, Landmarks + 2 ; skip the coordinates, we only want the string
+	add hl, de
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	ld de, $d073
+	ld c, 18
+.loop
+	ld a, [hli]
+	ld [de], a
+	inc de
+	dec c
+	jr nz, .loop
+	pop bc
+	pop de
+	pop hl
+	ret
 
 Landmarks: ; 0x1ca8c3
+;db x coord, y coord
+;dw pointer to name 
 	db 0,0
 	dw SpecialMapString
 
@@ -137146,7 +137476,6 @@ SunfloraPokedexEntry: ; 0x1cdaef
 	db "#MON's face", $4e, "become more vivid", $4e, "and lively.@"
 ; 0x1cdb51
 
-INCBIN "baserom.gbc",$1cdb51,$24af
 
 SECTION "bank74",DATA,BANK[$74]
 
@@ -137621,8 +137950,6 @@ CelebiPokedexEntry: ; 0x1d18cc
 	db "Revered as a", $4e, "guardian of the", $4e, "forest, CELEBI@"
 	db "appears wherever", $4e, "beautiful forests", $4e, "exist.@"
 ; 0x1d1931
-
-INCBIN "baserom.gbc",$1d1931,$26cf
 
 SECTION "bank75",DATA,BANK[$75]
 
