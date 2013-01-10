@@ -35,6 +35,9 @@ macros = command_classes + \
 # show lines before preprocessing in stdout
 show_original_lines = False
 
+# helpful for debugging macros
+do_macro_sanity_check = False
+
 chars = {
 "ガ": 0x05,
 "ギ": 0x06,
@@ -462,45 +465,47 @@ def macro_translator(macro, token, line):
     # do: all scripting macros
     # don't: signpost, warp_def, person_event, xy_trigger
     if not macro.override_byte_check:
-        sys.stdout.write("db $%.2x\n" % (macro.id))
+        sys.stdout.write("db ${0:02X}\n".format(macro.id))
 
     # --- long-winded sanity check goes here ---
 
-    # sanity check... this won't work because PointerLabelBeforeBank shows
-    # up as two params, so these two lengths will always be different.
-    #assert len(params) == len(macro.param_types), \
-    #       "mismatched number of parameters on this line: " + \
-    #       original_line
+    if do_macro_sanity_check:
 
-    # v2 sanity check :) although it sorta sucks that this loop happens twice?
-    allowed_length = 0
-    for (index, param_type) in macro.param_types.items():
-        param_klass = param_type["class"]
+        # sanity check... this won't work because PointerLabelBeforeBank shows
+        # up as two params, so these two lengths will always be different.
+        #assert len(params) == len(macro.param_types), \
+        #       "mismatched number of parameters on this line: " + \
+        #       original_line
 
-        if param_klass.byte_type == "db":
-            allowed_length += 1 # just one value
-        elif param_klass.byte_type == "dw":
-            if param_klass.size == 2:
-                allowed_length += 1 # just label
-            elif param_klass == MoneyByteParam:
-                allowed_length += 1
-            elif param_klass.size == 3:
-                allowed_length += 2 # bank and label
+        # v2 sanity check :) although it sorta sucks that this loop happens twice?
+        allowed_length = 0
+        for (index, param_type) in macro.param_types.items():
+            param_klass = param_type["class"]
+
+            if param_klass.byte_type == "db":
+                allowed_length += 1 # just one value
+            elif param_klass.byte_type == "dw":
+                if param_klass.size == 2:
+                    allowed_length += 1 # just label
+                elif param_klass == MoneyByteParam:
+                    allowed_length += 1
+                elif param_klass.size == 3:
+                    allowed_length += 2 # bank and label
+                else:
+                    raise Exception, "dunno what to do with a macro param with a size > 3"
             else:
-                raise Exception, "dunno what to do with a macro param with a size > 3"
+                raise Exception, "dunno what to do with this non db/dw macro param: " + \
+                                 str(param_klass) + " in line: " + original_line
+
+        # sometimes the allowed length can vary
+        if hasattr(macro, "allowed_lengths"):
+            allowed_lengths = macro.allowed_lengths + [allowed_length]
         else:
-            raise Exception, "dunno what to do with this non db/dw macro param: " + \
-                             str(param_klass) + " in line: " + original_line
+            allowed_lengths = [allowed_length]
 
-    # sometimes the allowed length can vary
-    if hasattr(macro, "allowed_lengths"):
-        allowed_lengths = macro.allowed_lengths + [allowed_length]
-    else:
-        allowed_lengths = [allowed_length]
-
-    assert len(params) in allowed_lengths, \
-           "mismatched number of parameters on this line: " + \
-           original_line
+        assert len(params) in allowed_lengths, \
+               "mismatched number of parameters on this line: " + \
+               original_line
 
     # --- end of ridiculously long sanity check ---
 
