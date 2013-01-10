@@ -393,6 +393,10 @@ def extract_token(asm):
     token = asm.split(" ")[0].replace("\t", "").replace("\n", "")
     return token
 
+def make_macro_table():
+    return dict([(macro.macro_name, macro) for macro in macros])
+macro_table = make_macro_table()
+
 def macro_test(asm):
     """ Returns a matching macro, or None/False.
     """
@@ -401,11 +405,10 @@ def macro_test(asm):
     token = extract_token(asm)
 
     # check against all names
-    for macro in macros:
-        if macro.macro_name == token:
-            return macro, token
-
-    return None, None
+    try:
+        return (macro_table[token], token)
+    except:
+        return (None, None)
 
 def macro_translator(macro, token, line):
     """ Converts a line with a macro into a rgbasm-compatible line.
