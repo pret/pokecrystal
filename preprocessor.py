@@ -344,6 +344,7 @@ def quote_translator(asm):
         sys.stdout.write(asm)
         return
 
+    output = ""
     even = False
     i = 0
     for token in asms:
@@ -384,15 +385,18 @@ def quote_translator(asm):
                         char = char + token[0]
                         token = token[1:]
 
-                sys.stdout.write("${0:02X}".format(chars[char]))
+                output += ("${0:02X}".format(chars[char]))
 
                 if len(token):
-                    sys.stdout.write(", ")
+                    output += (", ")
         # if not even
         else:
-            sys.stdout.write(token)
+            output += (token)
 
         even = not even
+
+    sys.stdout.write(output)
+
     return
 
 def extract_token(asm):
