@@ -32,6 +32,9 @@ macros = command_classes + \
     movement_command_classes + \
     music_classes
 
+# show lines before preprocessing in stdout
+show_original_lines = False
+
 chars = {
 "ガ": 0x05,
 "ギ": 0x06,
@@ -445,7 +448,8 @@ def macro_translator(macro, token, line):
             raise Exception, "macro has no params?"
 
     # write out a comment showing the original line
-    sys.stdout.write("; original_line: " + original_line)
+    if show_original_lines:
+        sys.stdout.write("; original_line: " + original_line)
 
     # "db" is a macro because of TextEndingCommand
     # rgbasm can handle "db" so no preprocessing is required
