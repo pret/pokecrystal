@@ -405,9 +405,9 @@ def macro_test(asm):
     token = extract_token(asm)
 
     # check against all names
-    try:
+    if token in macro_table:
         return (macro_table[token], token)
-    except:
+    else:
         return (None, None)
 
 def macro_translator(macro, token, line):
