@@ -3,20 +3,22 @@
 
 import sys
 
-from extras.crystal import command_classes, \
-                    Warp, \
-                    XYTrigger, \
-                    Signpost, \
-                    PeopleEvent, \
-                    DataByteWordMacro, \
-                    PointerLabelBeforeBank, \
-                    PointerLabelAfterBank, \
-                    MoneyByteParam, \
-                    ItemFragment, \
-                    TextEndingCommand, \
-                    text_command_classes, \
-                    movement_command_classes, \
-                    music_classes
+from extras.crystal import (
+    command_classes,
+    Warp,
+    XYTrigger,
+    Signpost,
+    PeopleEvent,
+    DataByteWordMacro,
+    PointerLabelBeforeBank,
+    PointerLabelAfterBank,
+    MoneyByteParam,
+    ItemFragment,
+    TextEndingCommand,
+    text_command_classes,
+    movement_command_classes,
+    music_classes
+)
 
 macros = command_classes + \
     [
