@@ -556,9 +556,9 @@ def macro_translator(macro, token, line):
 def include_file(asm):
     """This is more reliable than rgbasm/rgbds including files on its own."""
 
-    filename = asm.split("\"")
-    filename = filename[1].replace("\"","").replace("\n","")
-    lines = open(filename, 'r').readlines()
+    filename = asm.split("\"")[1]
+
+    lines = open(filename, "r").readlines()
 
     for line in lines:
         read_line(line)
