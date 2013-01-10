@@ -512,6 +512,8 @@ def macro_translator(macro, token, line):
     # used for storetext
     correction = 0
 
+    output = ""
+
     index = 0
     while index < len(params):
         param_type  = macro.param_types[index - correction]
@@ -528,24 +530,24 @@ def macro_translator(macro, token, line):
         if (byte_type == "dw" and size != 2) or \
            (byte_type == "db" and size != 1):
 
-            sys.stdout.write("; " + description + "\n")
+            output += ("; " + description + "\n")
 
             if   size == 3 and issubclass(param_klass, PointerLabelBeforeBank):
                 # write the bank first
-                sys.stdout.write("db " + params[index].strip() + "\n")
+                output += ("db " + param + "\n")
                 # write the pointer second
-                sys.stdout.write("dw " + params[index+1].strip() + "\n")
+                output += ("dw " + params[index+1].strip() + "\n")
                 index += 2
                 correction += 1
             elif size == 3 and issubclass(param_klass, PointerLabelAfterBank):
                 # write the pointer first
-                sys.stdout.write("dw " + params[index].strip() + "\n")
+                output += ("dw " + param + "\n")
                 # write the bank second
-                sys.stdout.write("db " + params[index+1].strip() + "\n")
+                output += ("db " + params[index+1].strip() + "\n")
                 index += 2
                 correction += 1
             elif size == 3 and issubclass(param_klass, MoneyByteParam):
-                sys.stdout.write("db " + MoneyByteParam.from_asm(params[index]) + "\n")
+                output += ("db " + MoneyByteParam.from_asm(param) + "\n")
                 index += 1
             else:
                 raise Exception, "dunno what to do with this macro " + \
@@ -554,9 +556,11 @@ def macro_translator(macro, token, line):
 
         # or just print out the byte
         else:
-            sys.stdout.write(byte_type + " " + param + " ; " + description + "\n")
+            output += (byte_type + " " + param + " ; " + description + "\n")
 
             index += 1
+
+    sys.stdout.write(output)
 
 def include_file(asm):
     """This is more reliable than rgbasm/rgbds including files on its own."""
