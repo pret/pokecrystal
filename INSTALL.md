@@ -21,7 +21,7 @@ which rgbasm
 git clone https://github.com/kanzure/pokecrystal.git
 cd pokecrystal
 
-make clean; make
+make clean && make
 ```
 
 # Windows
@@ -158,7 +158,7 @@ to.
 To build again, you should use the following command:
 
 ```bash
-make clean; make
+make clean && make
 ```
 
 Feel free to ask us on nucleus.kafuka.org #skeetendo if something goes wrong
