@@ -658,7 +658,7 @@ MonType: ; cf5f
 ; 4 wildmon
 	ds 1
 
-CurBattleSpecies: ; cf60
+CurSpecies: ; cf60
 	ds 1
 
 	ds 33
