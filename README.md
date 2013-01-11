@@ -60,6 +60,6 @@ Also, there are [Windows installation instructions](https://github.com/kanzure/p
 
 ## Contributing
 
-* Hang out with us on IRC, nucleus.kafuka.org #skeetendo
+* Hang out with us on IRC, nucleus.kafuka.org #skeetendo ([or use mibbit](http://chat.mibbit.com/?server=nucleus.kafuka.org&channel=#skeetendo))
 
 * Tackle some [issues](https://github.com/kanzure/pokecrystal/issues)!
