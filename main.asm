@@ -130743,7 +130743,10 @@ Route10North_MapEventHeader: ; 0x1b2099
 
 SECTION "bank6D",DATA,BANK[$6D]
 
-INCBIN "baserom.gbc",$1B4000,$4000
+INCLUDE "text/phone/mom.tx"
+INCLUDE "text/phone/bill.tx"
+INCLUDE "text/phone/elm.tx"
+INCLUDE "text/phone/trainers1.tx"
 
 SECTION "bank6E",DATA,BANK[$6E]
 

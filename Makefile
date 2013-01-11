@@ -1,10 +1,15 @@
 .SUFFIXES: .asm .tx .o .gbc
 
-TEXTFILES =	text/sweethoney.tx
+TEXTFILES =	text/sweethoney.tx \
+		text/phone/bill.tx \
+		text/phone/elm.tx \
+		text/phone/mom.tx \
+		text/phone/trainers1.tx \
+		main.tx
 
 all: pokecrystal.gbc
 
-pokecrystal.o: pokecrystal.asm main.tx constants.asm wram.asm ${TEXTFILES}
+pokecrystal.o: pokecrystal.asm constants.asm wram.asm ${TEXTFILES}
 	rgbasm -o pokecrystal.o pokecrystal.asm
 	
 .asm.tx:
