@@ -539,7 +539,7 @@ BattleScriptBufferLocLo: ; c6b2
 BattleScriptBufferLocHi: ; c6b3
 	ds 1
 
-	ds 24
+	ds 25
 
 PlayerStatLevels: ; c6cc
 ; 07 neutral
