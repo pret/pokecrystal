@@ -1,21 +1,65 @@
-This is a disassembly of Pokémon Crystal.
+# Pokémon Crystal
 
-It uses the following ROM as a base:
-    Pokemon - Crystal Version (UE) (V1.0) [C][!].gbc
-    md5: 9f2922b235a5eeb78d65594e82ef5dde
+This is a hand-crafted disassembly of Pokémon Crystal.
 
-To assemble, first install RGBDS and put it in your path.
+The source code in this project successfully converts back into a ROM image. All source code is meticulously commented.
 
-The version of RGBDS needed is rgbds-linux:
-    https://github.com/bentley/rgbds/
-    git://github.com/bentley/rgbds.git
+## Base ROM
 
-Then copy the Pokémon ROM to this directory as "baserom.gbc".
-Then run "make" in your shell.
+The following ROM is required for compiling:
 
-This will output a file named "pokecrystal.gbc".
+Pokemon - Crystal Version (UE) (V1.0) [C][!].gbc
 
-See also the disassembly of Pokémon Red:
-    http://bitbucket.org/iimarckus/pokered
+md5: 9f2922b235a5eeb78d65594e82ef5dde
 
-nucleus.kafuka.org #skeetendo
+Eventually this will not be necessary.
+
+## Installing
+
+Simple.
+
+``` bash
+sudo apt-get install make gcc bison git python python-setuptools 
+
+# unittest2 is required if using python2.6
+sudo easy_install unittest2
+
+# download rgbds source code
+git clone git://github.com/bentley/rgbds.git
+
+# compile rgbds
+cd rgbds
+make
+sudo make install
+
+# check if rgbasm is installed now
+which rgbasm
+
+# download pokecrystal
+git clone https://github.com/kanzure/pokecrystal.git
+cd pokecrystal
+
+make clean && make
+```
+
+Also, there are [Windows installation instructions](https://github.com/kanzure/pokecrystal/blob/master/INSTALL.md).
+
+## Assembling
+
+* To assemble, first install RGBDS and put it in your path. The version of RGBDS needed is [rgbds-linux](https://github.com/bentley/rgbds/).
+
+* Next, copy the Pokémon ROM to this directory as "baserom.gbc".
+
+* Then run "make" in your shell.
+
+* This will output a file named "pokecrystal.gbc".
+
+## See also
+
+* disassembly of [Pokémon Red](http://bitbucket.org/iimarckus/pokered).
+
+## Contributing
+
+* Hang out with us on IRC, nucleus.kafuka.org #skeetendo
+
+* Tackle some [issues](https://github.com/kanzure/pokecrystal/issues)!
