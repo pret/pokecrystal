@@ -1945,17 +1945,17 @@ GetBaseStats: ; 3856
 	rst $10
 	
 ; Egg doesn't have base stats
-	ld a, [CurBattleSpecies]
+	ld a, [CurSpecies]
 	cp EGG
 	jr z, .egg
 
 ; Get base stats
 	dec a
-	ld bc, BASE_STATS_LENGTH
+	ld bc, BaseStatsStructEnd - BaseStats
 	ld hl, BaseStats
 	call AddNTimes
 	ld de, CurBaseStats
-	ld bc, BASE_STATS_LENGTH
+	ld bc, BaseStatsStructEnd - BaseStats
 	call CopyBytes
 	jr .end
 	
@@ -1981,7 +1981,7 @@ GetBaseStats: ; 3856
 	
 .end
 ; Replace Pokedex # with species
-	ld a, [CurBattleSpecies]
+	ld a, [CurSpecies]
 	ld [CurBaseStats], a
 	
 ; Restore bank
@@ -12646,7 +12646,7 @@ LoadEnemyMon: ; 3e8eb
 ; Make sure everything knows what species we're working with
 	ld a, [TempEnemyMonSpecies]
 	ld [EnemyMonSpecies], a
-	ld [CurBattleSpecies], a
+	ld [CurSpecies], a
 	ld [CurPartySpecies], a
 	
 ; Grab the base stats for this species
@@ -18589,6 +18589,7 @@ BulbasaurBaseStats: ; 0x51424
 	db %01000101
 	db %00000000
 	; end
+BaseStatsStructEnd:
 
 IvysaurBaseStats: ; 0x51444
 	db IVYSAUR ; 002
