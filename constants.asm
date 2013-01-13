@@ -31,6 +31,10 @@ TX_FAR: MACRO
 	db BANK(\1)
 	ENDM
 
+RGB: MACRO
+	dw ((\3 << 10) | (\2 << 5) | (\1))
+	ENDM
+
 ; eventually replace with python macro
 note: MACRO
 	db \1
