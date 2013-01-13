@@ -1343,7 +1343,7 @@ if __name__ == "__main__":
 		# python gfx.py pal [address] [length]
 		print grab_palettes(int(args.arg1,16), int(args.arg2))
 	
-	else:
-		# python gfx.py
-		decompress_all()
-		if debug: print 'decompressed known gfx to ../gfx/!'
+	#else:
+		## python gfx.py
+		#decompress_all()
+		#if debug: print 'decompressed known gfx to ../gfx/!'
