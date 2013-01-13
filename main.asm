@@ -140,6 +140,9 @@ IncGradGBPalTable_01: ; 52f
 INCBIN "baserom.gbc",$547,$568 - $547
 
 DisableLCD: ; 568
+; Turn the LCD off
+; Most of this is just going through the motions
+
 ; don't need to do anything if lcd is already off
 	ld a, [$ff40] ; LCDC
 	bit 7, a ; lcd enable
@@ -782,7 +785,23 @@ FarCopyBytesDouble: ; e9b
 ; 0xeba
 
 
-INCBIN "baserom.gbc",$eba,$ff1 - $eba
+INCBIN "baserom.gbc",$eba,$fc8 - $eba
+
+ClearTileMap: ; fc8
+; Fill the tile map with blank tiles
+	ld hl, TileMap
+	ld a, $7f ; blank tile
+	ld bc, 360 ; length of TileMap
+	call ByteFill
+	
+; We aren't done if the LCD is on
+	ld a, [$ff40] ; LCDC
+	bit 7, a
+	ret z
+	jp WaitBGMap
+; fdb
+
+INCBIN "baserom.gbc",$fdb,$ff1 - $fdb
 
 TextBoxBorder: ; ff1
 ; draw a text box
@@ -1475,9 +1494,34 @@ CloseSRAM: ; 2fe1
 	ld [$0000], a
 	pop af
 	ret
-; 2fef
+; 2fec
 
-INCBIN "baserom.gbc",$2fec,$3026-$2fec
+INCBIN "baserom.gbc",$2fec,$300b-$2fec
+
+ClearSprites: ; 300b
+	ld hl, Sprites
+	ld b, TileMap - Sprites
+	xor a
+.loop
+	ld [hli], a
+	dec b
+	jr nz, .loop
+	ret
+; 3016
+
+HideSprites: ; 3016
+; Set all OBJ y-positions to 160 to hide them offscreen
+	ld hl, Sprites
+	ld de, $0004 ; length of an OBJ struct
+	ld b, $28 ; number of OBJ structs
+	ld a, 160 ; y-position
+.loop
+	ld [hl], a
+	add hl, de
+	dec b
+	jr nz, .loop
+	ret
+; 3026
 
 CopyBytes: ; 0x3026
 ; copy bc bytes from hl to de
@@ -1779,10 +1823,62 @@ StringCmp: ; 31db
 	ret
 ; 0x31e4
 
-INCBIN "baserom.gbc",$31e4,$3340 - $31e4
+INCBIN "baserom.gbc",$31e4,$31f3 - $31e4
 
+WhiteBGMap: ; 31f3
+	call ClearPalettes
+WaitBGMap: ; 31f6
+; Tell VBlank to update BG Map
+	ld a, 1 ; BG Map 0 tiles
+	ld [$ffd4], a
+; Wait for it to do its magic
+	ld c, 4
+	call DelayFrames
+	ret
+; 3200
+
+INCBIN "baserom.gbc",$3200,$3317 - $3200
+
+ClearPalettes: ; 3317
+; Make all palettes white
+
+; For CGB we make all the palette colors white
+	ld a, [$ffe6]
+	and a
+	jr nz, .cgb
+	
+; In DMG mode, we can just change palettes to 0 (white)
+	xor a
+	ld [$ff47], a ; BGP
+	ld [$ff48], a ; OBP0
+	ld [$ff49], a ; OBP1
+	ret
+	
+.cgb
+; Save WRAM bank
+	ld a, [$ff70]
+	push af
+; WRAM bank 5
+	ld a, 5
+	ld [$ff70], a
+; Fill BGPals and OBPals with $ffff (white)
+	ld hl, BGPals
+	ld bc, $0080
+	ld a, $ff
+	call ByteFill
+; Restore WRAM bank
+	pop af
+	ld [$ff70], a
+; Request palette update
+	ld a, 1
+	ld [$ffe5], a
+	ret
+; 333e
+
+ClearSGB: ; 333e
+	ld b, $ff
 GetSGBLayout: ; 3340
-; load sgb packets unless gb
+; load sgb packets unless dmg
 
 ; check cgb
 	ld a, [$ffe6]
@@ -1875,7 +1971,7 @@ GetName: ; 33c3
 	call GetNthString
 	ld de, $d073
 	ld bc, $000d
-	call $3026
+	call CopyBytes
 .asm_3403
 	ld a, e
 	ld [$d102], a
@@ -2279,7 +2375,31 @@ CheckSFX: ; 3dde
 	ret
 ; 3dfe
 
-INCBIN "baserom.gbc",$3dfe,$4000 - $3dfe
+INCBIN "baserom.gbc",$3dfe,$3e10 - $3dfe
+
+ChannelsOff: ; 3e10
+; Quickly turn off music channels
+	xor a
+	ld [$c104], a
+	ld [$c136], a
+	ld [$c168], a
+	ld [$c19a], a
+	ld [$c29c], a
+	ret
+; 3e21
+
+SFXChannelsOff: ; 3e21
+; Quickly turn off sound effect channels
+	xor a
+	ld [$c1cc], a
+	ld [$c1fe], a
+	ld [$c230], a
+	ld [$c262], a
+	ld [$c29c], a
+	ret
+; 3e32
+
+INCBIN "baserom.gbc",$3e32,$4000 - $3e32
 
 SECTION "bank1",DATA,BANK[$1]
 
@@ -2374,7 +2494,35 @@ CheckNickErrors: ; 669f
 	db $ff ; end
 ; 66de
 
-INCBIN "baserom.gbc",$66de,$8000 - $66de
+INCBIN "baserom.gbc",$66de,$6eef - $66de
+
+DrawGraphic: ; 6eef
+; input:
+;   hl: draw location
+;   b: height
+;   c: width
+;   d: tile to start drawing from
+;   e: number of tiles to advance for each row
+	call $7009
+	pop bc
+	pop hl
+	ret c
+	bit 5, [hl]
+	jr nz, .asm_6f05
+	push hl
+	call $70a4
+	pop hl
+	ret c
+	push hl
+	call $70ed
+	pop hl
+	ret c
+.asm_6f05
+	and a
+	ret
+; 6f07
+
+INCBIN "baserom.gbc",$6f07,$8000 - $6f07
 
 SECTION "bank2",DATA,BANK[$2]
 
@@ -88482,7 +88630,7 @@ SFX: ; e927c
 	dbw $3c, $4a22 ; tap
 	dbw $3c, $4a25 ; tap
 	dbw $3c, $4a28 ; burn ; that is not a burn
-	dbw $3c, $4a2b ;
+	dbw $3c, $4a2b ; title screen sound
 	dbw $3c, $4a2e ; similar to $60
 	dbw $3c, $4a31 ; get coin from slots
 	dbw $3c, $4a34 ; pay day
@@ -89238,7 +89386,245 @@ INCBIN "baserom.gbc", $10983f, $10c000 - $10983f
 
 SECTION "bank43",DATA,BANK[$43]
 
-INCBIN "baserom.gbc", $10c000, $10ef46 - $10c000
+INCBIN "baserom.gbc", $10c000, $10ed67 - $10c000
+
+TitleScreen: ; 10ed67
+
+	call WhiteBGMap
+	call ClearSprites
+	call ClearTileMap
+	
+; Turn BG Map update off
+	xor a
+	ld [$ffd4], a
+	
+; Reset timing variables
+	ld hl, $cf63
+	ld [hli], a ; cf63 ; Scene?
+	ld [hli], a ; cf64
+	ld [hli], a ; cf65 ; Timer lo
+	ld [hl], a  ; cf66 ; Timer hi
+	
+; Turn LCD off
+	call DisableLCD
+	
+	
+; VRAM bank 1
+	ld a, 1
+	ld [$ff4f], a
+	
+	
+; Decompress running Suicune gfx
+	ld hl, TitleSuicuneGFX
+	ld de, $8800
+	call $0b50
+	
+	
+; Clear screen palettes
+	ld hl, $9800
+	ld bc, $0280
+	xor a
+	call ByteFill
+	
+
+; Fill tile palettes:
+
+; BG Map 1:
+
+; line 0 (copyright)
+	ld hl, $9c00
+	ld bc, $0020 ; one row
+	ld a, 7 ; palette
+	call ByteFill
+
+
+; BG Map 0:
+
+; Apply logo gradient:
+
+; lines 3-4
+	ld hl, $9860 ; (0,3)
+	ld bc, $0040 ; 2 rows
+	ld a, 2
+	call ByteFill
+; line 5
+	ld hl, $98a0 ; (0,5)
+	ld bc, $0020 ; 1 row
+	ld a, 3
+	call ByteFill
+; line 6
+	ld hl, $98c0 ; (0,6)
+	ld bc, $0020 ; 1 row
+	ld a, 4
+	call ByteFill
+; line 7
+	ld hl, $98e0 ; (0,7)
+	ld bc, $0020 ; 1 row
+	ld a, 5
+	call ByteFill
+; lines 8-9
+	ld hl, $9900 ; (0,8)
+	ld bc, $0040 ; 2 rows
+	ld a, 6
+	call ByteFill
+	
+
+; 'CRYSTAL VERSION'
+	ld hl, $9925 ; (5,9)
+	ld bc, $000b ; length of version text
+	ld a, 1
+	call ByteFill
+	
+; Suicune gfx
+	ld hl, $9980 ; (0,12)
+	ld bc, $00c0 ; the rest of the screen
+	ld a, 8
+	call ByteFill
+	
+	
+; Back to VRAM bank 0
+	ld a, $0
+	ld [$ff4f], a
+	
+	
+; Decompress logo
+	ld hl, TitleLogoGFX
+	ld de, $8800
+	call $0b50
+	
+; Decompress background crystal
+	ld hl, TitleCrystalGFX
+	ld de, $8000
+	call $0b50
+	
+	
+; Clear screen tiles
+	ld hl, $9800
+	ld bc, $0800
+	ld a, $7f
+	call ByteFill
+	
+; Draw Pokemon logo
+	ld hl, $c4dc ; TileMap(0,3)
+	ld bc, $0714 ; 20x7
+	ld d, $80
+	ld e, $14
+	call DrawGraphic
+	
+; Draw copyright text
+	ld hl, $9c03 ; BG Map 1 (3,0)
+	ld bc, $010d ; 13x1
+	ld d, $c
+	ld e, $10
+	call DrawGraphic
+	
+; Initialize running Suicune?
+	ld d, $0
+	call $6ed2
+	
+; Initialize background crystal
+	call $6f06
+	
+; Save WRAM bank
+	ld a, [$ff70]
+	push af
+; WRAM bank 5
+	ld a, 5
+	ld [$ff70], a
+	
+; Update palette colors
+	ld hl, TitleScreenPalettes
+	ld de, $d000
+	ld bc, $0080
+	call CopyBytes
+	
+	ld hl, TitleScreenPalettes
+	ld de, $d080
+	ld bc, $0080
+	call CopyBytes
+	
+; Restore WRAM bank
+	pop af
+	ld [$ff70], a
+	
+	
+; LY/SCX trickery starts here
+	
+; Save WRAM bank
+	ld a, [$ff70]
+	push af
+; WRAM bank 5
+	ld a, 5
+	ld [$ff70], a
+	
+; Make alternating lines come in from opposite sides
+
+; ( This part is actually totally pointless, you can't
+;   see anything until these values are overwritten!  )
+
+	ld b, 40 ; alternate for 80 lines
+	ld hl, $d100 ; LY buffer
+.loop
+; $00 is the middle position
+	ld [hl], $70 ; coming from the left
+	inc hl
+	ld [hl], $90 ; coming from the right
+	inc hl
+	dec b
+	jr nz, .loop
+	
+; Make sure the rest of the buffer is empty
+	ld hl, $d150
+	xor a
+	ld bc, $0040
+	call ByteFill
+	
+; Let LCD Stat know we're messing around with SCX
+	ld a, $43 ; ff43 ; SCX
+	ld [$ffc6], a
+	
+; Restore WRAM bank
+	pop af
+	ld [$ff70], a
+	
+	
+; Reset audio
+	call ChannelsOff
+	call $058a
+	
+; Set sprite size to 8x16
+	ld a, [$ff40] ; LCDC
+	set 2, a
+	ld [$ff40], a ; LCDC
+	
+;
+	ld a, $70
+	ld [$ffcf], a
+	ld a, $8
+	ld [$ffd0], a
+	ld a, $7
+	ld [$ffd1], a
+	ld a, $90
+	ld [$ffd2], a
+	
+	ld a, $1
+	ld [$ffe5], a
+	
+; Update BG Map 0 (bank 0)
+	ld [$ffd4], a
+	
+	xor a
+	ld [$d002], a
+	
+; Play starting sound effect
+	call SFXChannelsOff
+	ld de, $0065
+	call StartSFX
+	
+	ret
+; 10eea7
+
+INCBIN "baserom.gbc", $10eea7, $10ef46 - $10eea7
 
 TitleSuicuneGFX: ; 10ef46
 INCBIN "gfx/title/lz/suicune.lz"
@@ -89256,7 +89642,29 @@ TitleCrystalGFX: ; 10fcee
 INCBIN "gfx/title/lz/crystal.lz"
 ; 10fed7
 
-INCBIN "baserom.gbc", $10fed7, $110000 - $10fed7
+INCBIN "baserom.gbc", $10fed7, $10fede - $10fed7
+
+TitleScreenPalettes:
+; BG
+	dw $0000, $0013, $7D0F, $7D0F
+	dw $0000, $7FFF, $7E0F, $343F
+	dw $0000, $1CE7, $7FFF, $7862
+	dw $0000, $35AD, $4BFF, $7862
+	dw $0000, $4E73, $339D, $7862
+	dw $0000, $6739, $1B3C, $7862
+	dw $0000, $7FFF, $02BA, $7862
+	dw $0000, $4D6B, $7FFF, $0000
+; OBJ
+	dw $0000, $3C0A, $58B1, $7D33
+	dw $7FFF, $0000, $0000, $0000
+	dw $7FFF, $0000, $0000, $0000
+	dw $7FFF, $0000, $0000, $0000
+	dw $7FFF, $0000, $0000, $0000
+	dw $7FFF, $0000, $0000, $0000
+	dw $7FFF, $0000, $0000, $0000
+	dw $7FFF, $0000, $0000, $0000
+
+INCBIN "baserom.gbc", $10ff5e, $110000 - $10ff5e
 
 
 SECTION "bank44",DATA,BANK[$44]
@@ -89521,7 +89929,7 @@ Function117bb6:
 	ld hl, $d002
 	ld de, $b000
 	ld bc, $1000
-	call $3026
+	call CopyBytes
 	call CloseSRAM
 	pop af
 	ld [$ff70], a
