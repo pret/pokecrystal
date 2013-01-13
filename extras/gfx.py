@@ -1283,6 +1283,28 @@ def get_uncompressed_gfx(start, num_tiles, filename):
 
 
 
+def hex_to_rgb(word):
+	red = word & 0b11111
+	word >>= 5
+	green = word & 0b11111
+	word >>= 5
+	blue = word & 0b11111
+	return (red, green, blue)
+
+def grab_palettes(address, length = 0x80):
+	output = ''
+	for word in range(length/2):
+		color = ord(rom[address+1])*0x100 + ord(rom[address])
+		address += 2
+		color = hex_to_rgb(color)
+		red = str(color[0]).zfill(2)
+		green = str(color[1]).zfill(2)
+		blue = str(color[2]).zfill(2)
+		output += '\tRGB '+red+', '+green+', '+blue
+		output += '\n'
+	return output
+
+
 if __name__ == "__main__":
 	parser = argparse.ArgumentParser()
 	parser.add_argument('cmd', nargs='?', metavar='cmd', type=str)
@@ -1316,6 +1338,10 @@ if __name__ == "__main__":
 	elif args.cmd == 'un':
 		# python gfx.py un [address] [num_tiles] [filename]
 		get_uncompressed_gfx(int(args.arg1,16), int(args.arg2), args.arg3)
+	
+	elif args.cmd == 'pal':
+		# python gfx.py pal [address] [length]
+		print grab_palettes(int(args.arg1,16), int(args.arg2))
 	
 	else:
 		# python gfx.py
