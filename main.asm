@@ -2771,7 +2771,7 @@ SpecialsPointers: ; 0xc029
 	dbw $01,$7305
 	dbw $01,$737e
 	dbw $01,$73f7
-	dbw $03,$4419
+	dbw BANK(SpecialCheckPokerus),SpecialCheckPokerus
 	dbw $09,$4b25
 	dbw $09,$4b4e
 	dbw $09,$4ae8
@@ -2863,7 +2863,28 @@ SpecialsPointers: ; 0xc029
 	dbw $24,$4a88
 	dbw $03,$4224
 
-INCBIN "baserom.gbc",$c224,$c43d - $c224
+INCBIN "baserom.gbc",$c224,$c3e2 - $c224
+
+ScriptReturnCarry: ; c3e2
+	jr c, .carry
+	xor a
+	ld [ScriptVar], a
+	ret
+.carry
+	ld a, 1
+	ld [ScriptVar], a
+	ret
+; c3ef
+
+INCBIN "baserom.gbc",$c3ef,$c419 - $c3ef
+
+SpecialCheckPokerus: ; c419
+; Check if a monster in your party has Pokerus
+	callba CheckPokerus
+	jp ScriptReturnCarry
+; c422
+
+INCBIN "baserom.gbc",$c422,$c43d - $c422
 
 SpecialSnorlaxAwake: ; 0xc43d
 ; Check if the Poké Flute channel is playing, and if the player is standing
@@ -18653,7 +18674,36 @@ TileTypeTable: ; 4ce1f
 	db $00, $00, $00, $00, $00, $00, $00, $0f
 ; 4cf1f
 
-INCBIN "baserom.gbc",$4cf1f,$50000 - $4cf1f
+INCBIN "baserom.gbc",$4cf1f,$4d860 - $4cf1f
+
+CheckPokerus: ; 4d860
+; Return carry if a monster in your party has Pokerus
+
+; Get number of monsters to iterate over
+	ld a, [PartyCount]
+	and a
+	jr z, .NoPokerus
+	ld b, a
+; Check each monster in the party for Pokerus
+	ld hl, PartyMon1PokerusStatus
+	ld de, PartyMon2 - PartyMon1
+.Check
+	ld a, [hl]
+	and $0f ; only the bottom nybble is used
+	jr nz, .HasPokerus
+; Next PartyMon
+	add hl, de
+	dec b
+	jr nz, .Check
+.NoPokerus
+	and a
+	ret
+.HasPokerus
+	scf
+	ret
+; 4d87a
+
+INCBIN "baserom.gbc",$4d87a,$50000 - $4d87a
 
 SECTION "bank14",DATA,BANK[$14]
 
