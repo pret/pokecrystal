@@ -839,7 +839,7 @@ NPlaceChar: ; 0x101e
 
 INCBIN "baserom.gbc",$1024,$1078 - $1024
 
-PlaceString:
+PlaceString: ; $1078
 	push hl
 PlaceNextChar:
 	ld a, [de]
@@ -18509,7 +18509,72 @@ INCBIN "baserom.gbc",$4cf1f,$50000 - $4cf1f
 
 SECTION "bank14",DATA,BANK[$14]
 
-INCBIN "baserom.gbc",$50000,$5097B-$50000
+INCBIN "baserom.gbc",$50000,$5049a-$50000
+
+PrintPartyMenuText: ; 5049a
+	ld hl, $c5b8
+	ld bc, $0212
+	call $0fe8 ; related to TextBoxBorder
+	ld a, [PartyCount]
+	and a
+	jr nz, .haspokemon
+	ld de, YouHaveNoPKMNString
+	jr .gotstring
+.haspokemon ; 504ae
+	ld a, [PartyMenuActionText]
+	and $f ; drop high nibble
+	ld hl, PartyMenuStrings
+	ld e, a
+	ld d, $0
+	add hl, de
+	add hl, de
+	ld a, [hli]
+	ld d, [hl]
+	ld e, a
+.gotstring ; 504be
+	ld a, [Options]
+	push af
+	set 4, a ; disable text delay
+	ld [Options], a
+	ld hl, $c5e1 ; Coord
+	call PlaceString
+	pop af
+	ld [Options], a
+	ret
+; 0x504d2
+
+PartyMenuStrings: ; 0x504d2
+    dw ChooseAMonString
+    dw UseOnWhichPKMNString
+    dw WhichPKMNString
+    dw TeachWhichPKMNString
+    dw MoveToWhereString
+    dw UseOnWhichPKMNString
+    dw ChooseAMonString ; Probably used to be ChooseAFemalePKMNString
+    dw ChooseAMonString ; Probably used to be ChooseAMalePKMNString
+    dw ToWhichPKMNString
+
+ChooseAMonString: ; 0x504e4
+    db "Choose a #MON.@"
+UseOnWhichPKMNString: ; 0x504f3
+    db "Use on which ", $e1, $e2, "?@"
+WhichPKMNString: ; 0x50504
+    db "Which ", $e1, $e2, "?@"
+TeachWhichPKMNString: ; 0x5050e
+    db "Teach which ", $e1, $e2, "?@"
+MoveToWhereString: ; 0x5051e
+    db "Move to where?@"
+ChooseAFemalePKMNString: ; 0x5052d  ; UNUSED
+    db "Choose a ♀", $e1, $e2, ".@"
+ChooseAMalePKMNString: ; 0x5053b    ; UNUSED
+    db "Choose a ♂", $e1, $e2, ".@"
+ToWhichPKMNString: ; 0x50549
+    db "To which ", $e1, $e2, "?@"
+
+YouHaveNoPKMNString: ; 0x50556
+    db "You have no ", $e1, $e2, "!@"
+
+INCBIN "baserom.gbc",$50566,$5097B-$50566
 
 dw Normal, Fighting, Flying, Poison, Ground, Rock, Bird, Bug, Ghost, Steel
 dw Normal, Normal, Normal, Normal, Normal, Normal, Normal, Normal, Normal
