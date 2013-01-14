@@ -1549,12 +1549,12 @@ class ScriptPointerLabelBeforeBank(PointerLabelBeforeBank): pass
 class ScriptPointerLabelAfterBank(PointerLabelAfterBank): pass
 
 
-def _parse_script_pointer_bytes(self):
+def _parse_script_pointer_bytes(self, debug = False):
     PointerLabelParam.parse(self)
-    print "_parse_script_pointer_bytes - calculating the pointer located at " + hex(self.address)
+    if debug: print "_parse_script_pointer_bytes - calculating the pointer located at " + hex(self.address)
     address = calculate_pointer_from_bytes_at(self.address, bank=self.bank)
     if address != None and address > 0x4000:
-        print "_parse_script_pointer_bytes - the pointer is: " + hex(address)
+        if debug: print "_parse_script_pointer_bytes - the pointer is: " + hex(address)
         self.script = parse_script_engine_script_at(address, debug=self.debug, force=self.force, map_group=self.map_group, map_id=self.map_id)
 ScriptPointerLabelParam.parse = _parse_script_pointer_bytes
 ScriptPointerLabelBeforeBank.parse = _parse_script_pointer_bytes
@@ -3160,12 +3160,12 @@ class Script:
         """
         global command_classes, rom, script_parse_table
         current_address = start_address
-        print "Script.parse address="+hex(self.address) +" map_group="+str(map_group)+" map_id="+str(map_id)
+        if debug: print "Script.parse address="+hex(self.address) +" map_group="+str(map_group)+" map_id="+str(map_id)
         if start_address in stop_points and force == False:
-            print "script parsing is stopping at stop_point=" + hex(start_address) + " at map_group="+str(map_group)+" map_id="+str(map_id)
+            if debug: print "script parsing is stopping at stop_point=" + hex(start_address) + " at map_group="+str(map_group)+" map_id="+str(map_id)
             return None
         if start_address < 0x4000 and start_address not in [0x26ef, 0x114, 0x1108]:
-            print "address is less than 0x4000.. address is: " + hex(start_address)
+            if debug: print "address is less than 0x4000.. address is: " + hex(start_address)
             sys.exit(1)
         if is_script_already_parsed_at(start_address) and not force and not force_top:
             raise Exception, "this script has already been parsed before, please use that instance ("+hex(start_address)+")"
@@ -3198,7 +3198,7 @@ class Script:
             # no matching command found (not implemented yet)- just end this script
             # NOTE: might be better to raise an exception and end the program?
             if scripting_command_class == None:
-                print "parsing script; current_address is: " + hex(current_address)
+                if debug: print "parsing script; current_address is: " + hex(current_address)
                 current_address += 1
                 asm_output = "\n".join([command.to_asm() for command in commands])
                 end = True
@@ -3231,7 +3231,7 @@ class Script:
         script_parse_table[start_address:current_address] = self
 
         asm_output = "\n".join([command.to_asm() for command in commands])
-        print "--------------\n"+asm_output
+        if debug: print "--------------\n"+asm_output
 
         # store the script
         self.commands = commands
