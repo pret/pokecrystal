@@ -5,6 +5,11 @@ dwb: MACRO
 	db \2
 	ENDM
 
+dbw: MACRO
+	db \1
+	dw \2
+	ENDM
+
 dn: MACRO
 	db \1 << 4 + \2
 	ENDM

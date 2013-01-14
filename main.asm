@@ -3174,8 +3174,112 @@ BoxNameInputUpper:
 	db "- ? ! ♂ ♀ / . , &"
 	db "lower  DEL   END "
 
+INCBIN "baserom.gbc",$11e5d,$12976 - $11e5d
 
-INCBIN "baserom.gbc",$11e5d,$14000 - $11e5d
+OpenPartyMenu: ; $12976
+	ld a, [PartyCount]
+	and a
+	jr z, .return ; no pokémon in party
+	call $2b29 ; fade in?
+.choosemenu ; 1297f
+	xor a
+	ld [PartyMenuActionText], a ; Choose a POKéMON.
+	call $31f3 ; this is also a predef/special, something with delayframe
+.menu ; 12986
+	ld a, $14
+	ld hl, $404f
+	rst $8 ; load gfx
+	ld a, $14
+	ld hl, $4405
+	rst $8 ; setup menu?
+	ld a, $14
+	ld hl, $43e0
+	rst $8 ; load menu pokémon sprites
+.menunoreload ; 12998
+	ld a, BANK(WritePartyMenuTilemap)
+	ld hl, WritePartyMenuTilemap
+	rst $8
+	ld a, BANK(PrintPartyMenuText)
+	ld hl, PrintPartyMenuText
+	rst $8
+	call $31f6
+	call $32f9 ; load regular palettes?
+	call DelayFrame
+	ld a, BANK(PartyMenuSelect)
+	ld hl, PartyMenuSelect
+	rst $8
+	jr c, .return ; if cancelled or pressed B
+	call PokemonActionSubmenu
+	cp $3
+	jr z, .menu
+	cp $0
+	jr z, .choosemenu
+	cp $1
+	jr z, .menunoreload
+	cp $2
+	jr z, .quit
+.return ; 129c8
+	call $2b3c
+	ld a, $0
+	ret
+.quit ; 129ce
+	ld a, b
+	push af
+	call $2b4d
+	pop af
+	ret
+; 0x129d5
+
+INCBIN "baserom.gbc",$129d5,$12a88 - $129d5
+
+PokemonActionSubmenu ; 0x12a88
+	ld hl, $c5cd ; coord
+	ld bc, $0212 ; box size
+	call $0fb6 ; draw box
+	ld a, $9
+	ld hl, $4d19
+	rst $8
+	call $389c
+	ld a, [$cf74] ; menu selection?
+	ld hl, PokemonSubmenuActionPointerTable
+	ld de, $0003 ; skip 3 bytes each time
+	call IsInArray
+	jr nc, .nothing
+	inc hl
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	jp [hl]
+.nothing
+	ld a, $0
+	ret
+; 0x12ab0
+
+PokemonSubmenuActionPointerTable: ; 0x12ab0
+    dbw $01, $6e1b
+    dbw $02, $6e30
+    dbw $03, $6ebd
+    dbw $04, $6e6a
+    dbw $06, $6e55
+    dbw $07, $6e7f
+    dbw $08, $6ed1
+    dbw $09, $6ea9
+    dbw $0a, $6ee6
+    dbw $0d, $6ee6
+    dbw $0b, $6f26
+    dbw $05, $6e94
+    dbw $0c, $6f3b
+    dbw $0e, $6f50
+    dbw $0f, $6e00 ; stats
+    dbw $10, $6aec ; switch
+    dbw $11, $6b60 ; item
+    dbw $12, $6a79
+    dbw $13, $6fba ; move
+    dbw $14, $6d45 ; mail
+; no terminator?
+; 0x12aec
+
+INCBIN "baserom.gbc",$12aec,$14000 - $12aec
 
 SECTION "bank5",DATA,BANK[$5]
 
@@ -18509,7 +18613,74 @@ INCBIN "baserom.gbc",$4cf1f,$50000 - $4cf1f
 
 SECTION "bank14",DATA,BANK[$14]
 
-INCBIN "baserom.gbc",$50000,$5049a-$50000
+INCBIN "baserom.gbc",$50000,$5005f-$50000
+
+WritePartyMenuTilemap: ; 0x5005f
+	ld hl, Options
+	ld a, [hl]
+	push af
+	set 4, [hl] ; Disable text delay
+	xor a
+	ld [$ffd4], a
+	ld hl, TileMap
+	ld bc, $0168
+	ld a, " "
+	call $3041 ; blank the tilemap
+	call $4396 ; This reads from a pointer table???
+.asm_50077
+	ld a, [hli]
+	cp $ff
+	jr z, .asm_50084 ; 0x5007a $8
+	push hl
+	ld hl, $4089
+	rst $28
+	pop hl
+	jr .asm_50077 ; 0x50082 $f3
+.asm_50084
+	pop af
+	ld [Options], a
+	ret
+; 0x50089
+
+INCBIN "baserom.gbc",$50089,$50457-$50089
+
+PartyMenuSelect: ; 0x50457
+; sets carry if exitted menu.
+	call $1bc9
+	call $1bee
+	ld a, [PartyCount]
+	inc a
+	ld b, a
+	ld a, [$cfa9] ; menu selection?
+	cp b
+	jr z, .exitmenu ; CANCEL
+	ld [$d0d8], a
+	ld a, [$ffa9]
+	ld b, a
+	bit 1, b
+	jr nz, .exitmenu ; B button?
+	ld a, [$cfa9]
+	dec a
+	ld [CurPartyMon], a
+	ld c, a
+	ld b, $0
+	ld hl, PartySpecies
+	add hl, bc
+	ld a, [hl]
+	ld [CurPartySpecies], a
+	ld de, $0008
+	call StartSFX
+	call WaitSFX
+	and a
+	ret
+.exitmenu
+	ld de, $0008
+	call StartSFX
+	call WaitSFX
+	scf
+	ret
+; 0x5049a
+
 
 PrintPartyMenuText: ; 5049a
 	ld hl, $c5b8
