@@ -84910,7 +84910,298 @@ INCBIN "baserom.gbc",$B83E5,$bc000 - $b83e5
 
 SECTION "bank2F",DATA,BANK[$2F]
 
-INCBIN "baserom.gbc",$BC000,$4000
+INCBIN "baserom.gbc",$bc000,$bcea5-$bc000
+
+UnusedPhoneScript: ; 0xbcea5
+	3writetext BANK(UnusedPhoneText), UnusedPhoneText
+	end
+
+MomPhoneScript: ; 0xbceaa
+	checkbit1 $0040
+	iftrue .bcec5
+	checkbit1 $0041 ; if dude talked to you, then you left home without talking to mom
+	iftrue MomPhoneLectureScript
+	checkbit1 $001f
+	iftrue MomPhoneNoGymQuestScript
+	checkbit1 $001a
+	iftrue MomPhoneNoPokedexScript
+	2jump MomPhoneNoPokemonScript
+
+.bcec5 ; 0xbcec5
+	checkbit1 $0007
+	iftrue MomPhoneHangUpScript
+	3writetext BANK(MomPhoneGreetingText), MomPhoneGreetingText
+	keeptextopen
+	mapnametotext $0
+	checkcode $f
+	if_equal $1, UnknownScript_0xbcee7
+	if_equal $2, $4f27
+	2jump UnknownScript_0xbcf2f
+
+UnknownScript_0xbcedf: ; 0xbcedf
+	3writetext $6d, $4021
+	keeptextopen
+	2jump UnknownScript_0xbcf37
+
+UnknownScript_0xbcee7: ; 0xbcee7
+	checkcode $c
+	if_equal GROUP_NEW_BARK_TOWN, .newbark
+	if_equal GROUP_CHERRYGROVE_CITY, .cherrygrove
+	if_equal GROUP_VIOLET_CITY, .violet
+	if_equal GROUP_AZALEA_TOWN, .azalea
+	if_equal GROUP_GOLDENROD_CITY, .goldenrod
+	3writetext BANK(MomPhoneGenericAreaText), MomPhoneGenericAreaText
+	keeptextopen
+	2jump UnknownScript_0xbcf37
+
+.newbark ; 0xbcf05
+	3writetext BANK(MomPhoneNewBarkText), MomPhoneNewBarkText
+	keeptextopen
+	2jump UnknownScript_0xbcf37
+
+.cherrygrove ; 0xbcf0d
+	3writetext BANK(MomPhoneCherrygroveText), MomPhoneCherrygroveText
+	keeptextopen
+	2jump UnknownScript_0xbcf37
+
+.violet ; 0xbcf15
+	displaylocation $7 ; sprout tower
+	3call $3,$4edf
+.azalea ; 0xbcf1b
+	displaylocation $d ; slowpoke well
+	3call $3,$4edf
+.goldenrod ; 0xbcf21
+	displaylocation $11 ; radio tower
+	3call $3,$4edf
+	3writetext $6d, $411c
+	keeptextopen
+	2jump UnknownScript_0xbcf37
+
+UnknownScript_0xbcf2f: ; 0xbcf2f
+	3writetext $6d, $4150
+	keeptextopen
+	2jump UnknownScript_0xbcf37
+
+UnknownScript_0xbcf37: ; 0xbcf37
+	checkbit2 $0008
+	iffalse UnknownScript_0xbcf49
+	checkmoney $1, 0
+	if_equal $0, UnknownScript_0xbcf55
+	2jump UnknownScript_0xbcf63
+
+UnknownScript_0xbcf49: ; 0xbcf49
+	checkmoney $1, 0
+	if_equal $0, UnknownScript_0xbcf79
+	2jump UnknownScript_0xbcf6e
+
+UnknownScript_0xbcf55: ; 0xbcf55
+	readmoney $1, $0
+	3writetext $6d, $41a7
+	yesorno
+	iftrue MomPhoneSaveMoneyScript
+	2jump MomPhoneWontSaveMoneyScript
+
+UnknownScript_0xbcf63: ; 0xbcf63
+	3writetext $6d, $41ea
+	yesorno
+	iftrue MomPhoneSaveMoneyScript
+	2jump MomPhoneWontSaveMoneyScript
+
+UnknownScript_0xbcf6e: ; 0xbcf6e
+	3writetext $6d, $420d
+	yesorno
+	iftrue MomPhoneSaveMoneyScript
+	2jump MomPhoneWontSaveMoneyScript
+
+UnknownScript_0xbcf79: ; 0xbcf79
+	readmoney $1, $0
+	3writetext $6d, $4249
+	yesorno
+	iftrue MomPhoneSaveMoneyScript
+	2jump MomPhoneWontSaveMoneyScript
+
+MomPhoneSaveMoneyScript: ; 0xbcf87
+	setbit2 $0008
+	3writetext $6d, $4289
+	keeptextopen
+	2jump MomPhoneHangUpScript
+
+MomPhoneWontSaveMoneyScript: ; 0xbcf92
+	clearbit2 $0008
+	3writetext BANK(MomPhoneWontSaveMoneyText), MomPhoneWontSaveMoneyText
+	keeptextopen
+	2jump MomPhoneHangUpScript
+
+MomPhoneHangUpScript: ; 0xbcf9d
+	3writetext BANK(MomPhoneHangUpText), MomPhoneHangUpText
+	end
+
+MomPhoneNoPokemonScript: ; 0xbcfa2
+	3writetext BANK(MomPhoneNoPokemonText), MomPhoneNoPokemonText
+	end
+
+MomPhoneNoPokedexScript: ; 0xbcfa7
+	3writetext BANK(MomPhoneNoPokedexText), MomPhoneNoPokedexText
+	end
+
+MomPhoneNoGymQuestScript: ; 0xbcfac
+	3writetext BANK(MomPhoneNoGymQuestText), MomPhoneNoGymQuestText
+	end
+
+MomPhoneLectureScript: ; 0xbcfb1
+	setbit1 $0040
+	setbit2 $0009
+	specialphonecall $0000
+	3writetext BANK(MomPhoneLectureText), MomPhoneLectureText
+	yesorno
+	iftrue MomPhoneSaveMoneyScript
+	2jump MomPhoneWontSaveMoneyScript
+
+BillPhoneScript1: ; 0xbcfc5
+	checktime $2
+	iftrue .daygreet
+	checktime $4
+	iftrue .nitegreet
+	3writetext BANK(BillPhoneMornGreetingText), BillPhoneMornGreetingText
+	keeptextopen
+	2jump .main
+
+.daygreet ; 0xbcfd7
+	3writetext BANK(BillPhoneDayGreetingText), BillPhoneDayGreetingText
+	keeptextopen
+	2jump .main
+
+.nitegreet ; 0xbcfdf
+	3writetext BANK(BillPhoneNiteGreetingText), BillPhoneNiteGreetingText
+	keeptextopen
+	2jump .main
+
+.main ; 0xbcfe7
+	3writetext BANK(BillPhoneGeneriText), BillPhoneGeneriText
+	keeptextopen
+	checkcode $10
+	RAM2MEM $0
+	if_equal $0, .full
+	if_greater_than $6, .nearlyfull
+	3writetext BANK(BillPhoneNotFullText), BillPhoneNotFullText
+	end
+
+.nearlyfull ; 0xbcffd
+	3writetext BANK(BillPhoneNearlyFullText), BillPhoneNearlyFullText
+	end
+
+.full ; 0xbd002
+	3writetext BANK(BillPhoneFullText), BillPhoneFullText
+	end
+
+BillPhoneScript2: ; 0xbd007
+	3writetext BANK(BillPhoneNewlyFullText), BillPhoneNewlyFullText
+	closetext
+	end
+
+ElmPhoneScript1: ; 0xbd00d
+	checkcode $14
+	if_equal $1, .pokerus
+	checkbit1 $0055
+	iftrue .discovery
+	checkbit1 $002d
+	iffalse .next
+	checkbit1 $0054
+	iftrue .egghatched
+.next
+	checkbit1 $002d
+	iftrue .eggunhatched
+	checkbit1 $0701
+	iftrue .assistant
+	checkbit1 $001f
+	iftrue .checkingegg
+	checkbit1 $0043
+	iftrue .stolen
+	checkbit1 $001e
+	iftrue .sawmrpokemon
+	3writetext BANK(ElmPhoneStartText), ElmPhoneStartText
+	end
+
+.sawmrpokemon ; 0xbd048
+	3writetext BANK(ElmPhoneSawMrPokemonText), ElmPhoneSawMrPokemonText
+	end
+
+.stolen ; 0xbd04d
+	3writetext BANK(ElmPhonePokemonStolenText), ElmPhonePokemonStolenText
+	end
+
+.checkingegg ; 0xbd052
+	3writetext BANK(ElmPhoneCheckingEggText), ElmPhoneCheckingEggText
+	end
+
+.assistant ; 0xbd057
+	3writetext BANK(ElmPhoneAssistantText), ElmPhoneAssistantText
+	end
+
+.eggunhatched ; 0xbd05c
+	3writetext BANK(ElmPhoneEggUnhatchedText), ElmPhoneEggUnhatchedText
+	end
+
+.egghatched ; 0xbd061
+	3writetext BANK(ElmPhoneEggHatchedText), ElmPhoneEggHatchedText
+	setbit1 $0077
+	end
+
+.discovery ; 0xbd069
+	random $2
+	if_equal $0, .nextdiscovery
+	3writetext BANK(ElmPhoneDiscovery1Text), ElmPhoneDiscovery1Text
+	end
+
+.nextdiscovery ; 0xbd074
+	3writetext BANK(ElmPhoneDiscovery2Text), ElmPhoneDiscovery2Text
+	end
+
+.pokerus ; 0xbd079
+	3writetext BANK(ElmPhonePokerusText), ElmPhonePokerusText
+	specialphonecall $0000
+	end
+
+ElmPhoneScript2: ; 0xbd081
+	checkcode $14
+	if_equal $2, .disaster
+	if_equal $3, .assistant
+	if_equal $4, .rocket
+	if_equal $5, .gift
+	if_equal $8, .gift
+	3writetext BANK(ElmPhonePokerusText), ElmPhonePokerusText
+	specialphonecall $0000
+	end
+
+.disaster ; 0xbd09f
+	3writetext BANK(ElmPhoneDisasterText), ElmPhoneDisasterText
+	specialphonecall $0000
+	setbit1 $0043
+	end
+
+.assistant ; 0xbd0aa
+	3writetext BANK(ElmPhoneEggAssistantText), ElmPhoneEggAssistantText
+	specialphonecall $0000
+	clearbit1 $0700
+	setbit1 $0701
+	end
+
+.rocket ; 0xbd0b8
+	3writetext BANK(ElmPhoneRocketText), ElmPhoneRocketText
+	specialphonecall $0000
+	end
+
+.gift ; 0xbd0c0
+	3writetext BANK(ElmPhoneGiftText), ElmPhoneGiftText
+	specialphonecall $0000
+	end
+
+.unused ; 0xbd0c8
+	3writetext BANK(ElmPhoneUnusedText), ElmPhoneUnusedText
+	specialphonecall $0000
+	end
+
+INCBIN "baserom.gbc",$bd0d0,$c0000-$bd0fa
 
 SECTION "bank30",DATA,BANK[$30]
 
@@ -131701,7 +131992,10 @@ Route10North_MapEventHeader: ; 0x1b2099
 
 SECTION "bank6D",DATA,BANK[$6D]
 
-INCBIN "baserom.gbc",$1B4000,$4000
+INCLUDE "text/phone/mom.tx"
+INCLUDE "text/phone/bill.tx"
+INCLUDE "text/phone/elm.tx"
+INCLUDE "text/phone/trainers1.tx"
 
 SECTION "bank6E",DATA,BANK[$6E]
 

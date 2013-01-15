@@ -25,6 +25,11 @@ callba: MACRO
 	rst $08
 	ENDM
 
+TX_RAM: MACRO
+	db 1
+	dw \1
+	ENDM
+
 TX_FAR: MACRO
 	db $16
 	dw \1
