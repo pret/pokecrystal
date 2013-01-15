@@ -69,23 +69,6 @@ import re
 trainer_group_pointer_table_address    = 0x39999
 trainer_group_pointer_table_address_gs = 0x3993E
 
-class Size():
-    """a simple way to track whether or not a size
-    includes the first value or not, like for
-    whether or not the size of a command in a script
-    also includes the command byte or not"""
-
-    def __init__(self, size, inclusive=False):
-        self.inclusive = inclusive
-        if inclusive: size = size-1
-        self.size = size
-
-    def inclusive(self):
-        return self.size + 1
-
-    def exclusive(self):
-        return self.size
-
 from interval_map import IntervalMap
 
 # ---- script_parse_table explanation ----
