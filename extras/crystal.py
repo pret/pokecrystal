@@ -2817,6 +2817,7 @@ pksv_crystal_more = {
     0x4F: ["loadmenudata", ["data", MenuDataPointerParam]],
     0x50: ["writebackup"],
     0x51: ["jumptextfaceplayer", ["text_pointer", RawTextPointerLabelParam]],
+    0x52: ["3jumptext", ["text_pointer", PointerLabelBeforeBank]],
     0x53: ["jumptext", ["text_pointer", RawTextPointerLabelParam]],
     0x54: ["closetext"],
     0x55: ["keeptextopen"],
