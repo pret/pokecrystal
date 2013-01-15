@@ -6,14 +6,14 @@ import subprocess
 from new import classobj
 import random
 
+# for capwords
+import string
+
 # for testing all this crap
 try:
     import unittest2 as unittest
 except ImportError:
     import unittest
-
-# for capwords
-import string
 
 # Check for things we need in unittest.
 if not hasattr(unittest.TestCase, 'setUpClass'):
@@ -26,6 +26,14 @@ if not hasattr(json, "dumps"):
 # New versions of json don't have read anymore.
 if not hasattr(json, "read"):
     json.read = json.loads
+
+from labels import (
+    remove_quoted_text,
+    line_has_comment_address,
+    line_has_label,
+    get_label_from_line,
+    get_address_from_line_comment
+)
 
 spacing = "\t"
 
@@ -70,6 +78,13 @@ trainer_group_pointer_table_address    = 0x39999
 trainer_group_pointer_table_address_gs = 0x3993E
 
 from interval_map import IntervalMap
+
+from pksv import (
+    pksv_gs,
+    pksv_crystal,
+    pksv_crystal_unknowns,
+    pksv_crystal_more_enders
+)
 
 # ---- script_parse_table explanation ----
 # This is an IntervalMap that keeps track of previously parsed scripts, texts
@@ -225,6 +240,28 @@ def clean_up_long_info(long_info):
             new_lines.append(line)
         long_info = "\n".join(new_lines)
     return long_info
+
+from pokemon_constants import pokemon_constants
+
+def get_pokemon_constant_by_id(id):
+    if id == 0: return None
+    return pokemon_constants[id]
+
+from item_constants import item_constants
+
+def find_item_label_by_id(id):
+    if id in item_constants.keys():
+        return item_constants[id]
+    else: return None
+
+def generate_item_constants():
+    """make a list of items to put in constants.asm"""
+    output = ""
+    for (id, item) in item_constants.items():
+        val = ("$%.2x"%id).upper()
+        while len(item)<13: item+= " "
+        output += item + " EQU " + val + "\n"
+    return output
 
 def command_debug_information(command_byte=None, map_group=None, map_id=None, address=0, info=None, long_info=None, pksv_name=None):
     "used to help debug in parse_script_engine_script_at"
@@ -1145,31 +1182,9 @@ def transform_wildmons(asm):
             returnlines.append(line)
     return "\n".join(returnlines)
 
-from pokemon_constants import pokemon_constants
-
-def get_pokemon_constant_by_id(id):
-    if id == 0: return None
-    return pokemon_constants[id]
-
 def parse_script_asm_at(*args, **kwargs):
     # XXX TODO
     return None
-
-from item_constants import item_constants
-
-def find_item_label_by_id(id):
-    if id in item_constants.keys():
-        return item_constants[id]
-    else: return None
-
-def generate_item_constants():
-    """make a list of items to put in constants.asm"""
-    output = ""
-    for (id, item) in item_constants.items():
-        val = ("$%.2x"%id).upper()
-        while len(item)<13: item+= " "
-        output += item + " EQU " + val + "\n"
-    return output
 
 def find_all_text_pointers_in_script_engine_script(script, bank=None, debug=False):
     """returns a list of text pointers
@@ -1217,9 +1232,6 @@ def translate_command_byte(crystal=None, gold=None):
         if 0x9E <= gold <= 0xA3: return gold+2
         if gold > 0xA3: raise Exception, "dunno yet if crystal has new insertions after gold:0xA3 (crystal:0xA5)"
     else: raise Exception, "translate_command_byte needs either a crystal or gold command"
-
-from pksv import pksv_gs, pksv_crystal, pksv_crystal_unknowns,\
-                 pksv_crystal_more_enders
 
 class SingleByteParam():
     """or SingleByte(CommandParam)"""
@@ -7668,10 +7680,6 @@ class Label:
         object = self.object
         name = object.make_label()
         return name
-
-from labels import remove_quoted_text, line_has_comment_address, \
-                   line_has_label, get_label_from_line, \
-                   get_address_from_line_comment
 
 def find_labels_without_addresses():
     """scans the asm source and finds labels that are unmarked"""
