@@ -84910,7 +84910,130 @@ INCBIN "baserom.gbc",$B83E5,$bc000 - $b83e5
 
 SECTION "bank2F",DATA,BANK[$2F]
 
-INCBIN "baserom.gbc",$BC000,$4000
+INCBIN "baserom.gbc",$bc000,$bc09c - $bc000
+
+PokeCenterNurseScript: ; bc09c
+; Talking to a nurse in a Pokemon Center
+
+	loadfont
+; The nurse has different text for:
+; Morn
+	checktime $1
+	iftrue .morn
+; Day
+	checktime $2
+	iftrue .day
+; Nite
+	checktime $4
+	iftrue .nite
+; If somehow it's not a time of day at all, we skip the introduction
+	2jump .heal
+
+.morn
+; Different text if we're in the com center
+	checkbit1 $032a
+	iftrue .morn_comcenter
+	3writetext $6c, $4000 ; Good morning! Welcome to ...
+	keeptextopen
+	2jump .heal
+.morn_comcenter
+	3writetext $6c, $408a ; Good morning! This is the ...
+	keeptextopen
+	2jump .heal
+
+.day
+; Different text if we're in the com center
+	checkbit1 $032a
+	iftrue .day_comcenter
+	3writetext $6c, $402b ; Hello! Welcome to ...
+	keeptextopen
+	2jump .heal
+.day_comcenter
+	3writetext $6c, $40d6 ; Hello! This is the ...
+	keeptextopen
+	2jump .heal
+
+.nite
+; Different text if we're in the com center
+	checkbit1 $032a
+	iftrue .nite_comcenter
+	3writetext $6c, $404f ; Good evening! You're out late. ...
+	keeptextopen
+	2jump .heal
+.nite_comcenter
+	3writetext $6c, $411b ; Good to see you working so late. ...
+	keeptextopen
+	2jump .heal
+
+.heal
+; If we come back, don't welcome us to the com center again
+	clearbit1 $032a
+; Ask if you want to heal
+	3writetext $6c, $417a
+	yesorno
+	iffalse .end
+; Go ahead and heal
+	3writetext $6c, $41bd
+	pause 20
+	special $009d
+; Turn to the machine
+	spriteface $fe, $2
+	pause 10
+	special $001b
+	playmusic $0000
+	writebyte $0
+	special $003e
+	pause 30
+	special $003d
+	spriteface $fe, $0
+	pause 10
+; Has Elm already phoned you about Pokerus?
+	checkphonecall
+	iftrue .done
+; Has Pokerus already been found in the Pokecenter?
+	checkbit2 $000d
+	iftrue .done
+; Check for Pokerus
+	special $004e ; SPECIAL_CHECKPOKERUS
+	iftrue .pokerus
+.done
+	3writetext $6c, $41d7 ; Thank you for waiting. ...
+	pause 20
+.end
+	3writetext $6c, $420b ; We hope to see you again.
+; Curtsy
+	spriteface $fe, $1
+	pause 10
+	spriteface $fe, $0
+	pause 10
+; And we're out
+	closetext
+	loadmovesprites
+	end
+
+.pokerus
+; Different text for com center (excludes 'in a Pokemon Center')
+; Since flag $32a is cleared when healing,
+; this text is never actually seen
+	checkbit1 $032a
+	iftrue .pokerus_comcenter
+	3writetext $6c, $4241 ; Your Pokemon appear to be infected
+	closetext
+	loadmovesprites
+	2jump .endpokerus
+.pokerus_comcenter
+	3writetext $6c, $42d6 ; Your Pokemon appear to be infected
+	closetext
+	loadmovesprites
+.endpokerus
+; Don't tell us about Pokerus again
+	setbit2 $000d
+; Trigger Elm's Pokerus phone call
+	specialphonecall $0001
+	end
+; bc162
+
+INCBIN "baserom.gbc",$bc162,$c0000 - $bc162
 
 SECTION "bank30",DATA,BANK[$30]
 
