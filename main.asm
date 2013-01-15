@@ -1477,7 +1477,12 @@ CloseSRAM: ; 2fe1
 	ret
 ; 2fef
 
-INCBIN "baserom.gbc",$2fec,$3026-$2fec
+CallHL: ; 2fef 
+; Exactly what it says on the tin.
+    jp [hl]
+; 0x2fed
+
+INCBIN "baserom.gbc",$2fed,$3026-$2fed
 
 CopyBytes: ; 0x3026
 ; copy bc bytes from hl to de
@@ -2456,7 +2461,7 @@ PredefPointers: ; 856b
 	dwb $4cdb, $14
 	dwb $4c50, $14
 	dwb $4bdd, $14
-	dwb $5c8a, $13
+	dwb StatsScreenInit, BANK(StatsScreenInit) ; stats screen
 	dwb $4b0a, $14
 	dwb $4b0e, $14
 	dwb $4b7b, $14
@@ -3270,7 +3275,7 @@ PokemonSubmenuActionPointerTable: ; 0x12ab0
     dbw $05, $6e94
     dbw $0c, $6f3b
     dbw $0e, $6f50
-    dbw $0f, $6e00 ; stats
+    dbw $0f, OpenPartyStats ; stats
     dbw $10, $6aec ; switch
     dbw $11, $6b60 ; item
     dbw $12, $6a79
@@ -3279,7 +3284,24 @@ PokemonSubmenuActionPointerTable: ; 0x12ab0
 ; no terminator?
 ; 0x12aec
 
-INCBIN "baserom.gbc",$12aec,$14000 - $12aec
+INCBIN "baserom.gbc",$12aec,$12e00 - $12aec
+
+OpenPartyStats: ; 12e00
+	call $1d6e
+	call $300b
+	xor a
+	ld [MonType], a ; partymon
+	call LowVolume
+	ld a, $25
+	call Predef
+	call MaxVolume
+	call $1d7d
+	ld a, $0
+	ret
+; 0x12e1b
+
+INCBIN "baserom.gbc",$12e1b,$14000 - $12e1b
+
 
 SECTION "bank5",DATA,BANK[$5]
 
@@ -18609,7 +18631,84 @@ TileTypeTable: ; 4ce1f
 	db $00, $00, $00, $00, $00, $00, $00, $0f
 ; 4cf1f
 
-INCBIN "baserom.gbc",$4cf1f,$50000 - $4cf1f
+INCBIN "baserom.gbc",$4cf1f,$4dc8a - $4cf1f
+
+StatsScreenInit: ; 4dc8a
+	ld hl, $5cd2
+	jr .gotaddress
+	ld hl, $5cf7
+	jr .gotaddress
+.gotaddress
+	ld a, [$ffde]
+	push af
+	xor a
+	ld [$ffde], a ; disable overworld tile animations
+	ld a, [$c2c6] ; whether sprite is to be mirrorred
+	push af
+	ld a, [$cf63]
+	ld b, a
+	ld a, [$cf64]
+	ld c, a
+	push bc
+	push hl
+	call $31f3
+	call $0fc8
+	call $1ad2
+	ld a, $3e
+	ld hl, $753e
+	rst $8 ; this loads graphics
+	pop hl
+	call CallHL
+	call $31f3
+	call $0fc8
+	pop bc
+	; restore old values
+	ld a, b
+	ld [$cf63], a
+	ld a, c
+	ld [$cf64], a
+	pop af
+	ld [$c2c6], a
+	pop af
+	ld [$ffde], a
+	ret
+; 0x4dcd2
+
+StatsScreenMain: ; 0x4dcd2
+	xor a
+	ld [$cf63], a
+	ld [$cf64], a
+	ld a, [$cf64]
+	and $fc
+	or $1
+	ld [$cf64], a
+.loop ; 4dce3
+	ld a, [$cf63]
+	and $7f
+	ld hl, StatsScreenPointerTable
+	rst $28
+	call $5d3a ; check for keys?
+	ld a, [$cf63]
+	bit 7, a
+	jr z, .loop
+	ret
+; 0x4dcf7
+
+INCBIN "baserom.gbc",$4dcf7,$4dd2a - $4dcf7
+
+StatsScreenPointerTable: ; 4dd2a
+    dw $5d72 ; regular pokémon
+    dw $5da1 ; egg
+    dw $5de6
+    dw $5dac
+    dw $5dc6
+    dw $5de6
+    dw $5dd6
+    dw $5d6c
+
+; 4dd3a
+
+INCBIN "baserom.gbc",$4dd3a,$50000 - $4dd3a
 
 SECTION "bank14",DATA,BANK[$14]
 
