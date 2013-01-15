@@ -1556,5 +1556,5 @@ UnknownText_0x1b75e5: ; 0x1b75e5
 	db $0, " is", $55
 	db "looking good!", $57
 
-UnknownText_0x1b7624: ; 0x1b7624
+UnusedPhoneText: ; 0x1b7624
 	db $0, "Good morning.", $57

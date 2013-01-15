@@ -1,32 +1,32 @@
-UnknownText_0x1b4427: ; 0x1b4427
+BillPhoneMornGreetingText: ; 0x1b4427
 	db $0, "Good morning!", $51
 	db "This is the #-", $4f
 	db "MON STORAGE SYSTEM", $51
 	db "ADMINISTRATION", $4f
 	db "SERVICE.", $57
 
-UnknownText_0x1b4470: ; 0x1b4470
+BillPhoneDayGreetingText: ; 0x1b4470
 	db $0, "Good day!", $51
 	db "This is the #-", $4f
 	db "MON STORAGE SYSTEM", $51
 	db "ADMINISTRATION", $4f
 	db "SERVICE.", $57
 
-UnknownText_0x1b44b5: ; 0x1b44b5
+BillPhoneNiteGreetingText: ; 0x1b44b5
 	db $0, "Good evening!", $51
 	db "This is the #-", $4f
 	db "MON STORAGE SYSTEM", $51
 	db "ADMINISTRATION", $4f
 	db "SERVICE.", $57
 
-UnknownText_0x1b44fe: ; 0x1b44fe
+BillPhoneGeneriText: ; 0x1b44fe
 	db $0, "Who's calling?", $51
 	db $14, ", is it?", $4f
 	db "Hang on a sec…", $51
 	db $56, $4f
 	db $56, $57
 
-UnknownText_0x1b452a: ; 0x1b452a
+BillPhoneNotFullText: ; 0x1b452a
 	db $0, "Thanks for", $4f
 	db "waiting!", $51
 	db $14, ", your BOX", $4f
@@ -37,7 +37,7 @@ UnknownText_0x1b452a: ; 0x1b452a
 	db "Get out there and", $4f
 	db "fill it up!", $57
 
-UnknownText_0x1b4587: ; 0x1b4587
+BillPhoneNearlyFullText: ; 0x1b4587
 	db $0, "Thanks for", $4f
 	db "waiting!", $51
 	db $14, ", your BOX", $4f
@@ -48,7 +48,7 @@ UnknownText_0x1b4587: ; 0x1b4587
 	db "Maybe you should", $4f
 	db "switch your BOX.", $57
 
-UnknownText_0x1b45ed: ; 0x1b45ed
+BillPhoneFullText: ; 0x1b45ed
 	db $0, "Thanks for", $4f
 	db "waiting!", $51
 	db $14, ", your BOX", $4f
@@ -58,7 +58,7 @@ UnknownText_0x1b45ed: ; 0x1b45ed
 	db "you want to catch", $4f
 	db "more #MON.", $57
 
-UnknownText_0x1b4652: ; 0x1b4652
+BillPhoneNewlyFullText: ; 0x1b4652
 	db $0, "Hi, ", $14, "?", $4f
 	db "It's me, BILL!", $51
 	db "Thanks for using", $4f
