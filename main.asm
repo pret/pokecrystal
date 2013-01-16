@@ -18634,7 +18634,7 @@ TileTypeTable: ; 4ce1f
 INCBIN "baserom.gbc",$4cf1f,$4dc8a - $4cf1f
 
 StatsScreenInit: ; 4dc8a
-	ld hl, $5cd2
+	ld hl, StatsScreenMain
 	jr .gotaddress
 	ld hl, $5cf7
 	jr .gotaddress
@@ -18698,7 +18698,7 @@ INCBIN "baserom.gbc",$4dcf7,$4dd2a - $4dcf7
 
 StatsScreenPointerTable: ; 4dd2a
     dw $5d72 ; regular pokémon
-    dw $5da1 ; egg
+    dw EggStatsInit ; egg
     dw $5de6
     dw $5dac
     dw $5dc6
@@ -18708,7 +18708,103 @@ StatsScreenPointerTable: ; 4dd2a
 
 ; 4dd3a
 
-INCBIN "baserom.gbc",$4dd3a,$50000 - $4dd3a
+INCBIN "baserom.gbc",$4dd3a,$4dda1 - $4dd3a
+
+EggStatsInit: ; 4dda1
+	call EggStatsScreen
+	ld a, [$cf63]
+	inc a
+	ld [$cf63], a
+	ret
+; 0x4ddac
+
+INCBIN "baserom.gbc",$4ddac,$4e21e - $4ddac
+
+IDNoString: ; 4e21e
+    db $73, "№.@"
+
+OTString: ; 4e222
+    db "OT/@"
+; 4e226
+
+INCBIN "baserom.gbc",$4e226,$4e33a - $4e226
+
+EggStatsScreen: ; 4e33a
+	xor a
+	ld [$ffd4], a
+	ld hl, $cda1
+	call $334e ; SetHPPal
+	ld b, $3
+	call GetSGBLayout
+	call $5f8f
+	ld de, EggString
+	hlcoord 8, 1 ; $c4bc
+	call PlaceString
+	ld de, IDNoString
+	hlcoord 8, 3 ; $c4e4
+	call PlaceString
+	ld de, OTString
+	hlcoord 8, 5 ; $c50c
+	call PlaceString
+	ld de, FiveQMarkString
+	hlcoord 11, 3 ; $c4e7
+	call PlaceString
+	ld de, FiveQMarkString
+	hlcoord 11, 5 ; $c50f
+	call PlaceString
+	ld a, [$d129] ; egg status
+	ld de, EggSoonString
+	cp $6
+	jr c, .picked
+	ld de, EggCloseString
+	cp $b
+	jr c, .picked
+	ld de, EggMoreTimeString
+	cp $29
+	jr c, .picked
+	ld de, EggALotMoreTimeString
+.picked
+	hlcoord 1, 9 ; $c555
+	call PlaceString
+	ld hl, $cf64
+	set 5, [hl]
+	call $32f9 ; pals
+	call $045a
+	ld hl, TileMap
+	call $3786
+	ld a, $41
+	ld hl, $402d
+	rst $8
+	call $6497
+	ld a, [$d129]
+	cp $6
+	ret nc
+	ld de, $00bb
+	call StartSFX
+	ret
+; 0x4e3c0
+
+EggString: ; 4e3c0
+    db "EGG@"
+
+FiveQMarkString: ; 4e3c4
+    db "?????@"
+
+EggSoonString: ; 0x4e3ca
+    db "It's making sounds", $4e, "inside. It's going", $4e, "to hatch soon!@"
+
+EggCloseString: ; 0x4e3fd
+    db "It moves around", $4e, "inside sometimes.", $4e, "It must be close", $4e, "to hatching.@"
+
+EggMoreTimeString: ; 0x4e43d
+    db "Wonder what's", $4e, "inside? It needs", $4e, "more time, though.@"
+
+EggALotMoreTimeString: ; 0x4e46e
+    db "This EGG needs a", $4e, "lot more time to", $4e, "hatch.@"
+
+; 0x4e497
+
+INCBIN "baserom.gbc",$4e497,$50000 - $4e497
 
 SECTION "bank14",DATA,BANK[$14]
 
