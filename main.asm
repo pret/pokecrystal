@@ -85334,7 +85334,7 @@ ElmPhoneScript2: ; 0xbd081
 	specialphonecall $0000
 	end
 
-INCBIN "baserom.gbc",$bd0d0,$c0000-$bd0fa
+INCBIN "baserom.gbc",$bd0d0,$c0000-$be699
 
 SECTION "bank30",DATA,BANK[$30]
 
