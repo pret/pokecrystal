@@ -9,6 +9,7 @@
 
 # roms
 *.gbc
+*.gb
 
 # generated
 *.tx
