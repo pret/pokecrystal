@@ -1043,14 +1043,16 @@ def decompress_monsters(type = front):
 		# decompress
 		monster = decompress_monster_by_id(id, type)
 		if monster != None: # no unowns here
-			filename = str(id+1).zfill(3) + '.2bpp' # 001.2bpp
 			if not type: # front
-				folder = '../gfx/frontpics/'
+				filename = 'front.2bpp'
+				folder = '../gfx/pics/' + str(id+1).zfill(3) + '/'
 				to_file(folder+filename, monster.pic)
-				folder = '../gfx/anim/'
+				filename = 'tiles.2bpp'
+				folder = '../gfx/pics/' + str(id+1).zfill(3) + '/'
 				to_file(folder+filename, monster.animtiles)
 			else: # back
-				folder = '../gfx/backpics/'
+				filename = 'back.2bpp'
+				folder = '../gfx/pics/' + str(id+1).zfill(3) + '/'
 				to_file(folder+filename, monster.pic)
 
 
@@ -1073,14 +1075,16 @@ def decompress_unowns(type = front):
 		# decompress
 		unown = decompress_unown_by_id(letter, type)
 		
-		filename = str(unown_dex).zfill(3) + chr(ord('a') + letter) + '.2bpp' # 201a.2bpp
 		if not type: # front
-			folder = '../gfx/frontpics/'
+			filename = 'front.2bpp'
+			folder = '../gfx/pics/' + str(unown_dex).zfill(3) + chr(ord('a') + letter) + '/'
 			to_file(folder+filename, unown.pic)
+			filename = 'tiles.2bpp'
 			folder = '../gfx/anim/'
 			to_file(folder+filename, unown.animtiles)
 		else: # back
-			folder = '../gfx/backpics/'
+			filename = 'back.2bpp'
+			folder = '../gfx/pics/' + str(unown_dex).zfill(3) + chr(ord('a') + letter) + '/'
 			to_file(folder+filename, unown.pic)
 
 
@@ -1255,8 +1259,8 @@ def compress_file(filein, fileout, mode = 'horiz'):
 def compress_monster_frontpic(id, fileout):
 	mode = 'vert'
 	
-	fpic = '../gfx/frontpics/' + str(id).zfill(3) + '.2bpp'
-	fanim = '../gfx/anim/' + str(id).zfill(3) + '.2bpp'
+	fpic = '../gfx/pics/' + str(id).zfill(3) + '/front.2bpp'
+	fanim = '../gfx/pics/' + str(id).zfill(3) + '/tiles.2bpp'
 	
 	pic = open(fpic, 'rb').read()
 	anim = open(fanim, 'rb').read()
@@ -1264,7 +1268,7 @@ def compress_monster_frontpic(id, fileout):
 	
 	lz = Compressed(image, mode, 5)
 	
-	out = '../gfx/frontpics/lz/' + str(id).zfill(3) + '.lz'
+	out = '../gfx/pics/' + str(id).zfill(3) + '/front.lz'
 	
 	to_file(out, lz.output)
 
