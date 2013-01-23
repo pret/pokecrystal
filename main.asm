@@ -85874,7 +85874,7 @@ CelebiAnimationExtra:     INCLUDE "gfx/pics/251/anim1.asm"
 EggAnimationExtra:        INCLUDE "gfx/pics/egg/anim1.asm"
 
 
-UnownAnimationPointers: INCLUDE "gfx/pics/unown_anims.asm"
+UnownAnimationPointers: INCLUDE "gfx/pics/unown_anim_pointers.asm"
 
 UnownAAnimation: INCLUDE "gfx/pics/201a/anim0.asm"
 UnownBAnimation: INCLUDE "gfx/pics/201b/anim0.asm"
@@ -85904,7 +85904,7 @@ UnownYAnimation: INCLUDE "gfx/pics/201y/anim0.asm"
 UnownZAnimation: INCLUDE "gfx/pics/201z/anim0.asm"
 
 
-UnownAnimationExtraPointers: INCLUDE "gfx/pics/unown_extras.asm"
+UnownAnimationExtraPointers: INCLUDE "gfx/pics/unown_extra_pointers.asm"
 
 UnownAAnimationExtra: INCLUDE "gfx/pics/201a/anim1.asm"
 UnownBAnimationExtra: INCLUDE "gfx/pics/201b/anim1.asm"
@@ -86190,7 +86190,7 @@ CelebiBitmasks:     INCLUDE "gfx/pics/251/bitmask.asm"
 EggBitmasks:        INCLUDE "gfx/pics/egg/bitmask.asm"
 
 
-UnownBitmasksPointers: INCLUDE "gfx/pics/unown_bitmasks.asm"
+UnownBitmasksPointers: INCLUDE "gfx/pics/unown_bitmask_pointers.asm"
 
 UnownABitmasks: INCLUDE "gfx/pics/201a/bitmask.asm"
 UnownBBitmasks: INCLUDE "gfx/pics/201b/bitmask.asm"
@@ -86484,7 +86484,7 @@ CelebiFrames:     INCLUDE "gfx/pics/251/frames.asm"
 EggFrames:        INCLUDE "gfx/pics/egg/frames.asm"
 
 
-UnownFramesPointers: INCLUDE "gfx/pics/unown_frames.asm"
+UnownFramesPointers: INCLUDE "gfx/pics/unown_frame_pointers.asm"
 
 UnownAFrames: INCLUDE "gfx/pics/201a/frames.asm"
 UnownBFrames: INCLUDE "gfx/pics/201b/frames.asm"
