@@ -7762,9 +7762,9 @@ def scan_for_predefined_labels(debug=False):
             abbreviation_next = "1"
 
         # calculate the start/stop line numbers for this bank
-        start_line_id = index(asm, lambda line: "\"bank" + abbreviation + "\"" in line)
+        start_line_id = index(asm, lambda line: "\"bank" + abbreviation.lower() + "\"" in line.lower())
         if bank_id != 0x7F:
-            end_line_id = index(asm, lambda line: "\"bank" + abbreviation_next + "\"" in line)
+            end_line_id = index(asm, lambda line: "\"bank" + abbreviation_next.lower() + "\"" in line.lower())
             end_line_id += 1
         else:
             end_line_id = len(asm) - 1
