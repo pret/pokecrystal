@@ -18,13 +18,16 @@ from item_constants import (
     generate_item_constants,
 )
 
+from pointers import (
+    calculate_bank,
+    calculate_pointer,
+)
+
 from crystal import (
     rom,
     load_rom,
     rom_until,
     direct_load_rom,
-    calculate_bank,
-    calculate_pointer,
     parse_script_engine_script_at,
     parse_text_engine_script_at,
     parse_text_at2,
