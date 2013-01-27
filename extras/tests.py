@@ -32,6 +32,13 @@ from pksv import (
     pksv_crystal,
 )
 
+from labels import (
+    remove_quoted_text,
+    line_has_comment_address,
+    line_has_label,
+    get_label_from_line,
+)
+
 from crystal import (
     rom,
     load_rom,
@@ -73,12 +80,8 @@ from crystal import (
     get_id_for_map_constant_label,
     calculate_pointer_from_bytes_at,
     isolate_incbins,
-    remove_quoted_text,
     process_incbins,
-    line_has_label,
-    line_has_comment_address,
     get_labels_between,
-    get_label_from_line,
     generate_diff_insert,
     find_labels_without_addresses,
     rom_text_at,
