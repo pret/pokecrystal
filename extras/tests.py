@@ -8,9 +8,13 @@ import hashlib
 import random
 import json
 
-from romstr import RomStr
 from interval_map import IntervalMap
 from chars import chars, jap_chars
+
+from romstr import (
+    RomStr,
+    AsmList,
+)
 
 from item_constants import (
     item_constants,
@@ -67,7 +71,6 @@ from crystal import (
     generate_map_constant_labels,
     get_map_constant_label_by_id,
     get_id_for_map_constant_label,
-    AsmList,
     calculate_pointer_from_bytes_at,
     isolate_incbins,
     remove_quoted_text,
