@@ -148,7 +148,7 @@ class RomStr(str):
             that will be parsed, so that large patches of data aren't parsed as
             code.
         """
-        if type(address) == str and "0x" in address:
+        if type(address) in [str, unicode] and "0x" in address:
             address = int(address, 16)
 
         start_address = address
