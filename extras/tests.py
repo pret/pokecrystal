@@ -986,6 +986,11 @@ def find_untested_methods():
     return untested
 
 def report_untested():
+    """
+    This reports about untested functions in the global namespace. This was
+    originally in the crystal module, where it would list out the majority of
+    the functions. Maybe it should be moved back.
+    """
     untested = find_untested_methods()
     output = "NOT TESTED: ["
     first = True
