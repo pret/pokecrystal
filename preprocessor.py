@@ -17,20 +17,23 @@ from extras.crystal import (
     TextEndingCommand,
     text_command_classes,
     movement_command_classes,
-    music_classes
+    music_classes,
 )
 
-macros = command_classes + \
-    [
+even_more_macros = [
     Warp,
     XYTrigger,
     Signpost,
     PeopleEvent,
     DataByteWordMacro,
     ItemFragment,
-    ] + [x[1] for x in text_command_classes] + \
-    movement_command_classes + \
-    music_classes
+]
+
+macros = command_classes
+macros += even_more_macros
+macros += [each[1] for each in text_command_classes]
+macros += movement_command_classes
+macros += music_classes
 
 # show lines before preprocessing in stdout
 show_original_lines = False
