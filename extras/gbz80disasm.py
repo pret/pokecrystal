@@ -4,10 +4,12 @@ import os
 import sys
 from copy import copy, deepcopy
 from ctypes import c_int8
-import json
 import random
+import json
 
-spacing = "\t"
+# New versions of json don't have read anymore.
+if not hasattr(json, "read"):
+    json.read = json.loads
 
 from romstr import RomStr
 
@@ -18,6 +20,8 @@ def load_rom(filename="../baserom.gbc"):
     rom = RomStr(file_handler.read())
     file_handler.close()
     return rom
+
+spacing = "\t"
 
 temp_opt_table = [
   [ "ADC A", 0x8f, 0 ],
@@ -557,7 +561,7 @@ all_labels = {}
 def load_labels(filename="labels.json"):
     global all_labels
     if os.path.exists(filename):
-        all_labels = json.loads(open(filename, "r").read())
+        all_labels = json.read(open(filename, "r").read())
     else:
         print "You must run crystal.scan_for_predefined_labels() to create \"labels.json\". Trying..."
         import crystal

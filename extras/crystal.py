@@ -13,6 +13,7 @@ import random
 # for capwords
 import string
 
+# for python2.6
 if not hasattr(json, "dumps"):
     json.dumps = json.write
 
