@@ -1,6 +1,10 @@
 # -*- coding: utf-8 -*-
 # utilities to help disassemble pokémon crystal
-import sys, os, inspect, hashlib, json
+import os
+import sys
+import inspect
+import hashlib
+import json
 from copy import copy, deepcopy
 import subprocess
 from new import classobj
@@ -115,7 +119,10 @@ def map_name_cleaner(input):
                  replace("hooh", "HoOh").\
                  replace(" ", "")
 
-from romstr import RomStr, AsmList
+from romstr import (
+    RomStr,
+    AsmList,
+)
 
 rom = RomStr(None)
 
@@ -187,7 +194,10 @@ def load_map_group_offsets():
         map_group_offsets.append(offset)
     return map_group_offsets
 
-from pointers import calculate_bank, calculate_pointer
+from pointers import (
+    calculate_bank,
+    calculate_pointer,
+)
 
 def calculate_pointer_from_bytes_at(address, bank=False):
     """calculates a pointer from 2 bytes at a location
