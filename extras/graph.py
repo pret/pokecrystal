@@ -2,9 +2,12 @@
 
 import networkx as nx
 
-from romstr import RomStr, DisAsm, \
-    relative_jumps, call_commands, \
-    relative_unconditional_jumps
+from romstr import (
+    RomStr,
+    relative_jumps,
+    call_commands,
+    relative_unconditional_jumps,
+)
 
 class RomGraph(nx.DiGraph):
     """ Graphs various functions pointing to each other.
