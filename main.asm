@@ -3,7 +3,7 @@ SECTION "rst0",HOME[$0]
 	di
 	jp Start
 
-SECTION "rst8",HOME[$8]
+SECTION "rst8",HOME[$8] ; FarCall
 	jp $2d63
 
 SECTION "rst10",HOME[$10] ; Bankswitch
@@ -17,7 +17,7 @@ SECTION "rst18",HOME[$18] ; Unused
 SECTION "rst20",HOME[$20] ; Unused
 	rst $38
 
-SECTION "rst28",HOME[$28] ; Jump from pointer table
+SECTION "rst28",HOME[$28] ; JumpTable
 	push de
 	ld e, a
 	ld d, 00
@@ -488,7 +488,7 @@ GetJoypadPublic: ; 984
 	push af
 ;
 	ld a, [AutoInputBank]
-	rst $10
+	rst Bankswitch
 ;
 	ld hl, AutoInputAddress ; AutoInputAddress-9
 	ld a, [hli]
@@ -505,7 +505,7 @@ GetJoypadPublic: ; 984
 	ld [AutoInputLength], a
 ; restore bank
 	pop af
-	rst $10
+	rst Bankswitch
 ; we're done
 	jr .quit
 	
@@ -545,7 +545,7 @@ GetJoypadPublic: ; 984
 .finishauto
 ; restore bank
 	pop af
-	rst $10
+	rst Bankswitch
 ; update mirrors
 	ld a, b
 	ld [$ffa7], a ; pressed
@@ -746,10 +746,10 @@ FarCopyBytes: ; e8d
 	ld a, [$ff9d] ; save old bank
 	push af
 	ld a, [$ff8b]
-	rst $10
+	rst Bankswitch
 	call CopyBytes
 	pop af
-	rst $10
+	rst Bankswitch
 	ret
 ; 0xe9b
 
@@ -759,7 +759,7 @@ FarCopyBytesDouble: ; e9b
 	ld a, [$ff9d] ; save current bank
 	push af
 	ld a, [$ff8b]
-	rst $10 ; bankswitch
+	rst Bankswitch ; bankswitch
 	ld a, h ; switcheroo, de <> hl
 	ld h, d
 	ld d, a
@@ -780,7 +780,7 @@ FarCopyBytesDouble: ; e9b
 	dec b
 	jr nz, .loop
 	pop af
-	rst $10
+	rst Bankswitch
 	ret
 ; 0xeba
 
@@ -1022,7 +1022,7 @@ Char5D:
 	push bc
 	ld hl, $5939
 	ld a, $e
-	rst $8
+	rst FarCall
 	pop hl
 	ld de, $d073
 	jr .asm_126a ; 0x1246 $22
@@ -1088,10 +1088,10 @@ GetTileType: ; 185d
 	ld a, [$ff9d] ; current bank
 	push af
 	ld a, BANK(TileTypeTable)
-	rst $10
+	rst Bankswitch
 	ld e, [hl] ; get tile type
 	pop af
-	rst $10 ; return to current bank
+	rst Bankswitch ; return to current bank
 	ld a, e
 	and a, $0f ; lo nybble only
 	pop hl
@@ -1189,7 +1189,7 @@ GetAnyMapHeaderMember: ; 0x2c0c
 	ld a, [$ff9d]
 	push af
 	ld a, BANK(MapHeaderPointers)
-	rst $10
+	rst Bankswitch
 
 	call GetMapHeaderPointer
 	add hl, de
@@ -1199,7 +1199,7 @@ GetAnyMapHeaderMember: ; 0x2c0c
 
 	; bankswitch back
 	pop af
-	rst $10
+	rst Bankswitch
 	ret
 ; 0x2c1c
 
@@ -1265,10 +1265,10 @@ Predef: ; 2d83
 ; get Predef function to call
 ; GetPredefFn also stores hl in $cfb5-6
 	ld a, BANK(GetPredefFn)
-	rst $10
+	rst Bankswitch
 	call GetPredefFn
 ; switch bank to Predef function
-	rst $10
+	rst Bankswitch
 	
 ; clean up after Predef call
 	ld hl, .cleanup
@@ -1298,7 +1298,7 @@ Predef: ; 2d83
 ; restore bank
 	pop hl ; popping a pushed af. h = a (old bank)
 	ld a, h
-	rst $10
+	rst Bankswitch
 	
 ; get hl back
 	ld a, [$cfb5]
@@ -1426,12 +1426,12 @@ FarBattleRNG: ; 2f9f
 	push af
 ; Bankswitch
 	ld a, BANK(BattleRNG)
-	rst $10
+	rst Bankswitch
 	call BattleRNG
 ; Restore bank
 	ld [$cfb6], a
 	pop af
-	rst $10
+	rst Bankswitch
 	ld a, [$cfb6]
 	ret
 ; 2fb1
@@ -1583,7 +1583,7 @@ GetFarByte: ; 0x304d
 	ld a, [$ff9d]
 	push af
 	ld a, [$ff8b]
-	rst $10
+	rst Bankswitch
 
 	; get byte from new bank
 	ld a, [hl]
@@ -1591,7 +1591,7 @@ GetFarByte: ; 0x304d
 
 	; bankswitch to previous bank
 	pop af
-	rst $10
+	rst Bankswitch
 
 	; return retrieved value in a
 	ld a, [$ff8b]
@@ -1604,7 +1604,7 @@ GetFarHalfword: ; 0x305d
 	ld a, [$ff9d]
 	push af
 	ld a, [$ff8b]
-	rst $10
+	rst Bankswitch
 
 	; get halfword from new bank, put it in hl
 	ld a, [hli]
@@ -1613,7 +1613,7 @@ GetFarHalfword: ; 0x305d
 
 	; bankswitch to previous bank and return
 	pop af
-	rst $10
+	rst Bankswitch
 	ret
 ; 0x306b
 
@@ -1962,7 +1962,7 @@ GetName: ; 33c3
 	add hl, de
 	add hl, de
 	ld a, [hli]
-	rst $10 ; Bankswitch
+	rst Bankswitch ; Bankswitch
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -1981,7 +1981,7 @@ GetName: ; 33c3
 	pop bc
 	pop hl
 	pop af
-	rst $10
+	rst Bankswitch
 	ret
 ; 0x3411
 
@@ -2038,7 +2038,7 @@ GetBaseStats: ; 3856
 	push af
 ; Bankswitch
 	ld a, BANK(BaseStats)
-	rst $10
+	rst Bankswitch
 	
 ; Egg doesn't have base stats
 	ld a, [CurSpecies]
@@ -2082,7 +2082,7 @@ GetBaseStats: ; 3856
 	
 ; Restore bank
 	pop af
-	rst $10
+	rst Bankswitch
 	
 	pop hl
 	pop de
@@ -7778,7 +7778,7 @@ INCBIN "baserom.gbc",$2C41a,$2ee8f - $2C41a
 	jr nz, .trainermusic
 	ld a, BANK(RegionCheck)
 	ld hl, RegionCheck
-	rst $8
+	rst FarCall
 	ld a, e
 	and a
 	jr nz, .kantowild
@@ -7809,13 +7809,13 @@ INCBIN "baserom.gbc",$2C41a,$2ee8f - $2C41a
 	ld de, $0006 ; kanto gym leader battle music
 	ld a, BANK(IsKantoGymLeader)
 	ld hl, IsKantoGymLeader
-	rst $8
+	rst FarCall
 	jr c, .done
 
 	ld de, $002e ; johto gym leader battle music
 	ld a, BANK(IsJohtoGymLeader)
 	ld hl, IsJohtoGymLeader
-	rst $8
+	rst FarCall
 	jr c, .done
 
 	ld de, $0030 ; rival battle music
@@ -7836,7 +7836,7 @@ INCBIN "baserom.gbc",$2C41a,$2ee8f - $2C41a
 	jr nz, .linkbattle
 	ld a, BANK(RegionCheck)
 	ld hl, RegionCheck
-	rst $8
+	rst FarCall
 	ld a, e
 	and a
 	jr nz, .kantotrainer
@@ -13527,7 +13527,7 @@ BattleStartMessage:
 	call $0468
 	ld a, $e
 	ld hl, $5939
-	rst $8
+	rst FarCall
 	ld hl, $47a9
 	jr .asm_3fd0e ; 0x3fca8 $64
 .asm_3fcaa
@@ -13544,11 +13544,11 @@ BattleStartMessage:
 .asm_3fcc2
 	ld a, $f
 	ld hl, $6b38
-	rst $8
+	rst FarCall
 	jr c, .messageSelection ; 0x3fcc8 $21
 	ld a, $13
 	ld hl, $6a44
-	rst $8
+	rst FarCall
 	jr c, .asm_3fce0 ; 0x3fcd0 $e
 	ld hl, $c4ac
 	ld d, $0
@@ -13567,7 +13567,7 @@ BattleStartMessage:
 	jr nz, .asm_3fcfd ; 0x3fcf0 $b
 	ld a, $41
 	ld hl, $6086
-	rst $8
+	rst FarCall
 	ld hl, HookedPokemonAttackedText
 	jr .asm_3fd0e ; 0x3fcfb $11
 .asm_3fcfd
@@ -13582,7 +13582,7 @@ BattleStartMessage:
 	push hl
 	ld a, $b
 	ld hl, $4000
-	rst $8
+	rst FarCall
 	pop hl
 	call $3ad5
 	call $7830
@@ -13590,7 +13590,7 @@ BattleStartMessage:
 	ld c, $2
 	ld a, $13
 	ld hl, $6a0a
-	rst $8
+	rst FarCall
 	ret
 ; 0x3fd26
 
@@ -90298,10 +90298,10 @@ Function117a94: ; 0x117a94
 	call $300b
 	ld a, $5c
 	ld hl, $6e78
-	rst $8
+	rst FarCall
 	ld a, $41
 	ld hl, $4000
-	rst $8
+	rst FarCall
 	ret
 ; 0x117ab4
 
@@ -90310,13 +90310,13 @@ Function117ab4: ; 0x117ab4
 	call $300b
 	ld a, $5c
 	ld hl, $6e78
-	rst $8
+	rst FarCall
 	ld a, $5c
 	ld hl, $6eb9
-	rst $8
+	rst FarCall
 	ld a, $41
 	ld hl, $4061
-	rst $8
+	rst FarCall
 	ret
 ; 0x117acd
 
@@ -90328,7 +90328,7 @@ Function117acd: ; 0x117acd
 	call Function117ae9
 	ld a, $41
 	ld hl, $4000
-	rst $8
+	rst FarCall
 	jr Function117acd
 .asm_117ae2
 	call $31f3
@@ -90359,7 +90359,7 @@ Pointers117af8: ; 0x117af8
 Function117b06:
 	ld a, $5c
 	ld hl, $6eb9
-	rst $8
+	rst FarCall
 	ld a, $10
 	ld [$cf64], a
 	jp Function117cdd
@@ -90436,14 +90436,14 @@ Function117b4f:
 	call $1c07
 	ld a, $41
 	ld hl, $4061
-	rst $8
+	rst FarCall
 	jp Function117cdd
 .asm_117ba4
 	call $1c07
 	call $1c07
 	ld a, $41
 	ld hl, $4061
-	rst $8
+	rst FarCall
 	ld a, $80
 	ld [$cf63], a
 	ret
@@ -90454,7 +90454,7 @@ Function117bb6:
 	ld [$ffd4], a
 	ld a, $46
 	ld hl, $4284
-	rst $8
+	rst FarCall
 	call $300b
 	ld a, [$c300]
 	and a
@@ -90466,7 +90466,7 @@ Function117bb6:
 	ld [$c303], a
 	ld a, $5f
 	ld hl, $7555
-	rst $8
+	rst FarCall
 	ld a, $80
 	ld [$cf63], a
 	ret
@@ -90511,7 +90511,7 @@ Function117bb6:
 	ld [$ff70], a
 	ld a, $5c
 	ld hl, $6eb9
-	rst $8
+	rst FarCall
 	ld a, [$ff70]
 	push af
 	ld a, $3
@@ -90534,7 +90534,7 @@ Function117c4a:
 	call $1cfd
 	ld a, $41
 	ld hl, $4061
-	rst $8
+	rst FarCall
 	ld hl, MobileStadiumSuccessText
 	call $1057
 	ld a, [$ff70]
@@ -136928,7 +136928,7 @@ GetItemDescription: ; 0x1c8955
 	push de
 	ld a, $b     ; XXX replace this with BANK(label)
 	ld hl, $47b6 ; XXX replace this with label
-	rst $8
+	rst FarCall
 	pop hl
 	ld a, [$d265]
 	ld [$cf60], a
