@@ -145,12 +145,16 @@ def load_rom(filename="../baserom.gbc"):
     elif os.lstat(filename).st_size != len(rom):
         return direct_load_rom(filename)
 
-
-def load_asm(filename="../main.asm"):
-    """loads the asm source code into memory"""
-    global asm
+def direct_load_asm(filename="../main.asm"):
+    """returns asm source code (AsmList) from a file"""
     asm = open(filename, "r").read().split("\n")
     asm = AsmList(asm)
+    return asm
+
+def load_asm(filename="../main.asm"):
+    """returns asm source code (AsmList) from a file (uses a global)"""
+    global asm
+    asm = direct_load_asm(filename=filename)
     return asm
 
 def grouper(some_list, count=2):
