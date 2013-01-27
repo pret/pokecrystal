@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """ Various functions related to pointer and address math. Mostly to avoid
     depedency loops.
 """
