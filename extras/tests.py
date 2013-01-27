@@ -23,6 +23,11 @@ from pointers import (
     calculate_pointer,
 )
 
+from pksv import (
+    pksv_gs,
+    pksv_crystal,
+)
+
 from crystal import (
     rom,
     load_rom,
@@ -50,7 +55,6 @@ from crystal import (
     process_00_subcommands,
     parse_all_map_headers,
     translate_command_byte,
-    pksv_gs,
     map_name_cleaner,
     load_map_group_offsets,
     load_asm,
@@ -64,7 +68,6 @@ from crystal import (
     get_map_constant_label_by_id,
     get_id_for_map_constant_label,
     AsmList,
-    pksv_crystal,
     calculate_pointer_from_bytes_at,
     isolate_incbins,
     remove_quoted_text,
