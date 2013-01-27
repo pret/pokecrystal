@@ -97,7 +97,8 @@ script_parse_table = IntervalMap()
 
 def is_script_already_parsed_at(address):
     """looks up whether or not a script is parsed at a certain address"""
-    if script_parse_table[address] == None: return False
+    if script_parse_table[address] == None:
+        return False
     return True
 
 def script_parse_table_pretty_printer():
@@ -167,11 +168,14 @@ def grouper(some_list, count=2):
 
 def is_valid_address(address):
     """is_valid_rom_address"""
-    if address == None: return False
+    if address == None:
+        return False
     if type(address) == str:
         address = int(address, 16)
-    if 0 <= address <= 2097152: return True
-    else: return False
+    if 0 <= address <= 2097152:
+        return True
+    else:
+        return False
 
 def rom_interval(offset, length, strings=True, debug=True):
     """returns hex values for the rom starting at offset until offset+length"""
@@ -218,7 +222,7 @@ def calculate_pointer_from_bytes_at(address, bank=False):
     elif type(bank) == int:
         pass
     else:
-        raise Exception, "bad bank given to calculate_pointer_from_bytes_at"
+        raise Exception("bad bank given to calculate_pointer_from_bytes_at")
     byte1 = ord(rom[address])
     byte2 = ord(rom[address+1])
     temp  = byte1 + (byte2 << 8)
@@ -249,8 +253,10 @@ def clean_up_long_info(long_info):
 from pokemon_constants import pokemon_constants
 
 def get_pokemon_constant_by_id(id):
-    if id == 0: return None
-    return pokemon_constants[id]
+    if id == 0:
+            return None
+    else:
+        return pokemon_constants[id]
 
 from item_constants import (
     item_constants,
@@ -289,7 +295,7 @@ class TextScript:
         self.force = force
 
         if is_script_already_parsed_at(address) and not force:
-            raise Exception, "TextScript already parsed at "+hex(address)
+            raise Exception("TextScript already parsed at "+hex(address))
 
         if not label:
             label = self.base_label + hex(address)
@@ -362,11 +368,11 @@ class TextScript:
                     print "self.commands is: " + str(commands)
                     print "command 0 address is: " + hex(commands[0].address) + " last_address="+hex(commands[0].last_address)
                     print "command 1 address is: " + hex(commands[1].address) + " last_address="+hex(commands[1].last_address)
-                    raise Exception, "going beyond the bounds for this text script"
+                    raise Exception("going beyond the bounds for this text script")
 
             # no matching command found
             if scripting_command_class == None:
-                raise Exception, "unable to parse text command $%.2x in the text script at %s at %s" % (cur_byte, hex(start_address), hex(current_address))
+                raise Exception("unable to parse text command $%.2x in the text script at %s at %s" % (cur_byte, hex(start_address), hex(current_address)))
 
             # create an instance of the command class and let it parse its parameter bytes
             cls = scripting_command_class(address=current_address, map_group=self.map_group, map_id=self.map_id, debug=self.debug, force=self.force)
@@ -544,7 +550,7 @@ class OldTextScript:
 
         if is_script_already_parsed_at(address) and not force:
             print "text is already parsed at this location: " + hex(address)
-            raise Exception, "text is already parsed, what's going on ?"
+            raise Exception("text is already parsed, what's going on ?")
             return script_parse_table[address]
 
         total_text_commands = 0
@@ -758,7 +764,7 @@ class OldTextScript:
 
     def get_dependencies(self, recompute=False, global_dependencies=set()):
         #if recompute:
-        #    raise NotImplementedError, bryan_message
+        #    raise NotImplementedError(bryan_message)
         global_dependencies.update(self.dependencies)
         return self.dependencies
 
@@ -1070,7 +1076,8 @@ def parse_text_at3(address, map_group=None, map_id=None, debug=False):
         text = TextScript(address, map_group=map_group, map_id=map_id, debug=debug)
         if text.is_valid():
             return text
-        else: return None
+        else:
+            return None
 
 def rom_text_at(address, count=10):
     """prints out raw text from the ROM
@@ -1079,8 +1086,10 @@ def rom_text_at(address, count=10):
 
 def get_map_constant_label(map_group=None, map_id=None):
     """returns PALLET_TOWN for some map group/id pair"""
-    if map_group == None: raise Exception, "need map_group"
-    if map_id == None: raise Exception, "need map_id"
+    if map_group == None:
+        raise Exception("need map_group")
+    if map_id == None:
+        raise Exception("need map_id")
 
     global map_internal_ids
     for (id, each) in map_internal_ids.items():
@@ -1098,7 +1107,8 @@ def get_id_for_map_constant_label(label):
     PALLET_TOWN = 1, for instance."""
     global map_internal_ids
     for (id, each) in map_internal_ids.items():
-        if each["label"] == label: return id
+        if each["label"] == label:
+            return id
     return None
 
 def generate_map_constant_labels():
@@ -1185,7 +1195,8 @@ def find_all_text_pointers_in_script_engine_script(script, bank=None, debug=Fals
     """returns a list of text pointers
     based on each script-engine script command"""
     # TODO: recursively follow any jumps in the script
-    if script == None: return []
+    if script == None:
+        return []
     addresses = set()
     for (k, command) in enumerate(script.commands):
         if debug:
@@ -1220,13 +1231,16 @@ def translate_command_byte(crystal=None, gold=None):
         if 0x53 <= crystal <= 0x9E: return crystal-1
         if crystal == 0x9F: return None
         if 0xA0 <= crystal <= 0xA5: return crystal-2
-        if crystal > 0xA5: raise Exception, "dunno yet if crystal has new insertions after crystal:0xA5 (gold:0xA3)"
+        if crystal > 0xA5:
+            raise Exception("dunno yet if crystal has new insertions after crystal:0xA5 (gold:0xA3)")
     elif gold != None: # convert to crystal
         if gold <= 0x51: return gold
         if 0x52 <= gold <= 0x9D: return gold+1
         if 0x9E <= gold <= 0xA3: return gold+2
-        if gold > 0xA3: raise Exception, "dunno yet if crystal has new insertions after gold:0xA3 (crystal:0xA5)"
-    else: raise Exception, "translate_command_byte needs either a crystal or gold command"
+        if gold > 0xA3:
+            raise Exception("dunno yet if crystal has new insertions after gold:0xA3 (crystal:0xA5)")
+    else:
+        raise Exception("translate_command_byte needs either a crystal or gold command")
 
 class SingleByteParam():
     """or SingleByte(CommandParam)"""
@@ -1239,14 +1253,14 @@ class SingleByteParam():
             setattr(self, key, value)
         # check address
         if not hasattr(self, "address"):
-            raise Exception, "an address is a requirement"
+            raise Exception("an address is a requirement")
         elif self.address == None:
-            raise Exception, "address must not be None"
+            raise Exception("address must not be None")
         elif not is_valid_address(self.address):
-            raise Exception, "address must be valid"
+            raise Exception("address must be valid")
         # check size
         if not hasattr(self, "size") or self.size == None:
-            raise Exception, "size is probably 1?"
+            raise Exception("size is probably 1?")
         # parse bytes from ROM
         self.parse()
 
@@ -1256,18 +1270,23 @@ class SingleByteParam():
         return []
 
     def to_asm(self):
-        if not self.should_be_decimal: return hex(self.byte).replace("0x", "$")
-        else: return str(self.byte)
+        if not self.should_be_decimal:
+            return hex(self.byte).replace("0x", "$")
+        else:
+            return str(self.byte)
 
 class DollarSignByte(SingleByteParam):
-    def to_asm(self): return hex(self.byte).replace("0x", "$")
+    def to_asm(self):
+        return hex(self.byte).replace("0x", "$")
 HexByte=DollarSignByte
 
 class ItemLabelByte(DollarSignByte):
     def to_asm(self):
         label = find_item_label_by_id(self.byte)
-        if label: return label
-        elif not label: return DollarSignByte.to_asm(self)
+        if label:
+            return label
+        elif not label:
+            return DollarSignByte.to_asm(self)
 
 
 class DecimalParam(SingleByteParam):
@@ -1286,12 +1305,12 @@ class MultiByteParam():
             setattr(self, key, value)
         # check address
         if not hasattr(self, "address") or self.address == None:
-            raise Exception, "an address is a requirement"
+            raise Exception("an address is a requirement")
         elif not is_valid_address(self.address):
-            raise Exception, "address must be valid"
+            raise Exception("address must be valid")
         # check size
         if not hasattr(self, "size") or self.size == None:
-            raise Exception, "don't know how many bytes to read (size)"
+            raise Exception("don't know how many bytes to read (size)")
         self.parse()
 
     def parse(self):
@@ -1333,9 +1352,9 @@ class PointerLabelParam(MultiByteParam):
                 self.size = self.default_size + 1
                 self.given_bank = kwargs["bank"]
             #if kwargs["bank"] not in [None, False, True, "reverse"]:
-            #    raise Exception, "bank cannot be: " + str(kwargs["bank"])
+            #    raise Exception("bank cannot be: " + str(kwargs["bank"]))
         if self.size > 3:
-            raise Exception, "param size is too large"
+            raise Exception("param size is too large")
         # continue instantiation.. self.bank will be set down the road
         MultiByteParam.__init__(self, *args, **kwargs)
 
@@ -1408,15 +1427,16 @@ class PointerLabelParam(MultiByteParam):
                 return pointer_part+", "+bank_part
             elif bank == True: # bank, pointer
                 return bank_part+", "+pointer_part
-            else: raise Exception, "this should never happen"
-            raise Exception, "this should never happen"
+            else:
+                raise Exception("this should never happen")
+            raise Exception("this should never happen")
         # this next one will either return the label or the raw bytes
         elif bank == False or bank == None: # pointer
             return pointer_part # this could be the same as label
         else:
-            #raise Exception, "this should never happen"
+            #raise Exception("this should never happen")
             return pointer_part # probably in the same bank ?
-        raise Exception, "this should never happen"
+        raise Exception("this should never happen")
 
 class PointerLabelBeforeBank(PointerLabelParam):
     bank = True # bank appears first, see calculate_pointer_from_bytes_at
@@ -1475,8 +1495,10 @@ class RAMAddressParam(MultiByteParam):
     def to_asm(self):
         address = calculate_pointer_from_bytes_at(self.address, bank=False)
         label = get_ram_label(address)
-        if label: return label
-        else: return "$"+"".join(["%.2x"%x for x in reversed(self.bytes)])+""
+        if label:
+            return label
+        else:
+            return "$"+"".join(["%.2x"%x for x in reversed(self.bytes)])+""
 
 
 class MoneyByteParam(MultiByteParam):
@@ -1534,9 +1556,11 @@ class MapGroupParam(SingleByteParam):
     def to_asm(self):
         map_id = ord(rom[self.address+1])
         map_constant_label = get_map_constant_label(map_id=map_id, map_group=self.byte) # like PALLET_TOWN
-        if map_constant_label == None: return str(self.byte)
+        if map_constant_label == None:
+            return str(self.byte)
         #else: return "GROUP("+map_constant_label+")"
-        else: return "GROUP_"+map_constant_label
+        else:
+            return "GROUP_"+map_constant_label
 
 
 class MapIdParam(SingleByteParam):
@@ -1547,9 +1571,11 @@ class MapIdParam(SingleByteParam):
     def to_asm(self):
         map_group = ord(rom[self.address-1])
         map_constant_label = get_map_constant_label(map_id=self.byte, map_group=map_group)
-        if map_constant_label == None: return str(self.byte)
+        if map_constant_label == None:
+            return str(self.byte)
         #else: return "MAP("+map_constant_label+")"
-        else: return "MAP_"+map_constant_label
+        else:
+            return "MAP_"+map_constant_label
 
 
 class MapGroupIdParam(MultiByteParam):
@@ -1568,13 +1594,15 @@ class MapGroupIdParam(MultiByteParam):
 class PokemonParam(SingleByteParam):
     def to_asm(self):
         pokemon_constant = get_pokemon_constant_by_id(self.byte)
-        if pokemon_constant: return pokemon_constant
-        else: return str(self.byte)
+        if pokemon_constant:
+            return pokemon_constant
+        else:
+            return str(self.byte)
 
 
 class PointerParamToItemAndLetter(MultiByteParam):
     # [2F][2byte pointer to item no + 0x20 bytes letter text]
-    #raise NotImplementedError, bryan_message
+    #raise NotImplementedError(bryan_message)
     pass
 
 
@@ -1590,7 +1618,7 @@ class TrainerIdParam(SingleByteParam):
             i += 1
 
         if foundit == None:
-            raise Exception, "didn't find a TrainerGroupParam in this command??"
+            raise Exception("didn't find a TrainerGroupParam in this command??")
 
         # now get the trainer group id
         trainer_group_id = self.parent.params[foundit].byte
@@ -1617,7 +1645,7 @@ class MoveParam(SingleByteParam):
 
 class MenuDataPointerParam(PointerLabelParam):
     # read menu data at the target site
-    #raise NotImplementedError, bryan_message
+    #raise NotImplementedError(bryan_message)
     pass
 
 
@@ -1701,7 +1729,7 @@ class MovementPointerLabelParam(PointerLabelParam):
             global_dependencies.add(self.movement)
             return [self.movement] + self.movement.get_dependencies(recompute=recompute, global_dependencies=global_dependencies)
         else:
-            raise Exception, "MovementPointerLabelParam hasn't been parsed yet"
+            raise Exception("MovementPointerLabelParam hasn't been parsed yet")
 
 class MapDataPointerParam(PointerLabelParam):
     pass
@@ -1726,7 +1754,7 @@ class Command:
         """
         defaults = {"force": False, "debug": False, "map_group": None, "map_id": None}
         if not is_valid_address(address):
-            raise Exception, "address is invalid"
+            raise Exception("address is invalid")
         # set up some variables
         self.address = address
         self.last_address = None
@@ -1766,7 +1794,8 @@ class Command:
         #    output += "_"
         output += self.macro_name
         # return if there are no params
-        if len(self.param_types.keys()) == 0: return output
+        if len(self.param_types.keys()) == 0:
+            return output
         # first one will have no prefixing comma
         first = True
         # start reading the bytes after the command byte
@@ -1811,7 +1840,7 @@ class Command:
             current_address = self.address
         byte = ord(rom[self.address])
         if not self.override_byte_check and (not byte == self.id):
-            raise Exception, "byte ("+hex(byte)+") != self.id ("+hex(self.id)+")"
+            raise Exception("byte ("+hex(byte)+") != self.id ("+hex(self.id)+")")
         i = 0
         for (key, param_type) in self.param_types.items():
             name = param_type["name"]
@@ -1847,7 +1876,7 @@ class GivePoke(Command):
         self.params = {}
         byte = ord(rom[self.address])
         if not byte == self.id:
-            raise Exception, "this should never happen"
+            raise Exception("this should never happen")
         current_address = self.address+1
         i = 0
         self.size = 1
@@ -2008,7 +2037,8 @@ def create_movement_commands(debug=False):
                     direction = "left"
                 elif x == 3:
                     direction = "right"
-                else: raise Exception, "this should never happen"
+                else:
+                    raise Exception("this should never happen")
 
                 cmd_name = cmd[0].replace(" ", "_") + "_" + direction
                 klass_name = cmd_name+"Command"
@@ -2243,11 +2273,11 @@ class MainText(TextCommand):
                     print "bytes are: " + str(self.bytes)
                     print "self.size is: " + str(self.size)
                     print "self.last_address is: " + hex(self.last_address)
-                    raise Exception, "last_address is wrong for 0x9c00e"
+                    raise Exception("last_address is wrong for 0x9c00e")
 
     def to_asm(self):
         if self.size < 2 or len(self.bytes) < 1:
-            raise Exception, "$0 text command can't end itself with no follow-on bytes"
+            raise Exception("$0 text command can't end itself with no follow-on bytes")
 
         if self.use_zero:
             output = "db $0"
@@ -2278,13 +2308,13 @@ class MainText(TextCommand):
 
         for byte in self.bytes:
             if end:
-                raise Exception, "the text ended due to a $50 or $57 but there are more bytes?"
+                raise Exception("the text ended due to a $50 or $57 but there are more bytes?")
 
             if new_line:
                 if in_quotes:
-                    raise Exception, "can't be in_quotes on a newline"
+                    raise Exception("can't be in_quotes on a newline")
                 elif was_comma:
-                    raise Exception, "last line's last character can't be a comma"
+                    raise Exception("last line's last character can't be a comma")
 
                 output += "db "
 
@@ -2378,7 +2408,7 @@ class MainText(TextCommand):
                 was_comma = False
                 end       = False
             else:
-                # raise Exception, "unknown byte in text script ($%.2x)" % (byte)
+                # raise Exception("unknown byte in text script ($%.2x)" % (byte))
                 # just add an unknown byte directly to the text.. what's the worse that can happen?
 
                 if in_quotes:
@@ -2399,7 +2429,7 @@ class MainText(TextCommand):
 
         # this shouldn't happen because of the rom_until calls in the parse method
         if not end:
-            raise Exception, "ran out of bytes without the script ending? starts at "+hex(self.address)
+            raise Exception("ran out of bytes without the script ending? starts at "+hex(self.address))
 
         # last character may or may not be allowed to be a newline?
         # Script.to_asm() has command.to_asm()+"\n"
@@ -2977,17 +3007,17 @@ class Script:
         self.address = None
         self.commands = None
         if len(kwargs) == 0 and len(args) == 0:
-            raise Exception, "Script.__init__ must be given some arguments"
+            raise Exception("Script.__init__ must be given some arguments")
         # first positional argument is address
         if len(args) == 1:
             address = args[0]
             if type(address) == str:
                 address = int(address, 16)
             elif type(address) != int:
-                raise Exception, "address must be an integer or string"
+                raise Exception("address must be an integer or string")
             self.address = address
         elif len(args) > 1:
-            raise Exception, "don't know what to do with second (or later) positional arguments"
+            raise Exception("don't know what to do with second (or later) positional arguments")
         self.dependencies = None
         if "label" in kwargs.keys():
             label = kwargs["label"]
@@ -3057,7 +3087,7 @@ class Script:
             if debug: print "address is less than 0x4000.. address is: " + hex(start_address)
             sys.exit(1)
         if is_script_already_parsed_at(start_address) and not force and not force_top:
-            raise Exception, "this script has already been parsed before, please use that instance ("+hex(start_address)+")"
+            raise Exception("this script has already been parsed before, please use that instance ("+hex(start_address)+")")
 
         # load up the rom if it hasn't been loaded already
         load_rom()
@@ -3093,7 +3123,7 @@ class Script:
                 end = True
                 continue
                 # maybe the program should exit with failure instead?
-                #raise Exception, "no command found? id: " + hex(cur_byte) + " at " + hex(current_address) + " asm is:\n" + asm_output
+                #raise Exception("no command found? id: " + hex(cur_byte) + " at " + hex(current_address) + " asm is:\n" + asm_output)
 
             # create an instance of the command class and let it parse its parameter bytes
             #print "about to parse command(script@"+hex(start_address)+"): " + str(scripting_command_class.macro_name)
@@ -3418,7 +3448,8 @@ class TrainerFragment(Command):
 
     def get_dependencies(self, recompute=False, global_dependencies=set()):
         deps = []
-        if not is_valid_address(self.address): return deps
+        if not is_valid_address(self.address):
+            return deps
         if self.dependencies != None and not recompute:
             global_dependencies.update(self.dependencies)
             return self.dependencies
@@ -3756,7 +3787,7 @@ class TrainerHeader:
                 break
 
         if party_mon_parser == None:
-            raise Exception, "no trainer party mon parser found to parse data type " + hex(self.data_type)
+            raise Exception("no trainer party mon parser found to parse data type " + hex(self.data_type))
 
         self.party_mons = party_mon_parser(address=current_address, group_id=self.trainer_group_id, trainer_id=self.trainer_id, parent=self)
 
@@ -4311,7 +4342,8 @@ class SignpostRemoteBase:
 
     def to_asm(self):
         """very similar to Command.to_asm"""
-        if len(self.params) == 0: return ""
+        if len(self.params) == 0:
+            return ""
         #output = ", ".join([p.to_asm() for p in self.params])
         output = ""
         for param in self.params:
@@ -4559,7 +4591,7 @@ class Signpost(Command):
             mb = PointerLabelParam(address=self.address+3, map_group=self.map_group, map_id=self.map_id, debug=self.debug)
             self.params.append(mb)
         else:
-            raise Exception, "unknown signpost type byte="+hex(func) + " signpost@"+hex(self.address)
+            raise Exception("unknown signpost type byte="+hex(func) + " signpost@"+hex(self.address))
 
     def get_dependencies(self, recompute=False, global_dependencies=set()):
         dependencies = []
@@ -4573,13 +4605,15 @@ class Signpost(Command):
 
     def to_asm(self):
         output = self.macro_name + " "
-        if self.params == []: raise Exception, "signpost has no params?"
+        if self.params == []:
+            raise Exception("signpost has no params?")
         output += ", ".join([p.to_asm() for p in self.params])
         return output
 
 all_signposts = []
 def parse_signposts(address, signpost_count, bank=None, map_group=None, map_id=None, debug=True):
-    if bank == None: raise Exception, "signposts need to know their bank"
+    if bank == None:
+        raise Exception("signposts need to know their bank")
     signposts = []
     current_address = address
     id = 0
@@ -5162,7 +5196,7 @@ class Connection:
                     wrong_norths.append(data)
 
                 # this will only happen if there's a bad formula
-                raise Exception, "tauwasser strip_pointer calculation was wrong? strip_pointer="+hex(strip_pointer) + " p="+hex(p)
+                raise Exception("tauwasser strip_pointer calculation was wrong? strip_pointer="+hex(strip_pointer) + " p="+hex(p))
 
             calculated_destination = None
             method = "strip_destination_default"
@@ -5184,7 +5218,7 @@ class Connection:
                 x_movement_of_the_connection_strip_in_blocks = strip_destination - 0xC703
                 print "(north) x_movement_of_the_connection_strip_in_blocks is: " + str(x_movement_of_the_connection_strip_in_blocks)
                 if x_movement_of_the_connection_strip_in_blocks < 0:
-                    raise Exception, "x_movement_of_the_connection_strip_in_blocks is wrong? " + str(x_movement_of_the_connection_strip_in_blocks)
+                    raise Exception("x_movement_of_the_connection_strip_in_blocks is wrong? " + str(x_movement_of_the_connection_strip_in_blocks))
             elif ldirection == "south":
                 # strip_destination =
                 # 0xc703 + (current_map_height + 3) * (current_map_width + 6) + x_movement_of_the_connection_strip_in_blocks
@@ -5459,11 +5493,11 @@ class Connection:
         yoffset = self.yoffset # y_position_after_map_change
 
         if ldirection == "south" and yoffset != 0:
-            raise Exception, "tauwasser was wrong about yoffset=0 for south? it's: " + str(yoffset)
+            raise Exception("tauwasser was wrong about yoffset=0 for south? it's: " + str(yoffset))
         elif ldirection == "north" and yoffset != ((connected_map_height * 2) - 1):
-            raise Exception, "tauwasser was wrong about yoffset for north? it's: " + str(yoffset)
+            raise Exception("tauwasser was wrong about yoffset for north? it's: " + str(yoffset))
         #elif not ((yoffset % -2) == 0):
-        #    raise Exception, "tauwasser was wrong about yoffset for west/east? it's not divisible by -2: " + str(yoffset)
+        #    raise Exception("tauwasser was wrong about yoffset for west/east? it's not divisible by -2: " + str(yoffset))
 
         # Left: (Width_of_connected_map * 2) - 1
         # Right: 0
@@ -5471,11 +5505,11 @@ class Connection:
         xoffset = self.xoffset # x_position_after_map_change
 
         if ldirection == "east" and xoffset != 0:
-            raise Exception, "tauwasser was wrong about xoffset=0 for east? it's: " + str(xoffset)
+            raise Exception("tauwasser was wrong about xoffset=0 for east? it's: " + str(xoffset))
         elif ldirection == "west" and xoffset != ((connected_map_width * 2) - 1):
-            raise Exception, "tauwasser was wrong about xoffset for west? it's: " + str(xoffset)
+            raise Exception("tauwasser was wrong about xoffset for west? it's: " + str(xoffset))
         #elif not ((xoffset % -2) == 0):
-        #    raise Exception, "tauwasser was wrong about xoffset for north/south? it's not divisible by -2: " + str(xoffset)
+        #    raise Exception("tauwasser was wrong about xoffset for north/south? it's not divisible by -2: " + str(xoffset))
 
         output += "db "
 
@@ -5592,7 +5626,7 @@ class MapBlockData:
             self.width = width
             self.height = height
         else:
-            raise Exception, "MapBlockData needs to know the width/height of its map"
+            raise Exception("MapBlockData needs to know the width/height of its map")
         label = self.make_label()
         self.label = Label(name=label, address=address, object=self)
         self.last_address = self.address + (self.width.byte * self.height.byte)
@@ -6159,14 +6193,14 @@ def parse_map_header_by_id(*args, **kwargs):
         map_id = kwargs["map_id"]
     if (map_group == None and map_id != None) or \
        (map_group != None and map_id == None):
-        raise Exception, "map_group and map_id must both be provided"
+        raise Exception("map_group and map_id must both be provided")
     elif map_group == None and map_id == None and len(args) == 0:
-        raise Exception, "must be given an argument"
+        raise Exception("must be given an argument")
     elif len(args) == 1 and type(args[0]) == str:
         map_group = int(args[0].split(".")[0])
         map_id = int(args[0].split(".")[1])
     else:
-        raise Exception, "dunno what to do with input"
+        raise Exception("dunno what to do with input")
     offset = map_names[map_group]["offset"]
     map_header_offset = offset + ((map_id - 1) * map_header_byte_size)
     return parse_map_header_at(map_header_offset, map_group=map_group, map_id=map_id)
@@ -6175,7 +6209,7 @@ def parse_all_map_headers(debug=True):
     """calls parse_map_header_at for each map in each map group"""
     global map_names
     if not map_names[1].has_key("offset"):
-        raise Exception, "dunno what to do - map_names should have groups with pre-calculated offsets by now"
+        raise Exception("dunno what to do - map_names should have groups with pre-calculated offsets by now")
     for group_id, group_data in map_names.items():
         offset = group_data["offset"]
         # we only care about the maps
@@ -6934,7 +6968,7 @@ def find_incbin_to_replace_for(address, debug=False, rom_file="../baserom.gbc"):
     if you were to insert bytes into main.asm"""
     if type(address) == str: address = int(address, 16)
     if not (0 <= address <= os.lstat(rom_file).st_size):
-        raise IndexError, "address is out of bounds"
+        raise IndexError("address is out of bounds")
     for incbin_key in processed_incbins.keys():
         incbin = processed_incbins[incbin_key]
         start = incbin["start"]
@@ -6958,9 +6992,9 @@ def split_incbin_line_into_three(line, start_address, byte_count, rom_file="../b
     """
     if type(start_address) == str: start_address = int(start_address, 16)
     if not (0 <= start_address <= os.lstat(rom_file).st_size):
-        raise IndexError, "start_address is out of bounds"
+        raise IndexError("start_address is out of bounds")
     if len(processed_incbins) == 0:
-        raise Exception, "processed_incbins must be populated"
+        raise Exception("processed_incbins must be populated")
 
     original_incbin = processed_incbins[line]
     start = original_incbin["start"]
@@ -7080,7 +7114,7 @@ class Incbin:
             start = eval(start)
         except Exception, e:
             print "start is: " + str(start)
-            raise Exception, "problem with evaluating interval range: " + str(e)
+            raise Exception("problem with evaluating interval range: " + str(e))
 
         start_hex = hex(start).replace("0x", "$")
 
@@ -7101,11 +7135,12 @@ class Incbin:
     def to_asm(self):
         if self.interval > 0:
             return self.line
-        else: return ""
+        else:
+            return ""
     def split(self, start_address, byte_count):
         """splits this incbin into three separate incbins"""
         if start_address < self.start_address or start_address > self.end_address:
-            raise Exception, "this incbin doesn't handle this address"
+            raise Exception("this incbin doesn't handle this address")
         incbins = []
 
         if self.debug:
@@ -7247,7 +7282,7 @@ class Asm:
 
         if not hasattr(new_object, "last_address"):
             print debugmsg
-            raise Exception, "object needs to have a last_address property"
+            raise Exception("object needs to have a last_address property")
         end_address = new_object.last_address
         debugmsg += " last_address="+hex(end_address)
 
@@ -7273,7 +7308,7 @@ class Asm:
                 print "start_address="+hex(start_address)+" end_address="+hex(end_address)
             if hasattr(new_object, "to_asm"):
                 print to_asm(new_object)
-            raise Exception, "Asm.insert was given an object with a bad address range"
+            raise Exception("Asm.insert was given an object with a bad address range")
 
         # 1) find which object needs to be replaced
         # or
@@ -7315,7 +7350,7 @@ class Asm:
                 found = True
                 break
         if not found:
-            raise Exception, "unable to insert object into Asm"
+            raise Exception("unable to insert object into Asm")
         self.labels.append(new_object.label)
         return True
     def insert_with_dependencies(self, input):
@@ -7347,9 +7382,9 @@ class Asm:
 
                 # just some old debugging
                 #if object.label.name == "UnknownText_0x60128":
-                #    raise Exception, "debugging..."
+                #    raise Exception("debugging...")
                 #elif object.label.name == "UnknownScript_0x60011":
-                #    raise Exception, "debugging.. dependencies are: " + str(object.dependencies) + " versus: " + str(object.get_dependencies())
+                #    raise Exception("debugging.. dependencies are: " + str(object.dependencies) + " versus: " + str(object.get_dependencies()))
     def insert_single_with_dependencies(self, object):
         self.insert_with_dependencies(object)
     def insert_multiple_with_dependencies(self, objects):
@@ -7405,7 +7440,7 @@ class Asm:
                 current_requested_newlines_before = 2
                 current_requested_newlines_after  = 2
             else:
-                raise Exception, "dunno what to do with("+str(each)+") in Asm.parts"
+                raise Exception("dunno what to do with("+str(each)+") in Asm.parts")
 
             if write_something:
                 if not first:
@@ -7435,7 +7470,7 @@ def list_texts_in_bank(bank):
     that you will be inserting into Asm.
     """
     if len(all_texts) == 0:
-        raise Exception, "all_texts is blank.. run_main() will populate it"
+        raise Exception("all_texts is blank.. run_main() will populate it")
 
     assert bank != None, "list_texts_in_banks must be given a particular bank"
 
@@ -7453,7 +7488,7 @@ def list_movements_in_bank(bank):
     to speed up Asm insertion.
     """
     if len(all_movements) == 0:
-        raise Exception, "all_movements is blank.. run_main() will populate it"
+        raise Exception("all_movements is blank.. run_main() will populate it")
 
     assert bank != None, "list_movements_in_bank must be given a particular bank"
     assert 0 <= bank < 0x80, "bank doesn't exist in the ROM (out of bounds)"
@@ -7562,7 +7597,7 @@ def get_label_for(address):
     if address == None:
         return None
     if type(address) != int:
-        raise Exception, "get_label_for requires an integer address, got: " + str(type(address))
+        raise Exception("get_label_for requires an integer address, got: " + str(type(address)))
 
     # lousy hack to get around recursive scripts in dragon shrine
     if address in lousy_dragon_shrine_hack:
