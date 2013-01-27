@@ -1,5 +1,5 @@
-#author: Bryan Bishop <kanzure@gmail.com>
-#date: 2012-01-09
+# -*- coding: utf-8 -*-
+
 import os
 import sys
 from copy import copy, deepcopy
