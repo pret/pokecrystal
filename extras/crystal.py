@@ -61,15 +61,16 @@ constant_abbreviation_bytes = {}
 # Import the characters from its module.
 from chars import chars, jap_chars
 
-from trainers import *
+from trainers import (
+    trainer_group_pointer_table_address,    # 0x39999
+    trainer_group_pointer_table_address_gs, # 0x3993E
+    trainer_group_names,
+)
 
 from move_constants import moves
 
 # for fixing trainer_group_names
 import re
-
-trainer_group_pointer_table_address    = 0x39999
-trainer_group_pointer_table_address_gs = 0x3993E
 
 from interval_map import IntervalMap
 
