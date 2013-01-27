@@ -4,9 +4,13 @@ import sys
 import os
 import time
 import datetime
-import json
 from ctypes import c_int8
 from copy import copy
+import json
+
+# New versions of json don't have read anymore.
+if not hasattr(json, "read"):
+    json.read = json.loads
 
 from labels import (
     get_label_from_line,
@@ -100,7 +104,7 @@ class RomStr(str):
             file_handler.close()
 
         # load the labels from the file
-        self.labels = json.loads(open(filename, "r").read())
+        self.labels = json.read(open(filename, "r").read())
 
     def get_address_for(self, label):
         """ Returns the address of a label. This is slow and could be improved
