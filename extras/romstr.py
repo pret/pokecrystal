@@ -1,8 +1,17 @@
-import sys, os, time, datetime, json
-from gbz80disasm import opt_table
+import sys
+import os
+import time
+import datetime
+import json
 from ctypes import c_int8
 from copy import copy
-from labels import get_label_from_line, get_address_from_line_comment
+
+from gbz80disasm import opt_table
+
+from labels import (
+    get_label_from_line,
+    get_address_from_line_comment,
+)
 
 relative_jumps = [0x38, 0x30, 0x20, 0x28, 0x18, 0xc3, 0xda, 0xc2, 0x32]
 relative_unconditional_jumps = [0xc3, 0x18]
