@@ -236,21 +236,11 @@ def get_pokemon_constant_by_id(id):
     if id == 0: return None
     return pokemon_constants[id]
 
-from item_constants import item_constants
-
-def find_item_label_by_id(id):
-    if id in item_constants.keys():
-        return item_constants[id]
-    else: return None
-
-def generate_item_constants():
-    """make a list of items to put in constants.asm"""
-    output = ""
-    for (id, item) in item_constants.items():
-        val = ("$%.2x"%id).upper()
-        while len(item)<13: item+= " "
-        output += item + " EQU " + val + "\n"
-    return output
+from item_constants import (
+    item_constants,
+    find_item_label_by_id,
+    generate_item_constants,
+)
 
 def command_debug_information(command_byte=None, map_group=None, map_id=None, address=0, info=None, long_info=None, pksv_name=None):
     "used to help debug in parse_script_engine_script_at"

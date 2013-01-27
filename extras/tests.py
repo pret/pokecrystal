@@ -12,6 +12,12 @@ from romstr import RomStr
 from interval_map import IntervalMap
 from chars import chars, jap_chars
 
+from item_constants import (
+    item_constants,
+    find_item_label_by_id,
+    generate_item_constants,
+)
+
 from crystal import (
     rom,
     load_rom,
@@ -56,8 +62,6 @@ from crystal import (
     get_id_for_map_constant_label,
     AsmList,
     pksv_crystal,
-    generate_item_constants,
-    find_item_label_by_id,
     calculate_pointer_from_bytes_at,
     isolate_incbins,
     remove_quoted_text,
