@@ -1,5 +1,8 @@
 _CRYSTAL EQU 1
 
+FarCall    EQU $08
+Bankswitch EQU $10
+
 dwb: MACRO
 	dw \1
 	db \2
@@ -16,13 +19,13 @@ bigdw: MACRO
 callab: MACRO
 	ld hl, \1
 	ld a, BANK(\1)
-	rst $08
+	rst FarCall
 	ENDM
 
 callba: MACRO
 	ld a, BANK(\1)
 	ld hl, \1
-	rst $08
+	rst FarCall
 	ENDM
 
 TX_RAM: MACRO
