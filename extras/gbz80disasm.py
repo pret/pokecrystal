@@ -9,15 +9,13 @@ import random
 
 spacing = "\t"
 
-class XRomStr(str):
-    def __repr__(self):
-        return "RomStr(too long)"
+from romstr import RomStr
 
 def load_rom(filename="../baserom.gbc"):
     """loads bytes into memory"""
     global rom
     file_handler = open(filename, "rb") 
-    rom = XRomStr(file_handler.read())
+    rom = RomStr(file_handler.read())
     file_handler.close()
     return rom
 
