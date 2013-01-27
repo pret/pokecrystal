@@ -1,8 +1,7 @@
-#!/usr/bin/python
 # -*- coding: utf-8 -*-
-# author: Bryan Bishop <kanzure@gmail.com>
-# date: 2012-05-29
-# purpose: find shared functions between red/crystal
+"""
+Finds shared functions between red/crystal.
+"""
 
 from crystal import (
     get_label_from_line,
