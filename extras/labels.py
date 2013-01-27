@@ -1,7 +1,12 @@
-""" Various label/line-related functions.
+# -*- coding: utf-8 -*-
+"""
+Various label/line-related functions.
 """
 
-from pointers import calculate_pointer, calculate_bank
+from pointers import (
+    calculate_pointer,
+    calculate_bank,
+)
 
 def remove_quoted_text(line):
     """get rid of content inside quotes
