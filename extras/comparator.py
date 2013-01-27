@@ -4,11 +4,16 @@
 # date: 2012-05-29
 # purpose: find shared functions between red/crystal
 
-from crystal import get_label_from_line,           \
-                    get_address_from_line_comment, \
-                    AsmSection
+from crystal import (
+    get_label_from_line,
+    get_address_from_line_comment,
+    AsmSection,
+)
 
-from romstr import RomStr, AsmList
+from romstr import (
+    RomStr,
+    AsmList,
+)
 
 def load_rom(path):
     """ Loads a ROM file into an abbreviated RomStr object.
