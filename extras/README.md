@@ -30,9 +30,8 @@ After running those lines, `cp extras/output.txt main.asm` and run `git diff mai
 
 Unit tests cover most of the classes.
 
-```python
-import crystal
-crystal.run_tests()
+```bash
+python tests.py
 ```
 
 #### Parsing a script at a known address
