@@ -2686,7 +2686,39 @@ CopyData: ; 0x9a52
 	ret
 ; 0x9a5b
 
-INCBIN "baserom.gbc",$9a5b,$c000 - $9a5b
+ClearBytes: ; 0x9a5b
+; clear bc bytes of data starting from de
+	xor a
+	ld [de], a
+	inc de
+	dec bc
+	ld a, c
+	or b
+	jr nz, ClearBytes
+	ret
+; 0x9a64
+
+DrawDefaultTiles: ; 0x9a64
+; Draw 240 tiles (2/3 of the screen) from tiles in VRAM
+	ld hl, $9800 ; BG Map 0
+	ld de, 32 - 20
+	ld a, $80 ; starting tile
+	ld c, 12 + 1
+.line
+	ld b, 20
+.tile
+	ld [hli], a
+	inc a
+	dec b
+	jr nz, .tile
+; next line
+	add hl, de
+	dec c
+	jr nz, .line
+	ret
+; 0x9a7a
+
+INCBIN "baserom.gbc",$9a7a,$c000 - $9a7a
 
 SECTION "bank3",DATA,BANK[$3]
 
