@@ -2718,7 +2718,12 @@ DrawDefaultTiles: ; 0x9a64
 	ret
 ; 0x9a7a
 
-INCBIN "baserom.gbc",$9a7a,$c000 - $9a7a
+INCBIN "baserom.gbc",$9a7a,$a51e - $9a7a
+
+SGBBorder:
+INCBIN "gfx/misc/sgb_border.2bpp"
+
+INCBIN "baserom.gbc",$a8be,$c000 - $a8be
 
 SECTION "bank3",DATA,BANK[$3]
 
@@ -3285,7 +3290,12 @@ INCBIN "baserom.gbc",$ca3b,$10000 - $ca3b
 
 SECTION "bank4",DATA,BANK[$4]
 
-INCBIN "baserom.gbc",$10000,$1167a - $10000
+INCBIN "baserom.gbc",$10000,$10b16 - $10000
+
+PackGFX:
+INCBIN "gfx/misc/pack.2bpp"
+
+INCBIN "baserom.gbc",$113d6,$1167a - $113d6
 
 TechnicalMachines: ; 0x1167a
 	db DYNAMICPUNCH
@@ -89924,7 +89934,17 @@ INCBIN "baserom.gbc",$100000,$4000
 
 SECTION "bank41",DATA,BANK[$41]
 
-INCBIN "baserom.gbc",$104000,$1060bb - $104000
+INCBIN "baserom.gbc",$104000,$105258 - $104000
+
+MysteryGiftGFX:
+INCBIN "gfx/misc/mystery_gift.2bpp"
+
+INCBIN "baserom.gbc",$105688,$105930 - $105688
+
+; japanese mystery gift gfx
+INCBIN "gfx/misc/mystery_gift_jp.2bpp"
+
+INCBIN "baserom.gbc",$105db0,$1060bb - $105db0
 
 Function1060bb: ; 1060bb
 ; commented out
@@ -92114,7 +92134,12 @@ Music_MobileCenter: ; 0x17961d
 INCLUDE "music/mobilecenter.asm"
 ; 0x17982d
 
-INCBIN "baserom.gbc",$17982d, $17b629 - $17982d
+INCBIN "baserom.gbc",$17982d, $1799ef - $17982d
+
+MobileAdapterGFX:
+INCBIN "gfx/misc/mobile_adapter.2bpp"
+
+INCBIN "baserom.gbc",$17a68f, $17b629 - $17a68f
 
 SECTION "bank5F",DATA,BANK[$5F]
 
