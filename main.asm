@@ -2686,7 +2686,44 @@ CopyData: ; 0x9a52
 	ret
 ; 0x9a5b
 
-INCBIN "baserom.gbc",$9a5b,$c000 - $9a5b
+ClearBytes: ; 0x9a5b
+; clear bc bytes of data starting from de
+	xor a
+	ld [de], a
+	inc de
+	dec bc
+	ld a, c
+	or b
+	jr nz, ClearBytes
+	ret
+; 0x9a64
+
+DrawDefaultTiles: ; 0x9a64
+; Draw 240 tiles (2/3 of the screen) from tiles in VRAM
+	ld hl, $9800 ; BG Map 0
+	ld de, 32 - 20
+	ld a, $80 ; starting tile
+	ld c, 12 + 1
+.line
+	ld b, 20
+.tile
+	ld [hli], a
+	inc a
+	dec b
+	jr nz, .tile
+; next line
+	add hl, de
+	dec c
+	jr nz, .line
+	ret
+; 0x9a7a
+
+INCBIN "baserom.gbc",$9a7a,$a51e - $9a7a
+
+SGBBorder:
+INCBIN "gfx/misc/sgb_border.2bpp"
+
+INCBIN "baserom.gbc",$a8be,$c000 - $a8be
 
 SECTION "bank3",DATA,BANK[$3]
 
@@ -3253,7 +3290,12 @@ INCBIN "baserom.gbc",$ca3b,$10000 - $ca3b
 
 SECTION "bank4",DATA,BANK[$4]
 
-INCBIN "baserom.gbc",$10000,$1167a - $10000
+INCBIN "baserom.gbc",$10000,$10b16 - $10000
+
+PackGFX:
+INCBIN "gfx/misc/pack.2bpp"
+
+INCBIN "baserom.gbc",$113d6,$1167a - $113d6
 
 TechnicalMachines: ; 0x1167a
 	db DYNAMICPUNCH
@@ -89892,7 +89934,17 @@ INCBIN "baserom.gbc",$100000,$4000
 
 SECTION "bank41",DATA,BANK[$41]
 
-INCBIN "baserom.gbc",$104000,$1060bb - $104000
+INCBIN "baserom.gbc",$104000,$105258 - $104000
+
+MysteryGiftGFX:
+INCBIN "gfx/misc/mystery_gift.2bpp"
+
+INCBIN "baserom.gbc",$105688,$105930 - $105688
+
+; japanese mystery gift gfx
+INCBIN "gfx/misc/mystery_gift_jp.2bpp"
+
+INCBIN "baserom.gbc",$105db0,$1060bb - $105db0
 
 Function1060bb: ; 1060bb
 ; commented out
@@ -89909,7 +89961,121 @@ IntroLogoGFX: ; 109407
 INCBIN "gfx/intro/lz/logo.lz"
 ; 10983f
 
-INCBIN "baserom.gbc", $10983f, $10c000 - $10983f
+INCBIN "baserom.gbc", $10983f, $10aee1 - $10983f
+
+Credits:
+	db "   SATOSHI TAJIRI@"
+	db "   JUNICHI MASUDA@"
+	db "  TETSUYA WATANABE@"
+	db "  SHIGEKI MORIMOTO@"
+	db "   SOUSUKE TAMADA@"
+	db "   TAKENORI OOTA@"
+	db "    KEN SUGIMORI@"
+	db " MOTOFUMI FUJIWARA@"
+	db "   ATSUKO NISHIDA@"
+	db "    MUNEO SAITO@"
+	db "    SATOSHI OOTA@"
+	db "   RENA YOSHIKAWA@"
+	db "    JUN OKUTANI@"
+	db "  HIRONOBU YOSHIDA@"
+	db "   ASUKA IWASHITA@"
+	db "    GO ICHINOSE@"
+	db "   MORIKAZU AOKI@"
+	db "   KOHJI NISHINO@"
+	db "  KENJI MATSUSHIMA@"
+	db "TOSHINOBU MATSUMIYA@"
+	db "    SATORU IWATA@"
+	db "   NOBUHIRO SEYA@"
+	db "  KAZUHITO SEKINE@"
+	db "    TETSUJI OOTA@"
+	db "NCL SUPER MARIO CLUB@"
+	db "    SARUGAKUCHO@"
+	db "     AKITO MORI@"
+	db "  TAKAHIRO HARADA@"
+	db "  TOHRU HASHIMOTO@"
+	db "  NOBORU MATSUMOTO@"
+	db "  TAKEHIRO IZUSHI@"
+	db " TAKASHI KAWAGUCHI@"
+	db " TSUNEKAZU ISHIHARA@"
+	db "  HIROSHI YAMAUCHI@"
+	db "    KENJI SAIKI@"
+	db "    ATSUSHI TADA@"
+	db "   NAOKO KAWAKAMI@"
+	db "  HIROYUKI ZINNAI@"
+	db "  KUNIMI KAWAMURA@"
+	db "   HISASHI SOGABE@"
+	db "    KEITA KAGAYA@"
+	db " YOSHINORI MATSUDA@"
+	db "    HITOMI SATO@"
+	db "     TORU OSAWA@"
+	db "    TAKAO OHARA@"
+	db "    YUICHIRO ITO@"
+	db "   TAKAO SHIMIZU@"
+	db " SPECIAL PRODUCTION", $4e
+	db "      PLANNING", $4e
+	db " & DEVELOPMENT DEPT.@"
+	db "   KEITA NAKAMURA@"
+	db "  HIROTAKA UEMURA@"
+	db "   HIROAKI TAMURA@"
+	db " NORIAKI SAKAGUCHI@"
+	db "    MIYUKI SATO@"
+	db "   GAKUZI NOMOTO@"
+	db "     AI MASHIMA@"
+	db " MIKIHIRO ISHIKAWA@"
+	db " HIDEYUKI HASHIMOTO@"
+	db "   SATOSHI YAMATO@"
+	db "  SHIGERU MIYAMOTO@"
+	db "        END@"
+	db "      ????????@"
+	db "    GAIL TILDEN@"
+	db "   NOB OGASAWARA@"
+	db "   SETH McMAHILL@"
+	db "  HIROTO ALEXANDER@"
+	db "  TERESA LILLYGREN@"
+	db "   THOMAS HERTZOG@"
+	db "    ERIK JOHNSON@"
+	db "   HIRO NAKAMURA@"
+	db "  TERUKI MURAKAWA@"
+	db "  KAZUYOSHI OSAWA@"
+	db "  KIMIKO NAKAMICHI@"
+	db "      #MON", $4e
+	db "  CRYSTAL VERSION", $4e
+	db "       STAFF@"
+	db "      DIRECTOR@"
+	db "    CO-DIRECTOR@"
+	db "    PROGRAMMERS@"
+	db " GRAPHICS DIRECTOR@"
+	db "   MONSTER DESIGN@"
+	db "  GRAPHICS DESIGN@"
+	db "       MUSIC@"
+	db "   SOUND EFFECTS@"
+	db "    GAME DESIGN@"
+	db "   GAME SCENARIO@"
+	db "  TOOL PROGRAMMING@"
+	db " PARAMETRIC DESIGN@"
+	db "   SCRIPT DESIGN@"
+	db "  MAP DATA DESIGN@"
+	db "     MAP DESIGN@"
+	db "  PRODUCT TESTING@"
+	db "   SPECIAL THANKS@"
+	db "     PRODUCERS@"
+	db " EXECUTIVE PRODUCER@"
+	db " #MON ANIMATION@"
+	db "    #DEX TEXT@"
+	db " MOBILE PRJ. LEADER@"
+	db " MOBILE SYSTEM AD.@"
+	db "MOBILE STADIUM DIR.@"
+	db "    COORDINATION@"
+	db "  US VERSION STAFF@"
+	db "  US COORDINATION@"
+	db "  TEXT TRANSLATION@"
+	db "    PAAD TESTING@"
+	;  (C) 1  9  9  5 - 2  0  0  1     N  i  n  t  e  n  d  o
+	db $60,$61,$62,$63,$64,$65,$66, $67, $68, $69, $6a, $6b, $6c, $4e
+	;  (C) 1  9  9  5 - 2  0  0  1    C  r  e  a  t  u  r  e  s      i  n  c .
+	db $60,$61,$62,$63,$64,$65,$66, $6d, $6e, $6f, $70, $71, $72,  $7a, $7b, $7c, $4e
+	;  (C) 1  9  9  5 - 2  0  0  1  G   A   M   E   F   R   E   A   K     i  n  c .
+	db $60,$61,$62,$63,$64,$65,$66, $73, $74, $75, $76, $77, $78, $79,  $7a, $7b, $7c, "@"
 
 
 SECTION "bank43",DATA,BANK[$43]
@@ -92082,7 +92248,12 @@ Music_MobileCenter: ; 0x17961d
 INCLUDE "music/mobilecenter.asm"
 ; 0x17982d
 
-INCBIN "baserom.gbc",$17982d, $17b629 - $17982d
+INCBIN "baserom.gbc",$17982d, $1799ef - $17982d
+
+MobileAdapterGFX:
+INCBIN "gfx/misc/mobile_adapter.2bpp"
+
+INCBIN "baserom.gbc",$17a68f, $17b629 - $17a68f
 
 SECTION "bank5F",DATA,BANK[$5F]
 
