@@ -35,7 +35,7 @@ SECTION "rst38",HOME[$38] ; Unused
 	rst $38
 
 SECTION "vblank",HOME[$40] ; vblank interrupt
-	jp $0283
+	jp VBlank
 
 SECTION "lcd",HOME[$48] ; lcd interrupt
 	jp $0552
@@ -56,7 +56,541 @@ Start:
 
 SECTION "start",HOME[$150]
 
-INCBIN "baserom.gbc",$150,$45a - $150
+INCBIN "baserom.gbc",$150,$283 - $150
+
+VBlank: ; 283
+	push af
+	push bc
+	push de
+	push hl
+	
+; get vblank type
+	ld a, [$ff9e]
+	and $7
+	
+; get fn pointer
+	ld e, a
+	ld d, $0
+	ld hl, .VBlanks
+	add hl, de
+	add hl, de
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	
+; down to business
+	call JpHl
+	
+; since this is called once per frame
+	call GameTimer
+	
+	pop hl
+	pop de
+	pop bc
+	pop af
+	reti
+; 2a1
+
+.VBlanks ; 2a1
+	dw VBlank0 ; 0
+	dw VBlank1 ; 1
+	dw VBlank2 ; 2
+	dw VBlank3 ; 3
+	dw VBlank4 ; 4
+	dw VBlank5 ; 5
+	dw VBlank6 ; 6
+	dw VBlank0 ; 7
+; 2b1
+
+
+VBlank0: ; 2b1
+; normal operation
+
+; rng
+; scx, scy, wy, wx
+; bg map buffer
+; palettes
+; dma transfer
+; bg map
+; tiles
+; oam
+; joypad
+; sound
+
+; inc frame counter
+	ld hl, $ff9b
+	inc [hl]
+	
+; advance rng
+	ld a, [$ff04] ; divider
+	ld b, a
+	ld a, [$ffe1]
+	adc b
+	ld [$ffe1], a
+	
+	ld a, [$ff04] ; divider
+	ld b, a
+	ld a, [$ffe2]
+	sbc b
+	ld [$ffe2], a
+	
+; save bank
+	ld a, [$ff9d] ; current bank
+	ld [$ff8a], a
+	
+; scroll x
+	ld a, [$ffcf]
+	ld [$ff43], a ; scx
+; scroll y
+	ld a, [$ffd0]
+	ld [$ff42], a ; scy
+; window y
+	ld a, [$ffd2]
+	ld [$ff4a], a ; wy
+; window x + 7
+	ld a, [$ffd1]
+	ld [$ff4b], a ; wx
+	
+; some time management is in order
+; only have time for one of these during vblank
+	
+; bg map buffer has priority
+	call UpdateBGMapBuffer
+	jr c, .doneframeaction
+	
+; then pals
+	call UpdatePalsIfCGB
+	jr c, .doneframeaction
+	
+; dma transfer
+	call DMATransfer
+	jr c, .doneframeaction
+	
+; bg map
+	call UpdateBGMap
+	
+; these have their own timing checks
+	call SafeLoadTiles
+	call SafeLoadTiles2
+	call SafeTileAnimation
+	
+.doneframeaction
+; oam update off?
+	ld a, [$ffd8]
+	and a
+	jr nz, .vblankoccurred
+	
+; update oam by dma transfer
+	call $ff80
+;	403f:
+;		ld a, $c4
+;		ld [$ff46], a ; oam dma
+;		ld a, $28
+;	.loop
+;		dec a
+;		jr nz, .loop
+;		ret
+
+
+; vblank-sensitive operations are done
+	
+.vblankoccurred
+; tell other fns vblank happened
+	xor a
+	ld [VBlankOccurred], a
+	
+; dec $cfb1 until 0
+	ld a, [$cfb1]
+	and a
+	jr z, .textdelay
+	dec a
+	ld [$cfb1], a
+	
+.textdelay
+; dec text delay counter until 0
+	ld a, [TextDelayFrames]
+	and a
+	jr z, .joypad
+	dec a
+	ld [TextDelayFrames], a
+	
+.joypad
+	call Joypad
+	
+; update sound
+	ld a, BANK(UpdateSound)
+	rst Bankswitch ; bankswitch
+	call UpdateSound
+	ld a, [$ff8a]
+	rst Bankswitch ; restore bank
+	
+; 
+	ld a, [$ff98]
+	ld [$ffe3], a
+	
+	ret
+; 325
+
+
+VBlank2: ; 325
+; sound only
+
+; save bank
+	ld a, [$ff9d]
+	ld [$ff8a], a
+	
+; update sound
+	ld a, BANK(UpdateSound)
+	rst Bankswitch ; bankswitch
+	call UpdateSound
+	
+; restore bank
+	ld a, [$ff8a]
+	rst Bankswitch
+	
+; tell other fns vblank happened
+	xor a
+	ld [VBlankOccurred], a
+	ret
+; 337
+
+
+VBlank1: ; 337
+; scx, scy
+; palettes
+; bg map
+; tiles
+; oam
+; sound / lcd stat
+
+; save bank
+	ld a, [$ff9d]
+	ld [$ff8a], a
+	
+; scroll x
+	ld a, [$ffcf]
+	ld [$ff43], a ; scx
+	
+; scroll y
+	ld a, [$ffd0]
+	ld [$ff42], a ; scy
+	
+; time-sensitive fns
+	call UpdatePals
+	jr c, .vblankoccurred
+	
+; these have their own timing checks
+	call UpdateBGMap
+	call LoadTiles
+; update oam by dma transfer
+	call $ff80
+;	403f:
+;		ld a, $c4
+;		ld [$ff46], a ; oam dma
+;		ld a, $28
+;	.loop
+;		dec a
+;		jr nz, .loop
+;		ret
+	
+.vblankoccurred
+; tell other fns vblank happened
+	xor a
+	ld [VBlankOccurred], a
+	
+; get requested ints
+	ld a, [$ff0f] ; IF
+	ld b, a
+; discard requested ints
+	xor a
+	ld [$ff0f], a ; IF
+; enable lcd stat
+	ld a, %10 ; lcd stat
+	ld [$ffff], a ; IE
+; rerequest serial int if applicable (still disabled)
+; request lcd stat
+	ld a, b
+	and %1000 ; serial
+	or %10 ; lcd stat
+	ld [$ff0f], a ; IF
+	
+	ei
+; update sound
+	ld a, BANK(UpdateSound)
+	rst Bankswitch ; bankswitch
+	call UpdateSound
+; restore bank
+	ld a, [$ff8a]
+	rst Bankswitch
+	di
+	
+; get requested ints
+	ld a, [$ff0f] ; IF
+	ld b, a
+; discard requested ints
+	xor a
+	ld [$ff0f], a ; IF
+; enable ints besides joypad
+	ld a, %1111 ; serial timer lcdstat vblank
+	ld [$ffff], a ; IE
+; rerequest ints
+	ld a, b
+	ld [$ff0f], a ; IF
+	ret
+; 37f
+
+
+UpdatePals: ; 37f
+; update pals for either dmg or cgb
+
+; check cgb
+	ld a, [$ffe6]
+	and a
+	jp nz, UpdateCGBPals
+	
+; update gb pals
+	ld a, [$cfc7]
+	ld [$ff47], a ; BGP
+	
+	ld a, [$cfc8]
+	ld [$ff48], a ; OBP0
+	
+	ld a, [$cfc9]
+	ld [$ff49], a ; 0BP1
+	
+	and a
+	ret
+; 396
+
+
+VBlank3: ; 396
+; scx, scy
+; palettes
+; bg map
+; tiles
+; oam
+; sound / lcd stat
+
+; save bank
+	ld a, [$ff9d]
+	ld [$ff8a], a
+	
+; scroll x
+	ld a, [$ffcf]
+	ld [$ff43], a ; scx
+; scroll y
+	ld a, [$ffd0]
+	ld [$ff42], a ; scy
+	
+; any pals to update?
+	ld a, [$ffe5]
+	and a
+	call nz, ForceUpdateCGBPals
+	jr c, .vblankoccurred
+; else
+	call UpdateBGMap
+	call LoadTiles
+	
+; update oam by dma transfer
+	call $ff80
+;	403f:
+;		ld a, $c4 ; Sprites / $100
+;		ld [$ff46], a ; oam dma
+;		ld a, $28
+;	.loop
+;		dec a
+;		jr nz, .loop
+;		ret
+	
+.vblankoccurred
+; tell other fns vblank happened
+	xor a
+	ld [VBlankOccurred], a
+	
+; save int flag
+	ld a, [$ff0f] ; IF
+	push af
+; reset ints
+	xor a
+	ld [$ff0f], a ; IF
+; force lcdstat int during sound update
+	ld a, %10 ; lcd stat
+	ld [$ffff], a ; IE
+	ld [$ff0f], a ; IF
+	
+	ei
+; update sound
+	ld a, BANK(UpdateSound)
+	rst Bankswitch ; bankswitch
+	call UpdateSound
+; restore bank
+	ld a, [$ff8a]
+	rst Bankswitch
+	di
+	
+; request lcdstat
+	ld a, [$ff0f] ; IF
+	ld b, a
+; and any other ints
+	pop af
+	or b
+	ld b, a
+; reset ints
+	xor a
+	ld [$ff0f], a ; IF
+; enable ints besides joypad
+	ld a, %1111 ; serial timer lcdstat vblank
+	ld [$ffff], a ; IE
+; request ints
+	ld a, b
+	ld [$ff0f], a ; IF
+	ret
+; 3df
+
+
+VBlank4: ; 3df
+; bg map
+; tiles
+; oam
+; joypad
+; serial
+; sound
+
+; save bank
+	ld a, [$ff9d]
+	ld [$ff8a], a
+	
+	call UpdateBGMap
+	call SafeLoadTiles
+	
+; update oam by dma transfer
+	call $ff80
+;	403f:
+;		ld a, $c4
+;		ld [$ff46], a ; oam dma
+;		ld a, $28
+;	.loop
+;		dec a
+;		jr nz, .loop
+;		ret
+	
+; update joypad
+	call Joypad
+	
+; tell other fns vblank happened
+	xor a
+	ld [VBlankOccurred], a
+	
+; handshake
+	call AskSerial
+	
+; update sound
+	ld a, BANK(UpdateSound)
+	rst Bankswitch ; bankswitch
+	call UpdateSound
+; restore bank
+	ld a, [$ff8a]
+	rst Bankswitch
+	ret
+; 400
+
+
+VBlank5: ; 400
+; scx
+; palettes
+; bg map
+; tiles
+; joypad
+; 
+
+; save bank
+	ld a, [$ff9d]
+	ld [$ff8a], a
+	
+; scroll x
+	ld a, [$ffcf]
+	ld [$ff43], a ; scx
+	
+; if we can update pals, skip this part
+	call UpdatePalsIfCGB
+	jr c, .vblankoccurred
+	
+	call UpdateBGMap
+	call SafeLoadTiles
+	
+.vblankoccurred
+; tell other fns vblank happened
+	xor a
+	ld [VBlankOccurred], a
+	
+; joypad
+	call Joypad
+	
+; discard requested ints
+	xor a
+	ld [$ff0f], a ; IF
+; enable lcd stat
+	ld a, %10 ; lcd stat
+	ld [$ffff], a ; IE
+; request lcd stat
+	ld [$ff0f], a ; IF
+	
+	ei
+; update sound
+	ld a, BANK(UpdateSound)
+	rst Bankswitch ; bankswitch
+	call UpdateSound
+; restore bank
+	ld a, [$ff8a]
+	rst Bankswitch
+	di
+	
+; discard requested ints
+	xor a
+	ld [$ff0f], a ; IF
+; enable ints besides joypad
+	ld a, %1111 ; serial timer lcdstat vblank
+	ld [$ffff], a ; IE
+	ret
+; 436
+
+
+VBlank6: ; 436
+; palettes
+; tiles
+; dma transfer
+; sound
+
+; save bank
+	ld a, [$ff9d]
+	ld [$ff8a], a
+	
+; inc frame counter
+	ld hl, $ff9b
+	inc [hl]
+	
+	call UpdateCGBPals
+	jr c, .vblankoccurred
+	
+	call SafeLoadTiles
+	call SafeLoadTiles2
+	call DMATransfer
+	
+.vblankoccurred
+; tell other fns vblank happened
+	xor a
+	ld [VBlankOccurred], a
+	
+; update sound
+	ld a, BANK(UpdateSound)
+	rst Bankswitch ; bankswitch
+	call UpdateSound
+; restore bank
+	ld a, [$ff8a]
+	rst Bankswitch
+	ret
+; 45a
+
 
 DelayFrame: ; 0x45a
 ; delay for one frame
@@ -369,9 +903,7 @@ FixTime: ; 61d
 	ret
 ; 658
 
-
 INCBIN "baserom.gbc",$658,$691 - $658
-
 
 SetClock: ; 691
 ; set clock data from hram
@@ -421,7 +953,87 @@ SetClock: ; 691
 	ret
 ; 6c4
 
-INCBIN "baserom.gbc",$6c4,$984 - $6c4
+INCBIN "baserom.gbc",$6c4,$935 - $6c4
+
+Joypad: ; 935
+; update joypad state
+; $ffa2: released
+; $ffa3: pressed
+; $ffa4: input
+; $ffa5: total pressed
+
+; 
+	ld a, [$cfbe]
+	and $d0
+	ret nz
+	
+; pause game update?
+	ld a, [$c2cd]
+	and a
+	ret nz
+	
+; d-pad
+	ld a, $20
+	ld [$ff00], a
+	ld a, [$ff00]
+	ld a, [$ff00]
+; hi nybble
+	cpl
+	and $f
+	swap a
+	ld b, a
+	
+; buttons
+	ld a, $10
+	ld [$ff00], a
+; wait to stabilize
+	ld a, [$ff00]
+	ld a, [$ff00]
+	ld a, [$ff00]
+	ld a, [$ff00]
+	ld a, [$ff00]
+	ld a, [$ff00]
+; lo nybble
+	cpl
+	and $f
+	or b
+	ld b, a
+	
+; reset joypad
+	ld a, $30
+	ld [$ff00], a
+	
+; get change in input
+	ld a, [$ffa4] ; last frame's input
+	ld e, a
+	xor b ; current frame input
+	ld d, a
+; released
+	and e
+	ld [$ffa2], a
+; pressed
+	ld a, d
+	and b
+	ld [$ffa3], a
+	
+; total pressed
+	ld c, a
+	ld a, [$ffa5]
+	or c
+	ld [$ffa5], a
+	
+; original input
+	ld a, b
+	ld [$ffa4], a
+	
+; A+B+SELECT+START
+	and $f
+	cp $f
+	jp z, $0150 ; reset
+	
+	ret
+; 984
+
 
 GetJoypadPublic: ; 984
 ; update mirror joypad input from $ffa4 (real input)
@@ -588,7 +1200,506 @@ StopAutoInput: ; a0a
 	ret
 ; a1b
 
-INCBIN "baserom.gbc",$a1b,$c9f - $a1b
+INCBIN "baserom.gbc",$a1b,$b40 - $a1b
+
+FarDecompress: ; b40
+; Decompress graphics data at a:hl to de
+
+; put a away for a sec
+	ld [$c2c4], a
+; save bank
+	ld a, [$ff9d]
+	push af
+; bankswitch
+	ld a, [$c2c4]
+	rst Bankswitch
+	
+; what we came here for
+	call Decompress
+	
+; restore bank
+	pop af
+	rst Bankswitch
+	ret
+; b50
+
+
+Decompress: ; b50
+; Pokemon Crystal uses an lz variant for compression.
+
+; This is mainly used for graphics, but the intro's
+; tilemaps also use this compression.
+
+; This function decompresses lz-compressed data at hl to de.
+
+
+; Basic rundown:
+
+;	A typical control command consists of:
+;		-the command (bits 5-7)
+;		-the count (bits 0-4)
+;		-and any additional params
+
+;	$ff is used as a terminator.
+
+
+;	Commands:
+
+;		0: literal
+;			literal data for some number of bytes
+;		1: iterate
+;			one byte repeated for some number of bytes
+;		2: alternate
+;			two bytes alternated for some number of bytes
+;		3: zero (whitespace)
+;			0x00 repeated for some number of bytes
+
+;	Repeater control commands have a signed parameter used to determine the start point.
+;	Wraparound is simulated:
+;		Positive values are added to the start address of the decompressed data
+;		and negative values are subtracted from the current position.
+
+;		4: repeat
+;			repeat some number of bytes from decompressed data
+;		5: flipped
+;			repeat some number of flipped bytes from decompressed data
+;			ex: $ad = %10101101 -> %10110101 = $b5
+;		6: reverse
+;			repeat some number of bytes in reverse from decompressed data
+
+;	If the value in the count needs to be larger than 5 bits,
+;	control code 7 can be used to expand the count to 10 bits.
+
+;		A new control command is read in bits 2-4.
+;		The new 10-bit count is split:
+;			bits 0-1 contain the top 2 bits
+;			another byte is added containing the latter 8
+
+;		So, the structure of the control command becomes:
+;			111xxxyy yyyyyyyy
+;			 |  |  |    |
+;            |  | our new count
+;            | the control command for this count
+;            7 (this command)
+
+; For more information, refer to the code below and in extras/gfx.py .
+
+; save starting output address
+	ld a, e
+	ld [$c2c2], a
+	ld a, d
+	ld [$c2c3], a
+	
+.loop
+; get next byte
+	ld a, [hl]
+; done?
+	cp $ff ; end
+	ret z
+
+; get control code
+	and %11100000
+	
+; 10-bit param?
+	cp $e0 ; LZ_HI
+	jr nz, .normal
+	
+	
+; 10-bit param:
+
+; get next 3 bits (%00011100)
+	ld a, [hl]
+	add a
+	add a ; << 3
+	add a
+	
+; this is our new control code
+	and %11100000
+	push af
+	
+; get param hi
+	ld a, [hli]
+	and %00000011
+	ld b, a
+	
+; get param lo
+	ld a, [hli]
+	ld c, a
+	
+; read at least 1 byte
+	inc bc
+	jr .readers
+	
+	
+.normal
+; push control code
+	push af
+; get param
+	ld a, [hli]
+	and %00011111
+	ld c, a
+	ld b, $0
+; read at least 1 byte
+	inc c
+	
+.readers
+; let's get started
+
+; inc loop counts since we bail as soon as they hit 0
+	inc b
+	inc c
+	
+; get control code
+	pop af
+; command type
+	bit 7, a ; 80, a0, c0
+	jr nz, .repeatertype
+	
+; literals
+	cp $20 ; LZ_ITER
+	jr z, .iter
+	cp $40 ; LZ_ALT
+	jr z, .alt
+	cp $60 ; LZ_ZERO
+	jr z, .zero
+	; else $00
+	
+; 00 ; LZ_LIT
+; literal data for bc bytes
+.loop1
+; done?
+	dec c
+	jr nz, .next1
+	dec b
+	jp z, .loop
+	
+.next1
+	ld a, [hli]
+	ld [de], a
+	inc de
+	jr .loop1
+	
+	
+; 20 ; LZ_ITER
+; write byte for bc bytes
+.iter
+	ld a, [hli]
+	
+.iterloop
+	dec c
+	jr nz, .iternext
+	dec b
+	jp z, .loop
+	
+.iternext
+	ld [de], a
+	inc de
+	jr .iterloop
+	
+	
+; 40 ; LZ_ALT
+; alternate two bytes for bc bytes
+
+; next pair
+.alt
+; done?
+	dec c
+	jr nz, .alt0
+	dec b
+	jp z, .altclose0
+	
+; alternate for bc
+.alt0
+	ld a, [hli]
+	ld [de], a
+	inc de
+	dec c
+	jr nz, .alt1
+; done?
+	dec b
+	jp z, .altclose1
+.alt1
+	ld a, [hld]
+	ld [de], a
+	inc de
+	jr .alt
+	
+; skip past the bytes we were alternating
+.altclose0
+	inc hl
+.altclose1
+	inc hl
+	jr .loop
+	
+	
+; 60 ; LZ_ZERO
+; write 00 for bc bytes
+.zero
+	xor a
+	
+.zeroloop
+	dec c
+	jr nz, .zeronext
+	dec b
+	jp z, .loop
+	
+.zeronext
+	ld [de], a
+	inc de
+	jr .zeroloop
+	
+	
+; repeats
+; 80, a0, c0
+; repeat decompressed data from output
+.repeatertype
+	push hl
+	push af
+; get next byte
+	ld a, [hli]
+; absolute?
+	bit 7, a
+	jr z, .absolute
+	
+; relative
+; a = -a
+	and %01111111 ; forget the bit we just looked at
+	cpl
+; add de (current output address)
+	add e
+	ld l, a
+	ld a, $ff ; -1
+	adc d
+	ld h, a
+	jr .repeaters
+	
+.absolute
+; get next byte (lo)
+	ld l, [hl]
+; last byte (hi)
+	ld h, a
+; add starting output address
+	ld a, [$c2c2]
+	add l
+	ld l, a
+	ld a, [$c2c3]
+	adc h
+	ld h, a
+	
+.repeaters
+	pop af
+	cp $80 ; LZ_REPEAT
+	jr z, .repeat
+	cp $a0 ; LZ_FLIP
+	jr z, .flip
+	cp $c0 ; LZ_REVERSE
+	jr z, .reverse
+	
+; e0 -> 80
+	
+; 80 ; LZ_REPEAT
+; repeat some decompressed data
+.repeat
+; done?
+	dec c
+	jr nz, .repeatnext
+	dec b
+	jr z, .cleanup
+	
+.repeatnext
+	ld a, [hli]
+	ld [de], a
+	inc de
+	jr .repeat
+	
+	
+; a0 ; LZ_FLIP
+; repeat some decompressed data w/ flipped bit order
+.flip
+	dec c
+	jr nz, .flipnext
+	dec b
+	jp z, .cleanup
+	
+.flipnext
+	ld a, [hli]
+	push bc
+	ld bc, $0008
+	
+.fliploop
+	rra
+	rl b
+	dec c
+	jr nz, .fliploop
+	ld a, b
+	pop bc
+	ld [de], a
+	inc de
+	jr .flip
+	
+	
+; c0 ; LZ_REVERSE
+; repeat some decompressed data in reverse
+.reverse
+	dec c
+	jr nz, .reversenext
+	
+	dec b
+	jp z, .cleanup
+	
+.reversenext
+	ld a, [hld]
+	ld [de], a
+	inc de
+	jr .reverse
+	
+	
+.cleanup
+; get type of repeat we just used
+	pop hl
+; was it relative or absolute?
+	bit 7, [hl]
+	jr nz, .next
+
+; skip two bytes for absolute
+	inc hl
+; skip one byte for relative
+.next
+	inc hl
+	jp .loop
+; c2f
+
+
+
+
+UpdatePalsIfCGB: ; c2f
+; update bgp data from BGPals
+; update obp data from OBPals
+; return carry if successful
+
+; check cgb
+	ld a, [$ffe6]
+	and a
+	ret z
+	
+UpdateCGBPals: ; c33
+; return carry if successful
+; any pals to update?
+	ld a, [$ffe5]
+	and a
+	ret z
+	
+ForceUpdateCGBPals: ; c37
+; save wram bank
+	ld a, [$ff70] ; wram bank
+	push af
+; bankswitch
+	ld a, 5 ; BANK(BGPals)
+	ld [$ff70], a ; wram bank
+; get bg pal buffer
+	ld hl, BGPals ; 5:d080
+	
+; update bg pals
+	ld a, %10000000 ; auto increment, index 0
+	ld [$ff68], a ; BGPI
+	ld c, $69 ; $ff69
+	ld b, 4 ; NUM_PALS / 2
+	
+.bgp
+; copy 16 bytes (8 colors / 2 pals) to bgpd
+	ld a, [hli]
+	ld [$ff00+c], a
+	ld a, [hli]
+	ld [$ff00+c], a
+	ld a, [hli]
+	ld [$ff00+c], a
+	ld a, [hli]
+	ld [$ff00+c], a
+	ld a, [hli]
+	ld [$ff00+c], a
+	ld a, [hli]
+	ld [$ff00+c], a
+	ld a, [hli]
+	ld [$ff00+c], a
+	ld a, [hli]
+	ld [$ff00+c], a
+	ld a, [hli]
+	ld [$ff00+c], a
+	ld a, [hli]
+	ld [$ff00+c], a
+	ld a, [hli]
+	ld [$ff00+c], a
+	ld a, [hli]
+	ld [$ff00+c], a
+	ld a, [hli]
+	ld [$ff00+c], a
+	ld a, [hli]
+	ld [$ff00+c], a
+	ld a, [hli]
+	ld [$ff00+c], a
+	ld a, [hli]
+	ld [$ff00+c], a
+; done?
+	dec b
+	jr nz, .bgp
+	
+; hl is now 5:d0c0 OBPals
+	
+; update obj pals
+	ld a, %10000000 ; auto increment, index 0
+	ld [$ff6a], a
+	ld c, $6b ; $ff6b - $ff00
+	ld b, 4 ; NUM_PALS / 2
+	
+.obp
+; copy 16 bytes (8 colors / 2 pals) to obpd
+	ld a, [hli]
+	ld [$ff00+c], a
+	ld a, [hli]
+	ld [$ff00+c], a
+	ld a, [hli]
+	ld [$ff00+c], a
+	ld a, [hli]
+	ld [$ff00+c], a
+	ld a, [hli]
+	ld [$ff00+c], a
+	ld a, [hli]
+	ld [$ff00+c], a
+	ld a, [hli]
+	ld [$ff00+c], a
+	ld a, [hli]
+	ld [$ff00+c], a
+	ld a, [hli]
+	ld [$ff00+c], a
+	ld a, [hli]
+	ld [$ff00+c], a
+	ld a, [hli]
+	ld [$ff00+c], a
+	ld a, [hli]
+	ld [$ff00+c], a
+	ld a, [hli]
+	ld [$ff00+c], a
+	ld a, [hli]
+	ld [$ff00+c], a
+	ld a, [hli]
+	ld [$ff00+c], a
+	ld a, [hli]
+	ld [$ff00+c], a
+; done?
+	dec b
+	jr nz, .obp
+	
+; restore wram bank
+	pop af
+	ld [$ff70], a ; wram bank
+; clear pal update queue
+	xor a
+	ld [$ffe5], a
+; successfully updated palettes
+	scf
+	ret
+; c9f
+
 
 DmgToCgbBGPals: ; c9f
 ; exists to forego reinserting cgb-converted image data
@@ -1074,7 +2185,617 @@ Char5F: ; 0x1356
 	pop hl
 	ret
 
-INCBIN "baserom.gbc",$135a,$185d - $135a
+INCBIN "baserom.gbc",$135a,$15d8 - $135a
+
+DMATransfer: ; 15d8
+; DMA transfer
+; return carry if successful
+
+; anything to transfer?
+	ld a, [$ffe8]
+	and a
+	ret z
+; start transfer
+	ld [$ff55], a ; hdma5
+; indicate that transfer has occurred
+	xor a
+	ld [$ffe8], a
+; successful transfer
+	scf
+	ret
+; 15e3
+
+
+UpdateBGMapBuffer: ; 15e3
+; write [$ffdc] 16x8 tiles from BGMapBuffer to bg map addresses in BGMapBufferPtrs
+; [$ffdc] must be even since this is done in 16x16 blocks
+
+; return carry if successful
+
+; any tiles to update?
+	ld a, [$ffdb]
+	and a
+	ret z
+; save wram bank
+	ld a, [$ff4f] ; vram bank
+	push af
+; save sp
+	ld [$ffd9], sp
+	
+; temp stack
+	ld hl, BGMapBufferPtrs
+	ld sp, hl
+; we can now pop the addresses of affected spots in bg map
+	
+; get pal and tile buffers
+	ld hl, BGMapPalBuffer
+	ld de, BGMapBuffer
+
+.loop
+; draw one 16x16 block
+
+; top half:
+
+; get bg map address
+	pop bc
+; update palettes
+	ld a, $1
+	ld [$ff4f], a ; vram bank
+; tile 1
+	ld a, [hli]
+	ld [bc], a
+	inc c
+; tile 2
+	ld a, [hli]
+	ld [bc], a
+	dec c
+; update tiles
+	ld a, $0
+	ld [$ff4f], a ; vram bank
+; tile 1
+	ld a, [de]
+	inc de
+	ld [bc], a
+	inc c
+; tile 2
+	ld a, [de]
+	inc de
+	ld [bc], a
+	
+; bottom half:
+
+; get bg map address
+	pop bc
+; update palettes
+	ld a, $1
+	ld [$ff4f], a ; vram bank
+; tile 1
+	ld a, [hli]
+	ld [bc], a
+	inc c
+; tile 2
+	ld a, [hli]
+	ld [bc], a
+	dec c
+; update tiles
+	ld a, $0
+	ld [$ff4f], a ; vram bank
+; tile 1
+	ld a, [de]
+	inc de
+	ld [bc], a
+	inc c
+; tile 2
+	ld a, [de]
+	inc de
+	ld [bc], a
+	
+; we've done 2 16x8 blocks
+	ld a, [$ffdc]
+	dec a
+	dec a
+	ld [$ffdc], a
+	
+; if there are more left, get the next 16x16 block
+	jr nz, .loop
+	
+	
+; restore sp
+	ld a, [$ffd9]
+	ld l, a
+	ld a, [$ffda]
+	ld h, a
+	ld sp, hl
+	
+; restore vram bank
+	pop af
+	ld [$ff4f], a ; vram bank
+	
+; we don't need to update bg map until new tiles are loaded
+	xor a
+	ld [$ffdb], a
+	
+; successfully updated bg map
+	scf
+	ret
+; 163a
+
+
+WaitTop: ; 163a
+	ld a, [$ffd4]
+	and a
+	ret z
+	
+; wait until top third of bg map can be updated
+	ld a, [$ffd5]
+	and a
+	jr z, .quit
+	
+	call DelayFrame
+	jr WaitTop
+	
+.quit
+	xor a
+	ld [$ffd4], a
+	ret
+; 164c
+
+
+UpdateBGMap: ; 164c
+; get mode
+	ld a, [$ffd4]
+	and a
+	ret z
+	
+; don't save bg map address
+	dec a ; 1
+	jr z, .tiles
+	dec a ; 2
+	jr z, .attr
+	dec a ; ?
+	
+; save bg map address
+	ld a, [$ffd6]
+	ld l, a
+	ld a, [$ffd7]
+	ld h, a
+	push hl
+
+; bg map 1 ($9c00)
+	xor a
+	ld [$ffd6], a
+	ld a, $9c
+	ld [$ffd7], a
+	
+; get mode again
+	ld a, [$ffd4]
+	push af
+	cp 3
+	call z, .tiles
+	pop af
+	cp 4
+	call z, .attr
+	
+; restore bg map address
+	pop hl
+	ld a, l
+	ld [$ffd6], a
+	ld a, h
+	ld [$ffd7], a
+	ret
+	
+.attr
+; switch vram banks
+	ld a, 1
+	ld [$ff4f], a ; vram bank
+; bg map 1
+	ld hl, AttrMap
+	call .getthird
+; restore vram bank
+	ld a, 0
+	ld [$ff4f], a ; vram bank
+	ret
+	
+.tiles
+; bg map 0
+	ld hl, TileMap
+	
+.getthird
+; save sp
+	ld [$ffd9], sp
+	
+; # tiles to move down * 6 (which third?)
+	ld a, [$ffd5]
+	and a ; 0
+	jr z, .top
+	dec a ; 1
+	jr z, .middle
+
+; .bottom ; 2
+; move 12 tiles down
+	ld de, $00f0 ; TileMap(0,12) - TileMap
+	add hl, de
+; stack now points to source
+	ld sp, hl
+; get bg map address
+	ld a, [$ffd7]
+	ld h, a
+	ld a, [$ffd6]
+	ld l, a
+; move 12 tiles down
+	ld de, $0180 ; bgm(0,12)
+	add hl, de
+; start at top next time
+	xor a
+	jr .start
+	
+.middle
+; move 6 tiles down
+	ld de, $0078 ; TileMap(0,6) - TileMap
+	add hl, de
+; stack now points to source
+	ld sp, hl
+; get bg map address
+	ld a, [$ffd7]
+	ld h, a
+	ld a, [$ffd6]
+	ld l, a
+; move 6 tiles down
+	ld de, $00c0 ; bgm(0,6)
+	add hl, de
+; start at bottom next time
+	ld a, 2
+	jr .start
+	
+.top
+; stack now points to source
+	ld sp, hl
+; get bg map address
+	ld a, [$ffd7]
+	ld h, a
+	ld a, [$ffd6]
+	ld l, a
+; start at middle next time
+	ld a, 1
+	
+.start
+; which third to draw next update
+	ld [$ffd5], a
+; # rows per third
+	ld a, 6 ; SCREEN_HEIGHT / 3
+; # tiles from the edge of the screen to the next row
+	ld bc, $000d ; BG_WIDTH + 1 - SCREEN_WIDTH
+	
+.row
+; write a row of 20 tiles
+	pop de
+	ld [hl], e
+	inc l
+	ld [hl], d
+	inc l
+	pop de
+	ld [hl], e
+	inc l
+	ld [hl], d
+	inc l
+	pop de
+	ld [hl], e
+	inc l
+	ld [hl], d
+	inc l
+	pop de
+	ld [hl], e
+	inc l
+	ld [hl], d
+	inc l
+	pop de
+	ld [hl], e
+	inc l
+	ld [hl], d
+	inc l
+	pop de
+	ld [hl], e
+	inc l
+	ld [hl], d
+	inc l
+	pop de
+	ld [hl], e
+	inc l
+	ld [hl], d
+	inc l
+	pop de
+	ld [hl], e
+	inc l
+	ld [hl], d
+	inc l
+	pop de
+	ld [hl], e
+	inc l
+	ld [hl], d
+	inc l
+	pop de
+	ld [hl], e
+	inc l
+	ld [hl], d
+; next row
+	add hl, bc
+; done?
+	dec a
+	jr nz, .row
+	
+; restore sp
+	ld a, [$ffd9]
+	ld l, a
+	ld a, [$ffda]
+	ld h, a
+	ld sp, hl
+	ret
+; 170a
+
+
+SafeLoadTiles2: ; 170a
+; only execute during first fifth of vblank
+; any tiles to draw?
+	ld a, [$cf6c]
+	and a
+	ret z
+; abort if too far into vblank
+	ld a, [$ff44] ; LY
+; ly = 144-145?
+	cp 144
+	ret c
+	cp 146
+	ret nc
+	
+GetTiles2: ; 1717
+; load [$cf6c] tiles from [$cf6d-e] to [$cf6f-70]
+; save sp
+	ld [$ffd9], sp
+	
+; sp = [$cf6d-e] tile source
+	ld hl, $cf6d
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	ld sp, hl
+	
+; hl = [$cf6f-70] tile dest
+	ld hl, $cf6f
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	
+; # tiles to draw
+	ld a, [$cf6c]
+	ld b, a
+	
+; clear tile queue
+	xor a
+	ld [$cf6c], a
+	
+.loop
+; put 1 tile (16 bytes) into hl from sp
+	pop de
+	ld [hl], e
+	inc l
+	ld [hl], e
+	inc l
+	ld [hl], d
+	inc l
+	ld [hl], d
+	inc l
+	pop de
+	ld [hl], e
+	inc l
+	ld [hl], e
+	inc l
+	ld [hl], d
+	inc l
+	ld [hl], d
+	inc l
+	pop de
+	ld [hl], e
+	inc l
+	ld [hl], e
+	inc l
+	ld [hl], d
+	inc l
+	ld [hl], d
+	inc l
+	pop de
+	ld [hl], e
+	inc l
+	ld [hl], e
+	inc l
+	ld [hl], d
+	inc l
+	ld [hl], d
+; next tile
+	inc hl
+; done?
+	dec b
+	jr nz, .loop
+	
+; update $cf6f-70
+	ld a, l
+	ld [$cf6f], a
+	ld a, h
+	ld [$cf70], a
+	
+; update $cf6d-e
+	ld [$cf6d], sp
+	
+; restore sp
+	ld a, [$ffd9]
+	ld l, a
+	ld a, [$ffda]
+	ld h, a
+	ld sp, hl
+	ret
+; 1769
+
+
+SafeLoadTiles: ; 1769
+; only execute during first fifth of vblank
+; any tiles to draw?
+	ld a, [$cf67]
+	and a
+	ret z
+; abort if too far into vblank
+	ld a, [$ff44] ; LY
+; ly = 144-145?
+	cp 144
+	ret c
+	cp 146
+	ret nc
+	jr GetTiles
+	
+LoadTiles: ; 1778
+; use only if time is allotted
+; any tiles to draw?
+	ld a, [$cf67]
+	and a
+	ret z
+; get tiles
+	
+GetTiles: ; 177d
+; load [$cf67] tiles from [$cf68-9] to [$cf6a-b]
+
+; save sp
+	ld [$ffd9], sp
+	
+; sp = [$cf68-9] tile source
+	ld hl, $cf68
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	ld sp, hl
+	
+; hl = [$cf6a-b] tile dest
+	ld hl, $cf6a
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	
+; # tiles to draw
+	ld a, [$cf67]
+	ld b, a
+; clear tile queue
+	xor a
+	ld [$cf67], a
+	
+.loop
+; put 1 tile (16 bytes) into hl from sp
+	pop de
+	ld [hl], e
+	inc l
+	ld [hl], d
+	inc l
+	pop de
+	ld [hl], e
+	inc l
+	ld [hl], d
+	inc l
+	pop de
+	ld [hl], e
+	inc l
+	ld [hl], d
+	inc l
+	pop de
+	ld [hl], e
+	inc l
+	ld [hl], d
+	inc l
+	pop de
+	ld [hl], e
+	inc l
+	ld [hl], d
+	inc l
+	pop de
+	ld [hl], e
+	inc l
+	ld [hl], d
+	inc l
+	pop de
+	ld [hl], e
+	inc l
+	ld [hl], d
+	inc l
+	pop de
+	ld [hl], e
+	inc l
+	ld [hl], d
+; next tile
+	inc hl
+; done?
+	dec b
+	jr nz, .loop
+	
+; update $cf6a-b
+	ld a, l
+	ld [$cf6a], a
+	ld a, h
+	ld [$cf6b], a
+	
+; update $cf68-9
+	ld [$cf68], sp
+	
+; restore sp
+	ld a, [$ffd9]
+	ld l, a
+	ld a, [$ffda]
+	ld h, a
+	ld sp, hl
+	ret
+; 17d3
+
+
+SafeTileAnimation: ; 17d3
+; call from vblank
+
+	ld a, [$ffde]
+	and a
+	ret z
+	
+; abort if too far into vblank
+	ld a, [$ff44] ; LY
+; ret unless ly = 144-150
+	cp 144
+	ret c
+	cp 151
+	ret nc
+	
+; save affected banks
+; switch to new banks
+	ld a, [$ff9d]
+	push af ; save bank
+	ld a, BANK(DoTileAnimation)
+	rst Bankswitch ; bankswitch
+
+	ld a, [$ff70] ; wram bank
+	push af ; save wram bank
+	ld a, $1 ; wram bank 1
+	ld [$ff70], a ; wram bank
+
+	ld a, [$ff4f] ; vram bank
+	push af ; save vram bank
+	ld a, $0 ; vram bank 0
+	ld [$ff4f], a ; vram bank
+	
+; take care of tile animation queue
+	call DoTileAnimation
+	
+; restore affected banks
+	pop af
+	ld [$ff4f], a ; vram bank
+	pop af
+	ld [$ff70], a ; wram bank
+	pop af
+	rst Bankswitch ; bankswitch
+	ret
+; 17ff
+
+INCBIN "baserom.gbc",$17ff,$185d - $17ff
 
 GetTileType: ; 185d
 ; checks the properties of a tile
@@ -1099,7 +2820,177 @@ GetTileType: ; 185d
 	ret
 ; 1875
 
-INCBIN "baserom.gbc",$1875,$261f - $1875
+INCBIN "baserom.gbc",$1875,$2063 - $1875
+
+AskSerial: ; 2063
+; send out a handshake while serial int is off
+	ld a, [$c2d4]
+	bit 0, a
+	ret z
+	
+	ld a, [$c2d5]
+	and a
+	ret nz
+	
+; once every 6 frames
+	ld hl, $ca8a
+	inc [hl]
+	ld a, [hl]
+	cp 6
+	ret c
+	
+	xor a
+	ld [hl], a
+	
+	ld a, $c
+	ld [$c2d5], a
+	
+; handshake
+	ld a, $88
+	ld [$ff01], a
+	
+; switch to internal clock
+	ld a, %00000001
+	ld [$ff02], a
+	
+; start transfer
+	ld a, %10000001
+	ld [$ff02], a
+	
+	ret
+; 208a
+
+INCBIN "baserom.gbc",$208a,$209e - $208a
+
+GameTimer: ; 209e
+; precautionary
+	nop
+	
+; save wram bank
+	ld a, [$ff70] ; wram bank
+	push af
+	
+	ld a, $1
+	ld [$ff70], a ; wram bank
+	
+	call UpdateGameTimer
+	
+; restore wram bank
+	pop af
+	ld [$ff70], a ; wram bank
+	ret
+; 20ad
+
+
+UpdateGameTimer: ; 20ad
+; increment the game timer by one frame
+; capped at 999:59:59.00 after exactly 1000 hours
+
+; pause game update?
+	ld a, [$c2cd]
+	and a
+	ret nz
+	
+; game timer paused?
+	ld hl, GameTimerPause
+	bit 0, [hl]
+	ret z
+	
+; reached cap? (999:00:00.00)
+	ld hl, GameTimeCap
+	bit 0, [hl]
+	ret nz
+	
+; increment frame counter
+	ld hl, GameTimeFrames ; frame counter
+	ld a, [hl]
+	inc a
+
+; reached 1 second?
+	cp 60 ; frames/second
+	jr nc, .second ; 20c5 $2
+	
+; update frame counter
+	ld [hl], a
+	ret
+	
+.second
+; reset frame counter
+	xor a
+	ld [hl], a
+	
+; increment second counter
+	ld hl, GameTimeSeconds
+	ld a, [hl]
+	inc a
+	
+; reached 1 minute?
+	cp 60 ; seconds/minute
+	jr nc, .minute
+	
+; update second counter
+	ld [hl], a
+	ret
+	
+.minute
+; reset second counter
+	xor a
+	ld [hl], a
+	
+; increment minute counter
+	ld hl, GameTimeMinutes
+	ld a, [hl]
+	inc a
+	
+; reached 1 hour?
+	cp 60 ; minutes/hour
+	jr nc, .hour
+	
+; update minute counter
+	ld [hl], a
+	ret
+	
+.hour
+; reset minute counter
+	xor a
+	ld [hl], a
+	
+; increment hour counter
+	ld a, [GameTimeHours]
+	ld h, a
+	ld a, [GameTimeHours+1]
+	ld l, a
+	inc hl
+	
+; reached 1000 hours?
+	ld a, h
+	cp $3 ; 1000 / $100
+	jr c, .updatehr
+	
+	ld a, l
+	cp $e8 ; 1000 & $ff
+	jr c, .updatehr
+	
+; cap at 999:59:59.00
+	ld hl, GameTimeCap
+	set 0, [hl] ; stop timer
+	
+	ld a, 59
+	ld [GameTimeMinutes], a
+	ld [GameTimeSeconds], a
+	
+; this will never be run again
+	ret
+	
+.updatehr
+	ld a, h
+	ld [GameTimeHours], a
+	ld a, l
+	ld [GameTimeHours+1], a
+	ret
+; 210f
+
+INCBIN "baserom.gbc",$210f,$261f - $210f
 
 PushScriptPointer: ; 261f
 ; used to call a script from asm
@@ -1496,7 +3387,11 @@ CloseSRAM: ; 2fe1
 	ret
 ; 2fec
 
-INCBIN "baserom.gbc",$2fec,$300b-$2fec
+JpHl: ; 2fec
+	jp [hl]
+; 2fed
+
+INCBIN "baserom.gbc",$2fed,$300b-$2fed
 
 ClearSprites: ; 300b
 	ld hl, Sprites
@@ -2399,7 +4294,7 @@ SFXChannelsOff: ; 3e21
 	ret
 ; 3e32
 
-INCBIN "baserom.gbc",$3e32,$4000 - $3e32
+INCBIN "baserom.gbc",$3e32,$3fb5 - $3e32
 
 SECTION "bank1",DATA,BANK[$1]
 
@@ -89885,6 +91780,8 @@ CalcMagikarpLength: ; fbbfc
 INCBIN "baserom.gbc",$FBCCF,$fc000-$fbccf
 
 SECTION "bank3F",DATA,BANK[$3F]
+
+DoTileAnimation:
 
 INCBIN "baserom.gbc",$FC000,$fcdc2-$fc000
 
