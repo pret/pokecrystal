@@ -1,34 +1,30 @@
-#!/usr/bin/python
 # -*- coding: utf-8 -*-
-# author: Bryan Bishop <kanzure@gmail.com>
-# date: 2012-05-29
-# purpose: find shared functions between red/crystal
+"""
+Finds shared functions between red/crystal.
+"""
 
-from crystal import get_label_from_line,           \
-                    get_address_from_line_comment, \
-                    AsmSection
+from crystal import (
+    get_label_from_line,
+    get_address_from_line_comment,
+    AsmSection,
+    direct_load_rom,
+    direct_load_asm,
+)
 
-from romstr import RomStr, AsmList
+from romstr import (
+    RomStr,
+    AsmList,
+)
 
 def load_rom(path):
     """ Loads a ROM file into an abbreviated RomStr object.
     """
-
-    fh = open(path, "r")
-    x  = RomStr(fh.read())
-    fh.close()
-
-    return x
+    return direct_load_rom(filename=path)
 
 def load_asm(path):
     """ Loads source ASM into an abbreviated AsmList object.
     """
-
-    fh = open(path, "r")
-    x = AsmList(fh.read().split("\n"))
-    fh.close()
-
-    return x
+    return direct_load_asm(filename=path)
 
 def findall_iter(sub, string):
     # url: http://stackoverflow.com/a/3874760/687783

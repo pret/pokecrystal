@@ -3,7 +3,7 @@ SECTION "rst0",HOME[$0]
 	di
 	jp Start
 
-SECTION "rst8",HOME[$8]
+SECTION "rst8",HOME[$8] ; FarCall
 	jp $2d63
 
 SECTION "rst10",HOME[$10] ; Bankswitch
@@ -17,7 +17,7 @@ SECTION "rst18",HOME[$18] ; Unused
 SECTION "rst20",HOME[$20] ; Unused
 	rst $38
 
-SECTION "rst28",HOME[$28] ; Jump from pointer table
+SECTION "rst28",HOME[$28] ; JumpTable
 	push de
 	ld e, a
 	ld d, 00
@@ -35,7 +35,7 @@ SECTION "rst38",HOME[$38] ; Unused
 	rst $38
 
 SECTION "vblank",HOME[$40] ; vblank interrupt
-	jp $0283
+	jp VBlank
 
 SECTION "lcd",HOME[$48] ; lcd interrupt
 	jp $0552
@@ -56,7 +56,541 @@ Start:
 
 SECTION "start",HOME[$150]
 
-INCBIN "baserom.gbc",$150,$45a - $150
+INCBIN "baserom.gbc",$150,$283 - $150
+
+VBlank: ; 283
+	push af
+	push bc
+	push de
+	push hl
+	
+; get vblank type
+	ld a, [$ff9e]
+	and $7
+	
+; get fn pointer
+	ld e, a
+	ld d, $0
+	ld hl, .VBlanks
+	add hl, de
+	add hl, de
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	
+; down to business
+	call JpHl
+	
+; since this is called once per frame
+	call GameTimer
+	
+	pop hl
+	pop de
+	pop bc
+	pop af
+	reti
+; 2a1
+
+.VBlanks ; 2a1
+	dw VBlank0 ; 0
+	dw VBlank1 ; 1
+	dw VBlank2 ; 2
+	dw VBlank3 ; 3
+	dw VBlank4 ; 4
+	dw VBlank5 ; 5
+	dw VBlank6 ; 6
+	dw VBlank0 ; 7
+; 2b1
+
+
+VBlank0: ; 2b1
+; normal operation
+
+; rng
+; scx, scy, wy, wx
+; bg map buffer
+; palettes
+; dma transfer
+; bg map
+; tiles
+; oam
+; joypad
+; sound
+
+; inc frame counter
+	ld hl, $ff9b
+	inc [hl]
+	
+; advance rng
+	ld a, [$ff04] ; divider
+	ld b, a
+	ld a, [$ffe1]
+	adc b
+	ld [$ffe1], a
+	
+	ld a, [$ff04] ; divider
+	ld b, a
+	ld a, [$ffe2]
+	sbc b
+	ld [$ffe2], a
+	
+; save bank
+	ld a, [$ff9d] ; current bank
+	ld [$ff8a], a
+	
+; scroll x
+	ld a, [$ffcf]
+	ld [$ff43], a ; scx
+; scroll y
+	ld a, [$ffd0]
+	ld [$ff42], a ; scy
+; window y
+	ld a, [$ffd2]
+	ld [$ff4a], a ; wy
+; window x + 7
+	ld a, [$ffd1]
+	ld [$ff4b], a ; wx
+	
+; some time management is in order
+; only have time for one of these during vblank
+	
+; bg map buffer has priority
+	call UpdateBGMapBuffer
+	jr c, .doneframeaction
+	
+; then pals
+	call UpdatePalsIfCGB
+	jr c, .doneframeaction
+	
+; dma transfer
+	call DMATransfer
+	jr c, .doneframeaction
+	
+; bg map
+	call UpdateBGMap
+	
+; these have their own timing checks
+	call SafeLoadTiles
+	call SafeLoadTiles2
+	call SafeTileAnimation
+	
+.doneframeaction
+; oam update off?
+	ld a, [$ffd8]
+	and a
+	jr nz, .vblankoccurred
+	
+; update oam by dma transfer
+	call $ff80
+;	403f:
+;		ld a, $c4
+;		ld [$ff46], a ; oam dma
+;		ld a, $28
+;	.loop
+;		dec a
+;		jr nz, .loop
+;		ret
+
+
+; vblank-sensitive operations are done
+	
+.vblankoccurred
+; tell other fns vblank happened
+	xor a
+	ld [VBlankOccurred], a
+	
+; dec $cfb1 until 0
+	ld a, [$cfb1]
+	and a
+	jr z, .textdelay
+	dec a
+	ld [$cfb1], a
+	
+.textdelay
+; dec text delay counter until 0
+	ld a, [TextDelayFrames]
+	and a
+	jr z, .joypad
+	dec a
+	ld [TextDelayFrames], a
+	
+.joypad
+	call Joypad
+	
+; update sound
+	ld a, BANK(UpdateSound)
+	rst Bankswitch ; bankswitch
+	call UpdateSound
+	ld a, [$ff8a]
+	rst Bankswitch ; restore bank
+	
+; 
+	ld a, [$ff98]
+	ld [$ffe3], a
+	
+	ret
+; 325
+
+
+VBlank2: ; 325
+; sound only
+
+; save bank
+	ld a, [$ff9d]
+	ld [$ff8a], a
+	
+; update sound
+	ld a, BANK(UpdateSound)
+	rst Bankswitch ; bankswitch
+	call UpdateSound
+	
+; restore bank
+	ld a, [$ff8a]
+	rst Bankswitch
+	
+; tell other fns vblank happened
+	xor a
+	ld [VBlankOccurred], a
+	ret
+; 337
+
+
+VBlank1: ; 337
+; scx, scy
+; palettes
+; bg map
+; tiles
+; oam
+; sound / lcd stat
+
+; save bank
+	ld a, [$ff9d]
+	ld [$ff8a], a
+	
+; scroll x
+	ld a, [$ffcf]
+	ld [$ff43], a ; scx
+	
+; scroll y
+	ld a, [$ffd0]
+	ld [$ff42], a ; scy
+	
+; time-sensitive fns
+	call UpdatePals
+	jr c, .vblankoccurred
+	
+; these have their own timing checks
+	call UpdateBGMap
+	call LoadTiles
+; update oam by dma transfer
+	call $ff80
+;	403f:
+;		ld a, $c4
+;		ld [$ff46], a ; oam dma
+;		ld a, $28
+;	.loop
+;		dec a
+;		jr nz, .loop
+;		ret
+	
+.vblankoccurred
+; tell other fns vblank happened
+	xor a
+	ld [VBlankOccurred], a
+	
+; get requested ints
+	ld a, [$ff0f] ; IF
+	ld b, a
+; discard requested ints
+	xor a
+	ld [$ff0f], a ; IF
+; enable lcd stat
+	ld a, %10 ; lcd stat
+	ld [$ffff], a ; IE
+; rerequest serial int if applicable (still disabled)
+; request lcd stat
+	ld a, b
+	and %1000 ; serial
+	or %10 ; lcd stat
+	ld [$ff0f], a ; IF
+	
+	ei
+; update sound
+	ld a, BANK(UpdateSound)
+	rst Bankswitch ; bankswitch
+	call UpdateSound
+; restore bank
+	ld a, [$ff8a]
+	rst Bankswitch
+	di
+	
+; get requested ints
+	ld a, [$ff0f] ; IF
+	ld b, a
+; discard requested ints
+	xor a
+	ld [$ff0f], a ; IF
+; enable ints besides joypad
+	ld a, %1111 ; serial timer lcdstat vblank
+	ld [$ffff], a ; IE
+; rerequest ints
+	ld a, b
+	ld [$ff0f], a ; IF
+	ret
+; 37f
+
+
+UpdatePals: ; 37f
+; update pals for either dmg or cgb
+
+; check cgb
+	ld a, [$ffe6]
+	and a
+	jp nz, UpdateCGBPals
+	
+; update gb pals
+	ld a, [$cfc7]
+	ld [$ff47], a ; BGP
+	
+	ld a, [$cfc8]
+	ld [$ff48], a ; OBP0
+	
+	ld a, [$cfc9]
+	ld [$ff49], a ; 0BP1
+	
+	and a
+	ret
+; 396
+
+
+VBlank3: ; 396
+; scx, scy
+; palettes
+; bg map
+; tiles
+; oam
+; sound / lcd stat
+
+; save bank
+	ld a, [$ff9d]
+	ld [$ff8a], a
+	
+; scroll x
+	ld a, [$ffcf]
+	ld [$ff43], a ; scx
+; scroll y
+	ld a, [$ffd0]
+	ld [$ff42], a ; scy
+	
+; any pals to update?
+	ld a, [$ffe5]
+	and a
+	call nz, ForceUpdateCGBPals
+	jr c, .vblankoccurred
+; else
+	call UpdateBGMap
+	call LoadTiles
+	
+; update oam by dma transfer
+	call $ff80
+;	403f:
+;		ld a, $c4 ; Sprites / $100
+;		ld [$ff46], a ; oam dma
+;		ld a, $28
+;	.loop
+;		dec a
+;		jr nz, .loop
+;		ret
+	
+.vblankoccurred
+; tell other fns vblank happened
+	xor a
+	ld [VBlankOccurred], a
+	
+; save int flag
+	ld a, [$ff0f] ; IF
+	push af
+; reset ints
+	xor a
+	ld [$ff0f], a ; IF
+; force lcdstat int during sound update
+	ld a, %10 ; lcd stat
+	ld [$ffff], a ; IE
+	ld [$ff0f], a ; IF
+	
+	ei
+; update sound
+	ld a, BANK(UpdateSound)
+	rst Bankswitch ; bankswitch
+	call UpdateSound
+; restore bank
+	ld a, [$ff8a]
+	rst Bankswitch
+	di
+	
+; request lcdstat
+	ld a, [$ff0f] ; IF
+	ld b, a
+; and any other ints
+	pop af
+	or b
+	ld b, a
+; reset ints
+	xor a
+	ld [$ff0f], a ; IF
+; enable ints besides joypad
+	ld a, %1111 ; serial timer lcdstat vblank
+	ld [$ffff], a ; IE
+; request ints
+	ld a, b
+	ld [$ff0f], a ; IF
+	ret
+; 3df
+
+
+VBlank4: ; 3df
+; bg map
+; tiles
+; oam
+; joypad
+; serial
+; sound
+
+; save bank
+	ld a, [$ff9d]
+	ld [$ff8a], a
+	
+	call UpdateBGMap
+	call SafeLoadTiles
+	
+; update oam by dma transfer
+	call $ff80
+;	403f:
+;		ld a, $c4
+;		ld [$ff46], a ; oam dma
+;		ld a, $28
+;	.loop
+;		dec a
+;		jr nz, .loop
+;		ret
+	
+; update joypad
+	call Joypad
+	
+; tell other fns vblank happened
+	xor a
+	ld [VBlankOccurred], a
+	
+; handshake
+	call AskSerial
+	
+; update sound
+	ld a, BANK(UpdateSound)
+	rst Bankswitch ; bankswitch
+	call UpdateSound
+; restore bank
+	ld a, [$ff8a]
+	rst Bankswitch
+	ret
+; 400
+
+
+VBlank5: ; 400
+; scx
+; palettes
+; bg map
+; tiles
+; joypad
+; 
+
+; save bank
+	ld a, [$ff9d]
+	ld [$ff8a], a
+	
+; scroll x
+	ld a, [$ffcf]
+	ld [$ff43], a ; scx
+	
+; if we can update pals, skip this part
+	call UpdatePalsIfCGB
+	jr c, .vblankoccurred
+	
+	call UpdateBGMap
+	call SafeLoadTiles
+	
+.vblankoccurred
+; tell other fns vblank happened
+	xor a
+	ld [VBlankOccurred], a
+	
+; joypad
+	call Joypad
+	
+; discard requested ints
+	xor a
+	ld [$ff0f], a ; IF
+; enable lcd stat
+	ld a, %10 ; lcd stat
+	ld [$ffff], a ; IE
+; request lcd stat
+	ld [$ff0f], a ; IF
+	
+	ei
+; update sound
+	ld a, BANK(UpdateSound)
+	rst Bankswitch ; bankswitch
+	call UpdateSound
+; restore bank
+	ld a, [$ff8a]
+	rst Bankswitch
+	di
+	
+; discard requested ints
+	xor a
+	ld [$ff0f], a ; IF
+; enable ints besides joypad
+	ld a, %1111 ; serial timer lcdstat vblank
+	ld [$ffff], a ; IE
+	ret
+; 436
+
+
+VBlank6: ; 436
+; palettes
+; tiles
+; dma transfer
+; sound
+
+; save bank
+	ld a, [$ff9d]
+	ld [$ff8a], a
+	
+; inc frame counter
+	ld hl, $ff9b
+	inc [hl]
+	
+	call UpdateCGBPals
+	jr c, .vblankoccurred
+	
+	call SafeLoadTiles
+	call SafeLoadTiles2
+	call DMATransfer
+	
+.vblankoccurred
+; tell other fns vblank happened
+	xor a
+	ld [VBlankOccurred], a
+	
+; update sound
+	ld a, BANK(UpdateSound)
+	rst Bankswitch ; bankswitch
+	call UpdateSound
+; restore bank
+	ld a, [$ff8a]
+	rst Bankswitch
+	ret
+; 45a
+
 
 DelayFrame: ; 0x45a
 ; delay for one frame
@@ -140,6 +674,9 @@ IncGradGBPalTable_01: ; 52f
 INCBIN "baserom.gbc",$547,$568 - $547
 
 DisableLCD: ; 568
+; Turn the LCD off
+; Most of this is just going through the motions
+
 ; don't need to do anything if lcd is already off
 	ld a, [$ff40] ; LCDC
 	bit 7, a ; lcd enable
@@ -366,9 +903,7 @@ FixTime: ; 61d
 	ret
 ; 658
 
-
 INCBIN "baserom.gbc",$658,$691 - $658
-
 
 SetClock: ; 691
 ; set clock data from hram
@@ -418,7 +953,87 @@ SetClock: ; 691
 	ret
 ; 6c4
 
-INCBIN "baserom.gbc",$6c4,$984 - $6c4
+INCBIN "baserom.gbc",$6c4,$935 - $6c4
+
+Joypad: ; 935
+; update joypad state
+; $ffa2: released
+; $ffa3: pressed
+; $ffa4: input
+; $ffa5: total pressed
+
+; 
+	ld a, [$cfbe]
+	and $d0
+	ret nz
+	
+; pause game update?
+	ld a, [$c2cd]
+	and a
+	ret nz
+	
+; d-pad
+	ld a, $20
+	ld [$ff00], a
+	ld a, [$ff00]
+	ld a, [$ff00]
+; hi nybble
+	cpl
+	and $f
+	swap a
+	ld b, a
+	
+; buttons
+	ld a, $10
+	ld [$ff00], a
+; wait to stabilize
+	ld a, [$ff00]
+	ld a, [$ff00]
+	ld a, [$ff00]
+	ld a, [$ff00]
+	ld a, [$ff00]
+	ld a, [$ff00]
+; lo nybble
+	cpl
+	and $f
+	or b
+	ld b, a
+	
+; reset joypad
+	ld a, $30
+	ld [$ff00], a
+	
+; get change in input
+	ld a, [$ffa4] ; last frame's input
+	ld e, a
+	xor b ; current frame input
+	ld d, a
+; released
+	and e
+	ld [$ffa2], a
+; pressed
+	ld a, d
+	and b
+	ld [$ffa3], a
+	
+; total pressed
+	ld c, a
+	ld a, [$ffa5]
+	or c
+	ld [$ffa5], a
+	
+; original input
+	ld a, b
+	ld [$ffa4], a
+	
+; A+B+SELECT+START
+	and $f
+	cp $f
+	jp z, $0150 ; reset
+	
+	ret
+; 984
+
 
 GetJoypadPublic: ; 984
 ; update mirror joypad input from $ffa4 (real input)
@@ -485,7 +1100,7 @@ GetJoypadPublic: ; 984
 	push af
 ;
 	ld a, [AutoInputBank]
-	rst $10
+	rst Bankswitch
 ;
 	ld hl, AutoInputAddress ; AutoInputAddress-9
 	ld a, [hli]
@@ -502,7 +1117,7 @@ GetJoypadPublic: ; 984
 	ld [AutoInputLength], a
 ; restore bank
 	pop af
-	rst $10
+	rst Bankswitch
 ; we're done
 	jr .quit
 	
@@ -542,7 +1157,7 @@ GetJoypadPublic: ; 984
 .finishauto
 ; restore bank
 	pop af
-	rst $10
+	rst Bankswitch
 ; update mirrors
 	ld a, b
 	ld [$ffa7], a ; pressed
@@ -585,7 +1200,506 @@ StopAutoInput: ; a0a
 	ret
 ; a1b
 
-INCBIN "baserom.gbc",$a1b,$c9f - $a1b
+INCBIN "baserom.gbc",$a1b,$b40 - $a1b
+
+FarDecompress: ; b40
+; Decompress graphics data at a:hl to de
+
+; put a away for a sec
+	ld [$c2c4], a
+; save bank
+	ld a, [$ff9d]
+	push af
+; bankswitch
+	ld a, [$c2c4]
+	rst Bankswitch
+	
+; what we came here for
+	call Decompress
+	
+; restore bank
+	pop af
+	rst Bankswitch
+	ret
+; b50
+
+
+Decompress: ; b50
+; Pokemon Crystal uses an lz variant for compression.
+
+; This is mainly used for graphics, but the intro's
+; tilemaps also use this compression.
+
+; This function decompresses lz-compressed data at hl to de.
+
+
+; Basic rundown:
+
+;	A typical control command consists of:
+;		-the command (bits 5-7)
+;		-the count (bits 0-4)
+;		-and any additional params
+
+;	$ff is used as a terminator.
+
+
+;	Commands:
+
+;		0: literal
+;			literal data for some number of bytes
+;		1: iterate
+;			one byte repeated for some number of bytes
+;		2: alternate
+;			two bytes alternated for some number of bytes
+;		3: zero (whitespace)
+;			0x00 repeated for some number of bytes
+
+;	Repeater control commands have a signed parameter used to determine the start point.
+;	Wraparound is simulated:
+;		Positive values are added to the start address of the decompressed data
+;		and negative values are subtracted from the current position.
+
+;		4: repeat
+;			repeat some number of bytes from decompressed data
+;		5: flipped
+;			repeat some number of flipped bytes from decompressed data
+;			ex: $ad = %10101101 -> %10110101 = $b5
+;		6: reverse
+;			repeat some number of bytes in reverse from decompressed data
+
+;	If the value in the count needs to be larger than 5 bits,
+;	control code 7 can be used to expand the count to 10 bits.
+
+;		A new control command is read in bits 2-4.
+;		The new 10-bit count is split:
+;			bits 0-1 contain the top 2 bits
+;			another byte is added containing the latter 8
+
+;		So, the structure of the control command becomes:
+;			111xxxyy yyyyyyyy
+;			 |  |  |    |
+;            |  | our new count
+;            | the control command for this count
+;            7 (this command)
+
+; For more information, refer to the code below and in extras/gfx.py .
+
+; save starting output address
+	ld a, e
+	ld [$c2c2], a
+	ld a, d
+	ld [$c2c3], a
+	
+.loop
+; get next byte
+	ld a, [hl]
+; done?
+	cp $ff ; end
+	ret z
+
+; get control code
+	and %11100000
+	
+; 10-bit param?
+	cp $e0 ; LZ_HI
+	jr nz, .normal
+	
+	
+; 10-bit param:
+
+; get next 3 bits (%00011100)
+	ld a, [hl]
+	add a
+	add a ; << 3
+	add a
+	
+; this is our new control code
+	and %11100000
+	push af
+	
+; get param hi
+	ld a, [hli]
+	and %00000011
+	ld b, a
+	
+; get param lo
+	ld a, [hli]
+	ld c, a
+	
+; read at least 1 byte
+	inc bc
+	jr .readers
+	
+	
+.normal
+; push control code
+	push af
+; get param
+	ld a, [hli]
+	and %00011111
+	ld c, a
+	ld b, $0
+; read at least 1 byte
+	inc c
+	
+.readers
+; let's get started
+
+; inc loop counts since we bail as soon as they hit 0
+	inc b
+	inc c
+	
+; get control code
+	pop af
+; command type
+	bit 7, a ; 80, a0, c0
+	jr nz, .repeatertype
+	
+; literals
+	cp $20 ; LZ_ITER
+	jr z, .iter
+	cp $40 ; LZ_ALT
+	jr z, .alt
+	cp $60 ; LZ_ZERO
+	jr z, .zero
+	; else $00
+	
+; 00 ; LZ_LIT
+; literal data for bc bytes
+.loop1
+; done?
+	dec c
+	jr nz, .next1
+	dec b
+	jp z, .loop
+	
+.next1
+	ld a, [hli]
+	ld [de], a
+	inc de
+	jr .loop1
+	
+	
+; 20 ; LZ_ITER
+; write byte for bc bytes
+.iter
+	ld a, [hli]
+	
+.iterloop
+	dec c
+	jr nz, .iternext
+	dec b
+	jp z, .loop
+	
+.iternext
+	ld [de], a
+	inc de
+	jr .iterloop
+	
+	
+; 40 ; LZ_ALT
+; alternate two bytes for bc bytes
+
+; next pair
+.alt
+; done?
+	dec c
+	jr nz, .alt0
+	dec b
+	jp z, .altclose0
+	
+; alternate for bc
+.alt0
+	ld a, [hli]
+	ld [de], a
+	inc de
+	dec c
+	jr nz, .alt1
+; done?
+	dec b
+	jp z, .altclose1
+.alt1
+	ld a, [hld]
+	ld [de], a
+	inc de
+	jr .alt
+	
+; skip past the bytes we were alternating
+.altclose0
+	inc hl
+.altclose1
+	inc hl
+	jr .loop
+	
+	
+; 60 ; LZ_ZERO
+; write 00 for bc bytes
+.zero
+	xor a
+	
+.zeroloop
+	dec c
+	jr nz, .zeronext
+	dec b
+	jp z, .loop
+	
+.zeronext
+	ld [de], a
+	inc de
+	jr .zeroloop
+	
+	
+; repeats
+; 80, a0, c0
+; repeat decompressed data from output
+.repeatertype
+	push hl
+	push af
+; get next byte
+	ld a, [hli]
+; absolute?
+	bit 7, a
+	jr z, .absolute
+	
+; relative
+; a = -a
+	and %01111111 ; forget the bit we just looked at
+	cpl
+; add de (current output address)
+	add e
+	ld l, a
+	ld a, $ff ; -1
+	adc d
+	ld h, a
+	jr .repeaters
+	
+.absolute
+; get next byte (lo)
+	ld l, [hl]
+; last byte (hi)
+	ld h, a
+; add starting output address
+	ld a, [$c2c2]
+	add l
+	ld l, a
+	ld a, [$c2c3]
+	adc h
+	ld h, a
+	
+.repeaters
+	pop af
+	cp $80 ; LZ_REPEAT
+	jr z, .repeat
+	cp $a0 ; LZ_FLIP
+	jr z, .flip
+	cp $c0 ; LZ_REVERSE
+	jr z, .reverse
+	
+; e0 -> 80
+	
+; 80 ; LZ_REPEAT
+; repeat some decompressed data
+.repeat
+; done?
+	dec c
+	jr nz, .repeatnext
+	dec b
+	jr z, .cleanup
+	
+.repeatnext
+	ld a, [hli]
+	ld [de], a
+	inc de
+	jr .repeat
+	
+	
+; a0 ; LZ_FLIP
+; repeat some decompressed data w/ flipped bit order
+.flip
+	dec c
+	jr nz, .flipnext
+	dec b
+	jp z, .cleanup
+	
+.flipnext
+	ld a, [hli]
+	push bc
+	ld bc, $0008
+	
+.fliploop
+	rra
+	rl b
+	dec c
+	jr nz, .fliploop
+	ld a, b
+	pop bc
+	ld [de], a
+	inc de
+	jr .flip
+	
+	
+; c0 ; LZ_REVERSE
+; repeat some decompressed data in reverse
+.reverse
+	dec c
+	jr nz, .reversenext
+	
+	dec b
+	jp z, .cleanup
+	
+.reversenext
+	ld a, [hld]
+	ld [de], a
+	inc de
+	jr .reverse
+	
+	
+.cleanup
+; get type of repeat we just used
+	pop hl
+; was it relative or absolute?
+	bit 7, [hl]
+	jr nz, .next
+
+; skip two bytes for absolute
+	inc hl
+; skip one byte for relative
+.next
+	inc hl
+	jp .loop
+; c2f
+
+
+
+
+UpdatePalsIfCGB: ; c2f
+; update bgp data from BGPals
+; update obp data from OBPals
+; return carry if successful
+
+; check cgb
+	ld a, [$ffe6]
+	and a
+	ret z
+	
+UpdateCGBPals: ; c33
+; return carry if successful
+; any pals to update?
+	ld a, [$ffe5]
+	and a
+	ret z
+	
+ForceUpdateCGBPals: ; c37
+; save wram bank
+	ld a, [$ff70] ; wram bank
+	push af
+; bankswitch
+	ld a, 5 ; BANK(BGPals)
+	ld [$ff70], a ; wram bank
+; get bg pal buffer
+	ld hl, BGPals ; 5:d080
+	
+; update bg pals
+	ld a, %10000000 ; auto increment, index 0
+	ld [$ff68], a ; BGPI
+	ld c, $69 ; $ff69
+	ld b, 4 ; NUM_PALS / 2
+	
+.bgp
+; copy 16 bytes (8 colors / 2 pals) to bgpd
+	ld a, [hli]
+	ld [$ff00+c], a
+	ld a, [hli]
+	ld [$ff00+c], a
+	ld a, [hli]
+	ld [$ff00+c], a
+	ld a, [hli]
+	ld [$ff00+c], a
+	ld a, [hli]
+	ld [$ff00+c], a
+	ld a, [hli]
+	ld [$ff00+c], a
+	ld a, [hli]
+	ld [$ff00+c], a
+	ld a, [hli]
+	ld [$ff00+c], a
+	ld a, [hli]
+	ld [$ff00+c], a
+	ld a, [hli]
+	ld [$ff00+c], a
+	ld a, [hli]
+	ld [$ff00+c], a
+	ld a, [hli]
+	ld [$ff00+c], a
+	ld a, [hli]
+	ld [$ff00+c], a
+	ld a, [hli]
+	ld [$ff00+c], a
+	ld a, [hli]
+	ld [$ff00+c], a
+	ld a, [hli]
+	ld [$ff00+c], a
+; done?
+	dec b
+	jr nz, .bgp
+	
+; hl is now 5:d0c0 OBPals
+	
+; update obj pals
+	ld a, %10000000 ; auto increment, index 0
+	ld [$ff6a], a
+	ld c, $6b ; $ff6b - $ff00
+	ld b, 4 ; NUM_PALS / 2
+	
+.obp
+; copy 16 bytes (8 colors / 2 pals) to obpd
+	ld a, [hli]
+	ld [$ff00+c], a
+	ld a, [hli]
+	ld [$ff00+c], a
+	ld a, [hli]
+	ld [$ff00+c], a
+	ld a, [hli]
+	ld [$ff00+c], a
+	ld a, [hli]
+	ld [$ff00+c], a
+	ld a, [hli]
+	ld [$ff00+c], a
+	ld a, [hli]
+	ld [$ff00+c], a
+	ld a, [hli]
+	ld [$ff00+c], a
+	ld a, [hli]
+	ld [$ff00+c], a
+	ld a, [hli]
+	ld [$ff00+c], a
+	ld a, [hli]
+	ld [$ff00+c], a
+	ld a, [hli]
+	ld [$ff00+c], a
+	ld a, [hli]
+	ld [$ff00+c], a
+	ld a, [hli]
+	ld [$ff00+c], a
+	ld a, [hli]
+	ld [$ff00+c], a
+	ld a, [hli]
+	ld [$ff00+c], a
+; done?
+	dec b
+	jr nz, .obp
+	
+; restore wram bank
+	pop af
+	ld [$ff70], a ; wram bank
+; clear pal update queue
+	xor a
+	ld [$ffe5], a
+; successfully updated palettes
+	scf
+	ret
+; c9f
+
 
 DmgToCgbBGPals: ; c9f
 ; exists to forego reinserting cgb-converted image data
@@ -743,10 +1857,10 @@ FarCopyBytes: ; e8d
 	ld a, [$ff9d] ; save old bank
 	push af
 	ld a, [$ff8b]
-	rst $10
+	rst Bankswitch
 	call CopyBytes
 	pop af
-	rst $10
+	rst Bankswitch
 	ret
 ; 0xe9b
 
@@ -756,7 +1870,7 @@ FarCopyBytesDouble: ; e9b
 	ld a, [$ff9d] ; save current bank
 	push af
 	ld a, [$ff8b]
-	rst $10 ; bankswitch
+	rst Bankswitch ; bankswitch
 	ld a, h ; switcheroo, de <> hl
 	ld h, d
 	ld d, a
@@ -777,12 +1891,28 @@ FarCopyBytesDouble: ; e9b
 	dec b
 	jr nz, .loop
 	pop af
-	rst $10
+	rst Bankswitch
 	ret
 ; 0xeba
 
 
-INCBIN "baserom.gbc",$eba,$ff1 - $eba
+INCBIN "baserom.gbc",$eba,$fc8 - $eba
+
+ClearTileMap: ; fc8
+; Fill the tile map with blank tiles
+	ld hl, TileMap
+	ld a, $7f ; blank tile
+	ld bc, 360 ; length of TileMap
+	call ByteFill
+	
+; We aren't done if the LCD is on
+	ld a, [$ff40] ; LCDC
+	bit 7, a
+	ret z
+	jp WaitBGMap
+; fdb
+
+INCBIN "baserom.gbc",$fdb,$ff1 - $fdb
 
 TextBoxBorder: ; ff1
 ; draw a text box
@@ -1003,7 +2133,7 @@ Char5D:
 	push bc
 	ld hl, $5939
 	ld a, $e
-	rst $8
+	rst FarCall
 	pop hl
 	ld de, $d073
 	jr .asm_126a ; 0x1246 $22
@@ -1055,7 +2185,617 @@ Char5F: ; 0x1356
 	pop hl
 	ret
 
-INCBIN "baserom.gbc",$135a,$185d - $135a
+INCBIN "baserom.gbc",$135a,$15d8 - $135a
+
+DMATransfer: ; 15d8
+; DMA transfer
+; return carry if successful
+
+; anything to transfer?
+	ld a, [$ffe8]
+	and a
+	ret z
+; start transfer
+	ld [$ff55], a ; hdma5
+; indicate that transfer has occurred
+	xor a
+	ld [$ffe8], a
+; successful transfer
+	scf
+	ret
+; 15e3
+
+
+UpdateBGMapBuffer: ; 15e3
+; write [$ffdc] 16x8 tiles from BGMapBuffer to bg map addresses in BGMapBufferPtrs
+; [$ffdc] must be even since this is done in 16x16 blocks
+
+; return carry if successful
+
+; any tiles to update?
+	ld a, [$ffdb]
+	and a
+	ret z
+; save wram bank
+	ld a, [$ff4f] ; vram bank
+	push af
+; save sp
+	ld [$ffd9], sp
+	
+; temp stack
+	ld hl, BGMapBufferPtrs
+	ld sp, hl
+; we can now pop the addresses of affected spots in bg map
+	
+; get pal and tile buffers
+	ld hl, BGMapPalBuffer
+	ld de, BGMapBuffer
+
+.loop
+; draw one 16x16 block
+
+; top half:
+
+; get bg map address
+	pop bc
+; update palettes
+	ld a, $1
+	ld [$ff4f], a ; vram bank
+; tile 1
+	ld a, [hli]
+	ld [bc], a
+	inc c
+; tile 2
+	ld a, [hli]
+	ld [bc], a
+	dec c
+; update tiles
+	ld a, $0
+	ld [$ff4f], a ; vram bank
+; tile 1
+	ld a, [de]
+	inc de
+	ld [bc], a
+	inc c
+; tile 2
+	ld a, [de]
+	inc de
+	ld [bc], a
+	
+; bottom half:
+
+; get bg map address
+	pop bc
+; update palettes
+	ld a, $1
+	ld [$ff4f], a ; vram bank
+; tile 1
+	ld a, [hli]
+	ld [bc], a
+	inc c
+; tile 2
+	ld a, [hli]
+	ld [bc], a
+	dec c
+; update tiles
+	ld a, $0
+	ld [$ff4f], a ; vram bank
+; tile 1
+	ld a, [de]
+	inc de
+	ld [bc], a
+	inc c
+; tile 2
+	ld a, [de]
+	inc de
+	ld [bc], a
+	
+; we've done 2 16x8 blocks
+	ld a, [$ffdc]
+	dec a
+	dec a
+	ld [$ffdc], a
+	
+; if there are more left, get the next 16x16 block
+	jr nz, .loop
+	
+	
+; restore sp
+	ld a, [$ffd9]
+	ld l, a
+	ld a, [$ffda]
+	ld h, a
+	ld sp, hl
+	
+; restore vram bank
+	pop af
+	ld [$ff4f], a ; vram bank
+	
+; we don't need to update bg map until new tiles are loaded
+	xor a
+	ld [$ffdb], a
+	
+; successfully updated bg map
+	scf
+	ret
+; 163a
+
+
+WaitTop: ; 163a
+	ld a, [$ffd4]
+	and a
+	ret z
+	
+; wait until top third of bg map can be updated
+	ld a, [$ffd5]
+	and a
+	jr z, .quit
+	
+	call DelayFrame
+	jr WaitTop
+	
+.quit
+	xor a
+	ld [$ffd4], a
+	ret
+; 164c
+
+
+UpdateBGMap: ; 164c
+; get mode
+	ld a, [$ffd4]
+	and a
+	ret z
+	
+; don't save bg map address
+	dec a ; 1
+	jr z, .tiles
+	dec a ; 2
+	jr z, .attr
+	dec a ; ?
+	
+; save bg map address
+	ld a, [$ffd6]
+	ld l, a
+	ld a, [$ffd7]
+	ld h, a
+	push hl
+
+; bg map 1 ($9c00)
+	xor a
+	ld [$ffd6], a
+	ld a, $9c
+	ld [$ffd7], a
+	
+; get mode again
+	ld a, [$ffd4]
+	push af
+	cp 3
+	call z, .tiles
+	pop af
+	cp 4
+	call z, .attr
+	
+; restore bg map address
+	pop hl
+	ld a, l
+	ld [$ffd6], a
+	ld a, h
+	ld [$ffd7], a
+	ret
+	
+.attr
+; switch vram banks
+	ld a, 1
+	ld [$ff4f], a ; vram bank
+; bg map 1
+	ld hl, AttrMap
+	call .getthird
+; restore vram bank
+	ld a, 0
+	ld [$ff4f], a ; vram bank
+	ret
+	
+.tiles
+; bg map 0
+	ld hl, TileMap
+	
+.getthird
+; save sp
+	ld [$ffd9], sp
+	
+; # tiles to move down * 6 (which third?)
+	ld a, [$ffd5]
+	and a ; 0
+	jr z, .top
+	dec a ; 1
+	jr z, .middle
+
+; .bottom ; 2
+; move 12 tiles down
+	ld de, $00f0 ; TileMap(0,12) - TileMap
+	add hl, de
+; stack now points to source
+	ld sp, hl
+; get bg map address
+	ld a, [$ffd7]
+	ld h, a
+	ld a, [$ffd6]
+	ld l, a
+; move 12 tiles down
+	ld de, $0180 ; bgm(0,12)
+	add hl, de
+; start at top next time
+	xor a
+	jr .start
+	
+.middle
+; move 6 tiles down
+	ld de, $0078 ; TileMap(0,6) - TileMap
+	add hl, de
+; stack now points to source
+	ld sp, hl
+; get bg map address
+	ld a, [$ffd7]
+	ld h, a
+	ld a, [$ffd6]
+	ld l, a
+; move 6 tiles down
+	ld de, $00c0 ; bgm(0,6)
+	add hl, de
+; start at bottom next time
+	ld a, 2
+	jr .start
+	
+.top
+; stack now points to source
+	ld sp, hl
+; get bg map address
+	ld a, [$ffd7]
+	ld h, a
+	ld a, [$ffd6]
+	ld l, a
+; start at middle next time
+	ld a, 1
+	
+.start
+; which third to draw next update
+	ld [$ffd5], a
+; # rows per third
+	ld a, 6 ; SCREEN_HEIGHT / 3
+; # tiles from the edge of the screen to the next row
+	ld bc, $000d ; BG_WIDTH + 1 - SCREEN_WIDTH
+	
+.row
+; write a row of 20 tiles
+	pop de
+	ld [hl], e
+	inc l
+	ld [hl], d
+	inc l
+	pop de
+	ld [hl], e
+	inc l
+	ld [hl], d
+	inc l
+	pop de
+	ld [hl], e
+	inc l
+	ld [hl], d
+	inc l
+	pop de
+	ld [hl], e
+	inc l
+	ld [hl], d
+	inc l
+	pop de
+	ld [hl], e
+	inc l
+	ld [hl], d
+	inc l
+	pop de
+	ld [hl], e
+	inc l
+	ld [hl], d
+	inc l
+	pop de
+	ld [hl], e
+	inc l
+	ld [hl], d
+	inc l
+	pop de
+	ld [hl], e
+	inc l
+	ld [hl], d
+	inc l
+	pop de
+	ld [hl], e
+	inc l
+	ld [hl], d
+	inc l
+	pop de
+	ld [hl], e
+	inc l
+	ld [hl], d
+; next row
+	add hl, bc
+; done?
+	dec a
+	jr nz, .row
+	
+; restore sp
+	ld a, [$ffd9]
+	ld l, a
+	ld a, [$ffda]
+	ld h, a
+	ld sp, hl
+	ret
+; 170a
+
+
+SafeLoadTiles2: ; 170a
+; only execute during first fifth of vblank
+; any tiles to draw?
+	ld a, [$cf6c]
+	and a
+	ret z
+; abort if too far into vblank
+	ld a, [$ff44] ; LY
+; ly = 144-145?
+	cp 144
+	ret c
+	cp 146
+	ret nc
+	
+GetTiles2: ; 1717
+; load [$cf6c] tiles from [$cf6d-e] to [$cf6f-70]
+; save sp
+	ld [$ffd9], sp
+	
+; sp = [$cf6d-e] tile source
+	ld hl, $cf6d
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	ld sp, hl
+	
+; hl = [$cf6f-70] tile dest
+	ld hl, $cf6f
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	
+; # tiles to draw
+	ld a, [$cf6c]
+	ld b, a
+	
+; clear tile queue
+	xor a
+	ld [$cf6c], a
+	
+.loop
+; put 1 tile (16 bytes) into hl from sp
+	pop de
+	ld [hl], e
+	inc l
+	ld [hl], e
+	inc l
+	ld [hl], d
+	inc l
+	ld [hl], d
+	inc l
+	pop de
+	ld [hl], e
+	inc l
+	ld [hl], e
+	inc l
+	ld [hl], d
+	inc l
+	ld [hl], d
+	inc l
+	pop de
+	ld [hl], e
+	inc l
+	ld [hl], e
+	inc l
+	ld [hl], d
+	inc l
+	ld [hl], d
+	inc l
+	pop de
+	ld [hl], e
+	inc l
+	ld [hl], e
+	inc l
+	ld [hl], d
+	inc l
+	ld [hl], d
+; next tile
+	inc hl
+; done?
+	dec b
+	jr nz, .loop
+	
+; update $cf6f-70
+	ld a, l
+	ld [$cf6f], a
+	ld a, h
+	ld [$cf70], a
+	
+; update $cf6d-e
+	ld [$cf6d], sp
+	
+; restore sp
+	ld a, [$ffd9]
+	ld l, a
+	ld a, [$ffda]
+	ld h, a
+	ld sp, hl
+	ret
+; 1769
+
+
+SafeLoadTiles: ; 1769
+; only execute during first fifth of vblank
+; any tiles to draw?
+	ld a, [$cf67]
+	and a
+	ret z
+; abort if too far into vblank
+	ld a, [$ff44] ; LY
+; ly = 144-145?
+	cp 144
+	ret c
+	cp 146
+	ret nc
+	jr GetTiles
+	
+LoadTiles: ; 1778
+; use only if time is allotted
+; any tiles to draw?
+	ld a, [$cf67]
+	and a
+	ret z
+; get tiles
+	
+GetTiles: ; 177d
+; load [$cf67] tiles from [$cf68-9] to [$cf6a-b]
+
+; save sp
+	ld [$ffd9], sp
+	
+; sp = [$cf68-9] tile source
+	ld hl, $cf68
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	ld sp, hl
+	
+; hl = [$cf6a-b] tile dest
+	ld hl, $cf6a
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	
+; # tiles to draw
+	ld a, [$cf67]
+	ld b, a
+; clear tile queue
+	xor a
+	ld [$cf67], a
+	
+.loop
+; put 1 tile (16 bytes) into hl from sp
+	pop de
+	ld [hl], e
+	inc l
+	ld [hl], d
+	inc l
+	pop de
+	ld [hl], e
+	inc l
+	ld [hl], d
+	inc l
+	pop de
+	ld [hl], e
+	inc l
+	ld [hl], d
+	inc l
+	pop de
+	ld [hl], e
+	inc l
+	ld [hl], d
+	inc l
+	pop de
+	ld [hl], e
+	inc l
+	ld [hl], d
+	inc l
+	pop de
+	ld [hl], e
+	inc l
+	ld [hl], d
+	inc l
+	pop de
+	ld [hl], e
+	inc l
+	ld [hl], d
+	inc l
+	pop de
+	ld [hl], e
+	inc l
+	ld [hl], d
+; next tile
+	inc hl
+; done?
+	dec b
+	jr nz, .loop
+	
+; update $cf6a-b
+	ld a, l
+	ld [$cf6a], a
+	ld a, h
+	ld [$cf6b], a
+	
+; update $cf68-9
+	ld [$cf68], sp
+	
+; restore sp
+	ld a, [$ffd9]
+	ld l, a
+	ld a, [$ffda]
+	ld h, a
+	ld sp, hl
+	ret
+; 17d3
+
+
+SafeTileAnimation: ; 17d3
+; call from vblank
+
+	ld a, [$ffde]
+	and a
+	ret z
+	
+; abort if too far into vblank
+	ld a, [$ff44] ; LY
+; ret unless ly = 144-150
+	cp 144
+	ret c
+	cp 151
+	ret nc
+	
+; save affected banks
+; switch to new banks
+	ld a, [$ff9d]
+	push af ; save bank
+	ld a, BANK(DoTileAnimation)
+	rst Bankswitch ; bankswitch
+
+	ld a, [$ff70] ; wram bank
+	push af ; save wram bank
+	ld a, $1 ; wram bank 1
+	ld [$ff70], a ; wram bank
+
+	ld a, [$ff4f] ; vram bank
+	push af ; save vram bank
+	ld a, $0 ; vram bank 0
+	ld [$ff4f], a ; vram bank
+	
+; take care of tile animation queue
+	call DoTileAnimation
+	
+; restore affected banks
+	pop af
+	ld [$ff4f], a ; vram bank
+	pop af
+	ld [$ff70], a ; wram bank
+	pop af
+	rst Bankswitch ; bankswitch
+	ret
+; 17ff
+
+INCBIN "baserom.gbc",$17ff,$185d - $17ff
 
 GetTileType: ; 185d
 ; checks the properties of a tile
@@ -1069,10 +2809,10 @@ GetTileType: ; 185d
 	ld a, [$ff9d] ; current bank
 	push af
 	ld a, BANK(TileTypeTable)
-	rst $10
+	rst Bankswitch
 	ld e, [hl] ; get tile type
 	pop af
-	rst $10 ; return to current bank
+	rst Bankswitch ; return to current bank
 	ld a, e
 	and a, $0f ; lo nybble only
 	pop hl
@@ -1080,7 +2820,177 @@ GetTileType: ; 185d
 	ret
 ; 1875
 
-INCBIN "baserom.gbc",$1875,$261f - $1875
+INCBIN "baserom.gbc",$1875,$2063 - $1875
+
+AskSerial: ; 2063
+; send out a handshake while serial int is off
+	ld a, [$c2d4]
+	bit 0, a
+	ret z
+	
+	ld a, [$c2d5]
+	and a
+	ret nz
+	
+; once every 6 frames
+	ld hl, $ca8a
+	inc [hl]
+	ld a, [hl]
+	cp 6
+	ret c
+	
+	xor a
+	ld [hl], a
+	
+	ld a, $c
+	ld [$c2d5], a
+	
+; handshake
+	ld a, $88
+	ld [$ff01], a
+	
+; switch to internal clock
+	ld a, %00000001
+	ld [$ff02], a
+	
+; start transfer
+	ld a, %10000001
+	ld [$ff02], a
+	
+	ret
+; 208a
+
+INCBIN "baserom.gbc",$208a,$209e - $208a
+
+GameTimer: ; 209e
+; precautionary
+	nop
+	
+; save wram bank
+	ld a, [$ff70] ; wram bank
+	push af
+	
+	ld a, $1
+	ld [$ff70], a ; wram bank
+	
+	call UpdateGameTimer
+	
+; restore wram bank
+	pop af
+	ld [$ff70], a ; wram bank
+	ret
+; 20ad
+
+
+UpdateGameTimer: ; 20ad
+; increment the game timer by one frame
+; capped at 999:59:59.00 after exactly 1000 hours
+
+; pause game update?
+	ld a, [$c2cd]
+	and a
+	ret nz
+	
+; game timer paused?
+	ld hl, GameTimerPause
+	bit 0, [hl]
+	ret z
+	
+; reached cap? (999:00:00.00)
+	ld hl, GameTimeCap
+	bit 0, [hl]
+	ret nz
+	
+; increment frame counter
+	ld hl, GameTimeFrames ; frame counter
+	ld a, [hl]
+	inc a
+
+; reached 1 second?
+	cp 60 ; frames/second
+	jr nc, .second ; 20c5 $2
+	
+; update frame counter
+	ld [hl], a
+	ret
+	
+.second
+; reset frame counter
+	xor a
+	ld [hl], a
+	
+; increment second counter
+	ld hl, GameTimeSeconds
+	ld a, [hl]
+	inc a
+	
+; reached 1 minute?
+	cp 60 ; seconds/minute
+	jr nc, .minute
+	
+; update second counter
+	ld [hl], a
+	ret
+	
+.minute
+; reset second counter
+	xor a
+	ld [hl], a
+	
+; increment minute counter
+	ld hl, GameTimeMinutes
+	ld a, [hl]
+	inc a
+	
+; reached 1 hour?
+	cp 60 ; minutes/hour
+	jr nc, .hour
+	
+; update minute counter
+	ld [hl], a
+	ret
+	
+.hour
+; reset minute counter
+	xor a
+	ld [hl], a
+	
+; increment hour counter
+	ld a, [GameTimeHours]
+	ld h, a
+	ld a, [GameTimeHours+1]
+	ld l, a
+	inc hl
+	
+; reached 1000 hours?
+	ld a, h
+	cp $3 ; 1000 / $100
+	jr c, .updatehr
+	
+	ld a, l
+	cp $e8 ; 1000 & $ff
+	jr c, .updatehr
+	
+; cap at 999:59:59.00
+	ld hl, GameTimeCap
+	set 0, [hl] ; stop timer
+	
+	ld a, 59
+	ld [GameTimeMinutes], a
+	ld [GameTimeSeconds], a
+	
+; this will never be run again
+	ret
+	
+.updatehr
+	ld a, h
+	ld [GameTimeHours], a
+	ld a, l
+	ld [GameTimeHours+1], a
+	ret
+; 210f
+
+INCBIN "baserom.gbc",$210f,$261f - $210f
 
 PushScriptPointer: ; 261f
 ; used to call a script from asm
@@ -1170,7 +3080,7 @@ GetAnyMapHeaderMember: ; 0x2c0c
 	ld a, [$ff9d]
 	push af
 	ld a, BANK(MapHeaderPointers)
-	rst $10
+	rst Bankswitch
 
 	call GetMapHeaderPointer
 	add hl, de
@@ -1180,7 +3090,7 @@ GetAnyMapHeaderMember: ; 0x2c0c
 
 	; bankswitch back
 	pop af
-	rst $10
+	rst Bankswitch
 	ret
 ; 0x2c1c
 
@@ -1246,10 +3156,10 @@ Predef: ; 2d83
 ; get Predef function to call
 ; GetPredefFn also stores hl in $cfb5-6
 	ld a, BANK(GetPredefFn)
-	rst $10
+	rst Bankswitch
 	call GetPredefFn
 ; switch bank to Predef function
-	rst $10
+	rst Bankswitch
 	
 ; clean up after Predef call
 	ld hl, .cleanup
@@ -1279,7 +3189,7 @@ Predef: ; 2d83
 ; restore bank
 	pop hl ; popping a pushed af. h = a (old bank)
 	ld a, h
-	rst $10
+	rst Bankswitch
 	
 ; get hl back
 	ld a, [$cfb5]
@@ -1407,12 +3317,12 @@ FarBattleRNG: ; 2f9f
 	push af
 ; Bankswitch
 	ld a, BANK(BattleRNG)
-	rst $10
+	rst Bankswitch
 	call BattleRNG
 ; Restore bank
 	ld [$cfb6], a
 	pop af
-	rst $10
+	rst Bankswitch
 	ld a, [$cfb6]
 	ret
 ; 2fb1
@@ -1475,14 +3385,38 @@ CloseSRAM: ; 2fe1
 	ld [$0000], a
 	pop af
 	ret
-; 2fef
+; 2fec
 
-CallHL: ; 2fef 
-; Exactly what it says on the tin.
-    jp [hl]
-; 0x2fed
+JpHl: ; 2fec
+	jp [hl]
+; 2fed
 
-INCBIN "baserom.gbc",$2fed,$3026-$2fed
+INCBIN "baserom.gbc",$2fed,$300b-$2fed
+
+ClearSprites: ; 300b
+	ld hl, Sprites
+	ld b, TileMap - Sprites
+	xor a
+.loop
+	ld [hli], a
+	dec b
+	jr nz, .loop
+	ret
+; 3016
+
+HideSprites: ; 3016
+; Set all OBJ y-positions to 160 to hide them offscreen
+	ld hl, Sprites
+	ld de, $0004 ; length of an OBJ struct
+	ld b, $28 ; number of OBJ structs
+	ld a, 160 ; y-position
+.loop
+	ld [hl], a
+	add hl, de
+	dec b
+	jr nz, .loop
+	ret
+; 3026
 
 CopyBytes: ; 0x3026
 ; copy bc bytes from hl to de
@@ -1544,7 +3478,7 @@ GetFarByte: ; 0x304d
 	ld a, [$ff9d]
 	push af
 	ld a, [$ff8b]
-	rst $10
+	rst Bankswitch
 
 	; get byte from new bank
 	ld a, [hl]
@@ -1552,7 +3486,7 @@ GetFarByte: ; 0x304d
 
 	; bankswitch to previous bank
 	pop af
-	rst $10
+	rst Bankswitch
 
 	; return retrieved value in a
 	ld a, [$ff8b]
@@ -1565,7 +3499,7 @@ GetFarHalfword: ; 0x305d
 	ld a, [$ff9d]
 	push af
 	ld a, [$ff8b]
-	rst $10
+	rst Bankswitch
 
 	; get halfword from new bank, put it in hl
 	ld a, [hli]
@@ -1574,7 +3508,7 @@ GetFarHalfword: ; 0x305d
 
 	; bankswitch to previous bank and return
 	pop af
-	rst $10
+	rst Bankswitch
 	ret
 ; 0x306b
 
@@ -1784,10 +3718,62 @@ StringCmp: ; 31db
 	ret
 ; 0x31e4
 
-INCBIN "baserom.gbc",$31e4,$3340 - $31e4
+INCBIN "baserom.gbc",$31e4,$31f3 - $31e4
 
+WhiteBGMap: ; 31f3
+	call ClearPalettes
+WaitBGMap: ; 31f6
+; Tell VBlank to update BG Map
+	ld a, 1 ; BG Map 0 tiles
+	ld [$ffd4], a
+; Wait for it to do its magic
+	ld c, 4
+	call DelayFrames
+	ret
+; 3200
+
+INCBIN "baserom.gbc",$3200,$3317 - $3200
+
+ClearPalettes: ; 3317
+; Make all palettes white
+
+; For CGB we make all the palette colors white
+	ld a, [$ffe6]
+	and a
+	jr nz, .cgb
+	
+; In DMG mode, we can just change palettes to 0 (white)
+	xor a
+	ld [$ff47], a ; BGP
+	ld [$ff48], a ; OBP0
+	ld [$ff49], a ; OBP1
+	ret
+	
+.cgb
+; Save WRAM bank
+	ld a, [$ff70]
+	push af
+; WRAM bank 5
+	ld a, 5
+	ld [$ff70], a
+; Fill BGPals and OBPals with $ffff (white)
+	ld hl, BGPals
+	ld bc, $0080
+	ld a, $ff
+	call ByteFill
+; Restore WRAM bank
+	pop af
+	ld [$ff70], a
+; Request palette update
+	ld a, 1
+	ld [$ffe5], a
+	ret
+; 333e
+
+ClearSGB: ; 333e
+	ld b, $ff
 GetSGBLayout: ; 3340
-; load sgb packets unless gb
+; load sgb packets unless dmg
 
 ; check cgb
 	ld a, [$ffe6]
@@ -1871,7 +3857,7 @@ GetName: ; 33c3
 	add hl, de
 	add hl, de
 	ld a, [hli]
-	rst $10 ; Bankswitch
+	rst Bankswitch ; Bankswitch
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -1880,7 +3866,7 @@ GetName: ; 33c3
 	call GetNthString
 	ld de, $d073
 	ld bc, $000d
-	call $3026
+	call CopyBytes
 .asm_3403
 	ld a, e
 	ld [$d102], a
@@ -1890,7 +3876,7 @@ GetName: ; 33c3
 	pop bc
 	pop hl
 	pop af
-	rst $10
+	rst Bankswitch
 	ret
 ; 0x3411
 
@@ -1947,7 +3933,7 @@ GetBaseStats: ; 3856
 	push af
 ; Bankswitch
 	ld a, BANK(BaseStats)
-	rst $10
+	rst Bankswitch
 	
 ; Egg doesn't have base stats
 	ld a, [CurSpecies]
@@ -1991,7 +3977,7 @@ GetBaseStats: ; 3856
 	
 ; Restore bank
 	pop af
-	rst $10
+	rst Bankswitch
 	
 	pop hl
 	pop de
@@ -2284,7 +4270,31 @@ CheckSFX: ; 3dde
 	ret
 ; 3dfe
 
-INCBIN "baserom.gbc",$3dfe,$4000 - $3dfe
+INCBIN "baserom.gbc",$3dfe,$3e10 - $3dfe
+
+ChannelsOff: ; 3e10
+; Quickly turn off music channels
+	xor a
+	ld [$c104], a
+	ld [$c136], a
+	ld [$c168], a
+	ld [$c19a], a
+	ld [$c29c], a
+	ret
+; 3e21
+
+SFXChannelsOff: ; 3e21
+; Quickly turn off sound effect channels
+	xor a
+	ld [$c1cc], a
+	ld [$c1fe], a
+	ld [$c230], a
+	ld [$c262], a
+	ld [$c29c], a
+	ret
+; 3e32
+
+INCBIN "baserom.gbc",$3e32,$3fb5 - $3e32
 
 SECTION "bank1",DATA,BANK[$1]
 
@@ -2379,7 +4389,35 @@ CheckNickErrors: ; 669f
 	db $ff ; end
 ; 66de
 
-INCBIN "baserom.gbc",$66de,$8000 - $66de
+INCBIN "baserom.gbc",$66de,$6eef - $66de
+
+DrawGraphic: ; 6eef
+; input:
+;   hl: draw location
+;   b: height
+;   c: width
+;   d: tile to start drawing from
+;   e: number of tiles to advance for each row
+	call $7009
+	pop bc
+	pop hl
+	ret c
+	bit 5, [hl]
+	jr nz, .asm_6f05
+	push hl
+	call $70a4
+	pop hl
+	ret c
+	push hl
+	call $70ed
+	pop hl
+	ret c
+.asm_6f05
+	and a
+	ret
+; 6f07
+
+INCBIN "baserom.gbc",$6f07,$8000 - $6f07
 
 SECTION "bank2",DATA,BANK[$2]
 
@@ -2543,7 +4581,44 @@ CopyData: ; 0x9a52
 	ret
 ; 0x9a5b
 
-INCBIN "baserom.gbc",$9a5b,$c000 - $9a5b
+ClearBytes: ; 0x9a5b
+; clear bc bytes of data starting from de
+	xor a
+	ld [de], a
+	inc de
+	dec bc
+	ld a, c
+	or b
+	jr nz, ClearBytes
+	ret
+; 0x9a64
+
+DrawDefaultTiles: ; 0x9a64
+; Draw 240 tiles (2/3 of the screen) from tiles in VRAM
+	ld hl, $9800 ; BG Map 0
+	ld de, 32 - 20
+	ld a, $80 ; starting tile
+	ld c, 12 + 1
+.line
+	ld b, 20
+.tile
+	ld [hli], a
+	inc a
+	dec b
+	jr nz, .tile
+; next line
+	add hl, de
+	dec c
+	jr nz, .line
+	ret
+; 0x9a7a
+
+INCBIN "baserom.gbc",$9a7a,$a51e - $9a7a
+
+SGBBorder:
+INCBIN "gfx/misc/sgb_border.2bpp"
+
+INCBIN "baserom.gbc",$a8be,$c000 - $a8be
 
 SECTION "bank3",DATA,BANK[$3]
 
@@ -2628,7 +4703,7 @@ SpecialsPointers: ; 0xc029
 	dbw $01,$7305
 	dbw $01,$737e
 	dbw $01,$73f7
-	dbw $03,$4419
+	dbw BANK(SpecialCheckPokerus),SpecialCheckPokerus
 	dbw $09,$4b25
 	dbw $09,$4b4e
 	dbw $09,$4ae8
@@ -2720,7 +4795,28 @@ SpecialsPointers: ; 0xc029
 	dbw $24,$4a88
 	dbw $03,$4224
 
-INCBIN "baserom.gbc",$c224,$c43d - $c224
+INCBIN "baserom.gbc",$c224,$c3e2 - $c224
+
+ScriptReturnCarry: ; c3e2
+	jr c, .carry
+	xor a
+	ld [ScriptVar], a
+	ret
+.carry
+	ld a, 1
+	ld [ScriptVar], a
+	ret
+; c3ef
+
+INCBIN "baserom.gbc",$c3ef,$c419 - $c3ef
+
+SpecialCheckPokerus: ; c419
+; Check if a monster in your party has Pokerus
+	callba CheckPokerus
+	jp ScriptReturnCarry
+; c422
+
+INCBIN "baserom.gbc",$c422,$c43d - $c422
 
 SpecialSnorlaxAwake: ; 0xc43d
 ; Check if the Poké Flute channel is playing, and if the player is standing
@@ -3089,7 +5185,12 @@ INCBIN "baserom.gbc",$ca3b,$10000 - $ca3b
 
 SECTION "bank4",DATA,BANK[$4]
 
-INCBIN "baserom.gbc",$10000,$1167a - $10000
+INCBIN "baserom.gbc",$10000,$10b16 - $10000
+
+PackGFX:
+INCBIN "gfx/misc/pack.2bpp"
+
+INCBIN "baserom.gbc",$113d6,$1167a - $113d6
 
 TechnicalMachines: ; 0x1167a
 	db DYNAMICPUNCH
@@ -7735,7 +9836,7 @@ INCBIN "baserom.gbc",$2C41a,$2ee8f - $2C41a
 	jr nz, .trainermusic
 	ld a, BANK(RegionCheck)
 	ld hl, RegionCheck
-	rst $8
+	rst FarCall
 	ld a, e
 	and a
 	jr nz, .kantowild
@@ -7766,13 +9867,13 @@ INCBIN "baserom.gbc",$2C41a,$2ee8f - $2C41a
 	ld de, $0006 ; kanto gym leader battle music
 	ld a, BANK(IsKantoGymLeader)
 	ld hl, IsKantoGymLeader
-	rst $8
+	rst FarCall
 	jr c, .done
 
 	ld de, $002e ; johto gym leader battle music
 	ld a, BANK(IsJohtoGymLeader)
 	ld hl, IsJohtoGymLeader
-	rst $8
+	rst FarCall
 	jr c, .done
 
 	ld de, $0030 ; rival battle music
@@ -7793,7 +9894,7 @@ INCBIN "baserom.gbc",$2C41a,$2ee8f - $2C41a
 	jr nz, .linkbattle
 	ld a, BANK(RegionCheck)
 	ld hl, RegionCheck
-	rst $8
+	rst FarCall
 	ld a, e
 	and a
 	jr nz, .kantotrainer
@@ -13484,7 +15585,7 @@ BattleStartMessage:
 	call $0468
 	ld a, $e
 	ld hl, $5939
-	rst $8
+	rst FarCall
 	ld hl, $47a9
 	jr .asm_3fd0e ; 0x3fca8 $64
 .asm_3fcaa
@@ -13501,11 +15602,11 @@ BattleStartMessage:
 .asm_3fcc2
 	ld a, $f
 	ld hl, $6b38
-	rst $8
+	rst FarCall
 	jr c, .messageSelection ; 0x3fcc8 $21
 	ld a, $13
 	ld hl, $6a44
-	rst $8
+	rst FarCall
 	jr c, .asm_3fce0 ; 0x3fcd0 $e
 	ld hl, $c4ac
 	ld d, $0
@@ -13524,7 +15625,7 @@ BattleStartMessage:
 	jr nz, .asm_3fcfd ; 0x3fcf0 $b
 	ld a, $41
 	ld hl, $6086
-	rst $8
+	rst FarCall
 	ld hl, HookedPokemonAttackedText
 	jr .asm_3fd0e ; 0x3fcfb $11
 .asm_3fcfd
@@ -13539,7 +15640,7 @@ BattleStartMessage:
 	push hl
 	ld a, $b
 	ld hl, $4000
-	rst $8
+	rst FarCall
 	pop hl
 	call $3ad5
 	call $7830
@@ -13547,7 +15648,7 @@ BattleStartMessage:
 	ld c, $2
 	ld a, $13
 	ld hl, $6a0a
-	rst $8
+	rst FarCall
 	ret
 ; 0x3fd26
 
@@ -18631,7 +20732,36 @@ TileTypeTable: ; 4ce1f
 	db $00, $00, $00, $00, $00, $00, $00, $0f
 ; 4cf1f
 
-INCBIN "baserom.gbc",$4cf1f,$4dc8a - $4cf1f
+INCBIN "baserom.gbc",$4cf1f,$4d860 - $4cf1f
+
+CheckPokerus: ; 4d860
+; Return carry if a monster in your party has Pokerus
+
+; Get number of monsters to iterate over
+	ld a, [PartyCount]
+	and a
+	jr z, .NoPokerus
+	ld b, a
+; Check each monster in the party for Pokerus
+	ld hl, PartyMon1PokerusStatus
+	ld de, PartyMon2 - PartyMon1
+.Check
+	ld a, [hl]
+	and $0f ; only the bottom nybble is used
+	jr nz, .HasPokerus
+; Next PartyMon
+	add hl, de
+	dec b
+	jr nz, .Check
+.NoPokerus
+	and a
+	ret
+.HasPokerus
+	scf
+	ret
+; 4d87a
+
+INCBIN "baserom.gbc",$4d87a,$4dc8a - $4d87a
 
 StatsScreenInit: ; 4dc8a
 	ld hl, StatsScreenMain
@@ -18658,7 +20788,7 @@ StatsScreenInit: ; 4dc8a
 	ld hl, $753e
 	rst $8 ; this loads graphics
 	pop hl
-	call CallHL
+	call JpHl
 	call $31f3
 	call $0fc8
 	pop bc
@@ -85143,7 +87273,431 @@ INCBIN "baserom.gbc",$B83E5,$bc000 - $b83e5
 
 SECTION "bank2F",DATA,BANK[$2F]
 
-INCBIN "baserom.gbc",$BC000,$4000
+INCBIN "baserom.gbc",$bc000,$bc09c - $bc000
+
+PokeCenterNurseScript: ; bc09c
+; Talking to a nurse in a Pokemon Center
+
+	loadfont
+; The nurse has different text for:
+; Morn
+	checktime $1
+	iftrue .morn
+; Day
+	checktime $2
+	iftrue .day
+; Nite
+	checktime $4
+	iftrue .nite
+; If somehow it's not a time of day at all, we skip the introduction
+	2jump .heal
+
+.morn
+; Different text if we're in the com center
+	checkbit1 $032a
+	iftrue .morn_comcenter
+; Good morning! Welcome to ...
+	3writetext BANK(UnknownText_0x1b0000), UnknownText_0x1b0000
+	keeptextopen
+	2jump .heal
+.morn_comcenter
+; Good morning! This is the ...
+	3writetext BANK(UnknownText_0x1b008a), UnknownText_0x1b008a
+	keeptextopen
+	2jump .heal
+
+.day
+; Different text if we're in the com center
+	checkbit1 $032a
+	iftrue .day_comcenter
+; Hello! Welcome to ...
+	3writetext BANK(UnknownText_0x1b002b), UnknownText_0x1b002b
+	keeptextopen
+	2jump .heal
+.day_comcenter
+; Hello! This is the ...
+	3writetext BANK(UnknownText_0x1b00d6), UnknownText_0x1b00d6
+	keeptextopen
+	2jump .heal
+
+.nite
+; Different text if we're in the com center
+	checkbit1 $032a
+	iftrue .nite_comcenter
+; Good evening! You're out late. ...
+	3writetext BANK(UnknownText_0x1b004f), UnknownText_0x1b004f
+	keeptextopen
+	2jump .heal
+.nite_comcenter
+; Good to see you working so late. ...
+	3writetext BANK(UnknownText_0x1b011b), UnknownText_0x1b011b
+	keeptextopen
+	2jump .heal
+
+.heal
+; If we come back, don't welcome us to the com center again
+	clearbit1 $032a
+; Ask if you want to heal
+	3writetext BANK(UnknownText_0x1b017a), UnknownText_0x1b017a
+	yesorno
+	iffalse .end
+; Go ahead and heal
+	3writetext BANK(UnknownText_0x1b01bd), UnknownText_0x1b01bd
+	pause 20
+	special $009d
+; Turn to the machine
+	spriteface $fe, $2
+	pause 10
+	special $001b
+	playmusic $0000
+	writebyte $0
+	special $003e
+	pause 30
+	special $003d
+	spriteface $fe, $0
+	pause 10
+; Has Elm already phoned you about Pokerus?
+	checkphonecall
+	iftrue .done
+; Has Pokerus already been found in the Pokecenter?
+	checkbit2 $000d
+	iftrue .done
+; Check for Pokerus
+	special $004e ; SPECIAL_CHECKPOKERUS
+	iftrue .pokerus
+.done
+; Thank you for waiting. ...
+	3writetext BANK(UnknownText_0x1b01d7), UnknownText_0x1b01d7
+	pause 20
+.end
+; We hope to see you again.
+	3writetext BANK(UnknownText_0x1b020b), UnknownText_0x1b020b
+; Curtsy
+	spriteface $fe, $1
+	pause 10
+	spriteface $fe, $0
+	pause 10
+; And we're out
+	closetext
+	loadmovesprites
+	end
+
+.pokerus
+; Different text for com center (excludes 'in a Pokemon Center')
+; Since flag $32a is cleared when healing,
+; this text is never actually seen
+	checkbit1 $032a
+	iftrue .pokerus_comcenter
+; Your Pokemon appear to be infected ...
+	3writetext BANK(UnknownText_0x1b0241), UnknownText_0x1b0241
+	closetext
+	loadmovesprites
+	2jump .endpokerus
+.pokerus_comcenter
+; Your Pokemon appear to be infected ...
+	3writetext BANK(UnknownText_0x1b02d6), UnknownText_0x1b02d6
+	closetext
+	loadmovesprites
+.endpokerus
+; Don't tell us about Pokerus again
+	setbit2 $000d
+; Trigger Elm's Pokerus phone call
+	specialphonecall $0001
+	end
+; bc162
+
+INCBIN "baserom.gbc",$bc162,$bcea5-$bc162
+
+UnusedPhoneScript: ; 0xbcea5
+	3writetext BANK(UnusedPhoneText), UnusedPhoneText
+	end
+
+MomPhoneScript: ; 0xbceaa
+	checkbit1 $0040
+	iftrue .bcec5
+	checkbit1 $0041 ; if dude talked to you, then you left home without talking to mom
+	iftrue MomPhoneLectureScript
+	checkbit1 $001f
+	iftrue MomPhoneNoGymQuestScript
+	checkbit1 $001a
+	iftrue MomPhoneNoPokedexScript
+	2jump MomPhoneNoPokemonScript
+
+.bcec5 ; 0xbcec5
+	checkbit1 $0007
+	iftrue MomPhoneHangUpScript
+	3writetext BANK(MomPhoneGreetingText), MomPhoneGreetingText
+	keeptextopen
+	mapnametotext $0
+	checkcode $f
+	if_equal $1, UnknownScript_0xbcee7
+	if_equal $2, $4f27
+	2jump UnknownScript_0xbcf2f
+
+UnknownScript_0xbcedf: ; 0xbcedf
+	3writetext $6d, $4021
+	keeptextopen
+	2jump UnknownScript_0xbcf37
+
+UnknownScript_0xbcee7: ; 0xbcee7
+	checkcode $c
+	if_equal GROUP_NEW_BARK_TOWN, .newbark
+	if_equal GROUP_CHERRYGROVE_CITY, .cherrygrove
+	if_equal GROUP_VIOLET_CITY, .violet
+	if_equal GROUP_AZALEA_TOWN, .azalea
+	if_equal GROUP_GOLDENROD_CITY, .goldenrod
+	3writetext BANK(MomPhoneGenericAreaText), MomPhoneGenericAreaText
+	keeptextopen
+	2jump UnknownScript_0xbcf37
+
+.newbark ; 0xbcf05
+	3writetext BANK(MomPhoneNewBarkText), MomPhoneNewBarkText
+	keeptextopen
+	2jump UnknownScript_0xbcf37
+
+.cherrygrove ; 0xbcf0d
+	3writetext BANK(MomPhoneCherrygroveText), MomPhoneCherrygroveText
+	keeptextopen
+	2jump UnknownScript_0xbcf37
+
+.violet ; 0xbcf15
+	displaylocation $7 ; sprout tower
+	3call $3,$4edf
+.azalea ; 0xbcf1b
+	displaylocation $d ; slowpoke well
+	3call $3,$4edf
+.goldenrod ; 0xbcf21
+	displaylocation $11 ; radio tower
+	3call $3,$4edf
+	3writetext $6d, $411c
+	keeptextopen
+	2jump UnknownScript_0xbcf37
+
+UnknownScript_0xbcf2f: ; 0xbcf2f
+	3writetext $6d, $4150
+	keeptextopen
+	2jump UnknownScript_0xbcf37
+
+UnknownScript_0xbcf37: ; 0xbcf37
+	checkbit2 $0008
+	iffalse UnknownScript_0xbcf49
+	checkmoney $1, 0
+	if_equal $0, UnknownScript_0xbcf55
+	2jump UnknownScript_0xbcf63
+
+UnknownScript_0xbcf49: ; 0xbcf49
+	checkmoney $1, 0
+	if_equal $0, UnknownScript_0xbcf79
+	2jump UnknownScript_0xbcf6e
+
+UnknownScript_0xbcf55: ; 0xbcf55
+	readmoney $1, $0
+	3writetext $6d, $41a7
+	yesorno
+	iftrue MomPhoneSaveMoneyScript
+	2jump MomPhoneWontSaveMoneyScript
+
+UnknownScript_0xbcf63: ; 0xbcf63
+	3writetext $6d, $41ea
+	yesorno
+	iftrue MomPhoneSaveMoneyScript
+	2jump MomPhoneWontSaveMoneyScript
+
+UnknownScript_0xbcf6e: ; 0xbcf6e
+	3writetext $6d, $420d
+	yesorno
+	iftrue MomPhoneSaveMoneyScript
+	2jump MomPhoneWontSaveMoneyScript
+
+UnknownScript_0xbcf79: ; 0xbcf79
+	readmoney $1, $0
+	3writetext $6d, $4249
+	yesorno
+	iftrue MomPhoneSaveMoneyScript
+	2jump MomPhoneWontSaveMoneyScript
+
+MomPhoneSaveMoneyScript: ; 0xbcf87
+	setbit2 $0008
+	3writetext $6d, $4289
+	keeptextopen
+	2jump MomPhoneHangUpScript
+
+MomPhoneWontSaveMoneyScript: ; 0xbcf92
+	clearbit2 $0008
+	3writetext BANK(MomPhoneWontSaveMoneyText), MomPhoneWontSaveMoneyText
+	keeptextopen
+	2jump MomPhoneHangUpScript
+
+MomPhoneHangUpScript: ; 0xbcf9d
+	3writetext BANK(MomPhoneHangUpText), MomPhoneHangUpText
+	end
+
+MomPhoneNoPokemonScript: ; 0xbcfa2
+	3writetext BANK(MomPhoneNoPokemonText), MomPhoneNoPokemonText
+	end
+
+MomPhoneNoPokedexScript: ; 0xbcfa7
+	3writetext BANK(MomPhoneNoPokedexText), MomPhoneNoPokedexText
+	end
+
+MomPhoneNoGymQuestScript: ; 0xbcfac
+	3writetext BANK(MomPhoneNoGymQuestText), MomPhoneNoGymQuestText
+	end
+
+MomPhoneLectureScript: ; 0xbcfb1
+	setbit1 $0040
+	setbit2 $0009
+	specialphonecall $0000
+	3writetext BANK(MomPhoneLectureText), MomPhoneLectureText
+	yesorno
+	iftrue MomPhoneSaveMoneyScript
+	2jump MomPhoneWontSaveMoneyScript
+
+BillPhoneScript1: ; 0xbcfc5
+	checktime $2
+	iftrue .daygreet
+	checktime $4
+	iftrue .nitegreet
+	3writetext BANK(BillPhoneMornGreetingText), BillPhoneMornGreetingText
+	keeptextopen
+	2jump .main
+
+.daygreet ; 0xbcfd7
+	3writetext BANK(BillPhoneDayGreetingText), BillPhoneDayGreetingText
+	keeptextopen
+	2jump .main
+
+.nitegreet ; 0xbcfdf
+	3writetext BANK(BillPhoneNiteGreetingText), BillPhoneNiteGreetingText
+	keeptextopen
+	2jump .main
+
+.main ; 0xbcfe7
+	3writetext BANK(BillPhoneGeneriText), BillPhoneGeneriText
+	keeptextopen
+	checkcode $10
+	RAM2MEM $0
+	if_equal $0, .full
+	if_greater_than $6, .nearlyfull
+	3writetext BANK(BillPhoneNotFullText), BillPhoneNotFullText
+	end
+
+.nearlyfull ; 0xbcffd
+	3writetext BANK(BillPhoneNearlyFullText), BillPhoneNearlyFullText
+	end
+
+.full ; 0xbd002
+	3writetext BANK(BillPhoneFullText), BillPhoneFullText
+	end
+
+BillPhoneScript2: ; 0xbd007
+	3writetext BANK(BillPhoneNewlyFullText), BillPhoneNewlyFullText
+	closetext
+	end
+
+ElmPhoneScript1: ; 0xbd00d
+	checkcode $14
+	if_equal $1, .pokerus
+	checkbit1 $0055
+	iftrue .discovery
+	checkbit1 $002d
+	iffalse .next
+	checkbit1 $0054
+	iftrue .egghatched
+.next
+	checkbit1 $002d
+	iftrue .eggunhatched
+	checkbit1 $0701
+	iftrue .assistant
+	checkbit1 $001f
+	iftrue .checkingegg
+	checkbit1 $0043
+	iftrue .stolen
+	checkbit1 $001e
+	iftrue .sawmrpokemon
+	3writetext BANK(ElmPhoneStartText), ElmPhoneStartText
+	end
+
+.sawmrpokemon ; 0xbd048
+	3writetext BANK(ElmPhoneSawMrPokemonText), ElmPhoneSawMrPokemonText
+	end
+
+.stolen ; 0xbd04d
+	3writetext BANK(ElmPhonePokemonStolenText), ElmPhonePokemonStolenText
+	end
+
+.checkingegg ; 0xbd052
+	3writetext BANK(ElmPhoneCheckingEggText), ElmPhoneCheckingEggText
+	end
+
+.assistant ; 0xbd057
+	3writetext BANK(ElmPhoneAssistantText), ElmPhoneAssistantText
+	end
+
+.eggunhatched ; 0xbd05c
+	3writetext BANK(ElmPhoneEggUnhatchedText), ElmPhoneEggUnhatchedText
+	end
+
+.egghatched ; 0xbd061
+	3writetext BANK(ElmPhoneEggHatchedText), ElmPhoneEggHatchedText
+	setbit1 $0077
+	end
+
+.discovery ; 0xbd069
+	random $2
+	if_equal $0, .nextdiscovery
+	3writetext BANK(ElmPhoneDiscovery1Text), ElmPhoneDiscovery1Text
+	end
+
+.nextdiscovery ; 0xbd074
+	3writetext BANK(ElmPhoneDiscovery2Text), ElmPhoneDiscovery2Text
+	end
+
+.pokerus ; 0xbd079
+	3writetext BANK(ElmPhonePokerusText), ElmPhonePokerusText
+	specialphonecall $0000
+	end
+
+ElmPhoneScript2: ; 0xbd081
+	checkcode $14
+	if_equal $2, .disaster
+	if_equal $3, .assistant
+	if_equal $4, .rocket
+	if_equal $5, .gift
+	if_equal $8, .gift
+	3writetext BANK(ElmPhonePokerusText), ElmPhonePokerusText
+	specialphonecall $0000
+	end
+
+.disaster ; 0xbd09f
+	3writetext BANK(ElmPhoneDisasterText), ElmPhoneDisasterText
+	specialphonecall $0000
+	setbit1 $0043
+	end
+
+.assistant ; 0xbd0aa
+	3writetext BANK(ElmPhoneEggAssistantText), ElmPhoneEggAssistantText
+	specialphonecall $0000
+	clearbit1 $0700
+	setbit1 $0701
+	end
+
+.rocket ; 0xbd0b8
+	3writetext BANK(ElmPhoneRocketText), ElmPhoneRocketText
+	specialphonecall $0000
+	end
+
+.gift ; 0xbd0c0
+	3writetext BANK(ElmPhoneGiftText), ElmPhoneGiftText
+	specialphonecall $0000
+	end
+
+.unused ; 0xbd0c8
+	3writetext BANK(ElmPhoneUnusedText), ElmPhoneUnusedText
+	specialphonecall $0000
+	end
+
+INCBIN "baserom.gbc",$bd0d0,$be699-$bd0d0
 
 SECTION "bank30",DATA,BANK[$30]
 
@@ -85167,20 +87721,74 @@ INCLUDE "music/postcredits.asm"
 
 INCBIN "baserom.gbc",$cff04, $d0000 - $cff04
 
+
+;                       Pic animations I
+
 SECTION "bank34",DATA,BANK[$34]
 
-INCBIN "baserom.gbc",$D0000,$4000
+; Pic animations asm
+INCBIN "baserom.gbc", $d0000, $d0695 - $d0000
+
+; Pic animations are assembled in 3 parts:
+
+; Top-level animations:
+; 	frame #, duration: Frame 0 is the original pic (no change)
+;	setrepeat #:       Sets the number of times to repeat
+; 	dorepeat #:        Repeats from command # (starting from 0)
+; 	end
+
+; Bitmasks:
+;	Layered over the pic to designate affected tiles
+
+; Frame definitions:
+;	first byte is the bitmask used for this frame
+;	following bytes are tile ids mapped to each bit in the mask
+
+; Main animations (played everywhere)
+AnimationPointers: INCLUDE "gfx/pics/anim_pointers.asm"
+INCLUDE "gfx/pics/anims.asm"
+
+; Extra animations, appended to the main animation
+; Used in the status screen (blinking, tail wags etc.)
+AnimationExtraPointers: INCLUDE "gfx/pics/extra_pointers.asm"
+INCLUDE "gfx/pics/extras.asm"
+
+; Unown has its own animation data despite having an entry in the main tables
+UnownAnimationPointers: INCLUDE "gfx/pics/unown_anim_pointers.asm"
+INCLUDE "gfx/pics/unown_anims.asm"
+UnownAnimationExtraPointers: INCLUDE "gfx/pics/unown_extra_pointers.asm"
+INCLUDE "gfx/pics/unown_extras.asm"
+
+; Bitmasks
+BitmasksPointers: INCLUDE "gfx/pics/bitmask_pointers.asm"
+INCLUDE "gfx/pics/bitmasks.asm"
+UnownBitmasksPointers: INCLUDE "gfx/pics/unown_bitmask_pointers.asm"
+INCLUDE "gfx/pics/unown_bitmasks.asm"
+
+
+;                       Pic animations II
 
 SECTION "bank35",DATA,BANK[$35]
 
-INCBIN "baserom.gbc",$D4000,$4000
+; Frame definitions
+FramesPointers: INCLUDE "gfx/pics/frame_pointers.asm"
+; Inexplicably, Kanto frames are split off from Johto
+INCLUDE "gfx/pics/kanto_frames.asm"
+
+
+;                       Pic animations III
 
 SECTION "bank36",DATA,BANK[$36]
 
-FontInversed:
-INCBIN "gfx/font_inversed.1bpp",$0,$400
+FontInversed: INCBIN "gfx/font_inversed.1bpp"
 
-INCBIN "baserom.gbc",$D8400,$4000-$400
+; Johto frame definitions
+INCLUDE "gfx/pics/johto_frames.asm"
+
+; Unown frame definitions
+UnownFramesPointers: INCLUDE "gfx/pics/unown_frame_pointers.asm"
+INCLUDE "gfx/pics/unown_frames.asm"
+
 
 SECTION "bank37",DATA,BANK[$37]
 
@@ -88913,7 +91521,7 @@ SFX: ; e927c
 	dbw $3c, $4a22 ; tap
 	dbw $3c, $4a25 ; tap
 	dbw $3c, $4a28 ; burn ; that is not a burn
-	dbw $3c, $4a2b ;
+	dbw $3c, $4a2b ; title screen sound
 	dbw $3c, $4a2e ; similar to $60
 	dbw $3c, $4a31 ; get coin from slots
 	dbw $3c, $4a34 ; pay day
@@ -89599,6 +92207,8 @@ INCBIN "baserom.gbc",$FBCCF,$fc000-$fbccf
 
 SECTION "bank3F",DATA,BANK[$3F]
 
+DoTileAnimation:
+
 INCBIN "baserom.gbc",$FC000,$fcdc2-$fc000
 
 LoadTradesPointer: ; 0xfcdc2
@@ -89647,7 +92257,17 @@ INCBIN "baserom.gbc",$100000,$4000
 
 SECTION "bank41",DATA,BANK[$41]
 
-INCBIN "baserom.gbc",$104000,$1060bb - $104000
+INCBIN "baserom.gbc",$104000,$105258 - $104000
+
+MysteryGiftGFX:
+INCBIN "gfx/misc/mystery_gift.2bpp"
+
+INCBIN "baserom.gbc",$105688,$105930 - $105688
+
+; japanese mystery gift gfx
+INCBIN "gfx/misc/mystery_gift_jp.2bpp"
+
+INCBIN "baserom.gbc",$105db0,$1060bb - $105db0
 
 Function1060bb: ; 1060bb
 ; commented out
@@ -89664,12 +92284,364 @@ IntroLogoGFX: ; 109407
 INCBIN "gfx/intro/lz/logo.lz"
 ; 10983f
 
-INCBIN "baserom.gbc", $10983f, $10c000 - $10983f
+INCBIN "baserom.gbc", $10983f, $10aee1 - $10983f
+
+Credits:
+	db "   SATOSHI TAJIRI@"         ; "たじり さとし@"
+	db "   JUNICHI MASUDA@"         ; "ますだ じゅんいち@"
+	db "  TETSUYA WATANABE@"        ; "わたなべ てつや@"
+	db "  SHIGEKI MORIMOTO@"        ; "もりもと しげき@"
+	db "   SOUSUKE TAMADA@"         ; "たまだ そうすけ@"
+	db "   TAKENORI OOTA@"          ; "おおた たけのり@"
+	db "    KEN SUGIMORI@"          ; "すぎもり けん@"
+	db " MOTOFUMI FUJIWARA@"        ; "ふじわら もとふみ@"
+	db "   ATSUKO NISHIDA@"         ; "にしだ あつこ@"
+	db "    MUNEO SAITO@"           ; "さいとう むねお@"
+	db "    SATOSHI OOTA@"          ; "おおた さとし@"
+	db "   RENA YOSHIKAWA@"         ; "よしかわ れな@"
+	db "    JUN OKUTANI@"           ; "おくたに じゅん@"
+	db "  HIRONOBU YOSHIDA@"        ; "よしだ ひろのぶ@"
+	db "   ASUKA IWASHITA@"         ; "いわした あすか@"
+	db "    GO ICHINOSE@"           ; "いちのせ ごう@"
+	db "   MORIKAZU AOKI@"          ; "あおき もりかず@"
+	db "   KOHJI NISHINO@"          ; "にしの こうじ@"
+	db "  KENJI MATSUSHIMA@"        ; "まつしま けんじ@"
+	db "TOSHINOBU MATSUMIYA@"       ; "まつみや としのぶ@"
+	db "    SATORU IWATA@"          ; "いわた さとる@"
+	db "   NOBUHIRO SEYA@"          ; "せや のぶひろ@"
+	db "  KAZUHITO SEKINE@"         ; "せきね かずひと@"
+	db "    TETSUJI OOTA@"          ; "おおた てつじ@"
+	db "NCL SUPER MARIO CLUB@"      ; "スーパーマりォクラブ@"
+	db "    SARUGAKUCHO@"           ; "さるがくちょう@"
+	db "     AKITO MORI@"           ; "もり あきと@"
+	db "  TAKAHIRO HARADA@"         ; "はらだ たかひろ@"
+	db "  TOHRU HASHIMOTO@"         ; "はしもと とおる@"
+	db "  NOBORU MATSUMOTO@"        ; "まつもと のぼる@"
+	db "  TAKEHIRO IZUSHI@"         ; "いずし たけひろ@"
+	db " TAKASHI KAWAGUCHI@"        ; "かわぐち たかし@"
+	db " TSUNEKAZU ISHIHARA@"       ; "いしはら つねかず@"
+	db "  HIROSHI YAMAUCHI@"        ; "やまうち ひろし@"
+	db "    KENJI SAIKI@"           ; "さいき けんじ@"
+	db "    ATSUSHI TADA@"          ; "ただ あつし@"
+	db "   NAOKO KAWAKAMI@"         ; "かわかみ なおこ@"
+	db "  HIROYUKI ZINNAI@"         ; "じんない ひろゆき@"
+	db "  KUNIMI KAWAMURA@"         ; "かわむら くにみ@"
+	db "   HISASHI SOGABE@"         ; "そがべ ひさし@"
+	db "    KEITA KAGAYA@"          ; "かがや けいた@"
+	db " YOSHINORI MATSUDA@"        ; "まつだ よしのり@"
+	db "    HITOMI SATO@"           ; "さとう ひとみ@"
+	db "     TORU OSAWA@"           ; "おおさわ とおる@"
+	db "    TAKAO OHARA@"           ; "おおはら たかお@"
+	db "    YUICHIRO ITO@"          ; "いとう ゆういちろう@"
+	db "   TAKAO SHIMIZU@"          ; "しみず たかお@"
+	db " SPECIAL PRODUCTION", $4e
+	db "      PLANNING", $4e        ; "きかくかいはつぶ@"
+	db " & DEVELOPMENT DEPT.@"
+	db "   KEITA NAKAMURA@"         ; "なかむら けいた@"
+	db "  HIROTAKA UEMURA@"         ; "うえむら ひろたか@"
+	db "   HIROAKI TAMURA@"         ; "たむら ひろあき@"
+	db " NORIAKI SAKAGUCHI@"        ; "さかぐち のりあき@"
+	db "    MIYUKI SATO@"           ; "さとう みゆき@"
+	db "   GAKUZI NOMOTO@"          ; "のもと がくじ@"
+	db "     AI MASHIMA@"           ; "ましま あい@"
+	db " MIKIHIRO ISHIKAWA@"        ; "いしかわ みきひろ@"
+	db " HIDEYUKI HASHIMOTO@"       ; "はしもと ひでゆき@"
+	db "   SATOSHI YAMATO@"         ; "やまと さとし@"
+	db "  SHIGERU MIYAMOTO@"        ; "みやもと しげる@"
+	db "        END@"               ; "おしまい@"
+	db "      ????????@"            ; "????????@"
+	db "    GAIL TILDEN@"
+	db "   NOB OGASAWARA@"
+	db "   SETH McMAHILL@"
+	db "  HIROTO ALEXANDER@"
+	db "  TERESA LILLYGREN@"
+	db "   THOMAS HERTZOG@"
+	db "    ERIK JOHNSON@"
+	db "   HIRO NAKAMURA@"
+	db "  TERUKI MURAKAWA@"
+	db "  KAZUYOSHI OSAWA@"
+	db "  KIMIKO NAKAMICHI@"
+	db "      #MON", $4e            ; "ポケットモンスター", $4e
+	db "  CRYSTAL VERSION", $4e     ; "  クりスタル バージョン", $4e
+	db "       STAFF@"              ; "    スタッフ@"
+	db "      DIRECTOR@"            ; "エグゼクティブ ディレクター@"
+	db "    CO-DIRECTOR@"           ; "ディレクター@"
+	db "    PROGRAMMERS@"           ; "プログラム@"
+	db " GRAPHICS DIRECTOR@"        ; "グラフィック ディレクター@"
+	db "   MONSTER DESIGN@"         ; "# デザイン@"
+	db "  GRAPHICS DESIGN@"         ; "グラフィック デザイン@"
+	db "       MUSIC@"              ; "おんがく@"
+	db "   SOUND EFFECTS@"          ; "サウンド エフ→クト@"
+	db "    GAME DESIGN@"           ; "ゲームデザイン@"
+	db "   GAME SCENARIO@"          ; "シナりォ@"
+	db "  TOOL PROGRAMMING@"        ; "ツール プログラム@"
+	db " PARAMETRIC DESIGN@"        ; "パラメーター せってい@"
+	db "   SCRIPT DESIGN@"          ; "スクりプト せってい@"
+	db "  MAP DATA DESIGN@"         ; "マップデータ せってい@"
+	db "     MAP DESIGN@"           ; "マップ デザイン@"
+	db "  PRODUCT TESTING@"         ; "デバッグプレイ@"
+	db "   SPECIAL THANKS@"         ; "スぺシャルサンクス@"
+	db "     PRODUCERS@"            ; "プロデューサー@"
+	db " EXECUTIVE PRODUCER@"       ; "エグゼクティブ プロデューサー@"
+	db " #MON ANIMATION@"           ; "# アニメーション@"
+	db "    #DEX TEXT@"             ; "ずかん テキスト@"
+	db " MOBILE PRJ. LEADER@"       ; "モバイルプロジ→クト りーダー@"
+	db " MOBILE SYSTEM AD.@"        ; "モバイル システムアドバイザー@"
+	db "MOBILE STADIUM DIR.@"       ; "モバイルスタジアム ディレクター@"
+	db "    COORDINATION@"          ; "コーディネーター@"
+	db "  US VERSION STAFF@"
+	db "  US COORDINATION@"
+	db "  TEXT TRANSLATION@"
+	db "    PAAD TESTING@"
+	;  (C) 1  9  9  5 - 2  0  0  1     N  i  n  t  e  n  d  o
+	db $60,$61,$62,$63,$64,$65,$66, $67, $68, $69, $6a, $6b, $6c, $4e
+	;  (C) 1  9  9  5 - 2  0  0  1    C  r  e  a  t  u  r  e  s      i  n  c .
+	db $60,$61,$62,$63,$64,$65,$66, $6d, $6e, $6f, $70, $71, $72,  $7a, $7b, $7c, $4e
+	;  (C) 1  9  9  5 - 2  0  0  1  G   A   M   E   F   R   E   A   K     i  n  c .
+	db $60,$61,$62,$63,$64,$65,$66, $73, $74, $75, $76, $77, $78, $79,  $7a, $7b, $7c, "@"
 
 
 SECTION "bank43",DATA,BANK[$43]
 
-INCBIN "baserom.gbc", $10c000, $10ef46 - $10c000
+INCBIN "baserom.gbc", $10c000, $10ed67 - $10c000
+
+TitleScreen: ; 10ed67
+
+	call WhiteBGMap
+	call ClearSprites
+	call ClearTileMap
+	
+; Turn BG Map update off
+	xor a
+	ld [$ffd4], a
+	
+; Reset timing variables
+	ld hl, $cf63
+	ld [hli], a ; cf63 ; Scene?
+	ld [hli], a ; cf64
+	ld [hli], a ; cf65 ; Timer lo
+	ld [hl], a  ; cf66 ; Timer hi
+	
+; Turn LCD off
+	call DisableLCD
+	
+	
+; VRAM bank 1
+	ld a, 1
+	ld [$ff4f], a
+	
+	
+; Decompress running Suicune gfx
+	ld hl, TitleSuicuneGFX
+	ld de, $8800
+	call $0b50
+	
+	
+; Clear screen palettes
+	ld hl, $9800
+	ld bc, $0280
+	xor a
+	call ByteFill
+	
+
+; Fill tile palettes:
+
+; BG Map 1:
+
+; line 0 (copyright)
+	ld hl, $9c00
+	ld bc, $0020 ; one row
+	ld a, 7 ; palette
+	call ByteFill
+
+
+; BG Map 0:
+
+; Apply logo gradient:
+
+; lines 3-4
+	ld hl, $9860 ; (0,3)
+	ld bc, $0040 ; 2 rows
+	ld a, 2
+	call ByteFill
+; line 5
+	ld hl, $98a0 ; (0,5)
+	ld bc, $0020 ; 1 row
+	ld a, 3
+	call ByteFill
+; line 6
+	ld hl, $98c0 ; (0,6)
+	ld bc, $0020 ; 1 row
+	ld a, 4
+	call ByteFill
+; line 7
+	ld hl, $98e0 ; (0,7)
+	ld bc, $0020 ; 1 row
+	ld a, 5
+	call ByteFill
+; lines 8-9
+	ld hl, $9900 ; (0,8)
+	ld bc, $0040 ; 2 rows
+	ld a, 6
+	call ByteFill
+	
+
+; 'CRYSTAL VERSION'
+	ld hl, $9925 ; (5,9)
+	ld bc, $000b ; length of version text
+	ld a, 1
+	call ByteFill
+	
+; Suicune gfx
+	ld hl, $9980 ; (0,12)
+	ld bc, $00c0 ; the rest of the screen
+	ld a, 8
+	call ByteFill
+	
+	
+; Back to VRAM bank 0
+	ld a, $0
+	ld [$ff4f], a
+	
+	
+; Decompress logo
+	ld hl, TitleLogoGFX
+	ld de, $8800
+	call $0b50
+	
+; Decompress background crystal
+	ld hl, TitleCrystalGFX
+	ld de, $8000
+	call $0b50
+	
+	
+; Clear screen tiles
+	ld hl, $9800
+	ld bc, $0800
+	ld a, $7f
+	call ByteFill
+	
+; Draw Pokemon logo
+	ld hl, $c4dc ; TileMap(0,3)
+	ld bc, $0714 ; 20x7
+	ld d, $80
+	ld e, $14
+	call DrawGraphic
+	
+; Draw copyright text
+	ld hl, $9c03 ; BG Map 1 (3,0)
+	ld bc, $010d ; 13x1
+	ld d, $c
+	ld e, $10
+	call DrawGraphic
+	
+; Initialize running Suicune?
+	ld d, $0
+	call $6ed2
+	
+; Initialize background crystal
+	call $6f06
+	
+; Save WRAM bank
+	ld a, [$ff70]
+	push af
+; WRAM bank 5
+	ld a, 5
+	ld [$ff70], a
+	
+; Update palette colors
+	ld hl, TitleScreenPalettes
+	ld de, $d000
+	ld bc, $0080
+	call CopyBytes
+	
+	ld hl, TitleScreenPalettes
+	ld de, $d080
+	ld bc, $0080
+	call CopyBytes
+	
+; Restore WRAM bank
+	pop af
+	ld [$ff70], a
+	
+	
+; LY/SCX trickery starts here
+	
+; Save WRAM bank
+	ld a, [$ff70]
+	push af
+; WRAM bank 5
+	ld a, 5
+	ld [$ff70], a
+	
+; Make alternating lines come in from opposite sides
+
+; ( This part is actually totally pointless, you can't
+;   see anything until these values are overwritten!  )
+
+	ld b, 40 ; alternate for 80 lines
+	ld hl, $d100 ; LY buffer
+.loop
+; $00 is the middle position
+	ld [hl], $70 ; coming from the left
+	inc hl
+	ld [hl], $90 ; coming from the right
+	inc hl
+	dec b
+	jr nz, .loop
+	
+; Make sure the rest of the buffer is empty
+	ld hl, $d150
+	xor a
+	ld bc, $0040
+	call ByteFill
+	
+; Let LCD Stat know we're messing around with SCX
+	ld a, $43 ; ff43 ; SCX
+	ld [$ffc6], a
+	
+; Restore WRAM bank
+	pop af
+	ld [$ff70], a
+	
+	
+; Reset audio
+	call ChannelsOff
+	call $058a
+	
+; Set sprite size to 8x16
+	ld a, [$ff40] ; LCDC
+	set 2, a
+	ld [$ff40], a ; LCDC
+	
+;
+	ld a, $70
+	ld [$ffcf], a
+	ld a, $8
+	ld [$ffd0], a
+	ld a, $7
+	ld [$ffd1], a
+	ld a, $90
+	ld [$ffd2], a
+	
+	ld a, $1
+	ld [$ffe5], a
+	
+; Update BG Map 0 (bank 0)
+	ld [$ffd4], a
+	
+	xor a
+	ld [$d002], a
+	
+; Play starting sound effect
+	call SFXChannelsOff
+	ld de, $0065
+	call StartSFX
+	
+	ret
+; 10eea7
+
+INCBIN "baserom.gbc", $10eea7, $10ef46 - $10eea7
 
 TitleSuicuneGFX: ; 10ef46
 INCBIN "gfx/title/lz/suicune.lz"
@@ -89687,7 +92659,93 @@ TitleCrystalGFX: ; 10fcee
 INCBIN "gfx/title/lz/crystal.lz"
 ; 10fed7
 
-INCBIN "baserom.gbc", $10fed7, $110000 - $10fed7
+INCBIN "baserom.gbc", $10fed7, $10fede - $10fed7
+
+TitleScreenPalettes:
+; BG
+	RGB 00, 00, 00
+	RGB 19, 00, 00
+	RGB 15, 08, 31
+	RGB 15, 08, 31
+	
+	RGB 00, 00, 00
+	RGB 31, 31, 31
+	RGB 15, 16, 31
+	RGB 31, 01, 13
+	
+	RGB 00, 00, 00
+	RGB 07, 07, 07
+	RGB 31, 31, 31
+	RGB 02, 03, 30
+	
+	RGB 00, 00, 00
+	RGB 13, 13, 13
+	RGB 31, 31, 18
+	RGB 02, 03, 30
+	
+	RGB 00, 00, 00
+	RGB 19, 19, 19
+	RGB 29, 28, 12
+	RGB 02, 03, 30
+	
+	RGB 00, 00, 00
+	RGB 25, 25, 25
+	RGB 28, 25, 06
+	RGB 02, 03, 30
+	
+	RGB 00, 00, 00
+	RGB 31, 31, 31
+	RGB 26, 21, 00
+	RGB 02, 03, 30
+	
+	RGB 00, 00, 00
+	RGB 11, 11, 19
+	RGB 31, 31, 31
+	RGB 00, 00, 00
+	
+; OBJ
+	RGB 00, 00, 00
+	RGB 10, 00, 15
+	RGB 17, 05, 22
+	RGB 19, 09, 31
+	
+	RGB 31, 31, 31
+	RGB 00, 00, 00
+	RGB 00, 00, 00
+	RGB 00, 00, 00
+	
+	RGB 31, 31, 31
+	RGB 00, 00, 00
+	RGB 00, 00, 00
+	RGB 00, 00, 00
+	
+	RGB 31, 31, 31
+	RGB 00, 00, 00
+	RGB 00, 00, 00
+	RGB 00, 00, 00
+	
+	RGB 31, 31, 31
+	RGB 00, 00, 00
+	RGB 00, 00, 00
+	RGB 00, 00, 00
+	
+	RGB 31, 31, 31
+	RGB 00, 00, 00
+	RGB 00, 00, 00
+	RGB 00, 00, 00
+	
+	RGB 31, 31, 31
+	RGB 00, 00, 00
+	RGB 00, 00, 00
+	RGB 00, 00, 00
+	
+	RGB 31, 31, 31
+	RGB 00, 00, 00
+	RGB 00, 00, 00
+	RGB 00, 00, 00
+
+
+INCBIN "baserom.gbc", $10ff5e, $110000 - $10ff5e
 
 
 SECTION "bank44",DATA,BANK[$44]
@@ -89729,10 +92787,10 @@ Function117a94: ; 0x117a94
 	call $300b
 	ld a, $5c
 	ld hl, $6e78
-	rst $8
+	rst FarCall
 	ld a, $41
 	ld hl, $4000
-	rst $8
+	rst FarCall
 	ret
 ; 0x117ab4
 
@@ -89741,13 +92799,13 @@ Function117ab4: ; 0x117ab4
 	call $300b
 	ld a, $5c
 	ld hl, $6e78
-	rst $8
+	rst FarCall
 	ld a, $5c
 	ld hl, $6eb9
-	rst $8
+	rst FarCall
 	ld a, $41
 	ld hl, $4061
-	rst $8
+	rst FarCall
 	ret
 ; 0x117acd
 
@@ -89759,7 +92817,7 @@ Function117acd: ; 0x117acd
 	call Function117ae9
 	ld a, $41
 	ld hl, $4000
-	rst $8
+	rst FarCall
 	jr Function117acd
 .asm_117ae2
 	call $31f3
@@ -89790,7 +92848,7 @@ Pointers117af8: ; 0x117af8
 Function117b06:
 	ld a, $5c
 	ld hl, $6eb9
-	rst $8
+	rst FarCall
 	ld a, $10
 	ld [$cf64], a
 	jp Function117cdd
@@ -89867,14 +92925,14 @@ Function117b4f:
 	call $1c07
 	ld a, $41
 	ld hl, $4061
-	rst $8
+	rst FarCall
 	jp Function117cdd
 .asm_117ba4
 	call $1c07
 	call $1c07
 	ld a, $41
 	ld hl, $4061
-	rst $8
+	rst FarCall
 	ld a, $80
 	ld [$cf63], a
 	ret
@@ -89885,7 +92943,7 @@ Function117bb6:
 	ld [$ffd4], a
 	ld a, $46
 	ld hl, $4284
-	rst $8
+	rst FarCall
 	call $300b
 	ld a, [$c300]
 	and a
@@ -89897,7 +92955,7 @@ Function117bb6:
 	ld [$c303], a
 	ld a, $5f
 	ld hl, $7555
-	rst $8
+	rst FarCall
 	ld a, $80
 	ld [$cf63], a
 	ret
@@ -89942,7 +93000,7 @@ Function117bb6:
 	ld [$ff70], a
 	ld a, $5c
 	ld hl, $6eb9
-	rst $8
+	rst FarCall
 	ld a, [$ff70]
 	push af
 	ld a, $3
@@ -89952,7 +93010,7 @@ Function117bb6:
 	ld hl, $d002
 	ld de, $b000
 	ld bc, $1000
-	call $3026
+	call CopyBytes
 	call CloseSRAM
 	pop af
 	ld [$ff70], a
@@ -89965,7 +93023,7 @@ Function117c4a:
 	call $1cfd
 	ld a, $41
 	ld hl, $4061
-	rst $8
+	rst FarCall
 	ld hl, MobileStadiumSuccessText
 	call $1057
 	ld a, [$ff70]
@@ -90565,19 +93623,19 @@ PicPointers:
 	dbw                             $ff, $ffff ; unused
 
 
-HoOhFrontpic:        INCBIN "gfx/frontpics/lz/250.lz"
-MachampFrontpic:     INCBIN "gfx/frontpics/lz/068.lz"
-NinetalesFrontpic:   INCBIN "gfx/frontpics/lz/038.lz"
-FeraligatrFrontpic:  INCBIN "gfx/frontpics/lz/160.lz"
-NidokingFrontpic:    INCBIN "gfx/frontpics/lz/034.lz"
-RaikouFrontpic:      INCBIN "gfx/frontpics/lz/243.lz"
-LugiaFrontpic:       INCBIN "gfx/frontpics/lz/249.lz"
-ArticunoFrontpic:    INCBIN "gfx/frontpics/lz/144.lz"
-TaurosFrontpic:      INCBIN "gfx/frontpics/lz/128.lz"
-VenusaurFrontpic:    INCBIN "gfx/frontpics/lz/003.lz"
-EnteiFrontpic:       INCBIN "gfx/frontpics/lz/244.lz"
-SuicuneFrontpic:     INCBIN "gfx/frontpics/lz/245.lz"
-TyphlosionFrontpic:  INCBIN "gfx/frontpics/lz/157.lz"
+HoOhFrontpic:        INCBIN "gfx/pics/250/front.lz"
+MachampFrontpic:     INCBIN "gfx/pics/068/front.lz"
+NinetalesFrontpic:   INCBIN "gfx/pics/038/front.lz"
+FeraligatrFrontpic:  INCBIN "gfx/pics/160/front.lz"
+NidokingFrontpic:    INCBIN "gfx/pics/034/front.lz"
+RaikouFrontpic:      INCBIN "gfx/pics/243/front.lz"
+LugiaFrontpic:       INCBIN "gfx/pics/249/front.lz"
+ArticunoFrontpic:    INCBIN "gfx/pics/144/front.lz"
+TaurosFrontpic:      INCBIN "gfx/pics/128/front.lz"
+VenusaurFrontpic:    INCBIN "gfx/pics/003/front.lz"
+EnteiFrontpic:       INCBIN "gfx/pics/244/front.lz"
+SuicuneFrontpic:     INCBIN "gfx/pics/245/front.lz"
+TyphlosionFrontpic:  INCBIN "gfx/pics/157/front.lz"
 ; 123ffa
 
 
@@ -90638,22 +93696,22 @@ UnownPicPointers:
 	dbw BANK(UnownZBackpic)  - $36, UnownZBackpic
 
 
-BlastoiseFrontpic:   INCBIN "gfx/frontpics/lz/009.lz"
-RapidashFrontpic:    INCBIN "gfx/frontpics/lz/078.lz"
-MeganiumFrontpic:    INCBIN "gfx/frontpics/lz/154.lz"
-NidoqueenFrontpic:   INCBIN "gfx/frontpics/lz/031.lz"
-HitmonleeFrontpic:   INCBIN "gfx/frontpics/lz/106.lz"
-ScizorFrontpic:      INCBIN "gfx/frontpics/lz/212.lz"
-BeedrillFrontpic:    INCBIN "gfx/frontpics/lz/015.lz"
-ArcanineFrontpic:    INCBIN "gfx/frontpics/lz/059.lz"
-TyranitarFrontpic:   INCBIN "gfx/frontpics/lz/248.lz"
-MoltresFrontpic:     INCBIN "gfx/frontpics/lz/146.lz"
-ZapdosFrontpic:      INCBIN "gfx/frontpics/lz/145.lz"
-ArbokFrontpic:       INCBIN "gfx/frontpics/lz/024.lz"
-MewtwoFrontpic:      INCBIN "gfx/frontpics/lz/150.lz"
-FearowFrontpic:      INCBIN "gfx/frontpics/lz/022.lz"
-CharizardFrontpic:   INCBIN "gfx/frontpics/lz/006.lz"
-QuilavaFrontpic:     INCBIN "gfx/frontpics/lz/156.lz"
+BlastoiseFrontpic:   INCBIN "gfx/pics/009/front.lz"
+RapidashFrontpic:    INCBIN "gfx/pics/078/front.lz"
+MeganiumFrontpic:    INCBIN "gfx/pics/154/front.lz"
+NidoqueenFrontpic:   INCBIN "gfx/pics/031/front.lz"
+HitmonleeFrontpic:   INCBIN "gfx/pics/106/front.lz"
+ScizorFrontpic:      INCBIN "gfx/pics/212/front.lz"
+BeedrillFrontpic:    INCBIN "gfx/pics/015/front.lz"
+ArcanineFrontpic:    INCBIN "gfx/pics/059/front.lz"
+TyranitarFrontpic:   INCBIN "gfx/pics/248/front.lz"
+MoltresFrontpic:     INCBIN "gfx/pics/146/front.lz"
+ZapdosFrontpic:      INCBIN "gfx/pics/145/front.lz"
+ArbokFrontpic:       INCBIN "gfx/pics/024/front.lz"
+MewtwoFrontpic:      INCBIN "gfx/pics/150/front.lz"
+FearowFrontpic:      INCBIN "gfx/pics/022/front.lz"
+CharizardFrontpic:   INCBIN "gfx/pics/006/front.lz"
+QuilavaFrontpic:     INCBIN "gfx/pics/156/front.lz"
 ; 127ffe
 
 
@@ -90729,672 +93787,672 @@ TrainerPicPointers:
 	dbw BANK(MysticalmanPic)      - $36, MysticalmanPic
 
 
-SteelixFrontpic:     INCBIN "gfx/frontpics/lz/208.lz"
-AlakazamFrontpic:    INCBIN "gfx/frontpics/lz/065.lz"
-GyaradosFrontpic:    INCBIN "gfx/frontpics/lz/130.lz"
-KangaskhanFrontpic:  INCBIN "gfx/frontpics/lz/115.lz"
-RhydonFrontpic:      INCBIN "gfx/frontpics/lz/112.lz"
-GolduckFrontpic:     INCBIN "gfx/frontpics/lz/055.lz"
-RhyhornFrontpic:     INCBIN "gfx/frontpics/lz/111.lz"
-PidgeotFrontpic:     INCBIN "gfx/frontpics/lz/018.lz"
-SlowbroFrontpic:     INCBIN "gfx/frontpics/lz/080.lz"
-ButterfreeFrontpic:  INCBIN "gfx/frontpics/lz/012.lz"
-WeezingFrontpic:     INCBIN "gfx/frontpics/lz/110.lz"
-CloysterFrontpic:    INCBIN "gfx/frontpics/lz/091.lz"
-SkarmoryFrontpic:    INCBIN "gfx/frontpics/lz/227.lz"
-DewgongFrontpic:     INCBIN "gfx/frontpics/lz/087.lz"
-VictreebelFrontpic:  INCBIN "gfx/frontpics/lz/071.lz"
-RaichuFrontpic:      INCBIN "gfx/frontpics/lz/026.lz"
-PrimeapeFrontpic:    INCBIN "gfx/frontpics/lz/057.lz"
-OmastarBackpic:      INCBIN "gfx/backpics/lz/139.lz"
+SteelixFrontpic:     INCBIN "gfx/pics/208/front.lz"
+AlakazamFrontpic:    INCBIN "gfx/pics/065/front.lz"
+GyaradosFrontpic:    INCBIN "gfx/pics/130/front.lz"
+KangaskhanFrontpic:  INCBIN "gfx/pics/115/front.lz"
+RhydonFrontpic:      INCBIN "gfx/pics/112/front.lz"
+GolduckFrontpic:     INCBIN "gfx/pics/055/front.lz"
+RhyhornFrontpic:     INCBIN "gfx/pics/111/front.lz"
+PidgeotFrontpic:     INCBIN "gfx/pics/018/front.lz"
+SlowbroFrontpic:     INCBIN "gfx/pics/080/front.lz"
+ButterfreeFrontpic:  INCBIN "gfx/pics/012/front.lz"
+WeezingFrontpic:     INCBIN "gfx/pics/110/front.lz"
+CloysterFrontpic:    INCBIN "gfx/pics/091/front.lz"
+SkarmoryFrontpic:    INCBIN "gfx/pics/227/front.lz"
+DewgongFrontpic:     INCBIN "gfx/pics/087/front.lz"
+VictreebelFrontpic:  INCBIN "gfx/pics/071/front.lz"
+RaichuFrontpic:      INCBIN "gfx/pics/026/front.lz"
+PrimeapeFrontpic:    INCBIN "gfx/pics/057/front.lz"
+OmastarBackpic:      INCBIN "gfx/pics/139/back.lz"
 ; 12bffe
 
 
 SECTION "bank4b",DATA,BANK[$4b]
 
-DodrioFrontpic:      INCBIN "gfx/frontpics/lz/085.lz"
-SlowkingFrontpic:    INCBIN "gfx/frontpics/lz/199.lz"
-HitmontopFrontpic:   INCBIN "gfx/frontpics/lz/237.lz"
-OnixFrontpic:        INCBIN "gfx/frontpics/lz/095.lz"
-BlisseyFrontpic:     INCBIN "gfx/frontpics/lz/242.lz"
-MachokeFrontpic:     INCBIN "gfx/frontpics/lz/067.lz"
-DragoniteFrontpic:   INCBIN "gfx/frontpics/lz/149.lz"
-PoliwrathFrontpic:   INCBIN "gfx/frontpics/lz/062.lz"
-ScytherFrontpic:     INCBIN "gfx/frontpics/lz/123.lz"
-AerodactylFrontpic:  INCBIN "gfx/frontpics/lz/142.lz"
-SeakingFrontpic:     INCBIN "gfx/frontpics/lz/119.lz"
-MukFrontpic:         INCBIN "gfx/frontpics/lz/089.lz"
-CroconawFrontpic:    INCBIN "gfx/frontpics/lz/159.lz"
-HypnoFrontpic:       INCBIN "gfx/frontpics/lz/097.lz"
-NidorinoFrontpic:    INCBIN "gfx/frontpics/lz/033.lz"
-SandslashFrontpic:   INCBIN "gfx/frontpics/lz/028.lz"
-JolteonFrontpic:     INCBIN "gfx/frontpics/lz/135.lz"
-DonphanFrontpic:     INCBIN "gfx/frontpics/lz/232.lz"
-PinsirFrontpic:      INCBIN "gfx/frontpics/lz/127.lz"
-UnownEFrontpic:      INCBIN "gfx/frontpics/lz/201e.lz"
+DodrioFrontpic:      INCBIN "gfx/pics/085/front.lz"
+SlowkingFrontpic:    INCBIN "gfx/pics/199/front.lz"
+HitmontopFrontpic:   INCBIN "gfx/pics/237/front.lz"
+OnixFrontpic:        INCBIN "gfx/pics/095/front.lz"
+BlisseyFrontpic:     INCBIN "gfx/pics/242/front.lz"
+MachokeFrontpic:     INCBIN "gfx/pics/067/front.lz"
+DragoniteFrontpic:   INCBIN "gfx/pics/149/front.lz"
+PoliwrathFrontpic:   INCBIN "gfx/pics/062/front.lz"
+ScytherFrontpic:     INCBIN "gfx/pics/123/front.lz"
+AerodactylFrontpic:  INCBIN "gfx/pics/142/front.lz"
+SeakingFrontpic:     INCBIN "gfx/pics/119/front.lz"
+MukFrontpic:         INCBIN "gfx/pics/089/front.lz"
+CroconawFrontpic:    INCBIN "gfx/pics/159/front.lz"
+HypnoFrontpic:       INCBIN "gfx/pics/097/front.lz"
+NidorinoFrontpic:    INCBIN "gfx/pics/033/front.lz"
+SandslashFrontpic:   INCBIN "gfx/pics/028/front.lz"
+JolteonFrontpic:     INCBIN "gfx/pics/135/front.lz"
+DonphanFrontpic:     INCBIN "gfx/pics/232/front.lz"
+PinsirFrontpic:      INCBIN "gfx/pics/127/front.lz"
+UnownEFrontpic:      INCBIN "gfx/pics/201e/front.lz"
 ; 130000
 
 
 SECTION "bank4C",DATA,BANK[$4C]
 
-GolbatFrontpic:      INCBIN "gfx/frontpics/lz/042.lz"
-KinglerFrontpic:     INCBIN "gfx/frontpics/lz/099.lz"
-ExeggcuteFrontpic:   INCBIN "gfx/frontpics/lz/102.lz"
-MagcargoFrontpic:    INCBIN "gfx/frontpics/lz/219.lz"
-PersianFrontpic:     INCBIN "gfx/frontpics/lz/053.lz"
-StantlerFrontpic:    INCBIN "gfx/frontpics/lz/234.lz"
-RaticateFrontpic:    INCBIN "gfx/frontpics/lz/020.lz"
-VenomothFrontpic:    INCBIN "gfx/frontpics/lz/049.lz"
-PolitoedFrontpic:    INCBIN "gfx/frontpics/lz/186.lz"
-ElectabuzzFrontpic:  INCBIN "gfx/frontpics/lz/125.lz"
-MantineFrontpic:     INCBIN "gfx/frontpics/lz/226.lz"
-LickitungFrontpic:   INCBIN "gfx/frontpics/lz/108.lz"
-KingdraFrontpic:     INCBIN "gfx/frontpics/lz/230.lz"
-CharmeleonFrontpic:  INCBIN "gfx/frontpics/lz/005.lz"
-KadabraFrontpic:     INCBIN "gfx/frontpics/lz/064.lz"
-ExeggutorFrontpic:   INCBIN "gfx/frontpics/lz/103.lz"
-GastlyFrontpic:      INCBIN "gfx/frontpics/lz/092.lz"
-AzumarillFrontpic:   INCBIN "gfx/frontpics/lz/184.lz"
-ParasectFrontpic:    INCBIN "gfx/frontpics/lz/047.lz"
-MrMimeFrontpic:      INCBIN "gfx/frontpics/lz/122.lz"
-HeracrossFrontpic:   INCBIN "gfx/frontpics/lz/214.lz"
+GolbatFrontpic:      INCBIN "gfx/pics/042/front.lz"
+KinglerFrontpic:     INCBIN "gfx/pics/099/front.lz"
+ExeggcuteFrontpic:   INCBIN "gfx/pics/102/front.lz"
+MagcargoFrontpic:    INCBIN "gfx/pics/219/front.lz"
+PersianFrontpic:     INCBIN "gfx/pics/053/front.lz"
+StantlerFrontpic:    INCBIN "gfx/pics/234/front.lz"
+RaticateFrontpic:    INCBIN "gfx/pics/020/front.lz"
+VenomothFrontpic:    INCBIN "gfx/pics/049/front.lz"
+PolitoedFrontpic:    INCBIN "gfx/pics/186/front.lz"
+ElectabuzzFrontpic:  INCBIN "gfx/pics/125/front.lz"
+MantineFrontpic:     INCBIN "gfx/pics/226/front.lz"
+LickitungFrontpic:   INCBIN "gfx/pics/108/front.lz"
+KingdraFrontpic:     INCBIN "gfx/pics/230/front.lz"
+CharmeleonFrontpic:  INCBIN "gfx/pics/005/front.lz"
+KadabraFrontpic:     INCBIN "gfx/pics/064/front.lz"
+ExeggutorFrontpic:   INCBIN "gfx/pics/103/front.lz"
+GastlyFrontpic:      INCBIN "gfx/pics/092/front.lz"
+AzumarillFrontpic:   INCBIN "gfx/pics/184/front.lz"
+ParasectFrontpic:    INCBIN "gfx/pics/047/front.lz"
+MrMimeFrontpic:      INCBIN "gfx/pics/122/front.lz"
+HeracrossFrontpic:   INCBIN "gfx/pics/214/front.lz"
 ; 133fff
 
 
 SECTION "bank4d",DATA,BANK[$4d]
 
-AriadosFrontpic:     INCBIN "gfx/frontpics/lz/168.lz"
-NoctowlFrontpic:     INCBIN "gfx/frontpics/lz/164.lz"
-WartortleFrontpic:   INCBIN "gfx/frontpics/lz/008.lz"
-LaprasFrontpic:      INCBIN "gfx/frontpics/lz/131.lz"
-GolemFrontpic:       INCBIN "gfx/frontpics/lz/076.lz"
-PoliwhirlFrontpic:   INCBIN "gfx/frontpics/lz/061.lz"
-UrsaringFrontpic:    INCBIN "gfx/frontpics/lz/217.lz"
-HoundoomFrontpic:    INCBIN "gfx/frontpics/lz/229.lz"
-KabutopsFrontpic:    INCBIN "gfx/frontpics/lz/141.lz"
-AmpharosFrontpic:    INCBIN "gfx/frontpics/lz/181.lz"
-NidorinaFrontpic:    INCBIN "gfx/frontpics/lz/030.lz"
-FlareonFrontpic:     INCBIN "gfx/frontpics/lz/136.lz"
-FarfetchDFrontpic:   INCBIN "gfx/frontpics/lz/083.lz"
-VileplumeFrontpic:   INCBIN "gfx/frontpics/lz/045.lz"
-BayleefFrontpic:     INCBIN "gfx/frontpics/lz/153.lz"
-MagmarFrontpic:      INCBIN "gfx/frontpics/lz/126.lz"
-TentacruelFrontpic:  INCBIN "gfx/frontpics/lz/073.lz"
-ElekidFrontpic:      INCBIN "gfx/frontpics/lz/239.lz"
-JumpluffFrontpic:    INCBIN "gfx/frontpics/lz/189.lz"
-MarowakFrontpic:     INCBIN "gfx/frontpics/lz/105.lz"
-VulpixFrontpic:      INCBIN "gfx/frontpics/lz/037.lz"
-GligarFrontpic:      INCBIN "gfx/frontpics/lz/207.lz"
-DunsparceFrontpic:   INCBIN "gfx/frontpics/lz/206.lz"
+AriadosFrontpic:     INCBIN "gfx/pics/168/front.lz"
+NoctowlFrontpic:     INCBIN "gfx/pics/164/front.lz"
+WartortleFrontpic:   INCBIN "gfx/pics/008/front.lz"
+LaprasFrontpic:      INCBIN "gfx/pics/131/front.lz"
+GolemFrontpic:       INCBIN "gfx/pics/076/front.lz"
+PoliwhirlFrontpic:   INCBIN "gfx/pics/061/front.lz"
+UrsaringFrontpic:    INCBIN "gfx/pics/217/front.lz"
+HoundoomFrontpic:    INCBIN "gfx/pics/229/front.lz"
+KabutopsFrontpic:    INCBIN "gfx/pics/141/front.lz"
+AmpharosFrontpic:    INCBIN "gfx/pics/181/front.lz"
+NidorinaFrontpic:    INCBIN "gfx/pics/030/front.lz"
+FlareonFrontpic:     INCBIN "gfx/pics/136/front.lz"
+FarfetchDFrontpic:   INCBIN "gfx/pics/083/front.lz"
+VileplumeFrontpic:   INCBIN "gfx/pics/045/front.lz"
+BayleefFrontpic:     INCBIN "gfx/pics/153/front.lz"
+MagmarFrontpic:      INCBIN "gfx/pics/126/front.lz"
+TentacruelFrontpic:  INCBIN "gfx/pics/073/front.lz"
+ElekidFrontpic:      INCBIN "gfx/pics/239/front.lz"
+JumpluffFrontpic:    INCBIN "gfx/pics/189/front.lz"
+MarowakFrontpic:     INCBIN "gfx/pics/105/front.lz"
+VulpixFrontpic:      INCBIN "gfx/pics/037/front.lz"
+GligarFrontpic:      INCBIN "gfx/pics/207/front.lz"
+DunsparceFrontpic:   INCBIN "gfx/pics/206/front.lz"
 ; 137fff
 
 
 SECTION "bank4E",DATA,BANK[$4E]
 
-VaporeonFrontpic:    INCBIN "gfx/frontpics/lz/134.lz"
-GirafarigFrontpic:   INCBIN "gfx/frontpics/lz/203.lz"
-DrowzeeFrontpic:     INCBIN "gfx/frontpics/lz/096.lz"
-SneaselFrontpic:     INCBIN "gfx/frontpics/lz/215.lz"
-BellossomFrontpic:   INCBIN "gfx/frontpics/lz/182.lz"
-SnorlaxFrontpic:     INCBIN "gfx/frontpics/lz/143.lz"
-WigglytuffFrontpic:  INCBIN "gfx/frontpics/lz/040.lz"
-YanmaFrontpic:       INCBIN "gfx/frontpics/lz/193.lz"
-SmeargleFrontpic:    INCBIN "gfx/frontpics/lz/235.lz"
-ClefableFrontpic:    INCBIN "gfx/frontpics/lz/036.lz"
-PonytaFrontpic:      INCBIN "gfx/frontpics/lz/077.lz"
-MurkrowFrontpic:     INCBIN "gfx/frontpics/lz/198.lz"
-GravelerFrontpic:    INCBIN "gfx/frontpics/lz/075.lz"
-StarmieFrontpic:     INCBIN "gfx/frontpics/lz/121.lz"
-PidgeottoFrontpic:   INCBIN "gfx/frontpics/lz/017.lz"
-LedybaFrontpic:      INCBIN "gfx/frontpics/lz/165.lz"
-GengarFrontpic:      INCBIN "gfx/frontpics/lz/094.lz"
-OmastarFrontpic:     INCBIN "gfx/frontpics/lz/139.lz"
-PiloswineFrontpic:   INCBIN "gfx/frontpics/lz/221.lz"
-DugtrioFrontpic:     INCBIN "gfx/frontpics/lz/051.lz"
-MagnetonFrontpic:    INCBIN "gfx/frontpics/lz/082.lz"
-DragonairFrontpic:   INCBIN "gfx/frontpics/lz/148.lz"
-ForretressFrontpic:  INCBIN "gfx/frontpics/lz/205.lz"
-TogeticFrontpic:     INCBIN "gfx/frontpics/lz/176.lz"
-KangaskhanBackpic:   INCBIN "gfx/backpics/lz/115.lz"
+VaporeonFrontpic:    INCBIN "gfx/pics/134/front.lz"
+GirafarigFrontpic:   INCBIN "gfx/pics/203/front.lz"
+DrowzeeFrontpic:     INCBIN "gfx/pics/096/front.lz"
+SneaselFrontpic:     INCBIN "gfx/pics/215/front.lz"
+BellossomFrontpic:   INCBIN "gfx/pics/182/front.lz"
+SnorlaxFrontpic:     INCBIN "gfx/pics/143/front.lz"
+WigglytuffFrontpic:  INCBIN "gfx/pics/040/front.lz"
+YanmaFrontpic:       INCBIN "gfx/pics/193/front.lz"
+SmeargleFrontpic:    INCBIN "gfx/pics/235/front.lz"
+ClefableFrontpic:    INCBIN "gfx/pics/036/front.lz"
+PonytaFrontpic:      INCBIN "gfx/pics/077/front.lz"
+MurkrowFrontpic:     INCBIN "gfx/pics/198/front.lz"
+GravelerFrontpic:    INCBIN "gfx/pics/075/front.lz"
+StarmieFrontpic:     INCBIN "gfx/pics/121/front.lz"
+PidgeottoFrontpic:   INCBIN "gfx/pics/017/front.lz"
+LedybaFrontpic:      INCBIN "gfx/pics/165/front.lz"
+GengarFrontpic:      INCBIN "gfx/pics/094/front.lz"
+OmastarFrontpic:     INCBIN "gfx/pics/139/front.lz"
+PiloswineFrontpic:   INCBIN "gfx/pics/221/front.lz"
+DugtrioFrontpic:     INCBIN "gfx/pics/051/front.lz"
+MagnetonFrontpic:    INCBIN "gfx/pics/082/front.lz"
+DragonairFrontpic:   INCBIN "gfx/pics/148/front.lz"
+ForretressFrontpic:  INCBIN "gfx/pics/205/front.lz"
+TogeticFrontpic:     INCBIN "gfx/pics/176/front.lz"
+KangaskhanBackpic:   INCBIN "gfx/pics/115/back.lz"
 ; 13c000
 
 
 SECTION "bank4f",DATA,BANK[$4f]
 
-SeelFrontpic:        INCBIN "gfx/frontpics/lz/086.lz"
-CrobatFrontpic:      INCBIN "gfx/frontpics/lz/169.lz"
-ChanseyFrontpic:     INCBIN "gfx/frontpics/lz/113.lz"
-TangelaFrontpic:     INCBIN "gfx/frontpics/lz/114.lz"
-SnubbullFrontpic:    INCBIN "gfx/frontpics/lz/209.lz"
-GranbullFrontpic:    INCBIN "gfx/frontpics/lz/210.lz"
-MiltankFrontpic:     INCBIN "gfx/frontpics/lz/241.lz"
-HaunterFrontpic:     INCBIN "gfx/frontpics/lz/093.lz"
-SunfloraFrontpic:    INCBIN "gfx/frontpics/lz/192.lz"
-UmbreonFrontpic:     INCBIN "gfx/frontpics/lz/197.lz"
-ChikoritaFrontpic:   INCBIN "gfx/frontpics/lz/152.lz"
-GoldeenFrontpic:     INCBIN "gfx/frontpics/lz/118.lz"
-EspeonFrontpic:      INCBIN "gfx/frontpics/lz/196.lz"
-XatuFrontpic:        INCBIN "gfx/frontpics/lz/178.lz"
-MewFrontpic:         INCBIN "gfx/frontpics/lz/151.lz"
-OctilleryFrontpic:   INCBIN "gfx/frontpics/lz/224.lz"
-JynxFrontpic:        INCBIN "gfx/frontpics/lz/124.lz"
-WobbuffetFrontpic:   INCBIN "gfx/frontpics/lz/202.lz"
-DelibirdFrontpic:    INCBIN "gfx/frontpics/lz/225.lz"
-LedianFrontpic:      INCBIN "gfx/frontpics/lz/166.lz"
-GloomFrontpic:       INCBIN "gfx/frontpics/lz/044.lz"
-FlaaffyFrontpic:     INCBIN "gfx/frontpics/lz/180.lz"
-IvysaurFrontpic:     INCBIN "gfx/frontpics/lz/002.lz"
-FurretFrontpic:      INCBIN "gfx/frontpics/lz/162.lz"
-CyndaquilFrontpic:   INCBIN "gfx/frontpics/lz/155.lz"
-HitmonchanFrontpic:  INCBIN "gfx/frontpics/lz/107.lz"
-QuagsireFrontpic:    INCBIN "gfx/frontpics/lz/195.lz"
+SeelFrontpic:        INCBIN "gfx/pics/086/front.lz"
+CrobatFrontpic:      INCBIN "gfx/pics/169/front.lz"
+ChanseyFrontpic:     INCBIN "gfx/pics/113/front.lz"
+TangelaFrontpic:     INCBIN "gfx/pics/114/front.lz"
+SnubbullFrontpic:    INCBIN "gfx/pics/209/front.lz"
+GranbullFrontpic:    INCBIN "gfx/pics/210/front.lz"
+MiltankFrontpic:     INCBIN "gfx/pics/241/front.lz"
+HaunterFrontpic:     INCBIN "gfx/pics/093/front.lz"
+SunfloraFrontpic:    INCBIN "gfx/pics/192/front.lz"
+UmbreonFrontpic:     INCBIN "gfx/pics/197/front.lz"
+ChikoritaFrontpic:   INCBIN "gfx/pics/152/front.lz"
+GoldeenFrontpic:     INCBIN "gfx/pics/118/front.lz"
+EspeonFrontpic:      INCBIN "gfx/pics/196/front.lz"
+XatuFrontpic:        INCBIN "gfx/pics/178/front.lz"
+MewFrontpic:         INCBIN "gfx/pics/151/front.lz"
+OctilleryFrontpic:   INCBIN "gfx/pics/224/front.lz"
+JynxFrontpic:        INCBIN "gfx/pics/124/front.lz"
+WobbuffetFrontpic:   INCBIN "gfx/pics/202/front.lz"
+DelibirdFrontpic:    INCBIN "gfx/pics/225/front.lz"
+LedianFrontpic:      INCBIN "gfx/pics/166/front.lz"
+GloomFrontpic:       INCBIN "gfx/pics/044/front.lz"
+FlaaffyFrontpic:     INCBIN "gfx/pics/180/front.lz"
+IvysaurFrontpic:     INCBIN "gfx/pics/002/front.lz"
+FurretFrontpic:      INCBIN "gfx/pics/162/front.lz"
+CyndaquilFrontpic:   INCBIN "gfx/pics/155/front.lz"
+HitmonchanFrontpic:  INCBIN "gfx/pics/107/front.lz"
+QuagsireFrontpic:    INCBIN "gfx/pics/195/front.lz"
 ; 13fff7
 
 
 SECTION "bank50",DATA,BANK[$50]
 
-EkansFrontpic:       INCBIN "gfx/frontpics/lz/023.lz"
-SudowoodoFrontpic:   INCBIN "gfx/frontpics/lz/185.lz"
-PikachuFrontpic:     INCBIN "gfx/frontpics/lz/025.lz"
-SeadraFrontpic:      INCBIN "gfx/frontpics/lz/117.lz"
-MagbyFrontpic:       INCBIN "gfx/frontpics/lz/240.lz"
-WeepinbellFrontpic:  INCBIN "gfx/frontpics/lz/070.lz"
-TotodileFrontpic:    INCBIN "gfx/frontpics/lz/158.lz"
-CorsolaFrontpic:     INCBIN "gfx/frontpics/lz/222.lz"
+EkansFrontpic:       INCBIN "gfx/pics/023/front.lz"
+SudowoodoFrontpic:   INCBIN "gfx/pics/185/front.lz"
+PikachuFrontpic:     INCBIN "gfx/pics/025/front.lz"
+SeadraFrontpic:      INCBIN "gfx/pics/117/front.lz"
+MagbyFrontpic:       INCBIN "gfx/pics/240/front.lz"
+WeepinbellFrontpic:  INCBIN "gfx/pics/070/front.lz"
+TotodileFrontpic:    INCBIN "gfx/pics/158/front.lz"
+CorsolaFrontpic:     INCBIN "gfx/pics/222/front.lz"
 FirebreatherPic:     INCBIN "gfx/trainers/lz/047.lz"
-MachopFrontpic:      INCBIN "gfx/frontpics/lz/066.lz"
-ChinchouFrontpic:    INCBIN "gfx/frontpics/lz/170.lz"
-RattataFrontpic:     INCBIN "gfx/frontpics/lz/019.lz"
+MachopFrontpic:      INCBIN "gfx/pics/066/front.lz"
+ChinchouFrontpic:    INCBIN "gfx/pics/170/front.lz"
+RattataFrontpic:     INCBIN "gfx/pics/019/front.lz"
 ChampionPic:         INCBIN "gfx/trainers/lz/015.lz"
-SpearowFrontpic:     INCBIN "gfx/frontpics/lz/021.lz"
-MagikarpFrontpic:    INCBIN "gfx/frontpics/lz/129.lz"
-CharmanderFrontpic:  INCBIN "gfx/frontpics/lz/004.lz"
-CuboneFrontpic:      INCBIN "gfx/frontpics/lz/104.lz"
+SpearowFrontpic:     INCBIN "gfx/pics/021/front.lz"
+MagikarpFrontpic:    INCBIN "gfx/pics/129/front.lz"
+CharmanderFrontpic:  INCBIN "gfx/pics/004/front.lz"
+CuboneFrontpic:      INCBIN "gfx/pics/104/front.lz"
 BlackbeltTPic:       INCBIN "gfx/trainers/lz/049.lz"
 BikerPic:            INCBIN "gfx/trainers/lz/044.lz"
-NidoranMFrontpic:    INCBIN "gfx/frontpics/lz/032.lz"
-PorygonFrontpic:     INCBIN "gfx/frontpics/lz/137.lz"
+NidoranMFrontpic:    INCBIN "gfx/pics/032/front.lz"
+PorygonFrontpic:     INCBIN "gfx/pics/137/front.lz"
 BrunoPic:            INCBIN "gfx/trainers/lz/012.lz"
-GrimerFrontpic:      INCBIN "gfx/frontpics/lz/088.lz"
-StaryuFrontpic:      INCBIN "gfx/frontpics/lz/120.lz"
+GrimerFrontpic:      INCBIN "gfx/pics/088/front.lz"
+StaryuFrontpic:      INCBIN "gfx/pics/120/front.lz"
 HikerPic:            INCBIN "gfx/trainers/lz/043.lz"
-MeowthFrontpic:      INCBIN "gfx/frontpics/lz/052.lz"
-Porygon2Frontpic:    INCBIN "gfx/frontpics/lz/233.lz"
-SandshrewFrontpic:   INCBIN "gfx/frontpics/lz/027.lz"
-NidoranFFrontpic:    INCBIN "gfx/frontpics/lz/029.lz"
-PidgeyFrontpic:      INCBIN "gfx/frontpics/lz/016.lz"
-ParasectBackpic:     INCBIN "gfx/backpics/lz/047.lz"
+MeowthFrontpic:      INCBIN "gfx/pics/052/front.lz"
+Porygon2Frontpic:    INCBIN "gfx/pics/233/front.lz"
+SandshrewFrontpic:   INCBIN "gfx/pics/027/front.lz"
+NidoranFFrontpic:    INCBIN "gfx/pics/029/front.lz"
+PidgeyFrontpic:      INCBIN "gfx/pics/016/front.lz"
+ParasectBackpic:     INCBIN "gfx/pics/047/back.lz"
 ; 144000
 
 
 SECTION "bank51",DATA,BANK[$51]
 
-MisdreavusFrontpic:  INCBIN "gfx/frontpics/lz/200.lz"
-HoundourFrontpic:    INCBIN "gfx/frontpics/lz/228.lz"
-MankeyFrontpic:      INCBIN "gfx/frontpics/lz/056.lz"
-CelebiFrontpic:      INCBIN "gfx/frontpics/lz/251.lz"
+MisdreavusFrontpic:  INCBIN "gfx/pics/200/front.lz"
+HoundourFrontpic:    INCBIN "gfx/pics/228/front.lz"
+MankeyFrontpic:      INCBIN "gfx/pics/056/front.lz"
+CelebiFrontpic:      INCBIN "gfx/pics/251/front.lz"
 MediumPic:           INCBIN "gfx/trainers/lz/056.lz"
-PinecoFrontpic:      INCBIN "gfx/frontpics/lz/204.lz"
-KrabbyFrontpic:      INCBIN "gfx/frontpics/lz/098.lz"
+PinecoFrontpic:      INCBIN "gfx/pics/204/front.lz"
+KrabbyFrontpic:      INCBIN "gfx/pics/098/front.lz"
 FisherPic:           INCBIN "gfx/trainers/lz/036.lz"
-JigglypuffFrontpic:  INCBIN "gfx/frontpics/lz/039.lz"
-ParasFrontpic:       INCBIN "gfx/frontpics/lz/046.lz"
-NidokingBackpic:     INCBIN "gfx/backpics/lz/034.lz"
+JigglypuffFrontpic:  INCBIN "gfx/pics/039/front.lz"
+ParasFrontpic:       INCBIN "gfx/pics/046/front.lz"
+NidokingBackpic:     INCBIN "gfx/pics/034/back.lz"
 PokefanmPic:         INCBIN "gfx/trainers/lz/058.lz"
 BoarderPic:          INCBIN "gfx/trainers/lz/057.lz"
-PsyduckFrontpic:     INCBIN "gfx/frontpics/lz/054.lz"
-SquirtleFrontpic:    INCBIN "gfx/frontpics/lz/007.lz"
-MachampBackpic:      INCBIN "gfx/backpics/lz/068.lz"
-KoffingFrontpic:     INCBIN "gfx/frontpics/lz/109.lz"
-VenonatFrontpic:     INCBIN "gfx/frontpics/lz/048.lz"
-ExeggutorBackpic:    INCBIN "gfx/backpics/lz/103.lz"
-LanturnFrontpic:     INCBIN "gfx/frontpics/lz/171.lz"
-TyrogueFrontpic:     INCBIN "gfx/frontpics/lz/236.lz"
-SkiploomFrontpic:    INCBIN "gfx/frontpics/lz/188.lz"
-MareepFrontpic:      INCBIN "gfx/frontpics/lz/179.lz"
+PsyduckFrontpic:     INCBIN "gfx/pics/054/front.lz"
+SquirtleFrontpic:    INCBIN "gfx/pics/007/front.lz"
+MachampBackpic:      INCBIN "gfx/pics/068/back.lz"
+KoffingFrontpic:     INCBIN "gfx/pics/109/front.lz"
+VenonatFrontpic:     INCBIN "gfx/pics/048/front.lz"
+ExeggutorBackpic:    INCBIN "gfx/pics/103/back.lz"
+LanturnFrontpic:     INCBIN "gfx/pics/171/front.lz"
+TyrogueFrontpic:     INCBIN "gfx/pics/236/front.lz"
+SkiploomFrontpic:    INCBIN "gfx/pics/188/front.lz"
+MareepFrontpic:      INCBIN "gfx/pics/179/front.lz"
 ChuckPic:            INCBIN "gfx/trainers/lz/006.lz"
-EeveeFrontpic:       INCBIN "gfx/frontpics/lz/133.lz"
-ButterfreeBackpic:   INCBIN "gfx/backpics/lz/012.lz"
-ZubatFrontpic:       INCBIN "gfx/frontpics/lz/041.lz"
+EeveeFrontpic:       INCBIN "gfx/pics/133/front.lz"
+ButterfreeBackpic:   INCBIN "gfx/pics/012/back.lz"
+ZubatFrontpic:       INCBIN "gfx/pics/041/front.lz"
 KimonoGirlPic:       INCBIN "gfx/trainers/lz/059.lz"
-AlakazamBackpic:     INCBIN "gfx/backpics/lz/065.lz"
-AipomFrontpic:       INCBIN "gfx/frontpics/lz/190.lz"
-AbraFrontpic:        INCBIN "gfx/frontpics/lz/063.lz"
-HitmontopBackpic:    INCBIN "gfx/backpics/lz/237.lz"
-CloysterBackpic:     INCBIN "gfx/backpics/lz/091.lz"
-HoothootFrontpic:    INCBIN "gfx/frontpics/lz/163.lz"
-UnownFBackpic:       INCBIN "gfx/backpics/lz/201f.lz"
+AlakazamBackpic:     INCBIN "gfx/pics/065/back.lz"
+AipomFrontpic:       INCBIN "gfx/pics/190/front.lz"
+AbraFrontpic:        INCBIN "gfx/pics/063/front.lz"
+HitmontopBackpic:    INCBIN "gfx/pics/237/back.lz"
+CloysterBackpic:     INCBIN "gfx/pics/091/back.lz"
+HoothootFrontpic:    INCBIN "gfx/pics/163/front.lz"
+UnownFBackpic:       INCBIN "gfx/pics/201f/back.lz"
 ; 148000
 
 
 SECTION "bank52",DATA,BANK[$52]
 
-DodrioBackpic:       INCBIN "gfx/backpics/lz/085.lz"
-ClefairyFrontpic:    INCBIN "gfx/frontpics/lz/035.lz"
-SlugmaFrontpic:      INCBIN "gfx/frontpics/lz/218.lz"
-GrowlitheFrontpic:   INCBIN "gfx/frontpics/lz/058.lz"
-SlowpokeFrontpic:    INCBIN "gfx/frontpics/lz/079.lz"
-SmoochumFrontpic:    INCBIN "gfx/frontpics/lz/238.lz"
+DodrioBackpic:       INCBIN "gfx/pics/085/back.lz"
+ClefairyFrontpic:    INCBIN "gfx/pics/035/front.lz"
+SlugmaFrontpic:      INCBIN "gfx/pics/218/front.lz"
+GrowlitheFrontpic:   INCBIN "gfx/pics/058/front.lz"
+SlowpokeFrontpic:    INCBIN "gfx/pics/079/front.lz"
+SmoochumFrontpic:    INCBIN "gfx/pics/238/front.lz"
 JugglerPic:          INCBIN "gfx/trainers/lz/048.lz"
-MarillFrontpic:      INCBIN "gfx/frontpics/lz/183.lz"
+MarillFrontpic:      INCBIN "gfx/pics/183/front.lz"
 GuitaristPic:        INCBIN "gfx/trainers/lz/042.lz"
 PokefanfPic:         INCBIN "gfx/trainers/lz/061.lz"
-VenomothBackpic:     INCBIN "gfx/backpics/lz/049.lz"
+VenomothBackpic:     INCBIN "gfx/pics/049/back.lz"
 ClairPic:            INCBIN "gfx/trainers/lz/007.lz"
 PokemaniacPic:       INCBIN "gfx/trainers/lz/029.lz"
-OmanyteFrontpic:     INCBIN "gfx/frontpics/lz/138.lz"
+OmanyteFrontpic:     INCBIN "gfx/pics/138/front.lz"
 SkierPic:            INCBIN "gfx/trainers/lz/032.lz"
-PupitarFrontpic:     INCBIN "gfx/frontpics/lz/247.lz"
-BellsproutFrontpic:  INCBIN "gfx/frontpics/lz/069.lz"
-ShellderFrontpic:    INCBIN "gfx/frontpics/lz/090.lz"
-TentacoolFrontpic:   INCBIN "gfx/frontpics/lz/072.lz"
-CleffaFrontpic:      INCBIN "gfx/frontpics/lz/173.lz"
-GyaradosBackpic:     INCBIN "gfx/backpics/lz/130.lz"
-NinetalesBackpic:    INCBIN "gfx/backpics/lz/038.lz"
-YanmaBackpic:        INCBIN "gfx/backpics/lz/193.lz"
-PinsirBackpic:       INCBIN "gfx/backpics/lz/127.lz"
+PupitarFrontpic:     INCBIN "gfx/pics/247/front.lz"
+BellsproutFrontpic:  INCBIN "gfx/pics/069/front.lz"
+ShellderFrontpic:    INCBIN "gfx/pics/090/front.lz"
+TentacoolFrontpic:   INCBIN "gfx/pics/072/front.lz"
+CleffaFrontpic:      INCBIN "gfx/pics/173/front.lz"
+GyaradosBackpic:     INCBIN "gfx/pics/130/back.lz"
+NinetalesBackpic:    INCBIN "gfx/pics/038/back.lz"
+YanmaBackpic:        INCBIN "gfx/pics/193/back.lz"
+PinsirBackpic:       INCBIN "gfx/pics/127/back.lz"
 LassPic:             INCBIN "gfx/trainers/lz/024.lz"
-ClefableBackpic:     INCBIN "gfx/backpics/lz/036.lz"
-DoduoFrontpic:       INCBIN "gfx/frontpics/lz/084.lz"
-FeraligatrBackpic:   INCBIN "gfx/backpics/lz/160.lz"
-DratiniFrontpic:     INCBIN "gfx/frontpics/lz/147.lz"
-MagnetonBackpic:     INCBIN "gfx/backpics/lz/082.lz"
-QwilfishFrontpic:    INCBIN "gfx/frontpics/lz/211.lz"
-SuicuneBackpic:      INCBIN "gfx/backpics/lz/245.lz"
-SlowkingBackpic:     INCBIN "gfx/backpics/lz/199.lz"
-ElekidBackpic:       INCBIN "gfx/backpics/lz/239.lz"
-CelebiBackpic:       INCBIN "gfx/backpics/lz/251.lz"
-KrabbyBackpic:       INCBIN "gfx/backpics/lz/098.lz"
+ClefableBackpic:     INCBIN "gfx/pics/036/back.lz"
+DoduoFrontpic:       INCBIN "gfx/pics/084/front.lz"
+FeraligatrBackpic:   INCBIN "gfx/pics/160/back.lz"
+DratiniFrontpic:     INCBIN "gfx/pics/147/front.lz"
+MagnetonBackpic:     INCBIN "gfx/pics/082/back.lz"
+QwilfishFrontpic:    INCBIN "gfx/pics/211/front.lz"
+SuicuneBackpic:      INCBIN "gfx/pics/245/back.lz"
+SlowkingBackpic:     INCBIN "gfx/pics/199/back.lz"
+ElekidBackpic:       INCBIN "gfx/pics/239/back.lz"
+CelebiBackpic:       INCBIN "gfx/pics/251/back.lz"
+KrabbyBackpic:       INCBIN "gfx/pics/098/back.lz"
 BugCatcherPic:       INCBIN "gfx/trainers/lz/035.lz"
-SnorlaxBackpic:      INCBIN "gfx/backpics/lz/143.lz"
+SnorlaxBackpic:      INCBIN "gfx/pics/143/back.lz"
 ; 14bffb
 
 
 SECTION "bank53",DATA,BANK[$53]
 
-VenusaurBackpic:     INCBIN "gfx/backpics/lz/003.lz"
-MoltresBackpic:      INCBIN "gfx/backpics/lz/146.lz"
-SunfloraBackpic:     INCBIN "gfx/backpics/lz/192.lz"
-PhanpyFrontpic:      INCBIN "gfx/frontpics/lz/231.lz"
-RhydonBackpic:       INCBIN "gfx/backpics/lz/112.lz"
-LarvitarFrontpic:    INCBIN "gfx/frontpics/lz/246.lz"
-TyranitarBackpic:    INCBIN "gfx/backpics/lz/248.lz"
-SandslashBackpic:    INCBIN "gfx/backpics/lz/028.lz"
-SeadraBackpic:       INCBIN "gfx/backpics/lz/117.lz"
+VenusaurBackpic:     INCBIN "gfx/pics/003/back.lz"
+MoltresBackpic:      INCBIN "gfx/pics/146/back.lz"
+SunfloraBackpic:     INCBIN "gfx/pics/192/back.lz"
+PhanpyFrontpic:      INCBIN "gfx/pics/231/front.lz"
+RhydonBackpic:       INCBIN "gfx/pics/112/back.lz"
+LarvitarFrontpic:    INCBIN "gfx/pics/246/front.lz"
+TyranitarBackpic:    INCBIN "gfx/pics/248/back.lz"
+SandslashBackpic:    INCBIN "gfx/pics/028/back.lz"
+SeadraBackpic:       INCBIN "gfx/pics/117/back.lz"
 TwinsPic:            INCBIN "gfx/trainers/lz/060.lz"
-FarfetchDBackpic:    INCBIN "gfx/backpics/lz/083.lz"
-NidoranMBackpic:     INCBIN "gfx/backpics/lz/032.lz"
-LedybaBackpic:       INCBIN "gfx/backpics/lz/165.lz"
-CyndaquilBackpic:    INCBIN "gfx/backpics/lz/155.lz"
-BayleefBackpic:      INCBIN "gfx/backpics/lz/153.lz"
-OddishFrontpic:      INCBIN "gfx/frontpics/lz/043.lz"
-RapidashBackpic:     INCBIN "gfx/backpics/lz/078.lz"
-DoduoBackpic:        INCBIN "gfx/backpics/lz/084.lz"
-HoppipFrontpic:      INCBIN "gfx/frontpics/lz/187.lz"
-MankeyBackpic:       INCBIN "gfx/backpics/lz/056.lz"
-MagmarBackpic:       INCBIN "gfx/backpics/lz/126.lz"
-HypnoBackpic:        INCBIN "gfx/backpics/lz/097.lz"
-QuilavaBackpic:      INCBIN "gfx/backpics/lz/156.lz"
-CroconawBackpic:     INCBIN "gfx/backpics/lz/159.lz"
-SandshrewBackpic:    INCBIN "gfx/backpics/lz/027.lz"
+FarfetchDBackpic:    INCBIN "gfx/pics/083/back.lz"
+NidoranMBackpic:     INCBIN "gfx/pics/032/back.lz"
+LedybaBackpic:       INCBIN "gfx/pics/165/back.lz"
+CyndaquilBackpic:    INCBIN "gfx/pics/155/back.lz"
+BayleefBackpic:      INCBIN "gfx/pics/153/back.lz"
+OddishFrontpic:      INCBIN "gfx/pics/043/front.lz"
+RapidashBackpic:     INCBIN "gfx/pics/078/back.lz"
+DoduoBackpic:        INCBIN "gfx/pics/084/back.lz"
+HoppipFrontpic:      INCBIN "gfx/pics/187/front.lz"
+MankeyBackpic:       INCBIN "gfx/pics/056/back.lz"
+MagmarBackpic:       INCBIN "gfx/pics/126/back.lz"
+HypnoBackpic:        INCBIN "gfx/pics/097/back.lz"
+QuilavaBackpic:      INCBIN "gfx/pics/156/back.lz"
+CroconawBackpic:     INCBIN "gfx/pics/159/back.lz"
+SandshrewBackpic:    INCBIN "gfx/pics/027/back.lz"
 SailorPic:           INCBIN "gfx/trainers/lz/039.lz"
 BeautyPic:           INCBIN "gfx/trainers/lz/028.lz"
-ShellderBackpic:     INCBIN "gfx/backpics/lz/090.lz"
-ZubatBackpic:        INCBIN "gfx/backpics/lz/041.lz"
-TeddiursaFrontpic:   INCBIN "gfx/frontpics/lz/216.lz"
-CuboneBackpic:       INCBIN "gfx/backpics/lz/104.lz"
+ShellderBackpic:     INCBIN "gfx/pics/090/back.lz"
+ZubatBackpic:        INCBIN "gfx/pics/041/back.lz"
+TeddiursaFrontpic:   INCBIN "gfx/pics/216/front.lz"
+CuboneBackpic:       INCBIN "gfx/pics/104/back.lz"
 GruntmPic:           INCBIN "gfx/trainers/lz/030.lz"
-GloomBackpic:        INCBIN "gfx/backpics/lz/044.lz"
-MagcargoBackpic:     INCBIN "gfx/backpics/lz/219.lz"
-KabutopsBackpic:     INCBIN "gfx/backpics/lz/141.lz"
-BeedrillBackpic:     INCBIN "gfx/backpics/lz/015.lz"
-ArcanineBackpic:     INCBIN "gfx/backpics/lz/059.lz"
-FlareonBackpic:      INCBIN "gfx/backpics/lz/136.lz"
-GoldeenBackpic:      INCBIN "gfx/backpics/lz/118.lz"
-BulbasaurFrontpic:   INCBIN "gfx/frontpics/lz/001.lz"
-StarmieBackpic:      INCBIN "gfx/backpics/lz/121.lz"
+GloomBackpic:        INCBIN "gfx/pics/044/back.lz"
+MagcargoBackpic:     INCBIN "gfx/pics/219/back.lz"
+KabutopsBackpic:     INCBIN "gfx/pics/141/back.lz"
+BeedrillBackpic:     INCBIN "gfx/pics/015/back.lz"
+ArcanineBackpic:     INCBIN "gfx/pics/059/back.lz"
+FlareonBackpic:      INCBIN "gfx/pics/136/back.lz"
+GoldeenBackpic:      INCBIN "gfx/pics/118/back.lz"
+BulbasaurFrontpic:   INCBIN "gfx/pics/001/front.lz"
+StarmieBackpic:      INCBIN "gfx/pics/121/back.lz"
 ; 150000
 
 
 SECTION "bank54",DATA,BANK[$54]
 
-OmanyteBackpic:      INCBIN "gfx/backpics/lz/138.lz"
-PidgeyBackpic:       INCBIN "gfx/backpics/lz/016.lz"
+OmanyteBackpic:      INCBIN "gfx/pics/138/back.lz"
+PidgeyBackpic:       INCBIN "gfx/pics/016/back.lz"
 ScientistPic:        INCBIN "gfx/trainers/lz/019.lz"
-QwilfishBackpic:     INCBIN "gfx/backpics/lz/211.lz"
-GligarBackpic:       INCBIN "gfx/backpics/lz/207.lz"
-TyphlosionBackpic:   INCBIN "gfx/backpics/lz/157.lz"
-CharmeleonBackpic:   INCBIN "gfx/backpics/lz/005.lz"
-NidoqueenBackpic:    INCBIN "gfx/backpics/lz/031.lz"
-PichuFrontpic:       INCBIN "gfx/frontpics/lz/172.lz"
-ElectabuzzBackpic:   INCBIN "gfx/backpics/lz/125.lz"
-LedianBackpic:       INCBIN "gfx/backpics/lz/166.lz"
-PupitarBackpic:      INCBIN "gfx/backpics/lz/247.lz"
-HeracrossBackpic:    INCBIN "gfx/backpics/lz/214.lz"
-UnownDFrontpic:      INCBIN "gfx/frontpics/lz/201d.lz"
-MiltankBackpic:      INCBIN "gfx/backpics/lz/241.lz"
-SteelixBackpic:      INCBIN "gfx/backpics/lz/208.lz"
-PersianBackpic:      INCBIN "gfx/backpics/lz/053.lz"
+QwilfishBackpic:     INCBIN "gfx/pics/211/back.lz"
+GligarBackpic:       INCBIN "gfx/pics/207/back.lz"
+TyphlosionBackpic:   INCBIN "gfx/pics/157/back.lz"
+CharmeleonBackpic:   INCBIN "gfx/pics/005/back.lz"
+NidoqueenBackpic:    INCBIN "gfx/pics/031/back.lz"
+PichuFrontpic:       INCBIN "gfx/pics/172/front.lz"
+ElectabuzzBackpic:   INCBIN "gfx/pics/125/back.lz"
+LedianBackpic:       INCBIN "gfx/pics/166/back.lz"
+PupitarBackpic:      INCBIN "gfx/pics/247/back.lz"
+HeracrossBackpic:    INCBIN "gfx/pics/214/back.lz"
+UnownDFrontpic:      INCBIN "gfx/pics/201d/front.lz"
+MiltankBackpic:      INCBIN "gfx/pics/241/back.lz"
+SteelixBackpic:      INCBIN "gfx/pics/208/back.lz"
+PersianBackpic:      INCBIN "gfx/pics/053/back.lz"
 LtSurgePic:          INCBIN "gfx/trainers/lz/018.lz"
 TeacherPic:          INCBIN "gfx/trainers/lz/033.lz"
-EggPic:              INCBIN "gfx/frontpics/lz/egg.lz"
-EeveeBackpic:        INCBIN "gfx/backpics/lz/133.lz"
-ShuckleFrontpic:     INCBIN "gfx/frontpics/lz/213.lz"
-PonytaBackpic:       INCBIN "gfx/backpics/lz/077.lz"
-RemoraidFrontpic:    INCBIN "gfx/frontpics/lz/223.lz"
-PoliwagFrontpic:     INCBIN "gfx/frontpics/lz/060.lz"
-OnixBackpic:         INCBIN "gfx/backpics/lz/095.lz"
-KoffingBackpic:      INCBIN "gfx/backpics/lz/109.lz"
+EggPic:              INCBIN "gfx/pics/egg/front.lz"
+EeveeBackpic:        INCBIN "gfx/pics/133/back.lz"
+ShuckleFrontpic:     INCBIN "gfx/pics/213/front.lz"
+PonytaBackpic:       INCBIN "gfx/pics/077/back.lz"
+RemoraidFrontpic:    INCBIN "gfx/pics/223/front.lz"
+PoliwagFrontpic:     INCBIN "gfx/pics/060/front.lz"
+OnixBackpic:         INCBIN "gfx/pics/095/back.lz"
+KoffingBackpic:      INCBIN "gfx/pics/109/back.lz"
 BirdKeeperPic:       INCBIN "gfx/trainers/lz/023.lz"
 FalknerPic:          INCBIN "gfx/trainers/lz/000.lz"
 KarenPic:            INCBIN "gfx/trainers/lz/013.lz"
-NidorinaBackpic:     INCBIN "gfx/backpics/lz/030.lz"
-TentacruelBackpic:   INCBIN "gfx/backpics/lz/073.lz"
-GrowlitheBackpic:    INCBIN "gfx/backpics/lz/058.lz"
+NidorinaBackpic:     INCBIN "gfx/pics/030/back.lz"
+TentacruelBackpic:   INCBIN "gfx/pics/073/back.lz"
+GrowlitheBackpic:    INCBIN "gfx/pics/058/back.lz"
 KogaPic:             INCBIN "gfx/trainers/lz/014.lz"
-MachokeBackpic:      INCBIN "gfx/backpics/lz/067.lz"
-RaichuBackpic:       INCBIN "gfx/backpics/lz/026.lz"
-PoliwrathBackpic:    INCBIN "gfx/backpics/lz/062.lz"
+MachokeBackpic:      INCBIN "gfx/pics/067/back.lz"
+RaichuBackpic:       INCBIN "gfx/pics/026/back.lz"
+PoliwrathBackpic:    INCBIN "gfx/pics/062/back.lz"
 SwimmermPic:         INCBIN "gfx/trainers/lz/037.lz"
-SunkernFrontpic:     INCBIN "gfx/frontpics/lz/191.lz"
-NidorinoBackpic:     INCBIN "gfx/backpics/lz/033.lz"
+SunkernFrontpic:     INCBIN "gfx/pics/191/front.lz"
+NidorinoBackpic:     INCBIN "gfx/pics/033/back.lz"
 MysticalmanPic:      INCBIN "gfx/trainers/lz/066.lz"
 CooltrainerfPic:     INCBIN "gfx/trainers/lz/027.lz"
-ElectrodeFrontpic:   INCBIN "gfx/frontpics/lz/101.lz"
+ElectrodeFrontpic:   INCBIN "gfx/pics/101/front.lz"
 ; 153fe3
 
 
 SECTION "bank55",DATA,BANK[$55]
 
-SudowoodoBackpic:    INCBIN "gfx/backpics/lz/185.lz"
-FlaaffyBackpic:      INCBIN "gfx/backpics/lz/180.lz"
-SentretFrontpic:     INCBIN "gfx/frontpics/lz/161.lz"
-TogeticBackpic:      INCBIN "gfx/backpics/lz/176.lz"
+SudowoodoBackpic:    INCBIN "gfx/pics/185/back.lz"
+FlaaffyBackpic:      INCBIN "gfx/pics/180/back.lz"
+SentretFrontpic:     INCBIN "gfx/pics/161/front.lz"
+TogeticBackpic:      INCBIN "gfx/pics/176/back.lz"
 BugsyPic:            INCBIN "gfx/trainers/lz/002.lz"
-MarowakBackpic:      INCBIN "gfx/backpics/lz/105.lz"
-GeodudeBackpic:      INCBIN "gfx/backpics/lz/074.lz"
-ScytherBackpic:      INCBIN "gfx/backpics/lz/123.lz"
-VileplumeBackpic:    INCBIN "gfx/backpics/lz/045.lz"
-HitmonchanBackpic:   INCBIN "gfx/backpics/lz/107.lz"
-JumpluffBackpic:     INCBIN "gfx/backpics/lz/189.lz"
+MarowakBackpic:      INCBIN "gfx/pics/105/back.lz"
+GeodudeBackpic:      INCBIN "gfx/pics/074/back.lz"
+ScytherBackpic:      INCBIN "gfx/pics/123/back.lz"
+VileplumeBackpic:    INCBIN "gfx/pics/045/back.lz"
+HitmonchanBackpic:   INCBIN "gfx/pics/107/back.lz"
+JumpluffBackpic:     INCBIN "gfx/pics/189/back.lz"
 CooltrainermPic:     INCBIN "gfx/trainers/lz/026.lz"
-BlastoiseBackpic:    INCBIN "gfx/backpics/lz/009.lz"
-MisdreavusBackpic:   INCBIN "gfx/backpics/lz/200.lz"
-TyrogueBackpic:      INCBIN "gfx/backpics/lz/236.lz"
-GeodudeFrontpic:     INCBIN "gfx/frontpics/lz/074.lz"
-ScizorBackpic:       INCBIN "gfx/backpics/lz/212.lz"
-GirafarigBackpic:    INCBIN "gfx/backpics/lz/203.lz"
-StantlerBackpic:     INCBIN "gfx/backpics/lz/234.lz"
-SmeargleBackpic:     INCBIN "gfx/backpics/lz/235.lz"
-CharizardBackpic:    INCBIN "gfx/backpics/lz/006.lz"
-KadabraBackpic:      INCBIN "gfx/backpics/lz/064.lz"
-PrimeapeBackpic:     INCBIN "gfx/backpics/lz/057.lz"
-FurretBackpic:       INCBIN "gfx/backpics/lz/162.lz"
-WartortleBackpic:    INCBIN "gfx/backpics/lz/008.lz"
-ExeggcuteBackpic:    INCBIN "gfx/backpics/lz/102.lz"
-IgglybuffFrontpic:   INCBIN "gfx/frontpics/lz/174.lz"
-RaticateBackpic:     INCBIN "gfx/backpics/lz/020.lz"
-VulpixBackpic:       INCBIN "gfx/backpics/lz/037.lz"
-EkansBackpic:        INCBIN "gfx/backpics/lz/023.lz"
-SeakingBackpic:      INCBIN "gfx/backpics/lz/119.lz"
+BlastoiseBackpic:    INCBIN "gfx/pics/009/back.lz"
+MisdreavusBackpic:   INCBIN "gfx/pics/200/back.lz"
+TyrogueBackpic:      INCBIN "gfx/pics/236/back.lz"
+GeodudeFrontpic:     INCBIN "gfx/pics/074/front.lz"
+ScizorBackpic:       INCBIN "gfx/pics/212/back.lz"
+GirafarigBackpic:    INCBIN "gfx/pics/203/back.lz"
+StantlerBackpic:     INCBIN "gfx/pics/234/back.lz"
+SmeargleBackpic:     INCBIN "gfx/pics/235/back.lz"
+CharizardBackpic:    INCBIN "gfx/pics/006/back.lz"
+KadabraBackpic:      INCBIN "gfx/pics/064/back.lz"
+PrimeapeBackpic:     INCBIN "gfx/pics/057/back.lz"
+FurretBackpic:       INCBIN "gfx/pics/162/back.lz"
+WartortleBackpic:    INCBIN "gfx/pics/008/back.lz"
+ExeggcuteBackpic:    INCBIN "gfx/pics/102/back.lz"
+IgglybuffFrontpic:   INCBIN "gfx/pics/174/front.lz"
+RaticateBackpic:     INCBIN "gfx/pics/020/back.lz"
+VulpixBackpic:       INCBIN "gfx/pics/037/back.lz"
+EkansBackpic:        INCBIN "gfx/pics/023/back.lz"
+SeakingBackpic:      INCBIN "gfx/pics/119/back.lz"
 BurglarPic:          INCBIN "gfx/trainers/lz/046.lz"
-PsyduckBackpic:      INCBIN "gfx/backpics/lz/054.lz"
-PikachuBackpic:      INCBIN "gfx/backpics/lz/025.lz"
-KabutoFrontpic:      INCBIN "gfx/frontpics/lz/140.lz"
-MareepBackpic:       INCBIN "gfx/backpics/lz/179.lz"
-RemoraidBackpic:     INCBIN "gfx/backpics/lz/223.lz"
-DittoFrontpic:       INCBIN "gfx/frontpics/lz/132.lz"
-KingdraBackpic:      INCBIN "gfx/backpics/lz/230.lz"
+PsyduckBackpic:      INCBIN "gfx/pics/054/back.lz"
+PikachuBackpic:      INCBIN "gfx/pics/025/back.lz"
+KabutoFrontpic:      INCBIN "gfx/pics/140/front.lz"
+MareepBackpic:       INCBIN "gfx/pics/179/back.lz"
+RemoraidBackpic:     INCBIN "gfx/pics/223/back.lz"
+DittoFrontpic:       INCBIN "gfx/pics/132/front.lz"
+KingdraBackpic:      INCBIN "gfx/pics/230/back.lz"
 CamperPic:           INCBIN "gfx/trainers/lz/053.lz"
-WooperFrontpic:      INCBIN "gfx/frontpics/lz/194.lz"
-ClefairyBackpic:     INCBIN "gfx/backpics/lz/035.lz"
-VenonatBackpic:      INCBIN "gfx/backpics/lz/048.lz"
-BellossomBackpic:    INCBIN "gfx/backpics/lz/182.lz"
+WooperFrontpic:      INCBIN "gfx/pics/194/front.lz"
+ClefairyBackpic:     INCBIN "gfx/pics/035/back.lz"
+VenonatBackpic:      INCBIN "gfx/pics/048/back.lz"
+BellossomBackpic:    INCBIN "gfx/pics/182/back.lz"
 Rival1Pic:           INCBIN "gfx/trainers/lz/008.lz"
-SwinubBackpic:       INCBIN "gfx/backpics/lz/220.lz"
+SwinubBackpic:       INCBIN "gfx/pics/220/back.lz"
 ; 158000
 
 
 SECTION "bank56",DATA,BANK[$56]
 
-MewtwoBackpic:       INCBIN "gfx/backpics/lz/150.lz"
+MewtwoBackpic:       INCBIN "gfx/pics/150/back.lz"
 PokemonProfPic:      INCBIN "gfx/trainers/lz/009.lz"
 CalPic:              INCBIN "gfx/trainers/lz/011.lz"
 SwimmerfPic:         INCBIN "gfx/trainers/lz/038.lz"
-DiglettFrontpic:     INCBIN "gfx/frontpics/lz/050.lz"
+DiglettFrontpic:     INCBIN "gfx/pics/050/front.lz"
 OfficerPic:          INCBIN "gfx/trainers/lz/064.lz"
-MukBackpic:          INCBIN "gfx/backpics/lz/089.lz"
-DelibirdBackpic:     INCBIN "gfx/backpics/lz/225.lz"
+MukBackpic:          INCBIN "gfx/pics/089/back.lz"
+DelibirdBackpic:     INCBIN "gfx/pics/225/back.lz"
 SabrinaPic:          INCBIN "gfx/trainers/lz/034.lz"
-MagikarpBackpic:     INCBIN "gfx/backpics/lz/129.lz"
-AriadosBackpic:      INCBIN "gfx/backpics/lz/168.lz"
-SneaselBackpic:      INCBIN "gfx/backpics/lz/215.lz"
-UmbreonBackpic:      INCBIN "gfx/backpics/lz/197.lz"
-MurkrowBackpic:      INCBIN "gfx/backpics/lz/198.lz"
-IvysaurBackpic:      INCBIN "gfx/backpics/lz/002.lz"
-SlowbroBackpic:      INCBIN "gfx/backpics/lz/080.lz"
+MagikarpBackpic:     INCBIN "gfx/pics/129/back.lz"
+AriadosBackpic:      INCBIN "gfx/pics/168/back.lz"
+SneaselBackpic:      INCBIN "gfx/pics/215/back.lz"
+UmbreonBackpic:      INCBIN "gfx/pics/197/back.lz"
+MurkrowBackpic:      INCBIN "gfx/pics/198/back.lz"
+IvysaurBackpic:      INCBIN "gfx/pics/002/back.lz"
+SlowbroBackpic:      INCBIN "gfx/pics/080/back.lz"
 PsychicTPic:         INCBIN "gfx/trainers/lz/051.lz"
-GolduckBackpic:      INCBIN "gfx/backpics/lz/055.lz"
-WeezingBackpic:      INCBIN "gfx/backpics/lz/110.lz"
-EnteiBackpic:        INCBIN "gfx/backpics/lz/244.lz"
+GolduckBackpic:      INCBIN "gfx/pics/055/back.lz"
+WeezingBackpic:      INCBIN "gfx/pics/110/back.lz"
+EnteiBackpic:        INCBIN "gfx/pics/244/back.lz"
 GruntfPic:           INCBIN "gfx/trainers/lz/065.lz"
-HorseaFrontpic:      INCBIN "gfx/frontpics/lz/116.lz"
-PidgeotBackpic:      INCBIN "gfx/backpics/lz/018.lz"
-HoOhBackpic:         INCBIN "gfx/backpics/lz/250.lz"
-PoliwhirlBackpic:    INCBIN "gfx/backpics/lz/061.lz"
-MewBackpic:          INCBIN "gfx/backpics/lz/151.lz"
-MachopBackpic:       INCBIN "gfx/backpics/lz/066.lz"
-AbraBackpic:         INCBIN "gfx/backpics/lz/063.lz"
-AerodactylBackpic:   INCBIN "gfx/backpics/lz/142.lz"
-KakunaFrontpic:      INCBIN "gfx/frontpics/lz/014.lz"
-DugtrioBackpic:      INCBIN "gfx/backpics/lz/051.lz"
-WeepinbellBackpic:   INCBIN "gfx/backpics/lz/070.lz"
-NidoranFBackpic:     INCBIN "gfx/backpics/lz/029.lz"
-GravelerBackpic:     INCBIN "gfx/backpics/lz/075.lz"
-AipomBackpic:        INCBIN "gfx/backpics/lz/190.lz"
-EspeonBackpic:       INCBIN "gfx/backpics/lz/196.lz"
-WeedleFrontpic:      INCBIN "gfx/frontpics/lz/013.lz"
-TotodileBackpic:     INCBIN "gfx/backpics/lz/158.lz"
-SnubbullBackpic:     INCBIN "gfx/backpics/lz/209.lz"
-KinglerBackpic:      INCBIN "gfx/backpics/lz/099.lz"
-GengarBackpic:       INCBIN "gfx/backpics/lz/094.lz"
-RattataBackpic:      INCBIN "gfx/backpics/lz/019.lz"
+HorseaFrontpic:      INCBIN "gfx/pics/116/front.lz"
+PidgeotBackpic:      INCBIN "gfx/pics/018/back.lz"
+HoOhBackpic:         INCBIN "gfx/pics/250/back.lz"
+PoliwhirlBackpic:    INCBIN "gfx/pics/061/back.lz"
+MewBackpic:          INCBIN "gfx/pics/151/back.lz"
+MachopBackpic:       INCBIN "gfx/pics/066/back.lz"
+AbraBackpic:         INCBIN "gfx/pics/063/back.lz"
+AerodactylBackpic:   INCBIN "gfx/pics/142/back.lz"
+KakunaFrontpic:      INCBIN "gfx/pics/014/front.lz"
+DugtrioBackpic:      INCBIN "gfx/pics/051/back.lz"
+WeepinbellBackpic:   INCBIN "gfx/pics/070/back.lz"
+NidoranFBackpic:     INCBIN "gfx/pics/029/back.lz"
+GravelerBackpic:     INCBIN "gfx/pics/075/back.lz"
+AipomBackpic:        INCBIN "gfx/pics/190/back.lz"
+EspeonBackpic:       INCBIN "gfx/pics/196/back.lz"
+WeedleFrontpic:      INCBIN "gfx/pics/013/front.lz"
+TotodileBackpic:     INCBIN "gfx/pics/158/back.lz"
+SnubbullBackpic:     INCBIN "gfx/pics/209/back.lz"
+KinglerBackpic:      INCBIN "gfx/pics/099/back.lz"
+GengarBackpic:       INCBIN "gfx/pics/094/back.lz"
+RattataBackpic:      INCBIN "gfx/pics/019/back.lz"
 YoungsterPic:        INCBIN "gfx/trainers/lz/021.lz"
 WillPic:             INCBIN "gfx/trainers/lz/010.lz"
 SchoolboyPic:        INCBIN "gfx/trainers/lz/022.lz"
-MagnemiteFrontpic:   INCBIN "gfx/frontpics/lz/081.lz"
+MagnemiteFrontpic:   INCBIN "gfx/pics/081/front.lz"
 ErikaPic:            INCBIN "gfx/trainers/lz/020.lz"
 JaninePic:           INCBIN "gfx/trainers/lz/025.lz"
-MagnemiteBackpic:    INCBIN "gfx/backpics/lz/081.lz"
+MagnemiteBackpic:    INCBIN "gfx/pics/081/back.lz"
 ; 15bffa
 
 
 SECTION "bank57",DATA,BANK[$57]
 
-HoothootBackpic:     INCBIN "gfx/backpics/lz/163.lz"
-NoctowlBackpic:      INCBIN "gfx/backpics/lz/164.lz"
+HoothootBackpic:     INCBIN "gfx/pics/163/back.lz"
+NoctowlBackpic:      INCBIN "gfx/pics/164/back.lz"
 MortyPic:            INCBIN "gfx/trainers/lz/003.lz"
-SlugmaBackpic:       INCBIN "gfx/backpics/lz/218.lz"
-KabutoBackpic:       INCBIN "gfx/backpics/lz/140.lz"
-VictreebelBackpic:   INCBIN "gfx/backpics/lz/071.lz"
-MeowthBackpic:       INCBIN "gfx/backpics/lz/052.lz"
-MeganiumBackpic:     INCBIN "gfx/backpics/lz/154.lz"
+SlugmaBackpic:       INCBIN "gfx/pics/218/back.lz"
+KabutoBackpic:       INCBIN "gfx/pics/140/back.lz"
+VictreebelBackpic:   INCBIN "gfx/pics/071/back.lz"
+MeowthBackpic:       INCBIN "gfx/pics/052/back.lz"
+MeganiumBackpic:     INCBIN "gfx/pics/154/back.lz"
 PicnickerPic:        INCBIN "gfx/trainers/lz/052.lz"
-LickitungBackpic:    INCBIN "gfx/backpics/lz/108.lz"
-TogepiFrontpic:      INCBIN "gfx/frontpics/lz/175.lz"
+LickitungBackpic:    INCBIN "gfx/pics/108/back.lz"
+TogepiFrontpic:      INCBIN "gfx/pics/175/front.lz"
 SuperNerdPic:        INCBIN "gfx/trainers/lz/040.lz"
-HaunterBackpic:      INCBIN "gfx/backpics/lz/093.lz"
-XatuBackpic:         INCBIN "gfx/backpics/lz/178.lz"
+HaunterBackpic:      INCBIN "gfx/pics/093/back.lz"
+XatuBackpic:         INCBIN "gfx/pics/178/back.lz"
 RedPic:              INCBIN "gfx/trainers/lz/062.lz"
-Porygon2Backpic:     INCBIN "gfx/backpics/lz/233.lz"
+Porygon2Backpic:     INCBIN "gfx/pics/233/back.lz"
 JasminePic:          INCBIN "gfx/trainers/lz/005.lz"
-PinecoBackpic:       INCBIN "gfx/backpics/lz/204.lz"
-MetapodFrontpic:     INCBIN "gfx/frontpics/lz/011.lz"
-SeelBackpic:         INCBIN "gfx/backpics/lz/086.lz"
-QuagsireBackpic:     INCBIN "gfx/backpics/lz/195.lz"
+PinecoBackpic:       INCBIN "gfx/pics/204/back.lz"
+MetapodFrontpic:     INCBIN "gfx/pics/011/front.lz"
+SeelBackpic:         INCBIN "gfx/pics/086/back.lz"
+QuagsireBackpic:     INCBIN "gfx/pics/195/back.lz"
 WhitneyPic:          INCBIN "gfx/trainers/lz/001.lz"
-JolteonBackpic:      INCBIN "gfx/backpics/lz/135.lz"
-CaterpieFrontpic:    INCBIN "gfx/frontpics/lz/010.lz"
-HoppipBackpic:       INCBIN "gfx/backpics/lz/187.lz"
+JolteonBackpic:      INCBIN "gfx/pics/135/back.lz"
+CaterpieFrontpic:    INCBIN "gfx/pics/010/front.lz"
+HoppipBackpic:       INCBIN "gfx/pics/187/back.lz"
 BluePic:             INCBIN "gfx/trainers/lz/063.lz"
-GranbullBackpic:     INCBIN "gfx/backpics/lz/210.lz"
+GranbullBackpic:     INCBIN "gfx/pics/210/back.lz"
 GentlemanPic:        INCBIN "gfx/trainers/lz/031.lz"
 ExecutivemPic:       INCBIN "gfx/trainers/lz/050.lz"
-SpearowBackpic:      INCBIN "gfx/backpics/lz/021.lz"
-SunkernBackpic:      INCBIN "gfx/backpics/lz/191.lz"
-LaprasBackpic:       INCBIN "gfx/backpics/lz/131.lz"
-MagbyBackpic:        INCBIN "gfx/backpics/lz/240.lz"
-DragonairBackpic:    INCBIN "gfx/backpics/lz/148.lz"
-ZapdosBackpic:       INCBIN "gfx/backpics/lz/145.lz"
-ChikoritaBackpic:    INCBIN "gfx/backpics/lz/152.lz"
-CorsolaBackpic:      INCBIN "gfx/backpics/lz/222.lz"
-ChinchouBackpic:     INCBIN "gfx/backpics/lz/170.lz"
-ChanseyBackpic:      INCBIN "gfx/backpics/lz/113.lz"
-SkiploomBackpic:     INCBIN "gfx/backpics/lz/188.lz"
-SpinarakFrontpic:    INCBIN "gfx/frontpics/lz/167.lz"
+SpearowBackpic:      INCBIN "gfx/pics/021/back.lz"
+SunkernBackpic:      INCBIN "gfx/pics/191/back.lz"
+LaprasBackpic:       INCBIN "gfx/pics/131/back.lz"
+MagbyBackpic:        INCBIN "gfx/pics/240/back.lz"
+DragonairBackpic:    INCBIN "gfx/pics/148/back.lz"
+ZapdosBackpic:       INCBIN "gfx/pics/145/back.lz"
+ChikoritaBackpic:    INCBIN "gfx/pics/152/back.lz"
+CorsolaBackpic:      INCBIN "gfx/pics/222/back.lz"
+ChinchouBackpic:     INCBIN "gfx/pics/170/back.lz"
+ChanseyBackpic:      INCBIN "gfx/pics/113/back.lz"
+SkiploomBackpic:     INCBIN "gfx/pics/188/back.lz"
+SpinarakFrontpic:    INCBIN "gfx/pics/167/front.lz"
 Rival2Pic:           INCBIN "gfx/trainers/lz/041.lz"
-UnownWFrontpic:      INCBIN "gfx/frontpics/lz/201w.lz"
-CharmanderBackpic:   INCBIN "gfx/backpics/lz/004.lz"
-RhyhornBackpic:      INCBIN "gfx/backpics/lz/111.lz"
-UnownCFrontpic:      INCBIN "gfx/frontpics/lz/201c.lz"
+UnownWFrontpic:      INCBIN "gfx/pics/201w/front.lz"
+CharmanderBackpic:   INCBIN "gfx/pics/004/back.lz"
+RhyhornBackpic:      INCBIN "gfx/pics/111/back.lz"
+UnownCFrontpic:      INCBIN "gfx/pics/201c/front.lz"
 MistyPic:            INCBIN "gfx/trainers/lz/017.lz"
 BlainePic:           INCBIN "gfx/trainers/lz/045.lz"
-UnownZFrontpic:      INCBIN "gfx/frontpics/lz/201z.lz"
-SwinubFrontpic:      INCBIN "gfx/frontpics/lz/220.lz"
-LarvitarBackpic:     INCBIN "gfx/backpics/lz/246.lz"
-PorygonBackpic:      INCBIN "gfx/backpics/lz/137.lz"
-UnownHBackpic:       INCBIN "gfx/backpics/lz/201h.lz"
+UnownZFrontpic:      INCBIN "gfx/pics/201z/front.lz"
+SwinubFrontpic:      INCBIN "gfx/pics/220/front.lz"
+LarvitarBackpic:     INCBIN "gfx/pics/246/back.lz"
+PorygonBackpic:      INCBIN "gfx/pics/137/back.lz"
+UnownHBackpic:       INCBIN "gfx/pics/201h/back.lz"
 ; 15ffff
 
 
 SECTION "bank58",DATA,BANK[$58]
 
-ParasBackpic:        INCBIN "gfx/backpics/lz/046.lz"
-VaporeonBackpic:     INCBIN "gfx/backpics/lz/134.lz"
-TentacoolBackpic:    INCBIN "gfx/backpics/lz/072.lz"
+ParasBackpic:        INCBIN "gfx/pics/046/back.lz"
+VaporeonBackpic:     INCBIN "gfx/pics/134/back.lz"
+TentacoolBackpic:    INCBIN "gfx/pics/072/back.lz"
 ExecutivefPic:       INCBIN "gfx/trainers/lz/054.lz"
-BulbasaurBackpic:    INCBIN "gfx/backpics/lz/001.lz"
-SmoochumBackpic:     INCBIN "gfx/backpics/lz/238.lz"
-PichuBackpic:        INCBIN "gfx/backpics/lz/172.lz"
-HoundoomBackpic:     INCBIN "gfx/backpics/lz/229.lz"
-BellsproutBackpic:   INCBIN "gfx/backpics/lz/069.lz"
-GrimerBackpic:       INCBIN "gfx/backpics/lz/088.lz"
-LanturnBackpic:      INCBIN "gfx/backpics/lz/171.lz"
-PidgeottoBackpic:    INCBIN "gfx/backpics/lz/017.lz"
-StaryuBackpic:       INCBIN "gfx/backpics/lz/120.lz"
-MrMimeBackpic:       INCBIN "gfx/backpics/lz/122.lz"
-CaterpieBackpic:     INCBIN "gfx/backpics/lz/010.lz"
-VoltorbFrontpic:     INCBIN "gfx/frontpics/lz/100.lz"
-LugiaBackpic:        INCBIN "gfx/backpics/lz/249.lz"
+BulbasaurBackpic:    INCBIN "gfx/pics/001/back.lz"
+SmoochumBackpic:     INCBIN "gfx/pics/238/back.lz"
+PichuBackpic:        INCBIN "gfx/pics/172/back.lz"
+HoundoomBackpic:     INCBIN "gfx/pics/229/back.lz"
+BellsproutBackpic:   INCBIN "gfx/pics/069/back.lz"
+GrimerBackpic:       INCBIN "gfx/pics/088/back.lz"
+LanturnBackpic:      INCBIN "gfx/pics/171/back.lz"
+PidgeottoBackpic:    INCBIN "gfx/pics/017/back.lz"
+StaryuBackpic:       INCBIN "gfx/pics/120/back.lz"
+MrMimeBackpic:       INCBIN "gfx/pics/122/back.lz"
+CaterpieBackpic:     INCBIN "gfx/pics/010/back.lz"
+VoltorbFrontpic:     INCBIN "gfx/pics/100/front.lz"
+LugiaBackpic:        INCBIN "gfx/pics/249/back.lz"
 PrycePic:            INCBIN "gfx/trainers/lz/004.lz"
 BrockPic:            INCBIN "gfx/trainers/lz/016.lz"
-UnownGFrontpic:      INCBIN "gfx/frontpics/lz/201g.lz"
-ArbokBackpic:        INCBIN "gfx/backpics/lz/024.lz"
-PolitoedBackpic:     INCBIN "gfx/backpics/lz/186.lz"
-DragoniteBackpic:    INCBIN "gfx/backpics/lz/149.lz"
-HitmonleeBackpic:    INCBIN "gfx/backpics/lz/106.lz"
-NatuFrontpic:        INCBIN "gfx/frontpics/lz/177.lz"
-UrsaringBackpic:     INCBIN "gfx/backpics/lz/217.lz"
+UnownGFrontpic:      INCBIN "gfx/pics/201g/front.lz"
+ArbokBackpic:        INCBIN "gfx/pics/024/back.lz"
+PolitoedBackpic:     INCBIN "gfx/pics/186/back.lz"
+DragoniteBackpic:    INCBIN "gfx/pics/149/back.lz"
+HitmonleeBackpic:    INCBIN "gfx/pics/106/back.lz"
+NatuFrontpic:        INCBIN "gfx/pics/177/front.lz"
+UrsaringBackpic:     INCBIN "gfx/pics/217/back.lz"
 SagePic:             INCBIN "gfx/trainers/lz/055.lz"
-TeddiursaBackpic:    INCBIN "gfx/backpics/lz/216.lz"
-PhanpyBackpic:       INCBIN "gfx/backpics/lz/231.lz"
-UnownVFrontpic:      INCBIN "gfx/frontpics/lz/201v.lz"
-KakunaBackpic:       INCBIN "gfx/backpics/lz/014.lz"
-WobbuffetBackpic:    INCBIN "gfx/backpics/lz/202.lz"
-TogepiBackpic:       INCBIN "gfx/backpics/lz/175.lz"
-CrobatBackpic:       INCBIN "gfx/backpics/lz/169.lz"
-BlisseyBackpic:      INCBIN "gfx/backpics/lz/242.lz"
-AmpharosBackpic:     INCBIN "gfx/backpics/lz/181.lz"
-IgglybuffBackpic:    INCBIN "gfx/backpics/lz/174.lz"
-AzumarillBackpic:    INCBIN "gfx/backpics/lz/184.lz"
-OctilleryBackpic:    INCBIN "gfx/backpics/lz/224.lz"
-UnownSFrontpic:      INCBIN "gfx/frontpics/lz/201s.lz"
-HorseaBackpic:       INCBIN "gfx/backpics/lz/116.lz"
-SentretBackpic:      INCBIN "gfx/backpics/lz/161.lz"
-UnownOFrontpic:      INCBIN "gfx/frontpics/lz/201o.lz"
-UnownTFrontpic:      INCBIN "gfx/frontpics/lz/201t.lz"
-WigglytuffBackpic:   INCBIN "gfx/backpics/lz/040.lz"
-ArticunoBackpic:     INCBIN "gfx/backpics/lz/144.lz"
-DittoBackpic:        INCBIN "gfx/backpics/lz/132.lz"
-WeedleBackpic:       INCBIN "gfx/backpics/lz/013.lz"
-UnownHFrontpic:      INCBIN "gfx/frontpics/lz/201h.lz"
-CleffaBackpic:       INCBIN "gfx/backpics/lz/173.lz"
-DrowzeeBackpic:      INCBIN "gfx/backpics/lz/096.lz"
-GastlyBackpic:       INCBIN "gfx/backpics/lz/092.lz"
-FearowBackpic:       INCBIN "gfx/backpics/lz/022.lz"
-MarillBackpic:       INCBIN "gfx/backpics/lz/183.lz"
-DratiniBackpic:      INCBIN "gfx/backpics/lz/147.lz"
-ElectrodeBackpic:    INCBIN "gfx/backpics/lz/101.lz"
-SkarmoryBackpic:     INCBIN "gfx/backpics/lz/227.lz"
-MetapodBackpic:      INCBIN "gfx/backpics/lz/011.lz"
-JigglypuffBackpic:   INCBIN "gfx/backpics/lz/039.lz"
-OddishBackpic:       INCBIN "gfx/backpics/lz/043.lz"
-UnownDBackpic:       INCBIN "gfx/backpics/lz/201d.lz"
+TeddiursaBackpic:    INCBIN "gfx/pics/216/back.lz"
+PhanpyBackpic:       INCBIN "gfx/pics/231/back.lz"
+UnownVFrontpic:      INCBIN "gfx/pics/201v/front.lz"
+KakunaBackpic:       INCBIN "gfx/pics/014/back.lz"
+WobbuffetBackpic:    INCBIN "gfx/pics/202/back.lz"
+TogepiBackpic:       INCBIN "gfx/pics/175/back.lz"
+CrobatBackpic:       INCBIN "gfx/pics/169/back.lz"
+BlisseyBackpic:      INCBIN "gfx/pics/242/back.lz"
+AmpharosBackpic:     INCBIN "gfx/pics/181/back.lz"
+IgglybuffBackpic:    INCBIN "gfx/pics/174/back.lz"
+AzumarillBackpic:    INCBIN "gfx/pics/184/back.lz"
+OctilleryBackpic:    INCBIN "gfx/pics/224/back.lz"
+UnownSFrontpic:      INCBIN "gfx/pics/201s/front.lz"
+HorseaBackpic:       INCBIN "gfx/pics/116/back.lz"
+SentretBackpic:      INCBIN "gfx/pics/161/back.lz"
+UnownOFrontpic:      INCBIN "gfx/pics/201o/front.lz"
+UnownTFrontpic:      INCBIN "gfx/pics/201t/front.lz"
+WigglytuffBackpic:   INCBIN "gfx/pics/040/back.lz"
+ArticunoBackpic:     INCBIN "gfx/pics/144/back.lz"
+DittoBackpic:        INCBIN "gfx/pics/132/back.lz"
+WeedleBackpic:       INCBIN "gfx/pics/013/back.lz"
+UnownHFrontpic:      INCBIN "gfx/pics/201h/front.lz"
+CleffaBackpic:       INCBIN "gfx/pics/173/back.lz"
+DrowzeeBackpic:      INCBIN "gfx/pics/096/back.lz"
+GastlyBackpic:       INCBIN "gfx/pics/092/back.lz"
+FearowBackpic:       INCBIN "gfx/pics/022/back.lz"
+MarillBackpic:       INCBIN "gfx/pics/183/back.lz"
+DratiniBackpic:      INCBIN "gfx/pics/147/back.lz"
+ElectrodeBackpic:    INCBIN "gfx/pics/101/back.lz"
+SkarmoryBackpic:     INCBIN "gfx/pics/227/back.lz"
+MetapodBackpic:      INCBIN "gfx/pics/011/back.lz"
+JigglypuffBackpic:   INCBIN "gfx/pics/039/back.lz"
+OddishBackpic:       INCBIN "gfx/pics/043/back.lz"
+UnownDBackpic:       INCBIN "gfx/pics/201d/back.lz"
 ; 163ffc
 
 
 SECTION "bank59",DATA,BANK[$59]
 
-SpinarakBackpic:     INCBIN "gfx/backpics/lz/167.lz"
-RaikouBackpic:       INCBIN "gfx/backpics/lz/243.lz"
-UnownKFrontpic:      INCBIN "gfx/frontpics/lz/201k.lz"
-HoundourBackpic:     INCBIN "gfx/backpics/lz/228.lz"
-PoliwagBackpic:      INCBIN "gfx/backpics/lz/060.lz"
-SquirtleBackpic:     INCBIN "gfx/backpics/lz/007.lz"
-ShuckleBackpic:      INCBIN "gfx/backpics/lz/213.lz"
-DewgongBackpic:      INCBIN "gfx/backpics/lz/087.lz"
-UnownBFrontpic:      INCBIN "gfx/frontpics/lz/201b.lz"
-SlowpokeBackpic:     INCBIN "gfx/backpics/lz/079.lz"
-DunsparceBackpic:    INCBIN "gfx/backpics/lz/206.lz"
-DonphanBackpic:      INCBIN "gfx/backpics/lz/232.lz"
-WooperBackpic:       INCBIN "gfx/backpics/lz/194.lz"
-TaurosBackpic:       INCBIN "gfx/backpics/lz/128.lz"
-UnownXFrontpic:      INCBIN "gfx/frontpics/lz/201x.lz"
-UnownNFrontpic:      INCBIN "gfx/frontpics/lz/201n.lz"
-TangelaBackpic:      INCBIN "gfx/backpics/lz/114.lz"
-VoltorbBackpic:      INCBIN "gfx/backpics/lz/100.lz"
-UnownJFrontpic:      INCBIN "gfx/frontpics/lz/201j.lz"
-MantineBackpic:      INCBIN "gfx/backpics/lz/226.lz"
-UnownLFrontpic:      INCBIN "gfx/frontpics/lz/201l.lz"
-PiloswineBackpic:    INCBIN "gfx/backpics/lz/221.lz"
-UnownMFrontpic:      INCBIN "gfx/frontpics/lz/201m.lz"
-UnownFFrontpic:      INCBIN "gfx/frontpics/lz/201f.lz"
-NatuBackpic:         INCBIN "gfx/backpics/lz/177.lz"
-UnownAFrontpic:      INCBIN "gfx/frontpics/lz/201a.lz"
-GolemBackpic:        INCBIN "gfx/backpics/lz/076.lz"
-UnownUFrontpic:      INCBIN "gfx/frontpics/lz/201u.lz"
-DiglettBackpic:      INCBIN "gfx/backpics/lz/050.lz"
-UnownQFrontpic:      INCBIN "gfx/frontpics/lz/201q.lz"
-UnownPFrontpic:      INCBIN "gfx/frontpics/lz/201p.lz"
-UnownCBackpic:       INCBIN "gfx/backpics/lz/201c.lz"
-JynxBackpic:         INCBIN "gfx/backpics/lz/124.lz"
-GolbatBackpic:       INCBIN "gfx/backpics/lz/042.lz"
-UnownYFrontpic:      INCBIN "gfx/frontpics/lz/201y.lz"
-UnownGBackpic:       INCBIN "gfx/backpics/lz/201g.lz"
-UnownIFrontpic:      INCBIN "gfx/frontpics/lz/201i.lz"
-UnownVBackpic:       INCBIN "gfx/backpics/lz/201v.lz"
-ForretressBackpic:   INCBIN "gfx/backpics/lz/205.lz"
-UnownSBackpic:       INCBIN "gfx/backpics/lz/201s.lz"
-UnownRFrontpic:      INCBIN "gfx/frontpics/lz/201r.lz"
-UnownEBackpic:       INCBIN "gfx/backpics/lz/201e.lz"
-UnownJBackpic:       INCBIN "gfx/backpics/lz/201j.lz"
-UnownBBackpic:       INCBIN "gfx/backpics/lz/201b.lz"
-UnownOBackpic:       INCBIN "gfx/backpics/lz/201o.lz"
-UnownZBackpic:       INCBIN "gfx/backpics/lz/201z.lz"
-UnownWBackpic:       INCBIN "gfx/backpics/lz/201w.lz"
-UnownNBackpic:       INCBIN "gfx/backpics/lz/201n.lz"
-UnownABackpic:       INCBIN "gfx/backpics/lz/201a.lz"
-UnownMBackpic:       INCBIN "gfx/backpics/lz/201m.lz"
-UnownKBackpic:       INCBIN "gfx/backpics/lz/201k.lz"
-UnownTBackpic:       INCBIN "gfx/backpics/lz/201t.lz"
-UnownXBackpic:       INCBIN "gfx/backpics/lz/201x.lz"
-UnownLBackpic:       INCBIN "gfx/backpics/lz/201l.lz"
-UnownUBackpic:       INCBIN "gfx/backpics/lz/201u.lz"
-UnownQBackpic:       INCBIN "gfx/backpics/lz/201q.lz"
-UnownYBackpic:       INCBIN "gfx/backpics/lz/201y.lz"
-UnownPBackpic:       INCBIN "gfx/backpics/lz/201p.lz"
-UnownIBackpic:       INCBIN "gfx/backpics/lz/201i.lz"
-UnownRBackpic:       INCBIN "gfx/backpics/lz/201r.lz"
+SpinarakBackpic:     INCBIN "gfx/pics/167/back.lz"
+RaikouBackpic:       INCBIN "gfx/pics/243/back.lz"
+UnownKFrontpic:      INCBIN "gfx/pics/201k/front.lz"
+HoundourBackpic:     INCBIN "gfx/pics/228/back.lz"
+PoliwagBackpic:      INCBIN "gfx/pics/060/back.lz"
+SquirtleBackpic:     INCBIN "gfx/pics/007/back.lz"
+ShuckleBackpic:      INCBIN "gfx/pics/213/back.lz"
+DewgongBackpic:      INCBIN "gfx/pics/087/back.lz"
+UnownBFrontpic:      INCBIN "gfx/pics/201b/front.lz"
+SlowpokeBackpic:     INCBIN "gfx/pics/079/back.lz"
+DunsparceBackpic:    INCBIN "gfx/pics/206/back.lz"
+DonphanBackpic:      INCBIN "gfx/pics/232/back.lz"
+WooperBackpic:       INCBIN "gfx/pics/194/back.lz"
+TaurosBackpic:       INCBIN "gfx/pics/128/back.lz"
+UnownXFrontpic:      INCBIN "gfx/pics/201x/front.lz"
+UnownNFrontpic:      INCBIN "gfx/pics/201n/front.lz"
+TangelaBackpic:      INCBIN "gfx/pics/114/back.lz"
+VoltorbBackpic:      INCBIN "gfx/pics/100/back.lz"
+UnownJFrontpic:      INCBIN "gfx/pics/201j/front.lz"
+MantineBackpic:      INCBIN "gfx/pics/226/back.lz"
+UnownLFrontpic:      INCBIN "gfx/pics/201l/front.lz"
+PiloswineBackpic:    INCBIN "gfx/pics/221/back.lz"
+UnownMFrontpic:      INCBIN "gfx/pics/201m/front.lz"
+UnownFFrontpic:      INCBIN "gfx/pics/201f/front.lz"
+NatuBackpic:         INCBIN "gfx/pics/177/back.lz"
+UnownAFrontpic:      INCBIN "gfx/pics/201a/front.lz"
+GolemBackpic:        INCBIN "gfx/pics/076/back.lz"
+UnownUFrontpic:      INCBIN "gfx/pics/201u/front.lz"
+DiglettBackpic:      INCBIN "gfx/pics/050/back.lz"
+UnownQFrontpic:      INCBIN "gfx/pics/201q/front.lz"
+UnownPFrontpic:      INCBIN "gfx/pics/201p/front.lz"
+UnownCBackpic:       INCBIN "gfx/pics/201c/back.lz"
+JynxBackpic:         INCBIN "gfx/pics/124/back.lz"
+GolbatBackpic:       INCBIN "gfx/pics/042/back.lz"
+UnownYFrontpic:      INCBIN "gfx/pics/201y/front.lz"
+UnownGBackpic:       INCBIN "gfx/pics/201g/back.lz"
+UnownIFrontpic:      INCBIN "gfx/pics/201i/front.lz"
+UnownVBackpic:       INCBIN "gfx/pics/201v/back.lz"
+ForretressBackpic:   INCBIN "gfx/pics/205/back.lz"
+UnownSBackpic:       INCBIN "gfx/pics/201s/back.lz"
+UnownRFrontpic:      INCBIN "gfx/pics/201r/front.lz"
+UnownEBackpic:       INCBIN "gfx/pics/201e/back.lz"
+UnownJBackpic:       INCBIN "gfx/pics/201j/back.lz"
+UnownBBackpic:       INCBIN "gfx/pics/201b/back.lz"
+UnownOBackpic:       INCBIN "gfx/pics/201o/back.lz"
+UnownZBackpic:       INCBIN "gfx/pics/201z/back.lz"
+UnownWBackpic:       INCBIN "gfx/pics/201w/back.lz"
+UnownNBackpic:       INCBIN "gfx/pics/201n/back.lz"
+UnownABackpic:       INCBIN "gfx/pics/201a/back.lz"
+UnownMBackpic:       INCBIN "gfx/pics/201m/back.lz"
+UnownKBackpic:       INCBIN "gfx/pics/201k/back.lz"
+UnownTBackpic:       INCBIN "gfx/pics/201t/back.lz"
+UnownXBackpic:       INCBIN "gfx/pics/201x/back.lz"
+UnownLBackpic:       INCBIN "gfx/pics/201l/back.lz"
+UnownUBackpic:       INCBIN "gfx/pics/201u/back.lz"
+UnownQBackpic:       INCBIN "gfx/pics/201q/back.lz"
+UnownYBackpic:       INCBIN "gfx/pics/201y/back.lz"
+UnownPBackpic:       INCBIN "gfx/pics/201p/back.lz"
+UnownIBackpic:       INCBIN "gfx/pics/201i/back.lz"
+UnownRBackpic:       INCBIN "gfx/pics/201r/back.lz"
 ; 1669d3
 
 
@@ -91403,66 +94461,66 @@ SECTION "bank5A",DATA,BANK[$5A]
 ; This bank is completely identical to bank 59!
 ; It's also unreferenced, so it's a free bank
 
-INCBIN "gfx/backpics/lz/167.lz"
-INCBIN "gfx/backpics/lz/243.lz"
-INCBIN "gfx/frontpics/lz/201k.lz"
-INCBIN "gfx/backpics/lz/228.lz"
-INCBIN "gfx/backpics/lz/060.lz"
-INCBIN "gfx/backpics/lz/007.lz"
-INCBIN "gfx/backpics/lz/213.lz"
-INCBIN "gfx/backpics/lz/087.lz"
-INCBIN "gfx/frontpics/lz/201b.lz"
-INCBIN "gfx/backpics/lz/079.lz"
-INCBIN "gfx/backpics/lz/206.lz"
-INCBIN "gfx/backpics/lz/232.lz"
-INCBIN "gfx/backpics/lz/194.lz"
-INCBIN "gfx/backpics/lz/128.lz"
-INCBIN "gfx/frontpics/lz/201x.lz"
-INCBIN "gfx/frontpics/lz/201n.lz"
-INCBIN "gfx/backpics/lz/114.lz"
-INCBIN "gfx/backpics/lz/100.lz"
-INCBIN "gfx/frontpics/lz/201j.lz"
-INCBIN "gfx/backpics/lz/226.lz"
-INCBIN "gfx/frontpics/lz/201l.lz"
-INCBIN "gfx/backpics/lz/221.lz"
-INCBIN "gfx/frontpics/lz/201m.lz"
-INCBIN "gfx/frontpics/lz/201f.lz"
-INCBIN "gfx/backpics/lz/177.lz"
-INCBIN "gfx/frontpics/lz/201a.lz"
-INCBIN "gfx/backpics/lz/076.lz"
-INCBIN "gfx/frontpics/lz/201u.lz"
-INCBIN "gfx/backpics/lz/050.lz"
-INCBIN "gfx/frontpics/lz/201q.lz"
-INCBIN "gfx/frontpics/lz/201p.lz"
-INCBIN "gfx/backpics/lz/201c.lz"
-INCBIN "gfx/backpics/lz/124.lz"
-INCBIN "gfx/backpics/lz/042.lz"
-INCBIN "gfx/frontpics/lz/201y.lz"
-INCBIN "gfx/backpics/lz/201g.lz"
-INCBIN "gfx/frontpics/lz/201i.lz"
-INCBIN "gfx/backpics/lz/201v.lz"
-INCBIN "gfx/backpics/lz/205.lz"
-INCBIN "gfx/backpics/lz/201s.lz"
-INCBIN "gfx/frontpics/lz/201r.lz"
-INCBIN "gfx/backpics/lz/201e.lz"
-INCBIN "gfx/backpics/lz/201j.lz"
-INCBIN "gfx/backpics/lz/201b.lz"
-INCBIN "gfx/backpics/lz/201o.lz"
-INCBIN "gfx/backpics/lz/201z.lz"
-INCBIN "gfx/backpics/lz/201w.lz"
-INCBIN "gfx/backpics/lz/201n.lz"
-INCBIN "gfx/backpics/lz/201a.lz"
-INCBIN "gfx/backpics/lz/201m.lz"
-INCBIN "gfx/backpics/lz/201k.lz"
-INCBIN "gfx/backpics/lz/201t.lz"
-INCBIN "gfx/backpics/lz/201x.lz"
-INCBIN "gfx/backpics/lz/201l.lz"
-INCBIN "gfx/backpics/lz/201u.lz"
-INCBIN "gfx/backpics/lz/201q.lz"
-INCBIN "gfx/backpics/lz/201y.lz"
-INCBIN "gfx/backpics/lz/201p.lz"
-INCBIN "gfx/backpics/lz/201i.lz"
-INCBIN "gfx/backpics/lz/201r.lz"
+INCBIN "gfx/pics/167/back.lz"
+INCBIN "gfx/pics/243/back.lz"
+INCBIN "gfx/pics/201k/front.lz"
+INCBIN "gfx/pics/228/back.lz"
+INCBIN "gfx/pics/060/back.lz"
+INCBIN "gfx/pics/007/back.lz"
+INCBIN "gfx/pics/213/back.lz"
+INCBIN "gfx/pics/087/back.lz"
+INCBIN "gfx/pics/201b/front.lz"
+INCBIN "gfx/pics/079/back.lz"
+INCBIN "gfx/pics/206/back.lz"
+INCBIN "gfx/pics/232/back.lz"
+INCBIN "gfx/pics/194/back.lz"
+INCBIN "gfx/pics/128/back.lz"
+INCBIN "gfx/pics/201x/front.lz"
+INCBIN "gfx/pics/201n/front.lz"
+INCBIN "gfx/pics/114/back.lz"
+INCBIN "gfx/pics/100/back.lz"
+INCBIN "gfx/pics/201j/front.lz"
+INCBIN "gfx/pics/226/back.lz"
+INCBIN "gfx/pics/201l/front.lz"
+INCBIN "gfx/pics/221/back.lz"
+INCBIN "gfx/pics/201m/front.lz"
+INCBIN "gfx/pics/201f/front.lz"
+INCBIN "gfx/pics/177/back.lz"
+INCBIN "gfx/pics/201a/front.lz"
+INCBIN "gfx/pics/076/back.lz"
+INCBIN "gfx/pics/201u/front.lz"
+INCBIN "gfx/pics/050/back.lz"
+INCBIN "gfx/pics/201q/front.lz"
+INCBIN "gfx/pics/201p/front.lz"
+INCBIN "gfx/pics/201c/back.lz"
+INCBIN "gfx/pics/124/back.lz"
+INCBIN "gfx/pics/042/back.lz"
+INCBIN "gfx/pics/201y/front.lz"
+INCBIN "gfx/pics/201g/back.lz"
+INCBIN "gfx/pics/201i/front.lz"
+INCBIN "gfx/pics/201v/back.lz"
+INCBIN "gfx/pics/205/back.lz"
+INCBIN "gfx/pics/201s/back.lz"
+INCBIN "gfx/pics/201r/front.lz"
+INCBIN "gfx/pics/201e/back.lz"
+INCBIN "gfx/pics/201j/back.lz"
+INCBIN "gfx/pics/201b/back.lz"
+INCBIN "gfx/pics/201o/back.lz"
+INCBIN "gfx/pics/201z/back.lz"
+INCBIN "gfx/pics/201w/back.lz"
+INCBIN "gfx/pics/201n/back.lz"
+INCBIN "gfx/pics/201a/back.lz"
+INCBIN "gfx/pics/201m/back.lz"
+INCBIN "gfx/pics/201k/back.lz"
+INCBIN "gfx/pics/201t/back.lz"
+INCBIN "gfx/pics/201x/back.lz"
+INCBIN "gfx/pics/201l/back.lz"
+INCBIN "gfx/pics/201u/back.lz"
+INCBIN "gfx/pics/201q/back.lz"
+INCBIN "gfx/pics/201y/back.lz"
+INCBIN "gfx/pics/201p/back.lz"
+INCBIN "gfx/pics/201i/back.lz"
+INCBIN "gfx/pics/201r/back.lz"
 
 
 SECTION "bank5B",DATA,BANK[$5B]
@@ -91513,7 +94571,12 @@ Music_MobileCenter: ; 0x17961d
 INCLUDE "music/mobilecenter.asm"
 ; 0x17982d
 
-INCBIN "baserom.gbc",$17982d, $17b629 - $17982d
+INCBIN "baserom.gbc",$17982d, $1799ef - $17982d
+
+MobileAdapterGFX:
+INCBIN "gfx/misc/mobile_adapter.2bpp"
+
+INCBIN "baserom.gbc",$17a68f, $17b629 - $17a68f
 
 SECTION "bank5F",DATA,BANK[$5F]
 
@@ -131508,7 +134571,949 @@ Route28FamousSpeechHouse_MapEventHeader: ; 0x1ae762
 
 SECTION "bank6C",DATA,BANK[$6C]
 
-INCBIN "baserom.gbc",$1b0000,$1b2042 - $1b0000
+UnknownText_0x1b0000: ; 0x1b0000
+	db $0, "Good morning!", $4f
+	db "Welcome to our", $55
+	db "#MON CENTER.", $57
+; 0x1b002b
+
+UnknownText_0x1b002b: ; 0x1b002b
+	db $0, "Hello!", $4f
+	db "Welcome to our", $55
+	db "#MON CENTER.", $57
+; 0x1b004f
+
+UnknownText_0x1b004f: ; 0x1b004f
+	db $0, "Good evening!", $4f
+	db "You're out late.", $51
+	db "Welcome to our", $4f
+	db "#MON CENTER.", $57
+; 0x1b008a
+
+UnknownText_0x1b008a: ; 0x1b008a
+	db $0, "Good morning!", $51
+	db "This is the #-", $4f
+	db "MON COMMUNICATION", $51
+	db "CENTER--or the", $4f
+	db "#COM CENTER.", $57
+; 0x1b00d6
+
+UnknownText_0x1b00d6: ; 0x1b00d6
+	db $0, "Hello!", $51
+	db "This is the #-", $4f
+	db "MON COMMUNICATION", $51
+	db "CENTER--or the", $4f
+	db "#COM CENTER.", $57
+; 0x1b011b
+
+UnknownText_0x1b011b: ; 0x1b011b
+	db $0, "Good to see you", $4f
+	db "working so late.", $51
+	db "This is the #-", $4f
+	db "MON COMMUNICATION", $51
+	db "CENTER--or the", $4f
+	db "#COM CENTER.", $57
+; 0x1b017a
+
+UnknownText_0x1b017a: ; 0x1b017a
+	db $0, "We can heal your", $4f
+	db "#MON to perfect", $55
+	db "health.", $51
+	db "Shall we heal your", $4f
+	db "#MON?", $57
+; 0x1b01bd
+
+UnknownText_0x1b01bd: ; 0x1b01bd
+	db $0, "OK, may I see your", $4f
+	db "#MON?", $57
+; 0x1b01d7
+
+UnknownText_0x1b01d7: ; 0x1b01d7
+	db $0, "Thank you for", $4f
+	db "waiting.", $51
+	db "Your #MON are", $4f
+	db "fully healed.", $57
+; 0x1b020b
+
+UnknownText_0x1b020b: ; 0x1b020b
+	db $0, "We hope to see you", $4f
+	db "again.", $57
+; 0x1b0226
+
+UnknownText_0x1b0226: ; 0x1b0226
+	db $0, "We hope to see you", $4f
+	db "again.", $57
+; 0x1b0241
+
+UnknownText_0x1b0241: ; 0x1b0241
+	db $0, "Your #MON", $4f
+	db "appear to be", $51
+	db "infected by tiny", $4f
+	db "life forms.", $51
+	db "Your #MON are", $4f
+	db "healthy and seem", $55
+	db "to be fine.", $51
+	db "But we can't tell", $4f
+	db "you anything more", $51
+	db "at a #MON", $4f
+	db "CENTER.", $57
+; 0x1b02d6
+
+UnknownText_0x1b02d6: ; 0x1b02d6
+	db $0, "Your #MON", $4f
+	db "appear to be", $51
+	db "infected by tiny", $4f
+	db "life forms.", $51
+	db "Your #MON are", $4f
+	db "healthy and seem", $55
+	db "to be fine.", $51
+	db "But we can't tell", $4f
+	db "you anything more.", $57
+; 0x1b035a
+
+UnknownText_0x1b035a: ; 0x1b035a
+	db $0, "It's full of", $4f
+	db "difficult books.", $57
+; 0x1b0378
+
+UnknownText_0x1b0378: ; 0x1b0378
+	db $0, "A whole collection", $4f
+	db "of #MON picture", $55
+	db "books!", $57
+; 0x1b03a3
+
+UnknownText_0x1b03a3: ; 0x1b03a3
+	db $0, "#MON magazines…", $4f
+	db "#MON PAL,", $51
+	db "#MON HANDBOOK,", $4f
+	db "#MON GRAPH…", $57
+; 0x1b03d9
+
+UnknownText_0x1b03d9: ; 0x1b03d9
+	db $0, "TEAM ROCKET OATH", $51
+	db "Steal #MON for", $4f
+	db "profit!", $51
+	db "Exploit #MON", $4f
+	db "for profit!", $51
+	db "All #MON exist", $4f
+	db "for the glory of", $55
+	db "TEAM ROCKET!", $57
+; 0x1b0448
+
+UnknownText_0x1b0448: ; 0x1b0448
+	db $0, "What is this?", $51
+	db "Oh, it's an", $4f
+	db "incense burner!", $57
+; 0x1b0472
+
+UnknownText_0x1b0472: ; 0x1b0472
+	db $0, "Lots of #MON", $4f
+	db "merchandise!", $57
+; 0x1b048d
+
+UnknownText_0x1b048d: ; 0x1b048d
+	db $0, "It's the TOWN MAP.", $57
+; 0x1b04a0
+
+UnknownText_0x1b04a0: ; 0x1b04a0
+	db $0, "My reflection!", $4f
+	db "Lookin' good!", $57
+; 0x1b04be
+
+UnknownText_0x1b04be: ; 0x1b04be
+	db $0, "It's a TV.", $57
+; 0x1b04c9
+
+UnknownText_0x1b04c9: ; 0x1b04c9
+	db $0, "#MON JOURNAL", $4f
+	db "HOME PAGE…", $51
+	db "It hasn't been", $4f
+	db "updated…", $57
+; 0x1b04f9
+
+UnknownText_0x1b04f9: ; 0x1b04f9
+	db $0, "#MON RADIO!", $51
+	db "Call in with your", $4f
+	db "requests now!", $57
+; 0x1b0526
+
+UnknownText_0x1b0526: ; 0x1b0526
+	db $0, "There's nothing in", $4f
+	db "here…", $57
+; 0x1b053f
+
+UnknownText_0x1b053f: ; 0x1b053f
+	db $0, "A #MON may be", $4f
+	db "able to move this.", $57
+; 0x1b0561
+
+UnknownText_0x1b0561: ; 0x1b0561
+	db $0, "Maybe a #MON", $4f
+	db "can break this.", $57
+; 0x1b057f
+
+UnknownText_0x1b057f: ; 0x1b057f
+	db $0, "Heal Your #MON!", $4f
+	db "#MON CENTER", $57
+; 0x1b059c
+
+UnknownText_0x1b059c: ; 0x1b059c
+	db $0, "For All Your", $4f
+	db "#MON Needs", $51
+	db "#MON MART", $57
+; 0x1b05bf
+
+UnknownText_0x1b05bf: ; 0x1b05bf
+	db $0, "We will now judge", $4f
+	db "the #MON you've", $55
+	db "caught.", $51
+	db $56, $4f
+	db $56, $51
+	db "We have chosen the", $4f
+	db "winners!", $51
+	db "Are you ready for", $4f
+	db "this?", $57
+; 0x1b0621
+
+UnknownText_0x1b0621: ; 0x1b0621
+	db $0, $52, ", the No.@"
+	text_from_ram $d099
+	db $0, $4f
+	db "finisher, wins", $55
+	db "@"
+	text_from_ram $d0ac
+	db $0, "!", $57
+; 0x1b0648
+
+UnknownText_0x1b0648: ; 0x1b0648
+	db $0, $52, " received", $4f
+	db "@"
+	text_from_ram $d0ac
+	db $0, ".", $57
+; 0x1b065b
+
+UnknownText_0x1b065b: ; 0x1b065b
+	db $0, "Please join us for", $4f
+	db "the next Contest!", $57
+; 0x1b0681
+
+UnknownText_0x1b0681: ; 0x1b0681
+	db $0, "Everyone else gets", $4f
+	db "a BERRY as a con-", $55
+	db "solation prize!", $57
+; 0x1b06b7
+
+UnknownText_0x1b06b7: ; 0x1b06b7
+	db $0, "We hope you do", $4f
+	db "better next time.", $57
+; 0x1b06d9
+
+UnknownText_0x1b06d9: ; 0x1b06d9
+	db $0, "We'll return the", $4f
+	db "#MON we kept", $51
+	db "for you.", $4f
+	db "Here you go!", $57
+; 0x1b070d
+
+UnknownText_0x1b070d: ; 0x1b070d
+	db $0, "Your party's full,", $4f
+	db "so the #MON was", $51
+	db "sent to your BOX", $4f
+	db "in BILL's PC.", $57
+; 0x1b074e
+
+UnknownText_0x1b074e: ; 0x1b074e
+	text_from_ram $d099
+	db $0, $4f
+	db "#MON GYM", $57
+; 0x1b075c
+
+UnknownText_0x1b075c: ; 0x1b075c
+	db $0, "LEADER: @"
+	text_from_ram $d0ac
+	db $0, $51
+	db "WINNING TRAINERS:", $4f
+	db $52, $57
+; 0x1b077f
+
+UnknownText_0x1b077f: ; 0x1b077f
+	db $0, "Welcome to the", $4f
+	db "GAME CORNER.", $57
+; 0x1b079c
+
+UnknownText_0x1b079c: ; 0x1b079c
+	db $0, "Do you need game", $4f
+	db "coins?", $51
+	db "Oh, you don't have", $4f
+	db "a COIN CASE for", $55
+	db "your coins.", $57
+; 0x1b07e3
+
+UnknownText_0x1b07e3: ; 0x1b07e3
+	db $0, "Do you need some", $4f
+	db "game coins?", $51
+	db "It costs ¥1000 for", $4f
+	db "50 coins. Do you", $55
+	db "want some?", $57
+; 0x1b0830
+
+UnknownText_0x1b0830: ; 0x1b0830
+	db $0, "Thank you!", $4f
+	db "Here are 50 coins.", $57
+; 0x1b084f
+
+UnknownText_0x1b084f: ; 0x1b084f
+	db $0, "Thank you! Here", $4f
+	db "are 500 coins.", $57
+; 0x1b086f
+
+UnknownText_0x1b086f: ; 0x1b086f
+	db $0, "You don't have", $4f
+	db "enough money.", $57
+; 0x1b088c
+
+UnknownText_0x1b088c: ; 0x1b088c
+	db $0, "Whoops! Your COIN", $4f
+	db "CASE is full.", $57
+; 0x1b08ad
+
+UnknownText_0x1b08ad: ; 0x1b08ad
+	db $0, "No coins for you?", $4f
+	db "Come again!", $57
+; 0x1b08cc
+
+UnknownText_0x1b08cc: ; 0x1b08cc
+	db $0, "Oh? Your PACK is", $4f
+	db "full.", $51
+	db "We'll keep this", $4f
+	db "for you today, so", $51
+	db "come back when you", $4f
+	db "make room for it.", $57
+; 0x1b092a
+
+UnknownText_0x1b092a: ; 0x1b092a
+	db $0, "Wow! You and your", $4f
+	db "#MON are really", $55
+	db "close!", $57
+; 0x1b0954
+
+UnknownText_0x1b0954: ; 0x1b0954
+	db $0, "#MON get more", $4f
+	db "friendly if you", $51
+	db "spend time with", $4f
+	db "them.", $57
+; 0x1b0989
+
+UnknownText_0x1b0989: ; 0x1b0989
+	db $0, "You haven't tamed", $4f
+	db "your #MON.", $51
+	db "If you aren't", $4f
+	db "nice, it'll pout.", $57
+; 0x1b09c4
+
+UnknownText_0x1b09c4: ; 0x1b09c4
+	db $0, $52, " registered", $4f
+	db "@"
+	text_from_ram $d099
+	db $0, "'s number.", $57
+; 0x1b09e1
+
+UnknownText_0x1b09e1: ; 0x1b09e1
+	db $0, $52, " registered", $4f
+	db "@"
+	text_from_ram $d099
+	db $0, "'s number.", $57
+; 0x1b09fe
+
+UnknownText_0x1b09fe: ; 0x1b09fe
+	db $0, "Your knowledge is", $4f
+	db "impressive!", $51
+	db "I like that!", $51
+	db "Want to trade", $4f
+	db "battle tips?", $51
+	db "I'll phone if I", $4f
+	db "get good info.", $51
+	db "Would you tell me", $4f
+	db "your number?", $57
+; 0x1b0a82
+
+UnknownText_0x1b0a82: ; 0x1b0a82
+	db $0, "Want to trade", $4f
+	db "battle tips?", $51
+	db "I'll phone if I", $4f
+	db "get good info.", $51
+	db "Would you tell me", $4f
+	db "your number?", $57
+; 0x1b0adb
+
+UnknownText_0x1b0adb: ; 0x1b0adb
+	db $0, "I'll call you if I", $4f
+	db "hear anything!", $57
+; 0x1b0afd
+
+UnknownText_0x1b0afd: ; 0x1b0afd
+	db $0, "Oh, OK. Too bad…", $51
+	db "Well, if you ever", $4f
+	db "want my number,", $55
+	db "come see me, OK?", $57
+; 0x1b0b42
+
+UnknownText_0x1b0b42: ; 0x1b0b42
+	db $0, "Oh?", $4f
+	db "Your phone's full.", $51
+	db "It can't register", $4f
+	db "my number.", $57
+; 0x1b0b75
+
+UnknownText_0x1b0b75: ; 0x1b0b75
+	db $0, "Hi, I was waiting", $4f
+	db "for you to show!", $51
+	db "Let's get started", $4f
+	db "right away!", $57
+; 0x1b0bb6
+
+UnknownText_0x1b0bb6: ; 0x1b0bb6
+	db $0, "Your MARILL is so", $4f
+	db "cute and adorable!", $51
+	db "You love #MON", $4f
+	db "just like I do!", $51
+	db "Want to trade", $4f
+	db "phone numbers?", $51
+	db "Let's chat! It'll", $4f
+	db "be so much fun!", $57
+; 0x1b0c37
+
+UnknownText_0x1b0c37: ; 0x1b0c37
+	db $0, "Your MARILL is so", $4f
+	db "cute and adorable!", $51
+	db "We should chat, it", $4f
+	db "will be fun.", $51
+	db "Can I have your", $4f
+	db "phone number?", $57
+; 0x1b0c9b
+
+UnknownText_0x1b0c9b: ; 0x1b0c9b
+	db $0, "To be honest, I", $4f
+	db "want a MARILL.", $51
+	db "But I make do with", $4f
+	db "my cute SNUBBULL.", $57
+; 0x1b0ce0
+
+UnknownText_0x1b0ce0: ; 0x1b0ce0
+	db $0, "Oh… That's", $4f
+	db "disappointing…", $51
+	db "Goodbye, MARILL…", $57
+; 0x1b0d0b
+
+UnknownText_0x1b0d0b: ; 0x1b0d0b
+	db $0, "Oh? Your phone's", $4f
+	db "memory is full.", $57
+; 0x1b0d2c
+
+UnknownText_0x1b0d2c: ; 0x1b0d2c
+	db $0, "Oh? ", $52, "? ", $4f
+	db "I waited here for", $51
+	db "you. I brought you", $4f
+	db "a little gift.", $57
+; 0x1b0d69
+
+UnknownText_0x1b0d69: ; 0x1b0d69
+	db $0, "Oh?", $4f
+	db "You have no room.", $51
+	db "Please come back", $4f
+	db "for it later.", $57
+; 0x1b0d9f
+
+UnknownText_0x1b0d9f: ; 0x1b0d9f
+	db $0, "Cool! That's the", $4f
+	db "first time I've", $55
+	db "lost in a while!", $51
+	db "Hey, give me your", $4f
+	db "phone number.", $51
+	db "You'd be fun to", $4f
+	db "battle, so I'll", $51
+	db "call you when I", $4f
+	db "get stronger!", $57
+; 0x1b0e2c
+
+UnknownText_0x1b0e2c: ; 0x1b0e2c
+	db $0, "Hey, give me your", $4f
+	db "phone number.", $51
+	db "You'd be fun to", $4f
+	db "battle, so I'll", $51
+	db "call you when I", $4f
+	db "get stronger!", $57
+; 0x1b0e89
+
+UnknownText_0x1b0e89: ; 0x1b0e89
+	db $0, "Hey, let's battle", $4f
+	db "again!", $57
+; 0x1b0ea2
+
+UnknownText_0x1b0ea2: ; 0x1b0ea2
+	db $0, "Looks like you're", $4f
+	db "a wimp…", $57
+; 0x1b0ebc
+
+UnknownText_0x1b0ebc: ; 0x1b0ebc
+	db $0, "Hey! Your phone's", $4f
+	db "already full!", $57
+; 0x1b0edc
+
+UnknownText_0x1b0edc: ; 0x1b0edc
+	db $0, "Hey! I'm tired of", $4f
+	db "waiting for you!", $57
+; 0x1b0eff
+
+UnknownText_0x1b0eff: ; 0x1b0eff
+	db $0, "Oh… Your PACK's", $4f
+	db "full. I'll give it", $55
+	db "to you later.", $57
+; 0x1b0f2f
+
+UnknownText_0x1b0f2f: ; 0x1b0f2f
+	db $0, "Man! You're as", $4f
+	db "tough as ever!", $51
+	db "I've battled you", $4f
+	db "over and over, but", $51
+	db $52, ", I haven't", $4f
+	db "won once.", $51
+	db "I bought tons of", $4f
+	db "items to toughen", $51
+	db "up my #MON, but", $4f
+	db "to no avail…", $51
+	db "Items alone aren't", $4f
+	db "the answer.", $51
+	db "That must be what", $4f
+	db "it is…", $51
+	db "Here, take this,", $4f
+	db $52, ".", $51
+	db "I won't be needing", $4f
+	db "it anymore…", $57
+; 0x1b102e
+
+UnknownText_0x1b102e: ; 0x1b102e
+	db $0, "Wow, you're tough.", $4f
+	db "I haven't battled", $51
+	db "that seriously in", $4f
+	db "a long time.", $51
+	db "Could I get your", $4f
+	db "phone number?", $51
+	db "I'd like to battle", $4f
+	db "again when I heal", $51
+	db "@"
+	text_from_ram $d0ac
+	db $0, " and the", $4f
+	db "rest of my team.", $57
+; 0x1b10d3
+
+UnknownText_0x1b10d3: ; 0x1b10d3
+	db $0, "Could I get your", $4f
+	db "phone number?", $51
+	db "I'd like to battle", $4f
+	db "again when I heal", $51
+	db "@"
+	text_from_ram $d0ac
+	db $0, " and the", $4f
+	db "rest of my team.", $57
+; 0x1b1136
+
+UnknownText_0x1b1136: ; 0x1b1136
+	db $0, "How should I beat", $4f
+	db "you? I'm tormented", $51
+	db "by those thoughts", $4f
+	db "all the time…", $57
+; 0x1b117b
+
+UnknownText_0x1b117b: ; 0x1b117b
+	db $0, "OK… I understand…", $4f
+	db "But if you change", $51
+	db "your mind, give me", $4f
+	db "a shout anytime.", $57
+; 0x1b11c4
+
+UnknownText_0x1b11c4: ; 0x1b11c4
+	db $0, "Your phone's", $4f
+	db "memory is full.", $51
+	db "You can't register", $4f
+	db "my number.", $57
+; 0x1b11fe
+
+UnknownText_0x1b11fe: ; 0x1b11fe
+	db $0, "Hi! I've been", $4f
+	db "waiting for you!", $51
+	db "This time, I'm", $4f
+	db "going to win!", $57
+; 0x1b1239
+
+UnknownText_0x1b1239: ; 0x1b1239
+	db $0, "It's been a while", $4f
+	db "since I lost…", $51
+	db "You're very good", $4f
+	db "at battling.", $51
+	db "We should battle", $4f
+	db "again sometime.", $51
+	db "By challenging a", $4f
+	db "tough trainer like", $51
+	db "you, I think I can", $4f
+	db "get better too.", $51
+	db "So how about it?", $51
+	db "Would you give me", $4f
+	db "your phone number?", $57
+; 0x1b1314
+
+UnknownText_0x1b1314: ; 0x1b1314
+	db $0, "By challenging a", $4f
+	db "tough trainer like", $51
+	db "you, I think I can", $4f
+	db "get better too.", $51
+	db "So how about it?", $51
+	db "Would you give me", $4f
+	db "your phone number?", $57
+; 0x1b1392
+
+UnknownText_0x1b1392: ; 0x1b1392
+	db $0, "Let's battle again", $4f
+	db "sometime!", $57
+; 0x1b13af
+
+UnknownText_0x1b13af: ; 0x1b13af
+	db $0, "That's too bad…", $51
+	db "Let me know if you", $4f
+	db "change your mind.", $57
+; 0x1b13e4
+
+UnknownText_0x1b13e4: ; 0x1b13e4
+	db $0, "Oh no. Your phone", $4f
+	db "is out of memory.", $57
+; 0x1b1409
+
+UnknownText_0x1b1409: ; 0x1b1409
+	db $0, "You sure kept me", $4f
+	db "waiting! Let's go!", $57
+; 0x1b142d
+
+UnknownText_0x1b142d: ; 0x1b142d
+	db $0, "If my @"
+	text_from_ram $d0ac
+	db $0, $4f
+	db "sees anything", $51
+	db "pretty, it goes", $4f
+	db "and gets it.", $51
+	db "Do you like pretty", $4f
+	db "things?", $51
+	db "I could share if", $4f
+	db "it gets some more.", $51
+	db "What's your phone", $4f
+	db "number? I'll call.", $51
+	db "Don't expect a", $4f
+	db "whole lot, OK?", $57
+; 0x1b14e4
+
+UnknownText_0x1b14e4: ; 0x1b14e4
+	db $0, "Do you like pretty", $4f
+	db "things?", $51
+	db "I could share if", $4f
+	db "FARFETCH'D goes", $55
+	db "and gets more.", $51
+	db "What's your phone", $4f
+	db "number? I'll call.", $57
+; 0x1b1553
+
+UnknownText_0x1b1553: ; 0x1b1553
+	db $0, "I'll call you as", $4f
+	db "soon as I get", $55
+	db "something pretty.", $57
+; 0x1b1584
+
+UnknownText_0x1b1584: ; 0x1b1584
+	db $0, "You sure? Well,", $4f
+	db "tell me if you", $55
+	db "change your mind.", $57
+; 0x1b15b6
+
+UnknownText_0x1b15b6: ; 0x1b15b6
+	db $0, "Huh? Your phone", $4f
+	db "list is full.", $57
+; 0x1b15d5
+
+UnknownText_0x1b15d5: ; 0x1b15d5
+	db $0, "Tweet! Tweeeet!", $51
+	db "Kept me waiting!", $4f
+	db "Go, FARFETCH'D!", $57
+; 0x1b1607
+
+UnknownText_0x1b1607: ; 0x1b1607
+	db $0, "Kept me waiting!", $4f
+	db "Look, this is it!", $51
+	db "See? Isn't it some", $4f
+	db "kind of pretty?", $57
+; 0x1b164d
+
+UnknownText_0x1b164d: ; 0x1b164d
+	db $0, "Huh? You don't", $4f
+	db "have anywhere to", $51
+	db "put this. Better", $4f
+	db "come back for it.", $57
+; 0x1b1690
+
+UnknownText_0x1b1690: ; 0x1b1690
+	db $0, "Not bad…", $4f
+	db "It's something to", $51
+	db "beat me, even by", $4f
+	db "an unlikely fluke…", $51
+	db "I like you! Give", $4f
+	db "me your number!", $51
+	db "You can be my", $4f
+	db "practice partner!", $57
+; 0x1b1710
+
+UnknownText_0x1b1710: ; 0x1b1710
+	db $0, "Give me your phone", $4f
+	db "number!", $51
+	db "You are going to", $4f
+	db "be my practice", $55
+	db "partner!", $57
+; 0x1b1755
+
+UnknownText_0x1b1755: ; 0x1b1755
+	db $0, "Don't be too proud", $4f
+	db "about beating me!", $51
+	db "It was a fluke!", $57
+; 0x1b178a
+
+UnknownText_0x1b178a: ; 0x1b178a
+	db $0, "I don't believe", $4f
+	db "it! You're going", $55
+	db "to regret this!", $57
+; 0x1b17ba
+
+UnknownText_0x1b17ba: ; 0x1b17ba
+	db $0, "What? Your phone", $4f
+	db "list has no room!", $57
+; 0x1b17de
+
+UnknownText_0x1b17de: ; 0x1b17de
+	db $0, "What took you?", $4f
+	db "Start right away!", $57
+; 0x1b1800
+
+UnknownText_0x1b1800: ; 0x1b1800
+	db $0, "Listen, can I get", $4f
+	db "your phone number?", $51
+	db "I'll ring you for", $4f
+	db "some battles.", $51
+	db "I'm a rookie too, ", $4f
+	db "so I think it'd be", $55
+	db "a good motivator.", $57
+; 0x1b187b
+
+UnknownText_0x1b187b: ; 0x1b187b
+	db $0, "Can I get your", $4f
+	db "phone number?", $51
+	db "I don't want to", $4f
+	db "lose against you!", $51
+	db "We have to battle", $4f
+	db "again, OK?", $57
+; 0x1b18d7
+
+UnknownText_0x1b18d7: ; 0x1b18d7
+	db $0, "I'll ring you", $4f
+	db "whenever I get the", $55
+	db "urge to battle!", $57
+; 0x1b1908
+
+UnknownText_0x1b1908: ; 0x1b1908
+	db $0, "Oh, all right…", $51
+	db "But I won't lose", $4f
+	db "to you again!", $57
+; 0x1b1936
+
+UnknownText_0x1b1936: ; 0x1b1936
+	db $0, "Huh, what? Your", $4f
+	db "phone's full.", $57
+; 0x1b1954
+
+UnknownText_0x1b1954: ; 0x1b1954
+	db $0, "I've been waiting!", $4f
+	db "Let's battle now!", $57
+; 0x1b1978
+
+UnknownText_0x1b1978: ; 0x1b1978
+	db $0, "Hey, wait! Your", $4f
+	db "PACK is stuffed!", $51
+	db "Well, we'll leave", $4f
+	db "it till next time.", $57
+; 0x1b19be
+
+UnknownText_0x1b19be: ; 0x1b19be
+	db $0, "And yet another", $4f
+	db "loss…", $51
+	db "No doubt about", $4f
+	db "it--you're tough.", $51
+	db "Being beaten this", $4f
+	db "often actually", $55
+	db "feels good now!", $51
+	db "Here, take this. ", $4f
+	db "Use it to get even", $51
+	db "tougher. That will", $4f
+	db "toughen me up too!", $57
+; 0x1b1a71
+
+UnknownText_0x1b1a71: ; 0x1b1a71
+	db $0, "You're awesome!", $4f
+	db "I like you!", $51
+	db "I look for #MON", $4f
+	db "here every day.", $51
+	db "When I'm in the", $4f
+	db "grass, I find all", $55
+	db "kinds of BERRIES.", $51
+	db "If you'd like,", $4f
+	db "I'll share some.", $51
+	db "Could I get your", $4f
+	db "phone number?", $57
+; 0x1b1b1d
+
+UnknownText_0x1b1b1d: ; 0x1b1b1d
+	db $0, "When I'm in the", $4f
+	db "grass, I find all", $55
+	db "kinds of BERRIES.", $51
+	db "If you'd like,", $4f
+	db "I'll share some.", $51
+	db "Could I get your", $4f
+	db "phone number?", $57
+; 0x1b1b8e
+
+UnknownText_0x1b1b8e: ; 0x1b1b8e
+	db $0, "You'll hear from", $4f
+	db "me as soon as I", $51
+	db "find anything that", $4f
+	db "you might like.", $57
+; 0x1b1bd2
+
+UnknownText_0x1b1bd2: ; 0x1b1bd2
+	db $0, "Oh well. Don't be", $4f
+	db "shy if you want to", $55
+	db "get my number.", $57
+; 0x1b1c06
+
+UnknownText_0x1b1c06: ; 0x1b1c06
+	db $0, "Your phone list", $4f
+	db "has no room for my", $55
+	db "number.", $57
+; 0x1b1c32
+
+UnknownText_0x1b1c32: ; 0x1b1c32
+	db $0, "I was waiting for", $4f
+	db "you. Let's battle!", $57
+; 0x1b1c57
+
+UnknownText_0x1b1c57: ; 0x1b1c57
+	db $0, "Good to see you!", $4f
+	db "See? This is what", $51
+	db "I found.", $4f
+	db "It's for you!", $57
+; 0x1b1c91
+
+UnknownText_0x1b1c91: ; 0x1b1c91
+	db $0, "Oops, your PACK's", $4f
+	db "full. Too bad.", $51
+	db "You should come", $4f
+	db "back for it later.", $57
+; 0x1b1cd5
+
+UnknownText_0x1b1cd5: ; 0x1b1cd5
+	db $0, "Don't young people", $4f
+	db "fish anymore?", $51
+	db "I've seen rare", $4f
+	db "#MON while I've", $55
+	db "been fishing…", $51
+	db "You young people", $4f
+	db "like that, right?", $51
+	db "Want to trade", $4f
+	db "phone numbers?", $51
+	db "I'll let you know", $4f
+	db "if I see anything.", $57
+; 0x1b1d85
+
+UnknownText_0x1b1d85: ; 0x1b1d85
+	db $0, "Hm? So you do want", $4f
+	db "me to phone if I", $55
+	db "see rare #MON?", $57
+; 0x1b1db9
+
+UnknownText_0x1b1db9: ; 0x1b1db9
+	db $0, "Yep, phone if I", $4f
+	db "see rare #MON.", $51
+	db "Don't worry, I", $4f
+	db "won't forget!", $57
+; 0x1b1df4
+
+UnknownText_0x1b1df4: ; 0x1b1df4
+	db $0, "Oh…", $4f
+	db "My own kids won't", $51
+	db "even give me their", $4f
+	db "phone numbers…", $51
+	db "Is that how young", $4f
+	db "people are today?", $57
+; 0x1b1e50
+
+UnknownText_0x1b1e50: ; 0x1b1e50
+	db $0, "Your phone's", $4f
+	db "memory is full.", $51
+	db "It seems that", $4f
+	db "young people all", $55
+	db "have #GEAR.", $57
+; 0x1b1e98
+
+UnknownText_0x1b1e98: ; 0x1b1e98
+	db $0, "Hey, kid!", $51
+	db "No losing for me", $4f
+	db "this day!", $57
+; 0x1b1ebe
+
+UnknownText_0x1b1ebe: ; 0x1b1ebe
+	db $0, "Oh? You're on a", $4f
+	db "big journey to see", $55
+	db "the sights? Neat!", $51
+	db "Let's be friends!", $4f
+	db "Can I have your", $55
+	db "phone number?", $51
+	db "I want to hear", $4f
+	db "about everything", $55
+	db "you've seen!", $57
+; 0x1b1f4e
+
+UnknownText_0x1b1f4e: ; 0x1b1f4e
+	db $0, "Let's be friends!", $4f
+	db "Can I have your", $55
+	db "phone number?", $51
+	db "I want to hear", $4f
+	db "about everything", $55
+	db "you've seen!", $57
+; 0x1b1faa
+
+UnknownText_0x1b1faa: ; 0x1b1faa
+	db $0, "I'll telephone you", $4f
+	db "if I hear anything", $55
+	db "interesting.", $57
+; 0x1b1fdd
+
+UnknownText_0x1b1fdd: ; 0x1b1fdd
+	db $0, "Aww… You won't be", $4f
+	db "my friend?", $57
+; 0x1b1ffa
+
+UnknownText_0x1b1ffa: ; 0x1b1ffa
+	db $0, "Wait! Your phone", $4f
+	db "list is filled up!", $57
+; 0x1b201f
+
+UnknownText_0x1b201f: ; 0x1b201f
+	db $0, "You're late! Let's", $4f
+	db "get started now!", $57
+; 0x1b2042
+
 
 SilverCaveOutside_MapScriptHeader: ; 0x1b2042
 	; trigger count
@@ -131610,7 +135615,10 @@ Route10North_MapEventHeader: ; 0x1b2099
 
 SECTION "bank6D",DATA,BANK[$6D]
 
-INCBIN "baserom.gbc",$1B4000,$4000
+INCLUDE "text/phone/mom.tx"
+INCLUDE "text/phone/bill.tx"
+INCLUDE "text/phone/elm.tx"
+INCLUDE "text/phone/trainers1.tx"
 
 SECTION "bank6E",DATA,BANK[$6E]
 
@@ -135414,7 +139422,7 @@ GetItemDescription: ; 0x1c8955
 	push de
 	ld a, $b     ; XXX replace this with BANK(label)
 	ld hl, $47b6 ; XXX replace this with label
-	rst $8
+	rst FarCall
 	pop hl
 	ld a, [$d265]
 	ld [$cf60], a

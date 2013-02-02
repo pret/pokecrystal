@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 moves = {
 0x01: "POUND",
 0x02: "KARATE_CHOP",

@@ -17,20 +17,23 @@ from extras.crystal import (
     TextEndingCommand,
     text_command_classes,
     movement_command_classes,
-    music_classes
+    music_classes,
 )
 
-macros = command_classes + \
-    [
+even_more_macros = [
     Warp,
     XYTrigger,
     Signpost,
     PeopleEvent,
     DataByteWordMacro,
     ItemFragment,
-    ] + [x[1] for x in text_command_classes] + \
-    movement_command_classes + \
-    music_classes
+]
+
+macros = command_classes
+macros += even_more_macros
+macros += [each[1] for each in text_command_classes]
+macros += movement_command_classes
+macros += music_classes
 
 # show lines before preprocessing in stdout
 show_original_lines = False
@@ -569,12 +572,18 @@ def macro_translator(macro, token, line):
 def include_file(asm):
     """This is more reliable than rgbasm/rgbds including files on its own."""
 
+    prefix = asm.split("INCLUDE \"")[0] + '\n'
     filename = asm.split("\"")[1]
+    suffix = asm.split("\"")[2]
+
+    read_line(prefix)
 
     lines = open(filename, "r").readlines()
 
     for line in lines:
         read_line(line)
+
+    read_line(suffix)
 
 def read_line(l):
     """Preprocesses a given line of asm."""
@@ -586,9 +595,8 @@ def read_line(l):
         asm     = l
         comment = None
 
-    # handle INCLUDE as a special case either at the start of the line or
-    # after the first character in the line (like a tab)
-    if "INCLUDE \"" in [asm[0:9], asm[1:9]]:
+    # handle INCLUDE as a special case
+    if "INCLUDE \"" in l:
         include_file(asm)
 
     # convert text to bytes when a quote appears (not in a comment)

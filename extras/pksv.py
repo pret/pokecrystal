@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 
 pksv_gs = {
     0x00: "2call",
@@ -34,7 +35,7 @@ pksv_gs = {
     0x21: "checkitem",
     0x22: "givemoney",
     0x23: "takemoney",
-    0x24: "checkmonkey",
+    0x24: "checkmoney",
     0x25: "givecoins",
     0x26: "takecoins",
     0x27: "checkcoins",
@@ -141,8 +142,8 @@ pksv_gs = {
     0xA3: "displaylocation",
 }
 
-#see http://www.pokecommunity.com/showpost.php?p=4347261
-#NOTE: this has some updates that need to be back-ported to gold
+# see http://www.pokecommunity.com/showpost.php?p=4347261
+# NOTE: this has some updates that need to be back-ported to gold
 pksv_crystal = {
     0x00: "2call",
     0x01: "3call",
@@ -179,7 +180,7 @@ pksv_crystal = {
     0x21: "checkitem",
     0x22: "givemoney",
     0x23: "takemoney",
-    0x24: "checkmonkey",
+    0x24: "checkmoney",
     0x25: "givecoins",
     0x26: "takecoins",
     0x27: "checkcoins",
@@ -292,13 +293,14 @@ pksv_crystal = {
 }
 
 #these cause the script to end; used in create_command_classes
-pksv_crystal_more_enders = [0x03, 0x04, 0x05, 0x0C, 0x51, 0x53,
-                            0x8D, 0x8F, 0x90, 0x91, 0x92, 0x9B,
+pksv_crystal_more_enders = [0x03, 0x04, 0x05, 0x0C, 0x51, 0x52,
+                            0x53, 0x8D, 0x8F, 0x90, 0x91, 0x92,
+                            0x9B,
                             0xB2, #maybe?
                             0xCC, #maybe?
                            ]
 
-#these have no pksv names as of pksv 2.1.1
+# these have no pksv names as of pksv 2.1.1
 pksv_crystal_unknowns = [
     0x9F,
     0xA6, 0xA7, 0xA8, 0xA9, 0xAA, 0xAB, 0xAC, 0xAD, 0xAE, 0xAF,

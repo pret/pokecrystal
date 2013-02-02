@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 pokemon_constants = {
 1: "BULBASAUR",
 2: "IVYSAUR",

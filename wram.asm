@@ -615,13 +615,14 @@ LastEnemyMove: ; c71c
 	ds 1
 
 
-SECTION "gfx2",BSS[$c800]
+SECTION "overworldmap",BSS[$c800]
 OverworldMap: ; c800
-	ds 1280
+	ds 1300
+OverworldMapEnd
+	
+	ds 12
 
-; cd00
-	ds 32
-
+SECTION "gfx2",BSS[$cd20]
 BGMapBuffer: ; cd20
 	ds 40
 	

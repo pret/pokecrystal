@@ -1,10 +1,12 @@
-""" Various functions related to pointer and address math. Mostly to avoid
-    depedency loops.
+# -*- coding: utf-8 -*-
+"""
+Various functions related to pointer and address math. Mostly to avoid
+depedency loops.
 """
 
 def calculate_bank(address):
     """you are too lazy to divide on your own?"""
-    if type(address) == str: 
+    if type(address) == str:
         address = int(address, 16)
     #if 0x4000 <= address <= 0x7FFF:
     #    raise Exception, "bank 1 does not exist"

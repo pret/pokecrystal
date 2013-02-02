@@ -1,0 +1,14 @@
+#!/bin/bash
+# This wraps dump_sections.py so that other python scripts can import the
+# functions. If dump_sections.py was instead called dump_sections, then other
+# python source code would be unable to use the functions via import
+# statements.
+
+# figure out the path to this script
+cwd="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+# construct the path to dump_sections.py
+secpath=$cwd/dump_sections.py
+
+# run dump_sections.py
+$secpath $1

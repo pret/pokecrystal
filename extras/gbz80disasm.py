@@ -1,25 +1,27 @@
-#author: Bryan Bishop <kanzure@gmail.com>
-#date: 2012-01-09
+# -*- coding: utf-8 -*-
+
 import os
 import sys
 from copy import copy, deepcopy
 from ctypes import c_int8
-import json
 import random
+import json
 
-spacing = "\t"
+# New versions of json don't have read anymore.
+if not hasattr(json, "read"):
+    json.read = json.loads
 
-class XRomStr(str):
-    def __repr__(self):
-        return "RomStr(too long)"
+from romstr import RomStr
 
 def load_rom(filename="../baserom.gbc"):
     """loads bytes into memory"""
     global rom
-    file_handler = open(filename, "rb") 
-    rom = XRomStr(file_handler.read())
+    file_handler = open(filename, "rb")
+    rom = RomStr(file_handler.read())
     file_handler.close()
     return rom
+
+spacing = "\t"
 
 temp_opt_table = [
   [ "ADC A", 0x8f, 0 ],
@@ -550,7 +552,7 @@ end_08_scripts_with = [
 0xc9, #ret
 ###0xda, 0xe9, 0xd2, 0xc2, 0xca, 0xc3, 0x38, 0x30, 0x20, 0x28, 0x18, 0xd8, 0xd0, 0xc0, 0xc8, 0xc9
 ]
-relative_jumps = [0x38, 0x30, 0x20, 0x28, 0x18, 0xc3, 0xda, 0xc2] 
+relative_jumps = [0x38, 0x30, 0x20, 0x28, 0x18, 0xc3, 0xda, 0xc2]
 relative_unconditional_jumps = [0xc3, 0x18]
 
 call_commands = [0xdc, 0xd4, 0xc4, 0xcc, 0xcd]
@@ -559,7 +561,7 @@ all_labels = {}
 def load_labels(filename="labels.json"):
     global all_labels
     if os.path.exists(filename):
-        all_labels = json.loads(open(filename, "r").read())
+        all_labels = json.read(open(filename, "r").read())
     else:
         print "You must run crystal.scan_for_predefined_labels() to create \"labels.json\". Trying..."
         import crystal
@@ -601,10 +603,10 @@ def output_bank_opcodes(original_offset, max_byte_count=0x4000, debug = False):
     #i = offset
     #ad = end_address
     #a, oa = current_byte_number
-    
+
     load_labels()
     load_rom()
-    
+
     bank_id = 0
     if original_offset > 0x8000:
         bank_id = original_offset / 0x4000

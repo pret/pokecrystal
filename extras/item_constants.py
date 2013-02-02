@@ -1,4 +1,7 @@
-item_constants = {1: 'MASTER_BALL',
+# -*- coding: utf-8 -*-
+
+item_constants = {
+1: 'MASTER_BALL',
 2: 'ULTRA_BALL',
 3: 'BRIGHTPOWDER',
 4: 'GREAT_BALL',
@@ -219,4 +222,20 @@ item_constants = {1: 'MASTER_BALL',
 246: 'HM_04',
 247: 'HM_05',
 248: 'HM_06',
-249: 'HM_07'}
+249: 'HM_07',
+}
+
+def find_item_label_by_id(id):
+    if id in item_constants.keys():
+        return item_constants[id]
+    else: return None
+
+def generate_item_constants():
+    """make a list of items to put in constants.asm"""
+    output = ""
+    for (id, item) in item_constants.items():
+        val = ("$%.2x"%id).upper()
+        while len(item)<13: item+= " "
+        output += item + " EQU " + val + "\n"
+    return output
+

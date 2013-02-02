@@ -1,30 +1,31 @@
-#precompiled python
+# precompiled python
 *.pyc
 
-#compiled object file
+# compiled object file
 *.o
 
-#no binaries
+# no binaries
 *.exe
 
-#roms
+# roms
 *.gbc
+*.gb
 
-#generated
+# generated
 *.tx
 
-#swap files for vim
+# swap files for vim
 .*.swp
 
-#no data from extras/
+# no data from extras/
 extras/*.json
 
-#for any of the poor souls with save game files in their working directory
+# for any of the poor souls with save game files in their working directory
 baserom.sgm
 baserom.sav
 pokered.sgm
 pokered.sav
 
-#for vim configuration
-#url: http://www.vim.org/scripts/script.php?script_id=441
+# for vim configuration
+# url: http://www.vim.org/scripts/script.php?script_id=441
 .lvimrc
