@@ -14,11 +14,8 @@ if not hasattr(json, "read"):
 from romstr import RomStr
 
 def load_rom(filename="../baserom.gbc"):
-    """loads bytes into memory"""
     global rom
-    file_handler = open(filename, "rb")
-    rom = RomStr(file_handler.read())
-    file_handler.close()
+    rom = RomStr.load(filename=filename)
     return rom
 
 spacing = "\t"
