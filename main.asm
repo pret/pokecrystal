@@ -42213,7 +42213,7 @@ UnknownScript_0x694d7: ; 0x694d7
 	checkcode $1
 	if_equal $6, UnknownScript_0x6952b
 	giveegg TOGEPI, 5
-	stringtotext $5523, $1
+	stringtotext .eggname, $1
 	2call UnknownScript_0x69527
 	setbit1 $002d
 	clearbit1 $0701
@@ -42223,16 +42223,15 @@ UnknownScript_0x694d7: ; 0x694d7
 	closetext
 	loadmovesprites
 	checkcode $9
-	if_equal $1, UnknownScript_0x69511
+	if_equal $1, .UnknownScript_0x69511
 	spriteface $0, $0
 	applymovement $6, MovementData_0x69549
 	playsound $0023
 	disappear $6
 	waitbutton
 	end
-; 0x69511
 
-UnknownScript_0x69511: ; 0x69511
+.UnknownScript_0x69511 ; 0x69511
 	applymovement $6, MovementData_0x6954e
 	spriteface $0, $0
 	applymovement $6, MovementData_0x69551
@@ -42242,7 +42241,7 @@ UnknownScript_0x69511: ; 0x69511
 	end
 ; 0x69523
 
-UnknownRawText_0x69523: ; 0x69523
+.eggname ; 0x69523
 	db "EGG@"
 ; 0x69527
 
@@ -50457,18 +50456,18 @@ UnknownScript_0x72144: ; 0x72144
 	faceplayer
 	loadfont
 	checkbit1 $00ce
-	iftrue UnknownScript_0x72169
+	iftrue .UnknownScript_0x72169
 	2writetext UnknownText_0x722dc
 	keeptextopen
 	checkitem COIN_CASE
 	iffalse UnknownScript_0x7217b
 	checkcoins 9998
 	if_equal $0, UnknownScript_0x72184
-	stringtotext $6176, $1
-	2call UnknownScript_0x72172
+	stringtotext .coinname, $1
+	2call .UnknownScript_0x72172
 	givecoins 18
 	setbit1 $00ce
-UnknownScript_0x72169: ; 0x72169
+.UnknownScript_0x72169 ; 0x72169
 	2writetext UnknownText_0x72345
 	closetext
 	loadmovesprites
@@ -50476,12 +50475,12 @@ UnknownScript_0x72169: ; 0x72169
 	end
 ; 0x72172
 
-UnknownScript_0x72172: ; 0x72172
+.UnknownScript_0x72172 ; 0x72172
 	jumpstd $002f
 	end
 ; 0x72176
 
-UnknownRawText_0x72176: ; 0x72176
+.coinname ; 0x72176
 	db "COIN@"
 ; 0x7217b
 
@@ -58480,7 +58479,7 @@ UnknownScript_0x7a4f6: ; 0x7a4f6
 	loadfont
 	2writetext UnknownText_0x7a604
 	keeptextopen
-	stringtotext $6578, $1
+	stringtotext GearName, $1
 	2call UnknownScript_0x7a57e
 	setbit2 $0004
 	setbit2 $0002
@@ -58556,7 +58555,7 @@ UnknownScript_0x7a572: ; 0x7a572
 	2jump UnknownScript_0x7a4f6
 ; 0x7a578
 
-UnknownRawText_0x7a578: ; 0x7a578
+GearName: ; 0x7a578
 	db $54, "GEAR@"
 ; 0x7a57e
 
@@ -63060,34 +63059,34 @@ UnknownScript_0x7ee6c: ; 0x7ee6c
 	faceplayer
 	loadfont
 	checkbit2 $0003
-	iftrue UnknownScript_0x7ee8e
+	iftrue .UnknownScript_0x7ee8e
 	checkbit1 $00c9
-	iftrue UnknownScript_0x7ee80
+	iftrue .UnknownScript_0x7ee80
 	2writetext UnknownText_0x7effb
 	closetext
 	loadmovesprites
 	end
 ; 0x7ee80
 
-UnknownScript_0x7ee80: ; 0x7ee80
+.UnknownScript_0x7ee80: ; 0x7ee80
 	2writetext UnknownText_0x7f0a1
 	keeptextopen
-	stringtotext $6e98, $1
-	2call UnknownScript_0x7ee94
+	stringtotext .expncardname, $1
+	2call .UnknownScript_0x7ee94
 	setbit2 $0003
-UnknownScript_0x7ee8e: ; 0x7ee8e
+.UnknownScript_0x7ee8e ; 0x7ee8e
 	2writetext UnknownText_0x7f141
 	closetext
 	loadmovesprites
 	end
 ; 0x7ee94
 
-UnknownScript_0x7ee94: ; 0x7ee94
+.UnknownScript_0x7ee94 ; 0x7ee94
 	jumpstd $002f
 	end
 ; 0x7ee98
 
-UnknownRawText_0x7ee98: ; 0x7ee98
+.expncardname ; 0x7ee98
 	db "EXPN CARD@"
 ; 0x7eea2
 
@@ -116394,8 +116393,8 @@ UnknownScript_0x19c01f: ; 0x19c01f
 	loadfont
 	2writetext UnknownText_0x19c3ec
 	keeptextopen
-	stringtotext $409b, $1
-	2call UnknownScript_0x19c097
+	stringtotext .mapcardname, $1
+	2call .UnknownScript_0x19c097
 	setbit2 $0001
 	2writetext UnknownText_0x19c438
 	keeptextopen
@@ -116411,14 +116410,12 @@ UnknownScript_0x19c01f: ; 0x19c01f
 	clearbit1 $06ff
 	waitbutton
 	end
-; 0x19c097
 
-UnknownScript_0x19c097: ; 0x19c097
+.UnknownScript_0x19c097 ; 0x19c097
 	jumpstd $002f
 	end
-; 0x19c09b
 
-UnknownRawText_0x19c09b: ; 0x19c09b
+.mapcardname ; 0x19c09b
 	db "MAP CARD@"
 ; 0x19c0a4
 
