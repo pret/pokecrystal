@@ -8,6 +8,11 @@ dwb: MACRO
 	db \2
 	ENDM
 
+dbw: MACRO
+	db \1
+	dw \2
+	ENDM
+
 dn: MACRO
 	db \1 << 4 + \2
 	ENDM
@@ -48,6 +53,25 @@ note: MACRO
 	db \1
 	ENDM
 
+; It's better to use *coord than FuncCoord.
+FuncCoord: MACRO
+Coord = $c4a0 + 20 * \2 + \1
+	ENDM
+
+bccoord: MACRO
+    FuncCoord \1, \2
+    ld bc, Coord
+	ENDM
+	
+decoord: MACRO
+    FuncCoord \1, \2
+    ld de, Coord
+	ENDM
+
+hlcoord: MACRO
+    FuncCoord \1, \2
+    ld hl, Coord
+	ENDM
 
 BULBASAUR  EQU 1
 IVYSAUR    EQU 2
