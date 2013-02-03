@@ -18,7 +18,7 @@ sudo make install
 which rgbasm
 
 # download pokecrystal
-git clone https://github.com/kanzure/pokecrystal.git
+git clone git://github.com/kanzure/pokecrystal.git
 cd pokecrystal
 
 make clean && make
@@ -128,7 +128,7 @@ Now you should be able to build `pokecrystal` for the first time:
 
 ```bash
 cd ~
-git clone https://github.com/kanzure/pokecrystal.git
+git clone git://github.com/kanzure/pokecrystal.git
 cd pokecrystal
 ```
 
