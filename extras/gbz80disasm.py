@@ -568,8 +568,6 @@ def load_labels(filename="labels.json"):
         crystal.scan_for_predefined_labels()
 
 def find_label(local_address, bank_id=0):
-    return None
-
     global all_labels
 
     # keep an integer
@@ -577,17 +575,19 @@ def find_label(local_address, bank_id=0):
         local_address1 = int(local_address.replace("$", "0x"), 16)
     else: local_address1 = local_address
 
-    # turn local_address into a string
+    # turn local_address into an integer
     if type(local_address) == str:
-        if "0x" in local_address: local_address = local_address.replace("0x", "$")
-        elif not "$" in local_address: local_address = "$" + local_address
-    if type(local_address) == int:
-        local_address = "$%.x" % (local_address)
-    local_address = local_address.upper()
+        if "0x" in local_address:
+            local_address = local_address.replace("0x", "$")
+        elif "$" in local_address:
+            local_address = local_address.replace("$", "")
+
+    if type(local_address) == str:
+        local_address = int(local_address, 16)
 
     for label_entry in all_labels:
-        if label_entry["local_pointer"].upper() == local_address:
-            if label_entry["bank_id"] == bank_id or (local_address1 < 0x8000 and (label_entry["bank_id"] == 0 or label_entry["bank_id"] == 1)):
+        if label_entry["address"] == local_address:
+            if label_entry["bank"] == bank_id or (local_address1 < 0x8000 and (label_entry["bank"] == 0 or label_entry["bank"] == 1)):
                 return label_entry["label"]
     return None
 
