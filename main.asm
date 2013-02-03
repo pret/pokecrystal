@@ -1969,7 +1969,7 @@ NPlaceChar: ; 0x101e
 
 INCBIN "baserom.gbc",$1024,$1078 - $1024
 
-PlaceString:
+PlaceString: ; $1078
 	push hl
 PlaceNextChar:
 	ld a, [de]
@@ -4499,7 +4499,7 @@ PredefPointers: ; 856b
 	dwb $4cdb, $14
 	dwb $4c50, $14
 	dwb $4bdd, $14
-	dwb $5c8a, $13
+	dwb StatsScreenInit, BANK(StatsScreenInit) ; stats screen
 	dwb $4b0a, $14
 	dwb $4b0e, $14
 	dwb $4b7b, $14
@@ -5280,8 +5280,129 @@ BoxNameInputUpper:
 	db "- ? ! ♂ ♀ / . , &"
 	db "lower  DEL   END "
 
+INCBIN "baserom.gbc",$11e5d,$12976 - $11e5d
 
-INCBIN "baserom.gbc",$11e5d,$14000 - $11e5d
+OpenPartyMenu: ; $12976
+	ld a, [PartyCount]
+	and a
+	jr z, .return ; no pokémon in party
+	call $2b29 ; fade in?
+.choosemenu ; 1297f
+	xor a
+	ld [PartyMenuActionText], a ; Choose a POKéMON.
+	call $31f3 ; this is also a predef/special, something with delayframe
+.menu ; 12986
+	ld a, $14
+	ld hl, $404f
+	rst $8 ; load gfx
+	ld a, $14
+	ld hl, $4405
+	rst $8 ; setup menu?
+	ld a, $14
+	ld hl, $43e0
+	rst $8 ; load menu pokémon sprites
+.menunoreload ; 12998
+	ld a, BANK(WritePartyMenuTilemap)
+	ld hl, WritePartyMenuTilemap
+	rst $8
+	ld a, BANK(PrintPartyMenuText)
+	ld hl, PrintPartyMenuText
+	rst $8
+	call $31f6
+	call $32f9 ; load regular palettes?
+	call DelayFrame
+	ld a, BANK(PartyMenuSelect)
+	ld hl, PartyMenuSelect
+	rst $8
+	jr c, .return ; if cancelled or pressed B
+	call PokemonActionSubmenu
+	cp $3
+	jr z, .menu
+	cp $0
+	jr z, .choosemenu
+	cp $1
+	jr z, .menunoreload
+	cp $2
+	jr z, .quit
+.return ; 129c8
+	call $2b3c
+	ld a, $0
+	ret
+.quit ; 129ce
+	ld a, b
+	push af
+	call $2b4d
+	pop af
+	ret
+; 0x129d5
+
+INCBIN "baserom.gbc",$129d5,$12a88 - $129d5
+
+PokemonActionSubmenu ; 0x12a88
+	ld hl, $c5cd ; coord
+	ld bc, $0212 ; box size
+	call $0fb6 ; draw box
+	ld a, $9
+	ld hl, $4d19
+	rst $8
+	call $389c
+	ld a, [$cf74] ; menu selection?
+	ld hl, PokemonSubmenuActionPointerTable
+	ld de, $0003 ; skip 3 bytes each time
+	call IsInArray
+	jr nc, .nothing
+	inc hl
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	jp [hl]
+.nothing
+	ld a, $0
+	ret
+; 0x12ab0
+
+PokemonSubmenuActionPointerTable: ; 0x12ab0
+    dbw $01, $6e1b
+    dbw $02, $6e30
+    dbw $03, $6ebd
+    dbw $04, $6e6a
+    dbw $06, $6e55
+    dbw $07, $6e7f
+    dbw $08, $6ed1
+    dbw $09, $6ea9
+    dbw $0a, $6ee6
+    dbw $0d, $6ee6
+    dbw $0b, $6f26
+    dbw $05, $6e94
+    dbw $0c, $6f3b
+    dbw $0e, $6f50
+    dbw $0f, OpenPartyStats ; stats
+    dbw $10, $6aec ; switch
+    dbw $11, $6b60 ; item
+    dbw $12, $6a79
+    dbw $13, $6fba ; move
+    dbw $14, $6d45 ; mail
+; no terminator?
+; 0x12aec
+
+INCBIN "baserom.gbc",$12aec,$12e00 - $12aec
+
+OpenPartyStats: ; 12e00
+	call $1d6e
+	call $300b
+	xor a
+	ld [MonType], a ; partymon
+	call LowVolume
+	ld a, $25
+	call Predef
+	call MaxVolume
+	call $1d7d
+	ld a, $0
+	ret
+; 0x12e1b
+
+INCBIN "baserom.gbc",$12e1b,$14000 - $12e1b
+
 
 SECTION "bank5",DATA,BANK[$5]
 
@@ -20673,11 +20794,316 @@ CheckPokerus: ; 4d860
 	ret
 ; 4d87a
 
-INCBIN "baserom.gbc",$4d87a,$50000 - $4d87a
+INCBIN "baserom.gbc",$4d87a,$4dc8a - $4d87a
+
+StatsScreenInit: ; 4dc8a
+	ld hl, StatsScreenMain
+	jr .gotaddress
+	ld hl, $5cf7
+	jr .gotaddress
+.gotaddress
+	ld a, [$ffde]
+	push af
+	xor a
+	ld [$ffde], a ; disable overworld tile animations
+	ld a, [$c2c6] ; whether sprite is to be mirrorred
+	push af
+	ld a, [$cf63]
+	ld b, a
+	ld a, [$cf64]
+	ld c, a
+	push bc
+	push hl
+	call $31f3
+	call $0fc8
+	call $1ad2
+	ld a, $3e
+	ld hl, $753e
+	rst $8 ; this loads graphics
+	pop hl
+	call JpHl
+	call $31f3
+	call $0fc8
+	pop bc
+	; restore old values
+	ld a, b
+	ld [$cf63], a
+	ld a, c
+	ld [$cf64], a
+	pop af
+	ld [$c2c6], a
+	pop af
+	ld [$ffde], a
+	ret
+; 0x4dcd2
+
+StatsScreenMain: ; 0x4dcd2
+	xor a
+	ld [$cf63], a
+	ld [$cf64], a
+	ld a, [$cf64]
+	and $fc
+	or $1
+	ld [$cf64], a
+.loop ; 4dce3
+	ld a, [$cf63]
+	and $7f
+	ld hl, StatsScreenPointerTable
+	rst $28
+	call $5d3a ; check for keys?
+	ld a, [$cf63]
+	bit 7, a
+	jr z, .loop
+	ret
+; 0x4dcf7
+
+INCBIN "baserom.gbc",$4dcf7,$4dd2a - $4dcf7
+
+StatsScreenPointerTable: ; 4dd2a
+    dw $5d72 ; regular pokémon
+    dw EggStatsInit ; egg
+    dw $5de6
+    dw $5dac
+    dw $5dc6
+    dw $5de6
+    dw $5dd6
+    dw $5d6c
+
+; 4dd3a
+
+INCBIN "baserom.gbc",$4dd3a,$4dda1 - $4dd3a
+
+EggStatsInit: ; 4dda1
+	call EggStatsScreen
+	ld a, [$cf63]
+	inc a
+	ld [$cf63], a
+	ret
+; 0x4ddac
+
+INCBIN "baserom.gbc",$4ddac,$4e21e - $4ddac
+
+IDNoString: ; 4e21e
+    db $73, "№.@"
+
+OTString: ; 4e222
+    db "OT/@"
+; 4e226
+
+INCBIN "baserom.gbc",$4e226,$4e33a - $4e226
+
+EggStatsScreen: ; 4e33a
+	xor a
+	ld [$ffd4], a
+	ld hl, $cda1
+	call $334e ; SetHPPal
+	ld b, $3
+	call GetSGBLayout
+	call $5f8f
+	ld de, EggString
+	hlcoord 8, 1 ; $c4bc
+	call PlaceString
+	ld de, IDNoString
+	hlcoord 8, 3 ; $c4e4
+	call PlaceString
+	ld de, OTString
+	hlcoord 8, 5 ; $c50c
+	call PlaceString
+	ld de, FiveQMarkString
+	hlcoord 11, 3 ; $c4e7
+	call PlaceString
+	ld de, FiveQMarkString
+	hlcoord 11, 5 ; $c50f
+	call PlaceString
+	ld a, [$d129] ; egg status
+	ld de, EggSoonString
+	cp $6
+	jr c, .picked
+	ld de, EggCloseString
+	cp $b
+	jr c, .picked
+	ld de, EggMoreTimeString
+	cp $29
+	jr c, .picked
+	ld de, EggALotMoreTimeString
+.picked
+	hlcoord 1, 9 ; $c555
+	call PlaceString
+	ld hl, $cf64
+	set 5, [hl]
+	call $32f9 ; pals
+	call $045a
+	ld hl, TileMap
+	call $3786
+	ld a, $41
+	ld hl, $402d
+	rst $8
+	call $6497
+	ld a, [$d129]
+	cp $6
+	ret nc
+	ld de, $00bb
+	call StartSFX
+	ret
+; 0x4e3c0
+
+EggString: ; 4e3c0
+    db "EGG@"
+
+FiveQMarkString: ; 4e3c4
+    db "?????@"
+
+EggSoonString: ; 0x4e3ca
+    db "It's making sounds", $4e, "inside. It's going", $4e, "to hatch soon!@"
+
+EggCloseString: ; 0x4e3fd
+    db "It moves around", $4e, "inside sometimes.", $4e, "It must be close", $4e, "to hatching.@"
+
+EggMoreTimeString: ; 0x4e43d
+    db "Wonder what's", $4e, "inside? It needs", $4e, "more time, though.@"
+
+EggALotMoreTimeString: ; 0x4e46e
+    db "This EGG needs a", $4e, "lot more time to", $4e, "hatch.@"
+
+; 0x4e497
+
+INCBIN "baserom.gbc",$4e497,$50000 - $4e497
 
 SECTION "bank14",DATA,BANK[$14]
 
-INCBIN "baserom.gbc",$50000,$5097B-$50000
+INCBIN "baserom.gbc",$50000,$5005f-$50000
+
+WritePartyMenuTilemap: ; 0x5005f
+	ld hl, Options
+	ld a, [hl]
+	push af
+	set 4, [hl] ; Disable text delay
+	xor a
+	ld [$ffd4], a
+	ld hl, TileMap
+	ld bc, $0168
+	ld a, " "
+	call $3041 ; blank the tilemap
+	call $4396 ; This reads from a pointer table???
+.asm_50077
+	ld a, [hli]
+	cp $ff
+	jr z, .asm_50084 ; 0x5007a $8
+	push hl
+	ld hl, $4089
+	rst $28
+	pop hl
+	jr .asm_50077 ; 0x50082 $f3
+.asm_50084
+	pop af
+	ld [Options], a
+	ret
+; 0x50089
+
+INCBIN "baserom.gbc",$50089,$50457-$50089
+
+PartyMenuSelect: ; 0x50457
+; sets carry if exitted menu.
+	call $1bc9
+	call $1bee
+	ld a, [PartyCount]
+	inc a
+	ld b, a
+	ld a, [$cfa9] ; menu selection?
+	cp b
+	jr z, .exitmenu ; CANCEL
+	ld [$d0d8], a
+	ld a, [$ffa9]
+	ld b, a
+	bit 1, b
+	jr nz, .exitmenu ; B button?
+	ld a, [$cfa9]
+	dec a
+	ld [CurPartyMon], a
+	ld c, a
+	ld b, $0
+	ld hl, PartySpecies
+	add hl, bc
+	ld a, [hl]
+	ld [CurPartySpecies], a
+	ld de, $0008
+	call StartSFX
+	call WaitSFX
+	and a
+	ret
+.exitmenu
+	ld de, $0008
+	call StartSFX
+	call WaitSFX
+	scf
+	ret
+; 0x5049a
+
+
+PrintPartyMenuText: ; 5049a
+	ld hl, $c5b8
+	ld bc, $0212
+	call $0fe8 ; related to TextBoxBorder
+	ld a, [PartyCount]
+	and a
+	jr nz, .haspokemon
+	ld de, YouHaveNoPKMNString
+	jr .gotstring
+.haspokemon ; 504ae
+	ld a, [PartyMenuActionText]
+	and $f ; drop high nibble
+	ld hl, PartyMenuStrings
+	ld e, a
+	ld d, $0
+	add hl, de
+	add hl, de
+	ld a, [hli]
+	ld d, [hl]
+	ld e, a
+.gotstring ; 504be
+	ld a, [Options]
+	push af
+	set 4, a ; disable text delay
+	ld [Options], a
+	ld hl, $c5e1 ; Coord
+	call PlaceString
+	pop af
+	ld [Options], a
+	ret
+; 0x504d2
+
+PartyMenuStrings: ; 0x504d2
+    dw ChooseAMonString
+    dw UseOnWhichPKMNString
+    dw WhichPKMNString
+    dw TeachWhichPKMNString
+    dw MoveToWhereString
+    dw UseOnWhichPKMNString
+    dw ChooseAMonString ; Probably used to be ChooseAFemalePKMNString
+    dw ChooseAMonString ; Probably used to be ChooseAMalePKMNString
+    dw ToWhichPKMNString
+
+ChooseAMonString: ; 0x504e4
+    db "Choose a #MON.@"
+UseOnWhichPKMNString: ; 0x504f3
+    db "Use on which ", $e1, $e2, "?@"
+WhichPKMNString: ; 0x50504
+    db "Which ", $e1, $e2, "?@"
+TeachWhichPKMNString: ; 0x5050e
+    db "Teach which ", $e1, $e2, "?@"
+MoveToWhereString: ; 0x5051e
+    db "Move to where?@"
+ChooseAFemalePKMNString: ; 0x5052d  ; UNUSED
+    db "Choose a ♀", $e1, $e2, ".@"
+ChooseAMalePKMNString: ; 0x5053b    ; UNUSED
+    db "Choose a ♂", $e1, $e2, ".@"
+ToWhichPKMNString: ; 0x50549
+    db "To which ", $e1, $e2, "?@"
+
+YouHaveNoPKMNString: ; 0x50556
+    db "You have no ", $e1, $e2, "!@"
+
+INCBIN "baserom.gbc",$50566,$5097B-$50566
 
 dw Normal, Fighting, Flying, Poison, Ground, Rock, Bird, Bug, Ghost, Steel
 dw Normal, Normal, Normal, Normal, Normal, Normal, Normal, Normal, Normal

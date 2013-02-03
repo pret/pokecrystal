@@ -768,7 +768,12 @@ CurPartyMon: ; d109
 ; 0-5
 	ds 1
 
-	ds 57
+	ds 55
+
+PartyMenuActionText ; d141
+    ds 1
+    
+    ds 1
 
 CurPartyLevel: ; d143
 	ds 1
