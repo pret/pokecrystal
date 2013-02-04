@@ -66001,7 +66001,91 @@ GetTimePalFade: ; 8c17c
 	db %00000000
 ; 8c20f
 
-INCBIN "baserom.gbc",$8c20f,$8eab3 - $8c20f
+INCBIN "baserom.gbc",$8c20f,$8e9ac - $8c20f
+
+GetSpeciesIcon: ; 8e9ac
+; Load species icon into VRAM at tile a
+	push de
+	ld a, [$d265]
+	call ReadMonMenuIcon
+	ld [CurIcon], a
+	pop de
+	ld a, e
+	call GetIconGFX
+	ret
+; 8e9bc
+
+INCBIN "baserom.gbc",$8e9bc,$8e9de - $8e9bc
+
+GetIconGFX: ; 8e9de
+	call GetIcon_a
+	ld de, $80 ; 8 tiles
+	add hl, de
+	ld de, HeldItemIcons
+	ld bc, $2302
+	call GetGFXUnlessMobile
+	ld a, [$c3b7]
+	add 10
+	ld [$c3b7], a
+	ret
+	
+HeldItemIcons:
+INCBIN "gfx/icon/mail.2bpp"
+INCBIN "gfx/icon/item.2bpp"
+; 8ea17
+
+GetIcon_de: ; 8ea17
+; Load icon graphics into VRAM starting from tile de
+	ld l, e
+	ld h, d
+	jr GetIcon
+	
+GetIcon_a: ; 8ea1b
+; Load icon graphics into VRAM starting from tile a
+	ld l, a
+	ld h, 0
+	
+GetIcon: ; 8ea1e
+; Load icon graphics into VRAM starting from tile hl
+
+; One tile is 16 bytes long
+	add hl, hl
+	add hl, hl
+	add hl, hl
+	add hl, hl
+	
+	ld de, VTiles0
+	add hl, de
+	push hl
+	
+; Reading the icon pointer table would only make sense if they were
+; scattered. However, the icons are contiguous and in-order.
+	ld a, [CurIcon]
+	push hl
+	ld l, a
+	ld h, 0
+	add hl, hl
+	ld de, IconPointers
+	add hl, de
+	ld a, [hli]
+	ld e, a
+	ld d, [hl]
+	pop hl
+	
+	ld bc, $2308
+	call GetGFXUnlessMobile
+	pop hl
+	ret
+; 8ea3f
+
+GetGFXUnlessMobile: ; 8ea3f
+	ld a, [InLinkBattle]
+	cp 4 ; Mobile Link Battle
+	jp nz, $eba
+	jp $dc9
+; 8ea4a
+
+INCBIN "baserom.gbc",$8ea4a,$8eab3 - $8ea4a
 
 ReadMonMenuIcon: ; 8eab3
 	cp EGG
@@ -66009,14 +66093,14 @@ ReadMonMenuIcon: ; 8eab3
 	dec a
 	ld hl, MonMenuIcons
 	ld e, a
-	ld d, $0
+	ld d, 0
 	add hl, de
 	ld a, [hl]
 	ret
 .egg
 	ld a, ICON_EGG
 	ret
-; 0x8eac4
+; 8eac4
 
 MonMenuIcons: ; 8eac4
 	db ICON_BULBASAUR    ; BULBASAUR
@@ -66270,10 +66354,49 @@ MonMenuIcons: ; 8eac4
 	db ICON_LUGIA        ; LUGIA
 	db ICON_HO_OH        ; HO_OH
 	db ICON_HUMANSHAPE   ; CELEBI
-; 8ebbf
 
-INCBIN "baserom.gbc",$8ebbf,$8ec0d - $8ebbf
+IconPointers:
+	dw NullIcon
+	dw PoliwagIcon
+	dw JigglypuffIcon
+	dw DiglettIcon
+	dw PikachuIcon
+	dw StaryuIcon
+	dw FishIcon
+	dw BirdIcon
+	dw MonsterIcon
+	dw ClefairyIcon
+	dw OddishIcon
+	dw BugIcon
+	dw GhostIcon
+	dw LaprasIcon
+	dw HumanshapeIcon
+	dw FoxIcon
+	dw EquineIcon
+	dw ShellIcon
+	dw BlobIcon
+	dw SerpentIcon
+	dw VoltorbIcon
+	dw SquirtleIcon
+	dw BulbasaurIcon
+	dw CharmanderIcon
+	dw CaterpillarIcon
+	dw UnownIcon
+	dw GeodudeIcon
+	dw FighterIcon
+	dw EggIcon
+	dw JellyfishIcon
+	dw MothIcon
+	dw BatIcon
+	dw SnorlaxIcon
+	dw HoOhIcon
+	dw LugiaIcon
+	dw GyaradosIcon
+	dw SlowpokeIcon
+	dw SudowoodoIcon
+	dw BigmonIcon
 
+NullIcon:
 PoliwagIcon:      INCBIN "gfx/icon/poliwag.2bpp" ; 0x8ec0d
 JigglypuffIcon:   INCBIN "gfx/icon/jigglypuff.2bpp" ; 0x8ec8d
 DiglettIcon:      INCBIN "gfx/icon/diglett.2bpp" ; 0x8ed0d
@@ -66306,14 +66429,13 @@ JellyfishIcon:    INCBIN "gfx/icon/jellyfish.2bpp" ; 0x8fa0d
 MothIcon:         INCBIN "gfx/icon/moth.2bpp" ; 0x8fa8d
 BatIcon:          INCBIN "gfx/icon/bat.2bpp" ; 0x8fb0d
 SnorlaxIcon:      INCBIN "gfx/icon/snorlax.2bpp" ; 0x8fb8d
-Ho_ohIcon:        INCBIN "gfx/icon/ho_oh.2bpp" ; 0x8fc0d
+HoOhIcon:        INCBIN "gfx/icon/ho_oh.2bpp" ; 0x8fc0d
 LugiaIcon:        INCBIN "gfx/icon/lugia.2bpp" ; 0x8fc8d
 GyaradosIcon:     INCBIN "gfx/icon/gyarados.2bpp" ; 0x8fd0d
 SlowpokeIcon:     INCBIN "gfx/icon/slowpoke.2bpp" ; 0x8fd8d
 SudowoodoIcon:    INCBIN "gfx/icon/sudowoodo.2bpp" ; 0x8fe0d
 BigmonIcon:       INCBIN "gfx/icon/bigmon.2bpp" ; 0x8fe8d
 
-; 8ff0d end of bank
 
 SECTION "bank24",DATA,BANK[$24]
 
@@ -66721,10 +66843,8 @@ TownMapMon: ; 91f7b
 	ld [$d265], a
 	
 ; Get FlyMon icon
-	ld e, $8
-	ld a, $23
-	ld hl, $69ac
-	rst $8
+	ld e, 8 ; starting tile in VRAM
+	callba GetSpeciesIcon
 	
 ; Animation/palette
 	ld de, $0000
@@ -66733,10 +66853,10 @@ TownMapMon: ; 91f7b
 	
 	ld hl, 3
 	add hl, bc
-	ld [hl], $08
+	ld [hl], 8
 	ld hl, 2
 	add hl, bc
-	ld [hl], $00
+	ld [hl], 0
 	ret
 ; 91fa6
 
