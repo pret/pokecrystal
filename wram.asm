@@ -1,6 +1,22 @@
+SECTION "tiles0",VRAM[$8000]
+VTiles0:
+SECTION "tiles1",VRAM[$8800]
+VTiles1:
+SECTION "tiles2",VRAM[$9000]
+VTiles2:
+SECTION "bgmap0",VRAM[$9800]
+VBGMap0:
+SECTION "bgmap1",VRAM[$9C00]
+VBGMap1:
+
+
+; So far, WRAM banks 0 and 1 are included in this file.
+; Any bank 2-7 labels are in constants.asm.
+
+
 SECTION "stack",BSS[$c000]
 	ds 256
-Stack: ; c0ff
+Stack: ; c100
 
 
 SECTION "audio",BSS[$c100]
@@ -326,6 +342,10 @@ TilePermissions: ; c2fe
 ; bit 0: right
 	ds 1
 
+SECTION "icons",BSS[$c3b6]
+
+CurIcon: ; c3b6
+	ds 1
 
 SECTION "gfx",BSS[$c400]
 
