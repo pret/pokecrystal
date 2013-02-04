@@ -65437,7 +65437,28 @@ INCBIN "baserom.gbc", $8640b, $88000 - $8640b
 
 SECTION "bank22",DATA,BANK[$22]
 
-INCBIN "baserom.gbc",$88000,$896ff - $88000
+INCBIN "baserom.gbc",$88000,$8832c - $88000
+
+GetPlayerIcon: ; 8832c
+; Get the player icon corresponding to gender
+
+; Male
+	ld de, $4000 ; KrissMIcon
+	ld b, $30 ; BANK(KrissMIcon)
+	
+	ld a, [PlayerGender]
+	bit 0, a
+	jr z, .done
+	
+; Female
+	ld de, $7a40 ; KrissFIcon
+	ld b, $31 ; BANK(KrissFIcon)
+	
+.done
+	ret
+; 8833e
+
+INCBIN "baserom.gbc",$8833e,$896ff - $8833e
 
 ClearScreenArea: ; 0x896ff
 ; clears an area of the screen
@@ -66329,7 +66350,457 @@ PokegearSpritesGFX: ; 914dd
 INCBIN "gfx/misc/lz/pokegear_sprites.lz"
 ; 91507
 
-INCBIN "baserom.gbc", $91507, $93a31 - $91507
+INCBIN "baserom.gbc", $91507, $91bb5 - $91507
+
+TownMapBubble: ; 91bb5
+; Draw the bubble containing the location text in the town map HUD
+	
+; Top-left corner
+	ld hl, TileMap + 1 ; (1,0)
+	ld a, $30
+	ld [hli], a
+	
+; Top row
+	ld bc, 16
+	ld a, " "
+	call ByteFill
+	
+; Top-right corner
+	ld a, $31
+	ld [hl], a
+	ld hl, TileMap + 1 + 20 ; (1,1)
+	
+	
+; Middle row
+	ld bc, 18
+	ld a, " "
+	call ByteFill
+	
+	
+; Bottom-left corner
+	ld hl, TileMap + 1 + 40 ; (1,2)
+	ld a, $32
+	ld [hli], a
+	
+; Bottom row
+	ld bc, 16
+	ld a, " "
+	call ByteFill
+	
+; Bottom-right corner
+	ld a, $33
+	ld [hl], a
+	
+	
+; Print "Where?"
+	ld hl, TileMap + 2 ; (2,0)
+	ld de, .Where
+	call PlaceString
+	
+; Print the name of the default flypoint
+	call .Name
+	
+; Up/down arrows
+	ld hl, TileMap + 18 + 20 ; (18,1)
+	ld [hl], $34	
+	ret
+	
+.Where
+	db "Where?@"
+
+.Name
+; We need the map location of the default flypoint
+	ld a, [DefaultFlypoint]
+	ld l, a
+	ld h, 0
+	add hl, hl ; two bytes per flypoint
+	ld de, Flypoints
+	add hl, de
+	ld e, [hl]
+	
+	callba GetLandmarkName
+	
+	ld hl, TileMap + 2 + 20 ; (2,1)
+	ld de, StringBuffer1
+	call PlaceString
+	ret
+; 91c17
+
+INCBIN "baserom.gbc", $91c17, $91c50 - $91c17
+
+GetFlyPermission: ; 91c50
+; Return flypoint c permission flag in a
+	ld hl, FlypointPermissions
+	ld b, $2
+	ld d, $0
+	ld a, 3 ; PREDEF_GET_FLAG_NO
+	call Predef
+	ld a, c
+	ret
+; 91c5e
+
+Flypoints: ; 91c5e
+; location id, blackout id
+
+; Johto
+	db 01, 14 ; New Bark Town
+	db 03, 15 ; Cherrygrove City
+	db 06, 16 ; Violet City
+	db 12, 18 ; Azalea Town
+	db 16, 20 ; Goldenrod City
+	db 22, 22 ; Ecruteak City
+	db 27, 21 ; Olivine City
+	db 33, 19 ; Cianwood City
+	db 36, 23 ; Mahogany Town
+	db 38, 24 ; Lake of Rage
+	db 41, 25 ; Blackthorn City
+	db 46, 26 ; Silver Cave
+	
+; Kanto
+	db 47, 02 ; Pallet Town
+	db 49, 03 ; Viridian City
+	db 51, 04 ; Pewter City
+	db 55, 05 ; Cerulean City
+	db 61, 07 ; Vermilion City
+	db 66, 06 ; Rock Tunnel
+	db 69, 08 ; Lavender Town
+	db 71, 10 ; Celadon City
+	db 72, 09 ; Saffron City
+	db 81, 11 ; Fuchsia City
+	db 85, 12 ; Cinnabar Island
+	db 90, 13 ; Indigo Plateau
+	
+; 91c8e
+
+INCBIN "baserom.gbc", $91c8e, $91c90 - $91c8e
+
+FlyMap: ; 91c90
+	
+	ld a, [MapGroup]
+	ld b, a
+	ld a, [MapNumber]
+	ld c, a
+	call GetWorldMapLocation
+	
+; If we're not in a valid location, i.e. Pokecenter floor 2F,
+; the backup map information is used
+	
+	cp 0
+	jr nz, .CheckRegion
+	
+	ld a, [BackupMapGroup]
+	ld b, a
+	ld a, [BackupMapNumber]
+	ld c, a
+	call GetWorldMapLocation
+	
+.CheckRegion
+; The first 46 locations are part of Johto. The rest are in Kanto
+	cp 47
+	jr nc, .KantoFlyMap
+	
+.JohtoFlyMap
+; Note that .NoKanto should be modified in tandem with this branch
+	
+	push af
+	
+; Start from New Bark Town
+	ld a, 0
+	ld [DefaultFlypoint], a
+	
+; Flypoints begin at New Bark Town...
+	ld [StartFlypoint], a
+; ..and end at Silver Cave
+	ld a, $b
+	ld [EndFlypoint], a
+	
+; Fill out the map
+	call FillJohtoMap
+	call .MapHud
+	pop af
+	call TownMapPlayerIcon
+	ret
+	
+.KantoFlyMap
+	
+; The event that there are no flypoints enabled in a map is not
+; accounted for. As a result, if you attempt to select a flypoint
+; when there are none enabled, the game will crash. Additionally,
+; the flypoint selection has a default starting point that
+; can be flown to even if none are enabled
+	
+; To prevent both of these things from happening when the player
+; enters Kanto, fly access is restricted until Indigo Plateau is
+; visited and its flypoint enabled
+	
+	push af
+	ld c, $d ; Indigo Plateau
+	call GetFlyPermission
+	and a
+	jr z, .NoKanto
+	
+; Kanto's map is only loaded if we've visited Indigo Plateau
+	
+; Flypoints begin at Pallet Town...
+	ld a, $c
+	ld [StartFlypoint], a
+; ...and end at Indigo Plateau
+	ld a, $17
+	ld [EndFlypoint], a
+	
+; Because Indigo Plateau is the first flypoint the player
+; visits, it's made the default flypoint
+	ld [DefaultFlypoint], a
+	
+; Fill out the map
+	call FillKantoMap
+	call .MapHud
+	pop af
+	call TownMapPlayerIcon
+	ret
+	
+.NoKanto
+; If Indigo Plateau hasn't been visited, we use Johto's map instead
+	
+; Start from New Bark Town
+	ld a, 0
+	ld [DefaultFlypoint], a
+	
+; Flypoints begin at New Bark Town...
+	ld [StartFlypoint], a
+; ..and end at Silver Cave
+	ld a, $b
+	ld [EndFlypoint], a
+	
+	call FillJohtoMap
+	
+	pop af
+	
+.MapHud
+	call TownMapBubble
+	call TownMapPals
+	
+	ld hl, $9800 ; BG Map 0
+	call TownMapBGUpdate
+	
+	call TownMapMon
+	ld a, c
+	ld [$d003], a
+	ld a, b
+	ld [$d004], a
+	ret
+; 91d11
+
+INCBIN "baserom.gbc", $91d11, $91ee4 - $91d11
+
+TownMapBGUpdate: ; 91ee4
+; Update BG Map tiles and attributes
+
+; BG Map address
+	ld a, l
+	ld [$ffd6], a
+	ld a, h
+	ld [$ffd7], a
+	
+; Only update palettes on CGB
+	ld a, [$ffe6]
+	and a
+	jr z, .tiles
+	
+; BG Map mode 2 (palettes)
+	ld a, 2
+	ld [$ffd4], a
+	
+; The BG Map is updated in thirds, so we wait
+; 3 frames to update the whole screen's palettes.
+	ld c, 3
+	call DelayFrames
+	
+.tiles
+; Update BG Map tiles
+	call WaitBGMap
+	
+; Turn off BG Map update
+	xor a
+	ld [$ffd4], a
+	ret
+; 91eff
+
+FillJohtoMap: ; 91eff
+	ld de, JohtoMap
+	jr FillTownMap
+	
+FillKantoMap: ; 91f04
+	ld de, KantoMap
+	
+FillTownMap: ; 91f07
+	ld hl, TileMap
+.loop
+	ld a, [de]
+	cp $ff
+	ret z
+	ld a, [de]
+	ld [hli], a
+	inc de
+	jr .loop
+; 91f13
+
+TownMapPals: ; 91f13
+; Assign palettes based on tile ids
+
+	ld hl, TileMap
+	ld de, AttrMap
+	ld bc, 360
+.loop
+; Current tile
+	ld a, [hli]
+	push hl
+	
+; HP/borders use palette 0
+	cp $60
+	jr nc, .pal0
+	
+; The palette data is condensed to nybbles,
+; least-significant first.
+	ld hl, .Pals
+	srl a
+	jr c, .odd
+	
+; Even-numbered tile ids take the bottom nybble...
+	add l
+	ld l, a
+	ld a, h
+	adc 0
+	ld h, a
+	ld a, [hl]
+	and %111
+	jr .update
+	
+.odd
+; ...and odd ids take the top.
+	add l
+	ld l, a
+	ld a, h
+	adc 0
+	ld h, a
+	ld a, [hl]
+	swap a
+	and %111
+	jr .update
+	
+.pal0
+	xor a
+	
+.update
+	pop hl
+	ld [de], a
+	inc de
+	dec bc
+	ld a, b
+	or c
+	jr nz, .loop
+	ret
+
+.Pals
+	db $11, $21, $22, $00, $11, $13, $54, $54, $11, $21, $22, $00
+	db $11, $10, $01, $00, $11, $21, $22, $00, $00, $00, $00, $00
+	db $00, $00, $44, $04, $00, $00, $00, $00, $33, $33, $33, $33
+	db $33, $33, $33, $03, $33, $33, $33, $33, $00, $00, $00, $00
+; 91f7b
+
+TownMapMon: ; 91f7b
+; Draw the FlyMon icon at town map location in 
+
+; Get FlyMon species
+	ld a, [CurPartyMon]
+	ld hl, PartySpecies
+	ld e, a
+	ld d, $0
+	add hl, de
+	ld a, [hl]
+	ld [$d265], a
+	
+; Get FlyMon icon
+	ld e, $8
+	ld a, $23
+	ld hl, $69ac
+	rst $8
+	
+; Animation/palette
+	ld de, $0000
+	ld a, $0
+	call $3b2a
+	
+	ld hl, 3
+	add hl, bc
+	ld [hl], $08
+	ld hl, 2
+	add hl, bc
+	ld [hl], $00
+	ret
+; 91fa6
+
+TownMapPlayerIcon: ; 91fa6
+; Draw the player icon at town map location in a
+	push af
+	
+	callba GetPlayerIcon
+	
+; Standing icon
+	ld hl, $8100
+	ld c, 4 ; # tiles
+	call $eba
+	
+; Walking icon
+	ld hl, $00c0
+	add hl, de
+	ld d, h
+	ld e, l
+	ld hl, $8140
+	ld c, 4 ; # tiles
+	ld a, $30
+	call $eba
+	
+; Animation/palette
+	ld de, $0000
+	ld b, $0a ; Male
+	ld a, [PlayerGender]
+	bit 0, a
+	jr z, .asm_91fd3
+	ld b, $1e ; Female
+	
+.asm_91fd3
+	ld a, b
+	call $3b2a
+	
+	ld hl, $0003
+	add hl, bc
+	ld [hl], $10
+	
+	pop af
+	ld e, a
+	push bc
+	callba GetLandmarkCoords
+	pop bc
+	
+	ld hl, 4
+	add hl, bc
+	ld [hl], e
+	ld hl, 5
+	add hl, bc
+	ld [hl], d
+	ret
+; 0x91ff2
+
+INCBIN "baserom.gbc", $91ff2, $91fff - $91ff2
+
+JohtoMap:
+INCBIN "baserom.gbc", $91fff, $92168 - $91fff
+
+KantoMap:
+INCBIN "baserom.gbc", $92168, $922d1 - $92168
+
+INCBIN "baserom.gbc", $922d1, $93a31 - $922d1
 
 
 SECTION "bank25",DATA,BANK[$25]

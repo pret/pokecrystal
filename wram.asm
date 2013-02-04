@@ -728,11 +728,23 @@ Options2: ; cfd1
 ; bit 1: menu account off/on
 	ds 1
 
-	ds 47
+	ds 46
 	
 ; d000
-
-	ds 114
+	ds 2
+	
+DefaultFlypoint: ; d002
+	ds 1
+; d003
+	ds 1
+; d004
+	ds 1
+StartFlypoint: ; d005
+	ds 1
+EndFlypoint: ; d006
+	ds 1
+	
+	ds 108
 
 StringBuffer1: ; d073
 	ds 19
@@ -1071,7 +1083,13 @@ OTPartyMon6Nickname: ; d421
 	ds 11
 
 
-SECTION "Player",BSS[$d47b]
+SECTION "Player",BSS[$d472]
+PlayerGender: ; d472
+; bit 0:
+;	0 male
+;	1 female
+	ds 1
+	ds 8
 PlayerID: ; d47b
 	ds 2
 PlayerName: ; d47d
@@ -1228,6 +1246,11 @@ Box13Name: ; dc31
 	ds 9
 Box14Name: ; dc3a
 	ds 9
+
+
+SECTION "FlypointPermissions", BSS[$dca5]
+FlypointPermissions: ; dca5
+	ds 4
 
 SECTION "BackupMapInfo", BSS[$dcad]
 
