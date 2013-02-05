@@ -1,3 +1,13 @@
+; See song sections in main.asm:
+; 	Songs i
+; 	Songs ii
+; 	Songs iii
+; 	Songs I
+; 	Songs II
+; 	Songs III
+; 	Songs IV
+; 	Songs V
+
 ; e906e
 	dbw BANK(Music_Nothing), Music_Nothing ; 0xe91a3
 	dbw BANK(Music_TitleScreen), Music_TitleScreen ; 0xeb808
@@ -5,9 +15,9 @@
 	dbw BANK(Music_Route3), Music_Route3 ; 0xec2ca
 	dbw BANK(Music_Route12), Music_Route12 ; 0xec506
 	dbw BANK(Music_MagnetTrain), Music_MagnetTrain ; 0xef5f0
-	dbw BANK(Music_KantoGymLeaderBattle), Music_KantoGymLeaderBattle ; 0xec720
+	dbw BANK(Music_KantoGymBattle), Music_KantoGymBattle ; 0xec720
 	dbw BANK(Music_KantoTrainerBattle), Music_KantoTrainerBattle ; 0xec9fa
-	dbw BANK(Music_KantoWildPokemonBattle), Music_KantoWildPokemonBattle ; 0xed06d
+	dbw BANK(Music_KantoWildBattle), Music_KantoWildBattle ; 0xed06d
 	dbw BANK(Music_PokemonCenter), Music_PokemonCenter ; 0xed5c6
 	dbw BANK(Music_LookHiker), Music_LookHiker ; 0xf7411
 	dbw BANK(Music_LookLass), Music_LookLass ; 0xed79b
@@ -40,12 +50,12 @@
 	dbw BANK(Music_CherrygroveCity), Music_CherrygroveCity ; 0xf5b03
 	dbw BANK(Music_LookKimonoGirl), Music_LookKimonoGirl ; 0xf79b8
 	dbw BANK(Music_UnionCave), Music_UnionCave ; 0xf5c60
-	dbw BANK(Music_JohtoWildPokemonBattle), Music_JohtoWildPokemonBattle ; 0xf5dc5
+	dbw BANK(Music_JohtoWildBattle), Music_JohtoWildBattle ; 0xf5dc5
 	dbw BANK(Music_JohtoTrainerBattle), Music_JohtoTrainerBattle ; 0xf6096
 	dbw BANK(Music_Route30), Music_Route30 ; 0xefc01
 	dbw BANK(Music_EcruteakCity), Music_EcruteakCity ; 0xef2d0
 	dbw BANK(Music_VioletCity), Music_VioletCity ; 0xf0000
-	dbw BANK(Music_JohtoGymLeaderBattle), Music_JohtoGymLeaderBattle ; 0xea50d
+	dbw BANK(Music_JohtoGymBattle), Music_JohtoGymBattle ; 0xea50d
 	dbw BANK(Music_ChampionBattle), Music_ChampionBattle ; 0xea9c1
 	dbw BANK(Music_RivalBattle), Music_RivalBattle ; 0xe974f
 	dbw BANK(Music_RocketBattle), Music_RocketBattle ; 0xe9b6f
@@ -73,8 +83,8 @@
 	dbw BANK(Music_Route37), Music_Route37 ; 0xee94b
 	dbw BANK(Music_RocketHideout), Music_RocketHideout ; 0xeeb75
 	dbw BANK(Music_DragonsDen), Music_DragonsDen ; 0xeece8
-	dbw BANK(Music_JohtoWildPokemonBattleNight), Music_JohtoWildPokemonBattleNight ; 0xf605c
-	dbw BANK(Music_RuinsOfAlphRadioSignal), Music_RuinsOfAlphRadioSignal ; 0xeedcb
+	dbw BANK(Music_JohtoWildBattleNight), Music_JohtoWildBattleNight ; 0xf605c
+	dbw BANK(Music_RuinsOfAlphRadio), Music_RuinsOfAlphRadio ; 0xeedcb
 	dbw BANK(Music_SuccessfulCapture), Music_SuccessfulCapture ; 0xf4602
 	dbw BANK(Music_Route26), Music_Route26 ; 0xeefb2
 	dbw BANK(Music_Mom), Music_Mom ; 0xf6bf2
@@ -87,9 +97,9 @@
 	dbw BANK(Music_RuinsOfAlphInterior), Music_RuinsOfAlphInterior ; 0xebd9e
 	dbw BANK(Music_RocketTheme), Music_RocketTheme ; 0xf766d
 	dbw BANK(Music_DancingHall), Music_DancingHall ; 0xef9bc
-	dbw BANK(Music_BugCatchingContestResults), Music_BugCatchingContestResults ; 0xefb3e
+	dbw BANK(Music_ContestResults), Music_ContestResults ; 0xefb3e
 	dbw BANK(Music_BugCatchingContest), Music_BugCatchingContest ; 0xf7c16
-	dbw BANK(Music_LakeOfRageRocketsRadioSignal), Music_LakeOfRageRocketsRadioSignal ; 0xef5b1
+	dbw BANK(Music_LakeOfRageRocketRadio), Music_LakeOfRageRocketRadio ; 0xef5b1
 	dbw BANK(Music_Printer), Music_Printer ; 0xf07fd
 	dbw BANK(Music_PostCredits), Music_PostCredits ; 0xcfd9e
 	

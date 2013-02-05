@@ -5016,17 +5016,11 @@ INCBIN "gfx/tilesets/lz/24.lz"
 
 INCBIN "baserom.gbc", $1ee0e, $1f31c - $1ee0e
 
-Music_Credits: ; 0x1f31c
-INCLUDE "music/credits.asm"
-; 0x1fa8d
+;                           Songs i
 
-Music_Clair: ; 0x1fa8d
-INCLUDE "music/clair.asm"
-; 0x1fc87
-
-Music_MobileAdapter: ; 0x1fc87
-INCLUDE "music/mobileadapter.asm"
-; 0x1ff6c
+Music_Credits:       INCLUDE "music/credits.asm"
+Music_Clair:         INCLUDE "music/clair.asm"
+Music_MobileAdapter: INCLUDE "music/mobileadapter.asm"
 
 INCBIN "baserom.gbc",$1ff6c, $20000 - $1ff6c
 
@@ -66486,9 +66480,9 @@ SECTION "bank33",DATA,BANK[$33]
 
 INCBIN "baserom.gbc",$cc000, $cfd9e - $cc000
 
-Music_PostCredits: ; 0xcfd9e
-INCLUDE "music/postcredits.asm"
-; 0xcff04
+;                          Songs iii
+
+Music_PostCredits: INCLUDE "music/postcredits.asm"
 
 INCBIN "baserom.gbc",$cff04, $d0000 - $cff04
 
@@ -66791,7 +66785,7 @@ Music_RivalBattle:          INCLUDE "music/rivalbattle.asm"
 Music_RocketBattle:         INCLUDE "music/rocketbattle.asm"
 Music_ElmsLab:              INCLUDE "music/elmslab.asm"
 Music_DarkCave:             INCLUDE "music/darkcave.asm"
-Music_JohtoGymLeaderBattle: INCLUDE "music/johtogymleaderbattle.asm"
+Music_JohtoGymBattle:       INCLUDE "music/johtogymleaderbattle.asm"
 Music_ChampionBattle:       INCLUDE "music/championbattle.asm"
 Music_SSAqua:               INCLUDE "music/ssaqua.asm"
 Music_NewBarkTown:          INCLUDE "music/newbarktown.asm"
@@ -66805,316 +66799,96 @@ Music_TrainerVictory:       INCLUDE "music/trainervictory.asm"
 
 SECTION "bank3B",DATA,BANK[$3B]
 
-Music_Route1: ; 0xec000
-INCLUDE "music/route1.asm"
-; 0xec2ca
+;                           Songs II
 
-Music_Route3: ; 0xec2ca
-INCLUDE "music/route3.asm"
-; 0xec506
-
-Music_Route12: ; 0xec506
-INCLUDE "music/route12.asm"
-; 0xec720
-
-Music_KantoGymLeaderBattle: ; 0xec720
-INCLUDE "music/kantogymleaderbattle.asm"
-; 0xec9fa
-
-Music_KantoTrainerBattle: ; 0xec9fa
-INCLUDE "music/kantotrainerbattle.asm"
-; 0xed06d
-
-Music_KantoWildPokemonBattle: ; 0xed06d
-INCLUDE "music/kantowildpokemonbattle.asm"
-; 0xed5c6
-
-Music_PokemonCenter: ; 0xed5c6
-INCLUDE "music/pokemoncenter.asm"
-; 0xed79b
-
-Music_LookLass: ; 0xed79b
-INCLUDE "music/looklass.asm"
-; 0xed82d
-
-Music_LookOfficer: ; 0xed82d
-INCLUDE "music/lookofficer.asm"
-; 0xed8dd
-
-Music_Route2: ; 0xed8dd
-INCLUDE "music/route2.asm"
-; 0xedb29
-
-Music_MtMoon: ; 0xedb29
-INCLUDE "music/mtmoon.asm"
-; 0xedbd8
-
-Music_ShowMeAround: ; 0xedbd8
-INCLUDE "music/showmearound.asm"
-; 0xedd6d
-
-Music_GameCorner: ; 0xedd6d
-INCLUDE "music/gamecorner.asm"
-; 0xee119
-
-Music_Bicycle: ; 0xee119
-INCLUDE "music/bicycle.asm"
-; 0xee35e
-
-Music_LookSage: ; 0xee35e
-INCLUDE "music/looksage.asm"
-; 0xee45f
-
-Music_PokemonChannel: ; 0xee45f
-INCLUDE "music/pokemonchannel.asm"
-; 0xee569
-
-Music_Lighthouse: ; 0xee569
-INCLUDE "music/lighthouse.asm"
-; 0xee6c5
-
-Music_LakeOfRage: ; 0xee6c5
-INCLUDE "music/lakeofrage.asm"
-; 0xee852
-
-Music_IndigoPlateau: ; 0xee852
-INCLUDE "music/indigoplateau.asm"
-; 0xee94b
-
-Music_Route37: ; 0xee94b
-INCLUDE "music/route37.asm"
-; 0xeeb75
-
-Music_RocketHideout: ; 0xeeb75
-INCLUDE "music/rockethideout.asm"
-; 0xeece8
-
-Music_DragonsDen: ; 0xeece8
-INCLUDE "music/dragonsden.asm"
-; 0xeedcb
-
-Music_RuinsOfAlphRadioSignal: ; 0xeedcb
-INCLUDE "music/ruinsofalphradiosignal.asm"
-; 0xeee3e
-
-Music_LookBeauty: ; 0xeee3e
-INCLUDE "music/lookbeauty.asm"
-; 0xeefb2
-
-Music_Route26: ; 0xeefb2
-INCLUDE "music/route26.asm"
-; 0xef2d0
-
-Music_EcruteakCity: ; 0xef2d0
-INCLUDE "music/ecruteakcity.asm"
-; 0xef5b1
-
-Music_LakeOfRageRocketsRadioSignal: ; 0xef5b1
-INCLUDE "music/lakeofragerocketsradiosignal.asm"
-; 0xef5f0
-
-Music_MagnetTrain: ; 0xef5f0
-INCLUDE "music/magnettrain.asm"
-; 0xef72f
-
-Music_LavenderTown: ; 0xef72f
-INCLUDE "music/lavendertown.asm"
-; 0xef9bc
-
-Music_DancingHall: ; 0xef9bc
-INCLUDE "music/dancinghall.asm"
-; 0xefb3e
-
-Music_BugCatchingContestResults: ; 0xefb3e
-INCLUDE "music/bugcatchingcontestresults.asm"
-; 0xefc01
-
-Music_Route30: ; 0xefc01
-INCLUDE "music/route30.asm"
-; 0xefef5
-
+Music_Route1:               INCLUDE "music/route1.asm"
+Music_Route3:               INCLUDE "music/route3.asm"
+Music_Route12:              INCLUDE "music/route12.asm"
+Music_KantoGymBattle:       INCLUDE "music/kantogymleaderbattle.asm"
+Music_KantoTrainerBattle:   INCLUDE "music/kantotrainerbattle.asm"
+Music_KantoWildBattle:      INCLUDE "music/kantowildpokemonbattle.asm"
+Music_PokemonCenter:        INCLUDE "music/pokemoncenter.asm"
+Music_LookLass:             INCLUDE "music/looklass.asm"
+Music_LookOfficer:          INCLUDE "music/lookofficer.asm"
+Music_Route2:               INCLUDE "music/route2.asm"
+Music_MtMoon:               INCLUDE "music/mtmoon.asm"
+Music_ShowMeAround:         INCLUDE "music/showmearound.asm"
+Music_GameCorner:           INCLUDE "music/gamecorner.asm"
+Music_Bicycle:              INCLUDE "music/bicycle.asm"
+Music_LookSage:             INCLUDE "music/looksage.asm"
+Music_PokemonChannel:       INCLUDE "music/pokemonchannel.asm"
+Music_Lighthouse:           INCLUDE "music/lighthouse.asm"
+Music_LakeOfRage:           INCLUDE "music/lakeofrage.asm"
+Music_IndigoPlateau:        INCLUDE "music/indigoplateau.asm"
+Music_Route37:              INCLUDE "music/route37.asm"
+Music_RocketHideout:        INCLUDE "music/rockethideout.asm"
+Music_DragonsDen:           INCLUDE "music/dragonsden.asm"
+Music_RuinsOfAlphRadio:     INCLUDE "music/ruinsofalphradiosignal.asm"
+Music_LookBeauty:           INCLUDE "music/lookbeauty.asm"
+Music_Route26:              INCLUDE "music/route26.asm"
+Music_EcruteakCity:         INCLUDE "music/ecruteakcity.asm"
+Music_LakeOfRageRocketRadio:INCLUDE "music/lakeofragerocketsradiosignal.asm"
+Music_MagnetTrain:          INCLUDE "music/magnettrain.asm"
+Music_LavenderTown:         INCLUDE "music/lavendertown.asm"
+Music_DancingHall:          INCLUDE "music/dancinghall.asm"
+Music_ContestResults:       INCLUDE "music/bugcatchingcontestresults.asm"
+Music_Route30:              INCLUDE "music/route30.asm"
 
 SECTION "bank3C",DATA,BANK[$3C]
 
-Music_VioletCity: ; 0xf0000
-INCLUDE "music/violetcity.asm"
-; 0xf0386
+;                          Songs III
 
-Music_Route29: ; 0xf0386
-INCLUDE "music/route29.asm"
-; 0xf05bf
-
-Music_HallOfFame: ; 0xf05bf
-INCLUDE "music/halloffame.asm"
-; 0xf0697
-
-Music_HealPokemon: ; 0xf0697
-INCLUDE "music/healpokemon.asm"
-; 0xf06e1
-
-Music_Evolution: ; 0xf06e1
-INCLUDE "music/evolution.asm"
-; 0xf07fd
-
-Music_Printer: ; 0xf07fd
-INCLUDE "music/printer.asm"
-; 0xf0941
+Music_VioletCity:           INCLUDE "music/violetcity.asm"
+Music_Route29:              INCLUDE "music/route29.asm"
+Music_HallOfFame:           INCLUDE "music/halloffame.asm"
+Music_HealPokemon:          INCLUDE "music/healpokemon.asm"
+Music_Evolution:            INCLUDE "music/evolution.asm"
+Music_Printer:              INCLUDE "music/printer.asm"
 
 INCBIN "baserom.gbc", $f0941, $f3fb6 - $f0941
 
 
 SECTION "bank3D",DATA,BANK[$3D]
 
-Music_ViridianCity: ; 0xf4000
-INCLUDE "music/viridiancity.asm"
-; 0xf435b
+;                           Songs IV
 
-Music_CeladonCity: ; 0xf435b
-INCLUDE "music/celadoncity.asm"
-; 0xf4518
-
-Music_WildPokemonVictory: ; 0xf4518
-INCLUDE "music/wildpokemonvictory.asm"
-; 0xf4602
-
-Music_SuccessfulCapture: ; 0xf4602
-INCLUDE "music/successfulcapture.asm"
-; 0xf462c
-
-Music_GymLeaderVictory: ; 0xf462c
-INCLUDE "music/gymleadervictory.asm"
-; 0xf4815
-
-Music_MtMoonSquare: ; 0xf4815
-INCLUDE "music/mtmoonsquare.asm"
-; 0xf48ae
-
-Music_Gym: ; 0xf48ae
-INCLUDE "music/gym.asm"
-; 0xf4b0c
-
-Music_PalletTown: ; 0xf4b0c
-INCLUDE "music/pallettown.asm"
-; 0xf4c9f
-
-Music_ProfOaksPokemonTalk: ; 0xf4c9f
-INCLUDE "music/profoakspokemontalk.asm"
-; 0xf4dea
-
-Music_ProfOak: ; 0xf4dea
-INCLUDE "music/profoak.asm"
-; 0xf4f79
-
-Music_LookRival: ; 0xf4f79
-INCLUDE "music/lookrival.asm"
-; 0xf5127
-
-Music_AfterTheRivalFight: ; 0xf5127
-INCLUDE "music/aftertherivalfight.asm"
-; 0xf518a
-
-Music_Surf: ; 0xf518a
-INCLUDE "music/surf.asm"
-; 0xf54e8
-
-Music_NationalPark: ; 0xf54e8
-INCLUDE "music/nationalpark.asm"
-; 0xf57e8
-
-Music_AzaleaTown: ; 0xf57e8
-INCLUDE "music/azaleatown.asm"
-; 0xf5b03
-
-Music_CherrygroveCity: ; 0xf5b03
-INCLUDE "music/cherrygrovecity.asm"
-; 0xf5c60
-
-Music_UnionCave: ; 0xf5c60
-INCLUDE "music/unioncave.asm"
-; 0xf5dc5
-
-Music_JohtoWildPokemonBattle: ; 0xf5dc5
-INCLUDE "music/johtowildpokemonbattle.asm"
-; 0xf605c
-
-Music_JohtoWildPokemonBattleNight: ; 0xf605c
-INCLUDE "music/johtowildpokemonbattlenight.asm"
-; 0xf6096
-
-Music_JohtoTrainerBattle: ; 0xf6096
-INCLUDE "music/johtotrainerbattle.asm"
-; 0xf66c3
-
-Music_LookYoungster: ; 0xf66c3
-INCLUDE "music/lookyoungster.asm"
-; 0xf6811
-
-Music_TinTower: ; 0xf6811
-INCLUDE "music/tintower.asm"
-; 0xf6974
-
-Music_SproutTower: ; 0xf6974
-INCLUDE "music/sprouttower.asm"
-; 0xf6a99
-
-Music_BurnedTower: ; 0xf6a99
-INCLUDE "music/burnedtower.asm"
-; 0xf6bf2
-
-Music_Mom: ; 0xf6bf2
-INCLUDE "music/mom.asm"
-; 0xf6c72
-
-Music_VictoryRoad: ; 0xf6c72
-INCLUDE "music/victoryroad.asm"
-; 0xf6d79
-
-Music_PokemonLullaby: ; 0xf6d79
-INCLUDE "music/pokemonlullaby.asm"
-; 0xf6e23
-
-Music_PokemonMarch: ; 0xf6e23
-INCLUDE "music/pokemonmarch.asm"
-; 0xf7055
-
-Music_GoldSilverOpening: ; 0xf7055
-INCLUDE "music/goldsilveropening.asm"
-; 0xf7308
-
-Music_GoldSilverOpening2: ; 0xf7308
-INCLUDE "music/goldsilveropening2.asm"
-; 0xf7411
-
-Music_LookHiker: ; 0xf7411
-INCLUDE "music/lookhiker.asm"
-; 0xf74a2
-
-Music_LookRocket: ; 0xf74a2
-; RocketTheme borrows heavily from this song
-INCLUDE "music/lookrocket.asm"
-; 0xf766d
-
-Music_RocketTheme: ; 0xf766d
-; borrows heavily from LookRocket
-INCLUDE "music/rockettheme.asm"
-; 0xf78fd
-
-Music_MainMenu: ; 0xf78fd
-INCLUDE "music/mainmenu.asm"
-; 0xf79b8
-
-Music_LookKimonoGirl: ; 0xf79b8
-INCLUDE "music/lookkimonogirl.asm"
-; 0xf7b13
-
-Music_PokeFluteChannel: ; 0xf7b13
-INCLUDE "music/pokeflutechannel.asm"
-; 0xf7c16
-
-Music_BugCatchingContest: ; 0xf7c16
-INCLUDE "music/bugcatchingcontest.asm"
-; 0xf7ef3
-
+Music_ViridianCity:         INCLUDE "music/viridiancity.asm"
+Music_CeladonCity:          INCLUDE "music/celadoncity.asm"
+Music_WildPokemonVictory:   INCLUDE "music/wildpokemonvictory.asm"
+Music_SuccessfulCapture:    INCLUDE "music/successfulcapture.asm"
+Music_GymLeaderVictory:     INCLUDE "music/gymleadervictory.asm"
+Music_MtMoonSquare:         INCLUDE "music/mtmoonsquare.asm"
+Music_Gym:                  INCLUDE "music/gym.asm"
+Music_PalletTown:           INCLUDE "music/pallettown.asm"
+Music_ProfOaksPokemonTalk:  INCLUDE "music/profoakspokemontalk.asm"
+Music_ProfOak:              INCLUDE "music/profoak.asm"
+Music_LookRival:            INCLUDE "music/lookrival.asm"
+Music_AfterTheRivalFight:   INCLUDE "music/aftertherivalfight.asm"
+Music_Surf:                 INCLUDE "music/surf.asm"
+Music_NationalPark:         INCLUDE "music/nationalpark.asm"
+Music_AzaleaTown:           INCLUDE "music/azaleatown.asm"
+Music_CherrygroveCity:      INCLUDE "music/cherrygrovecity.asm"
+Music_UnionCave:            INCLUDE "music/unioncave.asm"
+Music_JohtoWildBattle:      INCLUDE "music/johtowildpokemonbattle.asm"
+Music_JohtoWildBattleNight: INCLUDE "music/johtowildpokemonbattlenight.asm"
+Music_JohtoTrainerBattle:   INCLUDE "music/johtotrainerbattle.asm"
+Music_LookYoungster:        INCLUDE "music/lookyoungster.asm"
+Music_TinTower:             INCLUDE "music/tintower.asm"
+Music_SproutTower:          INCLUDE "music/sprouttower.asm"
+Music_BurnedTower:          INCLUDE "music/burnedtower.asm"
+Music_Mom:                  INCLUDE "music/mom.asm"
+Music_VictoryRoad:          INCLUDE "music/victoryroad.asm"
+Music_PokemonLullaby:       INCLUDE "music/pokemonlullaby.asm"
+Music_PokemonMarch:         INCLUDE "music/pokemonmarch.asm"
+Music_GoldSilverOpening:    INCLUDE "music/goldsilveropening.asm"
+Music_GoldSilverOpening2:   INCLUDE "music/goldsilveropening2.asm"
+Music_LookHiker:            INCLUDE "music/lookhiker.asm"
+Music_LookRocket:           INCLUDE "music/lookrocket.asm"
+Music_RocketTheme:          INCLUDE "music/rockettheme.asm"
+Music_MainMenu:             INCLUDE "music/mainmenu.asm"
+Music_LookKimonoGirl:       INCLUDE "music/lookkimonogirl.asm"
+Music_PokeFluteChannel:     INCLUDE "music/pokeflutechannel.asm"
+Music_BugCatchingContest:   INCLUDE "music/bugcatchingcontest.asm"
 
 SECTION "bank3E",DATA,BANK[$3E]
 
@@ -69665,37 +69439,16 @@ SECTION "bank5E",DATA,BANK[$5E]
 
 INCBIN "baserom.gbc", $178000, $1f
 
-Music_MobileAdapterMenu: ; 0x17801f
-INCLUDE "music/mobileadaptermenu.asm"
-; 0x178153
+;                          Songs V
 
-Music_BuenasPassword: ; 0x178153
-INCLUDE "music/buenaspassword.asm"
-; 0x17843b
-
-Music_LookMysticalMan: ; 0x17843b
-INCLUDE "music/lookmysticalman.asm"
-; 0x1786e8
-
-Music_CrystalOpening: ; 0x1786e8
-INCLUDE "music/crystalopening.asm"
-; 0x178889
-
-Music_BattleTowerTheme: ; 0x178889
-INCLUDE "music/battletowertheme.asm"
-; 0x178b81
-
-Music_SuicuneBattle: ; 0x178b81
-INCLUDE "music/suicunebattle.asm"
-; 0x17948b
-
-Music_BattleTowerLobby: ; 0x17948b
-INCLUDE "music/battletowerlobby.asm"
-; 0x17961d
-
-Music_MobileCenter: ; 0x17961d
-INCLUDE "music/mobilecenter.asm"
-; 0x17982d
+Music_MobileAdapterMenu: INCLUDE "music/mobileadaptermenu.asm"
+Music_BuenasPassword:    INCLUDE "music/buenaspassword.asm"
+Music_LookMysticalMan:   INCLUDE "music/lookmysticalman.asm"
+Music_CrystalOpening:    INCLUDE "music/crystalopening.asm"
+Music_BattleTowerTheme:  INCLUDE "music/battletowertheme.asm"
+Music_SuicuneBattle:     INCLUDE "music/suicunebattle.asm"
+Music_BattleTowerLobby:  INCLUDE "music/battletowerlobby.asm"
+Music_MobileCenter:      INCLUDE "music/mobilecenter.asm"
 
 INCBIN "baserom.gbc",$17982d, $1799ef - $17982d
 
