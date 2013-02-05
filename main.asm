@@ -4296,6 +4296,7 @@ SFXChannelsOff: ; 3e21
 
 INCBIN "baserom.gbc",$3e32,$3fb5 - $3e32
 
+
 SECTION "bank1",DATA,BANK[$1]
 
 INCBIN "baserom.gbc",$4000,$617c - $4000
@@ -4418,6 +4419,7 @@ DrawGraphic: ; 6eef
 ; 6f07
 
 INCBIN "baserom.gbc",$6f07,$8000 - $6f07
+
 
 SECTION "bank2",DATA,BANK[$2]
 
@@ -4619,6 +4621,7 @@ SGBBorder:
 INCBIN "gfx/misc/sgb_border.2bpp"
 
 INCBIN "baserom.gbc",$a8be,$c000 - $a8be
+
 
 SECTION "bank3",DATA,BANK[$3]
 
@@ -5183,6 +5186,7 @@ AskSurfText: ; ca36
 
 INCBIN "baserom.gbc",$ca3b,$10000 - $ca3b
 
+
 SECTION "bank4",DATA,BANK[$4]
 
 INCBIN "baserom.gbc",$10000,$10b16 - $10000
@@ -5694,6 +5698,7 @@ TrainerClassDVs ; 270d6
 
 INCBIN "baserom.gbc",$2715c,$28000 - $2715c
 
+
 SECTION "bankA",DATA,BANK[$A]
 
 INCBIN "baserom.gbc",$28000,$2a2a0 - $28000
@@ -5981,6 +5986,7 @@ INCLUDE "battle/type_matchup.asm"
 ; 34cfd
 
 INCBIN "baserom.gbc",$34cfd,$38000 - $34cfd
+
 
 SECTION "bankE",DATA,BANK[$E]
 
@@ -6863,6 +6869,7 @@ BattleStartMessage:
 
 INCBIN "baserom.gbc",$3fd26,$40000 - $3fd26
 
+
 SECTION "bank10",DATA,BANK[$10]
 
 INCBIN "baserom.gbc",$40000,$40c65-$40000
@@ -6894,6 +6901,7 @@ PokedexDataPointerTable: ; 0x44378
 INCLUDE "stats/pokedex/entry_pointers.asm"
 
 INCBIN "baserom.gbc",$4456e,$3a92
+
 
 SECTION "bank12",DATA,BANK[$12]
 
@@ -7256,6 +7264,7 @@ UpdateOTPointer: ; 0x4a83a
 
 INCBIN "baserom.gbc",$4a843,$4C000 - $4a843
 
+
 SECTION "bank13",DATA,BANK[$13]
 
 INCBIN "baserom.gbc",$4C000,$4ce1f - $4C000
@@ -7503,6 +7512,7 @@ EggALotMoreTimeString: ; 0x4e46e
 ; 0x4e497
 
 INCBIN "baserom.gbc",$4e497,$50000 - $4e497
+
 
 SECTION "bank14",DATA,BANK[$14]
 
@@ -10831,6 +10841,7 @@ GoldenrodGameCorner_MapEventHeader: ; 0x571db
 	person_event $2d, 13, 6, $2, $11, 255, 255, $b0, 0, UnknownScript_0x56e2b, $ffff
 	person_event $2d, 14, 21, $9, $0, 255, 255, $80, 0, UnknownScript_0x56c1a, $076b
 ; 0x57322
+
 
 SECTION "bank16",DATA,BANK[$16]
 
@@ -14851,6 +14862,7 @@ OlivineLighthouse4F_MapEventHeader: ; 0x5b6c0
 	person_event $28, 6, 15, $6, $0, 255, 255, $92, 1, TrainerLassConnie1, $ffff
 ; 0x5b712
 
+
 SECTION "bank17",DATA,BANK[$17]
 
 NationalPark_MapScriptHeader: ; 0x5c000
@@ -17780,6 +17792,7 @@ RadioTower4F_MapEventHeader: ; 0x5f01a
 	person_event $3c, 6, 8, $8, $0, 255, 255, $92, 4, TrainerScientistRich, $06ce
 ; 0x5f099
 
+
 SECTION "bank18",DATA,BANK[$18]
 
 RadioTower5F_MapScriptHeader: ; 0x60000
@@ -20031,9 +20044,11 @@ DayCare_MapEventHeader: ; 0x63250
 	person_event $30, 7, 9, $8, $0, 255, 255, $80, 0, UnknownScript_0x62fc3, $ffff
 ; 0x6328e
 
+
 SECTION "bank19",DATA,BANK[$19]
 
 INCBIN "baserom.gbc",$64000,$4000
+
 
 SECTION "bank1A",DATA,BANK[$1A]
 
@@ -23182,6 +23197,7 @@ Route36NationalParkgate_MapEventHeader: ; 0x6b9ac
 	person_event $27, 10, 10, $7, $0, 255, 255, $90, 0, UnknownScript_0x6adba, $0729
 	person_event $43, 6, 7, $6, $0, 255, 255, $a0, 0, UnknownScript_0x6acf4, $0748
 ; 0x6ba67
+
 
 SECTION "bank1B",DATA,BANK[$1B]
 
@@ -27284,6 +27300,7 @@ IlexForest_MapEventHeader: ; 0x6f5e7
 	person_event $54, 5, 31, $1, $0, 255, 255, $1, 0, ItemFragment_0x6ee16, $07bb
 ; 0x6f6a4
 
+
 SECTION "bank1C",DATA,BANK[$1C]
 
 LakeofRage_MapScriptHeader: ; 0x70000
@@ -30812,6 +30829,7 @@ Route1718Gate_MapEventHeader: ; 0x736b6
 	db 1
 	person_event $43, 6, 9, $6, $0, 255, 255, $90, 0, UnknownScript_0x7360e, $ffff
 ; 0x736ed
+
 
 SECTION "bank1D",DATA,BANK[$1D]
 
@@ -34996,6 +35014,7 @@ TinTowerRoof_MapEventHeader: ; 0x7726a
 	person_event $a2, 9, 13, $16, $0, 255, 255, $80, 0, UnknownScript_0x77244, $073c
 ; 0x77282
 
+
 SECTION "bank1E",DATA,BANK[$1E]
 
 Route34_MapScriptHeader: ; 0x78000
@@ -38425,6 +38444,7 @@ Route2946Gate_MapEventHeader: ; 0x7b674
 	person_event $43, 8, 4, $9, $0, 255, 255, $80, 0, UnknownScript_0x7b5bb, $ffff
 	person_event $27, 8, 10, $4, $10, 255, 255, $a0, 0, UnknownScript_0x7b5be, $ffff
 ; 0x7b6a8
+
 
 SECTION "bank1F",DATA,BANK[$1F]
 
@@ -42321,6 +42341,7 @@ Route12SuperRodHouse_MapEventHeader: ; 0x7f60b
 	person_event $3b, 7, 9, $6, $0, 255, 255, $80, 0, UnknownScript_0x7f484, $ffff
 ; 0x7f628
 
+
 SECTION "bank20",DATA,BANK[$20]
 
 INCBIN "baserom.gbc",$80000,$80430-$80000
@@ -43524,7 +43545,6 @@ BattleText_0x8188e: ; 0x8188e
 
 INCBIN "baserom.gbc",$818ac,$84000-$818ac
 
-SECTION "bank21",DATA,BANK[$21]
 
 SECTION "bank21",DATA,BANK[$21]
 
@@ -43955,6 +43975,7 @@ GetNthPartyMon: ; 0x8b1ce
 	ret
 
 INCBIN "baserom.gbc",$8b1e1,$8c000-$8b1e1
+
 
 SECTION "bank23",DATA,BANK[$23]
 
@@ -58453,6 +58474,7 @@ Route31VioletGate_SecondMapHeader: ; 0x966a4
 
 INCBIN "baserom.gbc",$966b0,$1950
 
+
 SECTION "bank26",DATA,BANK[$26]
 
 EcruteakHouse_MapScriptHeader: ; 0x98000
@@ -61608,6 +61630,7 @@ VictoryRoadGate_MapEventHeader: ; 0x9bb9b
 	person_event $41, 9, 11, $9, $0, 255, 255, $0, 0, UnknownScript_0x9ba21, $074f
 	person_event $41, 9, 16, $8, $0, 255, 255, $0, 0, UnknownScript_0x9ba24, $0750
 ; 0x9bbf8
+
 
 SECTION "bank27",DATA,BANK[$27]
 
@@ -65152,13 +65175,16 @@ BattleTowerOutside_MapEventHeader: ; 0x9fb5f
 	person_event $28, 28, 16, $3, $0, 255, 255, $a0, 0, ObjectEvent, $ffff
 ; 0x9fbb2
 
+
 SECTION "bank28",DATA,BANK[$28]
 
 INCBIN "baserom.gbc",$A0000,$4000
 
+
 SECTION "bank29",DATA,BANK[$29]
 
 INCBIN "baserom.gbc",$A4000,$4000
+
 
 SECTION "bank2A",DATA,BANK[$2A]
 
@@ -65423,6 +65449,7 @@ Route22_BlockData: ; 0xabef7
 ; 0xabfab
 
 INCBIN "baserom.gbc",$abfab,$55
+
 
 SECTION "bank2B",DATA,BANK[$2B]
 
@@ -65918,6 +65945,7 @@ OlivineLighthouse6F_BlockData: ; 0xaff00
 	INCBIN "maps/OlivineLighthouse6F.blk"
 ; 0xaff5a
 
+
 SECTION "bank2C",DATA,BANK[$2C]
 
 INCBIN "baserom.gbc",$b0000,$b0023 - $b0000
@@ -66258,6 +66286,7 @@ GoldenrodDeptStoreRoof_BlockData: ; 0xb1b22
 	INCBIN "maps/GoldenrodDeptStoreRoof.blk"
 ; 0xb1b42
 
+
 SECTION "bank2D",DATA,BANK[$2D]
 
 Tileset21GFX: ; b4000
@@ -66535,6 +66564,7 @@ WildRockMonTable: ; b83de
 ; b83e5
 
 INCBIN "baserom.gbc",$B83E5,$bc000 - $b83e5
+
 
 SECTION "bank2F",DATA,BANK[$2F]
 
@@ -66964,17 +66994,21 @@ ElmPhoneScript2: ; 0xbd081
 
 INCBIN "baserom.gbc",$bd0d0,$be699-$bd0d0
 
+
 SECTION "bank30",DATA,BANK[$30]
 
 INCBIN "baserom.gbc",$C0000,$4000
+
 
 SECTION "bank31",DATA,BANK[$31]
 
 INCBIN "baserom.gbc",$C4000,$4000
 
+
 SECTION "bank32",DATA,BANK[$32]
 
 INCBIN "baserom.gbc",$C8000,$4000
+
 
 SECTION "bank33",DATA,BANK[$33]
 
@@ -70953,6 +70987,7 @@ Music_TrainerVictory: ; 0xebeab
 INCLUDE "music/trainervictory.asm"
 ; 0xebfc3
 
+
 SECTION "bank3B",DATA,BANK[$3B]
 
 Music_Route1: ; 0xec000
@@ -71083,6 +71118,7 @@ Music_Route30: ; 0xefc01
 INCLUDE "music/route30.asm"
 ; 0xefef5
 
+
 SECTION "bank3C",DATA,BANK[$3C]
 
 Music_VioletCity: ; 0xf0000
@@ -71110,6 +71146,7 @@ INCLUDE "music/printer.asm"
 ; 0xf0941
 
 INCBIN "baserom.gbc", $f0941, $f3fb6 - $f0941
+
 
 SECTION "bank3D",DATA,BANK[$3D]
 
@@ -71470,6 +71507,7 @@ CalcMagikarpLength: ; fbbfc
 
 INCBIN "baserom.gbc",$FBCCF,$fc000-$fbccf
 
+
 SECTION "bank3F",DATA,BANK[$3F]
 
 DoTileAnimation:
@@ -71516,9 +71554,11 @@ Trades: ; 0xfce58
 
 INCBIN "baserom.gbc",$fcf38,$fd1d2-$fcf38
 
+
 SECTION "bank40",DATA,BANK[$40]
 
 INCBIN "baserom.gbc",$100000,$4000
+
 
 SECTION "bank41",DATA,BANK[$41]
 
@@ -71540,6 +71580,7 @@ Function1060bb: ; 1060bb
 ; 1060bc
 
 INCBIN "baserom.gbc",$1060bc,$108000 - $1060bc
+
 
 SECTION "bank42",DATA,BANK[$42]
 
@@ -72368,9 +72409,11 @@ Function117cdd: ; 0x117cdd
 	inc [hl]
 	ret
 
+
 SECTION "bank46",DATA,BANK[$46]
 
 INCBIN "baserom.gbc",$118000,$4000
+
 
 SECTION "bank47",DATA,BANK[$47]
 
@@ -73792,13 +73835,16 @@ SECTION "bank5B",DATA,BANK[$5B]
 
 INCBIN "baserom.gbc",$16C000,$4000
 
+
 SECTION "bank5C",DATA,BANK[$5C]
 
 INCBIN "baserom.gbc",$170000,$4000
 
+
 SECTION "bank5D",DATA,BANK[$5D]
 
 INCBIN "baserom.gbc",$174000,$4000
+
 
 SECTION "bank5E",DATA,BANK[$5E]
 
@@ -73843,9 +73889,11 @@ INCBIN "gfx/misc/mobile_adapter.2bpp"
 
 INCBIN "baserom.gbc",$17a68f, $17b629 - $17a68f
 
+
 SECTION "bank5F",DATA,BANK[$5F]
 
 INCBIN "baserom.gbc",$17C000,$4000
+
 
 SECTION "bank60",DATA,BANK[$60]
 
@@ -77697,6 +77745,7 @@ BurnedTowerB1F_MapEventHeader: ; 0x1863de
 	person_event $2b, 16, 14, $7, $0, 255, 255, $90, 0, UnknownScript_0x186212, $07aa
 ; 0x18647f
 
+
 SECTION "bank62",DATA,BANK[$62]
 
 CeruleanGymBadgeSpeechHouse_MapScriptHeader: ; 0x188000
@@ -81084,6 +81133,7 @@ Route5CleanseTagSpeechHouse_MapEventHeader: ; 0x18b744
 	person_event $30, 9, 6, $1f, $0, 255, 255, $b0, 0, UnknownScript_0x18b634, $ffff
 	person_event $29, 7, 9, $8, $0, 255, 255, $80, 0, UnknownScript_0x18b64f, $ffff
 ; 0x18b778
+
 
 SECTION "bank63",DATA,BANK[$63]
 
@@ -84627,6 +84677,7 @@ AzaleaGym_MapEventHeader: ; 0x18f3cc
 	person_event $26, 14, 9, $6, $0, 255, 255, $82, 1, TrainerTwinsAmyandmay2, $ffff
 	person_event $48, 17, 11, $6, $0, 255, 255, $80, 0, AzaleaGymGuyScript, $ffff
 ; 0x18f441
+
 
 SECTION "bank64",DATA,BANK[$64]
 
@@ -88699,6 +88750,7 @@ MobileBattleRoom_MapEventHeader: ; 0x193673
 	db 0
 ; 0x193688
 
+
 SECTION "bank65",DATA,BANK[$65]
 
 Route36_MapScriptHeader: ; 0x194000
@@ -92158,6 +92210,7 @@ Route31VioletGate_MapEventHeader: ; 0x19768c
 	person_event $24, 6, 5, $3, $0, 255, 255, $90, 0, UnknownScript_0x197637, $ffff
 ; 0x1976c0
 
+
 SECTION "bank66",DATA,BANK[$66]
 
 AzaleaTown_MapScriptHeader: ; 0x198000
@@ -95466,6 +95519,7 @@ OaksLab_MapEventHeader: ; 0x19ba33
 	person_event $3c, 13, 12, $4, $10, 255, 255, $90, 0, UnknownScript_0x19b412, $ffff
 	person_event $3c, 8, 5, $2, $11, 255, 255, $90, 0, UnknownScript_0x19b415, $ffff
 ; 0x19bac7
+
 
 SECTION "bank67",DATA,BANK[$67]
 
@@ -99608,6 +99662,7 @@ Route25_MapEventHeader: ; 0x19f58f
 	person_event $54, 8, 36, $1, $0, 255, 255, $1, 0, ItemFragment_0x19efe3, $078b
 ; 0x19f643
 
+
 SECTION "bank68",DATA,BANK[$68]
 
 CianwoodCity_MapScriptHeader: ; 0x1a0000
@@ -103015,6 +103070,7 @@ PewterSnoozeSpeechHouse_MapEventHeader: ; 0x1a308a
 	person_event $2f, 7, 9, $8, $0, 255, 255, $90, 0, UnknownScript_0x1a3059, $ffff
 ; 0x1a30b1
 
+
 SECTION "bank69",DATA,BANK[$69]
 
 EcruteakCity_MapScriptHeader: ; 0x1a4000
@@ -106391,6 +106447,7 @@ Route12_MapEventHeader: ; 0x1a72cf
 	person_event $54, 47, 9, $1, $0, 255, 255, $1, 0, ItemFragment_0x1a700b, $0788
 	person_event $54, 55, 9, $1, $0, 255, 255, $1, 0, ItemFragment_0x1a700d, $0789
 ; 0x1a7337
+
 
 SECTION "bank6A",DATA,BANK[$6A]
 
@@ -110241,6 +110298,7 @@ SeafoamGym_MapEventHeader: ; 0x1ab865
 	person_event $48, 9, 10, $7, $0, 255, 255, $90, 0, SeafoamGymGuyScript, $0777
 ; 0x1ab88a
 
+
 SECTION "bank6B",DATA,BANK[$6B]
 
 Route33_MapScriptHeader: ; 0x1ac000
@@ -113324,6 +113382,7 @@ Route28FamousSpeechHouse_MapEventHeader: ; 0x1ae762
 	person_event $9e, 9, 10, $16, $0, 255, 255, $b0, 0, UnknownScript_0x1ae675, $ffff
 ; 0x1ae796
 
+
 SECTION "bank6C",DATA,BANK[$6C]
 
 UnknownText_0x1b0000: ; 0x1b0000
@@ -114368,6 +114427,7 @@ Route10North_MapEventHeader: ; 0x1b2099
 	db 0
 ; 0x1b20b3
 
+
 SECTION "bank6D",DATA,BANK[$6D]
 
 INCLUDE "text/phone/mom.tx"
@@ -114386,6 +114446,7 @@ INCLUDE "stats/pokedex/065-128.asm"
 SECTION "bank6F",DATA,BANK[$6F]
 
 INCBIN "baserom.gbc",$1BC000,$4000
+
 
 SECTION "bank70",DATA,BANK[$70]
 
@@ -117401,6 +117462,7 @@ UnknownText_0x1c60d1: ; 0x1c60d1
 	db "a while.", $58
 ; 0x1c611e
 
+
 SECTION "bank72",DATA,BANK[$72]
 
 ItemNames:
@@ -119527,6 +119589,7 @@ RegionCheck: ; 0x1caea1
 	ld e, 1
 	ret
 
+
 SECTION "bank73",DATA,BANK[$73]
 
 ; Pokedex entries III
@@ -119543,9 +119606,9 @@ INCLUDE "stats/pokedex/193-251.asm"
 
 SECTION "bank75",DATA,BANK[$75]
 
+
 SECTION "bank76",DATA,BANK[$76]
 
-SECTION "bank77",DATA,BANK[$77]
 
 SECTION "bank77",DATA,BANK[$77]
 
@@ -119605,25 +119668,32 @@ SECTION "bank78",DATA,BANK[$78]
 
 INCBIN "baserom.gbc",$1E0000,$4000
 
+
 SECTION "bank79",DATA,BANK[$79]
 
+
 SECTION "bank7A",DATA,BANK[$7A]
+
 
 SECTION "bank7B",DATA,BANK[$7B]
 
 INCBIN "baserom.gbc",$1EC000,$4000
 
+
 SECTION "bank7C",DATA,BANK[$7C]
 
 INCBIN "baserom.gbc",$1F0000,$4000
+
 
 SECTION "bank7D",DATA,BANK[$7D]
 
 INCBIN "baserom.gbc",$1F4000,$4000
 
+
 SECTION "bank7E",DATA,BANK[$7E]
 
 INCBIN "baserom.gbc",$1F8000,$4000
+
 
 SECTION "bank7F",DATA,BANK[$7F]
 
