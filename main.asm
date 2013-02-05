@@ -70879,9 +70879,10 @@ HallOfFame_MapEventHeader: ; 0x181678
 ; 0x181695
 
 
-; Pokedex entries I
-; 001-064
-INCLUDE "stats/pokedex/001-064.asm"
+;                         Pokedex entries I
+;                             001-064
+
+INCLUDE "stats/pokedex/entries_1.asm"
 
 
 SECTION "bank61",DATA,BANK[$61]
@@ -110006,9 +110007,10 @@ INCLUDE "text/phone/trainers1.tx"
 
 SECTION "bank6E",DATA,BANK[$6E]
 
-; Pokedex entries II
-; 065-128
-INCLUDE "stats/pokedex/065-128.asm"
+;                       Pokedex entries II
+;                            065-128
+
+INCLUDE "stats/pokedex/entries_2.asm"
 
 
 SECTION "bank6F",DATA,BANK[$6F]
@@ -115160,16 +115162,18 @@ RegionCheck: ; 0x1caea1
 
 SECTION "bank73",DATA,BANK[$73]
 
-; Pokedex entries III
-; 129-192
-INCLUDE "stats/pokedex/129-192.asm"
+                      ; Pokedex entries III
+                            ; 129-192
+							
+INCLUDE "stats/pokedex/entries_3.asm"
 
 
 SECTION "bank74",DATA,BANK[$74]
 
-; Pokedex entries IV
-; 193-251
-INCLUDE "stats/pokedex/193-251.asm"
+;                       Pokedex entries IV
+                            ; 193-251
+							
+INCLUDE "stats/pokedex/entries_4.asm"
 
 
 SECTION "bank75",DATA,BANK[$75]
