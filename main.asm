@@ -5590,9 +5590,9 @@ INCBIN "gfx/tilesets/lz/17.lz"
 INCBIN "baserom.gbc",$23391,$23b11 - $23391
 
 EggMovePointers: ; 0x23b11
-INCLUDE "data/eggmove_pointers.asm"
+INCLUDE "stats/egg_move_pointers.asm"
 
-INCLUDE "data/eggmoves.asm"
+INCLUDE "stats/egg_moves.asm"
 
 
 SECTION "bank9",DATA,BANK[$9]
@@ -5747,22 +5747,22 @@ INCBIN "baserom.gbc",$2a2ce,$2a5e9 - $2a2ce
 
 
 WildMons1: ; 0x2a5e9
-INCLUDE "data/wild/johto_grass.asm"
+INCLUDE "stats/wild/johto_grass.asm"
 
 WildMons2: ; 0x2b11d
-INCLUDE "data/wild/johto_water.asm"
+INCLUDE "stats/wild/johto_water.asm"
 
 WildMons3: ; 0x2b274
-INCLUDE "data/wild/kanto_grass.asm"
+INCLUDE "stats/wild/kanto_grass.asm"
 
 WildMons4: ; 0x2b7f7
-INCLUDE "data/wild/kanto_water.asm"
+INCLUDE "stats/wild/kanto_water.asm"
 
 WildMons5: ; 0x2b8d0
-INCLUDE "data/wild/swarm_grass.asm"
+INCLUDE "stats/wild/swarm_grass.asm"
 
 WildMons6: ; 0x2b92f
-INCLUDE "data/wild/swarm_water.asm"
+INCLUDE "stats/wild/swarm_water.asm"
 
 
 INCBIN "baserom.gbc", $2b930, $2ba1a - $2b930
@@ -5977,7 +5977,7 @@ SECTION "bankD",DATA,BANK[$D]
 INCBIN "baserom.gbc",$34000,$34bb1 - $34000
 
 TypeMatchup: ; 34bb1
-INCLUDE "data/type_matchup.asm"
+INCLUDE "battle/type_matchup.asm"
 ; 34cfd
 
 INCBIN "baserom.gbc",$34cfd,$38000 - $34cfd
@@ -5987,9 +5987,9 @@ SECTION "bankE",DATA,BANK[$E]
 INCBIN "baserom.gbc",$38000,$39999 - $38000
 
 TrainerGroups: ; 0x39999
-INCLUDE "data/trainer_pointers.asm"
+INCLUDE "trainers/trainer_pointers.asm"
 
-INCLUDE "data/trainers.asm"
+INCLUDE "trainers/trainers.asm"
 
 
 SECTION "bankF",DATA,BANK[$F]
@@ -6868,22 +6868,22 @@ SECTION "bank10",DATA,BANK[$10]
 INCBIN "baserom.gbc",$40000,$40c65-$40000
 
 AlphabeticalPokedexOrder: ; 0x40c65
-INCLUDE "data/pokedex/order_alpha.asm"
+INCLUDE "stats/pokedex/order_alpha.asm"
 
 NewPokedexOrder: ; 0x40d60
-INCLUDE "data/pokedex/order_new.asm"
+INCLUDE "stats/pokedex/order_new.asm"
 
 INCBIN "baserom.gbc",$40e5b,$41afb-$40e5b
 
 Moves: ; 0x41afb
-INCLUDE "data/moves/moves.asm"
+INCLUDE "battle/moves/moves.asm"
 
 INCBIN "baserom.gbc",$421d8,$425b1-$421d8
 
 EvosAttacksPointers: ; 0x425b1
-INCLUDE "data/evos_attacks_pointers.asm"
+INCLUDE "stats/evos_attacks_pointers.asm"
 
-INCLUDE "data/evos_attacks.asm"
+INCLUDE "stats/evos_attacks.asm"
 
 
 SECTION "bank11",DATA,BANK[$11]
@@ -6891,7 +6891,7 @@ SECTION "bank11",DATA,BANK[$11]
 INCBIN "baserom.gbc",$44000,$44378 - $44000
 
 PokedexDataPointerTable: ; 0x44378
-INCLUDE "data/pokedex/entry_pointers.asm"
+INCLUDE "stats/pokedex/entry_pointers.asm"
 
 INCBIN "baserom.gbc",$4456e,$3a92
 
@@ -7687,10 +7687,10 @@ INCBIN "baserom.gbc",$50A28, $51424 - $50A28
 
 
 BaseStats:
-INCLUDE "data/base_stats.asm"
+INCLUDE "stats/base_stats.asm"
 
 PokemonNames:
-INCLUDE "data/pokemon_names.asm"
+INCLUDE "stats/pokemon_names.asm"
 
 INCBIN "baserom.gbc",$53D84,$54000 - $53D84
 
@@ -42411,7 +42411,7 @@ GetFlag2: ; 80430
 
 
 BitTable2: ; 80462
-INCLUDE "data/bittable2.asm"
+INCLUDE "bittable2.asm"
 ; 80648
 
 
@@ -75265,7 +75265,7 @@ HallOfFame_MapEventHeader: ; 0x181678
 
 ; Pokedex entries I
 ; 001-064
-INCLUDE "data/pokedex/001-064.asm"
+INCLUDE "stats/pokedex/001-064.asm"
 
 
 SECTION "bank61",DATA,BANK[$61]
@@ -114380,7 +114380,7 @@ SECTION "bank6E",DATA,BANK[$6E]
 
 ; Pokedex entries II
 ; 065-128
-INCLUDE "data/pokedex/065-128.asm"
+INCLUDE "stats/pokedex/065-128.asm"
 
 
 SECTION "bank6F",DATA,BANK[$6F]
@@ -119531,14 +119531,14 @@ SECTION "bank73",DATA,BANK[$73]
 
 ; Pokedex entries III
 ; 129-192
-INCLUDE "data/pokedex/129-192.asm"
+INCLUDE "stats/pokedex/129-192.asm"
 
 
 SECTION "bank74",DATA,BANK[$74]
 
 ; Pokedex entries IV
 ; 193-251
-INCLUDE "data/pokedex/193-251.asm"
+INCLUDE "stats/pokedex/193-251.asm"
 
 
 SECTION "bank75",DATA,BANK[$75]
