@@ -1269,7 +1269,7 @@ Box14Name: ; dbea
 
 
 SECTION "FlypointPermissions", BSS[$dca5]
-FlypointPermissions: ; dca5
+FlypointPerms: ; dca5
 	ds 4
 
 SECTION "BackupMapInfo", BSS[$dcad]
@@ -1421,7 +1421,7 @@ PokedexCaught: ; deb9
 	ds 32
 UnownDex: ; ded9
 	ds 26
-UnownUnlockedGroups: ; def3
+UnlockedUnowns: ; def3
 	ds 1
 
 SECTION "Breeding",BSS[$def5]
