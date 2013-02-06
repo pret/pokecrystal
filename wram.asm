@@ -1240,36 +1240,36 @@ SECTION "BoxNames",BSS[$db75]
 ; 8 chars + $50
 Box1Name: ; db75
 	ds 9
-Box2Name: ; dbce
+Box2Name: ; db7e
 	ds 9
-Box3Name: ; dbd7
+Box3Name: ; db87
 	ds 9
-Box4Name: ; dbe0
+Box4Name: ; db90
 	ds 9
-Box5Name: ; dbe9
+Box5Name: ; db99
 	ds 9
-Box6Name: ; dbf2
+Box6Name: ; dba2
 	ds 9
-Box7Name: ; dbfb
+Box7Name: ; dbab
 	ds 9
-Box8Name: ; dc04
+Box8Name: ; dbb4
 	ds 9
-Box9Name: ; dc0d
+Box9Name: ; dbbd
 	ds 9
-Box10Name: ; dc16
+Box10Name: ; dbc6
 	ds 9
-Box11Name: ; dc1f
+Box11Name: ; dbcf
 	ds 9
-Box12Name: ; dc28
+Box12Name: ; dbd8
 	ds 9
-Box13Name: ; dc31
+Box13Name: ; dbe1
 	ds 9
-Box14Name: ; dc3a
+Box14Name: ; dbea
 	ds 9
 
 
 SECTION "FlypointPermissions", BSS[$dca5]
-FlypointPermissions: ; dca5
+FlypointPerms: ; dca5
 	ds 4
 
 SECTION "BackupMapInfo", BSS[$dcad]
@@ -1421,7 +1421,7 @@ PokedexCaught: ; deb9
 	ds 32
 UnownDex: ; ded9
 	ds 26
-UnownUnlockedGroups: ; def3
+UnlockedUnowns: ; def3
 	ds 1
 
 SECTION "Breeding",BSS[$def5]

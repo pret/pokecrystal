@@ -73,6 +73,8 @@ hlcoord: MACRO
     ld hl, Coord
 	ENDM
 
+NONE       EQU 0
+
 BULBASAUR  EQU 1
 IVYSAUR    EQU 2
 VENUSAUR   EQU 3
