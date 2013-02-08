@@ -23,6 +23,7 @@ sudo apt-get install make gcc bison git python python-setuptools
 
 # unittest2 is required if using python2.6
 sudo easy_install unittest2
+sudo easy_install pip
 
 # download rgbds source code
 git clone git://github.com/bentley/rgbds.git
@@ -38,6 +39,8 @@ which rgbasm
 # download pokecrystal
 git clone https://github.com/kanzure/pokecrystal.git
 cd pokecrystal
+
+pip install -r requirements.txt
 
 make clean && make
 ```
