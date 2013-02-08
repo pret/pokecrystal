@@ -17,6 +17,9 @@
 # swap files for vim
 .*.swp
 
+# swap files for gedit
+*~
+
 # no data from extras/
 extras/*.json
 
