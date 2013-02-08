@@ -4092,7 +4092,12 @@ INCBIN "baserom.gbc",$9a7a,$a51e - $9a7a
 SGBBorder:
 INCBIN "gfx/misc/sgb_border.2bpp"
 
-INCBIN "baserom.gbc",$a8be,$c000 - $a8be
+INCBIN "baserom.gbc",$a8be,$a8d6 - $a8be
+
+PokemonPalettes:
+INCLUDE "gfx/pics/palette_pointers.asm"
+
+INCBIN "baserom.gbc",$b0ae,$c000 - $b0ae
 
 
 SECTION "bank3",DATA,BANK[$3]
