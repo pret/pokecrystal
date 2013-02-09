@@ -4097,7 +4097,12 @@ INCBIN "baserom.gbc",$a8be,$a8d6 - $a8be
 PokemonPalettes:
 INCLUDE "gfx/pics/palette_pointers.asm"
 
-INCBIN "baserom.gbc",$b0ae,$c000 - $b0ae
+INCBIN "baserom.gbc",$b0ae,$b0d2 - $b0ae
+
+TrainerPalettes:
+INCLUDE "gfx/trainers/palette_pointers.asm"
+
+INCBIN "baserom.gbc",$b1de,$bc3a - $b1de
 
 
 SECTION "bank3",DATA,BANK[$3]
