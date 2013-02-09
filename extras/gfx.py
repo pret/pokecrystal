@@ -1212,12 +1212,13 @@ def to_png(filein, fileout=None, pal_file=None, height=None, width=None):
 	Takes a planar 2bpp graphics file and converts it to png.
 	"""
 	
-	if fileout == None: fileout = ''.join(filein.split('.')[:-1]) + '.png'
+	if fileout == None: fileout = '.'.join(filein.split('.')[:-1]) + '.png'
 	
 	image = open(filein, 'rb').read()
 	
+	if len(image) == 0: return 'empty image!'
 
-	# unless the pic is square, at least one dimension should be given
+	# unless the pic is square, at least one dimension should be given...
 	
 	if height   == None and width == None:
 		height = int(sqrt(len(image)*4))
@@ -1227,7 +1228,11 @@ def to_png(filein, fileout=None, pal_file=None, height=None, width=None):
 
 	elif width  == None: width = len(image)*4 / height
 	
-	assert height * width == len(image)*4, 'Please specify dimensions for non-square image!'
+	# ...or it will become 1 tile wide
+	
+	if height * width != len(image)*4:
+		height = len(image)*4 / 8
+		width  = 8
 	
 	
 	# map it out
@@ -1261,7 +1266,7 @@ def to_2bpp(filein, fileout=None, palout=None):
 	Takes a png and converts it to planar 2bpp.
 	"""
 	
-	if fileout == None: fileout = ''.join(filein.split('.')[:-1]) + '.2bpp'
+	if fileout == None: fileout = '.'.join(filein.split('.')[:-1]) + '.2bpp'
 	
 	with open(filein, 'rb') as file:
 
@@ -1489,8 +1494,6 @@ if __name__ == "__main__":
 			to_2bpp(args.arg1, args.arg2)
 	
 	#else:
-	else:
-		dump_trainer_pals()
 		## python gfx.py
 		#decompress_all()
 		#if debug: print 'decompressed known gfx to ../gfx/!'
