@@ -1397,6 +1397,34 @@ def png_to_lz(filein):
 	to_file(name+'.lz', Compressed(image).output)
 
 
+
+
+def mass_to_png():
+	# greyscale
+	for root, dirs, files in os.walk('../gfx/'):
+		for name in files:
+			print os.path.splitext(name), os.path.join(root, name)
+			if os.path.splitext(name)[1] == '.2bpp':
+				to_png(os.path.join(root, name))
+
+def mass_to_colored_png():
+	# only monster and trainer pics for now
+	for root, dirs, files in os.walk('../gfx/pics/'):
+		for name in files:
+			print os.path.splitext(name), os.path.join(root, name)
+			if os.path.splitext(name)[1] == '.2bpp':
+				if 'normal.pal' in files:
+					to_png(os.path.join(root, name), None, os.path.join(root, 'normal.pal'))
+				else:
+					to_png(os.path.join(root, name))
+	for root, dirs, files in os.walk('../gfx/trainers/'):
+		for name in files:
+			print os.path.splitext(name), os.path.join(root, name)
+			if os.path.splitext(name)[1] == '.2bpp':
+				to_png(os.path.join(root, name), None, os.path.join(root, name[:-5] + '.pal'))
+
+
+
 if __name__ == "__main__":
 	parser = argparse.ArgumentParser()
 	parser.add_argument('cmd',  nargs='?', metavar='cmd',  type=str)
@@ -1486,7 +1514,7 @@ if __name__ == "__main__":
 		
 		if '.2bpp' in args.arg1:
 			if args.arg3 == 'greyscale':
-				to_png(args.arg1, args.arg2)
+				to_png(args.arg1, args.arg2)http://i.imgur.com/BMHkNuC.png
 			else:
 				to_png(args.arg1, args.arg2, args.arg3)
 		
