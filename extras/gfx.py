@@ -8,10 +8,11 @@ from math import sqrt, floor, ceil
 from crystal import load_rom
 
 from pokemon_constants import pokemon_constants
+from trainers import trainer_group_names
 
 
-
-rom = load_rom()
+if __name__ != "__main__":
+	rom = load_rom()
 
 
 def mkdir_p(path):
@@ -1032,7 +1033,7 @@ def compress_monster_frontpic(id, fileout):
 	anim = open(fanim, 'rb').read()
 	image = pic + anim
 	
-	lz = Compressed(image, mode, 5)
+	lz = Compressed(image, mode, sizes[id-1])
 	
 	out = '../gfx/pics/' + str(id).zfill(3) + '/front.lz'
 	
@@ -1081,6 +1082,8 @@ def grab_palettes(address, length = 0x80):
 
 
 def dump_monster_pals():
+	rom = load_rom()
+	
 	pals = 0xa8d6
 	pal_length = 0x4
 	for mon in range(251):
@@ -1114,6 +1117,31 @@ def dump_monster_pals():
 		
 		spacing  = ' ' * (10 - len(name))
 		#print name+'ShinyPalette:'+spacing+' INCBIN "'+dir+filename+'"'
+
+
+def dump_trainer_pals():
+	rom = load_rom()
+	
+	pals = 0xb0d2
+	pal_length = 0x4
+	for trainer in range(67):
+		
+		name = trainer_group_names[trainer+1]['constant'].title().replace('_','')
+		num  = str(trainer).zfill(3)
+		dir  = 'gfx/trainers/'
+		
+		address = pals + trainer*pal_length
+		
+		pal_data = []
+		for byte in range(pal_length):
+			pal_data.append(ord(rom[address]))
+			address += 1
+		
+		filename = num+'.pal'
+		to_file('../'+dir+filename, pal_data)
+		
+		spacing = ' ' * (12 - len(name))
+		print name+'Palette:'+spacing+' INCBIN"'+dir+filename+'"'
 
 
 
@@ -1355,6 +1383,14 @@ def to_2bpp(filein, fileout=None, palout=None):
 	to_file(fileout, image)
 
 
+def png_to_lz(filein):
+	
+	name = os.path.splitext(filein)[0]
+	
+	to_2bpp(filein)
+	image = open(name+'.2bpp', 'rb').read()
+	to_file(name+'.lz', Compressed(image).output)
+
 
 if __name__ == "__main__":
 	parser = argparse.ArgumentParser()
@@ -1362,12 +1398,57 @@ if __name__ == "__main__":
 	parser.add_argument('arg1', nargs='?', metavar='arg1', type=str)
 	parser.add_argument('arg2', nargs='?', metavar='arg2', type=str)
 	parser.add_argument('arg3', nargs='?', metavar='arg3', type=str)
+	parser.add_argument('arg4', nargs='?', metavar='arg4', type=str)
+	parser.add_argument('arg5', nargs='?', metavar='arg5', type=str)
 	args = parser.parse_args()
 	
 	debug = True
 	
-	if args.cmd == 'de':
+	if args.cmd == 'png-to-lz':
+		# python gfx.py png-to-lz [--front anim(2bpp) | --vert] [png]
+		
+		# python gfx.py png-to-lz --front [anim(2bpp)] [png]
+		if args.arg1 == '--front':
+
+			# front.png and tiles.png are combined before compression,
+			# so we have to pass in things like anim file and pic size
+			name = os.path.splitext(args.arg3)[0]
+			
+			to_2bpp(name+'.png', name+'.2bpp')
+			pic  = open(name+'.2bpp', 'rb').read()
+			anim = open(args.arg2, 'rb').read()
+			size = int(sqrt(len(pic)/16)) # assume square pic
+			to_file(name+'.lz', Compressed(pic + anim, 'vert', size).output)
+		
+		
+		# python gfx.py png-to-lz --vert [png]
+		elif args.arg1 == '--vert':
+			
+			# others are vertically oriented (frontpics are always vertical)
+			
+			name = os.path.splitext(args.arg2)[0]
+			
+			to_2bpp(name+'.png', name+'.2bpp')
+			pic = open(name+'.2bpp', 'rb').read()
+			to_file(name+'.lz', Compressed(pic + anim, 'vert').output)
+		
+		
+		# python gfx.py png-to-lz [png]
+		else:
+			
+			# standard usage
+			
+			png_to_lz(args.arg1)
+	
+	elif args.cmd == 'png-to-2bpp':
+		to_2bpp(args.arg1)
+	
+	
+	elif args.cmd == 'de':
 		# python gfx.py de [addr] [fileout] [mode]
+		
+		rom = load_rom()
+		
 		addr = int(args.arg1,16)
 		fileout = args.arg2
 		mode = args.arg3
@@ -1388,10 +1469,12 @@ if __name__ == "__main__":
 	
 	elif args.cmd == 'un':
 		# python gfx.py un [address] [num_tiles] [filename]
+		rom = load_rom()
 		get_uncompressed_gfx(int(args.arg1,16), int(args.arg2), args.arg3)
 	
 	elif args.cmd == 'pal':
 		# python gfx.py pal [address] [length]
+		rom = load_rom()
 		print grab_palettes(int(args.arg1,16), int(args.arg2))
 	
 	elif args.cmd == 'png':
@@ -1406,6 +1489,8 @@ if __name__ == "__main__":
 			to_2bpp(args.arg1, args.arg2)
 	
 	#else:
+	else:
+		dump_trainer_pals()
 		## python gfx.py
 		#decompress_all()
 		#if debug: print 'decompressed known gfx to ../gfx/!'
