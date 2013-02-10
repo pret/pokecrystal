@@ -1399,19 +1399,27 @@ def png_to_lz(filein):
 
 
 
-def mass_to_png():
+def mass_to_png(debug=False):
 	# greyscale
 	for root, dirs, files in os.walk('../gfx/'):
 		for name in files:
-			print os.path.splitext(name), os.path.join(root, name)
+			if debug: print os.path.splitext(name), os.path.join(root, name)
 			if os.path.splitext(name)[1] == '.2bpp':
 				to_png(os.path.join(root, name))
 
-def mass_to_colored_png():
+def mass_to_colored_png(debug=False):
+	# greyscale
+	for root, dirs, files in os.walk('../gfx/'):
+		if 'pics' not in root and 'trainers' not in root:
+			for name in files:
+				if debug: print os.path.splitext(name), os.path.join(root, name)
+				if os.path.splitext(name)[1] == '.2bpp':
+					to_png(os.path.join(root, name))
+	
 	# only monster and trainer pics for now
 	for root, dirs, files in os.walk('../gfx/pics/'):
 		for name in files:
-			print os.path.splitext(name), os.path.join(root, name)
+			if debug: print os.path.splitext(name), os.path.join(root, name)
 			if os.path.splitext(name)[1] == '.2bpp':
 				if 'normal.pal' in files:
 					to_png(os.path.join(root, name), None, os.path.join(root, 'normal.pal'))
@@ -1419,7 +1427,7 @@ def mass_to_colored_png():
 					to_png(os.path.join(root, name))
 	for root, dirs, files in os.walk('../gfx/trainers/'):
 		for name in files:
-			print os.path.splitext(name), os.path.join(root, name)
+			if debug: print os.path.splitext(name), os.path.join(root, name)
 			if os.path.splitext(name)[1] == '.2bpp':
 				to_png(os.path.join(root, name), None, os.path.join(root, name[:-5] + '.pal'))
 
@@ -1435,9 +1443,12 @@ if __name__ == "__main__":
 	parser.add_argument('arg5', nargs='?', metavar='arg5', type=str)
 	args = parser.parse_args()
 	
-	debug = True
+	debug = False
 	
-	if args.cmd == 'png-to-lz':
+	if args.cmd == 'dump-pngs':
+		mass_to_colored_png()
+	
+	elif args.cmd == 'png-to-lz':
 		# python gfx.py png-to-lz [--front anim(2bpp) | --vert] [png]
 		
 		# python gfx.py png-to-lz --front [anim(2bpp)] [png]
@@ -1514,7 +1525,7 @@ if __name__ == "__main__":
 		
 		if '.2bpp' in args.arg1:
 			if args.arg3 == 'greyscale':
-				to_png(args.arg1, args.arg2)http://i.imgur.com/BMHkNuC.png
+				to_png(args.arg1, args.arg2)
 			else:
 				to_png(args.arg1, args.arg2, args.arg3)
 		

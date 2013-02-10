@@ -31,6 +31,10 @@ pokecrystal.gbc: pokecrystal.o
 	cmp baserom.gbc $@
 
 
+pngs:
+	python gfx.py dump-pngs
+
+
 front.png: tiles.png
 	python gfx.py png-to-lz --front $@ $(OBJECT_DIRECTORY)/tiles.2bpp
 
