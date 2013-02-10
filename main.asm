@@ -66855,7 +66855,12 @@ Music_HealPokemon:          INCLUDE "audio/music/healpokemon.asm"
 Music_Evolution:            INCLUDE "audio/music/evolution.asm"
 Music_Printer:              INCLUDE "audio/music/printer.asm"
 
-INCBIN "baserom.gbc", $f0941, $f3fb6 - $f0941
+INCBIN "baserom.gbc", $f0941, $f2787 - $f0941
+
+CryHeaders:
+INCLUDE "audio/cry_headers.asm"
+
+INCBIN "baserom.gbc", $f2d69, $f3fb6 - $f2d69
 
 
 SECTION "bank3D",DATA,BANK[$3D]
