@@ -7,16 +7,23 @@ TEXTFILES =	text/sweethoney.tx \
 		text/phone/trainers1.tx \
 		main.tx
 
-VERTFILES =	gfx/pics/%.png \
+VERTGFX =	gfx/pics/%.png \
 		gfx/trainers/%.png
 
-HORIZFILES =	$(filter-out gfx/%.png, $(VERTFILES))
+HORIZGFX =	$(filter-out gfx/%.png, $(VERTGFX))
 
-IMGFILES =	${VERTFILES} ${HORIZFILES}
 
-LZFILES =	gfx/%.lz
+# uncomment this build target to enable png import:
+
+#all: lzs
+
+# the recompressed graphics may be larger than the originals,
+# so take care to reorganize accordingly
 
 all: pokecrystal.gbc
+
+clean:
+	rm -f main.tx pokecrystal.o pokecrystal.gbc ${TEXTFILES}
 
 
 pokecrystal.o: pokecrystal.asm constants.asm wram.asm ${TEXTFILES}
@@ -31,23 +38,18 @@ pokecrystal.gbc: pokecrystal.o
 	cmp baserom.gbc $@
 
 
-pngs:
+@lzs: ${VERTGFX} ${HORIZGFX}
+
+@pngs:
 	cd extras; python gfx.py mass-decompress; python gfx.py dump-pngs
 
 
-front.png: tiles.png
-	python gfx.py png-to-lz --front $@ $(OBJECT_DIRECTORY)/tiles.2bpp
-
-tiles.png:
-	python gfx.py png-to-2bpp $@
-
-.png: ${VERTFILES}
-	python gfx.py png-to-lz --vert $@
-
-.png: ${HORIZFILES}
-	python gfx.py png-to-lz $@
-
-
-clean:
-	rm -f main.tx pokecrystal.o pokecrystal.gbc ${TEXTFILES}
+@front.png: tiles.png
+	cd extras; python gfx.py png-to-lz --front $@ $(OBJECT_DIRECTORY)/tiles.2bpp
+@tiles.png:
+	cd extras; python gfx.py png-to-2bpp $@
+@.png: ${VERTGFX}
+	cd extras; python gfx.py png-to-lz --vert $@
+@.png: ${HORIZGFX}
+	cd extras; python gfx.py png-to-lz $@
 
