@@ -954,17 +954,6 @@ def decompress_misc():
 def decompress_all(debug = False):
 	"""decompress all known compressed data in baserom"""
 	
-	#mkdir_p('../gfx/')
-	#mkdir_p('../gfx/frontpics/')
-	#mkdir_p('../gfx/anim/')
-	#mkdir_p('../gfx/backpics/')
-	#mkdir_p('../gfx/trainers/')
-	#mkdir_p('../gfx/fx/')
-	#mkdir_p('../gfx/intro/')
-	#mkdir_p('../gfx/title/')
-	#mkdir_p('../gfx/tilesets/')
-	#mkdir_p('../gfx/misc/')
-	
 	if debug: print 'fronts'
 	decompress_monsters(front)
 	if debug: print 'backs'
@@ -1463,6 +1452,43 @@ def mass_to_colored_png(debug=False):
 				to_png(os.path.join(root, name), None, os.path.join(root, name[:-5] + '.pal'))
 
 
+def mass_decompress(debug=False):
+	for root, dirs, files in os.walk('../gfx/'):
+		for file in files:
+			if 'lz' in file:
+				if '/pics' in root:
+					if 'front' in file:
+						id = root.split('pics/')[1][:3]
+						if id != 'egg':
+							with open(root+'/'+file, 'rb') as lz: de = Decompressed(lz.read(), 'vert', sizes[int(id)-1])
+						else:
+							with open(root+'/'+file, 'rb') as lz: de = Decompressed(lz.read(), 'vert', 4)
+						to_file(root+'/'+'front.2bpp', de.pic)
+						to_file(root+'/'+'tiles.2bpp', de.animtiles)
+					elif 'back' in file:
+						with open(root+'/'+file, 'rb') as lz: de = Decompressed(lz.read(), 'vert')
+						to_file(root+'/'+'back.2bpp', de.output)
+				elif '/trainers' in root or '/fx' in root:
+					with open(root+'/'+file, 'rb') as lz: de = Decompressed(lz.read(), 'vert')
+					to_file(root+'/'+file[:-3]+'.2bpp', de.output)
+				else:
+					with open(root+'/'+file, 'rb') as lz: de = Decompressed(lz.read())
+					to_file(root+file[:-3]+'.2bpp', de.output)
+
+def append_terminator_to_lzs(directory):
+	# fix lzs that were extracted with a missing terminator
+	for root, dirs, files in os.walk(directory):
+		for file in files:
+			if '.lz' in file:
+				data = open(root+file,'rb').read()
+				if data[-1] != chr(0xff):
+					data += chr(0xff)
+					new = open(root+file,'wb')
+					new.write(data)
+					new.close()
+
+
+
 
 if __name__ == "__main__":
 	parser = argparse.ArgumentParser()
@@ -1563,8 +1589,8 @@ if __name__ == "__main__":
 		elif '.png' in args.arg1:
 			to_2bpp(args.arg1, args.arg2)
 	
-	#else:
-		## python gfx.py
-		#decompress_all()
-		#if debug: print 'decompressed known gfx to ../gfx/!'
+	elif args.cmd == 'mass-decompress':
+		mass_decompress()
+		if debug: print 'decompressed known gfx to pokecrystal/gfx/!'
+	
 

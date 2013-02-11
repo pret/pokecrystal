@@ -32,7 +32,7 @@ pokecrystal.gbc: pokecrystal.o
 
 
 pngs:
-	python gfx.py dump-pngs
+	cd extras; python gfx.py mass-decompress; python gfx.py dump-pngs
 
 
 front.png: tiles.png
