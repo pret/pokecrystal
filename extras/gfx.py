@@ -8,10 +8,11 @@ from math import sqrt, floor, ceil
 from crystal import load_rom
 
 from pokemon_constants import pokemon_constants
+from trainers import trainer_group_names
 
 
-
-rom = load_rom()
+if __name__ != "__main__":
+	rom = load_rom()
 
 
 def mkdir_p(path):
@@ -953,17 +954,6 @@ def decompress_misc():
 def decompress_all(debug = False):
 	"""decompress all known compressed data in baserom"""
 	
-	#mkdir_p('../gfx/')
-	#mkdir_p('../gfx/frontpics/')
-	#mkdir_p('../gfx/anim/')
-	#mkdir_p('../gfx/backpics/')
-	#mkdir_p('../gfx/trainers/')
-	#mkdir_p('../gfx/fx/')
-	#mkdir_p('../gfx/intro/')
-	#mkdir_p('../gfx/title/')
-	#mkdir_p('../gfx/tilesets/')
-	#mkdir_p('../gfx/misc/')
-	
 	if debug: print 'fronts'
 	decompress_monsters(front)
 	if debug: print 'backs'
@@ -1032,7 +1022,7 @@ def compress_monster_frontpic(id, fileout):
 	anim = open(fanim, 'rb').read()
 	image = pic + anim
 	
-	lz = Compressed(image, mode, 5)
+	lz = Compressed(image, mode, sizes[id-1])
 	
 	out = '../gfx/pics/' + str(id).zfill(3) + '/front.lz'
 	
@@ -1081,6 +1071,8 @@ def grab_palettes(address, length = 0x80):
 
 
 def dump_monster_pals():
+	rom = load_rom()
+	
 	pals = 0xa8d6
 	pal_length = 0x4
 	for mon in range(251):
@@ -1114,6 +1106,31 @@ def dump_monster_pals():
 		
 		spacing  = ' ' * (10 - len(name))
 		#print name+'ShinyPalette:'+spacing+' INCBIN "'+dir+filename+'"'
+
+
+def dump_trainer_pals():
+	rom = load_rom()
+	
+	pals = 0xb0d2
+	pal_length = 0x4
+	for trainer in range(67):
+		
+		name = trainer_group_names[trainer+1]['constant'].title().replace('_','')
+		num  = str(trainer).zfill(3)
+		dir  = 'gfx/trainers/'
+		
+		address = pals + trainer*pal_length
+		
+		pal_data = []
+		for byte in range(pal_length):
+			pal_data.append(ord(rom[address]))
+			address += 1
+		
+		filename = num+'.pal'
+		to_file('../'+dir+filename, pal_data)
+		
+		spacing = ' ' * (12 - len(name))
+		print name+'Palette:'+spacing+' INCBIN"'+dir+filename+'"'
 
 
 
@@ -1184,22 +1201,58 @@ def to_png(filein, fileout=None, pal_file=None, height=None, width=None):
 	Takes a planar 2bpp graphics file and converts it to png.
 	"""
 	
-	if fileout == None: fileout = ''.join(filein.split('.')[:-1]) + '.png'
+	if fileout == None: fileout = '.'.join(filein.split('.')[:-1]) + '.png'
 	
 	image = open(filein, 'rb').read()
 	
-
+	num_pixels = len(image) * 4
+	
+	if num_pixels == 0: return 'empty image!'
+	
+	
 	# unless the pic is square, at least one dimension should be given
 	
-	if height   == None and width == None:
-		height = int(sqrt(len(image)*4))
-		width = height
+	if width == None and height == None:
+		width  = int(sqrt(num_pixels))
+		height = width
 	
-	elif height == None: height = len(image)*4 / width
+	elif height == None:
+		height = num_pixels / width
 
-	elif width  == None: width = len(image)*4 / height
+	elif width  == None:
+		width  = num_pixels / height
 	
-	assert height * width == len(image)*4, 'Please specify dimensions for non-square image!'
+	
+	# but try to see if it can be made rectangular
+	
+	if width * height != num_pixels:
+		
+		# look for possible combos of width/height that would form a rectangle
+		matches = []
+		
+		# this is pretty inefficient, and there is probably a simpler way
+		for width in range(8,256+1,8): # we only want dimensions that fit in tiles
+			height = num_pixels / width
+			if height % 8 == 0:
+				matches.append((width, height))
+		
+		# go for the most square image
+		width, height = sorted(matches, key=lambda (x,y): x+y)[0] # favors height
+	
+	
+	# if it can't, the only option is a width of 1 tile
+	
+	if width * height != num_pixels:
+		width = 8
+		height = num_pixels / width
+	
+	
+	# if this still isn't rectangular, then the image isn't made of tiles
+	
+	# for now we'll just spit out a warning
+	if width * height != num_pixels:
+		print 'Warning! ' + fileout + ' is ' + width + 'x' + height + '(' + width*height + ' pixels),\n' +\
+		       'but ' + filein + ' is ' + num_pixels + ' pixels!'
 	
 	
 	# map it out
@@ -1233,7 +1286,7 @@ def to_2bpp(filein, fileout=None, palout=None):
 	Takes a png and converts it to planar 2bpp.
 	"""
 	
-	if fileout == None: fileout = ''.join(filein.split('.')[:-1]) + '.2bpp'
+	if fileout == None: fileout = '.'.join(filein.split('.')[:-1]) + '.2bpp'
 	
 	with open(filein, 'rb') as file:
 
@@ -1355,6 +1408,87 @@ def to_2bpp(filein, fileout=None, palout=None):
 	to_file(fileout, image)
 
 
+def png_to_lz(filein):
+	
+	name = os.path.splitext(filein)[0]
+	
+	to_2bpp(filein)
+	image = open(name+'.2bpp', 'rb').read()
+	to_file(name+'.lz', Compressed(image).output)
+
+
+
+
+def mass_to_png(debug=False):
+	# greyscale
+	for root, dirs, files in os.walk('../gfx/'):
+		for name in files:
+			if debug: print os.path.splitext(name), os.path.join(root, name)
+			if os.path.splitext(name)[1] == '.2bpp':
+				to_png(os.path.join(root, name))
+
+def mass_to_colored_png(debug=False):
+	# greyscale
+	for root, dirs, files in os.walk('../gfx/'):
+		if 'pics' not in root and 'trainers' not in root:
+			for name in files:
+				if debug: print os.path.splitext(name), os.path.join(root, name)
+				if os.path.splitext(name)[1] == '.2bpp':
+					to_png(os.path.join(root, name))
+	
+	# only monster and trainer pics for now
+	for root, dirs, files in os.walk('../gfx/pics/'):
+		for name in files:
+			if debug: print os.path.splitext(name), os.path.join(root, name)
+			if os.path.splitext(name)[1] == '.2bpp':
+				if 'normal.pal' in files:
+					to_png(os.path.join(root, name), None, os.path.join(root, 'normal.pal'))
+				else:
+					to_png(os.path.join(root, name))
+	for root, dirs, files in os.walk('../gfx/trainers/'):
+		for name in files:
+			if debug: print os.path.splitext(name), os.path.join(root, name)
+			if os.path.splitext(name)[1] == '.2bpp':
+				to_png(os.path.join(root, name), None, os.path.join(root, name[:-5] + '.pal'))
+
+
+def mass_decompress(debug=False):
+	for root, dirs, files in os.walk('../gfx/'):
+		for file in files:
+			if 'lz' in file:
+				if '/pics' in root:
+					if 'front' in file:
+						id = root.split('pics/')[1][:3]
+						if id != 'egg':
+							with open(root+'/'+file, 'rb') as lz: de = Decompressed(lz.read(), 'vert', sizes[int(id)-1])
+						else:
+							with open(root+'/'+file, 'rb') as lz: de = Decompressed(lz.read(), 'vert', 4)
+						to_file(root+'/'+'front.2bpp', de.pic)
+						to_file(root+'/'+'tiles.2bpp', de.animtiles)
+					elif 'back' in file:
+						with open(root+'/'+file, 'rb') as lz: de = Decompressed(lz.read(), 'vert')
+						to_file(root+'/'+'back.2bpp', de.output)
+				elif '/trainers' in root or '/fx' in root:
+					with open(root+'/'+file, 'rb') as lz: de = Decompressed(lz.read(), 'vert')
+					to_file(root+'/'+file[:-3]+'.2bpp', de.output)
+				else:
+					with open(root+'/'+file, 'rb') as lz: de = Decompressed(lz.read())
+					to_file(root+file[:-3]+'.2bpp', de.output)
+
+def append_terminator_to_lzs(directory):
+	# fix lzs that were extracted with a missing terminator
+	for root, dirs, files in os.walk(directory):
+		for file in files:
+			if '.lz' in file:
+				data = open(root+file,'rb').read()
+				if data[-1] != chr(0xff):
+					data += chr(0xff)
+					new = open(root+file,'wb')
+					new.write(data)
+					new.close()
+
+
+
 
 if __name__ == "__main__":
 	parser = argparse.ArgumentParser()
@@ -1362,12 +1496,60 @@ if __name__ == "__main__":
 	parser.add_argument('arg1', nargs='?', metavar='arg1', type=str)
 	parser.add_argument('arg2', nargs='?', metavar='arg2', type=str)
 	parser.add_argument('arg3', nargs='?', metavar='arg3', type=str)
+	parser.add_argument('arg4', nargs='?', metavar='arg4', type=str)
+	parser.add_argument('arg5', nargs='?', metavar='arg5', type=str)
 	args = parser.parse_args()
 	
-	debug = True
+	debug = False
 	
-	if args.cmd == 'de':
+	if args.cmd == 'dump-pngs':
+		mass_to_colored_png()
+	
+	elif args.cmd == 'png-to-lz':
+		# python gfx.py png-to-lz [--front anim(2bpp) | --vert] [png]
+		
+		# python gfx.py png-to-lz --front [anim(2bpp)] [png]
+		if args.arg1 == '--front':
+
+			# front.png and tiles.png are combined before compression,
+			# so we have to pass in things like anim file and pic size
+			name = os.path.splitext(args.arg3)[0]
+			
+			to_2bpp(name+'.png', name+'.2bpp')
+			pic  = open(name+'.2bpp', 'rb').read()
+			anim = open(args.arg2, 'rb').read()
+			size = int(sqrt(len(pic)/16)) # assume square pic
+			to_file(name+'.lz', Compressed(pic + anim, 'vert', size).output)
+		
+		
+		# python gfx.py png-to-lz --vert [png]
+		elif args.arg1 == '--vert':
+			
+			# others are vertically oriented (frontpics are always vertical)
+			
+			name = os.path.splitext(args.arg2)[0]
+			
+			to_2bpp(name+'.png', name+'.2bpp')
+			pic = open(name+'.2bpp', 'rb').read()
+			to_file(name+'.lz', Compressed(pic + anim, 'vert').output)
+		
+		
+		# python gfx.py png-to-lz [png]
+		else:
+			
+			# standard usage
+			
+			png_to_lz(args.arg1)
+	
+	elif args.cmd == 'png-to-2bpp':
+		to_2bpp(args.arg1)
+	
+	
+	elif args.cmd == 'de':
 		# python gfx.py de [addr] [fileout] [mode]
+		
+		rom = load_rom()
+		
 		addr = int(args.arg1,16)
 		fileout = args.arg2
 		mode = args.arg3
@@ -1388,10 +1570,12 @@ if __name__ == "__main__":
 	
 	elif args.cmd == 'un':
 		# python gfx.py un [address] [num_tiles] [filename]
+		rom = load_rom()
 		get_uncompressed_gfx(int(args.arg1,16), int(args.arg2), args.arg3)
 	
 	elif args.cmd == 'pal':
 		# python gfx.py pal [address] [length]
+		rom = load_rom()
 		print grab_palettes(int(args.arg1,16), int(args.arg2))
 	
 	elif args.cmd == 'png':
@@ -1405,8 +1589,8 @@ if __name__ == "__main__":
 		elif '.png' in args.arg1:
 			to_2bpp(args.arg1, args.arg2)
 	
-	#else:
-		## python gfx.py
-		#decompress_all()
-		#if debug: print 'decompressed known gfx to ../gfx/!'
+	elif args.cmd == 'mass-decompress':
+		mass_decompress()
+		if debug: print 'decompressed known gfx to pokecrystal/gfx/!'
+	
 
