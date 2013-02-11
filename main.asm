@@ -4967,26 +4967,26 @@ INCBIN "baserom.gbc",$1531f,$174ba - $1531f
 SECTION "bank6",DATA,BANK[$6]
 
 Tileset03GFX: ; 18000
-INCBIN "gfx/tilesets/lz/03.lz"
+INCBIN "gfx/tilesets/03.lz"
 ; 18605
 
 INCBIN "baserom.gbc", $18605, $19006 - $18605
 
 Tileset00GFX:
 Tileset01GFX: ; 19006
-INCBIN "gfx/tilesets/lz/01.lz"
+INCBIN "gfx/tilesets/01.lz"
 ; 19c0d
 
 INCBIN "baserom.gbc", $19c0d, $1a60e - $19c0d
 
 Tileset29GFX: ; 1a60e
-INCBIN "gfx/tilesets/lz/29.lz"
+INCBIN "gfx/tilesets/29.lz"
 ; 1af38
 
 INCBIN "baserom.gbc", $1af38, $1b43e - $1af38
 
 Tileset20GFX: ; 1b43e
-INCBIN "gfx/tilesets/lz/20.lz"
+INCBIN "gfx/tilesets/20.lz"
 ; 1b8f1
 
 INCBIN "baserom.gbc", $1b8f1, $1c000 - $1b8f1
@@ -4997,31 +4997,31 @@ SECTION "bank7",DATA,BANK[$7]
 INCBIN "baserom.gbc", $1c000, $1c30c - $1c000
 
 Tileset07GFX: ; 1c30c
-INCBIN "gfx/tilesets/lz/07.lz"
+INCBIN "gfx/tilesets/07.lz"
 ; 1c73b
 
 INCBIN "baserom.gbc", $1c73b, $1cc3c - $1c73b
 
 Tileset09GFX: ; 1cc3c
-INCBIN "gfx/tilesets/lz/09.lz"
+INCBIN "gfx/tilesets/09.lz"
 ; 1d047
 
 INCBIN "baserom.gbc", $1d047, $1d54c - $1d047
 
 Tileset06GFX: ; 1d54c
-INCBIN "gfx/tilesets/lz/06.lz"
+INCBIN "gfx/tilesets/06.lz"
 ; 1d924
 
 INCBIN "baserom.gbc", $1d924, $1de2c - $1d924
 
 Tileset13GFX: ; 1de2c
-INCBIN "gfx/tilesets/lz/13.lz"
+INCBIN "gfx/tilesets/13.lz"
 ; 1e58c
 
 INCBIN "baserom.gbc", $1e58c, $1ea8c - $1e58c
 
 Tileset24GFX: ; 1ea8c
-INCBIN "gfx/tilesets/lz/24.lz"
+INCBIN "gfx/tilesets/24.lz"
 ; 1ee0e
 
 INCBIN "baserom.gbc", $1ee0e, $1f31c - $1ee0e
@@ -5040,31 +5040,31 @@ SECTION "bank8",DATA,BANK[$8]
 INCBIN "baserom.gbc", $20000, $20181 - $20000
 
 Tileset23GFX: ; 20181
-INCBIN "gfx/tilesets/lz/23.lz"
+INCBIN "gfx/tilesets/23.lz"
 ; 206d2
 
 INCBIN "baserom.gbc", $206d2, $20be1 - $206d2
 
 Tileset10GFX: ; 20be1
-INCBIN "gfx/tilesets/lz/10.lz"
+INCBIN "gfx/tilesets/10.lz"
 ; 213e0
 
 INCBIN "baserom.gbc", $213e0, $218e1 - $213e0
 
 Tileset12GFX: ; 218e1
-INCBIN "gfx/tilesets/lz/12.lz"
+INCBIN "gfx/tilesets/12.lz"
 ; 22026
 
 INCBIN "baserom.gbc", $22026, $22531 - $22026
 
 Tileset14GFX: ; 22531
-INCBIN "gfx/tilesets/lz/14.lz"
+INCBIN "gfx/tilesets/14.lz"
 ; 22ae2
 
 INCBIN "baserom.gbc", $22ae2, $22ff1 - $22ae2
 
 Tileset17GFX: ; 22ff1
-INCBIN "gfx/tilesets/lz/17.lz"
+INCBIN "gfx/tilesets/17.lz"
 ; 23391
 
 INCBIN "baserom.gbc",$23391,$23b11 - $23391
@@ -5249,16 +5249,14 @@ INCLUDE "stats/wild/swarm_water.asm"
 INCBIN "baserom.gbc", $2b930, $2ba1a - $2b930
 
 PlayerGFX: ; 2ba1a
-INCBIN "gfx/misc/lz/player.lz"
-; 2bba0
+INCBIN "gfx/misc/player.lz"
+; 2bba1
 
-INCBIN "baserom.gbc", $2bba0, $2bbaa - $2bba0
+db 0, 0, 0, 0, 0, 0, 0, 0, 0 ; filler
 
 DudeGFX: ; 2bbaa
-INCBIN "gfx/misc/lz/dude.lz"
-; 2bce0
-
-INCBIN "baserom.gbc", $2bce0, $2c000 - $2bce0
+INCBIN "gfx/misc/dude.lz"
+; 2bce1
 
 
 SECTION "bankB",DATA,BANK[$B]
@@ -5423,31 +5421,31 @@ INCBIN "baserom.gbc",$2ef18,$30000 - $2ef18
 SECTION "bankC",DATA,BANK[$C]
 
 Tileset15GFX: ; 30000
-INCBIN "gfx/tilesets/lz/15.lz"
+INCBIN "gfx/tilesets/15.lz"
 ; 304d7
 
 INCBIN "baserom.gbc", $304d7, $309e0 - $304d7
 
 Tileset25GFX: ; 309e0
-INCBIN "gfx/tilesets/lz/25.lz"
+INCBIN "gfx/tilesets/25.lz"
 ; 30e78
 
 INCBIN "baserom.gbc", $30e78, $31380 - $30e78
 
 Tileset27GFX: ; 31380
-INCBIN "gfx/tilesets/lz/27.lz"
+INCBIN "gfx/tilesets/27.lz"
 ; 318dc
 
 INCBIN "baserom.gbc", $318dc, $31de0 - $318dc
 
 Tileset28GFX: ; 31de0
-INCBIN "gfx/tilesets/lz/28.lz"
+INCBIN "gfx/tilesets/28.lz"
 ; 321a6
 
 INCBIN "baserom.gbc", $321a6, $326b0 - $321a6
 
 Tileset30GFX: ; 326b0
-INCBIN "gfx/tilesets/lz/30.lz"
+INCBIN "gfx/tilesets/30.lz"
 ; 329ed
 
 INCBIN "baserom.gbc",$329ed,$34000 - $329ed
@@ -43028,235 +43026,235 @@ INCBIN "baserom.gbc", $84000, $84a2e - $84000
 
 FX00GFX:
 FX01GFX: ; 84a2e
-INCBIN "gfx/fx/lz/001.lz"
+INCBIN "gfx/fx/001.lz"
 ; 84b15
 
 INCBIN "baserom.gbc", $84b15, $84b1e - $84b15
 
 FX02GFX: ; 84b1e
-INCBIN "gfx/fx/lz/002.lz"
+INCBIN "gfx/fx/002.lz"
 ; 84b7a
 
 INCBIN "baserom.gbc", $84b7a, $84b7e - $84b7a
 
 FX03GFX: ; 84b7e
-INCBIN "gfx/fx/lz/003.lz"
+INCBIN "gfx/fx/003.lz"
 ; 84bd0
 
 INCBIN "baserom.gbc", $84bd0, $84bde - $84bd0
 
 FX04GFX: ; 84bde
-INCBIN "gfx/fx/lz/004.lz"
+INCBIN "gfx/fx/004.lz"
 ; 84ca5
 
 INCBIN "baserom.gbc", $84ca5, $84cae - $84ca5
 
 FX05GFX: ; 84cae
-INCBIN "gfx/fx/lz/005.lz"
+INCBIN "gfx/fx/005.lz"
 ; 84de2
 
 INCBIN "baserom.gbc", $84de2, $84dee - $84de2
 
 FX07GFX: ; 84dee
-INCBIN "gfx/fx/lz/007.lz"
+INCBIN "gfx/fx/007.lz"
 ; 84e70
 
 INCBIN "baserom.gbc", $84e70, $84e7e - $84e70
 
 FX08GFX: ; 84e7e
-INCBIN "gfx/fx/lz/008.lz"
+INCBIN "gfx/fx/008.lz"
 ; 84ed4
 
 INCBIN "baserom.gbc", $84ed4, $84ede - $84ed4
 
 FX10GFX: ; 84ede
-INCBIN "gfx/fx/lz/010.lz"
+INCBIN "gfx/fx/010.lz"
 ; 84f13
 
 INCBIN "baserom.gbc", $84f13, $84f1e - $84f13
 
 FX09GFX: ; 84f1e
-INCBIN "gfx/fx/lz/009.lz"
+INCBIN "gfx/fx/009.lz"
 ; 85009
 
 INCBIN "baserom.gbc", $85009, $8500e - $85009
 
 FX12GFX: ; 8500e
-INCBIN "gfx/fx/lz/012.lz"
+INCBIN "gfx/fx/012.lz"
 ; 8506f
 
 INCBIN "baserom.gbc", $8506f, $8507e - $8506f
 
 FX06GFX: ; 8507e
-INCBIN "gfx/fx/lz/006.lz"
+INCBIN "gfx/fx/006.lz"
 ; 8515c
 
 INCBIN "baserom.gbc", $8515c, $8515e - $8515c
 
 FX11GFX: ; 8515e
-INCBIN "gfx/fx/lz/011.lz"
+INCBIN "gfx/fx/011.lz"
 ; 851ad
 
 INCBIN "baserom.gbc", $851ad, $851ae - $851ad
 
 FX13GFX: ; 851ae
-INCBIN "gfx/fx/lz/013.lz"
+INCBIN "gfx/fx/013.lz"
 ; 85243
 
 INCBIN "baserom.gbc", $85243, $8524e - $85243
 
 FX14GFX: ; 8524e
-INCBIN "gfx/fx/lz/014.lz"
+INCBIN "gfx/fx/014.lz"
 ; 852ff
 
 INCBIN "baserom.gbc", $852ff, $8530e - $852ff
 
 FX24GFX: ; 8530e
-INCBIN "gfx/fx/lz/024.lz"
+INCBIN "gfx/fx/024.lz"
 ; 8537c
 
 INCBIN "baserom.gbc", $8537c, $8537e - $8537c
 
 FX15GFX: ; 8537e
-INCBIN "gfx/fx/lz/015.lz"
+INCBIN "gfx/fx/015.lz"
 ; 8539a
 
 INCBIN "baserom.gbc", $8539a, $8539e - $8539a
 
 FX16GFX: ; 8539e
-INCBIN "gfx/fx/lz/016.lz"
+INCBIN "gfx/fx/016.lz"
 ; 8542d
 
 INCBIN "baserom.gbc", $8542d, $8542e - $8542d
 
 FX17GFX: ; 8542e
-INCBIN "gfx/fx/lz/017.lz"
+INCBIN "gfx/fx/017.lz"
 ; 85477
 
 INCBIN "baserom.gbc", $85477, $8547e - $85477
 
 FX18GFX: ; 8547e
-INCBIN "gfx/fx/lz/018.lz"
+INCBIN "gfx/fx/018.lz"
 ; 854eb
 
 INCBIN "baserom.gbc", $854eb, $854ee - $854eb
 
 FX19GFX: ; 854ee
-INCBIN "gfx/fx/lz/019.lz"
+INCBIN "gfx/fx/019.lz"
 ; 855a9
 
 INCBIN "baserom.gbc", $855a9, $855ae - $855a9
 
 FX20GFX: ; 855ae
-INCBIN "gfx/fx/lz/020.lz"
+INCBIN "gfx/fx/020.lz"
 ; 85627
 
 INCBIN "baserom.gbc", $85627, $8562e - $85627
 
 FX22GFX: ; 8562e
-INCBIN "gfx/fx/lz/022.lz"
+INCBIN "gfx/fx/022.lz"
 ; 856ec
 
 INCBIN "baserom.gbc", $856ec, $856ee - $856ec
 
 FX21GFX: ; 856ee
-INCBIN "gfx/fx/lz/021.lz"
+INCBIN "gfx/fx/021.lz"
 ; 85767
 
 INCBIN "baserom.gbc", $85767, $8576e - $85767
 
 FX23GFX: ; 8576e
-INCBIN "gfx/fx/lz/023.lz"
+INCBIN "gfx/fx/023.lz"
 ; 857d0
 
 INCBIN "baserom.gbc", $857d0, $857de - $857d0
 
 FX26GFX: ; 857de
-INCBIN "gfx/fx/lz/026.lz"
+INCBIN "gfx/fx/026.lz"
 ; 85838
 
 INCBIN "baserom.gbc", $85838, $8583e - $85838
 
 FX27GFX: ; 8583e
-INCBIN "gfx/fx/lz/027.lz"
+INCBIN "gfx/fx/027.lz"
 ; 858b0
 
 INCBIN "baserom.gbc", $858b0, $858be - $858b0
 
 FX28GFX: ; 858be
-INCBIN "gfx/fx/lz/028.lz"
+INCBIN "gfx/fx/028.lz"
 ; 85948
 
 INCBIN "baserom.gbc", $85948, $8594e - $85948
 
 FX29GFX: ; 8594e
-INCBIN "gfx/fx/lz/029.lz"
+INCBIN "gfx/fx/029.lz"
 ; 859a8
 
 INCBIN "baserom.gbc", $859a8, $859ae - $859a8
 
 FX30GFX: ; 859ae
-INCBIN "gfx/fx/lz/030.lz"
+INCBIN "gfx/fx/030.lz"
 ; 859ff
 
 INCBIN "baserom.gbc", $859ff, $85a0e - $859ff
 
 FX31GFX: ; 85a0e
-INCBIN "gfx/fx/lz/031.lz"
+INCBIN "gfx/fx/031.lz"
 ; 85ba1
 
 INCBIN "baserom.gbc", $85ba1, $85bae - $85ba1
 
 FX32GFX: ; 85bae
-INCBIN "gfx/fx/lz/032.lz"
+INCBIN "gfx/fx/032.lz"
 ; 85d09
 
 INCBIN "baserom.gbc", $85d09, $85d0e - $85d09
 
 FX33GFX: ; 85d0e
-INCBIN "gfx/fx/lz/033.lz"
+INCBIN "gfx/fx/033.lz"
 ; 85def
 
 INCBIN "baserom.gbc", $85def, $85dfe - $85def
 
 FX34GFX: ; 85dfe
-INCBIN "gfx/fx/lz/034.lz"
+INCBIN "gfx/fx/034.lz"
 ; 85e96
 
 INCBIN "baserom.gbc", $85e96, $85e9e - $85e96
 
 FX25GFX: ; 85e9e
-INCBIN "gfx/fx/lz/025.lz"
+INCBIN "gfx/fx/025.lz"
 ; 85fb8
 
 INCBIN "baserom.gbc", $85fb8, $85fbe - $85fb8
 
 FX35GFX: ; 85fbe
-INCBIN "gfx/fx/lz/035.lz"
+INCBIN "gfx/fx/035.lz"
 ; 86099
 
 INCBIN "baserom.gbc", $86099, $8609e - $86099
 
 FX36GFX: ; 8609e
-INCBIN "gfx/fx/lz/036.lz"
+INCBIN "gfx/fx/036.lz"
 ; 86174
 
 INCBIN "baserom.gbc", $86174, $8617e - $86174
 
 FX37GFX: ; 8617e
-INCBIN "gfx/fx/lz/037.lz"
+INCBIN "gfx/fx/037.lz"
 ; 862eb
 
 INCBIN "baserom.gbc", $862eb, $862ee - $862eb
 
 FX38GFX: ; 862ee
-INCBIN "gfx/fx/lz/038.lz"
+INCBIN "gfx/fx/038.lz"
 ; 8637f
 
 INCBIN "baserom.gbc", $8637f, $8638e - $8637f
 
 FX39GFX: ; 8638e
-INCBIN "gfx/fx/lz/039.lz"
+INCBIN "gfx/fx/039.lz"
 ; 8640b
 
 INCBIN "baserom.gbc", $8640b, $88000 - $8640b
@@ -44297,10 +44295,10 @@ Saturday:
 INCBIN "baserom.gbc", $90a3f, $914dd - $90a3f
 
 PokegearSpritesGFX: ; 914dd
-INCBIN "gfx/misc/lz/pokegear_sprites.lz"
-; 91507
+INCBIN "gfx/misc/pokegear_sprites.lz"
+; 91508
 
-INCBIN "baserom.gbc", $91507, $91bb5 - $91507
+INCBIN "baserom.gbc", $91508, $91bb5 - $91508
 
 TownMapBubble: ; 91bb5
 ; Draw the bubble containing the location text in the town map HUD
@@ -65766,32 +65764,32 @@ GoldenrodDeptStoreRoof_BlockData: ; 0xb1b22
 SECTION "bank2D",DATA,BANK[$2D]
 
 Tileset21GFX: ; b4000
-INCBIN "gfx/tilesets/lz/21.lz"
+INCBIN "gfx/tilesets/21.lz"
 ; b4893
 
 INCBIN "baserom.gbc", $b4893, $b4da0 - $b4893
 
 Tileset22GFX: ; b4da0
-INCBIN "gfx/tilesets/lz/22.lz"
+INCBIN "gfx/tilesets/22.lz"
 ; b50d1
 
 INCBIN "baserom.gbc", $b50d1, $b55e0 - $b50d1
 
 Tileset08GFX: ; b55e0
-INCBIN "gfx/tilesets/lz/08.lz"
+INCBIN "gfx/tilesets/08.lz"
 ; b59db
 
 INCBIN "baserom.gbc", $b59db, $b5ee0 - $b59db
 
 Tileset02GFX:
 Tileset04GFX: ; b5ee0
-INCBIN "gfx/tilesets/lz/04.lz"
+INCBIN "gfx/tilesets/04.lz"
 ; b6ae7
 
 INCBIN "baserom.gbc", $b6ae7, $b74e8 - $b6ae7
 
 Tileset16GFX: ; b74e8
-INCBIN "gfx/tilesets/lz/16.lz"
+INCBIN "gfx/tilesets/16.lz"
 ; b799a
 
 INCBIN "baserom.gbc", $b799a, $b8000 - $b799a
@@ -66568,31 +66566,31 @@ INCLUDE "gfx/pics/unown_frames.asm"
 SECTION "bank37",DATA,BANK[$37]
 
 Tileset31GFX: ; dc000
-INCBIN "gfx/tilesets/lz/31.lz"
+INCBIN "gfx/tilesets/31.lz"
 ; dc3ce
 
 INCBIN "baserom.gbc", $dc3ce, $dc3d0 - $dc3ce
 
 Tileset18GFX: ; dc3d0
-INCBIN "gfx/tilesets/lz/18.lz"
+INCBIN "gfx/tilesets/18.lz"
 ; dcc4e
 
 INCBIN "baserom.gbc", $dcc4e, $dd150 - $dcc4e
 
 Tileset05GFX: ; dd150
-INCBIN "gfx/tilesets/lz/05.lz"
+INCBIN "gfx/tilesets/05.lz"
 ; dd5f8
 
 INCBIN "baserom.gbc", $dd5f8, $ddb00 - $dd5f8
 
 Tileset19GFX: ; ddb00
-INCBIN "gfx/tilesets/lz/19.lz"
+INCBIN "gfx/tilesets/19.lz"
 ; ddf64
 
 INCBIN "baserom.gbc", $ddf64, $de570 - $ddf64
 
 Tileset11GFX: ; de570
-INCBIN "gfx/tilesets/lz/11.lz"
+INCBIN "gfx/tilesets/11.lz"
 ; de98a
 
 INCBIN "baserom.gbc", $de98a, $e0000 - $de98a
@@ -66608,157 +66606,157 @@ SECTION "bank39",DATA,BANK[$39]
 INCBIN "baserom.gbc", $e4000, $e555d - $e4000
 
 IntroSuicuneRunGFX: ; e555d
-INCBIN "gfx/intro/lz/suicune_run.lz"
+INCBIN "gfx/intro/suicune_run.lz"
 ; e592b
 
 INCBIN "baserom.gbc", $e592b, $e592d - $e592b
 
 IntroPichuWooperGFX: ; e592d
-INCBIN "gfx/intro/lz/pichu_wooper.lz"
+INCBIN "gfx/intro/pichu_wooper.lz"
 ; e5c70
 
 INCBIN "baserom.gbc", $e5c70, $e5c7d - $e5c70
 
 IntroBackgroundGFX: ; e5c7d
-INCBIN "gfx/intro/lz/background.lz"
+INCBIN "gfx/intro/background.lz"
 ; e5e69
 
 INCBIN "baserom.gbc", $e5e69, $e5e6d - $e5e69
 
 IntroTilemap004: ; e5e6d
-INCBIN "gfx/intro/lz/004.lz"
+INCBIN "gfx/intro/004.lz"
 ; e5ec5
 
 INCBIN "baserom.gbc", $e5ec5, $e5ecd - $e5ec5
 
 IntroTilemap003: ; e5ecd
-INCBIN "gfx/intro/lz/003.lz"
+INCBIN "gfx/intro/003.lz"
 ; e5ed9
 
 INCBIN "baserom.gbc", $e5ed9, $e5f5d - $e5ed9
 
 IntroUnownsGFX: ; e5f5d
-INCBIN "gfx/intro/lz/unowns.lz"
+INCBIN "gfx/intro/unowns.lz"
 ; e6348
 
 INCBIN "baserom.gbc", $e6348, $e634d - $e6348
 
 IntroPulseGFX: ; e634d
-INCBIN "gfx/intro/lz/pulse.lz"
+INCBIN "gfx/intro/pulse.lz"
 ; e63d4
 
 INCBIN "baserom.gbc", $e63d4, $e63dd - $e63d4
 
 IntroTilemap002: ; e63dd
-INCBIN "gfx/intro/lz/002.lz"
+INCBIN "gfx/intro/002.lz"
 ; e6418
 
 INCBIN "baserom.gbc", $e6418, $e641d - $e6418
 
 IntroTilemap001: ; e641d
-INCBIN "gfx/intro/lz/001.lz"
+INCBIN "gfx/intro/001.lz"
 ; e6429
 
 INCBIN "baserom.gbc", $e6429, $e642d - $e6429
 
 IntroTilemap006: ; e642d
-INCBIN "gfx/intro/lz/006.lz"
+INCBIN "gfx/intro/006.lz"
 ; e6472
 
 INCBIN "baserom.gbc", $e6472, $e647d - $e6472
 
 IntroTilemap005: ; e647d
-INCBIN "gfx/intro/lz/005.lz"
+INCBIN "gfx/intro/005.lz"
 ; e6498
 
 INCBIN "baserom.gbc", $e6498, $e649d - $e6498
 
 IntroTilemap008: ; e649d
-INCBIN "gfx/intro/lz/008.lz"
+INCBIN "gfx/intro/008.lz"
 ; e6550
 
 INCBIN "baserom.gbc", $e6550, $e655d - $e6550
 
 IntroTilemap007: ; e655d
-INCBIN "gfx/intro/lz/007.lz"
+INCBIN "gfx/intro/007.lz"
 ; e65a4
 
 INCBIN "baserom.gbc", $e65a4, $e662d - $e65a4
 
 IntroCrystalUnownsGFX: ; e662d
-INCBIN "gfx/intro/lz/crystal_unowns.lz"
+INCBIN "gfx/intro/crystal_unowns.lz"
 ; e6720
 
 INCBIN "baserom.gbc", $e6720, $e672d - $e6720
 
 IntroTilemap017: ; e672d
-INCBIN "gfx/intro/lz/017.lz"
+INCBIN "gfx/intro/017.lz"
 ; e6761
 
 INCBIN "baserom.gbc", $e6761, $e676d - $e6761
 
 IntroTilemap015: ; e676d
-INCBIN "gfx/intro/lz/015.lz"
+INCBIN "gfx/intro/015.lz"
 ; e6794
 
 INCBIN "baserom.gbc", $e6794, $e681d - $e6794
 
 IntroSuicuneCloseGFX: ; e681d
-INCBIN "gfx/intro/lz/suicune_close.lz"
+INCBIN "gfx/intro/suicune_close.lz"
 ; e6c37
 
 INCBIN "baserom.gbc", $e6c37, $e6c3d - $e6c37
 
 IntroTilemap012: ; e6c3d
-INCBIN "gfx/intro/lz/012.lz"
+INCBIN "gfx/intro/012.lz"
 ; e6d0a
 
 INCBIN "baserom.gbc", $e6d0a, $e6d0d - $e6d0a
 
 IntroTilemap011: ; e6d0d
-INCBIN "gfx/intro/lz/011.lz"
+INCBIN "gfx/intro/011.lz"
 ; e6d65
 
 INCBIN "baserom.gbc", $e6d65, $e6ded - $e6d65
 
 IntroSuicuneJumpGFX: ; e6ded
-INCBIN "gfx/intro/lz/suicune_jump.lz"
+INCBIN "gfx/intro/suicune_jump.lz"
 ; e72a7
 
 INCBIN "baserom.gbc", $e72a7, $e72ad - $e72a7
 
 IntroSuicuneBackGFX: ; e72ad
-INCBIN "gfx/intro/lz/suicune_back.lz"
+INCBIN "gfx/intro/suicune_back.lz"
 ; e7648
 
 INCBIN "baserom.gbc", $e7648, $e764d - $e7648
 
 IntroTilemap010: ; e764d
-INCBIN "gfx/intro/lz/010.lz"
+INCBIN "gfx/intro/010.lz"
 ; e76a0
 
 INCBIN "baserom.gbc", $e76a0, $e76ad - $e76a0
 
 IntroTilemap009: ; e76ad
-INCBIN "gfx/intro/lz/009.lz"
+INCBIN "gfx/intro/009.lz"
 ; e76bb
 
 INCBIN "baserom.gbc", $e76bb, $e76bd - $e76bb
 
 IntroTilemap014: ; e76bd
-INCBIN "gfx/intro/lz/014.lz"
+INCBIN "gfx/intro/014.lz"
 ; e778b
 
 INCBIN "baserom.gbc", $e778b, $e778d - $e778b
 
 IntroTilemap013: ; e778d
-INCBIN "gfx/intro/lz/013.lz"
+INCBIN "gfx/intro/013.lz"
 ; e77d9
 
 INCBIN "baserom.gbc", $e77d9, $e785d - $e77d9
 
 IntroUnownBackGFX: ; e785d
-INCBIN "gfx/intro/lz/unown_back.lz"
+INCBIN "gfx/intro/unown_back.lz"
 ; e799a
 
 INCBIN "baserom.gbc", $e799a, $e7a70 - $e799a
@@ -66919,10 +66917,10 @@ INCBIN "gfx/font_battle_extra.2bpp",$0,$200
 INCBIN "baserom.gbc", $f8800, $f8ba0 - $f8800
 
 TownMapGFX: ; f8ba0
-INCBIN "gfx/misc/lz/town_map.lz"
-; f8ea2
+INCBIN "gfx/misc/town_map.lz"
+; f8ea3
 
-INCBIN "baserom.gbc", $f8ea2, $fbbfc - $f8ea2
+INCBIN "baserom.gbc", $f8ea3, $fbbfc - $f8ea3
 
 CalcMagikarpLength: ; fbbfc
 ; Stores Magikarp's length at $d1ea-$d1eb in big endian
@@ -67191,7 +67189,7 @@ SECTION "bank42",DATA,BANK[$42]
 INCBIN "baserom.gbc", $108000, $109407 - $108000
 
 IntroLogoGFX: ; 109407
-INCBIN "gfx/intro/lz/logo.lz"
+INCBIN "gfx/intro/logo.lz"
 ; 10983f
 
 INCBIN "baserom.gbc", $10983f, $10aee1 - $10983f
@@ -67554,19 +67552,19 @@ TitleScreen: ; 10ed67
 INCBIN "baserom.gbc", $10eea7, $10ef46 - $10eea7
 
 TitleSuicuneGFX: ; 10ef46
-INCBIN "gfx/title/lz/suicune.lz"
+INCBIN "gfx/title/suicune.lz"
 ; 10f31b
 
 INCBIN "baserom.gbc", $10f31b, $10f326 - $10f31b
 
 TitleLogoGFX: ; 10f326
-INCBIN "gfx/title/lz/logo.lz"
+INCBIN "gfx/title/logo.lz"
 ; 10fced
 
 INCBIN "baserom.gbc", $10fced, $10fcee - $10fced
 
 TitleCrystalGFX: ; 10fcee
-INCBIN "gfx/title/lz/crystal.lz"
+INCBIN "gfx/title/crystal.lz"
 ; 10fed7
 
 INCBIN "baserom.gbc", $10fed7, $10fede - $10fed7
@@ -114618,7 +114616,7 @@ Tileset33GFX:
 Tileset34GFX:
 Tileset35GFX:
 Tileset36GFX: ; 1dc5a1
-INCBIN "gfx/tilesets/lz/26.lz"
+INCBIN "gfx/tilesets/26.lz"
 ; 1dd1a8
 
 INCBIN "baserom.gbc", $1dd1a8, $1de29f - $1dd1a8
@@ -114656,10 +114654,10 @@ DudeAutoInput_DownA: ; 1de2af
 INCBIN "baserom.gbc",$1de2c5,$1de2e4 - $1de2c5
 
 PokegearGFX: ; 1de2e4
-INCBIN "gfx/misc/lz/pokegear.lz"
-; 1de5c6
+INCBIN "gfx/misc/pokegear.lz"
+; 1de5c7
 
-INCBIN "baserom.gbc",$1de5c6,$1e0000 - $1de5c6
+INCBIN "baserom.gbc",$1de5c7,$1e0000 - $1de5c7
 
 
 SECTION "bank78",DATA,BANK[$78]
