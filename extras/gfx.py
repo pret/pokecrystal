@@ -1216,23 +1216,54 @@ def to_png(filein, fileout=None, pal_file=None, height=None, width=None):
 	
 	image = open(filein, 'rb').read()
 	
-	if len(image) == 0: return 'empty image!'
+	num_pixels = len(image) * 4
+	
+	if num_pixels == 0: return 'empty image!'
+	
+	
+	# unless the pic is square, at least one dimension should be given
+	
+	if width == None and height == None:
+		width  = int(sqrt(num_pixels))
+		height = width
+	
+	elif height == None:
+		height = num_pixels / width
 
-	# unless the pic is square, at least one dimension should be given...
+	elif width  == None:
+		width  = num_pixels / height
 	
-	if height   == None and width == None:
-		height = int(sqrt(len(image)*4))
-		width = height
 	
-	elif height == None: height = len(image)*4 / width
-
-	elif width  == None: width = len(image)*4 / height
+	# but try to see if it can be made rectangular
 	
-	# ...or it will become 1 tile wide
+	if width * height != num_pixels:
+		
+		# look for possible combos of width/height that would form a rectangle
+		matches = []
+		
+		# this is pretty inefficient, and there is probably a simpler way
+		for width in range(8,256+1,8): # we only want dimensions that fit in tiles
+			height = num_pixels / width
+			if height % 8 == 0:
+				matches.append((width, height))
+		
+		# go for the most square image
+		width, height = sorted(matches, key=lambda (x,y): x+y)[0] # favors height
 	
-	if height * width != len(image)*4:
-		height = len(image)*4 / 8
-		width  = 8
+	
+	# if it can't, the only option is a width of 1 tile
+	
+	if width * height != num_pixels:
+		width = 8
+		height = num_pixels / width
+	
+	
+	# if this still isn't rectangular, then the image isn't made of tiles
+	
+	# for now we'll just spit out a warning
+	if width * height != num_pixels:
+		print 'Warning! ' + fileout + ' is ' + width + 'x' + height + '(' + width*height + ' pixels),\n' +\
+		       'but ' + filein + ' is ' + num_pixels + ' pixels!'
 	
 	
 	# map it out
