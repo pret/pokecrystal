@@ -2527,7 +2527,7 @@ GetMapHeaderPointer: ; 0x2bed
 	; find the cth map header
 	dec c
 	ld b, $0
-	ld a, OlivineGym_MapHeader - MapHeader_0x94034
+	ld a, OlivineGym_MapHeader - OlivinePokeCenter1F_MapHeader
 	call AddNTimes
 	ret
 
@@ -44753,7 +44753,7 @@ SECTION "bank25",DATA,BANK[$25]
 
 MapHeaderPointers: ; 0x94000
 ; pointers to the first map header of each map group
-	dw MapHeader_0x94034
+	dw OlivinePokeCenter1F_MapHeader
 	dw MahoganyRedGyaradosSpeechHouse_MapHeader
 	dw SproutTower1F_MapHeader
 	dw EcruteakHouse_MapHeader
@@ -44780,7 +44780,7 @@ MapHeaderPointers: ; 0x94000
 	dw Route5_MapHeader
 	dw Route30_MapHeader
 
-MapHeader_0x94034: ; 0x94034
+OlivinePokeCenter1F_MapHeader: ; 0x94034
 	; bank, tileset, permission
 	db BANK(OlivinePokeCenter1F_SecondMapHeader), $7, 3
 
