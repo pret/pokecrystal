@@ -610,6 +610,8 @@ class Decompressed:
 			self.tiles = transpose(self.tiles)
 			self.pic = connect(self.tiles)
 		
+		self.output = self.pic + self.animtiles
+	
 	
 	def decompress(self):
 		"""replica of crystal's decompression"""
