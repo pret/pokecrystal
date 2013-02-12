@@ -1430,13 +1430,16 @@ def mass_to_png(debug=False):
 				to_png(os.path.join(root, name))
 
 def mass_to_colored_png(debug=False):
-	# greyscale
+	# greyscale, unless a palette is detected
 	for root, dirs, files in os.walk('../gfx/'):
 		if 'pics' not in root and 'trainers' not in root:
 			for name in files:
 				if debug: print os.path.splitext(name), os.path.join(root, name)
 				if os.path.splitext(name)[1] == '.2bpp':
-					to_png(os.path.join(root, name))
+					if name[:5]+'.pal' in files:
+						to_png(os.path.join(root, name), None, os.path.join(root, name[:-5]+'.pal'))
+					else:
+						to_png(os.path.join(root, name))
 	
 	# only monster and trainer pics for now
 	for root, dirs, files in os.walk('../gfx/pics/'):
@@ -1451,7 +1454,7 @@ def mass_to_colored_png(debug=False):
 		for name in files:
 			if debug: print os.path.splitext(name), os.path.join(root, name)
 			if os.path.splitext(name)[1] == '.2bpp':
-				to_png(os.path.join(root, name), None, os.path.join(root, name[:-5] + '.pal'))
+				to_png(os.path.join(root, name), None, os.path.join(root, name[:-5]+'.pal'))
 
 
 def mass_decompress(debug=False):
