@@ -38,18 +38,18 @@ pokecrystal.gbc: pokecrystal.o
 	cmp baserom.gbc $@
 
 
-@lzs: ${VERTGFX} ${HORIZGFX}
+lzs: ${VERTGFX} ${HORIZGFX}
 
-@pngs:
+pngs:
 	cd extras; python gfx.py mass-decompress; python gfx.py dump-pngs
 
 
-@front.png: tiles.png
+front.png: tiles.png
 	cd extras; python gfx.py png-to-lz --front $@ $(OBJECT_DIRECTORY)/tiles.2bpp
-@tiles.png:
+tiles.png:
 	cd extras; python gfx.py png-to-2bpp $@
-@.png: ${VERTGFX}
+.png: ${VERTGFX}
 	cd extras; python gfx.py png-to-lz --vert $@
-@.png: ${HORIZGFX}
+.png: ${HORIZGFX}
 	cd extras; python gfx.py png-to-lz $@
 
