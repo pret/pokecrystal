@@ -2501,7 +2501,7 @@ INCBIN "baserom.gbc",$26f7,$2bed-$26f7
 
 GetMapHeaderPointer: ; 0x2bed
 ; Prior to calling this function, you must have switched banks so that
-; MapHeaderPointers is visible.
+; MapGroupPointers is visible.
 
 ; inputs:
 ; b = map group, c = map number
@@ -2515,7 +2515,7 @@ GetMapHeaderPointer: ; 0x2bed
 	dec b
 	ld c, b
 	ld b, $0
-	ld hl, MapHeaderPointers
+	ld hl, MapGroupPointers
 	add hl, bc
 	add hl, bc
 
@@ -2551,7 +2551,7 @@ GetAnyMapHeaderMember: ; 0x2c0c
 	; bankswitch
 	ld a, [$ff9d]
 	push af
-	ld a, BANK(MapHeaderPointers)
+	ld a, BANK(MapGroupPointers)
 	rst Bankswitch
 
 	call GetMapHeaderPointer
@@ -44751,34 +44751,34 @@ INCBIN "baserom.gbc", $922d1, $93a31 - $922d1
 
 SECTION "bank25",DATA,BANK[$25]
 
-MapHeaderPointers: ; 0x94000
+MapGroupPointers: ; 0x94000
 ; pointers to the first map header of each map group
-	dw OlivinePokeCenter1F_MapHeader
-	dw MahoganyRedGyaradosSpeechHouse_MapHeader
-	dw SproutTower1F_MapHeader
-	dw EcruteakHouse_MapHeader
-	dw BlackthornGym1F_MapHeader
-	dw CinnabarPokeCenter1F_MapHeader
-	dw CeruleanGymBadgeSpeechHouse_MapHeader
-	dw AzaleaPokeCenter1F_MapHeader
-	dw LakeofRageHiddenPowerHouse_MapHeader
-	dw Route32_MapHeader
-	dw Route34_MapHeader
-	dw Route6_MapHeader
-	dw Route1_MapHeader
-	dw Route3_MapHeader
-	dw OlivinePort_MapHeader
-	dw Route23_MapHeader
-	dw Route13_MapHeader
-	dw Route8_MapHeader
-	dw Route28_MapHeader
-	dw PokeCenter2F_MapHeader
-	dw Route7_MapHeader
-	dw Route40_MapHeader
-	dw Route2_MapHeader
-	dw Route26_MapHeader
-	dw Route5_MapHeader
-	dw Route30_MapHeader
+	dw MapGroup0
+	dw MapGroup1
+	dw MapGroup2
+	dw MapGroup3
+	dw MapGroup4
+	dw MapGroup5
+	dw MapGroup6
+	dw MapGroup7
+	dw MapGroup8
+	dw MapGroup9
+	dw MapGroup10
+	dw MapGroup11
+	dw MapGroup12
+	dw MapGroup13
+	dw MapGroup14
+	dw MapGroup15
+	dw MapGroup16
+	dw MapGroup17
+	dw MapGroup18
+	dw MapGroup19
+	dw MapGroup20
+	dw MapGroup21
+	dw MapGroup22
+	dw MapGroup23
+	dw MapGroup24
+	dw MapGroup25
 
 
 INCLUDE "maps/map_headers.asm"

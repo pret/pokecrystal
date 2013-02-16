@@ -1,3 +1,6 @@
+
+MapGroup0:
+
 OlivinePokeCenter1F_MapHeader: ; 0x94034
 	; bank, tileset, permission
 	db BANK(OlivinePokeCenter1F_SecondMapHeader), $7, 3
@@ -154,6 +157,9 @@ OlivineCity_MapHeader: ; 0x940a9
 	db $1b, $2d, 0, 1
 ; 0x940b2
 
+
+MapGroup1:
+
 MahoganyRedGyaradosSpeechHouse_MapHeader: ; 0x940b2
 	; bank, tileset, permission
 	db BANK(MahoganyRedGyaradosSpeechHouse_SecondMapHeader), $5, 3
@@ -230,6 +236,9 @@ MahoganyTown_MapHeader: ; 0x940e8
 	; location on world map, music, time of day, fishing group
 	db $24, $26, 0, 1
 ; 0x940f1
+
+
+MapGroup2:
 
 SproutTower1F_MapHeader: ; 0x940f1
 	; bank, tileset, permission
@@ -1232,6 +1241,9 @@ VictoryRoad_MapHeader: ; 0x9441b
 	db $58, $4f, 18, 1
 ; 0x94424
 
+
+MapGroup3:
+
 EcruteakHouse_MapHeader: ; 0x94424
 	; bank, tileset, permission
 	db BANK(EcruteakHouse_SecondMapHeader), $17, 3
@@ -1330,6 +1342,9 @@ EcruteakCity_MapHeader: ; 0x9446c
 	; location on world map, music, time of day, fishing group
 	db $16, $2c, 0, 4
 ; 0x94475
+
+
+MapGroup4:
 
 BlackthornGym1F_MapHeader: ; 0x94475
 	; bank, tileset, permission
@@ -1441,6 +1456,9 @@ BlackthornCity_MapHeader: ; 0x944c6
 	db $29, $25, 0, 4
 ; 0x944cf
 
+
+MapGroup5:
+
 CinnabarPokeCenter1F_MapHeader: ; 0x944cf
 	; bank, tileset, permission
 	db BANK(CinnabarPokeCenter1F_SecondMapHeader), $7, 3
@@ -1528,6 +1546,9 @@ CinnabarIsland_MapHeader: ; 0x9450e
 	; location on world map, music, time of day, fishing group
 	db $55, $15, 0, 2
 ; 0x94517
+
+
+MapGroup6:
 
 CeruleanGymBadgeSpeechHouse_MapHeader: ; 0x94517
 	; bank, tileset, permission
@@ -1716,6 +1737,9 @@ CeruleanCity_MapHeader: ; 0x945a7
 	db $37, $15, 0, 0
 ; 0x945b0
 
+
+MapGroup7:
+
 AzaleaPokeCenter1F_MapHeader: ; 0x945b0
 	; bank, tileset, permission
 	db BANK(AzaleaPokeCenter1F_SecondMapHeader), $7, 3
@@ -1793,6 +1817,9 @@ AzaleaTown_MapHeader: ; 0x945e6
 	db $c, $25, 0, 1
 ; 0x945ef
 
+
+MapGroup8:
+
 LakeofRageHiddenPowerHouse_MapHeader: ; 0x945ef
 	; bank, tileset, permission
 	db BANK(LakeofRageHiddenPowerHouse_SecondMapHeader), $5, 3
@@ -1858,6 +1885,9 @@ LakeofRage_MapHeader: ; 0x9461c
 	; location on world map, music, time of day, fishing group
 	db $26, $45, 0, 8
 ; 0x94625
+
+
+MapGroup9:
 
 Route32_MapHeader: ; 0x94625
 	; bank, tileset, permission
@@ -2045,6 +2075,9 @@ Route36NationalParkgate_MapHeader: ; 0x946b5
 	; location on world map, music, time of day, fishing group
 	db $14, $3d, 1, 1
 ; 0x946be
+
+
+MapGroup10:
 
 Route34_MapHeader: ; 0x946be
 	; bank, tileset, permission
@@ -2310,6 +2343,9 @@ DayCare_MapHeader: ; 0x9478d
 	db $f, $25, 1, 1
 ; 0x94796
 
+
+MapGroup11:
+
 Route6_MapHeader: ; 0x94796
 	; bank, tileset, permission
 	db BANK(Route6_SecondMapHeader), $3, 2
@@ -2453,6 +2489,9 @@ Route6UndergroundEntrance_MapHeader: ; 0x94802
 	db $3c, $3, 1, 1
 ; 0x9480b
 
+
+MapGroup12:
+
 Route1_MapHeader: ; 0x9480b
 	; bank, tileset, permission
 	db BANK(Route1_SecondMapHeader), $3, 2
@@ -2518,6 +2557,9 @@ OaksLab_MapHeader: ; 0x94838
 	; location on world map, music, time of day, fishing group
 	db $2f, $1d, 1, 1
 ; 0x94841
+
+
+MapGroup13:
 
 Route3_MapHeader: ; 0x94841
 	; bank, tileset, permission
@@ -2606,6 +2648,9 @@ PewterSnoozeSpeechHouse_MapHeader: ; 0x94880
 	; location on world map, music, time of day, fishing group
 	db $33, $15, 1, 1
 ; 0x94889
+
+
+MapGroup14:
 
 OlivinePort_MapHeader: ; 0x94889
 	; bank, tileset, permission
@@ -2739,6 +2784,9 @@ TinTowerRoof_MapHeader: ; 0x948ec
 	db $17, $41, 0, 1
 ; 0x948f5
 
+
+MapGroup15:
+
 Route23_MapHeader: ; 0x948f5
 	; bank, tileset, permission
 	db BANK(Route23_SecondMapHeader), $3, 1
@@ -2826,6 +2874,9 @@ HallOfFame_MapHeader: ; 0x94934
 	; location on world map, music, time of day, fishing group
 	db $5a, $3c, 17, 1
 ; 0x9493d
+
+
+MapGroup16:
 
 Route13_MapHeader: ; 0x9493d
 	; bank, tileset, permission
@@ -2969,6 +3020,9 @@ Route15FuchsiaGate_MapHeader: ; 0x949a9
 	; location on world map, music, time of day, fishing group
 	db $4d, $4, 1, 1
 ; 0x949b2
+
+
+MapGroup17:
 
 Route8_MapHeader: ; 0x949b2
 	; bank, tileset, permission
@@ -3124,6 +3178,9 @@ Route12SuperRodHouse_MapHeader: ; 0x94a27
 	db $4a, $15, 1, 1
 ; 0x94a30
 
+
+MapGroup18:
+
 Route28_MapHeader: ; 0x94a30
 	; bank, tileset, permission
 	db BANK(Route28_SecondMapHeader), $3, 2
@@ -3167,6 +3224,9 @@ Route28FamousSpeechHouse_MapHeader: ; 0x94a4b
 	; location on world map, music, time of day, fishing group
 	db $5e, $25, 1, 1
 ; 0x94a54
+
+
+MapGroup19:
 
 PokeCenter2F_MapHeader: ; 0x94a54
 	; bank, tileset, permission
@@ -3233,6 +3293,9 @@ MobileBattleRoom_MapHeader: ; 0x94a81
 	; location on world map, music, time of day, fishing group
 	db $0, $26, 17, 1
 ; 0x94a8a
+
+
+MapGroup20:
 
 Route7_MapHeader: ; 0x94a8a
 	; bank, tileset, permission
@@ -3520,6 +3583,9 @@ Route1718Gate_MapHeader: ; 0x94b6b
 	db $4f, $3, 1, 1
 ; 0x94b74
 
+
+MapGroup21:
+
 Route40_MapHeader: ; 0x94b74
 	; bank, tileset, permission
 	db BANK(Route40_SecondMapHeader), $1, 2
@@ -3696,6 +3762,9 @@ BattleTowerOutside_MapHeader: ; 0x94bfb
 	db $1d, $63, 0, 1
 ; 0x94c04
 
+
+MapGroup22:
+
 Route2_MapHeader: ; 0x94c04
 	; bank, tileset, permission
 	db BANK(Route2_SecondMapHeader), $3, 2
@@ -3839,6 +3908,9 @@ VictoryRoadGate_MapHeader: ; 0x94c70
 	db $5b, $46, 1, 1
 ; 0x94c79
 
+
+MapGroup23:
+
 Route26_MapHeader: ; 0x94c79
 	; bank, tileset, permission
 	db BANK(Route26_SecondMapHeader), $1, 2
@@ -3981,6 +4053,9 @@ Route2946Gate_MapHeader: ; 0x94ce5
 	; location on world map, music, time of day, fishing group
 	db $2, $34, 1, 1
 ; 0x94cee
+
+
+MapGroup24:
 
 Route5_MapHeader: ; 0x94cee
 	; bank, tileset, permission
@@ -4147,6 +4222,9 @@ Route5CleanseTagSpeechHouse_MapHeader: ; 0x94d6c
 	db $3a, $15, 1, 1
 ; 0x94d75
 
+
+MapGroup25:
+
 Route30_MapHeader: ; 0x94d75
 	; bank, tileset, permission
 	db BANK(Route30_SecondMapHeader), $1, 2
@@ -4267,4 +4345,5 @@ Route31VioletGate_MapHeader: ; 0x94dcf
 	; location on world map, music, time of day, fishing group
 	db $5, $2b, 1, 1
 ; 0x94dd8
+
 
