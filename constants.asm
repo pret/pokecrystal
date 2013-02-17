@@ -17,16 +17,19 @@ dn: MACRO
 	db \1 << 4 + \2
 	ENDM
 
+; big-endian word
 bigdw: MACRO
 	dw ((\1)/$100) + (((\1)&$ff)*$100)
 	ENDM
 
+; address, bank
 callab: MACRO
 	ld hl, \1
 	ld a, BANK(\1)
 	rst FarCall
 	ENDM
 
+; bank, address
 callba: MACRO
 	ld a, BANK(\1)
 	ld hl, \1
@@ -48,7 +51,6 @@ RGB: MACRO
 	dw ((\3 << 10) | (\2 << 5) | (\1))
 	ENDM
 
-; eventually replace with python macro
 note: MACRO
 	db \1
 	ENDM
@@ -59,19 +61,38 @@ Coord = $c4a0 + 20 * \2 + \1
 	ENDM
 
 bccoord: MACRO
-    FuncCoord \1, \2
-    ld bc, Coord
+	FuncCoord \1, \2
+	ld bc, Coord
 	ENDM
 	
 decoord: MACRO
-    FuncCoord \1, \2
-    ld de, Coord
+	FuncCoord \1, \2
+	ld de, Coord
 	ENDM
 
 hlcoord: MACRO
-    FuncCoord \1, \2
-    ld hl, Coord
+	FuncCoord \1, \2
+	ld hl, Coord
 	ENDM
+
+
+; pic animations
+frame: MACRO
+	db \1
+	db \2
+	ENDM
+setrepeat: MACRO
+	db $fe
+	db \1
+	ENDM
+dorepeat: MACRO
+	db $fd
+	db \1
+	ENDM
+endanim: MACRO
+	db $ff
+	ENDM
+
 
 NONE       EQU 0
 
@@ -3415,19 +3436,3 @@ Unkn2Pals EQU $d040 ; 8 4-color palettes little endian)
 BGPals    EQU $d080 ; 8 4-color palettes little endian)
 OBPals    EQU $d0c0 ; 8 4-color palettes little endian)
 
-; oh my god this is hacky stop being so hacky
-frame: MACRO
-	db \1
-	db \2
-	ENDM
-setrepeat: MACRO
-	db $fe
-	db \1
-	ENDM
-dorepeat: MACRO
-	db $fd
-	db \1
-	ENDM
-endanim: MACRO
-	db $ff
-	ENDM
