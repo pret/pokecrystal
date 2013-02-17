@@ -5,6 +5,9 @@ TEXTFILES =	text/sweethoney.tx \
 		text/phone/elm.tx \
 		text/phone/mom.tx \
 		text/phone/trainers1.tx \
+		text/common.tx \
+		text/common_2.tx \
+		text/common_3.tx \
 		main.tx
 
 VERTGFX =	gfx/pics/%.png \
