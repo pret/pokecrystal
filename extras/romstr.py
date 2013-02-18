@@ -46,15 +46,17 @@ class RomStr(str):
         return "RomStr(too long)"
 
     @classmethod
-    def load(cls, crystal=True, red=False):
+    def load(cls, filename=None, crystal=True, red=False):
         """ Loads a ROM into a RomStr.
         """
-        if   crystal and not red:
+        if   crystal and not red and not filename:
             file_handler = open("../baserom.gbc", "r")
-        elif red and not crystal:
+        elif red and not crystal and not filename:
             file_handler = open("../pokered-baserom.gbc", "r")
+        elif filename not in ["", None]:
+            file_handler = open(filename, "rb")
         else:
-            raise Exception, "not sure which rom to load?"
+            raise Exception("not sure which rom to load?")
         bytes = file_handler.read()
         file_handler.close()
         return RomStr(bytes)

@@ -5,6 +5,7 @@ sudo apt-get install make gcc bison git python python-setuptools
 
 # unittest2 is required if using python2.6
 sudo easy_install unittest2
+sudo easy_install pip
 
 # download rgbds source code
 git clone git://github.com/bentley/rgbds.git
@@ -18,8 +19,11 @@ sudo make install
 which rgbasm
 
 # download pokecrystal
-git clone https://github.com/kanzure/pokecrystal.git
+git clone git://github.com/kanzure/pokecrystal.git
 cd pokecrystal
+
+# install python requirements
+pip install -r requirements.txt
 
 make clean && make
 ```
@@ -128,7 +132,7 @@ Now you should be able to build `pokecrystal` for the first time:
 
 ```bash
 cd ~
-git clone https://github.com/kanzure/pokecrystal.git
+git clone git://github.com/kanzure/pokecrystal.git
 cd pokecrystal
 ```
 

@@ -1,6 +1,22 @@
+SECTION "tiles0",VRAM[$8000]
+VTiles0:
+SECTION "tiles1",VRAM[$8800]
+VTiles1:
+SECTION "tiles2",VRAM[$9000]
+VTiles2:
+SECTION "bgmap0",VRAM[$9800]
+VBGMap0:
+SECTION "bgmap1",VRAM[$9C00]
+VBGMap1:
+
+
+; So far, WRAM banks 0 and 1 are included in this file.
+; Any bank 2-7 labels are in constants.asm.
+
+
 SECTION "stack",BSS[$c000]
 	ds 256
-Stack: ; c0ff
+Stack: ; c100
 
 
 SECTION "audio",BSS[$c100]
@@ -326,6 +342,10 @@ TilePermissions: ; c2fe
 ; bit 0: right
 	ds 1
 
+SECTION "icons",BSS[$c3b6]
+
+CurIcon: ; c3b6
+	ds 1
 
 SECTION "gfx",BSS[$c400]
 
@@ -728,11 +748,23 @@ Options2: ; cfd1
 ; bit 1: menu account off/on
 	ds 1
 
-	ds 47
+	ds 46
 	
 ; d000
-
-	ds 114
+	ds 2
+	
+DefaultFlypoint: ; d002
+	ds 1
+; d003
+	ds 1
+; d004
+	ds 1
+StartFlypoint: ; d005
+	ds 1
+EndFlypoint: ; d006
+	ds 1
+	
+	ds 108
 
 StringBuffer1: ; d073
 	ds 19
@@ -1071,7 +1103,13 @@ OTPartyMon6Nickname: ; d421
 	ds 11
 
 
-SECTION "Player",BSS[$d47b]
+SECTION "Player",BSS[$d472]
+PlayerGender: ; d472
+; bit 0:
+;	0 male
+;	1 female
+	ds 1
+	ds 8
 PlayerID: ; d47b
 	ds 2
 PlayerName: ; d47d
@@ -1202,32 +1240,37 @@ SECTION "BoxNames",BSS[$db75]
 ; 8 chars + $50
 Box1Name: ; db75
 	ds 9
-Box2Name: ; dbce
+Box2Name: ; db7e
 	ds 9
-Box3Name: ; dbd7
+Box3Name: ; db87
 	ds 9
-Box4Name: ; dbe0
+Box4Name: ; db90
 	ds 9
-Box5Name: ; dbe9
+Box5Name: ; db99
 	ds 9
-Box6Name: ; dbf2
+Box6Name: ; dba2
 	ds 9
-Box7Name: ; dbfb
+Box7Name: ; dbab
 	ds 9
-Box8Name: ; dc04
+Box8Name: ; dbb4
 	ds 9
-Box9Name: ; dc0d
+Box9Name: ; dbbd
 	ds 9
-Box10Name: ; dc16
+Box10Name: ; dbc6
 	ds 9
-Box11Name: ; dc1f
+Box11Name: ; dbcf
 	ds 9
-Box12Name: ; dc28
+Box12Name: ; dbd8
 	ds 9
-Box13Name: ; dc31
+Box13Name: ; dbe1
 	ds 9
-Box14Name: ; dc3a
+Box14Name: ; dbea
 	ds 9
+
+
+SECTION "FlypointPermissions", BSS[$dca5]
+FlypointPerms: ; dca5
+	ds 4
 
 SECTION "BackupMapInfo", BSS[$dcad]
 
@@ -1378,7 +1421,7 @@ PokedexCaught: ; deb9
 	ds 32
 UnownDex: ; ded9
 	ds 26
-UnownUnlockedGroups: ; def3
+UnlockedUnowns: ; def3
 	ds 1
 
 SECTION "Breeding",BSS[$def5]

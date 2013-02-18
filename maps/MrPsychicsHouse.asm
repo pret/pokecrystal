@@ -1,0 +1,66 @@
+MrPsychicsHouse_MapScriptHeader: ; 0x18a778
+	; trigger count
+	db 0
+
+	; callback count
+	db 0
+; 0x18a77a
+
+UnknownScript_0x18a77a: ; 0x18a77a
+	faceplayer
+	loadfont
+	checkbit1 $00e3
+	iftrue UnknownScript_0x18a78f
+	2writetext UnknownText_0x18a798
+	keeptextopen
+	verbosegiveitem TM_29, 1
+	iffalse UnknownScript_0x18a793
+	setbit1 $00e3
+UnknownScript_0x18a78f: ; 0x18a78f
+	2writetext UnknownText_0x18a7bb
+	closetext
+UnknownScript_0x18a793: ; 0x18a793
+	loadmovesprites
+	end
+; 0x18a795
+
+MapMrPsychicsHouseSignpost1Script: ; 0x18a795
+	jumpstd $0001
+; 0x18a798
+
+UnknownText_0x18a798: ; 0x18a798
+	db $0, "…", $51
+	db "…", $51
+	db "…", $51
+	db "…I got it!", $51
+	db "You wanted this!", $57
+; 0x18a7bb
+
+UnknownText_0x18a7bb: ; 0x18a7bb
+	db $0, "TM29 is PSYCHIC.", $51
+	db "It may lower the", $4f
+	db "target's SPCL.DEF.", $57
+; 0x18a7f0
+
+MrPsychicsHouse_MapEventHeader: ; 0x18a7f0
+	; filler
+	db 0, 0
+
+	; warps
+	db 2
+	warp_def $7, $2, 5, GROUP_SAFFRON_CITY, MAP_SAFFRON_CITY
+	warp_def $7, $3, 5, GROUP_SAFFRON_CITY, MAP_SAFFRON_CITY
+
+	; xy triggers
+	db 0
+
+	; signposts
+	db 2
+	signpost 1, 0, $0, MapMrPsychicsHouseSignpost1Script
+	signpost 1, 1, $0, MapMrPsychicsHouseSignpost1Script
+
+	; people-events
+	db 1
+	person_event $3b, 7, 9, $8, $0, 255, 255, $a0, 0, UnknownScript_0x18a77a, $ffff
+; 0x18a817
+
