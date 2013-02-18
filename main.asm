@@ -5761,7 +5761,7 @@ LoadEnemyMon: ; 3e8eb
 	callab CalcMagikarpLength
 	
 ; We're clear if the length is < 1536
-	ld a, [MagikarpLengthHi]
+	ld a, [MagikarpLength]
 	cp a, $06 ; $600 = 1536
 	jr nz, .CheckMagikarpArea
 	
@@ -5770,7 +5770,7 @@ LoadEnemyMon: ; 3e8eb
 	cp a, $0c ; / $100
 	jr c, .CheckMagikarpArea
 ; Try again if > 1614
-	ld a, [MagikarpLengthLo]
+	ld a, [MagikarpLength + 1]
 	cp a, $50
 	jr nc, .GenerateDVs
 	
@@ -5779,7 +5779,7 @@ LoadEnemyMon: ; 3e8eb
 	cp a, $32 ; / $100
 	jr c, .CheckMagikarpArea
 ; Try again if > 1598
-	ld a, [MagikarpLengthLo]
+	ld a, [MagikarpLength + 1]
 	cp a, $40
 	jr nc, .GenerateDVs
 	
@@ -5804,7 +5804,7 @@ LoadEnemyMon: ; 3e8eb
 	cp a, $64 ; / $100
 	jr c, .Happiness
 ; Floor at length 1024
-	ld a, [MagikarpLengthHi]
+	ld a, [MagikarpLength]
 	cp a, $04 ; $400 = 1024
 	jr c, .GenerateDVs ; try again
 	
@@ -12693,190 +12693,7 @@ INCBIN "gfx/misc/town_map.lz"
 
 INCBIN "baserom.gbc", $f8ea3, $fbbfc - $f8ea3
 
-CalcMagikarpLength: ; fbbfc
-; Stores Magikarp's length at $d1ea-$d1eb in big endian
-;
-; input:
-;   de: EnemyMonDVs
-;   bc: PlayerID
-; output:
-;   $d1ea-$d1eb: length
-;
-; does a whole bunch of arbitrary nonsense
-; cycles through a table of arbitrary values
-; http://web.archive.org/web/20110628181718/http://upokecenter.com/games/gs/guides/magikarp.php
-
-; b = rrcrrc(atkdefdv) xor rrc(pidhi)
-	ld h, b
-	ld l, c
-	ld a, [hli]
-	ld b, a
-	ld c, [hl] ; ld bc, [PlayerID]
-	rrc b
-	rrc c
-	ld a, [de]
-	inc de
-	rrca
-	rrca
-	xor b
-	ld b, a
-	
-; c = rrcrrc(spdspcdv) xor rrc(pidlo)
-	ld a, [de]
-	rrca
-	rrca
-	xor c
-	ld c, a
-	
-; if bc < $000a:
-	ld a, b
-	and a
-	jr nz, .loadtable
-	ld a, c
-	cp a, $0a
-	jr nc, .loadtable
-	
-; de = hl = bc + $be
-	ld hl, $00be
-	add hl, bc
-	ld d, h
-	ld e, l
-	jr .endtable
-	
-.loadtable
-	ld hl, .MagikarpLengthTable
-	ld a, $02
-	ld [$d265], a
-	
-.readtable
-	ld a, [hli]
-	ld e, a
-	ld a, [hli]
-	ld d, a
-	call .BLessThanD
-	jr nc, .advancetable
-	
-; c = bc / [hl]
-	call .BCMinusDE
-	ld a, b
-	ld [$ffb3], a
-	ld a, c
-	ld [$ffb4], a
-	ld a, [hl]
-	ld [$ffb7], a
-	ld b, $02
-	call Divide
-	ld a, [$ffb6]
-	ld c, a
-	
-; de = c + $64 * (2 + number of rows down the table)
-	xor a
-	ld [$ffb4], a
-	ld [$ffb5], a
-	ld a, $64
-	ld [$ffb6], a
-	ld a, [$d265]
-	ld [$ffb7], a
-	call Multiply
-	ld b, $00
-	ld a, [$ffb6]
-	add c
-	ld e, a
-	ld a, [$ffb5]
-	adc b
-	ld d, a
-	jr .endtable
-	
-.advancetable
-	inc hl ; align to next triplet
-	ld a, [$d265]
-	inc a
-	ld [$d265], a
-	cp a, $10
-	jr c, .readtable
-	
-	call .BCMinusDE
-	ld hl, $0640
-	add hl, bc
-	ld d, h
-	ld e, l
-	
-.endtable
-	ld h, d
-	ld l, e
-	add hl, hl
-	add hl, hl
-	add hl, de
-	add hl, hl ; hl = de * 10
-	
-	ld de, $ff02
-	ld a, $ff
-.loop
-	inc a
-	add hl, de ; - 254
-	jr c, .loop
-	
-	ld d, $00
-	
-; mod $0c
-.modloop
-	cp a, $0c
-	jr c, .done
-	sub a, $0c
-	inc d
-	jr .modloop
-	
-.done
-	ld e, a
-	ld hl, $d1ea
-	ld [hl], d
-	inc hl
-	ld [hl], e
-	ret
-; fbc9a
-
-.BLessThanD ; fbc9a
-; return carry if b < d
-	ld a, b
-	cp d
-	ret c
-	ret nc
-; fbc9e
-
-.CLessThanE ; fbc9e
-; unused
-	ld a, c
-	cp e
-	ret
-; fbca1
-
-.BCMinusDE ; fbca1
-; bc -= de
-	ld a, c
-	sub e
-	ld c, a
-	ld a, b
-	sbc d
-	ld b, a
-	ret
-; fbca8
-
-.MagikarpLengthTable ; fbca8
-;		????, divisor
-	dwb $006e, $01
-	dwb $0136, $02
-	dwb $02c6, $04
-	dwb $0a96, $14
-	dwb $1e1e, $32
-	dwb $452e, $64
-	dwb $7fc6, $96
-	dwb $ba5e, $96
-	dwb $e16e, $64
-	dwb $f4f6, $32
-	dwb $fcc6, $14
-	dwb $feba, $05
-	dwb $ff82, $02
-; fbccf
+INCLUDE "battle/magikarp_length.asm"
 
 INCBIN "baserom.gbc",$FBCCF,$fc000-$fbccf
 
