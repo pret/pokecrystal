@@ -12324,7 +12324,7 @@ INCLUDE "gfx/pics/kanto_frames.asm"
 
 SECTION "bank36",DATA,BANK[$36]
 
-FontInversed: INCBIN "gfx/font_inversed.1bpp"
+FontInversed: INCBIN "gfx/misc/font_inversed.1bpp"
 
 ; Johto frame definitions
 INCLUDE "gfx/pics/johto_frames.asm"
@@ -12677,13 +12677,13 @@ Music_BugCatchingContest:   INCLUDE "audio/music/bugcatchingcontest.asm"
 SECTION "bank3E",DATA,BANK[$3E]
 
 FontExtra:
-INCBIN "gfx/font_extra.2bpp",$0,$200
+INCBIN "gfx/misc/font_extra.2bpp",$0,$200
 
 Font:
-INCBIN "gfx/font.1bpp",$0,$400
+INCBIN "gfx/misc/font.1bpp",$0,$400
 
 FontBattleExtra:
-INCBIN "gfx/font_battle_extra.2bpp",$0,$200
+INCBIN "gfx/misc/font_battle_extra.2bpp",$0,$200
 
 INCBIN "baserom.gbc", $f8800, $f8ba0 - $f8800
 
