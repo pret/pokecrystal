@@ -6081,42 +6081,47 @@ CheckSleepingTreeMon: ; 3eb38
 
 CheckUnownLetter: ; 3eb75
 ; Return carry if the Unown letter hasn't been unlocked yet
-	ld a, [$def3] ; UnownLetter
+	
+	ld a, [UnlockedUnowns]
 	ld c, a
-	ld de, $0000
+	ld de, 0
+	
 .loop
-; Has this set been unlocked?
+	
+; Don't check this set unless it's been unlocked
 	srl c
 	jr nc, .next
-; Check out the set
+	
+; Is our letter in the set?
 	ld hl, .LetterSets
 	add hl, de
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-; Is our letter in the set?
+	
 	push de
-	ld a, [$d234]
-	ld de, $0001
+	ld a, [UnownLetter]
+	ld de, 1
 	push bc
 	call IsInArray
 	pop bc
 	pop de
-	jr c, .Match
+	
+	jr c, .match
+	
 .next
-; Next set
+; Make sure we haven't gone past the end of the table
 	inc e
 	inc e
 	ld a, e
-; Gone past the end of the table?
-	cp a, 4*2 ; 4 sets with 2-byte pointers
+	cp a, .Set1 - .LetterSets
 	jr c, .loop
 	
-; Didn't find the letter (not unlocked)
+; Hasn't been unlocked, or the letter is invalid
 	scf
 	ret
 	
-.Match
+.match
 ; Valid letter
 	and a
 	ret
@@ -6128,25 +6133,20 @@ CheckUnownLetter: ; 3eb75
 	dw .Set4
 	
 .Set1
-	;   A    B    C    D    E    F    G    H    I    J    K
-	db $01, $02, $03, $04, $05, $06, $07, $08, $09, $0a, $0b
-	db $ff ; end
-	
+	;  A   B   C   D   E   F   G   H   I   J   K
+	db 01, 02, 03, 04, 05, 06, 07, 08, 09, 10, 11, $ff
 .Set2
-	;   L    M    N    O    P    Q    R
-	db $0c, $0d, $0e, $0f, $10, $11, $12
-	db $ff ; end
-	
+	;  L   M   N   O   P   Q   R
+	db 12, 13, 14, 15, 16, 17, 18, $ff
 .Set3
-	;   S    T    U    V    W
-	db $13, $14, $15, $16, $17
-	db $ff ; end
-	
+	;  S   T   U   V   W
+	db 19, 20, 21, 22, 23, $ff
 .Set4
-	;   X    Y    Z
-	db $18, $19, $1a
-	db $ff ; end
+	;  X   Y   Z
+	db 24, 25, 26, $ff
+	
 ; 3ebc7
+
 
 INCBIN "baserom.gbc", $3ebc7, $3edd8 - $3ebc7
 
