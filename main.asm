@@ -150,47 +150,47 @@ DisableLCD: ; 568
 ; Most of this is just going through the motions
 
 ; don't need to do anything if lcd is already off
-	ld a, [$ff40] ; LCDC
+	ld a, [rLCDC]
 	bit 7, a ; lcd enable
 	ret z
 	
 ; reset ints
 	xor a
-	ld [$ff0f], a ; IF
+	ld [rIF], a
 	
 ; save enabled ints
-	ld a, [$ffff] ; IE
+	ld a, [rIE]
 	ld b, a
 	
 ; disable vblank
 	res 0, a ; vblank
-	ld [$ffff], a ; IE
+	ld [rIE], a
 	
 .wait
 ; wait until vblank
-	ld a, [$ff44] ; LY
+	ld a, [rLY]
 	cp 145 ; >144 (ensure beginning of vblank)
 	jr nz, .wait
 	
 ; turn lcd off
-	ld a, [$ff40] ; LCDC
+	ld a, [rLCDC]
 	and %01111111 ; lcd enable off
-	ld [$ff40], a ; LCDC
+	ld [rLCDC], a
 	
 ; reset ints
 	xor a
-	ld [$ff0f], a ; IF
+	ld [rIF], a
 	
 ; restore enabled ints
 	ld a, b
-	ld [$ffff], a ; IE
+	ld [rIE], a
 	ret
 ; 58a
 
 EnableLCD: ; 58a
-	ld a, [$ff40] ; LCDC
+	ld a, [rLCDC]
 	set 7, a ; lcd enable
-	ld [$ff40], a ; LCDC
+	ld [rLCDC], a
 	ret
 ; 591
 
@@ -822,18 +822,18 @@ UpdateCGBPals: ; c33
 	
 ForceUpdateCGBPals: ; c37
 ; save wram bank
-	ld a, [$ff70] ; wram bank
+	ld a, [rSVBK]
 	push af
 ; bankswitch
 	ld a, 5 ; BANK(BGPals)
-	ld [$ff70], a ; wram bank
+	ld [rSVBK], a
 ; get bg pal buffer
 	ld hl, BGPals ; 5:d080
 	
 ; update bg pals
 	ld a, %10000000 ; auto increment, index 0
-	ld [$ff68], a ; BGPI
-	ld c, $69 ; $ff69
+	ld [rBGPI], a
+	ld c, rBGPD - rJOYP
 	ld b, 4 ; NUM_PALS / 2
 	
 .bgp
@@ -878,8 +878,8 @@ ForceUpdateCGBPals: ; c37
 	
 ; update obj pals
 	ld a, %10000000 ; auto increment, index 0
-	ld [$ff6a], a
-	ld c, $6b ; $ff6b - $ff00
+	ld [rOBPI], a
+	ld c, rOBPD - rJOYP
 	ld b, 4 ; NUM_PALS / 2
 	
 .obp
@@ -922,7 +922,7 @@ ForceUpdateCGBPals: ; c37
 	
 ; restore wram bank
 	pop af
-	ld [$ff70], a ; wram bank
+	ld [rSVBK], a
 ; clear pal update queue
 	xor a
 	ld [$ffe5], a
@@ -936,7 +936,7 @@ DmgToCgbBGPals: ; c9f
 ; exists to forego reinserting cgb-converted image data
 
 ; input: a -> bgp
-	ld [$ff47], a ; bgp
+	ld [rBGP], a
 	push af
 	
 ; check cgb
@@ -958,7 +958,7 @@ DmgToCgbBGPals: ; c9f
 	ld hl, BGPals ; to
 	ld de, Unkn1Pals ; from
 ; order
-	ld a, [$ff47] ; bgp
+	ld a, [rBGP]
 	ld b, a
 ; # pals
 	ld c, 8 ; all pals
@@ -984,9 +984,9 @@ DmgToCgbObjPals: ; ccb
 ; input: d -> obp1
 ;		 e -> obp2
 	ld a, e
-	ld [$ff48], a ; obp0
+	ld [rOBP0], a
 	ld a, d
-	ld [$ff49], a ; obp1
+	ld [rOBP1], a
 	
 ; check cgb
 	ld a, [$ffe6]
@@ -1009,7 +1009,7 @@ DmgToCgbObjPals: ; ccb
 	; from
 	ld de, Unkn2Pals
 ; order
-	ld a, [$ff48] ; obp0
+	ld a, [rOBP0]
 	ld b, a
 ; # pals
 	ld c, 8 ; all pals
@@ -1137,7 +1137,7 @@ ClearTileMap: ; fc8
 	call ByteFill
 	
 ; We aren't done if the LCD is on
-	ld a, [$ff40] ; LCDC
+	ld a, [rLCDC]
 	bit 7, a
 	ret z
 	jp WaitBGMap
@@ -1427,7 +1427,7 @@ DMATransfer: ; 15d8
 	and a
 	ret z
 ; start transfer
-	ld [$ff55], a ; hdma5
+	ld [rHDMA5], a
 ; indicate that transfer has occurred
 	xor a
 	ld [$ffe8], a
@@ -1448,7 +1448,7 @@ UpdateBGMapBuffer: ; 15e3
 	and a
 	ret z
 ; save wram bank
-	ld a, [$ff4f] ; vram bank
+	ld a, [rVBK]
 	push af
 ; save sp
 	ld [$ffd9], sp
@@ -1471,7 +1471,7 @@ UpdateBGMapBuffer: ; 15e3
 	pop bc
 ; update palettes
 	ld a, $1
-	ld [$ff4f], a ; vram bank
+	ld [rVBK], a
 ; tile 1
 	ld a, [hli]
 	ld [bc], a
@@ -1482,7 +1482,7 @@ UpdateBGMapBuffer: ; 15e3
 	dec c
 ; update tiles
 	ld a, $0
-	ld [$ff4f], a ; vram bank
+	ld [rVBK], a
 ; tile 1
 	ld a, [de]
 	inc de
@@ -1499,7 +1499,7 @@ UpdateBGMapBuffer: ; 15e3
 	pop bc
 ; update palettes
 	ld a, $1
-	ld [$ff4f], a ; vram bank
+	ld [rVBK], a
 ; tile 1
 	ld a, [hli]
 	ld [bc], a
@@ -1510,7 +1510,7 @@ UpdateBGMapBuffer: ; 15e3
 	dec c
 ; update tiles
 	ld a, $0
-	ld [$ff4f], a ; vram bank
+	ld [rVBK], a
 ; tile 1
 	ld a, [de]
 	inc de
@@ -1540,7 +1540,7 @@ UpdateBGMapBuffer: ; 15e3
 	
 ; restore vram bank
 	pop af
-	ld [$ff4f], a ; vram bank
+	ld [rVBK], a
 	
 ; we don't need to update bg map until new tiles are loaded
 	xor a
@@ -1618,13 +1618,13 @@ UpdateBGMap: ; 164c
 .attr
 ; switch vram banks
 	ld a, 1
-	ld [$ff4f], a ; vram bank
+	ld [rVBK], a
 ; bg map 1
 	ld hl, AttrMap
 	call .getthird
 ; restore vram bank
 	ld a, 0
-	ld [$ff4f], a ; vram bank
+	ld [rVBK], a
 	ret
 	
 .tiles
@@ -1771,7 +1771,7 @@ SafeLoadTiles2: ; 170a
 	and a
 	ret z
 ; abort if too far into vblank
-	ld a, [$ff44] ; LY
+	ld a, [rLY]
 ; ly = 144-145?
 	cp 144
 	ret c
@@ -1873,7 +1873,7 @@ SafeLoadTiles: ; 1769
 	and a
 	ret z
 ; abort if too far into vblank
-	ld a, [$ff44] ; LY
+	ld a, [rLY]
 ; ly = 144-145?
 	cp 144
 	ret c
@@ -1989,7 +1989,7 @@ SafeTileAnimation: ; 17d3
 	ret z
 	
 ; abort if too far into vblank
-	ld a, [$ff44] ; LY
+	ld a, [rLY]
 ; ret unless ly = 144-150
 	cp 144
 	ret c
@@ -2003,24 +2003,24 @@ SafeTileAnimation: ; 17d3
 	ld a, BANK(DoTileAnimation)
 	rst Bankswitch ; bankswitch
 
-	ld a, [$ff70] ; wram bank
+	ld a, [rSVBK]
 	push af ; save wram bank
 	ld a, $1 ; wram bank 1
-	ld [$ff70], a ; wram bank
+	ld [rSVBK], a
 
-	ld a, [$ff4f] ; vram bank
+	ld a, [rVBK]
 	push af ; save vram bank
 	ld a, $0 ; vram bank 0
-	ld [$ff4f], a ; vram bank
+	ld [rVBK], a
 	
 ; take care of tile animation queue
 	call DoTileAnimation
 	
 ; restore affected banks
 	pop af
-	ld [$ff4f], a ; vram bank
+	ld [rVBK], a
 	pop af
-	ld [$ff70], a ; wram bank
+	ld [rSVBK], a
 	pop af
 	rst Bankswitch ; bankswitch
 	ret
@@ -2078,15 +2078,15 @@ AskSerial: ; 2063
 	
 ; handshake
 	ld a, $88
-	ld [$ff01], a
+	ld [rSB], a
 	
 ; switch to internal clock
 	ld a, %00000001
-	ld [$ff02], a
+	ld [rSC], a
 	
 ; start transfer
 	ld a, %10000001
-	ld [$ff02], a
+	ld [rSC], a
 	
 	ret
 ; 208a
@@ -2098,17 +2098,17 @@ GameTimer: ; 209e
 	nop
 	
 ; save wram bank
-	ld a, [$ff70] ; wram bank
+	ld a, [rSVBK]
 	push af
 	
 	ld a, $1
-	ld [$ff70], a ; wram bank
+	ld [rSVBK], a
 	
 	call UpdateGameTimer
 	
 ; restore wram bank
 	pop af
-	ld [$ff70], a ; wram bank
+	ld [rSVBK], a
 	ret
 ; 20ad
 
@@ -2523,13 +2523,13 @@ RNG: ; 2f8c
 
 	push bc
 ; Added value
-	ld a, [$ff04] ; divider
+	ld a, [rDIV]
 	ld b, a
 	ld a, [$ffe1]
 	adc b
 	ld [$ffe1], a
 ; Subtracted value
-	ld a, [$ff04] ; divider
+	ld a, [rDIV]
 	ld b, a
 	ld a, [$ffe2]
 	sbc b
@@ -2975,9 +2975,9 @@ ClearPalettes: ; 3317
 	
 ; In DMG mode, we can just change palettes to 0 (white)
 	xor a
-	ld [$ff47], a ; BGP
-	ld [$ff48], a ; OBP0
-	ld [$ff49], a ; OBP1
+	ld [rBGP], a
+	ld [rOBP0], a
+	ld [rOBP1], a
 	ret
 	
 .cgb
@@ -8827,11 +8827,11 @@ TimeOfDayPals: ; 8c011
 	ld hl, $d038 ; Unkn1Pals + 7 pals
 	
 ; save wram bank
-	ld a, [$ff70] ; wram bank
+	ld a, [rSVBK]
 	ld b, a
 ; wram bank 5
 	ld a, 5
-	ld [$ff70], a ; wram bank
+	ld [rSVBK], a
 	
 ; push palette
 	ld c, 4 ; NUM_PAL_COLORS
@@ -8846,7 +8846,7 @@ TimeOfDayPals: ; 8c011
 	
 ; restore wram bank
 	ld a, b
-	ld [$ff70], a ; wram bank
+	ld [rSVBK], a
 	
 	
 ; update sgb pals
@@ -8858,11 +8858,11 @@ TimeOfDayPals: ; 8c011
 	ld hl, $d03f ; last byte in Unkn1Pals
 	
 ; save wram bank
-	ld a, [$ff70] ; wram bank
+	ld a, [rSVBK]
 	ld d, a
 ; wram bank 5
 	ld a, 5
-	ld [$ff70], a ; wram bank
+	ld [rSVBK], a
 	
 ; pop palette
 	ld e, 4 ; NUM_PAL_COLORS
@@ -8877,7 +8877,7 @@ TimeOfDayPals: ; 8c011
 	
 ; restore wram bank
 	ld a, d
-	ld [$ff70], a ; wram bank
+	ld [rSVBK], a
 	
 ; update palettes
 	call UpdateTimePals
@@ -12683,7 +12683,7 @@ TitleScreen: ; 10ed67
 	
 ; VRAM bank 1
 	ld a, 1
-	ld [$ff4f], a
+	ld [rVBK], a
 	
 	
 ; Decompress running Suicune gfx
@@ -12756,7 +12756,7 @@ TitleScreen: ; 10ed67
 	
 ; Back to VRAM bank 0
 	ld a, $0
-	ld [$ff4f], a
+	ld [rVBK], a
 	
 	
 ; Decompress logo
@@ -12852,7 +12852,7 @@ TitleScreen: ; 10ed67
 	call ByteFill
 	
 ; Let LCD Stat know we're messing around with SCX
-	ld a, $43 ; ff43 ; SCX
+	ld a, rSCX - rJOYP
 	ld [$ffc6], a
 	
 ; Restore WRAM bank
@@ -12865,9 +12865,9 @@ TitleScreen: ; 10ed67
 	call $058a
 	
 ; Set sprite size to 8x16
-	ld a, [$ff40] ; LCDC
+	ld a, [rLCDC]
 	set 2, a
-	ld [$ff40], a ; LCDC
+	ld [rLCDC], a
 	
 ;
 	ld a, $70
