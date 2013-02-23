@@ -837,11 +837,9 @@ TileSetPalettes: ; d1e6
 	ds 2
 
 Buffer1:
-MagikarpLength:
-MagikarpLengthHi: ; d1ea
+MagikarpLength: ; d1ea
 	ds 1
-Buffer2:
-MagikarpLengthLo: ; d1eb
+Buffer2: ; d1eb
 	ds 1
 
 SECTION "prng2",BSS[$d1fa]

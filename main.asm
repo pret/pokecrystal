@@ -47,7 +47,7 @@ SECTION "serial",HOME[$58] ; serial interrupt
 	jp $06ef
 
 SECTION "joypad",HOME[$60] ; joypad interrupt
-	jp $092e
+	jp JoypadInt
 
 SECTION "romheader",HOME[$100]
 Start:
@@ -150,47 +150,47 @@ DisableLCD: ; 568
 ; Most of this is just going through the motions
 
 ; don't need to do anything if lcd is already off
-	ld a, [$ff40] ; LCDC
+	ld a, [rLCDC]
 	bit 7, a ; lcd enable
 	ret z
 	
 ; reset ints
 	xor a
-	ld [$ff0f], a ; IF
+	ld [rIF], a
 	
 ; save enabled ints
-	ld a, [$ffff] ; IE
+	ld a, [rIE]
 	ld b, a
 	
 ; disable vblank
 	res 0, a ; vblank
-	ld [$ffff], a ; IE
+	ld [rIE], a
 	
 .wait
 ; wait until vblank
-	ld a, [$ff44] ; LY
+	ld a, [rLY]
 	cp 145 ; >144 (ensure beginning of vblank)
 	jr nz, .wait
 	
 ; turn lcd off
-	ld a, [$ff40] ; LCDC
+	ld a, [rLCDC]
 	and %01111111 ; lcd enable off
-	ld [$ff40], a ; LCDC
+	ld [rLCDC], a
 	
 ; reset ints
 	xor a
-	ld [$ff0f], a ; IF
+	ld [rIF], a
 	
 ; restore enabled ints
 	ld a, b
-	ld [$ffff], a ; IE
+	ld [rIE], a
 	ret
 ; 58a
 
 EnableLCD: ; 58a
-	ld a, [$ff40] ; LCDC
+	ld a, [rLCDC]
 	set 7, a ; lcd enable
-	ld [$ff40], a ; LCDC
+	ld [rLCDC], a
 	ret
 ; 591
 
@@ -425,252 +425,11 @@ SetClock: ; 691
 	ret
 ; 6c4
 
-INCBIN "baserom.gbc",$6c4,$935 - $6c4
-
-Joypad: ; 935
-; update joypad state
-; $ffa2: released
-; $ffa3: pressed
-; $ffa4: input
-; $ffa5: total pressed
-
-; 
-	ld a, [$cfbe]
-	and $d0
-	ret nz
-	
-; pause game update?
-	ld a, [$c2cd]
-	and a
-	ret nz
-	
-; d-pad
-	ld a, $20
-	ld [$ff00], a
-	ld a, [$ff00]
-	ld a, [$ff00]
-; hi nybble
-	cpl
-	and $f
-	swap a
-	ld b, a
-	
-; buttons
-	ld a, $10
-	ld [$ff00], a
-; wait to stabilize
-	ld a, [$ff00]
-	ld a, [$ff00]
-	ld a, [$ff00]
-	ld a, [$ff00]
-	ld a, [$ff00]
-	ld a, [$ff00]
-; lo nybble
-	cpl
-	and $f
-	or b
-	ld b, a
-	
-; reset joypad
-	ld a, $30
-	ld [$ff00], a
-	
-; get change in input
-	ld a, [$ffa4] ; last frame's input
-	ld e, a
-	xor b ; current frame input
-	ld d, a
-; released
-	and e
-	ld [$ffa2], a
-; pressed
-	ld a, d
-	and b
-	ld [$ffa3], a
-	
-; total pressed
-	ld c, a
-	ld a, [$ffa5]
-	or c
-	ld [$ffa5], a
-	
-; original input
-	ld a, b
-	ld [$ffa4], a
-	
-; A+B+SELECT+START
-	and $f
-	cp $f
-	jp z, $0150 ; reset
-	
-	ret
-; 984
+INCBIN "baserom.gbc",$6c4,$92e - $6c4
 
 
-GetJoypadPublic: ; 984
-; update mirror joypad input from $ffa4 (real input)
+INCLUDE "joypad.asm"
 
-; $ffa6: released
-; $ffa7: pressed
-; $ffa8: input
-
-; bit 0 A
-;     1 B
-;     2 SELECT
-;     3 START
-;     4 RIGHT
-;     5 LEFT
-;     6 UP
-;     7 DOWN
-
-	push af
-	push hl
-	push de
-	push bc
-	
-; automated input?
-	ld a, [InputType]
-	cp a, $ff ; INPUT_AUTO
-	jr z, .auto
-
-; get input
-	ld a, [$ffa4] ; real input
-	ld b, a
-	ld a, [$ffa8] ; last frame mirror
-	ld e, a
-	
-; released
-	xor b
-	ld d, a
-	and e
-	ld [$ffa6], a
-	
-; pressed
-	ld a, d
-	and b
-	ld [$ffa7], a
-	
-; leftover from pasted code
-	ld c, a
-	
-;
-	ld a, b
-	ld [$ffa8], a ; frame input
-.quit
-	pop bc
-	pop de
-	pop hl
-	pop af
-	ret	
-
-.auto
-; use predetermined input feed (used in catch tutorial)
-; struct: [input][duration]
-
-; save bank
-	ld a, [$ff9d]
-	push af
-;
-	ld a, [AutoInputBank]
-	rst Bankswitch
-;
-	ld hl, AutoInputAddress ; AutoInputAddress-9
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	
-; update when frame count hits 0
-	ld a, [AutoInputLength]
-	and a
-	jr z, .updateauto
-	
-; until then, do nothing
-	dec a
-	ld [AutoInputLength], a
-; restore bank
-	pop af
-	rst Bankswitch
-; we're done
-	jr .quit
-	
-.updateauto
-; get input
-	ld a, [hli]
-; stop?
-	cp a, $ff
-	jr z, .stopinput
-	ld b, a
-	
-; duration
-	ld a, [hli]
-	ld [AutoInputLength], a
-; duration $ff = end at input
-	cp a, $ff
-	jr nz, .next
-	
-; no input
-	dec hl
-	dec hl
-	ld b, $00 ; no input
-	jr .finishauto
-	
-.next
-; output recorded
-	ld a, l
-	ld [AutoInputAddress], a
-	ld a, h
-	ld [AutoInputAddress+1], a
-	jr .finishauto
-	
-.stopinput
-	call StopAutoInput
-	ld b, $00 ; no input
-	
-.finishauto
-; restore bank
-	pop af
-	rst Bankswitch
-; update mirrors
-	ld a, b
-	ld [$ffa7], a ; pressed
-	ld [$ffa8], a ; input
-	jr .quit
-; 9ee
-
-StartAutoInput: ; 9ee
-; start auto input stream at a:hl
-; bank
-	ld [AutoInputBank], a
-; address
-	ld a, l
-	ld [AutoInputAddress], a
-	ld a, h
-	ld [AutoInputAddress+1], a
-; don't wait to update
-	xor a
-	ld [AutoInputLength], a
-; clear input mirrors
-	xor a
-	ld [$ffa7], a ; pressed
-	ld [$ffa6], a ; released
-	ld [$ffa8], a ; input
-; start reading input stream instead of player input
-	ld a, $ff ; INPUT_AUTO
-	ld [InputType], a
-	ret
-; a0a
-
-StopAutoInput: ; a0a
-; clear autoinput ram
-	xor a
-	ld [AutoInputBank], a
-	ld [AutoInputAddress], a
-	ld [AutoInputAddress+1], a
-	ld [AutoInputLength], a
-; normal input
-	ld [InputType], a
-	ret
-; a1b
 
 INCBIN "baserom.gbc",$a1b,$b40 - $a1b
 
@@ -1063,18 +822,18 @@ UpdateCGBPals: ; c33
 	
 ForceUpdateCGBPals: ; c37
 ; save wram bank
-	ld a, [$ff70] ; wram bank
+	ld a, [rSVBK]
 	push af
 ; bankswitch
 	ld a, 5 ; BANK(BGPals)
-	ld [$ff70], a ; wram bank
+	ld [rSVBK], a
 ; get bg pal buffer
 	ld hl, BGPals ; 5:d080
 	
 ; update bg pals
 	ld a, %10000000 ; auto increment, index 0
-	ld [$ff68], a ; BGPI
-	ld c, $69 ; $ff69
+	ld [rBGPI], a
+	ld c, rBGPD - rJOYP
 	ld b, 4 ; NUM_PALS / 2
 	
 .bgp
@@ -1119,8 +878,8 @@ ForceUpdateCGBPals: ; c37
 	
 ; update obj pals
 	ld a, %10000000 ; auto increment, index 0
-	ld [$ff6a], a
-	ld c, $6b ; $ff6b - $ff00
+	ld [rOBPI], a
+	ld c, rOBPD - rJOYP
 	ld b, 4 ; NUM_PALS / 2
 	
 .obp
@@ -1163,7 +922,7 @@ ForceUpdateCGBPals: ; c37
 	
 ; restore wram bank
 	pop af
-	ld [$ff70], a ; wram bank
+	ld [rSVBK], a
 ; clear pal update queue
 	xor a
 	ld [$ffe5], a
@@ -1177,7 +936,7 @@ DmgToCgbBGPals: ; c9f
 ; exists to forego reinserting cgb-converted image data
 
 ; input: a -> bgp
-	ld [$ff47], a ; bgp
+	ld [rBGP], a
 	push af
 	
 ; check cgb
@@ -1199,7 +958,7 @@ DmgToCgbBGPals: ; c9f
 	ld hl, BGPals ; to
 	ld de, Unkn1Pals ; from
 ; order
-	ld a, [$ff47] ; bgp
+	ld a, [rBGP]
 	ld b, a
 ; # pals
 	ld c, 8 ; all pals
@@ -1225,9 +984,9 @@ DmgToCgbObjPals: ; ccb
 ; input: d -> obp1
 ;		 e -> obp2
 	ld a, e
-	ld [$ff48], a ; obp0
+	ld [rOBP0], a
 	ld a, d
-	ld [$ff49], a ; obp1
+	ld [rOBP1], a
 	
 ; check cgb
 	ld a, [$ffe6]
@@ -1250,7 +1009,7 @@ DmgToCgbObjPals: ; ccb
 	; from
 	ld de, Unkn2Pals
 ; order
-	ld a, [$ff48] ; obp0
+	ld a, [rOBP0]
 	ld b, a
 ; # pals
 	ld c, 8 ; all pals
@@ -1378,7 +1137,7 @@ ClearTileMap: ; fc8
 	call ByteFill
 	
 ; We aren't done if the LCD is on
-	ld a, [$ff40] ; LCDC
+	ld a, [rLCDC]
 	bit 7, a
 	ret z
 	jp WaitBGMap
@@ -1668,7 +1427,7 @@ DMATransfer: ; 15d8
 	and a
 	ret z
 ; start transfer
-	ld [$ff55], a ; hdma5
+	ld [rHDMA5], a
 ; indicate that transfer has occurred
 	xor a
 	ld [$ffe8], a
@@ -1689,7 +1448,7 @@ UpdateBGMapBuffer: ; 15e3
 	and a
 	ret z
 ; save wram bank
-	ld a, [$ff4f] ; vram bank
+	ld a, [rVBK]
 	push af
 ; save sp
 	ld [$ffd9], sp
@@ -1712,7 +1471,7 @@ UpdateBGMapBuffer: ; 15e3
 	pop bc
 ; update palettes
 	ld a, $1
-	ld [$ff4f], a ; vram bank
+	ld [rVBK], a
 ; tile 1
 	ld a, [hli]
 	ld [bc], a
@@ -1723,7 +1482,7 @@ UpdateBGMapBuffer: ; 15e3
 	dec c
 ; update tiles
 	ld a, $0
-	ld [$ff4f], a ; vram bank
+	ld [rVBK], a
 ; tile 1
 	ld a, [de]
 	inc de
@@ -1740,7 +1499,7 @@ UpdateBGMapBuffer: ; 15e3
 	pop bc
 ; update palettes
 	ld a, $1
-	ld [$ff4f], a ; vram bank
+	ld [rVBK], a
 ; tile 1
 	ld a, [hli]
 	ld [bc], a
@@ -1751,7 +1510,7 @@ UpdateBGMapBuffer: ; 15e3
 	dec c
 ; update tiles
 	ld a, $0
-	ld [$ff4f], a ; vram bank
+	ld [rVBK], a
 ; tile 1
 	ld a, [de]
 	inc de
@@ -1781,7 +1540,7 @@ UpdateBGMapBuffer: ; 15e3
 	
 ; restore vram bank
 	pop af
-	ld [$ff4f], a ; vram bank
+	ld [rVBK], a
 	
 ; we don't need to update bg map until new tiles are loaded
 	xor a
@@ -1859,13 +1618,13 @@ UpdateBGMap: ; 164c
 .attr
 ; switch vram banks
 	ld a, 1
-	ld [$ff4f], a ; vram bank
+	ld [rVBK], a
 ; bg map 1
 	ld hl, AttrMap
 	call .getthird
 ; restore vram bank
 	ld a, 0
-	ld [$ff4f], a ; vram bank
+	ld [rVBK], a
 	ret
 	
 .tiles
@@ -2012,7 +1771,7 @@ SafeLoadTiles2: ; 170a
 	and a
 	ret z
 ; abort if too far into vblank
-	ld a, [$ff44] ; LY
+	ld a, [rLY]
 ; ly = 144-145?
 	cp 144
 	ret c
@@ -2114,7 +1873,7 @@ SafeLoadTiles: ; 1769
 	and a
 	ret z
 ; abort if too far into vblank
-	ld a, [$ff44] ; LY
+	ld a, [rLY]
 ; ly = 144-145?
 	cp 144
 	ret c
@@ -2230,7 +1989,7 @@ SafeTileAnimation: ; 17d3
 	ret z
 	
 ; abort if too far into vblank
-	ld a, [$ff44] ; LY
+	ld a, [rLY]
 ; ret unless ly = 144-150
 	cp 144
 	ret c
@@ -2244,24 +2003,24 @@ SafeTileAnimation: ; 17d3
 	ld a, BANK(DoTileAnimation)
 	rst Bankswitch ; bankswitch
 
-	ld a, [$ff70] ; wram bank
+	ld a, [rSVBK]
 	push af ; save wram bank
 	ld a, $1 ; wram bank 1
-	ld [$ff70], a ; wram bank
+	ld [rSVBK], a
 
-	ld a, [$ff4f] ; vram bank
+	ld a, [rVBK]
 	push af ; save vram bank
 	ld a, $0 ; vram bank 0
-	ld [$ff4f], a ; vram bank
+	ld [rVBK], a
 	
 ; take care of tile animation queue
 	call DoTileAnimation
 	
 ; restore affected banks
 	pop af
-	ld [$ff4f], a ; vram bank
+	ld [rVBK], a
 	pop af
-	ld [$ff70], a ; wram bank
+	ld [rSVBK], a
 	pop af
 	rst Bankswitch ; bankswitch
 	ret
@@ -2319,15 +2078,15 @@ AskSerial: ; 2063
 	
 ; handshake
 	ld a, $88
-	ld [$ff01], a
+	ld [rSB], a
 	
 ; switch to internal clock
 	ld a, %00000001
-	ld [$ff02], a
+	ld [rSC], a
 	
 ; start transfer
 	ld a, %10000001
-	ld [$ff02], a
+	ld [rSC], a
 	
 	ret
 ; 208a
@@ -2339,17 +2098,17 @@ GameTimer: ; 209e
 	nop
 	
 ; save wram bank
-	ld a, [$ff70] ; wram bank
+	ld a, [rSVBK]
 	push af
 	
 	ld a, $1
-	ld [$ff70], a ; wram bank
+	ld [rSVBK], a
 	
 	call UpdateGameTimer
 	
 ; restore wram bank
 	pop af
-	ld [$ff70], a ; wram bank
+	ld [rSVBK], a
 	ret
 ; 20ad
 
@@ -2764,13 +2523,13 @@ RNG: ; 2f8c
 
 	push bc
 ; Added value
-	ld a, [$ff04] ; divider
+	ld a, [rDIV]
 	ld b, a
 	ld a, [$ffe1]
 	adc b
 	ld [$ffe1], a
 ; Subtracted value
-	ld a, [$ff04] ; divider
+	ld a, [rDIV]
 	ld b, a
 	ld a, [$ffe2]
 	sbc b
@@ -3216,9 +2975,9 @@ ClearPalettes: ; 3317
 	
 ; In DMG mode, we can just change palettes to 0 (white)
 	xor a
-	ld [$ff47], a ; BGP
-	ld [$ff48], a ; OBP0
-	ld [$ff49], a ; OBP1
+	ld [rBGP], a
+	ld [rOBP0], a
+	ld [rOBP1], a
 	ret
 	
 .cgb
@@ -5761,7 +5520,7 @@ LoadEnemyMon: ; 3e8eb
 	callab CalcMagikarpLength
 	
 ; We're clear if the length is < 1536
-	ld a, [MagikarpLengthHi]
+	ld a, [MagikarpLength]
 	cp a, $06 ; $600 = 1536
 	jr nz, .CheckMagikarpArea
 	
@@ -5770,7 +5529,7 @@ LoadEnemyMon: ; 3e8eb
 	cp a, $0c ; / $100
 	jr c, .CheckMagikarpArea
 ; Try again if > 1614
-	ld a, [MagikarpLengthLo]
+	ld a, [MagikarpLength + 1]
 	cp a, $50
 	jr nc, .GenerateDVs
 	
@@ -5779,7 +5538,7 @@ LoadEnemyMon: ; 3e8eb
 	cp a, $32 ; / $100
 	jr c, .CheckMagikarpArea
 ; Try again if > 1598
-	ld a, [MagikarpLengthLo]
+	ld a, [MagikarpLength + 1]
 	cp a, $40
 	jr nc, .GenerateDVs
 	
@@ -5804,7 +5563,7 @@ LoadEnemyMon: ; 3e8eb
 	cp a, $64 ; / $100
 	jr c, .Happiness
 ; Floor at length 1024
-	ld a, [MagikarpLengthHi]
+	ld a, [MagikarpLength]
 	cp a, $04 ; $400 = 1024
 	jr c, .GenerateDVs ; try again
 	
@@ -6081,42 +5840,47 @@ CheckSleepingTreeMon: ; 3eb38
 
 CheckUnownLetter: ; 3eb75
 ; Return carry if the Unown letter hasn't been unlocked yet
-	ld a, [$def3] ; UnownLetter
+	
+	ld a, [UnlockedUnowns]
 	ld c, a
-	ld de, $0000
+	ld de, 0
+	
 .loop
-; Has this set been unlocked?
+	
+; Don't check this set unless it's been unlocked
 	srl c
 	jr nc, .next
-; Check out the set
+	
+; Is our letter in the set?
 	ld hl, .LetterSets
 	add hl, de
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-; Is our letter in the set?
+	
 	push de
-	ld a, [$d234]
-	ld de, $0001
+	ld a, [UnownLetter]
+	ld de, 1
 	push bc
 	call IsInArray
 	pop bc
 	pop de
-	jr c, .Match
+	
+	jr c, .match
+	
 .next
-; Next set
+; Make sure we haven't gone past the end of the table
 	inc e
 	inc e
 	ld a, e
-; Gone past the end of the table?
-	cp a, 4*2 ; 4 sets with 2-byte pointers
+	cp a, .Set1 - .LetterSets
 	jr c, .loop
 	
-; Didn't find the letter (not unlocked)
+; Hasn't been unlocked, or the letter is invalid
 	scf
 	ret
 	
-.Match
+.match
 ; Valid letter
 	and a
 	ret
@@ -6128,25 +5892,20 @@ CheckUnownLetter: ; 3eb75
 	dw .Set4
 	
 .Set1
-	;   A    B    C    D    E    F    G    H    I    J    K
-	db $01, $02, $03, $04, $05, $06, $07, $08, $09, $0a, $0b
-	db $ff ; end
-	
+	;  A   B   C   D   E   F   G   H   I   J   K
+	db 01, 02, 03, 04, 05, 06, 07, 08, 09, 10, 11, $ff
 .Set2
-	;   L    M    N    O    P    Q    R
-	db $0c, $0d, $0e, $0f, $10, $11, $12
-	db $ff ; end
-	
+	;  L   M   N   O   P   Q   R
+	db 12, 13, 14, 15, 16, 17, 18, $ff
 .Set3
-	;   S    T    U    V    W
-	db $13, $14, $15, $16, $17
-	db $ff ; end
-	
+	;  S   T   U   V   W
+	db 19, 20, 21, 22, 23, $ff
 .Set4
-	;   X    Y    Z
-	db $18, $19, $1a
-	db $ff ; end
+	;  X   Y   Z
+	db 24, 25, 26, $ff
+	
 ; 3ebc7
+
 
 INCBIN "baserom.gbc", $3ebc7, $3edd8 - $3ebc7
 
@@ -9068,11 +8827,11 @@ TimeOfDayPals: ; 8c011
 	ld hl, $d038 ; Unkn1Pals + 7 pals
 	
 ; save wram bank
-	ld a, [$ff70] ; wram bank
+	ld a, [rSVBK]
 	ld b, a
 ; wram bank 5
 	ld a, 5
-	ld [$ff70], a ; wram bank
+	ld [rSVBK], a
 	
 ; push palette
 	ld c, 4 ; NUM_PAL_COLORS
@@ -9087,7 +8846,7 @@ TimeOfDayPals: ; 8c011
 	
 ; restore wram bank
 	ld a, b
-	ld [$ff70], a ; wram bank
+	ld [rSVBK], a
 	
 	
 ; update sgb pals
@@ -9099,11 +8858,11 @@ TimeOfDayPals: ; 8c011
 	ld hl, $d03f ; last byte in Unkn1Pals
 	
 ; save wram bank
-	ld a, [$ff70] ; wram bank
+	ld a, [rSVBK]
 	ld d, a
 ; wram bank 5
 	ld a, 5
-	ld [$ff70], a ; wram bank
+	ld [rSVBK], a
 	
 ; pop palette
 	ld e, 4 ; NUM_PAL_COLORS
@@ -9118,7 +8877,7 @@ TimeOfDayPals: ; 8c011
 	
 ; restore wram bank
 	ld a, d
-	ld [$ff70], a ; wram bank
+	ld [rSVBK], a
 	
 ; update palettes
 	call UpdateTimePals
@@ -12324,7 +12083,7 @@ INCLUDE "gfx/pics/kanto_frames.asm"
 
 SECTION "bank36",DATA,BANK[$36]
 
-FontInversed: INCBIN "gfx/font_inversed.1bpp"
+FontInversed: INCBIN "gfx/misc/font_inversed.1bpp"
 
 ; Johto frame definitions
 INCLUDE "gfx/pics/johto_frames.asm"
@@ -12677,13 +12436,13 @@ Music_BugCatchingContest:   INCLUDE "audio/music/bugcatchingcontest.asm"
 SECTION "bank3E",DATA,BANK[$3E]
 
 FontExtra:
-INCBIN "gfx/font_extra.2bpp",$0,$200
+INCBIN "gfx/misc/font_extra.2bpp",$0,$200
 
 Font:
-INCBIN "gfx/font.1bpp",$0,$400
+INCBIN "gfx/misc/font.1bpp",$0,$400
 
 FontBattleExtra:
-INCBIN "gfx/font_battle_extra.2bpp",$0,$200
+INCBIN "gfx/misc/font_battle_extra.2bpp",$0,$200
 
 INCBIN "baserom.gbc", $f8800, $f8ba0 - $f8800
 
@@ -12693,190 +12452,7 @@ INCBIN "gfx/misc/town_map.lz"
 
 INCBIN "baserom.gbc", $f8ea3, $fbbfc - $f8ea3
 
-CalcMagikarpLength: ; fbbfc
-; Stores Magikarp's length at $d1ea-$d1eb in big endian
-;
-; input:
-;   de: EnemyMonDVs
-;   bc: PlayerID
-; output:
-;   $d1ea-$d1eb: length
-;
-; does a whole bunch of arbitrary nonsense
-; cycles through a table of arbitrary values
-; http://web.archive.org/web/20110628181718/http://upokecenter.com/games/gs/guides/magikarp.php
-
-; b = rrcrrc(atkdefdv) xor rrc(pidhi)
-	ld h, b
-	ld l, c
-	ld a, [hli]
-	ld b, a
-	ld c, [hl] ; ld bc, [PlayerID]
-	rrc b
-	rrc c
-	ld a, [de]
-	inc de
-	rrca
-	rrca
-	xor b
-	ld b, a
-	
-; c = rrcrrc(spdspcdv) xor rrc(pidlo)
-	ld a, [de]
-	rrca
-	rrca
-	xor c
-	ld c, a
-	
-; if bc < $000a:
-	ld a, b
-	and a
-	jr nz, .loadtable
-	ld a, c
-	cp a, $0a
-	jr nc, .loadtable
-	
-; de = hl = bc + $be
-	ld hl, $00be
-	add hl, bc
-	ld d, h
-	ld e, l
-	jr .endtable
-	
-.loadtable
-	ld hl, .MagikarpLengthTable
-	ld a, $02
-	ld [$d265], a
-	
-.readtable
-	ld a, [hli]
-	ld e, a
-	ld a, [hli]
-	ld d, a
-	call .BLessThanD
-	jr nc, .advancetable
-	
-; c = bc / [hl]
-	call .BCMinusDE
-	ld a, b
-	ld [$ffb3], a
-	ld a, c
-	ld [$ffb4], a
-	ld a, [hl]
-	ld [$ffb7], a
-	ld b, $02
-	call Divide
-	ld a, [$ffb6]
-	ld c, a
-	
-; de = c + $64 * (2 + number of rows down the table)
-	xor a
-	ld [$ffb4], a
-	ld [$ffb5], a
-	ld a, $64
-	ld [$ffb6], a
-	ld a, [$d265]
-	ld [$ffb7], a
-	call Multiply
-	ld b, $00
-	ld a, [$ffb6]
-	add c
-	ld e, a
-	ld a, [$ffb5]
-	adc b
-	ld d, a
-	jr .endtable
-	
-.advancetable
-	inc hl ; align to next triplet
-	ld a, [$d265]
-	inc a
-	ld [$d265], a
-	cp a, $10
-	jr c, .readtable
-	
-	call .BCMinusDE
-	ld hl, $0640
-	add hl, bc
-	ld d, h
-	ld e, l
-	
-.endtable
-	ld h, d
-	ld l, e
-	add hl, hl
-	add hl, hl
-	add hl, de
-	add hl, hl ; hl = de * 10
-	
-	ld de, $ff02
-	ld a, $ff
-.loop
-	inc a
-	add hl, de ; - 254
-	jr c, .loop
-	
-	ld d, $00
-	
-; mod $0c
-.modloop
-	cp a, $0c
-	jr c, .done
-	sub a, $0c
-	inc d
-	jr .modloop
-	
-.done
-	ld e, a
-	ld hl, $d1ea
-	ld [hl], d
-	inc hl
-	ld [hl], e
-	ret
-; fbc9a
-
-.BLessThanD ; fbc9a
-; return carry if b < d
-	ld a, b
-	cp d
-	ret c
-	ret nc
-; fbc9e
-
-.CLessThanE ; fbc9e
-; unused
-	ld a, c
-	cp e
-	ret
-; fbca1
-
-.BCMinusDE ; fbca1
-; bc -= de
-	ld a, c
-	sub e
-	ld c, a
-	ld a, b
-	sbc d
-	ld b, a
-	ret
-; fbca8
-
-.MagikarpLengthTable ; fbca8
-;		????, divisor
-	dwb $006e, $01
-	dwb $0136, $02
-	dwb $02c6, $04
-	dwb $0a96, $14
-	dwb $1e1e, $32
-	dwb $452e, $64
-	dwb $7fc6, $96
-	dwb $ba5e, $96
-	dwb $e16e, $64
-	dwb $f4f6, $32
-	dwb $fcc6, $14
-	dwb $feba, $05
-	dwb $ff82, $02
-; fbccf
+INCLUDE "battle/magikarp_length.asm"
 
 INCBIN "baserom.gbc",$FBCCF,$fc000-$fbccf
 
@@ -13107,7 +12683,7 @@ TitleScreen: ; 10ed67
 	
 ; VRAM bank 1
 	ld a, 1
-	ld [$ff4f], a
+	ld [rVBK], a
 	
 	
 ; Decompress running Suicune gfx
@@ -13180,7 +12756,7 @@ TitleScreen: ; 10ed67
 	
 ; Back to VRAM bank 0
 	ld a, $0
-	ld [$ff4f], a
+	ld [rVBK], a
 	
 	
 ; Decompress logo
@@ -13276,7 +12852,7 @@ TitleScreen: ; 10ed67
 	call ByteFill
 	
 ; Let LCD Stat know we're messing around with SCX
-	ld a, $43 ; ff43 ; SCX
+	ld a, rSCX - rJOYP
 	ld [$ffc6], a
 	
 ; Restore WRAM bank
@@ -13289,9 +12865,9 @@ TitleScreen: ; 10ed67
 	call $058a
 	
 ; Set sprite size to 8x16
-	ld a, [$ff40] ; LCDC
+	ld a, [rLCDC]
 	set 2, a
-	ld [$ff40], a ; LCDC
+	ld [rLCDC], a
 	
 ;
 	ld a, $70
