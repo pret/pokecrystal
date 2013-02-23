@@ -69,13 +69,13 @@ VBlank0: ; 2b1
 	inc [hl]
 	
 ; advance rng
-	ld a, [$ff04] ; divider
+	ld a, [rDIV]
 	ld b, a
 	ld a, [$ffe1]
 	adc b
 	ld [$ffe1], a
 	
-	ld a, [$ff04] ; divider
+	ld a, [rDIV]
 	ld b, a
 	ld a, [$ffe2]
 	sbc b
@@ -87,16 +87,16 @@ VBlank0: ; 2b1
 	
 ; scroll x
 	ld a, [$ffcf]
-	ld [$ff43], a ; scx
+	ld [rSCX], a
 ; scroll y
 	ld a, [$ffd0]
-	ld [$ff42], a ; scy
+	ld [rSCY], a
 ; window y
 	ld a, [$ffd2]
-	ld [$ff4a], a ; wy
+	ld [rWY], a
 ; window x + 7
 	ld a, [$ffd1]
-	ld [$ff4b], a ; wx
+	ld [rWX], a
 	
 ; some time management is in order
 ; only have time for one of these during vblank
@@ -131,7 +131,7 @@ VBlank0: ; 2b1
 	call $ff80
 ;	403f:
 ;		ld a, $c4
-;		ld [$ff46], a ; oam dma
+;		ld [rDMA], a
 ;		ld a, $28
 ;	.loop
 ;		dec a
@@ -216,11 +216,11 @@ VBlank1: ; 337
 	
 ; scroll x
 	ld a, [$ffcf]
-	ld [$ff43], a ; scx
+	ld [rSCX], a
 	
 ; scroll y
 	ld a, [$ffd0]
-	ld [$ff42], a ; scy
+	ld [rSCY], a
 	
 ; time-sensitive fns
 	call UpdatePals
@@ -233,7 +233,7 @@ VBlank1: ; 337
 	call $ff80
 ;	403f:
 ;		ld a, $c4
-;		ld [$ff46], a ; oam dma
+;		ld [rDMA], a
 ;		ld a, $28
 ;	.loop
 ;		dec a
@@ -246,20 +246,20 @@ VBlank1: ; 337
 	ld [VBlankOccurred], a
 	
 ; get requested ints
-	ld a, [$ff0f] ; IF
+	ld a, [rIF]
 	ld b, a
 ; discard requested ints
 	xor a
-	ld [$ff0f], a ; IF
+	ld [rIF], a
 ; enable lcd stat
 	ld a, %10 ; lcd stat
-	ld [$ffff], a ; IE
+	ld [rIE], a
 ; rerequest serial int if applicable (still disabled)
 ; request lcd stat
 	ld a, b
 	and %1000 ; serial
 	or %10 ; lcd stat
-	ld [$ff0f], a ; IF
+	ld [rIF], a
 	
 	ei
 ; update sound
@@ -272,17 +272,17 @@ VBlank1: ; 337
 	di
 	
 ; get requested ints
-	ld a, [$ff0f] ; IF
+	ld a, [rIF]
 	ld b, a
 ; discard requested ints
 	xor a
-	ld [$ff0f], a ; IF
+	ld [rIF], a
 ; enable ints besides joypad
 	ld a, %1111 ; serial timer lcdstat vblank
-	ld [$ffff], a ; IE
+	ld [rIE], a
 ; rerequest ints
 	ld a, b
-	ld [$ff0f], a ; IF
+	ld [rIF], a
 	ret
 ; 37f
 
@@ -297,13 +297,13 @@ UpdatePals: ; 37f
 	
 ; update gb pals
 	ld a, [$cfc7]
-	ld [$ff47], a ; BGP
+	ld [rBGP], a
 	
 	ld a, [$cfc8]
-	ld [$ff48], a ; OBP0
+	ld [rOBP0], a
 	
 	ld a, [$cfc9]
-	ld [$ff49], a ; 0BP1
+	ld [rOBP1], a
 	
 	and a
 	ret
@@ -324,10 +324,10 @@ VBlank3: ; 396
 	
 ; scroll x
 	ld a, [$ffcf]
-	ld [$ff43], a ; scx
+	ld [rSCX], a
 ; scroll y
 	ld a, [$ffd0]
-	ld [$ff42], a ; scy
+	ld [rSCY], a
 	
 ; any pals to update?
 	ld a, [$ffe5]
@@ -342,7 +342,7 @@ VBlank3: ; 396
 	call $ff80
 ;	403f:
 ;		ld a, $c4 ; Sprites / $100
-;		ld [$ff46], a ; oam dma
+;		ld [rDMA], a
 ;		ld a, $28
 ;	.loop
 ;		dec a
@@ -355,15 +355,15 @@ VBlank3: ; 396
 	ld [VBlankOccurred], a
 	
 ; save int flag
-	ld a, [$ff0f] ; IF
+	ld a, [rIF]
 	push af
 ; reset ints
 	xor a
-	ld [$ff0f], a ; IF
+	ld [rIF], a
 ; force lcdstat int during sound update
 	ld a, %10 ; lcd stat
-	ld [$ffff], a ; IE
-	ld [$ff0f], a ; IF
+	ld [rIE], a
+	ld [rIF], a
 	
 	ei
 ; update sound
@@ -376,7 +376,7 @@ VBlank3: ; 396
 	di
 	
 ; request lcdstat
-	ld a, [$ff0f] ; IF
+	ld a, [rIF]
 	ld b, a
 ; and any other ints
 	pop af
@@ -384,13 +384,13 @@ VBlank3: ; 396
 	ld b, a
 ; reset ints
 	xor a
-	ld [$ff0f], a ; IF
+	ld [rIF], a
 ; enable ints besides joypad
 	ld a, %1111 ; serial timer lcdstat vblank
-	ld [$ffff], a ; IE
+	ld [rIE], a
 ; request ints
 	ld a, b
-	ld [$ff0f], a ; IF
+	ld [rIF], a
 	ret
 ; 3df
 
@@ -414,7 +414,7 @@ VBlank4: ; 3df
 	call $ff80
 ;	403f:
 ;		ld a, $c4
-;		ld [$ff46], a ; oam dma
+;		ld [rDMA], a
 ;		ld a, $28
 ;	.loop
 ;		dec a
@@ -456,7 +456,7 @@ VBlank5: ; 400
 	
 ; scroll x
 	ld a, [$ffcf]
-	ld [$ff43], a ; scx
+	ld [rSCX], a
 	
 ; if we can update pals, skip this part
 	call UpdatePalsIfCGB
@@ -475,12 +475,12 @@ VBlank5: ; 400
 	
 ; discard requested ints
 	xor a
-	ld [$ff0f], a ; IF
+	ld [rIF], a
 ; enable lcd stat
 	ld a, %10 ; lcd stat
-	ld [$ffff], a ; IE
+	ld [rIE], a
 ; request lcd stat
-	ld [$ff0f], a ; IF
+	ld [rIF], a
 	
 	ei
 ; update sound
@@ -494,10 +494,10 @@ VBlank5: ; 400
 	
 ; discard requested ints
 	xor a
-	ld [$ff0f], a ; IF
+	ld [rIF], a
 ; enable ints besides joypad
 	ld a, %1111 ; serial timer lcdstat vblank
-	ld [$ffff], a ; IE
+	ld [rIE], a
 	ret
 ; 436
 
