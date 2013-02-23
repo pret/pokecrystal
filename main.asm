@@ -3392,7 +3392,71 @@ StartMusic: ; 3b97
 	ret
 ; 3bbc
 
-INCBIN "baserom.gbc",$3bbc,$3c23 - $3bbc
+INCBIN "baserom.gbc",$3bbc,$3be3 - $3bbc
+
+PlayCryHeader: ; 3be3
+; Play a cry given parameters in header de
+	
+	push hl
+	push de
+	push bc
+	push af
+	
+; Save current bank
+	ld a, [$ff9d]
+	push af
+	
+; Cry headers are stuck in one bank.
+	ld a, BANK(CryHeaders)
+	ld [$ff9d], a
+	ld [$2000], a
+	
+; Each header is 6 bytes long:
+	ld hl, CryHeaders
+	add hl, de
+	add hl, de
+	add hl, de
+	add hl, de
+	add hl, de
+	add hl, de
+	
+; Header struct:
+
+; id
+	ld e, [hl]
+	inc hl
+	ld d, [hl]
+	inc hl
+; pitch
+	ld a, [hli]
+	ld [CryPitch], a
+; echo
+	ld a, [hli]
+	ld [CryEcho], a
+; length
+	ld a, [hli]
+	ld [CryLength], a
+	ld a, [hl]
+	ld [CryLength+1], a
+	
+; That's it for the header
+	ld a, BANK(PlayCry)
+	ld [$ff9d], a
+	ld [$2000], a
+	call PlayCry
+	
+; Restore bank
+	pop af
+	ld [$ff9d], a
+	ld [$2000], a
+	
+	pop af
+	pop bc
+	pop de
+	pop hl
+	ret
+; 3c23
+
 
 StartSFX: ; 3c23
 ; sfx id order is by priority (highest to lowest)
