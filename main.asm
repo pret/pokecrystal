@@ -4,7 +4,7 @@ SECTION "rst0",HOME[$0]
 	jp Start
 
 SECTION "rst8",HOME[$8] ; FarCall
-	jp $2d63
+	jp FarJpHl
 
 SECTION "rst10",HOME[$10] ; Bankswitch
 	ld [$ff9d], a
@@ -2355,7 +2355,43 @@ GetWorldMapLocation: ; 0x2caf
 	ret
 ; 0x2cbd
 
-INCBIN "baserom.gbc",$2cbd,$2d83-$2cbd
+INCBIN "baserom.gbc",$2cbd,$2d63-$2cbd
+
+FarJpHl: ; 2d63
+; Jump to a:hl.
+; Preserves all registers besides a.
+
+; Switch to the new bank.
+	ld [$ff8b], a
+	ld a, [$ff9d]
+	push af
+	ld a, [$ff8b]
+	rst Bankswitch
+	
+	call .hl
+	
+; We want to retain the contents of f.
+; To do this, we can pop to bc instead of af.
+	
+	ld a, b
+	ld [$cfb9], a
+	ld a, c
+	ld [$cfba], a
+	
+; Restore the working bank.
+	pop bc
+	ld a, b
+	rst Bankswitch
+	
+	ld a, [$cfb9]
+	ld b, a
+	ld a, [$cfba]
+	ld c, a
+	ret
+.hl
+	jp [hl]
+; 2d83
+
 
 Predef: ; 2d83
 ; call a function from given id a
