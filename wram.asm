@@ -168,7 +168,13 @@ Channel1VibratoRate: ; c121
 	ds 1
 ; c126
 	ds 1
-	ds 7
+; c127
+	ds 1
+Channel1CryPitch: ; c128
+	ds 1
+Channel1CryEcho: ; c129
+	ds 1
+	ds 4
 Channel1NoteLength: ; c12e
 ; # frames per 16th note
 	ds 1
@@ -278,9 +284,14 @@ MusicFadeIDLo: ; c2a9
 	ds 1
 MusicFadeIDHi: ; c2aa
 	ds 1
-	ds 9
+	ds 5
+CryPitch: ; c2b0
+	ds 1
+CryEcho: ; c2b1
+	ds 1
+CryLength: ; c2b2
+	ds 2
 LastVolume: ; c2b4
-; preserves volume of a song playing so cries can have their own volume
 	ds 1
 	ds 1
 SFXPriority: ; c2b6
