@@ -4,7 +4,7 @@ SECTION "rst0",HOME[$0]
 	jp Start
 
 SECTION "rst8",HOME[$8] ; FarCall
-	jp $2d63
+	jp FarJpHl
 
 SECTION "rst10",HOME[$10] ; Bankswitch
 	ld [$ff9d], a
@@ -2355,7 +2355,43 @@ GetWorldMapLocation: ; 0x2caf
 	ret
 ; 0x2cbd
 
-INCBIN "baserom.gbc",$2cbd,$2d83-$2cbd
+INCBIN "baserom.gbc",$2cbd,$2d63-$2cbd
+
+FarJpHl: ; 2d63
+; Jump to a:hl.
+; Preserves all registers besides a.
+
+; Switch to the new bank.
+	ld [$ff8b], a
+	ld a, [$ff9d]
+	push af
+	ld a, [$ff8b]
+	rst Bankswitch
+	
+	call .hl
+	
+; We want to retain the contents of f.
+; To do this, we can pop to bc instead of af.
+	
+	ld a, b
+	ld [$cfb9], a
+	ld a, c
+	ld [$cfba], a
+	
+; Restore the working bank.
+	pop bc
+	ld a, b
+	rst Bankswitch
+	
+	ld a, [$cfb9]
+	ld b, a
+	ld a, [$cfba]
+	ld c, a
+	ret
+.hl
+	jp [hl]
+; 2d83
+
 
 Predef: ; 2d83
 ; call a function from given id a
@@ -3392,7 +3428,71 @@ StartMusic: ; 3b97
 	ret
 ; 3bbc
 
-INCBIN "baserom.gbc",$3bbc,$3c23 - $3bbc
+INCBIN "baserom.gbc",$3bbc,$3be3 - $3bbc
+
+PlayCryHeader: ; 3be3
+; Play a cry given parameters in header de
+	
+	push hl
+	push de
+	push bc
+	push af
+	
+; Save current bank
+	ld a, [$ff9d]
+	push af
+	
+; Cry headers are stuck in one bank.
+	ld a, BANK(CryHeaders)
+	ld [$ff9d], a
+	ld [$2000], a
+	
+; Each header is 6 bytes long:
+	ld hl, CryHeaders
+	add hl, de
+	add hl, de
+	add hl, de
+	add hl, de
+	add hl, de
+	add hl, de
+	
+; Header struct:
+
+; id
+	ld e, [hl]
+	inc hl
+	ld d, [hl]
+	inc hl
+; pitch
+	ld a, [hli]
+	ld [CryPitch], a
+; echo
+	ld a, [hli]
+	ld [CryEcho], a
+; length
+	ld a, [hli]
+	ld [CryLength], a
+	ld a, [hl]
+	ld [CryLength+1], a
+	
+; That's it for the header
+	ld a, BANK(PlayCry)
+	ld [$ff9d], a
+	ld [$2000], a
+	call PlayCry
+	
+; Restore bank
+	pop af
+	ld [$ff9d], a
+	ld [$2000], a
+	
+	pop af
+	pop bc
+	pop de
+	pop hl
+	ret
+; 3c23
+
 
 StartSFX: ; 3c23
 ; sfx id order is by priority (highest to lowest)
@@ -3541,7 +3641,66 @@ IntroFadePalettes: ; 0x617c
 	db %11100100
 ; 6182
 
-INCBIN "baserom.gbc",$6182,$669f - $6182
+INCBIN "baserom.gbc",$6182,$6274 - $6182
+
+FarStartTitleScreen: ; 6274
+	callba StartTitleScreen
+	ret
+; 627b
+
+INCBIN "baserom.gbc",$627b,$62bc - $627b
+
+TitleScreenEntrance: ; 62bc
+
+; Animate the logo:
+; Move each line by 4 pixels until our count hits 0.
+	ld a, [$ffcf]
+	and a
+	jr z, .done
+	sub 4
+	ld [$ffcf], a
+	
+; Lay out a base (all lines scrolling together).
+	ld e, a
+	ld hl, $d100
+	ld bc, 8 * 10 ; logo height
+	call ByteFill
+	
+; Alternate signage for each line's position vector.
+; This is responsible for the interlaced effect.
+	ld a, e
+	xor $ff
+	inc a
+	
+	ld b, 8 * 10 / 2 ; logo height / 2
+	ld hl, $d101
+.loop
+	ld [hli], a
+	inc hl
+	dec b
+	jr nz, .loop
+	
+	callba AnimateTitleCrystal
+	ret
+	
+	
+.done
+; Next scene
+	ld hl, $cf63
+	inc [hl]
+	xor a
+	ld [$ffc6], a
+	
+; Play the title screen music.
+	ld de, MUSIC_TITLE
+	call StartMusic
+	
+	ld a, $88
+	ld [$ffd2], a
+	ret
+; 62f6
+
+INCBIN "baserom.gbc",$62f6,$669f - $62f6
 
 CheckNickErrors: ; 669f
 ; error-check monster nick before use
@@ -12660,7 +12819,7 @@ SECTION "bank43",DATA,BANK[$43]
 
 INCBIN "baserom.gbc", $10c000, $10ed67 - $10c000
 
-TitleScreen: ; 10ed67
+StartTitleScreen: ; 10ed67
 
 	call WhiteBGMap
 	call ClearSprites
@@ -12896,7 +13055,32 @@ TitleScreen: ; 10ed67
 	ret
 ; 10eea7
 
-INCBIN "baserom.gbc", $10eea7, $10ef46 - $10eea7
+INCBIN "baserom.gbc", $10eea7, $10ef32 - $10eea7
+
+AnimateTitleCrystal: ; 10ef32
+; Move the title screen crystal downward until it's fully visible
+
+; Stop at y=6
+; y is really from the bottom of the sprite, which is two tiles high
+	ld hl, Sprites
+	ld a, [hl]
+	cp 6 + 16
+	ret z
+	
+; Move all 30 parts of the crystal down by 2
+	ld c, 30
+.loop
+	ld a, [hl]
+	add 2
+	ld [hli], a
+	inc hl
+	inc hl
+	inc hl
+	dec c
+	jr nz, .loop
+	
+	ret
+; 10ef46
 
 TitleSuicuneGFX: ; 10ef46
 INCBIN "gfx/title/suicune.lz"

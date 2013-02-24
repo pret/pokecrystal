@@ -2352,72 +2352,87 @@ LoadMusic: ; e8b30
 ; e8b79
 
 PlayCry: ; e8b79
-; input: de = cry id
+; Play cry de using parameters:
+;	CryPitch
+;	CryEcho
+;	CryLength
+	
 	call MusicOff
-	; load cry id
+	
+; Overload the music id with the cry id
 	ld hl, MusicID
 	ld [hl], e
 	inc hl
 	ld [hl], d
-	; seek pointer table
+	
+; 3-byte pointers (bank, address)
 	ld hl, Cries
 	add hl, de
 	add hl, de
 	add hl, de
-	; get bank
+	
 	ld a, [hli]
 	ld [MusicBank], a
-	; get address
+	
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
-; read cry header
-	; get byte at bank:address
+	
+; Read the cry's sound header
 	call FarLoadMusicByte
-	; get top 2 bits (# chs)
+	; Top 2 bits contain the number of channels
 	rlca
 	rlca
-	and a, $03
-	inc a ; ch count -> loop count
+	and a, 3
+	
+; For each channel:
+	inc a
 .loop
 	push af
 	call LoadChannel
+	
 	ld hl, Channel1Flags - Channel1
 	add hl, bc
 	set 5, [hl]
+	
 	ld hl, Channel1Flags2 - Channel1
 	add hl, bc
 	set 4, [hl]
-	ld hl, $0027
+	
+	ld hl, Channel1CryPitch - Channel1
 	add hl, bc
-	ld a, [$c2b0]
+	ld a, [CryPitch]
 	ld [hli], a
-	ld a, [$c2b1]
+	ld a, [CryEcho]
 	ld [hl], a
-	; are we on the last channel? (music & sfx)
+	
+; No tempo for channel 4
 	ld a, [CurChannel]
-	and a, $03
-	cp a, $03
+	and a, 3
+	cp 3
 	jr nc, .start
-	; update tempo
+	
+; Tempo is effectively length
 	ld hl, Channel1Tempo - Channel1
 	add hl, bc
-	ld a, [$c2b2]
+	ld a, [CryLength]
 	ld [hli], a
-	ld a, [$c2b3]
+	ld a, [CryLength+1]
 	ld [hl], a
 .start
 	call StartChannel
 	ld a, [$c2bc]
 	and a
 	jr z, .next
-; play cry from the side of the monster it's coming from (stereo only)
-; outside of battles cries play on both tracks
-	; is stereo on?
+	
+; Stereo only: Play cry from the monster's side.
+; This only applies in-battle.
+	
 	ld a, [Options]
 	bit 5, a ; stereo
 	jr z, .next
-	; and [Tracks], [CryTracks]
+	
+; [Tracks] &= [CryTracks]
 	ld hl, Channel1Tracks - Channel1
 	add hl, bc
 	ld a, [hl]
@@ -2426,21 +2441,25 @@ PlayCry: ; e8b79
 	ld hl, Channel1Tracks - Channel1
 	add hl, bc
 	ld [hl], a
+	
 .next
 	pop af
 	dec a
 	jr nz, .loop
-	; save current volume
+	
+	
+; Cries play at max volume, so we save the current volume for later.
 	ld a, [LastVolume]
 	and a
 	jr nz, .end
+	
 	ld a, [Volume]
 	ld [LastVolume], a
-	; cries have max volume
 	ld a, $77
 	ld [Volume], a
+	
 .end
-	ld a, $01 ; stop playing music
+	ld a, 1 ; stop playing music
 	ld [SFXPriority], a
 	call MusicOn
 	ret
