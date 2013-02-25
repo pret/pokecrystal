@@ -6295,7 +6295,21 @@ INCBIN "baserom.gbc",$4456e,$44997 - $4456e
 
 SECTION "bank12",DATA,BANK[$12]
 
-INCBIN "baserom.gbc",$48000,$49d24 - $48000
+INCBIN "baserom.gbc",$48000,$48e9b - $48000
+
+PackFGFX:
+INCBIN "gfx/misc/pack_f.2bpp"
+
+INCBIN "baserom.gbc",$4925b,$49962 - $4925b
+
+SpecialCelebiGFX:
+INCBIN "gfx/special/celebi/leaf.2bpp"
+INCBIN "gfx/special/celebi/1.2bpp"
+INCBIN "gfx/special/celebi/2.2bpp"
+INCBIN "gfx/special/celebi/3.2bpp"
+INCBIN "gfx/special/celebi/4.2bpp"
+
+INCBIN "baserom.gbc",$49aa2,$49d24 - $49aa2
 
 ContinueText: ; 0x49d24
 	db "CONTINUE@"
@@ -6901,7 +6915,13 @@ EggALotMoreTimeString: ; 0x4e46e
 
 ; 0x4e497
 
-INCBIN "baserom.gbc",$4e497,$4f31c - $4e497
+INCBIN "baserom.gbc",$4e497,$4e831 - $4e497
+
+EvolutionGFX:
+INCBIN "gfx/evo/bubble_large.2bpp"
+INCBIN "gfx/evo/bubble.2bpp"
+
+INCBIN "baserom.gbc",$4e881,$4f31c - $4e881
 
 
 SECTION "bank14",DATA,BANK[$14]
@@ -8512,7 +8532,12 @@ BattleText_0x8188e: ; 0x8188e
 	db "left today!", $57
 ; 0x818ac
 
-INCBIN "baserom.gbc",$818ac,$823c8-$818ac
+INCBIN "baserom.gbc",$818ac,$81fe3-$818ac
+
+DebugColorTestGFX:
+INCBIN "gfx/debug/color_test.2bpp"
+
+INCBIN "baserom.gbc",$82153,$823c8-$82153
 
 
 SECTION "bank21",DATA,BANK[$21]
@@ -12665,7 +12690,11 @@ INCBIN "baserom.gbc",$100000,$10389d - $100000
 
 SECTION "bank41",DATA,BANK[$41]
 
-INCBIN "baserom.gbc",$104000,$105258 - $104000
+INCBIN "baserom.gbc",$104000,$104350 - $104000
+
+INCBIN "gfx/ow/misc.2bpp"
+
+INCBIN "baserom.gbc",$1045b0,$105258 - $1045b0
 
 MysteryGiftGFX:
 INCBIN "gfx/misc/mystery_gift.2bpp"
@@ -12693,7 +12722,16 @@ IntroLogoGFX: ; 109407
 INCBIN "gfx/intro/logo.lz"
 ; 10983f
 
-INCBIN "baserom.gbc", $10983f, $10aee1 - $10983f
+INCBIN "baserom.gbc", $10983f, $109c24 - $10983f
+
+CreditsGFX:
+INCBIN "gfx/credits/border.2bpp"
+INCBIN "gfx/credits/pichu.2bpp"
+INCBIN "gfx/credits/smoochum.2bpp"
+INCBIN "gfx/credits/ditto.2bpp"
+INCBIN "gfx/credits/igglybuff.2bpp"
+
+INCBIN "baserom.gbc", $10acb4, $10aee1 - $10acb4
 
 Credits:
 	db "   SATOSHI TAJIRI@"         ; "たじり さとし@"
