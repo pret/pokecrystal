@@ -3808,7 +3808,7 @@ DrawGraphic: ; 6eef
 	ret
 ; 6f07
 
-INCBIN "baserom.gbc",$6f07,$8000 - $6f07
+INCBIN "baserom.gbc",$6f07,$747b - $6f07
 
 
 SECTION "bank2",DATA,BANK[$2]
@@ -4020,7 +4020,7 @@ INCBIN "baserom.gbc",$b0ae,$b0d2 - $b0ae
 TrainerPalettes:
 INCLUDE "gfx/trainers/palette_pointers.asm"
 
-INCBIN "baserom.gbc",$b1de,$bc3a - $b1de
+INCBIN "baserom.gbc",$b1de,$b825 - $b1de
 
 
 SECTION "bank3",DATA,BANK[$3]
@@ -4584,7 +4584,7 @@ AskSurfText: ; ca36
 	db "@"				; Want to SURF?
 ; ca3b
 
-INCBIN "baserom.gbc",$ca3b,$10000 - $ca3b
+INCBIN "baserom.gbc",$ca3b,$fa0b - $ca3b
 
 
 SECTION "bank4",DATA,BANK[$4]
@@ -4805,7 +4805,7 @@ OpenPartyStats: ; 12e00
 	ret
 ; 0x12e1b
 
-INCBIN "baserom.gbc",$12e1b,$14000 - $12e1b
+INCBIN "baserom.gbc",$12e1b,$13d96 - $12e1b
 
 
 SECTION "bank5",DATA,BANK[$5]
@@ -4907,7 +4907,7 @@ Tileset20GFX: ; 1b43e
 INCBIN "gfx/tilesets/20.lz"
 ; 1b8f1
 
-INCBIN "baserom.gbc", $1b8f1, $1c000 - $1b8f1
+INCBIN "baserom.gbc", $1b8f1, $1bdfe - $1b8f1
 
 
 SECTION "bank7",DATA,BANK[$7]
@@ -4949,8 +4949,6 @@ INCBIN "baserom.gbc", $1ee0e, $1f31c - $1ee0e
 Music_Credits:       INCLUDE "audio/music/credits.asm"
 Music_Clair:         INCLUDE "audio/music/clair.asm"
 Music_MobileAdapter: INCLUDE "audio/music/mobileadapter.asm"
-
-INCBIN "baserom.gbc",$1ff6c, $20000 - $1ff6c
 
 
 SECTION "bank8",DATA,BANK[$8]
@@ -5090,7 +5088,7 @@ TrainerClassDVs ; 270d6
 	db $98, $88 ; mysticalman
 ; 2715c
 
-INCBIN "baserom.gbc",$2715c,$28000 - $2715c
+INCBIN "baserom.gbc",$2715c,$27a2d - $2715c
 
 
 SECTION "bankA",DATA,BANK[$A]
@@ -5333,7 +5331,7 @@ INCBIN "baserom.gbc",$2C41a,$2ee8f - $2C41a
 	pop hl
 	ret
 
-INCBIN "baserom.gbc",$2ef18,$30000 - $2ef18
+INCBIN "baserom.gbc",$2ef18,$2ef9f - $2ef18
 
 
 SECTION "bankC",DATA,BANK[$C]
@@ -5366,7 +5364,7 @@ Tileset30GFX: ; 326b0
 INCBIN "gfx/tilesets/30.lz"
 ; 329ed
 
-INCBIN "baserom.gbc",$329ed,$34000 - $329ed
+INCBIN "baserom.gbc",$329ed,$333f0 - $329ed
 
 
 SECTION "bankD",DATA,BANK[$D]
@@ -5377,7 +5375,7 @@ TypeMatchup: ; 34bb1
 INCLUDE "battle/type_matchup.asm"
 ; 34cfd
 
-INCBIN "baserom.gbc",$34cfd,$38000 - $34cfd
+INCBIN "baserom.gbc",$34cfd,$37ee2 - $34cfd
 
 
 SECTION "bankE",DATA,BANK[$E]
@@ -6259,7 +6257,7 @@ BattleStartMessage:
 	ret
 ; 0x3fd26
 
-INCBIN "baserom.gbc",$3fd26,$40000 - $3fd26
+INCBIN "baserom.gbc",$3fd26,$3fe86 - $3fd26
 
 
 SECTION "bank10",DATA,BANK[$10]
@@ -6292,12 +6290,26 @@ INCBIN "baserom.gbc",$44000,$44378 - $44000
 PokedexDataPointerTable: ; 0x44378
 INCLUDE "stats/pokedex/entry_pointers.asm"
 
-INCBIN "baserom.gbc",$4456e,$3a92
+INCBIN "baserom.gbc",$4456e,$44997 - $4456e
 
 
 SECTION "bank12",DATA,BANK[$12]
 
-INCBIN "baserom.gbc",$48000,$49d24 - $48000
+INCBIN "baserom.gbc",$48000,$48e9b - $48000
+
+PackFGFX:
+INCBIN "gfx/misc/pack_f.2bpp"
+
+INCBIN "baserom.gbc",$4925b,$49962 - $4925b
+
+SpecialCelebiGFX:
+INCBIN "gfx/special/celebi/leaf.2bpp"
+INCBIN "gfx/special/celebi/1.2bpp"
+INCBIN "gfx/special/celebi/2.2bpp"
+INCBIN "gfx/special/celebi/3.2bpp"
+INCBIN "gfx/special/celebi/4.2bpp"
+
+INCBIN "baserom.gbc",$49aa2,$49d24 - $49aa2
 
 ContinueText: ; 0x49d24
 	db "CONTINUE@"
@@ -6654,7 +6666,7 @@ UpdateOTPointer: ; 0x4a83a
 	ret
 ; 0x4a843
 
-INCBIN "baserom.gbc",$4a843,$4C000 - $4a843
+INCBIN "baserom.gbc",$4a843,$4ae78 - $4a843
 
 
 SECTION "bank13",DATA,BANK[$13]
@@ -6903,7 +6915,13 @@ EggALotMoreTimeString: ; 0x4e46e
 
 ; 0x4e497
 
-INCBIN "baserom.gbc",$4e497,$50000 - $4e497
+INCBIN "baserom.gbc",$4e497,$4e831 - $4e497
+
+EvolutionGFX:
+INCBIN "gfx/evo/bubble_large.2bpp"
+INCBIN "gfx/evo/bubble.2bpp"
+
+INCBIN "baserom.gbc",$4e881,$4f31c - $4e881
 
 
 SECTION "bank14",DATA,BANK[$14]
@@ -7094,7 +7112,7 @@ INCLUDE "stats/base_stats.asm"
 PokemonNames:
 INCLUDE "stats/pokemon_names.asm"
 
-INCBIN "baserom.gbc",$53D84,$54000 - $53D84
+INCBIN "baserom.gbc",$53D84,$53e2e - $53D84
 
 
 SECTION "bank15",DATA,BANK[$15]
@@ -8514,7 +8532,12 @@ BattleText_0x8188e: ; 0x8188e
 	db "left today!", $57
 ; 0x818ac
 
-INCBIN "baserom.gbc",$818ac,$84000-$818ac
+INCBIN "baserom.gbc",$818ac,$81fe3-$818ac
+
+DebugColorTestGFX:
+INCBIN "gfx/debug/color_test.2bpp"
+
+INCBIN "baserom.gbc",$82153,$823c8-$82153
 
 
 SECTION "bank21",DATA,BANK[$21]
@@ -8754,7 +8777,7 @@ FX39GFX: ; 8638e
 INCBIN "gfx/fx/039.lz"
 ; 8640b
 
-INCBIN "baserom.gbc", $8640b, $88000 - $8640b
+INCBIN "baserom.gbc", $8640b, $868f7 - $8640b
 
 
 SECTION "bank22",DATA,BANK[$22]
@@ -8945,7 +8968,7 @@ GetNthPartyMon: ; 0x8b1ce
 	scf
 	ret
 
-INCBIN "baserom.gbc",$8b1e1,$8c000-$8b1e1
+INCBIN "baserom.gbc",$8b1e1,$8ba24-$8b1e1
 
 
 SECTION "bank23",DATA,BANK[$23]
@@ -10282,7 +10305,7 @@ INCLUDE "maps/map_headers.asm"
 
 INCLUDE "maps/second_map_headers.asm"
 
-INCBIN "baserom.gbc",$966b0,$1950
+INCBIN "baserom.gbc",$966b0,$97f7e - $966b0
 
 
 SECTION "bank26",DATA,BANK[$26]
@@ -10341,12 +10364,12 @@ INCLUDE "maps/BattleTowerOutside.asm"
 
 SECTION "bank28",DATA,BANK[$28]
 
-INCBIN "baserom.gbc",$A0000,$4000
+INCBIN "baserom.gbc",$a0000,$a1eca - $a0000
 
 
 SECTION "bank29",DATA,BANK[$29]
 
-INCBIN "baserom.gbc",$A4000,$4000
+INCBIN "baserom.gbc",$a4000,$a64ad - $a4000
 
 
 SECTION "bank2A",DATA,BANK[$2A]
@@ -10610,8 +10633,6 @@ Route9_BlockData: ; 0xabde9
 Route22_BlockData: ; 0xabef7
 	INCBIN "maps/Route22.blk"
 ; 0xabfab
-
-INCBIN "baserom.gbc",$abfab,$55
 
 
 SECTION "bank2B",DATA,BANK[$2B]
@@ -11481,7 +11502,7 @@ Tileset16GFX: ; b74e8
 INCBIN "gfx/tilesets/16.lz"
 ; b799a
 
-INCBIN "baserom.gbc", $b799a, $b8000 - $b799a
+INCBIN "baserom.gbc", $b799a, $b7ea8 - $b799a
 
 
 SECTION "bank2E",DATA,BANK[$2E]
@@ -11726,7 +11747,7 @@ WildRockMonTable: ; b83de
 	db $ff ; end
 ; b83e5
 
-INCBIN "baserom.gbc",$B83E5,$bc000 - $b83e5
+INCBIN "baserom.gbc",$b83e5,$b9e8b - $b83e5
 
 
 SECTION "bank2F",DATA,BANK[$2F]
@@ -12160,17 +12181,17 @@ INCBIN "baserom.gbc",$bd0d0,$be699-$bd0d0
 
 SECTION "bank30",DATA,BANK[$30]
 
-INCBIN "baserom.gbc",$C0000,$4000
+INCBIN "baserom.gbc",$c0000,$c3fc0 - $c0000
 
 
 SECTION "bank31",DATA,BANK[$31]
 
-INCBIN "baserom.gbc",$C4000,$4000
+INCBIN "baserom.gbc",$c4000,$c7f80 - $c4000
 
 
 SECTION "bank32",DATA,BANK[$32]
 
-INCBIN "baserom.gbc",$C8000,$4000
+INCBIN "baserom.gbc",$c8000,$cbe2b - $c8000
 
 
 SECTION "bank33",DATA,BANK[$33]
@@ -12181,7 +12202,6 @@ INCBIN "baserom.gbc",$cc000, $cfd9e - $cc000
 
 Music_PostCredits: INCLUDE "audio/music/postcredits.asm"
 
-INCBIN "baserom.gbc",$cff04, $d0000 - $cff04
 
 
 ;                       Pic animations I
@@ -12282,12 +12302,12 @@ Tileset11GFX: ; de570
 INCBIN "gfx/tilesets/11.lz"
 ; de98a
 
-INCBIN "baserom.gbc", $de98a, $e0000 - $de98a
+INCBIN "baserom.gbc", $de98a, $dfd14 - $de98a
 
 
 SECTION "bank38",DATA,BANK[$38]
 
-INCBIN "baserom.gbc",$E0000,$4000
+INCBIN "baserom.gbc",$e0000,$e37f9 - $e0000
 
 
 SECTION "bank39",DATA,BANK[$39]
@@ -12613,7 +12633,7 @@ INCBIN "baserom.gbc", $f8ea3, $fbbfc - $f8ea3
 
 INCLUDE "battle/magikarp_length.asm"
 
-INCBIN "baserom.gbc",$FBCCF,$fc000-$fbccf
+INCBIN "baserom.gbc",$fbccf,$fbe91 - $fbccf
 
 
 SECTION "bank3F",DATA,BANK[$3F]
@@ -12665,12 +12685,16 @@ INCBIN "baserom.gbc",$fcf38,$fd1d2-$fcf38
 
 SECTION "bank40",DATA,BANK[$40]
 
-INCBIN "baserom.gbc",$100000,$4000
+INCBIN "baserom.gbc",$100000,$10389d - $100000
 
 
 SECTION "bank41",DATA,BANK[$41]
 
-INCBIN "baserom.gbc",$104000,$105258 - $104000
+INCBIN "baserom.gbc",$104000,$104350 - $104000
+
+INCBIN "gfx/ow/misc.2bpp"
+
+INCBIN "baserom.gbc",$1045b0,$105258 - $1045b0
 
 MysteryGiftGFX:
 INCBIN "gfx/misc/mystery_gift.2bpp"
@@ -12687,7 +12711,7 @@ Function1060bb: ; 1060bb
 	ret
 ; 1060bc
 
-INCBIN "baserom.gbc",$1060bc,$108000 - $1060bc
+INCBIN "baserom.gbc",$1060bc,$106dbc - $1060bc
 
 
 SECTION "bank42",DATA,BANK[$42]
@@ -12698,121 +12722,10 @@ IntroLogoGFX: ; 109407
 INCBIN "gfx/intro/logo.lz"
 ; 10983f
 
-INCBIN "baserom.gbc", $10983f, $10aee1 - $10983f
+INCBIN "baserom.gbc", $10983f, $1099aa - $10983f
 
-Credits:
-	db "   SATOSHI TAJIRI@"         ; "たじり さとし@"
-	db "   JUNICHI MASUDA@"         ; "ますだ じゅんいち@"
-	db "  TETSUYA WATANABE@"        ; "わたなべ てつや@"
-	db "  SHIGEKI MORIMOTO@"        ; "もりもと しげき@"
-	db "   SOUSUKE TAMADA@"         ; "たまだ そうすけ@"
-	db "   TAKENORI OOTA@"          ; "おおた たけのり@"
-	db "    KEN SUGIMORI@"          ; "すぎもり けん@"
-	db " MOTOFUMI FUJIWARA@"        ; "ふじわら もとふみ@"
-	db "   ATSUKO NISHIDA@"         ; "にしだ あつこ@"
-	db "    MUNEO SAITO@"           ; "さいとう むねお@"
-	db "    SATOSHI OOTA@"          ; "おおた さとし@"
-	db "   RENA YOSHIKAWA@"         ; "よしかわ れな@"
-	db "    JUN OKUTANI@"           ; "おくたに じゅん@"
-	db "  HIRONOBU YOSHIDA@"        ; "よしだ ひろのぶ@"
-	db "   ASUKA IWASHITA@"         ; "いわした あすか@"
-	db "    GO ICHINOSE@"           ; "いちのせ ごう@"
-	db "   MORIKAZU AOKI@"          ; "あおき もりかず@"
-	db "   KOHJI NISHINO@"          ; "にしの こうじ@"
-	db "  KENJI MATSUSHIMA@"        ; "まつしま けんじ@"
-	db "TOSHINOBU MATSUMIYA@"       ; "まつみや としのぶ@"
-	db "    SATORU IWATA@"          ; "いわた さとる@"
-	db "   NOBUHIRO SEYA@"          ; "せや のぶひろ@"
-	db "  KAZUHITO SEKINE@"         ; "せきね かずひと@"
-	db "    TETSUJI OOTA@"          ; "おおた てつじ@"
-	db "NCL SUPER MARIO CLUB@"      ; "スーパーマりォクラブ@"
-	db "    SARUGAKUCHO@"           ; "さるがくちょう@"
-	db "     AKITO MORI@"           ; "もり あきと@"
-	db "  TAKAHIRO HARADA@"         ; "はらだ たかひろ@"
-	db "  TOHRU HASHIMOTO@"         ; "はしもと とおる@"
-	db "  NOBORU MATSUMOTO@"        ; "まつもと のぼる@"
-	db "  TAKEHIRO IZUSHI@"         ; "いずし たけひろ@"
-	db " TAKASHI KAWAGUCHI@"        ; "かわぐち たかし@"
-	db " TSUNEKAZU ISHIHARA@"       ; "いしはら つねかず@"
-	db "  HIROSHI YAMAUCHI@"        ; "やまうち ひろし@"
-	db "    KENJI SAIKI@"           ; "さいき けんじ@"
-	db "    ATSUSHI TADA@"          ; "ただ あつし@"
-	db "   NAOKO KAWAKAMI@"         ; "かわかみ なおこ@"
-	db "  HIROYUKI ZINNAI@"         ; "じんない ひろゆき@"
-	db "  KUNIMI KAWAMURA@"         ; "かわむら くにみ@"
-	db "   HISASHI SOGABE@"         ; "そがべ ひさし@"
-	db "    KEITA KAGAYA@"          ; "かがや けいた@"
-	db " YOSHINORI MATSUDA@"        ; "まつだ よしのり@"
-	db "    HITOMI SATO@"           ; "さとう ひとみ@"
-	db "     TORU OSAWA@"           ; "おおさわ とおる@"
-	db "    TAKAO OHARA@"           ; "おおはら たかお@"
-	db "    YUICHIRO ITO@"          ; "いとう ゆういちろう@"
-	db "   TAKAO SHIMIZU@"          ; "しみず たかお@"
-	db " SPECIAL PRODUCTION", $4e
-	db "      PLANNING", $4e        ; "きかくかいはつぶ@"
-	db " & DEVELOPMENT DEPT.@"
-	db "   KEITA NAKAMURA@"         ; "なかむら けいた@"
-	db "  HIROTAKA UEMURA@"         ; "うえむら ひろたか@"
-	db "   HIROAKI TAMURA@"         ; "たむら ひろあき@"
-	db " NORIAKI SAKAGUCHI@"        ; "さかぐち のりあき@"
-	db "    MIYUKI SATO@"           ; "さとう みゆき@"
-	db "   GAKUZI NOMOTO@"          ; "のもと がくじ@"
-	db "     AI MASHIMA@"           ; "ましま あい@"
-	db " MIKIHIRO ISHIKAWA@"        ; "いしかわ みきひろ@"
-	db " HIDEYUKI HASHIMOTO@"       ; "はしもと ひでゆき@"
-	db "   SATOSHI YAMATO@"         ; "やまと さとし@"
-	db "  SHIGERU MIYAMOTO@"        ; "みやもと しげる@"
-	db "        END@"               ; "おしまい@"
-	db "      ????????@"            ; "????????@"
-	db "    GAIL TILDEN@"
-	db "   NOB OGASAWARA@"
-	db "   SETH McMAHILL@"
-	db "  HIROTO ALEXANDER@"
-	db "  TERESA LILLYGREN@"
-	db "   THOMAS HERTZOG@"
-	db "    ERIK JOHNSON@"
-	db "   HIRO NAKAMURA@"
-	db "  TERUKI MURAKAWA@"
-	db "  KAZUYOSHI OSAWA@"
-	db "  KIMIKO NAKAMICHI@"
-	db "      #MON", $4e            ; "ポケットモンスター", $4e
-	db "  CRYSTAL VERSION", $4e     ; "  クりスタル バージョン", $4e
-	db "       STAFF@"              ; "    スタッフ@"
-	db "      DIRECTOR@"            ; "エグゼクティブ ディレクター@"
-	db "    CO-DIRECTOR@"           ; "ディレクター@"
-	db "    PROGRAMMERS@"           ; "プログラム@"
-	db " GRAPHICS DIRECTOR@"        ; "グラフィック ディレクター@"
-	db "   MONSTER DESIGN@"         ; "# デザイン@"
-	db "  GRAPHICS DESIGN@"         ; "グラフィック デザイン@"
-	db "       MUSIC@"              ; "おんがく@"
-	db "   SOUND EFFECTS@"          ; "サウンド エフ→クト@"
-	db "    GAME DESIGN@"           ; "ゲームデザイン@"
-	db "   GAME SCENARIO@"          ; "シナりォ@"
-	db "  TOOL PROGRAMMING@"        ; "ツール プログラム@"
-	db " PARAMETRIC DESIGN@"        ; "パラメーター せってい@"
-	db "   SCRIPT DESIGN@"          ; "スクりプト せってい@"
-	db "  MAP DATA DESIGN@"         ; "マップデータ せってい@"
-	db "     MAP DESIGN@"           ; "マップ デザイン@"
-	db "  PRODUCT TESTING@"         ; "デバッグプレイ@"
-	db "   SPECIAL THANKS@"         ; "スぺシャルサンクス@"
-	db "     PRODUCERS@"            ; "プロデューサー@"
-	db " EXECUTIVE PRODUCER@"       ; "エグゼクティブ プロデューサー@"
-	db " #MON ANIMATION@"           ; "# アニメーション@"
-	db "    #DEX TEXT@"             ; "ずかん テキスト@"
-	db " MOBILE PRJ. LEADER@"       ; "モバイルプロジ→クト りーダー@"
-	db " MOBILE SYSTEM AD.@"        ; "モバイル システムアドバイザー@"
-	db "MOBILE STADIUM DIR.@"       ; "モバイルスタジアム ディレクター@"
-	db "    COORDINATION@"          ; "コーディネーター@"
-	db "  US VERSION STAFF@"
-	db "  US COORDINATION@"
-	db "  TEXT TRANSLATION@"
-	db "    PAAD TESTING@"
-	;  (C) 1  9  9  5 - 2  0  0  1     N  i  n  t  e  n  d  o
-	db $60,$61,$62,$63,$64,$65,$66, $67, $68, $69, $6a, $6b, $6c, $4e
-	;  (C) 1  9  9  5 - 2  0  0  1    C  r  e  a  t  u  r  e  s      i  n  c .
-	db $60,$61,$62,$63,$64,$65,$66, $6d, $6e, $6f, $70, $71, $72,  $7a, $7b, $7c, $4e
-	;  (C) 1  9  9  5 - 2  0  0  1  G   A   M   E   F   R   E   A   K     i  n  c .
-	db $60,$61,$62,$63,$64,$65,$66, $73, $74, $75, $76, $77, $78, $79,  $7a, $7b, $7c, "@"
+; Credits
+INCLUDE "credits.asm"
 
 
 SECTION "bank43",DATA,BANK[$43]
@@ -13184,12 +13097,10 @@ TitleScreenPalettes:
 	RGB 00, 00, 00
 
 
-INCBIN "baserom.gbc", $10ff5e, $110000 - $10ff5e
-
 
 SECTION "bank44",DATA,BANK[$44]
 
-INCBIN "baserom.gbc",$110000,$4000
+INCBIN "baserom.gbc",$110000,$113f84 - $110000
 
 
 SECTION "bank45",DATA,BANK[$45]
@@ -13545,12 +13456,12 @@ Function117cdd: ; 0x117cdd
 
 SECTION "bank46",DATA,BANK[$46]
 
-INCBIN "baserom.gbc",$118000,$4000
+INCBIN "baserom.gbc",$118000,$11bc9e - $118000
 
 
 SECTION "bank47",DATA,BANK[$47]
 
-INCBIN "baserom.gbc",$11C000,$4000
+INCBIN "baserom.gbc",$11c000,$11f686 - $11c000
 
 
 SECTION "bank48",DATA,BANK[$48]
@@ -14377,17 +14288,17 @@ INCBIN "gfx/pics/201r/back.lz"
 
 SECTION "bank5B",DATA,BANK[$5B]
 
-INCBIN "baserom.gbc",$16C000,$4000
+INCBIN "baserom.gbc",$16c000,$16d7fe - $16c000
 
 
 SECTION "bank5C",DATA,BANK[$5C]
 
-INCBIN "baserom.gbc",$170000,$4000
+INCBIN "baserom.gbc",$170000,$17367f - $170000
 
 
 SECTION "bank5D",DATA,BANK[$5D]
 
-INCBIN "baserom.gbc",$174000,$4000
+INCBIN "baserom.gbc",$174000,$177561 - $174000
 
 
 SECTION "bank5E",DATA,BANK[$5E]
@@ -14415,7 +14326,7 @@ INCBIN "baserom.gbc",$17a68f, $17b629 - $17a68f
 
 SECTION "bank5F",DATA,BANK[$5F]
 
-INCBIN "baserom.gbc",$17C000,$4000
+INCBIN "baserom.gbc",$17c000,$17ff6c - $17c000
 
 
 SECTION "bank60",DATA,BANK[$60]
@@ -14713,7 +14624,7 @@ INCLUDE "stats/pokedex/entries_2.asm"
 
 SECTION "bank6F",DATA,BANK[$6F]
 
-INCBIN "baserom.gbc",$1BC000,$4000
+INCBIN "baserom.gbc",$1bc000,$1be08d - $1bc000
 
 
 SECTION "bank70",DATA,BANK[$70]
@@ -14853,12 +14764,12 @@ PokegearGFX: ; 1de2e4
 INCBIN "gfx/misc/pokegear.lz"
 ; 1de5c7
 
-INCBIN "baserom.gbc",$1de5c7,$1e0000 - $1de5c7
+INCBIN "baserom.gbc",$1de5c7,$1df238 - $1de5c7
 
 
 SECTION "bank78",DATA,BANK[$78]
 
-INCBIN "baserom.gbc",$1E0000,$4000
+INCBIN "baserom.gbc",$1e0000,$1e1000 - $1e0000
 
 
 SECTION "bank79",DATA,BANK[$79]
@@ -14869,24 +14780,26 @@ SECTION "bank7A",DATA,BANK[$7A]
 
 SECTION "bank7B",DATA,BANK[$7B]
 
-INCBIN "baserom.gbc",$1EC000,$4000
+INCBIN "baserom.gbc",$1ec000,$1ecf02 - $1ec000
 
 
 SECTION "bank7C",DATA,BANK[$7C]
 
-INCBIN "baserom.gbc",$1F0000,$4000
+INCBIN "baserom.gbc",$1f0000,$1f09d8 - $1f0000
 
 
 SECTION "bank7D",DATA,BANK[$7D]
 
-INCBIN "baserom.gbc",$1F4000,$4000
+INCBIN "baserom.gbc",$1f4000,$1f636a - $1f4000
 
 
 SECTION "bank7E",DATA,BANK[$7E]
 
-INCBIN "baserom.gbc",$1F8000,$4000
+INCBIN "baserom.gbc",$1f8000,$1fb8a8 - $1f8000
 
 
 SECTION "bank7F",DATA,BANK[$7F]
 
-INCBIN "baserom.gbc",$1FC000,$4000
+SECTION "stadium2",DATA[$8000-$220],BANK[$7F]
+INCBIN "baserom.gbc",$1ffde0,$220
+
