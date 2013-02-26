@@ -654,8 +654,12 @@ OverworldMapEnd
 	ds 12
 
 SECTION "gfx2",BSS[$cd20]
-BGMapBuffer: ; cd20
-	ds 40
+BGMapBuffer:
+CreditsPos: ; cd20
+	ds 2
+CreditsTimer: ; cd22
+	ds 1
+	ds 37
 	
 BGMapPalBuffer: ; cd48
 	ds 40
