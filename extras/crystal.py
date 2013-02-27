@@ -6322,6 +6322,8 @@ class PokedexEntry:
     {4}""".format(self.species, self.weight, self.height, self.page1.to_asm(), self.page2.to_asm())
         return output
 
+from map_names import map_names
+
 # map names with no labels will be generated
 # generate labels for each map name
 for map_group_id in map_names.keys():
