@@ -298,6 +298,7 @@ pksv_crystal_more_enders = [0x03, 0x04, 0x05, 0x0C, 0x51, 0x52,
                             0x9B,
                             0xB2, #maybe?
                             0xCC, #maybe?
+                            0x9A, # describedecoration
                            ]
 
 # these have no pksv names as of pksv 2.1.1
