@@ -2816,7 +2816,7 @@ pksv_crystal_more = {
     0x9C: ["specialphonecall", ["call_id", MultiByteParam]],
     0x9D: ["checkphonecall"],
     0x9E: ["verbosegiveitem", ["item", ItemLabelByte], ["quantity", DecimalParam]],
-    0x9F: ["verbosegiveitem2", ["item", ItemLabelByte]],
+    0x9F: ["verbosegiveitem2", ["item", ItemLabelByte], ["var", SingleByteParam]],
     0xA0: ["loadwilddata", ["map_group", MapGroupParam], ["map_id", MapIdParam]],
     0xA1: ["halloffame"],
     0xA2: ["credits"],
