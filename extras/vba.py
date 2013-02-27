@@ -54,12 +54,13 @@ Usage (in jython, not python):
     # or why not the other way around?
     vba.set_state(vba.load_state("unknown-delete-me"))
 
-    registers = vba.get_registers()
+    vba.get_memory_at(0xDCDA)
+    vba.set_memory_at(0xDCDB, 0xFF)
+    vba.get_memory_range(0xDCDA, 10)
 
 TOOD:
     [ ] set a specific register
     [ ] get a specific register
-    [ ] write value at address
     [ ] breakpoints
     [ ] vgm stuff
     [ ] gbz80disasm integration
@@ -70,6 +71,11 @@ TOOD:
 import os
 import sys
 from array import array
+
+# for converting bytes to readable text
+from chars import chars
+
+from map_names import map_names
 
 # for _check_java_library_path
 from java.lang import System
@@ -157,7 +163,7 @@ def button_combiner(buttons):
 
     for each in buttons:
         result |= button_masks[each]
-    
+
     print "button: " + str(result)
     return result
 
@@ -207,6 +213,12 @@ def step_until_capture():
 
 # just some aliases for step_until_capture
 run = go = step_until_capture
+
+def translate_chars(charz):
+    result = ""
+    for each in charz:
+        result += chars[each]
+    return result
 
 def _create_byte_buffer(data):
     """
@@ -310,7 +322,7 @@ def get_registers():
 
 def get_rom():
     """
-    Returns the ROM in bytes.. in a string.
+    Returns the ROM in bytes.
     """
     rom_array = jarray.zeros(Gb.ROM_SIZE, "i")
     Gb.getROM(rom_array)
@@ -318,7 +330,7 @@ def get_rom():
 
 def get_ram():
     """
-    Returns the RAM in bytes in a string.
+    Returns the RAM in bytes.
     """
     ram_array = jarray.zeros(Gb.RAM_SIZE, "i")
     Gb.getRAM(ram_array)
@@ -332,13 +344,19 @@ def say_hello():
 
 def get_memory():
     """
-    Returns memory in bytes in a string.
+    Returns memory in bytes.
     """
-    raise NotImplementedError("dunno how to calculate memory size")
-    # memory_size = ...
+    memory_size = 0x10000
     memory = jarray.zeros(memory_size, "i")
     Gb.getMemory(memory)
     return RomList(memory)
+
+def set_memory(memory):
+    """
+    Sets memory in the emulator. Use get_memory() to retrieve the current
+    state.
+    """
+    Gb.writeMemory(memory)
 
 def get_pixels():
     """
@@ -371,6 +389,27 @@ def read_memory(address):
     Read an integer at an address.
     """
     return Gb.readMemory(address)
+get_memory_at = read_memory
+
+def get_memory_range(start_address, byte_count):
+    """
+    Returns a list of bytes.
+
+    start_address - address to start reading at
+    byte_count - how many bytes (0 returns just 1 byte)
+    """
+    bytez = []
+    for counter in range(0, byte_count):
+        byte = get_memory_at(start_address + counter)
+        bytez.append(byte)
+    return bytez
+
+def set_memory_at(address, value):
+    """
+    Sets a byte at a certain address in memory. This directly sets the memory
+    instead of copying the memory from the emulator.
+    """
+    Gb.setMemoryAt(address, value)
 
 def press(buttons, steplimit=1):
     """
@@ -385,4 +424,161 @@ def press(buttons, steplimit=1):
         number = buttons
     for step_counter in range(0, steplimit):
         Gb.step(number)
+
+class crystal:
+    """
+    Just a simple namespace to store a bunch of functions for Pokémon Crystal.
+    """
+
+    @staticmethod
+    def walk_through_walls_slow():
+        memory = get_memory()
+        memory[0xC2FA] = 0
+        memory[0xC2FB] = 0
+        memory[0xC2FC] = 0
+        memory[0xC2FD] = 0
+        set_memory(memory)
+
+    @staticmethod
+    def walk_through_walls():
+        """
+        Lets the player walk all over the map. These values are probably reset
+        by some of the map/collision functions when you move on to a new
+        location, so this needs to be executed each step/tick if continuous
+        walk-through-walls is desired.
+        """
+        set_memory_at(0xC2FA, 0)
+        set_memory_at(0xC2FB, 0)
+        set_memory_at(0xC2FC, 0)
+        set_memory_at(0xC2FD, 0)
+
+    @staticmethod
+    def nstep(steplimit=500):
+        """
+        Steps the CPU forward and calls some functions in between each step,
+        like to manipulate memory. This is pretty slow.
+        """
+        for step_counter in range(0, steplimit):
+            crystal.walk_through_walls()
+            step()
+
+    @staticmethod
+    def get_map_group_id():
+        """
+        Returns the current map group.
+        """
+        return get_memory_at(0xdcb5)
+
+    @staticmethod
+    def get_map_id():
+        """
+        Returns the map number of the current map.
+        """
+        return get_memory_at(0xdcb6)
+
+    @staticmethod
+    def get_map_name():
+        """
+        Figures out the current map name.
+        """
+        map_group_id = crystal.get_map_group_id()
+        map_id = crystal.get_map_id()
+        return map_names[map_group_id][map_id]["name"]
+
+    @staticmethod
+    def get_xy():
+        """
+        (x, y) coordinates of player on map.
+        Relative to top-left corner of map.
+        """
+        x = get_memory_at(0xdcb8)
+        y = get_memory_at(0xdcb7)
+        return (x, y)
+
+    @staticmethod
+    def is_in_battle():
+        """
+        Checks whether or not we're in a battle.
+        """
+        return (get_memory_at(0xd22d) != 0) or crystal.is_in_link_battle()
+
+    @staticmethod
+    def is_in_link_battle():
+        return get_memory_at(0xc2dc) != 0
+
+    @staticmethod
+    def unlock_flypoints():
+        """
+        Unlocks different destinations for flying.
+
+        Note: this might start at 0xDCA4 (minus one on all addresses), but not
+        sure.
+        """
+        set_memory_at(0xDCA5, 0xFF)
+        set_memory_at(0xDCA6, 0xFF)
+        set_memory_at(0xDCA7, 0xFF)
+        set_memory_at(0xDCA8, 0xFF)
+
+    @staticmethod
+    def get_gender():
+        """
+        Returns 'male' or 'female'.
+        """
+        gender = get_memory_at(0xD472)
+        if gender == 0:
+            return "male"
+        elif gender == 1:
+            return "female"
+        else:
+            return gender
+
+    @staticmethod
+    def get_player_name():
+        """
+        Returns the 7 characters making up the player's name.
+        """
+        bytez = get_memory_range(0xD47D, 7)
+        name = translate_chars(bytez)
+        return name
+
+    @staticmethod
+    def set_partymon2():
+        """
+        This causes corruption, so it's not working yet.
+        """
+        memory = get_memory()
+        memory[0xdcd7] = 2
+        memory[0xdcd9] = 0x7
+
+        memory[0xdd0f] = 0x7
+        memory[0xdd10] = 0x1
+
+        # moves
+        memory[0xdd11] = 0x1
+        memory[0xdd12] = 0x2
+        memory[0xdd13] = 0x3
+        memory[0xdd14] = 0x4
+
+        # id
+        memory[0xdd15] = 0x1
+        memory[0xdd16] = 0x2
+
+        # experience
+        memory[0xdd17] = 0x2
+        memory[0xdd18] = 0x3
+        memory[0xdd19] = 0x4
+
+        # hp
+        memory[0xdd1a] = 0x5
+        memory[0xdd1b] = 0x6
+
+        # current hp
+        memory[0xdd31] = 0x10
+        memory[0xdd32] = 0x25
+
+        # max hp
+        memory[0xdd33] = 0x10
+        memory[0xdd34] = 0x40
+
+        set_memory(memory)
 
