@@ -171,7 +171,23 @@ ScriptCommandTable: ; 0x96cb1
 	dw Script_unknown0xa9
 ; 0x96e05
 
-INCBIN "baserom.gbc",$96e05,$96e17 - $96e05
+Unknown_0x96e05: ; 0x96e05
+    ld hl, $d434
+    set 2, [hl]
+    ret
+; 0x96e0b
+
+Unknown_0x96e0b: ; 0x96e0b
+    ld hl, $d434
+    bit 2, [hl]
+    ret
+; 0x96e11
+
+Unknown_0x96e11: ; 0x96e11
+    ld hl, $d434
+    res 2, [hl]
+    ret
+; 0x96e17
 
 Script_3callasm: ; 0x96e17
 ; script command 0xe
@@ -892,7 +908,14 @@ Script_cry: ; 0x971d1
 	ret
 ; 0x971e3
 
-INCBIN "baserom.gbc",$971e3,$971ea - $971e3
+Unknown_0x971e3: ; 0x971e3
+    and a
+    ret z
+    cp $fe
+    ret z
+    dec a
+    ret
+; 0x971ea
 
 Script_setlasttalked: ; 0x971ea
 ; script command 0x68
@@ -900,7 +923,7 @@ Script_setlasttalked: ; 0x971ea
 ;     person (SingleByteParam)
 
 	call $26d4
-	call $71e3
+	call Unknown_0x971e3
 	ld [$ffe0], a
 	ret
 ; 0x971f3
@@ -912,7 +935,7 @@ Script_applymovement: ; 0x971f3
 ;     data (MovementPointerLabelParam)
 
 	call $26d4
-	call $71e3
+	call Unknown_0x971e3
 	ld c, a
 	push bc
 	ld a, c
@@ -933,11 +956,16 @@ Script_applymovement: ; 0x971f3
 	ret c
 	ld a, $2
 	ld [$d437], a
-	call $6e11
+	call Unknown_0x96e11
 	ret
 ; 0x97221
 
-INCBIN "baserom.gbc",$97221,$97228 - $97221
+Unknown_0x97221: ; 0x97221
+    ld a, $1
+    ld hl, $5897
+    rst $8
+    ret
+; 0x97228
 
 Script_applymovement2: ; 0x97228
 ; script command 0x6a
@@ -978,14 +1006,14 @@ Script_faceperson: ; 0x97248
 ;     person2 (SingleByteParam)
 
 	call $26d4
-	call $71e3
+	call Unknown_0x971e3
 	cp $fe
 	jr c, .asm_97254 ; 0x97250 $2
 	ld a, [$ffe0]
 .asm_97254
 	ld e, a
 	call $26d4
-	call $71e3
+	call Unknown_0x971e3
 	cp $fe
 	jr nz, .asm_97261 ; 0x9725d $2
 	ld a, [$ffe0]
@@ -1013,7 +1041,7 @@ Script_spriteface: ; 0x97274
 ;     facing (SingleByteParam)
 
 	call $26d4
-	call $71e3
+	call Unknown_0x971e3
 	cp $fe
 	jr nz, .asm_97280 ; 0x9727c $2
 	ld a, [$ffe0]
@@ -1027,7 +1055,51 @@ Script_spriteface: ; 0x97274
 	ret
 ; 0x9728b
 
-INCBIN "baserom.gbc",$9728b,$972ce - $9728b
+Unknown_0x9728b: ; 0x9728b
+    ld a, d
+    push de
+    call $18de
+    jr c, .asm_972b9 ; 0x97290 $27
+    ld hl, $0000
+    add hl, bc
+    ld a, [hl]
+    push bc
+    call $1836
+    pop bc
+    jr c, .asm_972b9 ; 0x9729c $1b
+    ld hl, $0004
+    add hl, bc
+    bit 2, [hl]
+    jr nz, .asm_972b9 ; 0x972a4 $13
+    pop de
+    ld a, e
+    call $1af8
+    ld hl, $d0ed
+    bit 6, [hl]
+    jr nz, .asm_972b5 ; 0x972b0 $3
+    call $72bc
+.asm_972b5
+    call $1ad2
+    ret
+.asm_972b9
+    pop de
+    scf
+    ret
+; 0x972bc
+
+Unknown_0x972bc: ; 0x972bc
+    call $217a
+    ld hl, $c4a0
+    ld bc, $0168
+.asm_972c5
+    res 7, [hl]
+    inc hl
+    dec bc
+    ld a, b
+    or c
+    jr nz, .asm_972c5 ; 0x972cb $f8
+    ret
+; 0x972ce
 
 Script_variablesprite: ; 0x972ce
 ; script command 0x6d
@@ -1051,7 +1123,7 @@ Script_appear: ; 0x972dd
 ;     person (SingleByteParam)
 
 	call $26d4
-	call $71e3
+	call Unknown_0x971e3
 	call $1956
 	ld a, [$ffaf]
 	ld b, $0
@@ -1065,7 +1137,7 @@ Script_disappear: ; 0x972ee
 ;     person (SingleByteParam)
 
 	call $26d4
-	call $71e3
+	call Unknown_0x971e3
 	cp $fe
 	jr nz, .asm_972fa ; 0x972f6 $2
 	ld a, [$ffe0]
@@ -1080,7 +1152,26 @@ Script_disappear: ; 0x972ee
 	ret
 ; 0x9730b
 
-INCBIN "baserom.gbc",$9730b,$97325 - $9730b
+Unknown_0x9730b: ; 0x9730b
+    push bc
+    call $18d2
+    ld hl, $000c
+    add hl, bc
+    pop bc
+    ld e, [hl]
+    inc hl
+    ld d, [hl]
+    ld a, $ff
+    cp e
+    jr nz, .asm_97321 ; 0x9731a $5
+    cp d
+    jr nz, .asm_97321 ; 0x9731d $2
+    xor a
+    ret
+.asm_97321
+    call BitTable1Func
+    ret
+; 0x97325
 
 Script_follow: ; 0x97325
 ; script command 0x70
@@ -1089,10 +1180,10 @@ Script_follow: ; 0x97325
 ;     person1 (SingleByteParam)
 
 	call $26d4
-	call $71e3
+	call Unknown_0x971e3
 	ld b, a
 	call $26d4
-	call $71e3
+	call Unknown_0x971e3
 	ld c, a
 	ld a, $1
 	ld hl, $5803
@@ -1117,7 +1208,7 @@ Script_moveperson: ; 0x97341
 ;     y (SingleByteParam)
 
 	call $26d4
-	call $71e3
+	call Unknown_0x971e3
 	ld b, a
 	call $26d4
 	add $4
@@ -1137,7 +1228,7 @@ Script_writepersonxy: ; 0x9735b
 ;     person (SingleByteParam)
 
 	call $26d4
-	call $71e3
+	call Unknown_0x971e3
 	cp $fe
 	jr nz, .asm_97367 ; 0x97363 $2
 	ld a, [$ffe0]
@@ -1156,10 +1247,10 @@ Script_follownotexact: ; 0x9736f
 ;     person1 (SingleByteParam)
 
 	call $26d4
-	call $71e3
+	call Unknown_0x971e3
 	ld b, a
 	call $26d4
-	call $71e3
+	call Unknown_0x971e3
 	ld c, a
 	ld a, $2
 	ld hl, $439e
@@ -1194,7 +1285,7 @@ Script_showemote: ; 0x97396
 	call $26d4
 	ld [$c2dd], a
 	call $26d4
-	call $71e3
+	call Unknown_0x971e3
 	cp $fe
 	jr z, .asm_973a8 ; 0x973a4 $2
 	ld [$ffe0], a
@@ -1356,7 +1447,7 @@ Script_reloadmap: ; 0x97491
 	ld [$ff9f], a
 	ld a, $1
 	call $261b
-	call $6e11
+	call Unknown_0x96e11
 	ret
 ; 0x974a2
 
@@ -1430,7 +1521,12 @@ ScriptCall: ; 0x974cb
 	ret
 ; 0x974f3
 
-INCBIN "baserom.gbc",$974f3,$974fe - $974f3
+Unknown_0x974f3: ; 0x974f3
+    ld a, [$d439]
+    or $80
+    ld [$d439], a
+    jp $74cb
+; 0x974fe
 
 Script_2jump: ; 0x974fe
 ; script command 0x3
@@ -1573,7 +1669,23 @@ Script_callstd: ; 0x97573
 	jp $74cb
 ; 0x9757b
 
-INCBIN "baserom.gbc",$9757b,$97596 - $9757b
+Unknown_0x9757b: ; 0x9757b
+    call $26d4
+    ld e, a
+    call $26d4
+    ld d, a
+    ld hl, $4000
+    add hl, de
+    add hl, de
+    add hl, de
+    ld a, $2f
+    call GetFarByte
+    ld b, a
+    inc hl
+    ld a, $2f
+    call GetFarHalfword
+    ret
+; 0x97596
 
 Unknown_97596: ; 0x97596
 	call $26d4
@@ -1784,7 +1896,18 @@ Script_random: ; 0x97640
 	ret
 ; 0x97673
 
-INCBIN "baserom.gbc",$97673,$9767d - $97673
+Unknown_0x97673: ; 0x97673
+    xor a
+    ld b, a
+    sub c
+.asm_97676
+    inc b
+    sub c
+    jr nc, .asm_97676 ; 0x97678 $fc
+    dec b
+    add c
+    ret
+; 0x9767d
 
 Script_checkcode: ; 0x9767d
 ; script command 0x1c
@@ -1823,7 +1946,13 @@ Script_writecode: ; 0x97693
 	ret
 ; 0x9769e
 
-INCBIN "baserom.gbc",$9769e,$976a6 - $9769e
+Unknown_0x9769e: ; 0x9769e
+    ld c, a
+    ld a, $20
+    ld hl, $4648
+    rst $8
+    ret
+; 0x976a6
 
 Script_checkver: ; 0x976a6
 ; script command 0x18
@@ -1991,7 +2120,13 @@ Script_RAM2MEM: ; 0x9775c
 	jp $76c0
 ; 0x97771
 
-INCBIN "baserom.gbc",$97771,$9777d - $97771
+Unknown_0x97771: ; 0x97771
+    ld hl, $d073
+    ld bc, $000b
+    ld a, $50
+    call ByteFill
+    ret
+; 0x9777d
 
 Script_stringtotext: ; 0x9777d
 ; script command 0x44
@@ -2156,6 +2291,7 @@ Script_checkmoney: ; 0x97843
 	ld a, $5
 	ld hl, $600b
 	rst $8
+; 0x9784f
 
 Unknown_9784f: ; 0x9784f
 	jr c, .asm_9785b ; 0x9784f $a
@@ -2172,7 +2308,29 @@ Unknown_9784f: ; 0x9784f
 	ret
 ; 0x97861
 
-INCBIN "baserom.gbc",$97861,$97881 - $97861
+Unknown_0x97861: ; 0x97861
+    call $26d4
+    and a
+    ld de, $d84e
+    ret z
+    ld de, $d851
+    ret
+; 0x9786d
+
+Unknown_0x9786d: ; 0x9786d
+    ld bc, $ffc3
+    push bc
+    call $26d4
+    ld [bc], a
+    inc bc
+    call $26d4
+    ld [bc], a
+    inc bc
+    call $26d4
+    ld [bc], a
+    pop bc
+    ret
+; 0x97881
 
 Script_givecoins: ; 0x97881
 ; script command 0x25
@@ -2484,7 +2642,12 @@ Script_checkbit2: ; 0x979d7
 	ret
 ; 0x979ee
 
-INCBIN "baserom.gbc",$979ee,$979f5 - $979ee
+Unknown_0x979ee: ; 0x979ee
+    ld a, $20
+    ld hl, $4430
+    rst $8
+    ret
+; 0x979f5
 
 Script_wildon: ; 0x979f5
 ; script command 0x38
@@ -2556,7 +2719,7 @@ Script_warp: ; 0x97a1d
 	ld [$ff9f], a
 	ld a, $1
 	call $261b
-	call $6e11
+	call Unknown_0x96e11
 	ret
 .asm_97a4a
 	call $26d4
@@ -2568,7 +2731,7 @@ Script_warp: ; 0x97a1d
 	ld [$ff9f], a
 	ld a, $1
 	call $261b
-	call $6e11
+	call Unknown_0x96e11
 	ret
 ; 0x97a65
 
@@ -2705,7 +2868,12 @@ Script_warpcheck: ; 0x97af6
 	ret
 ; 0x97b01
 
-INCBIN "baserom.gbc",$97b01,$97b08 - $97b01
+Unknown_0x97b01: ; 0x97b01
+    ld a, $25
+    ld hl, $66d0
+    rst $8
+    ret
+; 0x97b08
 
 Script_newloadmap: ; 0x97b08
 ; script command 0x8a
@@ -2716,7 +2884,7 @@ Script_newloadmap: ; 0x97b08
 	ld [$ff9f], a
 	ld a, $1
 	call $261b
-	call $6e11
+	call Unknown_0x96e11
 	ret
 ; 0x97b16
 
@@ -2810,7 +2978,7 @@ Script_deactivatefacing: ; 0x97b5c
 .asm_97b65
 	ld a, $3
 	ld [$d437], a
-	call $6e11
+	call Unknown_0x96e11
 	ret
 ; 0x97b6e
 
@@ -2819,7 +2987,7 @@ Script_ptpriorityjump: ; 0x97b6e
 ; parameters:
 ;     pointer (ScriptPointerLabelParam)
 
-	call $6e11
+	call Unknown_0x96e11
 	jp Script_2jump
 ; 0x97b74
 
@@ -2836,7 +3004,7 @@ Script_end: ; 0x97b74
 	ld [$d437], a
 	ld hl, $d434
 	res 0, [hl]
-	call $6e11
+	call Unknown_0x96e11
 	ret
 ; 0x97b8c
 
@@ -2848,11 +3016,38 @@ Script_return: ; 0x97b8c
 .asm_97b91
 	ld hl, $d434
 	res 0, [hl]
-	call $6e11
+	call Unknown_0x96e11
 	ret
 ; 0x97b9a
 
-INCBIN "baserom.gbc",$97b9a,$97bc0 - $97b9a
+Unknown_0x97b9a: ; 0x97b9a
+    ld hl, $d43c
+    ld a, [hl]
+    and a
+    jr z, .asm_97bbe ; 0x97b9f $1d
+    dec [hl]
+    ld e, [hl]
+    ld d, $0
+    ld hl, $d43d
+    add hl, de
+    add hl, de
+    add hl, de
+    ld a, [hli]
+    ld b, a
+    and $7f
+    ld [$d439], a
+    ld a, [hli]
+    ld e, a
+    ld [$d43a], a
+    ld a, [hl]
+    ld d, a
+    ld [$d43b], a
+    and a
+    ret
+.asm_97bbe
+    scf
+    ret
+; 0x97bc0
 
 Script_resetfuncs: ; 0x97bc0
 ; script command 0x93
@@ -2864,7 +3059,7 @@ Script_resetfuncs: ; 0x97bc0
 	ld [$d437], a
 	ld hl, $d434
 	res 0, [hl]
-	call $6e11
+	call Unknown_0x96e11
 	ret
 ; 0x97bd5
 
@@ -2898,7 +3093,7 @@ DisplayCredits:
 	call $7bc0
 	ld a, $3
 	call $261b
-	call $6e11
+	call Unknown_0x96e11
 	ret
 ; 0x97c05
 
