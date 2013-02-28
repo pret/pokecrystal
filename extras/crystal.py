@@ -2823,7 +2823,13 @@ pksv_crystal_more = {
     0xA3: ["warpfacing", ["facing", SingleByteParam], ["map_group", MapGroupParam], ["map_id", MapIdParam], ["x", SingleByteParam], ["y", SingleByteParam]],
     0xA4: ["storetext", ["pointer", PointerLabelBeforeBank], ["memory", SingleByteParam]],
     0xA5: ["displaylocation", ["id", SingleByteParam]],
+    0xA6: ["unknown0xa6"],
+    0xA7: ["unknown0xa7"],
     0xA8: ["unknown0xa8", ["unknown", SingleByteParam]],
+    0xA9: ["unknown0xa9"],
+    0xAA: ["unknown0xaa"],
+
+    # fix the scripts, then remove these.
     0xB2: ["unknown0xb2", ["unknown", SingleByteParam]],
     0xCC: ["unknown0xcc"],
 }
@@ -6354,7 +6360,7 @@ incbin_lines = []
 # storage for processed incbin lines
 processed_incbins = {}
 
-def to_asm(some_object):
+def to_asm(some_object, use_asm_rules=False):
     """shows an object's asm with a label and an ending comment
     showing the next byte address"""
     if isinstance(some_object, int):
@@ -6370,6 +6376,9 @@ def to_asm(some_object):
     asmr = asmr.replace("\n"+spacing+"\n", "\n\n"+spacing)
     asmr = asmr.replace("\n\n"+spacing+spacing, "\n\n"+spacing)
     asm += spacing + asmr
+    if use_asm_rules:
+        asm = asm.replace("\n" + spacing + "; ", "\n; ")
+        asm = asm.replace("\n" + spacing + ".asm_", "\n.asm_")
     # show the address of the next byte below this
     asm += "\n; " + hex(last_address)
     return asm
