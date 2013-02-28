@@ -7103,8 +7103,128 @@ Dragon:
 Dark:
 	db "DARK@"
 
-INCBIN "baserom.gbc",$50A28, $51424 - $50A28
+INCBIN "baserom.gbc", $50a28, $50bdd - $50a28
 
+
+GetGender: ; 50bdd
+; Return the gender of a given monster in a.
+
+; 1: male
+; 0: female
+; c: genderless
+
+; This is determined by comparing the Attack and Speed DVs
+; with the species' gender ratio.
+
+
+; Figure out what type of monster struct we're looking at.
+
+; 0: PartyMon
+	ld hl, PartyMon1DVs
+	ld bc, PartyMon2 - PartyMon1
+	ld a, [MonType]
+	and a
+	jr z, .PartyMon
+	
+; 1: OTPartyMon
+	ld hl, OTPartyMon1DVs
+	dec a
+	jr z, .PartyMon
+	
+; 2: BoxMon
+	ld hl, $ad26 + $15 ; BoxMon1DVs
+	ld bc, $20 ; BoxMon2 - BoxMon1
+	dec a
+	jr z, .BoxMon
+	
+; 3: Unknown
+	ld hl, $d123 ; DVBuffer
+	dec a
+	jr z, .DVs
+	
+; else: WildMon
+	ld hl, EnemyMonDVs
+	jr .DVs
+	
+	
+; Get our place in the party/box.
+	
+.PartyMon
+.BoxMon
+	ld a, [CurPartyMon]
+	call AddNTimes
+	
+	
+.DVs
+	
+; BoxMon data is read directly from SRAM.
+	ld a, [MonType]
+	cp 2
+	ld a, 1
+	call z, GetSRAMBank
+	
+; Attack DV
+	ld a, [hli]
+	and $f0
+	ld b, a
+; Speed DV
+	ld a, [hl]
+	and $f0
+	swap a
+	
+; Put our DVs together.
+	or b
+	ld b, a
+
+; Close SRAM if we were dealing with a BoxMon.
+	ld a, [MonType] ; MonType
+	cp 2 ; BOXMON
+	call z, CloseSRAM
+	
+	
+; We need the gender ratio to do anything with this.
+	push bc
+	ld a, [CurPartySpecies]
+	dec a
+	ld hl, BaseStats + 13 ; BASE_GENDER
+	ld bc, BaseStats1 - BaseStats
+	call AddNTimes
+	pop bc
+	
+	ld a, BANK(BaseStats)
+	call GetFarByte
+	
+	
+; The higher the ratio, the more likely the monster is to be female.
+	
+	cp $ff
+	jr z, .Genderless
+	
+	and a
+	jr z, .Male
+	
+	cp $fe
+	jr z, .Female
+	
+; Values below the ratio are male, and vice versa.
+	cp b
+	jr c, .Male
+	
+.Female
+	xor a
+	ret
+	
+.Male
+	ld a, 1
+	and a
+	ret
+	
+.Genderless
+	scf
+	ret
+; 50c50
+
+INCBIN "baserom.gbc", $50c50, $51424 - $50c50
 
 BaseStats:
 INCLUDE "stats/base_stats.asm"
