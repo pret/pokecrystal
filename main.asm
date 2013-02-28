@@ -8777,8 +8777,50 @@ FX39GFX: ; 8638e
 INCBIN "gfx/fx/039.lz"
 ; 8640b
 
-INCBIN "baserom.gbc", $8640b, $868f7 - $8640b
+INCBIN "baserom.gbc", $8640b, $8640e - $8640b
 
+HallOfFame3: ; 0x8640e
+	call $648e
+	ld a, [$d84c]
+	push af
+	ld a, $1
+	ld [$c2cd], a
+	call $2ed3
+	ld a, $1
+	ld [$d4b5], a
+
+	; Enable the Pokégear map to cycle through all of Kanto
+	ld hl, $d84c
+	set 6, [hl]
+
+	ld a, $5
+	ld hl, $4da0
+	rst $8
+	ld hl, $d95e
+	ld a, [hl]
+	cp $c8
+	jr nc, .asm_86436 ; 0x86433 $1
+	inc [hl]
+.asm_86436
+	ld a, $5
+	ld hl, $4b85
+	rst $8
+	call $653f
+	ld a, $5
+	ld hl, $4b5f
+	rst $8
+	xor a
+	ld [$c2cd], a
+	call $64c3
+	pop af
+	ld b, a
+	ld a, $42
+	ld hl, $5847
+	rst $8
+	ret
+; 0x86455
+
+INCBIN "baserom.gbc", $86455, $88000 - $86455
 
 SECTION "bank22",DATA,BANK[$22]
 
@@ -12707,7 +12749,17 @@ INCBIN "baserom.gbc",$105688,$105930 - $105688
 ; japanese mystery gift gfx
 INCBIN "gfx/misc/mystery_gift_jp.2bpp"
 
-INCBIN "baserom.gbc",$105db0,$1060bb - $105db0
+INCBIN "baserom.gbc",$105db0,$105ef6 - $105db0
+
+HallOfFame2: ; 0x105ef6
+	ret
+
+INCBIN "baserom.gbc",$105ef7,$106078 - $105ef7
+
+HallOfFame1: ; 0x106078
+	ret
+
+INCBIN "baserom.gbc",$106079,$1060bb - $106079
 
 Function1060bb: ; 1060bb
 ; commented out
