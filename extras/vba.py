@@ -463,6 +463,16 @@ class crystal:
             step()
 
     @staticmethod
+    def disable_triggers():
+        set_memory_at(0x23c4, 0xAF)
+        set_memory_at(0x23d0, 0xAF);
+
+    @staticmethod
+    def disable_callbacks():
+        set_memory_at(0x23f2, 0xAF)
+        set_memory_at(0x23fe, 0xAF)
+
+    @staticmethod
     def get_map_group_id():
         """
         Returns the current map group.
@@ -494,6 +504,24 @@ class crystal:
         x = get_memory_at(0xdcb8)
         y = get_memory_at(0xdcb7)
         return (x, y)
+
+    @staticmethod
+    def menu_select(id=1):
+        """
+        Sets the cursor to the given pokemon in the player's party. This is
+        under Start -> PKMN. This is useful for selecting a certain pokemon
+        with fly or another skill.
+
+        This probably works on other menus.
+        """
+        set_memory_at(0xcfa9, id)
+
+    @staticmethod
+    def warp_to(map_group_id, map_id):
+        """
+        Warp to a different map. Because I said so.
+        """
+        raise NotImplementedError
 
     @staticmethod
     def is_in_battle():
@@ -540,6 +568,17 @@ class crystal:
         bytez = get_memory_range(0xD47D, 7)
         name = translate_chars(bytez)
         return name
+
+    @staticmethod
+    def warp(map_group_id, map_id, x, y):
+        set_memory_at(0xdcb5, map_group_id)
+        set_memory_at(0xdcb6, map_id)
+        set_memory_at(0xdcb7, y)
+        set_memory_at(0xdcb8, x)
+        set_memory_at(0xd001, 0xFF)
+        set_memory_at(0xff9f, 0xF1)
+        set_memory_at(0xd432, 1)
+        set_memory_at(0xd434, 0 & 251)
 
     @staticmethod
     def set_partymon2():
