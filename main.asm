@@ -10305,8 +10305,11 @@ INCLUDE "maps/map_headers.asm"
 
 INCLUDE "maps/second_map_headers.asm"
 
-INCBIN "baserom.gbc",$966b0,$97f7e - $966b0
+INCBIN "baserom.gbc",$966b0,$96cb1 - $966b0
 
+INCLUDE "scripting.asm"
+
+INCBIN "baserom.gbc",$97c20,$35e
 
 SECTION "bank26",DATA,BANK[$26]
 
