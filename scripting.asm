@@ -194,11 +194,11 @@ Script_3callasm: ; 0x96e17
 ; parameters:
 ;     asm (AsmPointerParam)
 
-	call $26d4
+	call GetScriptByte
 	ld b, a
-	call $26d4
+	call GetScriptByte
 	ld l, a
-	call $26d4
+	call GetScriptByte
 	ld h, a
 	ld a, b
 	rst $8
@@ -210,9 +210,9 @@ Script_special: ; 0x96e26
 ; parameters:
 ;     predefined_script (MultiByteParam)
 
-	call $26d4
+	call GetScriptByte
 	ld e, a
-	call $26d4
+	call GetScriptByte
 	ld d, a
 	ld a, $3
 	ld hl, $401b
@@ -225,9 +225,9 @@ Script_2ptcallasm: ; 0x96e35
 ; parameters:
 ;     asm (PointerToAsmPointerParam)
 
-	call $26d4
+	call GetScriptByte
 	ld l, a
-	call $26d4
+	call GetScriptByte
 	ld h, a
 	ld b, [hl]
 	inc hl
@@ -246,9 +246,9 @@ Script_jumptextfaceplayer: ; 0x96e45
 
 	ld a, [$d439]
 	ld [$d44e], a
-	call $26d4
+	call GetScriptByte
 	ld [$d44f], a
-	call $26d4
+	call GetScriptByte
 	ld [$d450], a
 	ld b, $25
 	ld hl, $6e79
@@ -262,9 +262,9 @@ Script_jumptext: ; 0x96e5f
 
 	ld a, [$d439]
 	ld [$d44e], a
-	call $26d4
+	call GetScriptByte
 	ld [$d44f], a
-	call $26d4
+	call GetScriptByte
 	ld [$d450], a
 	ld b, $25
 	ld hl, $6e7a
@@ -278,11 +278,11 @@ Script_3jumptext: ; 0x96e81
 ; parameters:
 ;     text_pointer (PointerLabelBeforeBank)
 
-	call $26d4
+	call GetScriptByte
 	ld [$d44e], a
-	call $26d4
+	call GetScriptByte
 	ld [$d44f], a
-	call $26d4
+	call GetScriptByte
 	ld [$d450], a
 	ld b, $25
 	ld hl, $6e7a
@@ -294,9 +294,9 @@ Script_2writetext: ; 0x96e9b
 ; parameters:
 ;     text_pointer (RawTextPointerLabelParam)
 
-	call $26d4
+	call GetScriptByte
 	ld l, a
-	call $26d4
+	call GetScriptByte
 	ld h, a
 	ld a, [$d439]
 	ld b, a
@@ -309,11 +309,11 @@ Script_3writetext: ; 0x96eab
 ; parameters:
 ;     text_pointer (PointerLabelBeforeBank)
 
-	call $26d4
+	call GetScriptByte
 	ld b, a
-	call $26d4
+	call GetScriptByte
 	ld l, a
-	call $26d4
+	call GetScriptByte
 	ld h, a
 	call $269a
 	ret
@@ -325,9 +325,9 @@ Script_repeattext: ; 0x96ebb
 ;     byte (SingleByteParam)
 ;     byte (SingleByteParam)
 
-	call $26d4
+	call GetScriptByte
 	ld l, a
-	call $26d4
+	call GetScriptByte
 	ld h, a
 	cp $ff
 	jr nz, .asm_96ed8 ; 0x96ec5 $11
@@ -383,9 +383,9 @@ Script_loadmenudata: ; 0x96efa
 ; parameters:
 ;     data (MenuDataPointerParam)
 
-	call $26d4
+	call GetScriptByte
 	ld l, a
-	call $26d4
+	call GetScriptByte
 	ld h, a
 	ld de, $1d35
 	ld a, [$d439]
@@ -407,7 +407,7 @@ Script_pokepic: ; 0x96f16
 ; parameters:
 ;     pokemon (PokemonParam)
 
-	call $26d4
+	call GetScriptByte
 	and a
 	jr nz, .asm_96f1f ; 0x96f1a $3
 	ld a, [$c2dd]
@@ -463,7 +463,7 @@ Script_storetext: ; 0x96f52
 ;     memory (SingleByteParam)
 
 	call $106c
-	call $26d4
+	call GetScriptByte
 	ld c, a
 	ld a, $47
 	ld hl, $4000
@@ -495,13 +495,13 @@ Script_verbosegiveitem2: ; 0x96f8e
 ;     item (ItemLabelByte)
 ;     var (SingleByteParam)
 
-	call $26d4
+	call GetScriptByte
 	cp $ff
 	jr nz, .asm_96f98 ; 0x96f93 $3
 	ld a, [$c2dd]
 .asm_96f98
 	ld [$d106], a
-	call $26d4
+	call GetScriptByte
 	call $769e
 	ld a, [de]
 	ld [$d10c], a
@@ -568,11 +568,11 @@ Script_pokemart: ; 0x97065
 ;     dialog_id (SingleByteParam)
 ;     mart_id (MultiByteParam)
 
-	call $26d4
+	call GetScriptByte
 	ld c, a
-	call $26d4
+	call GetScriptByte
 	ld e, a
-	call $26d4
+	call GetScriptByte
 	ld d, a
 	ld a, [$d439]
 	ld b, a
@@ -589,9 +589,9 @@ Script_elevator: ; 0x9707c
 
 	xor a
 	ld [$c2dd], a
-	call $26d4
+	call GetScriptByte
 	ld e, a
-	call $26d4
+	call GetScriptByte
 	ld d, a
 	ld a, [$d439]
 	ld b, a
@@ -609,7 +609,7 @@ Script_trade: ; 0x97099
 ; parameters:
 ;     trade_id (SingleByteParam)
 
-	call $26d4
+	call GetScriptByte
 	ld e, a
 	ld a, $3f
 	ld hl, $4ba8
@@ -622,9 +622,9 @@ Script_phonecall: ; 0x970a4
 ; parameters:
 ;     caller_name (RawTextPointerLabelParam)
 
-	call $26d4
+	call GetScriptByte
 	ld e, a
-	call $26d4
+	call GetScriptByte
 	ld d, a
 	ld a, [$d439]
 	ld b, a
@@ -650,7 +650,7 @@ Script_askforphonenumber: ; 0x970be
 
 	call $1dcf
 	jr c, .asm_970d6 ; 0x970c1 $13
-	call $26d4
+	call GetScriptByte
 	ld c, a
 	ld a, $24
 	ld hl, $4000
@@ -662,7 +662,7 @@ Script_askforphonenumber: ; 0x970be
 	ld a, $1
 	jr .asm_970db ; 0x970d4 $5
 .asm_970d6
-	call $26d4
+	call GetScriptByte
 	ld a, $2
 .asm_970db
 	ld [$c2dd], a
@@ -674,7 +674,7 @@ Script_describedecoration: ; 0x970df
 ; parameters:
 ;     byte (SingleByteParam)
 
-	call $26d4
+	call GetScriptByte
 	ld b, a
 	ld a, $9
 	ld hl, $6f59
@@ -689,7 +689,7 @@ Script_fruittree: ; 0x970ee
 ; parameters:
 ;     tree_id (SingleByteParam)
 
-	call $26d4
+	call GetScriptByte
 	ld [$d03e], a
 	ld b, $11
 	ld hl, $4000
@@ -702,11 +702,11 @@ Script_loadwilddata: ; 0x970fc
 ;     map_group (MapGroupParam)
 ;     map_id (MapIdParam)
 
-	call $26d4
+	call GetScriptByte
 	ld c, a
-	call $26d4
+	call GetScriptByte
 	ld d, a
-	call $26d4
+	call GetScriptByte
 	ld e, a
 	ld a, $3
 	ld hl, $4403
@@ -719,7 +719,7 @@ Script_trainertext: ; 0x9710f
 ; parameters:
 ;     which_text (SingleByteParam)
 
-	call $26d4
+	call GetScriptByte
 	ld c, a
 	ld b, $0
 	ld hl, $d045
@@ -757,7 +757,7 @@ Script_trainerstatus: ; 0x97132
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
-	call $26d4
+	call GetScriptByte
 	ld b, a
 	call BitTable1Func
 	ld a, c
@@ -775,14 +775,14 @@ Script_winlosstext: ; 0x9714c
 ;     loss_text_pointer (TextPointerLabelParam)
 
 	ld hl, $d047
-	call $26d4
+	call GetScriptByte
 	ld [hli], a
-	call $26d4
+	call GetScriptByte
 	ld [hli], a
 	ld hl, $d049
-	call $26d4
+	call GetScriptByte
 	ld [hli], a
-	call $26d4
+	call GetScriptByte
 	ld [hli], a
 	ret
 ; 0x97163
@@ -837,9 +837,9 @@ Script_playmusic: ; 0x97189
 	xor a
 	ld [$c2a7], a
 	call MaxVolume
-	call $26d4
+	call GetScriptByte
 	ld e, a
-	call $26d4
+	call GetScriptByte
 	ld d, a
 	call StartMusic
 	ret
@@ -851,11 +851,11 @@ Script_musicfadeout: ; 0x971a2
 ;     music (MultiByteParam)
 ;     fadetime (SingleByteParam)
 
-	call $26d4
+	call GetScriptByte
 	ld [$c2a9], a
-	call $26d4
+	call GetScriptByte
 	ld [$c2aa], a
-	call $26d4
+	call GetScriptByte
 	and $7f
 	ld [$c2a7], a
 	ret
@@ -866,9 +866,9 @@ Script_playsound: ; 0x971b7
 ; parameters:
 ;     sound_pointer (MultiByteParam)
 
-	call $26d4
+	call GetScriptByte
 	ld e, a
-	call $26d4
+	call GetScriptByte
 	ld d, a
 	call StartSFX
 	ret
@@ -896,9 +896,9 @@ Script_cry: ; 0x971d1
 ; parameters:
 ;     cry_id (MultiByteParam)
 
-	call $26d4
+	call GetScriptByte
 	push af
-	call $26d4
+	call GetScriptByte
 	pop af
 	and a
 	jr nz, .asm_971df ; 0x971da $3
@@ -922,7 +922,7 @@ Script_setlasttalked: ; 0x971ea
 ; parameters:
 ;     person (SingleByteParam)
 
-	call $26d4
+	call GetScriptByte
 	call Unknown_0x971e3
 	ld [$ffe0], a
 	ret
@@ -934,7 +934,7 @@ Script_applymovement: ; 0x971f3
 ;     person (SingleByteParam)
 ;     data (MovementPointerLabelParam)
 
-	call $26d4
+	call GetScriptByte
 	call Unknown_0x971e3
 	ld c, a
 	push bc
@@ -946,9 +946,9 @@ Script_applymovement: ; 0x971f3
 	push bc
 	call $7221
 	pop bc
-	call $26d4
+	call GetScriptByte
 	ld l, a
-	call $26d4
+	call GetScriptByte
 	ld h, a
 	ld a, [$d439]
 	ld b, a
@@ -1005,14 +1005,14 @@ Script_faceperson: ; 0x97248
 ;     person1 (SingleByteParam)
 ;     person2 (SingleByteParam)
 
-	call $26d4
+	call GetScriptByte
 	call Unknown_0x971e3
 	cp $fe
 	jr c, .asm_97254 ; 0x97250 $2
 	ld a, [$ffe0]
 .asm_97254
 	ld e, a
-	call $26d4
+	call GetScriptByte
 	call Unknown_0x971e3
 	cp $fe
 	jr nz, .asm_97261 ; 0x9725d $2
@@ -1040,14 +1040,14 @@ Script_spriteface: ; 0x97274
 ;     person (SingleByteParam)
 ;     facing (SingleByteParam)
 
-	call $26d4
+	call GetScriptByte
 	call Unknown_0x971e3
 	cp $fe
 	jr nz, .asm_97280 ; 0x9727c $2
 	ld a, [$ffe0]
 .asm_97280
 	ld d, a
-	call $26d4
+	call GetScriptByte
 	add a
 	add a
 	ld e, a
@@ -1107,12 +1107,12 @@ Script_variablesprite: ; 0x972ce
 ;     byte (SingleByteParam)
 ;     sprite (SingleByteParam)
 
-	call $26d4
+	call GetScriptByte
 	ld e, a
 	ld d, $0
 	ld hl, $d82e
 	add hl, de
-	call $26d4
+	call GetScriptByte
 	ld [hl], a
 	ret
 ; 0x972dd
@@ -1122,7 +1122,7 @@ Script_appear: ; 0x972dd
 ; parameters:
 ;     person (SingleByteParam)
 
-	call $26d4
+	call GetScriptByte
 	call Unknown_0x971e3
 	call $1956
 	ld a, [$ffaf]
@@ -1136,7 +1136,7 @@ Script_disappear: ; 0x972ee
 ; parameters:
 ;     person (SingleByteParam)
 
-	call $26d4
+	call GetScriptByte
 	call Unknown_0x971e3
 	cp $fe
 	jr nz, .asm_972fa ; 0x972f6 $2
@@ -1179,10 +1179,10 @@ Script_follow: ; 0x97325
 ;     person2 (SingleByteParam)
 ;     person1 (SingleByteParam)
 
-	call $26d4
+	call GetScriptByte
 	call Unknown_0x971e3
 	ld b, a
-	call $26d4
+	call GetScriptByte
 	call Unknown_0x971e3
 	ld c, a
 	ld a, $1
@@ -1207,13 +1207,13 @@ Script_moveperson: ; 0x97341
 ;     x (SingleByteParam)
 ;     y (SingleByteParam)
 
-	call $26d4
+	call GetScriptByte
 	call Unknown_0x971e3
 	ld b, a
-	call $26d4
+	call GetScriptByte
 	add $4
 	ld d, a
-	call $26d4
+	call GetScriptByte
 	add $4
 	ld e, a
 	ld a, $2
@@ -1227,7 +1227,7 @@ Script_writepersonxy: ; 0x9735b
 ; parameters:
 ;     person (SingleByteParam)
 
-	call $26d4
+	call GetScriptByte
 	call Unknown_0x971e3
 	cp $fe
 	jr nz, .asm_97367 ; 0x97363 $2
@@ -1246,10 +1246,10 @@ Script_follownotexact: ; 0x9736f
 ;     person2 (SingleByteParam)
 ;     person1 (SingleByteParam)
 
-	call $26d4
+	call GetScriptByte
 	call Unknown_0x971e3
 	ld b, a
-	call $26d4
+	call GetScriptByte
 	call Unknown_0x971e3
 	ld c, a
 	ld a, $2
@@ -1263,7 +1263,7 @@ Script_loademote: ; 0x97384
 ; parameters:
 ;     bubble (SingleByteParam)
 
-	call $26d4
+	call GetScriptByte
 	cp $ff
 	jr nz, .asm_9738e ; 0x97389 $3
 	ld a, [$c2dd]
@@ -1282,15 +1282,15 @@ Script_showemote: ; 0x97396
 ;     person (SingleByteParam)
 ;     time (DecimalParam)
 
-	call $26d4
+	call GetScriptByte
 	ld [$c2dd], a
-	call $26d4
+	call GetScriptByte
 	call Unknown_0x971e3
 	cp $fe
 	jr z, .asm_973a8 ; 0x973a4 $2
 	ld [$ffe0], a
 .asm_973a8
-	call $26d4
+	call GetScriptByte
 	ld [$d44d], a
 	ld b, $25
 	ld de, $73b6
@@ -1308,7 +1308,7 @@ Script_earthquake: ; 0x973c7
 	ld de, $d002
 	ld bc, $0005
 	call CopyBytes
-	call $26d4
+	call GetScriptByte
 	ld [$d003], a
 	and $3f
 	ld [$d005], a
@@ -1357,9 +1357,9 @@ Script_loadpokedata: ; 0x97412
 
 	ld a, $80
 	ld [$d459], a
-	call $26d4
+	call GetScriptByte
 	ld [$d22e], a
-	call $26d4
+	call GetScriptByte
 	ld [$d143], a
 	ret
 ; 0x97424
@@ -1372,9 +1372,9 @@ Script_loadtrainer: ; 0x97424
 
 	ld a, $81
 	ld [$d459], a
-	call $26d4
+	call GetScriptByte
 	ld [$d22f], a
-	call $26d4
+	call GetScriptByte
 	ld [$d231], a
 	ret
 ; 0x97436
@@ -1396,7 +1396,7 @@ Script_catchtutorial: ; 0x97447
 ; parameters:
 ;     byte (SingleByteParam)
 
-	call $26d4
+	call GetScriptByte
 	ld [$d230], a
 	call $2879
 	ld a, $13
@@ -1458,9 +1458,9 @@ Script_2call: ; 0x974a2
 
 	ld a, [$d439]
 	ld b, a
-	call $26d4
+	call GetScriptByte
 	ld e, a
-	call $26d4
+	call GetScriptByte
 	ld d, a
 	jr ScriptCall
 ; 0x974b0
@@ -1470,11 +1470,11 @@ Script_3call: ; 0x974b0
 ; parameters:
 ;     pointer (ScriptPointerLabelBeforeBank)
 
-	call $26d4
+	call GetScriptByte
 	ld b, a
-	call $26d4
+	call GetScriptByte
 	ld e, a
-	call $26d4
+	call GetScriptByte
 	ld d, a
 	jr ScriptCall
 ; 0x974be
@@ -1484,9 +1484,9 @@ Script_2ptcall: ; 0x974be
 ; parameters:
 ;     pointer (PointerLabelToScriptPointer)
 
-	call $26d4
+	call GetScriptByte
 	ld l, a
-	call $26d4
+	call GetScriptByte
 	ld h, a
 	ld b, [hl]
 	inc hl
@@ -1533,9 +1533,9 @@ Script_2jump: ; 0x974fe
 ; parameters:
 ;     pointer (ScriptPointerLabelParam)
 
-	call $26d4
+	call GetScriptByte
 	ld l, a
-	call $26d4
+	call GetScriptByte
 	ld h, a
 	ld a, [$d439]
 	ld b, a
@@ -1547,11 +1547,11 @@ Script_3jump: ; 0x9750d
 ; parameters:
 ;     pointer (ScriptPointerLabelBeforeBank)
 
-	call $26d4
+	call GetScriptByte
 	ld b, a
-	call $26d4
+	call GetScriptByte
 	ld l, a
-	call $26d4
+	call GetScriptByte
 	ld h, a
 	jp $759d
 ; 0x9751c
@@ -1561,9 +1561,9 @@ Script_2ptjump: ; 0x9751c
 ; parameters:
 ;     pointer (PointerLabelToScriptPointer)
 
-	call $26d4
+	call GetScriptByte
 	ld l, a
-	call $26d4
+	call GetScriptByte
 	ld h, a
 	ld b, [hl]
 	inc hl
@@ -1601,7 +1601,7 @@ Script_if_equal: ; 0x97540
 ;     byte (SingleByteParam)
 ;     pointer (ScriptPointerLabelParam)
 
-	call $26d4
+	call GetScriptByte
 	ld hl, $c2dd
 	cp [hl]
 	jr z, Script_2jump ; 0x97547 $b5
@@ -1614,7 +1614,7 @@ Script_if_not_equal: ; 0x9754b
 ;     byte (SingleByteParam)
 ;     pointer (ScriptPointerLabelParam)
 
-	call $26d4
+	call GetScriptByte
 	ld hl, $c2dd
 	cp [hl]
 	jr nz, Script_2jump ; 0x97552 $aa
@@ -1629,7 +1629,7 @@ Script_if_less_than: ; 0x97556
 
 	ld a, [$c2dd]
 	ld b, a
-	call $26d4
+	call GetScriptByte
 	cp b
 	jr c, Script_2jump ; 0x9755e $9e
 	jr Unknown_97596 ; 0x97560 $34
@@ -1641,7 +1641,7 @@ Script_if_greater_than: ; 0x97562
 ;     byte (SingleByteParam)
 ;     pointer (ScriptPointerLabelParam)
 
-	call $26d4
+	call GetScriptByte
 	ld b, a
 	ld a, [$c2dd]
 	cp b
@@ -1670,9 +1670,9 @@ Script_callstd: ; 0x97573
 ; 0x9757b
 
 Unknown_0x9757b: ; 0x9757b
-    call $26d4
+    call GetScriptByte
     ld e, a
-    call $26d4
+    call GetScriptByte
     ld d, a
     ld hl, $4000
     add hl, de
@@ -1688,8 +1688,8 @@ Unknown_0x9757b: ; 0x9757b
 ; 0x97596
 
 Unknown_97596: ; 0x97596
-	call $26d4
-	call $26d4
+	call GetScriptByte
+	call GetScriptByte
 	ret
 ; 0x9759d
 
@@ -1710,9 +1710,9 @@ Script_priorityjump: ; 0x975aa
 
 	ld a, [$d439]
 	ld [$d44e], a
-	call $26d4
+	call GetScriptByte
 	ld [$d44f], a
-	call $26d4
+	call GetScriptByte
 	ld [$d450], a
 	ld hl, $d434
 	set 3, [hl]
@@ -1738,9 +1738,9 @@ Script_checkmaptriggers: ; 0x975d1
 ;     map_group (SingleByteParam)
 ;     map_id (SingleByteParam)
 
-	call $26d4
+	call GetScriptByte
 	ld b, a
-	call $26d4
+	call GetScriptByte
 	ld c, a
 	call $2147
 	ld a, d
@@ -1774,9 +1774,9 @@ Script_domaptrigger: ; 0x975f5
 ;     map_id (MapIdParam)
 ;     trigger_id (SingleByteParam)
 
-	call $26d4
+	call GetScriptByte
 	ld b, a
-	call $26d4
+	call GetScriptByte
 	ld c, a
 	; fallthrough
 
@@ -1785,7 +1785,7 @@ Unknown_975fd: ; 0x975fd
 	ld a, d
 	or e
 	jr z, .asm_97608 ; 0x97602 $4
-	call $26d4
+	call GetScriptByte
 	ld [de], a
 .asm_97608
 	ret
@@ -1796,9 +1796,9 @@ Script_copybytetovar: ; 0x97609
 ; parameters:
 ;     address (RAMAddressParam)
 
-	call $26d4
+	call GetScriptByte
 	ld l, a
-	call $26d4
+	call GetScriptByte
 	ld h, a
 	ld a, [hl]
 	ld [$c2dd], a
@@ -1810,9 +1810,9 @@ Script_copyvartobyte: ; 0x97616
 ; parameters:
 ;     address (RAMAddressParam)
 
-	call $26d4
+	call GetScriptByte
 	ld l, a
-	call $26d4
+	call GetScriptByte
 	ld h, a
 	ld a, [$c2dd]
 	ld [hl], a
@@ -1825,11 +1825,11 @@ Script_loadvar: ; 0x97623
 ;     address (RAMAddressParam)
 ;     value (SingleByteParam)
 
-	call $26d4
+	call GetScriptByte
 	ld l, a
-	call $26d4
+	call GetScriptByte
 	ld h, a
-	call $26d4
+	call GetScriptByte
 	ld [hl], a
 	ret
 ; 0x97630
@@ -1839,7 +1839,7 @@ Script_writebyte: ; 0x97630
 ; parameters:
 ;     value (SingleByteParam)
 
-	call $26d4
+	call GetScriptByte
 	ld [$c2dd], a
 	ret
 ; 0x97637
@@ -1849,7 +1849,7 @@ Script_addvar: ; 0x97637
 ; parameters:
 ;     value (SingleByteParam)
 
-	call $26d4
+	call GetScriptByte
 	ld hl, $c2dd
 	add [hl]
 	ld [hl], a
@@ -1861,7 +1861,7 @@ Script_random: ; 0x97640
 ; parameters:
 ;     input (SingleByteParam)
 
-	call $26d4
+	call GetScriptByte
 	ld [$c2dd], a
 	and a
 	ret z
@@ -1914,7 +1914,7 @@ Script_checkcode: ; 0x9767d
 ; parameters:
 ;     variable_id (SingleByteParam)
 
-	call $26d4
+	call GetScriptByte
 	call $769e
 	ld a, [de]
 	ld [$c2dd], a
@@ -1926,7 +1926,7 @@ Script_writevarcode: ; 0x97688
 ; parameters:
 ;     variable_id (SingleByteParam)
 
-	call $26d4
+	call GetScriptByte
 	call $769e
 	ld a, [$c2dd]
 	ld [de], a
@@ -1939,9 +1939,9 @@ Script_writecode: ; 0x97693
 ;     variable_id (SingleByteParam)
 ;     value (SingleByteParam)
 
-	call $26d4
+	call GetScriptByte
 	call $769e
-	call $26d4
+	call GetScriptByte
 	ld [de], a
 	ret
 ; 0x9769e
@@ -1970,7 +1970,7 @@ Script_pokenamemem: ; 0x976ae
 ;     pokemon (PokemonParam)
 ;     memory (SingleByteParam)
 
-	call $26d4
+	call GetScriptByte
 	and a
 	jr nz, .asm_976b7 ; 0x976b2 $3
 	ld a, [$c2dd]
@@ -1980,7 +1980,7 @@ Script_pokenamemem: ; 0x976ae
 	ld de, $d073
 
 Unknown_976c0: ; 0x976c0
-	call $26d4
+	call GetScriptByte
 	cp $3
 	jr c, .asm_976c8 ; 0x976c5 $1
 	xor a
@@ -1998,7 +1998,7 @@ Script_itemtotext: ; 0x976d5
 ;     item (ItemLabelByte)
 ;     memory (SingleByteParam)
 
-	call $26d4
+	call GetScriptByte
 	and a
 	jr nz, .asm_976de ; 0x976d9 $3
 	ld a, [$c2dd]
@@ -2034,7 +2034,7 @@ Script_displaylocation: ; 0x97701
 ; parameters:
 ;     id (SingleByteParam)
 
-	call $26d4
+	call GetScriptByte
 	jr Unknown_976f4 ; 0x97704 $ee
 ; 0x97706
 
@@ -2045,9 +2045,9 @@ Script_trainertotext: ; 0x97706
 ;     trainer_group (TrainerIdParam)
 ;     memory (SingleByteParam)
 
-	call $26d4
+	call GetScriptByte
 	ld c, a
-	call $26d4
+	call GetScriptByte
 	ld b, a
 	ld a, $e
 	ld hl, $594c
@@ -2058,11 +2058,11 @@ Script_trainertotext: ; 0x97706
 Script_unknown0xa7: ; 0x97716
 ; script command 0xa7
 
-	call $26d4
+	call GetScriptByte
 	ld [$cf61], a
 
 Unknown_9771c: ; 0x9771c
-	call $26d4
+	call GetScriptByte
 	ld [$cf60], a
 	call GetName
 	ld de, $d073
@@ -2134,9 +2134,9 @@ Script_stringtotext: ; 0x9777d
 ;     text_pointer (EncodedTextLabelParam)
 ;     memory (SingleByteParam)
 
-	call $26d4
+	call GetScriptByte
 	ld e, a
-	call $26d4
+	call GetScriptByte
 	ld d, a
 	ld a, [$d439]
 	ld hl, $30d6
@@ -2150,9 +2150,9 @@ Script_givepokeitem: ; 0x97792
 ; parameters:
 ;     pointer (PointerParamToItemAndLetter)
 
-	call $26d4
+	call GetScriptByte
 	ld l, a
-	call $26d4
+	call GetScriptByte
 	ld h, a
 	ld a, [$d439]
 	call GetFarByte
@@ -2175,9 +2175,9 @@ Script_checkpokeitem: ; 0x977b7
 ; parameters:
 ;     pointer (PointerParamToItemAndLetter)
 
-	call $26d4
+	call GetScriptByte
 	ld e, a
-	call $26d4
+	call GetScriptByte
 	ld d, a
 	ld a, [$d439]
 	ld b, a
@@ -2193,13 +2193,13 @@ Script_giveitem: ; 0x977ca
 ;     item (ItemLabelByte)
 ;     quantity (SingleByteParam)
 
-	call $26d4
+	call GetScriptByte
 	cp $ff
 	jr nz, .asm_977d4 ; 0x977cf $3
 	ld a, [$c2dd]
 .asm_977d4
 	ld [$d106], a
-	call $26d4
+	call GetScriptByte
 	ld [$d10c], a
 	ld hl, $d892
 	call $2f66
@@ -2221,9 +2221,9 @@ Script_takeitem: ; 0x977f0
 
 	xor a
 	ld [$c2dd], a
-	call $26d4
+	call GetScriptByte
 	ld [$d106], a
-	call $26d4
+	call GetScriptByte
 	ld [$d10c], a
 	ld a, $ff
 	ld [$d107], a
@@ -2242,7 +2242,7 @@ Script_checkitem: ; 0x97812
 
 	xor a
 	ld [$c2dd], a
-	call $26d4
+	call GetScriptByte
 	ld [$d106], a
 	ld hl, $d892
 	call $2f79
@@ -2309,7 +2309,7 @@ Unknown_9784f: ; 0x9784f
 ; 0x97861
 
 Unknown_0x97861: ; 0x97861
-    call $26d4
+    call GetScriptByte
     and a
     ld de, $d84e
     ret z
@@ -2320,13 +2320,13 @@ Unknown_0x97861: ; 0x97861
 Unknown_0x9786d: ; 0x9786d
     ld bc, $ffc3
     push bc
-    call $26d4
+    call GetScriptByte
     ld [bc], a
     inc bc
-    call $26d4
+    call GetScriptByte
     ld [bc], a
     inc bc
-    call $26d4
+    call GetScriptByte
     ld [bc], a
     pop bc
     ret
@@ -2366,9 +2366,9 @@ Script_checkcoins: ; 0x97895
 	ld hl, $60a1
 	rst $8
 	jr Unknown_9784f ; 0x9789e $af
-	call $26d4
+	call GetScriptByte
 	ld [$ffc4], a
-	call $26d4
+	call GetScriptByte
 	ld [$ffc3], a
 	ld bc, $ffc3
 	ret
@@ -2384,7 +2384,7 @@ Script_checktime: ; 0x978ae
 	ld a, $3
 	ld hl, $4000
 	rst $8
-	call $26d4
+	call GetScriptByte
 	and c
 	ret z
 	ld a, $1
@@ -2399,7 +2399,7 @@ Script_checkpoke: ; 0x978c3
 
 	xor a
 	ld [$c2dd], a
-	call $26d4
+	call GetScriptByte
 	ld hl, $dcd8
 	ld de, $0001
 	call IsInArray
@@ -2416,7 +2416,7 @@ Script_addcellnum: ; 0x978da
 
 	xor a
 	ld [$c2dd], a
-	call $26d4
+	call GetScriptByte
 	ld c, a
 	ld a, $24
 	ld hl, $4000
@@ -2434,7 +2434,7 @@ Script_delcellnum: ; 0x978ef
 
 	xor a
 	ld [$c2dd], a
-	call $26d4
+	call GetScriptByte
 	ld c, a
 	ld a, $24
 	ld hl, $400f
@@ -2452,7 +2452,7 @@ Script_checkcellnum: ; 0x97904
 
 	xor a
 	ld [$c2dd], a
-	call $26d4
+	call GetScriptByte
 	ld c, a
 	ld a, $24
 	ld hl, $4019
@@ -2468,9 +2468,9 @@ Script_specialphonecall: ; 0x97919
 ; parameters:
 ;     call_id (MultiByteParam)
 
-	call $26d4
+	call GetScriptByte
 	ld [$dc31], a
-	call $26d4
+	call GetScriptByte
 	ld [$dc32], a
 	ret
 ; 0x97926
@@ -2497,13 +2497,13 @@ Script_givepoke: ; 0x97932
 ;     trainer_name_pointer (MultiByteParam)
 ;     pkmn_nickname (MultiByteParam)
 
-	call $26d4
+	call GetScriptByte
 	ld [$d108], a
-	call $26d4
+	call GetScriptByte
 	ld [$d143], a
-	call $26d4
+	call GetScriptByte
 	ld [$d106], a
-	call $26d4
+	call GetScriptByte
 	and a
 	ld b, a
 	jr z, .asm_9795d ; 0x97949 $12
@@ -2511,10 +2511,10 @@ Script_givepoke: ; 0x97932
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
-	call $26d4
-	call $26d4
-	call $26d4
-	call $26d4
+	call GetScriptByte
+	call GetScriptByte
+	call GetScriptByte
+	call GetScriptByte
 .asm_9795d
 	ld a, $3
 	ld hl, $6277
@@ -2533,9 +2533,9 @@ Script_giveegg: ; 0x97968
 	xor a
 	ld [$c2dd], a
 	ld [$cf5f], a
-	call $26d4
+	call GetScriptByte
 	ld [$d108], a
-	call $26d4
+	call GetScriptByte
 	ld [$d143], a
 	ld a, $3
 	ld hl, $5f8c
@@ -2551,9 +2551,9 @@ Script_setbit1: ; 0x97988
 ; parameters:
 ;     bit_number (MultiByteParam)
 
-	call $26d4
+	call GetScriptByte
 	ld e, a
-	call $26d4
+	call GetScriptByte
 	ld d, a
 	ld b, $1
 	call BitTable1Func
@@ -2565,9 +2565,9 @@ Script_clearbit1: ; 0x97996
 ; parameters:
 ;     bit_number (MultiByteParam)
 
-	call $26d4
+	call GetScriptByte
 	ld e, a
-	call $26d4
+	call GetScriptByte
 	ld d, a
 	ld b, $0
 	call BitTable1Func
@@ -2579,9 +2579,9 @@ Script_checkbit1: ; 0x979a4
 ; parameters:
 ;     bit_number (MultiByteParam)
 
-	call $26d4
+	call GetScriptByte
 	ld e, a
-	call $26d4
+	call GetScriptByte
 	ld d, a
 	ld b, $2
 	call BitTable1Func
@@ -2599,9 +2599,9 @@ Script_setbit2: ; 0x979bb
 ; parameters:
 ;     bit_number (MultiByteParam)
 
-	call $26d4
+	call GetScriptByte
 	ld e, a
-	call $26d4
+	call GetScriptByte
 	ld d, a
 	ld b, $1
 	call $79ee
@@ -2613,9 +2613,9 @@ Script_clearbit2: ; 0x979c9
 ; parameters:
 ;     bit_number (MultiByteParam)
 
-	call $26d4
+	call GetScriptByte
 	ld e, a
-	call $26d4
+	call GetScriptByte
 	ld d, a
 	ld b, $0
 	call $79ee
@@ -2627,9 +2627,9 @@ Script_checkbit2: ; 0x979d7
 ; parameters:
 ;     bit_number (MultiByteParam)
 
-	call $26d4
+	call GetScriptByte
 	ld e, a
-	call $26d4
+	call GetScriptByte
 	ld d, a
 	ld b, $2
 	call $79ee
@@ -2670,9 +2670,9 @@ Script_xycompare: ; 0x97a01
 ; parameters:
 ;     pointer (MultiByteParam)
 
-	call $26d4
+	call GetScriptByte
 	ld [$d453], a
-	call $26d4
+	call GetScriptByte
 	ld [$d454], a
 	ret
 ; 0x97a0e
@@ -2686,7 +2686,7 @@ Script_warpfacing: ; 0x97a0e
 ;     x (SingleByteParam)
 ;     y (SingleByteParam)
 
-	call $26d4
+	call GetScriptByte
 	and $3
 	ld c, a
 	ld a, [$d45b]
@@ -2703,15 +2703,15 @@ Script_warp: ; 0x97a1d
 ;     x (SingleByteParam)
 ;     y (SingleByteParam)
 
-	call $26d4
+	call GetScriptByte
 	and a
 	jr z, .asm_97a4a ; 0x97a21 $27
 	ld [$dcb5], a
-	call $26d4
+	call GetScriptByte
 	ld [$dcb6], a
-	call $26d4
+	call GetScriptByte
 	ld [$dcb8], a
-	call $26d4
+	call GetScriptByte
 	ld [$dcb7], a
 	ld a, $ff
 	ld [$d001], a
@@ -2722,9 +2722,9 @@ Script_warp: ; 0x97a1d
 	call Unknown_0x96e11
 	ret
 .asm_97a4a
-	call $26d4
-	call $26d4
-	call $26d4
+	call GetScriptByte
+	call GetScriptByte
+	call GetScriptByte
 	ld a, $ff
 	ld [$d001], a
 	ld a, $fb
@@ -2742,11 +2742,11 @@ Script_warpmod: ; 0x97a65
 ;     map_group (MapGroupParam)
 ;     map_id (MapIdParam)
 
-	call $26d4
+	call GetScriptByte
 	ld [$dcac], a
-	call $26d4
+	call GetScriptByte
 	ld [$dcad], a
-	call $26d4
+	call GetScriptByte
 	ld [$dcae], a
 	ret
 ; 0x97a78
@@ -2757,9 +2757,9 @@ Script_blackoutmod: ; 0x97a78
 ;     map_group (MapGroupParam)
 ;     map_id (MapIdParam)
 
-	call $26d4
+	call GetScriptByte
 	ld [$dcb2], a
-	call $26d4
+	call GetScriptByte
 	ld [$dcb3], a
 	ret
 ; 0x97a85
@@ -2777,9 +2777,9 @@ Script_writecmdqueue: ; 0x97a8b
 ; parameters:
 ;     queue_pointer (MultiByteParam)
 
-	call $26d4
+	call GetScriptByte
 	ld e, a
-	call $26d4
+	call GetScriptByte
 	ld d, a
 	ld a, [$d439]
 	ld b, a
@@ -2796,7 +2796,7 @@ Script_delcmdqueue: ; 0x97a9e
 
 	xor a
 	ld [$c2dd], a
-	call $26d4
+	call GetScriptByte
 	ld b, a
 	ld a, $25
 	ld hl, $7e5c
@@ -2812,11 +2812,11 @@ Script_changemap: ; 0x97ab3
 ; parameters:
 ;     map_data_pointer (MapDataPointerParam)
 
-	call $26d4
+	call GetScriptByte
 	ld [$d1a0], a
-	call $26d4
+	call GetScriptByte
 	ld [$d1a1], a
-	call $26d4
+	call GetScriptByte
 	ld [$d1a2], a
 	call $24e4
 	call $2879
@@ -2830,14 +2830,14 @@ Script_changeblock: ; 0x97acc
 ;     y (SingleByteParam)
 ;     block (SingleByteParam)
 
-	call $26d4
+	call GetScriptByte
 	add $4
 	ld d, a
-	call $26d4
+	call GetScriptByte
 	add $4
 	ld e, a
 	call $2a66
-	call $26d4
+	call GetScriptByte
 	ld [hl], a
 	call $2879
 	ret
@@ -2880,7 +2880,7 @@ Script_newloadmap: ; 0x97b08
 ; parameters:
 ;     which_method (SingleByteParam)
 
-	call $26d4
+	call GetScriptByte
 	ld [$ff9f], a
 	ld a, $1
 	call $261b
@@ -2908,7 +2908,7 @@ Script_refreshscreen: ; 0x97b20
 ;     dummy (SingleByteParam)
 
 	call $2dba
-	call $26d4
+	call GetScriptByte
 	ret
 ; 0x97b27
 
@@ -2917,7 +2917,7 @@ Script_loadbytec1ce: ; 0x97b27
 ; parameters:
 ;     byte (SingleByteParam)
 
-	call $26d4
+	call GetScriptByte
 	ld [$c2cf], a
 	ret
 ; 0x97b2e
@@ -2937,11 +2937,11 @@ Script_passtoengine: ; 0x97b36
 ; parameters:
 ;     data_pointer (PointerLabelBeforeBank)
 
-	call $26d4
+	call GetScriptByte
 	push af
-	call $26d4
+	call GetScriptByte
 	ld l, a
-	call $26d4
+	call GetScriptByte
 	ld h, a
 	pop af
 	call StartAutoInput
@@ -2953,7 +2953,7 @@ Script_pause: ; 0x97b47
 ; parameters:
 ;     length (DecimalParam)
 
-	call $26d4
+	call GetScriptByte
 	and a
 	jr z, .asm_97b50 ; 0x97b4b $3
 	ld [$d44d], a
@@ -2971,7 +2971,7 @@ Script_deactivatefacing: ; 0x97b5c
 ; parameters:
 ;     time (SingleByteParam)
 
-	call $26d4
+	call GetScriptByte
 	and a
 	jr z, .asm_97b65 ; 0x97b60 $3
 	ld [$d44d], a
@@ -3103,7 +3103,7 @@ Script_unknown0xa8: ; 0x97c05
 ;     unknown (SingleByteParam)
 
 	push bc
-	call $26d4
+	call GetScriptByte
 .asm_97c09
 	push af
 	ld c, $6

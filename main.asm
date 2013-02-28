@@ -2245,16 +2245,41 @@ PushScriptPointer: ; 261f
 	ret
 ; 2631
 
-INCBIN "baserom.gbc",$2631,$26ef - $2631
+INCBIN "baserom.gbc",$2631,$26d4 - $2631
+
+GetScriptByte: ; 0x26d4
+	push hl
+	push bc
+	ld a, [$ff9d]
+	push af
+	ld a, [$d439]
+	rst $10
+	ld hl, $d43a
+	ld c, [hl]
+	inc hl
+	ld b, [hl]
+	ld a, [bc]
+	inc bc
+	ld [hl], b
+	dec hl
+	ld [hl], c
+	ld b, a
+	pop af
+	rst $10
+	ld a, b
+	pop bc
+	pop hl
+	ret
+; 0x26ef
 
 ObjectEvent: ; 0x26ef
 	jumptextfaceplayer ObjectEventText
 ; 0x26f2
 
-
 ObjectEventText:
 	TX_FAR _ObjectEventText
 	db "@"
+; 0x26f7
 
 INCBIN "baserom.gbc",$26f7,$2bed-$26f7
 
@@ -2289,6 +2314,7 @@ GetMapHeaderPointer: ; 0x2bed
 	ld a, OlivineGym_MapHeader - OlivinePokeCenter1F_MapHeader
 	call AddNTimes
 	ret
+; 0x2c04
 
 GetMapHeaderMember: ; 0x2c04
 ; Extract data from the current map's header.
