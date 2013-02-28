@@ -1371,7 +1371,7 @@ Script_2call: ; 0x974a2
 	ld e, a
 	call $26d4
 	ld d, a
-	jr Unknown_974cb ; 0x974ae $1b
+	jr ScriptCall
 ; 0x974b0
 
 Script_3call: ; 0x974b0
@@ -1385,7 +1385,7 @@ Script_3call: ; 0x974b0
 	ld e, a
 	call $26d4
 	ld d, a
-	jr Unknown_974cb ; 0x974bc $d
+	jr ScriptCall
 ; 0x974be
 
 Script_2ptcall: ; 0x974be
@@ -1402,8 +1402,9 @@ Script_2ptcall: ; 0x974be
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
+	; fallthrough
 
-Unknown_974cb: ; 0x974cb
+ScriptCall: ; 0x974cb
 	push de
 	ld hl, $d43c
 	ld e, [hl]
@@ -1484,7 +1485,7 @@ Script_iffalse: ; 0x9752c
 	ld a, [$c2dd]
 	and a
 	jp nz, $7596
-	jp $74fe
+	jp Script_2jump
 ; 0x97536
 
 Script_iftrue: ; 0x97536
@@ -1494,7 +1495,7 @@ Script_iftrue: ; 0x97536
 
 	ld a, [$c2dd]
 	and a
-	jp nz, $74fe
+	jp nz, Script_2jump
 	jp $7596
 ; 0x97540
 
@@ -1665,6 +1666,7 @@ Script_domaptrigger: ; 0x975f5
 	ld b, a
 	call $26d4
 	ld c, a
+	; fallthrough
 
 Unknown_975fd: ; 0x975fd
 	call $2147
@@ -2818,7 +2820,7 @@ Script_ptpriorityjump: ; 0x97b6e
 ;     pointer (ScriptPointerLabelParam)
 
 	call $6e11
-	jp $74fe
+	jp Script_2jump
 ; 0x97b74
 
 Script_end: ; 0x97b74
@@ -2871,18 +2873,18 @@ Script_halloffame: ; 0x97bd5
 
 	ld hl, $cfbc
 	res 0, [hl]
-	ld a, $41
-	ld hl, $6078
+	ld a, BANK(HallOfFame1)
+	ld hl, HallOfFame1
 	rst $8
-	ld a, $41
-	ld hl, $5ef6
+	ld a, BANK(HallOfFame2)
+	ld hl, HallOfFame2
 	rst $8
-	ld a, $21
-	ld hl, $640e
+	ld a, BANK(HallOfFame3)
+	ld hl, HallOfFame3
 	rst $8
 	ld hl, $cfbc
 	set 0, [hl]
-	jr Unknown_97bf9 ; 0x97bf1 $6
+	jr DisplayCredits
 ; 0x97bf3
 
 Script_credits: ; 0x97bf3
@@ -2891,8 +2893,8 @@ Script_credits: ; 0x97bf3
 	ld a, $21
 	ld hl, $6455
 	rst $8
-
-Unknown_97bf9: ; 0x97bf9
+	; fallthrough
+DisplayCredits:
 	call $7bc0
 	ld a, $3
 	call $261b
