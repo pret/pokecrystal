@@ -320,6 +320,13 @@ def get_registers():
     Gb.getRegisters(register_array)
     return list(register_array)
 
+def set_registers(registers):
+    """
+    Applies the set of registers to the CPU.
+    """
+    Gb.writeRegisters(registers)
+write_registers = set_registers
+
 def get_rom():
     """
     Returns the ROM in bytes.
