@@ -517,13 +517,6 @@ class crystal:
         set_memory_at(0xcfa9, id)
 
     @staticmethod
-    def warp_to(map_group_id, map_id):
-        """
-        Warp to a different map. Because I said so.
-        """
-        raise NotImplementedError
-
-    @staticmethod
     def is_in_battle():
         """
         Checks whether or not we're in a battle.
