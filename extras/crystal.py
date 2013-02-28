@@ -6752,7 +6752,7 @@ class Asm:
         asm_list = AsmList(asm)
         bank = 0
         for line in asm_list:
-            if line[0:6] == "INCBIN" or line[1:6] == "INCBIN":
+            if (line[0:6] == "INCBIN" or line[1:6] == "INCBIN") and not any([contaminant+"\"" in line for contaminant in [".2bpp", ".1bpp", ".asm", ".lz"]]):
                 thing = Incbin(line, bank=bank)
             elif line[0:7] == "SECTION":
                 thing = AsmSection(line)
@@ -6817,11 +6817,13 @@ class Asm:
 
         # check if the object is already inserted
         if new_object in self.parts:
-            print "object was previously inserted ("+str(new_object)+")"
+            print "object was previously inserted ("+str(new_object)+"; " + hex(new_object.address) + ")"
             return
         # check by label
-        if self.is_label_name_in_file(new_object.label.name):
-            print "object was previously inserted ("+str(new_object)+") by label: "+new_object.label.name
+        other_obj = self.is_label_name_in_file(new_object.label.name)
+        if other_obj:
+            other_obj = other_obj.object
+            print "object was previously inserted ("+new_object.label.name+" at "+hex(new_object.address)+") by "+other_obj.label.name+" at "+hex(other_obj.address)
             return
         # check by address
         #if self.does_address_have_label(new_object.address):
