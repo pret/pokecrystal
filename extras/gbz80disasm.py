@@ -592,7 +592,7 @@ def asm_label(address):
     # why using a random value when you can use the address?
     return ".ASM_" + hex(address)[2:]
 
-def output_bank_opcodes(original_offset, max_byte_count=0x4000, debug = False):
+def output_bank_opcodes(original_offset, max_byte_count=0x4000, include_last_address=True, debug = False):
     #fs = current_address
     #b = bank_byte
     #in = input_data  -- rom
@@ -824,7 +824,8 @@ def output_bank_opcodes(original_offset, max_byte_count=0x4000, debug = False):
             output = output.replace((label_line["name"] + "\n").lower(), "")
 
     #add the offset of the final location
-    output += "; " + hex(offset)
+    if include_last_address:
+        output += "; " + hex(offset)
 
     return (output, offset, last_hl_address, last_a_address, used_3d97)
 
