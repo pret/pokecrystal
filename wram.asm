@@ -1115,6 +1115,12 @@ OTPartyMon5Nickname: ; d416
 OTPartyMon6Nickname: ; d421
 	ds 11
 
+SECTION "Scripting",BSS[$d439]
+
+ScriptBank: ; d439
+	ds 1
+ScriptPos: ; d43a
+	ds 2
 
 SECTION "Player",BSS[$d472]
 PlayerGender: ; d472

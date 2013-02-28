@@ -85,7 +85,6 @@ DelayFrames: ; 0x468
 	ret
 ; 0x46f
 
-
 RTC: ; 46f
 ; update time and time-sensitive palettes
 
@@ -2248,25 +2247,34 @@ PushScriptPointer: ; 261f
 INCBIN "baserom.gbc",$2631,$26d4 - $2631
 
 GetScriptByte: ; 0x26d4
+; Return byte at ScriptBank:ScriptPos in a.
+
 	push hl
 	push bc
+
 	ld a, [$ff9d]
 	push af
-	ld a, [$d439]
-	rst $10
-	ld hl, $d43a
+
+	ld a, [ScriptBank]
+	rst Bankswitch
+
+	ld hl, ScriptPos
 	ld c, [hl]
 	inc hl
 	ld b, [hl]
+
 	ld a, [bc]
+
 	inc bc
 	ld [hl], b
 	dec hl
 	ld [hl], c
+
 	ld b, a
 	pop af
-	rst $10
+	rst Bankswitch
 	ld a, b
+
 	pop bc
 	pop hl
 	ret
