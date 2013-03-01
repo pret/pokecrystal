@@ -74,6 +74,7 @@ import re
 from array import array
 import string
 from copy import copy
+import unittest
 
 # for converting bytes to readable text
 from chars import chars
@@ -558,20 +559,12 @@ def call(bank, address):
             print "actual memory values: " + str(get_memory_range(registers.sp , 2))
             print "wrong value at " + hex(registers.sp) + " expected " + hex(value) + " but got " + hex(get_memory_at(registers.sp))
 
-    #registers.af = (bank << 8) | (registers.af & 0xff)
-    #registers.hl = address
-    #registers.pc = 0x2d63 # FarJump
-
-    #registers2 = get_registers()
-    #registers2[5] = 0xc4a0
-    #registers2[4] = 0x1276
-    #registers2[0] = address
-    #set_registers(registers2)
-
-    registers["hl"] = 0xc4a0
-    registers["de"] = 0x1276
-    registers["pc"] = address
-    #print "registers.pc is: " + hex(registers.pc)
+    if bank != 1:
+        registers["af"] = (bank << 8) | (registers["af"] & 0xFF)
+        registers["hl"] = address
+        registers["pc"] = 0x2d63 # FarJump
+    else:
+        registers["pc"] = address
 
 class crystal:
     """
@@ -815,4 +808,32 @@ class crystal:
         memory[0xdd34] = 0x40
 
         set_memory(memory)
+
+class TestEmulator(unittest.TestCase):
+    state = load_state("cheating-12")
+
+    def setUp(self):
+        load_rom()
+        set_state(self.state)
+
+    def tearDown(self):
+        shutdown()
+
+    def test_PlaceString(self):
+        call(1, 0x1078)
+
+        # where to draw the text
+        registers["hl"] = 0xc4a0
+
+        # what text to read from
+        registers["de"] = 0x1276
+
+        nstep(10)
+
+        text = crystal.get_text()
+
+        self.assertTrue("TRAINER" in text)
+
+if __name__ == "__main__":
+    unittest.main()
 
