@@ -70,7 +70,9 @@ TOOD:
 
 import os
 import sys
+import re
 from array import array
+import string
 
 # for converting bytes to readable text
 from chars import chars
@@ -459,6 +461,10 @@ class crystal:
         set_memory_at(0xC2FC, 0)
         set_memory_at(0xC2FD, 0)
 
+    #@staticmethod
+    #def set_enemy_level(level):
+    #    set_memory_at(0xd213, level)
+
     @staticmethod
     def nstep(steplimit=500):
         """
@@ -467,6 +473,7 @@ class crystal:
         """
         for step_counter in range(0, steplimit):
             crystal.walk_through_walls()
+            #crystal.set_enemy_level(1)
             step()
 
     @staticmethod
@@ -579,6 +586,55 @@ class crystal:
         set_memory_at(0xff9f, 0xF1)
         set_memory_at(0xd432, 1)
         set_memory_at(0xd434, 0 & 251)
+
+    @staticmethod
+    def warp_pokecenter():
+        crystal.warp(1, 1, 3, 3)
+        crystal.nstep(200)
+
+    @staticmethod
+    def masterballs():
+        # masterball
+        set_memory_at(0xd8d8, 1)
+        set_memory_at(0xd8d9, 99)
+
+        # ultraball
+        set_memory_at(0xd8da, 2)
+        set_memory_at(0xd8db, 99)
+
+        # pokeballs
+        set_memory_at(0xd8dc, 5)
+        set_memory_at(0xd8dd, 99)
+
+    @staticmethod
+    def get_text():
+        """
+        Returns alphanumeric text on the screen. Other characters will not be
+        shown.
+        """
+        output = ""
+        tiles = get_memory_range(0xc4a0, 1000)
+        for each in tiles:
+            if each in chars.keys():
+                thing = chars[each]
+                acceptable = False
+
+                if len(thing) == 2:
+                    portion = thing[1:]
+                else:
+                    portion = thing
+
+                if portion in string.printable:
+                    acceptable = True
+
+                if acceptable:
+                    output += thing
+
+        # remove extra whitespace
+        output = re.sub(" +", " ", output)
+        output = output.strip()
+
+        return output
 
     @staticmethod
     def set_partymon2():
