@@ -2828,10 +2828,6 @@ pksv_crystal_more = {
     0xA8: ["unknown0xa8", ["unknown", SingleByteParam]],
     0xA9: ["unknown0xa9"],
     0xAA: ["unknown0xaa"],
-
-    # fix the scripts, then remove these.
-    0xB2: ["unknown0xb2", ["unknown", SingleByteParam]],
-    0xCC: ["unknown0xcc"],
 }
 def create_command_classes(debug=False):
     """creates some classes for each command byte"""

@@ -208,9 +208,8 @@ UnknownScript_0x18e2b4: ; 0x18e2b4
 	iftrue UnknownScript_0x18e3c5
 	2writetext UnknownText_0x18e7fb
 	keeptextopen
-	verbosegiveitem2 LEVEL_BALL
-	addvar $8
-	unknown0xb2 $62
+	verbosegiveitem2 LEVEL_BALL, $16
+	iffalse UnknownScript_0x18e2b2
 UnknownScript_0x18e2c4: ; 0x18e2c4
 	clearbit1 $0258
 	2jump UnknownScript_0x18e2ab
@@ -221,9 +220,8 @@ UnknownScript_0x18e2ca: ; 0x18e2ca
 	iftrue UnknownScript_0x18e3c5
 	2writetext UnknownText_0x18e7fb
 	keeptextopen
-	verbosegiveitem2 LURE_BALL
-	addvar $8
-	unknown0xb2 $62
+	verbosegiveitem2 LURE_BALL, $16
+	iffalse UnknownScript_0x18e2b2
 UnknownScript_0x18e2da: ; 0x18e2da
 	clearbit1 $0259
 	2jump UnknownScript_0x18e2ab
@@ -234,9 +232,8 @@ UnknownScript_0x18e2e0: ; 0x18e2e0
 	iftrue UnknownScript_0x18e3c5
 	2writetext UnknownText_0x18e7fb
 	keeptextopen
-	verbosegiveitem2 MOON_BALL
-	addvar $8
-	unknown0xb2 $62
+	verbosegiveitem2 MOON_BALL, $16
+	iffalse UnknownScript_0x18e2b2
 UnknownScript_0x18e2f0: ; 0x18e2f0
 	clearbit1 $025a
 	2jump UnknownScript_0x18e2ab
@@ -247,9 +244,8 @@ UnknownScript_0x18e2f6: ; 0x18e2f6
 	iftrue UnknownScript_0x18e3c5
 	2writetext UnknownText_0x18e7fb
 	keeptextopen
-	verbosegiveitem2 FRIEND_BALL
-	addvar $8
-	unknown0xb2 $62
+	verbosegiveitem2 FRIEND_BALL, $16
+	iffalse UnknownScript_0x18e2b2
 UnknownScript_0x18e306: ; 0x18e306
 	clearbit1 $025b
 	2jump UnknownScript_0x18e2ab
@@ -260,9 +256,8 @@ UnknownScript_0x18e30c: ; 0x18e30c
 	iftrue UnknownScript_0x18e3c5
 	2writetext UnknownText_0x18e7fb
 	keeptextopen
-	verbosegiveitem2 FAST_BALL
-	addvar $8
-	unknown0xb2 $62
+	verbosegiveitem2 FAST_BALL, $16
+	iffalse UnknownScript_0x18e2b2
 UnknownScript_0x18e31c: ; 0x18e31c
 	clearbit1 $025c
 	2jump UnknownScript_0x18e2ab
@@ -273,9 +268,8 @@ UnknownScript_0x18e322: ; 0x18e322
 	iftrue UnknownScript_0x18e3c5
 	2writetext UnknownText_0x18e7fb
 	keeptextopen
-	verbosegiveitem2 HEAVY_BALL
-	addvar $8
-	unknown0xb2 $62
+	verbosegiveitem2 HEAVY_BALL, $16
+	iffalse UnknownScript_0x18e2b2
 UnknownScript_0x18e332: ; 0x18e332
 	clearbit1 $025d
 	2jump UnknownScript_0x18e2ab
@@ -286,9 +280,8 @@ UnknownScript_0x18e338: ; 0x18e338
 	iftrue UnknownScript_0x18e3c5
 	2writetext UnknownText_0x18e7fb
 	keeptextopen
-	verbosegiveitem2 LOVE_BALL
-	addvar $8
-	unknown0xb2 $62
+	verbosegiveitem2 LOVE_BALL, $16
+	iffalse UnknownScript_0x18e2b2
 UnknownScript_0x18e348: ; 0x18e348
 	clearbit1 $025e
 	2jump UnknownScript_0x18e2ab
