@@ -38,15 +38,64 @@ INCBIN "baserom.gbc",$7abc9,$7abcc - $7abc9
 
 UnknownScript_0x7abcc: ; 0x7abcc
 	describedecoration $1
+; 0x7abce
+
+UnknownScript_0x7abce: ; 0x7abce
 	describedecoration $2
+; 0x7abd0
+
+UnknownScript_0x7abd0: ; 0x7abd0
 	describedecoration $3
+; 0x7abd2
+
+UnknownScript_0x7abd2: ; 0x7abd2
 	describedecoration $4
-	unknown0xcc
-; 0x7abd5
+; 0x7abd4
 
-INCBIN "baserom.gbc",$7abd5,$3d
+MapKrissHouse2FSignpost4: ; 0x7abd4
+	dw $02cc ; bit1
+	dw MapKrissHouse2FSignpost4Script
+; 0x7abd8
 
-MapKrissHouse2FSignpost2Script: ; 0x7ac12
+MapKrissHouse2FSignpost4Script: ; 0x7abd8
+	describedecoration $0
+; 0x7abda
+
+MapKrissHouse2FSignpost2Script: ; 0x7abda
+	checkbit1 $001a
+	iftrue UnknownScript_0x7ac07
+	checkbit1 $0325
+	iftrue UnknownScript_0x7ac0a
+	playmusic $001d
+	loadfont
+	2writetext UnknownText_0x7ac24
+	pause 45
+	2writetext UnknownText_0x7ac55
+	pause 45
+	2writetext UnknownText_0x7ac64
+	pause 45
+	musicfadeout $003c, $10
+	2writetext UnknownText_0x7ac84
+	pause 45
+	loadmovesprites
+	setbit1 $0325
+	end
+; 0x7ac07
+
+UnknownScript_0x7ac07: ; 0x7ac07
+	jumpstd $000b
+; 0x7ac0a
+
+UnknownScript_0x7ac0a: ; 0x7ac0a
+	loadfont
+	2writetext UnknownText_0x7ac84
+	pause 45
+	loadmovesprites
+	end
+; 0x7ac12
+
+
+MapKrissHouse2FSignpost3Script: ; 0x7ac12
 	jumpstd $0002
 ; 0x7ac15
 
@@ -97,15 +146,15 @@ KrissHouse2F_MapEventHeader: ; 0x7ac99
 	; signposts
 	db 4
 	signpost 1, 2, $1, MapKrissHouse2FSignpost0Script
-	signpost 1, 3, $0, $6bda
-	signpost 1, 5, $0, MapKrissHouse2FSignpost2Script
-	signpost 0, 6, $5, $6bd4
+	signpost 1, 3, $0, MapKrissHouse2FSignpost2Script
+	signpost 1, 5, $0, MapKrissHouse2FSignpost3Script
+	signpost 0, 6, $5, MapKrissHouse2FSignpost4 ; 6bd4
 
 	; people-events
 	db 4
-	person_event $f0, 6, 8, $1, $0, 255, 255, $0, 0, $6bd2, $0741
+	person_event $f0, 6, 8, $1, $0, 255, 255, $0, 0, UnknownScript_0x7abd2, $0741
 	person_event $f1, 8, 8, $1, $0, 255, 255, $0, 0, UnknownScript_0x7abcc, $0742
-	person_event $f2, 8, 9, $1, $0, 255, 255, $0, 0, $6bce, $0743
-	person_event $f3, 5, 4, $21, $0, 255, 255, $0, 0, $6bd0, $0744
+	person_event $f2, 8, 9, $1, $0, 255, 255, $0, 0, UnknownScript_0x7abce, $0743
+	person_event $f3, 5, 4, $21, $0, 255, 255, $0, 0, UnknownScript_0x7abd0, $0744
 ; 0x7acec
 
