@@ -73,6 +73,7 @@ import sys
 import re
 from array import array
 import string
+from copy import copy
 
 # for converting bytes to readable text
 from chars import chars
@@ -480,12 +481,12 @@ class Registers:
         return get_registers()
 
     def _get_register(id):
-        def constructed_func(self):
+        def constructed_func(self, id=copy(id)):
             return get_registers()[id]
         return constructed_func
 
     def _set_register(id):
-        def constructed_func(self, value):
+        def constructed_func(self, value, id=copy(id)):
             current_registers = get_registers()
             current_registers[id] = value
             set_registers(current_registers)
@@ -524,12 +525,53 @@ class Registers:
     def __repr__(self):
         spacing = "\t"
         output = "Registers:\n"
-        for each in self.order:
-            output += spacing + each + " = " + hex(self[each])
+        for (id, each) in enumerate(self.order):
+            output += spacing + each + " = " + hex(get_registers()[id])
+            #hex(self[each])
             output += "\n"
         return output
 
 registers = Registers()
+
+def call(bank, address):
+    """
+    Jumps into a function at a certain address.
+
+    Go into the start menu, pause the game and try call(1, 0x1078) to see a
+    string printed to the screen.
+    """
+    push = [
+        registers.pc,
+        registers.hl,
+        registers.de,
+        registers.bc,
+        registers.af,
+        0x3bb7,
+    ]
+
+    for value in push:
+        registers.sp -= 2
+        set_memory_at(registers.sp + 1, value >> 8)
+        set_memory_at(registers.sp, value & 0xFF)
+        if get_memory_range(registers.sp, 2) != [value & 0xFF, value >> 8]:
+            print "desired memory values: " + str([value & 0xFF, value >> 8] )
+            print "actual memory values: " + str(get_memory_range(registers.sp , 2))
+            print "wrong value at " + hex(registers.sp) + " expected " + hex(value) + " but got " + hex(get_memory_at(registers.sp))
+
+    #registers.af = (bank << 8) | (registers.af & 0xff)
+    #registers.hl = address
+    #registers.pc = 0x2d63 # FarJump
+
+    #registers2 = get_registers()
+    #registers2[5] = 0xc4a0
+    #registers2[4] = 0x1276
+    #registers2[0] = address
+    #set_registers(registers2)
+
+    registers["hl"] = 0xc4a0
+    registers["de"] = 0x1276
+    registers["pc"] = address
+    #print "registers.pc is: " + hex(registers.pc)
 
 class crystal:
     """
@@ -570,7 +612,7 @@ class crystal:
         """
         for step_counter in range(0, steplimit):
             crystal.walk_through_walls()
-            #crystal.set_enemy_level(1)
+            #call(0x1, 0x1078)
             step()
 
     @staticmethod
