@@ -559,7 +559,7 @@ def call(bank, address):
             print "actual memory values: " + str(get_memory_range(registers.sp , 2))
             print "wrong value at " + hex(registers.sp) + " expected " + hex(value) + " but got " + hex(get_memory_at(registers.sp))
 
-    if bank != 1:
+    if bank != 0:
         registers["af"] = (bank << 8) | (registers["af"] & 0xFF)
         registers["hl"] = address
         registers["pc"] = 0x2d63 # FarJump
@@ -820,7 +820,7 @@ class TestEmulator(unittest.TestCase):
         shutdown()
 
     def test_PlaceString(self):
-        call(1, 0x1078)
+        call(0, 0x1078)
 
         # where to draw the text
         registers["hl"] = 0xc4a0
