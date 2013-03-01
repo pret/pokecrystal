@@ -244,7 +244,7 @@ Script_jumptextfaceplayer: ; 0x96e45
 ; parameters:
 ;     text_pointer (RawTextPointerLabelParam)
 
-	ld a, [$d439]
+	ld a, [ScriptBank]
 	ld [$d44e], a
 	call GetScriptByte
 	ld [$d44f], a
@@ -260,7 +260,7 @@ Script_jumptext: ; 0x96e5f
 ; parameters:
 ;     text_pointer (RawTextPointerLabelParam)
 
-	ld a, [$d439]
+	ld a, [ScriptBank]
 	ld [$d44e], a
 	call GetScriptByte
 	ld [$d44f], a
@@ -298,7 +298,7 @@ Script_2writetext: ; 0x96e9b
 	ld l, a
 	call GetScriptByte
 	ld h, a
-	ld a, [$d439]
+	ld a, [ScriptBank]
 	ld b, a
 	call $269a
 	ret
@@ -388,7 +388,7 @@ Script_loadmenudata: ; 0x96efa
 	call GetScriptByte
 	ld h, a
 	ld de, $1d35
-	ld a, [$d439]
+	ld a, [ScriptBank]
 	call $26b7
 	call $1ad2
 	ret
@@ -431,7 +431,7 @@ Script_pokepicyesorno: ; 0x96f29
 Script_interpretmenu2: ; 0x96f30
 ; script command 0x59
 
-	ld a, [$d439]
+	ld a, [ScriptBank]
 	ld hl, $1d81
 	rst $8
 	ld a, [$cfa9]
@@ -445,7 +445,7 @@ Script_interpretmenu2: ; 0x96f30
 Script_interpretmenu: ; 0x96f41
 ; script command 0x58
 
-	ld a, [$d439]
+	ld a, [ScriptBank]
 	ld hl, $202a
 	rst $8
 	ld a, [$cf88]
@@ -574,7 +574,7 @@ Script_pokemart: ; 0x97065
 	ld e, a
 	call GetScriptByte
 	ld d, a
-	ld a, [$d439]
+	ld a, [ScriptBank]
 	ld b, a
 	ld a, $5
 	ld hl, $5a45
@@ -593,7 +593,7 @@ Script_elevator: ; 0x9707c
 	ld e, a
 	call GetScriptByte
 	ld d, a
-	ld a, [$d439]
+	ld a, [ScriptBank]
 	ld b, a
 	ld a, $4
 	ld hl, $742d
@@ -626,7 +626,7 @@ Script_phonecall: ; 0x970a4
 	ld e, a
 	call GetScriptByte
 	ld d, a
-	ld a, [$d439]
+	ld a, [ScriptBank]
 	ld b, a
 	ld a, $24
 	ld hl, $429a
@@ -950,7 +950,7 @@ Script_applymovement: ; 0x971f3
 	ld l, a
 	call GetScriptByte
 	ld h, a
-	ld a, [$d439]
+	ld a, [ScriptBank]
 	ld b, a
 	call $26c7
 	ret c
@@ -1456,7 +1456,7 @@ Script_2call: ; 0x974a2
 ; parameters:
 ;     pointer (ScriptPointerLabelParam)
 
-	ld a, [$d439]
+	ld a, [ScriptBank]
 	ld b, a
 	call GetScriptByte
 	ld e, a
@@ -1506,25 +1506,25 @@ ScriptCall: ; 0x974cb
 	add hl, de
 	add hl, de
 	pop de
-	ld a, [$d439]
+	ld a, [ScriptBank]
 	ld [hli], a
-	ld a, [$d43a]
+	ld a, [ScriptPos]
 	ld [hli], a
 	ld a, [$d43b]
 	ld [hl], a
 	ld a, b
-	ld [$d439], a
+	ld [ScriptBank], a
 	ld a, e
-	ld [$d43a], a
+	ld [ScriptPos], a
 	ld a, d
 	ld [$d43b], a
 	ret
 ; 0x974f3
 
 Unknown_0x974f3: ; 0x974f3
-    ld a, [$d439]
+    ld a, [ScriptBank]
     or $80
-    ld [$d439], a
+    ld [ScriptBank], a
     jp $74cb
 ; 0x974fe
 
@@ -1537,7 +1537,7 @@ Script_2jump: ; 0x974fe
 	ld l, a
 	call GetScriptByte
 	ld h, a
-	ld a, [$d439]
+	ld a, [ScriptBank]
 	ld b, a
 	jp $759d
 ; 0x9750d
@@ -1695,9 +1695,9 @@ Unknown_97596: ; 0x97596
 
 Unknown_9759d: ; 0x9759d
 	ld a, b
-	ld [$d439], a
+	ld [ScriptBank], a
 	ld a, l
-	ld [$d43a], a
+	ld [ScriptPos], a
 	ld a, h
 	ld [$d43b], a
 	ret
@@ -1708,7 +1708,7 @@ Script_priorityjump: ; 0x975aa
 ; parameters:
 ;     pointer (ScriptPointerLabelParam)
 
-	ld a, [$d439]
+	ld a, [ScriptBank]
 	ld [$d44e], a
 	call GetScriptByte
 	ld [$d44f], a
@@ -2138,7 +2138,7 @@ Script_stringtotext: ; 0x9777d
 	ld e, a
 	call GetScriptByte
 	ld d, a
-	ld a, [$d439]
+	ld a, [ScriptBank]
 	ld hl, $30d6
 	rst $8
 	ld de, $d086
@@ -2154,14 +2154,14 @@ Script_givepokeitem: ; 0x97792
 	ld l, a
 	call GetScriptByte
 	ld h, a
-	ld a, [$d439]
+	ld a, [ScriptBank]
 	call GetFarByte
 	ld b, a
 	push bc
 	inc hl
 	ld bc, $0020
 	ld de, $d002
-	ld a, [$d439]
+	ld a, [ScriptBank]
 	call FarCopyBytes
 	pop bc
 	ld a, $11
@@ -2179,7 +2179,7 @@ Script_checkpokeitem: ; 0x977b7
 	ld e, a
 	call GetScriptByte
 	ld d, a
-	ld a, [$d439]
+	ld a, [ScriptBank]
 	ld b, a
 	ld a, $11
 	ld hl, $4654
@@ -2507,7 +2507,7 @@ Script_givepoke: ; 0x97932
 	and a
 	ld b, a
 	jr z, .asm_9795d ; 0x97949 $12
-	ld hl, $d43a
+	ld hl, ScriptPos
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
@@ -2781,7 +2781,7 @@ Script_writecmdqueue: ; 0x97a8b
 	ld e, a
 	call GetScriptByte
 	ld d, a
-	ld a, [$d439]
+	ld a, [ScriptBank]
 	ld b, a
 	ld a, $25
 	ld hl, $7e31
@@ -3035,10 +3035,10 @@ Unknown_0x97b9a: ; 0x97b9a
     ld a, [hli]
     ld b, a
     and $7f
-    ld [$d439], a
+    ld [ScriptBank], a
     ld a, [hli]
     ld e, a
-    ld [$d43a], a
+    ld [ScriptPos], a
     ld a, [hl]
     ld d, a
     ld [$d43b], a
