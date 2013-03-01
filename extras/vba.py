@@ -434,6 +434,103 @@ def press(buttons, steplimit=1):
     for step_counter in range(0, steplimit):
         Gb.step(number)
 
+class Registers:
+    order = [
+        "pc",
+        "sp",
+        "af",
+        "bc",
+        "de",
+        "hl",
+        "iff",
+        "div",
+        "tima",
+        "tma",
+        "tac",
+        "if",
+        "lcdc",
+        "stat",
+        "scy",
+        "scx",
+        "ly",
+        "lyc",
+        "dma",
+        "wy",
+        "wx",
+        "vbk",
+        "hdma1",
+        "hdma2",
+        "hdma3",
+        "hdma4",
+        "hdma5",
+        "svbk",
+        "ie",
+    ]
+
+    def __setitem__(self, key, value):
+        current_registers = get_registers()
+        current_registers[Registers.order.index(key)] = value
+        set_registers(current_registers)
+
+    def __getitem__(self, key):
+        current_registers = get_registers()
+        return current_registers[Registers.order.index(key)]
+
+    def __list__(self):
+        return get_registers()
+
+    def _get_register(id):
+        def constructed_func(self):
+            return get_registers()[id]
+        return constructed_func
+
+    def _set_register(id):
+        def constructed_func(self, value):
+            current_registers = get_registers()
+            current_registers[id] = value
+            set_registers(current_registers)
+        return constructed_func
+
+    pc = property(fget=_get_register(1), fset=_set_register(1))
+    sp = property(fget=_get_register(2), fset=_set_register(2))
+    af = property(fget=_get_register(3), fset=_set_register(3))
+    bc = property(fget=_get_register(4), fset=_set_register(4))
+    de = property(fget=_get_register(5), fset=_set_register(5))
+    hl = property(fget=_get_register(6), fset=_set_register(6))
+    iff = property(fget=_get_register(7), fset=_set_register(7))
+    div = property(fget=_get_register(8), fset=_set_register(8))
+    tima = property(fget=_get_register(9), fset=_set_register(9))
+    tma = property(fget=_get_register(10), fset=_set_register(10))
+    tac = property(fget=_get_register(11), fset=_set_register(11))
+    _if = property(fget=_get_register(12), fset=_set_register(12))
+    lcdc = property(fget=_get_register(13), fset=_set_register(13))
+    stat = property(fget=_get_register(14), fset=_set_register(14))
+    scy = property(fget=_get_register(15), fset=_set_register(15))
+    scx = property(fget=_get_register(16), fset=_set_register(16))
+    ly = property(fget=_get_register(17), fset=_set_register(17))
+    lyc = property(fget=_get_register(18), fset=_set_register(18))
+    dma = property(fget=_get_register(19), fset=_set_register(19))
+    wy = property(fget=_get_register(20), fset=_set_register(20))
+    wx = property(fget=_get_register(21), fset=_set_register(21))
+    vbk = property(fget=_get_register(22), fset=_set_register(22))
+    hdma1 = property(fget=_get_register(23), fset=_set_register(23))
+    hdma2 = property(fget=_get_register(24), fset=_set_register(24))
+    hdma3 = property(fget=_get_register(25), fset=_set_register(25))
+    hdma4 = property(fget=_get_register(26), fset=_set_register(26))
+    hdma5 = property(fget=_get_register(27), fset=_set_register(27))
+    svbk = property(fget=_get_register(28), fset=_set_register(28))
+    ie = property(fget=_get_register(29), fset=_set_register(29))
+
+    def __repr__(self):
+        spacing = "\t"
+        output = "Registers:\n"
+        for each in self.order:
+            output += spacing + each + " = " + hex(self[each])
+            output += "\n"
+        return output
+
+registers = Registers()
+
 class crystal:
     """
     Just a simple namespace to store a bunch of functions for Pokémon Crystal.
