@@ -815,7 +815,11 @@ class crystal:
         set_memory(memory)
 
 class TestEmulator(unittest.TestCase):
-    state = load_state("cheating-12")
+    try:
+        state = load_state("cheating-12")
+    except:
+        if "__name__" == "__main__":
+            raise Exception("failed to setup unit tests because no save state found")
 
     def setUp(self):
         load_rom()
