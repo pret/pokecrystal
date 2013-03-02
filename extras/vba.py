@@ -6,6 +6,11 @@ vba-clojure (but really it's jython/python/jvm)
 This is jython, not python. Use jython to run this file. Before running this
 file, some of the dependencies need to be constructed. These can be obtained
 from the vba-clojure project.
+    sudo apt-get install g++ libtool openjdk-6-jre openjdk-6-jdk libsdl1.2-dev ant
+
+    export JAVA_INCLUDE_PATH=/usr/lib/jvm/java-6-openjdk-amd64/include/
+    export JAVA_INCLUDE_PATH2=/usr/lib/jvm/java-6-openjdk-amd64/include/
+
     hg clone http://hg.bortreb.com/vba-clojure
     cd vba-clojure/java/
     ant all
