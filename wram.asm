@@ -168,7 +168,13 @@ Channel1VibratoRate: ; c121
 	ds 1
 ; c126
 	ds 1
-	ds 7
+; c127
+	ds 1
+Channel1CryPitch: ; c128
+	ds 1
+Channel1CryEcho: ; c129
+	ds 1
+	ds 4
 Channel1NoteLength: ; c12e
 ; # frames per 16th note
 	ds 1
@@ -278,9 +284,14 @@ MusicFadeIDLo: ; c2a9
 	ds 1
 MusicFadeIDHi: ; c2aa
 	ds 1
-	ds 9
+	ds 5
+CryPitch: ; c2b0
+	ds 1
+CryEcho: ; c2b1
+	ds 1
+CryLength: ; c2b2
+	ds 2
 LastVolume: ; c2b4
-; preserves volume of a song playing so cries can have their own volume
 	ds 1
 	ds 1
 SFXPriority: ; c2b6
@@ -643,8 +654,12 @@ OverworldMapEnd
 	ds 12
 
 SECTION "gfx2",BSS[$cd20]
-BGMapBuffer: ; cd20
-	ds 40
+BGMapBuffer:
+CreditsPos: ; cd20
+	ds 2
+CreditsTimer: ; cd22
+	ds 1
+	ds 37
 	
 BGMapPalBuffer: ; cd48
 	ds 40
@@ -837,11 +852,9 @@ TileSetPalettes: ; d1e6
 	ds 2
 
 Buffer1:
-MagikarpLength:
-MagikarpLengthHi: ; d1ea
+MagikarpLength: ; d1ea
 	ds 1
-Buffer2:
-MagikarpLengthLo: ; d1eb
+Buffer2: ; d1eb
 	ds 1
 
 SECTION "prng2",BSS[$d1fa]
@@ -1102,6 +1115,12 @@ OTPartyMon5Nickname: ; d416
 OTPartyMon6Nickname: ; d421
 	ds 11
 
+SECTION "Scripting",BSS[$d439]
+
+ScriptBank: ; d439
+	ds 1
+ScriptPos: ; d43a
+	ds 2
 
 SECTION "Player",BSS[$d472]
 PlayerGender: ; d472

@@ -16,27 +16,27 @@ SoundRestart: ; e8000
 	push bc
 	push af
 	call MusicOff
-	ld hl, $ff24 ; channel control registers
+	ld hl, rNR50 ; channel control registers
 	xor a
-	ld [hli], a ; ff24 ; volume/vin
-	ld [hli], a ; ff25 ; sfx channels
+	ld [hli], a ; rNR50 ; volume/vin
+	ld [hli], a ; rNR51 ; sfx channels
 	ld a, $80 ; all channels on
 	ld [hli], a ; ff26 ; music channels
 
-	ld hl, $ff10 ; sound channel registers
+	ld hl, rNR10 ; sound channel registers
 	ld e, $04 ; number of channels
 .clearsound
 ;   sound channel   1      2      3      4
 	xor a
-	ld [hli], a ; $ff10, $ff15, $ff1a, $ff1f ; sweep = 0
+	ld [hli], a ; rNR10, $ff15, rNR30, $ff1f ; sweep = 0
 
-	ld [hli], a ; $ff11, $ff16, $ff1b, $ff20 ; length/wavepattern = 0
+	ld [hli], a ; rNR11, rNR21, rNR31, rNR41 ; length/wavepattern = 0
 	ld a, $08
-	ld [hli], a ; $ff12, $ff17, $ff1c, $ff21 ; envelope = 0
+	ld [hli], a ; rNR12, rNR22, rNR32, rNR42 ; envelope = 0
 	xor a
-	ld [hli], a ; $ff13, $ff18, $ff1d, $ff22 ; frequency lo = 0
+	ld [hli], a ; rNR13, rNR23, rNR33, rNR43 ; frequency lo = 0
 	ld a, $80
-	ld [hli], a ; $ff14, $ff19, $ff1e, $ff23 ; restart sound (freq hi = 0)
+	ld [hli], a ; rNR14, rNR24, rNR34, rNR44 ; restart sound (freq hi = 0)
 	dec e
 	jr nz, .clearsound
 
@@ -208,10 +208,10 @@ UpdateSound: ; e805c
 	call FadeMusic
 	; write volume to hardware register
 	ld a, [Volume]
-	ld [$ff24], a
+	ld [rNR50], a
 	; write SO on/off to hardware register
 	ld a, [SoundOutput]
-	ld [$ff25], a
+	ld [rNR51], a
 	ret
 ; e8125
 
@@ -251,7 +251,7 @@ UpdateChannels: ; e8125
 	jr z, .asm_e8159
 	;
 	ld a, [SoundInput]
-	ld [$ff10], a
+	ld [rNR10], a
 .asm_e8159
 	bit 5, [hl] ; rest
 	jr nz, .ch1rest
@@ -264,48 +264,48 @@ UpdateChannels: ; e8125
 	jr .asm_e8175
 .asm_e816b
 	ld a, [$c294]
-	ld [$ff13], a
+	ld [rNR13], a
 	ld a, [$c295]
-	ld [$ff14], a
+	ld [rNR14], a
 .asm_e8175
 	bit 0, [hl]
 	ret z
 	ld a, [$c292]
 	ld d, a
-	ld a, [$ff11]
+	ld a, [rNR11]
 	and a, $3f ; sound length
 	or d
-	ld [$ff11], a
+	ld [rNR11], a
 	ret
 .asm_e8184
 	ld a, [$c292]
 	ld d, a
-	ld a, [$ff11]
+	ld a, [rNR11]
 	and a, $3f ; sound length
 	or d
-	ld [$ff11], a
+	ld [rNR11], a
 	ld a, [$c294]
-	ld [$ff13], a
+	ld [rNR13], a
 	ret
 .ch1rest
-	ld a, [$ff26]
+	ld a, [rNR52]
 	and a, %10001110 ; ch1 off
-	ld [$ff26], a
-	ld hl, $ff10
+	ld [rNR52], a
+	ld hl, rNR10
 	call ClearChannel
 	ret
 .asm_e81a2
 	ld hl, $c292
 	ld a, $3f ; sound length
 	or [hl]
-	ld [$ff11], a
+	ld [rNR11], a
 	ld a, [$c293]
-	ld [$ff12], a
+	ld [rNR12], a
 	ld a, [$c294]
-	ld [$ff13], a
+	ld [rNR13], a
 	ld a, [$c295]
 	or a, $80
-	ld [$ff14], a
+	ld [rNR14], a
 	ret
 
 .Channel2
@@ -322,31 +322,31 @@ UpdateChannels: ; e8125
 	ret z
 	ld a, [$c292]
 	ld d, a
-	ld a, [$ff16]
+	ld a, [rNR21]
 	and a, $3f ; sound length
 	or d
-	ld [$ff16], a
+	ld [rNR21], a
 	ret
 .asm_e81db ; unused
 	ld a, [$c294]
-	ld [$ff18], a
+	ld [rNR23], a
 	ld a, [$c295]
-	ld [$ff19], a
+	ld [rNR24], a
 	ret
 .asm_e81e6
 	ld a, [$c292]
 	ld d, a
-	ld a, [$ff16]
+	ld a, [rNR21]
 	and a, $3f ; sound length
 	or d
-	ld [$ff16], a
+	ld [rNR21], a
 	ld a, [$c294]
-	ld [$ff18], a
+	ld [rNR23], a
 	ret
 .ch2rest
-	ld a, [$ff26]
+	ld a, [rNR52]
 	and a, %10001101 ; ch2 off
-	ld [$ff26], a
+	ld [rNR52], a
 	ld hl, $ff15
 	call ClearChannel
 	ret
@@ -354,14 +354,14 @@ UpdateChannels: ; e8125
 	ld hl, $c292
 	ld a, $3f ; sound length
 	or [hl]
-	ld [$ff16], a
+	ld [rNR21], a
 	ld a, [$c293]
-	ld [$ff17], a
+	ld [rNR22], a
 	ld a, [$c294]
-	ld [$ff18], a
+	ld [rNR23], a
 	ld a, [$c295]
 	or a, $80 ; initial (restart)
-	ld [$ff19], a
+	ld [rNR24], a
 	ret
 
 .Channel3
@@ -377,34 +377,34 @@ UpdateChannels: ; e8125
 	ret
 .asm_e822f ; unused
 	ld a, [$c294]
-	ld [$ff1d], a
+	ld [rNR33], a
 	ld a, [$c295]
-	ld [$ff1e], a
+	ld [rNR34], a
 	ret
 .asm_e823a
 	ld a, [$c294]
-	ld [$ff1d], a
+	ld [rNR33], a
 	ret
 .ch3rest
-	ld a, [$ff26]
+	ld a, [rNR52]
 	and a, %10001011 ; ch3 off
-	ld [$ff26], a
-	ld hl, $ff1a
+	ld [rNR52], a
+	ld hl, rNR30
 	call ClearChannel
 	ret
 .asm_e824d
 	ld a, $3f
-	ld [$ff1b], a
+	ld [rNR31], a
 	xor a
-	ld [$ff1a], a
+	ld [rNR30], a
 	call .asm_e8268
 	ld a, $80
-	ld [$ff1a], a
+	ld [rNR30], a
 	ld a, [$c294]
-	ld [$ff1d], a
+	ld [rNR33], a
 	ld a, [$c295]
 	or a, $80
-	ld [$ff1e], a
+	ld [rNR34], a
 	ret
 .asm_e8268
 	push hl
@@ -458,7 +458,7 @@ UpdateChannels: ; e8125
 	ld a, [$c293]
 	and a, $f0
 	sla a
-	ld [$ff1c], a
+	ld [rNR32], a
 	ret
 
 .Channel4
@@ -472,24 +472,24 @@ UpdateChannels: ; e8125
 	ret
 .asm_e82c1 ; unused
 	ld a, [$c294]
-	ld [$ff22], a
+	ld [rNR43], a
 	ret
 .ch4rest
-	ld a, [$ff26]
+	ld a, [rNR52]
 	and a, %10000111 ; ch4 off
-	ld [$ff26], a
+	ld [rNR52], a
 	ld hl, $ff1f
 	call ClearChannel
 	ret
 .asm_e82d4
 	ld a, $3f ; sound length
-	ld [$ff20], a
+	ld [rNR41], a
 	ld a, [$c293]
-	ld [$ff21], a
+	ld [rNR42], a
 	ld a, [$c294]
-	ld [$ff22], a
+	ld [rNR43], a
 	ld a, $80
-	ld [$ff23], a
+	ld [rNR44], a
 	ret
 ; e82e7
 
@@ -535,15 +535,15 @@ Functione8307: ; e8307
 	ld hl, Tablee8350
 .updatehw
 	xor a
-	ld [$ff10], a ; sweep off
+	ld [rNR10], a ; sweep off
 	ld a, [hli]
-	ld [$ff11], a ; sound length / duty cycle
+	ld [rNR11], a ; sound length / duty cycle
 	ld a, [hli]
-	ld [$ff12], a ; ch1 volume envelope
+	ld [rNR12], a ; ch1 volume envelope
 	ld a, [hli]
-	ld [$ff13], a ; ch1 frequency lo
+	ld [rNR13], a ; ch1 frequency lo
 	ld a, [hli]
-	ld [$ff14], a ; ch1 frequency hi
+	ld [rNR14], a ; ch1 frequency hi
 .asm_e8335
 	ld a, d
 	inc a
@@ -1192,7 +1192,7 @@ ParseMusic: ; e85e1
 	jr nz, .ok
 	; ????
 	xor a
-	ld [$ff10], a ; sweep = 0
+	ld [rNR10], a ; sweep = 0
 .ok
 ; stop playing
 	; turn channel off
@@ -2352,72 +2352,87 @@ LoadMusic: ; e8b30
 ; e8b79
 
 PlayCry: ; e8b79
-; input: de = cry id
+; Play cry de using parameters:
+;	CryPitch
+;	CryEcho
+;	CryLength
+	
 	call MusicOff
-	; load cry id
+	
+; Overload the music id with the cry id
 	ld hl, MusicID
 	ld [hl], e
 	inc hl
 	ld [hl], d
-	; seek pointer table
+	
+; 3-byte pointers (bank, address)
 	ld hl, Cries
 	add hl, de
 	add hl, de
 	add hl, de
-	; get bank
+	
 	ld a, [hli]
 	ld [MusicBank], a
-	; get address
+	
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
-; read cry header
-	; get byte at bank:address
+	
+; Read the cry's sound header
 	call FarLoadMusicByte
-	; get top 2 bits (# chs)
+	; Top 2 bits contain the number of channels
 	rlca
 	rlca
-	and a, $03
-	inc a ; ch count -> loop count
+	and a, 3
+	
+; For each channel:
+	inc a
 .loop
 	push af
 	call LoadChannel
+	
 	ld hl, Channel1Flags - Channel1
 	add hl, bc
 	set 5, [hl]
+	
 	ld hl, Channel1Flags2 - Channel1
 	add hl, bc
 	set 4, [hl]
-	ld hl, $0027
+	
+	ld hl, Channel1CryPitch - Channel1
 	add hl, bc
-	ld a, [$c2b0]
+	ld a, [CryPitch]
 	ld [hli], a
-	ld a, [$c2b1]
+	ld a, [CryEcho]
 	ld [hl], a
-	; are we on the last channel? (music & sfx)
+	
+; No tempo for channel 4
 	ld a, [CurChannel]
-	and a, $03
-	cp a, $03
+	and a, 3
+	cp 3
 	jr nc, .start
-	; update tempo
+	
+; Tempo is effectively length
 	ld hl, Channel1Tempo - Channel1
 	add hl, bc
-	ld a, [$c2b2]
+	ld a, [CryLength]
 	ld [hli], a
-	ld a, [$c2b3]
+	ld a, [CryLength+1]
 	ld [hl], a
 .start
 	call StartChannel
 	ld a, [$c2bc]
 	and a
 	jr z, .next
-; play cry from the side of the monster it's coming from (stereo only)
-; outside of battles cries play on both tracks
-	; is stereo on?
+	
+; Stereo only: Play cry from the monster's side.
+; This only applies in-battle.
+	
 	ld a, [Options]
 	bit 5, a ; stereo
 	jr z, .next
-	; and [Tracks], [CryTracks]
+	
+; [Tracks] &= [CryTracks]
 	ld hl, Channel1Tracks - Channel1
 	add hl, bc
 	ld a, [hl]
@@ -2426,21 +2441,25 @@ PlayCry: ; e8b79
 	ld hl, Channel1Tracks - Channel1
 	add hl, bc
 	ld [hl], a
+	
 .next
 	pop af
 	dec a
 	jr nz, .loop
-	; save current volume
+	
+	
+; Cries play at max volume, so we save the current volume for later.
 	ld a, [LastVolume]
 	and a
 	jr nz, .end
+	
 	ld a, [Volume]
 	ld [LastVolume], a
-	; cries have max volume
 	ld a, $77
 	ld [Volume], a
+	
 .end
-	ld a, $01 ; stop playing music
+	ld a, 1 ; stop playing music
 	ld [SFXPriority], a
 	call MusicOn
 	ret
@@ -2454,56 +2473,56 @@ LoadSFX: ; e8c04
 	jr z, .ch6
 	res 0, [hl] ; turn it off
 	xor a
-	ld [$ff11], a ; length/wavepattern = 0
+	ld [rNR11], a ; length/wavepattern = 0
 	ld a, $08
-	ld [$ff12], a ; envelope = 0
+	ld [rNR12], a ; envelope = 0
 	xor a
-	ld [$ff13], a ; frequency lo = 0
+	ld [rNR13], a ; frequency lo = 0
 	ld a, $80
-	ld [$ff14], a ; restart sound (freq hi = 0)
+	ld [rNR14], a ; restart sound (freq hi = 0)
 	xor a
 	ld [SoundInput], a ; global sound off
-	ld [$ff10], a ; sweep = 0
+	ld [rNR10], a ; sweep = 0
 .ch6
 	ld hl, $c1fe ; ch6 on?
 	bit 0, [hl]
 	jr z, .ch7
 	res 0, [hl] ; turn it off
 	xor a
-	ld [$ff16], a ; length/wavepattern = 0
+	ld [rNR21], a ; length/wavepattern = 0
 	ld a, $08
-	ld [$ff17], a ; envelope = 0
+	ld [rNR22], a ; envelope = 0
 	xor a
-	ld [$ff18], a ; frequency lo = 0
+	ld [rNR23], a ; frequency lo = 0
 	ld a, $80
-	ld [$ff19], a ; restart sound (freq hi = 0)
+	ld [rNR24], a ; restart sound (freq hi = 0)
 .ch7
 	ld hl, $c230 ; ch7 on?
 	bit 0, [hl]
 	jr z, .ch8
 	res 0, [hl] ; turn it off
 	xor a
-	ld [$ff1a], a ; sound mode #3 off
-	ld [$ff1b], a ; length/wavepattern = 0
+	ld [rNR30], a ; sound mode #3 off
+	ld [rNR31], a ; length/wavepattern = 0
 	ld a, $08
-	ld [$ff1c], a ; envelope = 0
+	ld [rNR32], a ; envelope = 0
 	xor a
-	ld [$ff1d], a ; frequency lo = 0
+	ld [rNR33], a ; frequency lo = 0
 	ld a, $80
-	ld [$ff1e], a ; restart sound (freq hi = 0)
+	ld [rNR34], a ; restart sound (freq hi = 0)
 .ch8
 	ld hl, $c262 ; ch8 on?
 	bit 0, [hl]
 	jr z, .chscleared
 	res 0, [hl] ; turn it off
 	xor a
-	ld [$ff20], a ; length/wavepattern = 0
+	ld [rNR41], a ; length/wavepattern = 0
 	ld a, $08
-	ld [$ff21], a ; envelope = 0
+	ld [rNR42], a ; envelope = 0
 	xor a
-	ld [$ff22], a ; frequency lo = 0
+	ld [rNR43], a ; frequency lo = 0
 	ld a, $80
-	ld [$ff23], a ; restart sound (freq hi = 0)
+	ld [rNR44], a ; restart sound (freq hi = 0)
 	xor a
 	ld [NoiseSampleAddressLo], a
 	ld [NoiseSampleAddressHi], a
@@ -3126,13 +3145,13 @@ ChannelPointers: ; e8fd9
 ClearChannels: ; e8fe9
 ; runs ClearChannel for all 4 channels
 ; doesn't seem to be used, but functionally identical to SoundRestart
-	ld hl, $ff24
+	ld hl, rNR50
 	xor a
 	ld [hli], a
 	ld [hli], a
 	ld a, $80
 	ld [hli], a
-	ld hl, $ff10
+	ld hl, rNR10
 	ld e, $04
 .loop
 	call ClearChannel
@@ -3142,19 +3161,19 @@ ClearChannels: ; e8fe9
 ; e8ffe
 
 ClearChannel: ; e8ffe
-; input: hl = beginning hw sound register ($ff10, $ff15, $ff1a, $ff1f)
+; input: hl = beginning hw sound register (rNR10, $ff15, rNR30, $ff1f)
 ; output: 00 00 80 00 80
 
 ;   sound channel   1      2      3      4
 	xor a
-	ld [hli], a ; $ff10, $ff15, $ff1a, $ff1f ; sweep = 0
+	ld [hli], a ; rNR10, $ff15, rNR30, $ff1f ; sweep = 0
 
-	ld [hli], a ; $ff11, $ff16, $ff1b, $ff20 ; length/wavepattern = 0
+	ld [hli], a ; rNR11, rNR21, rNR31, rNR41 ; length/wavepattern = 0
 	ld a, $08
-	ld [hli], a ; $ff12, $ff17, $ff1c, $ff21 ; envelope = 0
+	ld [hli], a ; rNR12, rNR22, rNR32, rNR42 ; envelope = 0
 	xor a
-	ld [hli], a ; $ff13, $ff18, $ff1d, $ff22 ; frequency lo = 0
+	ld [hli], a ; rNR13, rNR23, rNR33, rNR43 ; frequency lo = 0
 	ld a, $80
-	ld [hli], a ; $ff14, $ff19, $ff1e, $ff23 ; restart sound (freq hi = 0)
+	ld [hli], a ; rNR14, rNR24, rNR34, rNR44 ; restart sound (freq hi = 0)
 	ret
 ; e900a

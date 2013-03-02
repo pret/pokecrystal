@@ -592,7 +592,7 @@ def asm_label(address):
     # why using a random value when you can use the address?
     return ".ASM_" + hex(address)[2:]
 
-def output_bank_opcodes(original_offset, max_byte_count=0x4000, debug = False):
+def output_bank_opcodes(original_offset, max_byte_count=0x4000, include_last_address=True, stop_at=[], debug = False):
     #fs = current_address
     #b = bank_byte
     #in = input_data  -- rom
@@ -600,6 +600,10 @@ def output_bank_opcodes(original_offset, max_byte_count=0x4000, debug = False):
     #i = offset
     #ad = end_address
     #a, oa = current_byte_number
+
+    # stop_at can be used to supply a list of addresses to not disassemble
+    # over. This is useful if you know in advance that there are a lot of
+    # fall-throughs.
 
     load_labels()
     load_rom()
@@ -622,12 +626,18 @@ def output_bank_opcodes(original_offset, max_byte_count=0x4000, debug = False):
 
     byte_labels = {}
 
+    first_loop = True
     output = ""
     keep_reading = True
     while offset <= end_address and keep_reading:
         current_byte = ord(rom[offset])
         is_data = False
         maybe_byte = current_byte
+
+        # stop at any address
+        if not first_loop and offset in stop_at:
+            keep_reading = False
+            break
 
         #first check if this byte already has a label
         #if it does, use the label
@@ -816,6 +826,8 @@ def output_bank_opcodes(original_offset, max_byte_count=0x4000, debug = False):
         #offset += 1
         #current_byte_number += 1
 
+        first_loop = False
+
     #clean up unused labels
     for label_line in byte_labels.keys():
         address = label_line
@@ -824,7 +836,8 @@ def output_bank_opcodes(original_offset, max_byte_count=0x4000, debug = False):
             output = output.replace((label_line["name"] + "\n").lower(), "")
 
     #add the offset of the final location
-    output += "; " + hex(offset)
+    if include_last_address:
+        output += "; " + hex(offset)
 
     return (output, offset, last_hl_address, last_a_address, used_3d97)
 

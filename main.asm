@@ -4,7 +4,7 @@ SECTION "rst0",HOME[$0]
 	jp Start
 
 SECTION "rst8",HOME[$8] ; FarCall
-	jp $2d63
+	jp FarJpHl
 
 SECTION "rst10",HOME[$10] ; Bankswitch
 	ld [$ff9d], a
@@ -47,7 +47,7 @@ SECTION "serial",HOME[$58] ; serial interrupt
 	jp $06ef
 
 SECTION "joypad",HOME[$60] ; joypad interrupt
-	jp $092e
+	jp JoypadInt
 
 SECTION "romheader",HOME[$100]
 Start:
@@ -84,7 +84,6 @@ DelayFrames: ; 0x468
 	jr nz, DelayFrames
 	ret
 ; 0x46f
-
 
 RTC: ; 46f
 ; update time and time-sensitive palettes
@@ -150,47 +149,47 @@ DisableLCD: ; 568
 ; Most of this is just going through the motions
 
 ; don't need to do anything if lcd is already off
-	ld a, [$ff40] ; LCDC
+	ld a, [rLCDC]
 	bit 7, a ; lcd enable
 	ret z
 	
 ; reset ints
 	xor a
-	ld [$ff0f], a ; IF
+	ld [rIF], a
 	
 ; save enabled ints
-	ld a, [$ffff] ; IE
+	ld a, [rIE]
 	ld b, a
 	
 ; disable vblank
 	res 0, a ; vblank
-	ld [$ffff], a ; IE
+	ld [rIE], a
 	
 .wait
 ; wait until vblank
-	ld a, [$ff44] ; LY
+	ld a, [rLY]
 	cp 145 ; >144 (ensure beginning of vblank)
 	jr nz, .wait
 	
 ; turn lcd off
-	ld a, [$ff40] ; LCDC
+	ld a, [rLCDC]
 	and %01111111 ; lcd enable off
-	ld [$ff40], a ; LCDC
+	ld [rLCDC], a
 	
 ; reset ints
 	xor a
-	ld [$ff0f], a ; IF
+	ld [rIF], a
 	
 ; restore enabled ints
 	ld a, b
-	ld [$ffff], a ; IE
+	ld [rIE], a
 	ret
 ; 58a
 
 EnableLCD: ; 58a
-	ld a, [$ff40] ; LCDC
+	ld a, [rLCDC]
 	set 7, a ; lcd enable
-	ld [$ff40], a ; LCDC
+	ld [rLCDC], a
 	ret
 ; 591
 
@@ -425,252 +424,11 @@ SetClock: ; 691
 	ret
 ; 6c4
 
-INCBIN "baserom.gbc",$6c4,$935 - $6c4
-
-Joypad: ; 935
-; update joypad state
-; $ffa2: released
-; $ffa3: pressed
-; $ffa4: input
-; $ffa5: total pressed
-
-; 
-	ld a, [$cfbe]
-	and $d0
-	ret nz
-	
-; pause game update?
-	ld a, [$c2cd]
-	and a
-	ret nz
-	
-; d-pad
-	ld a, $20
-	ld [$ff00], a
-	ld a, [$ff00]
-	ld a, [$ff00]
-; hi nybble
-	cpl
-	and $f
-	swap a
-	ld b, a
-	
-; buttons
-	ld a, $10
-	ld [$ff00], a
-; wait to stabilize
-	ld a, [$ff00]
-	ld a, [$ff00]
-	ld a, [$ff00]
-	ld a, [$ff00]
-	ld a, [$ff00]
-	ld a, [$ff00]
-; lo nybble
-	cpl
-	and $f
-	or b
-	ld b, a
-	
-; reset joypad
-	ld a, $30
-	ld [$ff00], a
-	
-; get change in input
-	ld a, [$ffa4] ; last frame's input
-	ld e, a
-	xor b ; current frame input
-	ld d, a
-; released
-	and e
-	ld [$ffa2], a
-; pressed
-	ld a, d
-	and b
-	ld [$ffa3], a
-	
-; total pressed
-	ld c, a
-	ld a, [$ffa5]
-	or c
-	ld [$ffa5], a
-	
-; original input
-	ld a, b
-	ld [$ffa4], a
-	
-; A+B+SELECT+START
-	and $f
-	cp $f
-	jp z, $0150 ; reset
-	
-	ret
-; 984
+INCBIN "baserom.gbc",$6c4,$92e - $6c4
 
 
-GetJoypadPublic: ; 984
-; update mirror joypad input from $ffa4 (real input)
+INCLUDE "joypad.asm"
 
-; $ffa6: released
-; $ffa7: pressed
-; $ffa8: input
-
-; bit 0 A
-;     1 B
-;     2 SELECT
-;     3 START
-;     4 RIGHT
-;     5 LEFT
-;     6 UP
-;     7 DOWN
-
-	push af
-	push hl
-	push de
-	push bc
-	
-; automated input?
-	ld a, [InputType]
-	cp a, $ff ; INPUT_AUTO
-	jr z, .auto
-
-; get input
-	ld a, [$ffa4] ; real input
-	ld b, a
-	ld a, [$ffa8] ; last frame mirror
-	ld e, a
-	
-; released
-	xor b
-	ld d, a
-	and e
-	ld [$ffa6], a
-	
-; pressed
-	ld a, d
-	and b
-	ld [$ffa7], a
-	
-; leftover from pasted code
-	ld c, a
-	
-;
-	ld a, b
-	ld [$ffa8], a ; frame input
-.quit
-	pop bc
-	pop de
-	pop hl
-	pop af
-	ret	
-
-.auto
-; use predetermined input feed (used in catch tutorial)
-; struct: [input][duration]
-
-; save bank
-	ld a, [$ff9d]
-	push af
-;
-	ld a, [AutoInputBank]
-	rst Bankswitch
-;
-	ld hl, AutoInputAddress ; AutoInputAddress-9
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	
-; update when frame count hits 0
-	ld a, [AutoInputLength]
-	and a
-	jr z, .updateauto
-	
-; until then, do nothing
-	dec a
-	ld [AutoInputLength], a
-; restore bank
-	pop af
-	rst Bankswitch
-; we're done
-	jr .quit
-	
-.updateauto
-; get input
-	ld a, [hli]
-; stop?
-	cp a, $ff
-	jr z, .stopinput
-	ld b, a
-	
-; duration
-	ld a, [hli]
-	ld [AutoInputLength], a
-; duration $ff = end at input
-	cp a, $ff
-	jr nz, .next
-	
-; no input
-	dec hl
-	dec hl
-	ld b, $00 ; no input
-	jr .finishauto
-	
-.next
-; output recorded
-	ld a, l
-	ld [AutoInputAddress], a
-	ld a, h
-	ld [AutoInputAddress+1], a
-	jr .finishauto
-	
-.stopinput
-	call StopAutoInput
-	ld b, $00 ; no input
-	
-.finishauto
-; restore bank
-	pop af
-	rst Bankswitch
-; update mirrors
-	ld a, b
-	ld [$ffa7], a ; pressed
-	ld [$ffa8], a ; input
-	jr .quit
-; 9ee
-
-StartAutoInput: ; 9ee
-; start auto input stream at a:hl
-; bank
-	ld [AutoInputBank], a
-; address
-	ld a, l
-	ld [AutoInputAddress], a
-	ld a, h
-	ld [AutoInputAddress+1], a
-; don't wait to update
-	xor a
-	ld [AutoInputLength], a
-; clear input mirrors
-	xor a
-	ld [$ffa7], a ; pressed
-	ld [$ffa6], a ; released
-	ld [$ffa8], a ; input
-; start reading input stream instead of player input
-	ld a, $ff ; INPUT_AUTO
-	ld [InputType], a
-	ret
-; a0a
-
-StopAutoInput: ; a0a
-; clear autoinput ram
-	xor a
-	ld [AutoInputBank], a
-	ld [AutoInputAddress], a
-	ld [AutoInputAddress+1], a
-	ld [AutoInputLength], a
-; normal input
-	ld [InputType], a
-	ret
-; a1b
 
 INCBIN "baserom.gbc",$a1b,$b40 - $a1b
 
@@ -1063,18 +821,18 @@ UpdateCGBPals: ; c33
 	
 ForceUpdateCGBPals: ; c37
 ; save wram bank
-	ld a, [$ff70] ; wram bank
+	ld a, [rSVBK]
 	push af
 ; bankswitch
 	ld a, 5 ; BANK(BGPals)
-	ld [$ff70], a ; wram bank
+	ld [rSVBK], a
 ; get bg pal buffer
 	ld hl, BGPals ; 5:d080
 	
 ; update bg pals
 	ld a, %10000000 ; auto increment, index 0
-	ld [$ff68], a ; BGPI
-	ld c, $69 ; $ff69
+	ld [rBGPI], a
+	ld c, rBGPD - rJOYP
 	ld b, 4 ; NUM_PALS / 2
 	
 .bgp
@@ -1119,8 +877,8 @@ ForceUpdateCGBPals: ; c37
 	
 ; update obj pals
 	ld a, %10000000 ; auto increment, index 0
-	ld [$ff6a], a
-	ld c, $6b ; $ff6b - $ff00
+	ld [rOBPI], a
+	ld c, rOBPD - rJOYP
 	ld b, 4 ; NUM_PALS / 2
 	
 .obp
@@ -1163,7 +921,7 @@ ForceUpdateCGBPals: ; c37
 	
 ; restore wram bank
 	pop af
-	ld [$ff70], a ; wram bank
+	ld [rSVBK], a
 ; clear pal update queue
 	xor a
 	ld [$ffe5], a
@@ -1177,7 +935,7 @@ DmgToCgbBGPals: ; c9f
 ; exists to forego reinserting cgb-converted image data
 
 ; input: a -> bgp
-	ld [$ff47], a ; bgp
+	ld [rBGP], a
 	push af
 	
 ; check cgb
@@ -1199,7 +957,7 @@ DmgToCgbBGPals: ; c9f
 	ld hl, BGPals ; to
 	ld de, Unkn1Pals ; from
 ; order
-	ld a, [$ff47] ; bgp
+	ld a, [rBGP]
 	ld b, a
 ; # pals
 	ld c, 8 ; all pals
@@ -1225,9 +983,9 @@ DmgToCgbObjPals: ; ccb
 ; input: d -> obp1
 ;		 e -> obp2
 	ld a, e
-	ld [$ff48], a ; obp0
+	ld [rOBP0], a
 	ld a, d
-	ld [$ff49], a ; obp1
+	ld [rOBP1], a
 	
 ; check cgb
 	ld a, [$ffe6]
@@ -1250,7 +1008,7 @@ DmgToCgbObjPals: ; ccb
 	; from
 	ld de, Unkn2Pals
 ; order
-	ld a, [$ff48] ; obp0
+	ld a, [rOBP0]
 	ld b, a
 ; # pals
 	ld c, 8 ; all pals
@@ -1378,7 +1136,7 @@ ClearTileMap: ; fc8
 	call ByteFill
 	
 ; We aren't done if the LCD is on
-	ld a, [$ff40] ; LCDC
+	ld a, [rLCDC]
 	bit 7, a
 	ret z
 	jp WaitBGMap
@@ -1668,7 +1426,7 @@ DMATransfer: ; 15d8
 	and a
 	ret z
 ; start transfer
-	ld [$ff55], a ; hdma5
+	ld [rHDMA5], a
 ; indicate that transfer has occurred
 	xor a
 	ld [$ffe8], a
@@ -1689,7 +1447,7 @@ UpdateBGMapBuffer: ; 15e3
 	and a
 	ret z
 ; save wram bank
-	ld a, [$ff4f] ; vram bank
+	ld a, [rVBK]
 	push af
 ; save sp
 	ld [$ffd9], sp
@@ -1712,7 +1470,7 @@ UpdateBGMapBuffer: ; 15e3
 	pop bc
 ; update palettes
 	ld a, $1
-	ld [$ff4f], a ; vram bank
+	ld [rVBK], a
 ; tile 1
 	ld a, [hli]
 	ld [bc], a
@@ -1723,7 +1481,7 @@ UpdateBGMapBuffer: ; 15e3
 	dec c
 ; update tiles
 	ld a, $0
-	ld [$ff4f], a ; vram bank
+	ld [rVBK], a
 ; tile 1
 	ld a, [de]
 	inc de
@@ -1740,7 +1498,7 @@ UpdateBGMapBuffer: ; 15e3
 	pop bc
 ; update palettes
 	ld a, $1
-	ld [$ff4f], a ; vram bank
+	ld [rVBK], a
 ; tile 1
 	ld a, [hli]
 	ld [bc], a
@@ -1751,7 +1509,7 @@ UpdateBGMapBuffer: ; 15e3
 	dec c
 ; update tiles
 	ld a, $0
-	ld [$ff4f], a ; vram bank
+	ld [rVBK], a
 ; tile 1
 	ld a, [de]
 	inc de
@@ -1781,7 +1539,7 @@ UpdateBGMapBuffer: ; 15e3
 	
 ; restore vram bank
 	pop af
-	ld [$ff4f], a ; vram bank
+	ld [rVBK], a
 	
 ; we don't need to update bg map until new tiles are loaded
 	xor a
@@ -1859,13 +1617,13 @@ UpdateBGMap: ; 164c
 .attr
 ; switch vram banks
 	ld a, 1
-	ld [$ff4f], a ; vram bank
+	ld [rVBK], a
 ; bg map 1
 	ld hl, AttrMap
 	call .getthird
 ; restore vram bank
 	ld a, 0
-	ld [$ff4f], a ; vram bank
+	ld [rVBK], a
 	ret
 	
 .tiles
@@ -2012,7 +1770,7 @@ SafeLoadTiles2: ; 170a
 	and a
 	ret z
 ; abort if too far into vblank
-	ld a, [$ff44] ; LY
+	ld a, [rLY]
 ; ly = 144-145?
 	cp 144
 	ret c
@@ -2114,7 +1872,7 @@ SafeLoadTiles: ; 1769
 	and a
 	ret z
 ; abort if too far into vblank
-	ld a, [$ff44] ; LY
+	ld a, [rLY]
 ; ly = 144-145?
 	cp 144
 	ret c
@@ -2230,7 +1988,7 @@ SafeTileAnimation: ; 17d3
 	ret z
 	
 ; abort if too far into vblank
-	ld a, [$ff44] ; LY
+	ld a, [rLY]
 ; ret unless ly = 144-150
 	cp 144
 	ret c
@@ -2244,24 +2002,24 @@ SafeTileAnimation: ; 17d3
 	ld a, BANK(DoTileAnimation)
 	rst Bankswitch ; bankswitch
 
-	ld a, [$ff70] ; wram bank
+	ld a, [rSVBK]
 	push af ; save wram bank
 	ld a, $1 ; wram bank 1
-	ld [$ff70], a ; wram bank
+	ld [rSVBK], a
 
-	ld a, [$ff4f] ; vram bank
+	ld a, [rVBK]
 	push af ; save vram bank
 	ld a, $0 ; vram bank 0
-	ld [$ff4f], a ; vram bank
+	ld [rVBK], a
 	
 ; take care of tile animation queue
 	call DoTileAnimation
 	
 ; restore affected banks
 	pop af
-	ld [$ff4f], a ; vram bank
+	ld [rVBK], a
 	pop af
-	ld [$ff70], a ; wram bank
+	ld [rSVBK], a
 	pop af
 	rst Bankswitch ; bankswitch
 	ret
@@ -2319,15 +2077,15 @@ AskSerial: ; 2063
 	
 ; handshake
 	ld a, $88
-	ld [$ff01], a
+	ld [rSB], a
 	
 ; switch to internal clock
 	ld a, %00000001
-	ld [$ff02], a
+	ld [rSC], a
 	
 ; start transfer
 	ld a, %10000001
-	ld [$ff02], a
+	ld [rSC], a
 	
 	ret
 ; 208a
@@ -2339,17 +2097,17 @@ GameTimer: ; 209e
 	nop
 	
 ; save wram bank
-	ld a, [$ff70] ; wram bank
+	ld a, [rSVBK]
 	push af
 	
 	ld a, $1
-	ld [$ff70], a ; wram bank
+	ld [rSVBK], a
 	
 	call UpdateGameTimer
 	
 ; restore wram bank
 	pop af
-	ld [$ff70], a ; wram bank
+	ld [rSVBK], a
 	ret
 ; 20ad
 
@@ -2486,16 +2244,50 @@ PushScriptPointer: ; 261f
 	ret
 ; 2631
 
-INCBIN "baserom.gbc",$2631,$26ef - $2631
+INCBIN "baserom.gbc",$2631,$26d4 - $2631
+
+GetScriptByte: ; 0x26d4
+; Return byte at ScriptBank:ScriptPos in a.
+
+	push hl
+	push bc
+
+	ld a, [$ff9d]
+	push af
+
+	ld a, [ScriptBank]
+	rst Bankswitch
+
+	ld hl, ScriptPos
+	ld c, [hl]
+	inc hl
+	ld b, [hl]
+
+	ld a, [bc]
+
+	inc bc
+	ld [hl], b
+	dec hl
+	ld [hl], c
+
+	ld b, a
+	pop af
+	rst Bankswitch
+	ld a, b
+
+	pop bc
+	pop hl
+	ret
+; 0x26ef
 
 ObjectEvent: ; 0x26ef
 	jumptextfaceplayer ObjectEventText
 ; 0x26f2
 
-
 ObjectEventText:
 	TX_FAR _ObjectEventText
 	db "@"
+; 0x26f7
 
 INCBIN "baserom.gbc",$26f7,$2bed-$26f7
 
@@ -2530,6 +2322,7 @@ GetMapHeaderPointer: ; 0x2bed
 	ld a, OlivineGym_MapHeader - OlivinePokeCenter1F_MapHeader
 	call AddNTimes
 	ret
+; 0x2c04
 
 GetMapHeaderMember: ; 0x2c04
 ; Extract data from the current map's header.
@@ -2596,7 +2389,43 @@ GetWorldMapLocation: ; 0x2caf
 	ret
 ; 0x2cbd
 
-INCBIN "baserom.gbc",$2cbd,$2d83-$2cbd
+INCBIN "baserom.gbc",$2cbd,$2d63-$2cbd
+
+FarJpHl: ; 2d63
+; Jump to a:hl.
+; Preserves all registers besides a.
+
+; Switch to the new bank.
+	ld [$ff8b], a
+	ld a, [$ff9d]
+	push af
+	ld a, [$ff8b]
+	rst Bankswitch
+	
+	call .hl
+	
+; We want to retain the contents of f.
+; To do this, we can pop to bc instead of af.
+	
+	ld a, b
+	ld [$cfb9], a
+	ld a, c
+	ld [$cfba], a
+	
+; Restore the working bank.
+	pop bc
+	ld a, b
+	rst Bankswitch
+	
+	ld a, [$cfb9]
+	ld b, a
+	ld a, [$cfba]
+	ld c, a
+	ret
+.hl
+	jp [hl]
+; 2d83
+
 
 Predef: ; 2d83
 ; call a function from given id a
@@ -2764,13 +2593,13 @@ RNG: ; 2f8c
 
 	push bc
 ; Added value
-	ld a, [$ff04] ; divider
+	ld a, [rDIV]
 	ld b, a
 	ld a, [$ffe1]
 	adc b
 	ld [$ffe1], a
 ; Subtracted value
-	ld a, [$ff04] ; divider
+	ld a, [rDIV]
 	ld b, a
 	ld a, [$ffe2]
 	sbc b
@@ -3216,9 +3045,9 @@ ClearPalettes: ; 3317
 	
 ; In DMG mode, we can just change palettes to 0 (white)
 	xor a
-	ld [$ff47], a ; BGP
-	ld [$ff48], a ; OBP0
-	ld [$ff49], a ; OBP1
+	ld [rBGP], a
+	ld [rOBP0], a
+	ld [rOBP1], a
 	ret
 	
 .cgb
@@ -3633,7 +3462,71 @@ StartMusic: ; 3b97
 	ret
 ; 3bbc
 
-INCBIN "baserom.gbc",$3bbc,$3c23 - $3bbc
+INCBIN "baserom.gbc",$3bbc,$3be3 - $3bbc
+
+PlayCryHeader: ; 3be3
+; Play a cry given parameters in header de
+	
+	push hl
+	push de
+	push bc
+	push af
+	
+; Save current bank
+	ld a, [$ff9d]
+	push af
+	
+; Cry headers are stuck in one bank.
+	ld a, BANK(CryHeaders)
+	ld [$ff9d], a
+	ld [$2000], a
+	
+; Each header is 6 bytes long:
+	ld hl, CryHeaders
+	add hl, de
+	add hl, de
+	add hl, de
+	add hl, de
+	add hl, de
+	add hl, de
+	
+; Header struct:
+
+; id
+	ld e, [hl]
+	inc hl
+	ld d, [hl]
+	inc hl
+; pitch
+	ld a, [hli]
+	ld [CryPitch], a
+; echo
+	ld a, [hli]
+	ld [CryEcho], a
+; length
+	ld a, [hli]
+	ld [CryLength], a
+	ld a, [hl]
+	ld [CryLength+1], a
+	
+; That's it for the header
+	ld a, BANK(PlayCry)
+	ld [$ff9d], a
+	ld [$2000], a
+	call PlayCry
+	
+; Restore bank
+	pop af
+	ld [$ff9d], a
+	ld [$2000], a
+	
+	pop af
+	pop bc
+	pop de
+	pop hl
+	ret
+; 3c23
+
 
 StartSFX: ; 3c23
 ; sfx id order is by priority (highest to lowest)
@@ -3782,7 +3675,66 @@ IntroFadePalettes: ; 0x617c
 	db %11100100
 ; 6182
 
-INCBIN "baserom.gbc",$6182,$669f - $6182
+INCBIN "baserom.gbc",$6182,$6274 - $6182
+
+FarStartTitleScreen: ; 6274
+	callba StartTitleScreen
+	ret
+; 627b
+
+INCBIN "baserom.gbc",$627b,$62bc - $627b
+
+TitleScreenEntrance: ; 62bc
+
+; Animate the logo:
+; Move each line by 4 pixels until our count hits 0.
+	ld a, [$ffcf]
+	and a
+	jr z, .done
+	sub 4
+	ld [$ffcf], a
+	
+; Lay out a base (all lines scrolling together).
+	ld e, a
+	ld hl, $d100
+	ld bc, 8 * 10 ; logo height
+	call ByteFill
+	
+; Alternate signage for each line's position vector.
+; This is responsible for the interlaced effect.
+	ld a, e
+	xor $ff
+	inc a
+	
+	ld b, 8 * 10 / 2 ; logo height / 2
+	ld hl, $d101
+.loop
+	ld [hli], a
+	inc hl
+	dec b
+	jr nz, .loop
+	
+	callba AnimateTitleCrystal
+	ret
+	
+	
+.done
+; Next scene
+	ld hl, $cf63
+	inc [hl]
+	xor a
+	ld [$ffc6], a
+	
+; Play the title screen music.
+	ld de, MUSIC_TITLE
+	call StartMusic
+	
+	ld a, $88
+	ld [$ffd2], a
+	ret
+; 62f6
+
+INCBIN "baserom.gbc",$62f6,$669f - $62f6
 
 CheckNickErrors: ; 669f
 ; error-check monster nick before use
@@ -3890,7 +3842,7 @@ DrawGraphic: ; 6eef
 	ret
 ; 6f07
 
-INCBIN "baserom.gbc",$6f07,$8000 - $6f07
+INCBIN "baserom.gbc",$6f07,$747b - $6f07
 
 
 SECTION "bank2",DATA,BANK[$2]
@@ -4102,7 +4054,7 @@ INCBIN "baserom.gbc",$b0ae,$b0d2 - $b0ae
 TrainerPalettes:
 INCLUDE "gfx/trainers/palette_pointers.asm"
 
-INCBIN "baserom.gbc",$b1de,$bc3a - $b1de
+INCBIN "baserom.gbc",$b1de,$b825 - $b1de
 
 
 SECTION "bank3",DATA,BANK[$3]
@@ -4666,7 +4618,7 @@ AskSurfText: ; ca36
 	db "@"				; Want to SURF?
 ; ca3b
 
-INCBIN "baserom.gbc",$ca3b,$10000 - $ca3b
+INCBIN "baserom.gbc",$ca3b,$fa0b - $ca3b
 
 
 SECTION "bank4",DATA,BANK[$4]
@@ -4887,7 +4839,39 @@ OpenPartyStats: ; 12e00
 	ret
 ; 0x12e1b
 
-INCBIN "baserom.gbc",$12e1b,$14000 - $12e1b
+INCBIN "baserom.gbc",$12e1b,$13b87 - $12e1b
+
+GetSquareRoot: ; 13b87
+; Return the square root of de in b.
+
+; Rather than calculating the result, we take the index of the
+; first value in a table of squares that isn't lower than de.
+
+	ld hl, Squares
+	ld b, 0
+.loop
+; Make sure we don't go past the end of the table.
+	inc b
+	ld a, b
+	cp $ff
+	ret z
+
+; Iterate over the table until b**2 >= de.
+	ld a, [hli]
+	sub e
+	ld a, [hli]
+	sbc d
+
+	jr c, .loop
+	ret
+
+Squares: ; 13b98
+root	set 1
+	rept $ff
+	dw root*root
+root	set root+1
+	endr
+; 13d96
 
 
 SECTION "bank5",DATA,BANK[$5]
@@ -4989,7 +4973,7 @@ Tileset20GFX: ; 1b43e
 INCBIN "gfx/tilesets/20.lz"
 ; 1b8f1
 
-INCBIN "baserom.gbc", $1b8f1, $1c000 - $1b8f1
+INCBIN "baserom.gbc", $1b8f1, $1bdfe - $1b8f1
 
 
 SECTION "bank7",DATA,BANK[$7]
@@ -5031,8 +5015,6 @@ INCBIN "baserom.gbc", $1ee0e, $1f31c - $1ee0e
 Music_Credits:       INCLUDE "audio/music/credits.asm"
 Music_Clair:         INCLUDE "audio/music/clair.asm"
 Music_MobileAdapter: INCLUDE "audio/music/mobileadapter.asm"
-
-INCBIN "baserom.gbc",$1ff6c, $20000 - $1ff6c
 
 
 SECTION "bank8",DATA,BANK[$8]
@@ -5172,7 +5154,7 @@ TrainerClassDVs ; 270d6
 	db $98, $88 ; mysticalman
 ; 2715c
 
-INCBIN "baserom.gbc",$2715c,$28000 - $2715c
+INCBIN "baserom.gbc",$2715c,$27a2d - $2715c
 
 
 SECTION "bankA",DATA,BANK[$A]
@@ -5415,7 +5397,7 @@ INCBIN "baserom.gbc",$2C41a,$2ee8f - $2C41a
 	pop hl
 	ret
 
-INCBIN "baserom.gbc",$2ef18,$30000 - $2ef18
+INCBIN "baserom.gbc",$2ef18,$2ef9f - $2ef18
 
 
 SECTION "bankC",DATA,BANK[$C]
@@ -5448,7 +5430,7 @@ Tileset30GFX: ; 326b0
 INCBIN "gfx/tilesets/30.lz"
 ; 329ed
 
-INCBIN "baserom.gbc",$329ed,$34000 - $329ed
+INCBIN "baserom.gbc",$329ed,$333f0 - $329ed
 
 
 SECTION "bankD",DATA,BANK[$D]
@@ -5459,7 +5441,7 @@ TypeMatchup: ; 34bb1
 INCLUDE "battle/type_matchup.asm"
 ; 34cfd
 
-INCBIN "baserom.gbc",$34cfd,$38000 - $34cfd
+INCBIN "baserom.gbc",$34cfd,$37ee2 - $34cfd
 
 
 SECTION "bankE",DATA,BANK[$E]
@@ -5761,7 +5743,7 @@ LoadEnemyMon: ; 3e8eb
 	callab CalcMagikarpLength
 	
 ; We're clear if the length is < 1536
-	ld a, [MagikarpLengthHi]
+	ld a, [MagikarpLength]
 	cp a, $06 ; $600 = 1536
 	jr nz, .CheckMagikarpArea
 	
@@ -5770,7 +5752,7 @@ LoadEnemyMon: ; 3e8eb
 	cp a, $0c ; / $100
 	jr c, .CheckMagikarpArea
 ; Try again if > 1614
-	ld a, [MagikarpLengthLo]
+	ld a, [MagikarpLength + 1]
 	cp a, $50
 	jr nc, .GenerateDVs
 	
@@ -5779,7 +5761,7 @@ LoadEnemyMon: ; 3e8eb
 	cp a, $32 ; / $100
 	jr c, .CheckMagikarpArea
 ; Try again if > 1598
-	ld a, [MagikarpLengthLo]
+	ld a, [MagikarpLength + 1]
 	cp a, $40
 	jr nc, .GenerateDVs
 	
@@ -5804,7 +5786,7 @@ LoadEnemyMon: ; 3e8eb
 	cp a, $64 ; / $100
 	jr c, .Happiness
 ; Floor at length 1024
-	ld a, [MagikarpLengthHi]
+	ld a, [MagikarpLength]
 	cp a, $04 ; $400 = 1024
 	jr c, .GenerateDVs ; try again
 	
@@ -6081,42 +6063,47 @@ CheckSleepingTreeMon: ; 3eb38
 
 CheckUnownLetter: ; 3eb75
 ; Return carry if the Unown letter hasn't been unlocked yet
-	ld a, [$def3] ; UnownLetter
+	
+	ld a, [UnlockedUnowns]
 	ld c, a
-	ld de, $0000
+	ld de, 0
+	
 .loop
-; Has this set been unlocked?
+	
+; Don't check this set unless it's been unlocked
 	srl c
 	jr nc, .next
-; Check out the set
+	
+; Is our letter in the set?
 	ld hl, .LetterSets
 	add hl, de
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-; Is our letter in the set?
+	
 	push de
-	ld a, [$d234]
-	ld de, $0001
+	ld a, [UnownLetter]
+	ld de, 1
 	push bc
 	call IsInArray
 	pop bc
 	pop de
-	jr c, .Match
+	
+	jr c, .match
+	
 .next
-; Next set
+; Make sure we haven't gone past the end of the table
 	inc e
 	inc e
 	ld a, e
-; Gone past the end of the table?
-	cp a, 4*2 ; 4 sets with 2-byte pointers
+	cp a, .Set1 - .LetterSets
 	jr c, .loop
 	
-; Didn't find the letter (not unlocked)
+; Hasn't been unlocked, or the letter is invalid
 	scf
 	ret
 	
-.Match
+.match
 ; Valid letter
 	and a
 	ret
@@ -6128,25 +6115,20 @@ CheckUnownLetter: ; 3eb75
 	dw .Set4
 	
 .Set1
-	;   A    B    C    D    E    F    G    H    I    J    K
-	db $01, $02, $03, $04, $05, $06, $07, $08, $09, $0a, $0b
-	db $ff ; end
-	
+	;  A   B   C   D   E   F   G   H   I   J   K
+	db 01, 02, 03, 04, 05, 06, 07, 08, 09, 10, 11, $ff
 .Set2
-	;   L    M    N    O    P    Q    R
-	db $0c, $0d, $0e, $0f, $10, $11, $12
-	db $ff ; end
-	
+	;  L   M   N   O   P   Q   R
+	db 12, 13, 14, 15, 16, 17, 18, $ff
 .Set3
-	;   S    T    U    V    W
-	db $13, $14, $15, $16, $17
-	db $ff ; end
-	
+	;  S   T   U   V   W
+	db 19, 20, 21, 22, 23, $ff
 .Set4
-	;   X    Y    Z
-	db $18, $19, $1a
-	db $ff ; end
+	;  X   Y   Z
+	db 24, 25, 26, $ff
+	
 ; 3ebc7
+
 
 INCBIN "baserom.gbc", $3ebc7, $3edd8 - $3ebc7
 
@@ -6341,7 +6323,7 @@ BattleStartMessage:
 	ret
 ; 0x3fd26
 
-INCBIN "baserom.gbc",$3fd26,$40000 - $3fd26
+INCBIN "baserom.gbc",$3fd26,$3fe86 - $3fd26
 
 
 SECTION "bank10",DATA,BANK[$10]
@@ -6374,12 +6356,26 @@ INCBIN "baserom.gbc",$44000,$44378 - $44000
 PokedexDataPointerTable: ; 0x44378
 INCLUDE "stats/pokedex/entry_pointers.asm"
 
-INCBIN "baserom.gbc",$4456e,$3a92
+INCBIN "baserom.gbc",$4456e,$44997 - $4456e
 
 
 SECTION "bank12",DATA,BANK[$12]
 
-INCBIN "baserom.gbc",$48000,$49d24 - $48000
+INCBIN "baserom.gbc",$48000,$48e9b - $48000
+
+PackFGFX:
+INCBIN "gfx/misc/pack_f.2bpp"
+
+INCBIN "baserom.gbc",$4925b,$49962 - $4925b
+
+SpecialCelebiGFX:
+INCBIN "gfx/special/celebi/leaf.2bpp"
+INCBIN "gfx/special/celebi/1.2bpp"
+INCBIN "gfx/special/celebi/2.2bpp"
+INCBIN "gfx/special/celebi/3.2bpp"
+INCBIN "gfx/special/celebi/4.2bpp"
+
+INCBIN "baserom.gbc",$49aa2,$49d24 - $49aa2
 
 ContinueText: ; 0x49d24
 	db "CONTINUE@"
@@ -6736,7 +6732,7 @@ UpdateOTPointer: ; 0x4a83a
 	ret
 ; 0x4a843
 
-INCBIN "baserom.gbc",$4a843,$4C000 - $4a843
+INCBIN "baserom.gbc",$4a843,$4ae78 - $4a843
 
 
 SECTION "bank13",DATA,BANK[$13]
@@ -6985,7 +6981,13 @@ EggALotMoreTimeString: ; 0x4e46e
 
 ; 0x4e497
 
-INCBIN "baserom.gbc",$4e497,$50000 - $4e497
+INCBIN "baserom.gbc",$4e497,$4e831 - $4e497
+
+EvolutionGFX:
+INCBIN "gfx/evo/bubble_large.2bpp"
+INCBIN "gfx/evo/bubble.2bpp"
+
+INCBIN "baserom.gbc",$4e881,$4f31c - $4e881
 
 
 SECTION "bank14",DATA,BANK[$14]
@@ -7167,8 +7169,128 @@ Dragon:
 Dark:
 	db "DARK@"
 
-INCBIN "baserom.gbc",$50A28, $51424 - $50A28
+INCBIN "baserom.gbc", $50a28, $50bdd - $50a28
 
+
+GetGender: ; 50bdd
+; Return the gender of a given monster in a.
+
+; 1: male
+; 0: female
+; c: genderless
+
+; This is determined by comparing the Attack and Speed DVs
+; with the species' gender ratio.
+
+
+; Figure out what type of monster struct we're looking at.
+
+; 0: PartyMon
+	ld hl, PartyMon1DVs
+	ld bc, PartyMon2 - PartyMon1
+	ld a, [MonType]
+	and a
+	jr z, .PartyMon
+	
+; 1: OTPartyMon
+	ld hl, OTPartyMon1DVs
+	dec a
+	jr z, .PartyMon
+	
+; 2: BoxMon
+	ld hl, $ad26 + $15 ; BoxMon1DVs
+	ld bc, $20 ; BoxMon2 - BoxMon1
+	dec a
+	jr z, .BoxMon
+	
+; 3: Unknown
+	ld hl, $d123 ; DVBuffer
+	dec a
+	jr z, .DVs
+	
+; else: WildMon
+	ld hl, EnemyMonDVs
+	jr .DVs
+	
+	
+; Get our place in the party/box.
+	
+.PartyMon
+.BoxMon
+	ld a, [CurPartyMon]
+	call AddNTimes
+	
+	
+.DVs
+	
+; BoxMon data is read directly from SRAM.
+	ld a, [MonType]
+	cp 2
+	ld a, 1
+	call z, GetSRAMBank
+	
+; Attack DV
+	ld a, [hli]
+	and $f0
+	ld b, a
+; Speed DV
+	ld a, [hl]
+	and $f0
+	swap a
+	
+; Put our DVs together.
+	or b
+	ld b, a
+
+; Close SRAM if we were dealing with a BoxMon.
+	ld a, [MonType] ; MonType
+	cp 2 ; BOXMON
+	call z, CloseSRAM
+	
+	
+; We need the gender ratio to do anything with this.
+	push bc
+	ld a, [CurPartySpecies]
+	dec a
+	ld hl, BaseStats + 13 ; BASE_GENDER
+	ld bc, BaseStats1 - BaseStats
+	call AddNTimes
+	pop bc
+	
+	ld a, BANK(BaseStats)
+	call GetFarByte
+	
+	
+; The higher the ratio, the more likely the monster is to be female.
+	
+	cp $ff
+	jr z, .Genderless
+	
+	and a
+	jr z, .Male
+	
+	cp $fe
+	jr z, .Female
+	
+; Values below the ratio are male, and vice versa.
+	cp b
+	jr c, .Male
+	
+.Female
+	xor a
+	ret
+	
+.Male
+	ld a, 1
+	and a
+	ret
+	
+.Genderless
+	scf
+	ret
+; 50c50
+
+INCBIN "baserom.gbc", $50c50, $51424 - $50c50
 
 BaseStats:
 INCLUDE "stats/base_stats.asm"
@@ -7176,7 +7298,7 @@ INCLUDE "stats/base_stats.asm"
 PokemonNames:
 INCLUDE "stats/pokemon_names.asm"
 
-INCBIN "baserom.gbc",$53D84,$54000 - $53D84
+INCBIN "baserom.gbc",$53D84,$53e2e - $53D84
 
 
 SECTION "bank15",DATA,BANK[$15]
@@ -8596,7 +8718,12 @@ BattleText_0x8188e: ; 0x8188e
 	db "left today!", $57
 ; 0x818ac
 
-INCBIN "baserom.gbc",$818ac,$84000-$818ac
+INCBIN "baserom.gbc",$818ac,$81fe3-$818ac
+
+DebugColorTestGFX:
+INCBIN "gfx/debug/color_test.2bpp"
+
+INCBIN "baserom.gbc",$82153,$823c8-$82153
 
 
 SECTION "bank21",DATA,BANK[$21]
@@ -8836,8 +8963,50 @@ FX39GFX: ; 8638e
 INCBIN "gfx/fx/039.lz"
 ; 8640b
 
-INCBIN "baserom.gbc", $8640b, $88000 - $8640b
+INCBIN "baserom.gbc", $8640b, $8640e - $8640b
 
+HallOfFame3: ; 0x8640e
+	call $648e
+	ld a, [$d84c]
+	push af
+	ld a, $1
+	ld [$c2cd], a
+	call $2ed3
+	ld a, $1
+	ld [$d4b5], a
+
+	; Enable the Pokégear map to cycle through all of Kanto
+	ld hl, $d84c
+	set 6, [hl]
+
+	ld a, $5
+	ld hl, $4da0
+	rst $8
+	ld hl, $d95e
+	ld a, [hl]
+	cp $c8
+	jr nc, .asm_86436 ; 0x86433 $1
+	inc [hl]
+.asm_86436
+	ld a, $5
+	ld hl, $4b85
+	rst $8
+	call $653f
+	ld a, $5
+	ld hl, $4b5f
+	rst $8
+	xor a
+	ld [$c2cd], a
+	call $64c3
+	pop af
+	ld b, a
+	ld a, $42
+	ld hl, $5847
+	rst $8
+	ret
+; 0x86455
+
+INCBIN "baserom.gbc", $86455, $88000 - $86455
 
 SECTION "bank22",DATA,BANK[$22]
 
@@ -9027,7 +9196,7 @@ GetNthPartyMon: ; 0x8b1ce
 	scf
 	ret
 
-INCBIN "baserom.gbc",$8b1e1,$8c000-$8b1e1
+INCBIN "baserom.gbc",$8b1e1,$8ba24-$8b1e1
 
 
 SECTION "bank23",DATA,BANK[$23]
@@ -9068,11 +9237,11 @@ TimeOfDayPals: ; 8c011
 	ld hl, $d038 ; Unkn1Pals + 7 pals
 	
 ; save wram bank
-	ld a, [$ff70] ; wram bank
+	ld a, [rSVBK]
 	ld b, a
 ; wram bank 5
 	ld a, 5
-	ld [$ff70], a ; wram bank
+	ld [rSVBK], a
 	
 ; push palette
 	ld c, 4 ; NUM_PAL_COLORS
@@ -9087,7 +9256,7 @@ TimeOfDayPals: ; 8c011
 	
 ; restore wram bank
 	ld a, b
-	ld [$ff70], a ; wram bank
+	ld [rSVBK], a
 	
 	
 ; update sgb pals
@@ -9099,11 +9268,11 @@ TimeOfDayPals: ; 8c011
 	ld hl, $d03f ; last byte in Unkn1Pals
 	
 ; save wram bank
-	ld a, [$ff70] ; wram bank
+	ld a, [rSVBK]
 	ld d, a
 ; wram bank 5
 	ld a, 5
-	ld [$ff70], a ; wram bank
+	ld [rSVBK], a
 	
 ; pop palette
 	ld e, 4 ; NUM_PAL_COLORS
@@ -9118,7 +9287,7 @@ TimeOfDayPals: ; 8c011
 	
 ; restore wram bank
 	ld a, d
-	ld [$ff70], a ; wram bank
+	ld [rSVBK], a
 	
 ; update palettes
 	call UpdateTimePals
@@ -10364,8 +10533,11 @@ INCLUDE "maps/map_headers.asm"
 
 INCLUDE "maps/second_map_headers.asm"
 
-INCBIN "baserom.gbc",$966b0,$1950
+INCBIN "baserom.gbc",$966b0,$96cb1 - $966b0
 
+INCLUDE "scripting.asm"
+
+INCBIN "baserom.gbc",$97c20,$35e
 
 SECTION "bank26",DATA,BANK[$26]
 
@@ -10423,12 +10595,12 @@ INCLUDE "maps/BattleTowerOutside.asm"
 
 SECTION "bank28",DATA,BANK[$28]
 
-INCBIN "baserom.gbc",$A0000,$4000
+INCBIN "baserom.gbc",$a0000,$a1eca - $a0000
 
 
 SECTION "bank29",DATA,BANK[$29]
 
-INCBIN "baserom.gbc",$A4000,$4000
+INCBIN "baserom.gbc",$a4000,$a64ad - $a4000
 
 
 SECTION "bank2A",DATA,BANK[$2A]
@@ -10692,8 +10864,6 @@ Route9_BlockData: ; 0xabde9
 Route22_BlockData: ; 0xabef7
 	INCBIN "maps/Route22.blk"
 ; 0xabfab
-
-INCBIN "baserom.gbc",$abfab,$55
 
 
 SECTION "bank2B",DATA,BANK[$2B]
@@ -11563,7 +11733,7 @@ Tileset16GFX: ; b74e8
 INCBIN "gfx/tilesets/16.lz"
 ; b799a
 
-INCBIN "baserom.gbc", $b799a, $b8000 - $b799a
+INCBIN "baserom.gbc", $b799a, $b7ea8 - $b799a
 
 
 SECTION "bank2E",DATA,BANK[$2E]
@@ -11808,7 +11978,7 @@ WildRockMonTable: ; b83de
 	db $ff ; end
 ; b83e5
 
-INCBIN "baserom.gbc",$B83E5,$bc000 - $b83e5
+INCBIN "baserom.gbc",$b83e5,$b9e8b - $b83e5
 
 
 SECTION "bank2F",DATA,BANK[$2F]
@@ -12242,17 +12412,17 @@ INCBIN "baserom.gbc",$bd0d0,$be699-$bd0d0
 
 SECTION "bank30",DATA,BANK[$30]
 
-INCBIN "baserom.gbc",$C0000,$4000
+INCBIN "baserom.gbc",$c0000,$c3fc0 - $c0000
 
 
 SECTION "bank31",DATA,BANK[$31]
 
-INCBIN "baserom.gbc",$C4000,$4000
+INCBIN "baserom.gbc",$c4000,$c7f80 - $c4000
 
 
 SECTION "bank32",DATA,BANK[$32]
 
-INCBIN "baserom.gbc",$C8000,$4000
+INCBIN "baserom.gbc",$c8000,$cbe2b - $c8000
 
 
 SECTION "bank33",DATA,BANK[$33]
@@ -12263,7 +12433,6 @@ INCBIN "baserom.gbc",$cc000, $cfd9e - $cc000
 
 Music_PostCredits: INCLUDE "audio/music/postcredits.asm"
 
-INCBIN "baserom.gbc",$cff04, $d0000 - $cff04
 
 
 ;                       Pic animations I
@@ -12324,7 +12493,7 @@ INCLUDE "gfx/pics/kanto_frames.asm"
 
 SECTION "bank36",DATA,BANK[$36]
 
-FontInversed: INCBIN "gfx/font_inversed.1bpp"
+FontInversed: INCBIN "gfx/misc/font_inversed.1bpp"
 
 ; Johto frame definitions
 INCLUDE "gfx/pics/johto_frames.asm"
@@ -12364,12 +12533,12 @@ Tileset11GFX: ; de570
 INCBIN "gfx/tilesets/11.lz"
 ; de98a
 
-INCBIN "baserom.gbc", $de98a, $e0000 - $de98a
+INCBIN "baserom.gbc", $de98a, $dfd14 - $de98a
 
 
 SECTION "bank38",DATA,BANK[$38]
 
-INCBIN "baserom.gbc",$E0000,$4000
+INCBIN "baserom.gbc",$e0000,$e37f9 - $e0000
 
 
 SECTION "bank39",DATA,BANK[$39]
@@ -12677,13 +12846,13 @@ Music_BugCatchingContest:   INCLUDE "audio/music/bugcatchingcontest.asm"
 SECTION "bank3E",DATA,BANK[$3E]
 
 FontExtra:
-INCBIN "gfx/font_extra.2bpp",$0,$200
+INCBIN "gfx/misc/font_extra.2bpp",$0,$200
 
 Font:
-INCBIN "gfx/font.1bpp",$0,$400
+INCBIN "gfx/misc/font.1bpp",$0,$400
 
 FontBattleExtra:
-INCBIN "gfx/font_battle_extra.2bpp",$0,$200
+INCBIN "gfx/misc/font_battle_extra.2bpp",$0,$200
 
 INCBIN "baserom.gbc", $f8800, $f8ba0 - $f8800
 
@@ -12693,192 +12862,9 @@ INCBIN "gfx/misc/town_map.lz"
 
 INCBIN "baserom.gbc", $f8ea3, $fbbfc - $f8ea3
 
-CalcMagikarpLength: ; fbbfc
-; Stores Magikarp's length at $d1ea-$d1eb in big endian
-;
-; input:
-;   de: EnemyMonDVs
-;   bc: PlayerID
-; output:
-;   $d1ea-$d1eb: length
-;
-; does a whole bunch of arbitrary nonsense
-; cycles through a table of arbitrary values
-; http://web.archive.org/web/20110628181718/http://upokecenter.com/games/gs/guides/magikarp.php
+INCLUDE "battle/magikarp_length.asm"
 
-; b = rrcrrc(atkdefdv) xor rrc(pidhi)
-	ld h, b
-	ld l, c
-	ld a, [hli]
-	ld b, a
-	ld c, [hl] ; ld bc, [PlayerID]
-	rrc b
-	rrc c
-	ld a, [de]
-	inc de
-	rrca
-	rrca
-	xor b
-	ld b, a
-	
-; c = rrcrrc(spdspcdv) xor rrc(pidlo)
-	ld a, [de]
-	rrca
-	rrca
-	xor c
-	ld c, a
-	
-; if bc < $000a:
-	ld a, b
-	and a
-	jr nz, .loadtable
-	ld a, c
-	cp a, $0a
-	jr nc, .loadtable
-	
-; de = hl = bc + $be
-	ld hl, $00be
-	add hl, bc
-	ld d, h
-	ld e, l
-	jr .endtable
-	
-.loadtable
-	ld hl, .MagikarpLengthTable
-	ld a, $02
-	ld [$d265], a
-	
-.readtable
-	ld a, [hli]
-	ld e, a
-	ld a, [hli]
-	ld d, a
-	call .BLessThanD
-	jr nc, .advancetable
-	
-; c = bc / [hl]
-	call .BCMinusDE
-	ld a, b
-	ld [$ffb3], a
-	ld a, c
-	ld [$ffb4], a
-	ld a, [hl]
-	ld [$ffb7], a
-	ld b, $02
-	call Divide
-	ld a, [$ffb6]
-	ld c, a
-	
-; de = c + $64 * (2 + number of rows down the table)
-	xor a
-	ld [$ffb4], a
-	ld [$ffb5], a
-	ld a, $64
-	ld [$ffb6], a
-	ld a, [$d265]
-	ld [$ffb7], a
-	call Multiply
-	ld b, $00
-	ld a, [$ffb6]
-	add c
-	ld e, a
-	ld a, [$ffb5]
-	adc b
-	ld d, a
-	jr .endtable
-	
-.advancetable
-	inc hl ; align to next triplet
-	ld a, [$d265]
-	inc a
-	ld [$d265], a
-	cp a, $10
-	jr c, .readtable
-	
-	call .BCMinusDE
-	ld hl, $0640
-	add hl, bc
-	ld d, h
-	ld e, l
-	
-.endtable
-	ld h, d
-	ld l, e
-	add hl, hl
-	add hl, hl
-	add hl, de
-	add hl, hl ; hl = de * 10
-	
-	ld de, $ff02
-	ld a, $ff
-.loop
-	inc a
-	add hl, de ; - 254
-	jr c, .loop
-	
-	ld d, $00
-	
-; mod $0c
-.modloop
-	cp a, $0c
-	jr c, .done
-	sub a, $0c
-	inc d
-	jr .modloop
-	
-.done
-	ld e, a
-	ld hl, $d1ea
-	ld [hl], d
-	inc hl
-	ld [hl], e
-	ret
-; fbc9a
-
-.BLessThanD ; fbc9a
-; return carry if b < d
-	ld a, b
-	cp d
-	ret c
-	ret nc
-; fbc9e
-
-.CLessThanE ; fbc9e
-; unused
-	ld a, c
-	cp e
-	ret
-; fbca1
-
-.BCMinusDE ; fbca1
-; bc -= de
-	ld a, c
-	sub e
-	ld c, a
-	ld a, b
-	sbc d
-	ld b, a
-	ret
-; fbca8
-
-.MagikarpLengthTable ; fbca8
-;		????, divisor
-	dwb $006e, $01
-	dwb $0136, $02
-	dwb $02c6, $04
-	dwb $0a96, $14
-	dwb $1e1e, $32
-	dwb $452e, $64
-	dwb $7fc6, $96
-	dwb $ba5e, $96
-	dwb $e16e, $64
-	dwb $f4f6, $32
-	dwb $fcc6, $14
-	dwb $feba, $05
-	dwb $ff82, $02
-; fbccf
-
-INCBIN "baserom.gbc",$FBCCF,$fc000-$fbccf
+INCBIN "baserom.gbc",$fbccf,$fbe91 - $fbccf
 
 
 SECTION "bank3F",DATA,BANK[$3F]
@@ -12930,12 +12916,16 @@ INCBIN "baserom.gbc",$fcf38,$fd1d2-$fcf38
 
 SECTION "bank40",DATA,BANK[$40]
 
-INCBIN "baserom.gbc",$100000,$4000
+INCBIN "baserom.gbc",$100000,$10389d - $100000
 
 
 SECTION "bank41",DATA,BANK[$41]
 
-INCBIN "baserom.gbc",$104000,$105258 - $104000
+INCBIN "baserom.gbc",$104000,$104350 - $104000
+
+INCBIN "gfx/ow/misc.2bpp"
+
+INCBIN "baserom.gbc",$1045b0,$105258 - $1045b0
 
 MysteryGiftGFX:
 INCBIN "gfx/misc/mystery_gift.2bpp"
@@ -12945,14 +12935,24 @@ INCBIN "baserom.gbc",$105688,$105930 - $105688
 ; japanese mystery gift gfx
 INCBIN "gfx/misc/mystery_gift_jp.2bpp"
 
-INCBIN "baserom.gbc",$105db0,$1060bb - $105db0
+INCBIN "baserom.gbc",$105db0,$105ef6 - $105db0
+
+HallOfFame2: ; 0x105ef6
+	ret
+
+INCBIN "baserom.gbc",$105ef7,$106078 - $105ef7
+
+HallOfFame1: ; 0x106078
+	ret
+
+INCBIN "baserom.gbc",$106079,$1060bb - $106079
 
 Function1060bb: ; 1060bb
 ; commented out
 	ret
 ; 1060bc
 
-INCBIN "baserom.gbc",$1060bc,$108000 - $1060bc
+INCBIN "baserom.gbc",$1060bc,$106dbc - $1060bc
 
 
 SECTION "bank42",DATA,BANK[$42]
@@ -12963,128 +12963,17 @@ IntroLogoGFX: ; 109407
 INCBIN "gfx/intro/logo.lz"
 ; 10983f
 
-INCBIN "baserom.gbc", $10983f, $10aee1 - $10983f
+INCBIN "baserom.gbc", $10983f, $1099aa - $10983f
 
-Credits:
-	db "   SATOSHI TAJIRI@"         ; "たじり さとし@"
-	db "   JUNICHI MASUDA@"         ; "ますだ じゅんいち@"
-	db "  TETSUYA WATANABE@"        ; "わたなべ てつや@"
-	db "  SHIGEKI MORIMOTO@"        ; "もりもと しげき@"
-	db "   SOUSUKE TAMADA@"         ; "たまだ そうすけ@"
-	db "   TAKENORI OOTA@"          ; "おおた たけのり@"
-	db "    KEN SUGIMORI@"          ; "すぎもり けん@"
-	db " MOTOFUMI FUJIWARA@"        ; "ふじわら もとふみ@"
-	db "   ATSUKO NISHIDA@"         ; "にしだ あつこ@"
-	db "    MUNEO SAITO@"           ; "さいとう むねお@"
-	db "    SATOSHI OOTA@"          ; "おおた さとし@"
-	db "   RENA YOSHIKAWA@"         ; "よしかわ れな@"
-	db "    JUN OKUTANI@"           ; "おくたに じゅん@"
-	db "  HIRONOBU YOSHIDA@"        ; "よしだ ひろのぶ@"
-	db "   ASUKA IWASHITA@"         ; "いわした あすか@"
-	db "    GO ICHINOSE@"           ; "いちのせ ごう@"
-	db "   MORIKAZU AOKI@"          ; "あおき もりかず@"
-	db "   KOHJI NISHINO@"          ; "にしの こうじ@"
-	db "  KENJI MATSUSHIMA@"        ; "まつしま けんじ@"
-	db "TOSHINOBU MATSUMIYA@"       ; "まつみや としのぶ@"
-	db "    SATORU IWATA@"          ; "いわた さとる@"
-	db "   NOBUHIRO SEYA@"          ; "せや のぶひろ@"
-	db "  KAZUHITO SEKINE@"         ; "せきね かずひと@"
-	db "    TETSUJI OOTA@"          ; "おおた てつじ@"
-	db "NCL SUPER MARIO CLUB@"      ; "スーパーマりォクラブ@"
-	db "    SARUGAKUCHO@"           ; "さるがくちょう@"
-	db "     AKITO MORI@"           ; "もり あきと@"
-	db "  TAKAHIRO HARADA@"         ; "はらだ たかひろ@"
-	db "  TOHRU HASHIMOTO@"         ; "はしもと とおる@"
-	db "  NOBORU MATSUMOTO@"        ; "まつもと のぼる@"
-	db "  TAKEHIRO IZUSHI@"         ; "いずし たけひろ@"
-	db " TAKASHI KAWAGUCHI@"        ; "かわぐち たかし@"
-	db " TSUNEKAZU ISHIHARA@"       ; "いしはら つねかず@"
-	db "  HIROSHI YAMAUCHI@"        ; "やまうち ひろし@"
-	db "    KENJI SAIKI@"           ; "さいき けんじ@"
-	db "    ATSUSHI TADA@"          ; "ただ あつし@"
-	db "   NAOKO KAWAKAMI@"         ; "かわかみ なおこ@"
-	db "  HIROYUKI ZINNAI@"         ; "じんない ひろゆき@"
-	db "  KUNIMI KAWAMURA@"         ; "かわむら くにみ@"
-	db "   HISASHI SOGABE@"         ; "そがべ ひさし@"
-	db "    KEITA KAGAYA@"          ; "かがや けいた@"
-	db " YOSHINORI MATSUDA@"        ; "まつだ よしのり@"
-	db "    HITOMI SATO@"           ; "さとう ひとみ@"
-	db "     TORU OSAWA@"           ; "おおさわ とおる@"
-	db "    TAKAO OHARA@"           ; "おおはら たかお@"
-	db "    YUICHIRO ITO@"          ; "いとう ゆういちろう@"
-	db "   TAKAO SHIMIZU@"          ; "しみず たかお@"
-	db " SPECIAL PRODUCTION", $4e
-	db "      PLANNING", $4e        ; "きかくかいはつぶ@"
-	db " & DEVELOPMENT DEPT.@"
-	db "   KEITA NAKAMURA@"         ; "なかむら けいた@"
-	db "  HIROTAKA UEMURA@"         ; "うえむら ひろたか@"
-	db "   HIROAKI TAMURA@"         ; "たむら ひろあき@"
-	db " NORIAKI SAKAGUCHI@"        ; "さかぐち のりあき@"
-	db "    MIYUKI SATO@"           ; "さとう みゆき@"
-	db "   GAKUZI NOMOTO@"          ; "のもと がくじ@"
-	db "     AI MASHIMA@"           ; "ましま あい@"
-	db " MIKIHIRO ISHIKAWA@"        ; "いしかわ みきひろ@"
-	db " HIDEYUKI HASHIMOTO@"       ; "はしもと ひでゆき@"
-	db "   SATOSHI YAMATO@"         ; "やまと さとし@"
-	db "  SHIGERU MIYAMOTO@"        ; "みやもと しげる@"
-	db "        END@"               ; "おしまい@"
-	db "      ????????@"            ; "????????@"
-	db "    GAIL TILDEN@"
-	db "   NOB OGASAWARA@"
-	db "   SETH McMAHILL@"
-	db "  HIROTO ALEXANDER@"
-	db "  TERESA LILLYGREN@"
-	db "   THOMAS HERTZOG@"
-	db "    ERIK JOHNSON@"
-	db "   HIRO NAKAMURA@"
-	db "  TERUKI MURAKAWA@"
-	db "  KAZUYOSHI OSAWA@"
-	db "  KIMIKO NAKAMICHI@"
-	db "      #MON", $4e            ; "ポケットモンスター", $4e
-	db "  CRYSTAL VERSION", $4e     ; "  クりスタル バージョン", $4e
-	db "       STAFF@"              ; "    スタッフ@"
-	db "      DIRECTOR@"            ; "エグゼクティブ ディレクター@"
-	db "    CO-DIRECTOR@"           ; "ディレクター@"
-	db "    PROGRAMMERS@"           ; "プログラム@"
-	db " GRAPHICS DIRECTOR@"        ; "グラフィック ディレクター@"
-	db "   MONSTER DESIGN@"         ; "# デザイン@"
-	db "  GRAPHICS DESIGN@"         ; "グラフィック デザイン@"
-	db "       MUSIC@"              ; "おんがく@"
-	db "   SOUND EFFECTS@"          ; "サウンド エフ→クト@"
-	db "    GAME DESIGN@"           ; "ゲームデザイン@"
-	db "   GAME SCENARIO@"          ; "シナりォ@"
-	db "  TOOL PROGRAMMING@"        ; "ツール プログラム@"
-	db " PARAMETRIC DESIGN@"        ; "パラメーター せってい@"
-	db "   SCRIPT DESIGN@"          ; "スクりプト せってい@"
-	db "  MAP DATA DESIGN@"         ; "マップデータ せってい@"
-	db "     MAP DESIGN@"           ; "マップ デザイン@"
-	db "  PRODUCT TESTING@"         ; "デバッグプレイ@"
-	db "   SPECIAL THANKS@"         ; "スぺシャルサンクス@"
-	db "     PRODUCERS@"            ; "プロデューサー@"
-	db " EXECUTIVE PRODUCER@"       ; "エグゼクティブ プロデューサー@"
-	db " #MON ANIMATION@"           ; "# アニメーション@"
-	db "    #DEX TEXT@"             ; "ずかん テキスト@"
-	db " MOBILE PRJ. LEADER@"       ; "モバイルプロジ→クト りーダー@"
-	db " MOBILE SYSTEM AD.@"        ; "モバイル システムアドバイザー@"
-	db "MOBILE STADIUM DIR.@"       ; "モバイルスタジアム ディレクター@"
-	db "    COORDINATION@"          ; "コーディネーター@"
-	db "  US VERSION STAFF@"
-	db "  US COORDINATION@"
-	db "  TEXT TRANSLATION@"
-	db "    PAAD TESTING@"
-	;  (C) 1  9  9  5 - 2  0  0  1     N  i  n  t  e  n  d  o
-	db $60,$61,$62,$63,$64,$65,$66, $67, $68, $69, $6a, $6b, $6c, $4e
-	;  (C) 1  9  9  5 - 2  0  0  1    C  r  e  a  t  u  r  e  s      i  n  c .
-	db $60,$61,$62,$63,$64,$65,$66, $6d, $6e, $6f, $70, $71, $72,  $7a, $7b, $7c, $4e
-	;  (C) 1  9  9  5 - 2  0  0  1  G   A   M   E   F   R   E   A   K     i  n  c .
-	db $60,$61,$62,$63,$64,$65,$66, $73, $74, $75, $76, $77, $78, $79,  $7a, $7b, $7c, "@"
+; Credits
+INCLUDE "credits.asm"
 
 
 SECTION "bank43",DATA,BANK[$43]
 
 INCBIN "baserom.gbc", $10c000, $10ed67 - $10c000
 
-TitleScreen: ; 10ed67
+StartTitleScreen: ; 10ed67
 
 	call WhiteBGMap
 	call ClearSprites
@@ -13107,7 +12996,7 @@ TitleScreen: ; 10ed67
 	
 ; VRAM bank 1
 	ld a, 1
-	ld [$ff4f], a
+	ld [rVBK], a
 	
 	
 ; Decompress running Suicune gfx
@@ -13180,7 +13069,7 @@ TitleScreen: ; 10ed67
 	
 ; Back to VRAM bank 0
 	ld a, $0
-	ld [$ff4f], a
+	ld [rVBK], a
 	
 	
 ; Decompress logo
@@ -13276,7 +13165,7 @@ TitleScreen: ; 10ed67
 	call ByteFill
 	
 ; Let LCD Stat know we're messing around with SCX
-	ld a, $43 ; ff43 ; SCX
+	ld a, rSCX - rJOYP
 	ld [$ffc6], a
 	
 ; Restore WRAM bank
@@ -13289,9 +13178,9 @@ TitleScreen: ; 10ed67
 	call $058a
 	
 ; Set sprite size to 8x16
-	ld a, [$ff40] ; LCDC
+	ld a, [rLCDC]
 	set 2, a
-	ld [$ff40], a ; LCDC
+	ld [rLCDC], a
 	
 ;
 	ld a, $70
@@ -13320,7 +13209,32 @@ TitleScreen: ; 10ed67
 	ret
 ; 10eea7
 
-INCBIN "baserom.gbc", $10eea7, $10ef46 - $10eea7
+INCBIN "baserom.gbc", $10eea7, $10ef32 - $10eea7
+
+AnimateTitleCrystal: ; 10ef32
+; Move the title screen crystal downward until it's fully visible
+
+; Stop at y=6
+; y is really from the bottom of the sprite, which is two tiles high
+	ld hl, Sprites
+	ld a, [hl]
+	cp 6 + 16
+	ret z
+	
+; Move all 30 parts of the crystal down by 2
+	ld c, 30
+.loop
+	ld a, [hl]
+	add 2
+	ld [hli], a
+	inc hl
+	inc hl
+	inc hl
+	dec c
+	jr nz, .loop
+	
+	ret
+; 10ef46
 
 TitleSuicuneGFX: ; 10ef46
 INCBIN "gfx/title/suicune.lz"
@@ -13423,14 +13337,22 @@ TitleScreenPalettes:
 	RGB 00, 00, 00
 	RGB 00, 00, 00
 
-
-INCBIN "baserom.gbc", $10ff5e, $110000 - $10ff5e
-
-
 SECTION "bank44",DATA,BANK[$44]
 
-INCBIN "baserom.gbc",$110000,$4000
+INCBIN "baserom.gbc",$110000,$110fad - $110000
 
+URIPrefix: ; 0x110fad
+	ascii "http://"
+HTTPDownloadURL: ; 0x110fb4
+	ascii "gameboy.datacenter.ne.jp/cgb/download"
+HTTPUploadURL: ; 0x110fd9
+	ascii "gameboy.datacenter.ne.jp/cgb/upload"
+HTTPUtilityURL: ; 0x110ffc
+	ascii "gameboy.datacenter.ne.jp/cgb/utility"
+HTTPRankingURL: ; 0x111020
+	ascii "gameboy.datacenter.ne.jp/cgb/ranking"
+
+INCBIN "baserom.gbc",$111044,$113f84 - $111044
 
 SECTION "bank45",DATA,BANK[$45]
 
@@ -13785,12 +13707,38 @@ Function117cdd: ; 0x117cdd
 
 SECTION "bank46",DATA,BANK[$46]
 
-INCBIN "baserom.gbc",$118000,$4000
+INCBIN "baserom.gbc",$118000,$118ba5 - $118000
 
+ExchangeDownloadURL: ; 0x118ba5
+	ascii "http://gameboy.datacenter.ne.jp/cgb/download?name=/01/CGB-BXTJ/exchange/index.txt"
+
+db $0
+
+BattleDownloadURL: ; 0x118bf7
+	ascii "http://gameboy.datacenter.ne.jp/cgb/download?name=/01/CGB-BXTJ/battle/index.txt"
+
+db $0
+
+NewsDownloadURL: ; 0x118c47
+	ascii "http://gameboy.datacenter.ne.jp/cgb/download?name=/01/CGB-BXTJ/news/index.txt"
+
+db $0
+
+MenuDownloadURL: ; 0x118c95
+	ascii "http://gameboy.datacenter.ne.jp/cgb/download?name=/01/CGB-BXTJ/POKESTA/menu.cgb"
+
+db $0
+
+IndexDownloadURL: ; 0x118ce4
+	ascii "http://gameboy.datacenter.ne.jp/cgb/download?name=/01/CGB-BXTJ/tamago/index.txt"
+
+db $0
+
+INCBIN "baserom.gbc",$118d35,$11bc9e - $118d35
 
 SECTION "bank47",DATA,BANK[$47]
 
-INCBIN "baserom.gbc",$11C000,$4000
+INCBIN "baserom.gbc",$11c000,$11f686 - $11c000
 
 
 SECTION "bank48",DATA,BANK[$48]
@@ -14617,17 +14565,17 @@ INCBIN "gfx/pics/201r/back.lz"
 
 SECTION "bank5B",DATA,BANK[$5B]
 
-INCBIN "baserom.gbc",$16C000,$4000
+INCBIN "baserom.gbc",$16c000,$16d7fe - $16c000
 
 
 SECTION "bank5C",DATA,BANK[$5C]
 
-INCBIN "baserom.gbc",$170000,$4000
+INCBIN "baserom.gbc",$170000,$17367f - $170000
 
 
 SECTION "bank5D",DATA,BANK[$5D]
 
-INCBIN "baserom.gbc",$174000,$4000
+INCBIN "baserom.gbc",$174000,$177561 - $174000
 
 
 SECTION "bank5E",DATA,BANK[$5E]
@@ -14655,7 +14603,7 @@ INCBIN "baserom.gbc",$17a68f, $17b629 - $17a68f
 
 SECTION "bank5F",DATA,BANK[$5F]
 
-INCBIN "baserom.gbc",$17C000,$4000
+INCBIN "baserom.gbc",$17c000,$17ff6c - $17c000
 
 
 SECTION "bank60",DATA,BANK[$60]
@@ -14953,7 +14901,7 @@ INCLUDE "stats/pokedex/entries_2.asm"
 
 SECTION "bank6F",DATA,BANK[$6F]
 
-INCBIN "baserom.gbc",$1BC000,$4000
+INCBIN "baserom.gbc",$1bc000,$1be08d - $1bc000
 
 
 SECTION "bank70",DATA,BANK[$70]
@@ -15093,12 +15041,12 @@ PokegearGFX: ; 1de2e4
 INCBIN "gfx/misc/pokegear.lz"
 ; 1de5c7
 
-INCBIN "baserom.gbc",$1de5c7,$1e0000 - $1de5c7
+INCBIN "baserom.gbc",$1de5c7,$1df238 - $1de5c7
 
 
 SECTION "bank78",DATA,BANK[$78]
 
-INCBIN "baserom.gbc",$1E0000,$4000
+INCBIN "baserom.gbc",$1e0000,$1e1000 - $1e0000
 
 
 SECTION "bank79",DATA,BANK[$79]
@@ -15109,24 +15057,26 @@ SECTION "bank7A",DATA,BANK[$7A]
 
 SECTION "bank7B",DATA,BANK[$7B]
 
-INCBIN "baserom.gbc",$1EC000,$4000
+INCBIN "baserom.gbc",$1ec000,$1ecf02 - $1ec000
 
 
 SECTION "bank7C",DATA,BANK[$7C]
 
-INCBIN "baserom.gbc",$1F0000,$4000
+INCBIN "baserom.gbc",$1f0000,$1f09d8 - $1f0000
 
 
 SECTION "bank7D",DATA,BANK[$7D]
 
-INCBIN "baserom.gbc",$1F4000,$4000
+INCBIN "baserom.gbc",$1f4000,$1f636a - $1f4000
 
 
 SECTION "bank7E",DATA,BANK[$7E]
 
-INCBIN "baserom.gbc",$1F8000,$4000
+INCBIN "baserom.gbc",$1f8000,$1fb8a8 - $1f8000
 
 
 SECTION "bank7F",DATA,BANK[$7F]
 
-INCBIN "baserom.gbc",$1FC000,$4000
+SECTION "stadium2",DATA[$8000-$220],BANK[$7F]
+INCBIN "baserom.gbc",$1ffde0,$220
+
