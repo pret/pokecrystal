@@ -13337,12 +13337,22 @@ TitleScreenPalettes:
 	RGB 00, 00, 00
 	RGB 00, 00, 00
 
-
-
 SECTION "bank44",DATA,BANK[$44]
 
-INCBIN "baserom.gbc",$110000,$113f84 - $110000
+INCBIN "baserom.gbc",$110000,$110fad - $110000
 
+URIPrefix: ; 0x110fad
+	ascii "http://"
+HTTPDownloadURL: ; 0x110fb4
+	ascii "gameboy.datacenter.ne.jp/cgb/download"
+HTTPUploadURL: ; 0x110fd9
+	ascii "gameboy.datacenter.ne.jp/cgb/upload"
+HTTPUtilityURL: ; 0x110ffc
+	ascii "gameboy.datacenter.ne.jp/cgb/utility"
+HTTPRankingURL: ; 0x111020
+	ascii "gameboy.datacenter.ne.jp/cgb/ranking"
+
+INCBIN "baserom.gbc",$111044,$113f84 - $111044
 
 SECTION "bank45",DATA,BANK[$45]
 
@@ -13697,8 +13707,34 @@ Function117cdd: ; 0x117cdd
 
 SECTION "bank46",DATA,BANK[$46]
 
-INCBIN "baserom.gbc",$118000,$11bc9e - $118000
+INCBIN "baserom.gbc",$118000,$118ba5 - $118000
 
+ExchangeDownloadURL: ; 0x118ba5
+	ascii "http://gameboy.datacenter.ne.jp/cgb/download?name=/01/CGB-BXTJ/exchange/index.txt"
+
+db $0
+
+BattleDownloadURL: ; 0x118bf7
+	ascii "http://gameboy.datacenter.ne.jp/cgb/download?name=/01/CGB-BXTJ/battle/index.txt"
+
+db $0
+
+NewsDownloadURL: ; 0x118c47
+	ascii "http://gameboy.datacenter.ne.jp/cgb/download?name=/01/CGB-BXTJ/news/index.txt"
+
+db $0
+
+MenuDownloadURL: ; 0x118c95
+	ascii "http://gameboy.datacenter.ne.jp/cgb/download?name=/01/CGB-BXTJ/POKESTA/menu.cgb"
+
+db $0
+
+IndexDownloadURL: ; 0x118ce4
+	ascii "http://gameboy.datacenter.ne.jp/cgb/download?name=/01/CGB-BXTJ/tamago/index.txt"
+
+db $0
+
+INCBIN "baserom.gbc",$118d35,$11bc9e - $118d35
 
 SECTION "bank47",DATA,BANK[$47]
 

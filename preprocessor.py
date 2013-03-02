@@ -599,6 +599,11 @@ def read_line(l):
     if "INCLUDE \"" in l:
         include_file(asm)
 
+    # ascii string macro preserves the bytes as ascii (skip the translator)
+    elif len(asm) > 6 and "\tascii " in [asm[:7], "\t" + asm[:6]]:
+        asm = asm.replace("ascii", "db", 1)
+        sys.stdout.write(asm)
+
     # convert text to bytes when a quote appears (not in a comment)
     elif "\"" in asm:
         quote_translator(asm)
