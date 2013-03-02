@@ -102,17 +102,10 @@ import com.aurellem.gb.Gb as Gb
 # load the vba-clojure library
 Gb.loadVBA()
 
-# by default we assume the user has things in their $HOME
-home = os.path.expanduser("~") # or System.getProperty("user.home")
+from vba_config import *
 
-# and that the pokecrystal project folder is in there somewhere
-project_path = os.path.join(home, os.path.join("code", "pokecrystal"))
-
-# save states are in ~/code/pokecrystal/save-states/
-save_state_path = os.path.join(project_path, "save-states")
-
-# where is your rom?
-rom_path = os.path.join(project_path, "baserom.gbc")
+if not os.path.exists(rom_path):
+    raise Exception("rom_path is not configured properly; edit vba_config.py?")
 
 def _check_java_library_path():
     """
