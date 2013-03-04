@@ -104,6 +104,11 @@ Gb.loadVBA()
 
 from vba_config import *
 
+try:
+    import vba_keyboard as keyboard
+except ImportError:
+    print "Not loading the keyboard module (which uses networkx)."
+
 if not os.path.exists(rom_path):
     raise Exception("rom_path is not configured properly; edit vba_config.py?")
 
@@ -162,6 +167,10 @@ def button_combiner(buttons):
         if "select" in buttons:
             buttons.replace("select", "")
             result |= button_masks["select"]
+
+    if isinstance(buttons, list):
+        if len(buttons) > 9:
+            raise Exception("can't combine more than 9 buttons at a time")
 
     for each in buttons:
         result |= button_masks[each]
@@ -827,6 +836,25 @@ class crystal:
         return output
 
     @staticmethod
+    def keyboard_apply(button_sequence):
+        """
+        Applies a sequence of buttons to the on-screen keyboard.
+        """
+        for buttons in button_sequence:
+            press(buttons)
+            nstep(2)
+            press([])
+
+    @staticmethod
+    def write(something="TrAiNeR"):
+        """
+        Uses a planning algorithm to type out a word in the most efficient way
+        possible.
+        """
+        button_sequence = keyboard.plan_typing(something)
+        crystal.keyboard_apply([[x] for x in button_sequence])
+
+    @staticmethod
     def set_partymon2():
         """
         This causes corruption, so it's not working yet.
@@ -895,6 +923,14 @@ class TestEmulator(unittest.TestCase):
         text = crystal.get_text()
 
         self.assertTrue("TRAINER" in text)
+
+class TestWriter(unittest.TestCase):
+    def test_very_basic(self):
+        button_sequence = keyboard.plan_typing("an")
+        expected_result = ["select", "a", "d", "r", "r", "r", "r", "a"]
+
+        self.assertEqual(len(expected_result), len(button_sequence))
+        self.assertEqual(expected_result, button_sequence)
 
 if __name__ == "__main__":
     unittest.main()
