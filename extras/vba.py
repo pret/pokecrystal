@@ -564,6 +564,66 @@ def call(bank, address):
     else:
         registers["pc"] = address
 
+class cheats:
+    """
+    Helpers to manage the cheating infrastructure.
+
+    import vba; vba.load_rom(); vba.cheats.add_gameshark("0100CFCF", "text speedup 1"); vba.cheats.add_gameshark("0101CCCF", "text speedup 2"); vba.go()
+    """
+
+    @staticmethod
+    def enable(id):
+        """
+        void gbCheatEnable(int i)
+        """
+        Gb.cheatEnable(id)
+
+    @staticmethod
+    def disable(id):
+        """
+        void gbCheatDisable(int i)
+        """
+        Gb.cheatDisable(id)
+
+    @staticmethod
+    def load_file(filename):
+        """
+        Loads a .clt file. By default each cheat is disabled.
+        """
+        Gb.loadCheatsFromFile(filename)
+
+    @staticmethod
+    def remove_all():
+        """
+        Removes all cheats from memory.
+
+        void gbCheatRemoveAll()
+        """
+        Gb.cheatRemoveAll()
+
+    @staticmethod
+    def remove_cheat(id):
+        """
+        Removes a specific cheat from memory by id.
+
+        void gbCheatRemove(int i)
+        """
+        Gb.cheatRemove(id)
+
+    @staticmethod
+    def add_gamegenie(code, description=""):
+        """
+        void gbAddGgCheat(const char *code, const char *desc)
+        """
+        Gb.cheatAddGamegenie(code, description)
+
+    @staticmethod
+    def add_gameshark(code, description=""):
+        """
+        gbAddGsCheat(const char *code, const char *desc)
+        """
+        Gb.cheatAddGameshark(code, description)
+
 class crystal:
     """
     Just a simple namespace to store a bunch of functions for Pokémon Crystal.
