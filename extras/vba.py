@@ -443,6 +443,69 @@ def press(buttons, steplimit=1):
     for step_counter in range(0, steplimit):
         Gb.step(number)
 
+def get_buttons():
+    """
+    Returns the currentButtons[0] value (an integer with bits set for which
+    buttons are currently pressed).
+    """
+    return Gb.getCurrentButtons()
+
+class State(RomList):
+    name = None
+
+class Recording:
+    def __init__(self):
+        self.frames = []
+        self.states = {}
+
+    def _get_frame_count(self):
+        return len(self.frames)
+
+    frame_count = property(fget=_get_frame_count)
+
+    def save(self, name=None):
+        """
+        Saves the current state.
+        """
+        state = State(get_state())
+        state.name = name
+        self.states[self.frame_count] = state
+
+    def load(self, name):
+        """
+        Loads a state by name in the state list.
+        """
+        for state in self.states.items():
+            if state.name == name:
+                set_state(state)
+                return state
+        return False
+
+    def step(self, stepcount=1, first_frame=0, replay=False):
+        """
+        Records button presses for each frame.
+        """
+        if replay:
+            stepcount = len(self.frames[first_name:])
+
+        for counter in range(first_frame, stepcount):
+            if replay:
+                press(self.frames[counter], steplimit=0)
+            else:
+                self.frames.append(get_buttons())
+            nstep(1)
+
+    def replay_from(self, thing):
+        """
+        Replays based on a State or the name of a saved state.
+        """
+        if isinstance(thing, State):
+            set_state(thing)
+        else:
+            thing = self.load(thing)
+        frame_id = self.states.index(thing)
+        self.step(first_frame=frame_id, replay=True)
+
 class Registers:
     order = [
         "pc",
