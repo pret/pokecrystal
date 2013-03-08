@@ -166,7 +166,7 @@ def button_combiner(buttons):
     for each in buttons:
         result |= button_masks[each]
 
-    print "button: " + str(result)
+    #print "button: " + str(result)
     return result
 
 def load_rom(path=None):
