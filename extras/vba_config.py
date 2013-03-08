@@ -2,13 +2,10 @@
 # -*- encoding: utf-8 -*-
 import os
 
-# by default we assume the user has things in their $HOME
-home = os.path.expanduser("~") # or System.getProperty("user.home")
+# by default we assume the user has vba in pokecrystal/extras
+project_path = os.path.abspath(os.path.join(os.path.dirname( __file__ ), '..'))
 
-# and that the pokecrystal project folder is in there somewhere
-project_path = os.path.join(home, os.path.join("code", "pokecrystal"))
-
-# save states are in ~/code/pokecrystal/save-states/
+# save states are in pokecrystal/save-states/
 save_state_path = os.path.join(project_path, "save-states")
 
 # where is your rom?
