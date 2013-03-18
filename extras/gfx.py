@@ -1436,8 +1436,8 @@ def mass_to_colored_png(debug=False):
 			for name in files:
 				if debug: print os.path.splitext(name), os.path.join(root, name)
 				if os.path.splitext(name)[1] == '.2bpp':
-					if name[:5]+'.pal' in files:
-						to_png(os.path.join(root, name), None, os.path.join(root, name[:-5]+'.pal'))
+					if os.path.splitext(name)[0]+'.pal' in files:
+						to_png(os.path.join(root, name), None, os.path.join(root, os.path.splitext(name)[0]+'.pal'))
 					else:
 						to_png(os.path.join(root, name))
 	
@@ -1459,26 +1459,26 @@ def mass_to_colored_png(debug=False):
 
 def mass_decompress(debug=False):
 	for root, dirs, files in os.walk('../gfx/'):
-		for file in files:
-			if 'lz' in file:
+		for name in files:
+			if 'lz' in name:
 				if '/pics' in root:
-					if 'front' in file:
+					if 'front' in name:
 						id = root.split('pics/')[1][:3]
 						if id != 'egg':
-							with open(root+'/'+file, 'rb') as lz: de = Decompressed(lz.read(), 'vert', sizes[int(id)-1])
+							with open(os.path.join(root, name), 'rb') as lz: de = Decompressed(lz.read(), 'vert', sizes[int(id)-1])
 						else:
-							with open(root+'/'+file, 'rb') as lz: de = Decompressed(lz.read(), 'vert', 4)
-						to_file(root+'/'+'front.2bpp', de.pic)
-						to_file(root+'/'+'tiles.2bpp', de.animtiles)
-					elif 'back' in file:
-						with open(root+'/'+file, 'rb') as lz: de = Decompressed(lz.read(), 'vert')
-						to_file(root+'/'+'back.2bpp', de.output)
+							with open(os.path.join(root, name), 'rb') as lz: de = Decompressed(lz.read(), 'vert', 4)
+						to_file(os.path.join(root, 'front.2bpp'), de.pic)
+						to_file(os.path.join(root, 'tiles.2bpp'), de.animtiles)
+					elif 'back' in name:
+						with open(os.path.join(root, name), 'rb') as lz: de = Decompressed(lz.read(), 'vert')
+						to_file(os.path.join(root, 'back.2bpp'), de.output)
 				elif '/trainers' in root or '/fx' in root:
-					with open(root+'/'+file, 'rb') as lz: de = Decompressed(lz.read(), 'vert')
-					to_file(root+'/'+file[:-3]+'.2bpp', de.output)
+					with open(os.path.join(root, name), 'rb') as lz: de = Decompressed(lz.read(), 'vert')
+					to_file(os.path.join(root, os.path.splitext(name)[0]+'.2bpp'), de.output)
 				else:
-					with open(root+'/'+file, 'rb') as lz: de = Decompressed(lz.read())
-					to_file(root+file[:-3]+'.2bpp', de.output)
+					with open(os.path.join(root, name), 'rb') as lz: de = Decompressed(lz.read())
+					to_file(os.path.join(root, os.path.splitext(name)[0]+'.2bpp'), de.output)
 
 def append_terminator_to_lzs(directory):
 	# fix lzs that were extracted with a missing terminator
