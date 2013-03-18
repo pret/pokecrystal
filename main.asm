@@ -4054,7 +4054,25 @@ INCBIN "baserom.gbc",$b0ae,$b0d2 - $b0ae
 TrainerPalettes:
 INCLUDE "gfx/trainers/palette_pointers.asm"
 
-INCBIN "baserom.gbc",$b1de,$b825 - $b1de
+INCBIN "baserom.gbc",$b1de,$b319 - $b1de
+
+MornPal: ; 0xb319
+INCBIN "tilesets/morn.pal"
+; 0xb359
+
+DayPal: ; 0xb359
+INCBIN "tilesets/day.pal"
+; 0xb399
+
+NitePal: ; 0xb399
+INCBIN "tilesets/nite.pal"
+; 0xb3d9
+
+DarkPal: ; 0xb3d9
+INCBIN "tilesets/dark.pal"
+; 0xb419
+
+INCBIN "baserom.gbc",$b419,$b825 - $b419
 
 
 SECTION "bank3",DATA,BANK[$3]
@@ -4950,65 +4968,180 @@ INCBIN "baserom.gbc",$1531f,$174ba - $1531f
 
 SECTION "bank6",DATA,BANK[$6]
 
-Tileset03GFX: ; 18000
+Tileset03GFX: ; 0x18000
 INCBIN "gfx/tilesets/03.lz"
-; 18605
+; 0x18605
 
-INCBIN "baserom.gbc", $18605, $19006 - $18605
+	db $00
 
-Tileset00GFX:
-Tileset01GFX: ; 19006
+Tileset03Meta: ; 0x18606
+INCBIN "tilesets/03_metatiles.bin"
+; 0x18e06
+
+Tileset03Coll: ; 0x18e06
+INCBIN "tilesets/03_collision.bin"
+; 0x19006
+
+Tileset00GFX: ; 0x19006
+Tileset01GFX: ; 0x19006
 INCBIN "gfx/tilesets/01.lz"
-; 19c0d
+; 0x19c0d
 
-INCBIN "baserom.gbc", $19c0d, $1a60e - $19c0d
+	db $00
 
-Tileset29GFX: ; 1a60e
+Tileset00Meta: ; 0x19c0e
+Tileset01Meta: ; 0x19c0e
+INCBIN "tilesets/01_metatiles.bin"
+; 0x1a40e
+
+Tileset00Coll: ; 0x1a40e
+Tileset01Coll: ; 0x1a40e
+INCBIN "tilesets/01_collision.bin"
+; 0x1a60e
+
+Tileset29GFX: ; 0x1a60e
 INCBIN "gfx/tilesets/29.lz"
-; 1af38
+; 0x1af38
 
-INCBIN "baserom.gbc", $1af38, $1b43e - $1af38
+	db $00
+	db $00
+	db $00
+	db $00
+	db $00
+	db $00
 
-Tileset20GFX: ; 1b43e
+Tileset29Meta: ; 0x1af3e
+INCBIN "tilesets/29_metatiles.bin"
+; 0x1b33e
+
+Tileset29Coll: ; 0x1b33e
+INCBIN "tilesets/29_collision.bin"
+; 0x1b43e
+
+Tileset20GFX: ; 0x1b43e
 INCBIN "gfx/tilesets/20.lz"
-; 1b8f1
+; 0x1b8f1
 
-INCBIN "baserom.gbc", $1b8f1, $1bdfe - $1b8f1
+	db $00
+	db $00
+	db $00
+	db $00
+	db $00
+	db $00
+	db $00
+	db $00
+	db $00
+	db $00
+	db $00
+	db $00
+	db $00
+
+Tileset20Meta: ; 0x1b8fe
+INCBIN "tilesets/20_metatiles.bin"
+; 0x1bcfe
+
+Tileset20Coll: ; 0x1bcfe
+INCBIN "tilesets/20_collision.bin"
+; 0x1bdfe
 
 
 SECTION "bank7",DATA,BANK[$7]
 
 INCBIN "baserom.gbc", $1c000, $1c30c - $1c000
 
-Tileset07GFX: ; 1c30c
+Tileset07GFX: ; 0x1c30c
 INCBIN "gfx/tilesets/07.lz"
-; 1c73b
+; 0x1c73b
 
-INCBIN "baserom.gbc", $1c73b, $1cc3c - $1c73b
+	db $00
 
-Tileset09GFX: ; 1cc3c
+Tileset07Meta: ; 0x1c73c
+INCBIN "tilesets/07_metatiles.bin"
+; 0x1cb3c
+
+Tileset07Coll: ; 0x1cb3c
+INCBIN "tilesets/07_collision.bin"
+; 0x1cc3c
+
+Tileset09GFX: ; 0x1cc3c
 INCBIN "gfx/tilesets/09.lz"
-; 1d047
+; 0x1d047
 
-INCBIN "baserom.gbc", $1d047, $1d54c - $1d047
+	db $00
+	db $00
+	db $00
+	db $00
+	db $00
 
-Tileset06GFX: ; 1d54c
+Tileset09Meta: ; 0x1d04c
+INCBIN "tilesets/09_metatiles.bin"
+; 0x1d44c
+
+Tileset09Coll: ; 0x1d44c
+INCBIN "tilesets/09_collision.bin"
+; 0x1d54c
+
+Tileset06GFX: ; 0x1d54c
 INCBIN "gfx/tilesets/06.lz"
-; 1d924
+; 0x1d924
 
-INCBIN "baserom.gbc", $1d924, $1de2c - $1d924
+	db $00
+	db $00
+	db $00
+	db $00
+	db $00
+	db $00
+	db $00
+	db $00
 
-Tileset13GFX: ; 1de2c
+Tileset06Meta: ; 0x1d92c
+INCBIN "tilesets/06_metatiles.bin"
+; 0x1dd2c
+
+Tileset06Coll: ; 0x1dd2c
+INCBIN "tilesets/06_collision.bin"
+; 0x1de2c
+
+Tileset13GFX: ; 0x1de2c
 INCBIN "gfx/tilesets/13.lz"
-; 1e58c
+; 0x1e58c
 
-INCBIN "baserom.gbc", $1e58c, $1ea8c - $1e58c
+Tileset13Meta: ; 0x1e58c
+INCBIN "tilesets/13_metatiles.bin"
+; 0x1e98c
 
-Tileset24GFX: ; 1ea8c
+Tileset13Coll: ; 0x1e98c
+INCBIN "tilesets/13_collision.bin"
+; 0x1ea8c
+
+Tileset24GFX: ; 0x1ea8c
 INCBIN "gfx/tilesets/24.lz"
-; 1ee0e
+; 0x1ee0e
 
-INCBIN "baserom.gbc", $1ee0e, $1f31c - $1ee0e
+	db $00
+	db $00
+	db $00
+	db $00
+	db $00
+	db $00
+	db $00
+	db $00
+	db $00
+	db $00
+	db $00
+	db $00
+	db $00
+	db $00
+
+Tileset24Meta: ; 0x1ee1c
+Tileset30Meta: ; 0x1ee1c
+INCBIN "tilesets/30_metatiles.bin"
+; 0x1f21c
+
+Tileset24Coll: ; 0x1f21c
+Tileset30Coll: ; 0x1f21c
+INCBIN "tilesets/30_collision.bin"
+; 0x1f31c
 
 ;                           Songs i
 
@@ -5021,35 +5154,116 @@ SECTION "bank8",DATA,BANK[$8]
 
 INCBIN "baserom.gbc", $20000, $20181 - $20000
 
-Tileset23GFX: ; 20181
+Tileset23GFX: ; 0x20181
 INCBIN "gfx/tilesets/23.lz"
-; 206d2
+; 0x206d2
 
-INCBIN "baserom.gbc", $206d2, $20be1 - $206d2
+	db $00
+	db $00
+	db $00
+	db $00
+	db $00
+	db $00
+	db $00
+	db $00
+	db $00
+	db $00
+	db $00
+	db $00
+	db $00
+	db $00
+	db $00
 
-Tileset10GFX: ; 20be1
+Tileset23Meta: ; 0x206e1
+INCBIN "tilesets/23_metatiles.bin"
+; 0x20ae1
+
+Tileset23Coll: ; 0x20ae1
+INCBIN "tilesets/23_collision.bin"
+; 0x20be1
+
+Tileset10GFX: ; 0x20be1
 INCBIN "gfx/tilesets/10.lz"
-; 213e0
+; 0x213e0
 
-INCBIN "baserom.gbc", $213e0, $218e1 - $213e0
+	db $00
 
-Tileset12GFX: ; 218e1
+Tileset10Meta: ; 0x213e1
+INCBIN "tilesets/10_metatiles.bin"
+; 0x217e1
+
+Tileset10Coll: ; 0x217e1
+INCBIN "tilesets/10_collision.bin"
+; 0x218e1
+
+Tileset12GFX: ; 0x218e1
 INCBIN "gfx/tilesets/12.lz"
-; 22026
+; 0x22026
 
-INCBIN "baserom.gbc", $22026, $22531 - $22026
+	db $00
+	db $00
+	db $00
+	db $00
+	db $00
+	db $00
+	db $00
+	db $00
+	db $00
+	db $00
+	db $00
 
-Tileset14GFX: ; 22531
+Tileset12Meta: ; 0x22031
+INCBIN "tilesets/12_metatiles.bin"
+; 0x22431
+
+Tileset12Coll: ; 0x22431
+INCBIN "tilesets/12_collision.bin"
+; 0x22531
+
+Tileset14GFX: ; 0x22531
 INCBIN "gfx/tilesets/14.lz"
-; 22ae2
+; 0x22ae2
 
-INCBIN "baserom.gbc", $22ae2, $22ff1 - $22ae2
+	db $00
+	db $00
+	db $00
+	db $00
+	db $00
+	db $00
+	db $00
+	db $00
+	db $00
+	db $00
+	db $00
+	db $00
+	db $00
+	db $00
+	db $00
 
-Tileset17GFX: ; 22ff1
+Tileset14Meta: ; 0x22af1
+INCBIN "tilesets/14_metatiles.bin"
+; 0x22ef1
+
+Tileset14Coll: ; 0x22ef1
+INCBIN "tilesets/14_collision.bin"
+; 0x22ff1
+
+Tileset17GFX: ; 0x22ff1
 INCBIN "gfx/tilesets/17.lz"
-; 23391
+; 0x23391
 
-INCBIN "baserom.gbc",$23391,$23b11 - $23391
+Tileset17Meta: ; 0x23391
+INCBIN "tilesets/17_metatiles.bin"
+; 0x23791
+
+Tileset17Coll: ; 0x23791
+INCBIN "tilesets/17_collision.bin"
+; 0x23891
+
+; todo
+Tileset31Meta: ; 0x23891
+INCBIN "tilesets/31_metatiles.bin", $0, $280
+; 0x23b11
 
 EggMovePointers: ; 0x23b11
 INCLUDE "stats/egg_move_pointers.asm"
@@ -5402,33 +5616,92 @@ INCBIN "baserom.gbc",$2ef18,$2ef9f - $2ef18
 
 SECTION "bankC",DATA,BANK[$C]
 
-Tileset15GFX: ; 30000
+Tileset15GFX: ; 0x30000
 INCBIN "gfx/tilesets/15.lz"
-; 304d7
+; 0x304d7
 
-INCBIN "baserom.gbc", $304d7, $309e0 - $304d7
+	db $00
+	db $00
+	db $00
+	db $00
+	db $00
+	db $00
+	db $00
+	db $00
+	db $00
 
-Tileset25GFX: ; 309e0
+Tileset15Meta: ; 0x304e0
+INCBIN "tilesets/15_metatiles.bin"
+; 0x308e0
+
+Tileset15Coll: ; 0x308e0
+INCBIN "tilesets/15_collision.bin"
+; 0x309e0
+
+Tileset25GFX: ; 0x309e0
 INCBIN "gfx/tilesets/25.lz"
-; 30e78
+; 0x30e78
 
-INCBIN "baserom.gbc", $30e78, $31380 - $30e78
+	db $00
+	db $00
+	db $00
+	db $00
+	db $00
+	db $00
+	db $00
+	db $00
 
-Tileset27GFX: ; 31380
+Tileset25Meta: ; 0x30e80
+INCBIN "tilesets/25_metatiles.bin"
+; 0x31280
+
+Tileset25Coll: ; 0x31280
+INCBIN "tilesets/25_collision.bin"
+; 0x31380
+
+Tileset27GFX: ; 0x31380
 INCBIN "gfx/tilesets/27.lz"
-; 318dc
+; 0x318dc
 
-INCBIN "baserom.gbc", $318dc, $31de0 - $318dc
+	db $00
+	db $00
+	db $00
+	db $00
 
-Tileset28GFX: ; 31de0
+Tileset27Meta: ; 0x318e0
+INCBIN "tilesets/27_metatiles.bin"
+; 0x31ce0
+
+Tileset27Coll: ; 0x31ce0
+INCBIN "tilesets/27_collision.bin"
+; 0x31de0
+
+Tileset28GFX: ; 0x31de0
 INCBIN "gfx/tilesets/28.lz"
-; 321a6
+; 0x321a6
 
-INCBIN "baserom.gbc", $321a6, $326b0 - $321a6
+	db $00
+	db $00
+	db $00
+	db $00
+	db $00
+	db $00
+	db $00
+	db $00
+	db $00
+	db $00
 
-Tileset30GFX: ; 326b0
+Tileset28Meta: ; 0x321b0
+INCBIN "tilesets/28_metatiles.bin"
+; 0x325b0
+
+Tileset28Coll: ; 0x325b0
+INCBIN "tilesets/28_collision.bin"
+; 0x326b0
+
+Tileset30GFX: ; 0x326b0
 INCBIN "gfx/tilesets/30.lz"
-; 329ed
+; 0x329ed
 
 INCBIN "baserom.gbc",$329ed,$333f0 - $329ed
 
@@ -6737,7 +7010,138 @@ INCBIN "baserom.gbc",$4a843,$4ae78 - $4a843
 
 SECTION "bank13",DATA,BANK[$13]
 
-INCBIN "baserom.gbc",$4C000,$4ce1f - $4C000
+INCBIN "baserom.gbc", $4c000, $4c075 - $4c000
+
+Tileset03PalMap: ; 0x4c075
+INCBIN "tilesets/03_palette_map.bin"
+; 0x4c0e5
+
+Tileset00PalMap: ; 0x4c0e5
+Tileset01PalMap: ; 0x4c0e5
+INCBIN "tilesets/01_palette_map.bin"
+; 0x4c155
+
+Tileset02PalMap: ; 0x4c155
+INCBIN "tilesets/02_palette_map.bin"
+; 0x4c1c5
+
+Tileset05PalMap: ; 0x4c1c5
+INCBIN "tilesets/05_palette_map.bin"
+; 0x4c235
+
+Tileset06PalMap: ; 0x4c235
+INCBIN "tilesets/06_palette_map.bin"
+; 0x4c2a5
+
+Tileset07PalMap: ; 0x4c2a5
+INCBIN "tilesets/07_palette_map.bin"
+; 0x4c315
+
+Tileset08PalMap: ; 0x4c315
+INCBIN "tilesets/08_palette_map.bin"
+; 0x4c385
+
+Tileset09PalMap: ; 0x4c385
+INCBIN "tilesets/09_palette_map.bin"
+; 0x4c3f5
+
+Tileset10PalMap: ; 0x4c3f5
+INCBIN "tilesets/10_palette_map.bin"
+; 0x4c465
+
+Tileset11PalMap: ; 0x4c465
+INCBIN "tilesets/11_palette_map.bin"
+; 0x4c4d5
+
+Tileset12PalMap: ; 0x4c4d5
+INCBIN "tilesets/12_palette_map.bin"
+; 0x4c545
+
+Tileset13PalMap: ; 0x4c545
+INCBIN "tilesets/13_palette_map.bin"
+; 0x4c5b5
+
+Tileset14PalMap: ; 0x4c5b5
+INCBIN "tilesets/14_palette_map.bin"
+; 0x4c625
+
+Tileset15PalMap: ; 0x4c625
+INCBIN "tilesets/15_palette_map.bin"
+; 0x4c695
+
+Tileset16PalMap: ; 0x4c695
+INCBIN "tilesets/16_palette_map.bin"
+; 0x4c705
+
+Tileset23PalMap: ; 0x4c705
+INCBIN "tilesets/23_palette_map.bin"
+; 0x4c775
+
+Tileset24PalMap: ; 0x4c775
+Tileset30PalMap: ; 0x4c775
+INCBIN "tilesets/30_palette_map.bin"
+; 0x4c7e5
+
+Tileset25PalMap: ; 0x4c7e5
+INCBIN "tilesets/25_palette_map.bin"
+; 0x4c855
+
+Tileset26PalMap: ; 0x4c855
+Tileset32PalMap: ; 0x4c855
+Tileset33PalMap: ; 0x4c855
+Tileset34PalMap: ; 0x4c855
+Tileset35PalMap: ; 0x4c855
+Tileset36PalMap: ; 0x4c855
+INCBIN "tilesets/36_palette_map.bin"
+; 0x4c8c5
+
+Tileset27PalMap: ; 0x4c8c5
+INCBIN "tilesets/27_palette_map.bin"
+; 0x4c935
+
+Tileset17PalMap: ; 0x4c935
+INCBIN "tilesets/17_palette_map.bin"
+; 0x4c9a5
+
+Tileset28PalMap: ; 0x4c9a5
+INCBIN "tilesets/28_palette_map.bin"
+; 0x4ca15
+
+Tileset18PalMap: ; 0x4ca15
+INCBIN "tilesets/18_palette_map.bin"
+; 0x4ca85
+
+Tileset19PalMap: ; 0x4ca85
+INCBIN "tilesets/19_palette_map.bin"
+; 0x4caf5
+
+Tileset20PalMap: ; 0x4caf5
+INCBIN "tilesets/20_palette_map.bin"
+; 0x4cb65
+
+INCBIN "baserom.gbc",$4cb65,$4cbd5-$4cb65
+
+Tileset29PalMap: ; 0x4cbd5
+INCBIN "tilesets/29_palette_map.bin"
+; 0x4cc45
+
+Tileset31PalMap: ; 0x4cc45
+INCBIN "tilesets/31_palette_map.bin"
+; 0x4ccb5
+
+Tileset21PalMap: ; 0x4ccb5
+INCBIN "tilesets/21_palette_map.bin"
+; 0x4cd25
+
+Tileset22PalMap: ; 0x4cd25
+INCBIN "tilesets/22_palette_map.bin"
+; 0x4cd95
+
+Tileset04PalMap: ; 0x4cd95
+INCBIN "tilesets/04_palette_map.bin"
+; 0x4ce05
+
+INCBIN "baserom.gbc", $4ce05, $4ce1f - $4ce05
 
 TileTypeTable: ; 4ce1f
 ; 256 tiletypes
@@ -6779,7 +7183,309 @@ TileTypeTable: ; 4ce1f
 	db $00, $00, $00, $00, $00, $00, $00, $0f
 ; 4cf1f
 
-INCBIN "baserom.gbc",$4cf1f,$4d860 - $4cf1f
+INCBIN "baserom.gbc", $4cf1f, $4d596 - $4cf1f
+
+Tilesets:
+
+Tileset00: ; 0x4d596
+	dbw BANK(Tileset00GFX), Tileset00GFX
+	dbw BANK(Tileset00Meta), Tileset00Meta
+	dbw BANK(Tileset00Coll), Tileset00Coll
+	dw Tileset00Anim
+	dw $0000
+	dw Tileset00PalMap
+
+Tileset01: ; 0x4d5a5
+	dbw BANK(Tileset01GFX), Tileset01GFX
+	dbw BANK(Tileset01Meta), Tileset01Meta
+	dbw BANK(Tileset01Coll), Tileset01Coll
+	dw Tileset01Anim
+	dw $0000
+	dw Tileset01PalMap
+
+Tileset02: ; 0x4d5b4
+	dbw BANK(Tileset02GFX), Tileset02GFX
+	dbw BANK(Tileset02Meta), Tileset02Meta
+	dbw BANK(Tileset02Coll), Tileset02Coll
+	dw Tileset02Anim
+	dw $0000
+	dw Tileset02PalMap
+
+Tileset03: ; 0x4d5c3
+	dbw BANK(Tileset03GFX), Tileset03GFX
+	dbw BANK(Tileset03Meta), Tileset03Meta
+	dbw BANK(Tileset03Coll), Tileset03Coll
+	dw Tileset03Anim
+	dw $0000
+	dw Tileset03PalMap
+
+Tileset04: ; 0x4d5d2
+	dbw BANK(Tileset04GFX), Tileset04GFX
+	dbw BANK(Tileset04Meta), Tileset04Meta
+	dbw BANK(Tileset04Coll), Tileset04Coll
+	dw Tileset04Anim
+	dw $0000
+	dw Tileset04PalMap
+
+Tileset05: ; 0x4d5e1
+	dbw BANK(Tileset05GFX), Tileset05GFX
+	dbw BANK(Tileset05Meta), Tileset05Meta
+	dbw BANK(Tileset05Coll), Tileset05Coll
+	dw Tileset05Anim
+	dw $0000
+	dw Tileset05PalMap
+
+Tileset06: ; 0x4d5f0
+	dbw BANK(Tileset06GFX), Tileset06GFX
+	dbw BANK(Tileset06Meta), Tileset06Meta
+	dbw BANK(Tileset06Coll), Tileset06Coll
+	dw Tileset06Anim
+	dw $0000
+	dw Tileset06PalMap
+
+Tileset07: ; 0x4d5ff
+	dbw BANK(Tileset07GFX), Tileset07GFX
+	dbw BANK(Tileset07Meta), Tileset07Meta
+	dbw BANK(Tileset07Coll), Tileset07Coll
+	dw Tileset07Anim
+	dw $0000
+	dw Tileset07PalMap
+
+Tileset08: ; 0x4d60e
+	dbw BANK(Tileset08GFX), Tileset08GFX
+	dbw BANK(Tileset08Meta), Tileset08Meta
+	dbw BANK(Tileset08Coll), Tileset08Coll
+	dw Tileset08Anim
+	dw $0000
+	dw Tileset08PalMap
+
+Tileset09: ; 0x4d61d
+	dbw BANK(Tileset09GFX), Tileset09GFX
+	dbw BANK(Tileset09Meta), Tileset09Meta
+	dbw BANK(Tileset09Coll), Tileset09Coll
+	dw Tileset09Anim
+	dw $0000
+	dw Tileset09PalMap
+
+Tileset10: ; 0x4d62c
+	dbw BANK(Tileset10GFX), Tileset10GFX
+	dbw BANK(Tileset10Meta), Tileset10Meta
+	dbw BANK(Tileset10Coll), Tileset10Coll
+	dw Tileset10Anim
+	dw $0000
+	dw Tileset10PalMap
+
+Tileset11: ; 0x4d63b
+	dbw BANK(Tileset11GFX), Tileset11GFX
+	dbw BANK(Tileset11Meta), Tileset11Meta
+	dbw BANK(Tileset11Coll), Tileset11Coll
+	dw Tileset11Anim
+	dw $0000
+	dw Tileset11PalMap
+
+Tileset12: ; 0x4d64a
+	dbw BANK(Tileset12GFX), Tileset12GFX
+	dbw BANK(Tileset12Meta), Tileset12Meta
+	dbw BANK(Tileset12Coll), Tileset12Coll
+	dw Tileset12Anim
+	dw $0000
+	dw Tileset12PalMap
+
+Tileset13: ; 0x4d659
+	dbw BANK(Tileset13GFX), Tileset13GFX
+	dbw BANK(Tileset13Meta), Tileset13Meta
+	dbw BANK(Tileset13Coll), Tileset13Coll
+	dw Tileset13Anim
+	dw $0000
+	dw Tileset13PalMap
+
+Tileset14: ; 0x4d668
+	dbw BANK(Tileset14GFX), Tileset14GFX
+	dbw BANK(Tileset14Meta), Tileset14Meta
+	dbw BANK(Tileset14Coll), Tileset14Coll
+	dw Tileset14Anim
+	dw $0000
+	dw Tileset14PalMap
+
+Tileset15: ; 0x4d677
+	dbw BANK(Tileset15GFX), Tileset15GFX
+	dbw BANK(Tileset15Meta), Tileset15Meta
+	dbw BANK(Tileset15Coll), Tileset15Coll
+	dw Tileset15Anim
+	dw $0000
+	dw Tileset15PalMap
+
+Tileset16: ; 0x4d686
+	dbw BANK(Tileset16GFX), Tileset16GFX
+	dbw BANK(Tileset16Meta), Tileset16Meta
+	dbw BANK(Tileset16Coll), Tileset16Coll
+	dw Tileset16Anim
+	dw $0000
+	dw Tileset16PalMap
+
+Tileset17: ; 0x4d695
+	dbw BANK(Tileset17GFX), Tileset17GFX
+	dbw BANK(Tileset17Meta), Tileset17Meta
+	dbw BANK(Tileset17Coll), Tileset17Coll
+	dw Tileset17Anim
+	dw $0000
+	dw Tileset17PalMap
+
+Tileset18: ; 0x4d6a4
+	dbw BANK(Tileset18GFX), Tileset18GFX
+	dbw BANK(Tileset18Meta), Tileset18Meta
+	dbw BANK(Tileset18Coll), Tileset18Coll
+	dw Tileset18Anim
+	dw $0000
+	dw Tileset18PalMap
+
+Tileset19: ; 0x4d6b3
+	dbw BANK(Tileset19GFX), Tileset19GFX
+	dbw BANK(Tileset19Meta), Tileset19Meta
+	dbw BANK(Tileset19Coll), Tileset19Coll
+	dw Tileset19Anim
+	dw $0000
+	dw Tileset19PalMap
+
+Tileset20: ; 0x4d6c2
+	dbw BANK(Tileset20GFX), Tileset20GFX
+	dbw BANK(Tileset20Meta), Tileset20Meta
+	dbw BANK(Tileset20Coll), Tileset20Coll
+	dw Tileset20Anim
+	dw $0000
+	dw Tileset20PalMap
+
+Tileset21: ; 0x4d6d1
+	dbw BANK(Tileset21GFX), Tileset21GFX
+	dbw BANK(Tileset21Meta), Tileset21Meta
+	dbw BANK(Tileset21Coll), Tileset21Coll
+	dw Tileset21Anim
+	dw $0000
+	dw Tileset21PalMap
+
+Tileset22: ; 0x4d6e0
+	dbw BANK(Tileset22GFX), Tileset22GFX
+	dbw BANK(Tileset22Meta), Tileset22Meta
+	dbw BANK(Tileset22Coll), Tileset22Coll
+	dw Tileset22Anim
+	dw $0000
+	dw Tileset22PalMap
+
+Tileset23: ; 0x4d6ef
+	dbw BANK(Tileset23GFX), Tileset23GFX
+	dbw BANK(Tileset23Meta), Tileset23Meta
+	dbw BANK(Tileset23Coll), Tileset23Coll
+	dw Tileset23Anim
+	dw $0000
+	dw Tileset23PalMap
+
+Tileset24: ; 0x4d6fe
+	dbw BANK(Tileset24GFX), Tileset24GFX
+	dbw BANK(Tileset24Meta), Tileset24Meta
+	dbw BANK(Tileset24Coll), Tileset24Coll
+	dw Tileset24Anim
+	dw $0000
+	dw Tileset24PalMap
+
+Tileset25: ; 0x4d70d
+	dbw BANK(Tileset25GFX), Tileset25GFX
+	dbw BANK(Tileset25Meta), Tileset25Meta
+	dbw BANK(Tileset25Coll), Tileset25Coll
+	dw Tileset25Anim
+	dw $0000
+	dw Tileset25PalMap
+
+Tileset26: ; 0x4d71c
+	dbw BANK(Tileset26GFX), Tileset26GFX
+	dbw BANK(Tileset26Meta), Tileset26Meta
+	dbw BANK(Tileset26Coll), Tileset26Coll
+	dw Tileset26Anim
+	dw $0000
+	dw Tileset26PalMap
+
+Tileset27: ; 0x4d72b
+	dbw BANK(Tileset27GFX), Tileset27GFX
+	dbw BANK(Tileset27Meta), Tileset27Meta
+	dbw BANK(Tileset27Coll), Tileset27Coll
+	dw Tileset27Anim
+	dw $0000
+	dw Tileset27PalMap
+
+Tileset28: ; 0x4d73a
+	dbw BANK(Tileset28GFX), Tileset28GFX
+	dbw BANK(Tileset28Meta), Tileset28Meta
+	dbw BANK(Tileset28Coll), Tileset28Coll
+	dw Tileset28Anim
+	dw $0000
+	dw Tileset28PalMap
+
+Tileset29: ; 0x4d749
+	dbw BANK(Tileset29GFX), Tileset29GFX
+	dbw BANK(Tileset29Meta), Tileset29Meta
+	dbw BANK(Tileset29Coll), Tileset29Coll
+	dw Tileset29Anim
+	dw $0000
+	dw Tileset29PalMap
+
+Tileset30: ; 0x4d758
+	dbw BANK(Tileset30GFX), Tileset30GFX
+	dbw BANK(Tileset30Meta), Tileset30Meta
+	dbw BANK(Tileset30Coll), Tileset30Coll
+	dw Tileset30Anim
+	dw $0000
+	dw Tileset30PalMap
+
+Tileset31: ; 0x4d767
+	dbw BANK(Tileset31GFX), Tileset31GFX
+	dbw BANK(Tileset31Meta), Tileset31Meta
+	dbw BANK(Tileset31Coll), Tileset31Coll
+	dw Tileset31Anim
+	dw $0000
+	dw Tileset31PalMap
+
+Tileset32: ; 0x4d776
+	dbw BANK(Tileset32GFX), Tileset32GFX
+	dbw BANK(Tileset32Meta), Tileset32Meta
+	dbw BANK(Tileset32Coll), Tileset32Coll
+	dw Tileset32Anim
+	dw $0000
+	dw Tileset32PalMap
+
+Tileset33: ; 0x4d785
+	dbw BANK(Tileset33GFX), Tileset33GFX
+	dbw BANK(Tileset33Meta), Tileset33Meta
+	dbw BANK(Tileset33Coll), Tileset33Coll
+	dw Tileset33Anim
+	dw $0000
+	dw Tileset33PalMap
+
+Tileset34: ; 0x4d794
+	dbw BANK(Tileset34GFX), Tileset34GFX
+	dbw BANK(Tileset34Meta), Tileset34Meta
+	dbw BANK(Tileset34Coll), Tileset34Coll
+	dw Tileset34Anim
+	dw $0000
+	dw Tileset34PalMap
+
+Tileset35: ; 0x4d7a3
+	dbw BANK(Tileset35GFX), Tileset35GFX
+	dbw BANK(Tileset35Meta), Tileset35Meta
+	dbw BANK(Tileset35Coll), Tileset35Coll
+	dw Tileset35Anim
+	dw $0000
+	dw Tileset35PalMap
+
+Tileset36: ; 0x4d7b2
+	dbw BANK(Tileset36GFX), Tileset36GFX
+	dbw BANK(Tileset36Meta), Tileset36Meta
+	dbw BANK(Tileset36Coll), Tileset36Coll
+	dw Tileset36Anim
+	dw $0000
+	dw Tileset36PalMap
+
+; 0x4d7c1
+
+INCBIN "baserom.gbc", $4d7c1, $4d860 - $4d7c1
 
 CheckPokerus: ; 4d860
 ; Return carry if a monster in your party has Pokerus
@@ -11704,36 +12410,119 @@ GoldenrodDeptStoreRoof_BlockData: ; 0xb1b22
 
 SECTION "bank2D",DATA,BANK[$2D]
 
-Tileset21GFX: ; b4000
+Tileset21GFX: ; 0xb4000
 INCBIN "gfx/tilesets/21.lz"
-; b4893
+; 0xb4893
 
-INCBIN "baserom.gbc", $b4893, $b4da0 - $b4893
+	db $00
+	db $00
+	db $00
+	db $00
+	db $00
+	db $00
+	db $00
+	db $00
+	db $00
+	db $00
+	db $00
+	db $00
+	db $00
 
-Tileset22GFX: ; b4da0
+Tileset21Meta: ; 0xb48a0
+INCBIN "tilesets/21_metatiles.bin"
+; 0xb4ca0
+
+Tileset21Coll: ; 0xb4ca0
+INCBIN "tilesets/21_collision.bin"
+; 0xb4da0
+
+Tileset22GFX: ; 0xb4da0
 INCBIN "gfx/tilesets/22.lz"
-; b50d1
+; 0xb50d1
 
-INCBIN "baserom.gbc", $b50d1, $b55e0 - $b50d1
+	db $00
+	db $00
+	db $00
+	db $00
+	db $00
+	db $00
+	db $00
+	db $00
+	db $00
+	db $00
+	db $00
+	db $00
+	db $00
+	db $00
+	db $00
 
-Tileset08GFX: ; b55e0
+Tileset22Meta: ; 0xb50e0
+INCBIN "tilesets/22_metatiles.bin"
+; 0xb54e0
+
+Tileset22Coll: ; 0xb54e0
+INCBIN "tilesets/22_collision.bin"
+; 0xb55e0
+
+Tileset08GFX: ; 0xb55e0
 INCBIN "gfx/tilesets/08.lz"
-; b59db
+; 0xb59db
 
-INCBIN "baserom.gbc", $b59db, $b5ee0 - $b59db
+	db $00
+	db $00
+	db $00
+	db $00
+	db $00
 
-Tileset02GFX:
-Tileset04GFX: ; b5ee0
+Tileset08Meta: ; 0xb59e0
+INCBIN "tilesets/08_metatiles.bin"
+; 0xb5de0
+
+Tileset08Coll: ; 0xb5de0
+INCBIN "tilesets/08_collision.bin"
+; 0xb5ee0
+
+Tileset02GFX: ; 0xb5ee0
+Tileset04GFX: ; 0xb5ee0
 INCBIN "gfx/tilesets/04.lz"
-; b6ae7
+; 0xb6ae7
 
-INCBIN "baserom.gbc", $b6ae7, $b74e8 - $b6ae7
+	db $00
 
-Tileset16GFX: ; b74e8
+Tileset02Meta: ; 0xb6ae8
+INCBIN "tilesets/02_metatiles.bin"
+; 0xb72e8
+
+Tileset02Coll: ; 0xb72e8
+INCBIN "tilesets/02_collision.bin"
+; 0xb74e8
+
+Tileset16GFX: ; 0xb74e8
 INCBIN "gfx/tilesets/16.lz"
-; b799a
+; 0xb799a
 
-INCBIN "baserom.gbc", $b799a, $b7ea8 - $b799a
+	db $00
+	db $00
+	db $00
+	db $00
+	db $00
+	db $00
+	db $00
+	db $00
+	db $00
+	db $00
+	db $00
+	db $00
+	db $00
+	db $00
+
+Tileset16Meta: ; 0xb79a8
+INCBIN "tilesets/16_metatiles.bin"
+; 0xb7da8
+
+Tileset16Coll: ; 0xb7da8
+INCBIN "tilesets/16_collision.bin"
+; 0xb7ea8
 
 
 SECTION "bank2E",DATA,BANK[$2E]
@@ -12505,35 +13294,116 @@ INCLUDE "gfx/pics/unown_frames.asm"
 
 SECTION "bank37",DATA,BANK[$37]
 
-Tileset31GFX: ; dc000
+Tileset31GFX: ; 0xdc000
 INCBIN "gfx/tilesets/31.lz"
-; dc3ce
+; 0xdc3ce
 
-INCBIN "baserom.gbc", $dc3ce, $dc3d0 - $dc3ce
+	db $00
+	db $00
 
-Tileset18GFX: ; dc3d0
+Tileset18GFX: ; 0xdc3d0
 INCBIN "gfx/tilesets/18.lz"
-; dcc4e
+; 0xdcc4e
 
-INCBIN "baserom.gbc", $dcc4e, $dd150 - $dcc4e
+	db $00
+	db $00
 
-Tileset05GFX: ; dd150
+Tileset18Meta: ; 0xdcc50
+INCBIN "tilesets/18_metatiles.bin"
+; 0xdd050
+
+Tileset18Coll: ; 0xdd050
+INCBIN "tilesets/18_collision.bin"
+; 0xdd150
+
+Tileset05GFX: ; 0xdd150
 INCBIN "gfx/tilesets/05.lz"
-; dd5f8
+; 0xdd5f8
 
-INCBIN "baserom.gbc", $dd5f8, $ddb00 - $dd5f8
+	db $00
+	db $00
+	db $00
+	db $00
+	db $00
+	db $00
+	db $00
+	db $00
 
-Tileset19GFX: ; ddb00
+Tileset05Meta: ; 0xdd600
+INCBIN "tilesets/05_metatiles.bin"
+; 0xdda00
+
+Tileset05Coll: ; 0xdda00
+INCBIN "tilesets/05_collision.bin"
+; 0xddb00
+
+Tileset19GFX: ; 0xddb00
 INCBIN "gfx/tilesets/19.lz"
-; ddf64
+; 0xddf64
 
-INCBIN "baserom.gbc", $ddf64, $de570 - $ddf64
+	db $00
+	db $00
+	db $00
+	db $00
+	db $00
+	db $00
+	db $00
+	db $00
+	db $00
+	db $00
+	db $00
+	db $00
 
-Tileset11GFX: ; de570
+Tileset19Meta: ; 0xddf70
+INCBIN "tilesets/19_metatiles.bin"
+; 0xde370
+
+Tileset19Coll: ; 0xde370
+INCBIN "tilesets/19_collision.bin"
+; 0xde470
+
+Tileset31Coll: ; 0xde470
+INCBIN "tilesets/31_collision.bin"
+; 0xde570
+
+Tileset11GFX: ; 0xde570
 INCBIN "gfx/tilesets/11.lz"
-; de98a
+; 0xde98a
 
-INCBIN "baserom.gbc", $de98a, $dfd14 - $de98a
+	db $00
+	db $00
+	db $00
+	db $00
+	db $00
+	db $00
+
+Tileset11Meta: ; 0xde990
+INCBIN "tilesets/11_metatiles.bin"
+; 0xded90
+
+Tileset11Coll: ; 0xded90
+INCBIN "tilesets/11_collision.bin"
+; 0xdee90
+
+Tileset04Meta: ; 0xdee90
+INCBIN "tilesets/04_metatiles.bin"
+; 0xdf690
+
+Tileset04Coll: ; 0xdf690
+INCBIN "tilesets/04_collision.bin"
+; 0xdf890
+
+Tileset32Meta: ; 0xdf890
+INCBIN "tilesets/32_metatiles.bin"
+; 0xdfc90
+
+Tileset32Coll: ; 0xdfc90
+Tileset33Coll: ; 0xdfc90
+Tileset34Coll: ; 0xdfc90
+Tileset35Coll: ; 0xdfc90
+Tileset36Coll: ; 0xdfc90
+INCBIN "tilesets/36_collision.bin"
+; 0xdfd90
 
 
 SECTION "bank38",DATA,BANK[$38]
@@ -12869,9 +13739,525 @@ INCBIN "baserom.gbc",$fbccf,$fbe91 - $fbccf
 
 SECTION "bank3F",DATA,BANK[$3F]
 
-DoTileAnimation:
+DoTileAnimation: ; fc000
+; Iterate over a given pointer array of animation functions
+; (one per frame).
+; Typically in wra1, vra0
 
-INCBIN "baserom.gbc",$FC000,$fcdc2-$fc000
+; Beginning of animation pointer array
+	ld a, [TileSetAnim]
+	ld e, a
+	ld a, [TileSetAnim + 1]
+	ld d, a
+
+; Play this frame.
+	ld a, [$ffdf] ; frame count
+	ld l, a
+	inc a
+	ld [$ffdf], a
+	
+; Each pointer has:
+	ld h, 0
+	add hl, hl
+	add hl, hl
+	add hl, de
+
+; 2-byte parameter (all functions take input de)
+	ld e, [hl]
+	inc hl
+	ld d, [hl]
+	inc hl
+	
+; Function address
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	
+	jp [hl]
+; fc01b
+
+Tileset00Anim: ; 0xfc01b
+Tileset02Anim: ; 0xfc01b
+Tileset03Anim: ; 0xfc01b
+;	   param, function
+	dw $9140, AnimateWaterTile
+	dw $0000, WaitTileAnimation
+	dw $0000, WaitTileAnimation
+	dw $0000, WaitTileAnimation
+	dw $0000, TileAnimationPalette
+	dw $0000, WaitTileAnimation
+	dw $0000, AnimateFlowerTile
+	dw $0000, WaitTileAnimation
+	dw $0000, WaitTileAnimation
+	dw $0000, NextTileFrame8
+	dw $0000, DoneTileAnimation
+; 0xfc047
+
+Tileset25Anim: ; 0xfc047
+;	   param, function
+	dw $9140, AnimateWaterTile
+	dw $0000, WaitTileAnimation
+	dw $95f0, $4387
+	dw $0000, WaitTileAnimation
+	dw $0000, TileAnimationPalette
+	dw $0000, WaitTileAnimation
+	dw $0000, AnimateFlowerTile
+	dw $0000, WaitTileAnimation
+	dw $0000, WaitTileAnimation
+	dw $0000, NextTileFrame8
+	dw $0000, DoneTileAnimation
+; 0xfc073
+
+Tileset31Anim: ; 0xfc073
+;	   param, function
+	dw $0000, $445c
+	dw $0000, $44c4
+	dw $0000, WaitTileAnimation
+	dw $0000, WaitTileAnimation
+	dw $0000, WaitTileAnimation
+	dw $0000, $44f2
+	dw $0000, $451c
+	dw $0000, AnimateFlowerTile
+	dw $9140, AnimateWaterTile
+	dw $0000, TileAnimationPalette
+	dw $0000, NextTileFrame8
+	dw $0000, DoneTileAnimation
+; 0xfc0a3
+
+Tileset01Anim: ; 0xfc0a3
+;	   param, function
+	dw $9140, AnimateWaterTile
+	dw $0000, WaitTileAnimation
+	dw $0000, WaitTileAnimation
+	dw $0000, TileAnimationPalette
+	dw $0000, WaitTileAnimation
+	dw $0000, AnimateFlowerTile
+	dw $4a98, AnimateWhirlpoolTile
+	dw $4a9c, AnimateWhirlpoolTile
+	dw $4aa0, AnimateWhirlpoolTile
+	dw $4aa4, AnimateWhirlpoolTile
+	dw $0000, WaitTileAnimation
+	dw $0000, NextTileFrame8
+	dw $0000, DoneTileAnimation
+; 0xfc0d7
+
+INCBIN "baserom.gbc",$fc0d7,$fc12f-$fc0d7
+
+Tileset09Anim: ; 0xfc12f
+;	   param, function
+	dw $9140, AnimateWaterTile
+	dw $0000, WaitTileAnimation
+	dw $0000, WaitTileAnimation
+	dw $0000, WaitTileAnimation
+	dw $0000, WaitTileAnimation
+	dw $0000, TileAnimationPalette
+	dw $0000, WaitTileAnimation
+	dw $0000, WaitTileAnimation
+	dw $0000, WaitTileAnimation
+	dw $0000, WaitTileAnimation
+	dw $0000, NextTileFrame8
+	dw $0000, DoneTileAnimation
+; 0xfc15f
+
+Tileset15Anim: ; 0xfc15f
+;	   param, function
+	dw $0000, $45eb
+	dw $0000, WaitTileAnimation
+	dw $0000, WaitTileAnimation
+	dw $0000, WaitTileAnimation
+	dw $0000, $45cc
+	dw $0000, WaitTileAnimation
+	dw $0000, NextTileFrame8
+	dw $0000, DoneTileAnimation
+; 0xfc17f
+
+INCBIN "baserom.gbc",$fc17f,$fc1e7-$fc17f
+
+Tileset24Anim: ; 0xfc1e7
+Tileset30Anim: ; 0xfc1e7
+;	   param, function
+	dw $9140, $46a2
+	dw $0000, $471e
+	dw $cf41, $4309
+	dw $0000, $471e
+	dw $9140, $4696
+	dw $0000, $471e
+	dw $0000, TileAnimationPalette
+	dw $0000, $471e
+	dw $9400, $46a2
+	dw $0000, $471e
+	dw $cf41, $436a
+	dw $0000, $471e
+	dw $cf41, $436a
+	dw $0000, $471e
+	dw $cf41, $436a
+	dw $0000, $471e
+	dw $9400, $4696
+	dw $0000, $471e
+	dw $0000, DoneTileAnimation
+; 0xfc233
+
+Tileset29Anim: ; 0xfc233
+;	   param, function
+	dw $9350, $46a2
+	dw $0000, $471e
+	dw $cf41, $4309
+	dw $0000, $471e
+	dw $9350, $4696
+	dw $0000, $471e
+	dw $0000, TileAnimationPalette
+	dw $0000, $471e
+	dw $9310, $46a2
+	dw $0000, $471e
+	dw $cf41, $436a
+	dw $0000, $471e
+	dw $cf41, $436a
+	dw $0000, $471e
+	dw $cf41, $436a
+	dw $0000, $471e
+	dw $9310, $4696
+	dw $0000, $471e
+	dw $0000, DoneTileAnimation
+; 0xfc27f
+
+Tileset23Anim: ; 0xfc27f
+;	   param, function
+	dw $4770, $4645
+	dw $4774, $4645
+	dw $4768, $4645
+	dw $476c, $4645
+	dw $4760, $4645
+	dw $4764, $4645
+	dw $4758, $4645
+	dw $475c, $4645
+	dw $4750, $4645
+	dw $4754, $4645
+	dw $0000, NextTileFrame
+	dw $0000, WaitTileAnimation
+	dw $0000, WaitTileAnimation
+	dw $0000, WaitTileAnimation
+	dw $0000, WaitTileAnimation
+	dw $0000, DoneTileAnimation
+; 0xfc2bf
+
+INCBIN "baserom.gbc",$fc2bf,$fc2e7-$fc2bf
+
+Tileset04Anim: ; 0xfc2e7
+Tileset05Anim: ; 0xfc2e7
+Tileset06Anim: ; 0xfc2e7
+Tileset07Anim: ; 0xfc2e7
+Tileset08Anim: ; 0xfc2e7
+Tileset10Anim: ; 0xfc2e7
+Tileset11Anim: ; 0xfc2e7
+Tileset12Anim: ; 0xfc2e7
+Tileset13Anim: ; 0xfc2e7
+Tileset14Anim: ; 0xfc2e7
+Tileset16Anim: ; 0xfc2e7
+Tileset17Anim: ; 0xfc2e7
+Tileset18Anim: ; 0xfc2e7
+Tileset19Anim: ; 0xfc2e7
+Tileset20Anim: ; 0xfc2e7
+Tileset21Anim: ; 0xfc2e7
+Tileset22Anim: ; 0xfc2e7
+Tileset26Anim: ; 0xfc2e7
+Tileset27Anim: ; 0xfc2e7
+Tileset28Anim: ; 0xfc2e7
+Tileset32Anim: ; 0xfc2e7
+Tileset33Anim: ; 0xfc2e7
+Tileset34Anim: ; 0xfc2e7
+Tileset35Anim: ; 0xfc2e7
+Tileset36Anim: ; 0xfc2e7
+;	   param, function
+	dw $0000, WaitTileAnimation
+	dw $0000, WaitTileAnimation
+	dw $0000, WaitTileAnimation
+	dw $0000, WaitTileAnimation
+	dw $0000, DoneTileAnimation
+; 0xfc2fb
+
+DoneTileAnimation: ; fc2fb
+; Reset the animation command loop.
+	xor a
+	ld [$ffdf], a
+	
+WaitTileAnimation: ; fc2fe
+; Do nothing this frame.
+	ret
+; fc2ff
+
+NextTileFrame8: ; fc2ff
+	ld a, [TileAnimationTimer]
+	inc a
+	and a, 7
+	ld [TileAnimationTimer], a
+	ret
+; fc309
+
+INCBIN "baserom.gbc", $fc309, $fc402 - $fc309
+
+AnimateWaterTile: ; fc402
+; Draw a water tile for the current frame in VRAM tile at de.
+
+; Save sp in bc (see WriteTile).
+	ld hl, [sp+0]
+	ld b, h
+	ld c, l
+	
+	ld a, [TileAnimationTimer]
+	
+; 4 tile graphics, updated every other frame.
+	and 3 << 1
+	
+; 2 x 8 = 16 bytes per tile
+	add a
+	add a
+	add a
+	
+	add WaterTileFrames % $100
+	ld l, a
+	ld a, 0
+	adc WaterTileFrames / $100
+	ld h, a
+	
+; Stack now points to the start of the tile for this frame.
+	ld sp, hl
+	
+	ld l, e
+	ld h, d
+	
+	jp WriteTile
+; fc41c
+
+WaterTileFrames: ; fc41c
+; Frames 0-3
+; INCBIN "gfx/tilesets/water.2bpp"
+INCBIN "baserom.gbc", $fc41c, $fc45c - $fc41c
+; fc45c
+
+INCBIN "baserom.gbc", $fc45c, $fc56d - $fc45c
+
+AnimateFlowerTile: ; fc56d
+; No parameters.
+
+; Save sp in bc (see WriteTile).
+	ld hl, [sp+0]
+	ld b, h
+	ld c, l
+	
+; Alternate tile graphc every other frame
+	ld a, [TileAnimationTimer]
+	and 1 << 1
+	ld e, a
+	
+; CGB has different color mappings for flowers.
+	ld a, [$ffe6]
+	and 1
+	
+	add e
+	swap a ; << 4 (16 bytes)
+	ld e, a
+	ld d, 0
+	ld hl, FlowerTileFrames
+	add hl, de
+	ld sp, hl
+	
+	ld hl, VTiles2 + $30 ; tile 4
+	
+	jp WriteTile
+; fc58c
+
+FlowerTileFrames: ; fc58c
+; frame 0 dmg
+; frame 0 cgb
+; frame 1 dmg
+; frame 1 sgb
+; INCBIN "gfx/tilesets/flower.2bpp"
+INCBIN "baserom.gbc", $fc58c, $fc5cc - $fc58c
+; fc5cc
+
+INCBIN "baserom.gbc", $fc5cc, $fc673 - $fc5cc
+
+NextTileFrame: ; fc673
+	ld hl, TileAnimationTimer
+	inc [hl]
+	ret
+; fc678
+
+
+AnimateWhirlpoolTile: ; fc678
+; Update whirlpool tile using struct at de.
+
+; Struct:
+; 	VRAM address
+;	Address of the first tile
+
+; Only does one of 4 tiles at a time.
+
+; Save sp in bc (see WriteTile).
+	ld hl, [sp+0]
+	ld b, h
+	ld c, l
+	
+; de = VRAM address
+	ld l, e
+	ld h, d
+	ld e, [hl]
+	inc hl
+	ld d, [hl]
+	inc hl
+; Tile address is now at hl.
+	
+; Get the tile for this frame.
+	ld a, [TileAnimationTimer]
+	and %11 ; 4 frames x2
+	swap a  ; * 16 bytes per tile
+	
+	add [hl]
+	inc hl
+	ld h, [hl]
+	ld l, a
+	ld a, 0
+	adc h
+	ld h, a
+	
+; Stack now points to the desired frame.
+	ld sp, hl
+	
+	ld l, e
+	ld h, d
+	
+	jr WriteTile
+; fc696
+	
+	
+WriteTileFromBuffer: ; fc696
+; Write tiledata at $cf41 to de.
+; $cf41 is loaded to sp for WriteTile.
+
+	ld hl, [sp+0]
+	ld b, h
+	ld c, l
+	
+	ld hl, $cf41
+	ld sp, hl
+	
+	ld h, d
+	ld l, e
+	jr WriteTile
+; fc6a2
+	
+	
+WriteTileToBuffer: ; fc6a2
+; Write tiledata de to $cf41.
+; de is loaded to sp for WriteTile.
+
+	ld hl, [sp+0]
+	ld b, h
+	ld c, l
+	
+	ld h, d
+	ld l, e
+	ld sp, hl
+	
+	ld hl, $cf41
+	
+	; fallthrough
+
+WriteTile: ; fc6ac
+; Write one 8x8 tile ($10 bytes) from sp to hl.
+
+; Warning: sp is saved in bc so we can abuse pop.
+; sp is restored to address bc. Save sp in bc before calling.
+
+	pop de
+	ld [hl], e
+	inc hl
+	ld [hl], d
+	
+rept 7
+	pop de
+	inc hl
+	ld [hl], e
+	inc hl
+	ld [hl], d
+endr
+	
+; restore sp
+	ld h, b
+	ld l, c
+	ld sp, hl
+	ret
+; fc6d7
+
+
+TileAnimationPalette: ; fc6d7
+; Transition between color values 0-2 for color 0 in palette 3.
+
+; No palette changes on DMG.
+	ld a, [$ffe6]
+	and a
+	ret z
+	
+; We don't want to mess with non-standard palettes.
+	ld a, [$ff47] ; BGP
+	cp %11100100
+	ret nz
+	
+; Only update on even frames.
+	ld a, [TileAnimationTimer]
+	ld l, a
+	and 1 ; odd
+	ret nz
+	
+; Ready for BGPD input...
+	ld a, %10011000 ; auto increment, index $18 (pal 3 color 0)
+	ld [rBGPI], a
+	
+	ld a, [rSVBK]
+	push af
+	ld a, 5 ; wra5: gfx
+	ld [rSVBK], a
+	
+; Update color 0 in order 0 1 2 1
+	
+	ld a, l
+	and %110 ; frames 0 2 4 6
+	
+	jr z, .color0
+	
+	cp 4
+	jr z, .color2
+	
+.color1
+	ld hl, $d01a ; pal 3 color 1
+	ld a, [hli]
+	ld [rBGPD], a
+	ld a, [hli]
+	ld [rBGPD], a
+	jr .end
+	
+.color0
+	ld hl, $d018 ; pal 3 color 0
+	ld a, [hli]
+	ld [rBGPD], a
+	ld a, [hli]
+	ld [rBGPD], a
+	jr .end
+	
+.color2
+	ld hl, $d01c ; pal 3 color 2
+	ld a, [hli]
+	ld [rBGPD], a
+	ld a, [hli]
+	ld [rBGPD], a
+	
+.end
+	pop af
+	ld [rSVBK], a
+	ret
+; fc71e
+
+INCBIN "baserom.gbc", $fc71e, $fcdc2 - $fc71e
 
 LoadTradesPointer: ; 0xfcdc2
 	ld d, 0
@@ -14994,16 +16380,26 @@ SECTION "bank77",DATA,BANK[$77]
 
 INCBIN "baserom.gbc", $1dc000, $1dc5a1 - $1dc000
 
-Tileset26GFX:
-Tileset32GFX:
-Tileset33GFX:
-Tileset34GFX:
-Tileset35GFX:
-Tileset36GFX: ; 1dc5a1
-INCBIN "gfx/tilesets/26.lz"
-; 1dd1a8
+Tileset26GFX: ; 0x1dc5a1
+Tileset32GFX: ; 0x1dc5a1
+Tileset33GFX: ; 0x1dc5a1
+Tileset34GFX: ; 0x1dc5a1
+Tileset35GFX: ; 0x1dc5a1
+Tileset36GFX: ; 0x1dc5a1
+INCBIN "gfx/tilesets/36.lz"
+; 0x1dd1a8
 
-INCBIN "baserom.gbc", $1dd1a8, $1de29f - $1dd1a8
+	db $00
+
+Tileset26Meta: ; 0x1dd1a9
+INCBIN "tilesets/26_metatiles.bin"
+; 0x1dd5a9
+
+Tileset26Coll: ; 0x1dd5a9
+INCBIN "tilesets/26_collision.bin"
+; 0x1dd6a9
+
+INCBIN "baserom.gbc", $1dd6a9, $1de29f - $1dd6a9
 
 
 DudeAutoInput_A: ; 1de29f
@@ -15046,7 +16442,21 @@ INCBIN "baserom.gbc",$1de5c7,$1df238 - $1de5c7
 
 SECTION "bank78",DATA,BANK[$78]
 
-INCBIN "baserom.gbc",$1e0000,$1e1000 - $1e0000
+Tileset33Meta: ; 0x1e0000
+INCBIN "tilesets/33_metatiles.bin"
+; 0x1e0400
+
+Tileset34Meta: ; 0x1e0400
+INCBIN "tilesets/34_metatiles.bin"
+; 0x1e0800
+
+Tileset35Meta: ; 0x1e0800
+INCBIN "tilesets/35_metatiles.bin"
+; 0x1e0c00
+
+Tileset36Meta: ; 0x1e0c00
+INCBIN "tilesets/36_metatiles.bin"
+; 0x1e1000
 
 
 SECTION "bank79",DATA,BANK[$79]
