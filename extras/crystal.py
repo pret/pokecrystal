@@ -6201,7 +6201,7 @@ def parse_map_header_by_id(*args, **kwargs):
     elif len(args) == 1 and type(args[0]) == str:
         map_group = int(args[0].split(".")[0])
         map_id = int(args[0].split(".")[1])
-    else:
+    elif map_group == None and map_id == None:
         raise Exception("dunno what to do with input")
     offset = map_names[map_group]["offset"]
     map_header_offset = offset + ((map_id - 1) * map_header_byte_size)
