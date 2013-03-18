@@ -1492,8 +1492,25 @@ def append_terminator_to_lzs(directory):
 					new.write(data)
 					new.close()
 
+def lz_to_png_by_file(filename):
+    """
+    Converts a lz file to png. Dumps a 2bpp file too.
+    """
+    assert filename[-3:] == ".lz"
+    lz_data = open(filename, "rb").read()
+    bpp = Decompressed(lz).output
+    bpp_filename = filename.replace(".lz", ".2bpp")
+    to_file(bpp_filename, bpp)
+    to_png(bpp_filename)
 
-
+def dump_tileset_pngs():
+    """
+    Converts .lz format tilesets into .png format tilesets. Also, leaves a
+    bunch of wonderful .2bpp files everywhere for your amusement.
+    """
+    for tileset_id in range(37):
+        tileset_filename = "../gfx/tilesets/" + str(tileset_id).zfill(2) + ".lz"
+        lz_to_png_by_file(tileset_filename)
 
 if __name__ == "__main__":
 	parser = argparse.ArgumentParser()
