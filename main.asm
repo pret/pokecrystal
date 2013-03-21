@@ -7,7 +7,7 @@ SECTION "rst8",HOME[$8] ; FarCall
 	jp FarJpHl
 
 SECTION "rst10",HOME[$10] ; Bankswitch
-	ld [$ff9d], a
+	ld [hROMBank], a
 	ld [$2000], a
 	ret
 
@@ -219,7 +219,7 @@ UpdateTime: ; 5a7
 ; 5b7
 
 GetClock: ; 5b7
-; store clock data in $ff8d-$ff91
+; store clock data in hRTCDayHi-hRTCSeconds
 
 ; enable clock r/w
 	ld a, $a
@@ -236,25 +236,25 @@ GetClock: ; 5b7
 	ld [hl], $8 ; S
 	ld a, [de]
 	and $3f
-	ld [$ff91], a
+	ld [hRTCSeconds], a
 ; minutes
 	ld [hl], $9 ; M
 	ld a, [de]
 	and $3f
-	ld [$ff90], a
+	ld [hRTCMinutes], a
 ; hours
 	ld [hl], $a ; H
 	ld a, [de]
 	and $1f
-	ld [$ff8f], a
+	ld [hRTCHours], a
 ; day lo
 	ld [hl], $b ; DL
 	ld a, [de]
-	ld [$ff8e], a
+	ld [hRTCDayLo], a
 ; day hi
 	ld [hl], $c ; DH
 	ld a, [de]
-	ld [$ff8d], a
+	ld [hRTCDayHi], a
 	
 ; cleanup
 	call CloseSRAM ; unlatch clock, disable clock r/w
@@ -267,16 +267,16 @@ FixDays: ; 5e8
 ; mod by 140
 
 ; check if day count > 255 (bit 8 set)
-	ld a, [$ff8d] ; DH
+	ld a, [hRTCDayHi] ; DH
 	bit 0, a
 	jr z, .daylo
 ; reset dh (bit 8)
 	res 0, a
-	ld [$ff8d], a ; DH
+	ld [hRTCDayHi], a ; DH
 	
 ; mod 140
 ; mod twice since bit 8 (DH) was set
-	ld a, [$ff8e] ; DL
+	ld a, [hRTCDayLo] ; DL
 .modh
 	sub 140
 	jr nc, .modh
@@ -286,7 +286,7 @@ FixDays: ; 5e8
 	add 140
 	
 ; update dl
-	ld [$ff8e], a ; DL
+	ld [hRTCDayLo], a ; DL
 
 ; unknown output
 	ld a, $40 ; %1000000
@@ -294,7 +294,7 @@ FixDays: ; 5e8
 
 .daylo
 ; quit if fewer than 140 days have passed
-	ld a, [$ff8e] ; DL
+	ld a, [hRTCDayLo] ; DL
 	cp 140
 	jr c, .quit
 	
@@ -305,7 +305,7 @@ FixDays: ; 5e8
 	add 140
 	
 ; update dl
-	ld [$ff8e], a ; DL
+	ld [hRTCDayLo], a ; DL
 	
 ; unknown output
 	ld a, $20 ; %100000
@@ -327,10 +327,10 @@ FixDays: ; 5e8
 FixTime: ; 61d
 ; add ingame time (set at newgame) to current time
 ;				  day     hr    min    sec
-; store time in CurDay, $ff94, $ff96, $ff98
+; store time in CurDay, hHours, hMinutes, hSeconds
 
 ; second
-	ld a, [$ff91] ; S
+	ld a, [hRTCSeconds] ; S
 	ld c, a
 	ld a, [StartSecond]
 	add c
@@ -338,11 +338,11 @@ FixTime: ; 61d
 	jr nc, .updatesec
 	add 60
 .updatesec
-	ld [$ff98], a
+	ld [hSeconds], a
 	
 ; minute
 	ccf ; carry is set, so turn it off
-	ld a, [$ff90] ; M
+	ld a, [hRTCMinutes] ; M
 	ld c, a
 	ld a, [StartMinute]
 	adc c
@@ -350,11 +350,11 @@ FixTime: ; 61d
 	jr nc, .updatemin
 	add 60
 .updatemin
-	ld [$ff96], a
+	ld [hMinutes], a
 	
 ; hour
 	ccf ; carry is set, so turn it off
-	ld a, [$ff8f] ; H
+	ld a, [hRTCHours] ; H
 	ld c, a
 	ld a, [StartHour]
 	adc c
@@ -362,11 +362,11 @@ FixTime: ; 61d
 	jr nc, .updatehr
 	add 24
 .updatehr
-	ld [$ff94], a
+	ld [hHours], a
 	
 ; day
 	ccf ; carry is set, so turn it off
-	ld a, [$ff8e] ; DL
+	ld a, [hRTCDayLo] ; DL
 	ld c, a
 	ld a, [StartDay]
 	adc c
@@ -399,23 +399,23 @@ SetClock: ; 691
 	
 ; seconds
 	ld [hl], $8 ; S
-	ld a, [$ff91]
+	ld a, [hRTCSeconds]
 	ld [de], a
 ; minutes
 	ld [hl], $9 ; M
-	ld a, [$ff90]
+	ld a, [hRTCMinutes]
 	ld [de], a
 ; hours
 	ld [hl], $a ; H
-	ld a, [$ff8f]
+	ld a, [hRTCHours]
 	ld [de], a
 ; day lo
 	ld [hl], $b ; DL
-	ld a, [$ff8e]
+	ld a, [hRTCDayLo]
 	ld [de], a
 ; day hi
 	ld [hl], $c ; DH
-	ld a, [$ff8d]
+	ld a, [hRTCDayHi]
 	res 6, a ; make sure timer is active
 	ld [de], a
 	
@@ -438,7 +438,7 @@ FarDecompress: ; b40
 ; put a away for a sec
 	ld [$c2c4], a
 ; save bank
-	ld a, [$ff9d]
+	ld a, [hROMBank]
 	push af
 ; bankswitch
 	ld a, [$c2c4]
@@ -808,14 +808,14 @@ UpdatePalsIfCGB: ; c2f
 ; return carry if successful
 
 ; check cgb
-	ld a, [$ffe6]
+	ld a, [hCGB]
 	and a
 	ret z
 	
 UpdateCGBPals: ; c33
 ; return carry if successful
 ; any pals to update?
-	ld a, [$ffe5]
+	ld a, [hCGBPalUpdate]
 	and a
 	ret z
 	
@@ -924,7 +924,7 @@ ForceUpdateCGBPals: ; c37
 	ld [rSVBK], a
 ; clear pal update queue
 	xor a
-	ld [$ffe5], a
+	ld [hCGBPalUpdate], a
 ; successfully updated palettes
 	scf
 	ret
@@ -939,7 +939,7 @@ DmgToCgbBGPals: ; c9f
 	push af
 	
 ; check cgb
-	ld a, [$ffe6]
+	ld a, [hCGB]
 	and a
 	jr z, .end
 	
@@ -964,7 +964,7 @@ DmgToCgbBGPals: ; c9f
 	call CopyPals
 ; request pal update
 	ld a, $1
-	ld [$ffe5], a
+	ld [hCGBPalUpdate], a
 ; restore wram bank
 	pop af
 	ld [$ff70], a
@@ -988,7 +988,7 @@ DmgToCgbObjPals: ; ccb
 	ld [rOBP1], a
 	
 ; check cgb
-	ld a, [$ffe6]
+	ld a, [hCGB]
 	and a
 	ret z
 	
@@ -1015,7 +1015,7 @@ DmgToCgbObjPals: ; ccb
 	call CopyPals
 ; request pal update
 	ld a, $1
-	ld [$ffe5], a
+	ld [hCGBPalUpdate], a
 ; restore wram bank
 	pop af
 	ld [$ff70], a
@@ -1083,10 +1083,10 @@ INCBIN "baserom.gbc",$d79,$e8d - $d79
 
 ; copy bc bytes from a:hl to de
 FarCopyBytes: ; e8d
-	ld [$ff8b], a
-	ld a, [$ff9d] ; save old bank
+	ld [hBuffer], a
+	ld a, [hROMBank] ; save old bank
 	push af
-	ld a, [$ff8b]
+	ld a, [hBuffer]
 	rst Bankswitch
 	call CopyBytes
 	pop af
@@ -1096,10 +1096,10 @@ FarCopyBytes: ; e8d
 
 ; copy bc*2 source bytes from a:hl to de, doubling each byte in process
 FarCopyBytesDouble: ; e9b
-	ld [$ff8b], a
-	ld a, [$ff9d] ; save current bank
+	ld [hBuffer], a
+	ld a, [hROMBank] ; save current bank
 	push af
-	ld a, [$ff8b]
+	ld a, [hBuffer]
 	rst Bankswitch ; bankswitch
 	ld a, h ; switcheroo, de <> hl
 	ld h, d
@@ -1332,7 +1332,7 @@ CheckDict:
 INCBIN "baserom.gbc",$117b,$1203 - $117b
 
 Char5D:
-	ld a, [$ffe4]
+	ld a, [hBattleTurn]
 	push de
 	and a
 	jr nz, .asm_120e ; 0x1207 $5
@@ -1422,14 +1422,14 @@ DMATransfer: ; 15d8
 ; return carry if successful
 
 ; anything to transfer?
-	ld a, [$ffe8]
+	ld a, [hDMATransfer]
 	and a
 	ret z
 ; start transfer
 	ld [rHDMA5], a
 ; indicate that transfer has occurred
 	xor a
-	ld [$ffe8], a
+	ld [hDMATransfer], a
 ; successful transfer
 	scf
 	ret
@@ -1443,14 +1443,14 @@ UpdateBGMapBuffer: ; 15e3
 ; return carry if successful
 
 ; any tiles to update?
-	ld a, [$ffdb]
+	ld a, [hBGMapUpdate]
 	and a
 	ret z
 ; save wram bank
 	ld a, [rVBK]
 	push af
 ; save sp
-	ld [$ffd9], sp
+	ld [hSPBuffer], sp
 	
 ; temp stack
 	ld hl, BGMapBufferPtrs
@@ -1531,7 +1531,7 @@ UpdateBGMapBuffer: ; 15e3
 	
 	
 ; restore sp
-	ld a, [$ffd9]
+	ld a, [hSPBuffer]
 	ld l, a
 	ld a, [$ffda]
 	ld h, a
@@ -1543,7 +1543,7 @@ UpdateBGMapBuffer: ; 15e3
 	
 ; we don't need to update bg map until new tiles are loaded
 	xor a
-	ld [$ffdb], a
+	ld [hBGMapUpdate], a
 	
 ; successfully updated bg map
 	scf
@@ -1552,12 +1552,12 @@ UpdateBGMapBuffer: ; 15e3
 
 
 WaitTop: ; 163a
-	ld a, [$ffd4]
+	ld a, [hBGMapMode]
 	and a
 	ret z
 	
 ; wait until top third of bg map can be updated
-	ld a, [$ffd5]
+	ld a, [hBGMapThird]
 	and a
 	jr z, .quit
 	
@@ -1566,14 +1566,14 @@ WaitTop: ; 163a
 	
 .quit
 	xor a
-	ld [$ffd4], a
+	ld [hBGMapMode], a
 	ret
 ; 164c
 
 
 UpdateBGMap: ; 164c
 ; get mode
-	ld a, [$ffd4]
+	ld a, [hBGMapMode]
 	and a
 	ret z
 	
@@ -1585,7 +1585,7 @@ UpdateBGMap: ; 164c
 	dec a ; ?
 	
 ; save bg map address
-	ld a, [$ffd6]
+	ld a, [hBGMapAddress]
 	ld l, a
 	ld a, [$ffd7]
 	ld h, a
@@ -1593,12 +1593,12 @@ UpdateBGMap: ; 164c
 
 ; bg map 1 ($9c00)
 	xor a
-	ld [$ffd6], a
+	ld [hBGMapAddress], a
 	ld a, $9c
 	ld [$ffd7], a
 	
 ; get mode again
-	ld a, [$ffd4]
+	ld a, [hBGMapMode]
 	push af
 	cp 3
 	call z, .tiles
@@ -1609,7 +1609,7 @@ UpdateBGMap: ; 164c
 ; restore bg map address
 	pop hl
 	ld a, l
-	ld [$ffd6], a
+	ld [hBGMapAddress], a
 	ld a, h
 	ld [$ffd7], a
 	ret
@@ -1632,10 +1632,10 @@ UpdateBGMap: ; 164c
 	
 .getthird
 ; save sp
-	ld [$ffd9], sp
+	ld [hSPBuffer], sp
 	
 ; # tiles to move down * 6 (which third?)
-	ld a, [$ffd5]
+	ld a, [hBGMapThird]
 	and a ; 0
 	jr z, .top
 	dec a ; 1
@@ -1650,7 +1650,7 @@ UpdateBGMap: ; 164c
 ; get bg map address
 	ld a, [$ffd7]
 	ld h, a
-	ld a, [$ffd6]
+	ld a, [hBGMapAddress]
 	ld l, a
 ; move 12 tiles down
 	ld de, $0180 ; bgm(0,12)
@@ -1668,7 +1668,7 @@ UpdateBGMap: ; 164c
 ; get bg map address
 	ld a, [$ffd7]
 	ld h, a
-	ld a, [$ffd6]
+	ld a, [hBGMapAddress]
 	ld l, a
 ; move 6 tiles down
 	ld de, $00c0 ; bgm(0,6)
@@ -1683,14 +1683,14 @@ UpdateBGMap: ; 164c
 ; get bg map address
 	ld a, [$ffd7]
 	ld h, a
-	ld a, [$ffd6]
+	ld a, [hBGMapAddress]
 	ld l, a
 ; start at middle next time
 	ld a, 1
 	
 .start
 ; which third to draw next update
-	ld [$ffd5], a
+	ld [hBGMapThird], a
 ; # rows per third
 	ld a, 6 ; SCREEN_HEIGHT / 3
 ; # tiles from the edge of the screen to the next row
@@ -1754,7 +1754,7 @@ UpdateBGMap: ; 164c
 	jr nz, .row
 	
 ; restore sp
-	ld a, [$ffd9]
+	ld a, [hSPBuffer]
 	ld l, a
 	ld a, [$ffda]
 	ld h, a
@@ -1780,7 +1780,7 @@ SafeLoadTiles2: ; 170a
 GetTiles2: ; 1717
 ; load [$cf6c] tiles from [$cf6d-e] to [$cf6f-70]
 ; save sp
-	ld [$ffd9], sp
+	ld [hSPBuffer], sp
 	
 ; sp = [$cf6d-e] tile source
 	ld hl, $cf6d
@@ -1856,7 +1856,7 @@ GetTiles2: ; 1717
 	ld [$cf6d], sp
 	
 ; restore sp
-	ld a, [$ffd9]
+	ld a, [hSPBuffer]
 	ld l, a
 	ld a, [$ffda]
 	ld h, a
@@ -1892,7 +1892,7 @@ GetTiles: ; 177d
 ; load [$cf67] tiles from [$cf68-9] to [$cf6a-b]
 
 ; save sp
-	ld [$ffd9], sp
+	ld [hSPBuffer], sp
 	
 ; sp = [$cf68-9] tile source
 	ld hl, $cf68
@@ -1971,7 +1971,7 @@ GetTiles: ; 177d
 	ld [$cf68], sp
 	
 ; restore sp
-	ld a, [$ffd9]
+	ld a, [hSPBuffer]
 	ld l, a
 	ld a, [$ffda]
 	ld h, a
@@ -1997,7 +1997,7 @@ SafeTileAnimation: ; 17d3
 	
 ; save affected banks
 ; switch to new banks
-	ld a, [$ff9d]
+	ld a, [hROMBank]
 	push af ; save bank
 	ld a, BANK(DoTileAnimation)
 	rst Bankswitch ; bankswitch
@@ -2036,7 +2036,7 @@ GetTileType: ; 185d
 	ld e, a
 	ld d, $00
 	add hl, de
-	ld a, [$ff9d] ; current bank
+	ld a, [hROMBank] ; current bank
 	push af
 	ld a, BANK(TileTypeTable)
 	rst Bankswitch
@@ -2252,7 +2252,7 @@ GetScriptByte: ; 0x26d4
 	push hl
 	push bc
 
-	ld a, [$ff9d]
+	ld a, [hROMBank]
 	push af
 
 	ld a, [ScriptBank]
@@ -2342,7 +2342,7 @@ GetMapHeaderMember: ; 0x2c04
 
 GetAnyMapHeaderMember: ; 0x2c0c
 	; bankswitch
-	ld a, [$ff9d]
+	ld a, [hROMBank]
 	push af
 	ld a, BANK(MapGroupPointers)
 	rst Bankswitch
@@ -2396,10 +2396,10 @@ FarJpHl: ; 2d63
 ; Preserves all registers besides a.
 
 ; Switch to the new bank.
-	ld [$ff8b], a
-	ld a, [$ff9d]
+	ld [hBuffer], a
+	ld a, [hROMBank]
 	push af
-	ld a, [$ff8b]
+	ld a, [hBuffer]
 	rst Bankswitch
 	
 	call .hl
@@ -2451,7 +2451,7 @@ Predef: ; 2d83
 	ld [$cfb4], a
 	
 ; save bank
-	ld a, [$ff9d] ; current bank
+	ld a, [hROMBank] ; current bank
 	push af
 	
 ; get Predef function to call
@@ -2595,15 +2595,15 @@ RNG: ; 2f8c
 ; Added value
 	ld a, [rDIV]
 	ld b, a
-	ld a, [$ffe1]
+	ld a, [hRandomAdd]
 	adc b
-	ld [$ffe1], a
+	ld [hRandomAdd], a
 ; Subtracted value
 	ld a, [rDIV]
 	ld b, a
-	ld a, [$ffe2]
+	ld a, [hRandomSub]
 	sbc b
-	ld [$ffe2], a
+	ld [hRandomSub], a
 	pop bc
 	ret
 ; 2f9f
@@ -2614,7 +2614,7 @@ FarBattleRNG: ; 2f9f
 ; allowing link battles to remain in sync using a shared PRNG.
 
 ; Save bank
-	ld a, [$ff9d] ; bank
+	ld a, [hROMBank] ; bank
 	push af
 ; Bankswitch
 	ld a, BANK(BattleRNG)
@@ -2642,7 +2642,7 @@ Function2fb1: ; 2fb1
 	push bc
 .asm_2fbb
 	call $2f8c
-	ld a, [$ffe1]
+	ld a, [hRandomAdd]
 	ld c, a
 	add b
 	jr c, .asm_2fbb
@@ -2775,31 +2775,31 @@ ByteFill: ; 0x3041
 GetFarByte: ; 0x304d
 ; retrieve a single byte from a:hl, and return it in a.
 	; bankswitch to new bank
-	ld [$ff8b], a
-	ld a, [$ff9d]
+	ld [hBuffer], a
+	ld a, [hROMBank]
 	push af
-	ld a, [$ff8b]
+	ld a, [hBuffer]
 	rst Bankswitch
 
 	; get byte from new bank
 	ld a, [hl]
-	ld [$ff8b], a
+	ld [hBuffer], a
 
 	; bankswitch to previous bank
 	pop af
 	rst Bankswitch
 
 	; return retrieved value in a
-	ld a, [$ff8b]
+	ld a, [hBuffer]
 	ret
 
 GetFarHalfword: ; 0x305d
 ; retrieve a halfword from a:hl, and return it in hl.
 	; bankswitch to new bank
-	ld [$ff8b], a
-	ld a, [$ff9d]
+	ld [hBuffer], a
+	ld a, [hROMBank]
 	push af
-	ld a, [$ff8b]
+	ld a, [hBuffer]
 	rst Bankswitch
 
 	; get halfword from new bank, put it in hl
@@ -2926,7 +2926,7 @@ PrintLetterDelay: ; 313d
 	push bc
 	
 ; save oam update status
-	ld hl, $ffd8
+	ld hl, hOAMUpdate
 	ld a, [hl]
 	push af
 ; orginally turned oam update off, commented out
@@ -2957,7 +2957,7 @@ PrintLetterDelay: ; 313d
 	jr nz, .wait
 	
 ; wait one frame if holding a
-	ld a, [$ffa8] ; joypad
+	ld a, [hJoyDown] ; joypad
 	bit 0, a ; A
 	jr z, .checkb
 	jr .delay
@@ -2981,7 +2981,7 @@ PrintLetterDelay: ; 313d
 .end
 ; restore oam update flag (not touched in this fn anymore)
 	pop af
-	ld [$ffd8], a
+	ld [hOAMUpdate], a
 	pop bc
 	pop de
 	pop hl
@@ -3026,7 +3026,7 @@ WhiteBGMap: ; 31f3
 WaitBGMap: ; 31f6
 ; Tell VBlank to update BG Map
 	ld a, 1 ; BG Map 0 tiles
-	ld [$ffd4], a
+	ld [hBGMapMode], a
 ; Wait for it to do its magic
 	ld c, 4
 	call DelayFrames
@@ -3039,7 +3039,7 @@ ClearPalettes: ; 3317
 ; Make all palettes white
 
 ; For CGB we make all the palette colors white
-	ld a, [$ffe6]
+	ld a, [hCGB]
 	and a
 	jr nz, .cgb
 	
@@ -3067,7 +3067,7 @@ ClearPalettes: ; 3317
 	ld [$ff70], a
 ; Request palette update
 	ld a, 1
-	ld [$ffe5], a
+	ld [hCGBPalUpdate], a
 	ret
 ; 333e
 
@@ -3077,12 +3077,12 @@ GetSGBLayout: ; 3340
 ; load sgb packets unless dmg
 
 ; check cgb
-	ld a, [$ffe6]
+	ld a, [hCGB]
 	and a
 	jr nz, .dosgb
 	
 ; check sgb
-	ld a, [$ffe7]
+	ld a, [hSGB]
 	and a
 	ret z
 	
@@ -3132,7 +3132,7 @@ NamesPointerTable: ; 33ab
 	dbw $04, $4b52
 
 GetName: ; 33c3
-	ld a, [$ff9d]
+	ld a, [hROMBank]
 	push af
 	push hl
 	push bc
@@ -3230,7 +3230,7 @@ GetBaseStats: ; 3856
 	push hl
 	
 ; Save bank
-	ld a, [$ff9d]
+	ld a, [hROMBank]
 	push af
 ; Bankswitch
 	ld a, BANK(BaseStats)
@@ -3422,12 +3422,12 @@ LoadMusicByte: ; 3b86
 ; input:
 ;   a: bank
 ;   de: address
-	ld [$ff9d], a
+	ld [hROMBank], a
 	ld [$2000], a ; bankswitch
 	ld a, [de]
 	ld [CurMusicByte], a
 	ld a, $3a ; manual bank restore
-	ld [$ff9d], a
+	ld [hROMBank], a
 	ld [$2000], a ; bankswitch
 	ret
 ; 3b97
@@ -3439,10 +3439,10 @@ StartMusic: ; 3b97
 	push de
 	push bc
 	push af
-	ld a, [$ff9d] ; save bank
+	ld a, [hROMBank] ; save bank
 	push af
 	ld a, BANK(LoadMusic)
-	ld [$ff9d], a
+	ld [hROMBank], a
 	ld [$2000], a ; bankswitch
 	ld a, e ; song number
 	and a
@@ -3453,7 +3453,7 @@ StartMusic: ; 3b97
 	call SoundRestart
 .end
 	pop af
-	ld [$ff9d], a ; restore bank
+	ld [hROMBank], a ; restore bank
 	ld [$2000], a
 	pop af
 	pop bc
@@ -3473,12 +3473,12 @@ PlayCryHeader: ; 3be3
 	push af
 	
 ; Save current bank
-	ld a, [$ff9d]
+	ld a, [hROMBank]
 	push af
 	
 ; Cry headers are stuck in one bank.
 	ld a, BANK(CryHeaders)
-	ld [$ff9d], a
+	ld [hROMBank], a
 	ld [$2000], a
 	
 ; Each header is 6 bytes long:
@@ -3511,13 +3511,13 @@ PlayCryHeader: ; 3be3
 	
 ; That's it for the header
 	ld a, BANK(PlayCry)
-	ld [$ff9d], a
+	ld [hROMBank], a
 	ld [$2000], a
 	call PlayCry
 	
 ; Restore bank
 	pop af
-	ld [$ff9d], a
+	ld [hROMBank], a
 	ld [$2000], a
 	
 	pop af
@@ -3544,16 +3544,16 @@ StartSFX: ; 3c23
 	cp e
 	jr c, .quit
 .asm_3c32
-	ld a, [$ff9d] ; save bank
+	ld a, [hROMBank] ; save bank
 	push af
 	ld a, $3a ; music bank
-	ld [$ff9d], a
+	ld [hROMBank], a
 	ld [$2000], a ; bankswitch
 	ld a, e
 	ld [CurSFX], a
 	call LoadSFX
 	pop af
-	ld [$ff9d], a ; restore bank
+	ld [hROMBank], a ; restore bank
 	ld [$2000], a ; bankswitch
 .quit
 	pop af
@@ -3723,7 +3723,7 @@ TitleScreenEntrance: ; 62bc
 	ld hl, $cf63
 	inc [hl]
 	xor a
-	ld [$ffc6], a
+	ld [hLCDStatCustom], a
 	
 ; Play the title screen music.
 	ld de, MUSIC_TITLE
@@ -4326,11 +4326,11 @@ INCBIN "baserom.gbc",$c472,$c478 - $c472
 
 SpecialGameboyCheck: ; c478
 ; check cgb
-	ld a, [$ffe6]
+	ld a, [hCGB]
 	and a
 	jr nz, .cgb
 ; check sgb
-	ld a, [$ffe7]
+	ld a, [hSGB]
 	and a
 	jr nz, .sgb
 ; gb
@@ -4376,7 +4376,7 @@ PrintNumber_AdvancePointer: ; c64a
 	jr nz, .incrementPointer\@
 	bit 6, d ; left alignment or right alignment?
 	jr z, .incrementPointer\@
-	ld a, [$ffb3] ; was H_PASTLEADINGZEROES
+	ld a, [hPastLeadingZeroes]
 	and a
 	ret z
 .incrementPointer\@
@@ -4898,7 +4898,7 @@ INCBIN "baserom.gbc",$14000,$14032 - $14000
 
 GetTimeOfDay: ; 14032
 ; get time of day based on the current hour
-	ld a, [$ff94] ; hour
+	ld a, [hHours] ; hour
 	ld hl, TimeOfDayTable
 	
 .check
@@ -6538,7 +6538,7 @@ BattleStartMessage:
 	xor a
 	ld [$cfca], a
 	ld a, $1
-	ld [$ffe4], a
+	ld [hBattleTurn], a
 	ld a, $1
 	ld [$c689], a
 	ld de, $0101
@@ -7614,7 +7614,7 @@ INCBIN "baserom.gbc",$4e226,$4e33a - $4e226
 
 EggStatsScreen: ; 4e33a
 	xor a
-	ld [$ffd4], a
+	ld [hBGMapMode], a
 	ld hl, $cda1
 	call $334e ; SetHPPal
 	ld b, $3
@@ -7706,7 +7706,7 @@ WritePartyMenuTilemap: ; 0x5005f
 	push af
 	set 4, [hl] ; Disable text delay
 	xor a
-	ld [$ffd4], a
+	ld [hBGMapMode], a
 	ld hl, TileMap
 	ld bc, $0168
 	ld a, " "
@@ -10090,7 +10090,7 @@ INCBIN "baserom.gbc",$8c15e,$8c17c - $8c15e
 
 GetTimePalFade: ; 8c17c
 ; check cgb
-	ld a, [$ffe6]
+	ld a, [hCGB]
 	and a
 	jr nz, .cgb
 	
@@ -11000,18 +11000,18 @@ TownMapBGUpdate: ; 91ee4
 
 ; BG Map address
 	ld a, l
-	ld [$ffd6], a
+	ld [hBGMapAddress], a
 	ld a, h
 	ld [$ffd7], a
 	
 ; Only update palettes on CGB
-	ld a, [$ffe6]
+	ld a, [hCGB]
 	and a
 	jr z, .tiles
 	
 ; BG Map mode 2 (palettes)
 	ld a, 2
-	ld [$ffd4], a
+	ld [hBGMapMode], a
 	
 ; The BG Map is updated in thirds, so we wait
 ; 3 frames to update the whole screen's palettes.
@@ -11024,7 +11024,7 @@ TownMapBGUpdate: ; 91ee4
 	
 ; Turn off BG Map update
 	xor a
-	ld [$ffd4], a
+	ld [hBGMapMode], a
 	ret
 ; 91eff
 
@@ -13751,10 +13751,10 @@ DoTileAnimation: ; fc000
 	ld d, a
 
 ; Play this frame.
-	ld a, [$ffdf] ; frame count
+	ld a, [hTileAnimFrame] ; frame count
 	ld l, a
 	inc a
-	ld [$ffdf], a
+	ld [hTileAnimFrame], a
 	
 ; Each pointer has:
 	ld h, 0
@@ -13978,7 +13978,7 @@ Tileset36Anim: ; 0xfc2e7
 DoneTileAnimation: ; fc2fb
 ; Reset the animation command loop.
 	xor a
-	ld [$ffdf], a
+	ld [hTileAnimFrame], a
 	
 WaitTileAnimation: ; fc2fe
 ; Do nothing this frame.
@@ -14050,7 +14050,7 @@ AnimateFlowerTile: ; fc56d
 	ld e, a
 	
 ; CGB has different color mappings for flowers.
-	ld a, [$ffe6]
+	ld a, [hCGB]
 	and 1
 	
 	add e
@@ -14194,7 +14194,7 @@ TileAnimationPalette: ; fc6d7
 ; Transition between color values 0-2 for color 0 in palette 3.
 
 ; No palette changes on DMG.
-	ld a, [$ffe6]
+	ld a, [hCGB]
 	and a
 	ret z
 	
@@ -14367,7 +14367,7 @@ StartTitleScreen: ; 10ed67
 	
 ; Turn BG Map update off
 	xor a
-	ld [$ffd4], a
+	ld [hBGMapMode], a
 	
 ; Reset timing variables
 	ld hl, $cf63
@@ -14552,7 +14552,7 @@ StartTitleScreen: ; 10ed67
 	
 ; Let LCD Stat know we're messing around with SCX
 	ld a, rSCX - rJOYP
-	ld [$ffc6], a
+	ld [hLCDStatCustom], a
 	
 ; Restore WRAM bank
 	pop af
@@ -14579,10 +14579,10 @@ StartTitleScreen: ; 10ed67
 	ld [$ffd2], a
 	
 	ld a, $1
-	ld [$ffe5], a
+	ld [hCGBPalUpdate], a
 	
 ; Update BG Map 0 (bank 0)
-	ld [$ffd4], a
+	ld [hBGMapMode], a
 	
 	xor a
 	ld [$d002], a
@@ -14869,7 +14869,7 @@ Function117b31:
 	jp Function117cdd
 
 Function117b4f:
-	ld a, [$ffa7]
+	ld a, [hJoyPressed]
 	cp $2
 	jr z, .asm_117ba4 ; 0x117b53 $4f
 	cp $1
@@ -14927,7 +14927,7 @@ Function117b4f:
 Function117bb6:
 	call Function117c89
 	ld a, $1
-	ld [$ffd4], a
+	ld [hBGMapMode], a
 	ld a, $46
 	ld hl, $4284
 	rst FarCall

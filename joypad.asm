@@ -9,9 +9,9 @@ JoypadInt: ; 92e
 ClearJoypadPublic: ; 92f
 	xor a
 ; Pressed this frame (delta)
-	ld [$ffa7], a
+	ld [hJoyPressed], a
 ; Currently pressed
-	ld [$ffa8], a
+	ld [hJoyDown], a
 	ret
 ; 935
 
@@ -22,10 +22,10 @@ Joypad: ; 935
 
 ; Updates:
 
-; $ffa2: released this frame (delta)
-; $ffa3: pressed this frame (delta)
-; $ffa4: currently pressed
-; $ffa5: pressed so far
+; hJoypadReleased: released this frame (delta)
+; hJoypadPressed: pressed this frame (delta)
+; hJoypadDown: currently pressed
+; hJoypadSum: pressed so far
 
 ; Any of these three bits can be used to disable input.
 	ld a, [$cfbe]
@@ -76,27 +76,27 @@ Joypad: ; 935
 	ld [rJOYP], a
 	
 ; To get the delta we xor the last frame's input with the new one.
-	ld a, [$ffa4] ; last frame
+	ld a, [hJoypadDown] ; last frame
 	ld e, a
 	xor b
 	ld d, a
 ; Released this frame:
 	and e
-	ld [$ffa2], a
+	ld [hJoypadReleased], a
 ; Pressed this frame:
 	ld a, d
 	and b
-	ld [$ffa3], a
+	ld [hJoypadPressed], a
 	
 ; Add any new presses to the list of collective presses:
 	ld c, a
-	ld a, [$ffa5]
+	ld a, [hJoypadSum]
 	or c
-	ld [$ffa5], a
+	ld [hJoypadSum], a
 	
 ; Currently pressed:
 	ld a, b
-	ld [$ffa4], a
+	ld [hJoypadDown], a
 	
 ; Now that we have the input, we can do stuff with it.
 
@@ -110,11 +110,11 @@ Joypad: ; 935
 
 
 GetJoypadPublic: ; 984
-; Update mirror joypad input from $ffa4 (real input)
+; Update mirror joypad input from hJoypadDown (real input)
 
-; $ffa6: released this frame (delta)
-; $ffa7: pressed this frame (delta)
-; $ffa8: currently pressed
+; hJoyReleased: released this frame (delta)
+; hJoyPressed: pressed this frame (delta)
+; hJoyDown: currently pressed
 
 ; bit 0 A
 ;     1 B
@@ -137,28 +137,28 @@ GetJoypadPublic: ; 984
 	jr z, .auto
 
 ; To get deltas, take this and last frame's input.
-	ld a, [$ffa4] ; real input
+	ld a, [hJoypadDown] ; real input
 	ld b, a
-	ld a, [$ffa8] ; last frame mirror
+	ld a, [hJoyDown] ; last frame mirror
 	ld e, a
 	
 ; Released this frame:
 	xor b
 	ld d, a
 	and e
-	ld [$ffa6], a
+	ld [hJoyReleased], a
 	
 ; Pressed this frame:
 	ld a, d
 	and b
-	ld [$ffa7], a
+	ld [hJoyPressed], a
 	
 ; It looks like the collective presses got commented out here.
 	ld c, a
 	
 ; Currently pressed:
 	ld a, b
-	ld [$ffa8], a ; frame input
+	ld [hJoyDown], a ; frame input
 	
 .quit
 	pop bc
@@ -174,7 +174,7 @@ GetJoypadPublic: ; 984
 ; A value of $ff will immediately end the stream.
 
 ; Read from the input stream.
-	ld a, [$ff9d]
+	ld a, [hROMBank]
 	push af
 	ld a, [AutoInputBank]
 	rst Bankswitch
@@ -232,8 +232,8 @@ GetJoypadPublic: ; 984
 	pop af
 	rst Bankswitch
 	ld a, b
-	ld [$ffa7], a ; pressed
-	ld [$ffa8], a ; input
+	ld [hJoyPressed], a ; pressed
+	ld [hJoyDown], a ; input
 	jr .quit
 ; 9ee
 
@@ -251,9 +251,9 @@ StartAutoInput: ; 9ee
 	ld [AutoInputLength], a
 ; Reset input mirrors.
 	xor a
-	ld [$ffa7], a ; pressed this frame
-	ld [$ffa6], a ; released this frame
-	ld [$ffa8], a ; currently pressed
+	ld [hJoyPressed], a ; pressed this frame
+	ld [hJoyReleased], a ; released this frame
+	ld [hJoyDown], a ; currently pressed
 	
 	ld a, AUTO_INPUT
 	ld [InputType], a
