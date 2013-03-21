@@ -44,15 +44,15 @@ pokecrystal.gbc: pokecrystal.o
 lzs: ${VERTGFX} ${HORIZGFX}
 
 pngs:
-	cd extras; python gfx.py mass-decompress; python gfx.py dump-pngs
+	cd extras && python gfx.py mass-decompress && python gfx.py dump-pngs
 
 
 front.png: tiles.png
-	cd extras; python gfx.py png-to-lz --front $@ $(OBJECT_DIRECTORY)/tiles.2bpp
+	cd extras && python gfx.py png-to-lz --front $@ $(OBJECT_DIRECTORY)/tiles.2bpp
 tiles.png:
-	cd extras; python gfx.py png-to-2bpp $@
+	cd extras && python gfx.py png-to-2bpp $@
 .png: ${VERTGFX}
-	cd extras; python gfx.py png-to-lz --vert $@
+	cd extras && python gfx.py png-to-lz --vert $@
 .png: ${HORIZGFX}
-	cd extras; python gfx.py png-to-lz $@
+	cd extras && python gfx.py png-to-lz $@
 
