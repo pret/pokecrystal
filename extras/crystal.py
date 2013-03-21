@@ -275,10 +275,11 @@ def command_debug_information(command_byte=None, map_group=None, map_id=None, ad
 
 all_texts = []
 class TextScript:
-    """ A text is a sequence of bytes (and sometimes commands). It's not the
-    same thing as a Script. The bytes are translated into characters based
-    on the lookup table (see chars.py). The in-text commands are for including
-    values from RAM, playing sound, etc.
+    """
+    A text is a sequence of bytes (and sometimes commands). It's not the same
+    thing as a Script. The bytes are translated into characters based on the
+    lookup table (see chars.py). The in-text commands are for including values
+    from RAM, playing sound, etc.
 
     see: http://hax.iimarck.us/files/scriptingcodes_eng.htm#InText
     """
@@ -1157,7 +1158,8 @@ def generate_map_constants():
     print maps
 
 def generate_map_constants_dimensions():
-    """ Generate _WIDTH and _HEIGHT properties.
+    """
+    Generate _WIDTH and _HEIGHT properties.
     """
     global map_internal_ids
     output = ""
@@ -1172,8 +1174,10 @@ def generate_map_constants_dimensions():
     return output
 
 def transform_wildmons(asm):
-    """ Converts a wildmons section to use map constants.
-    input: wildmons text. """
+    """
+    Converts a wildmons section to use map constants.
+    input: wildmons text.
+    """
     asmlines = asm.split("\n")
     returnlines = []
     for line in asmlines:
@@ -1899,7 +1903,8 @@ class GivePoke(Command):
         return True
 
 class DataByteWordMacro(Command):
-    """ Only used by the preprocessor.
+    """
+    Only used by the preprocessor.
     """
 
     id = None
@@ -2000,9 +2005,9 @@ movement_command_bases = {
 
 # create MovementCommands from movement_command_bases
 def create_movement_commands(debug=False):
-    """ Creates MovementCommands from movement_command_bases.
-    This is just a cheap trick instead of manually defining
-    all of those classes.
+    """
+    Creates MovementCommands from movement_command_bases. This is just a cheap
+    trick instead of manually defining all of those classes.
     """
     #movement_command_classes = inspect.getmembers(sys.modules[__name__], \
     #                       lambda obj: inspect.isclass(obj) and \
@@ -3561,7 +3566,8 @@ class TrainerFragmentParam(PointerLabelParam):
 
 trainer_group_table = None
 class TrainerGroupTable:
-    """ A list of pointers.
+    """
+    A list of pointers.
 
     This should probably be called TrainerGroupPointerTable.
     """
@@ -3639,7 +3645,8 @@ class TrainerGroupHeader:
         script_parse_table[address : self.last_address] = self
 
     def get_dependencies(self, recompute=False, global_dependencies=set()):
-        """ TrainerGroupHeader has no dependencies.
+        """
+        TrainerGroupHeader has no dependencies.
         """
         # TODO: possibly include self.individual_trainer_headers
         if recompute or self.dependencies == None:
@@ -3725,7 +3732,8 @@ class TrainerHeader:
         # TrainerGroupHeader covers its address range
 
     def make_name(self):
-        """ Must occur after parse() is called.
+        """
+        Must occur after parse() is called.
         Constructs a name based on self.parent.group_name and self.name.
         """
         if self.trainer_group_id in [0x14, 0x16, 0x17, 0x18, 0x19, 0x1B, 0x1C, 0x1D, 0x1E, 0x20, 0x21, 0x22, 0x24, 0x25, 0x26, 0x27, 0x28, 0x29, 0x2B, 0x2C, 0x2D, 0x2F, 0x30, 0x31, 0x32, 0x34, 0x35, 0x36, 0x38, 0x39, 0x3A, 0x3B, 0x3C, 0x3D, 0x3E, 0x41]:
@@ -3806,7 +3814,8 @@ class TrainerHeader:
         return output
 
 class TrainerPartyMonParser:
-    """ Just a generic trainer party mon parser.
+    """
+    Just a generic trainer party mon parser.
     Don't use this directly. Only use the child classes.
     """
     id = None
@@ -3863,7 +3872,9 @@ class TrainerPartyMonParser:
         return output
 
 class TrainerPartyMonParser0(TrainerPartyMonParser):
-    """ Data type <0x00>: Pokémon Data is <Level> <Species>. Used by most trainers. """
+    """
+    Data type <0x00>: Pokémon Data is <Level> <Species>. Used by most trainers.
+    """
     id = 0
     size = 2 + 1
     param_types = {
@@ -3871,7 +3882,10 @@ class TrainerPartyMonParser0(TrainerPartyMonParser):
         1: {"name": "species", "class": PokemonParam},
     }
 class TrainerPartyMonParser1(TrainerPartyMonParser):
-    """ Data type <0x01>: Pokémon Data is <Level> <Pokémon> <Move1> <Move2> <Move3> <Move4>. Used often for Gym Leaders."""
+    """
+    Data type <0x01>: Pokémon Data is <Level> <Pokémon> <Move1> <Move2> <Move3>
+    <Move4>. Used often for Gym Leaders.
+    """
     id = 1
     size = 6 + 1
     param_types = {
@@ -3883,7 +3897,9 @@ class TrainerPartyMonParser1(TrainerPartyMonParser):
         5: {"name": "move4", "class": MoveParam},
     }
 class TrainerPartyMonParser2(TrainerPartyMonParser):
-    """ Data type <0x02>: Pokémon Data is <Level> <Pokémon> <Held Item>. Used mainly by Pokéfans. """
+    """
+    Data type <0x02>: Pokémon Data is <Level> <Pokémon> <Held Item>. Used mainly by Pokéfans.
+    """
     id = 2
     size = 3 + 1
     param_types = {
@@ -3892,8 +3908,11 @@ class TrainerPartyMonParser2(TrainerPartyMonParser):
         2: {"name": "item", "class": ItemLabelByte},
     }
 class TrainerPartyMonParser3(TrainerPartyMonParser):
-    """ Data type <0x03>: Pokémon Data is <Level> <Pokémon> <Held Item> <Move1> <Move2> <Move3> <Move4>.
-    Used by a few Cooltrainers. """
+    """
+    Data type <0x03>: Pokémon Data is <Level> <Pokémon> <Held Item> <Move1>
+    <Move2> <Move3> <Move4>.
+    Used by a few Cooltrainers.
+    """
     id = 3
     size = 7 + 1
     param_types = {
@@ -3909,7 +3928,8 @@ class TrainerPartyMonParser3(TrainerPartyMonParser):
 trainer_party_mon_parsers = [TrainerPartyMonParser0, TrainerPartyMonParser1, TrainerPartyMonParser2, TrainerPartyMonParser3]
 
 def find_trainer_ids_from_scripts():
-    """ Looks through all scripts to find trainer group numbers and trainer numbers.
+    """
+    Looks through all scripts to find trainer group numbers and trainer numbers.
 
     This can be used with trainer_group_maximums to figure out the current number of
     trainers in each of the originating trainer groups.
@@ -3930,7 +3950,8 @@ def find_trainer_ids_from_scripts():
         trainer_group_maximums[key] = value
 
 def report_unreferenced_trainer_ids():
-    """ Reports on the number of unreferenced trainer ids in each group.
+    """
+    Reports on the number of unreferenced trainer ids in each group.
 
     This should be called after find_trainer_ids_from_scripts.
 
@@ -3971,7 +3992,8 @@ def report_unreferenced_trainer_ids():
     print "total unreferenced trainers: " + str(total_unreferenced_trainers)
 
 def check_script_has_trainer_data(script):
-    """ see find_trainer_ids_from_scripts
+    """
+    see find_trainer_ids_from_scripts
     """
     for command in script.commands:
         trainer_group = None
@@ -3991,7 +4013,7 @@ def check_script_has_trainer_data(script):
                 trainer_group_maximums[trainer_group] = set([trainer_id])
 
 def trainer_name_from_group(group_id, trainer_id=0):
-    """ This doesn't actually work for trainer_id > 0."""
+    """This doesn't actually work for trainer_id > 0."""
     bank = calculate_bank(0x39999)
     ptr_address = 0x39999 + ((group_id - 1)*2)
     address = calculate_pointer_from_bytes_at(ptr_address, bank=bank)
@@ -3999,7 +4021,8 @@ def trainer_name_from_group(group_id, trainer_id=0):
     return text
 
 def trainer_group_report():
-    """ Reports how many trainer ids are used in each trainer group.
+    """
+    Reports how many trainer ids are used in each trainer group.
     """
     output = ""
     total = 0
@@ -4016,7 +4039,8 @@ def trainer_group_report():
     return output
 
 def make_trainer_group_name_trainer_ids(trainer_group_table, debug=True):
-    """ Edits trainer_group_names and sets the trainer names.
+    """
+    Edits trainer_group_names and sets the trainer names.
     For instance, "AMY & MAY" becomes "AMY_AND_MAY1" and "AMY_AND_MAY2"
 
     This should only be used after TrainerGroupTable.parse has been called.
@@ -4054,7 +4078,8 @@ def make_trainer_group_name_trainer_ids(trainer_group_table, debug=True):
         print "done improving trainer names"
 
 def pretty_print_trainer_id_constants():
-    """ Prints out some constants for trainer ids, for "constants.asm".
+    """
+    Prints out some constants for trainer ids, for "constants.asm".
 
     make_trainer_group_name_trainer_ids must be called prior to this.
     """
@@ -4785,7 +4810,8 @@ def old_parse_map_header_at(address, map_group=None, map_id=None, debug=True):
 
 
 def get_direction(connection_byte, connection_id):
-    """ Given a connection byte and a connection id, which direction is this
+    """
+    Given a connection byte and a connection id, which direction is this
     connection?
 
     example:
@@ -6228,7 +6254,8 @@ def parse_all_map_headers(debug=True):
             map_names[group_id][map_id]["header_old"] = old_parsed_map
 
 class PokedexEntryPointerTable:
-    """ A list of pointers.
+    """
+    A list of pointers.
     """
 
     def __init__(self):
@@ -6277,8 +6304,6 @@ class PokedexEntryPointerTable:
         return output
 
 class PokedexEntry:
-    """ """
-
     def __init__(self, address, pokemon_id):
         self.address = address
         self.dependencies = None
@@ -6767,7 +6792,8 @@ class Asm:
                 return llabel
         return False
     def does_address_have_label(self, address):
-        """ Checks if an address has a label.
+        """
+        Checks if an address has a label.
         """
         # either something will directly have the address
         # or- it's possibel that no label was given
@@ -6993,8 +7019,8 @@ def list_things_in_bank(bank):
     return objects
 
 def list_texts_in_bank(bank):
-    """ Narrows down the list of objects
-    that you will be inserting into Asm.
+    """
+    Narrows down the list of objects that you will be inserting into Asm.
     """
     if len(all_texts) == 0:
         raise Exception("all_texts is blank.. run_main() will populate it")
@@ -7011,8 +7037,8 @@ def list_texts_in_bank(bank):
     return texts
 
 def list_movements_in_bank(bank):
-    """ Narrows down the list of objects
-    to speed up Asm insertion.
+    """
+    Narrows down the list of objects to speed up Asm insertion.
     """
     if len(all_movements) == 0:
         raise Exception("all_movements is blank.. run_main() will populate it")
@@ -7027,8 +7053,9 @@ def list_movements_in_bank(bank):
     return movements
 
 def dump_asm_for_texts_in_bank(bank, start=50, end=100):
-    """ Simple utility to help with dumping texts into a particular bank. This
-    is helpful for figuring out which text is breaking that bank.
+    """
+    Simple utility to help with dumping texts into a particular bank. This is
+    helpful for figuring out which text is breaking that bank.
     """
     # load and parse the ROM if necessary
     if rom == None or len(rom) <= 4:
@@ -7063,7 +7090,8 @@ def dump_asm_for_movements_in_bank(bank, start=0, end=100):
     print "done dumping movements for bank $%.2x" % (bank)
 
 def dump_things_in_bank(bank, start=50, end=100):
-    """ is helpful for figuring out which object is breaking that bank.
+    """
+    is helpful for figuring out which object is breaking that bank.
     """
     # load and parse the ROM if necessary
     if rom == None or len(rom) <= 4:
@@ -7155,7 +7183,8 @@ def get_label_for(address):
 all_new_labels = []
 
 class Label:
-    """ Every object in script_parse_table is given a label.
+    """
+    Every object in script_parse_table is given a label.
 
     This label is simply a way to keep track of what objects have
     been previously written to file.
@@ -7191,8 +7220,9 @@ class Label:
             all_new_labels.append(self)
 
     def check_is_in_file(self):
-        """ This method checks if the label appears in the file
-        based on the entries to the Asm.parts list.
+        """
+        This method checks if the label appears in the file based on the
+        entries to the Asm.parts list.
         """
         # assert new_asm != None, "new_asm should be an instance of Asm"
         load_asm2()
@@ -7201,18 +7231,19 @@ class Label:
         return is_in_file
 
     def check_address_is_in_file(self):
-        """ Checks if the address is in use by another label.
+        """
+        Checks if the address is in use by another label.
         """
         load_asm2()
         self.address_is_in_file = new_asm.does_address_have_label(self.address)
         return self.address_is_in_file
 
     def old_check_address_is_in_file(self):
-        """ Checks whether or not the address of the object is
-        already in the file. This might happen if the label name
-        is different but the address is the same. Another scenario
-        is that the label is already used, but at a different
-        address.
+        """
+        Checks whether or not the address of the object is already in the file.
+        This might happen if the label name is different but the address is the
+        same. Another scenario is that the label is already used, but at a
+        different address.
 
         This method works by looking at the INCBINs. When there is
         an INCBIN that covers this address in the file, then there
@@ -7232,7 +7263,8 @@ class Label:
             return False
 
     def make_label(self):
-        """ Generates a label name based on parents and self.object.
+        """
+        Generates a label name based on parents and self.object.
         """
         object = self.object
         name = object.make_label()

@@ -17,12 +17,14 @@ from romstr import (
 )
 
 def load_rom(path):
-    """ Loads a ROM file into an abbreviated RomStr object.
+    """
+    Loads a ROM file into an abbreviated RomStr object.
     """
     return direct_load_rom(filename=path)
 
 def load_asm(path):
-    """ Loads source ASM into an abbreviated AsmList object.
+    """
+    Loads source ASM into an abbreviated AsmList object.
     """
     return direct_load_asm(filename=path)
 
@@ -38,7 +40,8 @@ def findall_iter(sub, string):
     return iter(next_index(len(sub)).next, -1)
 
 class Address(int):
-    """ A simple int wrapper to take 0xFFFF and $FFFF addresses.
+    """
+    A simple int wrapper to take 0xFFFF and $FFFF addresses.
     """
 
     def __new__(cls, x=None, *args, **kwargs):
@@ -59,8 +62,9 @@ class Address(int):
 found_blobs = []
 
 class BinaryBlob(object):
-    """ Stores a label, line number, and addresses of a function from Pokémon
-    Red. These details can be used to determine whether or not the function was
+    """
+    Stores a label, line number, and addresses of a function from Pokémon Red.
+    These details can be used to determine whether or not the function was
     copied into Pokémon Crystal.
     """
 
@@ -100,7 +104,8 @@ class BinaryBlob(object):
         self.find_by_first_bytes()
 
     def __repr__(self):
-        """ A beautiful poem.
+        """
+        A beautiful poem.
         """
 
         r = "BinaryBlob("
@@ -122,13 +127,15 @@ class BinaryBlob(object):
         return self.__repr__()
 
     def parse_from_red(self):
-        """ Reads bytes from Pokémon Red and stores them.
+        """
+        Reads bytes from Pokémon Red and stores them.
         """
 
         self.bytes = redrom[self.start_address : self.end_address + 1]
 
     def pretty_bytes(self):
-        """ Returns a better looking range of bytes.
+        """
+        Returns a better looking range of bytes.
         """
 
         bytes = redrom.interval(self.start_address,    \
@@ -138,7 +145,8 @@ class BinaryBlob(object):
         return bytes
 
     def find_in_crystal(self):
-        """ Checks whether or not the bytes appear in Pokémon Crystal.
+        """
+        Checks whether or not the bytes appear in Pokémon Crystal.
         """
 
         finditer       = findall_iter(self.bytes, cryrom)
@@ -151,7 +159,8 @@ class BinaryBlob(object):
                 print self.label + ": found " + str(len(self.locations)) + " matches."
 
     def find_by_first_bytes(self):
-        """ Finds this blob in Crystal based on the first n bytes.
+        """
+        Finds this blob in Crystal based on the first n bytes.
         """
 
         # how many bytes to match
@@ -184,7 +193,8 @@ redrom           = load_rom(pokered_rom_path)
 redsrc           = load_asm(pokered_src_path)
 
 def scan_red_asm(bank_stop=3, debug=True):
-    """ Scans the ASM from Pokémon Red. Finds labels and objects. Does things.
+    """
+    Scans the ASM from Pokémon Red. Finds labels and objects. Does things.
 
     Uses get_label_from_line and get_address_from_line_comment.
     """

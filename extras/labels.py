@@ -130,7 +130,8 @@ def line_has_comment_address(line, returnable={}, bank=None):
     return True
 
 def get_address_from_line_comment(line, bank=None):
-    """ wrapper for line_has_comment_address
+    """
+    wrapper for line_has_comment_address
     """
     returnable = {}
     result = line_has_comment_address(line, returnable=returnable, bank=bank)

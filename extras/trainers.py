@@ -83,7 +83,8 @@ trainer_group_names = {
 }
 
 def remove_parentheticals_from_trainer_group_names():
-    """ Clean up the trainer group names.
+    """
+    Clean up the trainer group names.
     """
     i = 0
     for (key, value) in trainer_group_names.items():

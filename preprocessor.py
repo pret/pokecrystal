@@ -304,7 +304,8 @@ chars = {
 }
 
 def separate_comment(l):
-    """ Separates asm and comments on a single line.
+    """
+    Separates asm and comments on a single line.
     """
 
     asm        = ""
@@ -333,7 +334,8 @@ def separate_comment(l):
     return asm, comment
 
 def quote_translator(asm):
-    """ Writes asm with quoted text translated into bytes.
+    """
+    Writes asm with quoted text translated into bytes.
     """
 
     # split by quotes
@@ -411,7 +413,8 @@ def make_macro_table():
 macro_table = make_macro_table()
 
 def macro_test(asm):
-    """ Returns a matching macro, or None/False.
+    """
+    Returns a matching macro, or None/False.
     """
 
     # macros are determined by the first symbol on the line
@@ -424,7 +427,8 @@ def macro_test(asm):
         return (None, None)
 
 def macro_translator(macro, token, line):
-    """ Converts a line with a macro into a rgbasm-compatible line.
+    """
+    Converts a line with a macro into a rgbasm-compatible line.
     """
 
     assert macro.macro_name == token, "macro/token mismatch"

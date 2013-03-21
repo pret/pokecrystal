@@ -1,6 +1,4 @@
 # -*- coding: utf-8 -*-
-"""
-"""
 
 # this is modified in crystal.py during run-time
 map_names = {

@@ -32,7 +32,8 @@ end_08_scripts_with = [
 spacing = "\t"
 
 class RomStr(str):
-    """ Simple wrapper to prevent a giant rom from being shown on screen.
+    """
+    Simple wrapper to prevent a giant rom from being shown on screen.
     """
 
     def __init__(self, *args, **kwargs):
@@ -41,13 +42,15 @@ class RomStr(str):
         str.__init__(self)
 
     def __repr__(self):
-        """ Simplifies this object so that the output doesn't overflow stdout.
+        """
+        Simplifies this object so that the output doesn't overflow stdout.
         """
         return "RomStr(too long)"
 
     @classmethod
     def load(cls, filename=None, crystal=True, red=False):
-        """ Loads a ROM into a RomStr.
+        """
+        Loads a ROM into a RomStr.
         """
         if   crystal and not red and not filename:
             file_handler = open("../baserom.gbc", "r")
@@ -62,8 +65,9 @@ class RomStr(str):
         return RomStr(bytes)
 
     def load_labels(self, filename="labels.json"):
-        """ Loads labels from labels.json, or parses the source code file and
-            generates new labels.
+        """
+        Loads labels from labels.json, or parses the source code file and
+        generates new labels.
         """
         filename = os.path.join(os.path.dirname(__file__), filename)
 
@@ -109,7 +113,8 @@ class RomStr(str):
         self.labels = json.read(open(filename, "r").read())
 
     def get_address_for(self, label):
-        """ Returns the address of a label. This is slow and could be improved
+        """
+        Returns the address of a label. This is slow and could be improved
         dramatically.
         """
         label = str(label)
@@ -119,18 +124,20 @@ class RomStr(str):
         return None
 
     def length(self):
-        """ len(self)
+        """
+        len(self)
         """
         return len(self)
 
     def len(self):
-        """ len(self)
+        """
+        len(self)
         """
         return self.length()
 
     def interval(self, offset, length, strings=True, debug=True):
-        """ returns hex values for the rom starting at offset until
-            offset+length
+        """
+        returns hex values for the rom starting at offset until offset+length
         """
         returnable = []
         for byte in self[offset:offset+length]:
@@ -141,16 +148,17 @@ class RomStr(str):
         return returnable
 
     def until(self, offset, byte, strings=True, debug=False):
-        """ Returns hex values from rom starting at offset until the given
-            byte.
+        """
+        Returns hex values from rom starting at offset until the given byte.
         """
         return self.interval(offset, self.find(chr(byte), offset) - offset, strings=strings)
 
     def to_asm(self, address, end_address=None, size=None, max_size=0x4000, debug=None):
-        """ Disassembles ASM at some address. This will stop disassembling when
-            either the end_address or size is met. Also, there's a maximum size
-            that will be parsed, so that large patches of data aren't parsed as
-            code.
+        """
+        Disassembles ASM at some address. This will stop disassembling when
+        either the end_address or size is met. Also, there's a maximum size
+        that will be parsed, so that large patches of data aren't parsed as
+        code.
         """
         if type(address) in [str, unicode] and "0x" in address:
             address = int(address, 16)
@@ -185,16 +193,19 @@ class RomStr(str):
         #return DisAsm(start_address=start_address, end_address=end_address, size=size, max_size=max_size, debug=debug, rom=self)
 
 class AsmList(list):
-    """ Simple wrapper to prevent all asm lines from being shown on screen.
+    """
+    Simple wrapper to prevent all asm lines from being shown on screen.
     """
 
     def length(self):
-        """ len(self)
+        """
+        len(self)
         """
         return len(self)
 
     def __repr__(self):
-        """ Simplifies this object so that the output doesn't overflow stdout.
+        """
+        Simplifies this object so that the output doesn't overflow stdout.
         """
         return "AsmList(too long)"
 

@@ -10,7 +10,8 @@ from romstr import (
 )
 
 class RomGraph(nx.DiGraph):
-    """ Graphs various functions pointing to each other.
+    """
+    Graphs various functions pointing to each other.
 
         TODO: Bank switches are nasty. They should be detected. Otherwise,
         functions will point to non-functions within the same bank. Another way
@@ -35,7 +36,8 @@ class RomGraph(nx.DiGraph):
     rompath = "../baserom.gbc"
 
     def __init__(self, rom=None, **kwargs):
-        """ Loads and parses the ROM into a function graph.
+        """
+        Loads and parses the ROM into a function graph.
         """
         # continue the initialization
         nx.DiGraph.__init__(self, **kwargs)
@@ -50,14 +52,16 @@ class RomGraph(nx.DiGraph):
         self.parse()
 
     def load_rom(self):
-        """ Creates a RomStr from rompath.
+        """
+        Creates a RomStr from rompath.
         """
         file_handler = open(self.rompath, "r")
         self.rom = RomStr(file_handler.read())
         file_handler.close()
 
     def parse(self):
-        """ Parses the ROM starting with the first function address. Each
+        """
+        Parses the ROM starting with the first function address. Each
             function is disassembled and parsed to find where else it leads to.
         """
         functions = {}
@@ -123,13 +127,15 @@ class RomGraph(nx.DiGraph):
         self.functions = functions
 
     def pretty_printer(self):
-        """ Shows some text output describing which nodes point to which other
-            nodes.
+        """
+        Shows some text output describing which nodes point to which other
+        nodes.
         """
         print self.edges()
 
     def to_d3(self):
-        """ Exports to d3.js because we're gangster like that.
+        """
+        Exports to d3.js because we're gangster like that.
         """
         import networkx.readwrite.json_graph as json_graph
         content = json_graph.dumps(self)
@@ -138,12 +144,14 @@ class RomGraph(nx.DiGraph):
         fh.close()
 
     def to_gephi(self):
-        """ Generates a gexf file.
+        """
+        Generates a gexf file.
         """
         nx.write_gexf(self, "graph.gexf")
 
 class RedGraph(RomGraph):
-    """ Not implemented. Go away.
+    """
+    Not implemented. Go away.
     """
 
     rompath = "../pokered-baserom.gbc"
