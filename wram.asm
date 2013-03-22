@@ -565,10 +565,8 @@ EnemyDamageTaken: ; c684
 BattleScriptBuffer: ; c68a
 	ds 40
 
-BattleScriptBufferLocLo: ; c6b2
-	ds 1
-BattleScriptBufferLocHi: ; c6b3
-	ds 1
+BattleScriptBufferLoc: ; c6b2
+	ds 2
 
 	ds 25
 
@@ -1286,6 +1284,11 @@ Box13Name: ; dbe1
 Box14Name: ; dbea
 	ds 9
 
+SECTION "steps", BSS[$dc73]
+StepCount: ; dc73
+	ds 1
+PoisonStepCount: ; dc74
+	ds 1
 
 SECTION "FlypointPermissions", BSS[$dca5]
 FlypointPerms: ; dca5
