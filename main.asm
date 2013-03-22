@@ -3415,7 +3415,21 @@ GetPartyLocation: ; 3927
 	jp AddNTimes
 ; 392d
 
-INCBIN "baserom.gbc",$392d,$3b86 - $392d
+INCBIN "baserom.gbc", $392d, $3985 - $392d
+
+SetPlayerTurn: ; 3985
+	xor a
+	ld [hBattleTurn], a
+	ret
+; 3989
+
+SetEnemyTurn: ; 3989
+	ld a, 1
+	ld [hBattleTurn], a
+	ret
+; 398e
+
+INCBIN "baserom.gbc", $398e, $3b86 - $398e
 
 LoadMusicByte: ; 3b86
 ; load music data into CurMusicByte
