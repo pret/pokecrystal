@@ -11214,7 +11214,14 @@ INCBIN "baserom.gbc", $91fff, $92168 - $91fff
 KantoMap:
 INCBIN "baserom.gbc", $92168, $922d1 - $92168
 
-INCBIN "baserom.gbc", $922d1, $93a31 - $922d1
+
+INCBIN "baserom.gbc", $922d1, $92402 - $922d1
+
+
+INCLUDE "stats/wild/fish.asm"
+
+
+INCBIN "baserom.gbc", $926c7, $93a31 - $926c7
 
 
 SECTION "bank25",DATA,BANK[$25]
