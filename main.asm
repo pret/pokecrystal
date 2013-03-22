@@ -3415,7 +3415,21 @@ GetPartyLocation: ; 3927
 	jp AddNTimes
 ; 392d
 
-INCBIN "baserom.gbc",$392d,$3b86 - $392d
+INCBIN "baserom.gbc", $392d, $3985 - $392d
+
+SetPlayerTurn: ; 3985
+	xor a
+	ld [hBattleTurn], a
+	ret
+; 3989
+
+SetEnemyTurn: ; 3989
+	ld a, 1
+	ld [hBattleTurn], a
+	ret
+; 398e
+
+INCBIN "baserom.gbc", $398e, $3b86 - $398e
 
 LoadMusicByte: ; 3b86
 ; load music data into CurMusicByte
@@ -11200,7 +11214,14 @@ INCBIN "baserom.gbc", $91fff, $92168 - $91fff
 KantoMap:
 INCBIN "baserom.gbc", $92168, $922d1 - $92168
 
-INCBIN "baserom.gbc", $922d1, $93a31 - $922d1
+
+INCBIN "baserom.gbc", $922d1, $92402 - $922d1
+
+
+INCLUDE "stats/wild/fish.asm"
+
+
+INCBIN "baserom.gbc", $926c7, $93a31 - $926c7
 
 
 SECTION "bank25",DATA,BANK[$25]
