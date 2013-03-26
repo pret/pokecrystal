@@ -8984,52 +8984,52 @@ BattleText_0x80cd1: ; 0x80cd1
 	db "is angry!", $58
 ; 0x80ce7
 
-BattleText_0x80ce7: ; 0x80ce7
+FastAsleepText: ; 0x80ce7
 	db $0, $5a, $4f
 	db "is fast asleep!", $58
 ; 0x80cfa
 
-BattleText_0x80cfa: ; 0x80cfa
+WokeUpText: ; 0x80cfa
 	db $0, $5a, $4f
 	db "woke up!", $58
 ; 0x80d06
 
-BattleText_0x80d06: ; 0x80d06
+FrozenSolidText: ; 0x80d06
 	db $0, $5a, $4f
 	db "is frozen solid!", $58
 ; 0x80d1a
 
-BattleText_0x80d1a: ; 0x80d1a
+FlinchedText: ; 0x80d1a
 	db $0, $5a, $4f
 	db "flinched!", $58
 ; 0x80d27
 
-BattleText_0x80d27: ; 0x80d27
+MustRechargeText: ; 0x80d27
 	db $0, $5a, $4f
 	db "must recharge!", $58
 ; 0x80d39
 
-BattleText_0x80d39: ; 0x80d39
+DisabledNoMoreText: ; 0x80d39
 	db $0, $5a, "'s", $4f
 	db "disabled no more!", $58
 ; 0x80d4f
 
-BattleText_0x80d4f: ; 0x80d4f
+IsConfusedText: ; 0x80d4f
 	db $0, $5a, $4f
 	db "is confused!", $58
 ; 0x80d5f
 
-BattleText_0x80d5f: ; 0x80d5f
+HurtItselfText: ; 0x80d5f
 	db $0, "It hurt itself in", $4f
 	db "its confusion!", $58
 ; 0x80d81
 
-BattleText_0x80d81: ; 0x80d81
+ConfusedNoMoreText: ; 0x80d81
 	db $0, $5a, "'s", $4f
 	db "confused no more!", $58
 ; 0x80d97
 
-BattleText_0x80d97: ; 0x80d97
+BecameConfusedText: ; 0x80d97
 	db $0, $59, $4f
 	db "became confused!", $58
 ; 0x80dab
@@ -9042,7 +9042,7 @@ BattleText_0x80dab: ; 0x80dab
 	db "of its confusion.", $58
 ; 0x80dcc
 
-BattleText_0x80dcc: ; 0x80dcc
+AlreadyConfusedText: ; 0x80dcc
 	db $0, $59, "'s", $4f
 	db "already confused!", $58
 ; 0x80de2
@@ -9063,29 +9063,29 @@ BattleText_0x80df5: ; 0x80df5
 	db $0, "!", $58
 ; 0x80e11
 
-BattleText_0x80e11: ; 0x80e11
+UsedBindText: ; 0x80e11
 	db $0, $5a, $4f
 	db "used BIND on", $55
 	db $59, "!", $58
 ; 0x80e24
 
-BattleText_0x80e24: ; 0x80e24
+WhirlpoolTrapText: ; 0x80e24
 	db $0, $59, $4f
 	db "was trapped!", $58
 ; 0x80e34
 
-BattleText_0x80e34: ; 0x80e34
+FireSpinTrapText: ; 0x80e34
 	db $0, $59, $4f
 	db "was trapped!", $58
 ; 0x80e44
 
-BattleText_0x80e44: ; 0x80e44
+WrappedByText: ; 0x80e44
 	db $0, $59, $4f
 	db "was WRAPPED by", $55
 	db $5a, "!", $58
 ; 0x80e59
 
-BattleText_0x80e59: ; 0x80e59
+ClampedByText: ; 0x80e59
 	db $0, $59, $4f
 	db "was CLAMPED by", $55
 	db $5a, "!", $58
@@ -9114,19 +9114,19 @@ BattleText_0x80eb0: ; 0x80eb0
 	db "ENDURED the hit!", $58
 ; 0x80ec4
 
-BattleText_0x80ec4: ; 0x80ec4
+InLoveWithText: ; 0x80ec4
 	db $0, $5a, $4f
 	db "is in love with", $55
 	db $59, "!", $58
 ; 0x80eda
 
-BattleText_0x80eda: ; 0x80eda
+InfatuationText: ; 0x80eda
 	db $0, $5a, "'s", $4f
 	db "infatuation kept", $55
 	db "it from attacking!", $58
 ; 0x80f02
 
-BattleText_0x80f02: ; 0x80f02
+DisabledMoveText: ; 0x80f02
 	db $0, $5a, "'s", $4f
 	db "@"
 	text_from_ram $d073
@@ -9134,31 +9134,31 @@ BattleText_0x80f02: ; 0x80f02
 	db "DISABLED!", $58
 ; 0x80f19
 
-BattleText_0x80f19: ; 0x80f19
+LoafingAroundText: ; 0x80f19
 	text_from_ram $c621
 	db $0, " is", $4f
 	db "loafing around.", $58
 ; 0x80f31
 
-BattleText_0x80f31: ; 0x80f31
+BeganToNapText: ; 0x80f31
 	text_from_ram $c621
 	db $0, " began", $4f
 	db "to nap!", $58
 ; 0x80f44
 
-BattleText_0x80f44: ; 0x80f44
+WontObeyText: ; 0x80f44
 	text_from_ram $c621
 	db $0, " won't", $4f
 	db "obey!", $58
 ; 0x80f54
 
-BattleText_0x80f54: ; 0x80f54
+TurnedAwayText: ; 0x80f54
 	text_from_ram $c621
 	db $0, " turned", $4f
 	db "away!", $58
 ; 0x80f66
 
-BattleText_0x80f66: ; 0x80f66
+IgnoredOrdersText: ; 0x80f66
 	text_from_ram $c621
 	db $0, " ignored", $4f
 	db "orders!", $58
@@ -9183,18 +9183,18 @@ BattleText_0x80fba: ; 0x80fba
 	db $0, "!", $58
 ; 0x80fd7
 
-BattleText_0x80fd7: ; 0x80fd7
+WentToSleepText: ; 0x80fd7
 	db $0, $5a, $4f
 	db "went to sleep!", $57
 ; 0x80fe9
 
-BattleText_0x80fe9: ; 0x80fe9
+RestedText: ; 0x80fe9
 	db $0, $5a, $4f
 	db "fell asleep and", $55
 	db "became healthy!", $57
 ; 0x8100c
 
-BattleText_0x8100c: ; 0x8100c
+RegainedHealthText: ; 0x8100c
 	db $0, $5a, $4f
 	db "regained health!", $58
 ; 0x81020
@@ -9220,7 +9220,7 @@ BattleText_0x81061: ; 0x81061
 	db "unaffected!", $58
 ; 0x81071
 
-BattleText_0x81071: ; 0x81071
+DoesntAffectText: ; 0x81071
 	db $0, "It doesn't affect", $4f
 	db $59, "!", $58
 ; 0x81086
@@ -9348,7 +9348,7 @@ BattleText_0x8125d: ; 0x8125d
 	db "was frozen solid!", $58
 ; 0x81272
 
-BattleText_0x81272: ; 0x81272
+WontRiseAnymoreText: ; 0x81272
 	db $0, $5a, "'s", $4f
 	db "@"
 	text_from_ram $d086
@@ -9391,7 +9391,7 @@ BattleText_0x812f8: ; 0x812f8
 	db $0, " times!", $58
 ; 0x8130b
 
-BattleText_0x8130b: ; 0x8130b
+MistText: ; 0x8130b
 	db $0, $5a, "'s", $4f
 	db "shrouded in MIST!", $58
 ; 0x81321
@@ -9401,28 +9401,28 @@ BattleText_0x81321: ; 0x81321
 	db "protected by MIST.", $58
 ; 0x81338
 
-BattleText_0x81338: ; 0x81338
+GettingPumpedText: ; 0x81338
 	interpret_data
 	db $0, $5a, "'s", $4f
 	db "getting pumped!", $58
 ; 0x8134d
 
-BattleText_0x8134d: ; 0x8134d
+RecoilText: ; 0x8134d
 	db $0, $5a, "'s", $4f
 	db "hit with recoil!", $58
 ; 0x81362
 
-BattleText_0x81362: ; 0x81362
+MadeSubstituteText: ; 0x81362
 	db $0, $5a, $4f
 	db "made a SUBSTITUTE!", $58
 ; 0x81378
 
-BattleText_0x81378: ; 0x81378
+HasSubstituteText: ; 0x81378
 	db $0, $5a, $4f
 	db "has a SUBSTITUTE!", $58
 ; 0x8138d
 
-BattleText_0x8138d: ; 0x8138d
+TooWeakSubText: ; 0x8138d
 	db $0, "Too weak to make", $4f
 	db "a SUBSTITUTE!", $58
 ; 0x813ad
@@ -9438,7 +9438,7 @@ BattleText_0x813d0: ; 0x813d0
 	db "SUBSTITUTE faded!", $58
 ; 0x813e6
 
-BattleText_0x813e6: ; 0x813e6
+LearnedMoveText: ; 0x813e6
 	db $0, $5a, $4f
 	db "learned", $55
 	db "@"
@@ -9446,17 +9446,17 @@ BattleText_0x813e6: ; 0x813e6
 	db $0, "!", $58
 ; 0x813f8
 
-BattleText_0x813f8: ; 0x813f8
+WasSeededText: ; 0x813f8
 	db $0, $59, $4f
 	db "was seeded!", $58
 ; 0x81407
 
-BattleText_0x81407: ; 0x81407
+EvadedText: ; 0x81407
 	db $0, $59, $4f
 	db "evaded the attack!", $58
 ; 0x8141d
 
-BattleText_0x8141d: ; 0x8141d
+WasDisabledText: ; 0x8141d
 	db $0, $59, "'s", $4f
 	db "@"
 	text_from_ram $d073
@@ -9464,12 +9464,12 @@ BattleText_0x8141d: ; 0x8141d
 	db "DISABLED!", $58
 ; 0x81435
 
-BattleText_0x81435: ; 0x81435
+CoinsScatteredText: ; 0x81435
 	db $0, "Coins scattered", $4f
 	db "everywhere!", $58
 ; 0x81452
 
-BattleText_0x81452: ; 0x81452
+TransformedTypeText: ; 0x81452
 	db $0, $5a, $4f
 	db "transformed into", $55
 	db "the @"
@@ -9477,12 +9477,12 @@ BattleText_0x81452: ; 0x81452
 	db $0, "-type!", $58
 ; 0x81476
 
-BattleText_0x81476: ; 0x81476
+EliminatedStatsText: ; 0x81476
 	db $0, "All stat changes", $4f
 	db "were eliminated!", $58
 ; 0x81499
 
-BattleText_0x81499: ; 0x81499
+TransformedText: ; 0x81499
 	db $0, $5a, $4f
 	db "TRANSFORMED into", $55
 	db "@"
@@ -9500,30 +9500,30 @@ BattleText_0x814c7: ; 0x814c7
 	db "DEFENSE rose!", $58
 ; 0x814d9
 
-BattleText_0x814d9: ; 0x814d9
+NothingHappenedText: ; 0x814d9
 	db $0, "But nothing", $4f
 	db "happened.", $58
 ; 0x814f0
 
-BattleText_0x814f0: ; 0x814f0
+ButItFailedText: ; 0x814f0
 	db $0, "But it failed!", $58
 ; 0x81500
 
-BattleText_0x81500: ; 0x81500
+ItFailedText: ; 0x81500
 	db $0, "It failed!", $58
 ; 0x8150c
 
-BattleText_0x8150c: ; 0x8150c
+DidntAffect1Text: ; 0x8150c
 	db $0, "It didn't affect", $4f
 	db $59, "!", $58
 ; 0x81520
 
-BattleText_0x81520: ; 0x81520
+DidntAffect2Text: ; 0x81520
 	db $0, "It didn't affect", $4f
 	db $59, "!", $58
 ; 0x81534
 
-BattleText_0x81534: ; 0x81534
+HPIsFullText: ; 0x81534
 	db $0, $5a, "'s", $4f
 	db "HP is full!", $58
 ; 0x81544
@@ -9533,23 +9533,23 @@ BattleText_0x81544: ; 0x81544
 	db "was dragged out!", $58
 ; 0x81558
 
-BattleText_0x81558: ; 0x81558
+ParalyzedText: ; 0x81558
 	db $0, $59, "'s", $4f
 	db "paralyzed! Maybe", $55
 	db "it can't attack!", $58
 ; 0x8157d
 
-BattleText_0x8157d: ; 0x8157d
+FullyParalyzedText: ; 0x8157d
 	db $0, $5a, "'s", $4f
 	db "fully paralyzed!", $58
 ; 0x81592
 
-BattleText_0x81592: ; 0x81592
+AlreadyParalyzedText: ; 0x81592
 	db $0, $59, "'s", $4f
 	db "already paralyzed!", $58
 ; 0x815a9
 
-BattleText_0x815a9: ; 0x815a9
+ProtectedByText: ; 0x815a9
 	db $0, $59, "'s", $4f
 	db "protected by", $55
 	db "@"
@@ -9557,11 +9557,11 @@ BattleText_0x815a9: ; 0x815a9
 	db $0, "!", $58
 ; 0x815c1
 
-BattleText_0x815c1: ; 0x815c1
+MirrorMoveFailedText: ; 0x815c1
 	db $0, "The MIRROR MOVE", $4e, "failed!", $58
 ; 0x815da
 
-BattleText_0x815da: ; 0x815da
+StoleText: ; 0x815da
 	db $0, $5a, $4f
 	db "stole @"
 	text_from_ram $d073
@@ -9569,30 +9569,30 @@ BattleText_0x815da: ; 0x815da
 	db "from its foe!", $58
 ; 0x815f7
 
-BattleText_0x815f7: ; 0x815f7
+CantEscapeNowText: ; 0x815f7
 	db $0, $59, $4f
 	db "can't escape now!", $58
 ; 0x8160b
 
-BattleText_0x8160b: ; 0x8160b
+StartedNightmareText: ; 0x8160b
 	db $0, $59, $4f
 	db "started to have a", $55
 	db "NIGHTMARE!", $58
 ; 0x8162b
 
-BattleText_0x8162b: ; 0x8162b
+WasDefrostedText: ; 0x8162b
 	db $0, $5a, $4f
 	db "was defrosted!", $58
 ; 0x8163d
 
-BattleText_0x8163d: ; 0x8163d
+PutACurseText: ; 0x8163d
 	db $0, $5a, $4f
 	db "cut its own HP and", $51
 	db "put a CURSE on", $4f
 	db $59, "!", $58
 ; 0x81665
 
-BattleText_0x81665: ; 0x81665
+ProtectedItselfText: ; 0x81665
 	db $0, $5a, $4f
 	db "PROTECTED itself!", $58
 ; 0x8167a
@@ -9602,106 +9602,106 @@ BattleText_0x8167a: ; 0x8167a
 	db "PROTECTING itself!", $57
 ; 0x81691
 
-BattleText_0x81691: ; 0x81691
+SpikesText: ; 0x81691
 	db $0, "SPIKES scattered", $4f
 	db "all around", $55
 	db $59, "!", $58
 ; 0x816b1
 
-BattleText_0x816b1: ; 0x816b1
+IdentifiedText: ; 0x816b1
 	db $0, $5a, $4f
 	db "identified", $55
 	db $59, "!", $58
 ; 0x816c2
 
-BattleText_0x816c2: ; 0x816c2
+StartPerishText: ; 0x816c2
 	db $0, "Both #MON will", $4f
 	db "faint in 3 turns!", $58
 ; 0x816e4
 
-BattleText_0x816e4: ; 0x816e4
+SandstormBrewedText: ; 0x816e4
 	db $0, "A SANDSTORM", $4f
 	db "brewed!", $58
 ; 0x816f9
 
-BattleText_0x816f9: ; 0x816f9
+BracedItselfText: ; 0x816f9
 	db $0, $5a, $4f
 	db "braced itself!", $58
 ; 0x8170b
 
-BattleText_0x8170b: ; 0x8170b
+FellInLoveText: ; 0x8170b
 	db $0, $59, $4f
 	db "fell in love!", $58
 ; 0x8171c
 
-BattleText_0x8171c: ; 0x8171c
+CoveredByVeilText: ; 0x8171c
 	db $0, $5a, "'s", $4f
 	db "covered by a veil!", $58
 ; 0x81733
 
-BattleText_0x81733: ; 0x81733
+SafeguardProtectText: ; 0x81733
 	db $0, $59, $4f
 	db "is protected by", $55
 	db "SAFEGUARD!", $58
 ; 0x81751
 
-BattleText_0x81751: ; 0x81751
+MagnitudeText: ; 0x81751
 	db $0, "Magnitude @"
 	deciram $d265, $11
 	db $0, "!", $58
 ; 0x81764
 
-BattleText_0x81764: ; 0x81764
+ReleasedByText: ; 0x81764
 	db $0, $5a, $4f
 	db "was released by", $55
 	db $59, "!", $58
 ; 0x8177a
 
-BattleText_0x8177a: ; 0x8177a
+ShedLeechSeedText: ; 0x8177a
 	db $0, $5a, $4f
 	db "shed LEECH SEED!", $58
 ; 0x8178e
 
-BattleText_0x8178e: ; 0x8178e
+BlewSpikesText: ; 0x8178e
 	db $0, $5a, $4f
 	db "blew away SPIKES!", $58
 ; 0x817a3
 
-BattleText_0x817a3: ; 0x817a3
+DownpourText: ; 0x817a3
 	db $0, "A downpour", $4f
 	db "started!", $58
 ; 0x817b8
 
-BattleText_0x817b8: ; 0x817b8
+SunGotBrightText: ; 0x817b8
 	db $0, "The sunlight got", $4f
 	db "bright!", $58
 ; 0x817d2
 
-BattleText_0x817d2: ; 0x817d2
+BellyDrumText: ; 0x817d2
 	db $0, $5a, $4f
 	db "cut its HP and", $55
 	db "maximized ATTACK!", $58
 ; 0x817f6
 
-BattleText_0x817f6: ; 0x817f6
+CopiedStatsText: ; 0x817f6
 	db $0, $5a, $4f
 	db "copied the stat", $51
 	db "changes of", $4f
 	db $59, "!", $58
 ; 0x81817
 
-BattleText_0x81817: ; 0x81817
+ForesawAttackText: ; 0x81817
 	db $0, $5a, $4f
 	db "foresaw an attack!", $58
 ; 0x8182d
 
-BattleText_0x8182d: ; 0x8182d
+BeatUpAttackText: ; 0x8182d
 	text_from_ram $d073
 	db $0, "'s", $4f
 	db "attack!", $57
 ; 0x8183b
 
-BattleText_0x8183b: ; 0x8183b
+RefusedGiftText: ; 0x8183b
 	db $0, $59, $4f
 	db "refused the gift!", $58
 ; 0x81850
