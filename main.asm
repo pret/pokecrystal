@@ -1128,6 +1128,7 @@ FarCopyBytesDouble: ; e9b
 
 INCBIN "baserom.gbc",$eba,$fc8 - $eba
 
+
 ClearTileMap: ; fc8
 ; Fill the tile map with blank tiles
 	ld hl, TileMap
@@ -1142,7 +1143,26 @@ ClearTileMap: ; fc8
 	jp WaitBGMap
 ; fdb
 
-INCBIN "baserom.gbc",$fdb,$ff1 - $fdb
+
+INCBIN "baserom.gbc",$fdb,$fe8 - $fdb
+
+
+TextBox: ; fe8
+; draw a text box of given location/size
+; ? hl
+; size bc
+; ? de
+
+; draw border
+	push bc
+	push hl
+	call TextBoxBorder
+	pop hl
+	pop bc
+; fill textbox area with palette 7
+	jr TextBoxPalette
+; ff1
+
 
 TextBoxBorder: ; ff1
 ; draw a text box
@@ -1197,11 +1217,62 @@ NPlaceChar: ; 0x101e
 	ret
 ; 0x1024
 
-INCBIN "baserom.gbc",$1024,$1078 - $1024
 
-PlaceString: ; $1078
+TextBoxPalette: ; 1024
+; fill textbox area with pal 07
+; hl: tile address
+; b: height
+; c: width
+	ld de, AttrMap - TileMap
+	add hl, de
+	inc b
+	inc b
+	inc c
+	inc c
+	ld a, $07 ; palette
+.gotoy
+	push bc
 	push hl
-PlaceNextChar:
+.gotox
+	ld [hli], a
+	dec c
+	jr nz, .gotox
+	pop hl
+	ld de, $0014 ; screen width in tiles (20)
+	add hl, de
+	pop bc
+	dec b
+	jr nz, .gotoy
+	ret
+; 103e
+
+
+SpeechTextBox: ; 103e
+; Standard textbox.
+	ld hl, $c590 ; tile 0, 12
+	ld b, $4 ; height
+	ld c, $12 ; width ; SCREEN_WIDTH - 2 (border)
+	jp TextBox
+; 1048
+
+
+INCBIN "baserom.gbc", $1048, $1065 - $1048
+
+
+PrintTextBoxText: ; 1065
+	ld bc, $c5b9 ; TileMap(1,14)
+	call $13e5 ; PrintText
+	ret
+; 106c
+
+
+INCBIN "baserom.gbc", $106c, $1078 - $106c
+
+
+PlaceString: ; 1078
+	push hl
+
+PlaceNextChar: ; 1079
 	ld a, [de]
 	cp "@"
 	jr nz, CheckDict
@@ -1215,7 +1286,7 @@ NextChar: ; 1083
 	inc de
 	jp PlaceNextChar
 
-CheckDict:
+CheckDict: ; 1087
 	cp $15
 	jp z, $117b
 	cp $4f
@@ -3407,15 +3478,19 @@ GetPartyParamLocation: ; 3917
 ; 3927
 
 GetPartyLocation: ; 3927
-; Add the length of a PartyMon struct to hl a times
-; input:
-;	a: partymon #
-;	hl: partymon struct
-	ld bc, $0030 ; PARTYMON_LENGTH
+; Add the length of a PartyMon struct to hl a times.
+	ld bc, PartyMon2 - PartyMon1
 	jp AddNTimes
 ; 392d
 
-INCBIN "baserom.gbc", $392d, $3985 - $392d
+INCBIN "baserom.gbc", $392d, $397d - $392d
+
+ResetDamage: ; 397d
+	xor a
+	ld [CurDamage], a
+	ld [CurDamage + 1], a
+	ret
+; 3985
 
 SetPlayerTurn: ; 3985
 	xor a
@@ -3429,7 +3504,216 @@ SetEnemyTurn: ; 3989
 	ret
 ; 398e
 
-INCBIN "baserom.gbc", $398e, $3b86 - $398e
+INCBIN "baserom.gbc", $398e, $39e1 - $398e
+
+CleanGetBattleVarPair: ; 39e1
+; Preserves hl.
+	push hl
+	call GetBattleVarPair
+	pop hl
+	ret
+; 39e7
+
+GetBattleVarPair: ; 39e7
+; Get variable from pair a, depending on whose turn it is.
+; There are 21 variable pairs.
+
+	push bc
+	
+; get var pair
+	ld hl, .battlevarpairs
+	ld c, a
+	ld b, 0
+	add hl, bc
+	add hl, bc
+	
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	
+; Enemy turn uses the second byte instead.
+; This lets battle variable calls be side-neutral.
+	ld a, [hBattleTurn]
+	and a
+	jr z, .getvar
+	inc hl
+	
+.getvar
+; get var id
+	ld a, [hl]
+	ld c, a
+	ld b, $0
+	
+; seek
+	ld hl, .vars
+	add hl, bc
+	add hl, bc
+	
+; get var address
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	
+	ld a, [hl]
+	
+	pop bc
+	ret
+
+
+.battlevarpairs
+	dw .substatus1         ; 0
+	dw .substatus2         ; 1
+	dw .substatus3         ; 2
+	dw .substatus4         ; 3
+	dw .substatus5         ; 4
+	dw .substatus1opp      ; 5
+	dw .substatus2opp      ; 6
+	dw .substatus3opp      ; 7
+	dw .substatus4opp      ; 8
+	dw .substatus5opp      ; 9
+	dw .status             ; a
+	dw .statusopp          ; b
+	dw .animation          ; c
+	dw .effect             ; d
+	dw .power              ; e
+	dw .type               ; f
+	dw .curmove            ; 10
+	dw .lastcountermove    ; 11
+	dw .lastcountermoveopp ; 12
+	dw .lastmove           ; 13
+	dw .lastmoveopp        ; 14
+
+	;                  player             enemy
+.substatus1
+	db $00, $01 ; PLAYER_SUBSTATUS1, ENEMY_SUBSTATUS1
+.substatus1opp
+	db $01, $00 ; ENEMY_SUBSTATUS1, PLAYER_SUBSTATUS1
+.substatus2
+	db $02, $03 ; PLAYER_SUBSTATUS2, ENEMY_SUBSTATUS2
+.substatus2opp
+	db $03, $02 ; ENEMY_SUBSTATUS2, PLAYER_SUBSTATUS2
+.substatus3
+	db $04, $05 ; PLAYER_SUBSTATUS3, ENEMY_SUBSTATUS3
+.substatus3opp
+	db $05, $04 ; ENEMY_SUBSTATUS3, PLAYER_SUBSTATUS3
+.substatus4
+	db $06, $07 ; PLAYER_SUBSTATUS4, ENEMY_SUBSTATUS4
+.substatus4opp
+	db $07, $06 ; ENEMY_SUBSTATUS4, PLAYER_SUBSTATUS4
+.substatus5
+	db $08, $09 ; PLAYER_SUBSTATUS5, ENEMY_SUBSTATUS5
+.substatus5opp
+	db $09, $08 ; ENEMY_SUBSTATUS5, PLAYER_SUBSTATUS5
+.status
+	db $0a, $0b ; PLAYER_STATUS, ENEMY_STATUS
+.statusopp
+	db $0b, $0a ; ENEMY_STATUS, PLAYER_STATUS
+.animation
+	db $0c, $0d ; PLAYER_MOVE_ANIMATION, ENEMY_MOVE_ANIMATION
+.effect
+	db $0e, $0f ; PLAYER_MOVE_EFFECT, ENEMY_MOVE_EFFECT
+.power
+	db $10, $11 ; PLAYER_MOVE_POWER, ENEMY_MOVE_POWER
+.type
+	db $12, $13 ; PLAYER_MOVE_TYPE, ENEMY_MOVE_TYPE
+.curmove
+	db $14, $15 ; PLAYER_CUR_MOVE, ENEMY_CUR_MOVE
+.lastcountermove
+	db $16, $17 ; ENEMY_LAST_COUNTER_MOVE, PLAYER_LAST_COUNTER_MOVE
+.lastcountermoveopp
+	db $17, $16 ; PLAYER_LAST_COUNTER_MOVE, ENEMY_LAST_COUNTER_MOVE
+.lastmove
+	db $18, $19 ; PLAYER_LAST_MOVE, ENEMY_LAST_MOVE
+.lastmoveopp
+	db $19, $18 ; ENEMY_LAST_MOVE, PLAYER_LAST_MOVE
+
+.vars
+	dw PlayerSubStatus1
+	dw EnemySubStatus1
+	
+	dw PlayerSubStatus2
+	dw EnemySubStatus2
+	
+	dw PlayerSubStatus3
+	dw EnemySubStatus3
+	
+	dw PlayerSubStatus4
+	dw EnemySubStatus4
+	
+	dw PlayerSubStatus5
+	dw EnemySubStatus5
+	
+	dw BattleMonStatus
+	dw EnemyMonStatus
+	
+	dw PlayerMoveAnimation
+	dw EnemyMoveAnimation
+	
+	dw PlayerMoveEffect
+	dw EnemyMoveEffect
+	
+	dw PlayerMovePower
+	dw EnemyMovePower
+	
+	dw PlayerMoveType
+	dw EnemyMoveType
+	
+	dw CurPlayerMove
+	dw CurEnemyMove
+	
+	dw LastEnemyCounterMove
+	dw LastPlayerCounterMove
+	
+	dw LastPlayerMove
+	dw LastEnemyMove
+; 3a90
+
+INCBIN "baserom.gbc", $3a90, $3ab2 - $3a90
+
+
+MobileTextBorder: ; 3ab2
+; For mobile link battles only.
+	ld a, [InLinkBattle]
+	cp 4
+	ret c
+; Draw a cell phone icon at the top right corner of the border.
+	ld hl, $c5a3 ; TileMap(19,12)
+	ld [hl], $5e ; cell phone top
+	ld hl, $c5b7 ; TileMap(19,13)
+	ld [hl], $5f ; cell phone bottom
+	ret
+; 3ac3
+
+
+BattleTextBox: ; 3ac3
+	push hl
+	call SpeechTextBox
+	call MobileTextBorder
+	call $1ad2 ; UpdateSprites
+	call $321c ; refresh?
+	pop hl
+	call PrintTextBoxText
+	ret
+; 3ad5
+
+
+FarBattleTextBox: ; 3ad5
+; save bank
+	ld a, [$ff9d] ; bank
+	push af
+; bank 20
+	ld a, $20
+	rst $10
+; print text at hl
+	call BattleTextBox
+; restore bank
+	pop af
+	rst $10
+	ret
+; 3ae1
+
+
+INCBIN "baserom.gbc", $3ae1, $3b86 - $3ae1
 
 LoadMusicByte: ; 3b86
 ; load music data into CurMusicByte

@@ -476,12 +476,33 @@ BattleMonSpclAtk: ; c646
 BattleMonSpclDef: ; c648
 	ds 2
 
-	ds 25
+BattleMonType1: ; c64a
+	ds 1
+BattleMonType2: ; c64b
+	ds 1
+
+	ds 23
 
 CurOTMon: ; c663
 	ds 1
 	
-	ds 4
+	ds 1
+
+TypeModifier: ; c665
+; >10: super-effective
+;  10: normal
+; <10: not very effective
+
+; bit 7 is used for something else
+	ds 1
+
+CriticalHit: ; c666
+; nonzero for a critical hit
+	ds 1
+	
+AttackMissed: ; c667
+; nonzero for a miss
+	ds 1
 	
 PlayerSubStatus1: ; c668
 ; bit
@@ -495,15 +516,23 @@ PlayerSubStatus1: ; c668
 ; 0 nightmare
 	ds 1
 PlayerSubStatus2: ; c669
-; unknown
+; bit
+; 7
+; 6
+; 5
+; 4
+; 3
+; 2
+; 1
+; 0
 	ds 1
 PlayerSubStatus3: ; c66a
 ; bit
 ; 7 confusion
-; 6
-; 5
+; 6 flying
+; 5 underground
 ; 4 charged
-; 3 
+; 3 flinch
 ; 2
 ; 1 rollout
 ; 0 bide
@@ -515,18 +544,26 @@ PlayerSubStatus4: ; c66b
 ; 5 recharge
 ; 4 substitute
 ; 3
+; 2 focus energy
+; 1
+; 0 bide: unleashed energy
+	ds 1
+PlayerSubStatus5: ; c66c
+; bit
+; 7
+; 6
+; 5 lock-on
+; 4
+; 3
 ; 2
 ; 1
 ; 0
-	ds 1
-PlayerSubStatus5: ; c66c
-; unknown
 	ds 1
 
 EnemySubStatus1: ; c66d
 ; see PlayerSubStatus1
 	ds 1
-EnemySubstatus2: ; c66e
+EnemySubStatus2: ; c66e
 ; see PlayerSubStatus2
 	ds 1
 EnemySubStatus3: ; c66f
@@ -539,8 +576,15 @@ EnemySubStatus5: ; c671
 ; see PlayerSubStatus5
 	ds 1
 
-	ds 4
+	ds 1
+	
+PlayerConfuseCount: ; c673
+	ds 1
+	
+	ds 1
 
+PlayerDisableCount: ; c675
+	ds 1
 PlayerEncoreCount: ; c676
 	ds 1
 PlayerPerishCount: ; c677
@@ -572,10 +616,42 @@ BattleScriptBufferLoc: ; c6b2
 
 PlayerStatLevels: ; c6cc
 ; 07 neutral
-	ds 8
+PlayerAtkLevel: ; c6cc
+	ds 1
+PlayerDefLevel: ; c6cd
+	ds 1
+PlayerSpdLevel: ; c6ce
+	ds 1
+PlayerSAtkLevel: ; c6cf
+	ds 1
+PlayerSDefLevel: ; c6d0
+	ds 1
+PlayerAccLevel: ; c6d1
+	ds 1
+PlayerEvaLevel: ; c6d2
+	ds 1
+; c6d3
+	ds 1
+PlayerStatLevelsEnd
+
 EnemyStatLevels: ; c6d4
 ; 07 neutral
-	ds 8
+EnemyAtkLevel: ; c6d4
+	ds 1
+EnemyDefLevel: ; c6d5
+	ds 1
+EnemySpdLevel: ; c6d6
+	ds 1
+EnemySAtkLevel: ; c6d7
+	ds 1
+EnemySDefLevel: ; c6d8
+	ds 1
+EnemyAccLevel: ; c6d9
+	ds 1
+EnemyEvaLevel: ; c6da
+	ds 1
+; c6db
+	ds 1
 
 EnemyTurnsTaken: ; c6dc
 	ds 1
@@ -593,12 +669,21 @@ LinkBattleRNCount: ; c6e5
 ; how far through the prng stream
 	ds 1
 
-	ds 15
+	ds 3
+
+CurEnemyMoveNum: ; c6e9
+	ds 1
+
+	ds 10
+
+AlreadyDisobeyed: ; c6f4
+	ds 1
 
 DisabledMove: ; c6f5
 	ds 1
-
-	ds 2
+EnemyEncoredMove: ; c6f6
+	ds 1
+	ds 1
 
 ; exists so you can't counter on switch
 LastEnemyCounterMove: ; c6f8
@@ -606,7 +691,14 @@ LastEnemyCounterMove: ; c6f8
 LastPlayerCounterMove: ; c6f9
 	ds 1
 
-	ds 8
+	ds 5
+	
+PlayerScreens: ; c6ff
+; bit 4: reflect
+; bit 3: light screen
+	ds 1
+	
+	ds 2
 
 PlayerLightScreenCount: ; c702
 	ds 1
@@ -928,6 +1020,12 @@ EnemyMonSpclAtk: ; d220
 EnemyMonSpclDef: ; d222
 	ds 2
 
+EnemyMonType1: ; d224
+	ds 1
+EnemyMonType2: ; d225
+	ds 1
+
+
 SECTION "Battle",BSS[$d22d]
 
 IsInBattle: ; d22d
@@ -973,6 +1071,9 @@ UnownLetter: ; d234
 
 CurBaseStats: ; d236
 	ds 32
+
+CurDamage: ; d256
+	ds 2
 
 SECTION "TimeOfDay",BSS[$d269]
 
