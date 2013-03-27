@@ -2896,14 +2896,15 @@ BattleCommand0d: ; 35023
 	cp DIG
 	jr z, .asm_3504f ; 35036 $17
 
+; Move effect:
 	inc hl
 	ld a, [hl]
 
-	cp HEADBUTT
+	cp $1d ; multi-hit
 	jr z, .asm_35049
-	cp BITE
+	cp $2c ; double-hit
 	jr z, .asm_35049
-	cp POISONPOWDER
+	cp $4d ; twineedle
 	jr z, .asm_35049
 	jp EndMoveEffect
 
