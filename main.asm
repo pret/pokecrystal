@@ -9551,7 +9551,7 @@ MistText: ; 0x8130b
 	db "shrouded in MIST!", $58
 ; 0x81321
 
-BattleText_0x81321: ; 0x81321
+ProtectedByMistText: ; 0x81321
 	db $0, $59, "'s", $4f
 	db "protected by MIST.", $58
 ; 0x81338

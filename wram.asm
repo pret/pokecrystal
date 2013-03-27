@@ -524,7 +524,7 @@ PlayerSubStatus2: ; c669
 ; 3
 ; 2
 ; 1
-; 0
+; 0 curled
 	ds 1
 PlayerSubStatus3: ; c66a
 ; bit
@@ -540,7 +540,7 @@ PlayerSubStatus3: ; c66a
 PlayerSubStatus4: ; c66b
 ; bit
 ; 7 leech seed
-; 6
+; 6 rage
 ; 5 recharge
 ; 4 substitute
 ; 3
@@ -551,7 +551,7 @@ PlayerSubStatus4: ; c66b
 PlayerSubStatus5: ; c66c
 ; bit
 ; 7
-; 6
+; 6 destiny bond
 ; 5 lock-on
 ; 4
 ; 3
@@ -604,7 +604,9 @@ PlayerDamageTaken: ; c682
 EnemyDamageTaken: ; c684
 	ds 2
 
-	ds 5
+	ds 4
+	
+	ds 1
 
 BattleScriptBuffer: ; c68a
 	ds 40
