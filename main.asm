@@ -9246,17 +9246,17 @@ ClampedByText: ; 0x80e59
 	db $5a, "!", $58
 ; 0x80e6e
 
-BattleText_0x80e6e: ; 0x80e6e
+StoringEnergyText: ; 0x80e6e
 	db $0, $5a, $4f
 	db "is storing energy!", $58
 ; 0x80e84
 
-BattleText_0x80e84: ; 0x80e84
+UnleashedEnergyText: ; 0x80e84
 	db $0, $5a, $4f
 	db "unleashed energy!", $58
 ; 0x80e99
 
-BattleText_0x80e99: ; 0x80e99
+HungOnText: ; 0x80e99
 	db $0, $59, $4f
 	db "hung on with", $55
 	db "@"
@@ -9264,7 +9264,7 @@ BattleText_0x80e99: ; 0x80e99
 	db $0, "!", $58
 ; 0x80eb0
 
-BattleText_0x80eb0: ; 0x80eb0
+EnduredText: ; 0x80eb0
 	db $0, $59, $4f
 	db "ENDURED the hit!", $58
 ; 0x80ec4
@@ -9319,18 +9319,18 @@ IgnoredOrdersText: ; 0x80f66
 	db "orders!", $58
 ; 0x80f7b
 
-BattleText_0x80f7b: ; 0x80f7b
+IgnoredSleepingText: ; 0x80f7b
 	text_from_ram $c621
 	db $0, " ignored", $4f
 	db "orders…sleeping!", $58
 ; 0x80f99
 
-BattleText_0x80f99: ; 0x80f99
+NoPPLeftText: ; 0x80f99
 	db $0, "But no PP is left", $4f
 	db "for the move!", $58
 ; 0x80fba
 
-BattleText_0x80fba: ; 0x80fba
+HasNoPPLeftText: ; 0x80fba
 	db $0, $5a, $4f
 	db "has no PP left for", $55
 	db "@"
@@ -9354,23 +9354,23 @@ RegainedHealthText: ; 0x8100c
 	db "regained health!", $58
 ; 0x81020
 
-BattleText_0x81020: ; 0x81020
+AttackMissedText: ; 0x81020
 	db $0, $5a, "'s", $4f
 	db "attack missed!", $58
 ; 0x81033
 
-BattleText_0x81033: ; 0x81033
+AttackMissed2Text: ; 0x81033
 	db $0, $5a, "'s", $4f
 	db "attack missed!", $58
 ; 0x81046
 
-BattleText_0x81046: ; 0x81046
+CrashedText: ; 0x81046
 	db $0, $5a, $4f
 	db "kept going and", $55
 	db "crashed!", $58
 ; 0x81061
 
-BattleText_0x81061: ; 0x81061
+UnaffectedText: ; 0x81061
 	db $0, $59, "'s", $4f
 	db "unaffected!", $58
 ; 0x81071
@@ -9380,51 +9380,51 @@ DoesntAffectText: ; 0x81071
 	db $59, "!", $58
 ; 0x81086
 
-BattleText_0x81086: ; 0x81086
+CriticalHitText: ; 0x81086
 	db $0, "A critical hit!", $58
 ; 0x81097
 
-BattleText_0x81097: ; 0x81097
+OneHitKOText: ; 0x81097
 	db $0, "It's a one-hit KO!", $58
 ; 0x810aa
 
-BattleText_0x810aa: ; 0x810aa
+SuperEffectiveText: ; 0x810aa
 	db $0, "It's super-", $4f
 	db "effective!", $58
 ; 0x810c1
 
-BattleText_0x810c1: ; 0x810c1
+NotVeryEffectiveText: ; 0x810c1
 	db $0, "It's not very", $4f
 	db "effective…", $58
 ; 0x810da
 
-BattleText_0x810da: ; 0x810da
+TookDownWithItText: ; 0x810da
 	db $0, $59, $4f
 	db "took down with it,", $55
 	db $5a, "!", $58
 ; 0x810f3
 
-BattleText_0x810f3: ; 0x810f3
+RageBuildingText: ; 0x810f3
 	db $0, $5a, "'s", $4f
 	db "RAGE is building!", $58
 ; 0x81109
 
-BattleText_0x81109: ; 0x81109
+GotAnEncoreText: ; 0x81109
 	db $0, $59, $4f
 	db "got an ENCORE!", $58
 ; 0x8111b
 
-BattleText_0x8111b: ; 0x8111b
+SharedPainText: ; 0x8111b
 	db $0, "The battlers", $4f
 	db "shared pain!", $58
 ; 0x81136
 
-BattleText_0x81136: ; 0x81136
+TookAimText: ; 0x81136
 	db $0, $5a, $4f
 	db "took aim!", $58
 ; 0x81143
 
-BattleText_0x81143: ; 0x81143
+SketchedText: ; 0x81143
 	db $0, $5a, $4f
 	db "SKETCHED", $55
 	db "@"
@@ -9432,13 +9432,13 @@ BattleText_0x81143: ; 0x81143
 	db $0, "!", $58
 ; 0x81156
 
-BattleText_0x81156: ; 0x81156
+DestinyBondEffectText: ; 0x81156
 	db $0, $5a, "'s", $4f
 	db "trying to take its", $55
 	db "opponent with it!", $58
 ; 0x8117f
 
-BattleText_0x8117f: ; 0x8117f
+SpiteEffectText: ; 0x8117f
 	db $0, $59, "'s", $4f
 	db "@"
 	text_from_ram $d073
@@ -9448,57 +9448,57 @@ BattleText_0x8117f: ; 0x8117f
 	db $0, "!", $58
 ; 0x811a0
 
-BattleText_0x811a0: ; 0x811a0
+BellChimedText: ; 0x811a0
 	db $0, "A bell chimed!", $4f
 	db $58
 ; 0x811b1
 
-BattleText_0x811b1: ; 0x811b1
+FellAsleepText: ; 0x811b1
 	db $0, $59, $4f
 	db "fell asleep!", $58
 ; 0x811c1
 
-BattleText_0x811c1: ; 0x811c1
+AlreadyAsleepText: ; 0x811c1
 	db $0, $59, "'s", $4f
 	db "already asleep!", $58
 ; 0x811d5
 
-BattleText_0x811d5: ; 0x811d5
+WasPoisonedText: ; 0x811d5
 	db $0, $59, $4f
 	db "was poisoned!", $58
 ; 0x811e6
 
-BattleText_0x811e6: ; 0x811e6
+BadlyPoisonedText: ; 0x811e6
 	db $0, $59, "'s", $4f
 	db "badly poisoned!", $58
 ; 0x811fa
 
-BattleText_0x811fa: ; 0x811fa
+AlreadyPoisonedText: ; 0x811fa
 	db $0, $59, "'s", $4f
 	db "already poisoned!", $58
 ; 0x81210
 
-BattleText_0x81210: ; 0x81210
+SuckedHealthText: ; 0x81210
 	db $0, "Sucked health from", $4f
 	db $59, "!", $58
 ; 0x81227
 
-BattleText_0x81227: ; 0x81227
+DreamEatenText: ; 0x81227
 	db $0, $59, "'s", $4f
 	db "dream was eaten!", $58
 ; 0x8123c
 
-BattleText_0x8123c: ; 0x8123c
+WasBurnedText: ; 0x8123c
 	db $0, $59, $4f
 	db "was burned!", $58
 ; 0x8124b
 
-BattleText_0x8124b: ; 0x8124b
+DefrostedOpponentText: ; 0x8124b
 	db $0, $59, $4f
 	db "was defrosted!", $58
 ; 0x8125d
 
-BattleText_0x8125d: ; 0x8125d
+WasFrozenText: ; 0x8125d
 	db $0, $59, $4f
 	db "was frozen solid!", $58
 ; 0x81272
@@ -9511,7 +9511,7 @@ WontRiseAnymoreText: ; 0x81272
 	db "rise anymore!", $58
 ; 0x8128f
 
-BattleText_0x8128f: ; 0x8128f
+WontDropAnymoreText: ; 0x8128f
 	db $0, $59, "'s", $4f
 	db "@"
 	text_from_ram $d086
@@ -9519,28 +9519,28 @@ BattleText_0x8128f: ; 0x8128f
 	db "drop anymore!", $58
 ; 0x812ac
 
-BattleText_0x812ac: ; 0x812ac
+FledFromBattleText: ; 0x812ac
 	db $0, $5a, $4f
 	db "fled from battle!", $58
 ; 0x812c1
 
-BattleText_0x812c1: ; 0x812c1
+FledInFearText: ; 0x812c1
 	db $0, $59, $4f
 	db "fled in fear!", $58
 ; 0x812d2
 
-BattleText_0x812d2: ; 0x812d2
+BlownAwayText: ; 0x812d2
 	db $0, $59, $4f
 	db "was blown away!", $58
 ; 0x812e5
 
-BattleText_0x812e5: ; 0x812e5
+PlayerHitTimesText: ; 0x812e5
 	db $0, "Hit @"
 	deciram $c682, $11
 	db $0, " times!", $58
 ; 0x812f8
 
-BattleText_0x812f8: ; 0x812f8
+EnemyHitTimesText: ; 0x812f8
 	db $0, "Hit @"
 	deciram $c684, $11
 	db $0, " times!", $58
@@ -9582,13 +9582,13 @@ TooWeakSubText: ; 0x8138d
 	db "a SUBSTITUTE!", $58
 ; 0x813ad
 
-BattleText_0x813ad: ; 0x813ad
+SubTookDamageText: ; 0x813ad
 	db $0, "The SUBSTITUTE", $4f
 	db "took damage for", $55
 	db $59, "!", $58
 ; 0x813d0
 
-BattleText_0x813d0: ; 0x813d0
+SubFadedText: ; 0x813d0
 	db $0, $59, "'s", $4f
 	db "SUBSTITUTE faded!", $58
 ; 0x813e6
@@ -9645,12 +9645,12 @@ TransformedText: ; 0x81499
 	db $0, "!", $58
 ; 0x814b4
 
-BattleText_0x814b4: ; 0x814b4
+LightScreenEffectText: ; 0x814b4
 	db $0, $5a, "'s", $4f
 	db "SPCL.DEF rose!", $58
 ; 0x814c7
 
-BattleText_0x814c7: ; 0x814c7
+ReflectEffectText: ; 0x814c7
 	db $0, $5a, "'s", $4f
 	db "DEFENSE rose!", $58
 ; 0x814d9
@@ -9683,7 +9683,7 @@ HPIsFullText: ; 0x81534
 	db "HP is full!", $58
 ; 0x81544
 
-BattleText_0x81544: ; 0x81544
+DraggedOutText: ; 0x81544
 	db $0, $5a, $4f
 	db "was dragged out!", $58
 ; 0x81558
@@ -9752,7 +9752,7 @@ ProtectedItselfText: ; 0x81665
 	db "PROTECTED itself!", $58
 ; 0x8167a
 
-BattleText_0x8167a: ; 0x8167a
+ProtectingItselfText: ; 0x8167a
 	db $0, $59, "'s", $4f
 	db "PROTECTING itself!", $57
 ; 0x81691
@@ -9861,7 +9861,7 @@ RefusedGiftText: ; 0x8183b
 	db "refused the gift!", $58
 ; 0x81850
 
-BattleText_0x81850: ; 0x81850
+IgnoredOrders2Text: ; 0x81850
 	db $0, $5a, $4f
 	db "ignored orders!", $58
 ; 0x81863

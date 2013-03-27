@@ -1037,7 +1037,7 @@ IgnoreSleepOnly: ; 3451f
 	ret z
 
 ; 'ignored orders…sleeping!'
-	ld hl, $4f7b
+	ld hl, IgnoredSleepingText
 	call FarBattleTextBox
 
 	call EndMoveEffect
@@ -1182,10 +1182,10 @@ BattleCommand04: ; 34555
 	call IsInArray
 
 ; 'has no pp left for [move]'
-	ld hl, $4fba
+	ld hl, HasNoPPLeftText
 	jr c, .print
 ; 'but no pp is left for the move'
-	ld hl, $4f99
+	ld hl, NoPPLeftText
 .print
 	call FarBattleTextBox
 	ld b, $1
@@ -2425,7 +2425,7 @@ BattleCommand09: ; 34d32
 	call DelayFrames
 
 ; 'protecting itself!'
-	ld hl, BattleText_0x8167a
+	ld hl, ProtectingItselfText
 	call FarBattleTextBox
 
 	ld c, 40
@@ -2882,7 +2882,7 @@ BattleCommand0c: ; 35004
 
 
 BattleCommand0d: ; 35023
-
+; resulttext
 	ld a, [AttackMissed]
 	and a
 	ret z
@@ -2922,11 +2922,13 @@ BattleCommand0d: ; 35023
 
 
 BattleCommand0e: ; 3505e
+; checkfaint
+
 	ld a, BATTLE_VARS_SUBSTATUS1_OPP
 	call CleanGetBattleVarPair
 	bit 5, a
 	jr z, .asm_35072 ; 35065 $b
-	call $5c94
+	call BattleCommand4b
 	ld b, $0
 	jr nc, .asm_3508b ; 3506c $1d
 	ld b, $1
@@ -2941,7 +2943,7 @@ BattleCommand0e: ; 3505e
 	call FarBattleRNG
 	cp c
 	jr nc, .asm_3508b ; 35080 $9
-	call $5c94
+	call BattleCommand4b
 	ld b, $0
 	jr nc, .asm_3508b ; 35087 $2
 	ld b, $2
@@ -2965,7 +2967,7 @@ BattleCommand0e: ; 3505e
 	ret z
 	dec a
 	jr nz, .asm_350ab ; 350a3 $6
-	ld hl, $4eb0
+	ld hl, EnduredText
 	jp FarBattleTextBox
 
 .asm_350ab
@@ -2973,7 +2975,8 @@ BattleCommand0e: ; 3505e
 	ld a, [hl]
 	ld [$d265], a
 	call $3468
-	ld hl, $4e99
+
+	ld hl, HungOnText
 	jp FarBattleTextBox
 
 .asm_50bb
@@ -3009,23 +3012,23 @@ BattleCommand0e: ; 3505e
 
 
 ; 350e4
-	ld hl, $5071
-	ld de, $5071
+	ld hl, DoesntAffectText
+	ld de, DoesntAffectText
 	ld a, [TypeModifier]
 	and $7f
 	jr z, .asm_35110 ; 0x350ef $1f
 	ld a, $d
 	call CleanGetBattleVarPair
 	cp $94
-	ld hl, $54f0
-	ld de, $5500
+	ld hl, ButItFailedText
+	ld de, ItFailedText
 	jr z, .asm_35110 ; 0x350fe $10
-	ld hl, $5020
-	ld de, $5033
+	ld hl, AttackMissedText
+	ld de, AttackMissed2Text
 	ld a, [CriticalHit]
 	cp $ff
 	jr nz, .asm_35110 ; 0x3510b $3
-	ld hl, $5061
+	ld hl, UnaffectedText
 .asm_35110
 	call Function0x35157
 	xor a
@@ -3054,7 +3057,7 @@ BattleCommand0e: ; 3505e
 	inc a
 	ld [hl], a
 .asm_3513e
-	ld hl, $5046
+	ld hl, CrashedText
 	call FarBattleTextBox
 	ld a, $1
 	ld [$c689], a
@@ -3117,8 +3120,8 @@ BattleCommand0f: ; 35175
 	jp DelayFrames
 
 .ptrs
-	dw BattleText_0x81086 ; 'critical hit'
-	dw BattleText_0x81097 ; 'one-hit ko'
+	dw CriticalHitText ; 'critical hit'
+	dw OneHitKOText    ; 'one-hit ko'
 ; 35197
 
 
@@ -3157,9 +3160,9 @@ BattleCommand10: ; 351ad
 	and $7f
 	cp 10 ; 1.0
 	ret z
-	ld hl, BattleText_0x810aa ; 'super-effective'
+	ld hl, SuperEffectiveText ; 'super-effective'
 	jr nc, .print
-	ld hl, BattleText_0x810c1 ; 'not very effective'
+	ld hl, NotVeryEffectiveText ; 'not very effective'
 .print
 	jp FarBattleTextBox
 ; 351c0
@@ -3186,7 +3189,7 @@ BattleCommand11: ; 351c0
 	bit 6, a
 	jr z, .asm_35231
 
-	ld hl, $50da
+	ld hl, TookDownWithItText
 	call FarBattleTextBox
 	ld a, [hBattleTurn]
 	and a
@@ -3279,7 +3282,7 @@ BattleCommand12: ; 35250
 	ld [de], a
 
 	call SwitchTurn
-	ld hl, $50f3
+	ld hl, RageBuildingText
 	call FarBattleTextBox
 	jp SwitchTurn
 ; 3527b
@@ -4452,8 +4455,10 @@ BattleCommand41: ; 35864
 	call GetMoveData
 .asm_3591a
 	call Function0x37e01
-	ld hl, $5109
+
+	ld hl, GotAnEncoreText
 	jp FarBattleTextBox
+
 .asm_35923
 	jp PrintDidntAffect2
 ; 35926
@@ -4495,7 +4500,8 @@ BattleCommand42: ; 35926
 	ld a, $5e
 	ld hl, $4000
 	rst FarCall
-	ld hl, $511b
+
+	ld hl, SharedPainText
 	jp FarBattleTextBox
 
 .asm_3597d
@@ -4649,8 +4655,10 @@ BattleCommand45: ; 35a53
 	call GetBattleVarPair
 	set 5, [hl]
 	call Function0x37e01
-	ld hl, $5136
+
+	ld hl, TookAimText
 	jp FarBattleTextBox
+
 .asm_35a6e
 	call Function0x37e77
 	jp PrintDidntAffect
@@ -4750,8 +4758,10 @@ BattleCommand46: ; 35a74
 .asm_35b04
 	call $34f8
 	call Function0x37e01
-	ld hl, $5143
+
+	ld hl, SketchedText
 	jp FarBattleTextBox
+
 .asm_35b10
 	call Function0x37e77
 	jp PrintDidntAffect
@@ -4942,7 +4952,7 @@ BattleCommand49: ; 35bff
 	call GetBattleVarPair
 	set 6, [hl]
 	call Function0x37e01
-	ld hl, $5156
+	ld hl, DestinyBondEffectText
 	jp FarBattleTextBox
 ; 35c0f
 
@@ -5027,7 +5037,7 @@ BattleCommand4a: ; 35c0f
 	pop de
 	ld a, d
 	ld [$d265], a
-	ld hl, $517f
+	ld hl, SpiteEffectText
 	jp FarBattleTextBox
 .asm_35c91
 	jp PrintDidntAffect2
@@ -5096,16 +5106,18 @@ BattleCommand4c: ; 35cc9
 	ld [hl], a
 	ld h, d
 	ld l, e
-	ld bc, $0030
+	ld bc, $30
 	ld d, $6
 .asm_35ce9
 	ld [hl], a
 	add hl, bc
 	dec d
-	jr nz, .asm_35ce9 ; 35cec $fb
+	jr nz, .asm_35ce9
 	call Function0x37e01
-	ld hl, $51a0
+
+	ld hl, BellChimedText
 	call FarBattleTextBox
+
 	ld a, [hBattleTurn]
 	and a
 	jp z, Function0x365d7
@@ -5260,8 +5272,10 @@ Function0x35d7e: ; 35d7e
 
 
 Function0x35de0: ; 35de0
-	ld hl, $53ad
+
+	ld hl, SubTookDamageText
 	call FarBattleTextBox
+
 	ld de, $c6e0
 	ld a, [hBattleTurn]
 	and a
@@ -5286,7 +5300,7 @@ Function0x35de0: ; 35de0
 	call GetBattleVarPair
 	res 4, [hl]
 
-	ld hl, $53d0
+	ld hl, SubFadedText
 	call FarBattleTextBox
 
 	call SwitchTurn
@@ -5348,51 +5362,62 @@ BattleCommand14: ; 35e5c
 	ld a, [hl]
 	ld [$d265], a
 	call $3468
-	ld hl, $55a9
-	jr .asm_35ec6 ; 35e6e $56
+	ld hl, ProtectedByText
+	jr .asm_35ec6
+
 .asm_35e70
 	ld a, BATTLE_VARS_STATUS_OPP
 	call GetBattleVarPair
 	ld d, h
 	ld e, l
 	ld a, [de]
-	and $7
-	ld hl, $51c1
-	jr nz, .asm_35ec6 ; 35e7d $47
+	and 7
+	ld hl, AlreadyAsleepText
+	jr nz, .asm_35ec6
+
 	ld a, [AttackMissed]
 	and a
 	jp nz, PrintDidntAffect2
-	ld hl, $550c
+
+	ld hl, DidntAffect1Text
 	call Function0x35ece
-	jr c, .asm_35ec6 ; 35e8c $38
+	jr c, .asm_35ec6
+
 	ld a, [de]
 	and a
-	jr nz, .asm_35ec6 ; 35e90 $34
+	jr nz, .asm_35ec6
+
 	call CheckSubstituteOpp
-	jr nz, .asm_35ec6 ; 35e95 $2f
+	jr nz, .asm_35ec6
+
 	call Function0x37e01
 	ld b, $7
 	ld a, [$cfc0]
 	and a
-	jr z, .asm_35ea4 ; 35ea0 $2
+	jr z, .asm_35ea4
 	ld b, $3
+
 .asm_35ea4
 	call FarBattleRNG
 	and b
-	jr z, .asm_35ea4 ; 35ea8 $fa
-	cp $7
-	jr z, .asm_35ea4 ; 35eac $f6
+	jr z, .asm_35ea4
+	cp 7
+	jr z, .asm_35ea4
 	inc a
 	ld [de], a
 	call $398e
 	call $39c9
-	ld hl, $51b1
+
+	ld hl, FellAsleepText
 	call FarBattleTextBox
+
 	ld a, $f
 	ld hl, $5de9
 	rst FarCall
+
 	jp z, $4216
 	ret
+
 .asm_35ec6
 	push hl
 	call Function0x37e77
@@ -5459,8 +5484,10 @@ BattleCommand13: ; 35eee
 	ld de, $0106
 	call Function0x37e54
 	call $39c9
-	ld hl, $51d5
+
+	ld hl, WasPoisonedText
 	call FarBattleTextBox
+
 	ld a, $f
 	ld hl, $5de9
 	rst FarCall
@@ -5471,7 +5498,7 @@ BattleCommand13: ; 35eee
 BattleCommand2f: ; 35f2c
 ; poison
 
-	ld hl, $5071
+	ld hl, DoesntAffectText
 	ld a, [TypeModifier]
 	and $7f
 	jp z, $5fb8
@@ -5480,7 +5507,7 @@ BattleCommand2f: ; 35f2c
 	ld a, BATTLE_VARS_STATUS_OPP
 	call CleanGetBattleVarPair
 	ld b, a
-	ld hl, $51fa
+	ld hl, AlreadyPoisonedText
 	and $8
 	jp nz, $5fb8
 	call GetOpponentItem
@@ -5490,10 +5517,10 @@ BattleCommand2f: ; 35f2c
 	ld a, [hl]
 	ld [$d265], a
 	call $3468
-	ld hl, $55a9
+	ld hl, ProtectedByText
 	jr .asm_35fb8 ; 35f5d $59
 .asm_35f5f
-	ld hl, $550c
+	ld hl, DidntAffect1Text
 	ld a, BATTLE_VARS_STATUS_OPP
 	call CleanGetBattleVarPair
 	and a
@@ -5522,21 +5549,26 @@ BattleCommand2f: ; 35f2c
 	call Function0x35fc9
 	jr z, .asm_35fa4 ; 35f97 $b
 	call Function0x35fc0
-	ld hl, $51d5
+
+	ld hl, WasPoisonedText
 	call FarBattleTextBox
+
 	jr .asm_35fb1 ; 35fa2 $d
 .asm_35fa4
 	set 0, [hl]
 	xor a
 	ld [de], a
 	call Function0x35fc0
-	ld hl, $51e6
+
+	ld hl, BadlyPoisonedText
 	call FarBattleTextBox
+
 .asm_35fb1
 	ld a, $f
 	ld hl, $5de9
 	rst FarCall
 	ret
+
 .asm_35fb8
 	push hl
 	call Function0x37e77
@@ -5594,15 +5626,17 @@ Function0x35ff5: ; 35ff5
 
 
 BattleCommand15: ; 35fff
+; draintarget
 	call Function0x36011
-	ld hl, $5210
+	ld hl, SuckedHealthText
 	jp FarBattleTextBox
 ; 36008
 
 
 BattleCommand16: ; 36008
+; eatdream
 	call Function0x36011
-	ld hl, $5227
+	ld hl, DreamEatenText
 	jp FarBattleTextBox
 ; 36011
 
@@ -5724,8 +5758,10 @@ BattleCommand17: ; 3608c
 	ld de, $0105
 	call Function0x37e54
 	call $39c9
-	ld hl, $523c
+
+	ld hl, WasBurnedText
 	call FarBattleTextBox
+
 	ld a, $f
 	ld hl, $5de9
 	rst FarCall
@@ -5754,7 +5790,8 @@ Defrost: ; 360dd
 	xor a
 	ld [hl], a
 	call $398e
-	ld hl, $524b
+
+	ld hl, DefrostedOpponentText
 	jp FarBattleTextBox
 ; 36102
 
@@ -5794,8 +5831,10 @@ BattleCommand18: ; 36102
 	ld de, $0108
 	call Function0x37e54
 	call $39c9
-	ld hl, $525d
+
+	ld hl, WasFrozenText
 	call FarBattleTextBox
+
 	ld a, $f
 	ld hl, $5de9
 	rst FarCall
@@ -6346,7 +6385,7 @@ BattleCommand8e: ; 3644c
 	ld b, a
 	inc b
 	call $648f
-	ld hl, $5272
+	ld hl, WontRiseAnymoreText
 	jp FarBattleTextBox
 ; 3646a
 
@@ -6369,7 +6408,7 @@ BattleCommand8f: ; 3646a
 	ld b, a
 	inc b
 	call $648f
-	ld hl, $528f
+	ld hl, WontDropAnymoreText
 	jp FarBattleTextBox
 ; 3648f
 
@@ -6714,8 +6753,10 @@ BattleCommand21: ; 36671
 	ld a, BATTLE_VARS_SUBSTATUS3
 	call GetBattleVarPair
 	res 0, [hl]
-	ld hl, $4e84
+
+	ld hl, UnleashedEnergyText
 	call FarBattleTextBox
+
 	ld a, BATTLE_VARS_MOVE_POWER
 	call GetBattleVarPair
 	ld a, $1
@@ -6758,7 +6799,7 @@ BattleCommand21: ; 36671
 	jp SkipToBattleCommand
 
 .asm_366dc
-	ld hl, $4e6e
+	ld hl, StoringEnergyText
 	call FarBattleTextBox
 	jp EndMoveEffect
 ; 366e5
@@ -6937,7 +6978,8 @@ BattleCommanda0: ; 36778
 	ld c, $14
 	call DelayFrames
 	call Function0x36804
-	ld hl, $52ac
+
+	ld hl, FledFromBattleText
 	jp FarBattleTextBox
 ; 36804
 
@@ -7042,10 +7084,13 @@ BattleCommand23: ; 3680f
 	ld hl, $54c3
 	ld a, $f
 	rst FarCall
-	ld hl, $5544
+
+	ld hl, DraggedOutText
 	call FarBattleTextBox
+
 	ld hl, $5c23
 	jp CallBankF
+
 .asm_368ca
 	jp $6969
 
@@ -7136,15 +7181,19 @@ BattleCommand23: ; 3680f
 	ld [CurPartyMon], a
 	ld hl, $5b32
 	call CallBankF
-	ld hl, $5544
+
+	ld hl, DraggedOutText
 	call FarBattleTextBox
+
 	ld hl, $5c23
 	jp CallBankF
+
 .asm_36969
 	call BattleCommand0a
 	call BattleCommandaa
 	call BattleCommand0c
 	jp $734e
+
 .asm_36975
 	push af
 	call $6804
@@ -7154,11 +7203,11 @@ BattleCommand23: ; 3680f
 	ld c, $14
 	call DelayFrames
 	pop af
-	ld hl, $52c1
+
+	ld hl, FledInFearText
 	cp $2e
 	jr z, .asm_36991
-
-	ld hl, $52d2
+	ld hl, BlownAwayText
 .asm_36991
 	jp FarBattleTextBox
 ; 36994
@@ -7284,19 +7333,22 @@ BattleCommand24: ; 369b6
 	ld a, BATTLE_VARS_SUBSTATUS3
 	call GetBattleVarPair
 	res 2, [hl]
-	ld hl, $52e5
+
+	ld hl, PlayerHitTimesText
 	ld a, [hBattleTurn]
 	and a
-	jr z, .asm_36a5a ; 36a55 $3
-	ld hl, $52f8
+	jr z, .asm_36a5a
+	ld hl, EnemyHitTimesText
 .asm_36a5a
+
 	push bc
 	ld a, BATTLE_VARS_MOVE_EFFECT
 	call CleanGetBattleVarPair
 	cp $9a ; beat up
-	jr z, .asm_36a67 ; 36a62 $3
+	jr z, .asm_36a67
 	call FarBattleTextBox
 .asm_36a67
+
 	pop bc
 	xor a
 	ld [bc], a
@@ -7477,19 +7529,23 @@ BattleCommand39: ; 36b4d
 	ld a, BATTLE_VARS_STATUS
 	call CleanGetBattleVarPair
 	and $7
-	jr z, .asm_36b65 ; 36b57 $c
+	jr z, .asm_36b65
+
 	call BattleCommandaa
 	call BattleCommand0c
 	call $734e
 	jp EndMoveEffect
+
 .asm_36b65
 	ld a, BATTLE_VARS_SUBSTATUS3
 	call GetBattleVarPair
 	set 4, [hl]
-	ld hl, $5850
+
+	ld hl, IgnoredOrders2Text
 	ld a, [AlreadyDisobeyed]
 	and a
 	call nz, FarBattleTextBox
+
 	call BattleCommand0a
 	xor a
 	ld [$cfca], a
@@ -8740,32 +8796,35 @@ BattleCommand2e: ; 372fc
 	ld bc, PlayerLightScreenCount
 	ld a, [hBattleTurn]
 	and a
-	jr z, .asm_3730d ; 37305 $6
+	jr z, .asm_3730d
 	ld hl, $c700
 	ld bc, $c706
 .asm_3730d
 	ld a, BATTLE_VARS_MOVE_EFFECT
 	call CleanGetBattleVarPair
 	cp $23
-	jr nz, .asm_37324 ; 37314 $e
+	jr nz, .asm_37324
 	bit 3, [hl]
-	jr nz, .asm_37337 ; 37318 $1d
+	jr nz, .asm_37337
 	set 3, [hl]
 	ld a, $5
 	ld [bc], a
-	ld hl, $54b4
-	jr .asm_37331 ; 37322 $d
+	ld hl, LightScreenEffectText
+	jr .asm_37331
+
 .asm_37324
 	bit 4, [hl]
-	jr nz, .asm_37337 ; 37326 $f
+	jr nz, .asm_37337
 	set 4, [hl]
 	inc bc
 	ld a, $5
 	ld [bc], a
-	ld hl, $54c7
+	ld hl, ReflectEffectText
+
 .asm_37331
 	call Function0x37e01
 	jp FarBattleTextBox
+
 .asm_37337
 	call Function0x37e77
 	jp $734e
