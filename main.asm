@@ -1126,14 +1126,34 @@ FarCopyBytesDouble: ; e9b
 ; 0xeba
 
 
-INCBIN "baserom.gbc",$eba,$fc8 - $eba
+INCBIN "baserom.gbc",$eba,$fb6 - $eba
 
+
+ClearBox: ; fb6
+; Fill a c*b box at hl with blank tiles.
+
+	ld a, " "
+.y
+	push bc
+	push hl
+.x
+	ld [hli], a
+	dec c
+	jr nz, .x
+	pop hl
+	ld bc, 20 ; screen width
+	add hl, bc
+	pop bc
+	dec b
+	jr nz, .y
+	ret
+; fc8
 
 ClearTileMap: ; fc8
-; Fill the tile map with blank tiles
+; Fill TileMap with blank tiles
 	ld hl, TileMap
-	ld a, $7f ; blank tile
-	ld bc, 360 ; length of TileMap
+	ld a, " "
+	ld bc, 360 ; screen dimensions 20*18
 	call ByteFill
 	
 ; We aren't done if the LCD is on
@@ -3271,7 +3291,9 @@ GetNthString: ; 3411
 	ret
 ; 0x3420
 
+
 INCBIN "baserom.gbc",$3420,$3468 - $3420
+
 
 GetItemName: ; 3468
 	push hl
@@ -3291,9 +3313,30 @@ GetItemName: ; 3468
 	pop bc
 	pop hl
 	ret
-; 0x3487
+; 3487
 
-INCBIN "baserom.gbc",$3487,$3856 - $3487
+
+INCBIN "baserom.gbc", $3487, $34f8 - $3487
+
+
+GetMoveName: ; 34f8
+	push hl
+; move name
+	ld a, $2 ; move names
+	ld [$cf61], a
+; move id
+	ld a, [$d265]
+	ld [$cf60], a
+
+	call GetName
+	ld de, StringBuffer1
+	pop hl
+	ret
+; 350c
+
+
+INCBIN "baserom.gbc", $350c, $3856 - $350c
+
 
 GetBaseStats: ; 3856
 	push bc
@@ -3483,7 +3526,26 @@ GetPartyLocation: ; 3927
 	jp AddNTimes
 ; 392d
 
-INCBIN "baserom.gbc", $392d, $397d - $392d
+
+INCBIN "baserom.gbc", $392d, $395d - $392d
+
+
+BattlePartyAttr: ; 395d
+; Get attribute a from the active monster's party struct.
+	push bc
+	ld c, a
+	ld b, 0
+	ld hl, PartyMons
+	add hl, bc
+	ld a, [CurBattleMon]
+	call GetPartyLocation
+	pop bc
+	ret
+; 396d
+
+
+INCBIN "baserom.gbc", $396d, $397d - $396d
+
 
 ResetDamage: ; 397d
 	xor a
@@ -5666,7 +5728,15 @@ TrainerClassDVs ; 270d6
 	db $98, $88 ; mysticalman
 ; 2715c
 
-INCBIN "baserom.gbc",$2715c,$27a2d - $2715c
+INCBIN "baserom.gbc", $2715c, $271f4 - $2715c
+
+MoveEffectsPointers: ; 271f4
+
+INCBIN "baserom.gbc", $271f4, $2732e - $271f4
+
+MoveEffects: ; 2732e
+
+INCBIN "baserom.gbc", $2732e, $27a2d - $2732e
 
 
 SECTION "bankA",DATA,BANK[$A]
@@ -6006,13 +6076,7 @@ INCBIN "baserom.gbc",$329ed,$333f0 - $329ed
 
 SECTION "bankD",DATA,BANK[$D]
 
-INCBIN "baserom.gbc",$34000,$34bb1 - $34000
-
-TypeMatchup: ; 34bb1
-INCLUDE "battle/type_matchup.asm"
-; 34cfd
-
-INCBIN "baserom.gbc",$34cfd,$37ee2 - $34cfd
+INCLUDE "battle/effect_commands.asm"
 
 
 SECTION "bankE",DATA,BANK[$E]
@@ -6027,7 +6091,91 @@ INCLUDE "trainers/trainers.asm"
 
 SECTION "bankF",DATA,BANK[$F]
 
-INCBIN "baserom.gbc",$3C000,$3d123 - $3C000
+INCBIN "baserom.gbc", $3c000, $3cc83 - $3c000
+
+GetEighthMaxHP: ; 3cc83
+; output: bc
+	call GetQuarterMaxHP
+; assumes nothing can have 1024 or more hp
+; halve result
+	srl c
+; round up
+	ld a, c
+	and a
+	jr nz, .end
+	inc c
+.end
+	ret
+; 3cc8e
+
+
+GetQuarterMaxHP: ; 3cc8e
+; output: bc
+	call GetMaxHP
+
+; quarter result
+	srl b
+	rr c
+	srl b
+	rr c
+
+; assumes nothing can have 1024 or more hp
+; round up
+	ld a, c
+	and a
+	jr nz, .end
+	inc c
+.end
+	ret
+; 3cc9f
+
+
+GetHalfMaxHP: ; 3cc9f
+; output: bc
+	call GetMaxHP
+
+; halve reslut
+	srl b
+	rr c
+
+; floor = 1
+	ld a, c
+	or b
+	jr nz, .end
+	inc c
+.end
+	ret
+; 3ccac
+
+
+GetMaxHP: ; 3ccac
+; output: bc, $d1ea-b
+
+; player
+	ld hl, BattleMonMaxHP
+
+; whose turn?
+	ld a, [hBattleTurn]
+	and a
+	jr z, .gethp
+
+; enemy
+	ld hl, EnemyMonMaxHP
+
+.gethp
+	ld a, [hli]
+	ld [$d1eb], a
+	ld b, a
+
+	ld a, [hl]
+	ld [$d1ea], a
+	ld c, a
+	ret
+; 3ccc2
+
+
+INCBIN "baserom.gbc", $3ccc2, $3d123 - $3ccc2
+
 
 ; These functions check if the current opponent is a gym leader or one of a
 ; few other special trainers.
@@ -6894,7 +7042,14 @@ BattleStartMessage:
 	ret
 ; 0x3fd26
 
-INCBIN "baserom.gbc",$3fd26,$3fe86 - $3fd26
+
+	dw $0000 ; padding
+
+
+BattleCommandPointers: ; 3fd28
+
+INCLUDE "battle/effect_command_pointers.asm"
+
 
 
 SECTION "bank10",DATA,BANK[$10]
@@ -14626,7 +14781,366 @@ INCBIN "baserom.gbc",$105688,$105930 - $105688
 ; japanese mystery gift gfx
 INCBIN "gfx/misc/mystery_gift_jp.2bpp"
 
-INCBIN "baserom.gbc",$105db0,$105ef6 - $105db0
+
+DisplayUsedMoveText: ; 105db0
+; battle command 03
+	ld hl, UsedMoveText
+	call BattleTextBox
+	jp WaitBGMap
+; 105db9
+
+
+UsedMoveText: ; 105db9
+
+; this is a stream of text and asm from 105db9 to 105ef6
+
+; print actor name
+	text_jump _ActorNameText, BANK(_ActorNameText)
+	start_asm
+
+; ????
+	ld a, [hBattleTurn]
+	and a
+	jr nz, .start
+	
+; append used move list
+	ld a, [PlayerMoveAnimation]
+	call UpdateUsedMoves
+	
+.start
+; get address for last move
+	ld a, $13 ; last move
+	call GetBattleVarPair
+	ld d, h
+	ld e, l
+	
+; get address for last counter move
+	ld a, $11
+	call GetBattleVarPair
+	
+; get move animation (id)
+	ld a, $c ; move animation
+	call CleanGetBattleVarPair
+	ld [$d265], a
+	
+; check actor ????
+	push hl
+	callba Function0x34548
+	pop hl
+	jr nz, .grammar
+	
+; update last move
+	ld a, [$d265]
+	ld [hl], a
+	ld [de], a
+	
+.grammar
+	call GetMoveGrammar
+; $d265 now contains MoveGrammar
+	
+	
+; everything except 'instead' made redundant in localization
+
+; check obedience
+	ld a, [$c6f4]
+	and a
+	ld hl, UsedMove2Text
+	ret nz
+	
+; check move grammar
+	ld a, [$d265]
+	cp $3
+	ld hl, UsedMove2Text
+	ret c
+	ld hl, UsedMove1Text
+	ret
+; 105e04
+
+UsedMove1Text: ; 105e04
+	text_jump _UsedMove1Text, BANK(_UsedMove1Text)
+	start_asm
+	jr Function105e10
+; 105e0b
+
+UsedMove2Text: ; 105e0b
+	text_jump _UsedMove2Text, BANK(_UsedMove2Text)
+	start_asm
+; 105e10
+
+Function105e10: ; 105e10
+; check obedience
+	ld a, [$c6f4]
+	and a
+	jr z, GetMoveNameText
+; print "instead,"
+	ld hl, UsedInsteadText
+	ret
+; 105e1a
+
+UsedInsteadText: ; 105e1a
+	text_jump _UsedInsteadText, BANK(_UsedInsteadText)
+	start_asm
+; 105e1f
+
+GetMoveNameText: ; 105e1f
+	ld hl, MoveNameText
+	ret
+; 105e23
+
+MoveNameText: ; 105e23
+	text_jump _MoveNameText, BANK(_MoveNameText)
+	start_asm
+; 105e28
+
+GetUsedMoveTextEnder: ; 105e28
+; get start address
+	ld hl, .endusedmovetexts
+	
+; get move id
+	ld a, [$d265]
+	
+; 2-byte pointer
+	add a
+	
+; seek
+	push bc
+	ld b, $0
+	ld c, a
+	add hl, bc
+	pop bc
+	
+; get pointer to usedmovetext ender
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	ret
+; 105e39
+
+.endusedmovetexts ; 105e39
+	dw EndUsedMove1Text
+	dw EndUsedMove2Text
+	dw EndUsedMove3Text
+	dw EndUsedMove4Text
+	dw EndUsedMove5Text
+; 105e43
+
+EndUsedMove1Text: ; 105e43
+	text_jump _EndUsedMove1Text, BANK(_EndUsedMove1Text)
+	db "@"
+; 105e48
+EndUsedMove2Text: ; 105e48
+	text_jump _EndUsedMove2Text, BANK(_EndUsedMove2Text)
+	db "@"
+; 105e4d
+EndUsedMove3Text: ; 105e4d
+	text_jump _EndUsedMove3Text, BANK(_EndUsedMove3Text)
+	db "@"
+; 105e52
+EndUsedMove4Text: ; 105e52
+	text_jump _EndUsedMove4Text, BANK(_EndUsedMove4Text)
+	db "@"
+; 105e57
+EndUsedMove5Text: ; 105e57
+	text_jump _EndUsedMove5Text, BANK(_EndUsedMove5Text)
+	db "@"
+; 105e5c
+
+
+GetMoveGrammar: ; 105e5c
+; store move grammar type in $d265
+
+	push bc
+; c = move id
+	ld a, [$d265]
+	ld c, a
+	ld b, $0
+	
+; read grammar table
+	ld hl, MoveGrammar
+.loop
+	ld a, [hli]
+; end of table?
+	cp $ff
+	jr z, .end
+; match?
+	cp c
+	jr z, .end
+; advance grammar type at $00
+	and a
+	jr nz, .loop
+; next grammar type
+	inc b
+	jr .loop
+	
+.end
+; $d265 now contains move grammar
+	ld a, b
+	ld [$d265], a
+	
+; we're done
+	pop bc
+	ret
+; 105e7a
+
+MoveGrammar: ; 105e7a
+; made redundant in localization
+; each move is given an identifier for what usedmovetext to use (0-4):
+
+; 0
+	db SWORDS_DANCE
+	db GROWTH
+	db STRENGTH
+	db HARDEN
+	db MINIMIZE
+	db SMOKESCREEN
+	db WITHDRAW
+	db DEFENSE_CURL
+	db EGG_BOMB
+	db SMOG
+	db BONE_CLUB
+	db FLASH
+	db SPLASH
+	db ACID_ARMOR
+	db BONEMERANG
+	db REST
+	db SHARPEN
+	db SUBSTITUTE
+	db MIND_READER
+	db SNORE
+	db PROTECT
+	db SPIKES
+	db ENDURE
+	db ROLLOUT
+	db SWAGGER
+	db SLEEP_TALK
+	db HIDDEN_POWER
+	db PSYCH_UP
+	db EXTREMESPEED
+	db 0 ; end set
+	
+; 1
+	db RECOVER
+	db TELEPORT
+	db BIDE
+	db SELFDESTRUCT
+	db AMNESIA
+	db FLAIL
+	db 0 ; end set
+	
+; 2
+	db MEDITATE
+	db AGILITY
+	db MIMIC
+	db DOUBLE_TEAM
+	db BARRAGE
+	db TRANSFORM
+	db STRUGGLE
+	db SCARY_FACE
+	db 0 ; end set
+	
+; 3
+	db POUND
+	db SCRATCH
+	db VICEGRIP
+	db WING_ATTACK
+	db FLY
+	db BIND
+	db SLAM
+	db HORN_ATTACK
+	db WRAP
+	db THRASH
+	db TAIL_WHIP
+	db LEER
+	db BITE
+	db GROWL
+	db ROAR
+	db SING
+	db PECK
+	db ABSORB
+	db STRING_SHOT
+	db EARTHQUAKE
+	db FISSURE
+	db DIG
+	db TOXIC
+	db SCREECH
+	db METRONOME
+	db LICK
+	db CLAMP
+	db CONSTRICT
+	db POISON_GAS
+	db BUBBLE
+	db SLASH
+	db SPIDER_WEB
+	db NIGHTMARE
+	db CURSE
+	db FORESIGHT
+	db CHARM
+	db ATTRACT
+	db ROCK_SMASH
+	db 0 ; end set
+	
+; all other moves = 4
+	db $ff ; end
+; 105ed0
+
+
+UpdateUsedMoves: ; 105ed0
+; append move a to PlayerUsedMoves unless it has already been used
+
+	push bc
+; start of list
+	ld hl, PlayerUsedMoves
+; get move id
+	ld b, a
+; loop count
+	ld c, NUM_MOVES
+	
+.loop
+; get move from the list
+	ld a, [hli]
+; not used yet?
+	and a
+	jr z, .add
+; already used?
+	cp b
+	jr z, .quit
+; next byte
+	dec c
+	jr nz, .loop
+	
+; if the list is full and the move hasn't already been used
+; shift the list back one byte, deleting the first move used
+; this can occur with struggle or a new learned move
+	ld hl, PlayerUsedMoves + 1
+; 1 = 2
+	ld a, [hld]
+	ld [hli], a
+; 2 = 3
+	inc hl
+	ld a, [hld]
+	ld [hli], a
+; 3 = 4
+	inc hl
+	ld a, [hld]
+	ld [hl], a
+; 4 = new move
+	ld a, b
+	ld [PlayerUsedMoves + 3], a
+	jr .quit
+	
+.add
+; go back to the byte we just inced from
+	dec hl
+; add the new move
+	ld [hl], b
+	
+.quit
+; list updated
+	pop bc
+	ret
+; 105ef6
+
+
 
 HallOfFame2: ; 0x105ef6
 	ret

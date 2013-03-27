@@ -604,7 +604,7 @@ PlayerDamageTaken: ; c682
 EnemyDamageTaken: ; c684
 	ds 2
 
-	ds 4
+	ds 5
 
 BattleScriptBuffer: ; c68a
 	ds 40
@@ -612,7 +612,7 @@ BattleScriptBuffer: ; c68a
 BattleScriptBufferLoc: ; c6b2
 	ds 2
 
-	ds 25
+	ds 24
 
 PlayerStatLevels: ; c6cc
 ; 07 neutral
