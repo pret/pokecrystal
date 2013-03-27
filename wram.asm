@@ -693,7 +693,12 @@ LastEnemyCounterMove: ; c6f8
 LastPlayerCounterMove: ; c6f9
 	ds 1
 
-	ds 5
+	ds 1
+
+AlreadyFailed: ; c6fb
+	ds 1
+
+	ds 3
 	
 PlayerScreens: ; c6ff
 ; bit 4: reflect

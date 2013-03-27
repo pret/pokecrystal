@@ -133,7 +133,7 @@ BattleCommand01: ; 34084
 	ld [$c70d], a
 	ld [$c689], a
 	ld [AlreadyDisobeyed], a
-	ld [$c6fb], a
+	ld [AlreadyFailed], a
 	ld [$c73e], a
 
 	ld a, 10 ; 1.0
@@ -559,7 +559,7 @@ CheckEnemyTurn: ; 3421f
 
 	call Function0x355dd
 
-	call $5612
+	call BattleCommand62
 
 	call BattleCommand0a
 
@@ -683,7 +683,7 @@ HitConfusion: ; 343a5
 
 	call Function0x355dd
 
-	call $5612
+	call BattleCommand62
 
 	call BattleCommand0a
 
@@ -858,7 +858,7 @@ BattleCommand02: ; 343db
 
 	call HitConfusion
 
-	jp $450c
+	jp Function0x3450c
 
 
 .Nap
@@ -899,7 +899,7 @@ BattleCommand02: ; 343db
 
 .Print
 	call FarBattleTextBox
-	jp $450c
+	jp Function0x3450c
 
 
 .UseInstead
@@ -1003,6 +1003,11 @@ BattleCommand02: ; 343db
 	pop af
 	ld [CurMoveNum], a
 
+	; fallthrough
+; 3450c
+
+
+Function0x3450c: ; 3450c
 	xor a
 	ld [LastPlayerMove], a
 	ld [LastEnemyCounterMove], a
@@ -1544,9 +1549,14 @@ Function0x347c8: ; 347c8
 	ld hl, EnemyMonType1
 	ld a, [hBattleTurn]
 	and a
-	jr z, .asm_347d3 ; 0x347ce $3
+	jr z, Function0x347d3
 	ld hl, BattleMonType1
-.asm_347d3
+
+	; fallthrough
+; 347d3
+
+
+Function0x347d3: ; 347d3
 	push hl
 	push de
 	push bc
@@ -1629,7 +1639,7 @@ BattleCommanda3: ; 34833
 ; 3484e
 
 
-; 3484e
+Function0x3484e: ; 3484e
 	push hl
 	push de
 	push bc
@@ -1654,7 +1664,7 @@ BattleCommanda3: ; 34833
 	inc hl
 	call GetMoveByte
 	ld hl, EnemyMonType1
-	call $47d3
+	call Function0x347d3
 	ld a, [$d265]
 	cp $b
 	jr nc, .asm_34895 ; 0x3487f $14
@@ -1671,7 +1681,7 @@ BattleCommanda3: ; 34833
 	ld e, $2
 	jr .asm_3489b ; 0x34893 $6
 .asm_34895
-	call $4931
+	call Function0x34931
 	pop hl
 	jr .asm_348d7 ; 0x34899 $3c
 .asm_3489b
@@ -1682,32 +1692,32 @@ BattleCommanda3: ; 34833
 	ld a, e
 	cp $2
 	jr z, .asm_348d7 ; 0x348a2 $33
-	call $4939
+	call Function0x34939
 	ld a, e
 	and a
 	jr nz, .asm_348d7 ; 0x348a9 $2c
-	call $4939
+	call Function0x34939
 	jr .asm_348d7 ; 0x348ae $27
 .asm_348b0
 	ld a, [BattleMonType1]
 	ld b, a
 	ld hl, EnemyMonType1
-	call $47d3
+	call Function0x347d3
 	ld a, [$d265]
 	cp $b
 	jr c, .asm_348c4 ; 0x348bf $3
-	call $4931
+	call Function0x34931
 .asm_348c4
 	ld a, [BattleMonType2]
 	cp b
 	jr z, .asm_348d7 ; 0x348c8 $d
-	call $47d3
+	call Function0x347d3
 	ld a, [$d265]
 	cp $b
 	jr c, .asm_348d7 ; 0x348d2 $3
-	call $4931
+	call Function0x34931
 .asm_348d7
-	call $48de
+	call Function0x348de
 	pop bc
 	pop de
 	pop hl
@@ -1715,7 +1725,7 @@ BattleCommanda3: ; 34833
 ; 348de
 
 
-; 348de
+Function0x348de: ; 348de
 	ld de, EnemyMonMove1
 	ld b, 5
 	ld c, 0
@@ -1741,7 +1751,7 @@ BattleCommanda3: ; 34833
 	inc hl
 	call GetMoveByte
 	ld hl, BattleMonType1
-	call $47d3
+	call Function0x347d3
 	ld a, [$d265]
 	and a
 	jr z, .loop
@@ -1768,23 +1778,29 @@ BattleCommanda3: ; 34833
 
 	ld a, c
 	and a
-	jr z, .doubledown
+	jr z, .doubledown ; double down
 	cp $5
-	jr c, .down
+	jr c, Function0x34931 ; down
 	cp $64
 	ret c
-	jr .up
+	jr Function0x34939 ; up
 
 .doubledown
-	call .down
+	call Function0x34931
+	
+	; fallthrough
+; 34931
 
-.down
+
+Function0x34931: ; 34931
 	ld a, [$c716]
 	dec a
 	ld [$c716], a
 	ret
+; 34939
 
-.up
+
+Function0x34939: ; 34939
 	ld a, [$c716]
 	inc a
 	ld [$c716], a
@@ -1792,10 +1808,10 @@ BattleCommanda3: ; 34833
 ; 34941
 
 
-; 34941
+Function0x34941: ; 34941
 	xor a
 	ld [$c717], a
-	call $49f4
+	call Function0x349f4
 	ret c
 
 	ld a, [EnemySubStatus1]
@@ -1806,10 +1822,11 @@ BattleCommanda3: ; 34833
 	cp $1
 	jr nz, .asm_34986
 
-	call $49f4
-	call $4b77
-	call $4b20
-	call $4a85
+	call Function0x349f4
+	call Function0x34b77
+	call Function0x34b20
+	call Function0x34a85
+
 	ld a, e
 	cp $2
 	jr nz, .asm_34971
@@ -1820,7 +1837,7 @@ BattleCommanda3: ; 34833
 	ret
 
 .asm_34971
-	call $49f4
+	call Function0x349f4
 	sla c
 	sla c
 	ld b, $ff
@@ -1836,7 +1853,7 @@ BattleCommanda3: ; 34833
 	ret
 
 .asm_34986
-	call $484e
+	call Function0x3484e
 	ld a, [$c716]
 	cp $b
 	ret nc
@@ -1845,13 +1862,13 @@ BattleCommanda3: ; 34833
 	and a
 	jr z, .asm_349d2
 
-	call $4a2a
+	call Function0x34a2a
 	ld a, [$c716]
 	and a
 	jr z, .asm_349d2
 
 	ld c, a
-	call $4aa7
+	call Function0x34aa7
 	ld a, [$c716]
 	cp $ff
 	ret z
@@ -1861,7 +1878,7 @@ BattleCommanda3: ; 34833
 	cp $2
 	jr z, .asm_349be
 
-	call $484e
+	call Function0x3484e
 	ld a, [$c716]
 	cp $a
 	ret nc
@@ -1873,7 +1890,7 @@ BattleCommanda3: ; 34833
 
 .asm_349be
 	ld c, $10
-	call $484e
+	call Function0x3484e
 	ld a, [$c716]
 	cp $a
 	jr nc, .asm_349cc
@@ -1886,15 +1903,15 @@ BattleCommanda3: ; 34833
 	ret
 
 .asm_349d2
-	call $484e
+	call Function0x3484e
 	ld a, [$c716]
 	cp $a
 	ret nc
 
-	call $49f4
-	call $4b77
-	call $4b20
-	call $4a85
+	call Function0x349f4
+	call Function0x34b77
+	call Function0x34b20
+	call Function0x34a85
 
 	ld a, e
 	cp $2
@@ -1907,15 +1924,15 @@ BattleCommanda3: ; 34833
 ; 349f4
 
 
-; 349f4
+Function0x349f4: ; 349f4
 	ld a, [OTPartyCount]
-	cp $2
+	cp 2
 	jr c, .asm_34a26
 
 	ld d, a
-	ld e, $0
+	ld e, 0
 	ld b, $20
-	ld c, $0
+	ld c, 0
 	ld hl, OTPartyMon1CurHP
 
 .asm_34a05
@@ -1937,7 +1954,7 @@ BattleCommanda3: ; 34833
 .asm_34a16
 	srl b
 	push bc
-	ld bc, $0030
+	ld bc, $30
 	add hl, bc
 	pop bc
 	inc e
@@ -1958,7 +1975,7 @@ BattleCommanda3: ; 34833
 ; 34a2a
 
 
-; 34a2a
+Function0x34a2a: ; 34a2a
 	ld hl, OTPartyMon1Species2
 	ld a, [OTPartyCount]
 	ld b, a
@@ -1996,7 +2013,7 @@ BattleCommanda3: ; 34833
 	inc hl
 	call GetMoveByte
 	ld hl, $d23d
-	call $47d3
+	call Function0x347d3
 	ld a, [$d265]
 	and a
 	jr nz, .asm_34a77
@@ -2017,7 +2034,10 @@ BattleCommanda3: ; 34833
 	inc d
 	srl c
 	jr .asm_34a39
+; 34a85
 
+
+Function0x34a85: ; 34a85
 	push bc
 	ld a, [OTPartyCount]
 	ld e, a
@@ -2032,10 +2052,11 @@ BattleCommanda3: ; 34833
 	ld a, b
 	or c
 	ld c, a
+
 .asm_34a98
 	srl b
 	push bc
-	ld bc, $002f
+	ld bc, $2f
 	add hl, bc
 	pop bc
 	dec e
@@ -2046,6 +2067,12 @@ BattleCommanda3: ; 34833
 
 	and c
 	ld c, a
+
+	; fallthrough
+; 34aa7
+
+Function0x34aa7: ; 34aa7
+
 	ld a, $ff
 	ld [$c716], a
 	ld hl, OTPartyMon1Move1
@@ -2076,7 +2103,7 @@ BattleCommanda3: ; 34833
 	inc hl
 	call GetMoveByte
 	ld hl, BattleMonType1
-	call $47d3
+	call Function0x347d3
 	ld a, [$d265]
 	cp $a
 	jr c, .asm_34ae9
@@ -2142,7 +2169,7 @@ BattleCommanda3: ; 34833
 ; 34b20
 
 
-; 34b20
+Function0x34b20: ; 34b20
 	push bc
 	ld hl, OTPartySpecies
 	ld b, $20
@@ -2173,7 +2200,7 @@ BattleCommanda3: ; 34833
 .asm_34b4a
 	ld a, [BattleMonType1]
 	ld hl, $d23d
-	call $47d3
+	call Function0x347d3
 	ld a, [$d265]
 	cp $b
 	jr nc, .asm_34b6d
@@ -2181,7 +2208,7 @@ BattleCommanda3: ; 34833
 
 .asm_34b5d
 	ld hl, $d23d
-	call $47d3
+	call Function0x347d3
 	ld a, [$d265]
 	cp $b
 	jr nc, .asm_34b6d
@@ -2204,11 +2231,11 @@ BattleCommanda3: ; 34833
 ; 34b77
 
 
-; 34b77
+Function0x34b77: ; 34b77
 	push bc
 	ld de, OTPartySpecies
 	ld b, $20
-	ld c, $0
+	ld c, 0
 	ld hl, OTPartyMon1CurHP
 
 .asm_34b82
@@ -2711,10 +2738,10 @@ BattleCommand0a: ; 34eee
 	inc a
 	ld [$c689], a
 	ld a, $a4
-	jp $7e44
+	jp Function0x37e44
 
 .asm_34f36
-	call $65c3
+	call BattleCommanda7
 	jp BattleCommandaa
 
 .Rampage
@@ -2877,7 +2904,7 @@ BattleCommand0c: ; 35004
 	ld a, $2
 	ld [$c689], a
 	ld a, $a4
-	jp $7e44
+	jp Function0x37e44
 ; 35023
 
 
@@ -2887,7 +2914,7 @@ BattleCommand0d: ; 35023
 	and a
 	ret z
 
-	call $50e4
+	call Function0x350e4
 	ld a, BATTLE_VARS_MOVE_ANIM
 	call GetBattleVarPair
 
@@ -3012,7 +3039,7 @@ BattleCommand0e: ; 3505e
 ; 350e4
 
 
-; 350e4
+Function0x350e4: ; 350e4
 	ld hl, DoesntAffectText
 	ld de, DoesntAffectText
 	ld a, [TypeModifier]
@@ -3089,7 +3116,7 @@ BattleCommanda5: ; 35165
 	ld a, [TypeModifier]
 	and $7f
 	jp z, PrintDoesntAffect
-	jp $734e
+	jp PrintButItFailed
 ; 35175
 
 
@@ -3230,7 +3257,7 @@ BattleCommand11: ; 351c0
 	inc a
 	ld [$c689], a
 	ld a, $c2
-	call $7e44
+	call Function0x37e44
 	call SwitchTurn
 
 	jr .asm_3524d ; 3522f $1c
@@ -3431,20 +3458,22 @@ PlayerAttackDamage: ; 352e2
 	ld c, [hl]
 	ld hl, $c6bc
 .asm_35337
-	call $53c3
+	call LightBallBoost
 	jr .asm_3533f ; 3533a $3
 .asm_3533c
-	call $53b5
+	call ThickClubBoost
 .asm_3533f
-	call .asm_3534d
+	call Function0x3534d
 	ld a, [BattleMonLevel]
 	ld e, a
 	call DittoMetalPowder
 	ld a, 1
 	and a
 	ret
+; 3534d
 
-.asm_3534d
+
+Function0x3534d: ; 3534d=
 	ld a, h
 	or b
 	jr z, .asm_3536b ; 0x3534f $1a
@@ -3471,7 +3500,7 @@ PlayerAttackDamage: ; 352e2
 	jr z, .asm_35376 ; 0x35370 $4
 	ld a, h
 	or b
-	jr nz, .asm_3534d ; 0x35374 $d7
+	jr nz, Function0x3534d
 .asm_35376
 	ld b, l
 	ret
@@ -3667,17 +3696,17 @@ EnemyAttackDamage: ; 353f6
 	ld hl, $c6c7
 
 .asm_3544b
-	call $53c3
+	call LightBallBoost
 	jr .asm_35453
 
 .asm_35450
-	call $53b5
+	call ThickClubBoost
 
 .asm_35453
-	call $534d
+	call Function0x3534d
 	ld a, [EnemyMonLevel]
 	ld e, a
-	call $52b1
+	call DittoMetalPowder
 	ld a, 1
 	and a
 	ret
@@ -3715,7 +3744,7 @@ BattleCommanda1: ; 35461
 	call Function0x355bd
 	ld a, [hli]
 	or [hl]
-	jp z, $55b0
+	jp z, Function0x355b0
 	ld a, [DefaultFlypoint]
 	ld c, a
 	ld a, [CurBattleMon]
@@ -3727,7 +3756,7 @@ BattleCommanda1: ; 35461
 .asm_354b2
 	ld a, [hl]
 	and a
-	jp nz, $55b0
+	jp nz, Function0x355b0
 	ld a, $1
 	ld [$c72d], a
 	ld hl, BeatUpAttackText
@@ -3808,7 +3837,7 @@ BattleCommanda1: ; 35461
 	call Function0x355bd
 	ld a, [hli]
 	or [hl]
-	jp z, $55b0
+	jp z, Function0x355b0
 	ld a, [DefaultFlypoint]
 	ld b, a
 	ld a, [CurOTMon]
@@ -3821,7 +3850,7 @@ BattleCommanda1: ; 35461
 .asm_35560
 	ld a, [hl]
 	and a
-	jr nz, .asm_355b0
+	jr nz, Function0x355b0
 
 	ld a, $1
 	ld [$c72d], a
@@ -3833,7 +3862,7 @@ BattleCommanda1: ; 35461
 	call $343b
 	ld hl, BeatUpAttackText
 	call FarBattleTextBox
-	jp $53f6
+	jp EnemyAttackDamage
 .asm_3557d
 	ld hl, BeatUpAttackText
 	call FarBattleTextBox
@@ -3860,9 +3889,11 @@ BattleCommanda1: ; 35461
 	ld a, [EnemyMovePower]
 	ld d, a
 	ret
+; 355b0
 
-.asm_355b0
-	ld b, $12
+
+Function0x355b0: ; 355b0
+	ld b, $12 ; buildopponentrage
 	jp SkipToBattleCommand
 ; 355b5
 
@@ -3871,7 +3902,7 @@ BattleCommanda8: ; 355b5
 	ld a, [$c72d]
 	and a
 	ret nz
-	jp $734e
+	jp PrintButItFailed
 ; 355bd
 
 
@@ -3933,7 +3964,7 @@ Function0x355dd: ; 355dd
 	ld a, [hli]
 	ld l, [hl]
 	ld h, a
-	call $534d
+	call Function0x3534d
 	ld d, $28
 	pop af
 	ld e, a
@@ -4279,7 +4310,7 @@ BattleCommand3f: ; 35726
 	call EnemyAttackDamage
 
 .asm_35800
-	call $5612
+	call BattleCommand62
 	pop hl
 	ld [hl], 1
 	ret
@@ -4304,13 +4335,15 @@ BattleCommand40: ; 35813
 	and a
 	ret z
 	ld b, a
+
 	ld hl, $45ec
 	ld a, $f
 	rst FarCall
+
 	ld a, b
 	cp $59
 	ret z
-	call $4833
+	call BattleCommanda3
 	ld a, [$d265]
 	and a
 	ret z
@@ -4362,30 +4395,32 @@ BattleCommand41: ; 35864
 	ld a, BATTLE_VARS_LAST_MOVE_OPP
 	call CleanGetBattleVarPair
 	and a
-	jp z, $5923
-	cp $a5
-	jp z, $5923
-	cp $e3
-	jp z, $5923
-	cp $77
-	jp z, $5923
+	jp z, Function0x35923
+	cp STRUGGLE
+	jp z, Function0x35923
+	cp ENCORE
+	jp z, Function0x35923
+	cp MIRROR_MOVE
+	jp z, Function0x35923
 	ld b, a
+
 .asm_3588e
 	ld a, [hli]
 	cp b
-	jr nz, .asm_3588e ; 35890 $fc
+	jr nz, .asm_3588e
+
 	ld bc, $0005
 	add hl, bc
 	ld a, [hl]
 	and $3f
-	jp z, $5923
+	jp z, Function0x35923
 	ld a, [AttackMissed]
 	and a
-	jp nz, $5923
+	jp nz, Function0x35923
 	ld a, BATTLE_VARS_SUBSTATUS5_OPP
 	call GetBattleVarPair
 	bit 4, [hl]
-	jp nz, $5923
+	jp nz, Function0x35923
 	set 4, [hl]
 	call FarBattleRNG
 	and $3
@@ -4394,10 +4429,10 @@ BattleCommand41: ; 35864
 	inc a
 	ld [de], a
 	call Function0x36abf
-	jr nz, .asm_3591a ; 358bb $5d
+	jr nz, .asm_3591a
 	ld a, [hBattleTurn]
 	and a
-	jr z, .asm_358ef ; 358c0 $2d
+	jr z, .asm_358ef
 	push hl
 	ld a, [LastPlayerMove]
 	ld b, a
@@ -4406,16 +4441,16 @@ BattleCommand41: ; 35864
 .asm_358cc
 	ld a, [hli]
 	cp b
-	jr z, .asm_358dd ; 358ce $d
+	jr z, .asm_358dd
 	inc c
 	ld a, c
 	cp $4
-	jr c, .asm_358cc ; 358d4 $f6
+	jr c, .asm_358cc
 	pop hl
 	res 4, [hl]
 	xor a
 	ld [de], a
-	jr .asm_35923 ; 358db $46
+	jr Function0x35923
 .asm_358dd
 	pop hl
 	ld a, c
@@ -4425,7 +4460,7 @@ BattleCommand41: ; 35864
 	dec a
 	ld de, PlayerMoveStruct
 	call GetMoveData
-	jr .asm_3591a ; 358ed $2b
+	jr .asm_3591a
 .asm_358ef
 	push hl
 	ld a, [LastEnemyMove]
@@ -4435,16 +4470,16 @@ BattleCommand41: ; 35864
 .asm_358f9
 	ld a, [hli]
 	cp b
-	jr z, .asm_3590a ; 358fb $d
+	jr z, .asm_3590a
 	inc c
 	ld a, c
 	cp $4
-	jr c, .asm_358f9 ; 35901 $f6
+	jr c, .asm_358f9
 	pop hl
 	res 4, [hl]
 	xor a
 	ld [de], a
-	jr .asm_35923 ; 35908 $19
+	jr Function0x35923
 .asm_3590a
 	pop hl
 	ld a, c
@@ -4459,8 +4494,10 @@ BattleCommand41: ; 35864
 
 	ld hl, GotAnEncoreText
 	jp FarBattleTextBox
+; 35923
 
-.asm_35923
+
+Function0x35923: ; 35923
 	jp PrintDidntAffect2
 ; 35926
 
@@ -4470,9 +4507,9 @@ BattleCommand42: ; 35926
 
 	ld a, [AttackMissed]
 	and a
-	jp nz, .asm_359cd
+	jp nz, Function0x359cd
 	call CheckSubstituteOpp
-	jp nz, .asm_359cd
+	jp nz, Function0x359cd
 	call Function0x37e01
 	ld hl, $c63f
 	ld de, EnemyMonMaxHPLo
@@ -4491,7 +4528,7 @@ BattleCommand42: ; 35926
 	ld [$d1eb], a
 	ld a, [hl]
 	ld [$d1ea], a
-	call $59ac
+	call Function0x359ac
 	xor a
 	ld [$d10a], a
 	call ResetDamage
@@ -4535,6 +4572,12 @@ BattleCommand42: ; 35926
 	inc de
 	inc de
 	inc de
+
+	; fallthrough
+; 359ac
+
+
+Function0x359ac: ; 359ac
 	ld c, [hl]
 	dec hl
 	ld a, [$d257]
@@ -4557,9 +4600,10 @@ BattleCommand42: ; 35926
 	ld [hli], a
 	ld [$d1ef], a
 	ret
+; 359cd
 
-.asm_359cd
-	jp $7366
+Function0x359cd: ; 359cd
+	jp PrintDidntAffect2
 ; 359d0
 
 
@@ -4864,7 +4908,7 @@ BattleCommand48: ; 35b33
 	jp ResetTurn
 .asm_35ba3
 	call Function0x37e77
-	jp $7349
+	jp TryPrintButItFailed
 
 .asm_35ba9
 	push hl
@@ -5305,7 +5349,7 @@ Function0x35de0: ; 35de0
 	call FarBattleTextBox
 
 	call SwitchTurn
-	call $65c3
+	call BattleCommanda7
 	ld a, $2
 	call CleanGetBattleVarPair
 	and $60
@@ -5416,7 +5460,7 @@ BattleCommand14: ; 35e5c
 	ld hl, $5de9
 	rst FarCall
 
-	jp z, $4216
+	jp z, Function0x34216
 	ret
 
 .asm_35ec6
@@ -5502,15 +5546,15 @@ BattleCommand2f: ; 35f2c
 	ld hl, DoesntAffectText
 	ld a, [TypeModifier]
 	and $7f
-	jp z, $5fb8
+	jp z, .asm_35fb8
 	call Function0x35fe1
-	jp z, $5fb8
+	jp z, .asm_35fb8
 	ld a, BATTLE_VARS_STATUS_OPP
 	call CleanGetBattleVarPair
 	ld b, a
 	ld hl, AlreadyPoisonedText
 	and $8
-	jp nz, $5fb8
+	jp nz, .asm_35fb8
 	call GetOpponentItem
 	ld a, b
 	cp $14
@@ -5840,7 +5884,7 @@ BattleCommand18: ; 36102
 	ld hl, $5de9
 	rst FarCall
 	ret nz
-	call $4216
+	call Function0x34216
 	call EndRechargeOpp
 	ld hl, $c740
 	ld a, [hBattleTurn]
@@ -5981,7 +6025,7 @@ Function0x361ef: ; 361ef
 	inc b
 	ld a, $d
 	cp b
-	jp c, $6270
+	jp c, Function0x36270
 	ld a, [$c70c]
 	and $f0
 	jr z, .asm_3622b ; 0x36222 $7
@@ -6036,9 +6080,15 @@ Function0x361ef: ; 361ef
 	ret
 ; 3626e
 
+
 Function0x3626e: ; 3626e
 	pop hl
 	dec [hl]
+	; fallthrough
+; 36270
+
+
+Function0x36270: ; 36270
 	ld a, $2
 	ld [$c70e], a
 	ld a, $1
@@ -6046,11 +6096,13 @@ Function0x3626e: ; 3626e
 	ret
 ; 3627b
 
+
 Function0x3627b: ; 3627b
 	ld a, $1
 	ld [$c70e], a
 	ret
 ; 36281
+
 
 Function0x36281: ; 36281
 	ld bc, $c6fe
@@ -6151,7 +6203,7 @@ BattleCommand1d: ; 362e3
 	add hl, bc
 	ld b, [hl]
 	dec b
-	jp z, $6372
+	jp z, .asm_36372
 	ld a, [$c70c]
 	and $f0
 	jr z, .asm_36310 ; 3630a $4
@@ -6211,6 +6263,7 @@ BattleCommand1d: ; 362e3
 	ret
 .asm_36371
 	inc [hl]
+.asm_36372
 	ld a, $3
 	ld [$c70e], a
 	ld a, $1
@@ -6267,7 +6320,7 @@ BattleCommand8c: ; 363b8
 	and $f
 	ld b, a
 	inc b
-	call $648f
+	call GetStatName
 	ld hl, .stat
 	jp BattleTextBox
 
@@ -6301,7 +6354,7 @@ BattleCommand8d: ; 363e9
 	and $f
 	ld b, a
 	inc b
-	call $648f
+	call GetStatName
 	ld hl, .stat
 	jp BattleTextBox
 
@@ -6380,12 +6433,12 @@ BattleCommand8e: ; 3644c
 	call BattleCommandaa
 	pop af
 	dec a
-	jp z, $7349
+	jp z, TryPrintButItFailed
 	ld a, [$c70c]
 	and $f
 	ld b, a
 	inc b
-	call $648f
+	call GetStatName
 	ld hl, WontRiseAnymoreText
 	jp FarBattleTextBox
 ; 3646a
@@ -6400,7 +6453,7 @@ BattleCommand8f: ; 3646a
 	call BattleCommandaa
 	pop af
 	dec a
-	jp z, $7349
+	jp z, TryPrintButItFailed
 	dec a
 	ld hl, ProtectedByMistText
 	jp z, FarBattleTextBox
@@ -6408,7 +6461,7 @@ BattleCommand8f: ; 3646a
 	and $f
 	ld b, a
 	inc b
-	call $648f
+	call GetStatName
 	ld hl, WontDropAnymoreText
 	jp FarBattleTextBox
 ; 3648f
@@ -6464,25 +6517,32 @@ StatLevelMulipliers: ; 364f2
 
 
 BattleCommanda4: ; 36500
+; allstatsup
+
+; Attack
 	call ResetMiss
 	call BattleCommand70
-	call $63b8
+	call BattleCommand8c
 
+; Defense
 	call ResetMiss
-	call $61b0
-	call $63b8
+	call BattleCommand71
+	call BattleCommand8c
 
+; Speed
 	call ResetMiss
-	call $61b4
-	call $63b8
+	call BattleCommand72
+	call BattleCommand8c
 
+; Special Attack
 	call ResetMiss
-	call $61b8
-	call $63b8
+	call BattleCommand73
+	call BattleCommand8c
 
+; Special Defense
 	call ResetMiss
-	call $61bc
-	jp   $63b8
+	call BattleCommand74
+	jp   BattleCommand8c
 ; 3652d
 
 
@@ -6535,7 +6595,7 @@ Function0x36532: ; 36532
 	ld de, $c6c1
 
 .asm_36570
-	call $641a
+	call Function0x3641a
 	pop hl
 	jr z, .asm_36588
 
@@ -6569,7 +6629,7 @@ Function0x36532: ; 36532
 BattleCommandac: ; 3658f
 ; tristatuschance
 
-	call $4ecc
+	call BattleCommand90
 
 ; 1/3 chance of each status
 .loop
@@ -6944,7 +7004,7 @@ BattleCommanda0: ; 36778
 
 .asm_367b9
 	call Function0x37e77
-	jp $734e
+	jp PrintButItFailed
 
 .asm_367bf
 	ld a, [IsInBattle]
@@ -6999,13 +7059,13 @@ BattleCommand23: ; 3680f
 
 	ld a, [BattleType]
 	cp $7
-	jp z, $6969
+	jp z, .asm_36969
 	cp $9
-	jp z, $6969
+	jp z, .asm_36969
 	cp $b
-	jp z, $6969
+	jp z, .asm_36969
 	cp $c
-	jp z, $6969
+	jp z, .asm_36969
 	ld a, [hBattleTurn]
 	and a
 	jp nz, .asm_368cd
@@ -7032,7 +7092,7 @@ BattleCommand23: ; 3680f
 	cp b
 	jr nc, .asm_36855 ; 36850 $3
 .asm_36852
-	jp $6969
+	jp .asm_36969
 .asm_36855
 	call $399c
 	xor a
@@ -7041,9 +7101,9 @@ BattleCommand23: ; 3680f
 	ld [$d232], a
 	call Function0x36804
 	ld a, [PlayerMoveAnimation]
-	jp $6975
+	jp .asm_36975
 .asm_36869
-	call $49f4
+	call Function0x349f4
 	jr c, .asm_368ca ; 3686c $5c
 	ld a, [$c70f]
 	and a
@@ -7093,7 +7153,7 @@ BattleCommand23: ; 3680f
 	jp CallBankF
 
 .asm_368ca
-	jp $6969
+	jp .asm_36969
 
 .asm_368cd
 	ld a, [AttackMissed]
@@ -7132,7 +7192,7 @@ BattleCommand23: ; 3680f
 	ld [$cfca], a
 	inc a
 	ld [$d232], a
-	call $6804
+	call Function0x36804
 	ld a, [EnemyMoveAnimation]
 	jr .asm_36975
 
@@ -7193,11 +7253,11 @@ BattleCommand23: ; 3680f
 	call BattleCommand0a
 	call BattleCommandaa
 	call BattleCommand0c
-	jp $734e
+	jp PrintButItFailed
 
 .asm_36975
 	push af
-	call $6804
+	call Function0x36804
 	ld a, $1
 	ld [$c689], a
 	call Function0x37e01
@@ -7292,22 +7352,24 @@ BattleCommand24: ; 369b6
 	jr nz, .asm_36a0b ; 369fe $b
 	ld a, [PartyCount]
 	cp $1
-	jp z, $6a1e
+	jp z, .asm_36a1e
 	dec a
 	jr .asm_36a3a ; 36a09 $2f
 .asm_36a0b
 	ld a, [IsInBattle]
 	cp $1
-	jp z, $6a1e
+	jp z, .asm_36a1e
 	ld a, [OTPartyCount]
 	cp $1
-	jp z, $6a1e
+	jp z, .asm_36a1e
 	dec a
-	jr .asm_36a3a ; 36a1c $1c
+	jr .asm_36a3a
+
+.asm_36a1e
 	ld a, BATTLE_VARS_SUBSTATUS3
 	call GetBattleVarPair
 	res 2, [hl]
-	call $55b5
+	call BattleCommanda8
 	jp EndMoveEffect
 .asm_36a2b
 	call FarBattleRNG
@@ -7489,7 +7551,7 @@ BattleCommand26: ; 36af3
 	ld a, $ff
 .asm_36b1e
 	ld [bc], a
-	call $4d32
+	call BattleCommand09
 	ld hl, CurDamage
 	ld a, $ff
 	ld [hli], a
@@ -7526,7 +7588,7 @@ BattleCommand3a: ; 36b3a
 BattleCommand39: ; 36b4d
 ; charge
 
-	call $7e85
+	call BattleCommand38
 	ld a, BATTLE_VARS_STATUS
 	call CleanGetBattleVarPair
 	and $7
@@ -7534,7 +7596,7 @@ BattleCommand39: ; 36b4d
 
 	call BattleCommandaa
 	call BattleCommand0c
-	call $734e
+	call PrintButItFailed
 	jp EndMoveEffect
 
 .asm_36b65
@@ -7743,7 +7805,7 @@ BattleCommand28: ; 36c7e
 	jp FarBattleTextBox
 .asm_36c92
 	call Function0x37e77
-	jp $734e
+	jp PrintButItFailed
 ; 36c98
 
 
@@ -7760,7 +7822,7 @@ BattleCommand29: ; 36c98
 	jp FarBattleTextBox
 .asm_36cac
 	call Function0x37e77
-	jp $734e
+	jp PrintButItFailed
 ; 36cb2
 
 
@@ -8105,7 +8167,7 @@ BattleCommand31: ; 36e7c
 	ld [FXAnimIDHi], a
 	ld [$c689], a
 	ld a, $a4
-	call $7e44
+	call Function0x37e44
 	jr .asm_36eeb ; 36ee6 $3
 .asm_36ee8
 	call BattleCommanda6
@@ -8238,7 +8300,7 @@ BattleCommand33: ; 36f46
 	ld hl, LearnedMoveText
 	jp FarBattleTextBox
 .asm_36f9a
-	jp $7357
+	jp Function0x37357
 ; 36f9d
 
 
@@ -8448,7 +8510,7 @@ BattleCommand1f: ; 3707f
 	jr .asm_370bd ; 370d1 $ea
 .asm_370d3
 	call Function0x37e77
-	jp $734e
+	jp PrintButItFailed
 .asm_370d9
 	call FarBattleRNG
 	and $3
@@ -8621,12 +8683,12 @@ BattleCommand2d: ; 371cd
 	call Function0x34548
 	jr nz, .asm_37200 ; 371f9 $5
 	ld a, $a4
-	call $7e44
+	call Function0x37e44
 .asm_37200
 	ld a, BATTLE_VARS_SUBSTATUS5
 	call GetBattleVarPair
 	set 3, [hl]
-	call $72e7
+	call Function0x372e7
 	ld hl, BattleMonSpecies
 	ld de, EnemyMonSpecies
 	ld a, [hBattleTurn]
@@ -8729,7 +8791,7 @@ BattleCommand2d: ; 371cd
 	ld [$c689], a
 	pop af
 	ld a, $a4
-	call nz, $7e44
+	call nz, Function0x37e44
 	ld hl, TransformedText
 	jp FarBattleTextBox
 ; 372c6
@@ -8754,7 +8816,7 @@ BattleSideCopy: ; 372c6
 
 Function0x372d2: ; 372d2
 	call Function0x37e77
-	jp $734e
+	jp PrintButItFailed
 ; 372d8
 
 
@@ -8772,7 +8834,7 @@ Function0x372d8: ; 372d8
 ; 372e7
 
 
-; 372e7
+Function0x372e7: ; 372e7
 	ld a, [hBattleTurn]
 	and a
 	jr z, .player
@@ -8828,7 +8890,7 @@ BattleCommand2e: ; 372fc
 
 .asm_37337
 	call Function0x37e77
-	jp $734e
+	jp PrintButItFailed
 ; 3733d
 
 
@@ -8846,11 +8908,16 @@ PrintNothingHappened: ; 37343
 ; 37349
 
 
-PrintButItFailed: ; 37349
-	ld a, [$c6fb]
+TryPrintButItFailed: ; 37349
+	ld a, [AlreadyFailed]
 	and a
 	ret nz
 
+	; fallthrough
+; 3734e
+
+
+PrintButItFailed: ; 3734e
 ; 'but it failed!'
 	ld hl, ButItFailedText
 	jp FarBattleTextBox
@@ -8859,13 +8926,17 @@ PrintButItFailed: ; 37349
 
 Function0x37354: ; 37354
 	call Function0x37e77
+	; fallthrough
+; 37357
+
+Function0x37357: ; 37357
 	ld hl, ButItFailedText ; 'but it failed!'
 	ld de, ItFailedText    ; 'it failed!'
 	jp Function0x35157
 ; 37360
 
 
-PrintDidntAffect; 37360
+PrintDidntAffect: ; 37360
 ; 'it didn't affect'
 	ld hl, DidntAffect1Text
 	jp FarBattleTextBox
@@ -9077,8 +9148,8 @@ ResetTurn: ; 3747b
 	ld [hl], 1
 	xor a
 	ld [AlreadyDisobeyed], a
-	call $402c
-	jp $52a3
+	call DoMove
+	jp EndMoveEffect
 ; 37492
 
 
@@ -9184,7 +9255,7 @@ BattleCommand51: ; 37517
 	jp FarBattleTextBox
 .asm_37530
 	call Function0x37e77
-	jp $734e
+	jp PrintButItFailed
 ; 37536
 
 
@@ -9209,7 +9280,7 @@ BattleCommand52: ; 37536
 	jp FarBattleTextBox
 .asm_3755d
 	call Function0x37e77
-	jp $734e
+	jp PrintButItFailed
 ; 37563
 
 
@@ -9270,14 +9341,14 @@ BattleCommand54: ; 37588
 	ld a, $2
 	call Function0x36532
 	call SwitchTurn
-	call $63e9
+	call BattleCommand8d
 	call ResetMiss
 	call SwitchTurn
 	call BattleCommand70
-	call $63b8
+	call BattleCommand8c
 	call ResetMiss
-	call $61b0
-	jp $63b8
+	call BattleCommand71
+	jp BattleCommand8c
 .asm_375d7
 	call CheckHiddenOpponent
 	jr nz, .asm_37604 ; 375da $28
@@ -9298,10 +9369,10 @@ BattleCommand54: ; 37588
 	jp FarBattleTextBox
 .asm_37604
 	call Function0x37e77
-	jp $734e
+	jp PrintButItFailed
 .asm_3760a
 	ld b, $8
-	call $648f
+	call GetStatName
 	call Function0x37e77
 	ld hl, WontRiseAnymoreText
 	jp FarBattleTextBox
@@ -9330,7 +9401,7 @@ Function0x3762c: ; 3762c
 
 	ld de, PlayerDamageTaken
 .asm_37637
-	call $6abf
+	call Function0x36abf
 	jr nz, .asm_37665
 
 	ld a, $3
@@ -9373,7 +9444,7 @@ Function0x3762c: ; 3762c
 	xor a
 	ld [de], a
 	call Function0x37e77
-	call $734e
+	call PrintButItFailed
 	scf
 	ret
 ; 3766f
@@ -9465,7 +9536,7 @@ BattleCommand58: ; 376c2
 	jp FarBattleTextBox
 .asm_376f2
 	call Function0x37e77
-	jp $734e
+	jp PrintButItFailed
 ; 376f8
 
 
@@ -9484,7 +9555,7 @@ BattleCommand59: ; 376f8
 	jp FarBattleTextBox
 .asm_37712
 	call Function0x37e77
-	jp $734e
+	jp PrintButItFailed
 ; 37718
 
 
@@ -9754,7 +9825,7 @@ BattleCommand61: ; 37874
 	push bc
 	push de
 .asm_3787d
-	call $46d2
+	call BattleCommand07
 	ld a, [InLinkBattle]
 	cp $3
 	jr z, .asm_37889 ; 37885 $2
@@ -9883,7 +9954,7 @@ BattleCommand64: ; 37939
 	jp FarBattleTextBox
 .asm_3795c
 	call Function0x37e77
-	jp $734e
+	jp PrintButItFailed
 ; 37962
 
 
@@ -9968,7 +10039,7 @@ BattleCommand67: ; 379c9
 	jp nz, .Enemy
 
 	call Function0x37ae9
-	jp z, $7aab
+	jp z, Function0x37aab
 
 	call $399c
 	call Function0x37e01
@@ -10002,7 +10073,7 @@ BattleCommand67: ; 379c9
 	ld b, 1
 	call $3340
 	call $32f9
-	call $7a67
+	call Function0x37a67
 
 	ld a, $f
 	ld hl, $52e0
@@ -10012,26 +10083,26 @@ BattleCommand67: ; 379c9
 
 	ld hl, $6459
 	call CallBankF
-	call $7ab1
+	call Function0x37ab1
 
 	ret
 
 .Enemy
 	ld a, [IsInBattle]
 	dec a
-	jp z, $7aab
+	jp z, Function0x37aab
 
-	call $7af6
-	jp z, $7aab
+	call Function0x37af6
+	jp z, Function0x37aab
 
 	call $39b0
 	call Function0x37e01
-	call $7a82
+	call Function0x37a82
 
 	ld a, $f
 	ld hl, $52e0
 	rst FarCall
-	jp c, $52a3
+	jp c, EndMoveEffect
 
 	xor a
 	ld [$c718], a
@@ -10052,7 +10123,10 @@ BattleCommand67: ; 379c9
 	call CallBankF
 
 	jr Function0x37ab1
+; 37a67
 
+
+Function0x37a67: ; 37a67
 	ld a, [InLinkBattle]
 	and a
 	ret z
@@ -10073,6 +10147,8 @@ BattleCommand67: ; 379c9
 	ret
 ; 37a82
 
+
+Function0x37a82; 37a82
 	ld a, [InLinkBattle]
 	and a
 	ret z
@@ -10096,8 +10172,13 @@ BattleCommand67: ; 379c9
 	ld [$d430], a
 .asm_37aa8
 	jp $1c17
+; 37aab
+
+
+Function0x37aab: ; 37aab
 	call Function0x37e77
-	jp $734e
+	jp PrintButItFailed
+; 37ab1
 
 
 Function0x37ab1: ; 37ab1
@@ -10110,7 +10191,7 @@ Function0x37ab1: ; 37ab1
 	res 0, [hl]
 
 .asm_37ac1
-	call $72e7
+	call Function0x372e7
 	ld hl, PlayerSubStatus1
 	res 7, [hl]
 	ld hl, EnemySubStatus1
@@ -10136,14 +10217,21 @@ Function0x37ae9: ; 37ae9
 	ld d, a
 	ld a, [CurBattleMon]
 	ld e, a
-	jr .asm_37b01
+	jr Function0x37b01
+; 37af6
 
+
+Function0x37af6: ; 37af6
 	ld hl, OTPartyMon1CurHP
 	ld a, [OTPartyCount]
 	ld d, a
 	ld a, [CurOTMon]
 	ld e, a
-.asm_37b01
+
+	; fallthrough
+; 37b01
+
+Function0x37b01: ; 37b01
 	xor a
 	ld b, a
 	ld c, a
@@ -10163,7 +10251,7 @@ Function0x37ae9: ; 37ae9
 	ld b, a
 .asm_37b11
 	push bc
-	ld bc, $0030
+	ld bc, $30
 	add hl, bc
 	pop bc
 	inc c
@@ -10380,17 +10468,20 @@ BattleCommand6f: ; 37c07
 
 BattleCommand95: ; 37c1a
 ; bellydrum
-	call $61c8
+	call BattleCommand77
 	ld a, [AttackMissed]
 	and a
-	jr nz, .asm_37c4f ; 37c21 $2c
+	jr nz, .asm_37c4f
+
 	ld hl, $4c9f
 	ld a, $f
 	rst FarCall
+
 	ld hl, $4cde
 	ld a, $f
 	rst FarCall
-	jr nc, .asm_37c4f ; 37c2f $1e
+	jr nc, .asm_37c4f
+
 	push bc
 	call Function0x37e01
 	pop bc
@@ -10399,17 +10490,19 @@ BattleCommand95: ; 37c1a
 	rst FarCall
 	call $3995
 	ld a, $5
+
 .asm_37c41
 	push af
-	call $61c8
+	call BattleCommand77
 	pop af
 	dec a
 	jr nz, .asm_37c41 ; 37c47 $f8
+
 	ld hl, BellyDrumText
 	jp FarBattleTextBox
 .asm_37c4f
 	call Function0x37e77
-	jp $734e
+	jp PrintButItFailed
 ; 37c55
 
 
@@ -10436,7 +10529,7 @@ BattleCommand96: ; 37c55
 	jr nz, .asm_37c67 ; 37c6d $f8
 	pop hl
 	call Function0x37e77
-	jp $734e
+	jp PrintButItFailed
 .asm_37c76
 	pop hl
 	ld b, $8
@@ -10476,7 +10569,7 @@ BattleCommand9a: ; 37c95
 	ld a, b
 	cp $90
 	ret z
-	call $4833
+	call BattleCommanda3
 	ld a, [$d265]
 	and a
 	ret z
@@ -10627,7 +10720,7 @@ BattleCommand9c: ; 37d34
 	pop bc
 	call ResetDamage
 	call Function0x37e77
-	call $734e
+	call PrintButItFailed
 	jp EndMoveEffect
 ; 37d94
 
@@ -10776,6 +10869,12 @@ Function0x37e36: ; 37e36
 	call CleanGetBattleVarPair
 	and a
 	ret z
+
+	; fallthrough
+; 37e44
+
+
+Function0x37e44: ; 37e44
 
 	ld [FXAnimIDLo], a
 
