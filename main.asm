@@ -63,7 +63,7 @@ VBlank: ; 283
 INCLUDE "vblank.asm"
 
 
-DelayFrame: ; 0x45a
+DelayFrame: ; 45a
 ; Wait for one frame
 	ld a, 1
 	ld [VBlankOccurred], a
@@ -75,25 +75,26 @@ DelayFrame: ; 0x45a
 	and a
 	jr nz, .halt
 	ret
-; 0x468
+; 468
 
-DelayFrames: ; 0x468
+
+DelayFrames: ; 468
 ; Wait c frames
 	call DelayFrame
 	dec c
 	jr nz, DelayFrames
 	ret
-; 0x46f
+; 46f
+
 
 RTC: ; 46f
 ; update time and time-sensitive palettes
 
 ; rtc enabled?
 	ld a, [$c2ce]
-	cp $0
+	cp 0
 	ret z
 	
-; update clock
 	call UpdateTime
 	
 ; obj update on?
@@ -106,7 +107,9 @@ RTC: ; 46f
 	ret
 ; 485
 
+
 INCBIN "baserom.gbc",$485,$52f - $485
+
 
 IncGradGBPalTable_01: ; 52f
 	db %11111111 ; bgp
@@ -142,7 +145,9 @@ IncGradGBPalTable_01: ; 52f
 	db %00000000
 ; 547
 
+
 INCBIN "baserom.gbc",$547,$568 - $547
+
 
 DisableLCD: ; 568
 ; Turn the LCD off
@@ -186,6 +191,7 @@ DisableLCD: ; 568
 	ret
 ; 58a
 
+
 EnableLCD: ; 58a
 	ld a, [rLCDC]
 	set 7, a ; lcd enable
@@ -193,9 +199,11 @@ EnableLCD: ; 58a
 	ret
 ; 591
 
+
 AskTimer: ; 591
 	INCBIN "baserom.gbc",$591,$59c - $591
 ; 59c
+
 
 LatchClock: ; 59c
 ; latch clock counter data
@@ -205,6 +213,7 @@ LatchClock: ; 59c
 	ld [$6000], a
 	ret
 ; 5a7
+
 
 UpdateTime: ; 5a7
 ; get rtc data
@@ -217,6 +226,7 @@ UpdateTime: ; 5a7
 	callba GetTimeOfDay
 	ret
 ; 5b7
+
 
 GetClock: ; 5b7
 ; store clock data in hRTCDayHi-hRTCSeconds
@@ -811,121 +821,62 @@ UpdatePalsIfCGB: ; c2f
 	ld a, [hCGB]
 	and a
 	ret z
-	
+
+
 UpdateCGBPals: ; c33
 ; return carry if successful
 ; any pals to update?
 	ld a, [hCGBPalUpdate]
 	and a
 	ret z
-	
+
+
 ForceUpdateCGBPals: ; c37
-; save wram bank
+
 	ld a, [rSVBK]
 	push af
-; bankswitch
 	ld a, 5 ; BANK(BGPals)
 	ld [rSVBK], a
-; get bg pal buffer
+
 	ld hl, BGPals ; 5:d080
-	
-; update bg pals
+
+; copy 8 pals to bgpd
 	ld a, %10000000 ; auto increment, index 0
 	ld [rBGPI], a
-	ld c, rBGPD - rJOYP
+	ld c, rBGPD % $100
 	ld b, 4 ; NUM_PALS / 2
-	
 .bgp
-; copy 16 bytes (8 colors / 2 pals) to bgpd
+	rept $10
 	ld a, [hli]
 	ld [$ff00+c], a
-	ld a, [hli]
-	ld [$ff00+c], a
-	ld a, [hli]
-	ld [$ff00+c], a
-	ld a, [hli]
-	ld [$ff00+c], a
-	ld a, [hli]
-	ld [$ff00+c], a
-	ld a, [hli]
-	ld [$ff00+c], a
-	ld a, [hli]
-	ld [$ff00+c], a
-	ld a, [hli]
-	ld [$ff00+c], a
-	ld a, [hli]
-	ld [$ff00+c], a
-	ld a, [hli]
-	ld [$ff00+c], a
-	ld a, [hli]
-	ld [$ff00+c], a
-	ld a, [hli]
-	ld [$ff00+c], a
-	ld a, [hli]
-	ld [$ff00+c], a
-	ld a, [hli]
-	ld [$ff00+c], a
-	ld a, [hli]
-	ld [$ff00+c], a
-	ld a, [hli]
-	ld [$ff00+c], a
-; done?
+	endr
+
 	dec b
 	jr nz, .bgp
 	
 ; hl is now 5:d0c0 OBPals
 	
-; update obj pals
+; copy 8 pals to obpd
 	ld a, %10000000 ; auto increment, index 0
 	ld [rOBPI], a
 	ld c, rOBPD - rJOYP
 	ld b, 4 ; NUM_PALS / 2
-	
 .obp
-; copy 16 bytes (8 colors / 2 pals) to obpd
+	rept $10
 	ld a, [hli]
 	ld [$ff00+c], a
-	ld a, [hli]
-	ld [$ff00+c], a
-	ld a, [hli]
-	ld [$ff00+c], a
-	ld a, [hli]
-	ld [$ff00+c], a
-	ld a, [hli]
-	ld [$ff00+c], a
-	ld a, [hli]
-	ld [$ff00+c], a
-	ld a, [hli]
-	ld [$ff00+c], a
-	ld a, [hli]
-	ld [$ff00+c], a
-	ld a, [hli]
-	ld [$ff00+c], a
-	ld a, [hli]
-	ld [$ff00+c], a
-	ld a, [hli]
-	ld [$ff00+c], a
-	ld a, [hli]
-	ld [$ff00+c], a
-	ld a, [hli]
-	ld [$ff00+c], a
-	ld a, [hli]
-	ld [$ff00+c], a
-	ld a, [hli]
-	ld [$ff00+c], a
-	ld a, [hli]
-	ld [$ff00+c], a
-; done?
+	endr
+
 	dec b
 	jr nz, .obp
 	
-; restore wram bank
 	pop af
 	ld [rSVBK], a
+
 ; clear pal update queue
 	xor a
 	ld [hCGBPalUpdate], a
-; successfully updated palettes
+
 	scf
 	ret
 ; c9f
@@ -935,23 +886,22 @@ DmgToCgbBGPals: ; c9f
 ; exists to forego reinserting cgb-converted image data
 
 ; input: a -> bgp
+
 	ld [rBGP], a
 	push af
-	
-; check cgb
+
 	ld a, [hCGB]
 	and a
 	jr z, .end
-	
+
 	push hl
 	push de
 	push bc
-; save wram bank
-	ld a, [$ff70]
+	ld a, [rSVBK]
 	push af
-; wram bank 5
+
 	ld a, 5
-	ld [$ff70], a
+	ld [rSVBK], a
 
 ; copy & reorder bg pal buffer
 	ld hl, BGPals ; to
@@ -959,15 +909,15 @@ DmgToCgbBGPals: ; c9f
 ; order
 	ld a, [rBGP]
 	ld b, a
-; # pals
-	ld c, 8 ; all pals
+; all pals
+	ld c, 8
 	call CopyPals
 ; request pal update
-	ld a, $1
+	ld a, 1
 	ld [hCGBPalUpdate], a
-; restore wram bank
+
 	pop af
-	ld [$ff70], a
+	ld [rSVBK], a
 	pop bc
 	pop de
 	pop hl
@@ -981,51 +931,50 @@ DmgToCgbObjPals: ; ccb
 ; exists to forego reinserting cgb-converted image data
 
 ; input: d -> obp1
-;		 e -> obp2
+;        e -> obp2
+
 	ld a, e
 	ld [rOBP0], a
 	ld a, d
 	ld [rOBP1], a
 	
-; check cgb
 	ld a, [hCGB]
 	and a
 	ret z
-	
+
 	push hl
 	push de
 	push bc
-; save wram bank
-	ld a, [$ff70]
+	ld a, [rSVBK]
 	push af
-; wram bank 5
-	ld a, $5
-	ld [$ff70], a
-	
+
+	ld a, 5
+	ld [rSVBK], a
+
 ; copy & reorder obj pal buffer
-	; to
-	ld hl, OBPals
-	; from
-	ld de, Unkn2Pals
+	ld hl, OBPals ; to
+	ld de, Unkn2Pals ; from
 ; order
 	ld a, [rOBP0]
 	ld b, a
-; # pals
-	ld c, 8 ; all pals
+; all pals
+	ld c, 8
 	call CopyPals
 ; request pal update
-	ld a, $1
+	ld a, 1
 	ld [hCGBPalUpdate], a
-; restore wram bank
+
 	pop af
-	ld [$ff70], a
+	ld [rSVBK], a
 	pop bc
 	pop de
 	pop hl
 	ret
 ; cf8
 
+
 INCBIN "baserom.gbc",$cf8,$d50 - $cf8
+
 
 CopyPals: ; d50
 ; copy c palettes in order b from de to hl
@@ -1079,54 +1028,67 @@ CopyPals: ; d50
 	ret
 ; d79
 
+
 INCBIN "baserom.gbc",$d79,$e8d - $d79
 
-; copy bc bytes from a:hl to de
+
 FarCopyBytes: ; e8d
+; copy bc bytes from a:hl to de
+
 	ld [hBuffer], a
-	ld a, [hROMBank] ; save old bank
+	ld a, [hROMBank]
 	push af
 	ld a, [hBuffer]
 	rst Bankswitch
+
 	call CopyBytes
+
 	pop af
 	rst Bankswitch
 	ret
 ; 0xe9b
 
-; copy bc*2 source bytes from a:hl to de, doubling each byte in process
+
 FarCopyBytesDouble: ; e9b
+; Copy bc bytes from a:hl to bc*2 bytes at de,
+; doubling each byte in the process.
+
 	ld [hBuffer], a
-	ld a, [hROMBank] ; save current bank
+	ld a, [hROMBank]
 	push af
 	ld a, [hBuffer]
-	rst Bankswitch ; bankswitch
-	ld a, h ; switcheroo, de <> hl
+	rst Bankswitch
+
+; switcheroo, de <> hl
+	ld a, h
 	ld h, d
 	ld d, a
 	ld a, l
 	ld l, e
 	ld e, a
+
 	inc b
 	inc c
-	jr .dec ; 0xeab $4
+	jr .dec
+
 .loop
 	ld a, [de]
 	inc de
-	ld [hli], a ; write twice
+	ld [hli], a
 	ld [hli], a
 .dec
 	dec c
 	jr nz, .loop
 	dec b
 	jr nz, .loop
+
 	pop af
 	rst Bankswitch
 	ret
 ; 0xeba
 
 
-INCBIN "baserom.gbc",$eba,$fb6 - $eba
+INCBIN "baserom.gbc", $eba, $fb6 - $eba
 
 
 ClearBox: ; fb6
@@ -1149,14 +1111,16 @@ ClearBox: ; fb6
 	ret
 ; fc8
 
+
 ClearTileMap: ; fc8
-; Fill TileMap with blank tiles
+; Fill TileMap with blank tiles.
+
 	ld hl, TileMap
 	ld a, " "
 	ld bc, 360 ; screen dimensions 20*18
 	call ByteFill
 	
-; We aren't done if the LCD is on
+; We aren't done if the LCD is on.
 	ld a, [rLCDC]
 	bit 7, a
 	ret z
@@ -1164,7 +1128,7 @@ ClearTileMap: ; fc8
 ; fdb
 
 
-INCBIN "baserom.gbc",$fdb,$fe8 - $fdb
+INCBIN "baserom.gbc", $fdb, $fe8 - $fdb
 
 
 TextBox: ; fe8
@@ -1225,9 +1189,10 @@ TextBoxBorder: ; ff1
 	call NPlaceChar
 	ld [hl], "┘"
 	ret
-; 0x101e
+; 101e
 
-NPlaceChar: ; 0x101e
+
+NPlaceChar: ; 101e
 ; place a row of width c of identical characters
 	ld d,c
 .loop\@
@@ -1235,7 +1200,7 @@ NPlaceChar: ; 0x101e
 	dec d
 	jr nz,.loop\@
 	ret
-; 0x1024
+; 1024
 
 
 TextBoxPalette: ; 1024
@@ -1420,7 +1385,9 @@ CheckDict: ; 1087
 	jp NextChar
 ; 0x117b
 
-INCBIN "baserom.gbc",$117b,$1203 - $117b
+
+INCBIN "baserom.gbc", $117b, $1203 - $117b
+
 
 Char5D:
 	ld a, [hBattleTurn]
@@ -3143,11 +3110,11 @@ ClearPalettes: ; 3317
 	
 .cgb
 ; Save WRAM bank
-	ld a, [$ff70]
+	ld a, [rSVBK]
 	push af
 ; WRAM bank 5
 	ld a, 5
-	ld [$ff70], a
+	ld [rSVBK], a
 ; Fill BGPals and OBPals with $ffff (white)
 	ld hl, BGPals
 	ld bc, $0080
@@ -3155,7 +3122,7 @@ ClearPalettes: ; 3317
 	call ByteFill
 ; Restore WRAM bank
 	pop af
-	ld [$ff70], a
+	ld [rSVBK], a
 ; Request palette update
 	ld a, 1
 	ld [hCGBPalUpdate], a
@@ -15316,11 +15283,11 @@ StartTitleScreen: ; 10ed67
 	call $6f06
 	
 ; Save WRAM bank
-	ld a, [$ff70]
+	ld a, [rSVBK]
 	push af
 ; WRAM bank 5
 	ld a, 5
-	ld [$ff70], a
+	ld [rSVBK], a
 	
 ; Update palette colors
 	ld hl, TitleScreenPalettes
@@ -15335,17 +15302,17 @@ StartTitleScreen: ; 10ed67
 	
 ; Restore WRAM bank
 	pop af
-	ld [$ff70], a
+	ld [rSVBK], a
 	
 	
 ; LY/SCX trickery starts here
 	
 ; Save WRAM bank
-	ld a, [$ff70]
+	ld a, [rSVBK]
 	push af
 ; WRAM bank 5
 	ld a, 5
-	ld [$ff70], a
+	ld [rSVBK], a
 	
 ; Make alternating lines come in from opposite sides
 
@@ -15375,7 +15342,7 @@ StartTitleScreen: ; 10ed67
 	
 ; Restore WRAM bank
 	pop af
-	ld [$ff70], a
+	ld [rSVBK], a
 	
 	
 ; Reset audio
@@ -15770,10 +15737,10 @@ Function117bb6:
 	ld [$cf63], a
 	ret
 .asm_117be7
-	ld a, [$ff70]
+	ld a, [rSVBK]
 	push af
 	ld a, $3
-	ld [$ff70], a
+	ld [rSVBK], a
 	ld a, [$cd89]
 	and $1
 	jr nz, .asm_117c16 ; 0x117bf3 $21
@@ -15797,20 +15764,20 @@ Function117bb6:
 	jr .asm_117c20 ; 0x117c14 $a
 .asm_117c16
 	pop af
-	ld [$ff70], a
+	ld [rSVBK], a
 	ld a, $d3
 	ld [$c300], a
 	jr .asm_117bd0 ; 0x117c1e $b0
 .asm_117c20
 	pop af
-	ld [$ff70], a
+	ld [rSVBK], a
 	ld a, $5c
 	ld hl, $6eb9
 	rst FarCall
-	ld a, [$ff70]
+	ld a, [rSVBK]
 	push af
 	ld a, $3
-	ld [$ff70], a
+	ld [rSVBK], a
 	ld a, $7
 	call GetSRAMBank
 	ld hl, $d002
@@ -15819,7 +15786,7 @@ Function117bb6:
 	call CopyBytes
 	call CloseSRAM
 	pop af
-	ld [$ff70], a
+	ld [rSVBK], a
 	jp Function117cdd
 
 Function117c4a:
@@ -15832,10 +15799,10 @@ Function117c4a:
 	rst FarCall
 	ld hl, MobileStadiumSuccessText
 	call $1057
-	ld a, [$ff70]
+	ld a, [rSVBK]
 	push af
 	ld a, $5
-	ld [$ff70], a
+	ld [rSVBK], a
 	ld hl, $d000
 	ld de, $0008
 	ld c, $8
@@ -15851,7 +15818,7 @@ Function117c4a:
 	jr nz, .asm_117c71 ; 0x117c7b $f4
 	call $04b6
 	pop af
-	ld [$ff70], a
+	ld [rSVBK], a
 	ld a, $80
 	ld [$cf63], a
 	ret
