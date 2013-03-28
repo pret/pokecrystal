@@ -56,7 +56,7 @@ Start:
 
 SECTION "start",HOME[$150]
 
-INCBIN "baserom.gbc",$150,$283 - $150
+INCBIN "baserom.gbc", $150, $283 - $150
 
 
 VBlank: ; 283
@@ -108,7 +108,7 @@ RTC: ; 46f
 ; 485
 
 
-INCBIN "baserom.gbc",$485,$52f - $485
+INCBIN "baserom.gbc", $485, $52f - $485
 
 
 IncGradGBPalTable_01: ; 52f
@@ -146,7 +146,7 @@ IncGradGBPalTable_01: ; 52f
 ; 547
 
 
-INCBIN "baserom.gbc",$547,$568 - $547
+INCBIN "baserom.gbc", $547, $568 - $547
 
 
 DisableLCD: ; 568
@@ -201,7 +201,7 @@ EnableLCD: ; 58a
 
 
 AskTimer: ; 591
-	INCBIN "baserom.gbc",$591,$59c - $591
+	INCBIN "baserom.gbc", $591, $59c - $591
 ; 59c
 
 
@@ -384,7 +384,7 @@ FixTime: ; 61d
 	ret
 ; 658
 
-INCBIN "baserom.gbc",$658,$691 - $658
+INCBIN "baserom.gbc", $658, $691 - $658
 
 SetClock: ; 691
 ; set clock data from hram
@@ -434,13 +434,13 @@ SetClock: ; 691
 	ret
 ; 6c4
 
-INCBIN "baserom.gbc",$6c4,$92e - $6c4
+INCBIN "baserom.gbc", $6c4, $92e - $6c4
 
 
 INCLUDE "joypad.asm"
 
 
-INCBIN "baserom.gbc",$a1b,$b40 - $a1b
+INCBIN "baserom.gbc", $a1b, $b40 - $a1b
 
 FarDecompress: ; b40
 ; Decompress graphics data at a:hl to de
@@ -973,7 +973,7 @@ DmgToCgbObjPals: ; ccb
 ; cf8
 
 
-INCBIN "baserom.gbc",$cf8,$d50 - $cf8
+INCBIN "baserom.gbc", $cf8, $d50 - $cf8
 
 
 CopyPals: ; d50
@@ -1029,7 +1029,7 @@ CopyPals: ; d50
 ; d79
 
 
-INCBIN "baserom.gbc",$d79,$e8d - $d79
+INCBIN "baserom.gbc", $d79, $e8d - $d79
 
 
 FarCopyBytes: ; e8d
@@ -1458,14 +1458,14 @@ Char5DText: ; 0x1276
 Char5BText: ; 0x127e
 	db "PC@"
 
-INCBIN "baserom.gbc",$1281,$1293 - $1281
+INCBIN "baserom.gbc", $1281, $1293 - $1281
 
 Char56Text: ; 0x1293
 	db "…@"
 Char5AText: ; 0x1295
 	db "Enemy @"
 
-INCBIN "baserom.gbc",$129c,$1356 - $129c
+INCBIN "baserom.gbc", $129c, $1356 - $129c
 
 Char5F: ; 0x1356
 ; ends a Pokédex entry
@@ -1473,7 +1473,7 @@ Char5F: ; 0x1356
 	pop hl
 	ret
 
-INCBIN "baserom.gbc",$135a,$15d8 - $135a
+INCBIN "baserom.gbc", $135a, $15d8 - $135a
 
 DMATransfer: ; 15d8
 ; DMA transfer
@@ -2083,7 +2083,7 @@ SafeTileAnimation: ; 17d3
 	ret
 ; 17ff
 
-INCBIN "baserom.gbc",$17ff,$185d - $17ff
+INCBIN "baserom.gbc", $17ff, $185d - $17ff
 
 GetTileType: ; 185d
 ; checks the properties of a tile
@@ -2108,7 +2108,7 @@ GetTileType: ; 185d
 	ret
 ; 1875
 
-INCBIN "baserom.gbc",$1875,$2063 - $1875
+INCBIN "baserom.gbc", $1875, $2063 - $1875
 
 AskSerial: ; 2063
 ; send out a handshake while serial int is off
@@ -2148,7 +2148,7 @@ AskSerial: ; 2063
 	ret
 ; 208a
 
-INCBIN "baserom.gbc",$208a,$209e - $208a
+INCBIN "baserom.gbc", $208a, $209e - $208a
 
 GameTimer: ; 209e
 ; precautionary
@@ -2278,7 +2278,7 @@ UpdateGameTimer: ; 20ad
 	ret
 ; 210f
 
-INCBIN "baserom.gbc",$210f,$261f - $210f
+INCBIN "baserom.gbc", $210f, $261f - $210f
 
 PushScriptPointer: ; 261f
 ; used to call a script from asm
@@ -2302,7 +2302,7 @@ PushScriptPointer: ; 261f
 	ret
 ; 2631
 
-INCBIN "baserom.gbc",$2631,$26d4 - $2631
+INCBIN "baserom.gbc", $2631, $26d4 - $2631
 
 GetScriptByte: ; 0x26d4
 ; Return byte at ScriptBank:ScriptPos in a.
@@ -2347,7 +2347,7 @@ ObjectEventText:
 	db "@"
 ; 0x26f7
 
-INCBIN "baserom.gbc",$26f7,$2bed-$26f7
+INCBIN "baserom.gbc", $26f7, $2bed-$26f7
 
 GetMapHeaderPointer: ; 0x2bed
 ; Prior to calling this function, you must have switched banks so that
@@ -2417,7 +2417,7 @@ GetAnyMapHeaderMember: ; 0x2c0c
 	ret
 ; 0x2c1c
 
-INCBIN "baserom.gbc",$2c1c,$2c7d-$2c1c
+INCBIN "baserom.gbc", $2c1c, $2c7d-$2c1c
 
 GetSecondaryMapHeaderPointer: ; 0x2c7d
 ; returns the current map's secondary map header pointer in hl.
@@ -2431,7 +2431,7 @@ GetSecondaryMapHeaderPointer: ; 0x2c7d
 	pop bc
 	ret
 
-INCBIN "baserom.gbc",$2c8a,$2caf-$2c8a
+INCBIN "baserom.gbc", $2c8a, $2caf-$2c8a
 
 GetWorldMapLocation: ; 0x2caf
 ; given a map group/id in bc, return its location on the Pokégear map.
@@ -2447,7 +2447,7 @@ GetWorldMapLocation: ; 0x2caf
 	ret
 ; 0x2cbd
 
-INCBIN "baserom.gbc",$2cbd,$2d63-$2cbd
+INCBIN "baserom.gbc", $2cbd, $2d63-$2cbd
 
 FarJpHl: ; 2d63
 ; Jump to a:hl.
@@ -2558,7 +2558,7 @@ Predef: ; 2d83
 	ret
 ; 2dba
 
-INCBIN "baserom.gbc",$2dba,$2e6f-$2dba
+INCBIN "baserom.gbc", $2dba, $2e6f-$2dba
 
 BitTable1Func: ; 0x2e6f
 	ld hl, $da72
@@ -2750,7 +2750,7 @@ JpHl: ; 2fec
 	jp [hl]
 ; 2fed
 
-INCBIN "baserom.gbc",$2fed,$300b-$2fed
+INCBIN "baserom.gbc", $2fed, $300b-$2fed
 
 ClearSprites: ; 300b
 	ld hl, Sprites
@@ -2871,7 +2871,7 @@ GetFarHalfword: ; 0x305d
 	ret
 ; 0x306b
 
-INCBIN "baserom.gbc",$306b,$30d6-$306b
+INCBIN "baserom.gbc", $306b, $30d6-$306b
 
 CopyName1: ; 30d6
 	ld hl, StringBuffer2
@@ -2894,7 +2894,7 @@ IsInArray: ; 30e1
 	ld c,a
 .loop\@
 	ld a,[hl]
-	cp a,$FF
+	cp a, $FF
 	jr z,.NotInArray\@
 	cp c
 	jr z,.InArray\@
@@ -2932,7 +2932,7 @@ AddNTimes: ; 0x30fe
 	ret
 ; 0x3105
 
-INCBIN "baserom.gbc",$3105,$3119-$3105
+INCBIN "baserom.gbc", $3105, $3119-$3105
 
 Multiply: ; 0x3119
 ; function to do multiplication
@@ -2942,7 +2942,7 @@ Multiply: ; 0x3119
 ; ffb7 = multiplier
 ; OUTPUT
 ; ffb3-ffb6 = product
-	INCBIN "baserom.gbc",$3119,$3124 - $3119
+	INCBIN "baserom.gbc", $3119, $3124 - $3119
 ; 0x3124
 
 Divide: ; 0x3124
@@ -2955,10 +2955,10 @@ Divide: ; 0x3124
 ; OUTPUT
 ; ffb4-ffb6 = quotient
 ; ffb7 = remainder
-	INCBIN "baserom.gbc",$3124,$3136 - $3124
+	INCBIN "baserom.gbc", $3124, $3136 - $3124
 ; 0x3136
 
-INCBIN "baserom.gbc",$3136,$313d - $3136
+INCBIN "baserom.gbc", $3136, $313d - $3136
 
 PrintLetterDelay: ; 313d
 ; wait some frames before printing the next letter
@@ -3062,7 +3062,7 @@ CopyDataUntil: ; 318c
 	ret
 ; 0x3198
 
-INCBIN "baserom.gbc",$3198,$31db - $3198
+INCBIN "baserom.gbc", $3198, $31db - $3198
 
 StringCmp: ; 31db
 ; Compare strings, c bytes in length, at de and hl.
@@ -3077,7 +3077,7 @@ StringCmp: ; 31db
 	ret
 ; 0x31e4
 
-INCBIN "baserom.gbc",$31e4,$31f3 - $31e4
+INCBIN "baserom.gbc", $31e4, $31f3 - $31e4
 
 WhiteBGMap: ; 31f3
 	call ClearPalettes
@@ -3091,7 +3091,7 @@ WaitBGMap: ; 31f6
 	ret
 ; 3200
 
-INCBIN "baserom.gbc",$3200,$3317 - $3200
+INCBIN "baserom.gbc", $3200, $3317 - $3200
 
 ClearPalettes: ; 3317
 ; Make all palettes white
@@ -3149,7 +3149,7 @@ GetSGBLayout: ; 3340
 	jp Predef
 ; 334e
 
-INCBIN "baserom.gbc",$334e,$335f - $334e
+INCBIN "baserom.gbc", $334e, $335f - $334e
 
 CountSetBits: ; 0x335f
 ; function to count how many bits are set in a string of bytes
@@ -3177,7 +3177,7 @@ CountSetBits: ; 0x335f
 	ret
 ; 0x3376
 
-INCBIN "baserom.gbc",$3376,$33ab - $3376
+INCBIN "baserom.gbc", $3376, $33ab - $3376
 
 NamesPointerTable: ; 33ab
 	dbw BANK(PokemonNames), PokemonNames
@@ -3239,7 +3239,7 @@ GetName: ; 33c3
 	ret
 ; 0x3411
 
-INCBIN "baserom.gbc",$3411,$3411 - $3411
+INCBIN "baserom.gbc", $3411, $3411 - $3411
 
 GetNthString: ; 3411
 ; Starting at hl, this function returns the start address of the ath string.
@@ -3259,7 +3259,7 @@ GetNthString: ; 3411
 ; 0x3420
 
 
-INCBIN "baserom.gbc",$3420,$3468 - $3420
+INCBIN "baserom.gbc", $3420, $3468 - $3420
 
 
 GetItemName: ; 3468
@@ -3367,7 +3367,7 @@ GetBaseStats: ; 3856
 	ret
 ; 389c
 
-INCBIN "baserom.gbc",$389c,$38a2 - $389c
+INCBIN "baserom.gbc", $389c, $38a2 - $389c
 
 GetNick: ; 38a2
 ; get the nickname of a partymon
@@ -3789,7 +3789,7 @@ StartMusic: ; 3b97
 	ret
 ; 3bbc
 
-INCBIN "baserom.gbc",$3bbc,$3be3 - $3bbc
+INCBIN "baserom.gbc", $3bbc, $3be3 - $3bbc
 
 PlayCryHeader: ; 3be3
 ; Play a cry given parameters in header de
@@ -3890,7 +3890,7 @@ StartSFX: ; 3c23
 	ret
 ; 3c4e
 
-INCBIN "baserom.gbc",$3c4e,$3c55-$3c4e
+INCBIN "baserom.gbc", $3c4e, $3c55-$3c4e
 
 WaitSFX: ; 3c55
 ; infinite loop until sfx is done playing
@@ -3919,7 +3919,7 @@ WaitSFX: ; 3c55
 	ret
 ; 3c74
 
-INCBIN "baserom.gbc",$3c74,$3c97-$3c74
+INCBIN "baserom.gbc", $3c74, $3c97-$3c74
 
 MaxVolume: ; 3c97
 	ld a, $77 ; max
@@ -3939,7 +3939,7 @@ VolumeOff: ; 3ca3
 	ret
 ; 3ca8
 
-INCBIN "baserom.gbc",$3ca8,$3dde - $3ca8
+INCBIN "baserom.gbc", $3ca8, $3dde - $3ca8
 
 CheckSFX: ; 3dde
 ; returns carry if sfx channels are active
@@ -3962,7 +3962,7 @@ CheckSFX: ; 3dde
 	ret
 ; 3dfe
 
-INCBIN "baserom.gbc",$3dfe,$3e10 - $3dfe
+INCBIN "baserom.gbc", $3dfe, $3e10 - $3dfe
 
 ChannelsOff: ; 3e10
 ; Quickly turn off music channels
@@ -3986,12 +3986,12 @@ SFXChannelsOff: ; 3e21
 	ret
 ; 3e32
 
-INCBIN "baserom.gbc",$3e32,$3fb5 - $3e32
+INCBIN "baserom.gbc", $3e32, $3fb5 - $3e32
 
 
 SECTION "bank1",DATA,BANK[$1]
 
-INCBIN "baserom.gbc",$4000,$617c - $4000
+INCBIN "baserom.gbc", $4000, $617c - $4000
 
 IntroFadePalettes: ; 0x617c
 	db %01010100
@@ -4002,14 +4002,14 @@ IntroFadePalettes: ; 0x617c
 	db %11100100
 ; 6182
 
-INCBIN "baserom.gbc",$6182,$6274 - $6182
+INCBIN "baserom.gbc", $6182, $6274 - $6182
 
 FarStartTitleScreen: ; 6274
 	callba StartTitleScreen
 	ret
 ; 627b
 
-INCBIN "baserom.gbc",$627b,$62bc - $627b
+INCBIN "baserom.gbc", $627b, $62bc - $627b
 
 TitleScreenEntrance: ; 62bc
 
@@ -4061,7 +4061,7 @@ TitleScreenEntrance: ; 62bc
 	ret
 ; 62f6
 
-INCBIN "baserom.gbc",$62f6,$669f - $62f6
+INCBIN "baserom.gbc", $62f6, $669f - $62f6
 
 CheckNickErrors: ; 669f
 ; error-check monster nick before use
@@ -4141,7 +4141,7 @@ CheckNickErrors: ; 669f
 	db $ff ; end
 ; 66de
 
-INCBIN "baserom.gbc",$66de,$6eef - $66de
+INCBIN "baserom.gbc", $66de, $6eef - $66de
 
 DrawGraphic: ; 6eef
 ; input:
@@ -4169,12 +4169,12 @@ DrawGraphic: ; 6eef
 	ret
 ; 6f07
 
-INCBIN "baserom.gbc",$6f07,$747b - $6f07
+INCBIN "baserom.gbc", $6f07, $747b - $6f07
 
 
 SECTION "bank2",DATA,BANK[$2]
 
-INCBIN "baserom.gbc",$8000,$854b - $8000
+INCBIN "baserom.gbc", $8000, $854b - $8000
 
 GetPredefFn: ; 854b
 ; input:
@@ -4292,7 +4292,7 @@ PredefPointers: ; 856b
 	dwb $43ff, $2d
 ; 864c
 
-INCBIN "baserom.gbc",$864c,$8a68 - $864c
+INCBIN "baserom.gbc", $864c, $8a68 - $864c
 
 CheckShininess: ; 0x8a68
 ; given a pointer to Attack/Defense DV in bc, determine if monster is shiny.
@@ -4320,7 +4320,7 @@ CheckShininess: ; 0x8a68
 	and a ; clear carry flag
 	ret
 
-INCBIN "baserom.gbc",$8a88,$9a52-$8a88
+INCBIN "baserom.gbc", $8a88, $9a52-$8a88
 
 CopyData: ; 0x9a52
 ; copy bc bytes of data from hl to de
@@ -4366,22 +4366,22 @@ DrawDefaultTiles: ; 0x9a64
 	ret
 ; 0x9a7a
 
-INCBIN "baserom.gbc",$9a7a,$a51e - $9a7a
+INCBIN "baserom.gbc", $9a7a, $a51e - $9a7a
 
 SGBBorder:
 INCBIN "gfx/misc/sgb_border.2bpp"
 
-INCBIN "baserom.gbc",$a8be,$a8d6 - $a8be
+INCBIN "baserom.gbc", $a8be, $a8d6 - $a8be
 
 PokemonPalettes:
 INCLUDE "gfx/pics/palette_pointers.asm"
 
-INCBIN "baserom.gbc",$b0ae,$b0d2 - $b0ae
+INCBIN "baserom.gbc", $b0ae, $b0d2 - $b0ae
 
 TrainerPalettes:
 INCLUDE "gfx/trainers/palette_pointers.asm"
 
-INCBIN "baserom.gbc",$b1de,$b319 - $b1de
+INCBIN "baserom.gbc", $b1de, $b319 - $b1de
 
 MornPal: ; 0xb319
 INCBIN "tilesets/morn.pal"
@@ -4399,185 +4399,185 @@ DarkPal: ; 0xb3d9
 INCBIN "tilesets/dark.pal"
 ; 0xb419
 
-INCBIN "baserom.gbc",$b419,$b825 - $b419
+INCBIN "baserom.gbc", $b419, $b825 - $b419
 
 
 SECTION "bank3",DATA,BANK[$3]
 
-INCBIN "baserom.gbc",$c000,$29
+INCBIN "baserom.gbc", $c000, $29
 
 SpecialsPointers: ; 0xc029
-	dbw $25,$7c28
-	dbw $0a,$5ce8
-	dbw $0a,$5d11
-	dbw $0a,$5d92
-	dbw $0a,$5e66
-	dbw $0a,$5e82
-	dbw $0a,$5efa
-	dbw $0a,$5eee
-	dbw $0a,$5c92
-	dbw $0a,$5cf1
-	dbw $0a,$5cfa
-	dbw $0a,$5bfb
-	dbw $0a,$5c7b
-	dbw $0a,$5ec4
-	dbw $0a,$5ed9
-	dbw $0a,$5eaf
-	dbw $0a,$5f47
-	dbw $03,$42f6
-	dbw $03,$4309
-	dbw $41,$50b9
-	dbw $03,$434a
-	dbw $13,$59e5
-	dbw $04,$7a12
-	dbw $04,$7a31
-	dbw $04,$75db
-	dbw $3e,$7b32
-	dbw $3e,$7cd2
-	dbw $03,$4658
-	dbw $05,$559a
-	dbw $03,$42e7
-	dbw $05,$66d6
-	dbw $05,$672a
-	dbw $05,$6936
-	dbw $0b,$4547
-	dbw $05,$6218
-	dbw $23,$4c04
-	dbw $03,$429d
-	dbw $24,$4913
-	dbw $03,$42c0
-	dbw $03,$42cd
-	dbw $03,$4355
-	dbw $03,$4360
-	dbw $03,$4373
-	dbw $03,$4380
-	dbw $03,$438d
-	dbw $03,$43db
-	dbw $23,$4084
-	dbw $23,$4092
-	dbw $23,$40b6
-	dbw $23,$4079
-	dbw $23,$40ab
-	dbw $00,$0d91
-	dbw $00,$31f3
-	dbw $00,$0485
-	dbw $00,$0fc8
-	dbw $00,$1ad2
-	dbw $00,$0e4a
-	dbw $03,$4230
-	dbw $03,$4252
+	dbw $25, $7c28
+	dbw $0a, $5ce8
+	dbw $0a, $5d11
+	dbw $0a, $5d92
+	dbw $0a, $5e66
+	dbw $0a, $5e82
+	dbw $0a, $5efa
+	dbw $0a, $5eee
+	dbw $0a, $5c92
+	dbw $0a, $5cf1
+	dbw $0a, $5cfa
+	dbw $0a, $5bfb
+	dbw $0a, $5c7b
+	dbw $0a, $5ec4
+	dbw $0a, $5ed9
+	dbw $0a, $5eaf
+	dbw $0a, $5f47
+	dbw $03, $42f6
+	dbw $03, $4309
+	dbw $41, $50b9
+	dbw $03, $434a
+	dbw $13, $59e5
+	dbw $04, $7a12
+	dbw $04, $7a31
+	dbw $04, $75db
+	dbw $3e, $7b32
+	dbw $3e, $7cd2
+	dbw $03, $4658
+	dbw $05, $559a
+	dbw $03, $42e7
+	dbw $05, $66d6
+	dbw $05, $672a
+	dbw $05, $6936
+	dbw $0b, $4547
+	dbw $05, $6218
+	dbw $23, $4c04
+	dbw $03, $429d
+	dbw $24, $4913
+	dbw $03, $42c0
+	dbw $03, $42cd
+	dbw $03, $4355
+	dbw $03, $4360
+	dbw $03, $4373
+	dbw $03, $4380
+	dbw $03, $438d
+	dbw $03, $43db
+	dbw $23, $4084
+	dbw $23, $4092
+	dbw $23, $40b6
+	dbw $23, $4079
+	dbw $23, $40ab
+	dbw $00, $0d91
+	dbw $00, $31f3
+	dbw $00, $0485
+	dbw $00, $0fc8
+	dbw $00, $1ad2
+	dbw $00, $0e4a
+	dbw $03, $4230
+	dbw $03, $4252
 	dbw BANK(WaitSFX),WaitSFX
-	dbw $00,$3cdf
-	dbw $00,$3d47
-	dbw $04,$6324
-	dbw $02,$4379
-	dbw $03,$425a
-	dbw $03,$4268
-	dbw $03,$4276
-	dbw $03,$4284
-	dbw $03,$43ef
-	dbw $05,$7421
-	dbw $05,$7440
-	dbw $04,$79a8
-	dbw $03,$43fc
-	dbw $09,$6feb
-	dbw $09,$7043
-	dbw $01,$7305
-	dbw $01,$737e
-	dbw $01,$73f7
+	dbw $00, $3cdf
+	dbw $00, $3d47
+	dbw $04, $6324
+	dbw $02, $4379
+	dbw $03, $425a
+	dbw $03, $4268
+	dbw $03, $4276
+	dbw $03, $4284
+	dbw $03, $43ef
+	dbw $05, $7421
+	dbw $05, $7440
+	dbw $04, $79a8
+	dbw $03, $43fc
+	dbw $09, $6feb
+	dbw $09, $7043
+	dbw $01, $7305
+	dbw $01, $737e
+	dbw $01, $73f7
 	dbw BANK(SpecialCheckPokerus),SpecialCheckPokerus
-	dbw $09,$4b25
-	dbw $09,$4b4e
-	dbw $09,$4ae8
-	dbw $13,$587a
-	dbw $03,$4434
-	dbw $03,$4422
-	dbw $13,$59d3
-	dbw $22,$4018
-	dbw $03,$42b9
-	dbw $03,$42da
-	dbw $01,$718d
-	dbw $01,$71ac
-	dbw $0a,$64ab
-	dbw $0a,$651f
-	dbw $0a,$6567
-	dbw $05,$4209
-	dbw $3e,$7841
+	dbw $09, $4b25
+	dbw $09, $4b4e
+	dbw $09, $4ae8
+	dbw $13, $587a
+	dbw $03, $4434
+	dbw $03, $4422
+	dbw $13, $59d3
+	dbw $22, $4018
+	dbw $03, $42b9
+	dbw $03, $42da
+	dbw $01, $718d
+	dbw $01, $71ac
+	dbw $0a, $64ab
+	dbw $0a, $651f
+	dbw $0a, $6567
+	dbw $05, $4209
+	dbw $3e, $7841
 	dbw BANK(SpecialSnorlaxAwake),SpecialSnorlaxAwake
-	dbw $01,$7413
-	dbw $01,$7418
-	dbw $01,$741d
-	dbw $03,$4472
-	dbw $09,$65ee
+	dbw $01, $7413
+	dbw $01, $7418
+	dbw $01, $741d
+	dbw $03, $4472
+	dbw $09, $65ee
 	dbw BANK(SpecialGameboyCheck),SpecialGameboyCheck
 	dbw BANK(SpecialTrainerHouse),SpecialTrainerHouse
-	dbw $05,$6dc7
+	dbw $05, $6dc7
 	dbw BANK(SpecialRoamMons), SpecialRoamMons
-	dbw $03,$448f
-	dbw $03,$449f
-	dbw $03,$44ac
-	dbw $46,$6c3e
-	dbw $46,$7444
-	dbw $46,$75e8
-	dbw $46,$77e5
-	dbw $46,$7879
-	dbw $46,$7920
-	dbw $46,$793b
-	dbw $5c,$40b0
-	dbw $5c,$40ba
-	dbw $5c,$4114
-	dbw $5c,$4215
-	dbw $5c,$44e1
-	dbw $5c,$421d
-	dbw $5c,$4b44
-	dbw $46,$7a38
-	dbw $5c,$4bd3
-	dbw $45,$7656
-	dbw $00,$0150
-	dbw $40,$51f1
-	dbw $40,$5220
-	dbw $40,$5225
-	dbw $40,$5231
-	dbw $12,$525b
-	dbw $22,$6def
-	dbw $47,$41ab
-	dbw $5c,$4687
-	dbw $22,$6e68
-	dbw $5f,$5224
-	dbw $5f,$52b6
-	dbw $5f,$52ce
-	dbw $5f,$753d
-	dbw $40,$7612
+	dbw $03, $448f
+	dbw $03, $449f
+	dbw $03, $44ac
+	dbw $46, $6c3e
+	dbw $46, $7444
+	dbw $46, $75e8
+	dbw $46, $77e5
+	dbw $46, $7879
+	dbw $46, $7920
+	dbw $46, $793b
+	dbw $5c, $40b0
+	dbw $5c, $40ba
+	dbw $5c, $4114
+	dbw $5c, $4215
+	dbw $5c, $44e1
+	dbw $5c, $421d
+	dbw $5c, $4b44
+	dbw $46, $7a38
+	dbw $5c, $4bd3
+	dbw $45, $7656
+	dbw $00, $0150
+	dbw $40, $51f1
+	dbw $40, $5220
+	dbw $40, $5225
+	dbw $40, $5231
+	dbw $12, $525b
+	dbw $22, $6def
+	dbw $47, $41ab
+	dbw $5c, $4687
+	dbw $22, $6e68
+	dbw $5f, $5224
+	dbw $5f, $52b6
+	dbw $5f, $52ce
+	dbw $5f, $753d
+	dbw $40, $7612
 	dbw BANK(SpecialHoOhChamber),SpecialHoOhChamber
-	dbw $40,$6142
-	dbw $12,$589a
-	dbw $12,$5bf9
-	dbw $13,$70bc
-	dbw $22,$6f6b
-	dbw $22,$6fd4
+	dbw $40, $6142
+	dbw $12, $589a
+	dbw $12, $5bf9
+	dbw $13, $70bc
+	dbw $22, $6f6b
+	dbw $22, $6fd4
 	dbw BANK(SpecialDratini),SpecialDratini
-	dbw $04,$5485
+	dbw $04, $5485
 	dbw BANK(SpecialBeastsCheck),SpecialBeastsCheck
 	dbw BANK(SpecialMonCheck),SpecialMonCheck
-	dbw $03,$4225
-	dbw $5c,$4bd2
-	dbw $40,$766e
-	dbw $40,$77eb
-	dbw $40,$783c
-	dbw $41,$60a2
-	dbw $05,$4168
-	dbw $40,$77c2
-	dbw $41,$630f
-	dbw $40,$7780
-	dbw $40,$787b
-	dbw $12,$6e12
-	dbw $41,$47eb
-	dbw $12,$6927
-	dbw $24,$4a54
-	dbw $24,$4a88
-	dbw $03,$4224
+	dbw $03, $4225
+	dbw $5c, $4bd2
+	dbw $40, $766e
+	dbw $40, $77eb
+	dbw $40, $783c
+	dbw $41, $60a2
+	dbw $05, $4168
+	dbw $40, $77c2
+	dbw $41, $630f
+	dbw $40, $7780
+	dbw $40, $787b
+	dbw $12, $6e12
+	dbw $41, $47eb
+	dbw $12, $6927
+	dbw $24, $4a54
+	dbw $24, $4a88
+	dbw $03, $4224
 
-INCBIN "baserom.gbc",$c224,$c3e2 - $c224
+INCBIN "baserom.gbc", $c224, $c3e2 - $c224
 
 ScriptReturnCarry: ; c3e2
 	jr c, .carry
@@ -4590,7 +4590,7 @@ ScriptReturnCarry: ; c3e2
 	ret
 ; c3ef
 
-INCBIN "baserom.gbc",$c3ef,$c419 - $c3ef
+INCBIN "baserom.gbc", $c3ef, $c419 - $c3ef
 
 SpecialCheckPokerus: ; c419
 ; Check if a monster in your party has Pokerus
@@ -4598,7 +4598,7 @@ SpecialCheckPokerus: ; c419
 	jp ScriptReturnCarry
 ; c422
 
-INCBIN "baserom.gbc",$c422,$c43d - $c422
+INCBIN "baserom.gbc", $c422, $c43d - $c422
 
 SpecialSnorlaxAwake: ; 0xc43d
 ; Check if the Poké Flute channel is playing, and if the player is standing
@@ -4642,14 +4642,14 @@ SpecialSnorlaxAwake: ; 0xc43d
 	ret
 
 .ProximityCoords
-	db $21,$08
-	db $22,$0a
-	db $23,$0a
-	db $24,$08
-	db $24,$09
+	db $21, $08
+	db $22, $0a
+	db $23, $0a
+	db $24, $08
+	db $24, $09
 	db $ff
 
-INCBIN "baserom.gbc",$c472,$c478 - $c472
+INCBIN "baserom.gbc", $c472, $c478 - $c472
 
 SpecialGameboyCheck: ; c478
 ; check cgb
@@ -4675,7 +4675,7 @@ SpecialGameboyCheck: ; c478
 	ld [ScriptVar], a
 	ret
 
-INCBIN "baserom.gbc",$c48f,$c4b9 - $c48f
+INCBIN "baserom.gbc", $c48f, $c4b9 - $c48f
 
 SpecialTrainerHouse: ; 0xc4b9
 	ld a, 0
@@ -4684,10 +4684,10 @@ SpecialTrainerHouse: ; 0xc4b9
 	ld [ScriptVar], a
 	jp CloseSRAM
 
-INCBIN "baserom.gbc",$c4c7,$c5d2 - $c4c7
+INCBIN "baserom.gbc", $c4c7, $c5d2 - $c4c7
 
 PrintNumber_PrintDigit: ; c5d2
-INCBIN "baserom.gbc",$c5d2,$c644 - $c5d2
+INCBIN "baserom.gbc", $c5d2, $c644 - $c5d2
 
 PrintNumber_PrintLeadingZero: ; c644
 ; prints a leading zero unless they are turned off in the flags
@@ -4711,7 +4711,7 @@ PrintNumber_AdvancePointer: ; c64a
 	ret
 ; 0xc658
 
-INCBIN "baserom.gbc",$c658,$c706 - $c658
+INCBIN "baserom.gbc", $c658, $c706 - $c658
 
 GetPartyNick: ; c706
 ; write CurPartyMon nickname to StringBuffer1-3
@@ -4805,7 +4805,7 @@ CheckPartyMove: ; c742
 	ret
 ; c779
 
-INCBIN "baserom.gbc",$c779,$c986 - $c779
+INCBIN "baserom.gbc", $c779, $c986 - $c779
 
 UsedSurfScript: ; c986
 ; print "[MON] used SURF!"
@@ -4963,17 +4963,17 @@ AskSurfText: ; ca36
 	db "@"				; Want to SURF?
 ; ca3b
 
-INCBIN "baserom.gbc",$ca3b,$fa0b - $ca3b
+INCBIN "baserom.gbc", $ca3b, $fa0b - $ca3b
 
 
 SECTION "bank4",DATA,BANK[$4]
 
-INCBIN "baserom.gbc",$10000,$10b16 - $10000
+INCBIN "baserom.gbc", $10000, $10b16 - $10000
 
 PackGFX:
 INCBIN "gfx/misc/pack.2bpp"
 
-INCBIN "baserom.gbc",$113d6,$1167a - $113d6
+INCBIN "baserom.gbc", $113d6, $1167a - $113d6
 
 TechnicalMachines: ; 0x1167a
 	db DYNAMICPUNCH
@@ -5034,7 +5034,7 @@ TechnicalMachines: ; 0x1167a
 	db WHIRLPOOL
 	db WATERFALL
 
-INCBIN "baserom.gbc",$116b3,$11ce7 - $116b3
+INCBIN "baserom.gbc", $116b3, $11ce7 - $116b3
 
 NameInputLower:
 	db "a b c d e f g h i"
@@ -5063,7 +5063,7 @@ BoxNameInputUpper:
 	db "- ? ! ♂ ♀ / . , &"
 	db "lower  DEL   END "
 
-INCBIN "baserom.gbc",$11e5d,$12976 - $11e5d
+INCBIN "baserom.gbc", $11e5d, $12976 - $11e5d
 
 OpenPartyMenu: ; $12976
 	ld a, [PartyCount]
@@ -5119,7 +5119,7 @@ OpenPartyMenu: ; $12976
 	ret
 ; 0x129d5
 
-INCBIN "baserom.gbc",$129d5,$12a88 - $129d5
+INCBIN "baserom.gbc", $129d5, $12a88 - $129d5
 
 PokemonActionSubmenu ; 0x12a88
 	ld hl, $c5cd ; coord
@@ -5168,7 +5168,7 @@ PokemonSubmenuActionPointerTable: ; 0x12ab0
 ; no terminator?
 ; 0x12aec
 
-INCBIN "baserom.gbc",$12aec,$12e00 - $12aec
+INCBIN "baserom.gbc", $12aec, $12e00 - $12aec
 
 OpenPartyStats: ; 12e00
 	call $1d6e
@@ -5184,7 +5184,7 @@ OpenPartyStats: ; 12e00
 	ret
 ; 0x12e1b
 
-INCBIN "baserom.gbc",$12e1b,$13b87 - $12e1b
+INCBIN "baserom.gbc", $12e1b, $13b87 - $12e1b
 
 GetSquareRoot: ; 13b87
 ; Return the square root of de in b.
@@ -5221,7 +5221,7 @@ root	set root+1
 
 SECTION "bank5",DATA,BANK[$5]
 
-INCBIN "baserom.gbc",$14000,$14032 - $14000
+INCBIN "baserom.gbc", $14000, $14032 - $14000
 
 GetTimeOfDay: ; 14032
 ; get time of day based on the current hour
@@ -5257,7 +5257,7 @@ TimeOfDayTable: ; 14044
 	db 24, $02 ; NITE
 ; 1404c
 
-INCBIN "baserom.gbc",$1404c,$152ab - $1404c
+INCBIN "baserom.gbc", $1404c, $152ab - $1404c
 
 BlackoutPoints: ; 0x152ab
 	db GROUP_KRISS_HOUSE_2F, MAP_KRISS_HOUSE_2F, 3, 3
@@ -5290,7 +5290,7 @@ BlackoutPoints: ; 0x152ab
 	db GROUP_FAST_SHIP_CABINS_SW_SSW_NW, MAP_FAST_SHIP_CABINS_SW_SSW_NW, 6, 2
 	db $ff, $ff, $ff, $ff
 
-INCBIN "baserom.gbc",$1531f,$174ba - $1531f
+INCBIN "baserom.gbc", $1531f, $174ba - $1531f
 
 
 SECTION "bank6",DATA,BANK[$6]
@@ -5600,7 +5600,7 @@ INCLUDE "stats/egg_moves.asm"
 
 SECTION "bank9",DATA,BANK[$9]
 
-INCBIN "baserom.gbc",$24000,$270c4 - $24000
+INCBIN "baserom.gbc", $24000, $270c4 - $24000
 
 GetTrainerDVs: ; 270c4
 ; get dvs based on trainer class
@@ -5708,7 +5708,7 @@ INCBIN "baserom.gbc", $2732e, $27a2d - $2732e
 
 SECTION "bankA",DATA,BANK[$A]
 
-INCBIN "baserom.gbc",$28000,$2a2a0 - $28000
+INCBIN "baserom.gbc", $28000, $2a2a0 - $28000
 
 SpecialRoamMons: ; 2a2a0
 ; initialize RoamMon structs
@@ -5755,7 +5755,7 @@ SpecialRoamMons: ; 2a2a0
 	ret
 ; 2a2ce
 
-INCBIN "baserom.gbc",$2a2ce,$2a5e9 - $2a2ce
+INCBIN "baserom.gbc", $2a2ce, $2a5e9 - $2a2ce
 
 
 WildMons1: ; 0x2a5e9
@@ -5792,7 +5792,7 @@ INCBIN "gfx/misc/dude.lz"
 
 SECTION "bankB",DATA,BANK[$B]
 
-INCBIN "baserom.gbc",$2C000,$2c1ef - $2C000
+INCBIN "baserom.gbc", $2C000, $2c1ef - $2C000
 
 TrainerClassNames: ; 2c1ef
 	db "LEADER@"
@@ -5863,7 +5863,7 @@ TrainerClassNames: ; 2c1ef
 	db "ROCKET@"
 	db "MYSTICALMAN@"
 
-INCBIN "baserom.gbc",$2C41a,$2ee8f - $2C41a
+INCBIN "baserom.gbc", $2C41a, $2ee8f - $2C41a
 
 ; XXX this is not the start of the routine
 ; determine what music plays in battle
@@ -5946,7 +5946,7 @@ INCBIN "baserom.gbc",$2C41a,$2ee8f - $2C41a
 	pop hl
 	ret
 
-INCBIN "baserom.gbc",$2ef18,$2ef9f - $2ef18
+INCBIN "baserom.gbc", $2ef18, $2ef9f - $2ef18
 
 
 SECTION "bankC",DATA,BANK[$C]
@@ -6038,7 +6038,7 @@ Tileset30GFX: ; 0x326b0
 INCBIN "gfx/tilesets/30.lz"
 ; 0x329ed
 
-INCBIN "baserom.gbc",$329ed,$333f0 - $329ed
+INCBIN "baserom.gbc", $329ed, $333f0 - $329ed
 
 
 SECTION "bankD",DATA,BANK[$D]
@@ -6048,7 +6048,7 @@ INCLUDE "battle/effect_commands.asm"
 
 SECTION "bankE",DATA,BANK[$E]
 
-INCBIN "baserom.gbc",$38000,$39999 - $38000
+INCBIN "baserom.gbc", $38000, $39999 - $38000
 
 TrainerGroups: ; 0x39999
 INCLUDE "trainers/trainer_pointers.asm"
@@ -6197,13 +6197,13 @@ KantoGymLeaders:
 	db BLUE
 	db $ff
 
-INCBIN "baserom.gbc",$3d14e,$3ddc2 - $3d14e
+INCBIN "baserom.gbc", $3d14e, $3ddc2 - $3d14e
 
 	ld hl, RecoveredUsingText
 	jp $3ad5
 ; 0x3ddc8
 
-INCBIN "baserom.gbc",$3ddc8,$3e8eb - $3ddc8
+INCBIN "baserom.gbc", $3ddc8, $3e8eb - $3ddc8
 
 LoadEnemyMon: ; 3e8eb
 ; Initialize enemy monster parameters
@@ -7021,7 +7021,7 @@ INCLUDE "battle/effect_command_pointers.asm"
 
 SECTION "bank10",DATA,BANK[$10]
 
-INCBIN "baserom.gbc",$40000,$40c65-$40000
+INCBIN "baserom.gbc", $40000, $40c65-$40000
 
 AlphabeticalPokedexOrder: ; 0x40c65
 INCLUDE "stats/pokedex/order_alpha.asm"
@@ -7029,12 +7029,12 @@ INCLUDE "stats/pokedex/order_alpha.asm"
 NewPokedexOrder: ; 0x40d60
 INCLUDE "stats/pokedex/order_new.asm"
 
-INCBIN "baserom.gbc",$40e5b,$41afb-$40e5b
+INCBIN "baserom.gbc", $40e5b, $41afb-$40e5b
 
 Moves: ; 0x41afb
 INCLUDE "battle/moves/moves.asm"
 
-INCBIN "baserom.gbc",$421d8,$425b1-$421d8
+INCBIN "baserom.gbc", $421d8, $425b1-$421d8
 
 EvosAttacksPointers: ; 0x425b1
 INCLUDE "stats/evos_attacks_pointers.asm"
@@ -7044,22 +7044,22 @@ INCLUDE "stats/evos_attacks.asm"
 
 SECTION "bank11",DATA,BANK[$11]
 
-INCBIN "baserom.gbc",$44000,$44378 - $44000
+INCBIN "baserom.gbc", $44000, $44378 - $44000
 
 PokedexDataPointerTable: ; 0x44378
 INCLUDE "stats/pokedex/entry_pointers.asm"
 
-INCBIN "baserom.gbc",$4456e,$44997 - $4456e
+INCBIN "baserom.gbc", $4456e, $44997 - $4456e
 
 
 SECTION "bank12",DATA,BANK[$12]
 
-INCBIN "baserom.gbc",$48000,$48e9b - $48000
+INCBIN "baserom.gbc", $48000, $48e9b - $48000
 
 PackFGFX:
 INCBIN "gfx/misc/pack_f.2bpp"
 
-INCBIN "baserom.gbc",$4925b,$49962 - $4925b
+INCBIN "baserom.gbc", $4925b, $49962 - $4925b
 
 SpecialCelebiGFX:
 INCBIN "gfx/special/celebi/leaf.2bpp"
@@ -7068,7 +7068,7 @@ INCBIN "gfx/special/celebi/2.2bpp"
 INCBIN "gfx/special/celebi/3.2bpp"
 INCBIN "gfx/special/celebi/4.2bpp"
 
-INCBIN "baserom.gbc",$49aa2,$49d24 - $49aa2
+INCBIN "baserom.gbc", $49aa2, $49d24 - $49aa2
 
 ContinueText: ; 0x49d24
 	db "CONTINUE@"
@@ -7165,7 +7165,7 @@ StudiumMenu: ; 0x49d9e
 	db MOBILE_STUDIUM
 	db $ff
 
-INCBIN "baserom.gbc",$49da4,$4a6e8 - $49da4
+INCBIN "baserom.gbc", $49da4, $4a6e8 - $49da4
 
 SpecialBeastsCheck: ; 0x4a6e8
 ; Check if the player owns all three legendary beasts.
@@ -7425,7 +7425,7 @@ UpdateOTPointer: ; 0x4a83a
 	ret
 ; 0x4a843
 
-INCBIN "baserom.gbc",$4a843,$4ae78 - $4a843
+INCBIN "baserom.gbc", $4a843, $4ae78 - $4a843
 
 
 SECTION "bank13",DATA,BANK[$13]
@@ -7539,7 +7539,7 @@ Tileset20PalMap: ; 0x4caf5
 INCBIN "tilesets/20_palette_map.bin"
 ; 0x4cb65
 
-INCBIN "baserom.gbc",$4cb65,$4cbd5-$4cb65
+INCBIN "baserom.gbc", $4cb65, $4cbd5-$4cb65
 
 Tileset29PalMap: ; 0x4cbd5
 INCBIN "tilesets/29_palette_map.bin"
@@ -7934,7 +7934,7 @@ CheckPokerus: ; 4d860
 	ret
 ; 4d87a
 
-INCBIN "baserom.gbc",$4d87a,$4dc8a - $4d87a
+INCBIN "baserom.gbc", $4d87a, $4dc8a - $4d87a
 
 StatsScreenInit: ; 4dc8a
 	ld hl, StatsScreenMain
@@ -7997,7 +7997,7 @@ StatsScreenMain: ; 0x4dcd2
 	ret
 ; 0x4dcf7
 
-INCBIN "baserom.gbc",$4dcf7,$4dd2a - $4dcf7
+INCBIN "baserom.gbc", $4dcf7, $4dd2a - $4dcf7
 
 StatsScreenPointerTable: ; 4dd2a
     dw $5d72 ; regular pokémon
@@ -8011,7 +8011,7 @@ StatsScreenPointerTable: ; 4dd2a
 
 ; 4dd3a
 
-INCBIN "baserom.gbc",$4dd3a,$4dda1 - $4dd3a
+INCBIN "baserom.gbc", $4dd3a, $4dda1 - $4dd3a
 
 EggStatsInit: ; 4dda1
 	call EggStatsScreen
@@ -8021,7 +8021,7 @@ EggStatsInit: ; 4dda1
 	ret
 ; 0x4ddac
 
-INCBIN "baserom.gbc",$4ddac,$4e21e - $4ddac
+INCBIN "baserom.gbc", $4ddac, $4e21e - $4ddac
 
 IDNoString: ; 4e21e
     db $73, "№.@"
@@ -8030,7 +8030,7 @@ OTString: ; 4e222
     db "OT/@"
 ; 4e226
 
-INCBIN "baserom.gbc",$4e226,$4e33a - $4e226
+INCBIN "baserom.gbc", $4e226, $4e33a - $4e226
 
 EggStatsScreen: ; 4e33a
 	xor a
@@ -8107,18 +8107,18 @@ EggALotMoreTimeString: ; 0x4e46e
 
 ; 0x4e497
 
-INCBIN "baserom.gbc",$4e497,$4e831 - $4e497
+INCBIN "baserom.gbc", $4e497, $4e831 - $4e497
 
 EvolutionGFX:
 INCBIN "gfx/evo/bubble_large.2bpp"
 INCBIN "gfx/evo/bubble.2bpp"
 
-INCBIN "baserom.gbc",$4e881,$4f31c - $4e881
+INCBIN "baserom.gbc", $4e881, $4f31c - $4e881
 
 
 SECTION "bank14",DATA,BANK[$14]
 
-INCBIN "baserom.gbc",$50000,$5005f-$50000
+INCBIN "baserom.gbc", $50000, $5005f-$50000
 
 WritePartyMenuTilemap: ; 0x5005f
 	ld hl, Options
@@ -8147,7 +8147,7 @@ WritePartyMenuTilemap: ; 0x5005f
 	ret
 ; 0x50089
 
-INCBIN "baserom.gbc",$50089,$50457-$50089
+INCBIN "baserom.gbc", $50089, $50457-$50089
 
 PartyMenuSelect: ; 0x50457
 ; sets carry if exitted menu.
@@ -8250,7 +8250,7 @@ ToWhichPKMNString: ; 0x50549
 YouHaveNoPKMNString: ; 0x50556
     db "You have no ", $e1, $e2, "!@"
 
-INCBIN "baserom.gbc",$50566,$5097B-$50566
+INCBIN "baserom.gbc", $50566, $5097B-$50566
 
 dw Normal, Fighting, Flying, Poison, Ground, Rock, Bird, Bug, Ghost, Steel
 dw Normal, Normal, Normal, Normal, Normal, Normal, Normal, Normal, Normal
@@ -8424,7 +8424,7 @@ INCLUDE "stats/base_stats.asm"
 PokemonNames:
 INCLUDE "stats/pokemon_names.asm"
 
-INCBIN "baserom.gbc",$53D84,$53e2e - $53D84
+INCBIN "baserom.gbc", $53D84, $53e2e - $53D84
 
 
 SECTION "bank15",DATA,BANK[$15]
@@ -8645,7 +8645,7 @@ INCLUDE "maps/Route12SuperRodHouse.asm"
 
 SECTION "bank20",DATA,BANK[$20]
 
-INCBIN "baserom.gbc",$80000,$80430-$80000
+INCBIN "baserom.gbc", $80000, $80430-$80000
 
 GetFlag2: ; 80430
 ; Do action b on flag de from BitTable2
@@ -8737,7 +8737,7 @@ INCLUDE "bittable2.asm"
 ; 80648
 
 
-INCBIN "baserom.gbc",$80648,$80730-$80648
+INCBIN "baserom.gbc", $80648, $80730-$80648
 
 BattleText_0x80730: ; 0x80730
 	db $0, $52, " picked up", $4f
@@ -9844,12 +9844,12 @@ BattleText_0x8188e: ; 0x8188e
 	db "left today!", $57
 ; 0x818ac
 
-INCBIN "baserom.gbc",$818ac,$81fe3-$818ac
+INCBIN "baserom.gbc", $818ac, $81fe3-$818ac
 
 DebugColorTestGFX:
 INCBIN "gfx/debug/color_test.2bpp"
 
-INCBIN "baserom.gbc",$82153,$823c8-$82153
+INCBIN "baserom.gbc", $82153, $823c8-$82153
 
 
 SECTION "bank21",DATA,BANK[$21]
@@ -10136,7 +10136,7 @@ INCBIN "baserom.gbc", $86455, $88000 - $86455
 
 SECTION "bank22",DATA,BANK[$22]
 
-INCBIN "baserom.gbc",$88000,$8832c - $88000
+INCBIN "baserom.gbc", $88000, $8832c - $88000
 
 GetPlayerIcon: ; 8832c
 ; Get the player icon corresponding to gender
@@ -10157,7 +10157,7 @@ GetPlayerIcon: ; 8832c
 	ret
 ; 8833e
 
-INCBIN "baserom.gbc",$8833e,$896ff - $8833e
+INCBIN "baserom.gbc", $8833e, $896ff - $8833e
 
 ClearScreenArea: ; 0x896ff
 ; clears an area of the screen
@@ -10194,7 +10194,7 @@ ClearScreenArea: ; 0x896ff
 	ret
 ; 0x8971f
 
-INCBIN "baserom.gbc",$8971f,$8addb - $8971f
+INCBIN "baserom.gbc", $8971f, $8addb - $8971f
 
 SpecialHoOhChamber: ; 0x8addb
 	ld hl, PartySpecies
@@ -10209,7 +10209,7 @@ SpecialHoOhChamber: ; 0x8addb
 	ret
 ; 0x8adef
 
-INCBIN "baserom.gbc",$8adef,$8b170 - $8adef
+INCBIN "baserom.gbc", $8adef, $8b170 - $8adef
 
 SpecialDratini: ; 0x8b170
 ; if ScriptVar is 0 or 1, change the moveset of the last Dratini in the party.
@@ -10322,12 +10322,12 @@ GetNthPartyMon: ; 0x8b1ce
 	scf
 	ret
 
-INCBIN "baserom.gbc",$8b1e1,$8ba24-$8b1e1
+INCBIN "baserom.gbc", $8b1e1, $8ba24-$8b1e1
 
 
 SECTION "bank23",DATA,BANK[$23]
 
-INCBIN "baserom.gbc",$8c000,$8c011 - $8c000
+INCBIN "baserom.gbc", $8c000, $8c011 - $8c000
 
 TimeOfDayPals: ; 8c011
 ; return carry if pals are changed
@@ -10437,7 +10437,7 @@ UpdateTimePals: ; 8c070
 	ret
 ; 8c079
 
-INCBIN "baserom.gbc",$8c079,$8c117 - $8c079
+INCBIN "baserom.gbc", $8c079, $8c117 - $8c079
 
 GetTimePalette: ; 8c117
 ; get time of day
@@ -10506,7 +10506,7 @@ DmgToCgbTimePals: ; 8c14e
 	ret
 ; 8c15e
 
-INCBIN "baserom.gbc",$8c15e,$8c17c - $8c15e
+INCBIN "baserom.gbc", $8c15e, $8c17c - $8c15e
 
 GetTimePalFade: ; 8c17c
 ; check cgb
@@ -10701,7 +10701,7 @@ GetTimePalFade: ; 8c17c
 	db %00000000
 ; 8c20f
 
-INCBIN "baserom.gbc",$8c20f,$8e9ac - $8c20f
+INCBIN "baserom.gbc", $8c20f, $8e9ac - $8c20f
 
 GetSpeciesIcon: ; 8e9ac
 ; Load species icon into VRAM at tile a
@@ -10715,7 +10715,7 @@ GetSpeciesIcon: ; 8e9ac
 	ret
 ; 8e9bc
 
-INCBIN "baserom.gbc",$8e9bc,$8e9de - $8e9bc
+INCBIN "baserom.gbc", $8e9bc, $8e9de - $8e9bc
 
 GetIconGFX: ; 8e9de
 	call GetIcon_a
@@ -10785,7 +10785,7 @@ GetGFXUnlessMobile: ; 8ea3f
 	jp $dc9
 ; 8ea4a
 
-INCBIN "baserom.gbc",$8ea4a,$8eab3 - $8ea4a
+INCBIN "baserom.gbc", $8ea4a, $8eab3 - $8ea4a
 
 ReadMonMenuIcon: ; 8eab3
 	cp EGG
@@ -11139,7 +11139,7 @@ BigmonIcon:       INCBIN "gfx/icon/bigmon.2bpp" ; 0x8fe8d
 
 SECTION "bank24",DATA,BANK[$24]
 
-INCBIN "baserom.gbc",$90000,$909F2-$90000
+INCBIN "baserom.gbc", $90000, $909F2-$90000
 
 dw Sunday
 dw Monday
@@ -11666,11 +11666,11 @@ INCLUDE "maps/map_headers.asm"
 
 INCLUDE "maps/second_map_headers.asm"
 
-INCBIN "baserom.gbc",$966b0,$96cb1 - $966b0
+INCBIN "baserom.gbc", $966b0, $96cb1 - $966b0
 
 INCLUDE "scripting.asm"
 
-INCBIN "baserom.gbc",$97c20,$35e
+INCBIN "baserom.gbc", $97c20, $35e
 
 SECTION "bank26",DATA,BANK[$26]
 
@@ -11728,12 +11728,12 @@ INCLUDE "maps/BattleTowerOutside.asm"
 
 SECTION "bank28",DATA,BANK[$28]
 
-INCBIN "baserom.gbc",$a0000,$a1eca - $a0000
+INCBIN "baserom.gbc", $a0000, $a1eca - $a0000
 
 
 SECTION "bank29",DATA,BANK[$29]
 
-INCBIN "baserom.gbc",$a4000,$a64ad - $a4000
+INCBIN "baserom.gbc", $a4000, $a64ad - $a4000
 
 
 SECTION "bank2A",DATA,BANK[$2A]
@@ -11758,7 +11758,7 @@ Route28_BlockData: ; 0xa8492
 	INCBIN "maps/Route28.blk"
 ; 0xa8546
 
-INCBIN "baserom.gbc",$a8546,$a8552 - $a8546
+INCBIN "baserom.gbc", $a8546, $a8552 - $a8546
 
 CeladonCity_BlockData: ; 0xa8552
 	INCBIN "maps/CeladonCity.blk"
@@ -11776,25 +11776,25 @@ ElmsHouse_BlockData: ; 0xa8930
 	INCBIN "maps/ElmsHouse.blk"
 ; 0xa8940
 
-INCBIN "baserom.gbc",$a8940,$5a
+INCBIN "baserom.gbc", $a8940, $5a
 
 Route11_BlockData: ; 0xa899a
 	INCBIN "maps/Route11.blk"
 ; 0xa8a4e
 
-INCBIN "baserom.gbc",$a8a4e,$a8aa8 - $a8a4e
+INCBIN "baserom.gbc", $a8a4e, $a8aa8 - $a8a4e
 
 Route15_BlockData: ; 0xa8aa8
 	INCBIN "maps/Route15.blk"
 ; 0xa8b5c
 
-INCBIN "baserom.gbc",$a8b5c,$24
+INCBIN "baserom.gbc", $a8b5c, $24
 
 Route19_BlockData: ; 0xa8b80
 	INCBIN "maps/Route19.blk"
 ; 0xa8c34
 
-INCBIN "baserom.gbc",$a8c34,$a8d9c - $a8c34
+INCBIN "baserom.gbc", $a8c34, $a8d9c - $a8c34
 
 Route10South_BlockData: ; 0xa8d9c
 	INCBIN "maps/Route10South.blk"
@@ -11840,7 +11840,7 @@ Route24_BlockData: ; 0xa95ff
 	INCBIN "maps/Route24.blk"
 ; 0xa9659
 
-INCBIN "baserom.gbc",$a9659,$a97c1 - $a9659
+INCBIN "baserom.gbc", $a9659, $a97c1 - $a9659
 
 Route3_BlockData: ; 0xa97c1
 	INCBIN "maps/Route3.blk"
@@ -11850,19 +11850,19 @@ PewterCity_BlockData: ; 0xa98cf
 	INCBIN "maps/PewterCity.blk"
 ; 0xa9a37
 
-INCBIN "baserom.gbc",$a9a37,$a9bf9 - $a9a37
+INCBIN "baserom.gbc", $a9a37, $a9bf9 - $a9a37
 
 Route12_BlockData: ; 0xa9bf9
 	INCBIN "maps/Route12.blk"
 ; 0xa9d07
 
-INCBIN "baserom.gbc",$a9d07,$168
+INCBIN "baserom.gbc", $a9d07, $168
 
 Route20_BlockData: ; 0xa9e6f
 	INCBIN "maps/Route20.blk"
 ; 0xa9f7d
 
-INCBIN "baserom.gbc",$a9f7d,$a9ff7 - $a9f7d
+INCBIN "baserom.gbc", $a9f7d, $a9ff7 - $a9f7d
 
 Route30_BlockData: ; 0xa9ff7
 	INCBIN "maps/Route30.blk"
@@ -11892,7 +11892,7 @@ Route38_BlockData: ; 0xaa759
 	INCBIN "maps/Route38.blk"
 ; 0xaa80d
 
-INCBIN "baserom.gbc",$aa80d,$5a
+INCBIN "baserom.gbc", $aa80d, $5a
 
 OlivineVoltorbHouse_BlockData: ; 0xaa867
 	INCBIN "maps/OlivineVoltorbHouse.blk"
@@ -11902,7 +11902,7 @@ SafariZoneFuchsiaGateBeta_BlockData: ; 0xaa877
 	INCBIN "maps/SafariZoneFuchsiaGateBeta.blk"
 ; 0xaa88b
 
-INCBIN "baserom.gbc",$aa88b,$aaa4d - $aa88b
+INCBIN "baserom.gbc", $aa88b, $aaa4d - $aa88b
 
 CinnabarIsland_BlockData: ; 0xaaa4d
 	INCBIN "maps/CinnabarIsland.blk"
@@ -11916,7 +11916,7 @@ Route8_BlockData: ; 0xaab5b
 	INCBIN "maps/Route8.blk"
 ; 0xaac0f
 
-INCBIN "baserom.gbc",$aac0f,$aac69 - $aac0f
+INCBIN "baserom.gbc", $aac0f, $aac69 - $aac0f
 
 ViridianCity_BlockData: ; 0xaac69
 	INCBIN "maps/ViridianCity.blk"
@@ -11930,13 +11930,13 @@ Route21_BlockData: ; 0xaaedf
 	INCBIN "maps/Route21.blk"
 ; 0xaaf93
 
-INCBIN "baserom.gbc",$aaf93,$aafed - $aaf93
+INCBIN "baserom.gbc", $aaf93, $aafed - $aaf93
 
 Route17_BlockData: ; 0xaafed
 	INCBIN "maps/Route17.blk"
 ; 0xab1af
 
-INCBIN "baserom.gbc",$ab1af,$ab209 - $ab1af
+INCBIN "baserom.gbc", $ab1af, $ab209 - $ab1af
 
 Route31_BlockData: ; 0xab209
 	INCBIN "maps/Route31.blk"
@@ -11966,13 +11966,13 @@ Route38EcruteakGate_BlockData: ; 0xab6af
 	INCBIN "maps/Route38EcruteakGate.blk"
 ; 0xab6c3
 
-INCBIN "baserom.gbc",$ab6c3,$ab82b - $ab6c3
+INCBIN "baserom.gbc", $ab6c3, $ab82b - $ab6c3
 
 VermilionCity_BlockData: ; 0xab82b
 	INCBIN "maps/VermilionCity.blk"
 ; 0xab993
 
-INCBIN "baserom.gbc",$ab993,$abb55 - $ab993
+INCBIN "baserom.gbc", $ab993, $abb55 - $ab993
 
 ElmsLab_BlockData: ; 0xabb55
 	INCBIN "maps/ElmsLab.blk"
@@ -12005,7 +12005,7 @@ Route14_BlockData: ; 0xac000
 	INCBIN "maps/Route14.blk"
 ; 0xac0b4
 
-INCBIN "baserom.gbc",$ac0b4,$5a
+INCBIN "baserom.gbc", $ac0b4, $5a
 
 OlivineMart_BlockData: ; 0xac10e
 	INCBIN "maps/OlivineMart.blk"
@@ -12015,19 +12015,19 @@ Route10North_BlockData: ; 0xac126
 	INCBIN "maps/Route10North.blk"
 ; 0xac180
 
-INCBIN "baserom.gbc",$ac180,$168
+INCBIN "baserom.gbc", $ac180, $168
 
 OlivinePokeCenter1F_BlockData: ; 0xac2e8
 	INCBIN "maps/OlivinePokeCenter1F.blk"
 ; 0xac2fc
 
-INCBIN "baserom.gbc",$ac2fc,$ac340 - $ac2fc
+INCBIN "baserom.gbc", $ac2fc, $ac340 - $ac2fc
 
 EarlsPokemonAcademy_BlockData: ; 0xac340
 	INCBIN "maps/EarlsPokemonAcademy.blk"
 ; 0xac360
 
-INCBIN "baserom.gbc",$ac360,$ac3b4 - $ac360
+INCBIN "baserom.gbc", $ac360, $ac3b4 - $ac360
 
 GoldenrodDeptStore1F_BlockData: ; 0xac3b4
 	INCBIN "maps/GoldenrodDeptStore1F.blk"
@@ -12073,7 +12073,7 @@ CeladonMansionRoof_BlockData: ; 0xac4b4
 	INCBIN "maps/CeladonMansionRoof.blk"
 ; 0xac4c8
 
-INCBIN "baserom.gbc",$ac4c8,$ac4d8 - $ac4c8
+INCBIN "baserom.gbc", $ac4c8, $ac4d8 - $ac4c8
 
 CeladonGameCorner_BlockData: ; 0xac4d8
 	INCBIN "maps/CeladonGameCorner.blk"
@@ -12095,7 +12095,7 @@ EcruteakLugiaSpeechHouse_BlockData: ; 0xac54f
 	INCBIN "maps/EcruteakLugiaSpeechHouse.blk"
 ; 0xac55f
 
-INCBIN "baserom.gbc",$ac55f,$5a
+INCBIN "baserom.gbc", $ac55f, $5a
 
 UnionCaveB1F_BlockData: ; 0xac5b9
 	INCBIN "maps/UnionCaveB1F.blk"
@@ -12117,7 +12117,7 @@ Route6UndergroundEntrance_BlockData: ; 0xac9f1
 	INCBIN "maps/Route6UndergroundEntrance.blk"
 ; 0xaca01
 
-INCBIN "baserom.gbc",$aca01,$10
+INCBIN "baserom.gbc", $aca01, $10
 
 KurtsHouse_BlockData: ; 0xaca11
 	INCBIN "maps/KurtsHouse.blk"
@@ -12131,7 +12131,7 @@ RuinsofAlphOutside_BlockData: ; 0xaca8b
 	INCBIN "maps/RuinsofAlphOutside.blk"
 ; 0xacb3f
 
-INCBIN "baserom.gbc",$acb3f,$acb53 - $acb3f
+INCBIN "baserom.gbc", $acb3f, $acb53 - $acb3f
 
 RuinsofAlphInnerChamber_BlockData: ; 0xacb53
 	INCBIN "maps/RuinsofAlphInnerChamber.blk"
@@ -12145,19 +12145,19 @@ SproutTower1F_BlockData: ; 0xacbf3
 	INCBIN "maps/SproutTower1F.blk"
 ; 0xacc43
 
-INCBIN "baserom.gbc",$acc43,$acc4d - $acc43
+INCBIN "baserom.gbc", $acc43, $acc4d - $acc43
 
 SproutTower2F_BlockData: ; 0xacc4d
 	INCBIN "maps/SproutTower2F.blk"
 ; 0xacc9d
 
-INCBIN "baserom.gbc",$acc9d,$acca7 - $acc9d
+INCBIN "baserom.gbc", $acc9d, $acca7 - $acc9d
 
 SproutTower3F_BlockData: ; 0xacca7
 	INCBIN "maps/SproutTower3F.blk"
 ; 0xaccf7
 
-INCBIN "baserom.gbc",$accf7,$acd01 - $accf7
+INCBIN "baserom.gbc", $accf7, $acd01 - $accf7
 
 RadioTower1F_BlockData: ; 0xacd01
 	INCBIN "maps/RadioTower1F.blk"
@@ -12259,7 +12259,7 @@ UndergroundWarehouse_BlockData: ; 0xadf1c
 	INCBIN "maps/UndergroundWarehouse.blk"
 ; 0xadf76
 
-INCBIN "baserom.gbc",$adf76,$19
+INCBIN "baserom.gbc", $adf76, $19
 
 TinTower1F_BlockData: ; 0xadf8f
 	INCBIN "maps/TinTower1F.blk"
@@ -12309,7 +12309,7 @@ BurnedTowerB1F_BlockData: ; 0xae36d
 	INCBIN "maps/BurnedTowerB1F.blk"
 ; 0xae3c7
 
-INCBIN "baserom.gbc",$ae3c7,$ae4d5 - $ae3c7
+INCBIN "baserom.gbc", $ae3c7, $ae4d5 - $ae3c7
 
 MountMortar1FOutside_BlockData: ; 0xae4d5
 	INCBIN "maps/MountMortar1FOutside.blk"
@@ -12391,7 +12391,7 @@ SilverCaveRoom3_BlockData: ; 0xaf399
 	INCBIN "maps/SilverCaveRoom3.blk"
 ; 0xaf44d
 
-INCBIN "baserom.gbc",$af44d,$438
+INCBIN "baserom.gbc", $af44d, $438
 
 MahoganyMart1F_BlockData: ; 0xaf885
 	INCBIN "maps/MahoganyMart1F.blk"
@@ -12409,7 +12409,7 @@ TeamRocketBaseB3F_BlockData: ; 0xaf9a3
 	INCBIN "maps/TeamRocketBaseB3F.blk"
 ; 0xafa2a
 
-INCBIN "baserom.gbc",$afa2a,$afa84 - $afa2a
+INCBIN "baserom.gbc", $afa2a, $afa84 - $afa2a
 
 IndigoPlateauPokeCenter1F_BlockData: ; 0xafa84
 	INCBIN "maps/IndigoPlateauPokeCenter1F.blk"
@@ -12455,7 +12455,7 @@ OlivineGym_BlockData: ; 0xafc7b
 	INCBIN "maps/OlivineGym.blk"
 ; 0xafca3
 
-INCBIN "baserom.gbc",$afca3,$afcb7 - $afca3
+INCBIN "baserom.gbc", $afca3, $afcb7 - $afca3
 
 CianwoodGym_BlockData: ; 0xafcb7
 	INCBIN "maps/CianwoodGym.blk"
@@ -12496,7 +12496,7 @@ OlivineLighthouse6F_BlockData: ; 0xaff00
 
 SECTION "bank2C",DATA,BANK[$2C]
 
-INCBIN "baserom.gbc",$b0000,$b0023 - $b0000
+INCBIN "baserom.gbc", $b0000, $b0023 - $b0000
 
 SlowpokeWellB1F_BlockData: ; 0xb0023
 	INCBIN "maps/SlowpokeWellB1F.blk"
@@ -12554,7 +12554,7 @@ FastShipB1F_BlockData: ; 0xb0680
 	INCBIN "maps/FastShipB1F.blk"
 ; 0xb0700
 
-INCBIN "baserom.gbc",$b0700,$10
+INCBIN "baserom.gbc", $b0700, $10
 
 FastShipCabins_NNW_NNE_NE_BlockData: ; 0xb0710
 	INCBIN "maps/FastShipCabins_NNW_NNE_NE.blk"
@@ -12668,13 +12668,13 @@ CeladonGym_BlockData: ; 0xb0cb5
 	INCBIN "maps/CeladonGym.blk"
 ; 0xb0ce2
 
-INCBIN "baserom.gbc",$b0ce2,$b0cf6 - $b0ce2
+INCBIN "baserom.gbc", $b0ce2, $b0cf6 - $b0ce2
 
 CeladonCafe_BlockData: ; 0xb0cf6
 	INCBIN "maps/CeladonCafe.blk"
 ; 0xb0d0e
 
-INCBIN "baserom.gbc",$b0d0e,$18
+INCBIN "baserom.gbc", $b0d0e, $18
 
 RockTunnel1F_BlockData: ; 0xb0d26
 	INCBIN "maps/RockTunnel1F.blk"
@@ -12828,7 +12828,7 @@ BattleTowerOutside_BlockData: ; 0xb1a6e
 	INCBIN "maps/BattleTowerOutside.blk"
 ; 0xb1afa
 
-INCBIN "baserom.gbc",$b1afa,$28
+INCBIN "baserom.gbc", $b1afa, $28
 
 GoldenrodDeptStoreRoof_BlockData: ; 0xb1b22
 	INCBIN "maps/GoldenrodDeptStoreRoof.blk"
@@ -12954,7 +12954,7 @@ INCBIN "tilesets/16_collision.bin"
 
 SECTION "bank2E",DATA,BANK[$2E]
 
-INCBIN "baserom.gbc",$B8000,$b8219 - $b8000
+INCBIN "baserom.gbc", $B8000, $b8219 - $b8000
 
 Functionb8219: ; b8219
 ; deals strictly with rockmon encounter
@@ -13012,7 +13012,7 @@ GetTreeMonEncounterTable: ; b823f
 	ret
 ; b825e
 
-INCBIN "baserom.gbc",$B825E,$b82c5 - $b825e
+INCBIN "baserom.gbc", $B825E, $b82c5 - $b825e
 
 WildRockMonMapTable: ; b82c5
 	db GROUP_CIANWOOD_CITY, MAP_CIANWOOD_CITY, $07
@@ -13194,12 +13194,12 @@ WildRockMonTable: ; b83de
 	db $ff ; end
 ; b83e5
 
-INCBIN "baserom.gbc",$b83e5,$b9e8b - $b83e5
+INCBIN "baserom.gbc", $b83e5, $b9e8b - $b83e5
 
 
 SECTION "bank2F",DATA,BANK[$2F]
 
-INCBIN "baserom.gbc",$bc000,$bc09c - $bc000
+INCBIN "baserom.gbc", $bc000, $bc09c - $bc000
 
 PokeCenterNurseScript: ; bc09c
 ; Talking to a nurse in a Pokemon Center
@@ -13332,7 +13332,7 @@ PokeCenterNurseScript: ; bc09c
 	end
 ; bc162
 
-INCBIN "baserom.gbc",$bc162,$bcea5-$bc162
+INCBIN "baserom.gbc", $bc162, $bcea5-$bc162
 
 UnusedPhoneScript: ; 0xbcea5
 	3writetext BANK(UnusedPhoneText), UnusedPhoneText
@@ -13388,13 +13388,13 @@ UnknownScript_0xbcee7: ; 0xbcee7
 
 .violet ; 0xbcf15
 	displaylocation $7 ; sprout tower
-	3call $3,$4edf
+	3call $3, $4edf
 .azalea ; 0xbcf1b
 	displaylocation $d ; slowpoke well
-	3call $3,$4edf
+	3call $3, $4edf
 .goldenrod ; 0xbcf21
 	displaylocation $11 ; radio tower
-	3call $3,$4edf
+	3call $3, $4edf
 	3writetext $6d, $411c
 	keeptextopen
 	2jump UnknownScript_0xbcf37
@@ -13623,27 +13623,27 @@ ElmPhoneScript2: ; 0xbd081
 	specialphonecall $0000
 	end
 
-INCBIN "baserom.gbc",$bd0d0,$be699-$bd0d0
+INCBIN "baserom.gbc", $bd0d0, $be699-$bd0d0
 
 
 SECTION "bank30",DATA,BANK[$30]
 
-INCBIN "baserom.gbc",$c0000,$c3fc0 - $c0000
+INCBIN "baserom.gbc", $c0000, $c3fc0 - $c0000
 
 
 SECTION "bank31",DATA,BANK[$31]
 
-INCBIN "baserom.gbc",$c4000,$c7f80 - $c4000
+INCBIN "baserom.gbc", $c4000, $c7f80 - $c4000
 
 
 SECTION "bank32",DATA,BANK[$32]
 
-INCBIN "baserom.gbc",$c8000,$cbe2b - $c8000
+INCBIN "baserom.gbc", $c8000, $cbe2b - $c8000
 
 
 SECTION "bank33",DATA,BANK[$33]
 
-INCBIN "baserom.gbc",$cc000, $cfd9e - $cc000
+INCBIN "baserom.gbc", $cc000, $cfd9e - $cc000
 
 ;                          Songs iii
 
@@ -13835,7 +13835,7 @@ INCBIN "tilesets/36_collision.bin"
 
 SECTION "bank38",DATA,BANK[$38]
 
-INCBIN "baserom.gbc",$e0000,$e37f9 - $e0000
+INCBIN "baserom.gbc", $e0000, $e37f9 - $e0000
 
 
 SECTION "bank39",DATA,BANK[$39]
@@ -14143,13 +14143,13 @@ Music_BugCatchingContest:   INCLUDE "audio/music/bugcatchingcontest.asm"
 SECTION "bank3E",DATA,BANK[$3E]
 
 FontExtra:
-INCBIN "gfx/misc/font_extra.2bpp",$0,$200
+INCBIN "gfx/misc/font_extra.2bpp", $0, $200
 
 Font:
-INCBIN "gfx/misc/font.1bpp",$0,$400
+INCBIN "gfx/misc/font.1bpp", $0, $400
 
 FontBattleExtra:
-INCBIN "gfx/misc/font_battle_extra.2bpp",$0,$200
+INCBIN "gfx/misc/font_battle_extra.2bpp", $0, $200
 
 INCBIN "baserom.gbc", $f8800, $f8ba0 - $f8800
 
@@ -14161,7 +14161,7 @@ INCBIN "baserom.gbc", $f8ea3, $fbbfc - $f8ea3
 
 INCLUDE "battle/magikarp_length.asm"
 
-INCBIN "baserom.gbc",$fbccf,$fbe91 - $fbccf
+INCBIN "baserom.gbc", $fbccf, $fbe91 - $fbccf
 
 
 SECTION "bank3F",DATA,BANK[$3F]
@@ -14268,7 +14268,7 @@ Tileset01Anim: ; 0xfc0a3
 	dw $0000, DoneTileAnimation
 ; 0xfc0d7
 
-INCBIN "baserom.gbc",$fc0d7,$fc12f-$fc0d7
+INCBIN "baserom.gbc", $fc0d7, $fc12f-$fc0d7
 
 Tileset09Anim: ; 0xfc12f
 ;	   param, function
@@ -14298,7 +14298,7 @@ Tileset15Anim: ; 0xfc15f
 	dw $0000, DoneTileAnimation
 ; 0xfc17f
 
-INCBIN "baserom.gbc",$fc17f,$fc1e7-$fc17f
+INCBIN "baserom.gbc", $fc17f, $fc1e7-$fc17f
 
 Tileset24Anim: ; 0xfc1e7
 Tileset30Anim: ; 0xfc1e7
@@ -14367,7 +14367,7 @@ Tileset23Anim: ; 0xfc27f
 	dw $0000, DoneTileAnimation
 ; 0xfc2bf
 
-INCBIN "baserom.gbc",$fc2bf,$fc2e7-$fc2bf
+INCBIN "baserom.gbc", $fc2bf, $fc2e7-$fc2bf
 
 Tileset04Anim: ; 0xfc2e7
 Tileset05Anim: ; 0xfc2e7
@@ -14702,7 +14702,7 @@ LoadTradesPointer: ; 0xfcdc2
 	ret
 ; 0xfcdd7
 
-INCBIN "baserom.gbc",$fcdd7,$fce58-$fcdd7
+INCBIN "baserom.gbc", $fcdd7, $fce58-$fcdd7
 
 Trades: ; 0xfce58
 ; byte 1: dialog
@@ -14716,34 +14716,34 @@ Trades: ; 0xfce58
 ; byte 31 gender
 ; byte 32 XXX always zero?
 
-	db 0,ABRA,MACHOP,"MUSCLE@@@@@",$37,$66,GOLD_BERRY,$54,$92,"MIKE@@@@@@@",0,0
-	db 0,BELLSPROUT,ONIX,"ROCKY@@@@@@",$96,$66,BITTER_BERRY,$1e,$bf,"KYLE@@@@@@@",0,0
-	db 1,KRABBY,VOLTORB,"VOLTY@@@@@@",$98,$88,PRZCUREBERRY,$05,$72,"TIM@@@@@@@@",0,0
-	db 3,DRAGONAIR,DODRIO,"DORIS@@@@@@",$77,$66,SMOKE_BALL,$1b,$01,"EMY@@@@@@@@",2,0
-	db 2,HAUNTER,XATU,"PAUL@@@@@@@",$96,$86,MYSTERYBERRY,$00,$3d,"CHRIS@@@@@@",0,0
-	db 3,CHANSEY,AERODACTYL,"AEROY@@@@@@",$96,$66,GOLD_BERRY,$7b,$67,"KIM@@@@@@@@",0,0
-	db 0,DUGTRIO,MAGNETON,"MAGGIE@@@@@",$96,$66,METAL_COAT,$a2,$c3,"FOREST@@@@@",0,0
+	db 0,ABRA,MACHOP,"MUSCLE@@@@@", $37, $66,GOLD_BERRY, $54, $92,"MIKE@@@@@@@",0,0
+	db 0,BELLSPROUT,ONIX,"ROCKY@@@@@@", $96, $66,BITTER_BERRY, $1e, $bf,"KYLE@@@@@@@",0,0
+	db 1,KRABBY,VOLTORB,"VOLTY@@@@@@", $98, $88,PRZCUREBERRY, $05, $72,"TIM@@@@@@@@",0,0
+	db 3,DRAGONAIR,DODRIO,"DORIS@@@@@@", $77, $66,SMOKE_BALL, $1b, $01,"EMY@@@@@@@@",2,0
+	db 2,HAUNTER,XATU,"PAUL@@@@@@@", $96, $86,MYSTERYBERRY, $00, $3d,"CHRIS@@@@@@",0,0
+	db 3,CHANSEY,AERODACTYL,"AEROY@@@@@@", $96, $66,GOLD_BERRY, $7b, $67,"KIM@@@@@@@@",0,0
+	db 0,DUGTRIO,MAGNETON,"MAGGIE@@@@@", $96, $66,METAL_COAT, $a2, $c3,"FOREST@@@@@",0,0
 
-INCBIN "baserom.gbc",$fcf38,$fd1d2-$fcf38
+INCBIN "baserom.gbc", $fcf38, $fd1d2-$fcf38
 
 
 SECTION "bank40",DATA,BANK[$40]
 
-INCBIN "baserom.gbc",$100000,$10389d - $100000
+INCBIN "baserom.gbc", $100000, $10389d - $100000
 
 
 SECTION "bank41",DATA,BANK[$41]
 
-INCBIN "baserom.gbc",$104000,$104350 - $104000
+INCBIN "baserom.gbc", $104000, $104350 - $104000
 
 INCBIN "gfx/ow/misc.2bpp"
 
-INCBIN "baserom.gbc",$1045b0,$105258 - $1045b0
+INCBIN "baserom.gbc", $1045b0, $105258 - $1045b0
 
 MysteryGiftGFX:
 INCBIN "gfx/misc/mystery_gift.2bpp"
 
-INCBIN "baserom.gbc",$105688,$105930 - $105688
+INCBIN "baserom.gbc", $105688, $105930 - $105688
 
 ; japanese mystery gift gfx
 INCBIN "gfx/misc/mystery_gift_jp.2bpp"
@@ -15112,19 +15112,19 @@ UpdateUsedMoves: ; 105ed0
 HallOfFame2: ; 0x105ef6
 	ret
 
-INCBIN "baserom.gbc",$105ef7,$106078 - $105ef7
+INCBIN "baserom.gbc", $105ef7, $106078 - $105ef7
 
 HallOfFame1: ; 0x106078
 	ret
 
-INCBIN "baserom.gbc",$106079,$1060bb - $106079
+INCBIN "baserom.gbc", $106079, $1060bb - $106079
 
 Function1060bb: ; 1060bb
 ; commented out
 	ret
 ; 1060bc
 
-INCBIN "baserom.gbc",$1060bc,$106dbc - $1060bc
+INCBIN "baserom.gbc", $1060bc, $106dbc - $1060bc
 
 
 SECTION "bank42",DATA,BANK[$42]
@@ -15511,7 +15511,7 @@ TitleScreenPalettes:
 
 SECTION "bank44",DATA,BANK[$44]
 
-INCBIN "baserom.gbc",$110000,$110fad - $110000
+INCBIN "baserom.gbc", $110000, $110fad - $110000
 
 URIPrefix: ; 0x110fad
 	ascii "http://"
@@ -15524,11 +15524,11 @@ HTTPUtilityURL: ; 0x110ffc
 HTTPRankingURL: ; 0x111020
 	ascii "gameboy.datacenter.ne.jp/cgb/ranking"
 
-INCBIN "baserom.gbc",$111044,$113f84 - $111044
+INCBIN "baserom.gbc", $111044, $113f84 - $111044
 
 SECTION "bank45",DATA,BANK[$45]
 
-INCBIN "baserom.gbc",$114000,$117a7f - $114000
+INCBIN "baserom.gbc", $114000, $117a7f - $114000
 
 ; everything from here to the end of the bank is related to the
 ; Mobile Stadium option from the continue/newgame menu.
@@ -15854,10 +15854,10 @@ Function117c89:
 	ret
 
 Data117cbc: ; 0x117cbc
-	db $40,$0c,$00,$11,$13,$00,$00,$00
+	db $40, $0c, $00, $11, $13, $00, $00, $00
 
 Data117cc4: ; 0x117cc4
-	db $40,$07,$0e,$0b,$13,$00,$00,$00 ; XXX what is this
+	db $40, $07, $0e, $0b, $13, $00, $00, $00 ; XXX what is this
 
 YesNo117ccc: ; 0x117ccc
 	db "はい", $4e ; Yes
@@ -15872,14 +15872,14 @@ MobileStadiumSuccessText: ; 0x117cd8
 	db "@"
 
 Function117cdd: ; 0x117cdd
-	ld hl,$cf63
+	ld hl, $cf63
 	inc [hl]
 	ret
 
 
 SECTION "bank46",DATA,BANK[$46]
 
-INCBIN "baserom.gbc",$118000,$118ba5 - $118000
+INCBIN "baserom.gbc", $118000, $118ba5 - $118000
 
 ExchangeDownloadURL: ; 0x118ba5
 	ascii "http://gameboy.datacenter.ne.jp/cgb/download?name=/01/CGB-BXTJ/exchange/index.txt"
@@ -15906,11 +15906,11 @@ IndexDownloadURL: ; 0x118ce4
 
 db $0
 
-INCBIN "baserom.gbc",$118d35,$11bc9e - $118d35
+INCBIN "baserom.gbc", $118d35, $11bc9e - $118d35
 
 SECTION "bank47",DATA,BANK[$47]
 
-INCBIN "baserom.gbc",$11c000,$11f686 - $11c000
+INCBIN "baserom.gbc", $11c000, $11f686 - $11c000
 
 
 SECTION "bank48",DATA,BANK[$48]
@@ -16737,17 +16737,17 @@ INCBIN "gfx/pics/201r/back.lz"
 
 SECTION "bank5B",DATA,BANK[$5B]
 
-INCBIN "baserom.gbc",$16c000,$16d7fe - $16c000
+INCBIN "baserom.gbc", $16c000, $16d7fe - $16c000
 
 
 SECTION "bank5C",DATA,BANK[$5C]
 
-INCBIN "baserom.gbc",$170000,$17367f - $170000
+INCBIN "baserom.gbc", $170000, $17367f - $170000
 
 
 SECTION "bank5D",DATA,BANK[$5D]
 
-INCBIN "baserom.gbc",$174000,$177561 - $174000
+INCBIN "baserom.gbc", $174000, $177561 - $174000
 
 
 SECTION "bank5E",DATA,BANK[$5E]
@@ -16765,17 +16765,17 @@ Music_SuicuneBattle:     INCLUDE "audio/music/suicunebattle.asm"
 Music_BattleTowerLobby:  INCLUDE "audio/music/battletowerlobby.asm"
 Music_MobileCenter:      INCLUDE "audio/music/mobilecenter.asm"
 
-INCBIN "baserom.gbc",$17982d, $1799ef - $17982d
+INCBIN "baserom.gbc", $17982d, $1799ef - $17982d
 
 MobileAdapterGFX:
 INCBIN "gfx/misc/mobile_adapter.2bpp"
 
-INCBIN "baserom.gbc",$17a68f, $17b629 - $17a68f
+INCBIN "baserom.gbc", $17a68f, $17b629 - $17a68f
 
 
 SECTION "bank5F",DATA,BANK[$5F]
 
-INCBIN "baserom.gbc",$17c000,$17ff6c - $17c000
+INCBIN "baserom.gbc", $17c000, $17ff6c - $17c000
 
 
 SECTION "bank60",DATA,BANK[$60]
@@ -17073,7 +17073,7 @@ INCLUDE "stats/pokedex/entries_2.asm"
 
 SECTION "bank6F",DATA,BANK[$6F]
 
-INCBIN "baserom.gbc",$1bc000,$1be08d - $1bc000
+INCBIN "baserom.gbc", $1bc000, $1be08d - $1bc000
 
 
 SECTION "bank70",DATA,BANK[$70]
@@ -17217,13 +17217,13 @@ DudeAutoInput_DownA: ; 1de2af
 ; 1de2c5
 
 
-INCBIN "baserom.gbc",$1de2c5,$1de2e4 - $1de2c5
+INCBIN "baserom.gbc", $1de2c5, $1de2e4 - $1de2c5
 
 PokegearGFX: ; 1de2e4
 INCBIN "gfx/misc/pokegear.lz"
 ; 1de5c7
 
-INCBIN "baserom.gbc",$1de5c7,$1df238 - $1de5c7
+INCBIN "baserom.gbc", $1de5c7, $1df238 - $1de5c7
 
 
 SECTION "bank78",DATA,BANK[$78]
@@ -17253,26 +17253,26 @@ SECTION "bank7A",DATA,BANK[$7A]
 
 SECTION "bank7B",DATA,BANK[$7B]
 
-INCBIN "baserom.gbc",$1ec000,$1ecf02 - $1ec000
+INCBIN "baserom.gbc", $1ec000, $1ecf02 - $1ec000
 
 
 SECTION "bank7C",DATA,BANK[$7C]
 
-INCBIN "baserom.gbc",$1f0000,$1f09d8 - $1f0000
+INCBIN "baserom.gbc", $1f0000, $1f09d8 - $1f0000
 
 
 SECTION "bank7D",DATA,BANK[$7D]
 
-INCBIN "baserom.gbc",$1f4000,$1f636a - $1f4000
+INCBIN "baserom.gbc", $1f4000, $1f636a - $1f4000
 
 
 SECTION "bank7E",DATA,BANK[$7E]
 
-INCBIN "baserom.gbc",$1f8000,$1fb8a8 - $1f8000
+INCBIN "baserom.gbc", $1f8000, $1fb8a8 - $1f8000
 
 
 SECTION "bank7F",DATA,BANK[$7F]
 
 SECTION "stadium2",DATA[$8000-$220],BANK[$7F]
-INCBIN "baserom.gbc",$1ffde0,$220
+INCBIN "baserom.gbc", $1ffde0, $220
 
