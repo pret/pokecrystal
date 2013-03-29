@@ -5703,7 +5703,9 @@ INCBIN "baserom.gbc", $271f4, $2732e - $271f4
 
 MoveEffects: ; 2732e
 
-INCBIN "baserom.gbc", $2732e, $27a2d - $2732e
+INCLUDE "battle/moves/move_effects.asm"
+
+INCBIN "baserom.gbc", $27a28, $27a2d - $27a28
 
 
 SECTION "bankA",DATA,BANK[$A]
