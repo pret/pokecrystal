@@ -2932,33 +2932,48 @@ AddNTimes: ; 0x30fe
 	ret
 ; 0x3105
 
-INCBIN "baserom.gbc", $3105, $3119-$3105
 
-Multiply: ; 0x3119
-; function to do multiplication
-; all values are big endian
-; INPUT
-; ffb4-ffb6 =  multiplicand
-; ffb7 = multiplier
-; OUTPUT
-; ffb3-ffb6 = product
-	INCBIN "baserom.gbc", $3119, $3124 - $3119
-; 0x3124
+INCBIN "baserom.gbc", $3105, $3119 - $3105
 
-Divide: ; 0x3124
-; function to do division
-; all values are big endian
-; INPUT
-; ffb3-ffb6 = dividend
-; ffb7 = divisor
-; b = number of bytes in the dividend (starting from ffb3)
-; OUTPUT
-; ffb4-ffb6 = quotient
-; ffb7 = remainder
-	INCBIN "baserom.gbc", $3124, $3136 - $3124
-; 0x3136
+
+Multiply: ; 3119
+; Multiply hMultiplicand (3 bytes) by hMultiplier. Result in hProduct.
+; All values are big endian.
+	push hl
+	push bc
+
+	callab _Multiply
+
+	pop bc
+	pop hl
+	ret
+; 3124
+
+
+Divide: ; 3124
+; Divide hDividend length b (max 4 bytes) by hDivisor. Result in hQuotient.
+; All values are big endian.
+	push hl
+	push de
+	push bc
+	ld a, [hROMBank]
+	push af
+	ld a, BANK(_Divide)
+	rst Bankswitch
+
+	call _Divide
+
+	pop af
+	rst Bankswitch
+	pop bc
+	pop de
+	pop hl
+	ret
+; 3136
+
 
 INCBIN "baserom.gbc", $3136, $313d - $3136
+
 
 PrintLetterDelay: ; 313d
 ; wait some frames before printing the next letter
@@ -4141,7 +4156,207 @@ CheckNickErrors: ; 669f
 	db $ff ; end
 ; 66de
 
-INCBIN "baserom.gbc", $66de, $6eef - $66de
+
+_Multiply: ; 66de
+
+; hMultiplier is one byte.
+	ld a, 8
+	ld b, a
+
+	xor a
+	ld [hMultiplicand - 1], a
+	ld [hMathBuffer + 1], a
+	ld [hMathBuffer + 2], a
+	ld [hMathBuffer + 3], a
+	ld [hMathBuffer + 4], a
+
+
+.loop
+	ld a, [hMultiplier]
+	srl a
+	ld [hMultiplier], a
+	jr nc, .next
+
+	ld a, [hMathBuffer + 4]
+	ld c, a
+	ld a, [hMultiplicand + 2]
+	add c
+	ld [hMathBuffer + 4], a
+
+	ld a, [hMathBuffer + 3]
+	ld c, a
+	ld a, [hMultiplicand + 1]
+	adc c
+	ld [hMathBuffer + 3], a
+
+	ld a, [hMathBuffer + 2]
+	ld c, a
+	ld a, [hMultiplicand + 0]
+	adc c
+	ld [hMathBuffer + 2], a
+
+	ld a, [hMathBuffer + 1]
+	ld c, a
+	ld a, [hMultiplicand - 1]
+	adc c
+	ld [hMathBuffer + 1], a
+
+.next
+	dec b
+	jr z, .done
+
+
+; hMultiplicand <<= 1
+
+	ld a, [hMultiplicand + 2]
+	add a
+	ld [hMultiplicand + 2], a
+
+	ld a, [hMultiplicand + 1]
+	rla
+	ld [hMultiplicand + 1], a
+
+	ld a, [hMultiplicand + 0]
+	rla
+	ld [hMultiplicand + 0], a
+
+	ld a, [hMultiplicand - 1]
+	rla
+	ld [hMultiplicand - 1], a
+
+	jr .loop
+
+
+.done
+	ld a, [hMathBuffer + 4]
+	ld [hProduct + 3], a
+
+	ld a, [hMathBuffer + 3]
+	ld [hProduct + 2], a
+
+	ld a, [hMathBuffer + 2]
+	ld [hProduct + 1], a
+
+	ld a, [hMathBuffer + 1]
+	ld [hProduct + 0], a
+
+	ret
+; 673e
+
+
+_Divide: ; 673e
+	xor a
+	ld [hMathBuffer + 0], a
+	ld [hMathBuffer + 1], a
+	ld [hMathBuffer + 2], a
+	ld [hMathBuffer + 3], a
+	ld [hMathBuffer + 4], a
+
+	ld a, 9
+	ld e, a
+
+.loop
+	ld a, [hMathBuffer + 0]
+	ld c, a
+	ld a, [hDividend + 1]
+	sub c
+	ld d, a
+
+	ld a, [hDivisor]
+	ld c, a
+	ld a, [hDividend + 0]
+	sbc c
+	jr c, .asm_6767
+
+	ld [hDividend + 0], a
+
+	ld a, d
+	ld [hDividend + 1], a
+
+	ld a, [hMathBuffer + 4]
+	inc a
+	ld [hMathBuffer + 4], a
+
+	jr .loop
+
+.asm_6767
+	ld a, b
+	cp 1
+	jr z, .done
+
+	ld a, [hMathBuffer + 4]
+	add a
+	ld [hMathBuffer + 4], a
+
+	ld a, [hMathBuffer + 3]
+	rla
+	ld [hMathBuffer + 3], a
+
+	ld a, [hMathBuffer + 2]
+	rla
+	ld [hMathBuffer + 2], a
+
+	ld a, [hMathBuffer + 1]
+	rla
+	ld [hMathBuffer + 1], a
+
+	dec e
+	jr nz, .asm_6798
+
+	ld e, 8
+	ld a, [hMathBuffer + 0]
+	ld [hDivisor], a
+	xor a
+	ld [hMathBuffer + 0], a
+
+	ld a, [hDividend + 1]
+	ld [hDividend + 0], a
+
+	ld a, [hDividend + 2]
+	ld [hDividend + 1], a
+
+	ld a, [hDividend + 3]
+	ld [hDividend + 2], a
+
+.asm_6798
+	ld a, e
+	cp 1
+	jr nz, .asm_679e
+	dec b
+
+.asm_679e
+	ld a, [hDivisor]
+	srl a
+	ld [hDivisor], a
+
+	ld a, [hMathBuffer + 0]
+	rr a
+	ld [hMathBuffer + 0], a
+
+	jr .loop
+
+.done
+	ld a, [hDividend + 1]
+	ld [hDivisor], a
+
+	ld a, [hMathBuffer + 4]
+	ld [hDividend + 3], a
+
+	ld a, [hMathBuffer + 3]
+	ld [hDividend + 2], a
+
+	ld a, [hMathBuffer + 2]
+	ld [hDividend + 1], a
+
+	ld a, [hMathBuffer + 1]
+	ld [hDividend + 0], a
+
+	ret
+; 67c1
+
+
+INCBIN "baserom.gbc", $67c1, $6eef - $67c1
+
 
 DrawGraphic: ; 6eef
 ; input:

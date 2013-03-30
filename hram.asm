@@ -26,6 +26,16 @@ hJoyDown           EQU $ffa8
 
 hPastLeadingZeroes EQU $ffb3
 
+hDividend          EQU $ffb3
+hDivisor           EQU $ffb7
+hQuotient          EQU $ffb4
+
+hMultiplicand      EQU $ffb4
+hMultiplier        EQU $ffb7
+hProduct           EQU $ffb3
+
+hMathBuffer        EQU $ffb8
+
 hLCDStatCustom     EQU $ffc6
 
 hBGMapMode         EQU $ffd4
