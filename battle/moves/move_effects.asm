@@ -33,6 +33,7 @@ HiJumpKick:
 QuickAttack:
 MachPunch:
 Extremespeed:
+NormalHit:
 	checkobedience
 	usedmovetext
 	doturn
@@ -57,6 +58,7 @@ SleepPowder:
 Hypnosis:
 LovelyKiss:
 Spore:
+DoSleep:
 	checkobedience
 	usedmovetext
 	doturn
@@ -69,6 +71,7 @@ PoisonSting:
 Smog:
 Sludge:
 SludgeBomb:
+PoisonHit:
 	checkobedience
 	usedmovetext
 	doturn
@@ -93,6 +96,7 @@ Absorb:
 MegaDrain:
 LeechLife:
 GigaDrain:
+LeechHit:
 	checkobedience
 	usedmovetext
 	doturn
@@ -117,6 +121,7 @@ FirePunch:
 Ember:
 Flamethrower:
 FireBlast:
+BurnHit:
 	checkobedience
 	usedmovetext
 	doturn
@@ -141,6 +146,7 @@ IcePunch:
 IceBeam:
 Blizzard:
 PowderSnow:
+FreezeHit:
 	checkobedience
 	usedmovetext
 	doturn
@@ -169,6 +175,7 @@ Lick:
 ZapCannon:
 Spark:
 Dragonbreath:
+ParalyzeHit:
 	checkobedience
 	usedmovetext
 	doturn
@@ -240,6 +247,7 @@ MirrorMove:
 
 Meditate:
 Sharpen:
+AttackUp:
 	checkobedience
 	usedmovetext
 	doturn
@@ -253,6 +261,7 @@ Sharpen:
 
 Harden:
 Withdraw:
+DefenseUp:
 	checkobedience
 	usedmovetext
 	doturn
@@ -264,6 +273,7 @@ Withdraw:
 	statupfailtext
 	endmove
 
+SpeedUp:
 	checkobedience
 	usedmovetext
 	doturn
@@ -276,6 +286,7 @@ Withdraw:
 	endmove
 
 Growth:
+SpecialAttackUp:
 	checkobedience
 	usedmovetext
 	doturn
@@ -287,6 +298,7 @@ Growth:
 	statupfailtext
 	endmove
 
+SpecialDefenseUp:
 	checkobedience
 	usedmovetext
 	doturn
@@ -298,6 +310,7 @@ Growth:
 	statupfailtext
 	endmove
 
+AccuracyUp:
 	checkobedience
 	usedmovetext
 	doturn
@@ -311,6 +324,7 @@ Growth:
 
 DoubleTeam:
 Minimize:
+EvasionUp:
 	checkobedience
 	usedmovetext
 	doturn
@@ -324,6 +338,7 @@ Minimize:
 	endmove
 
 SwordsDance:
+AttackUp2:
 	checkobedience
 	usedmovetext
 	doturn
@@ -337,6 +352,7 @@ SwordsDance:
 
 Barrier:
 AcidArmor:
+DefenseUp2:
 	checkobedience
 	usedmovetext
 	doturn
@@ -349,6 +365,7 @@ AcidArmor:
 	endmove
 
 Agility:
+SpeedUp2:
 	checkobedience
 	usedmovetext
 	doturn
@@ -360,6 +377,7 @@ Agility:
 	statupfailtext
 	endmove
 
+SpecialAttackUp2:
 	checkobedience
 	usedmovetext
 	doturn
@@ -372,6 +390,7 @@ Agility:
 	endmove
 
 Amnesia:
+SpecialDefenseUp2:
 	checkobedience
 	usedmovetext
 	doturn
@@ -383,6 +402,7 @@ Amnesia:
 	statupfailtext
 	endmove
 
+AccuracyUp2:
 	checkobedience
 	usedmovetext
 	doturn
@@ -394,6 +414,7 @@ Amnesia:
 	statupfailtext
 	endmove
 
+EvasionUp2:
 	checkobedience
 	usedmovetext
 	doturn
@@ -406,6 +427,7 @@ Amnesia:
 	endmove
 
 Growl:
+AttackDown:
 	checkobedience
 	usedmovetext
 	doturn
@@ -420,6 +442,7 @@ Growl:
 
 TailWhip:
 Leer:
+DefenseDown:
 	checkobedience
 	usedmovetext
 	doturn
@@ -433,6 +456,7 @@ Leer:
 	endmove
 
 StringShot:
+SpeedDown:
 	checkobedience
 	usedmovetext
 	doturn
@@ -445,6 +469,7 @@ StringShot:
 	statdownfailtext
 	endmove
 
+SpecialAttackDown:
 	checkobedience
 	usedmovetext
 	doturn
@@ -457,6 +482,7 @@ StringShot:
 	statdownfailtext
 	endmove
 
+SpecialDefenseDown:
 	checkobedience
 	usedmovetext
 	doturn
@@ -473,6 +499,7 @@ SandAttack:
 Smokescreen:
 Kinesis:
 Flash:
+AccuracyDown:
 	checkobedience
 	usedmovetext
 	doturn
@@ -486,6 +513,7 @@ Flash:
 	endmove
 
 SweetScent:
+EvasionDown:
 	checkobedience
 	usedmovetext
 	doturn
@@ -499,6 +527,7 @@ SweetScent:
 	endmove
 
 Charm:
+AttackDown2:
 	checkobedience
 	usedmovetext
 	doturn
@@ -512,6 +541,7 @@ Charm:
 	endmove
 
 Screech:
+DefenseDown2:
 	checkobedience
 	usedmovetext
 	doturn
@@ -526,6 +556,7 @@ Screech:
 
 CottonSpore:
 ScaryFace:
+SpeedDown2:
 	checkobedience
 	usedmovetext
 	doturn
@@ -538,6 +569,7 @@ ScaryFace:
 	statdownfailtext
 	endmove
 
+SpecialAttackDown2:
 	checkobedience
 	usedmovetext
 	doturn
@@ -550,6 +582,7 @@ ScaryFace:
 	statdownfailtext
 	endmove
 
+SpecialDefenseDown2:
 	checkobedience
 	usedmovetext
 	doturn
@@ -562,6 +595,7 @@ ScaryFace:
 	statdownfailtext
 	endmove
 
+AccuracyDown2:
 	checkobedience
 	usedmovetext
 	doturn
@@ -574,6 +608,7 @@ ScaryFace:
 	statdownfailtext
 	endmove
 
+EvasionDown2:
 	checkobedience
 	usedmovetext
 	doturn
@@ -587,6 +622,7 @@ ScaryFace:
 	endmove
 
 AuroraBeam:
+AttackDownHit:
 	checkobedience
 	usedmovetext
 	doturn
@@ -611,6 +647,7 @@ AuroraBeam:
 Acid:
 IronTail:
 RockSmash:
+DefenseDownHit:
 	checkobedience
 	usedmovetext
 	doturn
@@ -637,6 +674,7 @@ Bubblebeam:
 Constrict:
 Bubble:
 IcyWind:
+SpeedDownHit:
 	checkobedience
 	usedmovetext
 	doturn
@@ -658,6 +696,7 @@ IcyWind:
 	statmessagetarget
 	endmove
 
+SpecialAttackDownHit:
 	checkobedience
 	usedmovetext
 	doturn
@@ -682,6 +721,7 @@ IcyWind:
 PsychicM:
 Crunch:
 ShadowBall:
+SpecialDefenseDownHit:
 	checkobedience
 	usedmovetext
 	doturn
@@ -705,6 +745,7 @@ ShadowBall:
 
 MudSlap:
 Octazooka:
+AccuracyDownHit:
 	checkobedience
 	usedmovetext
 	doturn
@@ -726,6 +767,7 @@ Octazooka:
 	statmessagetarget
 	endmove
 
+EvasionDownHit:
 	checkobedience
 	usedmovetext
 	doturn
@@ -748,6 +790,7 @@ Octazooka:
 	endmove
 
 SteelWing:
+DefenseUpHit:
 	checkobedience
 	usedmovetext
 	doturn
@@ -770,6 +813,7 @@ SteelWing:
 	endmove
 
 MetalClaw:
+AttackUpHit:
 	checkobedience
 	usedmovetext
 	doturn
@@ -792,6 +836,7 @@ MetalClaw:
 	endmove
 
 Ancientpower:
+AllUpHit:
 	checkobedience
 	usedmovetext
 	doturn
@@ -866,6 +911,7 @@ Bide:
 Thrash:
 PetalDance:
 Outrage:
+Rampage:
 	checkrampage
 	checkobedience
 	doturn
@@ -907,6 +953,7 @@ FurySwipes:
 BoneRush:
 DoubleKick:
 Bonemerang:
+MultiHit:
 	checkobedience
 	usedmovetext
 	doturn
@@ -933,6 +980,7 @@ Bonemerang:
 	endmove
 
 Twineedle:
+PoisonMultiHit:
 	checkobedience
 	usedmovetext
 	doturn
@@ -967,6 +1015,7 @@ LowKick:
 BoneClub:
 RockSlide:
 HyperFang:
+FlinchHit:
 	checkobedience
 	usedmovetext
 	doturn
@@ -990,6 +1039,7 @@ HyperFang:
 Guillotine:
 HornDrill:
 Fissure:
+OHKOHit:
 	checkobedience
 	usedmovetext
 	doturn
@@ -1008,6 +1058,7 @@ TakeDown:
 DoubleEdge:
 Submission:
 Struggle:
+RecoilHit:
 	checkobedience
 	usedmovetext
 	doturn
@@ -1036,6 +1087,7 @@ Mist:
 	endmove
 
 FocusEnergy:
+CriticalUp:
 	checkobedience
 	usedmovetext
 	doturn
@@ -1045,6 +1097,7 @@ FocusEnergy:
 Supersonic:
 ConfuseRay:
 SweetKiss:
+DoConfuse:
 	checkobedience
 	usedmovetext
 	doturn
@@ -1057,6 +1110,7 @@ Psybeam:
 Confusion:
 DizzyPunch:
 Dynamicpunch:
+ConfuseHit:
 	checkobedience
 	usedmovetext
 	doturn
@@ -1081,6 +1135,7 @@ Recover:
 Softboiled:
 Rest:
 MilkDrink:
+Heal:
 	checkobedience
 	usedmovetext
 	doturn
@@ -1096,6 +1151,7 @@ Transform:
 
 LightScreen:
 Reflect:
+Screen:
 	checkobedience
 	usedmovetext
 	doturn
@@ -1125,6 +1181,7 @@ TriAttack:
 Toxic:
 Poisonpowder:
 PoisonGas:
+DoPoison:
 	checkobedience
 	usedmovetext
 	doturn
@@ -1137,6 +1194,7 @@ PoisonGas:
 StunSpore:
 ThunderWave:
 Glare:
+DoParalyze:
 	checkobedience
 	usedmovetext
 	doturn
@@ -1334,6 +1392,7 @@ DragonRage:
 SeismicToss:
 NightShade:
 Psywave:
+StaticDamage:
 	checkobedience
 	usedmovetext
 	doturn
@@ -1441,6 +1500,7 @@ Sketch:
 	sketch
 	endmove
 
+DefrostOpponent:
 	checkobedience
 	usedmovetext
 	doturn
@@ -1922,6 +1982,7 @@ SunnyDay:
 	startsun
 	endmove
 
+FakeOut:
 	checkobedience
 	usedmovetext
 	doturn
@@ -2176,6 +2237,7 @@ DefenseCurl:
 	statmessageuser
 	statupfailtext
 	endmove
+
 
 
 

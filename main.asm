@@ -5913,11 +5913,9 @@ TrainerClassDVs ; 270d6
 INCBIN "baserom.gbc", $2715c, $271f4 - $2715c
 
 MoveEffectsPointers: ; 271f4
-
-INCBIN "baserom.gbc", $271f4, $2732e - $271f4
+INCLUDE "battle/moves/move_effects_pointers.asm"
 
 MoveEffects: ; 2732e
-
 INCLUDE "battle/moves/move_effects.asm"
 
 INCBIN "baserom.gbc", $27a28, $27a2d - $27a28
