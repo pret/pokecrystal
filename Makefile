@@ -58,8 +58,8 @@ front.png: tiles.png
 	cd extras && python gfx.py png-to-lz --front $@ $(OBJECT_DIRECTORY)/tiles.2bpp
 tiles.png:
 	cd extras && python gfx.py png-to-2bpp $@
-.png: ${VERTGFX}
+.png:: ${VERTGFX}
 	cd extras && python gfx.py png-to-lz --vert $@
-.png: ${HORIZGFX}
+.png:: ${HORIZGFX}
 	cd extras && python gfx.py png-to-lz $@
 
