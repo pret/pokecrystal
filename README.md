@@ -24,6 +24,10 @@ Eventually this will not be necessary.
 
 ## Contributing
 
-* Hang out with us on IRC, nucleus.kafuka.org #skeetendo ([or use mibbit](http://chat.mibbit.com/?server=nucleus.kafuka.org&channel=#skeetendo))
+* Hang out with us on IRC:
+`nucleus.kafuka.org #skeetendo`
+(or use [mibbit](http://chat.mibbit.com/?server=nucleus.kafuka.org&channel=#skeetendo)).
+
+* Are we missing something? Make a pull request! Contributions are welcome.
 
 * Tackle some [issues](https://github.com/kanzure/pokecrystal/issues)!

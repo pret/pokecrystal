@@ -1,4 +1,6 @@
-Installation requires a certain Pokemon Crystal ROM:
+# Getting Started
+
+Compiling requires a certain Pokemon Crystal ROM:
 
 ```
 Pokemon - Crystal Version (UE) (V1.0) [C][!].gbc
@@ -10,10 +12,10 @@ Save it as `baserom.gbc` in the repository.
 
 Feel free to ask us on nucleus.kafuka.org #skeetendo if something goes wrong (remember to tell where)!
 
-Don't know how to use IRC? Try [mibbit](http://chat.mibbit.com/?server=nucleus.kafuka.org&channel=#skeetendo) or something.
+Don't know how to use IRC? Try [mibbit](http://chat.mibbit.com/?server=nucleus.kafuka.org&channel=#skeetendo).
 
 
-# Linux
+## Linux
 
 ```bash
 sudo apt-get install make gcc bison git python python-setuptools 
@@ -39,12 +41,18 @@ cd pokecrystal
 
 # install python requirements
 pip install -r requirements.txt
+```
 
+To compile the ROM from ASM source:
+```
 make clean && make
 ```
 
+That will take between 3 and 15 seconds, depending on your computer. If you see
+`cmp baserom.gbc pokecrystal.gbc` as the last line, the build was successful! Rejoice!
 
-# Windows
+
+## Windows
 
 Set up [GitHub for Windows](http://windows.github.com/) and clone this repository.
 
@@ -61,8 +69,7 @@ Install [make](http://gnuwin32.sourceforge.net/downlinks/make.php) for Windows.
 To compile the ROM from ASM source, run `pokecrystal.bat`.
 
 That will take between 3 and 15 seconds, depending on your computer. If you see
-`cmp baserom.gbc pokecrystal.gbc`
-as the last line, the build was successful! Rejoice!
+`FC: no differences encountered`, the build was successful! Rejoice!
 
 Now you may try messing around with `main.asm`, or just do whatever you wanted to.
 
