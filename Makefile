@@ -1,6 +1,7 @@
 .SUFFIXES: .asm .tx .o .gbc .png .2bpp .lz
 
-TEXTFILES =	text/sweethoney.tx \
+TEXTFILES = \
+		text/sweethoney.tx \
 		text/phone/bill.tx \
 		text/phone/elm.tx \
 		text/phone/mom.tx \
@@ -10,7 +11,8 @@ TEXTFILES =	text/sweethoney.tx \
 		text/common_3.tx \
 		main.tx
 
-VERTGFX =	gfx/pics/%.png \
+VERTGFX = \
+		gfx/pics/%.png \
 		gfx/trainers/%.png
 
 HORIZGFX =	$(filter-out gfx/%.png, $(VERTGFX))
@@ -24,10 +26,16 @@ HORIZGFX =	$(filter-out gfx/%.png, $(VERTGFX))
 # so take care to reorganize accordingly
 
 all: pokecrystal.gbc
+	cmp baserom.gbc $<
+
+win: pokecrystal.gbc
+	fc baserom.gbc $<
 
 clean:
 	rm -f main.tx pokecrystal.o pokecrystal.gbc ${TEXTFILES}
 
+winclean:
+	del main.tx pokecrystal.o pokecrystal.gbc .\text\sweethoney.tx .\text\phone\bill.tx .\text\phone\elm.tx .\text\phone\mom.tx .\text\phone\trainers1.tx .\text\common.tx .\text\common_2.tx .\text\common_3.tx
 
 pokecrystal.o: pokecrystal.asm constants.asm wram.asm ${TEXTFILES}
 	rgbasm -o pokecrystal.o pokecrystal.asm
@@ -38,7 +46,6 @@ pokecrystal.o: pokecrystal.asm constants.asm wram.asm ${TEXTFILES}
 pokecrystal.gbc: pokecrystal.o
 	rgblink -o $@ $<
 	rgbfix -Cjv -i BYTE -k 01 -l 0x33 -m 0x10 -p 0 -r 3 -t PM_CRYSTAL $@
-	cmp baserom.gbc $@
 
 
 lzs: ${VERTGFX} ${HORIZGFX}
