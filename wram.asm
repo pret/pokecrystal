@@ -1590,7 +1590,7 @@ BreedMon2Nick: ; df2f
 BreedMon2OT: ; df3a
 	ds 11
 BreedMon2Stats:
-BreedMon1Species: ; df45
+BreedMon2Species: ; df45
 	ds 1
 	ds 31
 
