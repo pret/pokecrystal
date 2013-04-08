@@ -4384,7 +4384,88 @@ DrawGraphic: ; 6eef
 	ret
 ; 6f07
 
-INCBIN "baserom.gbc", $6f07, $747b - $6f07
+
+INCBIN "baserom.gbc", $6f07, $7305 - $6f07
+
+
+SpecialGiveShuckle: ; 7305
+
+; Adding to the party.
+	xor a
+	ld [MonType], a
+
+; Level 15 Shuckle.
+	ld a, SHUCKLE
+	ld [CurPartySpecies], a
+	ld a, 15
+	ld [CurPartyLevel], a
+
+	ld a, PREDEF_ADDPARTYMON
+	call Predef
+	jr nc, .NotGiven
+
+; Caught data.
+	ld b, 0
+	ld a, $13
+	ld hl, $5ba3
+	rst $8
+
+; Holding a Berry.
+	ld bc, PartyMon2 - PartyMon1
+	ld a, [PartyCount]
+	dec a
+	push af
+	push bc
+	ld hl, PartyMon1Item
+	call AddNTimes
+	ld [hl], BERRY
+	pop bc
+	pop af
+
+; OT ID.
+	ld hl, PartyMon1ID
+	call AddNTimes
+	ld a, $2
+	ld [hli], a
+	ld [hl], $6
+
+; Nickname.
+	ld a, [PartyCount]
+	dec a
+	ld hl, PartyMon1Nickname
+	call SkipNames
+	ld de, .Shuckie
+	call CopyName2
+
+; OT.
+	ld a, [PartyCount]
+	dec a
+	ld hl, PartyMon1OT
+	call SkipNames
+	ld de, .Mania
+	call CopyName2
+
+; Bittable2 flag for this event.
+	ld hl, $dc1e
+	set 5, [hl]
+
+	ld a, 1
+	ld [ScriptVar], a
+	ret
+
+.NotGiven
+	xor a
+	ld [ScriptVar], a
+	ret
+
+.Mania
+	db "MANIA@"
+.Shuckie
+	db "SHUCKIE@"
+; 737e
+
+
+INCBIN "baserom.gbc", $737e, $747b - $737e
 
 
 SECTION "bank2",DATA,BANK[$2]
@@ -4697,7 +4778,7 @@ SpecialsPointers: ; 0xc029
 	dbw $03, $43fc
 	dbw $09, $6feb
 	dbw $09, $7043
-	dbw $01, $7305
+	dbw BANK(SpecialGiveShuckle), SpecialGiveShuckle
 	dbw $01, $737e
 	dbw $01, $73f7
 	dbw BANK(SpecialCheckPokerus),SpecialCheckPokerus

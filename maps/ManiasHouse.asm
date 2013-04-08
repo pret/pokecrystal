@@ -16,7 +16,7 @@ UnknownScript_0x9d278: ; 0x9d278
 	2writetext UnknownText_0x9d303
 	yesorno
 	iffalse UnknownScript_0x9d2b6
-	special $004b
+	special SPECIAL_GIVESHUCKLE
 	iffalse UnknownScript_0x9d2b0
 	2writetext UnknownText_0x9d3ed
 	keeptextopen
