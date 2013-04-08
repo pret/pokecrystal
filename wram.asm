@@ -634,7 +634,7 @@ PlayerEvaLevel: ; c6d2
 	ds 1
 ; c6d3
 	ds 1
-PlayerStatLevelsEnd
+PlayerStatLevelsEnd:
 
 EnemyStatLevels: ; c6d4
 ; 07 neutral
@@ -746,7 +746,7 @@ LastEnemyMove: ; c71c
 SECTION "overworldmap",BSS[$c800]
 OverworldMap: ; c800
 	ds 1300
-OverworldMapEnd
+OverworldMapEnd:
 	
 	ds 12
 
@@ -1102,7 +1102,7 @@ OTPartySpecies: ; d281
 	     ; or the routine will keep going
 
 OTPartyMon1:
-OTPartyMon1Species2: ; d288
+OTPartyMon1Species: ; d288
 	ds 1
 OTPartyMon1Item: ; d289
 	ds 1
@@ -1239,6 +1239,7 @@ PlayerID: ; d47b
 	ds 2
 PlayerName: ; d47d
 	ds 11
+PlayerNameEnd: ; d478
 
 	ds 46
 	
@@ -1430,9 +1431,8 @@ PartyCount: ; dcd7
 	ds 1 ; number of Pokémon in party
 PartySpecies: ; dcd8
 	ds 6 ; species of each Pokémon in party
-; dcde
-	ds 1 ; any empty slots including the 7th must be FF
-	     ; or the routine will keep going
+PartyEnd: ; dcde
+	ds 1 ; legacy functions don't check PartyCount
 		 
 PartyMons:
 PartyMon1:
@@ -1479,7 +1479,7 @@ PartyMon1PokerusStatus: ; dcfb
 	ds 1
 PartyMon1CaughtData: ; dcfc
 PartyMon1CaughtTime: ; dcfc
-PartyMon1CaughtLevel ; dcfc
+PartyMon1CaughtLevel: ; dcfc
 	ds 1
 PartyMon1CaughtGender: ; dcfd
 PartyMon1CaughtLocation: ; dcfd

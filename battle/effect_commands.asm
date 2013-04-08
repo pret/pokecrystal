@@ -1976,7 +1976,7 @@ Function0x349f4: ; 349f4
 
 
 Function0x34a2a: ; 34a2a
-	ld hl, OTPartyMon1Species2
+	ld hl, OTPartyMon1
 	ld a, [OTPartyCount]
 	ld b, a
 	ld c, $20
@@ -3914,8 +3914,8 @@ Function0x355bd: ; 355bd
 	and a
 	ld hl, PartyMon1Species
 	jr z, .asm_355cc
+	ld hl, OTPartyMon1Species
 
-	ld hl, OTPartyMon1Species2
 .asm_355cc
 	ld a, [DefaultFlypoint]
 	add hl, bc
