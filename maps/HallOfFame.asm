@@ -123,10 +123,6 @@ HallOfFame_MapEventHeader: ; 0x181678
 ; 0x181695
 
 
-;                         Pokedex entries I
-;                             001-064
-
-INCLUDE "stats/pokedex/entries_1.asm"
 
 
 

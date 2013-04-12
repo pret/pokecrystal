@@ -17087,6 +17087,12 @@ INCLUDE "maps/LancesRoom.asm"
 INCLUDE "maps/HallOfFame.asm"
 
 
+;                       Pokedex entries I
+;                            001-064
+
+INCLUDE "stats/pokedex/entries_1.asm"
+
+
 SECTION "bank61",DATA,BANK[$61]
 
 ;                        Map Scripts XIV
