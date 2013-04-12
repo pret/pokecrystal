@@ -912,7 +912,76 @@ CurPartyMon: ; d109
 ; 0-5
 	ds 1
 
-	ds 55
+	ds 4
+
+TempMon:
+TempMonSpecies: ; d10e
+	ds 1
+TempMonItem: ; d10f
+	ds 1
+TempMonMoves: ; d110
+TempMonMove1: ; d110
+	ds 1
+TempMonMove2: ; d111
+	ds 1
+TempMonMove3: ; d112
+	ds 1
+TempMonMove4: ; d113
+	ds 1
+TempMonID: ; d114
+	ds 2
+TempMonExp: ; d116
+	ds 3
+TempMonHPExp: ; d119
+	ds 2
+TempMonAtkExp: ; d11b
+	ds 2
+TempMonDefExp: ; d11d
+	ds 2
+TempMonSpdExp: ; d11f
+	ds 2
+TempMonSpclExp: ; d121
+	ds 2
+TempMonDVs: ; d123
+; hp = %1000 for each dv
+	ds 1 ; atk/def
+	ds 1 ; spd/spc
+TempMonPP: ; d125
+	ds 4
+TempMonHappiness: ; d129
+	ds 1
+TempMonPokerusStatus: ; d12a
+	ds 1
+TempMonCaughtData: ; d12b
+TempMonCaughtTime: ; d12b
+TempMonCaughtLevel: ; d12b
+	ds 1
+TempMonCaughtGender: ; d12c
+TempMonCaughtLocation: ; d12c
+	ds 1
+TempMonLevel: ; d12d
+	ds 1
+TempMonStatus: ; d12e
+	ds 1
+; d12f
+	ds 1
+TempMonCurHP: ; d130
+	ds 2
+TempMonMaxHP: ; d132
+	ds 2
+TempMonAtk: ; d134
+	ds 2
+TempMonDef: ; d136
+	ds 2
+TempMonSpd: ; d138
+	ds 2
+TempMonSpclAtk: ; d13a
+	ds 2
+TempMonSpclDef: ; d13c
+	ds 2
+TempMonEnd: ; d13e
+
+	ds 3
 
 PartyMenuActionText ; d141
     ds 1
