@@ -1015,7 +1015,10 @@ TileSetPalettes: ; d1e6
 ; bank 3f
 	ds 2
 
-	ds 2
+EvolvableFlags: ; d1e8
+	ds 1
+
+	ds 1
 
 Buffer1:
 MagikarpLength: ; d1ea
