@@ -14457,7 +14457,214 @@ INCBIN "baserom.gbc", $f8ea3, $fbbfc - $f8ea3
 
 INCLUDE "battle/magikarp_length.asm"
 
-INCBIN "baserom.gbc", $fbccf, $fbe91 - $fbccf
+INCBIN "baserom.gbc", $fbccf, $fbda4 - $fbccf
+
+
+DoWeatherModifiers: ; fbda4
+
+	ld de, .WeatherTypeModifiers
+	ld a, [Weather]
+	ld b, a
+	ld a, [$d265] ; move type
+	ld c, a
+
+.CheckWeatherType
+	ld a, [de]
+	inc de
+	cp $ff
+	jr z, .asm_fbdc0
+
+	cp b
+	jr nz, .NextWeatherType
+
+	ld a, [de]
+	cp c
+	jr z, .ApplyModifier
+
+.NextWeatherType
+	inc de
+	inc de
+	jr .CheckWeatherType
+
+
+.asm_fbdc0
+	ld de, .WeatherMoveModifiers
+
+	ld a, BATTLE_VARS_MOVE_EFFECT
+	call CleanGetBattleVarPair
+	ld c, a
+
+.CheckWeatherMove
+	ld a, [de]
+	inc de
+	cp $ff
+	jr z, .done
+
+	cp b
+	jr nz, .NextWeatherMove
+
+	ld a, [de]
+	cp c
+	jr z, .ApplyModifier
+
+.NextWeatherMove
+	inc de
+	inc de
+	jr .CheckWeatherMove
+
+.ApplyModifier
+	xor a
+	ld [$ffb4], a
+	ld hl, CurDamage
+	ld a, [hli]
+	ld [$ffb5], a
+	ld a, [hl]
+	ld [$ffb6], a
+
+	inc de
+	ld a, [de]
+	ld [$ffb7], a
+
+	call Multiply
+
+	ld a, 10
+	ld [$ffb7], a
+	ld b, $4
+	call Divide
+
+	ld a, [$ffb4]
+	and a
+	ld bc, $ffff
+	jr nz, .Update
+
+	ld a, [$ffb5]
+	ld b, a
+	ld a, [$ffb6]
+	ld c, a
+	or b
+	jr nz, .Update
+
+	ld bc, 1
+
+.Update
+	ld a, b
+	ld [CurDamage], a
+	ld a, c
+	ld [CurDamage + 1], a
+
+.done
+	ret
+
+.WeatherTypeModifiers
+	db WEATHER_RAIN, WATER, 15
+	db WEATHER_RAIN, FIRE,  05
+	db WEATHER_SUN,  FIRE,  15
+	db WEATHER_SUN,  WATER, 05
+	db $ff
+
+.WeatherMoveModifiers
+	db WEATHER_RAIN, $97, 05 ; Solarbeam
+	db $ff
+; fbe24
+
+
+DoBadgeTypeBoosts: ; fbe24
+	ld a, [InLinkBattle]
+	and a
+	ret nz
+
+	ld a, [$cfc0]
+	and a
+	ret nz
+
+	ld a, [hBattleTurn]
+	and a
+	ret nz
+
+	push de
+	push bc
+
+	ld hl, .BadgeTypes
+
+	ld a, [KantoBadges]
+	ld b, a
+	ld a, [JohtoBadges]
+	ld c, a
+
+.CheckBadge
+	ld a, [hl]
+	cp $ff
+	jr z, .done
+
+	srl b
+	rr c
+	jr nc, .NextBadge
+
+	ld a, [$d265] ; move type
+	cp [hl]
+	jr z, .ApplyBoost
+
+.NextBadge
+	inc hl
+	jr .CheckBadge
+
+.ApplyBoost
+	ld a, [CurDamage]
+	ld h, a
+	ld d, a
+	ld a, [CurDamage + 1]
+	ld l, a
+	ld e, a
+
+	srl d
+	rr e
+	srl d
+	rr e
+	srl d
+	rr e
+
+	ld a, e
+	or d
+	jr nz, .asm_fbe6f
+	ld e, 1
+
+.asm_fbe6f
+	add hl, de
+	jr nc, .Update
+
+	ld hl, $ffff
+
+.Update
+	ld a, h
+	ld [CurDamage], a
+	ld a, l
+	ld [$d257], a
+
+.done
+	pop bc
+	pop de
+	ret
+
+.BadgeTypes
+	db FLYING   ; zephyrbadge
+	db BUG      ; hivebadge
+	db NORMAL   ; plainbadge
+	db GHOST    ; fogbadge
+	db STEEL    ; mineralbadge
+	db FIGHTING ; stormbadge
+	db ICE      ; glacierbadge
+	db DRAGON   ; risingbadge
+
+	db ROCK     ; boulderbadge
+	db WATER    ; cascadebadge
+	db ELECTRIC ; thunderbadge
+	db GRASS    ; rainbowbadge
+	db POISON   ; soulbadge
+	db PSYCHIC  ; marshbadge
+	db FIRE     ; volcanobadge
+	db GROUND   ; earthbadge
+	db $ff
+; fbe91
 
 
 SECTION "bank3F",DATA,BANK[$3F]

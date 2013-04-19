@@ -376,7 +376,7 @@ CantMove: ; 341f0
 	and $ec
 	ld [hl], a
 
-	call Function0x377be
+	call ResetFuryCutterCount
 
 	ld a, BATTLE_VARS_MOVE_ANIM
 	call CleanGetBattleVarPair
@@ -1394,9 +1394,10 @@ BattleCommand07: ; 346d2
 	ld a, [hli]
 	ld d, a
 	ld e, [hl]
+
 	ld a, [hBattleTurn]
 	and a
-	jr z, .asm_346f7
+	jr z, .go
 
 	ld hl, EnemyMonType1
 	ld a, [hli]
@@ -1407,7 +1408,7 @@ BattleCommand07: ; 346d2
 	ld d, a
 	ld e, [hl]
 
-.asm_346f7
+.go
 	ld a, BATTLE_VARS_MOVE_TYPE
 	call GetBattleVarPair
 	ld [$d265], a
@@ -1415,69 +1416,77 @@ BattleCommand07: ; 346d2
 	push hl
 	push de
 	push bc
-	ld a, $3e
-	ld hl, $7da4
-	rst FarCall
+	callba DoWeatherModifiers
 	pop bc
 	pop de
 	pop hl
 
 	push de
 	push bc
-	ld a, $3e
-	ld hl, $7e24
-	rst FarCall
+	callba DoBadgeTypeBoosts
 	pop bc
 	pop de
 
 	ld a, [$d265]
 	cp b
-	jr z, .asm_34720
+	jr z, .stab
 	cp c
-	jr z, .asm_34720
+	jr z, .stab
+
 	jr .asm_3473a
 
-.asm_34720
+.stab
 	ld hl, CurDamage + 1
 	ld a, [hld]
 	ld h, [hl]
 	ld l, a
+
 	ld b, h
 	ld c, l
 	srl b
 	rr c
 	add hl, bc
+
 	ld a, h
 	ld [CurDamage], a
 	ld a, l
 	ld [CurDamage + 1], a
+
 	ld hl, TypeModifier
 	set 7, [hl]
+
 .asm_3473a
 	ld a, BATTLE_VARS_MOVE_TYPE
 	call CleanGetBattleVarPair
 	ld b, a
 	ld hl, TypeMatchup
+
 .asm_34743
 	ld a, [hli]
+
 	cp $ff
-	jr z, .asm_347b7 ; 34746 $6f
+	jr z, .end
+
+; foresight
 	cp $fe
-	jr nz, .asm_34757 ; 3474a $b
+	jr nz, .asm_34757
 	ld a, BATTLE_VARS_SUBSTATUS1_OPP
 	call CleanGetBattleVarPair
 	bit 3, a
-	jr nz, .asm_347b7 ; 34753 $62
-	jr .asm_34743 ; 34755 $ec
+	jr nz, .end
+
+	jr .asm_34743
+
 .asm_34757
 	cp b
-	jr nz, .asm_347b3 ; 34758 $59
+	jr nz, .asm_347b3
 	ld a, [hl]
 	cp d
-	jr z, .asm_34763 ; 3475c $5
+	jr z, .asm_34763
 	cp e
-	jr z, .asm_34763 ; 3475f $2
-	jr .asm_347b3 ; 34761 $50
+	jr z, .asm_34763
+	jr .asm_347b3
+
 .asm_34763
 	push hl
 	push bc
@@ -1487,7 +1496,7 @@ BattleCommand07: ; 346d2
 	ld b, a
 	ld a, [hl]
 	and a
-	jr nz, .asm_34775 ; 3476e $5
+	jr nz, .asm_34775
 	inc a
 	ld [AttackMissed], a
 	xor a
@@ -1495,14 +1504,18 @@ BattleCommand07: ; 346d2
 	ld [$ffb7], a
 	add b
 	ld [TypeModifier], a
+
 	xor a
 	ld [$ffb4], a
+
 	ld hl, CurDamage
 	ld a, [hli]
 	ld [$ffb5], a
 	ld a, [hld]
 	ld [$ffb6], a
+
 	call $3119
+
 	ld a, [$ffb4]
 	ld b, a
 	ld a, [$ffb5]
@@ -1510,7 +1523,8 @@ BattleCommand07: ; 346d2
 	ld b, a
 	ld a, [$ffb6]
 	or b
-	jr z, .asm_347ab ; 34794 $15
+	jr z, .asm_347ab
+
 	ld a, $a
 	ld [$ffb7], a
 	ld b, $4
@@ -1519,9 +1533,11 @@ BattleCommand07: ; 346d2
 	ld b, a
 	ld a, [$ffb6]
 	or b
-	jr nz, .asm_347ab ; 347a5 $4
+	jr nz, .asm_347ab
+
 	ld a, $1
 	ld [$ffb6], a
+
 .asm_347ab
 	ld a, [$ffb5]
 	ld [hli], a
@@ -1529,11 +1545,13 @@ BattleCommand07: ; 346d2
 	ld [hl], a
 	pop bc
 	pop hl
+
 .asm_347b3
 	inc hl
 	inc hl
-	jr .asm_34743 ; 347b5 $8c
-.asm_347b7
+	jr .asm_34743
+
+.end
 	call Function0x347c8
 	ld a, [$d265]
 	ld b, a
@@ -2780,10 +2798,10 @@ BattleCommand0b: ; 34f60
 
 	ld a, [hBattleTurn]
 	and a
-	ld de, $c672
+	ld de, PlayerRolloutCount
 	ld a, 1
 	jr z, .asm_34f76
-	ld de, $c67a
+	ld de, EnemyRolloutCount
 	ld a, 4
 
 .asm_34f76
@@ -3156,11 +3174,11 @@ BattleCommand0f: ; 35175
 BattleCommandae: ; 35197
 ; startloop
 
-	ld hl, $c672
+	ld hl, PlayerRolloutCount
 	ld a, [hBattleTurn]
 	and a
 	jr z, .asm_351a2
-	ld hl, $c67a
+	ld hl, EnemyRolloutCount
 
 .asm_351a2
 	xor a
@@ -3473,7 +3491,7 @@ PlayerAttackDamage: ; 352e2
 ; 3534d
 
 
-Function0x3534d: ; 3534d=
+Function0x3534d: ; 3534d
 	ld a, h
 	or b
 	jr z, .asm_3536b ; 0x3534f $1a
@@ -3726,12 +3744,12 @@ BattleCommanda1: ; 35461
 	ld c, $14
 	call DelayFrames
 	xor a
-	ld [$c672], a
+	ld [PlayerRolloutCount], a
 	ld [DefaultFlypoint], a
 	ld [$c72d], a
 	jr .asm_3548d ; 35480 $b
 .asm_35482
-	ld a, [$c672]
+	ld a, [PlayerRolloutCount]
 	ld b, a
 	ld a, [PartyCount]
 	sub b
@@ -3791,13 +3809,13 @@ BattleCommanda1: ; 35461
 	jr nz, .asm_35502
 
 	xor a
-	ld [$c67a], a
+	ld [EnemyRolloutCount], a
 	ld [DefaultFlypoint], a
 	ld [$c72d], a
 	jr .asm_3550d
 
 .asm_35502
-	ld a, [$c67a]
+	ld a, [EnemyRolloutCount]
 	ld b, a
 	ld a, [OTPartyCount]
 	sub b
@@ -6803,11 +6821,11 @@ BattleCommand21: ; 36671
 	call CleanGetBattleVarPair
 	bit 0, a
 	ret z
-	ld hl, $c672
+	ld hl, PlayerRolloutCount
 	ld a, [hBattleTurn]
 	and a
 	jr z, .asm_36684 ; 3667f $3
-	ld hl, $c67a
+	ld hl, EnemyRolloutCount
 .asm_36684
 	dec [hl]
 	jr nz, .asm_366dc ; 36685 $55
@@ -6870,12 +6888,12 @@ BattleCommand22: ; 366e5
 ; unleashenergy
 
 	ld de, $c682
-	ld bc, $c672
+	ld bc, PlayerRolloutCount
 	ld a, [hBattleTurn]
 	and a
 	jr z, .asm_366f6 ; 366ee $6
 	ld de, $c684
-	ld bc, $c67a
+	ld bc, EnemyRolloutCount
 .asm_366f6
 	ld a, BATTLE_VARS_SUBSTATUS3
 	call GetBattleVarPair
@@ -6901,11 +6919,11 @@ BattleCommand22: ; 366e5
 BattleCommand3e: ; 3671a
 ; checkrampage
 
-	ld de, $c672
+	ld de, PlayerRolloutCount
 	ld a, [hBattleTurn]
 	and a
 	jr z, .asm_36725 ; 36720 $3
-	ld de, $c67a
+	ld de, EnemyRolloutCount
 .asm_36725
 	ld a, BATTLE_VARS_SUBSTATUS3
 	call GetBattleVarPair
@@ -6944,11 +6962,11 @@ BattleCommand3d: ; 36751
 	and 7
 	ret nz
 
-	ld de, $c672
+	ld de, PlayerRolloutCount
 	ld a, [hBattleTurn]
 	and a
 	jr z, .asm_36764 ; 3675f $3
-	ld de, $c67a
+	ld de, EnemyRolloutCount
 .asm_36764
 	ld a, BATTLE_VARS_SUBSTATUS3
 	call GetBattleVarPair
@@ -6957,7 +6975,7 @@ BattleCommand3d: ; 36751
 	and $1
 	inc a
 	ld [de], a
-	ld a, $1
+	ld a, 1
 	ld [$c73e], a
 	ret
 ; 36778
@@ -7310,12 +7328,12 @@ BattleCommand24: ; 369b6
 
 ; Loop back to the command before 'critical'.
 
-	ld de, $c672
+	ld de, PlayerRolloutCount
 	ld bc, $c682
 	ld a, [hBattleTurn]
 	and a
 	jr z, .asm_369c7
-	ld de, $c67a
+	ld de, EnemyRolloutCount
 	ld bc, $c684
 .asm_369c7
 
@@ -9562,11 +9580,11 @@ BattleCommand59: ; 376f8
 BattleCommand5b: ; 37718
 ; checkcurl
 
-	ld de, $c672
+	ld de, PlayerRolloutCount
 	ld a, [hBattleTurn]
 	and a
 	jr z, .asm_37723 ; 3771e $3
-	ld de, $c67a
+	ld de, EnemyRolloutCount
 .asm_37723
 	ld a, BATTLE_VARS_SUBSTATUS1
 	call CleanGetBattleVarPair
@@ -9588,28 +9606,33 @@ BattleCommand5c: ; 37734
 
 	ld a, BATTLE_VARS_STATUS
 	call CleanGetBattleVarPair
-	and $7
+	and 7
 	ret nz
-	ld hl, $c672
+
+	ld hl, PlayerRolloutCount
 	ld a, [hBattleTurn]
 	and a
-	jr z, .asm_37747 ; 37742 $3
-	ld hl, $c67a
+	jr z, .asm_37747
+	ld hl, EnemyRolloutCount
+
 .asm_37747
 	ld a, [hl]
 	and a
-	jr nz, .asm_37750 ; 37749 $5
-	ld a, $1
+	jr nz, .asm_37750
+	ld a, 1
 	ld [$c73e], a
+
 .asm_37750
 	ld a, [AttackMissed]
 	and a
-	jr z, .asm_3775e ; 37754 $8
+	jr z, .hit
+
 	ld a, BATTLE_VARS_SUBSTATUS1
 	call GetBattleVarPair
 	res 6, [hl]
 	ret
-.asm_3775e
+
+.hit
 	inc [hl]
 	ld a, [hl]
 	ld b, a
@@ -9619,10 +9642,12 @@ BattleCommand5c: ; 37734
 	call GetBattleVarPair
 	res 6, [hl]
 	jr .asm_37775 ; 3776c $7
+
 .asm_3776e
 	ld a, BATTLE_VARS_SUBSTATUS1
 	call GetBattleVarPair
 	set 6, [hl]
+
 .asm_37775
 	ld a, BATTLE_VARS_SUBSTATUS2
 	call CleanGetBattleVarPair
@@ -9654,29 +9679,38 @@ BattleCommand5d: ; 37791
 BattleCommand5e: ; 37792
 ; furycutter
 
-	ld hl, $c678
+	ld hl, PlayerFuryCutterCount
 	ld a, [hBattleTurn]
 	and a
-	jr z, .asm_3779d ; 37798 $3
-	ld hl, $c680
-.asm_3779d
+	jr z, .go
+	ld hl, EnemyFuryCutterCount
+
+.go
 	ld a, [AttackMissed]
 	and a
-	jp nz, Function0x377be
+	jp nz, ResetFuryCutterCount
+
 	inc [hl]
+
+; Damage capped at 5 turns' worth (16x).
 	ld a, [hl]
 	ld b, a
-	cp $6
-	jr c, .asm_377ad ; 377a9 $2
-	ld b, $5
-.asm_377ad
+	cp 6
+	jr c, .checkdouble
+	ld b, 5
+
+.checkdouble
 	dec b
 	ret z
+
+; Double the damage
 	ld hl, CurDamage + 1
 	sla [hl]
 	dec hl
 	rl [hl]
-	jr nc, .asm_377ad ; 377b7 $f4
+	jr nc, .checkdouble
+
+; No overflow
 	ld a, $ff
 	ld [hli], a
 	ld [hl], a
@@ -9684,16 +9718,17 @@ BattleCommand5e: ; 37792
 ; 377be
 
 
-Function0x377be: ; 377be
+ResetFuryCutterCount: ; 377be
+
 	push hl
 
-	ld hl, $c678
+	ld hl, PlayerFuryCutterCount
 	ld a, [hBattleTurn]
 	and a
-	jr z, .asm_377ca
-	ld hl, $c680
+	jr z, .reset
+	ld hl, EnemyFuryCutterCount
 
-.asm_377ca
+.reset
 	xor a
 	ld [hl], a
 
