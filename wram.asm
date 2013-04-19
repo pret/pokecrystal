@@ -493,7 +493,7 @@ TypeModifier: ; c665
 ;  10: normal
 ; <10: not very effective
 
-; bit 7 is used for something else
+; bit 7: stab
 	ds 1
 
 CriticalHit: ; c666
@@ -576,32 +576,37 @@ EnemySubStatus5: ; c671
 ; see PlayerSubStatus5
 	ds 1
 
+PlayerRolloutCount: ; c672
 	ds 1
-	
 PlayerConfuseCount: ; c673
 	ds 1
-	
 	ds 1
-
 PlayerDisableCount: ; c675
 	ds 1
 PlayerEncoreCount: ; c676
 	ds 1
 PlayerPerishCount: ; c677
 	ds 1
-
-	ds 5
-
-EnemyEncoreCount: ; c67e
+PlayerFuryCutterCount: ; c678
 	ds 1
-EnemyPerishCount: ; c67f
 	ds 1
 
-	ds 2
+EnemyRolloutCount: ; c67a
+	ds 1
+EnemyConfuseCount: ; c67b
+	ds 1
+	ds 1
+EnemyEncoreCount: ; c67d
+	ds 1
+EnemyPerishCount: ; c67e
+	ds 1
+	ds 1
+EnemyFuryCutterCount: ; c680
+	ds 1
 
-PlayerDamageTaken: ; c682
+PlayerDamageTaken: ; c681
 	ds 2
-EnemyDamageTaken: ; c684
+EnemyDamageTaken: ; c683
 	ds 2
 
 	ds 4
