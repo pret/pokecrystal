@@ -3580,8 +3580,10 @@ GetDamageStats: ; 3537e
 
 
 ThickClubBoost: ; 353b5
+; Return in hl the stat value at hl.
+
 ; If the attacking monster is Cubone or Marowak and
-; it's holding a Thick Club, double stat value hl.
+; it's holding a Thick Club, double it.
 	push bc
 	push de
 	ld b, CUBONE
@@ -3595,8 +3597,10 @@ ThickClubBoost: ; 353b5
 
 
 LightBallBoost: ; 353c3
+; Return in hl the stat value at hl.
+
 ; If the attacking monster is Pikachu and it's
-; holding a Light Ball, double stat value hl.
+; holding a Light Ball, double it.
 	push bc
 	push de
 	ld b, PIKACHU
@@ -3610,8 +3614,10 @@ LightBallBoost: ; 353c3
 
 
 SpeciesItemBoost: ; 353d1
+; Return in hl the stat value at hl.
+
 ; If the attacking monster is species b or c and
-; it's holding item d, double stat value hl.
+; it's holding item d, double it.
 
 	ld a, [hli]
 	ld l, [hl]
@@ -3998,7 +4004,7 @@ BattleCommand62: ; 35612
 	cp $7
 	jr nz, .asm_35620 ; 35619 $5
 	srl c
-	jr nz, .asm_35620 ; 3561d $1
+	jr nz, .asm_35620 ; $3561d $1
 	inc c
 .asm_35620
 	cp $1d
