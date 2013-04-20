@@ -38,8 +38,8 @@ NormalHit:
 	usedmovetext
 	doturn
 	critical
+	damagestats
 	damagecalc
-	itemmultiplier
 	stab
 	damagevariation
 	checkhit
@@ -76,8 +76,8 @@ PoisonHit:
 	usedmovetext
 	doturn
 	critical
+	damagestats
 	damagecalc
-	itemmultiplier
 	stab
 	damagevariation
 	checkhit
@@ -101,8 +101,8 @@ LeechHit:
 	usedmovetext
 	doturn
 	critical
+	damagestats
 	damagecalc
-	itemmultiplier
 	stab
 	damagevariation
 	checkhit
@@ -126,8 +126,8 @@ BurnHit:
 	usedmovetext
 	doturn
 	critical
+	damagestats
 	damagecalc
-	itemmultiplier
 	stab
 	damagevariation
 	checkhit
@@ -151,8 +151,8 @@ FreezeHit:
 	usedmovetext
 	doturn
 	critical
+	damagestats
 	damagecalc
-	itemmultiplier
 	stab
 	damagevariation
 	checkhit
@@ -180,8 +180,8 @@ ParalyzeHit:
 	usedmovetext
 	doturn
 	critical
+	damagestats
 	damagecalc
-	itemmultiplier
 	stab
 	damagevariation
 	checkhit
@@ -202,8 +202,8 @@ Explosion:
 	usedmovetext
 	doturn
 	critical
+	damagestats
 	damagecalc
-	itemmultiplier
 	stab
 	damagevariation
 	checkhit
@@ -223,8 +223,8 @@ DreamEater:
 	usedmovetext
 	doturn
 	critical
+	damagestats
 	damagecalc
-	itemmultiplier
 	stab
 	damagevariation
 	checkhit
@@ -627,8 +627,8 @@ AttackDownHit:
 	usedmovetext
 	doturn
 	critical
+	damagestats
 	damagecalc
-	itemmultiplier
 	stab
 	damagevariation
 	checkhit
@@ -652,8 +652,8 @@ DefenseDownHit:
 	usedmovetext
 	doturn
 	critical
+	damagestats
 	damagecalc
-	itemmultiplier
 	stab
 	damagevariation
 	checkhit
@@ -679,8 +679,8 @@ SpeedDownHit:
 	usedmovetext
 	doturn
 	critical
+	damagestats
 	damagecalc
-	itemmultiplier
 	stab
 	damagevariation
 	checkhit
@@ -701,8 +701,8 @@ SpecialAttackDownHit:
 	usedmovetext
 	doturn
 	critical
+	damagestats
 	damagecalc
-	itemmultiplier
 	stab
 	damagevariation
 	checkhit
@@ -726,8 +726,8 @@ SpecialDefenseDownHit:
 	usedmovetext
 	doturn
 	critical
+	damagestats
 	damagecalc
-	itemmultiplier
 	stab
 	damagevariation
 	checkhit
@@ -750,8 +750,8 @@ AccuracyDownHit:
 	usedmovetext
 	doturn
 	critical
+	damagestats
 	damagecalc
-	itemmultiplier
 	stab
 	damagevariation
 	checkhit
@@ -772,8 +772,8 @@ EvasionDownHit:
 	usedmovetext
 	doturn
 	critical
+	damagestats
 	damagecalc
-	itemmultiplier
 	stab
 	damagevariation
 	checkhit
@@ -795,8 +795,8 @@ DefenseUpHit:
 	usedmovetext
 	doturn
 	critical
+	damagestats
 	damagecalc
-	itemmultiplier
 	stab
 	damagevariation
 	checkhit
@@ -818,8 +818,8 @@ AttackUpHit:
 	usedmovetext
 	doturn
 	critical
+	damagestats
 	damagecalc
-	itemmultiplier
 	stab
 	damagevariation
 	checkhit
@@ -841,8 +841,8 @@ AllUpHit:
 	usedmovetext
 	doturn
 	critical
+	damagestats
 	damagecalc
-	itemmultiplier
 	stab
 	damagevariation
 	checkhit
@@ -862,8 +862,8 @@ PayDay:
 	usedmovetext
 	doturn
 	critical
+	damagestats
 	damagecalc
-	itemmultiplier
 	stab
 	damagevariation
 	checkhit
@@ -919,8 +919,8 @@ Rampage:
 	usedmovetext
 	checkhit
 	critical
+	damagestats
 	damagecalc
-	itemmultiplier
 	stab
 	damagevariation
 	clearmissdamage
@@ -961,8 +961,8 @@ MultiHit:
 	effect0x0a
 	checkhit
 	critical
+	damagestats
 	damagecalc
-	itemmultiplier
 	stab
 	damagevariation
 	clearmissdamage
@@ -989,8 +989,8 @@ PoisonMultiHit:
 	checkhit
 	effectchance
 	critical
+	damagestats
 	damagecalc
-	itemmultiplier
 	stab
 	damagevariation
 	clearmissdamage
@@ -1020,8 +1020,8 @@ FlinchHit:
 	usedmovetext
 	doturn
 	critical
+	damagestats
 	damagecalc
-	itemmultiplier
 	stab
 	damagevariation
 	checkhit
@@ -1063,8 +1063,8 @@ RecoilHit:
 	usedmovetext
 	doturn
 	critical
+	damagestats
 	damagecalc
-	itemmultiplier
 	stab
 	damagevariation
 	checkhit
@@ -1115,8 +1115,8 @@ ConfuseHit:
 	usedmovetext
 	doturn
 	critical
+	damagestats
 	damagecalc
-	itemmultiplier
 	stab
 	damagevariation
 	checkhit
@@ -1163,8 +1163,8 @@ TriAttack:
 	usedmovetext
 	doturn
 	critical
+	damagestats
 	damagecalc
-	itemmultiplier
 	stab
 	damagevariation
 	checkhit
@@ -1211,8 +1211,8 @@ SkyAttack:
 	charge
 	usedmovetext
 	critical
+	damagestats
 	damagecalc
-	itemmultiplier
 	stab
 	damagevariation
 	checkhit
@@ -1240,8 +1240,8 @@ HyperBeam:
 	usedmovetext
 	doturn
 	critical
+	damagestats
 	damagecalc
-	itemmultiplier
 	stab
 	damagevariation
 	checkhit
@@ -1260,8 +1260,8 @@ Rage:
 	usedmovetext
 	doturn
 	critical
+	damagestats
 	damagecalc
-	itemmultiplier
 	stab
 	checkhit
 	ragedamage
@@ -1322,8 +1322,8 @@ RazorWind:
 	charge
 	usedmovetext
 	critical
+	damagestats
 	damagecalc
-	itemmultiplier
 	stab
 	damagevariation
 	checkhit
@@ -1345,8 +1345,8 @@ Dig:
 	charge
 	usedmovetext
 	critical
+	damagestats
 	damagecalc
-	itemmultiplier
 	stab
 	damagevariation
 	checkhit
@@ -1371,8 +1371,8 @@ Whirlpool:
 	doturn
 	checkhit
 	critical
+	damagestats
 	damagecalc
-	itemmultiplier
 	stab
 	damagevariation
 	clearmissdamage
@@ -1458,8 +1458,8 @@ Snore:
 	usedmovetext
 	doturn
 	critical
+	damagestats
 	damagecalc
-	itemmultiplier
 	stab
 	damagevariation
 	checkhit
@@ -1534,8 +1534,8 @@ FalseSwipe:
 	usedmovetext
 	doturn
 	critical
+	damagestats
 	damagecalc
-	itemmultiplier
 	stab
 	damagevariation
 	falseswipe
@@ -1565,8 +1565,8 @@ TripleKick:
 	effect0x0a
 	checkhit
 	critical
+	damagestats
 	damagecalc
-	itemmultiplier
 	triplekick
 	stab
 	damagevariation
@@ -1590,8 +1590,8 @@ Thief:
 	usedmovetext
 	doturn
 	critical
+	damagestats
 	damagecalc
-	itemmultiplier
 	stab
 	damagevariation
 	checkhit
@@ -1627,8 +1627,8 @@ FlameWheel:
 	usedmovetext
 	doturn
 	critical
+	damagestats
 	damagecalc
-	itemmultiplier
 	stab
 	damagevariation
 	checkhit
@@ -1701,8 +1701,8 @@ Rollout:
 	doturn
 	usedmovetext
 	critical
+	damagestats
 	damagecalc
-	itemmultiplier
 	stab
 	checkhit
 	rolloutpower
@@ -1740,8 +1740,8 @@ FuryCutter:
 	usedmovetext
 	doturn
 	critical
+	damagestats
 	damagecalc
-	itemmultiplier
 	stab
 	checkhit
 	furycutter
@@ -1769,9 +1769,9 @@ Return:
 	usedmovetext
 	doturn
 	critical
-	damagecalc
+	damagestats
 	happinesspower
-	itemmultiplier
+	damagecalc
 	stab
 	damagevariation
 	checkhit
@@ -1791,9 +1791,9 @@ Present:
 	doturn
 	checkhit
 	critical
-	damagecalc
+	damagestats
 	present
-	itemmultiplier
+	damagecalc
 	stab
 	damagevariation
 	clearmissdamage
@@ -1811,9 +1811,9 @@ Frustration:
 	usedmovetext
 	doturn
 	critical
-	damagecalc
+	damagestats
 	frustrationpower
-	itemmultiplier
+	damagecalc
 	stab
 	damagevariation
 	checkhit
@@ -1839,8 +1839,8 @@ SacredFire:
 	usedmovetext
 	doturn
 	critical
+	damagestats
 	damagecalc
-	itemmultiplier
 	stab
 	damagevariation
 	checkhit
@@ -1861,9 +1861,9 @@ Magnitude:
 	usedmovetext
 	doturn
 	critical
-	damagecalc
+	damagestats
 	getmagnitude
-	itemmultiplier
+	damagecalc
 	stab
 	damagevariation
 	checkhit
@@ -1890,8 +1890,8 @@ Pursuit:
 	usedmovetext
 	doturn
 	critical
+	damagestats
 	damagecalc
-	itemmultiplier
 	stab
 	damagevariation
 	pursuit
@@ -1911,8 +1911,8 @@ RapidSpin:
 	usedmovetext
 	doturn
 	critical
+	damagestats
 	damagecalc
-	itemmultiplier
 	stab
 	damagevariation
 	checkhit
@@ -1954,7 +1954,7 @@ HiddenPower:
 	doturn
 	critical
 	hiddenpower
-	itemmultiplier
+	damagecalc
 	stab
 	damagevariation
 	checkhit
@@ -2026,8 +2026,8 @@ SkullBash:
 	charge
 	usedmovetext
 	critical
+	damagestats
 	damagecalc
-	itemmultiplier
 	stab
 	damagevariation
 	checkhit
@@ -2049,8 +2049,8 @@ Twister:
 	usedmovetext
 	doturn
 	critical
+	damagestats
 	damagecalc
-	itemmultiplier
 	stab
 	damagevariation
 	doubleflyingdamage
@@ -2071,8 +2071,8 @@ Earthquake:
 	usedmovetext
 	doturn
 	critical
+	damagestats
 	damagecalc
-	itemmultiplier
 	stab
 	damagevariation
 	doubleundergrounddamage
@@ -2092,8 +2092,8 @@ FutureSight:
 	checkobedience
 	usedmovetext
 	doturn
+	damagestats
 	damagecalc
-	itemmultiplier
 	futuresight
 	damagevariation
 	checkhit
@@ -2109,8 +2109,8 @@ Gust:
 	usedmovetext
 	doturn
 	critical
+	damagestats
 	damagecalc
-	itemmultiplier
 	stab
 	damagevariation
 	doubleflyingdamage
@@ -2129,8 +2129,8 @@ Stomp:
 	usedmovetext
 	doturn
 	critical
+	damagestats
 	damagecalc
-	itemmultiplier
 	stab
 	damagevariation
 	doubleminimizedamage
@@ -2154,8 +2154,8 @@ Solarbeam:
 	charge
 	usedmovetext
 	critical
+	damagestats
 	damagecalc
-	itemmultiplier
 	stab
 	damagevariation
 	checkhit
@@ -2174,8 +2174,8 @@ Thunder:
 	usedmovetext
 	doturn
 	critical
+	damagestats
 	damagecalc
-	itemmultiplier
 	thunderaccuracy
 	checkhit
 	effectchance
@@ -2208,7 +2208,7 @@ BeatUp:
 	checkhit
 	critical
 	beatup
-	itemmultiplier
+	damagecalc
 	damagevariation
 	clearmissdamage
 	effect0x0b

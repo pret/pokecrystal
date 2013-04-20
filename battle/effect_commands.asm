@@ -3416,7 +3416,7 @@ DittoMetalPowder: ; 352b1
 
 
 BattleCommand06: ; 352dc
-; damagecalc
+; damagestats
 
 	ld a, [hBattleTurn]
 	and a
@@ -3427,64 +3427,87 @@ BattleCommand06: ; 352dc
 
 
 PlayerAttackDamage: ; 352e2
+; Return move power d, player level e, enemy defense c and player attack b.
 
 	call ResetDamage
+
 	ld hl, PlayerMovePower
 	ld a, [hli]
 	and a
 	ld d, a
 	ret z
+
 	ld a, [hl]
-	cp $14
-	jr nc, .asm_35315 ; 352ef $24
+	cp FIRE
+	jr nc, .special
+
+
+; Physical
 	ld hl, EnemyMonDef
 	ld a, [hli]
 	ld b, a
 	ld c, [hl]
+
+; Reflect
 	ld a, [$c700]
 	bit 4, a
-	jr z, .asm_35302 ; 352fc $4
+	jr z, .physicalcrit
 	sla c
 	rl b
-.asm_35302
+
+.physicalcrit
 	ld hl, BattleMonAtk
 	call GetDamageStatsCritical
-	jr c, .asm_3533c ; 35308 $32
+	jr c, .thickclub
+
 	ld hl, $c6c3
 	ld a, [hli]
 	ld b, a
 	ld c, [hl]
 	ld hl, $c6b6
-	jr .asm_3533c ; 35313 $27
-.asm_35315
+	jr .thickclub
+
+
+.special
 	ld hl, EnemyMonSpclDef
 	ld a, [hli]
 	ld b, a
 	ld c, [hl]
+
+; Light Screen
 	ld a, [$c700]
 	bit 3, a
-	jr z, .asm_35326 ; 35320 $4
+	jr z, .specialcrit
 	sla c
 	rl b
-.asm_35326
+
+.specialcrit
 	ld hl, BattleMonSpclAtk
 	call GetDamageStatsCritical
-	jr c, .asm_35337 ; 3532c $9
+	jr c, .lightball
+
 	ld hl, $c6c9
 	ld a, [hli]
 	ld b, a
 	ld c, [hl]
 	ld hl, $c6bc
-.asm_35337
+
+.lightball
+; Note: Returns player special attack at hl in hl.
 	call LightBallBoost
-	jr .asm_3533f ; 3533a $3
-.asm_3533c
+	jr .done
+
+.thickclub
+; Note: Returns player attack at hl in hl.
 	call ThickClubBoost
-.asm_3533f
+
+.done
 	call Function0x3534d
+
 	ld a, [BattleMonLevel]
 	ld e, a
 	call DittoMetalPowder
+
 	ld a, 1
 	and a
 	ret
@@ -3492,34 +3515,44 @@ PlayerAttackDamage: ; 352e2
 
 
 Function0x3534d: ; 3534d
+; Truncate 16-bit values hl and bc to 8-bit values b and c respectively.
+; b = hl, c = bc
+
 	ld a, h
 	or b
-	jr z, .asm_3536b ; 0x3534f $1a
+	jr z, .asm_3536b
+
 	srl b
 	rr c
 	srl b
 	rr c
+
 	ld a, c
 	or b
-	jr nz, .asm_3535e ; 0x3535b $1
+	jr nz, .asm_3535e
 	inc c
+
 .asm_3535e
 	srl h
 	rr l
 	srl h
 	rr l
+
 	ld a, l
 	or h
-	jr nz, .asm_3536b ; 0x35368 $1
+	jr nz, .asm_3536b
 	inc l
+
 .asm_3536b
 	ld a, [InLinkBattle]
-	cp $3
-	jr z, .asm_35376 ; 0x35370 $4
+	cp 3
+	jr z, .done
+
 	ld a, h
 	or b
 	jr nz, Function0x3534d
-.asm_35376
+
+.done
 	ld b, l
 	ret
 ; 35378
@@ -3679,21 +3712,21 @@ EnemyAttackDamage: ; 353f6
 ; Reflect
 	ld a, [PlayerScreens]
 	bit 4, a
-	jr z, .asm_35416
+	jr z, .physicalcrit
 	sla c
 	rl b
 
-.asm_35416
+.physicalcrit
 	ld hl, EnemyMonAtk
 	call GetDamageStatsCritical
-	jr c, .asm_35450
+	jr c, .thickclub
 
 	ld hl, $c6b8
 	ld a, [hli]
 	ld b, a
 	ld c, [hl]
 	ld hl, $c6c1
-	jr .asm_35450
+	jr .thickclub
 
 
 .Special
@@ -3705,32 +3738,34 @@ EnemyAttackDamage: ; 353f6
 ; Light Screen
 	ld a, [PlayerScreens]
 	bit 3, a
-	jr z, .asm_3543a
+	jr z, .specialcrit
 	sla c
 	rl b
 
-.asm_3543a
+.specialcrit
 	ld hl, EnemyMonSpclAtk
 	call GetDamageStatsCritical
-	jr c, .asm_3544b
+	jr c, .lightball
 	ld hl, $c6be
 	ld a, [hli]
 	ld b, a
 	ld c, [hl]
 	ld hl, $c6c7
 
-.asm_3544b
+.lightball
 	call LightBallBoost
-	jr .asm_35453
+	jr .done
 
-.asm_35450
+.thickclub
 	call ThickClubBoost
 
-.asm_35453
+.done
 	call Function0x3534d
+
 	ld a, [EnemyMonLevel]
 	ld e, a
 	call DittoMetalPowder
+
 	ld a, 1
 	and a
 	ret
@@ -3997,167 +4032,237 @@ Function0x355dd: ; 355dd
 
 
 BattleCommand62: ; 35612
-; itemmultiplier
+; damagecalc
+
+; Return a damage value for move power d, player level e, enemy defense c and player attack b.
+
+; Return 1 if successful, else 0.
 
 	ld a, BATTLE_VARS_MOVE_EFFECT
 	call CleanGetBattleVarPair
-	cp $7
-	jr nz, .asm_35620 ; 35619 $5
+
+; Selfdestruct and Explosion halve defense.
+	cp $7 ; selfdestruct / explosion
+	jr nz, .asm_35620
+
 	srl c
-	jr nz, .asm_35620 ; $3561d $1
+	jr nz, .asm_35620
 	inc c
+
 .asm_35620
-	cp $1d
-	jr z, .asm_3562b ; 35622 $7
-	cp $1e
-	jr z, .asm_3562b ; 35626 $3
+
+; Variable-hit moves and Conversion can have a power of 0.
+	cp $1d ; multihit
+	jr z, .asm_3562b
+
+	cp $1e ; conversion
+	jr z, .asm_3562b
+
+; No damage if move power is 0.
 	ld a, d
 	and a
 	ret z
+
 .asm_3562b
+; Minimum defense value is 1.
 	ld a, c
 	and a
-	jr nz, .asm_35631 ; 3562d $2
-	ld c, $1
+	jr nz, .asm_35631
+	ld c, 1
 .asm_35631
+
+
 	xor a
-	ld hl, $ffb3
+	ld hl, hDividend
 	ld [hli], a
 	ld [hli], a
 	ld [hl], a
+
+; Level * 2
 	ld a, e
 	add a
-	jr nc, .asm_3563e ; 3563a $2
+	jr nc, .asm_3563e
 	ld [hl], $1
 .asm_3563e
 	inc hl
 	ld [hli], a
-	ld a, $5
+
+; / 5
+	ld a, 5
 	ld [hld], a
 	push bc
 	ld b, $4
-	call $3124
+	call Divide
 	pop bc
+
+; + 2
 	inc [hl]
 	inc [hl]
+
+; * bp
 	inc hl
 	ld [hl], d
-	call $3119
+	call Multiply
+
+; * Attack
 	ld [hl], b
-	call $3119
+	call Multiply
+
+; / Defense
 	ld [hl], c
 	ld b, $4
-	call $3124
-	ld [hl], $32
+	call Divide
+
+; / 50
+	ld [hl], 50
 	ld b, $4
-	call $3124
+	call Divide
+
+
+; Item boosts
 	call GetUserItem
+
 	ld a, b
 	and a
-	jr z, .asm_3568f ; 35667 $26
+	jr z, .DoneItem
+
 	ld hl, TypeBoostItems
-.asm_3566c
+
+.NextItem
 	ld a, [hli]
 	cp $ff
-	jr z, .asm_3568f ; 3566f $1e
+	jr z, .DoneItem
+
+; Item effect
 	cp b
 	ld a, [hli]
-	jr nz, .asm_3566c ; 35673 $f7
+	jr nz, .NextItem
+
+; Type
 	ld b, a
 	ld a, BATTLE_VARS_MOVE_TYPE
 	call CleanGetBattleVarPair
 	cp b
-	jr nz, .asm_3568f ; 3567c $11
+	jr nz, .DoneItem
+
+; * 100 + item effect amount
 	ld a, c
-	add $64
-	ld [$ffb7], a
-	call $3119
-	ld a, $64
-	ld [$ffb7], a
-	ld b, $4
-	call $3124
-.asm_3568f
-	call Function0x356eb
+	add 100
+	ld [hMultiplier], a
+	call Multiply
+
+; / 100
+	ld a, 100
+	ld [hDivisor], a
+	ld b, 4
+	call Divide
+.DoneItem
+
+; Critical hits
+	call .CriticalMultiplier
+
+
+; Update CurDamage (capped at 997).
 	ld hl, CurDamage
 	ld b, [hl]
 	ld a, [$ffb6]
 	add b
 	ld [$ffb6], a
-	jr nc, .asm_356a5 ; 3569b $8
+	jr nc, .asm_356a5
+
 	ld a, [$ffb5]
 	inc a
 	ld [$ffb5], a
 	and a
-	jr z, .asm_356d9 ; 356a3 $34
+	jr z, .Cap
+
 .asm_356a5
 	ld a, [$ffb3]
 	ld b, a
 	ld a, [$ffb4]
 	or a
-	jr nz, .asm_356d9 ; 356ab $2c
+	jr nz, .Cap
+
 	ld a, [$ffb5]
-	cp $3
-	jr c, .asm_356bd ; 356b1 $a
-	cp $4
-	jr nc, .asm_356d9 ; 356b5 $22
+	cp 998 / $100
+	jr c, .asm_356bd
+
+	cp 998 / $100 + 1
+	jr nc, .Cap
+
 	ld a, [$ffb6]
-	cp $e6
-	jr nc, .asm_356d9 ; 356bb $1c
+	cp 998 % $100
+	jr nc, .Cap
+
 .asm_356bd
 	inc hl
+
 	ld a, [$ffb6]
 	ld b, [hl]
 	add b
 	ld [hld], a
+
 	ld a, [$ffb5]
 	ld b, [hl]
 	adc b
 	ld [hl], a
-	jr c, .asm_356d9 ; 356c8 $f
+	jr c, .Cap
+
 	ld a, [hl]
-	cp $3
-	jr c, .asm_356df ; 356cd $10
-	cp $4
-	jr nc, .asm_356d9 ; 356d1 $6
+	cp 998 / $100
+	jr c, .asm_356df
+
+	cp 998 / $100 + 1
+	jr nc, .Cap
+
 	inc hl
 	ld a, [hld]
-	cp $e6
-	jr c, .asm_356df ; 356d7 $6
-.asm_356d9
-	ld a, $3
+	cp 998 % $100
+	jr c, .asm_356df
+
+.Cap
+	ld a, 997 / $100
 	ld [hli], a
-	ld a, $e5
+	ld a, 997 % $100
 	ld [hld], a
+
+
 .asm_356df
+; Minimum neutral damage is 2 (bringing the cap to 999).
 	inc hl
 	ld a, [hl]
-	add $2
+	add 2
 	ld [hld], a
-	jr nc, .asm_356e7 ; 356e4 $1
+	jr nc, .asm_356e7
 	inc [hl]
 .asm_356e7
-	ld a, $1
+
+	ld a, 1
 	and a
 	ret
-; 356eb
 
 
-Function0x356eb: ; 356eb
+.CriticalMultiplier
 	ld a, [CriticalHit]
 	and a
 	ret z
 
+; x2
 	ld a, [$ffb6]
 	add a
 	ld [$ffb6], a
+
 	ld a, [$ffb5]
 	rl a
 	ld [$ffb5], a
+
+; Cap at $ffff.
 	ret nc
 
 	ld a, $ff
 	ld [$ffb5], a
 	ld [$ffb6], a
+
 	ret
 ; 35703
 
