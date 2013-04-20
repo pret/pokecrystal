@@ -3449,7 +3449,7 @@ PlayerAttackDamage: ; 352e2
 	ld c, [hl]
 
 ; Reflect
-	ld a, [$c700]
+	ld a, [EnemyScreens]
 	bit 4, a
 	jr z, .physicalcrit
 	sla c
@@ -3475,7 +3475,7 @@ PlayerAttackDamage: ; 352e2
 	ld c, [hl]
 
 ; Light Screen
-	ld a, [$c700]
+	ld a, [EnemyScreens]
 	bit 3, a
 	jr z, .specialcrit
 	sla c
@@ -4003,7 +4003,7 @@ Function0x355dd: ; 355dd
 	jr z, .asm_355f7
 
 	ld hl, EnemyMonDef
-	ld de, $c700
+	ld de, EnemyScreens
 	ld a, [EnemyMonLevel]
 .asm_355f7
 	push af
@@ -8989,7 +8989,7 @@ BattleCommand2e: ; 372fc
 	ld a, [hBattleTurn]
 	and a
 	jr z, .asm_3730d
-	ld hl, $c700
+	ld hl, EnemyScreens
 	ld bc, $c706
 .asm_3730d
 	ld a, BATTLE_VARS_MOVE_EFFECT
@@ -9597,7 +9597,7 @@ BattleCommand5a: ; 3766f
 BattleCommand56: ; 37683
 ; spikes
 
-	ld hl, $c700
+	ld hl, EnemyScreens
 	ld a, [hBattleTurn]
 	and a
 	jr z, .asm_3768e ; 37689 $3
@@ -10087,7 +10087,7 @@ BattleCommand64: ; 37939
 	ld a, [hBattleTurn]
 	and a
 	jr z, .asm_3794a ; 37942 $6
-	ld hl, $c700
+	ld hl, EnemyScreens
 	ld de, $c705
 .asm_3794a
 	bit 2, [hl]
@@ -10106,7 +10106,7 @@ BattleCommand64: ; 37939
 
 Function0x37962: ; 37962
 	push hl
-	ld hl, $c700
+	ld hl, EnemyScreens
 	ld a, [hBattleTurn]
 	and a
 	jr z, .asm_3796e
@@ -10121,7 +10121,7 @@ Function0x37962: ; 37962
 
 BattleCommand65: ; 37972
 ; checksafeguard
-	ld hl, $c700
+	ld hl, EnemyScreens
 	ld a, [hBattleTurn]
 	and a
 	jr z, .asm_3797d ; 37978 $3
@@ -10448,7 +10448,7 @@ BattleCommand69: ; 37b39
 	ld a, [hBattleTurn]
 	and a
 	jr z, .asm_37b5b ; 37b53 $6
-	ld hl, $c700
+	ld hl, EnemyScreens
 	ld de, $c731
 .asm_37b5b
 	bit 0, [hl]

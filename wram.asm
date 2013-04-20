@@ -709,8 +709,13 @@ PlayerScreens: ; c6ff
 ; bit 4: reflect
 ; bit 3: light screen
 	ds 1
-	
-	ds 2
+
+EnemyScreens: ; c700
+; bit 4: reflect
+; bit 3: light screen	
+	ds 1
+
+	ds 1
 
 PlayerLightScreenCount: ; c702
 	ds 1
