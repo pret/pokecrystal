@@ -12054,7 +12054,9 @@ Route28_BlockData: ; 0xa8492
 	INCBIN "maps/Route28.blk"
 ; 0xa8546
 
-INCBIN "baserom.gbc", $a8546, $a8552 - $a8546
+BetaHerosHouse_BlockData: ; 0xa8546
+	INCBIN "maps/BetaHerosHouse.blk"
+; 0xa8552
 
 CeladonCity_BlockData: ; 0xa8552
 	INCBIN "maps/CeladonCity.blk"
@@ -12072,25 +12074,33 @@ ElmsHouse_BlockData: ; 0xa8930
 	INCBIN "maps/ElmsHouse.blk"
 ; 0xa8940
 
-INCBIN "baserom.gbc", $a8940, $5a
+BetaSproutTower1_BlockData: ; 0xa8940
+	INCBIN "maps/BetaSproutTower1.blk"
+; 0xa899a
 
 Route11_BlockData: ; 0xa899a
 	INCBIN "maps/Route11.blk"
 ; 0xa8a4e
 
-INCBIN "baserom.gbc", $a8a4e, $a8aa8 - $a8a4e
+BetaSproutTower5_BlockData: ; 0xa8a4e
+	INCBIN "maps/BetaSproutTower5.blk"
+; 0xa8aa8
 
 Route15_BlockData: ; 0xa8aa8
 	INCBIN "maps/Route15.blk"
 ; 0xa8b5c
 
-INCBIN "baserom.gbc", $a8b5c, $24
+BetaSproutTower9_BlockData: ; 0xa8b5c
+	INCBIN "maps/BetaSproutTower9.blk"
+; 0xa8b80
 
 Route19_BlockData: ; 0xa8b80
 	INCBIN "maps/Route19.blk"
 ; 0xa8c34
 
-INCBIN "baserom.gbc", $a8c34, $a8d9c - $a8c34
+BetaBlackthornCity_BlockData: ; 0xa8c34
+	INCBIN "maps/BetaBlackthornCity.blk"
+; 0xa8d9c
 
 Route10South_BlockData: ; 0xa8d9c
 	INCBIN "maps/Route10South.blk"
@@ -12136,7 +12146,9 @@ Route24_BlockData: ; 0xa95ff
 	INCBIN "maps/Route24.blk"
 ; 0xa9659
 
-INCBIN "baserom.gbc", $a9659, $a97c1 - $a9659
+BetaVioletCity_BlockData: ; 0xa9659
+	INCBIN "maps/BetaVioletCity.blk"
+; 0xa97c1
 
 Route3_BlockData: ; 0xa97c1
 	INCBIN "maps/Route3.blk"
@@ -12146,19 +12158,33 @@ PewterCity_BlockData: ; 0xa98cf
 	INCBIN "maps/PewterCity.blk"
 ; 0xa9a37
 
-INCBIN "baserom.gbc", $a9a37, $a9bf9 - $a9a37
+BetaIlexForest_BlockData: ; 0xa9a37
+	INCBIN "maps/BetaIlexForest.blk"
+; 0xa9b9f
+
+BetaSproutTower2_BlockData: ; 0xa9b9f
+	INCBIN "maps/BetaSproutTower2.blk"
+; 0xa9bf9
 
 Route12_BlockData: ; 0xa9bf9
 	INCBIN "maps/Route12.blk"
 ; 0xa9d07
 
-INCBIN "baserom.gbc", $a9d07, $168
+BetaGoldenrodCity_BlockData: ; 0xa9d07
+	INCBIN "maps/BetaGoldenrodCity.blk"
+; 0xa9e6f
 
 Route20_BlockData: ; 0xa9e6f
 	INCBIN "maps/Route20.blk"
 ; 0xa9f7d
 
-INCBIN "baserom.gbc", $a9f7d, $a9ff7 - $a9f7d
+BetaSproutTower6_BlockData: ; 0xa9f7d
+	INCBIN "maps/BetaSproutTower6.blk"
+; 0xa9fd7
+
+BetaPokecenterMainHouse_BlockData: ; 0xa9fd7
+	INCBIN "maps/BetaPokecenterMainHouse.blk"
+; 0xa9ff7
 
 Route30_BlockData: ; 0xa9ff7
 	INCBIN "maps/Route30.blk"
@@ -12188,7 +12214,9 @@ Route38_BlockData: ; 0xaa759
 	INCBIN "maps/Route38.blk"
 ; 0xaa80d
 
-INCBIN "baserom.gbc", $aa80d, $5a
+BetaCianwoodCity_BlockData: ; 0xaa80d
+	INCBIN "maps/BetaCianwoodCity.blk"
+; 0xaa867
 
 OlivineVoltorbHouse_BlockData: ; 0xaa867
 	INCBIN "maps/OlivineVoltorbHouse.blk"
@@ -12198,7 +12226,13 @@ SafariZoneFuchsiaGateBeta_BlockData: ; 0xaa877
 	INCBIN "maps/SafariZoneFuchsiaGateBeta.blk"
 ; 0xaa88b
 
-INCBIN "baserom.gbc", $aa88b, $aaa4d - $aa88b
+BetaTeakCity_BlockData: ; 0xaa88b
+	INCBIN "maps/BetaTeakCity.blk"
+; 0xaa9f3
+
+BetaCherrygroveCity_BlockData: ; 0xaa9f3
+	INCBIN "maps/BetaCherrygroveCity.blk"
+; 0xaaa4d
 
 CinnabarIsland_BlockData: ; 0xaaa4d
 	INCBIN "maps/CinnabarIsland.blk"
@@ -12212,7 +12246,9 @@ Route8_BlockData: ; 0xaab5b
 	INCBIN "maps/Route8.blk"
 ; 0xaac0f
 
-INCBIN "baserom.gbc", $aac0f, $aac69 - $aac0f
+BetaSproutTower3_BlockData: ; 0xaac0f
+	INCBIN "maps/BetaSproutTower3.blk"
+; 0xaac69
 
 ViridianCity_BlockData: ; 0xaac69
 	INCBIN "maps/ViridianCity.blk"
@@ -12226,13 +12262,17 @@ Route21_BlockData: ; 0xaaedf
 	INCBIN "maps/Route21.blk"
 ; 0xaaf93
 
-INCBIN "baserom.gbc", $aaf93, $aafed - $aaf93
+BetaSproutTower7_BlockData: ; 0xaaf93
+	INCBIN "maps/BetaSproutTower7.blk"
+; 0xaafed
 
 Route17_BlockData: ; 0xaafed
 	INCBIN "maps/Route17.blk"
 ; 0xab1af
 
-INCBIN "baserom.gbc", $ab1af, $ab209 - $ab1af
+BetaMahoganyTown_BlockData: ; 0xab1af
+	INCBIN "maps/BetaMahoganyTown.blk"
+; 0xab209
 
 Route31_BlockData: ; 0xab209
 	INCBIN "maps/Route31.blk"
@@ -12262,13 +12302,21 @@ Route38EcruteakGate_BlockData: ; 0xab6af
 	INCBIN "maps/Route38EcruteakGate.blk"
 ; 0xab6c3
 
-INCBIN "baserom.gbc", $ab6c3, $ab82b - $ab6c3
+BetaAzaleaTown_BlockData: ; 0xab6c3
+	INCBIN "maps/BetaAzaleaTown.blk"
+; 0xab82b
 
 VermilionCity_BlockData: ; 0xab82b
 	INCBIN "maps/VermilionCity.blk"
 ; 0xab993
 
-INCBIN "baserom.gbc", $ab993, $abb55 - $ab993
+BetaOlivineCity_BlockData: ; 0xab993
+	INCBIN "maps/BetaOlivineCity.blk"
+; 0xabafb
+
+BetaNewBarkTown_BlockData: ; 0xabafb
+	INCBIN "maps/BetaNewBarkTown.blk"
+; 0xabb55
 
 ElmsLab_BlockData: ; 0xabb55
 	INCBIN "maps/ElmsLab.blk"
@@ -12301,7 +12349,9 @@ Route14_BlockData: ; 0xac000
 	INCBIN "maps/Route14.blk"
 ; 0xac0b4
 
-INCBIN "baserom.gbc", $ac0b4, $5a
+BetaSproutTower8_BlockData: ; 0xac0b4
+	INCBIN "maps/BetaSproutTower8.blk"
+; 0xac10e
 
 OlivineMart_BlockData: ; 0xac10e
 	INCBIN "maps/OlivineMart.blk"
@@ -12311,19 +12361,41 @@ Route10North_BlockData: ; 0xac126
 	INCBIN "maps/Route10North.blk"
 ; 0xac180
 
-INCBIN "baserom.gbc", $ac180, $168
+BetaLakeOfRage_BlockData: ; 0xac180
+	INCBIN "maps/BetaLakeOfRage.blk"
+; 0xac2e8
 
 OlivinePokeCenter1F_BlockData: ; 0xac2e8
 	INCBIN "maps/OlivinePokeCenter1F.blk"
 ; 0xac2fc
 
-INCBIN "baserom.gbc", $ac2fc, $ac340 - $ac2fc
+BetaPewterMuseumOfScience1F_BlockData: ; 0xac2fc
+	INCBIN "maps/BetaPewterMuseumOfScience1F.blk"
+; 0xac324
+
+BetaPewterMuseumOfScience2F_BlockData: ; 0xac324
+	INCBIN "maps/BetaPewterMuseumOfScience2F.blk"
+; 0xac340
 
 EarlsPokemonAcademy_BlockData: ; 0xac340
 	INCBIN "maps/EarlsPokemonAcademy.blk"
 ; 0xac360
 
-INCBIN "baserom.gbc", $ac360, $ac3b4 - $ac360
+BetaCinnabarIslandPokemonLabHallway_BlockData: ; 0xac360
+	INCBIN "maps/BetaCinnabarIslandPokemonLabHallway.blk"
+; 0xac384
+
+BetaCinnabarIslandPokemonLabRoom1_BlockData: ; 0xac384
+	INCBIN "maps/BetaCinnabarIslandPokemonLabRoom1.blk"
+; 0xac394
+
+BetaCinnabarIslandPokemonLabRoom2_BlockData: ; 0xac394
+	INCBIN "maps/BetaCinnabarIslandPokemonLabRoom2.blk"
+; 0xac3a4
+
+BetaCinnabarIslandPokemonLabRoom3_BlockData: ; 0xac3a4
+	INCBIN "maps/BetaCinnabarIslandPokemonLabRoom3.blk"
+; 0xac3b4
 
 GoldenrodDeptStore1F_BlockData: ; 0xac3b4
 	INCBIN "maps/GoldenrodDeptStore1F.blk"
@@ -12369,7 +12441,9 @@ CeladonMansionRoof_BlockData: ; 0xac4b4
 	INCBIN "maps/CeladonMansionRoof.blk"
 ; 0xac4c8
 
-INCBIN "baserom.gbc", $ac4c8, $ac4d8 - $ac4c8
+BetaHouse_BlockData: ; 0xac4c8
+	INCBIN "maps/BetaHouse.blk"
+; 0xac4d8
 
 CeladonGameCorner_BlockData: ; 0xac4d8
 	INCBIN "maps/CeladonGameCorner.blk"
@@ -12391,7 +12465,9 @@ EcruteakLugiaSpeechHouse_BlockData: ; 0xac54f
 	INCBIN "maps/EcruteakLugiaSpeechHouse.blk"
 ; 0xac55f
 
-INCBIN "baserom.gbc", $ac55f, $5a
+BetaCave_BlockData: ; 0xac55f
+	INCBIN "maps/BetaCave.blk"
+; 0xac5b9
 
 UnionCaveB1F_BlockData: ; 0xac5b9
 	INCBIN "maps/UnionCaveB1F.blk"
@@ -12413,7 +12489,9 @@ Route6UndergroundEntrance_BlockData: ; 0xac9f1
 	INCBIN "maps/Route6UndergroundEntrance.blk"
 ; 0xaca01
 
-INCBIN "baserom.gbc", $aca01, $10
+BetaPokecenterTradeStation_BlockData: ; 0xaca01
+	INCBIN "maps/BetaPokecenterTradeStation.blk"
+; 0xaca11
 
 KurtsHouse_BlockData: ; 0xaca11
 	INCBIN "maps/KurtsHouse.blk"
@@ -12427,7 +12505,9 @@ RuinsofAlphOutside_BlockData: ; 0xaca8b
 	INCBIN "maps/RuinsofAlphOutside.blk"
 ; 0xacb3f
 
-INCBIN "baserom.gbc", $acb3f, $acb53 - $acb3f
+BetaAlphRuinUnsolvedPuzzleRoom_BlockData: ; 0xacb3f
+	INCBIN "maps/BetaAlphRuinUnsolvedPuzzleRoom.blk"
+; 0xacb53
 
 RuinsofAlphInnerChamber_BlockData: ; 0xacb53
 	INCBIN "maps/RuinsofAlphInnerChamber.blk"
@@ -12441,19 +12521,25 @@ SproutTower1F_BlockData: ; 0xacbf3
 	INCBIN "maps/SproutTower1F.blk"
 ; 0xacc43
 
-INCBIN "baserom.gbc", $acc43, $acc4d - $acc43
+BetaSproutTowerCutOut1_BlockData: ; 0xacc43
+	INCBIN "maps/BetaSproutTowerCutOut1.blk"
+; 0xacc4d
 
 SproutTower2F_BlockData: ; 0xacc4d
 	INCBIN "maps/SproutTower2F.blk"
 ; 0xacc9d
 
-INCBIN "baserom.gbc", $acc9d, $acca7 - $acc9d
+BetaSproutTowerCutOut2_BlockData: ; 0xacc9d
+	INCBIN "maps/BetaSproutTowerCutOut2.blk"
+; 0xacca7
 
 SproutTower3F_BlockData: ; 0xacca7
 	INCBIN "maps/SproutTower3F.blk"
 ; 0xaccf7
 
-INCBIN "baserom.gbc", $accf7, $acd01 - $accf7
+BetaSproutTowerCutOut3_BlockData: ; 0xaccf7
+	INCBIN "maps/BetaSproutTowerCutOut3.blk"
+; 0xacd01
 
 RadioTower1F_BlockData: ; 0xacd01
 	INCBIN "maps/RadioTower1F.blk"
@@ -12555,7 +12641,9 @@ UndergroundWarehouse_BlockData: ; 0xadf1c
 	INCBIN "maps/UndergroundWarehouse.blk"
 ; 0xadf76
 
-INCBIN "baserom.gbc", $adf76, $19
+BetaElevator_BlockData: ; 0xadf76
+	INCBIN "maps/BetaElevator.blk"
+; 0xadf8f
 
 TinTower1F_BlockData: ; 0xadf8f
 	INCBIN "maps/TinTower1F.blk"
@@ -12605,7 +12693,9 @@ BurnedTowerB1F_BlockData: ; 0xae36d
 	INCBIN "maps/BurnedTowerB1F.blk"
 ; 0xae3c7
 
-INCBIN "baserom.gbc", $ae3c7, $ae4d5 - $ae3c7
+BetaCaveTestMap_BlockData: ; 0xae3c7
+	INCBIN "maps/BetaCaveTestMap.blk"
+; 0xae4d5
 
 MountMortar1FOutside_BlockData: ; 0xae4d5
 	INCBIN "maps/MountMortar1FOutside.blk"
@@ -12687,7 +12777,21 @@ SilverCaveRoom3_BlockData: ; 0xaf399
 	INCBIN "maps/SilverCaveRoom3.blk"
 ; 0xaf44d
 
-INCBIN "baserom.gbc", $af44d, $438
+BetaRocketHideout1_BlockData: ; 0xaf44d
+	INCBIN "maps/BetaRocketHideout1.blk"
+; 0xaf55b
+
+BetaRocketHideout2_BlockData: ; 0xaf55b
+	INCBIN "maps/BetaRocketHideout2.blk"
+; 0xaf669
+
+BetaEmptyHouse_BlockData: ; 0xaf669
+	INCBIN "maps/BetaEmptyHouse.blk"
+; 0xaf777
+
+BetaRocketHideout3_BlockData: ; 0xaf777
+	INCBIN "maps/BetaRocketHideout3.blk"
+; 0xaf885
 
 MahoganyMart1F_BlockData: ; 0xaf885
 	INCBIN "maps/MahoganyMart1F.blk"
@@ -12705,7 +12809,9 @@ TeamRocketBaseB3F_BlockData: ; 0xaf9a3
 	INCBIN "maps/TeamRocketBaseB3F.blk"
 ; 0xafa2a
 
-INCBIN "baserom.gbc", $afa2a, $afa84 - $afa2a
+BetaRoute23EarlyVersion_BlockData: ; 0xafa2a
+	INCBIN "maps/BetaRoute23EarlyVersion.blk"
+; 0xafa84
 
 IndigoPlateauPokeCenter1F_BlockData: ; 0xafa84
 	INCBIN "maps/IndigoPlateauPokeCenter1F.blk"
@@ -12751,7 +12857,9 @@ OlivineGym_BlockData: ; 0xafc7b
 	INCBIN "maps/OlivineGym.blk"
 ; 0xafca3
 
-INCBIN "baserom.gbc", $afca3, $afcb7 - $afca3
+BetaUnknown_BlockData: ; 0xafca3
+	INCBIN "maps/BetaUnknown.blk"
+; 0xafcb7
 
 CianwoodGym_BlockData: ; 0xafcb7
 	INCBIN "maps/CianwoodGym.blk"
@@ -12792,7 +12900,9 @@ OlivineLighthouse6F_BlockData: ; 0xaff00
 
 SECTION "bank2C",DATA,BANK[$2C]
 
-INCBIN "baserom.gbc", $b0000, $b0023 - $b0000
+BetaCave2_BlockData: ; 0xb0000
+	INCBIN "maps/BetaCave2.blk"
+; 0xb0023
 
 SlowpokeWellB1F_BlockData: ; 0xb0023
 	INCBIN "maps/SlowpokeWellB1F.blk"
@@ -12850,7 +12960,9 @@ FastShipB1F_BlockData: ; 0xb0680
 	INCBIN "maps/FastShipB1F.blk"
 ; 0xb0700
 
-INCBIN "baserom.gbc", $b0700, $10
+BetaSsAquaInsideCutOut_BlockData: ; 0xb0700
+	INCBIN "maps/BetaSsAquaInsideCutOut.blk"
+; 0xb0710
 
 FastShipCabins_NNW_NNE_NE_BlockData: ; 0xb0710
 	INCBIN "maps/FastShipCabins_NNW_NNE_NE.blk"
@@ -12964,13 +13076,17 @@ CeladonGym_BlockData: ; 0xb0cb5
 	INCBIN "maps/CeladonGym.blk"
 ; 0xb0ce2
 
-INCBIN "baserom.gbc", $b0ce2, $b0cf6 - $b0ce2
+BetaHouse2_BlockData: ; 0xb0ce2
+	INCBIN "maps/BetaHouse2.blk"
+; 0xb0cf6
 
 CeladonCafe_BlockData: ; 0xb0cf6
 	INCBIN "maps/CeladonCafe.blk"
 ; 0xb0d0e
 
-INCBIN "baserom.gbc", $b0d0e, $18
+BetaCeladonMansion_BlockData: ; 0xb0d0e
+	INCBIN "maps/BetaCeladonMansion.blk"
+; 0xb0d26
 
 RockTunnel1F_BlockData: ; 0xb0d26
 	INCBIN "maps/RockTunnel1F.blk"
@@ -13124,7 +13240,9 @@ BattleTowerOutside_BlockData: ; 0xb1a6e
 	INCBIN "maps/BattleTowerOutside.blk"
 ; 0xb1afa
 
-INCBIN "baserom.gbc", $b1afa, $28
+BetaBlank_BlockData: ; 0xb1afa
+	INCBIN "maps/BetaBlank.blk"
+; 0xb1b22
 
 GoldenrodDeptStoreRoof_BlockData: ; 0xb1b22
 	INCBIN "maps/GoldenrodDeptStoreRoof.blk"
