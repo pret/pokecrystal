@@ -2808,15 +2808,15 @@ BattleCommand0b: ; 34f60
 	ld [$cfca], a
 	ld a, BATTLE_VARS_MOVE_EFFECT
 	call CleanGetBattleVarPair
-	cp $1d ; multihit
+	cp EFFECT_MULTI_HIT
 	jr z, .asm_34fb0
-	cp $1e ; conversion
+	cp EFFECT_CONVERSION
 	jr z, .asm_34fb0
-	cp $2c ; double kick / bonemerang
+	cp EFFECT_DOUBLE_HIT
 	jr z, .asm_34fb0
-	cp $4d ; twineedle
+	cp EFFECT_TWINEEDLE
 	jr z, .asm_34fb0
-	cp $68 ; triple kick
+	cp EFFECT_TRIPLE_KICK
 	jr z, .asm_34f96
 	xor a
 	ld [$c689], a
@@ -4042,7 +4042,7 @@ BattleCommand62: ; 35612
 	call CleanGetBattleVarPair
 
 ; Selfdestruct and Explosion halve defense.
-	cp $7 ; selfdestruct / explosion
+	cp EFFECT_EXPLOSION
 	jr nz, .asm_35620
 
 	srl c
@@ -4052,10 +4052,10 @@ BattleCommand62: ; 35612
 .asm_35620
 
 ; Variable-hit moves and Conversion can have a power of 0.
-	cp $1d ; multihit
+	cp EFFECT_MULTI_HIT
 	jr z, .asm_3562b
 
-	cp $1e ; conversion
+	cp EFFECT_CONVERSION
 	jr z, .asm_3562b
 
 ; No damage if move power is 0.
