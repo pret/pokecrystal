@@ -11122,7 +11122,7 @@ SkipToBattleCommand: ; 37e8c
 GetMoveAttr: ; 37ea1
 ; Assuming hl = Moves + x, return attribute x of move a.
 	push bc
-	ld bc, Move1 - Move0
+	ld bc, Move2 - Move1
 	call AddNTimes
 	call GetMoveByte
 	pop bc
@@ -11133,7 +11133,7 @@ GetMoveAttr: ; 37ea1
 GetMoveData: ; 37ead
 ; Copy move struct a to de.
 	ld hl, Moves
-	ld bc, Move1 - Move0
+	ld bc, Move2 - Move1
 	call AddNTimes
 	ld a, Bank(Moves)
 	jp FarCopyBytes

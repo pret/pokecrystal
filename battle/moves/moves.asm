@@ -2,9 +2,9 @@
 
 ; animation, effect, power, type, accuracy, PP, effect chance
 
-Move0:
-	db POUND,        EFFECT_NORMAL_HIT,            40, NORMAL,   $ff, 35, $00
 Move1:
+	db POUND,        EFFECT_NORMAL_HIT,            40, NORMAL,   $ff, 35, $00
+Move2:
 	db KARATE_CHOP,  EFFECT_NORMAL_HIT,            50, FIGHTING, $ff, 25, $00
 	db DOUBLESLAP,   EFFECT_MULTI_HIT,             15, NORMAL,   $d8, 10, $00
 	db COMET_PUNCH,  EFFECT_MULTI_HIT,             18, NORMAL,   $d8, 15, $00
