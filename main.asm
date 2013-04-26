@@ -8546,11 +8546,93 @@ ToWhichPKMNString: ; 0x50549
 YouHaveNoPKMNString: ; 0x50556
     db "You have no ", $e1, $e2, "!@"
 
-INCBIN "baserom.gbc", $50566, $5097B-$50566
 
-dw Normal, Fighting, Flying, Poison, Ground, Rock, Bird, Bug, Ghost, Steel
-dw Normal, Normal, Normal, Normal, Normal, Normal, Normal, Normal, Normal
-dw UnknownType, Fire, Water, Grass, Electric, Psychic, Ice, Dragon, Dark
+INCBIN "baserom.gbc", $50566, $5093a - $50566
+
+
+PrintMoveType: ; 5093a
+; Print the type of move b at hl.
+
+	push hl
+	ld a, b
+	dec a
+	ld bc, Move2 - Move1
+	ld hl, Moves
+	call AddNTimes
+	ld de, StringBuffer1
+	ld a, BANK(Moves)
+	call FarCopyBytes
+	ld a, [StringBuffer1 + PlayerMoveType - PlayerMoveStruct]
+	pop hl
+
+	ld b, a
+; 50953
+
+PrintType: ; 50953
+; Print type b at hl.
+	ld a, b
+
+	push hl
+	add a
+	ld hl, TypeNames
+	ld e, a
+	ld d, 0
+	add hl, de
+	ld a, [hli]
+	ld e, a
+	ld d, [hl]
+	pop hl
+
+	jp PlaceString
+; 50964
+
+
+LoadTypeName: ; 50964
+; Copy the name of type $d265 to StringBuffer1.
+	ld a, [$d265]
+	ld hl, TypeNames
+	ld e, a
+	ld d, 0
+	add hl, de
+	add hl, de
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	ld de, StringBuffer1
+	ld bc, $000d
+	jp CopyBytes
+; 5097b
+
+
+TypeNames: ; 5097b
+	dw Normal
+	dw Fighting
+	dw Flying
+	dw Poison
+	dw Ground
+	dw Rock
+	dw Bird
+	dw Bug
+	dw Ghost
+	dw Steel
+	dw Normal
+	dw Normal
+	dw Normal
+	dw Normal
+	dw Normal
+	dw Normal
+	dw Normal
+	dw Normal
+	dw Normal
+	dw UnknownType
+	dw Fire
+	dw Water
+	dw Grass
+	dw Electric
+	dw Psychic
+	dw Ice
+	dw Dragon
+	dw Dark
 
 Normal:
 	db "NORMAL@"
@@ -8590,6 +8672,8 @@ Dragon:
 	db "DRAGON@"
 Dark:
 	db "DARK@"
+; 50a28
+
 
 INCBIN "baserom.gbc", $50a28, $50bdd - $50a28
 
