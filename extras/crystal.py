@@ -2917,7 +2917,7 @@ music_command_enders = [0xEA, 0xEB, 0xEE, 0xFC, 0xFF,]
 # special case for 0xFD (if loopchannel.count = 0, break)
 
 def create_music_command_classes(debug=False):
-    klasses = [GivePoke]
+    klasses = []
     for (byte, cmd) in music_commands_new.items():
         cmd_name = cmd[0].replace(" ", "_")
         params = {"id": byte, "size": 1, "end": byte in music_command_enders, "macro_name": cmd_name}
@@ -2942,6 +2942,221 @@ def create_music_command_classes(debug=False):
     # later an individual klass will be instantiated to handle something
     return klasses
 music_classes = create_music_command_classes()
+
+
+
+effect_commands = {
+	0x1: ['checkturn'],
+	0x2: ['checkobedience'],
+	0x3: ['usedmovetext'],
+	0x4: ['doturn'],
+	0x5: ['critical'],
+	0x6: ['damagestats'],
+	0x7: ['stab'],
+	0x8: ['damagevariation'],
+	0x9: ['checkhit'],
+	0xa: ['effect0x0a'],
+	0xb: ['effect0x0b'],
+	0xc: ['effect0x0c'],
+	0xd: ['resulttext'],
+	0xe: ['checkfaint'],
+	0xf: ['criticaltext'],
+	0x10: ['supereffectivetext'],
+	0x11: ['checkdestinybond'],
+	0x12: ['buildopponentrage'],
+	0x13: ['poisontarget'],
+	0x14: ['sleeptarget'],
+	0x15: ['draintarget'],
+	0x16: ['eatdream'],
+	0x17: ['burntarget'],
+	0x18: ['freezetarget'],
+	0x19: ['paralyzetarget'],
+	0x1a: ['selfdestruct'],
+	0x1b: ['mirrormove'],
+	0x1c: ['statup'],
+	0x1d: ['statdown'],
+	0x1e: ['payday'],
+	0x1f: ['conversion'],
+	0x20: ['resetstats'],
+	0x21: ['storeenergy'],
+	0x22: ['unleashenergy'],
+	0x23: ['forceswitch'],
+	0x24: ['endloop'],
+	0x25: ['flinchtarget'],
+	0x26: ['ohko'],
+	0x27: ['recoil'],
+	0x28: ['mist'],
+	0x29: ['focusenergy'],
+	0x2a: ['confuse'],
+	0x2b: ['confusetarget'],
+	0x2c: ['heal'],
+	0x2d: ['transform'],
+	0x2e: ['screen'],
+	0x2f: ['poison'],
+	0x30: ['paralyze'],
+	0x31: ['substitute'],
+	0x32: ['rechargenextturn'],
+	0x33: ['mimic'],
+	0x34: ['metronome'],
+	0x35: ['leechseed'],
+	0x36: ['splash'],
+	0x37: ['disable'],
+	0x38: ['cleartext'],
+	0x39: ['charge'],
+	0x3a: ['checkcharge'],
+	0x3b: ['traptarget'],
+	0x3c: ['effect0x3c'],
+	0x3d: ['rampage'],
+	0x3e: ['checkrampage'],
+	0x3f: ['constantdamage'],
+	0x40: ['counter'],
+	0x41: ['encore'],
+	0x42: ['painsplit'],
+	0x43: ['snore'],
+	0x44: ['conversion2'],
+	0x45: ['lockon'],
+	0x46: ['sketch'],
+	0x47: ['defrostopponent'],
+	0x48: ['sleeptalk'],
+	0x49: ['destinybond'],
+	0x4a: ['spite'],
+	0x4b: ['falseswipe'],
+	0x4c: ['healbell'],
+	0x4d: ['kingsrock'],
+	0x4e: ['triplekick'],
+	0x4f: ['kickcounter'],
+	0x50: ['thief'],
+	0x51: ['arenatrap'],
+	0x52: ['nightmare'],
+	0x53: ['defrost'],
+	0x54: ['curse'],
+	0x55: ['protect'],
+	0x56: ['spikes'],
+	0x57: ['foresight'],
+	0x58: ['perishsong'],
+	0x59: ['startsandstorm'],
+	0x5a: ['endure'],
+	0x5b: ['checkcurl'],
+	0x5c: ['rolloutpower'],
+	0x5d: ['effect0x5d'],
+	0x5e: ['furycutter'],
+	0x5f: ['attract'],
+	0x60: ['happinesspower'],
+	0x61: ['present'],
+	0x62: ['damagecalc'],
+	0x63: ['frustrationpower'],
+	0x64: ['safeguard'],
+	0x65: ['checksafeguard'],
+	0x66: ['getmagnitude'],
+	0x67: ['batonpass'],
+	0x68: ['pursuit'],
+	0x69: ['clearhazards'],
+	0x6a: ['healmorn'],
+	0x6b: ['healday'],
+	0x6c: ['healnite'],
+	0x6d: ['hiddenpower'],
+	0x6e: ['startrain'],
+	0x6f: ['startsun'],
+	0x70: ['attackup'],
+	0x71: ['defenseup'],
+	0x72: ['speedup'],
+	0x73: ['specialattackup'],
+	0x74: ['specialdefenseup'],
+	0x75: ['accuracyup'],
+	0x76: ['evasionup'],
+	0x77: ['attackup2'],
+	0x78: ['defenseup2'],
+	0x79: ['speedup2'],
+	0x7a: ['specialattackup2'],
+	0x7b: ['specialdefenseup2'],
+	0x7c: ['accuracyup2'],
+	0x7d: ['evasionup2'],
+	0x7e: ['attackdown'],
+	0x7f: ['defensedown'],
+	0x80: ['speeddown'],
+	0x81: ['specialattackdown'],
+	0x82: ['specialdefensedown'],
+	0x83: ['accuracydown'],
+	0x84: ['evasiondown'],
+	0x85: ['attackdown2'],
+	0x86: ['defensedown2'],
+	0x87: ['speeddown2'],
+	0x88: ['specialattackdown2'],
+	0x89: ['specialdefensedown2'],
+	0x8a: ['accuracydown2'],
+	0x8b: ['evasiondown2'],
+	0x8c: ['statmessageuser'],
+	0x8d: ['statmessagetarget'],
+	0x8e: ['statupfailtext'],
+	0x8f: ['statdownfailtext'],
+	0x90: ['effectchance'],
+	0x91: ['effect0x91'],
+	0x92: ['effect0x92'],
+	0x93: ['switchturn'],
+	0x94: ['fakeout'],
+	0x95: ['bellydrum'],
+	0x96: ['psychup'],
+	0x97: ['rage'],
+	0x98: ['doubleflyingdamage'],
+	0x99: ['doubleundergrounddamage'],
+	0x9a: ['mirrorcoat'],
+	0x9b: ['checkfuturesight'],
+	0x9c: ['futuresight'],
+	0x9d: ['doubleminimizedamage'],
+	0x9e: ['skipsuncharge'],
+	0x9f: ['thunderaccuracy'],
+	0xa0: ['teleport'],
+	0xa1: ['beatup'],
+	0xa2: ['ragedamage'],
+	0xa3: ['effect0xa3'],
+	0xa4: ['allstatsup'],
+	0xa5: ['effect0xa5'],
+	0xa6: ['effect0xa6'],
+	0xa7: ['effect0xa7'],
+	0xa8: ['effect0xa8'],
+	0xa9: ['clearmissdamage'],
+	0xaa: ['wait'],
+	0xab: ['hittarget'],
+	0xac: ['tristatuschance'],
+	0xad: ['supereffectivelooptext'],
+	0xae: ['startloop'],
+	0xaf: ['curl'],
+	0xfe: ['endturn'],
+	0xff: ['endmove'],
+}
+
+effect_command_enders = [0xFF,]
+
+def create_effect_command_classes(debug=False):
+    klasses = []
+    for (byte, cmd) in effect_commands.items():
+        cmd_name = cmd[0].replace(" ", "_")
+        params = {
+            "id": byte,
+            "size": 1,
+            "end": byte in effect_command_enders,
+            "macro_name": cmd_name
+	}
+        params["param_types"] = {}
+        if len(cmd) > 1:
+            param_types = cmd[1:]
+            for (i, each) in enumerate(param_types):
+                thing = {"name": each[0], "class": each[1]}
+                params["param_types"][i] = thing
+                if debug:
+                    print "each is: " + str(each)
+                    print "thing[class] is: " + str(thing["class"])
+                params["size"] += thing["class"].size
+        klass_name = cmd_name+"Command"
+        klass = classobj(klass_name, (Command,), params)
+        globals()[klass_name] = klass
+        klasses.append(klass)
+    # later an individual klass will be instantiated to handle something
+    return klasses
+
+effect_classes = create_effect_command_classes()
+
+
 
 def generate_macros(filename="../script_macros.asm"):
     """generates all macros based on commands
