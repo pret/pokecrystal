@@ -722,7 +722,14 @@ PlayerLightScreenCount: ; c702
 PlayerReflectCount: ; c703
 	ds 1
 
-	ds 6
+	ds 2
+
+EnemyLightScreenCount: ; c706
+	ds 1
+EnemyReflectCount: ; c707
+	ds 1
+
+	ds 2
 
 Weather: ; c70a
 ; 00 normal

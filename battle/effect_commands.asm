@@ -1193,20 +1193,20 @@ BattleCommand04: ; 34555
 	ld hl, NoPPLeftText
 .print
 	call FarBattleTextBox
-	ld b, $1
+	ld b, 1
 	ret
 ; 34602
 
 .continuousmoves ; 34602
-	db $27 ; RAZOR_WIND
-	db $4b ; SKY_ATTACK
-	db $91 ; SKULL_BASH
-	db $97 ; SOLARBEAM
-	db $9b ; FLY, DIG
-	db $75 ; ROLLOUT
-	db $1a ; BIDE
-	db $1b ; THRASH, PETAL_DANCE, OUTRAGE
-	db $ff ; end
+	db EFFECT_RAZOR_WIND
+	db EFFECT_SKY_ATTACK
+	db EFFECT_SKULL_BASH
+	db EFFECT_SOLARBEAM
+	db EFFECT_FLY
+	db EFFECT_ROLLOUT
+	db EFFECT_BIDE
+	db EFFECT_RAMPAGE
+	db $ff
 ; 3460b
 
 Function0x3460b: ; 3460b
@@ -2728,15 +2728,15 @@ BattleCommand0a: ; 34eee
 
 	ld a, BATTLE_VARS_MOVE_EFFECT
 	call CleanGetBattleVarPair
-	cp $27 ; razor wind
+	cp EFFECT_RAZOR_WIND
 	jr z, .asm_34f21
-	cp $4b ; sky attack
+	cp EFFECT_SKY_ATTACK
 	jr z, .asm_34f21
-	cp $91 ; skull bash
+	cp EFFECT_SKULL_BASH
 	jr z, .asm_34f21
-	cp $97 ; solarbeam
+	cp EFFECT_SOLARBEAM
 	jr z, .asm_34f21
-	cp $9b ; fly / dig
+	cp EFFECT_FLY
 	jr z, .asm_34f21
 
 .asm_34f18
@@ -2765,9 +2765,9 @@ BattleCommand0a: ; 34eee
 .Rampage
 	ld a, BATTLE_VARS_MOVE_EFFECT
 	call CleanGetBattleVarPair
-	cp $75 ; rollout
+	cp EFFECT_ROLLOUT
 	jr z, .asm_34f4d
-	cp $1b ; rampage
+	cp EFFECT_RAMPAGE
 	jr z, .asm_34f4d
 
 	ld a, 1
@@ -2945,11 +2945,11 @@ BattleCommand0d: ; 35023
 	inc hl
 	ld a, [hl]
 
-	cp $1d ; multi-hit
+	cp EFFECT_MULTI_HIT
 	jr z, .asm_35049
-	cp $2c ; double-hit
+	cp EFFECT_DOUBLE_HIT
 	jr z, .asm_35049
-	cp $4d ; twineedle
+	cp EFFECT_TWINEEDLE
 	jr z, .asm_35049
 	jp EndMoveEffect
 
@@ -3224,8 +3224,8 @@ BattleCommand11: ; 351c0
 	and a
 	jr z, .asm_351cb
 	ld hl, BattleMonHP
-.asm_351cb
 
+.asm_351cb
 	ld a, [hli]
 	or [hl]
 	ret nz
@@ -3237,15 +3237,17 @@ BattleCommand11: ; 351c0
 
 	ld hl, TookDownWithItText
 	call FarBattleTextBox
+
 	ld a, [hBattleTurn]
 	and a
-	ld hl, EnemyMonMaxHPLo
-	ld bc, $c4ca
-	ld a, $0
-	jr nz, .asm_351f2 ; 351e8 $8
-	ld hl, $c63f
-	ld bc, $c55e
-	ld a, $1
+	ld hl, EnemyMonMaxHP + 1
+	bccoord 2, 2 ; hp bar
+	ld a, 0
+	jr nz, .asm_351f2
+	ld hl, BattleMonMaxHP + 1
+	bccoord 10, 9 ; hp bar
+	ld a, 1
+
 .asm_351f2
 	ld [$d10a], a
 	ld a, [hld]
@@ -3283,15 +3285,15 @@ BattleCommand11: ; 351c0
 .asm_35231
 	ld a, BATTLE_VARS_MOVE_EFFECT
 	call CleanGetBattleVarPair
-	cp $1d ; multi-hit
+	cp EFFECT_MULTI_HIT
 	jr z, .asm_3524a
-	cp $2c ; double-hit
+	cp EFFECT_DOUBLE_HIT
 	jr z, .asm_3524a
-	cp $4d ; twineedle
+	cp EFFECT_TWINEEDLE
 	jr z, .asm_3524a
-	cp $68 ; triple kick
+	cp EFFECT_TRIPLE_KICK
 	jr z, .asm_3524a
-	cp $9a ; beat up
+	cp EFFECT_BEAT_UP
 	jr nz, .asm_3524d
 
 .asm_3524a
@@ -7456,34 +7458,34 @@ BattleCommand24: ; 369b6
 	ld a, BATTLE_VARS_MOVE_EFFECT
 	call GetBattleVarPair
 	ld a, [hl]
-	cp $4d ; twineedle
-	jr z, .asm_36a3f ; 369db $62
-	cp $2c ; multi-hit
+	cp EFFECT_TWINEEDLE
+	jr z, .asm_36a3f
+	cp EFFECT_DOUBLE_HIT
 	ld a, $1
-	jr z, .asm_36a3a ; 369e1 $57
+	jr z, .asm_36a3a
 	ld a, [hl]
-	cp $9a ; beat up
-	jr z, .asm_369fb ; 369e6 $13
-	cp $68 ; triple kick
-	jr nz, .asm_36a2b ; 369ea $3f
+	cp EFFECT_BEAT_UP
+	jr z, .asm_369fb
+	cp EFFECT_TRIPLE_KICK
+	jr nz, .asm_36a2b
 .asm_369ec
 	call FarBattleRNG
 	and $3
-	jr z, .asm_369ec ; 369f1 $f9
+	jr z, .asm_369ec
 	dec a
-	jr nz, .asm_36a3a ; 369f4 $44
+	jr nz, .asm_36a3a
 	ld a, $1
 	ld [bc], a
-	jr .asm_36a48 ; 369f9 $4d
+	jr .asm_36a48
 .asm_369fb
 	ld a, [hBattleTurn]
 	and a
-	jr nz, .asm_36a0b ; 369fe $b
+	jr nz, .asm_36a0b
 	ld a, [PartyCount]
 	cp $1
 	jp z, .asm_36a1e
 	dec a
-	jr .asm_36a3a ; 36a09 $2f
+	jr .asm_36a3a
 .asm_36a0b
 	ld a, [IsInBattle]
 	cp $1
@@ -7536,7 +7538,7 @@ BattleCommand24: ; 369b6
 	push bc
 	ld a, BATTLE_VARS_MOVE_EFFECT
 	call CleanGetBattleVarPair
-	cp $9a ; beat up
+	cp EFFECT_BEAT_UP
 	jr z, .asm_36a67
 	call FarBattleTextBox
 .asm_36a67
@@ -7788,7 +7790,7 @@ BattleCommand39: ; 36b4d
 
 	ld a, BATTLE_VARS_MOVE_EFFECT
 	call CleanGetBattleVarPair
-	cp $91 ; skull bash
+	cp EFFECT_SKULL_BASH
 	ld b, $fe ; endturn
 	jp z, SkipToBattleCommand
 	jp EndMoveEffect
@@ -8077,32 +8079,37 @@ BattleCommand2a: ; 36d3b
 
 
 Function0x36d70: ; 36d70
-	ld bc, $c67b
+	ld bc, EnemyConfuseCount
 	ld a, [hBattleTurn]
 	and a
-	jr z, .asm_36d7b ; 36d76 $3
+	jr z, .asm_36d7b
 	ld bc, PlayerConfuseCount
+
 .asm_36d7b
 	set 7, [hl]
 	call FarBattleRNG
-	and $3
+	and 3
 	inc a
 	inc a
 	ld [bc], a
+
 	ld a, BATTLE_VARS_MOVE_EFFECT
 	call CleanGetBattleVarPair
-	cp $4c
+	cp EFFECT_CONFUSE_HIT
 	jr z, .asm_36d99
-	cp $5c
+	cp EFFECT_SNORE
 	jr z, .asm_36d99
-	cp $76
+	cp EFFECT_SWAGGER
 	jr z, .asm_36d99
 	call Function0x37e01
+
 .asm_36d99
 	ld de, $0103
 	call Function0x37e54
+
 	ld hl, BecameConfusedText
 	call FarBattleTextBox
+
 	call GetOpponentItem
 	ld a, b
 	cp $f
@@ -8117,11 +8124,11 @@ Function0x36d70: ; 36d70
 Function0x36db6: ; 36db6
 	ld a, BATTLE_VARS_MOVE_EFFECT
 	call CleanGetBattleVarPair
-	cp $4c
+	cp EFFECT_CONFUSE_HIT
 	ret z
-	cp $5c
+	cp EFFECT_SNORE
 	ret z
-	cp $76
+	cp EFFECT_SWAGGER
 	ret z
 	jp PrintDidntAffect2
 ; 36dc7
@@ -8990,12 +8997,14 @@ BattleCommand2e: ; 372fc
 	and a
 	jr z, .asm_3730d
 	ld hl, EnemyScreens
-	ld bc, $c706
+	ld bc, EnemyLightScreenCount
+
 .asm_3730d
 	ld a, BATTLE_VARS_MOVE_EFFECT
 	call CleanGetBattleVarPair
-	cp $23
-	jr nz, .asm_37324
+	cp EFFECT_LIGHT_SCREEN
+	jr nz, .Reflect
+
 	bit 3, [hl]
 	jr nz, .asm_37337
 	set 3, [hl]
@@ -9004,11 +9013,14 @@ BattleCommand2e: ; 372fc
 	ld hl, LightScreenEffectText
 	jr .asm_37331
 
-.asm_37324
+.Reflect
 	bit 4, [hl]
 	jr nz, .asm_37337
 	set 4, [hl]
+
+; LightScreenCount -> ReflectCount
 	inc bc
+
 	ld a, $5
 	ld [bc], a
 	ld hl, ReflectEffectText

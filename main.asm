@@ -14765,7 +14765,7 @@ DoWeatherModifiers: ; fbda4
 	db $ff
 
 .WeatherMoveModifiers
-	db WEATHER_RAIN, $97, 05 ; Solarbeam
+	db WEATHER_RAIN, EFFECT_SOLARBEAM, 05
 	db $ff
 ; fbe24
 
