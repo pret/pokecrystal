@@ -3506,11 +3506,8 @@ GetBaseStats: ; 3856
 	push bc
 	push de
 	push hl
-	
-; Save bank
 	ld a, [hROMBank]
 	push af
-; Bankswitch
 	ld a, BANK(BaseStats)
 	rst Bankswitch
 	
@@ -3534,12 +3531,12 @@ GetBaseStats: ; 3856
 	ld de, $7d9c
 	
 ; Sprite dimensions
-	ld b, $55
-	ld hl, $d247
+	ld b, $55 ; 5x5
+	ld hl, BasePicSize
 	ld [hl], b
 	
 ; ????
-	ld hl, $d248
+	ld hl, BasePadding
 	ld [hl], e
 	inc hl
 	ld [hl], d
@@ -3554,41 +3551,40 @@ GetBaseStats: ; 3856
 	ld a, [CurSpecies]
 	ld [CurBaseStats], a
 	
-; Restore bank
 	pop af
 	rst Bankswitch
-	
 	pop hl
 	pop de
 	pop bc
 	ret
 ; 389c
 
-INCBIN "baserom.gbc", $389c, $38a2 - $389c
+
+GetCurNick; 389c
+	ld a, [CurPartyMon]
+	ld hl, PartyMonNicknames
 
 GetNick: ; 38a2
-; get the nickname of a partymon
-; write nick to StringBuffer1
-
-; input: a = which mon (0-5)
+; Get nickname a from list hl.
 
 	push hl
 	push bc
-	; skip [a] nicks
+
 	call SkipNames
 	ld de, StringBuffer1
-	; write nick
+
 	push de
 	ld bc, PKMN_NAME_LENGTH
 	call CopyBytes
-	; error-check
 	pop de
+
 	callab CheckNickErrors
-	; we're done
+
 	pop bc
 	pop hl
 	ret
 ; 38bb
+
 
 PrintBCDNumber: ; 38bb
 ; function to print a BCD (Binary-coded decimal) number
@@ -6775,16 +6771,16 @@ LoadEnemyMon: ; 3e8eb
 
 ; 25% chance of getting an item
 	call FarBattleRNG
-	cp a, $c0         ; $c0/$100 = 75%
+	cp a, $c0
 	ld a, NO_ITEM
 	jr c, .UpdateItem
 	
 ; From there, an 8% chance for Item2
 	call FarBattleRNG
-	cp a, $14          ; 8% of 25% = 2% Item2
-	ld a, [$d241]      ; BaseStatsItem1
+	cp a, $14 ; 8% of 25% = 2% Item2
+	ld a, [BaseItems]
 	jr nc, .UpdateItem
-	ld a, [$d242]      ; BaseStatsItem2
+	ld a, [BaseItems+1]
 	
 	
 .UpdateItem

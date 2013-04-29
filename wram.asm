@@ -1166,10 +1166,51 @@ UnownLetter: ; d234
 	ds 1
 
 CurBaseStats: ; d236
-	ds 32
+BaseDexNo: ; d236
+	ds 1
+BaseHP: ; d237
+	ds 1
+BaseAttack: ; d238
+	ds 1
+BaseDefense: ; d239
+	ds 1
+BaseSpeed: ; d23a
+	ds 1
+BaseSpecialAttack: ; d23b
+	ds 1
+BaseSpecialDefense: ; d23c
+	ds 1
+BaseType: ; d23d
+	ds 2
+BaseCatchRate: ; d23f
+	ds 1
+BaseExp: ; d240
+	ds 1
+BaseItems: ; d241
+	ds 2
+BaseGender: ; d243
+	ds 1
+BaseUnknown1: ; d244
+	ds 1
+BaseEggSteps: ; d245
+	ds 1
+BaseUnknown2: ; d246
+	ds 1
+BasePicSize: ; d247
+	ds 1
+BasePadding: ; d248
+	ds 4
+BaseGrowthRate: ; d24c
+	ds 1
+BaseEggGroups: ; d24d
+	ds 1
+BaseTMHM: ; d24e
+	ds 8
+
 
 CurDamage: ; d256
 	ds 2
+
 
 SECTION "TimeOfDay",BSS[$d269]
 
@@ -1620,6 +1661,7 @@ PartyMon5OT: ; de2b
 PartyMon6OT: ; de36
 	ds 11
 
+PartyMonNicknames:
 PartyMon1Nickname: ; de41
 	ds 11
 PartyMon2Nickname: ; de4c
