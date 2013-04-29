@@ -6364,88 +6364,120 @@ TrainerClassNames: ; 2c1ef
 	db "ROCKET@"
 	db "MYSTICALMAN@"
 
-INCBIN "baserom.gbc", $2C41a, $2ee8f - $2C41a
 
-; XXX this is not the start of the routine
-; determine what music plays in battle
-	ld a, [OtherTrainerClass] ; are we fighting a trainer?
+INCBIN "baserom.gbc", $2c41a, $2ee6c - $2c41a
+
+
+PlayBattleMusic: ; 2ee6c
+
+	push hl
+	push de
+	push bc
+
+	xor a
+	ld [MusicFade], a
+	ld de, MUSIC_NONE
+	call StartMusic
+	call DelayFrame
+	call MaxVolume
+
+	ld a, [BattleType]
+	cp BATTLETYPE_SUICUNE
+	ld de, MUSIC_SUICUNE_BATTLE
+	jp z, .done
+	cp BATTLETYPE_ROAMING
+	jp z, .done
+
+	; Are we fighting a trainer?
+	ld a, [OtherTrainerClass]
 	and a
 	jr nz, .trainermusic
+
 	ld a, BANK(RegionCheck)
 	ld hl, RegionCheck
 	rst FarCall
 	ld a, e
 	and a
 	jr nz, .kantowild
-	ld de, $0029 ; johto daytime wild battle music
-	ld a, [TimeOfDay] ; check time of day
-	cp $2 ; nighttime?
-	jr nz, .done ; if no, then done
-	ld de, $004a ; johto nighttime wild battle music
+
+	ld de, MUSIC_JOHTO_WILD_BATTLE
+	ld a, [TimeOfDay]
+	cp NITE
+	jr nz, .done
+	ld de, MUSIC_JOHTO_WILD_BATTLE_NIGHT
 	jr .done
+
 .kantowild
-	ld de, $0008 ; kanto wild battle music
+	ld de, MUSIC_KANTO_WILD_BATTLE
 	jr .done
 
 .trainermusic
-	ld de, $002f ; lance battle music
+	ld de, MUSIC_CHAMPION_BATTLE
 	cp CHAMPION
 	jr z, .done
 	cp RED
 	jr z, .done
 
 	; really, they should have included admins and scientists here too...
-	ld de, $0031 ; rocket battle music
+	ld de, MUSIC_ROCKET_BATTLE
 	cp GRUNTM
 	jr z, .done
 	cp GRUNTF
 	jr z, .done
 
-	ld de, $0006 ; kanto gym leader battle music
+	ld de, MUSIC_KANTO_GYM_LEADER_BATTLE
 	ld a, BANK(IsKantoGymLeader)
 	ld hl, IsKantoGymLeader
 	rst FarCall
 	jr c, .done
 
-	ld de, $002e ; johto gym leader battle music
+	ld de, MUSIC_JOHTO_GYM_LEADER_BATTLE
 	ld a, BANK(IsJohtoGymLeader)
 	ld hl, IsJohtoGymLeader
 	rst FarCall
 	jr c, .done
 
-	ld de, $0030 ; rival battle music
+	ld de, MUSIC_RIVAL_BATTLE
 	ld a, [OtherTrainerClass]
 	cp RIVAL1
 	jr z, .done
 	cp RIVAL2
 	jr nz, .othertrainer
-	ld a, [OtherTrainerID] ; which rival are we fighting?
-	cp $4
-	jr c, .done ; if it's not the fight inside Indigo Plateau, we're done
-	ld de, $002f ; rival indigo plateau battle music
+
+	ld a, [OtherTrainerID]
+	cp 4 ; Rival in Indigo Plateau
+	jr c, .done
+	ld de, MUSIC_CHAMPION_BATTLE
 	jr .done
 
 .othertrainer
 	ld a, [InLinkBattle]
 	and a
-	jr nz, .linkbattle
+	jr nz, .johtotrainer
+
 	ld a, BANK(RegionCheck)
 	ld hl, RegionCheck
 	rst FarCall
 	ld a, e
 	and a
 	jr nz, .kantotrainer
-.linkbattle
-	ld de, $002a ; johto trainer battle music
+
+.johtotrainer
+	ld de, MUSIC_JOHTO_TRAINER_BATTLE
 	jr .done
+
 .kantotrainer
-	ld de, $0007 ; kanto trainer battle music
+	ld de, MUSIC_KANTO_TRAINER_BATTLE
+
 .done
-	call $3b97
+	call StartMusic
+
 	pop bc
 	pop de
 	pop hl
 	ret
+; 2ef18
+
 
 INCBIN "baserom.gbc", $2ef18, $2ef9f - $2ef18
 
