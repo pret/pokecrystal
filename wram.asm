@@ -1043,17 +1043,16 @@ MagikarpLength: ; d1ea
 Buffer2: ; d1eb
 	ds 1
 
-SECTION "prng2",BSS[$d1fa]
+SECTION "BattleMons2",BSS[$d1fa]
 LinkBattleRNs: ; d1fa
 	ds 10
-
-SECTION "BattleMons2",BSS[$d204]
 
 TempEnemyMonSpecies: ; d204
 	ds 1
 TempBattleMonSpecies: ; d205
 	ds 1
-	
+
+EnemyMon:
 EnemyMonSpecies: ; d206
 	ds 1
 EnemyMonItem: ; d207
@@ -1121,8 +1120,16 @@ EnemyMonType1: ; d224
 EnemyMonType2: ; d225
 	ds 1
 
+EnemyMonBaseStats: ; d226
+	ds 5
 
-SECTION "Battle",BSS[$d22d]
+EnemyMonCatchRate: ; d22b
+	ds 1
+EnemyMonBaseExp: ; d22c
+	ds 1
+
+EnemyMonEnd
+
 
 IsInBattle: ; d22d
 ; 0: overworld
@@ -1182,7 +1189,10 @@ BaseSpecialAttack: ; d23b
 BaseSpecialDefense: ; d23c
 	ds 1
 BaseType: ; d23d
-	ds 2
+BaseType1: ; d23d
+	ds 1
+BaseType2: ; d23e
+	ds 1
 BaseCatchRate: ; d23f
 	ds 1
 BaseExp: ; d240

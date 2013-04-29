@@ -3549,7 +3549,7 @@ GetBaseData: ; 3856
 .end
 ; Replace Pokedex # with species
 	ld a, [CurSpecies]
-	ld [CurBaseData], a
+	ld [BaseDexNo], a
 	
 	pop af
 	rst Bankswitch
@@ -6716,7 +6716,7 @@ LoadEnemyMon: ; 3e8eb
 ; Clear the whole EnemyMon struct
 	xor a
 	ld hl, EnemyMonSpecies
-	ld bc, $0027
+	ld bc, EnemyMonEnd - EnemyMon
 	call ByteFill
 	
 ; We don't need to be here if we're in a link battle
@@ -6760,7 +6760,7 @@ LoadEnemyMon: ; 3e8eb
 ; Used for Ho-Oh, Lugia and Snorlax encounters
 	ld a, [BattleType]
 	cp BATTLETYPE_FORCEITEM
-	ld a, [$d241] ; BufferMonItem1
+	ld a, [BaseItems]
 	jr z, .UpdateItem
 	
 ; Failing that, it's all up to chance
@@ -6795,7 +6795,7 @@ LoadEnemyMon: ; 3e8eb
 	jr z, .InitDVs
 	
 ; ????
-	ld a, [$c671]
+	ld a, [EnemySubStatus5]
 	bit 3, a
 	jr z, .InitDVs
 	
@@ -6982,7 +6982,7 @@ LoadEnemyMon: ; 3e8eb
 	
 .Happiness
 ; Set happiness
-	ld a, 70 ; BASE_HAPPINESS
+	ld a, BASE_HAPPINESS
 	ld [EnemyMonHappiness], a
 ; Set level
 	ld a, [CurPartyLevel]
@@ -7077,8 +7077,8 @@ LoadEnemyMon: ; 3e8eb
 	
 .Moves
 ; ????
-	ld hl, $d23d
-	ld de, $d224
+	ld hl, BaseType1
+	ld de, EnemyMonType1
 	ld a, [hli]
 	ld [de], a
 	inc de
@@ -7137,24 +7137,24 @@ LoadEnemyMon: ; 3e8eb
 	call CopyBytes
 	
 .Finish
-; ????
-	ld hl, $d237
-	ld de, $d226
-	ld b, 5 ; # bytes to copy
-; Copy $d237-a to $d226-9
+; Only the first five base stats are copied...
+	ld hl, BaseStats
+	ld de, EnemyMonBaseStats
+	ld b, BaseSpecialDefense - BaseStats
 .loop
 	ld a, [hli]
 	ld [de], a
 	inc de
 	dec b
 	jr nz, .loop
-; Copy $d23f to $d22a
-	ld a, [$d23f]
+
+	ld a, [BaseCatchRate]
 	ld [de], a
 	inc de
-; Copy $d240 to $d22b
-	ld a, [$d240]
+
+	ld a, [BaseExp]
 	ld [de], a
+
 ; copy TempEnemyMonSpecies to $d265
 	ld a, [TempEnemyMonSpecies]
 	ld [$d265], a
@@ -8963,7 +8963,7 @@ GetGender: ; 50bdd
 	push bc
 	ld a, [CurPartySpecies]
 	dec a
-	ld hl, BaseData + 13 ; BASE_GENDER
+	ld hl, BaseData + BaseGender - CurBaseData
 	ld bc, BaseData1 - BaseData
 	call AddNTimes
 	pop bc
