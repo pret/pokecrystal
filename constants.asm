@@ -1689,6 +1689,9 @@ HM_05         EQU $F7
 HM_06         EQU $F8
 HM_07         EQU $F9
 
+NUM_TMS EQU HM_01 - TM_01 - 2
+
+
 ; days of the week
 SUNDAY    EQU $00
 MONDAY    EQU $01

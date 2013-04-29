@@ -1423,7 +1423,7 @@ Char5D:
 	ld a, $e
 	rst FarCall
 	pop hl
-	ld de, $d073
+	ld de, StringBuffer1
 	jr .asm_126a ; 0x1246 $22
 .asm_1248
 	ld de, $d493
@@ -3192,7 +3192,9 @@ CountSetBits: ; 0x335f
 	ret
 ; 0x3376
 
+
 INCBIN "baserom.gbc", $3376, $33ab - $3376
+
 
 NamesPointerTable: ; 33ab
 	dbw BANK(PokemonNames), PokemonNames
@@ -3203,6 +3205,8 @@ NamesPointerTable: ; 33ab
 	dbw $00, $d3a8
 	dbw BANK(TrainerClassNames), TrainerClassNames
 	dbw $04, $4b52
+; 33c3
+
 
 GetName: ; 33c3
 	ld a, [hROMBank]
@@ -3211,8 +3215,9 @@ GetName: ; 33c3
 	push bc
 	push de
 	ld a, [$cf61]
-	cp $1
-	jr nz, .asm_33e1 ; 0x33ce $11
+	cp 1 ; Pokemon names
+	jr nz, .asm_33e1
+
 	ld a, [$cf60]
 	ld [$d265], a
 	call $343b
@@ -3220,28 +3225,32 @@ GetName: ; 33c3
 	add hl, de
 	ld e, l
 	ld d, h
-	jr .asm_3403 ; 0x33df $22
+	jr .done
+
 .asm_33e1
 	ld a, [$cf61]
 	dec a
 	ld e, a
-	ld d, $0
+	ld d, 0
 	ld hl, NamesPointerTable
 	add hl, de
 	add hl, de
 	add hl, de
 	ld a, [hli]
-	rst Bankswitch ; Bankswitch
+	rst Bankswitch
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
+
 	ld a, [$cf60]
 	dec a
 	call GetNthString
-	ld de, $d073
+
+	ld de, StringBuffer1
 	ld bc, $000d
 	call CopyBytes
-.asm_3403
+
+.done
 	ld a, e
 	ld [$d102], a
 	ld a, d
@@ -3252,9 +3261,8 @@ GetName: ; 33c3
 	pop af
 	rst Bankswitch
 	ret
-; 0x3411
+; 3411
 
-INCBIN "baserom.gbc", $3411, $3411 - $3411
 
 GetNthString: ; 3411
 ; Starting at hl, this function returns the start address of the ath string.
@@ -3266,39 +3274,213 @@ GetNthString: ; 3411
 .readChar
 	ld a, [hli]
 	cp c
-	jr nz, .readChar ; 0x3419 $fc
+	jr nz, .readChar
 	dec b
-	jr nz, .readChar ; 0x341c $f9
+	jr nz, .readChar
 	pop bc
 	ret
-; 0x3420
+; 3420
 
 
-INCBIN "baserom.gbc", $3420, $3468 - $3420
+GetBasePokemonName: ; 3420
+; Discards gender (Nidoran).
+	push hl
+	call GetPokemonName
+
+	ld hl, StringBuffer1
+.loop
+	ld a, [hl]
+	cp "@"
+	jr z, .quit
+	cp "♂"
+	jr z, .end
+	cp "♀"
+	jr z, .end
+	inc hl
+	jr .loop
+.end
+	ld [hl], "@"
+.quit
+	pop hl
+	ret
+
+; 343b
+
+
+GetPokemonName: ; 343b
+; Get Pokemon name $d265.
+
+	ld a, [hROMBank]
+	push af
+	push hl
+	ld a, BANK(PokemonNames)
+	rst Bankswitch
+
+; Each name is ten characters
+	ld a, [$d265]
+	dec a
+	ld d, 0
+	ld e, a
+	ld h, 0
+	ld l, a
+	add hl, hl
+	add hl, hl
+	add hl, de
+	add hl, hl
+	ld de, PokemonNames
+	add hl, de
+
+; Terminator
+	ld de, StringBuffer1
+	push de
+	ld bc, PKMN_NAME_LENGTH - 1
+	call CopyBytes
+	ld hl, StringBuffer1 + PKMN_NAME_LENGTH - 1
+	ld [hl], "@"
+	pop de
+
+	pop hl
+	pop af
+	rst Bankswitch
+	ret
+; 3468
 
 
 GetItemName: ; 3468
+; Get item name $d265.
+
 	push hl
 	push bc
-	ld a, [$d265] ; Get the item
-	cp $bf ; Is it a TM?
-	jr nc, .tm ; 0x346f $d
+	ld a, [$d265]
+
+	cp TM_01
+	jr nc, .TM
+
 	ld [$cf60], a
-	ld a, $4 ; Item names
+	ld a, 4 ; Item names
 	ld [$cf61], a
 	call GetName
-	jr .copied ; 0x347c $3
-.tm
-	call $3487
-.copied
-	ld de, $d073
+	jr .Copied
+.TM
+	call GetTMHMName
+.Copied
+	ld de, StringBuffer1
 	pop bc
 	pop hl
 	ret
 ; 3487
 
 
-INCBIN "baserom.gbc", $3487, $34f8 - $3487
+GetTMHMName: ; 3487
+; Get TM/HM name by item id $d265.
+
+	push hl
+	push de
+	push bc
+	ld a, [$d265]
+	push af
+
+; TM/HM prefix
+	cp HM_01
+	push af
+	jr c, .TM
+
+	ld hl, .HMText
+	ld bc, .HMTextEnd - .HMText
+	jr .asm_34a1
+
+.TM
+	ld hl, .TMText
+	ld bc, .TMTextEnd - .TMText
+
+.asm_34a1
+	ld de, StringBuffer1
+	call CopyBytes
+
+; TM/HM number
+	push de
+	ld a, [$d265]
+	ld c, a
+	callab GetTMHMNumber
+	pop de
+
+; HM numbers start from 51, not 1
+	pop af
+	ld a, c
+	jr c, .asm_34b9
+	sub NUM_TMS
+
+; Divide and mod by 10 to get the top and bottom digits respectively
+.asm_34b9
+	ld b, "0"
+.mod10
+	sub 10
+	jr c, .asm_34c2
+	inc b
+	jr .mod10
+.asm_34c2
+	add 10
+
+	push af
+	ld a, b
+	ld [de], a
+	inc de
+	pop af
+
+	ld b, "0"
+	add b
+	ld [de], a
+
+; End the string
+	inc de
+	ld a, "@"
+	ld [de], a
+
+	pop af
+	ld [$d265], a
+	pop bc
+	pop de
+	pop hl
+	ret
+
+.TMText
+	db "TM"
+.TMTextEnd
+	db "@"
+
+.HMText
+	db "HM"
+.HMTextEnd
+	db "@"
+; 34df
+
+
+IsHM: ; 34df
+	cp HM_01
+	jr c, .NotHM
+	scf
+	ret
+.NotHM
+	and a
+	ret
+; 34e7
+
+
+IsHMMove: ; 34e7
+	ld hl, .HMMoves
+	ld de, 1
+	jp IsInArray
+
+.HMMoves
+	db CUT
+	db FLY
+	db SURF
+	db STRENGTH
+	db FLASH
+	db WATERFALL
+	db WHIRLPOOL
+	db $ff
+; 34f8
 
 
 GetMoveName: ; 34f8
@@ -4408,7 +4590,7 @@ SpecialGiveShuckle: ; 7305
 	ld b, 0
 	ld a, $13
 	ld hl, $5ba3
-	rst $8
+	rst FarCall
 
 ; Holding a Berry.
 	ld bc, PartyMon2 - PartyMon1
@@ -5259,7 +5441,34 @@ AskSurfText: ; ca36
 	db "@"				; Want to SURF?
 ; ca3b
 
-INCBIN "baserom.gbc", $ca3b, $fa0b - $ca3b
+
+INCBIN "baserom.gbc", $ca3b, $d407 - $ca3b
+
+
+GetTMHMNumber: ; d407
+; Return the number of a TM/HM by item id c.
+
+	ld a, c
+
+; Skip any dummy items.
+	cp $c3 ; TM04-05
+	jr c, .done
+	cp $dc ; TM28-29
+	jr c, .skip
+	dec a
+.skip
+	dec a
+.done
+
+	sub TM_01
+
+	inc a
+	ld c, a
+	ret
+; d417
+
+
+INCBIN "baserom.gbc", $d417, $fa0b - $d417
 
 
 SECTION "bank4",DATA,BANK[$4]
@@ -5373,26 +5582,26 @@ OpenPartyMenu: ; $12976
 .menu ; 12986
 	ld a, $14
 	ld hl, $404f
-	rst $8 ; load gfx
+	rst FarCall ; load gfx
 	ld a, $14
 	ld hl, $4405
-	rst $8 ; setup menu?
+	rst FarCall ; setup menu?
 	ld a, $14
 	ld hl, $43e0
-	rst $8 ; load menu pokémon sprites
+	rst FarCall ; load menu pokémon sprites
 .menunoreload ; 12998
 	ld a, BANK(WritePartyMenuTilemap)
 	ld hl, WritePartyMenuTilemap
-	rst $8
+	rst FarCall
 	ld a, BANK(PrintPartyMenuText)
 	ld hl, PrintPartyMenuText
-	rst $8
+	rst FarCall
 	call $31f6
 	call $32f9 ; load regular palettes?
 	call DelayFrame
 	ld a, BANK(PartyMenuSelect)
 	ld hl, PartyMenuSelect
-	rst $8
+	rst FarCall
 	jr c, .return ; if cancelled or pressed B
 	call PokemonActionSubmenu
 	cp $3
@@ -5423,7 +5632,7 @@ PokemonActionSubmenu ; 0x12a88
 	call $0fb6 ; draw box
 	ld a, $9
 	ld hl, $4d19
-	rst $8
+	rst FarCall
 	call $389c
 	ld a, [$cf74] ; menu selection?
 	ld hl, PokemonSubmenuActionPointerTable
@@ -8255,7 +8464,7 @@ StatsScreenInit: ; 4dc8a
 	call $1ad2
 	ld a, $3e
 	ld hl, $753e
-	rst $8 ; this loads graphics
+	rst FarCall ; this loads graphics
 	pop hl
 	call JpHl
 	call $31f3
@@ -8373,7 +8582,7 @@ EggStatsScreen: ; 4e33a
 	call $3786
 	ld a, $41
 	ld hl, $402d
-	rst $8
+	rst FarCall
 	call $6497
 	ld a, [$d129]
 	cp $6
@@ -9214,7 +9423,7 @@ BattleText_0x80880: ; 0x80880
 	db $0, $59, $4f
 	db "recovered with", $55
 	db "@"
-	text_from_ram $d073
+	text_from_ram StringBuffer1
 	db $0, ".", $58
 ; 0x80899
 
@@ -9222,7 +9431,7 @@ BattleText_0x80899: ; 0x80899
 	db $0, $5a, $4f
 	db "recovered PP using", $55
 	db "@"
-	text_from_ram $d073
+	text_from_ram StringBuffer1
 	db $0, ".", $58
 ; 0x808b6
 
@@ -9238,13 +9447,13 @@ BattleText_0x808d2: ; 0x808d2
 ; 0x808e7
 
 BattleText_0x808e7: ; 0x808e7
-	text_from_ram $d073
+	text_from_ram StringBuffer1
 	db $0, " #MON's", $4f
 	db "LIGHT SCREEN fell!", $58
 ; 0x80905
 
 BattleText_0x80905: ; 0x80905
-	text_from_ram $d073
+	text_from_ram StringBuffer1
 	db $0, " #MON's", $4f
 	db "REFLECT faded!", $58
 ; 0x8091f
@@ -9391,7 +9600,7 @@ BattleText_0x80b89: ; 0x80b89
 	db $0, $5a, $4f
 	db "fled using a", $55
 	db "@"
-	text_from_ram $d073
+	text_from_ram StringBuffer1
 	db $0, "!", $58
 ; 0x80ba0
 
@@ -9408,14 +9617,14 @@ RecoveredUsingText: ; 0x80bc2
 	db $0, $59, $4f
 	db "recovered using a", $55
 	db "@"
-	text_from_ram $d073
+	text_from_ram StringBuffer1
 	db $0, "!", $58
 ; 0x80bde
 
 BattleText_0x80bde: ; 0x80bde
 	db $0, $5a, "'s", $4f
 	db "@"
-	text_from_ram $d073
+	text_from_ram StringBuffer1
 	db $0, $55
 	db "activated!", $58
 ; 0x80bf3
@@ -9459,7 +9668,7 @@ BattleText_0x80c8a: ; 0x80c8a
 ; 0x80c9c
 
 BattleText_0x80c9c: ; 0x80c9c
-	text_from_ram $d073
+	text_from_ram StringBuffer1
 	db $0, " grew to", $4f
 	db "level @"
 	deciram $d143, $13
@@ -9538,7 +9747,7 @@ BecameConfusedText: ; 0x80d97
 
 BattleText_0x80dab: ; 0x80dab
 	db $0, "A @"
-	text_from_ram $d073
+	text_from_ram StringBuffer1
 	db $0, " rid", $4f
 	db $59, $55
 	db "of its confusion.", $58
@@ -9553,7 +9762,7 @@ BattleText_0x80de2: ; 0x80de2
 	db $0, $5a, "'s", $4f
 	db "hurt by", $55
 	db "@"
-	text_from_ram $d073
+	text_from_ram StringBuffer1
 	db $0, "!", $58
 ; 0x80df5
 
@@ -9561,7 +9770,7 @@ BattleText_0x80df5: ; 0x80df5
 	db $0, $5a, $4f
 	db "was released from", $55
 	db "@"
-	text_from_ram $d073
+	text_from_ram StringBuffer1
 	db $0, "!", $58
 ; 0x80e11
 
@@ -9607,7 +9816,7 @@ HungOnText: ; 0x80e99
 	db $0, $59, $4f
 	db "hung on with", $55
 	db "@"
-	text_from_ram $d073
+	text_from_ram StringBuffer1
 	db $0, "!", $58
 ; 0x80eb0
 
@@ -9631,7 +9840,7 @@ InfatuationText: ; 0x80eda
 DisabledMoveText: ; 0x80f02
 	db $0, $5a, "'s", $4f
 	db "@"
-	text_from_ram $d073
+	text_from_ram StringBuffer1
 	db $0, " is", $55
 	db "DISABLED!", $58
 ; 0x80f19
@@ -9775,7 +9984,7 @@ SketchedText: ; 0x81143
 	db $0, $5a, $4f
 	db "SKETCHED", $55
 	db "@"
-	text_from_ram $d073
+	text_from_ram StringBuffer1
 	db $0, "!", $58
 ; 0x81156
 
@@ -9788,7 +9997,7 @@ DestinyBondEffectText: ; 0x81156
 SpiteEffectText: ; 0x8117f
 	db $0, $59, "'s", $4f
 	db "@"
-	text_from_ram $d073
+	text_from_ram StringBuffer1
 	db $0, " was", $55
 	db "reduced by @"
 	deciram $d265, $11
@@ -9944,7 +10153,7 @@ LearnedMoveText: ; 0x813e6
 	db $0, $5a, $4f
 	db "learned", $55
 	db "@"
-	text_from_ram $d073
+	text_from_ram StringBuffer1
 	db $0, "!", $58
 ; 0x813f8
 
@@ -9961,7 +10170,7 @@ EvadedText: ; 0x81407
 WasDisabledText: ; 0x8141d
 	db $0, $59, "'s", $4f
 	db "@"
-	text_from_ram $d073
+	text_from_ram StringBuffer1
 	db $0, " was", $55
 	db "DISABLED!", $58
 ; 0x81435
@@ -9975,7 +10184,7 @@ TransformedTypeText: ; 0x81452
 	db $0, $5a, $4f
 	db "transformed into", $55
 	db "the @"
-	text_from_ram $d073
+	text_from_ram StringBuffer1
 	db $0, "-type!", $58
 ; 0x81476
 
@@ -9988,7 +10197,7 @@ TransformedText: ; 0x81499
 	db $0, $5a, $4f
 	db "TRANSFORMED into", $55
 	db "@"
-	text_from_ram $d073
+	text_from_ram StringBuffer1
 	db $0, "!", $58
 ; 0x814b4
 
@@ -10055,7 +10264,7 @@ ProtectedByText: ; 0x815a9
 	db $0, $59, "'s", $4f
 	db "protected by", $55
 	db "@"
-	text_from_ram $d073
+	text_from_ram StringBuffer1
 	db $0, "!", $58
 ; 0x815c1
 
@@ -10066,7 +10275,7 @@ MirrorMoveFailedText: ; 0x815c1
 StoleText: ; 0x815da
 	db $0, $5a, $4f
 	db "stole @"
-	text_from_ram $d073
+	text_from_ram StringBuffer1
 	db $0, $55
 	db "from its foe!", $58
 ; 0x815f7
@@ -10198,7 +10407,7 @@ ForesawAttackText: ; 0x81817
 ; 0x8182d
 
 BeatUpAttackText: ; 0x8182d
-	text_from_ram $d073
+	text_from_ram StringBuffer1
 	db $0, "'s", $4f
 	db "attack!", $57
 ; 0x8183b
@@ -10487,7 +10696,7 @@ HallOfFame3: ; 0x8640e
 
 	ld a, $5
 	ld hl, $4da0
-	rst $8
+	rst FarCall
 	ld hl, $d95e
 	ld a, [hl]
 	cp $c8
@@ -10496,11 +10705,11 @@ HallOfFame3: ; 0x8640e
 .asm_86436
 	ld a, $5
 	ld hl, $4b85
-	rst $8
+	rst FarCall
 	call $653f
 	ld a, $5
 	ld hl, $4b5f
-	rst $8
+	rst FarCall
 	xor a
 	ld [$c2cd], a
 	call $64c3
@@ -10508,7 +10717,7 @@ HallOfFame3: ; 0x8640e
 	ld b, a
 	ld a, $42
 	ld hl, $5847
-	rst $8
+	rst FarCall
 	ret
 ; 0x86455
 
