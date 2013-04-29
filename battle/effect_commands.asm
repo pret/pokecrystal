@@ -2020,7 +2020,7 @@ Function0x34a2a: ; 34a2a
 
 	ld a, [hl]
 	ld [CurSpecies], a
-	call GetBaseStats
+	call GetBaseData
 	ld a, [LastEnemyCounterMove]
 	dec a
 	ld hl, $5afd
@@ -2200,7 +2200,7 @@ Function0x34b20: ; 34b20
 
 	push hl
 	ld [CurSpecies], a
-	call GetBaseStats
+	call GetBaseData
 	ld a, [LastEnemyCounterMove]
 	and a
 	jr z, .asm_34b4a
@@ -3929,7 +3929,7 @@ BattleCommanda1: ; 35461
 	call FarBattleTextBox
 	ld a, [BattleMonSpecies]
 	ld [CurSpecies], a
-	call GetBaseStats
+	call GetBaseData
 	ld a, [$d239]
 	ld c, a
 	push bc
@@ -3937,7 +3937,7 @@ BattleCommanda1: ; 35461
 	call Function0x355bd
 	ld a, [hl]
 	ld [CurSpecies], a
-	call GetBaseStats
+	call GetBaseData
 	ld a, [$d238]
 	pop bc
 	ld b, a

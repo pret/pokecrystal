@@ -1165,9 +1165,10 @@ UnownLetter: ; d234
 
 	ds 1
 
-CurBaseStats: ; d236
+CurBaseData: ; d236
 BaseDexNo: ; d236
 	ds 1
+BaseStats: ; d237
 BaseHP: ; d237
 	ds 1
 BaseAttack: ; d238

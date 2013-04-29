@@ -3502,27 +3502,27 @@ GetMoveName: ; 34f8
 INCBIN "baserom.gbc", $350c, $3856 - $350c
 
 
-GetBaseStats: ; 3856
+GetBaseData: ; 3856
 	push bc
 	push de
 	push hl
 	ld a, [hROMBank]
 	push af
-	ld a, BANK(BaseStats)
+	ld a, BANK(BaseData)
 	rst Bankswitch
 	
-; Egg doesn't have base stats
+; Egg doesn't have BaseData
 	ld a, [CurSpecies]
 	cp EGG
 	jr z, .egg
 
-; Get base stats
+; Get BaseData
 	dec a
-	ld bc, BaseStats1 - BaseStats0
-	ld hl, BaseStats
+	ld bc, BaseData1 - BaseData0
+	ld hl, BaseData
 	call AddNTimes
-	ld de, CurBaseStats
-	ld bc, BaseStats1 - BaseStats0
+	ld de, CurBaseData
+	ld bc, BaseData1 - BaseData0
 	call CopyBytes
 	jr .end
 	
@@ -3549,7 +3549,7 @@ GetBaseStats: ; 3856
 .end
 ; Replace Pokedex # with species
 	ld a, [CurSpecies]
-	ld [CurBaseStats], a
+	ld [CurBaseData], a
 	
 	pop af
 	rst Bankswitch
@@ -6734,8 +6734,8 @@ LoadEnemyMon: ; 3e8eb
 	ld [CurSpecies], a
 	ld [CurPartySpecies], a
 	
-; Grab the base stats for this species
-	call GetBaseStats
+; Grab the BaseData for this species
+	call GetBaseData
 	
 
 ; Let's get the item:
@@ -6754,7 +6754,7 @@ LoadEnemyMon: ; 3e8eb
 	
 	
 .WildItem
-; In a wild battle, we pull from the item slots in base stats
+; In a wild battle, we pull from the item slots in BaseData
 
 ; Force Item1
 ; Used for Ho-Oh, Lugia and Snorlax encounters
@@ -8963,12 +8963,12 @@ GetGender: ; 50bdd
 	push bc
 	ld a, [CurPartySpecies]
 	dec a
-	ld hl, BaseStats + 13 ; BASE_GENDER
-	ld bc, BaseStats1 - BaseStats
+	ld hl, BaseData + 13 ; BASE_GENDER
+	ld bc, BaseData1 - BaseData
 	call AddNTimes
 	pop bc
 	
-	ld a, BANK(BaseStats)
+	ld a, BANK(BaseData)
 	call GetFarByte
 	
 	
@@ -9003,7 +9003,7 @@ GetGender: ; 50bdd
 
 INCBIN "baserom.gbc", $50c50, $51424 - $50c50
 
-BaseStats:
+BaseData:
 INCLUDE "stats/base_stats.asm"
 
 PokemonNames:
