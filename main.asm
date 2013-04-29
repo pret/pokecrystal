@@ -4708,7 +4708,7 @@ PredefPointers: ; 856b
 	dwb $4eef, $0a
 	dwb $4b3e, $0b
 	dwb $5f48, $0f
-	dwb $6f6e, $0b
+	dwb FillBox, BANK(FillBox)
 	dwb $5873, $0f
 	dwb $6036, $0f
 	dwb $74c1, $0f
@@ -6479,7 +6479,118 @@ PlayBattleMusic: ; 2ee6c
 ; 2ef18
 
 
-INCBIN "baserom.gbc", $2ef18, $2ef9f - $2ef18
+ClearBattleRAM: ; 2ef18
+	xor a
+	ld [$d0ec], a
+	ld [$d0ee], a
+
+	ld hl, $d0d8
+	ld [hli], a
+	ld [hli], a
+	ld [hli], a
+	ld [hl], a
+
+	ld [$d0e4], a
+	ld [CriticalHit], a
+	ld [BattleMonSpecies], a
+	ld [$c664], a
+	ld [CurBattleMon], a
+	ld [$d232], a
+	ld [TimeOfDayPal], a
+	ld [PlayerTurnsTaken], a
+	ld [EnemyTurnsTaken], a
+	ld [EvolvableFlags], a
+
+	ld hl, PlayerHPPal
+	ld [hli], a
+	ld [hl], a
+
+	ld hl, BattleMonDVs
+	ld [hli], a
+	ld [hl], a
+
+	ld hl, EnemyMonDVs
+	ld [hli], a
+	ld [hl], a
+
+; Clear the entire BattleMons area
+	ld hl, EnemyMoveStruct
+	ld bc, $0139
+	xor a
+	call ByteFill
+
+	ld hl, $5867
+	ld a, $f
+	rst FarCall
+
+	call $1fbf
+
+	ld hl, $ffd6
+	xor a
+	ld [hli], a
+	ld [hl], $98
+	ret
+; 2ef6e
+
+
+FillBox: ; 2ef6e
+; Fill $c2c6-aligned box width b height c
+; with iterating tile starting from $ffad at hl.
+; Predef $13
+
+	ld de, 20
+
+	ld a, [$c2c6]
+	and a
+	jr nz, .left
+
+	ld a, [$ffad]
+.x1
+	push bc
+	push hl
+
+.y1
+	ld [hl], a
+	add hl, de
+	inc a
+	dec c
+	jr nz, .y1
+
+	pop hl
+	inc hl
+	pop bc
+	dec b
+	jr nz, .x1
+	ret
+
+.left
+; Right-aligned.
+	push bc
+	ld b, 0
+	dec c
+	add hl, bc
+	pop bc
+
+	ld a, [$ffad]
+.x2
+	push bc
+	push hl
+
+.y2
+	ld [hl], a
+	add hl, de
+	inc a
+	dec c
+	jr nz, .y2
+
+	pop hl
+	dec hl
+	pop bc
+	dec b
+	jr nz, .x2
+	ret
+; 2ef9f
+
 
 
 SECTION "bankC",DATA,BANK[$C]
