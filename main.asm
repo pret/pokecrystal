@@ -3220,7 +3220,7 @@ GetName: ; 33c3
 
 	ld a, [$cf60]
 	ld [$d265], a
-	call $343b
+	call GetPokemonName
 	ld hl, $000b
 	add hl, de
 	ld e, l
@@ -7155,34 +7155,36 @@ LoadEnemyMon: ; 3e8eb
 	ld a, [BaseExp]
 	ld [de], a
 
-; copy TempEnemyMonSpecies to $d265
 	ld a, [TempEnemyMonSpecies]
 	ld [$d265], a
-; ????
-	call $343b
-; If wild, we're done
+
+	call GetPokemonName
+
+; Did we catch it?
 	ld a, [IsInBattle]
 	and a
 	ret z
+
 ; Update enemy nick
 	ld hl, StringBuffer1
 	ld de, EnemyMonNick
 	ld bc, PKMN_NAME_LENGTH
 	call CopyBytes
-; ????
+
+; Caught this mon
 	ld a, [TempEnemyMonSpecies]
 	dec a
 	ld c, a
-	ld b, $01
-	ld hl, $deb9
-	ld a, $03 ; PREDEF_
+	ld b, 1 ; set
+	ld hl, PokedexCaught
+	ld a, PREDEF_FLAG
 	call Predef
-; Fill EnemyMon stats
-	ld hl, EnemyMonAtk
+
+	ld hl, EnemyMonStats
 	ld de, $c6c1
-	ld bc, 2*(NUM_STATS-1) ; 2 bytes for each non-HP stat
+	ld bc, EnemyMonStatsEnd - EnemyMonStats
 	call CopyBytes
-; We're done
+
 	ret
 ; 3eb38
 
@@ -7430,85 +7432,104 @@ GetRoamMonDVs: ; 3fa19
 
 INCBIN "baserom.gbc", $3fa31, $3fc8b - $3fa31
 
-; I have no clue what most of this does
 
-BattleStartMessage:
-	ld a, [$d22d]
+BattleStartMessage ; 3fc8b
+	ld a, [IsInBattle]
 	dec a
-	jr z, .asm_3fcaa ; 0x3fc8f $19
-	ld de, $005e
-	call $3c23
+	jr z, .asm_3fcaa
+
+	ld de, $5e
+	call StartSFX
 	call WaitSFX
-	ld c, $14
-	call $0468
+
+	ld c, 20
+	call DelayFrames
+
 	ld a, $e
 	ld hl, $5939
 	rst FarCall
-	ld hl, $47a9
-	jr .asm_3fd0e ; 0x3fca8 $64
+
+	ld hl, WantsToBattleText
+	jr .asm_3fd0e
+
 .asm_3fcaa
 	call $5a79
-	jr nc, .asm_3fcc2 ; 0x3fcad $13
+	jr nc, .asm_3fcc2
+
 	xor a
 	ld [$cfca], a
-	ld a, $1
+	ld a, 1
 	ld [hBattleTurn], a
-	ld a, $1
+	ld a, 1
 	ld [$c689], a
 	ld de, $0101
 	call $6e17
+
 .asm_3fcc2
 	ld a, $f
 	ld hl, $6b38
 	rst FarCall
-	jr c, .messageSelection ; 0x3fcc8 $21
+	jr c, .asm_3fceb
+
 	ld a, $13
 	ld hl, $6a44
 	rst FarCall
-	jr c, .asm_3fce0 ; 0x3fcd0 $e
-	ld hl, $c4ac
+	jr c, .asm_3fce0
+
+	hlcoord 12, 0
 	ld d, $0
 	ld e, $1
 	ld a, $47
-	call $2d83
-	jr .messageSelection ; 0x3fcde $b
+	call Predef
+	jr .asm_3fceb
+
 .asm_3fce0
-	ld a, $f
-	ld [$c2bd], a
-	ld a, [$d204]
+	ld a, $0f
+	ld [CryTracks], a
+	ld a, [TempEnemyMonSpecies]
 	call $37b6
-.messageSelection
-	ld a, [$d230]
-	cp $4
-	jr nz, .asm_3fcfd ; 0x3fcf0 $b
+
+.asm_3fceb
+	ld a, [BattleType]
+	cp BATTLETYPE_FISH
+	jr nz, .asm_3fcfd
+
 	ld a, $41
 	ld hl, $6086
 	rst FarCall
+
 	ld hl, HookedPokemonAttackedText
-	jr .asm_3fd0e ; 0x3fcfb $11
+	jr .asm_3fd0e
+
 .asm_3fcfd
 	ld hl, PokemonFellFromTreeText
-	cp $8
-	jr z, .asm_3fd0e ; 0x3fd02 $a
+	cp BATTLETYPE_TREE
+	jr z, .asm_3fd0e
 	ld hl, WildPokemonAppearedText2
 	cp $b
-	jr z, .asm_3fd0e ; 0x3fd09 $3
+	jr z, .asm_3fd0e
 	ld hl, WildPokemonAppearedText
+
 .asm_3fd0e
 	push hl
 	ld a, $b
 	ld hl, $4000
 	rst FarCall
+
 	pop hl
-	call $3ad5
+	call FarBattleTextBox
+
 	call $7830
+
 	ret nz
+
 	ld c, $2
 	ld a, $13
 	ld hl, $6a0a
 	rst FarCall
+
 	ret
-; 0x3fd26
+; 3fd26
 
 
 	dw $0000 ; padding
@@ -9359,7 +9380,7 @@ WildPokemonAppearedText2: ; 0x80793
 	db "appeared!", $58
 ; 0x807a9
 
-BattleText_0x807a9: ; 0x807a9
+WantsToBattleText: ; 0x807a9
 	db $0, $3f, $4f
 	db "wants to battle!", $58
 ; 0x807bd

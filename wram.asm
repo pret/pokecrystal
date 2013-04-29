@@ -1104,6 +1104,7 @@ EnemyMonMaxHPHi: ; d218
 EnemyMonMaxHPLo: ; d219
 	ds 1
 
+EnemyMonStats:
 EnemyMonAtk: ; d21a
 	ds 2
 EnemyMonDef: ; d21c
@@ -1114,6 +1115,7 @@ EnemyMonSpclAtk: ; d220
 	ds 2
 EnemyMonSpclDef: ; d222
 	ds 2
+EnemyMonStatsEnd
 
 EnemyMonType1: ; d224
 	ds 1
