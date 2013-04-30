@@ -4533,7 +4533,12 @@ _Divide: ; 673e
 ; 67c1
 
 
-INCBIN "baserom.gbc", $67c1, $6eef - $67c1
+ItemAttributes: ; 67c1
+INCLUDE "items/item_attributes.asm"
+; 6ec1
+
+
+INCBIN "baserom.gbc", $6ec1, $6eef - $6ec1
 
 
 DrawGraphic: ; 6eef
@@ -5539,7 +5544,7 @@ GetItemAttr: ; d460
 	push hl
 	push bc
 
-	ld hl, $67c1 ; Items
+	ld hl, ItemAttributes
 	ld c, a
 	ld b, 0
 	add hl, bc
@@ -5552,7 +5557,7 @@ GetItemAttr: ; d460
 	ld c, a
 	ld a, 7
 	call AddNTimes
-	ld a, $1 ; BANK(Items)
+	ld a, BANK(ItemAttributes)
 	call GetFarByte
 
 	pop bc

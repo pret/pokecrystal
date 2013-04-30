@@ -10943,13 +10943,13 @@ GetItem: ; 37dd0
 	ret z
 
 	push hl
-	ld hl, $67c3 ; Items
+	ld hl, ItemAttributes + 2
 	dec a
 	ld c, a
 	ld b, 0
-	ld a, 7
+	ld a, Item2Attributes - Item1Attributes
 	call AddNTimes
-	ld a, $1 ; BANK(Items)
+	ld a, BANK(ItemAttributes)
 	call GetFarHalfword
 	ld b, l
 	ld c, h
