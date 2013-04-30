@@ -5451,20 +5451,124 @@ GetTMHMNumber: ; d407
 	jr c, .done
 	cp $dc ; TM28-29
 	jr c, .skip
+
 	dec a
 .skip
 	dec a
 .done
-
 	sub TM_01
-
 	inc a
 	ld c, a
 	ret
 ; d417
 
 
-INCBIN "baserom.gbc", $d417, $fa0b - $d417
+GetNumberedTMHM: ; d417
+; Return the item id of a TM/HM by number c.
+
+	ld a, c 
+
+; Skip any gaps.
+	cp 5
+	jr c, .done
+	cp 29
+	jr c, .skip
+
+	inc a
+.skip
+	inc a
+.done
+	add TM_01
+	dec a
+	ld c, a
+	ret
+; d427
+
+
+CheckTossableItem: ; d427
+; Return 1 in $d142 and carry if CurItem can't be removed from the bag.
+	ld a, 4
+	call GetItemAttr
+	bit 7, a
+	jr nz, Function0xd47f
+	and a
+	ret
+; d432
+
+CheckSelectableItem: ; d432
+; Return 1 in $d142 and carry if CurItem can't be selected.
+	ld a, 4
+	call GetItemAttr
+	bit 6, a
+	jr nz, Function0xd47f
+	and a
+	ret
+; d43d
+
+CheckItemPocket: ; d43d
+; Return the pocket for CurItem in $d142.
+	ld a, 5
+	call GetItemAttr
+	and $f
+	ld [$d142], a
+	ret
+; d448
+
+CheckItemContext: ; d448
+; Return the context for CurItem in $d142.
+	ld a, 6
+	call GetItemAttr
+	and $f
+	ld [$d142], a
+	ret
+; d453
+
+CheckItemMenu: ; d453
+; Return the menu for CurItem in $d142.
+	ld a, 6
+	call GetItemAttr
+	swap a
+	and $f
+	ld [$d142], a
+	ret
+; d460
+
+GetItemAttr: ; d460
+; Get attribute a of CurItem.
+
+	push hl
+	push bc
+
+	ld hl, $67c1 ; Items
+	ld c, a
+	ld b, 0
+	add hl, bc
+
+	xor a
+	ld [$d142], a
+
+	ld a, [CurItem]
+	dec a
+	ld c, a
+	ld a, 7
+	call AddNTimes
+	ld a, $1 ; BANK(Items)
+	call GetFarByte
+
+	pop bc
+	pop hl
+	ret
+; d47f
+
+Function0xd47f: ; d47f
+	ld a, 1
+	ld [$d142], a
+	scf
+	ret
+; d486
+
+
+INCBIN "baserom.gbc", $d486, $fa0b - $d486
 
 
 SECTION "bank4",DATA,BANK[$4]

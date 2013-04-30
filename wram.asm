@@ -918,7 +918,12 @@ VramState: ; d0ed
 ;        flickers when climbing waterfall
 	ds 1
 
-	ds 26
+	ds 24
+
+CurItem: ; d106
+	ds 1
+
+	ds 1
 	
 CurPartySpecies: ; d108
 	ds 1
