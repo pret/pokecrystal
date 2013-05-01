@@ -65,7 +65,7 @@ MapEarlsPokemonAcademySignpost3Script: ; 0x68a9f
 	loadfont
 	2writetext UnknownText_0x68eb2
 UnknownScript_0x68aa3: ; 0x68aa3
-	loadmenudata $4ae1
+	loadmenudata MenuDataHeader_0x68ae1
 	interpretmenu
 	writebackup
 	if_equal $1, UnknownScript_0x68abe
@@ -107,8 +107,32 @@ UnknownScript_0x68ada: ; 0x68ada
 	2jump UnknownScript_0x68aa3
 ; 0x68ae1
 
-; menu data
-INCBIN "baserom.gbc",$68ae1,$2a
+
+MenuDataHeader_0x68ae1: ; 0x68ae1
+	db $40 ; flags
+	db 00, 00 ; start coords
+	db 08, 11 ; end coords
+	dw MenuData2_0x68ae9
+	db 1 ; default option
+; 0x68ae9
+
+MenuData2_0x68ae9: ; 0x68ae9
+	db $80 ; flags
+	dn 3, 2 ; rows, columns
+	db 5 ; spacing
+	dbw BANK(UnknownText_0x68af2), UnknownText_0x68af2
+	dbw $1a, $0000
+; 0x68af2
+
+UnknownText_0x68af2: ; 0x68af2
+	db "PSN@"
+	db "PAR@"
+	db "SLP@"
+	db "BRN@"
+	db "FRZ@"
+	db "QUIT@"
+; 0x68b0b
+
 
 UnknownScript_0x68b0b: ; 0x68b0b
 	loadfont
