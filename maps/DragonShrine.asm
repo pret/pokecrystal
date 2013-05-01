@@ -29,7 +29,7 @@ UnknownScript_0x18d030: ; 0x18d030
 	setbit1 $0001
 	2writetext UnknownText_0x18d3bc
 	keeptextopen
-	loadmenudata $5215
+	loadmenudata MenuDataHeader_0x18d215
 	interpretmenu2
 	writebackup
 	if_equal $1, UnknownScript_0x18d0a9
@@ -42,7 +42,7 @@ UnknownScript_0x18d049: ; 0x18d049
 	setbit1 $0002
 	2writetext UnknownText_0x18d3d3
 	keeptextopen
-	loadmenudata $5234
+	loadmenudata MenuDataHeader_0x18d234
 	interpretmenu2
 	writebackup
 	if_equal $1, UnknownScript_0x18d0a9
@@ -52,7 +52,7 @@ UnknownScript_0x18d061: ; 0x18d061
 	setbit1 $0003
 	2writetext UnknownText_0x18d3f3
 	keeptextopen
-	loadmenudata $5258
+	loadmenudata MenuDataHeader_0x18d258
 	interpretmenu2
 	writebackup
 	if_equal $1, UnknownScript_0x18d0cb
@@ -62,7 +62,7 @@ UnknownScript_0x18d079: ; 0x18d079
 	setbit1 $0004
 	2writetext UnknownText_0x18d420
 	keeptextopen
-	loadmenudata $5283
+	loadmenudata MenuDataHeader_0x18d283
 	interpretmenu2
 	writebackup
 	if_equal $1, UnknownScript_0x18d0a9
@@ -72,7 +72,7 @@ UnknownScript_0x18d091: ; 0x18d091
 	setbit1 $0005
 	2writetext UnknownText_0x18d44a
 	keeptextopen
-	loadmenudata $52a5
+	loadmenudata MenuDataHeader_0x18d2a5
 	interpretmenu2
 	writebackup
 	if_equal $1, UnknownScript_0x18d0cb
@@ -274,7 +274,91 @@ UnknownScript_0x18d20d: ; 0x18d20d
 	end
 ; 0x18d215
 
-INCBIN "baserom.gbc",$18d215,$aa
+
+MenuDataHeader_0x18d215: ; 0x18d215
+	db $40 ; flags
+	db 04, 08 ; start coords
+	db 11, 19 ; end coords
+	dw MenuData2_0x18d21d
+	db 1 ; default option
+; 0x18d21d
+
+MenuData2_0x18d21d: ; 0x18d21d
+	db $81 ; flags
+	db 3 ; items
+	db "Pal@"
+	db "Underling@"
+	db "Friend@"
+; 0x18d234
+
+
+MenuDataHeader_0x18d234: ; 0x18d234
+	db $40 ; flags
+	db 04, 09 ; start coords
+	db 11, 19 ; end coords
+	dw MenuData2_0x18d23c
+	db 1 ; default option
+; 0x18d23c
+
+MenuData2_0x18d23c: ; 0x18d23c
+	db $81 ; flags
+	db 3 ; items
+	db "Strategy@"
+	db "Raising@"
+	db "Cheating@"
+; 0x18d258
+
+
+MenuDataHeader_0x18d258: ; 0x18d258
+	db $40 ; flags
+	db 04, 05 ; start coords
+	db 11, 19 ; end coords
+	dw MenuData2_0x18d260
+	db 1 ; default option
+; 0x18d260
+
+MenuData2_0x18d260: ; 0x18d260
+	db $81 ; flags
+	db 3 ; items
+	db "Weak person@"
+	db "Tough person@"
+	db "Anybody@"
+; 0x18d283
+
+
+MenuDataHeader_0x18d283: ; 0x18d283
+	db $40 ; flags
+	db 04, 08 ; start coords
+	db 11, 19 ; end coords
+	dw MenuData2_0x18d28b
+	db 1 ; default option
+; 0x18d28b
+
+MenuData2_0x18d28b: ; 0x18d28b
+	db $81 ; flags
+	db 3 ; items
+	db "Love@"
+	db "Violence@"
+	db "Knowledge@"
+; 0x18d2a5
+
+
+MenuDataHeader_0x18d2a5: ; 0x18d2a5
+	db $40 ; flags
+	db 04, 12 ; start coords
+	db 11, 19 ; end coords
+	dw MenuData2_0x18d2ad
+	db 1 ; default option
+; 0x18d2ad
+
+MenuData2_0x18d2ad: ; 0x18d2ad
+	db $81 ; flags
+	db 3 ; items
+	db "Tough@"
+	db "Both@"
+	db "Weak@"
+; 0x18d2bf
+
 
 MovementData_0x18d2bf: ; 0x18d2bf
 	slow_step_up
