@@ -1471,7 +1471,7 @@ ScriptPointerLabelAfterBank.parse = _parse_script_pointer_bytes
 class PointerLabelToScriptPointer(PointerLabelParam):
     def parse(self):
         PointerLabelParam.parse(self)
-        address = calculate_pointer_from_bytes_at(self.address, bank=self.bank)
+        address = calculate_pointer_from_bytes_at(self.parsed_address, bank=self.bank)
         address2 = calculate_pointer_from_bytes_at(address, bank="reverse") # maybe not "reverse"?
         self.script = parse_script_engine_script_at(address2, origin=False, map_group=self.map_group, map_id=self.map_id, force=self.force, debug=self.debug)
 
