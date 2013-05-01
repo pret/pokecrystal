@@ -1464,6 +1464,26 @@ MAP_ROUTE_30_BERRY_SPEECH_HOUSE EQU $09
 MAP_MR_POKEMONS_HOUSE EQU $0a
 MAP_ROUTE_31_VIOLET_GATE EQU $0b
 
+
+; elevator floors
+_B4F  EQU $0
+_B3F  EQU $1
+_B2F  EQU $2
+_B1F  EQU $3
+_1F   EQU $4
+_2F   EQU $5
+_3F   EQU $6
+_4F   EQU $7
+_5F   EQU $8
+_6F   EQU $9
+_7F   EQU $a
+_8F   EQU $b
+_9F   EQU $c
+_10F  EQU $d
+_11F  EQU $e
+_ROOF EQU $f
+
+
 ; item constants
 NO_ITEM       EQU $00
 MASTER_BALL   EQU $01
