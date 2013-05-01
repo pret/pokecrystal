@@ -55,7 +55,7 @@ UnknownScript_0x56c28: ; 0x56c28
 	2writetext UnknownText_0x56e8b
 UnknownScript_0x56c36: ; 056c36
 	special $004f
-	loadmenudata $6cc9
+	loadmenudata MenuDataHeader_0x56cc9
 	interpretmenu2
 	writebackup
 	if_equal $1, UnknownScript_0x56c4d
@@ -142,8 +142,24 @@ UnknownScript_0x56cc3: ; 0x56cc3
 	end
 ; 0x56cc9
 
-; menu data
-INCBIN "baserom.gbc",$56cc9,$38
+
+MenuDataHeader_0x56cc9: ; 0x56cc9
+	db $40 ; flags
+	db 02, 00 ; start coords
+	db 11, 15 ; end coords
+	dw MenuData2_0x56cd1
+	db 1 ; default option
+; 0x56cd1
+
+MenuData2_0x56cd1: ; 0x56cd1
+	db $80 ; flags
+	db 4 ; items
+	db "TM25    5500@"
+	db "TM14    5500@"
+	db "TM38    5500@"
+	db "CANCEL@"
+; 0x56d01
+
 
 UnknownScript_0x56d01: ; 0x56d01
 	faceplayer
@@ -155,7 +171,7 @@ UnknownScript_0x56d01: ; 0x56d01
 UnknownScript_0x56d0c: ; 0x56d0c
 	2writetext UnknownText_0x56e8b
 	special $004f
-	loadmenudata $6db0
+	loadmenudata MenuDataHeader_0x56db0
 	interpretmenu2
 	writebackup
 	if_equal $1, UnknownScript_0x56d26
@@ -221,8 +237,24 @@ UnknownScript_0x56d82: ; 0x56d82
 	2jump UnknownScript_0x56d0c
 ; 0x56db0
 
-; menu data
-INCBIN "baserom.gbc",$56db0,$56df1 - $56db0
+
+MenuDataHeader_0x56db0: ; 0x56db0
+	db $40 ; flags
+	db 02, 00 ; start coords
+	db 11, 17 ; end coords
+	dw MenuData2_0x56db8
+	db 1 ; default option
+; 0x56db8
+
+MenuData2_0x56db8: ; 0x56db8
+	db $80 ; flags
+	db 4 ; items
+	db "ABRA        100@"
+	db "CUBONE      800@"
+	db "WOBBUFFET  1500@"
+	db "CANCEL@"
+; 0x56df1
+
 
 UnknownScript_0x56df1: ; 0x56df1
 	faceplayer
