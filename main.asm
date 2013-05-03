@@ -2999,7 +2999,15 @@ Divide: ; 3124
 ; 3136
 
 
-INCBIN "baserom.gbc", $3136, $313d - $3136
+SubtractSigned: ; 3136
+; Return a - b, sign in carry.
+	sub b
+	ret nc
+	cpl
+	add 1
+	scf
+	ret
+; 313d
 
 
 PrintLetterDelay: ; 313d
@@ -3119,7 +3127,30 @@ StringCmp: ; 31db
 	ret
 ; 0x31e4
 
-INCBIN "baserom.gbc", $31e4, $31f3 - $31e4
+
+CompareLong: ; 31e4
+; Compare bc bytes at de and hl. Return carry if they all match.
+
+	ld a, [de]
+	cp [hl]
+	jr nz, .Diff
+
+	inc de
+	inc hl
+	dec bc
+
+	ld a, b
+	or c
+	jr nz, CompareLong
+
+	scf
+	ret
+
+.Diff
+	and a
+	ret
+; 31f3
+
 
 WhiteBGMap: ; 31f3
 	call ClearPalettes
@@ -3191,7 +3222,29 @@ GetSGBLayout: ; 3340
 	jp Predef
 ; 334e
 
-INCBIN "baserom.gbc", $334e, $335f - $334e
+
+SetHPPal: ; 334e
+; Set palette for hp bar pixel length e at hl.
+	call GetHPPal
+	ld [hl], d
+	ret
+; 3353
+
+
+GetHPPal: ; 3353
+; Get palette for hp bar pixel length e in d.
+
+	ld d, 0 ; green
+	ld a, e
+	cp 24
+	ret nc
+	inc d ; yellow
+	cp 10
+	ret nc
+	inc d ; red
+	ret
+; 335f
+
 
 CountSetBits: ; 0x335f
 ; function to count how many bits are set in a string of bytes
@@ -3220,7 +3273,56 @@ CountSetBits: ; 0x335f
 ; 0x3376
 
 
-INCBIN "baserom.gbc", $3376, $33ab - $3376
+GetWeekday: ; 3376
+	ld a, [CurDay]
+.loop
+	sub 7
+	jr nc, .loop
+	add 7
+	ret
+; 3380
+
+
+SetSeenAndCaughtMon: ; 3380
+	push af
+	ld c, a
+	ld hl, PokedexSeen
+	ld b, 1
+	call GetWramFlag
+	pop af
+	; fallthrough
+; 338b
+
+SetCaughtMon: ; 338b
+	ld c, a
+	ld hl, PokedexCaught
+	ld b, 1
+	jr GetWramFlag
+; 3393
+
+CheckSeenMon: ; 3393
+	ld c, a
+	ld hl, PokedexSeen
+	ld b, 2
+	jr GetWramFlag
+; 339b
+
+CheckCaughtMon: ; 339b
+	ld c, a
+	ld hl, PokedexCaught
+	ld b, 2
+	; fallthrough
+; 33a1
+
+GetWramFlag: ; 33a1
+	ld d, 0
+	ld a, PREDEF_FLAG
+	call Predef
+
+	ld a, c
+	and a
+	ret
+; 33ab
 
 
 NamesPointerTable: ; 33ab
@@ -3228,14 +3330,15 @@ NamesPointerTable: ; 33ab
 	dbw BANK(MoveNames), MoveNames
 	dbw $00, $0000
 	dbw BANK(ItemNames), ItemNames
-	dbw $00, $ddff
-	dbw $00, $d3a8
+	dbw $00, PartyMonOT
+	dbw $00, OTPartyMonOT
 	dbw BANK(TrainerClassNames), TrainerClassNames
 	dbw $04, $4b52
 ; 33c3
 
 
 GetName: ; 33c3
+; Return name $cf60 from name list $cf61 in StringBuffer1.
 	ld a, [hROMBank]
 	push af
 	push hl
@@ -3243,7 +3346,7 @@ GetName: ; 33c3
 	push de
 	ld a, [$cf61]
 	cp 1 ; Pokemon names
-	jr nz, .asm_33e1
+	jr nz, .NotPokeName
 
 	ld a, [$cf60]
 	ld [$d265], a
@@ -3254,7 +3357,7 @@ GetName: ; 33c3
 	ld d, h
 	jr .done
 
-.asm_33e1
+.NotPokeName
 	ld a, [$cf61]
 	dec a
 	ld e, a
@@ -3718,7 +3821,7 @@ INCBIN "baserom.gbc", $392d, $395d - $392d
 
 
 BattlePartyAttr: ; 395d
-; Get attribute a from the active monster's party struct.
+; Get attribute a from the active BattleMon's party struct.
 	push bc
 	ld c, a
 	ld b, 0
@@ -3731,7 +3834,18 @@ BattlePartyAttr: ; 395d
 ; 396d
 
 
-INCBIN "baserom.gbc", $396d, $397d - $396d
+OTPartyAttr: ; 396d
+; Get attribute a from the active EnemyMon's party struct.
+	push bc
+	ld c, a
+	ld b, 0
+	ld hl, OTPartyMon1Species
+	add hl, bc
+	ld a, [CurOTMon]
+	call GetPartyLocation
+	pop bc
+	ret
+; 397d
 
 
 ResetDamage: ; 397d
@@ -8936,7 +9050,7 @@ EggStatsScreen: ; 4e33a
 	xor a
 	ld [hBGMapMode], a
 	ld hl, $cda1
-	call $334e ; SetHPPal
+	call SetHPPal
 	ld b, $3
 	call GetSGBLayout
 	call $5f8f
