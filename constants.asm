@@ -3763,11 +3763,12 @@ SUBSTATUS_LOCK_ON      EQU 5
 
 
 ; status
-SLP EQU 7
-PSN EQU 1 << 3
-BRN EQU 1 << 4
-FRZ EQU 1 << 5
-PAR EQU 1 << 6
+SLP EQU 7 ; 7 turns
+
+PSN EQU 3
+BRN EQU 4
+FRZ EQU 5
+PAR EQU 6
 
 
 
