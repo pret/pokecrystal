@@ -3867,7 +3867,72 @@ SetEnemyTurn: ; 3989
 	ret
 ; 398e
 
-INCBIN "baserom.gbc", $398e, $39e1 - $398e
+
+UpdateOpponentInParty: ; 398e
+	ld a, [hBattleTurn]
+	and a
+	jr z, UpdateEnemyMonInParty
+	jr UpdateBattleMonInParty
+; 3995
+
+UpdateUserInParty: ; 3995
+	ld a, [hBattleTurn]
+	and a
+	jr z, UpdateBattleMonInParty
+	jr UpdateEnemyMonInParty
+; 399c
+
+UpdateBattleMonInParty: ; 399c
+; Update level, status, current HP
+
+	ld a, [CurBattleMon]
+	ld hl, PartyMon1Level
+	call GetPartyLocation
+
+	ld d, h
+	ld e, l
+	ld hl, BattleMonLevel
+	ld bc, BattleMonMaxHP - BattleMonLevel
+	jp CopyBytes
+; 39b0
+
+UpdateEnemyMonInParty: ; 39b0
+; Update level, status, current HP
+
+; No wildmons.
+	ld a, [IsInBattle]
+	dec a
+	ret z
+
+	ld a, [CurOTMon]
+	ld hl, OTPartyMon1Level
+	call GetPartyLocation
+
+	ld d, h
+	ld e, l
+	ld hl, EnemyMonLevel
+	ld bc, EnemyMonMaxHP - EnemyMonLevel
+	jp CopyBytes
+; 39c9
+
+
+RefreshBattleHuds: ; 39c9
+	call UpdateBattleHuds
+	ld c, 3
+	call DelayFrames
+	jp WaitBGMap
+; 39d4
+
+UpdateBattleHuds: ; 39d4
+	ld a, $f
+	ld hl, $5f48
+	rst FarCall ; UpdatePlayerHud
+	ld a, $f
+	ld hl, $6036
+	rst FarCall ; UpdateEnemyHud
+	ret
+; 39e1
+
 
 CleanGetBattleVarPair: ; 39e1
 ; Preserves hl.

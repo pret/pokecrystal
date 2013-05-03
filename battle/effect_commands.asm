@@ -182,7 +182,7 @@ CheckPlayerTurn:
 	call FarBattleTextBox
 
 	call CantMove
-	call $399c
+	call UpdateBattleMonInParty
 	ld hl, $5f48
 	call CallBankF
 	ld a, $1
@@ -442,7 +442,7 @@ CheckEnemyTurn: ; 3421f
 	ld hl, WokeUpText
 	call FarBattleTextBox
 	call CantMove
-	call $39b0
+	call UpdateEnemyMonInParty
 	ld hl, $6036
 	call CallBankF
 	ld a, $1
@@ -3268,7 +3268,7 @@ BattleCommand11: ; 351c0
 	ld l, c
 	ld a, $b
 	call $2d83
-	call $39c9
+	call RefreshBattleHuds
 
 	call SwitchTurn
 	xor a
@@ -5385,7 +5385,7 @@ Function0x35d1c: ; 35d1c
 	ld a, $b
 	call Predef
 .asm_35d7b
-	jp $39c9
+	jp RefreshBattleHuds
 ; 35d7e
 
 
@@ -5443,7 +5443,7 @@ Function0x35d7e: ; 35d7e
 	ld a, $b
 	call Predef
 .asm_35ddd
-	jp $39c9
+	jp RefreshBattleHuds
 ; 35de0
 
 
@@ -5503,7 +5503,7 @@ Function0x35de0: ; 35de0
 	xor a
 	ld [hl], a
 .asm_35e3a
-	call $39c9
+	call RefreshBattleHuds
 .asm_35e3d
 	jp ResetDamage
 ; 35e40
@@ -5581,8 +5581,8 @@ BattleCommand14: ; 35e5c
 	jr z, .asm_35ea4
 	inc a
 	ld [de], a
-	call $398e
-	call $39c9
+	call UpdateOpponentInParty
+	call RefreshBattleHuds
 
 	ld hl, FellAsleepText
 	call FarBattleTextBox
@@ -5659,7 +5659,7 @@ BattleCommand13: ; 35eee
 	call Function0x35ff5
 	ld de, $0106
 	call Function0x37e54
-	call $39c9
+	call RefreshBattleHuds
 
 	ld hl, WasPoisonedText
 	call FarBattleTextBox
@@ -5756,7 +5756,7 @@ BattleCommand2f: ; 35f2c
 Function0x35fc0: ; 35fc0
 	call Function0x37e01
 	call Function0x35ff5
-	jp $39c9
+	jp RefreshBattleHuds
 ; 35fc9
 
 
@@ -5797,7 +5797,7 @@ Function0x35ff5: ; 35ff5
 	ld a, $b
 	call $39e7
 	set 3, [hl]
-	jp $398e
+	jp UpdateOpponentInParty
 ; 35fff
 
 
@@ -5895,8 +5895,8 @@ Function0x36011: ; 36011
 	ld [$d10a], a
 	ld a, $b
 	call Predef
-	call $39c9
-	jp $399c
+	call RefreshBattleHuds
+	jp UpdateBattleMonInParty
 ; 3608c
 
 
@@ -5928,12 +5928,12 @@ BattleCommand17: ; 3608c
 	ld a, BATTLE_VARS_STATUS_OPP
 	call GetBattleVarPair
 	set 4, [hl]
-	call $398e
+	call UpdateOpponentInParty
 	ld hl, $6c76
 	call CallBankF
 	ld de, $0105
 	call Function0x37e54
-	call $39c9
+	call RefreshBattleHuds
 
 	ld hl, WasBurnedText
 	call FarBattleTextBox
@@ -5965,7 +5965,7 @@ Defrost: ; 360dd
 	call GetPartyLocation
 	xor a
 	ld [hl], a
-	call $398e
+	call UpdateOpponentInParty
 
 	ld hl, DefrostedOpponentText
 	jp FarBattleTextBox
@@ -6003,10 +6003,10 @@ BattleCommand18: ; 36102
 	ld a, BATTLE_VARS_STATUS_OPP
 	call GetBattleVarPair
 	set 5, [hl]
-	call $398e
+	call UpdateOpponentInParty
 	ld de, $0108
 	call Function0x37e54
-	call $39c9
+	call RefreshBattleHuds
 
 	ld hl, WasFrozenText
 	call FarBattleTextBox
@@ -6054,12 +6054,12 @@ BattleCommand19: ; 36165
 	ld a, BATTLE_VARS_STATUS_OPP
 	call GetBattleVarPair
 	set 6, [hl]
-	call $398e
+	call UpdateOpponentInParty
 	ld hl, $6c39
 	call CallBankF
 	ld de, $0109
 	call Function0x37e54
-	call $39c9
+	call RefreshBattleHuds
 	call PrintParalyze
 	ld hl, $5de9
 	jp CallBankF
@@ -7158,7 +7158,7 @@ BattleCommanda0: ; 36778
 	cp b
 	jr nc, .asm_367df ; 367dd $0
 .asm_367df
-	call $399c
+	call UpdateBattleMonInParty
 	xor a
 	ld [$cfca], a
 	inc a
@@ -7225,7 +7225,7 @@ BattleCommand23: ; 3680f
 .asm_36852
 	jp .asm_36969
 .asm_36855
-	call $399c
+	call UpdateBattleMonInParty
 	xor a
 	ld [$cfca], a
 	inc a
@@ -7239,7 +7239,7 @@ BattleCommand23: ; 3680f
 	ld a, [$c70f]
 	and a
 	jr z, .asm_368ca ; 36872 $56
-	call $39b0
+	call UpdateEnemyMonInParty
 	ld a, $1
 	ld [$c689], a
 	call Function0x37e01
@@ -7318,7 +7318,7 @@ BattleCommand23: ; 3680f
 	jr .asm_36969
 
 .asm_368f5
-	call $399c
+	call UpdateBattleMonInParty
 	xor a
 	ld [$cfca], a
 	inc a
@@ -7335,7 +7335,7 @@ BattleCommand23: ; 3680f
 	cp $1
 	jr z, .asm_368ca
 
-	call $399c
+	call UpdateBattleMonInParty
 	ld a, $1
 	ld [$c689], a
 	call Function0x37e01
@@ -8017,7 +8017,7 @@ BattleCommand27: ; 36cb2
 	ld [$d10a], a
 	ld a, $b
 	call $2d83
-	call $39c9
+	call RefreshBattleHuds
 	ld hl, RecoilText
 	jp FarBattleTextBox
 ; 36d1d
@@ -8188,10 +8188,10 @@ BattleCommand30: ; 36dc7
 	ld a, BATTLE_VARS_STATUS_OPP
 	call GetBattleVarPair
 	set 6, [hl]
-	call $398e
+	call UpdateOpponentInParty
 	ld hl, $6c39
 	call CallBankF
-	call $39d4
+	call UpdateBattleHuds
 	call PrintParalyze
 	ld hl, $5de9
 	jp CallBankF
@@ -8310,7 +8310,7 @@ BattleCommand31: ; 36e7c
 .asm_36eeb
 	ld hl, MadeSubstituteText
 	call FarBattleTextBox
-	jp $39c9
+	jp RefreshBattleHuds
 .asm_36ef4
 	call Function0x34548
 	call nz, BattleCommand0c
@@ -8784,8 +8784,8 @@ BattleCommand2c: ; 3713e
 	ld hl, $4cef
 	call CallBankF
 	call SwitchTurn
-	call $3995
-	call $39c9
+	call UpdateUserInParty
+	call RefreshBattleHuds
 	ld hl, RegainedHealthText
 	jp FarBattleTextBox
 
@@ -9141,7 +9141,7 @@ BattleCommand1a: ; 37380
 	ld hl, $6043
 	rst FarCall
 	call $31f6
-	jp $39c9
+	jp RefreshBattleHuds
 ; 373c9
 
 
@@ -9444,7 +9444,7 @@ BattleCommand53: ; 37563
 	call $3945
 	res 5, [hl]
 .asm_3757f
-	call $39c9
+	call RefreshBattleHuds
 	ld hl, WasDefrostedText
 	jp FarBattleTextBox
 ; 37588
@@ -9505,7 +9505,7 @@ BattleCommand54: ; 37588
 	call CallBankF
 	ld hl, $4c3f
 	call CallBankF
-	call $3995
+	call UpdateUserInParty
 	ld hl, PutACurseText
 	jp FarBattleTextBox
 .asm_37604
@@ -10041,7 +10041,7 @@ BattleCommand61: ; 37874
 	ld hl, RegainedHealthText
 	call FarBattleTextBox
 	call SwitchTurn
-	call $398e
+	call UpdateOpponentInParty
 	jr .asm_37904 ; 378f1 $11
 .asm_378f3
 	call SwitchTurn
@@ -10199,7 +10199,7 @@ BattleCommand67: ; 379c9
 	call Function0x37ae9
 	jp z, Function0x37aab
 
-	call $399c
+	call UpdateBattleMonInParty
 	call Function0x37e01
 
 	ld c, 50
@@ -10253,7 +10253,7 @@ BattleCommand67: ; 379c9
 	call Function0x37af6
 	jp z, Function0x37aab
 
-	call $39b0
+	call UpdateEnemyMonInParty
 	call Function0x37e01
 	call Function0x37a82
 
@@ -10564,7 +10564,7 @@ BattleCommand6a6c: ; 37b7e
 	rst FarCall ; callab 3ccef
 
 	call SwitchTurn
-	call $3995
+	call UpdateUserInParty
 
 ; 'regained health!'
 	ld hl, RegainedHealthText
@@ -10646,7 +10646,7 @@ BattleCommand95: ; 37c1a
 	ld hl, $4c3f
 	ld a, $f
 	rst FarCall
-	call $3995
+	call UpdateUserInParty
 	ld a, $5
 
 .asm_37c41
