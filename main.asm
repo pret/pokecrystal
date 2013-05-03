@@ -7690,7 +7690,7 @@ BattleStartMessage ; 3fc8b
 	dec a
 	jr z, .asm_3fcaa
 
-	ld de, $5e
+	ld de, SFX_SHINE
 	call StartSFX
 	call WaitSFX
 
@@ -8853,10 +8853,11 @@ EggStatsScreen: ; 4e33a
 	ld hl, $402d
 	rst FarCall
 	call $6497
-	ld a, [$d129]
-	cp $6
+
+	ld a, [TempMonHappiness]
+	cp 6
 	ret nc
-	ld de, $00bb
+	ld de, SFX_2_BOOPS
 	call StartSFX
 	ret
 ; 0x4e3c0
@@ -8947,13 +8948,15 @@ PartyMenuSelect: ; 0x50457
 	add hl, bc
 	ld a, [hl]
 	ld [CurPartySpecies], a
-	ld de, $0008
+
+	ld de, SFX_READ_TEXT_2
 	call StartSFX
 	call WaitSFX
 	and a
 	ret
+
 .exitmenu
-	ld de, $0008
+	ld de, SFX_READ_TEXT_2
 	call StartSFX
 	call WaitSFX
 	scf
@@ -16558,7 +16561,7 @@ StartTitleScreen: ; 10ed67
 	
 ; Play starting sound effect
 	call SFXChannelsOff
-	ld de, $0065
+	ld de, SFX_TITLE_SCREEN_ENTRANCE
 	call StartSFX
 	
 	ret

@@ -550,13 +550,13 @@ Script_specialsound: ; 0x96fe4
 	ld hl, $543d
 	rst $8
 	ld a, [$d142]
-	cp $4
-	ld de, $009b
-	jr z, .asm_96ff7 ; 0x96ff2 $3
-	ld de, $0001
-.asm_96ff7
+	cp TM_HM
+	ld de, SFX_GET_TM
+	jr z, .play
+	ld de, SFX_ITEM
+.play
 	call StartSFX
-	call $3c55
+	call WaitSFX
 	ret
 ; 0x96ffe
 
@@ -877,7 +877,7 @@ Script_playsound: ; 0x971b7
 Script_waitbutton: ; 0x971c3
 ; script command 0x86
 
-	call $3c55
+	call WaitSFX
 	ret
 ; 0x971c7
 
