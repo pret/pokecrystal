@@ -2699,14 +2699,14 @@ Function2fb1: ; 2fb1
 	ld b, a
 	push bc
 .asm_2fbb
-	call $2f8c
+	call RNG
 	ld a, [hRandomAdd]
 	ld c, a
 	add b
 	jr c, .asm_2fbb
 	ld a, c
 	pop bc
-	call $3110
+	call SimpleDivide
 	pop bc
 	ret
 ; 2fcb
@@ -2933,7 +2933,34 @@ AddNTimes: ; 0x30fe
 ; 0x3105
 
 
-INCBIN "baserom.gbc", $3105, $3119 - $3105
+SimpleMultiply: ; 3105
+; Return a * c.
+	and a
+	ret z
+
+	push bc
+	ld b, a
+	xor a
+.loop
+	add c
+	dec b
+	jr nz, .loop
+	pop bc
+	ret
+; 3110
+
+
+SimpleDivide: ; 3110
+; Divide a by c. Return quotient b and remainder a.
+	ld b, 0
+.loop
+	inc b
+	sub c
+	jr nc, .loop
+	dec b
+	add c
+	ret
+; 3119
 
 
 Multiply: ; 3119
