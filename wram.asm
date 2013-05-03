@@ -510,7 +510,7 @@ PlayerSubStatus1: ; c668
 ; 6 encore
 ; 5 endure
 ; 4 perish song
-; 3 
+; 3 identified
 ; 2 protect
 ; 1 curse
 ; 0 nightmare
@@ -528,7 +528,7 @@ PlayerSubStatus2: ; c669
 	ds 1
 PlayerSubStatus3: ; c66a
 ; bit
-; 7 confusion
+; 7 confused
 ; 6 flying
 ; 5 underground
 ; 4 charged
@@ -545,7 +545,7 @@ PlayerSubStatus4: ; c66b
 ; 4 substitute
 ; 3
 ; 2 focus energy
-; 1
+; 1 mist
 ; 0 bide: unleashed energy
 	ds 1
 PlayerSubStatus5: ; c66c
@@ -557,7 +557,7 @@ PlayerSubStatus5: ; c66c
 ; 3
 ; 2
 ; 1
-; 0
+; 0 toxic
 	ds 1
 
 EnemySubStatus1: ; c66d
@@ -596,20 +596,22 @@ EnemyRolloutCount: ; c67a
 EnemyConfuseCount: ; c67b
 	ds 1
 	ds 1
-EnemyEncoreCount: ; c67d
+EnemyDisableCount: ; c67d
 	ds 1
-EnemyPerishCount: ; c67e
+EnemyEncoreCount: ; c67e
 	ds 1
+EnemyPerishCount: ; c67f
 	ds 1
 EnemyFuryCutterCount: ; c680
 	ds 1
+	ds 1
 
-PlayerDamageTaken: ; c681
+PlayerDamageTaken: ; c682
 	ds 2
-EnemyDamageTaken: ; c683
+EnemyDamageTaken: ; c684
 	ds 2
 
-	ds 4
+	ds 3
 	
 	ds 1
 
@@ -706,13 +708,14 @@ AlreadyFailed: ; c6fb
 	ds 3
 	
 PlayerScreens: ; c6ff
-; bit 4: reflect
-; bit 3: light screen
+; bit
+; 4 reflect
+; 3 light screen
+; 0 spikes
 	ds 1
 
 EnemyScreens: ; c700
-; bit 4: reflect
-; bit 3: light screen	
+; see PlayerScreens
 	ds 1
 
 	ds 1
