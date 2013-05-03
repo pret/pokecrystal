@@ -3817,7 +3817,33 @@ GetPartyLocation: ; 3927
 ; 392d
 
 
-INCBIN "baserom.gbc", $392d, $395d - $392d
+INCBIN "baserom.gbc", $392d, $3945 - $392d
+
+
+UserPartyAttr: ; 3945
+	push af
+	ld a, [hBattleTurn]
+	and a
+	jr nz, .asm_394e
+	pop af
+	jr BattlePartyAttr
+.asm_394e
+	pop af
+	jr OTPartyAttr
+; 3951
+
+
+OpponentPartyAttr: ; 3951
+	push af
+	ld a, [hBattleTurn]
+	and a
+	jr z, .asm_395a
+	pop af
+	jr BattlePartyAttr
+.asm_395a
+	pop af
+	jr OTPartyAttr
+; 395d
 
 
 BattlePartyAttr: ; 395d
