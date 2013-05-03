@@ -3920,60 +3920,122 @@ BattleTextBox: ; 3ac3
 
 
 FarBattleTextBox: ; 3ad5
-; save bank
-	ld a, [$ff9d] ; bank
+; Open a textbox and print text at 20:hl.
+
+	ld a, [hROMBank]
 	push af
-; bank 20
+
 	ld a, $20
-	rst $10
-; print text at hl
+	rst Bankswitch
+
 	call BattleTextBox
-; restore bank
+
 	pop af
-	rst $10
+	rst Bankswitch
 	ret
 ; 3ae1
 
 
-INCBIN "baserom.gbc", $3ae1, $3b86 - $3ae1
+INCBIN "baserom.gbc", $3ae1, $3b4e - $3ae1
 
-LoadMusicByte: ; 3b86
-; load music data into CurMusicByte
-; input:
-;   a: bank
-;   de: address
-	ld [hROMBank], a
-	ld [$2000], a ; bankswitch
-	ld a, [de]
-	ld [CurMusicByte], a
-	ld a, $3a ; manual bank restore
-	ld [hROMBank], a
-	ld [$2000], a ; bankswitch
-	ret
-; 3b97
 
-StartMusic: ; 3b97
-; input:
-;   e = song number
+CleanSoundRestart: ; 3b4e
+
 	push hl
 	push de
 	push bc
 	push af
-	ld a, [hROMBank] ; save bank
+
+	ld a, [hROMBank]
 	push af
-	ld a, BANK(LoadMusic)
+	ld a, BANK(SoundRestart)
 	ld [hROMBank], a
-	ld [$2000], a ; bankswitch
-	ld a, e ; song number
+	ld [$2000], a
+
+	call SoundRestart
+
+	pop af
+	ld [hROMBank], a
+	ld [$2000], a
+
+	pop af
+	pop bc
+	pop de
+	pop hl
+	ret
+; 3b6a
+
+
+CleanUpdateSound: ; 3b6a
+
+	push hl
+	push de
+	push bc
+	push af
+
+	ld a, [hROMBank]
+	push af
+	ld a, BANK(UpdateSound)
+	ld [hROMBank], a
+	ld [$2000], a
+
+	call UpdateSound
+
+	pop af
+	ld [hROMBank], a
+	ld [$2000], a
+
+	pop af
+	pop bc
+	pop de
+	pop hl
+	ret
+; 3b86
+
+
+LoadMusicByte: ; 3b86
+; CurMusicByte = [a:de]
+
+	ld [hROMBank], a
+	ld [$2000], a
+
+	ld a, [de]
+	ld [CurMusicByte], a
+	ld a, $3a ; manual bank restore
+
+	ld [hROMBank], a
+	ld [$2000], a
+	ret
+; 3b97
+
+
+StartMusic: ; 3b97
+; Play music de.
+
+	push hl
+	push de
+	push bc
+	push af
+
+	ld a, [hROMBank]
+	push af
+	ld a, BANK(LoadMusic) ; and BANK(SoundRestart)
+	ld [hROMBank], a
+	ld [$2000], a
+
+	ld a, e
 	and a
 	jr z, .nomusic
+
 	call LoadMusic
 	jr .end
+
 .nomusic
 	call SoundRestart
+
 .end
 	pop af
-	ld [hROMBank], a ; restore bank
+	ld [hROMBank], a
 	ld [$2000], a
 	pop af
 	pop bc
@@ -3982,25 +4044,58 @@ StartMusic: ; 3b97
 	ret
 ; 3bbc
 
-INCBIN "baserom.gbc", $3bbc, $3be3 - $3bbc
 
-PlayCryHeader: ; 3be3
-; Play a cry given parameters in header de
-	
+StartMusic2: ; 3bbc
+; Stop playing music, then play music de.
+
 	push hl
 	push de
 	push bc
 	push af
-	
+
+	ld a, [hROMBank]
+	push af
+	ld a, BANK(LoadMusic)
+	ld [hROMBank], a
+	ld [$2000], a
+
+	push de
+	ld de, MUSIC_NONE
+	call LoadMusic
+	call DelayFrame
+	pop de
+	call LoadMusic
+
+	pop af
+	ld [hROMBank], a
+	ld [$2000], a
+
+	pop af
+	pop bc
+	pop de
+	pop hl
+	ret
+
+; 3be3
+
+
+PlayCryHeader: ; 3be3
+; Play a cry given parameters in header de
+
+	push hl
+	push de
+	push bc
+	push af
+
 ; Save current bank
 	ld a, [hROMBank]
 	push af
-	
+
 ; Cry headers are stuck in one bank.
 	ld a, BANK(CryHeaders)
 	ld [hROMBank], a
 	ld [$2000], a
-	
+
 ; Each header is 6 bytes long:
 	ld hl, CryHeaders
 	add hl, de
@@ -4009,33 +4104,27 @@ PlayCryHeader: ; 3be3
 	add hl, de
 	add hl, de
 	add hl, de
-	
-; Header struct:
 
-; id
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
 	inc hl
-; pitch
+
 	ld a, [hli]
 	ld [CryPitch], a
-; echo
 	ld a, [hli]
 	ld [CryEcho], a
-; length
 	ld a, [hli]
 	ld [CryLength], a
 	ld a, [hl]
 	ld [CryLength+1], a
-	
-; That's it for the header
+
 	ld a, BANK(PlayCry)
 	ld [hROMBank], a
 	ld [$2000], a
+
 	call PlayCry
-	
-; Restore bank
+
 	pop af
 	ld [hROMBank], a
 	ld [$2000], a
@@ -4049,31 +4138,35 @@ PlayCryHeader: ; 3be3
 
 
 StartSFX: ; 3c23
-; sfx id order is by priority (highest to lowest)
-; to disable this, remove the check!
-; input: de = sfx id
+; Play sound effect de.
+; Sound effects are ordered by priority (lowest to highest)
+
 	push hl
 	push de
 	push bc
 	push af
-	; is something already playing?
+
+; Is something already playing?
 	call CheckSFX
-	jr nc, .asm_3c32
-	; only play sfx if it has priority
+	jr nc, .play
+; Does it have priority?
 	ld a, [CurSFX]
 	cp e
 	jr c, .quit
-.asm_3c32
-	ld a, [hROMBank] ; save bank
+
+.play
+	ld a, [hROMBank]
 	push af
-	ld a, $3a ; music bank
+	ld a, BANK(LoadSFX)
 	ld [hROMBank], a
 	ld [$2000], a ; bankswitch
+
 	ld a, e
 	ld [CurSFX], a
 	call LoadSFX
+
 	pop af
-	ld [hROMBank], a ; restore bank
+	ld [hROMBank], a
 	ld [$2000], a ; bankswitch
 .quit
 	pop af
@@ -4083,31 +4176,37 @@ StartSFX: ; 3c23
 	ret
 ; 3c4e
 
-INCBIN "baserom.gbc", $3c4e, $3c55-$3c4e
+
+WaitPlaySFX: ; 3c4e
+	call WaitSFX
+	call StartSFX
+	ret
+; 3c55
+
 
 WaitSFX: ; 3c55
 ; infinite loop until sfx is done playing
+
 	push hl
 	
 .loop
 	; ch5 on?
-	ld hl, $c1cc ; Channel5Flags
+	ld hl, Channel5 + Channel1Flags - Channel1
 	bit 0, [hl]
 	jr nz, .loop
 	; ch6 on?
-	ld hl, $c1fe ; Channel6Flags
+	ld hl, Channel6 + Channel1Flags - Channel1
 	bit 0, [hl]
 	jr nz, .loop
 	; ch7 on?
-	ld hl, $c230 ; Channel7Flags
+	ld hl, Channel7 + Channel1Flags - Channel1
 	bit 0, [hl]
 	jr nz, .loop
 	; ch8 on?
-	ld hl, $c262 ; Channel8Flags
+	ld hl, Channel8 + Channel1Flags - Channel1
 	bit 0, [hl]
 	jr nz, .loop
 	
-	; we're done
 	pop hl
 	ret
 ; 3c74
