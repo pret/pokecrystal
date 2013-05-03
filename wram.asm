@@ -550,7 +550,7 @@ PlayerSubStatus4: ; c66b
 	ds 1
 PlayerSubStatus5: ; c66c
 ; bit
-; 7
+; 7 cant run
 ; 6 destiny bond
 ; 5 lock-on
 ; 4
