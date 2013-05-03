@@ -8,7 +8,7 @@ SECTION "rst8",HOME[$8] ; FarCall
 
 SECTION "rst10",HOME[$10] ; Bankswitch
 	ld [hROMBank], a
-	ld [$2000], a
+	ld [MBC3RomBank], a
 	ret
 
 SECTION "rst18",HOME[$18] ; Unused
@@ -207,10 +207,10 @@ AskTimer: ; 591
 
 LatchClock: ; 59c
 ; latch clock counter data
-	ld a, $0
-	ld [$6000], a
-	ld a, $1
-	ld [$6000], a
+	ld a, 0
+	ld [MBC3LatchClock], a
+	ld a, 1
+	ld [MBC3LatchClock], a
 	ret
 ; 5a7
 
@@ -232,37 +232,37 @@ GetClock: ; 5b7
 ; store clock data in hRTCDayHi-hRTCSeconds
 
 ; enable clock r/w
-	ld a, $a
-	ld [$0000], a
+	ld a, SRAM_ENABLE
+	ld [MBC3SRamEnable], a
 	
 ; get clock data
 ; stored 'backwards' in hram
 	
 	call LatchClock
-	ld hl, $4000
-	ld de, $a000
+	ld hl, MBC3SRamBank
+	ld de, MBC3RTC
 	
 ; seconds
-	ld [hl], $8 ; S
+	ld [hl], RTC_S
 	ld a, [de]
 	and $3f
 	ld [hRTCSeconds], a
 ; minutes
-	ld [hl], $9 ; M
+	ld [hl], RTC_M
 	ld a, [de]
 	and $3f
 	ld [hRTCMinutes], a
 ; hours
-	ld [hl], $a ; H
+	ld [hl], RTC_H
 	ld a, [de]
 	and $1f
 	ld [hRTCHours], a
 ; day lo
-	ld [hl], $b ; DL
+	ld [hl], RTC_DL
 	ld a, [de]
 	ld [hRTCDayLo], a
 ; day hi
-	ld [hl], $c ; DH
+	ld [hl], RTC_DH
 	ld a, [de]
 	ld [hRTCDayHi], a
 	
@@ -390,41 +390,41 @@ SetClock: ; 691
 ; set clock data from hram
 
 ; enable clock r/w
-	ld a, $a
-	ld [$0000], a
+	ld a, SRAM_ENABLE
+	ld [MBC3SRamEnable], a
 	
 ; set clock data
 ; stored 'backwards' in hram
 
 	call LatchClock
-	ld hl, $4000
-	ld de, $a000
+	ld hl, MBC3SRamBank
+	ld de, MBC3RTC
 	
 ; seems to be a halt check that got partially commented out
 ; this block is totally pointless
-	ld [hl], $c
+	ld [hl], RTC_DH
 	ld a, [de]
 	bit 6, a ; halt
 	ld [de], a
 	
 ; seconds
-	ld [hl], $8 ; S
+	ld [hl], RTC_S
 	ld a, [hRTCSeconds]
 	ld [de], a
 ; minutes
-	ld [hl], $9 ; M
+	ld [hl], RTC_M
 	ld a, [hRTCMinutes]
 	ld [de], a
 ; hours
-	ld [hl], $a ; H
+	ld [hl], RTC_H
 	ld a, [hRTCHours]
 	ld [de], a
 ; day lo
-	ld [hl], $b ; DL
+	ld [hl], RTC_DL
 	ld a, [hRTCDayLo]
 	ld [de], a
 ; day hi
-	ld [hl], $c ; DH
+	ld [hl], RTC_DH
 	ld a, [hRTCDayHi]
 	res 6, a ; make sure timer is active
 	ld [de], a
@@ -2723,25 +2723,25 @@ OpenSRAM: ; 2fd1
 ; switch to sram bank a
 	push af
 ; latch clock data
-	ld a, $1
-	ld [$6000], a
+	ld a, 1
+	ld [MBC3LatchClock], a
 ; enable sram/clock write
-	ld a, $a
-	ld [$0000], a
+	ld a, SRAM_ENABLE
+	ld [MBC3SRamEnable], a
 ; select sram bank
 	pop af
-	ld [$4000], a
+	ld [MBC3SRamBank], a
 	ret
 ; 2fe1
 
 CloseSRAM: ; 2fe1
 ; preserve a
 	push af
-	ld a, $0
+	ld a, SRAM_DISABLE
 ; reset clock latch for next time
-	ld [$6000], a
+	ld [MBC3LatchClock], a
 ; disable sram/clock write
-	ld [$0000], a
+	ld [MBC3SRamEnable], a
 	pop af
 	ret
 ; 2fec
@@ -3950,13 +3950,13 @@ CleanSoundRestart: ; 3b4e
 	push af
 	ld a, BANK(SoundRestart)
 	ld [hROMBank], a
-	ld [$2000], a
+	ld [MBC3RomBank], a
 
 	call SoundRestart
 
 	pop af
 	ld [hROMBank], a
-	ld [$2000], a
+	ld [MBC3RomBank], a
 
 	pop af
 	pop bc
@@ -3977,13 +3977,13 @@ CleanUpdateSound: ; 3b6a
 	push af
 	ld a, BANK(UpdateSound)
 	ld [hROMBank], a
-	ld [$2000], a
+	ld [MBC3RomBank], a
 
 	call UpdateSound
 
 	pop af
 	ld [hROMBank], a
-	ld [$2000], a
+	ld [MBC3RomBank], a
 
 	pop af
 	pop bc
@@ -3997,14 +3997,14 @@ LoadMusicByte: ; 3b86
 ; CurMusicByte = [a:de]
 
 	ld [hROMBank], a
-	ld [$2000], a
+	ld [MBC3RomBank], a
 
 	ld a, [de]
 	ld [CurMusicByte], a
 	ld a, $3a ; manual bank restore
 
 	ld [hROMBank], a
-	ld [$2000], a
+	ld [MBC3RomBank], a
 	ret
 ; 3b97
 
@@ -4021,7 +4021,7 @@ StartMusic: ; 3b97
 	push af
 	ld a, BANK(LoadMusic) ; and BANK(SoundRestart)
 	ld [hROMBank], a
-	ld [$2000], a
+	ld [MBC3RomBank], a
 
 	ld a, e
 	and a
@@ -4036,7 +4036,7 @@ StartMusic: ; 3b97
 .end
 	pop af
 	ld [hROMBank], a
-	ld [$2000], a
+	ld [MBC3RomBank], a
 	pop af
 	pop bc
 	pop de
@@ -4057,7 +4057,7 @@ StartMusic2: ; 3bbc
 	push af
 	ld a, BANK(LoadMusic)
 	ld [hROMBank], a
-	ld [$2000], a
+	ld [MBC3RomBank], a
 
 	push de
 	ld de, MUSIC_NONE
@@ -4068,7 +4068,7 @@ StartMusic2: ; 3bbc
 
 	pop af
 	ld [hROMBank], a
-	ld [$2000], a
+	ld [MBC3RomBank], a
 
 	pop af
 	pop bc
@@ -4094,7 +4094,7 @@ PlayCryHeader: ; 3be3
 ; Cry headers are stuck in one bank.
 	ld a, BANK(CryHeaders)
 	ld [hROMBank], a
-	ld [$2000], a
+	ld [MBC3RomBank], a
 
 ; Each header is 6 bytes long:
 	ld hl, CryHeaders
@@ -4121,13 +4121,13 @@ PlayCryHeader: ; 3be3
 
 	ld a, BANK(PlayCry)
 	ld [hROMBank], a
-	ld [$2000], a
+	ld [MBC3RomBank], a
 
 	call PlayCry
 
 	pop af
 	ld [hROMBank], a
-	ld [$2000], a
+	ld [MBC3RomBank], a
 	
 	pop af
 	pop bc
@@ -4159,7 +4159,7 @@ StartSFX: ; 3c23
 	push af
 	ld a, BANK(LoadSFX)
 	ld [hROMBank], a
-	ld [$2000], a ; bankswitch
+	ld [MBC3RomBank], a ; bankswitch
 
 	ld a, e
 	ld [CurSFX], a
@@ -4167,7 +4167,7 @@ StartSFX: ; 3c23
 
 	pop af
 	ld [hROMBank], a
-	ld [$2000], a ; bankswitch
+	ld [MBC3RomBank], a ; bankswitch
 .quit
 	pop af
 	pop bc
