@@ -8149,10 +8149,178 @@ INCLUDE "stats/evos_attacks.asm"
 
 SECTION "bank11",DATA,BANK[$11]
 
-INCBIN "baserom.gbc", $44000, $44378 - $44000
+FruitTreeScript: ; 44000
+	3callasm BANK(GetCurTreeFruit), GetCurTreeFruit
+	loadfont
+	copybytetovar CurFruit
+	itemtotext $0, $0
+	2writetext FruitBearingTreeText
+	keeptextopen
+	3callasm BANK(TryResetFruitTrees), TryResetFruitTrees
+	3callasm BANK(CheckFruitTree), CheckFruitTree
+	iffalse .fruit
+	2writetext NothingHereText
+	closetext
+	2jump .end
+
+.fruit
+	2writetext HeyItsFruitText
+	copybytetovar CurFruit
+	giveitem $ff, 1
+	iffalse .packisfull
+	keeptextopen
+	2writetext ObtainedFruitText
+	3callasm BANK(PickedFruitTree), PickedFruitTree
+	specialsound
+	itemnotify
+	2jump .end
+
+.packisfull
+	keeptextopen
+	2writetext FruitPackIsFullText
+	closetext
+
+.end
+	loadmovesprites
+	end
+; 44041
+
+GetCurTreeFruit: ; 44041
+	ld a, [CurFruitTree]
+	dec a
+	call GetFruitTreeItem
+	ld [CurFruit], a
+	ret
+; 4404c
+
+TryResetFruitTrees: ; 4404c
+	ld hl, $dc1e
+	bit 4, [hl]
+	ret nz
+	jp ResetFruitTrees
+; 44055
+
+CheckFruitTree: ; 44055
+	ld b, 2
+	call GetFruitTreeFlag
+	ld a, c
+	ld [ScriptVar], a
+	ret
+; 4405f
+
+PickedFruitTree: ; 4405f
+	ld a, $41
+	ld hl, $609b
+	rst FarCall ; empty function
+
+	ld b, 1
+	jp GetFruitTreeFlag
+; 4406a
+
+ResetFruitTrees: ; 4406a
+	xor a
+	ld hl, FruitTreeFlags
+	ld [hli], a
+	ld [hli], a
+	ld [hli], a
+	ld [hl], a
+	ld hl, $dc1e
+	set 4, [hl]
+	ret
+; 44078
+
+GetFruitTreeFlag: ; 44078
+	push hl
+	push de
+	ld a, [CurFruitTree]
+	dec a
+	ld e, a
+	ld d, 0
+	ld hl, FruitTreeFlags
+	call BitTableFunc
+	pop de
+	pop hl
+	ret
+; 4408a
+
+GetFruitTreeItem: ; 4408a
+	push hl
+	push de
+	ld e, a
+	ld d, 0
+	ld hl, FruitTreeItems
+	add hl, de
+	ld a, [hl]
+	pop de
+	pop hl
+	ret
+; 44097
+
+FruitTreeItems: ; 44097
+	db BERRY
+	db BERRY
+	db BERRY
+	db BERRY
+	db PSNCUREBERRY
+	db PSNCUREBERRY
+	db BITTER_BERRY
+	db BITTER_BERRY
+	db PRZCUREBERRY
+	db PRZCUREBERRY
+	db MYSTERYBERRY
+	db MYSTERYBERRY
+	db ICE_BERRY
+	db ICE_BERRY
+	db MINT_BERRY
+	db BURNT_BERRY
+	db RED_APRICORN
+	db BLU_APRICORN
+	db BLK_APRICORN
+	db WHT_APRICORN
+	db PNK_APRICORN
+	db GRN_APRICORN
+	db YLW_APRICORN
+	db BERRY
+	db PSNCUREBERRY
+	db BITTER_BERRY
+	db PRZCUREBERRY
+	db ICE_BERRY
+	db MINT_BERRY
+	db BURNT_BERRY
+; 440b5
+
+FruitBearingTreeText: ; 440b5
+	text_jump _FruitBearingTreeText, BANK(_FruitBearingTreeText)
+	db "@"
+; 440ba
+
+HeyItsFruitText: ; 440ba
+	text_jump _HeyItsFruitText, BANK(_HeyItsFruitText)
+	db "@"
+; 440bf
+
+ObtainedFruitText: ; 440bf
+	text_jump _ObtainedFruitText, BANK(_ObtainedFruitText)
+	db "@"
+; 440c4
+
+FruitPackIsFullText: ; 440c4
+	text_jump _FruitPackIsFullText, BANK(_FruitPackIsFullText)
+	db "@"
+; 440c9
+
+NothingHereText: ; 440c9
+	text_jump _NothingHereText, BANK(_NothingHereText)
+	db "@"
+; 440ce
+
+
+INCBIN "baserom.gbc", $440ce, $44378 - $440ce
+
 
 PokedexDataPointerTable: ; 0x44378
 INCLUDE "stats/pokedex/entry_pointers.asm"
+
 
 INCBIN "baserom.gbc", $4456e, $44997 - $4456e
 
@@ -18596,7 +18764,36 @@ INCLUDE "stats/pokedex/entries_2.asm"
 
 SECTION "bank6F",DATA,BANK[$6F]
 
-INCBIN "baserom.gbc", $1bc000, $1be08d - $1bc000
+_FruitBearingTreeText: ; 0x1bc000
+	db $0, "It's a fruit-", $4f
+	db "bearing tree.", $57
+; 0x1bc01c
+
+_HeyItsFruitText: ; 0x1bc01c
+	db $0, "Hey! It's", $4f
+	db "@"
+	text_from_ram StringBuffer3
+	db $0, "!", $57
+; 0x1bc02d
+
+_ObtainedFruitText: ; 0x1bc02d
+	db $0, "Obtained", $4f
+	db "@"
+	text_from_ram StringBuffer3
+	db $0, "!", $57
+; 0x1bc03e
+
+_FruitPackIsFullText: ; 0x1bc03e
+	db $0, "But the PACK is", $4f
+	db "full…", $57
+; 0x1bc055
+
+_NothingHereText: ; 0x1bc055
+	db $0, "There's nothing", $4f
+	db "here…", $57
+; 0x1bc06b
+
+INCBIN "baserom.gbc", $1bc06b, $1be08d - $1bc06b
 
 
 SECTION "bank70",DATA,BANK[$70]

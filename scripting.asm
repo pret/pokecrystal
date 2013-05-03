@@ -690,9 +690,9 @@ Script_fruittree: ; 0x970ee
 ;     tree_id (SingleByteParam)
 
 	call GetScriptByte
-	ld [$d03e], a
-	ld b, $11
-	ld hl, $4000
+	ld [CurFruitTree], a
+	ld b, BANK(FruitTreeScript)
+	ld hl, FruitTreeScript
 	jp ScriptJump
 ; 0x970fc
 

@@ -896,7 +896,14 @@ StartFlypoint: ; d005
 EndFlypoint: ; d006
 	ds 1
 	
-	ds 108
+	ds 55
+
+CurFruitTree: ; d03e
+	ds 1
+CurFruit: ; d03f
+	ds 1
+
+	ds 51
 
 StringBuffer1: ; d073
 	ds 19
@@ -1543,6 +1550,10 @@ Box13Name: ; dbe1
 	ds 9
 Box14Name: ; dbea
 	ds 9
+
+SECTION "fruittrees", BSS[$dc27]
+FruitTreeFlags: ; dc27
+	ds 1
 
 SECTION "steps", BSS[$dc73]
 StepCount: ; dc73
