@@ -1183,7 +1183,10 @@ OtherTrainerID: ; d231
 ; (Joey, Mikey, Albert, etc.)
 	ds 1
 
-	ds 2
+	ds 1
+
+TrainerClass: ; d233
+	ds 1
 
 UnownLetter: ; d234
 	ds 1
