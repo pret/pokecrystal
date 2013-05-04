@@ -8315,7 +8315,217 @@ NothingHereText: ; 440c9
 ; 440ce
 
 
-INCBIN "baserom.gbc", $440ce, $44378 - $440ce
+
+AIChooseMove: ; 440ce
+; Score each move in EnemyMonMoves starting from Buffer1. Lower is better.
+; Pick the move with the lowest score.
+
+; Wildmons attack at random.
+	ld a, [IsInBattle]
+	dec a
+	ret z
+
+	ld a, [InLinkBattle]
+	and a
+	ret nz
+
+; No use picking a move if there's no choice.
+	ld a, $f
+	ld hl, $68d1
+	rst FarCall ; CheckLockedEnemyMove
+	ret nz
+
+
+; The default score is 20. Unusable moves are given a score of 80.
+	ld a, 20
+	ld hl, Buffer1
+	ld [hli], a
+	ld [hli], a
+	ld [hli], a
+	ld [hl], a
+
+; Don't pick disabled moves.
+	ld a, [EnemyDisabledMove]
+	and a
+	jr z, .CheckPP
+
+	ld hl, EnemyMonMove1
+	ld c, 0
+.CheckDisabledMove
+	cp [hl]
+	jr z, .ScoreDisabledMove
+	inc c
+	inc hl
+	jr .CheckDisabledMove
+.ScoreDisabledMove
+	ld hl, Buffer1
+	ld b, 0
+	add hl, bc
+	ld [hl], 80
+
+; Don't pick moves with 0 PP.
+.CheckPP
+	ld hl, Buffer1 - 1
+	ld de, EnemyMonPP
+	ld b, 0
+.CheckMovePP
+	inc b
+	ld a, b
+	cp EnemyMonMovesEnd - EnemyMonMoves + 1
+	jr z, .ApplyLayers
+	inc hl
+	ld a, [de]
+	inc de
+	and $3f
+	jr nz, .CheckMovePP
+	ld [hl], 80
+	jr .CheckMovePP
+
+
+; Apply AI scoring layers depending on the trainer class.
+.ApplyLayers
+	ld hl, $559f ; TrainerAI + 3 ; e:559c-5771
+
+	ld a, [$cfc0]
+	bit 0, a
+	jr nz, .asm_4412f
+
+	ld a, [TrainerClass]
+	dec a
+	ld bc, 7 ; Trainer2AI - Trainer1AI
+	call AddNTimes
+
+.asm_4412f
+	ld bc, (CHECK_FLAG << 8) | 0
+	push bc
+	push hl
+
+.CheckLayer
+	pop hl
+	pop bc
+
+	ld a, c
+	cp 16 ; up to 16 scoring layers
+	jr z, .asm_4415e
+
+	push bc
+	ld d, $e ; BANK(TrainerAI)
+	ld a, PREDEF_FLAG
+	call Predef
+	ld d, c
+	pop bc
+
+	inc c
+	push bc
+	push hl
+
+	ld a, d
+	and a
+	jr z, .CheckLayer
+
+	ld hl, AIScoringPointers
+	dec c
+	ld b, 0
+	add hl, bc
+	add hl, bc
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	ld a, $e ; bank
+	call FarJpHl
+
+	jr .CheckLayer
+
+.asm_4415e
+	ld hl, Buffer1
+	ld de, EnemyMonMoves
+	ld c, EnemyMonMovesEnd - EnemyMonMoves
+.asm_44166
+	ld a, [de]
+	inc de
+	and a
+	jr z, .asm_4415e
+
+	dec [hl]
+	jr z, .asm_44174
+
+	inc hl
+	dec c
+	jr z, .asm_4415e
+
+	jr .asm_44166
+
+.asm_44174
+	ld a, c
+.asm_44175
+	inc [hl]
+	dec hl
+	inc a
+	cp EnemyMonMovesEnd - EnemyMonMoves + 1
+	jr nz, .asm_44175
+
+	ld hl, Buffer1
+	ld de, EnemyMonMoves
+	ld c, EnemyMonMovesEnd - EnemyMonMoves
+.asm_44184
+	ld a, [de]
+	and a
+	jr nz, .asm_44189
+	ld [hl], a
+.asm_44189
+	ld a, [hl]
+	dec a
+	jr z, .asm_44191
+	xor a
+	ld [hli], a
+	jr .asm_44193
+.asm_44191
+	ld a, [de]
+	ld [hli], a
+.asm_44193
+	inc de
+	dec c
+	jr nz, .asm_44184
+
+.asm_44197
+	ld hl, Buffer1
+	call RNG
+	and 3
+	ld c, a
+	ld b, 0
+	add hl, bc
+	ld a, [hl]
+	and a
+	jr z, .asm_44197
+
+	ld [CurEnemyMove], a
+	ld a, c
+	ld [CurEnemyMoveNum], a
+	ret
+; 441af
+
+
+AIScoringPointers: ; 441af
+	dw $4591
+	dw $45e0
+	dw $4635
+	dw $46a2
+	dw $46be
+	dw $5315
+	dw $5369
+	dw $5418
+	dw $5453
+	dw $54a9
+	dw $5502
+	dw $5502
+	dw $5502
+	dw $5502
+	dw $5502
+	dw $5502
+; 441cf
+
+
+INCBIN "baserom.gbc", $441cf, $44378 - $441cf
 
 
 PokedexDataPointerTable: ; 0x44378
