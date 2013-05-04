@@ -3814,13 +3814,13 @@ EFFECT_TOXIC               EQU $21
 EFFECT_PAY_DAY             EQU $22
 EFFECT_LIGHT_SCREEN        EQU $23
 EFFECT_TRI_ATTACK          EQU $24
-; unused                   EQU $25
+EFFECT_UNUSED_25           EQU $25 ; unused
 EFFECT_OHKO                EQU $26
 EFFECT_RAZOR_WIND          EQU $27
 EFFECT_SUPER_FANG          EQU $28
 EFFECT_STATIC_DAMAGE       EQU $29
 EFFECT_BIND                EQU $2a
-; unused                   EQU $2b
+EFFECT_UNUSED_2B           EQU $2b ; unused
 EFFECT_DOUBLE_HIT          EQU $2c
 EFFECT_JUMP_KICK           EQU $2d
 EFFECT_MIST                EQU $2e
@@ -3855,7 +3855,7 @@ EFFECT_EVASION_DOWN_HIT    EQU $4a
 EFFECT_SKY_ATTACK          EQU $4b
 EFFECT_CONFUSE_HIT         EQU $4c
 EFFECT_TWINEEDLE           EQU $4d
-; unused                   EQU $4e
+EFFECT_UNUSED_4E           EQU $4e ; unused
 EFFECT_SUBSTITUTE          EQU $4f
 EFFECT_HYPER_BEAM          EQU $50
 EFFECT_RAGE                EQU $51
@@ -3887,7 +3887,7 @@ EFFECT_MEAN_LOOK           EQU $6a
 EFFECT_NIGHTMARE           EQU $6b
 EFFECT_FLAME_WHEEL         EQU $6c
 EFFECT_CURSE               EQU $6d
-; unused                   EQU $6e
+EFFECT_UNUSED_6E           EQU $6e ; unused
 EFFECT_PROTECT             EQU $6f
 EFFECT_SPIKES              EQU $70
 EFFECT_FORESIGHT           EQU $71
@@ -3907,8 +3907,8 @@ EFFECT_MAGNITUDE           EQU $7e
 EFFECT_BATON_PASS          EQU $7f
 EFFECT_PURSUIT             EQU $80
 EFFECT_RAPID_SPIN          EQU $81
-; unused                   EQU $82
-; unused                   EQU $83
+EFFECT_UNUSED_82           EQU $82 ; unused
+EFFECT_UNUSED_83           EQU $83 ; unused
 EFFECT_MORNING_SUN         EQU $84
 EFFECT_SYNTHESIS           EQU $85
 EFFECT_MOONLIGHT           EQU $86
