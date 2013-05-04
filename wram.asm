@@ -690,7 +690,7 @@ AlreadyDisobeyed: ; c6f4
 
 DisabledMove: ; c6f5
 	ds 1
-EnemyEncoredMove: ; c6f6
+EnemyDisabledMove: ; c6f6
 	ds 1
 	ds 1
 
@@ -1082,6 +1082,7 @@ EnemyMonMove3: ; d20a
 	ds 1
 EnemyMonMove4: ; d20b
 	ds 1
+EnemyMonMovesEnd
 
 EnemyMonDVs:
 EnemyMonAtkDefDV: ; d20c

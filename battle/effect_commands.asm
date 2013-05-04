@@ -507,7 +507,7 @@ CheckEnemyTurn: ; 3421f
 	jr nz, .CheckConfused
 
 	ld [hl], a
-	ld [EnemyEncoredMove], a
+	ld [EnemyDisabledMove], a
 
 ; 'disabled no more!'
 	ld hl, DisabledNoMoreText
@@ -612,7 +612,7 @@ CheckEnemyTurn: ; 3421f
 
 .CheckDisabledMove
 ; We can't disable a move that doesn't exist.
-	ld a, [EnemyEncoredMove]
+	ld a, [EnemyDisabledMove]
 	and a
 	jr z, .CheckParalyzed
 
@@ -4990,7 +4990,7 @@ BattleCommand48: ; 35b33
 	ld d, a
 	jr z, .asm_35b4f ; 35b46 $7
 	ld hl, EnemyMonMove2
-	ld a, [EnemyEncoredMove]
+	ld a, [EnemyDisabledMove]
 	ld d, a
 .asm_35b4f
 	ld a, BATTLE_VARS_STATUS
@@ -5059,7 +5059,7 @@ BattleCommand48: ; 35b33
 	ld a, [DisabledMove]
 	jr z, .asm_35bbe
 
-	ld a, [EnemyEncoredMove]
+	ld a, [EnemyDisabledMove]
 .asm_35bbe
 	ld b, a
 	ld a, $10
@@ -8983,7 +8983,7 @@ Function0x372e7: ; 372e7
 
 	xor a
 	ld [EnemyDisableCount], a
-	ld [EnemyEncoredMove], a
+	ld [EnemyDisabledMove], a
 	ret
 
 .player
