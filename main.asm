@@ -7132,7 +7132,780 @@ INCLUDE "battle/effect_commands.asm"
 
 SECTION "bankE",DATA,BANK[$E]
 
-INCBIN "baserom.gbc", $38000, $39999 - $38000
+INCBIN "baserom.gbc", $38000, $38591 - $38000
+
+
+Function_0x38591: ; 38591
+	ld hl, Buffer1 - 1
+	ld de, EnemyMonMoves
+	ld b, EnemyMonMovesEnd - EnemyMonMoves + 1
+.asm_38599
+	dec b
+	ret z
+
+	inc hl
+	ld a, [de]
+	and a
+	ret z
+
+	inc de
+	call $5508
+
+	ld a, [EnemyMoveEffect]
+	ld c, a
+
+	push hl
+	push de
+	push bc
+	ld a, $b
+	ld hl, $441a
+	rst FarCall
+	pop bc
+	pop de
+	pop hl
+	jr nz, .asm_385d6
+
+	ld a, [EnemyMoveEffect]
+	push hl
+	push de
+	push bc
+	ld hl, .table_385db
+	ld de, 1
+	call IsInArray
+
+	pop bc
+	pop de
+	pop hl
+	jr nc, .asm_38599
+
+	ld a, [BattleMonStatus]
+	and a
+	jr nz, .asm_385d6
+
+	ld a, [PlayerScreens]
+	bit 2, a
+	jr z, .asm_38599
+
+.asm_385d6
+	call $5503
+
+	jr .asm_38599
+; 385db
+
+.table_385db
+	db EFFECT_SLEEP
+	db EFFECT_TOXIC
+	db EFFECT_POISON
+	db EFFECT_PARALYZE
+	db $ff
+; 385e0
+
+
+
+Function_0x385e0: ; 385e0
+	ld hl, Buffer1 - 1
+	ld de, EnemyMonMoves
+	ld b, EnemyMonMovesEnd - EnemyMonMoves + 1
+.next
+	dec b
+	ret z
+
+	inc hl
+	ld a, [de]
+	and a
+	ret z
+
+	inc de
+	call $5508
+
+	ld a, [EnemyMoveEffect]
+
+	cp EFFECT_ATTACK_UP
+	jr c, .next
+	cp EFFECT_EVASION_UP + 1
+	jr c, .statup
+
+;	cp EFFECT_ATTACK_DOWN - 1
+	jr z, .next
+	cp EFFECT_EVASION_DOWN + 1
+	jr c, .statdown
+
+	cp EFFECT_ATTACK_UP_2
+	jr c, .next
+	cp EFFECT_EVASION_UP_2 + 1
+	jr c, .statup
+
+;	cp EFFECT_ATTACK_DOWN_2 - 1
+	jr z, .next
+	cp EFFECT_EVASION_DOWN_2 + 1
+	jr c, .statdown
+
+	jr .next
+
+.statup
+	ld a, [EnemyTurnsTaken]
+	and a
+	jr nz, .asm_3862a
+
+	jr .asm_38621
+
+.statdown
+	ld a, [PlayerTurnsTaken]
+	and a
+	jr nz, .asm_3862a
+
+.asm_38621
+	call $5527
+
+	jr c, .next
+
+	dec [hl]
+	dec [hl]
+	jr .next
+
+.asm_3862a
+	call RNG
+
+	cp $1e
+	jr c, .next
+
+	inc [hl]
+	inc [hl]
+	jr .next
+; 38635
+
+
+
+Function_0x38635: ; 38635
+	ld hl, Buffer1 - 1
+	ld de, EnemyMonMoves
+	ld b, EnemyMonMovesEnd - EnemyMonMoves + 1
+.asm_3863d
+	dec b
+	ret z
+
+	inc hl
+	ld a, [de]
+	and a
+	ret z
+
+	inc de
+	call $5508
+
+	push hl
+	push bc
+	push de
+	ld a, 1
+	ld [hBattleTurn], a
+	ld hl, $47c8
+	ld a, $d
+	rst FarCall
+
+	pop de
+	pop bc
+	pop hl
+	ld a, [$d265]
+	and a
+	jr z, .asm_3869d
+
+	cp $a
+	jr z, .asm_3863d
+
+	jr c, .asm_3866c
+
+	ld a, [EnemyMovePower]
+	and a
+	jr z, .asm_3863d
+
+	dec [hl]
+	jr .asm_3863d
+
+.asm_3866c
+	push hl
+	push de
+	push bc
+	ld a, [EnemyMoveType]
+	ld d, a
+	ld hl, EnemyMonMoves
+	ld b, EnemyMonMovesEnd - EnemyMonMoves + 1
+	ld c, 0
+.asm_3867a
+	dec b
+	jr z, .asm_38693
+
+	ld a, [hli]
+	and a
+	jr z, .asm_38693
+
+	call $5508
+
+	ld a, [EnemyMoveType]
+	cp d
+	jr z, .asm_3867a
+
+	ld a, [EnemyMovePower]
+	and a
+	jr nz, .asm_38692
+
+	jr .asm_3867a
+
+.asm_38692
+	ld c, a
+.asm_38693
+	ld a, c
+	pop bc
+	pop de
+	pop hl
+	and a
+	jr z, .asm_3863d
+
+	inc [hl]
+	jr .asm_3863d
+
+.asm_3869d
+	call $5503
+
+	jr .asm_3863d
+; 386a2
+
+
+
+Function_0x386a2: ; 386a2
+	ld hl, Buffer1 - 1
+	ld de, EnemyMonMoves
+	ld b, EnemyMonMovesEnd - EnemyMonMoves + 1
+.asm_386aa
+	dec b
+	ret z
+
+	inc hl
+	ld a, [de]
+	and a
+	ret z
+
+	inc de
+	call $5508
+
+	ld a, [EnemyMovePower]
+	and a
+	jr nz, .asm_386aa
+
+	inc [hl]
+	inc [hl]
+	jr .asm_386aa
+; 386be
+
+
+
+Function_0x386be: ; 386be
+	ld hl, Buffer1
+	ld de, EnemyMonMoves
+	ld b, EnemyMonMovesEnd - EnemyMonMoves + 1
+.asm_386c6
+	dec b
+	ret z
+
+	ld a, [de]
+	inc de
+	and a
+	ret z
+
+	push de
+	push bc
+	push hl
+	call $5508
+
+	ld a, [EnemyMoveEffect]
+	ld hl, .table_386f2
+	ld de, 3
+	call IsInArray
+
+	inc hl
+	jr nc, .asm_386ec
+
+	ld a, [hli]
+	ld e, a
+	ld d, [hl]
+	pop hl
+	push hl
+	ld bc, .asm_386ec
+	push bc
+	push de
+	ret
+
+.asm_386ec
+	pop hl
+	pop bc
+	pop de
+	inc hl
+	jr .asm_386c6
+; 386f2
+
+.table_386f2 ; 386f2
+	dbw EFFECT_SLEEP,            $47e3
+	dbw EFFECT_LEECH_HIT,        $47f7
+	dbw EFFECT_EXPLOSION,        $48a6
+	dbw EFFECT_DREAM_EATER,      $48ca
+	dbw EFFECT_MIRROR_MOVE,      $495b
+	dbw EFFECT_EVASION_UP,       $48d4
+	dbw EFFECT_ALWAYS_HIT,       $4947
+	dbw EFFECT_ACCURACY_DOWN,    $4985
+	dbw EFFECT_HAZE,             $49f5
+	dbw EFFECT_BIDE,             $4a1e
+	dbw EFFECT_WHIRLWIND,        $4a2a
+	dbw EFFECT_HEAL,             $4a3a
+	dbw EFFECT_TOXIC,            $4a4e
+	dbw EFFECT_LIGHT_SCREEN,     $4a54
+	dbw EFFECT_OHKO,             $4a60
+	dbw EFFECT_RAZOR_WIND,       $4a9c
+	dbw EFFECT_SUPER_FANG,       $4b20
+	dbw EFFECT_BIND,             $4a71
+	dbw EFFECT_UNUSED_2B,        $4a9c
+	dbw EFFECT_CONFUSE,          $4adb
+	dbw EFFECT_SP_DEFENSE_UP_2,  $4aed
+	dbw EFFECT_REFLECT,          $4a54
+	dbw EFFECT_PARALYZE,         $4b26
+	dbw EFFECT_SPEED_DOWN_HIT,   $4b40
+	dbw EFFECT_SUBSTITUTE,       $4b5c
+	dbw EFFECT_HYPER_BEAM,       $4b63
+	dbw EFFECT_RAGE,             $4b7f
+	dbw EFFECT_MIMIC,            $4ba8
+	dbw EFFECT_LEECH_SEED,       $4a4e
+	dbw EFFECT_DISABLE,          $4dd1
+	dbw EFFECT_COUNTER,          $4bf1
+	dbw EFFECT_ENCORE,           $4c3b
+	dbw EFFECT_PAIN_SPLIT,       $4ca4
+	dbw EFFECT_SNORE,            $4cba
+	dbw EFFECT_CONVERSION2,      $4d98
+	dbw EFFECT_LOCK_ON,          $481d
+	dbw EFFECT_DEFROST_OPPONENT, $4ccb
+	dbw EFFECT_SLEEP_TALK,       $4cba
+	dbw EFFECT_DESTINY_BOND,     $4d19
+	dbw EFFECT_REVERSAL,         $4d19
+	dbw EFFECT_SPITE,            $4cd5
+	dbw EFFECT_HEAL_BELL,        $4d1f
+	dbw EFFECT_PRIORITY_HIT,     $4d5a
+	dbw EFFECT_THIEF,            $4d93
+	dbw EFFECT_MEAN_LOOK,        $4dfb
+	dbw EFFECT_NIGHTMARE,        $4e4a
+	dbw EFFECT_FLAME_WHEEL,      $4e50
+	dbw EFFECT_CURSE,            $4e5c
+	dbw EFFECT_PROTECT,          $4ed2
+	dbw EFFECT_FORESIGHT,        $4f1d
+	dbw EFFECT_PERISH_SONG,      $4f4a
+	dbw EFFECT_SANDSTORM,        $4f7a
+	dbw EFFECT_ENDURE,           $4fac
+	dbw EFFECT_ROLLOUT,          $4fef
+	dbw EFFECT_SWAGGER,          $5026
+	dbw EFFECT_FURY_CUTTER,      $4fdb
+	dbw EFFECT_ATTRACT,          $5026
+	dbw EFFECT_SAFEGUARD,        $503a
+	dbw EFFECT_MAGNITUDE,        $5044
+	dbw EFFECT_BATON_PASS,       $5062
+	dbw EFFECT_PURSUIT,          $5072
+	dbw EFFECT_RAPID_SPIN,       $5084
+	dbw EFFECT_MORNING_SUN,      $4a3a
+	dbw EFFECT_SYNTHESIS,        $4a3a
+	dbw EFFECT_MOONLIGHT,        $4a3a
+	dbw EFFECT_HIDDEN_POWER,     $509e
+	dbw EFFECT_RAIN_DANCE,       $50cb
+	dbw EFFECT_SUNNY_DAY,        $50f3
+	dbw EFFECT_BELLY_DRUM,       $513d
+	dbw EFFECT_PSYCH_UP,         $5152
+	dbw EFFECT_MIRROR_COAT,      $518b
+	dbw EFFECT_SKULL_BASH,       $4d19
+	dbw EFFECT_TWISTER,          $51d5
+	dbw EFFECT_EARTHQUAKE,       $5044
+	dbw EFFECT_FUTURE_SIGHT,     $51f3
+	dbw EFFECT_GUST,             $51d5
+	dbw EFFECT_STOMP,            $5200
+	dbw EFFECT_SOLARBEAM,        $520b
+	dbw EFFECT_THUNDER,          $5225
+	dbw EFFECT_FLY,              $4b12
+	db $ff
+; 387e3
+
+
+INCBIN "baserom.gbc", $387e3, $39315 - $387e3
+
+
+Function_0x39315: ; 39315
+	call $5281
+	ret c
+
+	call $5298
+	jr nc, .asm_39322
+
+	call $5527
+	ret c
+
+.asm_39322
+	ld hl, Buffer1 - 1
+	ld de, EnemyMonMoves
+	ld c, EnemyMonMovesEnd - EnemyMonMoves + 1
+.asm_3932a
+	inc hl
+	dec c
+	jr z, .asm_39347
+
+	ld a, [de]
+	inc de
+	and a
+	jr z, .asm_39347
+
+	push hl
+	push de
+	push bc
+	ld hl, .table_39348
+	ld de, 1
+	call IsInArray
+
+	pop bc
+	pop de
+	pop hl
+	jr nc, .asm_3932a
+
+	inc [hl]
+	jr .asm_3932a
+
+.asm_39347
+	ret
+
+.table_39348
+	db SWORDS_DANCE
+	db TAIL_WHIP
+	db LEER
+	db GROWL
+	db DISABLE
+	db MIST
+	db COUNTER
+	db LEECH_SEED
+	db GROWTH
+	db STRING_SHOT
+	db MEDITATE
+	db AGILITY
+	db RAGE
+	db MIMIC
+	db SCREECH
+	db HARDEN
+	db WITHDRAW
+	db DEFENSE_CURL
+	db BARRIER
+	db LIGHT_SCREEN
+	db HAZE
+	db REFLECT
+	db FOCUS_ENERGY
+	db BIDE
+	db AMNESIA
+	db TRANSFORM
+	db SPLASH
+	db ACID_ARMOR
+	db SHARPEN
+	db CONVERSION
+	db SUBSTITUTE
+	db FLAME_WHEEL
+	db $ff
+; 39369
+
+
+
+Function_0x39369: ; 39369
+	ld hl, EnemyMonMoves
+	ld bc, 0
+	ld de, 0
+.asm_39372
+	inc b
+	ld a, b
+	cp EnemyMonMovesEnd - EnemyMonMoves + 1
+	jr z, .asm_393a8
+
+	ld a, [hli]
+	and a
+	jr z, .asm_393a8
+
+	push hl
+	push de
+	push bc
+	call $5508
+
+	ld a, [EnemyMovePower]
+	and a
+	jr z, .asm_393a3
+
+	call $53e7
+
+	pop bc
+	pop de
+	pop hl
+	ld a, [CurDamage + 1]
+	cp e
+	ld a, [CurDamage]
+	sbc d
+	jr c, .asm_39372
+
+	ld a, [CurDamage + 1]
+	ld e, a
+	ld a, [CurDamage]
+	ld d, a
+	ld c, b
+	jr .asm_39372
+
+.asm_393a3
+	pop bc
+	pop de
+	pop hl
+	jr .asm_39372
+
+.asm_393a8
+	ld a, c
+	and a
+	jr z, .asm_393e1
+
+	ld hl, Buffer1 - 1
+	ld de, EnemyMonMoves
+	ld b, $0
+.asm_393b4
+	inc b
+	ld a, b
+	cp EnemyMonMovesEnd - EnemyMonMoves + 1
+	jr z, .asm_393e1
+
+	cp c
+	ld a, [de]
+	inc de
+	inc hl
+	jr z, .asm_393b4
+
+	call $5508
+
+	ld a, [EnemyMovePower]
+	cp $2
+	jr c, .asm_393b4
+
+	push hl
+	push de
+	push bc
+	ld a, [EnemyMoveEffect]
+	ld hl, $53e2
+	ld de, 1
+	call IsInArray
+
+	pop bc
+	pop de
+	pop hl
+	jr c, .asm_393b4
+
+	inc [hl]
+	jr .asm_393b4
+
+.asm_393e1
+	ret
+
+; 393e2
+
+
+INCBIN "baserom.gbc", $393e2, $39418 - $393e2
+
+
+Function_0x39418: ; 39418
+	ld a, [EnemyTurnsTaken]
+	and a
+	ret z
+
+	ld hl, Buffer1 - 1
+	ld de, EnemyMonMoves
+	ld c, EnemyMonMovesEnd - EnemyMonMoves + 1
+.asm_39425
+	inc hl
+	dec c
+	ret z
+
+	ld a, [de]
+	inc de
+	and a
+	ret z
+
+	push hl
+	push de
+	push bc
+	ld hl, .table_39446
+	ld de, 1
+	call IsInArray
+
+	pop bc
+	pop de
+	pop hl
+	jr nc, .asm_39425
+
+	call RNG
+	cp $e6
+	ret nc
+
+	inc [hl]
+	jr .asm_39425
+
+.table_39446
+	db MIST
+	db LEECH_SEED
+	db POISONPOWDER
+	db STUN_SPORE
+	db THUNDER_WAVE
+	db FOCUS_ENERGY
+	db BIDE
+	db POISON_GAS
+	db TRANSFORM
+	db CONVERSION
+	db SUBSTITUTE
+	db SPIKES
+	db $ff
+; 39453
+
+
+
+Function_0x39453: ; 39453
+	ld hl, Buffer1 - 1
+	ld de, EnemyMonMoves
+	ld b, EnemyMonMovesEnd - EnemyMonMoves + 1
+.asm_3945b
+	dec b
+	ret z
+
+	inc hl
+	ld a, [de]
+	and a
+	ret z
+
+	inc de
+	call $5508
+
+	ld a, [EnemyMoveEffect]
+	cp EFFECT_TOXIC
+	jr z, .asm_39480
+	cp EFFECT_POISON
+	jr z, .asm_39480
+	cp EFFECT_SLEEP
+	jr z, .asm_3948e
+	cp EFFECT_PARALYZE
+	jr z, .asm_3948e
+
+	ld a, [EnemyMovePower]
+	and a
+	jr z, .asm_3945b
+
+	jr .asm_3948e
+
+.asm_39480
+	ld a, [BattleMonType1]
+	cp POISON
+	jr z, .asm_394a4
+	ld a, [BattleMonType2]
+	cp POISON
+	jr z, .asm_394a4
+
+.asm_3948e
+	push hl
+	push bc
+	push de
+
+	ld a, 1
+	ld [hBattleTurn], a
+
+	ld hl, $47c8
+	ld a, $d
+	rst FarCall
+
+	pop de
+	pop bc
+	pop hl
+
+	ld a, [$d265]
+	and a
+	jr nz, .asm_3945b
+
+.asm_394a4
+	call $5503
+	jr .asm_3945b
+; 394a9
+
+
+
+Function_0x394a9: ; 394a9
+	ld hl, Buffer1 - 1
+	ld de, EnemyMonMoves
+	ld c, EnemyMonMovesEnd - EnemyMonMoves + 1
+.asm_394b1
+	inc hl
+	dec c
+	ret z
+
+	ld a, [de]
+	inc de
+	and a
+	ret z
+
+	push de
+	push bc
+	push hl
+	call $5508
+
+	ld a, [EnemyMovePower]
+	and a
+	jr z, .asm_394fa
+
+	ld a, [EnemyMoveEffect]
+	ld de, 1
+	ld hl, .table_394ff
+	call IsInArray
+	jr nc, .asm_394de
+
+	call $5251
+	jr c, .asm_394fa
+
+	call RNG
+	cp $c8
+	jr c, .asm_394fa
+
+.asm_394de
+	call $53e7
+
+	ld a, [CurDamage + 1]
+	ld e, a
+	ld a, [CurDamage]
+	ld d, a
+	ld a, [BattleMonHP + 1]
+	cp e
+	ld a, [BattleMonHP]
+	sbc d
+	jr nc, .asm_394fa
+
+	pop hl
+	dec [hl]
+	dec [hl]
+	dec [hl]
+	dec [hl]
+	dec [hl]
+	push hl
+.asm_394fa
+	pop hl
+	pop bc
+	pop de
+	jr .asm_394b1
+
+.table_394ff
+	db EFFECT_EXPLOSION
+	db EFFECT_OHKO
+	db $ff
+; 39502
+
+
+
+Function_0x39502: ; 39502
+	ret
+; 39503
+
+
+INCBIN "baserom.gbc", $39503, $39999 - $39503
+
 
 TrainerGroups: ; 0x39999
 INCLUDE "trainers/trainer_pointers.asm"
@@ -8506,22 +9279,22 @@ AIChooseMove: ; 440ce
 
 
 AIScoringPointers: ; 441af
-	dw $4591
-	dw $45e0
-	dw $4635
-	dw $46a2
-	dw $46be
-	dw $5315
-	dw $5369
-	dw $5418
-	dw $5453
-	dw $54a9
-	dw $5502
-	dw $5502
-	dw $5502
-	dw $5502
-	dw $5502
-	dw $5502
+	dw Function_0x38591
+	dw Function_0x385e0
+	dw Function_0x38635
+	dw Function_0x386a2
+	dw Function_0x386be
+	dw Function_0x39315
+	dw Function_0x39369
+	dw Function_0x39418
+	dw Function_0x39453
+	dw Function_0x394a9
+	dw Function_0x39502
+	dw Function_0x39502
+	dw Function_0x39502
+	dw Function_0x39502
+	dw Function_0x39502
+	dw Function_0x39502
 ; 441cf
 
 
