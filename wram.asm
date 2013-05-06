@@ -711,6 +711,7 @@ PlayerScreens: ; c6ff
 ; bit
 ; 4 reflect
 ; 3 light screen
+; 2 safeguard
 ; 0 spikes
 	ds 1
 
