@@ -1,8 +1,10 @@
-Function_0x38591: ; 38591
+AIScoring_RedStatus: ; 38591
+; Don't use status-only moves if the player can't be statused.
+
 	ld hl, Buffer1 - 1
 	ld de, EnemyMonMoves
 	ld b, EnemyMonMovesEnd - EnemyMonMoves + 1
-.asm_38599
+.checkmove
 	dec b
 	ret z
 
@@ -12,7 +14,7 @@ Function_0x38591: ; 38591
 	ret z
 
 	inc de
-	call Function_0x39508
+	call AIGetEnemyMove
 
 	ld a, [EnemyMoveEffect]
 	ld c, a
@@ -26,36 +28,35 @@ Function_0x38591: ; 38591
 	pop bc
 	pop de
 	pop hl
-	jr nz, .asm_385d6
+	jr nz, .discourage
 
 	ld a, [EnemyMoveEffect]
 	push hl
 	push de
 	push bc
-	ld hl, .table_385db
+	ld hl, .statusonlyeffects
 	ld de, 1
 	call IsInArray
 
 	pop bc
 	pop de
 	pop hl
-	jr nc, .asm_38599
+	jr nc, .checkmove
 
 	ld a, [BattleMonStatus]
 	and a
-	jr nz, .asm_385d6
+	jr nz, .discourage
 
 	ld a, [PlayerScreens]
-	bit 2, a
-	jr z, .asm_38599
+	bit SCREENS_SAFEGUARD, a
+	jr z, .checkmove
 
-.asm_385d6
-	call Function_0x39503
-
-	jr .asm_38599
+.discourage
+	call AIDiscourageMove
+	jr .checkmove
 ; 385db
 
-.table_385db
+.statusonlyeffects
 	db EFFECT_SLEEP
 	db EFFECT_TOXIC
 	db EFFECT_POISON
@@ -65,11 +66,13 @@ Function_0x38591: ; 38591
 
 
 
-Function_0x385e0: ; 385e0
+AIScoring_RedStatMods: ; 385e0
+; Use stat-modifying moves on turn 1.
+
 	ld hl, Buffer1 - 1
 	ld de, EnemyMonMoves
 	ld b, EnemyMonMovesEnd - EnemyMonMoves + 1
-.next
+.checkmove
 	dec b
 	ret z
 
@@ -79,71 +82,70 @@ Function_0x385e0: ; 385e0
 	ret z
 
 	inc de
-	call Function_0x39508
+	call AIGetEnemyMove
 
 	ld a, [EnemyMoveEffect]
 
 	cp EFFECT_ATTACK_UP
-	jr c, .next
+	jr c, .checkmove
 	cp EFFECT_EVASION_UP + 1
 	jr c, .statup
 
 ;	cp EFFECT_ATTACK_DOWN - 1
-	jr z, .next
+	jr z, .checkmove
 	cp EFFECT_EVASION_DOWN + 1
 	jr c, .statdown
 
 	cp EFFECT_ATTACK_UP_2
-	jr c, .next
+	jr c, .checkmove
 	cp EFFECT_EVASION_UP_2 + 1
 	jr c, .statup
 
 ;	cp EFFECT_ATTACK_DOWN_2 - 1
-	jr z, .next
+	jr z, .checkmove
 	cp EFFECT_EVASION_DOWN_2 + 1
 	jr c, .statdown
 
-	jr .next
+	jr .checkmove
 
 .statup
 	ld a, [EnemyTurnsTaken]
 	and a
-	jr nz, .asm_3862a
+	jr nz, .discourage
 
-	jr .asm_38621
+	jr .encourage
 
 .statdown
 	ld a, [PlayerTurnsTaken]
 	and a
-	jr nz, .asm_3862a
+	jr nz, .discourage
 
-.asm_38621
+.encourage
 	call Function_0x39527
-
-	jr c, .next
+	jr c, .checkmove
 
 	dec [hl]
 	dec [hl]
-	jr .next
+	jr .checkmove
 
-.asm_3862a
+.discourage
 	call RNG
-
-	cp $1e
-	jr c, .next
-
+	cp 30
+	jr c, .checkmove
 	inc [hl]
 	inc [hl]
-	jr .next
+	jr .checkmove
 ; 38635
 
 
 
-Function_0x38635: ; 38635
+AIScoring_RedSuperEffective: ; 38635
+; Use super-effective moves.
+
 	ld hl, Buffer1 - 1
 	ld de, EnemyMonMoves
 	ld b, EnemyMonMovesEnd - EnemyMonMoves + 1
-.asm_3863d
+.checkmove
 	dec b
 	ret z
 
@@ -153,37 +155,35 @@ Function_0x38635: ; 38635
 	ret z
 
 	inc de
-	call Function_0x39508
+	call AIGetEnemyMove
 
 	push hl
 	push bc
 	push de
 	ld a, 1
 	ld [hBattleTurn], a
-	ld hl, $47c8
-	ld a, $d
-	rst FarCall
-
+	callab Function0x347c8
 	pop de
 	pop bc
 	pop hl
+
 	ld a, [$d265]
 	and a
-	jr z, .asm_3869d
+	jr z, .immune
+	cp 10 ; 1.0
+	jr z, .checkmove
+	jr c, .noteffective
 
-	cp $a
-	jr z, .asm_3863d
-
-	jr c, .asm_3866c
-
+; effective
 	ld a, [EnemyMovePower]
 	and a
-	jr z, .asm_3863d
-
+	jr z, .checkmove
 	dec [hl]
-	jr .asm_3863d
+	jr .checkmove
 
-.asm_3866c
+.noteffective
+; Discourage this move if there are any moves
+; that do damage of a different type.
 	push hl
 	push de
 	push bc
@@ -192,7 +192,7 @@ Function_0x38635: ; 38635
 	ld hl, EnemyMonMoves
 	ld b, EnemyMonMovesEnd - EnemyMonMoves + 1
 	ld c, 0
-.asm_3867a
+.checkmove2
 	dec b
 	jr z, .asm_38693
 
@@ -200,17 +200,14 @@ Function_0x38635: ; 38635
 	and a
 	jr z, .asm_38693
 
-	call Function_0x39508
-
+	call AIGetEnemyMove
 	ld a, [EnemyMoveType]
 	cp d
-	jr z, .asm_3867a
-
+	jr z, .checkmove2
 	ld a, [EnemyMovePower]
 	and a
 	jr nz, .asm_38692
-
-	jr .asm_3867a
+	jr .checkmove2
 
 .asm_38692
 	ld c, a
@@ -220,24 +217,24 @@ Function_0x38635: ; 38635
 	pop de
 	pop hl
 	and a
-	jr z, .asm_3863d
-
+	jr z, .checkmove
 	inc [hl]
-	jr .asm_3863d
+	jr .checkmove
 
-.asm_3869d
-	call Function_0x39503
-
-	jr .asm_3863d
+.immune
+	call AIDiscourageMove
+	jr .checkmove
 ; 386a2
 
 
 
-Function_0x386a2: ; 386a2
+AIScoring_Offensive: ; 386a2
+; Discourage non-damaging moves.
+
 	ld hl, Buffer1 - 1
 	ld de, EnemyMonMoves
 	ld b, EnemyMonMovesEnd - EnemyMonMoves + 1
-.asm_386aa
+.checkmove
 	dec b
 	ret z
 
@@ -247,24 +244,26 @@ Function_0x386a2: ; 386a2
 	ret z
 
 	inc de
-	call Function_0x39508
+	call AIGetEnemyMove
 
 	ld a, [EnemyMovePower]
 	and a
-	jr nz, .asm_386aa
+	jr nz, .checkmove
 
 	inc [hl]
 	inc [hl]
-	jr .asm_386aa
+	jr .checkmove
 ; 386be
 
 
 
-Function_0x386be: ; 386be
+AIScoring_Smart: ; 386be
+; Context-specific scoring.
+
 	ld hl, Buffer1
 	ld de, EnemyMonMoves
 	ld b, EnemyMonMovesEnd - EnemyMonMoves + 1
-.asm_386c6
+.checkmove
 	dec b
 	ret z
 
@@ -276,7 +275,7 @@ Function_0x386be: ; 386be
 	push de
 	push bc
 	push hl
-	call Function_0x39508
+	call AIGetEnemyMove
 
 	ld a, [EnemyMoveEffect]
 	ld hl, .table_386f2
@@ -284,27 +283,29 @@ Function_0x386be: ; 386be
 	call IsInArray
 
 	inc hl
-	jr nc, .asm_386ec
+	jr nc, .nextmove
 
 	ld a, [hli]
 	ld e, a
 	ld d, [hl]
+
 	pop hl
 	push hl
-	ld bc, .asm_386ec
+
+	ld bc, .nextmove
 	push bc
+
 	push de
 	ret
 
-.asm_386ec
+.nextmove
 	pop hl
 	pop bc
 	pop de
 	inc hl
-	jr .asm_386c6
-; 386f2
+	jr .checkmove
 
-.table_386f2 ; 386f2
+.table_386f2
 	dbw EFFECT_SLEEP,            AIScoring_Sleep
 	dbw EFFECT_LEECH_HIT,        AIScoring_LeechHit
 	dbw EFFECT_EXPLOSION,        AIScoring_Explosion
@@ -424,7 +425,7 @@ AIScoring_LeechHit: ; 387f7
 	jr c, .asm_38815
 
 	ret z
-	call Function_0x39251
+	call AICheckEnemyMaxHP
 
 	ret c
 	call Function_0x39521
@@ -449,11 +450,11 @@ AIScoring_LockOn: ; 3881d
 	jr nz, .asm_38882
 
 	push hl
-	call Function_0x39298
+	call AICheckEnemyQuarterHP
 
 	jr nc, .asm_38877
 
-	call Function_0x39281
+	call AICheckEnemyHalfHP
 
 	jr c, .asm_38834
 
@@ -488,7 +489,7 @@ AIScoring_LockOn: ; 3881d
 	and a
 	jr z, .asm_38877
 
-	call Function_0x39508
+	call AIGetEnemyMove
 
 	ld a, [EnemyMoveAccuracy]
 	cp $b4
@@ -543,7 +544,7 @@ AIScoring_LockOn: ; 3881d
 	jr z, .asm_388a2
 
 	inc de
-	call Function_0x39508
+	call AIGetEnemyMove
 
 	ld a, [EnemyMoveAccuracy]
 	cp $b4
@@ -556,7 +557,7 @@ AIScoring_LockOn: ; 3881d
 
 .asm_388a2
 	pop hl
-	jp Function_0x39503
+	jp AIDiscourageMove
 
 ; 388a6
 
@@ -578,11 +579,11 @@ AIScoring_Explosion: ; 388a6
 
 
 .asm_388b7
-	call Function_0x39281
+	call AICheckEnemyHalfHP
 
 	jr c, .asm_388c6
 
-	call Function_0x39298
+	call AICheckEnemyQuarterHP
 
 	ret nc
 	call RNG
@@ -613,9 +614,9 @@ AIScoring_DreamEater: ; 388ca
 AIScoring_EvasionUp: ; 388d4
 	ld a, [EnemyEvaLevel]
 	cp $d
-	jp nc, Function_0x39503
+	jp nc, AIDiscourageMove
 
-	call Function_0x39251
+	call AICheckEnemyMaxHP
 
 	jr nc, .asm_388f2
 
@@ -635,7 +636,7 @@ AIScoring_EvasionUp: ; 388d4
 	ret
 
 .asm_388f2
-	call Function_0x39298
+	call AICheckEnemyQuarterHP
 
 	jr nc, .asm_3890f
 
@@ -644,7 +645,7 @@ AIScoring_EvasionUp: ; 388d4
 	cp $a
 	jr c, .asm_388ef
 
-	call Function_0x39281
+	call AICheckEnemyHalfHP
 
 	jr nc, .asm_3890a
 
@@ -737,7 +738,7 @@ AIScoring_MirrorMove: ; 3895b
 	call Function_0x39233
 
 	ret nc
-	jp Function_0x39503
+	jp AIDiscourageMove
 
 
 .asm_38968
@@ -765,11 +766,11 @@ AIScoring_MirrorMove: ; 3895b
 
 
 AIScoring_AccuracyDown: ; 38985
-	call Function_0x39246
+	call AICheckPlayerMaxHP
 
 	jr nc, .asm_389a0
 
-	call Function_0x39281
+	call AICheckEnemyHalfHP
 
 	jr nc, .asm_389a0
 
@@ -789,7 +790,7 @@ AIScoring_AccuracyDown: ; 38985
 	ret
 
 .asm_389a0
-	call Function_0x392b3
+	call AICheckPlayerQuarterHP
 
 	jr nc, .asm_389bd
 
@@ -798,7 +799,7 @@ AIScoring_AccuracyDown: ; 38985
 	cp $a
 	jr c, .asm_3899d
 
-	call Function_0x3926e
+	call AICheckPlayerHalfHP
 
 	jr nc, .asm_389b8
 
@@ -903,7 +904,7 @@ AIScoring_Haze: ; 389f5
 
 
 AIScoring_Bide: ; 38a1e
-	call Function_0x39251
+	call AICheckEnemyMaxHP
 	ret c
 	call RNG
 	cp $19
@@ -931,9 +932,9 @@ AIScoring_Heal:
 AIScoring_MorningSun:
 AIScoring_Synthesis:
 AIScoring_Moonlight: ; 38a3a
-	call Function_0x39298
+	call AICheckEnemyQuarterHP
 	jr nc, .asm_38a45
-	call Function_0x39281
+	call AICheckEnemyHalfHP
 	ret nc
 	inc [hl]
 	ret
@@ -950,7 +951,7 @@ AIScoring_Moonlight: ; 38a3a
 
 AIScoring_Toxic:
 AIScoring_LeechSeed: ; 38a4e
-	call Function_0x3926e
+	call AICheckPlayerHalfHP
 	ret c
 	inc [hl]
 	ret
@@ -959,7 +960,7 @@ AIScoring_LeechSeed: ; 38a4e
 
 AIScoring_LightScreen:
 AIScoring_Reflect: ; 38a54
-	call Function_0x39251
+	call AICheckEnemyMaxHP
 	ret c
 	call RNG
 	cp $14
@@ -974,8 +975,8 @@ AIScoring_Ohko: ; 38a60
 	ld b, a
 	ld a, [EnemyMonLevel]
 	cp b
-	jp c, Function_0x39503
-	call Function_0x3926e
+	jp c, AIDiscourageMove
+	call AICheckPlayerHalfHP
 	ret c
 	inc [hl]
 	ret
@@ -1006,7 +1007,7 @@ AIScoring_Bind: ; 38a71
 	ret
 
 .asm_38a91
-	call Function_0x39298
+	call AICheckEnemyQuarterHP
 	ret nc
 	call Function_0x39527
 	ret c
@@ -1036,7 +1037,7 @@ AIScoring_Unused2B: ; 38a9c
 	and a
 	jr z, .asm_38ac1
 
-	call Function_0x39508
+	call AIGetEnemyMove
 
 	ld a, [EnemyMoveEffect]
 	cp EFFECT_PROTECT
@@ -1050,7 +1051,7 @@ AIScoring_Unused2B: ; 38a9c
 	bit SUBSTATUS_CONFUSED, a
 	jr nz, .asm_38acd
 
-	call Function_0x39281
+	call AICheckEnemyHalfHP
 	ret c
 
 .asm_38acd
@@ -1072,14 +1073,14 @@ AIScoring_Unused2B: ; 38a9c
 
 
 AIScoring_Confuse: ; 38adb
-	call Function_0x3926e
+	call AICheckPlayerHalfHP
 	ret c
 	call RNG
 	cp $19
 	jr c, .asm_38ae7
 	inc [hl]
 .asm_38ae7
-	call Function_0x392b3
+	call AICheckPlayerQuarterHP
 	ret c
 	inc [hl]
 	ret
@@ -1087,7 +1088,7 @@ AIScoring_Confuse: ; 38adb
 
 
 AIScoring_SpDefenseUp2: ; 38aed
-	call Function_0x39281
+	call AICheckEnemyHalfHP
 	jr nc, .asm_38b10
 
 	ld a, [EnemySDefLevel]
@@ -1130,7 +1131,7 @@ AIScoring_Fly: ; 38b12
 
 
 AIScoring_SuperFang: ; 38b20
-	call Function_0x392b3
+	call AICheckPlayerQuarterHP
 	ret c
 	inc [hl]
 	ret
@@ -1138,11 +1139,11 @@ AIScoring_SuperFang: ; 38b20
 
 
 AIScoring_Paralyze: ; 38b26
-	call Function_0x392b3
+	call AICheckPlayerQuarterHP
 	jr nc, .asm_38b3a
 	call Function_0x39233
 	ret c
-	call Function_0x39298
+	call AICheckEnemyQuarterHP
 	ret nc
 	call Function_0x39521
 	ret c
@@ -1162,7 +1163,7 @@ AIScoring_SpeedDownHit: ; 38b40
 	ld a, [EnemyMoveAnimation]
 	cp $c4
 	ret nz
-	call Function_0x39298
+	call AICheckEnemyQuarterHP
 	ret nc
 	ld a, [PlayerTurnsTaken]
 	and a
@@ -1179,16 +1180,16 @@ AIScoring_SpeedDownHit: ; 38b40
 
 
 AIScoring_Substitute: ; 38b5c
-	call Function_0x39281
+	call AICheckEnemyHalfHP
 	ret c
-	jp Function_0x39503
+	jp AIDiscourageMove
 ; 38b63
 
 
 AIScoring_HyperBeam: ; 38b63
-	call Function_0x39281
+	call AICheckEnemyHalfHP
 	jr c, .asm_38b72
-	call Function_0x39298
+	call AICheckEnemyQuarterHP
 	ret c
 	call Function_0x39527
 	ret c
@@ -1229,7 +1230,7 @@ AIScoring_Rage: ; 38b7f
 	ret
 
 .asm_38b9b
-	call Function_0x39281
+	call AICheckEnemyHalfHP
 	jr nc, .asm_38ba6
 
 	call Function_0x39521
@@ -1248,12 +1249,12 @@ AIScoring_Mimic: ; 38ba8
 	and a
 	jr z, .asm_38be9
 
-	call Function_0x39281
+	call AICheckEnemyHalfHP
 	jr nc, .asm_38bef
 
 	push hl
 	ld a, [LastEnemyCounterMove]
-	call Function_0x39508
+	call AIGetEnemyMove
 
 	ld a, $1
 	ld [hBattleTurn], a
@@ -1288,7 +1289,7 @@ AIScoring_Mimic: ; 38ba8
 
 .asm_38be9
 	call Function_0x39233
-	jp c, Function_0x39503
+	jp c, AIDiscourageMove
 
 .asm_38bef
 	inc [hl]
@@ -1307,7 +1308,7 @@ AIScoring_Counter: ; 38bf1
 	and a
 	jr z, .asm_38c0e
 
-	call Function_0x39508
+	call AIGetEnemyMove
 
 	ld a, [EnemyMovePower]
 	and a
@@ -1335,7 +1336,7 @@ AIScoring_Counter: ; 38bf1
 	and a
 	jr z, .asm_38c38
 
-	call Function_0x39508
+	call AIGetEnemyMove
 
 	ld a, [EnemyMovePower]
 	and a
@@ -1368,9 +1369,9 @@ AIScoring_Encore: ; 38c3b
 
 	ld a, [LastPlayerMove]
 	and a
-	jp z, Function_0x39503
+	jp z, AIDiscourageMove
 
-	call Function_0x39508
+	call AIGetEnemyMove
 
 	ld a, [EnemyMovePower]
 	and a
@@ -1506,7 +1507,7 @@ AIScoring_Spite: ; 38cd5
 	jr nz, .asm_38ce7
 
 	call Function_0x39233
-	jp c, Function_0x39503
+	jp c, AIDiscourageMove
 
 	call Function_0x39527
 	ret c
@@ -1559,14 +1560,14 @@ AIScoring_Spite: ; 38cd5
 
 
 Function_0x38d16; 38d16
-	jp Function_0x39503
+	jp AIDiscourageMove
 ; 38d19
 
 
 AIScoring_DestinyBond:
 AIScoring_Reversal:
 AIScoring_SkullBash: ; 38d19
-	call Function_0x39298
+	call AICheckEnemyQuarterHP
 	ret nc
 	inc [hl]
 	ret
@@ -1625,7 +1626,7 @@ AIScoring_HealBell: ; 38d1f
 	ld a, [EnemyMonStatus]
 	and a
 	ret nz
-	jp Function_0x39503
+	jp AIDiscourageMove
 
 ; 38d5a
 
@@ -1636,7 +1637,7 @@ AIScoring_PriorityHit: ; 38d5a
 	ret c
 	ld a, [PlayerSubStatus3]
 	and $60
-	jp nz, Function_0x39503
+	jp nz, AIDiscourageMove
 
 	ld a, $1
 	ld [hBattleTurn], a
@@ -1759,7 +1760,7 @@ AIScoring_Disable: ; 38dd1
 
 
 AIScoring_MeanLook: ; 38dfb
-	call Function_0x39281
+	call AICheckEnemyHalfHP
 
 	jr nc, .asm_38e24
 
@@ -1767,7 +1768,7 @@ AIScoring_MeanLook: ; 38dfb
 	call Function_0x38e2e
 
 	pop hl
-	jp z, Function_0x39503
+	jp z, AIDiscourageMove
 
 	ld a, [EnemySubStatus5]
 	bit 0, a
@@ -1860,7 +1861,7 @@ AIScoring_Curse: ; 38e5c
 	cp $8
 	jr z, .asm_38e95
 
-	call Function_0x39281
+	call AICheckEnemyHalfHP
 
 	jr nc, .asm_38e93
 
@@ -1900,7 +1901,7 @@ AIScoring_Curse: ; 38e5c
 .asm_38e95
 	ld a, [PlayerSubStatus1]
 	bit 1, a
-	jp nz, Function_0x39503
+	jp nz, AIDiscourageMove
 
 	push hl
 	ld a, $d
@@ -1928,15 +1929,15 @@ AIScoring_Curse: ; 38e5c
 
 
 .asm_38eb7
-	call Function_0x39298
+	call AICheckEnemyQuarterHP
 
 	jp nc, .asm_38e90
 
-	call Function_0x39281
+	call AICheckEnemyHalfHP
 
 	jr nc, .asm_38e92
 
-	call Function_0x39251
+	call AICheckEnemyMaxHP
 
 	ret nc
 	ld a, [PlayerTurnsTaken]
@@ -2106,7 +2107,7 @@ AIScoring_Sandstorm: ; 38f7a
 	pop hl
 	jr c, .asm_38fa5
 
-	call Function_0x3926e
+	call AICheckPlayerHalfHP
 	jr nc, .asm_38fa6
 
 	call Function_0x39527
@@ -2135,11 +2136,11 @@ AIScoring_Endure: ; 38fac
 	and a
 	jr nz, .asm_38fd8
 
-	call Function_0x39251
+	call AICheckEnemyMaxHP
 
 	jr c, .asm_38fd8
 
-	call Function_0x39298
+	call AICheckEnemyQuarterHP
 
 	jr c, .asm_38fd9
 
@@ -2211,7 +2212,7 @@ AIScoring_Rollout: ; 38fef
 	bit 6, a
 	jr nz, .asm_39020
 
-	call Function_0x39298
+	call AICheckEnemyQuarterHP
 
 	jr nc, .asm_39020
 
@@ -2263,7 +2264,7 @@ AIScoring_Attract: ; 39026
 
 
 AIScoring_Safeguard: ; 3903a
-	call Function_0x3926e
+	call AICheckPlayerHalfHP
 
 	ret c
 	call Function_0x39521
@@ -2318,7 +2319,7 @@ AIScoring_BatonPass: ; 39062
 
 
 AIScoring_Pursuit: ; 39072
-	call Function_0x392b3
+	call AICheckPlayerQuarterHP
 
 	jr nc, .asm_3907d
 
@@ -2460,7 +2461,7 @@ Function_0x3910d: ; 3910d
 	pop hl
 	jr nc, Function_0x3911e
 
-	call Function_0x3926e
+	call AICheckPlayerHalfHP
 	jr nc, Function_0x3911e
 
 	call Function_0x39527
@@ -2476,7 +2477,7 @@ Function_0x3911e: ; 3911e
 	ret
 
 Function_0x39122: ; 39122
-	call Function_0x3926e
+	call AICheckPlayerHalfHP
 	ret nc
 
 	ld a, [PlayerTurnsTaken]
@@ -2512,11 +2513,11 @@ AIScoring_BellyDrum: ; 3913d
 	cp $a
 	jr nc, .asm_3914d
 
-	call Function_0x39251
+	call AICheckEnemyMaxHP
 
 	ret c
 	inc [hl]
-	call Function_0x39281
+	call AICheckEnemyHalfHP
 
 	ret c
 
@@ -2589,7 +2590,7 @@ AIScoring_MirrorCoat: ; 3918b
 	and a
 	jr z, .asm_391a8
 
-	call Function_0x39508
+	call AIGetEnemyMove
 
 	ld a, [EnemyMovePower]
 	and a
@@ -2617,7 +2618,7 @@ AIScoring_MirrorCoat: ; 3918b
 	and a
 	jr z, .asm_391d2
 
-	call Function_0x39508
+	call AIGetEnemyMove
 
 	ld a, [EnemyMovePower]
 	and a
@@ -2753,17 +2754,17 @@ Function_0x39233: ; 39233
 ; 39246
 
 
-Function_0x39246: ; 39246
+AICheckPlayerMaxHP: ; 39246
 	push hl
 	push de
 	push bc
 	ld de, BattleMonHP
 	ld hl, BattleMonMaxHP
-	jr Function_0x3925a
+	jr AICheckMaxHP
 ; 39251
 
 
-Function_0x39251: ; 39251
+AICheckEnemyMaxHP: ; 39251
 	push hl
 	push de
 	push bc
@@ -2773,7 +2774,8 @@ Function_0x39251: ; 39251
 ; 3925a
 
 
-Function_0x3925a: ; 3925a
+AICheckMaxHP: ; 3925a
+; Return carry if hp at de matches max hp at hl.
 	ld a, [de]
 	inc de
 	cp [hl]
@@ -2799,7 +2801,7 @@ Function_0x3925a: ; 3925a
 ; 3926e
 
 
-Function_0x3926e: ; 3926e
+AICheckPlayerHalfHP: ; 3926e
 	push hl
 	ld hl, BattleMonHP
 	ld b, [hl]
@@ -2818,7 +2820,7 @@ Function_0x3926e: ; 3926e
 ; 39281
 
 
-Function_0x39281: ; 39281
+AICheckEnemyHalfHP: ; 39281
 	push hl
 	push de
 	push bc
@@ -2841,7 +2843,7 @@ Function_0x39281: ; 39281
 ; 39298
 
 
-Function_0x39298: ; 39298
+AICheckEnemyQuarterHP: ; 39298
 	push hl
 	push de
 	push bc
@@ -2866,7 +2868,7 @@ Function_0x39298: ; 39298
 ; 392b3
 
 
-Function_0x392b3: ; 392b3
+AICheckPlayerQuarterHP: ; 392b3
 	push hl
 	ld hl, BattleMonHP
 	ld b, [hl]
@@ -2897,7 +2899,7 @@ Function_0x392ca: ; 392ca
 	and a
 	jr z, .asm_392e0
 
-	call Function_0x39508
+	call AIGetEnemyMove
 
 	ld a, [EnemyMoveEffect]
 	cp b
@@ -2975,11 +2977,13 @@ Table_0x39301: ; 39301
 ; 39315
 
 
-Function_0x39315: ; 39315
-	call Function_0x39281
+AIScoring_Opportunist: ; 39315
+; Don't use stall moves when the player's HP is low.
+
+	call AICheckEnemyHalfHP
 	ret c
 
-	call Function_0x39298
+	call AICheckEnemyQuarterHP
 	jr nc, .asm_39322
 
 	call Function_0x39527
@@ -2989,7 +2993,7 @@ Function_0x39315: ; 39315
 	ld hl, Buffer1 - 1
 	ld de, EnemyMonMoves
 	ld c, EnemyMonMovesEnd - EnemyMonMoves + 1
-.asm_3932a
+.checkmove
 	inc hl
 	dec c
 	jr z, .asm_39347
@@ -3002,22 +3006,22 @@ Function_0x39315: ; 39315
 	push hl
 	push de
 	push bc
-	ld hl, .table_39348
+	ld hl, .stallmoves
 	ld de, 1
 	call IsInArray
 
 	pop bc
 	pop de
 	pop hl
-	jr nc, .asm_3932a
+	jr nc, .checkmove
 
 	inc [hl]
-	jr .asm_3932a
+	jr .checkmove
 
 .asm_39347
 	ret
 
-.table_39348
+.stallmoves
 	db SWORDS_DANCE
 	db TAIL_WHIP
 	db LEER
@@ -3055,101 +3059,101 @@ Function_0x39315: ; 39315
 
 
 
-Function_0x39369: ; 39369
+AIScoring_Aggressive: ; 39369
+; Use whatever does the most damage.
+
+; Figure out which attack does the most damage and put it in c.
 	ld hl, EnemyMonMoves
 	ld bc, 0
 	ld de, 0
-.asm_39372
+.checkmove
 	inc b
 	ld a, b
 	cp EnemyMonMovesEnd - EnemyMonMoves + 1
-	jr z, .asm_393a8
+	jr z, .gotstrongestmove
 
 	ld a, [hli]
 	and a
-	jr z, .asm_393a8
+	jr z, .gotstrongestmove
 
 	push hl
 	push de
 	push bc
-	call Function_0x39508
-
+	call AIGetEnemyMove
 	ld a, [EnemyMovePower]
 	and a
-	jr z, .asm_393a3
-
-	call Function_0x393e7
-
+	jr z, .nodamage
+	call AIDamageCalc
 	pop bc
 	pop de
 	pop hl
+
 	ld a, [CurDamage + 1]
 	cp e
 	ld a, [CurDamage]
 	sbc d
-	jr c, .asm_39372
+	jr c, .checkmove
 
 	ld a, [CurDamage + 1]
 	ld e, a
 	ld a, [CurDamage]
 	ld d, a
 	ld c, b
-	jr .asm_39372
+	jr .checkmove
 
-.asm_393a3
+.nodamage
 	pop bc
 	pop de
 	pop hl
-	jr .asm_39372
+	jr .checkmove
 
-.asm_393a8
+.gotstrongestmove
+; Nothing we can do if no attacks did damage.
 	ld a, c
 	and a
-	jr z, .asm_393e1
+	jr z, .done
 
+; Discourage moves that do less damage unless they're reckless too.
 	ld hl, Buffer1 - 1
 	ld de, EnemyMonMoves
 	ld b, 0
-.asm_393b4
+.checkmove2
 	inc b
 	ld a, b
 	cp EnemyMonMovesEnd - EnemyMonMoves + 1
-	jr z, .asm_393e1
+	jr z, .done
 
 	cp c
 	ld a, [de]
 	inc de
 	inc hl
-	jr z, .asm_393b4
+	jr z, .checkmove2
 
-	call Function_0x39508
+	call AIGetEnemyMove
 
 	ld a, [EnemyMovePower]
-	cp $2
-	jr c, .asm_393b4
+	cp 2
+	jr c, .checkmove2
 
 	push hl
 	push de
 	push bc
 	ld a, [EnemyMoveEffect]
-	ld hl, Table_0x393e2
+	ld hl, .aggressivemoves
 	ld de, 1
 	call IsInArray
 	pop bc
 	pop de
 	pop hl
-	jr c, .asm_393b4
+	jr c, .checkmove2
 
 	inc [hl]
-	jr .asm_393b4
+	jr .checkmove2
 
-.asm_393e1
+.done
 	ret
 
-; 393e2
-
-
-Table_0x393e2: ; 393e2
+.aggressivemoves
 	db EFFECT_EXPLOSION
 	db EFFECT_RAMPAGE
 	db EFFECT_MULTI_HIT
@@ -3158,7 +3162,7 @@ Table_0x393e2: ; 393e2
 ; 393e7
 
 
-Function_0x393e7: ; 393e7
+AIDamageCalc: ; 393e7
 	ld a, 1
 	ld [hBattleTurn], a
 	ld a, [EnemyMoveEffect]
@@ -3184,7 +3188,9 @@ Function_0x393e7: ; 393e7
 ; 39418
 
 
-Function_0x39418: ; 39418
+AIScoring_Cautious: ; 39418
+; Don't use moves with residual effects after turn 1.
+
 	ld a, [EnemyTurnsTaken]
 	and a
 	ret z
@@ -3205,7 +3211,7 @@ Function_0x39418: ; 39418
 	push hl
 	push de
 	push bc
-	ld hl, .table_39446
+	ld hl, .residualmoves
 	ld de, 1
 	call IsInArray
 
@@ -3215,13 +3221,13 @@ Function_0x39418: ; 39418
 	jr nc, .asm_39425
 
 	call RNG
-	cp $e6
+	cp 230
 	ret nc
 
 	inc [hl]
 	jr .asm_39425
 
-.table_39446
+.residualmoves
 	db MIST
 	db LEECH_SEED
 	db POISONPOWDER
@@ -3239,11 +3245,13 @@ Function_0x39418: ; 39418
 
 
 
-Function_0x39453: ; 39453
+AIScoring_StatusImmunity: ; 39453
+; Don't use status moves that don't affect the player.
+
 	ld hl, Buffer1 - 1
 	ld de, EnemyMonMoves
 	ld b, EnemyMonMovesEnd - EnemyMonMoves + 1
-.asm_3945b
+.checkmove
 	dec b
 	ret z
 
@@ -3253,64 +3261,61 @@ Function_0x39453: ; 39453
 	ret z
 
 	inc de
-	call Function_0x39508
+	call AIGetEnemyMove
 
 	ld a, [EnemyMoveEffect]
 	cp EFFECT_TOXIC
-	jr z, .asm_39480
+	jr z, .poisonimmunity
 	cp EFFECT_POISON
-	jr z, .asm_39480
+	jr z, .poisonimmunity
 	cp EFFECT_SLEEP
-	jr z, .asm_3948e
+	jr z, .typeimmunity
 	cp EFFECT_PARALYZE
-	jr z, .asm_3948e
+	jr z, .typeimmunity
 
 	ld a, [EnemyMovePower]
 	and a
-	jr z, .asm_3945b
+	jr z, .checkmove
 
-	jr .asm_3948e
+	jr .typeimmunity
 
-.asm_39480
+.poisonimmunity
 	ld a, [BattleMonType1]
 	cp POISON
-	jr z, .asm_394a4
+	jr z, .immune
 	ld a, [BattleMonType2]
 	cp POISON
-	jr z, .asm_394a4
+	jr z, .immune
 
-.asm_3948e
+.typeimmunity
 	push hl
 	push bc
 	push de
-
 	ld a, 1
 	ld [hBattleTurn], a
-
-	ld hl, $47c8
-	ld a, $d
-	rst FarCall
-
+	callab Function0x347c8
 	pop de
 	pop bc
 	pop hl
 
 	ld a, [$d265]
 	and a
-	jr nz, .asm_3945b
+	jr nz, .checkmove
 
-.asm_394a4
-	call Function_0x39503
-	jr .asm_3945b
+.immune
+	call AIDiscourageMove
+	jr .checkmove
 ; 394a9
 
 
 
-Function_0x394a9: ; 394a9
+AIScoring_Risky: ; 394a9
+; Use any move that will KO the opponent.
+
 	ld hl, Buffer1 - 1
 	ld de, EnemyMonMoves
 	ld c, EnemyMonMovesEnd - EnemyMonMoves + 1
-.asm_394b1
+.checkmove
 	inc hl
 	dec c
 	ret z
@@ -3323,27 +3328,28 @@ Function_0x394a9: ; 394a9
 	push de
 	push bc
 	push hl
-	call Function_0x39508
+	call AIGetEnemyMove
 
 	ld a, [EnemyMovePower]
 	and a
-	jr z, .asm_394fa
+	jr z, .nextmove
 
+; Don't use risky moves at max hp.
 	ld a, [EnemyMoveEffect]
 	ld de, 1
-	ld hl, .table_394ff
+	ld hl, .riskymoves
 	call IsInArray
-	jr nc, .asm_394de
+	jr nc, .checkko
 
-	call Function_0x39251
-	jr c, .asm_394fa
+	call AICheckEnemyMaxHP
+	jr c, .nextmove
 
 	call RNG
-	cp $c8
-	jr c, .asm_394fa
+	cp 200 ; 1/5
+	jr c, .nextmove
 
-.asm_394de
-	call Function_0x393e7
+.checkko
+	call AIDamageCalc
 
 	ld a, [CurDamage + 1]
 	ld e, a
@@ -3353,7 +3359,7 @@ Function_0x394a9: ; 394a9
 	cp e
 	ld a, [BattleMonHP]
 	sbc d
-	jr nc, .asm_394fa
+	jr nc, .nextmove
 
 	pop hl
 	dec [hl]
@@ -3362,13 +3368,14 @@ Function_0x394a9: ; 394a9
 	dec [hl]
 	dec [hl]
 	push hl
-.asm_394fa
+
+.nextmove
 	pop hl
 	pop bc
 	pop de
-	jr .asm_394b1
+	jr .checkmove
 
-.table_394ff
+.riskymoves
 	db EFFECT_EXPLOSION
 	db EFFECT_OHKO
 	db $ff
@@ -3376,12 +3383,12 @@ Function_0x394a9: ; 394a9
 
 
 
-Function_0x39502: ; 39502
+AIScoring_None: ; 39502
 	ret
 ; 39503
 
 
-Function_0x39503: ; 39503
+AIDiscourageMove: ; 39503
 	ld a, [hl]
 	add 10
 	ld [hl], a
@@ -3389,7 +3396,7 @@ Function_0x39503: ; 39503
 ; 39508
 
 
-Function_0x39508: ; 39508
+AIGetEnemyMove: ; 39508
 	push hl
 	push de
 	push bc

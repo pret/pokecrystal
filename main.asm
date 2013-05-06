@@ -8514,22 +8514,22 @@ AIChooseMove: ; 440ce
 
 
 AIScoringPointers: ; 441af
-	dw Function_0x38591
-	dw Function_0x385e0
-	dw Function_0x38635
-	dw Function_0x386a2
-	dw Function_0x386be
-	dw Function_0x39315
-	dw Function_0x39369
-	dw Function_0x39418
-	dw Function_0x39453
-	dw Function_0x394a9
-	dw Function_0x39502
-	dw Function_0x39502
-	dw Function_0x39502
-	dw Function_0x39502
-	dw Function_0x39502
-	dw Function_0x39502
+	dw AIScoring_RedStatus
+	dw AIScoring_RedStatMods
+	dw AIScoring_RedSuperEffective
+	dw AIScoring_Offensive
+	dw AIScoring_Smart
+	dw AIScoring_Opportunist
+	dw AIScoring_Aggressive
+	dw AIScoring_Cautious
+	dw AIScoring_StatusImmunity
+	dw AIScoring_Risky
+	dw AIScoring_None
+	dw AIScoring_None
+	dw AIScoring_None
+	dw AIScoring_None
+	dw AIScoring_None
+	dw AIScoring_None
 ; 441cf
 
 
