@@ -12,7 +12,7 @@ Function_0x38591: ; 38591
 	ret z
 
 	inc de
-	call $5508
+	call Function_0x39508
 
 	ld a, [EnemyMoveEffect]
 	ld c, a
@@ -50,7 +50,7 @@ Function_0x38591: ; 38591
 	jr z, .asm_38599
 
 .asm_385d6
-	call $5503
+	call Function_0x39503
 
 	jr .asm_38599
 ; 385db
@@ -79,7 +79,7 @@ Function_0x385e0: ; 385e0
 	ret z
 
 	inc de
-	call $5508
+	call Function_0x39508
 
 	ld a, [EnemyMoveEffect]
 
@@ -118,7 +118,7 @@ Function_0x385e0: ; 385e0
 	jr nz, .asm_3862a
 
 .asm_38621
-	call $5527
+	call Function_0x39527
 
 	jr c, .next
 
@@ -153,7 +153,7 @@ Function_0x38635: ; 38635
 	ret z
 
 	inc de
-	call $5508
+	call Function_0x39508
 
 	push hl
 	push bc
@@ -200,7 +200,7 @@ Function_0x38635: ; 38635
 	and a
 	jr z, .asm_38693
 
-	call $5508
+	call Function_0x39508
 
 	ld a, [EnemyMoveType]
 	cp d
@@ -226,7 +226,7 @@ Function_0x38635: ; 38635
 	jr .asm_3863d
 
 .asm_3869d
-	call $5503
+	call Function_0x39503
 
 	jr .asm_3863d
 ; 386a2
@@ -247,7 +247,7 @@ Function_0x386a2: ; 386a2
 	ret z
 
 	inc de
-	call $5508
+	call Function_0x39508
 
 	ld a, [EnemyMovePower]
 	and a
@@ -276,7 +276,7 @@ Function_0x386be: ; 386be
 	push de
 	push bc
 	push hl
-	call $5508
+	call Function_0x39508
 
 	ld a, [EnemyMoveEffect]
 	ld hl, .table_386f2
@@ -391,17 +391,17 @@ Function_0x386be: ; 386be
 
 AIScoring_Sleep: ; 387e3
 	ld b, $8
-	call $52ca
+	call Function_0x392ca
 
 	jr c, .asm_387f0
 
 	ld b, $6b
-	call $52ca
+	call Function_0x392ca
 
 	ret nc
 
 .asm_387f0
-	call $5527
+	call Function_0x39527
 
 	ret c
 	dec [hl]
@@ -424,10 +424,10 @@ AIScoring_LeechHit: ; 387f7
 	jr c, .asm_38815
 
 	ret z
-	call $5251
+	call Function_0x39251
 
 	ret c
-	call $5521
+	call Function_0x39521
 
 	ret c
 	dec [hl]
@@ -449,15 +449,15 @@ AIScoring_LockOn: ; 3881d
 	jr nz, .asm_38882
 
 	push hl
-	call $5298
+	call Function_0x39298
 
 	jr nc, .asm_38877
 
-	call $5281
+	call Function_0x39281
 
 	jr c, .asm_38834
 
-	call $5233
+	call Function_0x39233
 
 	jr nc, .asm_38877
 
@@ -477,8 +477,8 @@ AIScoring_LockOn: ; 3881d
 	cp $7
 	jr c, .asm_38875
 
-	ld hl, EnemyMonMove1
-	ld c, $5
+	ld hl, EnemyMonMoves
+	ld c, EnemyMonMovesEnd - EnemyMonMoves + 1
 
 .asm_3884f
 	dec c
@@ -488,7 +488,7 @@ AIScoring_LockOn: ; 3881d
 	and a
 	jr z, .asm_38877
 
-	call $5508
+	call Function_0x39508
 
 	ld a, [EnemyMoveAccuracy]
 	cp $b4
@@ -520,7 +520,7 @@ AIScoring_LockOn: ; 3881d
 
 .asm_3887a
 	pop hl
-	call $5527
+	call Function_0x39527
 
 	ret c
 	dec [hl]
@@ -529,9 +529,9 @@ AIScoring_LockOn: ; 3881d
 
 .asm_38882
 	push hl
-	ld hl, $d1e9
-	ld de, EnemyMonMove1
-	ld c, $5
+	ld hl, Buffer1 - 1
+	ld de, EnemyMonMoves
+	ld c, EnemyMonMovesEnd - EnemyMonMoves + 1
 
 .asm_3888b
 	inc hl
@@ -543,7 +543,7 @@ AIScoring_LockOn: ; 3881d
 	jr z, .asm_388a2
 
 	inc de
-	call $5508
+	call Function_0x39508
 
 	ld a, [EnemyMoveAccuracy]
 	cp $b4
@@ -556,7 +556,7 @@ AIScoring_LockOn: ; 3881d
 
 .asm_388a2
 	pop hl
-	jp $5503
+	jp Function_0x39503
 
 ; 388a6
 
@@ -571,18 +571,18 @@ AIScoring_Explosion: ; 388a6
 	jr nc, .asm_388b7
 
 	push hl
-	call $4e2e
+	call Function_0x38e2e
 
 	pop hl
 	jr nz, .asm_388c6
 
 
 .asm_388b7
-	call $5281
+	call Function_0x39281
 
 	jr c, .asm_388c6
 
-	call $5298
+	call Function_0x39298
 
 	ret nc
 	call RNG
@@ -613,9 +613,9 @@ AIScoring_DreamEater: ; 388ca
 AIScoring_EvasionUp: ; 388d4
 	ld a, [EnemyEvaLevel]
 	cp $d
-	jp nc, $5503
+	jp nc, Function_0x39503
 
-	call $5251
+	call Function_0x39251
 
 	jr nc, .asm_388f2
 
@@ -635,7 +635,7 @@ AIScoring_EvasionUp: ; 388d4
 	ret
 
 .asm_388f2
-	call $5298
+	call Function_0x39298
 
 	jr nc, .asm_3890f
 
@@ -644,11 +644,11 @@ AIScoring_EvasionUp: ; 388d4
 	cp $a
 	jr c, .asm_388ef
 
-	call $5281
+	call Function_0x39281
 
 	jr nc, .asm_3890a
 
-	call $5521
+	call Function_0x39521
 
 	jr c, .asm_388ef
 
@@ -656,7 +656,7 @@ AIScoring_EvasionUp: ; 388d4
 
 
 .asm_3890a
-	call $5527
+	call Function_0x39527
 
 	jr c, .asm_38911
 
@@ -695,7 +695,6 @@ AIScoring_EvasionUp: ; 388d4
 
 .asm_38938
 	call RNG
-
 	cp $50
 	ret c
 	dec [hl]
@@ -703,7 +702,7 @@ AIScoring_EvasionUp: ; 388d4
 	ret
 
 .asm_38941
-	call $5527
+	call Function_0x39527
 
 	ret c
 	dec [hl]
@@ -721,7 +720,7 @@ AIScoring_AlwaysHit: ; 38947
 	ret c
 
 .asm_38954
-	call $5521
+	call Function_0x39521
 
 	ret c
 	dec [hl]
@@ -735,25 +734,25 @@ AIScoring_MirrorMove: ; 3895b
 	and a
 	jr nz, .asm_38968
 
-	call $5233
+	call Function_0x39233
 
 	ret nc
-	jp $5503
+	jp Function_0x39503
 
 
 .asm_38968
 	push hl
-	ld hl, $5301
-	ld de, $0001
+	ld hl, Table_0x39301
+	ld de, 1
 	call IsInArray
 
 	pop hl
 	ret nc
-	call $5527
+	call Function_0x39527
 
 	ret c
 	dec [hl]
-	call $5233
+	call Function_0x39233
 
 	ret nc
 	call RNG
@@ -766,11 +765,11 @@ AIScoring_MirrorMove: ; 3895b
 
 
 AIScoring_AccuracyDown: ; 38985
-	call $5246
+	call Function_0x39246
 
 	jr nc, .asm_389a0
 
-	call $5281
+	call Function_0x39281
 
 	jr nc, .asm_389a0
 
@@ -790,7 +789,7 @@ AIScoring_AccuracyDown: ; 38985
 	ret
 
 .asm_389a0
-	call $52b3
+	call Function_0x392b3
 
 	jr nc, .asm_389bd
 
@@ -799,11 +798,11 @@ AIScoring_AccuracyDown: ; 38985
 	cp $a
 	jr c, .asm_3899d
 
-	call $526e
+	call Function_0x3926e
 
 	jr nc, .asm_389b8
 
-	call $5521
+	call Function_0x39521
 
 	jr c, .asm_3899d
 
@@ -811,7 +810,7 @@ AIScoring_AccuracyDown: ; 38985
 
 
 .asm_389b8
-	call $5527
+	call Function_0x39527
 
 	jr c, .asm_389bf
 
@@ -850,7 +849,6 @@ AIScoring_AccuracyDown: ; 38985
 
 .asm_389e6
 	call RNG
-
 	cp $50
 	ret c
 	dec [hl]
@@ -858,7 +856,7 @@ AIScoring_AccuracyDown: ; 38985
 	ret
 
 .asm_389ef
-	call $5527
+	call Function_0x39527
 
 	ret c
 	dec [hl]
@@ -870,35 +868,28 @@ AIScoring_Haze: ; 389f5
 	push hl
 	ld hl, EnemyAtkLevel
 	ld c, $8
-
 .asm_389fb
 	dec c
 	jr z, .asm_38a05
-
 	ld a, [hli]
 	cp $5
 	jr c, .asm_38a12
-
 	jr .asm_389fb
 
 
 .asm_38a05
 	ld hl, PlayerAtkLevel
 	ld c, $8
-
 .asm_38a0a
 	dec c
 	jr z, .asm_38a1b
-
 	ld a, [hli]
 	cp $a
 	jr c, .asm_38a0a
 
-
 .asm_38a12
 	pop hl
 	call RNG
-
 	cp $28
 	ret c
 	dec [hl]
@@ -912,11 +903,9 @@ AIScoring_Haze: ; 389f5
 
 
 AIScoring_Bide: ; 38a1e
-	call $5251
-
+	call Function_0x39251
 	ret c
 	call RNG
-
 	cp $19
 	ret c
 	inc [hl]
@@ -929,7 +918,6 @@ AIScoring_Whirlwind: ; 38a2a
 	ld hl, $484e
 	ld a, $d
 	rst FarCall
-
 	ld a, [$c716]
 	cp $a
 	pop hl
@@ -943,19 +931,15 @@ AIScoring_Heal:
 AIScoring_MorningSun:
 AIScoring_Synthesis:
 AIScoring_Moonlight: ; 38a3a
-	call $5298
-
+	call Function_0x39298
 	jr nc, .asm_38a45
-
-	call $5281
-
+	call Function_0x39281
 	ret nc
 	inc [hl]
 	ret
 
 .asm_38a45
 	call RNG
-
 	cp $19
 	ret c
 	dec [hl]
@@ -966,8 +950,7 @@ AIScoring_Moonlight: ; 38a3a
 
 AIScoring_Toxic:
 AIScoring_LeechSeed: ; 38a4e
-	call $526e
-
+	call Function_0x3926e
 	ret c
 	inc [hl]
 	ret
@@ -976,11 +959,9 @@ AIScoring_LeechSeed: ; 38a4e
 
 AIScoring_LightScreen:
 AIScoring_Reflect: ; 38a54
-	call $5251
-
+	call Function_0x39251
 	ret c
 	call RNG
-
 	cp $14
 	ret c
 	inc [hl]
@@ -993,10 +974,8 @@ AIScoring_Ohko: ; 38a60
 	ld b, a
 	ld a, [EnemyMonLevel]
 	cp b
-	jp c, $5503
-
-	call $526e
-
+	jp c, Function_0x39503
+	call Function_0x3926e
 	ret c
 	inc [hl]
 	ret
@@ -1009,31 +988,27 @@ AIScoring_Bind: ; 38a71
 	jr nz, .asm_38a8b
 
 	ld a, [PlayerSubStatus5]
-	bit 0, a
+	bit SUBSTATUS_TOXIC, a
 	jr nz, .asm_38a91
 
 	ld a, [PlayerSubStatus1]
-	and $c9
+	and 1<<SUBSTATUS_IN_LOVE | 1<<SUBSTATUS_ENCORED | 1<<SUBSTATUS_IDENTIFIED | 1<<SUBSTATUS_NIGHTMARE
 	jr nz, .asm_38a91
 
 	ld a, [PlayerTurnsTaken]
 	and a
 	jr z, .asm_38a91
 
-
 .asm_38a8b
-	call $5527
-
+	call Function_0x39527
 	ret c
 	inc [hl]
 	ret
 
 .asm_38a91
-	call $5298
-
+	call Function_0x39298
 	ret nc
-	call $5527
-
+	call Function_0x39527
 	ret c
 	dec [hl]
 	dec [hl]
@@ -1044,47 +1019,42 @@ AIScoring_Bind: ; 38a71
 AIScoring_RazorWind:
 AIScoring_Unused2B: ; 38a9c
 	ld a, [EnemySubStatus1]
-	bit 4, a
+	bit SUBSTATUS_PERISH, a
 	jr z, .asm_38aaa
 
 	ld a, [EnemyPerishCount]
-	cp $3
+	cp 3
 	jr c, .asm_38ad3
-
 
 .asm_38aaa
 	push hl
 	ld hl, PlayerUsedMoves
-	ld c, $4
+	ld c, 4
 
 .asm_38ab0
 	ld a, [hli]
 	and a
 	jr z, .asm_38ac1
 
-	call $5508
+	call Function_0x39508
 
 	ld a, [EnemyMoveEffect]
-	cp $6f
+	cp EFFECT_PROTECT
 	jr z, .asm_38ad5
-
 	dec c
 	jr nz, .asm_38ab0
-
 
 .asm_38ac1
 	pop hl
 	ld a, [EnemySubStatus3]
-	bit 7, a
+	bit SUBSTATUS_CONFUSED, a
 	jr nz, .asm_38acd
 
-	call $5281
-
+	call Function_0x39281
 	ret c
 
 .asm_38acd
 	call RNG
-
 	cp $c8
 	ret c
 
@@ -1095,26 +1065,21 @@ AIScoring_Unused2B: ; 38a9c
 .asm_38ad5
 	pop hl
 	ld a, [hl]
-	add $6
+	add 6
 	ld [hl], a
 	ret
 ; 38adb
 
 
 AIScoring_Confuse: ; 38adb
-	call $526e
-
+	call Function_0x3926e
 	ret c
 	call RNG
-
 	cp $19
 	jr c, .asm_38ae7
-
 	inc [hl]
-
 .asm_38ae7
-	call $52b3
-
+	call Function_0x392b3
 	ret c
 	inc [hl]
 	ret
@@ -1122,27 +1087,24 @@ AIScoring_Confuse: ; 38adb
 
 
 AIScoring_SpDefenseUp2: ; 38aed
-	call $5281
-
+	call Function_0x39281
 	jr nc, .asm_38b10
 
 	ld a, [EnemySDefLevel]
 	cp $b
 	jr nc, .asm_38b10
-
 	cp $9
 	ret nc
-	ld a, [BattleMonType1]
-	cp $14
-	jr nc, .asm_38b09
 
+	ld a, [BattleMonType1]
+	cp FIRE
+	jr nc, .asm_38b09
 	ld a, [BattleMonType2]
-	cp $14
+	cp FIRE
 	ret c
 
 .asm_38b09
-	call $5521
-
+	call Function_0x39521
 	ret c
 	dec [hl]
 	dec [hl]
@@ -1156,10 +1118,9 @@ AIScoring_SpDefenseUp2: ; 38aed
 
 AIScoring_Fly: ; 38b12
 	ld a, [PlayerSubStatus3]
-	and $60
+	and 1<<SUBSTATUS_FLYING | 1<<SUBSTATUS_UNDERGROUND
 	ret z
-	call $5233
-
+	call Function_0x39233
 	ret nc
 	dec [hl]
 	dec [hl]
@@ -1169,8 +1130,7 @@ AIScoring_Fly: ; 38b12
 
 
 AIScoring_SuperFang: ; 38b20
-	call $52b3
-
+	call Function_0x392b3
 	ret c
 	inc [hl]
 	ret
@@ -1178,26 +1138,20 @@ AIScoring_SuperFang: ; 38b20
 
 
 AIScoring_Paralyze: ; 38b26
-	call $52b3
-
+	call Function_0x392b3
 	jr nc, .asm_38b3a
-
-	call $5233
-
+	call Function_0x39233
 	ret c
-	call $5298
-
+	call Function_0x39298
 	ret nc
-	call $5521
-
+	call Function_0x39521
 	ret c
 	dec [hl]
 	dec [hl]
 	ret
 
 .asm_38b3a
-	call $5527
-
+	call Function_0x39527
 	ret c
 	inc [hl]
 	ret
@@ -1208,17 +1162,14 @@ AIScoring_SpeedDownHit: ; 38b40
 	ld a, [EnemyMoveAnimation]
 	cp $c4
 	ret nz
-	call $5298
-
+	call Function_0x39298
 	ret nc
 	ld a, [PlayerTurnsTaken]
 	and a
 	ret nz
-	call $5233
-
+	call Function_0x39233
 	ret c
 	call RNG
-
 	cp $1e
 	ret c
 	dec [hl]
@@ -1228,36 +1179,28 @@ AIScoring_SpeedDownHit: ; 38b40
 
 
 AIScoring_Substitute: ; 38b5c
-	call $5281
-
+	call Function_0x39281
 	ret c
-	jp $5503
-
+	jp Function_0x39503
 ; 38b63
 
 
 AIScoring_HyperBeam: ; 38b63
-	call $5281
-
+	call Function_0x39281
 	jr c, .asm_38b72
-
-	call $5298
-
+	call Function_0x39298
 	ret c
-	call $5527
-
+	call Function_0x39527
 	ret c
 	dec [hl]
 	ret
 
 .asm_38b72
 	call RNG
-
 	cp $28
 	ret c
 	inc [hl]
-	call $5527
-
+	call Function_0x39527
 	ret c
 	inc [hl]
 	ret
@@ -1269,8 +1212,7 @@ AIScoring_Rage: ; 38b7f
 	bit 6, a
 	jr z, .asm_38b9b
 
-	call $5527
-
+	call Function_0x39527
 	jr c, .asm_38b8c
 
 	dec [hl]
@@ -1287,12 +1229,10 @@ AIScoring_Rage: ; 38b7f
 	ret
 
 .asm_38b9b
-	call $5281
-
+	call Function_0x39281
 	jr nc, .asm_38ba6
 
-	call $5521
-
+	call Function_0x39521
 	ret nc
 	dec [hl]
 	ret
@@ -1308,13 +1248,12 @@ AIScoring_Mimic: ; 38ba8
 	and a
 	jr z, .asm_38be9
 
-	call $5281
-
+	call Function_0x39281
 	jr nc, .asm_38bef
 
 	push hl
 	ld a, [LastEnemyCounterMove]
-	call $5508
+	call Function_0x39508
 
 	ld a, $1
 	ld [hBattleTurn], a
@@ -1326,11 +1265,9 @@ AIScoring_Mimic: ; 38ba8
 	cp $a
 	pop hl
 	jr c, .asm_38bef
-
 	jr z, .asm_38bd4
 
-	call $5527
-
+	call Function_0x39527
 	jr c, .asm_38bd4
 
 	dec [hl]
@@ -1338,23 +1275,20 @@ AIScoring_Mimic: ; 38ba8
 .asm_38bd4
 	ld a, [LastEnemyCounterMove]
 	push hl
-	ld hl, $5301
-	ld de, $0001
+	ld hl, Table_0x39301
+	ld de, 1
 	call IsInArray
 
 	pop hl
 	ret nc
-	call $5527
-
+	call Function_0x39527
 	ret c
 	dec [hl]
 	ret
 
 .asm_38be9
-	call $5233
-
-	jp c, $5503
-
+	call Function_0x39233
+	jp c, Function_0x39503
 
 .asm_38bef
 	inc [hl]
@@ -1365,15 +1299,15 @@ AIScoring_Mimic: ; 38ba8
 AIScoring_Counter: ; 38bf1
 	push hl
 	ld hl, PlayerUsedMoves
-	ld c, $4
-	ld b, $0
+	ld c, 4
+	ld b, 0
 
 .asm_38bf9
 	ld a, [hli]
 	and a
 	jr z, .asm_38c0e
 
-	call $5508
+	call Function_0x39508
 
 	ld a, [EnemyMovePower]
 	and a
@@ -1401,7 +1335,7 @@ AIScoring_Counter: ; 38bf1
 	and a
 	jr z, .asm_38c38
 
-	call $5508
+	call Function_0x39508
 
 	ld a, [EnemyMovePower]
 	and a
@@ -1414,7 +1348,6 @@ AIScoring_Counter: ; 38bf1
 
 .asm_38c30
 	call RNG
-
 	cp $64
 	jr c, .asm_38c38
 
@@ -1430,15 +1363,14 @@ AIScoring_Counter: ; 38bf1
 
 
 AIScoring_Encore: ; 38c3b
-	call $5233
-
+	call Function_0x39233
 	jr nc, .asm_38c81
 
 	ld a, [LastPlayerMove]
 	and a
-	jp z, $5503
+	jp z, Function_0x39503
 
-	call $5508
+	call Function_0x39508
 
 	ld a, [EnemyMovePower]
 	and a
@@ -1459,21 +1391,17 @@ AIScoring_Encore: ; 38c3b
 	ret nz
 	jr .asm_38c78
 
-
 .asm_38c68
 	push hl
 	ld a, [LastEnemyCounterMove]
-	ld hl, $4c85
-	ld de, $0001
+	ld hl, .table_38c85
+	ld de, 1
 	call IsInArray
-
 	pop hl
 	jr nc, .asm_38c81
 
-
 .asm_38c78
 	call RNG
-
 	cp $46
 	ret c
 	dec [hl]
@@ -1485,12 +1413,40 @@ AIScoring_Encore: ; 38c3b
 	inc [hl]
 	inc [hl]
 	ret
-; 38c85
 
-
-
-INCBIN "baserom.gbc", $38c85, $38ca4 - $38c85
-
+.table_38c85
+	db SWORDS_DANCE
+	db WHIRLWIND
+	db LEER
+	db ROAR
+	db DISABLE
+	db MIST
+	db LEECH_SEED
+	db GROWTH
+	db POISONPOWDER
+	db STRING_SHOT
+	db MEDITATE
+	db AGILITY
+	db TELEPORT
+	db SCREECH
+	db HAZE
+	db FOCUS_ENERGY
+	db DREAM_EATER
+	db POISON_GAS
+	db SPLASH
+	db SHARPEN
+	db CONVERSION
+	db SUPER_FANG
+	db SUBSTITUTE
+	db TRIPLE_KICK
+	db SPIDER_WEB
+	db MIND_READER
+	db FLAME_WHEEL
+	db AEROBLAST
+	db COTTON_SPORE
+	db POWDER_SNOW
+	db $ff
+; 38ca4
 
 
 AIScoring_PainSplit: ; 38ca4
@@ -1549,12 +1505,10 @@ AIScoring_Spite: ; 38cd5
 	and a
 	jr nz, .asm_38ce7
 
-	call $5233
+	call Function_0x39233
+	jp c, Function_0x39503
 
-	jp c, $5503
-
-	call $5527
-
+	call Function_0x39527
 	ret c
 	inc [hl]
 	ret
@@ -1562,9 +1516,9 @@ AIScoring_Spite: ; 38cd5
 .asm_38ce7
 	push hl
 	ld b, a
-	ld c, $4
-	ld hl, BattleMonMove1
-	ld de, BattleMonPPMove1
+	ld c, 4
+	ld hl, BattleMonMoves
+	ld de, BattleMonPP
 
 .asm_38cf1
 	ld a, [hli]
@@ -1583,12 +1537,10 @@ AIScoring_Spite: ; 38cd5
 	ld a, [de]
 	cp $6
 	jr c, .asm_38d0d
-
 	cp $f
 	jr nc, .asm_38d0b
 
 	call RNG
-
 	cp $64
 	ret nc
 
@@ -1598,7 +1550,6 @@ AIScoring_Spite: ; 38cd5
 
 .asm_38d0d
 	call RNG
-
 	cp $64
 	ret c
 	dec [hl]
@@ -1607,16 +1558,15 @@ AIScoring_Spite: ; 38cd5
 ; 38d16
 
 
-
-INCBIN "baserom.gbc", $38d16, $38d19 - $38d16
-
+Function_0x38d16; 38d16
+	jp Function_0x39503
+; 38d19
 
 
 AIScoring_DestinyBond:
 AIScoring_Reversal:
 AIScoring_SkullBash: ; 38d19
-	call $5298
-
+	call Function_0x39298
 	ret nc
 	inc [hl]
 	ret
@@ -1627,7 +1577,7 @@ AIScoring_HealBell: ; 38d1f
 	push hl
 	ld a, [OTPartyCount]
 	ld b, a
-	ld c, $0
+	ld c, 0
 	ld hl, OTPartyMon1CurHP
 	ld de, $0030
 
@@ -1664,7 +1614,7 @@ AIScoring_HealBell: ; 38d1f
 .asm_38d48
 	and $27
 	ret z
-	call $5527
+	call Function_0x39527
 
 	ret c
 	dec [hl]
@@ -1675,18 +1625,18 @@ AIScoring_HealBell: ; 38d1f
 	ld a, [EnemyMonStatus]
 	and a
 	ret nz
-	jp $5503
+	jp Function_0x39503
 
 ; 38d5a
 
 
 AIScoring_PriorityHit: ; 38d5a
-	call $5233
+	call Function_0x39233
 
 	ret c
 	ld a, [PlayerSubStatus3]
 	and $60
-	jp nz, $5503
+	jp nz, Function_0x39503
 
 	ld a, $1
 	ld [hBattleTurn], a
@@ -1735,16 +1685,17 @@ AIScoring_Conversion2: ; 38d98
 
 	push hl
 	dec a
-	ld hl, $5afe
-	ld bc, $0007
+	ld hl, Moves + PlayerMoveType - PlayerMoveStruct
+	ld bc, Move2 - Move1
 	call AddNTimes
 
-	ld a, $10
+	ld a, BANK(Moves)
 	call GetFarByte
-
 	ld [PlayerMoveType], a
+
 	xor a
 	ld [hBattleTurn], a
+
 	ld hl, $47c8
 	ld a, $d
 	rst FarCall
@@ -1755,7 +1706,7 @@ AIScoring_Conversion2: ; 38d98
 	jr c, .asm_38dc9
 
 	ret z
-	call $5527
+	call Function_0x39527
 
 	ret c
 	dec [hl]
@@ -1772,14 +1723,14 @@ AIScoring_Conversion2: ; 38d98
 
 
 AIScoring_Disable: ; 38dd1
-	call $5233
+	call Function_0x39233
 
 	jr nc, .asm_38df3
 
 	push hl
 	ld a, [LastEnemyCounterMove]
-	ld hl, $5301
-	ld de, $0001
+	ld hl, Table_0x39301
+	ld de, 1
 	call IsInArray
 
 	pop hl
@@ -1808,15 +1759,15 @@ AIScoring_Disable: ; 38dd1
 
 
 AIScoring_MeanLook: ; 38dfb
-	call $5281
+	call Function_0x39281
 
 	jr nc, .asm_38e24
 
 	push hl
-	call $4e2e
+	call Function_0x38e2e
 
 	pop hl
-	jp z, $5503
+	jp z, Function_0x39503
 
 	ld a, [EnemySubStatus5]
 	bit 0, a
@@ -1841,7 +1792,7 @@ AIScoring_MeanLook: ; 38dfb
 	ret
 
 .asm_38e26
-	call $5521
+	call Function_0x39521
 
 	ret c
 	dec [hl]
@@ -1851,13 +1802,35 @@ AIScoring_MeanLook: ; 38dfb
 ; 38e2e
 
 
+Function_0x38e2e: ; 38e2e
+	ld a, [PartyCount]
+	ld b, a
+	ld c, 0
+	ld hl, PartyMon1CurHP
+	ld de, PartyMon2 - PartyMon1
 
-INCBIN "baserom.gbc", $38e2e, $38e4a - $38e2e
+.loop
+	ld a, [CurBattleMon]
+	cp c
+	jr z, .asm_38e44
 
+	ld a, [hli]
+	or [hl]
+	ret nz
+	dec hl
+
+.asm_38e44
+	add hl, de
+	inc c
+	dec b
+	jr nz, .loop
+
+	ret
+; 38e4a
 
 
 AIScoring_Nightmare: ; 38e4a
-	call $5527
+	call Function_0x39527
 
 	ret c
 	dec [hl]
@@ -1887,7 +1860,7 @@ AIScoring_Curse: ; 38e5c
 	cp $8
 	jr z, .asm_38e95
 
-	call $5281
+	call Function_0x39281
 
 	jr nc, .asm_38e93
 
@@ -1906,7 +1879,7 @@ AIScoring_Curse: ; 38e5c
 	ld a, [BattleMonType2]
 	cp $14
 	ret nc
-	call $5521
+	call Function_0x39521
 
 	ret c
 	dec [hl]
@@ -1927,7 +1900,7 @@ AIScoring_Curse: ; 38e5c
 .asm_38e95
 	ld a, [PlayerSubStatus1]
 	bit 1, a
-	jp nz, $5503
+	jp nz, Function_0x39503
 
 	push hl
 	ld a, $d
@@ -1938,7 +1911,7 @@ AIScoring_Curse: ; 38e5c
 	jr nc, .asm_38eb0
 
 	push hl
-	call $4e2e
+	call Function_0x38e2e
 
 	pop hl
 	jr nz, .asm_38e90
@@ -1948,22 +1921,22 @@ AIScoring_Curse: ; 38e5c
 
 .asm_38eb0
 	push hl
-	call $4e2e
+	call Function_0x38e2e
 
 	pop hl
 	jr z, .asm_38ecb
 
 
 .asm_38eb7
-	call $5298
+	call Function_0x39298
 
-	jp nc, $4e90
+	jp nc, .asm_38e90
 
-	call $5281
+	call Function_0x39281
 
 	jr nc, .asm_38e92
 
-	call $5251
+	call Function_0x39251
 
 	ret nc
 	ld a, [PlayerTurnsTaken]
@@ -1971,7 +1944,7 @@ AIScoring_Curse: ; 38e5c
 	ret nz
 
 .asm_38ecb
-	call $5527
+	call Function_0x39527
 
 	ret c
 	dec [hl]
@@ -2018,7 +1991,7 @@ AIScoring_Protect: ; 38ed2
 
 
 .asm_38f0d
-	call $5521
+	call Function_0x39521
 
 	ret c
 	dec [hl]
@@ -2095,14 +2068,14 @@ AIScoring_PerishSong: ; 38f4a
 	cp $a
 	pop hl
 	ret c
-	call $5527
+	call Function_0x39527
 
 	ret c
 	inc [hl]
 	ret
 
 .asm_38f6f
-	call $5527
+	call Function_0x39527
 
 	ret c
 	dec [hl]
@@ -2119,29 +2092,26 @@ AIScoring_PerishSong: ; 38f4a
 AIScoring_Sandstorm: ; 38f7a
 	ld a, [BattleMonType1]
 	push hl
-	ld hl, $4fa8
-	ld de, $0001
+	ld hl, .SandstormImmuneTypes
+	ld de, 1
 	call IsInArray
-
 	pop hl
 	jr c, .asm_38fa5
 
 	ld a, [BattleMonType2]
 	push hl
-	ld hl, $4fa8
-	ld de, $0001
+	ld hl, .SandstormImmuneTypes
+	ld de, 1
 	call IsInArray
-
 	pop hl
 	jr c, .asm_38fa5
 
-	call $526e
-
+	call Function_0x3926e
 	jr nc, .asm_38fa6
 
-	call $5527
-
+	call Function_0x39527
 	ret c
+
 	dec [hl]
 	ret
 
@@ -2151,12 +2121,13 @@ AIScoring_Sandstorm: ; 38f7a
 .asm_38fa6
 	inc [hl]
 	ret
-; 38fa8
 
-
-
-INCBIN "baserom.gbc", $38fa8, $38fac - $38fa8
-
+.SandstormImmuneTypes
+	db ROCK
+	db GROUND
+	db STEEL
+	db $ff
+; 38fac
 
 
 AIScoring_Endure: ; 38fac
@@ -2164,20 +2135,20 @@ AIScoring_Endure: ; 38fac
 	and a
 	jr nz, .asm_38fd8
 
-	call $5251
+	call Function_0x39251
 
 	jr c, .asm_38fd8
 
-	call $5298
+	call Function_0x39298
 
 	jr c, .asm_38fd9
 
 	ld b, $63
-	call $52ca
+	call Function_0x392ca
 
 	jr nc, .asm_38fcb
 
-	call $5521
+	call Function_0x39521
 
 	ret c
 	dec [hl]
@@ -2189,7 +2160,7 @@ AIScoring_Endure: ; 38fac
 	ld a, [EnemySubStatus5]
 	bit 5, a
 	ret z
-	call $5527
+	call Function_0x39527
 
 	ret c
 	dec [hl]
@@ -2240,7 +2211,7 @@ AIScoring_Rollout: ; 38fef
 	bit 6, a
 	jr nz, .asm_39020
 
-	call $5298
+	call Function_0x39298
 
 	jr nc, .asm_39020
 
@@ -2261,7 +2232,7 @@ AIScoring_Rollout: ; 38fef
 	ret
 
 .asm_39020
-	call $5521
+	call Function_0x39521
 
 	ret c
 	inc [hl]
@@ -2275,7 +2246,7 @@ AIScoring_Attract: ; 39026
 	and a
 	jr z, .asm_39032
 
-	call $5521
+	call Function_0x39521
 
 	ret c
 	inc [hl]
@@ -2292,10 +2263,10 @@ AIScoring_Attract: ; 39026
 
 
 AIScoring_Safeguard: ; 3903a
-	call $526e
+	call Function_0x3926e
 
 	ret c
-	call $5521
+	call Function_0x39521
 
 	ret c
 	inc [hl]
@@ -2312,7 +2283,7 @@ AIScoring_Earthquake: ; 39044
 	bit 5, a
 	jr z, .asm_39058
 
-	call $5233
+	call Function_0x39233
 
 	ret nc
 	dec [hl]
@@ -2320,10 +2291,10 @@ AIScoring_Earthquake: ; 39044
 	ret
 
 .asm_39058
-	call $5233
+	call Function_0x39233
 
 	ret c
-	call $5527
+	call Function_0x39527
 
 	ret c
 	dec [hl]
@@ -2347,18 +2318,18 @@ AIScoring_BatonPass: ; 39062
 
 
 AIScoring_Pursuit: ; 39072
-	call $52b3
+	call Function_0x392b3
 
 	jr nc, .asm_3907d
 
-	call $5521
+	call Function_0x39521
 
 	ret c
 	inc [hl]
 	ret
 
 .asm_3907d
-	call $5527
+	call Function_0x39527
 
 	ret c
 	dec [hl]
@@ -2381,7 +2352,7 @@ AIScoring_RapidSpin: ; 39084
 	ret z
 
 .asm_39097
-	call $5521
+	call Function_0x39521
 
 	ret c
 	dec [hl]
@@ -2431,65 +2402,70 @@ AIScoring_HiddenPower: ; 3909e
 
 AIScoring_RainDance: ; 390cb
 	ld a, [BattleMonType1]
-	cp $15
+	cp WATER
 	jr z, Function_0x3911e
-
-	cp $14
+	cp FIRE
 	jr z, Function_0x39122
 
 	ld a, [BattleMonType2]
-	cp $15
+	cp WATER
 	jr z, Function_0x3911e
-
-	cp $14
+	cp FIRE
 	jr z, Function_0x39122
 
 	push hl
-	ld hl, $50e7
+	ld hl, RainDanceMoves
 	jr Function_0x3910d
 ; 390e7
 
 
-
-INCBIN "baserom.gbc", $390e7, $390f3 - $390e7
-
+RainDanceMoves: ; 390e7
+	db WATER_GUN
+	db HYDRO_PUMP
+	db SURF
+	db BUBBLEBEAM
+	db THUNDER
+	db WATERFALL
+	db CLAMP
+	db BUBBLE
+	db CRABHAMMER
+	db OCTAZOOKA
+	db WHIRLPOOL
+	db $ff
+; 390f3
 
 
 AIScoring_SunnyDay: ; 390f3
 	ld a, [BattleMonType1]
-	cp $14
+	cp FIRE
 	jr z, Function_0x3911e
-
-	cp $15
+	cp WATER
 	jr z, Function_0x39122
 
 	ld a, [BattleMonType2]
-	cp $14
+	cp FIRE
 	jr z, Function_0x3911e
-
-	cp $15
+	cp WATER
 	jr z, Function_0x39122
 
 	push hl
-	ld hl, $5134
+	ld hl, SunnyDayMoves
 
 	; fallthrough
 ; 3910d
 
 
 Function_0x3910d: ; 3910d
-	call $52e6
-
+	call Function_0x392e6
 	pop hl
 	jr nc, Function_0x3911e
 
-	call $526e
-
+	call Function_0x3926e
 	jr nc, Function_0x3911e
 
-	call $5527
-
+	call Function_0x39527
 	ret c
+
 	dec [hl]
 	ret
 
@@ -2500,9 +2476,9 @@ Function_0x3911e: ; 3911e
 	ret
 
 Function_0x39122: ; 39122
-	call $526e
-
+	call Function_0x3926e
 	ret nc
+
 	ld a, [PlayerTurnsTaken]
 	and a
 	jr z, .asm_39131
@@ -2518,9 +2494,17 @@ Function_0x39122: ; 39122
 ; 39134
 
 
-
-INCBIN "baserom.gbc", $39134, $3913d - $39134
-
+SunnyDayMoves: ; 39134
+	db FIRE_PUNCH
+	db EMBER
+	db FLAMETHROWER
+	db FIRE_SPIN
+	db FIRE_BLAST
+	db SACRED_FIRE
+	db MORNING_SUN
+	db SYNTHESIS
+	db $ff
+; 3913d
 
 
 AIScoring_BellyDrum: ; 3913d
@@ -2528,11 +2512,11 @@ AIScoring_BellyDrum: ; 3913d
 	cp $a
 	jr nc, .asm_3914d
 
-	call $5251
+	call Function_0x39251
 
 	ret c
 	inc [hl]
-	call $5281
+	call Function_0x39281
 
 	ret c
 
@@ -2581,7 +2565,7 @@ AIScoring_PsychUp: ; 39152
 	ld a, [EnemyEvaLevel]
 	cp $8
 	ret nc
-	call $5521
+	call Function_0x39521
 
 	ret c
 	dec [hl]
@@ -2605,7 +2589,7 @@ AIScoring_MirrorCoat: ; 3918b
 	and a
 	jr z, .asm_391a8
 
-	call $5508
+	call Function_0x39508
 
 	ld a, [EnemyMovePower]
 	and a
@@ -2633,7 +2617,7 @@ AIScoring_MirrorCoat: ; 3918b
 	and a
 	jr z, .asm_391d2
 
-	call $5508
+	call Function_0x39508
 
 	ld a, [EnemyMovePower]
 	and a
@@ -2670,7 +2654,7 @@ AIScoring_Gust: ; 391d5
 	bit 6, a
 	jr z, .asm_391e9
 
-	call $5233
+	call Function_0x39233
 
 	ret nc
 	dec [hl]
@@ -2678,10 +2662,10 @@ AIScoring_Gust: ; 391d5
 	ret
 
 .asm_391e9
-	call $5233
+	call Function_0x39233
 
 	ret c
-	call $5527
+	call Function_0x39527
 
 	ret c
 	dec [hl]
@@ -2690,7 +2674,7 @@ AIScoring_Gust: ; 391d5
 
 
 AIScoring_FutureSight: ; 391f3
-	call $5233
+	call Function_0x39233
 
 	ret nc
 	ld a, [PlayerSubStatus3]
@@ -2706,7 +2690,7 @@ AIScoring_Stomp: ; 39200
 	ld a, [$c6fe]
 	and a
 	ret z
-	call $5521
+	call Function_0x39521
 
 	ret c
 	dec [hl]
@@ -2716,23 +2700,24 @@ AIScoring_Stomp: ; 39200
 
 AIScoring_Solarbeam: ; 3920b
 	ld a, [Weather]
-	cp $2
+	cp WEATHER_SUN
 	jr z, .asm_3921e
 
-	cp $1
+	cp WEATHER_RAIN
 	ret nz
-	call RNG
 
-	cp $19
+	call RNG
+	cp 25 ; 1/10
 	ret c
+
 	inc [hl]
 	inc [hl]
 	ret
 
 .asm_3921e
-	call $5521
-
+	call Function_0x39521
 	ret c
+
 	dec [hl]
 	dec [hl]
 	ret
@@ -2741,30 +2726,263 @@ AIScoring_Solarbeam: ; 3920b
 
 AIScoring_Thunder: ; 39225
 	ld a, [Weather]
-	cp $2
+	cp WEATHER_SUN
 	ret nz
-	call RNG
 
-	cp $19
+	call RNG
+	cp 25 ; 1/10
 	ret c
+
 	inc [hl]
 	ret
 ; 39233
 
 
+Function_0x39233: ; 39233
+	push bc
+	ld a, [$d21f]
+	ld b, a
+	ld a, [$c645]
+	cp b
+	ld a, [EnemyMonSpd]
+	ld b, a
+	ld a, [BattleMonSpd]
+	sbc b
+	pop bc
+	ret
+; 39246
 
-INCBIN "baserom.gbc", $39233, $39315 - $39233
 
+Function_0x39246: ; 39246
+	push hl
+	push de
+	push bc
+	ld de, BattleMonHP
+	ld hl, BattleMonMaxHP
+	jr Function_0x3925a
+; 39251
+
+
+Function_0x39251: ; 39251
+	push hl
+	push de
+	push bc
+	ld de, EnemyMonHPHi
+	ld hl, EnemyMonMaxHPHi
+	; fallthrough
+; 3925a
+
+
+Function_0x3925a: ; 3925a
+	ld a, [de]
+	inc de
+	cp [hl]
+	jr nz, .asm_39269
+
+	inc hl
+	ld a, [de]
+	cp [hl]
+	jr nz, .asm_39269
+
+	pop bc
+	pop de
+	pop hl
+	scf
+	ret
+
+.asm_39269
+	pop bc
+	pop de
+	pop hl
+	and a
+	ret
+; 3926e
+
+
+Function_0x3926e: ; 3926e
+	push hl
+	ld hl, BattleMonHP
+	ld b, [hl]
+	inc hl
+	ld c, [hl]
+	sla c
+	rl b
+	inc hl
+	inc hl
+	ld a, [hld]
+	cp c
+	ld a, [hl]
+	sbc b
+	pop hl
+	ret
+; 39281
+
+
+Function_0x39281: ; 39281
+	push hl
+	push de
+	push bc
+	ld hl, EnemyMonHPHi
+	ld b, [hl]
+	inc hl
+	ld c, [hl]
+	sla c
+	rl b
+	inc hl
+	inc hl
+	ld a, [hld]
+	cp c
+	ld a, [hl]
+	sbc b
+	pop bc
+	pop de
+	pop hl
+	ret
+; 39298
+
+
+Function_0x39298: ; 39298
+	push hl
+	push de
+	push bc
+	ld hl, EnemyMonHPHi
+	ld b, [hl]
+	inc hl
+	ld c, [hl]
+	sla c
+	rl b
+	sla c
+	rl b
+	inc hl
+	inc hl
+	ld a, [hld]
+	cp c
+	ld a, [hl]
+	sbc b
+	pop bc
+	pop de
+	pop hl
+	ret
+; 392b3
+
+
+Function_0x392b3: ; 392b3
+	push hl
+	ld hl, BattleMonHP
+	ld b, [hl]
+	inc hl
+	ld c, [hl]
+	sla c
+	rl b
+	sla c
+	rl b
+	inc hl
+	inc hl
+	ld a, [hld]
+	cp c
+	ld a, [hl]
+	sbc b
+	pop hl
+	ret
+; 392ca
+
+
+Function_0x392ca: ; 392ca
+	push hl
+	ld hl, EnemyMonMoves
+	ld c, EnemyMonMovesEnd - EnemyMonMoves
+
+.asm_392d0
+	ld a, [hli]
+	and a
+	jr z, .asm_392e0
+
+	call Function_0x39508
+
+	ld a, [EnemyMoveEffect]
+	cp b
+	jr z, .asm_392e3
+
+	dec c
+	jr nz, .asm_392d0
+
+.asm_392e0
+	pop hl
+	and a
+	ret
+
+.asm_392e3
+	pop hl
+	scf
+	ret
+; 392e6
+
+
+Function_0x392e6: ; 392e6
+	push hl
+	push de
+	push bc
+
+.asm_392e9
+	ld a, [hli]
+	cp $ff
+	jr z, .asm_392fd
+
+	ld b, a
+	ld c, EnemyMonMovesEnd - EnemyMonMoves + 1
+	ld de, EnemyMonMoves
+
+.asm_392f4
+	dec c
+	jr z, .asm_392e9
+
+	ld a, [de]
+	inc de
+	cp b
+	jr nz, .asm_392f4
+
+	scf
+
+.asm_392fd
+	pop bc
+	pop de
+	pop hl
+	ret
+; 39301
+
+
+Table_0x39301: ; 39301
+	db DOUBLE_EDGE
+	db SING
+	db FLAMETHROWER
+	db HYDRO_PUMP
+	db SURF
+	db ICE_BEAM
+	db BLIZZARD
+	db HYPER_BEAM
+	db SLEEP_POWDER
+	db THUNDERBOLT
+	db THUNDER
+	db EARTHQUAKE
+	db TOXIC
+	db PSYCHIC_M
+	db HYPNOSIS
+	db RECOVER
+	db FIRE_BLAST
+	db SOFTBOILED
+	db SUPER_FANG
+	db $ff
+; 39315
 
 
 Function_0x39315: ; 39315
-	call $5281
+	call Function_0x39281
 	ret c
 
-	call $5298
+	call Function_0x39298
 	jr nc, .asm_39322
 
-	call $5527
+	call Function_0x39527
 	ret c
 
 .asm_39322
@@ -2854,13 +3072,13 @@ Function_0x39369: ; 39369
 	push hl
 	push de
 	push bc
-	call $5508
+	call Function_0x39508
 
 	ld a, [EnemyMovePower]
 	and a
 	jr z, .asm_393a3
 
-	call $53e7
+	call Function_0x393e7
 
 	pop bc
 	pop de
@@ -2891,7 +3109,7 @@ Function_0x39369: ; 39369
 
 	ld hl, Buffer1 - 1
 	ld de, EnemyMonMoves
-	ld b, $0
+	ld b, 0
 .asm_393b4
 	inc b
 	ld a, b
@@ -2904,7 +3122,7 @@ Function_0x39369: ; 39369
 	inc hl
 	jr z, .asm_393b4
 
-	call $5508
+	call Function_0x39508
 
 	ld a, [EnemyMovePower]
 	cp $2
@@ -2914,10 +3132,9 @@ Function_0x39369: ; 39369
 	push de
 	push bc
 	ld a, [EnemyMoveEffect]
-	ld hl, $53e2
+	ld hl, Table_0x393e2
 	ld de, 1
 	call IsInArray
-
 	pop bc
 	pop de
 	pop hl
@@ -2932,7 +3149,39 @@ Function_0x39369: ; 39369
 ; 393e2
 
 
-INCBIN "baserom.gbc", $393e2, $39418 - $393e2
+Table_0x393e2: ; 393e2
+	db EFFECT_EXPLOSION
+	db EFFECT_RAMPAGE
+	db EFFECT_MULTI_HIT
+	db EFFECT_DOUBLE_HIT
+	db $ff
+; 393e7
+
+
+Function_0x393e7: ; 393e7
+	ld a, 1
+	ld [hBattleTurn], a
+	ld a, [EnemyMoveEffect]
+	ld de, 1
+	ld hl, .ConstantDamageEffects
+	call IsInArray
+	jr nc, .asm_39400
+	callab BattleCommand3f
+	ret
+
+.asm_39400
+	callab EnemyAttackDamage
+	callab BattleCommand62
+	callab BattleCommand07
+	ret
+
+.ConstantDamageEffects
+	db EFFECT_SUPER_FANG
+	db EFFECT_STATIC_DAMAGE
+	db EFFECT_LEVEL_DAMAGE
+	db EFFECT_PSYWAVE
+	db $ff
+; 39418
 
 
 Function_0x39418: ; 39418
@@ -3004,7 +3253,7 @@ Function_0x39453: ; 39453
 	ret z
 
 	inc de
-	call $5508
+	call Function_0x39508
 
 	ld a, [EnemyMoveEffect]
 	cp EFFECT_TOXIC
@@ -3051,7 +3300,7 @@ Function_0x39453: ; 39453
 	jr nz, .asm_3945b
 
 .asm_394a4
-	call $5503
+	call Function_0x39503
 	jr .asm_3945b
 ; 394a9
 
@@ -3074,7 +3323,7 @@ Function_0x394a9: ; 394a9
 	push de
 	push bc
 	push hl
-	call $5508
+	call Function_0x39508
 
 	ld a, [EnemyMovePower]
 	and a
@@ -3086,7 +3335,7 @@ Function_0x394a9: ; 394a9
 	call IsInArray
 	jr nc, .asm_394de
 
-	call $5251
+	call Function_0x39251
 	jr c, .asm_394fa
 
 	call RNG
@@ -3094,7 +3343,7 @@ Function_0x394a9: ; 394a9
 	jr c, .asm_394fa
 
 .asm_394de
-	call $53e7
+	call Function_0x393e7
 
 	ld a, [CurDamage + 1]
 	ld e, a
@@ -3132,5 +3381,45 @@ Function_0x39502: ; 39502
 ; 39503
 
 
-INCBIN "baserom.gbc", $39503, $39999 - $39503
+Function_0x39503: ; 39503
+	ld a, [hl]
+	add 10
+	ld [hl], a
+	ret
+; 39508
+
+
+Function_0x39508: ; 39508
+	push hl
+	push de
+	push bc
+	dec a
+	ld hl, Moves
+	ld bc, Move2 - Move1
+	call AddNTimes
+
+	ld de, EnemyMoveStruct
+	ld a, BANK(Moves)
+	call FarCopyBytes
+
+	pop bc
+	pop de
+	pop hl
+	ret
+; 39521
+
+
+Function_0x39521: ; 39521
+	call RNG
+	cp 50 ; 1/5
+	ret
+; 39527
+
+
+Function_0x39527: ; 39527
+	call RNG
+	cp $80 ; 1/2
+	ret
+; 3952d
+
 

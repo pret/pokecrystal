@@ -7139,6 +7139,9 @@ AIScoring: ; 38591
 INCLUDE "battle/ai/scoring.asm"
 
 
+INCBIN "baserom.gbc", $3952d, $39999 - $3952d
+
+
 TrainerGroups: ; 0x39999
 INCLUDE "trainers/trainer_pointers.asm"
 
