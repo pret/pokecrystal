@@ -1464,6 +1464,26 @@ MAP_ROUTE_30_BERRY_SPEECH_HOUSE EQU $09
 MAP_MR_POKEMONS_HOUSE EQU $0a
 MAP_ROUTE_31_VIOLET_GATE EQU $0b
 
+
+; elevator floors
+_B4F  EQU $0
+_B3F  EQU $1
+_B2F  EQU $2
+_B1F  EQU $3
+_1F   EQU $4
+_2F   EQU $5
+_3F   EQU $6
+_4F   EQU $7
+_5F   EQU $8
+_6F   EQU $9
+_7F   EQU $a
+_8F   EQU $b
+_9F   EQU $c
+_10F  EQU $d
+_11F  EQU $e
+_ROOF EQU $f
+
+
 ; item constants
 NO_ITEM       EQU $00
 MASTER_BALL   EQU $01
@@ -1688,6 +1708,58 @@ HM_04         EQU $F6
 HM_05         EQU $F7
 HM_06         EQU $F8
 HM_07         EQU $F9
+
+NUM_TMS EQU HM_01 - TM_01 - 2
+
+; pockets
+ITEM     EQU 1
+KEY_ITEM EQU 2
+BALL     EQU 3
+TM_HM    EQU 4
+
+; item actions
+CANT_SELECT EQU %01000000
+CANT_TOSS   EQU %10000000
+
+; held item effects
+HELD_BERRY          EQU $01
+HELD_LEFTOVERS      EQU $03
+HELD_RESTORE_PP     EQU $06
+HELD_CLEANSE_TAG    EQU $08
+HELD_HEAL_POISON    EQU $0a
+HELD_HEAL_FREEZE    EQU $0b
+HELD_HEAL_BURN      EQU $0c
+HELD_HEAL_SLEEP     EQU $0d
+HELD_HEAL_PARALYZE  EQU $0e
+HELD_HEAL_STATUS    EQU $0f
+HELD_HEAL_CONFUSION EQU $10
+HELD_METAL_POWDER   EQU $2a
+HELD_NORMAL_BOOST   EQU $32
+HELD_FIGHTING_BOOST EQU $33
+HELD_FLYING_BOOST   EQU $34
+HELD_POISON_BOOST   EQU $35
+HELD_GROUND_BOOST   EQU $36
+HELD_ROCK_BOOST     EQU $37
+HELD_BUG_BOOST      EQU $38
+HELD_GHOST_BOOST    EQU $39
+HELD_FIRE_BOOST     EQU $3a
+HELD_WATER_BOOST    EQU $3b
+HELD_GRASS_BOOST    EQU $3c
+HELD_ELECTRIC_BOOST EQU $3d
+HELD_PSYCHIC_BOOST  EQU $3e
+HELD_ICE_BOOST      EQU $3f
+HELD_DRAGON_BOOST   EQU $40
+HELD_DARK_BOOST     EQU $41
+HELD_STEEL_BOOST    EQU $42
+HELD_ESCAPE         EQU $48
+HELD_CRITICAL_UP    EQU $49
+HELD_QUICK_CLAW     EQU $4a
+HELD_TRADE_EVOLVE   EQU $4b
+HELD_AMULET_COIN    EQU $4c
+HELD_BRIGHTPOWDER   EQU $4d
+HELD_FOCUS_BAND     EQU $4f
+
+
 
 ; days of the week
 SUNDAY    EQU $00
@@ -2336,6 +2408,7 @@ EVOLVE_TRADE     EQU 3
 EVOLVE_HAPPINESS EQU 4
 EVOLVE_STAT      EQU 5
 
+BASE_HAPPINESS   EQU 70
 ; happiness evolution triggers
 HAPPINESS_TO_EVOLVE EQU 220
 TR_ANYTIME EQU 1
@@ -3252,6 +3325,219 @@ MUSIC_MOBILE_CENTER EQU 102
 
 MUSIC_MAHOGANY_MART EQU 100 ; grandfathered from gold
 
+
+
+; sfx
+SFX_DEX_FANFARE_50_79           EQU $00
+SFX_ITEM                        EQU $01
+SFX_CAUGHT_MON                  EQU $02
+SFX_POKEBALLS_PLACED_ON_TABLE   EQU $03
+SFX_POTION                      EQU $04
+SFX_FULL_HEAL                   EQU $05
+SFX_MENU                        EQU $06
+SFX_READ_TEXT                   EQU $07
+SFX_READ_TEXT_2                 EQU $08
+SFX_DEX_FANFARE_20_49           EQU $09
+SFX_DEX_FANFARE_80_109          EQU $0a
+SFX_POISON                      EQU $0b
+SFX_GOT_SAFARI_BALLS            EQU $0c
+SFX_BOOT_PC                     EQU $0d
+SFX_SHUT_DOWN_PC                EQU $0e
+SFX_CHOOSE_PC_OPTION            EQU $0f
+SFX_ESCAPE_ROPE                 EQU $10
+SFX_PUSH_BUTTON                 EQU $11
+SFX_SECOND_PART_OF_ITEMFINDER   EQU $12
+SFX_WARP_TO                     EQU $13
+SFX_WARP_FROM                   EQU $14
+SFX_CHANGE_DEX_MODE             EQU $15
+SFX_JUMP_OVER_LEDGE             EQU $16
+SFX_GRASS_RUSTLE                EQU $17
+SFX_FLY                         EQU $18
+SFX_WRONG                       EQU $19
+SFX_SQUEAK                      EQU $1a
+SFX_STRENGTH                    EQU $1b
+SFX_BOAT                        EQU $1c
+SFX_WALL_OPEN                   EQU $1d
+SFX_PLACE_PUZZLE_PIECE_DOWN     EQU $1e
+SFX_ENTER_DOOR                  EQU $1f
+SFX_SWITCH_POKEMON              EQU $20
+SFX_TALLY                       EQU $21
+SFX_TRANSACTION                 EQU $22
+SFX_EXIT_BUILDING               EQU $23
+SFX_BUMP                        EQU $24
+SFX_SAVE                        EQU $25
+SFX_POKEFLUTE                   EQU $26
+SFX_ELEVATOR_END                EQU $27
+SFX_THROW_BALL                  EQU $28
+SFX_BALL_POOF                   EQU $29
+SFX_UNKNOWN_3A                  EQU $2a
+SFX_RUN                         EQU $2b
+SFX_SLOT_MACHINE_START          EQU $2c
+SFX_FANFARE                     EQU $2d
+SFX_PECK                        EQU $2e
+SFX_KINESIS                     EQU $2f
+SFX_LICK                        EQU $30
+SFX_POUND                       EQU $31
+SFX_MOVE_PUZZLE_PIECE           EQU $32
+SFX_COMET_PUNCH                 EQU $33
+SFX_MEGA_PUNCH                  EQU $34
+SFX_SCRATCH                     EQU $35
+SFX_VICEGRIP                    EQU $36
+SFX_RAZOR_WIND                  EQU $37
+SFX_CUT                         EQU $38
+SFX_WING_ATTACK                 EQU $39
+SFX_WHIRLWIND                   EQU $3a
+SFX_BIND                        EQU $3b
+SFX_VINE_WHIP                   EQU $3c
+SFX_DOUBLE_KICK                 EQU $3d
+SFX_MEGA_KICK                   EQU $3e
+SFX_HEADBUTT                    EQU $3f
+SFX_HORN_ATTACK                 EQU $40
+SFX_TACKLE                      EQU $41
+SFX_POISON_STING                EQU $42
+SFX_POWDER                      EQU $43
+SFX_DOUBLESLAP                  EQU $44
+SFX_BITE                        EQU $45
+SFX_JUMP_KICK                   EQU $46
+SFX_STOMP                       EQU $47
+SFX_TAIL_WHIP                   EQU $48
+SFX_KARATE_CHOP                 EQU $49
+SFX_SUBMISSION                  EQU $4a
+SFX_WATER_GUN                   EQU $4b
+SFX_SWORDS_DANCE                EQU $4c
+SFX_THUNDER                     EQU $4d
+SFX_SUPERSONIC                  EQU $4e
+SFX_LEER                        EQU $4f
+SFX_EMBER                       EQU $50
+SFX_BUBBLEBEAM                  EQU $51
+SFX_HYDRO_PUMP                  EQU $52
+SFX_SURF                        EQU $53
+SFX_PSYBEAM                     EQU $54
+SFX_CHARGE                      EQU $55
+SFX_THUNDERSHOCK                EQU $56
+SFX_PSYCHIC                     EQU $57
+SFX_SCREECH                     EQU $58
+SFX_BONE_CLUB                   EQU $59
+SFX_SHARPEN                     EQU $5a
+SFX_EGG_BOMB                    EQU $5b
+SFX_SING                        EQU $5c
+SFX_HYPER_BEAM                  EQU $5d
+SFX_SHINE                       EQU $5e
+SFX_UNKNOWN_5F                  EQU $5f
+SFX_UNKNOWN_60                  EQU $60
+SFX_UNKNOWN_61                  EQU $61
+SFX_UNKNOWN_62                  EQU $62
+SFX_UNKNOWN_63                  EQU $63
+SFX_BURN                        EQU $64
+SFX_TITLE_SCREEN_ENTRANCE       EQU $65
+SFX_UNKNOWN_66                  EQU $66
+SFX_GET_COIN_FROM_SLOTS         EQU $67
+SFX_PAY_DAY                     EQU $68
+SFX_METRONOME                   EQU $69
+SFX_CALL                        EQU $6a
+SFX_HANG_UP                     EQU $6b
+SFX_NO_SIGNAL                   EQU $6c
+SFX_SANDSTORM                   EQU $6d
+SFX_ELEVATOR                    EQU $6e
+SFX_PROTECT                     EQU $6f
+SFX_SKETCH                      EQU $70
+SFX_RAIN_DANCE                  EQU $71
+SFX_AEROBLAST                   EQU $72
+SFX_SPARK                       EQU $73
+SFX_CURSE                       EQU $74
+SFX_RAGE                        EQU $75
+SFX_THIEF                       EQU $76
+SFX_THIEF_2                     EQU $77
+SFX_SPIDER_WEB                  EQU $78
+SFX_MIND_READER                 EQU $79
+SFX_NIGHTMARE                   EQU $7a
+SFX_SNORE                       EQU $7b
+SFX_SWEET_KISS                  EQU $7c
+SFX_SWEET_KISS_2                EQU $7d
+SFX_BELLY_DRUM                  EQU $7e
+SFX_UNKNOWN_7F                  EQU $7f
+SFX_SLUDGE_BOMB                 EQU $80
+SFX_FORESIGHT                   EQU $81
+SFX_SPITE                       EQU $82
+SFX_OUTRAGE                     EQU $83
+SFX_PERISH_SONG                 EQU $84
+SFX_GIGA_DRAIN                  EQU $85
+SFX_ATTRACT                     EQU $86
+SFX_KINESIS_2                   EQU $87
+SFX_ZAP_CANNON                  EQU $88
+SFX_MEAN_LOOK                   EQU $89
+SFX_HEAL_BELL                   EQU $8a
+SFX_RETURN                      EQU $8b
+SFX_EXP_BAR                     EQU $8c
+SFX_MILK_DRINK                  EQU $8d
+SFX_PRESENT                     EQU $8e
+SFX_MORNING_SUN                 EQU $8f
+SFX_LEVEL_UP                    EQU $90
+SFX_KEY_ITEM                    EQU $91
+SFX_FANFARE_2                   EQU $92
+SFX_REGISTER_PHONE_#            EQU $93
+SFX_3RD_PLACE                   EQU $94
+SFX_GET_EGG_FROM_DAYCARE_MAN    EQU $95
+SFX_GET_EGG_FROM_DAYCARE_LADY   EQU $96
+SFX_MOVE_DELETED                EQU $97
+SFX_2ND_PLACE                   EQU $98
+SFX_1ST_PLACE                   EQU $99
+SFX_CHOOSE_A_CARD               EQU $9a
+SFX_GET_TM                      EQU $9b
+SFX_GET_BADGE                   EQU $9c
+SFX_QUIT_SLOTS                  EQU $9d
+SFX_EGG_CRACK                   EQU $9e
+SFX_DEX_FANFARE_LESS_THAN_20    EQU $9f
+SFX_DEX_FANFARE_140_169         EQU $a0
+SFX_DEX_FANFARE_170_199         EQU $a1
+SFX_DEX_FANFARE_200_229         EQU $a2
+SFX_DEX_FANFARE_230_PLUS        EQU $a3
+SFX_EVOLVED                     EQU $a4
+SFX_MASTER_BALL                 EQU $a5
+SFX_EGG_HATCH                   EQU $a6
+SFX_GS_INTRO_CHARIZARD_FIREBALL EQU $a7
+SFX_GS_INTRO_POKEMON_APPEARS    EQU $a8
+SFX_FLASH                       EQU $a9
+SFX_GAME_FREAK_LOGO_GS          EQU $aa
+SFX_NOT_VERY_EFFECTIVE          EQU $ab
+SFX_DAMAGE                      EQU $ac
+SFX_SUPER_EFFECTIVE             EQU $ad
+SFX_BALL_BOUNCE                 EQU $ae
+SFX_MOONLIGHT                   EQU $af
+SFX_ENCORE                      EQU $b0
+SFX_BEAT_UP                     EQU $b1
+SFX_BATON_PASS                  EQU $b2
+SFX_BALL_WIGGLE                 EQU $b3
+SFX_SWEET_SCENT                 EQU $b4
+SFX_SWEET_SCENT_2               EQU $b5
+SFX_HIT_END_OF_EXP_BAR          EQU $b6
+SFX_GIVE_TRADEMON               EQU $b7
+SFX_GET_TRADEMON                EQU $b8
+SFX_TRAIN_ARRIVED               EQU $b9
+SFX_STOP_SLOT                   EQU $ba
+SFX_2_BOOPS                     EQU $bb
+SFX_GLASS_TING                  EQU $bc
+SFX_GLASS_TING_2                EQU $bd
+SFX_INTRO_UNOWN_1               EQU $be
+SFX_INTRO_UNOWN_2               EQU $bf
+SFX_INTRO_UNOWN_3               EQU $c0
+SFX_DITTO_POP_UP                EQU $c1
+SFX_DITTO_TRANSFORM             EQU $c2
+SFX_INTRO_SUICUNE_1             EQU $c3
+SFX_INTRO_PICHU                 EQU $c4
+SFX_INTRO_SUICUNE_2             EQU $c5
+SFX_INTRO_SUICUNE_3             EQU $c6
+SFX_DITTO_BOUNCE                EQU $c7
+SFX_INTRO_SUICUNE_4             EQU $c8
+SFX_GAME_FREAK_PRESENTS         EQU $c9
+SFX_TINGLE                      EQU $ca
+SFX_UNKNOWN_CB                  EQU $cb
+SFX_TWO_PC_BEEPS                EQU $cc
+SFX_4_NOTE_DITTY                EQU $cd
+SFX_TWINKLE                     EQU $ce
+
+
+
 ; sound
 _4CH1 EQU $c0
 _3CH1 EQU $80
@@ -3359,11 +3645,18 @@ SPECIAL_MONCHECK          EQU $0097
 
 
 ; predefs
+PREDEF_FLAG EQU $03
 PREDEF_FILLPP EQU $05
 PREDEF_ADDPARTYMON EQU $06
 PREDEF_FILLSTATS EQU $0C
 PREDEF_FILLMOVES EQU $1B
 PREDEF_GETUNOWNLETTER EQU $2D
+
+
+; flag manipulation
+RESET_FLAG EQU 0
+SET_FLAG   EQU 1
+CHECK_FLAG EQU 2
 
 
 ; script vars
@@ -3450,6 +3743,7 @@ SUBSTATUS_IN_LOVE      EQU 7
 SUBSTATUS_ENCORED      EQU 6
 SUBSTATUS_ENDURE       EQU 5
 SUBSTATUS_PERISH       EQU 4
+SUBSTATUS_IDENTIFIED   EQU 3
 SUBSTATUS_PROTECT      EQU 2
 SUBSTATUS_CURSE        EQU 1
 SUBSTATUS_NIGHTMARE    EQU 0
@@ -3469,18 +3763,28 @@ SUBSTATUS_RAGE         EQU 6
 SUBSTATUS_RECHARGE     EQU 5
 SUBSTATUS_SUBSTITUTE   EQU 4
 SUBSTATUS_FOCUS_ENERGY EQU 2
+SUBSTATUS_MIST         EQU 1
 SUBSTATUS_UNLEASH      EQU 0
 
+SUBSTATUS_CANT_RUN     EQU 7
 SUBSTATUS_DESTINY_BOND EQU 6
 SUBSTATUS_LOCK_ON      EQU 5
+SUBSTATUS_TOXIC        EQU 0
+
+
+SCREENS_REFLECT      EQU 4
+SCREENS_LIGHT_SCREEN EQU 3
+SCREENS_SAFEGUARD    EQU 2
+SCREENS_SPIKES       EQU 0
 
 
 ; status
-SLP EQU 7
-PSN EQU 1 << 3
-BRN EQU 1 << 4
-FRZ EQU 1 << 5
-PAR EQU 1 << 6
+SLP EQU 7 ; 7 turns
+
+PSN EQU 3
+BRN EQU 4
+FRZ EQU 5
+PAR EQU 6
 
 
 
@@ -3522,13 +3826,13 @@ EFFECT_TOXIC               EQU $21
 EFFECT_PAY_DAY             EQU $22
 EFFECT_LIGHT_SCREEN        EQU $23
 EFFECT_TRI_ATTACK          EQU $24
-; unused                   EQU $25
+EFFECT_UNUSED_25           EQU $25 ; unused
 EFFECT_OHKO                EQU $26
 EFFECT_RAZOR_WIND          EQU $27
 EFFECT_SUPER_FANG          EQU $28
 EFFECT_STATIC_DAMAGE       EQU $29
 EFFECT_BIND                EQU $2a
-; unused                   EQU $2b
+EFFECT_UNUSED_2B           EQU $2b ; unused
 EFFECT_DOUBLE_HIT          EQU $2c
 EFFECT_JUMP_KICK           EQU $2d
 EFFECT_MIST                EQU $2e
@@ -3563,7 +3867,7 @@ EFFECT_EVASION_DOWN_HIT    EQU $4a
 EFFECT_SKY_ATTACK          EQU $4b
 EFFECT_CONFUSE_HIT         EQU $4c
 EFFECT_TWINEEDLE           EQU $4d
-; unused                   EQU $4e
+EFFECT_UNUSED_4E           EQU $4e ; unused
 EFFECT_SUBSTITUTE          EQU $4f
 EFFECT_HYPER_BEAM          EQU $50
 EFFECT_RAGE                EQU $51
@@ -3595,7 +3899,7 @@ EFFECT_MEAN_LOOK           EQU $6a
 EFFECT_NIGHTMARE           EQU $6b
 EFFECT_FLAME_WHEEL         EQU $6c
 EFFECT_CURSE               EQU $6d
-; unused                   EQU $6e
+EFFECT_UNUSED_6E           EQU $6e ; unused
 EFFECT_PROTECT             EQU $6f
 EFFECT_SPIKES              EQU $70
 EFFECT_FORESIGHT           EQU $71
@@ -3615,8 +3919,8 @@ EFFECT_MAGNITUDE           EQU $7e
 EFFECT_BATON_PASS          EQU $7f
 EFFECT_PURSUIT             EQU $80
 EFFECT_RAPID_SPIN          EQU $81
-; unused                   EQU $82
-; unused                   EQU $83
+EFFECT_UNUSED_82           EQU $82 ; unused
+EFFECT_UNUSED_83           EQU $83 ; unused
 EFFECT_MORNING_SUN         EQU $84
 EFFECT_SYNTHESIS           EQU $85
 EFFECT_MOONLIGHT           EQU $86

@@ -8,7 +8,7 @@ SECTION "rst8",HOME[$8] ; FarCall
 
 SECTION "rst10",HOME[$10] ; Bankswitch
 	ld [hROMBank], a
-	ld [$2000], a
+	ld [MBC3RomBank], a
 	ret
 
 SECTION "rst18",HOME[$18] ; Unused
@@ -207,10 +207,10 @@ AskTimer: ; 591
 
 LatchClock: ; 59c
 ; latch clock counter data
-	ld a, $0
-	ld [$6000], a
-	ld a, $1
-	ld [$6000], a
+	ld a, 0
+	ld [MBC3LatchClock], a
+	ld a, 1
+	ld [MBC3LatchClock], a
 	ret
 ; 5a7
 
@@ -232,37 +232,37 @@ GetClock: ; 5b7
 ; store clock data in hRTCDayHi-hRTCSeconds
 
 ; enable clock r/w
-	ld a, $a
-	ld [$0000], a
+	ld a, SRAM_ENABLE
+	ld [MBC3SRamEnable], a
 	
 ; get clock data
 ; stored 'backwards' in hram
 	
 	call LatchClock
-	ld hl, $4000
-	ld de, $a000
+	ld hl, MBC3SRamBank
+	ld de, MBC3RTC
 	
 ; seconds
-	ld [hl], $8 ; S
+	ld [hl], RTC_S
 	ld a, [de]
 	and $3f
 	ld [hRTCSeconds], a
 ; minutes
-	ld [hl], $9 ; M
+	ld [hl], RTC_M
 	ld a, [de]
 	and $3f
 	ld [hRTCMinutes], a
 ; hours
-	ld [hl], $a ; H
+	ld [hl], RTC_H
 	ld a, [de]
 	and $1f
 	ld [hRTCHours], a
 ; day lo
-	ld [hl], $b ; DL
+	ld [hl], RTC_DL
 	ld a, [de]
 	ld [hRTCDayLo], a
 ; day hi
-	ld [hl], $c ; DH
+	ld [hl], RTC_DH
 	ld a, [de]
 	ld [hRTCDayHi], a
 	
@@ -390,41 +390,41 @@ SetClock: ; 691
 ; set clock data from hram
 
 ; enable clock r/w
-	ld a, $a
-	ld [$0000], a
+	ld a, SRAM_ENABLE
+	ld [MBC3SRamEnable], a
 	
 ; set clock data
 ; stored 'backwards' in hram
 
 	call LatchClock
-	ld hl, $4000
-	ld de, $a000
+	ld hl, MBC3SRamBank
+	ld de, MBC3RTC
 	
 ; seems to be a halt check that got partially commented out
 ; this block is totally pointless
-	ld [hl], $c
+	ld [hl], RTC_DH
 	ld a, [de]
 	bit 6, a ; halt
 	ld [de], a
 	
 ; seconds
-	ld [hl], $8 ; S
+	ld [hl], RTC_S
 	ld a, [hRTCSeconds]
 	ld [de], a
 ; minutes
-	ld [hl], $9 ; M
+	ld [hl], RTC_M
 	ld a, [hRTCMinutes]
 	ld [de], a
 ; hours
-	ld [hl], $a ; H
+	ld [hl], RTC_H
 	ld a, [hRTCHours]
 	ld [de], a
 ; day lo
-	ld [hl], $b ; DL
+	ld [hl], RTC_DL
 	ld a, [hRTCDayLo]
 	ld [de], a
 ; day hi
-	ld [hl], $c ; DH
+	ld [hl], RTC_DH
 	ld a, [hRTCDayHi]
 	res 6, a ; make sure timer is active
 	ld [de], a
@@ -1423,7 +1423,7 @@ Char5D:
 	ld a, $e
 	rst FarCall
 	pop hl
-	ld de, $d073
+	ld de, StringBuffer1
 	jr .asm_126a ; 0x1246 $22
 .asm_1248
 	ld de, $d493
@@ -2699,14 +2699,14 @@ Function2fb1: ; 2fb1
 	ld b, a
 	push bc
 .asm_2fbb
-	call $2f8c
+	call RNG
 	ld a, [hRandomAdd]
 	ld c, a
 	add b
 	jr c, .asm_2fbb
 	ld a, c
 	pop bc
-	call $3110
+	call SimpleDivide
 	pop bc
 	ret
 ; 2fcb
@@ -2723,25 +2723,25 @@ OpenSRAM: ; 2fd1
 ; switch to sram bank a
 	push af
 ; latch clock data
-	ld a, $1
-	ld [$6000], a
+	ld a, 1
+	ld [MBC3LatchClock], a
 ; enable sram/clock write
-	ld a, $a
-	ld [$0000], a
+	ld a, SRAM_ENABLE
+	ld [MBC3SRamEnable], a
 ; select sram bank
 	pop af
-	ld [$4000], a
+	ld [MBC3SRamBank], a
 	ret
 ; 2fe1
 
 CloseSRAM: ; 2fe1
 ; preserve a
 	push af
-	ld a, $0
+	ld a, SRAM_DISABLE
 ; reset clock latch for next time
-	ld [$6000], a
+	ld [MBC3LatchClock], a
 ; disable sram/clock write
-	ld [$0000], a
+	ld [MBC3SRamEnable], a
 	pop af
 	ret
 ; 2fec
@@ -2933,7 +2933,34 @@ AddNTimes: ; 0x30fe
 ; 0x3105
 
 
-INCBIN "baserom.gbc", $3105, $3119 - $3105
+SimpleMultiply: ; 3105
+; Return a * c.
+	and a
+	ret z
+
+	push bc
+	ld b, a
+	xor a
+.loop
+	add c
+	dec b
+	jr nz, .loop
+	pop bc
+	ret
+; 3110
+
+
+SimpleDivide: ; 3110
+; Divide a by c. Return quotient b and remainder a.
+	ld b, 0
+.loop
+	inc b
+	sub c
+	jr nc, .loop
+	dec b
+	add c
+	ret
+; 3119
 
 
 Multiply: ; 3119
@@ -2972,7 +2999,15 @@ Divide: ; 3124
 ; 3136
 
 
-INCBIN "baserom.gbc", $3136, $313d - $3136
+SubtractSigned: ; 3136
+; Return a - b, sign in carry.
+	sub b
+	ret nc
+	cpl
+	add 1
+	scf
+	ret
+; 313d
 
 
 PrintLetterDelay: ; 313d
@@ -3092,7 +3127,30 @@ StringCmp: ; 31db
 	ret
 ; 0x31e4
 
-INCBIN "baserom.gbc", $31e4, $31f3 - $31e4
+
+CompareLong: ; 31e4
+; Compare bc bytes at de and hl. Return carry if they all match.
+
+	ld a, [de]
+	cp [hl]
+	jr nz, .Diff
+
+	inc de
+	inc hl
+	dec bc
+
+	ld a, b
+	or c
+	jr nz, CompareLong
+
+	scf
+	ret
+
+.Diff
+	and a
+	ret
+; 31f3
+
 
 WhiteBGMap: ; 31f3
 	call ClearPalettes
@@ -3164,7 +3222,29 @@ GetSGBLayout: ; 3340
 	jp Predef
 ; 334e
 
-INCBIN "baserom.gbc", $334e, $335f - $334e
+
+SetHPPal: ; 334e
+; Set palette for hp bar pixel length e at hl.
+	call GetHPPal
+	ld [hl], d
+	ret
+; 3353
+
+
+GetHPPal: ; 3353
+; Get palette for hp bar pixel length e in d.
+
+	ld d, 0 ; green
+	ld a, e
+	cp 24
+	ret nc
+	inc d ; yellow
+	cp 10
+	ret nc
+	inc d ; red
+	ret
+; 335f
+
 
 CountSetBits: ; 0x335f
 ; function to count how many bits are set in a string of bytes
@@ -3192,56 +3272,115 @@ CountSetBits: ; 0x335f
 	ret
 ; 0x3376
 
-INCBIN "baserom.gbc", $3376, $33ab - $3376
+
+GetWeekday: ; 3376
+	ld a, [CurDay]
+.loop
+	sub 7
+	jr nc, .loop
+	add 7
+	ret
+; 3380
+
+
+SetSeenAndCaughtMon: ; 3380
+	push af
+	ld c, a
+	ld hl, PokedexSeen
+	ld b, 1
+	call GetWramFlag
+	pop af
+	; fallthrough
+; 338b
+
+SetCaughtMon: ; 338b
+	ld c, a
+	ld hl, PokedexCaught
+	ld b, 1
+	jr GetWramFlag
+; 3393
+
+CheckSeenMon: ; 3393
+	ld c, a
+	ld hl, PokedexSeen
+	ld b, 2
+	jr GetWramFlag
+; 339b
+
+CheckCaughtMon: ; 339b
+	ld c, a
+	ld hl, PokedexCaught
+	ld b, 2
+	; fallthrough
+; 33a1
+
+GetWramFlag: ; 33a1
+	ld d, 0
+	ld a, PREDEF_FLAG
+	call Predef
+
+	ld a, c
+	and a
+	ret
+; 33ab
+
 
 NamesPointerTable: ; 33ab
 	dbw BANK(PokemonNames), PokemonNames
 	dbw BANK(MoveNames), MoveNames
 	dbw $00, $0000
 	dbw BANK(ItemNames), ItemNames
-	dbw $00, $ddff
-	dbw $00, $d3a8
+	dbw $00, PartyMonOT
+	dbw $00, OTPartyMonOT
 	dbw BANK(TrainerClassNames), TrainerClassNames
 	dbw $04, $4b52
+; 33c3
+
 
 GetName: ; 33c3
+; Return name $cf60 from name list $cf61 in StringBuffer1.
 	ld a, [hROMBank]
 	push af
 	push hl
 	push bc
 	push de
 	ld a, [$cf61]
-	cp $1
-	jr nz, .asm_33e1 ; 0x33ce $11
+	cp 1 ; Pokemon names
+	jr nz, .NotPokeName
+
 	ld a, [$cf60]
 	ld [$d265], a
-	call $343b
+	call GetPokemonName
 	ld hl, $000b
 	add hl, de
 	ld e, l
 	ld d, h
-	jr .asm_3403 ; 0x33df $22
-.asm_33e1
+	jr .done
+
+.NotPokeName
 	ld a, [$cf61]
 	dec a
 	ld e, a
-	ld d, $0
+	ld d, 0
 	ld hl, NamesPointerTable
 	add hl, de
 	add hl, de
 	add hl, de
 	ld a, [hli]
-	rst Bankswitch ; Bankswitch
+	rst Bankswitch
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
+
 	ld a, [$cf60]
 	dec a
 	call GetNthString
-	ld de, $d073
+
+	ld de, StringBuffer1
 	ld bc, $000d
 	call CopyBytes
-.asm_3403
+
+.done
 	ld a, e
 	ld [$d102], a
 	ld a, d
@@ -3252,9 +3391,8 @@ GetName: ; 33c3
 	pop af
 	rst Bankswitch
 	ret
-; 0x3411
+; 3411
 
-INCBIN "baserom.gbc", $3411, $3411 - $3411
 
 GetNthString: ; 3411
 ; Starting at hl, this function returns the start address of the ath string.
@@ -3266,39 +3404,213 @@ GetNthString: ; 3411
 .readChar
 	ld a, [hli]
 	cp c
-	jr nz, .readChar ; 0x3419 $fc
+	jr nz, .readChar
 	dec b
-	jr nz, .readChar ; 0x341c $f9
+	jr nz, .readChar
 	pop bc
 	ret
-; 0x3420
+; 3420
 
 
-INCBIN "baserom.gbc", $3420, $3468 - $3420
+GetBasePokemonName: ; 3420
+; Discards gender (Nidoran).
+	push hl
+	call GetPokemonName
+
+	ld hl, StringBuffer1
+.loop
+	ld a, [hl]
+	cp "@"
+	jr z, .quit
+	cp "♂"
+	jr z, .end
+	cp "♀"
+	jr z, .end
+	inc hl
+	jr .loop
+.end
+	ld [hl], "@"
+.quit
+	pop hl
+	ret
+
+; 343b
+
+
+GetPokemonName: ; 343b
+; Get Pokemon name $d265.
+
+	ld a, [hROMBank]
+	push af
+	push hl
+	ld a, BANK(PokemonNames)
+	rst Bankswitch
+
+; Each name is ten characters
+	ld a, [$d265]
+	dec a
+	ld d, 0
+	ld e, a
+	ld h, 0
+	ld l, a
+	add hl, hl
+	add hl, hl
+	add hl, de
+	add hl, hl
+	ld de, PokemonNames
+	add hl, de
+
+; Terminator
+	ld de, StringBuffer1
+	push de
+	ld bc, PKMN_NAME_LENGTH - 1
+	call CopyBytes
+	ld hl, StringBuffer1 + PKMN_NAME_LENGTH - 1
+	ld [hl], "@"
+	pop de
+
+	pop hl
+	pop af
+	rst Bankswitch
+	ret
+; 3468
 
 
 GetItemName: ; 3468
+; Get item name $d265.
+
 	push hl
 	push bc
-	ld a, [$d265] ; Get the item
-	cp $bf ; Is it a TM?
-	jr nc, .tm ; 0x346f $d
+	ld a, [$d265]
+
+	cp TM_01
+	jr nc, .TM
+
 	ld [$cf60], a
-	ld a, $4 ; Item names
+	ld a, 4 ; Item names
 	ld [$cf61], a
 	call GetName
-	jr .copied ; 0x347c $3
-.tm
-	call $3487
-.copied
-	ld de, $d073
+	jr .Copied
+.TM
+	call GetTMHMName
+.Copied
+	ld de, StringBuffer1
 	pop bc
 	pop hl
 	ret
 ; 3487
 
 
-INCBIN "baserom.gbc", $3487, $34f8 - $3487
+GetTMHMName: ; 3487
+; Get TM/HM name by item id $d265.
+
+	push hl
+	push de
+	push bc
+	ld a, [$d265]
+	push af
+
+; TM/HM prefix
+	cp HM_01
+	push af
+	jr c, .TM
+
+	ld hl, .HMText
+	ld bc, .HMTextEnd - .HMText
+	jr .asm_34a1
+
+.TM
+	ld hl, .TMText
+	ld bc, .TMTextEnd - .TMText
+
+.asm_34a1
+	ld de, StringBuffer1
+	call CopyBytes
+
+; TM/HM number
+	push de
+	ld a, [$d265]
+	ld c, a
+	callab GetTMHMNumber
+	pop de
+
+; HM numbers start from 51, not 1
+	pop af
+	ld a, c
+	jr c, .asm_34b9
+	sub NUM_TMS
+
+; Divide and mod by 10 to get the top and bottom digits respectively
+.asm_34b9
+	ld b, "0"
+.mod10
+	sub 10
+	jr c, .asm_34c2
+	inc b
+	jr .mod10
+.asm_34c2
+	add 10
+
+	push af
+	ld a, b
+	ld [de], a
+	inc de
+	pop af
+
+	ld b, "0"
+	add b
+	ld [de], a
+
+; End the string
+	inc de
+	ld a, "@"
+	ld [de], a
+
+	pop af
+	ld [$d265], a
+	pop bc
+	pop de
+	pop hl
+	ret
+
+.TMText
+	db "TM"
+.TMTextEnd
+	db "@"
+
+.HMText
+	db "HM"
+.HMTextEnd
+	db "@"
+; 34df
+
+
+IsHM: ; 34df
+	cp HM_01
+	jr c, .NotHM
+	scf
+	ret
+.NotHM
+	and a
+	ret
+; 34e7
+
+
+IsHMMove: ; 34e7
+	ld hl, .HMMoves
+	ld de, 1
+	jp IsInArray
+
+.HMMoves
+	db CUT
+	db FLY
+	db SURF
+	db STRENGTH
+	db FLASH
+	db WATERFALL
+	db WHIRLPOOL
+	db $ff
+; 34f8
 
 
 GetMoveName: ; 34f8
@@ -3320,30 +3632,27 @@ GetMoveName: ; 34f8
 INCBIN "baserom.gbc", $350c, $3856 - $350c
 
 
-GetBaseStats: ; 3856
+GetBaseData: ; 3856
 	push bc
 	push de
 	push hl
-	
-; Save bank
 	ld a, [hROMBank]
 	push af
-; Bankswitch
-	ld a, BANK(BaseStats)
+	ld a, BANK(BaseData)
 	rst Bankswitch
 	
-; Egg doesn't have base stats
+; Egg doesn't have BaseData
 	ld a, [CurSpecies]
 	cp EGG
 	jr z, .egg
 
-; Get base stats
+; Get BaseData
 	dec a
-	ld bc, BaseStats1 - BaseStats0
-	ld hl, BaseStats
+	ld bc, BaseData1 - BaseData0
+	ld hl, BaseData
 	call AddNTimes
-	ld de, CurBaseStats
-	ld bc, BaseStats1 - BaseStats0
+	ld de, CurBaseData
+	ld bc, BaseData1 - BaseData0
 	call CopyBytes
 	jr .end
 	
@@ -3352,12 +3661,12 @@ GetBaseStats: ; 3856
 	ld de, $7d9c
 	
 ; Sprite dimensions
-	ld b, $55
-	ld hl, $d247
+	ld b, $55 ; 5x5
+	ld hl, BasePicSize
 	ld [hl], b
 	
 ; ????
-	ld hl, $d248
+	ld hl, BasePadding
 	ld [hl], e
 	inc hl
 	ld [hl], d
@@ -3370,43 +3679,42 @@ GetBaseStats: ; 3856
 .end
 ; Replace Pokedex # with species
 	ld a, [CurSpecies]
-	ld [CurBaseStats], a
+	ld [BaseDexNo], a
 	
-; Restore bank
 	pop af
 	rst Bankswitch
-	
 	pop hl
 	pop de
 	pop bc
 	ret
 ; 389c
 
-INCBIN "baserom.gbc", $389c, $38a2 - $389c
+
+GetCurNick; 389c
+	ld a, [CurPartyMon]
+	ld hl, PartyMonNicknames
 
 GetNick: ; 38a2
-; get the nickname of a partymon
-; write nick to StringBuffer1
-
-; input: a = which mon (0-5)
+; Get nickname a from list hl.
 
 	push hl
 	push bc
-	; skip [a] nicks
+
 	call SkipNames
 	ld de, StringBuffer1
-	; write nick
+
 	push de
 	ld bc, PKMN_NAME_LENGTH
 	call CopyBytes
-	; error-check
 	pop de
+
 	callab CheckNickErrors
-	; we're done
+
 	pop bc
 	pop hl
 	ret
 ; 38bb
+
 
 PrintBCDNumber: ; 38bb
 ; function to print a BCD (Binary-coded decimal) number
@@ -3509,11 +3817,37 @@ GetPartyLocation: ; 3927
 ; 392d
 
 
-INCBIN "baserom.gbc", $392d, $395d - $392d
+INCBIN "baserom.gbc", $392d, $3945 - $392d
+
+
+UserPartyAttr: ; 3945
+	push af
+	ld a, [hBattleTurn]
+	and a
+	jr nz, .asm_394e
+	pop af
+	jr BattlePartyAttr
+.asm_394e
+	pop af
+	jr OTPartyAttr
+; 3951
+
+
+OpponentPartyAttr: ; 3951
+	push af
+	ld a, [hBattleTurn]
+	and a
+	jr z, .asm_395a
+	pop af
+	jr BattlePartyAttr
+.asm_395a
+	pop af
+	jr OTPartyAttr
+; 395d
 
 
 BattlePartyAttr: ; 395d
-; Get attribute a from the active monster's party struct.
+; Get attribute a from the active BattleMon's party struct.
 	push bc
 	ld c, a
 	ld b, 0
@@ -3526,7 +3860,18 @@ BattlePartyAttr: ; 395d
 ; 396d
 
 
-INCBIN "baserom.gbc", $396d, $397d - $396d
+OTPartyAttr: ; 396d
+; Get attribute a from the active EnemyMon's party struct.
+	push bc
+	ld c, a
+	ld b, 0
+	ld hl, OTPartyMon1Species
+	add hl, bc
+	ld a, [CurOTMon]
+	call GetPartyLocation
+	pop bc
+	ret
+; 397d
 
 
 ResetDamage: ; 397d
@@ -3548,7 +3893,72 @@ SetEnemyTurn: ; 3989
 	ret
 ; 398e
 
-INCBIN "baserom.gbc", $398e, $39e1 - $398e
+
+UpdateOpponentInParty: ; 398e
+	ld a, [hBattleTurn]
+	and a
+	jr z, UpdateEnemyMonInParty
+	jr UpdateBattleMonInParty
+; 3995
+
+UpdateUserInParty: ; 3995
+	ld a, [hBattleTurn]
+	and a
+	jr z, UpdateBattleMonInParty
+	jr UpdateEnemyMonInParty
+; 399c
+
+UpdateBattleMonInParty: ; 399c
+; Update level, status, current HP
+
+	ld a, [CurBattleMon]
+	ld hl, PartyMon1Level
+	call GetPartyLocation
+
+	ld d, h
+	ld e, l
+	ld hl, BattleMonLevel
+	ld bc, BattleMonMaxHP - BattleMonLevel
+	jp CopyBytes
+; 39b0
+
+UpdateEnemyMonInParty: ; 39b0
+; Update level, status, current HP
+
+; No wildmons.
+	ld a, [IsInBattle]
+	dec a
+	ret z
+
+	ld a, [CurOTMon]
+	ld hl, OTPartyMon1Level
+	call GetPartyLocation
+
+	ld d, h
+	ld e, l
+	ld hl, EnemyMonLevel
+	ld bc, EnemyMonMaxHP - EnemyMonLevel
+	jp CopyBytes
+; 39c9
+
+
+RefreshBattleHuds: ; 39c9
+	call UpdateBattleHuds
+	ld c, 3
+	call DelayFrames
+	jp WaitBGMap
+; 39d4
+
+UpdateBattleHuds: ; 39d4
+	ld a, $f
+	ld hl, $5f48
+	rst FarCall ; UpdatePlayerHud
+	ld a, $f
+	ld hl, $6036
+	rst FarCall ; UpdateEnemyHud
+	ret
+; 39e1
+
 
 CleanGetBattleVarPair: ; 39e1
 ; Preserves hl.
@@ -3742,61 +4152,123 @@ BattleTextBox: ; 3ac3
 
 
 FarBattleTextBox: ; 3ad5
-; save bank
-	ld a, [$ff9d] ; bank
+; Open a textbox and print text at 20:hl.
+
+	ld a, [hROMBank]
 	push af
-; bank 20
+
 	ld a, $20
-	rst $10
-; print text at hl
+	rst Bankswitch
+
 	call BattleTextBox
-; restore bank
+
 	pop af
-	rst $10
+	rst Bankswitch
 	ret
 ; 3ae1
 
 
-INCBIN "baserom.gbc", $3ae1, $3b86 - $3ae1
+INCBIN "baserom.gbc", $3ae1, $3b4e - $3ae1
 
-LoadMusicByte: ; 3b86
-; load music data into CurMusicByte
-; input:
-;   a: bank
-;   de: address
-	ld [hROMBank], a
-	ld [$2000], a ; bankswitch
-	ld a, [de]
-	ld [CurMusicByte], a
-	ld a, $3a ; manual bank restore
-	ld [hROMBank], a
-	ld [$2000], a ; bankswitch
-	ret
-; 3b97
 
-StartMusic: ; 3b97
-; input:
-;   e = song number
+CleanSoundRestart: ; 3b4e
+
 	push hl
 	push de
 	push bc
 	push af
-	ld a, [hROMBank] ; save bank
+
+	ld a, [hROMBank]
 	push af
-	ld a, BANK(LoadMusic)
+	ld a, BANK(SoundRestart)
 	ld [hROMBank], a
-	ld [$2000], a ; bankswitch
-	ld a, e ; song number
+	ld [MBC3RomBank], a
+
+	call SoundRestart
+
+	pop af
+	ld [hROMBank], a
+	ld [MBC3RomBank], a
+
+	pop af
+	pop bc
+	pop de
+	pop hl
+	ret
+; 3b6a
+
+
+CleanUpdateSound: ; 3b6a
+
+	push hl
+	push de
+	push bc
+	push af
+
+	ld a, [hROMBank]
+	push af
+	ld a, BANK(UpdateSound)
+	ld [hROMBank], a
+	ld [MBC3RomBank], a
+
+	call UpdateSound
+
+	pop af
+	ld [hROMBank], a
+	ld [MBC3RomBank], a
+
+	pop af
+	pop bc
+	pop de
+	pop hl
+	ret
+; 3b86
+
+
+LoadMusicByte: ; 3b86
+; CurMusicByte = [a:de]
+
+	ld [hROMBank], a
+	ld [MBC3RomBank], a
+
+	ld a, [de]
+	ld [CurMusicByte], a
+	ld a, $3a ; manual bank restore
+
+	ld [hROMBank], a
+	ld [MBC3RomBank], a
+	ret
+; 3b97
+
+
+StartMusic: ; 3b97
+; Play music de.
+
+	push hl
+	push de
+	push bc
+	push af
+
+	ld a, [hROMBank]
+	push af
+	ld a, BANK(LoadMusic) ; and BANK(SoundRestart)
+	ld [hROMBank], a
+	ld [MBC3RomBank], a
+
+	ld a, e
 	and a
 	jr z, .nomusic
+
 	call LoadMusic
 	jr .end
+
 .nomusic
 	call SoundRestart
+
 .end
 	pop af
-	ld [hROMBank], a ; restore bank
-	ld [$2000], a
+	ld [hROMBank], a
+	ld [MBC3RomBank], a
 	pop af
 	pop bc
 	pop de
@@ -3804,25 +4276,58 @@ StartMusic: ; 3b97
 	ret
 ; 3bbc
 
-INCBIN "baserom.gbc", $3bbc, $3be3 - $3bbc
 
-PlayCryHeader: ; 3be3
-; Play a cry given parameters in header de
-	
+StartMusic2: ; 3bbc
+; Stop playing music, then play music de.
+
 	push hl
 	push de
 	push bc
 	push af
-	
+
+	ld a, [hROMBank]
+	push af
+	ld a, BANK(LoadMusic)
+	ld [hROMBank], a
+	ld [MBC3RomBank], a
+
+	push de
+	ld de, MUSIC_NONE
+	call LoadMusic
+	call DelayFrame
+	pop de
+	call LoadMusic
+
+	pop af
+	ld [hROMBank], a
+	ld [MBC3RomBank], a
+
+	pop af
+	pop bc
+	pop de
+	pop hl
+	ret
+
+; 3be3
+
+
+PlayCryHeader: ; 3be3
+; Play a cry given parameters in header de
+
+	push hl
+	push de
+	push bc
+	push af
+
 ; Save current bank
 	ld a, [hROMBank]
 	push af
-	
+
 ; Cry headers are stuck in one bank.
 	ld a, BANK(CryHeaders)
 	ld [hROMBank], a
-	ld [$2000], a
-	
+	ld [MBC3RomBank], a
+
 ; Each header is 6 bytes long:
 	ld hl, CryHeaders
 	add hl, de
@@ -3831,36 +4336,30 @@ PlayCryHeader: ; 3be3
 	add hl, de
 	add hl, de
 	add hl, de
-	
-; Header struct:
 
-; id
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
 	inc hl
-; pitch
+
 	ld a, [hli]
 	ld [CryPitch], a
-; echo
 	ld a, [hli]
 	ld [CryEcho], a
-; length
 	ld a, [hli]
 	ld [CryLength], a
 	ld a, [hl]
 	ld [CryLength+1], a
-	
-; That's it for the header
+
 	ld a, BANK(PlayCry)
 	ld [hROMBank], a
-	ld [$2000], a
+	ld [MBC3RomBank], a
+
 	call PlayCry
-	
-; Restore bank
+
 	pop af
 	ld [hROMBank], a
-	ld [$2000], a
+	ld [MBC3RomBank], a
 	
 	pop af
 	pop bc
@@ -3871,32 +4370,36 @@ PlayCryHeader: ; 3be3
 
 
 StartSFX: ; 3c23
-; sfx id order is by priority (highest to lowest)
-; to disable this, remove the check!
-; input: de = sfx id
+; Play sound effect de.
+; Sound effects are ordered by priority (lowest to highest)
+
 	push hl
 	push de
 	push bc
 	push af
-	; is something already playing?
+
+; Is something already playing?
 	call CheckSFX
-	jr nc, .asm_3c32
-	; only play sfx if it has priority
+	jr nc, .play
+; Does it have priority?
 	ld a, [CurSFX]
 	cp e
 	jr c, .quit
-.asm_3c32
-	ld a, [hROMBank] ; save bank
+
+.play
+	ld a, [hROMBank]
 	push af
-	ld a, $3a ; music bank
+	ld a, BANK(LoadSFX)
 	ld [hROMBank], a
-	ld [$2000], a ; bankswitch
+	ld [MBC3RomBank], a ; bankswitch
+
 	ld a, e
 	ld [CurSFX], a
 	call LoadSFX
+
 	pop af
-	ld [hROMBank], a ; restore bank
-	ld [$2000], a ; bankswitch
+	ld [hROMBank], a
+	ld [MBC3RomBank], a ; bankswitch
 .quit
 	pop af
 	pop bc
@@ -3905,31 +4408,37 @@ StartSFX: ; 3c23
 	ret
 ; 3c4e
 
-INCBIN "baserom.gbc", $3c4e, $3c55-$3c4e
+
+WaitPlaySFX: ; 3c4e
+	call WaitSFX
+	call StartSFX
+	ret
+; 3c55
+
 
 WaitSFX: ; 3c55
 ; infinite loop until sfx is done playing
+
 	push hl
 	
 .loop
 	; ch5 on?
-	ld hl, $c1cc ; Channel5Flags
+	ld hl, Channel5 + Channel1Flags - Channel1
 	bit 0, [hl]
 	jr nz, .loop
 	; ch6 on?
-	ld hl, $c1fe ; Channel6Flags
+	ld hl, Channel6 + Channel1Flags - Channel1
 	bit 0, [hl]
 	jr nz, .loop
 	; ch7 on?
-	ld hl, $c230 ; Channel7Flags
+	ld hl, Channel7 + Channel1Flags - Channel1
 	bit 0, [hl]
 	jr nz, .loop
 	; ch8 on?
-	ld hl, $c262 ; Channel8Flags
+	ld hl, Channel8 + Channel1Flags - Channel1
 	bit 0, [hl]
 	jr nz, .loop
 	
-	; we're done
 	pop hl
 	ret
 ; 3c74
@@ -4355,7 +4864,12 @@ _Divide: ; 673e
 ; 67c1
 
 
-INCBIN "baserom.gbc", $67c1, $6eef - $67c1
+ItemAttributes: ; 67c1
+INCLUDE "items/item_attributes.asm"
+; 6ec1
+
+
+INCBIN "baserom.gbc", $6ec1, $6eef - $6ec1
 
 
 DrawGraphic: ; 6eef
@@ -4408,7 +4922,7 @@ SpecialGiveShuckle: ; 7305
 	ld b, 0
 	ld a, $13
 	ld hl, $5ba3
-	rst $8
+	rst FarCall
 
 ; Holding a Berry.
 	ld bc, PartyMon2 - PartyMon1
@@ -4530,7 +5044,7 @@ PredefPointers: ; 856b
 	dwb $4eef, $0a
 	dwb $4b3e, $0b
 	dwb $5f48, $0f
-	dwb $6f6e, $0b
+	dwb FillBox, BANK(FillBox)
 	dwb $5873, $0f
 	dwb $6036, $0f
 	dwb $74c1, $0f
@@ -5259,7 +5773,138 @@ AskSurfText: ; ca36
 	db "@"				; Want to SURF?
 ; ca3b
 
-INCBIN "baserom.gbc", $ca3b, $fa0b - $ca3b
+
+INCBIN "baserom.gbc", $ca3b, $d407 - $ca3b
+
+
+GetTMHMNumber: ; d407
+; Return the number of a TM/HM by item id c.
+
+	ld a, c
+
+; Skip any dummy items.
+	cp $c3 ; TM04-05
+	jr c, .done
+	cp $dc ; TM28-29
+	jr c, .skip
+
+	dec a
+.skip
+	dec a
+.done
+	sub TM_01
+	inc a
+	ld c, a
+	ret
+; d417
+
+
+GetNumberedTMHM: ; d417
+; Return the item id of a TM/HM by number c.
+
+	ld a, c 
+
+; Skip any gaps.
+	cp 5
+	jr c, .done
+	cp 29
+	jr c, .skip
+
+	inc a
+.skip
+	inc a
+.done
+	add TM_01
+	dec a
+	ld c, a
+	ret
+; d427
+
+
+CheckTossableItem: ; d427
+; Return 1 in $d142 and carry if CurItem can't be removed from the bag.
+	ld a, 4
+	call GetItemAttr
+	bit 7, a
+	jr nz, Function0xd47f
+	and a
+	ret
+; d432
+
+CheckSelectableItem: ; d432
+; Return 1 in $d142 and carry if CurItem can't be selected.
+	ld a, 4
+	call GetItemAttr
+	bit 6, a
+	jr nz, Function0xd47f
+	and a
+	ret
+; d43d
+
+CheckItemPocket: ; d43d
+; Return the pocket for CurItem in $d142.
+	ld a, 5
+	call GetItemAttr
+	and $f
+	ld [$d142], a
+	ret
+; d448
+
+CheckItemContext: ; d448
+; Return the context for CurItem in $d142.
+	ld a, 6
+	call GetItemAttr
+	and $f
+	ld [$d142], a
+	ret
+; d453
+
+CheckItemMenu: ; d453
+; Return the menu for CurItem in $d142.
+	ld a, 6
+	call GetItemAttr
+	swap a
+	and $f
+	ld [$d142], a
+	ret
+; d460
+
+GetItemAttr: ; d460
+; Get attribute a of CurItem.
+
+	push hl
+	push bc
+
+	ld hl, ItemAttributes
+	ld c, a
+	ld b, 0
+	add hl, bc
+
+	xor a
+	ld [$d142], a
+
+	ld a, [CurItem]
+	dec a
+	ld c, a
+	ld a, 7
+	call AddNTimes
+	ld a, BANK(ItemAttributes)
+	call GetFarByte
+
+	pop bc
+	pop hl
+	ret
+; d47f
+
+Function0xd47f: ; d47f
+	ld a, 1
+	ld [$d142], a
+	scf
+	ret
+; d486
+
+
+INCBIN "baserom.gbc", $d486, $fa0b - $d486
 
 
 SECTION "bank4",DATA,BANK[$4]
@@ -5373,26 +6018,26 @@ OpenPartyMenu: ; $12976
 .menu ; 12986
 	ld a, $14
 	ld hl, $404f
-	rst $8 ; load gfx
+	rst FarCall ; load gfx
 	ld a, $14
 	ld hl, $4405
-	rst $8 ; setup menu?
+	rst FarCall ; setup menu?
 	ld a, $14
 	ld hl, $43e0
-	rst $8 ; load menu pokémon sprites
+	rst FarCall ; load menu pokémon sprites
 .menunoreload ; 12998
 	ld a, BANK(WritePartyMenuTilemap)
 	ld hl, WritePartyMenuTilemap
-	rst $8
+	rst FarCall
 	ld a, BANK(PrintPartyMenuText)
 	ld hl, PrintPartyMenuText
-	rst $8
+	rst FarCall
 	call $31f6
 	call $32f9 ; load regular palettes?
 	call DelayFrame
 	ld a, BANK(PartyMenuSelect)
 	ld hl, PartyMenuSelect
-	rst $8
+	rst FarCall
 	jr c, .return ; if cancelled or pressed B
 	call PokemonActionSubmenu
 	cp $3
@@ -5423,7 +6068,7 @@ PokemonActionSubmenu ; 0x12a88
 	call $0fb6 ; draw box
 	ld a, $9
 	ld hl, $4d19
-	rst $8
+	rst FarCall
 	call $389c
 	ld a, [$cf74] ; menu selection?
 	ld hl, PokemonSubmenuActionPointerTable
@@ -6159,90 +6804,233 @@ TrainerClassNames: ; 2c1ef
 	db "ROCKET@"
 	db "MYSTICALMAN@"
 
-INCBIN "baserom.gbc", $2C41a, $2ee8f - $2C41a
 
-; XXX this is not the start of the routine
-; determine what music plays in battle
-	ld a, [OtherTrainerClass] ; are we fighting a trainer?
+INCBIN "baserom.gbc", $2c41a, $2ee6c - $2c41a
+
+
+PlayBattleMusic: ; 2ee6c
+
+	push hl
+	push de
+	push bc
+
+	xor a
+	ld [MusicFade], a
+	ld de, MUSIC_NONE
+	call StartMusic
+	call DelayFrame
+	call MaxVolume
+
+	ld a, [BattleType]
+	cp BATTLETYPE_SUICUNE
+	ld de, MUSIC_SUICUNE_BATTLE
+	jp z, .done
+	cp BATTLETYPE_ROAMING
+	jp z, .done
+
+	; Are we fighting a trainer?
+	ld a, [OtherTrainerClass]
 	and a
 	jr nz, .trainermusic
+
 	ld a, BANK(RegionCheck)
 	ld hl, RegionCheck
 	rst FarCall
 	ld a, e
 	and a
 	jr nz, .kantowild
-	ld de, $0029 ; johto daytime wild battle music
-	ld a, [TimeOfDay] ; check time of day
-	cp $2 ; nighttime?
-	jr nz, .done ; if no, then done
-	ld de, $004a ; johto nighttime wild battle music
+
+	ld de, MUSIC_JOHTO_WILD_BATTLE
+	ld a, [TimeOfDay]
+	cp NITE
+	jr nz, .done
+	ld de, MUSIC_JOHTO_WILD_BATTLE_NIGHT
 	jr .done
+
 .kantowild
-	ld de, $0008 ; kanto wild battle music
+	ld de, MUSIC_KANTO_WILD_BATTLE
 	jr .done
 
 .trainermusic
-	ld de, $002f ; lance battle music
+	ld de, MUSIC_CHAMPION_BATTLE
 	cp CHAMPION
 	jr z, .done
 	cp RED
 	jr z, .done
 
 	; really, they should have included admins and scientists here too...
-	ld de, $0031 ; rocket battle music
+	ld de, MUSIC_ROCKET_BATTLE
 	cp GRUNTM
 	jr z, .done
 	cp GRUNTF
 	jr z, .done
 
-	ld de, $0006 ; kanto gym leader battle music
+	ld de, MUSIC_KANTO_GYM_LEADER_BATTLE
 	ld a, BANK(IsKantoGymLeader)
 	ld hl, IsKantoGymLeader
 	rst FarCall
 	jr c, .done
 
-	ld de, $002e ; johto gym leader battle music
+	ld de, MUSIC_JOHTO_GYM_LEADER_BATTLE
 	ld a, BANK(IsJohtoGymLeader)
 	ld hl, IsJohtoGymLeader
 	rst FarCall
 	jr c, .done
 
-	ld de, $0030 ; rival battle music
+	ld de, MUSIC_RIVAL_BATTLE
 	ld a, [OtherTrainerClass]
 	cp RIVAL1
 	jr z, .done
 	cp RIVAL2
 	jr nz, .othertrainer
-	ld a, [OtherTrainerID] ; which rival are we fighting?
-	cp $4
-	jr c, .done ; if it's not the fight inside Indigo Plateau, we're done
-	ld de, $002f ; rival indigo plateau battle music
+
+	ld a, [OtherTrainerID]
+	cp 4 ; Rival in Indigo Plateau
+	jr c, .done
+	ld de, MUSIC_CHAMPION_BATTLE
 	jr .done
 
 .othertrainer
 	ld a, [InLinkBattle]
 	and a
-	jr nz, .linkbattle
+	jr nz, .johtotrainer
+
 	ld a, BANK(RegionCheck)
 	ld hl, RegionCheck
 	rst FarCall
 	ld a, e
 	and a
 	jr nz, .kantotrainer
-.linkbattle
-	ld de, $002a ; johto trainer battle music
+
+.johtotrainer
+	ld de, MUSIC_JOHTO_TRAINER_BATTLE
 	jr .done
+
 .kantotrainer
-	ld de, $0007 ; kanto trainer battle music
+	ld de, MUSIC_KANTO_TRAINER_BATTLE
+
 .done
-	call $3b97
+	call StartMusic
+
 	pop bc
 	pop de
 	pop hl
 	ret
+; 2ef18
 
-INCBIN "baserom.gbc", $2ef18, $2ef9f - $2ef18
+
+ClearBattleRAM: ; 2ef18
+	xor a
+	ld [$d0ec], a
+	ld [$d0ee], a
+
+	ld hl, $d0d8
+	ld [hli], a
+	ld [hli], a
+	ld [hli], a
+	ld [hl], a
+
+	ld [$d0e4], a
+	ld [CriticalHit], a
+	ld [BattleMonSpecies], a
+	ld [$c664], a
+	ld [CurBattleMon], a
+	ld [$d232], a
+	ld [TimeOfDayPal], a
+	ld [PlayerTurnsTaken], a
+	ld [EnemyTurnsTaken], a
+	ld [EvolvableFlags], a
+
+	ld hl, PlayerHPPal
+	ld [hli], a
+	ld [hl], a
+
+	ld hl, BattleMonDVs
+	ld [hli], a
+	ld [hl], a
+
+	ld hl, EnemyMonDVs
+	ld [hli], a
+	ld [hl], a
+
+; Clear the entire BattleMons area
+	ld hl, EnemyMoveStruct
+	ld bc, $0139
+	xor a
+	call ByteFill
+
+	ld hl, $5867
+	ld a, $f
+	rst FarCall
+
+	call $1fbf
+
+	ld hl, $ffd6
+	xor a
+	ld [hli], a
+	ld [hl], $98
+	ret
+; 2ef6e
+
+
+FillBox: ; 2ef6e
+; Fill $c2c6-aligned box width b height c
+; with iterating tile starting from $ffad at hl.
+; Predef $13
+
+	ld de, 20
+
+	ld a, [$c2c6]
+	and a
+	jr nz, .left
+
+	ld a, [$ffad]
+.x1
+	push bc
+	push hl
+
+.y1
+	ld [hl], a
+	add hl, de
+	inc a
+	dec c
+	jr nz, .y1
+
+	pop hl
+	inc hl
+	pop bc
+	dec b
+	jr nz, .x1
+	ret
+
+.left
+; Right-aligned.
+	push bc
+	ld b, 0
+	dec c
+	add hl, bc
+	pop bc
+
+	ld a, [$ffad]
+.x2
+	push bc
+	push hl
+
+.y2
+	ld [hl], a
+	add hl, de
+	inc a
+	dec c
+	jr nz, .y2
+
+	pop hl
+	dec hl
+	pop bc
+	dec b
+	jr nz, .x2
+	ret
+; 2ef9f
+
 
 
 SECTION "bankC",DATA,BANK[$C]
@@ -6344,7 +7132,15 @@ INCLUDE "battle/effect_commands.asm"
 
 SECTION "bankE",DATA,BANK[$E]
 
-INCBIN "baserom.gbc", $38000, $39999 - $38000
+INCBIN "baserom.gbc", $38000, $38591 - $38000
+
+
+AIScoring: ; 38591
+INCLUDE "battle/ai/scoring.asm"
+
+
+INCBIN "baserom.gbc", $3952d, $39999 - $3952d
+
 
 TrainerGroups: ; 0x39999
 INCLUDE "trainers/trainer_pointers.asm"
@@ -6511,7 +7307,7 @@ LoadEnemyMon: ; 3e8eb
 ; Clear the whole EnemyMon struct
 	xor a
 	ld hl, EnemyMonSpecies
-	ld bc, $0027
+	ld bc, EnemyMonEnd - EnemyMon
 	call ByteFill
 	
 ; We don't need to be here if we're in a link battle
@@ -6529,8 +7325,8 @@ LoadEnemyMon: ; 3e8eb
 	ld [CurSpecies], a
 	ld [CurPartySpecies], a
 	
-; Grab the base stats for this species
-	call GetBaseStats
+; Grab the BaseData for this species
+	call GetBaseData
 	
 
 ; Let's get the item:
@@ -6549,13 +7345,13 @@ LoadEnemyMon: ; 3e8eb
 	
 	
 .WildItem
-; In a wild battle, we pull from the item slots in base stats
+; In a wild battle, we pull from the item slots in BaseData
 
 ; Force Item1
 ; Used for Ho-Oh, Lugia and Snorlax encounters
 	ld a, [BattleType]
 	cp BATTLETYPE_FORCEITEM
-	ld a, [$d241] ; BufferMonItem1
+	ld a, [BaseItems]
 	jr z, .UpdateItem
 	
 ; Failing that, it's all up to chance
@@ -6566,16 +7362,16 @@ LoadEnemyMon: ; 3e8eb
 
 ; 25% chance of getting an item
 	call FarBattleRNG
-	cp a, $c0         ; $c0/$100 = 75%
+	cp a, $c0
 	ld a, NO_ITEM
 	jr c, .UpdateItem
 	
 ; From there, an 8% chance for Item2
 	call FarBattleRNG
-	cp a, $14          ; 8% of 25% = 2% Item2
-	ld a, [$d241]      ; BaseStatsItem1
+	cp a, $14 ; 8% of 25% = 2% Item2
+	ld a, [BaseItems]
 	jr nc, .UpdateItem
-	ld a, [$d242]      ; BaseStatsItem2
+	ld a, [BaseItems+1]
 	
 	
 .UpdateItem
@@ -6590,7 +7386,7 @@ LoadEnemyMon: ; 3e8eb
 	jr z, .InitDVs
 	
 ; ????
-	ld a, [$c671]
+	ld a, [EnemySubStatus5]
 	bit 3, a
 	jr z, .InitDVs
 	
@@ -6777,7 +7573,7 @@ LoadEnemyMon: ; 3e8eb
 	
 .Happiness
 ; Set happiness
-	ld a, 70 ; BASE_HAPPINESS
+	ld a, BASE_HAPPINESS
 	ld [EnemyMonHappiness], a
 ; Set level
 	ld a, [CurPartyLevel]
@@ -6872,8 +7668,8 @@ LoadEnemyMon: ; 3e8eb
 	
 .Moves
 ; ????
-	ld hl, $d23d
-	ld de, $d224
+	ld hl, BaseType1
+	ld de, EnemyMonType1
 	ld a, [hli]
 	ld [de], a
 	inc de
@@ -6932,52 +7728,54 @@ LoadEnemyMon: ; 3e8eb
 	call CopyBytes
 	
 .Finish
-; ????
-	ld hl, $d237
-	ld de, $d226
-	ld b, 5 ; # bytes to copy
-; Copy $d237-a to $d226-9
+; Only the first five base stats are copied...
+	ld hl, BaseStats
+	ld de, EnemyMonBaseStats
+	ld b, BaseSpecialDefense - BaseStats
 .loop
 	ld a, [hli]
 	ld [de], a
 	inc de
 	dec b
 	jr nz, .loop
-; Copy $d23f to $d22a
-	ld a, [$d23f]
+
+	ld a, [BaseCatchRate]
 	ld [de], a
 	inc de
-; Copy $d240 to $d22b
-	ld a, [$d240]
+
+	ld a, [BaseExp]
 	ld [de], a
-; copy TempEnemyMonSpecies to $d265
+
 	ld a, [TempEnemyMonSpecies]
 	ld [$d265], a
-; ????
-	call $343b
-; If wild, we're done
+
+	call GetPokemonName
+
+; Did we catch it?
 	ld a, [IsInBattle]
 	and a
 	ret z
+
 ; Update enemy nick
 	ld hl, StringBuffer1
 	ld de, EnemyMonNick
 	ld bc, PKMN_NAME_LENGTH
 	call CopyBytes
-; ????
+
+; Caught this mon
 	ld a, [TempEnemyMonSpecies]
 	dec a
 	ld c, a
-	ld b, $01
-	ld hl, $deb9
-	ld a, $03 ; PREDEF_
+	ld b, 1 ; set
+	ld hl, PokedexCaught
+	ld a, PREDEF_FLAG
 	call Predef
-; Fill EnemyMon stats
-	ld hl, EnemyMonAtk
+
+	ld hl, EnemyMonStats
 	ld de, $c6c1
-	ld bc, 2*(NUM_STATS-1) ; 2 bytes for each non-HP stat
+	ld bc, EnemyMonStatsEnd - EnemyMonStats
 	call CopyBytes
-; We're done
+
 	ret
 ; 3eb38
 
@@ -7225,85 +8023,104 @@ GetRoamMonDVs: ; 3fa19
 
 INCBIN "baserom.gbc", $3fa31, $3fc8b - $3fa31
 
-; I have no clue what most of this does
 
-BattleStartMessage:
-	ld a, [$d22d]
+BattleStartMessage ; 3fc8b
+	ld a, [IsInBattle]
 	dec a
-	jr z, .asm_3fcaa ; 0x3fc8f $19
-	ld de, $005e
-	call $3c23
+	jr z, .asm_3fcaa
+
+	ld de, SFX_SHINE
+	call StartSFX
 	call WaitSFX
-	ld c, $14
-	call $0468
+
+	ld c, 20
+	call DelayFrames
+
 	ld a, $e
 	ld hl, $5939
 	rst FarCall
-	ld hl, $47a9
-	jr .asm_3fd0e ; 0x3fca8 $64
+
+	ld hl, WantsToBattleText
+	jr .asm_3fd0e
+
 .asm_3fcaa
 	call $5a79
-	jr nc, .asm_3fcc2 ; 0x3fcad $13
+	jr nc, .asm_3fcc2
+
 	xor a
 	ld [$cfca], a
-	ld a, $1
+	ld a, 1
 	ld [hBattleTurn], a
-	ld a, $1
+	ld a, 1
 	ld [$c689], a
 	ld de, $0101
 	call $6e17
+
 .asm_3fcc2
 	ld a, $f
 	ld hl, $6b38
 	rst FarCall
-	jr c, .messageSelection ; 0x3fcc8 $21
+	jr c, .asm_3fceb
+
 	ld a, $13
 	ld hl, $6a44
 	rst FarCall
-	jr c, .asm_3fce0 ; 0x3fcd0 $e
-	ld hl, $c4ac
+	jr c, .asm_3fce0
+
+	hlcoord 12, 0
 	ld d, $0
 	ld e, $1
 	ld a, $47
-	call $2d83
-	jr .messageSelection ; 0x3fcde $b
+	call Predef
+	jr .asm_3fceb
+
 .asm_3fce0
-	ld a, $f
-	ld [$c2bd], a
-	ld a, [$d204]
+	ld a, $0f
+	ld [CryTracks], a
+	ld a, [TempEnemyMonSpecies]
 	call $37b6
-.messageSelection
-	ld a, [$d230]
-	cp $4
-	jr nz, .asm_3fcfd ; 0x3fcf0 $b
+
+.asm_3fceb
+	ld a, [BattleType]
+	cp BATTLETYPE_FISH
+	jr nz, .asm_3fcfd
+
 	ld a, $41
 	ld hl, $6086
 	rst FarCall
+
 	ld hl, HookedPokemonAttackedText
-	jr .asm_3fd0e ; 0x3fcfb $11
+	jr .asm_3fd0e
+
 .asm_3fcfd
 	ld hl, PokemonFellFromTreeText
-	cp $8
-	jr z, .asm_3fd0e ; 0x3fd02 $a
+	cp BATTLETYPE_TREE
+	jr z, .asm_3fd0e
 	ld hl, WildPokemonAppearedText2
 	cp $b
-	jr z, .asm_3fd0e ; 0x3fd09 $3
+	jr z, .asm_3fd0e
 	ld hl, WildPokemonAppearedText
+
 .asm_3fd0e
 	push hl
 	ld a, $b
 	ld hl, $4000
 	rst FarCall
+
 	pop hl
-	call $3ad5
+	call FarBattleTextBox
+
 	call $7830
+
 	ret nz
+
 	ld c, $2
 	ld a, $13
 	ld hl, $6a0a
 	rst FarCall
+
 	ret
-; 0x3fd26
+; 3fd26
 
 
 	dw $0000 ; padding
@@ -7340,10 +8157,388 @@ INCLUDE "stats/evos_attacks.asm"
 
 SECTION "bank11",DATA,BANK[$11]
 
-INCBIN "baserom.gbc", $44000, $44378 - $44000
+FruitTreeScript: ; 44000
+	3callasm BANK(GetCurTreeFruit), GetCurTreeFruit
+	loadfont
+	copybytetovar CurFruit
+	itemtotext $0, $0
+	2writetext FruitBearingTreeText
+	keeptextopen
+	3callasm BANK(TryResetFruitTrees), TryResetFruitTrees
+	3callasm BANK(CheckFruitTree), CheckFruitTree
+	iffalse .fruit
+	2writetext NothingHereText
+	closetext
+	2jump .end
+
+.fruit
+	2writetext HeyItsFruitText
+	copybytetovar CurFruit
+	giveitem $ff, 1
+	iffalse .packisfull
+	keeptextopen
+	2writetext ObtainedFruitText
+	3callasm BANK(PickedFruitTree), PickedFruitTree
+	specialsound
+	itemnotify
+	2jump .end
+
+.packisfull
+	keeptextopen
+	2writetext FruitPackIsFullText
+	closetext
+
+.end
+	loadmovesprites
+	end
+; 44041
+
+GetCurTreeFruit: ; 44041
+	ld a, [CurFruitTree]
+	dec a
+	call GetFruitTreeItem
+	ld [CurFruit], a
+	ret
+; 4404c
+
+TryResetFruitTrees: ; 4404c
+	ld hl, $dc1e
+	bit 4, [hl]
+	ret nz
+	jp ResetFruitTrees
+; 44055
+
+CheckFruitTree: ; 44055
+	ld b, 2
+	call GetFruitTreeFlag
+	ld a, c
+	ld [ScriptVar], a
+	ret
+; 4405f
+
+PickedFruitTree: ; 4405f
+	ld a, $41
+	ld hl, $609b
+	rst FarCall ; empty function
+
+	ld b, 1
+	jp GetFruitTreeFlag
+; 4406a
+
+ResetFruitTrees: ; 4406a
+	xor a
+	ld hl, FruitTreeFlags
+	ld [hli], a
+	ld [hli], a
+	ld [hli], a
+	ld [hl], a
+	ld hl, $dc1e
+	set 4, [hl]
+	ret
+; 44078
+
+GetFruitTreeFlag: ; 44078
+	push hl
+	push de
+	ld a, [CurFruitTree]
+	dec a
+	ld e, a
+	ld d, 0
+	ld hl, FruitTreeFlags
+	call BitTableFunc
+	pop de
+	pop hl
+	ret
+; 4408a
+
+GetFruitTreeItem: ; 4408a
+	push hl
+	push de
+	ld e, a
+	ld d, 0
+	ld hl, FruitTreeItems
+	add hl, de
+	ld a, [hl]
+	pop de
+	pop hl
+	ret
+; 44097
+
+FruitTreeItems: ; 44097
+	db BERRY
+	db BERRY
+	db BERRY
+	db BERRY
+	db PSNCUREBERRY
+	db PSNCUREBERRY
+	db BITTER_BERRY
+	db BITTER_BERRY
+	db PRZCUREBERRY
+	db PRZCUREBERRY
+	db MYSTERYBERRY
+	db MYSTERYBERRY
+	db ICE_BERRY
+	db ICE_BERRY
+	db MINT_BERRY
+	db BURNT_BERRY
+	db RED_APRICORN
+	db BLU_APRICORN
+	db BLK_APRICORN
+	db WHT_APRICORN
+	db PNK_APRICORN
+	db GRN_APRICORN
+	db YLW_APRICORN
+	db BERRY
+	db PSNCUREBERRY
+	db BITTER_BERRY
+	db PRZCUREBERRY
+	db ICE_BERRY
+	db MINT_BERRY
+	db BURNT_BERRY
+; 440b5
+
+FruitBearingTreeText: ; 440b5
+	text_jump _FruitBearingTreeText, BANK(_FruitBearingTreeText)
+	db "@"
+; 440ba
+
+HeyItsFruitText: ; 440ba
+	text_jump _HeyItsFruitText, BANK(_HeyItsFruitText)
+	db "@"
+; 440bf
+
+ObtainedFruitText: ; 440bf
+	text_jump _ObtainedFruitText, BANK(_ObtainedFruitText)
+	db "@"
+; 440c4
+
+FruitPackIsFullText: ; 440c4
+	text_jump _FruitPackIsFullText, BANK(_FruitPackIsFullText)
+	db "@"
+; 440c9
+
+NothingHereText: ; 440c9
+	text_jump _NothingHereText, BANK(_NothingHereText)
+	db "@"
+; 440ce
+
+
+
+AIChooseMove: ; 440ce
+; Score each move in EnemyMonMoves starting from Buffer1. Lower is better.
+; Pick the move with the lowest score.
+
+; Wildmons attack at random.
+	ld a, [IsInBattle]
+	dec a
+	ret z
+
+	ld a, [InLinkBattle]
+	and a
+	ret nz
+
+; No use picking a move if there's no choice.
+	ld a, $f
+	ld hl, $68d1
+	rst FarCall ; CheckLockedEnemyMove
+	ret nz
+
+
+; The default score is 20. Unusable moves are given a score of 80.
+	ld a, 20
+	ld hl, Buffer1
+	ld [hli], a
+	ld [hli], a
+	ld [hli], a
+	ld [hl], a
+
+; Don't pick disabled moves.
+	ld a, [EnemyDisabledMove]
+	and a
+	jr z, .CheckPP
+
+	ld hl, EnemyMonMove1
+	ld c, 0
+.CheckDisabledMove
+	cp [hl]
+	jr z, .ScoreDisabledMove
+	inc c
+	inc hl
+	jr .CheckDisabledMove
+.ScoreDisabledMove
+	ld hl, Buffer1
+	ld b, 0
+	add hl, bc
+	ld [hl], 80
+
+; Don't pick moves with 0 PP.
+.CheckPP
+	ld hl, Buffer1 - 1
+	ld de, EnemyMonPP
+	ld b, 0
+.CheckMovePP
+	inc b
+	ld a, b
+	cp EnemyMonMovesEnd - EnemyMonMoves + 1
+	jr z, .ApplyLayers
+	inc hl
+	ld a, [de]
+	inc de
+	and $3f
+	jr nz, .CheckMovePP
+	ld [hl], 80
+	jr .CheckMovePP
+
+
+; Apply AI scoring layers depending on the trainer class.
+.ApplyLayers
+	ld hl, $559f ; TrainerAI + 3 ; e:559c-5771
+
+	ld a, [$cfc0]
+	bit 0, a
+	jr nz, .asm_4412f
+
+	ld a, [TrainerClass]
+	dec a
+	ld bc, 7 ; Trainer2AI - Trainer1AI
+	call AddNTimes
+
+.asm_4412f
+	ld bc, (CHECK_FLAG << 8) | 0
+	push bc
+	push hl
+
+.CheckLayer
+	pop hl
+	pop bc
+
+	ld a, c
+	cp 16 ; up to 16 scoring layers
+	jr z, .asm_4415e
+
+	push bc
+	ld d, $e ; BANK(TrainerAI)
+	ld a, PREDEF_FLAG
+	call Predef
+	ld d, c
+	pop bc
+
+	inc c
+	push bc
+	push hl
+
+	ld a, d
+	and a
+	jr z, .CheckLayer
+
+	ld hl, AIScoringPointers
+	dec c
+	ld b, 0
+	add hl, bc
+	add hl, bc
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	ld a, BANK(AIScoring)
+	call FarJpHl
+
+	jr .CheckLayer
+
+.asm_4415e
+	ld hl, Buffer1
+	ld de, EnemyMonMoves
+	ld c, EnemyMonMovesEnd - EnemyMonMoves
+.asm_44166
+	ld a, [de]
+	inc de
+	and a
+	jr z, .asm_4415e
+
+	dec [hl]
+	jr z, .asm_44174
+
+	inc hl
+	dec c
+	jr z, .asm_4415e
+
+	jr .asm_44166
+
+.asm_44174
+	ld a, c
+.asm_44175
+	inc [hl]
+	dec hl
+	inc a
+	cp EnemyMonMovesEnd - EnemyMonMoves + 1
+	jr nz, .asm_44175
+
+	ld hl, Buffer1
+	ld de, EnemyMonMoves
+	ld c, EnemyMonMovesEnd - EnemyMonMoves
+.asm_44184
+	ld a, [de]
+	and a
+	jr nz, .asm_44189
+	ld [hl], a
+.asm_44189
+	ld a, [hl]
+	dec a
+	jr z, .asm_44191
+	xor a
+	ld [hli], a
+	jr .asm_44193
+.asm_44191
+	ld a, [de]
+	ld [hli], a
+.asm_44193
+	inc de
+	dec c
+	jr nz, .asm_44184
+
+.asm_44197
+	ld hl, Buffer1
+	call RNG
+	and 3
+	ld c, a
+	ld b, 0
+	add hl, bc
+	ld a, [hl]
+	and a
+	jr z, .asm_44197
+
+	ld [CurEnemyMove], a
+	ld a, c
+	ld [CurEnemyMoveNum], a
+	ret
+; 441af
+
+
+AIScoringPointers: ; 441af
+	dw AIScoring_RedStatus
+	dw AIScoring_RedStatMods
+	dw AIScoring_RedSuperEffective
+	dw AIScoring_Offensive
+	dw AIScoring_Smart
+	dw AIScoring_Opportunist
+	dw AIScoring_Aggressive
+	dw AIScoring_Cautious
+	dw AIScoring_StatusImmunity
+	dw AIScoring_Risky
+	dw AIScoring_None
+	dw AIScoring_None
+	dw AIScoring_None
+	dw AIScoring_None
+	dw AIScoring_None
+	dw AIScoring_None
+; 441cf
+
+
+INCBIN "baserom.gbc", $441cf, $44378 - $441cf
+
 
 PokedexDataPointerTable: ; 0x44378
 INCLUDE "stats/pokedex/entry_pointers.asm"
+
 
 INCBIN "baserom.gbc", $4456e, $44997 - $4456e
 
@@ -8255,7 +9450,7 @@ StatsScreenInit: ; 4dc8a
 	call $1ad2
 	ld a, $3e
 	ld hl, $753e
-	rst $8 ; this loads graphics
+	rst FarCall ; this loads graphics
 	pop hl
 	call JpHl
 	call $31f3
@@ -8332,7 +9527,7 @@ EggStatsScreen: ; 4e33a
 	xor a
 	ld [hBGMapMode], a
 	ld hl, $cda1
-	call $334e ; SetHPPal
+	call SetHPPal
 	ld b, $3
 	call GetSGBLayout
 	call $5f8f
@@ -8373,12 +9568,13 @@ EggStatsScreen: ; 4e33a
 	call $3786
 	ld a, $41
 	ld hl, $402d
-	rst $8
+	rst FarCall
 	call $6497
-	ld a, [$d129]
-	cp $6
+
+	ld a, [TempMonHappiness]
+	cp 6
 	ret nc
-	ld de, $00bb
+	ld de, SFX_2_BOOPS
 	call StartSFX
 	ret
 ; 0x4e3c0
@@ -8469,13 +9665,15 @@ PartyMenuSelect: ; 0x50457
 	add hl, bc
 	ld a, [hl]
 	ld [CurPartySpecies], a
-	ld de, $0008
+
+	ld de, SFX_READ_TEXT_2
 	call StartSFX
 	call WaitSFX
 	and a
 	ret
+
 .exitmenu
-	ld de, $0008
+	ld de, SFX_READ_TEXT_2
 	call StartSFX
 	call WaitSFX
 	scf
@@ -8758,12 +9956,12 @@ GetGender: ; 50bdd
 	push bc
 	ld a, [CurPartySpecies]
 	dec a
-	ld hl, BaseStats + 13 ; BASE_GENDER
-	ld bc, BaseStats1 - BaseStats
+	ld hl, BaseData + BaseGender - CurBaseData
+	ld bc, BaseData1 - BaseData
 	call AddNTimes
 	pop bc
 	
-	ld a, BANK(BaseStats)
+	ld a, BANK(BaseData)
 	call GetFarByte
 	
 	
@@ -8798,7 +9996,7 @@ GetGender: ; 50bdd
 
 INCBIN "baserom.gbc", $50c50, $51424 - $50c50
 
-BaseStats:
+BaseData:
 INCLUDE "stats/base_stats.asm"
 
 PokemonNames:
@@ -9154,7 +10352,7 @@ WildPokemonAppearedText2: ; 0x80793
 	db "appeared!", $58
 ; 0x807a9
 
-BattleText_0x807a9: ; 0x807a9
+WantsToBattleText: ; 0x807a9
 	db $0, $3f, $4f
 	db "wants to battle!", $58
 ; 0x807bd
@@ -9214,7 +10412,7 @@ BattleText_0x80880: ; 0x80880
 	db $0, $59, $4f
 	db "recovered with", $55
 	db "@"
-	text_from_ram $d073
+	text_from_ram StringBuffer1
 	db $0, ".", $58
 ; 0x80899
 
@@ -9222,7 +10420,7 @@ BattleText_0x80899: ; 0x80899
 	db $0, $5a, $4f
 	db "recovered PP using", $55
 	db "@"
-	text_from_ram $d073
+	text_from_ram StringBuffer1
 	db $0, ".", $58
 ; 0x808b6
 
@@ -9238,13 +10436,13 @@ BattleText_0x808d2: ; 0x808d2
 ; 0x808e7
 
 BattleText_0x808e7: ; 0x808e7
-	text_from_ram $d073
+	text_from_ram StringBuffer1
 	db $0, " #MON's", $4f
 	db "LIGHT SCREEN fell!", $58
 ; 0x80905
 
 BattleText_0x80905: ; 0x80905
-	text_from_ram $d073
+	text_from_ram StringBuffer1
 	db $0, " #MON's", $4f
 	db "REFLECT faded!", $58
 ; 0x8091f
@@ -9391,7 +10589,7 @@ BattleText_0x80b89: ; 0x80b89
 	db $0, $5a, $4f
 	db "fled using a", $55
 	db "@"
-	text_from_ram $d073
+	text_from_ram StringBuffer1
 	db $0, "!", $58
 ; 0x80ba0
 
@@ -9408,14 +10606,14 @@ RecoveredUsingText: ; 0x80bc2
 	db $0, $59, $4f
 	db "recovered using a", $55
 	db "@"
-	text_from_ram $d073
+	text_from_ram StringBuffer1
 	db $0, "!", $58
 ; 0x80bde
 
 BattleText_0x80bde: ; 0x80bde
 	db $0, $5a, "'s", $4f
 	db "@"
-	text_from_ram $d073
+	text_from_ram StringBuffer1
 	db $0, $55
 	db "activated!", $58
 ; 0x80bf3
@@ -9459,7 +10657,7 @@ BattleText_0x80c8a: ; 0x80c8a
 ; 0x80c9c
 
 BattleText_0x80c9c: ; 0x80c9c
-	text_from_ram $d073
+	text_from_ram StringBuffer1
 	db $0, " grew to", $4f
 	db "level @"
 	deciram $d143, $13
@@ -9538,7 +10736,7 @@ BecameConfusedText: ; 0x80d97
 
 BattleText_0x80dab: ; 0x80dab
 	db $0, "A @"
-	text_from_ram $d073
+	text_from_ram StringBuffer1
 	db $0, " rid", $4f
 	db $59, $55
 	db "of its confusion.", $58
@@ -9553,7 +10751,7 @@ BattleText_0x80de2: ; 0x80de2
 	db $0, $5a, "'s", $4f
 	db "hurt by", $55
 	db "@"
-	text_from_ram $d073
+	text_from_ram StringBuffer1
 	db $0, "!", $58
 ; 0x80df5
 
@@ -9561,7 +10759,7 @@ BattleText_0x80df5: ; 0x80df5
 	db $0, $5a, $4f
 	db "was released from", $55
 	db "@"
-	text_from_ram $d073
+	text_from_ram StringBuffer1
 	db $0, "!", $58
 ; 0x80e11
 
@@ -9607,7 +10805,7 @@ HungOnText: ; 0x80e99
 	db $0, $59, $4f
 	db "hung on with", $55
 	db "@"
-	text_from_ram $d073
+	text_from_ram StringBuffer1
 	db $0, "!", $58
 ; 0x80eb0
 
@@ -9631,7 +10829,7 @@ InfatuationText: ; 0x80eda
 DisabledMoveText: ; 0x80f02
 	db $0, $5a, "'s", $4f
 	db "@"
-	text_from_ram $d073
+	text_from_ram StringBuffer1
 	db $0, " is", $55
 	db "DISABLED!", $58
 ; 0x80f19
@@ -9775,7 +10973,7 @@ SketchedText: ; 0x81143
 	db $0, $5a, $4f
 	db "SKETCHED", $55
 	db "@"
-	text_from_ram $d073
+	text_from_ram StringBuffer1
 	db $0, "!", $58
 ; 0x81156
 
@@ -9788,7 +10986,7 @@ DestinyBondEffectText: ; 0x81156
 SpiteEffectText: ; 0x8117f
 	db $0, $59, "'s", $4f
 	db "@"
-	text_from_ram $d073
+	text_from_ram StringBuffer1
 	db $0, " was", $55
 	db "reduced by @"
 	deciram $d265, $11
@@ -9944,7 +11142,7 @@ LearnedMoveText: ; 0x813e6
 	db $0, $5a, $4f
 	db "learned", $55
 	db "@"
-	text_from_ram $d073
+	text_from_ram StringBuffer1
 	db $0, "!", $58
 ; 0x813f8
 
@@ -9961,7 +11159,7 @@ EvadedText: ; 0x81407
 WasDisabledText: ; 0x8141d
 	db $0, $59, "'s", $4f
 	db "@"
-	text_from_ram $d073
+	text_from_ram StringBuffer1
 	db $0, " was", $55
 	db "DISABLED!", $58
 ; 0x81435
@@ -9975,7 +11173,7 @@ TransformedTypeText: ; 0x81452
 	db $0, $5a, $4f
 	db "transformed into", $55
 	db "the @"
-	text_from_ram $d073
+	text_from_ram StringBuffer1
 	db $0, "-type!", $58
 ; 0x81476
 
@@ -9988,7 +11186,7 @@ TransformedText: ; 0x81499
 	db $0, $5a, $4f
 	db "TRANSFORMED into", $55
 	db "@"
-	text_from_ram $d073
+	text_from_ram StringBuffer1
 	db $0, "!", $58
 ; 0x814b4
 
@@ -10055,7 +11253,7 @@ ProtectedByText: ; 0x815a9
 	db $0, $59, "'s", $4f
 	db "protected by", $55
 	db "@"
-	text_from_ram $d073
+	text_from_ram StringBuffer1
 	db $0, "!", $58
 ; 0x815c1
 
@@ -10066,7 +11264,7 @@ MirrorMoveFailedText: ; 0x815c1
 StoleText: ; 0x815da
 	db $0, $5a, $4f
 	db "stole @"
-	text_from_ram $d073
+	text_from_ram StringBuffer1
 	db $0, $55
 	db "from its foe!", $58
 ; 0x815f7
@@ -10198,7 +11396,7 @@ ForesawAttackText: ; 0x81817
 ; 0x8182d
 
 BeatUpAttackText: ; 0x8182d
-	text_from_ram $d073
+	text_from_ram StringBuffer1
 	db $0, "'s", $4f
 	db "attack!", $57
 ; 0x8183b
@@ -10487,7 +11685,7 @@ HallOfFame3: ; 0x8640e
 
 	ld a, $5
 	ld hl, $4da0
-	rst $8
+	rst FarCall
 	ld hl, $d95e
 	ld a, [hl]
 	cp $c8
@@ -10496,11 +11694,11 @@ HallOfFame3: ; 0x8640e
 .asm_86436
 	ld a, $5
 	ld hl, $4b85
-	rst $8
+	rst FarCall
 	call $653f
 	ld a, $5
 	ld hl, $4b5f
-	rst $8
+	rst FarCall
 	xor a
 	ld [$c2cd], a
 	call $64c3
@@ -10508,7 +11706,7 @@ HallOfFame3: ; 0x8640e
 	ld b, a
 	ld a, $42
 	ld hl, $5847
-	rst $8
+	rst FarCall
 	ret
 ; 0x86455
 
@@ -16080,7 +17278,7 @@ StartTitleScreen: ; 10ed67
 	
 ; Play starting sound effect
 	call SFXChannelsOff
-	ld de, $0065
+	ld de, SFX_TITLE_SCREEN_ENTRANCE
 	call StartSFX
 	
 	ret
@@ -17784,7 +18982,36 @@ INCLUDE "stats/pokedex/entries_2.asm"
 
 SECTION "bank6F",DATA,BANK[$6F]
 
-INCBIN "baserom.gbc", $1bc000, $1be08d - $1bc000
+_FruitBearingTreeText: ; 0x1bc000
+	db $0, "It's a fruit-", $4f
+	db "bearing tree.", $57
+; 0x1bc01c
+
+_HeyItsFruitText: ; 0x1bc01c
+	db $0, "Hey! It's", $4f
+	db "@"
+	text_from_ram StringBuffer3
+	db $0, "!", $57
+; 0x1bc02d
+
+_ObtainedFruitText: ; 0x1bc02d
+	db $0, "Obtained", $4f
+	db "@"
+	text_from_ram StringBuffer3
+	db $0, "!", $57
+; 0x1bc03e
+
+_FruitPackIsFullText: ; 0x1bc03e
+	db $0, "But the PACK is", $4f
+	db "full…", $57
+; 0x1bc055
+
+_NothingHereText: ; 0x1bc055
+	db $0, "There's nothing", $4f
+	db "here…", $57
+; 0x1bc06b
+
+INCBIN "baserom.gbc", $1bc06b, $1be08d - $1bc06b
 
 
 SECTION "bank70",DATA,BANK[$70]

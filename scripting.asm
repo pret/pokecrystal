@@ -252,7 +252,7 @@ Script_jumptextfaceplayer: ; 0x96e45
 	ld [$d450], a
 	ld b, $25
 	ld hl, $6e79
-	jp $759d
+	jp ScriptJump
 ; 0x96e5f
 
 Script_jumptext: ; 0x96e5f
@@ -268,7 +268,7 @@ Script_jumptext: ; 0x96e5f
 	ld [$d450], a
 	ld b, $25
 	ld hl, $6e7a
-	jp $759d
+	jp ScriptJump
 ; 0x96e79
 
 INCBIN "baserom.gbc",$96e79,$96e81 - $96e79
@@ -286,7 +286,7 @@ Script_3jumptext: ; 0x96e81
 	ld [$d450], a
 	ld b, $25
 	ld hl, $6e7a
-	jp $759d
+	jp ScriptJump
 ; 0x96e9b
 
 Script_2writetext: ; 0x96e9b
@@ -550,13 +550,13 @@ Script_specialsound: ; 0x96fe4
 	ld hl, $543d
 	rst $8
 	ld a, [$d142]
-	cp $4
-	ld de, $009b
-	jr z, .asm_96ff7 ; 0x96ff2 $3
-	ld de, $0001
-.asm_96ff7
+	cp TM_HM
+	ld de, SFX_GET_TM
+	jr z, .play
+	ld de, SFX_ITEM
+.play
 	call StartSFX
-	call $3c55
+	call WaitSFX
 	ret
 ; 0x96ffe
 
@@ -681,7 +681,7 @@ Script_describedecoration: ; 0x970df
 	rst $8
 	ld h, d
 	ld l, e
-	jp $759d
+	jp ScriptJump
 ; 0x970ee
 
 Script_fruittree: ; 0x970ee
@@ -690,10 +690,10 @@ Script_fruittree: ; 0x970ee
 ;     tree_id (SingleByteParam)
 
 	call GetScriptByte
-	ld [$d03e], a
-	ld b, $11
-	ld hl, $4000
-	jp $759d
+	ld [CurFruitTree], a
+	ld b, BANK(FruitTreeScript)
+	ld hl, FruitTreeScript
+	jp ScriptJump
 ; 0x970fc
 
 Script_loadwilddata: ; 0x970fc
@@ -743,7 +743,7 @@ Script_scripttalkafter: ; 0x97125
 	ld l, a
 	ld a, [$d03e]
 	ld b, a
-	jp $759d
+	jp ScriptJump
 ; 0x97132
 
 Script_trainerstatus: ; 0x97132
@@ -877,7 +877,7 @@ Script_playsound: ; 0x971b7
 Script_waitbutton: ; 0x971c3
 ; script command 0x86
 
-	call $3c55
+	call WaitSFX
 	ret
 ; 0x971c7
 
@@ -1417,7 +1417,7 @@ Script_returnafterbattle: ; 0x97459
 	jr nz, .asm_97470 ; 0x97466 $8
 	ld b, $4
 	ld hl, $64c1
-	jp $759d
+	jp ScriptJump
 .asm_97470
 	bit 0, d
 	jr z, .asm_9747c ; 0x97472 $8
@@ -1510,14 +1510,14 @@ ScriptCall: ; 0x974cb
 	ld [hli], a
 	ld a, [ScriptPos]
 	ld [hli], a
-	ld a, [$d43b]
+	ld a, [ScriptPos + 1]
 	ld [hl], a
 	ld a, b
 	ld [ScriptBank], a
 	ld a, e
 	ld [ScriptPos], a
 	ld a, d
-	ld [$d43b], a
+	ld [ScriptPos + 1], a
 	ret
 ; 0x974f3
 
@@ -1539,7 +1539,7 @@ Script_2jump: ; 0x974fe
 	ld h, a
 	ld a, [ScriptBank]
 	ld b, a
-	jp $759d
+	jp ScriptJump
 ; 0x9750d
 
 Script_3jump: ; 0x9750d
@@ -1553,7 +1553,7 @@ Script_3jump: ; 0x9750d
 	ld l, a
 	call GetScriptByte
 	ld h, a
-	jp $759d
+	jp ScriptJump
 ; 0x9751c
 
 Script_2ptjump: ; 0x9751c
@@ -1570,7 +1570,7 @@ Script_2ptjump: ; 0x9751c
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	jp $759d
+	jp ScriptJump
 ; 0x9752c
 
 Script_iffalse: ; 0x9752c
@@ -1655,7 +1655,7 @@ Script_jumpstd: ; 0x9756e
 ;     predefined_script (MultiByteParam)
 
 	call $757b
-	jr Unknown_9759d ; 0x97571 $2a
+	jr ScriptJump ; 0x97571 $2a
 ; 0x97573
 
 Script_callstd: ; 0x97573
@@ -1693,13 +1693,13 @@ Unknown_97596: ; 0x97596
 	ret
 ; 0x9759d
 
-Unknown_9759d: ; 0x9759d
+ScriptJump: ; 0x9759d
 	ld a, b
 	ld [ScriptBank], a
 	ld a, l
 	ld [ScriptPos], a
 	ld a, h
-	ld [$d43b], a
+	ld [ScriptPos + 1], a
 	ret
 ; 0x975aa
 
@@ -3041,7 +3041,7 @@ Unknown_0x97b9a: ; 0x97b9a
     ld [ScriptPos], a
     ld a, [hl]
     ld d, a
-    ld [$d43b], a
+    ld [ScriptPos + 1], a
     and a
     ret
 .asm_97bbe

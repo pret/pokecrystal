@@ -510,7 +510,7 @@ PlayerSubStatus1: ; c668
 ; 6 encore
 ; 5 endure
 ; 4 perish song
-; 3 
+; 3 identified
 ; 2 protect
 ; 1 curse
 ; 0 nightmare
@@ -528,7 +528,7 @@ PlayerSubStatus2: ; c669
 	ds 1
 PlayerSubStatus3: ; c66a
 ; bit
-; 7 confusion
+; 7 confused
 ; 6 flying
 ; 5 underground
 ; 4 charged
@@ -545,19 +545,19 @@ PlayerSubStatus4: ; c66b
 ; 4 substitute
 ; 3
 ; 2 focus energy
-; 1
+; 1 mist
 ; 0 bide: unleashed energy
 	ds 1
 PlayerSubStatus5: ; c66c
 ; bit
-; 7
+; 7 cant run
 ; 6 destiny bond
 ; 5 lock-on
 ; 4
 ; 3
 ; 2
 ; 1
-; 0
+; 0 toxic
 	ds 1
 
 EnemySubStatus1: ; c66d
@@ -596,20 +596,22 @@ EnemyRolloutCount: ; c67a
 EnemyConfuseCount: ; c67b
 	ds 1
 	ds 1
-EnemyEncoreCount: ; c67d
+EnemyDisableCount: ; c67d
 	ds 1
-EnemyPerishCount: ; c67e
+EnemyEncoreCount: ; c67e
 	ds 1
+EnemyPerishCount: ; c67f
 	ds 1
 EnemyFuryCutterCount: ; c680
 	ds 1
+	ds 1
 
-PlayerDamageTaken: ; c681
+PlayerDamageTaken: ; c682
 	ds 2
-EnemyDamageTaken: ; c683
+EnemyDamageTaken: ; c684
 	ds 2
 
-	ds 4
+	ds 3
 	
 	ds 1
 
@@ -688,7 +690,7 @@ AlreadyDisobeyed: ; c6f4
 
 DisabledMove: ; c6f5
 	ds 1
-EnemyEncoredMove: ; c6f6
+EnemyDisabledMove: ; c6f6
 	ds 1
 	ds 1
 
@@ -706,13 +708,15 @@ AlreadyFailed: ; c6fb
 	ds 3
 	
 PlayerScreens: ; c6ff
-; bit 4: reflect
-; bit 3: light screen
+; bit
+; 4 reflect
+; 3 light screen
+; 2 safeguard
+; 0 spikes
 	ds 1
 
 EnemyScreens: ; c700
-; bit 4: reflect
-; bit 3: light screen	
+; see PlayerScreens
 	ds 1
 
 	ds 1
@@ -893,7 +897,14 @@ StartFlypoint: ; d005
 EndFlypoint: ; d006
 	ds 1
 	
-	ds 108
+	ds 55
+
+CurFruitTree: ; d03e
+	ds 1
+CurFruit: ; d03f
+	ds 1
+
+	ds 51
 
 StringBuffer1: ; d073
 	ds 19
@@ -918,7 +929,12 @@ VramState: ; d0ed
 ;        flickers when climbing waterfall
 	ds 1
 
-	ds 26
+	ds 24
+
+CurItem: ; d106
+	ds 1
+
+	ds 1
 	
 CurPartySpecies: ; d108
 	ds 1
@@ -1043,17 +1059,16 @@ MagikarpLength: ; d1ea
 Buffer2: ; d1eb
 	ds 1
 
-SECTION "prng2",BSS[$d1fa]
+SECTION "BattleMons2",BSS[$d1fa]
 LinkBattleRNs: ; d1fa
 	ds 10
-
-SECTION "BattleMons2",BSS[$d204]
 
 TempEnemyMonSpecies: ; d204
 	ds 1
 TempBattleMonSpecies: ; d205
 	ds 1
-	
+
+EnemyMon:
 EnemyMonSpecies: ; d206
 	ds 1
 EnemyMonItem: ; d207
@@ -1068,6 +1083,7 @@ EnemyMonMove3: ; d20a
 	ds 1
 EnemyMonMove4: ; d20b
 	ds 1
+EnemyMonMovesEnd
 
 EnemyMonDVs:
 EnemyMonAtkDefDV: ; d20c
@@ -1105,6 +1121,7 @@ EnemyMonMaxHPHi: ; d218
 EnemyMonMaxHPLo: ; d219
 	ds 1
 
+EnemyMonStats:
 EnemyMonAtk: ; d21a
 	ds 2
 EnemyMonDef: ; d21c
@@ -1115,14 +1132,23 @@ EnemyMonSpclAtk: ; d220
 	ds 2
 EnemyMonSpclDef: ; d222
 	ds 2
+EnemyMonStatsEnd
 
 EnemyMonType1: ; d224
 	ds 1
 EnemyMonType2: ; d225
 	ds 1
 
+EnemyMonBaseStats: ; d226
+	ds 5
 
-SECTION "Battle",BSS[$d22d]
+EnemyMonCatchRate: ; d22b
+	ds 1
+EnemyMonBaseExp: ; d22c
+	ds 1
+
+EnemyMonEnd
+
 
 IsInBattle: ; d22d
 ; 0: overworld
@@ -1158,18 +1184,66 @@ OtherTrainerID: ; d231
 ; (Joey, Mikey, Albert, etc.)
 	ds 1
 
-	ds 2
+	ds 1
+
+TrainerClass: ; d233
+	ds 1
 
 UnownLetter: ; d234
 	ds 1
 
 	ds 1
 
-CurBaseStats: ; d236
-	ds 32
+CurBaseData: ; d236
+BaseDexNo: ; d236
+	ds 1
+BaseStats: ; d237
+BaseHP: ; d237
+	ds 1
+BaseAttack: ; d238
+	ds 1
+BaseDefense: ; d239
+	ds 1
+BaseSpeed: ; d23a
+	ds 1
+BaseSpecialAttack: ; d23b
+	ds 1
+BaseSpecialDefense: ; d23c
+	ds 1
+BaseType: ; d23d
+BaseType1: ; d23d
+	ds 1
+BaseType2: ; d23e
+	ds 1
+BaseCatchRate: ; d23f
+	ds 1
+BaseExp: ; d240
+	ds 1
+BaseItems: ; d241
+	ds 2
+BaseGender: ; d243
+	ds 1
+BaseUnknown1: ; d244
+	ds 1
+BaseEggSteps: ; d245
+	ds 1
+BaseUnknown2: ; d246
+	ds 1
+BasePicSize: ; d247
+	ds 1
+BasePadding: ; d248
+	ds 4
+BaseGrowthRate: ; d24c
+	ds 1
+BaseEggGroups: ; d24d
+	ds 1
+BaseTMHM: ; d24e
+	ds 8
+
 
 CurDamage: ; d256
 	ds 2
+
 
 SECTION "TimeOfDay",BSS[$d269]
 
@@ -1482,6 +1556,10 @@ Box13Name: ; dbe1
 Box14Name: ; dbea
 	ds 9
 
+SECTION "fruittrees", BSS[$dc27]
+FruitTreeFlags: ; dc27
+	ds 1
+
 SECTION "steps", BSS[$dc73]
 StepCount: ; dc73
 	ds 1
@@ -1620,6 +1698,7 @@ PartyMon5OT: ; de2b
 PartyMon6OT: ; de36
 	ds 11
 
+PartyMonNicknames:
 PartyMon1Nickname: ; de41
 	ds 11
 PartyMon2Nickname: ; de4c

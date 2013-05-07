@@ -28,7 +28,7 @@ MapCeladonDeptStore6FSignpost5Script: ; 0x71180
 	2writetext UnknownText_0x71250
 UnknownScript_0x71184: ; 0x71184
 	special $0051
-	loadmenudata $5203
+	loadmenudata MenuDataHeader_0x71203
 	interpretmenu2
 	writebackup
 	if_equal $1, UnknownScript_0x7119a
@@ -89,8 +89,24 @@ UnknownScript_0x711fc: ; 0x711fc
 	2jump UnknownScript_0x71184
 ; 0x71203
 
-; menu data
-INCBIN "baserom.gbc",$71203,$47
+
+MenuDataHeader_0x71203: ; 0x71203
+	db $40 ; flags
+	db 02, 00 ; start coords
+	db 11, 19 ; end coords
+	dw MenuData2_0x7120b
+	db 1 ; default option
+; 0x7120b
+
+MenuData2_0x7120b: ; 0x7120b
+	db $80 ; flags
+	db 4 ; items
+	db "FRESH WATER  ¥200@"
+	db "SODA POP     ¥300@"
+	db "LEMONADE     ¥350@"
+	db "CANCEL@"
+; 0x71249
+
 
 MapCeladonDeptStore6FSignpost0Script: ; 0x7124a
 	jumptext UnknownText_0x7133e

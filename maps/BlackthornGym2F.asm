@@ -11,11 +11,59 @@ BlackthornGym2F_MapScriptHeader: ; 0x195722
 ; 0x195727
 
 UnknownScript_0x195727: ; 0x195727
-	writecmdqueue $572b
+	writecmdqueue CmdQueue_0x19572b
 	return
 ; 0x19572b
 
-INCBIN "baserom.gbc",$19572b,$33
+CmdQueue_0x19572b: ; 0x19572b
+	dbw 2, StoneTable_0x195730 ; check if any stones are sitting on a warp
+	db 0, 0 ; filler
+; 0x195730
+
+StoneTable_0x195730: ; 0x195730
+	db 5, 4 ; warp, person
+	dw UnknownScript_0x19573d
+
+	db 3, 5 ; warp, person
+	dw UnknownScript_0x195742
+
+	db 4, 6 ; warp, person
+	dw UnknownScript_0x195747
+
+	db $ff ; end
+; 0x19573d
+
+UnknownScript_0x19573d: ; 0x19573d
+	disappear 4
+	2jump UnknownScript_0x19574c
+; 0x195742
+
+UnknownScript_0x195742: ; 0x195742
+	disappear 5
+	2jump UnknownScript_0x19574c
+; 0x195747
+
+UnknownScript_0x195747: ; 0x195747
+	disappear 6
+	2jump UnknownScript_0x19574c
+; 0x19574c
+
+UnknownScript_0x19574c: ; 0x19574c
+	pause 30
+	2call UnknownScript_0x195758
+	loadfont
+	2writetext UnknownText_0x1958a5
+	closetext
+	loadmovesprites
+	end
+; 0x195758
+
+UnknownScript_0x195758: ; 0x195758
+	playsound $001b
+	earthquake 80
+	end
+; 0x19575e
+
 
 UnknownScript_0x19575e: ; 0x19575e
 	jumpstd $000e
