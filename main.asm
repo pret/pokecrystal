@@ -2108,7 +2108,17 @@ GetTileType: ; 185d
 	ret
 ; 1875
 
-INCBIN "baserom.gbc", $1875, $2063 - $1875
+INCBIN "baserom.gbc", $1875, $2009 - $1875
+
+PlayClickSFX: ; $2009
+	push de
+	ld de, SFX_READ_TEXT_2
+	call StartSFX
+	pop de
+	ret
+; 0x2012
+
+INCBIN "baserom.gbc", $2012, $2063 - $2012
 
 AskSerial: ; 2063
 ; send out a handshake while serial int is off
@@ -6004,7 +6014,301 @@ BoxNameInputUpper:
 	db "- ? ! ♂ ♀ / . , &"
 	db "lower  DEL   END "
 
-INCBIN "baserom.gbc", $11e5d, $12976 - $11e5d
+INCBIN "baserom.gbc", $11e5d, $125cd - $11e5d
+
+OpenMenu: ; 0x125cd
+	call $1fbf
+	ld de, SFX_MENU
+	call StartSFX
+	ld a, $1
+	ld hl, $6454
+	rst FarCall
+	ld hl, $d84d
+	bit 2, [hl]
+	ld hl, $66d3
+	jr z, .asm_125e9
+	ld hl, $66db ; draw the menu a little lower
+.asm_125e9
+	call $1d35
+	call SetUpMenuItems
+	ld a, [$d0d2]
+	ld [$cf88], a
+	call DrawMenuAccount_
+	call $1e7f
+	call $68d1
+	call $2e31
+	call $2e20
+	ld a, $1
+	ld hl, $64bf
+	rst $8
+	call $68de
+	call $0485
+	jr .asm_12621
+	call $1ad2
+	call $0485
+	call $6829
+	ld a, [$d0d2]
+	ld [$cf88], a
+.asm_12621
+	call MenuWait
+	jr c, .exit
+	call DrawMenuAccount
+	ld a, [$cf88]
+	ld [$d0d2], a
+	call PlayClickSFX
+	call $1bee
+	call $67e5
+	ld hl, .MenuPointerTable
+	ld e, a
+	ld d, $0
+	add hl, de
+	add hl, de
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	jp [hl]
+	
+.MenuPointerTable: ; $6644
+	 dw $6612
+	 dw $6652
+	 dw $66a2
+	 dw $6699
+	 dw $6691
+	 dw $665f
+	 dw $66b1
+
+.exit
+	ld a, [$ffd8]
+	push af
+	ld a, $1
+	ld [hOAMUpdate], a
+	call $0e5f
+	pop af
+	ld [hOAMUpdate], a
+	call $1c07
+	call $2dcf
+	call $0485
+	ret
+
+MenuWait: ; 0x12669
+; returns nc if A was pressed, c if B.
+	xor a
+	ld [hBGMapMode], a
+	call DrawMenuAccount
+	call $1e70
+	ld a, $ff
+	ld [MenuSelection], a
+.loop
+	call PrintMenuAccount
+	call $1f1a
+	ld a, [$cf73]
+	cp BUTTON_B
+	jr z, .b_button
+	cp BUTTON_A
+	jr z, .a_button
+	jr .loop
+.a_button
+	call PlayClickSFX
+	and a
+	ret
+.b_button
+	scf
+	ret
+; 0x12691
+
+
+INCBIN "baserom.gbc", $12691, $12721 - $12691
+
+MenuStringDex: ; 0x12721
+	db "#DEX@"
+
+MenuStringMon: ; 0x12726
+	db "#MON@"
+
+MenuStringPack: ; 0x1272b
+	db "PACK@"
+
+MenuStringProfile: ; 0x12730
+	db $52, "@"
+
+MenuStringSave: ; 0x12732
+	db "SAVE@"
+
+MenuStringOption: ; 0x12737
+	db "OPTION@"
+
+MenuStringExit: ; 0x1273e
+	db "EXIT@"
+
+MenuStringGear: ; 0x12743
+	db $24, "GEAR@"
+
+MenuStringQuit: ; 0x12749
+	db "QUIT@"
+
+MenuStringDescDex: ; 0x1274e
+	db "#MON", $4e, "database@"
+
+MenuStringDescParty: ; 0x1275c
+	db "Party ", $4a, $4e, "status@"
+
+MenuStringDescPack: ; 0x1276b
+	db "Contains", $4e, "items@"
+
+MenuStringDescGear: ; 0x1277a
+	db "Trainer's", $4e, "key device@"
+
+MenuStringDescProfile: ; 0x1278e
+	db "Your own", $4e, "status@"
+
+MenuStringDescSave: ; 0x1279e
+	db "Save your", $4e, "progress@"
+
+MenuStringDescOption: ; 0x127b1
+	db "Change", $4e, "settings@"
+
+MenuStringDescExit: ; 0x127c1
+	db "Close this", $4e, "menu@"
+
+MenuStringDescRetire: ; 0x127d1
+	db "Quit and", $4e, "be judged.@"
+
+; 0x127e5
+
+INCBIN "baserom.gbc", $127e5, $12800 - $127e5
+
+WriteMenuAccount:
+	push de
+	ld a, [MenuSelection]
+	cp $ff
+	jr z, .none 
+	call GetMenuAccountTextPointer
+	inc hl
+	inc hl
+	inc hl
+	inc hl
+	ld a, [hli]
+	ld d, [hl]
+	ld e, a
+	pop hl
+	call PlaceString
+	ret
+.none
+	pop de
+	ret
+
+GetMenuAccountTextPointer: ; 0x12819
+	ld e, a
+	ld d, $0
+	ld hl, $cf97 ; table is dynamic and stored in memory
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	add hl, de
+	add hl, de
+	add hl, de
+	add hl, de
+	add hl, de
+	add hl, de
+	ret
+
+SetUpMenuItems: ; 4:6829 = 0x12829
+	xor a
+	ld [$cf76], a
+	call $688d
+	ld hl, $d84c
+	bit 0, [hl]
+	jr z, .no_pokedex
+	ld a, $0
+	call AppendMenuList
+.no_pokedex
+	ld a, [PartyCount]
+	and a
+	jr z, .no_pokemon
+	ld a, $1
+	call AppendMenuList
+.no_pokemon
+	ld a, [InLinkBattle]
+	and a
+	jr nz, .no_pack
+	ld hl, $d84d
+	bit 2, [hl]
+	jr nz, .no_pack
+	ld a, $2
+	call AppendMenuList
+.no_pack
+	ld hl, $d957
+	bit 7, [hl]
+	jr z, .no_exit
+	ld a, $7
+	call AppendMenuList
+.no_exit
+	ld a, $3
+	call AppendMenuList
+	ld a, [InLinkBattle]
+	and a
+	jr nz, .no_save
+	ld hl, $d84d
+	bit 2, [hl]
+	ld a, $8
+	jr nz, .write
+	ld a, $4
+.write
+	call AppendMenuList
+.no_save
+	ld a, $5
+	call AppendMenuList
+	ld a, $6
+	call AppendMenuList
+	ld a, c
+	ld [MenuItemsList], a
+	ret
+
+FillMenuList: ; 0x1288d
+	xor a
+	ld hl, MenuItemsList
+	ld [hli], a
+	ld a, $ff
+	ld bc, $000f
+	call ByteFill
+	ld de, MenuItemsList+1
+	ld c, 0
+	ret
+
+AppendMenuList: ; 0x128a0
+	ld [de], a
+	inc de
+	inc c
+	ret
+
+DrawMenuAccount_:; 0x128a4
+	jp DrawMenuAccount
+
+PrintMenuAccount: ; 4:68a7 0x128a7
+	call IsMenuAccountOn
+	ret z
+	call DrawMenuAccount
+	decoord 0, 14 ; $c5b8
+	jp $6800
+
+DrawMenuAccount: ; 4:68b4 0x128b4
+	call IsMenuAccountOn
+	ret z
+	hlcoord 0, 13 ; $c5a4
+	ld bc, $050a
+	call ClearBox
+	hlcoord 0, 13 ; $c5a4
+	ld b, $3
+	ld c, $8
+	jp TextBoxPalette
+
+IsMenuAccountOn: ; 0x128cb
+	ld a, [Options2]
+	and $1
+	ret
+; 0x128d1
+
+INCBIN "baserom.gbc", $128d1, $12976 - $128d1
 
 OpenPartyMenu: ; $12976
 	ld a, [PartyCount]
@@ -6070,7 +6374,7 @@ PokemonActionSubmenu ; 0x12a88
 	ld hl, $4d19
 	rst FarCall
 	call $389c
-	ld a, [$cf74] ; menu selection?
+	ld a, [MenuSelection]
 	ld hl, PokemonSubmenuActionPointerTable
 	ld de, $0003 ; skip 3 bytes each time
 	call IsInArray
@@ -17593,7 +17897,7 @@ Function117b4f:
 	ld [hl], a
 	ret
 .asm_117b8c
-	call $2009
+	call PlayClickSFX
 	ld a, [$cf64]
 	and a
 	jr nz, .asm_117ba4 ; 0x117b93 $f
