@@ -391,19 +391,16 @@ AIScoring_Smart: ; 386be
 
 
 AIScoring_Sleep: ; 387e3
-	ld b, $8
-	call Function_0x392ca
-
+	ld b, EFFECT_DREAM_EATER
+	call AIHasMove
 	jr c, .asm_387f0
 
-	ld b, $6b
-	call Function_0x392ca
-
+	ld b, EFFECT_NIGHTMARE
+	call AIHasMove
 	ret nc
 
 .asm_387f0
 	call Function_0x39527
-
 	ret c
 	dec [hl]
 	dec [hl]
@@ -413,15 +410,13 @@ AIScoring_Sleep: ; 387e3
 
 AIScoring_LeechHit: ; 387f7
 	push hl
-	ld a, $1
+	ld a, 1
 	ld [hBattleTurn], a
-	ld hl, $47c8
-	ld a, $d
-	rst FarCall
-
+	callab Function0x347c8
 	pop hl
+
 	ld a, [$d265]
-	cp $a
+	cp 10 ; 1.0
 	jr c, .asm_38815
 
 	ret z
@@ -564,31 +559,24 @@ AIScoring_LockOn: ; 3881d
 
 AIScoring_Explosion: ; 388a6
 	push hl
-	ld a, $d
-	ld hl, $49f4
-	rst FarCall
-
+	callba Function0x349f4
 	pop hl
 	jr nc, .asm_388b7
 
 	push hl
-	call Function_0x38e2e
-
+	call AICheckLastPlayerMon
 	pop hl
 	jr nz, .asm_388c6
 
-
 .asm_388b7
 	call AICheckEnemyHalfHP
-
 	jr c, .asm_388c6
 
 	call AICheckEnemyQuarterHP
-
 	ret nc
-	call RNG
 
-	cp $14
+	call RNG
+	cp 20
 	ret c
 
 .asm_388c6
@@ -916,9 +904,7 @@ AIScoring_Bide: ; 38a1e
 
 AIScoring_Whirlwind: ; 38a2a
 	push hl
-	ld hl, $484e
-	ld a, $d
-	rst FarCall
+	callab Function0x3484e
 	ld a, [$c716]
 	cp $a
 	pop hl
@@ -1171,7 +1157,7 @@ AIScoring_SpeedDownHit: ; 38b40
 	call AICompareSpeed
 	ret c
 	call RNG
-	cp $1e
+	cp 30
 	ret c
 	dec [hl]
 	dec [hl]
@@ -1198,7 +1184,7 @@ AIScoring_HyperBeam: ; 38b63
 
 .asm_38b72
 	call RNG
-	cp $28
+	cp 40
 	ret c
 	inc [hl]
 	call Function_0x39527
@@ -1725,7 +1711,6 @@ AIScoring_Conversion2: ; 38d98
 
 AIScoring_Disable: ; 38dd1
 	call AICompareSpeed
-
 	jr nc, .asm_38df3
 
 	push hl
@@ -1738,8 +1723,7 @@ AIScoring_Disable: ; 38dd1
 	jr nc, .asm_38dee
 
 	call RNG
-
-	cp $64
+	cp 100
 	ret c
 	dec [hl]
 	ret
@@ -1751,8 +1735,7 @@ AIScoring_Disable: ; 38dd1
 
 .asm_38df3
 	call RNG
-
-	cp $14
+	cp 20
 	ret c
 	inc [hl]
 	ret
@@ -1761,28 +1744,23 @@ AIScoring_Disable: ; 38dd1
 
 AIScoring_MeanLook: ; 38dfb
 	call AICheckEnemyHalfHP
-
 	jr nc, .asm_38e24
 
 	push hl
-	call Function_0x38e2e
-
+	call AICheckLastPlayerMon
 	pop hl
 	jp z, AIDiscourageMove
 
 	ld a, [EnemySubStatus5]
-	bit 0, a
+	bit SUBSTATUS_TOXIC, a
 	jr nz, .asm_38e26
 
 	ld a, [PlayerSubStatus1]
-	and $c9
+	and 1<<SUBSTATUS_IN_LOVE | 1<<SUBSTATUS_ENCORED | 1<<SUBSTATUS_IDENTIFIED | 1<<SUBSTATUS_NIGHTMARE
 	jr nz, .asm_38e26
 
 	push hl
-	ld hl, $484e
-	ld a, $d
-	rst FarCall
-
+	callab Function0x3484e
 	ld a, [$c716]
 	cp $b
 	pop hl
@@ -1794,7 +1772,6 @@ AIScoring_MeanLook: ; 38dfb
 
 .asm_38e26
 	call Function_0x39521
-
 	ret c
 	dec [hl]
 	dec [hl]
@@ -1803,7 +1780,7 @@ AIScoring_MeanLook: ; 38dfb
 ; 38e2e
 
 
-Function_0x38e2e: ; 38e2e
+AICheckLastPlayerMon: ; 38e2e
 	ld a, [PartyCount]
 	ld b, a
 	ld c, 0
@@ -1832,7 +1809,6 @@ Function_0x38e2e: ; 38e2e
 
 AIScoring_Nightmare: ; 38e4a
 	call Function_0x39527
-
 	ret c
 	dec [hl]
 	ret
@@ -1841,7 +1817,7 @@ AIScoring_Nightmare: ; 38e4a
 
 AIScoring_FlameWheel: ; 38e50
 	ld a, [EnemyMonStatus]
-	bit 5, a
+	bit FRZ, a
 	ret z
 	dec [hl]
 	dec [hl]
@@ -1854,34 +1830,30 @@ AIScoring_FlameWheel: ; 38e50
 
 AIScoring_Curse: ; 38e5c
 	ld a, [EnemyMonType1]
-	cp $8
-	jr z, .asm_38e95
-
+	cp GHOST
+	jr z, .ghostcurse
 	ld a, [EnemyMonType2]
-	cp $8
-	jr z, .asm_38e95
+	cp GHOST
+	jr z, .ghostcurse
 
 	call AICheckEnemyHalfHP
-
 	jr nc, .asm_38e93
 
 	ld a, [EnemyAtkLevel]
 	cp $b
 	jr nc, .asm_38e93
-
 	cp $9
 	ret nc
-	ld a, [BattleMonType1]
-	cp $8
-	jr z, .asm_38e92
 
-	cp $14
+	ld a, [BattleMonType1]
+	cp GHOST
+	jr z, .asm_38e92
+	cp FIRE
 	ret nc
 	ld a, [BattleMonType2]
-	cp $14
+	cp FIRE
 	ret nc
 	call Function_0x39521
-
 	ret c
 	dec [hl]
 	dec [hl]
@@ -1890,30 +1862,24 @@ AIScoring_Curse: ; 38e5c
 .asm_38e90
 	inc [hl]
 	inc [hl]
-
 .asm_38e92
 	inc [hl]
-
 .asm_38e93
 	inc [hl]
 	ret
 
-.asm_38e95
+.ghostcurse
 	ld a, [PlayerSubStatus1]
-	bit 1, a
+	bit SUBSTATUS_CURSE, a
 	jp nz, AIDiscourageMove
 
 	push hl
-	ld a, $d
-	ld hl, $49f4
-	rst FarCall
-
+	callba Function0x349f4
 	pop hl
 	jr nc, .asm_38eb0
 
 	push hl
-	call Function_0x38e2e
-
+	call AICheckLastPlayerMon
 	pop hl
 	jr nz, .asm_38e90
 
@@ -1922,24 +1888,21 @@ AIScoring_Curse: ; 38e5c
 
 .asm_38eb0
 	push hl
-	call Function_0x38e2e
-
+	call AICheckLastPlayerMon
 	pop hl
 	jr z, .asm_38ecb
 
 
 .asm_38eb7
 	call AICheckEnemyQuarterHP
-
 	jp nc, .asm_38e90
 
 	call AICheckEnemyHalfHP
-
 	jr nc, .asm_38e92
 
 	call AICheckEnemyMaxHP
-
 	ret nc
+
 	ld a, [PlayerTurnsTaken]
 	and a
 	ret nz
@@ -1960,40 +1923,36 @@ AIScoring_Protect: ; 38ed2
 	jr nz, .asm_38f13
 
 	ld a, [PlayerSubStatus5]
-	bit 5, a
+	bit SUBSTATUS_LOCK_ON, a
 	jr nz, .asm_38f14
 
 	ld a, [PlayerFuryCutterCount]
-	cp $3
+	cp 3
 	jr nc, .asm_38f0d
 
 	ld a, [PlayerSubStatus3]
-	bit 4, a
+	bit SUBSTATUS_CHARGED, a
 	jr nz, .asm_38f0d
 
 	ld a, [PlayerSubStatus5]
-	bit 0, a
+	bit SUBSTATUS_TOXIC, a
 	jr nz, .asm_38f0d
-
 	ld a, [PlayerSubStatus4]
-	bit 7, a
+	bit SUBSTATUS_LEECH_SEED, a
 	jr nz, .asm_38f0d
-
 	ld a, [PlayerSubStatus1]
-	bit 1, a
+	bit SUBSTATUS_CURSE, a
 	jr nz, .asm_38f0d
 
-	bit 6, a
+	bit SUBSTATUS_ENCORED, a
 	jr z, .asm_38f14
 
 	ld a, [PlayerRolloutCount]
-	cp $3
+	cp 3
 	jr c, .asm_38f14
-
 
 .asm_38f0d
 	call Function_0x39521
-
 	ret c
 	dec [hl]
 	ret
@@ -2003,8 +1962,7 @@ AIScoring_Protect: ; 38ed2
 
 .asm_38f14
 	call RNG
-
-	cp $14
+	cp 20
 	ret c
 	inc [hl]
 	inc [hl]
@@ -2016,30 +1974,26 @@ AIScoring_Foresight: ; 38f1d
 	ld a, [EnemyAccLevel]
 	cp $5
 	jr c, .asm_38f41
-
 	ld a, [PlayerEvaLevel]
 	cp $a
 	jr nc, .asm_38f41
 
 	ld a, [BattleMonType1]
-	cp $8
+	cp GHOST
 	jr z, .asm_38f41
-
 	ld a, [BattleMonType2]
-	cp $8
+	cp GHOST
 	jr z, .asm_38f41
 
 	call RNG
-
-	cp $14
+	cp 20
 	ret c
 	inc [hl]
 	ret
 
 .asm_38f41
 	call RNG
-
-	cp $64
+	cp 100
 	ret c
 	dec [hl]
 	dec [hl]
@@ -2049,10 +2003,7 @@ AIScoring_Foresight: ; 38f1d
 
 AIScoring_PerishSong: ; 38f4a
 	push hl
-	ld hl, $49f4
-	ld a, $d
-	rst FarCall
-
+	callab Function0x349f4
 	pop hl
 	jr c, .asm_38f75
 
@@ -2061,17 +2012,15 @@ AIScoring_PerishSong: ; 38f4a
 	jr nz, .asm_38f6f
 
 	push hl
-	ld hl, $484e
-	ld a, $d
-	rst FarCall
-
+	callab Function0x3484e
 	ld a, [$c716]
-	cp $a
+	cp 10 ; 1.0
 	pop hl
 	ret c
-	call Function_0x39527
 
+	call Function_0x39527
 	ret c
+
 	inc [hl]
 	ret
 
@@ -2084,7 +2033,7 @@ AIScoring_PerishSong: ; 38f4a
 
 .asm_38f75
 	ld a, [hl]
-	add $5
+	add 5
 	ld [hl], a
 	ret
 ; 38f7a
@@ -2137,21 +2086,18 @@ AIScoring_Endure: ; 38fac
 	jr nz, .asm_38fd8
 
 	call AICheckEnemyMaxHP
-
 	jr c, .asm_38fd8
 
 	call AICheckEnemyQuarterHP
-
 	jr c, .asm_38fd9
 
-	ld b, $63
-	call Function_0x392ca
-
+	ld b, EFFECT_REVERSAL
+	call AIHasMove
 	jr nc, .asm_38fcb
 
 	call Function_0x39521
-
 	ret c
+
 	dec [hl]
 	dec [hl]
 	dec [hl]
@@ -2159,7 +2105,7 @@ AIScoring_Endure: ; 38fac
 
 .asm_38fcb
 	ld a, [EnemySubStatus5]
-	bit 5, a
+	bit SUBSTATUS_LOCK_ON, a
 	ret z
 	call Function_0x39527
 
@@ -2180,20 +2126,21 @@ AIScoring_Endure: ; 38fac
 AIScoring_FuryCutter: ; 38fdb
 	ld a, [EnemyFuryCutterCount]
 	and a
-	jr z, AIScoring_Rollout
+	jr z, .end
+	dec [hl]
 
+	cp 2
+	jr c, .end
 	dec [hl]
-	cp $2
-	jr c, AIScoring_Rollout
+	dec [hl]
 
+	cp 3
+	jr c, .end
 	dec [hl]
 	dec [hl]
-	cp $3
-	jr c, AIScoring_Rollout
+	dec [hl]
 
-	dec [hl]
-	dec [hl]
-	dec [hl]
+.end
 
 	; fallthrough
 ; 38fef
@@ -2201,32 +2148,29 @@ AIScoring_FuryCutter: ; 38fdb
 
 AIScoring_Rollout: ; 38fef
 	ld a, [EnemySubStatus1]
-	bit 7, a
+	bit SUBSTATUS_IN_LOVE, a
 	jr nz, .asm_39020
 
 	ld a, [EnemySubStatus3]
-	bit 7, a
+	bit SUBSTATUS_CONFUSED, a
 	jr nz, .asm_39020
 
 	ld a, [EnemyMonStatus]
-	bit 6, a
+	bit PAR, a
 	jr nz, .asm_39020
 
 	call AICheckEnemyQuarterHP
-
 	jr nc, .asm_39020
 
 	ld a, [EnemyAccLevel]
-	cp $7
+	cp 7
 	jr c, .asm_39020
-
 	ld a, [PlayerEvaLevel]
-	cp $8
+	cp 8
 	jr nc, .asm_39020
 
 	call RNG
-
-	cp $c8
+	cp 200
 	ret nc
 	dec [hl]
 	dec [hl]
@@ -2234,7 +2178,6 @@ AIScoring_Rollout: ; 38fef
 
 .asm_39020
 	call Function_0x39521
-
 	ret c
 	inc [hl]
 	ret
@@ -2248,15 +2191,13 @@ AIScoring_Attract: ; 39026
 	jr z, .asm_39032
 
 	call Function_0x39521
-
 	ret c
 	inc [hl]
 	ret
 
 .asm_39032
 	call RNG
-
-	cp $c8
+	cp 200
 	ret nc
 	dec [hl]
 	ret
@@ -2265,10 +2206,8 @@ AIScoring_Attract: ; 39026
 
 AIScoring_Safeguard: ; 3903a
 	call AICheckPlayerHalfHP
-
 	ret c
 	call Function_0x39521
-
 	ret c
 	inc [hl]
 	ret
@@ -2278,14 +2217,14 @@ AIScoring_Safeguard: ; 3903a
 AIScoring_Magnitude:
 AIScoring_Earthquake: ; 39044
 	ld a, [LastEnemyCounterMove]
-	cp $5b
+	cp DIG
 	ret nz
+
 	ld a, [PlayerSubStatus3]
-	bit 5, a
+	bit SUBSTATUS_UNDERGROUND, a
 	jr z, .asm_39058
 
 	call AICompareSpeed
-
 	ret nc
 	dec [hl]
 	dec [hl]
@@ -2293,10 +2232,8 @@ AIScoring_Earthquake: ; 39044
 
 .asm_39058
 	call AICompareSpeed
-
 	ret c
 	call Function_0x39527
-
 	ret c
 	dec [hl]
 	ret
@@ -2305,12 +2242,9 @@ AIScoring_Earthquake: ; 39044
 
 AIScoring_BatonPass: ; 39062
 	push hl
-	ld hl, $484e
-	ld a, $d
-	rst FarCall
-
+	callab Function0x3484e
 	ld a, [$c716]
-	cp $a
+	cp 10 ; 1.0
 	pop hl
 	ret c
 	inc [hl]
@@ -2320,18 +2254,14 @@ AIScoring_BatonPass: ; 39062
 
 AIScoring_Pursuit: ; 39072
 	call AICheckPlayerQuarterHP
-
 	jr nc, .asm_3907d
-
 	call Function_0x39521
-
 	ret c
 	inc [hl]
 	ret
 
 .asm_3907d
 	call Function_0x39527
-
 	ret c
 	dec [hl]
 	dec [hl]
@@ -2345,11 +2275,11 @@ AIScoring_RapidSpin: ; 39084
 	jr nz, .asm_39097
 
 	ld a, [EnemySubStatus4]
-	bit 7, a
+	bit SUBSTATUS_LEECH_SEED, a
 	jr nz, .asm_39097
 
 	ld a, [EnemyScreens]
-	bit 0, a
+	bit SCREENS_SPIKES, a
 	ret z
 
 .asm_39097
@@ -2364,17 +2294,14 @@ AIScoring_RapidSpin: ; 39084
 
 AIScoring_HiddenPower: ; 3909e
 	push hl
-	ld a, $1
+	ld a, 1
 	ld [hBattleTurn], a
 	ld hl, $7ced
 	ld a, $3e
 	rst FarCall
-
-	ld hl, $47c8
-	ld a, $d
-	rst FarCall
-
+	callab Function0x347c8
 	pop hl
+
 	ld a, [$d265]
 	cp $a
 	jr c, .asm_390c9
@@ -2404,21 +2331,20 @@ AIScoring_HiddenPower: ; 3909e
 AIScoring_RainDance: ; 390cb
 	ld a, [BattleMonType1]
 	cp WATER
-	jr z, Function_0x3911e
+	jr z, AIBadWeatherType
 	cp FIRE
-	jr z, Function_0x39122
+	jr z, AIGoodWeatherType
 
 	ld a, [BattleMonType2]
 	cp WATER
-	jr z, Function_0x3911e
+	jr z, AIBadWeatherType
 	cp FIRE
-	jr z, Function_0x39122
+	jr z, AIGoodWeatherType
 
 	push hl
 	ld hl, RainDanceMoves
-	jr Function_0x3910d
+	jr AIScoring_WeatherMove
 ; 390e7
-
 
 RainDanceMoves: ; 390e7
 	db WATER_GUN
@@ -2439,15 +2365,15 @@ RainDanceMoves: ; 390e7
 AIScoring_SunnyDay: ; 390f3
 	ld a, [BattleMonType1]
 	cp FIRE
-	jr z, Function_0x3911e
+	jr z, AIBadWeatherType
 	cp WATER
-	jr z, Function_0x39122
+	jr z, AIGoodWeatherType
 
 	ld a, [BattleMonType2]
 	cp FIRE
-	jr z, Function_0x3911e
+	jr z, AIBadWeatherType
 	cp WATER
-	jr z, Function_0x39122
+	jr z, AIGoodWeatherType
 
 	push hl
 	ld hl, SunnyDayMoves
@@ -2456,39 +2382,41 @@ AIScoring_SunnyDay: ; 390f3
 ; 3910d
 
 
-Function_0x3910d: ; 3910d
-	call Function_0x392e6
+AIScoring_WeatherMove: ; 3910d
+	call AIHasMoveInArray
 	pop hl
-	jr nc, Function_0x3911e
+	jr nc, AIBadWeatherType
 
 	call AICheckPlayerHalfHP
-	jr nc, Function_0x3911e
+	jr nc, AIBadWeatherType
 
 	call Function_0x39527
 	ret c
 
 	dec [hl]
 	ret
+; 3911e
 
-Function_0x3911e: ; 3911e
+AIBadWeatherType: ; 3911e
 	inc [hl]
 	inc [hl]
 	inc [hl]
 	ret
+; 39122
 
-Function_0x39122: ; 39122
+AIGoodWeatherType: ; 39122
 	call AICheckPlayerHalfHP
 	ret nc
 
 	ld a, [PlayerTurnsTaken]
 	and a
-	jr z, .asm_39131
+	jr z, .good
 
 	ld a, [EnemyTurnsTaken]
 	and a
 	ret nz
 
-.asm_39131
+.good
 	dec [hl]
 	dec [hl]
 	ret
@@ -2597,7 +2525,7 @@ AIScoring_MirrorCoat: ; 3918b
 	jr z, .asm_391a8
 
 	ld a, [EnemyMoveType]
-	cp $14
+	cp FIRE
 	jr c, .asm_391a8
 
 	inc b
@@ -2625,16 +2553,14 @@ AIScoring_MirrorCoat: ; 3918b
 	jr z, .asm_391d2
 
 	ld a, [EnemyMoveType]
-	cp $14
+	cp FIRE
 	jr c, .asm_391d2
 
 
 .asm_391ca
 	call RNG
-
-	cp $64
+	cp 100
 	jr c, .asm_391d2
-
 	dec [hl]
 
 .asm_391d2
@@ -2649,25 +2575,24 @@ AIScoring_MirrorCoat: ; 3918b
 AIScoring_Twister:
 AIScoring_Gust: ; 391d5
 	ld a, [LastEnemyCounterMove]
-	cp $13
+	cp FLY
 	ret nz
+
 	ld a, [PlayerSubStatus3]
-	bit 6, a
+	bit SUBSTATUS_FLYING, a
 	jr z, .asm_391e9
 
 	call AICompareSpeed
-
 	ret nc
+
 	dec [hl]
 	dec [hl]
 	ret
 
 .asm_391e9
 	call AICompareSpeed
-
 	ret c
 	call Function_0x39527
-
 	ret c
 	dec [hl]
 	ret
@@ -2676,11 +2601,12 @@ AIScoring_Gust: ; 391d5
 
 AIScoring_FutureSight: ; 391f3
 	call AICompareSpeed
-
 	ret nc
+
 	ld a, [PlayerSubStatus3]
-	and $60
+	and 1<<SUBSTATUS_FLYING | 1<<SUBSTATUS_UNDERGROUND
 	ret z
+
 	dec [hl]
 	dec [hl]
 	ret
@@ -2691,9 +2617,10 @@ AIScoring_Stomp: ; 39200
 	ld a, [$c6fe]
 	and a
 	ret z
-	call Function_0x39521
 
+	call Function_0x39521
 	ret c
+
 	dec [hl]
 	ret
 ; 3920b
@@ -2889,12 +2816,13 @@ AICheckPlayerQuarterHP: ; 392b3
 ; 392ca
 
 
-Function_0x392ca: ; 392ca
+AIHasMove: ; 392ca
+; Return carry if the enemy has move b.
 	push hl
 	ld hl, EnemyMonMoves
 	ld c, EnemyMonMovesEnd - EnemyMonMoves
 
-.asm_392d0
+.checkmove
 	ld a, [hli]
 	and a
 	jr z, .asm_392e0
@@ -2906,7 +2834,7 @@ Function_0x392ca: ; 392ca
 	jr z, .asm_392e3
 
 	dec c
-	jr nz, .asm_392d0
+	jr nz, .checkmove
 
 .asm_392e0
 	pop hl
@@ -2920,7 +2848,9 @@ Function_0x392ca: ; 392ca
 ; 392e6
 
 
-Function_0x392e6: ; 392e6
+AIHasMoveInArray: ; 392e6
+; Return carry if the enemy has a move in array hl.
+
 	push hl
 	push de
 	push bc
