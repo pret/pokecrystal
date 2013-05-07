@@ -143,9 +143,7 @@ CooltrainerfCaraScript: ; 0x18c92a
 	end
 ; 0x18c932
 
-INCBIN "baserom.gbc",$18c932,$14
-
-TrainerTwinsLeaandpia1: ; 0x18c946
+TrainerTwinsLeaandpia1: ; 0x18c932
 	; bit/flag number
 	dw $5bf
 
@@ -156,17 +154,45 @@ TrainerTwinsLeaandpia1: ; 0x18c946
 	dw TwinsLeaandpia1SeenText
 
 	; text when trainer beaten
-	;dw TwinsLeaandpia1BeatenText
-	dw $4f06
+	dw TwinsLeaandpia1BeatenText
 
 	; script when lost
 	dw $0000
 
 	; script when talk again
 	dw TwinsLeaandpia1Script
+; 0x18c93e
+
+TwinsLeaandpia1Script: ; 0x18c93e
+	talkaftercancel
+	loadfont
+	2writetext UnknownText_0x18ced3
+	closetext
+	loadmovesprites
+	end
+; 0x18c946
+
+TrainerTwinsLeaandpia2: ; 0x18c946
+	; bit/flag number
+	dw $5bf
+
+	; trainer group && trainer id
+	db TWINS, LEAANDPIA1
+
+	; text when seen
+	dw TwinsLeaandpia2SeenText
+
+	; text when trainer beaten
+	dw TwinsLeaandpia2BeatenText
+
+	; script when lost
+	dw $0000
+
+	; script when talk again
+	dw TwinsLeaandpia2Script
 ; 0x18c952
 
-TwinsLeaandpia1Script: ; 0x18c952
+TwinsLeaandpia2Script: ; 0x18c952
 	talkaftercancel
 	loadfont
 	2writetext UnknownText_0x18cf0f
@@ -395,7 +421,7 @@ UnknownText_0x18ce11: ; 0x18ce11
 	db "approval.", $57
 ; 0x18ceab
 
-UnknownText_0x18ceab: ; 0x18ceab
+TwinsLeaandpia1SeenText: ; 0x18ceab
 	db $0, "It's a stranger we", $4f
 	db "don't know.", $57
 ; 0x18cec9
@@ -409,11 +435,11 @@ UnknownText_0x18ced3: ; 0x18ced3
 	db "to battle LANCE.", $57
 ; 0x18cef8
 
-TwinsLeaandpia1SeenText: ; 0x18cef8
+TwinsLeaandpia2SeenText: ; 0x18cef8
 	db $0, "Who are you?", $57
 ; 0x18cf06
 
-UnknownText_0x18cf06: ; 0x18cf06
+TwinsLeaandpia2BeatenText: ; 0x18cf06
 	db $0, "Meanie.", $57
 ; 0x18cf0f
 
@@ -464,7 +490,7 @@ DragonsDenB1F_MapEventHeader: ; 0x18cf73
 	person_event $23, 12, 24, $7, $0, 255, 255, $82, 4, TrainerCooltrainermDarin, $ffff
 	person_event $24, 12, 12, $6, $0, 255, 255, $82, 3, TrainerCooltrainerfCara, $ffff
 	person_event $26, 21, 8, $9, $0, 255, 255, $82, 1, $4932, $ffff
-	person_event $26, 22, 8, $9, $0, 255, 255, $82, 1, TrainerTwinsLeaandpia1, $ffff
+	person_event $26, 22, 8, $9, $0, 255, 255, $82, 1, TrainerTwinsLeaandpia2, $ffff
 	person_event $54, 8, 34, $1, $0, 255, 255, $1, 0, ItemFragment_0x18c9a1, $07bf
 	person_event $54, 24, 9, $1, $0, 255, 255, $1, 0, ItemFragment_0x18c9a3, $07c0
 ; 0x18d014

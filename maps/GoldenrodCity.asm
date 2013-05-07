@@ -56,7 +56,7 @@ UnknownScript_0x198909: ; 0x198909
 	checkcoins 4000
 	if_equal $2, UnknownScript_0x1989dd
 	2writetext UnknownText_0x1990ce
-	loadmenudata $4967
+	loadmenudata MenuDataHeader_0x198967
 	interpretmenu2
 	writebackup
 	if_equal $1, UnknownScript_0x19893a
@@ -89,7 +89,24 @@ UnknownScript_0x198958: ; 0x198958
 	2jump UnknownScript_0x1989d7
 ; 0x198967
 
-INCBIN "baserom.gbc",$198967,$33
+
+MenuDataHeader_0x198967: ; 0x198967
+	db $40 ; flags
+	db 02, 00 ; start coords
+	db 11, 15 ; end coords
+	dw MenuData2_0x19896f
+	db 1 ; default option
+; 0x19896f
+
+MenuData2_0x19896f: ; 0x19896f
+	db $80 ; flags
+	db 4 ; items
+	db "FLAMETHROWER@"
+	db "THUNDERBOLT@"
+	db "ICE BEAM@"
+	db "CANCEL@"
+; 0x19899a
+
 
 UnknownScript_0x19899a: ; 0x19899a
 	2writetext UnknownText_0x1990b4

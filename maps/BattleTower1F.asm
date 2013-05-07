@@ -4,7 +4,7 @@ BattleTower1F_MapScriptHeader: ; 0x9e393
 
 	; triggers
 	dw UnknownScript_0x9e39d, $0000
-	dw $63d3, $0000
+	dw UnknownScript_0x9e3d3, $0000
 
 	; callback count
 	db 0
@@ -39,6 +39,7 @@ UnknownScript_0x9e3c7: ; 0x9e3c7
 	special $0086
 UnknownScript_0x9e3d1: ; 0x9e3d1
 	dotrigger $1
+UnknownScript_0x9e3d3: ; 0x9e3d3
 	end
 ; 0x9e3d4
 
@@ -57,7 +58,7 @@ UnknownScript_0x9e3e0: ; 0x9e3e0
 UnknownScript_0x9e3e2: ; 0x9e3e2
 	writebyte $2
 	special $0086
-	if_equal $3, $74e4 ; wtf ?
+	if_equal $3, BattleTowerBattleRoomScript_0x9f4e4
 	loadfont
 	2writetext UnknownText_0x9e5ab
 	keeptextopen
@@ -119,7 +120,7 @@ UnknownScript_0x9e454: ; 0x9e454
 	warpsound
 	disappear $2
 	stopfollow
-	applymovement $0, $6576
+	applymovement $0, MovementData_0x9e576
 	warpcheck
 	end
 ; 0x9e47a
@@ -177,9 +178,21 @@ UnknownScript_0x9e4bb: ; 0x9e4bb
 	end
 ; 0x9e4be
 
-INCBIN "baserom.gbc",$9e4be,$9e4e4 - $9e4be
 
-UnknownScript_0x9e4e4: ; 0x9e4e4
+UnknownScript_0x9e4be: ; 0x9e4be
+	2writetext UnknownText_0x9ef1f
+	yesorno
+	iffalse UnknownScript_0x9e3fc
+	special $0004
+	iffalse UnknownScript_0x9e3fc
+	writebyte $1
+	special $0086
+	special $0075
+	if_equal $a, UnknownScript_0x9e3fc
+	if_not_equal $0, UnknownScript_0x9e550
+	2writetext UnknownText_0x9e9eb
+	spriteface $2, $2
+	2writetext UnknownText_0x9ea1b
 	closetext
 	spriteface $2, $0
 	loadmovesprites
@@ -282,6 +295,7 @@ MovementData_0x9e571: ; 0x9e571
 	step_up
 	step_up
 	step_up
+MovementData_0x9e576: ; 0x9e576
 	step_up
 	step_end
 ; 0x9e578

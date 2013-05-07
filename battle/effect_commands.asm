@@ -182,7 +182,7 @@ CheckPlayerTurn:
 	call FarBattleTextBox
 
 	call CantMove
-	call $399c
+	call UpdateBattleMonInParty
 	ld hl, $5f48
 	call CallBankF
 	ld a, $1
@@ -442,7 +442,7 @@ CheckEnemyTurn: ; 3421f
 	ld hl, WokeUpText
 	call FarBattleTextBox
 	call CantMove
-	call $39b0
+	call UpdateEnemyMonInParty
 	ld hl, $6036
 	call CallBankF
 	ld a, $1
@@ -496,7 +496,7 @@ CheckEnemyTurn: ; 3421f
 
 
 .CheckDisabled
-	ld hl, EnemyEncoreCount
+	ld hl, EnemyDisableCount
 	ld a, [hl]
 	and a
 	jr z, .CheckConfused
@@ -507,7 +507,7 @@ CheckEnemyTurn: ; 3421f
 	jr nz, .CheckConfused
 
 	ld [hl], a
-	ld [EnemyEncoredMove], a
+	ld [EnemyDisabledMove], a
 
 ; 'disabled no more!'
 	ld hl, DisabledNoMoreText
@@ -612,7 +612,7 @@ CheckEnemyTurn: ; 3421f
 
 .CheckDisabledMove
 ; We can't disable a move that doesn't exist.
-	ld a, [EnemyEncoredMove]
+	ld a, [EnemyDisabledMove]
 	and a
 	jr z, .CheckParalyzed
 
@@ -664,7 +664,7 @@ MoveDisabled: ; 3438d
 	ld a, BATTLE_VARS_MOVE
 	call CleanGetBattleVarPair
 	ld [$d265], a
-	call $34f8
+	call GetMoveName
 
 ; 'disabled!'
 	ld hl, DisabledMoveText
@@ -1219,7 +1219,7 @@ Function0x3460b: ; 3460b
 .asm_34616
 	ld c, a
 	ld a, 2
-	call $3945
+	call UserPartyAttr
 
 	ld a, BATTLE_VARS_MOVE
 	call CleanGetBattleVarPair
@@ -1514,7 +1514,7 @@ BattleCommand07: ; 346d2
 	ld a, [hld]
 	ld [$ffb6], a
 
-	call $3119
+	call Multiply
 
 	ld a, [$ffb4]
 	ld b, a
@@ -1528,7 +1528,7 @@ BattleCommand07: ; 346d2
 	ld a, $a
 	ld [$ffb7], a
 	ld b, $4
-	call $3124
+	call Divide
 	ld a, [$ffb5]
 	ld b, a
 	ld a, [$ffb6]
@@ -1578,7 +1578,7 @@ Function0x347d3: ; 347d3
 	push hl
 	push de
 	push bc
-	ld a, $f
+	ld a, BATTLE_VARS_MOVE_TYPE
 	call CleanGetBattleVarPair
 	ld d, a
 	ld b, [hl]
@@ -1593,9 +1593,9 @@ Function0x347d3: ; 347d3
 	jr z, .asm_3482f ; 0x347ea $43
 	cp $fe
 	jr nz, .asm_347fb ; 0x347ee $b
-	ld a, $5
+	ld a, BATTLE_VARS_SUBSTATUS1_OPP
 	call CleanGetBattleVarPair
-	bit 3, a
+	bit SUBSTATUS_IDENTIFIED, a
 	jr nz, .asm_3482f ; 0x347f7 $36
 	jr .asm_347e7 ; 0x347f9 $ec
 .asm_347fb
@@ -1675,7 +1675,7 @@ Function0x3484e: ; 3484e
 	jr z, .asm_3489f ; 0x34863 $3a
 	push hl
 	dec a
-	ld hl, $5afd
+	ld hl, Moves + PlayerMovePower - PlayerMoveStruct
 	call GetMoveAttr
 	and a
 	jr z, .asm_3489b ; 0x3486e $2b
@@ -1761,7 +1761,7 @@ Function0x348de: ; 348de
 
 	inc de
 	dec a
-	ld hl, $5afd
+	ld hl, Moves + PlayerMovePower - PlayerMoveStruct
 	call GetMoveAttr
 	and a
 	jr z, .loop
@@ -2020,10 +2020,10 @@ Function0x34a2a: ; 34a2a
 
 	ld a, [hl]
 	ld [CurSpecies], a
-	call GetBaseStats
+	call GetBaseData
 	ld a, [LastEnemyCounterMove]
 	dec a
-	ld hl, $5afd
+	ld hl, Moves + PlayerMovePower - PlayerMoveStruct
 	call GetMoveAttr
 	and a
 	jr z, .asm_34a77
@@ -2113,7 +2113,7 @@ Function0x34aa7: ; 34aa7
 	jr z, .asm_34aef
 
 	dec a
-	ld hl, $5afd
+	ld hl, Moves + PlayerMovePower - PlayerMoveStruct
 	call GetMoveAttr
 	and a
 	jr z, .asm_34ae9
@@ -2200,13 +2200,13 @@ Function0x34b20: ; 34b20
 
 	push hl
 	ld [CurSpecies], a
-	call GetBaseStats
+	call GetBaseData
 	ld a, [LastEnemyCounterMove]
 	and a
 	jr z, .asm_34b4a
 
 	dec a
-	ld hl, $5afd
+	ld hl, Moves + PlayerMovePower - PlayerMoveStruct
 	call GetMoveAttr
 	and a
 	jr z, .asm_34b4a
@@ -2389,7 +2389,7 @@ BattleCommand09: ; 34d32
 ; Perfect-accuracy moves
 	ld a, BATTLE_VARS_MOVE_EFFECT
 	call CleanGetBattleVarPair
-	cp $11
+	cp EFFECT_ALWAYS_HIT
 	ret z
 
 	call .StatModifiers
@@ -2406,7 +2406,7 @@ BattleCommand09: ; 34d32
 	push bc
 	call GetOpponentItem
 	ld a, b
-	cp $4d ; brightpowder
+	cp HELD_BRIGHTPOWDER
 	ld a, c ; % miss
 	pop bc
 	jr nz, .asm_34d81
@@ -2435,7 +2435,7 @@ BattleCommand09: ; 34d32
 ; Keep the damage value intact if we're using (Hi) Jump Kick.
 	ld a, BATTLE_VARS_MOVE_EFFECT
 	call CleanGetBattleVarPair
-	cp $2d
+	cp EFFECT_JUMP_KICK
 	jr z, .Missed
 	call ResetDamage
 
@@ -2450,12 +2450,12 @@ BattleCommand09: ; 34d32
 ; a monster that isn't sleeping.
 	ld a, BATTLE_VARS_MOVE_EFFECT
 	call CleanGetBattleVarPair
-	cp $8
+	cp EFFECT_DREAM_EATER
 	ret nz
 
 	ld a, BATTLE_VARS_STATUS_OPP
 	call CleanGetBattleVarPair
-	and 7 ; sleep
+	and SLP
 	ret
 
 
@@ -2463,7 +2463,7 @@ BattleCommand09: ; 34d32
 ; Return nz if the opponent is protected.
 	ld a, BATTLE_VARS_SUBSTATUS1_OPP
 	call CleanGetBattleVarPair
-	bit 2, a
+	bit SUBSTATUS_PROTECT, a
 	ret z
 
 	ld c, 40
@@ -2486,13 +2486,13 @@ BattleCommand09: ; 34d32
 ; Fissure or Magnitude on a monster that is flying.
 	ld a, BATTLE_VARS_SUBSTATUS5_OPP
 	call GetBattleVarPair
-	bit 5, [hl]
-	res 5, [hl]
+	bit SUBSTATUS_LOCK_ON, [hl]
+	res SUBSTATUS_LOCK_ON, [hl]
 	ret z
 
 	ld a, BATTLE_VARS_SUBSTATUS3_OPP
 	call CleanGetBattleVarPair
-	bit 6, a ; flying
+	bit SUBSTATUS_FLYING, a
 	jr z, .LockedOn
 
 	ld a, BATTLE_VARS_MOVE_ANIM
@@ -2513,15 +2513,15 @@ BattleCommand09: ; 34d32
 
 .DrainSub
 ; Return z if using an HP drain move on a substitute.
-	call CheckSubstituteOpp ; CheckOpponentSub
+	call CheckSubstituteOpp
 	jr z, .asm_34e00
 
 	ld a, BATTLE_VARS_MOVE_EFFECT
 	call CleanGetBattleVarPair
 
-	cp $3 ; drain
+	cp EFFECT_LEECH_HIT
 	ret z
-	cp $8 ; dream eater
+	cp EFFECT_DREAM_EATER
 	ret z
 
 .asm_34e00
@@ -2536,10 +2536,10 @@ BattleCommand09: ; 34d32
 
 	ld a, BATTLE_VARS_SUBSTATUS3_OPP
 	call CleanGetBattleVarPair
-	and $60 ; fly | dig
+	and 1 << SUBSTATUS_FLYING | 1 << SUBSTATUS_UNDERGROUND
 	ret z
 
-	bit 6, a
+	bit SUBSTATUS_FLYING, a
 	jr z, .DigMoves
 
 	ld a, BATTLE_VARS_MOVE_ANIM
@@ -2570,7 +2570,7 @@ BattleCommand09: ; 34d32
 ; Return z if the current move always hits in rain, and it is raining.
 	ld a, BATTLE_VARS_MOVE_EFFECT
 	call CleanGetBattleVarPair
-	cp $98
+	cp EFFECT_THUNDER
 	ret nz
 
 	ld a, [Weather]
@@ -2582,7 +2582,7 @@ BattleCommand09: ; 34d32
 ; Return nz if unleashing energy from Bide.
 	ld a, BATTLE_VARS_SUBSTATUS4
 	call CleanGetBattleVarPair
-	bit 0, a
+	bit SUBSTATUS_UNLEASH, a
 	ret
 
 
@@ -2611,7 +2611,7 @@ BattleCommand09: ; 34d32
 
 	ld a, BATTLE_VARS_SUBSTATUS1_OPP
 	call CleanGetBattleVarPair
-	bit 3, a
+	bit SUBSTATUS_IDENTIFIED, a
 	ret nz
 
 .asm_34e6b
@@ -2718,12 +2718,12 @@ BattleCommand0a: ; 34eee
 
 	ld a, BATTLE_VARS_SUBSTATUS4
 	call CleanGetBattleVarPair
-	bit 4, a
+	bit SUBSTATUS_SUBSTITUTE, a
 	ret z
 
 	ld a, BATTLE_VARS_SUBSTATUS3
 	call CleanGetBattleVarPair
-	bit 4, a
+	bit SUBSTATUS_CHARGED, a
 	jr nz, .asm_34f18
 
 	ld a, BATTLE_VARS_MOVE_EFFECT
@@ -2841,8 +2841,8 @@ BattleCommand0b: ; 34f60
 	jp Function0x37ec7
 .asm_34fb0
 	ld a, [$c689]
-	and $1
-	xor $1
+	and 1
+	xor 1
 	ld [$c689], a
 	ld a, [de]
 	cp $1
@@ -2850,7 +2850,7 @@ BattleCommand0b: ; 34f60
 	ld a, BATTLE_VARS_MOVE_ANIM
 	call CleanGetBattleVarPair
 	ld e, a
-	ld d, $0
+	ld d, 0
 	pop af
 	jp z, PlayFXAnimID
 	xor a
@@ -2910,7 +2910,7 @@ BattleCommand93: ; 34ffd
 BattleCommand0c: ; 35004
 	ld a, BATTLE_VARS_SUBSTATUS4
 	call CleanGetBattleVarPair
-	bit 4, a
+	bit SUBSTATUS_SUBSTITUTE, a
 	ret z
 
 	call Function0x37ed5
@@ -2960,8 +2960,8 @@ BattleCommand0d: ; 35023
 .asm_3504f
 	ld a, BATTLE_VARS_SUBSTATUS3
 	call GetBattleVarPair
-	res 5, [hl]
-	res 6, [hl]
+	res SUBSTATUS_UNDERGROUND, [hl]
+	res SUBSTATUS_FLYING, [hl]
 	call Function0x37ece
 	jp EndMoveEffect
 ; 3505e
@@ -2972,7 +2972,7 @@ BattleCommand0e: ; 3505e
 
 	ld a, BATTLE_VARS_SUBSTATUS1_OPP
 	call CleanGetBattleVarPair
-	bit 5, a
+	bit SUBSTATUS_ENDURE, a
 	jr z, .asm_35072 ; 35065 $b
 	call BattleCommand4b
 	ld b, $0
@@ -2983,7 +2983,7 @@ BattleCommand0e: ; 3505e
 .asm_35072
 	call GetOpponentItem
 	ld a, b
-	cp $4f
+	cp HELD_FOCUS_BAND
 	ld b, $0
 	jr nz, .asm_3508b ; 3507a $f
 	call FarBattleRNG
@@ -3020,21 +3020,22 @@ BattleCommand0e: ; 3505e
 	call GetOpponentItem
 	ld a, [hl]
 	ld [$d265], a
-	call $3468
+	call GetItemName
 
 	ld hl, HungOnText
 	jp FarBattleTextBox
 
 .asm_50bb
-	ld a, $8
+	ld a, BATTLE_VARS_SUBSTATUS4_OPP
 	call CleanGetBattleVarPair
-	bit 4, a
+	bit SUBSTATUS_SUBSTITUTE, a
 	ret nz
-	ld de, EnemyDamageTaken
+
+	ld de, PlayerDamageTaken + 1
 	ld a, [hBattleTurn]
 	and a
-	jr nz, .asm_350ce ; 0x350c9 $3
-	ld de, $c685
+	jr nz, .asm_350ce
+	ld de, EnemyDamageTaken + 1
 
 .asm_350ce
 	ld a, [CurDamage + 1]
@@ -3063,9 +3064,9 @@ Function0x350e4: ; 350e4
 	ld a, [TypeModifier]
 	and $7f
 	jr z, .asm_35110 ; 0x350ef $1f
-	ld a, $d
+	ld a, BATTLE_VARS_MOVE_EFFECT
 	call CleanGetBattleVarPair
-	cp $94
+	cp EFFECT_FUTURE_SIGHT
 	ld hl, ButItFailedText
 	ld de, ItFailedText
 	jr z, .asm_35110 ; 0x350fe $10
@@ -3079,9 +3080,9 @@ Function0x350e4: ; 350e4
 	call Function0x35157
 	xor a
 	ld [CriticalHit], a
-	ld a, $d
+	ld a, BATTLE_VARS_MOVE_EFFECT
 	call CleanGetBattleVarPair
-	cp $2d
+	cp EFFECT_JUMP_KICK
 	ret nz
 	ld a, [TypeModifier]
 	and $7f
@@ -3117,7 +3118,7 @@ Function0x350e4: ; 350e4
 Function0x35157: ; 35157
 	ld a, BATTLE_VARS_SUBSTATUS1_OPP
 	call CleanGetBattleVarPair
-	bit 2, a ; protect
+	bit SUBSTATUS_PROTECT, a
 	jr z, .asm_35162
 	ld h, d
 	ld l, e
@@ -3232,7 +3233,7 @@ BattleCommand11: ; 351c0
 
 	ld a, BATTLE_VARS_SUBSTATUS5_OPP
 	call CleanGetBattleVarPair
-	bit 6, a
+	bit SUBSTATUS_DESTINY_BOND, a
 	jr z, .asm_35231
 
 	ld hl, TookDownWithItText
@@ -3267,8 +3268,8 @@ BattleCommand11: ; 351c0
 	ld h, b
 	ld l, c
 	ld a, $b
-	call $2d83
-	call $39c9
+	call Predef
+	call RefreshBattleHuds
 
 	call SwitchTurn
 	xor a
@@ -3315,7 +3316,7 @@ BattleCommand12: ; 35250
 
 	ld a, BATTLE_VARS_SUBSTATUS4_OPP
 	call CleanGetBattleVarPair
-	bit 6, a
+	bit SUBSTATUS_RAGE, a
 	ret z
 
 	ld de, $c72c
@@ -3929,7 +3930,7 @@ BattleCommanda1: ; 35461
 	call FarBattleTextBox
 	ld a, [BattleMonSpecies]
 	ld [CurSpecies], a
-	call GetBaseStats
+	call GetBaseData
 	ld a, [$d239]
 	ld c, a
 	push bc
@@ -3937,7 +3938,7 @@ BattleCommanda1: ; 35461
 	call Function0x355bd
 	ld a, [hl]
 	ld [CurSpecies], a
-	call GetBaseStats
+	call GetBaseData
 	ld a, [$d238]
 	pop bc
 	ld b, a
@@ -4270,23 +4271,23 @@ BattleCommand62: ; 35612
 
 
 TypeBoostItems: ; 35703
-	db $32, NORMAL   ; Pink/Polkadot Bow
-	db $33, FIGHTING ; Blackbelt
-	db $34, FLYING   ; Sharp Beak
-	db $35, POISON   ; Poison Barb
-	db $36, GROUND   ; Soft Sand
-	db $37, ROCK     ; Hard Stone
-	db $38, BUG      ; Silverpowder
-	db $39, GHOST    ; Spell Tag
-	db $3a, FIRE     ; Charcoal
-	db $3b, WATER    ; Mystic Water
-	db $3c, GRASS    ; Miracle Seed
-	db $3d, ELECTRIC ; Magnet
-	db $3e, PSYCHIC  ; Twistedspoon
-	db $3f, ICE      ; Nevermeltice
-	db $40, DRAGON   ; Dragon Scale
-	db $41, DARK     ; Blackglasses
-	db $42, STEEL    ; Metal Coat
+	db HELD_NORMAL_BOOST,   NORMAL   ; Pink/Polkadot Bow
+	db HELD_FIGHTING_BOOST, FIGHTING ; Blackbelt
+	db HELD_FLYING_BOOST,   FLYING   ; Sharp Beak
+	db HELD_POISON_BOOST,   POISON   ; Poison Barb
+	db HELD_GROUND_BOOST,   GROUND   ; Soft Sand
+	db HELD_ROCK_BOOST,     ROCK     ; Hard Stone
+	db HELD_BUG_BOOST,      BUG      ; Silverpowder
+	db HELD_GHOST_BOOST,    GHOST    ; Spell Tag
+	db HELD_FIRE_BOOST,     FIRE     ; Charcoal
+	db HELD_WATER_BOOST,    WATER    ; Mystic Water
+	db HELD_GRASS_BOOST,    GRASS    ; Miracle Seed
+	db HELD_ELECTRIC_BOOST, ELECTRIC ; Magnet
+	db HELD_PSYCHIC_BOOST,  PSYCHIC  ; Twistedspoon
+	db HELD_ICE_BOOST,      ICE      ; Nevermeltice
+	db HELD_DRAGON_BOOST,   DRAGON   ; Dragon Scale
+	db HELD_DARK_BOOST,     DARK     ; Blackglasses
+	db HELD_STEEL_BOOST,    STEEL    ; Metal Coat
 	db $ff
 ; 35726
 
@@ -4303,20 +4304,20 @@ BattleCommand3f: ; 35726
 .asm_35731
 	ld a, BATTLE_VARS_MOVE_EFFECT
 	call CleanGetBattleVarPair
-	cp $57 ; by level (seismic toss, night shade)
+	cp EFFECT_LEVEL_DAMAGE
 	ld b, [hl]
 	ld a, 0
 	jr z, .asm_3578c
 
 	ld a, BATTLE_VARS_MOVE_EFFECT
 	call CleanGetBattleVarPair
-	cp $58 ; variable (psywave)
+	cp EFFECT_PSYWAVE
 	jr z, .asm_35758
 
-	cp $28 ; half hp (super fang)
+	cp EFFECT_SUPER_FANG
 	jr z, .asm_3576b
 
-	cp $63 ; by hp (flail, reversal)
+	cp EFFECT_REVERSAL
 	jr z, .asm_35792
 
 	ld a, BATTLE_VARS_MOVE_POWER
@@ -4382,7 +4383,7 @@ BattleCommand3f: ; 35726
 	ld [$ffb6], a
 	ld a, $30
 	ld [$ffb7], a
-	call $3119
+	call Multiply
 	ld a, [hli]
 	ld b, a
 	ld a, [hl]
@@ -4410,10 +4411,10 @@ BattleCommand3f: ; 35726
 
 .asm_357d6
 	ld b, $4
-	call $3124
+	call Divide
 	ld a, [$ffb6]
 	ld b, a
-	ld hl, .table_35807
+	ld hl, .FlailPower
 
 .asm_357e1
 	ld a, [hli]
@@ -4446,13 +4447,14 @@ BattleCommand3f: ; 35726
 	ld [hl], 1
 	ret
 
-.table_35807
-	db  1, $c8
-	db  4, $96
-	db  9, $64
-	db 16, $50
-	db 32, $28
-	db 48, $14
+.FlailPower
+	;  px,  bp
+	db  1, 200
+	db  4, 150
+	db  9, 100
+	db 16,  80
+	db 32,  40
+	db 48,  20
 ; 35813
 
 
@@ -4516,7 +4518,7 @@ BattleCommand41: ; 35864
 ; encore
 
 	ld hl, EnemyMonMoves
-	ld de, EnemyPerishCount
+	ld de, EnemyEncoreCount
 	ld a, [hBattleTurn]
 	and a
 	jr z, .asm_35875 ; 3586d $6
@@ -4649,7 +4651,7 @@ BattleCommand42: ; 35926
 	ld [$d10a], a
 	ld hl, $c55e
 	ld a, $b
-	call $2d83
+	call Predef
 	ld hl, EnemyMonHPHi
 	ld a, [hli]
 	ld [$d1ed], a
@@ -4665,7 +4667,7 @@ BattleCommand42: ; 35926
 	call ResetDamage
 	ld hl, $c4ca
 	ld a, $b
-	call $2d83
+	call Predef
 	ld a, $5e
 	ld hl, $4000
 	rst FarCall
@@ -4742,7 +4744,7 @@ BattleCommand43: ; 359d0
 ; snore
 	ld a, BATTLE_VARS_STATUS
 	call CleanGetBattleVarPair
-	and $7
+	and SLP
 	ret nz
 	call ResetDamage
 	ld a, $1
@@ -4770,11 +4772,11 @@ BattleCommand44: ; 359e6
 	jr z, .asm_35a50 ; 359fd $51
 	push hl
 	dec a
-	ld hl, $5afe
+	ld hl, Moves + PlayerMoveType - PlayerMoveStruct
 	call GetMoveAttr
 	ld d, a
 	pop hl
-	cp $13
+	cp CURSE_T
 	jr z, .asm_35a50 ; 35a0b $43
 	call Function0x37e01
 
@@ -4811,7 +4813,7 @@ BattleCommand44: ; 359e6
 	ld a, [hl]
 	ld [$d265], a
 	ld a, $29
-	call $2d83
+	call Predef
 	ld hl, $5452
 	jp FarBattleTextBox
 .asm_35a50
@@ -4823,13 +4825,13 @@ BattleCommand45: ; 35a53
 ; lockon
 
 	call CheckSubstituteOpp
-	jr nz, .asm_35a6e ; 35a56 $16
+	jr nz, .asm_35a6e
 	ld a, [AttackMissed]
 	and a
-	jr nz, .asm_35a6e ; 35a5c $10
+	jr nz, .asm_35a6e
 	ld a, BATTLE_VARS_SUBSTATUS5_OPP
 	call GetBattleVarPair
-	set 5, [hl]
+	set SUBSTATUS_LOCK_ON, [hl]
 	call Function0x37e01
 
 	ld hl, TookAimText
@@ -4852,13 +4854,13 @@ BattleCommand46: ; 35a74
 	jp PrintNothingHappened
 .asm_35a83
 	call CheckSubstituteOpp
-	jp nz, $5b10
+	jp nz, .asm_35b10
 	ld a, BATTLE_VARS_SUBSTATUS5_OPP
 	call GetBattleVarPair
 	bit 3, [hl]
-	jp nz, $5b10
+	jp nz, .asm_35b10
 	ld a, $2
-	call $3945
+	call UserPartyAttr
 	ld d, h
 	ld e, l
 	ld hl, BattleMonMoves
@@ -4873,7 +4875,7 @@ BattleCommand46: ; 35a74
 	ld b, a
 	and a
 	jr z, .asm_35b10 ; 35aaf $5f
-	cp $a5
+	cp STRUGGLE
 	jr z, .asm_35b10 ; 35ab3 $5b
 	ld c, $4
 .asm_35ab7
@@ -4887,7 +4889,7 @@ BattleCommand46: ; 35a74
 .asm_35ac1
 	dec c
 	ld a, [hld]
-	cp $a6
+	cp SKETCH
 	jr nz, .asm_35ac1 ; 35ac5 $fa
 	inc hl
 	ld a, b
@@ -4895,7 +4897,7 @@ BattleCommand46: ; 35a74
 	push bc
 	push hl
 	dec a
-	ld hl, $5b00
+	ld hl, Moves + PlayerMovePP - PlayerMoveStruct
 	call GetMoveAttr
 	pop hl
 	ld bc, $0006
@@ -4932,7 +4934,7 @@ BattleCommand46: ; 35a74
 	add hl, de
 	ld [hl], a
 .asm_35b04
-	call $34f8
+	call GetMoveName
 	call Function0x37e01
 
 	ld hl, SketchedText
@@ -4988,7 +4990,7 @@ BattleCommand48: ; 35b33
 	ld d, a
 	jr z, .asm_35b4f ; 35b46 $7
 	ld hl, EnemyMonMove2
-	ld a, [EnemyEncoredMove]
+	ld a, [EnemyDisabledMove]
 	ld d, a
 .asm_35b4f
 	ld a, BATTLE_VARS_STATUS
@@ -5057,7 +5059,7 @@ BattleCommand48: ; 35b33
 	ld a, [DisabledMove]
 	jr z, .asm_35bbe
 
-	ld a, [EnemyEncoredMove]
+	ld a, [EnemyDisabledMove]
 .asm_35bbe
 	ld b, a
 	ld a, $10
@@ -5138,7 +5140,7 @@ BattleCommand4a: ; 35c0f
 
 	ld a, [AttackMissed]
 	and a
-	jp nz, $5c91
+	jp nz, .asm_35c91
 	ld bc, $0030
 	ld hl, EnemyMonMoves
 	ld a, [hBattleTurn]
@@ -5170,7 +5172,7 @@ BattleCommand4a: ; 35c0f
 	and $3f
 	jr z, .asm_35c91 ; 35c46 $49
 	push bc
-	call $34f8
+	call GetMoveName
 	call FarBattleRNG
 	and $3
 	inc a
@@ -5187,7 +5189,7 @@ BattleCommand4a: ; 35c0f
 	ld [hl], a
 	push af
 	ld a, $17
-	call $3951
+	call OpponentPartyAttr
 	ld d, b
 	pop af
 	pop bc
@@ -5385,7 +5387,7 @@ Function0x35d1c: ; 35d1c
 	ld a, $b
 	call Predef
 .asm_35d7b
-	jp $39c9
+	jp RefreshBattleHuds
 ; 35d7e
 
 
@@ -5443,7 +5445,7 @@ Function0x35d7e: ; 35d7e
 	ld a, $b
 	call Predef
 .asm_35ddd
-	jp $39c9
+	jp RefreshBattleHuds
 ; 35de0
 
 
@@ -5472,7 +5474,7 @@ Function0x35de0: ; 35de0
 	jr nc, .asm_35e3d
 
 .asm_35dff
-	ld a, $8
+	ld a, BATTLE_VARS_SUBSTATUS4_OPP
 	call GetBattleVarPair
 	res 4, [hl]
 
@@ -5481,29 +5483,29 @@ Function0x35de0: ; 35de0
 
 	call SwitchTurn
 	call BattleCommanda7
-	ld a, $2
+	ld a, BATTLE_VARS_SUBSTATUS3
 	call CleanGetBattleVarPair
-	and $60
+	and $60 ; fly | dig
 	call z, Function0x37ec7
 	call SwitchTurn
 
 	ld a, BATTLE_VARS_MOVE_EFFECT
 	call GetBattleVarPair
-	cp $1d
+	cp EFFECT_MULTI_HIT
 	jr z, .asm_35e3a
-	cp $2c
+	cp EFFECT_DOUBLE_HIT
 	jr z, .asm_35e3a
-	cp $4d
+	cp EFFECT_TWINEEDLE
 	jr z, .asm_35e3a
-	cp $68
+	cp EFFECT_TRIPLE_KICK
 	jr z, .asm_35e3a
-	cp $9a
+	cp EFFECT_BEAT_UP
 	jr z, .asm_35e3a
 
 	xor a
 	ld [hl], a
 .asm_35e3a
-	call $39c9
+	call RefreshBattleHuds
 .asm_35e3d
 	jp ResetDamage
 ; 35e40
@@ -5537,7 +5539,7 @@ BattleCommand14: ; 35e5c
 	jr nz, .asm_35e70 ; 35e62 $c
 	ld a, [hl]
 	ld [$d265], a
-	call $3468
+	call GetItemName
 	ld hl, ProtectedByText
 	jr .asm_35ec6
 
@@ -5581,8 +5583,8 @@ BattleCommand14: ; 35e5c
 	jr z, .asm_35ea4
 	inc a
 	ld [de], a
-	call $398e
-	call $39c9
+	call UpdateOpponentInParty
+	call RefreshBattleHuds
 
 	ld hl, FellAsleepText
 	call FarBattleTextBox
@@ -5659,7 +5661,7 @@ BattleCommand13: ; 35eee
 	call Function0x35ff5
 	ld de, $0106
 	call Function0x37e54
-	call $39c9
+	call RefreshBattleHuds
 
 	ld hl, WasPoisonedText
 	call FarBattleTextBox
@@ -5692,7 +5694,7 @@ BattleCommand2f: ; 35f2c
 	jr nz, .asm_35f5f ; 35f51 $c
 	ld a, [hl]
 	ld [$d265], a
-	call $3468
+	call GetItemName
 	ld hl, ProtectedByText
 	jr .asm_35fb8 ; 35f5d $59
 .asm_35f5f
@@ -5756,22 +5758,22 @@ BattleCommand2f: ; 35f2c
 Function0x35fc0: ; 35fc0
 	call Function0x37e01
 	call Function0x35ff5
-	jp $39c9
+	jp RefreshBattleHuds
 ; 35fc9
 
 
 Function0x35fc9: ; 35fc9
-	ld a, $9
-	call $39e7
+	ld a, BATTLE_VARS_SUBSTATUS5_OPP
+	call GetBattleVarPair
 	ld a, [hBattleTurn]
 	and a
 	ld de, $c67c
-	jr z, .asm_35fd9 ; 0x35fd4 $3
+	jr z, .asm_35fd9
 	ld de, $c674
 .asm_35fd9
-	ld a, $d
+	ld a, BATTLE_VARS_MOVE_EFFECT
 	call CleanGetBattleVarPair
-	cp $21
+	cp EFFECT_TOXIC
 	ret
 ; 35fe1
 
@@ -5780,24 +5782,24 @@ Function0x35fe1: ; 35fe1
 	ld de, EnemyMonType1
 	ld a, [hBattleTurn]
 	and a
-	jr z, .asm_35fec ; 0x35fe7 $3
+	jr z, .asm_35fec
 	ld de, BattleMonType1
 .asm_35fec
 	ld a, [de]
 	inc de
-	cp $3
+	cp POISON
 	ret z
 	ld a, [de]
-	cp $3
+	cp POISON
 	ret
 ; 35ff5
 
 
 Function0x35ff5: ; 35ff5
-	ld a, $b
-	call $39e7
-	set 3, [hl]
-	jp $398e
+	ld a, BATTLE_VARS_STATUS_OPP
+	call GetBattleVarPair
+	set PSN, [hl]
+	jp UpdateOpponentInParty
 ; 35fff
 
 
@@ -5895,8 +5897,8 @@ Function0x36011: ; 36011
 	ld [$d10a], a
 	ld a, $b
 	call Predef
-	call $39c9
-	jp $399c
+	call RefreshBattleHuds
+	jp UpdateBattleMonInParty
 ; 3608c
 
 
@@ -5928,12 +5930,12 @@ BattleCommand17: ; 3608c
 	ld a, BATTLE_VARS_STATUS_OPP
 	call GetBattleVarPair
 	set 4, [hl]
-	call $398e
+	call UpdateOpponentInParty
 	ld hl, $6c76
 	call CallBankF
 	ld de, $0105
 	call Function0x37e54
-	call $39c9
+	call RefreshBattleHuds
 
 	ld hl, WasBurnedText
 	call FarBattleTextBox
@@ -5965,7 +5967,7 @@ Defrost: ; 360dd
 	call GetPartyLocation
 	xor a
 	ld [hl], a
-	call $398e
+	call UpdateOpponentInParty
 
 	ld hl, DefrostedOpponentText
 	jp FarBattleTextBox
@@ -6003,10 +6005,10 @@ BattleCommand18: ; 36102
 	ld a, BATTLE_VARS_STATUS_OPP
 	call GetBattleVarPair
 	set 5, [hl]
-	call $398e
+	call UpdateOpponentInParty
 	ld de, $0108
 	call Function0x37e54
-	call $39c9
+	call RefreshBattleHuds
 
 	ld hl, WasFrozenText
 	call FarBattleTextBox
@@ -6054,12 +6056,12 @@ BattleCommand19: ; 36165
 	ld a, BATTLE_VARS_STATUS_OPP
 	call GetBattleVarPair
 	set 6, [hl]
-	call $398e
+	call UpdateOpponentInParty
 	ld hl, $6c39
 	call CallBankF
 	ld de, $0109
 	call Function0x37e54
-	call $39c9
+	call RefreshBattleHuds
 	call PrintParalyze
 	ld hl, $5de9
 	jp CallBankF
@@ -6418,27 +6420,27 @@ Function0x36386: ; 36386
 
 
 Function0x36391: ; 36391
-	ld a, $d
+	ld a, BATTLE_VARS_MOVE_EFFECT
 	call CleanGetBattleVarPair
-	cp $12
-	jr c, .asm_363ae ; 0x36398 $14
-	cp $19
-	jr c, .asm_363b0 ; 0x3639c $12
-	cp $3a
-	jr c, .asm_363ae ; 0x363a0 $c
-	cp $41
-	jr c, .asm_363b0 ; 0x363a4 $a
-	cp $44
-	jr c, .asm_363ae ; 0x363a8 $4
-	cp $4b
-	jr c, .asm_363b0 ; 0x363ac $2
+	cp EFFECT_ATTACK_DOWN
+	jr c, .asm_363ae
+	cp EFFECT_EVASION_DOWN + 1
+	jr c, .asm_363b0
+	cp EFFECT_ATTACK_DOWN_2
+	jr c, .asm_363ae
+	cp EFFECT_EVASION_DOWN_2 + 1
+	jr c, .asm_363b0
+	cp EFFECT_ATTACK_DOWN_HIT
+	jr c, .asm_363ae
+	cp EFFECT_EVASION_DOWN_HIT + 1
+	jr c, .asm_363b0
 .asm_363ae
 	xor a
 	ret
 .asm_363b0
-	ld a, $8
+	ld a, BATTLE_VARS_SUBSTATUS4_OPP
 	call CleanGetBattleVarPair
-	bit 1, a
+	bit SUBSTATUS_MIST, a
 	ret
 ; 363b8
 
@@ -6937,11 +6939,11 @@ BattleCommand21: ; 36671
 	ld hl, PlayerRolloutCount
 	ld a, [hBattleTurn]
 	and a
-	jr z, .asm_36684 ; 3667f $3
+	jr z, .asm_36684
 	ld hl, EnemyRolloutCount
 .asm_36684
 	dec [hl]
-	jr nz, .asm_366dc ; 36685 $55
+	jr nz, .asm_366dc
 	ld a, BATTLE_VARS_SUBSTATUS3
 	call GetBattleVarPair
 	res 0, [hl]
@@ -6951,14 +6953,14 @@ BattleCommand21: ; 36671
 
 	ld a, BATTLE_VARS_MOVE_POWER
 	call GetBattleVarPair
-	ld a, $1
+	ld a, 1
 	ld [hl], a
-	ld hl, EnemyDamageTaken
+	ld hl, PlayerDamageTaken + 1
 	ld de, $c732
 	ld a, [hBattleTurn]
 	and a
-	jr z, .asm_366ad ; 366a5 $6
-	ld hl, $c685
+	jr z, .asm_366ad
+	ld hl, EnemyDamageTaken + 1
 	ld de, $c733
 .asm_366ad
 	ld a, [hld]
@@ -6968,23 +6970,24 @@ BattleCommand21: ; 36671
 	ld a, [hl]
 	rl a
 	ld [CurDamage], a
-	jr nc, .asm_366c3 ; 366b9 $8
+	jr nc, .asm_366c3
 	ld a, $ff
 	ld [CurDamage], a
 	ld [CurDamage + 1], a
 .asm_366c3
 	or b
-	jr nz, .asm_366cb ; 366c4 $5
-	ld a, $1
+	jr nz, .asm_366cb
+	ld a, 1
 	ld [AttackMissed], a
 .asm_366cb
 	xor a
 	ld [hli], a
 	ld [hl], a
 	ld [de], a
+
 	ld a, BATTLE_VARS_MOVE_ANIM
 	call GetBattleVarPair
-	ld a, $75
+	ld a, BIDE
 	ld [hl], a
 
 	ld b, $22 ; unleashenergy
@@ -7098,17 +7101,18 @@ BattleCommanda0: ; 36778
 ; teleport
 
 	ld a, [BattleType]
-	cp $7 ; BATTLE_SHINY
+	cp BATTLETYPE_SHINY
 	jr z, .asm_367b9
-	cp $9 ; ?
+	cp $9
 	jr z, .asm_367b9
-	cp $b ; ?
+	cp $b
 	jr z, .asm_367b9
-	cp $c ; suicune
+	cp BATTLETYPE_SUICUNE
 	jr z, .asm_367b9
+
 	ld a, BATTLE_VARS_SUBSTATUS5_OPP
 	call CleanGetBattleVarPair
-	bit 7, a
+	bit SUBSTATUS_CANT_RUN, a
 	jr nz, .asm_367b9
 	ld a, [hBattleTurn]
 	and a
@@ -7158,7 +7162,7 @@ BattleCommanda0: ; 36778
 	cp b
 	jr nc, .asm_367df ; 367dd $0
 .asm_367df
-	call $399c
+	call UpdateBattleMonInParty
 	xor a
 	ld [$cfca], a
 	inc a
@@ -7167,7 +7171,7 @@ BattleCommanda0: ; 36778
 	call Function0x36804
 	call BattleCommand0a
 	call Function0x37e36
-	ld c, $14
+	ld c, 20
 	call DelayFrames
 	call Function0x36804
 
@@ -7189,13 +7193,13 @@ BattleCommand23: ; 3680f
 ; forceswitch
 
 	ld a, [BattleType]
-	cp $7
+	cp BATTLETYPE_SHINY
 	jp z, .asm_36969
 	cp $9
 	jp z, .asm_36969
 	cp $b
 	jp z, .asm_36969
-	cp $c
+	cp BATTLETYPE_SUICUNE
 	jp z, .asm_36969
 	ld a, [hBattleTurn]
 	and a
@@ -7225,7 +7229,7 @@ BattleCommand23: ; 3680f
 .asm_36852
 	jp .asm_36969
 .asm_36855
-	call $399c
+	call UpdateBattleMonInParty
 	xor a
 	ld [$cfca], a
 	inc a
@@ -7239,7 +7243,7 @@ BattleCommand23: ; 3680f
 	ld a, [$c70f]
 	and a
 	jr z, .asm_368ca ; 36872 $56
-	call $39b0
+	call UpdateEnemyMonInParty
 	ld a, $1
 	ld [$c689], a
 	call Function0x37e01
@@ -7318,7 +7322,7 @@ BattleCommand23: ; 3680f
 	jr .asm_36969
 
 .asm_368f5
-	call $399c
+	call UpdateBattleMonInParty
 	xor a
 	ld [$cfca], a
 	inc a
@@ -7335,7 +7339,7 @@ BattleCommand23: ; 3680f
 	cp $1
 	jr z, .asm_368ca
 
-	call $399c
+	call UpdateBattleMonInParty
 	ld a, $1
 	ld [$c689], a
 	call Function0x37e01
@@ -7453,7 +7457,7 @@ BattleCommand24: ; 369b6
 	ld a, BATTLE_VARS_SUBSTATUS3
 	call GetBattleVarPair
 	bit 2, [hl]
-	jp nz, $6a43
+	jp nz, .asm_36a43
 	set 2, [hl]
 	ld a, BATTLE_VARS_MOVE_EFFECT
 	call GetBattleVarPair
@@ -7519,6 +7523,8 @@ BattleCommand24: ; 369b6
 .asm_36a3f
 	ld a, $1
 	jr .asm_36a3a ; 36a41 $f7
+
+.asm_36a43
 	ld a, [de]
 	dec a
 	ld [de], a
@@ -8016,8 +8022,8 @@ BattleCommand27: ; 36cb2
 .asm_36d0c
 	ld [$d10a], a
 	ld a, $b
-	call $2d83
-	call $39c9
+	call Predef
+	call RefreshBattleHuds
 	ld hl, RecoilText
 	jp FarBattleTextBox
 ; 36d1d
@@ -8053,7 +8059,7 @@ BattleCommand2a: ; 36d3b
 	jr nz, .asm_36d53
 	ld a, [hl]
 	ld [$d265], a
-	call $3468
+	call GetItemName
 	call Function0x37e77
 	ld hl, ProtectedByText
 	jp FarBattleTextBox
@@ -8150,7 +8156,7 @@ BattleCommand30: ; 36dc7
 	jr nz, .asm_36def ; 36ddd $10
 	ld a, [hl]
 	ld [$d265], a
-	call $3468
+	call GetItemName
 	call Function0x37e77
 	ld hl, ProtectedByText
 	jp FarBattleTextBox
@@ -8188,10 +8194,10 @@ BattleCommand30: ; 36dc7
 	ld a, BATTLE_VARS_STATUS_OPP
 	call GetBattleVarPair
 	set 6, [hl]
-	call $398e
+	call UpdateOpponentInParty
 	ld hl, $6c39
 	call CallBankF
-	call $39d4
+	call UpdateBattleHuds
 	call PrintParalyze
 	ld hl, $5de9
 	jp CallBankF
@@ -8310,7 +8316,7 @@ BattleCommand31: ; 36e7c
 .asm_36eeb
 	ld hl, MadeSubstituteText
 	call FarBattleTextBox
-	jp $39c9
+	jp RefreshBattleHuds
 .asm_36ef4
 	call Function0x34548
 	call nz, BattleCommand0c
@@ -8431,7 +8437,7 @@ BattleCommand33: ; 36f46
 	ld bc, $0006
 	add hl, bc
 	ld [hl], $5
-	call $34f8
+	call GetMoveName
 	call Function0x37e01
 	ld hl, LearnedMoveText
 	jp FarBattleTextBox
@@ -8493,7 +8499,7 @@ BattleCommand37: ; 36fed
 	ld a, [AttackMissed]
 	and a
 	jr nz, .asm_37059 ; 36ff1 $66
-	ld de, EnemyEncoreCount
+	ld de, EnemyDisableCount
 	ld hl, EnemyMonMoves
 	ld a, [hBattleTurn]
 	and a
@@ -8548,7 +8554,7 @@ BattleCommand37: ; 36fed
 	call CleanGetBattleVarPair
 	ld [hl], a
 	ld [$d265], a
-	call $34f8
+	call GetMoveName
 	ld hl, WasDisabledText
 	jp FarBattleTextBox
 .asm_37059
@@ -8608,7 +8614,7 @@ BattleCommand1f: ; 3707f
 	push hl
 	push bc
 	dec a
-	ld hl, $5afe
+	ld hl, Moves + PlayerMoveType - PlayerMoveStruct
 	call GetMoveAttr
 	ld [de], a
 	inc de
@@ -8784,8 +8790,8 @@ BattleCommand2c: ; 3713e
 	ld hl, $4cef
 	call CallBankF
 	call SwitchTurn
-	call $3995
-	call $39c9
+	call UpdateUserInParty
+	call RefreshBattleHuds
 	ld hl, RegainedHealthText
 	jp FarBattleTextBox
 
@@ -8976,8 +8982,8 @@ Function0x372e7: ; 372e7
 	jr z, .player
 
 	xor a
-	ld [EnemyEncoreCount], a
-	ld [EnemyEncoredMove], a
+	ld [EnemyDisableCount], a
+	ld [EnemyDisabledMove], a
 	ret
 
 .player
@@ -9141,7 +9147,7 @@ BattleCommand1a: ; 37380
 	ld hl, $6043
 	rst FarCall
 	call $31f6
-	jp $39c9
+	jp RefreshBattleHuds
 ; 373c9
 
 
@@ -9174,7 +9180,7 @@ BattleCommand1b: ; 373c9
 	pop af
 	dec a
 	call GetMoveData
-	call $34f8
+	call GetMoveName
 	call $30d6
 	call Function0x34548
 	jr nz, .asm_37412 ; 37405 $b
@@ -9360,7 +9366,7 @@ BattleCommand50: ; 37492
 	ld [hl], a
 	ld [de], a
 .asm_374f8
-	call $3468
+	call GetItemName
 	ld hl, StoleText
 	jp FarBattleTextBox
 
@@ -9441,10 +9447,10 @@ BattleCommand53: ; 37563
 	jr z, .asm_3757f ; 37576 $7
 .asm_37578
 	ld a, $20
-	call $3945
+	call UserPartyAttr
 	res 5, [hl]
 .asm_3757f
-	call $39c9
+	call RefreshBattleHuds
 	ld hl, WasDefrostedText
 	jp FarBattleTextBox
 ; 37588
@@ -9505,7 +9511,7 @@ BattleCommand54: ; 37588
 	call CallBankF
 	ld hl, $4c3f
 	call CallBankF
-	call $3995
+	call UpdateUserInParty
 	ld hl, PutACurseText
 	jp FarBattleTextBox
 .asm_37604
@@ -9539,8 +9545,8 @@ Function0x3762c: ; 3762c
 	ld a, [hBattleTurn]
 	and a
 	jr z, .asm_37637
+	ld de, $c681
 
-	ld de, PlayerDamageTaken
 .asm_37637
 	call Function0x36abf
 	jr nz, .asm_37665
@@ -9596,10 +9602,10 @@ BattleCommand5a: ; 3766f
 
 	call Function0x3762c
 	ret c
-; get substatus1
+
 	ld a, BATTLE_VARS_SUBSTATUS1
 	call GetBattleVarPair
-	set 5, [hl] ; endure
+	set SUBSTATUS_ENDURE, [hl]
 	call Function0x37e01
 	ld hl, BracedItselfText
 	jp FarBattleTextBox
@@ -9612,16 +9618,19 @@ BattleCommand56: ; 37683
 	ld hl, EnemyScreens
 	ld a, [hBattleTurn]
 	and a
-	jr z, .asm_3768e ; 37689 $3
+	jr z, .asm_3768e
 	ld hl, PlayerScreens
+
 .asm_3768e
 	bit 0, [hl]
-	jr nz, .asm_3769d ; 37690 $b
+	jr nz, .failed
+
 	set 0, [hl]
 	call Function0x37e01
 	ld hl, SpikesText
 	jp FarBattleTextBox
-.asm_3769d
+
+.failed
 	jp Function0x37354
 ; 376a0
 
@@ -9631,14 +9640,14 @@ BattleCommand57: ; 376a0
 
 	ld a, [AttackMissed]
 	and a
-	jr nz, .asm_376bf ; 376a4 $19
+	jr nz, .asm_376bf
 	call CheckHiddenOpponent
-	jr nz, .asm_376bf ; 376a9 $14
+	jr nz, .asm_376bf
 	ld a, BATTLE_VARS_SUBSTATUS1_OPP
 	call GetBattleVarPair
-	bit 3, [hl]
-	jr nz, .asm_376bf ; 376b2 $b
-	set 3, [hl]
+	bit SUBSTATUS_IDENTIFIED, [hl]
+	jr nz, .asm_376bf
+	set SUBSTATUS_IDENTIFIED, [hl]
 	call Function0x37e01
 	ld hl, IdentifiedText
 	jp FarBattleTextBox
@@ -9652,25 +9661,25 @@ BattleCommand58: ; 376c2
 
 	ld hl, PlayerSubStatus1
 	ld de, EnemySubStatus1
-	bit 4, [hl]
-	jr z, .asm_376d1 ; 376ca $5
+	bit SUBSTATUS_PERISH, [hl]
+	jr z, .asm_376d1
 	ld a, [de]
-	bit 4, a
-	jr nz, .asm_376f2 ; 376cf $21
+	bit SUBSTATUS_PERISH, a
+	jr nz, .asm_376f2
 .asm_376d1
-	bit 4, [hl]
-	jr nz, .asm_376dc ; 376d3 $7
-	set 4, [hl]
-	ld a, $4
+	bit SUBSTATUS_PERISH, [hl]
+	jr nz, .asm_376dc
+	set SUBSTATUS_PERISH, [hl]
+	ld a, 4
 	ld [PlayerPerishCount], a
 .asm_376dc
 	ld a, [de]
-	bit 4, a
-	jr nz, .asm_376e9 ; 376df $8
-	set 4, a
+	bit SUBSTATUS_PERISH, a
+	jr nz, .asm_376e9
+	set SUBSTATUS_PERISH, a
 	ld [de], a
-	ld a, $4
-	ld [$c67f], a
+	ld a, 4
+	ld [EnemyPerishCount], a
 .asm_376e9
 	call Function0x37e01
 	ld hl, StartPerishText
@@ -9706,13 +9715,13 @@ BattleCommand5b: ; 37718
 	ld de, PlayerRolloutCount
 	ld a, [hBattleTurn]
 	and a
-	jr z, .asm_37723 ; 3771e $3
+	jr z, .asm_37723
 	ld de, EnemyRolloutCount
 .asm_37723
 	ld a, BATTLE_VARS_SUBSTATUS1
 	call CleanGetBattleVarPair
-	bit 6, a
-	jr z, .asm_37731 ; 3772a $5
+	bit SUBSTATUS_ENCORED, a
+	jr z, .asm_37731
 
 	ld b, $4 ; doturn
 	jp SkipToBattleCommand
@@ -9962,11 +9971,11 @@ BattleCommand60: ; 3784b
 	ld [$ffb6], a
 	ld a, $a
 	ld [$ffb7], a
-	call $3119
+	call Multiply
 	ld a, $19
 	ld [$ffb7], a
 	ld b, $4
-	call $3124
+	call Divide
 	ld a, [$ffb6]
 	ld d, a
 	pop bc
@@ -10041,7 +10050,7 @@ BattleCommand61: ; 37874
 	ld hl, RegainedHealthText
 	call FarBattleTextBox
 	call SwitchTurn
-	call $398e
+	call UpdateOpponentInParty
 	jr .asm_37904 ; 378f1 $11
 .asm_378f3
 	call SwitchTurn
@@ -10079,11 +10088,11 @@ BattleCommand63: ; 3790e
 	ld [$ffb5], a
 	ld a, $a
 	ld [$ffb7], a
-	call $3119
+	call Multiply
 	ld a, $19
 	ld [$ffb7], a
 	ld b, $4
-	call $3124
+	call Divide
 	ld a, [$ffb6]
 	ld d, a
 	pop bc
@@ -10199,7 +10208,7 @@ BattleCommand67: ; 379c9
 	call Function0x37ae9
 	jp z, Function0x37aab
 
-	call $399c
+	call UpdateBattleMonInParty
 	call Function0x37e01
 
 	ld c, 50
@@ -10253,7 +10262,7 @@ BattleCommand67: ; 379c9
 	call Function0x37af6
 	jp z, Function0x37aab
 
-	call $39b0
+	call UpdateEnemyMonInParty
 	call Function0x37e01
 	call Function0x37a82
 
@@ -10564,7 +10573,7 @@ BattleCommand6a6c: ; 37b7e
 	rst FarCall ; callab 3ccef
 
 	call SwitchTurn
-	call $3995
+	call UpdateUserInParty
 
 ; 'regained health!'
 	ld hl, RegainedHealthText
@@ -10646,7 +10655,7 @@ BattleCommand95: ; 37c1a
 	ld hl, $4c3f
 	ld a, $f
 	rst FarCall
-	call $3995
+	call UpdateUserInParty
 	ld a, $5
 
 .asm_37c41
@@ -10943,13 +10952,13 @@ GetItem: ; 37dd0
 	ret z
 
 	push hl
-	ld hl, $67c3 ; Items
+	ld hl, ItemAttributes + 2
 	dec a
 	ld c, a
 	ld b, 0
-	ld a, 7
+	ld a, Item2Attributes - Item1Attributes
 	call AddNTimes
-	ld a, $1 ; BANK(Items)
+	ld a, BANK(ItemAttributes)
 	call GetFarHalfword
 	ld b, l
 	ld c, h

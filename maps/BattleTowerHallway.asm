@@ -21,11 +21,25 @@ UnknownScript_0x9f5c0: ; 0x9f5c0
 
 UnknownScript_0x9f5c1: ; 0x9f5c1
 	follow $2, $0
-	3callasm $27, $75cb
+	3callasm BANK(Function_0x9f5cb), Function_0x9f5cb
 	2jump UnknownScript_0x9f5dc
 ; 0x9f5cb
 
-INCBIN "baserom.gbc",$9f5cb,$9f5dc - $9f5cb
+
+Function_0x9f5cb: ; 0x9f5cb
+	ld a, [rSVBK]
+	push af
+
+	ld a, 3
+	ld [rSVBK], a
+	ld a, [$d800]
+	ld [ScriptVar], a
+
+	pop af
+	ld [rSVBK], a
+	ret
+; 0x9f5dc
+
 
 UnknownScript_0x9f5dc: ; 0x9f5dc
 	if_equal $3, UnknownScript_0x9f603

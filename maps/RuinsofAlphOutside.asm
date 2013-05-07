@@ -141,21 +141,36 @@ PsychicNathanScript: ; 0x58095
 	end
 ; 0x5809d
 
-UnknownScript_0x5809d: ; 0x5809d
-	musicfadeout $2905, $1
-; 0x580a2
 
-; probably not a script?
-UnknownScript_0x580a2: ; 0x580a2
-	db $e5
-	itemtotext THUNDERSTONE, $42
-	2call $a900
-	pokenamemem EXEGGCUTE, $47
+TrainerSuperNerdStan: ; 0x5809d
+	; bit/flag number
+	dw $581
+
+	; trainer group && trainer id
+	db SUPER_NERD, STAN
+
+	; text when seen
+	dw UnknownText_0x581e5
+
+	; text when trainer beaten
+	dw UnknownText_0x58217
+
+	; script when lost
+	dw $0000
+
+	; script when talk again
+	dw UnknownScript_0x580a9
+; 0x580a9
+
+UnknownScript_0x580a9: ; 0x580a9
+	talkaftercancel
+	loadfont
 	2writetext UnknownText_0x58250
 	closetext
 	loadmovesprites
 	end
 ; 0x580b1
+
 
 MapRuinsofAlphOutsideSignpost0Script: ; 0x580b1
 	jumptext UnknownText_0x58325

@@ -24,7 +24,7 @@ MapGoldenrodPokeComCenter2FMobileSignpost0Script: ; 0x625da
 	closetext
 UnknownScript_0x625df: ; 0x625df
 	reloadmappart
-	loadmenudata $6602
+	loadmenudata MenuDataHeader_0x62602
 	interpretmenu2
 	writebackup
 	if_equal $1, UnknownScript_0x625f0
@@ -51,7 +51,23 @@ UnknownScript_0x62600: ; 0x62600
 	end
 ; 0x62602
 
-INCBIN "baserom.gbc",$62602,$62624 - $62602
+
+MenuDataHeader_0x62602: ; 0x62602
+	db $40 ; flags
+	db 00, 00 ; start coords
+	db 08, 15 ; end coords
+	dw MenuData2_0x6260a
+	db 1 ; default option
+; 0x6260a
+
+MenuData2_0x6260a: ; 0x6260a
+	db $80 ; flags
+	db 3 ; items
+	db "# つうしん クラブ@" ; # COM CLUB
+	db "モバイルセンター@" ; MOBILE CENTER
+	db "やめる@" ; QUIT
+; 0x62624
+
 
 MapGoldenrodPokeComCenter2FMobileSignpost1Script: ; 0x62624
 	loadfont
@@ -86,8 +102,23 @@ UnknownScript_0x6264a: ; 0x6264a
 	end
 ; 0x6264c
 
-; menu data
-INCBIN "baserom.gbc",$6264c,$25
+
+MenuDataHeader_0x6264c: ; 0x6264c
+	db $40 ; flags
+	db 00, 00 ; start coords
+	db 08, 15 ; end coords
+	dw MenuData2_0x62654
+	db 1 ; default option
+; 0x62654
+
+MenuData2_0x62654: ; 0x62654
+	db $80 ; flags
+	db 3 ; items
+	db "でんわ",$1f,"つかうとき@" ; Use phone
+	db "でんわ",$4a,"つながらないとき@" ; Don't use phone
+	db "やめる@" ; QUIT
+; 0x62673
+
 
 MapGoldenrodPokeComCenter2FMobileSignpost2Script: ; 0x62671
 	jumptext UnknownText_0x62b26

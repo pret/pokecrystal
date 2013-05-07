@@ -108,6 +108,7 @@ UnknownScript_0x9f4d9: ; 0x9f4d9
 	pause 60
 	special $002f
 	warpfacing $1, GROUP_BATTLE_TOWER_1F, MAP_BATTLE_TOWER_1F, $7, $7
+BattleTowerBattleRoomScript_0x9f4e4: ; 0x9f4e4
 	loadfont
 	2writetext UnknownText_0x9eaef
 	2jump UnknownScript_0x9e47a
@@ -136,7 +137,12 @@ UnknownScript_0x9f4f7: ; 0x9f4f7
 	end
 ; 0x9f50b
 
-INCBIN "baserom.gbc",$9f50b,$9f52e-$9f50b
+
+UnknownText_0x9f50b: ; 0x9f50b
+	db $0, "You'll be returned", $4f
+	db "after you SAVE.", $57
+; 0x9f52e
+
 
 BattleTowerBattleRoom_MapEventHeader: ; 0x9f52e
 	; filler
