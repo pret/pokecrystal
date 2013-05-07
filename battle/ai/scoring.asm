@@ -458,7 +458,7 @@ AIScoring_LockOn: ; 3881d
 
 	jr c, .asm_38834
 
-	call Function_0x39233
+	call AICompareSpeed
 
 	jr nc, .asm_38877
 
@@ -735,7 +735,7 @@ AIScoring_MirrorMove: ; 3895b
 	and a
 	jr nz, .asm_38968
 
-	call Function_0x39233
+	call AICompareSpeed
 
 	ret nc
 	jp AIDiscourageMove
@@ -753,7 +753,7 @@ AIScoring_MirrorMove: ; 3895b
 
 	ret c
 	dec [hl]
-	call Function_0x39233
+	call AICompareSpeed
 
 	ret nc
 	call RNG
@@ -1121,7 +1121,7 @@ AIScoring_Fly: ; 38b12
 	ld a, [PlayerSubStatus3]
 	and 1<<SUBSTATUS_FLYING | 1<<SUBSTATUS_UNDERGROUND
 	ret z
-	call Function_0x39233
+	call AICompareSpeed
 	ret nc
 	dec [hl]
 	dec [hl]
@@ -1141,7 +1141,7 @@ AIScoring_SuperFang: ; 38b20
 AIScoring_Paralyze: ; 38b26
 	call AICheckPlayerQuarterHP
 	jr nc, .asm_38b3a
-	call Function_0x39233
+	call AICompareSpeed
 	ret c
 	call AICheckEnemyQuarterHP
 	ret nc
@@ -1161,14 +1161,14 @@ AIScoring_Paralyze: ; 38b26
 
 AIScoring_SpeedDownHit: ; 38b40
 	ld a, [EnemyMoveAnimation]
-	cp $c4
+	cp ICY_WIND
 	ret nz
 	call AICheckEnemyQuarterHP
 	ret nc
 	ld a, [PlayerTurnsTaken]
 	and a
 	ret nz
-	call Function_0x39233
+	call AICompareSpeed
 	ret c
 	call RNG
 	cp $1e
@@ -1288,7 +1288,7 @@ AIScoring_Mimic: ; 38ba8
 	ret
 
 .asm_38be9
-	call Function_0x39233
+	call AICompareSpeed
 	jp c, AIDiscourageMove
 
 .asm_38bef
@@ -1364,7 +1364,7 @@ AIScoring_Counter: ; 38bf1
 
 
 AIScoring_Encore: ; 38c3b
-	call Function_0x39233
+	call AICompareSpeed
 	jr nc, .asm_38c81
 
 	ld a, [LastPlayerMove]
@@ -1506,7 +1506,7 @@ AIScoring_Spite: ; 38cd5
 	and a
 	jr nz, .asm_38ce7
 
-	call Function_0x39233
+	call AICompareSpeed
 	jp c, AIDiscourageMove
 
 	call Function_0x39527
@@ -1632,7 +1632,7 @@ AIScoring_HealBell: ; 38d1f
 
 
 AIScoring_PriorityHit: ; 38d5a
-	call Function_0x39233
+	call AICompareSpeed
 
 	ret c
 	ld a, [PlayerSubStatus3]
@@ -1724,7 +1724,7 @@ AIScoring_Conversion2: ; 38d98
 
 
 AIScoring_Disable: ; 38dd1
-	call Function_0x39233
+	call AICompareSpeed
 
 	jr nc, .asm_38df3
 
@@ -2284,7 +2284,7 @@ AIScoring_Earthquake: ; 39044
 	bit 5, a
 	jr z, .asm_39058
 
-	call Function_0x39233
+	call AICompareSpeed
 
 	ret nc
 	dec [hl]
@@ -2292,7 +2292,7 @@ AIScoring_Earthquake: ; 39044
 	ret
 
 .asm_39058
-	call Function_0x39233
+	call AICompareSpeed
 
 	ret c
 	call Function_0x39527
@@ -2655,7 +2655,7 @@ AIScoring_Gust: ; 391d5
 	bit 6, a
 	jr z, .asm_391e9
 
-	call Function_0x39233
+	call AICompareSpeed
 
 	ret nc
 	dec [hl]
@@ -2663,7 +2663,7 @@ AIScoring_Gust: ; 391d5
 	ret
 
 .asm_391e9
-	call Function_0x39233
+	call AICompareSpeed
 
 	ret c
 	call Function_0x39527
@@ -2675,7 +2675,7 @@ AIScoring_Gust: ; 391d5
 
 
 AIScoring_FutureSight: ; 391f3
-	call Function_0x39233
+	call AICompareSpeed
 
 	ret nc
 	ld a, [PlayerSubStatus3]
@@ -2739,11 +2739,11 @@ AIScoring_Thunder: ; 39225
 ; 39233
 
 
-Function_0x39233: ; 39233
+AICompareSpeed: ; 39233
 	push bc
-	ld a, [$d21f]
+	ld a, [EnemyMonSpd + 1]
 	ld b, a
-	ld a, [$c645]
+	ld a, [BattleMonSpd + 1]
 	cp b
 	ld a, [EnemyMonSpd]
 	ld b, a
