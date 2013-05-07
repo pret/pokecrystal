@@ -34,7 +34,9 @@ UnknownScript_0x7abc5: ; 0x7abc5
 	return
 ; 0x7abc9
 
-INCBIN "baserom.gbc",$7abc9,$7abcc - $7abc9
+
+	db 0, 0, 0 ; filler
+
 
 UnknownScript_0x7abcc: ; 0x7abcc
 	describedecoration $1

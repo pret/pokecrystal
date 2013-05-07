@@ -18,6 +18,7 @@ from extras.crystal import (
     text_command_classes,
     movement_command_classes,
     music_classes,
+    effect_classes,
 )
 
 even_more_macros = [
@@ -34,6 +35,7 @@ macros += even_more_macros
 macros += [each[1] for each in text_command_classes]
 macros += movement_command_classes
 macros += music_classes
+macros += effect_classes
 
 # show lines before preprocessing in stdout
 show_original_lines = False
@@ -285,6 +287,7 @@ chars = {
 "é": 0xEA,
 "→": 0xEB,
 "▶": 0xED,
+"▼": 0xEE,
 "♂": 0xEF,
 "¥": 0xF0,
 "×": 0xF1,

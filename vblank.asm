@@ -128,7 +128,7 @@ VBlank0: ; 2b1
 	jr nz, .vblankoccurred
 	
 ; update oam by dma transfer
-	call $ff80
+	call hPushOAM
 ;	403f:
 ;		ld a, $c4
 ;		ld [rDMA], a
@@ -230,7 +230,7 @@ VBlank1: ; 337
 	call UpdateBGMap
 	call LoadTiles
 ; update oam by dma transfer
-	call $ff80
+	call hPushOAM
 ;	403f:
 ;		ld a, $c4
 ;		ld [rDMA], a
@@ -339,7 +339,7 @@ VBlank3: ; 396
 	call LoadTiles
 	
 ; update oam by dma transfer
-	call $ff80
+	call hPushOAM
 ;	403f:
 ;		ld a, $c4 ; Sprites / $100
 ;		ld [rDMA], a
@@ -411,7 +411,7 @@ VBlank4: ; 3df
 	call SafeLoadTiles
 	
 ; update oam by dma transfer
-	call $ff80
+	call hPushOAM
 ;	403f:
 ;		ld a, $c4
 ;		ld [rDMA], a

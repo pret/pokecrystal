@@ -11,7 +11,7 @@ MapGoldenrodDeptStore6FSignpost5Script: ; 0x563f5
 	2writetext UnknownText_0x564cb
 UnknownScript_0x563f9: ; 0x563f9
 	special $0051
-	loadmenudata $6478
+	loadmenudata MenuDataHeader_0x56478
 	interpretmenu2
 	writebackup
 	if_equal $1, UnknownScript_0x5640f
@@ -72,8 +72,24 @@ UnknownScript_0x56471: ; 0x56471
 	2jump UnknownScript_0x563f9
 ; 0x56478
 
-; menu data
-INCBIN "baserom.gbc",$56478,$564bf - $56478
+
+MenuDataHeader_0x56478: ; 0x56478
+	db $40 ; flags
+	db 02, 00 ; start coords
+	db 11, 19 ; end coords
+	dw MenuData2_0x56480
+	db 1 ; default option
+; 0x56480
+
+MenuData2_0x56480: ; 0x56480
+	db $80 ; flags
+	db 4 ; items
+	db "FRESH WATER  ¥200@"
+	db "SODA POP     ¥300@"
+	db "LEMONADE     ¥350@"
+	db "CANCEL@"
+; 0x564bf
+
 
 UnknownScript_0x564bf: ; 0x564bf
 	jumptextfaceplayer UnknownText_0x5654b

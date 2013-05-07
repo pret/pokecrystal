@@ -8,7 +8,7 @@ GoldenrodDeptStoreElevator_MapScriptHeader: ; 0x56697
 
 MapGoldenrodDeptStoreElevatorSignpost0Script: ; 0x56699
 	loadfont
-	elevator $66e0
+	elevator Elevator_0x566e0
 	loadmovesprites
 	iffalse UnknownScript_0x566df
 	pause 5
@@ -48,7 +48,19 @@ UnknownScript_0x566df: ; 0x566df
 	end
 ; 0x566e0
 
-INCBIN "baserom.gbc",$566e0,$566fe - $566e0
+
+Elevator_0x566e0: ; 0x566e0
+	db 7 ; floors
+	db _B1F, 2, GROUP_GOLDENROD_DEPT_STORE_B1F, MAP_GOLDENROD_DEPT_STORE_B1F
+	db _1F,  4, GROUP_GOLDENROD_DEPT_STORE_1F, MAP_GOLDENROD_DEPT_STORE_1F
+	db _2F,  3, GROUP_GOLDENROD_DEPT_STORE_2F, MAP_GOLDENROD_DEPT_STORE_2F
+	db _3F,  3, GROUP_GOLDENROD_DEPT_STORE_3F, MAP_GOLDENROD_DEPT_STORE_3F
+	db _4F,  3, GROUP_GOLDENROD_DEPT_STORE_4F, MAP_GOLDENROD_DEPT_STORE_4F
+	db _5F,  3, GROUP_GOLDENROD_DEPT_STORE_5F, MAP_GOLDENROD_DEPT_STORE_5F
+	db _6F,  2, GROUP_GOLDENROD_DEPT_STORE_6F, MAP_GOLDENROD_DEPT_STORE_6F
+	db $ff ; end
+; 0x566fe
+
 
 GoldenrodDeptStoreElevator_MapEventHeader: ; 0x566fe
 	; filler

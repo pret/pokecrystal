@@ -1,5 +1,26 @@
 ; Graciously aped from http://nocash.emubase.de/pandocs.htm .
 
+; MBC3
+MBC3SRamEnable EQU $0000
+MBC3RomBank    EQU $2000
+MBC3SRamBank   EQU $4000
+MBC3LatchClock EQU $6000
+MBC3RTC        EQU $a000
+
+SRAM_DISABLE EQU $00
+SRAM_ENABLE  EQU $0a
+
+RTC_S  EQU $08 ; Seconds   0-59 (0-3Bh)
+RTC_M  EQU $09 ; Minutes   0-59 (0-3Bh)
+RTC_H  EQU $0a ; Hours     0-23 (0-17h)
+RTC_DL EQU $0b ; Lower 8 bits of Day Counter (0-FFh)
+RTC_DH EQU $0c ; Upper 1 bit of Day Counter, Carry Bit, Halt Flag
+        ; Bit 0  Most significant bit of Day Counter (Bit 8)
+        ; Bit 6  Halt (0=Active, 1=Stop Timer)
+        ; Bit 7  Day Counter Carry Bit (1=Counter Overflow)
+
+
+; Hardware registers
 rJOYP       EQU $ff00 ; Joypad (R/W)
 rSB         EQU $ff01 ; Serial transfer data (R/W)
 rSC         EQU $ff02 ; Serial Transfer Control (R/W)

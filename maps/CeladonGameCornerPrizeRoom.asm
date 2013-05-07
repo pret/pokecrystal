@@ -24,7 +24,7 @@ MapCeladonGameCornerPrizeRoomSignpost0Script: ; 0x726ef
 	2writetext UnknownText_0x72974
 UnknownScript_0x726fd: ; 0x726fd
 	special $004f
-	loadmenudata $6790
+	loadmenudata MenuDataHeader_0x72790
 	interpretmenu2
 	writebackup
 	if_equal $1, UnknownScript_0x72714
@@ -111,8 +111,24 @@ UnknownScript_0x7278a: ; 0x7278a
 	end
 ; 0x72790
 
-; menu data
-INCBIN "baserom.gbc",$72790,$38
+
+MenuDataHeader_0x72790: ; 0x72790
+	db $40 ; flags
+	db 02, 00 ; start coords
+	db 11, 15 ; end coords
+	dw MenuData2_0x72798
+	db 1 ; default option
+; 0x72798
+
+MenuData2_0x72798: ; 0x72798
+	db $80 ; flags
+	db 4 ; items
+	db "TM32    1500@"
+	db "TM29    3500@"
+	db "TM15    7500@"
+	db "CANCEL@"
+; 0x727c8
+
 
 MapCeladonGameCornerPrizeRoomSignpost1Script: ; 0x727c8
 	faceplayer
@@ -124,7 +140,7 @@ MapCeladonGameCornerPrizeRoomSignpost1Script: ; 0x727c8
 UnknownScript_0x727d3: ; 0x727d3
 	2writetext UnknownText_0x72974
 	special $004f
-	loadmenudata $6877
+	loadmenudata MenuDataHeader_0x72877
 	interpretmenu2
 	writebackup
 	if_equal $1, UnknownScript_0x727ed
@@ -190,8 +206,24 @@ UnknownScript_0x72849: ; 0x72849
 	2jump UnknownScript_0x727d3
 ; 0x72877
 
-; menu data
-INCBIN "baserom.gbc",$72877,$41
+
+MenuDataHeader_0x72877: ; 0x72877
+	db $40 ; flags
+	db 02, 00 ; start coords
+	db 11, 17 ; end coords
+	dw MenuData2_0x7287f
+	db 1 ; default option
+; 0x7287f
+
+MenuData2_0x7287f: ; 0x7287f
+	db $80 ; flags
+	db 4 ; items
+	db "PIKACHU    2222@"
+	db "PORYGON    5555@"
+	db "LARVITAR   8888@"
+	db "CANCEL@"
+; 0x728b8
+
 
 UnknownText_0x728b8: ; 0x728b8
 	db $0, "I wanted PORYGON,", $4f

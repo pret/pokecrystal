@@ -11,11 +11,71 @@ IcePathB1F_MapScriptHeader: ; 0x7e4b9
 ; 0x7e4be
 
 UnknownScript_0x7e4be: ; 0x7e4be
-	writecmdqueue $64c2
+	writecmdqueue CmdQueue_0x7e4c2
 	return
 ; 0x7e4c2
 
-INCBIN "baserom.gbc",$7e4c2,$7e50a - $7e4c2
+CmdQueue_0x7e4c2: ; 0x7e4c2
+	dbw 2, StoneTable_0x7e4c7 ; check if any stones are sitting on a warp
+	db 0, 0 ; filler
+; 0x7e4c7
+
+StoneTable_0x7e4c7: ; 0x7e4c7
+	db 3, 2 ; warp, person
+	dw UnknownScript_0x7e4d8
+
+	db 4, 3 ; warp, person
+	dw UnknownScript_0x7e4e0
+
+	db 5, 4 ; warp, person
+	dw UnknownScript_0x7e4e8
+
+	db 6, 5 ; warp, person
+	dw UnknownScript_0x7e4f0
+
+	db $ff ; end
+; 0x7e4d8
+
+UnknownScript_0x7e4d8: ; 0x7e4d8
+	disappear 2
+	clearbit1 $070d
+	2jump UnknownScript_0x7e4f8
+; 0x7e4e0
+
+UnknownScript_0x7e4e0: ; 0x7e4e0
+	disappear 3
+	clearbit1 $070e
+	2jump UnknownScript_0x7e4f8
+; 0x7e4e8
+
+UnknownScript_0x7e4e8: ; 0x7e4e8
+	disappear 4
+	clearbit1 $070f
+	2jump UnknownScript_0x7e4f8
+; 0x7e4f0
+
+UnknownScript_0x7e4f0: ; 0x7e4f0
+	disappear 5
+	clearbit1 $0710
+	2jump UnknownScript_0x7e4f8
+; 0x7e4f8
+
+UnknownScript_0x7e4f8: ; 0x7e4f8
+	pause 30
+	2call UnknownScript_0x7e504
+	loadfont
+	2writetext UnknownText_0x7e512
+	closetext
+	loadmovesprites
+	end
+; 0x7e504
+
+UnknownScript_0x7e504: ; 0x7e504
+	playsound $001b
+	earthquake 80
+	end
+; 0x7e50a
+
 
 UnknownScript_0x7e50a: ; 0x7e50a
 	jumpstd $000e
@@ -30,7 +90,12 @@ MapIcePathB1FSignpostItem0: ; 0x7e50f
 	db MAX_POTION
 ; 0x7e512
 
-INCBIN "baserom.gbc",$7e512,$1b
+
+UnknownText_0x7e512: ; 0x7e512
+	db $0, "The boulder fell", $4f
+	db "through.", $57
+; 0x7e52d
+
 
 IcePathB1F_MapEventHeader: ; 0x7e52d
 	; filler

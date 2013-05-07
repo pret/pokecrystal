@@ -104,6 +104,11 @@ Gb.loadVBA()
 
 from vba_config import *
 
+try:
+    import vba_keyboard as keyboard
+except ImportError:
+    print "Not loading the keyboard module (which uses networkx)."
+
 if not os.path.exists(rom_path):
     raise Exception("rom_path is not configured properly; edit vba_config.py?")
 
@@ -163,10 +168,14 @@ def button_combiner(buttons):
             buttons.replace("select", "")
             result |= button_masks["select"]
 
+    if isinstance(buttons, list):
+        if len(buttons) > 9:
+            raise Exception("can't combine more than 9 buttons at a time")
+
     for each in buttons:
         result |= button_masks[each]
 
-    print "button: " + str(result)
+    #print "button: " + str(result)
     return result
 
 def load_rom(path=None):
@@ -434,6 +443,69 @@ def press(buttons, steplimit=1):
     for step_counter in range(0, steplimit):
         Gb.step(number)
 
+def get_buttons():
+    """
+    Returns the currentButtons[0] value (an integer with bits set for which
+    buttons are currently pressed).
+    """
+    return Gb.getCurrentButtons()
+
+class State(RomList):
+    name = None
+
+class Recording:
+    def __init__(self):
+        self.frames = []
+        self.states = {}
+
+    def _get_frame_count(self):
+        return len(self.frames)
+
+    frame_count = property(fget=_get_frame_count)
+
+    def save(self, name=None):
+        """
+        Saves the current state.
+        """
+        state = State(get_state())
+        state.name = name
+        self.states[self.frame_count] = state
+
+    def load(self, name):
+        """
+        Loads a state by name in the state list.
+        """
+        for state in self.states.items():
+            if state.name == name:
+                set_state(state)
+                return state
+        return False
+
+    def step(self, stepcount=1, first_frame=0, replay=False):
+        """
+        Records button presses for each frame.
+        """
+        if replay:
+            stepcount = len(self.frames[first_name:])
+
+        for counter in range(first_frame, stepcount):
+            if replay:
+                press(self.frames[counter], steplimit=0)
+            else:
+                self.frames.append(get_buttons())
+            nstep(1)
+
+    def replay_from(self, thing):
+        """
+        Replays based on a State or the name of a saved state.
+        """
+        if isinstance(thing, State):
+            set_state(thing)
+        else:
+            thing = self.load(thing)
+        frame_id = self.states.index(thing)
+        self.step(first_frame=frame_id, replay=True)
+
 class Registers:
     order = [
         "pc",
@@ -563,6 +635,66 @@ def call(bank, address):
         registers["pc"] = 0x2d63 # FarJump
     else:
         registers["pc"] = address
+
+class cheats:
+    """
+    Helpers to manage the cheating infrastructure.
+
+    import vba; vba.load_rom(); vba.cheats.add_gameshark("0100CFCF", "text speedup 1"); vba.cheats.add_gameshark("0101CCCF", "text speedup 2"); vba.go()
+    """
+
+    @staticmethod
+    def enable(id):
+        """
+        void gbCheatEnable(int i)
+        """
+        Gb.cheatEnable(id)
+
+    @staticmethod
+    def disable(id):
+        """
+        void gbCheatDisable(int i)
+        """
+        Gb.cheatDisable(id)
+
+    @staticmethod
+    def load_file(filename):
+        """
+        Loads a .clt file. By default each cheat is disabled.
+        """
+        Gb.loadCheatsFromFile(filename)
+
+    @staticmethod
+    def remove_all():
+        """
+        Removes all cheats from memory.
+
+        void gbCheatRemoveAll()
+        """
+        Gb.cheatRemoveAll()
+
+    @staticmethod
+    def remove_cheat(id):
+        """
+        Removes a specific cheat from memory by id.
+
+        void gbCheatRemove(int i)
+        """
+        Gb.cheatRemove(id)
+
+    @staticmethod
+    def add_gamegenie(code, description=""):
+        """
+        void gbAddGgCheat(const char *code, const char *desc)
+        """
+        Gb.cheatAddGamegenie(code, description)
+
+    @staticmethod
+    def add_gameshark(code, description=""):
+        """
+        gbAddGsCheat(const char *code, const char *desc)
+        """
+        Gb.cheatAddGameshark(code, description)
 
 class crystal:
     """
@@ -767,6 +899,25 @@ class crystal:
         return output
 
     @staticmethod
+    def keyboard_apply(button_sequence):
+        """
+        Applies a sequence of buttons to the on-screen keyboard.
+        """
+        for buttons in button_sequence:
+            press(buttons)
+            nstep(2)
+            press([])
+
+    @staticmethod
+    def write(something="TrAiNeR"):
+        """
+        Uses a planning algorithm to type out a word in the most efficient way
+        possible.
+        """
+        button_sequence = keyboard.plan_typing(something)
+        crystal.keyboard_apply([[x] for x in button_sequence])
+
+    @staticmethod
     def set_partymon2():
         """
         This causes corruption, so it's not working yet.
@@ -835,6 +986,14 @@ class TestEmulator(unittest.TestCase):
         text = crystal.get_text()
 
         self.assertTrue("TRAINER" in text)
+
+class TestWriter(unittest.TestCase):
+    def test_very_basic(self):
+        button_sequence = keyboard.plan_typing("an")
+        expected_result = ["select", "a", "d", "r", "r", "r", "r", "a"]
+
+        self.assertEqual(len(expected_result), len(button_sequence))
+        self.assertEqual(expected_result, button_sequence)
 
 if __name__ == "__main__":
     unittest.main()

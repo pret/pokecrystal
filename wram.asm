@@ -476,12 +476,33 @@ BattleMonSpclAtk: ; c646
 BattleMonSpclDef: ; c648
 	ds 2
 
-	ds 25
+BattleMonType1: ; c64a
+	ds 1
+BattleMonType2: ; c64b
+	ds 1
+
+	ds 23
 
 CurOTMon: ; c663
 	ds 1
 	
-	ds 4
+	ds 1
+
+TypeModifier: ; c665
+; >10: super-effective
+;  10: normal
+; <10: not very effective
+
+; bit 7: stab
+	ds 1
+
+CriticalHit: ; c666
+; nonzero for a critical hit
+	ds 1
+	
+AttackMissed: ; c667
+; nonzero for a miss
+	ds 1
 	
 PlayerSubStatus1: ; c668
 ; bit
@@ -489,21 +510,29 @@ PlayerSubStatus1: ; c668
 ; 6 encore
 ; 5 endure
 ; 4 perish song
-; 3 
+; 3 identified
 ; 2 protect
 ; 1 curse
 ; 0 nightmare
 	ds 1
 PlayerSubStatus2: ; c669
-; unknown
+; bit
+; 7
+; 6
+; 5
+; 4
+; 3
+; 2
+; 1
+; 0 curled
 	ds 1
 PlayerSubStatus3: ; c66a
 ; bit
-; 7 confusion
-; 6
-; 5
+; 7 confused
+; 6 flying
+; 5 underground
 ; 4 charged
-; 3 
+; 3 flinch
 ; 2
 ; 1 rollout
 ; 0 bide
@@ -511,22 +540,30 @@ PlayerSubStatus3: ; c66a
 PlayerSubStatus4: ; c66b
 ; bit
 ; 7 leech seed
-; 6
+; 6 rage
 ; 5 recharge
 ; 4 substitute
 ; 3
-; 2
-; 1
-; 0
+; 2 focus energy
+; 1 mist
+; 0 bide: unleashed energy
 	ds 1
 PlayerSubStatus5: ; c66c
-; unknown
+; bit
+; 7 cant run
+; 6 destiny bond
+; 5 lock-on
+; 4
+; 3
+; 2
+; 1
+; 0 toxic
 	ds 1
 
 EnemySubStatus1: ; c66d
 ; see PlayerSubStatus1
 	ds 1
-EnemySubstatus2: ; c66e
+EnemySubStatus2: ; c66e
 ; see PlayerSubStatus2
 	ds 1
 EnemySubStatus3: ; c66f
@@ -539,45 +576,91 @@ EnemySubStatus5: ; c671
 ; see PlayerSubStatus5
 	ds 1
 
-	ds 4
-
+PlayerRolloutCount: ; c672
+	ds 1
+PlayerConfuseCount: ; c673
+	ds 1
+	ds 1
+PlayerDisableCount: ; c675
+	ds 1
 PlayerEncoreCount: ; c676
 	ds 1
 PlayerPerishCount: ; c677
 	ds 1
+PlayerFuryCutterCount: ; c678
+	ds 1
+	ds 1
 
-	ds 5
-
+EnemyRolloutCount: ; c67a
+	ds 1
+EnemyConfuseCount: ; c67b
+	ds 1
+	ds 1
+EnemyDisableCount: ; c67d
+	ds 1
 EnemyEncoreCount: ; c67e
 	ds 1
 EnemyPerishCount: ; c67f
 	ds 1
-
-	ds 2
+EnemyFuryCutterCount: ; c680
+	ds 1
+	ds 1
 
 PlayerDamageTaken: ; c682
 	ds 2
 EnemyDamageTaken: ; c684
 	ds 2
 
-	ds 4
+	ds 3
+	
+	ds 1
 
 BattleScriptBuffer: ; c68a
 	ds 40
 
-BattleScriptBufferLocLo: ; c6b2
-	ds 1
-BattleScriptBufferLocHi: ; c6b3
-	ds 1
+BattleScriptBufferLoc: ; c6b2
+	ds 2
 
-	ds 25
+	ds 24
 
 PlayerStatLevels: ; c6cc
 ; 07 neutral
-	ds 8
+PlayerAtkLevel: ; c6cc
+	ds 1
+PlayerDefLevel: ; c6cd
+	ds 1
+PlayerSpdLevel: ; c6ce
+	ds 1
+PlayerSAtkLevel: ; c6cf
+	ds 1
+PlayerSDefLevel: ; c6d0
+	ds 1
+PlayerAccLevel: ; c6d1
+	ds 1
+PlayerEvaLevel: ; c6d2
+	ds 1
+; c6d3
+	ds 1
+PlayerStatLevelsEnd:
+
 EnemyStatLevels: ; c6d4
 ; 07 neutral
-	ds 8
+EnemyAtkLevel: ; c6d4
+	ds 1
+EnemyDefLevel: ; c6d5
+	ds 1
+EnemySpdLevel: ; c6d6
+	ds 1
+EnemySAtkLevel: ; c6d7
+	ds 1
+EnemySDefLevel: ; c6d8
+	ds 1
+EnemyAccLevel: ; c6d9
+	ds 1
+EnemyEvaLevel: ; c6da
+	ds 1
+; c6db
+	ds 1
 
 EnemyTurnsTaken: ; c6dc
 	ds 1
@@ -595,12 +678,21 @@ LinkBattleRNCount: ; c6e5
 ; how far through the prng stream
 	ds 1
 
-	ds 15
+	ds 3
+
+CurEnemyMoveNum: ; c6e9
+	ds 1
+
+	ds 10
+
+AlreadyDisobeyed: ; c6f4
+	ds 1
 
 DisabledMove: ; c6f5
 	ds 1
-
-	ds 2
+EnemyDisabledMove: ; c6f6
+	ds 1
+	ds 1
 
 ; exists so you can't counter on switch
 LastEnemyCounterMove: ; c6f8
@@ -608,14 +700,40 @@ LastEnemyCounterMove: ; c6f8
 LastPlayerCounterMove: ; c6f9
 	ds 1
 
-	ds 8
+	ds 1
+
+AlreadyFailed: ; c6fb
+	ds 1
+
+	ds 3
+	
+PlayerScreens: ; c6ff
+; bit
+; 4 reflect
+; 3 light screen
+; 2 safeguard
+; 0 spikes
+	ds 1
+
+EnemyScreens: ; c700
+; see PlayerScreens
+	ds 1
+
+	ds 1
 
 PlayerLightScreenCount: ; c702
 	ds 1
 PlayerReflectCount: ; c703
 	ds 1
 
-	ds 6
+	ds 2
+
+EnemyLightScreenCount: ; c706
+	ds 1
+EnemyReflectCount: ; c707
+	ds 1
+
+	ds 2
 
 Weather: ; c70a
 ; 00 normal
@@ -649,7 +767,7 @@ LastEnemyMove: ; c71c
 SECTION "overworldmap",BSS[$c800]
 OverworldMap: ; c800
 	ds 1300
-OverworldMapEnd
+OverworldMapEnd:
 	
 	ds 12
 
@@ -779,7 +897,14 @@ StartFlypoint: ; d005
 EndFlypoint: ; d006
 	ds 1
 	
-	ds 108
+	ds 55
+
+CurFruitTree: ; d03e
+	ds 1
+CurFruit: ; d03f
+	ds 1
+
+	ds 51
 
 StringBuffer1: ; d073
 	ds 19
@@ -804,7 +929,12 @@ VramState: ; d0ed
 ;        flickers when climbing waterfall
 	ds 1
 
-	ds 26
+	ds 24
+
+CurItem: ; d106
+	ds 1
+
+	ds 1
 	
 CurPartySpecies: ; d108
 	ds 1
@@ -815,7 +945,76 @@ CurPartyMon: ; d109
 ; 0-5
 	ds 1
 
-	ds 55
+	ds 4
+
+TempMon:
+TempMonSpecies: ; d10e
+	ds 1
+TempMonItem: ; d10f
+	ds 1
+TempMonMoves: ; d110
+TempMonMove1: ; d110
+	ds 1
+TempMonMove2: ; d111
+	ds 1
+TempMonMove3: ; d112
+	ds 1
+TempMonMove4: ; d113
+	ds 1
+TempMonID: ; d114
+	ds 2
+TempMonExp: ; d116
+	ds 3
+TempMonHPExp: ; d119
+	ds 2
+TempMonAtkExp: ; d11b
+	ds 2
+TempMonDefExp: ; d11d
+	ds 2
+TempMonSpdExp: ; d11f
+	ds 2
+TempMonSpclExp: ; d121
+	ds 2
+TempMonDVs: ; d123
+; hp = %1000 for each dv
+	ds 1 ; atk/def
+	ds 1 ; spd/spc
+TempMonPP: ; d125
+	ds 4
+TempMonHappiness: ; d129
+	ds 1
+TempMonPokerusStatus: ; d12a
+	ds 1
+TempMonCaughtData: ; d12b
+TempMonCaughtTime: ; d12b
+TempMonCaughtLevel: ; d12b
+	ds 1
+TempMonCaughtGender: ; d12c
+TempMonCaughtLocation: ; d12c
+	ds 1
+TempMonLevel: ; d12d
+	ds 1
+TempMonStatus: ; d12e
+	ds 1
+; d12f
+	ds 1
+TempMonCurHP: ; d130
+	ds 2
+TempMonMaxHP: ; d132
+	ds 2
+TempMonAtk: ; d134
+	ds 2
+TempMonDef: ; d136
+	ds 2
+TempMonSpd: ; d138
+	ds 2
+TempMonSpclAtk: ; d13a
+	ds 2
+TempMonSpclDef: ; d13c
+	ds 2
+TempMonEnd: ; d13e
+
+	ds 3
 
 PartyMenuActionText ; d141
     ds 1
@@ -849,7 +1048,10 @@ TileSetPalettes: ; d1e6
 ; bank 3f
 	ds 2
 
-	ds 2
+EvolvableFlags: ; d1e8
+	ds 1
+
+	ds 1
 
 Buffer1:
 MagikarpLength: ; d1ea
@@ -857,17 +1059,16 @@ MagikarpLength: ; d1ea
 Buffer2: ; d1eb
 	ds 1
 
-SECTION "prng2",BSS[$d1fa]
+SECTION "BattleMons2",BSS[$d1fa]
 LinkBattleRNs: ; d1fa
 	ds 10
-
-SECTION "BattleMons2",BSS[$d204]
 
 TempEnemyMonSpecies: ; d204
 	ds 1
 TempBattleMonSpecies: ; d205
 	ds 1
-	
+
+EnemyMon:
 EnemyMonSpecies: ; d206
 	ds 1
 EnemyMonItem: ; d207
@@ -882,6 +1083,7 @@ EnemyMonMove3: ; d20a
 	ds 1
 EnemyMonMove4: ; d20b
 	ds 1
+EnemyMonMovesEnd
 
 EnemyMonDVs:
 EnemyMonAtkDefDV: ; d20c
@@ -919,6 +1121,7 @@ EnemyMonMaxHPHi: ; d218
 EnemyMonMaxHPLo: ; d219
 	ds 1
 
+EnemyMonStats:
 EnemyMonAtk: ; d21a
 	ds 2
 EnemyMonDef: ; d21c
@@ -929,8 +1132,23 @@ EnemyMonSpclAtk: ; d220
 	ds 2
 EnemyMonSpclDef: ; d222
 	ds 2
+EnemyMonStatsEnd
 
-SECTION "Battle",BSS[$d22d]
+EnemyMonType1: ; d224
+	ds 1
+EnemyMonType2: ; d225
+	ds 1
+
+EnemyMonBaseStats: ; d226
+	ds 5
+
+EnemyMonCatchRate: ; d22b
+	ds 1
+EnemyMonBaseExp: ; d22c
+	ds 1
+
+EnemyMonEnd
+
 
 IsInBattle: ; d22d
 ; 0: overworld
@@ -966,15 +1184,66 @@ OtherTrainerID: ; d231
 ; (Joey, Mikey, Albert, etc.)
 	ds 1
 
-	ds 2
+	ds 1
+
+TrainerClass: ; d233
+	ds 1
 
 UnownLetter: ; d234
 	ds 1
 
 	ds 1
 
-CurBaseStats: ; d236
-	ds 32
+CurBaseData: ; d236
+BaseDexNo: ; d236
+	ds 1
+BaseStats: ; d237
+BaseHP: ; d237
+	ds 1
+BaseAttack: ; d238
+	ds 1
+BaseDefense: ; d239
+	ds 1
+BaseSpeed: ; d23a
+	ds 1
+BaseSpecialAttack: ; d23b
+	ds 1
+BaseSpecialDefense: ; d23c
+	ds 1
+BaseType: ; d23d
+BaseType1: ; d23d
+	ds 1
+BaseType2: ; d23e
+	ds 1
+BaseCatchRate: ; d23f
+	ds 1
+BaseExp: ; d240
+	ds 1
+BaseItems: ; d241
+	ds 2
+BaseGender: ; d243
+	ds 1
+BaseUnknown1: ; d244
+	ds 1
+BaseEggSteps: ; d245
+	ds 1
+BaseUnknown2: ; d246
+	ds 1
+BasePicSize: ; d247
+	ds 1
+BasePadding: ; d248
+	ds 4
+BaseGrowthRate: ; d24c
+	ds 1
+BaseEggGroups: ; d24d
+	ds 1
+BaseTMHM: ; d24e
+	ds 8
+
+
+CurDamage: ; d256
+	ds 2
+
 
 SECTION "TimeOfDay",BSS[$d269]
 
@@ -996,7 +1265,7 @@ OTPartySpecies: ; d281
 	     ; or the routine will keep going
 
 OTPartyMon1:
-OTPartyMon1Species2: ; d288
+OTPartyMon1Species: ; d288
 	ds 1
 OTPartyMon1Item: ; d289
 	ds 1
@@ -1133,6 +1402,7 @@ PlayerID: ; d47b
 	ds 2
 PlayerName: ; d47d
 	ds 11
+PlayerNameEnd: ; d478
 
 	ds 46
 	
@@ -1286,6 +1556,15 @@ Box13Name: ; dbe1
 Box14Name: ; dbea
 	ds 9
 
+SECTION "fruittrees", BSS[$dc27]
+FruitTreeFlags: ; dc27
+	ds 1
+
+SECTION "steps", BSS[$dc73]
+StepCount: ; dc73
+	ds 1
+PoisonStepCount: ; dc74
+	ds 1
 
 SECTION "FlypointPermissions", BSS[$dca5]
 FlypointPerms: ; dca5
@@ -1319,9 +1598,8 @@ PartyCount: ; dcd7
 	ds 1 ; number of Pokémon in party
 PartySpecies: ; dcd8
 	ds 6 ; species of each Pokémon in party
-; dcde
-	ds 1 ; any empty slots including the 7th must be FF
-	     ; or the routine will keep going
+PartyEnd: ; dcde
+	ds 1 ; legacy functions don't check PartyCount
 		 
 PartyMons:
 PartyMon1:
@@ -1368,7 +1646,7 @@ PartyMon1PokerusStatus: ; dcfb
 	ds 1
 PartyMon1CaughtData: ; dcfc
 PartyMon1CaughtTime: ; dcfc
-PartyMon1CaughtLevel ; dcfc
+PartyMon1CaughtLevel: ; dcfc
 	ds 1
 PartyMon1CaughtGender: ; dcfd
 PartyMon1CaughtLocation: ; dcfd
@@ -1420,6 +1698,7 @@ PartyMon5OT: ; de2b
 PartyMon6OT: ; de36
 	ds 11
 
+PartyMonNicknames:
 PartyMon1Nickname: ; de41
 	ds 11
 PartyMon2Nickname: ; de4c
@@ -1479,7 +1758,7 @@ BreedMon2Nick: ; df2f
 BreedMon2OT: ; df3a
 	ds 11
 BreedMon2Stats:
-BreedMon1Species: ; df45
+BreedMon2Species: ; df45
 	ds 1
 	ds 31
 
