@@ -41,13 +41,13 @@ ParkBall: ; e8a2
 	ld b, a
 	ld a, [BattleType]
 	cp $3
-	jp z, $699c
+	jp z, .asm_e99c
 	ld a, [CurItem]
 	cp $1
-	jp z, $699c
+	jp z, .asm_e99c
 	ld a, [CurItem]
 	ld c, a
-	ld hl, $6c0a
+	ld hl, Table_0xec0a
 
 .asm_e8f2
 	ld a, [hli]
@@ -529,7 +529,332 @@ ParkBall: ; e8a2
 ; ec0a
 
 
-INCBIN "baserom.gbc", $ec0a, $ee01 - $ec0a
+Table_0xec0a: ; ec0a
+	dbw ULTRA_BALL, Function_0xec29
+	dbw GREAT_BALL, Function_0xec2f
+	dbw MOON_STONE, Function_0xec2f
+	dbw HEAVY_BALL, Function_0xec50
+	dbw LEVEL_BALL, Function_0xed8c
+	dbw LURE_BALL,  Function_0xeccc
+	dbw FAST_BALL,  Function_0xed68
+	dbw MOON_BALL,  Function_0xecdd
+	dbw LOVE_BALL,  Function_0xed12
+	dbw PARK_BALL,  Function_0xec2f
+	db $ff
+; ec29
+
+
+Function_0xec29: ; ec29
+	sla b
+	ret nc
+	ld b, $ff
+	ret
+; ec2f
+
+
+Function_0xec2f: ; ec2f
+	ld a, b
+	srl a
+	add b
+	ld b, a
+	ret nc
+	ld b, $ff
+	ret
+; ec38
+
+
+INCBIN "baserom.gbc", $ec38, $ec50 - $ec38
+
+
+Function_0xec50: ; ec50
+	ld a, [EnemyMonSpecies]
+	ld hl, $4378
+	dec a
+	ld e, a
+	ld d, $0
+	add hl, de
+	add hl, de
+	ld a, $11
+	call GetFarHalfword
+
+.asm_ec61
+	call $6c38
+
+	call GetFarByte
+
+	inc hl
+	cp $50
+	jr nz, .asm_ec61
+	call $6c38
+
+	push bc
+	inc hl
+	inc hl
+	call GetFarHalfword
+
+	srl h
+	rr l
+	ld b, h
+	ld c, l
+	srl b
+	rr c
+	srl b
+	rr c
+	srl b
+	rr c
+	srl b
+	rr c
+	call $6c99
+
+	srl b
+	rr c
+	call $6c99
+
+	ld a, h
+	pop bc
+	jr .asm_eca4
+
+	push bc
+	ld a, b
+	cpl
+	ld b, a
+	ld a, c
+	cpl
+	ld c, a
+	inc bc
+	add hl, bc
+	pop bc
+	ret
+
+.asm_eca4
+	ld c, a
+	cp $4
+	jr c, .asm_ecbc
+
+	ld hl, $6cc4
+
+.asm_ecac
+	ld a, c
+	cp [hl]
+	jr c, .asm_ecb4
+
+	inc hl
+	inc hl
+	jr .asm_ecac
+
+.asm_ecb4
+	inc hl
+	ld a, b
+	add [hl]
+	ld b, a
+	ret nc
+	ld b, $ff
+	ret
+
+.asm_ecbc
+	ld a, b
+	sub $14
+	ld b, a
+	ret nc
+	ld b, $1
+	ret
+; ecc4
+
+
+INCBIN "baserom.gbc", $ecc4, $eccc - $ecc4
+
+
+Function_0xeccc: ; eccc
+	ld a, [BattleType]
+	cp $4
+	ret nz
+	ld a, b
+	add a
+	jr c, .asm_ecd9
+
+	add b
+	jr nc, .asm_ecdb
+
+.asm_ecd9
+	ld a, $ff
+
+.asm_ecdb
+	ld b, a
+	ret
+; ecdd
+
+
+Function_0xecdd: ; ecdd
+	push bc
+	ld a, [TempEnemyMonSpecies]
+	dec a
+	ld c, a
+	ld b, $0
+	ld hl, $65b1
+	add hl, bc
+	add hl, bc
+	ld a, $10
+	call GetFarHalfword
+
+	pop bc
+	push bc
+	ld a, $10
+	call GetFarByte
+
+	cp $2
+	pop bc
+	ret nz
+	inc hl
+	inc hl
+	inc hl
+	push bc
+	ld a, $10
+	call GetFarByte
+
+	cp $a
+	pop bc
+	ret nz
+	sla b
+	jr c, .asm_ed0f
+
+	sla b
+	jr nc, .asm_ed11
+
+.asm_ed0f
+	ld b, $ff
+
+.asm_ed11
+	ret
+; ed12
+
+
+Function_0xed12: ; ed12
+	ld a, [TempEnemyMonSpecies]
+	ld c, a
+	ld a, [TempBattleMonSpecies]
+	cp c
+	ret nz
+	push bc
+	ld a, [TempBattleMonSpecies]
+	ld [CurPartySpecies], a
+	xor a
+	ld [MonType], a
+	ld a, [CurBattleMon]
+	ld [CurPartyMon], a
+	ld a, $14
+	ld hl, $4bdd
+	rst FarCall
+
+	jr c, .asm_ed66
+
+	ld d, $0
+	jr nz, .asm_ed39
+	inc d
+
+.asm_ed39
+	push de
+	ld a, [TempEnemyMonSpecies]
+	ld [CurPartySpecies], a
+	ld a, $4
+	ld [MonType], a
+	ld a, $14
+	ld hl, $4bdd
+	rst FarCall
+
+	jr c, .asm_ed65
+
+	ld d, $0
+	jr nz, .asm_ed52
+	inc d
+
+.asm_ed52
+	ld a, d
+	pop de
+	cp d
+	pop bc
+	ret nz
+	sla b
+	jr c, .asm_ed62
+
+	sla b
+	jr c, .asm_ed62
+
+	sla b
+	ret nc
+
+.asm_ed62
+	ld b, $ff
+	ret
+
+.asm_ed65
+	pop de
+
+.asm_ed66
+	pop bc
+	ret
+; ed68
+
+
+Function_0xed68: ; ed68
+	ld a, [TempEnemyMonSpecies]
+	ld c, a
+	ld hl, $459a
+	ld d, $3
+
+.asm_ed71
+	ld a, $f
+	call GetFarByte
+
+	inc hl
+	cp $ff
+	jr z, .asm_ed88
+	cp c
+	jr nz, .asm_ed88
+	sla b
+	jr c, .asm_ed85
+
+	sla b
+	ret nc
+
+.asm_ed85
+	ld b, $ff
+	ret
+
+.asm_ed88
+	dec d
+	jr nz, .asm_ed71
+	ret
+; ed8c
+
+
+Function_0xed8c: ; ed8c
+	ld a, [BattleMonLevel]
+	ld c, a
+	ld a, [EnemyMonLevel]
+	cp c
+	ret nc
+	sla b
+	jr c, .asm_eda8
+
+	srl c
+	cp c
+	ret nc
+	sla b
+	jr c, .asm_eda8
+
+	srl c
+	cp c
+	ret nc
+	sla b
+	ret nc
+
+.asm_eda8
+	ld b, $ff
+	ret
+; edab
+
+
+INCBIN "baserom.gbc", $edab, $ee01 - $edab
 
 
 Item06: ; ee01
@@ -892,7 +1217,6 @@ BerryJuice:
 Berry:
 GoldBerry: ; f186
 	call $71a9
-
 	jp $709e
 ; f18c
 
@@ -1077,13 +1401,13 @@ Item38: ; f50c
 	ld [DefaultFlypoint], a
 	ld b, $f8
 	ld hl, PartyMon1Status
-	call $7554
+	call .asm_f554
 
 	ld a, [IsInBattle]
 	cp $1
 	jr z, .asm_f52b
 	ld hl, OTPartyMon1Status
-	call $7554
+	call .asm_f554
 
 .asm_f52b
 	ld hl, BattleMonStatus
@@ -1096,9 +1420,9 @@ Item38: ; f50c
 	ld [hl], a
 	ld a, [DefaultFlypoint]
 	and a
-	ld hl, $756c
+	ld hl, UnknownText_0xf56c
 	jp z, $1057
-	ld hl, $7576
+	ld hl, UnknownText_0xf576
 	call $1057
 
 	ld a, [Danger]
@@ -1106,30 +1430,83 @@ Item38: ; f50c
 	jr nz, .asm_f54e
 
 .asm_f54e
-	ld hl, $7571
+	ld hl, UnknownText_0xf571
 	jp $1057
-; f554
 
 
-INCBIN "baserom.gbc", $f554, $f58f - $f554
+.asm_f554
+	ld de, $0030
+	ld c, $6
+
+.asm_f559
+	ld a, [hl]
+	push af
+	and $7
+	jr z, .asm_f564
+	ld a, $1
+	ld [DefaultFlypoint], a
+
+.asm_f564
+	pop af
+	and b
+	ld [hl], a
+	add hl, de
+	dec c
+	jr nz, .asm_f559
+	ret
+; f56c
+
+
+UnknownText_0xf56c: ; 0xf56c
+	text_jump UnknownText_0x1c5bf9, BANK(UnknownText_0x1c5bf9)
+	db "@"
+; 0xf571
+
+UnknownText_0xf571: ; 0xf571
+	text_jump UnknownText_0x1c5c28, BANK(UnknownText_0x1c5c28)
+	db "@"
+; 0xf576
+
+UnknownText_0xf576: ; 0xf576
+	text_jump UnknownText_0x1c5c44, BANK(UnknownText_0x1c5c44)
+	start_asm
+; 0xf57b
+
+
+Function_0xf57b: ; f57b
+	ld a, [IsInBattle]
+	and a
+	jr nz, .asm_f58c
+
+	push de
+	ld de, SFX_POKEFLUTE
+	call WaitPlaySFX
+	call WaitSFX
+	pop de
+
+.asm_f58c
+	jp $13e0
+; f58f
 
 
 BlueCard: ; f58f
-	ld hl, $7595
+	ld hl, .bluecardtext
 	jp $2012
-; f595
 
-
-INCBIN "baserom.gbc", $f595, $f59a - $f595
+.bluecardtext
+	text_jump UnknownText_0x1c5c5e, BANK(UnknownText_0x1c5c5e)
+	db "@"
+; f59a
 
 
 CoinCase: ; f59a
-	ld hl, $75a0
+	ld hl, .coincasetext
 	jp $2012
-; f5a0
 
-
-INCBIN "baserom.gbc", $f5a0, $f5a5 - $f5a0
+.coincasetext
+	text_jump UnknownText_0x1c5c7b, BANK(UnknownText_0x1c5c7b)
+	db "@"
+; f5a5
 
 
 OldRod: ; f5a5
@@ -1310,14 +1687,17 @@ Function_0xf769: ; f769
 	ld hl, $6f02
 	rst FarCall
 
-	ld hl, $7778
+	ld hl, UnknownText_0xf778
 	call $1057
 
 	jp $7795
 ; f778
 
+UnknownText_0xf778: ; 0xf778
+	text_jump UnknownText_0x1c5d03, BANK(UnknownText_0x1c5d03)
+	db "@"
+; 0xf77d
 
-INCBIN "baserom.gbc", $f778, $f77d - $f778
 
 
 Brightpowder:
