@@ -5904,7 +5904,210 @@ Function0xd47f: ; d47f
 ; d486
 
 
-INCBIN "baserom.gbc", $d486, $fa0b - $d486
+INCBIN "baserom.gbc", $d486, $e722 - $d486
+
+
+DoItemEffect: ; e722
+	ld a, [CurItem]
+	ld [$d265], a
+	call GetItemName
+	call CopyName1
+	ld a, 1
+	ld [$d0ec], a
+	ld a, [CurItem]
+	dec a
+	ld hl, ItemEffects
+	rst $28
+	ret
+; e73c
+
+
+ItemEffects: ; e73c
+	dw MasterBall
+	dw UltraBall
+	dw Brightpowder
+	dw GreatBall
+	dw PokeBall
+	dw Item06
+	dw Bicycle
+	dw MoonStone
+	dw Antidote
+	dw BurnHeal
+	dw IceHeal
+	dw Awakening
+	dw ParlyzHeal
+	dw FullRestore
+	dw MaxPotion
+	dw HyperPotion
+	dw SuperPotion
+	dw Potion
+	dw EscapeRope
+	dw Repel
+	dw MaxElixer
+	dw FireStone
+	dw Thunderstone
+	dw WaterStone
+	dw Item19
+	dw HpUp
+	dw Protein
+	dw Iron
+	dw Carbos
+	dw LuckyPunch
+	dw Calcium
+	dw RareCandy
+	dw XAccuracy
+	dw LeafStone
+	dw MetalPowder
+	dw Nugget
+	dw PokeDoll
+	dw FullHeal
+	dw Revive
+	dw MaxRevive
+	dw GuardSpec
+	dw SuperRepel
+	dw MaxRepel
+	dw DireHit
+	dw Item2D
+	dw FreshWater
+	dw SodaPop
+	dw Lemonade
+	dw XAttack
+	dw Item32
+	dw XDefend
+	dw XSpeed
+	dw XSpecial
+	dw CoinCase
+	dw Itemfinder
+	dw Item38
+	dw ExpShare
+	dw OldRod
+	dw GoodRod
+	dw SilverLeaf
+	dw SuperRod
+	dw PpUp
+	dw Ether
+	dw MaxEther
+	dw Elixer
+	dw RedScale
+	dw Secretpotion
+	dw SSTicket
+	dw MysteryEgg
+	dw ClearBell
+	dw SilverWing
+	dw MoomooMilk
+	dw QuickClaw
+	dw Psncureberry
+	dw GoldLeaf
+	dw SoftSand
+	dw SharpBeak
+	dw Przcureberry
+	dw BurntBerry
+	dw IceBerry
+	dw PoisonBarb
+	dw KingsRock
+	dw BitterBerry
+	dw MintBerry
+	dw RedApricorn
+	dw Tinymushroom
+	dw BigMushroom
+	dw Silverpowder
+	dw BluApricorn
+	dw Item5A
+	dw AmuletCoin
+	dw YlwApricorn
+	dw GrnApricorn
+	dw CleanseTag
+	dw MysticWater
+	dw Twistedspoon
+	dw WhtApricorn
+	dw Blackbelt
+	dw BlkApricorn
+	dw Item64
+	dw PnkApricorn
+	dw Blackglasses
+	dw Slowpoketail
+	dw PinkBow
+	dw Stick
+	dw SmokeBall
+	dw Nevermeltice
+	dw Magnet
+	dw Miracleberry
+	dw Pearl
+	dw BigPearl
+	dw Everstone
+	dw SpellTag
+	dw Ragecandybar
+	dw GsBall
+	dw BlueCard
+	dw MiracleSeed
+	dw ThickClub
+	dw FocusBand
+	dw Item78
+	dw Energypowder
+	dw EnergyRoot
+	dw HealPowder
+	dw RevivalHerb
+	dw HardStone
+	dw LuckyEgg
+	dw CardKey
+	dw MachinePart
+	dw EggTicket
+	dw LostItem
+	dw Stardust
+	dw StarPiece
+	dw BasementKey
+	dw Pass
+	dw Item87
+	dw Item88
+	dw Item89
+	dw Charcoal
+	dw BerryJuice
+	dw ScopeLens
+	dw Item8D
+	dw Item8E
+	dw MetalCoat
+	dw DragonFang
+	dw Item91
+	dw Leftovers
+	dw Item93
+	dw Item94
+	dw Item95
+	dw Mysteryberry
+	dw DragonScale
+	dw BerserkGene
+	dw Item99
+	dw Item9A
+	dw Item9B
+	dw SacredAsh
+	dw HeavyBall
+	dw FlowerMail
+	dw LevelBall
+	dw LureBall
+	dw FastBall
+	dw ItemA2
+	dw LightBall
+	dw FriendBall
+	dw MoonBall
+	dw LoveBall
+	dw NormalBox
+	dw GorgeousBox
+	dw SunStone
+	dw PolkadotBow
+	dw ItemAB
+	dw UpGrade
+	dw Berry
+	dw GoldBerry
+	dw Squirtbottle
+	dw ItemB0
+	dw ParkBall
+	dw RainbowWing
+	dw ItemB3
+; e8a2
+
+INCLUDE "items/item_effects.asm"
+
+
+INCBIN "baserom.gbc", $f780, $fa0b - $f780
 
 
 SECTION "bank4",DATA,BANK[$4]
