@@ -2108,7 +2108,40 @@ GetTileType: ; 185d
 	ret
 ; 1875
 
-INCBIN "baserom.gbc", $1875, $2009 - $1875
+INCBIN "baserom.gbc", $1875, $1e70 - $1875
+
+SetUpMenu: ; 1e70
+	call MenuFunc_1e7f ; ???
+	call MenuWriteText
+	call $1eff ; set up selection pointer
+	ld hl, $cfa5
+	set 7, [hl]
+	ret
+
+MenuFunc_1e7f: ; 0x1e7f
+	call $1c66
+	call $1ebd
+	call $1ea6
+	call $1cbb
+	ret
+
+MenuWriteText: ; 0x1e8c
+	xor a
+	ld [hBGMapMode], a
+	call $1ebd ; sort out the text 
+	call $1eda ; actually write it
+	call $2e31
+	ld a, [hOAMUpdate]
+	push af
+	ld a, $1
+	ld [hOAMUpdate], a
+	call $321c
+	pop af
+	ld [hOAMUpdate], a
+	ret
+; 0x1ea6
+
+INCBIN "baserom.gbc", $1ea6, $2009 - $1ea6
 
 PlayClickSFX: ; $2009
 	push de
@@ -6043,13 +6076,14 @@ OpenMenu: ; 0x125cd
 	rst $8
 	call $68de
 	call $0485
-	jr .asm_12621
+	jr .wait
+.reopen
 	call $1ad2
 	call $0485
 	call $6829
 	ld a, [$d0d2]
 	ld [$cf88], a
-.asm_12621
+.wait
 	call MenuWait
 	jr c, .exit
 	call DrawMenuAccount
@@ -6058,7 +6092,9 @@ OpenMenu: ; 0x125cd
 	call PlayClickSFX
 	call $1bee
 	call $67e5
-	ld hl, .MenuPointerTable
+; code when you return from a submenu.  some submenus force you to quit
+; the menu, like save.  option forces it to redraw completely.
+	ld hl, .MenuReturnPointerTable
 	ld e, a
 	ld d, $0
 	add hl, de
@@ -6068,14 +6104,14 @@ OpenMenu: ; 0x125cd
 	ld l, a
 	jp [hl]
 	
-.MenuPointerTable: ; $6644
-	 dw $6612
-	 dw $6652
-	 dw $66a2
-	 dw $6699
-	 dw $6691
-	 dw $665f
-	 dw $66b1
+.MenuReturnPointerTable: ; $6644
+	 dw .reopen
+	 dw .exit
+	 dw $66a2 ; invalid?
+	 dw $6699 ; invalid?
+	 dw $6691 ; invalid?
+	 dw .end
+	 dw $66b1 ; redraw
 
 .exit
 	ld a, [$ffd8]
@@ -6085,6 +6121,7 @@ OpenMenu: ; 0x125cd
 	call $0e5f
 	pop af
 	ld [hOAMUpdate], a
+.end
 	call $1c07
 	call $2dcf
 	call $0485
@@ -6095,7 +6132,7 @@ MenuWait: ; 0x12669
 	xor a
 	ld [hBGMapMode], a
 	call DrawMenuAccount
-	call $1e70
+	call SetUpMenu
 	ld a, $ff
 	ld [MenuSelection], a
 .loop
