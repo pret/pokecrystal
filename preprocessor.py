@@ -352,6 +352,11 @@ def quote_translator(asm):
         sys.stdout.write(asm)
         return
 
+    print_macro = False
+    if asms[0].strip() == 'print':
+        asms[0] = asms[0].replace('print','db 0,')
+        print_macro = True
+
     output = ""
     even = False
     i = 0
@@ -359,6 +364,7 @@ def quote_translator(asm):
         i = i + 1
 
         if even:
+            characters = []
             # token is a string to convert to byte values
             while len(token):
                 # read a single UTF-8 codepoint
@@ -393,10 +399,35 @@ def quote_translator(asm):
                         char = char + token[0]
                         token = token[1:]
 
-                output += ("${0:02X}".format(chars[char]))
+                characters += [char]
 
-                if len(token):
-                    output += (", ")
+            if print_macro:
+                line = 0
+                while len(characters):
+                    last_char = 1
+                    if len(characters) > 18 and characters[-1] != '@':
+                        for i, char in enumerate(characters):
+                            last_char = i + 1
+                            if ' ' not in characters[i+1:18]: break
+                        output += ", ".join("${0:02X}".format(chars[char]) for char in characters[:last_char-1])
+                        if characters[last_char-1] != " ":
+                            output += ", ${0:02X}".format(characters[last_char-1])
+                        if not line & 1:
+                           line_ending = 0x4f
+                        else:
+                           line_ending = 0x51
+                        output += ", ${0:02X}".format(line_ending)
+                        line += 1
+                    else:
+                        output += ", ".join(["${0:02X}".format(chars[char]) for char in characters[:last_char]])
+                    characters = characters[last_char:]
+                    if len(characters): output += ", "
+                # end text
+                line_ending = 0x57
+                output += ", ${0:02X}".format(line_ending)
+
+            output += ", ".join(["${0:02X}".format(chars[char]) for char in characters])
+
         # if not even
         else:
             output += (token)
