@@ -1440,6 +1440,7 @@ def mass_to_colored_png(debug=False):
 						to_png(os.path.join(root, name), None, os.path.join(root, os.path.splitext(name)[0]+'.pal'))
 					else:
 						to_png(os.path.join(root, name))
+					os.touch(os.path.join(root, name))
 	
 	# only monster and trainer pics for now
 	for root, dirs, files in os.walk('../gfx/pics/'):
@@ -1450,11 +1451,14 @@ def mass_to_colored_png(debug=False):
 					to_png(os.path.join(root, name), None, os.path.join(root, 'normal.pal'))
 				else:
 					to_png(os.path.join(root, name))
+				os.touch(os.path.join(root, name))
+	
 	for root, dirs, files in os.walk('../gfx/trainers/'):
 		for name in files:
 			if debug: print os.path.splitext(name), os.path.join(root, name)
 			if os.path.splitext(name)[1] == '.2bpp':
 				to_png(os.path.join(root, name), None, os.path.join(root, name[:-5]+'.pal'))
+				os.touch(os.path.join(root, name))
 
 
 def mass_decompress(debug=False):
@@ -1479,6 +1483,7 @@ def mass_decompress(debug=False):
 				else:
 					with open(os.path.join(root, name), 'rb') as lz: de = Decompressed(lz.read())
 					to_file(os.path.join(root, os.path.splitext(name)[0]+'.2bpp'), de.output)
+				os.touch(os.path.join(root, name))
 
 def append_terminator_to_lzs(directory):
 	# fix lzs that were extracted with a missing terminator
