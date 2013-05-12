@@ -815,7 +815,12 @@ MonType: ; cf5f
 CurSpecies: ; cf60
 	ds 1
 
-	ds 33
+	ds $13
+
+MenuSelection:; cf74
+    ds 1
+    
+	ds $cf82-$cf74
 
 TileY: ; cf82
 	ds 1
@@ -899,6 +904,7 @@ EndFlypoint: ; d006
 	
 	ds 55
 
+MenuItemsList:
 CurFruitTree: ; d03e
 	ds 1
 CurFruit: ; d03f
