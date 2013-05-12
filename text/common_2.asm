@@ -1504,7 +1504,7 @@ UnknownText_0x1c1cf3: ; 1c1cf3
 	db "on SELECT Button.", $57
 ; 1c1d35
 
-UnknownText_0x1c1d35: ; 1c1d35
+_OakText1: ; 1c1d35
 	db $0, "Hello! Sorry to", $4f
 	db "keep you waiting!", $51
 	db "Welcome to the", $4f
@@ -1514,7 +1514,7 @@ UnknownText_0x1c1d35: ; 1c1d35
 	db "#MON PROF.", $58
 ; 1c1da4
 
-UnknownText_0x1c1da4: ; 1c1da4
+_OakText2: ; 1c1da4
 	db $0, "This world is in-", $4f
 	db "habited by crea-", $55
 	db "tures that we call", $55
@@ -1522,7 +1522,7 @@ UnknownText_0x1c1da4: ; 1c1da4
 	db "@"
 ; 1c1de2
 
-UnknownText_0x1c1de2: ; 1c1de2
+_OakText3: ; 1c1de2
 	text_waitbutton
 	db "@"
 ; 1c1de4
@@ -1531,7 +1531,7 @@ UnknownText_0x1c1de4: ; 1c1de4
 	db "@"
 ; 1c1de5
 
-UnknownText_0x1c1de5: ; 1c1de5
+_OakText4: ; 1c1de5
 	db $0, "People and #MON", $4f
 	db "live together by", $51
 	db "supporting each", $4f
@@ -1541,7 +1541,7 @@ UnknownText_0x1c1de5: ; 1c1de5
 	db "battle with them.", $58
 ; 1c1e51
 
-UnknownText_0x1c1e51: ; 1c1e51
+_OakText5: ; 1c1e51
 	db $0, "But we don't know", $4f
 	db "everything about", $55
 	db "#MON yet.", $51
@@ -1551,4 +1551,3 @@ UnknownText_0x1c1e51: ; 1c1e51
 	db "That's why I study", $4f
 	db "#MON every day.", $58
 ; 1c1ec9
-
