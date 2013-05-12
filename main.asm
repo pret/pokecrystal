@@ -1275,7 +1275,7 @@ CheckDict: ; 1087
 	cp $15
 	jp z, $117b
 	cp $4f
-	jp z, $12ea
+	jp z, Char4f
 	cp $4e
 	jp z, $12a7
 	cp $16
@@ -1319,7 +1319,7 @@ CheckDict: ; 1087
 	cp $22
 	jp z, $12b0
 	cp $55
-	jp z, $1345
+	jp z, Char55
 	cp $56
 	jp z, $11d3
 	cp $57
@@ -1447,7 +1447,7 @@ Char5D:
 	ld h, b
 	ld l, c
 	pop de
-	jp $1083
+	jp NextChar
 ; 0x1273
 
 
@@ -1465,7 +1465,32 @@ Char56Text: ; 0x1293
 Char5AText: ; 0x1295
 	db "Enemy @"
 
-INCBIN "baserom.gbc", $129c, $1356 - $129c
+INCBIN "baserom.gbc", $129c, $12ea - $129c
+
+Char4f: ; 12ea
+	pop hl
+	ld hl, $c5e1
+	push hl
+	jp NextChar
+; 0x12f2
+
+INCBIN "baserom.gbc", $12f2, $1345 - $12f2
+
+Char55: ; $1345
+	push de
+	ld de, $1354
+	ld b, h
+	ld c, l
+	call $1078
+	ld h, b
+	ld l, c
+	pop de
+	jp NextChar
+; 0x1354
+
+; ???
+	ld c, e
+	ld d, b
 
 Char5F: ; 0x1356
 ; ends a Pokédex entry
