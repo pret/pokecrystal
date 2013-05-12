@@ -1,5 +1,5 @@
 
-MapGroup0:
+MapGroup1:
 
 OlivinePokeCenter1F_MapHeader: ; 0x94034
 	; bank, tileset, permission
@@ -158,7 +158,7 @@ OlivineCity_MapHeader: ; 0x940a9
 ; 0x940b2
 
 
-MapGroup1:
+MapGroup2:
 
 MahoganyRedGyaradosSpeechHouse_MapHeader: ; 0x940b2
 	; bank, tileset, permission
@@ -238,7 +238,7 @@ MahoganyTown_MapHeader: ; 0x940e8
 ; 0x940f1
 
 
-MapGroup2:
+MapGroup3:
 
 SproutTower1F_MapHeader: ; 0x940f1
 	; bank, tileset, permission
@@ -1242,7 +1242,7 @@ VictoryRoad_MapHeader: ; 0x9441b
 ; 0x94424
 
 
-MapGroup3:
+MapGroup4:
 
 EcruteakHouse_MapHeader: ; 0x94424
 	; bank, tileset, permission
@@ -1344,7 +1344,7 @@ EcruteakCity_MapHeader: ; 0x9446c
 ; 0x94475
 
 
-MapGroup4:
+MapGroup5:
 
 BlackthornGym1F_MapHeader: ; 0x94475
 	; bank, tileset, permission
@@ -1457,7 +1457,7 @@ BlackthornCity_MapHeader: ; 0x944c6
 ; 0x944cf
 
 
-MapGroup5:
+MapGroup6:
 
 CinnabarPokeCenter1F_MapHeader: ; 0x944cf
 	; bank, tileset, permission
@@ -1548,7 +1548,7 @@ CinnabarIsland_MapHeader: ; 0x9450e
 ; 0x94517
 
 
-MapGroup6:
+MapGroup7:
 
 CeruleanGymBadgeSpeechHouse_MapHeader: ; 0x94517
 	; bank, tileset, permission
@@ -1738,7 +1738,7 @@ CeruleanCity_MapHeader: ; 0x945a7
 ; 0x945b0
 
 
-MapGroup7:
+MapGroup8:
 
 AzaleaPokeCenter1F_MapHeader: ; 0x945b0
 	; bank, tileset, permission
@@ -1818,7 +1818,7 @@ AzaleaTown_MapHeader: ; 0x945e6
 ; 0x945ef
 
 
-MapGroup8:
+MapGroup9:
 
 LakeofRageHiddenPowerHouse_MapHeader: ; 0x945ef
 	; bank, tileset, permission
@@ -1887,7 +1887,7 @@ LakeofRage_MapHeader: ; 0x9461c
 ; 0x94625
 
 
-MapGroup9:
+MapGroup10:
 
 Route32_MapHeader: ; 0x94625
 	; bank, tileset, permission
@@ -2077,7 +2077,7 @@ Route36NationalParkgate_MapHeader: ; 0x946b5
 ; 0x946be
 
 
-MapGroup10:
+MapGroup11:
 
 Route34_MapHeader: ; 0x946be
 	; bank, tileset, permission
@@ -2344,7 +2344,7 @@ DayCare_MapHeader: ; 0x9478d
 ; 0x94796
 
 
-MapGroup11:
+MapGroup12:
 
 Route6_MapHeader: ; 0x94796
 	; bank, tileset, permission
@@ -2490,7 +2490,7 @@ Route6UndergroundEntrance_MapHeader: ; 0x94802
 ; 0x9480b
 
 
-MapGroup12:
+MapGroup13:
 
 Route1_MapHeader: ; 0x9480b
 	; bank, tileset, permission
@@ -2559,7 +2559,7 @@ OaksLab_MapHeader: ; 0x94838
 ; 0x94841
 
 
-MapGroup13:
+MapGroup14:
 
 Route3_MapHeader: ; 0x94841
 	; bank, tileset, permission
@@ -2650,7 +2650,7 @@ PewterSnoozeSpeechHouse_MapHeader: ; 0x94880
 ; 0x94889
 
 
-MapGroup14:
+MapGroup15:
 
 OlivinePort_MapHeader: ; 0x94889
 	; bank, tileset, permission
@@ -2785,7 +2785,7 @@ TinTowerRoof_MapHeader: ; 0x948ec
 ; 0x948f5
 
 
-MapGroup15:
+MapGroup16:
 
 Route23_MapHeader: ; 0x948f5
 	; bank, tileset, permission
@@ -2876,7 +2876,7 @@ HallOfFame_MapHeader: ; 0x94934
 ; 0x9493d
 
 
-MapGroup16:
+MapGroup17:
 
 Route13_MapHeader: ; 0x9493d
 	; bank, tileset, permission
@@ -3022,7 +3022,7 @@ Route15FuchsiaGate_MapHeader: ; 0x949a9
 ; 0x949b2
 
 
-MapGroup17:
+MapGroup18:
 
 Route8_MapHeader: ; 0x949b2
 	; bank, tileset, permission
@@ -3179,7 +3179,7 @@ Route12SuperRodHouse_MapHeader: ; 0x94a27
 ; 0x94a30
 
 
-MapGroup18:
+MapGroup19:
 
 Route28_MapHeader: ; 0x94a30
 	; bank, tileset, permission
@@ -3226,7 +3226,7 @@ Route28FamousSpeechHouse_MapHeader: ; 0x94a4b
 ; 0x94a54
 
 
-MapGroup19:
+MapGroup20:
 
 PokeCenter2F_MapHeader: ; 0x94a54
 	; bank, tileset, permission
@@ -3295,7 +3295,7 @@ MobileBattleRoom_MapHeader: ; 0x94a81
 ; 0x94a8a
 
 
-MapGroup20:
+MapGroup21:
 
 Route7_MapHeader: ; 0x94a8a
 	; bank, tileset, permission
@@ -3584,7 +3584,7 @@ Route1718Gate_MapHeader: ; 0x94b6b
 ; 0x94b74
 
 
-MapGroup21:
+MapGroup22:
 
 Route40_MapHeader: ; 0x94b74
 	; bank, tileset, permission
@@ -3763,7 +3763,7 @@ BattleTowerOutside_MapHeader: ; 0x94bfb
 ; 0x94c04
 
 
-MapGroup22:
+MapGroup23:
 
 Route2_MapHeader: ; 0x94c04
 	; bank, tileset, permission
@@ -3909,7 +3909,7 @@ VictoryRoadGate_MapHeader: ; 0x94c70
 ; 0x94c79
 
 
-MapGroup23:
+MapGroup24:
 
 Route26_MapHeader: ; 0x94c79
 	; bank, tileset, permission
@@ -4055,7 +4055,7 @@ Route2946Gate_MapHeader: ; 0x94ce5
 ; 0x94cee
 
 
-MapGroup24:
+MapGroup25:
 
 Route5_MapHeader: ; 0x94cee
 	; bank, tileset, permission
@@ -4223,7 +4223,7 @@ Route5CleanseTagSpeechHouse_MapHeader: ; 0x94d6c
 ; 0x94d75
 
 
-MapGroup25:
+MapGroup26:
 
 Route30_MapHeader: ; 0x94d75
 	; bank, tileset, permission
