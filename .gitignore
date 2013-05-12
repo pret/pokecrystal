@@ -34,3 +34,6 @@ pokecrystal.rtc
 # for vim configuration
 # url: http://www.vim.org/scripts/script.php?script_id=441
 .lvimrc
+
+# some users are dumping png.py into extras/
+extras/png.py
