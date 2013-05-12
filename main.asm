@@ -4583,7 +4583,42 @@ INCBIN "baserom.gbc", $3e32, $3fb5 - $3e32
 
 SECTION "bank1",DATA,BANK[$1]
 
-INCBIN "baserom.gbc", $4000, $617c - $4000
+INCBIN "baserom.gbc", $4000, $6045 - $4000
+
+OakText1: ; 0x6045
+	TX_FAR _OakText1
+	db "@"
+
+OakText2: ; 0x604a
+	TX_FAR _OakText2
+	db 8
+	ld a,WOOPER
+	call $37ce
+	call $3c55
+	ld hl,OakText3
+	ret
+
+OakText3: ; 0x605b
+	TX_FAR _OakText3
+	db "@"
+
+OakText4: ; 0x6060
+	TX_FAR _OakText4
+	db "@"
+
+OakText5: ; 0x6065
+	TX_FAR _OakText5
+	db "@"
+
+OakText6: ; 0x606a
+	TX_FAR _OakText6
+	db "@"
+
+OakText7: ; 0x606f
+	TX_FAR _OakText7
+	db "@"
+
+INCBIN "baserom.gbc", $6074, $617c - $6074
 
 IntroFadePalettes: ; 0x617c
 	db %01010100
