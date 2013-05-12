@@ -1241,9 +1241,15 @@ SpeechTextBox: ; 103e
 ; 1048
 
 
-INCBIN "baserom.gbc", $1048, $1065 - $1048
+INCBIN "baserom.gbc", $1048, $1057 - $1048
 
-
+PrintText: ; 0x1057
+	call $106c
+	push hl
+	ld hl, $c5b9
+	ld bc, $0312
+	call ClearBox
+	pop hl
 PrintTextBoxText: ; 1065
 	ld bc, $c5b9 ; TileMap(1,14)
 	call $13e5 ; PrintText
@@ -1407,7 +1413,7 @@ Char5D:
 	ld a, [InLinkBattle]
 	and a
 	jr nz, .linkbattle
-	ld a, [$d233]
+	ld a, [TrainerClass]
 	cp $9
 	jr z, .asm_1248 ; 0x1227 $1f
 	cp $2a
@@ -4583,7 +4589,109 @@ INCBIN "baserom.gbc", $3e32, $3fb5 - $3e32
 
 SECTION "bank1",DATA,BANK[$1]
 
-INCBIN "baserom.gbc", $4000, $617c - $4000
+INCBIN "baserom.gbc", $4000, $5f99 - $4000
+
+OakSpeech: ; 0x5f99
+	ld a, $24
+	ld hl, $4672
+	rst $8
+	call $04dd
+	call ClearTileMap
+	ld de, $002b
+	call StartMusic
+	call $04a3
+	call $04b6
+	xor a
+	ld [CurPartySpecies], a
+	ld a, POKEMON_PROF
+	ld [TrainerClass], a
+	call $619c
+	ld b, $1c
+	call GetSGBLayout
+	call $616a
+	ld hl, OakText1
+	call PrintText
+	call $04b6
+	call ClearTileMap
+	ld a, $c2
+	ld [$cf60], a
+	ld [CurPartySpecies], a
+	call $3856
+	ld hl, $c4f6
+	call $3786
+	xor a
+	ld [$d123], a
+	ld [$d124], a
+	ld b, $1c
+	call $3340
+	call $6182
+	ld hl, OakText2
+	call PrintText
+	ld hl, OakText4
+	call PrintText
+	call $04b6
+	call ClearTileMap
+	xor a
+	ld [CurPartySpecies], a
+	ld a, POKEMON_PROF
+	ld [TrainerClass], a
+	call $619c
+	ld b, $1c
+	call $3340
+	call $616a
+	ld hl, OakText5
+	call PrintText
+	call $04b6
+	call ClearTileMap
+	xor a
+	ld [CurPartySpecies], a
+	ld a, $22
+	ld hl, $4874
+	rst $8
+	ld b, $1c
+	call $3340
+	call $616a
+	ld hl, OakText6
+	call PrintText
+	call $6074
+	ld hl, OakText7
+	call PrintText
+	ret
+
+OakText1: ; 0x6045
+	TX_FAR _OakText1
+	db "@"
+
+OakText2: ; 0x604a
+	TX_FAR _OakText2
+	db 8
+	ld a,WOOPER
+	call $37ce
+	call $3c55
+	ld hl,OakText3
+	ret
+
+OakText3: ; 0x605b
+	TX_FAR _OakText3
+	db "@"
+
+OakText4: ; 0x6060
+	TX_FAR _OakText4
+	db "@"
+
+OakText5: ; 0x6065
+	TX_FAR _OakText5
+	db "@"
+
+OakText6: ; 0x606a
+	TX_FAR _OakText6
+	db "@"
+
+OakText7: ; 0x606f
+	TX_FAR _OakText7
+	db "@"
+
+INCBIN "baserom.gbc", $6074, $617c - $6074
 
 IntroFadePalettes: ; 0x617c
 	db %01010100
@@ -5339,7 +5447,7 @@ SpecialsPointers: ; 0xc029
 	dbw $00, $0d91
 	dbw $00, $31f3
 	dbw $00, $0485
-	dbw $00, $0fc8
+	dbw BANK(ClearTileMap), ClearTileMap
 	dbw $00, $1ad2
 	dbw $00, $0e4a
 	dbw $03, $4230
@@ -10015,7 +10123,7 @@ StatsScreenInit: ; 4dc8a
 	push bc
 	push hl
 	call $31f3
-	call $0fc8
+	call ClearTileMap
 	call $1ad2
 	ld a, $3e
 	ld hl, $753e
@@ -10023,7 +10131,7 @@ StatsScreenInit: ; 4dc8a
 	pop hl
 	call JpHl
 	call $31f3
-	call $0fc8
+	call ClearTileMap
 	pop bc
 	; restore old values
 	ld a, b
@@ -17007,7 +17115,7 @@ Function117b14:
 
 Function117b28:
 	ld hl, MobileStadiumEntryText
-	call $1057
+	call PrintText
 	jp Function117cdd
 
 Function117b31:
@@ -17167,7 +17275,7 @@ Function117c4a:
 	ld hl, $4061
 	rst FarCall
 	ld hl, MobileStadiumSuccessText
-	call $1057
+	call PrintText
 	ld a, [rSVBK]
 	push af
 	ld a, $5

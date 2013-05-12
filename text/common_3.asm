@@ -1,9 +1,9 @@
-UnknownText_0x1c4000: ; 0x1c4000
+_OakText6: ; 0x1c4000
 	db $0, "Now, what did you", $4f
 	db "say your name was?", $58
 ; 0x1c4026
 
-UnknownText_0x1c4026: ; 0x1c4026
+_OakText7: ; 0x1c4026
 	db $0, $52, ", are you", $4f
 	db "ready?", $51
 	db "Your very own", $4f
