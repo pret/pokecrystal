@@ -13415,7 +13415,6 @@ SECTION "bank25",DATA,BANK[$25]
 
 MapGroupPointers: ; 0x94000
 ; pointers to the first map header of each map group
-	dw MapGroup0
 	dw MapGroup1
 	dw MapGroup2
 	dw MapGroup3
@@ -13441,6 +13440,7 @@ MapGroupPointers: ; 0x94000
 	dw MapGroup23
 	dw MapGroup24
 	dw MapGroup25
+	dw MapGroup26
 
 
 INCLUDE "maps/map_headers.asm"
