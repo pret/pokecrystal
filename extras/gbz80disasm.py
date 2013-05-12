@@ -861,4 +861,10 @@ def all_outstanding_labels_are_reverse(byte_labels, offset):
 
 
 if __name__ == "__main__":
-    print output_bank_opcodes(int(sys.argv[1], 16))[0]
+    addr = sys.argv[1]
+    if ":" in addr:
+        addr = addr.split(":")
+        addr = int(addr[0], 16)*0x4000+(int(addr[1], 16)%0x4000)
+    else:
+        addr = int(addr, 16)
+    print output_bank_opcodes(addr)[0]
