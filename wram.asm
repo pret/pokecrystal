@@ -1030,7 +1030,37 @@ PartyMenuActionText ; d141
 CurPartyLevel: ; d143
 	ds 1
 
-	ds 149
+
+SECTION "connections",BSS[$d1a9]
+
+MapConnections: ; d1a9
+MapConnectionNorth: ; d1a9
+ConnectedMapGroup: ; d1a9
+	ds 1
+ConnectedMapNumber: ; d1aa
+	ds 1
+ConnectionStripPointer: ; d1ab
+	ds 2
+ConnectionStripLocation: ; d1ad
+	ds 2
+ConnectionStripLength: ; d1af
+	ds 1
+ConnectedMapWidth: ; d1b0
+	ds 1
+ConnectionStripXOffset: ; d1b1
+	ds 1
+ConnectionStripYOffset: ; d1b2
+	ds 1
+ConnectionWindow: ; d1b3
+	ds 2
+
+MapConnectionSouth: ; d1b5
+	ds 12
+MapConnectionWest:; d1c1
+	ds 12
+MapConnectionEast: ; d1cd
+	ds 12
+
 
 TileSetHeader:
 TileSetBank: ; d1d9
