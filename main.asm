@@ -2139,7 +2139,148 @@ GetTileType: ; 185d
 	ret
 ; 1875
 
-INCBIN "baserom.gbc", $1875, $1e70 - $1875
+INCBIN "baserom.gbc", $1875, $1c07 - $1875
+
+Function1c07: ; 0x1c07
+	push af
+	ld hl, $43e8
+	ld a, $9
+	rst $8
+	pop af
+	ret
+
+Function1c10: ; 0x1c10
+	ld hl, $446d
+	ld a, $9
+	rst $8
+	ret
+
+Function1c17: ; 0x1c17
+	push af
+	call Function1c07
+	call $321c
+	call $1ad2
+	pop af
+	ret
+
+Function1c23: ; 0x1c23
+	call $1cfd
+	call Function1c30
+	call $1d19
+	call Function1c30
+	ret
+
+Function1c30: ; 0x1c30
+	call Function1c53
+	inc b
+	inc c
+.asm_1c35
+	push bc
+	push hl
+.asm_1c37
+	ld a, [de]
+	ld [hli], a
+	dec de
+	dec c
+	jr nz, .asm_1c37 ; 0x1c3b $fa
+	pop hl
+	ld bc, $0014
+	add hl, bc
+	pop bc
+	dec b
+	jr nz, .asm_1c35 ; 0x1c44 $ef
+	ret
+
+Function1c47: ; 0x1c47
+	ld b, $10
+	ld de, $cf81
+.asm_1c4c
+	ld a, [hld]
+	ld [de], a
+	inc de
+	dec b
+	jr nz, .asm_1c4c ; 0x1c50 $fa
+	ret
+
+Function1c53: ; 0x1c53
+	ld a, [$cf82]
+	ld b, a
+	ld a, [$cf84]
+	sub b
+	ld b, a
+	ld a, [$cf83]
+	ld c, a
+	ld a, [$cf85]
+	sub c
+	ld c, a
+	ret
+; 0x1c66
+
+INCBIN "baserom.gbc", $1c66, $1d35 - $1c66
+
+Function1d35: ; 0x1d35
+	call Function1d3c
+	call $1c00
+	ret
+
+Function1d3c: ; 0x1d3c
+	ld de, $cf81
+	ld bc, $0010
+	call CopyBytes
+	ld a, [$ff9d]
+	ld [$cf8a], a
+	ret
+; 0x1d4b
+
+INCBIN "baserom.gbc", $1d4b, $1d81 - $1d4b
+
+Function1d81: ; 0x1d81
+	xor a
+	ld [$ffd4], a
+	call $1cbb
+	call $1ad2
+	call $1c89
+	call $321c
+	call $1c66
+	ld a, [$cf91]
+	bit 7, a
+	jr z, .asm_1da7 ; 0x1d98 $d
+	call $1c10
+	call $1bc9
+	call $1ff8
+	bit 1, a
+	jr z, .asm_1da9 ; 0x1da5 $2
+.asm_1da7
+	scf
+	ret
+.asm_1da9
+	and a
+	ret
+; 0x1dab
+
+INCBIN "baserom.gbc", $1dab, $1db8 - $1dab
+
+Function1db8: ; 0x1db8
+	push hl
+	push bc
+	push af
+	ld hl, $cf86
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	inc hl
+	inc hl
+	pop af
+	call GetNthString
+	ld d, h
+	ld e, l
+	call $30d6
+	pop bc
+	pop hl
+	ret
+; 0x1dcf
+
+INCBIN "baserom.gbc", $1dcf, $1e70 - $1dcf
 
 SetUpMenu: ; 1e70
 	call MenuFunc_1e7f ; ???
@@ -4729,7 +4870,7 @@ OakSpeech: ; 0x5f99
 	call $616a
 	ld hl, OakText6
 	call PrintText
-	call $6074
+	call NamePlayer
 	ld hl, OakText7
 	call PrintText
 	ret
@@ -4767,7 +4908,54 @@ OakText7: ; 0x606f
 	TX_FAR _OakText7
 	db "@"
 
-INCBIN "baserom.gbc", $6074, $617c - $6074
+NamePlayer: ; 0x6074
+	ld a, BANK(MovePlayerPicRight)
+	ld hl, MovePlayerPicRight
+	rst $8
+	ld a, BANK(ShowPlayerNamingChoices)
+	ld hl, ShowPlayerNamingChoices
+	rst $8
+	ld a, [$cfa9]
+	dec a
+	jr z, .asm_6096 ; 0x6084 $10
+	call $60fa
+	ld a, $2
+	ld hl, $4c1d
+	rst $8
+	ld a, BANK(MovePlayerPicLeft)
+	ld hl, MovePlayerPicLeft
+	rst $8
+	ret
+.asm_6096
+	ld b, $1
+	ld de, $d47d
+	ld a, $4
+	ld hl, $56c1
+	rst $8
+	call $04b6
+	call $0fc8
+	call $0e5f
+	call WaitBGMap
+	xor a
+	ld [$d108], a
+	ld a, $22
+	ld hl, $4874
+	rst $8
+	ld b, $1c
+	call $3340
+	call $04f0
+	ld hl, $d47d
+	ld de, $60d3
+	ld a, [$d472]
+	bit 0, a
+	jr z, .asm_60cf ; 0x60ca $3
+	ld de, $60de
+.asm_60cf
+	call $2ef9
+	ret
+; 0x60d3
+
+INCBIN "baserom.gbc", $60d3, $617c - $60d3
 
 IntroFadePalettes: ; 0x617c
 	db %01010100
@@ -6501,7 +6689,7 @@ OpenMenu: ; 0x125cd
 	jr z, .asm_125e9
 	ld hl, $66db ; draw the menu a little lower
 .asm_125e9
-	call $1d35
+	call Function1d35
 	call SetUpMenuItems
 	ld a, [$d0d2]
 	ld [$cf88], a
@@ -6812,7 +7000,7 @@ OpenPartyMenu: ; $12976
 	ld a, BANK(PrintPartyMenuText)
 	ld hl, PrintPartyMenuText
 	rst FarCall
-	call $31f6
+	call WaitBGMap
 	call $32f9 ; load regular palettes?
 	call DelayFrame
 	ld a, BANK(PartyMenuSelect)
@@ -11391,7 +11579,68 @@ INCBIN "baserom.gbc", $86455, $88000 - $86455
 
 SECTION "bank22",DATA,BANK[$22]
 
-INCBIN "baserom.gbc", $88000, $8832c - $88000
+INCBIN "baserom.gbc", $88000, $88258 - $88000
+
+MovePlayerPicRight: ; 0x88258
+	ld hl, $c4f6
+	ld de, $0001
+	jr MovePlayerPic
+MovePlayerPicLeft
+	ld hl, $c4fd
+	ld de, -1
+	; fallthrough
+MovePlayerPic: ; 0x88266
+	ld c, $8
+.loop
+	push bc
+	push hl
+	push de
+	xor a
+	ld [$ffd4], a
+	ld bc, $0707
+	ld a, $13
+	call Predef
+	xor a
+	ld [$ffd5], a
+	call WaitBGMap
+	call DelayFrame
+	pop de
+	pop hl
+	add hl, de
+	pop bc
+	dec c
+	ret z
+	push hl
+	push bc
+	ld a, l
+	sub e
+	ld l, a
+	ld a, h
+	sbc d
+	ld h, a
+	ld bc, $0707
+	call ClearBox
+	pop bc
+	pop hl
+	jr .loop
+
+ShowPlayerNamingChoices: ; 0x88297
+	ld hl, $42b5 ; male
+	ld a, [PlayerGender]
+	bit 0, a
+	jr z, .skip
+	ld hl, $42e5 ; female
+.skip
+	call Function1d35
+	call Function1d81
+	ld a, [$cfa9]
+	dec a
+	call Function1db8
+	call Function1c17
+	ret
+; 0x882b5
+
+INCBIN "baserom.gbc", $882b5, $8832c - $882b5
 
 GetPlayerIcon: ; 8832c
 ; Get the player icon corresponding to gender
@@ -17211,7 +17460,7 @@ Function117b14:
 	dec [hl]
 	ret nz
 	ld hl, Data117cbc
-	call $1d35
+	call Function1d35
 	call $1cbb
 	call $1cfd
 	jp Function117cdd
@@ -17223,7 +17472,7 @@ Function117b28:
 
 Function117b31:
 	ld hl, Data117cc4
-	call $1d35
+	call Function1d35
 	call $1cbb
 	call $1cfd
 	ld hl, $c550
@@ -17371,7 +17620,7 @@ Function117bb6:
 
 Function117c4a:
 	ld hl, Data117cbc
-	call $1d35
+	call Function1d35
 	call $1cbb
 	call $1cfd
 	ld a, $41
