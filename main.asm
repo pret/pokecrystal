@@ -2522,7 +2522,7 @@ FillMapConnections: ; 2524
 	ld b, a
 	ld a, [NorthConnectedMapNumber]
 	ld c, a
-	call $2c5b
+	call GetAnyMapBlockdataBank
 
 	ld a, [NorthConnectionStripPointer]
 	ld l, a
@@ -2545,7 +2545,7 @@ FillMapConnections: ; 2524
 	ld b, a
 	ld a, [SouthConnectedMapNumber]
 	ld c, a
-	call $2c5b
+	call GetAnyMapBlockdataBank
 
 	ld a, [SouthConnectionStripPointer]
 	ld l, a
@@ -2568,7 +2568,7 @@ FillMapConnections: ; 2524
 	ld b, a
 	ld a, [WestConnectedMapNumber]
 	ld c, a
-	call $2c5b
+	call GetAnyMapBlockdataBank
 
 	ld a, [WestConnectionStripPointer]
 	ld l, a
@@ -2591,7 +2591,7 @@ FillMapConnections: ; 2524
 	ld b, a
 	ld a, [EastConnectedMapNumber]
 	ld c, a
-	call $2c5b
+	call GetAnyMapBlockdataBank
 
 	ld a, [EastConnectionStripPointer]
 	ld l, a
@@ -2858,7 +2858,40 @@ GetAnyMapHeaderMember: ; 0x2c0c
 	ret
 ; 0x2c1c
 
-INCBIN "baserom.gbc", $2c1c, $2c7d-$2c1c
+
+INCBIN "baserom.gbc", $2c1c, $2c5b - $2c1c
+
+
+GetAnyMapBlockdataBank: ; 2c5b
+; Return the blockdata bank for group b map c.
+	push hl
+	push de
+	push bc
+
+	push bc
+	ld de, 3 ; second map header pointer
+	call GetAnyMapHeaderMember
+	ld l, c
+	ld h, b
+	pop bc
+
+	push hl
+	ld de, 0 ; second map header bank
+	call GetAnyMapHeaderMember
+	pop hl
+
+	ld de, 3 ; blockdata bank
+	add hl, de
+	ld a, c
+	call GetFarByte
+	rst Bankswitch
+
+	pop bc
+	pop de
+	pop hl
+	ret
+; 2c7d
+
 
 GetSecondaryMapHeaderPointer: ; 0x2c7d
 ; returns the current map's secondary map header pointer in hl.
