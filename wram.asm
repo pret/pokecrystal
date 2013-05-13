@@ -1408,10 +1408,16 @@ PlayerID: ; d47b
 	ds 2
 PlayerName: ; d47d
 	ds 11
-PlayerNameEnd: ; d478
+PlayerNameEnd: ; d488
 
-	ds 46
-	
+	ds 11
+
+WRivalName: ; d493
+	ds 11
+WRivalNameEnd: ; d49e
+
+	ds 24
+
 ; init time set at newgame
 StartDay: ; d4b6
 	ds 1
