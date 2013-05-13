@@ -2499,7 +2499,7 @@ INCBIN "baserom.gbc", $210f, $23a3 - $210f
 
 GetMapConnection: ; 23a3
 ; Load map connection struct at hl into de.
-	ld c, MapConnectionSouth - MapConnectionNorth
+	ld c, SouthMapConnection - NorthMapConnection
 .loop
 	ld a, [hli]
 	ld [de], a

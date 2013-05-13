@@ -1033,33 +1033,87 @@ CurPartyLevel: ; d143
 
 SECTION "connections",BSS[$d1a9]
 
-MapConnections: ; d1a9
-MapConnectionNorth: ; d1a9
-ConnectedMapGroup: ; d1a9
+MapConnections:
+
+NorthMapConnection: ; d1a9
+NorthConnectedMapGroup: ; d1a9
 	ds 1
-ConnectedMapNumber: ; d1aa
+NorthConnectedMapNumber: ; d1aa
 	ds 1
-ConnectionStripPointer: ; d1ab
+NorthConnectionStripPointer: ; d1ab
 	ds 2
-ConnectionStripLocation: ; d1ad
+NorthConnectionStripLocation: ; d1ad
 	ds 2
-ConnectionStripLength: ; d1af
+NorthConnectionStripLength: ; d1af
 	ds 1
-ConnectedMapWidth: ; d1b0
+NorthConnectedMapWidth: ; d1b0
 	ds 1
-ConnectionStripXOffset: ; d1b1
+NorthConnectionStripXOffset: ; d1b1
 	ds 1
-ConnectionStripYOffset: ; d1b2
+NorthConnectionStripYOffset: ; d1b2
 	ds 1
-ConnectionWindow: ; d1b3
+NorthConnectionWindow: ; d1b3
 	ds 2
 
-MapConnectionSouth: ; d1b5
-	ds 12
-MapConnectionWest:; d1c1
-	ds 12
-MapConnectionEast: ; d1cd
-	ds 12
+SouthMapConnection: ; d1b5
+SouthConnectedMapGroup: ; d1b5
+	ds 1
+SouthConnectedMapNumber: ; d1b6
+	ds 1
+SouthConnectionStripPointer: ; d1b7
+	ds 2
+SouthConnectionStripLocation: ; d1b9
+	ds 2
+SouthConnectionStripLength: ; d1bb
+	ds 1
+SouthConnectedMapWidth: ; d1bc
+	ds 1
+SouthConnectionStripXOffset: ; d1bd
+	ds 1
+SouthConnectionStripYOffset: ; d1be
+	ds 1
+SouthConnectionWindow: ; d1bf
+	ds 2
+
+WestMapConnection: ; d1c1
+WestConnectedMapGroup: ; d1c1
+	ds 1
+WestConnectedMapNumber: ; d1c2
+	ds 1
+WestConnectionStripPointer: ; d1c3
+	ds 2
+WestConnectionStripLocation: ; d1c5
+	ds 2
+WestConnectionStripLength: ; d1c7
+	ds 1
+WestConnectedMapWidth: ; d1c8
+	ds 1
+WestConnectionStripXOffset: ; d1c9
+	ds 1
+WestConnectionStripYOffset: ; d1ca
+	ds 1
+WestConnectionWindow: ; d1cb
+	ds 2
+
+EastMapConnection: ; d1cd
+EastConnectedMapGroup: ; d1cd
+	ds 1
+EastConnectedMapNumber: ; d1ce
+	ds 1
+EastConnectionStripPointer: ; d1cf
+	ds 2
+EastConnectionStripLocation: ; d1d1
+	ds 2
+EastConnectionStripLength: ; d1d3
+	ds 1
+EastConnectedMapWidth: ; d1d4
+	ds 1
+EastConnectionStripXOffset: ; d1d5
+	ds 1
+EastConnectionStripYOffset: ; d1d6
+	ds 1
+EastConnectionWindow: ; d1d7
+	ds 2
 
 
 TileSetHeader:
