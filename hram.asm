@@ -24,6 +24,9 @@ hJoyReleased       EQU $ffa6
 hJoyPressed        EQU $ffa7
 hJoyDown           EQU $ffa8
 
+hConnectionStripLength EQU $ffaf
+hConnectedMapWidth EQU $ffb0
+
 hPastLeadingZeroes EQU $ffb3
 
 hDividend          EQU $ffb3
