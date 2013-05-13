@@ -402,7 +402,7 @@ ParkBall: ; e8a2
 
 	pop hl
 	ld de, StringBuffer1
-	call $2ef9
+	call InitString
 
 	jp $6be2
 
@@ -466,7 +466,7 @@ ParkBall: ; e8a2
 
 	ld hl, $b082
 	ld de, StringBuffer1
-	call $2ef9
+	call InitString
 
 	call CloseSRAM
 
