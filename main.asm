@@ -2510,7 +2510,186 @@ GetMapConnection: ; 23a3
 ; 23ac
 
 
-INCBIN "baserom.gbc", $23ac, $261f - $23ac
+INCBIN "baserom.gbc", $23ac, $2524 - $23ac
+
+
+FillMapConnections: ; 2524
+
+; North
+	ld a, [NorthConnectedMapGroup]
+	cp $ff
+	jr z, .South
+	ld b, a
+	ld a, [NorthConnectedMapNumber]
+	ld c, a
+	call $2c5b
+
+	ld a, [NorthConnectionStripPointer]
+	ld l, a
+	ld a, [NorthConnectionStripPointer + 1]
+	ld h, a
+	ld a, [NorthConnectionStripLocation]
+	ld e, a
+	ld a, [NorthConnectionStripLocation + 1]
+	ld d, a
+	ld a, [NorthConnectionStripLength]
+	ld [hConnectionStripLength], a
+	ld a, [NorthConnectedMapWidth]
+	ld [hConnectedMapWidth], a
+	call FillNorthConnectionStrip
+
+.South
+	ld a, [SouthConnectedMapGroup]
+	cp $ff
+	jr z, .West
+	ld b, a
+	ld a, [SouthConnectedMapNumber]
+	ld c, a
+	call $2c5b
+
+	ld a, [SouthConnectionStripPointer]
+	ld l, a
+	ld a, [SouthConnectionStripPointer + 1]
+	ld h, a
+	ld a, [SouthConnectionStripLocation]
+	ld e, a
+	ld a, [SouthConnectionStripLocation + 1]
+	ld d, a
+	ld a, [SouthConnectionStripLength]
+	ld [hConnectionStripLength], a
+	ld a, [SouthConnectedMapWidth]
+	ld [hConnectedMapWidth], a
+	call FillSouthConnectionStrip
+
+.West
+	ld a, [WestConnectedMapGroup]
+	cp $ff
+	jr z, .East
+	ld b, a
+	ld a, [WestConnectedMapNumber]
+	ld c, a
+	call $2c5b
+
+	ld a, [WestConnectionStripPointer]
+	ld l, a
+	ld a, [WestConnectionStripPointer + 1]
+	ld h, a
+	ld a, [WestConnectionStripLocation]
+	ld e, a
+	ld a, [WestConnectionStripLocation + 1]
+	ld d, a
+	ld a, [WestConnectionStripLength]
+	ld b, a
+	ld a, [WestConnectedMapWidth]
+	ld [hConnectionStripLength], a
+	call FillWestConnectionStrip
+
+.East
+	ld a, [EastConnectedMapGroup]
+	cp $ff
+	jr z, .Done
+	ld b, a
+	ld a, [EastConnectedMapNumber]
+	ld c, a
+	call $2c5b
+
+	ld a, [EastConnectionStripPointer]
+	ld l, a
+	ld a, [EastConnectionStripPointer + 1]
+	ld h, a
+	ld a, [EastConnectionStripLocation]
+	ld e, a
+	ld a, [EastConnectionStripLocation + 1]
+	ld d, a
+	ld a, [EastConnectionStripLength]
+	ld b, a
+	ld a, [EastConnectedMapWidth]
+	ld [hConnectionStripLength], a
+	call FillEastConnectionStrip
+
+.Done
+	ret
+; 25d3
+
+
+FillNorthConnectionStrip:
+FillSouthConnectionStrip: ; 25d3
+
+	ld c, 3
+.y
+	push de
+
+	push hl
+	ld a, [hConnectionStripLength]
+	ld b, a
+.x
+	ld a, [hli]
+	ld [de], a
+	inc de
+	dec b
+	jr nz, .x
+	pop hl
+
+	ld a, [hConnectedMapWidth]
+	ld e, a
+	ld d, 0
+	add hl, de
+	pop de
+
+	ld a, [$d19f]
+	add 6
+	add e
+	ld e, a
+	jr nc, .asm_25f2
+	inc d
+.asm_25f2
+	dec c
+	jr nz, .y
+	ret
+; 25f6
+
+
+FillWestConnectionStrip:
+FillEastConnectionStrip: ; 25f6
+
+.asm_25f6
+	ld a, [$d19f]
+	add 6
+	ld [hConnectedMapWidth], a
+
+	push de
+
+	push hl
+	ld a, [hli]
+	ld [de], a
+	inc de
+	ld a, [hli]
+	ld [de], a
+	inc de
+	ld a, [hli]
+	ld [de], a
+	inc de
+	pop hl
+
+	ld a, [hConnectionStripLength]
+	ld e, a
+	ld d, 0
+	add hl, de
+	pop de
+
+	ld a, [hConnectedMapWidth]
+	add e
+	ld e, a
+	jr nc, .asm_2617
+	inc d
+.asm_2617
+	dec b
+	jr nz, .asm_25f6
+	ret
+; 261b
+
+
+INCBIN "baserom.gbc", $261b, $261f - $261b
 
 
 PushScriptPointer: ; 261f
