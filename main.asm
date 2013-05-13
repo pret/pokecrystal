@@ -2493,7 +2493,25 @@ UpdateGameTimer: ; 20ad
 	ret
 ; 210f
 
-INCBIN "baserom.gbc", $210f, $261f - $210f
+
+INCBIN "baserom.gbc", $210f, $23a3 - $210f
+
+
+GetMapConnection: ; 23a3
+; Load map connection struct at hl into de.
+	ld c, MapConnectionSouth - MapConnectionNorth
+.loop
+	ld a, [hli]
+	ld [de], a
+	inc de
+	dec c
+	jr nz, .loop
+	ret
+; 23ac
+
+
+INCBIN "baserom.gbc", $23ac, $261f - $23ac
+
 
 PushScriptPointer: ; 261f
 ; used to call a script from asm
