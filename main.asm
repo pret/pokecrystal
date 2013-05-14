@@ -16797,7 +16797,159 @@ INCBIN "baserom.gbc", $104000, $104350 - $104000
 
 INCBIN "gfx/ow/misc.2bpp"
 
-INCBIN "baserom.gbc", $1045b0, $105258 - $1045b0
+
+INCBIN "baserom.gbc", $1045b0, $1045d6 - $1045b0
+
+
+EnterMapConnection: ; 1045d6
+; Return carry if a connection has been entered.
+	ld a, [$d151]
+	and a
+	jp z, EnterSouthConnection
+	cp 1
+	jp z, EnterNorthConnection
+	cp 2
+	jp z, EnterWestConnection
+	cp 3
+	jp z, EnterEastConnection
+	ret
+; 1045ed
+
+
+EnterWestConnection: ; 1045ed
+	ld a, [WestConnectedMapGroup]
+	ld [MapGroup], a
+	ld a, [WestConnectedMapNumber]
+	ld [MapNumber], a
+	ld a, [WestConnectionStripYOffset]
+	ld [XCoord], a
+	ld a, [WestConnectionStripXOffset]
+	ld hl, YCoord
+	add [hl]
+	ld [hl], a
+	ld c, a
+	ld hl, WestConnectionWindow
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	srl c
+	jr z, .asm_10461e
+	ld a, [WestConnectedMapWidth]
+	add 6
+	ld e, a
+	ld d, 0
+
+.asm_10461a
+	add hl, de
+	dec c
+	jr nz, .asm_10461a
+
+.asm_10461e
+	ld a, l
+	ld [$d194], a
+	ld a, h
+	ld [$d195], a
+	jp EnteredConnection
+; 104629
+
+
+EnterEastConnection: ; 104629
+	ld a, [EastConnectedMapGroup]
+	ld [MapGroup], a
+	ld a, [EastConnectedMapNumber]
+	ld [MapNumber], a
+	ld a, [EastConnectionStripYOffset]
+	ld [XCoord], a
+	ld a, [EastConnectionStripXOffset]
+	ld hl, YCoord
+	add [hl]
+	ld [hl], a
+	ld c, a
+	ld hl, EastConnectionWindow
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	srl c
+	jr z, .asm_10465a
+	ld a, [EastConnectedMapWidth]
+	add 6
+	ld e, a
+	ld d, 0
+
+.asm_104656
+	add hl, de
+	dec c
+	jr nz, .asm_104656
+
+.asm_10465a
+	ld a, l
+	ld [$d194], a
+	ld a, h
+	ld [$d195], a
+	jp EnteredConnection
+; 104665
+
+
+EnterNorthConnection: ; 104665
+	ld a, [NorthConnectedMapGroup]
+	ld [MapGroup], a
+	ld a, [NorthConnectedMapNumber]
+	ld [MapNumber], a
+	ld a, [NorthConnectionStripXOffset]
+	ld [YCoord], a
+	ld a, [NorthConnectionStripYOffset]
+	ld hl, XCoord
+	add [hl]
+	ld [hl], a
+	ld c, a
+	ld hl, NorthConnectionWindow
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	ld b, 0
+	srl c
+	add hl, bc
+	ld a, l
+	ld [$d194], a
+	ld a, h
+	ld [$d195], a
+	jp EnteredConnection
+; 104696
+
+
+EnterSouthConnection: ; 104696
+	ld a, [SouthConnectedMapGroup]
+	ld [MapGroup], a
+	ld a, [SouthConnectedMapNumber]
+	ld [MapNumber], a
+	ld a, [SouthConnectionStripXOffset]
+	ld [YCoord], a
+	ld a, [SouthConnectionStripYOffset]
+	ld hl, XCoord
+	add [hl]
+	ld [hl], a
+	ld c, a
+	ld hl, SouthConnectionWindow
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	ld b, 0
+	srl c
+	add hl, bc
+	ld a, l
+	ld [$d194], a
+	ld a, h
+	ld [$d195], a
+	; fallthrough
+; 1046c4
+
+EnteredConnection: ; 1046c4
+	scf
+	ret
+; 1046c6
+
+
+INCBIN "baserom.gbc", $1046c6, $105258 - $1046c6
 
 MysteryGiftGFX:
 INCBIN "gfx/misc/mystery_gift.2bpp"
