@@ -584,7 +584,7 @@ def find_label(local_address, bank_id=0):
 
     for label_entry in all_labels:
         if label_entry["address"] == local_address:
-            if label_entry["bank"] == bank_id or (local_address1 < 0x8000 and (label_entry["bank"] == 0 or label_entry["bank"] == 1)):
+            if label_entry["bank"] == bank_id or label_entry["bank"] == 0:
                 return label_entry["label"]
     return None
 
