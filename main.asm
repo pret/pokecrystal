@@ -1404,7 +1404,7 @@ Char5D: ; 1203
 	jr .asm_126a ; 0x120c $5c
 .asm_120e
 	ld de, Char5AText ; Enemy
-	call $1078
+	call PlaceString
 	ld h, b
 	ld l, c
 	ld de, $c616
@@ -1419,11 +1419,11 @@ Char5D: ; 1203
 	cp $2a
 	jr z, .asm_1248 ; 0x122b $1b
 	ld de, $c656
-	call $1078
+	call PlaceString
 	ld h, b
 	ld l, c
 	ld de, $12a2
-	call $1078
+	call PlaceString
 	push bc
 	ld hl, $5939
 	ld a, $e
@@ -1439,7 +1439,7 @@ Char5D: ; 1203
 	jr .asm_126a ; 0x1250 $18
 	push de
 	ld de, PlayerName
-	call $1078
+	call PlaceString
 	ld h, b
 	ld l, c
 	ld a, [$d472]
@@ -1449,7 +1449,7 @@ Char5D: ; 1203
 	ld de, $12a6
 	jr .asm_126a ; 0x1268 $0
 .asm_126a
-	call $1078
+	call PlaceString
 	ld h, b
 	ld l, c
 	pop de
@@ -17886,7 +17886,7 @@ Function117b31:
 	call $1cfd
 	ld hl, $c550
 	ld de, YesNo117ccc
-	call $1078
+	call PlaceString
 	ld hl, $c54f
 	ld a, "▶"
 	ld [hl], a
