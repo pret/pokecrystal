@@ -595,9 +595,7 @@ def output_bank_opcodes(original_offset, max_byte_count=0x4000, include_last_add
     load_labels()
     load_rom()
 
-    bank_id = 0
-    if original_offset > 0x8000:
-        bank_id = original_offset / 0x4000
+    bank_id = original_offset / 0x4000
     if debug: print "bank id is: " + str(bank_id)
 
     last_hl_address = None #for when we're scanning the main map script
