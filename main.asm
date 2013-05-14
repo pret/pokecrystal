@@ -1281,7 +1281,7 @@ CheckDict: ; 1087
 	cp $15
 	jp z, $117b
 	cp $4f
-	jp z, Char4f
+	jp z, Char4F
 	cp $4e
 	jp z, $12a7
 	cp $16
@@ -1291,7 +1291,7 @@ CheckDict: ; 1087
 	cp $4c
 	jp z, $1337
 	cp $4b
-	jp z, $131f
+	jp z, Char4B
 	cp $51 ; Player name
 	jp z, $12f2
 	cp $49
@@ -1395,7 +1395,7 @@ CheckDict: ; 1087
 INCBIN "baserom.gbc", $117b, $1203 - $117b
 
 
-Char5D:
+Char5D: ; 1203
 	ld a, [hBattleTurn]
 	push de
 	and a
@@ -1473,36 +1473,63 @@ Char5AText: ; 0x1295
 
 INCBIN "baserom.gbc", $129c, $12ea - $129c
 
-Char4f: ; 12ea
+Char4F: ; 12ea
 	pop hl
-	ld hl, $c5e1
+	hlcoord 1, 16
 	push hl
 	jp NextChar
 ; 0x12f2
 
-INCBIN "baserom.gbc", $12f2, $1345 - $12f2
+INCBIN "baserom.gbc", $12f2, $131f - $12f2
 
-Char55: ; $1345
+Char4B: ; 131f
+	ld a, [InLinkBattle]
+	or a
+	jr nz, .asm_1328
+	call $13c7
+
+.asm_1328
+	call $13b6
+
 	push de
-	ld de, $1354
+	call $aaf
+	pop de
+
+	ld a, [InLinkBattle]
+	or a
+	call z, $13cd
+
+	push de
+	call $138c
+	call $138c
+	hlcoord 1, 16
+	pop de
+	jp NextChar
+; 1345
+
+
+Char55: ; 1345
+	push de
+	ld de, .text_1354
 	ld b, h
 	ld c, l
-	call $1078
+	call PlaceString
 	ld h, b
 	ld l, c
 	pop de
 	jp NextChar
-; 0x1354
 
-; ???
-	ld c, e
-	ld d, b
+.text_1354
+	db $4b, "@"
+; 1356
 
-Char5F: ; 0x1356
+
+Char5F: ; 1356
 ; ends a Pokédex entry
-	ld [hl],"."
+	ld [hl], "."
 	pop hl
 	ret
+; 135a
 
 INCBIN "baserom.gbc", $135a, $15d8 - $135a
 
