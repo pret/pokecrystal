@@ -569,18 +569,7 @@ def find_label(local_address, bank_id=0):
 
     # keep an integer
     if type(local_address) == str:
-        local_address1 = int(local_address.replace("$", "0x"), 16)
-    else: local_address1 = local_address
-
-    # turn local_address into an integer
-    if type(local_address) == str:
-        if "0x" in local_address:
-            local_address = local_address.replace("0x", "$")
-        elif "$" in local_address:
-            local_address = local_address.replace("$", "")
-
-    if type(local_address) == str:
-        local_address = int(local_address, 16)
+        local_address = int(local_address.replace("$", "0x"), 16)
 
     for label_entry in all_labels:
         if label_entry["address"] == local_address:
