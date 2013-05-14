@@ -16821,9 +16821,9 @@ EnterWestConnection: ; 1045ed
 	ld [MapGroup], a
 	ld a, [WestConnectedMapNumber]
 	ld [MapNumber], a
-	ld a, [WestConnectionStripYOffset]
-	ld [XCoord], a
 	ld a, [WestConnectionStripXOffset]
+	ld [XCoord], a
+	ld a, [WestConnectionStripYOffset]
 	ld hl, YCoord
 	add [hl]
 	ld [hl], a
@@ -16858,9 +16858,9 @@ EnterEastConnection: ; 104629
 	ld [MapGroup], a
 	ld a, [EastConnectedMapNumber]
 	ld [MapNumber], a
-	ld a, [EastConnectionStripYOffset]
-	ld [XCoord], a
 	ld a, [EastConnectionStripXOffset]
+	ld [XCoord], a
+	ld a, [EastConnectionStripYOffset]
 	ld hl, YCoord
 	add [hl]
 	ld [hl], a
@@ -16895,9 +16895,9 @@ EnterNorthConnection: ; 104665
 	ld [MapGroup], a
 	ld a, [NorthConnectedMapNumber]
 	ld [MapNumber], a
-	ld a, [NorthConnectionStripXOffset]
-	ld [YCoord], a
 	ld a, [NorthConnectionStripYOffset]
+	ld [YCoord], a
+	ld a, [NorthConnectionStripXOffset]
 	ld hl, XCoord
 	add [hl]
 	ld [hl], a
@@ -16922,9 +16922,9 @@ EnterSouthConnection: ; 104696
 	ld [MapGroup], a
 	ld a, [SouthConnectedMapNumber]
 	ld [MapNumber], a
-	ld a, [SouthConnectionStripXOffset]
-	ld [YCoord], a
 	ld a, [SouthConnectionStripYOffset]
+	ld [YCoord], a
+	ld a, [SouthConnectionStripXOffset]
 	ld hl, XCoord
 	add [hl]
 	ld [hl], a

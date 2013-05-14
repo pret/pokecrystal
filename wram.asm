@@ -1048,9 +1048,9 @@ NorthConnectionStripLength: ; d1af
 	ds 1
 NorthConnectedMapWidth: ; d1b0
 	ds 1
-NorthConnectionStripXOffset: ; d1b1
+NorthConnectionStripYOffset: ; d1b1
 	ds 1
-NorthConnectionStripYOffset: ; d1b2
+NorthConnectionStripXOffset: ; d1b2
 	ds 1
 NorthConnectionWindow: ; d1b3
 	ds 2
@@ -1068,9 +1068,9 @@ SouthConnectionStripLength: ; d1bb
 	ds 1
 SouthConnectedMapWidth: ; d1bc
 	ds 1
-SouthConnectionStripXOffset: ; d1bd
+SouthConnectionStripYOffset: ; d1bd
 	ds 1
-SouthConnectionStripYOffset: ; d1be
+SouthConnectionStripXOffset: ; d1be
 	ds 1
 SouthConnectionWindow: ; d1bf
 	ds 2
@@ -1088,9 +1088,9 @@ WestConnectionStripLength: ; d1c7
 	ds 1
 WestConnectedMapWidth: ; d1c8
 	ds 1
-WestConnectionStripXOffset: ; d1c9
+WestConnectionStripYOffset: ; d1c9
 	ds 1
-WestConnectionStripYOffset: ; d1ca
+WestConnectionStripXOffset: ; d1ca
 	ds 1
 WestConnectionWindow: ; d1cb
 	ds 2
@@ -1108,9 +1108,9 @@ EastConnectionStripLength: ; d1d3
 	ds 1
 EastConnectedMapWidth: ; d1d4
 	ds 1
-EastConnectionStripXOffset: ; d1d5
+EastConnectionStripYOffset: ; d1d5
 	ds 1
-EastConnectionStripYOffset: ; d1d6
+EastConnectionStripXOffset: ; d1d6
 	ds 1
 EastConnectionWindow: ; d1d7
 	ds 2
