@@ -11,11 +11,9 @@ import json
 if not hasattr(json, "read"):
     json.read = json.loads
 
-from romstr import RomStr
-
 def load_rom(filename="../baserom.gbc"):
     global rom
-    rom = RomStr.load(filename=filename)
+    rom = bytearray(open(filename,'rb').read())
     return rom
 
 spacing = "\t"
@@ -619,7 +617,7 @@ def output_bank_opcodes(original_offset, max_byte_count=0x4000, include_last_add
     output = ""
     keep_reading = True
     while offset <= end_address and keep_reading:
-        current_byte = ord(rom[offset])
+        current_byte = rom[offset]
         is_data = False
         maybe_byte = current_byte
 
@@ -644,13 +642,13 @@ def output_bank_opcodes(original_offset, max_byte_count=0x4000, include_last_add
 
         #find out if there's a two byte key like this
         temp_maybe = maybe_byte
-        temp_maybe += ( ord(rom[offset+1]) << 8)
-        if temp_maybe in opt_table.keys() and ord(rom[offset+1])!=0:
+        temp_maybe += ( rom[offset+1] << 8)
+        if temp_maybe in opt_table.keys() and rom[offset+1]!=0:
             opstr = opt_table[temp_maybe][0].lower()
 
             if "x" in opstr:
                 for x in range(0, opstr.count("x")):
-                    insertion = ord(rom[offset + 1])
+                    insertion = rom[offset + 1]
                     insertion = "$" + hex(insertion)[2:]
 
                     opstr = opstr[:opstr.find("x")].lower() + insertion + opstr[opstr.find("x")+1:].lower()
@@ -659,8 +657,8 @@ def output_bank_opcodes(original_offset, max_byte_count=0x4000, include_last_add
                     offset += 1
             if "?" in opstr:
                 for y in range(0, opstr.count("?")):
-                    byte1 = ord(rom[offset + 1])
-                    byte2 = ord(rom[offset + 2])
+                    byte1 = rom[offset + 1]
+                    byte2 = rom[offset + 2]
 
                     number = byte1
                     number += byte2 << 8;
@@ -684,7 +682,7 @@ def output_bank_opcodes(original_offset, max_byte_count=0x4000, include_last_add
 
             #type = -1 when it's the E op
             #if op_code_type != -1:
-            if   op_code_type == 0 and ord(rom[offset]) == op_code_byte:
+            if   op_code_type == 0 and rom[offset] == op_code_byte:
                 op_str = op_code[0].lower()
 
                 output += spacing + op_code[0].lower() #+ " ; " + hex(offset)
@@ -692,18 +690,18 @@ def output_bank_opcodes(original_offset, max_byte_count=0x4000, include_last_add
 
                 offset += 1
                 current_byte_number += 1
-            elif op_code_type == 1 and ord(rom[offset]) == op_code_byte:
+            elif op_code_type == 1 and rom[offset] == op_code_byte:
                 oplen = len(op_code[0])
                 opstr = copy(op_code[0])
                 xes = op_code[0].count("x")
                 include_comment = False
                 for x in range(0, xes):
-                    insertion = ord(rom[offset + 1])
+                    insertion = rom[offset + 1]
                     insertion = "$" + hex(insertion)[2:]
 
                     if current_byte == 0x18 or current_byte==0x20 or current_byte in relative_jumps: #jr or jr nz
                         #generate a label for the byte we're jumping to
-                        target_address = offset + 2 + c_int8(ord(rom[offset + 1])).value
+                        target_address = offset + 2 + c_int8(rom[offset + 1]).value
                         if target_address in byte_labels.keys():
                             byte_labels[target_address]["usage"] = 1 + byte_labels[target_address]["usage"]
                             line_label2 = byte_labels[target_address]["name"]
@@ -717,7 +715,7 @@ def output_bank_opcodes(original_offset, max_byte_count=0x4000, include_last_add
                         insertion = line_label2.lower()
                         include_comment = True
                     elif current_byte == 0x3e:
-                        last_a_address = ord(rom[offset + 1])
+                        last_a_address = rom[offset + 1]
 
                     opstr = opstr[:opstr.find("x")].lower() + insertion + opstr[opstr.find("x")+1:].lower()
 
@@ -737,7 +735,7 @@ def output_bank_opcodes(original_offset, max_byte_count=0x4000, include_last_add
                     if include_comment:
                         output += " ; " + hex(offset)
                         if current_byte in relative_jumps:
-                            output += " $" + hex(ord(rom[offset + 1]))[2:]
+                            output += " $" + hex(rom[offset + 1])[2:]
                     output += "\n"
 
                     current_byte_number += 1
@@ -747,13 +745,13 @@ def output_bank_opcodes(original_offset, max_byte_count=0x4000, include_last_add
                 current_byte_number += 1
                 offset += 1
                 include_comment = False
-            elif op_code_type == 2 and ord(rom[offset]) == op_code_byte:
+            elif op_code_type == 2 and rom[offset] == op_code_byte:
                 oplen = len(op_code[0])
                 opstr = copy(op_code[0])
                 qes = op_code[0].count("?")
                 for x in range(0, qes):
-                    byte1 = ord(rom[offset + 1])
-                    byte2 = ord(rom[offset + 2])
+                    byte1 = rom[offset + 1]
+                    byte2 = rom[offset + 2]
 
                     number = byte1
                     number += byte2 << 8;
@@ -805,7 +803,7 @@ def output_bank_opcodes(original_offset, max_byte_count=0x4000, include_last_add
                 keep_reading = True
         else:
         #if is_data and keep_reading:
-            output += spacing + "db $" + hex(ord(rom[offset]))[2:] #+ " ; " + hex(offset)
+            output += spacing + "db $" + hex(rom[offset])[2:] #+ " ; " + hex(offset)
             output += "\n"
             offset += 1
             current_byte_number += 1
