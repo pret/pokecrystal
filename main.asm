@@ -2493,7 +2493,204 @@ UpdateGameTimer: ; 20ad
 	ret
 ; 210f
 
-INCBIN "baserom.gbc", $210f, $261f - $210f
+
+INCBIN "baserom.gbc", $210f, $23a3 - $210f
+
+
+GetMapConnection: ; 23a3
+; Load map connection struct at hl into de.
+	ld c, SouthMapConnection - NorthMapConnection
+.loop
+	ld a, [hli]
+	ld [de], a
+	inc de
+	dec c
+	jr nz, .loop
+	ret
+; 23ac
+
+
+INCBIN "baserom.gbc", $23ac, $2524 - $23ac
+
+
+FillMapConnections: ; 2524
+
+; North
+	ld a, [NorthConnectedMapGroup]
+	cp $ff
+	jr z, .South
+	ld b, a
+	ld a, [NorthConnectedMapNumber]
+	ld c, a
+	call GetAnyMapBlockdataBank
+
+	ld a, [NorthConnectionStripPointer]
+	ld l, a
+	ld a, [NorthConnectionStripPointer + 1]
+	ld h, a
+	ld a, [NorthConnectionStripLocation]
+	ld e, a
+	ld a, [NorthConnectionStripLocation + 1]
+	ld d, a
+	ld a, [NorthConnectionStripLength]
+	ld [hConnectionStripLength], a
+	ld a, [NorthConnectedMapWidth]
+	ld [hConnectedMapWidth], a
+	call FillNorthConnectionStrip
+
+.South
+	ld a, [SouthConnectedMapGroup]
+	cp $ff
+	jr z, .West
+	ld b, a
+	ld a, [SouthConnectedMapNumber]
+	ld c, a
+	call GetAnyMapBlockdataBank
+
+	ld a, [SouthConnectionStripPointer]
+	ld l, a
+	ld a, [SouthConnectionStripPointer + 1]
+	ld h, a
+	ld a, [SouthConnectionStripLocation]
+	ld e, a
+	ld a, [SouthConnectionStripLocation + 1]
+	ld d, a
+	ld a, [SouthConnectionStripLength]
+	ld [hConnectionStripLength], a
+	ld a, [SouthConnectedMapWidth]
+	ld [hConnectedMapWidth], a
+	call FillSouthConnectionStrip
+
+.West
+	ld a, [WestConnectedMapGroup]
+	cp $ff
+	jr z, .East
+	ld b, a
+	ld a, [WestConnectedMapNumber]
+	ld c, a
+	call GetAnyMapBlockdataBank
+
+	ld a, [WestConnectionStripPointer]
+	ld l, a
+	ld a, [WestConnectionStripPointer + 1]
+	ld h, a
+	ld a, [WestConnectionStripLocation]
+	ld e, a
+	ld a, [WestConnectionStripLocation + 1]
+	ld d, a
+	ld a, [WestConnectionStripLength]
+	ld b, a
+	ld a, [WestConnectedMapWidth]
+	ld [hConnectionStripLength], a
+	call FillWestConnectionStrip
+
+.East
+	ld a, [EastConnectedMapGroup]
+	cp $ff
+	jr z, .Done
+	ld b, a
+	ld a, [EastConnectedMapNumber]
+	ld c, a
+	call GetAnyMapBlockdataBank
+
+	ld a, [EastConnectionStripPointer]
+	ld l, a
+	ld a, [EastConnectionStripPointer + 1]
+	ld h, a
+	ld a, [EastConnectionStripLocation]
+	ld e, a
+	ld a, [EastConnectionStripLocation + 1]
+	ld d, a
+	ld a, [EastConnectionStripLength]
+	ld b, a
+	ld a, [EastConnectedMapWidth]
+	ld [hConnectionStripLength], a
+	call FillEastConnectionStrip
+
+.Done
+	ret
+; 25d3
+
+
+FillNorthConnectionStrip:
+FillSouthConnectionStrip: ; 25d3
+
+	ld c, 3
+.y
+	push de
+
+	push hl
+	ld a, [hConnectionStripLength]
+	ld b, a
+.x
+	ld a, [hli]
+	ld [de], a
+	inc de
+	dec b
+	jr nz, .x
+	pop hl
+
+	ld a, [hConnectedMapWidth]
+	ld e, a
+	ld d, 0
+	add hl, de
+	pop de
+
+	ld a, [$d19f]
+	add 6
+	add e
+	ld e, a
+	jr nc, .asm_25f2
+	inc d
+.asm_25f2
+	dec c
+	jr nz, .y
+	ret
+; 25f6
+
+
+FillWestConnectionStrip:
+FillEastConnectionStrip: ; 25f6
+
+.asm_25f6
+	ld a, [$d19f]
+	add 6
+	ld [hConnectedMapWidth], a
+
+	push de
+
+	push hl
+	ld a, [hli]
+	ld [de], a
+	inc de
+	ld a, [hli]
+	ld [de], a
+	inc de
+	ld a, [hli]
+	ld [de], a
+	inc de
+	pop hl
+
+	ld a, [hConnectionStripLength]
+	ld e, a
+	ld d, 0
+	add hl, de
+	pop de
+
+	ld a, [hConnectedMapWidth]
+	add e
+	ld e, a
+	jr nc, .asm_2617
+	inc d
+.asm_2617
+	dec b
+	jr nz, .asm_25f6
+	ret
+; 261b
+
+
+INCBIN "baserom.gbc", $261b, $261f - $261b
+
 
 PushScriptPointer: ; 261f
 ; used to call a script from asm
@@ -2661,7 +2858,40 @@ GetAnyMapHeaderMember: ; 0x2c0c
 	ret
 ; 0x2c1c
 
-INCBIN "baserom.gbc", $2c1c, $2c7d-$2c1c
+
+INCBIN "baserom.gbc", $2c1c, $2c5b - $2c1c
+
+
+GetAnyMapBlockdataBank: ; 2c5b
+; Return the blockdata bank for group b map c.
+	push hl
+	push de
+	push bc
+
+	push bc
+	ld de, 3 ; second map header pointer
+	call GetAnyMapHeaderMember
+	ld l, c
+	ld h, b
+	pop bc
+
+	push hl
+	ld de, 0 ; second map header bank
+	call GetAnyMapHeaderMember
+	pop hl
+
+	ld de, 3 ; blockdata bank
+	add hl, de
+	ld a, c
+	call GetFarByte
+	rst Bankswitch
+
+	pop bc
+	pop de
+	pop hl
+	ret
+; 2c7d
+
 
 GetSecondaryMapHeaderPointer: ; 0x2c7d
 ; returns the current map's secondary map header pointer in hl.
@@ -16567,7 +16797,159 @@ INCBIN "baserom.gbc", $104000, $104350 - $104000
 
 INCBIN "gfx/ow/misc.2bpp"
 
-INCBIN "baserom.gbc", $1045b0, $105258 - $1045b0
+
+INCBIN "baserom.gbc", $1045b0, $1045d6 - $1045b0
+
+
+EnterMapConnection: ; 1045d6
+; Return carry if a connection has been entered.
+	ld a, [$d151]
+	and a
+	jp z, EnterSouthConnection
+	cp 1
+	jp z, EnterNorthConnection
+	cp 2
+	jp z, EnterWestConnection
+	cp 3
+	jp z, EnterEastConnection
+	ret
+; 1045ed
+
+
+EnterWestConnection: ; 1045ed
+	ld a, [WestConnectedMapGroup]
+	ld [MapGroup], a
+	ld a, [WestConnectedMapNumber]
+	ld [MapNumber], a
+	ld a, [WestConnectionStripXOffset]
+	ld [XCoord], a
+	ld a, [WestConnectionStripYOffset]
+	ld hl, YCoord
+	add [hl]
+	ld [hl], a
+	ld c, a
+	ld hl, WestConnectionWindow
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	srl c
+	jr z, .asm_10461e
+	ld a, [WestConnectedMapWidth]
+	add 6
+	ld e, a
+	ld d, 0
+
+.asm_10461a
+	add hl, de
+	dec c
+	jr nz, .asm_10461a
+
+.asm_10461e
+	ld a, l
+	ld [$d194], a
+	ld a, h
+	ld [$d195], a
+	jp EnteredConnection
+; 104629
+
+
+EnterEastConnection: ; 104629
+	ld a, [EastConnectedMapGroup]
+	ld [MapGroup], a
+	ld a, [EastConnectedMapNumber]
+	ld [MapNumber], a
+	ld a, [EastConnectionStripXOffset]
+	ld [XCoord], a
+	ld a, [EastConnectionStripYOffset]
+	ld hl, YCoord
+	add [hl]
+	ld [hl], a
+	ld c, a
+	ld hl, EastConnectionWindow
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	srl c
+	jr z, .asm_10465a
+	ld a, [EastConnectedMapWidth]
+	add 6
+	ld e, a
+	ld d, 0
+
+.asm_104656
+	add hl, de
+	dec c
+	jr nz, .asm_104656
+
+.asm_10465a
+	ld a, l
+	ld [$d194], a
+	ld a, h
+	ld [$d195], a
+	jp EnteredConnection
+; 104665
+
+
+EnterNorthConnection: ; 104665
+	ld a, [NorthConnectedMapGroup]
+	ld [MapGroup], a
+	ld a, [NorthConnectedMapNumber]
+	ld [MapNumber], a
+	ld a, [NorthConnectionStripYOffset]
+	ld [YCoord], a
+	ld a, [NorthConnectionStripXOffset]
+	ld hl, XCoord
+	add [hl]
+	ld [hl], a
+	ld c, a
+	ld hl, NorthConnectionWindow
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	ld b, 0
+	srl c
+	add hl, bc
+	ld a, l
+	ld [$d194], a
+	ld a, h
+	ld [$d195], a
+	jp EnteredConnection
+; 104696
+
+
+EnterSouthConnection: ; 104696
+	ld a, [SouthConnectedMapGroup]
+	ld [MapGroup], a
+	ld a, [SouthConnectedMapNumber]
+	ld [MapNumber], a
+	ld a, [SouthConnectionStripYOffset]
+	ld [YCoord], a
+	ld a, [SouthConnectionStripXOffset]
+	ld hl, XCoord
+	add [hl]
+	ld [hl], a
+	ld c, a
+	ld hl, SouthConnectionWindow
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	ld b, 0
+	srl c
+	add hl, bc
+	ld a, l
+	ld [$d194], a
+	ld a, h
+	ld [$d195], a
+	; fallthrough
+; 1046c4
+
+EnteredConnection: ; 1046c4
+	scf
+	ret
+; 1046c6
+
+
+INCBIN "baserom.gbc", $1046c6, $105258 - $1046c6
 
 MysteryGiftGFX:
 INCBIN "gfx/misc/mystery_gift.2bpp"
