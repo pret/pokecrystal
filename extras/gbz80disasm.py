@@ -718,7 +718,7 @@ def output_bank_opcodes(original_offset, max_byte_count=0x4000, include_last_add
                             byte_labels[target_address]["definition"] = False
 
                         insertion = line_label2.lower()
-                        include_comment = True
+                        include_comment = False
                     elif current_byte == 0x3e:
                         last_a_address = rom[offset + 1]
 
