@@ -314,26 +314,19 @@ def separate_comment(l):
     asm        = ""
     comment    = None
     in_quotes  = False
-    in_comment = False
 
     # token either belongs to the line or to the comment
     for token in l:
-        if in_comment:
+        if comment:
             comment += token
-        elif in_quotes and token != "\"":
+        else:
+            if not in_quotes:
+                if token == ";":
+                    comment = ";"
+                    continue
+            if token == "\"":
+                in_quotes = not in_quotes
             asm += token
-        elif in_quotes and token == "\"":
-            in_quotes = False
-            asm += token
-        elif not in_quotes and token == "\"":
-            in_quotes = True
-            asm += token
-        elif not in_quotes and token != "\"":
-            if token == ";":
-                in_comment = True
-                comment = ";"
-            else:
-                asm += token
     return asm, comment
 
 def quote_translator(asm):
