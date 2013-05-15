@@ -8,10 +8,11 @@ def read_bss_sections(bss):
 	address = None
 	if type(bss) is not list: bss = bss.split('\n')
 	for line in bss:
+		line = line.lstrip()
 		if 'SECTION' in line:
 			if section: sections.append(section) # last section
 			
-			address = int(line.split('[')[1].split(']')[0].replace('$',''), 16)
+			address = eval(line[line.find('[')+1:line.find(']')].replace('$','0x'))
 			section = {
 				'name': line.split('"')[1],
 				#'type': line.split(',')[1].split('[')[0].strip(),
@@ -21,11 +22,11 @@ def read_bss_sections(bss):
 		elif ':' in line:
 			# the only labels that don't use :s so far are enders,
 			# which we typically don't want to end up in the output
-			label = line.lstrip().split(':')[0]
+			label = line[:line.find(':')]
 			if ';' not in label:
 				section['labels'] += [{'label': label, 'address': address, 'length': 0}]
-		elif line.lstrip()[:3] == 'ds ':
-			length = eval(line.lstrip()[3:].split(';')[0].replace('$','0x'))
+		elif line[:3] == 'ds ':
+			length = eval(line[3:line.find(';')].replace('$','0x'))
 			address += length
 			if section['labels']:
 				section['labels'][-1]['length'] += length
@@ -48,12 +49,12 @@ wram_labels = make_wram_labels()
 
 
 def constants_to_dict(constants):
-	return dict((eval(constant.split(';')[0].split('EQU')[1].replace('$','0x')), constant.split('EQU')[0].strip()) for constant in constants)
+	return dict((eval(constant[constant.find('EQU')+3:constant.find(';')].replace('$','0x')), constant[:constant.find('EQU')].strip()) for constant in constants)
 
 def scrape_constants(text):
 	if type(text) is not list:
 		text = text.split('\n')
-	return constants_to_dict([line for line in text if 'EQU' in line and ';' not in line.split('EQU')[0]])
+	return constants_to_dict([line for line in text if 'EQU' in line[:line.find(';')]])
 
 hram_constants = scrape_constants(open('../hram.asm','r').readlines())
 gbhw_constants = scrape_constants(open('../gbhw.asm','r').readlines())
