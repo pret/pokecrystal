@@ -635,6 +635,7 @@ def output_bank_opcodes(original_offset, max_byte_count=0x4000, include_last_add
         if offset in byte_labels.keys():
             line_label = byte_labels[offset]["name"]
             byte_labels[offset]["usage"] += 1
+            output += "\n"
         else:
             line_label = asm_label(offset)
             byte_labels[offset] = {}
@@ -819,6 +820,9 @@ def output_bank_opcodes(original_offset, max_byte_count=0x4000, include_last_add
         #offset += 1
         #current_byte_number += 1
 
+        if current_byte in relative_unconditional_jumps + end_08_scripts_with:
+            output += "\n"
+
         first_loop = False
 
     #clean up unused labels
@@ -827,6 +831,9 @@ def output_bank_opcodes(original_offset, max_byte_count=0x4000, include_last_add
         label_line = byte_labels[label_line]
         if label_line["usage"] == 0:
             output = output.replace((label_line["name"] + "\n").lower(), "")
+
+    #tone down excessive spacing
+    output = output.replace("\n\n\n","\n\n")
 
     #add the offset of the final location
     if include_last_address:
