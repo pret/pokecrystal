@@ -6,6 +6,7 @@ from copy import copy, deepcopy
 from ctypes import c_int8
 import random
 import json
+from wram import *
 
 # New versions of json don't have read anymore.
 if not hasattr(json, "read"):
@@ -563,16 +564,20 @@ def load_labels(filename="labels.json"):
         crystal.scan_for_predefined_labels()
 
 def find_label(local_address, bank_id=0):
-    global all_labels
-
     # keep an integer
     if type(local_address) == str:
         local_address = int(local_address.replace("$", "0x"), 16)
 
-    for label_entry in all_labels:
-        if label_entry["address"] == local_address:
-            if label_entry["bank"] == bank_id or label_entry["bank"] == 0:
-                return label_entry["label"]
+    if local_address < 0x8000:
+        for label_entry in all_labels:
+            if label_entry["address"] == local_address:
+                if label_entry["bank"] == bank_id or label_entry["bank"] == 0:
+                    return label_entry["label"]
+    if local_address in wram_labels.keys():
+        return wram_labels[local_address][-1]
+    for constants in [gbhw_constants, hram_constants]:
+        if local_address in constants.keys():
+            return constants[local_address]
     return None
 
 def asm_label(address):
@@ -726,6 +731,9 @@ def output_bank_opcodes(original_offset, max_byte_count=0x4000, include_last_add
                         second_num = "0x"+second_orig
                         second_val = int(second_num, 16)
                         combined_val = "$" + hex(first_val + second_val)[2:]
+                        result = find_label(combined_val, bank_id)
+                        if result != None:
+                            combined_val = result
                         replacetron = "[$"+first_orig+"+$"+second_orig+"]"
                         opstr = opstr.replace(replacetron, "["+combined_val+"]")
 
@@ -752,13 +760,12 @@ def output_bank_opcodes(original_offset, max_byte_count=0x4000, include_last_add
                     byte2 = rom[offset + 2]
 
                     number = byte1
-                    number += byte2 << 8;
+                    number += byte2 << 8
 
                     insertion = "$%.4x" % (number)
-                    if maybe_byte in call_commands or current_byte in relative_unconditional_jumps or current_byte in relative_jumps:
-                        result = find_label(insertion, bank_id)
-                        if result != None:
-                            insertion = result
+                    result = find_label(insertion, bank_id)
+                    if result != None:
+                        insertion = result
 
                     opstr = opstr[:opstr.find("?")].lower() + insertion + opstr[opstr.find("?")+1:].lower()
                     output += spacing + opstr #+ " ; " + hex(offset)
