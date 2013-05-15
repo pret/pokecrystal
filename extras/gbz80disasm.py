@@ -723,19 +723,20 @@ def output_bank_opcodes(original_offset, max_byte_count=0x4000, include_last_add
                     opstr = opstr[:opstr.find("x")].lower() + insertion + opstr[opstr.find("x")+1:].lower()
 
                     # because the $ff00+$ff syntax is silly
-                    if opstr.count("$") > 0 and "+" in opstr:
-                        first_orig = opstr.split("$")[1].split("+")[0]
-                        first_num = "0x"+first_orig
-                        first_val = int(first_num, 16)
-                        second_orig = opstr.split("+$")[1].split("]")[0]
-                        second_num = "0x"+second_orig
-                        second_val = int(second_num, 16)
-                        combined_val = "$" + hex(first_val + second_val)[2:]
+                    if opstr.count("$") > 1 and "+" in opstr:
+                        first_orig = opstr[opstr.find("$"):opstr.find("+")]
+                        first_val = eval(first_orig.replace("$","0x"))
+
+                        second_orig = opstr[opstr.find("+$")+1:opstr.find("]")]
+                        second_val = eval(second_orig.replace("$","0x"))
+
+                        combined_val = "$%.4x" % (first_val + second_val)
                         result = find_label(combined_val, bank_id)
                         if result != None:
                             combined_val = result
-                        replacetron = "[$"+first_orig+"+$"+second_orig+"]"
-                        opstr = opstr.replace(replacetron, "["+combined_val+"]")
+
+                        replacetron = "[%s+%s]" % (first_orig, second_orig)
+                        opstr = opstr.replace(replacetron, "[%s]" % combined_val)
 
                     output += spacing + opstr
                     if include_comment:
