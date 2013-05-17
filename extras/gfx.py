@@ -189,6 +189,7 @@ class Compressed:
 	def __init__(self, image = None, mode = 'horiz', size = None):
 	
 		assert image, 'need something to compress!'
+		image = list(image)
 		self.image = image
 		self.pic = []
 		self.animtiles = []
@@ -1503,7 +1504,7 @@ def lz_to_png_by_file(filename):
     """
     assert filename[-3:] == ".lz"
     lz_data = open(filename, "rb").read()
-    bpp = Decompressed(lz).output
+    bpp = Decompressed(lz_data).output
     bpp_filename = filename.replace(".lz", ".2bpp")
     to_file(bpp_filename, bpp)
     to_png(bpp_filename)
@@ -1619,5 +1620,4 @@ if __name__ == "__main__":
 	elif args.cmd == 'mass-decompress':
 		mass_decompress()
 		if debug: print 'decompressed known gfx to pokecrystal/gfx/!'
-	
 
