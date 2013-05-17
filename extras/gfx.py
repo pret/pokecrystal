@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
 import os
+import sys
 import png
-import argparse
 from math import sqrt, floor, ceil
 
 from crystal import load_rom
@@ -1519,43 +1519,35 @@ def dump_tileset_pngs():
         lz_to_png_by_file(tileset_filename)
 
 if __name__ == "__main__":
-	parser = argparse.ArgumentParser()
-	parser.add_argument('cmd',  nargs='?', metavar='cmd',  type=str)
-	parser.add_argument('arg1', nargs='?', metavar='arg1', type=str)
-	parser.add_argument('arg2', nargs='?', metavar='arg2', type=str)
-	parser.add_argument('arg3', nargs='?', metavar='arg3', type=str)
-	parser.add_argument('arg4', nargs='?', metavar='arg4', type=str)
-	parser.add_argument('arg5', nargs='?', metavar='arg5', type=str)
-	args = parser.parse_args()
 	
 	debug = False
 	
-	if args.cmd == 'dump-pngs':
+	if sys.argv[1] == 'dump-pngs':
 		mass_to_colored_png()
 	
-	elif args.cmd == 'png-to-lz':
+	elif sys.argv[1] == 'png-to-lz':
 		# python gfx.py png-to-lz [--front anim(2bpp) | --vert] [png]
 		
 		# python gfx.py png-to-lz --front [anim(2bpp)] [png]
-		if args.arg1 == '--front':
+		if sys.argv[2] == '--front':
 
 			# front.png and tiles.png are combined before compression,
 			# so we have to pass in things like anim file and pic size
-			name = os.path.splitext(args.arg3)[0]
+			name = os.path.splitext(sys.argv[4])[0]
 			
 			to_2bpp(name+'.png', name+'.2bpp')
 			pic  = open(name+'.2bpp', 'rb').read()
-			anim = open(args.arg2, 'rb').read()
+			anim = open(sys.argv[3], 'rb').read()
 			size = int(sqrt(len(pic)/16)) # assume square pic
 			to_file(name+'.lz', Compressed(pic + anim, 'vert', size).output)
 		
 		
 		# python gfx.py png-to-lz --vert [png]
-		elif args.arg1 == '--vert':
+		elif sys.argv[2] == '--vert':
 			
 			# others are vertically oriented (frontpics are always vertical)
 			
-			name = os.path.splitext(args.arg2)[0]
+			name = os.path.splitext(sys.argv[3])[0]
 			
 			to_2bpp(name+'.png', name+'.2bpp')
 			pic = open(name+'.2bpp', 'rb').read()
@@ -1567,57 +1559,57 @@ if __name__ == "__main__":
 			
 			# standard usage
 			
-			png_to_lz(args.arg1)
+			png_to_lz(sys.argv[2])
 	
-	elif args.cmd == 'png-to-2bpp':
-		to_2bpp(args.arg1)
+	elif sys.argv[1] == 'png-to-2bpp':
+		to_2bpp(sys.argv[2])
 	
 	
-	elif args.cmd == 'de':
+	elif sys.argv[1] == 'de':
 		# python gfx.py de [addr] [fileout] [mode]
 		
 		rom = load_rom()
 		
-		addr = int(args.arg1,16)
-		fileout = args.arg2
-		mode = args.arg3
+		addr = int(sys.argv[2],16)
+		fileout = sys.argv[3]
+		mode = sys.argv[4]
 		decompress_from_address(addr, fileout, mode)
-		if debug: print 'decompressed to ' + args.arg2 + ' from ' + hex(int(args.arg1,16)) + '!'
+		if debug: print 'decompressed to ' + sys.argv[3] + ' from ' + hex(int(sys.argv[2],16)) + '!'
 		
-	elif args.cmd == 'lz':
+	elif sys.argv[1] == 'lz':
 		# python gfx.py lz [filein] [fileout] [mode]
-		filein = args.arg1
-		fileout = args.arg2
-		mode = args.arg3
+		filein = sys.argv[2]
+		fileout = sys.argv[3]
+		mode = sys.argv[4]
 		compress_file(filein, fileout, mode)
 		if debug: print 'compressed ' + filein + ' to ' + fileout + '!'
 	
-	elif args.cmd == 'lzf':
+	elif sys.argv[1] == 'lzf':
 		# python gfx.py lzf [id] [fileout]
-		compress_monster_frontpic(int(args.arg1), args.arg2)
+		compress_monster_frontpic(int(sys.argv[2]), sys.argv[3])
 	
-	elif args.cmd == 'un':
+	elif sys.argv[1] == 'un':
 		# python gfx.py un [address] [num_tiles] [filename]
 		rom = load_rom()
-		get_uncompressed_gfx(int(args.arg1,16), int(args.arg2), args.arg3)
+		get_uncompressed_gfx(int(sys.argv[2],16), int(sys.argv[3]), sys.argv[4])
 	
-	elif args.cmd == 'pal':
+	elif sys.argv[1] == 'pal':
 		# python gfx.py pal [address] [length]
 		rom = load_rom()
-		print grab_palettes(int(args.arg1,16), int(args.arg2))
+		print grab_palettes(int(sys.argv[2],16), int(sys.argv[3]))
 	
-	elif args.cmd == 'png':
+	elif sys.argv[1] == 'png':
 		
-		if '.2bpp' in args.arg1:
-			if args.arg3 == 'greyscale':
-				to_png(args.arg1, args.arg2)
+		if '.2bpp' in sys.argv[2]:
+			if sys.argv[4] == 'greyscale':
+				to_png(sys.argv[2], sys.argv[3])
 			else:
-				to_png(args.arg1, args.arg2, args.arg3)
+				to_png(sys.argv[2], sys.argv[3], sys.argv[4])
 		
-		elif '.png' in args.arg1:
-			to_2bpp(args.arg1, args.arg2)
+		elif '.png' in sys.argv[2]:
+			to_2bpp(sys.argv[2], sys.argv[3])
 	
-	elif args.cmd == 'mass-decompress':
+	elif sys.argv[1] == 'mass-decompress':
 		mass_decompress()
 		if debug: print 'decompressed known gfx to pokecrystal/gfx/!'
 
