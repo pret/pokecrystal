@@ -1525,6 +1525,9 @@ if __name__ == "__main__":
 	if sys.argv[1] == 'dump-pngs':
 		mass_to_colored_png()
 
+	elif sys.argv[1] == 'lz-to-png':
+		lz_to_png_by_file(sys.argv[2])
+
 	elif sys.argv[1] == 'png-to-lz':
 		# python gfx.py png-to-lz [--front anim(2bpp) | --vert] [png]
 
