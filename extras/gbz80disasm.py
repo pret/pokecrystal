@@ -557,6 +557,11 @@ call_commands = [0xdc, 0xd4, 0xc4, 0xcc, 0xcd]
 all_labels = {}
 def load_labels(filename="labels.json"):
     global all_labels
+
+    # don't re-load labels each time
+    if all_labels != {}:
+        return
+
     if os.path.exists(filename):
         all_labels = json.read(open(filename, "r").read())
     else:
