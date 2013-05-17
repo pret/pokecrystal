@@ -1554,7 +1554,7 @@ if __name__ == "__main__":
 
 			to_2bpp(name+'.png', name+'.2bpp')
 			pic = open(name+'.2bpp', 'rb').read()
-			to_file(name+'.lz', Compressed(pic + anim, 'vert').output)
+			to_file(name+'.lz', Compressed(pic, 'vert').output)
 
 
 		# python gfx.py png-to-lz [png]
