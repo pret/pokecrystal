@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
 import os
+import sys
 import png
-import argparse
 from math import sqrt, floor, ceil
 
 from crystal import load_rom
@@ -26,28 +26,28 @@ def mkdir_p(path):
 
 def hex_dump(input, debug = True):
 	"""display hex dump in rows of 16 bytes"""
-	
+
 	dump = ''
 	output = ''
 	stream = ''
 	address = 0x00
 	margin = 2 + len(hex(len(input))[2:])
-	
+
 	# dump
 	for byte in input:
 		cool = hex(byte)[2:].zfill(2)
 		dump += cool + ' '
 		if debug: stream += cool
-	
+
 	# convenient for testing quick edits in bgb
 	if debug: output += stream + '\n'
-	
+
 	# get dump info
 	bytes_per_line = 16
 	chars_per_byte = 3 # '__ '
 	chars_per_line = bytes_per_line * chars_per_byte
 	num_lines = int(ceil(float(len(dump)) / float(chars_per_line)))
-	
+
 	# top
 	# margin
 	for char in range(margin):
@@ -56,7 +56,7 @@ def hex_dump(input, debug = True):
 	for byte in range(bytes_per_line):
 		output += hex(byte)[2:].zfill(2) + ' '
 	output = output[:-1] # last space
-	
+
 	# print hex
 	for line in range(num_lines):
 		# address
@@ -66,16 +66,16 @@ def hex_dump(input, debug = True):
 		end = chars_per_line + start - 1 # ignore last space
 		output += dump[start:end]
 		address += 0x10
-		
+
 	return output
-	
+
 
 def get_tiles(image):
 	"""split a 2bpp image into 8x8 tiles"""
 	tiles = []
 	tile = []
 	bytes_per_tile = 16
-	
+
 	cur_byte = 0
 	for byte in image:
 		# build tile
@@ -97,11 +97,11 @@ def connect(tiles):
 		for byte in tile:
 			out.append(byte)
 	return out
-	
+
 
 def transpose(tiles):
 	"""transpose a tile arrangement along line y=x"""
-	
+
 	#     horizontal    <->     vertical
 	# 00 01 02 03 04 05     00 06 0c 12 18 1e
 	# 06 07 08 09 0a 0b     01 07 0d 13 19 1f
@@ -110,7 +110,7 @@ def transpose(tiles):
 	# 18 19 1a 1b 1c 1d     04 0a 10 16 1c 22
 	# 1e 1f 20 21 22 23     05 0b 11 17 1d 23
 	# etc
-	
+
 	flipped = []
 	t = 0 # which tile we're on
 	w = int(sqrt(len(tiles))) # assume square image
@@ -185,14 +185,15 @@ lowmax = 1 << 5 # standard 5-bit param
 
 class Compressed:
 	"""compress 2bpp data"""
-	
+
 	def __init__(self, image = None, mode = 'horiz', size = None):
-	
+
 		assert image, 'need something to compress!'
+		image = list(image)
 		self.image = image
 		self.pic = []
 		self.animtiles = []
-		
+
 		# only transpose pic (animtiles were never transposed in decompression)
 		if size != None:
 			for byte in range((size*size)*16):
@@ -201,21 +202,21 @@ class Compressed:
 				self.animtiles += image[byte]
 		else:
 			self.pic = image
-		
+
 		if mode == 'vert':
 			self.tiles = get_tiles(self.pic)
 			self.tiles = transpose(self.tiles)
 			self.pic = connect(self.tiles)
-		
+
 		self.image = self.pic + self.animtiles
-		
+
 		self.end = len(self.image)
-		
+
 		self.byte = None
 		self.address = 0
-		
+
 		self.stream = []
-		
+
 		self.zeros = []
 		self.alts = []
 		self.iters = []
@@ -223,65 +224,65 @@ class Compressed:
 		self.flips = []
 		self.reverses = []
 		self.literals = []
-		
+
 		self.output = []
-		
+
 		self.compress()
-	
-	
+
+
 	def compress(self):
 		"""incomplete, but outputs working compressed data"""
-		
+
 		self.address = 0
-		
+
 		# todo
 		#self.scanRepeats()
-		
+
 		while ( self.address < self.end ):
-			
+
 			#if (self.repeats):
 			#	self.doRepeats()
-			
+
 			#if (self.flips):
 			#	self.doFlips()
-			
+
 			#if (self.reverses):
 			#	self.doReverses
-			
+
 			if (self.checkWhitespace()):
 				self.doLiterals()
 				self.doWhitespace()
-			
+
 			elif (self.checkIter()):
 				self.doLiterals()
 				self.doIter()
-			
+
 			elif (self.checkAlts()):
 				self.doLiterals()
 				self.doAlts()
-			
+
 			else: # doesn't fit any pattern -> literal
 				self.addLiteral()
 				self.next()
-			
+
 			self.doStream()
-		
+
 		# add any literals we've been sitting on
 		self.doLiterals()
-		
+
 		# done
 		self.output.append(lz_end)
-	
-	
+
+
 	def getCurByte(self):
 		if self.address < self.end:
 			self.byte = ord(self.image[self.address])
 		else: self.byte = None
-	
+
 	def next(self):
 		self.address += 1
 		self.getCurByte()
-	
+
 	def addLiteral(self):
 		self.getCurByte()
 		self.literals.append(self.byte)
@@ -289,7 +290,7 @@ class Compressed:
 			raise Exception, "literals exceeded max length and the compressor didn't catch it"
 		elif len(self.literals) == max_length:
 			self.doLiterals()
-	
+
 	def doLiterals(self):
 		if len(self.literals) > lowmax:
 			self.output.append( (lz_hi << 5) | (lz_lit << 2) | ((len(self.literals) - 1) >> 8) )
@@ -298,24 +299,24 @@ class Compressed:
 			self.output.append( (lz_lit << 5) | (len(self.literals) - 1) )
 		for byte in self.literals:
 			self.output.append(byte)
-		self.literals = []	
-	
+		self.literals = []
+
 	def doStream(self):
 		for byte in self.stream:
 			self.output.append(byte)
 		self.stream = []
-	
-	
+
+
 	def scanRepeats(self):
 		"""works, but doesn't do flipped/reversed streams yet
-		
+
 		this takes up most of the compress time and only saves a few bytes
 		it might be more feasible to exclude it entirely"""
-		
+
 		self.repeats = []
 		self.flips = []
 		self.reverses = []
-		
+
 		# make a 5-letter word list of the sequence
 		letters = 5 # how many bytes it costs to use a repeat over a literal
 		# any shorter and it's not worth the trouble
@@ -326,11 +327,11 @@ class Compressed:
 			for j in range(letters):
 				word.append( ord(self.image[i+j]) )
 			words.append((word, i))
-		
+
 		zeros = []
 		for zero in range(letters):
 			zeros.append( 0 )
-		
+
 		# check for matches
 		def get_matches():
 		# TODO:
@@ -348,9 +349,9 @@ class Compressed:
 							# remove zeros
 							if this[0] != zeros:
 								yield [this[0], this[1], words[that][1]]
-		
+
 		matches = list(get_matches())
-		
+
 		# remove more zeros
 		buffer = []
 		for match in matches:
@@ -368,7 +369,7 @@ class Compressed:
 				# (and likely to already be accounted for)
 				buffer.append(match)
 		matches = buffer
-		
+
 		# combine overlapping matches
 		buffer = []
 		for this, match in enumerate(matches):
@@ -384,11 +385,11 @@ class Compressed:
 						buffer.append(match)
 					# else we've gone past it and we can ignore it
 				else: # no more overlaps
-					buffer.append(match)	
+					buffer.append(match)
 			else: # last match, so there's nothing to check
 				buffer.append(match) 
 		matches = buffer
-		
+
 		# remove alternating sequences
 		buffer = []
 		for match in matches:
@@ -397,49 +398,49 @@ class Compressed:
 					buffer.append(match)
 					break
 		matches = buffer
-		
+
 		self.repeats = matches
-		
-	
+
+
 	def doRepeats(self):
 		"""doesn't output the right values yet"""
-		
+
 		unusedrepeats = []
 		for repeat in self.repeats:
 			if self.address >= repeat[2]:
-				
+
 				# how far in we are
 				length = (len(repeat[0]) - (self.address - repeat[2]))
-				
+
 				# decide which side we're copying from
 				if (self.address - repeat[1]) <= 0x80:
 					self.doLiterals()
 					self.stream.append( (lz_repeat << 5) | length - 1 )
-					
+
 					# wrong?
 					self.stream.append( (((self.address - repeat[1])^0xff)+1)&0xff )
 
 				else:
 					self.doLiterals()
 					self.stream.append( (lz_repeat << 5) | length - 1 )
-					
+
 					# wrong?
 					self.stream.append(repeat[1]>>8)
 					self.stream.append(repeat[1]&0xff)
-				
+
 				#print hex(self.address) + ': ' + hex(len(self.output)) + ' ' + hex(length)
 				self.address += length
-				
+
 			else: unusedrepeats.append(repeat)
-				
+
 		self.repeats = unusedrepeats
-	
-	
+
+
 	def checkWhitespace(self):
 		self.zeros = []
 		self.getCurByte()
 		original_address = self.address
-		
+
 		if ( self.byte == 0 ):
 			while ( self.byte == 0 ) & ( len(self.zeros) <= max_length ):
 				self.zeros.append(self.byte)
@@ -448,7 +449,7 @@ class Compressed:
 				return True
 		self.address = original_address
 		return False
-	
+
 	def doWhitespace(self):
 		if (len(self.zeros) + 1) >= lowmax:
 			self.stream.append( (lz_hi << 5) | (lz_zeros << 2) | ((len(self.zeros) - 1) >> 8) )
@@ -457,20 +458,20 @@ class Compressed:
 			self.stream.append( lz_zeros << 5 | (len(self.zeros) - 1) )
 		else:
 			raise Exception, "checkWhitespace() should prevent this from happening"
-	
-	
+
+
 	def checkAlts(self):
 		self.alts = []
 		self.getCurByte()
 		original_address = self.address
 		num_alts = 0
-		
+
 		# make sure we don't check for alts at the end of the file
-		if self.address+2 >= self.end: return False
-		
+		if self.address+3 >= self.end: return False
+
 		self.alts.append(self.byte)
 		self.alts.append(ord(self.image[self.address+1]))
-		
+
 		# are we onto smething?
 		if ( ord(self.image[self.address+2]) == self.alts[0] ):
 			cur_alt = 0
@@ -485,17 +486,17 @@ class Compressed:
 			elif num_alts > 2:
 				return True
 		return False
-	
+
 	def doAlts(self):
 		original_address = self.address
 		self.getCurByte()
-		
+
 		#self.alts = []
 		#num_alts = 0
-		
+
 		#self.alts.append(self.byte)
 		#self.alts.append(ord(self.image[self.address+1]))
-		
+
 		#i = 0
 		#while (ord(self.image[self.address+1]) == self.alts[i^1]) & (num_alts <= max_length):
 		#	num_alts += 1
@@ -503,9 +504,9 @@ class Compressed:
 		#	self.next()
 		## include the last alternated byte
 		#num_alts += 1
-		
+
 		num_alts = len(self.iters) + 1
-		
+
 		if num_alts > lowmax:
 			self.stream.append( (lz_hi << 5) | (lz_alt << 2) | ((num_alts - 1) >> 8) )
 			self.stream.append( num_alts & 0xff )
@@ -517,10 +518,10 @@ class Compressed:
 			self.stream.append( self.alts[1] )
 		else:
 			raise Exception, "checkAlts() should prevent this from happening"
-		
+
 		self.address = original_address
 		self.address += num_alts
-	
+
 
 	def checkIter(self):
 		self.iters = []
@@ -535,19 +536,19 @@ class Compressed:
 			# 3 or fewer isn't worth the trouble and actually longer
 			# if part of a larger literal set
 			return True
-		
+
 		return False
-	
+
 	def doIter(self):
 		self.getCurByte()
 		iter = self.byte
 		original_address = self.address
-		
+
 		self.iters = []
 		while (self.byte == iter) & (len(self.iters) < max_length):
 			self.iters.append(self.byte)
 			self.next()
-		
+
 		if (len(self.iters) - 1) >= lowmax:
 			self.stream.append( (lz_hi << 5) | (lz_iter << 2) | ((len(self.iters)-1) >> 8) )
 			self.stream.append( (len(self.iters) - 1) & 0xff )
@@ -567,65 +568,65 @@ class Compressed:
 
 class Decompressed:
 	"""parse compressed 2bpp data
-	
+
 	parameters:
 		[compressed 2bpp data]
 		[tile arrangement] default: 'vert'
 		[size of pic] default: None
 		[start] (optional)
-	
+
 	splits output into pic [size] and animation tiles if applicable
 	data can be fed in from rom if [start] is specified"""
-	
+
 	def __init__(self, lz = None, mode = None, size = None, start = 0):
 		# todo: play nice with Compressed
-	
+
 		assert lz, 'need something to compress!'
 		self.lz = lz
-		
+
 		self.byte = None
 		self.address = 0
 		self.start = start
-		
+
 		self.output = []
-		
+
 		self.decompress()
-		
+
 		debug = False
 		# print tuple containing start and end address
 		if debug: print '(' + hex(self.start) + ', ' + hex(self.start + self.address+1) + '),'
-		
+
 		# only transpose pic
 		self.pic = []
 		self.animtiles = []
-		
+
 		if size != None:
 			self.tiles = get_tiles(self.output)
 			self.pic = connect(self.tiles[:(size*size)])
 			self.animtiles = connect(self.tiles[(size*size):])
 		else: self.pic = self.output
-		
+
 		if mode == 'vert':
 			self.tiles = get_tiles(self.pic)
 			self.tiles = transpose(self.tiles)
 			self.pic = connect(self.tiles)
-		
+
 		self.output = self.pic + self.animtiles
-	
-	
+
+
 	def decompress(self):
 		"""replica of crystal's decompression"""
-		
+
 		self.output = []
-		
+
 		while True:
 			self.getCurByte()
-			
+
 			if (self.byte == lz_end):
 				break
-			
+
 			self.cmd = (self.byte & 0b11100000) >> 5
-			
+
 			if self.cmd == lz_hi: # 10-bit param
 				self.cmd = (self.byte & 0b00011100) >> 2
 				self.length = (self.byte & 0b00000011) << 8
@@ -633,7 +634,7 @@ class Decompressed:
 				self.length += self.byte + 1
 			else: # 5-bit param
 				self.length = (self.byte & 0b00011111) + 1
-			
+
 			# literals
 			if self.cmd == lz_lit:
 				self.doLiteral()
@@ -643,7 +644,7 @@ class Decompressed:
 				self.doAlt()
 			elif self.cmd == lz_zeros:
 				self.doZeros()
-				
+
 			else: # repeaters
 				self.next()
 				if self.byte > 0x7f: # negative
@@ -653,37 +654,37 @@ class Decompressed:
 					self.displacement = self.byte * 0x100
 					self.next()
 					self.displacement += self.byte
-				
+
 				if self.cmd == lz_flip:
 					self.doFlip()
 				elif self.cmd == lz_reverse:
 					self.doReverse()
 				else: # lz_repeat
 					self.doRepeat()
-			
+
 			self.address += 1
 			#self.next() # somewhat of a hack
-	
-	
+
+
 	def getCurByte(self):
 		self.byte = ord(self.lz[self.start+self.address])
-	
+
 	def next(self):
 		self.address += 1
 		self.getCurByte()
-	
+
 	def doLiteral(self):
 		# copy 2bpp data directly
 		for byte in range(self.length):
 			self.next()
 			self.output.append(self.byte)
-		
+
 	def doIter(self):
 		# write one byte repeatedly
 		self.next()
 		for byte in range(self.length):
 			self.output.append(self.byte)
-		
+
 	def doAlt(self):
 		# write alternating bytes
 		self.alts = []
@@ -691,15 +692,15 @@ class Decompressed:
 		self.alts.append(self.byte)
 		self.next()
 		self.alts.append(self.byte)
-		
+
 		for byte in range(self.length):
 			self.output.append(self.alts[byte&1])
-		
+
 	def doZeros(self):
 		# write zeros
 		for byte in range(self.length):
 			self.output.append(0x00)
-		
+
 	def doFlip(self):
 		# repeat flipped bytes from 2bpp output
 		# eg  11100100 -> 00100111
@@ -707,12 +708,12 @@ class Decompressed:
 		for byte in range(self.length):
 			flipped = sum(1<<(7-i) for i in range(8) if self.output[self.displacement+byte]>>i&1)
 			self.output.append(flipped)
-		
+
 	def doReverse(self):
 		# repeat reversed bytes from 2bpp output
 		for byte in range(self.length):
 			self.output.append(self.output[self.displacement-byte])
-		
+
 	def doRepeat(self):
 		# repeat bytes from 2bpp output
 		for byte in range(self.length):
@@ -745,15 +746,15 @@ def make_sizes():
 	base_stats = 0x51424
 	# print monster sizes
 	address = base_stats + 0x11
-	
+
 	output = ''
-	
+
 	for id in range(top):
 		size = (ord(rom[address])) & 0x0f
 		if id % 16 == 0: output += '\n\t'
 		output += str(size) + ', '
 		address += 0x20
-	
+
 	print output
 
 
@@ -772,7 +773,7 @@ def decompress_fx_by_id(id):
 	# decompress
 	fx = Decompressed(rom, 'horiz', num_tiles, address)
 	return fx
-	
+
 def decompress_fx():
 	for id in range(num_fx):
 		fx = decompress_fx_by_id(id)
@@ -806,7 +807,7 @@ def decompress_monster_by_id(id = 0, type = front):
 	# decompress
 	monster = Decompressed(rom, 'vert', size, address)
 	return monster
-	
+
 def decompress_monsters(type = front):
 	for id in range(num_monsters):
 		# decompress
@@ -843,7 +844,7 @@ def decompress_unowns(type = front):
 	for letter in range(num_unowns):
 		# decompress
 		unown = decompress_unown_by_id(letter, type)
-		
+
 		if not type: # front
 			filename = 'front.2bpp'
 			folder = '../gfx/pics/' + str(unown_dex).zfill(3) + chr(ord('a') + letter) + '/'
@@ -955,7 +956,7 @@ def decompress_misc():
 
 def decompress_all(debug = False):
 	"""decompress all known compressed data in baserom"""
-	
+
 	if debug: print 'fronts'
 	decompress_monsters(front)
 	if debug: print 'backs'
@@ -964,25 +965,25 @@ def decompress_all(debug = False):
 	decompress_unowns(front)
 	if debug: print 'unown backs'
 	decompress_unowns(back)
-	
+
 	if debug: print 'trainers'
 	decompress_trainers()
-	
+
 	if debug: print 'fx'
 	decompress_fx()
-	
+
 	if debug: print 'intro'
 	decompress_intro()
-	
+
 	if debug: print 'title'
 	decompress_title()
-	
+
 	if debug: print 'tilesets'
 	decompress_tilesets()
-	
+
 	if debug: print 'misc'
 	decompress_misc()
-	
+
 	return
 
 
@@ -996,9 +997,9 @@ def decompress_file(filein, fileout, mode = 'horiz', size = None):
 	f = open(filein, 'rb')
 	image = f.read()
 	f.close()
-	
+
 	de = Decompressed(image, mode, size)
-	
+
 	to_file(fileout, de.pic)
 
 
@@ -1006,9 +1007,9 @@ def compress_file(filein, fileout, mode = 'horiz'):
 	f = open(filein, 'rb')
 	image = f.read()
 	f.close()
-	
+
 	lz = Compressed(image, mode)
-	
+
 	to_file(fileout, lz.output)
 
 
@@ -1016,18 +1017,18 @@ def compress_file(filein, fileout, mode = 'horiz'):
 
 def compress_monster_frontpic(id, fileout):
 	mode = 'vert'
-	
+
 	fpic = '../gfx/pics/' + str(id).zfill(3) + '/front.2bpp'
 	fanim = '../gfx/pics/' + str(id).zfill(3) + '/tiles.2bpp'
-	
+
 	pic = open(fpic, 'rb').read()
 	anim = open(fanim, 'rb').read()
 	image = pic + anim
-	
+
 	lz = Compressed(image, mode, sizes[id-1])
-	
+
 	out = '../gfx/pics/' + str(id).zfill(3) + '/front.lz'
-	
+
 	to_file(out, lz.output)
 
 
@@ -1074,63 +1075,63 @@ def grab_palettes(address, length = 0x80):
 
 def dump_monster_pals():
 	rom = load_rom()
-	
+
 	pals = 0xa8d6
 	pal_length = 0x4
 	for mon in range(251):
-		
+
 		name     = pokemon_constants[mon+1].title().replace('_','')
 		num      = str(mon+1).zfill(3)
 		dir      = 'gfx/pics/'+num+'/'
-		
+
 		address  = pals + mon*pal_length*2
-		
-		
+
+
 		pal_data = []
 		for byte in range(pal_length):
 			pal_data.append(ord(rom[address]))
 			address += 1
-		
+
 		filename = 'normal.pal'
 		to_file('../'+dir+filename, pal_data)
-		
+
 		spacing  = ' ' * (15 - len(name))
 		#print name+'Palette:'+spacing+' INCBIN "'+dir+filename+'"'
-		
-		
+
+
 		pal_data = []
 		for byte in range(pal_length):
 			pal_data.append(ord(rom[address]))
 			address += 1
-		
+
 		filename = 'shiny.pal'
 		to_file('../'+dir+filename, pal_data)
-		
+
 		spacing  = ' ' * (10 - len(name))
 		#print name+'ShinyPalette:'+spacing+' INCBIN "'+dir+filename+'"'
 
 
 def dump_trainer_pals():
 	rom = load_rom()
-	
+
 	pals = 0xb0d2
 	pal_length = 0x4
 	for trainer in range(67):
-		
+
 		name = trainer_group_names[trainer+1]['constant'].title().replace('_','')
 		num  = str(trainer).zfill(3)
 		dir  = 'gfx/trainers/'
-		
+
 		address = pals + trainer*pal_length
-		
+
 		pal_data = []
 		for byte in range(pal_length):
 			pal_data.append(ord(rom[address]))
 			address += 1
-		
+
 		filename = num+'.pal'
 		to_file('../'+dir+filename, pal_data)
-		
+
 		spacing = ' ' * (12 - len(name))
 		print name+'Palette:'+spacing+' INCBIN"'+dir+filename+'"'
 
@@ -1156,14 +1157,14 @@ def to_lines(image, width):
 	"""
 	Converts a tiled quaternary pixel map to lines of quaternary pixels.
 	"""
-	
+
 	tile = 8 * 8
-	
+
 	# so we know how many strips of 8px we're putting into a line
 	num_columns = width / 8
 	# number of lines
 	height = len(image) / width
-	
+
 	lines = []
 	for cur_line in range(height):
 		tile_row = int(cur_line / 8)
@@ -1202,80 +1203,80 @@ def to_png(filein, fileout=None, pal_file=None, height=None, width=None):
 	"""
 	Takes a planar 2bpp graphics file and converts it to png.
 	"""
-	
+
 	if fileout == None: fileout = '.'.join(filein.split('.')[:-1]) + '.png'
-	
+
 	image = open(filein, 'rb').read()
-	
+
 	num_pixels = len(image) * 4
-	
+
 	if num_pixels == 0: return 'empty image!'
-	
-	
+
+
 	# unless the pic is square, at least one dimension should be given
-	
+
 	if width == None and height == None:
 		width  = int(sqrt(num_pixels))
 		height = width
-	
+
 	elif height == None:
 		height = num_pixels / width
 
 	elif width  == None:
 		width  = num_pixels / height
-	
-	
+
+
 	# but try to see if it can be made rectangular
-	
+
 	if width * height != num_pixels:
-		
+
 		# look for possible combos of width/height that would form a rectangle
 		matches = []
-		
+
 		# this is pretty inefficient, and there is probably a simpler way
 		for width in range(8,256+1,8): # we only want dimensions that fit in tiles
 			height = num_pixels / width
 			if height % 8 == 0:
 				matches.append((width, height))
-		
+
 		# go for the most square image
 		width, height = sorted(matches, key=lambda (x,y): x+y)[0] # favors height
-	
-	
+
+
 	# if it can't, the only option is a width of 1 tile
-	
+
 	if width * height != num_pixels:
 		width = 8
 		height = num_pixels / width
-	
-	
+
+
 	# if this still isn't rectangular, then the image isn't made of tiles
-	
+
 	# for now we'll just spit out a warning
 	if width * height != num_pixels:
 		print 'Warning! ' + fileout + ' is ' + width + 'x' + height + '(' + width*height + ' pixels),\n' +\
 		       'but ' + filein + ' is ' + num_pixels + ' pixels!'
-	
-	
+
+
 	# map it out
-	
+
 	lines = to_lines(flatten(image), width)
-	
-	
+
+
 	if pal_file == None:
 		palette   = None
 		greyscale = True
 		bitdepth  = 2
 		inverse   = { 0:3, 1:2, 2:1, 3:0 }
 		map       = [[inverse[pixel] for pixel in line] for line in lines]
-		
+
 	else: # gbc color
 		palette   = png_pal(pal_file)
 		greyscale = False
 		bitdepth  = 8
 		map       = [[pixel for pixel in line] for line in lines]
-	
-	
+
+
 	w = png.Writer(width, height, palette=palette, compression = 9, greyscale = greyscale, bitdepth = bitdepth)
 	with open(fileout, 'wb') as file:
 		w.write(file, map)
@@ -1287,44 +1288,44 @@ def to_2bpp(filein, fileout=None, palout=None):
 	"""
 	Takes a png and converts it to planar 2bpp.
 	"""
-	
+
 	if fileout == None: fileout = '.'.join(filein.split('.')[:-1]) + '.2bpp'
-	
+
 	with open(filein, 'rb') as file:
 
-		r = png.Reader(file)	
+		r = png.Reader(file)
 		info  = r.asRGBA8()
-		
+
 		width     = info[0]
 		height    = info[1]
-		
+
 		rgba      = list(info[2])
 		greyscale = info[3]['greyscale']
-	
-	
+
+
 	# commented out for the moment
-	
+
 	padding = { 'left':   0,
 	            'right':  0,
 	            'top':    0,
 	            'bottom': 0, }
-	
+
 	#if width  % 8 != 0:
 	#	padding['left']   =    int(ceil((width / 8 + 8 - width) / 2))
 	#	padding['right']  =   int(floor((width / 8 + 8 - width) / 2))
-	
+
 	#if height % 8 != 0:
 	#	padding['top']    =  int(ceil((height / 8 + 8 - height) / 2))
 	#	padding['bottom'] = int(floor((height / 8 + 8 - height) / 2))
-	
-	
+
+
 	# turn the flat values into something more workable
-	
+
 	pixel_length = 4 # rgba
 	image   = []
-	
+
 	# while we're at it, let's size up the palette
-	
+
 	palette = []
 
 	for line in rgba:
@@ -1338,34 +1339,34 @@ def to_2bpp(filein, fileout=None, palout=None):
 			newline.append(color)
 			if color not in palette: palette.append(color)
 		image.append(newline)
-	
-	
+
+
 	# sort by luminance, because we can
-	
+
 	def luminance(color):
 		# this is actually in reverse, thanks to dmg/cgb palette ordering
 		rough = { 'r':  4.7,
 		          'g':  1.4,
 		          'b': 13.8, }
 		return sum(color[key] * -rough[key] for key in rough.keys())
-	
+
 	palette = sorted(palette, key = lambda x:luminance(x))
-	
+
 	# no palette fixing for now
-	
+
 	assert len(palette) <= 4, 'Palette should be 4 colors, is really ' + str(len(palette))
-	
+
 
 	# spit out new palette (disabled for now)
-	
+
 	def rgb_to_dmg(color):
 		word =  (color['r'] / 8) << 10
 		word += (color['g'] / 8) <<  5
 		word += (color['b'] / 8)
 		return word
-	
+
 	palout = None
-	
+
 	if palout != None:
 		output = []
 		for color in palette[1:3]:
@@ -1373,10 +1374,10 @@ def to_2bpp(filein, fileout=None, palout=None):
 			output.append(word>>8)
 			output.append(word&0xff)
 		to_file(palout, output)
-	
-	
+
+
 	# create a new map consisting of quaternary color ids
-	
+
 	map = []
 	if padding['top']: map += [0] * (width + padding['left'] + padding['right']) * padding['top']
 	for line in image:
@@ -1385,14 +1386,14 @@ def to_2bpp(filein, fileout=None, palout=None):
 			map.append(palette.index(color))
 		if padding['right']: map += [0] * padding['right']
 	if padding['bottom']: map += [0] * (width + padding['left'] + padding['right']) * padding['bottom']
-	
+
 	# split it into strips of 8, and make them planar
-	
+
 	num_columns = width / 8
 	num_rows = height / 8
-	
+
 	tile = 8 * 8
-	
+
 	image = []
 	for row in range(num_rows):
 		for column in range(num_columns):
@@ -1406,14 +1407,14 @@ def to_2bpp(filein, fileout=None, palout=None):
 					top    += ((quad & 2) >> 1) << (7-bit)
 				image.append(bottom)
 				image.append(top)
-	
+
 	to_file(fileout, image)
 
 
 def png_to_lz(filein):
-	
+
 	name = os.path.splitext(filein)[0]
-	
+
 	to_2bpp(filein)
 	image = open(name+'.2bpp', 'rb').read()
 	to_file(name+'.lz', Compressed(image).output)
@@ -1441,7 +1442,7 @@ def mass_to_colored_png(debug=False):
 					else:
 						to_png(os.path.join(root, name))
 					os.utime(os.path.join(root, name), None)
-	
+
 	# only monster and trainer pics for now
 	for root, dirs, files in os.walk('../gfx/pics/'):
 		for name in files:
@@ -1452,7 +1453,7 @@ def mass_to_colored_png(debug=False):
 				else:
 					to_png(os.path.join(root, name))
 				os.utime(os.path.join(root, name), None)
-	
+
 	for root, dirs, files in os.walk('../gfx/trainers/'):
 		for name in files:
 			if debug: print os.path.splitext(name), os.path.join(root, name)
@@ -1503,7 +1504,7 @@ def lz_to_png_by_file(filename):
     """
     assert filename[-3:] == ".lz"
     lz_data = open(filename, "rb").read()
-    bpp = Decompressed(lz).output
+    bpp = Decompressed(lz_data).output
     bpp_filename = filename.replace(".lz", ".2bpp")
     to_file(bpp_filename, bpp)
     to_png(bpp_filename)
@@ -1518,106 +1519,100 @@ def dump_tileset_pngs():
         lz_to_png_by_file(tileset_filename)
 
 if __name__ == "__main__":
-	parser = argparse.ArgumentParser()
-	parser.add_argument('cmd',  nargs='?', metavar='cmd',  type=str)
-	parser.add_argument('arg1', nargs='?', metavar='arg1', type=str)
-	parser.add_argument('arg2', nargs='?', metavar='arg2', type=str)
-	parser.add_argument('arg3', nargs='?', metavar='arg3', type=str)
-	parser.add_argument('arg4', nargs='?', metavar='arg4', type=str)
-	parser.add_argument('arg5', nargs='?', metavar='arg5', type=str)
-	args = parser.parse_args()
-	
+
 	debug = False
-	
-	if args.cmd == 'dump-pngs':
+
+	if sys.argv[1] == 'dump-pngs':
 		mass_to_colored_png()
-	
-	elif args.cmd == 'png-to-lz':
+
+	elif sys.argv[1] == 'lz-to-png':
+		lz_to_png_by_file(sys.argv[2])
+
+	elif sys.argv[1] == 'png-to-lz':
 		# python gfx.py png-to-lz [--front anim(2bpp) | --vert] [png]
-		
+
 		# python gfx.py png-to-lz --front [anim(2bpp)] [png]
-		if args.arg1 == '--front':
+		if sys.argv[2] == '--front':
 
 			# front.png and tiles.png are combined before compression,
 			# so we have to pass in things like anim file and pic size
-			name = os.path.splitext(args.arg3)[0]
-			
+			name = os.path.splitext(sys.argv[4])[0]
+
 			to_2bpp(name+'.png', name+'.2bpp')
 			pic  = open(name+'.2bpp', 'rb').read()
-			anim = open(args.arg2, 'rb').read()
+			anim = open(sys.argv[3], 'rb').read()
 			size = int(sqrt(len(pic)/16)) # assume square pic
 			to_file(name+'.lz', Compressed(pic + anim, 'vert', size).output)
-		
-		
+
+
 		# python gfx.py png-to-lz --vert [png]
-		elif args.arg1 == '--vert':
-			
+		elif sys.argv[2] == '--vert':
+
 			# others are vertically oriented (frontpics are always vertical)
-			
-			name = os.path.splitext(args.arg2)[0]
-			
+
+			name = os.path.splitext(sys.argv[3])[0]
+
 			to_2bpp(name+'.png', name+'.2bpp')
 			pic = open(name+'.2bpp', 'rb').read()
-			to_file(name+'.lz', Compressed(pic + anim, 'vert').output)
-		
-		
+			to_file(name+'.lz', Compressed(pic, 'vert').output)
+
+
 		# python gfx.py png-to-lz [png]
 		else:
-			
+
 			# standard usage
-			
-			png_to_lz(args.arg1)
-	
-	elif args.cmd == 'png-to-2bpp':
-		to_2bpp(args.arg1)
-	
-	
-	elif args.cmd == 'de':
+
+			png_to_lz(sys.argv[2])
+
+	elif sys.argv[1] == 'png-to-2bpp':
+		to_2bpp(sys.argv[2])
+
+
+	elif sys.argv[1] == 'de':
 		# python gfx.py de [addr] [fileout] [mode]
-		
+
 		rom = load_rom()
-		
-		addr = int(args.arg1,16)
-		fileout = args.arg2
-		mode = args.arg3
+
+		addr = int(sys.argv[2],16)
+		fileout = sys.argv[3]
+		mode = sys.argv[4]
 		decompress_from_address(addr, fileout, mode)
-		if debug: print 'decompressed to ' + args.arg2 + ' from ' + hex(int(args.arg1,16)) + '!'
-		
-	elif args.cmd == 'lz':
+		if debug: print 'decompressed to ' + sys.argv[3] + ' from ' + hex(int(sys.argv[2],16)) + '!'
+
+	elif sys.argv[1] == 'lz':
 		# python gfx.py lz [filein] [fileout] [mode]
-		filein = args.arg1
-		fileout = args.arg2
-		mode = args.arg3
+		filein = sys.argv[2]
+		fileout = sys.argv[3]
+		mode = sys.argv[4]
 		compress_file(filein, fileout, mode)
 		if debug: print 'compressed ' + filein + ' to ' + fileout + '!'
-	
-	elif args.cmd == 'lzf':
+
+	elif sys.argv[1] == 'lzf':
 		# python gfx.py lzf [id] [fileout]
-		compress_monster_frontpic(int(args.arg1), args.arg2)
-	
-	elif args.cmd == 'un':
+		compress_monster_frontpic(int(sys.argv[2]), sys.argv[3])
+
+	elif sys.argv[1] == 'un':
 		# python gfx.py un [address] [num_tiles] [filename]
 		rom = load_rom()
-		get_uncompressed_gfx(int(args.arg1,16), int(args.arg2), args.arg3)
-	
-	elif args.cmd == 'pal':
+		get_uncompressed_gfx(int(sys.argv[2],16), int(sys.argv[3]), sys.argv[4])
+
+	elif sys.argv[1] == 'pal':
 		# python gfx.py pal [address] [length]
 		rom = load_rom()
-		print grab_palettes(int(args.arg1,16), int(args.arg2))
-	
-	elif args.cmd == 'png':
-		
-		if '.2bpp' in args.arg1:
-			if args.arg3 == 'greyscale':
-				to_png(args.arg1, args.arg2)
+		print grab_palettes(int(sys.argv[2],16), int(sys.argv[3]))
+
+	elif sys.argv[1] == 'png':
+
+		if '.2bpp' in sys.argv[2]:
+			if sys.argv[4] == 'greyscale':
+				to_png(sys.argv[2], sys.argv[3])
 			else:
-				to_png(args.arg1, args.arg2, args.arg3)
-		
-		elif '.png' in args.arg1:
-			to_2bpp(args.arg1, args.arg2)
-	
-	elif args.cmd == 'mass-decompress':
+				to_png(sys.argv[2], sys.argv[3], sys.argv[4])
+
+		elif '.png' in sys.argv[2]:
+			to_2bpp(sys.argv[2], sys.argv[3])
+
+	elif sys.argv[1] == 'mass-decompress':
 		mass_decompress()
 		if debug: print 'decompressed known gfx to pokecrystal/gfx/!'
-	
 
