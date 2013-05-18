@@ -467,7 +467,7 @@ class Compressed:
 		num_alts = 0
 
 		# make sure we don't check for alts at the end of the file
-		if self.address+2 >= self.end: return False
+		if self.address+3 >= self.end: return False
 
 		self.alts.append(self.byte)
 		self.alts.append(ord(self.image[self.address+1]))
