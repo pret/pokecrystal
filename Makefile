@@ -11,19 +11,16 @@ TEXTFILES = \
 		text/common_3.tx \
 		main.tx
 
-VERTGFX = \
-		gfx/pics/%.png \
-		gfx/trainers/%.png
+PNG_PICS = $(shell find gfx/pics/ -type f -name 'front.png')
+PNG_ANIMS = $(shell find gfx/pics/ -type f -name 'tiles.png')
+PNG_TRAINERS = gfx/trainers/*.png
+PNG_GFX = $(PNG_PICS) $(PNG_ANIMS) $(PNG_TRAINERS), $(filter-out $(shell find gfx/ -type f -name '*.png'))
 
-HORIZGFX =	$(filter-out gfx/%.png, $(VERTGFX))
+LZ_PICS = $(shell find gfx/pics/ -type f -name 'front.lz')
+LZ_ANIMS = $(shell find gfx/pics/ -type f -name 'tiles.lz')
+LZ_TRAINERS = gfx/trainers/*.lz
+LZ_GFX = $(filter-out $(LZ_PICS) $(LZ_ANIMS) $(LZ_TRAINERS), $(shell find gfx/ -type f -name '*.lz'))
 
-
-# uncomment this build target to enable png import:
-
-#all: lzs
-
-# the recompressed graphics may be larger than the originals,
-# so take care to reorganize accordingly
 
 all: pokecrystal.gbc
 	cmp baserom.gbc $<
@@ -39,7 +36,7 @@ winclean:
 
 pokecrystal.o: pokecrystal.asm constants.asm wram.asm ${TEXTFILES}
 	rgbasm -o pokecrystal.o pokecrystal.asm
-	
+
 .asm.tx:
 	python preprocessor.py < $< > $@
 
@@ -47,19 +44,19 @@ pokecrystal.gbc: pokecrystal.o
 	rgblink -o $@ $<
 	rgbfix -Cjv -i BYTE -k 01 -l 0x33 -m 0x10 -p 0 -r 3 -t PM_CRYSTAL $@
 
-
-lzs: ${VERTGFX} ${HORIZGFX}
-
 pngs:
 	cd extras && python gfx.py mass-decompress && python gfx.py dump-pngs
 
+lzs: $(LZ_PICS) $(LZ_ANIMS) $(LZ_TRAINERS) $(LZ_GFX)
 
-front.png: tiles.png
-	cd extras && python gfx.py png-to-lz --front $@ $(OBJECT_DIRECTORY)/tiles.2bpp
-tiles.png:
-	cd extras && python gfx.py png-to-2bpp $@
-.png:: ${VERTGFX}
-	cd extras && python gfx.py png-to-lz --vert $@
-.png:: ${HORIZGFX}
-	cd extras && python gfx.py png-to-lz $@
+gfx/pics/%/front.lz: gfx/pics/%/front.png gfx/pics/%/tiles.2bpp
+	python extras/gfx.py png-to-lz --front $< $(@D)/tiles.2bpp
+gfx/pics/%/tiles.2bpp:
+	python extras/gfx.py png-to-2bpp $<
+gfx/pics/%/back.lz: gfx/pics/%/back.png
+	python extras/gfx.py png-to-lz --vert $<
+gfx/trainers/%.lz: gfx/trainers/%.png
+	python extras/gfx.py png-to-lz --vert $<
+.png.lz:
+	python extras/gfx.py png-to-lz $<
 
