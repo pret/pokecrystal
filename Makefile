@@ -24,16 +24,8 @@ LZ_GFX = $(filter-out $(LZ_PICS) $(LZ_ANIMS) $(LZ_TRAINERS), $(shell find gfx/ -
 
 all: pokecrystal.gbc
 	cmp baserom.gbc $<
-
-win: pokecrystal.gbc
-	fc baserom.gbc $<
-
 clean:
 	rm -f main.tx pokecrystal.o pokecrystal.gbc ${TEXTFILES}
-
-winclean:
-	del main.tx pokecrystal.o pokecrystal.gbc .\text\sweethoney.tx .\text\phone\bill.tx .\text\phone\elm.tx .\text\phone\mom.tx .\text\phone\trainers1.tx .\text\common.tx .\text\common_2.tx .\text\common_3.tx
-
 pokecrystal.o: pokecrystal.asm constants.asm wram.asm ${TEXTFILES} lzs
 	rgbasm -o pokecrystal.o pokecrystal.asm
 
