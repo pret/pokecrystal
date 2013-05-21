@@ -1184,17 +1184,17 @@ UnknownText_0x1c1505: ; 1c1505
 	db "Link closed…", $57
 ; 1c1515
 
-UnknownText_0x1c1515: ; 1c1515
+_OakPCText1: ; 1c1515
 	db $0, "Want to get your", $4f
 	db "#DEX rated?", $57
 ; 1c1533
 
-UnknownText_0x1c1533: ; 1c1533
+_OakPCText2: ; 1c1533
 	db $0, "Current #DEX", $4f
 	db "completion level:", $58
 ; 1c1553
 
-UnknownText_0x1c1553: ; 1c1553
+_OakPCText3: ; 1c1553
 	text_from_ram $d099
 	db $0, " #MON seen", $4f
 	db "@"
@@ -1204,133 +1204,133 @@ UnknownText_0x1c1553: ; 1c1553
 	db "Rating:", $57
 ; 1c1585
 
-UnknownText_0x1c1585: ; 1c1585
+_OakRating01: ; 1c1585
 	db $0, "Look for #MON", $4f
 	db "in grassy areas!", $57
 ; 1c15a5
 
-UnknownText_0x1c15a5: ; 1c15a5
+_OakRating02: ; 1c15a5
 	db $0, "Good. I see you", $4f
 	db "understand how to", $55
 	db "use # BALLS.", $57
 ; 1c15d5
 
-UnknownText_0x1c15d5: ; 1c15d5
+_OakRating03: ; 1c15d5
 	db $0, "You're getting", $4f
 	db "good at this.", $51
 	db "But you have a", $4f
 	db "long way to go.", $57
 ; 1c1611
 
-UnknownText_0x1c1611: ; 1c1611
+_OakRating04: ; 1c1611
 	db $0, "You need to fill", $4f
 	db "up the #DEX.", $51
 	db "Catch different", $4f
 	db "kinds of #MON!", $57
 ; 1c164f
 
-UnknownText_0x1c164f: ; 1c164f
+_OakRating05: ; 1c164f
 	db $0, "You're trying--I", $4f
 	db "can see that.", $51
 	db "Your #DEX is", $4f
 	db "coming together.", $57
 ; 1c168c
 
-UnknownText_0x1c168c: ; 1c168c
+_OakRating06: ; 1c168c
 	db $0, "To evolve, some", $4f
 	db "#MON grow,", $51
 	db "others use the", $4f
 	db "effects of STONES.", $57
 ; 1c16ca
 
-UnknownText_0x1c16ca: ; 1c16ca
+_OakRating07: ; 1c16ca
 	db $0, "Have you gotten a", $4f
 	db "fishing ROD? You", $51
 	db "can catch #MON", $4f
 	db "by fishing.", $57
 ; 1c1709
 
-UnknownText_0x1c1709: ; 1c1709
+_OakRating08: ; 1c1709
 	db $0, "Excellent! You", $4f
 	db "seem to like col-", $55
 	db "lecting things!", $57
 ; 1c173b
 
-UnknownText_0x1c173b: ; 1c173b
+_OakRating09: ; 1c173b
 	db $0, "Some #MON only", $4f
 	db "appear during", $51
 	db "certain times of", $4f
 	db "the day.", $57
 ; 1c1773
 
-UnknownText_0x1c1773: ; 1c1773
+_OakRating10: ; 1c1773
 	db $0, "Your #DEX is", $4f
 	db "filling up. Keep", $55
 	db "up the good work!", $57
 ; 1c17a4
 
-UnknownText_0x1c17a4: ; 1c17a4
+_OakRating11: ; 1c17a4
 	db $0, "I'm impressed.", $4f
 	db "You're evolving", $51
 	db "#MON, not just", $4f
 	db "catching them.", $57
 ; 1c17e0
 
-UnknownText_0x1c17e0: ; 1c17e0
+_OakRating12: ; 1c17e0
 	db $0, "Have you met KURT?", $4f
 	db "His custom BALLS", $55
 	db "should help.", $57
 ; 1c1812
 
-UnknownText_0x1c1812: ; 1c1812
+_OakRating13: ; 1c1812
 	db $0, "Wow. You've found", $4f
 	db "more #MON than", $51
 	db "the last #DEX", $4f
 	db "research project.", $57
 ; 1c1853
 
-UnknownText_0x1c1853: ; 1c1853
+_OakRating14: ; 1c1853
 	db $0, "Are you trading", $4f
 	db "your #MON?", $51
 	db "It's tough to do", $4f
 	db "this alone!", $57
 ; 1c188b
 
-UnknownText_0x1c188b: ; 1c188b
+_OakRating15: ; 1c188b
 	db $0, "Wow! You've hit", $4f
 	db "200! Your #DEX", $55
 	db "is looking great!", $57
 ; 1c18bc
 
-UnknownText_0x1c18bc: ; 1c18bc
+_OakRating16: ; 1c18bc
 	db $0, "You've found so", $4f
 	db "many #MON!", $51
 	db "You've really", $4f
 	db "helped my studies!", $57
 ; 1c18f7
 
-UnknownText_0x1c18f7: ; 1c18f7
+_OakRating17: ; 1c18f7
 	db $0, "Magnificent! You", $4f
 	db "could become a", $51
 	db "#MON professor", $4f
 	db "right now!", $57
 ; 1c1932
 
-UnknownText_0x1c1932: ; 1c1932
+_OakRating18: ; 1c1932
 	db $0, "Your #DEX is", $4f
 	db "amazing! You're", $51
 	db "ready to turn", $4f
 	db "professional!", $57
 ; 1c196b
 
-UnknownText_0x1c196b: ; 1c196b
+_OakRating19: ; 1c196b
 	db $0, "Whoa! A perfect", $4f
 	db "#DEX! I've", $51
 	db "dreamt about this!", $4f
 	db "Congratulations!", $57
 ; 1c19aa
 
-UnknownText_0x1c19aa: ; 1c19aa
+_OakPCText4: ; 1c19aa
 	db $0, "The link to PROF.", $4f
 	db "OAK's PC closed.", $57
 ; 1c19cd

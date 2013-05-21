@@ -7766,7 +7766,290 @@ INCLUDE "stats/egg_moves.asm"
 
 SECTION "bank9",DATA,BANK[$9]
 
-INCBIN "baserom.gbc", $24000, $270c4 - $24000
+INCBIN "baserom.gbc", $24000, $265d3 - $24000
+
+ProfOaksPC: ; 0x265d3
+	ld hl, OakPCText1
+	call $1d4f
+	call $1dcf
+	jr c, .shutdown
+	call ProfOaksPCBoot ; player chose "yes"?
+.shutdown
+	ld hl, OakPCText4
+	call PrintText
+	call $0a36
+	call $1c07
+	ret
+; 0x265ee
+
+ProfOaksPCBoot ; 0x265ee
+	ld hl, OakPCText2
+	call PrintText
+	call Rate
+	call StartSFX ; sfx loaded by previous Rate function call
+	call $0a36
+	call WaitSFX
+	ret
+; 0x26601
+
+Function26601: ; 0x26601
+	call Rate
+	push de
+	ld de, MUSIC_NONE
+	call StartMusic
+	pop de
+	call StartSFX
+	call $0a36
+	call $3c55
+	ret
+; 0x26616
+
+Rate: ; 0x26616
+; calculate Seen/Owned
+	ld hl, PokedexCaught
+	ld b, EndPokedexCaught - PokedexCaught
+	call CountSetBits
+	ld [DefaultFlypoint], a
+	ld hl, PokedexSeen
+	ld b, EndPokedexSeen - PokedexSeen
+	call CountSetBits
+	ld [$d003], a
+
+; print appropriate rating
+	call ClearOakRatingBuffers
+	ld hl, OakPCText3
+	call PrintText
+	call $0a36
+	ld a, [$d003]
+	ld hl, OakRatings
+	call FindOakRating
+	push de
+	call PrintText
+	pop de
+	ret
+; 0x26647
+
+ClearOakRatingBuffers: ; 0x26647
+	ld hl, StringBuffer3
+	ld de, DefaultFlypoint
+	call ClearOakRatingBuffer
+	ld hl, StringBuffer4
+	ld de, $d003
+	call ClearOakRatingBuffer
+	ret
+; 0x2665a
+
+ClearOakRatingBuffer: ; 0x2665a
+	push hl
+	ld a, "@"
+	ld bc, $000d
+	call ByteFill
+	pop hl
+	ld bc, $4103
+	call $3198
+	ret
+; 0x2666b
+
+FindOakRating: ; 0x2666b
+; return sound effect in de
+; return text pointer in hl
+	nop
+	ld c, a
+.loop
+	ld a, [hli]
+	cp c
+	jr nc, .match
+	inc hl
+	inc hl
+	inc hl
+	inc hl
+	jr .loop
+
+.match
+	ld a, [hli]
+	ld e, a
+	ld a, [hli]
+	ld d, a
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	ret
+; 0x2667f
+
+OakRatings: ; 0x2667f
+; db count (if number caught ≤ this number, then this entry is used)
+; dw sound effect
+; dw text pointer
+
+	db 9
+	dw SFX_DEX_FANFARE_LESS_THAN_20
+	dw OakRating01
+
+	db 19
+	dw SFX_DEX_FANFARE_LESS_THAN_20
+	dw OakRating02
+
+	db 34
+	dw SFX_DEX_FANFARE_20_49
+	dw OakRating03
+
+	db 49
+	dw SFX_DEX_FANFARE_20_49
+	dw OakRating04
+
+	db 64
+	dw SFX_DEX_FANFARE_50_79
+	dw OakRating05
+
+	db 79
+	dw SFX_DEX_FANFARE_50_79
+	dw OakRating06
+
+	db 94
+	dw SFX_DEX_FANFARE_80_109
+	dw OakRating07
+
+	db 109
+	dw SFX_DEX_FANFARE_80_109
+	dw OakRating08
+
+	db 124
+	dw SFX_CAUGHT_MON
+	dw OakRating09
+
+	db 139
+	dw SFX_CAUGHT_MON
+	dw OakRating10
+
+	db 154
+	dw SFX_DEX_FANFARE_140_169
+	dw OakRating11
+
+	db 169
+	dw SFX_DEX_FANFARE_140_169
+	dw OakRating12
+
+	db 184
+	dw SFX_DEX_FANFARE_170_199
+	dw OakRating13
+
+	db 199
+	dw SFX_DEX_FANFARE_170_199
+	dw OakRating14
+
+	db 214
+	dw SFX_DEX_FANFARE_200_229
+	dw OakRating15
+
+	db 229
+	dw SFX_DEX_FANFARE_200_229
+	dw OakRating16
+
+	db 239
+	dw SFX_DEX_FANFARE_230_PLUS
+	dw OakRating17
+
+	db 248
+	dw SFX_DEX_FANFARE_230_PLUS
+	dw OakRating18
+
+	db 255
+	dw SFX_DEX_FANFARE_230_PLUS
+	dw OakRating19
+
+OakPCText1: ; 0x266de
+	TX_FAR _OakPCText1
+	db "@"
+
+OakPCText2: ; 0x266e3
+	TX_FAR _OakPCText2
+	db "@"
+
+OakPCText3: ; 0x266e8
+	TX_FAR _OakPCText3
+	db "@"
+
+OakRating01:
+	TX_FAR _OakRating01
+	db "@"
+
+OakRating02:
+	TX_FAR _OakRating02
+	db "@"
+
+OakRating03:
+	TX_FAR _OakRating03
+	db "@"
+
+OakRating04:
+	TX_FAR _OakRating04
+	db "@"
+
+OakRating05:
+	TX_FAR _OakRating05
+	db "@"
+
+OakRating06:
+	TX_FAR _OakRating06
+	db "@"
+
+OakRating07:
+	TX_FAR _OakRating07
+	db "@"
+
+OakRating08:
+	TX_FAR _OakRating08
+	db "@"
+
+OakRating09:
+	TX_FAR _OakRating09
+	db "@"
+
+OakRating10:
+	TX_FAR _OakRating10
+	db "@"
+
+OakRating11:
+	TX_FAR _OakRating11
+	db "@"
+
+OakRating12:
+	TX_FAR _OakRating12
+	db "@"
+
+OakRating13:
+	TX_FAR _OakRating13
+	db "@"
+
+OakRating14:
+	TX_FAR _OakRating14
+	db "@"
+
+OakRating15:
+	TX_FAR _OakRating15
+	db "@"
+
+OakRating16:
+	TX_FAR _OakRating16
+	db "@"
+
+OakRating17:
+	TX_FAR _OakRating17
+	db "@"
+
+OakRating18:
+	TX_FAR _OakRating18
+	db "@"
+
+OakRating19:
+	TX_FAR _OakRating19
+	db "@"
+
+OakPCText4: ; 0x2674c
+	TX_FAR _OakPCText4
+	db "@"
+
+INCBIN "baserom.gbc", $26751, $270c4 - $26751
 
 GetTrainerDVs: ; 270c4
 ; get dvs based on trainer class
