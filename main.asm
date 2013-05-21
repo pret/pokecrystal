@@ -16310,7 +16310,7 @@ Tileset25Anim: ; 0xfc047
 ;	   param, function
 	dw $9140, AnimateWaterTile
 	dw $0000, WaitTileAnimation
-	dw $95f0, $4387
+	dw $95f0, AnimateFountain
 	dw $0000, WaitTileAnimation
 	dw $0000, TileAnimationPalette
 	dw $0000, WaitTileAnimation
@@ -16391,7 +16391,7 @@ Tileset30Anim: ; 0xfc1e7
 ;	   param, function
 	dw $9140, $46a2
 	dw $0000, $471e
-	dw $cf41, $4309
+	dw $cf41, ScrollTileRightLeft
 	dw $0000, $471e
 	dw $9140, $4696
 	dw $0000, $471e
@@ -16414,7 +16414,7 @@ Tileset29Anim: ; 0xfc233
 ;	   param, function
 	dw $9350, $46a2
 	dw $0000, $471e
-	dw $cf41, $4309
+	dw $cf41, ScrollTileRightLeft
 	dw $0000, $471e
 	dw $9350, $4696
 	dw $0000, $471e
@@ -16506,7 +16506,160 @@ NextTileFrame8: ; fc2ff
 	ret
 ; fc309
 
-INCBIN "baserom.gbc", $fc309, $fc402 - $fc309
+
+ScrollTileRightLeft: ; fc309
+; Scroll right for 4 ticks, then left for 4 ticks.
+	ld a, [TileAnimationTimer]
+	inc a
+	and 7
+	ld [TileAnimationTimer], a
+	and 4
+	jr nz, ScrollTileLeft
+	jr ScrollTileRight
+; fc318
+
+ScrollTileUpDown: ; fc318
+; Scroll up for 4 ticks, then down for 4 ticks.
+	ld a, [TileAnimationTimer]
+	inc a
+	and 7
+	ld [TileAnimationTimer], a
+	and 4
+	jr nz, ScrollTileDown
+	jr ScrollTileUp
+; fc327
+
+ScrollTileLeft: ; fc327
+	ld h, d
+	ld l, e
+	ld c, 4
+.loop
+	rept 4
+	ld a, [hl]
+	rlca
+	ld [hli], a
+	endr
+	dec c
+	jr nz, .loop
+	ret
+; fc33b
+
+ScrollTileRight: ; fc33b
+	ld h, d
+	ld l, e
+	ld c, 4
+.loop
+	rept 4
+	ld a, [hl]
+	rrca
+	ld [hli], a
+	endr
+	dec c
+	jr nz, .loop
+	ret
+; fc34f
+
+ScrollTileUp: ; fc34f
+	ld h, d
+	ld l, e
+	ld d, [hl]
+	inc hl
+	ld e, [hl]
+	ld bc, $e
+	add hl, bc
+	ld a, 4
+.loop
+	ld c, [hl]
+	ld [hl], e
+	dec hl
+	ld b, [hl]
+	ld [hl], d
+	dec hl
+	ld e, [hl]
+	ld [hl], c
+	dec hl
+	ld d, [hl]
+	ld [hl], b
+	dec hl
+	dec a
+	jr nz, .loop
+	ret
+; fc36a
+
+ScrollTileDown: ; fc36a
+	ld h, d
+	ld l, e
+	ld de, $e
+	push hl
+	add hl, de
+	ld d, [hl]
+	inc hl
+	ld e, [hl]
+	pop hl
+	ld a, 4
+.loop
+	ld b, [hl]
+	ld [hl], d
+	inc hl
+	ld c, [hl]
+	ld [hl], e
+	inc hl
+	ld d, [hl]
+	ld [hl], b
+	inc hl
+	ld e, [hl]
+	ld [hl], c
+	inc hl
+	dec a
+	jr nz, .loop
+	ret
+; fc387
+
+
+AnimateFountain: ; fc387
+	ld hl, [sp+0]
+	ld b, h
+	ld c, l
+	ld hl, .frames
+	ld a, [TileAnimationTimer]
+	and 7
+	add a
+	add l
+	ld l, a
+	jr nc, .asm_fc399
+	inc h
+
+.asm_fc399
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	ld sp, hl
+	ld l, e
+	ld h, d
+	jp WriteTile
+
+.frames
+	dw .frame1
+	dw .frame2
+	dw .frame3
+	dw .frame4
+	dw .frame3
+	dw .frame4
+	dw .frame5
+	dw .frame1
+
+.frame1
+	INCBIN "gfx/tilesets/fountain/1.2bpp"
+.frame2
+	INCBIN "gfx/tilesets/fountain/2.2bpp"
+.frame3
+	INCBIN "gfx/tilesets/fountain/3.2bpp"
+.frame4
+	INCBIN "gfx/tilesets/fountain/4.2bpp"
+.frame5
+	INCBIN "gfx/tilesets/fountain/5.2bpp"
+; fc402
+
 
 AnimateWaterTile: ; fc402
 ; Draw a water tile for the current frame in VRAM tile at de.
