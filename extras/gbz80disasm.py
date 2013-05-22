@@ -253,7 +253,8 @@ temp_opt_table = [
   [ "LD [HL], H", 0x74, 0 ],
   [ "LD [HLI], A", 0x22, 0 ],
   [ "LD [HL], L", 0x75, 0 ],
-  [ "LD HL, SP+x", 0xf8, 1 ],
+#  [ "LD HL, SP+x", 0xf8, 1 ], # rgbds uses [sp+x]
+  [ "LD HL, [SP+x]", 0xf8, 1 ],
   [ "LD [HL], x", 0x36, 1 ],
   [ "LD H, x", 0x26, 1 ],
 #  [ "LDI A, [HL]", 0x2a, 0 ],
