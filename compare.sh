@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 # Compares baserom.gbc and pokecrystal.gbc
 
 # create baserom.txt if necessary

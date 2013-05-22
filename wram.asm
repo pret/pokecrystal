@@ -918,8 +918,10 @@ StringBuffer2: ; d086
 	ds 19
 StringBuffer3: ; d099
 	ds 19
+StringBuffer4: ; d0ac
+	ds 19
 
-	ds 40
+	ds 21
 
 CurBattleMon: ; d0d4
 	ds 1
@@ -1811,8 +1813,10 @@ PartyMon6Nickname: ; de78
 SECTION "Pokedex",BSS[$de99]
 PokedexSeen: ; de99
 	ds 32
+EndPokedexSeen:
 PokedexCaught: ; deb9
 	ds 32
+EndPokedexCaught:
 UnownDex: ; ded9
 	ds 26
 UnlockedUnowns: ; def3
