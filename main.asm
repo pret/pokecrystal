@@ -17579,16 +17579,16 @@ Tileset29Anim: ; 0xfc233
 
 Tileset23Anim: ; 0xfc27f
 ;	   param, function
-	dw MinecartTilePointer9,  AnimateMinecartTile
-	dw MinecartTilePointer10, AnimateMinecartTile
-	dw MinecartTilePointer7,  AnimateMinecartTile
-	dw MinecartTilePointer8,  AnimateMinecartTile
-	dw MinecartTilePointer5,  AnimateMinecartTile
-	dw MinecartTilePointer6,  AnimateMinecartTile
-	dw MinecartTilePointer3,  AnimateMinecartTile
-	dw MinecartTilePointer4,  AnimateMinecartTile
-	dw MinecartTilePointer1,  AnimateMinecartTile
-	dw MinecartTilePointer2,  AnimateMinecartTile
+	dw SproutPillarTilePointer9,  AnimateSproutPillarTile
+	dw SproutPillarTilePointer10, AnimateSproutPillarTile
+	dw SproutPillarTilePointer7,  AnimateSproutPillarTile
+	dw SproutPillarTilePointer8,  AnimateSproutPillarTile
+	dw SproutPillarTilePointer5,  AnimateSproutPillarTile
+	dw SproutPillarTilePointer6,  AnimateSproutPillarTile
+	dw SproutPillarTilePointer3,  AnimateSproutPillarTile
+	dw SproutPillarTilePointer4,  AnimateSproutPillarTile
+	dw SproutPillarTilePointer1,  AnimateSproutPillarTile
+	dw SproutPillarTilePointer2,  AnimateSproutPillarTile
 	dw $0000, NextTileFrame
 	dw $0000, WaitTileAnimation
 	dw $0000, WaitTileAnimation
@@ -18106,7 +18106,7 @@ SafariFountainFrames: ; fc605
 ; fc645
 
 
-AnimateMinecartTile: ; fc645
+AnimateSproutPillarTile: ; fc645
 ; Read from struct at de:
 ; 	Destination (VRAM)
 ;	Address of the first tile in the frame array
@@ -18338,48 +18338,48 @@ TileAnimationPalette: ; fc6d7
 INCBIN "baserom.gbc", $fc71e, $fc750 - $fc71e
 
 
-MinecartTilePointers: ; fc750
-MinecartTilePointer1:
-	dw $92d0, MinecartTile1
-MinecartTilePointer2:
-	dw $92f0, MinecartTile2
-MinecartTilePointer3:
-	dw $93d0, MinecartTile3
-MinecartTilePointer4:
-	dw $93f0, MinecartTile4
-MinecartTilePointer5:
-	dw $93c0, MinecartTile5
-MinecartTilePointer6:
-	dw $92c0, MinecartTile6
-MinecartTilePointer7:
-	dw $94d0, MinecartTile7
-MinecartTilePointer8:
-	dw $94f0, MinecartTile8
-MinecartTilePointer9:
-	dw $95d0, MinecartTile9
-MinecartTilePointer10:
-	dw $95f0, MinecartTile10
+SproutPillarTilePointers: ; fc750
+SproutPillarTilePointer1:
+	dw $92d0, SproutPillarTile1
+SproutPillarTilePointer2:
+	dw $92f0, SproutPillarTile2
+SproutPillarTilePointer3:
+	dw $93d0, SproutPillarTile3
+SproutPillarTilePointer4:
+	dw $93f0, SproutPillarTile4
+SproutPillarTilePointer5:
+	dw $93c0, SproutPillarTile5
+SproutPillarTilePointer6:
+	dw $92c0, SproutPillarTile6
+SproutPillarTilePointer7:
+	dw $94d0, SproutPillarTile7
+SproutPillarTilePointer8:
+	dw $94f0, SproutPillarTile8
+SproutPillarTilePointer9:
+	dw $95d0, SproutPillarTile9
+SproutPillarTilePointer10:
+	dw $95f0, SproutPillarTile10
 
-MinecartTile1:
-	INCBIN "gfx/tilesets/minecart/1.2bpp"
-MinecartTile2:
-	INCBIN "gfx/tilesets/minecart/2.2bpp"
-MinecartTile3:
-	INCBIN "gfx/tilesets/minecart/3.2bpp"
-MinecartTile4:
-	INCBIN "gfx/tilesets/minecart/4.2bpp"
-MinecartTile5:
-	INCBIN "gfx/tilesets/minecart/5.2bpp"
-MinecartTile6:
-	INCBIN "gfx/tilesets/minecart/6.2bpp"
-MinecartTile7:
-	INCBIN "gfx/tilesets/minecart/7.2bpp"
-MinecartTile8:
-	INCBIN "gfx/tilesets/minecart/8.2bpp"
-MinecartTile9:
-	INCBIN "gfx/tilesets/minecart/9.2bpp"
-MinecartTile10:
-	INCBIN "gfx/tilesets/minecart/10.2bpp"
+SproutPillarTile1:
+	INCBIN "gfx/tilesets/sprout-pillar/1.2bpp"
+SproutPillarTile2:
+	INCBIN "gfx/tilesets/sprout-pillar/2.2bpp"
+SproutPillarTile3:
+	INCBIN "gfx/tilesets/sprout-pillar/3.2bpp"
+SproutPillarTile4:
+	INCBIN "gfx/tilesets/sprout-pillar/4.2bpp"
+SproutPillarTile5:
+	INCBIN "gfx/tilesets/sprout-pillar/5.2bpp"
+SproutPillarTile6:
+	INCBIN "gfx/tilesets/sprout-pillar/6.2bpp"
+SproutPillarTile7:
+	INCBIN "gfx/tilesets/sprout-pillar/7.2bpp"
+SproutPillarTile8:
+	INCBIN "gfx/tilesets/sprout-pillar/8.2bpp"
+SproutPillarTile9:
+	INCBIN "gfx/tilesets/sprout-pillar/9.2bpp"
+SproutPillarTile10:
+	INCBIN "gfx/tilesets/sprout-pillar/10.2bpp"
 ; fca98
 
 
