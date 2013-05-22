@@ -16435,16 +16435,16 @@ Tileset29Anim: ; 0xfc233
 
 Tileset23Anim: ; 0xfc27f
 ;	   param, function
-	dw $4770, $4645
-	dw $4774, $4645
-	dw $4768, $4645
-	dw $476c, $4645
-	dw $4760, $4645
-	dw $4764, $4645
-	dw $4758, $4645
-	dw $475c, $4645
-	dw $4750, $4645
-	dw $4754, $4645
+	dw MinecartTilePointer9,  AnimateMinecartTile
+	dw MinecartTilePointer10, AnimateMinecartTile
+	dw MinecartTilePointer7,  AnimateMinecartTile
+	dw MinecartTilePointer8,  AnimateMinecartTile
+	dw MinecartTilePointer5,  AnimateMinecartTile
+	dw MinecartTilePointer6,  AnimateMinecartTile
+	dw MinecartTilePointer3,  AnimateMinecartTile
+	dw MinecartTilePointer4,  AnimateMinecartTile
+	dw MinecartTilePointer1,  AnimateMinecartTile
+	dw MinecartTilePointer2,  AnimateMinecartTile
 	dw $0000, NextTileFrame
 	dw $0000, WaitTileAnimation
 	dw $0000, WaitTileAnimation
@@ -16962,7 +16962,52 @@ SafariFountainFrames: ; fc605
 ; fc645
 
 
-INCBIN "baserom.gbc", $fc645, $fc673 - $fc645
+AnimateMinecartTile: ; fc645
+; Read from struct at de:
+; 	Destination (VRAM)
+;	Address of the first tile in the frame array
+
+	ld hl, [sp+0]
+	ld b, h
+	ld c, l
+
+	ld a, [TileAnimationTimer]
+	and 7
+
+; Get frame index a
+	ld hl, .frames
+	add l
+	ld l, a
+	ld a, 0
+	adc h
+	ld h, a
+	ld a, [hl]
+
+; Destination
+	ld l, e
+	ld h, d
+	ld e, [hl]
+	inc hl
+	ld d, [hl]
+	inc hl
+
+; Add the frame index to the starting address
+	add [hl]
+	inc hl
+	ld h, [hl]
+	ld l, a
+	ld a, 0
+	adc h
+	ld h, a
+
+	ld sp, hl
+	ld l, e
+	ld h, d
+	jr WriteTile
+
+.frames
+	db $00, $10, $20, $30, $40, $30, $20, $10
+; fc673
 
 
 NextTileFrame: ; fc673
@@ -17145,7 +17190,57 @@ TileAnimationPalette: ; fc6d7
 	ret
 ; fc71e
 
-INCBIN "baserom.gbc", $fc71e, $fcdc2 - $fc71e
+
+INCBIN "baserom.gbc", $fc71e, $fc750 - $fc71e
+
+
+MinecartTilePointers: ; fc750
+MinecartTilePointer1:
+	dw $92d0, MinecartTile1
+MinecartTilePointer2:
+	dw $92f0, MinecartTile2
+MinecartTilePointer3:
+	dw $93d0, MinecartTile3
+MinecartTilePointer4:
+	dw $93f0, MinecartTile4
+MinecartTilePointer5:
+	dw $93c0, MinecartTile5
+MinecartTilePointer6:
+	dw $92c0, MinecartTile6
+MinecartTilePointer7:
+	dw $94d0, MinecartTile7
+MinecartTilePointer8:
+	dw $94f0, MinecartTile8
+MinecartTilePointer9:
+	dw $95d0, MinecartTile9
+MinecartTilePointer10:
+	dw $95f0, MinecartTile10
+
+MinecartTile1:
+	INCBIN "gfx/tilesets/minecart/1.2bpp"
+MinecartTile2:
+	INCBIN "gfx/tilesets/minecart/2.2bpp"
+MinecartTile3:
+	INCBIN "gfx/tilesets/minecart/3.2bpp"
+MinecartTile4:
+	INCBIN "gfx/tilesets/minecart/4.2bpp"
+MinecartTile5:
+	INCBIN "gfx/tilesets/minecart/5.2bpp"
+MinecartTile6:
+	INCBIN "gfx/tilesets/minecart/6.2bpp"
+MinecartTile7:
+	INCBIN "gfx/tilesets/minecart/7.2bpp"
+MinecartTile8:
+	INCBIN "gfx/tilesets/minecart/8.2bpp"
+MinecartTile9:
+	INCBIN "gfx/tilesets/minecart/9.2bpp"
+MinecartTile10:
+	INCBIN "gfx/tilesets/minecart/10.2bpp"
+; fca98
+
+
+INCBIN "baserom.gbc", $fca98, $fcdc2 - $fca98
+
 
 LoadTradesPointer: ; 0xfcdc2
 	ld d, 0
