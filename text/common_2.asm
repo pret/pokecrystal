@@ -863,36 +863,36 @@ UnknownText_0x1c0ec6: ; 1c0ec6
 	db $0, ".", $58
 ; 1c0ee3
 
-UnknownText_0x1c0ee3: ; 1c0ee3
+_EmptyMailboxText: ; 1c0ee3
 	db $0, "There's no MAIL", $4f
 	db "here.", $58
 ; 1c0ef9
 
-UnknownText_0x1c0ef9: ; 1c0ef9
+ClearedMailPutAwayText: ; 1c0ef9
 	db $0, "The cleared MAIL", $4f
 	db "was put away.", $58
 ; 1c0f19
 
-UnknownText_0x1c0f19: ; 1c0f19
+MailPackFullText: ; 1c0f19
 	db $0, "The PACK is full.", $58
 ; 1c0f2c
 
-UnknownText_0x1c0f2c: ; 1c0f2c
+MailMessageLostText: ; 1c0f2c
 	db $0, "The MAIL's message", $4f
 	db "will be lost. OK?", $57
 ; 1c0f51
 
-UnknownText_0x1c0f51: ; 1c0f51
+MailAlreadyHoldingItemText: ; 1c0f51
 	db $0, "It's already hold-", $4f
 	db "ing an item.", $58
 ; 1c0f71
 
-UnknownText_0x1c0f71: ; 1c0f71
+MailEggText: ; 1c0f71
 	db $0, "An EGG can't hold", $4f
 	db "any MAIL.", $58
 ; 1c0f8d
 
-UnknownText_0x1c0f8d: ; 1c0f8d
+MailMovedFromBoxText: ; 1c0f8d
 	db $0, "The MAIL was moved", $4f
 	db "from the MAILBOX.", $58
 ; 1c0fb3
@@ -1108,12 +1108,12 @@ UnknownText_0x1c1368: ; 1c1368
 	db "to do?", $57
 ; 1c1381
 
-UnknownText_0x1c1381: ; 1c1381
+_KrissPCHowManyWithdrawText: ; 1c1381
 	db $0, "How many do you", $4f
 	db "want to withdraw?", $57
 ; 1c13a4
 
-UnknownText_0x1c13a4: ; 1c13a4
+_KrissPCWithdrewItemsText: ; 1c13a4
 	db $0, "Withdrew @"
 	deciram $d10c, $12
 	db $0, $4f
@@ -1122,7 +1122,7 @@ UnknownText_0x1c13a4: ; 1c13a4
 	db $0, "(S).", $58
 ; 1c13bf
 
-UnknownText_0x1c13bf: ; 1c13bf
+_KrissPCNoRoomWithdrawText: ; 1c13bf
 	db $0, "There's no room", $4f
 	db "for more items.", $58
 ; 1c13df
@@ -1131,12 +1131,12 @@ UnknownText_0x1c13df: ; 1c13df
 	db $0, "No items here!", $58
 ; 1c13ef
 
-UnknownText_0x1c13ef: ; 1c13ef
+_KrissPCHowManyDepositText: ; 1c13ef
 	db $0, "How many do you", $4f
 	db "want to deposit?", $57
 ; 1c1411
 
-UnknownText_0x1c1411: ; 1c1411
+_KrissPCDepositItemsText: ; 1c1411
 	db $0, "Deposited @"
 	deciram $d10c, $12
 	db $0, $4f
@@ -1145,7 +1145,7 @@ UnknownText_0x1c1411: ; 1c1411
 	db $0, "(S).", $58
 ; 1c142d
 
-UnknownText_0x1c142d: ; 1c142d
+_KrissPCNoRoomDepositText: ; 1c142d
 	db $0, "There's no room to", $4f
 	db "store items.", $58
 ; 1c144d
