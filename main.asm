@@ -2801,7 +2801,7 @@ Function2b74: ; 0x2b74
 	ld hl, VramState
 	set 0, [hl]
 	call $1ad2
-	call $3200
+	call Function3200
 	ld b, $9
 	call GetSGBLayout
 	ld a, $12
@@ -3712,7 +3712,24 @@ WaitBGMap: ; 31f6
 	ret
 ; 3200
 
-INCBIN "baserom.gbc", $3200, $3317 - $3200
+Function3200: ; 0x3200
+	ld a, [hCGB]
+	and a
+	jr z, .asm_320e
+	ld a, $2
+	ld [hBGMapMode], a
+	ld c, $4
+	call DelayFrames
+
+.asm_320e
+	ld a, $1
+	ld [hBGMapMode], a
+	ld c, $4
+	call DelayFrames
+	ret
+; 0x3218
+
+INCBIN "baserom.gbc", $3218, $3317 - $3218
 
 ClearPalettes: ; 3317
 ; Make all palettes white
@@ -6619,7 +6636,30 @@ Function0xd47f: ; d47f
 ; d486
 
 
-INCBIN "baserom.gbc", $d486, $e722 - $d486
+INCBIN "baserom.gbc", $d486, $e58b - $d486
+
+ClearPCItemScreen: ; e58b
+	call Function2ed3
+	xor a
+	ld [hBGMapMode], a
+	call WhiteBGMap
+	call ClearSprites
+	ld hl, TileMap
+	ld bc, 18 * 20
+	ld a, " "
+	call ByteFill
+	hlcoord 0,0
+	ld bc, $0a12
+	call TextBox
+	hlcoord 0,12
+	ld bc, $0412
+	call TextBox
+	call Function3200
+	call $32f9 ; load regular palettes?
+	ret
+; 0xe5bb
+
+INCBIN "baserom.gbc", $e5bb, $e722 - $e5bb
 
 
 DoItemEffect: ; e722
@@ -7006,7 +7046,7 @@ OpenMenu: ; 0x125cd
 	pop af
 	ld [hOAMUpdate], a
 .end
-	call $1c07
+	call Function1c07
 	call $2dcf
 	call $0485
 	ret
@@ -7456,7 +7496,454 @@ BlackoutPoints: ; 0x152ab
 	db GROUP_FAST_SHIP_CABINS_SW_SSW_NW, MAP_FAST_SHIP_CABINS_SW_SSW_NW, 6, 2
 	db $ff, $ff, $ff, $ff
 
-INCBIN "baserom.gbc", $1531f, $174ba - $1531f
+INCBIN "baserom.gbc", $1531f, $15736 - $1531f
+
+KrissPCMenuData: ; 0x15736
+	db %01000000
+	db 0, 0 ; top left corner coords (y, x)
+	db $c, $f ; bottom right corner coords (y, x)
+	dw .KrissPCMenuData2
+	db 1 ; default selected option
+
+.KrissPCMenuData2
+	db %10100000 ; bit7
+	db 0 ; # items?
+	dw .KrissPCMenuList1
+	db $8d
+	db $1f
+	dw .KrissPCMenuPointers
+
+.KrissPCMenuPointers ; 0x15746
+	dw KrisWithdrawItemMenu ; 57d1
+	dw .WithdrawItem
+	dw KrisDepositItemMenu ; 588b
+	dw .DepositItem
+	dw KrisTossItemMenu ; 585f
+	dw .TossItem
+	dw KrisMailBoxMenu ; 587d
+	dw .MailBox
+	dw KrisDecorationMenu ; 597d
+	dw .Decoration
+	dw KrisLogOffMenu ; 5888
+	dw .LogOff
+	dw KrisLogOffMenu ; 5888
+	dw .TurnOff
+
+.WithdrawItem
+	db "WITHDRAW ITEM@"
+.DepositItem
+	db "DEPOSIT ITEM@"
+.TossItem
+	db "TOSS ITEM@"
+.MailBox
+	db "MAIL BOX@"
+.Decoration
+	db "DECORATION@"
+.TurnOff
+	db "TURN OFF@"
+.LogOff
+	db "LOG OFF@"
+
+.KrissPCMenuList1
+	db 5
+	db WITHDRAW_ITEM
+	db DEPOSIT_ITEM
+	db TOSS_ITEM
+	db MAIL_BOX
+	db TURN_OFF
+	db $FF
+
+.KrissPCMenuList2
+	db 6
+	db WITHDRAW_ITEM
+	db DEPOSIT_ITEM
+	db TOSS_ITEM
+	db MAIL_BOX
+	db DECORATION
+	db LOG_OFF
+	db $FF
+
+INCBIN "baserom.gbc", $157bb, $157d1 - $157bb
+
+KrisWithdrawItemMenu: ; 0x157d1
+	call $1d6e
+	ld a, BANK(ClearPCItemScreen)
+	ld hl, ClearPCItemScreen
+	rst $8
+.asm_157da
+	call Function15985
+	jr c, .asm_157e4
+	call Function157e9
+	jr .asm_157da
+
+.asm_157e4
+	call $2b3c
+	xor a
+	ret
+; 0x157e9
+
+Function157e9: ; 0x157e9
+	; check if the item has a quantity
+	ld a, BANK(CheckTossableItem)
+	ld hl, CheckTossableItem
+	rst $8
+	ld a, [$d142]
+	and a
+	jr z, .askquantity
+
+	; items without quantity are always ×1
+	ld a, 1
+	ld [$d10c], a
+	jr .withdraw
+
+.askquantity
+	ld hl, .HowManyText
+	call $1d4f
+	ld a, $9
+	ld hl, $4fbf
+	rst $8
+	call Function1c07
+	call Function1c07
+	jr c, .done
+
+.withdraw
+	ld a, [$d10c]
+	ld [Buffer1], a ; quantity
+	ld a, [$d107]
+	ld [Buffer2], a
+	ld hl, NumItems
+	call $2f66
+	jr nc, .PackFull
+	ld a, [Buffer1]
+	ld [$d10c], a
+	ld a, [Buffer2]
+	ld [$d107], a
+	ld hl, $d8f1
+	call $2f53
+	ld a, $3b
+	call Predef
+	ld hl, .WithdrewText
+	call $1d4f
+	xor a
+	ld [hBGMapMode], a
+	call Function1c07
+	ret
+
+.PackFull
+	ld hl, .NoRoomText
+	call $1d67
+	ret
+
+.done
+	ret
+; 0x15850
+
+.HowManyText ; 0x15850
+	TX_FAR _KrissPCHowManyWithdrawText
+	db "@"
+
+.WithdrewText ; 0x15855
+	TX_FAR _KrissPCWithdrewItemsText
+	db "@"
+
+.NoRoomText ; 0x1585a
+	TX_FAR _KrissPCNoRoomWithdrawText
+	db "@"
+
+
+KrisTossItemMenu: ; 0x1585f
+	call $1d6e
+	ld a, BANK(ClearPCItemScreen)
+	ld hl, ClearPCItemScreen
+	rst $8
+.asm_15868
+	call Function15985
+	jr c, .asm_15878
+	ld de, $d8f1
+	ld a, $4
+	ld hl, $69f4
+	rst $8
+	jr .asm_15868
+
+.asm_15878
+	call $2b3c
+	xor a
+	ret
+; 0x1587d
+
+
+KrisDecorationMenu: ; 0x1587d
+	ld a, BANK(_KrisDecorationMenu)
+	ld hl, _KrisDecorationMenu
+	rst $8
+	ld a, c
+	and a
+	ret z
+	scf
+	ret
+; 0x15888
+
+
+KrisLogOffMenu: ; 0x15888
+	xor a
+	scf
+	ret
+; 0x1588b
+
+
+KrisDepositItemMenu: ; 0x1588b
+	call Function158b8
+	jr c, .asm_158b6
+	call Function2ed3
+	call $1d6e
+	ld a, $4
+	ld hl, $46a5
+	rst $8
+.asm_1589c
+	ld a, $4
+	ld hl, $46be
+	rst $8
+	ld a, [$cf66]
+	and a
+	jr z, .asm_158b3
+	call Function158cc
+	ld a, $4
+	ld hl, $7345
+	rst $8
+	jr .asm_1589c
+
+.asm_158b3
+	call $2b3c
+
+.asm_158b6
+	xor a
+	ret
+; 0x158b8
+
+Function158b8: ; 0x158b8
+	ld a, $4
+	ld hl, $69d5
+	rst $8
+	ret nc
+	ld hl, Text158c7
+	call $1d67
+	scf
+	ret
+; 0x158c7
+
+Text158c7: ; 0x15c87
+	TX_FAR UnknownText_0x1c13df
+	db "@"
+
+
+Function158cc: ; 0x158cc
+	ld a, [$c2ce]
+	push af
+	ld a, $0
+	ld [$c2ce], a
+	ld a, $3
+	ld hl, $5453
+	rst $8
+	ld a, [$d142]
+	ld hl, JumpTable158e7
+	rst $28
+	pop af
+	ld [$c2ce], a
+	ret
+; 0x158e7
+
+JumpTable158e7: ; 0x158e7
+	dw .jump2
+	dw .jump1
+	dw .jump1
+	dw .jump1
+	dw .jump2
+	dw .jump2
+	dw .jump2
+
+.jump1:
+	ret
+.jump2:
+	ld a, [Buffer1]
+	push af
+	ld a, [Buffer2]
+	push af
+	call Function1590a
+	pop af
+	ld [Buffer2], a
+	pop af
+	ld [Buffer1], a
+	ret
+; 0x1590a
+
+Function1590a: ; 0x1590a
+	ld a, $3
+	ld hl, $5427
+	rst $8
+	ld a, [$d142]
+	and a
+	jr z, .asm_1591d
+	ld a, $1
+	ld [$d10c], a
+	jr .asm_15933
+
+.asm_1591d
+	ld hl, .HowManyText
+	call $1d4f
+	ld a, $9
+	ld hl, $4fbf
+	rst $8
+	push af
+	call $1c07
+	call $1c07
+	pop af
+	jr c, .asm_1596c
+
+.asm_15933
+	ld a, [$d10c]
+	ld [Buffer1], a
+	ld a, [$d107]
+	ld [Buffer2], a
+	ld hl, $d8f1
+	call $2f66
+	jr nc, .asm_15965
+	ld a, [Buffer1]
+	ld [$d10c], a
+	ld a, [Buffer2]
+	ld [$d107], a
+	ld hl, NumItems
+	call $2f53
+	ld a, $3b
+	call Predef
+	ld hl, .DepositText
+	call PrintText
+	ret
+
+.asm_15965
+	ld hl, .NoRoomText
+	call PrintText
+	ret
+
+.asm_1596c
+	and a
+	ret
+; 0x1596e
+
+
+.HowManyText ; 0x1596e
+	TX_FAR _KrissPCHowManyDepositText
+	db "@"
+
+.DepositText ; 0x15973
+	TX_FAR _KrissPCDepositItemsText
+	db "@"
+
+.NoRoomText ; 0x15978
+	TX_FAR _KrissPCNoRoomDepositText
+	db "@"
+
+
+KrisMailBoxMenu: ; 0x1597d
+	ld a, $11
+	ld hl, $47a0
+	rst $8
+	xor a
+	ret
+; 0x15985
+
+
+Function15985: ; 0x15985
+	xor a
+	ld [$d0e3], a
+	ld a, [$c2ce]
+	push af
+	ld a, $0
+	ld [$c2ce], a
+	ld hl, MenuData15a08
+	call $1d3c
+	hlcoord 0, 0
+	ld b, $a
+	ld c, $12
+	call TextBox
+	ld a, [$d0d7]
+	ld [$cf88], a
+	ld a, [$d0dd]
+	ld [$d0e4], a
+	call $350c
+	ld a, [$d0e4]
+	ld [$d0dd], a
+	ld a, [$cfa9]
+	ld [$d0d7], a
+	pop af
+	ld [$c2ce], a
+	ld a, [$d0e3]
+	and a
+	jr nz, .asm_159d8
+	ld a, [$cf73]
+	cp $2
+	jr z, .asm_15a06
+	cp $1
+	jr z, .asm_159fb
+	cp $4
+	jr z, .asm_159f2
+	jr .asm_159f8
+
+.asm_159d8
+	ld a, [$cf73]
+	cp $2
+	jr z, .asm_159e9
+	cp $1
+	jr z, .asm_159ef
+	cp $4
+	jr z, .asm_159ef
+	jr .asm_159f8
+
+.asm_159e9
+	xor a
+	ld [$d0e3], a
+	jr .asm_159f8
+
+.asm_159ef
+	call $56c7
+
+.asm_159f2
+	ld a, $9
+	ld hl, $490c
+	rst $8
+
+.asm_159f8
+	jp $5989
+
+.asm_159fb
+	ld a, $9
+	ld hl, $4706
+	rst $8
+	call $1bee
+	and a
+	ret
+
+.asm_15a06
+	scf
+	ret
+; 0x15a08
+
+MenuData15a08: ; 0x15a08
+	db %01000000
+	db 1, 4 ; top left corner coords (y, x)
+	db $a, $12 ; bottorm right corner coords (y, x)
+	dw .MenuData2
+	db 1 ; default selected option
+
+.MenuData2
+	db %10110000
+	db 4, 8 ; rows/cols?
+	db 2 ; horizontal spacing?
+	dbw 0, $d8f1
+	dbw BANK(Function24ab4), Function24ab4
+	dbw BANK(Function24ac3), Function24ac3
+	dbw BANK(Function244c3), Function244c3
+
+INCBIN "baserom.gbc", $15a20, $174ba - $15a20
 
 
 SECTION "bank6",DATA,BANK[$6]
@@ -7766,7 +8253,377 @@ INCLUDE "stats/egg_moves.asm"
 
 SECTION "bank9",DATA,BANK[$9]
 
-INCBIN "baserom.gbc", $24000, $270c4 - $24000
+INCBIN "baserom.gbc", $24000, $244c3 - $24000
+
+Function244c3: ; 0x244c3
+	ld a, [MenuSelection]
+	ld [CurSpecies], a
+	hlcoord 0, 12
+	ld b, $4
+	ld c, $12
+	call TextBox
+	ld a, [MenuSelection]
+	cp $ff
+	ret z
+	ld de, $c5b9
+	ld a, BANK(GetItemDescription)
+	ld hl, GetItemDescription
+	rst $8
+	ret
+; 0x244e3
+
+INCBIN "baserom.gbc", $244e3, $24ab4 - $244e3
+
+Function24ab4: ; 0x24ab4
+	push de
+	ld a, [MenuSelection]
+	ld [$d265], a
+	call GetItemName
+	pop hl
+	call PlaceString
+	ret
+; 0x24ac3
+
+Function24ac3: ; 0x24ac3
+	push de
+	ld a, [MenuSelection]
+	ld [CurItem], a
+	ld a, BANK(CheckTossableItem)
+	ld hl, CheckTossableItem
+	rst $8
+	ld a, [$d142]
+	pop hl
+	and a
+	jr nz, .done
+	ld de, $0015
+	add hl, de
+	ld [hl], $f1
+	inc hl
+	ld de, $cf75
+	ld bc, $0102
+	call $3198
+
+.done
+	ret
+; 0x24ae8
+
+INCBIN "baserom.gbc", $24ae8, $265d3 - $24ae8
+
+ProfOaksPC: ; 0x265d3
+	ld hl, OakPCText1
+	call $1d4f
+	call $1dcf
+	jr c, .shutdown
+	call ProfOaksPCBoot ; player chose "yes"?
+.shutdown
+	ld hl, OakPCText4
+	call PrintText
+	call $0a36
+	call Function1c07
+	ret
+; 0x265ee
+
+ProfOaksPCBoot ; 0x265ee
+	ld hl, OakPCText2
+	call PrintText
+	call Rate
+	call StartSFX ; sfx loaded by previous Rate function call
+	call $0a36
+	call WaitSFX
+	ret
+; 0x26601
+
+Function26601: ; 0x26601
+	call Rate
+	push de
+	ld de, MUSIC_NONE
+	call StartMusic
+	pop de
+	call StartSFX
+	call $0a36
+	call $3c55
+	ret
+; 0x26616
+
+Rate: ; 0x26616
+; calculate Seen/Owned
+	ld hl, PokedexCaught
+	ld b, EndPokedexCaught - PokedexCaught
+	call CountSetBits
+	ld [DefaultFlypoint], a
+	ld hl, PokedexSeen
+	ld b, EndPokedexSeen - PokedexSeen
+	call CountSetBits
+	ld [$d003], a
+
+; print appropriate rating
+	call ClearOakRatingBuffers
+	ld hl, OakPCText3
+	call PrintText
+	call $0a36
+	ld a, [$d003]
+	ld hl, OakRatings
+	call FindOakRating
+	push de
+	call PrintText
+	pop de
+	ret
+; 0x26647
+
+ClearOakRatingBuffers: ; 0x26647
+	ld hl, StringBuffer3
+	ld de, DefaultFlypoint
+	call ClearOakRatingBuffer
+	ld hl, StringBuffer4
+	ld de, $d003
+	call ClearOakRatingBuffer
+	ret
+; 0x2665a
+
+ClearOakRatingBuffer: ; 0x2665a
+	push hl
+	ld a, "@"
+	ld bc, $000d
+	call ByteFill
+	pop hl
+	ld bc, $4103
+	call $3198
+	ret
+; 0x2666b
+
+FindOakRating: ; 0x2666b
+; return sound effect in de
+; return text pointer in hl
+	nop
+	ld c, a
+.loop
+	ld a, [hli]
+	cp c
+	jr nc, .match
+	inc hl
+	inc hl
+	inc hl
+	inc hl
+	jr .loop
+
+.match
+	ld a, [hli]
+	ld e, a
+	ld a, [hli]
+	ld d, a
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	ret
+; 0x2667f
+
+OakRatings: ; 0x2667f
+; db count (if number caught ≤ this number, then this entry is used)
+; dw sound effect
+; dw text pointer
+
+	db 9
+	dw SFX_DEX_FANFARE_LESS_THAN_20
+	dw OakRating01
+
+	db 19
+	dw SFX_DEX_FANFARE_LESS_THAN_20
+	dw OakRating02
+
+	db 34
+	dw SFX_DEX_FANFARE_20_49
+	dw OakRating03
+
+	db 49
+	dw SFX_DEX_FANFARE_20_49
+	dw OakRating04
+
+	db 64
+	dw SFX_DEX_FANFARE_50_79
+	dw OakRating05
+
+	db 79
+	dw SFX_DEX_FANFARE_50_79
+	dw OakRating06
+
+	db 94
+	dw SFX_DEX_FANFARE_80_109
+	dw OakRating07
+
+	db 109
+	dw SFX_DEX_FANFARE_80_109
+	dw OakRating08
+
+	db 124
+	dw SFX_CAUGHT_MON
+	dw OakRating09
+
+	db 139
+	dw SFX_CAUGHT_MON
+	dw OakRating10
+
+	db 154
+	dw SFX_DEX_FANFARE_140_169
+	dw OakRating11
+
+	db 169
+	dw SFX_DEX_FANFARE_140_169
+	dw OakRating12
+
+	db 184
+	dw SFX_DEX_FANFARE_170_199
+	dw OakRating13
+
+	db 199
+	dw SFX_DEX_FANFARE_170_199
+	dw OakRating14
+
+	db 214
+	dw SFX_DEX_FANFARE_200_229
+	dw OakRating15
+
+	db 229
+	dw SFX_DEX_FANFARE_200_229
+	dw OakRating16
+
+	db 239
+	dw SFX_DEX_FANFARE_230_PLUS
+	dw OakRating17
+
+	db 248
+	dw SFX_DEX_FANFARE_230_PLUS
+	dw OakRating18
+
+	db 255
+	dw SFX_DEX_FANFARE_230_PLUS
+	dw OakRating19
+
+OakPCText1: ; 0x266de
+	TX_FAR _OakPCText1
+	db "@"
+
+OakPCText2: ; 0x266e3
+	TX_FAR _OakPCText2
+	db "@"
+
+OakPCText3: ; 0x266e8
+	TX_FAR _OakPCText3
+	db "@"
+
+OakRating01:
+	TX_FAR _OakRating01
+	db "@"
+
+OakRating02:
+	TX_FAR _OakRating02
+	db "@"
+
+OakRating03:
+	TX_FAR _OakRating03
+	db "@"
+
+OakRating04:
+	TX_FAR _OakRating04
+	db "@"
+
+OakRating05:
+	TX_FAR _OakRating05
+	db "@"
+
+OakRating06:
+	TX_FAR _OakRating06
+	db "@"
+
+OakRating07:
+	TX_FAR _OakRating07
+	db "@"
+
+OakRating08:
+	TX_FAR _OakRating08
+	db "@"
+
+OakRating09:
+	TX_FAR _OakRating09
+	db "@"
+
+OakRating10:
+	TX_FAR _OakRating10
+	db "@"
+
+OakRating11:
+	TX_FAR _OakRating11
+	db "@"
+
+OakRating12:
+	TX_FAR _OakRating12
+	db "@"
+
+OakRating13:
+	TX_FAR _OakRating13
+	db "@"
+
+OakRating14:
+	TX_FAR _OakRating14
+	db "@"
+
+OakRating15:
+	TX_FAR _OakRating15
+	db "@"
+
+OakRating16:
+	TX_FAR _OakRating16
+	db "@"
+
+OakRating17:
+	TX_FAR _OakRating17
+	db "@"
+
+OakRating18:
+	TX_FAR _OakRating18
+	db "@"
+
+OakRating19:
+	TX_FAR _OakRating19
+	db "@"
+
+OakPCText4: ; 0x2674c
+	TX_FAR _OakPCText4
+	db "@"
+
+INCBIN "baserom.gbc", $26751, $2675c - $26751
+
+_KrisDecorationMenu: ; 0x2675c
+	ld a, [$cf76]
+	push af
+	ld hl, $679a
+	call $1d35
+	xor a
+	ld [$d1ee], a
+	ld a, $1
+	ld [$d1ef], a
+.asm_2676f
+	ld a, [$d1ef]
+	ld [$cf88], a
+	call $6806
+	call $1e5d
+	ld a, [$cfa9]
+	ld [$d1ef], a
+	jr c, .asm_2678e
+	ld a, [MenuSelection]
+	ld hl, $67aa
+	call $1fa7
+	jr nc, .asm_2676f
+
+.asm_2678e
+	call $1c07
+	pop af
+	ld [$cf76], a
+	ld a, [$d1ee]
+	ld c, a
+	ret
+; 0x2679a
+
+INCBIN "baserom.gbc", $2679a, $270c4 - $2679a
 
 GetTrainerDVs: ; 270c4
 ; get dvs based on trainer class
@@ -9765,8 +10622,295 @@ PokedexDataPointerTable: ; 0x44378
 INCLUDE "stats/pokedex/entry_pointers.asm"
 
 
-INCBIN "baserom.gbc", $4456e, $44997 - $4456e
+INCBIN "baserom.gbc", $4456e, $447a0 - $4456e
 
+_KrisMailBoxMenu: ; 0x447a0
+	call InitMail
+	jr z, .nomail
+	call $1d6e
+	call $4806
+	jp $1c17
+
+.nomail
+	ld hl, .EmptyMailboxText
+	jp $1d67
+; 0x447b4
+
+.EmptyMailboxText ; 0x447b4
+	TX_FAR _EmptyMailboxText
+	db "@"
+
+InitMail: ; 0x447b9
+; initialize $d0f2 and beyond with incrementing values, one per mail
+; set z if no mail
+	ld a, $0
+	call GetSRAMBank
+	ld a, [$a834]
+	call CloseSRAM
+	ld hl, $d0f2
+	ld [hli], a
+	and a
+
+	jr z, .done ; if no mail, we're done
+
+	; load values in memory with incrementing values starting at $d0f2
+	ld b, a
+	ld a, $1
+.loop
+	ld [hli], a
+	inc a
+	dec b
+	jr nz, .loop
+.done
+	ld [hl], $ff ; terminate
+
+	ld a, [$d0f2]
+	and a
+	ret
+; 0x447da
+
+Function447da: ; 0x447da
+	dec a
+	ld hl, $a856
+	ld bc, $002f
+	call AddNTimes
+	ld a, $0
+	call GetSRAMBank
+	ld de, StringBuffer2
+	push de
+	ld bc, $a
+	call CopyBytes
+	ld a, $50
+	ld [de], a
+	call CloseSRAM
+	pop de
+	ret
+; 0x447fb
+
+Function447fb: ; 0x447fb
+	push de
+	ld a, [MenuSelection]
+	call Function447da
+	pop hl
+	jp PlaceString
+; 0x44806
+
+Function44806: ; 0x44806
+	xor a
+	ld [$d0f0], a
+	ld a, $1
+	ld [$d0f1], a
+.asm_4480f
+	call InitMail
+	ld hl, $494c
+	call $1d3c
+	xor a
+	ld [hBGMapMode], a
+	call $352f
+	call $1ad2
+	ld a, [$d0f1]
+	ld [$cf88], a
+	ld a, [$d0f0]
+	ld [$d0e4], a
+	call $350c
+	ld a, [$d0e4]
+	ld [$d0f0], a
+	ld a, [$cfa9]
+	ld [$d0f1], a
+	ld a, [$cf73]
+	cp $2
+	jr z, .asm_44848
+	call $484a
+	jr .asm_4480f
+
+.asm_44848
+	xor a
+	ret
+; 0x4484a
+
+Function4484a: ; 0x4484a
+	ld hl, MenuData44964
+	call $1d35
+	call $1d81
+	call $1c07
+	jr c, .asm_44860
+	ld a, [$cfa9]
+	dec a
+	ld hl, $4861
+	rst $28
+
+.asm_44860
+	ret
+; 0x44861
+
+.JumpTable
+	dw .ReadMail
+	dw .PutInPack
+	dw .AttachMail
+	dw .Cancel
+
+.ReadMail ; 0x44869
+	call $2b29
+	ld a, [MenuSelection]
+	dec a
+	ld b, a
+	call $45f4
+	jp $2b3c
+; 0x44877
+
+.PutInPack ; 0x44877
+	ld hl, .MessageLostText
+	call $1d4f
+	call $1dcf
+	call $1c07
+	ret c
+	ld a, [MenuSelection]
+	dec a
+	call .Function448bb
+	ld a, $1
+	ld [$d10c], a
+	ld hl, NumItems
+	call $2f66
+	jr c, .asm_4489e
+	ld hl, .PackFullText
+	jp $1d67
+
+.asm_4489e
+	ld a, [MenuSelection]
+	dec a
+	ld b, a
+	call $45c0
+	ld hl, .PutAwayText
+	jp $1d67
+; 0x448ac
+
+.PutAwayText ; 0x448ac
+	TX_FAR ClearedMailPutAwayText
+	db "@"
+
+.PackFullText ; 0x448b1
+	TX_FAR MailPackFullText
+	db "@"
+
+.MessageLostText ; 0x448b6
+	TX_FAR MailMessageLostText
+	db "@"
+
+.Function448bb: ; 0x448bb
+	push af
+	ld a, $0
+	call GetSRAMBank
+	pop af
+	ld hl, $a863
+	ld bc, $002f
+	call AddNTimes
+	ld a, [hl]
+	ld [CurItem], a
+	jp CloseSRAM
+; 0x448d2
+
+.AttachMail ; 0x448d2
+	call $2b29
+	xor a
+	ld [$d141], a
+	call $31f3
+.asm_448dc
+	ld a, $14
+	ld hl, $404f
+	rst $8
+	ld a, $14
+	ld hl, $4405
+	rst $8
+	ld a, $14
+	ld hl, $43e0
+	rst $8
+	ld a, $14
+	ld hl, $405f
+	rst $8
+	ld a, $14
+	ld hl, $449a
+	rst $8
+	call $31f6
+	call $32f9
+	call DelayFrame
+	ld a, $14
+	ld hl, $4457
+	rst $8
+	jr c, .asm_44939
+	ld a, [CurPartySpecies]
+	cp $fd
+	jr z, .asm_44923
+	ld a, $1
+	call GetPartyParamLocation
+	ld a, [hl]
+	and a
+	jr z, .asm_4492b
+	ld hl, .HoldingMailText
+	call PrintText
+	jr .asm_448dc
+
+.asm_44923
+	ld hl, .EggText
+	call PrintText
+	jr .asm_448dc
+
+.asm_4492b
+	ld a, [MenuSelection]
+	dec a
+	ld b, a
+	call $4607
+	ld hl, .MailMovedText
+	call PrintText
+
+.asm_44939
+	jp $2b3c
+; 0x4493c
+
+.HoldingMailText ; 0x4493c
+	TX_FAR MailAlreadyHoldingItemText
+	db "@"
+
+.EggText ; 0x44941
+	TX_FAR MailEggText
+	db "@"
+
+.MailMovedText ; 0x44946
+	TX_FAR MailMovedFromBoxText
+	db "@"
+
+.Cancel
+	ret
+
+MenuData4494c: ; 0x4494c
+	db %01000000 ; flags
+	db 1, 8 ; start coords
+	db $a, $12 ; end coords
+	dw .MenuData2
+	db 1 ; default option
+
+.MenuData2
+	db %00010000 ; flags
+	db 4, 0 ; rows/columns?
+	db 1 ; horizontal spacing?
+	dbw 0,$d0f2 ; text pointer
+	dbw BANK(Function447fb), Function447fb
+	dbw 0,0
+	dbw 0,0
+
+MenuData44964: ; 0x44964
+	db %01000000 ; flags
+	db 0, 0 ; start coords
+	db 9, $d ; end coords
+	dw .MenuData2
+	db 1 ; default option
+
+.MenuData2
+	db %10000000 ; flags
+	db 4 ; items
+	db "READ MAIL@"
+	db "PUT IN PACK@"
+	db "ATTACH MAIL@"
+	db "CANCEL@"
 
 SECTION "bank12",DATA,BANK[$12]
 
@@ -10847,7 +11991,7 @@ WritePartyMenuTilemap: ; 0x5005f
 	ld hl, TileMap
 	ld bc, $0168
 	ld a, " "
-	call $3041 ; blank the tilemap
+	call ByteFill ; blank the tilemap
 	call $4396 ; This reads from a pointer table???
 .asm_50077
 	ld a, [hli]
@@ -17932,15 +19076,15 @@ Function117b4f:
 	ld a, [$cf64]
 	and a
 	jr nz, .asm_117ba4 ; 0x117b93 $f
-	call $1c07
-	call $1c07
+	call Function1c07
+	call Function1c07
 	ld a, $41
 	ld hl, $4061
 	rst FarCall
 	jp Function117cdd
 .asm_117ba4
-	call $1c07
-	call $1c07
+	call Function1c07
+	call Function1c07
 	ld a, $41
 	ld hl, $4061
 	rst FarCall
