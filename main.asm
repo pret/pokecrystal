@@ -17454,7 +17454,7 @@ Tileset25Anim: ; 0xfc047
 ;	   param, function
 	dw $9140, AnimateWaterTile
 	dw $0000, WaitTileAnimation
-	dw $95f0, $4387
+	dw $95f0, AnimateFountain
 	dw $0000, WaitTileAnimation
 	dw $0000, TileAnimationPalette
 	dw $0000, WaitTileAnimation
@@ -17518,11 +17518,11 @@ Tileset09Anim: ; 0xfc12f
 
 Tileset15Anim: ; 0xfc15f
 ;	   param, function
-	dw $0000, $45eb
+	dw $0000, SafariFountainAnim2
 	dw $0000, WaitTileAnimation
 	dw $0000, WaitTileAnimation
 	dw $0000, WaitTileAnimation
-	dw $0000, $45cc
+	dw $0000, SafariFountainAnim1
 	dw $0000, WaitTileAnimation
 	dw $0000, NextTileFrame8
 	dw $0000, DoneTileAnimation
@@ -17535,7 +17535,7 @@ Tileset30Anim: ; 0xfc1e7
 ;	   param, function
 	dw $9140, $46a2
 	dw $0000, $471e
-	dw $cf41, $4309
+	dw $cf41, ScrollTileRightLeft
 	dw $0000, $471e
 	dw $9140, $4696
 	dw $0000, $471e
@@ -17558,7 +17558,7 @@ Tileset29Anim: ; 0xfc233
 ;	   param, function
 	dw $9350, $46a2
 	dw $0000, $471e
-	dw $cf41, $4309
+	dw $cf41, ScrollTileRightLeft
 	dw $0000, $471e
 	dw $9350, $4696
 	dw $0000, $471e
@@ -17579,16 +17579,16 @@ Tileset29Anim: ; 0xfc233
 
 Tileset23Anim: ; 0xfc27f
 ;	   param, function
-	dw $4770, $4645
-	dw $4774, $4645
-	dw $4768, $4645
-	dw $476c, $4645
-	dw $4760, $4645
-	dw $4764, $4645
-	dw $4758, $4645
-	dw $475c, $4645
-	dw $4750, $4645
-	dw $4754, $4645
+	dw MinecartTilePointer9,  AnimateMinecartTile
+	dw MinecartTilePointer10, AnimateMinecartTile
+	dw MinecartTilePointer7,  AnimateMinecartTile
+	dw MinecartTilePointer8,  AnimateMinecartTile
+	dw MinecartTilePointer5,  AnimateMinecartTile
+	dw MinecartTilePointer6,  AnimateMinecartTile
+	dw MinecartTilePointer3,  AnimateMinecartTile
+	dw MinecartTilePointer4,  AnimateMinecartTile
+	dw MinecartTilePointer1,  AnimateMinecartTile
+	dw MinecartTilePointer2,  AnimateMinecartTile
 	dw $0000, NextTileFrame
 	dw $0000, WaitTileAnimation
 	dw $0000, WaitTileAnimation
@@ -17650,7 +17650,160 @@ NextTileFrame8: ; fc2ff
 	ret
 ; fc309
 
-INCBIN "baserom.gbc", $fc309, $fc402 - $fc309
+
+ScrollTileRightLeft: ; fc309
+; Scroll right for 4 ticks, then left for 4 ticks.
+	ld a, [TileAnimationTimer]
+	inc a
+	and 7
+	ld [TileAnimationTimer], a
+	and 4
+	jr nz, ScrollTileLeft
+	jr ScrollTileRight
+; fc318
+
+ScrollTileUpDown: ; fc318
+; Scroll up for 4 ticks, then down for 4 ticks.
+	ld a, [TileAnimationTimer]
+	inc a
+	and 7
+	ld [TileAnimationTimer], a
+	and 4
+	jr nz, ScrollTileDown
+	jr ScrollTileUp
+; fc327
+
+ScrollTileLeft: ; fc327
+	ld h, d
+	ld l, e
+	ld c, 4
+.loop
+	rept 4
+	ld a, [hl]
+	rlca
+	ld [hli], a
+	endr
+	dec c
+	jr nz, .loop
+	ret
+; fc33b
+
+ScrollTileRight: ; fc33b
+	ld h, d
+	ld l, e
+	ld c, 4
+.loop
+	rept 4
+	ld a, [hl]
+	rrca
+	ld [hli], a
+	endr
+	dec c
+	jr nz, .loop
+	ret
+; fc34f
+
+ScrollTileUp: ; fc34f
+	ld h, d
+	ld l, e
+	ld d, [hl]
+	inc hl
+	ld e, [hl]
+	ld bc, $e
+	add hl, bc
+	ld a, 4
+.loop
+	ld c, [hl]
+	ld [hl], e
+	dec hl
+	ld b, [hl]
+	ld [hl], d
+	dec hl
+	ld e, [hl]
+	ld [hl], c
+	dec hl
+	ld d, [hl]
+	ld [hl], b
+	dec hl
+	dec a
+	jr nz, .loop
+	ret
+; fc36a
+
+ScrollTileDown: ; fc36a
+	ld h, d
+	ld l, e
+	ld de, $e
+	push hl
+	add hl, de
+	ld d, [hl]
+	inc hl
+	ld e, [hl]
+	pop hl
+	ld a, 4
+.loop
+	ld b, [hl]
+	ld [hl], d
+	inc hl
+	ld c, [hl]
+	ld [hl], e
+	inc hl
+	ld d, [hl]
+	ld [hl], b
+	inc hl
+	ld e, [hl]
+	ld [hl], c
+	inc hl
+	dec a
+	jr nz, .loop
+	ret
+; fc387
+
+
+AnimateFountain: ; fc387
+	ld hl, [sp+0]
+	ld b, h
+	ld c, l
+	ld hl, .frames
+	ld a, [TileAnimationTimer]
+	and 7
+	add a
+	add l
+	ld l, a
+	jr nc, .asm_fc399
+	inc h
+
+.asm_fc399
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	ld sp, hl
+	ld l, e
+	ld h, d
+	jp WriteTile
+
+.frames
+	dw .frame1
+	dw .frame2
+	dw .frame3
+	dw .frame4
+	dw .frame3
+	dw .frame4
+	dw .frame5
+	dw .frame1
+
+.frame1
+	INCBIN "gfx/tilesets/fountain/1.2bpp"
+.frame2
+	INCBIN "gfx/tilesets/fountain/2.2bpp"
+.frame3
+	INCBIN "gfx/tilesets/fountain/3.2bpp"
+.frame4
+	INCBIN "gfx/tilesets/fountain/4.2bpp"
+.frame5
+	INCBIN "gfx/tilesets/fountain/5.2bpp"
+; fc402
+
 
 AnimateWaterTile: ; fc402
 ; Draw a water tile for the current frame in VRAM tile at de.
@@ -17691,7 +17844,177 @@ WaterTileFrames: ; fc41c
 INCBIN "baserom.gbc", $fc41c, $fc45c - $fc41c
 ; fc45c
 
-INCBIN "baserom.gbc", $fc45c, $fc56d - $fc45c
+
+ForestTreeLeftAnimation: ; fc45c
+	ld hl, [sp+0]
+	ld b, h
+	ld c, l
+
+; Only during the Celebi event.
+	ld a, [$dbf3]
+	bit 2, a
+	jr nz, .asm_fc46c
+	ld hl, ForestTreeLeftFrames
+	jr .asm_fc47d
+
+.asm_fc46c
+	ld a, [TileAnimationTimer]
+	call GetForestTreeFrame
+	add a
+	add a
+	add a
+	add ForestTreeLeftFrames % $100
+	ld l, a
+	ld a, 0
+	adc ForestTreeLeftFrames / $100
+	ld h, a
+
+.asm_fc47d
+	ld sp, hl
+	ld hl, $90c0
+	jp WriteTile
+; fc484
+
+
+ForestTreeLeftFrames: ; fc484
+	INCBIN "gfx/tilesets/forest-tree/1.2bpp"
+	INCBIN "gfx/tilesets/forest-tree/2.2bpp"
+; fc4a4
+
+ForestTreeRightFrames: ; fc4a4
+	INCBIN "gfx/tilesets/forest-tree/3.2bpp"
+	INCBIN "gfx/tilesets/forest-tree/4.2bpp"
+; fc4c4
+
+
+ForestTreeRightAnimation: ; fc4c4
+	ld hl, [sp+0]
+	ld b, h
+	ld c, l
+
+; Only during the Celebi event.
+	ld a, [$dbf3]
+	bit 2, a
+	jr nz, .asm_fc4d4
+	ld hl, ForestTreeRightFrames
+	jr .asm_fc4eb
+
+.asm_fc4d4
+	ld a, [TileAnimationTimer]
+	call GetForestTreeFrame
+	add a
+	add a
+	add a
+	add ForestTreeLeftFrames % $100
+	ld l, a
+	ld a, 0
+	adc ForestTreeLeftFrames / $100
+	ld h, a
+	push bc
+	ld bc, ForestTreeRightFrames - ForestTreeLeftFrames
+	add hl, bc
+	pop bc
+
+.asm_fc4eb
+	ld sp, hl
+	ld hl, $90f0
+	jp WriteTile
+; fc4f2
+
+
+ForestTreeLeftAnimation2: ; fc4f2
+	ld hl, [sp+0]
+	ld b, h
+	ld c, l
+
+; Only during the Celebi event.
+	ld a, [$dbf3]
+	bit 2, a
+	jr nz, .asm_fc502
+	ld hl, ForestTreeLeftFrames
+	jr .asm_fc515
+
+.asm_fc502
+	ld a, [TileAnimationTimer]
+	call GetForestTreeFrame
+	xor 2
+	add a
+	add a
+	add a
+	add ForestTreeLeftFrames % $100
+	ld l, a
+	ld a, 0
+	adc ForestTreeLeftFrames / $100
+	ld h, a
+
+.asm_fc515
+	ld sp, hl
+	ld hl, $90c0
+	jp WriteTile
+; fc51c
+
+
+ForestTreeRightAnimation2: ; fc51c
+	ld hl, [sp+0]
+	ld b, h
+	ld c, l
+
+; Only during the Celebi event.
+	ld a, [$dbf3]
+	bit 2, a
+	jr nz, .asm_fc52c
+	ld hl, ForestTreeRightFrames
+	jr .asm_fc545
+
+.asm_fc52c
+	ld a, [TileAnimationTimer]
+	call GetForestTreeFrame
+	xor 2
+	add a
+	add a
+	add a
+	add ForestTreeLeftFrames % $100
+	ld l, a
+	ld a, 0
+	adc ForestTreeLeftFrames / $100
+	ld h, a
+	push bc
+	ld bc, ForestTreeRightFrames - ForestTreeLeftFrames
+	add hl, bc
+	pop bc
+
+.asm_fc545
+	ld sp, hl
+	ld hl, $90f0
+	jp WriteTile
+; fc54c
+
+
+GetForestTreeFrame: ; fc54c
+; Return 0 if a is even, or 2 if odd.
+	and a
+	jr z, .even
+	cp 1
+	jr z, .odd
+	cp 2
+	jr z, .even
+	cp 3
+	jr z, .odd
+	cp 4
+	jr z, .even
+	cp 5
+	jr z, .odd
+	cp 6
+	jr z, .even
+.odd
+	ld a, 2
+	scf
+	ret
+.even
+	xor a
+	ret
+; fc56d
+
 
 AnimateFlowerTile: ; fc56d
 ; No parameters.
@@ -17732,7 +18055,104 @@ FlowerTileFrames: ; fc58c
 INCBIN "baserom.gbc", $fc58c, $fc5cc - $fc58c
 ; fc5cc
 
-INCBIN "baserom.gbc", $fc5cc, $fc673 - $fc5cc
+
+SafariFountainAnim1: ; fc5cc
+; Splash in the bottom-right corner of the fountain.
+	ld hl, [sp+0]
+	ld b, h
+	ld c, l
+	ld a, [TileAnimationTimer]
+	and 6
+	srl a
+	inc a
+	inc a
+	and 3
+	swap a
+	ld e, a
+	ld d, 0
+	ld hl, SafariFountainFrames
+	add hl, de
+	ld sp, hl
+	ld hl, $95b0
+	jp WriteTile
+; fc5eb
+
+
+SafariFountainAnim2: ; fc5eb
+; Splash in the top-left corner of the fountain.
+	ld hl, [sp+0]
+	ld b, h
+	ld c, l
+	ld a, [TileAnimationTimer]
+	and 6
+	add a
+	add a
+	add a
+	ld e, a
+	ld d, 0
+	ld hl, SafariFountainFrames
+	add hl, de
+	ld sp, hl
+	ld hl, $9380
+	jp WriteTile
+; fc605
+
+
+SafariFountainFrames: ; fc605
+	INCBIN "gfx/tilesets/safari/1.2bpp"
+	INCBIN "gfx/tilesets/safari/2.2bpp"
+	INCBIN "gfx/tilesets/safari/3.2bpp"
+	INCBIN "gfx/tilesets/safari/4.2bpp"
+; fc645
+
+
+AnimateMinecartTile: ; fc645
+; Read from struct at de:
+; 	Destination (VRAM)
+;	Address of the first tile in the frame array
+
+	ld hl, [sp+0]
+	ld b, h
+	ld c, l
+
+	ld a, [TileAnimationTimer]
+	and 7
+
+; Get frame index a
+	ld hl, .frames
+	add l
+	ld l, a
+	ld a, 0
+	adc h
+	ld h, a
+	ld a, [hl]
+
+; Destination
+	ld l, e
+	ld h, d
+	ld e, [hl]
+	inc hl
+	ld d, [hl]
+	inc hl
+
+; Add the frame index to the starting address
+	add [hl]
+	inc hl
+	ld h, [hl]
+	ld l, a
+	ld a, 0
+	adc h
+	ld h, a
+
+	ld sp, hl
+	ld l, e
+	ld h, d
+	jr WriteTile
+
+.frames
+	db $00, $10, $20, $30, $40, $30, $20, $10
+; fc673
+
 
 NextTileFrame: ; fc673
 	ld hl, TileAnimationTimer
@@ -17914,7 +18334,57 @@ TileAnimationPalette: ; fc6d7
 	ret
 ; fc71e
 
-INCBIN "baserom.gbc", $fc71e, $fcdc2 - $fc71e
+
+INCBIN "baserom.gbc", $fc71e, $fc750 - $fc71e
+
+
+MinecartTilePointers: ; fc750
+MinecartTilePointer1:
+	dw $92d0, MinecartTile1
+MinecartTilePointer2:
+	dw $92f0, MinecartTile2
+MinecartTilePointer3:
+	dw $93d0, MinecartTile3
+MinecartTilePointer4:
+	dw $93f0, MinecartTile4
+MinecartTilePointer5:
+	dw $93c0, MinecartTile5
+MinecartTilePointer6:
+	dw $92c0, MinecartTile6
+MinecartTilePointer7:
+	dw $94d0, MinecartTile7
+MinecartTilePointer8:
+	dw $94f0, MinecartTile8
+MinecartTilePointer9:
+	dw $95d0, MinecartTile9
+MinecartTilePointer10:
+	dw $95f0, MinecartTile10
+
+MinecartTile1:
+	INCBIN "gfx/tilesets/minecart/1.2bpp"
+MinecartTile2:
+	INCBIN "gfx/tilesets/minecart/2.2bpp"
+MinecartTile3:
+	INCBIN "gfx/tilesets/minecart/3.2bpp"
+MinecartTile4:
+	INCBIN "gfx/tilesets/minecart/4.2bpp"
+MinecartTile5:
+	INCBIN "gfx/tilesets/minecart/5.2bpp"
+MinecartTile6:
+	INCBIN "gfx/tilesets/minecart/6.2bpp"
+MinecartTile7:
+	INCBIN "gfx/tilesets/minecart/7.2bpp"
+MinecartTile8:
+	INCBIN "gfx/tilesets/minecart/8.2bpp"
+MinecartTile9:
+	INCBIN "gfx/tilesets/minecart/9.2bpp"
+MinecartTile10:
+	INCBIN "gfx/tilesets/minecart/10.2bpp"
+; fca98
+
+
+INCBIN "baserom.gbc", $fca98, $fcdc2 - $fca98
+
 
 LoadTradesPointer: ; 0xfcdc2
 	ld d, 0
