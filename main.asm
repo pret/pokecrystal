@@ -16374,11 +16374,11 @@ Tileset09Anim: ; 0xfc12f
 
 Tileset15Anim: ; 0xfc15f
 ;	   param, function
-	dw $0000, $45eb
+	dw $0000, SafariFountainAnim2
 	dw $0000, WaitTileAnimation
 	dw $0000, WaitTileAnimation
 	dw $0000, WaitTileAnimation
-	dw $0000, $45cc
+	dw $0000, SafariFountainAnim1
 	dw $0000, WaitTileAnimation
 	dw $0000, NextTileFrame8
 	dw $0000, DoneTileAnimation
@@ -16911,7 +16911,59 @@ FlowerTileFrames: ; fc58c
 INCBIN "baserom.gbc", $fc58c, $fc5cc - $fc58c
 ; fc5cc
 
-INCBIN "baserom.gbc", $fc5cc, $fc673 - $fc5cc
+
+SafariFountainAnim1: ; fc5cc
+; Splash in the bottom-right corner of the fountain.
+	ld hl, [sp+0]
+	ld b, h
+	ld c, l
+	ld a, [TileAnimationTimer]
+	and 6
+	srl a
+	inc a
+	inc a
+	and 3
+	swap a
+	ld e, a
+	ld d, 0
+	ld hl, SafariFountainFrames
+	add hl, de
+	ld sp, hl
+	ld hl, $95b0
+	jp WriteTile
+; fc5eb
+
+
+SafariFountainAnim2: ; fc5eb
+; Splash in the top-left corner of the fountain.
+	ld hl, [sp+0]
+	ld b, h
+	ld c, l
+	ld a, [TileAnimationTimer]
+	and 6
+	add a
+	add a
+	add a
+	ld e, a
+	ld d, 0
+	ld hl, SafariFountainFrames
+	add hl, de
+	ld sp, hl
+	ld hl, $9380
+	jp WriteTile
+; fc605
+
+
+SafariFountainFrames: ; fc605
+	INCBIN "gfx/tilesets/safari/1.2bpp"
+	INCBIN "gfx/tilesets/safari/2.2bpp"
+	INCBIN "gfx/tilesets/safari/3.2bpp"
+	INCBIN "gfx/tilesets/safari/4.2bpp"
+; fc645
+
+
+INCBIN "baserom.gbc", $fc645, $fc673 - $fc645
+
 
 NextTileFrame: ; fc673
 	ld hl, TileAnimationTimer
