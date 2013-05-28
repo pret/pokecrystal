@@ -563,30 +563,48 @@ Function_0xec2f: ; ec2f
 ; ec38
 
 
-INCBIN "baserom.gbc", $ec38, $ec50 - $ec38
+GetPokedexEntryBank: ; ec38
+	push hl
+	push de
+	ld a, [EnemyMonSpecies]
+	rlca
+	rlca
+	and 3
+	ld hl, .PokedexEntryBanks
+	ld d, 0
+	ld e, a
+	add hl, de
+	ld a, [hl]
+	pop de
+	pop hl
+	ret
 
+.PokedexEntryBanks
+	db BANK(PokedexEntries1)
+	db BANK(PokedexEntries2)
+	db BANK(PokedexEntries3)
+	db BANK(PokedexEntries4)
+; ec50
 
 Function_0xec50: ; ec50
 	ld a, [EnemyMonSpecies]
-	ld hl, $4378
+	ld hl, PokedexDataPointerTable
 	dec a
 	ld e, a
-	ld d, $0
+	ld d, 0
 	add hl, de
 	add hl, de
-	ld a, $11
+	ld a, BANK(PokedexDataPointerTable)
 	call GetFarHalfword
 
-.asm_ec61
-	call $6c38
-
+.SkipText
+	call GetPokedexEntryBank
 	call GetFarByte
-
 	inc hl
-	cp $50
-	jr nz, .asm_ec61
-	call $6c38
+	cp "@"
+	jr nz, .SkipText
 
+	call GetPokedexEntryBank
 	push bc
 	inc hl
 	inc hl
@@ -604,16 +622,17 @@ Function_0xec50: ; ec50
 	rr c
 	srl b
 	rr c
-	call $6c99
+	call .asm_ec99
 
 	srl b
 	rr c
-	call $6c99
+	call .asm_ec99
 
 	ld a, h
 	pop bc
 	jr .asm_eca4
 
+.asm_ec99
 	push bc
 	ld a, b
 	cpl
@@ -631,13 +650,11 @@ Function_0xec50: ; ec50
 	cp $4
 	jr c, .asm_ecbc
 
-	ld hl, $6cc4
-
+	ld hl, .table_ecc4
 .asm_ecac
 	ld a, c
 	cp [hl]
 	jr c, .asm_ecb4
-
 	inc hl
 	inc hl
 	jr .asm_ecac
@@ -653,15 +670,18 @@ Function_0xec50: ; ec50
 
 .asm_ecbc
 	ld a, b
-	sub $14
+	sub 20
 	ld b, a
 	ret nc
 	ld b, $1
 	ret
-; ecc4
 
-
-INCBIN "baserom.gbc", $ecc4, $eccc - $ecc4
+.table_ecc4
+	db 8, 0
+	db 12, 20
+	db 16, 30
+	db 255, 40
+; eccc
 
 
 Function_0xeccc: ; eccc
