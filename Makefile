@@ -11,16 +11,9 @@ TEXTFILES = \
 		text/common_3.tx \
 		main.tx
 
-PNG_PICS = $(shell find gfx/pics/ -type f -name 'front.png')
-PNG_ANIMS = $(shell find gfx/pics/ -type f -name 'tiles.png')
-PNG_TRAINERS = gfx/trainers/*.png
-PNG_GFX = $(PNG_PICS) $(PNG_ANIMS) $(PNG_TRAINERS), $(filter-out $(shell find gfx/ -type f -name '*.png'))
-
-LZ_PICS = $(shell find gfx/pics/ -type f -name 'front.lz')
-LZ_ANIMS = $(shell find gfx/pics/ -type f -name 'tiles.lz')
-LZ_TRAINERS = gfx/trainers/*.lz
-LZ_GFX = $(filter-out $(LZ_PICS) $(LZ_ANIMS) $(LZ_TRAINERS), $(shell find gfx/ -type f -name '*.lz'))
-
+PNG_GFX    = $(shell find gfx/ -type f -name '*.png')
+LZ_GFX     = $(shell find gfx/ -type f -name '*.lz')
+TWOBPP_GFX = $(shell find gfx/ -type f -name '*.2bpp')
 
 all: pokecrystal.gbc
 	cmp baserom.gbc $<
@@ -39,16 +32,18 @@ pokecrystal.gbc: pokecrystal.o
 pngs:
 	cd extras && python gfx.py mass-decompress && python gfx.py dump-pngs
 
-lzs: $(LZ_PICS) $(LZ_ANIMS) $(LZ_TRAINERS) $(LZ_GFX)
+lzs: $(LZ_GFX) $(TWOBPP_GFX)
 
 gfx/pics/%/front.lz: gfx/pics/%/front.png gfx/pics/%/tiles.2bpp
-	python extras/gfx.py png-to-lz --front $< $(@D)/tiles.2bpp
-gfx/pics/%/tiles.2bpp:
+	python extras/gfx.py png-to-lz --front $^
+gfx/pics/%/tiles.2bpp: gfx/pics/%/tiles.png
 	python extras/gfx.py png-to-2bpp $<
 gfx/pics/%/back.lz: gfx/pics/%/back.png
 	python extras/gfx.py png-to-lz --vert $<
 gfx/trainers/%.lz: gfx/trainers/%.png
 	python extras/gfx.py png-to-lz --vert $<
 .png.lz:
+	python extras/gfx.py png-to-lz $<
+.png.2bpp:
 	python extras/gfx.py png-to-lz $<
 
