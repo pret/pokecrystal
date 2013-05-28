@@ -21,12 +21,13 @@ LZ_ANIMS = $(shell find gfx/pics/ -type f -name 'tiles.lz')
 LZ_TRAINERS = gfx/trainers/*.lz
 LZ_GFX = $(filter-out $(LZ_PICS) $(LZ_ANIMS) $(LZ_TRAINERS), $(shell find gfx/ -type f -name '*.lz'))
 
+PNG_SPRITES := $(patsubst %.png,%.2bpp,$(shell find gfx/overworld/ -type f -name '*.png'))
 
 all: pokecrystal.gbc
 	cmp baserom.gbc $<
 clean:
 	rm -f main.tx pokecrystal.o pokecrystal.gbc ${TEXTFILES}
-pokecrystal.o: pokecrystal.asm constants.asm wram.asm ${TEXTFILES} lzs
+pokecrystal.o: pokecrystal.asm constants.asm wram.asm ${TEXTFILES} lzs sprites
 	rgbasm -o pokecrystal.o pokecrystal.asm
 
 .asm.tx:
@@ -41,9 +42,13 @@ pngs:
 
 lzs: $(LZ_PICS) $(LZ_ANIMS) $(LZ_TRAINERS) $(LZ_GFX)
 
+sprites: $(PNG_SPRITES)
+
 gfx/pics/%/front.lz: gfx/pics/%/front.png gfx/pics/%/tiles.2bpp
 	python extras/gfx.py png-to-lz --front $< $(@D)/tiles.2bpp
 gfx/pics/%/tiles.2bpp:
+	python extras/gfx.py png-to-2bpp $<
+gfx/overworld/%.2bpp: gfx/overworld/%.png
 	python extras/gfx.py png-to-2bpp $<
 gfx/pics/%/back.lz: gfx/pics/%/back.png
 	python extras/gfx.py png-to-lz --vert $<
