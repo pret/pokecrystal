@@ -3298,7 +3298,12 @@ JpHl: ; 2fec
 	jp [hl]
 ; 2fed
 
-INCBIN "baserom.gbc", $2fed, $300b-$2fed
+JpDe: ; 2fed
+	push de
+	ret
+; 2fef
+
+INCBIN "baserom.gbc", $2fef, $300b - $2fef
 
 ClearSprites: ; 300b
 	ld hl, Sprites
