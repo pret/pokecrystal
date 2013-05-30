@@ -1604,7 +1604,9 @@ if __name__ == "__main__":
 	elif sys.argv[1] == 'png':
 
 		if '.2bpp' in sys.argv[2]:
-			if sys.argv[4] == 'greyscale':
+			if len(sys.argv) == 3:
+				to_png(sys.argv[2])
+			elif sys.argv[4] == 'greyscale':
 				to_png(sys.argv[2], sys.argv[3])
 			else:
 				to_png(sys.argv[2], sys.argv[3], sys.argv[4])
