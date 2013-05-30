@@ -16653,15 +16653,9 @@ SECTION "bank30",DATA,BANK[$30]
 
 INCLUDE "gfx/overworld/bank30.asm"
 
-;INCBIN "baserom.gbc", $c0000, $c3fc0 - $c0000
-
-
 SECTION "bank31",DATA,BANK[$31]
 
 INCLUDE "gfx/overworld/bank31.asm"
-
-;INCBIN "baserom.gbc", $c4000, $c7f80 - $c4000
-
 
 SECTION "bank32",DATA,BANK[$32]
 
