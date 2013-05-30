@@ -16651,11 +16651,11 @@ INCBIN "baserom.gbc", $bd0d0, $be699-$bd0d0
 
 SECTION "bank30",DATA,BANK[$30]
 
-INCLUDE "gfx/overworld/bank30.asm"
+INCLUDE "gfx/overworld/sprites_1.asm"
 
 SECTION "bank31",DATA,BANK[$31]
 
-INCLUDE "gfx/overworld/bank31.asm"
+INCLUDE "gfx/overworld/sprites_2.asm"
 
 SECTION "bank32",DATA,BANK[$32]
 
