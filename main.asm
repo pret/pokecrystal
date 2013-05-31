@@ -1132,42 +1132,32 @@ INCBIN "baserom.gbc", $fdb, $fe8 - $fdb
 
 
 TextBox: ; fe8
-; draw a text box of given location/size
-; ? hl
-; size bc
-; ? de
-
-; draw border
+; Draw a text box width c height b at hl
+; Dimensions do not include the border.
 	push bc
 	push hl
 	call TextBoxBorder
 	pop hl
 	pop bc
-; fill textbox area with palette 7
 	jr TextBoxPalette
 ; ff1
 
 
 TextBoxBorder: ; ff1
-; draw a text box
-; upper-left corner at coordinates hl
-; height b
-; width c
 
-	; first row
+; Top
 	push hl
 	ld a, "┌"
 	ld [hli], a
-	inc a    ; horizontal border ─
+	inc a ; "─"
 	call NPlaceChar
-	inc a    ; upper-right border ┐
+	inc a ; "┐"
 	ld [hl], a
 
-	; middle rows
+; Middle
 	pop hl
-	ld de, 20
-	add hl, de ; skip the top row
-
+	ld de, 20 ; screen width
+	add hl, de
 .PlaceRow
 	push hl
 	ld a, "│"
@@ -1175,46 +1165,43 @@ TextBoxBorder: ; ff1
 	ld a, " "
 	call NPlaceChar
 	ld [hl], "│"
-
 	pop hl
-	ld de, 20
-	add hl, de ; move to next row
+	ld de, 20 ; screen width
+	add hl, de
 	dec b
 	jr nz, .PlaceRow
 
-	; bottom row
+; Bottom
 	ld a, "└"
 	ld [hli], a
 	ld a, "─"
 	call NPlaceChar
 	ld [hl], "┘"
+
 	ret
 ; 101e
 
 
 NPlaceChar: ; 101e
-; place a row of width c of identical characters
+; Place char a c times
 	ld d,c
 .loop
 	ld [hli],a
 	dec d
-	jr nz,.loop
+	jr nz, .loop
 	ret
 ; 1024
 
 
 TextBoxPalette: ; 1024
-; fill textbox area with pal 07
-; hl: tile address
-; b: height
-; c: width
+; Fill text box width c height b at hl with pal 7
 	ld de, AttrMap - TileMap
 	add hl, de
 	inc b
 	inc b
 	inc c
 	inc c
-	ld a, $07 ; palette
+	ld a, 7 ; pal
 .gotoy
 	push bc
 	push hl
@@ -1223,7 +1210,7 @@ TextBoxPalette: ; 1024
 	dec c
 	jr nz, .gotox
 	pop hl
-	ld de, $0014 ; screen width in tiles (20)
+	ld de, 20 ; screen width
 	add hl, de
 	pop bc
 	dec b
@@ -1234,25 +1221,27 @@ TextBoxPalette: ; 1024
 
 SpeechTextBox: ; 103e
 ; Standard textbox.
-	ld hl, $c590 ; tile 0, 12
-	ld b, $4 ; height
-	ld c, $12 ; width ; SCREEN_WIDTH - 2 (border)
+	hlcoord 0, 12
+	ld b, 4 ; height
+	ld c, 18 ; screen width - 2 (border)
 	jp TextBox
 ; 1048
 
 
 INCBIN "baserom.gbc", $1048, $1057 - $1048
 
-PrintText: ; 0x1057
+
+PrintText: ; 1057
 	call $106c
 	push hl
-	ld hl, $c5b9
-	ld bc, $0312
+	hlcoord 1, 14
+	ld bc, 18 + 3<<8
 	call ClearBox
 	pop hl
+
 PrintTextBoxText: ; 1065
-	ld bc, $c5b9 ; TileMap(1,14)
-	call $13e5 ; PrintText
+	bccoord 1, 14
+	call $13e5
 	ret
 ; 106c
 
