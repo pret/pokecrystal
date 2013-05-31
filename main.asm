@@ -1168,7 +1168,7 @@ TextBoxBorder: ; ff1
 	ld de, 20
 	add hl, de ; skip the top row
 
-.PlaceRow\@
+.PlaceRow
 	push hl
 	ld a, "│"
 	ld [hli], a
@@ -1180,7 +1180,7 @@ TextBoxBorder: ; ff1
 	ld de, 20
 	add hl, de ; move to next row
 	dec b
-	jr nz, .PlaceRow\@
+	jr nz, .PlaceRow
 
 	; bottom row
 	ld a, "└"
@@ -1195,10 +1195,10 @@ TextBoxBorder: ; ff1
 NPlaceChar: ; 101e
 ; place a row of width c of identical characters
 	ld d,c
-.loop\@
+.loop
 	ld [hli],a
 	dec d
-	jr nz,.loop\@
+	jr nz,.loop
 	ret
 ; 1024
 
@@ -3445,19 +3445,19 @@ IsInArray: ; 30e1
 ; if found, returns count in b and sets carry.
 	ld b,0
 	ld c,a
-.loop\@
+.loop
 	ld a,[hl]
 	cp a, $FF
-	jr z,.NotInArray\@
+	jr z,.NotInArray
 	cp c
-	jr z,.InArray\@
+	jr z,.InArray
 	inc b
 	add hl,de
-	jr .loop\@
-.NotInArray\@
+	jr .loop
+.NotInArray
 	and a
 	ret
-.InArray\@
+.InArray
 	scf
 	ret
 ; 0x30f4
@@ -3824,19 +3824,19 @@ CountSetBits: ; 0x335f
 ; OUTPUT:
 ; [$d265] = number of set bits
 	ld c, $0
-.loop\@
+.loop
 	ld a, [hli]
 	ld e, a
 	ld d, $8
-.innerLoop\@ ; count how many bits are set in the current byte
+.innerLoop ; count how many bits are set in the current byte
 	srl e
 	ld a, $0
 	adc c
 	ld c, a
 	dec d
-	jr nz, .innerLoop\@
+	jr nz, .innerLoop
 	dec b
-	jr nz, .loop\@
+	jr nz, .loop
 	ld a, c
 	ld [$d265], a
 	ret
@@ -4305,12 +4305,12 @@ PrintBCDNumber: ; 38bb
 	res 6, c
 	res 5, c ; c now holds the length
 	bit 5, b
-	jr z, .loop\@
+	jr z, .loop
 	bit 7, b
-	jr nz, .loop\@
+	jr nz, .loop
 	ld [hl], "¥"
 	inc hl
-.loop\@
+.loop
 	ld a, [de]
 	swap a
 	call PrintBCDDigit ; print upper digit
@@ -4318,48 +4318,48 @@ PrintBCDNumber: ; 38bb
 	call PrintBCDDigit ; print lower digit
 	inc de
 	dec c
-	jr nz, .loop\@
+	jr nz, .loop
 	bit 7, b ; were any non-zero digits printed?
-	jr z, .done\@ ; if so, we are done
-.numberEqualsZero\@ ; if every digit of the BCD number is zero
+	jr z, .done ; if so, we are done
+.numberEqualsZero ; if every digit of the BCD number is zero
 	bit 6, b ; left or right alignment?
-	jr nz, .skipRightAlignmentAdjustment\@
+	jr nz, .skipRightAlignmentAdjustment
 	dec hl ; if the string is right-aligned, it needs to be moved back one space
-.skipRightAlignmentAdjustment\@
+.skipRightAlignmentAdjustment
 	bit 5, b
-	jr z, .skipCurrencySymbol\@
+	jr z, .skipCurrencySymbol
 	ld [hl], "¥" ; currency symbol
 	inc hl
-.skipCurrencySymbol\@
+.skipCurrencySymbol
 	ld [hl], "0"
 	call PrintLetterDelay
 	inc hl
-.done\@
+.done
 	ret
 ; 0x38f2
 
 PrintBCDDigit: ; 38f2
 	and a, %00001111
 	and a
-	jr z, .zeroDigit\@
-.nonzeroDigit\@
+	jr z, .zeroDigit
+.nonzeroDigit
 	bit 7, b ; have any non-space characters been printed?
-	jr z, .outputDigit\@
+	jr z, .outputDigit
 ; if bit 7 is set, then no numbers have been printed yet
 	bit 5, b ; print the currency symbol?
-	jr z, .skipCurrencySymbol\@
+	jr z, .skipCurrencySymbol
 	ld [hl], "¥"
 	inc hl
 	res 5, b
-.skipCurrencySymbol\@
+.skipCurrencySymbol
 	res 7, b ; unset 7 to indicate that a nonzero digit has been reached
-.outputDigit\@
+.outputDigit
 	add a, "0"
 	ld [hli], a
 	jp PrintLetterDelay
-.zeroDigit\@
+.zeroDigit
 	bit 7, b ; either printing leading zeroes or already reached a nonzero digit?
-	jr z, .outputDigit\@ ; if so, print a zero digit
+	jr z, .outputDigit ; if so, print a zero digit
 	bit 6, b ; left or right alignment?
 	ret nz
 	ld a, " "
@@ -6247,13 +6247,13 @@ PrintNumber_AdvancePointer: ; c64a
 ; increments the pointer unless leading zeroes are not being printed,
 ; the number is left-aligned, and no nonzero digits have been printed yet
 	bit 7, d ; print leading zeroes?
-	jr nz, .incrementPointer\@
+	jr nz, .incrementPointer
 	bit 6, d ; left alignment or right alignment?
-	jr z, .incrementPointer\@
+	jr z, .incrementPointer
 	ld a, [hPastLeadingZeroes]
 	and a
 	ret z
-.incrementPointer\@
+.incrementPointer
 	inc hl
 	ret
 ; 0xc658
@@ -13077,18 +13077,18 @@ ClearScreenArea: ; 0x896ff
 ; c = width
 	ld a,  $7f    ; blank tile
 	ld de, 20     ; screen width
-.loop\@
+.loop
 	push bc
 	push hl
-.innerLoop\@
+.innerLoop
 	ld [hli], a
 	dec c
-	jr nz, .innerLoop\@
+	jr nz, .innerLoop
 	pop hl
 	pop bc
 	add hl, de
 	dec b
-	jr nz, .loop\@
+	jr nz, .loop
 	dec hl
 	inc c
 	inc c
