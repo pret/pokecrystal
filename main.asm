@@ -8796,13 +8796,13 @@ INCLUDE "stats/wild/swarm_water.asm"
 
 INCBIN "baserom.gbc", $2b930, $2ba1a - $2b930
 
-PlayerGFX: ; 2ba1a
+ChrisBackpic: ; 2ba1a
 INCBIN "gfx/misc/player.lz"
 ; 2bba1
 
 db 0, 0, 0, 0, 0, 0, 0, 0, 0 ; filler
 
-DudeGFX: ; 2bbaa
+DudeBackpic: ; 2bbaa
 INCBIN "gfx/misc/dude.lz"
 ; 2bce1
 
@@ -10097,7 +10097,46 @@ GetRoamMonDVs: ; 3fa19
 ; 3fa31
 
 
-INCBIN "baserom.gbc", $3fa31, $3fc8b - $3fa31
+INCBIN "baserom.gbc", $3fa31, $3fbff - $3fa31
+
+
+GetPlayerBackpic: ; 3fbff
+; Load the player character's backpic (6x6) into VRAM starting from $9310.
+
+; Special exception for Dude.
+	ld b, BANK(DudeBackpic)
+	ld hl, DudeBackpic
+	ld a, [BattleType]
+	cp BATTLETYPE_TUTORIAL
+	jr z, .Decompress
+
+; What gender are we?
+	ld a, [$d45b]
+	bit 2, a
+	jr nz, .Chris
+	ld a, [PlayerGender]
+	bit 0, a
+	jr z, .Chris
+
+; It's a girl.
+	callba GetKrisBackpic
+	ret
+
+.Chris
+; It's a boy.
+	ld b, BANK(ChrisBackpic)
+	ld hl, ChrisBackpic
+
+.Decompress
+	ld de, $9310
+	ld c, $31
+	ld a, $40 ; PREDEF_DECOMPRESS
+	call Predef
+	ret
+; 3fc30
+
+
+INCBIN "baserom.gbc", $3fc30, $3fc8b - $3fc30
 
 
 BattleStartMessage ; 3fc8b
@@ -13056,7 +13095,22 @@ GetPlayerIcon: ; 8832c
 	ret
 ; 8833e
 
-INCBIN "baserom.gbc", $8833e, $896ff - $8833e
+INCBIN "baserom.gbc", $8833e, $88ec9 - $8833e
+
+
+GetKrisBackpic: ; 88ec9
+; Kris's backpic is uncompressed.
+	ld de, KrisBackpic
+	ld hl, $9310
+	ld bc, $2231
+	call $f82
+	ret
+; 88ed6
+
+KrisBackpic: ; 88ed6
+
+
+INCBIN "baserom.gbc", $88ed6, $896ff - $88ed6
 
 ClearScreenArea: ; 0x896ff
 ; clears an area of the screen
