@@ -5797,7 +5797,7 @@ PredefPointers: ; 856b
 	dwb $516c, $14
 	dwb $508b, $14
 	dwb $520d, $14
-	dwb $525d, $14
+	dwb DecompressPredef, BANK(DecompressPredef)
 	dwb $47d3, $0d
 	dwb $7908, $3e
 	dwb $7877, $3e
@@ -10130,7 +10130,7 @@ GetPlayerBackpic: ; 3fbff
 .Decompress
 	ld de, $9310
 	ld c, $31
-	ld a, $40 ; PREDEF_DECOMPRESS
+	ld a, PREDEF_DECOMPRESS
 	call Predef
 	ret
 ; 3fc30
@@ -12396,7 +12396,36 @@ GetGender: ; 50bdd
 	ret
 ; 50c50
 
-INCBIN "baserom.gbc", $50c50, $51424 - $50c50
+INCBIN "baserom.gbc", $50c50, $5125d - $50c50
+
+
+DecompressPredef: ; 5125d
+; Decompress lz data from b:hl to scratch space at 6:d000, then copy it to address de.
+
+	ld a, [rSVBK]
+	push af
+	ld a, 6
+	ld [rSVBK], a
+
+	push de
+	push bc
+	ld a, b
+	ld de, $d000
+	call FarDecompress
+	pop bc
+	ld de, $d000
+	pop hl
+	ld a, [hROMBank]
+	ld b, a
+	call $f82
+
+	pop af
+	ld [rSVBK], a
+	ret
+; 5127c
+
+
+INCBIN "baserom.gbc", $5127c, $51424 - $5127c
 
 BaseData:
 INCLUDE "stats/base_stats.asm"
