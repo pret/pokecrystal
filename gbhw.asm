@@ -10,6 +10,8 @@ MBC3RTC        EQU $a000
 SRAM_DISABLE EQU $00
 SRAM_ENABLE  EQU $0a
 
+NUM_SRAM_BANKS EQU 4
+
 RTC_S  EQU $08 ; Seconds   0-59 (0-3Bh)
 RTC_M  EQU $09 ; Minutes   0-59 (0-3Bh)
 RTC_H  EQU $0a ; Hours     0-23 (0-17h)
