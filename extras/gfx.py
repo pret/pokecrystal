@@ -1269,6 +1269,9 @@ def to_png(filein, fileout=None, pal_file=None, height=None, width=None):
 
 	lines = to_lines(flatten(image), width)
 
+	if pal_file == None:
+		if os.path.exists(os.path.splitext(fileout)[0]+'.pal'):
+			pal_file = os.path.splitext(fileout)[0]+'.pal'
 
 	if pal_file == None:
 		palette   = None
@@ -1437,10 +1440,7 @@ def mass_to_colored_png(debug=False):
 			for name in files:
 				if debug: print os.path.splitext(name), os.path.join(root, name)
 				if os.path.splitext(name)[1] == '.2bpp':
-					if os.path.splitext(name)[0]+'.pal' in files:
-						to_png(os.path.join(root, name), None, os.path.join(root, os.path.splitext(name)[0]+'.pal'))
-					else:
-						to_png(os.path.join(root, name))
+					to_png(os.path.join(root, name))
 					os.utime(os.path.join(root, name), None)
 
 	# only monster and trainer pics for now
@@ -1458,7 +1458,7 @@ def mass_to_colored_png(debug=False):
 		for name in files:
 			if debug: print os.path.splitext(name), os.path.join(root, name)
 			if os.path.splitext(name)[1] == '.2bpp':
-				to_png(os.path.join(root, name), None, os.path.join(root, name[:-5]+'.pal'))
+				to_png(os.path.join(root, name))
 				os.utime(os.path.join(root, name), None)
 
 
