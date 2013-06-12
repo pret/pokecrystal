@@ -1183,6 +1183,12 @@ def dmg2rgb(word):
 	blue = word & 0b11111
 	alpha = 255
 	return ((red<<3)+0b100, (green<<3)+0b100, (blue<<3)+0b100, alpha)
+	
+def rgb_to_dmg(color):
+	word =  (color['r'] / 8) << 10
+	word += (color['g'] / 8) <<  5
+	word += (color['b'] / 8)
+	return word
 
 
 def png_pal(filename):
@@ -1303,17 +1309,13 @@ def to_2bpp(filein, fileout=None, palout=None):
 		greyscale = info[3]['greyscale']
 
 
-	# commented out for the moment
-
 	padding = { 'left':   0,
 	            'right':  0,
 	            'top':    0,
 	            'bottom': 0, }
-
 	#if width  % 8 != 0:
 	#	padding['left']   =    int(ceil((width / 8 + 8 - width) / 2))
 	#	padding['right']  =   int(floor((width / 8 + 8 - width) / 2))
-
 	#if height % 8 != 0:
 	#	padding['top']    =  int(ceil((height / 8 + 8 - height) / 2))
 	#	padding['bottom'] = int(floor((height / 8 + 8 - height) / 2))
@@ -1322,7 +1324,7 @@ def to_2bpp(filein, fileout=None, palout=None):
 	# turn the flat values into something more workable
 
 	pixel_length = 4 # rgba
-	image   = []
+	image = []
 
 	# while we're at it, let's size up the palette
 
@@ -1331,53 +1333,49 @@ def to_2bpp(filein, fileout=None, palout=None):
 	for line in rgba:
 		newline = []
 		for pixel in range(len(line)/pixel_length):
-			i = pixel*pixel_length
+			i = pixel * pixel_length
 			color = { 'r': line[i  ],
 			          'g': line[i+1],
 			          'b': line[i+2],
 			          'a': line[i+3], }
-			newline.append(color)
-			if color not in palette: palette.append(color)
+			newline += [color]
+			if color not in palette: palette += [color]
 		image.append(newline)
 
+	# pad out any small palettes
+	hues = {
+		'white': { 'r': 0xff, 'g': 0xff, 'b': 0xff, 'a': 0xff },
+		'black': { 'r': 0x00, 'g': 0x00, 'b': 0x00, 'a': 0xff },
+		'grey':  { 'r': 0x55, 'g': 0x55, 'b': 0x55, 'a': 0xff },
+		'gray':  { 'r': 0xaa, 'g': 0xaa, 'b': 0xaa, 'a': 0xff },
+	}
+	while len(palette) < 4:
+		for hue in hues.values():
+			if not any(color is hue for color in palette):
+				palette += [hue]
+				if len(palette) >= 4: break
 
-	# sort by luminance, because we can
+	assert len(palette) <= 4, 'Palette should be 4 colors, is really ' + str(len(palette))
 
+	# sort by luminance
 	def luminance(color):
 		# this is actually in reverse, thanks to dmg/cgb palette ordering
 		rough = { 'r':  4.7,
 		          'g':  1.4,
 		          'b': 13.8, }
 		return sum(color[key] * -rough[key] for key in rough.keys())
+	palette = sorted(palette, key=luminance)
 
-	palette = sorted(palette, key = lambda x:luminance(x))
+	# spit out new .pal file
+	#if palout != None:
+	#	output = []
+	#	for color in palette[1:3]:
+	#		word = rgb_to_dmg(color)
+	#		output += [word & 0xff]
+	#		output += [word >> 8]
+	#	to_file(palout, output)
 
-	# no palette fixing for now
-
-	assert len(palette) <= 4, 'Palette should be 4 colors, is really ' + str(len(palette))
-
-
-	# spit out new palette (disabled for now)
-
-	def rgb_to_dmg(color):
-		word =  (color['r'] / 8) << 10
-		word += (color['g'] / 8) <<  5
-		word += (color['b'] / 8)
-		return word
-
-	palout = None
-
-	if palout != None:
-		output = []
-		for color in palette[1:3]:
-			word = rgb_to_dmg(color)
-			output.append(word>>8)
-			output.append(word&0xff)
-		to_file(palout, output)
-
-
-	# create a new map consisting of quaternary color ids
-
+	# create a new map of quaternary color ids
 	map = []
 	if padding['top']: map += [0] * (width + padding['left'] + padding['right']) * padding['top']
 	for line in image:
@@ -1388,12 +1386,9 @@ def to_2bpp(filein, fileout=None, palout=None):
 	if padding['bottom']: map += [0] * (width + padding['left'] + padding['right']) * padding['bottom']
 
 	# split it into strips of 8, and make them planar
-
 	num_columns = width / 8
 	num_rows = height / 8
-
 	tile = 8 * 8
-
 	image = []
 	for row in range(num_rows):
 		for column in range(num_columns):
