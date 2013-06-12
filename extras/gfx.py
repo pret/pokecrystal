@@ -1185,23 +1185,24 @@ def dmg2rgb(word):
 	return ((red<<3)+0b100, (green<<3)+0b100, (blue<<3)+0b100, alpha)
 	
 def rgb_to_dmg(color):
-	word =  (color['r'] / 8) << 10
+	word =  (color['r'] / 8)
 	word += (color['g'] / 8) <<  5
-	word += (color['b'] / 8)
+	word += (color['b'] / 8) << 10
 	return word
 
 
 def png_pal(filename):
 	palette = []
-	palette.append((255,255,255,255))
 	with open(filename, 'rb') as pal_data:
 		words = pal_data.read()
 		dmg_pals = []
 		for word in range(len(words)/2):
 			dmg_pals.append(ord(words[word*2]) + ord(words[word*2+1])*0x100)
-	for word in dmg_pals:
-		palette.append(dmg2rgb(word))
-	palette.append((000,000,000,255))
+	white = (255,255,255,255)
+	black = (000,000,000,255)
+	for word in dmg_pals: palette += [dmg2rgb(word)]
+	if white not in dmg_pals and len(palette) < 4: palette = [white] + palette
+	if black not in dmg_pals and len(palette) < 4: palette += [black]
 	return palette
 
 
@@ -1366,14 +1367,18 @@ def to_2bpp(filein, fileout=None, palout=None):
 		return sum(color[key] * -rough[key] for key in rough.keys())
 	palette = sorted(palette, key=luminance)
 
-	# spit out new .pal file
-	#if palout != None:
-	#	output = []
-	#	for color in palette[1:3]:
-	#		word = rgb_to_dmg(color)
-	#		output += [word & 0xff]
-	#		output += [word >> 8]
-	#	to_file(palout, output)
+	# spit out a new .pal file
+	# disable this if it causes problems with paletteless images
+	if palout == None:
+		if os.path.exists(os.path.splitext(fileout)[0]+'.pal'):
+			palout = os.path.splitext(fileout)[0]+'.pal'
+	if palout != None:
+		output = []
+		for color in palette:
+			word = rgb_to_dmg(color)
+			output += [word & 0xff]
+			output += [word >> 8]
+		to_file(palout, output)
 
 	# create a new map of quaternary color ids
 	map = []
