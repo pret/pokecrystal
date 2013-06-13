@@ -16728,13 +16728,11 @@ INCBIN "baserom.gbc", $bd0d0, $be699-$bd0d0
 
 SECTION "bank30",DATA,BANK[$30]
 
-INCBIN "baserom.gbc", $c0000, $c3fc0 - $c0000
-
+INCLUDE "gfx/overworld/sprites_1.asm"
 
 SECTION "bank31",DATA,BANK[$31]
 
-INCBIN "baserom.gbc", $c4000, $c7f80 - $c4000
-
+INCLUDE "gfx/overworld/sprites_2.asm"
 
 SECTION "bank32",DATA,BANK[$32]
 
