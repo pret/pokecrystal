@@ -41,6 +41,9 @@ cd pokecrystal
 
 # install python requirements
 pip install -r requirements.txt
+
+# use hexdump to diff binary files
+git config diff.hex.textconv hexdump
 ```
 
 To compile the ROM from ASM source:
