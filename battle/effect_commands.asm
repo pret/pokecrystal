@@ -6264,59 +6264,59 @@ Function0x36281: ; 36281
 
 BattleCommand7e: ; 362ad
 ; attackdown
-	ld a, $0
+	ld a, ATTACK
 	jr BattleCommand1d
 BattleCommand7f: ; 362b1
 ; defensedown
-	ld a, $1
+	ld a, DEFENSE
 	jr BattleCommand1d
 BattleCommand80: ; 362b5
 ; speeddown
-	ld a, $2
+	ld a, SPEED
 	jr BattleCommand1d
 BattleCommand81: ; 362b9
 ; specialattackdown
-	ld a, $3
+	ld a, SP_ATTACK
 	jr BattleCommand1d
 BattleCommand82: ; 362bd
 ; specialdefensedown
-	ld a, $4
+	ld a, SP_DEFENSE
 	jr BattleCommand1d
 BattleCommand83: ; 362c1
 ; accuracydown
-	ld a, $5
+	ld a, ACCURACY
 	jr BattleCommand1d
 BattleCommand84: ; 362c5
 ; evasiondown
-	ld a, $6
+	ld a, EVASION
 	jr BattleCommand1d
 BattleCommand85: ; 362c9
 ; attackdown2
-	ld a, $10
+	ld a, $10 | ATTACK
 	jr BattleCommand1d
 BattleCommand86: ; 362cd
 ; defensedown2
-	ld a, $11
+	ld a, $10 | DEFENSE
 	jr BattleCommand1d
 BattleCommand87: ; 362d1
 ; speeddown2
-	ld a, $12
+	ld a, $10 | SPEED
 	jr BattleCommand1d
 BattleCommand88: ; 362d5
 ; specialattackdown2
-	ld a, $13
+	ld a, $10 | SP_ATTACK
 	jr BattleCommand1d
 BattleCommand89: ; 362d9
 ; specialdefensedown2
-	ld a, $14
+	ld a, $10 | SP_DEFENSE
 	jr BattleCommand1d
 BattleCommand8a: ; 362dd
 ; accuracydown2
-	ld a, $15
+	ld a, $10 | ACCURACY
 	jr BattleCommand1d
 BattleCommand8b: ; 362e1
 ; evasiondown2
-	ld a, $16
+	ld a, $10 | EVASION
 
 BattleCommand1d: ; 362e3
 ; statdown
