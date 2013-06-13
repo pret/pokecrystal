@@ -130,7 +130,7 @@ BattleCommand01: ; 34084
 
 	xor a
 	ld [AttackMissed], a
-	ld [$c70d], a
+	ld [EffectFailed], a
 	ld [$c689], a
 	ld [AlreadyDisobeyed], a
 	ld [AlreadyFailed], a
@@ -2689,7 +2689,7 @@ BattleCommand90: ; 34ecc
 ; effectchance
 
 	xor a
-	ld [$c70d], a
+	ld [EffectFailed], a
 	call CheckSubstituteOpp
 	jr nz, .failed
 
@@ -2708,7 +2708,7 @@ BattleCommand90: ; 34ecc
 
 .failed
 	ld a, 1
-	ld [$c70d], a
+	ld [EffectFailed], a
 	and a
 	ret
 ; 34eee
@@ -3467,7 +3467,7 @@ PlayerAttackDamage: ; 352e2
 	ld a, [hli]
 	ld b, a
 	ld c, [hl]
-	ld hl, $c6b6
+	ld hl, PlayerStats
 	jr .thickclub
 
 
@@ -3728,7 +3728,7 @@ EnemyAttackDamage: ; 353f6
 	ld a, [hli]
 	ld b, a
 	ld c, [hl]
-	ld hl, $c6c1
+	ld hl, EnemyStats
 	jr .thickclub
 
 
@@ -5653,7 +5653,7 @@ BattleCommand13: ; 35eee
 	ld a, b
 	cp $14
 	ret z
-	ld a, [$c70d]
+	ld a, [EffectFailed]
 	and a
 	ret nz
 	call Function0x37962
@@ -5922,7 +5922,7 @@ BattleCommand17: ; 3608c
 	ld a, b
 	cp $15
 	ret z
-	ld a, [$c70d]
+	ld a, [EffectFailed]
 	and a
 	ret nz
 	call Function0x37962
@@ -5997,7 +5997,7 @@ BattleCommand18: ; 36102
 	ld a, b
 	cp $16
 	ret z
-	ld a, [$c70d]
+	ld a, [EffectFailed]
 	and a
 	ret nz
 	call Function0x37962
@@ -6048,7 +6048,7 @@ BattleCommand19: ; 36165
 	ld a, b
 	cp $18
 	ret z
-	ld a, [$c70d]
+	ld a, [EffectFailed]
 	and a
 	ret nz
 	call Function0x37962
@@ -6127,7 +6127,7 @@ BattleCommand7d: ; 361e0
 BattleCommand1c: ; 361e4
 ; statup
 	call Function0x361ef
-	ld a, [$c70e]
+	ld a, [FailedMessage]
 	and a
 	ret nz
 	jp Function0x36281
@@ -6136,7 +6136,7 @@ BattleCommand1c: ; 361e4
 
 Function0x361ef: ; 361ef
 	ld a, b
-	ld [$c70c], a
+	ld [LoweredStat], a
 	ld hl, PlayerStatLevels
 	ld a, [hBattleTurn]
 	and a
@@ -6146,10 +6146,10 @@ Function0x361ef: ; 361ef
 	ld a, [AttackMissed]
 	and a
 	jp nz, Function0x3627b
-	ld a, [$c70d]
+	ld a, [EffectFailed]
 	and a
 	jp nz, Function0x3627b
-	ld a, [$c70c]
+	ld a, [LoweredStat]
 	and $f
 	ld c, a
 	ld b, $0
@@ -6159,7 +6159,7 @@ Function0x361ef: ; 361ef
 	ld a, $d
 	cp b
 	jp c, Function0x36270
-	ld a, [$c70c]
+	ld a, [LoweredStat]
 	and $f0
 	jr z, .asm_3622b ; 0x36222 $7
 	inc b
@@ -6174,12 +6174,12 @@ Function0x361ef: ; 361ef
 	cp $5
 	jr nc, .asm_36268 ; 0x36230 $36
 	ld hl, $c641
-	ld de, $c6b6
+	ld de, PlayerStats
 	ld a, [hBattleTurn]
 	and a
 	jr z, .asm_36243 ; 0x3623b $6
 	ld hl, $d21b
-	ld de, $c6c1
+	ld de, EnemyStats
 .asm_36243
 	push bc
 	sla c
@@ -6209,7 +6209,7 @@ Function0x361ef: ; 361ef
 .asm_36268
 	pop hl
 	xor a
-	ld [$c70e], a
+	ld [FailedMessage], a
 	ret
 ; 3626e
 
@@ -6223,7 +6223,7 @@ Function0x3626e: ; 3626e
 
 Function0x36270: ; 36270
 	ld a, $2
-	ld [$c70e], a
+	ld [FailedMessage], a
 	ld a, $1
 	ld [AttackMissed], a
 	ret
@@ -6232,7 +6232,7 @@ Function0x36270: ; 36270
 
 Function0x3627b: ; 3627b
 	ld a, $1
-	ld [$c70e], a
+	ld [FailedMessage], a
 	ret
 ; 36281
 
@@ -6320,100 +6320,123 @@ BattleCommand8b: ; 362e1
 
 BattleCommand1d: ; 362e3
 ; statdown
-	ld [$c70c], a
+
+	ld [LoweredStat], a
+
 	call Function0x36391
-	jp nz, Function0x36386
+	jp nz, .Mist
+
 	ld hl, EnemyStatLevels
 	ld a, [hBattleTurn]
 	and a
-	jr z, .asm_362f7 ; 362f2 $3
+	jr z, .GetStatLevel
 	ld hl, PlayerStatLevels
-.asm_362f7
-	ld a, [$c70c]
+
+.GetStatLevel
+; Attempt to lower the stat.
+	ld a, [LoweredStat]
 	and $f
 	ld c, a
-	ld b, $0
+	ld b, 0
 	add hl, bc
 	ld b, [hl]
 	dec b
-	jp z, .asm_36372
-	ld a, [$c70c]
+	jp z, .CantLower
+
+; Sharply lower the stat if applicable.
+	ld a, [LoweredStat]
 	and $f0
-	jr z, .asm_36310 ; 3630a $4
+	jr z, .ComputerMiss
 	dec b
-	jr nz, .asm_36310 ; 3630d $1
+	jr nz, .ComputerMiss
 	inc b
-.asm_36310
+
+.ComputerMiss
+; Computer opponents have a 1/4 chance of failing.
 	ld a, [hBattleTurn]
 	and a
-	jr z, .asm_36338 ; 36313 $23
+	jr z, .DidntMiss
 	ld a, [InLinkBattle]
 	and a
-	jr nz, .asm_36338 ; 36319 $1d
+	jr nz, .DidntMiss
+
 	ld a, [$cfc0]
 	and a
-	jr nz, .asm_36338 ; 3631f $17
+	jr nz, .DidntMiss
+
+; Lock-On still always works.
 	ld a, [PlayerSubStatus5]
-	bit 5, a
-	jr nz, .asm_36338 ; 36326 $10
+	bit SUBSTATUS_LOCK_ON, a
+	jr nz, .DidntMiss
+
+; Attacking moves that also lower accuracy are unaffected.
 	ld a, BATTLE_VARS_MOVE_EFFECT
 	call CleanGetBattleVarPair
-	cp $49
-	jr z, .asm_36338 ; 3632f $7
+	cp EFFECT_ACCURACY_DOWN_HIT
+	jr z, .DidntMiss
+
 	call FarBattleRNG
 	cp $40
-	jr c, .asm_3637d ; 36336 $45
-.asm_36338
+	jr c, .Failed
+
+.DidntMiss
 	call CheckSubstituteOpp
-	jr nz, .asm_3637d ; 3633b $40
+	jr nz, .Failed
+
 	ld a, [AttackMissed]
 	and a
-	jr nz, .asm_3637d ; 36341 $3a
-	ld a, [$c70d]
+	jr nz, .Failed
+
+	ld a, [EffectFailed]
 	and a
-	jr nz, .asm_3637d ; 36347 $34
+	jr nz, .Failed
+
 	call CheckHiddenOpponent
-	jr nz, .asm_3637d ; 3634c $2f
+	jr nz, .Failed
+
+; Accuracy/Evasion reduction don't involve stats.
 	ld [hl], b
 	ld a, c
-	cp $5
-	jr nc, .asm_3636c ; 36352 $18
+	cp ACCURACY
+	jr nc, .Hit
+
 	push hl
-	ld hl, $d21b
-	ld de, $c6c1
+	ld hl, EnemyMonAtk + 1
+	ld de, EnemyStats
 	ld a, [hBattleTurn]
 	and a
-	jr z, .asm_36366 ; 3635e $6
-	ld hl, $c641
-	ld de, $c6b6
+	jr z, .asm_36366
+	ld hl, BattleMonAtk + 1
+	ld de, PlayerStats
 .asm_36366
 	call Function0x3641a
 	pop hl
-	jr z, .asm_36371 ; 3636a $5
-.asm_3636c
+	jr z, .CouldntLower
+
+.Hit
 	xor a
-	ld [$c70e], a
+	ld [FailedMessage], a
 	ret
-.asm_36371
+
+.CouldntLower
 	inc [hl]
-.asm_36372
-	ld a, $3
-	ld [$c70e], a
-	ld a, $1
+.CantLower
+	ld a, 3
+	ld [FailedMessage], a
+	ld a, 1
 	ld [AttackMissed], a
 	ret
-.asm_3637d
-	ld a, $1
-	ld [$c70e], a
+
+.Failed
+	ld a, 1
+	ld [FailedMessage], a
 	ld [AttackMissed], a
 	ret
-; 36386
 
-
-Function0x36386: ; 36386
-	ld a, $2
-	ld [$c70e], a
-	ld a, $1
+.Mist
+	ld a, 2
+	ld [FailedMessage], a
+	ld a, 1
 	ld [AttackMissed], a
 	ret
 ; 36391
@@ -6446,10 +6469,10 @@ Function0x36391: ; 36391
 
 
 BattleCommand8c: ; 363b8
-	ld a, [$c70e]
+	ld a, [FailedMessage]
 	and a
 	ret nz
-	ld a, [$c70c]
+	ld a, [LoweredStat]
 	and $f
 	ld b, a
 	inc b
@@ -6462,7 +6485,7 @@ BattleCommand8c: ; 363b8
 	start_asm
 
 	ld hl, .up
-	ld a, [$c70c]
+	ld a, [LoweredStat]
 	and $f0
 	ret z
 	ld hl, .wayup
@@ -6480,10 +6503,10 @@ BattleCommand8c: ; 363b8
 
 
 BattleCommand8d: ; 363e9
-	ld a, [$c70e]
+	ld a, [FailedMessage]
 	and a
 	ret nz
-	ld a, [$c70c]
+	ld a, [LoweredStat]
 	and $f
 	ld b, a
 	inc b
@@ -6496,7 +6519,7 @@ BattleCommand8d: ; 363e9
 	start_asm
 
 	ld hl, .fell
-	ld a, [$c70c]
+	ld a, [LoweredStat]
 	and $f0
 	ret z
 	ld hl, .sharplyfell
@@ -6513,20 +6536,22 @@ BattleCommand8d: ; 363e9
 
 
 Function0x3641a: ; 3641a
-; selfdestruct
+; Lower stat c from stat struct hl (buffer de).
 
 	push bc
 	sla c
 	ld b, 0
 	add hl, bc
+	; add de, c
 	ld a, c
 	add e
 	ld e, a
 	jr nc, .asm_36426
 	inc d
 .asm_36426
-
 	pop bc
+
+; The lowest possible stat is 1.
 	ld a, [hld]
 	sub 1
 	jr nz, .asm_3642f
@@ -6537,21 +6562,19 @@ Function0x3641a: ; 3641a
 .asm_3642f
 	ld a, [hBattleTurn]
 	and a
-	jr z, .asm_3643f
+	jr z, .Player
 
 	call SwitchTurn
 	call Function0x365d7
 	call SwitchTurn
+	jr .end
 
-	jr .asm_36448
-
-.asm_3643f
+.Player
 	call SwitchTurn
 	call Function0x365fd
 	call SwitchTurn
-
-.asm_36448
-	ld a, $1
+.end
+	ld a, 1
 	and a
 	ret
 ; 3644c
@@ -6559,7 +6582,7 @@ Function0x3641a: ; 3641a
 
 BattleCommand8e: ; 3644c
 ; statupfailtext
-	ld a, [$c70e]
+	ld a, [FailedMessage]
 	and a
 	ret z
 	push af
@@ -6567,7 +6590,7 @@ BattleCommand8e: ; 3644c
 	pop af
 	dec a
 	jp z, TryPrintButItFailed
-	ld a, [$c70c]
+	ld a, [LoweredStat]
 	and $f
 	ld b, a
 	inc b
@@ -6579,7 +6602,7 @@ BattleCommand8e: ; 3644c
 
 BattleCommand8f: ; 3646a
 ; statdownfailtext
-	ld a, [$c70e]
+	ld a, [FailedMessage]
 	and a
 	ret z
 	push af
@@ -6590,7 +6613,7 @@ BattleCommand8f: ; 3646a
 	dec a
 	ld hl, ProtectedByMistText
 	jp z, FarBattleTextBox
-	ld a, [$c70c]
+	ld a, [LoweredStat]
 	and $f
 	ld b, a
 	inc b
@@ -6687,7 +6710,7 @@ ResetMiss: ; 3652d
 
 
 Function0x36532: ; 36532
-	ld [$c70c], a
+	ld [LoweredStat], a
 
 	ld hl, PlayerStatLevels
 	ld a, [hBattleTurn]
@@ -6696,7 +6719,7 @@ Function0x36532: ; 36532
 	ld hl, EnemyStatLevels
 
 .asm_36540
-	ld a, [$c70c]
+	ld a, [LoweredStat]
 	and $f
 	ld c, a
 	ld b, 0
@@ -6705,7 +6728,7 @@ Function0x36532: ; 36532
 	dec b
 	jr z, .asm_36589
 
-	ld a, [$c70c]
+	ld a, [LoweredStat]
 	and $f0
 	jr z, .asm_36558
 	dec b
@@ -6720,12 +6743,12 @@ Function0x36532: ; 36532
 
 	push hl
 	ld hl, $c641
-	ld de, $c6b6
+	ld de, PlayerStats
 	ld a, [hBattleTurn]
 	and a
 	jr z, .asm_36570
 	ld hl, $d21b
-	ld de, $c6c1
+	ld de, EnemyStats
 
 .asm_36570
 	call Function0x3641a
@@ -6746,7 +6769,7 @@ Function0x36532: ; 36532
 
 .asm_36583
 	xor a
-	ld [$c70e], a
+	ld [FailedMessage], a
 	ret
 
 .asm_36588
@@ -6754,7 +6777,7 @@ Function0x36532: ; 36532
 
 .asm_36589
 	ld a, 2
-	ld [$c70e], a
+	ld [FailedMessage], a
 	ret
 ; 3658f
 
@@ -6821,7 +6844,7 @@ BattleCommanda7: ; 365c3
 
 Function0x365d7: ; 365d7
 	ld hl, PlayerAtkLevel
-	ld de, $c6b6
+	ld de, PlayerStats
 	ld bc, BattleMonAtk
 
 	ld a, $5
@@ -6844,7 +6867,7 @@ Function0x365d7: ; 365d7
 
 Function0x365fd: ; 365fd
 	ld hl, EnemyAtkLevel
-	ld de, $c6c1
+	ld de, EnemyStats
 	ld bc, EnemyMonAtk
 
 	ld a, $5
@@ -7601,7 +7624,7 @@ BattleCommand25: ; 36aa0
 	ret nz
 	call Function0x36abf
 	ret nz
-	ld a, [$c70d]
+	ld a, [EffectFailed]
 	and a
 	ret nz
 
@@ -8036,7 +8059,7 @@ BattleCommand2b: ; 36d1d
 	ld a, b
 	cp $19
 	ret z
-	ld a, [$c70d]
+	ld a, [EffectFailed]
 	and a
 	ret nz
 	call Function0x37962
@@ -8902,8 +8925,8 @@ BattleCommand2d: ; 371cd
 	ld a, [hl]
 	ld [$d265], a
 	call $343b
-	ld hl, $c6c1
-	ld de, $c6b6
+	ld hl, EnemyStats
+	ld de, PlayerStats
 	ld bc, $000a
 	call BattleSideCopy
 	ld hl, EnemyStatLevels
@@ -9320,7 +9343,7 @@ BattleCommand50: ; 37492
 	ld hl, $5e76
 	rst FarCall
 	ret c
-	ld a, [$c70d]
+	ld a, [EffectFailed]
 	and a
 	ret nz
 	ld a, [InLinkBattle]
@@ -9354,7 +9377,7 @@ BattleCommand50: ; 37492
 	ld hl, $5e76
 	rst FarCall
 	ret c
-	ld a, [$c70d]
+	ld a, [EffectFailed]
 	and a
 	ret nz
 	call .asm_37501

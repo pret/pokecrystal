@@ -621,7 +621,14 @@ BattleScriptBuffer: ; c68a
 BattleScriptBufferLoc: ; c6b2
 	ds 2
 
-	ds 24
+	ds 2
+
+PlayerStats: ; c6b6
+	ds 10
+	ds 1
+EnemyStats: ; c6c1
+	ds 10
+	ds 1
 
 PlayerStatLevels: ; c6cc
 ; 07 neutral
@@ -749,7 +756,14 @@ WeatherCount: ; c70b
 ; # turns remaining
 	ds 1
 
-	ds 6
+LoweredStat: ; c70c
+	ds 1
+EffectFailed: ; c70d
+	ds 1
+FailedMessage: ; c70e
+	ds 1
+
+	ds 3
 
 PlayerUsedMoves: ; c712
 ; add a move that has been used once by the player
