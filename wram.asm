@@ -1654,6 +1654,25 @@ Box13Name: ; dbe1
 Box14Name: ; dbea
 	ds 9
 
+SECTION "decorations", BSS[$dc0f]
+; Sprite id of each decoration
+Bed: ; dc0f
+	ds 1
+Carpet: ; dc10
+	ds 1
+Plant: ; dc11
+	ds 1
+Poster: ; dc12
+	ds 1
+Console: ; dc13
+	ds 1
+LeftOrnament: ; dc14
+	ds 1
+RightOrnament: ; dc15
+	ds 1
+BigDoll: ; dc16
+	ds 1
+
 SECTION "fruittrees", BSS[$dc27]
 FruitTreeFlags: ; dc27
 	ds 1

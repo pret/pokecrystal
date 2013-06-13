@@ -1132,89 +1132,76 @@ INCBIN "baserom.gbc", $fdb, $fe8 - $fdb
 
 
 TextBox: ; fe8
-; draw a text box of given location/size
-; ? hl
-; size bc
-; ? de
-
-; draw border
+; Draw a text box width c height b at hl
+; Dimensions do not include the border.
 	push bc
 	push hl
 	call TextBoxBorder
 	pop hl
 	pop bc
-; fill textbox area with palette 7
 	jr TextBoxPalette
 ; ff1
 
 
 TextBoxBorder: ; ff1
-; draw a text box
-; upper-left corner at coordinates hl
-; height b
-; width c
 
-	; first row
+; Top
 	push hl
 	ld a, "┌"
 	ld [hli], a
-	inc a    ; horizontal border ─
+	inc a ; "─"
 	call NPlaceChar
-	inc a    ; upper-right border ┐
+	inc a ; "┐"
 	ld [hl], a
 
-	; middle rows
+; Middle
 	pop hl
-	ld de, 20
-	add hl, de ; skip the top row
-
-.PlaceRow\@
+	ld de, 20 ; screen width
+	add hl, de
+.PlaceRow
 	push hl
 	ld a, "│"
 	ld [hli], a
 	ld a, " "
 	call NPlaceChar
 	ld [hl], "│"
-
 	pop hl
-	ld de, 20
-	add hl, de ; move to next row
+	ld de, 20 ; screen width
+	add hl, de
 	dec b
-	jr nz, .PlaceRow\@
+	jr nz, .PlaceRow
 
-	; bottom row
+; Bottom
 	ld a, "└"
 	ld [hli], a
 	ld a, "─"
 	call NPlaceChar
 	ld [hl], "┘"
+
 	ret
 ; 101e
 
 
 NPlaceChar: ; 101e
-; place a row of width c of identical characters
+; Place char a c times
 	ld d,c
-.loop\@
+.loop
 	ld [hli],a
 	dec d
-	jr nz,.loop\@
+	jr nz, .loop
 	ret
 ; 1024
 
 
 TextBoxPalette: ; 1024
-; fill textbox area with pal 07
-; hl: tile address
-; b: height
-; c: width
+; Fill text box width c height b at hl with pal 7
 	ld de, AttrMap - TileMap
 	add hl, de
 	inc b
 	inc b
 	inc c
 	inc c
-	ld a, $07 ; palette
+	ld a, 7 ; pal
 .gotoy
 	push bc
 	push hl
@@ -1223,7 +1210,7 @@ TextBoxPalette: ; 1024
 	dec c
 	jr nz, .gotox
 	pop hl
-	ld de, $0014 ; screen width in tiles (20)
+	ld de, 20 ; screen width
 	add hl, de
 	pop bc
 	dec b
@@ -1234,25 +1221,27 @@ TextBoxPalette: ; 1024
 
 SpeechTextBox: ; 103e
 ; Standard textbox.
-	ld hl, $c590 ; tile 0, 12
-	ld b, $4 ; height
-	ld c, $12 ; width ; SCREEN_WIDTH - 2 (border)
+	hlcoord 0, 12
+	ld b, 4 ; height
+	ld c, 18 ; screen width - 2 (border)
 	jp TextBox
 ; 1048
 
 
 INCBIN "baserom.gbc", $1048, $1057 - $1048
 
-PrintText: ; 0x1057
+
+PrintText: ; 1057
 	call $106c
 	push hl
-	ld hl, $c5b9
-	ld bc, $0312
+	hlcoord 1, 14
+	ld bc, 18 + 3<<8
 	call ClearBox
 	pop hl
+
 PrintTextBoxText: ; 1065
-	ld bc, $c5b9 ; TileMap(1,14)
-	call $13e5 ; PrintText
+	bccoord 1, 14
+	call $13e5
 	ret
 ; 106c
 
@@ -3298,7 +3287,12 @@ JpHl: ; 2fec
 	jp [hl]
 ; 2fed
 
-INCBIN "baserom.gbc", $2fed, $300b-$2fed
+JpDe: ; 2fed
+	push de
+	ret
+; 2fef
+
+INCBIN "baserom.gbc", $2fef, $300b - $2fef
 
 ClearSprites: ; 300b
 	ld hl, Sprites
@@ -3440,19 +3434,19 @@ IsInArray: ; 30e1
 ; if found, returns count in b and sets carry.
 	ld b,0
 	ld c,a
-.loop\@
+.loop
 	ld a,[hl]
 	cp a, $FF
-	jr z,.NotInArray\@
+	jr z,.NotInArray
 	cp c
-	jr z,.InArray\@
+	jr z,.InArray
 	inc b
 	add hl,de
-	jr .loop\@
-.NotInArray\@
+	jr .loop
+.NotInArray
 	and a
 	ret
-.InArray\@
+.InArray
 	scf
 	ret
 ; 0x30f4
@@ -3819,19 +3813,19 @@ CountSetBits: ; 0x335f
 ; OUTPUT:
 ; [$d265] = number of set bits
 	ld c, $0
-.loop\@
+.loop
 	ld a, [hli]
 	ld e, a
 	ld d, $8
-.innerLoop\@ ; count how many bits are set in the current byte
+.innerLoop ; count how many bits are set in the current byte
 	srl e
 	ld a, $0
 	adc c
 	ld c, a
 	dec d
-	jr nz, .innerLoop\@
+	jr nz, .innerLoop
 	dec b
-	jr nz, .loop\@
+	jr nz, .loop
 	ld a, c
 	ld [$d265], a
 	ret
@@ -4300,12 +4294,12 @@ PrintBCDNumber: ; 38bb
 	res 6, c
 	res 5, c ; c now holds the length
 	bit 5, b
-	jr z, .loop\@
+	jr z, .loop
 	bit 7, b
-	jr nz, .loop\@
+	jr nz, .loop
 	ld [hl], "¥"
 	inc hl
-.loop\@
+.loop
 	ld a, [de]
 	swap a
 	call PrintBCDDigit ; print upper digit
@@ -4313,48 +4307,48 @@ PrintBCDNumber: ; 38bb
 	call PrintBCDDigit ; print lower digit
 	inc de
 	dec c
-	jr nz, .loop\@
+	jr nz, .loop
 	bit 7, b ; were any non-zero digits printed?
-	jr z, .done\@ ; if so, we are done
-.numberEqualsZero\@ ; if every digit of the BCD number is zero
+	jr z, .done ; if so, we are done
+.numberEqualsZero ; if every digit of the BCD number is zero
 	bit 6, b ; left or right alignment?
-	jr nz, .skipRightAlignmentAdjustment\@
+	jr nz, .skipRightAlignmentAdjustment
 	dec hl ; if the string is right-aligned, it needs to be moved back one space
-.skipRightAlignmentAdjustment\@
+.skipRightAlignmentAdjustment
 	bit 5, b
-	jr z, .skipCurrencySymbol\@
+	jr z, .skipCurrencySymbol
 	ld [hl], "¥" ; currency symbol
 	inc hl
-.skipCurrencySymbol\@
+.skipCurrencySymbol
 	ld [hl], "0"
 	call PrintLetterDelay
 	inc hl
-.done\@
+.done
 	ret
 ; 0x38f2
 
 PrintBCDDigit: ; 38f2
 	and a, %00001111
 	and a
-	jr z, .zeroDigit\@
-.nonzeroDigit\@
+	jr z, .zeroDigit
+.nonzeroDigit
 	bit 7, b ; have any non-space characters been printed?
-	jr z, .outputDigit\@
+	jr z, .outputDigit
 ; if bit 7 is set, then no numbers have been printed yet
 	bit 5, b ; print the currency symbol?
-	jr z, .skipCurrencySymbol\@
+	jr z, .skipCurrencySymbol
 	ld [hl], "¥"
 	inc hl
 	res 5, b
-.skipCurrencySymbol\@
+.skipCurrencySymbol
 	res 7, b ; unset 7 to indicate that a nonzero digit has been reached
-.outputDigit\@
+.outputDigit
 	add a, "0"
 	ld [hli], a
 	jp PrintLetterDelay
-.zeroDigit\@
+.zeroDigit
 	bit 7, b ; either printing leading zeroes or already reached a nonzero digit?
-	jr z, .outputDigit\@ ; if so, print a zero digit
+	jr z, .outputDigit ; if so, print a zero digit
 	bit 6, b ; left or right alignment?
 	ret nz
 	ld a, " "
@@ -5803,7 +5797,7 @@ PredefPointers: ; 856b
 	dwb $516c, $14
 	dwb $508b, $14
 	dwb $520d, $14
-	dwb $525d, $14
+	dwb DecompressPredef, BANK(DecompressPredef)
 	dwb $47d3, $0d
 	dwb $7908, $3e
 	dwb $7877, $3e
@@ -6242,13 +6236,13 @@ PrintNumber_AdvancePointer: ; c64a
 ; increments the pointer unless leading zeroes are not being printed,
 ; the number is left-aligned, and no nonzero digits have been printed yet
 	bit 7, d ; print leading zeroes?
-	jr nz, .incrementPointer\@
+	jr nz, .incrementPointer
 	bit 6, d ; left alignment or right alignment?
-	jr z, .incrementPointer\@
+	jr z, .incrementPointer
 	ld a, [hPastLeadingZeroes]
 	and a
 	ret z
-.incrementPointer\@
+.incrementPointer
 	inc hl
 	ret
 ; 0xc658
@@ -8802,13 +8796,13 @@ INCLUDE "stats/wild/swarm_water.asm"
 
 INCBIN "baserom.gbc", $2b930, $2ba1a - $2b930
 
-PlayerGFX: ; 2ba1a
+ChrisBackpic: ; 2ba1a
 INCBIN "gfx/misc/player.lz"
 ; 2bba1
 
 db 0, 0, 0, 0, 0, 0, 0, 0, 0 ; filler
 
-DudeGFX: ; 2bbaa
+DudeBackpic: ; 2bbaa
 INCBIN "gfx/misc/dude.lz"
 ; 2bce1
 
@@ -10103,7 +10097,46 @@ GetRoamMonDVs: ; 3fa19
 ; 3fa31
 
 
-INCBIN "baserom.gbc", $3fa31, $3fc8b - $3fa31
+INCBIN "baserom.gbc", $3fa31, $3fbff - $3fa31
+
+
+GetPlayerBackpic: ; 3fbff
+; Load the player character's backpic (6x6) into VRAM starting from $9310.
+
+; Special exception for Dude.
+	ld b, BANK(DudeBackpic)
+	ld hl, DudeBackpic
+	ld a, [BattleType]
+	cp BATTLETYPE_TUTORIAL
+	jr z, .Decompress
+
+; What gender are we?
+	ld a, [$d45b]
+	bit 2, a
+	jr nz, .Chris
+	ld a, [PlayerGender]
+	bit 0, a
+	jr z, .Chris
+
+; It's a girl.
+	callba GetKrisBackpic
+	ret
+
+.Chris
+; It's a boy.
+	ld b, BANK(ChrisBackpic)
+	ld hl, ChrisBackpic
+
+.Decompress
+	ld de, $9310
+	ld c, $31
+	ld a, PREDEF_DECOMPRESS
+	call Predef
+	ret
+; 3fc30
+
+
+INCBIN "baserom.gbc", $3fc30, $3fc8b - $3fc30
 
 
 BattleStartMessage ; 3fc8b
@@ -12363,7 +12396,36 @@ GetGender: ; 50bdd
 	ret
 ; 50c50
 
-INCBIN "baserom.gbc", $50c50, $51424 - $50c50
+INCBIN "baserom.gbc", $50c50, $5125d - $50c50
+
+
+DecompressPredef: ; 5125d
+; Decompress lz data from b:hl to scratch space at 6:d000, then copy it to address de.
+
+	ld a, [rSVBK]
+	push af
+	ld a, 6
+	ld [rSVBK], a
+
+	push de
+	push bc
+	ld a, b
+	ld de, $d000
+	call FarDecompress
+	pop bc
+	ld de, $d000
+	pop hl
+	ld a, [hROMBank]
+	ld b, a
+	call $f82
+
+	pop af
+	ld [rSVBK], a
+	ret
+; 5127c
+
+
+INCBIN "baserom.gbc", $5127c, $51424 - $5127c
 
 BaseData:
 INCLUDE "stats/base_stats.asm"
@@ -13062,7 +13124,22 @@ GetPlayerIcon: ; 8832c
 	ret
 ; 8833e
 
-INCBIN "baserom.gbc", $8833e, $896ff - $8833e
+INCBIN "baserom.gbc", $8833e, $88ec9 - $8833e
+
+
+GetKrisBackpic: ; 88ec9
+; Kris's backpic is uncompressed.
+	ld de, KrisBackpic
+	ld hl, $9310
+	ld bc, $2231
+	call $f82
+	ret
+; 88ed6
+
+KrisBackpic: ; 88ed6
+
+
+INCBIN "baserom.gbc", $88ed6, $896ff - $88ed6
 
 ClearScreenArea: ; 0x896ff
 ; clears an area of the screen
@@ -13072,18 +13149,18 @@ ClearScreenArea: ; 0x896ff
 ; c = width
 	ld a,  $7f    ; blank tile
 	ld de, 20     ; screen width
-.loop\@
+.loop
 	push bc
 	push hl
-.innerLoop\@
+.innerLoop
 	ld [hli], a
 	dec c
-	jr nz, .innerLoop\@
+	jr nz, .innerLoop
 	pop hl
 	pop bc
 	add hl, de
 	dec b
-	jr nz, .loop\@
+	jr nz, .loop
 	dec hl
 	inc c
 	inc c
@@ -17577,16 +17654,16 @@ Tileset29Anim: ; 0xfc233
 
 Tileset23Anim: ; 0xfc27f
 ;	   param, function
-	dw MinecartTilePointer9,  AnimateMinecartTile
-	dw MinecartTilePointer10, AnimateMinecartTile
-	dw MinecartTilePointer7,  AnimateMinecartTile
-	dw MinecartTilePointer8,  AnimateMinecartTile
-	dw MinecartTilePointer5,  AnimateMinecartTile
-	dw MinecartTilePointer6,  AnimateMinecartTile
-	dw MinecartTilePointer3,  AnimateMinecartTile
-	dw MinecartTilePointer4,  AnimateMinecartTile
-	dw MinecartTilePointer1,  AnimateMinecartTile
-	dw MinecartTilePointer2,  AnimateMinecartTile
+	dw SproutPillarTilePointer9,  AnimateSproutPillarTile
+	dw SproutPillarTilePointer10, AnimateSproutPillarTile
+	dw SproutPillarTilePointer7,  AnimateSproutPillarTile
+	dw SproutPillarTilePointer8,  AnimateSproutPillarTile
+	dw SproutPillarTilePointer5,  AnimateSproutPillarTile
+	dw SproutPillarTilePointer6,  AnimateSproutPillarTile
+	dw SproutPillarTilePointer3,  AnimateSproutPillarTile
+	dw SproutPillarTilePointer4,  AnimateSproutPillarTile
+	dw SproutPillarTilePointer1,  AnimateSproutPillarTile
+	dw SproutPillarTilePointer2,  AnimateSproutPillarTile
 	dw $0000, NextTileFrame
 	dw $0000, WaitTileAnimation
 	dw $0000, WaitTileAnimation
@@ -18104,7 +18181,7 @@ SafariFountainFrames: ; fc605
 ; fc645
 
 
-AnimateMinecartTile: ; fc645
+AnimateSproutPillarTile: ; fc645
 ; Read from struct at de:
 ; 	Destination (VRAM)
 ;	Address of the first tile in the frame array
@@ -18336,48 +18413,48 @@ TileAnimationPalette: ; fc6d7
 INCBIN "baserom.gbc", $fc71e, $fc750 - $fc71e
 
 
-MinecartTilePointers: ; fc750
-MinecartTilePointer1:
-	dw $92d0, MinecartTile1
-MinecartTilePointer2:
-	dw $92f0, MinecartTile2
-MinecartTilePointer3:
-	dw $93d0, MinecartTile3
-MinecartTilePointer4:
-	dw $93f0, MinecartTile4
-MinecartTilePointer5:
-	dw $93c0, MinecartTile5
-MinecartTilePointer6:
-	dw $92c0, MinecartTile6
-MinecartTilePointer7:
-	dw $94d0, MinecartTile7
-MinecartTilePointer8:
-	dw $94f0, MinecartTile8
-MinecartTilePointer9:
-	dw $95d0, MinecartTile9
-MinecartTilePointer10:
-	dw $95f0, MinecartTile10
+SproutPillarTilePointers: ; fc750
+SproutPillarTilePointer1:
+	dw $92d0, SproutPillarTile1
+SproutPillarTilePointer2:
+	dw $92f0, SproutPillarTile2
+SproutPillarTilePointer3:
+	dw $93d0, SproutPillarTile3
+SproutPillarTilePointer4:
+	dw $93f0, SproutPillarTile4
+SproutPillarTilePointer5:
+	dw $93c0, SproutPillarTile5
+SproutPillarTilePointer6:
+	dw $92c0, SproutPillarTile6
+SproutPillarTilePointer7:
+	dw $94d0, SproutPillarTile7
+SproutPillarTilePointer8:
+	dw $94f0, SproutPillarTile8
+SproutPillarTilePointer9:
+	dw $95d0, SproutPillarTile9
+SproutPillarTilePointer10:
+	dw $95f0, SproutPillarTile10
 
-MinecartTile1:
-	INCBIN "gfx/tilesets/minecart/1.2bpp"
-MinecartTile2:
-	INCBIN "gfx/tilesets/minecart/2.2bpp"
-MinecartTile3:
-	INCBIN "gfx/tilesets/minecart/3.2bpp"
-MinecartTile4:
-	INCBIN "gfx/tilesets/minecart/4.2bpp"
-MinecartTile5:
-	INCBIN "gfx/tilesets/minecart/5.2bpp"
-MinecartTile6:
-	INCBIN "gfx/tilesets/minecart/6.2bpp"
-MinecartTile7:
-	INCBIN "gfx/tilesets/minecart/7.2bpp"
-MinecartTile8:
-	INCBIN "gfx/tilesets/minecart/8.2bpp"
-MinecartTile9:
-	INCBIN "gfx/tilesets/minecart/9.2bpp"
-MinecartTile10:
-	INCBIN "gfx/tilesets/minecart/10.2bpp"
+SproutPillarTile1:
+	INCBIN "gfx/tilesets/sprout-pillar/1.2bpp"
+SproutPillarTile2:
+	INCBIN "gfx/tilesets/sprout-pillar/2.2bpp"
+SproutPillarTile3:
+	INCBIN "gfx/tilesets/sprout-pillar/3.2bpp"
+SproutPillarTile4:
+	INCBIN "gfx/tilesets/sprout-pillar/4.2bpp"
+SproutPillarTile5:
+	INCBIN "gfx/tilesets/sprout-pillar/5.2bpp"
+SproutPillarTile6:
+	INCBIN "gfx/tilesets/sprout-pillar/6.2bpp"
+SproutPillarTile7:
+	INCBIN "gfx/tilesets/sprout-pillar/7.2bpp"
+SproutPillarTile8:
+	INCBIN "gfx/tilesets/sprout-pillar/8.2bpp"
+SproutPillarTile9:
+	INCBIN "gfx/tilesets/sprout-pillar/9.2bpp"
+SproutPillarTile10:
+	INCBIN "gfx/tilesets/sprout-pillar/10.2bpp"
 ; fca98
 
 
@@ -20643,7 +20720,7 @@ INCLUDE "maps/HallOfFame.asm"
 
 ;                       Pokedex entries I
 ;                            001-064
-
+PokedexEntries1:
 INCLUDE "stats/pokedex/entries_1.asm"
 
 
@@ -20923,7 +21000,7 @@ SECTION "bank6E",DATA,BANK[$6E]
 
 ;                       Pokedex entries II
 ;                            065-128
-
+PokedexEntries2:
 INCLUDE "stats/pokedex/entries_2.asm"
 
 
@@ -21029,7 +21106,7 @@ SECTION "bank73",DATA,BANK[$73]
 
                       ; Pokedex entries III
                             ; 129-192
-							
+PokedexEntries3:
 INCLUDE "stats/pokedex/entries_3.asm"
 
 
@@ -21037,7 +21114,7 @@ SECTION "bank74",DATA,BANK[$74]
 
 ;                       Pokedex entries IV
                             ; 193-251
-							
+PokedexEntries4:
 INCLUDE "stats/pokedex/entries_4.asm"
 
 

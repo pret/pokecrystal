@@ -1,503 +1,502 @@
-BulbasaurPalette:       INCBIN "gfx/pics/001/normal.pal"
-BulbasaurShinyPalette:  INCBIN "gfx/pics/001/shiny.pal"
-IvysaurPalette:         INCBIN "gfx/pics/002/normal.pal"
-IvysaurShinyPalette:    INCBIN "gfx/pics/002/shiny.pal"
-VenusaurPalette:        INCBIN "gfx/pics/003/normal.pal"
-VenusaurShinyPalette:   INCBIN "gfx/pics/003/shiny.pal"
-CharmanderPalette:      INCBIN "gfx/pics/004/normal.pal"
-CharmanderShinyPalette: INCBIN "gfx/pics/004/shiny.pal"
-CharmeleonPalette:      INCBIN "gfx/pics/005/normal.pal"
-CharmeleonShinyPalette: INCBIN "gfx/pics/005/shiny.pal"
-CharizardPalette:       INCBIN "gfx/pics/006/normal.pal"
-CharizardShinyPalette:  INCBIN "gfx/pics/006/shiny.pal"
-SquirtlePalette:        INCBIN "gfx/pics/007/normal.pal"
-SquirtleShinyPalette:   INCBIN "gfx/pics/007/shiny.pal"
-WartortlePalette:       INCBIN "gfx/pics/008/normal.pal"
-WartortleShinyPalette:  INCBIN "gfx/pics/008/shiny.pal"
-BlastoisePalette:       INCBIN "gfx/pics/009/normal.pal"
-BlastoiseShinyPalette:  INCBIN "gfx/pics/009/shiny.pal"
-CaterpiePalette:        INCBIN "gfx/pics/010/normal.pal"
-CaterpieShinyPalette:   INCBIN "gfx/pics/010/shiny.pal"
-MetapodPalette:         INCBIN "gfx/pics/011/normal.pal"
-MetapodShinyPalette:    INCBIN "gfx/pics/011/shiny.pal"
-ButterfreePalette:      INCBIN "gfx/pics/012/normal.pal"
-ButterfreeShinyPalette: INCBIN "gfx/pics/012/shiny.pal"
-WeedlePalette:          INCBIN "gfx/pics/013/normal.pal"
-WeedleShinyPalette:     INCBIN "gfx/pics/013/shiny.pal"
-KakunaPalette:          INCBIN "gfx/pics/014/normal.pal"
-KakunaShinyPalette:     INCBIN "gfx/pics/014/shiny.pal"
-BeedrillPalette:        INCBIN "gfx/pics/015/normal.pal"
-BeedrillShinyPalette:   INCBIN "gfx/pics/015/shiny.pal"
-PidgeyPalette:          INCBIN "gfx/pics/016/normal.pal"
-PidgeyShinyPalette:     INCBIN "gfx/pics/016/shiny.pal"
-PidgeottoPalette:       INCBIN "gfx/pics/017/normal.pal"
-PidgeottoShinyPalette:  INCBIN "gfx/pics/017/shiny.pal"
-PidgeotPalette:         INCBIN "gfx/pics/018/normal.pal"
-PidgeotShinyPalette:    INCBIN "gfx/pics/018/shiny.pal"
-RattataPalette:         INCBIN "gfx/pics/019/normal.pal"
-RattataShinyPalette:    INCBIN "gfx/pics/019/shiny.pal"
-RaticatePalette:        INCBIN "gfx/pics/020/normal.pal"
-RaticateShinyPalette:   INCBIN "gfx/pics/020/shiny.pal"
-SpearowPalette:         INCBIN "gfx/pics/021/normal.pal"
-SpearowShinyPalette:    INCBIN "gfx/pics/021/shiny.pal"
-FearowPalette:          INCBIN "gfx/pics/022/normal.pal"
-FearowShinyPalette:     INCBIN "gfx/pics/022/shiny.pal"
-EkansPalette:           INCBIN "gfx/pics/023/normal.pal"
-EkansShinyPalette:      INCBIN "gfx/pics/023/shiny.pal"
-ArbokPalette:           INCBIN "gfx/pics/024/normal.pal"
-ArbokShinyPalette:      INCBIN "gfx/pics/024/shiny.pal"
-PikachuPalette:         INCBIN "gfx/pics/025/normal.pal"
-PikachuShinyPalette:    INCBIN "gfx/pics/025/shiny.pal"
-RaichuPalette:          INCBIN "gfx/pics/026/normal.pal"
-RaichuShinyPalette:     INCBIN "gfx/pics/026/shiny.pal"
-SandshrewPalette:       INCBIN "gfx/pics/027/normal.pal"
-SandshrewShinyPalette:  INCBIN "gfx/pics/027/shiny.pal"
-SandslashPalette:       INCBIN "gfx/pics/028/normal.pal"
-SandslashShinyPalette:  INCBIN "gfx/pics/028/shiny.pal"
-NidoranFPalette:        INCBIN "gfx/pics/029/normal.pal"
-NidoranFShinyPalette:   INCBIN "gfx/pics/029/shiny.pal"
-NidorinaPalette:        INCBIN "gfx/pics/030/normal.pal"
-NidorinaShinyPalette:   INCBIN "gfx/pics/030/shiny.pal"
-NidoqueenPalette:       INCBIN "gfx/pics/031/normal.pal"
-NidoqueenShinyPalette:  INCBIN "gfx/pics/031/shiny.pal"
-NidoranMPalette:        INCBIN "gfx/pics/032/normal.pal"
-NidoranMShinyPalette:   INCBIN "gfx/pics/032/shiny.pal"
-NidorinoPalette:        INCBIN "gfx/pics/033/normal.pal"
-NidorinoShinyPalette:   INCBIN "gfx/pics/033/shiny.pal"
-NidokingPalette:        INCBIN "gfx/pics/034/normal.pal"
-NidokingShinyPalette:   INCBIN "gfx/pics/034/shiny.pal"
-ClefairyPalette:        INCBIN "gfx/pics/035/normal.pal"
-ClefairyShinyPalette:   INCBIN "gfx/pics/035/shiny.pal"
-ClefablePalette:        INCBIN "gfx/pics/036/normal.pal"
-ClefableShinyPalette:   INCBIN "gfx/pics/036/shiny.pal"
-VulpixPalette:          INCBIN "gfx/pics/037/normal.pal"
-VulpixShinyPalette:     INCBIN "gfx/pics/037/shiny.pal"
-NinetalesPalette:       INCBIN "gfx/pics/038/normal.pal"
-NinetalesShinyPalette:  INCBIN "gfx/pics/038/shiny.pal"
-JigglypuffPalette:      INCBIN "gfx/pics/039/normal.pal"
-JigglypuffShinyPalette: INCBIN "gfx/pics/039/shiny.pal"
-WigglytuffPalette:      INCBIN "gfx/pics/040/normal.pal"
-WigglytuffShinyPalette: INCBIN "gfx/pics/040/shiny.pal"
-ZubatPalette:           INCBIN "gfx/pics/041/normal.pal"
-ZubatShinyPalette:      INCBIN "gfx/pics/041/shiny.pal"
-GolbatPalette:          INCBIN "gfx/pics/042/normal.pal"
-GolbatShinyPalette:     INCBIN "gfx/pics/042/shiny.pal"
-OddishPalette:          INCBIN "gfx/pics/043/normal.pal"
-OddishShinyPalette:     INCBIN "gfx/pics/043/shiny.pal"
-GloomPalette:           INCBIN "gfx/pics/044/normal.pal"
-GloomShinyPalette:      INCBIN "gfx/pics/044/shiny.pal"
-VileplumePalette:       INCBIN "gfx/pics/045/normal.pal"
-VileplumeShinyPalette:  INCBIN "gfx/pics/045/shiny.pal"
-ParasPalette:           INCBIN "gfx/pics/046/normal.pal"
-ParasShinyPalette:      INCBIN "gfx/pics/046/shiny.pal"
-ParasectPalette:        INCBIN "gfx/pics/047/normal.pal"
-ParasectShinyPalette:   INCBIN "gfx/pics/047/shiny.pal"
-VenonatPalette:         INCBIN "gfx/pics/048/normal.pal"
-VenonatShinyPalette:    INCBIN "gfx/pics/048/shiny.pal"
-VenomothPalette:        INCBIN "gfx/pics/049/normal.pal"
-VenomothShinyPalette:   INCBIN "gfx/pics/049/shiny.pal"
-DiglettPalette:         INCBIN "gfx/pics/050/normal.pal"
-DiglettShinyPalette:    INCBIN "gfx/pics/050/shiny.pal"
-DugtrioPalette:         INCBIN "gfx/pics/051/normal.pal"
-DugtrioShinyPalette:    INCBIN "gfx/pics/051/shiny.pal"
-MeowthPalette:          INCBIN "gfx/pics/052/normal.pal"
-MeowthShinyPalette:     INCBIN "gfx/pics/052/shiny.pal"
-PersianPalette:         INCBIN "gfx/pics/053/normal.pal"
-PersianShinyPalette:    INCBIN "gfx/pics/053/shiny.pal"
-PsyduckPalette:         INCBIN "gfx/pics/054/normal.pal"
-PsyduckShinyPalette:    INCBIN "gfx/pics/054/shiny.pal"
-GolduckPalette:         INCBIN "gfx/pics/055/normal.pal"
-GolduckShinyPalette:    INCBIN "gfx/pics/055/shiny.pal"
-MankeyPalette:          INCBIN "gfx/pics/056/normal.pal"
-MankeyShinyPalette:     INCBIN "gfx/pics/056/shiny.pal"
-PrimeapePalette:        INCBIN "gfx/pics/057/normal.pal"
-PrimeapeShinyPalette:   INCBIN "gfx/pics/057/shiny.pal"
-GrowlithePalette:       INCBIN "gfx/pics/058/normal.pal"
-GrowlitheShinyPalette:  INCBIN "gfx/pics/058/shiny.pal"
-ArcaninePalette:        INCBIN "gfx/pics/059/normal.pal"
-ArcanineShinyPalette:   INCBIN "gfx/pics/059/shiny.pal"
-PoliwagPalette:         INCBIN "gfx/pics/060/normal.pal"
-PoliwagShinyPalette:    INCBIN "gfx/pics/060/shiny.pal"
-PoliwhirlPalette:       INCBIN "gfx/pics/061/normal.pal"
-PoliwhirlShinyPalette:  INCBIN "gfx/pics/061/shiny.pal"
-PoliwrathPalette:       INCBIN "gfx/pics/062/normal.pal"
-PoliwrathShinyPalette:  INCBIN "gfx/pics/062/shiny.pal"
-AbraPalette:            INCBIN "gfx/pics/063/normal.pal"
-AbraShinyPalette:       INCBIN "gfx/pics/063/shiny.pal"
-KadabraPalette:         INCBIN "gfx/pics/064/normal.pal"
-KadabraShinyPalette:    INCBIN "gfx/pics/064/shiny.pal"
-AlakazamPalette:        INCBIN "gfx/pics/065/normal.pal"
-AlakazamShinyPalette:   INCBIN "gfx/pics/065/shiny.pal"
-MachopPalette:          INCBIN "gfx/pics/066/normal.pal"
-MachopShinyPalette:     INCBIN "gfx/pics/066/shiny.pal"
-MachokePalette:         INCBIN "gfx/pics/067/normal.pal"
-MachokeShinyPalette:    INCBIN "gfx/pics/067/shiny.pal"
-MachampPalette:         INCBIN "gfx/pics/068/normal.pal"
-MachampShinyPalette:    INCBIN "gfx/pics/068/shiny.pal"
-BellsproutPalette:      INCBIN "gfx/pics/069/normal.pal"
-BellsproutShinyPalette: INCBIN "gfx/pics/069/shiny.pal"
-WeepinbellPalette:      INCBIN "gfx/pics/070/normal.pal"
-WeepinbellShinyPalette: INCBIN "gfx/pics/070/shiny.pal"
-VictreebelPalette:      INCBIN "gfx/pics/071/normal.pal"
-VictreebelShinyPalette: INCBIN "gfx/pics/071/shiny.pal"
-TentacoolPalette:       INCBIN "gfx/pics/072/normal.pal"
-TentacoolShinyPalette:  INCBIN "gfx/pics/072/shiny.pal"
-TentacruelPalette:      INCBIN "gfx/pics/073/normal.pal"
-TentacruelShinyPalette: INCBIN "gfx/pics/073/shiny.pal"
-GeodudePalette:         INCBIN "gfx/pics/074/normal.pal"
-GeodudeShinyPalette:    INCBIN "gfx/pics/074/shiny.pal"
-GravelerPalette:        INCBIN "gfx/pics/075/normal.pal"
-GravelerShinyPalette:   INCBIN "gfx/pics/075/shiny.pal"
-GolemPalette:           INCBIN "gfx/pics/076/normal.pal"
-GolemShinyPalette:      INCBIN "gfx/pics/076/shiny.pal"
-PonytaPalette:          INCBIN "gfx/pics/077/normal.pal"
-PonytaShinyPalette:     INCBIN "gfx/pics/077/shiny.pal"
-RapidashPalette:        INCBIN "gfx/pics/078/normal.pal"
-RapidashShinyPalette:   INCBIN "gfx/pics/078/shiny.pal"
-SlowpokePalette:        INCBIN "gfx/pics/079/normal.pal"
-SlowpokeShinyPalette:   INCBIN "gfx/pics/079/shiny.pal"
-SlowbroPalette:         INCBIN "gfx/pics/080/normal.pal"
-SlowbroShinyPalette:    INCBIN "gfx/pics/080/shiny.pal"
-MagnemitePalette:       INCBIN "gfx/pics/081/normal.pal"
-MagnemiteShinyPalette:  INCBIN "gfx/pics/081/shiny.pal"
-MagnetonPalette:        INCBIN "gfx/pics/082/normal.pal"
-MagnetonShinyPalette:   INCBIN "gfx/pics/082/shiny.pal"
-FarfetchDPalette:       INCBIN "gfx/pics/083/normal.pal"
-FarfetchDShinyPalette:  INCBIN "gfx/pics/083/shiny.pal"
-DoduoPalette:           INCBIN "gfx/pics/084/normal.pal"
-DoduoShinyPalette:      INCBIN "gfx/pics/084/shiny.pal"
-DodrioPalette:          INCBIN "gfx/pics/085/normal.pal"
-DodrioShinyPalette:     INCBIN "gfx/pics/085/shiny.pal"
-SeelPalette:            INCBIN "gfx/pics/086/normal.pal"
-SeelShinyPalette:       INCBIN "gfx/pics/086/shiny.pal"
-DewgongPalette:         INCBIN "gfx/pics/087/normal.pal"
-DewgongShinyPalette:    INCBIN "gfx/pics/087/shiny.pal"
-GrimerPalette:          INCBIN "gfx/pics/088/normal.pal"
-GrimerShinyPalette:     INCBIN "gfx/pics/088/shiny.pal"
-MukPalette:             INCBIN "gfx/pics/089/normal.pal"
-MukShinyPalette:        INCBIN "gfx/pics/089/shiny.pal"
-ShellderPalette:        INCBIN "gfx/pics/090/normal.pal"
-ShellderShinyPalette:   INCBIN "gfx/pics/090/shiny.pal"
-CloysterPalette:        INCBIN "gfx/pics/091/normal.pal"
-CloysterShinyPalette:   INCBIN "gfx/pics/091/shiny.pal"
-GastlyPalette:          INCBIN "gfx/pics/092/normal.pal"
-GastlyShinyPalette:     INCBIN "gfx/pics/092/shiny.pal"
-HaunterPalette:         INCBIN "gfx/pics/093/normal.pal"
-HaunterShinyPalette:    INCBIN "gfx/pics/093/shiny.pal"
-GengarPalette:          INCBIN "gfx/pics/094/normal.pal"
-GengarShinyPalette:     INCBIN "gfx/pics/094/shiny.pal"
-OnixPalette:            INCBIN "gfx/pics/095/normal.pal"
-OnixShinyPalette:       INCBIN "gfx/pics/095/shiny.pal"
-DrowzeePalette:         INCBIN "gfx/pics/096/normal.pal"
-DrowzeeShinyPalette:    INCBIN "gfx/pics/096/shiny.pal"
-HypnoPalette:           INCBIN "gfx/pics/097/normal.pal"
-HypnoShinyPalette:      INCBIN "gfx/pics/097/shiny.pal"
-KrabbyPalette:          INCBIN "gfx/pics/098/normal.pal"
-KrabbyShinyPalette:     INCBIN "gfx/pics/098/shiny.pal"
-KinglerPalette:         INCBIN "gfx/pics/099/normal.pal"
-KinglerShinyPalette:    INCBIN "gfx/pics/099/shiny.pal"
-VoltorbPalette:         INCBIN "gfx/pics/100/normal.pal"
-VoltorbShinyPalette:    INCBIN "gfx/pics/100/shiny.pal"
-ElectrodePalette:       INCBIN "gfx/pics/101/normal.pal"
-ElectrodeShinyPalette:  INCBIN "gfx/pics/101/shiny.pal"
-ExeggcutePalette:       INCBIN "gfx/pics/102/normal.pal"
-ExeggcuteShinyPalette:  INCBIN "gfx/pics/102/shiny.pal"
-ExeggutorPalette:       INCBIN "gfx/pics/103/normal.pal"
-ExeggutorShinyPalette:  INCBIN "gfx/pics/103/shiny.pal"
-CubonePalette:          INCBIN "gfx/pics/104/normal.pal"
-CuboneShinyPalette:     INCBIN "gfx/pics/104/shiny.pal"
-MarowakPalette:         INCBIN "gfx/pics/105/normal.pal"
-MarowakShinyPalette:    INCBIN "gfx/pics/105/shiny.pal"
-HitmonleePalette:       INCBIN "gfx/pics/106/normal.pal"
-HitmonleeShinyPalette:  INCBIN "gfx/pics/106/shiny.pal"
-HitmonchanPalette:      INCBIN "gfx/pics/107/normal.pal"
-HitmonchanShinyPalette: INCBIN "gfx/pics/107/shiny.pal"
-LickitungPalette:       INCBIN "gfx/pics/108/normal.pal"
-LickitungShinyPalette:  INCBIN "gfx/pics/108/shiny.pal"
-KoffingPalette:         INCBIN "gfx/pics/109/normal.pal"
-KoffingShinyPalette:    INCBIN "gfx/pics/109/shiny.pal"
-WeezingPalette:         INCBIN "gfx/pics/110/normal.pal"
-WeezingShinyPalette:    INCBIN "gfx/pics/110/shiny.pal"
-RhyhornPalette:         INCBIN "gfx/pics/111/normal.pal"
-RhyhornShinyPalette:    INCBIN "gfx/pics/111/shiny.pal"
-RhydonPalette:          INCBIN "gfx/pics/112/normal.pal"
-RhydonShinyPalette:     INCBIN "gfx/pics/112/shiny.pal"
-ChanseyPalette:         INCBIN "gfx/pics/113/normal.pal"
-ChanseyShinyPalette:    INCBIN "gfx/pics/113/shiny.pal"
-TangelaPalette:         INCBIN "gfx/pics/114/normal.pal"
-TangelaShinyPalette:    INCBIN "gfx/pics/114/shiny.pal"
-KangaskhanPalette:      INCBIN "gfx/pics/115/normal.pal"
-KangaskhanShinyPalette: INCBIN "gfx/pics/115/shiny.pal"
-HorseaPalette:          INCBIN "gfx/pics/116/normal.pal"
-HorseaShinyPalette:     INCBIN "gfx/pics/116/shiny.pal"
-SeadraPalette:          INCBIN "gfx/pics/117/normal.pal"
-SeadraShinyPalette:     INCBIN "gfx/pics/117/shiny.pal"
-GoldeenPalette:         INCBIN "gfx/pics/118/normal.pal"
-GoldeenShinyPalette:    INCBIN "gfx/pics/118/shiny.pal"
-SeakingPalette:         INCBIN "gfx/pics/119/normal.pal"
-SeakingShinyPalette:    INCBIN "gfx/pics/119/shiny.pal"
-StaryuPalette:          INCBIN "gfx/pics/120/normal.pal"
-StaryuShinyPalette:     INCBIN "gfx/pics/120/shiny.pal"
-StarmiePalette:         INCBIN "gfx/pics/121/normal.pal"
-StarmieShinyPalette:    INCBIN "gfx/pics/121/shiny.pal"
-MrMimePalette:          INCBIN "gfx/pics/122/normal.pal"
-MrMimeShinyPalette:     INCBIN "gfx/pics/122/shiny.pal"
-ScytherPalette:         INCBIN "gfx/pics/123/normal.pal"
-ScytherShinyPalette:    INCBIN "gfx/pics/123/shiny.pal"
-JynxPalette:            INCBIN "gfx/pics/124/normal.pal"
-JynxShinyPalette:       INCBIN "gfx/pics/124/shiny.pal"
-ElectabuzzPalette:      INCBIN "gfx/pics/125/normal.pal"
-ElectabuzzShinyPalette: INCBIN "gfx/pics/125/shiny.pal"
-MagmarPalette:          INCBIN "gfx/pics/126/normal.pal"
-MagmarShinyPalette:     INCBIN "gfx/pics/126/shiny.pal"
-PinsirPalette:          INCBIN "gfx/pics/127/normal.pal"
-PinsirShinyPalette:     INCBIN "gfx/pics/127/shiny.pal"
-TaurosPalette:          INCBIN "gfx/pics/128/normal.pal"
-TaurosShinyPalette:     INCBIN "gfx/pics/128/shiny.pal"
-MagikarpPalette:        INCBIN "gfx/pics/129/normal.pal"
-MagikarpShinyPalette:   INCBIN "gfx/pics/129/shiny.pal"
-GyaradosPalette:        INCBIN "gfx/pics/130/normal.pal"
-GyaradosShinyPalette:   INCBIN "gfx/pics/130/shiny.pal"
-LaprasPalette:          INCBIN "gfx/pics/131/normal.pal"
-LaprasShinyPalette:     INCBIN "gfx/pics/131/shiny.pal"
-DittoPalette:           INCBIN "gfx/pics/132/normal.pal"
-DittoShinyPalette:      INCBIN "gfx/pics/132/shiny.pal"
-EeveePalette:           INCBIN "gfx/pics/133/normal.pal"
-EeveeShinyPalette:      INCBIN "gfx/pics/133/shiny.pal"
-VaporeonPalette:        INCBIN "gfx/pics/134/normal.pal"
-VaporeonShinyPalette:   INCBIN "gfx/pics/134/shiny.pal"
-JolteonPalette:         INCBIN "gfx/pics/135/normal.pal"
-JolteonShinyPalette:    INCBIN "gfx/pics/135/shiny.pal"
-FlareonPalette:         INCBIN "gfx/pics/136/normal.pal"
-FlareonShinyPalette:    INCBIN "gfx/pics/136/shiny.pal"
-PorygonPalette:         INCBIN "gfx/pics/137/normal.pal"
-PorygonShinyPalette:    INCBIN "gfx/pics/137/shiny.pal"
-OmanytePalette:         INCBIN "gfx/pics/138/normal.pal"
-OmanyteShinyPalette:    INCBIN "gfx/pics/138/shiny.pal"
-OmastarPalette:         INCBIN "gfx/pics/139/normal.pal"
-OmastarShinyPalette:    INCBIN "gfx/pics/139/shiny.pal"
-KabutoPalette:          INCBIN "gfx/pics/140/normal.pal"
-KabutoShinyPalette:     INCBIN "gfx/pics/140/shiny.pal"
-KabutopsPalette:        INCBIN "gfx/pics/141/normal.pal"
-KabutopsShinyPalette:   INCBIN "gfx/pics/141/shiny.pal"
-AerodactylPalette:      INCBIN "gfx/pics/142/normal.pal"
-AerodactylShinyPalette: INCBIN "gfx/pics/142/shiny.pal"
-SnorlaxPalette:         INCBIN "gfx/pics/143/normal.pal"
-SnorlaxShinyPalette:    INCBIN "gfx/pics/143/shiny.pal"
-ArticunoPalette:        INCBIN "gfx/pics/144/normal.pal"
-ArticunoShinyPalette:   INCBIN "gfx/pics/144/shiny.pal"
-ZapdosPalette:          INCBIN "gfx/pics/145/normal.pal"
-ZapdosShinyPalette:     INCBIN "gfx/pics/145/shiny.pal"
-MoltresPalette:         INCBIN "gfx/pics/146/normal.pal"
-MoltresShinyPalette:    INCBIN "gfx/pics/146/shiny.pal"
-DratiniPalette:         INCBIN "gfx/pics/147/normal.pal"
-DratiniShinyPalette:    INCBIN "gfx/pics/147/shiny.pal"
-DragonairPalette:       INCBIN "gfx/pics/148/normal.pal"
-DragonairShinyPalette:  INCBIN "gfx/pics/148/shiny.pal"
-DragonitePalette:       INCBIN "gfx/pics/149/normal.pal"
-DragoniteShinyPalette:  INCBIN "gfx/pics/149/shiny.pal"
-MewtwoPalette:          INCBIN "gfx/pics/150/normal.pal"
-MewtwoShinyPalette:     INCBIN "gfx/pics/150/shiny.pal"
-MewPalette:             INCBIN "gfx/pics/151/normal.pal"
-MewShinyPalette:        INCBIN "gfx/pics/151/shiny.pal"
-ChikoritaPalette:       INCBIN "gfx/pics/152/normal.pal"
-ChikoritaShinyPalette:  INCBIN "gfx/pics/152/shiny.pal"
-BayleefPalette:         INCBIN "gfx/pics/153/normal.pal"
-BayleefShinyPalette:    INCBIN "gfx/pics/153/shiny.pal"
-MeganiumPalette:        INCBIN "gfx/pics/154/normal.pal"
-MeganiumShinyPalette:   INCBIN "gfx/pics/154/shiny.pal"
-CyndaquilPalette:       INCBIN "gfx/pics/155/normal.pal"
-CyndaquilShinyPalette:  INCBIN "gfx/pics/155/shiny.pal"
-QuilavaPalette:         INCBIN "gfx/pics/156/normal.pal"
-QuilavaShinyPalette:    INCBIN "gfx/pics/156/shiny.pal"
-TyphlosionPalette:      INCBIN "gfx/pics/157/normal.pal"
-TyphlosionShinyPalette: INCBIN "gfx/pics/157/shiny.pal"
-TotodilePalette:        INCBIN "gfx/pics/158/normal.pal"
-TotodileShinyPalette:   INCBIN "gfx/pics/158/shiny.pal"
-CroconawPalette:        INCBIN "gfx/pics/159/normal.pal"
-CroconawShinyPalette:   INCBIN "gfx/pics/159/shiny.pal"
-FeraligatrPalette:      INCBIN "gfx/pics/160/normal.pal"
-FeraligatrShinyPalette: INCBIN "gfx/pics/160/shiny.pal"
-SentretPalette:         INCBIN "gfx/pics/161/normal.pal"
-SentretShinyPalette:    INCBIN "gfx/pics/161/shiny.pal"
-FurretPalette:          INCBIN "gfx/pics/162/normal.pal"
-FurretShinyPalette:     INCBIN "gfx/pics/162/shiny.pal"
-HoothootPalette:        INCBIN "gfx/pics/163/normal.pal"
-HoothootShinyPalette:   INCBIN "gfx/pics/163/shiny.pal"
-NoctowlPalette:         INCBIN "gfx/pics/164/normal.pal"
-NoctowlShinyPalette:    INCBIN "gfx/pics/164/shiny.pal"
-LedybaPalette:          INCBIN "gfx/pics/165/normal.pal"
-LedybaShinyPalette:     INCBIN "gfx/pics/165/shiny.pal"
-LedianPalette:          INCBIN "gfx/pics/166/normal.pal"
-LedianShinyPalette:     INCBIN "gfx/pics/166/shiny.pal"
-SpinarakPalette:        INCBIN "gfx/pics/167/normal.pal"
-SpinarakShinyPalette:   INCBIN "gfx/pics/167/shiny.pal"
-AriadosPalette:         INCBIN "gfx/pics/168/normal.pal"
-AriadosShinyPalette:    INCBIN "gfx/pics/168/shiny.pal"
-CrobatPalette:          INCBIN "gfx/pics/169/normal.pal"
-CrobatShinyPalette:     INCBIN "gfx/pics/169/shiny.pal"
-ChinchouPalette:        INCBIN "gfx/pics/170/normal.pal"
-ChinchouShinyPalette:   INCBIN "gfx/pics/170/shiny.pal"
-LanturnPalette:         INCBIN "gfx/pics/171/normal.pal"
-LanturnShinyPalette:    INCBIN "gfx/pics/171/shiny.pal"
-PichuPalette:           INCBIN "gfx/pics/172/normal.pal"
-PichuShinyPalette:      INCBIN "gfx/pics/172/shiny.pal"
-CleffaPalette:          INCBIN "gfx/pics/173/normal.pal"
-CleffaShinyPalette:     INCBIN "gfx/pics/173/shiny.pal"
-IgglybuffPalette:       INCBIN "gfx/pics/174/normal.pal"
-IgglybuffShinyPalette:  INCBIN "gfx/pics/174/shiny.pal"
-TogepiPalette:          INCBIN "gfx/pics/175/normal.pal"
-TogepiShinyPalette:     INCBIN "gfx/pics/175/shiny.pal"
-TogeticPalette:         INCBIN "gfx/pics/176/normal.pal"
-TogeticShinyPalette:    INCBIN "gfx/pics/176/shiny.pal"
-NatuPalette:            INCBIN "gfx/pics/177/normal.pal"
-NatuShinyPalette:       INCBIN "gfx/pics/177/shiny.pal"
-XatuPalette:            INCBIN "gfx/pics/178/normal.pal"
-XatuShinyPalette:       INCBIN "gfx/pics/178/shiny.pal"
-MareepPalette:          INCBIN "gfx/pics/179/normal.pal"
-MareepShinyPalette:     INCBIN "gfx/pics/179/shiny.pal"
-FlaaffyPalette:         INCBIN "gfx/pics/180/normal.pal"
-FlaaffyShinyPalette:    INCBIN "gfx/pics/180/shiny.pal"
-AmpharosPalette:        INCBIN "gfx/pics/181/normal.pal"
-AmpharosShinyPalette:   INCBIN "gfx/pics/181/shiny.pal"
-BellossomPalette:       INCBIN "gfx/pics/182/normal.pal"
-BellossomShinyPalette:  INCBIN "gfx/pics/182/shiny.pal"
-MarillPalette:          INCBIN "gfx/pics/183/normal.pal"
-MarillShinyPalette:     INCBIN "gfx/pics/183/shiny.pal"
-AzumarillPalette:       INCBIN "gfx/pics/184/normal.pal"
-AzumarillShinyPalette:  INCBIN "gfx/pics/184/shiny.pal"
-SudowoodoPalette:       INCBIN "gfx/pics/185/normal.pal"
-SudowoodoShinyPalette:  INCBIN "gfx/pics/185/shiny.pal"
-PolitoedPalette:        INCBIN "gfx/pics/186/normal.pal"
-PolitoedShinyPalette:   INCBIN "gfx/pics/186/shiny.pal"
-HoppipPalette:          INCBIN "gfx/pics/187/normal.pal"
-HoppipShinyPalette:     INCBIN "gfx/pics/187/shiny.pal"
-SkiploomPalette:        INCBIN "gfx/pics/188/normal.pal"
-SkiploomShinyPalette:   INCBIN "gfx/pics/188/shiny.pal"
-JumpluffPalette:        INCBIN "gfx/pics/189/normal.pal"
-JumpluffShinyPalette:   INCBIN "gfx/pics/189/shiny.pal"
-AipomPalette:           INCBIN "gfx/pics/190/normal.pal"
-AipomShinyPalette:      INCBIN "gfx/pics/190/shiny.pal"
-SunkernPalette:         INCBIN "gfx/pics/191/normal.pal"
-SunkernShinyPalette:    INCBIN "gfx/pics/191/shiny.pal"
-SunfloraPalette:        INCBIN "gfx/pics/192/normal.pal"
-SunfloraShinyPalette:   INCBIN "gfx/pics/192/shiny.pal"
-YanmaPalette:           INCBIN "gfx/pics/193/normal.pal"
-YanmaShinyPalette:      INCBIN "gfx/pics/193/shiny.pal"
-WooperPalette:          INCBIN "gfx/pics/194/normal.pal"
-WooperShinyPalette:     INCBIN "gfx/pics/194/shiny.pal"
-QuagsirePalette:        INCBIN "gfx/pics/195/normal.pal"
-QuagsireShinyPalette:   INCBIN "gfx/pics/195/shiny.pal"
-EspeonPalette:          INCBIN "gfx/pics/196/normal.pal"
-EspeonShinyPalette:     INCBIN "gfx/pics/196/shiny.pal"
-UmbreonPalette:         INCBIN "gfx/pics/197/normal.pal"
-UmbreonShinyPalette:    INCBIN "gfx/pics/197/shiny.pal"
-MurkrowPalette:         INCBIN "gfx/pics/198/normal.pal"
-MurkrowShinyPalette:    INCBIN "gfx/pics/198/shiny.pal"
-SlowkingPalette:        INCBIN "gfx/pics/199/normal.pal"
-SlowkingShinyPalette:   INCBIN "gfx/pics/199/shiny.pal"
-MisdreavusPalette:      INCBIN "gfx/pics/200/normal.pal"
-MisdreavusShinyPalette: INCBIN "gfx/pics/200/shiny.pal"
-UnownPalette:           INCBIN "gfx/pics/201/normal.pal"
-UnownShinyPalette:      INCBIN "gfx/pics/201/shiny.pal"
-WobbuffetPalette:       INCBIN "gfx/pics/202/normal.pal"
-WobbuffetShinyPalette:  INCBIN "gfx/pics/202/shiny.pal"
-GirafarigPalette:       INCBIN "gfx/pics/203/normal.pal"
-GirafarigShinyPalette:  INCBIN "gfx/pics/203/shiny.pal"
-PinecoPalette:          INCBIN "gfx/pics/204/normal.pal"
-PinecoShinyPalette:     INCBIN "gfx/pics/204/shiny.pal"
-ForretressPalette:      INCBIN "gfx/pics/205/normal.pal"
-ForretressShinyPalette: INCBIN "gfx/pics/205/shiny.pal"
-DunsparcePalette:       INCBIN "gfx/pics/206/normal.pal"
-DunsparceShinyPalette:  INCBIN "gfx/pics/206/shiny.pal"
-GligarPalette:          INCBIN "gfx/pics/207/normal.pal"
-GligarShinyPalette:     INCBIN "gfx/pics/207/shiny.pal"
-SteelixPalette:         INCBIN "gfx/pics/208/normal.pal"
-SteelixShinyPalette:    INCBIN "gfx/pics/208/shiny.pal"
-SnubbullPalette:        INCBIN "gfx/pics/209/normal.pal"
-SnubbullShinyPalette:   INCBIN "gfx/pics/209/shiny.pal"
-GranbullPalette:        INCBIN "gfx/pics/210/normal.pal"
-GranbullShinyPalette:   INCBIN "gfx/pics/210/shiny.pal"
-QwilfishPalette:        INCBIN "gfx/pics/211/normal.pal"
-QwilfishShinyPalette:   INCBIN "gfx/pics/211/shiny.pal"
-ScizorPalette:          INCBIN "gfx/pics/212/normal.pal"
-ScizorShinyPalette:     INCBIN "gfx/pics/212/shiny.pal"
-ShucklePalette:         INCBIN "gfx/pics/213/normal.pal"
-ShuckleShinyPalette:    INCBIN "gfx/pics/213/shiny.pal"
-HeracrossPalette:       INCBIN "gfx/pics/214/normal.pal"
-HeracrossShinyPalette:  INCBIN "gfx/pics/214/shiny.pal"
-SneaselPalette:         INCBIN "gfx/pics/215/normal.pal"
-SneaselShinyPalette:    INCBIN "gfx/pics/215/shiny.pal"
-TeddiursaPalette:       INCBIN "gfx/pics/216/normal.pal"
-TeddiursaShinyPalette:  INCBIN "gfx/pics/216/shiny.pal"
-UrsaringPalette:        INCBIN "gfx/pics/217/normal.pal"
-UrsaringShinyPalette:   INCBIN "gfx/pics/217/shiny.pal"
-SlugmaPalette:          INCBIN "gfx/pics/218/normal.pal"
-SlugmaShinyPalette:     INCBIN "gfx/pics/218/shiny.pal"
-MagcargoPalette:        INCBIN "gfx/pics/219/normal.pal"
-MagcargoShinyPalette:   INCBIN "gfx/pics/219/shiny.pal"
-SwinubPalette:          INCBIN "gfx/pics/220/normal.pal"
-SwinubShinyPalette:     INCBIN "gfx/pics/220/shiny.pal"
-PiloswinePalette:       INCBIN "gfx/pics/221/normal.pal"
-PiloswineShinyPalette:  INCBIN "gfx/pics/221/shiny.pal"
-CorsolaPalette:         INCBIN "gfx/pics/222/normal.pal"
-CorsolaShinyPalette:    INCBIN "gfx/pics/222/shiny.pal"
-RemoraidPalette:        INCBIN "gfx/pics/223/normal.pal"
-RemoraidShinyPalette:   INCBIN "gfx/pics/223/shiny.pal"
-OctilleryPalette:       INCBIN "gfx/pics/224/normal.pal"
-OctilleryShinyPalette:  INCBIN "gfx/pics/224/shiny.pal"
-DelibirdPalette:        INCBIN "gfx/pics/225/normal.pal"
-DelibirdShinyPalette:   INCBIN "gfx/pics/225/shiny.pal"
-MantinePalette:         INCBIN "gfx/pics/226/normal.pal"
-MantineShinyPalette:    INCBIN "gfx/pics/226/shiny.pal"
-SkarmoryPalette:        INCBIN "gfx/pics/227/normal.pal"
-SkarmoryShinyPalette:   INCBIN "gfx/pics/227/shiny.pal"
-HoundourPalette:        INCBIN "gfx/pics/228/normal.pal"
-HoundourShinyPalette:   INCBIN "gfx/pics/228/shiny.pal"
-HoundoomPalette:        INCBIN "gfx/pics/229/normal.pal"
-HoundoomShinyPalette:   INCBIN "gfx/pics/229/shiny.pal"
-KingdraPalette:         INCBIN "gfx/pics/230/normal.pal"
-KingdraShinyPalette:    INCBIN "gfx/pics/230/shiny.pal"
-PhanpyPalette:          INCBIN "gfx/pics/231/normal.pal"
-PhanpyShinyPalette:     INCBIN "gfx/pics/231/shiny.pal"
-DonphanPalette:         INCBIN "gfx/pics/232/normal.pal"
-DonphanShinyPalette:    INCBIN "gfx/pics/232/shiny.pal"
-Porygon2Palette:        INCBIN "gfx/pics/233/normal.pal"
-Porygon2ShinyPalette:   INCBIN "gfx/pics/233/shiny.pal"
-StantlerPalette:        INCBIN "gfx/pics/234/normal.pal"
-StantlerShinyPalette:   INCBIN "gfx/pics/234/shiny.pal"
-SmearglePalette:        INCBIN "gfx/pics/235/normal.pal"
-SmeargleShinyPalette:   INCBIN "gfx/pics/235/shiny.pal"
-TyroguePalette:         INCBIN "gfx/pics/236/normal.pal"
-TyrogueShinyPalette:    INCBIN "gfx/pics/236/shiny.pal"
-HitmontopPalette:       INCBIN "gfx/pics/237/normal.pal"
-HitmontopShinyPalette:  INCBIN "gfx/pics/237/shiny.pal"
-SmoochumPalette:        INCBIN "gfx/pics/238/normal.pal"
-SmoochumShinyPalette:   INCBIN "gfx/pics/238/shiny.pal"
-ElekidPalette:          INCBIN "gfx/pics/239/normal.pal"
-ElekidShinyPalette:     INCBIN "gfx/pics/239/shiny.pal"
-MagbyPalette:           INCBIN "gfx/pics/240/normal.pal"
-MagbyShinyPalette:      INCBIN "gfx/pics/240/shiny.pal"
-MiltankPalette:         INCBIN "gfx/pics/241/normal.pal"
-MiltankShinyPalette:    INCBIN "gfx/pics/241/shiny.pal"
-BlisseyPalette:         INCBIN "gfx/pics/242/normal.pal"
-BlisseyShinyPalette:    INCBIN "gfx/pics/242/shiny.pal"
-RaikouPalette:          INCBIN "gfx/pics/243/normal.pal"
-RaikouShinyPalette:     INCBIN "gfx/pics/243/shiny.pal"
-EnteiPalette:           INCBIN "gfx/pics/244/normal.pal"
-EnteiShinyPalette:      INCBIN "gfx/pics/244/shiny.pal"
-SuicunePalette:         INCBIN "gfx/pics/245/normal.pal"
-SuicuneShinyPalette:    INCBIN "gfx/pics/245/shiny.pal"
-LarvitarPalette:        INCBIN "gfx/pics/246/normal.pal"
-LarvitarShinyPalette:   INCBIN "gfx/pics/246/shiny.pal"
-PupitarPalette:         INCBIN "gfx/pics/247/normal.pal"
-PupitarShinyPalette:    INCBIN "gfx/pics/247/shiny.pal"
-TyranitarPalette:       INCBIN "gfx/pics/248/normal.pal"
-TyranitarShinyPalette:  INCBIN "gfx/pics/248/shiny.pal"
-LugiaPalette:           INCBIN "gfx/pics/249/normal.pal"
-LugiaShinyPalette:      INCBIN "gfx/pics/249/shiny.pal"
-HoOhPalette:            INCBIN "gfx/pics/250/normal.pal"
-HoOhShinyPalette:       INCBIN "gfx/pics/250/shiny.pal"
-CelebiPalette:          INCBIN "gfx/pics/251/normal.pal"
-CelebiShinyPalette:     INCBIN "gfx/pics/251/shiny.pal"
-
+BulbasaurPalette:       INCBIN "gfx/pics/001/normal.pal", 2, 4
+BulbasaurShinyPalette:  INCBIN "gfx/pics/001/shiny.pal",  2, 4
+IvysaurPalette:         INCBIN "gfx/pics/002/normal.pal", 2, 4
+IvysaurShinyPalette:    INCBIN "gfx/pics/002/shiny.pal",  2, 4
+VenusaurPalette:        INCBIN "gfx/pics/003/normal.pal", 2, 4
+VenusaurShinyPalette:   INCBIN "gfx/pics/003/shiny.pal",  2, 4
+CharmanderPalette:      INCBIN "gfx/pics/004/normal.pal", 2, 4
+CharmanderShinyPalette: INCBIN "gfx/pics/004/shiny.pal",  2, 4
+CharmeleonPalette:      INCBIN "gfx/pics/005/normal.pal", 2, 4
+CharmeleonShinyPalette: INCBIN "gfx/pics/005/shiny.pal",  2, 4
+CharizardPalette:       INCBIN "gfx/pics/006/normal.pal", 2, 4
+CharizardShinyPalette:  INCBIN "gfx/pics/006/shiny.pal",  2, 4
+SquirtlePalette:        INCBIN "gfx/pics/007/normal.pal", 2, 4
+SquirtleShinyPalette:   INCBIN "gfx/pics/007/shiny.pal",  2, 4
+WartortlePalette:       INCBIN "gfx/pics/008/normal.pal", 2, 4
+WartortleShinyPalette:  INCBIN "gfx/pics/008/shiny.pal",  2, 4
+BlastoisePalette:       INCBIN "gfx/pics/009/normal.pal", 2, 4
+BlastoiseShinyPalette:  INCBIN "gfx/pics/009/shiny.pal",  2, 4
+CaterpiePalette:        INCBIN "gfx/pics/010/normal.pal", 2, 4
+CaterpieShinyPalette:   INCBIN "gfx/pics/010/shiny.pal",  2, 4
+MetapodPalette:         INCBIN "gfx/pics/011/normal.pal", 2, 4
+MetapodShinyPalette:    INCBIN "gfx/pics/011/shiny.pal",  2, 4
+ButterfreePalette:      INCBIN "gfx/pics/012/normal.pal", 2, 4
+ButterfreeShinyPalette: INCBIN "gfx/pics/012/shiny.pal",  2, 4
+WeedlePalette:          INCBIN "gfx/pics/013/normal.pal", 2, 4
+WeedleShinyPalette:     INCBIN "gfx/pics/013/shiny.pal",  2, 4
+KakunaPalette:          INCBIN "gfx/pics/014/normal.pal", 2, 4
+KakunaShinyPalette:     INCBIN "gfx/pics/014/shiny.pal",  2, 4
+BeedrillPalette:        INCBIN "gfx/pics/015/normal.pal", 2, 4
+BeedrillShinyPalette:   INCBIN "gfx/pics/015/shiny.pal",  2, 4
+PidgeyPalette:          INCBIN "gfx/pics/016/normal.pal", 2, 4
+PidgeyShinyPalette:     INCBIN "gfx/pics/016/shiny.pal",  2, 4
+PidgeottoPalette:       INCBIN "gfx/pics/017/normal.pal", 2, 4
+PidgeottoShinyPalette:  INCBIN "gfx/pics/017/shiny.pal",  2, 4
+PidgeotPalette:         INCBIN "gfx/pics/018/normal.pal", 2, 4
+PidgeotShinyPalette:    INCBIN "gfx/pics/018/shiny.pal",  2, 4
+RattataPalette:         INCBIN "gfx/pics/019/normal.pal", 2, 4
+RattataShinyPalette:    INCBIN "gfx/pics/019/shiny.pal",  2, 4
+RaticatePalette:        INCBIN "gfx/pics/020/normal.pal", 2, 4
+RaticateShinyPalette:   INCBIN "gfx/pics/020/shiny.pal",  2, 4
+SpearowPalette:         INCBIN "gfx/pics/021/normal.pal", 2, 4
+SpearowShinyPalette:    INCBIN "gfx/pics/021/shiny.pal",  2, 4
+FearowPalette:          INCBIN "gfx/pics/022/normal.pal", 2, 4
+FearowShinyPalette:     INCBIN "gfx/pics/022/shiny.pal",  2, 4
+EkansPalette:           INCBIN "gfx/pics/023/normal.pal", 2, 4
+EkansShinyPalette:      INCBIN "gfx/pics/023/shiny.pal",  2, 4
+ArbokPalette:           INCBIN "gfx/pics/024/normal.pal", 2, 4
+ArbokShinyPalette:      INCBIN "gfx/pics/024/shiny.pal",  2, 4
+PikachuPalette:         INCBIN "gfx/pics/025/normal.pal", 2, 4
+PikachuShinyPalette:    INCBIN "gfx/pics/025/shiny.pal",  2, 4
+RaichuPalette:          INCBIN "gfx/pics/026/normal.pal", 2, 4
+RaichuShinyPalette:     INCBIN "gfx/pics/026/shiny.pal",  2, 4
+SandshrewPalette:       INCBIN "gfx/pics/027/normal.pal", 2, 4
+SandshrewShinyPalette:  INCBIN "gfx/pics/027/shiny.pal",  2, 4
+SandslashPalette:       INCBIN "gfx/pics/028/normal.pal", 2, 4
+SandslashShinyPalette:  INCBIN "gfx/pics/028/shiny.pal",  2, 4
+NidoranFPalette:        INCBIN "gfx/pics/029/normal.pal", 2, 4
+NidoranFShinyPalette:   INCBIN "gfx/pics/029/shiny.pal",  2, 4
+NidorinaPalette:        INCBIN "gfx/pics/030/normal.pal", 2, 4
+NidorinaShinyPalette:   INCBIN "gfx/pics/030/shiny.pal",  2, 4
+NidoqueenPalette:       INCBIN "gfx/pics/031/normal.pal", 2, 4
+NidoqueenShinyPalette:  INCBIN "gfx/pics/031/shiny.pal",  2, 4
+NidoranMPalette:        INCBIN "gfx/pics/032/normal.pal", 2, 4
+NidoranMShinyPalette:   INCBIN "gfx/pics/032/shiny.pal",  2, 4
+NidorinoPalette:        INCBIN "gfx/pics/033/normal.pal", 2, 4
+NidorinoShinyPalette:   INCBIN "gfx/pics/033/shiny.pal",  2, 4
+NidokingPalette:        INCBIN "gfx/pics/034/normal.pal", 2, 4
+NidokingShinyPalette:   INCBIN "gfx/pics/034/shiny.pal",  2, 4
+ClefairyPalette:        INCBIN "gfx/pics/035/normal.pal", 2, 4
+ClefairyShinyPalette:   INCBIN "gfx/pics/035/shiny.pal",  2, 4
+ClefablePalette:        INCBIN "gfx/pics/036/normal.pal", 2, 4
+ClefableShinyPalette:   INCBIN "gfx/pics/036/shiny.pal",  2, 4
+VulpixPalette:          INCBIN "gfx/pics/037/normal.pal", 2, 4
+VulpixShinyPalette:     INCBIN "gfx/pics/037/shiny.pal",  2, 4
+NinetalesPalette:       INCBIN "gfx/pics/038/normal.pal", 2, 4
+NinetalesShinyPalette:  INCBIN "gfx/pics/038/shiny.pal",  2, 4
+JigglypuffPalette:      INCBIN "gfx/pics/039/normal.pal", 2, 4
+JigglypuffShinyPalette: INCBIN "gfx/pics/039/shiny.pal",  2, 4
+WigglytuffPalette:      INCBIN "gfx/pics/040/normal.pal", 2, 4
+WigglytuffShinyPalette: INCBIN "gfx/pics/040/shiny.pal",  2, 4
+ZubatPalette:           INCBIN "gfx/pics/041/normal.pal", 2, 4
+ZubatShinyPalette:      INCBIN "gfx/pics/041/shiny.pal",  2, 4
+GolbatPalette:          INCBIN "gfx/pics/042/normal.pal", 2, 4
+GolbatShinyPalette:     INCBIN "gfx/pics/042/shiny.pal",  2, 4
+OddishPalette:          INCBIN "gfx/pics/043/normal.pal", 2, 4
+OddishShinyPalette:     INCBIN "gfx/pics/043/shiny.pal",  2, 4
+GloomPalette:           INCBIN "gfx/pics/044/normal.pal", 2, 4
+GloomShinyPalette:      INCBIN "gfx/pics/044/shiny.pal",  2, 4
+VileplumePalette:       INCBIN "gfx/pics/045/normal.pal", 2, 4
+VileplumeShinyPalette:  INCBIN "gfx/pics/045/shiny.pal",  2, 4
+ParasPalette:           INCBIN "gfx/pics/046/normal.pal", 2, 4
+ParasShinyPalette:      INCBIN "gfx/pics/046/shiny.pal",  2, 4
+ParasectPalette:        INCBIN "gfx/pics/047/normal.pal", 2, 4
+ParasectShinyPalette:   INCBIN "gfx/pics/047/shiny.pal",  2, 4
+VenonatPalette:         INCBIN "gfx/pics/048/normal.pal", 2, 4
+VenonatShinyPalette:    INCBIN "gfx/pics/048/shiny.pal",  2, 4
+VenomothPalette:        INCBIN "gfx/pics/049/normal.pal", 2, 4
+VenomothShinyPalette:   INCBIN "gfx/pics/049/shiny.pal",  2, 4
+DiglettPalette:         INCBIN "gfx/pics/050/normal.pal", 2, 4
+DiglettShinyPalette:    INCBIN "gfx/pics/050/shiny.pal",  2, 4
+DugtrioPalette:         INCBIN "gfx/pics/051/normal.pal", 2, 4
+DugtrioShinyPalette:    INCBIN "gfx/pics/051/shiny.pal",  2, 4
+MeowthPalette:          INCBIN "gfx/pics/052/normal.pal", 2, 4
+MeowthShinyPalette:     INCBIN "gfx/pics/052/shiny.pal",  2, 4
+PersianPalette:         INCBIN "gfx/pics/053/normal.pal", 2, 4
+PersianShinyPalette:    INCBIN "gfx/pics/053/shiny.pal",  2, 4
+PsyduckPalette:         INCBIN "gfx/pics/054/normal.pal", 2, 4
+PsyduckShinyPalette:    INCBIN "gfx/pics/054/shiny.pal",  2, 4
+GolduckPalette:         INCBIN "gfx/pics/055/normal.pal", 2, 4
+GolduckShinyPalette:    INCBIN "gfx/pics/055/shiny.pal",  2, 4
+MankeyPalette:          INCBIN "gfx/pics/056/normal.pal", 2, 4
+MankeyShinyPalette:     INCBIN "gfx/pics/056/shiny.pal",  2, 4
+PrimeapePalette:        INCBIN "gfx/pics/057/normal.pal", 2, 4
+PrimeapeShinyPalette:   INCBIN "gfx/pics/057/shiny.pal",  2, 4
+GrowlithePalette:       INCBIN "gfx/pics/058/normal.pal", 2, 4
+GrowlitheShinyPalette:  INCBIN "gfx/pics/058/shiny.pal",  2, 4
+ArcaninePalette:        INCBIN "gfx/pics/059/normal.pal", 2, 4
+ArcanineShinyPalette:   INCBIN "gfx/pics/059/shiny.pal",  2, 4
+PoliwagPalette:         INCBIN "gfx/pics/060/normal.pal", 2, 4
+PoliwagShinyPalette:    INCBIN "gfx/pics/060/shiny.pal",  2, 4
+PoliwhirlPalette:       INCBIN "gfx/pics/061/normal.pal", 2, 4
+PoliwhirlShinyPalette:  INCBIN "gfx/pics/061/shiny.pal",  2, 4
+PoliwrathPalette:       INCBIN "gfx/pics/062/normal.pal", 2, 4
+PoliwrathShinyPalette:  INCBIN "gfx/pics/062/shiny.pal",  2, 4
+AbraPalette:            INCBIN "gfx/pics/063/normal.pal", 2, 4
+AbraShinyPalette:       INCBIN "gfx/pics/063/shiny.pal",  2, 4
+KadabraPalette:         INCBIN "gfx/pics/064/normal.pal", 2, 4
+KadabraShinyPalette:    INCBIN "gfx/pics/064/shiny.pal",  2, 4
+AlakazamPalette:        INCBIN "gfx/pics/065/normal.pal", 2, 4
+AlakazamShinyPalette:   INCBIN "gfx/pics/065/shiny.pal",  2, 4
+MachopPalette:          INCBIN "gfx/pics/066/normal.pal", 2, 4
+MachopShinyPalette:     INCBIN "gfx/pics/066/shiny.pal",  2, 4
+MachokePalette:         INCBIN "gfx/pics/067/normal.pal", 2, 4
+MachokeShinyPalette:    INCBIN "gfx/pics/067/shiny.pal",  2, 4
+MachampPalette:         INCBIN "gfx/pics/068/normal.pal", 2, 4
+MachampShinyPalette:    INCBIN "gfx/pics/068/shiny.pal",  2, 4
+BellsproutPalette:      INCBIN "gfx/pics/069/normal.pal", 2, 4
+BellsproutShinyPalette: INCBIN "gfx/pics/069/shiny.pal",  2, 4
+WeepinbellPalette:      INCBIN "gfx/pics/070/normal.pal", 2, 4
+WeepinbellShinyPalette: INCBIN "gfx/pics/070/shiny.pal",  2, 4
+VictreebelPalette:      INCBIN "gfx/pics/071/normal.pal", 2, 4
+VictreebelShinyPalette: INCBIN "gfx/pics/071/shiny.pal",  2, 4
+TentacoolPalette:       INCBIN "gfx/pics/072/normal.pal", 2, 4
+TentacoolShinyPalette:  INCBIN "gfx/pics/072/shiny.pal",  2, 4
+TentacruelPalette:      INCBIN "gfx/pics/073/normal.pal", 2, 4
+TentacruelShinyPalette: INCBIN "gfx/pics/073/shiny.pal",  2, 4
+GeodudePalette:         INCBIN "gfx/pics/074/normal.pal", 2, 4
+GeodudeShinyPalette:    INCBIN "gfx/pics/074/shiny.pal",  2, 4
+GravelerPalette:        INCBIN "gfx/pics/075/normal.pal", 2, 4
+GravelerShinyPalette:   INCBIN "gfx/pics/075/shiny.pal",  2, 4
+GolemPalette:           INCBIN "gfx/pics/076/normal.pal", 2, 4
+GolemShinyPalette:      INCBIN "gfx/pics/076/shiny.pal",  2, 4
+PonytaPalette:          INCBIN "gfx/pics/077/normal.pal", 2, 4
+PonytaShinyPalette:     INCBIN "gfx/pics/077/shiny.pal",  2, 4
+RapidashPalette:        INCBIN "gfx/pics/078/normal.pal", 2, 4
+RapidashShinyPalette:   INCBIN "gfx/pics/078/shiny.pal",  2, 4
+SlowpokePalette:        INCBIN "gfx/pics/079/normal.pal", 2, 4
+SlowpokeShinyPalette:   INCBIN "gfx/pics/079/shiny.pal",  2, 4
+SlowbroPalette:         INCBIN "gfx/pics/080/normal.pal", 2, 4
+SlowbroShinyPalette:    INCBIN "gfx/pics/080/shiny.pal",  2, 4
+MagnemitePalette:       INCBIN "gfx/pics/081/normal.pal", 2, 4
+MagnemiteShinyPalette:  INCBIN "gfx/pics/081/shiny.pal",  2, 4
+MagnetonPalette:        INCBIN "gfx/pics/082/normal.pal", 2, 4
+MagnetonShinyPalette:   INCBIN "gfx/pics/082/shiny.pal",  2, 4
+FarfetchDPalette:       INCBIN "gfx/pics/083/normal.pal", 2, 4
+FarfetchDShinyPalette:  INCBIN "gfx/pics/083/shiny.pal",  2, 4
+DoduoPalette:           INCBIN "gfx/pics/084/normal.pal", 2, 4
+DoduoShinyPalette:      INCBIN "gfx/pics/084/shiny.pal",  2, 4
+DodrioPalette:          INCBIN "gfx/pics/085/normal.pal", 2, 4
+DodrioShinyPalette:     INCBIN "gfx/pics/085/shiny.pal",  2, 4
+SeelPalette:            INCBIN "gfx/pics/086/normal.pal", 2, 4
+SeelShinyPalette:       INCBIN "gfx/pics/086/shiny.pal",  2, 4
+DewgongPalette:         INCBIN "gfx/pics/087/normal.pal", 2, 4
+DewgongShinyPalette:    INCBIN "gfx/pics/087/shiny.pal",  2, 4
+GrimerPalette:          INCBIN "gfx/pics/088/normal.pal", 2, 4
+GrimerShinyPalette:     INCBIN "gfx/pics/088/shiny.pal",  2, 4
+MukPalette:             INCBIN "gfx/pics/089/normal.pal", 2, 4
+MukShinyPalette:        INCBIN "gfx/pics/089/shiny.pal",  2, 4
+ShellderPalette:        INCBIN "gfx/pics/090/normal.pal", 2, 4
+ShellderShinyPalette:   INCBIN "gfx/pics/090/shiny.pal",  2, 4
+CloysterPalette:        INCBIN "gfx/pics/091/normal.pal", 2, 4
+CloysterShinyPalette:   INCBIN "gfx/pics/091/shiny.pal",  2, 4
+GastlyPalette:          INCBIN "gfx/pics/092/normal.pal", 2, 4
+GastlyShinyPalette:     INCBIN "gfx/pics/092/shiny.pal",  2, 4
+HaunterPalette:         INCBIN "gfx/pics/093/normal.pal", 2, 4
+HaunterShinyPalette:    INCBIN "gfx/pics/093/shiny.pal",  2, 4
+GengarPalette:          INCBIN "gfx/pics/094/normal.pal", 2, 4
+GengarShinyPalette:     INCBIN "gfx/pics/094/shiny.pal",  2, 4
+OnixPalette:            INCBIN "gfx/pics/095/normal.pal", 2, 4
+OnixShinyPalette:       INCBIN "gfx/pics/095/shiny.pal",  2, 4
+DrowzeePalette:         INCBIN "gfx/pics/096/normal.pal", 2, 4
+DrowzeeShinyPalette:    INCBIN "gfx/pics/096/shiny.pal",  2, 4
+HypnoPalette:           INCBIN "gfx/pics/097/normal.pal", 2, 4
+HypnoShinyPalette:      INCBIN "gfx/pics/097/shiny.pal",  2, 4
+KrabbyPalette:          INCBIN "gfx/pics/098/normal.pal", 2, 4
+KrabbyShinyPalette:     INCBIN "gfx/pics/098/shiny.pal",  2, 4
+KinglerPalette:         INCBIN "gfx/pics/099/normal.pal", 2, 4
+KinglerShinyPalette:    INCBIN "gfx/pics/099/shiny.pal",  2, 4
+VoltorbPalette:         INCBIN "gfx/pics/100/normal.pal", 2, 4
+VoltorbShinyPalette:    INCBIN "gfx/pics/100/shiny.pal",  2, 4
+ElectrodePalette:       INCBIN "gfx/pics/101/normal.pal", 2, 4
+ElectrodeShinyPalette:  INCBIN "gfx/pics/101/shiny.pal",  2, 4
+ExeggcutePalette:       INCBIN "gfx/pics/102/normal.pal", 2, 4
+ExeggcuteShinyPalette:  INCBIN "gfx/pics/102/shiny.pal",  2, 4
+ExeggutorPalette:       INCBIN "gfx/pics/103/normal.pal", 2, 4
+ExeggutorShinyPalette:  INCBIN "gfx/pics/103/shiny.pal",  2, 4
+CubonePalette:          INCBIN "gfx/pics/104/normal.pal", 2, 4
+CuboneShinyPalette:     INCBIN "gfx/pics/104/shiny.pal",  2, 4
+MarowakPalette:         INCBIN "gfx/pics/105/normal.pal", 2, 4
+MarowakShinyPalette:    INCBIN "gfx/pics/105/shiny.pal",  2, 4
+HitmonleePalette:       INCBIN "gfx/pics/106/normal.pal", 2, 4
+HitmonleeShinyPalette:  INCBIN "gfx/pics/106/shiny.pal",  2, 4
+HitmonchanPalette:      INCBIN "gfx/pics/107/normal.pal", 2, 4
+HitmonchanShinyPalette: INCBIN "gfx/pics/107/shiny.pal",  2, 4
+LickitungPalette:       INCBIN "gfx/pics/108/normal.pal", 2, 4
+LickitungShinyPalette:  INCBIN "gfx/pics/108/shiny.pal",  2, 4
+KoffingPalette:         INCBIN "gfx/pics/109/normal.pal", 2, 4
+KoffingShinyPalette:    INCBIN "gfx/pics/109/shiny.pal",  2, 4
+WeezingPalette:         INCBIN "gfx/pics/110/normal.pal", 2, 4
+WeezingShinyPalette:    INCBIN "gfx/pics/110/shiny.pal",  2, 4
+RhyhornPalette:         INCBIN "gfx/pics/111/normal.pal", 2, 4
+RhyhornShinyPalette:    INCBIN "gfx/pics/111/shiny.pal",  2, 4
+RhydonPalette:          INCBIN "gfx/pics/112/normal.pal", 2, 4
+RhydonShinyPalette:     INCBIN "gfx/pics/112/shiny.pal",  2, 4
+ChanseyPalette:         INCBIN "gfx/pics/113/normal.pal", 2, 4
+ChanseyShinyPalette:    INCBIN "gfx/pics/113/shiny.pal",  2, 4
+TangelaPalette:         INCBIN "gfx/pics/114/normal.pal", 2, 4
+TangelaShinyPalette:    INCBIN "gfx/pics/114/shiny.pal",  2, 4
+KangaskhanPalette:      INCBIN "gfx/pics/115/normal.pal", 2, 4
+KangaskhanShinyPalette: INCBIN "gfx/pics/115/shiny.pal",  2, 4
+HorseaPalette:          INCBIN "gfx/pics/116/normal.pal", 2, 4
+HorseaShinyPalette:     INCBIN "gfx/pics/116/shiny.pal",  2, 4
+SeadraPalette:          INCBIN "gfx/pics/117/normal.pal", 2, 4
+SeadraShinyPalette:     INCBIN "gfx/pics/117/shiny.pal",  2, 4
+GoldeenPalette:         INCBIN "gfx/pics/118/normal.pal", 2, 4
+GoldeenShinyPalette:    INCBIN "gfx/pics/118/shiny.pal",  2, 4
+SeakingPalette:         INCBIN "gfx/pics/119/normal.pal", 2, 4
+SeakingShinyPalette:    INCBIN "gfx/pics/119/shiny.pal",  2, 4
+StaryuPalette:          INCBIN "gfx/pics/120/normal.pal", 2, 4
+StaryuShinyPalette:     INCBIN "gfx/pics/120/shiny.pal",  2, 4
+StarmiePalette:         INCBIN "gfx/pics/121/normal.pal", 2, 4
+StarmieShinyPalette:    INCBIN "gfx/pics/121/shiny.pal",  2, 4
+MrMimePalette:          INCBIN "gfx/pics/122/normal.pal", 2, 4
+MrMimeShinyPalette:     INCBIN "gfx/pics/122/shiny.pal",  2, 4
+ScytherPalette:         INCBIN "gfx/pics/123/normal.pal", 2, 4
+ScytherShinyPalette:    INCBIN "gfx/pics/123/shiny.pal",  2, 4
+JynxPalette:            INCBIN "gfx/pics/124/normal.pal", 2, 4
+JynxShinyPalette:       INCBIN "gfx/pics/124/shiny.pal",  2, 4
+ElectabuzzPalette:      INCBIN "gfx/pics/125/normal.pal", 2, 4
+ElectabuzzShinyPalette: INCBIN "gfx/pics/125/shiny.pal",  2, 4
+MagmarPalette:          INCBIN "gfx/pics/126/normal.pal", 2, 4
+MagmarShinyPalette:     INCBIN "gfx/pics/126/shiny.pal",  2, 4
+PinsirPalette:          INCBIN "gfx/pics/127/normal.pal", 2, 4
+PinsirShinyPalette:     INCBIN "gfx/pics/127/shiny.pal",  2, 4
+TaurosPalette:          INCBIN "gfx/pics/128/normal.pal", 2, 4
+TaurosShinyPalette:     INCBIN "gfx/pics/128/shiny.pal",  2, 4
+MagikarpPalette:        INCBIN "gfx/pics/129/normal.pal", 2, 4
+MagikarpShinyPalette:   INCBIN "gfx/pics/129/shiny.pal",  2, 4
+GyaradosPalette:        INCBIN "gfx/pics/130/normal.pal", 2, 4
+GyaradosShinyPalette:   INCBIN "gfx/pics/130/shiny.pal",  2, 4
+LaprasPalette:          INCBIN "gfx/pics/131/normal.pal", 2, 4
+LaprasShinyPalette:     INCBIN "gfx/pics/131/shiny.pal",  2, 4
+DittoPalette:           INCBIN "gfx/pics/132/normal.pal", 2, 4
+DittoShinyPalette:      INCBIN "gfx/pics/132/shiny.pal",  2, 4
+EeveePalette:           INCBIN "gfx/pics/133/normal.pal", 2, 4
+EeveeShinyPalette:      INCBIN "gfx/pics/133/shiny.pal",  2, 4
+VaporeonPalette:        INCBIN "gfx/pics/134/normal.pal", 2, 4
+VaporeonShinyPalette:   INCBIN "gfx/pics/134/shiny.pal",  2, 4
+JolteonPalette:         INCBIN "gfx/pics/135/normal.pal", 2, 4
+JolteonShinyPalette:    INCBIN "gfx/pics/135/shiny.pal",  2, 4
+FlareonPalette:         INCBIN "gfx/pics/136/normal.pal", 2, 4
+FlareonShinyPalette:    INCBIN "gfx/pics/136/shiny.pal",  2, 4
+PorygonPalette:         INCBIN "gfx/pics/137/normal.pal", 2, 4
+PorygonShinyPalette:    INCBIN "gfx/pics/137/shiny.pal",  2, 4
+OmanytePalette:         INCBIN "gfx/pics/138/normal.pal", 2, 4
+OmanyteShinyPalette:    INCBIN "gfx/pics/138/shiny.pal",  2, 4
+OmastarPalette:         INCBIN "gfx/pics/139/normal.pal", 2, 4
+OmastarShinyPalette:    INCBIN "gfx/pics/139/shiny.pal",  2, 4
+KabutoPalette:          INCBIN "gfx/pics/140/normal.pal", 2, 4
+KabutoShinyPalette:     INCBIN "gfx/pics/140/shiny.pal",  2, 4
+KabutopsPalette:        INCBIN "gfx/pics/141/normal.pal", 2, 4
+KabutopsShinyPalette:   INCBIN "gfx/pics/141/shiny.pal",  2, 4
+AerodactylPalette:      INCBIN "gfx/pics/142/normal.pal", 2, 4
+AerodactylShinyPalette: INCBIN "gfx/pics/142/shiny.pal",  2, 4
+SnorlaxPalette:         INCBIN "gfx/pics/143/normal.pal", 2, 4
+SnorlaxShinyPalette:    INCBIN "gfx/pics/143/shiny.pal",  2, 4
+ArticunoPalette:        INCBIN "gfx/pics/144/normal.pal", 2, 4
+ArticunoShinyPalette:   INCBIN "gfx/pics/144/shiny.pal",  2, 4
+ZapdosPalette:          INCBIN "gfx/pics/145/normal.pal", 2, 4
+ZapdosShinyPalette:     INCBIN "gfx/pics/145/shiny.pal",  2, 4
+MoltresPalette:         INCBIN "gfx/pics/146/normal.pal", 2, 4
+MoltresShinyPalette:    INCBIN "gfx/pics/146/shiny.pal",  2, 4
+DratiniPalette:         INCBIN "gfx/pics/147/normal.pal", 2, 4
+DratiniShinyPalette:    INCBIN "gfx/pics/147/shiny.pal",  2, 4
+DragonairPalette:       INCBIN "gfx/pics/148/normal.pal", 2, 4
+DragonairShinyPalette:  INCBIN "gfx/pics/148/shiny.pal",  2, 4
+DragonitePalette:       INCBIN "gfx/pics/149/normal.pal", 2, 4
+DragoniteShinyPalette:  INCBIN "gfx/pics/149/shiny.pal",  2, 4
+MewtwoPalette:          INCBIN "gfx/pics/150/normal.pal", 2, 4
+MewtwoShinyPalette:     INCBIN "gfx/pics/150/shiny.pal",  2, 4
+MewPalette:             INCBIN "gfx/pics/151/normal.pal", 2, 4
+MewShinyPalette:        INCBIN "gfx/pics/151/shiny.pal",  2, 4
+ChikoritaPalette:       INCBIN "gfx/pics/152/normal.pal", 2, 4
+ChikoritaShinyPalette:  INCBIN "gfx/pics/152/shiny.pal",  2, 4
+BayleefPalette:         INCBIN "gfx/pics/153/normal.pal", 2, 4
+BayleefShinyPalette:    INCBIN "gfx/pics/153/shiny.pal",  2, 4
+MeganiumPalette:        INCBIN "gfx/pics/154/normal.pal", 2, 4
+MeganiumShinyPalette:   INCBIN "gfx/pics/154/shiny.pal",  2, 4
+CyndaquilPalette:       INCBIN "gfx/pics/155/normal.pal", 2, 4
+CyndaquilShinyPalette:  INCBIN "gfx/pics/155/shiny.pal",  2, 4
+QuilavaPalette:         INCBIN "gfx/pics/156/normal.pal", 2, 4
+QuilavaShinyPalette:    INCBIN "gfx/pics/156/shiny.pal",  2, 4
+TyphlosionPalette:      INCBIN "gfx/pics/157/normal.pal", 2, 4
+TyphlosionShinyPalette: INCBIN "gfx/pics/157/shiny.pal",  2, 4
+TotodilePalette:        INCBIN "gfx/pics/158/normal.pal", 2, 4
+TotodileShinyPalette:   INCBIN "gfx/pics/158/shiny.pal",  2, 4
+CroconawPalette:        INCBIN "gfx/pics/159/normal.pal", 2, 4
+CroconawShinyPalette:   INCBIN "gfx/pics/159/shiny.pal",  2, 4
+FeraligatrPalette:      INCBIN "gfx/pics/160/normal.pal", 2, 4
+FeraligatrShinyPalette: INCBIN "gfx/pics/160/shiny.pal",  2, 4
+SentretPalette:         INCBIN "gfx/pics/161/normal.pal", 2, 4
+SentretShinyPalette:    INCBIN "gfx/pics/161/shiny.pal",  2, 4
+FurretPalette:          INCBIN "gfx/pics/162/normal.pal", 2, 4
+FurretShinyPalette:     INCBIN "gfx/pics/162/shiny.pal",  2, 4
+HoothootPalette:        INCBIN "gfx/pics/163/normal.pal", 2, 4
+HoothootShinyPalette:   INCBIN "gfx/pics/163/shiny.pal",  2, 4
+NoctowlPalette:         INCBIN "gfx/pics/164/normal.pal", 2, 4
+NoctowlShinyPalette:    INCBIN "gfx/pics/164/shiny.pal",  2, 4
+LedybaPalette:          INCBIN "gfx/pics/165/normal.pal", 2, 4
+LedybaShinyPalette:     INCBIN "gfx/pics/165/shiny.pal",  2, 4
+LedianPalette:          INCBIN "gfx/pics/166/normal.pal", 2, 4
+LedianShinyPalette:     INCBIN "gfx/pics/166/shiny.pal",  2, 4
+SpinarakPalette:        INCBIN "gfx/pics/167/normal.pal", 2, 4
+SpinarakShinyPalette:   INCBIN "gfx/pics/167/shiny.pal",  2, 4
+AriadosPalette:         INCBIN "gfx/pics/168/normal.pal", 2, 4
+AriadosShinyPalette:    INCBIN "gfx/pics/168/shiny.pal",  2, 4
+CrobatPalette:          INCBIN "gfx/pics/169/normal.pal", 2, 4
+CrobatShinyPalette:     INCBIN "gfx/pics/169/shiny.pal",  2, 4
+ChinchouPalette:        INCBIN "gfx/pics/170/normal.pal", 2, 4
+ChinchouShinyPalette:   INCBIN "gfx/pics/170/shiny.pal",  2, 4
+LanturnPalette:         INCBIN "gfx/pics/171/normal.pal", 2, 4
+LanturnShinyPalette:    INCBIN "gfx/pics/171/shiny.pal",  2, 4
+PichuPalette:           INCBIN "gfx/pics/172/normal.pal", 2, 4
+PichuShinyPalette:      INCBIN "gfx/pics/172/shiny.pal",  2, 4
+CleffaPalette:          INCBIN "gfx/pics/173/normal.pal", 2, 4
+CleffaShinyPalette:     INCBIN "gfx/pics/173/shiny.pal",  2, 4
+IgglybuffPalette:       INCBIN "gfx/pics/174/normal.pal", 2, 4
+IgglybuffShinyPalette:  INCBIN "gfx/pics/174/shiny.pal",  2, 4
+TogepiPalette:          INCBIN "gfx/pics/175/normal.pal", 2, 4
+TogepiShinyPalette:     INCBIN "gfx/pics/175/shiny.pal",  2, 4
+TogeticPalette:         INCBIN "gfx/pics/176/normal.pal", 2, 4
+TogeticShinyPalette:    INCBIN "gfx/pics/176/shiny.pal",  2, 4
+NatuPalette:            INCBIN "gfx/pics/177/normal.pal", 2, 4
+NatuShinyPalette:       INCBIN "gfx/pics/177/shiny.pal",  2, 4
+XatuPalette:            INCBIN "gfx/pics/178/normal.pal", 2, 4
+XatuShinyPalette:       INCBIN "gfx/pics/178/shiny.pal",  2, 4
+MareepPalette:          INCBIN "gfx/pics/179/normal.pal", 2, 4
+MareepShinyPalette:     INCBIN "gfx/pics/179/shiny.pal",  2, 4
+FlaaffyPalette:         INCBIN "gfx/pics/180/normal.pal", 2, 4
+FlaaffyShinyPalette:    INCBIN "gfx/pics/180/shiny.pal",  2, 4
+AmpharosPalette:        INCBIN "gfx/pics/181/normal.pal", 2, 4
+AmpharosShinyPalette:   INCBIN "gfx/pics/181/shiny.pal",  2, 4
+BellossomPalette:       INCBIN "gfx/pics/182/normal.pal", 2, 4
+BellossomShinyPalette:  INCBIN "gfx/pics/182/shiny.pal",  2, 4
+MarillPalette:          INCBIN "gfx/pics/183/normal.pal", 2, 4
+MarillShinyPalette:     INCBIN "gfx/pics/183/shiny.pal",  2, 4
+AzumarillPalette:       INCBIN "gfx/pics/184/normal.pal", 2, 4
+AzumarillShinyPalette:  INCBIN "gfx/pics/184/shiny.pal",  2, 4
+SudowoodoPalette:       INCBIN "gfx/pics/185/normal.pal", 2, 4
+SudowoodoShinyPalette:  INCBIN "gfx/pics/185/shiny.pal",  2, 4
+PolitoedPalette:        INCBIN "gfx/pics/186/normal.pal", 2, 4
+PolitoedShinyPalette:   INCBIN "gfx/pics/186/shiny.pal",  2, 4
+HoppipPalette:          INCBIN "gfx/pics/187/normal.pal", 2, 4
+HoppipShinyPalette:     INCBIN "gfx/pics/187/shiny.pal",  2, 4
+SkiploomPalette:        INCBIN "gfx/pics/188/normal.pal", 2, 4
+SkiploomShinyPalette:   INCBIN "gfx/pics/188/shiny.pal",  2, 4
+JumpluffPalette:        INCBIN "gfx/pics/189/normal.pal", 2, 4
+JumpluffShinyPalette:   INCBIN "gfx/pics/189/shiny.pal",  2, 4
+AipomPalette:           INCBIN "gfx/pics/190/normal.pal", 2, 4
+AipomShinyPalette:      INCBIN "gfx/pics/190/shiny.pal",  2, 4
+SunkernPalette:         INCBIN "gfx/pics/191/normal.pal", 2, 4
+SunkernShinyPalette:    INCBIN "gfx/pics/191/shiny.pal",  2, 4
+SunfloraPalette:        INCBIN "gfx/pics/192/normal.pal", 2, 4
+SunfloraShinyPalette:   INCBIN "gfx/pics/192/shiny.pal",  2, 4
+YanmaPalette:           INCBIN "gfx/pics/193/normal.pal", 2, 4
+YanmaShinyPalette:      INCBIN "gfx/pics/193/shiny.pal",  2, 4
+WooperPalette:          INCBIN "gfx/pics/194/normal.pal", 2, 4
+WooperShinyPalette:     INCBIN "gfx/pics/194/shiny.pal",  2, 4
+QuagsirePalette:        INCBIN "gfx/pics/195/normal.pal", 2, 4
+QuagsireShinyPalette:   INCBIN "gfx/pics/195/shiny.pal",  2, 4
+EspeonPalette:          INCBIN "gfx/pics/196/normal.pal", 2, 4
+EspeonShinyPalette:     INCBIN "gfx/pics/196/shiny.pal",  2, 4
+UmbreonPalette:         INCBIN "gfx/pics/197/normal.pal", 2, 4
+UmbreonShinyPalette:    INCBIN "gfx/pics/197/shiny.pal",  2, 4
+MurkrowPalette:         INCBIN "gfx/pics/198/normal.pal", 2, 4
+MurkrowShinyPalette:    INCBIN "gfx/pics/198/shiny.pal",  2, 4
+SlowkingPalette:        INCBIN "gfx/pics/199/normal.pal", 2, 4
+SlowkingShinyPalette:   INCBIN "gfx/pics/199/shiny.pal",  2, 4
+MisdreavusPalette:      INCBIN "gfx/pics/200/normal.pal", 2, 4
+MisdreavusShinyPalette: INCBIN "gfx/pics/200/shiny.pal",  2, 4
+UnownPalette:           INCBIN "gfx/pics/201/normal.pal", 2, 4
+UnownShinyPalette:      INCBIN "gfx/pics/201/shiny.pal",  2, 4
+WobbuffetPalette:       INCBIN "gfx/pics/202/normal.pal", 2, 4
+WobbuffetShinyPalette:  INCBIN "gfx/pics/202/shiny.pal",  2, 4
+GirafarigPalette:       INCBIN "gfx/pics/203/normal.pal", 2, 4
+GirafarigShinyPalette:  INCBIN "gfx/pics/203/shiny.pal",  2, 4
+PinecoPalette:          INCBIN "gfx/pics/204/normal.pal", 2, 4
+PinecoShinyPalette:     INCBIN "gfx/pics/204/shiny.pal",  2, 4
+ForretressPalette:      INCBIN "gfx/pics/205/normal.pal", 2, 4
+ForretressShinyPalette: INCBIN "gfx/pics/205/shiny.pal",  2, 4
+DunsparcePalette:       INCBIN "gfx/pics/206/normal.pal", 2, 4
+DunsparceShinyPalette:  INCBIN "gfx/pics/206/shiny.pal",  2, 4
+GligarPalette:          INCBIN "gfx/pics/207/normal.pal", 2, 4
+GligarShinyPalette:     INCBIN "gfx/pics/207/shiny.pal",  2, 4
+SteelixPalette:         INCBIN "gfx/pics/208/normal.pal", 2, 4
+SteelixShinyPalette:    INCBIN "gfx/pics/208/shiny.pal",  2, 4
+SnubbullPalette:        INCBIN "gfx/pics/209/normal.pal", 2, 4
+SnubbullShinyPalette:   INCBIN "gfx/pics/209/shiny.pal",  2, 4
+GranbullPalette:        INCBIN "gfx/pics/210/normal.pal", 2, 4
+GranbullShinyPalette:   INCBIN "gfx/pics/210/shiny.pal",  2, 4
+QwilfishPalette:        INCBIN "gfx/pics/211/normal.pal", 2, 4
+QwilfishShinyPalette:   INCBIN "gfx/pics/211/shiny.pal",  2, 4
+ScizorPalette:          INCBIN "gfx/pics/212/normal.pal", 2, 4
+ScizorShinyPalette:     INCBIN "gfx/pics/212/shiny.pal",  2, 4
+ShucklePalette:         INCBIN "gfx/pics/213/normal.pal", 2, 4
+ShuckleShinyPalette:    INCBIN "gfx/pics/213/shiny.pal",  2, 4
+HeracrossPalette:       INCBIN "gfx/pics/214/normal.pal", 2, 4
+HeracrossShinyPalette:  INCBIN "gfx/pics/214/shiny.pal",  2, 4
+SneaselPalette:         INCBIN "gfx/pics/215/normal.pal", 2, 4
+SneaselShinyPalette:    INCBIN "gfx/pics/215/shiny.pal",  2, 4
+TeddiursaPalette:       INCBIN "gfx/pics/216/normal.pal", 2, 4
+TeddiursaShinyPalette:  INCBIN "gfx/pics/216/shiny.pal",  2, 4
+UrsaringPalette:        INCBIN "gfx/pics/217/normal.pal", 2, 4
+UrsaringShinyPalette:   INCBIN "gfx/pics/217/shiny.pal",  2, 4
+SlugmaPalette:          INCBIN "gfx/pics/218/normal.pal", 2, 4
+SlugmaShinyPalette:     INCBIN "gfx/pics/218/shiny.pal",  2, 4
+MagcargoPalette:        INCBIN "gfx/pics/219/normal.pal", 2, 4
+MagcargoShinyPalette:   INCBIN "gfx/pics/219/shiny.pal",  2, 4
+SwinubPalette:          INCBIN "gfx/pics/220/normal.pal", 2, 4
+SwinubShinyPalette:     INCBIN "gfx/pics/220/shiny.pal",  2, 4
+PiloswinePalette:       INCBIN "gfx/pics/221/normal.pal", 2, 4
+PiloswineShinyPalette:  INCBIN "gfx/pics/221/shiny.pal",  2, 4
+CorsolaPalette:         INCBIN "gfx/pics/222/normal.pal", 2, 4
+CorsolaShinyPalette:    INCBIN "gfx/pics/222/shiny.pal",  2, 4
+RemoraidPalette:        INCBIN "gfx/pics/223/normal.pal", 2, 4
+RemoraidShinyPalette:   INCBIN "gfx/pics/223/shiny.pal",  2, 4
+OctilleryPalette:       INCBIN "gfx/pics/224/normal.pal", 2, 4
+OctilleryShinyPalette:  INCBIN "gfx/pics/224/shiny.pal",  2, 4
+DelibirdPalette:        INCBIN "gfx/pics/225/normal.pal", 2, 4
+DelibirdShinyPalette:   INCBIN "gfx/pics/225/shiny.pal",  2, 4
+MantinePalette:         INCBIN "gfx/pics/226/normal.pal", 2, 4
+MantineShinyPalette:    INCBIN "gfx/pics/226/shiny.pal",  2, 4
+SkarmoryPalette:        INCBIN "gfx/pics/227/normal.pal", 2, 4
+SkarmoryShinyPalette:   INCBIN "gfx/pics/227/shiny.pal",  2, 4
+HoundourPalette:        INCBIN "gfx/pics/228/normal.pal", 2, 4
+HoundourShinyPalette:   INCBIN "gfx/pics/228/shiny.pal",  2, 4
+HoundoomPalette:        INCBIN "gfx/pics/229/normal.pal", 2, 4
+HoundoomShinyPalette:   INCBIN "gfx/pics/229/shiny.pal",  2, 4
+KingdraPalette:         INCBIN "gfx/pics/230/normal.pal", 2, 4
+KingdraShinyPalette:    INCBIN "gfx/pics/230/shiny.pal",  2, 4
+PhanpyPalette:          INCBIN "gfx/pics/231/normal.pal", 2, 4
+PhanpyShinyPalette:     INCBIN "gfx/pics/231/shiny.pal",  2, 4
+DonphanPalette:         INCBIN "gfx/pics/232/normal.pal", 2, 4
+DonphanShinyPalette:    INCBIN "gfx/pics/232/shiny.pal",  2, 4
+Porygon2Palette:        INCBIN "gfx/pics/233/normal.pal", 2, 4
+Porygon2ShinyPalette:   INCBIN "gfx/pics/233/shiny.pal",  2, 4
+StantlerPalette:        INCBIN "gfx/pics/234/normal.pal", 2, 4
+StantlerShinyPalette:   INCBIN "gfx/pics/234/shiny.pal",  2, 4
+SmearglePalette:        INCBIN "gfx/pics/235/normal.pal", 2, 4
+SmeargleShinyPalette:   INCBIN "gfx/pics/235/shiny.pal",  2, 4
+TyroguePalette:         INCBIN "gfx/pics/236/normal.pal", 2, 4
+TyrogueShinyPalette:    INCBIN "gfx/pics/236/shiny.pal",  2, 4
+HitmontopPalette:       INCBIN "gfx/pics/237/normal.pal", 2, 4
+HitmontopShinyPalette:  INCBIN "gfx/pics/237/shiny.pal",  2, 4
+SmoochumPalette:        INCBIN "gfx/pics/238/normal.pal", 2, 4
+SmoochumShinyPalette:   INCBIN "gfx/pics/238/shiny.pal",  2, 4
+ElekidPalette:          INCBIN "gfx/pics/239/normal.pal", 2, 4
+ElekidShinyPalette:     INCBIN "gfx/pics/239/shiny.pal",  2, 4
+MagbyPalette:           INCBIN "gfx/pics/240/normal.pal", 2, 4
+MagbyShinyPalette:      INCBIN "gfx/pics/240/shiny.pal",  2, 4
+MiltankPalette:         INCBIN "gfx/pics/241/normal.pal", 2, 4
+MiltankShinyPalette:    INCBIN "gfx/pics/241/shiny.pal",  2, 4
+BlisseyPalette:         INCBIN "gfx/pics/242/normal.pal", 2, 4
+BlisseyShinyPalette:    INCBIN "gfx/pics/242/shiny.pal",  2, 4
+RaikouPalette:          INCBIN "gfx/pics/243/normal.pal", 2, 4
+RaikouShinyPalette:     INCBIN "gfx/pics/243/shiny.pal",  2, 4
+EnteiPalette:           INCBIN "gfx/pics/244/normal.pal", 2, 4
+EnteiShinyPalette:      INCBIN "gfx/pics/244/shiny.pal",  2, 4
+SuicunePalette:         INCBIN "gfx/pics/245/normal.pal", 2, 4
+SuicuneShinyPalette:    INCBIN "gfx/pics/245/shiny.pal",  2, 4
+LarvitarPalette:        INCBIN "gfx/pics/246/normal.pal", 2, 4
+LarvitarShinyPalette:   INCBIN "gfx/pics/246/shiny.pal",  2, 4
+PupitarPalette:         INCBIN "gfx/pics/247/normal.pal", 2, 4
+PupitarShinyPalette:    INCBIN "gfx/pics/247/shiny.pal",  2, 4
+TyranitarPalette:       INCBIN "gfx/pics/248/normal.pal", 2, 4
+TyranitarShinyPalette:  INCBIN "gfx/pics/248/shiny.pal",  2, 4
+LugiaPalette:           INCBIN "gfx/pics/249/normal.pal", 2, 4
+LugiaShinyPalette:      INCBIN "gfx/pics/249/shiny.pal",  2, 4
+HoOhPalette:            INCBIN "gfx/pics/250/normal.pal", 2, 4
+HoOhShinyPalette:       INCBIN "gfx/pics/250/shiny.pal",  2, 4
+CelebiPalette:          INCBIN "gfx/pics/251/normal.pal", 2, 4
+CelebiShinyPalette:     INCBIN "gfx/pics/251/shiny.pal",  2, 4

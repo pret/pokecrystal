@@ -1183,19 +1183,26 @@ def dmg2rgb(word):
 	blue = word & 0b11111
 	alpha = 255
 	return ((red<<3)+0b100, (green<<3)+0b100, (blue<<3)+0b100, alpha)
+	
+def rgb_to_dmg(color):
+	word =  (color['r'] / 8)
+	word += (color['g'] / 8) <<  5
+	word += (color['b'] / 8) << 10
+	return word
 
 
 def png_pal(filename):
 	palette = []
-	palette.append((255,255,255,255))
 	with open(filename, 'rb') as pal_data:
 		words = pal_data.read()
 		dmg_pals = []
 		for word in range(len(words)/2):
 			dmg_pals.append(ord(words[word*2]) + ord(words[word*2+1])*0x100)
-	for word in dmg_pals:
-		palette.append(dmg2rgb(word))
-	palette.append((000,000,000,255))
+	white = (255,255,255,255)
+	black = (000,000,000,255)
+	for word in dmg_pals: palette += [dmg2rgb(word)]
+	if white not in dmg_pals and len(palette) < 4: palette = [white] + palette
+	if black not in dmg_pals and len(palette) < 4: palette += [black]
 	return palette
 
 
@@ -1262,6 +1269,9 @@ def to_png(filein, fileout=None, pal_file=None, height=None, width=None):
 
 	lines = to_lines(flatten(image), width)
 
+	if pal_file == None:
+		if os.path.exists(os.path.splitext(fileout)[0]+'.pal'):
+			pal_file = os.path.splitext(fileout)[0]+'.pal'
 
 	if pal_file == None:
 		palette   = None
@@ -1303,17 +1313,13 @@ def to_2bpp(filein, fileout=None, palout=None):
 		greyscale = info[3]['greyscale']
 
 
-	# commented out for the moment
-
 	padding = { 'left':   0,
 	            'right':  0,
 	            'top':    0,
 	            'bottom': 0, }
-
 	#if width  % 8 != 0:
 	#	padding['left']   =    int(ceil((width / 8 + 8 - width) / 2))
 	#	padding['right']  =   int(floor((width / 8 + 8 - width) / 2))
-
 	#if height % 8 != 0:
 	#	padding['top']    =  int(ceil((height / 8 + 8 - height) / 2))
 	#	padding['bottom'] = int(floor((height / 8 + 8 - height) / 2))
@@ -1322,7 +1328,7 @@ def to_2bpp(filein, fileout=None, palout=None):
 	# turn the flat values into something more workable
 
 	pixel_length = 4 # rgba
-	image   = []
+	image = []
 
 	# while we're at it, let's size up the palette
 
@@ -1331,53 +1337,53 @@ def to_2bpp(filein, fileout=None, palout=None):
 	for line in rgba:
 		newline = []
 		for pixel in range(len(line)/pixel_length):
-			i = pixel*pixel_length
+			i = pixel * pixel_length
 			color = { 'r': line[i  ],
 			          'g': line[i+1],
 			          'b': line[i+2],
 			          'a': line[i+3], }
-			newline.append(color)
-			if color not in palette: palette.append(color)
+			newline += [color]
+			if color not in palette: palette += [color]
 		image.append(newline)
 
+	# pad out any small palettes
+	hues = {
+		'white': { 'r': 0xff, 'g': 0xff, 'b': 0xff, 'a': 0xff },
+		'black': { 'r': 0x00, 'g': 0x00, 'b': 0x00, 'a': 0xff },
+		'grey':  { 'r': 0x55, 'g': 0x55, 'b': 0x55, 'a': 0xff },
+		'gray':  { 'r': 0xaa, 'g': 0xaa, 'b': 0xaa, 'a': 0xff },
+	}
+	while len(palette) < 4:
+		for hue in hues.values():
+			if not any(color is hue for color in palette):
+				palette += [hue]
+				if len(palette) >= 4: break
 
-	# sort by luminance, because we can
+	assert len(palette) <= 4, 'Palette should be 4 colors, is really ' + str(len(palette))
 
+	# sort by luminance
 	def luminance(color):
 		# this is actually in reverse, thanks to dmg/cgb palette ordering
 		rough = { 'r':  4.7,
 		          'g':  1.4,
 		          'b': 13.8, }
 		return sum(color[key] * -rough[key] for key in rough.keys())
+	palette = sorted(palette, key=luminance)
 
-	palette = sorted(palette, key = lambda x:luminance(x))
-
-	# no palette fixing for now
-
-	assert len(palette) <= 4, 'Palette should be 4 colors, is really ' + str(len(palette))
-
-
-	# spit out new palette (disabled for now)
-
-	def rgb_to_dmg(color):
-		word =  (color['r'] / 8) << 10
-		word += (color['g'] / 8) <<  5
-		word += (color['b'] / 8)
-		return word
-
-	palout = None
-
+	# spit out a new .pal file
+	# disable this if it causes problems with paletteless images
+	if palout == None:
+		if os.path.exists(os.path.splitext(fileout)[0]+'.pal'):
+			palout = os.path.splitext(fileout)[0]+'.pal'
 	if palout != None:
 		output = []
-		for color in palette[1:3]:
+		for color in palette:
 			word = rgb_to_dmg(color)
-			output.append(word>>8)
-			output.append(word&0xff)
+			output += [word & 0xff]
+			output += [word >> 8]
 		to_file(palout, output)
 
-
-	# create a new map consisting of quaternary color ids
-
+	# create a new map of quaternary color ids
 	map = []
 	if padding['top']: map += [0] * (width + padding['left'] + padding['right']) * padding['top']
 	for line in image:
@@ -1388,12 +1394,9 @@ def to_2bpp(filein, fileout=None, palout=None):
 	if padding['bottom']: map += [0] * (width + padding['left'] + padding['right']) * padding['bottom']
 
 	# split it into strips of 8, and make them planar
-
 	num_columns = width / 8
 	num_rows = height / 8
-
 	tile = 8 * 8
-
 	image = []
 	for row in range(num_rows):
 		for column in range(num_columns):
@@ -1437,10 +1440,7 @@ def mass_to_colored_png(debug=False):
 			for name in files:
 				if debug: print os.path.splitext(name), os.path.join(root, name)
 				if os.path.splitext(name)[1] == '.2bpp':
-					if os.path.splitext(name)[0]+'.pal' in files:
-						to_png(os.path.join(root, name), None, os.path.join(root, os.path.splitext(name)[0]+'.pal'))
-					else:
-						to_png(os.path.join(root, name))
+					to_png(os.path.join(root, name))
 					os.utime(os.path.join(root, name), None)
 
 	# only monster and trainer pics for now
@@ -1458,7 +1458,7 @@ def mass_to_colored_png(debug=False):
 		for name in files:
 			if debug: print os.path.splitext(name), os.path.join(root, name)
 			if os.path.splitext(name)[1] == '.2bpp':
-				to_png(os.path.join(root, name), None, os.path.join(root, name[:-5]+'.pal'))
+				to_png(os.path.join(root, name))
 				os.utime(os.path.join(root, name), None)
 
 
@@ -1518,101 +1518,107 @@ def dump_tileset_pngs():
         tileset_filename = "../gfx/tilesets/" + str(tileset_id).zfill(2) + ".lz"
         lz_to_png_by_file(tileset_filename)
 
+def decompress_frontpic(lz_file):
+	"""
+	Convert the pic portion of front.lz to front.2bpp
+	"""
+	lz = open(lz_file, 'rb').read()
+	to_file(Decompressed(lz).pic, os.path.splitext(filein)[0] + '.2bpp')
+
+def decompress_frontpic_anim(lz_file):
+	"""
+	Convert the animation tile portion of front.lz to tiles.2bpp
+	"""
+	lz = open(lz_file, 'rb').read()
+	to_file(Decompressed(lz).animtiles, 'tiles.2bpp')
+
+def expand_pic_palettes():
+	"""
+	Add white and black to palette files with fewer than 4 colors.
+	
+	Pokemon Crystal only defines two colors for a pic palette to
+	save space, filling in black/white at runtime.
+	Instead of managing palette files of varying length, black
+	and white are added to pic palettes and excluded from incbins.
+	"""
+	for root, dirs, files in os.walk('../gfx/'):
+		if 'gfx/pics' in root or 'gfx/trainers' in root:
+			for name in files:
+				if os.path.splitext(name)[1] == '.pal':
+					filename = os.path.join(root, name)
+					palette = bytearray(open(filename, 'rb').read())
+					w = bytearray([0xff, 0x7f])
+					b = bytearray([0x00, 0x00])
+					if len(palette) == 4:
+						with open(filename, 'wb') as out:
+							out.write(w + palette + b)
+
 if __name__ == "__main__":
-
 	debug = False
+	
+	argv = [None] * 5
+	for i, arg in enumerate(sys.argv):
+		argv[i] = arg
 
-	if sys.argv[1] == 'dump-pngs':
+	if argv[1] == 'dump-pngs':
 		mass_to_colored_png()
 
-	elif sys.argv[1] == 'lz-to-png':
-		lz_to_png_by_file(sys.argv[2])
+	elif argv[1] == 'front-to-2bpp':
+		decompress_frontpic(argv[2])
 
-	elif sys.argv[1] == 'png-to-lz':
+	elif argv[1] == 'anim-from-front':
+		decompress_frontpic_anim(argv[2])
+
+	elif argv[1] == 'lz-to-2bpp':
+		name = os.path.splitext(argv[3])[0]
+		lz = open(name+'.lz', 'rb').read()
+		if argv[2] == '--vert':
+			to_file(name+'.2bpp', Decompressed(lz, 'vert').output)
+		else:
+			to_file(name+'.2bpp', Decompressed(lz).output)
+
+	elif argv[1] == 'lz-to-png':
+		if argv[2] == '--vert':
+			name = os.path.splitext(argv[3])[0]
+			lz = open(name+'.lz', 'rb').read()
+			to_file(name+'.2bpp', Decompressed(lz, 'vert').output)
+			pic = open(name+'.2bpp', 'rb').read()
+			to_file(name+'.png', to_png(pic))
+		else:
+			lz_to_png_by_file(argv[2])
+
+	elif argv[1] == 'png-to-lz':
 		# python gfx.py png-to-lz [--front anim(2bpp) | --vert] [png]
-
-		# python gfx.py png-to-lz --front [anim(2bpp)] [png]
-		if sys.argv[2] == '--front':
-
-			# front.png and tiles.png are combined before compression,
-			# so we have to pass in things like anim file and pic size
-			name = os.path.splitext(sys.argv[4])[0]
-
+		if argv[2] == '--front':
+			# front.2bpp and tiles.2bpp are combined before compression,
+			# so we have to pass in the anim file and pic size
+			name = os.path.splitext(argv[4])[0]
 			to_2bpp(name+'.png', name+'.2bpp')
 			pic  = open(name+'.2bpp', 'rb').read()
-			anim = open(sys.argv[3], 'rb').read()
+			anim = open(argv[3], 'rb').read()
 			size = int(sqrt(len(pic)/16)) # assume square pic
 			to_file(name+'.lz', Compressed(pic + anim, 'vert', size).output)
-
-
-		# python gfx.py png-to-lz --vert [png]
-		elif sys.argv[2] == '--vert':
-
-			# others are vertically oriented (frontpics are always vertical)
-
-			name = os.path.splitext(sys.argv[3])[0]
-
+		elif argv[2] == '--vert':
+			name = os.path.splitext(argv[3])[0]
 			to_2bpp(name+'.png', name+'.2bpp')
 			pic = open(name+'.2bpp', 'rb').read()
 			to_file(name+'.lz', Compressed(pic, 'vert').output)
-
-
-		# python gfx.py png-to-lz [png]
 		else:
+			png_to_lz(argv[2])
 
-			# standard usage
+	elif argv[1] == 'png-to-2bpp':
+		to_2bpp(argv[2])
 
-			png_to_lz(sys.argv[2])
-
-	elif sys.argv[1] == 'png-to-2bpp':
-		to_2bpp(sys.argv[2])
-
-
-	elif sys.argv[1] == 'de':
-		# python gfx.py de [addr] [fileout] [mode]
-
-		rom = load_rom()
-
-		addr = int(sys.argv[2],16)
-		fileout = sys.argv[3]
-		mode = sys.argv[4]
-		decompress_from_address(addr, fileout, mode)
-		if debug: print 'decompressed to ' + sys.argv[3] + ' from ' + hex(int(sys.argv[2],16)) + '!'
-
-	elif sys.argv[1] == 'lz':
-		# python gfx.py lz [filein] [fileout] [mode]
-		filein = sys.argv[2]
-		fileout = sys.argv[3]
-		mode = sys.argv[4]
-		compress_file(filein, fileout, mode)
-		if debug: print 'compressed ' + filein + ' to ' + fileout + '!'
-
-	elif sys.argv[1] == 'lzf':
-		# python gfx.py lzf [id] [fileout]
-		compress_monster_frontpic(int(sys.argv[2]), sys.argv[3])
-
-	elif sys.argv[1] == 'un':
-		# python gfx.py un [address] [num_tiles] [filename]
-		rom = load_rom()
-		get_uncompressed_gfx(int(sys.argv[2],16), int(sys.argv[3]), sys.argv[4])
-
-	elif sys.argv[1] == 'pal':
-		# python gfx.py pal [address] [length]
-		rom = load_rom()
-		print grab_palettes(int(sys.argv[2],16), int(sys.argv[3]))
-
-	elif sys.argv[1] == 'png':
-
-		if '.2bpp' in sys.argv[2]:
-			if sys.argv[4] == 'greyscale':
-				to_png(sys.argv[2], sys.argv[3])
-			else:
-				to_png(sys.argv[2], sys.argv[3], sys.argv[4])
-
-		elif '.png' in sys.argv[2]:
-			to_2bpp(sys.argv[2], sys.argv[3])
-
-	elif sys.argv[1] == 'mass-decompress':
-		mass_decompress()
-		if debug: print 'decompressed known gfx to pokecrystal/gfx/!'
+	elif argv[1] == '2bpp-to-lz':
+		if argv[2] == '--vert':
+			filein = argv[3]
+			fileout = argv[4]
+			compress_file(filein, fileout, 'vert')
+		else:
+			filein = argv[2]
+			fileout = argv[3]
+			compress_file(filein, fileout)
+	
+	elif argv[1] == '2bpp-to-png':
+		to_png(argv[2])
 
