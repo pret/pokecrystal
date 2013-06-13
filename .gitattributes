@@ -1,2 +1,12 @@
 # No monkey business with line endings
 * -text
+
+# hexdump binary files
+*.png  diff=hex
+*.lz   diff=hex
+*.2bpp diff=hex
+*.1bpp diff=hex
+*.pal  diff=hex
+*.bin  diff=hex
+*.blk  diff=hex
+
