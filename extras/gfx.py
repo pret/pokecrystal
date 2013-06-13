@@ -1563,6 +1563,9 @@ if __name__ == "__main__":
 	if argv[1] == 'dump-pngs':
 		mass_to_colored_png()
 
+	elif argv[1] == 'mass-decompress':
+		mass_decompress()
+
 	elif argv[1] == 'front-to-2bpp':
 		decompress_frontpic(argv[2])
 
