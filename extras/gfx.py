@@ -1532,6 +1532,26 @@ def decompress_frontpic_anim(lz_file):
 	lz = open(lz_file, 'rb').read()
 	to_file(Decompressed(lz).animtiles, 'tiles.2bpp')
 
+def expand_pic_palettes():
+	"""
+	Add white and black to palette files with fewer than 4 colors.
+	
+	Pokemon Crystal only defines two colors for a pic palette to
+	save space, filling in black/white at runtime.
+	Instead of managing palette files of varying length, black
+	and white are added to pic palettes and excluded from incbins.
+	"""
+	for root, dirs, files in os.walk('../gfx/'):
+		if 'gfx/pics' in root or 'gfx/trainers' in root:
+			for name in files:
+				if os.path.splitext(name)[1] == '.pal':
+					filename = os.path.join(root, name)
+					palette = bytearray(open(filename, 'rb').read())
+					w = bytearray([0xff, 0x7f])
+					b = bytearray([0x00, 0x00])
+					if len(palette) == 4:
+						with open(filename, 'wb') as out:
+							out.write(w + palette + b)
 
 if __name__ == "__main__":
 	debug = False
