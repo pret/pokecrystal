@@ -583,7 +583,7 @@ def find_label(local_address, bank_id=0):
     if local_address in wram_labels.keys():
         return wram_labels[local_address][-1]
     for constants in [gbhw_constants, hram_constants]:
-        if local_address in constants.keys():
+        if local_address in constants.keys() and local_address >= 0xff00:
             return constants[local_address]
     return None
 
