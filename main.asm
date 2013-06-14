@@ -5079,11 +5079,13 @@ INCBIN "baserom.gbc", $4000, $5f99 - $4000
 OakSpeech: ; 0x5f99
 	ld a, $24
 	ld hl, $4672
-	rst $8
+	rst FarCall
 	call $04dd
 	call ClearTileMap
-	ld de, $002b
+
+	ld de, MUSIC_ROUTE_30
 	call StartMusic
+
 	call $04a3
 	call $04b6
 	xor a
@@ -5091,49 +5093,62 @@ OakSpeech: ; 0x5f99
 	ld a, POKEMON_PROF
 	ld [TrainerClass], a
 	call $619c
+
 	ld b, $1c
 	call GetSGBLayout
 	call $616a
+
 	ld hl, OakText1
 	call PrintText
 	call $04b6
 	call ClearTileMap
+
 	ld a, $c2
 	ld [$cf60], a
 	ld [CurPartySpecies], a
 	call $3856
-	ld hl, $c4f6
+
+	hlcoord 6, 4
 	call $3786
+
 	xor a
 	ld [$d123], a
 	ld [$d124], a
+
 	ld b, $1c
 	call GetSGBLayout
 	call $6182
+
 	ld hl, OakText2
 	call PrintText
 	ld hl, OakText4
 	call PrintText
 	call $04b6
 	call ClearTileMap
+
 	xor a
 	ld [CurPartySpecies], a
 	ld a, POKEMON_PROF
 	ld [TrainerClass], a
 	call $619c
+
 	ld b, $1c
 	call GetSGBLayout
 	call $616a
+
 	ld hl, OakText5
 	call PrintText
 	call $04b6
 	call ClearTileMap
+
 	xor a
 	ld [CurPartySpecies], a
 	callba DrawIntroPlayerPic
+
 	ld b, $1c
 	call GetSGBLayout
 	call $616a
+
 	ld hl, OakText6
 	call PrintText
 	call NamePlayer
@@ -5147,7 +5162,7 @@ OakText1: ; 0x6045
 
 OakText2: ; 0x604a
 	TX_FAR _OakText2
-	db 8
+	start_asm
 	ld a,WOOPER
 	call $37ce
 	call $3c55
@@ -5175,53 +5190,58 @@ OakText7: ; 0x606f
 	db "@"
 
 NamePlayer: ; 0x6074
-	ld a, BANK(MovePlayerPicRight)
-	ld hl, MovePlayerPicRight
-	rst $8
-	ld a, BANK(ShowPlayerNamingChoices)
-	ld hl, ShowPlayerNamingChoices
-	rst $8
+	callba MovePlayerPicRight
+	callba ShowPlayerNamingChoices
 	ld a, [$cfa9]
 	dec a
-	jr z, .asm_6096 ; 0x6084 $10
+	jr z, .NewName
 	call $60fa
 	ld a, $2
 	ld hl, $4c1d
-	rst $8
-	ld a, BANK(MovePlayerPicLeft)
-	ld hl, MovePlayerPicLeft
-	rst $8
+	rst FarCall
+	callba MovePlayerPicLeft
 	ret
-.asm_6096
-	ld b, $1
-	ld de, $d47d
+
+.NewName
+	ld b, 1
+	ld de, PlayerName
 	ld a, $4
 	ld hl, $56c1
-	rst $8
+	rst FarCall
+
 	call $04b6
-	call $0fc8
+	call ClearTileMap
+
 	call $0e5f
 	call WaitBGMap
+
 	xor a
-	ld [$d108], a
+	ld [CurPartySpecies], a
 	ld a, $22
 	ld hl, $4874
-	rst $8
-	ld b, $1c
-	call $3340
-	call $04f0
-	ld hl, $d47d
-	ld de, $60d3
-	ld a, [$d472]
-	bit 0, a
-	jr z, .asm_60cf ; 0x60ca $3
-	ld de, $60de
-.asm_60cf
-	call $2ef9
-	ret
-; 0x60d3
+	rst FarCall
 
-INCBIN "baserom.gbc", $60d3, $617c - $60d3
+	ld b, $1c
+	call GetSGBLayout
+	call $04f0
+
+	ld hl, PlayerName
+	ld de, .Chris
+	ld a, [PlayerGender]
+	bit 0, a
+	jr z, .asm_60cf
+	ld de, .Kris
+.asm_60cf
+	call InitString
+	ret
+
+.Chris
+	db "CHRIS@@@@@@"
+.Kris
+	db "KRIS@@@@@@@"
+; 60e9
+
+INCBIN "baserom.gbc", $60e9, $617c - $60e9
 
 IntroFadePalettes: ; 0x617c
 	db %01010100
