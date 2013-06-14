@@ -5130,9 +5130,7 @@ OakSpeech: ; 0x5f99
 	call ClearTileMap
 	xor a
 	ld [CurPartySpecies], a
-	ld a, $22
-	ld hl, $4874
-	rst $8
+	callba DrawIntroPlayerPic
 	ld b, $1c
 	call GetSGBLayout
 	call $616a
@@ -13124,7 +13122,53 @@ GetPlayerIcon: ; 8832c
 	ret
 ; 8833e
 
-INCBIN "baserom.gbc", $8833e, $88ec9 - $8833e
+
+INCBIN "baserom.gbc", $8833e, $88874 - $8833e
+
+
+DrawIntroPlayerPic: ; 88874
+; Draw the player pic at (6,4).
+
+; Get class
+	ld e, 0
+	ld a, [PlayerGender]
+	bit 0, a
+	jr z, .GotClass
+	ld e, 1
+.GotClass
+	ld a, e
+	ld [TrainerClass], a
+
+; Load pic
+	ld de, ChrisPic
+	ld a, [PlayerGender]
+	bit 0, a
+	jr z, .GotPic
+	ld de, KrisPic
+.GotPic
+	ld hl, VTiles2
+	ld b, BANK(ChrisPic)
+	ld c, $31
+	call $f82
+
+; Draw
+	xor a
+	ld [$ffad], a
+	hlcoord 6, 4
+	ld bc, $0707
+	ld a, $13
+	call Predef
+	ret
+; 888a9
+
+
+ChrisPic: ; 888a9
+INCBIN "baserom.gbc", $888a9, $88bb9 - $888a9
+; 88bb9
+
+KrisPic: ; 88bb9
+INCBIN "baserom.gbc", $88bb9, $88ec9 - $88bb9
+; 88ec9
 
 
 GetKrisBackpic: ; 88ec9
