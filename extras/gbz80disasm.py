@@ -577,7 +577,7 @@ def find_label(local_address, bank_id=0):
 
     if local_address < 0x8000:
         for label_entry in all_labels:
-            if label_entry["address"] == local_address:
+            if label_entry["address"] & 0x7fff == local_address:
                 if label_entry["bank"] == bank_id or label_entry["bank"] == 0:
                     return label_entry["label"]
     if local_address in wram_labels.keys():
