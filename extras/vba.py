@@ -159,14 +159,20 @@ def button_combiner(buttons):
     # recognized as "s" and "t" etc..
     if isinstance(buttons, str):
         if "restart" in buttons:
-            buttons.replace("restart", "")
+            buttons = buttons.replace("restart", "")
             result |= button_masks["restart"]
         if "start" in buttons:
-            buttons.replace("start", "")
+            buttons = buttons.replace("start", "")
             result |= button_masks["start"]
         if "select" in buttons:
-            buttons.replace("select", "")
+            buttons = buttons.replace("select", "")
             result |= button_masks["select"]
+
+        # allow for the "a, b" and "a b" formats
+        if ", " in buttons:
+            buttons = buttons.split(", ")
+        elif " " in buttons:
+            buttons = buttons.split(" ")
 
     if isinstance(buttons, list):
         if len(buttons) > 9:
@@ -429,7 +435,7 @@ def set_memory_at(address, value):
     """
     Gb.setMemoryAt(address, value)
 
-def press(buttons, steplimit=1):
+def press(buttons, holdsteps=1, aftersteps=1):
     """
     Press a button. Use steplimit to say for how many steps you want to press
     the button (try leaving it at the default, 1).
@@ -440,8 +446,13 @@ def press(buttons, steplimit=1):
         number = buttons
     else:
         number = buttons
-    for step_counter in range(0, steplimit):
+    for step_counter in range(0, holdsteps):
         Gb.step(number)
+
+    # clear the button press
+    if aftersteps > 0:
+        for step_counter in range(0, aftersteps):
+            Gb.step(0)
 
 def get_buttons():
     """
@@ -700,6 +711,26 @@ class crystal:
     """
     Just a simple namespace to store a bunch of functions for Pokémon Crystal.
     """
+
+    @staticmethod
+    def text_wait(step_size=10, max_wait=500):
+        """
+        Watches for a sign that text is done being drawn to screen, then
+        presses the "A" button.
+
+        :param step_size: number of steps per wait loop
+        :param max_wait: number of wait loops to perform
+        """
+        for x in range(0, max_wait):
+            hi = get_memory_at(registers.sp + 1)
+            lo = get_memory_at(registers.sp)
+            address = ((hi << 8) | lo)
+            if address == 0xaef:
+                break
+            else:
+                nstep(step_size)
+
+        press("a", holdsteps=50, aftersteps=1)
 
     @staticmethod
     def walk_through_walls_slow():
