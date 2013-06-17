@@ -5079,11 +5079,13 @@ INCBIN "baserom.gbc", $4000, $5f99 - $4000
 OakSpeech: ; 0x5f99
 	ld a, $24
 	ld hl, $4672
-	rst $8
+	rst FarCall
 	call $04dd
 	call ClearTileMap
-	ld de, $002b
+
+	ld de, MUSIC_ROUTE_30
 	call StartMusic
+
 	call $04a3
 	call $04b6
 	xor a
@@ -5091,51 +5093,62 @@ OakSpeech: ; 0x5f99
 	ld a, POKEMON_PROF
 	ld [TrainerClass], a
 	call $619c
+
 	ld b, $1c
 	call GetSGBLayout
 	call $616a
+
 	ld hl, OakText1
 	call PrintText
 	call $04b6
 	call ClearTileMap
+
 	ld a, $c2
 	ld [$cf60], a
 	ld [CurPartySpecies], a
 	call $3856
-	ld hl, $c4f6
+
+	hlcoord 6, 4
 	call $3786
+
 	xor a
 	ld [$d123], a
 	ld [$d124], a
+
 	ld b, $1c
 	call GetSGBLayout
 	call $6182
+
 	ld hl, OakText2
 	call PrintText
 	ld hl, OakText4
 	call PrintText
 	call $04b6
 	call ClearTileMap
+
 	xor a
 	ld [CurPartySpecies], a
 	ld a, POKEMON_PROF
 	ld [TrainerClass], a
 	call $619c
+
 	ld b, $1c
 	call GetSGBLayout
 	call $616a
+
 	ld hl, OakText5
 	call PrintText
 	call $04b6
 	call ClearTileMap
+
 	xor a
 	ld [CurPartySpecies], a
-	ld a, $22
-	ld hl, $4874
-	rst $8
+	callba DrawIntroPlayerPic
+
 	ld b, $1c
 	call GetSGBLayout
 	call $616a
+
 	ld hl, OakText6
 	call PrintText
 	call NamePlayer
@@ -5149,7 +5162,7 @@ OakText1: ; 0x6045
 
 OakText2: ; 0x604a
 	TX_FAR _OakText2
-	db 8
+	start_asm
 	ld a,WOOPER
 	call $37ce
 	call $3c55
@@ -5177,53 +5190,58 @@ OakText7: ; 0x606f
 	db "@"
 
 NamePlayer: ; 0x6074
-	ld a, BANK(MovePlayerPicRight)
-	ld hl, MovePlayerPicRight
-	rst $8
-	ld a, BANK(ShowPlayerNamingChoices)
-	ld hl, ShowPlayerNamingChoices
-	rst $8
+	callba MovePlayerPicRight
+	callba ShowPlayerNamingChoices
 	ld a, [$cfa9]
 	dec a
-	jr z, .asm_6096 ; 0x6084 $10
+	jr z, .NewName
 	call $60fa
 	ld a, $2
 	ld hl, $4c1d
-	rst $8
-	ld a, BANK(MovePlayerPicLeft)
-	ld hl, MovePlayerPicLeft
-	rst $8
+	rst FarCall
+	callba MovePlayerPicLeft
 	ret
-.asm_6096
-	ld b, $1
-	ld de, $d47d
+
+.NewName
+	ld b, 1
+	ld de, PlayerName
 	ld a, $4
 	ld hl, $56c1
-	rst $8
+	rst FarCall
+
 	call $04b6
-	call $0fc8
+	call ClearTileMap
+
 	call $0e5f
 	call WaitBGMap
+
 	xor a
-	ld [$d108], a
+	ld [CurPartySpecies], a
 	ld a, $22
 	ld hl, $4874
-	rst $8
-	ld b, $1c
-	call $3340
-	call $04f0
-	ld hl, $d47d
-	ld de, $60d3
-	ld a, [$d472]
-	bit 0, a
-	jr z, .asm_60cf ; 0x60ca $3
-	ld de, $60de
-.asm_60cf
-	call $2ef9
-	ret
-; 0x60d3
+	rst FarCall
 
-INCBIN "baserom.gbc", $60d3, $617c - $60d3
+	ld b, $1c
+	call GetSGBLayout
+	call $04f0
+
+	ld hl, PlayerName
+	ld de, .Chris
+	ld a, [PlayerGender]
+	bit 0, a
+	jr z, .asm_60cf
+	ld de, .Kris
+.asm_60cf
+	call InitString
+	ret
+
+.Chris
+	db "CHRIS@@@@@@"
+.Kris
+	db "KRIS@@@@@@@"
+; 60e9
+
+INCBIN "baserom.gbc", $60e9, $617c - $60e9
 
 IntroFadePalettes: ; 0x617c
 	db %01010100
@@ -6965,7 +6983,34 @@ BoxNameInputUpper:
 	db "- ? ! ♂ ♀ / . , &"
 	db "lower  DEL   END "
 
-INCBIN "baserom.gbc", $11e5d, $125cd - $11e5d
+
+INCBIN "baserom.gbc", $11e5d, $12513 - $11e5d
+
+
+HalveMoney: ; 12513
+
+; Empty function...
+	ld a, $41
+	ld hl, $60c7
+	rst FarCall
+
+; Halve the player's money.
+	ld hl, Money
+	ld a, [hl]
+	srl a
+	ld [hli], a
+	ld a, [hl]
+	rra
+	ld [hli], a
+	ld a, [hl]
+	rra
+	ld [hl], a
+	ret
+; 12527
+
+
+INCBIN "baserom.gbc", $12527, $125cd - $12527
+
 
 OpenMenu: ; 0x125cd
 	call $1fbf
@@ -9365,7 +9410,112 @@ KantoGymLeaders:
 	db BLUE
 	db $ff
 
-INCBIN "baserom.gbc", $3d14e, $3ddc2 - $3d14e
+
+INCBIN "baserom.gbc", $3d14e, $3d38e - $3d14e
+
+
+LostBattle: ; 3d38e
+	ld a, 1
+	ld [BattleEnded], a
+
+	ld a, [$cfc0]
+	bit 0, a
+	jr nz, .asm_3d3bd
+
+	ld a, [BattleType]
+	cp BATTLETYPE_CANLOSE
+	jr nz, .asm_3d3e3
+
+; Remove the enemy from the screen.
+	hlcoord 0, 0
+	ld bc, $0815
+	call ClearBox
+	call $6bd8
+
+	ld c, 40
+	call DelayFrames
+
+	ld a, [$c2cc]
+	bit 0, a
+	jr nz, .asm_3d3bc
+	call $3718
+.asm_3d3bc
+	ret
+
+.asm_3d3bd
+; Remove the enemy from the screen.
+	hlcoord 0, 0
+	ld bc, $0815
+	call ClearBox
+	call $6bd8
+
+	ld c, 40
+	call DelayFrames
+
+	call $6dd1
+	ld c, 2
+	ld a, $47
+	ld hl, $4000
+	rst FarCall
+	call $0a80
+	call ClearTileMap
+	call WhiteBGMap
+	ret
+
+.asm_3d3e3
+	ld a, [InLinkBattle]
+	and a
+	jr nz, .LostLinkBattle
+
+; Greyscale
+	ld b, 0
+	call GetSGBLayout
+	call $32f9
+	jr .end
+
+.LostLinkBattle
+	call UpdateEnemyMonInParty
+	call $4f35
+	jr nz, .asm_3d40a
+	ld hl, TiedAgainstText
+	ld a, [$d0ee]
+	and $c0
+	add 2
+	ld [$d0ee], a
+	jr .asm_3d412
+
+.asm_3d40a
+	ld hl, LostAgainstText
+	call $52f1
+	jr z, .asm_3d417
+
+.asm_3d412
+	call FarBattleTextBox
+
+.end
+	scf
+	ret
+
+.asm_3d417
+; Remove the enemy from the screen.
+	hlcoord 0, 0
+	ld bc, $0815
+	call ClearBox
+	call $6bd8
+
+	ld c, 40
+	call DelayFrames
+
+	ld c, $3
+	ld a, $13
+	ld hl, $6a0a
+	rst FarCall
+	scf
+	ret
+; 3d432
+
+
+INCBIN "baserom.gbc", $3d432, $3ddc2 - $3d432
 
 	ld hl, RecoveredUsingText
 	jp $3ad5
@@ -9986,7 +10136,99 @@ CheckUnownLetter: ; 3eb75
 ; 3ebc7
 
 
-INCBIN "baserom.gbc", $3ebc7, $3edd8 - $3ebc7
+INCBIN "baserom.gbc", $3ebc7, $3ed4a - $3ebc7
+
+
+BadgeStatBoosts: ; 3ed4a
+; Raise BattleMon stats depending on which badges have been obtained.
+
+; Every other badge boosts a stat, starting from the first.
+
+; 	ZephyrBadge:  Attack
+; 	PlainBadge:   Speed
+; 	MineralBadge: Defense
+; 	GlacierBadge: Special Attack
+; 	RisingBadge:  Special Defense
+
+; The boosted stats are in order, except PlainBadge and MineralBadge's boosts are swapped.
+
+	ld a, [$cfc0]
+	and a
+	ret nz
+
+	ld a, [JohtoBadges]
+
+; Swap badges 3 (PlainBadge) and 5 (MineralBadge).
+	ld d, a
+	and %00000100
+	add a
+	add a
+	ld b, a
+	ld a, d
+	and %00010000
+	rrca
+	rrca
+	ld c, a
+	ld a, d
+	and %11101011
+	or b
+	or c
+	ld b, a
+
+	ld hl, BattleMonAtk
+	ld c, 4
+.CheckBadge
+	ld a, b
+	srl b
+	call c, BoostStat
+	inc hl
+	inc hl
+; Check every other badge.
+	srl b
+	dec c
+	jr nz, .CheckBadge
+; And the last one (RisingBadge) too.
+	srl a
+	call c, BoostStat
+	ret
+; 3ed7c
+
+
+BoostStat: ; 3ed7c
+; Raise stat at hl by 1/8.
+
+	ld a, [hli]
+	ld d, a
+	ld e, [hl]
+	srl d
+	rr e
+	srl d
+	rr e
+	srl d
+	rr e
+	ld a, [hl]
+	add e
+	ld [hld], a
+	ld a, [hl]
+	adc d
+	ld [hli], a
+
+; Cap at 999.
+	ld a, [hld]
+	sub 999 % $100
+	ld a, [hl]
+	sbc 999 / $100
+	ret c
+	ld a, 999 / $100
+	ld [hli], a
+	ld a, 999 % $100
+	ld [hld], a
+	ret
+; 3ed9f
+
+
+INCBIN "baserom.gbc", $3ed9f, $3edd8 - $3ed9f
+
 
 BattleRNG: ; 3edd8
 ; If the normal RNG is used in a link battle it'll desync.
@@ -13124,7 +13366,53 @@ GetPlayerIcon: ; 8832c
 	ret
 ; 8833e
 
-INCBIN "baserom.gbc", $8833e, $88ec9 - $8833e
+
+INCBIN "baserom.gbc", $8833e, $88874 - $8833e
+
+
+DrawIntroPlayerPic: ; 88874
+; Draw the player pic at (6,4).
+
+; Get class
+	ld e, 0
+	ld a, [PlayerGender]
+	bit 0, a
+	jr z, .GotClass
+	ld e, 1
+.GotClass
+	ld a, e
+	ld [TrainerClass], a
+
+; Load pic
+	ld de, ChrisPic
+	ld a, [PlayerGender]
+	bit 0, a
+	jr z, .GotPic
+	ld de, KrisPic
+.GotPic
+	ld hl, VTiles2
+	ld b, BANK(ChrisPic)
+	ld c, $31
+	call $f82
+
+; Draw
+	xor a
+	ld [$ffad], a
+	hlcoord 6, 4
+	ld bc, $0707
+	ld a, $13
+	call Predef
+	ret
+; 888a9
+
+
+ChrisPic: ; 888a9
+INCBIN "baserom.gbc", $888a9, $88bb9 - $888a9
+; 88bb9
+
+KrisPic: ; 88bb9
+INCBIN "baserom.gbc", $88bb9, $88ec9 - $88bb9
+; 88ec9
 
 
 GetKrisBackpic: ; 88ec9
