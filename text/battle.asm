@@ -176,7 +176,7 @@ BattleText_0x809da: ; 0x809da
 	db "was defeated!", $58
 ; 0x809eb
 
-BattleText_0x809eb: ; 0x809eb
+TiedAgainstText: ; 0x809eb
 	db $0, "Tied against", $4f
 	db $3f, "!", $58
 ; 0x809fc
@@ -219,7 +219,7 @@ BattleText_0x80a93: ; 0x80a93
 	db "good #MON!", $58
 ; 0x80ab9
 
-BattleText_0x80ab9: ; 0x80ab9
+LostAgainstText: ; 0x80ab9
 	db $0, "Lost against", $4f
 	db $3f, "!", $58
 ; 0x80aca

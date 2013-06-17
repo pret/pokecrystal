@@ -6983,7 +6983,34 @@ BoxNameInputUpper:
 	db "- ? ! ♂ ♀ / . , &"
 	db "lower  DEL   END "
 
-INCBIN "baserom.gbc", $11e5d, $125cd - $11e5d
+
+INCBIN "baserom.gbc", $11e5d, $12513 - $11e5d
+
+
+HalveMoney: ; 12513
+
+; Empty function...
+	ld a, $41
+	ld hl, $60c7
+	rst FarCall
+
+; Halve the player's money.
+	ld hl, Money
+	ld a, [hl]
+	srl a
+	ld [hli], a
+	ld a, [hl]
+	rra
+	ld [hli], a
+	ld a, [hl]
+	rra
+	ld [hl], a
+	ret
+; 12527
+
+
+INCBIN "baserom.gbc", $12527, $125cd - $12527
+
 
 OpenMenu: ; 0x125cd
 	call $1fbf
@@ -9383,7 +9410,112 @@ KantoGymLeaders:
 	db BLUE
 	db $ff
 
-INCBIN "baserom.gbc", $3d14e, $3ddc2 - $3d14e
+
+INCBIN "baserom.gbc", $3d14e, $3d38e - $3d14e
+
+
+LostBattle: ; 3d38e
+	ld a, 1
+	ld [BattleEnded], a
+
+	ld a, [$cfc0]
+	bit 0, a
+	jr nz, .asm_3d3bd
+
+	ld a, [BattleType]
+	cp BATTLETYPE_CANLOSE
+	jr nz, .asm_3d3e3
+
+; Remove the enemy from the screen.
+	hlcoord 0, 0
+	ld bc, $0815
+	call ClearBox
+	call $6bd8
+
+	ld c, 40
+	call DelayFrames
+
+	ld a, [$c2cc]
+	bit 0, a
+	jr nz, .asm_3d3bc
+	call $3718
+.asm_3d3bc
+	ret
+
+.asm_3d3bd
+; Remove the enemy from the screen.
+	hlcoord 0, 0
+	ld bc, $0815
+	call ClearBox
+	call $6bd8
+
+	ld c, 40
+	call DelayFrames
+
+	call $6dd1
+	ld c, 2
+	ld a, $47
+	ld hl, $4000
+	rst FarCall
+	call $0a80
+	call ClearTileMap
+	call WhiteBGMap
+	ret
+
+.asm_3d3e3
+	ld a, [InLinkBattle]
+	and a
+	jr nz, .LostLinkBattle
+
+; Greyscale
+	ld b, 0
+	call GetSGBLayout
+	call $32f9
+	jr .end
+
+.LostLinkBattle
+	call UpdateEnemyMonInParty
+	call $4f35
+	jr nz, .asm_3d40a
+	ld hl, TiedAgainstText
+	ld a, [$d0ee]
+	and $c0
+	add 2
+	ld [$d0ee], a
+	jr .asm_3d412
+
+.asm_3d40a
+	ld hl, LostAgainstText
+	call $52f1
+	jr z, .asm_3d417
+
+.asm_3d412
+	call FarBattleTextBox
+
+.end
+	scf
+	ret
+
+.asm_3d417
+; Remove the enemy from the screen.
+	hlcoord 0, 0
+	ld bc, $0815
+	call ClearBox
+	call $6bd8
+
+	ld c, 40
+	call DelayFrames
+
+	ld c, $3
+	ld a, $13
+	ld hl, $6a0a
+	rst FarCall
+	scf
+	ret
+; 3d432
+
+
+INCBIN "baserom.gbc", $3d432, $3ddc2 - $3d432
 
 	ld hl, RecoveredUsingText
 	jp $3ad5
