@@ -778,6 +778,11 @@ LastEnemyMove: ; c71c
 	ds 1
 
 
+SECTION "battle",BSS[$c734]
+BattleEnded: ; c734
+	ds 1
+
+
 SECTION "overworldmap",BSS[$c800]
 OverworldMap: ; c800
 	ds 1300

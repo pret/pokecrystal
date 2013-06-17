@@ -10,7 +10,7 @@ def make_sym_from_json(filename = '../pokecrystal.sym', j = 'labels.json'):
 	# todo: delete and remake labels.json at runtime
 	with open(filename, 'w') as sym:
 		for label in json.load(open(j)):
-			sym.write('{0:x}:{1:x} {2}\n'.format(label['bank'], label['address']&0x3fff, label['label']))
+			sym.write('{0:x}:{1:x} {2}\n'.format(label['bank'], label['address']%0x4000 + (0x4000 if label['bank'] else 0), label['label']))
 
 
 def make_sym_from_mapfile(filename = '../pokecrystal.sym', mapfile = '../mapfile.txt'):
