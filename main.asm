@@ -10136,7 +10136,99 @@ CheckUnownLetter: ; 3eb75
 ; 3ebc7
 
 
-INCBIN "baserom.gbc", $3ebc7, $3edd8 - $3ebc7
+INCBIN "baserom.gbc", $3ebc7, $3ed4a - $3ebc7
+
+
+BadgeStatBoosts: ; 3ed4a
+; Raise BattleMon stats depending on which badges have been obtained.
+
+; Every other badge boosts a stat, starting from the first.
+
+; 	ZephyrBadge:  Attack
+; 	PlainBadge:   Speed
+; 	MineralBadge: Defense
+; 	GlacierBadge: Special Attack
+; 	RisingBadge:  Special Defense
+
+; The boosted stats are in order, except PlainBadge and MineralBadge's boosts are swapped.
+
+	ld a, [$cfc0]
+	and a
+	ret nz
+
+	ld a, [JohtoBadges]
+
+; Swap badges 3 (PlainBadge) and 5 (MineralBadge).
+	ld d, a
+	and %00000100
+	add a
+	add a
+	ld b, a
+	ld a, d
+	and %00010000
+	rrca
+	rrca
+	ld c, a
+	ld a, d
+	and %11101011
+	or b
+	or c
+	ld b, a
+
+	ld hl, BattleMonAtk
+	ld c, 4
+.CheckBadge
+	ld a, b
+	srl b
+	call c, BoostStat
+	inc hl
+	inc hl
+; Check every other badge.
+	srl b
+	dec c
+	jr nz, .CheckBadge
+; And the last one (RisingBadge) too.
+	srl a
+	call c, BoostStat
+	ret
+; 3ed7c
+
+
+BoostStat: ; 3ed7c
+; Raise stat at hl by 1/8.
+
+	ld a, [hli]
+	ld d, a
+	ld e, [hl]
+	srl d
+	rr e
+	srl d
+	rr e
+	srl d
+	rr e
+	ld a, [hl]
+	add e
+	ld [hld], a
+	ld a, [hl]
+	adc d
+	ld [hli], a
+
+; Cap at 999.
+	ld a, [hld]
+	sub 999 % $100
+	ld a, [hl]
+	sbc 999 / $100
+	ret c
+	ld a, 999 / $100
+	ld [hli], a
+	ld a, 999 % $100
+	ld [hld], a
+	ret
+; 3ed9f
+
+
+INCBIN "baserom.gbc", $3ed9f, $3edd8 - $3ed9f
+
 
 BattleRNG: ; 3edd8
 ; If the normal RNG is used in a link battle it'll desync.
