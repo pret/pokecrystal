@@ -82,8 +82,8 @@ git config diff.hex.textconv hexdump
 ```
 
 Now you should be able to build **pokecrystal.gbc** for the first time.
-```
-make clean && make
+```bash
+make
 ```
 
 This ought to take between **3 and 15 seconds**, depending on your computer.
@@ -123,8 +123,8 @@ git config diff.hex.textconv hexdump
 ```
 
 To compile the rom from asm source:
-```
-make clean && make
+```bash
+make
 ```
 
 That will take between 3 and 15 seconds, depending on your computer. If you see `cmp baserom.gbc pokecrystal.gbc` as the last line, the build was successful! Rejoice!

@@ -22,6 +22,10 @@ clean:
 pokecrystal.o: pokecrystal.asm constants.asm wram.asm ${TEXTFILES} lzs
 	rgbasm -o pokecrystal.o pokecrystal.asm
 
+pokecrystal.asm: depend
+depend:
+	@touch main.asm
+
 .asm.tx:
 	python preprocessor.py < $< > $@
 
