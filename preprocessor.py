@@ -310,24 +310,14 @@ def separate_comment(l):
     """
     Separates asm and comments on a single line.
     """
-
-    asm        = ""
-    comment    = None
     in_quotes  = False
-
-    # token either belongs to the line or to the comment
-    for token in l:
-        if comment:
-            comment += token
-        else:
-            if not in_quotes:
-                if token == ";":
-                    comment = ";"
-                    continue
-            if token == "\"":
-                in_quotes = not in_quotes
-            asm += token
-    return asm, comment
+    for i in xrange(len(l)):
+        if not in_quotes:
+            if l[i] == ";":
+                break
+        if l[i] == "\"":
+            in_quotes = not in_quotes
+    return i
 
 def quote_translator(asm):
     """
@@ -335,63 +325,50 @@ def quote_translator(asm):
     """
 
     # split by quotes
-    asms = asm.split("\"")
+    asms = asm.split('"')
 
     # skip asm that actually does use ASCII in quotes
-    lowasm = asms[0].lower()
-
-    if "section" in lowasm \
-    or "incbin" in lowasm:
-        sys.stdout.write(asm)
-        return
+    if "SECTION" in asms[0]\
+    or "INCBIN"  in asms[0]\
+    or "INCLUDE" in asms[0]:
+        return asm
 
     print_macro = False
     if asms[0].strip() == 'print':
         asms[0] = asms[0].replace('print','db 0,')
         print_macro = True
 
-    output = ""
+    output = ''
     even = False
-    i = 0
     for token in asms:
-        i = i + 1
-
         if even:
             characters = []
             # token is a string to convert to byte values
             while len(token):
                 # read a single UTF-8 codepoint
                 char = token[0]
-                if ord(char) >= 0xFC:
-                    char = char + token[1:6]
-                    token = token[6:]
-                elif ord(char) >= 0xF8:
-                    char = char + token[1:5]
-                    token = token[5:]
-                elif ord(char) >= 0xF0:
-                    char = char + token[1:4]
-                    token = token[4:]
-                elif ord(char) >= 0xE0:
-                    char = char + token[1:3]
-                    token = token[3:]
-                elif ord(char) >= 0xC0:
+                if ord(char) < 0xc0:
+                    token = token[1:]
+                    # certain apostrophe-letter pairs are considered a single character
+                    if char == "'" and token:
+                        if token[0] in 'dlmrstv':
+                            char += token[0]
+                            token = token[1:]
+                elif ord(char) < 0xe0:
                     char = char + token[1:2]
                     token = token[2:]
+                elif ord(char) < 0xf0:
+                    char = char + token[1:3]
+                    token = token[3:]
+                elif ord(char) < 0xf8:
+                    char = char + token[1:4]
+                    token = token[4:]
+                elif ord(char) < 0xfc:
+                    char = char + token[1:5]
+                    token = token[5:]
                 else:
-                    token = token[1:]
-
-                    # certain apostrophe-letter pairs are only a single byte
-                    if char == "'" and len(token) > 0 and \
-                        (token[0] == "d" or \
-                         token[0] == "l" or \
-                         token[0] == "m" or \
-                         token[0] == "r" or \
-                         token[0] == "s" or \
-                         token[0] == "t" or \
-                         token[0] == "v"):
-                        char = char + token[0]
-                        token = token[1:]
-
+                    char = char + token[1:6]
+                    token = token[6:]
                 characters += [char]
 
             if print_macro:
@@ -421,32 +398,26 @@ def quote_translator(asm):
 
             output += ", ".join(["${0:02X}".format(chars[char]) for char in characters])
 
-        # if not even
         else:
-            output += (token)
+            output += token
 
         even = not even
 
-    sys.stdout.write(output)
-
-    return
+    return output
 
 def extract_token(asm):
-    token = asm.split(" ")[0].replace("\t", "").replace("\n", "")
-    return token
+    return asm.split(" ")[0].strip()
 
 def make_macro_table():
-    return dict([(macro.macro_name, macro) for macro in macros])
+    return dict(((macro.macro_name, macro) for macro in macros))
 macro_table = make_macro_table()
 
 def macro_test(asm):
     """
     Returns a matching macro, or None/False.
     """
-
     # macros are determined by the first symbol on the line
     token = extract_token(asm)
-
     # check against all names
     if token in macro_table:
         return (macro_table[token], token)
@@ -600,64 +571,45 @@ def macro_translator(macro, token, line):
 
     sys.stdout.write(output)
 
-def include_file(asm):
-    """This is more reliable than rgbasm/rgbds including files on its own."""
-
-    prefix = asm.split("INCLUDE \"")[0] + '\n'
-    filename = asm.split("\"")[1]
-    suffix = asm.split("\"")[2]
-
-    read_line(prefix)
-
-    lines = open(filename, "r").readlines()
-
-    for line in lines:
-        read_line(line)
-
-    read_line(suffix)
-
 def read_line(l):
     """Preprocesses a given line of asm."""
 
-    # strip and store any comment on this line
-    if ";" in l:
-        asm, comment = separate_comment(l)
-    else:
-        asm     = l
-        comment = None
+    # strip comments
+    asm, comment = l[:separate_comment(l)], l[separate_comment(l):]
 
-    # handle INCLUDE as a special case
-    if "INCLUDE \"" in l:
-        include_file(asm)
+    # export all labels
+    if ':' in asm[:asm.find('"')]:
+    	sys.stdout.write('GLOBAL ' + asm.split(':')[0] + '\n')
+
+    # expect preprocessed .asm files
+    if "INCLUDE" in asm:
+        asm = asm.replace('.asm','.tx')
+        sys.stdout.write(asm)
 
     # ascii string macro preserves the bytes as ascii (skip the translator)
-    elif len(asm) > 6 and "\tascii " in [asm[:7], "\t" + asm[:6]]:
+    elif len(asm) > 6 and "ascii " == asm[:6] or "\tascii " == asm[:7]:
         asm = asm.replace("ascii", "db", 1)
         sys.stdout.write(asm)
 
     # convert text to bytes when a quote appears (not in a comment)
     elif "\"" in asm:
-        quote_translator(asm)
+        sys.stdout.write(quote_translator(asm))
 
     # check against other preprocessor features
     else:
         macro, token = macro_test(asm)
-
         if macro:
             macro_translator(macro, token, asm)
         else:
             sys.stdout.write(asm)
-
-    # show line comment
-    if comment != None:
-        sys.stdout.write(comment)
+    sys.stdout.write(comment)
 
 def preprocess(lines=None):
     """Main entry point for the preprocessor."""
 
     if not lines:
         # read each line from stdin
-        lines = sys.stdin
+        lines = (sys.stdin.readlines())
     elif not isinstance(lines, list):
         # split up the input into individual lines
         lines = lines.split("\n")
