@@ -11,13 +11,14 @@ all: pokecrystal.gbc
 	cmp baserom.gbc $<
 clean:
 	rm -f pokecrystal.o pokecrystal.gbc
-	@echo rm -f $$\(TEXTFILES:.asm=.tx\)
+	@echo 'rm -f $(TEXTFILES:.asm=.tx)'
 	@rm -f $(TEXTFILES:.asm=.tx)
-pokecrystal.o: $(TEXTFILES:.asm=.tx) pokecrystal.asm constants.asm wram.asm lzs
+pokecrystal.o: $(TEXTFILES:.asm=.tx) $(LZ_GFX) $(TWOBPP_GFX)
 	python prequeue.py $(TEXTQUEUE)
 	rgbasm -o pokecrystal.o pokecrystal.asm
 .asm.tx:
 	$(eval TEXTQUEUE := $(TEXTQUEUE) $<)
+	@rm $@
 
 pokecrystal.gbc: pokecrystal.o
 	rgblink -o $@ $<
@@ -27,6 +28,7 @@ pngs:
 	cd extras && python gfx.py mass-decompress && python gfx.py dump-pngs
 
 lzs: $(LZ_GFX) $(TWOBPP_GFX)
+	@:
 
 gfx/pics/%/front.lz: gfx/pics/%/front.png gfx/pics/%/tiles.2bpp
 	python extras/gfx.py png-to-lz --front $^
