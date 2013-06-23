@@ -76,7 +76,7 @@ def hex_dump(input, debug = True):
 
 
 def get_tiles(image):
-	"""
+    """
     Split a 2bpp image into 8x8 tiles.
     """
 	tiles = []
@@ -725,12 +725,15 @@ class Decompressed:
 			self.output.append(self.alts[byte&1])
 
 	def doZeros(self):
-        """Write zeros."""
+        """
+        Write zeros.
+        """
 		for byte in range(self.length):
 			self.output.append(0x00)
 
 	def doFlip(self):
-		"""Repeat flipped bytes from 2bpp output.
+		"""
+        Repeat flipped bytes from 2bpp output.
 		
         eg  11100100 -> 00100111
 		quat 3 2 1 0 ->  0 2 1 3
@@ -1549,8 +1552,10 @@ def lz_to_png_by_file(filename):
 
 def dump_tileset_pngs():
     """
-    Converts .lz format tilesets into .png format tilesets. Also, leaves a
-    bunch of wonderful .2bpp files everywhere for your amusement.
+    Converts .lz format tilesets into .png format tilesets. 
+    
+    Also, leaves a bunch of wonderful .2bpp files everywhere for 
+    your amusement.
     """
     for tileset_id in range(37):
         tileset_filename = "../gfx/tilesets/" + str(tileset_id).zfill(2) + ".lz"
