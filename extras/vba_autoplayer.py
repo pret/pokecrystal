@@ -26,8 +26,10 @@ def main():
 
 def skippable(func):
     """
-    Makes a function skippable by saving the state before and after the
-    function runs. Pass "skip=True" to the function to load the previous save
+    Makes a function skippable.
+
+    Saves the state before and after the function runs. 
+    Pass "skip=True" to the function to load the previous save
     state from when the function finished.
     """
     def wrapped_function(*args, **kwargs):
@@ -433,6 +435,8 @@ def handle_elm(starter_choice):
 @skippable
 def new_bark_level_grind(level):
     """
+    Do level grinding in New Bark.
+
     Starting just outside of Elm's Lab, do some level grinding until the first
     partymon level is equal to the given value..
     """

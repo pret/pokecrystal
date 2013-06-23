@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-Finds shared functions between red/crystal.
+Find shared functions between red/crystal.
 """
 
 from crystal import (
@@ -18,13 +18,13 @@ from romstr import (
 
 def load_rom(path):
     """
-    Loads a ROM file into an abbreviated RomStr object.
+    Load a ROM file into an abbreviated RomStr object.
     """
     return direct_load_rom(filename=path)
 
 def load_asm(path):
     """
-    Loads source ASM into an abbreviated AsmList object.
+    Load source ASM into an abbreviated AsmList object.
     """
     return direct_load_asm(filename=path)
 
@@ -63,7 +63,8 @@ found_blobs = []
 
 class BinaryBlob(object):
     """
-    Stores a label, line number, and addresses of a function from Pokémon Red.
+    Store a label, line number, and addresses of a function from Pokémon Red.
+
     These details can be used to determine whether or not the function was
     copied into Pokémon Crystal.
     """
@@ -128,7 +129,7 @@ class BinaryBlob(object):
 
     def parse_from_red(self):
         """
-        Reads bytes from Pokémon Red and stores them.
+        Read bytes from Pokémon Red and stores them.
         """
 
         self.bytes = redrom[self.start_address : self.end_address + 1]
@@ -146,7 +147,7 @@ class BinaryBlob(object):
 
     def find_in_crystal(self):
         """
-        Checks whether or not the bytes appear in Pokémon Crystal.
+        Check whether or not the bytes appear in Pokémon Crystal.
         """
 
         finditer       = findall_iter(self.bytes, cryrom)
@@ -160,7 +161,7 @@ class BinaryBlob(object):
 
     def find_by_first_bytes(self):
         """
-        Finds this blob in Crystal based on the first n bytes.
+        Find this blob in Crystal based on the first n bytes.
         """
 
         # how many bytes to match
@@ -194,7 +195,7 @@ redsrc           = load_asm(pokered_src_path)
 
 def scan_red_asm(bank_stop=3, debug=True):
     """
-    Scans the ASM from Pokémon Red. Finds labels and objects. Does things.
+    Scan the ASM from Pokémon Red. Finds labels and objects. Does things.
 
     Uses get_label_from_line and get_address_from_line_comment.
     """

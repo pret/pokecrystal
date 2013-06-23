@@ -1,6 +1,11 @@
 import gfx
 
 def rip_sprites_from_bank(bank, offset=0):
+    """
+    Rips sprites from specified bank.
+
+    Sprites are 4x4.
+    """
     file_handler = open("../gfx/overworld/bank" + str(hex(bank))[2:] + ".asm", "w")
     for sprite in range(0 + offset, 256 + offset):
         filename = "../gfx/overworld/" + str(sprite).zfill(3) + ".2bpp"

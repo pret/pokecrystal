@@ -13,6 +13,11 @@ if not hasattr(json, "read"):
     json.read = json.loads
 
 def load_rom(filename="../baserom.gbc"):
+    """
+    Load the specified rom.
+
+    If no rom is given, load "../baserom.gbc".
+    """
     global rom
     rom = bytearray(open(filename,'rb').read())
     return rom
@@ -557,6 +562,11 @@ call_commands = [0xdc, 0xd4, 0xc4, 0xcc, 0xcd]
 
 all_labels = {}
 def load_labels(filename="labels.json"):
+    """
+    Load labels from specified file.
+
+    If no filename is given, loads 'labels.json'.
+    """
     global all_labels
 
     # don't re-load labels each time
@@ -588,21 +598,28 @@ def find_label(local_address, bank_id=0):
     return None
 
 def asm_label(address):
-    # why using a random value when you can use the address?
+    """
+    Return the ASM label using the address.
+    """
+
     return ".ASM_" + hex(address)[2:]
 
-def output_bank_opcodes(original_offset, max_byte_count=0x4000, include_last_address=True, stop_at=[], debug = False):
-    #fs = current_address
-    #b = bank_byte
-    #in = input_data  -- rom
-    #bank_size = byte_count
-    #i = offset
-    #ad = end_address
-    #a, oa = current_byte_number
+def output_bank_opcodes(original_offset, max_byte_count=0x4000, include_last_address=True, stop_at=[], debug=False):
+    """
+    Output bank opcodes.
 
-    # stop_at can be used to supply a list of addresses to not disassemble
-    # over. This is useful if you know in advance that there are a lot of
-    # fall-throughs.
+    fs = current_address
+    b = bank_byte
+    in = input_data  -- rom
+    bank_size = byte_count
+    i = offset
+    ad = end_address
+    a, oa = current_byte_number
+
+    stop_at can be used to supply a list of addresses to not disassemble
+    over. This is useful if you know in advance that there are a lot of
+    fall-throughs.
+    """
 
     load_labels()
     load_rom()
@@ -851,8 +868,9 @@ def output_bank_opcodes(original_offset, max_byte_count=0x4000, include_last_add
 
 def has_outstanding_labels(byte_labels):
     """
-    If a label is used once in the asm output, then that means it has to be
-    called or specified later.
+    Check whether a label is used once in the asm output. 
+
+    If so, then that means it has to be called or specified later.
     """
     for label_line in byte_labels.keys():
         real_line = byte_labels[label_line]
