@@ -994,9 +994,9 @@ def decompress_misc():
         to_file(filename, gfx.output)
 
 def decompress_all(debug = False):
-        """
-        Decompress all known compressed data in baserom.
-        """
+    """
+    Decompress all known compressed data in baserom.
+    """
 
     if debug: print 'fronts'
     decompress_monsters(front)
