@@ -12,35 +12,35 @@ from trainers import trainer_group_names
 
 
 if __name__ != "__main__":
-	rom = load_rom()
+    rom = load_rom()
 
 
 def mkdir_p(path):
     """
     Make a directory at a given path.
     """
-	try:
-		os.makedirs(path)
-	except OSError as exc: # Python >2.5
-		if exc.errno == errno.EEXIST:
-			pass
-		else: raise
+    try:
+        os.makedirs(path)
+    except OSError as exc: # Python >2.5
+        if exc.errno == errno.EEXIST:
+            pass
+        else: raise
 
 
 def hex_dump(input, debug = True):
     """
     Display hex dump in rows of 16 bytes.
     """
-
-	dump = ''
-	output = ''
-	stream = ''
-	address = 0x00
-	margin = 2 + len(hex(len(input))[2:])
-
-	# dump
-	for byte in input:
-		cool = hex(byte)[2:].zfill(2)
+    
+    dump = ''
+    output = ''
+    stream = ''
+    address = 0x00
+    margin = 2 + len(hex(len(input))[2:])
+    
+    # dump
+    for byte in input:
+        cool = hex(byte)[2:].zfill(2)
 		dump += cool + ' '
 		if debug: stream += cool
 
@@ -98,14 +98,14 @@ def get_tiles(image):
 
 
 def connect(tiles):
-	"""
+    """
     Combine 8x8 tiles into a 2bpp image.
     """
-	out = []
-	for tile in tiles:
-		for byte in tile:
-			out.append(byte)
-	return out
+    out = []
+    for tile in tiles:
+        for byte in tile:
+            out.append(byte)
+    return out
 
 
 def transpose(tiles):
@@ -742,15 +742,19 @@ class Decompressed:
 			flipped = sum(1<<(7-i) for i in range(8) if self.output[self.displacement+byte]>>i&1)
 			self.output.append(flipped)
 
-	def doReverse(self):
-		"""Repeat reversed bytes from 2bpp output."""
-		for byte in range(self.length):
-			self.output.append(self.output[self.displacement-byte])
+    def doReverse(self):
+        """
+        Repeat reversed bytes from 2bpp output.
+        """
+        for byte in range(self.length):
+            self.output.append(self.output[self.displacement-byte])
 
-	def doRepeat(self):
-        """Repeat bytes from 2bpp output."""
-		for byte in range(self.length):
-			self.output.append(self.output[self.displacement+byte])
+    def doRepeat(self):
+        """
+        Repeat bytes from 2bpp output.
+        """
+        for byte in range(self.length):
+            self.output.append(self.output[self.displacement+byte])
 
 
 
@@ -1337,7 +1341,7 @@ def to_png(filein, fileout=None, pal_file=None, height=None, width=None):
 
 def to_2bpp(filein, fileout=None, palout=None):
 	"""
-	Takes a png and converts it to planar 2bpp.
+	Take a png and converts it to planar 2bpp.
 	"""
 
 	if fileout == None: fileout = '.'.join(filein.split('.')[:-1]) + '.2bpp'
@@ -1541,7 +1545,7 @@ def append_terminator_to_lzs(directory):
 
 def lz_to_png_by_file(filename):
     """
-    Converts a lz file to png. Dumps a 2bpp file too.
+    Convert a lz file to png. Dump a 2bpp file too.
     """
     assert filename[-3:] == ".lz"
     lz_data = open(filename, "rb").read()
@@ -1552,7 +1556,7 @@ def lz_to_png_by_file(filename):
 
 def dump_tileset_pngs():
     """
-    Converts .lz format tilesets into .png format tilesets. 
+    Convert .lz format tilesets into .png format tilesets. 
     
     Also, leaves a bunch of wonderful .2bpp files everywhere for 
     your amusement.
