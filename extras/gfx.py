@@ -28,7 +28,7 @@ def mkdir_p(path):
 
 
 def hex_dump(input, debug = True):
-	"""
+    """
     Display hex dump in rows of 16 bytes.
     """
 
@@ -328,7 +328,8 @@ class Compressed:
         Works, but doesn't do flipped/reversed streams yet.
 
 		This takes up most of the compress time and only saves a few bytes
-		it might be more feasible to exclude it entirely."""
+		it might be more feasible to exclude it entirely.
+		"""
 
 		self.repeats = []
 		self.flips = []
