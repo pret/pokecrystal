@@ -16,6 +16,9 @@ if __name__ != "__main__":
 
 
 def mkdir_p(path):
+    """
+    Make a directory at a given path.
+    """
 	try:
 		os.makedirs(path)
 	except OSError as exc: # Python >2.5
@@ -25,7 +28,9 @@ def mkdir_p(path):
 
 
 def hex_dump(input, debug = True):
-	"""display hex dump in rows of 16 bytes"""
+	"""
+    Display hex dump in rows of 16 bytes.
+    """
 
 	dump = ''
 	output = ''
@@ -71,7 +76,9 @@ def hex_dump(input, debug = True):
 
 
 def get_tiles(image):
-	"""split a 2bpp image into 8x8 tiles"""
+	"""
+    Split a 2bpp image into 8x8 tiles.
+    """
 	tiles = []
 	tile = []
 	bytes_per_tile = 16
@@ -91,7 +98,9 @@ def get_tiles(image):
 
 
 def connect(tiles):
-	"""combine 8x8 tiles into a 2bpp image"""
+	"""
+    Combine 8x8 tiles into a 2bpp image.
+    """
 	out = []
 	for tile in tiles:
 		for byte in tile:
@@ -100,7 +109,9 @@ def connect(tiles):
 
 
 def transpose(tiles):
-	"""transpose a tile arrangement along line y=x"""
+	"""
+    Transpose a tile arrangement along line y=x.
+    """
 
 	#     horizontal    <->     vertical
 	# 00 01 02 03 04 05     00 06 0c 12 18 1e
@@ -184,7 +195,10 @@ lowmax = 1 << 5 # standard 5-bit param
 
 
 class Compressed:
-	"""compress 2bpp data"""
+
+	"""
+    Compress 2bpp data.
+    """
 
 	def __init__(self, image = None, mode = 'horiz', size = None):
 
@@ -231,7 +245,9 @@ class Compressed:
 
 
 	def compress(self):
-		"""incomplete, but outputs working compressed data"""
+		"""
+        Incomplete, but outputs working compressed data.
+        """
 
 		self.address = 0
 
@@ -308,10 +324,11 @@ class Compressed:
 
 
 	def scanRepeats(self):
-		"""works, but doesn't do flipped/reversed streams yet
+		"""
+        Works, but doesn't do flipped/reversed streams yet.
 
-		this takes up most of the compress time and only saves a few bytes
-		it might be more feasible to exclude it entirely"""
+		This takes up most of the compress time and only saves a few bytes
+		it might be more feasible to exclude it entirely."""
 
 		self.repeats = []
 		self.flips = []
@@ -478,7 +495,7 @@ class Compressed:
 			while (ord(self.image[(self.address)+1]) == self.alts[num_alts&1]) & (num_alts <= max_length):
 				num_alts += 1
 				self.next()
-			# include the last alternated byte
+            # include the last alternated byte
 			num_alts += 1
 			self.address = original_address
 			if num_alts > lowmax:
@@ -567,7 +584,8 @@ class Compressed:
 
 
 class Decompressed:
-	"""parse compressed 2bpp data
+	"""
+    Parse compressed 2bpp data.
 
 	parameters:
 		[compressed 2bpp data]
@@ -576,7 +594,8 @@ class Decompressed:
 		[start] (optional)
 
 	splits output into pic [size] and animation tiles if applicable
-	data can be fed in from rom if [start] is specified"""
+	data can be fed in from rom if [start] is specified
+    """
 
 	def __init__(self, lz = None, mode = None, size = None, start = 0):
 		# todo: play nice with Compressed
@@ -615,7 +634,9 @@ class Decompressed:
 
 
 	def decompress(self):
-		"""replica of crystal's decompression"""
+		"""
+        Replica of crystal's decompression.
+        """
 
 		self.output = []
 
@@ -674,19 +695,25 @@ class Decompressed:
 		self.getCurByte()
 
 	def doLiteral(self):
-		# copy 2bpp data directly
+		"""
+        Copy 2bpp data directly.
+        """
 		for byte in range(self.length):
 			self.next()
 			self.output.append(self.byte)
 
 	def doIter(self):
-		# write one byte repeatedly
+		"""
+        Write one byte repeatedly.
+        """
 		self.next()
 		for byte in range(self.length):
 			self.output.append(self.byte)
 
 	def doAlt(self):
-		# write alternating bytes
+		"""
+        Write alternating bytes.
+        """
 		self.alts = []
 		self.next()
 		self.alts.append(self.byte)
@@ -697,25 +724,27 @@ class Decompressed:
 			self.output.append(self.alts[byte&1])
 
 	def doZeros(self):
-		# write zeros
+        """Write zeros."""
 		for byte in range(self.length):
 			self.output.append(0x00)
 
 	def doFlip(self):
-		# repeat flipped bytes from 2bpp output
-		# eg  11100100 -> 00100111
-		# quat 3 2 1 0 ->  0 2 1 3
+		"""Repeat flipped bytes from 2bpp output.
+		
+        eg  11100100 -> 00100111
+		quat 3 2 1 0 ->  0 2 1 3
+        """
 		for byte in range(self.length):
 			flipped = sum(1<<(7-i) for i in range(8) if self.output[self.displacement+byte]>>i&1)
 			self.output.append(flipped)
 
 	def doReverse(self):
-		# repeat reversed bytes from 2bpp output
+		"""Repeat reversed bytes from 2bpp output."""
 		for byte in range(self.length):
 			self.output.append(self.output[self.displacement-byte])
 
 	def doRepeat(self):
-		# repeat bytes from 2bpp output
+        """Repeat bytes from 2bpp output."""
 		for byte in range(self.length):
 			self.output.append(self.output[self.displacement+byte])
 
@@ -741,7 +770,9 @@ sizes = [
 ]
 
 def make_sizes():
-	"""front pics have specified sizes"""
+	"""
+    Front pics have specified sizes.
+    """
 	top = 251
 	base_stats = 0x51424
 	# print monster sizes
@@ -955,7 +986,9 @@ def decompress_misc():
 		to_file(filename, gfx.output)
 
 def decompress_all(debug = False):
-	"""decompress all known compressed data in baserom"""
+	"""
+    Decompress all known compressed data in baserom.
+    """
 
 	if debug: print 'fronts'
 	decompress_monsters(front)
@@ -988,7 +1021,9 @@ def decompress_all(debug = False):
 
 
 def decompress_from_address(address, mode='horiz', filename = 'de.2bpp', size = None):
-	"""write decompressed data from an address to a 2bpp file"""
+	"""
+    Write decompressed data from an address to a 2bpp file.
+    """
 	image = Decompressed(rom, mode, size, address)
 	to_file(filename, image.pic)
 
@@ -1034,7 +1069,9 @@ def compress_monster_frontpic(id, fileout):
 
 
 def get_uncompressed_gfx(start, num_tiles, filename):
-	"""grab tiles directly from rom and write to file"""
+	"""
+    Grab tiles directly from rom and write to file.
+    """
 	bytes_per_tile = 0x10
 	length = num_tiles*bytes_per_tile
 	end = start + length
@@ -1139,7 +1176,7 @@ def dump_trainer_pals():
 
 def flatten(planar):
 	"""
-	Flattens planar 2bpp image data into a quaternary pixel map.
+	Flatten planar 2bpp image data into a quaternary pixel map.
 	"""
 	strips = []
 	for pair in range(len(planar)/2):
@@ -1155,7 +1192,7 @@ def flatten(planar):
 
 def to_lines(image, width):
 	"""
-	Converts a tiled quaternary pixel map to lines of quaternary pixels.
+	Convert a tiled quaternary pixel map to lines of quaternary pixels.
 	"""
 
 	tile = 8 * 8
@@ -1208,8 +1245,8 @@ def png_pal(filename):
 
 def to_png(filein, fileout=None, pal_file=None, height=None, width=None):
 	"""
-	Takes a planar 2bpp graphics file and converts it to png.
-	"""
+    Take a planar 2bpp graphics file and converts it to png.
+    """
 
 	if fileout == None: fileout = '.'.join(filein.split('.')[:-1]) + '.png'
 
