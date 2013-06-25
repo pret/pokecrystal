@@ -577,7 +577,7 @@ def find_label(local_address, bank_id=0):
 
     if local_address < 0x8000:
         for label_entry in all_labels:
-            if label_entry["address"] & 0x7fff == local_address:
+            if get_local_address(label_entry["address"]) == local_address:
                 if label_entry["bank"] == bank_id or label_entry["bank"] == 0:
                     return label_entry["label"]
     if local_address in wram_labels.keys():
@@ -592,6 +592,12 @@ def asm_label(address):
     return '.ASM_%x' % address
 def data_label(address):
     return '.DATA_%x' % address
+
+def get_local_address(address):
+    bank = address / 0x4000
+    return (address & 0x3fff) + 0x4000 * bool(bank)
+def get_global_address(address, bank):
+    return (address & 0x3fff) + 0x4000 * bank
 
 def output_bank_opcodes(original_offset, max_byte_count=0x4000, include_last_address=True, stop_at=[], debug = False):
     #fs = current_address
@@ -775,7 +781,7 @@ def output_bank_opcodes(original_offset, max_byte_count=0x4000, include_last_add
                     number = byte1
                     number += byte2 << 8
 
-                    pointer = bank_id * 0x4000 + (number & 0x3fff)
+                    pointer = get_global_address(number, bank_id)
                     if pointer not in data_tables.keys():
                         data_tables[pointer] = {}
                         data_tables[pointer]['usage'] = 0
@@ -850,7 +856,7 @@ def output_bank_opcodes(original_offset, max_byte_count=0x4000, include_last_add
             keep_reading = True
 
         if offset in data_tables.keys():
-            output = output.replace('$%x' % ((offset & 0x3fff) + 0x4000 * bool(bank_id)), data_label(offset).lower())
+            output = output.replace('$%x' % (get_local_address(offset)), data_label(offset).lower())
             output += data_label(offset).lower() + '\n'
 
         first_loop = False
