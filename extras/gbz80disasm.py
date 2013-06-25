@@ -589,9 +589,9 @@ def find_label(local_address, bank_id=0):
 
 def asm_label(address):
     # why using a random value when you can use the address?
-    return '.ASM_%x' % address
+    return '.asm_%x' % address
 def data_label(address):
-    return '.DATA_%x' % address
+    return '.data_%x' % address
 
 def get_local_address(address):
     bank = address / 0x4000
@@ -658,7 +658,7 @@ def output_bank_opcodes(original_offset, max_byte_count=0x4000, include_last_add
             byte_labels[offset]["name"] = line_label
             byte_labels[offset]["usage"] = 0
         byte_labels[offset]["definition"] = True
-        output += line_label.lower() + "\n" #" ; " + hex(offset) + "\n"
+        output += line_label + "\n" #" ; " + hex(offset) + "\n"
 
         #find out if there's a two byte key like this
         temp_maybe = maybe_byte
@@ -732,7 +732,7 @@ def output_bank_opcodes(original_offset, max_byte_count=0x4000, include_last_add
                             byte_labels[target_address]["usage"] = 1
                             byte_labels[target_address]["definition"] = False
 
-                        insertion = line_label2.lower()
+                        insertion = line_label2
                         if has_outstanding_labels(byte_labels) and all_outstanding_labels_are_reverse(byte_labels, offset):
                             include_comment = True
                     elif current_byte == 0x3e:
@@ -855,8 +855,8 @@ def output_bank_opcodes(original_offset, max_byte_count=0x4000, include_last_add
             keep_reading = True
 
         if offset in data_tables.keys():
-            output = output.replace('$%x' % (get_local_address(offset)), data_label(offset).lower())
-            output += data_label(offset).lower() + '\n'
+            output = output.replace('$%x' % (get_local_address(offset)), data_label(offset))
+            output += data_label(offset) + '\n'
             is_data = True
             keep_reading = True
 
@@ -867,7 +867,7 @@ def output_bank_opcodes(original_offset, max_byte_count=0x4000, include_last_add
         address = label_line
         label_line = byte_labels[label_line]
         if label_line["usage"] == 0:
-            output = output.replace((label_line["name"] + "\n").lower(), "")
+            output = output.replace((label_line["name"] + "\n"), "")
 
     #tone down excessive spacing
     output = output.replace("\n\n\n","\n\n")
