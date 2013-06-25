@@ -590,6 +590,8 @@ def find_label(local_address, bank_id=0):
 def asm_label(address):
     # why using a random value when you can use the address?
     return '.ASM_%x' % address
+def data_label(address):
+    return '.DATA_%x' % address
 
 def output_bank_opcodes(original_offset, max_byte_count=0x4000, include_last_address=True, stop_at=[], debug = False):
     #fs = current_address
@@ -622,6 +624,7 @@ def output_bank_opcodes(original_offset, max_byte_count=0x4000, include_last_add
     end_address = original_offset + max_byte_count
 
     byte_labels = {}
+    data_tables = {}
 
     first_loop = True
     output = ""
@@ -772,6 +775,13 @@ def output_bank_opcodes(original_offset, max_byte_count=0x4000, include_last_add
                     number = byte1
                     number += byte2 << 8
 
+                    pointer = bank_id * 0x4000 + (number & 0x3fff)
+                    if pointer not in data_tables.keys():
+                        data_tables[pointer] = {}
+                        data_tables[pointer]['usage'] = 0
+                    else:
+                        data_tables[pointer]['usage'] += 1
+
                     insertion = "$%.4x" % (number)
                     result = find_label(insertion, bank_id)
                     if result != None:
@@ -824,7 +834,7 @@ def output_bank_opcodes(original_offset, max_byte_count=0x4000, include_last_add
                 keep_reading = False
                 is_data = False #cleanup
                 break
-            elif offset not in byte_labels.keys():
+            elif offset not in byte_labels.keys() or offset in data_tables.keys():
                 is_data = True
                 keep_reading = True
             else:
@@ -838,6 +848,10 @@ def output_bank_opcodes(original_offset, max_byte_count=0x4000, include_last_add
         else:
             is_data = False
             keep_reading = True
+
+        if offset in data_tables.keys():
+            output = output.replace('$%x' % ((offset & 0x3fff) + 0x4000 * bool(bank_id)), data_label(offset).lower())
+            output += data_label(offset).lower() + '\n'
 
         first_loop = False
 
