@@ -589,7 +589,7 @@ def find_label(local_address, bank_id=0):
 
 def asm_label(address):
     # why using a random value when you can use the address?
-    return ".ASM_" + hex(address)[2:]
+    return '.ASM_%x' % address
 
 def output_bank_opcodes(original_offset, max_byte_count=0x4000, include_last_address=True, stop_at=[], debug = False):
     #fs = current_address
@@ -626,9 +626,9 @@ def output_bank_opcodes(original_offset, max_byte_count=0x4000, include_last_add
     first_loop = True
     output = ""
     keep_reading = True
+    is_data = False
     while offset <= end_address and keep_reading:
         current_byte = rom[offset]
-        is_data = False
         maybe_byte = current_byte
 
         # stop at any address
@@ -654,7 +654,7 @@ def output_bank_opcodes(original_offset, max_byte_count=0x4000, include_last_add
         #find out if there's a two byte key like this
         temp_maybe = maybe_byte
         temp_maybe += ( rom[offset+1] << 8)
-        if temp_maybe in opt_table.keys() and rom[offset+1]!=0:
+        if not is_data and temp_maybe in opt_table.keys() and rom[offset+1]!=0:
             opstr = opt_table[temp_maybe][0].lower()
 
             if "x" in opstr:
@@ -686,7 +686,7 @@ def output_bank_opcodes(original_offset, max_byte_count=0x4000, include_last_add
 
             current_byte_number += 2
             offset += 2
-        elif maybe_byte in opt_table.keys():
+        elif not is_data and maybe_byte in opt_table.keys():
             op_code = opt_table[maybe_byte]
             op_code_type = op_code[1]
             op_code_byte = maybe_byte
@@ -803,33 +803,41 @@ def output_bank_opcodes(original_offset, max_byte_count=0x4000, include_last_add
                         break
             else:
                 is_data = True
-
-            #stop reading at a jump, relative jump or return
-            if current_byte in end_08_scripts_with:
-                if not has_outstanding_labels(byte_labels) or all_outstanding_labels_are_reverse(byte_labels, offset):
-                    keep_reading = False
-                    is_data = False #cleanup
-                    break
-                else:
-                    is_data = False
-                    keep_reading = True
-            else:
-                is_data = False
-                keep_reading = True
         else:
         #if is_data and keep_reading:
             output += spacing + "db $" + hex(rom[offset])[2:] #+ " ; " + hex(offset)
             output += "\n"
             offset += 1
             current_byte_number += 1
+            if offset in byte_labels.keys():
+                is_data = False
+                keep_reading = True
         #else the while loop would have spit out the opcode
 
         #these two are done prior
         #offset += 1
         #current_byte_number += 1
 
-        if current_byte in relative_unconditional_jumps + end_08_scripts_with:
+        if not is_data and current_byte in relative_unconditional_jumps + end_08_scripts_with:
+            #stop reading at a jump, relative jump or return
+            if not has_outstanding_labels(byte_labels) or all_outstanding_labels_are_reverse(byte_labels, offset):
+                keep_reading = False
+                is_data = False #cleanup
+                break
+            elif offset not in byte_labels.keys():
+                is_data = True
+                keep_reading = True
+            else:
+                is_data = False
+                keep_reading = True
             output += "\n"
+        elif is_data and offset not in byte_labels.keys():
+            print hex(offset), output.split('\n')[-2]
+            is_data = True
+            keep_reading = True
+        else:
+            is_data = False
+            keep_reading = True
 
         first_loop = False
 
