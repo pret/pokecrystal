@@ -46,15 +46,20 @@ cd /away/we/go
 
 ## Getting up and running
 
-We need a couple more things.
+We need a couple more things to be able to compile.
+
+If you're feeling lazy, just paste these commands into your terminal.
 
 ```bash
-apt-cyg install python make git wget
+apt-cyg install make git wget python python-setuptools
+easy_install pip
 ```
 
 **rgbds** will let you compile Game Boy roms.
 
 ```bash
+cd ~
+
 # download rgbds binaries
 wget http://diyhpl.us/~bryan/irc/pokered/rgbds/rgbds.zip
 unzip rgbds.zip
@@ -68,27 +73,29 @@ echo "export PATH=$PATH" >> ~/.bashrc
 Set up the **pokecrystal** repository:
 
 ```bash
-cd ~
 git clone https://github.com/kanzure/pokecrystal
 cd pokecrystal
 
 # install python requirements
 pip install -r requirements.txt
-
-# use hexdump to diff binary files
-git config diff.hex.textconv hexdump
-
-# download the base rom
 ```
 
+## Don't forget baserom.gbc!!
+
+Make sure you downloaded a base rom. Name it **baserom.gbc**.
+
 Now you should be able to build **pokecrystal.gbc** for the first time.
+
+This compiles a new rom from the source code, with any patches filled in from the base rom.
 ```bash
 make
 ```
 
-This ought to take between **3 and 15 seconds**, depending on your computer.
+This ought to take **between 3 and 15 seconds**, depending on your computer.
 
-If you see `cmp baserom.gbc pokecrystal.gbc` as the last line, the build was successful! Rejoice!
+If you see `cmp baserom.gbc pokecrystal.gbc` as the last line, the build was successful!
+
+Your first compile processes every source file at once. After that, only modified source files have to be reprocessed, so compiling again should be a few seconds faster.
 
 
 # Linux
