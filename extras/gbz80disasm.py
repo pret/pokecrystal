@@ -848,7 +848,6 @@ def output_bank_opcodes(original_offset, max_byte_count=0x4000, include_last_add
                 keep_reading = True
             output += "\n"
         elif is_data and offset not in byte_labels.keys():
-            print hex(offset), output.split('\n')[-2]
             is_data = True
             keep_reading = True
         else:
@@ -858,6 +857,8 @@ def output_bank_opcodes(original_offset, max_byte_count=0x4000, include_last_add
         if offset in data_tables.keys():
             output = output.replace('$%x' % (get_local_address(offset)), data_label(offset).lower())
             output += data_label(offset).lower() + '\n'
+            is_data = True
+            keep_reading = True
 
         first_loop = False
 
