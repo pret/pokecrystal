@@ -28,7 +28,7 @@ Eventually this will not be necessary.
 
 ## See also
 
-* Hang out with us on IRC: **[nucleus.kafuka.org #skeetendo](http://chat.mibbit.com/?server=nucleus.kafuka.org&channel=#skeetendo)**
+* Hang out with us on irc: **[nucleus.kafuka.org #skeetendo](https://kiwiirc.com/client/irc.nolimitzone.com/?#skeetendo)**
 
 * Disassembly of **[Pokémon Red](http://bitbucket.org/iimarckus/pokered)**.
 

@@ -10,7 +10,7 @@ md5: 9f2922b235a5eeb78d65594e82ef5dde
 Save it as **baserom.gbc** in the repository.
 
 
-Feel free to ask us on **[nucleus.kafuka.org #skeetendo](http://chat.mibbit.com/?server=nucleus.kafuka.org&channel=#skeetendo)** if something goes wrong!
+Feel free to ask us on **[nucleus.kafuka.org #skeetendo](https://kiwiirc.com/client/irc.nolimitzone.com/?#skeetendo)** if something goes wrong!
 
 # Windows
 
@@ -136,5 +136,5 @@ That will take between 3 and 15 seconds, depending on your computer. If you see 
 
 * **Do your own thing!** The asm source is hack-friendly, and the supplementary scripts in extras/ can be used for other projects.
 
-* We'll be happy to answer any **questions** at **[nucleus.kafuka.org #skeetendo](http://chat.mibbit.com/?server=nucleus.kafuka.org&channel=#skeetendo)**
+* We'll be happy to answer any **questions** on **[nucleus.kafuka.org #skeetendo](https://kiwiirc.com/client/irc.nolimitzone.com/?#skeetendo)**.
 
