@@ -1,29 +1,24 @@
 .SUFFIXES: .asm .tx .o .gbc .png .2bpp .lz
 
-TEXTFILES = \
-		text/sweethoney.tx \
-		text/phone/bill.tx \
-		text/phone/elm.tx \
-		text/phone/mom.tx \
-		text/phone/trainers1.tx \
-		text/common.tx \
-		text/common_2.tx \
-		text/common_3.tx \
-		main.tx
+TEXTFILES := $(shell find ./ -type f -name '*.asm' | grep -v pokecrystal.asm | grep -v constants.asm | grep -v gbhw.asm | grep -v hram.asm | grep -v constants | grep -v wram.asm)
+TEXTQUEUE :=
 
-PNG_GFX    = $(shell find gfx/ -type f -name '*.png')
-LZ_GFX     = $(shell find gfx/ -type f -name '*.lz')
-TWOBPP_GFX = $(shell find gfx/ -type f -name '*.2bpp')
+PNG_GFX    := $(shell find gfx/ -type f -name '*.png')
+LZ_GFX     := $(shell find gfx/ -type f -name '*.lz')
+TWOBPP_GFX := $(shell find gfx/ -type f -name '*.2bpp')
 
 all: pokecrystal.gbc
 	cmp baserom.gbc $<
 clean:
-	rm -f main.tx pokecrystal.o pokecrystal.gbc ${TEXTFILES}
-pokecrystal.o: pokecrystal.asm constants.asm wram.asm ${TEXTFILES} lzs
+	rm -f pokecrystal.o pokecrystal.gbc
+	@echo 'rm -f $(TEXTFILES:.asm=.tx)'
+	@rm -f $(TEXTFILES:.asm=.tx)
+pokecrystal.o: $(TEXTFILES:.asm=.tx) $(LZ_GFX) $(TWOBPP_GFX)
+	python prequeue.py $(TEXTQUEUE)
 	rgbasm -o pokecrystal.o pokecrystal.asm
-
 .asm.tx:
-	python preprocessor.py < $< > $@
+	$(eval TEXTQUEUE := $(TEXTQUEUE) $<)
+	@rm $@
 
 pokecrystal.gbc: pokecrystal.o
 	rgblink -o $@ $<
@@ -33,6 +28,7 @@ pngs:
 	cd extras && python gfx.py mass-decompress && python gfx.py dump-pngs
 
 lzs: $(LZ_GFX) $(TWOBPP_GFX)
+	@:
 
 gfx/pics/%/front.lz: gfx/pics/%/front.png gfx/pics/%/tiles.2bpp
 	python extras/gfx.py png-to-lz --front $^
