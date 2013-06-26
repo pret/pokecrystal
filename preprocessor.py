@@ -579,7 +579,7 @@ def read_line(l):
 
     # export all labels
     if ':' in asm[:asm.find('"')]:
-    	sys.stdout.write('GLOBAL ' + asm.split(':')[0] + '\n')
+        sys.stdout.write('GLOBAL ' + asm.split(':')[0] + '\n')
 
     # expect preprocessed .asm files
     if "INCLUDE" in asm:
