@@ -97,6 +97,14 @@ If you see `cmp baserom.gbc pokecrystal.gbc` as the last line, the build was suc
 
 Your first compile processes every source file at once. After that, only modified source files have to be reprocessed, so compiling again should be a few seconds faster.
 
+Other make targets that may come in handy:
+
+`make clean` deletes any preprocessed source files (.tx), rgbds object files and the compiled rom, in case something goes wrong.
+
+`make pngs` decompresses any lz files in gfx/ and then exports any graphics files to png.
+
+`make lzs` does the reverse. This is already part of the build process, so modified pngs will automatically be converted to 2bpp and compressed to lz without any additional work.
+
 
 # Linux
 
