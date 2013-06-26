@@ -60,7 +60,7 @@ INCBIN "baserom.gbc", $150, $283 - $150
 
 
 VBlank: ; 283
-INCLUDE "vblank.asm"
+INCLUDE "engine/vblank.asm"
 
 
 DelayFrame: ; 45a
@@ -437,7 +437,7 @@ SetClock: ; 691
 INCBIN "baserom.gbc", $6c4, $92e - $6c4
 
 
-INCLUDE "joypad.asm"
+INCLUDE "engine/joypad.asm"
 
 
 INCBIN "baserom.gbc", $a1b, $b40 - $a1b
@@ -12984,7 +12984,7 @@ GetFlag2: ; 80430
 
 
 BitTable2: ; 80462
-INCLUDE "bittable2.asm"
+INCLUDE "engine/bittable2.asm"
 ; 80648
 
 
@@ -14938,7 +14938,7 @@ INCLUDE "maps/second_map_headers.asm"
 
 INCBIN "baserom.gbc", $966b0, $96cb1 - $966b0
 
-INCLUDE "scripting.asm"
+INCLUDE "engine/scripting.asm"
 
 INCBIN "baserom.gbc", $97c20, $35e
 
@@ -19353,7 +19353,7 @@ INCBIN "gfx/intro/logo.lz"
 INCBIN "baserom.gbc", $10983f, $1099aa - $10983f
 
 ; Credits
-INCLUDE "credits.asm"
+INCLUDE "engine/credits.asm"
 
 
 SECTION "bank43",DATA,BANK[$43]
@@ -21354,7 +21354,7 @@ MoveNames:
 INCLUDE "battle/move_names.asm"
 
 
-INCLUDE "landmarks.asm"
+INCLUDE "engine/landmarks.asm"
 
 
 RegionCheck: ; 0x1caea1
