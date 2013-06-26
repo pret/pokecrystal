@@ -31,19 +31,19 @@ def hex_dump(input, debug=True):
     """
     Display hex dump in rows of 16 bytes.
     """
-    
+
     dump = ''
     output = ''
     stream = ''
     address = 0x00
     margin = 2 + len(hex(len(input))[2:])
-    
+
     # dump
     for byte in input:
         cool = hex(byte)[2:].zfill(2)
         dump += cool + ' '
         if debug: stream += cool
-        
+
     # convenient for testing quick edits in bgb
     if debug: output += stream + '\n'
 
@@ -52,17 +52,16 @@ def hex_dump(input, debug=True):
     chars_per_byte = 3 # '__ '
     chars_per_line = bytes_per_line * chars_per_byte
     num_lines = int(ceil(float(len(dump)) / float(chars_per_line)))
-        
+
     # top
     # margin
     for char in range(margin):
         output += ' '
 
-    # 
     for byte in range(bytes_per_line):
         output += hex(byte)[2:].zfill(2) + ' '
     output = output[:-1] # last space
-        
+
     # print hex
     for line in range(num_lines):
         # address
@@ -72,7 +71,7 @@ def hex_dump(input, debug=True):
         end = chars_per_line + start - 1 # ignore last space
         output += dump[start:end]
         address += 0x10
-    
+
     return output
 
 
@@ -83,7 +82,7 @@ def get_tiles(image):
     tiles = []
     tile = []
     bytes_per_tile = 16
-        
+
     cur_byte = 0
     for byte in image:
         # build tile
@@ -113,7 +112,7 @@ def transpose(tiles):
     """
     Transpose a tile arrangement along line y=x.
     """
-    
+
     #     horizontal    <->     vertical
     # 00 01 02 03 04 05     00 06 0c 12 18 1e
     # 06 07 08 09 0a 0b     01 07 0d 13 19 1f
@@ -122,7 +121,7 @@ def transpose(tiles):
     # 18 19 1a 1b 1c 1d     04 0a 10 16 1c 22
     # 1e 1f 20 21 22 23     05 0b 11 17 1d 23
     # etc
-        
+
     flipped = []
     t = 0 # which tile we're on
     w = int(sqrt(len(tiles))) # assume square image
@@ -196,18 +195,18 @@ lowmax = 1 << 5 # standard 5-bit param
 
 
 class Compressed:
-    
+
     """
     Compress 2bpp data.
     """
-    
+
     def __init__(self, image=None, mode='horiz', size=None):
         assert image, 'need something to compress!'
         image = list(image)
         self.image = image
         self.pic = []
         self.animtiles = []
-                
+
         # only transpose pic (animtiles were never transposed in decompression)
         if size != None:
             for byte in range((size*size)*16):
@@ -221,7 +220,7 @@ class Compressed:
             self.tiles = get_tiles(self.pic)
             self.tiles = transpose(self.tiles)
             self.pic = connect(self.tiles)
-            
+
         self.image = self.pic + self.animtiles
 
         self.end = len(self.image)
@@ -326,15 +325,15 @@ class Compressed:
     def scanRepeats(self):
         """
         Works, but doesn't do flipped/reversed streams yet.
-                
+
         This takes up most of the compress time and only saves a few bytes
         it might be more feasible to exclude it entirely.
         """
-                
+
         self.repeats = []
         self.flips = []
         self.reverses = []
-                
+
         # make a 5-letter word list of the sequence
         letters = 5 # how many bytes it costs to use a repeat over a literal
         # any shorter and it's not worth the trouble
@@ -345,7 +344,7 @@ class Compressed:
             for j in range(letters):
                 word.append( ord(self.image[i+j]) )
             words.append((word, i))
-            
+
             zeros = []
             for zero in range(letters):
                 zeros.append( 0 )
@@ -405,13 +404,13 @@ class Compressed:
                 else: # no more overlaps
                     buffer.append(match)
             else: # last match, so there's nothing to check
-                buffer.append(match) 
+                buffer.append(match)
         matches = buffer
 
         # remove alternating sequences
         buffer = []
         for match in matches:
-            for i in range(6 if letters > 6 else letters): 
+            for i in range(6 if letters > 6 else letters):
                 if match[0][i] != match[0][i&1]:
                     buffer.append(match)
                     break
@@ -422,7 +421,7 @@ class Compressed:
 
     def doRepeats(self):
         """doesn't output the right values yet"""
-        
+
         unusedrepeats = []
         for repeat in self.repeats:
             if self.address >= repeat[2]:
@@ -734,7 +733,7 @@ class Decompressed:
     def doFlip(self):
         """
         Repeat flipped bytes from 2bpp output.
-        
+
         eg  11100100 -> 00100111
         quat 3 2 1 0 ->  0 2 1 3
         """
@@ -1228,7 +1227,7 @@ def dmg2rgb(word):
     blue = word & 0b11111
     alpha = 255
     return ((red<<3)+0b100, (green<<3)+0b100, (blue<<3)+0b100, alpha)
-    
+
 def rgb_to_dmg(color):
     word =  (color['r'] / 8)
     word += (color['g'] / 8) <<  5
@@ -1556,8 +1555,8 @@ def lz_to_png_by_file(filename):
 
 def dump_tileset_pngs():
     """
-    Convert .lz format tilesets into .png format tilesets. 
-        
+    Convert .lz format tilesets into .png format tilesets.
+
     Also, leaves a bunch of wonderful .2bpp files everywhere for your amusement.
     """
     for tileset_id in range(37):
@@ -1581,7 +1580,7 @@ def decompress_frontpic_anim(lz_file):
 def expand_pic_palettes():
     """
     Add white and black to palette files with fewer than 4 colors.
-    
+
     Pokemon Crystal only defines two colors for a pic palette to
     save space, filling in black/white at runtime.
     Instead of managing palette files of varying length, black
@@ -1601,7 +1600,7 @@ def expand_pic_palettes():
 
 if __name__ == "__main__":
     debug = False
-    
+
     argv = [None] * 5
     for i, arg in enumerate(sys.argv):
         argv[i] = arg
@@ -1667,7 +1666,7 @@ if __name__ == "__main__":
             filein = argv[2]
             fileout = argv[3]
             compress_file(filein, fileout)
-    
+
     elif argv[1] == '2bpp-to-png':
         to_png(argv[2])
 
