@@ -18,7 +18,7 @@ pokecrystal.o: $(TEXTFILES:.asm=.tx) $(LZ_GFX) $(TWOBPP_GFX)
 	rgbasm -o pokecrystal.o pokecrystal.asm
 .asm.tx:
 	$(eval TEXTQUEUE := $(TEXTQUEUE) $<)
-	@rm $@
+	@rm -f $@
 
 pokecrystal.gbc: pokecrystal.o
 	rgblink -o $@ $<
