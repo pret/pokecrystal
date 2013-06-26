@@ -317,7 +317,7 @@ def separate_comment(l):
                 break
         if l[i] == "\"":
             in_quotes = not in_quotes
-    return i
+    return l[:i], l[i:] or None
 
 def quote_translator(asm):
     """
@@ -574,8 +574,8 @@ def macro_translator(macro, token, line):
 def read_line(l):
     """Preprocesses a given line of asm."""
 
-    # strip comments
-    asm, comment = l[:separate_comment(l)], l[separate_comment(l):]
+    # strip comments from asm
+    asm, comment = separate_comment(l)
 
     # export all labels
     if ':' in asm[:asm.find('"')]:
@@ -602,7 +602,8 @@ def read_line(l):
             macro_translator(macro, token, asm)
         else:
             sys.stdout.write(asm)
-    sys.stdout.write(comment)
+
+    if comment: sys.stdout.write(comment)
 
 def preprocess(lines=None):
     """Main entry point for the preprocessor."""
