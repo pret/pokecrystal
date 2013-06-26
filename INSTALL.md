@@ -95,15 +95,15 @@ This ought to take **between 3 and 15 seconds**, depending on your computer.
 
 If you see `cmp baserom.gbc pokecrystal.gbc` as the last line, the build was successful!
 
-Your first compile processes every source file at once. After that, only modified source files have to be reprocessed, so compiling again should be a few seconds faster.
+Your first compile processes every source file at once. After that, **only modified source files have to be reprocessed**, so compiling again should be a few seconds faster.
 
-Other make targets that may come in handy:
+Other **make targets** that may come in handy:
 
-`make clean` deletes any preprocessed source files (.tx), rgbds object files and the compiled rom, in case something goes wrong.
+`make clean` deletes any preprocessed source files (.tx), rgbds object files and pokecrystal.gbc, in case something goes wrong.
 
-`make pngs` decompresses any lz files in gfx/ and then exports any graphics files to png.
+`make pngs` decompresses any **lz** files in gfx/ and then exports any graphics files to **png**.
 
-`make lzs` does the reverse. This is already part of the build process, so modified pngs will automatically be converted to 2bpp and compressed to lz without any additional work.
+`make lzs` does the reverse. This is already part of the build process, so **modified pngs will automatically be converted to 2bpp and lz-compressed** without any additional work.
 
 
 # Linux
@@ -147,7 +147,9 @@ That will take between 3 and 15 seconds, depending on your computer. If you see 
 
 # Now what?
 
-* **Can't find something?** Contribute!
+**main.asm** is a good starting point. The structure of the source is laid out here.
+
+* **Can't find something?** Anyone can add to the source. There's lots to be uncovered.
 
 * **Do your own thing!** The asm source is hack-friendly, and the supplementary scripts in extras/ can be used for other projects.
 
