@@ -50,7 +50,7 @@ class RomStr(str):
     @classmethod
     def load(cls, filename=None, crystal=True, red=False):
         """
-        Loads a ROM into a RomStr.
+        Load a ROM into a RomStr.
         """
         if   crystal and not red and not filename:
             file_handler = open("../baserom.gbc", "r")
@@ -66,8 +66,10 @@ class RomStr(str):
 
     def load_labels(self, filename="labels.json"):
         """
-        Loads labels from labels.json, or parses the source code file and
-        generates new labels.
+        Loads labels from labels.json. 
+        
+        (Or parses the source code file and
+        generates new labels.)
         """
         filename = os.path.join(os.path.dirname(__file__), filename)
 
@@ -114,8 +116,9 @@ class RomStr(str):
 
     def get_address_for(self, label):
         """
-        Returns the address of a label. This is slow and could be improved
-        dramatically.
+        Return the address of a label. 
+        
+        This is slow and could be improved dramatically.
         """
         label = str(label)
         for address in self.labels.keys():
@@ -137,7 +140,7 @@ class RomStr(str):
 
     def interval(self, offset, length, strings=True, debug=True):
         """
-        returns hex values for the rom starting at offset until offset+length
+        Return hex values for the rom starting at offset until offset+length.
         """
         returnable = []
         for byte in self[offset:offset+length]:
@@ -149,16 +152,17 @@ class RomStr(str):
 
     def until(self, offset, byte, strings=True, debug=False):
         """
-        Returns hex values from rom starting at offset until the given byte.
+        Return hex values from rom starting at offset until the given byte.
         """
         return self.interval(offset, self.find(chr(byte), offset) - offset, strings=strings)
 
     def to_asm(self, address, end_address=None, size=None, max_size=0x4000, debug=None):
         """
-        Disassembles ASM at some address. This will stop disassembling when
-        either the end_address or size is met. Also, there's a maximum size
-        that will be parsed, so that large patches of data aren't parsed as
-        code.
+        Disassemble ASM at some address. 
+        
+        This will stop disassembling when either the end_address or size is 
+        met. Also, there's a maximum size that will be parsed, so that large 
+        patches of data aren't parsed as code.
         """
         if type(address) in [str, unicode] and "0x" in address:
             address = int(address, 16)

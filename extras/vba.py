@@ -6,13 +6,15 @@ vba-clojure (but really it's jython/python/jvm)
 This is jython, not python. Use jython to run this file. Before running this
 file, some of the dependencies need to be constructed. These can be obtained
 from the vba-clojure project.
-    sudo apt-get install g++ libtool openjdk-6-jre openjdk-6-jdk libsdl1.2-dev ant jython
+    sudo apt-get install g++ libtool openjdk-6-jre openjdk-6-jdk libsdl1.2-dev mercurial ant autoconf jython
 
     export JAVA_INCLUDE_PATH=/usr/lib/jvm/java-6-openjdk-amd64/include/
     export JAVA_INCLUDE_PATH2=/usr/lib/jvm/java-6-openjdk-amd64/include/
 
     hg clone http://hg.bortreb.com/vba-clojure
-    cd vba-clojure/java/
+    cd vba-clojure/
+    ./dl-libs.sh
+    cd java/
     ant all
     cd ..
     autoreconf -i
@@ -27,6 +29,9 @@ Make sure vba-clojure is available within "java.library.path":
     sudo ln -s \
       $HOME/local/vba-clojure/vba-clojure/src/clojure/.libs/libvba.so.0.0.0 \
       /usr/lib/jni/libvba.so
+
+(In the above command, substitute the first path with the path of the vba-clojure
+directory you made, if it is different.)
 
 Also make sure VisualBoyAdvance.cfg is somewhere in the $PATH for VBA to find.
 A default configuration is provided in vba-clojure under src/.
@@ -114,15 +119,19 @@ if not os.path.exists(rom_path):
 
 def _check_java_library_path():
     """
-    Returns the value of java.library.path. The vba-clojure library must be
-    compiled and linked from this location.
+    Returns the value of java.library.path. 
+    
+    The vba-clojure library must be compiled 
+    and linked from this location.
     """
     return System.getProperty("java.library.path")
 
 class RomList(list):
+
     """
     Simple wrapper to prevent a giant rom from being shown on screen.
     """
+
     def __init__(self, *args, **kwargs):
         list.__init__(self, *args, **kwargs)
 
@@ -150,8 +159,9 @@ a, b, r, l, u, d, select, start, restart = "a", "b", "r", "l", "u", "d", "select
 
 def button_combiner(buttons):
     """
-    Combines multiple button presses into an integer. This is used when sending
-    a keypress to the emulator.
+    Combines multiple button presses into an integer. 
+    
+    This is used when sending a keypress to the emulator.
     """
     result = 0
 
@@ -186,8 +196,9 @@ def button_combiner(buttons):
 
 def load_rom(path=None):
     """
-    Starts the emulator with a certain ROM. Defaults to rom_path if no
-    parameters are given.
+    Starts the emulator with a certain ROM. 
+    
+    Defaults to rom_path if no parameters are given.
     """
     if path == None:
         path = rom_path
@@ -204,8 +215,9 @@ def load_rom(path=None):
 
 def shutdown():
     """
-    Stops the emulator. Closes the window. The "opposite" of this is the
-    load_rom function.
+    Stops the emulator. Closes the window. 
+    
+    The "opposite" of this is the load_rom function.
     """
     Gb.shutdown()
 
@@ -239,8 +251,9 @@ def translate_chars(charz):
 
 def _create_byte_buffer(data):
     """
-    Converts data into a ByteBuffer. This is useful for interfacing with the Gb
-    class.
+    Converts data into a ByteBuffer. 
+    
+    This is useful for interfacing with the Gb class.
     """
     buf = ByteBuffer.allocateDirect(len(data))
     if isinstance(data[0], int):
@@ -253,9 +266,11 @@ def _create_byte_buffer(data):
 
 def set_state(state, do_step=False):
     """
-    Injects the given state into the emulator. Use do_step if you want to call
-    step(), which also allows SDL to render the latest frame. Note that the
-    default is to not step, and that the screen (if it is enabled) will appear
+    Injects the given state into the emulator. 
+    
+    Use do_step if you want to call step(), which also allows 
+    SDL to render the latest frame. Note that the default is to 
+    not step, and that the screen (if it is enabled) will appear 
     as if it still has the last state loaded. This is normal.
     """
     Gb.loadState(_create_byte_buffer(state))
@@ -274,7 +289,9 @@ def get_state():
 
 def save_state(name, state=None, override=False):
     """
-    Saves the given state to save_state_path. The file format must be ".sav"
+    Saves the given state to save_state_path. 
+    
+    The file format must be ".sav"
     (and this will be appended to your string if necessary).
     """
     if state == None:
@@ -296,7 +313,9 @@ def save_state(name, state=None, override=False):
 
 def load_state(name):
     """
-    Reads a state from file based on name. Looks in save_state_path for a file
+    Reads a state from file based on name. 
+    
+    Looks in save_state_path for a file
     with this name (".sav" is optional).
     """
     save_path = os.path.join(save_state_path, name)
@@ -321,8 +340,9 @@ def generate_root():
 
 def get_root():
     """
-    Loads the root state, or restarts the emulator and creates a new root
-    state.
+    Loads the root state. 
+    
+    (Or restarts the emulator and creates a new root state.)
     """
     try:
         root = load_state("root")
@@ -377,15 +397,17 @@ def get_memory():
 
 def set_memory(memory):
     """
-    Sets memory in the emulator. Use get_memory() to retrieve the current
-    state.
+    Sets memory in the emulator. 
+    
+    Use get_memory() to retrieve the current state.
     """
     Gb.writeMemory(memory)
 
 def get_pixels():
     """
-    Returns a list of pixels on the screen display. Broken, probably. Use
-    screenshot() instead.
+    Returns a list of pixels on the screen display. 
+    
+    Broken, probably. Use screenshot() instead.
     """
     sys.stderr.write("ERROR: seems to be broken on VBA's end? Good luck. Use"
     " screenshot() instead.\n")
@@ -396,9 +418,10 @@ def get_pixels():
 
 def screenshot(filename, literal=False):
     """
-    Saves a PNG screenshot to the file at filename. Use literal if you want to
-    store it in the current directory. Default is to save it to screenshots/
-    under the project.
+    Saves a PNG screenshot to the file at filename. 
+    
+    Use literal if you want to store it in the current directory. 
+    Default is to save it to screenshots/ under the project.
     """
     screenshots_path = os.path.join(project_path, "screenshots/")
     filename = os.path.join(screenshots_path, filename)
@@ -430,14 +453,18 @@ def get_memory_range(start_address, byte_count):
 
 def set_memory_at(address, value):
     """
-    Sets a byte at a certain address in memory. This directly sets the memory
-    instead of copying the memory from the emulator.
+    Sets a byte at a certain address in memory. 
+    
+    This directly sets the memory instead of copying 
+    the memory from the emulator.
     """
     Gb.setMemoryAt(address, value)
 
 def press(buttons, holdsteps=1, aftersteps=1):
     """
-    Press a button. Use steplimit to say for how many steps you want to press
+    Press a button. 
+    
+    Use steplimit to say for how many steps you want to press
     the button (try leaving it at the default, 1).
     """
     if hasattr(buttons, "__len__"):
@@ -456,7 +483,9 @@ def press(buttons, holdsteps=1, aftersteps=1):
 
 def get_buttons():
     """
-    Returns the currentButtons[0] value (an integer with bits set for which
+    Returns the currentButtons[0] value 
+    
+    (an integer with bits set for which
     buttons are currently pressed).
     """
     return Gb.getCurrentButtons()
@@ -708,6 +737,7 @@ class cheats:
         Gb.cheatAddGameshark(code, description)
 
 class crystal:
+
     """
     Just a simple namespace to store a bunch of functions for Pokémon Crystal.
     """
@@ -715,8 +745,7 @@ class crystal:
     @staticmethod
     def text_wait(step_size=10, max_wait=500):
         """
-        Watches for a sign that text is done being drawn to screen, then
-        presses the "A" button.
+        Presses the "A" button when text is done being drawn to screen.
 
         :param step_size: number of steps per wait loop
         :param max_wait: number of wait loops to perform
@@ -744,10 +773,12 @@ class crystal:
     @staticmethod
     def walk_through_walls():
         """
-        Lets the player walk all over the map. These values are probably reset
-        by some of the map/collision functions when you move on to a new
-        location, so this needs to be executed each step/tick if continuous
-        walk-through-walls is desired.
+        Lets the player walk all over the map. 
+        
+        These values are probably reset by some of the map/collision 
+        functions when you move on to a new location, so this needs 
+        to be executed each step/tick if continuous walk-through-walls 
+        is desired.
         """
         set_memory_at(0xC2FA, 0)
         set_memory_at(0xC2FB, 0)
@@ -761,8 +792,9 @@ class crystal:
     @staticmethod
     def nstep(steplimit=500):
         """
-        Steps the CPU forward and calls some functions in between each step,
-        like to manipulate memory. This is pretty slow.
+        Steps the CPU forward and calls some functions in between each step.
+        
+        (For example, to manipulate memory.) This is pretty slow.
         """
         for step_counter in range(0, steplimit):
             crystal.walk_through_walls()
@@ -806,6 +838,7 @@ class crystal:
     def get_xy():
         """
         (x, y) coordinates of player on map.
+
         Relative to top-left corner of map.
         """
         x = get_memory_at(0xdcb8)
@@ -815,9 +848,10 @@ class crystal:
     @staticmethod
     def menu_select(id=1):
         """
-        Sets the cursor to the given pokemon in the player's party. This is
-        under Start -> PKMN. This is useful for selecting a certain pokemon
-        with fly or another skill.
+        Sets the cursor to the given pokemon in the player's party. 
+        
+        This is under Start -> PKMN. This is useful for selecting a 
+        certain pokemon with fly or another skill.
 
         This probably works on other menus.
         """
@@ -902,8 +936,9 @@ class crystal:
     @staticmethod
     def get_text():
         """
-        Returns alphanumeric text on the screen. Other characters will not be
-        shown.
+        Returns alphanumeric text on the screen. 
+        
+        Other characters will not be shown.
         """
         output = ""
         tiles = get_memory_range(0xc4a0, 1000)
@@ -942,8 +977,9 @@ class crystal:
     @staticmethod
     def write(something="TrAiNeR"):
         """
-        Uses a planning algorithm to type out a word in the most efficient way
-        possible.
+        Types out a word.
+
+        Uses a planning algorithm to do this in the most efficient way possible.
         """
         button_sequence = keyboard.plan_typing(something)
         crystal.keyboard_apply([[x] for x in button_sequence])
