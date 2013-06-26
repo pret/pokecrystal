@@ -37,3 +37,5 @@ pokecrystal.rtc
 
 # some users are dumping png.py into extras/
 extras/png.py
+
+*$py.class
