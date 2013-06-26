@@ -27,7 +27,7 @@ def mkdir_p(path):
         else: raise
 
 
-def hex_dump(input, debug = True):
+def hex_dump(input, debug=True):
     """
     Display hex dump in rows of 16 bytes.
     """
@@ -201,7 +201,7 @@ class Compressed:
     Compress 2bpp data.
     """
     
-    def __init__(self, image = None, mode = 'horiz', size = None):
+    def __init__(self, image=None, mode='horiz', size=None):
         assert image, 'need something to compress!'
         image = list(image)
         self.image = image
@@ -598,7 +598,7 @@ class Decompressed:
     data can be fed in from rom if [start] is specified
     """
 
-    def __init__(self, lz = None, mode = None, size = None, start = 0):
+    def __init__(self, lz=None, mode=None, size=None, start=0):
         # todo: play nice with Compressed
 
         assert lz, 'need something to compress!'
@@ -831,7 +831,7 @@ unowns = 0x124000
 num_unowns = 26
 unown_dex = 201
 
-def decompress_monster_by_id(id = 0, type = front):
+def decompress_monster_by_id(id=0, type=front):
     # no unowns here
     if id + 1 == unown_dex: return None
     # get size
@@ -847,7 +847,7 @@ def decompress_monster_by_id(id = 0, type = front):
     monster = Decompressed(rom, 'vert', size, address)
     return monster
 
-def decompress_monsters(type = front):
+def decompress_monsters(type=front):
     for id in range(num_monsters):
         # decompress
         monster = decompress_monster_by_id(id, type)
@@ -865,7 +865,7 @@ def decompress_monsters(type = front):
                 to_file(folder+filename, monster.pic)
 
 
-def decompress_unown_by_id(letter, type = front):
+def decompress_unown_by_id(letter, type=front):
     # get size
     if type == front:
         size = sizes[unown_dex-1]
@@ -879,7 +879,7 @@ def decompress_unown_by_id(letter, type = front):
     unown = Decompressed(rom, 'vert', size, address)
     return unown
 
-def decompress_unowns(type = front):
+def decompress_unowns(type=front):
     for letter in range(num_unowns):
         # decompress
         unown = decompress_unown_by_id(letter, type)
@@ -993,7 +993,7 @@ def decompress_misc():
         gfx = Decompressed( rom, mode, None, address )
         to_file(filename, gfx.output)
 
-def decompress_all(debug = False):
+def decompress_all(debug=False):
     """
     Decompress all known compressed data in baserom.
     """
@@ -1028,7 +1028,7 @@ def decompress_all(debug = False):
     return
 
 
-def decompress_from_address(address, mode='horiz', filename = 'de.2bpp', size = None):
+def decompress_from_address(address, mode='horiz', filename='de.2bpp', size=None):
     """
     Write decompressed data from an address to a 2bpp file.
     """
@@ -1036,7 +1036,7 @@ def decompress_from_address(address, mode='horiz', filename = 'de.2bpp', size = 
     to_file(filename, image.pic)
 
 
-def decompress_file(filein, fileout, mode = 'horiz', size = None):
+def decompress_file(filein, fileout, mode='horiz', size=None):
     f = open(filein, 'rb')
     image = f.read()
     f.close()
@@ -1046,7 +1046,7 @@ def decompress_file(filein, fileout, mode = 'horiz', size = None):
     to_file(fileout, de.pic)
 
 
-def compress_file(filein, fileout, mode = 'horiz'):
+def compress_file(filein, fileout, mode='horiz'):
     f = open(filein, 'rb')
     image = f.read()
     f.close()
@@ -1099,7 +1099,7 @@ def hex_to_rgb(word):
     blue = word & 0b11111
     return (red, green, blue)
 
-def grab_palettes(address, length = 0x80):
+def grab_palettes(address, length=0x80):
     output = ''
     for word in range(length/2):
         color = ord(rom[address+1])*0x100 + ord(rom[address])
