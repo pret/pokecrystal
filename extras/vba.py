@@ -119,9 +119,9 @@ if not os.path.exists(rom_path):
 
 def _check_java_library_path():
     """
-    Returns the value of java.library.path. 
-    
-    The vba-clojure library must be compiled 
+    Returns the value of java.library.path.
+
+    The vba-clojure library must be compiled
     and linked from this location.
     """
     return System.getProperty("java.library.path")
@@ -159,8 +159,8 @@ a, b, r, l, u, d, select, start, restart = "a", "b", "r", "l", "u", "d", "select
 
 def button_combiner(buttons):
     """
-    Combines multiple button presses into an integer. 
-    
+    Combines multiple button presses into an integer.
+
     This is used when sending a keypress to the emulator.
     """
     result = 0
@@ -196,8 +196,8 @@ def button_combiner(buttons):
 
 def load_rom(path=None):
     """
-    Starts the emulator with a certain ROM. 
-    
+    Starts the emulator with a certain ROM.
+
     Defaults to rom_path if no parameters are given.
     """
     if path == None:
@@ -215,8 +215,8 @@ def load_rom(path=None):
 
 def shutdown():
     """
-    Stops the emulator. Closes the window. 
-    
+    Stops the emulator. Closes the window.
+
     The "opposite" of this is the load_rom function.
     """
     Gb.shutdown()
@@ -251,8 +251,8 @@ def translate_chars(charz):
 
 def _create_byte_buffer(data):
     """
-    Converts data into a ByteBuffer. 
-    
+    Converts data into a ByteBuffer.
+
     This is useful for interfacing with the Gb class.
     """
     buf = ByteBuffer.allocateDirect(len(data))
@@ -266,11 +266,11 @@ def _create_byte_buffer(data):
 
 def set_state(state, do_step=False):
     """
-    Injects the given state into the emulator. 
-    
-    Use do_step if you want to call step(), which also allows 
-    SDL to render the latest frame. Note that the default is to 
-    not step, and that the screen (if it is enabled) will appear 
+    Injects the given state into the emulator.
+
+    Use do_step if you want to call step(), which also allows
+    SDL to render the latest frame. Note that the default is to
+    not step, and that the screen (if it is enabled) will appear
     as if it still has the last state loaded. This is normal.
     """
     Gb.loadState(_create_byte_buffer(state))
@@ -289,8 +289,8 @@ def get_state():
 
 def save_state(name, state=None, override=False):
     """
-    Saves the given state to save_state_path. 
-    
+    Saves the given state to save_state_path.
+
     The file format must be ".sav"
     (and this will be appended to your string if necessary).
     """
@@ -313,8 +313,8 @@ def save_state(name, state=None, override=False):
 
 def load_state(name):
     """
-    Reads a state from file based on name. 
-    
+    Reads a state from file based on name.
+
     Looks in save_state_path for a file
     with this name (".sav" is optional).
     """
@@ -340,8 +340,8 @@ def generate_root():
 
 def get_root():
     """
-    Loads the root state. 
-    
+    Loads the root state.
+
     (Or restarts the emulator and creates a new root state.)
     """
     try:
@@ -397,16 +397,16 @@ def get_memory():
 
 def set_memory(memory):
     """
-    Sets memory in the emulator. 
-    
+    Sets memory in the emulator.
+
     Use get_memory() to retrieve the current state.
     """
     Gb.writeMemory(memory)
 
 def get_pixels():
     """
-    Returns a list of pixels on the screen display. 
-    
+    Returns a list of pixels on the screen display.
+
     Broken, probably. Use screenshot() instead.
     """
     sys.stderr.write("ERROR: seems to be broken on VBA's end? Good luck. Use"
@@ -418,9 +418,9 @@ def get_pixels():
 
 def screenshot(filename, literal=False):
     """
-    Saves a PNG screenshot to the file at filename. 
-    
-    Use literal if you want to store it in the current directory. 
+    Saves a PNG screenshot to the file at filename.
+
+    Use literal if you want to store it in the current directory.
     Default is to save it to screenshots/ under the project.
     """
     screenshots_path = os.path.join(project_path, "screenshots/")
@@ -453,17 +453,17 @@ def get_memory_range(start_address, byte_count):
 
 def set_memory_at(address, value):
     """
-    Sets a byte at a certain address in memory. 
-    
-    This directly sets the memory instead of copying 
+    Sets a byte at a certain address in memory.
+
+    This directly sets the memory instead of copying
     the memory from the emulator.
     """
     Gb.setMemoryAt(address, value)
 
 def press(buttons, holdsteps=1, aftersteps=1):
     """
-    Press a button. 
-    
+    Press a button.
+
     Use steplimit to say for how many steps you want to press
     the button (try leaving it at the default, 1).
     """
@@ -483,8 +483,8 @@ def press(buttons, holdsteps=1, aftersteps=1):
 
 def get_buttons():
     """
-    Returns the currentButtons[0] value 
-    
+    Returns the currentButtons[0] value
+
     (an integer with bits set for which
     buttons are currently pressed).
     """
@@ -773,11 +773,11 @@ class crystal:
     @staticmethod
     def walk_through_walls():
         """
-        Lets the player walk all over the map. 
-        
-        These values are probably reset by some of the map/collision 
-        functions when you move on to a new location, so this needs 
-        to be executed each step/tick if continuous walk-through-walls 
+        Lets the player walk all over the map.
+
+        These values are probably reset by some of the map/collision
+        functions when you move on to a new location, so this needs
+        to be executed each step/tick if continuous walk-through-walls
         is desired.
         """
         set_memory_at(0xC2FA, 0)
@@ -793,7 +793,7 @@ class crystal:
     def nstep(steplimit=500):
         """
         Steps the CPU forward and calls some functions in between each step.
-        
+
         (For example, to manipulate memory.) This is pretty slow.
         """
         for step_counter in range(0, steplimit):
@@ -848,9 +848,9 @@ class crystal:
     @staticmethod
     def menu_select(id=1):
         """
-        Sets the cursor to the given pokemon in the player's party. 
-        
-        This is under Start -> PKMN. This is useful for selecting a 
+        Sets the cursor to the given pokemon in the player's party.
+
+        This is under Start -> PKMN. This is useful for selecting a
         certain pokemon with fly or another skill.
 
         This probably works on other menus.
@@ -936,8 +936,8 @@ class crystal:
     @staticmethod
     def get_text():
         """
-        Returns alphanumeric text on the screen. 
-        
+        Returns alphanumeric text on the screen.
+
         Other characters will not be shown.
         """
         output = ""
