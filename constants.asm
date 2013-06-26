@@ -1,14 +1,13 @@
 _CRYSTAL EQU 1
 
-
-INCLUDE "pokemon_constants.asm"
-INCLUDE "move_constants.asm"
-INCLUDE "battle_constants.asm"
-INCLUDE "map_constants.asm"
-INCLUDE "item_constants.asm"
-INCLUDE "trainer_constants.asm"
-INCLUDE "script_constants.asm"
-INCLUDE "music_constants.asm"
+INCLUDE "constants/pokemon_constants.asm"
+INCLUDE "constants/move_constants.asm"
+INCLUDE "constants/battle_constants.asm"
+INCLUDE "constants/map_constants.asm"
+INCLUDE "constants/item_constants.asm"
+INCLUDE "constants/trainer_constants.asm"
+INCLUDE "constants/script_constants.asm"
+INCLUDE "constants/music_constants.asm"
 
 
 ; rst vectors
