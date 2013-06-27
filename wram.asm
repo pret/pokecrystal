@@ -920,16 +920,35 @@ StartFlypoint: ; d005
 	ds 1
 EndFlypoint: ; d006
 	ds 1
-	
+
+MovementBuffer: ; d007
+
 	ds 55
 
 MenuItemsList:
-CurFruitTree: ; d03e
+CurFruitTree:
+CurInput:
+EngineBuffer1: ; d03e
 	ds 1
 CurFruit: ; d03f
 	ds 1
 
-	ds 51
+	ds 2
+
+MovementAnimation: ; d042
+	ds 1
+WalkingDirection: ; d043
+	ds 1
+FacingDirection: ; d044
+	ds 1
+WalkingX: ; d045
+	ds 1
+WalkingY: ; d046
+	ds 1
+WalkingTile: ; d047
+	ds 1
+
+	ds 43
 
 StringBuffer1: ; d073
 	ds 19
@@ -1167,6 +1186,7 @@ EvolvableFlags: ; d1e8
 Buffer1:
 MagikarpLength: ; d1ea
 	ds 1
+MovementType:
 Buffer2: ; d1eb
 	ds 1
 
@@ -1566,6 +1586,32 @@ PlayerDirection: ; d4de
 ; $11 right
 	ds 1
 
+
+SECTION "MapEngine",BSS[$d4e4]
+StandingTile: ; d4e4
+	ds 1
+StandingTile2: ; d4e5
+	ds 1
+
+; relative to the map struct including borders
+MapX: ; d4e6
+	ds 1
+MapY: ; d4e7
+	ds 1
+MapX2: ; d4e8
+	ds 1
+MapY2: ; d4e9
+	ds 1
+
+	ds 3
+
+; relative to the bg map, in px
+PlayerSpriteX: ; d4ed
+	ds 1
+PlayerSpriteY: ; d4ee
+	ds 1
+
+
 SECTION "Status",BSS[$d841]
 TimeOfDayPal: ; d841
 	ds 1
@@ -1672,6 +1718,12 @@ Box13Name: ; dbe1
 	ds 9
 Box14Name: ; dbea
 	ds 9
+
+SECTION "bike", BSS[$dbf5]
+BikeFlags: ; dbf5
+; bit 1: always on bike
+; bit 2: downhill
+	ds 1
 
 SECTION "decorations", BSS[$dc0f]
 ; Sprite id of each decoration
