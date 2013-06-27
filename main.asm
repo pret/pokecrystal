@@ -2155,7 +2155,35 @@ GetTileType: ; 185d
 	ret
 ; 1875
 
-INCBIN "baserom.gbc", $1875, $1c07 - $1875
+INCBIN "baserom.gbc", $1875, $18ac - $1875
+
+CheckIceTile: ; 18ac
+	cp $23
+	ret z
+	cp $2b
+	ret z
+	scf
+	ret
+; 18b4
+
+CheckWhirlpoolTile: ; 18b4
+	nop
+	cp $24 ; whirlpool 1
+	ret z
+	cp $2c ; whirlpool 2
+	ret z
+	scf
+	ret
+; 18bd
+
+CheckWaterfallTile: ; 18bd
+	cp $33
+	ret z
+	cp $3b
+	ret
+; 18c3
+
+INCBIN "baserom.gbc", $18c3, $1c07 - $18c3
 
 Function1c07: ; 0x1c07
 	push af
@@ -6361,23 +6389,22 @@ CheckPartyMove: ; c742
 
 INCBIN "baserom.gbc", $c779, $c986 - $c779
 
+
 UsedSurfScript: ; c986
-; print "[MON] used SURF!"
-	2writetext UsedSurfText
+	2writetext UsedSurfText ; "used SURF!"
 	closetext
 	loadmovesprites
-; this does absolutely nothing
-	3callasm BANK(Functionc9a2), Functionc9a2
-; write surftype to PlayerState
-	copybytetovar $d1eb ; Buffer2
+
+	3callasm BANK(Functionc9a2), Functionc9a2 ; empty function
+
+	copybytetovar Buffer2
 	writevarcode VAR_MOVEMENT
-; update sprite tiles
+
 	special SPECIAL_UPDATESPRITETILES
-; start surf music
 	special SPECIAL_BIKESURFMUSIC
 ; step into the water
 	special SPECIAL_LOADFACESTEP ; (slow_step_x, step_end)
-	applymovement $00, $d007 ; PLAYER, MovementBuffer
+	applymovement 0, MovementBuffer ; PLAYER, MovementBuffer
 	end
 ; c9a2
 
@@ -6401,14 +6428,17 @@ AlreadySurfingText: ; c9b3
 	db "@"		     ; SURFING.
 ; c9b8
 
+
 GetSurfType: ; c9b8
-; get surfmon species
+; Surfing on Pikachu uses an alternate sprite.
+; This is done by using a separate movement type.
+
 	ld a, [CurPartyMon]
 	ld e, a
-	ld d, $00
+	ld d, 0
 	ld hl, PartySpecies
 	add hl, de
-; is pikachu surfing?
+
 	ld a, [hl]
 	cp PIKACHU
 	ld a, PLAYER_SURF_PIKA
@@ -6417,92 +6447,89 @@ GetSurfType: ; c9b8
 	ret
 ; c9cb
 
-CheckDirection: ; c9cb
-; set carry if a tile permission prevents you
-; from moving in the direction you are facing
 
-; get player direction
+CheckDirection: ; c9cb
+; Return carry if a tile permission prevents you
+; from moving in the direction you're facing.
+
+; Get player direction
 	ld a, [PlayerDirection]
 	and a, %00001100 ; bits 2 and 3 contain direction
 	rrca
 	rrca
 	ld e, a
-	ld d, $00
-	ld hl, .DirectionTable
+	ld d, 0
+	ld hl, .Directions
 	add hl, de
-; can you walk in this direction?
+
+; Can you walk in this direction?
 	ld a, [TilePermissions]
 	and [hl]
 	jr nz, .quit
 	xor a
 	ret
+
 .quit
 	scf
 	ret
-; c9e3
 
-.DirectionTable ; c9e3
-	db %00001000 ; down
-	db %00000100 ; up
-	db %00000010 ; left
-	db %00000001 ; right
+.Directions
+	db FACE_DOWN
+	db FACE_UP
+	db FACE_LEFT
+	db FACE_RIGHT
 ; c9e7
 
-CheckSurfOW: ; c9e7
-; called when checking a tile in the overworld
-; check if you can surf
-; return carry if conditions are met
 
-; can we surf?
+CheckSurfOW: ; c9e7
+; Checking a tile in the overworld.
+; Return carry if surfing is allowed.
+
+; Don't ask to surf if already surfing.
 	ld a, [PlayerState]
-	; are you already surfing (pikachu)?
 	cp PLAYER_SURF_PIKA
 	jr z, .quit
-	; are you already surfing (normal)?
 	cp PLAYER_SURF
 	jr z, .quit
-	; are you facing a surf tile?
-	ld a, [$d03e] ; buffer for the tile you are facing (used for other things too)
+
+; Must be facing water.
+	ld a, [EngineBuffer1]
 	call GetTileType
-	cp $01 ; surfable
+	cp 1 ; surfable
 	jr nz, .quit
-	; does this contradict tile permissions?
+
+; Check tile permissions.
 	call CheckDirection
 	jr c, .quit
-	; do you have fog badge?
-	ld de, $001e ; FLAG_FOG_BADGE
+
+	ld de, $1e ; FLAG_FOG_BADGE
 	call CheckFlag2
 	jr c, .quit
-	; do you have a monster with surf?
+
 	ld d, SURF
 	call CheckPartyMove
 	jr c, .quit
-	; can you get off the bike (cycling road)?
-	ld hl, $dbf5 ; overworld flags
+
+	ld hl, BikeFlags
 	bit 1, [hl] ; always on bike (can't surf)
 	jr nz, .quit
-	
-; load surftype into MovementType
+
 	call GetSurfType
-	ld [$d1eb], a ; MovementType
-	
-; get surfmon nick
+	ld [MovementType], a
 	call GetPartyNick
-	
-; run AskSurfScript
+
 	ld a, BANK(AskSurfScript)
 	ld hl, AskSurfScript
 	call PushScriptPointer
 
-; conditions were met
 	scf
 	ret
-	
+
 .quit
-; conditions were not met
 	xor a
 	ret
 ; ca2c
+
 
 AskSurfScript: ; ca2c
 	loadfont
@@ -6511,10 +6538,11 @@ AskSurfScript: ; ca2c
 	iftrue UsedSurfScript
 	loadmovesprites
 	end
+; ca36
 
 AskSurfText: ; ca36
-	TX_FAR _AskSurfText	; The water is calm.
-	db "@"				; Want to SURF?
+	TX_FAR _AskSurfText ; The water is calm.
+	db "@"              ; Want to SURF?
 ; ca3b
 
 
@@ -11700,7 +11728,8 @@ INCBIN "baserom.gbc", $4ce05, $4ce1f - $4ce05
 
 TileTypeTable: ; 4ce1f
 ; 256 tiletypes
-; 01 = surfable
+; 00 = land
+; 01 = water
 	db $00, $00, $00, $00, $00, $00, $00, $0f
 	db $00, $00, $00, $00, $00, $00, $00, $0f
 	db $00, $00, $1f, $00, $00, $1f, $00, $00
@@ -12896,7 +12925,852 @@ INCLUDE "maps/Route12SuperRodHouse.asm"
 
 SECTION "bank20",DATA,BANK[$20]
 
-INCBIN "baserom.gbc", $80000, $80430-$80000
+
+DoPlayerMovement: ; 80000
+
+	call GetMovementInput
+	ld a, $3e ; standing
+	ld [MovementAnimation], a
+	xor a
+	ld [$d041], a
+	call GetPlayerMovement
+	ld c, a
+	ld a, [MovementAnimation]
+	ld [$c2de], a
+	ret
+; 80017
+
+
+GetMovementInput: ; 80017
+
+	ld a, [hJoyDown]
+	ld [CurInput], a
+
+; Standing downhill instead moves down.
+
+	ld hl, BikeFlags
+	bit 2, [hl] ; downhill
+	ret z
+
+	ld c, a
+	and $f0
+	ret nz
+
+	ld a, c
+	or D_DOWN
+	ld [CurInput], a
+	ret
+; 8002d
+
+
+GetPlayerMovement: ; 8002d
+
+	ld a, [PlayerState]
+	cp PLAYER_NORMAL
+	jr z, .Normal
+	cp PLAYER_SURF
+	jr z, .Surf
+	cp PLAYER_SURF_PIKA
+	jr z, .Surf
+	cp PLAYER_BIKE
+	jr z, .Normal
+	cp PLAYER_SLIP
+	jr z, .Board
+
+.Normal
+	call CheckForcedMovementInput
+	call GetMovementAction
+	call CheckTileMovement
+	ret c
+	call CheckTurning
+	ret c
+	call TryStep
+	ret c
+	call TryJumpLedge
+	ret c
+	call CheckEdgeWarp
+	ret c
+	jr .NotMoving
+
+.Surf
+	call CheckForcedMovementInput
+	call GetMovementAction
+	call CheckTileMovement
+	ret c
+	call CheckTurning
+	ret c
+	call TrySurfStep
+	ret c
+	jr .NotMoving
+
+.Board
+	call CheckForcedMovementInput
+	call GetMovementAction
+	call CheckTileMovement
+	ret c
+	call CheckTurning
+	ret c
+	call TryStep
+	ret c
+	call TryJumpLedge
+	ret c
+	call CheckEdgeWarp
+	ret c
+	ld a, [WalkingDirection]
+	cp STANDING
+	jr z, .HitWall
+	call PlayBump
+.HitWall
+	call StandInPlace
+	xor a
+	ret
+
+.NotMoving
+	ld a, [WalkingDirection]
+	cp STANDING
+	jr z, .Standing
+
+; Walking into an edge warp won't bump.
+	ld a, [$d041]
+	and a
+	jr nz, .CantMove
+	call PlayBump
+.CantMove
+	call WalkInPlace
+	xor a
+	ret
+
+.Standing
+	call StandInPlace
+	xor a
+	ret
+; 800b7
+
+
+CheckTileMovement: ; 800b7
+; Tiles such as waterfalls and warps move the player
+; in a given direction, overriding input.
+
+	ld a, [StandingTile]
+	ld c, a
+	call CheckWhirlpoolTile
+	jr c, .asm_800c4
+	ld a, 3
+	scf
+	ret
+
+.asm_800c4
+	and $f0
+	cp $30 ; moving water
+	jr z, .water
+	cp $40 ; moving land 1
+	jr z, .land1
+	cp $50 ; moving land 2
+	jr z, .land2
+	cp $70 ; warps
+	jr z, .warps
+	jr .asm_8013c
+
+.water
+	ld a, c
+	and 3
+	ld c, a
+	ld b, 0
+	ld hl, .water_table
+	add hl, bc
+	ld a, [hl]
+	ld [WalkingDirection], a
+	jr .asm_8013e
+
+.water_table
+	db RIGHT
+	db LEFT
+	db UP
+	db DOWN
+
+.land1
+	ld a, c
+	and 7
+	ld c, a
+	ld b, 0
+	ld hl, .land1_table
+	add hl, bc
+	ld a, [hl]
+	cp STANDING
+	jr z, .asm_8013c
+	ld [WalkingDirection], a
+	jr .asm_8013e
+
+.land1_table
+	db STANDING
+	db RIGHT
+	db LEFT
+	db UP
+	db DOWN
+	db STANDING
+	db STANDING
+	db STANDING
+
+.land2
+	ld a, c
+	and 7
+	ld c, a
+	ld b, 0
+	ld hl, .land2_table
+	add hl, bc
+	ld a, [hl]
+	cp STANDING
+	jr z, .asm_8013c
+	ld [WalkingDirection], a
+	jr .asm_8013e
+
+.land2_table
+	db RIGHT
+	db LEFT
+	db UP
+	db DOWN
+	db STANDING
+	db STANDING
+	db STANDING
+	db STANDING
+
+.warps
+	ld a, c
+	cp $71 ; door
+	jr z, .down
+	cp $79
+	jr z, .down
+	cp $7a ; stairs
+	jr z, .down
+	cp $7b ; cave
+	jr nz, .asm_8013c
+
+.down
+	ld a, DOWN
+	ld [WalkingDirection], a
+	jr .asm_8013e
+
+.asm_8013c
+	xor a
+	ret
+
+.asm_8013e
+	ld a, STEP_WALK
+	call DoStep
+	ld a, 5
+	scf
+	ret
+; 80147
+
+
+CheckTurning: ; 80147
+; If the player is turning, change direction first. This also lets
+; the player change facing without moving by tapping a direction.
+
+	ld a, [$d04e]
+	cp 0
+	jr nz, .asm_80169
+	ld a, [WalkingDirection]
+	cp STANDING
+	jr z, .asm_80169
+
+	ld e, a
+	ld a, [PlayerDirection]
+	rrca
+	rrca
+	and 3
+	cp e
+	jr z, .asm_80169
+
+	ld a, STEP_TURN
+	call DoStep
+	ld a, 2
+	scf
+	ret
+
+.asm_80169
+	xor a
+	ret
+; 8016b
+
+
+TryStep: ; 8016b
+
+; Surfing actually calls TrySurfStep directly instead of passing through here.
+	ld a, [PlayerState]
+	cp PLAYER_SURF
+	jr z, TrySurfStep
+	cp PLAYER_SURF_PIKA
+	jr z, TrySurfStep
+
+	call CheckLandPermissions
+	jr c, .asm_801be
+
+	call Function80341
+	and a
+	jr z, .asm_801be
+	cp 2
+	jr z, .asm_801be
+
+	ld a, [StandingTile]
+	call CheckIceTile
+	jr nc, .ice
+
+; Downhill riding is slower when not moving down.
+	call CheckRiding
+	jr nz, .asm_801ae
+
+	ld hl, BikeFlags
+	bit 2, [hl] ; downhill
+	jr z, .fast
+
+	ld a, [WalkingDirection]
+	cp DOWN
+	jr z, .fast
+
+	ld a, STEP_WALK
+	call DoStep
+	scf
+	ret
+
+.fast
+	ld a, STEP_BIKE
+	call DoStep
+	scf
+	ret
+
+.asm_801ae
+	ld a, STEP_WALK
+	call DoStep
+	scf
+	ret
+
+.ice
+	ld a, STEP_ICE
+	call DoStep
+	scf
+	ret
+
+; unused?
+	xor a
+	ret
+
+.asm_801be
+	xor a
+	ret
+; 801c0
+
+
+TrySurfStep: ; 801c0
+
+	call CheckWaterPermissions
+	ld [$d040], a
+	jr c, .asm_801f1
+
+	call Function80341
+	ld [$d03f], a
+	and a
+	jr z, .asm_801f1
+	cp 2
+	jr z, .asm_801f1
+
+	ld a, [$d040]
+	and a
+	jr nz, .ExitWater
+
+	ld a, STEP_WALK
+	call DoStep
+	scf
+	ret
+
+.ExitWater
+	call WaterToLandSprite
+	call $3cdf ; PlayMapMusic
+	ld a, STEP_WALK
+	call DoStep
+	ld a, 6
+	scf
+	ret
+
+.asm_801f1
+	xor a
+	ret
+; 801f3
+
+
+TryJumpLedge: ; 801f3
+	ld a, [StandingTile]
+	ld e, a
+	and $f0
+	cp $a0 ; ledge
+	jr nz, .DontJump
+
+	ld a, e
+	and 7
+	ld e, a
+	ld d, 0
+	ld hl, .data_8021e
+	add hl, de
+	ld a, [FacingDirection]
+	and [hl]
+	jr z, .DontJump
+
+	ld de, SFX_JUMP_OVER_LEDGE
+	call StartSFX
+	ld a, STEP_LEDGE
+	call DoStep
+	ld a, 7
+	scf
+	ret
+
+.DontJump
+	xor a
+	ret
+
+.data_8021e
+	db FACE_RIGHT
+	db FACE_LEFT
+	db FACE_UP
+	db FACE_DOWN
+	db FACE_RIGHT | FACE_DOWN
+	db FACE_DOWN | FACE_LEFT
+	db FACE_UP | FACE_RIGHT
+	db FACE_UP | FACE_LEFT
+; 80226
+
+
+CheckEdgeWarp: ; 80226
+
+; Bug: Since no case is made for STANDING here, it will check
+; [.edgewarps + $ff]. This resolves to $3e at $8035a.
+; This causes $d041 to be nonzero when standing on tile $3e,
+; making bumps silent.
+
+	ld a, [WalkingDirection]
+	ld e, a
+	ld d, 0
+	ld hl, .EdgeWarps
+	add hl, de
+	ld a, [StandingTile]
+	cp [hl]
+	jr nz, .asm_80259
+
+	ld a, 1
+	ld [$d041], a
+	ld a, [WalkingDirection]
+	cp STANDING
+	jr z, .asm_80259
+
+	ld e, a
+	ld a, [PlayerDirection]
+	rrca
+	rrca
+	and 3
+	cp e
+	jr nz, .asm_80259
+	call $224a ; CheckFallPit?
+	jr nc, .asm_80259
+
+	call StandInPlace
+	scf
+	ld a, 1
+	ret
+
+.asm_80259
+	xor a
+	ret
+
+.EdgeWarps
+	db $70, $78, $76, $7e
+; 8025f
+
+
+DoStep: ; 8025f
+	ld e, a
+	ld d, 0
+	ld hl, .Steps
+	add hl, de
+	add hl, de
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+
+	ld a, [WalkingDirection]
+	ld e, a
+	cp STANDING
+	jp z, StandInPlace
+
+	add hl, de
+	ld a, [hl]
+	ld [MovementAnimation], a
+
+	ld hl, .WalkInPlace
+	add hl, de
+	ld a, [hl]
+	ld [$d04e], a
+
+	ld a, 4
+	ret
+
+.Steps
+	dw .Slow
+	dw .Walk
+	dw .Bike
+	dw .Ledge
+	dw .Ice
+	dw .Turn
+	dw .BackwardsLedge
+	dw .WalkInPlace
+
+.Slow
+	db $08, $09, $0a, $0b
+.Walk
+	db $0c, $0d, $0e, $0f
+.Bike
+	db $10, $11, $12, $13
+.Ledge
+	db $30, $31, $32, $33
+.Ice
+	db $1c, $1d, $1e, $1f
+.BackwardsLedge
+	db $31, $30, $33, $32
+.Turn
+	db $04, $05, $06, $07
+.WalkInPlace
+	db $80, $81, $82, $83
+; 802b3
+
+
+StandInPlace: ; 802b3
+	ld a, 0
+	ld [$d04e], a
+	ld a, $3e ; standing
+	ld [MovementAnimation], a
+	xor a
+	ret
+; 802bf
+
+
+WalkInPlace: ; 802bf
+	ld a, 0
+	ld [$d04e], a
+	ld a, $50 ; walking
+	ld [MovementAnimation], a
+	xor a
+	ret
+; 802cb
+
+
+CheckForcedMovementInput: ; 802cb
+; When sliding on ice, input is forced to remain in the same direction.
+
+	call Function80404
+	ret nc
+
+	ld a, [$d04e]
+	cp 0
+	ret z
+
+	and 3
+	ld e, a
+	ld d, 0
+	ld hl, .data_802e8
+	add hl, de
+	ld a, [CurInput]
+	and BUTTON_A | BUTTON_B | SELECT | START
+	or [hl]
+	ld [CurInput], a
+	ret
+
+.data_802e8
+	db D_DOWN, D_UP, D_LEFT, D_RIGHT
+; 802ec
+
+
+GetMovementAction: ; 802ec
+; Poll player input and update movement info.
+
+	ld hl, .table
+	ld de, .table2 - .table1
+	ld a, [CurInput]
+	bit 7, a
+	jr nz, .down
+	bit 6, a
+	jr nz, .up
+	bit 5, a
+	jr nz, .left
+	bit 4, a
+	jr nz, .right
+; Standing
+	jr .update
+
+.down 	add hl, de
+.up   	add hl, de
+.left 	add hl, de
+.right	add hl, de
+
+.update
+	ld a, [hli]
+	ld [WalkingDirection], a
+	ld a, [hli]
+	ld [FacingDirection], a
+	ld a, [hli]
+	ld [WalkingX], a
+	ld a, [hli]
+	ld [WalkingY], a
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	ld a, [hl]
+	ld [WalkingTile], a
+	ret
+
+.table
+; struct:
+;	walk direction
+;	facing
+;	x movement
+;	y movement
+;	tile collision pointer
+.table1
+	db STANDING, FACE_CURRENT, 0, 0
+	dw StandingTile
+.table2
+	db RIGHT, FACE_RIGHT,  1,  0
+	dw TileRight
+	db LEFT,  FACE_LEFT,  -1,  0
+	dw TileLeft
+	db UP,    FACE_UP,     0, -1
+	dw TileUp
+	db DOWN,  FACE_DOWN,   0,  1
+	dw TileDown
+; 80341
+
+
+Function80341: ; 80341
+
+	ld a, 0
+	ld [hConnectionStripLength], a
+	ld a, [MapX]
+	ld d, a
+	ld a, [WalkingX]
+	add d
+	ld d, a
+	ld a, [MapY]
+	ld e, a
+	ld a, [WalkingY]
+	add e
+	ld e, a
+	ld bc, $d4d6
+	ld a, $1
+	ld hl, $7041
+	rst FarCall
+	jr nc, .asm_80369
+	call Function8036f
+	jr c, .asm_8036c
+
+	xor a
+	ret
+
+.asm_80369
+	ld a, 1
+	ret
+
+.asm_8036c
+	ld a, 2
+	ret
+; 8036f
+
+
+Function8036f: ; 8036f
+
+	ld hl, BikeFlags
+	bit 0, [hl]
+	jr z, .asm_8039c
+
+	ld hl, $0007
+	add hl, bc
+	ld a, [hl]
+	cp $ff
+	jr nz, .asm_8039c
+
+	ld hl, $0006
+	add hl, bc
+	bit 6, [hl]
+	jr z, .asm_8039c
+
+	ld hl, $0005
+	add hl, bc
+	set 2, [hl]
+
+	ld a, [WalkingDirection]
+	ld d, a
+	ld hl, $0020
+	add hl, bc
+	ld a, [hl]
+	and $fc
+	or d
+	ld [hl], a
+
+	scf
+	ret
+
+.asm_8039c
+	xor a
+	ret
+; 8039e
+
+
+CheckLandPermissions: ; 8039e
+; Return 0 if walking onto land and tile permissions allow it.
+; Otherwise, return carry.
+
+	ld a, [TilePermissions]
+	ld d, a
+	ld a, [FacingDirection]
+	and d
+	jr nz, .NotWalkable
+
+	ld a, [WalkingTile]
+	call CheckWalkable
+	jr c, .NotWalkable
+
+	xor a
+	ret
+
+.NotWalkable
+	scf
+	ret
+; 803b4
+
+CheckWaterPermissions: ; 803b4
+; Return 0 if moving in water, or 1 if moving onto land.
+; Otherwise, return carry.
+
+	ld a, [TilePermissions]
+	ld d, a
+	ld a, [FacingDirection]
+	and d
+	jr nz, .NotSurfable
+
+	ld a, [WalkingTile]
+	call CheckSurfable
+	jr c, .NotSurfable
+
+	and a
+	ret
+
+.NotSurfable
+	scf
+	ret
+; 803ca
+
+
+CheckRiding: ; 803ca
+
+	ld a, [PlayerState]
+	cp PLAYER_BIKE
+	ret z
+	cp PLAYER_SLIP
+	ret
+; 803d3
+
+
+CheckWalkable: ; 803d3
+; Return 0 if tile a is land. Otherwise, return carry.
+
+	call GetTileType
+	and a ; land
+	ret z
+	scf
+	ret
+; 803da
+
+
+CheckSurfable: ; 803da
+; Return 0 if tile a is water, or 1 if land.
+; Otherwise, return carry.
+
+	call GetTileType
+	cp 1
+	jr z, .Water
+
+; Can walk back onto land from water.
+	and a
+	jr z, .Land
+
+	jr .Neither
+
+.Water
+	xor a
+	ret
+
+.Land
+	ld a, 1
+	and a
+	ret
+
+.Neither
+	scf
+	ret
+; 803ee
+
+
+PlayBump: ; 803ee
+
+	call CheckSFX
+	ret c
+	ld de, SFX_BUMP
+	call StartSFX
+	ret
+; 803f9
+
+
+WaterToLandSprite: ; 803f9
+	push bc
+	ld a, PLAYER_NORMAL
+	ld [PlayerState], a
+	call $e4a ; GetPlayerSprite
+	pop bc
+	ret
+; 80404
+
+
+Function80404: ; 80404
+	ld a, [$d04e]
+	cp 0
+	jr z, .asm_80420
+	cp $f0
+	jr z, .asm_80420
+	ld a, [StandingTile]
+	call CheckIceTile
+	jr nc, .asm_8041e
+	ld a, [PlayerState]
+	cp PLAYER_SLIP
+	jr nz, .asm_80420
+
+.asm_8041e
+	scf
+	ret
+
+.asm_80420
+	and a
+	ret
+; 80422
+
+
+Function80422: ; 80422
+	ld hl, $c2de
+	ld a, $3e ; standing
+	cp [hl]
+	ret z
+	ld [hl], a
+	ld a, 0
+	ld [$d04e], a
+	ret
+; 80430
+
+
 
 GetFlag2: ; 80430
 ; Do action b on flag de from BitTable2
