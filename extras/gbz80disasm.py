@@ -550,6 +550,8 @@ end_08_scripts_with = [
 ##0x18, #jr
 ###0xda, 0xe9, 0xd2, 0xc2, 0xca, 0xc3, 0x38, 0x30, 0x20, 0x28, 0x18, 0xd8, 0xd0, 0xc0, 0xc8, 0xc9
 ]
+
+discrete_jumps = [0xda, 0xe9, 0xd2, 0xc2, 0xca, 0xc3]
 relative_jumps = [0x38, 0x30, 0x20, 0x28, 0x18, 0xc3, 0xda, 0xc2]
 relative_unconditional_jumps = [0xc3, 0x18]
 
@@ -789,12 +791,13 @@ def output_bank_opcodes(original_offset, max_byte_count=0x4000, include_last_add
                     number = byte1
                     number += byte2 << 8
 
-                    pointer = get_global_address(number, bank_id)
-                    if pointer not in data_tables.keys():
-                        data_tables[pointer] = {}
-                        data_tables[pointer]['usage'] = 0
-                    else:
-                        data_tables[pointer]['usage'] += 1
+                    if current_byte not in call_commands + discrete_jumps + relative_jumps:
+                        pointer = get_global_address(number, bank_id)
+                        if pointer not in data_tables.keys():
+                            data_tables[pointer] = {}
+                            data_tables[pointer]['usage'] = 0
+                        else:
+                            data_tables[pointer]['usage'] += 1
 
                     insertion = "$%.4x" % (number)
                     result = find_label(insertion, bank_id)
@@ -848,7 +851,7 @@ def output_bank_opcodes(original_offset, max_byte_count=0x4000, include_last_add
                 keep_reading = False
                 is_data = False #cleanup
                 break
-            elif offset not in byte_labels.keys() or offset in data_tables.keys():
+            elif offset not in byte_labels.keys() and offset in data_tables.keys():
                 is_data = True
                 keep_reading = True
             else:
