@@ -587,6 +587,12 @@ def find_label(local_address, bank_id=0):
             return constants[local_address]
     return None
 
+def find_address_from_label(label):
+    for label_entry in all_labels:
+        if label == label_entry["label"]:
+            return label_entry["address"]
+    return None
+
 def asm_label(address):
     # why using a random value when you can use the address?
     return '.asm_%x' % address
@@ -898,10 +904,15 @@ def all_outstanding_labels_are_reverse(byte_labels, offset):
 
 
 if __name__ == "__main__":
+    load_labels()
     addr = sys.argv[1]
     if ":" in addr:
         addr = addr.split(":")
         addr = int(addr[0], 16)*0x4000+(int(addr[1], 16)%0x4000)
     else:
-        addr = int(addr, 16)
+        label_addr = find_address_from_label(addr)
+        if label_addr:
+            addr = label_addr
+        else:
+            addr = int(addr, 16)
     print output_bank_opcodes(addr)[0]
