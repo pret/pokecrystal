@@ -603,7 +603,9 @@ def get_local_address(address):
     bank = address / 0x4000
     return (address & 0x3fff) + 0x4000 * bool(bank)
 def get_global_address(address, bank):
-    return (address & 0x3fff) + 0x4000 * bank
+    if address < 0x8000:
+        return (address & 0x3fff) + 0x4000 * bank
+    return None
 
 def output_bank_opcodes(original_offset, max_byte_count=0x4000, include_last_address=True, stop_at=[], debug = False):
     #fs = current_address
