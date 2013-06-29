@@ -7353,15 +7353,15 @@ def write_all_labels(all_labels, filename="labels.json"):
     fh.close()
     return True
 
-# TODO: implement get_ram_label
-# wram.asm integration would be nice
+from wram import wram_labels
 def get_ram_label(address):
-    """not implemented yet.. supposed to get a label for a particular RAM location
-    like W_PARTYPOKE1HP"""
+    """returns a label assigned to a particular ram address"""
+    if address in wram_labels.keys():
+        return wram_labels[address][-1]
     return None
 
 def get_label_for(address):
-    """returns a label assigned to a particular address"""
+    """returns a label assigned to a particular rom address"""
     global all_labels
 
     if address == None:
