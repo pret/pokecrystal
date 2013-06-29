@@ -2155,7 +2155,16 @@ GetTileType: ; 185d
 	ret
 ; 1875
 
-INCBIN "baserom.gbc", $1875, $18ac - $1875
+INCBIN "baserom.gbc", $1875, $18a0 - $1875
+
+CheckCounterTile: ; 18a0
+	cp $90
+	ret z
+	cp $98
+	ret
+; 18a6
+
+INCBIN "baserom.gbc", $18a6, $18ac - $18a6
 
 CheckIceTile: ; 18ac
 	cp $23
@@ -2803,7 +2812,123 @@ ObjectEventText:
 	db "@"
 ; 0x26f7
 
-INCBIN "baserom.gbc", $26f7, $2b74-$26f7
+
+INCBIN "baserom.gbc", $26f7, $2a07 - $26f7
+
+
+GetFacingTileCoord: ; 2a07
+; Return map coordinates in (d, e) and tile id in a
+; of the tile the player is facing.
+
+	ld a, [PlayerDirection]
+	and %1100
+	srl a
+	srl a
+	ld l, a
+	ld h, 0
+	add hl, hl
+	add hl, hl
+	ld de, .Directions
+	add hl, de
+
+	ld d, [hl]
+	inc hl
+	ld e, [hl]
+	inc hl
+
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+
+	ld a, [MapX]
+	add d
+	ld d, a
+	ld a, [MapY]
+	add e
+	ld e, a
+	ld a, [hl]
+	ret
+
+.Directions
+	;   x,  y
+	db  0,  1
+	dw TileDown
+	db  0, -1
+	dw TileUp
+	db -1,  0
+	dw TileLeft
+	db  1,  0
+	dw TileRight
+; 2a3c
+
+
+INCBIN "baserom.gbc", $2a3c, $2a8b - $2a3c
+
+
+CheckFacingSign: ; 2a8b
+	call GetFacingTileCoord
+	ld b, a
+	ld a, d
+	sub 4
+	ld d, a
+	ld a, e
+	sub 4
+	ld e, a
+	ld a, [$dc01]
+	and a
+	ret z
+	ld c, a
+	ld a, [hROMBank]
+	push af
+	call $2c52
+	call $2aaa
+	pop hl
+	ld a, h
+	rst Bankswitch
+	ret
+; 2aaa
+
+; 2aaa
+	ld hl, $dc02
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+.asm_2ab0
+	push hl
+	ld a, [hli]
+	cp e
+	jr nz, .asm_2abb
+	ld a, [hli]
+	cp d
+	jr nz, .asm_2abb
+	jr .asm_2ac8
+
+.asm_2abb
+	pop hl
+	ld a, 5
+	add l
+	ld l, a
+	jr nc, .asm_2ac3
+	inc h
+
+.asm_2ac3
+	dec c
+	jr nz, .asm_2ab0
+	xor a
+	ret
+
+.asm_2ac8
+	pop hl
+	ld de, EngineBuffer1
+	ld bc, 5
+	call CopyBytes
+	scf
+	ret
+; 0x2ad4
+
+
+INCBIN "baserom.gbc", $2ad4, $2b74 - $2ad4
+
 
 Function2b74: ; 0x2b74
 	push af
@@ -5653,7 +5778,52 @@ DrawGraphic: ; 6eef
 ; 6f07
 
 
-INCBIN "baserom.gbc", $6f07, $7305 - $6f07
+INCBIN "baserom.gbc", $6f07, $6fd9 - $6f07
+
+
+CheckFacingObject: ; 6fd9
+
+	call GetFacingTileCoord
+
+; Double the distance for counter tiles.
+	call CheckCounterTile
+	jr nz, .asm_6ff1
+
+	ld a, [MapX]
+	sub d
+	cpl
+	inc a
+	add d
+	ld d, a
+
+	ld a, [MapY]
+	sub e
+	cpl
+	inc a
+	add e
+	ld e, a
+
+.asm_6ff1
+	ld bc, $d4d6
+	ld a, 0
+	ld [hConnectionStripLength], a
+	call $7041
+	ret nc
+	ld hl, $0007
+	add hl, bc
+	ld a, [hl]
+	cp $ff
+	jr z, .asm_7007
+	xor a
+	ret
+
+.asm_7007
+	scf
+	ret
+; 7009
+
+
+INCBIN "baserom.gbc", $7009, $7305 - $7009
 
 
 SpecialGiveShuckle: ; 7305
@@ -15810,7 +15980,424 @@ INCLUDE "maps/map_headers.asm"
 
 INCLUDE "maps/second_map_headers.asm"
 
-INCBIN "baserom.gbc", $966b0, $96cb1 - $966b0
+
+INCBIN "baserom.gbc", $966b0, $96974 - $966b0
+
+
+
+; 96974
+	call CheckPlayerMovement
+	ret c
+	and a
+	jr nz, .asm_9698d
+
+; Can't perform button actions while sliding on ice.
+	callba Function80404
+	jr c, .asm_9698d
+
+	call CheckAPressOW
+	jr c, .asm_9698f
+
+	call CheckMenuOW
+	jr c, .asm_9698f
+
+.asm_9698d
+	xor a
+	ret
+
+.asm_9698f
+	push af
+	callba Function80422
+	pop af
+	scf
+	ret
+; 96999
+
+
+CheckAPressOW: ; 96999
+	ld a, [hJoyPressed]
+	and BUTTON_A
+	ret z
+	call TryObjectEvent
+	ret c
+	call TryReadSign
+	ret c
+	call $7c5f
+	ret c
+	xor a
+	ret
+; 969ac
+
+
+PlayTalkObject: ; 969ac
+	push de
+	ld de, SFX_READ_TEXT_2
+	call StartSFX
+	pop de
+	ret
+; 969b5
+
+
+TryObjectEvent: ; 969b5
+	callba CheckFacingObject
+	jr c, .IsObject
+	xor a
+	ret
+
+.IsObject
+	call PlayTalkObject
+	ld a, [hConnectedMapWidth]
+	call $1ae5
+	ld hl, $0001
+	add hl, bc
+	ld a, [hl]
+	ld [$ffe0], a
+
+	ld a, [$ffe0]
+	call $18d2
+	ld hl, $0008
+	add hl, bc
+	ld a, [hl]
+	and $f
+
+; Bug: If IsInArray returns nc, data at bc will be executed as code.
+	push bc
+	ld de, 3
+	ld hl, .data_969ee
+	call IsInArray
+	jr nc, .asm_969ec
+	pop bc
+
+	inc hl
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	jp [hl]
+
+.asm_969ec
+	xor a
+	ret
+
+.data_969ee
+	dbw 0, .zero
+	dbw 1, .one
+	dbw 2, .two
+	dbw 3, .three
+	dbw 4, .four
+	dbw 5, .five
+	dbw 6, .six
+	db $ff
+; 96a04
+
+.zero ; 96a04
+	ld hl, $000a
+	add hl, bc
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	call $2c57
+	call PushScriptPointer
+;	ld a, -1
+	ret
+; 96a12
+
+.one ; 96a12
+	ld hl, $000a
+	add hl, bc
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	call $2c57
+	ld de, EngineBuffer1
+	ld bc, 2
+	call FarCopyBytes
+	ld a, $3
+	scf
+	ret
+; 96a29
+
+.two ; 96a29
+	call $3674
+	ld a, $2
+	scf
+	ret
+; 96a30
+
+.three ; 96a30
+	xor a
+	ret
+; 96a32
+
+.four ; 96a32
+	xor a
+	ret
+; 96a34
+
+.five ; 96a34
+	xor a
+	ret
+; 96a36
+
+.six ; 96a36
+	xor a
+	ret
+; 96a38
+
+
+TryReadSign: ; 96a38
+	call CheckFacingSign
+	jr c, .IsSign
+	xor a
+	ret
+
+.IsSign
+	ld a, [$d040]
+	ld hl, .signs
+	rst $28
+	ret
+
+.signs
+	dw .read
+	dw .up
+	dw .down
+	dw .right
+	dw .left
+	dw .ifset
+	dw .ifnotset
+	dw .itemifset
+	dw .asm_96aa2
+; 96a59
+
+.up
+	ld b, UP << 2
+	jr .checkdir
+.down
+	ld b, DOWN << 2
+	jr .checkdir
+.right
+	ld b, RIGHT << 2
+	jr .checkdir
+.left
+	ld b, LEFT << 2
+	jr .checkdir
+
+.checkdir
+	ld a, [PlayerDirection]
+	and %1100
+	cp b
+	jp nz, $6ad6
+
+.read
+	call PlayTalkObject
+	ld hl, $d041
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	call $2c57
+	call PushScriptPointer
+	scf
+	ret
+
+.itemifset
+	call CheckSignFlag
+	jp nz, $6ad6
+	call PlayTalkObject
+	call $2c57
+	ld de, EngineBuffer1
+	ld bc, 3
+	call FarCopyBytes
+	ld a, $4
+	ld hl, $7625
+	call PushScriptPointer
+	scf
+	ret
+
+.asm_96aa2
+	call CheckSignFlag
+	jr nz, .dontread
+	call $2c57
+	ld de, EngineBuffer1
+	ld bc, 3
+	call FarCopyBytes
+	jr .dontread
+
+.ifset
+	call CheckSignFlag
+	jr z, .dontread
+	jr .asm_96ac1
+
+.ifnotset
+	call CheckSignFlag
+	jr nz, .dontread
+
+.asm_96ac1
+	push hl
+	call PlayTalkObject
+	pop hl
+	inc hl
+	inc hl
+	call $2c57
+	call GetFarHalfword
+	call $2c57
+	call PushScriptPointer
+	scf
+	ret
+
+.dontread
+	xor a
+	ret
+; 96ad8
+
+
+CheckSignFlag: ; 96ad8
+	ld hl, $d041
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	push hl
+	call $2c57
+	call GetFarHalfword
+	ld e, l
+	ld d, h
+	ld b, $2
+	call BitTable1Func
+	ld a, c
+	and a
+	pop hl
+	ret
+; 96af0
+
+
+CheckPlayerMovement: ; 96af0
+	ld a, BANK(DoPlayerMovement)
+	ld hl, DoPlayerMovement
+	rst FarCall
+	ld a, c
+	ld hl, .pointers
+	rst $28
+	ld a, c
+	ret
+; 96afd
+
+.pointers
+	dw .zero
+	dw .one
+	dw .two
+	dw .three
+	dw .four
+	dw .five
+	dw .six
+	dw .seven
+
+.zero
+.four ; 96b0d
+	xor a
+	ld c, a
+	ret
+; 96b10
+
+.seven ; 96b10
+	call $68d7 ; empty
+	xor a
+	ld c, a
+	ret
+; 96b16
+
+.one ; 96b16
+	ld a, 5
+	ld c, a
+	scf
+	ret
+; 96b1b
+
+.two ; 96b1b
+	ld a, 9
+	ld c, a
+	scf
+	ret
+; 96b20
+
+.three ; 96b20
+; force the player to move in some direction
+	ld a, $4
+	ld hl, $653d
+	call PushScriptPointer
+;	ld a, -1
+	ld c, a
+	scf
+	ret
+; 96b2b
+
+.five
+.six ; 96b2b
+	ld a, -1
+	ld c, a
+	and a
+	ret
+; 96b30
+
+
+CheckMenuOW: ; 96b30
+	xor a
+	ld [$ffa0], a
+	ld [$ffa1], a
+	ld a, [hJoyPressed]
+
+	bit 2, a ; SELECT
+	jr nz, .Select
+
+	bit 3, a ; START
+	jr z, .NoMenu
+
+	ld a, BANK(StartMenuScript)
+	ld hl, StartMenuScript
+	call PushScriptPointer
+	scf
+	ret
+
+.NoMenu
+	xor a
+	ret
+
+.Select
+	call PlayTalkObject
+	ld a, BANK(SelectMenuScript)
+	ld hl, SelectMenuScript
+	call PushScriptPointer
+	scf
+	ret
+; 96b58
+
+
+StartMenuScript: ; 96b58
+	3callasm $04, $65cd ; StartMenu
+	2jump UnknownScript_0x96b66
+; 96b5f
+
+SelectMenuScript: ; 96b5f
+	3callasm $04, $7327 ; SelectMenu
+	2jump UnknownScript_0x96b66
+; 96b66
+
+UnknownScript_0x96b66: ; 96b66
+	copybytetovar $ffa0
+	if_equal $80, UnknownScript_0x96b72
+	if_equal $ff, UnknownScript_0x96b75
+	end
+; 96b72
+
+UnknownScript_0x96b72: ; 96b72
+	2ptjump $d0e8
+; 96b75
+
+UnknownScript_0x96b75: ; 96b75
+	2ptcallasm $d0e8
+	end
+; 96b79
+
+
+INCBIN "baserom.gbc", $96b79, $96cb1 - $96b79
+
 
 INCLUDE "engine/scripting.asm"
 
