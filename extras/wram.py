@@ -2,6 +2,10 @@
 
 # RGBDS BSS section and constant parsing.
 
+import os
+path = os.path.dirname(os.path.abspath(__file__))
+
+
 def read_bss_sections(bss):
 	sections = []
 	section = {}
@@ -33,7 +37,7 @@ def read_bss_sections(bss):
 	sections.append(section)
 	return sections
 
-wram_sections = read_bss_sections(open('../wram.asm', 'r').readlines())
+wram_sections = read_bss_sections(open(os.path.join(path, '../wram.asm'), 'r').readlines())
 
 
 def make_wram_labels():
@@ -56,6 +60,6 @@ def scrape_constants(text):
 		text = text.split('\n')
 	return constants_to_dict([line for line in text if 'EQU' in line[:line.find(';')]])
 
-hram_constants = scrape_constants(open('../hram.asm','r').readlines())
-gbhw_constants = scrape_constants(open('../gbhw.asm','r').readlines())
+hram_constants = scrape_constants(open(os.path.join(path, '../hram.asm'),'r').readlines())
+gbhw_constants = scrape_constants(open(os.path.join(path, '../gbhw.asm'),'r').readlines())
 
