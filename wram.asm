@@ -10,12 +10,14 @@ SECTION "bgmap1",VRAM[$9C00]
 VBGMap1:
 
 
-; So far, WRAM banks 0 and 1 are included in this file.
-; Any bank 2-7 labels are in constants.asm.
+; WRAM banks 0 and 1 are included as BSS labels.
+; Other WRAM banks (2-7) are constants for now.
 
+
+SECTION "WRAMBank0",BSS[$c000]
 
 SECTION "stack",BSS[$c000]
-	ds 256
+	ds $100
 Stack: ; c100
 
 
@@ -65,10 +67,7 @@ Channel1MusicAddress: ; c107
 Channel1LastMusicAddress: ; c109
 	ds 2
 ; could have been meant as a third-level address
-; unused? ; c10b
-	ds 1
-; unused? ; c10c
-	ds 1
+	ds 2
 Channel1NoteFlags: ; c10d
 ; 0: 
 ; 1: 
@@ -312,8 +311,7 @@ CurMusic: ; c2c0
 
 SECTION "auto",BSS[$c2c7]
 InputType: ; c2c7
-; 00 normal
-; ff auto
+AUTO_INPUT EQU $ff
 	ds 1
 AutoInputAddress: ; c2c8
 	ds 2
@@ -824,11 +822,10 @@ AttrMap: ; cdd9
 	ds 30
 	
 MonType: ; cf5f
-; 0 partymon
-; 1 otpartymon
-; 2 boxmon
-; 3 ????mon
-; 4 wildmon
+PARTYMON   EQU 0
+OTPARTYMON EQU 1
+BOXMON     EQU 2
+WILDMON    EQU 4
 	ds 1
 
 CurSpecies: ; cf60
@@ -907,7 +904,9 @@ Options2: ; cfd1
 
 	ds 46
 	
-; d000
+
+SECTION "WRAMBank1",BSS[$d000]
+
 	ds 2
 	
 DefaultFlypoint: ; d002
@@ -937,10 +936,23 @@ CurFruit: ; d03f
 
 MovementAnimation: ; d042
 	ds 1
+
 WalkingDirection: ; d043
+STANDING EQU -1
+DOWN     EQU 0
+UP       EQU 1
+LEFT     EQU 2
+RIGHT    EQU 3
 	ds 1
+
 FacingDirection: ; d044
+FACE_CURRENT EQU 0
+FACE_DOWN  EQU 8
+FACE_UP    EQU 4
+FACE_LEFT  EQU 2
+FACE_RIGHT EQU 1
 	ds 1
+
 WalkingX: ; d045
 	ds 1
 WalkingY: ; d046
@@ -1378,10 +1390,10 @@ CurDamage: ; d256
 SECTION "TimeOfDay",BSS[$d269]
 
 TimeOfDay: ; d269
-; 0 morn
-; 1 day
-; 2 nite
-; 3 darkness
+MORN     EQU 0
+DAY      EQU 1
+NITE     EQU 2
+DARKNESS EQU 3
 	ds 1
 
 SECTION "OTParty",BSS[$d280]
@@ -1568,6 +1580,13 @@ GameTimeFrames: ; d4c8
 	ds 2
 
 CurDay: ; d4cb
+SUNDAY    EQU 0
+MONDAY    EQU 1
+TUESDAY   EQU 2
+WEDNESDAY EQU 3
+THURSDAY  EQU 4
+FRIDAY    EQU 5
+SATURDAY  EQU 6
 	ds 1
 
 	ds 12
@@ -1660,10 +1679,11 @@ Balls: ; d8d8
 	
 SECTION "overworld",BSS[$d95d]
 PlayerState: ; d95d
-; $00: normal
-; $01: bicycle
-; $04: surf
-; $08: surf (pikachu)
+PLAYER_NORMAL    EQU 0
+PLAYER_BIKE      EQU 1
+PLAYER_SLIP      EQU 2
+PLAYER_SURF      EQU 4
+PLAYER_SURF_PIKA EQU 8
 	ds 1
 
 SECTION "scriptram",BSS[$d962]
@@ -2005,3 +2025,17 @@ RoamMon3CurHP: ; dfe1
 	ds 1
 RoamMon3DVs: ; dfe2
 	ds 2
+
+
+
+; SECTION "WRAMBank5",BSS[$d000]
+
+; 8 4-color palettes
+Unkn1Pals EQU $d000
+Unkn2Pals EQU $d040
+BGPals    EQU $d080
+OBPals    EQU $d0c0
+
+
+
+
