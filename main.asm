@@ -8200,7 +8200,8 @@ INCBIN "baserom.gbc", $12cdf, $12e00 - $12cdf
 OpenPartyStats: ; 12e00
 	call $1d6e
 	call ClearSprites
-	xor a ; partymon
+; PartyMon
+	xor a
 	ld [MonType], a
 	call LowVolume
 	ld a, $25
@@ -8255,7 +8256,7 @@ INCBIN "baserom.gbc", $14000, $14032 - $14000
 GetTimeOfDay: ; 14032
 ; get time of day based on the current hour
 	ld a, [hHours] ; hour
-	ld hl, TimeOfDayTable
+	ld hl, TimesOfDay
 	
 .check
 ; if we're within the given time period,
@@ -8276,14 +8277,13 @@ GetTimeOfDay: ; 14032
 	ret
 ; 14044
 
-TimeOfDayTable: ; 14044
-; boundaries for the time of day
+TimesOfDay: ; 14044
+; hours for the time of day
 ; 04-09 morn | 10-17 day | 18-03 nite
-;	   hr, time of day
-	db 04, $02 ; NITE
-	db 10, $00 ; MORN
-	db 18, $01 ; DAY
-	db 24, $02 ; NITE
+	db 04, NITE
+	db 10, MORN
+	db 18, DAY
+	db 24, NITE
 ; 1404c
 
 INCBIN "baserom.gbc", $1404c, $152ab - $1404c
@@ -8323,8 +8323,8 @@ INCBIN "baserom.gbc", $1531f, $15736 - $1531f
 
 KrissPCMenuData: ; 0x15736
 	db %01000000
-	db 0, 0 ; top left corner coords (y, x)
-	db $c, $f ; bottom right corner coords (y, x)
+	db  0,  0 ; top left corner coords (y, x)
+	db 12, 15 ; bottom right corner coords (y, x)
 	dw .KrissPCMenuData2
 	db 1 ; default selected option
 
@@ -8337,35 +8337,29 @@ KrissPCMenuData: ; 0x15736
 	dw .KrissPCMenuPointers
 
 .KrissPCMenuPointers ; 0x15746
-	dw KrisWithdrawItemMenu ; 57d1
-	dw .WithdrawItem
-	dw KrisDepositItemMenu ; 588b
-	dw .DepositItem
-	dw KrisTossItemMenu ; 585f
-	dw .TossItem
-	dw KrisMailBoxMenu ; 587d
-	dw .MailBox
-	dw KrisDecorationMenu ; 597d
-	dw .Decoration
-	dw KrisLogOffMenu ; 5888
-	dw .LogOff
-	dw KrisLogOffMenu ; 5888
-	dw .TurnOff
+	dw KrisWithdrawItemMenu, .WithdrawItem
+	dw KrisDepositItemMenu,  .DepositItem
+	dw KrisTossItemMenu,     .TossItem
+	dw KrisMailBoxMenu,      .MailBox
+	dw KrisDecorationMenu,   .Decoration
+	dw KrisLogOffMenu,       .LogOff
+	dw KrisLogOffMenu,       .TurnOff
 
-.WithdrawItem
-	db "WITHDRAW ITEM@"
-.DepositItem
-	db "DEPOSIT ITEM@"
-.TossItem
-	db "TOSS ITEM@"
-.MailBox
-	db "MAIL BOX@"
-.Decoration
-	db "DECORATION@"
-.TurnOff
-	db "TURN OFF@"
-.LogOff
-	db "LOG OFF@"
+.WithdrawItem db "WITHDRAW ITEM@"
+.DepositItem  db "DEPOSIT ITEM@"
+.TossItem     db "TOSS ITEM@"
+.MailBox      db "MAIL BOX@"
+.Decoration   db "DECORATION@"
+.TurnOff      db "TURN OFF@"
+.LogOff       db "LOG OFF@"
+
+WITHDRAW_ITEM EQU 0
+DEPOSIT_ITEM  EQU 1
+TOSS_ITEM     EQU 2
+MAIL_BOX      EQU 3
+DECORATION    EQU 4
+TURN_OFF      EQU 5
+LOG_OFF       EQU 6
 
 .KrissPCMenuList1
 	db 5
@@ -8374,7 +8368,7 @@ KrissPCMenuData: ; 0x15736
 	db TOSS_ITEM
 	db MAIL_BOX
 	db TURN_OFF
-	db $FF
+	db $ff
 
 .KrissPCMenuList2
 	db 6
@@ -8384,7 +8378,7 @@ KrissPCMenuData: ; 0x15736
 	db MAIL_BOX
 	db DECORATION
 	db LOG_OFF
-	db $FF
+	db $ff
 
 INCBIN "baserom.gbc", $157bb, $157d1 - $157bb
 
@@ -12010,6 +12004,13 @@ Label49d60: ; 0x49d60
 	dw $5efc ; XXX is this MobileASM?
 	dw $6496 ; XXX is this MobileStudiumASM?
 
+CONTINUE       EQU 0
+NEW_GAME       EQU 1
+OPTION         EQU 2
+MYSTERY_GIFT   EQU 3
+MOBILE         EQU 4
+MOBILE_STUDIUM EQU 5
+
 NewGameMenu: ; 0x49d6c
 	db 2
 	db NEW_GAME
@@ -13358,7 +13359,7 @@ GetGender: ; 50bdd
 	
 ; BoxMon data is read directly from SRAM.
 	ld a, [MonType]
-	cp 2
+	cp BOXMON
 	ld a, 1
 	call z, GetSRAMBank
 	
@@ -13376,8 +13377,8 @@ GetGender: ; 50bdd
 	ld b, a
 
 ; Close SRAM if we were dealing with a BoxMon.
-	ld a, [MonType] ; MonType
-	cp 2 ; BOXMON
+	ld a, [MonType]
+	cp BOXMON
 	call z, CloseSRAM
 	
 	
