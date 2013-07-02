@@ -7210,54 +7210,62 @@ HalveMoney: ; 12513
 INCBIN "baserom.gbc", $12527, $125cd - $12527
 
 
-OpenMenu: ; 0x125cd
+StartMenu: ; 125cd
+
 	call $1fbf
+
 	ld de, SFX_MENU
 	call StartSFX
+
 	ld a, $1
 	ld hl, $6454
 	rst FarCall
-	ld hl, $d84d
-	bit 2, [hl]
-	ld hl, $66d3
-	jr z, .asm_125e9
-	ld hl, $66db ; draw the menu a little lower
-.asm_125e9
+
+	ld hl, StatusFlags2
+	bit 2, [hl] ; bug catching contest
+	ld hl, .MenuDataHeader
+	jr z, .GotMenuData
+	ld hl, .ContestMenuDataHeader
+.GotMenuData
+
 	call Function1d35
-	call SetUpMenuItems
+	call .SetUpMenuItems
 	ld a, [$d0d2]
 	ld [$cf88], a
-	call DrawMenuAccount_
-	call $1e7f
-	call $68d1
+	call .DrawMenuAccount_
+	call MenuFunc_1e7f
+	call .DrawBugContestStatusBox
 	call $2e31
 	call $2e20
 	ld a, $1
 	ld hl, $64bf
 	rst $8
-	call $68de
+	call .DrawBugContestStatus
 	call $0485
-	jr .wait
-.reopen
+	jr .Select
+
+.Reopen
 	call $1ad2
 	call $0485
-	call $6829
+	call .SetUpMenuItems
 	ld a, [$d0d2]
 	ld [$cf88], a
-.wait
-	call MenuWait
-	jr c, .exit
-	call DrawMenuAccount
+
+.Select
+	call .GetInput
+	jr c, .Exit
+	call .DrawMenuAccount
 	ld a, [$cf88]
 	ld [$d0d2], a
 	call PlayClickSFX
 	call $1bee
-	call $67e5
-; code when you return from a submenu.  some submenus force you to quit
-; the menu, like save.  option forces it to redraw completely.
-	ld hl, .MenuReturnPointerTable
+	call .OpenMenu
+
+; Menu items have different return functions.
+; For example, saving exits the menu.
+	ld hl, .MenuReturns
 	ld e, a
-	ld d, $0
+	ld d, 0
 	add hl, de
 	add hl, de
 	ld a, [hli]
@@ -7265,122 +7273,182 @@ OpenMenu: ; 0x125cd
 	ld l, a
 	jp [hl]
 	
-.MenuReturnPointerTable: ; $6644
-	 dw .reopen
-	 dw .exit
-	 dw $66a2 ; invalid?
-	 dw $6699 ; invalid?
-	 dw $6691 ; invalid?
-	 dw .end
-	 dw $66b1 ; redraw
+.MenuReturns
+	dw .Reopen
+	dw .Exit
+	dw .ReturnTwo
+	dw .ReturnThree
+	dw .ReturnFour
+	dw .ReturnEnd
+	dw .ReturnRedraw
 
-.exit
-	ld a, [$ffd8]
+.Exit
+	ld a, [hOAMUpdate]
 	push af
-	ld a, $1
+	ld a, 1
 	ld [hOAMUpdate], a
 	call $0e5f
 	pop af
 	ld [hOAMUpdate], a
-.end
+.ReturnEnd
 	call Function1c07
+.ReturnEnd2
 	call $2dcf
 	call $0485
 	ret
 
-MenuWait: ; 0x12669
-; returns nc if A was pressed, c if B.
+.GetInput
+; Return carry on exit, and no-carry on selection.
 	xor a
 	ld [hBGMapMode], a
-	call DrawMenuAccount
+	call .DrawMenuAccount
 	call SetUpMenu
 	ld a, $ff
 	ld [MenuSelection], a
 .loop
-	call PrintMenuAccount
+	call .PrintMenuAccount
 	call $1f1a
 	ld a, [$cf73]
 	cp BUTTON_B
-	jr z, .b_button
+	jr z, .b
 	cp BUTTON_A
-	jr z, .a_button
+	jr z, .a
 	jr .loop
-.a_button
+.a
 	call PlayClickSFX
 	and a
 	ret
-.b_button
+.b
 	scf
 	ret
-; 0x12691
+; 12691
+
+.ReturnFour ; 12691
+	call Function1c07
+	ld a, $80
+	ld [$ffa0], a
+	ret
+; 12699
+
+.ReturnThree ; 12699
+	call Function1c07
+	ld a, $80
+	ld [$ffa0], a
+	jr .ReturnEnd2
+; 126a2
+
+.ReturnTwo ; 126a2
+	call Function1c07
+	ld hl, $d0e9
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	ld a, [$d0e8]
+	rst FarCall
+	jr .ReturnEnd2
+; 126b1
+
+.ReturnRedraw ; 126b1
+	call .Clear
+	jp .Reopen
+; 126b7
+
+.Clear ; 126b7
+	call WhiteBGMap
+	call $1d7d
+	call $2bae
+	call .DrawMenuAccount_
+	call MenuFunc_1e7f
+	call .DrawBugContestStatus
+	call $1ad2
+	call $0d90
+	call $2b5c
+	ret
+; 126d3
 
 
-INCBIN "baserom.gbc", $12691, $12721 - $12691
+.MenuDataHeader
+	db $40 ; tile backup
+	db 0, 10 ; start coords
+	db 17, 19 ; end coords
+	dw .MenuData
+	db 1 ; default selection
 
-MenuStringDex: ; 0x12721
-	db "#DEX@"
+.ContestMenuDataHeader
+	db $40 ; tile backup
+	db 2, 10 ; start coords
+	db 17, 19 ; end coords
+	dw .MenuData
+	db 1 ; default selection
 
-MenuStringMon: ; 0x12726
-	db "#MON@"
+.MenuData
+	db %10101000 ; x padding, wrap around, start can close
+	dn 0, 0 ; rows, columns
+	dw MenuItemsList
+	dw .MenuString
+	dw .Items
 
-MenuStringPack: ; 0x1272b
-	db "PACK@"
+.Items
+	dw StartMenu_Pokedex,  .PokedexString,  .PokedexDesc
+	dw StartMenu_Pokemon,  .PartyString,    .PartyDesc
+	dw StartMenu_Pack,     .PackString,     .PackDesc
+	dw StartMenu_Status,   .StatusString,   .StatusDesc
+	dw StartMenu_Save,     .SaveString,     .SaveDesc
+	dw StartMenu_Option,   .OptionString,   .OptionDesc
+	dw StartMenu_Exit,     .ExitString,     .ExitDesc
+	dw StartMenu_Pokegear, .PokegearString, .PokegearDesc
+	dw StartMenu_Quit,     .QuitString,     .QuitDesc
 
-MenuStringProfile: ; 0x12730
-	db $52, "@"
+.PokedexString 	db "#DEX@"
+.PartyString   	db "#MON@"
+.PackString    	db "PACK@"
+.StatusString  	db $52, "@"
+.SaveString    	db "SAVE@"
+.OptionString  	db "OPTION@"
+.ExitString    	db "EXIT@"
+.PokegearString	db $24, "GEAR@"
+.QuitString    	db "QUIT@"
 
-MenuStringSave: ; 0x12732
-	db "SAVE@"
+.PokedexDesc 	db "#MON", $4e, "database@"
+.PartyDesc   	db "Party ", $4a, $4e, "status@"
+.PackDesc    	db "Contains", $4e, "items@"
+.PokegearDesc	db "Trainer's", $4e, "key device@"
+.StatusDesc  	db "Your own", $4e, "status@"
+.SaveDesc    	db "Save your", $4e, "progress@"
+.OptionDesc  	db "Change", $4e, "settings@"
+.ExitDesc    	db "Close this", $4e, "menu@"
+.QuitDesc    	db "Quit and", $4e, "be judged.@"
 
-MenuStringOption: ; 0x12737
-	db "OPTION@"
 
-MenuStringExit: ; 0x1273e
-	db "EXIT@"
+.OpenMenu ; 127e5
+	ld a, [MenuSelection]
+	call .GetMenuAccountTextPointer
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	jp [hl]
+; 127ef
 
-MenuStringGear: ; 0x12743
-	db $24, "GEAR@"
+.MenuString ; 127ef
+	push de
+	ld a, [MenuSelection]
+	call .GetMenuAccountTextPointer
+	inc hl
+	inc hl
+	ld a, [hli]
+	ld d, [hl]
+	ld e, a
+	pop hl
+	call PlaceString
+	ret
+; 12800
 
-MenuStringQuit: ; 0x12749
-	db "QUIT@"
-
-MenuStringDescDex: ; 0x1274e
-	db "#MON", $4e, "database@"
-
-MenuStringDescParty: ; 0x1275c
-	db "Party ", $4a, $4e, "status@"
-
-MenuStringDescPack: ; 0x1276b
-	db "Contains", $4e, "items@"
-
-MenuStringDescGear: ; 0x1277a
-	db "Trainer's", $4e, "key device@"
-
-MenuStringDescProfile: ; 0x1278e
-	db "Your own", $4e, "status@"
-
-MenuStringDescSave: ; 0x1279e
-	db "Save your", $4e, "progress@"
-
-MenuStringDescOption: ; 0x127b1
-	db "Change", $4e, "settings@"
-
-MenuStringDescExit: ; 0x127c1
-	db "Close this", $4e, "menu@"
-
-MenuStringDescRetire: ; 0x127d1
-	db "Quit and", $4e, "be judged.@"
-
-; 0x127e5
-
-INCBIN "baserom.gbc", $127e5, $12800 - $127e5
-
-WriteMenuAccount:
+.MenuDesc ; 12800
 	push de
 	ld a, [MenuSelection]
 	cp $ff
 	jr z, .none 
-	call GetMenuAccountTextPointer
+	call .GetMenuAccountTextPointer
 	inc hl
 	inc hl
 	inc hl
@@ -7394,11 +7462,13 @@ WriteMenuAccount:
 .none
 	pop de
 	ret
+; 12819
 
-GetMenuAccountTextPointer: ; 0x12819
+
+.GetMenuAccountTextPointer ; 12819
 	ld e, a
-	ld d, $0
-	ld hl, $cf97 ; table is dynamic and stored in memory
+	ld d, 0
+	ld hl, $cf97
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -7409,115 +7479,275 @@ GetMenuAccountTextPointer: ; 0x12819
 	add hl, de
 	add hl, de
 	ret
+; 12829
 
-SetUpMenuItems: ; 4:6829 = 0x12829
+
+.SetUpMenuItems ; 12829
 	xor a
 	ld [$cf76], a
-	call $688d
+	call .FillMenuList
+
 	ld hl, $d84c
 	bit 0, [hl]
 	jr z, .no_pokedex
-	ld a, $0
-	call AppendMenuList
+	ld a, 0 ; pokedex
+	call .AppendMenuList
 .no_pokedex
+
 	ld a, [PartyCount]
 	and a
 	jr z, .no_pokemon
-	ld a, $1
-	call AppendMenuList
+	ld a, 1 ; pokemon
+	call .AppendMenuList
 .no_pokemon
+
 	ld a, [InLinkBattle]
 	and a
 	jr nz, .no_pack
-	ld hl, $d84d
-	bit 2, [hl]
+	ld hl, StatusFlags2
+	bit 2, [hl] ; bug catching contest
 	jr nz, .no_pack
-	ld a, $2
-	call AppendMenuList
+	ld a, 2 ; pack
+	call .AppendMenuList
 .no_pack
+
 	ld hl, $d957
 	bit 7, [hl]
-	jr z, .no_exit
-	ld a, $7
-	call AppendMenuList
-.no_exit
-	ld a, $3
-	call AppendMenuList
+	jr z, .no_pokegear
+	ld a, 7 ; pokegear
+	call .AppendMenuList
+.no_pokegear
+
+	ld a, 3 ; status
+	call .AppendMenuList
+
 	ld a, [InLinkBattle]
 	and a
 	jr nz, .no_save
-	ld hl, $d84d
-	bit 2, [hl]
-	ld a, $8
+	ld hl, StatusFlags2
+	bit 2, [hl] ; bug catching contest
+	ld a, 8 ; quit
 	jr nz, .write
-	ld a, $4
+	ld a, 4 ; save
 .write
-	call AppendMenuList
+	call .AppendMenuList
 .no_save
-	ld a, $5
-	call AppendMenuList
-	ld a, $6
-	call AppendMenuList
+
+	ld a, 5 ; option
+	call .AppendMenuList
+	ld a, 6 ; exit
+	call .AppendMenuList
 	ld a, c
 	ld [MenuItemsList], a
 	ret
+; 1288d
 
-FillMenuList: ; 0x1288d
+
+.FillMenuList ; 1288d
 	xor a
 	ld hl, MenuItemsList
 	ld [hli], a
 	ld a, $ff
 	ld bc, $000f
 	call ByteFill
-	ld de, MenuItemsList+1
+	ld de, MenuItemsList + 1
 	ld c, 0
 	ret
+; 128a0
 
-AppendMenuList: ; 0x128a0
+.AppendMenuList ; 128a0
 	ld [de], a
 	inc de
 	inc c
 	ret
+; 128a4
 
-DrawMenuAccount_:; 0x128a4
-	jp DrawMenuAccount
+.DrawMenuAccount_ ; 128a4
+	jp .DrawMenuAccount
+; 128a7
 
-PrintMenuAccount: ; 4:68a7 0x128a7
-	call IsMenuAccountOn
+.PrintMenuAccount ; 128a7
+	call .IsMenuAccountOn
 	ret z
-	call DrawMenuAccount
-	decoord 0, 14 ; $c5b8
-	jp $6800
+	call .DrawMenuAccount
+	decoord 0, 14
+	jp .MenuDesc
+; 128b4
 
-DrawMenuAccount: ; 4:68b4 0x128b4
-	call IsMenuAccountOn
+.DrawMenuAccount ; 128b4
+	call .IsMenuAccountOn
 	ret z
-	hlcoord 0, 13 ; $c5a4
+	hlcoord 0, 13
 	ld bc, $050a
 	call ClearBox
-	hlcoord 0, 13 ; $c5a4
-	ld b, $3
-	ld c, $8
+	hlcoord 0, 13
+	ld b, 3
+	ld c, 8
 	jp TextBoxPalette
+; 128cb
 
-IsMenuAccountOn: ; 0x128cb
+.IsMenuAccountOn ; 128cb
 	ld a, [Options2]
-	and $1
+	and 1
 	ret
-; 0x128d1
+; 128d1
 
-INCBIN "baserom.gbc", $128d1, $12976 - $128d1
+.DrawBugContestStatusBox ; 128d1
+	ld hl, StatusFlags2
+	bit 2, [hl] ; bug catching contest
+	ret z
+	ld a, $9
+	ld hl, $4bdc
+	rst FarCall
+	ret
+; 128de
 
-OpenPartyMenu: ; $12976
+.DrawBugContestStatus ; 128de
+	ld hl, StatusFlags2
+	bit 2, [hl] ; bug catching contest
+	jr nz, .contest
+	ret
+.contest
+	ld a, $9
+	ld hl, $4be7
+	rst FarCall
+	ret
+; 128ed
+
+
+StartMenu_Exit: ; 128ed
+; Exit the menu.
+
+	ld a, 1
+	ret
+; 128f0
+
+
+StartMenu_Quit: ; 128f0
+; Retire from the bug catching contest.
+
+	ld hl, .EndTheContestText
+	call $6cf5
+	jr c, .asm_12903
+	ld a, $4
+	ld hl, $760b
+	call $31cf
+	ld a, 4
+	ret
+.asm_12903
+	ld a, 0
+	ret
+
+.EndTheContestText
+	text_jump UnknownText_0x1c1a6c, BANK(UnknownText_0x1c1a6c)
+	db "@"
+; 1290b
+
+
+StartMenu_Save: ; 1290b
+; Save the game.
+
+	call $2879
+	ld a, $5
+	ld hl, $4a1a
+	rst FarCall
+	jr nc, .asm_12919
+	ld a, 0
+	ret
+.asm_12919
+	ld a, 1
+	ret
+; 1291c
+
+
+StartMenu_Option: ; 1291c
+; Game options.
+
+	call $2b29
+	ld a, $1
+	ld hl, $5b64
+	rst FarCall
+	ld a, 6
+	ret
+; 12928
+
+
+StartMenu_Status: ; 12928
+; Player status.
+
+	call $2b29
+	ld a, $9
+	ld hl, $5105
+	rst FarCall
+	call $2b3c
+	ld a, 0
+	ret
+; 12937
+
+
+StartMenu_Pokedex: ; 12937
+
 	ld a, [PartyCount]
 	and a
-	jr z, .return ; no pokémon in party
+	jr z, .asm_12949
+
+	call $2b29
+	ld a, $10
+	ld hl, $4000
+	rst FarCall
+	call $2b3c
+
+.asm_12949
+	ld a, 0
+	ret
+; 1294c
+
+
+StartMenu_Pokegear: ; 1294c
+
+	call $2b29
+	ld a, $24
+	ld hl, $4b8d
+	rst FarCall
+	call $2b3c
+	ld a, 0
+	ret
+; 1295b
+
+
+StartMenu_Pack: ; 1295b
+
+	call $2b29
+	ld a, $4
+	ld hl, $4000
+	rst FarCall
+	ld a, [$cf66]
+	and a
+	jr nz, .asm_12970
+	call $2b3c
+	ld a, 0
+	ret
+.asm_12970
+	call $2b4d
+	ld a, 4
+	ret
+; 12976
+
+
+StartMenu_Pokemon: ; 12976
+
+	ld a, [PartyCount]
+	and a
+	jr z, .return
+
 	call $2b29 ; fade in?
-.choosemenu ; 1297f
+
+.choosemenu
 	xor a
 	ld [PartyMenuActionText], a ; Choose a POKéMON.
 	call WhiteBGMap
-.menu ; 12986
+
+.menu
 	ld a, $14
 	ld hl, $404f
 	rst FarCall ; load gfx
@@ -7527,107 +7757,463 @@ OpenPartyMenu: ; $12976
 	ld a, $14
 	ld hl, $43e0
 	rst FarCall ; load menu pokémon sprites
-.menunoreload ; 12998
-	ld a, BANK(WritePartyMenuTilemap)
-	ld hl, WritePartyMenuTilemap
-	rst FarCall
-	ld a, BANK(PrintPartyMenuText)
-	ld hl, PrintPartyMenuText
-	rst FarCall
+
+.menunoreload
+	callba WritePartyMenuTilemap
+	callba PrintPartyMenuText
 	call WaitBGMap
 	call $32f9 ; load regular palettes?
 	call DelayFrame
-	ld a, BANK(PartyMenuSelect)
-	ld hl, PartyMenuSelect
-	rst FarCall
+	callba PartyMenuSelect
 	jr c, .return ; if cancelled or pressed B
+
 	call PokemonActionSubmenu
-	cp $3
+	cp 3
 	jr z, .menu
-	cp $0
+	cp 0
 	jr z, .choosemenu
-	cp $1
+	cp 1
 	jr z, .menunoreload
-	cp $2
+	cp 2
 	jr z, .quit
-.return ; 129c8
+
+.return
 	call $2b3c
-	ld a, $0
+	ld a, 0
 	ret
-.quit ; 129ce
+
+.quit
 	ld a, b
 	push af
 	call $2b4d
 	pop af
 	ret
-; 0x129d5
+; 129d5
 
-INCBIN "baserom.gbc", $129d5, $12a88 - $129d5
 
-PokemonActionSubmenu ; 0x12a88
-	ld hl, $c5cd ; coord
+INCBIN "baserom.gbc", $129d5, $12a6c - $129d5
+
+
+PartyMonItemName: ; 12a6c
+	ld a, [CurItem]
+	ld [$d265], a
+	call GetItemName
+	call CopyName1
+	ret
+; 12a79
+
+
+CancelPokemonAction: ; 12a79
+	ld a, $14
+	ld hl, $4405
+	rst FarCall
+	ld a, $23
+	ld hl, $6a71
+	rst FarCall
+	ld a, 1
+	ret
+; 12a88
+
+
+PokemonActionSubmenu: ; 12a88
+	hlcoord 1, 15
 	ld bc, $0212 ; box size
-	call $0fb6 ; draw box
+	call ClearBox
 	ld a, $9
 	ld hl, $4d19
 	rst FarCall
 	call $389c
 	ld a, [MenuSelection]
-	ld hl, PokemonSubmenuActionPointerTable
-	ld de, $0003 ; skip 3 bytes each time
+	ld hl, .Actions
+	ld de, 3
 	call IsInArray
 	jr nc, .nothing
+
 	inc hl
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
 	jp [hl]
+
 .nothing
-	ld a, $0
+	ld a, 0
 	ret
-; 0x12ab0
 
-PokemonSubmenuActionPointerTable: ; 0x12ab0
-    dbw $01, $6e1b
-    dbw $02, $6e30
-    dbw $03, $6ebd
-    dbw $04, $6e6a
-    dbw $06, $6e55
-    dbw $07, $6e7f
-    dbw $08, $6ed1
-    dbw $09, $6ea9
-    dbw $0a, $6ee6
-    dbw $0d, $6ee6
-    dbw $0b, $6f26
-    dbw $05, $6e94
-    dbw $0c, $6f3b
-    dbw $0e, $6f50
-    dbw $0f, OpenPartyStats ; stats
-    dbw $10, $6aec ; switch
-    dbw $11, $6b60 ; item
-    dbw $12, $6a79
-    dbw $13, $6fba ; move
-    dbw $14, $6d45 ; mail
-; no terminator?
-; 0x12aec
+.Actions
+	dbw $01, $6e1b
+	dbw $02, $6e30
+	dbw $03, $6ebd
+	dbw $04, $6e6a
+	dbw $06, $6e55
+	dbw $07, $6e7f
+	dbw $08, $6ed1
+	dbw $09, $6ea9
+	dbw $0a, $6ee6
+	dbw $0d, $6ee6
+	dbw $0b, $6f26
+	dbw $05, $6e94
+	dbw $0c, $6f3b
+	dbw $0e, $6f50
+	dbw $0f, OpenPartyStats
+	dbw $10, SwitchPartyMons
+	dbw $11, GiveTakePartyMonItem
+	dbw $12, CancelPokemonAction
+	dbw $13, $6fba ; move
+	dbw $14, $6d45 ; mail
+; 12aec
 
-INCBIN "baserom.gbc", $12aec, $12e00 - $12aec
+
+SwitchPartyMons: ; 12aec
+
+; Don't try if there's nothing to switch!
+	ld a, [PartyCount]
+	cp 2
+	jr c, .DontSwitch
+
+	ld a, [CurPartyMon]
+	inc a
+	ld [$d0e3], a
+
+	ld a, $23
+	ld hl, $6a8c
+	rst FarCall
+	ld a, $14
+	ld hl, $442d
+	rst FarCall
+
+	ld a, 4
+	ld [PartyMenuActionText], a
+	callba WritePartyMenuTilemap
+	callba PrintPartyMenuText
+
+	hlcoord 0, 1
+	ld bc, 20 * 2
+	ld a, [$d0e3]
+	dec a
+	call AddNTimes
+	ld [hl], "▷"
+	call WaitBGMap
+	call $32f9
+	call DelayFrame
+
+	callba PartyMenuSelect
+	bit 1, b
+	jr c, .DontSwitch
+
+	ld a, $14
+	ld hl, $4f12
+	rst FarCall
+
+	xor a
+	ld [PartyMenuActionText], a
+
+	ld a, $14
+	ld hl, $404f
+	rst FarCall
+	ld a, $14
+	ld hl, $4405
+	rst FarCall
+	ld a, $14
+	ld hl, $43e0
+	rst FarCall
+
+	ld a, 1
+	ret
+
+.DontSwitch
+	xor a
+	ld [PartyMenuActionText], a
+	call CancelPokemonAction
+	ret
+; 12b60
+
+
+GiveTakePartyMonItem: ; 12b60
+
+; Eggs can't hold items!
+	ld a, [CurPartySpecies]
+	cp EGG
+	jr z, .asm_12ba6
+
+	ld hl, GiveTakeItemMenuData
+	call Function1d35
+	call Function1d81
+	call Function1c07
+	jr c, .asm_12ba6
+
+	call $389c
+	ld hl, StringBuffer1
+	ld de, $d050
+	ld bc, $b
+	call CopyBytes
+	ld a, [$cfa9]
+	cp 1
+	jr nz, .asm_12ba0
+
+	call $1d6e
+	call ClearPalettes
+	call Function12ba9
+	call ClearPalettes
+	call $0e58
+	call Function1c07
+	ld a, 0
+	ret
+
+.asm_12ba0
+	call TakePartyItem
+	ld a, 3
+	ret
+
+.asm_12ba6
+	ld a, 3
+	ret
+; 12ba9
+
+
+Function12ba9: ; 12ba9
+
+	ld a, $4
+	ld hl, $46a5
+	rst FarCall
+
+.loop
+	ld a, $4
+	ld hl, $46be
+	rst FarCall
+
+	ld a, [$cf66]
+	and a
+	jr z, .quit
+
+	ld a, [$cf65]
+	cp 2
+	jr z, .next
+
+	call $2f46
+	ld a, [$d142]
+	and a
+	jr nz, .next
+
+	call Function12bd9
+	jr .quit
+
+.next
+	ld hl, CantBeHeldText
+	call $1d67
+	jr .loop
+
+.quit
+	ret
+; 12bd9
+
+
+Function12bd9: ; 12bd9
+
+	call SpeechTextBox
+	call PartyMonItemName
+	call GetPartyItemLocation
+	ld a, [hl]
+	and a
+	jr z, .asm_12bf4
+
+	push hl
+	ld d, a
+	ld a, $2e
+	ld hl, $5e76
+	rst FarCall
+	pop hl
+	jr c, .asm_12c01
+	ld a, [hl]
+	jr .asm_12c08
+
+.asm_12bf4
+	call $6cea
+	ld hl, MadeHoldText
+	call $1d67
+	call GivePartyItem
+	ret
+
+.asm_12c01
+	ld hl, PleaseRemoveMailText
+	call $1d67
+	ret
+
+.asm_12c08
+	ld [$d265], a
+	call GetItemName
+	ld hl, SwitchAlreadyHoldingText
+	call $6cf5
+	jr c, .asm_12c4b
+
+	call $6cea
+	ld a, [$d265]
+	push af
+	ld a, [CurItem]
+	ld [$d265], a
+	pop af
+	ld [CurItem], a
+	call $6cdf
+	jr nc, .asm_12c3c
+
+	ld hl, TookAndMadeHoldText
+	call $1d67
+	ld a, [$d265]
+	ld [CurItem], a
+	call GivePartyItem
+	ret
+
+.asm_12c3c
+	ld a, [$d265]
+	ld [CurItem], a
+	call $6cdf
+	ld hl, ItemStorageIsFullText
+	call $1d67
+
+.asm_12c4b
+	ret
+; 12c4c
+
+
+GivePartyItem: ; 12c4c
+
+	call GetPartyItemLocation
+	ld a, [CurItem]
+	ld [hl], a
+	ld d, a
+	ld a, $2e
+	ld hl, $5e76
+	rst FarCall
+	jr nc, .asm_12c5f
+	call $6cfe
+
+.asm_12c5f
+	ret
+; 12c60
+
+
+TakePartyItem: ; 12c60
+
+	call SpeechTextBox
+	call GetPartyItemLocation
+	ld a, [hl]
+	and a
+	jr z, .asm_12c8c
+
+	ld [CurItem], a
+	call $6cdf
+	jr nc, .asm_12c94
+
+	ld a, $2e
+	ld hl, $5e76
+	rst FarCall
+	call GetPartyItemLocation
+	ld a, [hl]
+	ld [$d265], a
+	ld [hl], NO_ITEM
+	call GetItemName
+	ld hl, TookFromText
+	call $1d67
+	jr .asm_12c9a
+
+.asm_12c8c
+	ld hl, IsntHoldingAnythingText
+	call $1d67
+	jr .asm_12c9a
+
+.asm_12c94
+	ld hl, ItemStorageIsFullText
+	call $1d67
+
+.asm_12c9a
+	ret
+; 12c9b
+
+
+GiveTakeItemMenuData: ; 12c9b
+	db %01010000
+	db 12, 12 ; start coords
+	db 17, 19 ; end coords
+	dw .Items
+	db 1 ; default option
+
+.Items
+	db %10000000 ; x padding
+	db 2 ; # items
+	db "GIVE@"
+	db "TAKE@"
+; 12caf
+
+
+TookAndMadeHoldText: ; 12caf
+	text_jump UnknownText_0x1c1b2c, BANK(UnknownText_0x1c1b2c)
+	db "@"
+; 12cb4
+
+MadeHoldText: ; 12cb4
+	text_jump UnknownText_0x1c1b57, BANK(UnknownText_0x1c1b57)
+	db "@"
+; 12cb9
+
+PleaseRemoveMailText: ; 12cb9
+	text_jump UnknownText_0x1c1b6f, BANK(UnknownText_0x1c1b6f)
+	db "@"
+; 12cbe
+
+IsntHoldingAnythingText: ; 12cbe
+	text_jump UnknownText_0x1c1b8e, BANK(UnknownText_0x1c1b8e)
+	db "@"
+; 12cc3
+
+ItemStorageIsFullText: ; 12cc3
+	text_jump UnknownText_0x1c1baa, BANK(UnknownText_0x1c1baa)
+	db "@"
+; 12cc8
+
+TookFromText: ; 12cc8
+	text_jump UnknownText_0x1c1bc4, BANK(UnknownText_0x1c1bc4)
+	db "@"
+; 12ccd
+
+SwitchAlreadyHoldingText: ; 12ccd
+	text_jump UnknownText_0x1c1bdc, BANK(UnknownText_0x1c1bdc)
+	db "@"
+; 12cd2
+
+CantBeHeldText: ; 12cd2
+	text_jump UnknownText_0x1c1c09, BANK(UnknownText_0x1c1c09)
+	db "@"
+; 12cd7
+
+
+GetPartyItemLocation: ; 12cd7
+	push af
+	ld a, PartyMon1Item - PartyMon1
+	call GetPartyParamLocation
+	pop af
+	ret
+; 12cdf
+
+
+INCBIN "baserom.gbc", $12cdf, $12e00 - $12cdf
+
 
 OpenPartyStats: ; 12e00
 	call $1d6e
 	call ClearSprites
-	xor a
-	ld [MonType], a ; partymon
+	xor a ; partymon
+	ld [MonType], a
 	call LowVolume
 	ld a, $25
 	call Predef
 	call MaxVolume
 	call $1d7d
-	ld a, $0
+	ld a, 0
 	ret
-; 0x12e1b
+; 12e1b
+
 
 INCBIN "baserom.gbc", $12e1b, $13b87 - $12e1b
+
 
 GetSquareRoot: ; 13b87
 ; Return the square root of de in b.
@@ -16269,9 +16855,7 @@ CheckSignFlag: ; 96ad8
 
 
 CheckPlayerMovement: ; 96af0
-	ld a, BANK(DoPlayerMovement)
-	ld hl, DoPlayerMovement
-	rst FarCall
+	callba DoPlayerMovement
 	ld a, c
 	ld hl, .pointers
 	rst $28
@@ -16370,7 +16954,7 @@ CheckMenuOW: ; 96b30
 
 
 StartMenuScript: ; 96b58
-	3callasm $04, $65cd ; StartMenu
+	3callasm BANK(StartMenu), StartMenu
 	2jump UnknownScript_0x96b66
 ; 96b5f
 

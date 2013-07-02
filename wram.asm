@@ -837,9 +837,9 @@ CurSpecies: ; cf60
 	ds $13
 
 MenuSelection:; cf74
-    ds 1
-    
-	ds $cf82-$cf74
+	ds 1
+
+	ds 14
 
 TileY: ; cf82
 	ds 1
@@ -1058,14 +1058,13 @@ TempMonSpclAtk: ; d13a
 	ds 2
 TempMonSpclDef: ; d13c
 	ds 2
-TempMonEnd: ; d13e
+TempMonEnd ; d13e
 
 	ds 3
 
-PartyMenuActionText ; d141
-    ds 1
-    
-    ds 1
+PartyMenuActionText: ; d141
+	ds 1
+	ds 1
 
 CurPartyLevel: ; d143
 	ds 1
@@ -1622,7 +1621,12 @@ TimeOfDayPal: ; d841
 CurTimeOfDay: ; d848
 	ds 1
 	
-	ds 5
+	ds 3
+
+StatusFlags: ; d84c
+	ds 1
+StatusFlags2: ; d84d
+	ds 1
 
 Money: ; d84e
 	ds 3
