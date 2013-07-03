@@ -1665,19 +1665,26 @@ TMsHMs: ; d859
 NumItems: ; d892
 	ds 1
 Items: ; d893
-	ds 69
+	ds 41
 
 NumKeyItems: ; d8bc
 	ds 1
 KeyItems: ; d8bd
-	ds 13
-	
+	ds 26
+
 NumBalls: ; d8d7
 	ds 1
 Balls: ; d8d8
 	ds 25
 	
-SECTION "overworld",BSS[$d95d]
+SECTION "overworld",BSS[$d95b]
+WhichRegisteredItem: ; d95b
+REGISTERED_POCKET EQU %11000000
+REGISTERED_NUMBER EQU %00111111
+	ds 1
+RegisteredItem: ; d95c
+	ds 1
+
 PlayerState: ; d95d
 PLAYER_NORMAL    EQU 0
 PLAYER_BIKE      EQU 1
