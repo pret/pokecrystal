@@ -1,5 +1,11 @@
 _CRYSTAL EQU 1
 
+if _CRYSTAL
+VERSION EQU 0
+else
+VERSION EQU 1
+endc
+
 INCLUDE "constants/pokemon_constants.asm"
 INCLUDE "constants/move_constants.asm"
 INCLUDE "constants/battle_constants.asm"
