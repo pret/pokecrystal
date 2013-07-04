@@ -1526,14 +1526,30 @@ OTPartyMon5Nickname: ; d416
 OTPartyMon6Nickname: ; d421
 	ds 11
 
-SECTION "Scripting",BSS[$d438]
+SECTION "Scripting",BSS[$d434]
+ScriptFlags: ; d434
+SCRIPT_RUNNING EQU 2
+	ds 1
 
+	ds 2
+
+ScriptMode: ; d437
+SCRIPT_OFF EQU 0
+SCRIPT_READ EQU 1
+SCRIPT_WAIT_MOVEMENT EQU 2
+SCRIPT_WAIT EQU 3
+	ds 1
 ScriptRunning: ; d438
 	ds 1
 ScriptBank: ; d439
 	ds 1
 ScriptPos: ; d43a
 	ds 2
+
+	ds 17
+
+ScriptDelay: ; d44d
+	ds 1
 
 SECTION "Player",BSS[$d472]
 PlayerGender: ; d472
