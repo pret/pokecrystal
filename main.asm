@@ -2192,7 +2192,35 @@ CheckWaterfallTile: ; 18bd
 	ret
 ; 18c3
 
-INCBIN "baserom.gbc", $18c3, $1c07 - $18c3
+
+INCBIN "baserom.gbc", $18c3, $18d2 - $18c3
+
+
+GetMapObject: ; 18d2
+; Return the location of map object a in bc.
+	ld hl, MapObjects
+	ld bc, $10
+	call AddNTimes
+	ld b, h
+	ld c, l
+	ret
+; 18de
+
+
+INCBIN "baserom.gbc", $18de, $1b07 - $18de
+
+
+GetSpriteDirection: ; 1b07
+	ld hl, $0008
+	add hl, bc
+	ld a, [hl]
+	and %00001100
+	ret
+; 1b0f
+
+
+INCBIN "baserom.gbc", $1b0f, $1c07 - $1b0f
+
 
 Function1c07: ; 0x1c07
 	push af
@@ -2746,28 +2774,24 @@ INCBIN "baserom.gbc", $261b, $261f - $261b
 
 
 PushScriptPointer: ; 261f
-; used to call a script from asm
-; input:
-;	a: bank
-;	hl: address
+; Call a script at a:hl.
 
-; bank
-	ld [$d439], a ; ScriptBank
-	
-; address
+	ld [ScriptBank], a
 	ld a, l
-	ld [$d43a], a ; ScriptAddressLo
+	ld [ScriptPos], a
 	ld a, h
-	ld [$d43b], a ; ScriptAddressHi
+	ld [ScriptPos + 1], a
 	
 	ld a, $ff
-	ld [$d438], a
+	ld [ScriptRunning], a
 	
 	scf
 	ret
 ; 2631
 
+
 INCBIN "baserom.gbc", $2631, $26d4 - $2631
+
 
 GetScriptByte: ; 0x26d4
 ; Return byte at ScriptBank:ScriptPos in a.
@@ -4400,7 +4424,223 @@ GetMoveName: ; 34f8
 ; 350c
 
 
-INCBIN "baserom.gbc", $350c, $3856 - $350c
+INCBIN "baserom.gbc", $350c, $3600 - $350c
+
+
+CheckTrainerBattle2: ; 3600
+
+	ld a, [hROMBank]
+	push af
+	call $2c52
+
+	call CheckTrainerBattle
+
+	pop bc
+	ld a, b
+	rst Bankswitch
+	ret
+; 360d
+
+
+CheckTrainerBattle: ; 360d
+; Check if any trainer on the map sees the player and wants to battle.
+
+; Skip the player object.
+	ld a, 1
+	ld de, MapObjects + OBJECT_LENGTH
+
+.loop
+
+; Start a battle if the object:
+
+	push af
+	push de
+
+; Has a sprite
+	ld hl, $0001
+	add hl, de
+	ld a, [hl]
+	and a
+	jr z, .next
+
+; Is a trainer
+	ld hl, $0008
+	add hl, de
+	ld a, [hl]
+	and $f
+	cp $2
+	jr nz, .next
+
+; Is visible on the map
+	ld hl, $0000
+	add hl, de
+	ld a, [hl]
+	cp $ff
+	jr z, .next
+
+; Is facing the player...
+	call $1ae5
+	call FacingPlayerDistance_bc
+	jr nc, .next
+
+; ...within their sight range
+	ld hl, $0009
+	add hl, de
+	ld a, [hl]
+	cp b
+	jr c, .next
+
+; And hasn't already been beaten
+	push bc
+	push de
+	ld hl, $000a
+	add hl, de
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	ld e, [hl]
+	inc hl
+	ld d, [hl]
+	ld b, CHECK_FLAG
+	call BitTable1Func
+	ld a, c
+	pop de
+	pop bc
+	and a
+	jr z, .asm_3666
+
+.next
+	pop de
+	ld hl, OBJECT_LENGTH
+	add hl, de
+	ld d, h
+	ld e, l
+
+	pop af
+	inc a
+	cp NUM_OBJECTS
+	jr nz, .loop
+	xor a
+	ret
+
+.asm_3666
+	pop de
+	pop af
+	ld [$ffe0], a
+	ld a, b
+	ld [$d03f], a
+	ld a, c
+	ld [$d040], a
+	jr .asm_367e
+
+	ld a, $1
+	ld [$d03f], a
+	ld a, $ff
+	ld [$d040], a
+
+.asm_367e
+	call $2c57
+	ld [EngineBuffer1], a
+	ld a, [$ffe0]
+	call GetMapObject
+	ld hl, $000a
+	add hl, bc
+	ld a, [EngineBuffer1]
+	call GetFarHalfword
+	ld de, $d041
+	ld bc, $000d
+	ld a, [EngineBuffer1]
+	call FarCopyBytes
+	xor a
+	ld [$d04d], a
+	scf
+	ret
+; 36a5d
+
+
+FacingPlayerDistance_bc: ; 36a5
+
+	push de
+	call FacingPlayerDistance
+	ld b, d
+	ld c, e
+	pop de
+	ret
+; 36ad
+
+
+FacingPlayerDistance: ; 36ad
+; Return carry if the sprite at bc is facing the player,
+; and its distance in d.
+
+	ld hl, $0010 ; x
+	add hl, bc
+	ld d, [hl]
+
+	ld hl, $0011 ; y
+	add hl, bc
+	ld e, [hl]
+
+	ld a, [MapX]
+	cp d
+	jr z, .CheckY
+
+	ld a, [MapY]
+	cp e
+	jr z, .CheckX
+
+	and a
+	ret
+
+.CheckY
+	ld a, [MapY]
+	sub e
+	jr z, .NotFacing
+	jr nc, .Above
+
+; Below
+	cpl
+	inc a
+	ld d, a
+	ld e, UP << 2
+	jr .CheckFacing
+
+.Above
+	ld d, a
+	ld e, DOWN << 2
+	jr .CheckFacing
+
+.CheckX
+	ld a, [MapX]
+	sub d
+	jr z, .NotFacing
+	jr nc, .Left
+
+; Right
+	cpl
+	inc a
+	ld d, a
+	ld e, LEFT << 2
+	jr .CheckFacing
+
+.Left
+	ld d, a
+	ld e, RIGHT << 2
+
+.CheckFacing
+	call GetSpriteDirection
+	cp e
+	jr nz, .NotFacing
+	scf
+	ret
+
+.NotFacing
+	and a
+	ret
+; 36f5
+
+
+INCBIN "baserom.gbc", $36f5, $3856 - $36f5
 
 
 GetBaseData: ; 3856
@@ -16833,31 +17073,202 @@ INCLUDE "maps/map_headers.asm"
 INCLUDE "maps/second_map_headers.asm"
 
 
-INCBIN "baserom.gbc", $966b0, $96974 - $966b0
+INCBIN "baserom.gbc", $966b0, $96795 - $966b0
 
 
+DoEvents: ; 96795
+	ld a, [$d433]
+	ld hl, .pointers
+	rst $28
+	ret
+; 9679d
 
-; 96974
-	call CheckPlayerMovement
-	ret c
+.pointers
+	dw Function967a1
+	dw Function967ae
+
+Function967a1: ; 967a1
+	call PlayerEvents
+	call $66cb
+	callba ScriptEvents
+	ret
+; 967ae
+
+Function967ae: ; 967ae
+	ret
+; 967af
+
+
+INCBIN "baserom.gbc", $967af, $9681f - $967af
+
+
+PlayerEvents: ; 9681f
+
+; Reset carry.
+	xor a
+
+	ld a, [ScriptRunning]
 	and a
-	jr nz, .asm_9698d
+	ret nz
 
-; Can't perform button actions while sliding on ice.
-	callba Function80404
-	jr c, .asm_9698d
+	call $68e4
 
-	call CheckAPressOW
-	jr c, .asm_9698f
+	call CheckTrainerBattle3
+	jr c, .asm_96848
 
-	call CheckMenuOW
-	jr c, .asm_9698f
+	call CheckTileEvent
+	jr c, .asm_96848
 
-.asm_9698d
+	call $7c30
+	jr c, .asm_96848
+
+	call $68ec
+	jr c, .asm_96848
+
+	call $693a
+	jr c, .asm_96848
+
+	call OWPlayerInput
+	jr c, .asm_96848
+
 	xor a
 	ret
 
-.asm_9698f
+
+.asm_96848
+	push af
+	ld a, $25
+	ld hl, $6c56
+	rst FarCall
+	pop af
+
+	ld [ScriptRunning], a
+	call $6beb
+	ld a, [ScriptRunning]
+	cp 4
+	jr z, .asm_96865
+	cp 9
+	jr z, .asm_96865
+
+	xor a
+	ld [$c2da], a
+
+.asm_96865
+	scf
+	ret
+; 96867
+
+
+CheckTrainerBattle3: ; 96867
+	nop
+	nop
+	call CheckTrainerBattle2
+	jr nc, .asm_96872
+	ld a, 1
+	scf
+	ret
+
+.asm_96872
+	xor a
+	ret
+; 96874
+
+
+CheckTileEvent: ; 96874
+; Check for warps, tile triggers or wild battles.
+
+	call $670c
+	jr z, .asm_96886
+
+	ld a, $41
+	ld hl, $4820
+	rst FarCall
+	jr c, .asm_968a6
+
+	call $2238
+	jr c, .asm_968aa
+
+.asm_96886
+	call $6712
+	jr z, .asm_96890
+
+	call $2ad4
+	jr c, .asm_968ba
+
+.asm_96890
+	call $6718
+	jr z, .asm_96899
+
+	call $6b79
+	ret c
+
+.asm_96899
+	call $671e
+	jr z, .asm_968a4
+
+	call $7cc0
+	ret c
+
+	jr .asm_968a4
+
+.asm_968a4
+	xor a
+	ret
+
+.asm_968a6
+	ld a, 4
+	scf
+	ret
+
+.asm_968aa
+	ld a, [StandingTile]
+	call $18a6
+	jr nz, .asm_968b6
+	ld a, 6
+	scf
+	ret
+
+.asm_968b6
+	ld a, 5
+	scf
+	ret
+
+.asm_968ba
+	ld hl, MovementAnimation
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	call $2c57
+	call PushScriptPointer
+	ret
+; 968c7
+
+
+INCBIN "baserom.gbc", $968c7, $96974 - $968c7
+
+
+OWPlayerInput: ; 96974
+
+	call PlayerMovement
+	ret c
+	and a
+	jr nz, .NoAction
+
+; Can't perform button actions while sliding on ice.
+	callba Function80404
+	jr c, .NoAction
+
+	call CheckAPressOW
+	jr c, .Action
+
+	call CheckMenuOW
+	jr c, .Action
+
+.NoAction
+	xor a
+	ret
+
+.Action
 	push af
 	callba Function80422
 	pop af
@@ -16906,7 +17317,7 @@ TryObjectEvent: ; 969b5
 	ld [$ffe0], a
 
 	ld a, [$ffe0]
-	call $18d2
+	call GetMapObject
 	ld hl, $0008
 	add hl, bc
 	ld a, [hl]
@@ -17120,7 +17531,7 @@ CheckSignFlag: ; 96ad8
 ; 96af0
 
 
-CheckPlayerMovement: ; 96af0
+PlayerMovement: ; 96af0
 	callba DoPlayerMovement
 	ld a, c
 	ld hl, .pointers
@@ -17247,12 +17658,78 @@ SelectMenuCallback: ; 96b66
 ; 96b79
 
 
-INCBIN "baserom.gbc", $96b79, $96cb1 - $96b79
+INCBIN "baserom.gbc", $96b79, $96c5e - $96b79
+
+
+ScriptEvents: ; 96c5e
+	call StartScript
+.loop
+	ld a, [ScriptMode]
+	ld hl, .modes
+	rst $28
+	call CheckScript
+	jr nz, .loop
+	ret
+; 96c6e
+
+.modes ; 96c6e
+	dw EndScript
+	dw RunScriptCommand
+	dw WaitScriptMovement
+	dw WaitScript
+
+EndScript: ; 96c76
+	call StopScript
+	ret
+; 96c7a
+
+WaitScript: ; 96c7a
+	call StopScript
+
+	ld hl, ScriptDelay
+	dec [hl]
+	ret nz
+
+	ld a, $1
+	ld hl, $58b9
+	rst FarCall
+
+	ld a, SCRIPT_READ
+	ld [ScriptMode], a
+	call StartScript
+	ret
+; 96c91
+
+WaitScriptMovement: ; 96c91
+	call StopScript
+
+	ld hl, VramState
+	bit 7, [hl]
+	ret nz
+
+	ld a, $1
+	ld hl, $58b9
+	rst FarCall
+
+	ld a, SCRIPT_READ
+	ld [ScriptMode], a
+	call StartScript
+	ret
+; 96ca9
+
+RunScriptCommand: ; 96ca9
+	call GetScriptByte
+	ld hl, ScriptCommandTable
+	rst $28
+	ret
+; 96cb1
 
 
 INCLUDE "engine/scripting.asm"
 
-INCBIN "baserom.gbc", $97c20, $35e
+
+INCBIN "baserom.gbc", $97c20, $97f7e - $97c20
+
 
 SECTION "bank26",DATA,BANK[$26]
 
