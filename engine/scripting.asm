@@ -171,21 +171,21 @@ ScriptCommandTable: ; 0x96cb1
 	dw Script_unknown0xa9
 ; 0x96e05
 
-Unknown_0x96e05: ; 0x96e05
-	ld hl, $d434
-	set 2, [hl]
+StartScript: ; 0x96e05
+	ld hl, ScriptFlags
+	set SCRIPT_RUNNING, [hl]
 	ret
 ; 0x96e0b
 
-Unknown_0x96e0b: ; 0x96e0b
-	ld hl, $d434
-	bit 2, [hl]
+CheckScript: ; 0x96e0b
+	ld hl, ScriptFlags
+	bit SCRIPT_RUNNING, [hl]
 	ret
 ; 0x96e11
 
-Unknown_0x96e11: ; 0x96e11
-	ld hl, $d434
-	res 2, [hl]
+StopScript: ; 0x96e11
+	ld hl, ScriptFlags
+	res SCRIPT_RUNNING, [hl]
 	ret
 ; 0x96e17
 
@@ -877,7 +877,7 @@ Script_talkaftercancel: ; 0x97163
 	ld a, [$d04d]
 	and a
 	ret z
-	jp $7b74
+	jp Script_end
 ; 0x9716b
 
 Script_talkaftercheck: ; 0x9716b
@@ -1038,9 +1038,9 @@ Script_applymovement: ; 0x971f3
 	ld b, a
 	call $26c7
 	ret c
-	ld a, $2
-	ld [$d437], a
-	call Unknown_0x96e11
+	ld a, SCRIPT_WAIT_MOVEMENT
+	ld [ScriptMode], a
+	call StopScript
 	ret
 ; 0x97221
 
@@ -1375,7 +1375,7 @@ Script_showemote: ; 0x97396
 	ld [$ffe0], a
 .asm_973a8
 	call GetScriptByte
-	ld [$d44d], a
+	ld [ScriptDelay], a
 	ld b, BANK(ShowEmoteScript)
 	ld de, ShowEmoteScript
 	jp ScriptCall
@@ -1559,7 +1559,7 @@ Script_reloadmap: ; 0x97491
 	ld [$ff9f], a
 	ld a, $1
 	call $261b
-	call Unknown_0x96e11
+	call StopScript
 	ret
 ; 0x974a2
 
@@ -1826,7 +1826,7 @@ Script_priorityjump: ; 0x975aa
 	ld [$d44f], a
 	call GetScriptByte
 	ld [$d450], a
-	ld hl, $d434
+	ld hl, ScriptFlags
 	set 3, [hl]
 	ret
 ; 0x975c2
@@ -2833,7 +2833,7 @@ Script_warp: ; 0x97a1d
 	ld [$ff9f], a
 	ld a, $1
 	call $261b
-	call Unknown_0x96e11
+	call StopScript
 	ret
 .asm_97a4a
 	call GetScriptByte
@@ -2845,7 +2845,7 @@ Script_warp: ; 0x97a1d
 	ld [$ff9f], a
 	ld a, $1
 	call $261b
-	call Unknown_0x96e11
+	call StopScript
 	ret
 ; 0x97a65
 
@@ -2998,7 +2998,7 @@ Script_newloadmap: ; 0x97b08
 	ld [$ff9f], a
 	ld a, $1
 	call $261b
-	call Unknown_0x96e11
+	call StopScript
 	ret
 ; 0x97b16
 
@@ -3006,7 +3006,7 @@ Script_reloadandreturn: ; 0x97b16
 ; script command 0x92
 
 	call $7b08
-	jp $7b74
+	jp Script_end
 ; 0x97b1c
 
 Script_loadfont: ; 0x97b1c
@@ -3074,11 +3074,11 @@ Script_pause: ; 0x97b47
 	call GetScriptByte
 	and a
 	jr z, .asm_97b50 ; 0x97b4b $3
-	ld [$d44d], a
+	ld [ScriptDelay], a
 .asm_97b50
-	ld c, $2
+	ld c, 2
 	call DelayFrames
-	ld hl, $d44d
+	ld hl, ScriptDelay
 	dec [hl]
 	jr nz, .asm_97b50 ; 0x97b59 $f5
 	ret
@@ -3092,11 +3092,11 @@ Script_deactivatefacing: ; 0x97b5c
 	call GetScriptByte
 	and a
 	jr z, .asm_97b65 ; 0x97b60 $3
-	ld [$d44d], a
+	ld [ScriptDelay], a
 .asm_97b65
-	ld a, $3
-	ld [$d437], a
-	call Unknown_0x96e11
+	ld a, SCRIPT_WAIT
+	ld [ScriptMode], a
+	call StopScript
 	ret
 ; 0x97b6e
 
@@ -3105,40 +3105,42 @@ Script_ptpriorityjump: ; 0x97b6e
 ; parameters:
 ;     pointer (ScriptPointerLabelParam)
 
-	call Unknown_0x96e11
+	call StopScript
 	jp Script_2jump
 ; 0x97b74
 
 Script_end: ; 0x97b74
 ; script command 0x91
 
-	call $7b9a
-	jr c, .asm_97b7a ; 0x97b77 $1
+	call ExitScriptSubroutine
+	jr c, .asm_97b7a
 	ret
 .asm_97b7a
 	xor a
 	ld [ScriptRunning], a
-	ld a, $0
-	ld [$d437], a
-	ld hl, $d434
+	ld a, SCRIPT_OFF
+	ld [ScriptMode], a
+	ld hl, ScriptFlags
 	res 0, [hl]
-	call Unknown_0x96e11
+	call StopScript
 	ret
 ; 0x97b8c
 
 Script_return: ; 0x97b8c
 ; script command 0x90
 
-	call $7b9a
-	jr c, .asm_97b91 ; 0x97b8f $0
+	call ExitScriptSubroutine
+	jr c, .asm_97b91
 .asm_97b91
-	ld hl, $d434
+	ld hl, ScriptFlags
 	res 0, [hl]
-	call Unknown_0x96e11
+	call StopScript
 	ret
 ; 0x97b9a
 
-Unknown_0x97b9a: ; 0x97b9a
+ExitScriptSubroutine: ; 0x97b9a
+; Return carry if there's no parent to return to.
+
 	ld hl, $d43c
 	ld a, [hl]
 	and a
@@ -3173,11 +3175,11 @@ Script_resetfuncs: ; 0x97bc0
 	xor a
 	ld [$d43c], a
 	ld [ScriptRunning], a
-	ld a, $0
-	ld [$d437], a
-	ld hl, $d434
+	ld a, SCRIPT_OFF
+	ld [ScriptMode], a
+	ld hl, ScriptFlags
 	res 0, [hl]
-	call Unknown_0x96e11
+	call StopScript
 	ret
 ; 0x97bd5
 
@@ -3186,15 +3188,9 @@ Script_halloffame: ; 0x97bd5
 
 	ld hl, $cfbc
 	res 0, [hl]
-	ld a, BANK(HallOfFame1)
-	ld hl, HallOfFame1
-	rst $8
-	ld a, BANK(HallOfFame2)
-	ld hl, HallOfFame2
-	rst $8
-	ld a, BANK(HallOfFame3)
-	ld hl, HallOfFame3
-	rst $8
+	callba HallOfFame1
+	callba HallOfFame2
+	callba HallOfFame3
 	ld hl, $cfbc
 	set 0, [hl]
 	jr DisplayCredits
@@ -3211,7 +3207,7 @@ DisplayCredits:
 	call $7bc0
 	ld a, $3
 	call $261b
-	call Unknown_0x96e11
+	call StopScript
 	ret
 ; 0x97c05
 
@@ -3224,7 +3220,7 @@ Script_unknown0xa8: ; 0x97c05
 	call GetScriptByte
 .asm_97c09
 	push af
-	ld c, $6
+	ld c, 6
 	call DelayFrames
 	pop af
 	dec a
