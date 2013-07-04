@@ -1526,8 +1526,10 @@ OTPartyMon5Nickname: ; d416
 OTPartyMon6Nickname: ; d421
 	ds 11
 
-SECTION "Scripting",BSS[$d439]
+SECTION "Scripting",BSS[$d438]
 
+ScriptRunning: ; d438
+	ds 1
 ScriptBank: ; d439
 	ds 1
 ScriptPos: ; d43a
@@ -1628,6 +1630,16 @@ PlayerSpriteX: ; d4ed
 	ds 1
 PlayerSpriteY: ; d4ee
 	ds 1
+
+
+SECTION "Objects",BSS[$d71e]
+MapObjects: ; d71e
+
+PLAYER_OBJECT EQU 0
+
+NUM_OBJECTS   EQU $10
+OBJECT_LENGTH EQU $10
+	ds OBJECT_LENGTH * NUM_OBJECTS
 
 
 SECTION "Status",BSS[$d841]
