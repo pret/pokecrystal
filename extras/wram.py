@@ -23,17 +23,33 @@ def read_bss_sections(bss):
 				'start': address,
 				'labels': [],
 			}
+
 		elif ':' in line:
-			# the only labels that don't use :s so far are enders,
-			# which we typically don't want to end up in the output
+			# rgbds allows labels without :, but prefer convention
 			label = line[:line.find(':')]
 			if ';' not in label:
-				section['labels'] += [{'label': label, 'address': address, 'length': 0}]
+				section['labels'] += [{
+					'label': label,
+					'address': address,
+					'length': 0,
+				}]
+
 		elif line[:3] == 'ds ':
 			length = eval(line[3:line.find(';')].replace('$','0x'))
 			address += length
-			if section['labels']:
-				section['labels'][-1]['length'] += length
+			# adjacent labels use the same space
+			for label in section['labels'][::-1]:
+				if label['length'] == 0:
+					label['length'] = length
+				else:
+					break
+
+		elif 'EQU' in line:
+			# some space is defined using constants
+			name, value = line.split('EQU')
+			name, value = name.strip(), value.strip().replace('$','0x').replace('%','0b')
+			globals()[name] = eval(value)
+
 	sections.append(section)
 	return sections
 
