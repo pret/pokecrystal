@@ -1989,6 +1989,7 @@ movement_command_bases = {
     0x3A: "remove_fixed_facing",
     0x3B: "fix_facing",
     0x3D: "hide_person",
+    0x3E: "show_person",
     0x45: "accelerate_last",
     0x46: ["step_sleep", ["duration", DecimalParam]],
     0x47: "step_end",
@@ -2000,6 +2001,8 @@ movement_command_bases = {
 
     0x4E: "skyfall",
     0x4F: "step_wait5",
+    0x53: "hide_emote",
+    0x54: "show_emote",
     0x55: ["step_shake", ["displacement", DecimalParam]],
 }
 
