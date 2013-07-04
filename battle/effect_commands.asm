@@ -6796,7 +6796,7 @@ BattleCommandac: ; 3658f
 ; jump
 	dec a
 	ld hl, .ptrs
-	rst $28
+	rst JumpTable
 	ret
 .ptrs
 	dw BattleCommand19 ; paralyze

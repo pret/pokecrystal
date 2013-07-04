@@ -16,9 +16,10 @@ INCLUDE "constants/script_constants.asm"
 INCLUDE "constants/music_constants.asm"
 
 
-; rst vectors
+; macros require rst vectors to be defined
 FarCall    EQU $08
 Bankswitch EQU $10
+JumpTable  EQU $28
 
 
 dwb: MACRO
