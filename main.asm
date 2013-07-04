@@ -7181,7 +7181,7 @@ _DoItemEffect: ; e722
 	ld a, [CurItem]
 	dec a
 	ld hl, ItemEffects
-	rst $28
+	rst JumpTable
 	ret
 ; e73c
 
@@ -8558,7 +8558,7 @@ CheckRegisteredItem: ; 13345
 	rlca
 	rlca
 	ld hl, .Pockets
-	rst $28
+	rst JumpTable
 	ret
 
 .Pockets
@@ -8652,7 +8652,7 @@ UseRegisteredItem: ; 133c3
 	callba CheckItemMenu
 	ld a, [$d142]
 	ld hl, .SwitchTo
-	rst $28
+	rst JumpTable
 	ret
 
 .SwitchTo
@@ -9068,7 +9068,7 @@ Function158cc: ; 0x158cc
 	rst $8
 	ld a, [$d142]
 	ld hl, JumpTable158e7
-	rst $28
+	rst JumpTable
 	pop af
 	ld [$c2ce], a
 	ret
@@ -12295,7 +12295,7 @@ Function4484a: ; 0x4484a
 	ld a, [$cfa9]
 	dec a
 	ld hl, $4861
-	rst $28
+	rst JumpTable
 
 .asm_44860
 	ret
@@ -13415,7 +13415,7 @@ StatsScreenMain: ; 0x4dcd2
 	ld a, [$cf63]
 	and $7f
 	ld hl, StatsScreenPointerTable
-	rst $28
+	rst JumpTable
 	call $5d3a ; check for keys?
 	ld a, [$cf63]
 	bit 7, a
@@ -13565,7 +13565,7 @@ WritePartyMenuTilemap: ; 0x5005f
 	jr z, .asm_50084 ; 0x5007a $8
 	push hl
 	ld hl, $4089
-	rst $28
+	rst JumpTable
 	pop hl
 	jr .asm_50077 ; 0x50082 $f3
 .asm_50084
@@ -17079,7 +17079,7 @@ INCBIN "baserom.gbc", $966b0, $96795 - $966b0
 DoEvents: ; 96795
 	ld a, [$d433]
 	ld hl, .pointers
-	rst $28
+	rst JumpTable
 	ret
 ; 9679d
 
@@ -17416,7 +17416,7 @@ TryReadSign: ; 96a38
 .IsSign
 	ld a, [$d040]
 	ld hl, .signs
-	rst $28
+	rst JumpTable
 	ret
 
 .signs
@@ -17535,7 +17535,7 @@ PlayerMovement: ; 96af0
 	callba DoPlayerMovement
 	ld a, c
 	ld hl, .pointers
-	rst $28
+	rst JumpTable
 	ld a, c
 	ret
 ; 96afd
@@ -17666,7 +17666,7 @@ ScriptEvents: ; 96c5e
 .loop
 	ld a, [ScriptMode]
 	ld hl, .modes
-	rst $28
+	rst JumpTable
 	call CheckScript
 	jr nz, .loop
 	ret
@@ -17720,7 +17720,7 @@ WaitScriptMovement: ; 96c91
 RunScriptCommand: ; 96ca9
 	call GetScriptByte
 	ld hl, ScriptCommandTable
-	rst $28
+	rst JumpTable
 	ret
 ; 96cb1
 
