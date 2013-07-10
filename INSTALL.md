@@ -28,6 +28,8 @@ During the install:
 
 * Most mirrors are molasses. Use **http://mirrors.kernel.org**.
 
+* From the package selection, select **wget**.
+
 
 ## Using Cygwin
 
@@ -48,31 +50,38 @@ cd /away/we/go
 
 We need a couple more things to be able to compile.
 
+
 If you're feeling lazy, just paste these commands into your terminal.
 
+
+**apt-cyg** lets you install new packages without running Cygwin setup.
+
 ```bash
-apt-cyg install make git wget python python-setuptools
+wget http://apt-cyg.googlecode.com/svn/trunk/apt-cyg
+chmod +x apt-cyg
+mv apt-cyg /usr/local/bin/
+```
+
+Now we can use apt-cyg to install everything else.
+
+```bash
+apt-cyg install make git python python-setuptools unzip
 easy_install pip
 ```
 
 **rgbds** will let you compile Game Boy roms.
 
 ```bash
-cd ~
-
-# download rgbds binaries
-wget http://diyhpl.us/~bryan/irc/pokered/rgbds/rgbds.zip
-unzip rgbds.zip
-rm rgbds.zip
-
-# make rgbds accessible for all time
-export PATH=$PATH:`pwd`/rgbds
-echo "export PATH=$PATH" >> ~/.bashrc
+wget http://diyhpl.us/~bryan/irc/pokered/rgbds/rgbds-0.0.1.zip
+unzip rgbds-0.0.1.zip
+mv rgbds-0.0.1/* /usr/local/bin
+rm -r rgbds-0.0.1*
 ```
 
 Set up the **pokecrystal** repository:
 
 ```bash
+cd ~
 git clone https://github.com/kanzure/pokecrystal
 cd pokecrystal
 
