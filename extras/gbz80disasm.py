@@ -555,6 +555,8 @@ end_08_scripts_with = [
 ##0x18, #jr
 ###0xda, 0xe9, 0xd2, 0xc2, 0xca, 0xc3, 0x38, 0x30, 0x20, 0x28, 0x18, 0xd8, 0xd0, 0xc0, 0xc8, 0xc9
 ]
+
+discrete_jumps = [0xda, 0xe9, 0xd2, 0xc2, 0xca, 0xc3]
 relative_jumps = [0x38, 0x30, 0x20, 0x28, 0x18, 0xc3, 0xda, 0xc2]
 relative_unconditional_jumps = [0xc3, 0x18]
 
@@ -597,6 +599,12 @@ def find_label(local_address, bank_id=0):
             return constants[local_address]
     return None
 
+def find_address_from_label(label):
+    for label_entry in all_labels:
+        if label == label_entry["label"]:
+            return label_entry["address"]
+    return None
+
 def asm_label(address):
     """
     Return the ASM label using the address.
@@ -612,7 +620,9 @@ def get_local_address(address):
     return (address & 0x3fff) + 0x4000 * bool(bank)
 
 def get_global_address(address, bank):
-    return (address & 0x3fff) + 0x4000 * bank
+    if address < 0x8000:
+        return (address & 0x3fff) + 0x4000 * bank
+    return None
 
     return ".ASM_" + hex(address)[2:]
 
@@ -802,12 +812,13 @@ def output_bank_opcodes(original_offset, max_byte_count=0x4000, include_last_add
                     number = byte1
                     number += byte2 << 8
 
-                    pointer = get_global_address(number, bank_id)
-                    if pointer not in data_tables.keys():
-                        data_tables[pointer] = {}
-                        data_tables[pointer]['usage'] = 0
-                    else:
-                        data_tables[pointer]['usage'] += 1
+                    if current_byte not in call_commands + discrete_jumps + relative_jumps:
+                        pointer = get_global_address(number, bank_id)
+                        if pointer not in data_tables.keys():
+                            data_tables[pointer] = {}
+                            data_tables[pointer]['usage'] = 0
+                        else:
+                            data_tables[pointer]['usage'] += 1
 
                     insertion = "$%.4x" % (number)
                     result = find_label(insertion, bank_id)
@@ -861,7 +872,7 @@ def output_bank_opcodes(original_offset, max_byte_count=0x4000, include_last_add
                 keep_reading = False
                 is_data = False #cleanup
                 break
-            elif offset not in byte_labels.keys() or offset in data_tables.keys():
+            elif offset not in byte_labels.keys() and offset in data_tables.keys():
                 is_data = True
                 keep_reading = True
             else:
@@ -920,10 +931,15 @@ def all_outstanding_labels_are_reverse(byte_labels, offset):
 
 
 if __name__ == "__main__":
+    load_labels()
     addr = sys.argv[1]
     if ":" in addr:
         addr = addr.split(":")
         addr = int(addr[0], 16)*0x4000+(int(addr[1], 16)%0x4000)
     else:
-        addr = int(addr, 16)
+        label_addr = find_address_from_label(addr)
+        if label_addr:
+            addr = label_addr
+        else:
+            addr = int(addr, 16)
     print output_bank_opcodes(addr)[0]

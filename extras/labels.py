@@ -31,8 +31,10 @@ def line_has_comment_address(line, returnable={}, bank=None):
     returnable["bank"] = None
     returnable["offset"] = None
     returnable["address"] = None
-    #only valid characters are 0-9A-F
-    valid = [str(x) for x in range(0,10)] + [chr(x) for x in range(97, 102+1)]
+    #only valid characters are 0-9a-fA-F
+    valid = [str(x) for x in range(10)] + \
+            [chr(x) for x in range(ord('a'), ord('f')+1)] + \
+            [chr(x) for x in range(ord('A'), ord('F')+1)]
     #check if there is a comment in this line
     if ";" not in line:
         return False
