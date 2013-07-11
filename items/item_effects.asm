@@ -448,7 +448,7 @@ ParkBall: ; e8a2
 
 	xor a
 	ld [CurPartyMon], a
-	ld a, $2
+	ld a, BOXMON
 	ld [MonType], a
 	ld de, $d050
 	ld b, $0
@@ -775,7 +775,7 @@ Function_0xed12: ; ed12
 	push de
 	ld a, [TempEnemyMonSpecies]
 	ld [CurPartySpecies], a
-	ld a, $4
+	ld a, WILDMON
 	ld [MonType], a
 	ld a, $14
 	ld hl, $4bdd

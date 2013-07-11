@@ -13,7 +13,7 @@ clean:
 	rm -f pokecrystal.o pokecrystal.gbc
 	@echo 'rm -f $(TEXTFILES:.asm=.tx)'
 	@rm -f $(TEXTFILES:.asm=.tx)
-pokecrystal.o: $(TEXTFILES:.asm=.tx) $(LZ_GFX) $(TWOBPP_GFX)
+pokecrystal.o: $(TEXTFILES:.asm=.tx) wram.asm constants.asm $(shell find constants/ -type f -name '*constants.asm') hram.asm gbhw.asm $(LZ_GFX) $(TWOBPP_GFX)
 	python prequeue.py $(TEXTQUEUE)
 	rgbasm -o pokecrystal.o pokecrystal.asm
 .asm.tx:
