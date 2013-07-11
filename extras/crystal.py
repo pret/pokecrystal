@@ -1476,7 +1476,7 @@ class PointerLabelToScriptPointer(PointerLabelParam):
     def parse(self):
         PointerLabelParam.parse(self)
         address = calculate_pointer_from_bytes_at(self.parsed_address, bank=self.bank)
-        address2 = calculate_pointer_from_bytes_at(address, bank="reverse") # maybe not "reverse"?
+        address2 = calculate_pointer_from_bytes_at(address, bank=True)
         self.script = parse_script_engine_script_at(address2, origin=False, map_group=self.map_group, map_id=self.map_id, force=self.force, debug=self.debug)
 
 
@@ -2657,10 +2657,10 @@ text_command_classes = inspect.getmembers(sys.modules[__name__], \
 pksv_crystal_more = {
     0x00: ["2call", ["pointer", ScriptPointerLabelParam]],
     0x01: ["3call", ["pointer", ScriptPointerLabelBeforeBank]],
-    0x02: ["2ptcall", ["pointer", PointerLabelToScriptPointer]],
+    0x02: ["2ptcall", ["pointer", RAMAddressParam]],
     0x03: ["2jump", ["pointer", ScriptPointerLabelParam]],
     0x04: ["3jump", ["pointer", ScriptPointerLabelBeforeBank]],
-    0x05: ["2ptjump", ["pointer", PointerLabelToScriptPointer]],
+    0x05: ["2ptjump", ["pointer", RAMAddressParam]],
     0x06: ["if equal", ["byte", SingleByteParam], ["pointer", ScriptPointerLabelParam]],
     0x07: ["if not equal", ["byte", SingleByteParam], ["pointer", ScriptPointerLabelParam]],
     0x08: ["iffalse", ["pointer", ScriptPointerLabelParam]],
@@ -2671,7 +2671,7 @@ pksv_crystal_more = {
     0x0D: ["callstd", ["predefined_script", MultiByteParam]],
     0x0E: ["3callasm", ["asm", AsmPointerParam]],
     0x0F: ["special", ["predefined_script", MultiByteParam]],
-    0x10: ["2ptcallasm", ["asm", PointerToAsmPointerParam]],
+    0x10: ["2ptcallasm", ["asm", RAMAddressParam]],
     # should map_group/map_id be dealt with in some special way in the asm?
     0x11: ["checkmaptriggers", ["map_group", SingleByteParam], ["map_id", SingleByteParam]],
     0x12: ["domaptrigger", ["map_group", MapGroupParam], ["map_id", MapIdParam], ["trigger_id", SingleByteParam]],
@@ -7353,15 +7353,15 @@ def write_all_labels(all_labels, filename="labels.json"):
     fh.close()
     return True
 
-# TODO: implement get_ram_label
-# wram.asm integration would be nice
+from wram import wram_labels
 def get_ram_label(address):
-    """not implemented yet.. supposed to get a label for a particular RAM location
-    like W_PARTYPOKE1HP"""
+    """returns a label assigned to a particular ram address"""
+    if address in wram_labels.keys():
+        return wram_labels[address][-1]
     return None
 
 def get_label_for(address):
-    """returns a label assigned to a particular address"""
+    """returns a label assigned to a particular rom address"""
     global all_labels
 
     if address == None:
