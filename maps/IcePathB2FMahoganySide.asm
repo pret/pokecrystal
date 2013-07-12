@@ -6,7 +6,7 @@ IcePathB2FMahoganySide_MapScriptHeader: ; 0x7e5a1
 	db 0
 ; 0x7e5a3
 
-UnknownScript_0x7e5a3: ; 0x7e5a3
+BoulderScript_0x7e5a3: ; 0x7e5a3
 	jumptext UnknownText_0x7e5ad
 ; 0x7e5a6
 
@@ -51,11 +51,11 @@ IcePathB2FMahoganySide_MapEventHeader: ; 0x7e5cd
 
 	; people-events
 	db 6
-	person_event $5a, 7, 15, $1, $0, 255, 255, $0, 0, UnknownScript_0x7e5a3, $070d
-	person_event $5a, 11, 8, $1, $0, 255, 255, $0, 0, UnknownScript_0x7e5a3, $070e
-	person_event $5a, 16, 7, $1, $0, 255, 255, $0, 0, UnknownScript_0x7e5a3, $070f
-	person_event $5a, 17, 16, $1, $0, 255, 255, $0, 0, UnknownScript_0x7e5a3, $0710
-	person_event $54, 13, 12, $1, $0, 255, 255, $1, 0, ItemFragment_0x7e5a6, $068b
-	person_event $54, 6, 4, $1, $0, 255, 255, $1, 0, ItemFragment_0x7e5a8, $068c
+	person_event SPRITE_BOULDER, 7, 15, $1, $0, 255, 255, $0, 0, BoulderScript_0x7e5a3, $070d
+	person_event SPRITE_BOULDER, 11, 8, $1, $0, 255, 255, $0, 0, BoulderScript_0x7e5a3, $070e
+	person_event SPRITE_BOULDER, 16, 7, $1, $0, 255, 255, $0, 0, BoulderScript_0x7e5a3, $070f
+	person_event SPRITE_BOULDER, 17, 16, $1, $0, 255, 255, $0, 0, BoulderScript_0x7e5a3, $0710
+	person_event SPRITE_POKE_BALL, 13, 12, $1, $0, 255, 255, $1, 0, ItemFragment_0x7e5a6, $068b
+	person_event SPRITE_POKE_BALL, 6, 4, $1, $0, 255, 255, $1, 0, ItemFragment_0x7e5a8, $068c
 ; 0x7e644
 

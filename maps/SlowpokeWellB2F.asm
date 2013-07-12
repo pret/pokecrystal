@@ -6,7 +6,7 @@ SlowpokeWellB2F_MapScriptHeader: ; 0x5ad09
 	db 0
 ; 0x5ad0b
 
-UnknownScript_0x5ad0b: ; 0x5ad0b
+GymGuyScript_0x5ad0b: ; 0x5ad0b
 	faceplayer
 	loadfont
 	checkbit1 $0073
@@ -72,7 +72,7 @@ SlowpokeWellB2F_MapEventHeader: ; 0x5ae40
 
 	; people-events
 	db 2
-	person_event $48, 8, 9, $2, $21, 255, 255, $0, 1, UnknownScript_0x5ad0b, $ffff
-	person_event $54, 9, 19, $1, $0, 255, 255, $1, 0, ItemFragment_0x5ad28, $0663
+	person_event SPRITE_GYM_GUY, 8, 9, $2, $21, 255, 255, $0, 1, GymGuyScript_0x5ad0b, $ffff
+	person_event SPRITE_POKE_BALL, 9, 19, $1, $0, 255, 255, $1, 0, ItemFragment_0x5ad28, $0663
 ; 0x5ae65
 

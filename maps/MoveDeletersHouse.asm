@@ -6,7 +6,7 @@ MoveDeletersHouse_MapScriptHeader: ; 0x195cb2
 	db 0
 ; 0x195cb4
 
-UnknownScript_0x195cb4: ; 0x195cb4
+SuperNerdScript_0x195cb4: ; 0x195cb4
 	faceplayer
 	loadfont
 	special $0021
@@ -38,6 +38,6 @@ MoveDeletersHouse_MapEventHeader: ; 0x195cbf
 
 	; people-events
 	db 1
-	person_event $2b, 7, 6, $6, $0, 255, 255, $0, 0, UnknownScript_0x195cb4, $ffff
+	person_event SPRITE_SUPER_NERD, 7, 6, $6, $0, 255, 255, $0, 0, SuperNerdScript_0x195cb4, $ffff
 ; 0x195ce6
 

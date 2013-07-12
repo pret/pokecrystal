@@ -6,18 +6,18 @@ LavenderMart_MapScriptHeader: ; 0x7eb1a
 	db 0
 ; 0x7eb1c
 
-UnknownScript_0x7eb1c: ; 0x7eb1c
+ClerkScript_0x7eb1c: ; 0x7eb1c
 	loadfont
 	pokemart $0, $0015
 	loadmovesprites
 	end
 ; 0x7eb23
 
-UnknownScript_0x7eb23: ; 0x7eb23
+PokefanMScript_0x7eb23: ; 0x7eb23
 	jumptextfaceplayer UnknownText_0x7eb29
 ; 0x7eb26
 
-UnknownScript_0x7eb26: ; 0x7eb26
+RockerScript_0x7eb26: ; 0x7eb26
 	jumptextfaceplayer UnknownText_0x7ebac
 ; 0x7eb29
 
@@ -58,8 +58,8 @@ LavenderMart_MapEventHeader: ; 0x7ec0e
 
 	; people-events
 	db 3
-	person_event $39, 7, 5, $9, $0, 255, 255, $0, 0, UnknownScript_0x7eb1c, $ffff
-	person_event $2d, 10, 10, $5, $2, 255, 255, $80, 0, UnknownScript_0x7eb23, $ffff
-	person_event $2c, 6, 13, $3, $0, 255, 255, $0, 0, UnknownScript_0x7eb26, $ffff
+	person_event SPRITE_CLERK, 7, 5, $9, $0, 255, 255, $0, 0, ClerkScript_0x7eb1c, $ffff
+	person_event SPRITE_POKEFAN_M, 10, 10, $5, $2, 255, 255, $80, 0, PokefanMScript_0x7eb23, $ffff
+	person_event SPRITE_ROCKER, 6, 13, $3, $0, 255, 255, $0, 0, RockerScript_0x7eb26, $ffff
 ; 0x7ec45
 

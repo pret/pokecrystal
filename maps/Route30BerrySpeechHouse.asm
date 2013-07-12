@@ -6,7 +6,7 @@ Route30BerrySpeechHouse_MapScriptHeader: ; 0x196d62
 	db 0
 ; 0x196d64
 
-UnknownScript_0x196d64: ; 0x196d64
+PokefanMScript_0x196d64: ; 0x196d64
 	faceplayer
 	loadfont
 	checkbit1 $0027
@@ -63,6 +63,6 @@ Route30BerrySpeechHouse_MapEventHeader: ; 0x196e20
 
 	; people-events
 	db 1
-	person_event $2d, 7, 6, $6, $0, 255, 255, $b0, 0, UnknownScript_0x196d64, $ffff
+	person_event SPRITE_POKEFAN_M, 7, 6, $6, $0, 255, 255, $b0, 0, PokefanMScript_0x196d64, $ffff
 ; 0x196e47
 

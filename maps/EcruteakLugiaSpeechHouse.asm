@@ -6,11 +6,11 @@ EcruteakLugiaSpeechHouse_MapScriptHeader: ; 0x99332
 	db 0
 ; 0x99334
 
-UnknownScript_0x99334: ; 0x99334
+GrampsScript_0x99334: ; 0x99334
 	jumptextfaceplayer UnknownText_0x9933d
 ; 0x99337
 
-UnknownScript_0x99337: ; 0x99337
+YoungsterScript_0x99337: ; 0x99337
 	jumptextfaceplayer UnknownText_0x993ec
 ; 0x9933a
 
@@ -57,7 +57,7 @@ EcruteakLugiaSpeechHouse_MapEventHeader: ; 0x99431
 
 	; people-events
 	db 2
-	person_event $2f, 7, 6, $3, $0, 255, 255, $0, 0, UnknownScript_0x99334, $ffff
-	person_event $27, 8, 9, $8, $0, 255, 255, $0, 0, UnknownScript_0x99337, $ffff
+	person_event SPRITE_GRAMPS, 7, 6, $3, $0, 255, 255, $0, 0, GrampsScript_0x99334, $ffff
+	person_event SPRITE_YOUNGSTER, 8, 9, $8, $0, 255, 255, $0, 0, YoungsterScript_0x99337, $ffff
 ; 0x99460
 

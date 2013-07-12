@@ -13,7 +13,7 @@ UnknownScript_0x7eaf1: ; 0x7eaf1
 	end
 ; 0x7eaf2
 
-UnknownScript_0x7eaf2: ; 0x7eaf2
+GentlemanScript_0x7eaf2: ; 0x7eaf2
 	faceplayer
 	loadfont
 	special $0057
@@ -43,6 +43,6 @@ LavenderNameRater_MapEventHeader: ; 0x7eafd
 
 	; people-events
 	db 1
-	person_event $40, 7, 6, $6, $0, 255, 255, $80, 0, UnknownScript_0x7eaf2, $ffff
+	person_event SPRITE_GENTLEMAN, 7, 6, $6, $0, 255, 255, $80, 0, GentlemanScript_0x7eaf2, $ffff
 ; 0x7eb1a
 

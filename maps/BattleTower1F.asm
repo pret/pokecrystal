@@ -55,7 +55,7 @@ UnknownScript_0x9e3e0: ; 0x9e3e0
 	end
 ; 0x9e3e2
 
-UnknownScript_0x9e3e2: ; 0x9e3e2
+ReceptionistScript_0x9e3e2: ; 0x9e3e2
 	writebyte $2
 	special $0086
 	if_equal $3, BattleTowerBattleRoomScript_0x9f4e4
@@ -267,7 +267,7 @@ UnknownScript_0x9e555: ; 0x9e555
 	2jump UnknownScript_0x9e4b0
 ; 0x9e55d
 
-UnknownScript_0x9e55d: ; 0x9e55d
+YoungsterScript_0x9e55d: ; 0x9e55d
 	faceplayer
 	loadfont
 	2writetext UnknownText_0x9f264
@@ -277,15 +277,15 @@ UnknownScript_0x9e55d: ; 0x9e55d
 	end
 ; 0x9e568
 
-UnknownScript_0x9e568: ; 0x9e568
+CooltrainerFScript_0x9e568: ; 0x9e568
 	jumptextfaceplayer UnknownText_0x9f2a4
 ; 0x9e56b
 
-UnknownScript_0x9e56b: ; 0x9e56b
+BugCatcherScript_0x9e56b: ; 0x9e56b
 	jumptextfaceplayer UnknownText_0x9f35b
 ; 0x9e56e
 
-UnknownScript_0x9e56e: ; 0x9e56e
+GrannyScript_0x9e56e: ; 0x9e56e
 	jumptextfaceplayer UnknownText_0x9f2e3
 ; 0x9e571
 
@@ -773,10 +773,10 @@ BattleTower1F_MapEventHeader: ; 0x9f3b4
 
 	; people-events
 	db 5
-	person_event $42, 10, 11, $6, $0, 255, 255, $0, 0, UnknownScript_0x9e3e2, $ffff
-	person_event $27, 13, 18, $9, $0, 255, 255, $b0, 0, UnknownScript_0x9e55d, $ffff
-	person_event $24, 13, 8, $5, $1, 255, 255, $80, 0, UnknownScript_0x9e568, $ffff
-	person_event $25, 7, 5, $2, $11, 255, 255, $90, 0, UnknownScript_0x9e56b, $ffff
-	person_event $30, 7, 18, $4, $10, 255, 255, $0, 0, UnknownScript_0x9e56e, $ffff
+	person_event SPRITE_RECEPTIONIST, 10, 11, $6, $0, 255, 255, $0, 0, ReceptionistScript_0x9e3e2, $ffff
+	person_event SPRITE_YOUNGSTER, 13, 18, $9, $0, 255, 255, $b0, 0, YoungsterScript_0x9e55d, $ffff
+	person_event SPRITE_COOLTRAINER_F, 13, 8, $5, $1, 255, 255, $80, 0, CooltrainerFScript_0x9e568, $ffff
+	person_event SPRITE_BUG_CATCHER, 7, 5, $2, $11, 255, 255, $90, 0, BugCatcherScript_0x9e56b, $ffff
+	person_event SPRITE_GRANNY, 7, 18, $4, $10, 255, 255, $0, 0, GrannyScript_0x9e56e, $ffff
 ; 0x9f40f
 

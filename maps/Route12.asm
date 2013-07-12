@@ -249,12 +249,12 @@ Route12_MapEventHeader: ; 0x1a72cf
 
 	; people-events
 	db 6
-	person_event $3a, 17, 9, $a, $0, 255, 255, $a2, 1, TrainerFisherMartin, $ffff
-	person_event $3a, 27, 18, $6, $0, 255, 255, $a2, 1, TrainerFisherStephen, $ffff
-	person_event $3a, 42, 14, $8, $0, 255, 255, $a2, 5, TrainerFisherBarney, $ffff
-	person_event $3a, 11, 10, $9, $0, 255, 255, $a2, 3, TrainerFisherKyle, $ffff
-	person_event $54, 47, 9, $1, $0, 255, 255, $1, 0, ItemFragment_0x1a700b, $0788
-	person_event $54, 55, 9, $1, $0, 255, 255, $1, 0, ItemFragment_0x1a700d, $0789
+	person_event SPRITE_FISHER, 17, 9, $a, $0, 255, 255, $a2, 1, TrainerFisherMartin, $ffff
+	person_event SPRITE_FISHER, 27, 18, $6, $0, 255, 255, $a2, 1, TrainerFisherStephen, $ffff
+	person_event SPRITE_FISHER, 42, 14, $8, $0, 255, 255, $a2, 5, TrainerFisherBarney, $ffff
+	person_event SPRITE_FISHER, 11, 10, $9, $0, 255, 255, $a2, 3, TrainerFisherKyle, $ffff
+	person_event SPRITE_POKE_BALL, 47, 9, $1, $0, 255, 255, $1, 0, ItemFragment_0x1a700b, $0788
+	person_event SPRITE_POKE_BALL, 55, 9, $1, $0, 255, 255, $1, 0, ItemFragment_0x1a700d, $0789
 ; 0x1a7337
 
 

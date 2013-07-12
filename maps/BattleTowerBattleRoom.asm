@@ -161,7 +161,7 @@ BattleTowerBattleRoom_MapEventHeader: ; 0x9f52e
 
 	; people-events
 	db 2
-	person_event $27, 4, 8, $6, $0, 255, 255, $0, 0, ObjectEvent, $0791
-	person_event $42, 10, 5, $9, $0, 255, 255, $0, 0, ObjectEvent, $ffff
+	person_event SPRITE_YOUNGSTER, 4, 8, $6, $0, 255, 255, $0, 0, ObjectEvent, $0791
+	person_event SPRITE_RECEPTIONIST, 10, 5, $9, $0, 255, 255, $0, 0, ObjectEvent, $ffff
 ; 0x9f558
 

@@ -6,7 +6,7 @@ EcruteakItemfinderHouse_MapScriptHeader: ; 0x9a5f9
 	db 0
 ; 0x9a5fb
 
-UnknownScript_0x9a5fb: ; 0x9a5fb
+CooltrainerMScript_0x9a5fb: ; 0x9a5fb
 	faceplayer
 	loadfont
 	checkbit1 $005a
@@ -32,7 +32,7 @@ UnknownScript_0x9a61a: ; 0x9a61a
 	end
 ; 0x9a620
 
-UnknownScript_0x9a620: ; 0x9a620
+PokedexScript_0x9a620: ; 0x9a620
 	loadfont
 	2writetext UnknownText_0x9a826
 	yesorno
@@ -161,7 +161,7 @@ EcruteakItemfinderHouse_MapEventHeader: ; 0x9a9f5
 
 	; people-events
 	db 2
-	person_event $23, 7, 6, $6, $0, 255, 255, $80, 0, UnknownScript_0x9a5fb, $ffff
-	person_event $55, 7, 7, $1, $0, 255, 255, $0, 0, UnknownScript_0x9a620, $ffff
+	person_event SPRITE_COOLTRAINER_M, 7, 6, $6, $0, 255, 255, $80, 0, CooltrainerMScript_0x9a5fb, $ffff
+	person_event SPRITE_POKEDEX, 7, 7, $1, $0, 255, 255, $0, 0, PokedexScript_0x9a620, $ffff
 ; 0x9aa24
 

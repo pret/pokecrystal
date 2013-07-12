@@ -6,7 +6,7 @@ Route26HealSpeechHouse_MapScriptHeader: ; 0x7b123
 	db 0
 ; 0x7b125
 
-UnknownScript_0x7b125: ; 0x7b125
+TeacherScript_0x7b125: ; 0x7b125
 	faceplayer
 	loadfont
 	2writetext UnknownText_0x7b14d
@@ -64,6 +64,6 @@ Route26HealSpeechHouse_MapEventHeader: ; 0x7b1bb
 
 	; people-events
 	db 1
-	person_event $29, 7, 6, $6, $0, 255, 255, $90, 0, UnknownScript_0x7b125, $ffff
+	person_event SPRITE_TEACHER, 7, 6, $6, $0, 255, 255, $90, 0, TeacherScript_0x7b125, $ffff
 ; 0x7b1e2
 

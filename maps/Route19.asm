@@ -139,7 +139,7 @@ SwimmermTuckerScript: ; 0x19ea45
 	end
 ; 0x19ea4d
 
-UnknownScript_0x19ea4d: ; 0x19ea4d
+FisherScript_0x19ea4d: ; 0x19ea4d
 	faceplayer
 	loadfont
 	checkbit1 $00d7
@@ -157,7 +157,7 @@ UnknownScript_0x19ea5b: ; 0x19ea5b
 	end
 ; 0x19ea61
 
-UnknownScript_0x19ea61: ; 0x19ea61
+FisherScript_0x19ea61: ; 0x19ea61
 	faceplayer
 	loadfont
 	checkbit1 $00d7
@@ -316,11 +316,11 @@ Route19_MapEventHeader: ; 0x19ee31
 
 	; people-events
 	db 6
-	person_event $32, 27, 13, $8, $0, 255, 255, $a2, 0, TrainerSwimmerfDawn, $ffff
-	person_event $31, 32, 17, $a, $0, 255, 255, $82, 3, TrainerSwimmermHarold, $ffff
-	person_event $31, 21, 15, $a, $0, 255, 255, $82, 3, TrainerSwimmermJerome, $ffff
-	person_event $31, 27, 12, $7, $0, 255, 255, $82, 0, TrainerSwimmermTucker, $ffff
-	person_event $3a, 9, 13, $6, $0, 255, 255, $80, 1, UnknownScript_0x19ea4d, $ffff
-	person_event $3a, 9, 15, $5, $1, 255, 255, $90, 1, UnknownScript_0x19ea61, $ffff
+	person_event SPRITE_SWIMMER_GIRL, 27, 13, $8, $0, 255, 255, $a2, 0, TrainerSwimmerfDawn, $ffff
+	person_event SPRITE_SWIMMER_GUY, 32, 17, $a, $0, 255, 255, $82, 3, TrainerSwimmermHarold, $ffff
+	person_event SPRITE_SWIMMER_GUY, 21, 15, $a, $0, 255, 255, $82, 3, TrainerSwimmermJerome, $ffff
+	person_event SPRITE_SWIMMER_GUY, 27, 12, $7, $0, 255, 255, $82, 0, TrainerSwimmermTucker, $ffff
+	person_event SPRITE_FISHER, 9, 13, $6, $0, 255, 255, $80, 1, FisherScript_0x19ea4d, $ffff
+	person_event SPRITE_FISHER, 9, 15, $5, $1, 255, 255, $90, 1, FisherScript_0x19ea61, $ffff
 ; 0x19ee94
 

@@ -44,8 +44,8 @@ SilverCaveRoom2_MapEventHeader: ; 0x18c5bb
 
 	; people-events
 	db 3
-	person_event $54, 14, 28, $1, $0, 255, 255, $1, 0, ItemFragment_0x18c5b2, $07c2
-	person_event $54, 28, 26, $1, $0, 255, 255, $1, 0, ItemFragment_0x18c5b4, $07c3
-	person_event $54, 24, 8, $1, $0, 255, 255, $1, 0, ItemFragment_0x18c5b6, $07c4
+	person_event SPRITE_POKE_BALL, 14, 28, $1, $0, 255, 255, $1, 0, ItemFragment_0x18c5b2, $07c2
+	person_event SPRITE_POKE_BALL, 28, 26, $1, $0, 255, 255, $1, 0, ItemFragment_0x18c5b4, $07c3
+	person_event SPRITE_POKE_BALL, 24, 8, $1, $0, 255, 255, $1, 0, ItemFragment_0x18c5b6, $07c4
 ; 0x18c601
 

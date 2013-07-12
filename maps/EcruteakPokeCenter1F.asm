@@ -57,11 +57,11 @@ UnknownScript_0x98e95: ; 0x98e95
 	end
 ; 0x98eb0
 
-UnknownScript_0x98eb0: ; 0x98eb0
+NurseScript_0x98eb0: ; 0x98eb0
 	jumpstd $0000
 ; 0x98eb3
 
-UnknownScript_0x98eb3: ; 0x98eb3
+PokefanMScript_0x98eb3: ; 0x98eb3
 	special $00a0
 	iftrue UnknownScript_0x98ebc
 	jumptextfaceplayer UnknownText_0x99155
@@ -71,11 +71,11 @@ UnknownScript_0x98ebc: ; 0x98ebc
 	jumptextfaceplayer UnknownText_0x991aa
 ; 0x98ebf
 
-UnknownScript_0x98ebf: ; 0x98ebf
+CooltrainerFScript_0x98ebf: ; 0x98ebf
 	jumptextfaceplayer UnknownText_0x99240
 ; 0x98ec2
 
-UnknownScript_0x98ec2: ; 0x98ec2
+GymGuyScript_0x98ec2: ; 0x98ec2
 	jumptextfaceplayer UnknownText_0x99286
 ; 0x98ec5
 
@@ -208,10 +208,10 @@ EcruteakPokeCenter1F_MapEventHeader: ; 0x992dc
 
 	; people-events
 	db 5
-	person_event $37, 5, 7, $6, $0, 255, 255, $0, 0, UnknownScript_0x98eb0, $ffff
-	person_event $2d, 10, 11, $a, $0, 255, 255, $0, 0, UnknownScript_0x98eb3, $ffff
-	person_event $24, 8, 5, $3, $0, 255, 255, $0, 0, UnknownScript_0x98ebf, $ffff
-	person_event $48, 5, 11, $6, $0, 255, 255, $a0, 0, UnknownScript_0x98ec2, $ffff
-	person_event $8, 11, 4, $9, $0, 255, 255, $0, 0, ObjectEvent, $0713
+	person_event SPRITE_NURSE, 5, 7, $6, $0, 255, 255, $0, 0, NurseScript_0x98eb0, $ffff
+	person_event SPRITE_POKEFAN_M, 10, 11, $a, $0, 255, 255, $0, 0, PokefanMScript_0x98eb3, $ffff
+	person_event SPRITE_COOLTRAINER_F, 8, 5, $3, $0, 255, 255, $0, 0, CooltrainerFScript_0x98ebf, $ffff
+	person_event SPRITE_GYM_GUY, 5, 11, $6, $0, 255, 255, $a0, 0, GymGuyScript_0x98ec2, $ffff
+	person_event SPRITE_BILL, 11, 4, $9, $0, 255, 255, $0, 0, ObjectEvent, $0713
 ; 0x99332
 

@@ -15,11 +15,11 @@ UnknownScript_0x1a9f3f: ; 0x1a9f3f
 	return
 ; 0x1a9f43
 
-UnknownScript_0x1a9f43: ; 0x1a9f43
+FisherScript_0x1a9f43: ; 0x1a9f43
 	jumptextfaceplayer UnknownText_0x1a9f7d
 ; 0x1a9f46
 
-UnknownScript_0x1a9f46: ; 0x1a9f46
+PoliwagScript_0x1a9f46: ; 0x1a9f46
 	loadfont
 	2writetext UnknownText_0x1a9fcb
 	cry POLIWRATH
@@ -28,31 +28,31 @@ UnknownScript_0x1a9f46: ; 0x1a9f46
 	end
 ; 0x1a9f50
 
-UnknownScript_0x1a9f50: ; 0x1a9f50
+TeacherScript_0x1a9f50: ; 0x1a9f50
 	jumptextfaceplayer UnknownText_0x1a9fde
 ; 0x1a9f53
 
-UnknownScript_0x1a9f53: ; 0x1a9f53
+GrampsScript_0x1a9f53: ; 0x1a9f53
 	jumptextfaceplayer UnknownText_0x1aa043
 ; 0x1a9f56
 
-UnknownScript_0x1a9f56: ; 0x1a9f56
+GrampsScript_0x1a9f56: ; 0x1a9f56
 	jumptextfaceplayer UnknownText_0x1aa0dc
 ; 0x1a9f59
 
-UnknownScript_0x1a9f59: ; 0x1a9f59
+YoungsterScript_0x1a9f59: ; 0x1a9f59
 	jumptextfaceplayer UnknownText_0x1aa115
 ; 0x1a9f5c
 
-UnknownScript_0x1a9f5c: ; 0x1a9f5c
+YoungsterScript_0x1a9f5c: ; 0x1a9f5c
 	jumptextfaceplayer UnknownText_0x1aa155
 ; 0x1a9f5f
 
-UnknownScript_0x1a9f5f: ; 0x1a9f5f
+TeacherScript_0x1a9f5f: ; 0x1a9f5f
 	jumptextfaceplayer UnknownText_0x1aa1bd
 ; 0x1a9f62
 
-UnknownScript_0x1a9f62: ; 0x1a9f62
+LassScript_0x1a9f62: ; 0x1a9f62
 	jumptextfaceplayer UnknownText_0x1aa306
 ; 0x1a9f65
 
@@ -256,14 +256,14 @@ CeladonCity_MapEventHeader: ; 0x1aa497
 
 	; people-events
 	db 9
-	person_event $3a, 15, 30, $9, $0, 255, 255, $a0, 0, UnknownScript_0x1a9f43, $ffff
-	person_event $8d, 15, 31, $16, $0, 255, 255, $90, 0, UnknownScript_0x1a9f46, $ffff
-	person_event $29, 28, 24, $5, $2, 255, 255, $80, 0, UnknownScript_0x1a9f50, $ffff
-	person_event $2f, 20, 18, $6, $0, 255, 255, $b0, 0, UnknownScript_0x1a9f53, $ffff
-	person_event $2f, 35, 12, $7, $0, 255, 255, $80, 0, UnknownScript_0x1a9f56, $ffff
-	person_event $27, 17, 22, $5, $2, 255, 255, $90, 0, UnknownScript_0x1a9f59, $ffff
-	person_event $27, 37, 28, $7, $0, 255, 255, $a0, 0, UnknownScript_0x1a9f5c, $ffff
-	person_event $29, 18, 10, $2, $22, 255, 255, $a0, 0, UnknownScript_0x1a9f5f, $ffff
-	person_event $28, 26, 11, $4, $20, 255, 255, $80, 0, UnknownScript_0x1a9f62, $ffff
+	person_event SPRITE_FISHER, 15, 30, $9, $0, 255, 255, $a0, 0, FisherScript_0x1a9f43, $ffff
+	person_event SPRITE_POLIWAG, 15, 31, $16, $0, 255, 255, $90, 0, PoliwagScript_0x1a9f46, $ffff
+	person_event SPRITE_TEACHER, 28, 24, $5, $2, 255, 255, $80, 0, TeacherScript_0x1a9f50, $ffff
+	person_event SPRITE_GRAMPS, 20, 18, $6, $0, 255, 255, $b0, 0, GrampsScript_0x1a9f53, $ffff
+	person_event SPRITE_GRAMPS, 35, 12, $7, $0, 255, 255, $80, 0, GrampsScript_0x1a9f56, $ffff
+	person_event SPRITE_YOUNGSTER, 17, 22, $5, $2, 255, 255, $90, 0, YoungsterScript_0x1a9f59, $ffff
+	person_event SPRITE_YOUNGSTER, 37, 28, $7, $0, 255, 255, $a0, 0, YoungsterScript_0x1a9f5c, $ffff
+	person_event SPRITE_TEACHER, 18, 10, $2, $22, 255, 255, $a0, 0, TeacherScript_0x1a9f5f, $ffff
+	person_event SPRITE_LASS, 26, 11, $4, $20, 255, 255, $80, 0, LassScript_0x1a9f62, $ffff
 ; 0x1aa567
 

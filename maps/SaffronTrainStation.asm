@@ -13,7 +13,7 @@ UnknownScript_0x18a81d: ; 0x18a81d
 	end
 ; 0x18a81e
 
-UnknownScript_0x18a81e: ; 0x18a81e
+OfficerScript_0x18a81e: ; 0x18a81e
 	faceplayer
 	loadfont
 	checkbit1 $00cd
@@ -74,7 +74,7 @@ UnknownScript_0x18a862: ; 0x18a862
 	end
 ; 0x18a875
 
-UnknownScript_0x18a875: ; 0x18a875
+GymGuyScript_0x18a875: ; 0x18a875
 	faceplayer
 	loadfont
 	checkbit1 $00c9
@@ -92,11 +92,11 @@ UnknownScript_0x18a883: ; 0x18a883
 	end
 ; 0x18a889
 
-UnknownScript_0x18a889: ; 0x18a889
+TeacherScript_0x18a889: ; 0x18a889
 	jumptextfaceplayer UnknownText_0x18aaab
 ; 0x18a88c
 
-UnknownScript_0x18a88c: ; 0x18a88c
+LassScript_0x18a88c: ; 0x18a88c
 	jumptextfaceplayer UnknownText_0x18ab20
 ; 0x18a88f
 
@@ -235,9 +235,9 @@ SaffronTrainStation_MapEventHeader: ; 0x18ab8d
 
 	; people-events
 	db 4
-	person_event $43, 13, 13, $6, $0, 255, 255, $0, 0, UnknownScript_0x18a81e, $ffff
-	person_event $48, 18, 14, $2, $11, 255, 255, $0, 0, UnknownScript_0x18a875, $ffff
-	person_event $29, 15, 10, $9, $0, 255, 255, $0, 0, UnknownScript_0x18a889, $0772
-	person_event $28, 14, 10, $7, $0, 255, 255, $a0, 0, UnknownScript_0x18a88c, $0772
+	person_event SPRITE_OFFICER, 13, 13, $6, $0, 255, 255, $0, 0, OfficerScript_0x18a81e, $ffff
+	person_event SPRITE_GYM_GUY, 18, 14, $2, $11, 255, 255, $0, 0, GymGuyScript_0x18a875, $ffff
+	person_event SPRITE_TEACHER, 15, 10, $9, $0, 255, 255, $0, 0, TeacherScript_0x18a889, $0772
+	person_event SPRITE_LASS, 14, 10, $7, $0, 255, 255, $a0, 0, LassScript_0x18a88c, $0772
 ; 0x18abe3
 

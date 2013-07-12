@@ -173,6 +173,6 @@ MountMoon_MapEventHeader: ; 0x74356
 
 	; people-events
 	db 1
-	person_event $4, 7, 11, $8, $0, 255, 255, $0, 0, ObjectEvent, $077a
+	person_event SPRITE_SILVER, 7, 11, $8, $0, 255, 255, $0, 0, ObjectEvent, $077a
 ; 0x74391
 

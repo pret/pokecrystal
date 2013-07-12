@@ -6,11 +6,11 @@ VioletOnixTradeHouse_MapScriptHeader: ; 0x6998b
 	db 0
 ; 0x6998d
 
-UnknownScript_0x6998d: ; 0x6998d
+PokefanMScript_0x6998d: ; 0x6998d
 	jumptextfaceplayer UnknownText_0x69997
 ; 0x69990
 
-UnknownScript_0x69990: ; 0x69990
+YoungsterScript_0x69990: ; 0x69990
 	faceplayer
 	loadfont
 	trade $1
@@ -46,7 +46,7 @@ VioletOnixTradeHouse_MapEventHeader: ; 0x69a01
 
 	; people-events
 	db 2
-	person_event $2d, 7, 6, $3, $0, 255, 255, $0, 0, UnknownScript_0x6998d, $ffff
-	person_event $27, 9, 10, $4, $20, 255, 255, $80, 0, UnknownScript_0x69990, $ffff
+	person_event SPRITE_POKEFAN_M, 7, 6, $3, $0, 255, 255, $0, 0, PokefanMScript_0x6998d, $ffff
+	person_event SPRITE_YOUNGSTER, 9, 10, $4, $20, 255, 255, $80, 0, YoungsterScript_0x69990, $ffff
 ; 0x69a2b
 

@@ -42,7 +42,7 @@ UnknownScript_0x74da6: ; 0x74da6
 	end
 ; 0x74dc4
 
-UnknownScript_0x74dc4: ; 0x74dc4
+SailorScript_0x74dc4: ; 0x74dc4
 	faceplayer
 	loadfont
 	checkbit1 $0000
@@ -111,7 +111,7 @@ UnknownScript_0x74e20: ; 0x74e20
 	loadmovesprites
 	setbit1 $0001
 	applymovement $0, MovementData_0x74ef8
-	2jump UnknownScript_0x74dc4
+	2jump SailorScript_0x74dc4
 ; 0x74e68
 
 UnknownScript_0x74e68: ; 0x74e68
@@ -157,7 +157,7 @@ UnknownScript_0x74e8d: ; 0x74e8d
 	end
 ; 0x74e97
 
-UnknownScript_0x74e97: ; 0x74e97
+SailorScript_0x74e97: ; 0x74e97
 	faceplayer
 	loadfont
 	checkbit1 $0000
@@ -180,7 +180,7 @@ UnknownScript_0x74e97: ; 0x74e97
 	loadmovesprites
 	setbit1 $0001
 	applymovement $0, MovementData_0x74efe
-	2jump UnknownScript_0x74dc4
+	2jump SailorScript_0x74dc4
 ; 0x74ed4
 
 UnknownScript_0x74ed4: ; 0x74ed4
@@ -204,7 +204,7 @@ UnknownScript_0x74ee0: ; 0x74ee0
 	end
 ; 0x74ee6
 
-UnknownScript_0x74ee6: ; 0x74ee6
+SuperNerdScript_0x74ee6: ; 0x74ee6
 	faceplayer
 	loadfont
 	2writetext UnknownText_0x750a6
@@ -338,8 +338,8 @@ VermilionPort_MapEventHeader: ; 0x750e3
 
 	; people-events
 	db 3
-	person_event $49, 21, 11, $7, $0, 255, 255, $0, 0, UnknownScript_0x74dc4, $072b
-	person_event $49, 15, 10, $9, $0, 255, 255, $0, 0, UnknownScript_0x74e97, $ffff
-	person_event $2b, 15, 15, $5, $2, 255, 255, $0, 0, UnknownScript_0x74ee6, $ffff
+	person_event SPRITE_SAILOR, 21, 11, $7, $0, 255, 255, $0, 0, SailorScript_0x74dc4, $072b
+	person_event SPRITE_SAILOR, 15, 10, $9, $0, 255, 255, $0, 0, SailorScript_0x74e97, $ffff
+	person_event SPRITE_SUPER_NERD, 15, 15, $5, $2, 255, 255, $0, 0, SuperNerdScript_0x74ee6, $ffff
 ; 0x75127
 

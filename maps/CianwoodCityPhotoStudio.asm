@@ -6,7 +6,7 @@ CianwoodCityPhotoStudio_MapScriptHeader: ; 0x9e0de
 	db 0
 ; 0x9e0e0
 
-UnknownScript_0x9e0e0: ; 0x9e0e0
+FishingGuruScript_0x9e0e0: ; 0x9e0e0
 	faceplayer
 	loadfont
 	2writetext UnknownText_0x9e0f9
@@ -63,6 +63,6 @@ CianwoodCityPhotoStudio_MapEventHeader: ; 0x9e191
 
 	; people-events
 	db 1
-	person_event $3b, 7, 6, $6, $0, 255, 255, $80, 0, UnknownScript_0x9e0e0, $ffff
+	person_event SPRITE_FISHING_GURU, 7, 6, $6, $0, 255, 255, $80, 0, FishingGuruScript_0x9e0e0, $ffff
 ; 0x9e1ae
 

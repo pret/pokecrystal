@@ -6,7 +6,7 @@ OlivineLighthouse6F_MapScriptHeader: ; 0x60b8f
 	db 0
 ; 0x60b91
 
-UnknownScript_0x60b91: ; 0x60b91
+JasmineScript_0x60b91: ; 0x60b91
 	faceplayer
 	loadfont
 	checkitem SECRETPOTION
@@ -104,7 +104,7 @@ UnknownScript_0x60c39: ; 0x60c39
 	end
 ; 0x60c3a
 
-UnknownScript_0x60c3a: ; 0x60c3a
+MonsterScript_0x60c3a: ; 0x60c3a
 	faceplayer
 	loadfont
 	checkbit1 $0020
@@ -272,8 +272,8 @@ OlivineLighthouse6F_MapEventHeader: ; 0x60f53
 
 	; people-events
 	db 3
-	person_event $17, 12, 12, $6, $0, 255, 255, $80, 0, UnknownScript_0x60b91, $06d2
-	person_event $4c, 12, 13, $6, $0, 255, 255, $b0, 0, UnknownScript_0x60c3a, $ffff
-	person_event $54, 8, 7, $1, $0, 255, 255, $1, 0, ItemFragment_0x60c66, $0668
+	person_event SPRITE_JASMINE, 12, 12, $6, $0, 255, 255, $80, 0, JasmineScript_0x60b91, $06d2
+	person_event SPRITE_MONSTER, 12, 13, $6, $0, 255, 255, $b0, 0, MonsterScript_0x60c3a, $ffff
+	person_event SPRITE_POKE_BALL, 8, 7, $1, $0, 255, 255, $1, 0, ItemFragment_0x60c66, $0668
 ; 0x60f8f
 

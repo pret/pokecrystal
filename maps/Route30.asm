@@ -6,7 +6,7 @@ Route30_MapScriptHeader: ; 0x1a1671
 	db 0
 ; 0x1a1673
 
-UnknownScript_0x1a1673: ; 0x1a1673
+YoungsterScript_0x1a1673: ; 0x1a1673
 	waitbutton
 	playmusic $002a
 	loadfont
@@ -267,7 +267,7 @@ Bug_catcherDonScript: ; 0x1a17ca
 	end
 ; 0x1a17d2
 
-UnknownScript_0x1a17d2: ; 0x1a17d2
+YoungsterScript_0x1a17d2: ; 0x1a17d2
 	faceplayer
 	loadfont
 	checkbit1 $001f
@@ -285,7 +285,7 @@ UnknownScript_0x1a17e0: ; 0x1a17e0
 	end
 ; 0x1a17e6
 
-UnknownScript_0x1a17e6: ; 0x1a17e6
+CooltrainerFScript_0x1a17e6: ; 0x1a17e6
 	jumptextfaceplayer UnknownText_0x1a1ac4
 ; 0x1a17e9
 
@@ -309,11 +309,11 @@ ItemFragment_0x1a17f5: ; 0x1a17f5
 	db ANTIDOTE, 1
 ; 0x1a17f7
 
-UnknownScript_0x1a17f7: ; 0x1a17f7
+FruitTreeScript_0x1a17f7: ; 0x1a17f7
 	fruittree $2
 ; 0x1a17f9
 
-UnknownScript_0x1a17f9: ; 0x1a17f9
+FruitTreeScript_0x1a17f9: ; 0x1a17f9
 	fruittree $5
 ; 0x1a17fb
 
@@ -489,16 +489,16 @@ Route30_MapEventHeader: ; 0x1a1c54
 
 	; people-events
 	db 11
-	person_event $27, 30, 9, $7, $0, 255, 255, $90, 0, UnknownScript_0x1a1673, $0714
-	person_event $27, 32, 6, $9, $0, 255, 255, $92, 3, TrainerYoungsterJoey1, $0715
-	person_event $27, 27, 9, $6, $0, 255, 255, $92, 1, TrainerYoungsterMikey, $ffff
-	person_event $25, 11, 5, $6, $0, 255, 255, $b2, 3, TrainerBug_catcherDon, $ffff
-	person_event $27, 34, 11, $5, $1, 255, 255, $80, 0, UnknownScript_0x1a17d2, $ffff
-	person_event $4c, 28, 9, $6, $0, 255, 255, $80, 0, ObjectEvent, $0714
-	person_event $4c, 29, 9, $7, $0, 255, 255, $90, 0, ObjectEvent, $0714
-	person_event $5d, 43, 9, $1, $0, 255, 255, $0, 0, UnknownScript_0x1a17f7, $ffff
-	person_event $5d, 9, 15, $1, $0, 255, 255, $0, 0, UnknownScript_0x1a17f9, $ffff
-	person_event $24, 17, 6, $6, $0, 255, 255, $0, 0, UnknownScript_0x1a17e6, $ffff
-	person_event $54, 39, 12, $1, $0, 255, 255, $1, 0, ItemFragment_0x1a17f5, $07b8
+	person_event SPRITE_YOUNGSTER, 30, 9, $7, $0, 255, 255, $90, 0, YoungsterScript_0x1a1673, $0714
+	person_event SPRITE_YOUNGSTER, 32, 6, $9, $0, 255, 255, $92, 3, TrainerYoungsterJoey1, $0715
+	person_event SPRITE_YOUNGSTER, 27, 9, $6, $0, 255, 255, $92, 1, TrainerYoungsterMikey, $ffff
+	person_event SPRITE_BUG_CATCHER, 11, 5, $6, $0, 255, 255, $b2, 3, TrainerBug_catcherDon, $ffff
+	person_event SPRITE_YOUNGSTER, 34, 11, $5, $1, 255, 255, $80, 0, YoungsterScript_0x1a17d2, $ffff
+	person_event SPRITE_MONSTER, 28, 9, $6, $0, 255, 255, $80, 0, ObjectEvent, $0714
+	person_event SPRITE_MONSTER, 29, 9, $7, $0, 255, 255, $90, 0, ObjectEvent, $0714
+	person_event SPRITE_FRUIT_TREE, 43, 9, $1, $0, 255, 255, $0, 0, FruitTreeScript_0x1a17f7, $ffff
+	person_event SPRITE_FRUIT_TREE, 9, 15, $1, $0, 255, 255, $0, 0, FruitTreeScript_0x1a17f9, $ffff
+	person_event SPRITE_COOLTRAINER_F, 17, 6, $6, $0, 255, 255, $0, 0, CooltrainerFScript_0x1a17e6, $ffff
+	person_event SPRITE_POKE_BALL, 39, 12, $1, $0, 255, 255, $1, 0, ItemFragment_0x1a17f5, $07b8
 ; 0x1a1d0c
 

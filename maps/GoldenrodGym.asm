@@ -18,7 +18,7 @@ UnknownScript_0x5400b: ; 0x5400b
 	end
 ; 0x5400c
 
-UnknownScript_0x5400c: ; 0x5400c
+WhitneyScript_0x5400c: ; 0x5400c
 	faceplayer
 	checkbit1 $04bf
 	iftrue UnknownScript_0x54037
@@ -457,11 +457,11 @@ GoldenrodGym_MapEventHeader: ; 0x546dd
 
 	; people-events
 	db 6
-	person_event $13, 7, 12, $6, $0, 255, 255, $80, 0, UnknownScript_0x5400c, $ffff
-	person_event $28, 17, 13, $9, $0, 255, 255, $92, 4, TrainerLassCarrie, $ffff
-	person_event $28, 10, 13, $8, $0, 255, 255, $92, 1, TrainerLassBridget, $ffff
-	person_event $2a, 6, 4, $6, $0, 255, 255, $92, 3, TrainerBeautyVictoria, $ffff
-	person_event $2a, 9, 23, $6, $0, 255, 255, $92, 3, TrainerBeautySamantha, $ffff
-	person_event $48, 19, 9, $6, $0, 255, 255, $80, 0, GoldenrodGymGuyScript, $ffff
+	person_event SPRITE_WHITNEY, 7, 12, $6, $0, 255, 255, $80, 0, WhitneyScript_0x5400c, $ffff
+	person_event SPRITE_LASS, 17, 13, $9, $0, 255, 255, $92, 4, TrainerLassCarrie, $ffff
+	person_event SPRITE_LASS, 10, 13, $8, $0, 255, 255, $92, 1, TrainerLassBridget, $ffff
+	person_event SPRITE_BUENA, 6, 4, $6, $0, 255, 255, $92, 3, TrainerBeautyVictoria, $ffff
+	person_event SPRITE_BUENA, 9, 23, $6, $0, 255, 255, $92, 3, TrainerBeautySamantha, $ffff
+	person_event SPRITE_GYM_GUY, 19, 9, $6, $0, 255, 255, $80, 0, GoldenrodGymGuyScript, $ffff
 ; 0x5474d
 

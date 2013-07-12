@@ -6,7 +6,7 @@ Route8SaffronGate_MapScriptHeader: ; 0x7f414
 	db 0
 ; 0x7f416
 
-UnknownScript_0x7f416: ; 0x7f416
+OfficerScript_0x7f416: ; 0x7f416
 	jumptextfaceplayer UnknownText_0x7f419
 ; 0x7f419
 
@@ -36,6 +36,6 @@ Route8SaffronGate_MapEventHeader: ; 0x7f45b
 
 	; people-events
 	db 1
-	person_event $43, 6, 9, $6, $0, 255, 255, $90, 0, UnknownScript_0x7f416, $ffff
+	person_event SPRITE_OFFICER, 6, 9, $6, $0, 255, 255, $90, 0, OfficerScript_0x7f416, $ffff
 ; 0x7f482
 

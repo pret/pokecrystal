@@ -22,11 +22,11 @@ UnknownScript_0x5e54a: ; 0x5e54a
 	return
 ; 0x5e553
 
-UnknownScript_0x5e553: ; 0x5e553
+SuperNerdScript_0x5e553: ; 0x5e553
 	jumptextfaceplayer UnknownText_0x5e621
 ; 0x5e556
 
-UnknownScript_0x5e556: ; 0x5e556
+GymGuyScript_0x5e556: ; 0x5e556
 	faceplayer
 	loadfont
 	checkbit1 $0021
@@ -44,7 +44,7 @@ UnknownScript_0x5e564: ; 0x5e564
 	end
 ; 0x5e56a
 
-UnknownScript_0x5e56a: ; 0x5e56a
+CooltrainerFScript_0x5e56a: ; 0x5e56a
 	faceplayer
 	loadfont
 	checkbit1 $0047
@@ -412,12 +412,12 @@ RadioTower3F_MapEventHeader: ; 0x5eb01
 
 	; people-events
 	db 7
-	person_event $2b, 8, 11, $7, $0, 255, 255, $90, 0, UnknownScript_0x5e553, $06d0
-	person_event $48, 8, 7, $a, $0, 255, 255, $80, 0, UnknownScript_0x5e556, $ffff
-	person_event $24, 7, 15, $2, $11, 255, 255, $a0, 0, UnknownScript_0x5e56a, $ffff
-	person_event $35, 5, 9, $9, $0, 255, 255, $2, 2, TrainerGruntM7, $06ce
-	person_event $35, 6, 10, $6, $0, 255, 255, $2, 3, TrainerGruntM8, $06ce
-	person_event $35, 10, 20, $7, $0, 255, 255, $2, 3, TrainerGruntM9, $06ce
-	person_event $3c, 10, 13, $7, $0, 255, 255, $92, 5, TrainerScientistMarc, $06ce
+	person_event SPRITE_SUPER_NERD, 8, 11, $7, $0, 255, 255, $90, 0, SuperNerdScript_0x5e553, $06d0
+	person_event SPRITE_GYM_GUY, 8, 7, $a, $0, 255, 255, $80, 0, GymGuyScript_0x5e556, $ffff
+	person_event SPRITE_COOLTRAINER_F, 7, 15, $2, $11, 255, 255, $a0, 0, CooltrainerFScript_0x5e56a, $ffff
+	person_event SPRITE_ROCKET, 5, 9, $9, $0, 255, 255, $2, 2, TrainerGruntM7, $06ce
+	person_event SPRITE_ROCKET, 6, 10, $6, $0, 255, 255, $2, 3, TrainerGruntM8, $06ce
+	person_event SPRITE_ROCKET, 10, 20, $7, $0, 255, 255, $2, 3, TrainerGruntM9, $06ce
+	person_event SPRITE_SCIENTIST, 10, 13, $7, $0, 255, 255, $92, 5, TrainerScientistMarc, $06ce
 ; 0x5eb80
 

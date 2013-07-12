@@ -6,7 +6,7 @@ CeladonMansionRoofHouse_MapScriptHeader: ; 0x71afb
 	db 0
 ; 0x71afd
 
-UnknownScript_0x71afd: ; 0x71afd
+PharmacistScript_0x71afd: ; 0x71afd
 	faceplayer
 	loadfont
 	checkbit1 $00da
@@ -112,6 +112,6 @@ CeladonMansionRoofHouse_MapEventHeader: ; 0x71e03
 
 	; people-events
 	db 1
-	person_event $4b, 6, 7, $6, $20, 255, 255, $a0, 0, UnknownScript_0x71afd, $ffff
+	person_event SPRITE_PHARMACIST, 6, 7, $6, $20, 255, 255, $a0, 0, PharmacistScript_0x71afd, $ffff
 ; 0x71e20
 

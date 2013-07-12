@@ -15,15 +15,15 @@ UnknownScript_0x194b1e: ; 0x194b1e
 	return
 ; 0x194b22
 
-UnknownScript_0x194b22: ; 0x194b22
+YoungsterScript_0x194b22: ; 0x194b22
 	jumptextfaceplayer UnknownText_0x194b45
 ; 0x194b25
 
-UnknownScript_0x194b25: ; 0x194b25
+PokefanMScript_0x194b25: ; 0x194b25
 	jumptextfaceplayer UnknownText_0x194b83
 ; 0x194b28
 
-UnknownScript_0x194b28: ; 0x194b28
+TeacherScript_0x194b28: ; 0x194b28
 	jumptextfaceplayer UnknownText_0x194bd3
 ; 0x194b2b
 
@@ -59,7 +59,7 @@ MapFuchsiaCitySignpost7Script: ; 0x194b40
 	jumpstd $0011
 ; 0x194b43
 
-UnknownScript_0x194b43: ; 0x194b43
+FruitTreeScript_0x194b43: ; 0x194b43
 	fruittree $1e
 ; 0x194b45
 
@@ -161,9 +161,9 @@ FuchsiaCity_MapEventHeader: ; 0x194d67
 
 	; people-events
 	db 4
-	person_event $27, 22, 27, $2, $11, 255, 255, $a0, 0, UnknownScript_0x194b22, $ffff
-	person_event $2d, 12, 17, $2, $11, 255, 255, $b0, 0, UnknownScript_0x194b25, $ffff
-	person_event $29, 18, 20, $2, $11, 255, 255, $80, 0, UnknownScript_0x194b28, $ffff
-	person_event $5d, 5, 12, $1, $0, 255, 255, $0, 0, UnknownScript_0x194b43, $ffff
+	person_event SPRITE_YOUNGSTER, 22, 27, $2, $11, 255, 255, $a0, 0, YoungsterScript_0x194b22, $ffff
+	person_event SPRITE_POKEFAN_M, 12, 17, $2, $11, 255, 255, $b0, 0, PokefanMScript_0x194b25, $ffff
+	person_event SPRITE_TEACHER, 18, 20, $2, $11, 255, 255, $80, 0, TeacherScript_0x194b28, $ffff
+	person_event SPRITE_FRUIT_TREE, 5, 12, $1, $0, 255, 255, $0, 0, FruitTreeScript_0x194b43, $ffff
 ; 0x194e00
 

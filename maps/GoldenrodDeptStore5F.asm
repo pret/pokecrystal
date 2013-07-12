@@ -22,7 +22,7 @@ UnknownScript_0x56099: ; 0x56099
 	return
 ; 0x5609c
 
-UnknownScript_0x5609c: ; 0x5609c
+ClerkScript_0x5609c: ; 0x5609c
 	faceplayer
 	loadfont
 	checkbit1 $005f
@@ -62,7 +62,7 @@ UnknownScript_0x560c8: ; 0x560c8
 	end
 ; 0x560ce
 
-UnknownScript_0x560ce: ; 0x560ce
+ReceptionistScript_0x560ce: ; 0x560ce
 	faceplayer
 	loadfont
 	checkcode $b
@@ -112,7 +112,7 @@ UnknownScript_0x56116: ; 0x56116
 	end
 ; 0x56118
 
-UnknownScript_0x56118: ; 0x56118
+TwinScript_0x56118: ; 0x56118
 	faceplayer
 	loadfont
 	special $0066
@@ -131,11 +131,11 @@ UnknownScript_0x5612a: ; 0x5612a
 	end
 ; 0x56130
 
-UnknownScript_0x56130: ; 0x56130
+LassScript_0x56130: ; 0x56130
 	jumptextfaceplayer UnknownText_0x562ad
 ; 0x56133
 
-UnknownScript_0x56133: ; 0x56133
+CooltrainerMScript_0x56133: ; 0x56133
 	faceplayer
 	loadfont
 	trade $0
@@ -144,7 +144,7 @@ UnknownScript_0x56133: ; 0x56133
 	end
 ; 0x5613a
 
-UnknownScript_0x5613a: ; 0x5613a
+PokefanMScript_0x5613a: ; 0x5613a
 	jumptextfaceplayer UnknownText_0x562f3
 ; 0x5613d
 
@@ -245,11 +245,11 @@ GoldenrodDeptStore5F_MapEventHeader: ; 0x56386
 
 	; people-events
 	db 6
-	person_event $39, 9, 12, $7, $0, 255, 255, $0, 0, UnknownScript_0x5609c, $ffff
-	person_event $28, 10, 7, $2, $11, 255, 255, $0, 0, UnknownScript_0x56130, $ffff
-	person_event $23, 7, 10, $3, $0, 255, 255, $0, 0, UnknownScript_0x56133, $ffff
-	person_event $2d, 9, 17, $2, $22, 255, 255, $0, 0, UnknownScript_0x5613a, $ffff
-	person_event $26, 5, 13, $6, $0, 255, 255, $a0, 0, UnknownScript_0x56118, $ffff
-	person_event $42, 9, 11, $7, $0, 255, 255, $80, 0, UnknownScript_0x560ce, $0763
+	person_event SPRITE_CLERK, 9, 12, $7, $0, 255, 255, $0, 0, ClerkScript_0x5609c, $ffff
+	person_event SPRITE_LASS, 10, 7, $2, $11, 255, 255, $0, 0, LassScript_0x56130, $ffff
+	person_event SPRITE_COOLTRAINER_M, 7, 10, $3, $0, 255, 255, $0, 0, CooltrainerMScript_0x56133, $ffff
+	person_event SPRITE_POKEFAN_M, 9, 17, $2, $22, 255, 255, $0, 0, PokefanMScript_0x5613a, $ffff
+	person_event SPRITE_TWIN, 5, 13, $6, $0, 255, 255, $a0, 0, TwinScript_0x56118, $ffff
+	person_event SPRITE_RECEPTIONIST, 9, 11, $7, $0, 255, 255, $80, 0, ReceptionistScript_0x560ce, $0763
 ; 0x563f3
 

@@ -76,7 +76,7 @@ UnknownScript_0x192895: ; 0x192895
 	end
 ; 0x19289d
 
-UnknownScript_0x19289d: ; 0x19289d
+LinkReceptionistScript_0x19289d: ; 0x19289d
 	checkbit1 $001f
 	iffalse UnknownScript_0x19288d
 	loadfont
@@ -189,7 +189,7 @@ UnknownScript_0x19294a: ; 0x19294a
 	end
 ; 0x192952
 
-UnknownScript_0x192952: ; 0x192952
+LinkReceptionistScript_0x192952: ; 0x192952
 	checkbit1 $001f
 	iffalse UnknownScript_0x192895
 	loadfont
@@ -330,7 +330,7 @@ UnknownScript_0x192a25: ; 0x192a25
 	end
 ; 0x192a2d
 
-UnknownScript_0x192a2d: ; 0x192a2d
+LinkReceptionistScript_0x192a2d: ; 0x192a2d
 	checkbit1 $0712
 	iftrue UnknownScript_0x192a25
 	checkbit2 $0053
@@ -650,7 +650,7 @@ MapPokeCenter2FSignpost0Script: ; 0x192c93
 	end
 ; 0x192c9a
 
-UnknownScript_0x192c9a: ; 0x192c9a
+OfficerScript_0x192c9a: ; 0x192c9a
 	faceplayer
 	loadfont
 	checkbit1 $0711
@@ -1124,9 +1124,9 @@ PokeCenter2F_MapEventHeader: ; 0x19337f
 
 	; people-events
 	db 4
-	person_event $38, 6, 9, $6, $0, 255, 255, $a0, 0, UnknownScript_0x19289d, $ffff
-	person_event $38, 6, 13, $6, $0, 255, 255, $a0, 0, UnknownScript_0x192952, $ffff
-	person_event $38, 7, 17, $6, $0, 255, 255, $a0, 0, UnknownScript_0x192a2d, $ffff
-	person_event $43, 5, 5, $6, $0, 255, 255, $0, 0, UnknownScript_0x192c9a, $0711
+	person_event SPRITE_LINK_RECEPTIONIST, 6, 9, $6, $0, 255, 255, $a0, 0, LinkReceptionistScript_0x19289d, $ffff
+	person_event SPRITE_LINK_RECEPTIONIST, 6, 13, $6, $0, 255, 255, $a0, 0, LinkReceptionistScript_0x192952, $ffff
+	person_event SPRITE_LINK_RECEPTIONIST, 7, 17, $6, $0, 255, 255, $a0, 0, LinkReceptionistScript_0x192a2d, $ffff
+	person_event SPRITE_OFFICER, 5, 5, $6, $0, 255, 255, $0, 0, OfficerScript_0x192c9a, $0711
 ; 0x1933dc
 

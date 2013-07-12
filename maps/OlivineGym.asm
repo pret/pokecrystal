@@ -6,7 +6,7 @@ OlivineGym_MapScriptHeader: ; 0x9c12d
 	db 0
 ; 0x9c12f
 
-UnknownScript_0x9c12f: ; 0x9c12f
+JasmineScript_0x9c12f: ; 0x9c12f
 	faceplayer
 	loadfont
 	checkbit1 $04c1
@@ -209,7 +209,7 @@ OlivineGym_MapEventHeader: ; 0x9c526
 
 	; people-events
 	db 2
-	person_event $17, 7, 9, $6, $0, 255, 255, $80, 0, UnknownScript_0x9c12f, $06d3
-	person_event $48, 17, 11, $6, $0, 255, 255, $80, 0, OlivineGymGuyScript, $ffff
+	person_event SPRITE_JASMINE, 7, 9, $6, $0, 255, 255, $80, 0, JasmineScript_0x9c12f, $06d3
+	person_event SPRITE_GYM_GUY, 17, 11, $6, $0, 255, 255, $80, 0, OlivineGymGuyScript, $ffff
 ; 0x9c55a
 

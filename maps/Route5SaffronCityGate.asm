@@ -6,7 +6,7 @@ Route5SaffronCityGate_MapScriptHeader: ; 0x18b5b7
 	db 0
 ; 0x18b5b9
 
-UnknownScript_0x18b5b9: ; 0x18b5b9
+OfficerScript_0x18b5b9: ; 0x18b5b9
 	jumptextfaceplayer UnknownText_0x18b5bc
 ; 0x18b5bc
 
@@ -37,6 +37,6 @@ Route5SaffronCityGate_MapEventHeader: ; 0x18b60b
 
 	; people-events
 	db 1
-	person_event $43, 8, 4, $9, $0, 255, 255, $90, 0, UnknownScript_0x18b5b9, $ffff
+	person_event SPRITE_OFFICER, 8, 4, $9, $0, 255, 255, $90, 0, OfficerScript_0x18b5b9, $ffff
 ; 0x18b632
 

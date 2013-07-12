@@ -6,7 +6,7 @@ Route39Farmhouse_MapScriptHeader: ; 0x9ceb2
 	db 0
 ; 0x9ceb4
 
-UnknownScript_0x9ceb4: ; 0x9ceb4
+PokefanMScript_0x9ceb4: ; 0x9ceb4
 	faceplayer
 	loadfont
 	checkbit1 $003d
@@ -68,7 +68,7 @@ UnknownScript_0x9cf08: ; 0x9cf08
 	end
 ; 0x9cf0e
 
-UnknownScript_0x9cf0e: ; 0x9cf0e
+PokefanFScript_0x9cf0e: ; 0x9cf0e
 	faceplayer
 	loadfont
 	checkbit1 $003e
@@ -203,7 +203,7 @@ Route39Farmhouse_MapEventHeader: ; 0x9d242
 
 	; people-events
 	db 2
-	person_event $2d, 6, 7, $6, $0, 255, 255, $90, 0, UnknownScript_0x9ceb4, $ffff
-	person_event $2e, 8, 9, $8, $0, 255, 255, $b0, 0, UnknownScript_0x9cf0e, $ffff
+	person_event SPRITE_POKEFAN_M, 6, 7, $6, $0, 255, 255, $90, 0, PokefanMScript_0x9ceb4, $ffff
+	person_event SPRITE_POKEFAN_F, 8, 9, $8, $0, 255, 255, $b0, 0, PokefanFScript_0x9cf0e, $ffff
 ; 0x9d276
 

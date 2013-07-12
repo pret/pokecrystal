@@ -6,7 +6,7 @@ GoldenrodBillsHouse_MapScriptHeader: ; 0x54be2
 	db 0
 ; 0x54be4
 
-UnknownScript_0x54be4: ; 0x54be4
+BillScript_0x54be4: ; 0x54be4
 	faceplayer
 	loadfont
 	checkbit1 $004f
@@ -51,7 +51,7 @@ UnknownScript_0x54c1f: ; 0x54c1f
 	end
 ; 0x54c25
 
-UnknownScript_0x54c25: ; 0x54c25
+PokefanFScript_0x54c25: ; 0x54c25
 	faceplayer
 	loadfont
 	checkbit1 $0712
@@ -69,7 +69,7 @@ UnknownScript_0x54c33: ; 0x54c33
 	end
 ; 0x54c39
 
-UnknownScript_0x54c39: ; 0x54c39
+TwinScript_0x54c39: ; 0x54c39
 	faceplayer
 	loadfont
 	checkcellnum $3
@@ -251,8 +251,8 @@ GoldenrodBillsHouse_MapEventHeader: ; 0x5509f
 
 	; people-events
 	db 3
-	person_event $8, 7, 6, $9, $0, 255, 255, $0, 0, UnknownScript_0x54be4, $0712
-	person_event $2e, 7, 9, $6, $0, 255, 255, $0, 0, UnknownScript_0x54c25, $ffff
-	person_event $26, 8, 9, $2, $11, 255, 255, $a0, 0, UnknownScript_0x54c39, $ffff
+	person_event SPRITE_BILL, 7, 6, $9, $0, 255, 255, $0, 0, BillScript_0x54be4, $0712
+	person_event SPRITE_POKEFAN_F, 7, 9, $6, $0, 255, 255, $0, 0, PokefanFScript_0x54c25, $ffff
+	person_event SPRITE_TWIN, 8, 9, $2, $11, 255, 255, $a0, 0, TwinScript_0x54c39, $ffff
 ; 0x550e5
 

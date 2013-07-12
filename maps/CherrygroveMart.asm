@@ -6,7 +6,7 @@ CherrygroveMart_MapScriptHeader: ; 0x196808
 	db 0
 ; 0x19680a
 
-UnknownScript_0x19680a: ; 0x19680a
+ClerkScript_0x19680a: ; 0x19680a
 	loadfont
 	checkbit1 $001f
 	iftrue UnknownScript_0x196817
@@ -21,7 +21,7 @@ UnknownScript_0x196817: ; 0x196817
 	end
 ; 0x19681d
 
-UnknownScript_0x19681d: ; 0x19681d
+CooltrainerMScript_0x19681d: ; 0x19681d
 	faceplayer
 	loadfont
 	checkbit1 $001f
@@ -39,7 +39,7 @@ UnknownScript_0x19682b: ; 0x19682b
 	end
 ; 0x196831
 
-UnknownScript_0x196831: ; 0x196831
+YoungsterScript_0x196831: ; 0x196831
 	jumptextfaceplayer UnknownText_0x1968a0
 ; 0x196834
 
@@ -85,8 +85,8 @@ CherrygroveMart_MapEventHeader: ; 0x196934
 
 	; people-events
 	db 3
-	person_event $39, 7, 5, $9, $0, 255, 255, $0, 0, UnknownScript_0x19680a, $ffff
-	person_event $23, 10, 11, $5, $2, 255, 255, $0, 0, UnknownScript_0x19681d, $ffff
-	person_event $27, 9, 6, $6, $0, 255, 255, $80, 0, UnknownScript_0x196831, $ffff
+	person_event SPRITE_CLERK, 7, 5, $9, $0, 255, 255, $0, 0, ClerkScript_0x19680a, $ffff
+	person_event SPRITE_COOLTRAINER_M, 10, 11, $5, $2, 255, 255, $0, 0, CooltrainerMScript_0x19681d, $ffff
+	person_event SPRITE_YOUNGSTER, 9, 6, $6, $0, 255, 255, $80, 0, YoungsterScript_0x196831, $ffff
 ; 0x19696b
 

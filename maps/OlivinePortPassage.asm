@@ -6,7 +6,7 @@ OlivinePortPassage_MapScriptHeader: ; 0x76faa
 	db 0
 ; 0x76fac
 
-UnknownScript_0x76fac: ; 0x76fac
+PokefanMScript_0x76fac: ; 0x76fac
 	jumptextfaceplayer UnknownText_0x76faf
 ; 0x76faf
 
@@ -37,6 +37,6 @@ OlivinePortPassage_MapEventHeader: ; 0x76fec
 
 	; people-events
 	db 1
-	person_event $2d, 5, 21, $8, $0, 255, 255, $0, 0, UnknownScript_0x76fac, $0733
+	person_event SPRITE_POKEFAN_M, 5, 21, $8, $0, 255, 255, $0, 0, PokefanMScript_0x76fac, $0733
 ; 0x77018
 

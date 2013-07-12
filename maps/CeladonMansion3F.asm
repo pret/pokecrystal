@@ -6,7 +6,7 @@ CeladonMansion3F_MapScriptHeader: ; 0x7166e
 	db 0
 ; 0x71670
 
-UnknownScript_0x71670: ; 0x71670
+CooltrainerMScript_0x71670: ; 0x71670
 	faceplayer
 	loadfont
 	2writetext UnknownText_0x716ce
@@ -32,7 +32,7 @@ UnknownScript_0x7167e: ; 0x7167e
 	end
 ; 0x71696
 
-UnknownScript_0x71696: ; 0x71696
+GymGuyScript_0x71696: ; 0x71696
 	faceplayer
 	loadfont
 	checkbit1 $00d6
@@ -66,11 +66,11 @@ UnknownScript_0x716b6: ; 0x716b6
 	end
 ; 0x716bc
 
-UnknownScript_0x716bc: ; 0x716bc
+SuperNerdScript_0x716bc: ; 0x716bc
 	jumptextfaceplayer UnknownText_0x71895
 ; 0x716bf
 
-UnknownScript_0x716bf: ; 0x716bf
+FisherScript_0x716bf: ; 0x716bf
 	jumptextfaceplayer UnknownText_0x718ca
 ; 0x716c2
 
@@ -208,9 +208,9 @@ CeladonMansion3F_MapEventHeader: ; 0x719d5
 
 	; people-events
 	db 4
-	person_event $23, 10, 7, $3, $0, 255, 255, $80, 0, UnknownScript_0x71670, $ffff
-	person_event $48, 8, 7, $7, $0, 255, 255, $90, 0, UnknownScript_0x71696, $ffff
-	person_event $2b, 11, 4, $7, $0, 255, 255, $90, 0, UnknownScript_0x716bc, $ffff
-	person_event $3a, 8, 4, $7, $2, 255, 255, $80, 0, UnknownScript_0x716bf, $ffff
+	person_event SPRITE_COOLTRAINER_M, 10, 7, $3, $0, 255, 255, $80, 0, CooltrainerMScript_0x71670, $ffff
+	person_event SPRITE_GYM_GUY, 8, 7, $7, $0, 255, 255, $90, 0, GymGuyScript_0x71696, $ffff
+	person_event SPRITE_SUPER_NERD, 11, 4, $7, $0, 255, 255, $90, 0, SuperNerdScript_0x716bc, $ffff
+	person_event SPRITE_FISHER, 8, 4, $7, $2, 255, 255, $80, 0, FisherScript_0x716bf, $ffff
 ; 0x71a37
 

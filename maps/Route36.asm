@@ -49,7 +49,7 @@ UnknownScript_0x19401b: ; 0x19401b
 	end
 ; 0x19403c
 
-UnknownScript_0x19403c: ; 0x19403c
+WeirdTreeScript_0x19403c: ; 0x19403c
 	checkitem SQUIRTBOTTLE
 	iftrue UnknownScript_0x19404a
 	waitbutton
@@ -100,7 +100,7 @@ UnknownScript_0x19407b: ; 0x19407b
 	end
 ; 0x19408c
 
-UnknownScript_0x19408c: ; 0x19408c
+LassScript_0x19408c: ; 0x19408c
 	faceplayer
 	loadfont
 	checkbit1 $00ba
@@ -130,7 +130,7 @@ UnknownScript_0x1940b3: ; 0x1940b3
 	end
 ; 0x1940b9
 
-UnknownScript_0x1940b9: ; 0x1940b9
+FisherScript_0x1940b9: ; 0x1940b9
 	faceplayer
 	loadfont
 	checkbit1 $004b
@@ -157,7 +157,7 @@ UnknownScript_0x1940de: ; 0x1940de
 	end
 ; 0x1940e0
 
-UnknownScript_0x1940e0: ; 0x1940e0
+LassScript_0x1940e0: ; 0x1940e0
 	faceplayer
 	loadfont
 	checkbit1 $002a
@@ -377,7 +377,7 @@ PsychicMarkScript: ; 0x1941f9
 	end
 ; 0x194201
 
-UnknownScript_0x194201: ; 0x194201
+YoungsterScript_0x194201: ; 0x194201
 	faceplayer
 	loadfont
 	checkbit1 $0067
@@ -432,7 +432,7 @@ MapRoute36Signpost0Script: ; 0x194244
 	jumptext UnknownText_0x1949ee
 ; 0x194247
 
-UnknownScript_0x194247: ; 0x194247
+FruitTreeScript_0x194247: ; 0x194247
 	fruittree $d
 ; 0x194249
 
@@ -723,14 +723,14 @@ Route36_MapEventHeader: ; 0x194a66
 
 	; people-events
 	db 9
-	person_event $27, 17, 24, $9, $0, 255, 255, $92, 3, TrainerPsychicMark, $ffff
-	person_event $27, 18, 35, $8, $0, 255, 255, $92, 5, TrainerSchoolboyAlan1, $ffff
-	person_event $f4, 13, 39, $17, $0, 255, 255, $0, 0, UnknownScript_0x19403c, $06f8
-	person_event $28, 12, 55, $5, $2, 255, 255, $0, 0, UnknownScript_0x1940e0, $ffff
-	person_event $3a, 13, 48, $8, $0, 255, 255, $0, 0, UnknownScript_0x1940b9, $ffff
-	person_event $5d, 8, 25, $1, $0, 255, 255, $0, 0, UnknownScript_0x194247, $ffff
-	person_event $27, 10, 50, $2, $11, 255, 255, $0, 0, UnknownScript_0x194201, $075a
-	person_event $28, 16, 37, $6, $0, 255, 255, $90, 0, UnknownScript_0x19408c, $0769
-	person_event $63, 10, 25, $1, $0, 255, 255, $90, 0, ObjectEvent, $07b0
+	person_event SPRITE_YOUNGSTER, 17, 24, $9, $0, 255, 255, $92, 3, TrainerPsychicMark, $ffff
+	person_event SPRITE_YOUNGSTER, 18, 35, $8, $0, 255, 255, $92, 5, TrainerSchoolboyAlan1, $ffff
+	person_event SPRITE_WEIRD_TREE, 13, 39, $17, $0, 255, 255, $0, 0, WeirdTreeScript_0x19403c, $06f8
+	person_event SPRITE_LASS, 12, 55, $5, $2, 255, 255, $0, 0, LassScript_0x1940e0, $ffff
+	person_event SPRITE_FISHER, 13, 48, $8, $0, 255, 255, $0, 0, FisherScript_0x1940b9, $ffff
+	person_event SPRITE_FRUIT_TREE, 8, 25, $1, $0, 255, 255, $0, 0, FruitTreeScript_0x194247, $ffff
+	person_event SPRITE_YOUNGSTER, 10, 50, $2, $11, 255, 255, $0, 0, YoungsterScript_0x194201, $075a
+	person_event SPRITE_LASS, 16, 37, $6, $0, 255, 255, $90, 0, LassScript_0x19408c, $0769
+	person_event SPRITE_SUICUNE, 10, 25, $1, $0, 255, 255, $90, 0, ObjectEvent, $07b0
 ; 0x194b19
 

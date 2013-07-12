@@ -38,18 +38,18 @@ UnknownScript_0x56738: ; 0x56738
 	return
 ; 0x5673f
 
-UnknownScript_0x5673f: ; 0x5673f
+ClerkScript_0x5673f: ; 0x5673f
 	loadfont
 	pokemart $4, $0000
 	loadmovesprites
 	end
 ; 0x56746
 
-UnknownScript_0x56746: ; 0x56746
+PokefanFScript_0x56746: ; 0x56746
 	jumptextfaceplayer UnknownText_0x5677f
 ; 0x56749
 
-UnknownScript_0x56749: ; 0x56749
+FisherScript_0x56749: ; 0x56749
 	faceplayer
 	loadfont
 	2writetext UnknownText_0x567d2
@@ -59,11 +59,11 @@ UnknownScript_0x56749: ; 0x56749
 	end
 ; 0x56754
 
-UnknownScript_0x56754: ; 0x56754
+TwinScript_0x56754: ; 0x56754
 	jumptextfaceplayer UnknownText_0x56839
 ; 0x56757
 
-UnknownScript_0x56757: ; 0x56757
+SuperNerdScript_0x56757: ; 0x56757
 	loadfont
 	2writetext UnknownText_0x56867
 	closetext
@@ -77,15 +77,15 @@ UnknownScript_0x56757: ; 0x56757
 	end
 ; 0x5676a
 
-UnknownScript_0x5676a: ; 0x5676a
+PokefanMScript_0x5676a: ; 0x5676a
 	jumptextfaceplayer UnknownText_0x5688e
 ; 0x5676d
 
-UnknownScript_0x5676d: ; 0x5676d
+TeacherScript_0x5676d: ; 0x5676d
 	jumptextfaceplayer UnknownText_0x56901
 ; 0x56770
 
-UnknownScript_0x56770: ; 0x56770
+BugCatcherScript_0x56770: ; 0x56770
 	jumptextfaceplayer UnknownText_0x56942
 ; 0x56773
 
@@ -224,13 +224,13 @@ GoldenrodDeptStoreRoof_MapEventHeader: ; 0x56b6d
 
 	; people-events
 	db 8
-	person_event $39, 8, 5, $9, $0, 255, 255, $0, 0, UnknownScript_0x5673f, $06f0
-	person_event $2e, 7, 14, $5, $1, 255, 255, $80, 0, UnknownScript_0x56746, $ffff
-	person_event $3a, 5, 6, $7, $0, 255, 255, $90, 0, UnknownScript_0x56749, $ffff
-	person_event $26, 8, 7, $2, $11, 255, 255, $a0, 0, UnknownScript_0x56754, $06f1
-	person_event $2b, 10, 18, $9, $0, 255, 255, $a0, 0, UnknownScript_0x56757, $06f1
-	person_event $2d, 4, 11, $5, $1, 255, 255, $0, 0, UnknownScript_0x5676a, $06f0
-	person_event $29, 7, 9, $2, $11, 255, 255, $a0, 0, UnknownScript_0x5676d, $06f0
-	person_event $25, 10, 5, $7, $0, 255, 255, $80, 0, UnknownScript_0x56770, $06f0
+	person_event SPRITE_CLERK, 8, 5, $9, $0, 255, 255, $0, 0, ClerkScript_0x5673f, $06f0
+	person_event SPRITE_POKEFAN_F, 7, 14, $5, $1, 255, 255, $80, 0, PokefanFScript_0x56746, $ffff
+	person_event SPRITE_FISHER, 5, 6, $7, $0, 255, 255, $90, 0, FisherScript_0x56749, $ffff
+	person_event SPRITE_TWIN, 8, 7, $2, $11, 255, 255, $a0, 0, TwinScript_0x56754, $06f1
+	person_event SPRITE_SUPER_NERD, 10, 18, $9, $0, 255, 255, $a0, 0, SuperNerdScript_0x56757, $06f1
+	person_event SPRITE_POKEFAN_M, 4, 11, $5, $1, 255, 255, $0, 0, PokefanMScript_0x5676a, $06f0
+	person_event SPRITE_TEACHER, 7, 9, $2, $11, 255, 255, $a0, 0, TeacherScript_0x5676d, $06f0
+	person_event SPRITE_BUG_CATCHER, 10, 5, $7, $0, 255, 255, $80, 0, BugCatcherScript_0x56770, $06f0
 ; 0x56bf4
 

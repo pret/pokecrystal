@@ -6,7 +6,7 @@ Route26DayofWeekSiblingsHouse_MapScriptHeader: ; 0x7b1e2
 	db 0
 ; 0x7b1e4
 
-UnknownScript_0x7b1e4: ; 0x7b1e4
+PokedexScript_0x7b1e4: ; 0x7b1e4
 	loadfont
 	2writetext UnknownText_0x7b1f9
 	yesorno
@@ -75,6 +75,6 @@ Route26DayofWeekSiblingsHouse_MapEventHeader: ; 0x7b375
 
 	; people-events
 	db 1
-	person_event $55, 7, 7, $1, $0, 255, 255, $0, 0, UnknownScript_0x7b1e4, $ffff
+	person_event SPRITE_POKEDEX, 7, 7, $1, $0, 255, 255, $0, 0, PokedexScript_0x7b1e4, $ffff
 ; 0x7b392
 

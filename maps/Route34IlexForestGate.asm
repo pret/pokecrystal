@@ -43,7 +43,7 @@ UnknownScript_0x62d62: ; 0x62d62
 	end
 ; 0x62d63
 
-UnknownScript_0x62d63: ; 0x62d63
+TeacherScript_0x62d63: ; 0x62d63
 	faceplayer
 	loadfont
 	checkbit1 $00c0
@@ -70,7 +70,7 @@ UnknownScript_0x62d84: ; 0x62d84
 	end
 ; 0x62d8a
 
-UnknownScript_0x62d8a: ; 0x62d8a
+ButterfreeScript_0x62d8a: ; 0x62d8a
 	loadfont
 	2writetext UnknownText_0x62e83
 	cry BUTTERFREE
@@ -79,7 +79,7 @@ UnknownScript_0x62d8a: ; 0x62d8a
 	end
 ; 0x62d94
 
-UnknownScript_0x62d94: ; 0x62d94
+LassScript_0x62d94: ; 0x62d94
 	jumptextfaceplayer UnknownText_0x62e97
 ; 0x62d97
 
@@ -155,9 +155,9 @@ Route34IlexForestGate_MapEventHeader: ; 0x62f20
 
 	; people-events
 	db 4
-	person_event $29, 7, 13, $8, $0, 255, 255, $90, 0, UnknownScript_0x62d63, $06ea
-	person_event $8b, 8, 13, $16, $0, 255, 255, $80, 0, UnknownScript_0x62d8a, $ffff
-	person_event $28, 8, 7, $4, $10, 255, 255, $a0, 0, UnknownScript_0x62d94, $06eb
-	person_event $29, 11, 9, $7, $0, 255, 255, $90, 0, UnknownScript_0x62d63, $06ec
+	person_event SPRITE_TEACHER, 7, 13, $8, $0, 255, 255, $90, 0, TeacherScript_0x62d63, $06ea
+	person_event SPRITE_BUTTERFREE, 8, 13, $16, $0, 255, 255, $80, 0, ButterfreeScript_0x62d8a, $ffff
+	person_event SPRITE_LASS, 8, 7, $4, $10, 255, 255, $a0, 0, LassScript_0x62d94, $06eb
+	person_event SPRITE_TEACHER, 11, 9, $7, $0, 255, 255, $90, 0, TeacherScript_0x62d63, $06ec
 ; 0x62f76
 

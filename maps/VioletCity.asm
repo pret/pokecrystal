@@ -15,7 +15,7 @@ UnknownScript_0x1a83b7: ; 0x1a83b7
 	return
 ; 0x1a83bb
 
-UnknownScript_0x1a83bb: ; 0x1a83bb
+FisherScript_0x1a83bb: ; 0x1a83bb
 	applymovement $2, MovementData_0x1a8465
 	faceplayer
 	loadfont
@@ -56,19 +56,19 @@ UnknownScript_0x1a83d1: ; 0x1a83d1
 	end
 ; 0x1a8403
 
-UnknownScript_0x1a8403: ; 0x1a8403
+LassScript_0x1a8403: ; 0x1a8403
 	jumptextfaceplayer UnknownText_0x1a8529
 ; 0x1a8406
 
-UnknownScript_0x1a8406: ; 0x1a8406
+SuperNerdScript_0x1a8406: ; 0x1a8406
 	jumptextfaceplayer UnknownText_0x1a8593
 ; 0x1a8409
 
-UnknownScript_0x1a8409: ; 0x1a8409
+GrampsScript_0x1a8409: ; 0x1a8409
 	jumptextfaceplayer UnknownText_0x1a85ef
 ; 0x1a840c
 
-UnknownScript_0x1a840c: ; 0x1a840c
+YoungsterScript_0x1a840c: ; 0x1a840c
 	jumptextfaceplayer UnknownText_0x1a8665
 ; 0x1a840f
 
@@ -104,7 +104,7 @@ ItemFragment_0x1a8423: ; 0x1a8423
 	db RARE_CANDY, 1
 ; 0x1a8425
 
-UnknownScript_0x1a8425: ; 0x1a8425
+FruitTreeScript_0x1a8425: ; 0x1a8425
 	fruittree $9
 ; 0x1a8427
 
@@ -314,13 +314,13 @@ VioletCity_MapEventHeader: ; 0x1a8762
 
 	; people-events
 	db 8
-	person_event $3a, 20, 17, $3, $0, 255, 255, $a0, 0, UnknownScript_0x1a83bb, $06ca
-	person_event $28, 32, 32, $2, $22, 255, 255, $a0, 0, UnknownScript_0x1a8403, $ffff
-	person_event $2b, 18, 28, $2, $21, 255, 255, $80, 0, UnknownScript_0x1a8406, $ffff
-	person_event $2f, 24, 21, $5, $1, 255, 255, $0, 0, UnknownScript_0x1a8409, $ffff
-	person_event $27, 22, 9, $3, $0, 255, 255, $a0, 0, UnknownScript_0x1a840c, $ffff
-	person_event $5d, 33, 18, $1, $0, 255, 255, $0, 0, UnknownScript_0x1a8425, $ffff
-	person_event $54, 5, 8, $1, $0, 255, 255, $1, 0, ItemFragment_0x1a8421, $0643
-	person_event $54, 9, 39, $1, $0, 255, 255, $1, 0, ItemFragment_0x1a8423, $0644
+	person_event SPRITE_FISHER, 20, 17, $3, $0, 255, 255, $a0, 0, FisherScript_0x1a83bb, $06ca
+	person_event SPRITE_LASS, 32, 32, $2, $22, 255, 255, $a0, 0, LassScript_0x1a8403, $ffff
+	person_event SPRITE_SUPER_NERD, 18, 28, $2, $21, 255, 255, $80, 0, SuperNerdScript_0x1a8406, $ffff
+	person_event SPRITE_GRAMPS, 24, 21, $5, $1, 255, 255, $0, 0, GrampsScript_0x1a8409, $ffff
+	person_event SPRITE_YOUNGSTER, 22, 9, $3, $0, 255, 255, $a0, 0, YoungsterScript_0x1a840c, $ffff
+	person_event SPRITE_FRUIT_TREE, 33, 18, $1, $0, 255, 255, $0, 0, FruitTreeScript_0x1a8425, $ffff
+	person_event SPRITE_POKE_BALL, 5, 8, $1, $0, 255, 255, $1, 0, ItemFragment_0x1a8421, $0643
+	person_event SPRITE_POKE_BALL, 9, 39, $1, $0, 255, 255, $1, 0, ItemFragment_0x1a8423, $0644
 ; 0x1a8820
 

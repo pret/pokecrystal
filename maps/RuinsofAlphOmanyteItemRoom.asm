@@ -53,9 +53,9 @@ RuinsofAlphOmanyteItemRoom_MapEventHeader: ; 0x59a5c
 
 	; people-events
 	db 4
-	person_event $54, 10, 6, $1, $0, 255, 255, $1, 0, ItemFragment_0x59a2c, $079c
-	person_event $54, 10, 9, $1, $0, 255, 255, $1, 0, ItemFragment_0x59a2e, $079d
-	person_event $54, 8, 6, $1, $0, 255, 255, $1, 0, ItemFragment_0x59a30, $079e
-	person_event $54, 8, 9, $1, $0, 255, 255, $1, 0, ItemFragment_0x59a32, $079f
+	person_event SPRITE_POKE_BALL, 10, 6, $1, $0, 255, 255, $1, 0, ItemFragment_0x59a2c, $079c
+	person_event SPRITE_POKE_BALL, 10, 9, $1, $0, 255, 255, $1, 0, ItemFragment_0x59a2e, $079d
+	person_event SPRITE_POKE_BALL, 8, 6, $1, $0, 255, 255, $1, 0, ItemFragment_0x59a30, $079e
+	person_event SPRITE_POKE_BALL, 8, 9, $1, $0, 255, 255, $1, 0, ItemFragment_0x59a32, $079f
 ; 0x59ab4
 

@@ -24,7 +24,7 @@ UnknownScript_0x62f88: ; 0x62f88
 	return
 ; 0x62f8f
 
-UnknownScript_0x62f8f: ; 0x62f8f
+GrampsScript_0x62f8f: ; 0x62f8f
 	faceplayer
 	loadfont
 	checkbit1 $033e
@@ -61,7 +61,7 @@ UnknownScript_0x62fbd: ; 0x62fbd
 	end
 ; 0x62fc3
 
-UnknownScript_0x62fc3: ; 0x62fc3
+GrannyScript_0x62fc3: ; 0x62fc3
 	faceplayer
 	loadfont
 	checkbit2 $0005
@@ -169,8 +169,8 @@ DayCare_MapEventHeader: ; 0x63250
 
 	; people-events
 	db 2
-	person_event $2f, 7, 6, $9, $0, 255, 255, $0, 0, UnknownScript_0x62f8f, $06e5
-	person_event $30, 7, 9, $8, $0, 255, 255, $80, 0, UnknownScript_0x62fc3, $ffff
+	person_event SPRITE_GRAMPS, 7, 6, $9, $0, 255, 255, $0, 0, GrampsScript_0x62f8f, $06e5
+	person_event SPRITE_GRANNY, 7, 9, $8, $0, 255, 255, $80, 0, GrannyScript_0x62fc3, $ffff
 ; 0x6328e
 
 

@@ -6,18 +6,18 @@ VioletMart_MapScriptHeader: ; 0x68293
 	db 0
 ; 0x68295
 
-UnknownScript_0x68295: ; 0x68295
+ClerkScript_0x68295: ; 0x68295
 	loadfont
 	pokemart $0, $0002
 	loadmovesprites
 	end
 ; 0x6829c
 
-UnknownScript_0x6829c: ; 0x6829c
+GrannyScript_0x6829c: ; 0x6829c
 	jumptextfaceplayer UnknownText_0x682a2
 ; 0x6829f
 
-UnknownScript_0x6829f: ; 0x6829f
+CooltrainerMScript_0x6829f: ; 0x6829f
 	jumptextfaceplayer UnknownText_0x68323
 ; 0x682a2
 
@@ -60,8 +60,8 @@ VioletMart_MapEventHeader: ; 0x68389
 
 	; people-events
 	db 3
-	person_event $39, 7, 5, $9, $0, 255, 255, $0, 0, UnknownScript_0x68295, $ffff
-	person_event $30, 10, 11, $5, $1, 255, 255, $0, 0, UnknownScript_0x6829c, $ffff
-	person_event $23, 6, 9, $3, $0, 255, 255, $80, 0, UnknownScript_0x6829f, $ffff
+	person_event SPRITE_CLERK, 7, 5, $9, $0, 255, 255, $0, 0, ClerkScript_0x68295, $ffff
+	person_event SPRITE_GRANNY, 10, 11, $5, $1, 255, 255, $0, 0, GrannyScript_0x6829c, $ffff
+	person_event SPRITE_COOLTRAINER_M, 6, 9, $3, $0, 255, 255, $80, 0, CooltrainerMScript_0x6829f, $ffff
 ; 0x683c0
 

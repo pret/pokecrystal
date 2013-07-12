@@ -6,7 +6,7 @@ OlivineGoodRodHouse_MapScriptHeader: ; 0x9c719
 	db 0
 ; 0x9c71b
 
-UnknownScript_0x9c71b: ; 0x9c71b
+FishingGuruScript_0x9c71b: ; 0x9c71b
 	faceplayer
 	loadfont
 	checkbit1 $0018
@@ -96,6 +96,6 @@ OlivineGoodRodHouse_MapEventHeader: ; 0x9c8a2
 
 	; people-events
 	db 1
-	person_event $3b, 7, 6, $6, $0, 255, 255, $a0, 0, UnknownScript_0x9c71b, $ffff
+	person_event SPRITE_FISHING_GURU, 7, 6, $6, $0, 255, 255, $a0, 0, FishingGuruScript_0x9c71b, $ffff
 ; 0x9c8bf
 

@@ -173,19 +173,19 @@ UnknownScript_0x1850d7: ; 0x1850d7
 	end
 ; 0x185173
 
-UnknownScript_0x185173: ; 0x185173
+SageScript_0x185173: ; 0x185173
 	jumptextfaceplayer UnknownText_0x185386
 ; 0x185176
 
-UnknownScript_0x185176: ; 0x185176
+SageScript_0x185176: ; 0x185176
 	jumptextfaceplayer UnknownText_0x185433
 ; 0x185179
 
-UnknownScript_0x185179: ; 0x185179
+SageScript_0x185179: ; 0x185179
 	jumptextfaceplayer UnknownText_0x185544
 ; 0x18517c
 
-UnknownScript_0x18517c: ; 0x18517c
+SageScript_0x18517c: ; 0x18517c
 	checkbit1 $0317
 	iftrue UnknownScript_0x185185
 	jumptextfaceplayer UnknownText_0x1855ee
@@ -195,7 +195,7 @@ UnknownScript_0x185185: ; 0x185185
 	jumptextfaceplayer UnknownText_0x185765
 ; 0x185188
 
-UnknownScript_0x185188: ; 0x185188
+SageScript_0x185188: ; 0x185188
 	faceplayer
 	loadfont
 	checkbit1 $0317
@@ -229,7 +229,7 @@ UnknownScript_0x1851b6: ; 0x1851b6
 	end
 ; 0x1851bc
 
-UnknownScript_0x1851bc: ; 0x1851bc
+SageScript_0x1851bc: ; 0x1851bc
 	checkbit1 $0317
 	iftrue UnknownScript_0x1851c5
 	jumptextfaceplayer UnknownText_0x185654
@@ -239,7 +239,7 @@ UnknownScript_0x1851c5: ; 0x1851c5
 	jumptextfaceplayer UnknownText_0x1858d0
 ; 0x1851c8
 
-UnknownScript_0x1851c8: ; 0x1851c8
+SuperNerdScript_0x1851c8: ; 0x1851c8
 	jumptextfaceplayer UnknownText_0x1856a3
 ; 0x1851cb
 
@@ -514,15 +514,15 @@ TinTower1F_MapEventHeader: ; 0x18598c
 
 	; people-events
 	db 10
-	person_event $63, 13, 13, $1, $0, 255, 255, $90, 0, ObjectEvent, $07b2
-	person_event $65, 13, 11, $1, $0, 255, 255, $b0, 0, ObjectEvent, $07b4
-	person_event $64, 13, 16, $1, $0, 255, 255, $80, 0, ObjectEvent, $07b3
-	person_event $2b, 7, 12, $3, $0, 255, 255, $90, 0, UnknownScript_0x1851c8, $07b5
-	person_event $3e, 13, 9, $3, $0, 255, 255, $0, 0, UnknownScript_0x185173, $07b6
-	person_event $3e, 15, 15, $3, $0, 255, 255, $0, 0, UnknownScript_0x185176, $07b6
-	person_event $3e, 10, 18, $3, $0, 255, 255, $0, 0, UnknownScript_0x185179, $07b6
-	person_event $3e, 6, 8, $4, $10, 255, 255, $0, 0, UnknownScript_0x18517c, $07c5
-	person_event $3e, 5, 13, $6, $0, 255, 255, $0, 0, UnknownScript_0x185188, $07c5
-	person_event $3e, 6, 18, $5, $1, 255, 255, $0, 0, UnknownScript_0x1851bc, $07c5
+	person_event SPRITE_SUICUNE, 13, 13, $1, $0, 255, 255, $90, 0, ObjectEvent, $07b2
+	person_event SPRITE_RAIKOU, 13, 11, $1, $0, 255, 255, $b0, 0, ObjectEvent, $07b4
+	person_event SPRITE_ENTEI, 13, 16, $1, $0, 255, 255, $80, 0, ObjectEvent, $07b3
+	person_event SPRITE_SUPER_NERD, 7, 12, $3, $0, 255, 255, $90, 0, SuperNerdScript_0x1851c8, $07b5
+	person_event SPRITE_SAGE, 13, 9, $3, $0, 255, 255, $0, 0, SageScript_0x185173, $07b6
+	person_event SPRITE_SAGE, 15, 15, $3, $0, 255, 255, $0, 0, SageScript_0x185176, $07b6
+	person_event SPRITE_SAGE, 10, 18, $3, $0, 255, 255, $0, 0, SageScript_0x185179, $07b6
+	person_event SPRITE_SAGE, 6, 8, $4, $10, 255, 255, $0, 0, SageScript_0x18517c, $07c5
+	person_event SPRITE_SAGE, 5, 13, $6, $0, 255, 255, $0, 0, SageScript_0x185188, $07c5
+	person_event SPRITE_SAGE, 6, 18, $5, $1, 255, 255, $0, 0, SageScript_0x1851bc, $07c5
 ; 0x185a23
 

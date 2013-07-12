@@ -6,7 +6,7 @@ Route38EcruteakGate_MapScriptHeader: ; 0x9cbd5
 	db 0
 ; 0x9cbd7
 
-UnknownScript_0x9cbd7: ; 0x9cbd7
+OfficerScript_0x9cbd7: ; 0x9cbd7
 	jumptextfaceplayer UnknownText_0x9cbda
 ; 0x9cbda
 
@@ -39,6 +39,6 @@ Route38EcruteakGate_MapEventHeader: ; 0x9cc4d
 
 	; people-events
 	db 1
-	person_event $43, 6, 9, $6, $0, 255, 255, $80, 0, UnknownScript_0x9cbd7, $ffff
+	person_event SPRITE_OFFICER, 6, 9, $6, $0, 255, 255, $80, 0, OfficerScript_0x9cbd7, $ffff
 ; 0x9cc74
 

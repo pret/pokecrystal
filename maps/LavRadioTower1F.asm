@@ -6,19 +6,19 @@ LavRadioTower1F_MapScriptHeader: ; 0x7ee61
 	db 0
 ; 0x7ee63
 
-UnknownScript_0x7ee63: ; 0x7ee63
+ReceptionistScript_0x7ee63: ; 0x7ee63
 	jumptextfaceplayer UnknownText_0x7eebf
 ; 0x7ee66
 
-UnknownScript_0x7ee66: ; 0x7ee66
+OfficerScript_0x7ee66: ; 0x7ee66
 	jumptextfaceplayer UnknownText_0x7eefa
 ; 0x7ee69
 
-UnknownScript_0x7ee69: ; 0x7ee69
+SuperNerdScript_0x7ee69: ; 0x7ee69
 	jumptextfaceplayer UnknownText_0x7ef90
 ; 0x7ee6c
 
-UnknownScript_0x7ee6c: ; 0x7ee6c
+GentlemanScript_0x7ee6c: ; 0x7ee6c
 	faceplayer
 	loadfont
 	checkbit2 $0003
@@ -53,7 +53,7 @@ UnknownScript_0x7ee6c: ; 0x7ee6c
 	db "EXPN CARD@"
 ; 0x7eea2
 
-UnknownScript_0x7eea2: ; 0x7eea2
+SuperNerdScript_0x7eea2: ; 0x7eea2
 	faceplayer
 	loadfont
 	checkbit2 $0003
@@ -216,10 +216,10 @@ LavRadioTower1F_MapEventHeader: ; 0x7f3b9
 
 	; people-events
 	db 5
-	person_event $42, 10, 10, $7, $0, 255, 255, $a0, 0, UnknownScript_0x7ee63, $ffff
-	person_event $43, 5, 19, $6, $0, 255, 255, $a0, 0, UnknownScript_0x7ee66, $ffff
-	person_event $2b, 7, 5, $2, $11, 255, 255, $80, 0, UnknownScript_0x7ee69, $ffff
-	person_event $40, 5, 13, $7, $0, 255, 255, $0, 0, UnknownScript_0x7ee6c, $ffff
-	person_event $2b, 10, 18, $9, $0, 255, 255, $0, 0, UnknownScript_0x7eea2, $ffff
+	person_event SPRITE_RECEPTIONIST, 10, 10, $7, $0, 255, 255, $a0, 0, ReceptionistScript_0x7ee63, $ffff
+	person_event SPRITE_OFFICER, 5, 19, $6, $0, 255, 255, $a0, 0, OfficerScript_0x7ee66, $ffff
+	person_event SPRITE_SUPER_NERD, 7, 5, $2, $11, 255, 255, $80, 0, SuperNerdScript_0x7ee69, $ffff
+	person_event SPRITE_GENTLEMAN, 5, 13, $7, $0, 255, 255, $0, 0, GentlemanScript_0x7ee6c, $ffff
+	person_event SPRITE_SUPER_NERD, 10, 18, $9, $0, 255, 255, $0, 0, SuperNerdScript_0x7eea2, $ffff
 ; 0x7f414
 

@@ -77,7 +77,7 @@ UnknownScript_0x7e504: ; 0x7e504
 ; 0x7e50a
 
 
-UnknownScript_0x7e50a: ; 0x7e50a
+BoulderScript_0x7e50a: ; 0x7e50a
 	jumpstd $000e
 ; 0x7e50d
 
@@ -121,10 +121,10 @@ IcePathB1F_MapEventHeader: ; 0x7e52d
 
 	; people-events
 	db 5
-	person_event $5a, 11, 15, $19, $0, 255, 255, $0, 0, UnknownScript_0x7e50a, $0709
-	person_event $5a, 12, 11, $19, $0, 255, 255, $0, 0, UnknownScript_0x7e50a, $070a
-	person_event $5a, 13, 12, $19, $0, 255, 255, $0, 0, UnknownScript_0x7e50a, $070b
-	person_event $5a, 11, 21, $19, $0, 255, 255, $0, 0, UnknownScript_0x7e50a, $070c
-	person_event $54, 39, 9, $1, $0, 255, 255, $1, 0, ItemFragment_0x7e50d, $068a
+	person_event SPRITE_BOULDER, 11, 15, $19, $0, 255, 255, $0, 0, BoulderScript_0x7e50a, $0709
+	person_event SPRITE_BOULDER, 12, 11, $19, $0, 255, 255, $0, 0, BoulderScript_0x7e50a, $070a
+	person_event SPRITE_BOULDER, 13, 12, $19, $0, 255, 255, $0, 0, BoulderScript_0x7e50a, $070b
+	person_event SPRITE_BOULDER, 11, 21, $19, $0, 255, 255, $0, 0, BoulderScript_0x7e50a, $070c
+	person_event SPRITE_POKE_BALL, 39, 9, $1, $0, 255, 255, $1, 0, ItemFragment_0x7e50d, $068a
 ; 0x7e5a1
 

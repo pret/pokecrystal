@@ -6,11 +6,11 @@ CianwoodPokeCenter1F_MapScriptHeader: ; 0x9dbcd
 	db 0
 ; 0x9dbcf
 
-UnknownScript_0x9dbcf: ; 0x9dbcf
+NurseScript_0x9dbcf: ; 0x9dbcf
 	jumpstd $0000
 ; 0x9dbd2
 
-UnknownScript_0x9dbd2: ; 0x9dbd2
+LassScript_0x9dbd2: ; 0x9dbd2
 	jumptextfaceplayer UnknownText_0x9dbed
 ; 0x9dbd5
 
@@ -32,7 +32,7 @@ CianwoodGymGuyScript: ; 0x9dbd5
 	end
 ; 0x9dbea
 
-UnknownScript_0x9dbea: ; 0x9dbea
+SuperNerdScript_0x9dbea: ; 0x9dbea
 	jumptextfaceplayer UnknownText_0x9ded7
 ; 0x9dbed
 
@@ -129,9 +129,9 @@ CianwoodPokeCenter1F_MapEventHeader: ; 0x9df4e
 
 	; people-events
 	db 4
-	person_event $37, 5, 7, $6, $0, 255, 255, $0, 0, UnknownScript_0x9dbcf, $ffff
-	person_event $28, 9, 5, $4, $10, 255, 255, $a0, 0, UnknownScript_0x9dbd2, $ffff
-	person_event $48, 7, 9, $6, $0, 255, 255, $80, 0, CianwoodGymGuyScript, $ffff
-	person_event $2b, 10, 12, $5, $1, 255, 255, $90, 0, UnknownScript_0x9dbea, $ffff
+	person_event SPRITE_NURSE, 5, 7, $6, $0, 255, 255, $0, 0, NurseScript_0x9dbcf, $ffff
+	person_event SPRITE_LASS, 9, 5, $4, $10, 255, 255, $a0, 0, LassScript_0x9dbd2, $ffff
+	person_event SPRITE_GYM_GUY, 7, 9, $6, $0, 255, 255, $80, 0, CianwoodGymGuyScript, $ffff
+	person_event SPRITE_SUPER_NERD, 10, 12, $5, $1, 255, 255, $90, 0, SuperNerdScript_0x9dbea, $ffff
 ; 0x9df97
 

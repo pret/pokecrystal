@@ -129,15 +129,15 @@ UnknownScript_0x185c80: ; 0x185c80
 	end
 ; 0x185cbc
 
-UnknownScript_0x185cbc: ; 0x185cbc
+SuperNerdScript_0x185cbc: ; 0x185cbc
 	jumptextfaceplayer UnknownText_0x185f99
 ; 0x185cbf
 
-UnknownScript_0x185cbf: ; 0x185cbf
+MortyScript_0x185cbf: ; 0x185cbf
 	jumptextfaceplayer UnknownText_0x186002
 ; 0x185cc2
 
-UnknownScript_0x185cc2: ; 0x185cc2
+RockScript_0x185cc2: ; 0x185cc2
 	jumpstd $000f
 ; 0x185cc5
 
@@ -303,10 +303,10 @@ BurnedTower1F_MapEventHeader: ; 0x1860b2
 
 	; people-events
 	db 5
-	person_event $59, 8, 19, $18, $0, 255, 255, $0, 0, UnknownScript_0x185cc2, $ffff
-	person_event $2b, 16, 16, $3, $0, 255, 255, $90, 0, UnknownScript_0x185cbc, $0765
-	person_event $4, 13, 12, $8, $0, 255, 255, $2, 3, ObjectEvent, $06c5
-	person_event $15, 18, 18, $2, $11, 255, 255, $b0, 0, UnknownScript_0x185cbf, $0764
-	person_event $54, 6, 18, $1, $0, 255, 255, $1, 0, ItemFragment_0x185ccb, $0656
+	person_event SPRITE_ROCK, 8, 19, $18, $0, 255, 255, $0, 0, RockScript_0x185cc2, $ffff
+	person_event SPRITE_SUPER_NERD, 16, 16, $3, $0, 255, 255, $90, 0, SuperNerdScript_0x185cbc, $0765
+	person_event SPRITE_SILVER, 13, 12, $8, $0, 255, 255, $2, 3, ObjectEvent, $06c5
+	person_event SPRITE_MORTY, 18, 18, $2, $11, 255, 255, $b0, 0, MortyScript_0x185cbf, $0764
+	person_event SPRITE_POKE_BALL, 6, 18, $1, $0, 255, 255, $1, 0, ItemFragment_0x185ccb, $0656
 ; 0x186151
 

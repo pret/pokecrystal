@@ -6,7 +6,7 @@ CeladonCafe_MapScriptHeader: ; 0x73047
 	db 0
 ; 0x73049
 
-UnknownScript_0x73049: ; 0x73049
+SuperNerdScript_0x73049: ; 0x73049
 	faceplayer
 	loadfont
 	2writetext UnknownText_0x730de
@@ -15,7 +15,7 @@ UnknownScript_0x73049: ; 0x73049
 	end
 ; 0x73051
 
-UnknownScript_0x73051: ; 0x73051
+FisherScript_0x73051: ; 0x73051
 	loadfont
 	2writetext UnknownText_0x73129
 	closetext
@@ -29,7 +29,7 @@ UnknownScript_0x73051: ; 0x73051
 	end
 ; 0x73062
 
-UnknownScript_0x73062: ; 0x73062
+FisherScript_0x73062: ; 0x73062
 	loadfont
 	2writetext UnknownText_0x7316a
 	closetext
@@ -43,7 +43,7 @@ UnknownScript_0x73062: ; 0x73062
 	end
 ; 0x73073
 
-UnknownScript_0x73073: ; 0x73073
+FisherScript_0x73073: ; 0x73073
 	loadfont
 	2writetext UnknownText_0x731ae
 	closetext
@@ -57,7 +57,7 @@ UnknownScript_0x73073: ; 0x73073
 	end
 ; 0x73084
 
-UnknownScript_0x73084: ; 0x73084
+TeacherScript_0x73084: ; 0x73084
 	checkitem COIN_CASE
 	iftrue UnknownScript_0x7309a
 	loadfont
@@ -222,10 +222,10 @@ CeladonCafe_MapEventHeader: ; 0x73316
 
 	; people-events
 	db 5
-	person_event $2b, 7, 13, $8, $0, 255, 255, $b0, 0, UnknownScript_0x73049, $ffff
-	person_event $3a, 10, 8, $8, $0, 255, 255, $0, 0, UnknownScript_0x73051, $ffff
-	person_event $3a, 11, 5, $9, $0, 255, 255, $a0, 0, UnknownScript_0x73062, $ffff
-	person_event $3a, 6, 5, $9, $0, 255, 255, $0, 0, UnknownScript_0x73073, $ffff
-	person_event $29, 7, 8, $8, $0, 255, 255, $0, 0, UnknownScript_0x73084, $ffff
+	person_event SPRITE_SUPER_NERD, 7, 13, $8, $0, 255, 255, $b0, 0, SuperNerdScript_0x73049, $ffff
+	person_event SPRITE_FISHER, 10, 8, $8, $0, 255, 255, $0, 0, FisherScript_0x73051, $ffff
+	person_event SPRITE_FISHER, 11, 5, $9, $0, 255, 255, $a0, 0, FisherScript_0x73062, $ffff
+	person_event SPRITE_FISHER, 6, 5, $9, $0, 255, 255, $0, 0, FisherScript_0x73073, $ffff
+	person_event SPRITE_TEACHER, 7, 8, $8, $0, 255, 255, $0, 0, TeacherScript_0x73084, $ffff
 ; 0x73371
 

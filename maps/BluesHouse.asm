@@ -6,7 +6,7 @@ BluesHouse_MapScriptHeader: ; 0x19b0ce
 	db 0
 ; 0x19b0d0
 
-UnknownScript_0x19b0d0: ; 0x19b0d0
+DaisyScript_0x19b0d0: ; 0x19b0d0
 	faceplayer
 	loadfont
 	checkcode $a
@@ -154,6 +154,6 @@ BluesHouse_MapEventHeader: ; 0x19b3a8
 
 	; people-events
 	db 1
-	person_event $f, 7, 6, $3, $0, 255, 255, $0, 0, UnknownScript_0x19b0d0, $ffff
+	person_event SPRITE_DAISY, 7, 6, $3, $0, 255, 255, $0, 0, DaisyScript_0x19b0d0, $ffff
 ; 0x19b3c5
 

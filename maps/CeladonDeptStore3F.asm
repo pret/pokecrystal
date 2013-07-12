@@ -6,7 +6,7 @@ CeladonDeptStore3F_MapScriptHeader: ; 0x70d27
 	db 0
 ; 0x70d29
 
-UnknownScript_0x70d29: ; 0x70d29
+ClerkScript_0x70d29: ; 0x70d29
 	faceplayer
 	loadfont
 	pokemart $0, $0019
@@ -14,11 +14,11 @@ UnknownScript_0x70d29: ; 0x70d29
 	end
 ; 0x70d31
 
-UnknownScript_0x70d31: ; 0x70d31
+YoungsterScript_0x70d31: ; 0x70d31
 	jumptextfaceplayer UnknownText_0x70d53
 ; 0x70d34
 
-UnknownScript_0x70d34: ; 0x70d34
+GameboyKidScript_0x70d34: ; 0x70d34
 	faceplayer
 	loadfont
 	2writetext UnknownText_0x70d86
@@ -28,7 +28,7 @@ UnknownScript_0x70d34: ; 0x70d34
 	end
 ; 0x70d3f
 
-UnknownScript_0x70d3f: ; 0x70d3f
+GameboyKidScript_0x70d3f: ; 0x70d3f
 	faceplayer
 	loadfont
 	2writetext UnknownText_0x70dc7
@@ -38,7 +38,7 @@ UnknownScript_0x70d3f: ; 0x70d3f
 	end
 ; 0x70d4a
 
-UnknownScript_0x70d4a: ; 0x70d4a
+SuperNerdScript_0x70d4a: ; 0x70d4a
 	jumptextfaceplayer UnknownText_0x70e61
 ; 0x70d4d
 
@@ -108,10 +108,10 @@ CeladonDeptStore3F_MapEventHeader: ; 0x70eab
 
 	; people-events
 	db 5
-	person_event $39, 5, 11, $6, $0, 255, 255, $90, 0, UnknownScript_0x70d29, $ffff
-	person_event $27, 8, 10, $4, $10, 255, 255, $a0, 0, UnknownScript_0x70d31, $ffff
-	person_event $3, 5, 13, $6, $0, 255, 255, $80, 0, UnknownScript_0x70d34, $ffff
-	person_event $3, 5, 14, $6, $0, 255, 255, $90, 0, UnknownScript_0x70d3f, $ffff
-	person_event $2b, 8, 17, $2, $11, 255, 255, $80, 0, UnknownScript_0x70d4a, $ffff
+	person_event SPRITE_CLERK, 5, 11, $6, $0, 255, 255, $90, 0, ClerkScript_0x70d29, $ffff
+	person_event SPRITE_YOUNGSTER, 8, 10, $4, $10, 255, 255, $a0, 0, YoungsterScript_0x70d31, $ffff
+	person_event SPRITE_GAMEBOY_KID, 5, 13, $6, $0, 255, 255, $80, 0, GameboyKidScript_0x70d34, $ffff
+	person_event SPRITE_GAMEBOY_KID, 5, 14, $6, $0, 255, 255, $90, 0, GameboyKidScript_0x70d3f, $ffff
+	person_event SPRITE_SUPER_NERD, 8, 17, $2, $11, 255, 255, $80, 0, SuperNerdScript_0x70d4a, $ffff
 ; 0x70f0b
 

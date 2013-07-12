@@ -45,7 +45,7 @@ MountMortar1FOutside_MapEventHeader: ; 0x7ddfd
 
 	; people-events
 	db 2
-	person_event $54, 19, 17, $1, $0, 255, 255, $1, 0, ItemFragment_0x7ddf6, $067b
-	person_event $54, 22, 35, $1, $0, 255, 255, $1, 0, ItemFragment_0x7ddf8, $067c
+	person_event SPRITE_POKE_BALL, 19, 17, $1, $0, 255, 255, $1, 0, ItemFragment_0x7ddf6, $067b
+	person_event SPRITE_POKE_BALL, 22, 35, $1, $0, 255, 255, $1, 0, ItemFragment_0x7ddf8, $067c
 ; 0x7de4f
 

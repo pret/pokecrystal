@@ -6,7 +6,7 @@ Route19FuchsiaGate_MapScriptHeader: ; 0x1ab3f4
 	db 0
 ; 0x1ab3f6
 
-UnknownScript_0x1ab3f6: ; 0x1ab3f6
+OfficerScript_0x1ab3f6: ; 0x1ab3f6
 	faceplayer
 	loadfont
 	checkbit1 $00d7
@@ -61,6 +61,6 @@ Route19FuchsiaGate_MapEventHeader: ; 0x1ab4cd
 
 	; people-events
 	db 1
-	person_event $43, 8, 4, $9, $0, 255, 255, $90, 0, UnknownScript_0x1ab3f6, $ffff
+	person_event SPRITE_OFFICER, 8, 4, $9, $0, 255, 255, $90, 0, OfficerScript_0x1ab3f6, $ffff
 ; 0x1ab4f4
 

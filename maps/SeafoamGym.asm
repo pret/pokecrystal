@@ -13,7 +13,7 @@ UnknownScript_0x1ab4fa: ; 0x1ab4fa
 	end
 ; 0x1ab4fb
 
-UnknownScript_0x1ab4fb: ; 0x1ab4fb
+BlaineScript_0x1ab4fb: ; 0x1ab4fb
 	faceplayer
 	loadfont
 	checkbit2 $0029
@@ -155,8 +155,8 @@ SeafoamGym_MapEventHeader: ; 0x1ab865
 
 	; people-events
 	db 2
-	person_event $d, 6, 9, $6, $0, 255, 255, $b0, 0, UnknownScript_0x1ab4fb, $ffff
-	person_event $48, 9, 10, $7, $0, 255, 255, $90, 0, SeafoamGymGuyScript, $0777
+	person_event SPRITE_BLAINE, 6, 9, $6, $0, 255, 255, $b0, 0, BlaineScript_0x1ab4fb, $ffff
+	person_event SPRITE_GYM_GUY, 9, 10, $7, $0, 255, 255, $90, 0, SeafoamGymGuyScript, $0777
 ; 0x1ab88a
 
 

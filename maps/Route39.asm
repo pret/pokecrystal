@@ -6,7 +6,7 @@ Route39_MapScriptHeader: ; 0x1a5af3
 	db 0
 ; 0x1a5af5
 
-UnknownScript_0x1a5af5: ; 0x1a5af5
+TaurosScript_0x1a5af5: ; 0x1a5af5
 	loadfont
 	2writetext UnknownText_0x1a5bf9
 	cry MILTANK
@@ -211,7 +211,7 @@ PsychicNormanScript: ; 0x1a5bb6
 	end
 ; 0x1a5bbe
 
-UnknownScript_0x1a5bbe: ; 0x1a5bbe
+PokefanFScript_0x1a5bbe: ; 0x1a5bbe
 	faceplayer
 	loadfont
 	checktime $4
@@ -256,7 +256,7 @@ MapRoute39Signpost0Script: ; 0x1a5bf1
 	jumptext UnknownText_0x1a6036
 ; 0x1a5bf4
 
-UnknownScript_0x1a5bf4: ; 0x1a5bf4
+FruitTreeScript_0x1a5bf4: ; 0x1a5bf4
 	fruittree $f
 ; 0x1a5bf6
 
@@ -431,15 +431,15 @@ Route39_MapEventHeader: ; 0x1a60ba
 
 	; people-events
 	db 10
-	person_event $49, 33, 17, $8, $0, 255, 255, $92, 5, TrainerSailorEugene, $ffff
-	person_event $2d, 26, 14, $7, $0, 255, 255, $82, 4, TrainerPokefanmDerek1, $ffff
-	person_event $2e, 23, 15, $9, $0, 255, 255, $82, 4, TrainerPokefanfRuth, $ffff
-	person_event $99, 16, 7, $16, $0, 255, 255, $0, 0, UnknownScript_0x1a5af5, $ffff
-	person_event $99, 15, 10, $16, $0, 255, 255, $0, 0, UnknownScript_0x1a5af5, $ffff
-	person_event $99, 19, 8, $16, $0, 255, 255, $0, 0, UnknownScript_0x1a5af5, $ffff
-	person_event $99, 17, 12, $16, $0, 255, 255, $0, 0, UnknownScript_0x1a5af5, $ffff
-	person_event $66, 11, 17, $a, $0, 255, 255, $92, 1, TrainerPsychicNorman, $ffff
-	person_event $5d, 7, 13, $1, $0, 255, 255, $0, 0, UnknownScript_0x1a5bf4, $ffff
-	person_event $2e, 26, 8, $6, $0, 255, 255, $80, 0, UnknownScript_0x1a5bbe, $ffff
+	person_event SPRITE_SAILOR, 33, 17, $8, $0, 255, 255, $92, 5, TrainerSailorEugene, $ffff
+	person_event SPRITE_POKEFAN_M, 26, 14, $7, $0, 255, 255, $82, 4, TrainerPokefanmDerek1, $ffff
+	person_event SPRITE_POKEFAN_F, 23, 15, $9, $0, 255, 255, $82, 4, TrainerPokefanfRuth, $ffff
+	person_event SPRITE_TAUROS, 16, 7, $16, $0, 255, 255, $0, 0, TaurosScript_0x1a5af5, $ffff
+	person_event SPRITE_TAUROS, 15, 10, $16, $0, 255, 255, $0, 0, TaurosScript_0x1a5af5, $ffff
+	person_event SPRITE_TAUROS, 19, 8, $16, $0, 255, 255, $0, 0, TaurosScript_0x1a5af5, $ffff
+	person_event SPRITE_TAUROS, 17, 12, $16, $0, 255, 255, $0, 0, TaurosScript_0x1a5af5, $ffff
+	person_event SPRITE_STANDING_YOUNGSTER, 11, 17, $a, $0, 255, 255, $92, 1, TrainerPsychicNorman, $ffff
+	person_event SPRITE_FRUIT_TREE, 7, 13, $1, $0, 255, 255, $0, 0, FruitTreeScript_0x1a5bf4, $ffff
+	person_event SPRITE_POKEFAN_F, 26, 8, $6, $0, 255, 255, $80, 0, PokefanFScript_0x1a5bbe, $ffff
 ; 0x1a6160
 

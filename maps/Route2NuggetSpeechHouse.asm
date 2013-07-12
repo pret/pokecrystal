@@ -6,7 +6,7 @@ Route2NuggetSpeechHouse_MapScriptHeader: ; 0x9b845
 	db 0
 ; 0x9b847
 
-UnknownScript_0x9b847: ; 0x9b847
+FisherScript_0x9b847: ; 0x9b847
 	faceplayer
 	loadfont
 	checkbit1 $00c8
@@ -64,6 +64,6 @@ Route2NuggetSpeechHouse_MapEventHeader: ; 0x9b933
 
 	; people-events
 	db 1
-	person_event $3a, 8, 6, $4, $20, 255, 255, $90, 0, UnknownScript_0x9b847, $ffff
+	person_event SPRITE_FISHER, 8, 6, $4, $20, 255, 255, $90, 0, FisherScript_0x9b847, $ffff
 ; 0x9b950
 

@@ -10,7 +10,7 @@ UnknownScript_0x5474f: ; 0x5474f
 	end
 ; 0x54750
 
-UnknownScript_0x54750: ; 0x54750
+ClerkScript_0x54750: ; 0x54750
 	faceplayer
 	loadfont
 	checkbit1 $005b
@@ -125,6 +125,6 @@ GoldenrodBikeShop_MapEventHeader: ; 0x54907
 
 	; people-events
 	db 1
-	person_event $39, 6, 11, $8, $0, 255, 255, $80, 0, UnknownScript_0x54750, $ffff
+	person_event SPRITE_CLERK, 6, 11, $8, $0, 255, 255, $80, 0, ClerkScript_0x54750, $ffff
 ; 0x54951
 

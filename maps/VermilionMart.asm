@@ -6,18 +6,18 @@ VermilionMart_MapScriptHeader: ; 0x191f7c
 	db 0
 ; 0x191f7e
 
-UnknownScript_0x191f7e: ; 0x191f7e
+ClerkScript_0x191f7e: ; 0x191f7e
 	loadfont
 	pokemart $0, $0016
 	loadmovesprites
 	end
 ; 0x191f85
 
-UnknownScript_0x191f85: ; 0x191f85
+SuperNerdScript_0x191f85: ; 0x191f85
 	jumptextfaceplayer UnknownText_0x191f8b
 ; 0x191f88
 
-UnknownScript_0x191f88: ; 0x191f88
+BuenaScript_0x191f88: ; 0x191f88
 	jumptextfaceplayer UnknownText_0x191fca
 ; 0x191f8b
 
@@ -51,8 +51,8 @@ VermilionMart_MapEventHeader: ; 0x191ff8
 
 	; people-events
 	db 3
-	person_event $39, 7, 5, $9, $0, 255, 255, $0, 0, UnknownScript_0x191f7e, $ffff
-	person_event $2b, 6, 9, $6, $0, 255, 255, $80, 0, UnknownScript_0x191f85, $ffff
-	person_event $2a, 10, 12, $5, $1, 255, 255, $a0, 0, UnknownScript_0x191f88, $ffff
+	person_event SPRITE_CLERK, 7, 5, $9, $0, 255, 255, $0, 0, ClerkScript_0x191f7e, $ffff
+	person_event SPRITE_SUPER_NERD, 6, 9, $6, $0, 255, 255, $80, 0, SuperNerdScript_0x191f85, $ffff
+	person_event SPRITE_BUENA, 10, 12, $5, $1, 255, 255, $a0, 0, BuenaScript_0x191f88, $ffff
 ; 0x19202f
 

@@ -108,15 +108,15 @@ UnknownScript_0x198091: ; 0x198091
 	end
 ; 0x1980ab
 
-UnknownScript_0x1980ab: ; 0x1980ab
+AzaleaRocketScript_0x1980ab: ; 0x1980ab
 	jumptextfaceplayer UnknownText_0x19837b
 ; 0x1980ae
 
-UnknownScript_0x1980ae: ; 0x1980ae
+AzaleaRocketScript_0x1980ae: ; 0x1980ae
 	jumptextfaceplayer UnknownText_0x1983c7
 ; 0x1980b1
 
-UnknownScript_0x1980b1: ; 0x1980b1
+GrampsScript_0x1980b1: ; 0x1980b1
 	faceplayer
 	loadfont
 	checkbit1 $002b
@@ -134,15 +134,15 @@ UnknownScript_0x1980bf: ; 0x1980bf
 	end
 ; 0x1980c5
 
-UnknownScript_0x1980c5: ; 0x1980c5
+TeacherScript_0x1980c5: ; 0x1980c5
 	jumptextfaceplayer UnknownText_0x1984ce
 ; 0x1980c8
 
-UnknownScript_0x1980c8: ; 0x1980c8
+YoungsterScript_0x1980c8: ; 0x1980c8
 	jumptextfaceplayer UnknownText_0x19851a
 ; 0x1980cb
 
-UnknownScript_0x1980cb: ; 0x1980cb
+SlowpokeScript_0x1980cb: ; 0x1980cb
 	loadfont
 	2writetext UnknownText_0x1985b0
 	pause 60
@@ -183,7 +183,7 @@ UnknownScript_0x1980e5: ; 0x1980e5
 	end
 ; 0x19810c
 
-UnknownScript_0x19810c: ; 0x19810c
+KurtOutsideScript_0x19810c: ; 0x19810c
 	faceplayer
 	loadfont
 	2writetext UnknownText_0x198628
@@ -225,7 +225,7 @@ MapAzaleaTownSignpost6Script: ; 0x19812c
 	jumpstd $0011
 ; 0x19812f
 
-UnknownScript_0x19812f: ; 0x19812f
+FruitTreeScript_0x19812f: ; 0x19812f
 	fruittree $14
 ; 0x198131
 
@@ -485,17 +485,17 @@ AzaleaTown_MapEventHeader: ; 0x1987c1
 
 	; people-events
 	db 12
-	person_event $f6, 13, 35, $6, $0, 255, 255, $0, 0, UnknownScript_0x1980ab, $06fa
-	person_event $2f, 13, 25, $2, $21, 255, 255, $0, 0, UnknownScript_0x1980b1, $ffff
-	person_event $29, 17, 19, $4, $20, 255, 255, $90, 0, UnknownScript_0x1980c5, $ffff
-	person_event $27, 13, 11, $5, $1, 255, 255, $a0, 0, UnknownScript_0x1980c8, $ffff
-	person_event $45, 21, 12, $1, $0, 255, 255, $0, 0, UnknownScript_0x1980cb, $06f9
-	person_event $45, 13, 22, $1, $0, 255, 255, $0, 0, UnknownScript_0x1980cb, $06f9
-	person_event $45, 13, 33, $1, $0, 255, 255, $0, 0, UnknownScript_0x1980cb, $06f9
-	person_event $45, 19, 19, $1, $0, 255, 255, $0, 0, UnknownScript_0x1980cb, $06f9
-	person_event $5d, 6, 12, $1, $0, 255, 255, $0, 0, UnknownScript_0x19812f, $ffff
-	person_event $f6, 14, 15, $8, $0, 255, 255, $0, 0, ObjectEvent, $06bf
-	person_event $f6, 20, 14, $6, $0, 255, 255, $0, 0, UnknownScript_0x1980ae, $06fc
-	person_event $62, 9, 10, $8, $0, 255, 255, $0, 0, UnknownScript_0x19810c, $07a4
+	person_event SPRITE_AZALEA_ROCKET, 13, 35, $6, $0, 255, 255, $0, 0, AzaleaRocketScript_0x1980ab, $06fa
+	person_event SPRITE_GRAMPS, 13, 25, $2, $21, 255, 255, $0, 0, GrampsScript_0x1980b1, $ffff
+	person_event SPRITE_TEACHER, 17, 19, $4, $20, 255, 255, $90, 0, TeacherScript_0x1980c5, $ffff
+	person_event SPRITE_YOUNGSTER, 13, 11, $5, $1, 255, 255, $a0, 0, YoungsterScript_0x1980c8, $ffff
+	person_event SPRITE_SLOWPOKE, 21, 12, $1, $0, 255, 255, $0, 0, SlowpokeScript_0x1980cb, $06f9
+	person_event SPRITE_SLOWPOKE, 13, 22, $1, $0, 255, 255, $0, 0, SlowpokeScript_0x1980cb, $06f9
+	person_event SPRITE_SLOWPOKE, 13, 33, $1, $0, 255, 255, $0, 0, SlowpokeScript_0x1980cb, $06f9
+	person_event SPRITE_SLOWPOKE, 19, 19, $1, $0, 255, 255, $0, 0, SlowpokeScript_0x1980cb, $06f9
+	person_event SPRITE_FRUIT_TREE, 6, 12, $1, $0, 255, 255, $0, 0, FruitTreeScript_0x19812f, $ffff
+	person_event SPRITE_AZALEA_ROCKET, 14, 15, $8, $0, 255, 255, $0, 0, ObjectEvent, $06bf
+	person_event SPRITE_AZALEA_ROCKET, 20, 14, $6, $0, 255, 255, $0, 0, AzaleaRocketScript_0x1980ae, $06fc
+	person_event SPRITE_KURT_OUTSIDE, 9, 10, $8, $0, 255, 255, $0, 0, KurtOutsideScript_0x19810c, $07a4
 ; 0x1988d0
 

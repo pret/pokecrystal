@@ -6,7 +6,7 @@ FightingDojo_MapScriptHeader: ; 0x189b5f
 	db 0
 ; 0x189b61
 
-UnknownScript_0x189b61: ; 0x189b61
+BlackBeltScript_0x189b61: ; 0x189b61
 	jumptextfaceplayer UnknownText_0x189b6c
 ; 0x189b64
 
@@ -60,7 +60,7 @@ FightingDojo_MapEventHeader: ; 0x189bf8
 
 	; people-events
 	db 2
-	person_event $41, 8, 8, $6, $0, 255, 255, $90, 0, UnknownScript_0x189b61, $ffff
-	person_event $54, 5, 7, $1, $0, 255, 255, $1, 0, ItemFragment_0x189b6a, $077d
+	person_event SPRITE_BLACK_BELT, 8, 8, $6, $0, 255, 255, $90, 0, BlackBeltScript_0x189b61, $ffff
+	person_event SPRITE_POKE_BALL, 5, 7, $1, $0, 255, 255, $1, 0, ItemFragment_0x189b6a, $077d
 ; 0x189c2c
 

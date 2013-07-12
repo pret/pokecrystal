@@ -6,7 +6,7 @@ FuchsiaGym_MapScriptHeader: ; 0x195db7
 	db 0
 ; 0x195db9
 
-UnknownScript_0x195db9: ; 0x195db9
+JanineScript_0x195db9: ; 0x195db9
 	checkbit2 $0027
 	iftrue UnknownScript_0x195e00
 	applymovement $2, MovementData_0x195f27
@@ -55,7 +55,7 @@ UnknownScript_0x195e15: ; 0x195e15
 	end
 ; 0x195e1b
 
-UnknownScript_0x195e1b: ; 0x195e1b
+FuschiaGym1Script_0x195e1b: ; 0x195e1b
 	checkbit1 $0517
 	iftrue UnknownScript_0x195e2c
 	applymovement $3, MovementData_0x195f27
@@ -92,7 +92,7 @@ UnknownScript_0x195e4f: ; 0x195e4f
 	end
 ; 0x195e55
 
-UnknownScript_0x195e55: ; 0x195e55
+FuschiaGym2Script_0x195e55: ; 0x195e55
 	checkbit1 $051a
 	iftrue UnknownScript_0x195e66
 	applymovement $4, MovementData_0x195f27
@@ -129,7 +129,7 @@ UnknownScript_0x195e89: ; 0x195e89
 	end
 ; 0x195e8f
 
-UnknownScript_0x195e8f: ; 0x195e8f
+FuschiaGym3Script_0x195e8f: ; 0x195e8f
 	checkbit1 $0482
 	iftrue UnknownScript_0x195ea0
 	applymovement $5, MovementData_0x195f27
@@ -166,7 +166,7 @@ UnknownScript_0x195ec3: ; 0x195ec3
 	end
 ; 0x195ec9
 
-UnknownScript_0x195ec9: ; 0x195ec9
+FuschiaGym4Script_0x195ec9: ; 0x195ec9
 	checkbit1 $041e
 	iftrue UnknownScript_0x195eda
 	applymovement $6, MovementData_0x195f27
@@ -395,11 +395,11 @@ FuchsiaGym_MapEventHeader: ; 0x196353
 
 	; people-events
 	db 6
-	person_event $a, 14, 5, $3, $0, 255, 255, $90, 0, UnknownScript_0x195db9, $ffff
-	person_event $f7, 11, 9, $a, $0, 255, 255, $90, 0, UnknownScript_0x195e1b, $ffff
-	person_event $f8, 15, 9, $a, $0, 255, 255, $90, 0, UnknownScript_0x195e55, $ffff
-	person_event $f9, 8, 13, $a, $0, 255, 255, $90, 0, UnknownScript_0x195e8f, $ffff
-	person_event $fa, 6, 8, $a, $0, 255, 255, $90, 0, UnknownScript_0x195ec9, $ffff
-	person_event $48, 19, 11, $6, $0, 255, 255, $90, 0, FuchsiaGymGuyScript, $ffff
+	person_event SPRITE_JANINE, 14, 5, $3, $0, 255, 255, $90, 0, JanineScript_0x195db9, $ffff
+	person_event SPRITE_FUSCHIA_GYM_1, 11, 9, $a, $0, 255, 255, $90, 0, FuschiaGym1Script_0x195e1b, $ffff
+	person_event SPRITE_FUSCHIA_GYM_2, 15, 9, $a, $0, 255, 255, $90, 0, FuschiaGym2Script_0x195e55, $ffff
+	person_event SPRITE_FUSCHIA_GYM_3, 8, 13, $a, $0, 255, 255, $90, 0, FuschiaGym3Script_0x195e8f, $ffff
+	person_event SPRITE_FUSCHIA_GYM_4, 6, 8, $a, $0, 255, 255, $90, 0, FuschiaGym4Script_0x195ec9, $ffff
+	person_event SPRITE_GYM_GUY, 19, 11, $6, $0, 255, 255, $90, 0, FuchsiaGymGuyScript, $ffff
 ; 0x1963bb
 

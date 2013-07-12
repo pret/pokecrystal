@@ -22,7 +22,7 @@ ItemFragment_0x18c694: ; 0x18c694
 	db DIRE_HIT, 1
 ; 0x18c696
 
-UnknownScript_0x18c696: ; 0x18c696
+RockScript_0x18c696: ; 0x18c696
 	jumpstd $000f
 ; 0x18c699
 
@@ -51,13 +51,13 @@ DarkCaveVioletEntrance_MapEventHeader: ; 0x18c69c
 
 	; people-events
 	db 8
-	person_event $54, 12, 10, $1, $0, 255, 255, $1, 0, ItemFragment_0x18c68e, $069e
-	person_event $59, 18, 20, $18, $0, 255, 255, $0, 0, UnknownScript_0x18c696, $ffff
-	person_event $59, 10, 31, $18, $0, 255, 255, $0, 0, UnknownScript_0x18c696, $ffff
-	person_event $59, 18, 11, $18, $0, 255, 255, $0, 0, UnknownScript_0x18c696, $ffff
-	person_event $59, 35, 40, $18, $0, 255, 255, $0, 0, UnknownScript_0x18c696, $ffff
-	person_event $54, 26, 40, $1, $0, 255, 255, $1, 0, ItemFragment_0x18c690, $069f
-	person_event $54, 13, 39, $1, $0, 255, 255, $1, 0, ItemFragment_0x18c692, $06a0
-	person_event $54, 32, 34, $1, $0, 255, 255, $1, 0, ItemFragment_0x18c694, $07ce
+	person_event SPRITE_POKE_BALL, 12, 10, $1, $0, 255, 255, $1, 0, ItemFragment_0x18c68e, $069e
+	person_event SPRITE_ROCK, 18, 20, $18, $0, 255, 255, $0, 0, RockScript_0x18c696, $ffff
+	person_event SPRITE_ROCK, 10, 31, $18, $0, 255, 255, $0, 0, RockScript_0x18c696, $ffff
+	person_event SPRITE_ROCK, 18, 11, $18, $0, 255, 255, $0, 0, RockScript_0x18c696, $ffff
+	person_event SPRITE_ROCK, 35, 40, $18, $0, 255, 255, $0, 0, RockScript_0x18c696, $ffff
+	person_event SPRITE_POKE_BALL, 26, 40, $1, $0, 255, 255, $1, 0, ItemFragment_0x18c690, $069f
+	person_event SPRITE_POKE_BALL, 13, 39, $1, $0, 255, 255, $1, 0, ItemFragment_0x18c692, $06a0
+	person_event SPRITE_POKE_BALL, 32, 34, $1, $0, 255, 255, $1, 0, ItemFragment_0x18c694, $07ce
 ; 0x18c71e
 

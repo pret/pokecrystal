@@ -399,7 +399,7 @@ CooltrainerfKellyScript: ; 0x19e261
 	end
 ; 0x19e269
 
-UnknownScript_0x19e269: ; 0x19e269
+YoungsterScript_0x19e269: ; 0x19e269
 	faceplayer
 	loadfont
 	checkbit1 $05c3
@@ -434,7 +434,7 @@ MapRoute45Signpost0Script: ; 0x19e291
 	jumptext UnknownText_0x19e8fe
 ; 0x19e294
 
-UnknownScript_0x19e294: ; 0x19e294
+FruitTreeScript_0x19e294: ; 0x19e294
 	fruittree $c
 ; 0x19e296
 
@@ -673,18 +673,18 @@ Route45_MapEventHeader: ; 0x19e91b
 
 	; people-events
 	db 13
-	person_event $2d, 20, 14, $9, $0, 255, 255, $b2, 1, TrainerHikerErik, $ffff
-	person_event $2d, 69, 19, $9, $0, 255, 255, $b2, 2, TrainerHikerMichael, $ffff
-	person_event $2d, 32, 9, $7, $0, 255, 255, $b2, 2, TrainerHikerParry3, $ffff
-	person_event $2d, 69, 13, $8, $0, 255, 255, $b2, 1, TrainerHikerTimothy, $ffff
-	person_event $41, 54, 15, $a, $0, 255, 255, $b2, 2, TrainerBlackbeltKenji3, $ffff
-	person_event $23, 22, 21, $8, $0, 255, 255, $82, 1, TrainerCooltrainermRyan, $ffff
-	person_event $24, 40, 9, $a, $0, 255, 255, $82, 3, TrainerCooltrainerfKelly, $ffff
-	person_event $5d, 86, 20, $1, $0, 255, 255, $0, 0, UnknownScript_0x19e294, $ffff
-	person_event $54, 55, 10, $1, $0, 255, 255, $1, 0, ItemFragment_0x19e296, $06b8
-	person_event $54, 70, 9, $1, $0, 255, 255, $1, 0, ItemFragment_0x19e298, $06b9
-	person_event $54, 24, 10, $1, $0, 255, 255, $1, 0, ItemFragment_0x19e29a, $06ba
-	person_event $54, 37, 11, $1, $0, 255, 255, $1, 0, ItemFragment_0x19e29c, $06bb
-	person_event $27, 74, 8, $3, $0, 255, 255, $a0, 0, UnknownScript_0x19e269, $ffff
+	person_event SPRITE_POKEFAN_M, 20, 14, $9, $0, 255, 255, $b2, 1, TrainerHikerErik, $ffff
+	person_event SPRITE_POKEFAN_M, 69, 19, $9, $0, 255, 255, $b2, 2, TrainerHikerMichael, $ffff
+	person_event SPRITE_POKEFAN_M, 32, 9, $7, $0, 255, 255, $b2, 2, TrainerHikerParry3, $ffff
+	person_event SPRITE_POKEFAN_M, 69, 13, $8, $0, 255, 255, $b2, 1, TrainerHikerTimothy, $ffff
+	person_event SPRITE_BLACK_BELT, 54, 15, $a, $0, 255, 255, $b2, 2, TrainerBlackbeltKenji3, $ffff
+	person_event SPRITE_COOLTRAINER_M, 22, 21, $8, $0, 255, 255, $82, 1, TrainerCooltrainermRyan, $ffff
+	person_event SPRITE_COOLTRAINER_F, 40, 9, $a, $0, 255, 255, $82, 3, TrainerCooltrainerfKelly, $ffff
+	person_event SPRITE_FRUIT_TREE, 86, 20, $1, $0, 255, 255, $0, 0, FruitTreeScript_0x19e294, $ffff
+	person_event SPRITE_POKE_BALL, 55, 10, $1, $0, 255, 255, $1, 0, ItemFragment_0x19e296, $06b8
+	person_event SPRITE_POKE_BALL, 70, 9, $1, $0, 255, 255, $1, 0, ItemFragment_0x19e298, $06b9
+	person_event SPRITE_POKE_BALL, 24, 10, $1, $0, 255, 255, $1, 0, ItemFragment_0x19e29a, $06ba
+	person_event SPRITE_POKE_BALL, 37, 11, $1, $0, 255, 255, $1, 0, ItemFragment_0x19e29c, $06bb
+	person_event SPRITE_YOUNGSTER, 74, 8, $3, $0, 255, 255, $a0, 0, YoungsterScript_0x19e269, $ffff
 ; 0x19e9d9
 
