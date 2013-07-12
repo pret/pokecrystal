@@ -8912,7 +8912,7 @@ GetSprite: ; 1423c
 	call GetMonSprite
 	ret c
 
-	ld hl, $4736
+	ld hl, SpriteHeaders
 	dec a
 	ld c, a
 	ld b, 0
@@ -9806,7 +9806,12 @@ Group20Sprites: ; 1472b
 ; 14736
 
 
-INCBIN "baserom.gbc", $14736, $152ab - $14736
+SpriteHeaders: ; 14736
+INCLUDE "gfx/overworld/sprite_headers.asm"
+; 1499a
+
+
+INCBIN "baserom.gbc", $1499a, $152ab - $1499a
 
 
 BlackoutPoints: ; 0x152ab
