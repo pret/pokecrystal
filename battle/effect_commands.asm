@@ -6796,7 +6796,7 @@ BattleCommandac: ; 3658f
 ; jump
 	dec a
 	ld hl, .ptrs
-	rst $28
+	rst JumpTable
 	ret
 .ptrs
 	dw BattleCommand19 ; paralyze
@@ -9953,7 +9953,7 @@ Function0x377f5: ; 377f5
 	ld [$d123], a
 	ld a, [hl]
 	ld [$d124], a
-	ld a, $3
+	ld a, 3
 	ld [MonType], a
 	ld a, $14
 	ld hl, $4bdd
