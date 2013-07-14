@@ -2575,7 +2575,29 @@ UpdateGameTimer: ; 20ad
 ; 210f
 
 
-INCBIN "baserom.gbc", $210f, $23a3 - $210f
+INCBIN "baserom.gbc", $210f, $22ee - $210f
+
+
+CheckOutdoorMap: ; 22ee
+	cp ROUTE
+	ret z
+	cp TOWN
+	ret
+; 22f4
+
+CheckIndoorMap: ; 22f4
+	cp INDOOR
+	ret z
+	cp CAVE
+	ret z
+	cp DUNGEON
+	ret z
+	cp GATE
+	ret
+; 2300
+
+
+INCBIN "baserom.gbc", $2300, $23a3 - $2300
 
 
 GetMapConnection: ; 23a3
@@ -3113,8 +3135,25 @@ GetSecondaryMapHeaderPointer: ; 0x2c7d
 	pop de
 	pop bc
 	ret
+; 2c8a
 
-INCBIN "baserom.gbc", $2c8a, $2caf-$2c8a
+
+GetMapPermission: ; 2c8a
+	push hl
+	push de
+	push bc
+	ld de, 2
+	call GetMapHeaderMember
+	ld a, c
+	pop bc
+	pop de
+	pop hl
+	ret
+; 2c98
+
+
+INCBIN "baserom.gbc", $2c98, $2caf - $2c98
+
 
 GetWorldMapLocation: ; 0x2caf
 ; given a map group/id in bc, return its location on the Pokégear map.
@@ -3130,7 +3169,9 @@ GetWorldMapLocation: ; 0x2caf
 	ret
 ; 0x2cbd
 
-INCBIN "baserom.gbc", $2cbd, $2d63-$2cbd
+
+INCBIN "baserom.gbc", $2cbd, $2d63 - $2cbd
+
 
 FarJpHl: ; 2d63
 ; Jump to a:hl.
@@ -8851,21 +8892,19 @@ GetPlayerSprite: ; 14183
 ; 141c9
 
 
-; 141c9
-	call $2c8a
-	call $22ee
+AddMapSprites: ; 141c9
+	call GetMapPermission
+	call CheckOutdoorMap
 	jr z, .outdoor
-
-	call IndoorSpriteGFX
+	call AddIndoorSprites
 	ret
-
 .outdoor
-	call OutdoorSpriteGFX
+	call AddOutdoorSprites
 	ret
 ; 141d9
 
 
-IndoorSpriteGFX: ; 141d9
+AddIndoorSprites: ; 141d9
 	ld hl, MapObjects + 1 * OBJECT_LENGTH + 1 ; sprite
 	ld a, 1
 .loop
@@ -8882,7 +8921,7 @@ IndoorSpriteGFX: ; 141d9
 ; 141ee
 
 
-OutdoorSpriteGFX: ; 141ee
+AddOutdoorSprites: ; 141ee
 	ld a, [MapGroup]
 	dec a
 	ld c, a
@@ -8905,8 +8944,15 @@ OutdoorSpriteGFX: ; 141ee
 ; 14209
 
 
-INCBIN "baserom.gbc", $14209, $1423c - $14209
+INCBIN "baserom.gbc", $14209, $14236 - $14209
 
+
+SafeGetSprite: ; 14236
+	push hl
+	call GetSprite
+	pop hl
+	ret
+; 1423c
 
 GetSprite: ; 1423c
 	call GetMonSprite
@@ -8999,7 +9045,59 @@ GetMonSprite: ; 14259
 ; 142a7
 
 
-INCBIN "baserom.gbc", $142a7, $142e5 - $142a7
+Function142a7: ; 142a7
+	cp SPRITE_POKEMON
+	jr nc, .asm_142c2
+
+	push hl
+	push bc
+	ld hl, SpriteHeaders + 4
+	dec a
+	ld c, a
+	ld b, 0
+	ld a, 6
+	call AddNTimes
+	ld a, [hl]
+	pop bc
+	pop hl
+	cp 3
+	jr nz, .asm_142c2
+	scf
+	ret
+
+.asm_142c2
+	and a
+	ret
+; 142c4
+
+
+GetSpritePalette: ; 142c4
+	ld a, c
+	call GetMonSprite
+	jr c, .asm_142d8
+
+	ld hl, SpriteHeaders + 5 ; palette
+	dec a
+	ld c, a
+	ld b, 0
+	ld a, 6
+	call AddNTimes
+	ld c, [hl]
+	ret
+
+.asm_142d8
+	xor a
+	ld c, a
+	ret
+; 142db
+
+
+Function142db: ; 142db
+	call LoadSpriteGFX
+	call SortUsedSprites
+	call ArrangeUsedSprites
+	ret
+; 142e5
 
 
 AddSpriteGFX: ; 142e5
@@ -9067,7 +9165,162 @@ LoadSpriteGFX: ; 14306
 ; 1431e
 
 
-INCBIN "baserom.gbc", $1431e, $14495 - $1431e
+SortUsedSprites: ; 1431e
+; Bubble-sort sprites by type.
+
+; Run backwards through UsedSprites to find the last one.
+
+	ld c, $20
+	ld de, UsedSprites + ($20 - 1) * 2
+.FindLastSprite
+	ld a, [de]
+	and a
+	jr nz, .FoundLastSprite
+	dec de
+	dec de
+	dec c
+	jr nz, .FindLastSprite
+.FoundLastSprite
+	dec c
+	jr z, .quit
+
+; If the length of the current sprite is
+; higher than a later one, swap them.
+
+	inc de
+	ld hl, UsedSprites + 1
+
+.CheckSprite
+	push bc
+	push de
+	push hl
+
+.CheckFollowing
+	ld a, [de]
+	cp [hl]
+	jr nc, .next
+
+; Swap the two sprites.
+
+	ld b, a
+	ld a, [hl]
+	ld [hl], b
+	ld [de], a
+	dec de
+	dec hl
+	ld a, [de]
+	ld b, a
+	ld a, [hl]
+	ld [hl], b
+	ld [de], a
+	inc de
+	inc hl
+
+; Keep doing this until everything's in order.
+
+.next
+	dec de
+	dec de
+	dec c
+	jr nz, .CheckFollowing
+
+	pop hl
+	inc hl
+	inc hl
+	pop de
+	pop bc
+	dec c
+	jr nz, .CheckSprite
+
+.quit
+	ret
+; 14355
+
+
+ArrangeUsedSprites: ; 14355
+; Get the length of each sprite and space them out in VRAM.
+; Crystal introduces a second table in VRAM bank 0.
+
+	ld hl, UsedSprites
+	ld c, $20
+	ld b, 0
+.FirstTableLength
+; Keep going until the end of the list.
+	ld a, [hli]
+	and a
+	jr z, .quit
+
+	ld a, [hl]
+	call GetSpriteLength
+
+; Spill over into the second table after $80 tiles.
+	add b
+	cp $80
+	jr z, .next
+	jr nc, .SecondTable
+
+.next
+	ld [hl], b
+	inc hl
+	ld b, a
+
+; Assumes the next table will be reached before c hits 0.
+	dec c
+	jr nz, .FirstTableLength
+
+.SecondTable
+; The second tile table starts at tile $80.
+	ld b, $80
+	dec hl
+.SecondTableLength
+; Keep going until the end of the list.
+	ld a, [hli]
+	and a
+	jr z, .quit
+
+	ld a, [hl]
+	call GetSpriteLength
+
+; There are only two tables, so don't go any further than that.
+	add b
+	jr c, .quit
+
+	ld [hl], b
+	ld b, a
+	inc hl
+
+	dec c
+	jr nz, .SecondTableLength
+
+.quit
+	ret
+; 14386
+
+
+GetSpriteLength: ; 14386
+; Return the length of sprite type a in tiles.
+
+	cp WALKING_SPRITE
+	jr z, .AnyDirection
+	cp STANDING_SPRITE
+	jr z, .AnyDirection
+	cp STILL_SPRITE
+	jr z, .OneDirection
+
+	ld a, 12
+	ret
+
+.AnyDirection
+	ld a, 12
+	ret
+
+.OneDirection
+	ld a, 4
+	ret
+; 1439b
+
+
+INCBIN "baserom.gbc", $1439b, $14495 - $1439b
 
 
 SpriteMons: ; 14495
