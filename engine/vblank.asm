@@ -146,12 +146,12 @@ VBlank0: ; 2b1
 	xor a
 	ld [VBlankOccurred], a
 	
-; dec $cfb1 until 0
-	ld a, [$cfb1]
+; dec OverworldDelay until 0
+	ld a, [OverworldDelay]
 	and a
 	jr z, .textdelay
 	dec a
-	ld [$cfb1], a
+	ld [OverworldDelay], a
 	
 .textdelay
 ; dec text delay counter until 0

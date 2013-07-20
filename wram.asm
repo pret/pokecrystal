@@ -845,7 +845,9 @@ TileX: ; cf83
 
 
 
-SECTION "VBlank",BSS[$cfb2]
+SECTION "VBlank",BSS[$cfb1]
+OverworldDelay: ; cfb1
+	ds 1
 TextDelayFrames: ; cfb2
 	ds 1
 VBlankOccurred: ; cfb3
@@ -1086,7 +1088,12 @@ SECTION "UsedSprites",BSS[$d154]
 UsedSprites: ; d154
 	ds 32
 
-SECTION "connections",BSS[$d1a9]
+SECTION "map",BSS[$d1a3]
+
+MapEventBank: ; d1a3
+	ds 1
+
+	ds 5
 
 MapConnections:
 
@@ -1534,8 +1541,10 @@ SECTION "Scripting",BSS[$d434]
 ScriptFlags: ; d434
 SCRIPT_RUNNING EQU 2
 	ds 1
-
-	ds 2
+ScriptFlags2: ; d435
+	ds 1
+ScriptFlags3: ; d436
+	ds 1
 
 ScriptMode: ; d437
 SCRIPT_OFF EQU 0
