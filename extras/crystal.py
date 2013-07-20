@@ -2811,7 +2811,7 @@ pksv_crystal_more = {
     0x8F: ["ptpriorityjump", ["pointer", ScriptPointerLabelParam]],
     0x90: ["return"],
     0x91: ["end"],
-    0x92: ["reloadandreturn"],
+    0x92: ["reloadandreturn", ["which_method", SingleByteParam]],
     0x93: ["resetfuncs"],
     0x94: ["pokemart", ["dialog_id", SingleByteParam], ["mart_id", MultiByteParam]], # maybe it should be a pokemark constant id/label?
     0x95: ["elevator", ["floor_list_pointer", PointerLabelParam]],
