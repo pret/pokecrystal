@@ -101,9 +101,10 @@ RTC: ; 46f
 	ld a, [VramState]
 	bit 0, a ; obj update
 	ret z
-	
-; update palettes
-	callab TimeOfDayPals
+; 47e
+
+TimeOfDayPals: ; 47e
+	callab _TimeOfDayPals
 	ret
 ; 485
 
@@ -2130,7 +2131,9 @@ SafeTileAnimation: ; 17d3
 	ret
 ; 17ff
 
+
 INCBIN "baserom.gbc", $17ff, $185d - $17ff
+
 
 GetTileType: ; 185d
 ; checks the properties of a tile
@@ -2155,7 +2158,9 @@ GetTileType: ; 185d
 	ret
 ; 1875
 
+
 INCBIN "baserom.gbc", $1875, $18a0 - $1875
+
 
 CheckCounterTile: ; 18a0
 	cp $90
@@ -2164,7 +2169,12 @@ CheckCounterTile: ; 18a0
 	ret
 ; 18a6
 
-INCBIN "baserom.gbc", $18a6, $18ac - $18a6
+CheckPitTile: ; 18a6
+	cp $60
+	ret z
+	cp $68
+	ret
+; 18ac
 
 CheckIceTile: ; 18ac
 	cp $23
@@ -3090,7 +3100,13 @@ GetAnyMapHeaderMember: ; 0x2c0c
 ; 0x2c1c
 
 
-INCBIN "baserom.gbc", $2c1c, $2c5b - $2c1c
+INCBIN "baserom.gbc", $2c1c, $2c57 - $2c1c
+
+
+GetMapEventBank: ; 2c57
+	ld a, [MapEventBank]
+	ret
+; 2c5b
 
 
 GetAnyMapBlockdataBank: ; 2c5b
@@ -4580,7 +4596,7 @@ CheckTrainerBattle: ; 360d
 	ld [$d040], a
 
 .asm_367e
-	call $2c57
+	call GetMapEventBank
 	ld [EngineBuffer1], a
 	ld a, [$ffe0]
 	call GetMapObject
@@ -6481,7 +6497,7 @@ SECTION "bank3",DATA,BANK[$3]
 INCBIN "baserom.gbc", $c000, $29
 
 SpecialsPointers: ; 0xc029
-	dbw $25, $7c28
+	dbw BANK(Function97c28), Function97c28
 	dbw $0a, $5ce8
 	dbw $0a, $5d11
 	dbw $0a, $5d92
@@ -17009,7 +17025,7 @@ SECTION "bank23",DATA,BANK[$23]
 
 INCBIN "baserom.gbc", $8c000, $8c011 - $8c000
 
-TimeOfDayPals: ; 8c011
+_TimeOfDayPals: ; 8c011
 ; return carry if pals are changed
 
 ; forced pals?
@@ -18347,7 +18363,183 @@ INCLUDE "maps/map_headers.asm"
 INCLUDE "maps/second_map_headers.asm"
 
 
-INCBIN "baserom.gbc", $966b0, $96795 - $966b0
+Function966b0: ; 966b0
+	xor a
+	ld [$d432], a
+.asm_966b4
+	ld a, [$d432]
+	ld hl, .pointers
+	rst JumpTable
+	ld a, [$d432]
+	cp 3 ; done
+	jr nz, .asm_966b4
+.done
+	ret
+
+.pointers
+	dw Function96724
+	dw Function9673e
+	dw Function96773
+	dw .done
+; 966cb
+
+
+Function966cb: ; 966cb
+	xor a
+	ld [ScriptFlags3], a
+	ret
+; 966d0
+
+Function966d0: ; 966d0
+	ld a, $ff
+	ld [ScriptFlags3], a
+	ret
+; 966d6
+
+Function966d6: ; 966d6
+	ld hl, ScriptFlags3
+	bit 5, [hl]
+	ret
+; 966dc
+
+Function966dc: ; 966dc
+	ld hl, ScriptFlags3
+	res 2, [hl]
+	ret
+; 966e2
+
+Function966e2: ; 966e2
+	ld hl, ScriptFlags3
+	res 1, [hl]
+	ret
+; 966e8
+
+Function966e8: ; 966e8
+	ld hl, ScriptFlags3
+	res 0, [hl]
+	ret
+; 966ee
+
+Function966ee: ; 966ee
+	ld hl, ScriptFlags3
+	res 4, [hl]
+	ret
+; 966f4
+
+Function966f4: ; 966f4
+	ld hl, ScriptFlags3
+	set 2, [hl]
+	ret
+; 966fa
+
+Function966fa: ; 966fa
+	ld hl, ScriptFlags3
+	set 1, [hl]
+	ret
+; 96700
+
+Function96700: ; 96700
+	ld hl, ScriptFlags3
+	set 0, [hl]
+	ret
+; 96706
+
+Function96706: ; 96706
+	ld hl, ScriptFlags3
+	set 4, [hl]
+	ret
+; 9670c
+
+Function9670c: ; 9670c
+	ld hl, ScriptFlags3
+	bit 2, [hl]
+	ret
+; 96712
+
+Function96712: ; 96712
+	ld hl, ScriptFlags3
+	bit 1, [hl]
+	ret
+; 96718
+
+Function96718: ; 96718
+	ld hl, ScriptFlags3
+	bit 0, [hl]
+	ret
+; 9671e
+
+Function9671e: ; 9671e
+	ld hl, ScriptFlags3
+	bit 4, [hl]
+	ret
+; 96724
+
+
+Function96724: ; 96724
+	xor a
+	ld [ScriptVar], a
+	xor a
+	ld [ScriptRunning], a
+	ld hl, $d432
+	ld bc, $3e
+	call ByteFill
+	ld a, $4
+	ld hl, $53e5
+	rst FarCall
+	call $092f
+	; fallthrough
+; 9673e
+
+
+Function9673e: ; 9673e
+	xor a
+	ld [$d453], a
+	ld [$d454], a
+	call Function968d1
+	ld a, $5
+	ld hl, $5363
+	rst FarCall
+	call Function966cb
+	ld a, [$ff9f]
+	cp $f7
+	jr nz, .asm_9675a
+	call Function966d0
+.asm_9675a
+	ld a, [$ff9f]
+	cp $f3
+	jr nz, .asm_96764
+	xor a
+	ld [PoisonStepCount], a
+.asm_96764
+	xor a
+	ld [$ff9f], a
+	ld a, $2
+	ld [$d432], a
+	ret
+; 9676d
+
+
+Function9676d: ; 9676d
+	ld c, 30
+	call DelayFrames
+	ret
+; 96773
+
+
+Function96773: ; 96773
+	call ResetOverworldDelay
+	call Function967c1
+	callba Function97e08
+	call DoEvents
+	ld a, [$d432]
+	cp 2
+	ret nz
+	call Function967d1
+	call NextOverworldFrame
+	call Function967e1
+	call Function967f4
+	ret
+; 96795
 
 
 DoEvents: ; 96795
@@ -18355,15 +18547,15 @@ DoEvents: ; 96795
 	ld hl, .pointers
 	rst JumpTable
 	ret
-; 9679d
 
 .pointers
 	dw Function967a1
 	dw Function967ae
+; 967a1
 
 Function967a1: ; 967a1
 	call PlayerEvents
-	call $66cb
+	call Function966cb
 	callba ScriptEvents
 	ret
 ; 967ae
@@ -18373,19 +18565,102 @@ Function967ae: ; 967ae
 ; 967af
 
 
-INCBIN "baserom.gbc", $967af, $9681f - $967af
+MaxOverworldDelay: ; 967af
+	db 2
+; 967b0
+
+ResetOverworldDelay: ; 967b0
+	ld a, [MaxOverworldDelay]
+	ld [OverworldDelay], a
+	ret
+; 967b7
+
+NextOverworldFrame: ; 967b7
+	ld a, [OverworldDelay]
+	and a
+	ret z
+	ld c, a
+	call DelayFrames
+	ret
+; 967c1
+
+
+Function967c1: ; 967c1
+	ld a, [$d433]
+	cp 1
+	ret z
+	call UpdateTime
+	call GetJoypadPublic
+	call TimeOfDayPals
+	ret
+; 967d1
+
+Function967d1: ; 967d1
+	ld a, $1
+	ld hl, $576a
+	rst FarCall
+	ld a, $3
+	ld hl, $5497
+	rst FarCall
+	call Function96812
+	ret
+; 967e1
+
+Function967e1: ; 967e1
+	ld a, $1
+	ld hl, $5920
+	rst FarCall
+	ld a, $3
+	ld hl, $54d2
+	rst FarCall
+	ld a, $2e
+	ld hl, $4098
+	rst FarCall
+	ret
+; 967f4
+
+Function967f4: ; 967f4
+	ld a, [$d150]
+	bit 5, a
+	jr z, .asm_96806
+	bit 6, a
+	jr z, .asm_9680c
+	bit 4, a
+	jr nz, .asm_9680c
+	call Function966d0
+
+.asm_96806
+	ld a, $0
+	ld [$d433], a
+	ret
+
+.asm_9680c
+	ld a, $1
+	ld [$d433], a
+	ret
+; 96812
+
+Function96812: ; 96812
+	ld hl, $d150
+	bit 6, [hl]
+	ret z
+	ld a, $2
+	ld hl, $41ca
+	rst FarCall
+
+	ret
+; 9681f
 
 
 PlayerEvents: ; 9681f
 
-; Reset carry.
 	xor a
 
 	ld a, [ScriptRunning]
 	and a
 	ret nz
 
-	call $68e4
+	call Function968e4
 
 	call CheckTrainerBattle3
 	jr c, .asm_96848
@@ -18393,13 +18668,13 @@ PlayerEvents: ; 9681f
 	call CheckTileEvent
 	jr c, .asm_96848
 
-	call $7c30
+	call Function97c30
 	jr c, .asm_96848
 
-	call $68ec
+	call Function968ec
 	jr c, .asm_96848
 
-	call $693a
+	call Function9693a
 	jr c, .asm_96848
 
 	call OWPlayerInput
@@ -18411,13 +18686,11 @@ PlayerEvents: ; 9681f
 
 .asm_96848
 	push af
-	ld a, $25
-	ld hl, $6c56
-	rst FarCall
+	callba Function96c56
 	pop af
 
 	ld [ScriptRunning], a
-	call $6beb
+	call Function96beb
 	ld a, [ScriptRunning]
 	cp 4
 	jr z, .asm_96865
@@ -18451,7 +18724,7 @@ CheckTrainerBattle3: ; 96867
 CheckTileEvent: ; 96874
 ; Check for warps, tile triggers or wild battles.
 
-	call $670c
+	call Function9670c
 	jr z, .asm_96886
 
 	ld a, $41
@@ -18463,26 +18736,25 @@ CheckTileEvent: ; 96874
 	jr c, .asm_968aa
 
 .asm_96886
-	call $6712
+	call Function96712
 	jr z, .asm_96890
 
 	call $2ad4
 	jr c, .asm_968ba
 
 .asm_96890
-	call $6718
+	call Function96718
 	jr z, .asm_96899
 
-	call $6b79
+	call CountStep
 	ret c
 
 .asm_96899
-	call $671e
+	call Function9671e
 	jr z, .asm_968a4
 
-	call $7cc0
+	call Function97cc0
 	ret c
-
 	jr .asm_968a4
 
 .asm_968a4
@@ -18496,7 +18768,7 @@ CheckTileEvent: ; 96874
 
 .asm_968aa
 	ld a, [StandingTile]
-	call $18a6
+	call CheckPitTile
 	jr nz, .asm_968b6
 	ld a, 6
 	scf
@@ -18512,13 +18784,142 @@ CheckTileEvent: ; 96874
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	call $2c57
+	call GetMapEventBank
 	call PushScriptPointer
 	ret
 ; 968c7
 
 
-INCBIN "baserom.gbc", $968c7, $96974 - $968c7
+Function968c7: ; 968c7
+	ld hl, $d452
+	ld a, [hl]
+	and a
+	ret z
+	dec [hl]
+	ret z
+	scf
+	ret
+; 968d1
+
+Function968d1: ; 968d1
+	ld a, 5
+	ld [$d452], a
+	ret
+; 968d7
+
+Function968d7: ; 968d7
+	ret
+; 968d8
+
+Function968d8: ; 968d8
+	ld a, [$d452]
+	cp 2
+	ret nc
+	ld a, 2
+	ld [$d452], a
+	ret
+; 968e4
+
+Function968e4: ; 968e4
+	call Function966d6
+	ret z
+	call $2f3e
+	ret
+; 968ec
+
+Function968ec: ; 968ec
+	ld a, [$dc07]
+	and a
+	jr z, .asm_96938
+
+	ld c, a
+	call $211b
+	cp c
+	jr nc, .asm_96938
+
+	ld e, a
+	ld d, 0
+	ld hl, $dc08
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	add hl, de
+	add hl, de
+	add hl, de
+	add hl, de
+
+	call GetMapEventBank
+	call GetFarHalfword
+	call GetMapEventBank
+	call PushScriptPointer
+
+	ld hl, ScriptFlags
+	res 3, [hl]
+
+	callba Function96c56
+	callba ScriptEvents
+
+	ld hl, ScriptFlags
+	bit 3, [hl]
+	jr z, .asm_96938
+
+	ld hl, $d44f
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	ld a, [$d44e]
+	call PushScriptPointer
+	scf
+	ret
+
+.asm_96938
+	xor a
+	ret
+; 9693a
+
+Function9693a: ; 9693a
+	ld a, [InLinkBattle]
+	and a
+	jr nz, .asm_96964
+	ld hl, StatusFlags2
+	bit 2, [hl]
+	jr z, .asm_96951
+	ld a, $4
+	ld hl, $54a4
+	rst FarCall
+	jr c, .asm_96966
+	xor a
+	ret
+
+.asm_96951
+	ld a, $4
+	ld hl, $5452
+	rst FarCall
+	ld a, $4
+	ld hl, $54e7
+	rst FarCall
+	ld a, $24
+	ld hl, $4074
+	rst FarCall
+	ret c
+
+.asm_96964
+	xor a
+	ret
+
+.asm_96966
+	ld a, $4
+	ld hl, $75f8
+	call PushScriptPointer
+	scf
+	ret
+; 96970
+
+Function96970: ; 96970
+	ld a, 8
+	scf
+	ret
+; 96974
 
 
 OWPlayerInput: ; 96974
@@ -18559,7 +18960,7 @@ CheckAPressOW: ; 96999
 	ret c
 	call TryReadSign
 	ret c
-	call $7c5f
+	call Function97c5f
 	ret c
 	xor a
 	ret
@@ -18632,7 +19033,7 @@ TryObjectEvent: ; 969b5
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	call $2c57
+	call GetMapEventBank
 	call PushScriptPointer
 ;	ld a, -1
 	ret
@@ -18644,7 +19045,7 @@ TryObjectEvent: ; 969b5
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	call $2c57
+	call GetMapEventBank
 	ld de, EngineBuffer1
 	ld bc, 2
 	call FarCopyBytes
@@ -18722,7 +19123,7 @@ TryReadSign: ; 96a38
 	ld a, [PlayerDirection]
 	and %1100
 	cp b
-	jp nz, $6ad6
+	jp nz, .dontread
 
 .read
 	call PlayTalkObject
@@ -18730,16 +19131,16 @@ TryReadSign: ; 96a38
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	call $2c57
+	call GetMapEventBank
 	call PushScriptPointer
 	scf
 	ret
 
 .itemifset
 	call CheckSignFlag
-	jp nz, $6ad6
+	jp nz, .dontread
 	call PlayTalkObject
-	call $2c57
+	call GetMapEventBank
 	ld de, EngineBuffer1
 	ld bc, 3
 	call FarCopyBytes
@@ -18752,7 +19153,7 @@ TryReadSign: ; 96a38
 .asm_96aa2
 	call CheckSignFlag
 	jr nz, .dontread
-	call $2c57
+	call GetMapEventBank
 	ld de, EngineBuffer1
 	ld bc, 3
 	call FarCopyBytes
@@ -18773,9 +19174,9 @@ TryReadSign: ; 96a38
 	pop hl
 	inc hl
 	inc hl
-	call $2c57
+	call GetMapEventBank
 	call GetFarHalfword
-	call $2c57
+	call GetMapEventBank
 	call PushScriptPointer
 	scf
 	ret
@@ -18792,7 +19193,7 @@ CheckSignFlag: ; 96ad8
 	ld h, [hl]
 	ld l, a
 	push hl
-	call $2c57
+	call GetMapEventBank
 	call GetFarHalfword
 	ld e, l
 	ld d, h
@@ -18832,7 +19233,7 @@ PlayerMovement: ; 96af0
 ; 96b10
 
 .seven ; 96b10
-	call $68d7 ; empty
+	call Function968d7 ; empty
 	xor a
 	ld c, a
 	ret
@@ -18932,7 +19333,188 @@ SelectMenuCallback: ; 96b66
 ; 96b79
 
 
-INCBIN "baserom.gbc", $96b79, $96c5e - $96b79
+CountStep: ; 96b79
+	ld a, [InLinkBattle]
+	and a
+	jr nz, .asm_96bc9
+
+	ld a, $24
+	ld hl, $4136
+	rst FarCall
+	jr c, .asm_96bcb
+
+	call Function96bd7
+	jr c, .asm_96bcb
+
+	ld hl, PoisonStepCount
+	inc [hl]
+	ld hl, StepCount
+	inc [hl]
+	jr nz, .asm_96b9c
+
+	ld a, $1
+	ld hl, $725a
+	rst FarCall
+
+.asm_96b9c
+	ld a, [StepCount]
+	cp $80
+	jr nz, .asm_96bab
+
+	ld a, $5
+	ld hl, $6f3e
+	rst FarCall
+	jr nz, .asm_96bcf
+
+.asm_96bab
+	ld a, $1
+	ld hl, $7282
+	rst FarCall
+
+	ld hl, PoisonStepCount
+	ld a, [hl]
+	cp 4
+	jr c, .asm_96bc3
+	ld [hl], 0
+
+	ld a, $14
+	ld hl, $45da
+	rst FarCall
+	jr c, .asm_96bcb
+
+.asm_96bc3
+	callba Function97db3
+
+.asm_96bc9
+	xor a
+	ret
+
+.asm_96bcb
+	ld a, -1
+	scf
+	ret
+
+.asm_96bcf
+	ld a, 8
+	scf
+	ret
+; 96bd3
+
+
+Function96bd3: ; 96bd3
+	ld a, $7
+	scf
+	ret
+; 96bd7
+
+Function96bd7: ; 96bd7
+	ld a, [$dca1]
+	and a
+	ret z
+	dec a
+	ld [$dca1], a
+	ret nz
+	ld a, $4
+	ld hl, $7619
+	call PushScriptPointer
+	scf
+	ret
+; 96beb
+
+Function96beb: ; 96beb
+	ld a, [ScriptRunning]
+	and a
+	ret z
+	cp $ff
+	ret z
+	cp $a
+	ret nc
+
+	ld c, a
+	ld b, 0
+	ld hl, ScriptPointers96c0c
+	add hl, bc
+	add hl, bc
+	add hl, bc
+	ld a, [hli]
+	ld [ScriptBank], a
+	ld a, [hli]
+	ld [ScriptPos], a
+	ld a, [hl]
+	ld [ScriptPos + 1], a
+	ret
+; 96c0c
+
+ScriptPointers96c0c: ; 96c0c
+	dbw BANK(UnknownScript_0x96c2d), UnknownScript_0x96c2d
+	dbw $2f, $6675 ; BANK(UnknownScript_0xbe675), UnknownScript_0xbe675
+	dbw $2f, $666a ; BANK(UnknownScript_0xbe66a), UnknownScript_0xbe66a
+	dbw $04, $62ce ; BANK(UnknownScript_0x122ce), UnknownScript_0x122ce
+	dbw BANK(UnknownScript_0x96c4d), UnknownScript_0x96c4d
+	dbw BANK(UnknownScript_0x96c34), UnknownScript_0x96c34
+	dbw BANK(FallIntoMapScript), FallIntoMapScript
+	dbw $04, $64c8 ; BANK(UnknownScript_0x124c8), UnknownScript_0x124c8
+	dbw BANK(UnknownScript_0x96c2f), UnknownScript_0x96c2f
+	dbw BANK(UnknownScript_0x96c4f), UnknownScript_0x96c4f
+	dbw BANK(UnknownScript_0x96c2d), UnknownScript_0x96c2d
+; 96c2d
+
+UnknownScript_0x96c2d: ; 96c2d
+	end
+; 96c2e
+
+UnknownScript_0x96c2e: ; 96c2e
+	end
+; 96c2f
+
+UnknownScript_0x96c2f: ; 96c2f
+	3callasm $05, $6f5e
+	end
+; 96c34
+
+UnknownScript_0x96c34: ; 96c34
+	warpsound
+	newloadmap $f5
+	end
+; 96c38
+
+FallIntoMapScript: ; 96c38
+	newloadmap $f6
+	playsound SFX_KINESIS
+	applymovement $0, MovementData_0x96c48
+	playsound SFX_STRENGTH
+	2call UnknownScript_0x96c4a
+	end
+; 96c48
+
+MovementData_0x96c48: ; 96c48
+	skyfall
+	step_end
+; 96c4a
+
+UnknownScript_0x96c4a: ; 96c4a
+	earthquake 16
+	end
+; 96c4d
+
+UnknownScript_0x96c4d: ; 96c4d
+	reloadandreturn $f7
+; 96c4f
+
+UnknownScript_0x96c4f: ; 96c4f
+	deactivatefacing $3
+	3callasm BANK(Function96706), Function96706
+	end
+; 96c56
+
+
+Function96c56: ; 96c56
+	push af
+	ld a, 1
+	ld [ScriptMode], a
+	pop af
+	ret
+; 96c5e
 
 
 ScriptEvents: ; 96c5e
@@ -19002,7 +19584,657 @@ RunScriptCommand: ; 96ca9
 INCLUDE "engine/scripting.asm"
 
 
-INCBIN "baserom.gbc", $97c20, $97f7e - $97c20
+Function97c20: ; 97c20
+	ld a, [.byte]
+	ld [ScriptVar], a
+	ret
+
+.byte
+	db 0
+; 97c28
+
+Function97c28: ; 97c28
+	ld hl, StatusFlags2
+	res 1, [hl]
+	res 2, [hl]
+	ret
+; 97c30
+
+Function97c30: ; 97c30
+	ld a, [$d45c]
+	and a
+	ret z
+	ld hl, $d45e
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	ld a, [$d45d]
+	call PushScriptPointer
+	scf
+	push af
+	xor a
+	ld hl, $d45c
+	ld bc, 8
+	call ByteFill
+	pop af
+	ret
+; 97c4f
+
+Function97c4f: ; 97c4f
+	ld hl, $d45c
+	ld a, [hl]
+	and a
+	ret nz
+	ld [hl], 1
+	inc hl
+	ld [hl], b
+	inc hl
+	ld [hl], e
+	inc hl
+	ld [hl], d
+	scf
+	ret
+; 97c5f
+
+Function97c5f: ; 97c5f
+	call GetFacingTileCoord
+	ld [EngineBuffer1], a
+	ld c, a
+	ld a, $4
+	ld hl, $765b
+	rst FarCall
+	jr c, .asm_97cb9
+	call $1894
+	jr nz, .asm_97c7b
+	ld a, $3
+	ld hl, $5186
+	rst FarCall
+	jr .asm_97cb9
+
+.asm_97c7b
+	ld a, [EngineBuffer1]
+	call CheckWhirlpoolTile
+	jr nz, .asm_97c8b
+	ld a, $3
+	ld hl, $4e3e
+	rst FarCall
+	jr .asm_97cb9
+
+.asm_97c8b
+	ld a, [EngineBuffer1]
+	call CheckWaterfallTile
+	jr nz, .asm_97c9b
+	ld a, $3
+	ld hl, $4b56
+	rst FarCall
+	jr .asm_97cb9
+
+.asm_97c9b
+	ld a, [EngineBuffer1]
+	call $189a
+	jr nz, .asm_97cad
+	ld a, $3
+	ld hl, $4ec9
+	rst FarCall
+	jr c, .asm_97cb9
+	jr .asm_97cb7
+
+.asm_97cad
+	callba CheckSurfOW
+	jr nc, .asm_97cb7
+	jr .asm_97cb9
+
+.asm_97cb7
+	xor a
+	ret
+
+.asm_97cb9
+	call PlayClickSFX
+	ld a, $ff
+	scf
+	ret
+; 97cc0
+
+Function97cc0: ; 97cc0
+	call Function968c7
+	jr c, .asm_97ce2
+	call Function97cfd
+	jr nc, .asm_97ce2
+	ld hl, StatusFlags2
+	bit 2, [hl]
+	jr nz, .asm_97cdb
+	ld a, $a
+	ld hl, $60e7
+	rst FarCall
+	jr nz, .asm_97ce2
+	jr .asm_97ce6
+
+.asm_97cdb
+	call Function97d23
+	jr nc, .asm_97ce2
+	jr .asm_97ced
+
+.asm_97ce2
+	ld a, 1
+	and a
+	ret
+
+.asm_97ce6
+	ld a, BANK(UnknownScript_0x97cf9)
+	ld hl, UnknownScript_0x97cf9
+	jr .asm_97cf4
+
+.asm_97ced
+	ld a, $4
+	ld hl, $75eb
+	jr .asm_97cf4
+
+.asm_97cf4
+	call PushScriptPointer
+	scf
+	ret
+; 97cf9
+
+UnknownScript_0x97cf9: ; 97cf9
+	battlecheck
+	startbattle
+	returnafterbattle
+	end
+; 97cfd
+
+Function97cfd: ; 97cfd
+	ld hl, StatusFlags
+	bit 5, [hl]
+	jr nz, .asm_97d21
+	ld a, [$d19a]
+	cp $4
+	jr z, .asm_97d17
+	cp $7
+	jr z, .asm_97d17
+	ld a, $5
+	ld hl, $49dd
+	rst FarCall
+	jr nc, .asm_97d21
+
+.asm_97d17
+	ld a, [StandingTile]
+	call CheckIceTile
+	jr z, .asm_97d21
+	scf
+	ret
+
+.asm_97d21
+	and a
+	ret
+; 97d23
+
+Function97d23: ; 97d23
+	call Function97d64
+	ret nc
+	call Function97d31
+	ld a, $a
+	ld hl, $61df
+	rst FarCall
+	ret
+; 97d31
+
+Function97d31: ; 97d31
+.asm_97d31
+	call RNG
+	cp 100 << 1
+	jr nc, .asm_97d31
+	srl a
+	ld hl, Table97d87
+	ld de, 4
+.asm_97d40
+	sub [hl]
+	jr c, .asm_97d46
+	add hl, de
+	jr .asm_97d40
+
+.asm_97d46
+	inc hl
+	ld a, [hli]
+	ld [$d22e], a
+	ld a, [hli]
+	ld d, a
+	ld a, [hl]
+	sub d
+	jr nz, .asm_97d54
+	ld a, d
+	jr .asm_97d5f
+
+.asm_97d54
+	ld c, a
+	inc c
+	call RNG
+	ld a, [hRandomAdd]
+	call SimpleDivide
+	add d
+
+.asm_97d5f
+	ld [CurPartyLevel], a
+	xor a
+	ret
+; 97d64
+
+Function97d64: ; 97d64
+	ld a, [StandingTile]
+	call $188e
+	ld b, $66
+	jr z, .asm_97d70
+	ld b, $33
+
+.asm_97d70
+	ld a, $a
+	ld hl, $6124
+	rst FarCall
+	ld a, $a
+	ld hl, $6138
+	rst FarCall
+	call RNG
+	ld a, [hRandomAdd]
+	cp b
+	ret c
+	ld a, 1
+	and a
+	ret
+; 97d87
+
+Table97d87: ; 97d87
+	db 20, $0a, $07, $12
+	db 20, $0d, $07, $12
+	db 10, $0b, $09, $12
+	db 10, $0e, $09, $12
+	db  5, $0c, $0c, $0f
+	db  5, $0f, $0c, $0f
+	db 10, $30, $0a, $10
+	db 10, $2e, $0a, $11
+	db  5, $7b, $0d, $0e
+	db  5, $7f, $0d, $0e
+	db -1, $31, $1e, $28
+; 97db3
+
+Function97db3: ; 97db3
+	nop
+	nop
+	; fallthrough
+; 97db5
+
+Function97db5: ; 97db5
+	ld hl, StatusFlags2
+	bit 4, [hl]
+	jr z, .asm_97df7
+	ld a, [PlayerState]
+	cp $1
+	jr nz, .asm_97df7
+	call $2d05
+	and a
+	jr nz, .asm_97df7
+	ld hl, $dca2
+	ld a, [hli]
+	ld d, a
+	ld e, [hl]
+	cp $ff
+	jr nz, .asm_97dd8
+	ld a, e
+	cp $ff
+	jr z, .asm_97ddc
+
+.asm_97dd8
+	inc de
+	ld [hl], e
+	dec hl
+	ld [hl], d
+
+.asm_97ddc
+	ld a, d
+	cp $4
+	jr c, .asm_97df7
+	ld a, [$dc31]
+	and a
+	jr nz, .asm_97df7
+	ld a, $6
+	ld [$dc31], a
+	xor a
+	ld [$dc32], a
+	ld hl, StatusFlags2
+	res 4, [hl]
+	scf
+	ret
+
+.asm_97df7
+	xor a
+	ret
+; 97df9
+
+Function97df9: ; 97df9
+	ld hl, $d6de
+	ld de, $0006
+	ld c, $4
+	xor a
+.asm_97e02
+	ld [hl], a
+	add hl, de
+	dec c
+	jr nz, .asm_97e02
+	ret
+; 97e08
+
+Function97e08: ; 97e08
+	ld hl, $d6de
+	xor a
+.asm_97e0c
+	ld [hConnectionStripLength], a
+	ld a, [hl]
+	and a
+	jr z, .asm_97e19
+	push hl
+	ld b, h
+	ld c, l
+	call Function97e79
+	pop hl
+
+.asm_97e19
+	ld de, $0006
+	add hl, de
+	ld a, [hConnectionStripLength]
+	inc a
+	cp $4
+	jr nz, .asm_97e0c
+	ret
+; 97e25
+
+Function97e25: ; 97e25
+	ld hl, $d6de
+	ld bc, 6
+	call AddNTimes
+	ld b, h
+	ld c, l
+	ret
+; 97e31
+
+Function97e31: ; 97e31
+	push bc
+	push de
+	call Function97e45
+	ld d, h
+	ld e, l
+	pop hl
+	pop bc
+	ret c
+	ld a, b
+	ld bc, $0005
+	call FarCopyBytes
+	xor a
+	ld [hl], a
+	ret
+; 97e45
+
+Function97e45: ; 97e45
+	ld hl, $d6de
+	ld de, $0006
+	ld c, $4
+.asm_97e4d
+	ld a, [hl]
+	and a
+	jr z, .asm_97e57
+	add hl, de
+	dec c
+	jr nz, .asm_97e4d
+	scf
+	ret
+
+.asm_97e57
+	ld a, $4
+	sub c
+	and a
+	ret
+; 97e5c
+
+Function97e5c: ; 97e5c
+	ld hl, $d6de
+	ld de, $0006
+	ld c, $4
+.asm_97e64
+	ld a, [hl]
+	cp b
+	jr z, .asm_97e6e
+	add hl, de
+	dec c
+	jr nz, .asm_97e64
+	and a
+	ret
+
+.asm_97e6e
+	xor a
+	ld [hl], a
+	scf
+	ret
+; 97e72
+
+Function97e72: ; 97e72
+	ld hl, $0000
+	add hl, bc
+	ld [hl], 0
+	ret
+; 97e79
+
+Function97e79: ; 97e79
+	ld hl, $0000
+	add hl, bc
+	ld a, [hl]
+	cp 5
+	jr c, .asm_97e83
+	xor a
+
+.asm_97e83
+	ld e, a
+	ld d, 0
+	ld hl, Table97e94
+	add hl, de
+	add hl, de
+	add hl, de
+	ld a, [hli]
+	push af
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	pop af
+	rst FarCall
+	ret
+; 97e94
+
+Table97e94: ; 97e94
+	dbw BANK(Function97eb7), Function97eb7
+	dbw BANK(Function97eb8), Function97eb8
+	dbw BANK(Function97f42), Function97f42
+	dbw BANK(Function97ef9), Function97ef9
+	dbw BANK(Function97ebc), Function97ebc
+; 97ea3
+
+Function97ea3: ; 97ea3
+	ld hl, $0005
+	add hl, bc
+	ld a, [hl]
+	pop hl
+	rst JumpTable
+	ret
+; 97eab
+
+Function97eab: ; 97eab
+	ld hl, $0005
+	add hl, bc
+	inc [hl]
+	ret
+; 97eb1
+
+Function97eb1: ; 97eb1
+	ld hl, $0005
+	add hl, bc
+	dec [hl]
+	ret
+; 97eb7
+
+Function97eb7: ; 97eb7
+	ret
+; 97eb8
+
+Function97eb8: ; 97eb8
+	call $2f3e
+	ret
+; 97ebc
+
+Function97ebc: ; 97ebc
+	call Function97ea3
+	dw Function97ec3
+	dw Function97ecd
+; 97ec3
+
+Function97ec3: ; 97ec3
+	ld a, [$ffd0]
+	ld hl, $0004
+	add hl, bc
+	ld [hl], a
+	call Function97eab
+; 97ecd
+
+Function97ecd: ; 97ecd
+	ld hl, $0001
+	add hl, bc
+	ld a, [hl]
+	dec a
+	ld [hl], a
+	jr z, .asm_97eee
+	and $1
+	jr z, .asm_97ee4
+	ld hl, $0002
+	add hl, bc
+	ld a, [$ffd0]
+	sub [hl]
+	ld [$ffd0], a
+	ret
+
+.asm_97ee4
+	ld hl, $0002
+	add hl, bc
+	ld a, [$ffd0]
+	add [hl]
+	ld [$ffd0], a
+	ret
+
+.asm_97eee
+	ld hl, $0004
+	add hl, bc
+	ld a, [hl]
+	ld [$ffd0], a
+	call Function97e72
+	ret
+; 97ef9
+
+Function97ef9: ; 97ef9
+	call Function97ea3
+	dw Function97f02
+	dw Function97f0a
+	dw Function97f1b
+; 97f02
+
+Function97f02: ; 97f02
+	call Function97f38
+	jr z, Function97f2c
+	call Function97eab
+; 97f0a
+
+Function97f0a: ; 97f0a
+	call Function97f38
+	jr z, Function97f2c
+	call Function97eab
+
+	ld hl, $0002
+	add hl, bc
+	ld a, [hl]
+	ld [$d173], a
+	ret
+; 97f1b
+
+Function97f1b: ; 97f1b
+	call Function97f38
+	jr z, Function97f2c
+	call Function97eb1
+
+	ld hl, $0003
+	add hl, bc
+	ld a, [hl]
+	ld [$d173], a
+	ret
+; 97f2c
+
+Function97f2c: ; 97f2c
+	ld a, $7f
+	ld [$d173], a
+	ld hl, $0005
+	add hl, bc
+	ld [hl], 0
+	ret
+; 97f38
+
+Function97f38: ; 97f38
+	push bc
+	ld bc, $d4d6
+	call GetSpriteDirection
+	and a
+	pop bc
+	ret
+; 97f42
+
+Function97f42: ; 97f42
+	ld de, $d4d6
+	ld a, $d
+.asm_97f47
+	push af
+
+	ld hl, $0000
+	add hl, de
+	ld a, [hl]
+	and a
+	jr z, .asm_97f71
+
+	ld hl, $0003
+	add hl, de
+	ld a, [hl]
+	cp $19
+	jr nz, .asm_97f71
+
+	ld hl, $000e
+	add hl, de
+	ld a, [hl]
+	call CheckPitTile
+	jr nz, .asm_97f71
+
+	ld hl, $0007
+	add hl, de
+	ld a, [hl]
+	cp $ff
+	jr nz, .asm_97f71
+	call $3567
+	jr c, .asm_97f7c
+
+.asm_97f71
+	ld hl, $0028
+	add hl, de
+	ld d, h
+	ld e, l
+
+	pop af
+	dec a
+	jr nz, .asm_97f47
+	ret
+
+.asm_97f7c
+	pop af
+	ret
+; 97f7e
+
 
 
 SECTION "bank26",DATA,BANK[$26]
