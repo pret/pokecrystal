@@ -1573,17 +1573,19 @@ PlayerGender: ; d472
 	ds 8
 PlayerID: ; d47b
 	ds 2
+
 PlayerName: ; d47d
 	ds 11
-PlayerNameEnd: ; d488
-
+MomsName: ; d488
+	ds 11
+RivalName: ; d493
+	ds 11
+RedsName: ; d49e
+	ds 11
+GreensName: ; d4a9
 	ds 11
 
-WRivalName: ; d493
-	ds 11
-WRivalNameEnd: ; d49e
-
-	ds 24
+	ds 2
 
 ; init time set at newgame
 StartDay: ; d4b6
