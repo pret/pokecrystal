@@ -5644,7 +5644,7 @@ Function503d: ; 503d
 ; 5041
 
 Function5041: ; 5041
-	call $5055
+	call Function5055
 .asm_5044
 	xor a
 	ld [$c2ea], a
@@ -5680,7 +5680,7 @@ Function5065: ; 5065
 
 Function506b: ; 506b
 	push af
-	call $54b8
+	call Function54b8
 	pop af
 	ld hl, MovementPointers
 	rst JumpTable
@@ -5693,7 +5693,1846 @@ INCLUDE "engine/movement.asm"
 ; 54b8
 
 
-INCBIN "baserom.gbc", $54b8, $5f99 - $54b8
+Function54b8: ; 54b8
+	ld e, a
+	ld a, [$d4ce]
+	cp $ff
+	ret z
+	ld a, [$d4cd]
+	ld d, a
+	ld a, [hConnectionStripLength]
+	cp d
+	ret nz
+	ld a, e
+	cp $3e
+	ret z
+	cp $47
+	ret z
+	cp $4b
+	ret z
+	cp $50
+	ret z
+	cp $8
+	ret c
+	push af
+	ld hl, $d4d0
+	inc [hl]
+	ld e, [hl]
+	ld d, $0
+	ld hl, $d4d1
+	add hl, de
+	pop af
+	ld [hl], a
+	ret
+; 54e6
+
+Function54e6: ; 54e6
+	ld hl, $d4d0
+	ld a, [hl]
+	and a
+	jr z, .asm_5503
+	cp $ff
+	jr z, .asm_5503
+	dec [hl]
+	ld e, a
+	ld d, $0
+	ld hl, $d4d1
+	add hl, de
+	inc e
+	ld a, $ff
+.asm_54fc
+	ld d, [hl]
+	ld [hld], a
+	ld a, d
+	dec e
+	jr nz, .asm_54fc
+	ret
+
+.asm_5503
+	call Function550a
+	ret c
+	ld a, $3e
+	ret
+; 550a
+
+Function550a: ; 550a
+	ld a, [$d4cd]
+	cp $ff
+	jr z, .asm_5520
+	push bc
+	call $1ae5
+	ld hl, $0000
+	add hl, bc
+	ld a, [hl]
+	pop bc
+	and a
+	jr z, .asm_5520
+	and a
+	ret
+
+.asm_5520
+	ld a, $ff
+	ld [$d4ce], a
+	ld a, $47
+	scf
+	ret
+; 5529
+
+Function5529: ; 5529
+	push bc
+	ld de, .data_5535
+	call Function55b9
+	call Function55ac
+	pop bc
+	ret
+
+.data_5535
+	db $00, $05, $1b
+; 5538
+
+Function5538: ; 5538
+	push bc
+	ld de, .data_5544
+	call Function55b9
+	call Function55ac
+	pop bc
+	ret
+
+.data_5544
+	db $00, $05, $22
+; 5547
+
+Function5547: ; 5547
+	push bc
+	ld de, .data_5553
+	call Function55b9
+	call Function55ac
+	pop bc
+	ret
+
+.data_5553
+	db $00, $05, $1c
+; 5556
+
+Function5556: ; 5556
+	push bc
+	ld de, .data_5562
+	call Function55b9
+	call Function55ac
+	pop bc
+	ret
+
+.data_5562
+	db $00, $06, $23
+; 5565
+
+Function5565: ; 5565
+	push bc
+	push af
+	ld de, .data_5576
+	call Function55b9
+	pop af
+	ld [$c2f5], a
+	call Function55ac
+	pop bc
+	ret
+
+.data_5576
+	db $00, $05, $1d
+; 5579
+
+Function5579: ; 5579
+	push bc
+	ld a, [hConnectionStripLength]
+	ld c, a
+	call Function5582
+	pop bc
+	ret
+; 5582
+
+Function5582: ; 5582
+	ld de, $d4d6
+	ld a, $d
+.asm_5587
+	push af
+	ld hl, $0004
+	add hl, de
+	bit 7, [hl]
+	jr z, .asm_55a1
+	ld hl, $0000
+	add hl, de
+	ld a, [hl]
+	and a
+	jr z, .asm_55a1
+	push bc
+	xor a
+	ld bc, $0028
+	call ByteFill
+	pop bc
+
+.asm_55a1
+	ld hl, $0028
+	add hl, de
+	ld d, h
+	ld e, l
+	pop af
+	dec a
+	jr nz, .asm_5587
+	ret
+; 55ac
+
+Function55ac: ; 55ac
+	call $1a13
+	ret nc
+	ld d, h
+	ld e, l
+	ld a, $2
+	ld hl, $4286
+	rst FarCall
+	ret
+; 55b9
+
+Function55b9: ; 55b9
+	ld hl, $c2f0
+	ld [hl], $ff
+	inc hl
+	ld [hl], $ff
+	inc hl
+	ld a, [de]
+	inc de
+	ld [hli], a
+	ld a, [de]
+	inc de
+	ld [hli], a
+	ld a, [de]
+	ld [hli], a
+	ld a, [hConnectionStripLength]
+	ld [hli], a
+	push hl
+	ld hl, $0010
+	add hl, bc
+	ld d, [hl]
+	ld hl, $0011
+	add hl, bc
+	ld e, [hl]
+	pop hl
+	ld [hl], d
+	inc hl
+	ld [hl], e
+	inc hl
+	ld [hl], $ff
+	ret
+; 55e0
+
+Function55e0: ; 55e0
+	ld a, [VramState]
+	bit 0, a
+	ret z
+	ld bc, $d4d6
+	xor a
+.asm_55ea
+	ld [hConnectionStripLength], a
+	call $1af1
+	jr z, .asm_55f4
+	call Function565c
+
+.asm_55f4
+	ld hl, $0028
+	add hl, bc
+	ld b, h
+	ld c, l
+	ld a, [hConnectionStripLength]
+	inc a
+	cp $d
+	jr nz, .asm_55ea
+	ret
+; 5602
+
+Function5602: ; 5602
+	call Function5645
+	ld a, $0
+	call Function5629
+	ld a, [$d459]
+	bit 7, a
+	jr z, .asm_5619
+	ld a, [$ffe0]
+	and a
+	jr z, .asm_5619
+	call Function5629
+
+.asm_5619
+	call Function5920
+	ret
+; 561d
+
+Function561d: ; 561d
+	call Function5645
+	ld a, $0
+	call Function5629
+	call Function5920
+	ret
+; 5629
+
+Function5629: ; 5629
+	cp $10
+	ret nc
+	call GetMapObject
+	ld hl, $0000
+	add hl, bc
+	ld a, [hl]
+	cp $ff
+	ret z
+	cp $d
+	ret nc
+	call $1ae5
+	call $1af1
+	ret z
+	call Function5673
+	ret
+; 5645
+
+Function5645: ; 5645
+	xor a
+	ld bc, $d4d6
+.asm_5649
+	ld [hConnectionStripLength], a
+	call Function5680
+	ld hl, $0028
+	add hl, bc
+	ld b, h
+	ld c, l
+	ld a, [hConnectionStripLength]
+	inc a
+	cp $d
+	jr nz, .asm_5649
+	ret
+; 565c
+
+Function565c: ; 565c
+	push bc
+	call Function56cd
+	pop bc
+	jr c, Function5680
+	call Function56a3
+	jr c, Function5680
+	call Function5688
+	ld a, $1
+	ld hl, $4440
+	rst FarCall
+	xor a
+	ret
+; 5673
+
+Function5673: ; 5673
+	call Function56a3
+	jr c, Function5680
+	ld a, $1
+	ld hl, $4440
+	rst FarCall
+	xor a
+	ret
+; 5680
+
+Function5680: ; 5680
+	ld hl, $000d
+	add hl, bc
+	ld [hl], $ff
+	scf
+	ret
+; 5688
+
+Function5688: ; 5688
+	push bc
+	ld hl, $0010
+	add hl, bc
+	ld d, [hl]
+	ld hl, $0011
+	add hl, bc
+	ld e, [hl]
+	call $2a3c
+	pop bc
+	ld hl, $000e
+	add hl, bc
+	ld [hl], a
+	ld a, $1
+	ld hl, $463f
+	rst FarCall
+	ret
+; 56a3
+
+Function56a3: ; 56a3
+	ld hl, $0010
+	add hl, bc
+	ld d, [hl]
+	ld hl, $0011
+	add hl, bc
+	ld e, [hl]
+	inc d
+	inc e
+	ld a, [XCoord]
+	cp d
+	jr z, .asm_56bc
+	jr nc, .asm_56cb
+	add $b
+	cp d
+	jr c, .asm_56cb
+
+.asm_56bc
+	ld a, [YCoord]
+	cp e
+	jr z, .asm_56c9
+	jr nc, .asm_56cb
+	add $a
+	cp e
+	jr c, .asm_56cb
+
+.asm_56c9
+	xor a
+	ret
+
+.asm_56cb
+	scf
+	ret
+; 56cd
+
+Function56cd: ; 56cd
+	ld a, [$d14c]
+	ld d, a
+	ld hl, $0019
+	add hl, bc
+	ld a, [hl]
+	ld hl, $0017
+	add hl, bc
+	add [hl]
+	add d
+	cp $f0
+	jr nc, .asm_56e5
+	cp $a0
+	jp nc, $5768
+
+.asm_56e5
+	and $7
+	ld d, $2
+	cp $4
+	jr c, .asm_56ef
+	ld d, $3
+
+.asm_56ef
+	ld a, [hl]
+	srl a
+	srl a
+	srl a
+	cp $14
+	jr c, .asm_56fc
+	sub $20
+
+.asm_56fc
+	ld [$ffbd], a
+	ld a, [$d14d]
+	ld e, a
+	ld hl, $001a
+	add hl, bc
+	ld a, [hl]
+	ld hl, $0018
+	add hl, bc
+	add [hl]
+	add e
+	cp $f0
+	jr nc, .asm_5715
+	cp $90
+	jr nc, .asm_5768
+
+.asm_5715
+	and $7
+	ld e, $2
+	cp $4
+	jr c, .asm_571f
+	ld e, $3
+
+.asm_571f
+	ld a, [hl]
+	srl a
+	srl a
+	srl a
+	cp $12
+	jr c, .asm_572c
+	sub $20
+
+.asm_572c
+	ld [$ffbe], a
+	ld hl, $0006
+	add hl, bc
+	bit 7, [hl]
+	jr z, .asm_573e
+	ld a, d
+	add $2
+	ld d, a
+	ld a, e
+	add $2
+	ld e, a
+
+.asm_573e
+	ld a, d
+	ld [$ffbf], a
+.asm_5741
+	ld a, [$ffbf]
+	ld d, a
+	ld a, [$ffbe]
+	add e
+	dec a
+	cp $12
+	jr nc, .asm_5763
+	ld b, a
+.asm_574d
+	ld a, [$ffbd]
+	add d
+	dec a
+	cp $14
+	jr nc, .asm_5760
+	ld c, a
+	push bc
+	call $1d05
+	pop bc
+	ld a, [hl]
+	cp $60
+	jr nc, .asm_5768
+
+.asm_5760
+	dec d
+	jr nz, .asm_574d
+
+.asm_5763
+	dec e
+	jr nz, .asm_5741
+	and a
+	ret
+
+.asm_5768
+	scf
+	ret
+; 576a
+
+Function576a: ; 576a
+	call Function5771
+	call Function5781
+	ret
+; 5771
+
+Function5771: ; 5771
+	xor a
+	ld [$d14e], a
+	ld [$d14f], a
+	ld [$d150], a
+	ld a, $ff
+	ld [$d151], a
+	ret
+; 5781
+
+Function5781: ; 5781
+	ld bc, $d4d6
+	xor a
+.asm_5785
+	ld [hConnectionStripLength], a
+	call $1af1
+	jr z, .asm_578f
+	call $437b
+
+.asm_578f
+	ld hl, $0028
+	add hl, bc
+	ld b, h
+	ld c, l
+	ld a, [hConnectionStripLength]
+	inc a
+	cp $d
+	jr nz, .asm_5785
+	ret
+; 579d
+
+Function579d: ; 579d
+	ld a, $3e
+	ld [$c2de], a
+	ld [$c2df], a
+	xor a
+	ld [$d04e], a
+	ld [$d4e2], a
+	call Function57bc
+	ld a, $5
+	ld hl, $49c6
+	rst FarCall
+	call c, $57d9
+	call Function57ca
+	ret
+; 57bc
+
+Function57bc: ; 57bc
+	ld hl, $d45b
+	bit 7, [hl]
+	jr nz, .asm_57c4
+	ret
+
+.asm_57c4
+	ld a, $0
+	ld [$d4e1], a
+	ret
+; 57ca
+
+Function57ca: ; 57ca
+	ld hl, $d45b
+	bit 5, [hl]
+	ret z
+	ld a, [$d45b]
+	and $3
+	add a
+	add a
+	jr .asm_57db
+
+	ld a, $0
+
+.asm_57db
+	ld bc, $d4d6
+	call $1af8
+	ret
+; 57e2
+
+Function57e2: ; 57e2
+	ld a, d
+	and $80
+	ret z
+	ld bc, $0000
+	ld hl, $0008
+	add hl, bc
+	ld a, [hl]
+	or d
+	ld [hl], a
+	ld a, d
+	swap a
+	and $7
+	ld d, a
+	ld bc, $d4d6
+	ld hl, $0006
+	add hl, bc
+	ld a, [hl]
+	and $f8
+	or d
+	ld [hl], a
+	ret
+; 5803
+
+Function5803: ; 5803
+	push bc
+	ld a, b
+	call Function5815
+	pop bc
+	ret c
+	ld a, c
+	call Function582c
+	ld a, $2
+	ld hl, $448a
+	rst FarCall
+	ret
+; 5815
+
+Function5815: ; 5815
+	call $18de
+	ret c
+	ld a, [hConnectedMapWidth]
+	ld [$d4cd], a
+	ret
+; 581f
+
+Function581f: ; 581f
+	call Function5826
+	call Function5847
+	ret
+; 5826
+
+Function5826: ; 5826
+	ld a, $ff
+	ld [$d4cd], a
+	ret
+; 582c
+
+Function582c: ; 582c
+	push af
+	call Function5847
+	pop af
+	call $18de
+	ret c
+	ld hl, $0003
+	add hl, bc
+	ld [hl], $13
+	ld hl, $0009
+	add hl, bc
+	ld [hl], $0
+	ld a, [hConnectedMapWidth]
+	ld [$d4ce], a
+	ret
+; 5847
+
+Function5847: ; 5847
+	ld a, [$d4ce]
+	cp $ff
+	ret z
+	call $1ae5
+	callba Function58e3
+	ld a, $ff
+	ld [$d4ce], a
+	ret
+; 585c
+
+Function585c: ; 585c
+	ld a, c
+	call $18de
+	ret c
+	push bc
+	call Function587a
+	pop bc
+	ld hl, $0005
+	add hl, bc
+	res 5, [hl]
+	xor a
+	ret
+; 586e
+
+Function586e: ; 586e
+	call $18de
+	ret c
+	ld hl, $0005
+	add hl, bc
+	set 5, [hl]
+	xor a
+	ret
+; 587a
+
+Function587a: ; 587a
+	ld bc, $d4d6
+	xor a
+.asm_587e
+	push af
+	call $1af1
+	jr z, .asm_588a
+	ld hl, $0005
+	add hl, bc
+	set 5, [hl]
+
+.asm_588a
+	ld hl, $0028
+	add hl, bc
+	ld b, h
+	ld c, l
+	pop af
+	inc a
+	cp $d
+	jr nz, .asm_587e
+	ret
+; 5897
+
+Function5897: ; 5897
+	ld a, [$d4cd]
+	cp $ff
+	ret z
+	push bc
+	call $1ae5
+	ld hl, $0001
+	add hl, bc
+	ld a, [hl]
+	pop bc
+	cp c
+	ret nz
+	ld a, [$d4ce]
+	cp $ff
+	ret z
+	call $1ae5
+	ld hl, $0005
+	add hl, bc
+	res 5, [hl]
+	ret
+; 58b9
+
+Function58b9: ; 58b9
+	push bc
+	ld bc, $d4d6
+	xor a
+.asm_58be
+	push af
+	call $1af1
+	jr z, .asm_58ca
+	ld hl, $0005
+	add hl, bc
+	res 5, [hl]
+
+.asm_58ca
+	ld hl, $0028
+	add hl, bc
+	ld b, h
+	ld c, l
+	pop af
+	inc a
+	cp $d
+	jr nz, .asm_58be
+	pop bc
+	ret
+; 58d8
+
+Function58d8: ; 58d8
+	call $18de
+	ret c
+	ld hl, $0005
+	add hl, bc
+	res 5, [hl]
+	ret
+; 58e3
+
+Function58e3: ; 58e3
+	ld hl, $0001
+	add hl, bc
+	ld a, [hl]
+	cp $ff
+	jp z, Function5903
+	push bc
+	call GetMapObject
+	ld hl, $0004
+	add hl, bc
+	ld a, [hl]
+	pop bc
+	ld hl, $0003
+	add hl, bc
+	ld [hl], a
+	ld hl, $0009
+	add hl, bc
+	ld [hl], $0
+	ret
+; 5903
+
+Function5903: ; 5903
+	call GetSpriteDirection
+	rrca
+	rrca
+	ld e, a
+	ld d, $0
+	ld hl, .data_591c
+	add hl, de
+	ld a, [hl]
+	ld hl, $0003
+	add hl, bc
+	ld [hl], a
+	ld hl, $0009
+	add hl, bc
+	ld [hl], $0
+	ret
+
+.data_591c
+	db 6, 7, 8, 9
+; 5920
+
+Function5920: ; 5920
+	ld a, [VramState]
+	bit 0, a
+	ret z
+	xor a
+	ld [$ffbd], a
+	ld a, [hOAMUpdate]
+	push af
+	ld a, $1
+	ld [hOAMUpdate], a
+	call Function5991
+	call Function593a
+	pop af
+	ld [hOAMUpdate], a
+	ret
+; 593a
+
+Function593a: ; 593a
+	ld a, [VramState]
+	bit 1, a
+	ld b, $a0
+	jr z, .asm_5945
+	ld b, $70
+
+.asm_5945
+	ld a, [$ffbd]
+	cp b
+	ret nc
+	ld l, a
+	ld h, $c4
+	ld de, $0004
+	ld a, b
+	ld c, $a0
+.asm_5952
+	ld [hl], c
+	add hl, de
+	cp l
+	jr nz, .asm_5952
+	ret
+; 5958
+
+Function5958: ; 5958
+	push hl
+	push de
+	push bc
+	ld a, [$d14c]
+	ld d, a
+	ld a, [$d14d]
+	ld e, a
+	ld bc, $d4d6
+	ld a, $d
+.asm_5968
+	push af
+	call $1af1
+	jr z, .asm_597c
+	ld hl, $0017
+	add hl, bc
+	ld a, [hl]
+	add d
+	ld [hl], a
+	ld hl, $0018
+	add hl, bc
+	ld a, [hl]
+	add e
+	ld [hl], a
+
+.asm_597c
+	ld hl, $0028
+	add hl, bc
+	ld b, h
+	ld c, l
+	pop af
+	dec a
+	jr nz, .asm_5968
+	xor a
+	ld [$d14c], a
+	ld [$d14d], a
+	pop bc
+	pop de
+	pop hl
+	ret
+; 5991
+
+Function5991: ; 5991
+	call Function59a4
+	ld c, $30
+	call Function59f3
+	ld c, $20
+	call Function59f3
+	ld c, $10
+	call Function59f3
+	ret
+; 59a4
+
+Function59a4: ; 59a4
+	xor a
+	ld hl, $c2eb
+	ld bc, $000d
+	call ByteFill
+	ld d, $0
+	ld bc, $d4d6
+	ld hl, $c2eb
+.asm_59b6
+	push hl
+	call $1af1
+	jr z, .asm_59d9
+	ld hl, $000d
+	add hl, bc
+	ld a, [hl]
+	cp $ff
+	jr z, .asm_59d9
+	ld e, $10
+	ld hl, $0005
+	add hl, bc
+	bit 0, [hl]
+	jr nz, .asm_59e2
+	ld e, $20
+	bit 1, [hl]
+	jr z, .asm_59e2
+	ld e, $30
+	jr .asm_59e2
+
+.asm_59d9
+	ld hl, $0028
+	add hl, bc
+	ld b, h
+	ld c, l
+	pop hl
+	jr .asm_59ec
+
+.asm_59e2
+	ld hl, $0028
+	add hl, bc
+	ld b, h
+	ld c, l
+	pop hl
+	ld a, d
+	or e
+	ld [hli], a
+
+.asm_59ec
+	inc d
+	ld a, d
+	cp $d
+	jr nz, .asm_59b6
+	ret
+; 59f3
+
+Function59f3: ; 59f3
+	ld hl, $c2eb
+.asm_59f6
+	ld a, [hli]
+	ld d, a
+	and $f0
+	ret z
+	cp c
+	jr nz, .asm_59f6
+	push bc
+	push hl
+	ld a, d
+	and $f
+	call Function5ac2
+	call Function5a0d
+	pop hl
+	pop bc
+	jr .asm_59f6
+; 5a0d
+
+Function5a0d: ; 5a0d
+	ld hl, $0002
+	add hl, bc
+	ld a, [hl]
+	and $7f
+	ld [$ffc1], a
+	xor a
+	bit 7, [hl]
+	jr nz, .asm_5a1d
+	or $8
+
+.asm_5a1d
+	ld hl, $0005
+	add hl, bc
+	ld e, [hl]
+	bit 7, e
+	jr z, .asm_5a28
+	or $80
+
+.asm_5a28
+	bit 4, e
+	jr z, .asm_5a2e
+	or $10
+
+.asm_5a2e
+	ld hl, $0006
+	add hl, bc
+	ld d, a
+	ld a, [hl]
+	and $7
+	or d
+	ld d, a
+	xor a
+	bit 3, e
+	jr z, .asm_5a3f
+	or $80
+
+.asm_5a3f
+	ld [$ffc2], a
+	ld hl, $0017
+	add hl, bc
+	ld a, [hl]
+	ld hl, $0019
+	add hl, bc
+	add [hl]
+	add $8
+	ld e, a
+	ld a, [$d14c]
+	add e
+	ld [$ffbf], a
+	ld hl, $0018
+	add hl, bc
+	ld a, [hl]
+	ld hl, $001a
+	add hl, bc
+	add [hl]
+	add $c
+	ld e, a
+	ld a, [$d14d]
+	add e
+	ld [$ffc0], a
+	ld hl, $000d
+	add hl, bc
+	ld a, [hl]
+	cp $ff
+	jp z, .asm_5abe
+
+	cp $20
+	jp nc, .asm_5abe
+	ld l, a
+	ld h, $0
+	add hl, hl
+	ld bc, $4049
+	add hl, bc
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	ld a, [$ffbd]
+	ld c, a
+	ld b, $c4
+	ld a, [hli]
+	ld [$ffbe], a
+	add c
+	cp $a0
+	jr nc, .asm_5ac0
+
+.asm_5a8e
+	ld a, [$ffc0]
+	add [hl]
+	inc hl
+	ld [bc], a
+	inc c
+	ld a, [$ffbf]
+	add [hl]
+	inc hl
+	ld [bc], a
+	inc c
+	ld e, [hl]
+	inc hl
+	ld a, [$ffc1]
+	bit 2, e
+	jr z, .asm_5aa3
+	xor a
+
+.asm_5aa3
+	add [hl]
+	inc hl
+	ld [bc], a
+	inc c
+	ld a, e
+	bit 1, a
+	jr z, .asm_5aaf
+	ld a, [$ffc2]
+	or e
+
+.asm_5aaf
+	and $f0
+	or d
+	ld [bc], a
+	inc c
+	ld a, [$ffbe]
+	dec a
+	ld [$ffbe], a
+	jr nz, .asm_5a8e
+	ld a, c
+	ld [$ffbd], a
+
+.asm_5abe
+	xor a
+	ret
+
+.asm_5ac0
+	scf
+	ret
+; 5ac2
+
+Function5ac2: ; 5ac2
+	ld c, a
+	ld b, 0
+	ld hl, .Addresses
+	add hl, bc
+	add hl, bc
+	ld c, [hl]
+	inc hl
+	ld b, [hl]
+	ret
+; 5ace
+
+.Addresses ; 5ace
+	dw $d4d6
+	dw $d4fe
+	dw $d526
+	dw $d54e
+	dw $d576
+	dw $d59e
+	dw $d5c6
+	dw $d5ee
+	dw $d616
+	dw $d63e
+	dw $d666
+	dw $d68e
+	dw $d6b6
+; 5ae8
+
+Function5ae8: ; 5ae8
+	ld de, MUSIC_NONE
+	call StartMusic
+	call DelayFrame
+	ld de, $0054
+	ld a, e
+	ld [CurMusic], a
+	call StartMusic
+	ld a, $12
+	ld hl, $5cdc
+	rst FarCall
+	jp $6219
+; 5b04
+
+Function5b04: ; 5b04
+	ret
+; 5b05
+
+Function5b05: ; 5b05
+	push de
+	ld hl, .Days
+	ld a, b
+	call GetNthString
+	ld d, h
+	ld e, l
+	pop hl
+	call PlaceString
+	ld h, b
+	ld l, c
+	ld de, .Day
+	call PlaceString
+	ret
+; 5b1c
+
+.Days ; 5b1c
+	db "SUN@"
+	db "MON@"
+	db "TUES@"
+	db "WEDNES@"
+	db "THURS@"
+	db "FRI@"
+	db "SATUR@"
+; 5b40
+
+.Day ; 5b40
+	db "DAY@"
+; 5b44
+
+Function5b44: ; 5b44
+	xor a
+	ld [$ffde], a
+	call ClearTileMap
+	call $0e5f
+	call $0e51
+	call $1fbf
+	ret
+; 5b54
+
+Function5b54: ; 5b54
+	call UpdateTime
+	ld a, $4
+	ld hl, $5548
+	rst FarCall
+	ld a, $41
+	ld hl, $48ba
+	rst FarCall
+	ret
+; 5b64
+
+Function5b64: ; 5b64
+	ld a, $39
+	ld hl, $41d0
+	rst FarCall
+	ret
+; 5b6b
+
+Function5b6b: ; 5b6b
+	xor a
+	ld [$c2cc], a
+	call Function5ba7
+	call Function5b44
+	call Function5b8f
+	call OakSpeech
+	call Function5d23
+	ld a, $1
+	ld [$c2d8], a
+	ld a, $0
+	ld [$d001], a
+	ld a, $f1
+	ld [$ff9f], a
+	jp $5e5d
+; 5b8f
+
+Function5b8f: ; 5b8f
+	ld a, $41
+	ld hl, $632f
+	rst FarCall
+	jr c, .asm_5b9e
+	ld a, $12
+	ld hl, $4dcb
+	rst FarCall
+	ret
+
+.asm_5b9e
+	ld c, $0
+	ld a, $12
+	ld hl, $402f
+	rst FarCall
+	ret
+; 5ba7
+
+Function5ba7: ; 5ba7
+	xor a
+	ld [hBGMapMode], a
+	call Function5bae
+	ret
+; 5bae
+
+Function5bae: ; 5bae
+	ld hl, Sprites
+	ld bc, $0bcc
+	xor a
+	call ByteFill
+	ld hl, $d000
+	ld bc, $047b
+	xor a
+	call ByteFill
+	ld hl, PlayerID
+	ld bc, $0b7a
+	xor a
+	call ByteFill
+	ld a, [rLY]
+	ld [$ffe3], a
+	call DelayFrame
+	ld a, [hRandomSub]
+	ld [PlayerID], a
+	ld a, [rLY]
+	ld [$ffe3], a
+	call DelayFrame
+	ld a, [hRandomAdd]
+	ld [PlayerID + 1], a
+	call RNG
+	ld [$d84a], a
+	call DelayFrame
+	call RNG
+	ld [$d84b], a
+	ld hl, PartyCount
+	call Function5ca1
+	xor a
+	ld [$db72], a
+	ld [$d4b4], a
+	call Function5ca6
+	ld a, $1
+	call GetSRAMBank
+	ld hl, $ad10
+	call Function5ca1
+	call CloseSRAM
+	ld hl, NumItems
+	call Function5ca1
+	ld hl, NumKeyItems
+	call Function5ca1
+	ld hl, NumBalls
+	call Function5ca1
+	ld hl, $d8f1
+	call Function5ca1
+	xor a
+	ld [RoamMon1Species], a
+	ld [RoamMon2Species], a
+	ld [RoamMon3Species], a
+	ld a, $ff
+	ld [RoamMon1MapGroup], a
+	ld [RoamMon2MapGroup], a
+	ld [RoamMon3MapGroup], a
+	ld [RoamMon1MapNumber], a
+	ld [RoamMon2MapNumber], a
+	ld [RoamMon3MapNumber], a
+	ld a, $0
+	call GetSRAMBank
+	ld hl, $abe2
+	xor a
+	ld [hli], a
+	dec a
+	ld [hl], a
+	call CloseSRAM
+	call Function5d33
+	call Function5cd3
+	xor a
+	ld [MonType], a
+	ld [JohtoBadges], a
+	ld [KantoBadges], a
+	ld [$d855], a
+	ld [$d856], a
+	ld [Money], a
+	ld a, $b
+	ld [$d84f], a
+	ld a, $b8
+	ld [$d850], a
+	xor a
+	ld [$dc17], a
+	ld hl, $dc19
+	ld [hl], $0
+	inc hl
+	ld [hl], $8
+	inc hl
+	ld [hl], $fc
+	call Function5ce9
+	ld a, $9
+	ld hl, $6751
+	rst FarCall
+	ld a, $11
+	ld hl, $4765
+	rst FarCall
+	ld a, $41
+	ld hl, $61c0
+	rst FarCall
+	call $208a
+	ret
+; 5ca1
+
+Function5ca1: ; 5ca1
+	xor a
+	ld [hli], a
+	dec a
+	ld [hl], a
+	ret
+; 5ca6
+
+Function5ca6: ; 5ca6
+	ld hl, Box1Name
+	ld c, $0
+.asm_5cab
+	push hl
+	ld de, .Box
+	call CopyName2
+	dec hl
+	ld a, c
+	inc a
+	cp $a
+	jr c, .asm_5cbe
+	sub $a
+	ld [hl], $f7
+	inc hl
+
+.asm_5cbe
+	add $f6
+	ld [hli], a
+	ld [hl], $50
+	pop hl
+	ld de, $0009
+	add hl, de
+	inc c
+	ld a, c
+	cp $e
+	jr c, .asm_5cab
+	ret
+
+.Box
+	db "BOX@"
+; 5cd3
+
+Function5cd3: ; 5cd3
+	ld hl, $dfe8
+	ld a, $3
+	ld [hli], a
+	ld a, $6
+	ld [hli], a
+	ld de, .Ralph
+	call CopyName2
+	ret
+; 5ce3
+
+.Ralph ; 5ce3
+	db "RALPH@"
+; 5ce9
+
+Function5ce9: ; 5ce9
+	ld hl, .Rival
+	ld de, RivalName
+	call .Copy
+
+	ld hl, .Mom
+	ld de, MomsName
+	call .Copy
+
+	ld hl, .Red
+	ld de, RedsName
+	call .Copy
+
+	ld hl, .Green
+	ld de, GreensName
+
+.Copy
+	ld bc, $000b
+	call CopyBytes
+	ret
+
+.Rival
+	db "???@"
+.Red
+	db "RED@"
+.Green
+	db "GREEN@"
+.Mom
+	db "MOM@"
+; 5d23
+
+Function5d23: ; 5d23
+	call $610f
+	ld a, $2
+	ld hl, $4029
+	rst FarCall
+	ld a, $4
+	ld hl, $53d6
+	rst FarCall
+	ret
+; 5d33
+
+Function5d33: ; 5d33
+	ld a, $0
+	call GetSRAMBank
+	ld a, [CurDay]
+	inc a
+	ld b, a
+	ld a, [$ac68]
+	cp b
+	ld a, [$ac6a]
+	ld c, a
+	ld a, [$ac69]
+	jr z, .asm_5d55
+	ld a, b
+	ld [$ac68], a
+	call RNG
+	ld c, a
+	call RNG
+
+.asm_5d55
+	ld [$dc9f], a
+	ld [$ac69], a
+	ld a, c
+	ld [$dca0], a
+	ld [$ac6a], a
+	jp CloseSRAM
+; 5d65
+
+Function5d65: ; 5d65
+	ld a, $5
+	ld hl, $4ea5
+	rst FarCall
+	jr c, .asm_5dd6
+	ld a, $5
+	ld hl, $50b9
+	rst FarCall
+	call $1d6e
+	call Function5e85
+	ld a, $1
+	ld [hBGMapMode], a
+	ld c, $14
+	call DelayFrames
+	call Function5e34
+	jr nc, .asm_5d8c
+	call Function1c17
+	jr .asm_5dd6
+
+.asm_5d8c
+	call Function5e48
+	jr nc, .asm_5d96
+	call Function1c17
+	jr .asm_5dd6
+
+.asm_5d96
+	ld a, $8
+	ld [MusicFade], a
+	ld a, $0
+	ld [MusicFadeIDLo], a
+	ld a, $0
+	ld [MusicFadeIDHi], a
+	call WhiteBGMap
+	call Function5df0
+	call Function1c17
+	call ClearTileMap
+	ld c, $14
+	call DelayFrames
+	ld a, $a
+	ld hl, $6394
+	rst FarCall
+	ld a, $41
+	ld hl, $5091
+	rst FarCall
+	ld a, $5
+	ld hl, $40ae
+	rst FarCall
+	ld a, [$d4b5]
+	cp $1
+	jr z, .asm_5dd7
+	ld a, $f2
+	ld [$ff9f], a
+	jp $5e5d
+
+.asm_5dd6
+	ret
+
+.asm_5dd7
+	ld a, $e
+	ld [$d001], a
+	call Function5de7
+	jp $5e5d
+; 5de2
+
+Function5de2: ; 5de2
+	ld a, $1a
+	ld [$d001], a
+; 5de7
+
+Function5de7: ; 5de7
+	xor a
+	ld [$d4b5], a
+	ld a, $f1
+	ld [$ff9f], a
+	ret
+; 5df0
+
+Function5df0: ; 5df0
+	ld a, $41
+	ld hl, $632f
+	rst FarCall
+	ret nc
+	ld hl, $d479
+	bit 1, [hl]
+	ret nz
+	ld a, $5
+	ld [MusicFade], a
+	ld a, $5e
+	ld [MusicFadeIDLo], a
+	ld a, $0
+	ld [MusicFadeIDHi], a
+	ld c, $14
+	call DelayFrames
+	ld c, $1
+	ld a, $12
+	ld hl, $402f
+	rst FarCall
+	ld a, $5
+	ld hl, $509a
+	rst FarCall
+	ld a, $8
+	ld [MusicFade], a
+	ld a, $0
+	ld [MusicFadeIDLo], a
+	ld a, $0
+	ld [MusicFadeIDHi], a
+	ld c, $23
+	call DelayFrames
+	ret
+; 5e34
+
+Function5e34: ; 5e34
+.asm_5e34
+	call DelayFrame
+	call $0984
+	ld hl, hJoyPressed
+	bit 0, [hl]
+	jr nz, .asm_5e47
+	bit 1, [hl]
+	jr z, .asm_5e34
+	scf
+	ret
+
+.asm_5e47
+	ret
+; 5e48
+
+Function5e48: ; 5e48
+	call $06e3
+	and $80
+	jr z, .asm_5e5b
+	ld a, $8
+	ld hl, $4021
+	rst FarCall
+	ld a, c
+	and a
+	jr z, .asm_5e5b
+	scf
+	ret
+
+.asm_5e5b
+	xor a
+	ret
+; 5e5d
+
+Function5e5d: ; 5e5d
+.asm_5e5d
+	xor a
+	ld [$c2c1], a
+	ld [InLinkBattle], a
+	ld hl, GameTimerPause
+	set 0, [hl]
+	res 7, [hl]
+	ld hl, $d83e
+	set 1, [hl]
+	callba Function966b0
+	ld a, [$d4b5]
+	cp $2
+	jr z, .asm_5e80
+	jp $0150
+
+.asm_5e80
+	call Function5de2
+	jr .asm_5e5d
+; 5e85
+
+Function5e85: ; 5e85
+	call $06e3
+	and $80
+	jr z, .asm_5e93
+	ld de, $0408
+	call Function5eaf
+	ret
+
+.asm_5e93
+	ld de, $0408
+	call Function5e9f
+	ret
+; 5e9a
+
+Function5e9a: ; 5e9a
+	ld de, $0400
+	jr Function5e9f
+; 5e9f
+
+Function5e9f: ; 5e9f
+	call Function5ebf
+	call Function5f1c
+	call Function5f40
+	call $0e5f
+	call $1ad2
+	ret
+; 5eaf
+
+Function5eaf: ; 5eaf
+	call Function5ebf
+	call Function5f1c
+	call Function5f48
+	call $0e5f
+	call $1ad2
+	ret
+; 5ebf
+
+Function5ebf: ; 5ebf
+	xor a
+	ld [hBGMapMode], a
+	ld hl, MenuDataHeader_0x5ed9
+	ld a, [StatusFlags]
+	bit 0, a ; pokedex
+	jr nz, .asm_5ecf
+	ld hl, MenuDataHeader_0x5efb
+
+.asm_5ecf
+	call $1e35
+	call $1cbb
+	call $1c89
+	ret
+; 5ed9
+
+MenuDataHeader_0x5ed9: ; 5ed9
+	db $40 ; flags
+	db 00, 00 ; start coords
+	db 09, 15 ; end coords
+	dw MenuData2_0x5ee1
+	db 1 ; default option
+; 5ee1
+
+MenuData2_0x5ee1: ; 5ee1
+	db $00 ; flags
+	db 4 ; items
+	db "PLAYER@"
+	db "BADGES@"
+	db "#DEX@"
+	db "TIME@"
+; 5efb
+
+MenuDataHeader_0x5efb: ; 5efb
+	db $40 ; flags
+	db 00, 00 ; start coords
+	db 09, 15 ; end coords
+	dw MenuData2_0x5f03
+	db 1 ; default option
+; 5f03
+
+MenuData2_0x5f03: ; 5f03
+	db $00 ; flags
+	db 4 ; items
+	db "PLAYER ", $52, "@"
+	db "BADGES@"
+	db " @"
+	db "TIME@"
+; 5f1c
+
+
+Function5f1c: ; 5f1c
+	call $1cfd
+	push hl
+	ld de, $005d
+	add hl, de
+	call Function5f58
+	pop hl
+	push hl
+	ld de, $0084
+	add hl, de
+	call Function5f6b
+	pop hl
+	push hl
+	ld de, $0030
+	add hl, de
+	ld de, .Player
+	call PlaceString
+	pop hl
+	ret
+
+.Player
+	db $52, "@"
+; 5f40
+
+Function5f40: ; 5f40
+	ld de, $00a9
+	add hl, de
+	call Function5f84
+	ret
+; 5f48
+
+Function5f48: ; 5f48
+	ld de, $00a9
+	add hl, de
+	ld de, .text_5f53
+	call PlaceString
+	ret
+
+.text_5f53
+	db " ???@"
+; 5f58
+
+Function5f58: ; 5f58
+	push hl
+	ld hl, JohtoBadges
+	ld b, $2
+	call CountSetBits
+	pop hl
+	ld de, $d265
+	ld bc, $0102
+	jp $3198
+; 5f6b
+
+Function5f6b: ; 5f6b
+	ld a, [StatusFlags]
+	bit 0, a
+	ret z
+	push hl
+	ld hl, PokedexSeen
+	ld b, $20
+	call CountSetBits
+	pop hl
+	ld de, $d265
+	ld bc, $0103
+	jp $3198
+; 5f84
+
+Function5f84: ; 5f84
+	ld de, GameTimeHours
+	ld bc, $0203
+	call $3198
+	ld [hl], $6d
+	inc hl
+	ld de, GameTimeMinutes
+	ld bc, $8102
+	jp $3198
+; 5f99
 
 
 OakSpeech: ; 0x5f99
@@ -6782,12 +8621,12 @@ INCBIN "baserom.gbc", $c224, $c29d - $c224
 
 SpecialNameRival: ; 0xc29d
 	ld b, $2 ; rival
-	ld de, WRivalName
+	ld de, RivalName
 	ld a, BANK(Function116b7)
 	ld hl, Function116b7
 	rst $8
 	; default to "SILVER"
-	ld hl, WRivalName
+	ld hl, RivalName
 	ld de, DefaultRivalName
 	call InitString
 	ret
@@ -8131,9 +9970,7 @@ StartMenu_Option: ; 1291c
 ; Game options.
 
 	call FadeToMenu
-	ld a, $1
-	ld hl, $5b64
-	rst FarCall
+	callba Function5b64
 	ld a, 6
 	ret
 ; 12928
@@ -18718,9 +20555,7 @@ Function967d1: ; 967d1
 ; 967e1
 
 Function967e1: ; 967e1
-	ld a, $1
-	ld hl, $5920
-	rst FarCall
+	callba Function5920
 	ld a, $3
 	ld hl, $54d2
 	rst FarCall
