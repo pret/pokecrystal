@@ -5583,7 +5583,118 @@ INCBIN "baserom.gbc", $3e32, $3fb5 - $3e32
 
 SECTION "bank1",DATA,BANK[$1]
 
-INCBIN "baserom.gbc", $4000, $5f99 - $4000
+
+INCBIN "baserom.gbc", $4000, $5000 - $4000
+
+
+Function5000: ; 5000
+	ld a, [$c2de]
+	ld hl, $c2df
+	ld [hl], a
+	ld a, $3e
+	ld [$c2de], a
+	ld a, [hl]
+	ret
+; 500e
+
+Function500e: ; 500e
+	ld hl, $c2e3
+	call $1aae
+	ret
+; 5015
+
+Function5015: ; 5015
+	ld hl, $001b
+	add hl, bc
+	ld e, [hl]
+	inc [hl]
+	ld d, $0
+	ld hl, $c2e2
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	add hl, de
+	ld a, [hl]
+	ret
+; 5026
+
+Function5026: ; 5026
+	ld hl, $001b
+	add hl, bc
+	ld e, [hl]
+	inc [hl]
+	ld d, $0
+	ld hl, $c2e6
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	add hl, de
+	ld a, [hl]
+	ret
+; 5037
+
+Function5037: ; 5037
+	ld hl, $503d
+	jp $5041
+; 503d
+
+Function503d: ; 503d
+	ld a, [$c2e2]
+	ret
+; 5041
+
+Function5041: ; 5041
+	call $5055
+.asm_5044
+	xor a
+	ld [$c2ea], a
+	call Function505e
+	call Function506b
+	ld a, [$c2ea]
+	and a
+	jr nz, .asm_5044
+	ret
+; 5055
+
+Function5055: ; 5055
+	ld a, l
+	ld [$c2eb], a
+	ld a, h
+	ld [$c2ec], a
+	ret
+; 505e
+
+Function505e: ; 505e
+	ld hl, $c2eb
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	jp [hl]
+; 5065
+
+Function5065: ; 5065
+	ld a, $1
+	ld [$c2ea], a
+	ret
+; 506b
+
+Function506b: ; 506b
+	push af
+	call $54b8
+	pop af
+	ld hl, MovementPointers
+	rst JumpTable
+	ret
+; 5075
+
+
+; 5075
+INCLUDE "engine/movement.asm"
+; 54b8
+
+
+INCBIN "baserom.gbc", $54b8, $5f99 - $54b8
+
 
 OakSpeech: ; 0x5f99
 	ld a, $24
