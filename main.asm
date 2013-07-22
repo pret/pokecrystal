@@ -9598,7 +9598,7 @@ Function5b44: ; 5b44
 	ret
 ; 5b54
 
-Function5b54: ; 5b54
+MysteryGift: ; 5b54
 	call UpdateTime
 	ld a, $4
 	ld hl, $5548
@@ -9609,14 +9609,14 @@ Function5b54: ; 5b54
 	ret
 ; 5b64
 
-Function5b64: ; 5b64
+OptionsMenu: ; 5b64
 	ld a, $39
 	ld hl, $41d0
 	rst FarCall
 	ret
 ; 5b6b
 
-Function5b6b: ; 5b6b
+NewGame: ; 5b6b
 	xor a
 	ld [$c2cc], a
 	call Function5ba7
@@ -9884,7 +9884,7 @@ Function5d33: ; 5d33
 	jp CloseSRAM
 ; 5d65
 
-Function5d65: ; 5d65
+Continue: ; 5d65
 	ld a, $5
 	ld hl, $4ea5
 	rst FarCall
@@ -12652,7 +12652,7 @@ StartMenu_Option: ; 1291c
 ; Game options.
 
 	call FadeToMenu
-	callba Function5b64
+	callba OptionsMenu
 	ld a, 6
 	ret
 ; 12928
@@ -18406,8 +18406,52 @@ INCBIN "gfx/special/celebi/2.2bpp"
 INCBIN "gfx/special/celebi/3.2bpp"
 INCBIN "gfx/special/celebi/4.2bpp"
 
-INCBIN "baserom.gbc", $49aa2, $49d24 - $49aa2
+INCBIN "baserom.gbc", $49aa2, $49cdc - $49aa2
 
+MainMenu: ; 49cdc
+	xor a
+	ld [$c2d7], a
+	call Function49ed0
+	ld b, $8
+	call GetSGBLayout
+	call $32f9
+	ld hl, GameTimerPause
+	res 0, [hl]
+	call Function49da4
+	ld [$cf76], a
+	call Function49e09
+	ld hl, MenuDataHeader_0x49d14
+	call Function1d35
+	call Function49de4
+	call Function1c17
+	jr c, .quit
+	call ClearTileMap
+	ld a, [MenuSelection]
+	ld hl, Label49d60
+	rst JumpTable
+	jr MainMenu
+
+.quit
+	ret
+; 49d14
+
+MenuDataHeader_0x49d14: ; 49d14
+	db $40 ; flags
+	db 00, 00 ; start coords
+	db 07, 16 ; end coords
+	dw MenuData2_0x49d1c
+	db 1 ; default option
+; 49d1c
+
+MenuData2_0x49d1c: ; 49d1c
+	db $80 ; flags
+	db 0 ; items
+	dw MainMenuItems
+	dw $1f79
+	dw MainMenuText
+; 49d20
+
+MainMenuText:
 ContinueText: ; 0x49d24
 	db "CONTINUE@"
 NewGameText: ; 0x49d2d
@@ -18422,12 +18466,13 @@ MobileStudiumText: ; 0x49d51
 	db "MOBILE STUDIUM@"
 
 Label49d60: ; 0x49d60
-	dw $5eee ; XXX is this ContinueASM?
-	dw $5ee0 ; XXX is this NewGameASM?
-	dw $5ee7 ; XXX is this OptionASM?
-	dw $5ef5 ; XXX is this MysteryGiftASM?
-	dw $5efc ; XXX is this MobileASM?
-	dw $6496 ; XXX is this MobileStudiumASM?
+	dw MainMenu_Continue
+	dw MainMenu_NewGame
+	dw MainMenu_Options
+	dw MainMenu_MysteryGift
+	dw MainMenu_Mobile
+	dw MainMenu_MobileStudium
+; 0x49d6c
 
 CONTINUE       EQU 0
 NEW_GAME       EQU 1
@@ -18435,6 +18480,8 @@ OPTION         EQU 2
 MYSTERY_GIFT   EQU 3
 MOBILE         EQU 4
 MOBILE_STUDIUM EQU 5
+
+MainMenuItems:
 
 NewGameMenu: ; 0x49d6c
 	db 2
@@ -18510,7 +18557,392 @@ StudiumMenu: ; 0x49d9e
 	db MOBILE_STUDIUM
 	db $ff
 
-INCBIN "baserom.gbc", $49da4, $4a6e8 - $49da4
+
+Function49da4: ; 49da4
+	nop
+	nop
+	nop
+	ld a, [$cfcd]
+	and a
+	jr nz, .asm_49db0
+	ld a, $0
+	ret
+
+.asm_49db0
+	ld a, [hCGB]
+	cp $1
+	ld a, $1
+	ret nz
+	ld a, $0
+	call GetSRAMBank
+	ld a, [$abe5]
+	cp $ff
+	call CloseSRAM
+	jr nz, .asm_49dd6
+	ld a, [StatusFlags]
+	bit 7, a
+	ld a, $1
+	jr z, .asm_49dd1
+	jr .asm_49dd1
+
+.asm_49dd1
+	jr .asm_49dd3
+
+.asm_49dd3
+	ld a, $1
+	ret
+
+.asm_49dd6
+	ld a, [StatusFlags]
+	bit 7, a
+	jr z, .asm_49ddf
+	jr .asm_49ddf
+
+.asm_49ddf
+	jr .asm_49de1
+
+.asm_49de1
+	ld a, $6
+	ret
+; 49de4
+
+Function49de4: ; 49de4
+	call SetUpMenu
+.asm_49de7
+	call $5e09
+	ld a, [$cfa5]
+	set 5, a
+	ld [$cfa5], a
+	call $1f1a
+	ld a, [$cf73]
+	cp $2
+	jr z, .asm_49e07
+	cp $1
+	jr z, .asm_49e02
+	jr .asm_49de7
+
+.asm_49e02
+	call PlayClickSFX
+	and a
+	ret
+
+.asm_49e07
+	scf
+	ret
+; 49e09
+
+Function49e09: ; 49e09
+	ld a, [$cfcd]
+	and a
+	ret z
+	xor a
+	ld [hBGMapMode], a
+	call Function49e27
+	ld hl, Options
+	ld a, [hl]
+	push af
+	set 4, [hl]
+	call $5e3d
+	pop af
+	ld [Options], a
+	ld a, $1
+	ld [hBGMapMode], a
+	ret
+; 49e27
+
+
+Function49e27: ; 49e27
+	call $06e3
+	and $80
+	jr nz, .asm_49e39
+	ld hl, $c5b8
+	ld b, $2
+	ld c, $12
+	call TextBox
+	ret
+
+.asm_49e39
+	call SpeechTextBox
+	ret
+; 49e3d
+
+
+Function49e3d: ; 49e3d
+	ld a, [$cfcd]
+	and a
+	ret z
+	call $06e3
+	and $80
+	jp nz, Function49e75
+	call UpdateTime
+	call GetWeekday
+	ld b, a
+	decoord 1, 15
+	call Function49e91
+	decoord 4, 16
+	ld a, [hHours]
+	ld c, a
+	ld a, $24
+	ld hl, $4b3e
+	rst FarCall
+	ld [hl], $9c
+	inc hl
+	ld de, hMinutes
+	ld bc, $8102
+	call $3198
+	ret
+; 49e70
+
+; 49e70
+	db "min.@"
+; 49e75
+
+Function49e75: ; 49e75
+	hlcoord 1, 14
+	ld de, .TimeNotSet
+	call PlaceString
+	ret
+; 49e7f
+
+.TimeNotSet ; 49e7f
+	db "TIME NOT SET@"
+; 49e8c
+
+UnknownText_0x49e8c: ; 49e8c
+	text_jump UnknownText_0x1c5182, BANK(UnknownText_0x1c5182)
+	db "@"
+; 49e91
+
+Function49e91: ; 49e91
+	push de
+	ld hl, .Days
+	ld a, b
+	call GetNthString
+	ld d, h
+	ld e, l
+	pop hl
+	call PlaceString
+	ld h, b
+	ld l, c
+	ld de, .Day
+	call PlaceString
+	ret
+; 49ea8
+
+.Days
+	db "SUN@"
+	db "MON@"
+	db "TUES@"
+	db "WEDNES@"
+	db "THURS@"
+	db "FRI@"
+	db "SATUR@"
+.Day
+	db "DAY@"
+; 49ed0
+
+Function49ed0: ; 49ed0
+	xor a
+	ld [$ffde], a
+	call ClearTileMap
+	call $0e5f
+	call $0e51
+	call $1fbf
+	ret
+; 49ee0
+
+
+MainMenu_NewGame: ; 49ee0
+	callba NewGame
+	ret
+; 49ee7
+
+MainMenu_Options: ; 49ee7
+	callba OptionsMenu
+	ret
+; 49eee
+
+MainMenu_Continue: ; 49eee
+	callba Continue
+	ret
+; 49ef5
+
+MainMenu_MysteryGift: ; 49ef5
+	callba MysteryGift
+	ret
+; 49efc
+
+MainMenu_Mobile: ; 49efc
+	call WhiteBGMap
+	ld a, MUSIC_MOBILE_ADAPTER_MENU
+	ld [CurMusic], a
+	ld de, MUSIC_MOBILE_ADAPTER_MENU
+	call $66c5
+	call WhiteBGMap
+	call $63a7
+	call $6492
+	call WhiteBGMap
+	call $6071
+	ld c, $c
+	call DelayFrames
+	ld hl, $c4a4
+	ld b, $a
+	ld c, $a
+	call $4cdc
+	ld hl, $c4ce
+	ld de, MobileString1
+	call PlaceString
+	ld hl, $c590
+	ld b, $4
+	ld c, $12
+	call TextBox
+	xor a
+	ld de, String_0x49fe9
+	ld hl, $c5b9
+	call PlaceString
+	call Function3200
+	call $32f9
+	call $1bc9
+	ld hl, $cfa9
+	ld b, [hl]
+	push bc
+	jr .asm_49f5d
+
+.asm_49f55
+	call $1bd3
+	ld hl, $cfa9
+	ld b, [hl]
+	push bc
+
+.asm_49f5d
+	bit 0, a
+	jr nz, .asm_49f67
+	bit 1, a
+	jr nz, .asm_49f84
+	jr .asm_49f97
+
+.asm_49f67
+	ld hl, $cfa9
+	ld a, [hl]
+	cp $1
+	jp z, $6098
+	cp $2
+	jp z, $60b9
+	cp $3
+	jp z, $60c2
+	cp $4
+	jp z, $6100
+	ld a, $1
+	call $1ff8
+
+.asm_49f84
+	pop bc
+	call WhiteBGMap
+	call ClearTileMap
+	ld a, MUSIC_MAIN_MENU
+	ld [CurMusic], a
+	ld de, MUSIC_MAIN_MENU
+	call $66c5
+	ret
+
+.asm_49f97
+	ld hl, $cfa9
+	ld a, [hl]
+	dec a
+	ld hl, MobileStrings2
+	call GetNthString
+	ld d, h
+	ld e, l
+	ld hl, $c5a5
+	ld b, $4
+	ld c, $12
+	call ClearBox
+	ld hl, $c5b9
+	call PlaceString
+	jp .asm_49fb7
+
+.asm_49fb7
+	call $6071
+	pop bc
+	ld hl, $cfa9
+	ld [hl], b
+	ld b, $a
+	ld c, $1
+	ld hl, $c4b9
+	call ClearBox
+	jp .asm_49f55
+; 49fcc
+
+
+MobileString1: ; 49fcc
+	db "めいしフ,ルダー", $4e
+	db "あいさつ", $4e
+	db "プロフィール", $4e
+	db "せ", $1e, "い", $4e
+	db "もどる@"
+; 49fe9
+
+
+MobileStrings2:
+
+String_0x49fe9: ; 49fe9
+	db "めいし", $1f, "つくったり", $4e
+	db "ほぞんしておける フ,ルダーです@"
+; 4a004
+
+String_0x4a004: ; 4a004
+	db "モバイルたいせんや じぶんのめいしで", $4e
+	db "つかう あいさつ", $1f, "つくります@"
+; 4a026
+
+String_0x4a026: ; 4a026
+	db "あなた", $25, "じゅうしょや ねんれいの", $4e
+	db "せ", $1e, "い", $1f, "かえられます@"
+; 4a042
+
+String_0x4a042: ; 4a042
+	db "モバイルセンター", $1d, "せつぞくするとき", $4e
+	db "ひつような こと", $1f, "きめます@"
+; 4a062
+
+String_0x4a062: ; 4a062
+	db "まえ", $25, "がめん ", $1d, "もどります", $4e
+	db "@"
+; 4a071
+
+
+INCBIN "baserom.gbc", $4a071, $4a496 - $4a071
+
+
+MainMenu_MobileStudium: ; 4a496
+	ld a, [StartDay]
+	ld b, a
+	ld a, [StartHour]
+	ld c, a
+	ld a, [StartMinute]
+	ld d, a
+	ld a, [StartSecond]
+	ld e, a
+	push bc
+	push de
+	callba MobileStudium
+	call WhiteBGMap
+	pop de
+	pop bc
+	ld a, b
+	ld [StartDay], a
+	ld a, c
+	ld [StartHour], a
+	ld a, d
+	ld [StartMinute], a
+	ld a, e
+	ld [StartSecond], a
+	ret
+; 4a4c4
+
+
+INCBIN "baserom.gbc", $4a4c4, $4a6e8 - $4a4c4
+
 
 SpecialBeastsCheck: ; 0x4a6e8
 ; Check if the player owns all three legendary beasts.
@@ -29665,7 +30097,7 @@ INCBIN "baserom.gbc", $114000, $117a7f - $114000
 ; everything from here to the end of the bank is related to the
 ; Mobile Stadium option from the continue/newgame menu.
 ; XXX better function names
-Function117a7f: ; 0x117a7f
+MobileStudium: ; 0x117a7f
 	ld a, [$ffaa]
 	push af
 	ld a, $1
