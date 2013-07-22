@@ -373,6 +373,7 @@ Sprites: ; c400
 ;		bit 3: vram bank (cgb only)
 ;		bit 2-0: pal # (cgb only)
 	ds 160
+SpritesEnd
 
 TileMap: ; c4a0
 ; 20x18 grid of 8x8 tiles
@@ -1622,7 +1623,9 @@ FRIDAY    EQU 5
 SATURDAY  EQU 6
 	ds 1
 
-	ds 12
+	ds 10
+
+	ds 2
 
 PlayerSprite: ; d4d8
 	ds 1

@@ -2217,7 +2217,55 @@ GetMapObject: ; 18d2
 ; 18de
 
 
-INCBIN "baserom.gbc", $18de, $1b07 - $18de
+INCBIN "baserom.gbc", $18de, $1a2f - $18de
+
+
+Function1a2f: ; 1a2f
+	ld hl, $0003
+	add hl, bc
+	ld a, [hl]
+	cp $25
+	jr c, .asm_1a39
+	xor a
+
+.asm_1a39
+	ld hl, Data4273
+	ld e, a
+	ld d, 0
+	add hl, de
+	add hl, de
+	add hl, de
+	add hl, de
+	add hl, de
+	add hl, de
+	ld a, [hl]
+	ret
+; 1a47
+
+Function1a47: ; 1a47
+	push bc
+	push de
+	ld e, a
+	ld d, 0
+	ld hl, Data4273 + 1
+	add hl, de
+	add hl, de
+	add hl, de
+	add hl, de
+	add hl, de
+	add hl, de
+	ld a, BANK(Data4273)
+	call GetFarByte
+	add a
+	add a
+	and $c
+	pop de
+	pop bc
+	ret
+; 1a61
+
+
+INCBIN "baserom.gbc", $1a61, $1b07 - $1a61
 
 
 GetSpriteDirection: ; 1b07
@@ -5581,11 +5629,2646 @@ SFXChannelsOff: ; 3e21
 INCBIN "baserom.gbc", $3e32, $3fb5 - $3e32
 
 
+
 SECTION "bank1",DATA,BANK[$1]
 
 
-INCBIN "baserom.gbc", $4000, $5000 - $4000
+Function4000: ; 4000
+	hlcoord 3, 10
+	ld b, 1
+	ld c, 11
 
+	ld a, [IsInBattle]
+	and a
+	jr z, .asm_4012
+
+	call TextBox
+	jr .asm_4017
+
+.asm_4012
+	ld a, $10
+	call Predef
+
+.asm_4017
+	hlcoord 4, 11
+	ld de, .Waiting
+	call PlaceString
+	ld c, 50
+	jp DelayFrames
+; 4025
+
+.Waiting ; 4025
+	db "Waiting...!@"
+; 4031
+
+Function4031: ; 4031
+	ld c, hPushOAM & $ff
+	ld b, PushOAMEnd - PushOAM
+	ld hl, PushOAM
+.loop
+	ld a, [hli]
+	ld [$ff00+c], a
+	inc c
+	dec b
+	jr nz, .loop
+	ret
+; 403f
+
+PushOAM: ; 403f
+	ld a, $c4
+	ld [rDMA], a
+	ld a, $28
+.loop
+	dec a
+	jr nz, .loop
+	ret
+PushOAMEnd
+; 4049
+
+
+DataPointers4049: ; 4049
+	dw Data408b
+	dw Data409c
+	dw Data408b
+	dw Data40ad
+	dw Data40be
+	dw Data40cf
+	dw Data40be
+	dw Data40e0
+	dw Data40f1
+	dw Data4113
+	dw Data40f1
+	dw Data4113
+	dw Data4102
+	dw Data4124
+	dw Data4102
+	dw Data4124
+	dw Data4135
+	dw Data414a
+	dw Data415f
+	dw Data4174
+	dw Data4189
+	dw Data419a
+	dw Data4206
+	dw Data41a3
+	dw Data408b
+	dw Data41e4
+	dw Data408b
+	dw Data41f5
+	dw Data423f
+	dw Data4250
+	dw Data4261
+	dw Data426a
+	dw $0000
+; 408b
+
+Data408b: ; 408b
+	db 4 ; #
+	db $00, $00, $00, $00
+	db $00, $08, $00, $01
+	db $08, $00, $02, $02
+	db $08, $08, $02, $03
+; 409c
+
+Data409c: ; 409c
+	db 4 ; #
+	db $00, $00, $00, $80
+	db $00, $08, $00, $81
+	db $08, $00, $02, $82
+	db $08, $08, $02, $83
+; 40ad
+
+Data40ad: ; 40ad
+	db 4 ; #
+	db $00, $08, $20, $80
+	db $00, $00, $20, $81
+	db $08, $08, $22, $82
+	db $08, $00, $22, $83
+; 40be
+
+Data40be: ; 40be
+	db 4 ; #
+	db $00, $00, $00, $04
+	db $00, $08, $00, $05
+	db $08, $00, $02, $06
+	db $08, $08, $02, $07
+; 40cf
+
+Data40cf: ; 40cf
+	db 4 ; #
+	db $00, $00, $00, $84
+	db $00, $08, $00, $85
+	db $08, $00, $02, $86
+	db $08, $08, $02, $87
+; 40e0
+
+Data40e0: ; 40e0
+	db 4 ; #
+	db $00, $08, $20, $84
+	db $00, $00, $20, $85
+	db $08, $08, $22, $86
+	db $08, $00, $22, $87
+; 40f1
+
+Data40f1: ; 40f1
+	db 4 ; #
+	db $00, $00, $00, $08
+	db $00, $08, $00, $09
+	db $08, $00, $02, $0a
+	db $08, $08, $02, $0b
+; 4102
+
+Data4102: ; 4102
+	db 4 ; #
+	db $00, $08, $20, $08
+	db $00, $00, $20, $09
+	db $08, $08, $22, $0a
+	db $08, $00, $22, $0b
+; 4113
+
+Data4113: ; 4113
+	db 4 ; #
+	db $00, $00, $00, $88
+	db $00, $08, $00, $89
+	db $08, $00, $02, $8a
+	db $08, $08, $02, $8b
+; 4124
+
+Data4124: ; 4124
+	db 4 ; #
+	db $00, $08, $20, $88
+	db $00, $00, $20, $89
+	db $08, $08, $22, $8a
+	db $08, $00, $22, $8b
+; 4135
+
+Data4135: ; 4135
+	db 5 ; #
+	db $00, $00, $00, $00
+	db $00, $08, $00, $01
+	db $08, $00, $02, $02
+	db $08, $08, $02, $03
+	db $10, $00, $04, $fc
+; 414a
+
+Data414a: ; 414a
+	db 5 ; #
+	db $00, $00, $00, $04
+	db $00, $08, $00, $05
+	db $08, $00, $02, $06
+	db $08, $08, $02, $07
+	db $f8, $00, $04, $fc
+; 415f
+
+Data415f: ; 415f
+	db 5 ; #
+	db $00, $00, $00, $08
+	db $00, $08, $00, $09
+	db $08, $00, $02, $0a
+	db $08, $08, $02, $0b
+	db $05, $f8, $24, $fd
+; 4174
+
+Data4174: ; 4174
+	db 5 ; #
+	db $00, $08, $20, $08
+	db $00, $00, $20, $09
+	db $08, $08, $22, $0a
+	db $08, $00, $22, $0b
+	db $05, $10, $04, $fd
+; 4189
+
+Data4189: ; 4189
+	db 4 ; #
+	db $00, $00, $04, $f8
+	db $00, $08, $04, $f9
+	db $08, $00, $04, $fa
+	db $08, $08, $04, $fb
+; 419a
+
+Data419a: ; 419a
+	db 2 ; #
+	db $00, $00, $04, $fc
+	db $00, $08, $24, $fc
+; 41a3
+
+Data41a3: ; 41a3
+	db 16 ; #
+	db $00, $00, $00, $00
+	db $00, $08, $00, $01
+	db $08, $00, $00, $02
+	db $08, $08, $00, $03
+	db $10, $00, $00, $04
+	db $10, $08, $00, $05
+	db $18, $00, $00, $06
+	db $18, $08, $00, $07
+	db $00, $18, $20, $00
+	db $00, $10, $20, $01
+	db $08, $18, $20, $02
+	db $08, $10, $20, $03
+	db $10, $18, $20, $04
+	db $10, $10, $20, $05
+	db $18, $18, $20, $06
+	db $18, $10, $20, $07
+; 41e4
+
+Data41e4: ; 41e4
+	db 4 ; #
+	db $00, $00, $00, $04
+	db $00, $08, $00, $05
+	db $08, $00, $00, $06
+	db $08, $08, $00, $07
+; 41f5
+
+Data41f5: ; 41f5
+	db 4 ; #
+	db $00, $08, $20, $04
+	db $00, $00, $20, $05
+	db $08, $08, $20, $06
+	db $08, $00, $20, $07
+; 4206
+
+Data4206: ; 4206
+	db 14 ; #
+	db $00, $00, $00, $00
+	db $00, $08, $00, $01
+	db $08, $00, $00, $04
+	db $08, $08, $00, $05
+	db $10, $08, $00, $07
+	db $18, $08, $00, $0a
+	db $00, $18, $00, $03
+	db $00, $10, $00, $02
+	db $08, $18, $20, $02
+	db $08, $10, $00, $06
+	db $10, $18, $00, $09
+	db $10, $10, $00, $08
+	db $18, $18, $20, $04
+	db $18, $10, $00, $0b
+; 423f
+
+Data423f: ; 423f
+	db 4 ; #
+	db $00, $00, $04, $fe
+	db $00, $08, $04, $fe
+	db $08, $00, $04, $fe
+	db $08, $08, $04, $fe
+; 4250
+
+Data4250: ; 4250
+	db 4 ; #
+	db $00, $00, $04, $ff
+	db $00, $08, $04, $ff
+	db $08, $00, $04, $ff
+	db $08, $08, $04, $ff
+; 4261
+
+Data4261: ; 4261
+	db 2 ; #
+	db $08, $00, $04, $fe
+	db $08, $08, $24, $fe
+; 426a
+
+Data426a: ; 426a
+	db 2 ; #
+	db $09, $ff, $04, $fe
+	db $09, $09, $24, $fe
+; 4273
+
+
+Data4273: ; 4273
+INCBIN "baserom.gbc", $4273, $4357 - $4273
+; 4357
+
+
+Function4357: ; 4357
+	push bc
+	ld hl, $0001
+	add hl, bc
+	ld a, [hl]
+	push af
+	ld h, b
+	ld l, c
+	ld bc, $0028
+	xor a
+	call ByteFill
+	pop af
+	cp $ff
+	jr z, .asm_4379
+	bit 7, a
+	jr nz, .asm_4379
+	call GetMapObject
+	ld hl, $0000
+	add hl, bc
+	ld [hl], $ff
+
+.asm_4379
+	pop bc
+	ret
+; 437b
+
+Function437b: ; 437b
+	call Function4386
+	ret c
+	call Function43f3
+	call Function4427
+	ret
+; 4386
+
+Function4386: ; 4386
+	ld hl, $0005
+	add hl, bc
+	res 6, [hl]
+	ld a, [XCoord]
+	ld e, a
+	ld hl, $0010
+	add hl, bc
+	ld a, [hl]
+	add $1
+	sub e
+	jr c, .asm_43b2
+	cp $c
+	jr nc, .asm_43b2
+	ld a, [YCoord]
+	ld e, a
+	ld hl, $0011
+	add hl, bc
+	ld a, [hl]
+	add $1
+	sub e
+	jr c, .asm_43b2
+	cp $b
+	jr nc, .asm_43b2
+	jr .asm_43dc
+
+.asm_43b2
+	ld hl, $0005
+	add hl, bc
+	set 6, [hl]
+	ld a, [XCoord]
+	ld e, a
+	ld hl, $0014
+	add hl, bc
+	ld a, [hl]
+	add $1
+	sub e
+	jr c, .asm_43de
+	cp $c
+	jr nc, .asm_43de
+	ld a, [YCoord]
+	ld e, a
+	ld hl, $0015
+	add hl, bc
+	ld a, [hl]
+	add $1
+	sub e
+	jr c, .asm_43de
+	cp $b
+	jr nc, .asm_43de
+
+.asm_43dc
+	and a
+	ret
+
+.asm_43de
+	ld hl, $0004
+	add hl, bc
+	bit 1, [hl]
+	jr nz, .asm_43eb
+	call Function4357
+	scf
+	ret
+
+.asm_43eb
+	ld hl, $0005
+	add hl, bc
+	set 6, [hl]
+	and a
+	ret
+; 43f3
+
+Function43f3: ; 43f3
+	ld hl, $0009
+	add hl, bc
+	ld a, [hl]
+	and a
+	jr z, .asm_4409
+	ld hl, $0005
+	add hl, bc
+	bit 5, [hl]
+	jr nz, .asm_4426
+	cp $1
+	jr z, .asm_4414
+	jr .asm_4421
+
+.asm_4409
+	call Function47bc
+	ld hl, $0005
+	add hl, bc
+	bit 5, [hl]
+	jr nz, .asm_4426
+
+.asm_4414
+	call Function47dd
+	ld hl, $0009
+	add hl, bc
+	ld a, [hl]
+	and a
+	ret z
+	cp $1
+	ret z
+
+.asm_4421
+	ld hl, Pointers4b45
+	rst JumpTable
+	ret
+
+.asm_4426
+	ret
+; 4427
+
+Function4427: ; 4427
+	ld hl, $0004
+	add hl, bc
+	bit 0, [hl]
+	jr nz, Function44a3
+
+	ld hl, $0005
+	add hl, bc
+	bit 6, [hl]
+	jr nz, Function44a3
+
+	bit 5, [hl]
+	jr nz, Function4448
+
+	ld de, Pointers445f
+	jr Function444d
+; 4440
+
+Function4440: ; 4440
+	ld hl, $0004
+	add hl, bc
+	bit 0, [hl]
+	jr nz, Function44a3
+	; fallthrough
+; 4448
+
+Function4448: ; 4448
+	ld de, Pointers445f + 2
+	jr Function444d
+; 444d
+
+Function444d: ; 444d
+	ld hl, $000b
+	add hl, bc
+	ld a, [hl]
+	ld l, a
+	ld h, 0
+	add hl, hl
+	add hl, hl
+	add hl, de
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	call JpHl
+	ret
+; 445f
+
+Pointers445f: ; 445f
+	dw Function44a3
+	dw Function44a3
+	dw Function44b5
+	dw Function44aa
+	dw Function44c1
+	dw Function44aa
+	dw Function4508
+	dw Function44aa
+	dw Function4529
+	dw Function44aa
+	dw Function4539
+	dw Function44a3
+	dw Function456e
+	dw Function456e
+	dw Function457b
+	dw Function44a3
+	dw Function4582
+	dw Function4582
+	dw Function4589
+	dw Function4589
+	dw Function4590
+	dw Function45a4
+	dw Function45ab
+	dw Function44aa
+	dw Function45be
+	dw Function45be
+	dw Function45c5
+	dw Function45c5
+	dw Function45da
+	dw Function44a3
+	dw Function45ed
+	dw Function44a3
+	dw Function44e4
+	dw Function44aa
+; 44a3
+
+Function44a3: ; 44a3
+	ld hl, $000d
+	add hl, bc
+	ld [hl], $ff
+	ret
+; 44aa
+
+Function44aa: ; 44aa
+	call GetSpriteDirection
+	or $0
+	ld hl, $000d
+	add hl, bc
+	ld [hl], a
+	ret
+; 44b5
+
+Function44b5: ; 44b5
+	ld hl, $000d
+	add hl, bc
+	ld a, [hl]
+	and $1
+	jr nz, Function44c1
+	jp Function44aa
+; 44c1
+
+Function44c1: ; 44c1
+	ld hl, $0004
+	add hl, bc
+	bit 3, [hl]
+	jp nz, Function44aa
+	ld hl, $000c
+	add hl, bc
+	ld a, [hl]
+	inc a
+	and $f
+	ld [hl], a
+	rrca
+	rrca
+	and $3
+	ld d, a
+	call GetSpriteDirection
+	or $0
+	or d
+	ld hl, $000d
+	add hl, bc
+	ld [hl], a
+	ret
+; 44e4
+
+Function44e4: ; 44e4
+	ld hl, $0004
+	add hl, bc
+	bit 3, [hl]
+	jp nz, Function44aa
+	ld hl, $000c
+	add hl, bc
+	ld a, [hl]
+	add $2
+	and $f
+	ld [hl], a
+	rrca
+	rrca
+	and $3
+	ld d, a
+	call GetSpriteDirection
+	or $0
+	or d
+	ld hl, $000d
+	add hl, bc
+	ld [hl], a
+	ret
+; 4508
+
+Function4508: ; 4508
+	ld hl, $0004
+	add hl, bc
+	bit 3, [hl]
+	jp nz, Function44aa
+	ld hl, $000c
+	add hl, bc
+	inc [hl]
+	ld a, [hl]
+	rrca
+	rrca
+	rrca
+	and $3
+	ld d, a
+	call GetSpriteDirection
+	or $0
+	or d
+	ld hl, $000d
+	add hl, bc
+	ld [hl], a
+	ret
+; 4529
+
+Function4529: ; 4529
+	call Function453f
+	ld hl, $0008
+	add hl, bc
+	ld a, [hl]
+	or $0
+	ld hl, $000d
+	add hl, bc
+	ld [hl], a
+	ret
+; 4539
+
+Function4539: ; 4539
+	call Function453f
+	jp Function44a3
+; 453f
+
+Function453f: ; 453f
+	ld hl, $000c
+	add hl, bc
+	ld a, [hl]
+	and $f0
+	ld e, a
+	ld a, [hl]
+	inc a
+	and $f
+	ld d, a
+	cp $4
+	jr c, .asm_4558
+	ld d, 0
+	ld a, e
+	add $10
+	and $30
+	ld e, a
+
+.asm_4558
+	ld a, d
+	or e
+	ld [hl], a
+	swap e
+	ld d, 0
+	ld hl, .Directions
+	add hl, de
+	ld a, [hl]
+	ld hl, $0008
+	add hl, bc
+	ld [hl], a
+	ret
+; 456a
+
+.Directions ; 456a
+	db $00, $0c, $04, $08
+; 456e
+
+Function456e: ; 456e
+	call $1b07
+	rrca
+	rrca
+	add $10
+	ld hl, $000d
+	add hl, bc
+	ld [hl], a
+	ret
+; 457b
+
+Function457b: ; 457b
+	ld hl, $000d
+	add hl, bc
+	ld [hl], $15
+	ret
+; 4582
+
+Function4582: ; 4582
+	ld hl, $000d
+	add hl, bc
+	ld [hl], $14
+	ret
+; 4589
+
+Function4589: ; 4589
+	ld hl, $000d
+	add hl, bc
+	ld [hl], $17
+	ret
+; 4590
+
+Function4590: ; 4590
+	ld hl, $000c
+	add hl, bc
+	ld a, [hl]
+	inc a
+	and $f
+	ld [hl], a
+	and $8
+	jr z, Function45a4
+	ld hl, $000d
+	add hl, bc
+	ld [hl], $4
+	ret
+; 45a4
+
+Function45a4: ; 45a4
+	ld hl, $000d
+	add hl, bc
+	ld [hl], $0
+	ret
+; 45ab
+
+Function45ab: ; 45ab
+	ld hl, $000c
+	add hl, bc
+	ld a, [hl]
+	inc a
+	ld [hl], a
+	and $c
+	rrca
+	rrca
+	add $18
+	ld hl, $000d
+	add hl, bc
+	ld [hl], a
+	ret
+; 45be
+
+Function45be: ; 45be
+	ld hl, $000d
+	add hl, bc
+	ld [hl], $16
+	ret
+; 45c5
+
+Function45c5: ; 45c5
+	ld a, [$d831]
+	ld d, $17
+	cp $33
+	jr z, .asm_45d4
+	cp $47
+	jr z, .asm_45d4
+	ld d, $16
+
+.asm_45d4
+	ld hl, $000d
+	add hl, bc
+	ld [hl], d
+	ret
+; 45da
+
+Function45da: ; 45da
+	ld hl, $000c
+	add hl, bc
+	inc [hl]
+	ld a, [hl]
+	ld hl, $000d
+	add hl, bc
+	and $2
+	ld a, $1c
+	jr z, .asm_45eb
+	inc a
+
+.asm_45eb
+	ld [hl], a
+	ret
+; 45ed
+
+Function45ed: ; 45ed
+	ld hl, $000c
+	add hl, bc
+	inc [hl]
+	ld a, [hl]
+	ld hl, $000d
+	add hl, bc
+	and $4
+	ld a, $1e
+	jr z, .asm_45fe
+	inc a
+
+.asm_45fe
+	ld [hl], a
+	ret
+; 4600
+
+Function4600: ; 4600
+	ld hl, $0010
+	add hl, bc
+	ld a, [hl]
+	ld hl, $0012
+	add hl, bc
+	ld [hl], a
+	ld hl, $0011
+	add hl, bc
+	ld a, [hl]
+	ld hl, $0013
+	add hl, bc
+	ld [hl], a
+	ld hl, $000e
+	add hl, bc
+	ld a, [hl]
+	ld hl, $000f
+	add hl, bc
+	ld [hl], a
+	call Function4661
+	ld hl, $000e
+	add hl, bc
+	ld a, [hl]
+	call Function4679
+	ret
+; 462a
+
+Function462a: ; 462a
+	ld hl, $0012
+	add hl, bc
+	ld a, [hl]
+	ld hl, $0010
+	add hl, bc
+	ld [hl], a
+	ld hl, $0013
+	add hl, bc
+	ld a, [hl]
+	ld hl, $0011
+	add hl, bc
+	ld [hl], a
+	ret
+; 463f
+
+Function463f: ; 463f
+	ld hl, $0005
+	add hl, bc
+	bit 3, [hl]
+	jr z, .asm_464f
+	ld hl, $000e
+	add hl, bc
+	ld a, [hl]
+	call Function4661
+
+.asm_464f
+	ld hl, $000e
+	add hl, bc
+	ld a, [hl]
+	call Function4679
+	ret c
+	ld hl, $000f
+	add hl, bc
+	ld a, [hl]
+	call Function4679
+	ret
+; 4661
+
+Function4661: ; 4661
+	call $188e
+	jr z, .asm_466b
+	call $1875
+	jr c, .asm_4672
+
+.asm_466b
+	ld hl, $0005
+	add hl, bc
+	set 3, [hl]
+	ret
+
+.asm_4672
+	ld hl, $0005
+	add hl, bc
+	res 3, [hl]
+	ret
+; 4679
+
+Function4679: ; 4679
+	and a
+	ret
+; 467b
+
+Function467b: ; 467b
+	xor a
+	ld hl, $000c
+	add hl, bc
+	ld [hl], a
+	ld hl, $001b
+	add hl, bc
+	ld [hli], a
+	ld [hli], a
+	ld [hli], a
+	ld [hl], a
+	ld hl, $0007
+	add hl, bc
+	ld [hl], $ff
+	ret
+; 4690
+
+Function4690: ; 4690
+	ld hl, $0007
+	add hl, bc
+	ld [hl], a
+	ld hl, $0004
+	add hl, bc
+	bit 2, [hl]
+	jr nz, .asm_46a6
+
+	add a
+	add a
+	and $c
+	ld hl, $0008
+	add hl, bc
+	ld [hl], a
+
+.asm_46a6
+	; fallthrough
+; 46a6
+
+Function46a6: ; 46a6
+	call Function46e9
+	ld hl, $000a
+	add hl, bc
+	ld [hl], a
+	ld a, d
+	call Function4730
+	ld hl, $0012
+	add hl, bc
+	add [hl]
+	ld hl, $0010
+	add hl, bc
+	ld [hl], a
+	ld d, a
+	ld a, e
+	call Function4730
+	ld hl, $0013
+	add hl, bc
+	add [hl]
+	ld hl, $0011
+	add hl, bc
+	ld [hl], a
+	ld e, a
+	push bc
+	call $2a3c
+	pop bc
+	ld hl, $000e
+	add hl, bc
+	ld [hl], a
+	ret
+; 46d7
+
+Function46d7: ; 46d7
+	call Function46e9
+	ld hl, $0017
+	add hl, bc
+	ld a, [hl]
+	add d
+	ld [hl], a
+	ld hl, $0018
+	add hl, bc
+	ld a, [hl]
+	add e
+	ld [hl], a
+	ret
+; 46e9
+
+Function46e9: ; 46e9
+	ld hl, $0007
+	add hl, bc
+	ld a, [hl]
+	and $f
+	add a
+	add a
+	ld l, a
+	ld h, 0
+	ld de, .Steps
+	add hl, de
+	ld d, [hl]
+	inc hl
+	ld e, [hl]
+	inc hl
+	ld a, [hli]
+	ld h, [hl]
+	ret
+; 4700
+
+.Steps ; 4700
+	;   x,  y, duration, speed
+	; slow
+	db  0,  1, $10, $01
+	db  0, -1, $10, $01
+	db -1,  0, $10, $01
+	db  1,  0, $10, $01
+	; normal
+	db  0,  2, $08, $02
+	db  0, -2, $08, $02
+	db -2,  0, $08, $02
+	db  2,  0, $08, $02
+	; fast
+	db  0,  4, $04, $04
+	db  0, -4, $04, $04
+	db -4,  0, $04, $04
+	db  4,  0, $04, $04
+; 4730
+
+Function4730: ; 4730
+	add a
+	ret z
+	ld a, 1
+	ret nc
+	ld a, -1
+	ret
+; 4738
+
+Function4738: ; 4738
+	ld hl, $0007
+	add hl, bc
+	ld a, [hl]
+	and $3
+	ld [$d151], a
+	call Function46d7
+	ld a, [$d14e]
+	add d
+	ld [$d14e], a
+	ld a, [$d14f]
+	add e
+	ld [$d14f], a
+	ld hl, $d150
+	set 5, [hl]
+	ret
+; 4759
+
+Function4759: ; 4759
+	push bc
+	ld e, a
+	ld d, 0
+	ld hl, $0001
+	add hl, bc
+	ld a, [hl]
+	call GetMapObject
+	add hl, de
+	ld a, [hl]
+	pop bc
+	ret
+; 4769
+
+Function4769: ; 4769
+	ld hl, $0001
+	add hl, bc
+	ld a, [hl]
+	cp $ff
+	jr z, .asm_477d
+	push bc
+	call GetMapObject
+	ld hl, $0004
+	add hl, bc
+	ld a, [hl]
+	pop bc
+	ret
+
+.asm_477d
+	ld a, $6
+	ret
+; 4780
+
+Function4780: ; 4780
+	ld hl, $001b
+	add hl, bc
+	ld [hl], $0
+	ret
+; 4787
+
+Function4787: ; 4787
+	ld hl, $001b
+	add hl, bc
+	inc [hl]
+	ret
+; 478d
+
+Function478d: ; 478d
+	ld hl, $001b
+	add hl, bc
+	dec [hl]
+	ret
+; 4793
+
+Function4793: ; 4793
+	ld hl, $001b
+	add hl, bc
+	ld a, [hl]
+	pop hl
+	rst JumpTable
+	ret
+; 479b
+
+Function479b: ; 479b
+	ld hl, $001c
+	add hl, bc
+	ld [hl], $0
+	ret
+; 47a2
+
+Function47a2: ; 47a2
+	ld hl, $001c
+	add hl, bc
+	inc [hl]
+	ret
+; 47a8
+
+Function47a8: ; 47a8
+	ld hl, $001c
+	add hl, bc
+	ld a, [hl]
+	pop hl
+	rst JumpTable
+	ret
+; 47b0
+
+Function47b0: ; 47b0
+	ld hl, $001c
+	add hl, bc
+	ld a, [hl]
+	ret
+; 47b6
+
+Function47b6: ; 47b6
+	ld hl, $001c
+	add hl, bc
+	ld [hl], a
+	ret
+; 47bc
+
+Function47bc: ; 47bc
+	ld hl, $0010
+	add hl, bc
+	ld d, [hl]
+	ld hl, $0011
+	add hl, bc
+	ld e, [hl]
+	push bc
+	call $2a3c
+	pop bc
+	ld hl, $000e
+	add hl, bc
+	ld [hl], a
+	call Function4600
+	call Function467b
+	ld hl, $0009
+	add hl, bc
+	ld [hl], $1
+	ret
+; 47dd
+
+Function47dd: ; 47dd
+	call Function479b
+	call Function1a2f
+	ld a, [hl]
+	ld hl, .Pointers
+	rst JumpTable
+	ret
+; 47e9
+
+.Pointers ; 47e9
+	dw Function4821
+	dw Function4822
+	dw Function482c
+	dw Function4838
+	dw Function4842
+	dw Function4851
+	dw Function4869
+	dw Function487c
+	dw Function4882
+	dw Function4888
+	dw Function488e
+	dw Function4891
+	dw Function4894
+	dw Function4897
+	dw Function489d
+	dw Function48a0
+	dw Function48a6
+	dw Function48ac
+	dw Function48ff
+	dw Function49e5
+	dw Function4a21
+	dw Function4958
+	dw Function496e
+	dw Function4abc
+	dw Function498d
+	dw Function4984
+	dw Function4a46
+	dw Function4a89
+; 4821
+
+Function4821: ; 4821
+	ret
+; 4822
+
+Function4822: ; 4822
+	call RNG
+	ld a, [hRandomAdd]
+	and 1
+	jp Function4af0
+; 482c
+
+Function482c: ; 482c
+	call RNG
+	ld a, [hRandomAdd]
+	and 1
+	or 2
+	jp Function4af0
+; 4838
+
+Function4838: ; 4838
+	call RNG
+	ld a, [hRandomAdd]
+	and 3
+	jp Function4af0
+; 4842
+
+Function4842: ; 4842
+	call RNG
+	ld a, [hRandomAdd]
+	and $c
+	ld hl, $0008
+	add hl, bc
+	ld [hl], a
+	jp Function4b1d
+; 4851
+
+Function4851: ; 4851
+	ld hl, $0008
+	add hl, bc
+	ld a, [hl]
+	and $c
+	ld d, a
+	call RNG
+	ld a, [hRandomAdd]
+	and $c
+	cp d
+	jr nz, .asm_4865
+	xor $c
+
+.asm_4865
+	ld [hl], a
+	jp Function4b26
+; 4869
+
+Function4869: ; 4869
+	call Function462a
+	call Function467b
+	ld hl, $000b
+	add hl, bc
+	ld [hl], $1
+	ld hl, $0009
+	add hl, bc
+	ld [hl], $5
+	ret
+; 487c
+
+Function487c: ; 487c
+	ld hl, Function5000
+	jp Function5041
+; 4882
+
+Function4882: ; 4882
+	ld hl, Function5015
+	jp Function5041
+; 4888
+
+Function4888: ; 4888
+	ld hl, Function5026
+	jp Function5041
+; 488e
+
+Function488e: ; 488e
+	jp Function5037
+; 4891
+
+Function4891: ; 4891
+	jp Function5037
+; 4894
+
+Function4894: ; 4894
+	jp Function5037
+; 4897
+
+Function4897: ; 4897
+	ld hl, Function5000
+	jp Function5041
+; 489d
+
+Function489d: ; 489d
+	jp Function5037
+; 48a0
+
+Function48a0: ; 48a0
+	ld hl, Function54e6
+	jp Function5041
+; 48a6
+
+Function48a6: ; 48a6
+	ld hl, Function500e
+	jp Function5041
+; 48ac
+
+Function48ac: ; 48ac
+	call Function4793
+	dw Function48b3
+	dw Function48f8
+; 48b3
+
+Function48b3: ; 48b3
+	ld hl, $000e
+	add hl, bc
+	ld a, [hl]
+	call CheckPitTile
+	jr z, .asm_48f5
+	ld hl, $0005
+	add hl, bc
+	bit 2, [hl]
+	res 2, [hl]
+	jr z, .asm_48ee
+	ld hl, $0020
+	add hl, bc
+	ld a, [hl]
+	and $3
+	or $0
+	call Function4690
+	call $6ec1
+	jr c, .asm_48eb
+	ld de, SFX_STRENGTH
+	call StartSFX
+	call Function5538
+	call Function463f
+	ld hl, $0009
+	add hl, bc
+	ld [hl], $f
+	ret
+
+.asm_48eb
+	call Function462a
+
+.asm_48ee
+	ld hl, $0007
+	add hl, bc
+	ld [hl], $ff
+	ret
+
+.asm_48f5
+	call Function4787
+	; fallthrough
+; 48f8
+
+Function48f8: ; 48f8
+	ld hl, $0007
+	add hl, bc
+	ld [hl], $ff
+	ret
+; 48ff
+
+Function48ff: ; 48ff
+	ld hl, $0010
+	add hl, bc
+	ld d, [hl]
+	ld hl, $0011
+	add hl, bc
+	ld e, [hl]
+	ld hl, $0020
+	add hl, bc
+	ld a, [hl]
+	push bc
+	call $1ae5
+	ld hl, $0007
+	add hl, bc
+	ld a, [hl]
+	cp $ff
+	jr z, .asm_494a
+	ld hl, $0012
+	add hl, bc
+	ld a, [hl]
+	cp d
+	jr z, .asm_492d
+	jr c, .asm_4929
+	ld a, $3
+	jr .asm_493d
+
+.asm_4929
+	ld a, $2
+	jr .asm_493d
+
+.asm_492d
+	ld hl, $0013
+	add hl, bc
+	ld a, [hl]
+	cp e
+	jr z, .asm_494a
+	jr c, .asm_493b
+	ld a, $0
+	jr .asm_493d
+
+.asm_493b
+	ld a, $1
+
+.asm_493d
+	ld d, a
+	ld hl, $0007
+	add hl, bc
+	ld a, [hl]
+	and $c
+	or d
+	pop bc
+	jp Function5412
+
+.asm_494a
+	pop bc
+	ld hl, $0007
+	add hl, bc
+	ld [hl], $ff
+	ld hl, $000b
+	add hl, bc
+	ld [hl], $1
+	ret
+; 4958
+
+Function4958: ; 4958
+	call Function467b
+	ld hl, $0007
+	add hl, bc
+	ld [hl], $ff
+	ld hl, $000b
+	add hl, bc
+	ld [hl], $9
+	ld hl, $0009
+	add hl, bc
+	ld [hl], $4
+	ret
+; 496e
+
+Function496e: ; 496e
+	call Function467b
+	ld hl, $0007
+	add hl, bc
+	ld [hl], $ff
+	ld hl, $000b
+	add hl, bc
+	ld [hl], $a
+	ld hl, $0009
+	add hl, bc
+	ld [hl], $4
+	ret
+; 4984
+
+Function4984: ; 4984
+	call Function4793
+	dw Function4996
+	dw Function499c
+	dw Function49b8
+; 498d
+
+Function498d: ; 498d
+	call Function4793
+	dw Function4996
+	dw Function499c
+	dw Function49c4
+; 4996
+
+Function4996: ; 4996
+	call Function467b
+	call Function4787
+	; fallthrough
+; 499c
+
+Function499c: ; 499c
+	ld hl, $000b
+	add hl, bc
+	ld [hl], $1
+	ld hl, $0020
+	add hl, bc
+	ld a, [hl]
+	ld a, $10
+	ld hl, $000a
+	add hl, bc
+	ld [hl], a
+	ld hl, $0009
+	add hl, bc
+	ld [hl], $3
+	call Function4787
+	ret
+; 49b8
+
+Function49b8: ; 49b8
+	ld de, .data_49c0
+	call Function49d0
+	jr Function4984
+; 49c0
+
+.data_49c0 ; 49c0
+	db $0c, $08, $00, $04
+; 49c4
+
+Function49c4: ; 49c4
+	ld de, .data_49cc
+	call Function49d0
+	jr Function498d
+; 49cc
+
+.data_49cc ; 49cc
+	db $08, $0c, $04, $00
+; 49d0
+
+Function49d0: ; 49d0
+	ld hl, $0008
+	add hl, bc
+	ld a, [hl]
+	and $c
+	rrca
+	rrca
+	push hl
+	ld l, a
+	ld h, $0
+	add hl, de
+	ld a, [hl]
+	pop hl
+	ld [hl], a
+	call Function478d
+	ret
+; 49e5
+
+Function49e5: ; 49e5
+	call Function4aa8
+	ld hl, $000b
+	add hl, bc
+	ld [hl], $7
+	ld hl, $000a
+	add hl, de
+	ld a, [hl]
+	inc a
+	add a
+	add $0
+	ld hl, $000a
+	add hl, bc
+	ld [hl], a
+	ld hl, $0007
+	add hl, de
+	ld a, [hl]
+	and 3
+	ld d, $e
+	cp 0
+	jr z, .asm_4a0f
+	cp 1
+	jr z, .asm_4a0f
+	ld d, $c
+
+.asm_4a0f
+	ld hl, $001a
+	add hl, bc
+	ld [hl], d
+	ld hl, $0019
+	add hl, bc
+	ld [hl], $0
+	ld hl, $0009
+	add hl, bc
+	ld [hl], $13
+	ret
+; 4a21
+
+Function4a21: ; 4a21
+	call Function467b
+	call Function4aa8
+	ld hl, $000b
+	add hl, bc
+	ld [hl], $8
+	ld hl, $000a
+	add hl, bc
+	ld [hl], $0
+	ld hl, $001a
+	add hl, bc
+	ld [hl], $f0
+	ld hl, $0019
+	add hl, bc
+	ld [hl], $0
+	ld hl, $0009
+	add hl, bc
+	ld [hl], $13
+	ret
+; 4a46
+
+Function4a46: ; 4a46
+	call Function467b
+	call Function4aa8
+	ld hl, $000b
+	add hl, bc
+	ld [hl], $e
+	ld hl, $000a
+	add hl, de
+	ld a, [hl]
+	inc a
+	add a
+	ld hl, $000a
+	add hl, bc
+	ld [hl], a
+	ld hl, $0007
+	add hl, de
+	ld a, [hl]
+	and 3
+	ld e, a
+	ld d, 0
+	ld hl, .data_4a81
+	add hl, de
+	add hl, de
+	ld d, [hl]
+	inc hl
+	ld e, [hl]
+	ld hl, $0019
+	add hl, bc
+	ld [hl], d
+	ld hl, $001a
+	add hl, bc
+	ld [hl], e
+	ld hl, $0009
+	add hl, bc
+	ld [hl], $13
+	ret
+; 4a81
+
+.data_4a81  ; 4a81
+	;   x,  y
+	db  0, -4
+	db  0,  8
+	db  6,  2
+	db -6,  2
+; 4a89
+
+Function4a89: ; 4a89
+	call Function467b
+	call Function4aa8
+	ld hl, $000b
+	add hl, bc
+	ld [hl], $f
+	ld hl, $000a
+	add hl, de
+	ld a, [hl]
+	add $ff
+	ld hl, $000a
+	add hl, bc
+	ld [hl], a
+	ld hl, $0009
+	add hl, bc
+	ld [hl], $13
+	ret
+; 4aa8
+
+Function4aa8: ; 4aa8
+	ld hl, $0020
+	add hl, bc
+	ld a, [hl]
+	push bc
+	call $1ae5
+	ld d, b
+	ld e, c
+	pop bc
+	ld hl, $001d
+	add hl, bc
+	ld [hl], e
+	inc hl
+	ld [hl], d
+	ret
+; 4abc
+
+Function4abc: ; 4abc
+	call Function467b
+	ld hl, $000b
+	add hl, bc
+	ld [hl], $0
+	ld hl, $0020
+	add hl, bc
+	ld a, [hl]
+	call Function4ade
+	ld hl, $000a
+	add hl, bc
+	ld [hl], e
+	ld hl, $001e
+	add hl, bc
+	ld [hl], a
+	ld hl, $0009
+	add hl, bc
+	ld [hl], $15
+	ret
+; 4ade
+
+Function4ade: ; 4ade
+	ld d, a
+	and $3f
+	ld e, a
+	ld a, d
+	rlca
+	rlca
+	and $3
+	ld d, a
+	inc d
+	ld a, $1
+.asm_4aeb
+	dec d
+	ret z
+	add a
+	jr .asm_4aeb
+; 4af0
+
+Function4af0: ; 4af0
+	call Function4690
+	call $6ec1
+	jr c, Function4b17
+	call Function463f
+	ld hl, $000b
+	add hl, bc
+	ld [hl], $2
+	ld hl, $d4cf
+	ld a, [hConnectionStripLength]
+	cp [hl]
+	jr z, .asm_4b10
+	ld hl, $0009
+	add hl, bc
+	ld [hl], $7
+	ret
+
+.asm_4b10
+	ld hl, $0009
+	add hl, bc
+	ld [hl], $6
+	ret
+
+Function4b17: ; 4b17
+	call Function467b
+	call Function462a
+	; fallthrough
+; 4b1d
+
+Function4b1d: ; 4b1d
+	call RNG
+	ld a, [hRandomAdd]
+	and $7f
+	jr Function4b2d
+; 4b26
+
+Function4b26: ; 4b26
+	call RNG
+	ld a, [hRandomAdd]
+	and $1f
+	; fallthrough
+; 4b2d
+
+Function4b2d: ; 4b2d
+	ld hl, $000a
+	add hl, bc
+	ld [hl], a
+	ld hl, $0007
+	add hl, bc
+	ld [hl], $ff
+	ld hl, $000b
+	add hl, bc
+	ld [hl], $1
+	ld hl, $0009
+	add hl, bc
+	ld [hl], $3
+	ret
+; 4b45
+
+Pointers4b45: ; 4b45
+	dw Function47bc
+	dw Function47dd
+	dw Function4e2b
+	dw Function4ddd
+	dw Function4e21
+	dw Function4e0c
+	dw Function4e56
+	dw Function4e47
+	dw Function4b86
+	dw Function4bbf
+	dw Function4e83
+	dw Function4dff
+	dw Function4c18
+	dw Function4c89
+	dw Function4d14
+	dw Function4ecd
+	dw Function4d7e
+	dw Function4daf
+	dw Function4dc8
+	dw Function4f04
+	dw Function4f33
+	dw Function4f33
+	dw Function4f77
+	dw Function4f7a
+	dw Function4df0
+	dw Function4f83
+; 4b79
+
+Function4b79: ; 4b79
+	ld hl, $000a
+	add hl, bc
+	dec [hl]
+	ret nz
+	ld hl, $0009
+	add hl, bc
+	ld [hl], $1
+	ret
+; 4b86
+
+Function4b86: ; 4b86
+	call Function47a8
+	dw Function4b8d
+	dw Function4ba9
+; 4b8d
+
+Function4b8d: ; 4b8d
+	call Function46d7
+	call UpdateJumpPosition
+	ld hl, $000a
+	add hl, bc
+	dec [hl]
+	ret nz
+	call Function4600
+	call Function46a6
+	ld hl, $0005
+	add hl, bc
+	res 3, [hl]
+	call Function47a2
+	ret
+; 4ba9
+
+Function4ba9: ; 4ba9
+	call Function46d7
+	call UpdateJumpPosition
+	ld hl, $000a
+	add hl, bc
+	dec [hl]
+	ret nz
+	call Function4600
+	ld hl, $0009
+	add hl, bc
+	ld [hl], $1
+	ret
+; 4bbf
+
+Function4bbf: ; 4bbf
+	call Function47a8
+	dw Function4bca
+	dw Function4bd2
+	dw Function4bf2
+	dw Function4bfd
+; 4bca
+
+Function4bca: ; 4bca
+	ld hl, $d150
+	set 7, [hl]
+	call Function47a2
+;	fallthrough
+; 4bd2
+
+Function4bd2: ; 4bd2
+	call UpdateJumpPosition
+	call Function4738
+	ld hl, $000a
+	add hl, bc
+	dec [hl]
+	ret nz
+	call Function4600
+	ld hl, $0005
+	add hl, bc
+	res 3, [hl]
+	ld hl, $d150
+	set 6, [hl]
+	set 4, [hl]
+	call Function47a2
+	ret
+; 4bf2
+
+Function4bf2: ; 4bf2
+	call Function46a6
+	ld hl, $d150
+	set 7, [hl]
+	call Function47a2
+;	fallthrough
+; 4bfd
+
+Function4bfd: ; 4bfd
+	call UpdateJumpPosition
+	call Function4738
+	ld hl, $000a
+	add hl, bc
+	dec [hl]
+	ret nz
+	ld hl, $d150
+	set 6, [hl]
+	call Function4600
+	ld hl, $0009
+	add hl, bc
+	ld [hl], $1
+	ret
+; 4c18
+
+Function4c18: ; 4c18
+	call Function47a8
+	dw Function4c23
+	dw Function4c32
+	dw Function4c42
+	dw Function4c5d
+; 4c23
+
+Function4c23: ; 4c23
+	ld hl, $000c
+	add hl, bc
+	ld [hl], $0
+	ld hl, $000a
+	add hl, bc
+	ld [hl], $10
+	call Function47a2
+;	fallthrough
+; 4c32
+
+Function4c32: ; 4c32
+	ld hl, $000b
+	add hl, bc
+	ld [hl], $4
+	ld hl, $000a
+	add hl, bc
+	dec [hl]
+	ret nz
+	call Function47a2
+	ret
+; 4c42
+
+Function4c42: ; 4c42
+	ld hl, $000c
+	add hl, bc
+	ld [hl], $0
+	ld hl, $001f
+	add hl, bc
+	ld [hl], $10
+	ld hl, $000a
+	add hl, bc
+	ld [hl], $10
+	ld hl, $0005
+	add hl, bc
+	res 3, [hl]
+	call Function47a2
+;	fallthrough
+; 4c5d
+
+Function4c5d: ; 4c5d
+	ld hl, $000b
+	add hl, bc
+	ld [hl], $4
+	ld hl, $001f
+	add hl, bc
+	inc [hl]
+	ld a, [hl]
+	ld d, $60
+	call $1b11
+	ld a, h
+	sub $60
+	ld hl, $001a
+	add hl, bc
+	ld [hl], a
+	ld hl, $000a
+	add hl, bc
+	dec [hl]
+	ret nz
+	ld hl, $000c
+	add hl, bc
+	ld [hl], $0
+	ld hl, $0009
+	add hl, bc
+	ld [hl], $1
+	ret
+; 4c89
+
+Function4c89: ; 4c89
+	call Function47a8
+	dw Function4c9a
+	dw Function4caa
+	dw Function4cb3
+	dw Function4cc9
+	dw Function4ceb
+	dw Function4cf5
+	dw Function4d01
+; 4c9a
+
+Function4c9a: ; 4c9a
+	ld hl, $000b
+	add hl, bc
+	ld [hl], $0
+	ld hl, $000a
+	add hl, bc
+	ld [hl], $10
+	call Function47a2
+	ret
+; 4caa
+
+Function4caa: ; 4caa
+	ld hl, $000a
+	add hl, bc
+	dec [hl]
+	ret nz
+	call Function47a2
+;	fallthrough
+; 4cb3
+
+Function4cb3: ; 4cb3
+	ld hl, $000c
+	add hl, bc
+	ld [hl], $0
+	ld hl, $001f
+	add hl, bc
+	ld [hl], $0
+	ld hl, $000a
+	add hl, bc
+	ld [hl], $10
+	call Function47a2
+	ret
+; 4cc9
+
+Function4cc9: ; 4cc9
+	ld hl, $000b
+	add hl, bc
+	ld [hl], $4
+	ld hl, $001f
+	add hl, bc
+	inc [hl]
+	ld a, [hl]
+	ld d, $60
+	call $1b11
+	ld a, h
+	sub $60
+	ld hl, $001a
+	add hl, bc
+	ld [hl], a
+	ld hl, $000a
+	add hl, bc
+	dec [hl]
+	ret nz
+	call Function47a2
+;	fallthrough
+; 4ceb
+
+Function4ceb: ; 4ceb
+	ld hl, $000a
+	add hl, bc
+	ld [hl], $10
+	call Function47a2
+	ret
+; 4cf5
+
+Function4cf5: ; 4cf5
+	ld hl, $000b
+	add hl, bc
+	ld [hl], $4
+	ld hl, $000a
+	add hl, bc
+	dec [hl]
+	ret nz
+; 4d01
+
+Function4d01: ; 4d01
+	ld hl, $000c
+	add hl, bc
+	ld [hl], $0
+	ld hl, $001a
+	add hl, bc
+	ld [hl], $0
+	ld hl, $0009
+	add hl, bc
+	ld [hl], $1
+	ret
+; 4d14
+
+Function4d14: ; 4d14
+	call Function47a8
+	dw Function4d1f
+	dw Function4d2e
+	dw Function4d4f
+	dw Function4d6b
+; 4d1f
+
+Function4d1f: ; 4d1f
+	ld hl, $000b
+	add hl, bc
+	ld [hl], $0
+	ld hl, $000a
+	add hl, bc
+	ld [hl], $10
+	call Function47a2
+;	fallthrough
+; 4d2e
+
+Function4d2e: ; 4d2e
+	ld hl, $000a
+	add hl, bc
+	dec [hl]
+	ret nz
+	ld hl, $000b
+	add hl, bc
+	ld [hl], $2
+	ld hl, $000c
+	add hl, bc
+	ld [hl], $0
+	ld hl, $001f
+	add hl, bc
+	ld [hl], $0
+	ld hl, $000a
+	add hl, bc
+	ld [hl], $10
+	call Function47a2
+;	fallthrough
+; 4d4f
+
+Function4d4f: ; 4d4f
+	ld hl, $001f
+	add hl, bc
+	inc [hl]
+	ld a, [hl]
+	ld d, $60
+	call $1b11
+	ld a, h
+	sub $60
+	ld hl, $001a
+	add hl, bc
+	ld [hl], a
+	ld hl, $000a
+	add hl, bc
+	dec [hl]
+	ret nz
+	call Function47a2
+;	fallthrough
+; 4d6b
+
+Function4d6b: ; 4d6b
+	ld hl, $000c
+	add hl, bc
+	ld [hl], $0
+	ld hl, $001a
+	add hl, bc
+	ld [hl], $0
+	ld hl, $0009
+	add hl, bc
+	ld [hl], $1
+	ret
+; 4d7e
+
+Function4d7e: ; 4d7e
+	call Function47a8
+	dw Function4d85
+	dw Function4d94
+; 4d85
+
+Function4d85: ; 4d85
+	ld hl, $000a
+	add hl, bc
+	ld [hl], $8
+	ld hl, $001a
+	add hl, bc
+	ld [hl], $0
+	call Function47a2
+	; fallthrough
+; 4d94
+
+Function4d94: ; 4d94
+	ld hl, $001a
+	add hl, bc
+	ld a, [hl]
+	xor 1
+	ld [hl], a
+	ld hl, $000a
+	add hl, bc
+	dec [hl]
+	ret nz
+	ld hl, $001a
+	add hl, bc
+	ld [hl], $0
+	ld hl, $0009
+	add hl, bc
+	ld [hl], $1
+	ret
+; 4daf
+
+Function4daf: ; 4daf
+	call Function4db5
+	jp Function4b79
+; 4db5
+
+Function4db5: ; 4db5
+	ld hl, $000a
+	add hl, bc
+	ld a, [hl]
+	and $1
+	ld a, $1
+	jr z, .asm_4dc2
+	ld a, $0
+
+.asm_4dc2
+	ld hl, $000b
+	add hl, bc
+	ld [hl], a
+	ret
+; 4dc8
+
+Function4dc8: ; 4dc8
+	ld hl, $000a
+	add hl, bc
+	ld a, [hl]
+	and $1
+	ld a, $4
+	jr z, .asm_4dd5
+	ld a, $5
+
+.asm_4dd5
+	ld hl, $000b
+	add hl, bc
+	ld [hl], a
+	jp Function4b79
+; 4ddd
+
+Function4ddd: ; 4ddd
+	ld hl, $0007
+	add hl, bc
+	ld [hl], $ff
+	ld hl, $000a
+	add hl, bc
+	dec [hl]
+	ret nz
+	ld hl, $0009
+	add hl, bc
+	ld [hl], $1
+	ret
+; 4df0
+
+Function4df0: ; 4df0
+	ld hl, $0007
+	add hl, bc
+	ld [hl], $ff
+	ld hl, $000a
+	add hl, bc
+	dec [hl]
+	ret nz
+	jp Function4357
+; 4dff
+
+Function4dff: ; 4dff
+	ld hl, $000a
+	add hl, bc
+	dec [hl]
+	ret nz
+	ld hl, $0009
+	add hl, bc
+	ld [hl], $1
+	ret
+; 4e0c
+
+Function4e0c: ; 4e0c
+	call Function47a8
+	dw Function4e13
+	dw Function4e21
+; 4e13
+
+Function4e13: ; 4e13
+	call Function4769
+	call Function1a47
+	ld hl, $0008
+	add hl, bc
+	ld [hl], a
+	call Function47a2
+	; fallthrough
+; 4e21
+
+Function4e21: ; 4e21
+	call Function4fb2
+	ld hl, $0007
+	add hl, bc
+	ld [hl], $ff
+	ret
+; 4e2b
+
+Function4e2b: ; 4e2b
+	call Function4fb2
+	call Function46d7
+	ld hl, $000a
+	add hl, bc
+	dec [hl]
+	ret nz
+	call Function4600
+	ld hl, $0007
+	add hl, bc
+	ld [hl], $ff
+	ld hl, $0009
+	add hl, bc
+	ld [hl], $1
+	ret
+; 4e47
+
+Function4e47: ; 4e47
+	call Function46d7
+	ld hl, $000a
+	add hl, bc
+	dec [hl]
+	ret nz
+	call Function4600
+	jp Function4b1d
+; 4e56
+
+Function4e56: ; 4e56
+; AnimateStep?
+	call Function47a8
+	dw Function4e5d
+	dw Function4e65
+; 4e5d
+
+Function4e5d: ; 4e5d
+	ld hl, $d150
+	set 7, [hl]
+	call Function47a2
+	; fallthrough
+; 4e65
+
+Function4e65: ; 4e65
+	call Function4738
+	ld hl, $000a
+	add hl, bc
+	dec [hl]
+	ret nz
+	ld hl, $d150
+	set 6, [hl]
+	call Function4600
+	ld hl, $0007
+	add hl, bc
+	ld [hl], $ff
+	ld hl, $0009
+	add hl, bc
+	ld [hl], $1
+	ret
+; 4e83
+
+Function4e83: ; 4e83
+	call Function47a8
+	dw Function4e8e
+	dw Function4ea4
+	dw Function4ead
+	dw Function4ec0
+; 4e8e
+
+Function4e8e: ; 4e8e
+	ld hl, $0007
+	add hl, bc
+	ld [hl], $ff
+	ld hl, $000c
+	add hl, bc
+	ld a, [hl]
+	ld [hl], $2
+	ld hl, $000a
+	add hl, bc
+	ld [hl], $2
+	call Function47a2
+	; fallthrough
+; 4ea4
+
+Function4ea4: ; 4ea4
+	ld hl, $000a
+	add hl, bc
+	dec [hl]
+	ret nz
+	call Function47a2
+	; fallthrough
+; 4ead
+
+Function4ead: ; 4ead
+	ld hl, $001d
+	add hl, bc
+	ld a, [hl]
+	ld hl, $0008
+	add hl, bc
+	ld [hl], a
+	ld hl, $000a
+	add hl, bc
+	ld [hl], $2
+	call Function47a2
+	; fallthrough
+; 4ec0
+
+Function4ec0: ; 4ec0
+	ld hl, $000a
+	add hl, bc
+	dec [hl]
+	ret nz
+	ld hl, $0009
+	add hl, bc
+	ld [hl], $1
+	ret
+; 4ecd
+
+Function4ecd: ; 4ecd
+	call Function46d7
+	ld hl, $000a
+	add hl, bc
+	dec [hl]
+	ret nz
+	push bc
+	ld hl, $0010
+	add hl, bc
+	ld d, [hl]
+	ld hl, $0011
+	add hl, bc
+	ld e, [hl]
+	ld hl, $0001
+	add hl, bc
+	ld a, [hl]
+	ld b, a
+	ld a, $2
+	ld hl, $407e
+	rst FarCall
+	pop bc
+	ld hl, $0005
+	add hl, bc
+	res 2, [hl]
+	call Function4600
+	ld hl, $0007
+	add hl, bc
+	ld [hl], $ff
+	ld hl, $0009
+	add hl, bc
+	ld [hl], $1
+	ret
+; 4f04
+
+Function4f04: ; 4f04
+	ld hl, $001d
+	add hl, bc
+	ld e, [hl]
+	inc hl
+	ld d, [hl]
+	ld hl, $0000
+	add hl, de
+	ld a, [hl]
+	and a
+	jr z, .asm_4f30
+	ld hl, $0017
+	add hl, de
+	ld a, [hl]
+	ld hl, $0017
+	add hl, bc
+	ld [hl], a
+	ld hl, $0018
+	add hl, de
+	ld a, [hl]
+	ld hl, $0018
+	add hl, bc
+	ld [hl], a
+	ld hl, $000a
+	add hl, bc
+	ld a, [hl]
+	and a
+	ret z
+	dec [hl]
+	ret nz
+
+.asm_4f30
+	jp Function4357
+; 4f33
+
+Function4f33: ; 4f33
+	call Function47a8
+	dw Function4f3a
+	dw Function4f43
+; 4f3a
+
+Function4f3a: ; 4f3a
+	xor a
+	ld hl, $001d
+	add hl, bc
+	ld [hl], a
+	call Function47a2
+	; fallthrough
+; 4f43
+
+Function4f43: ; 4f43
+	ld hl, $001d
+	add hl, bc
+	ld d, [hl]
+	ld a, [$d14f]
+	sub d
+	ld [$d14f], a
+	ld hl, $000a
+	add hl, bc
+	dec [hl]
+	jr z, .asm_4f68
+	ld a, [hl]
+	call Function4f6c
+	ld hl, $001d
+	add hl, bc
+	ld [hl], a
+	ld d, a
+	ld a, [$d14f]
+	add d
+	ld [$d14f], a
+	ret
+
+.asm_4f68
+	call Function4357
+	ret
+; 4f6c
+
+Function4f6c: ; 4f6c
+	ld hl, $001e
+	add hl, bc
+	and 1
+	ld a, [hl]
+	ret z
+	cpl
+	inc a
+	ret
+; 4f77
+
+Function4f77: ; 4f77
+	call Function47a8 ; ????
+; 4f7a
+
+Function4f7a: ; 4f7a
+	call Function47a8
+	dw Function4f83
+	dw Function4f83
+	dw Function4f83
+; 4f83
+
+Function4f83: ; 4f83
+	call Function47a8
+	dw Function4f8a
+	dw Function4f99
+; 4f8a
+
+Function4f8a: ; 4f8a
+	ld hl, $000b
+	add hl, bc
+	ld [hl], $10
+	ld hl, $000a
+	add hl, bc
+	ld [hl], $10
+	call Function47a2
+; 4f99
+
+Function4f99: ; 4f99
+	ld hl, $000a
+	add hl, bc
+	dec [hl]
+	ret nz
+	ld hl, $001a
+	add hl, bc
+	ld [hl], $60
+	ld hl, $000c
+	add hl, bc
+	ld [hl], $0
+	ld hl, $0009
+	add hl, bc
+	ld [hl], $1
+	ret
+; 4fb2
+
+Function4fb2: ; 4fb2
+	ret
+; 4fb3
+
+Function4fb3: ; 4fb3
+	ld hl, $001d
+	add hl, bc
+	inc [hl]
+	ld a, [hl]
+	srl a
+	srl a
+	and 7
+	ld l, a
+	ld h, 0
+	ld de, .y
+	add hl, de
+	ld a, [hl]
+	ld hl, $001a
+	add hl, bc
+	ld [hl], a
+	ret
+; 4fcd
+
+.y ; 4fcd
+	db 0, -1, -2, -3, -4, -3, -2, -1
+; 4fd5
+
+UpdateJumpPosition: ; 4fd5
+	call Function46e9
+	ld a, h
+	ld hl, $001f
+	add hl, bc
+	ld e, [hl]
+	add e
+	ld [hl], a
+	nop
+	srl e
+	ld d, 0
+	ld hl, .y
+	add hl, de
+	ld a, [hl]
+	ld hl, $001a
+	add hl, bc
+	ld [hl], a
+	ret
+; 4ff0
+
+.y ; 4ff0
+	db  -4,  -6,  -8, -10, -11, -12, -12, -12
+	db -11, -10,  -9,  -8,  -6,  -4,   0,   0
+; 5000
 
 Function5000: ; 5000
 	ld a, [$c2de]
@@ -5608,7 +8291,7 @@ Function5015: ; 5015
 	add hl, bc
 	ld e, [hl]
 	inc [hl]
-	ld d, $0
+	ld d, 0
 	ld hl, $c2e2
 	ld a, [hli]
 	ld h, [hl]
@@ -5623,7 +8306,7 @@ Function5026: ; 5026
 	add hl, bc
 	ld e, [hl]
 	inc [hl]
-	ld d, $0
+	ld d, 0
 	ld hl, $c2e6
 	ld a, [hli]
 	ld h, [hl]
@@ -5634,8 +8317,8 @@ Function5026: ; 5026
 ; 5037
 
 Function5037: ; 5037
-	ld hl, $503d
-	jp $5041
+	ld hl, Function503d
+	jp Function5041
 ; 503d
 
 Function503d: ; 503d
@@ -5718,7 +8401,7 @@ Function54b8: ; 54b8
 	ld hl, $d4d0
 	inc [hl]
 	ld e, [hl]
-	ld d, $0
+	ld d, 0
 	ld hl, $d4d1
 	add hl, de
 	pop af
@@ -5735,7 +8418,7 @@ Function54e6: ; 54e6
 	jr z, .asm_5503
 	dec [hl]
 	ld e, a
-	ld d, $0
+	ld d, 0
 	ld hl, $d4d1
 	add hl, de
 	inc e
@@ -6016,9 +8699,7 @@ Function565c: ; 565c
 	call Function56a3
 	jr c, Function5680
 	call Function5688
-	ld a, $1
-	ld hl, $4440
-	rst FarCall
+	callba Function4440
 	xor a
 	ret
 ; 5673
@@ -6026,9 +8707,7 @@ Function565c: ; 565c
 Function5673: ; 5673
 	call Function56a3
 	jr c, Function5680
-	ld a, $1
-	ld hl, $4440
-	rst FarCall
+	callba Function4440
 	xor a
 	ret
 ; 5680
@@ -6054,9 +8733,7 @@ Function5688: ; 5688
 	ld hl, $000e
 	add hl, bc
 	ld [hl], a
-	ld a, $1
-	ld hl, $463f
-	rst FarCall
+	callba Function463f
 	ret
 ; 56a3
 
@@ -6108,7 +8785,7 @@ Function56cd: ; 56cd
 	cp $f0
 	jr nc, .asm_56e5
 	cp $a0
-	jp nc, $5768
+	jp nc, .asm_5768
 
 .asm_56e5
 	and $7
@@ -6235,7 +8912,7 @@ Function5781: ; 5781
 	ld [hConnectionStripLength], a
 	call $1af1
 	jr z, .asm_578f
-	call $437b
+	call Function437b
 
 .asm_578f
 	ld hl, $0028
@@ -6260,7 +8937,7 @@ Function579d: ; 579d
 	ld a, $5
 	ld hl, $49c6
 	rst FarCall
-	call c, $57d9
+	call c, Function57d9
 	call Function57ca
 	ret
 ; 57bc
@@ -6285,11 +8962,15 @@ Function57ca: ; 57ca
 	and $3
 	add a
 	add a
-	jr .asm_57db
+	jr Function57db
+; 57d9
 
+Function57d9: ; 57d9
 	ld a, $0
+	; fallthrough
+; 57db
 
-.asm_57db
+Function57db: ; 57db
 	ld bc, $d4d6
 	call $1af8
 	ret
@@ -6510,7 +9191,7 @@ Function5903: ; 5903
 	rrca
 	rrca
 	ld e, a
-	ld d, $0
+	ld d, 0
 	ld hl, .data_591c
 	add hl, de
 	ld a, [hl]
@@ -6625,7 +9306,7 @@ Function59a4: ; 59a4
 	ld hl, $c2eb
 	ld bc, $000d
 	call ByteFill
-	ld d, $0
+	ld d, 0
 	ld bc, $d4d6
 	ld hl, $c2eb
 .asm_59b6
@@ -6755,32 +9436,34 @@ Function5a0d: ; 5a0d
 	ld a, [$d14d]
 	add e
 	ld [$ffc0], a
+
 	ld hl, $000d
 	add hl, bc
 	ld a, [hl]
 	cp $ff
 	jp z, .asm_5abe
-
 	cp $20
 	jp nc, .asm_5abe
+
 	ld l, a
-	ld h, $0
+	ld h, 0
 	add hl, hl
-	ld bc, $4049
+	ld bc, DataPointers4049
 	add hl, bc
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
+
 	ld a, [$ffbd]
 	ld c, a
-	ld b, $c4
+	ld b, Sprites / $100
 	ld a, [hli]
 	ld [$ffbe], a
 	add c
-	cp $a0
-	jr nc, .asm_5ac0
+	cp SpritesEnd % $100
+	jr nc, .full
 
-.asm_5a8e
+.loop
 	ld a, [$ffc0]
 	add [hl]
 	inc hl
@@ -6797,7 +9480,6 @@ Function5a0d: ; 5a0d
 	bit 2, e
 	jr z, .asm_5aa3
 	xor a
-
 .asm_5aa3
 	add [hl]
 	inc hl
@@ -6808,7 +9490,6 @@ Function5a0d: ; 5a0d
 	jr z, .asm_5aaf
 	ld a, [$ffc2]
 	or e
-
 .asm_5aaf
 	and $f0
 	or d
@@ -6817,7 +9498,8 @@ Function5a0d: ; 5a0d
 	ld a, [$ffbe]
 	dec a
 	ld [$ffbe], a
-	jr nz, .asm_5a8e
+	jr nz, .loop
+
 	ld a, c
 	ld [$ffbd], a
 
@@ -6825,7 +9507,7 @@ Function5a0d: ; 5a0d
 	xor a
 	ret
 
-.asm_5ac0
+.full
 	scf
 	ret
 ; 5ac2
@@ -6862,7 +9544,7 @@ Function5ae8: ; 5ae8
 	ld de, MUSIC_NONE
 	call StartMusic
 	call DelayFrame
-	ld de, $0054
+	ld de, MUSIC_MAIN_MENU
 	ld a, e
 	ld [CurMusic], a
 	call StartMusic
@@ -6948,7 +9630,7 @@ Function5b6b: ; 5b6b
 	ld [$d001], a
 	ld a, $f1
 	ld [$ff9f], a
-	jp $5e5d
+	jp Function5e5d
 ; 5b8f
 
 Function5b8f: ; 5b8f
@@ -7230,9 +9912,9 @@ Function5d65: ; 5d65
 .asm_5d96
 	ld a, $8
 	ld [MusicFade], a
-	ld a, $0
+	ld a, MUSIC_NONE % $100
 	ld [MusicFadeIDLo], a
-	ld a, $0
+	ld a, MUSIC_NONE / $100
 	ld [MusicFadeIDHi], a
 	call WhiteBGMap
 	call Function5df0
@@ -7254,7 +9936,7 @@ Function5d65: ; 5d65
 	jr z, .asm_5dd7
 	ld a, $f2
 	ld [$ff9f], a
-	jp $5e5d
+	jp Function5e5d
 
 .asm_5dd6
 	ret
@@ -7263,7 +9945,7 @@ Function5d65: ; 5d65
 	ld a, $e
 	ld [$d001], a
 	call Function5de7
-	jp $5e5d
+	jp Function5e5d
 ; 5de2
 
 Function5de2: ; 5de2
@@ -7289,11 +9971,11 @@ Function5df0: ; 5df0
 	ret nz
 	ld a, $5
 	ld [MusicFade], a
-	ld a, $5e
+	ld a, MUSIC_MOBILE_ADAPTER_MENU % $100
 	ld [MusicFadeIDLo], a
-	ld a, $0
+	ld a, MUSIC_MOBILE_ADAPTER_MENU / $100
 	ld [MusicFadeIDHi], a
-	ld c, $14
+	ld c, 20
 	call DelayFrames
 	ld c, $1
 	ld a, $12
@@ -7304,11 +9986,11 @@ Function5df0: ; 5df0
 	rst FarCall
 	ld a, $8
 	ld [MusicFade], a
-	ld a, $0
+	ld a, MUSIC_NONE % $100
 	ld [MusicFadeIDLo], a
-	ld a, $0
+	ld a, MUSIC_NONE / $100
 	ld [MusicFadeIDHi], a
-	ld c, $23
+	ld c, 35
 	call DelayFrames
 	ret
 ; 5e34
@@ -20544,9 +23226,7 @@ Function967c1: ; 967c1
 ; 967d1
 
 Function967d1: ; 967d1
-	ld a, $1
-	ld hl, $576a
-	rst FarCall
+	callba Function576a
 	ld a, $3
 	ld hl, $5497
 	rst FarCall
@@ -21492,9 +24172,7 @@ WaitScript: ; 96c7a
 	dec [hl]
 	ret nz
 
-	ld a, $1
-	ld hl, $58b9
-	rst FarCall
+	callba Function58b9
 
 	ld a, SCRIPT_READ
 	ld [ScriptMode], a
@@ -21509,9 +24187,7 @@ WaitScriptMovement: ; 96c91
 	bit 7, [hl]
 	ret nz
 
-	ld a, $1
-	ld hl, $58b9
-	rst FarCall
+	callba Function58b9
 
 	ld a, SCRIPT_READ
 	ld [ScriptMode], a
