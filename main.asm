@@ -1500,7 +1500,7 @@ Char4B: ; 131f
 
 Char55: ; 1345
 	push de
-	ld de, .text_1354
+	ld de, Text_1354
 	ld b, h
 	ld c, l
 	call PlaceString
@@ -1508,8 +1508,9 @@ Char55: ; 1345
 	ld l, c
 	pop de
 	jp NextChar
+; 1354
 
-.text_1354
+Text_1354: ; 1354
 	db $4b, "@"
 ; 1356
 
