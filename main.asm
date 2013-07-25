@@ -10053,7 +10053,28 @@ INCBIN "baserom.gbc", $27a28, $27a2d - $27a28
 
 SECTION "bankA",DATA,BANK[$A]
 
-INCBIN "baserom.gbc", $28000, $2a2a0 - $28000
+INCBIN "baserom.gbc", $28000, $28785 - $28000
+
+TimeCapsuleItemConversions: ; 0x28785
+; Pokémon traded from RBY do not have held items, so GSC usually interprets the
+; catch rate as an item. However, if the catch rate appears in this table, the
+; item associated with the table entry is used instead.
+
+	db 25, LEFTOVERS
+	db 45, BITTER_BERRY
+	db 50, GOLD_BERRY
+	db 90, BERRY
+	db 100, BERRY
+	db 120, BERRY
+	db 135, BERRY
+	db 190, BERRY
+	db 195, BERRY
+	db 220, BERRY
+	db 250, BERRY
+	db 255, BERRY
+	db 0
+
+INCBIN "baserom.gbc", $2879e, $2a2a0 - $2879e
 
 SpecialRoamMons: ; 2a2a0
 ; initialize RoamMon structs
