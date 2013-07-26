@@ -3465,7 +3465,7 @@ Function1ff0: ; 1ff0
 
 INCBIN "baserom.gbc", $1ff8, $2009 - $1ff8
 
-PlayClickSFX: ; PlayClickSFX
+PlayClickSFX: ; 2009 
 	push de
 	ld de, SFX_READ_TEXT_2
 	call StartSFX
