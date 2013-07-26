@@ -837,13 +837,6 @@ CurSpecies: ; cf60
 MenuSelection:; cf74
 	ds 1
 
-	ds 14
-
-TileY: ; cf82
-	ds 1
-TileX: ; cf83
-	ds 1
-
 
 
 SECTION "VBlank",BSS[$cfb1]

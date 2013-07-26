@@ -3319,10 +3319,10 @@ Function1c47: ; 0x1c47
 Function1c53: ; 0x1c53
 	ld a, [$cf82]
 	ld b, a
-	ld a, [TileX]
+	ld a, [$cf84]
 	sub b
 	ld b, a
-	ld a, [TileY]
+	ld a, [$cf83]
 	ld c, a
 	ld a, [$cf85]
 	sub c
