@@ -30205,7 +30205,32 @@ Function2c7fb: ; 2c7fb
 	jr .asm_2c821
 ; 2c867
 
-INCBIN "baserom.gbc", $2c867, $2ee6c - $2c867
+
+INCBIN "baserom.gbc", $2c867, $2cb3e - $2c867
+
+
+PrintMoveDescription: ; 2cb3e
+	push hl
+	ld hl, MoveDescriptions
+	ld a, [CurSpecies]
+	dec a
+	ld c, a
+	ld b, 0
+	add hl, bc
+	add hl, bc
+	ld a, [hli]
+	ld e, a
+	ld d, [hl]
+	pop hl
+	jp PlaceString
+; 2cb52
+
+MoveDescriptions: ; 2cb52
+INCLUDE "battle/moves/move_descriptions.asm"
+; 2ed44
+
+
+INCBIN "baserom.gbc", $2ed44, $2ee6c - $2ed44
 
 
 PlayBattleMusic: ; 2ee6c
