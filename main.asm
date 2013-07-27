@@ -3636,13 +3636,13 @@ Function156a: ; 156a
 	ret
 ; 1582
 
-Function1582: ; 1582
+Text_15: ; 1582
 	call GetWeekday
 	push hl
 	push bc
 	ld c, a
-	ld b, $0
-	ld hl, $15a2
+	ld b, 0
+	ld hl, .Days
 	add hl, bc
 	add hl, bc
 	ld a, [hli]
@@ -3654,13 +3654,31 @@ Function1582: ; 1582
 	call PlaceString
 	ld h, b
 	ld l, c
-	ld de, $15d4
+	ld de, .Day
 	call PlaceString
 	pop hl
 	ret
 ; 15a2
 
-INCBIN "baserom.gbc", $15a2, $15d8 - $15a2
+.Days ; 15a2
+	dw .Sun
+	dw .Mon
+	dw .Tues
+	dw .Wednes
+	dw .Thurs
+	dw .Fri
+	dw .Satur
+
+.Sun    db "SUN@"
+.Mon    db "MON@"
+.Tues   db "TUES@"
+.Wednes db "WEDNES@"
+.Thurs  db "THURS@"
+.Fri    db "FRI@"
+.Satur  db "SATUR@"
+.Day    db "DAY@"
+; 15d8
+
 
 DMATransfer: ; 15d8
 ; DMA transfer
@@ -5451,7 +5469,15 @@ Function1d58: ; 1d58
 	ret
 ; 1d5f
 
-INCBIN "baserom.gbc", $1d5f, $1d6e - $1d5f
+INCBIN "baserom.gbc", $1d5f, $1d67 - $1d5f
+
+
+Function1d67: ; 1d67
+	call Function1d4f
+	call Function1c17
+	ret
+; 1d6e
+
 
 
 Function1d6e: ; 1d6e
