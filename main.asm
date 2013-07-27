@@ -56,8 +56,23 @@ Start:
 
 SECTION "start",HOME[$150]
 
-INCBIN "baserom.gbc", $150, $16e - $150
-
+Reset: ; 150
+	di
+	call CleanSoundRestart
+	xor a
+	ld [$ffde], a
+	call ClearPalettes
+	xor a
+	ld [rIF], a
+	ld a, $1
+	ld [rIE], a
+	ei
+	ld hl, $cfbe
+	set 7, [hl]
+	ld c, $20
+	call DelayFrames
+	jr Function17d
+; 16e
 
 Function16e: ; 16e
 	cp $11
@@ -72,6 +87,9 @@ Function16e: ; 16e
 	ld [hCGB], a
 	ld a, $1
 	ld [$ffea], a
+; 17d
+
+Function17d: ; 17d
 	di
 	xor a
 	ld [rIF], a
@@ -14056,7 +14074,7 @@ Function5e5d: ; 5e5d
 	ld a, [$d4b5]
 	cp $2
 	jr z, .asm_5e80
-	jp $0150
+	jp Reset
 
 .asm_5e80
 	call Function5de2
@@ -16643,7 +16661,7 @@ SpecialsPointers: ; 0xc029
 	dbw $46, $7a38
 	dbw $5c, $4bd3
 	dbw $45, $7656
-	dbw $00, $0150
+	dbw BANK(Reset), Reset
 	dbw $40, $51f1
 	dbw $40, $5220
 	dbw $40, $5225
