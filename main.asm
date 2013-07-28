@@ -31066,10 +31066,10 @@ Function38000: ; 38000
 	ret nz
 	ld a, [PlayerSubStatus5]
 	bit 7, a
-	jr nz, .asm_38041
+	jr nz, Function38041
 	ld a, [$c731]
 	and a
-	jr nz, .asm_38041
+	jr nz, Function38041
 	ld hl, $55a1
 	ld a, [$cfc0]
 	and a
@@ -31086,23 +31086,25 @@ Function38000: ; 38000
 	jp nz, $4083
 	bit 2, [hl]
 	jp nz, $40c1
+	; fallthrough
+; 38041
 
-.asm_38041
+Function38041: ; 38041
 	call $4105
 	ret
 ; 38045
 
 Function38045: ; 38045
-	callab Function34941
+	callab Function0x34941
 	ld a, [$c717]
 	and $f0
-	jp z, $4041
+	jp z, Function38041
 	cp $10
 	jr nz, .asm_38061
 	call RNG
 	cp $80
 	jr c, .asm_38077
-	jp $4041
+	jp Function38041
 
 .asm_38061
 	cp $20
@@ -31126,7 +31128,7 @@ Function38045: ; 38045
 ; 38083
 
 Function38083: ; 38083
-	callab Function34941
+	callab Function0x34941
 	ld a, [$c717]
 	and $f0
 	jp z, $4041
@@ -31159,7 +31161,7 @@ Function38083: ; 38083
 ; 380c1
 
 Function380c1: ; 380c1
-	callab Function34941
+	callab Function0x34941
 	ld a, [$c717]
 	and $f0
 	jp z, $4041
@@ -32191,7 +32193,7 @@ Function3d5d7: ; 3d5d7
 	ld a, $10
 	call FarCopyBytes
 	call SetEnemyTurn
-	callab Function347c8
+	callab Function0x347c8
 	pop bc
 	pop de
 	pop hl
@@ -32226,13 +32228,13 @@ Function3d618: ; 3d618
 	ld a, [BattleMonType1]
 	ld [PlayerMoveType], a
 	call SetPlayerTurn
-	callab Function347c8
+	callab Function0x347c8
 	ld a, [$d265]
 	cp $b
 	jr nc, .asm_3d663
 	ld a, [BattleMonType2]
 	ld [PlayerMoveType], a
-	callab Function347c8
+	callab Function0x347c8
 	ld a, [$d265]
 	cp $b
 	jr nc, .asm_3d663
@@ -56206,36 +56208,7 @@ SECTION "bank6F",DATA,BANK[$6F]
 
 ;                        Common text II
 
-_FruitBearingTreeText: ; 0x1bc000
-	db $0, "It's a fruit-", $4f
-	db "bearing tree.", $57
-; 0x1bc01c
-
-_HeyItsFruitText: ; 0x1bc01c
-	db $0, "Hey! It's", $4f
-	db "@"
-	text_from_ram StringBuffer3
-	db $0, "!", $57
-; 0x1bc02d
-
-_ObtainedFruitText: ; 0x1bc02d
-	db $0, "Obtained", $4f
-	db "@"
-	text_from_ram StringBuffer3
-	db $0, "!", $57
-; 0x1bc03e
-
-_FruitPackIsFullText: ; 0x1bc03e
-	db $0, "But the PACK is", $4f
-	db "full…", $57
-; 0x1bc055
-
-_NothingHereText: ; 0x1bc055
-	db $0, "There's nothing", $4f
-	db "here…", $57
-; 0x1bc06b
-
-INCBIN "baserom.gbc", $1bc06b, $1be08d - $1bc06b
+INCLUDE "text/common_2.tx"
 
 
 SECTION "bank70",DATA,BANK[$70]
