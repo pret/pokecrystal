@@ -56204,6 +56204,8 @@ INCLUDE "stats/pokedex/entries_2.asm"
 
 SECTION "bank6F",DATA,BANK[$6F]
 
+;                        Common text II
+
 _FruitBearingTreeText: ; 0x1bc000
 	db $0, "It's a fruit-", $4f
 	db "bearing tree.", $57
@@ -56238,16 +56240,16 @@ INCBIN "baserom.gbc", $1bc06b, $1be08d - $1bc06b
 
 SECTION "bank70",DATA,BANK[$70]
 
-;                         Common text II
+;                        Common text III
 
-INCLUDE "text/common_2.tx"
+INCLUDE "text/common_3.tx"
 
 
 SECTION "bank71",DATA,BANK[$71]
 
-;                        Common text III
+;                        Common text IV
 
-INCLUDE "text/common_3.tx"
+INCLUDE "text/common_4.tx"
 
 
 SECTION "bank72",DATA,BANK[$72]
