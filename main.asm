@@ -31335,7 +31335,7 @@ Function3846c: ; 3846c
 	call CopyBytes
 	pop af
 	jr c, .asm_384a3
-	ld hl, $44d0
+	ld hl, UnknownText_0x384d0
 	call PrintText
 
 .asm_384a3
@@ -31364,7 +31364,12 @@ Function3846c: ; 3846c
 	ret
 ; 384d0
 
-INCBIN "baserom.gbc", $384d0, $38591 - $384d0
+UnknownText_0x384d0: ; 384d0
+	text_jump UnknownText_0x1bcf9c, BANK(UnknownText_0x1bcf9c)
+	db "@"
+; 384d5
+
+INCBIN "baserom.gbc", $384d5, $38591 - $384d5
 
 
 AIScoring: ; 38591
