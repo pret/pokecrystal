@@ -6850,7 +6850,7 @@ Function0x365d7: ; 365d7
 	ld a, $5
 	call Function0x3661d
 
-	ld hl, $6d45
+	ld hl, BadgeStatBoosts
 	call CallBankF
 
 	call SwitchTurn
@@ -8385,7 +8385,7 @@ BattleCommand98: ; 36f25
 ; doubleflyingdamage
 	ld a, BATTLE_VARS_SUBSTATUS3_OPP
 	call CleanGetBattleVarPair
-	bit 6, a ; flying
+	bit SUBSTATUS_FLYING, a
 	ret z
 	jr DoubleDamage
 ; 36f2f
@@ -8395,7 +8395,7 @@ BattleCommand99: ; 36f2f
 ; doubleundergrounddamage
 	ld a, BATTLE_VARS_SUBSTATUS3_OPP
 	call CleanGetBattleVarPair
-	bit 5, a ; underground
+	bit SUBSTATUS_UNDERGROUND, a
 	ret z
 
 	; fallthrough
