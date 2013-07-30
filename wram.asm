@@ -790,8 +790,8 @@ OverworldMapEnd:
 	ds 12
 
 SECTION "gfx2",BSS[$cd20]
-BGMapBuffer:
-CreditsPos: ; cd20
+CreditsPos:
+BGMapBuffer: ; cd20
 	ds 2
 CreditsTimer: ; cd22
 	ds 1
@@ -1199,8 +1199,8 @@ EvolvableFlags: ; d1e8
 
 	ds 1
 
-Buffer1:
-MagikarpLength: ; d1ea
+MagikarpLength:
+Buffer1: ; d1ea
 	ds 1
 MovementType:
 Buffer2: ; d1eb
