@@ -19521,28 +19521,28 @@ PredefPointers: ; 856b
 	dwb $4658, $03
 	dwb $57c1, $13
 	dwb $4699, $03
-	dwb $5a6d, $03
-	dwb $588c, $03
+	dwb Functionda6d, BANK(Functionda6d)
+	dwb Functiond88c, BANK(Functiond88c)
 	dwb $5a96, $03
 	dwb $5b3f, $03
-	dwb $5e6e, $03
-	dwb $5f8c, $03
+	dwb Functionde6e, BANK(Functionde6e)
+	dwb Functiondf8c, BANK(Functiondf8c)
 	dwb $46e0, $03
-	dwb $6167, $03
-	dwb $617b, $03
+	dwb Functione167, BANK(Functione167)
+	dwb Functione17b, BANK(Functione17b)
 	dwb $5639, $04
 	dwb $566a, $04
 	dwb $4eef, $0a
-	dwb $4b3e, $0b
-	dwb $5f48, $0f
+	dwb $4b3e, $0b ; PrintMoveDescription, BANK(PrintMoveDescription)
+	dwb Function3df48, BANK(Function3df48)
 	dwb FillBox, BANK(FillBox)
-	dwb $5873, $0f
-	dwb $6036, $0f
-	dwb $74c1, $0f
-	dwb $7390, $0f
-	dwb $743d, $0f
-	dwb $747c, $0f
-	dwb $6487, $10
+	dwb Function3d873, BANK(Function3d873)
+	dwb Function3e036, BANK(Function3e036)
+	dwb Function3f4c1, BANK(Function3f4c1)
+	dwb Function3f390, BANK(Function3f390)
+	dwb Function3f43d, BANK(Function3f43d)
+	dwb Function3f47c, BANK(Function3f47c)
+	dwb Function42487, BANK(Function42487)
 	dwb $64e1, $10
 	dwb $61e6, $10
 	dwb $4f63, $0a
@@ -19552,14 +19552,14 @@ PredefPointers: ; 856b
 	dwb $4d2e, $14
 	dwb $4cdb, $14
 	dwb $4c50, $14
-	dwb $4bdd, $14
+	dwb GetGender, BANK(GetGender)
 	dwb StatsScreenInit, BANK(StatsScreenInit)
 	dwb $4b0a, $14
 	dwb $4b0e, $14
 	dwb $4b7b, $14
-	dwb $4964, $14
-	dwb $493a, $14
-	dwb $4953, $14
+	dwb LoadTypeName, BANK(LoadTypeName)
+	dwb PrintMoveType, BANK(PrintMoveType)
+	dwb PrintType, BANK(PrintType)
 	dwb $490d, $14
 	dwb $5040, $14
 	dwb $7cdd, $32
@@ -19571,21 +19571,21 @@ PredefPointers: ; 856b
 	dwb $420f, $23
 	dwb $4000, $23
 	dwb $4000, $23
-	dwb $40d6, $33
+	dwb Functioncc0d6, BANK(Functioncc0d6)
 	dwb $40d5, $33
 	dwb $40d5, $33
 	dwb $51d0, $3f
-	dwb $6a6c, $04
+	dwb PartyMonItemName, BANK(PartyMonItemName)
 	dwb $5077, $14
 	dwb $516c, $14
 	dwb $508b, $14
-	dwb $520d, $14
+	dwb Function5120d, BANK(Function5120d)
 	dwb DecompressPredef, BANK(DecompressPredef)
-	dwb $47d3, $0d
+	dwb Function0x347d3, BANK(Function0x347d3)
 	dwb $7908, $3e
 	dwb $7877, $3e
 	dwb $4000, $34
-	dwb $4d0a, $14
+	dwb Function50d0a, BANK(Function50d0a)
 	dwb $40a3, $34
 	dwb $408e, $34
 	dwb $4669, $34
@@ -19915,7 +19915,7 @@ Functionc01b: ; c01b
 ; c029
 
 
-SpecialsPointers: ; 0xc029
+SpecialsPointers: ; c029
 	dbw BANK(Function97c28), Function97c28
 	dbw $0a, $5ce8
 	dbw $0a, $5d11
@@ -19962,10 +19962,10 @@ SpecialsPointers: ; 0xc029
 	dbw $03, $4380
 	dbw $03, $438d
 	dbw $03, $43db
-	dbw $23, $4084
+	dbw BANK(Function8c084), Function8c084
 	dbw $23, $4092
 	dbw $23, $40b6
-	dbw $23, $4079
+	dbw BANK(Function8c079), Function8c079
 	dbw $23, $40ab
 	dbw BANK(Functiond91), Functiond91
 	dbw BANK(WhiteBGMap), WhiteBGMap
@@ -19995,9 +19995,9 @@ SpecialsPointers: ; 0xc029
 	dbw $01, $737e
 	dbw $01, $73f7
 	dbw BANK(SpecialCheckPokerus),SpecialCheckPokerus
-	dbw $09, $4b25
+	dbw BANK(Function24b25), Function24b25
 	dbw $09, $4b4e
-	dbw $09, $4ae8
+	dbw BANK(Function24ae8), Function24ae8
 	dbw $13, $587a
 	dbw $03, $4434
 	dbw $03, $4422
@@ -20010,14 +20010,14 @@ SpecialsPointers: ; 0xc029
 	dbw $0a, $64ab
 	dbw $0a, $651f
 	dbw $0a, $6567
-	dbw $05, $4209
+	dbw BANK(Function14209), Function14209
 	dbw $3e, $7841
 	dbw BANK(SpecialSnorlaxAwake),SpecialSnorlaxAwake
 	dbw $01, $7413
 	dbw $01, $7418
 	dbw $01, $741d
 	dbw $03, $4472
-	dbw $09, $65ee
+	dbw BANK(ProfOaksPCBoot), ProfOaksPCBoot
 	dbw BANK(SpecialGameboyCheck),SpecialGameboyCheck
 	dbw BANK(SpecialTrainerHouse),SpecialTrainerHouse
 	dbw $05, $6dc7
@@ -20047,7 +20047,7 @@ SpecialsPointers: ; 0xc029
 	dbw $40, $5220
 	dbw $40, $5225
 	dbw $40, $5231
-	dbw $12, $525b
+	dbw BANK(Function4925b), Function4925b
 	dbw $22, $6def
 	dbw $47, $41ab
 	dbw $5c, $4687
@@ -20074,7 +20074,7 @@ SpecialsPointers: ; 0xc029
 	dbw $40, $77eb
 	dbw $40, $783c
 	dbw $41, $60a2
-	dbw $05, $4168
+	dbw BANK(Function14168), Function14168
 	dbw $40, $77c2
 	dbw $41, $630f
 	dbw $40, $7780
@@ -20085,6 +20085,7 @@ SpecialsPointers: ; 0xc029
 	dbw $24, $4a54
 	dbw $24, $4a88
 	dbw $03, $4224
+; c224
 
 INCBIN "baserom.gbc", $c224, $c29d - $c224
 
