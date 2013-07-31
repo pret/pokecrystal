@@ -9322,10 +9322,10 @@ Function2f79: ; 2f79
 	push bc
 	ld a, [hROMBank]
 	push af
-	ld a, $3
+	ld a, BANK(Functiond244)
 	rst Bankswitch
 
-	call $5244
+	call Functiond244
 	pop bc
 	ld a, b
 	rst Bankswitch
@@ -20993,29 +20993,29 @@ Functiond244: ; d244
 
 Functiond27b: ; d27b
 	ld a, l
-	cp $92
+	cp TMsHMsEnd % $100
 	ret nz
 	ld a, h
-	cp $d8
+	cp TMsHMsEnd / $100
 	ret
 ; d283
 
 Functiond283: ; d283
 	ld c, $14
 	ld a, e
-	cp $92
+	cp TMsHMsEnd % $100
 	jr nz, .asm_d28e
 	ld a, d
-	cp $d8
+	cp TMsHMsEnd / $100
 	ret z
 
 .asm_d28e
 	ld c, $32
 	ld a, e
-	cp $f1
+	cp BallsEnd % $100
 	jr nz, .asm_d299
 	ld a, d
-	cp $d8
+	cp BallsEnd / $100
 	ret z
 
 .asm_d299
@@ -21029,7 +21029,7 @@ Functiond29c: ; d29c
 	inc hl
 	ld a, [CurItem]
 	ld c, a
-	ld b, $0
+	ld b, 0
 .asm_d2a5
 	ld a, [hli]
 	cp $ff
@@ -33128,7 +33128,6 @@ Function2c03a: ; 2c03a
 ; 2c059
 
 
-
 Function2c059: ; 2c059
 	ld a, [de]
 	push af
@@ -33188,87 +33187,59 @@ Function2c075: ; 2c075
 Function2c095: ; 2c095
 	ld hl, .data_2c0a9
 	ld de, $d004
-	ld bc, $0004
+	ld bc, 4
 	call CopyBytes
 	ld hl, $c57a
-	ld de, rIE
-	jr .asm_2c0f1
+	ld de, -1
+	jr Function2c0f1
 
 .data_2c0a9
 	db $73
 	db $77
 	db $6f
 	db $76
-	db $21
-	db $c1
-	db $40
-	db $11
-	db $4
-	db $d0
-	db $1
-	db $4
-	db $0
-	db $cd
-	db $26
-	db $30
-	db $21
-	db $7a
-	db $c5
-	db $11
-	db $ff
-	db $ff
-	db $18
-	db $30
-	db $73
-	db $5c
-	db $6f
-	db $76
-	db $21
-	db $ed
-	db $40
-	db $11
-	db $4
-	db $d0
-	db $1
-	db $4
-	db $0
-	db $cd
-	db $26
-	db $30
-	db $21
-	db $c9
-	db $c4
-	db $11
-	db $1
-	db $0
-	db $cd
-	db $f1
-	db $40
-	db $fa
-	db $2d
-	db $d2
-	db $3d
-	db $c0
-	db $fa
-	db $4
-	db $d2
-	db $3d
-	db $cd
-	db $93
-	db $33
-	db $c8
-	db $21
-	db $b5
-	db $c4
-	db $36
-	db $5d
-	db $c9
+; 2c0ad
+
+Function2c0ad: ; 2c0ad
+	ld hl, .data_2c0c1
+	ld de, $d004
+	ld bc, 4
+	call CopyBytes
+	ld hl, $c57a
+	ld de, -1
+	jr Function2c0f1
+
+.data_2c0c1
+	db $73, $5c, $6f, $76
+; 2c0c5
+
+Function2c0c5: ; 2c0c5
+	ld hl, .data_2c0ed
+	ld de, $d004
+	ld bc, 4
+	call CopyBytes
+	ld hl, $c4c9
+	ld de, 1
+	call Function2c0f1
+	ld a, [IsInBattle]
+	dec a
+	ret nz
+	ld a, [TempEnemyMonSpecies]
+	dec a
+	call CheckSeenMon
+	ret z
+	ld hl, $c4b5
+	ld [hl], $5d
+	ret
+
+.data_2c0ed
 	db $6d
 	db $74
 	db $78
 	db $76
+; 2c0f1
 
-.asm_2c0f1
+Function2c0f1: ; 2c0f1
 	ld a, [$d004]
 	ld [hl], a
 	ld bc, $0014
@@ -33287,7 +33258,6 @@ Function2c095: ; 2c095
 	ld [hl], a
 	ret
 ; 2c10d
-
 
 
 Function2c10d: ; 2c10d

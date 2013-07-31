@@ -1705,21 +1705,25 @@ KantoBadges: ; d858
 SECTION "Items",BSS[$d859]
 TMsHMs: ; d859
 	ds 57
+TMsHMsEnd
 
 NumItems: ; d892
 	ds 1
 Items: ; d893
 	ds 41
+ItemsEnd
 
 NumKeyItems: ; d8bc
 	ds 1
 KeyItems: ; d8bd
 	ds 26
+KeyItemsEnd
 
 NumBalls: ; d8d7
 	ds 1
 Balls: ; d8d8
 	ds 25
+BallsEnd
 	
 SECTION "overworld",BSS[$d95b]
 WhichRegisteredItem: ; d95b
