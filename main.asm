@@ -1390,7 +1390,7 @@ Functionaaf: ; aaf
 	jr nz, .asm_ac1
 	call Functionac6
 	push de
-	ld de, $0008
+	ld de, SFX_READ_TEXT_2
 	call StartSFX
 	pop de
 	ret
@@ -5346,9 +5346,7 @@ Function1c00: ; 1c00
 
 Function1c07: ; 0x1c07
 	push af
-	ld hl, $43e8
-	ld a, $9
-	rst $8
+	callab Function243e8
 	pop af
 	ret
 
@@ -20910,39 +20908,36 @@ Functiond20d: ; d20d
 	ret
 
 .data_d220
-	db $3f
-	db $52
-	db $3a
-	db $52
-	db $28
-	db $52
-	db $2e
-	db $52
-	db $21
-	db $d7
-	db $d8
-	db $c3
-	db $ff
-	db $52
-	db $62
-	db $6b
-	db $fa
-	db $6
-	db $d1
-	db $4f
-	db $cd
-	db $7
-	db $54
-	db $c3
-	db $d8
-	db $53
-	db $62
-	db $6b
-	db $c3
-	db $74
-	db $53
-	db $62
-	db $6b
+	dw .Item
+	dw .KeyItem
+	dw .Ball
+	dw .TMHM
+; d228
+
+.Ball ; d228
+	ld hl, NumBalls
+	jp Functiond2ff
+; d22e
+
+.TMHM ; d22e
+	ld h, d
+	ld l, e
+	ld a, [CurItem]
+	ld c, a
+	call GetTMHMNumber
+	jp Functiond3d8
+; d23a
+
+.KeyItem ; d23a
+	ld h, d
+	ld l, e
+	jp Functiond374
+; d23f
+
+.Item ; d23f
+	ld h, d
+	ld l, e
+; d241
 
 .asm_d241
 	jp Functiond2ff
@@ -20961,39 +20956,36 @@ Functiond244: ; d244
 	ret
 
 .data_d257
-	db $76
-	db $52
-	db $71
-	db $52
-	db $5f
-	db $52
-	db $65
-	db $52
-	db $21
-	db $d7
-	db $d8
-	db $c3
-	db $49
-	db $53
-	db $62
-	db $6b
-	db $fa
-	db $6
-	db $d1
-	db $4f
-	db $cd
-	db $7
-	db $54
-	db $c3
-	db $fb
-	db $53
-	db $62
-	db $6b
-	db $c3
-	db $b1
-	db $53
-	db $62
-	db $6b
+	dw .Item
+	dw .KeyItem
+	dw .Ball
+	dw .TMHM
+; d25f
+
+.Ball ; d25f
+	ld hl, NumBalls
+	jp Functiond349
+; d265
+
+.TMHM ; d265
+	ld h, d
+	ld l, e
+	ld a, [CurItem]
+	ld c, a
+	call GetTMHMNumber
+	jp Functiond3fb
+; d271
+
+.KeyItem ; d271
+	ld h, d
+	ld l, e
+	jp Functiond3b1
+; d276
+
+.Item ; d276
+	ld h, d
+	ld l, e
+; d278
 
 .asm_d278
 	jp Functiond349
@@ -23075,7 +23067,7 @@ INCLUDE "items/item_effects.asm"
 
 Functionf780: ; f780
 	push de
-	ld de, $0005
+	ld de, SFX_FULL_HEAL
 	call WaitPlaySFX
 	pop de
 	ret
@@ -23503,7 +23495,7 @@ Function1076f: ; 1076f
 	and $3
 	ld [$cf63], a
 	push de
-	ld de, $0062
+	ld de, SFX_UNKNOWN_62
 	call StartSFX
 	pop de
 	scf
@@ -23515,7 +23507,7 @@ Function1076f: ; 1076f
 	and $3
 	ld [$cf63], a
 	push de
-	ld de, $0062
+	ld de, SFX_UNKNOWN_62
 	call StartSFX
 	pop de
 	scf
@@ -29054,7 +29046,7 @@ INCBIN "baserom.gbc", $15f73, $15fc3 - $15f73
 
 Function15fc3: ; 15fc3
 	call WaitSFX
-	ld de, $0022
+	ld de, SFX_TRANSACTION
 	call StartSFX
 	ret
 ; 15fcd
@@ -29824,7 +29816,6 @@ Function24193: ; 24193
 ; 241a8
 
 
-
 Function241a8: ; 241a8
 	call $4329
 	ld hl, $cfa6
@@ -30277,15 +30268,17 @@ Function24426: ; 24426
 ; 2445d
 
 Function2445d: ; 2445d
-	ld hl, $4468
+	ld hl, UnknownText_0x24468
 	call PrintText
 	call WaitBGMap
 .asm_24466
 	jr .asm_24466
 ; 24468
 
-INCBIN "baserom.gbc", $24468, $2446d - $24468
-
+UnknownText_0x24468: ; 24468
+	text_jump UnknownText_0x1c46b7, BANK(UnknownText_0x1c46b7)
+	db "@"
+; 2446d
 
 Function2446d: ; 2446d
 	ld a, [$cf91]
@@ -30365,9 +30358,7 @@ Function244c3: ; 0x244c3
 	cp $ff
 	ret z
 	ld de, $c5b9
-	ld a, BANK(GetItemDescription)
-	ld hl, GetItemDescription
-	rst $8
+	callba GetItemDescription
 	ret
 ; 0x244e3
 
@@ -31021,17 +31012,16 @@ Function24ae8: ; 24ae8
 
 INCBIN "baserom.gbc", $24b15, $24b25 - $24b15
 
-
 Function24b25: ; 24b25
 	ld hl, $c4ab
 	ld b, $1
 	ld c, $7
 	call TextBox
 	ld hl, $c4ac
-	ld de, $4b89
+	ld de, CoinString
 	call PlaceString
 	ld hl, $c4c5
-	ld de, $4b8e
+	ld de, String24b8e
 	call PlaceString
 	ld de, $d855
 	ld bc, $0204
@@ -31040,11 +31030,492 @@ Function24b25: ; 24b25
 	ret
 ; 24b4e
 
-INCBIN "baserom.gbc", $24b4e, $24e99 - $24b4e
+Function24b4e: ; 24b4e
+	ld hl, $c4a5
+	ld b, $3
+	ld c, $d
+	call TextBox
+	ld hl, $c4ba
+	ld de, MoneyString
+	call PlaceString
+	ld hl, $c4c0
+	ld de, Money
+	ld bc, $2306
+	call Function3198
+	ld hl, $c4e2
+	ld de, CoinString
+	call PlaceString
+	ld hl, $c4eb
+	ld de, $d855
+	ld bc, $0204
+	call Function3198
+	ret
+; 24b83
 
+MoneyString: ; 24b83
+	db "MONEY@"
+CoinString: ; 24b89
+	db "COIN@"
+String24b8e: ; 24b8e
+	db "@"
+; 24b8f
+
+Function24b8f: ; 24b8f
+	ld hl, Options
+	ld a, [hl]
+	push af
+	set 4, [hl]
+	ld hl, TileMap
+	ld b, $3
+	ld c, $7
+	call TextBox
+	ld hl, $c4b5
+	ld de, $dc7a
+	ld bc, $0203
+	call Function3198
+	ld hl, $c4b8
+	ld de, String24bcf
+	call PlaceString
+	ld hl, $c4dd
+	ld de, String24bd4
+	call PlaceString
+	ld hl, $c4e1
+	ld de, $dc79
+	ld bc, $0102
+	call Function3198
+	pop af
+	ld [Options], a
+	ret
+; 24bcf
+
+String24bcf: ; 24bcf
+	db "/500@"
+String24bd4: ; 24bd4
+	db "ボール   こ@"
+; 24bdc
+
+Function24bdc: ; 24bdc
+	ld hl, TileMap
+	ld b, $5
+	ld c, $11
+	call TextBox
+	ret
+; 24be7
+
+Function24be7: ; 24be7
+	ld hl, Options
+	ld a, [hl]
+	push af
+	set 4, [hl]
+	call $4bdc
+	ld hl, $c505
+	ld de, String24c52
+	call PlaceString
+	ld hl, $c50c
+	ld de, $dc79
+	ld bc, $4102
+	call Function3198
+	ld hl, $c4b5
+	ld de, String24c4b
+	call PlaceString
+	ld a, [$df9c]
+	and a
+	ld de, String24c59
+	jr z, .asm_24c1e
+	ld [$d265], a
+	call GetPokemonName
+
+.asm_24c1e
+	ld hl, $c4bc
+	call PlaceString
+	ld a, [$df9c]
+	and a
+	jr z, .asm_24c3e
+	ld hl, $c4dd
+	ld de, String24c5e
+	call PlaceString
+	ld a, [$dfbb]
+	ld h, b
+	ld l, c
+	inc hl
+	ld c, $3
+	call $3842
+
+.asm_24c3e
+	pop af
+	ld [Options], a
+	ret
+; 24c43
+
+String24c43: ; 24c43
+	db "ボール   こ@"
+String24c4b: ; 24c4b
+	db "CAUGHT@"
+String24c52: ; 24c52
+	db "BALLS:@"
+String24c59: ; 24c59
+	db "None@"
+String24c5e: ; 24c5e
+	db "LEVEL@"
+; 24c64
+
+
+Function24c64: ; 24c64
+	ld hl, Buffer1
+	xor a
+	ld [hli], a
+	dec a
+	ld bc, $000a
+	call ByteFill
+
+	ld hl, ApricornBalls
+.asm_24c73
+	ld a, [hl]
+	cp $ff
+	jr z, .asm_24c8d
+	push hl
+	ld [CurItem], a
+	ld hl, NumItems
+	call Function2f79
+	pop hl
+	jr nc, .asm_24c89
+	ld a, [hl]
+	call Function24c94
+.asm_24c89
+	inc hl
+	inc hl
+	jr .asm_24c73
+
+.asm_24c8d
+	ld a, [Buffer1]
+	and a
+	ret nz
+	scf
+	ret
+; 24c94
+
+Function24c94: ; 24c94
+	push hl
+	ld hl, Buffer1
+	inc [hl]
+	ld e, [hl]
+	ld d, 0
+	add hl, de
+	ld [hl], a
+	pop hl
+	ret
+; 24ca0
+
+ApricornBalls: ; 24ca0
+	db RED_APRICORN, LEVEL_BALL
+	db BLU_APRICORN, LURE_BALL
+	db YLW_APRICORN, MOON_BALL
+	db GRN_APRICORN, FRIEND_BALL
+	db WHT_APRICORN, FAST_BALL
+	db BLK_APRICORN, HEAVY_BALL
+	db PNK_APRICORN, LOVE_BALL
+	db $ff
+; 24caf
+
+
+MonMenuOptionStrings: ; 24caf
+	db "STATS@"
+	db "SWITCH@"
+	db "ITEM@"
+	db "CANCEL@"
+	db "MOVE@"
+	db "MAIL@"
+	db "ERROR!@"
+; 24cd9
+
+MonMenuOptions: ; 24cd9
+
+; Moves
+	db 0,  1, CUT
+	db 0,  2, FLY
+	db 0,  3, SURF
+	db 0,  4, STRENGTH
+	db 0,  6, FLASH
+	db 0,  5, WATERFALL
+	db 0,  7, WHIRLPOOL
+	db 0,  8, DIG
+	db 0,  9, TELEPORT
+	db 0, 10, SOFTBOILED
+	db 0, 11, HEADBUTT
+	db 0, 12, ROCK_SMASH
+	db 0, 13, MILK_DRINK
+	db 0, 14, SWEET_SCENT
+
+; Options
+	db 1, 15, 1 ; STATS
+	db 1, 16, 2 ; SWITCH
+	db 1, 17, 3 ; ITEM
+	db 1, 18, 4 ; CANCEL
+	db 1, 19, 5 ; MOVE
+	db 1, 20, 6 ; MAIL
+	db 1, 21, 7 ; ERROR!
+
+	db $ff
+; 24d19
+
+Function24d19: ; 24d19
+	xor a
+	ld [hBGMapMode], a
+	call Function24dd4
+	callba Function8ea4a
+	ld hl, MenuDataHeader_0x24d3f
+	call Function1d35
+	call Function24d47
+	call Function24d91
+
+	ld a, 1
+	ld [hBGMapMode], a
+	call Function24d59
+	ld [MenuSelection], a
+
+	call Function1c07
+	ret
+; 24d3f
+
+MenuDataHeader_0x24d3f: ; 24d3f
+	db $40 ; tile backup
+	db 00, 06 ; start coords
+	db 17, 19 ; end coords
+	dw $0000
+	db 1 ; default option
+; 24d47
+
+Function24d47: ; 24d47
+	ld a, [Buffer1]
+	inc a
+	add a
+	ld b, a
+	ld a, [$cf84]
+	sub b
+	inc a
+	ld [$cf82], a
+	call Function1cbb
+	ret
+; 24d59
+
+Function24d59: ; 24d59
+.asm_24d59
+	ld a, $a0
+	ld [$cf91], a
+	ld a, [Buffer1]
+	ld [$cf92], a
+	call Function1c10
+	ld hl, $cfa5
+	set 6, [hl]
+	call Function1bc9
+	ld de, SFX_READ_TEXT_2
+	call StartSFX
+	ld a, [hJoyPressed]
+	bit 0, a ; A
+	jr nz, .asm_24d84
+	bit 1, a ; B
+	jr nz, .asm_24d81
+	jr .asm_24d59
+
+.asm_24d81
+	ld a, 18 ; CANCEL
+	ret
+
+.asm_24d84
+	ld a, [$cfa9]
+	dec a
+	ld c, a
+	ld b, 0
+	ld hl, Buffer2
+	add hl, bc
+	ld a, [hl]
+	ret
+; 24d91
+
+Function24d91: ; 24d91
+	call Function1cfd
+	ld bc, $002a
+	add hl, bc
+	ld de, Buffer2
+.asm_24d9b
+	ld a, [de]
+	inc de
+	cp $ff
+	ret z
+	push de
+	push hl
+	call Function24db0
+	pop hl
+	call PlaceString
+	ld bc, $0028
+	add hl, bc
+	pop de
+	jr .asm_24d9b
+; 24db0
+
+Function24db0: ; 24db0
+	ld hl, MonMenuOptions + 1
+	ld de, $0003
+	call IsInArray
+	dec hl
+	ld a, [hli]
+	cp $1
+	jr z, .asm_24dc8
+	inc hl
+	ld a, [hl]
+	ld [$d265], a
+	call GetMoveName
+	ret
+
+.asm_24dc8
+	inc hl
+	ld a, [hl]
+	dec a
+	ld hl, MonMenuOptionStrings
+	call GetNthString
+	ld d, h
+	ld e, l
+	ret
+; 24dd4
+
+Function24dd4: ; 24dd4
+	call Function24e68
+	ld a, [CurPartySpecies]
+	cp EGG
+	jr z, .asm_24e3f
+	ld a, [InLinkBattle]
+	and a
+	jr nz, .asm_24e03
+	ld a, $2
+	call GetPartyParamLocation
+	ld d, h
+	ld e, l
+	ld c, $4
+.asm_24ded
+	push bc
+	push de
+	ld a, [de]
+	and a
+	jr z, .asm_24dfd
+	push hl
+	call Function24e52
+	pop hl
+	jr nc, .asm_24dfd
+	call Function24e83
+
+.asm_24dfd
+	pop de
+	inc de
+	pop bc
+	dec c
+	jr nz, .asm_24ded
+
+.asm_24e03
+	ld a, $f
+	call Function24e83
+	ld a, $10
+	call Function24e83
+	ld a, $13
+	call Function24e83
+	ld a, [InLinkBattle]
+	and a
+	jr nz, .asm_24e2f
+	push hl
+	ld a, $1
+	call GetPartyParamLocation
+	ld d, [hl]
+	callba Functionb9e76
+	pop hl
+	ld a, $14
+	jr c, .asm_24e2c
+	ld a, $11
+
+.asm_24e2c
+	call Function24e83
+
+.asm_24e2f
+	ld a, [Buffer1]
+	cp $8
+	jr z, .asm_24e3b
+	ld a, $12
+	call Function24e83
+
+.asm_24e3b
+	call Function24e76
+	ret
+
+.asm_24e3f
+	ld a, $f
+	call Function24e83
+	ld a, $10
+	call Function24e83
+	ld a, $12
+	call Function24e83
+	call Function24e76
+	ret
+; 24e52
+
+Function24e52: ; 24e52
+	ld b, a
+	ld hl, MonMenuOptions
+.asm_24e56
+	ld a, [hli]
+	cp $ff
+	jr z, .asm_24e67
+	cp $1
+	jr z, .asm_24e67
+	ld d, [hl]
+	inc hl
+	ld a, [hli]
+	cp b
+	jr nz, .asm_24e56
+	ld a, d
+	scf
+
+.asm_24e67
+	ret
+; 24e68
+
+Function24e68: ; 24e68
+	xor a
+	ld [Buffer1], a
+	ld hl, Buffer2
+	ld bc, $0009
+	call ByteFill
+	ret
+; 24e76
+
+Function24e76: ; 24e76
+	ld a, [Buffer1]
+	ld e, a
+	ld d, $0
+	ld hl, Buffer2
+	add hl, de
+	ld [hl], $ff
+	ret
+; 24e83
+
+Function24e83: ; 24e83
+	push hl
+	push de
+	push af
+	ld a, [Buffer1]
+	ld e, a
+	inc a
+	ld [Buffer1], a
+	ld d, $0
+	ld hl, Buffer2
+	add hl, de
+	pop af
+	ld [hl], a
+	pop de
+	pop hl
+	ret
+; 24e99
 
 Function24e99: ; 24e99
-	ld hl, $4ed4
+; BattleMonMenu
+	ld hl, MenuDataHeader_0x24ed4
 	call Function1d3c
 	xor a
 	ld [hBGMapMode], a
@@ -31060,7 +31531,7 @@ Function24e99: ; 24e99
 	ld hl, $cfa5
 	set 6, [hl]
 	call Function1bc9
-	ld de, $0008
+	ld de, SFX_READ_TEXT_2
 	call StartSFX
 	ld a, [hJoyPressed]
 	bit 1, a
@@ -31076,7 +31547,21 @@ Function24e99: ; 24e99
 	ret
 ; 24ed4
 
-INCBIN "baserom.gbc", $24ed4, $24ef2 - $24ed4
+MenuDataHeader_0x24ed4: ; 24ed4
+	db $00 ; flags
+	db 11, 11 ; start coords
+	db 17, 19 ; end coords
+	dw MenuData2_0x24edc
+	db 1 ; default option
+; 24edc
+
+MenuData2_0x24edc: ; 24edc
+	db $c0 ; flags
+	db 3 ; items
+	db "SWITCH@"
+	db "STATS@"
+	db "CANCEL@"
+; 24ef2
 
 
 Function24ef2: ; 4ef2
@@ -31093,14 +31578,19 @@ Function24ef2: ; 4ef2
 
 
 Function24f0b: ; 24f0b
-	ld hl, $4f4e
+; Safari battle menu (untranslated).
+	ld hl, MenuDataHeader_0x24f4e
 	call Function1d35
-	jr .asm_24f19
+	jr Function24f19
+; 24f13
 
-	ld hl, $4f89
+Function24f13: ; 24f13
+; Park battle menu.
+	ld hl, MenuDataHeader_0x24f89
 	call Function1d35
+; 24f19
 
-.asm_24f19
+Function24f19: ; 24f19
 	ld a, [$d0d2]
 	ld [$cf88], a
 	call Function202a
@@ -31111,7 +31601,100 @@ Function24f0b: ; 24f0b
 ; 24f2c
 
 
-INCBIN "baserom.gbc", $24f2c, $24fc9 - $24f2c
+MenuDataHeader_0x24f2c: ; 24f2c
+	db $40 ; flags
+	db 12, 08 ; start coords
+	db 17, 19 ; end coords
+	dw MenuData_0x24f34
+	db 1 ; default option
+; 24f34
+
+MenuData_0x24f34: ; 0x24f34
+	db $81 ; flags
+	dn 2, 2 ; rows, columns
+	db 6 ; spacing
+	dbw BANK(Strings24f3d), Strings24f3d
+	dbw $09, $0000
+; 0x24f3d
+
+Strings24f3d: ; 0x24f3d
+	db "FIGHT@"
+	db $4a, "@"
+	db "PACK@"
+	db "RUN@"
+; 24f4e
+
+
+MenuDataHeader_0x24f4e: ; 24f4e
+	db $40 ; flags
+	db 12, 00 ; start coords
+	db 17, 19 ; end coords
+	dw MenuData_0x24f56
+	db 1 ; default option
+; 24f56
+
+MenuData_0x24f56: ; 24f56
+	db $81 ; flags
+	dn 2, 2 ; rows, columns
+	db 11 ; spacing
+	dbw BANK(Strings24f5f), Strings24f5f
+	dbw BANK(Function24f7c), Function24f7c
+; 24f5f
+
+Strings24f5f: ; 24f5f
+	db "サファりボール×  @" ; "SAFARI BALL×  @"
+	db "エサをなげる@" ; "THROW BAIT"
+	db "いしをなげる@" ; "THROW ROCK"
+	db "にげる@" ; "RUN"
+; 24f7c
+
+Function24f7c: ; 24f7c
+	ld hl, $c5b5
+	ld de, $dc79
+	ld bc, $8102
+	call Function3198
+	ret
+; 24f89
+
+
+MenuDataHeader_0x24f89: ; 24f89
+	db $40 ; flags
+	db 12, 02 ; start coords
+	db 17, 19 ; end coords
+	dw MenuData_0x24f91
+	db 1 ; default option
+; 24f91
+
+MenuData_0x24f91: ; 24f91
+	db $81 ; flags
+	dn 2, 2 ; rows, columns
+	db 12 ; spacing
+	dbw BANK(Strings24f9a), Strings24f9a
+	dbw BANK(Function24fb2), Function24fb2
+; 24f9a
+
+Strings24f9a: ; 24f9a
+	db "FIGHT@"
+	db $4a, "@"
+	db "PARKBALL×  @"
+	db "RUN@"
+; 24fb2
+
+Function24fb2: ; 24fb2
+	ld hl, $c5ed
+	ld de, $dc79
+	ld bc, $8102
+	call Function3198
+	ret
+; 24fbf
+
+
+Function24fbf: ; 24fbf
+	ld hl, $50ed
+	call Function1d35
+	call Function24ff9
+	ret
+; 24fc9
 
 
 Function24fc9: ; 24fc9
@@ -31119,7 +31702,7 @@ Function24fc9: ; 24fc9
 	ld hl, $5486
 	rst FarCall
 	ld a, d
-	ld [MagikarpLength], a
+	ld [Buffer1], a
 	ld a, e
 	ld [Buffer2], a
 	ld hl, $50f5
@@ -31133,7 +31716,7 @@ Function24fe1: ; 24fe1
 	ld hl, $5486
 	rst FarCall
 	ld a, d
-	ld [MagikarpLength], a
+	ld [Buffer1], a
 	ld a, e
 	ld [Buffer2], a
 	ld hl, $50fd
@@ -31259,7 +31842,76 @@ Function25072: ; 25072
 	ret
 ; 25097
 
-INCBIN "baserom.gbc", $25097, $265d3 - $25097
+
+Function25097: ; 25097
+	ret
+; 25098
+
+Function25098: ; 25098
+	call Function250a9
+	call Function250d1
+	ret
+; 2509f
+
+Function2509f: ; 2509f
+	call Function250a9
+	call Function250c1
+	call Function250d1
+	ret
+; 250a9
+
+Function250a9: ; 250a9
+	xor a
+	ld [hMultiplicand], a
+	ld a, [Buffer1]
+	ld [$ffb5], a
+	ld a, [Buffer2]
+	ld [$ffb6], a
+	ld a, [$d10c]
+	ld [hMultiplier], a
+	push hl
+	call Multiply
+	pop hl
+	ret
+; 250c1
+
+Function250c1: ; 250c1
+	push hl
+	ld hl, hMultiplicand
+	ld a, [hl]
+	srl a
+	ld [hli], a
+	ld a, [hl]
+	rra
+	ld [hli], a
+	ld a, [hl]
+	rra
+	ld [hl], a
+	pop hl
+	ret
+; 250d1
+
+Function250d1: ; 250d1
+	push hl
+	ld hl, $ffc3
+	ld a, [hMultiplicand]
+	ld [hli], a
+	ld a, [$ffb5]
+	ld [hli], a
+	ld a, [$ffb6]
+	ld [hl], a
+	pop hl
+	inc hl
+	ld de, $ffc3
+	ld bc, $2306
+	call Function3198
+	call WaitBGMap
+	ret
+; 250ed
+
+
+INCBIN "baserom.gbc", $250ed, $265d3 - $250ed
+
 
 ProfOaksPC: ; 0x265d3
 	ld hl, OakPCText1
@@ -32480,7 +33132,7 @@ Function2c03a: ; 2c03a
 Function2c059: ; 2c059
 	ld a, [de]
 	push af
-	ld de, MagikarpLength
+	ld de, Buffer1
 	ld c, $6
 	ld a, $34
 .asm_2c062
@@ -32489,7 +33141,7 @@ Function2c059: ; 2c059
 	dec c
 	jr nz, .asm_2c062
 	pop af
-	ld de, MagikarpLength
+	ld de, Buffer1
 .asm_2c06b
 	push af
 	call Function2c075
@@ -32663,7 +33315,7 @@ Function2c10d: ; 2c10d
 ; 2c143
 
 Function2c143: ; 2c143
-	ld de, MagikarpLength
+	ld de, Buffer1
 	ld c, $6
 .asm_2c148
 	ld a, [$cfc5]
@@ -32840,7 +33492,7 @@ Function2c7fb: ; 2c7fb
 	push de
 	push bc
 	push af
-	ld de, $0019
+	ld de, SFX_WRONG
 	call StartSFX
 	call WaitSFX
 	pop af
@@ -33653,7 +34305,7 @@ Function38387: ; 38387
 
 Function3839a: ; 3839a
 	push de
-	ld de, $0005
+	ld de, SFX_FULL_HEAL
 	call StartSFX
 	pop de
 	ret
@@ -34316,12 +34968,13 @@ Function3c0e5: ; 3c0e5
 	call Function3ceec
 	call Function3d2e0
 	jr c, .asm_3c126
-	ld de, $002b
+
+	ld de, SFX_RUN
 	call StartSFX
 
 .asm_3c126
 	call SetPlayerTurn
-	ld a, $1
+	ld a, 1
 	ld [BattleEnded], a
 	ret
 ; 3c12f
@@ -36474,12 +37127,12 @@ Function3cef1: ; 3cef1
 
 Function3cf14: ; 3cf14
 	call WaitSFX
-	ld de, $002f
+	ld de, SFX_KINESIS
 	call StartSFX
 	call Function3d432
-	ld de, $002a
+	ld de, SFX_UNKNOWN_2A
 	call StartSFX
-	ld hl, $c4a1
+	hlcoord 1, 0
 	ld bc, $040a
 	call ClearBox
 	ld hl, BattleText_0x809a8
@@ -37151,7 +37804,7 @@ Function3d362: ; 3d362
 	ret nc
 	call Function3d2e0
 	ret c
-	ld de, $0019
+	ld de, SFX_WRONG
 	call StartSFX
 	call WaitSFX
 	jr .asm_3d362
@@ -37517,10 +38170,10 @@ Function3d57a: ; 3d57a
 Function3d599: ; 3d599
 	ld b, $ff
 	ld a, $1
-	ld [MagikarpLength], a
+	ld [Buffer1], a
 	ld [Buffer2], a
 .asm_3d5a3
-	ld hl, MagikarpLength
+	ld hl, Buffer1
 	sla [hl]
 	inc hl
 	sla [hl]
@@ -37582,7 +38235,7 @@ Function3d5d7: ; 3d5d7
 	ld a, [$d265]
 	cp $b
 	jr c, .asm_3d5e2
-	ld hl, MagikarpLength
+	ld hl, Buffer1
 	set 0, [hl]
 	ret
 
@@ -37625,7 +38278,7 @@ Function3d618: ; 3d618
 
 .asm_3d663
 	pop bc
-	ld hl, MagikarpLength
+	ld hl, Buffer1
 	bit 0, [hl]
 	jr nz, .asm_3d66f
 	inc hl
@@ -37639,7 +38292,7 @@ Function3d618: ; 3d618
 
 Function3d672: ; 3d672
 .asm_3d672
-	ld hl, MagikarpLength
+	ld hl, Buffer1
 	sla [hl]
 	inc hl
 	sla [hl]
@@ -37655,7 +38308,7 @@ Function3d672: ; 3d672
 	jr .asm_3d681
 
 .asm_3d68a
-	ld a, [MagikarpLength]
+	ld a, [Buffer1]
 	and a
 	jr z, .asm_3d69a
 	ld b, $ff
@@ -37935,7 +38588,6 @@ Function3d873: ; 3d873
 ; 3d887
 
 
-
 Function3d887: ; 3d887
 	ld a, [CurPartyMon]
 	ld hl, PartyMon1CurHP
@@ -37965,32 +38617,38 @@ Function3d887: ; 3d887
 	ret
 ; 3d8b3
 
+
 Function3d8b3: ; 3d8b3
 	ld a, [BattleType]
 	cp $2
-	jp z, $59a2
+	jp z, .asm_3d9a2
 	cp $6
-	jp z, $59a2
+	jp z, .asm_3d9a2
 	cp $9
-	jp z, $598d
+	jp z, .asm_3d98d
 	cp $b
-	jp z, $598d
+	jp z, .asm_3d98d
 	cp $7
-	jp z, $598d
+	jp z, .asm_3d98d
 	cp $c
-	jp z, $598d
+	jp z, .asm_3d98d
+
 	ld a, [InLinkBattle]
 	and a
-	jp nz, $59a2
+	jp nz, .asm_3d9a2
+
 	ld a, [IsInBattle]
 	dec a
-	jp nz, $5992
+	jp nz, .asm_3d992
+
 	ld a, [EnemySubStatus5]
 	bit 7, a
-	jp nz, $598d
+	jp nz, .asm_3d98d
+
 	ld a, [$c730]
 	and a
-	jp nz, $598d
+	jp nz, .asm_3d98d
+
 	push hl
 	push de
 	ld a, [BattleMonItem]
@@ -38002,11 +38660,12 @@ Function3d8b3: ; 3d8b3
 	pop de
 	pop hl
 	jr nz, .asm_3d916
+
 	call SetPlayerTurn
 	call GetItemName
 	ld hl, BattleText_0x80b89
 	call FarBattleTextBox
-	jp $59a2
+	jp .asm_3d9a2
 
 .asm_3d916
 	ld a, [$d267]
@@ -38074,9 +38733,11 @@ Function3d8b3: ; 3d8b3
 	ld hl, BattleText_0x80b3b
 	jr .asm_3d995
 
+.asm_3d98d
 	ld hl, BattleText_0x80ba0
 	jr .asm_3d995
 
+.asm_3d992
 	ld hl, BattleText_0x80b49
 
 .asm_3d995
@@ -38103,12 +38764,13 @@ Function3d8b3: ; 3d8b3
 	call Function30b4
 	call Function3d2e0
 	jr c, .asm_3d9f5
+
+; Got away safely
 	ld a, [$d430]
 	cp $f
 	ld a, $2
 	jr z, .asm_3d9cf
 	dec a
-
 .asm_3d9cf
 	ld b, a
 	ld a, [$d0ee]
@@ -38117,7 +38779,7 @@ Function3d8b3: ; 3d8b3
 	ld [$d0ee], a
 	call Function3ceec
 	push de
-	ld de, $002b
+	ld de, SFX_RUN
 	call WaitPlaySFX
 	pop de
 	call WaitSFX
@@ -38133,7 +38795,7 @@ Function3d8b3: ; 3d8b3
 	ld hl, $cd2a
 	bit 4, [hl]
 	jr nz, .asm_3da05
-	ld hl, $5863
+	ld hl, BattleText_0x81863
 	call FarBattleTextBox
 
 .asm_3da05
@@ -38142,7 +38804,6 @@ Function3d8b3: ; 3d8b3
 	scf
 	ret
 ; 3da0d
-
 
 
 Function3da0d: ; 3da0d
@@ -38495,10 +39156,10 @@ Function3dc5b: ; 3dc5b
 	ld a, [hli]
 	or [hl]
 	jr nz, .asm_3dce4
-	ld de, $002f
+	ld de, SFX_KINESIS
 	call StartSFX
 	call WaitSFX
-	ld de, $002a
+	ld de, SFX_UNKNOWN_2A
 	call StartSFX
 	call WaitSFX
 	call Function3d432
@@ -38595,7 +39256,7 @@ Function3dd2f: ; 3dd2f
 	ld a, [hli]
 	ld [Buffer2], a
 	ld a, [hl]
-	ld [MagikarpLength], a
+	ld [Buffer1], a
 	ld a, [de]
 	add c
 	ld [$d1ee], a
@@ -39706,7 +40367,7 @@ Function3e4bc: ; 3e4bc
 
 .asm_3e513
 	ld a, $14
-	ld [MagikarpLength], a
+	ld [Buffer1], a
 	ld a, $20
 	call Predef
 	ld b, $5
@@ -41739,7 +42400,7 @@ Function3ee3b: ; 3ee3b
 	ld a, [CurPartyMon]
 	cp b
 	jr z, .asm_3f057
-	ld de, $00b6
+	ld de, SFX_HIT_END_OF_EXP_BAR
 	call StartSFX
 	call WaitSFX
 	ld hl, BattleText_0x80c9c
@@ -41989,7 +42650,7 @@ Function3f136: ; 3f136
 	ld bc, $000b
 	call CopyBytes
 	call Function3dfe
-	ld de, $00b6
+	ld de, SFX_HIT_END_OF_EXP_BAR
 	call StartSFX
 	ld a, $23
 	ld hl, $679d
@@ -42026,9 +42687,9 @@ Function3f136: ; 3f136
 Function3f21b: ; 3f21b
 	push bc
 	call WaitSFX
-	ld de, $008c
+	ld de, SFX_EXP_BAR
 	call StartSFX
-	ld c, $a
+	ld c, 10
 	call DelayFrames
 	pop bc
 	ret
@@ -43743,7 +44404,7 @@ Function40000: ; 40000
 	jr .asm_40029
 
 .asm_4003b
-	ld de, $0008
+	ld de, SFX_READ_TEXT_2
 	call StartSFX
 	call WaitSFX
 	call ClearSprites
@@ -44129,6 +44790,7 @@ Function41af7: ; 41af7
 Moves: ; 0x41afb
 INCLUDE "battle/moves/moves.asm"
 
+
 Function421d8: ; 421d8
 	ld hl, EvolvableFlags
 	xor a
@@ -44333,9 +44995,9 @@ Function421d8: ; 421d8
 	ld a, $41
 	ld hl, $6094
 	rst FarCall
-	ld de, $0000
+	ld de, MUSIC_NONE
 	call StartMusic
-	ld de, $0002
+	ld de, SFX_CAUGHT_MON
 	call StartSFX
 	call WaitSFX
 	ld c, $28
@@ -45653,7 +46315,7 @@ Function492b9: ; 492b9
 	and a
 	jr nz, .asm_492e5
 	push de
-	ld de, $0019
+	ld de, SFX_WRONG
 	call StartSFX
 	pop de
 	ld a, $b
@@ -47935,7 +48597,7 @@ Function4e7a6: ; 4e7a6
 	ld a, [$d1ed]
 	and a
 	ret nz
-	ld de, $00a4
+	ld de, SFX_EVOLVED
 	call StartSFX
 	ld hl, $cf63
 	ld a, [hl]
@@ -53870,23 +54532,29 @@ INCBIN "baserom.gbc", $90316, $9031d - $90316
 
 
 Function9031d: ; 9031d
-	ld hl, $432a
+	ld hl, UnknownText_0x9032a
 	call PrintText
-	ld de, $006b
+	ld de, SFX_HANG_UP
 	call StartSFX
 	ret
 ; 9032a
 
-INCBIN "baserom.gbc", $9032a, $9032f - $9032a
+UnknownText_0x9032a: ; 9032a
+	text_jump UnknownText_0x1c5580, BANK(UnknownText_0x1c5580)
+	db "@"
+; 9032f
 
 
 Function9032f: ; 9032f
-	ld hl, $4336
+	ld hl, UnknownText_0x90336
 	call PrintText
 	ret
 ; 90336
 
-INCBIN "baserom.gbc", $90336, $9033b - $90336
+UnknownText_0x90336: ; 0x90336
+	text_jump UnknownText_0x1c5588, BANK(UnknownText_0x1c5588)
+	db "@"
+; 0x9033b
 
 
 Function9033b: ; 9033b
@@ -53896,7 +54564,7 @@ Function9033b: ; 9033b
 
 Function9033f: ; 9033f
 	call WaitSFX
-	ld de, $006a
+	ld de, SFX_CALL
 	call StartSFX
 	call Function90375
 	call Function1ad2
@@ -62806,14 +63474,14 @@ Function100902: ; 100902
 	sub c
 	ld [StringBuffer2], a
 	jr z, .asm_10093f
-	ld de, $4966
+	ld de, .string_100966
 	ld hl, $c580
 	call PlaceString
 	ld hl, $c584
 	ld bc, $0102
 	ld de, StringBuffer2
 	call Function3198
-	ld de, $00cc
+	ld de, SFX_TWO_PC_BEEPS
 	call StartSFX
 	callba Function104061
 	ld c, $3c
@@ -62821,10 +63489,10 @@ Function100902: ; 100902
 	ret
 
 .asm_10093f
-	ld de, $495a
+	ld de, .string_10095a
 	ld hl, $c580
 	call PlaceString
-	ld de, $00cd
+	ld de, SFX_4_NOTE_DITTY
 	call StartSFX
 	callba Function104061
 	ld c, $78
@@ -62832,7 +63500,11 @@ Function100902: ; 100902
 	ret
 ; 10095a
 
-INCBIN "baserom.gbc", $10095a, $100970 - $10095a
+.string_10095a ; 10095a
+	db "たいせん しゅうりょう@"
+.string_100966 ; 100966
+	db "のこり   ふん", $e7, "@"
+; 100970
 
 
 Function100970: ; 100970
@@ -63347,14 +64019,14 @@ Function100cb5: ; 100cb5
 	add hl, bc
 	ld a, [hl]
 	ld [CurPartySpecies], a
-	ld de, $0008
+	ld de, SFX_READ_TEXT_2
 	call StartSFX
 	call WaitSFX
 	and a
 	ret
 
 .asm_100d17
-	ld de, $0008
+	ld de, SFX_READ_TEXT_2
 	call StartSFX
 	call WaitSFX
 	scf
@@ -63388,7 +64060,7 @@ Function100d22: ; 100d22
 
 .asm_100d56
 	push af
-	ld de, $0008
+	ld de, SFX_READ_TEXT_2
 	call StartSFX
 	pop af
 	bit 1, a
@@ -63559,7 +64231,7 @@ Function100e63: ; 100e63
 	ret nz
 	call Function100db0
 	ret nc
-	ld de, $0027
+	ld de, SFX_ELEVATOR_END
 	call StartSFX
 	ret
 ; 100e72
