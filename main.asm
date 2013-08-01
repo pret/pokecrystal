@@ -3653,7 +3653,7 @@ Text_09: ; 14d2
 	swap a
 	set 6, a
 	ld b, a
-	call Function3198
+	call PrintNum
 	ld b, h
 	ld c, l
 	pop hl
@@ -9919,16 +9919,14 @@ CopyDataUntil: ; 318c
 	ret
 ; 0x3198
 
-Function3198: ; 3198
+PrintNum: ; 3198
 	ld a, [hROMBank]
 	push af
-	ld a, $3
+	ld a, BANK(_PrintNum)
 	rst Bankswitch
-
-	call $44c7
+	call _PrintNum
 	pop af
 	rst Bankswitch
-
 	ret
 ; 31a4
 
@@ -11216,56 +11214,67 @@ Function3741: ; 3741
 	ret
 ; 3750
 
-Function3750: ; 3750
+
+DrawHPBar: ; 3750
+; Draw an HP bar d tiles long at hl
+; Fill it up to e pixels
+
 	push hl
 	push de
 	push bc
+
+; Place 'HP:'
 	ld a, $60
 	ld [hli], a
 	ld a, $61
 	ld [hli], a
+
+; Draw a template
 	push hl
-	ld a, $62
-.asm_375c
+	ld a, $62 ; empty bar
+.template
 	ld [hli], a
 	dec d
-	jr nz, .asm_375c
-	ld a, $6b
+	jr nz, .template
+	ld a, $6b ; bar end
 	add b
 	ld [hl], a
 	pop hl
+
+; Safety check # pixels
 	ld a, e
 	and a
-	jr nz, .asm_376f
+	jr nz, .fill
 	ld a, c
 	and a
-	jr z, .asm_3782
-	ld e, $1
+	jr z, .done
+	ld e, 1
 
-.asm_376f
+.fill
+; Keep drawing tiles until pixel length is reached
 	ld a, e
-	sub $8
-	jr c, .asm_377e
+	sub TILE_WIDTH
+	jr c, .lastbar
+
 	ld e, a
-	ld a, $6a
+	ld a, $6a ; full bar
 	ld [hli], a
 	ld a, e
 	and a
-	jr z, .asm_3782
-	jr .asm_376f
+	jr z, .done
+	jr .fill
 
-.asm_377e
-	ld a, $62
-	add e
+.lastbar
+	ld a, $62  ; empty bar
+	add e      ; + e
 	ld [hl], a
 
-.asm_3782
+.done
 	pop bc
 	pop de
 	pop hl
 	ret
 ; 3786
-
 
 
 Function3786: ; 3786
@@ -11397,27 +11406,38 @@ Function381e: ; 381e
 	ret
 ; 382d
 
-Function382d: ; 382d
+
+PrintLevel: ; 382d
+; Print TempMonLevel at hl
+
 	ld a, [TempMonLevel]
-	ld [hl], $6e
+	ld [hl], $6e ; ":L"
 	inc hl
-	ld c, $2
-	cp $64
-	jr c, .asm_3842
+
+; How many digits?
+	ld c, 2
+	cp 100
+	jr c, .print
+
+; 3-digit numbers overwrite the :L.
 	dec hl
 	inc c
-	jr .asm_3842
+	jr .print
 
+; --------
+; Unused: print :L and all 3 digits
 	ld [hl], $6e
 	inc hl
-	ld c, $3
+	ld c, 3
+; --------
 
-.asm_3842
+.print
 	ld [$d265], a
 	ld de, $d265
-	ld b, $41
-	jp Function3198
+	ld b,  %01000001 ; flags
+	jp PrintNum
 ; 384d
+
 
 Function384d: ; 384d
 	ld hl, $d25e
@@ -11808,7 +11828,7 @@ GetBattleVarPair: ; 39e7
 ; get var id
 	ld a, [hl]
 	ld c, a
-	ld b, $0
+	ld b, 0
 	
 ; seek
 	ld hl, .vars
@@ -17537,7 +17557,7 @@ Function5f58: ; 5f58
 	pop hl
 	ld de, $d265
 	ld bc, $0102
-	jp Function3198
+	jp PrintNum
 ; 5f6b
 
 Function5f6b: ; 5f6b
@@ -17551,18 +17571,18 @@ Function5f6b: ; 5f6b
 	pop hl
 	ld de, $d265
 	ld bc, $0103
-	jp Function3198
+	jp PrintNum
 ; 5f84
 
 Function5f84: ; 5f84
 	ld de, GameTimeHours
 	ld bc, $0203
-	call Function3198
+	call PrintNum
 	ld [hl], $6d
 	inc hl
 	ld de, GameTimeMinutes
 	ld bc, $8102
-	jp Function3198
+	jp PrintNum
 ; 5f99
 
 
@@ -19854,12 +19874,13 @@ GetPredefFn: ; 854b
 PredefPointers: ; 856b
 ; $4b Predef pointers
 ; address, bank
+
 	dwb $6508, $01
 	dwb $747a, $01
 	dwb $4658, $03
-	dwb $57c1, $13
+	dwb $57c1, $13 ; Flag, BANK(Flag)
 	dwb $4699, $03
-	dwb Functionda6d, BANK(Functionda6d)
+	dwb FillPP, BANK(FillPP)
 	dwb Functiond88c, BANK(Functiond88c)
 	dwb $5a96, $03
 	dwb $5b3f, $03
@@ -19872,16 +19893,16 @@ PredefPointers: ; 856b
 	dwb $566a, $04
 	dwb $4eef, $0a
 	dwb $4b3e, $0b ; PrintMoveDescription, BANK(PrintMoveDescription)
-	dwb Function3df48, BANK(Function3df48)
+	dwb Function3df48, BANK(Function3df48) ; UpdatePlayerHUD
 	dwb FillBox, BANK(FillBox)
 	dwb Function3d873, BANK(Function3d873)
-	dwb Function3e036, BANK(Function3e036)
+	dwb Function3e036, BANK(Function3e036) ; UpdateEnemyHUD
 	dwb Function3f4c1, BANK(Function3f4c1)
 	dwb FillInExpBar, BANK(FillInExpBar)
 	dwb Function3f43d, BANK(Function3f43d)
 	dwb Function3f47c, BANK(Function3f47c)
 	dwb Function42487, BANK(Function42487)
-	dwb $64e1, $10
+	dwb FillMoves, BANK(FillMoves)
 	dwb $61e6, $10
 	dwb $4f63, $0a
 	dwb $4f24, $0a
@@ -19892,18 +19913,18 @@ PredefPointers: ; 856b
 	dwb $4c50, $14
 	dwb GetGender, BANK(GetGender)
 	dwb StatsScreenInit, BANK(StatsScreenInit)
-	dwb $4b0a, $14
-	dwb $4b0e, $14
+	dwb DrawPlayerHP, BANK(DrawPlayerHP)
+	dwb DrawEnemyHP, BANK(DrawEnemyHP)
 	dwb $4b7b, $14
-	dwb LoadTypeName, BANK(LoadTypeName)
+	dwb GetTypeName, BANK(GetTypeName)
 	dwb PrintMoveType, BANK(PrintMoveType)
 	dwb PrintType, BANK(PrintType)
 	dwb $490d, $14
-	dwb $5040, $14
+	dwb $5040, $14 ; GetUnownLetter
 	dwb $7cdd, $32
 	dwb $40d5, $33
 	dwb $5853, $02
-	dwb $464c, $02
+	dwb $464c, $02 ; LoadSGBLayout, BANK(LoadSGBLayout)
 	dwb $5d11, $24
 	dwb $4a88, $02
 	dwb $420f, $23
@@ -20727,7 +20748,7 @@ SpecialTrainerHouse: ; 0xc4b9
 	ld [ScriptVar], a
 	jp CloseSRAM
 
-Functionc4c7: ; c4c7
+_PrintNum: ; c4c7
 	push bc
 	bit 5, b
 	jr z, .asm_c4d9
@@ -22506,7 +22527,7 @@ Functiond88c: ; d88c
 	push de
 	inc hl
 	inc hl
-	call Functionda6d
+	call FillPP
 	pop de
 	pop hl
 	inc de
@@ -22629,7 +22650,7 @@ Functiond88c: ; d88c
 	ret
 ; da6d
 
-Functionda6d: ; da6d
+FillPP: ; da6d
 	push bc
 	ld b, $4
 .asm_da70
@@ -26594,7 +26615,7 @@ Function13172: ; 13172
 	ld hl, $484a
 	rst FarCall
 	pop hl
-	call Function382d
+	call PrintLevel
 	ld hl, PlayerHPPal
 	call SetHPPal
 	ld b, $e
@@ -26681,7 +26702,7 @@ Function13256: ; 13256
 	ld [$d265], a
 	ld de, $d265
 	ld bc, $0103
-	call Function3198
+	call PrintNum
 	jr .asm_132ad
 
 .asm_132a7
@@ -30265,7 +30286,7 @@ Function15be5: ; 15be5
 	ld hl, StringBuffer1
 	ld de, StringBuffer2
 	ld bc, $8206
-	call Function3198
+	call PrintNum
 	pop hl
 	ld de, StringBuffer1
 	ld c, $3
@@ -32592,7 +32613,7 @@ Function24ac3: ; 0x24ac3
 	inc hl
 	ld de, $cf75
 	ld bc, $0102
-	call Function3198
+	call PrintNum
 
 .done
 	ret
@@ -32618,7 +32639,7 @@ Function24ae8: ; 24ae8
 	add hl, de
 	ld de, Money
 	ld bc, $2306
-	call Function3198
+	call PrintNum
 	ret
 ; 24b15
 
@@ -32638,7 +32659,7 @@ Function24b25: ; 24b25
 	ld de, $d855
 	ld bc, $0204
 	ld hl, $c4c1
-	call Function3198
+	call PrintNum
 	ret
 ; 24b4e
 
@@ -32653,14 +32674,14 @@ Function24b4e: ; 24b4e
 	ld hl, $c4c0
 	ld de, Money
 	ld bc, $2306
-	call Function3198
+	call PrintNum
 	ld hl, $c4e2
 	ld de, CoinString
 	call PlaceString
 	ld hl, $c4eb
 	ld de, $d855
 	ld bc, $0204
-	call Function3198
+	call PrintNum
 	ret
 ; 24b83
 
@@ -32684,7 +32705,7 @@ Function24b8f: ; 24b8f
 	ld hl, $c4b5
 	ld de, $dc7a
 	ld bc, $0203
-	call Function3198
+	call PrintNum
 	ld hl, $c4b8
 	ld de, String24bcf
 	call PlaceString
@@ -32694,7 +32715,7 @@ Function24b8f: ; 24b8f
 	ld hl, $c4e1
 	ld de, $dc79
 	ld bc, $0102
-	call Function3198
+	call PrintNum
 	pop af
 	ld [Options], a
 	ret
@@ -32726,7 +32747,7 @@ Function24be7: ; 24be7
 	ld hl, $c50c
 	ld de, $dc79
 	ld bc, $4102
-	call Function3198
+	call PrintNum
 	ld hl, $c4b5
 	ld de, String24c4b
 	call PlaceString
@@ -33264,7 +33285,7 @@ Function24f7c: ; 24f7c
 	ld hl, $c5b5
 	ld de, $dc79
 	ld bc, $8102
-	call Function3198
+	call PrintNum
 	ret
 ; 24f89
 
@@ -33296,7 +33317,7 @@ Function24fb2: ; 24fb2
 	ld hl, $c5ed
 	ld de, $dc79
 	ld bc, $8102
-	call Function3198
+	call PrintNum
 	ret
 ; 24fbf
 
@@ -33444,7 +33465,7 @@ Function25072: ; 25072
 	inc hl
 	ld de, $d10c
 	ld bc, $8102
-	call Function3198
+	call PrintNum
 	ld a, [$cf86]
 	ld e, a
 	ld a, [$cf87]
@@ -33516,7 +33537,7 @@ Function250d1: ; 250d1
 	inc hl
 	ld de, $ffc3
 	ld bc, $2306
-	call Function3198
+	call PrintNum
 	call WaitBGMap
 	ret
 ; 250ed
@@ -33603,7 +33624,7 @@ ClearOakRatingBuffer: ; 0x2665a
 	call ByteFill
 	pop hl
 	ld bc, $4103
-	call Function3198
+	call PrintNum
 	ret
 ; 0x2666b
 
@@ -36493,7 +36514,7 @@ Function3c000: ; 3c000
 	call Function3dbde
 	call Function3dc18
 	call Function3db5f
-	call Function3edd1
+	call EmptyBattleTextBox
 	call Function309d
 	call SetPlayerTurn
 	call Function3dc23
@@ -38590,7 +38611,7 @@ Function3ce01: ; 3ce01
 	ld a, [IsInBattle]
 	dec a
 	call z, Function3d0ea
-	call Function3edd1
+	call EmptyBattleTextBox
 	call Function309d
 	ld a, [$d0ee]
 	and $c0
@@ -38844,7 +38865,7 @@ Function3cfa4: ; 3cfa4
 	call Function3ebd8
 	ld c, $28
 	call DelayFrames
-	call Function3edd1
+	call EmptyBattleTextBox
 	ld c, $3
 	ld a, $47
 	ld hl, $4000
@@ -39189,7 +39210,7 @@ Function3d1aa: ; 3d1aa
 ; 3d1f8
 
 Function3d1f8: ; 3d1f8
-	call Function3edd1
+	call EmptyBattleTextBox
 	call Function309d
 	ld a, [IsInBattle]
 	and a
@@ -39215,7 +39236,7 @@ Function3d1f8: ; 3d1f8
 ; 3d227
 
 Function3d227: ; 3d227
-	call Function3edd1
+	call EmptyBattleTextBox
 	call Function1d6e
 	call Function3d2f7
 	call Function3d362
@@ -39268,7 +39289,7 @@ Function3d227: ; 3d227
 	call Function3dbde
 	call Function3dc18
 	call Function3db5f
-	call Function3edd1
+	call EmptyBattleTextBox
 	call Function309d
 	call SetPlayerTurn
 	call Function3dc23
@@ -39290,7 +39311,7 @@ Function3d2b3: ; 3d2b3
 	call Function3dbde
 	call Function3dc18
 	call Function3db5f
-	call Function3edd1
+	call EmptyBattleTextBox
 	call Function309d
 	call SetPlayerTurn
 	jp Function3dc23
@@ -39454,7 +39475,7 @@ LostBattle: ; 3d38e
 	ld c, 40
 	call DelayFrames
 
-	call Function3edd1
+	call EmptyBattleTextBox
 	ld c, 2
 	ld a, $47
 	ld hl, $4000
@@ -39728,7 +39749,7 @@ Function3d557: ; 3d557
 	ld hl, $c4b2
 	ld a, $8
 	call Function3d490
-	call Function3edd1
+	call EmptyBattleTextBox
 	jp Function1d6e
 ; 3d57a
 
@@ -40544,7 +40565,7 @@ Function3db32: ; 3db32
 	call Function3dbde
 	call Function3dc18
 	call Function3db5f
-	call Function3edd1
+	call EmptyBattleTextBox
 	call Function309d
 	ld hl, EnemyMonHPHi
 	ld a, [hli]
@@ -40892,7 +40913,7 @@ Function3ddc8: ; 3ddc8
 	push hl
 	push de
 	push bc
-	call Function3edd1
+	call EmptyBattleTextBox
 	ld a, $69
 	ld [FXAnimIDLo], a
 	call Function3c8e4
@@ -41165,7 +41186,7 @@ DrawPlayerHUD: ; 3df58
 	ld b, OTPARTYMON
 	xor a
 	ld [MonType], a
-	ld a, $26 ; PREDEF_DRAW_HP
+	ld a, PREDEF_DRAW_PLAYER_HP
 	call Predef
 
 ; Exp bar
@@ -41275,7 +41296,7 @@ PrintPlayerHUD: ; 3dfbf
 .asm_3e02d
 	ld a, [BattleMonLevel]
 	ld [TempMonLevel], a
-	jp Function382d
+	jp PrintLevel
 ; 3e036
 
 Function3e036: ; 3e036
@@ -41352,7 +41373,7 @@ Function3e043: ; 3e043
 .asm_3e0b5
 	ld a, [EnemyMonLevel]
 	ld [TempMonLevel], a
-	call Function382d
+	call PrintLevel
 
 .asm_3e0be
 	ld hl, EnemyMonHPHi
@@ -41415,7 +41436,7 @@ Function3e043: ; 3e043
 	ld [$d10a], a
 	ld hl, $c4ca
 	ld b, $0
-	call Function3750
+	call DrawHPBar
 	ret
 ; 3e127
 
@@ -41447,9 +41468,9 @@ Function3e139: ; 3e139
 	jr z, .asm_3e156
 	cp $3
 	jr z, .asm_3e156
-	call Function3edd1
+	call EmptyBattleTextBox
 	call UpdateBattleHuds
-	call Function3edd1
+	call EmptyBattleTextBox
 	call Function309d
 
 .asm_3e156
@@ -41849,7 +41870,7 @@ Function3e40b: ; 3e40b
 	call Function3dbde
 	call Function3dc18
 	call Function3db5f
-	call Function3edd1
+	call EmptyBattleTextBox
 	call Function309d
 	call SetPlayerTurn
 	call Function3dc23
@@ -41872,7 +41893,7 @@ Function3e459: ; 3e459
 	ld [$d265], a
 	call Function3ecab
 	call Function3db5f
-	call Function3edd1
+	call EmptyBattleTextBox
 	call Function309d
 	call SetPlayerTurn
 	jp Function3dc23
@@ -42303,7 +42324,7 @@ Function3e75f: ; 3e75f
 	push hl
 	ld de, StringBuffer1
 	ld bc, $0102
-	call Function3198
+	call PrintNum
 	pop hl
 	inc hl
 	inc hl
@@ -42311,7 +42332,7 @@ Function3e75f: ; 3e75f
 	inc hl
 	ld de, $d265
 	ld bc, $0102
-	call Function3198
+	call PrintNum
 	ret
 ; 3e786
 
@@ -42370,7 +42391,7 @@ Function3e7c1: ; 3e7c1
 	ld a, [InLinkBattle]
 	and a
 	jr z, .asm_3e817
-	call Function3edd1
+	call EmptyBattleTextBox
 	call Function309d
 	ld a, [$d0ec]
 	and a
@@ -42744,7 +42765,7 @@ LoadEnemyMon: ; 3e8eb
 	
 ; Get letter based on DVs
 	ld hl, EnemyMonDVs
-	ld a, PREDEF_GETUNOWNLETTER
+	ld a, PREDEF_GET_UNOWN_LETTER
 	call Predef
 ; Can't use any letters that haven't been unlocked
 ; If combined with forced shiny battletype, causes an infinite loop
@@ -43567,7 +43588,7 @@ Function3edad: ; 3edad
 ; 3edd1
 
 
-Function3edd1: ; 3edd1
+EmptyBattleTextBox: ; 3edd1
 	ld hl, .empty
 	jp BattleTextBox
 .empty
@@ -43979,7 +44000,7 @@ Function3ee3b: ; 3ee3b
 	ld hl, Function3df48
 	ld a, $f
 	rst FarCall
-	call Function3edd1
+	call EmptyBattleTextBox
 	call Function309d
 	ld a, $1
 	ld [hBGMapMode], a
@@ -44797,7 +44818,7 @@ Function3f4dd: ; 3f4dd
 	set 6, [hl]
 	xor a
 	ld [hBGMapMode], a
-	call Function3edd1
+	call EmptyBattleTextBox
 	ld hl, $c535
 	ld bc, $050b
 	call ClearBox
@@ -45273,20 +45294,20 @@ Function3f85f: ; 3f85f
 	push hl
 	ld de, $d00d
 	ld bc, $0204
-	call Function3198
+	call PrintNum
 	pop hl
 	ld de, $0005
 	add hl, de
 	push hl
 	ld de, $d00f
 	ld bc, $0204
-	call Function3198
+	call PrintNum
 	pop hl
 	ld de, $0005
 	add hl, de
 	ld de, $d011
 	ld bc, $0204
-	call Function3198
+	call PrintNum
 	jr .asm_3f8cf
 
 .asm_3f8c9
@@ -45326,21 +45347,21 @@ Function3f85f: ; 3f85f
 	jr c, .asm_3f92a
 
 	ld bc, $0204
-	call Function3198
+	call PrintNum
 
 	ld hl, $c4fb
 	ld de, $b262
 	call .asm_3f92b
 
 	ld bc, $0204
-	call Function3198
+	call PrintNum
 
 	ld hl, $c500
 	ld de, $b264
 	call .asm_3f92b
 
 	ld bc, $0204
-	call Function3198
+	call PrintNum
 
 .asm_3f92a
 	ret
@@ -46802,7 +46823,128 @@ Function42487: ; 42487
 	ret
 ; 424e1
 
-INCBIN "baserom.gbc", $424e1, $42577 - $424e1
+
+FillMoves: ; 424e1
+; Fill in moves at de for CurPartySpecies at CurPartyLevle
+
+	push hl
+	push de
+	push bc
+	ld hl, EvosAttacksPointers
+	ld b, 0
+	ld a, [CurPartySpecies]
+	dec a
+	add a
+	rl b
+	ld c, a
+	add hl, bc
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+.GoToAttacks
+	ld a, [hli]
+	and a
+	jr nz, .GoToAttacks
+	jr .GetLevel
+
+.NextMove
+	pop de
+.GetMove
+	inc hl
+.GetLevel
+	ld a, [hli]
+	and a
+	jp z, .done
+	ld b, a
+	ld a, [CurPartyLevel]
+	cp b
+	jp c, .done
+	ld a, [Buffer1]
+	and a
+	jr z, .CheckMove
+	ld a, [DefaultFlypoint]
+	cp b
+	jr nc, .GetMove
+
+.CheckMove
+	push de
+	ld c, NUM_MOVES
+.CheckRepeat
+	ld a, [de]
+	inc de
+	cp [hl]
+	jr z, .NextMove
+	dec c
+	jr nz, .CheckRepeat
+	pop de
+	push de
+	ld c, NUM_MOVES
+.CheckSlot
+	ld a, [de]
+	and a
+	jr z, .LearnMove
+	inc de
+	dec c
+	jr nz, .CheckSlot
+	pop de
+	push de
+	push hl
+	ld h, d
+	ld l, e
+	call ShiftMoves
+	ld a, [Buffer1]
+	and a
+	jr z, .ShiftedMove
+	push de
+	ld bc, PartyMon1PP - PartyMon1Move4
+	add hl, bc
+	ld d, h
+	ld e, l
+	call ShiftMoves
+	pop de
+
+.ShiftedMove
+	pop hl
+
+.LearnMove
+	ld a, [hl]
+	ld [de], a
+	ld a, [Buffer1]
+	and a
+	jr z, .NextMove
+	push hl
+	ld a, [hl]
+	ld hl, PartyMon1PP - PartyMon1Moves
+	add hl, de
+	push hl
+	dec a
+	ld hl, Moves + MOVE_PP
+	ld bc, Move2 - Move1
+	call AddNTimes
+	ld a, BANK(Moves)
+	call GetFarByte
+	pop hl
+	ld [hl], a
+	pop hl
+	jr .NextMove
+
+.done
+	pop bc
+	pop de
+	pop hl
+	ret
+; 4256e
+
+ShiftMoves: ; 4256e
+	ld c, $3
+.asm_42570
+	inc de
+	ld a, [de]
+	ld [hli], a
+	dec c
+	jr nz, .asm_42570
+	ret
+; 42577
 
 
 Function42577: ; 42577
@@ -48247,7 +48389,7 @@ Function49e3d: ; 49e3d
 	inc hl
 	ld de, hMinutes
 	ld bc, $8102
-	call Function3198
+	call PrintNum
 	ret
 ; 49e70
 
@@ -51070,7 +51212,7 @@ Function500cf: ; 500cf
 	pop hl
 	ld d, $6
 	ld b, $0
-	call Function3750
+	call DrawHPBar
 	ld hl, $cd9b
 	ld a, [$cda9]
 	ld c, a
@@ -51145,14 +51287,14 @@ Function50138: ; 50138
 	pop hl
 	push de
 	ld bc, $0203
-	call Function3198
+	call PrintNum
 	pop de
 	ld a, $f3
 	ld [hli], a
 	inc de
 	inc de
 	ld bc, $0203
-	call Function3198
+	call PrintNum
 
 .asm_5016b
 	pop hl
@@ -51194,7 +51336,7 @@ Function50176: ; 50176
 
 .asm_501a1
 	ld bc, $4103
-	call Function3198
+	call PrintNum
 
 .asm_501a7
 	pop hl
@@ -51962,7 +52104,7 @@ PrintType: ; 50953
 ; 50964
 
 
-LoadTypeName: ; 50964
+GetTypeName: ; 50964
 ; Copy the name of type $d265 to StringBuffer1.
 	ld a, [$d265]
 	ld hl, TypeNames
@@ -52050,7 +52192,96 @@ Dark:
 ; 50a28
 
 
-INCBIN "baserom.gbc", $50a28, $50bdd - $50a28
+INCBIN "baserom.gbc", $50a28, $50b0a - $50a28
+
+
+DrawPlayerHP: ; 50b0a
+	ld a, $1
+	jr DrawHP
+
+DrawEnemyHP: ; 50b0e
+	ld a, $2
+
+DrawHP: ; 50b10
+	ld [$d10a], a
+	push hl
+	push bc
+	ld a, [MonType]
+	cp BOXMON
+	jr z, .asm_50b30
+
+	ld a, [TempMonCurHP]
+	ld b, a
+	ld a, [TempMonCurHP + 1]
+	ld c, a
+
+; Any HP?
+	or b
+	jr nz, .asm_50b30
+
+	xor a
+	ld c, a
+	ld e, a
+	ld a, 6
+	ld d, a
+	jp .asm_50b4a
+
+.asm_50b30
+	ld a, [TempMonMaxHP]
+	ld d, a
+	ld a, [TempMonMaxHP + 1]
+	ld e, a
+	ld a, [MonType]
+	cp BOXMON
+	jr nz, .asm_50b41
+
+	ld b, d
+	ld c, e
+
+.asm_50b41
+	ld a, $4
+	call Predef
+	ld a, 6
+	ld d, a
+	ld c, a
+
+.asm_50b4a
+	ld a, c
+	pop bc
+	ld c, a
+	pop hl
+	push de
+	push hl
+	push hl
+	call DrawHPBar
+	pop hl
+
+; Print HP 
+	ld bc, $0015 ; move (1,1)
+	add hl, bc
+	ld de, TempMonCurHP
+	ld a, [MonType]
+	cp BOXMON
+	jr nz, .asm_50b66
+	ld de, TempMonMaxHP
+.asm_50b66
+	ld bc, $0203
+	call PrintNum
+
+	ld a, "/"
+	ld [hli], a
+
+; Print max HP
+	ld de, TempMonMaxHP
+	ld bc, $0203
+	call PrintNum
+	pop hl
+	pop de
+	ret
+; 50b7b
+
+
+INCBIN "baserom.gbc", $50b7b, $50bdd - $50b7b
 
 
 GetGender: ; 50bdd
@@ -52392,7 +52623,63 @@ Function50eed: ; 50eed
 	jp Multiply
 ; 50efa
 
-INCBIN "baserom.gbc", $50efa, $511c5 - $50efa
+
+INCBIN "baserom.gbc", $50efa, $51040 - $50efa
+
+
+GetUnownLetter: ; 51040
+; Return Unown letter in UnownLetter based on DVs at hl
+
+; Take the middle 2 bits of each DV and place them in order:
+;	AtkDefDV | SpdSpcDV
+;	.ww..xx.   .yy..zz.
+
+	; atk
+	ld a, [hl]
+	and %01100000
+	sla a
+	ld b, a
+	; def
+	ld a, [hli]
+	and %00000110
+	swap a
+	srl a
+	or b
+	ld b, a
+	
+	; spd
+	ld a, [hl]
+	and %01100000
+	swap a
+	sla a
+	or b
+	ld b, a
+	; spc
+	ld a, [hl]
+	and %00000110
+	srl a
+	or b
+
+; Divide by 10 to get 0-25
+	ld [hDividend + 3], a
+	xor a
+	ld [hDividend], a
+	ld [hDividend + 1], a
+	ld [hDividend + 2], a
+	ld a, 10
+	ld [hDivisor], a
+	ld b, $4
+	call Divide
+
+; Increment to get 1-26
+	ld a, [hQuotient + 2]
+	inc a
+	ld [UnownLetter], a
+	ret
+; 51077
+
+
+INCBIN "baserom.gbc", $51077, $511c5 - $51077
 
 
 Function511c5: ; 511c5
@@ -52400,7 +52687,7 @@ Function511c5: ; 511c5
 	push bc
 	sub $12
 	ld c, a
-	ld b, $0
+	ld b, 0
 	ld hl, $51d4
 	add hl, bc
 	ld a, [hl]
@@ -54587,7 +54874,7 @@ Function86748: ; 86748
 	ld hl, $c5a7
 	ld de, $d265
 	ld bc, $8103
-	call Function3198
+	call PrintNum
 	call GetBasePokemonName
 	ld hl, $c5ab
 	call PlaceString
@@ -54609,7 +54896,7 @@ Function86748: ; 86748
 	ld de, StringBuffer2
 	call PlaceString
 	ld hl, $c5e1
-	call Function382d
+	call PrintLevel
 
 .asm_867f8
 	ld hl, $c5e7
@@ -54621,7 +54908,7 @@ Function86748: ; 86748
 	ld hl, $c5ea
 	ld de, TempMonID
 	ld bc, $8205
-	call Function3198
+	call PrintNum
 	ret
 ; 86810
 
@@ -54698,19 +54985,19 @@ Function86810: ; 86810
 	ld hl, $c51c
 	ld de, PlayerID
 	ld bc, $8205
-	call Function3198
+	call PrintNum
 	ld hl, $c541
 	ld de, $68ed
 	call PlaceString
 	ld hl, $c557
 	ld de, GameTimeHours
 	ld bc, $0203
-	call Function3198
+	call PrintNum
 	ld [hl], $63
 	inc hl
 	ld de, GameTimeMinutes
 	ld bc, $8102
-	call Function3198
+	call PrintNum
 	call WaitBGMap
 	callba Function26601
 	ret
@@ -61995,7 +62282,7 @@ Functioncc000: ; cc000
 	ld l, c
 	ld a, [$dfbb]
 	ld [TempMonLevel], a
-	call Function382d
+	call PrintLevel
 	ld de, EnemyMonNick
 	ld hl, $c541
 	call PlaceString
@@ -62003,14 +62290,14 @@ Functioncc000: ; cc000
 	ld l, c
 	ld a, [EnemyMonLevel]
 	ld [TempMonLevel], a
-	call Function382d
+	call PrintLevel
 	ld hl, $c4fb
 	ld de, $dfc0
 	ld bc, $0203
-	call Function3198
+	call PrintNum
 	ld hl, $c573
 	ld de, EnemyMonMaxHPHi
-	call Function3198
+	call PrintNum
 	ld hl, $40c2
 	call PrintText
 	pop af
@@ -66063,7 +66350,7 @@ Function100902: ; 100902
 	ld hl, $c584
 	ld bc, $0102
 	ld de, StringBuffer2
-	call Function3198
+	call PrintNum
 	ld de, SFX_TWO_PC_BEEPS
 	call StartSFX
 	callba Function104061
