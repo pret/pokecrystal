@@ -19877,7 +19877,7 @@ PredefPointers: ; 856b
 	dwb Function3d873, BANK(Function3d873)
 	dwb Function3e036, BANK(Function3e036)
 	dwb Function3f4c1, BANK(Function3f4c1)
-	dwb Function3f390, BANK(Function3f390)
+	dwb FillInExpBar, BANK(FillInExpBar)
 	dwb Function3f43d, BANK(Function3f43d)
 	dwb Function3f47c, BANK(Function3f47c)
 	dwb Function42487, BANK(Function42487)
@@ -34796,7 +34796,7 @@ Function2c075: ; 2c075
 	ret
 ; 2c095
 
-Function2c095: ; 2c095
+DrawPlayerExpBar: ; 2c095
 	ld hl, .data_2c0a9
 	ld de, $d004
 	ld bc, 4
@@ -41117,10 +41117,10 @@ Function3df2c: ; 3df2c
 	push hl
 	push de
 	push bc
-	call Function3df58
+	call DrawPlayerHUD
 	ld hl, PlayerHPPal
 	call SetHPPal
-	call Function3df9e
+	call CheckDanger
 	call Function3e043
 	ld hl, EnemyHPPal
 	call SetHPPal
@@ -41136,53 +41136,60 @@ Function3df48: ; 3df48
 	push hl
 	push de
 	push bc
-	call Function3df58
-	call Function3df98
-	call Function3df9e
+	call DrawPlayerHUD
+	call UpdatePlayerHPPal
+	call CheckDanger
 	pop bc
 	pop de
 	pop hl
 	ret
 ; 3df58
 
-Function3df58: ; 3df58
+DrawPlayerHUD: ; 3df58
 	xor a
 	ld [hBGMapMode], a
-	ld hl, $c535
+
+; Clear the area
+	hlcoord 9, 7
 	ld bc, $050b
 	call ClearBox
-	ld a, $b
-	ld hl, $4095
-	rst FarCall
-	ld hl, $c566
-	ld [hl], $73
-	call Function3dfbf
-	ld hl, $c55e
-	ld b, $1
+
+	callba DrawPlayerExpBar
+
+	hlcoord 18, 9
+	ld [hl], $73 ; vertical bar
+	call PrintPlayerHUD
+
+; HP bar
+	hlcoord 10, 9
+	ld b, OTPARTYMON
 	xor a
 	ld [MonType], a
-	ld a, $26
+	ld a, $26 ; PREDEF_DRAW_HP
 	call Predef
+
+; Exp bar
 	push de
 	ld a, [CurBattleMon]
-	ld hl, $dce9
+	ld hl, PartyMon1Exp + 2
 	call GetPartyLocation
 	ld d, h
 	ld e, l
-	ld hl, $c586
+
+	hlcoord 10, 11
 	ld a, [TempMonLevel]
 	ld b, a
-	call Function3f390
+	call FillInExpBar
 	pop de
 	ret
 ; 3df98
 
-Function3df98: ; 3df98
+UpdatePlayerHPPal: ; 3df98
 	ld hl, PlayerHPPal
 	jp Function3e12e
 ; 3df9e
 
-Function3df9e: ; 3df9e
+CheckDanger: ; 3df9e
 	ld hl, BattleMonHP
 	ld a, [hli]
 	or [hl]
@@ -41207,12 +41214,14 @@ Function3df9e: ; 3df9e
 	ret
 ; 3dfbf
 
-Function3dfbf: ; 3dfbf
+PrintPlayerHUD: ; 3dfbf
 	ld de, BattleMonNick
-	ld hl, $c536
+	hlcoord 10, 7
 	call Function3e138
 	call PlaceString
+
 	push bc
+
 	ld a, [CurBattleMon]
 	ld hl, PartyMon1DVs
 	call GetPartyLocation
@@ -41233,8 +41242,10 @@ Function3dfbf: ; 3dfbf
 	ld [CurPartySpecies], a
 	ld [CurSpecies], a
 	call GetBaseData
+
 	pop hl
 	dec hl
+
 	ld a, $3
 	ld [MonType], a
 	callab GetGender
@@ -44226,7 +44237,7 @@ Function3f136: ; 3f136
 	call Function3f21b
 	ld c, $40
 	call Function3f22c
-	call Function3dfbf
+	call PrintPlayerHUD
 	ld hl, BattleMonNick
 	ld de, StringBuffer1
 	ld bc, $000b
@@ -44532,7 +44543,7 @@ Function3f360: ; 3f360
 ; 3f390
 
 
-Function3f390: ; 3f390
+FillInExpBar: ; 3f390
 	push hl
 	call Function3f39c
 	pop hl
