@@ -63540,7 +63540,19 @@ INCBIN "gfx/misc/font.1bpp", $0, $400
 FontBattleExtra:
 INCBIN "gfx/misc/font_battle_extra.2bpp", $0, $200
 
-INCBIN "baserom.gbc", $f8800, $f8ba0 - $f8800
+Frames: ; f8800
+INCBIN "gfx/frames/1.1bpp"
+INCBIN "gfx/frames/2.1bpp"
+INCBIN "gfx/frames/3.1bpp"
+INCBIN "gfx/frames/4.1bpp"
+INCBIN "gfx/frames/5.1bpp"
+INCBIN "gfx/frames/6.1bpp"
+INCBIN "gfx/frames/7.1bpp"
+INCBIN "gfx/frames/8.1bpp"
+INCBIN "gfx/frames/9.1bpp"
+; f89b0
+
+INCBIN "baserom.gbc", $f89b0, $f8ba0 - $f89b0
 
 TownMapGFX: ; f8ba0
 INCBIN "gfx/misc/town_map.lz"
@@ -63607,9 +63619,9 @@ Functionfb48a: ; fb48a
 
 .asm_fb4cc
 	ld a, [TextBoxFrame]
-	and $7
+	and 7
 	ld bc, $0030
-	ld hl, $4800
+	ld hl, Frames
 	call AddNTimes
 	ld d, h
 	ld e, l
