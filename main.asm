@@ -18398,7 +18398,244 @@ Function64db: ; 64db
 	ret
 ; 6508
 
-INCBIN "baserom.gbc", $6508, $669f - $6508
+Function6508: ; 6508
+	call Function309d
+	ld a, [CurPartyMon]
+	ld hl, PartyMon1Nickname
+	call GetNick
+	ld hl, StringBuffer1
+	ld de, $d050
+	ld bc, $000b
+	call CopyBytes
+	ld hl, PartyMon1Move1
+	ld bc, $0030
+	ld a, [CurPartyMon]
+	call AddNTimes
+	ld d, h
+	ld e, l
+	ld b, $4
+.asm_6530
+	ld a, [hl]
+	and a
+	jr z, .asm_6564
+	inc hl
+	dec b
+	jr nz, .asm_6530
+	push de
+	call $65d3
+	pop de
+	jp c, $65b5
+	push hl
+	push de
+	ld [$d265], a
+	ld b, a
+	ld a, [IsInBattle]
+	and a
+	jr z, .asm_6559
+	ld a, [DisabledMove]
+	cp b
+	jr nz, .asm_6559
+	xor a
+	ld [DisabledMove], a
+	ld [PlayerDisableCount], a
+
+.asm_6559
+	call GetMoveName
+	ld hl, UnknownText_0x6684
+	call PrintText
+	pop de
+	pop hl
+
+.asm_6564
+	ld a, [$d262]
+	ld [hl], a
+	ld bc, $0015
+	add hl, bc
+	push hl
+	push de
+	dec a
+	ld hl, $5b00
+	ld bc, $0007
+	call AddNTimes
+	ld a, $10
+	call GetFarByte
+	pop de
+	pop hl
+	ld [hl], a
+	ld a, [IsInBattle]
+	and a
+	jp z, $65ca
+	ld a, [CurPartyMon]
+	ld b, a
+	ld a, [CurBattleMon]
+	cp b
+	jp nz, $65ca
+	ld a, [PlayerSubStatus5]
+	bit 3, a
+	jp nz, $65ca
+	ld h, d
+	ld l, e
+	ld de, BattleMonMove1
+	ld bc, $0004
+	call CopyBytes
+	ld bc, $0011
+	add hl, bc
+	ld de, BattleMonPPMove1
+	ld bc, $0004
+	call CopyBytes
+	jp $65ca
+; 65b5
+
+Function65b5: ; 65b5
+	ld hl, $6675
+	call PrintText
+	call Function1dcf
+	jp c, $6520
+	ld hl, $667a
+	call PrintText
+	ld b, $0
+	ret
+; 65ca
+
+Function65ca: ; 65ca
+	ld hl, $666b
+	call PrintText
+	ld b, $1
+	ret
+; 65d3
+
+Function65d3: ; 65d3
+	push hl
+	ld hl, UnknownText_0x667f
+	call PrintText
+	call Function1dcf
+	pop hl
+	ret c
+	ld bc, $fffc
+	add hl, bc
+	push hl
+	ld de, $d25e
+	ld bc, $0004
+	call CopyBytes
+	pop hl
+.asm_65ee
+	push hl
+	ld hl, UnknownText_0x6670
+	call PrintText
+	ld hl, $c4cd
+	ld b, $8
+	ld c, $d
+	call TextBox
+	ld hl, $c4f7
+	ld a, $28
+	ld [Buffer1], a
+	ld a, $20
+	call Predef
+	ld a, $4
+	ld [$cfa1], a
+	ld a, $6
+	ld [$cfa2], a
+	ld a, [$d0eb]
+	inc a
+	ld [$cfa3], a
+	ld a, $1
+	ld [$cfa4], a
+	ld [$cfa9], a
+	ld [$cfaa], a
+	ld a, $3
+	ld [$cfa8], a
+	ld a, $20
+	ld [$cfa5], a
+	xor a
+	ld [$cfa6], a
+	ld a, $20
+	ld [$cfa7], a
+	call Function1bc9
+	push af
+	call Function30b4
+	pop af
+	pop hl
+	bit 1, a
+	jr nz, .asm_6669
+	push hl
+	ld a, [$cfa9]
+	dec a
+	ld c, a
+	ld b, $0
+	add hl, bc
+	ld a, [hl]
+	push af
+	push bc
+	call IsHMMove
+	pop bc
+	pop de
+	ld a, d
+	jr c, .asm_6660
+	pop hl
+	add hl, bc
+	and a
+	ret
+
+.asm_6660
+	ld hl, UnknownText_0x669a
+	call PrintText
+	pop hl
+	jr .asm_65ee
+
+.asm_6669
+	scf
+	ret
+; 666b
+
+UnknownText_0x666b: ; 666b
+	text_jump UnknownText_0x1c5660, BANK(UnknownText_0x1c5660)
+	db "@"
+; 6670
+
+UnknownText_0x6670: ; 6670
+	text_jump UnknownText_0x1c5678, BANK(UnknownText_0x1c5678)
+	db "@"
+; 6675
+
+UnknownText_0x6675: ; 6675
+	text_jump UnknownText_0x1c5699, BANK(UnknownText_0x1c5699)
+	db "@"
+; 667a
+
+UnknownText_0x667a: ; 667a
+	text_jump UnknownText_0x1c56af, BANK(UnknownText_0x1c56af)
+	db "@"
+; 667f
+
+UnknownText_0x667f: ; 667f
+	text_jump UnknownText_0x1c56c9, BANK(UnknownText_0x1c56c9)
+	db "@"
+; 6684
+
+UnknownText_0x6684: ; 6684
+	text_jump UnknownText_0x1c5740, BANK(UnknownText_0x1c5740)
+	start_asm
+; 6689
+
+; 6689
+	push de
+	ld de, SFX_SWITCH_POKEMON
+	call StartSFX
+	pop de
+	ld hl, UnknownText_0x6695
+	ret
+; 6695
+
+UnknownText_0x6695: ; 6695
+	text_jump UnknownText_0x1c574e, BANK(UnknownText_0x1c574e)
+	db "@"
+; 669a
+
+UnknownText_0x669a: ; 669a
+	text_jump UnknownText_0x1c5772, BANK(UnknownText_0x1c5772)
+	db "@"
+; 669f
+
 
 CheckNickErrors: ; 669f
 ; error-check monster nick before use
@@ -18682,8 +18919,42 @@ INCLUDE "items/item_attributes.asm"
 ; 6ec1
 
 
-INCBIN "baserom.gbc", $6ec1, $6eef - $6ec1
+Function6ec1: ; 6ec1
 
+	ld hl, $0006
+	add hl, bc
+	bit 5, [hl]
+	jr z, .asm_6ed9
+	ld hl, $0004
+	add hl, bc
+	bit 4, [hl]
+	push hl
+	push bc
+	call $6f2c
+	pop bc
+	pop hl
+	ret c
+	jr .asm_6ee9
+
+.asm_6ed9
+	ld hl, $0004
+	add hl, bc
+	bit 4, [hl]
+	jr nz, .asm_6ee9
+	push hl
+	push bc
+	call Function6f07
+	pop bc
+	pop hl
+	ret c
+
+.asm_6ee9
+	bit 6, [hl]
+	jr nz, Function6ef5
+	push hl
+	push bc
+	; fallthrough
+; 6eef
 
 DrawGraphic: ; 6eef
 ; input:
@@ -18696,6 +18967,10 @@ DrawGraphic: ; 6eef
 	pop bc
 	pop hl
 	ret c
+	; fallthrough
+; 6ef5
+
+Function6ef5: ; 6ef5
 	bit 5, [hl]
 	jr nz, .asm_6f05
 	push hl
@@ -18731,10 +19006,12 @@ Function6f07: ; 6f07
 	ld d, a
 	call GetTileType
 	and a
-	jr z, .asm_6f3e
+	jr z, Function6f3e
 	scf
 	ret
+; 6f2c
 
+Function6f2c: ; 6f2c
 	call Function6f5f
 	ret c
 	ld hl, $000e
@@ -18742,11 +19019,12 @@ Function6f07: ; 6f07
 	ld a, [hl]
 	call GetTileType
 	cp $1
-	jr z, .asm_6f3e
+	jr z, Function6f3e
 	scf
 	ret
+; 6f3e
 
-.asm_6f3e
+Function6f3e: ; 6f3e
 	ld hl, $000e
 	add hl, bc
 	ld a, [hl]
@@ -18756,10 +19034,10 @@ Function6f07: ; 6f07
 	ld hl, $0007
 	add hl, bc
 	ld a, [hl]
-	and $3
+	and 3
 	ld e, a
-	ld d, $0
-	ld hl, $6f5b
+	ld d, 0
+	ld hl, .data_6f5b
 	add hl, de
 	pop af
 	and [hl]
@@ -18768,8 +19046,9 @@ Function6f07: ; 6f07
 	ret
 ; 6f5b
 
-INCBIN "baserom.gbc", $6f5b, $6f5f - $6f5b
-
+.data_6f5b
+	db 1, 2, 8, 4
+; 6f5f
 
 Function6f5f: ; 6f5f
 	ld hl, $000f
@@ -18780,10 +19059,10 @@ Function6f5f: ; 6f5f
 	push af
 	ld hl, $0007
 	add hl, bc
-	and $3
+	and 3
 	ld e, a
-	ld d, $0
-	ld hl, $6f7b
+	ld d, 0
+	ld hl, .data_6f7b
 	add hl, de
 	pop af
 	and [hl]
@@ -18792,8 +19071,9 @@ Function6f5f: ; 6f5f
 	ret
 ; 6f7b
 
-INCBIN "baserom.gbc", $6f7b, $6f7f - $6f7b
-
+.data_6f7b
+	db 2, 1, 4, 8
+; 6f7f
 
 Function6f7f: ; 6f7f
 	ld d, a
@@ -18807,24 +19087,26 @@ Function6f7f: ; 6f7f
 
 .asm_6f8c
 	ld a, d
-	and $7
+	and 7
 	ld e, a
-	ld d, $0
-	ld hl, $6f99
+	ld d, 0
+	ld hl, .data_6f99
 	add hl, de
 	ld a, [hl]
 	scf
 	ret
 ; 6f99
 
-INCBIN "baserom.gbc", $6f99, $6fa1 - $6f99
-
+.data_6f99
+	db 8, 4, 1, 2
+	db 10, 6, 9, 5
+; 6fa1
 
 Function6fa1: ; 6fa1
 	ld hl, $0007
 	add hl, bc
 	ld a, [hl]
-	and $3
+	and 3
 	jr z, .asm_6fb2
 	dec a
 	jr z, .asm_6fb7
@@ -18899,7 +19181,7 @@ CheckFacingObject: ; 6fd9
 	ld bc, $d4d6
 	ld a, 0
 	ld [hConnectionStripLength], a
-	call $7041
+	call Function7041
 	ret nc
 	ld hl, $0007
 	add hl, bc
@@ -18922,14 +19204,17 @@ Function7009: ; 7009
 	ld hl, $0011
 	add hl, bc
 	ld e, [hl]
-	jr .asm_7041
+	jr Function7041
+; 7015
 
+Function7015: ; 7015
 	ld a, [hConnectionStripLength]
 	call Function1ae5
-	call $7021
-	call $7041
+	call Function7021
+	call Function7041
 	ret
 
+Function7021: ; 7021
 	ld hl, $0010
 	add hl, bc
 	ld d, [hl]
@@ -18957,8 +19242,9 @@ Function7009: ; 7009
 .asm_703f
 	dec d
 	ret
+; 7041
 
-.asm_7041
+Function7041: ; 7041
 	ld bc, $d4d6
 	xor a
 .asm_7045
@@ -19121,7 +19407,71 @@ Function70ed: ; 70ed
 	ret
 ; 7113
 
-INCBIN "baserom.gbc", $7113, $7171 - $7113
+Function7113: ; 7113
+	ld a, [MapX]
+	ld d, a
+	ld a, [MapY]
+	ld e, a
+	ld bc, $d4d6
+	xor a
+.asm_711f
+	ld [hConnectedMapWidth], a
+	call Function1af1
+	jr z, .asm_7160
+	ld hl, $0003
+	add hl, bc
+	ld a, [hl]
+	cp $15
+	jr nz, .asm_7136
+	call Function7171
+	jr c, .asm_716f
+	jr .asm_7160
+
+.asm_7136
+	ld hl, $0011
+	add hl, bc
+	ld a, [hl]
+	cp e
+	jr nz, .asm_714e
+	ld hl, $0010
+	add hl, bc
+	ld a, [hl]
+	cp d
+	jr nz, .asm_714e
+	ld a, [hConnectedMapWidth]
+	cp $0
+	jr z, .asm_7160
+	jr .asm_716f
+
+.asm_714e
+	ld hl, $0013
+	add hl, bc
+	ld a, [hl]
+	cp e
+	jr nz, .asm_7160
+	ld hl, $0012
+	add hl, bc
+	ld a, [hl]
+	cp d
+	jr nz, .asm_7160
+	jr .asm_716f
+
+.asm_7160
+	ld hl, $0028
+	add hl, bc
+	ld b, h
+	ld c, l
+	ld a, [hConnectedMapWidth]
+	inc a
+	cp $d
+	jr nz, .asm_711f
+	xor a
+	ret
+
+.asm_716f
+	scf
+	ret
+; 7171
 
 
 Function7171: ; 7171
@@ -19147,7 +19497,39 @@ Function7171: ; 7171
 	ret
 ; 718d
 
-INCBIN "baserom.gbc", $718d, $71c2 - $718d
+Function718d: ; 718d
+	ld hl, PartyMon1Happiness
+	ld bc, $0030
+	ld de, PartySpecies
+.asm_7196
+	ld a, [de]
+	cp $fd
+	jr nz, .asm_719f
+	inc de
+	add hl, bc
+	jr .asm_7196
+
+.asm_719f
+	ld [$d265], a
+	ld a, [hl]
+	ld [ScriptVar], a
+	call GetPokemonName
+	jp $746e
+; 71ac
+
+Function71ac: ; 71ac
+	ld a, [PartySpecies]
+	ld [$d265], a
+	cp $fd
+	ld a, $1
+	jr z, .asm_71b9
+	xor a
+
+.asm_71b9
+	ld [ScriptVar], a
+	call GetPokemonName
+	jp $746e
+; 71c2
 
 
 Function71c2: ; 71c2
@@ -19297,7 +19679,16 @@ SpecialGiveShuckle: ; 7305
 ; 737e
 
 
-INCBIN "baserom.gbc", $737e, $747b - $737e
+INCBIN "baserom.gbc", $737e, $746e - $737e
+
+Function746e: ; 746e
+	ld hl, StringBuffer1
+	ld de, StringBuffer3
+	ld bc, $000b
+	jp CopyBytes
+; 747a
+
+INCBIN "baserom.gbc", $747a, $747b - $747a
 
 
 SECTION "bank2",DATA,BANK[$2]
@@ -19875,7 +20266,7 @@ PredefPointers: ; 856b
 ; $4b Predef pointers
 ; address, bank
 
-	dwb $6508, $01
+	dwb Function6508, BANK(Function6508)
 	dwb $747a, $01
 	dwb $4658, $03
 	dwb $57c1, $13 ; Flag, BANK(Flag)
@@ -22920,12 +23311,8 @@ Functiondf47: ; df47
 Functiondf8c: ; df8c
 	ld a, [CurPartySpecies]
 	push af
-	ld hl, $6581
-	ld a, $10
-	rst FarCall
-	ld hl, $6581
-	ld a, $10
-	rst FarCall
+	callab GetPreEvolution
+	callab GetPreEvolution
 	ld a, [CurPartySpecies]
 	dec a
 	push af
@@ -46956,11 +47343,16 @@ Function42577: ; 42577
 	ret
 ; 42581
 
-Function42581: ; 42581
-	ld c, $0
+GetPreEvolution: ; 42581
+; Find the first mon to evolve into CurPartySpecies.
+
+; Return carry and the new species in CurPartySpecies
+; if a pre-evolution is found.
+
+	ld c, BULBASAUR - 1
 .asm_42583
 	ld hl, EvosAttacksPointers
-	ld b, $0
+	ld b, 0
 	add hl, bc
 	add hl, bc
 	ld a, [hli]
@@ -46970,7 +47362,7 @@ Function42581: ; 42581
 	ld a, [hli]
 	and a
 	jr z, .asm_425a2
-	cp $5
+	cp EVOLVE_STAT
 	jr nz, .asm_42596
 	inc hl
 
@@ -46987,7 +47379,7 @@ Function42581: ; 42581
 .asm_425a2
 	inc c
 	ld a, c
-	cp $fb
+	cp CELEBI
 	jr c, .asm_42583
 	and a
 	ret
@@ -53636,9 +54028,7 @@ Function80341: ; 80341
 	add e
 	ld e, a
 	ld bc, $d4d6
-	ld a, $1
-	ld hl, $7041
-	rst FarCall
+	callba Function7041
 	jr nc, .asm_80369
 	call Function8036f
 	jr c, .asm_8036c
