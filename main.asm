@@ -71394,7 +71394,11 @@ SECTION "bank76",DATA,BANK[$76]
 
 SECTION "bank77",DATA,BANK[$77]
 
-INCBIN "baserom.gbc", $1dc000, $1dc5a1 - $1dc000
+UnownFont: ; 1dc000
+INCBIN "gfx/misc/unown_font.2bpp"
+; 1dc1b0
+
+INCBIN "baserom.gbc", $1dc1b0, $1dc5a1 - $1dc1b0
 
 Tileset26GFX: ; 0x1dc5a1
 Tileset32GFX: ; 0x1dc5a1
