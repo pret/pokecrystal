@@ -103,6 +103,7 @@ git submodule update
 Now you should be able to build **pokecrystal.gbc** for the first time.
 
 This compiles a new rom from the source code, with any patches filled in from the base rom.
+
 ```bash
 make
 ```
