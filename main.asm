@@ -22855,7 +22855,8 @@ Function0xd47f: ; d47f
 ; d486
 
 
-Functiond486: ; d486
+GetItemPrice: ; d486
+; Return the price of CurItem in de.
 	push hl
 	push bc
 	ld a, $0
@@ -30716,22 +30717,36 @@ MenuData15a08: ; 0x15a08
 INCBIN "baserom.gbc", $15a20, $15a45 - $15a20
 
 
-Function15a45: ; 15a45
-	call Function15b31
+OpenMartDialog: ; 15a45
+	call GetMart
 	ld a, c
 	ld [EngineBuffer1], a
 	call Function15b10
 	ld a, [EngineBuffer1]
-	ld hl, $5a57
+	ld hl, .dialogs
 	rst JumpTable
 	ret
 ; 15a57
 
-INCBIN "baserom.gbc", $15a57, $15a6e - $15a57
+.dialogs
+       dw MartDialog
+       dw HerbShop
+       dw BargainShop
+       dw Pharmacist
+       dw VendingMachine
+; 15a61
 
+MartDialog: ; 15a61
+	ld a, 0
+	ld [EngineBuffer1], a
+	xor a
+	ld [MovementAnimation], a
+	call Function15b47
+	ret
+; 15a6e
 
-Function15a6e: ; 15a6e
-	call Function15bbb
+HerbShop: ; 15a6e
+	call ReadMart
 	call Function1d6e
 	ld hl, $5e4a
 	call Function15fcd
@@ -30741,7 +30756,7 @@ Function15a6e: ; 15a6e
 	ret
 ; 15a84
 
-Function15a84: ; 15a84
+BargainShop: ; 15a84
 	ld b, $5
 	ld de, $5c51
 	call Function15b10
@@ -30763,8 +30778,8 @@ Function15a84: ; 15a84
 	ret
 ; 15aae
 
-Function15aae: ; 15aae
-	call Function15bbb
+Pharmacist: ; 15aae
+	call ReadMart
 	call Function1d6e
 	ld hl, $5e90
 	call Function15fcd
@@ -30774,7 +30789,7 @@ Function15aae: ; 15aae
 	ret
 ; 15ac4
 
-Function15ac4: ; 15ac4
+VendingMachine: ; 15ac4
 	ld b, $5
 	ld de, $5aee
 	ld hl, StatusFlags
@@ -30787,7 +30802,7 @@ Function15ac4: ; 15ac4
 	call Function15b10
 	call Function15c25
 	call Function1d6e
-	ld hl, $5f83
+	ld hl, UnknownText_0x15f83
 	call Function15fcd
 	call Function15c62
 	ld hl, $5fb4
@@ -30802,12 +30817,12 @@ Function15b10: ; 15b10
 	ld a, b
 	ld [CurFruit], a
 	ld a, e
-	ld [$d040], a
+	ld [MartPointer], a
 	ld a, d
-	ld [$d041], a
-	ld hl, $d0f0
+	ld [MartPointer + 1], a
+	ld hl, CurMart
 	xor a
-	ld bc, $0010
+	ld bc, CurMartEnd - CurMart
 	call ByteFill
 	xor a
 	ld [MovementAnimation], a
@@ -30816,16 +30831,16 @@ Function15b10: ; 15b10
 	ret
 ; 15b31
 
-Function15b31: ; 15b31
+GetMart: ; 15b31
 	ld a, e
-	cp $22
-	jr c, .asm_15b3c
+	cp (MartsEnd - Marts) / 2
+	jr c, .IsAMart
 	ld b, $5
-	ld de, $6214
+	ld de, DefaultMart
 	ret
 
-.asm_15b3c
-	ld hl, $60a9
+.IsAMart
+	ld hl, Marts
 	add hl, de
 	add hl, de
 	ld e, [hl]
@@ -30837,21 +30852,26 @@ Function15b31: ; 15b31
 
 Function15b47: ; 15b47
 .asm_15b47
-	ld a, [MovementAnimation]
-	ld hl, $5b56
+	ld a, [$d042]
+	ld hl, .table_15b56
 	rst JumpTable
-	ld [MovementAnimation], a
+	ld [$d042], a
 	cp $ff
 	jr nz, .asm_15b47
 	ret
-; 15b56
 
-INCBIN "baserom.gbc", $15b56, $15b62 - $15b56
-
+.table_15b56
+       dw Function15b62
+       dw Function15b6e
+       dw Function15b8d
+       dw Function15b9a
+       dw Function15ba3
+       dw Function15baf
+; 15b62
 
 Function15b62: ; 15b62
 	call Function1d6e
-	ld hl, $5f83
+	ld hl, UnknownText_0x15f83
 	call PrintText
 	ld a, $1
 	ret
@@ -30867,15 +30887,12 @@ Function15b6e: ; 15b6e
 	jr z, .asm_15b87
 	cp $2
 	jr z, .asm_15b8a
-
 .asm_15b84
 	ld a, $4
 	ret
-
 .asm_15b87
 	ld a, $2
 	ret
-
 .asm_15b8a
 	ld a, $3
 	ret
@@ -30883,7 +30900,7 @@ Function15b6e: ; 15b6e
 
 Function15b8d: ; 15b8d
 	call Function1c07
-	call Function15bbb
+	call ReadMart
 	call Function15c62
 	and a
 	ld a, $5
@@ -30907,66 +30924,69 @@ Function15ba3: ; 15ba3
 
 Function15baf: ; 15baf
 	call Function1d6e
-	ld hl, $5fb9
+	ld hl, UnknownText_0x15fb9
 	call PrintText
 	ld a, $1
 	ret
 ; 15bbb
 
-Function15bbb: ; 15bbb
-	ld hl, $d040
+ReadMart: ; 15bbb
+	ld hl, MartPointer
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	ld de, $d0f0
-.asm_15bc4
+	ld de, CurMart
+.CopyMart
 	ld a, [CurFruit]
 	call GetFarByte
 	ld [de], a
 	inc hl
 	inc de
 	cp $ff
-	jr nz, .asm_15bc4
+	jr nz, .CopyMart
 	ld hl, DefaultFlypoint
-	ld de, $d0f1
-.asm_15bd7
+	ld de, CurMart + 1
+.ReadMartItem
 	ld a, [de]
 	inc de
 	cp $ff
 	jr z, .asm_15be4
 	push de
-	call Function15be5
+	call GetMartItemPrice
 	pop de
-	jr .asm_15bd7
+	jr .ReadMartItem
 
 .asm_15be4
 	ret
 ; 15be5
 
-Function15be5: ; 15be5
+GetMartItemPrice: ; 15be5
+; Return the price of item a in BCD at hl and in tiles at StringBuffer1.
 	push hl
 	ld [CurItem], a
-	ld a, $3
-	ld hl, $5486
-	rst FarCall
+	callba GetItemPrice
 	pop hl
+
+GetMartPrice: ; 15bf0
+; Return price de in BCD at hl and in tiles at StringBuffer1.
 	push hl
 	ld a, d
 	ld [StringBuffer2], a
 	ld a, e
-	ld [$d087], a
+	ld [StringBuffer2 + 1], a
 	ld hl, StringBuffer1
 	ld de, StringBuffer2
-	ld bc, $8206
+	ld bc, $82 << 8 + 6 ; 6 digits
 	call PrintNum
 	pop hl
+
 	ld de, StringBuffer1
-	ld c, $3
+	ld c, 6 / 2 ; 6 digits
 .asm_15c0b
-	call Function15c1a
+	call .TileToNum
 	swap a
 	ld b, a
-	call Function15c1a
+	call .TileToNum
 	or b
 	ld [hli], a
 	dec c
@@ -30974,33 +30994,34 @@ Function15be5: ; 15be5
 	ret
 ; 15c1a
 
-Function15c1a: ; 15c1a
+.TileToNum ; 15c1a
 	ld a, [de]
 	inc de
-	cp $7f
+	cp " "
 	jr nz, .asm_15c22
-	ld a, $f6
+	ld a, "0"
 
 .asm_15c22
-	sub $f6
+	sub "0"
 	ret
 ; 15c25
 
 Function15c25: ; 15c25
-	ld hl, $d040
+	ld hl, MartPointer
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
 	push hl
 	inc hl
 	ld bc, DefaultFlypoint
-	ld de, $d0f1
+	ld de, CurMart + 1
 .asm_15c33
 	ld a, [hli]
 	ld [de], a
 	inc de
 	cp $ff
 	jr z, .asm_15c4b
+
 	push de
 	ld a, [hli]
 	ld e, a
@@ -31009,7 +31030,7 @@ Function15c25: ; 15c25
 	push hl
 	ld h, b
 	ld l, c
-	call $5bf0
+	call GetMartPrice
 	ld b, h
 	ld c, l
 	pop hl
@@ -31019,7 +31040,7 @@ Function15c25: ; 15c25
 .asm_15c4b
 	pop hl
 	ld a, [hl]
-	ld [$d0f0], a
+	ld [CurMart], a
 	ret
 ; 15c51
 
@@ -31028,13 +31049,11 @@ INCBIN "baserom.gbc", $15c51, $15c62 - $15c51
 
 Function15c62: ; 15c62
 	call FadeToMenu
-	ld a, $2
-	ld hl, $4000
-	rst FarCall
+	callba Function8000
 	xor a
-	ld [WalkingY], a
-	ld a, $1
-	ld [WalkingX], a
+	ld [$d046], a
+	ld a, 1
+	ld [$d045], a
 .asm_15c74
 	call Function15cef
 	jr nc, .asm_15c74
@@ -31050,7 +31069,7 @@ Function15c7d: ; 15c7d
 	ld l, a
 	pop af
 	ld e, a
-	ld d, $0
+	ld d, 0
 	add hl, de
 	add hl, de
 	ld a, [hli]
@@ -31067,7 +31086,7 @@ Function15c91: ; 15c91
 	ld a, [hl]
 	and a
 	jp z, Function15d83
-	cp $1
+	cp 1
 	jp z, Function15da5
 	jp Function15de2
 ; 15ca3
@@ -31075,15 +31094,23 @@ Function15c91: ; 15c91
 Function15ca3: ; 15ca3
 	ld a, [EngineBuffer1]
 	ld e, a
-	ld d, $0
-	ld hl, $5cb0
+	ld d, 0
+	ld hl, .data_15cb0
 	add hl, de
 	add hl, de
 	add hl, de
 	ret
 ; 15cb0
 
-INCBIN "baserom.gbc", $15cb0, $15cef - $15cb0
+.data_15cb0 ; 15cb0
+       dwb $5cbf, 0
+       dwb $5ccb, 0
+       dwb $5cd7, 1
+       dwb $5ce3, 0
+       dwb $5cbf, 2
+; 15cbf
+
+INCBIN "baserom.gbc", $15cbf, $15cef - $15cbf
 
 
 Function15cef: ; 15cef
@@ -31346,8 +31373,34 @@ Function15efd: ; 15efd
 	ret
 ; 15f73
 
-INCBIN "baserom.gbc", $15f73, $15fc3 - $15f73
+UnknownText_0x15f73: ; 0x15f73
+	text_jump UnknownText_0x1c4f33, BANK(UnknownText_0x1c4f33)
+	db "@"
+; 0x15f78
 
+UnknownText_0x15f78: ; 0x15f78
+	text_jump UnknownText_0x1c4f3e, BANK(UnknownText_0x1c4f3e)
+	db "@"
+; 0x15f7d
+
+INCBIN "baserom.gbc", $15f7d, $15f83 - $15f7d
+
+UnknownText_0x15f83: ; 0x15f83
+	text_jump UnknownText_0x1c4f62, BANK(UnknownText_0x1c4f62)
+	db "@"
+; 0x15f88
+
+INCBIN "baserom.gbc", $15f88, $15fb9 - $15f88
+
+UnknownText_0x15fb9: ; 0x15fb9
+	text_jump UnknownText_0x1c500d, BANK(UnknownText_0x1c500d)
+	db "@"
+; 0x15fbe
+
+UnknownText_0x15fbe: ; 0x15fbe
+	text_jump UnknownText_0x1c502e, BANK(UnknownText_0x1c502e)
+	db "@"
+; 0x15fc3
 
 Function15fc3: ; 15fc3
 	call WaitSFX
@@ -31566,7 +31619,453 @@ Function160a1: ; 160a1
 	jp $600d
 ; 160a9
 
-INCBIN "baserom.gbc", $160a9, $16e1d - $160a9
+
+Marts: ; 160a9
+	dw Mart0
+	dw Mart1
+	dw Mart2
+	dw Mart3
+	dw Mart4
+	dw Mart5
+	dw Mart6
+	dw Mart7
+	dw Mart8
+	dw Mart9
+	dw Mart10
+	dw Mart11
+	dw Mart12
+	dw Mart13
+	dw Mart14
+	dw Mart15
+	dw Mart16
+	dw Mart17
+	dw Mart18
+	dw Mart19
+	dw Mart20
+	dw Mart21
+	dw Mart22
+	dw Mart23
+	dw Mart24
+	dw Mart25
+	dw Mart26
+	dw Mart27
+	dw Mart28
+	dw Mart29
+	dw Mart30
+	dw Mart31
+	dw Mart32
+	dw Mart33
+MartsEnd
+; 160ed
+
+
+Mart0: ; 160ed
+	db 4 ; # items
+	db POTION
+	db ANTIDOTE
+	db PARLYZ_HEAL
+	db AWAKENING
+	db $ff
+; 160f3
+
+Mart1: ; 160f3
+	db 5 ; # items
+	db POKE_BALL
+	db POTION
+	db ANTIDOTE
+	db PARLYZ_HEAL
+	db AWAKENING
+	db $ff
+; 160fa
+
+Mart2: ; 160fa
+	db 10 ; # items
+	db POKE_BALL
+	db POTION
+	db ESCAPE_ROPE
+	db ANTIDOTE
+	db PARLYZ_HEAL
+	db AWAKENING
+	db X_DEFEND
+	db X_ATTACK
+	db X_SPEED
+	db FLOWER_MAIL
+	db $ff
+; 16106
+
+Mart3: ; 16106
+	db 9 ; # items
+	db CHARCOAL
+	db POKE_BALL
+	db POTION
+	db SUPER_POTION
+	db ESCAPE_ROPE
+	db REPEL
+	db ANTIDOTE
+	db PARLYZ_HEAL
+	db FLOWER_MAIL
+	db $ff
+; 16111
+
+Mart4: ; 16111
+	db 5 ; # items
+	db POTION
+	db SUPER_POTION
+	db HYPER_POTION
+	db FULL_HEAL
+	db REVIVE
+	db $ff
+; 16118
+
+Mart5: ; 16118
+	db 7 ; # items
+	db POTION
+	db SUPER_POTION
+	db ANTIDOTE
+	db PARLYZ_HEAL
+	db AWAKENING
+	db BURN_HEAL
+	db ICE_HEAL
+	db $ff
+; 16121
+
+Mart6: ; 16121
+	db 8 ; # items
+	db POKE_BALL
+	db GREAT_BALL
+	db ESCAPE_ROPE
+	db REPEL
+	db REVIVE
+	db FULL_HEAL
+	db POKE_DOLL
+	db FLOWER_MAIL
+	db $ff
+; 1612b
+
+Mart7: ; 1612b
+	db 7 ; # items
+	db X_SPEED
+	db X_SPECIAL
+	db X_DEFEND
+	db X_ATTACK
+	db DIRE_HIT
+	db GUARD_SPEC
+	db X_ACCURACY
+	db $ff
+; 16134
+
+Mart8: ; 16134
+	db 5 ; # items
+	db PROTEIN
+	db IRON
+	db CARBOS
+	db CALCIUM
+	db HP_UP
+	db $ff
+; 1613b
+
+Mart9: ; 1613b
+	db 3 ; # items
+	db TM_41
+	db TM_48
+	db TM_33
+	db $ff
+; 16140
+
+Mart10: ; 16140
+	db 4 ; # items
+	db TM_41
+	db TM_48
+	db TM_33
+	db TM_02
+	db $ff
+; 16146
+
+Mart11: ; 16146
+	db 4 ; # items
+	db TM_41
+	db TM_48
+	db TM_33
+	db TM_08
+	db $ff
+; 1614c
+
+Mart12: ; 1614c
+	db 5 ; # items
+	db TM_41
+	db TM_48
+	db TM_33
+	db TM_02
+	db TM_08
+	db $ff
+; 16153
+
+Mart13: ; 16153
+	db 9 ; # items
+	db GREAT_BALL
+	db SUPER_POTION
+	db HYPER_POTION
+	db ANTIDOTE
+	db PARLYZ_HEAL
+	db AWAKENING
+	db ICE_HEAL
+	db SUPER_REPEL
+	db SURF_MAIL
+	db $ff
+; 1615e
+
+Mart14: ; 1615e
+	db 10 ; # items
+	db POKE_BALL
+	db GREAT_BALL
+	db POTION
+	db SUPER_POTION
+	db ANTIDOTE
+	db PARLYZ_HEAL
+	db AWAKENING
+	db BURN_HEAL
+	db ICE_HEAL
+	db REVIVE
+	db $ff
+; 1616a
+
+Mart15: ; 1616a
+	db 4 ; # items
+	db TINYMUSHROOM
+	db SLOWPOKETAIL
+	db POKE_BALL
+	db POTION
+	db $ff
+; 16170
+
+Mart16: ; 16170
+	db 9 ; # items
+	db RAGECANDYBAR
+	db GREAT_BALL
+	db SUPER_POTION
+	db HYPER_POTION
+	db ANTIDOTE
+	db PARLYZ_HEAL
+	db SUPER_REPEL
+	db REVIVE
+	db FLOWER_MAIL
+	db $ff
+; 1617b
+
+Mart17: ; 1617b
+	db 9 ; # items
+	db GREAT_BALL
+	db ULTRA_BALL
+	db HYPER_POTION
+	db MAX_POTION
+	db FULL_HEAL
+	db REVIVE
+	db MAX_REPEL
+	db X_DEFEND
+	db X_ATTACK
+	db $ff
+; 16186
+
+Mart18: ; 16186
+	db 9 ; # items
+	db ULTRA_BALL
+	db HYPER_POTION
+	db FULL_HEAL
+	db REVIVE
+	db ANTIDOTE
+	db PARLYZ_HEAL
+	db AWAKENING
+	db BURN_HEAL
+	db FLOWER_MAIL
+	db $ff
+; 16191
+
+Mart19: ; 16191
+	db 7 ; # items
+	db GREAT_BALL
+	db SUPER_POTION
+	db SUPER_REPEL
+	db ANTIDOTE
+	db PARLYZ_HEAL
+	db AWAKENING
+	db BURN_HEAL
+	db $ff
+; 1619a
+
+Mart20: ; 1619a
+	db 9 ; # items
+	db GREAT_BALL
+	db ULTRA_BALL
+	db SUPER_POTION
+	db SUPER_REPEL
+	db FULL_HEAL
+	db X_DEFEND
+	db X_ATTACK
+	db DIRE_HIT
+	db SURF_MAIL
+	db $ff
+; 161a5
+
+Mart21: ; 161a5
+	db 8 ; # items
+	db GREAT_BALL
+	db POTION
+	db SUPER_POTION
+	db MAX_REPEL
+	db ANTIDOTE
+	db PARLYZ_HEAL
+	db AWAKENING
+	db BURN_HEAL
+	db $ff
+; 161af
+
+Mart22: ; 161af
+	db 8 ; # items
+	db ULTRA_BALL
+	db SUPER_POTION
+	db HYPER_POTION
+	db REVIVE
+	db PARLYZ_HEAL
+	db AWAKENING
+	db BURN_HEAL
+	db LITEBLUEMAIL
+	db $ff
+; 161b9
+
+Mart23: ; 161b9
+	db 7 ; # items
+	db POTION
+	db SUPER_POTION
+	db HYPER_POTION
+	db MAX_POTION
+	db REVIVE
+	db SUPER_REPEL
+	db MAX_REPEL
+	db $ff
+; 161c2
+
+Mart24: ; 161c2
+	db 10 ; # items
+	db POKE_BALL
+	db GREAT_BALL
+	db ULTRA_BALL
+	db ESCAPE_ROPE
+	db FULL_HEAL
+	db ANTIDOTE
+	db BURN_HEAL
+	db ICE_HEAL
+	db AWAKENING
+	db PARLYZ_HEAL
+	db $ff
+; 161ce
+
+Mart25: ; 161ce
+	db 5 ; # items
+	db TM_10
+	db TM_11
+	db TM_17
+	db TM_18
+	db TM_37
+	db $ff
+; 161d5
+
+Mart26: ; 161d5
+	db 3 ; # items
+	db POKE_DOLL
+	db LOVELY_MAIL
+	db SURF_MAIL
+	db $ff
+; 161da
+
+Mart27: ; 161da
+	db 5 ; # items
+	db HP_UP
+	db PROTEIN
+	db IRON
+	db CARBOS
+	db CALCIUM
+	db $ff
+; 161e1
+
+Mart28: ; 161e1
+	db 7 ; # items
+	db X_ACCURACY
+	db GUARD_SPEC
+	db DIRE_HIT
+	db X_ATTACK
+	db X_DEFEND
+	db X_SPEED
+	db X_SPECIAL
+	db $ff
+; 161ea
+
+Mart29: ; 161ea
+	db 7 ; # items
+	db GREAT_BALL
+	db ULTRA_BALL
+	db SUPER_POTION
+	db HYPER_POTION
+	db FULL_HEAL
+	db MAX_REPEL
+	db FLOWER_MAIL
+	db $ff
+; 161f3
+
+Mart30: ; 161f3
+	db 8 ; # items
+	db GREAT_BALL
+	db ULTRA_BALL
+	db HYPER_POTION
+	db MAX_POTION
+	db FULL_HEAL
+	db X_ATTACK
+	db X_DEFEND
+	db FLOWER_MAIL
+	db $ff
+; 161fd
+
+Mart31: ; 161fd
+	db 6 ; # items
+	db POKE_DOLL
+	db FRESH_WATER
+	db SODA_POP
+	db LEMONADE
+	db REPEL
+	db PORTRAITMAIL
+	db $ff
+; 16205
+
+Mart32: ; 16205
+	db 7 ; # items
+	db ULTRA_BALL
+	db MAX_REPEL
+	db HYPER_POTION
+	db MAX_POTION
+	db FULL_RESTORE
+	db REVIVE
+	db FULL_HEAL
+	db $ff
+; 1620e
+
+Mart33: ; 1620e
+	db 4 ; # items
+	db ENERGYPOWDER
+	db ENERGY_ROOT
+	db HEAL_POWDER
+	db REVIVAL_HERB
+	db $ff
+; 16214
+
+DefaultMart: ; 16214
+	db 2 ; # items
+	db POKE_BALL
+	db POTION
+	db $ff
+; 16218
+
+
+INCBIN "baserom.gbc", $16218, $16e1d - $16218
+
 
 Function16e1d: ; 16e1d
 	call $6ed6
@@ -34180,9 +34679,7 @@ Function24fbf: ; 24fbf
 
 
 Function24fc9: ; 24fc9
-	ld a, $3
-	ld hl, $5486
-	rst FarCall
+	callba GetItemPrice
 	ld a, d
 	ld [Buffer1], a
 	ld a, e
@@ -34194,9 +34691,7 @@ Function24fc9: ; 24fc9
 ; 24fe1
 
 Function24fe1: ; 24fe1
-	ld a, $3
-	ld hl, $5486
-	rst FarCall
+	callba GetItemPrice
 	ld a, d
 	ld [Buffer1], a
 	ld a, e

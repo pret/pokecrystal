@@ -928,6 +928,7 @@ EngineBuffer1: ; d03e
 CurFruit: ; d03f
 	ds 1
 
+MartPointer: ; d040
 	ds 2
 
 MovementAnimation: ; d042
@@ -983,7 +984,13 @@ VramState: ; d0ed
 ;        flickers when climbing waterfall
 	ds 1
 
-	ds 24
+	ds 2
+
+CurMart: ; d0f0
+	ds 16
+CurMartEnd
+
+	ds 6
 
 CurItem: ; d106
 	ds 1
