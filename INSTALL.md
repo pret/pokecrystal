@@ -9,7 +9,6 @@ md5: 9f2922b235a5eeb78d65594e82ef5dde
 
 Save it as **baserom.gbc** in the repository.
 
-
 Feel free to ask us on **[nucleus.kafuka.org #skeetendo](https://kiwiirc.com/client/irc.nolimitzone.com/?#skeetendo)** if something goes wrong!
 
 # Windows
@@ -30,7 +29,6 @@ During the install:
 
 * From the package selection, select **wget**.
 
-
 ## Using Cygwin
 
 Launch the **Cygwin terminal**. Maybe you know your way around the Linux terminal, **bash**. If not, a crash course:
@@ -45,14 +43,11 @@ pwd
 cd /away/we/go
 ```
 
-
 ## Getting up and running
 
 We need a couple more things to be able to compile.
 
-
 If you're feeling lazy, just paste these commands into your terminal.
-
 
 **apt-cyg** lets you install new packages without running Cygwin setup.
 
@@ -155,7 +150,6 @@ make
 ```
 
 That will take between 3 and 15 seconds, depending on your computer. If you see `cmp baserom.gbc pokecrystal.gbc` as the last line, the build was successful! Rejoice!
-
 
 # Now what?
 
