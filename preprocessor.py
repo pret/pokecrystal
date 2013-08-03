@@ -3,7 +3,7 @@
 
 import sys
 
-from extras.crystal import (
+from extras.pokemontools.crystal import (
     command_classes,
     Warp,
     XYTrigger,
