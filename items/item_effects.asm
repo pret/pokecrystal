@@ -754,6 +754,7 @@ Function_0xed12: ; ed12
 	ld a, [TempBattleMonSpecies]
 	cp c
 	ret nz
+
 	push bc
 	ld a, [TempBattleMonSpecies]
 	ld [CurPartySpecies], a
@@ -764,14 +765,13 @@ Function_0xed12: ; ed12
 	ld a, $14
 	ld hl, $4bdd
 	rst FarCall
-
 	jr c, .asm_ed66
 
-	ld d, $0
+	ld d, 0
 	jr nz, .asm_ed39
 	inc d
-
 .asm_ed39
+
 	push de
 	ld a, [TempEnemyMonSpecies]
 	ld [CurPartySpecies], a
@@ -780,28 +780,25 @@ Function_0xed12: ; ed12
 	ld a, $14
 	ld hl, $4bdd
 	rst FarCall
-
 	jr c, .asm_ed65
 
-	ld d, $0
+	ld d, 0
 	jr nz, .asm_ed52
 	inc d
-
 .asm_ed52
+
 	ld a, d
 	pop de
 	cp d
 	pop bc
 	ret nz
-	sla b
-	jr c, .asm_ed62
 
 	sla b
 	jr c, .asm_ed62
-
+	sla b
+	jr c, .asm_ed62
 	sla b
 	ret nc
-
 .asm_ed62
 	ld b, $ff
 	ret
@@ -1657,34 +1654,25 @@ INCBIN "baserom.gbc", $f652, $f73e - $f652
 
 
 Squirtbottle: ; f73e
-	ld a, $14
-	ld hl, $4730
-	rst FarCall
+	callba _Squirtbottle
 	ret
 ; f745
 
 
 CardKey: ; f745
-	ld a, $14
-	ld hl, $4779
-	rst FarCall
+	callba _CardKey
 	ret
 ; f74c
 
 
 BasementKey: ; f74c
-	ld a, $14
-	ld hl, $47b4
-	rst FarCall
+	callba _BasementKey
 	ret
 ; f753
 
 
 SacredAsh: ; f753
-	ld a, $14
-	ld hl, $47e6
-	rst FarCall
-
+	callba _SacredAsh
 	ld a, [$d0ec]
 	cp $1
 	ret nz

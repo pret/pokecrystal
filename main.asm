@@ -366,25 +366,29 @@ Function4dd: ; 4dd
 	jr z, .asm_4e9
 	ld hl, $0522
 	ld b, $4
-	jr .asm_501
+	jr Function501
 
 .asm_4e9
 	ld hl, $053a
 	ld b, $4
-	jr .asm_501
+	jr Function501
+; 4f0
 
+Function4f0: ; 4f0
 	ld a, [hCGB]
 	and a
 	jr z, .asm_4fc
 	ld hl, $052b
 	ld b, $3
-	jr .asm_501
+	jr Function501
 
 .asm_4fc
 	ld hl, $0543
 	ld b, $3
+	; fallthrough
+; 501
 
-.asm_501
+Function501: ; 501
 	push de
 	ld a, [hld]
 	ld d, a
@@ -397,7 +401,7 @@ Function4dd: ; 4dd
 	call DelayFrames
 	pop de
 	dec b
-	jr nz, .asm_501
+	jr nz, Function501
 	ret
 ; 517
 
@@ -17733,7 +17737,7 @@ NamePlayer: ; 0x6074
 
 	ld b, $1c
 	call GetSGBLayout
-	call $04f0
+	call Function4f0
 
 	ld hl, PlayerName
 	ld de, .Chris
@@ -19499,11 +19503,11 @@ Function7171: ; 7171
 
 Function718d: ; 718d
 	ld hl, PartyMon1Happiness
-	ld bc, $0030
+	ld bc, PartyMon2 - PartyMon1
 	ld de, PartySpecies
 .asm_7196
 	ld a, [de]
-	cp $fd
+	cp EGG
 	jr nz, .asm_719f
 	inc de
 	add hl, bc
@@ -19520,7 +19524,7 @@ Function718d: ; 718d
 Function71ac: ; 71ac
 	ld a, [PartySpecies]
 	ld [$d265], a
-	cp $fd
+	cp EGG
 	ld a, $1
 	jr z, .asm_71b9
 	xor a
@@ -20456,7 +20460,7 @@ PredefPointers: ; 856b
 	dwb GetTypeName, BANK(GetTypeName)
 	dwb PrintMoveType, BANK(PrintMoveType)
 	dwb PrintType, BANK(PrintType)
-	dwb $490d, $14
+	dwb PrintMonTypes, BANK(PrintMonTypes)
 	dwb $5040, $14 ; GetUnownLetter
 	dwb $7cdd, $32
 	dwb $40d5, $33
@@ -22087,7 +22091,7 @@ Functionceeb: ; ceeb
 ; cef4
 
 Functioncef4: ; cef4
-	call $4f0d
+	call Functioncf0d
 	jr c, .asm_cf07
 	ld a, d
 	cp $18
@@ -25487,7 +25491,54 @@ BoxNameInputUpper:
 	db "lower  DEL   END "
 
 
-INCBIN "baserom.gbc", $11e5d, $12513 - $11e5d
+INCBIN "baserom.gbc", $11e5d, $122c1 - $11e5d
+
+UnknownScript_0x122c1: ; 0x122c1
+	checkbit2 $0011
+	iffalse $62cd
+	setbit2 $0051
+	special $0017
+	end
+; 0x122ce
+
+INCBIN "baserom.gbc", $122ce, $124c8 - $122ce
+
+UnknownScript_0x124c8: ; 0x124c8
+	refreshscreen $0
+	3callasm BANK(Function124fa), Function124fa
+	2writetext UnknownText_0x124f5
+	closetext
+	special $002e
+	pause 40
+	special $001b
+	checkbit2 $0011
+	iftrue .script_64f2
+	3callasm BANK(HalveMoney), HalveMoney
+	3callasm BANK(Function12527), Function12527
+	3call BANK(UnknownScript_0x122c1), UnknownScript_0x122c1
+	special $0000
+	newloadmap $f1
+	resetfuncs
+
+.script_64f2
+	jumpstd $0016
+; 0x124f5
+
+UnknownText_0x124f5: ; 0x124f5
+	text_jump UnknownText_0x1c0a4e, BANK(UnknownText_0x1c0a4e)
+	db $50
+; 0x124fa
+
+Function124fa: ; 124fa
+	call ClearPalettes
+	call Functionfdb
+	call Function3200
+	call HideSprites
+	call Function4f0
+	ret
+; 1250a
+
+INCBIN "baserom.gbc", $1250a, $12513 - $1250a
 
 
 HalveMoney: ; 12513
@@ -25512,7 +25563,24 @@ HalveMoney: ; 12513
 ; 12527
 
 
-INCBIN "baserom.gbc", $12527, $12580 - $12527
+Function12527: ; 12527
+	ld a, [$dcb2]
+	ld d, a
+	ld a, [$dcb3]
+	ld e, a
+	ld a, $5
+	ld hl, $5344
+	rst FarCall
+	ld a, c
+	jr c, .asm_12539
+	xor a
+
+.asm_12539
+	ld [$d001], a
+	ret
+; 1253d
+
+INCBIN "baserom.gbc", $1253d, $12580 - $1253d
 
 
 Function12580: ; 12580
@@ -27723,7 +27791,37 @@ Function13575: ; 13575
 	ret
 ; 13583
 
-INCBIN "baserom.gbc", $13583, $13b87 - $13583
+INCBIN "baserom.gbc", $13583, $135eb - $13583
+
+UnknownScript_0x135eb: ; 0x135eb
+	writecode $3, $6
+	battlecheck
+	startbattle
+	returnafterbattle
+	copybytetovar $dc79
+	iffalse UnknownScript_0x13603
+	end
+; 0x135f8
+
+INCBIN "baserom.gbc", $135f8, $13603 - $135f8
+
+UnknownScript_0x13603: ; 0x13603
+	playsound $0027
+	loadfont
+	2writetext UnknownText_0x13614
+	closetext
+	loadmovesprites
+	jumpstd $0016
+; 0x1360f
+
+INCBIN "baserom.gbc", $1360f, $13614 - $1360f
+
+UnknownText_0x13614: ; 0x13614
+	text_jump UnknownText_0x1bd2e7, BANK(UnknownText_0x1bd2e7)
+	db $50
+; 0x13619
+
+INCBIN "baserom.gbc", $13619, $13b87 - $13619
 
 
 GetSquareRoot: ; 13b87
@@ -29436,7 +29534,17 @@ Function149af: ; 149af
 	ret
 ; 149c6
 
-INCBIN "baserom.gbc", $149c6, $14a07 - $149c6
+INCBIN "baserom.gbc", $149c6, $149dd - $149c6
+
+Function149dd: ; 149dd
+	ld a, [StandingTile]
+	ld hl, $49ea
+	ld de, $0001
+	call IsInArray
+	ret
+; 149ea
+
+INCBIN "baserom.gbc", $149ea, $14a07 - $149ea
 
 
 Function14a07: ; 14a07
@@ -30078,7 +30186,38 @@ BlackoutPoints: ; 0x152ab
 	db GROUP_FAST_SHIP_CABINS_SW_SSW_NW, MAP_FAST_SHIP_CABINS_SW_SSW_NW, 6, 2
 	db $ff, $ff, $ff, $ff
 
-INCBIN "baserom.gbc", $1531f, $15363 - $1531f
+INCBIN "baserom.gbc", $1531f, $15344 - $1531f
+
+Function15344: ; 15344
+	ld hl, BlackoutPoints
+	ld c, $0
+.asm_15349
+	ld a, [hl]
+	cp $ff
+	jr z, .asm_1535f
+	cp d
+	jr nz, .asm_15356
+	inc hl
+	ld a, [hld]
+	cp e
+	jr z, .asm_15361
+
+.asm_15356
+	push bc
+	ld bc, $0004
+	add hl, bc
+	pop bc
+	inc c
+	jr .asm_15349
+
+.asm_1535f
+	and a
+	ret
+
+.asm_15361
+	scf
+	ret
+; 15363
 
 
 Function15363: ; 15363
@@ -34987,7 +35126,220 @@ INCBIN "baserom.gbc", $27a28, $27a2d - $27a28
 
 SECTION "bankA",DATA,BANK[$A]
 
-INCBIN "baserom.gbc", $28000, $2a2a0 - $28000
+INCBIN "baserom.gbc", $28000, $2a111 - $28000
+
+Function2a111: ; 2a111
+	ld hl, $d25a
+	call Function1852
+	ld a, $3
+	jr z, .asm_2a11e
+	ld a, [TimeOfDay]
+
+.asm_2a11e
+	ld c, a
+	ld b, $0
+	add hl, bc
+	ld b, [hl]
+	ret
+; 2a124
+
+INCBIN "baserom.gbc", $2a124, $2a14f - $2a124
+
+Function2a14f: ; 2a14f
+	call $6200
+	jp nc, $61c1
+	call $62ce
+	jp c, $61c9
+	inc hl
+	inc hl
+	inc hl
+	call Function1852
+	ld de, $61d9
+	jr z, .asm_2a174
+	inc hl
+	inc hl
+	ld a, [TimeOfDay]
+	ld bc, $000e
+	call AddNTimes
+	ld de, $61cb
+
+.asm_2a174
+	push hl
+.asm_2a175
+	call RNG
+	cp $64
+	jr nc, .asm_2a175
+	inc a
+	ld b, a
+	ld h, d
+	ld l, e
+.asm_2a180
+	ld a, [hli]
+	cp b
+	jr nc, .asm_2a187
+	inc hl
+	jr .asm_2a180
+
+.asm_2a187
+	ld c, [hl]
+	ld b, $0
+	pop hl
+	add hl, bc
+	ld a, [hli]
+	ld b, a
+	call Function1852
+	jr nz, .asm_2a1aa
+	call RNG
+	cp $59
+	jr c, .asm_2a1aa
+	inc b
+	cp $a5
+	jr c, .asm_2a1aa
+	inc b
+	cp $d8
+	jr c, .asm_2a1aa
+	inc b
+	cp $f2
+	jr c, .asm_2a1aa
+	inc b
+
+.asm_2a1aa
+	ld a, b
+	ld [CurPartyLevel], a
+	ld b, [hl]
+	call $64a0
+	jr c, .asm_2a1c1
+	ld a, b
+	cp $c9
+	jr nz, .asm_2a1bf
+	ld a, [UnlockedUnowns]
+	and a
+	jr z, .asm_2a1c1
+
+.asm_2a1bf
+	jr .asm_2a1c5
+
+.asm_2a1c1
+	ld a, $1
+	and a
+	ret
+
+.asm_2a1c5
+	ld a, b
+	ld [$d22e], a
+	xor a
+	ret
+; 2a1cb
+
+INCBIN "baserom.gbc", $2a1cb, $2a200 - $2a1cb
+
+Function2a200: ; 2a200
+	call Function1852
+	jr z, .asm_2a21d
+	ld hl, WildMons5
+	ld bc, $002f
+	call $623d
+	ret c
+	ld hl, WildMons1
+	ld de, WildMons3
+	call $6235
+	ld bc, $002f
+	jr .asm_2a27a
+
+.asm_2a21d
+	ld hl, WildMons6
+	ld bc, $0009
+	call $623d
+	ret c
+	ld hl, WildMons2
+	ld de, WildMons4
+	call $6235
+	ld bc, $0009
+	jr .asm_2a27a
+
+	call Function2f17
+	and a
+	ret z
+	ld h, d
+	ld l, e
+	ret
+
+	call $627f
+	push hl
+	ld hl, $dc20
+	bit 2, [hl]
+	pop hl
+	jr z, .asm_2a25c
+	ld a, [$dfcc]
+	cp d
+	jr nz, .asm_2a25c
+	ld a, [$dfcd]
+	cp e
+	jr nz, .asm_2a25c
+	call $6288
+	jr nc, .asm_2a278
+	scf
+	ret
+
+.asm_2a25c
+	push hl
+	ld hl, $dc20
+	bit 3, [hl]
+	pop hl
+	jr z, .asm_2a278
+	ld a, [$dc5a]
+	cp d
+	jr nz, .asm_2a278
+	ld a, [$dc5b]
+	cp e
+	jr nz, .asm_2a278
+	call $6288
+	jr nc, .asm_2a278
+	scf
+	ret
+
+.asm_2a278
+	and a
+	ret
+
+.asm_2a27a
+	call $627f
+	jr .asm_2a288
+
+	ld a, [MapGroup]
+	ld d, a
+	ld a, [MapNumber]
+	ld e, a
+	ret
+
+.asm_2a288
+	push hl
+	ld a, [hl]
+	inc a
+	jr z, .asm_2a29a
+	ld a, d
+	cp [hl]
+	jr nz, .asm_2a296
+	inc hl
+	ld a, e
+	cp [hl]
+	jr z, .asm_2a29d
+
+.asm_2a296
+	pop hl
+	add hl, bc
+	jr .asm_2a288
+
+.asm_2a29a
+	pop hl
+	and a
+	ret
+
+.asm_2a29d
+	pop hl
+	scf
+	ret
+; 2a2a0
 
 SpecialRoamMons: ; 2a2a0
 ; initialize RoamMon structs
@@ -35035,7 +35387,47 @@ SpecialRoamMons: ; 2a2a0
 ; 2a2ce
 
 
-INCBIN "baserom.gbc", $2a2ce, $2a30d - $2a2ce
+Function2a2ce: ; 2a2ce
+	push hl
+	call Function1852
+	jr z, .asm_2a30a
+	call $627f
+	call RNG
+	cp $64
+	jr nc, .asm_2a30a
+	and $3
+	jr z, .asm_2a30a
+	dec a
+	ld hl, RoamMon1MapGroup
+	ld c, a
+	ld b, $0
+	ld a, $7
+	call AddNTimes
+	ld a, d
+	cp [hl]
+	jr nz, .asm_2a30a
+	inc hl
+	ld a, e
+	cp [hl]
+	jr nz, .asm_2a30a
+	dec hl
+	dec hl
+	dec hl
+	ld a, [hli]
+	ld [$d22e], a
+	ld a, [hl]
+	ld [CurPartyLevel], a
+	ld a, $5
+	ld [BattleType], a
+	pop hl
+	scf
+	ret
+
+.asm_2a30a
+	pop hl
+	and a
+	ret
+; 2a30d
 
 
 Function2a30d: ; 2a30d
@@ -35214,7 +35606,22 @@ Function2a3f6: ; 2a3f6
 	ret
 ; 2a40f
 
-INCBIN "baserom.gbc", $2a40f, $2a5e9 - $2a40f
+INCBIN "baserom.gbc", $2a40f, $2a4a0 - $2a40f
+
+Function2a4a0: ; 2a4a0
+	and a
+	jr z, .asm_2a4a9
+	cp $fc
+	jr nc, .asm_2a4a9
+	and a
+	ret
+
+.asm_2a4a9
+	scf
+	ret
+; 2a4ab
+
+INCBIN "baserom.gbc", $2a4ab, $2a5e9 - $2a4ab
 
 
 WildMons1: ; 0x2a5e9
@@ -52665,9 +53072,9 @@ Function50658: ; 50658
 ; 50669
 
 UnknownScript_0x50669: ; 50669
-	3callasm $14, $4658
+	3callasm BANK(Function50658), Function50658
 	loadfont
-	3callasm $14, $467b
+	3callasm BANK(Function5067b), Function5067b
 	iffalse UnknownScript_0x50677
 	loadmovesprites
 	end
@@ -52687,7 +53094,7 @@ Function5067b: ; 5067b
 	and 2
 	jr z, .asm_5069c
 	ld c, 7
-	callba Function71c2
+	callba ChangeHappiness
 	callba GetPartyNick
 	ld hl, PoisonFaintText
 	call PrintText
@@ -52719,17 +53126,85 @@ PoisonWhiteOutText: ; 506b7
 
 
 Function506bc: ; 506bc
-	ld hl, $46c8
+	ld hl, UnknownScript_0x506c8
 	call Function31cd
 	ld a, $1
 	ld [$d0ec], a
 	ret
 ; 506c8
 
-INCBIN "baserom.gbc", $506c8, $50730 - $506c8
+UnknownScript_0x506c8: ; 0x506c8
+	reloadmappart
+	special $0035
+	3callasm $03, $4706
+	2writetext UnknownText_0x50726
+	closetext
+	3callasm BANK(Function506ef), Function506ef
+	iffalse UnknownScript_0x506e9
+	checkbit2 $0011
+	iftrue UnknownScript_0x506e5
+	battlecheck
+	startbattle
+	returnafterbattle
+	end
+; 0x506e5
+
+UnknownScript_0x506e5: ; 0x506e5
+	3jump BANK(UnknownScript_0x135eb), UnknownScript_0x135eb
+; 0x506e9
+
+UnknownScript_0x506e9: ; 0x506e9
+	2writetext UnknownText_0x5072b
+	closetext
+	loadmovesprites
+	end
+; 0x506ef
+
+Function506ef: ; 506ef
+	callba Function97cfd
+	jr nc, .asm_5071e
+	ld hl, StatusFlags2
+	bit 2, [hl]
+	jr nz, .asm_50712
+	ld a, $a
+	ld hl, $6111
+	rst FarCall
+	ld a, b
+	and a
+	jr z, .asm_5071e
+	ld a, $a
+	ld hl, $614f
+	rst FarCall
+	jr nz, .asm_5071e
+	jr .asm_50718
+
+.asm_50712
+	callba Function97d31
+
+.asm_50718
+	ld a, $1
+	ld [ScriptVar], a
+	ret
+
+.asm_5071e
+	xor a
+	ld [ScriptVar], a
+	ld [BattleType], a
+	ret
+; 50726
+
+UnknownText_0x50726: ; 0x50726
+	text_jump UnknownText_0x1c0b03, BANK(UnknownText_0x1c0b03)
+	db $50
+; 0x5072b
+
+UnknownText_0x5072b: ; 0x5072b
+	text_jump UnknownText_0x1c0b1a, BANK(UnknownText_0x1c0b1a)
+	db $50
+; 0x50730
 
 
-Function50730: ; 50730
+_Squirtbottle: ; 50730
 	ld hl, $473c
 	call Function31cd
 	ld a, $1
@@ -52737,28 +53212,73 @@ Function50730: ; 50730
 	ret
 ; 5073c
 
-INCBIN "baserom.gbc", $5073c, $50779 - $5073c
+UnknownScript_0x5073c: ; 0x5073c
+	reloadmappart
+	special $0035
+	3callasm BANK(Function50753), Function50753
+	iffalse UnknownScript_0x5074b
+	3jump BANK(WateredWeirdTreeScript), WateredWeirdTreeScript
+; 0x5074b
 
+UnknownScript_0x5074b: ; 0x5074b
+	jumptext UnknownText_0x5074e
+; 0x5074e
 
-Function50779: ; 50779
+UnknownText_0x5074e: ; 0x5074e
+	text_jump UnknownText_0x1c0b3b, BANK(UnknownText_0x1c0b3b)
+	db $50
+; 0x50753
+
+Function50753: ; 50753
 	ld a, [MapGroup]
-	cp $3
-	jr nz, .asm_507a9
+	cp GROUP_ROUTE_36
+	jr nz, .asm_50774
+
 	ld a, [MapNumber]
-	cp $13
+	cp MAP_ROUTE_36
+	jr nz, .asm_50774
+
+	callba Functioncf0d
+	jr c, .asm_50774
+
+	ld a, d
+	cp 23
+	jr nz, .asm_50774
+
+	ld a, $1
+	ld [ScriptVar], a
+	ret
+
+.asm_50774
+	xor a
+	ld [ScriptVar], a
+	ret
+; 50779
+
+
+_CardKey: ; 50779
+	ld a, [MapGroup]
+	cp GROUP_RADIO_TOWER_3F
 	jr nz, .asm_507a9
+
+	ld a, [MapNumber]
+	cp MAP_RADIO_TOWER_3F
+	jr nz, .asm_507a9
+
 	ld a, [PlayerDirection]
 	and $c
-	cp $4
+	cp UP << 2
 	jr nz, .asm_507a9
+
 	call GetFacingTileCoord
 	ld a, d
-	cp $12
+	cp 18
 	jr nz, .asm_507a9
 	ld a, e
-	cp $6
+	cp 6
 	jr nz, .asm_507a9
-	ld hl, $47af
+
+	ld hl, UnknownScript_0x507af
 	call Function31cd
 	ld a, $1
 	ld [$d0ec], a
@@ -52770,23 +53290,29 @@ Function50779: ; 50779
 	ret
 ; 507af
 
-INCBIN "baserom.gbc", $507af, $507b4 - $507af
+UnknownScript_0x507af: ; 0x507af
+	loadmovesprites
+	3jump BANK(MapRadioTower3FSignpost2Script), MapRadioTower3FSignpost2Script
+; 0x507b4
 
 
-Function507b4: ; 507b4
+_BasementKey: ; 507b4
 	ld a, [MapGroup]
-	cp $3
+	cp GROUP_WAREHOUSE_ENTRANCE
 	jr nz, .asm_507db
+
 	ld a, [MapNumber]
-	cp $35
+	cp MAP_WAREHOUSE_ENTRANCE
 	jr nz, .asm_507db
+
 	call GetFacingTileCoord
 	ld a, d
-	cp $16
+	cp 22
 	jr nz, .asm_507db
 	ld a, e
-	cp $a
+	cp 10
 	jr nz, .asm_507db
+
 	ld hl, $47e1
 	call Function31cd
 	ld a, $1
@@ -52799,45 +53325,51 @@ Function507b4: ; 507b4
 	ret
 ; 507e1
 
-INCBIN "baserom.gbc", $507e1, $507e6 - $507e1
+UnknownScript_0x507e1: ; 0x507e1
+	loadmovesprites
+	3jump BANK(MapWarehouseEntranceSignpost0Script), MapWarehouseEntranceSignpost0Script
+; 0x507e6
 
 
-Function507e6: ; 507e6
+_SacredAsh: ; 507e6
 	ld a, $0
 	ld [$d0ec], a
-	call Function507fb
+	call CheckAnyFaintedMon
 	ret nc
-	ld hl, $4821
+
+	ld hl, UnknownScript_0x50821
 	call Function31cd
 	ld a, $1
 	ld [$d0ec], a
 	ret
 ; 507fb
 
-Function507fb: ; 507fb
-	ld de, $0030
+CheckAnyFaintedMon: ; 507fb
+	ld de, PartyMon2 - PartyMon1
 	ld bc, PartySpecies
 	ld hl, PartyMon1CurHP
 	ld a, [PartyCount]
 	and a
 	ret z
-.asm_50809
+
+.loop
 	push af
 	push hl
 	ld a, [bc]
 	inc bc
-	cp $fd
-	jr z, .asm_50815
+	cp EGG
+	jr z, .next
+
 	ld a, [hli]
 	or [hl]
 	jr z, .asm_5081d
 
-.asm_50815
+.next
 	pop hl
 	add hl, de
 	pop af
 	dec a
-	jr nz, .asm_50809
+	jr nz, .loop
 	xor a
 	ret
 
@@ -52848,22 +53380,45 @@ Function507fb: ; 507fb
 	ret
 ; 50821
 
-INCBIN "baserom.gbc", $50821, $5084a - $50821
+UnknownScript_0x50821: ; 0x50821
+	special $001b
+	reloadmappart
+	playsound SFX_WARP_TO
+	special $002e
+	special $0031
+	special $002e
+	special $0031
+	special $002e
+	special $0031
+	waitbutton
+	2writetext UnknownText_0x50845
+	playsound SFX_CAUGHT_MON
+	waitbutton
+	closetext
+	loadmovesprites
+	end
+; 0x50845
+
+UnknownText_0x50845: ; 0x50845
+	text_jump UnknownText_0x1c0b65, BANK(UnknownText_0x1c0b65)
+	db $50
+; 0x5084a
 
 Function5084a: ; 5084a
 	ld a, [CurPartyMon]
 	ld e, a
-	call $48d5
+	call Function508d5
 	ld a, [CurPartySpecies]
 	ld [CurSpecies], a
 	call GetBaseData
+
 	ld a, [MonType]
 	ld hl, PartyMon1Species
-	ld bc, $0030
+	ld bc, PartyMon2 - PartyMon1
 	and a
 	jr z, .asm_5087b
 	ld hl, OTPartyMon1Species
-	ld bc, $0030
+	ld bc, OTPartyMon2 - OTPartyMon1
 	cp $1
 	jr z, .asm_5087b
 	ld bc, $0020
@@ -52883,18 +53438,74 @@ Function5084a: ; 5084a
 	ret
 ; 5088b
 
-INCBIN "baserom.gbc", $5088b, $508d5 - $5088b
+
+Function5088b: ; 5088b
+	ld bc, $d018
+	jr Function50893
+; 50890
+
+Function50890: ; 50890
+	ld bc, TempMon
+	; fallthrough
+; 50893
+
+Function50893: ; 50893
+	ld hl, TempMonLevel - TempMon
+	add hl, bc
+	ld a, [hl]
+	ld [CurPartyLevel], a
+	ld hl, TempMonMaxHP - TempMon
+	add hl, bc
+	ld d, h
+	ld e, l
+	ld hl, TempMonExp + 2 - TempMon
+	add hl, bc
+	push bc
+	ld b, $1
+	ld a, $c
+	call Predef
+	pop bc
+	ld hl, TempMonCurHP - TempMon
+	add hl, bc
+	ld d, h
+	ld e, l
+	ld a, [CurPartySpecies]
+	cp EGG
+	jr nz, .asm_508c1
+	xor a
+	ld [de], a
+	inc de
+	ld [de], a
+	jr .asm_508cd
+
+.asm_508c1
+	push bc
+	ld hl, TempMonMaxHP - TempMon
+	add hl, bc
+	ld bc, 2
+	call CopyBytes
+	pop bc
+
+.asm_508cd
+	ld hl, TempMonStatus - TempMon
+	add hl, bc
+	xor a
+	ld [hli], a
+	ld [hl], a
+	ret
+; 508d5
 
 Function508d5: ; 508d5
 	ld a, [MonType]
-	and a
+	and a ; PARTYMON
 	jr z, .asm_508e7
-	cp $1
+	cp OTPARTYMON
 	jr z, .asm_508ec
-	cp $2
+	cp BOXMON
 	jr z, .asm_508f1
 	cp $3
 	jr z, .asm_50900
+	; WILDMON
 
 .asm_508e7
 	ld hl, PartySpecies
@@ -52908,7 +53519,7 @@ Function508d5: ; 508d5
 	ld a, $1
 	call GetSRAMBank
 	ld hl, $ad11
-	call $4905
+	call .asm_50905
 	call CloseSRAM
 	ret
 
@@ -52917,7 +53528,7 @@ Function508d5: ; 508d5
 	jr .asm_50909
 
 .asm_50905
-	ld d, $0
+	ld d, 0
 	add hl, de
 	ld a, [hl]
 
@@ -52926,8 +53537,37 @@ Function508d5: ; 508d5
 	ret
 ; 5090d
 
-INCBIN "baserom.gbc", $5090d, $5093a - $5090d
 
+PrintMonTypes: ; 5090d
+	push hl
+	call GetBaseData
+	pop hl
+	push hl
+	ld a, [BaseType1]
+	call .asm_50928
+	ld a, [BaseType1]
+	ld b, a
+	ld a, [BaseType2]
+	cp b
+	pop hl
+	jr z, .asm_5092b
+	ld bc, 20
+	add hl, bc
+
+.asm_50928
+	ld b, a
+	jr PrintType
+
+.asm_5092b
+	ld a, " "
+	ld bc, 20 - 3
+	add hl, bc
+	ld [hl], a
+	inc bc
+	add hl, bc
+	ld bc, 5
+	jp ByteFill
+; 5093a
 
 PrintMoveType: ; 5093a
 ; Print the type of move b at hl.
@@ -59826,7 +60466,7 @@ ScriptPointers96c0c: ; 96c0c
 	dbw BANK(UnknownScript_0x96c4d), UnknownScript_0x96c4d
 	dbw BANK(UnknownScript_0x96c34), UnknownScript_0x96c34
 	dbw BANK(FallIntoMapScript), FallIntoMapScript
-	dbw $04, $64c8 ; BANK(UnknownScript_0x124c8), UnknownScript_0x124c8
+	dbw BANK(UnknownScript_0x124c8), UnknownScript_0x124c8
 	dbw BANK(UnknownScript_0x96c2f), UnknownScript_0x96c2f
 	dbw BANK(UnknownScript_0x96c4f), UnknownScript_0x96c4f
 	dbw BANK(UnknownScript_0x96c2d), UnknownScript_0x96c2d
