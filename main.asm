@@ -19532,54 +19532,60 @@ Function71ac: ; 71ac
 ; 71c2
 
 
-Function71c2: ; 71c2
+ChangeHappiness: ; 71c2
+; Perform happiness action c on CurPartyMon
+
 	ld a, [CurPartyMon]
 	inc a
 	ld e, a
-	ld d, $0
-	ld hl, PartyCount
+	ld d, 0
+	ld hl, PartySpecies - 1
 	add hl, de
 	ld a, [hl]
-	cp $fd
+	cp EGG
 	ret z
+
 	push bc
 	ld hl, PartyMon1Happiness
-	ld bc, $0030
+	ld bc, PartyMon2 - PartyMon1
 	ld a, [CurPartyMon]
 	call AddNTimes
 	pop bc
+
 	ld d, h
 	ld e, l
+
 	push de
 	ld a, [de]
-	cp $64
-	ld e, $0
+	cp 100
+	ld e, 0
 	jr c, .asm_71ef
 	inc e
-	cp $c8
+	cp 200
 	jr c, .asm_71ef
 	inc e
 
 .asm_71ef
 	dec c
-	ld b, $0
-	ld hl, $7221
+	ld b, 0
+	ld hl, .Actions
 	add hl, bc
 	add hl, bc
 	add hl, bc
-	ld d, $0
+	ld d, 0
 	add hl, de
 	ld a, [hl]
-	cp $64
+	cp 100
 	pop de
+
 	ld a, [de]
-	jr nc, .asm_7209
+	jr nc, .negative
 	add [hl]
 	jr nc, .asm_720d
 	ld a, $ff
 	jr .asm_720d
 
-.asm_7209
+.negative
 	add [hl]
 	jr c, .asm_720d
 	xor a
@@ -19599,7 +19605,147 @@ Function71c2: ; 71c2
 	ret
 ; 7221
 
-INCBIN "baserom.gbc", $7221, $7305 - $7221
+.Actions
+	db  +5,  +3,  +2
+	db  +5,  +3,  +2
+	db  +1,  +1,  +0
+	db  +3,  +2,  +1
+	db  +1,  +1,  +0
+	db  -1,  -1,  -1
+	db  -5,  -5, -10
+	db  -5,  -5, -10
+	db  +1,  +1,  +1
+	db  +3,  +3,  +1
+	db  +5,  +5,  +2
+	db  +1,  +1,  +1
+	db  +3,  +3,  +1
+	db +10, +10,  +4
+	db  -5,  -5, -10
+	db -10, -10, -15
+	db -15, -15, -20
+	db  +3,  +3,  +1
+	db +10,  +6,  +4
+; 725a
+
+
+StepHappiness: ; 725a
+; Raise the party's happiness by 1 point every other step cycle.
+
+	ld hl, $dc77
+	ld a, [hl]
+	inc a
+	and 1
+	ld [hl], a
+	ret nz
+
+	ld de, PartyCount
+	ld a, [de]
+	and a
+	ret z
+
+	ld c, a
+	ld hl, PartyMon1Happiness
+.loop
+	inc de
+	ld a, [de]
+	cp EGG
+	jr z, .next
+	inc [hl]
+	jr nz, .next
+	ld [hl], $ff
+
+.next
+	push de
+	ld de, PartyMon2 - PartyMon1
+	add hl, de
+	pop de
+	dec c
+	jr nz, .loop
+	ret
+; 7282
+
+
+DaycareStep: ; 7282
+
+	ld a, [DaycareMan]
+	bit 0, a
+	jr z, .asm_72a4
+
+	ld a, [$df2b] ; level
+	cp 100
+	jr nc, .asm_72a4
+	ld hl, $df16 ; exp
+	inc [hl]
+	jr nz, .asm_72a4
+	dec hl
+	inc [hl]
+	jr nz, .asm_72a4
+	dec hl
+	inc [hl]
+	ld a, [hl]
+	cp $50
+	jr c, .asm_72a4
+	ld a, $50
+	ld [hl], a
+
+.asm_72a4
+	ld a, [DaycareLady]
+	bit 0, a
+	jr z, .asm_72c6
+
+	ld a, [$df64] ; level
+	cp 100
+	jr nc, .asm_72c6
+	ld hl, $df4f ; exp
+	inc [hl]
+	jr nz, .asm_72c6
+	dec hl
+	inc [hl]
+	jr nz, .asm_72c6
+	dec hl
+	inc [hl]
+	ld a, [hl]
+	cp $50
+	jr c, .asm_72c6
+	ld a, $50
+	ld [hl], a
+
+.asm_72c6
+	ld hl, DaycareMan
+	bit 5, [hl] ; egg
+	ret z
+	ld hl, StepsToEgg
+	dec [hl]
+	ret nz
+
+	call RNG
+	ld [hl], a
+	ld hl, $6e1d
+	ld a, $5
+	rst FarCall
+	ld a, [$d265]
+	cp $e6
+	ld b, $50
+	jr nc, .asm_72f8
+	ld a, [$d265]
+	cp $aa
+	ld b, $28
+	jr nc, .asm_72f8
+	ld a, [$d265]
+	cp $6e
+	ld b, $1e
+	jr nc, .asm_72f8
+	ld b, $a
+
+.asm_72f8
+	call RNG
+	cp b
+	ret nc
+	ld hl, DaycareMan
+	res 5, [hl]
+	set 6, [hl]
+	ret
+; 7305
 
 
 SpecialGiveShuckle: ; 7305
@@ -31281,7 +31427,98 @@ Function160a1: ; 160a1
 	jp $600d
 ; 160a9
 
-INCBIN "baserom.gbc", $160a9, $16ecd - $160a9
+INCBIN "baserom.gbc", $160a9, $16e1d - $160a9
+
+Function16e1d: ; 16e1d
+	call $6ed6
+	ld c, $0
+	jp nc, $6eb7
+	ld a, [BreedMon1Species]
+	ld [CurPartySpecies], a
+	ld a, [$df21]
+	ld [TempMonDVs], a
+	ld a, [$df22]
+	ld [$d124], a
+	ld a, $3
+	ld [MonType], a
+	ld a, $24
+	call Predef
+	jr c, .asm_16e70
+	ld b, $1
+	jr nz, .asm_16e48
+	inc b
+
+.asm_16e48
+	push bc
+	ld a, [BreedMon2Species]
+	ld [CurPartySpecies], a
+	ld a, [$df5a]
+	ld [TempMonDVs], a
+	ld a, [$df5b]
+	ld [$d124], a
+	ld a, $3
+	ld [MonType], a
+	ld a, $24
+	call Predef
+	pop bc
+	jr c, .asm_16e70
+	ld a, $1
+	jr nz, .asm_16e6d
+	inc a
+
+.asm_16e6d
+	cp b
+	jr nz, .asm_16e89
+
+.asm_16e70
+	ld c, $0
+	ld a, [BreedMon1Species]
+	cp $84
+	jr z, .asm_16e82
+	ld a, [BreedMon2Species]
+	cp $84
+	jr nz, .asm_16eb7
+	jr .asm_16e89
+
+.asm_16e82
+	ld a, [BreedMon2Species]
+	cp $84
+	jr z, .asm_16eb7
+
+.asm_16e89
+	call $6ebc
+	ld c, $ff
+	jp z, $6eb7
+	ld a, [BreedMon2Species]
+	ld b, a
+	ld a, [BreedMon1Species]
+	cp b
+	ld c, $fe
+	jr z, .asm_16e9f
+	ld c, $80
+
+.asm_16e9f
+	ld a, [$df12]
+	ld b, a
+	ld a, [$df4b]
+	cp b
+	jr nz, .asm_16eb7
+	ld a, [$df13]
+	ld b, a
+	ld a, [$df4c]
+	cp b
+	jr nz, .asm_16eb7
+	ld a, c
+	sub $4d
+	ld c, a
+
+.asm_16eb7
+	ld a, c
+	ld [$d265], a
+	ret
+; 16ebc
+
+INCBIN "baserom.gbc", $16ebc, $16ecd - $16ebc
 
 
 Function16ecd: ; 16ecd
@@ -31293,7 +31530,93 @@ Function16ecd: ; 16ecd
 	ret
 ; 16ed6
 
-INCBIN "baserom.gbc", $16ed6, $174ba - $16ed6
+Function16ed6: ; 16ed6
+	ld a, [BreedMon2Species]
+	ld [CurSpecies], a
+	call GetBaseData
+	ld a, [BaseEggGroups]
+	cp $ff
+	jr z, .asm_16f3a
+	ld a, [BreedMon1Species]
+	ld [CurSpecies], a
+	call GetBaseData
+	ld a, [BaseEggGroups]
+	cp $ff
+	jr z, .asm_16f3a
+	ld a, [BreedMon2Species]
+	cp $84
+	jr z, .asm_16f3c
+	ld [CurSpecies], a
+	call GetBaseData
+	ld a, [BaseEggGroups]
+	push af
+	and $f
+	ld b, a
+	pop af
+	and $f0
+	swap a
+	ld c, a
+	ld a, [BreedMon1Species]
+	cp $84
+	jr z, .asm_16f3c
+	ld [CurSpecies], a
+	push bc
+	call GetBaseData
+	pop bc
+	ld a, [BaseEggGroups]
+	push af
+	and $f
+	ld d, a
+	pop af
+	and $f0
+	swap a
+	ld e, a
+	ld a, d
+	cp b
+	jr z, .asm_16f3c
+	cp c
+	jr z, .asm_16f3c
+	ld a, e
+	cp b
+	jr z, .asm_16f3c
+	cp c
+	jr z, .asm_16f3c
+
+.asm_16f3a
+	and a
+	ret
+
+.asm_16f3c
+	scf
+	ret
+; 16f3e
+
+Function16f3e: ; 16f3e
+	ld de, PartySpecies
+	ld hl, PartyMon1Happiness
+	ld c, 0
+.loop
+	ld a, [de]
+	inc de
+	cp $ff
+	ret z
+	cp EGG
+	jr nz, .next
+	dec [hl]
+	jr nz, .next
+	ld a, 1
+	and a
+	ret
+
+.next
+	push de
+	ld de, PartyMon2 - PartyMon1
+	add hl, de
+	pop de
+	jr .loop
+; 16f5e
+
+INCBIN "baserom.gbc", $16f5e, $174ba - $16f5e
 
 
 SECTION "bank6",DATA,BANK[$6]
@@ -34474,7 +34797,7 @@ Function2709e: ; 2709e
 	ld c, $13
 
 .asm_270bd
-	callab Function71c2
+	callab ChangeHappiness
 	ret
 ; 270c4
 
@@ -39585,7 +39908,7 @@ Function3d1aa: ; 3d1aa
 .asm_3d1dc
 	ld a, [CurBattleMon]
 	ld [CurPartyMon], a
-	callab Function71c2
+	callab ChangeHappiness
 	ld a, [$d0ee]
 	and $c0
 	add $1
@@ -45314,7 +45637,7 @@ Function3f594: ; 3f594
 	or [hl]
 	jr z, .asm_3f5fc
 	ld c, $4
-	callab Function71c2
+	callab ChangeHappiness
 
 .asm_3f5fc
 	pop bc
@@ -48461,9 +48784,7 @@ Function492b9: ; 492b9
 	and a
 	jr z, .asm_49300
 	ld c, $5
-	ld hl, $71c2
-	ld a, $1
-	rst FarCall
+	callab ChangeHappiness
 	jr .asm_49305
 
 .asm_49300
@@ -52246,7 +52567,156 @@ Function505c1: ; 505c1
 	ret
 ; 505da
 
-INCBIN "baserom.gbc", $505da, $506bc - $505da
+Function505da: ; 505da
+	ld a, [PartyCount]
+	and a
+	jr z, .asm_5062c
+	xor a
+	ld c, 7
+	ld hl, EngineBuffer1
+.asm_505e6
+	ld [hli], a
+	dec c
+	jr nz, .asm_505e6
+	xor a
+	ld [CurPartyMon], a
+.asm_505ee
+	call Function5062e
+	jr nc, .asm_50605
+	ld a, [CurPartyMon]
+	ld e, a
+	ld d, 0
+	ld hl, CurFruit
+	add hl, de
+	ld [hl], c
+	ld a, [EngineBuffer1]
+	or c
+	ld [EngineBuffer1], a
+
+.asm_50605
+	ld a, [PartyCount]
+	ld hl, CurPartyMon
+	inc [hl]
+	cp [hl]
+	jr nz, .asm_505ee
+	ld a, [EngineBuffer1]
+	and $2
+	jr nz, .asm_50622
+	ld a, [EngineBuffer1]
+	and $1
+	jr z, .asm_5062c
+	call Function50658
+	xor a
+	ret
+
+.asm_50622
+	ld a, $14
+	ld hl, $4669
+	call PushScriptPointer
+	scf
+	ret
+
+.asm_5062c
+	xor a
+	ret
+; 5062e
+
+Function5062e: ; 5062e
+	ld a, $20
+	call GetPartyParamLocation
+	ld a, [hl]
+	and $8
+	ret z
+	ld a, $22
+	call GetPartyParamLocation
+	ld a, [hli]
+	ld b, a
+	ld c, [hl]
+	or c
+	ret z
+	dec bc
+	ld [hl], c
+	dec hl
+	ld [hl], b
+	ld a, b
+	or c
+	jr nz, .asm_50654
+	ld a, $20
+	call GetPartyParamLocation
+	ld [hl], $0
+	ld c, $2
+	scf
+	ret
+
+.asm_50654
+	ld c, $1
+	scf
+	ret
+; 50658
+
+Function50658: ; 50658
+	ld de, SFX_POISON
+	call StartSFX
+	ld b, $2
+	ld a, $2e
+	call Predef
+	call DelayFrame
+	ret
+; 50669
+
+UnknownScript_0x50669: ; 50669
+	3callasm $14, $4658
+	loadfont
+	3callasm $14, $467b
+	iffalse UnknownScript_0x50677
+	loadmovesprites
+	end
+; 50677
+
+UnknownScript_0x50677: ; 50677
+	3jump BANK(UnknownScript_0x124c8), UnknownScript_0x124c8
+; 5067b
+
+Function5067b: ; 5067b
+	xor a
+	ld [CurPartyMon], a
+	ld de, CurFruit
+.asm_50682
+	push de
+	ld a, [de]
+	and 2
+	jr z, .asm_5069c
+	ld c, 7
+	callba Function71c2
+	callba GetPartyNick
+	ld hl, PoisonFaintText
+	call PrintText
+
+.asm_5069c
+	pop de
+	inc de
+	ld hl, CurPartyMon
+	inc [hl]
+	ld a, [PartyCount]
+	cp [hl]
+	jr nz, .asm_50682
+	ld a, $14
+	call Predef
+	ld a, d
+	ld [ScriptVar], a
+	ret
+; 506b2
+
+PoisonFaintText: ; 506b2
+	text_jump UnknownText_0x1c0acc, BANK(UnknownText_0x1c0acc)
+	db "@"
+; 506b7
+
+PoisonWhiteOutText: ; 506b7
+	text_jump UnknownText_0x1c0ada, BANK(UnknownText_0x1c0ada)
+	db "@"
+; 506bc
+
 
 Function506bc: ; 506bc
 	ld hl, $46c8
@@ -59261,24 +59731,18 @@ CountStep: ; 96b79
 	inc [hl]
 	jr nz, .asm_96b9c
 
-	ld a, $1
-	ld hl, $725a
-	rst FarCall
+	callba StepHappiness
 
 .asm_96b9c
 	ld a, [StepCount]
 	cp $80
 	jr nz, .asm_96bab
 
-	ld a, $5
-	ld hl, $6f3e
-	rst FarCall
+	callba Function16f3e
 	jr nz, .asm_96bcf
 
 .asm_96bab
-	ld a, $1
-	ld hl, $7282
-	rst FarCall
+	callba DaycareStep
 
 	ld hl, PoisonStepCount
 	ld a, [hl]
