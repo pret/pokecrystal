@@ -34,7 +34,7 @@ UnknownScript_0x6c362: ; 0x6c362
 	return
 ; 0x6c367
 
-UnknownScript_0x6c367: ; 0x6c367
+PharmacistScript_0x6c367: ; 0x6c367
 	faceplayer
 	loadfont
 	checkbit1 $0060
@@ -51,7 +51,7 @@ UnknownScript_0x6c375: ; 0x6c375
 	end
 ; 0x6c37b
 
-UnknownScript_0x6c37b: ; 0x6c37b
+BlackBeltScript_0x6c37b: ; 0x6c37b
 	faceplayer
 	loadfont
 	checkbit1 $0060
@@ -113,7 +113,7 @@ UnknownScript_0x6c38f: ; 0x6c38f
 	end
 ; 0x6c3ee
 
-UnknownScript_0x6c3ee: ; 0x6c3ee
+GrannyScript_0x6c3ee: ; 0x6c3ee
 	faceplayer
 	loadfont
 	pokemart $0, $0010
@@ -246,10 +246,10 @@ MahoganyMart1F_MapEventHeader: ; 0x6c5fb
 
 	; people-events
 	db 5
-	person_event $4b, 7, 8, $6, $0, 255, 255, $0, 0, UnknownScript_0x6c367, $06da
-	person_event $41, 10, 5, $3, $0, 255, 255, $0, 0, UnknownScript_0x6c37b, $06da
-	person_event $1e, 10, 8, $8, $0, 255, 255, $0, 0, ObjectEvent, $06d5
-	person_event $4f, 10, 7, $8, $0, 255, 255, $0, 0, ObjectEvent, $06d5
-	person_event $30, 7, 5, $9, $0, 255, 255, $0, 0, UnknownScript_0x6c3ee, $0736
+	person_event SPRITE_PHARMACIST, 7, 8, $6, $0, 255, 255, $0, 0, PharmacistScript_0x6c367, $06da
+	person_event SPRITE_BLACK_BELT, 10, 5, $3, $0, 255, 255, $0, 0, BlackBeltScript_0x6c37b, $06da
+	person_event SPRITE_LANCE, 10, 8, $8, $0, 255, 255, $0, 0, ObjectEvent, $06d5
+	person_event SPRITE_DRAGON, 10, 7, $8, $0, 255, 255, $0, 0, ObjectEvent, $06d5
+	person_event SPRITE_GRANNY, 7, 5, $9, $0, 255, 255, $0, 0, GrannyScript_0x6c3ee, $0736
 ; 0x6c651
 

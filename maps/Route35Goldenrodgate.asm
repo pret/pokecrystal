@@ -6,7 +6,7 @@ Route35Goldenrodgate_MapScriptHeader: ; 0x69d35
 	db 0
 ; 0x69d37
 
-UnknownScript_0x69d37: ; 0x69d37
+OfficerScript_0x69d37: ; 0x69d37
 	faceplayer
 	loadfont
 	checkbit1 $0052
@@ -74,7 +74,7 @@ GiftSpearowOTName: ; 0x69dbf
 
 	db 0 ; 0x69dc5 XXX is there a reason for this?
 
-UnknownScript_0x69dc6: ; 0x69dc6
+PokefanFScript_0x69dc6: ; 0x69dc6
 	faceplayer
 	loadfont
 	checkbit1 $002a
@@ -92,7 +92,7 @@ UnknownScript_0x69dd4: ; 0x69dd4
 	end
 ; 0x69dda
 
-UnknownScript_0x69dda: ; 0x69dda
+FisherScript_0x69dda: ; 0x69dda
 	jumptextfaceplayer UnknownText_0x6a0cb
 ; 0x69ddd
 
@@ -203,8 +203,8 @@ Route35Goldenrodgate_MapEventHeader: ; 0x6a148
 
 	; people-events
 	db 3
-	person_event $43, 8, 4, $9, $0, 255, 255, $80, 0, UnknownScript_0x69d37, $ffff
-	person_event $2e, 8, 10, $4, $10, 255, 255, $90, 0, UnknownScript_0x69dc6, $ffff
-	person_event $3a, 6, 7, $3, $0, 255, 255, $a0, 0, UnknownScript_0x69dda, $ffff
+	person_event SPRITE_OFFICER, 8, 4, $9, $0, 255, 255, $80, 0, OfficerScript_0x69d37, $ffff
+	person_event SPRITE_POKEFAN_F, 8, 10, $4, $10, 255, 255, $90, 0, PokefanFScript_0x69dc6, $ffff
+	person_event SPRITE_FISHER, 6, 7, $3, $0, 255, 255, $a0, 0, FisherScript_0x69dda, $ffff
 ; 0x6a189
 

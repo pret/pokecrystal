@@ -6,7 +6,7 @@ GoldenrodFlowerShop_MapScriptHeader: ; 0x5535b
 	db 0
 ; 0x5535d
 
-UnknownScript_0x5535d: ; 0x5535d
+TeacherScript_0x5535d: ; 0x5535d
 	checkbit1 $002a
 	iftrue UnknownScript_0x5538f
 	checkbit1 $005c
@@ -50,7 +50,7 @@ UnknownScript_0x5539f: ; 0x5539f
 	jumptextfaceplayer UnknownText_0x553d4
 ; 0x553a2
 
-UnknownScript_0x553a2: ; 0x553a2
+LassScript_0x553a2: ; 0x553a2
 	faceplayer
 	loadfont
 	checkbit1 $002a
@@ -171,7 +171,7 @@ GoldenrodFlowerShop_MapEventHeader: ; 0x5561e
 
 	; people-events
 	db 2
-	person_event $29, 8, 6, $9, $0, 255, 255, $0, 0, UnknownScript_0x5535d, $ffff
-	person_event $28, 10, 9, $2, $11, 255, 255, $90, 0, UnknownScript_0x553a2, $0768
+	person_event SPRITE_TEACHER, 8, 6, $9, $0, 255, 255, $0, 0, TeacherScript_0x5535d, $ffff
+	person_event SPRITE_LASS, 10, 9, $2, $11, 255, 255, $90, 0, LassScript_0x553a2, $0768
 ; 0x55648
 

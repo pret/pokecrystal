@@ -6,11 +6,11 @@ FuchsiaBillSpeechHouse_MapScriptHeader: ; 0x1963bb
 	db 0
 ; 0x1963bd
 
-UnknownScript_0x1963bd: ; 0x1963bd
+PokefanFScript_0x1963bd: ; 0x1963bd
 	jumptextfaceplayer UnknownText_0x1963c3
 ; 0x1963c0
 
-UnknownScript_0x1963c0: ; 0x1963c0
+YoungsterScript_0x1963c0: ; 0x1963c0
 	jumptextfaceplayer UnknownText_0x1963f9
 ; 0x1963c3
 
@@ -43,7 +43,7 @@ FuchsiaBillSpeechHouse_MapEventHeader: ; 0x196428
 
 	; people-events
 	db 2
-	person_event $2e, 7, 6, $9, $0, 255, 255, $80, 0, UnknownScript_0x1963bd, $ffff
-	person_event $27, 8, 10, $4, $10, 255, 255, $0, 0, UnknownScript_0x1963c0, $ffff
+	person_event SPRITE_POKEFAN_F, 7, 6, $9, $0, 255, 255, $80, 0, PokefanFScript_0x1963bd, $ffff
+	person_event SPRITE_YOUNGSTER, 8, 10, $4, $10, 255, 255, $0, 0, YoungsterScript_0x1963c0, $ffff
 ; 0x196452
 

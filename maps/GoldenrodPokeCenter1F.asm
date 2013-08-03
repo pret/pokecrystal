@@ -6,7 +6,7 @@ GoldenrodPokeCenter1F_MapScriptHeader: ; 0x60f8f
 	db 0
 ; 0x60f91
 
-UnknownScript_0x60f91: ; 0x60f91
+NurseScript_0x60f91: ; 0x60f91
 	jumpstd $0000
 ; 0x60f94
 
@@ -78,15 +78,15 @@ UnknownScript_0x6101d: ; 0x6101d
 	end
 ; 0x6101e
 
-UnknownScript_0x6101e: ; 0x6101e
+GameboyKidScript_0x6101e: ; 0x6101e
 	jumptextfaceplayer UnknownText_0x62105
 ; 0x61021
 
-UnknownScript_0x61021: ; 0x61021
+LassScript_0x61021: ; 0x61021
 	jumptextfaceplayer UnknownText_0x62260
 ; 0x61024
 
-UnknownScript_0x61024: ; 0x61024
+PokefanFScript_0x61024: ; 0x61024
 	faceplayer
 	loadfont
 	2writetext UnknownText_0x623fb
@@ -736,10 +736,10 @@ GoldenrodPokeCenter1F_MapEventHeader: ; 0x62564
 
 	; people-events
 	db 5
-	person_event $37, 5, 7, $6, $0, 255, 255, $0, 0, UnknownScript_0x60f91, $ffff
-	person_event $38, 12, 20, $6, $0, 255, 255, $90, 0, ObjectEvent, $ffff
-	person_event $3, 5, 10, $6, $0, 255, 255, $a0, 0, UnknownScript_0x6101e, $ffff
-	person_event $28, 8, 5, $5, $1, 255, 255, $0, 0, UnknownScript_0x61021, $ffff
-	person_event $2e, 9, 11, $6, $0, 255, 255, $b0, 0, UnknownScript_0x61024, $ffff
+	person_event SPRITE_NURSE, 5, 7, $6, $0, 255, 255, $0, 0, NurseScript_0x60f91, $ffff
+	person_event SPRITE_LINK_RECEPTIONIST, 12, 20, $6, $0, 255, 255, $90, 0, ObjectEvent, $ffff
+	person_event SPRITE_GAMEBOY_KID, 5, 10, $6, $0, 255, 255, $a0, 0, GameboyKidScript_0x6101e, $ffff
+	person_event SPRITE_LASS, 8, 5, $5, $1, 255, 255, $0, 0, LassScript_0x61021, $ffff
+	person_event SPRITE_POKEFAN_F, 9, 11, $6, $0, 255, 255, $b0, 0, PokefanFScript_0x61024, $ffff
 ; 0x625cf
 

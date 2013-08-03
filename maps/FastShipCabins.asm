@@ -10,7 +10,7 @@ UnknownScript_0x75ea6: ; 0x75ea6
 	end
 ; 0x75ea7
 
-UnknownScript_0x75ea7: ; 0x75ea7
+CaptainScript_0x75ea7: ; 0x75ea7
 	faceplayer
 	loadfont
 	checkbit1 $0030
@@ -28,7 +28,7 @@ UnknownScript_0x75eb5: ; 0x75eb5
 	end
 ; 0x75ebb
 
-UnknownScript_0x75ebb: ; 0x75ebb
+TwinScript_0x75ebb: ; 0x75ebb
 	spriteface $5, $3
 	loadfont
 	2writetext UnknownText_0x761e0
@@ -77,7 +77,7 @@ UnknownScript_0x75f09: ; 0x75f09
 	2jump UnknownScript_0x75f37
 ; 0x75f1f
 
-UnknownScript_0x75f1f: ; 0x75f1f
+GentlemanScript_0x75f1f: ; 0x75f1f
 	faceplayer
 	loadfont
 	checkbit1 $0071
@@ -129,7 +129,7 @@ UnknownScript_0x75f67: ; 0x75f67
 	end
 ; 0x75f6d
 
-UnknownScript_0x75f6d: ; 0x75f6d
+TwinScript_0x75f6d: ; 0x75f6d
 	faceplayer
 	loadfont
 	2writetext UnknownText_0x7630d
@@ -596,16 +596,16 @@ FastShipCabins_SE_SSE_CaptainsCabin_MapEventHeader: ; 0x76678
 
 	; people-events
 	db 11
-	person_event $46, 29, 7, $6, $0, 255, 255, $90, 0, UnknownScript_0x75ea7, $ffff
-	person_event $40, 21, 6, $9, $0, 255, 255, $90, 0, UnknownScript_0x75f1f, $0730
-	person_event $26, 21, 7, $a, $0, 255, 255, $0, 0, UnknownScript_0x75f6d, $0731
-	person_event $26, 29, 6, $a, $0, 255, 255, $0, 0, UnknownScript_0x75ebb, $0732
-	person_event $2d, 10, 9, $8, $0, 255, 255, $82, 5, TrainerPokefanmColin, $0739
-	person_event $26, 8, 6, $6, $0, 255, 255, $82, 1, TrainerTwinsMegandpeg1, $0739
-	person_event $26, 8, 7, $6, $0, 255, 255, $82, 1, TrainerTwinsMegandpeg2, $0739
-	person_event $2b, 9, 9, $8, $0, 255, 255, $92, 5, TrainerPsychicRodney, $073a
-	person_event $2d, 7, 6, $6, $0, 255, 255, $82, 3, TrainerPokefanmJeremy, $073b
-	person_event $2e, 9, 9, $9, $0, 255, 255, $82, 1, TrainerPokefanfGeorgia, $073b
-	person_event $2b, 19, 5, $3, $0, 255, 255, $b2, 2, TrainerSupernerdShawn, $073a
+	person_event SPRITE_CAPTAIN, 29, 7, $6, $0, 255, 255, $90, 0, CaptainScript_0x75ea7, $ffff
+	person_event SPRITE_GENTLEMAN, 21, 6, $9, $0, 255, 255, $90, 0, GentlemanScript_0x75f1f, $0730
+	person_event SPRITE_TWIN, 21, 7, $a, $0, 255, 255, $0, 0, TwinScript_0x75f6d, $0731
+	person_event SPRITE_TWIN, 29, 6, $a, $0, 255, 255, $0, 0, TwinScript_0x75ebb, $0732
+	person_event SPRITE_POKEFAN_M, 10, 9, $8, $0, 255, 255, $82, 5, TrainerPokefanmColin, $0739
+	person_event SPRITE_TWIN, 8, 6, $6, $0, 255, 255, $82, 1, TrainerTwinsMegandpeg1, $0739
+	person_event SPRITE_TWIN, 8, 7, $6, $0, 255, 255, $82, 1, TrainerTwinsMegandpeg2, $0739
+	person_event SPRITE_SUPER_NERD, 9, 9, $8, $0, 255, 255, $92, 5, TrainerPsychicRodney, $073a
+	person_event SPRITE_POKEFAN_M, 7, 6, $6, $0, 255, 255, $82, 3, TrainerPokefanmJeremy, $073b
+	person_event SPRITE_POKEFAN_F, 9, 9, $9, $0, 255, 255, $82, 1, TrainerPokefanfGeorgia, $073b
+	person_event SPRITE_SUPER_NERD, 19, 5, $3, $0, 255, 255, $b2, 2, TrainerSupernerdShawn, $073a
 ; 0x76730
 

@@ -6,18 +6,18 @@ FuchsiaMart_MapScriptHeader: ; 0x195ce6
 	db 0
 ; 0x195ce8
 
-UnknownScript_0x195ce8: ; 0x195ce8
+ClerkScript_0x195ce8: ; 0x195ce8
 	loadfont
 	pokemart $0, $001d
 	loadmovesprites
 	end
 ; 0x195cef
 
-UnknownScript_0x195cef: ; 0x195cef
+FisherScript_0x195cef: ; 0x195cef
 	jumptextfaceplayer UnknownText_0x195cf5
 ; 0x195cf2
 
-UnknownScript_0x195cf2: ; 0x195cf2
+CooltrainerFScript_0x195cf2: ; 0x195cf2
 	jumptextfaceplayer UnknownText_0x195d36
 ; 0x195cf5
 
@@ -52,8 +52,8 @@ FuchsiaMart_MapEventHeader: ; 0x195d6e
 
 	; people-events
 	db 3
-	person_event $39, 7, 5, $9, $0, 255, 255, $0, 0, UnknownScript_0x195ce8, $ffff
-	person_event $3a, 6, 7, $8, $0, 255, 255, $80, 0, UnknownScript_0x195cef, $ffff
-	person_event $24, 10, 11, $5, $2, 255, 255, $a0, 0, UnknownScript_0x195cf2, $ffff
+	person_event SPRITE_CLERK, 7, 5, $9, $0, 255, 255, $0, 0, ClerkScript_0x195ce8, $ffff
+	person_event SPRITE_FISHER, 6, 7, $8, $0, 255, 255, $80, 0, FisherScript_0x195cef, $ffff
+	person_event SPRITE_COOLTRAINER_F, 10, 11, $5, $2, 255, 255, $a0, 0, CooltrainerFScript_0x195cf2, $ffff
 ; 0x195da5
 

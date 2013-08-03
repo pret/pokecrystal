@@ -6,18 +6,18 @@ PewterMart_MapScriptHeader: ; 0x1a2dc9
 	db 0
 ; 0x1a2dcb
 
-UnknownScript_0x1a2dcb: ; 0x1a2dcb
+ClerkScript_0x1a2dcb: ; 0x1a2dcb
 	loadfont
 	pokemart $0, $0013
 	loadmovesprites
 	end
 ; 0x1a2dd2
 
-UnknownScript_0x1a2dd2: ; 0x1a2dd2
+YoungsterScript_0x1a2dd2: ; 0x1a2dd2
 	jumptextfaceplayer UnknownText_0x1a2dd8
 ; 0x1a2dd5
 
-UnknownScript_0x1a2dd5: ; 0x1a2dd5
+SuperNerdScript_0x1a2dd5: ; 0x1a2dd5
 	jumptextfaceplayer UnknownText_0x1a2e3a
 ; 0x1a2dd8
 
@@ -57,8 +57,8 @@ PewterMart_MapEventHeader: ; 0x1a2eae
 
 	; people-events
 	db 3
-	person_event $39, 7, 5, $9, $0, 255, 255, $0, 0, UnknownScript_0x1a2dcb, $ffff
-	person_event $27, 6, 13, $5, $2, 255, 255, $0, 0, UnknownScript_0x1a2dd2, $ffff
-	person_event $2b, 10, 10, $3, $0, 255, 255, $80, 0, UnknownScript_0x1a2dd5, $ffff
+	person_event SPRITE_CLERK, 7, 5, $9, $0, 255, 255, $0, 0, ClerkScript_0x1a2dcb, $ffff
+	person_event SPRITE_YOUNGSTER, 6, 13, $5, $2, 255, 255, $0, 0, YoungsterScript_0x1a2dd2, $ffff
+	person_event SPRITE_SUPER_NERD, 10, 10, $3, $0, 255, 255, $80, 0, SuperNerdScript_0x1a2dd5, $ffff
 ; 0x1a2ee5
 

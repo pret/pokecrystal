@@ -6,11 +6,11 @@ RadioTower4F_MapScriptHeader: ; 0x5eb80
 	db 0
 ; 0x5eb82
 
-UnknownScript_0x5eb82: ; 0x5eb82
+FisherScript_0x5eb82: ; 0x5eb82
 	jumptextfaceplayer UnknownText_0x5ec12
 ; 0x5eb85
 
-UnknownScript_0x5eb85: ; 0x5eb85
+TeacherScript_0x5eb85: ; 0x5eb85
 	faceplayer
 	loadfont
 	checkbit1 $0048
@@ -43,7 +43,7 @@ UnknownScript_0x5ebb0: ; 0x5ebb0
 	end
 ; 0x5ebb2
 
-UnknownScript_0x5ebb2: ; 0x5ebb2
+GrowlitheScript_0x5ebb2: ; 0x5ebb2
 	loadfont
 	2writetext UnknownText_0x5ed66
 	cry MEOWTH
@@ -324,13 +324,13 @@ RadioTower4F_MapEventHeader: ; 0x5f01a
 
 	; people-events
 	db 7
-	person_event $3a, 8, 10, $7, $0, 255, 255, $80, 0, UnknownScript_0x5eb82, $06d0
-	person_event $29, 10, 18, $3, $0, 255, 255, $a0, 0, UnknownScript_0x5eb85, $ffff
-	person_event $82, 11, 16, $16, $0, 255, 255, $80, 0, UnknownScript_0x5ebb2, $ffff
-	person_event $35, 10, 9, $1f, $0, 255, 255, $2, 3, TrainerGruntM10, $06ce
-	person_event $35, 5, 18, $8, $2, 255, 255, $2, 2, TrainerExecutivem2, $06ce
-	person_event $36, 8, 16, $9, $0, 255, 255, $82, 1, TrainerGruntF4, $06ce
-	person_event $3c, 6, 8, $8, $0, 255, 255, $92, 4, TrainerScientistRich, $06ce
+	person_event SPRITE_FISHER, 8, 10, $7, $0, 255, 255, $80, 0, FisherScript_0x5eb82, $06d0
+	person_event SPRITE_TEACHER, 10, 18, $3, $0, 255, 255, $a0, 0, TeacherScript_0x5eb85, $ffff
+	person_event SPRITE_GROWLITHE, 11, 16, $16, $0, 255, 255, $80, 0, GrowlitheScript_0x5ebb2, $ffff
+	person_event SPRITE_ROCKET, 10, 9, $1f, $0, 255, 255, $2, 3, TrainerGruntM10, $06ce
+	person_event SPRITE_ROCKET, 5, 18, $8, $2, 255, 255, $2, 2, TrainerExecutivem2, $06ce
+	person_event SPRITE_ROCKET_GIRL, 8, 16, $9, $0, 255, 255, $82, 1, TrainerGruntF4, $06ce
+	person_event SPRITE_SCIENTIST, 6, 8, $8, $0, 255, 255, $92, 4, TrainerScientistRich, $06ce
 ; 0x5f099
 
 

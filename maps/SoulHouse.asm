@@ -6,19 +6,19 @@ SoulHouse_MapScriptHeader: ; 0x7ec45
 	db 0
 ; 0x7ec47
 
-UnknownScript_0x7ec47: ; 0x7ec47
+GrampsScript_0x7ec47: ; 0x7ec47
 	jumptextfaceplayer UnknownText_0x7ec53
 ; 0x7ec4a
 
-UnknownScript_0x7ec4a: ; 0x7ec4a
+TeacherScript_0x7ec4a: ; 0x7ec4a
 	jumptextfaceplayer UnknownText_0x7ed4d
 ; 0x7ec4d
 
-UnknownScript_0x7ec4d: ; 0x7ec4d
+LassScript_0x7ec4d: ; 0x7ec4d
 	jumptextfaceplayer UnknownText_0x7edb1
 ; 0x7ec50
 
-UnknownScript_0x7ec50: ; 0x7ec50
+GrannyScript_0x7ec50: ; 0x7ec50
 	jumptextfaceplayer UnknownText_0x7eddb
 ; 0x7ec53
 
@@ -79,9 +79,9 @@ SoulHouse_MapEventHeader: ; 0x7ee1d
 
 	; people-events
 	db 4
-	person_event $2f, 6, 8, $6, $0, 255, 255, $90, 0, UnknownScript_0x7ec47, $ffff
-	person_event $29, 7, 11, $5, $1, 255, 255, $90, 0, UnknownScript_0x7ec4a, $ffff
-	person_event $28, 9, 6, $7, $0, 255, 255, $90, 0, UnknownScript_0x7ec4d, $ffff
-	person_event $30, 7, 5, $7, $0, 255, 255, $90, 0, UnknownScript_0x7ec50, $ffff
+	person_event SPRITE_GRAMPS, 6, 8, $6, $0, 255, 255, $90, 0, GrampsScript_0x7ec47, $ffff
+	person_event SPRITE_TEACHER, 7, 11, $5, $1, 255, 255, $90, 0, TeacherScript_0x7ec4a, $ffff
+	person_event SPRITE_LASS, 9, 6, $7, $0, 255, 255, $90, 0, LassScript_0x7ec4d, $ffff
+	person_event SPRITE_GRANNY, 7, 5, $7, $0, 255, 255, $90, 0, GrannyScript_0x7ec50, $ffff
 ; 0x7ee61
 

@@ -33,7 +33,7 @@ UnknownScript_0x18e177: ; 0x18e177
 	return
 ; 0x18e178
 
-UnknownScript_0x18e178: ; 0x18e178
+KurtScript_0x18e178: ; 0x18e178
 	faceplayer
 	loadfont
 	checkbit1 $0035
@@ -344,7 +344,7 @@ UnknownScript_0x18e3ac: ; 0x18e3ac
 	end
 ; 0x18e3bd
 
-UnknownScript_0x18e3bd: ; 0x18e3bd
+KurtScript_0x18e3bd: ; 0x18e3bd
 	faceplayer
 	loadfont
 	checkbit1 $00bf
@@ -378,7 +378,7 @@ UnknownScript_0x18e3e0: ; 0x18e3e0
 	end
 ; 0x18e3ed
 
-UnknownScript_0x18e3ed: ; 0x18e3ed
+TwinScript_0x18e3ed: ; 0x18e3ed
 	faceplayer
 	checkbit1 $0000
 	iftrue UnknownScript_0x18e42f
@@ -423,7 +423,7 @@ UnknownScript_0x18e427: ; 0x18e427
 	end
 ; 0x18e42e
 
-UnknownScript_0x18e42e: ; 0x18e42e
+TwinScript_0x18e42e: ; 0x18e42e
 	faceplayer
 UnknownScript_0x18e42f: ; 0x18e42f
 	loadfont
@@ -452,7 +452,7 @@ UnknownScript_0x18e448: ; 0x18e448
 	end
 ; 0x18e44f
 
-UnknownScript_0x18e44f: ; 0x18e44f
+SlowpokeScript_0x18e44f: ; 0x18e44f
 	faceplayer
 	loadfont
 	2writetext UnknownText_0x18eb56
@@ -714,10 +714,10 @@ KurtsHouse_MapEventHeader: ; 0x18eba8
 
 	; people-events
 	db 5
-	person_event $b, 6, 7, $6, $0, 255, 255, $0, 0, UnknownScript_0x18e178, $073e
-	person_event $26, 7, 9, $3, $0, 255, 255, $0, 0, UnknownScript_0x18e3ed, $078c
-	person_event $45, 7, 10, $1, $0, 255, 255, $0, 0, UnknownScript_0x18e44f, $06fd
-	person_event $b, 7, 18, $7, $0, 255, 255, $0, 0, UnknownScript_0x18e3bd, $073f
-	person_event $26, 8, 15, $9, $0, 255, 255, $0, 0, UnknownScript_0x18e42e, $078d
+	person_event SPRITE_KURT, 6, 7, $6, $0, 255, 255, $0, 0, KurtScript_0x18e178, $073e
+	person_event SPRITE_TWIN, 7, 9, $3, $0, 255, 255, $0, 0, TwinScript_0x18e3ed, $078c
+	person_event SPRITE_SLOWPOKE, 7, 10, $1, $0, 255, 255, $0, 0, SlowpokeScript_0x18e44f, $06fd
+	person_event SPRITE_KURT, 7, 18, $7, $0, 255, 255, $0, 0, KurtScript_0x18e3bd, $073f
+	person_event SPRITE_TWIN, 8, 15, $9, $0, 255, 255, $0, 0, TwinScript_0x18e42e, $078d
 ; 0x18ec1c
 

@@ -25,7 +25,7 @@ UnknownScript_0x5a31c: ; 0x5a31c
 	return
 ; 0x5a31f
 
-UnknownScript_0x5a31f: ; 0x5a31f
+SurfScript_0x5a31f: ; 0x5a31f
 	faceplayer
 	cry LAPRAS
 	loadpokedata LAPRAS, 20
@@ -207,11 +207,11 @@ UnionCaveB2F_MapEventHeader: ; 0x5a57a
 
 	; people-events
 	db 6
-	person_event $2c, 23, 19, $6, $0, 255, 255, $82, 3, TrainerCooltrainermNick, $ffff
-	person_event $24, 17, 9, $a, $0, 255, 255, $82, 1, TrainerCooltrainerfGwen, $ffff
-	person_event $24, 34, 7, $7, $0, 255, 255, $82, 3, TrainerCooltrainerfEmma, $ffff
-	person_event $54, 6, 20, $1, $0, 255, 255, $1, 0, ItemFragment_0x5a36a, $0660
-	person_event $54, 23, 16, $1, $0, 255, 255, $1, 0, ItemFragment_0x5a36c, $0661
-	person_event $53, 35, 15, $24, $11, 255, 255, $90, 0, UnknownScript_0x5a31f, $0760
+	person_event SPRITE_ROCKER, 23, 19, $6, $0, 255, 255, $82, 3, TrainerCooltrainermNick, $ffff
+	person_event SPRITE_COOLTRAINER_F, 17, 9, $a, $0, 255, 255, $82, 1, TrainerCooltrainerfGwen, $ffff
+	person_event SPRITE_COOLTRAINER_F, 34, 7, $7, $0, 255, 255, $82, 3, TrainerCooltrainerfEmma, $ffff
+	person_event SPRITE_POKE_BALL, 6, 20, $1, $0, 255, 255, $1, 0, ItemFragment_0x5a36a, $0660
+	person_event SPRITE_POKE_BALL, 23, 16, $1, $0, 255, 255, $1, 0, ItemFragment_0x5a36c, $0661
+	person_event SPRITE_SURF, 35, 15, $24, $11, 255, 255, $90, 0, SurfScript_0x5a31f, $0760
 ; 0x5a5d3
 

@@ -134,8 +134,8 @@ SproutTower2F_MapEventHeader: ; 0x1848f5
 
 	; people-events
 	db 3
-	person_event $3e, 7, 16, $a, $0, 255, 255, $92, 4, TrainerSageNico, $ffff
-	person_event $3e, 18, 13, $8, $0, 255, 255, $92, 5, TrainerSageEdmond, $ffff
-	person_event $54, 5, 7, $1, $0, 255, 255, $1, 0, ItemFragment_0x1847a7, $0648
+	person_event SPRITE_SAGE, 7, 16, $a, $0, 255, 255, $92, 4, TrainerSageNico, $ffff
+	person_event SPRITE_SAGE, 18, 13, $8, $0, 255, 255, $92, 5, TrainerSageEdmond, $ffff
+	person_event SPRITE_POKE_BALL, 5, 7, $1, $0, 255, 255, $1, 0, ItemFragment_0x1847a7, $0648
 ; 0x18493b
 

@@ -373,6 +373,7 @@ Sprites: ; c400
 ;		bit 3: vram bank (cgb only)
 ;		bit 2-0: pal # (cgb only)
 	ds 160
+SpritesEnd
 
 TileMap: ; c4a0
 ; 20x18 grid of 8x8 tiles
@@ -789,8 +790,8 @@ OverworldMapEnd:
 	ds 12
 
 SECTION "gfx2",BSS[$cd20]
-BGMapBuffer:
-CreditsPos: ; cd20
+CreditsPos:
+BGMapBuffer: ; cd20
 	ds 2
 CreditsTimer: ; cd22
 	ds 1
@@ -836,16 +837,11 @@ CurSpecies: ; cf60
 MenuSelection:; cf74
 	ds 1
 
-	ds 14
 
-TileY: ; cf82
+
+SECTION "VBlank",BSS[$cfb1]
+OverworldDelay: ; cfb1
 	ds 1
-TileX: ; cf83
-	ds 1
-
-
-
-SECTION "VBlank",BSS[$cfb2]
 TextDelayFrames: ; cfb2
 	ds 1
 VBlankOccurred: ; cfb3
@@ -1082,7 +1078,16 @@ CurPartyLevel: ; d143
 	ds 1
 
 
-SECTION "connections",BSS[$d1a9]
+SECTION "UsedSprites",BSS[$d154]
+UsedSprites: ; d154
+	ds 32
+
+SECTION "map",BSS[$d1a3]
+
+MapEventBank: ; d1a3
+	ds 1
+
+	ds 5
 
 MapConnections:
 
@@ -1194,8 +1199,8 @@ EvolvableFlags: ; d1e8
 
 	ds 1
 
-Buffer1:
-MagikarpLength: ; d1ea
+MagikarpLength:
+Buffer1: ; d1ea
 	ds 1
 MovementType:
 Buffer2: ; d1eb
@@ -1530,8 +1535,10 @@ SECTION "Scripting",BSS[$d434]
 ScriptFlags: ; d434
 SCRIPT_RUNNING EQU 2
 	ds 1
-
-	ds 2
+ScriptFlags2: ; d435
+	ds 1
+ScriptFlags3: ; d436
+	ds 1
 
 ScriptMode: ; d437
 SCRIPT_OFF EQU 0
@@ -1560,17 +1567,19 @@ PlayerGender: ; d472
 	ds 8
 PlayerID: ; d47b
 	ds 2
+
 PlayerName: ; d47d
 	ds 11
-PlayerNameEnd: ; d488
-
+MomsName: ; d488
+	ds 11
+RivalName: ; d493
+	ds 11
+RedsName: ; d49e
+	ds 11
+GreensName: ; d4a9
 	ds 11
 
-WRivalName: ; d493
-	ds 11
-WRivalNameEnd: ; d49e
-
-	ds 24
+	ds 2
 
 ; init time set at newgame
 StartDay: ; d4b6
@@ -1607,7 +1616,9 @@ FRIDAY    EQU 5
 SATURDAY  EQU 6
 	ds 1
 
-	ds 12
+	ds 10
+
+	ds 2
 
 PlayerSprite: ; d4d8
 	ds 1
@@ -1658,6 +1669,11 @@ OBJECT_LENGTH EQU $10
 	ds OBJECT_LENGTH * NUM_OBJECTS
 
 
+SECTION "VariableSprites",BSS[$d82e]
+VariableSprites: ; d82e
+	ds $10
+
+
 SECTION "Status",BSS[$d841]
 TimeOfDayPal: ; d841
 	ds 1
@@ -1689,21 +1705,25 @@ KantoBadges: ; d858
 SECTION "Items",BSS[$d859]
 TMsHMs: ; d859
 	ds 57
+TMsHMsEnd
 
 NumItems: ; d892
 	ds 1
 Items: ; d893
 	ds 41
+ItemsEnd
 
 NumKeyItems: ; d8bc
 	ds 1
 KeyItems: ; d8bd
 	ds 26
+KeyItemsEnd
 
 NumBalls: ; d8d7
 	ds 1
 Balls: ; d8d8
 	ds 25
+BallsEnd
 	
 SECTION "overworld",BSS[$d95b]
 WhichRegisteredItem: ; d95b
@@ -1985,7 +2005,7 @@ BreedMon1Nick: ; def6
 BreedMon1OT: ; df01
 	ds 11
 BreedMon1Stats:
-Breedmon1Species: ; df0c
+BreedMon1Species: ; df0c
 	ds 1
 	ds 31
 

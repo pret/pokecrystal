@@ -6,7 +6,7 @@ NationalParkBugContest_MapScriptHeader: ; 0x5c8ea
 	db 0
 ; 0x5c8ec
 
-UnknownScript_0x5c8ec: ; 0x5c8ec
+YoungsterScript_0x5c8ec: ; 0x5c8ec
 	faceplayer
 	loadfont
 	2writetext UnknownText_0x5c94c
@@ -15,7 +15,7 @@ UnknownScript_0x5c8ec: ; 0x5c8ec
 	end
 ; 0x5c8f4
 
-UnknownScript_0x5c8f4: ; 0x5c8f4
+YoungsterScript_0x5c8f4: ; 0x5c8f4
 	faceplayer
 	loadfont
 	2writetext UnknownText_0x5c973
@@ -24,7 +24,7 @@ UnknownScript_0x5c8f4: ; 0x5c8f4
 	end
 ; 0x5c8fc
 
-UnknownScript_0x5c8fc: ; 0x5c8fc
+RockerScript_0x5c8fc: ; 0x5c8fc
 	faceplayer
 	loadfont
 	2writetext UnknownText_0x5c9a3
@@ -33,7 +33,7 @@ UnknownScript_0x5c8fc: ; 0x5c8fc
 	end
 ; 0x5c904
 
-UnknownScript_0x5c904: ; 0x5c904
+PokefanMScript_0x5c904: ; 0x5c904
 	faceplayer
 	loadfont
 	2writetext UnknownText_0x5c9cc
@@ -42,7 +42,7 @@ UnknownScript_0x5c904: ; 0x5c904
 	end
 ; 0x5c90c
 
-UnknownScript_0x5c90c: ; 0x5c90c
+YoungsterScript_0x5c90c: ; 0x5c90c
 	faceplayer
 	loadfont
 	2writetext UnknownText_0x5ca15
@@ -51,7 +51,7 @@ UnknownScript_0x5c90c: ; 0x5c90c
 	end
 ; 0x5c914
 
-UnknownScript_0x5c914: ; 0x5c914
+YoungsterScript_0x5c914: ; 0x5c914
 	faceplayer
 	loadfont
 	2writetext UnknownText_0x5ca52
@@ -60,7 +60,7 @@ UnknownScript_0x5c914: ; 0x5c914
 	end
 ; 0x5c91c
 
-UnknownScript_0x5c91c: ; 0x5c91c
+LassScript_0x5c91c: ; 0x5c91c
 	faceplayer
 	loadfont
 	2writetext UnknownText_0x5ca8f
@@ -69,7 +69,7 @@ UnknownScript_0x5c91c: ; 0x5c91c
 	end
 ; 0x5c924
 
-UnknownScript_0x5c924: ; 0x5c924
+YoungsterScript_0x5c924: ; 0x5c924
 	faceplayer
 	loadfont
 	2writetext UnknownText_0x5cac8
@@ -78,7 +78,7 @@ UnknownScript_0x5c924: ; 0x5c924
 	end
 ; 0x5c92c
 
-UnknownScript_0x5c92c: ; 0x5c92c
+YoungsterScript_0x5c92c: ; 0x5c92c
 	faceplayer
 	loadfont
 	2writetext UnknownText_0x5cb25
@@ -87,7 +87,7 @@ UnknownScript_0x5c92c: ; 0x5c92c
 	end
 ; 0x5c934
 
-UnknownScript_0x5c934: ; 0x5c934
+YoungsterScript_0x5c934: ; 0x5c934
 	faceplayer
 	loadfont
 	2writetext UnknownText_0x5cb64
@@ -237,17 +237,17 @@ NationalParkBugContest_MapEventHeader: ; 0x5cc5d
 
 	; people-events
 	db 12
-	person_event $27, 33, 23, $2, $22, 255, 255, $80, 0, UnknownScript_0x5c8ec, $0716
-	person_event $27, 26, 32, $2, $22, 255, 255, $a0, 0, UnknownScript_0x5c8f4, $0717
-	person_event $2c, 22, 13, $7, $0, 255, 255, $90, 0, UnknownScript_0x5c8fc, $0718
-	person_event $2d, 17, 11, $4, $1, 255, 255, $b0, 0, UnknownScript_0x5c904, $0719
-	person_event $27, 13, 27, $3, $0, 255, 255, $80, 0, UnknownScript_0x5c90c, $071a
-	person_event $27, 17, 31, $2, $33, 255, 255, $a0, 0, UnknownScript_0x5c914, $071b
-	person_event $28, 27, 11, $5, $2, 255, 255, $90, 0, UnknownScript_0x5c91c, $071c
-	person_event $27, 31, 15, $2, $11, 255, 255, $80, 0, UnknownScript_0x5c924, $071d
-	person_event $27, 12, 20, $2, $11, 255, 255, $a0, 0, UnknownScript_0x5c92c, $071e
-	person_event $27, 38, 21, $2, $33, 255, 255, $90, 0, UnknownScript_0x5c934, $071f
-	person_event $54, 16, 39, $1, $0, 255, 255, $1, 0, ItemFragment_0x5c945, $0658
-	person_event $54, 47, 5, $1, $0, 255, 255, $1, 0, ItemFragment_0x5c947, $0659
+	person_event SPRITE_YOUNGSTER, 33, 23, $2, $22, 255, 255, $80, 0, YoungsterScript_0x5c8ec, $0716
+	person_event SPRITE_YOUNGSTER, 26, 32, $2, $22, 255, 255, $a0, 0, YoungsterScript_0x5c8f4, $0717
+	person_event SPRITE_ROCKER, 22, 13, $7, $0, 255, 255, $90, 0, RockerScript_0x5c8fc, $0718
+	person_event SPRITE_POKEFAN_M, 17, 11, $4, $1, 255, 255, $b0, 0, PokefanMScript_0x5c904, $0719
+	person_event SPRITE_YOUNGSTER, 13, 27, $3, $0, 255, 255, $80, 0, YoungsterScript_0x5c90c, $071a
+	person_event SPRITE_YOUNGSTER, 17, 31, $2, $33, 255, 255, $a0, 0, YoungsterScript_0x5c914, $071b
+	person_event SPRITE_LASS, 27, 11, $5, $2, 255, 255, $90, 0, LassScript_0x5c91c, $071c
+	person_event SPRITE_YOUNGSTER, 31, 15, $2, $11, 255, 255, $80, 0, YoungsterScript_0x5c924, $071d
+	person_event SPRITE_YOUNGSTER, 12, 20, $2, $11, 255, 255, $a0, 0, YoungsterScript_0x5c92c, $071e
+	person_event SPRITE_YOUNGSTER, 38, 21, $2, $33, 255, 255, $90, 0, YoungsterScript_0x5c934, $071f
+	person_event SPRITE_POKE_BALL, 16, 39, $1, $0, 255, 255, $1, 0, ItemFragment_0x5c945, $0658
+	person_event SPRITE_POKE_BALL, 47, 5, $1, $0, 255, 255, $1, 0, ItemFragment_0x5c947, $0659
 ; 0x5cd27
 

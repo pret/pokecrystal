@@ -41,7 +41,7 @@ UnknownScript_0x7001f: ; 0x7001f
 	return
 ; 0x70022
 
-UnknownScript_0x70022: ; 0x70022
+LanceScript_0x70022: ; 0x70022
 	checkbit1 $0026
 	iftrue UnknownScript_0x70057
 	loadfont
@@ -81,7 +81,7 @@ UnknownScript_0x70057: ; 0x70057
 	2jump UnknownScript_0x70035
 ; 0x70063
 
-UnknownScript_0x70063: ; 0x70063
+GyaradosScript_0x70063: ; 0x70063
 	loadfont
 	2writetext UnknownText_0x703cb
 	pause 15
@@ -107,7 +107,7 @@ UnknownScript_0x7007a: ; 0x7007a
 	end
 ; 0x7008e
 
-UnknownScript_0x7008e: ; 0x7008e
+GrampsScript_0x7008e: ; 0x7008e
 	faceplayer
 	loadfont
 	checkbit1 $0022
@@ -125,11 +125,11 @@ UnknownScript_0x7009c: ; 0x7009c
 	end
 ; 0x700a2
 
-UnknownScript_0x700a2: ; 0x700a2
+SuperNerdScript_0x700a2: ; 0x700a2
 	jumptextfaceplayer UnknownText_0x70444
 ; 0x700a5
 
-UnknownScript_0x700a5: ; 0x700a5
+CooltrainerFScript_0x700a5: ; 0x700a5
 	jumptextfaceplayer UnknownText_0x704bb
 ; 0x700a8
 
@@ -270,7 +270,7 @@ CooltrainerfLoisScript: ; 0x70106
 	end
 ; 0x7010e
 
-UnknownScript_0x7010e: ; 0x7010e
+SuperNerdScript_0x7010e: ; 0x7010e
 	faceplayer
 	loadfont
 	checkbit1 $006b
@@ -582,17 +582,17 @@ LakeofRage_MapEventHeader: ; 0x70919
 
 	; people-events
 	db 12
-	person_event $1e, 32, 25, $7, $0, 255, 255, $0, 0, UnknownScript_0x70022, $06d4
-	person_event $2f, 30, 24, $7, $0, 255, 255, $0, 0, UnknownScript_0x7008e, $ffff
-	person_event $2b, 17, 40, $8, $0, 255, 255, $0, 0, UnknownScript_0x700a2, $ffff
-	person_event $24, 33, 29, $5, $1, 255, 255, $0, 0, UnknownScript_0x700a5, $ffff
-	person_event $3a, 27, 34, $8, $0, 255, 255, $92, 1, TrainerFisherAndre, $0735
-	person_event $3a, 30, 28, $7, $0, 255, 255, $92, 1, TrainerFisherRaymond, $0735
-	person_event $23, 19, 8, $9, $0, 255, 255, $82, 1, TrainerCooltrainermAaron, $0735
-	person_event $24, 11, 40, $8, $0, 255, 255, $82, 0, TrainerCooltrainerfLois, $0735
-	person_event $a0, 26, 22, $16, $0, 255, 255, $80, 0, UnknownScript_0x70063, $0751
-	person_event $2b, 8, 8, $6, $0, 255, 255, $0, 0, UnknownScript_0x7010e, $075c
-	person_event $54, 14, 11, $1, $0, 255, 255, $1, 0, ItemFragment_0x70148, $0645
-	person_event $54, 6, 39, $1, $0, 255, 255, $1, 0, ItemFragment_0x7014a, $0646
+	person_event SPRITE_LANCE, 32, 25, $7, $0, 255, 255, $0, 0, LanceScript_0x70022, $06d4
+	person_event SPRITE_GRAMPS, 30, 24, $7, $0, 255, 255, $0, 0, GrampsScript_0x7008e, $ffff
+	person_event SPRITE_SUPER_NERD, 17, 40, $8, $0, 255, 255, $0, 0, SuperNerdScript_0x700a2, $ffff
+	person_event SPRITE_COOLTRAINER_F, 33, 29, $5, $1, 255, 255, $0, 0, CooltrainerFScript_0x700a5, $ffff
+	person_event SPRITE_FISHER, 27, 34, $8, $0, 255, 255, $92, 1, TrainerFisherAndre, $0735
+	person_event SPRITE_FISHER, 30, 28, $7, $0, 255, 255, $92, 1, TrainerFisherRaymond, $0735
+	person_event SPRITE_COOLTRAINER_M, 19, 8, $9, $0, 255, 255, $82, 1, TrainerCooltrainermAaron, $0735
+	person_event SPRITE_COOLTRAINER_F, 11, 40, $8, $0, 255, 255, $82, 0, TrainerCooltrainerfLois, $0735
+	person_event SPRITE_GYARADOS, 26, 22, $16, $0, 255, 255, $80, 0, GyaradosScript_0x70063, $0751
+	person_event SPRITE_SUPER_NERD, 8, 8, $6, $0, 255, 255, $0, 0, SuperNerdScript_0x7010e, $075c
+	person_event SPRITE_POKE_BALL, 14, 11, $1, $0, 255, 255, $1, 0, ItemFragment_0x70148, $0645
+	person_event SPRITE_POKE_BALL, 6, 39, $1, $0, 255, 255, $1, 0, ItemFragment_0x7014a, $0646
 ; 0x709de
 

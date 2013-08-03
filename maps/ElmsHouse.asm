@@ -6,11 +6,11 @@ ElmsHouse_MapScriptHeader: ; 0x7aee9
 	db 0
 ; 0x7aeeb
 
-UnknownScript_0x7aeeb: ; 0x7aeeb
+TeacherScript_0x7aeeb: ; 0x7aeeb
 	jumptextfaceplayer UnknownText_0x7aef7
 ; 0x7aeee
 
-UnknownScript_0x7aeee: ; 0x7aeee
+BugCatcherScript_0x7aeee: ; 0x7aeee
 	jumptextfaceplayer UnknownText_0x7af6b
 ; 0x7aef1
 
@@ -92,7 +92,7 @@ ElmsHouse_MapEventHeader: ; 0x7b0ea
 
 	; people-events
 	db 2
-	person_event $29, 9, 5, $4, $10, 255, 255, $a0, 0, UnknownScript_0x7aeeb, $ffff
-	person_event $25, 8, 9, $7, $0, 255, 255, $0, 0, UnknownScript_0x7aeee, $ffff
+	person_event SPRITE_TEACHER, 9, 5, $4, $10, 255, 255, $a0, 0, TeacherScript_0x7aeeb, $ffff
+	person_event SPRITE_BUG_CATCHER, 8, 9, $7, $0, 255, 255, $0, 0, BugCatcherScript_0x7aeee, $ffff
 ; 0x7b123
 

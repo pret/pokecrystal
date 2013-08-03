@@ -275,7 +275,7 @@ SupernerdPatScript: ; 0x19efa4
 	end
 ; 0x19efac
 
-UnknownScript_0x19efac: ; 0x19efac
+CooltrainerMScript_0x19efac: ; 0x19efac
 	faceplayer
 	loadfont
 	checkbit1 $0558
@@ -564,17 +564,17 @@ Route25_MapEventHeader: ; 0x19f58f
 
 	; people-events
 	db 11
-	person_event $1d, 13, 50, $8, $0, 255, 255, $80, 0, ObjectEvent, $076e
-	person_event $23, 14, 50, $8, $0, 255, 255, $a0, 0, ObjectEvent, $076e
-	person_event $27, 12, 16, $6, $0, 255, 255, $92, 3, TrainerSchoolboyDudley, $ffff
-	person_event $28, 15, 20, $7, $0, 255, 255, $92, 3, TrainerLassEllen, $ffff
-	person_event $27, 12, 25, $6, $0, 255, 255, $92, 1, TrainerSchoolboyJoe, $ffff
-	person_event $28, 10, 26, $9, $0, 255, 255, $92, 3, TrainerLassLaura, $ffff
-	person_event $27, 8, 29, $6, $0, 255, 255, $a2, 2, TrainerCamperLloyd, $ffff
-	person_event $28, 15, 32, $7, $0, 255, 255, $92, 1, TrainerLassShannon, $ffff
-	person_event $2b, 11, 35, $6, $0, 255, 255, $b2, 1, TrainerSupernerdPat, $ffff
-	person_event $23, 12, 41, $8, $0, 255, 255, $80, 0, UnknownScript_0x19efac, $ffff
-	person_event $54, 8, 36, $1, $0, 255, 255, $1, 0, ItemFragment_0x19efe3, $078b
+	person_event SPRITE_MISTY, 13, 50, $8, $0, 255, 255, $80, 0, ObjectEvent, $076e
+	person_event SPRITE_COOLTRAINER_M, 14, 50, $8, $0, 255, 255, $a0, 0, ObjectEvent, $076e
+	person_event SPRITE_YOUNGSTER, 12, 16, $6, $0, 255, 255, $92, 3, TrainerSchoolboyDudley, $ffff
+	person_event SPRITE_LASS, 15, 20, $7, $0, 255, 255, $92, 3, TrainerLassEllen, $ffff
+	person_event SPRITE_YOUNGSTER, 12, 25, $6, $0, 255, 255, $92, 1, TrainerSchoolboyJoe, $ffff
+	person_event SPRITE_LASS, 10, 26, $9, $0, 255, 255, $92, 3, TrainerLassLaura, $ffff
+	person_event SPRITE_YOUNGSTER, 8, 29, $6, $0, 255, 255, $a2, 2, TrainerCamperLloyd, $ffff
+	person_event SPRITE_LASS, 15, 32, $7, $0, 255, 255, $92, 1, TrainerLassShannon, $ffff
+	person_event SPRITE_SUPER_NERD, 11, 35, $6, $0, 255, 255, $b2, 1, TrainerSupernerdPat, $ffff
+	person_event SPRITE_COOLTRAINER_M, 12, 41, $8, $0, 255, 255, $80, 0, CooltrainerMScript_0x19efac, $ffff
+	person_event SPRITE_POKE_BALL, 8, 36, $1, $0, 255, 255, $1, 0, ItemFragment_0x19efe3, $078b
 ; 0x19f643
 
 

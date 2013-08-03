@@ -15,7 +15,7 @@ UnknownScript_0x1a9a48: ; 0x1a9a48
 	return
 ; 0x1a9a4c
 
-UnknownScript_0x1a9a4c: ; 0x1a9a4c
+GrampsScript_0x1a9a4c: ; 0x1a9a4c
 	faceplayer
 	loadfont
 	2writetext UnknownText_0x1a9aa5
@@ -34,7 +34,7 @@ UnknownScript_0x1a9a5b: ; 0x1a9a5b
 	end
 ; 0x1a9a61
 
-UnknownScript_0x1a9a61: ; 0x1a9a61
+GrampsScript_0x1a9a61: ; 0x1a9a61
 	faceplayer
 	loadfont
 	checkbit1 $0775
@@ -52,7 +52,7 @@ UnknownScript_0x1a9a6f: ; 0x1a9a6f
 	end
 ; 0x1a9a75
 
-UnknownScript_0x1a9a75: ; 0x1a9a75
+FisherScript_0x1a9a75: ; 0x1a9a75
 	faceplayer
 	loadfont
 	checkbit1 $00e0
@@ -70,7 +70,7 @@ UnknownScript_0x1a9a8e: ; 0x1a9a8e
 	end
 ; 0x1a9a90
 
-UnknownScript_0x1a9a90: ; 0x1a9a90
+YoungsterScript_0x1a9a90: ; 0x1a9a90
 	jumptextfaceplayer UnknownText_0x1a9daa
 ; 0x1a9a93
 
@@ -229,9 +229,9 @@ ViridianCity_MapEventHeader: ; 0x1a9ec9
 
 	; people-events
 	db 4
-	person_event $2f, 9, 22, $2, $22, 255, 255, $0, 0, UnknownScript_0x1a9a4c, $ffff
-	person_event $2f, 12, 34, $6, $0, 255, 255, $90, 0, UnknownScript_0x1a9a61, $ffff
-	person_event $3a, 27, 10, $6, $0, 255, 255, $80, 0, UnknownScript_0x1a9a75, $ffff
-	person_event $27, 25, 21, $2, $33, 255, 255, $a0, 0, UnknownScript_0x1a9a90, $ffff
+	person_event SPRITE_GRAMPS, 9, 22, $2, $22, 255, 255, $0, 0, GrampsScript_0x1a9a4c, $ffff
+	person_event SPRITE_GRAMPS, 12, 34, $6, $0, 255, 255, $90, 0, GrampsScript_0x1a9a61, $ffff
+	person_event SPRITE_FISHER, 27, 10, $6, $0, 255, 255, $80, 0, FisherScript_0x1a9a75, $ffff
+	person_event SPRITE_YOUNGSTER, 25, 21, $2, $33, 255, 255, $a0, 0, YoungsterScript_0x1a9a90, $ffff
 ; 0x1a9f3a
 

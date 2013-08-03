@@ -6,7 +6,7 @@ PewterSnoozeSpeechHouse_MapScriptHeader: ; 0x1a3057
 	db 0
 ; 0x1a3059
 
-UnknownScript_0x1a3059: ; 0x1a3059
+GrampsScript_0x1a3059: ; 0x1a3059
 	jumptextfaceplayer UnknownText_0x1a305f
 ; 0x1a305c
 
@@ -39,7 +39,7 @@ PewterSnoozeSpeechHouse_MapEventHeader: ; 0x1a308a
 
 	; people-events
 	db 1
-	person_event $2f, 7, 9, $8, $0, 255, 255, $90, 0, UnknownScript_0x1a3059, $ffff
+	person_event SPRITE_GRAMPS, 7, 9, $8, $0, 255, 255, $90, 0, GrampsScript_0x1a3059, $ffff
 ; 0x1a30b1
 
 

@@ -6,7 +6,7 @@ CeladonMansionRoof_MapScriptHeader: ; 0x71a37
 	db 0
 ; 0x71a39
 
-UnknownScript_0x71a39: ; 0x71a39
+FisherScript_0x71a39: ; 0x71a39
 	jumptextfaceplayer UnknownText_0x71a3f
 ; 0x71a3c
 
@@ -49,6 +49,6 @@ CeladonMansionRoof_MapEventHeader: ; 0x71ad4
 
 	; people-events
 	db 1
-	person_event $3a, 9, 11, $4, $10, 255, 255, $90, 0, UnknownScript_0x71a39, $ffff
+	person_event SPRITE_FISHER, 9, 11, $4, $10, 255, 255, $90, 0, FisherScript_0x71a39, $ffff
 ; 0x71afb
 

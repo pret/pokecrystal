@@ -39,7 +39,7 @@ UnknownScript_0x190013: ; 0x190013
 	end
 ; 0x19002e
 
-UnknownScript_0x19002e: ; 0x19002e
+PokefanMScript_0x19002e: ; 0x19002e
 	faceplayer
 UnknownScript_0x19002f: ; 0x19002f
 	checkbit1 $0022
@@ -97,7 +97,7 @@ UnknownScript_0x190078: ; 0x190078
 	end
 ; 0x19007e
 
-UnknownScript_0x19007e: ; 0x19007e
+GrampsScript_0x19007e: ; 0x19007e
 	faceplayer
 	loadfont
 	checkbit1 $0022
@@ -115,11 +115,11 @@ UnknownScript_0x19008c: ; 0x19008c
 	end
 ; 0x190092
 
-UnknownScript_0x190092: ; 0x190092
+FisherScript_0x190092: ; 0x190092
 	jumptextfaceplayer UnknownText_0x190276
 ; 0x190095
 
-UnknownScript_0x190095: ; 0x190095
+LassScript_0x190095: ; 0x190095
 	jumptextfaceplayer UnknownText_0x1902f2
 ; 0x190098
 
@@ -279,9 +279,9 @@ MahoganyTown_MapEventHeader: ; 0x1903d8
 
 	; people-events
 	db 4
-	person_event $2d, 12, 23, $6, $0, 255, 255, $0, 0, UnknownScript_0x19002e, $0756
-	person_event $2f, 13, 10, $5, $1, 255, 255, $0, 0, UnknownScript_0x19007e, $ffff
-	person_event $3a, 18, 10, $6, $0, 255, 255, $a0, 0, UnknownScript_0x190092, $0757
-	person_event $28, 12, 16, $6, $0, 255, 255, $0, 0, UnknownScript_0x190095, $0736
+	person_event SPRITE_POKEFAN_M, 12, 23, $6, $0, 255, 255, $0, 0, PokefanMScript_0x19002e, $0756
+	person_event SPRITE_GRAMPS, 13, 10, $5, $1, 255, 255, $0, 0, GrampsScript_0x19007e, $ffff
+	person_event SPRITE_FISHER, 18, 10, $6, $0, 255, 255, $a0, 0, FisherScript_0x190092, $0757
+	person_event SPRITE_LASS, 12, 16, $6, $0, 255, 255, $0, 0, LassScript_0x190095, $0736
 ; 0x19044f
 

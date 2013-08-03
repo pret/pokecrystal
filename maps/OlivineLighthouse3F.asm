@@ -181,9 +181,9 @@ OlivineLighthouse3F_MapEventHeader: ; 0x5b481
 
 	; people-events
 	db 4
-	person_event $49, 6, 13, $6, $0, 255, 255, $92, 1, TrainerSailorTerrell, $ffff
-	person_event $40, 9, 17, $9, $0, 255, 255, $92, 4, TrainerGentlemanPreston, $ffff
-	person_event $27, 13, 7, $7, $0, 255, 255, $92, 3, TrainerBird_keeperTheo, $ffff
-	person_event $54, 6, 12, $1, $0, 255, 255, $1, 0, ItemFragment_0x5b279, $0664
+	person_event SPRITE_SAILOR, 6, 13, $6, $0, 255, 255, $92, 1, TrainerSailorTerrell, $ffff
+	person_event SPRITE_GENTLEMAN, 9, 17, $9, $0, 255, 255, $92, 4, TrainerGentlemanPreston, $ffff
+	person_event SPRITE_YOUNGSTER, 13, 7, $7, $0, 255, 255, $92, 3, TrainerBird_keeperTheo, $ffff
+	person_event SPRITE_POKE_BALL, 6, 12, $1, $0, 255, 255, $1, 0, ItemFragment_0x5b279, $0664
 ; 0x5b4e8
 

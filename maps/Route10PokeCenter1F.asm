@@ -6,15 +6,15 @@ Route10PokeCenter1F_MapScriptHeader: ; 0x188bd2
 	db 0
 ; 0x188bd4
 
-UnknownScript_0x188bd4: ; 0x188bd4
+NurseScript_0x188bd4: ; 0x188bd4
 	jumpstd $0000
 ; 0x188bd7
 
-UnknownScript_0x188bd7: ; 0x188bd7
+GentlemanScript_0x188bd7: ; 0x188bd7
 	jumptextfaceplayer UnknownText_0x188bf1
 ; 0x188bda
 
-UnknownScript_0x188bda: ; 0x188bda
+GymGuyScript_0x188bda: ; 0x188bda
 	faceplayer
 	loadfont
 	checkbit1 $00c9
@@ -32,7 +32,7 @@ UnknownScript_0x188be8: ; 0x188be8
 	end
 ; 0x188bee
 
-UnknownScript_0x188bee: ; 0x188bee
+CooltrainerFScript_0x188bee: ; 0x188bee
 	jumptextfaceplayer UnknownText_0x188d0c
 ; 0x188bf1
 
@@ -90,9 +90,9 @@ Route10PokeCenter1F_MapEventHeader: ; 0x188d63
 
 	; people-events
 	db 4
-	person_event $37, 5, 7, $6, $0, 255, 255, $0, 0, UnknownScript_0x188bd4, $ffff
-	person_event $40, 10, 11, $5, $1, 255, 255, $80, 0, UnknownScript_0x188bd7, $ffff
-	person_event $48, 6, 11, $3, $0, 255, 255, $a0, 0, UnknownScript_0x188bda, $ffff
-	person_event $24, 7, 5, $6, $0, 255, 255, $0, 0, UnknownScript_0x188bee, $ffff
+	person_event SPRITE_NURSE, 5, 7, $6, $0, 255, 255, $0, 0, NurseScript_0x188bd4, $ffff
+	person_event SPRITE_GENTLEMAN, 10, 11, $5, $1, 255, 255, $80, 0, GentlemanScript_0x188bd7, $ffff
+	person_event SPRITE_GYM_GUY, 6, 11, $3, $0, 255, 255, $a0, 0, GymGuyScript_0x188bda, $ffff
+	person_event SPRITE_COOLTRAINER_F, 7, 5, $6, $0, 255, 255, $0, 0, CooltrainerFScript_0x188bee, $ffff
 ; 0x188dac
 

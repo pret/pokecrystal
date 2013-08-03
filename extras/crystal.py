@@ -1993,7 +1993,7 @@ movement_command_bases = {
     0x45: "accelerate_last",
     0x46: ["step_sleep", ["duration", DecimalParam]],
     0x47: "step_end",
-    0x49: "hide_person",
+    0x49: "remove_person",
 
     # do these next two have any params ??
     0x4C: "teleport_from",
@@ -2811,7 +2811,7 @@ pksv_crystal_more = {
     0x8F: ["ptpriorityjump", ["pointer", ScriptPointerLabelParam]],
     0x90: ["return"],
     0x91: ["end"],
-    0x92: ["reloadandreturn"],
+    0x92: ["reloadandreturn", ["which_method", SingleByteParam]],
     0x93: ["resetfuncs"],
     0x94: ["pokemart", ["dialog_id", SingleByteParam], ["mart_id", MultiByteParam]], # maybe it should be a pokemark constant id/label?
     0x95: ["elevator", ["floor_list_pointer", PointerLabelParam]],

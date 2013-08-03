@@ -6,11 +6,11 @@ VermilionMagnetTrainSpeechHouse_MapScriptHeader: ; 0x191eb5
 	db 0
 ; 0x191eb7
 
-UnknownScript_0x191eb7: ; 0x191eb7
+PokefanFScript_0x191eb7: ; 0x191eb7
 	jumptextfaceplayer UnknownText_0x191ec0
 ; 0x191eba
 
-UnknownScript_0x191eba: ; 0x191eba
+YoungsterScript_0x191eba: ; 0x191eba
 	jumptextfaceplayer UnknownText_0x191f16
 ; 0x191ebd
 
@@ -51,7 +51,7 @@ VermilionMagnetTrainSpeechHouse_MapEventHeader: ; 0x191f48
 
 	; people-events
 	db 2
-	person_event $2e, 7, 6, $8, $0, 255, 255, $0, 0, UnknownScript_0x191eb7, $ffff
-	person_event $27, 7, 4, $a, $0, 255, 255, $a0, 0, UnknownScript_0x191eba, $ffff
+	person_event SPRITE_POKEFAN_F, 7, 6, $8, $0, 255, 255, $0, 0, PokefanFScript_0x191eb7, $ffff
+	person_event SPRITE_YOUNGSTER, 7, 4, $a, $0, 255, 255, $a0, 0, YoungsterScript_0x191eba, $ffff
 ; 0x191f7c
 

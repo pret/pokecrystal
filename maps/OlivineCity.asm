@@ -77,11 +77,11 @@ UnknownScript_0x1a886b: ; 0x1a886b
 	end
 ; 0x1a88a3
 
-UnknownScript_0x1a88a3: ; 0x1a88a3
+SailorScript_0x1a88a3: ; 0x1a88a3
 	jumptextfaceplayer UnknownText_0x1a8a58
 ; 0x1a88a6
 
-UnknownScript_0x1a88a6: ; 0x1a88a6
+StandingYoungsterScript_0x1a88a6: ; 0x1a88a6
 	faceplayer
 	loadfont
 	random $2
@@ -99,7 +99,7 @@ UnknownScript_0x1a88b4: ; 0x1a88b4
 	end
 ; 0x1a88ba
 
-UnknownScript_0x1a88ba: ; 0x1a88ba
+SailorScript_0x1a88ba: ; 0x1a88ba
 	jumptextfaceplayer UnknownText_0x1a8b71
 ; 0x1a88bd
 
@@ -324,9 +324,9 @@ OlivineCity_MapEventHeader: ; 0x1a8cce
 
 	; people-events
 	db 4
-	person_event $49, 31, 30, $4, $10, 255, 255, $0, 0, UnknownScript_0x1a88a3, $ffff
-	person_event $66, 17, 24, $3, $0, 255, 255, $80, 0, UnknownScript_0x1a88a6, $ffff
-	person_event $49, 25, 21, $2, $11, 255, 255, $0, 0, UnknownScript_0x1a88ba, $ffff
-	person_event $f5, 15, 14, $6, $0, 255, 255, $0, 0, ObjectEvent, $06c3
+	person_event SPRITE_SAILOR, 31, 30, $4, $10, 255, 255, $0, 0, SailorScript_0x1a88a3, $ffff
+	person_event SPRITE_STANDING_YOUNGSTER, 17, 24, $3, $0, 255, 255, $80, 0, StandingYoungsterScript_0x1a88a6, $ffff
+	person_event SPRITE_SAILOR, 25, 21, $2, $11, 255, 255, $0, 0, SailorScript_0x1a88ba, $ffff
+	person_event SPRITE_OLIVINE_RIVAL, 15, 14, $6, $0, 255, 255, $0, 0, ObjectEvent, $06c3
 ; 0x1a8d72
 

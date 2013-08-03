@@ -15,11 +15,11 @@ UnknownScript_0x1ac6d1: ; 0x1ac6d1
 	return
 ; 0x1ac6d5
 
-UnknownScript_0x1ac6d5: ; 0x1ac6d5
+TeacherScript_0x1ac6d5: ; 0x1ac6d5
 	jumptextfaceplayer UnknownText_0x1ac6e7
 ; 0x1ac6d8
 
-UnknownScript_0x1ac6d8: ; 0x1ac6d8
+FisherScript_0x1ac6d8: ; 0x1ac6d8
 	jumptextfaceplayer UnknownText_0x1ac720
 ; 0x1ac6db
 
@@ -95,7 +95,7 @@ PalletTown_MapEventHeader: ; 0x1ac7cf
 
 	; people-events
 	db 2
-	person_event $29, 12, 7, $2, $22, 255, 255, $0, 0, UnknownScript_0x1ac6d5, $ffff
-	person_event $3a, 18, 16, $5, $2, 255, 255, $a0, 0, UnknownScript_0x1ac6d8, $ffff
+	person_event SPRITE_TEACHER, 12, 7, $2, $22, 255, 255, $0, 0, TeacherScript_0x1ac6d5, $ffff
+	person_event SPRITE_FISHER, 18, 16, $5, $2, 255, 255, $a0, 0, FisherScript_0x1ac6d8, $ffff
 ; 0x1ac812
 

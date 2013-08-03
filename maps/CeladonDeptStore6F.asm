@@ -15,11 +15,11 @@ UnknownScript_0x71175: ; 0x71175
 	return
 ; 0x7117a
 
-UnknownScript_0x7117a: ; 0x7117a
+SuperNerdScript_0x7117a: ; 0x7117a
 	jumptextfaceplayer UnknownText_0x712c7
 ; 0x7117d
 
-UnknownScript_0x7117d: ; 0x7117d
+YoungsterScript_0x7117d: ; 0x7117d
 	jumptextfaceplayer UnknownText_0x71310
 ; 0x71180
 
@@ -181,7 +181,7 @@ CeladonDeptStore6F_MapEventHeader: ; 0x71363
 
 	; people-events
 	db 2
-	person_event $2b, 6, 13, $7, $0, 255, 255, $0, 0, UnknownScript_0x7117a, $ffff
-	person_event $27, 9, 16, $2, $12, 255, 255, $80, 0, UnknownScript_0x7117d, $ffff
+	person_event SPRITE_SUPER_NERD, 6, 13, $7, $0, 255, 255, $0, 0, SuperNerdScript_0x7117a, $ffff
+	person_event SPRITE_YOUNGSTER, 9, 16, $2, $12, 255, 255, $80, 0, YoungsterScript_0x7117d, $ffff
 ; 0x713ab
 

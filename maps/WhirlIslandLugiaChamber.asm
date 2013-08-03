@@ -28,7 +28,7 @@ UnknownScript_0x18c515: ; 0x18c515
 	return
 ; 0x18c518
 
-UnknownScript_0x18c518: ; 0x18c518
+LugiaScript_0x18c518: ; 0x18c518
 	faceplayer
 	loadfont
 	2writetext UnknownText_0x18c531
@@ -64,6 +64,6 @@ WhirlIslandLugiaChamber_MapEventHeader: ; 0x18c53a
 
 	; people-events
 	db 1
-	person_event $a1, 9, 13, $16, $0, 255, 255, $90, 0, UnknownScript_0x18c518, $073d
+	person_event SPRITE_LUGIA, 9, 13, $16, $0, 255, 255, $90, 0, LugiaScript_0x18c518, $073d
 ; 0x18c552
 

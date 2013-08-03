@@ -6,7 +6,7 @@ CeruleanGymBadgeSpeechHouse_MapScriptHeader: ; 0x188000
 	db 0
 ; 0x188002
 
-UnknownScript_0x188002: ; 0x188002
+PokefanMScript_0x188002: ; 0x188002
 	jumptextfaceplayer UnknownText_0x188005
 ; 0x188005
 
@@ -32,6 +32,6 @@ CeruleanGymBadgeSpeechHouse_MapEventHeader: ; 0x18802b
 
 	; people-events
 	db 1
-	person_event $2d, 7, 6, $9, $0, 255, 255, $0, 0, UnknownScript_0x188002, $ffff
+	person_event SPRITE_POKEFAN_M, 7, 6, $9, $0, 255, 255, $0, 0, PokefanMScript_0x188002, $ffff
 ; 0x188048
 

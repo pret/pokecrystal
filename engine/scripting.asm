@@ -485,11 +485,11 @@ Script_verbosegiveitem: ; 0x96f60
 ;     item (ItemLabelByte)
 ;     quantity (DecimalParam)
 
-	call $77ca
+	call Script_giveitem
 	call CurItemName
 	ld de, StringBuffer1
 	ld a, $1
-	call $76c8
+	call Function976c8
 	ld b, BANK(GiveItemScript)
 	ld de, GiveItemScript
 	jp ScriptCall
@@ -535,7 +535,7 @@ Script_verbosegiveitem2: ; 0x96f8e
 .asm_96f98
 	ld [$d106], a
 	call GetScriptByte
-	call $769e
+	call Unknown_0x9769e
 	ld a, [de]
 	ld [$d10c], a
 	ld hl, $d892
@@ -548,7 +548,7 @@ Script_verbosegiveitem2: ; 0x96f8e
 	call CurItemName
 	ld de, StringBuffer1
 	ld a, $1
-	call $76c8
+	call Function976c8
 	ld b, BANK(GiveItemScript)
 	ld de, GiveItemScript
 	jp ScriptCall
@@ -1021,6 +1021,9 @@ Script_applymovement: ; 0x971f3
 	call GetScriptByte
 	call Unknown_0x971e3
 	ld c, a
+; 971fa
+
+Function971fa: ; 971fa
 	push bc
 	ld a, c
 	ld a, $1
@@ -1028,7 +1031,7 @@ Script_applymovement: ; 0x971f3
 	rst $8
 	pop bc
 	push bc
-	call $7221
+	call Unknown_0x97221
 	pop bc
 	call GetScriptByte
 	ld l, a
@@ -1058,7 +1061,7 @@ Script_applymovement2: ; 0x97228
 
 	ld a, [$ffe0]
 	ld c, a
-	jp $71fa
+	jp Function971fa
 ; 0x9722e
 
 Script_faceplayer: ; 0x9722e
@@ -1079,7 +1082,7 @@ Script_faceplayer: ; 0x9722e
 	ld e, a
 	ld a, [$ffe0]
 	ld d, a
-	call $728b
+	call Unknown_0x9728b
 	ret
 ; 0x97248
 
@@ -1114,7 +1117,7 @@ Script_faceperson: ; 0x97248
 	add a
 	ld e, a
 	ld d, c
-	call $728b
+	call Unknown_0x9728b
 	ret
 ; 0x97274
 
@@ -1135,7 +1138,7 @@ Script_spriteface: ; 0x97274
 	add a
 	add a
 	ld e, a
-	call $728b
+	call Unknown_0x9728b
 	ret
 ; 0x9728b
 
@@ -1161,7 +1164,7 @@ Unknown_0x9728b: ; 0x9728b
 	ld hl, $d0ed
 	bit 6, [hl]
 	jr nz, .asm_972b5 ; 0x972b0 $3
-	call $72bc
+	call Unknown_0x972bc
 .asm_972b5
 	call $1ad2
 	ret
@@ -1173,7 +1176,7 @@ Unknown_0x9728b: ; 0x9728b
 
 Unknown_0x972bc: ; 0x972bc
 	call $217a
-	ld hl, $c4a0
+	ld hl, TileMap
 	ld bc, $0168
 .asm_972c5
 	res 7, [hl]
@@ -1211,7 +1214,7 @@ Script_appear: ; 0x972dd
 	call $1956
 	ld a, [$ffaf]
 	ld b, $0
-	call $730b
+	call Unknown_0x9730b
 	ret
 ; 0x972ee
 
@@ -1229,7 +1232,7 @@ Script_disappear: ; 0x972ee
 	call $199f
 	ld a, [$ffaf]
 	ld b, $1
-	call $730b
+	call Unknown_0x9730b
 	ld a, $1
 	ld hl, $5920
 	rst $8
@@ -1543,9 +1546,7 @@ Script_returnafterbattle: ; 0x97459
 	jr z, .asm_9748e ; 0x97481 $b
 	ld b, $24
 	ld de, $4255
-	ld a, $25
-	ld hl, $7c4f
-	rst $8
+	callba Function97c4f
 .asm_9748e
 	jp Script_reloadmap
 ; 0x97491
@@ -1978,7 +1979,7 @@ Script_random: ; 0x97640
 	and a
 	ret z
 	ld c, a
-	call $7673
+	call Unknown_0x97673
 	and a
 	jr z, .asm_9765f ; 0x9764d $10
 	ld b, a
@@ -2027,7 +2028,7 @@ Script_checkcode: ; 0x9767d
 ;     variable_id (SingleByteParam)
 
 	call GetScriptByte
-	call $769e
+	call Unknown_0x9769e
 	ld a, [de]
 	ld [$c2dd], a
 	ret
@@ -2039,7 +2040,7 @@ Script_writevarcode: ; 0x97688
 ;     variable_id (SingleByteParam)
 
 	call GetScriptByte
-	call $769e
+	call Unknown_0x9769e
 	ld a, [$c2dd]
 	ld [de], a
 	ret
@@ -2052,7 +2053,7 @@ Script_writecode: ; 0x97693
 ;     value (SingleByteParam)
 
 	call GetScriptByte
-	call $769e
+	call Unknown_0x9769e
 	call GetScriptByte
 	ld [de], a
 	ret
@@ -2096,9 +2097,12 @@ Script_pokenamemem: ; 0x976ae
 Unknown_976c0: ; 0x976c0
 	call GetScriptByte
 	cp $3
-	jr c, .asm_976c8 ; 0x976c5 $1
+	jr c, .asm_976c8
 	xor a
 .asm_976c8
+; 976c8
+
+Function976c8: ; 976c8
 	ld hl, StringBuffer3
 	ld bc, 19
 	call AddNTimes
@@ -2197,8 +2201,8 @@ Script_readmoney: ; 0x97732
 ;     account (SingleByteParam)
 ;     memory (SingleByteParam)
 
-	call $7771
-	call $7861
+	call Unknown_0x97771
+	call Unknown_0x97861
 	ld hl, StringBuffer1
 	ld bc, $4306
 	call $3198
@@ -2211,7 +2215,7 @@ Script_readcoins: ; 0x97747
 ; parameters:
 ;     memory (SingleByteParam)
 
-	call $7771
+	call Unknown_0x97771
 	ld hl, StringBuffer1
 	ld de, $d855
 	ld bc, $4206
@@ -2225,7 +2229,7 @@ Script_RAM2MEM: ; 0x9775c
 ; parameters:
 ;     memory (SingleByteParam)
 
-	call $7771
+	call Unknown_0x97771
 	ld de, $c2dd
 	ld hl, StringBuffer1
 	ld bc, $4103
@@ -2372,8 +2376,8 @@ Script_givemoney: ; 0x97829
 ;     account (SingleByteParam)
 ;     money (MoneyByteParam)
 
-	call $7861
-	call $786d
+	call Unknown_0x97861
+	call Unknown_0x9786d
 	ld a, $5
 	ld hl, $5fd7
 	rst $8
@@ -2386,8 +2390,8 @@ Script_takemoney: ; 0x97836
 ;     account (SingleByteParam)
 ;     money (MoneyByteParam)
 
-	call $7861
-	call $786d
+	call Unknown_0x97861
+	call Unknown_0x9786d
 	ld a, $5
 	ld hl, $5ffa
 	rst $8
@@ -2400,8 +2404,8 @@ Script_checkmoney: ; 0x97843
 ;     account (SingleByteParam)
 ;     money (MoneyByteParam)
 
-	call $7861
-	call $786d
+	call Unknown_0x97861
+	call Unknown_0x9786d
 	ld a, $5
 	ld hl, $600b
 	rst $8
@@ -2451,7 +2455,7 @@ Script_givecoins: ; 0x97881
 ; parameters:
 ;     coins (CoinByteParam)
 
-	call $78a0
+	call Function978a0
 	ld a, $5
 	ld hl, $606f
 	rst $8
@@ -2463,7 +2467,7 @@ Script_takecoins: ; 0x9788b
 ; parameters:
 ;     coins (CoinByteParam)
 
-	call $78a0
+	call Function978a0
 	ld a, $5
 	ld hl, $608f
 	rst $8
@@ -2475,11 +2479,14 @@ Script_checkcoins: ; 0x97895
 ; parameters:
 ;     coins (CoinByteParam)
 
-	call $78a0
+	call Function978a0
 	ld a, $5
 	ld hl, $60a1
 	rst $8
-	jr Unknown_9784f ; 0x9789e $af
+	jr Unknown_9784f
+; 978a0
+
+Function978a0: ; 978a0
 	call GetScriptByte
 	ld [$ffc4], a
 	call GetScriptByte
@@ -2718,7 +2725,7 @@ Script_setbit2: ; 0x979bb
 	call GetScriptByte
 	ld d, a
 	ld b, $1
-	call $79ee
+	call Unknown_0x979ee
 	ret
 ; 0x979c9
 
@@ -2732,7 +2739,7 @@ Script_clearbit2: ; 0x979c9
 	call GetScriptByte
 	ld d, a
 	ld b, $0
-	call $79ee
+	call Unknown_0x979ee
 	ret
 ; 0x979d7
 
@@ -2746,7 +2753,7 @@ Script_checkbit2: ; 0x979d7
 	call GetScriptByte
 	ld d, a
 	ld b, $2
-	call $79ee
+	call Unknown_0x979ee
 	ld a, c
 	and a
 	jr z, .asm_979ea ; 0x979e6 $2
@@ -2897,9 +2904,7 @@ Script_writecmdqueue: ; 0x97a8b
 	ld d, a
 	ld a, [ScriptBank]
 	ld b, a
-	ld a, $25
-	ld hl, $7e31
-	rst $8
+	callba Function97e31
 	ret
 ; 0x97a9e
 
@@ -2912,9 +2917,7 @@ Script_delcmdqueue: ; 0x97a9e
 	ld [$c2dd], a
 	call GetScriptByte
 	ld b, a
-	ld a, $25
-	ld hl, $7e5c
-	rst $8
+	callba Function97e5c
 	ret c
 	ld a, $1
 	ld [$c2dd], a
@@ -2976,16 +2979,12 @@ Script_warpcheck: ; 0x97af6
 
 	call $224a
 	ret nc
-	ld a, $25
-	ld hl, $66d0
-	rst $8
+	callba Function966d0
 	ret
 ; 0x97b01
 
 Unknown_0x97b01: ; 0x97b01
-	ld a, $25
-	ld hl, $66d0
-	rst $8
+	callba Function966d0
 	ret
 ; 0x97b08
 
@@ -3005,7 +3004,7 @@ Script_newloadmap: ; 0x97b08
 Script_reloadandreturn: ; 0x97b16
 ; script command 0x92
 
-	call $7b08
+	call Script_newloadmap
 	jp Script_end
 ; 0x97b1c
 
@@ -3203,8 +3202,9 @@ Script_credits: ; 0x97bf3
 	ld hl, $6455
 	rst $8
 	; fallthrough
+
 DisplayCredits:
-	call $7bc0
+	call Script_resetfuncs
 	ld a, $3
 	call $261b
 	call StopScript

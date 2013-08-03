@@ -49,7 +49,7 @@ UnknownScript_0x1809ad: ; 0x1809ad
 	end
 ; 0x1809c5
 
-UnknownScript_0x1809c5: ; 0x1809c5
+BrunoScript_0x1809c5: ; 0x1809c5
 	faceplayer
 	loadfont
 	checkbit1 $05ba
@@ -144,6 +144,6 @@ BrunosRoom_MapEventHeader: ; 0x180b88
 
 	; people-events
 	db 1
-	person_event $1c, 11, 9, $6, $0, 255, 255, $b0, 0, UnknownScript_0x1809c5, $ffff
+	person_event SPRITE_BRUNO, 11, 9, $6, $0, 255, 255, $b0, 0, BrunoScript_0x1809c5, $ffff
 ; 0x180baf
 

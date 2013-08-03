@@ -6,15 +6,15 @@ CeruleanPoliceStation_MapScriptHeader: ; 0x188048
 	db 0
 ; 0x18804a
 
-UnknownScript_0x18804a: ; 0x18804a
+FishingGuruScript_0x18804a: ; 0x18804a
 	jumptextfaceplayer UnknownText_0x18805a
 ; 0x18804d
 
-UnknownScript_0x18804d: ; 0x18804d
+PokefanFScript_0x18804d: ; 0x18804d
 	jumptextfaceplayer UnknownText_0x1880c3
 ; 0x188050
 
-UnknownScript_0x188050: ; 0x188050
+DiglettScript_0x188050: ; 0x188050
 	loadfont
 	2writetext UnknownText_0x1880e7
 	cry DIGLETT
@@ -58,8 +58,8 @@ CeruleanPoliceStation_MapEventHeader: ; 0x1880fa
 
 	; people-events
 	db 3
-	person_event $3b, 5, 9, $7, $0, 255, 255, $a0, 0, UnknownScript_0x18804a, $ffff
-	person_event $2e, 8, 9, $8, $0, 255, 255, $90, 0, UnknownScript_0x18804d, $ffff
-	person_event $8c, 9, 7, $16, $0, 255, 255, $b0, 0, UnknownScript_0x188050, $ffff
+	person_event SPRITE_FISHING_GURU, 5, 9, $7, $0, 255, 255, $a0, 0, FishingGuruScript_0x18804a, $ffff
+	person_event SPRITE_POKEFAN_F, 8, 9, $8, $0, 255, 255, $90, 0, PokefanFScript_0x18804d, $ffff
+	person_event SPRITE_DIGLETT, 9, 7, $16, $0, 255, 255, $b0, 0, DiglettScript_0x188050, $ffff
 ; 0x188131
 

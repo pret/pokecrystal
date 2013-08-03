@@ -6,23 +6,23 @@ CeladonPokeCenter1F_MapScriptHeader: ; 0x71e20
 	db 0
 ; 0x71e22
 
-UnknownScript_0x71e22: ; 0x71e22
+NurseScript_0x71e22: ; 0x71e22
 	jumpstd $0000
 ; 0x71e25
 
-UnknownScript_0x71e25: ; 0x71e25
+GentlemanScript_0x71e25: ; 0x71e25
 	jumpstd $0033
 ; 0x71e28
 
-UnknownScript_0x71e28: ; 0x71e28
+CooltrainerFScript_0x71e28: ; 0x71e28
 	jumptextfaceplayer UnknownText_0x71e70
 ; 0x71e2b
 
-UnknownScript_0x71e2b: ; 0x71e2b
+PharmacistScript_0x71e2b: ; 0x71e2b
 	jumptextfaceplayer UnknownText_0x71ec1
 ; 0x71e2e
 
-UnknownScript_0x71e2e: ; 0x71e2e
+SuperNerdScript_0x71e2e: ; 0x71e2e
 	faceplayer
 	loadfont
 	2writetext UnknownText_0x71f22
@@ -150,10 +150,10 @@ CeladonPokeCenter1F_MapEventHeader: ; 0x720b8
 
 	; people-events
 	db 5
-	person_event $37, 5, 7, $6, $0, 255, 255, $0, 0, UnknownScript_0x71e22, $ffff
-	person_event $40, 9, 5, $5, $1, 255, 255, $0, 0, UnknownScript_0x71e25, $ffff
-	person_event $4b, 7, 4, $6, $0, 255, 255, $80, 0, UnknownScript_0x71e2b, $ffff
-	person_event $24, 10, 12, $5, $1, 255, 255, $a0, 0, UnknownScript_0x71e28, $ffff
-	person_event $2b, 7, 8, $6, $0, 255, 255, $90, 0, UnknownScript_0x71e2e, $07b7
+	person_event SPRITE_NURSE, 5, 7, $6, $0, 255, 255, $0, 0, NurseScript_0x71e22, $ffff
+	person_event SPRITE_GENTLEMAN, 9, 5, $5, $1, 255, 255, $0, 0, GentlemanScript_0x71e25, $ffff
+	person_event SPRITE_PHARMACIST, 7, 4, $6, $0, 255, 255, $80, 0, PharmacistScript_0x71e2b, $ffff
+	person_event SPRITE_COOLTRAINER_F, 10, 12, $5, $1, 255, 255, $a0, 0, CooltrainerFScript_0x71e28, $ffff
+	person_event SPRITE_SUPER_NERD, 7, 8, $6, $0, 255, 255, $90, 0, SuperNerdScript_0x71e2e, $07b7
 ; 0x7210e
 

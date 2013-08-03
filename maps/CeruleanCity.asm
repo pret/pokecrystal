@@ -15,7 +15,7 @@ UnknownScript_0x184005: ; 0x184005
 	return
 ; 0x184009
 
-UnknownScript_0x184009: ; 0x184009
+CooltrainerMScript_0x184009: ; 0x184009
 	faceplayer
 	loadfont
 	checkbit1 $00c9
@@ -33,11 +33,11 @@ UnknownScript_0x184017: ; 0x184017
 	end
 ; 0x18401d
 
-UnknownScript_0x18401d: ; 0x18401d
+SuperNerdScript_0x18401d: ; 0x18401d
 	jumptextfaceplayer UnknownText_0x1841a8
 ; 0x184020
 
-UnknownScript_0x184020: ; 0x184020
+SlowpokeScript_0x184020: ; 0x184020
 	loadfont
 	2writetext UnknownText_0x1841e9
 	cry SLOWBRO
@@ -46,7 +46,7 @@ UnknownScript_0x184020: ; 0x184020
 	end
 ; 0x18402a
 
-UnknownScript_0x18402a: ; 0x18402a
+CooltrainerFScript_0x18402a: ; 0x18402a
 	faceplayer
 	loadfont
 	2writetext UnknownText_0x1841fa
@@ -69,7 +69,7 @@ UnknownScript_0x18402a: ; 0x18402a
 	end
 ; 0x18404a
 
-UnknownScript_0x18404a: ; 0x18404a
+FisherScript_0x18404a: ; 0x18404a
 	faceplayer
 	loadfont
 	checkbit1 $00c9
@@ -90,7 +90,7 @@ UnknownScript_0x18405e: ; 0x18405e
 	end
 ; 0x184064
 
-UnknownScript_0x184064: ; 0x184064
+YoungsterScript_0x184064: ; 0x184064
 	faceplayer
 	loadfont
 	2writetext UnknownText_0x1842a9
@@ -309,11 +309,11 @@ CeruleanCity_MapEventHeader: ; 0x18445d
 
 	; people-events
 	db 6
-	person_event $23, 27, 19, $2, $22, 255, 255, $90, 0, UnknownScript_0x184009, $ffff
-	person_event $2b, 19, 27, $2, $11, 255, 255, $90, 0, UnknownScript_0x18401d, $ffff
-	person_event $45, 28, 24, $1, $0, 255, 255, $0, 0, UnknownScript_0x184020, $ffff
-	person_event $24, 28, 25, $8, $0, 255, 255, $a0, 0, UnknownScript_0x18402a, $ffff
-	person_event $3a, 30, 34, $5, $1, 255, 255, $80, 0, UnknownScript_0x18404a, $ffff
-	person_event $27, 16, 10, $3, $1, 255, 255, $80, 0, UnknownScript_0x184064, $ffff
+	person_event SPRITE_COOLTRAINER_M, 27, 19, $2, $22, 255, 255, $90, 0, CooltrainerMScript_0x184009, $ffff
+	person_event SPRITE_SUPER_NERD, 19, 27, $2, $11, 255, 255, $90, 0, SuperNerdScript_0x18401d, $ffff
+	person_event SPRITE_SLOWPOKE, 28, 24, $1, $0, 255, 255, $0, 0, SlowpokeScript_0x184020, $ffff
+	person_event SPRITE_COOLTRAINER_F, 28, 25, $8, $0, 255, 255, $a0, 0, CooltrainerFScript_0x18402a, $ffff
+	person_event SPRITE_FISHER, 30, 34, $5, $1, 255, 255, $80, 0, FisherScript_0x18404a, $ffff
+	person_event SPRITE_YOUNGSTER, 16, 10, $3, $1, 255, 255, $80, 0, YoungsterScript_0x184064, $ffff
 ; 0x1844fc
 

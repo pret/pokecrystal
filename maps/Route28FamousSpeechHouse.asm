@@ -13,7 +13,7 @@ UnknownScript_0x1ae657: ; 0x1ae657
 	end
 ; 0x1ae658
 
-UnknownScript_0x1ae658: ; 0x1ae658
+CooltrainerFScript_0x1ae658: ; 0x1ae658
 	faceplayer
 	loadfont
 	checkbit1 $0074
@@ -35,7 +35,7 @@ UnknownScript_0x1ae66f: ; 0x1ae66f
 	end
 ; 0x1ae675
 
-UnknownScript_0x1ae675: ; 0x1ae675
+MoltresScript_0x1ae675: ; 0x1ae675
 	loadfont
 	2writetext UnknownText_0x1ae752
 	cry FEAROW
@@ -90,8 +90,8 @@ Route28FamousSpeechHouse_MapEventHeader: ; 0x1ae762
 
 	; people-events
 	db 2
-	person_event $24, 7, 6, $6, $0, 255, 255, $a0, 0, UnknownScript_0x1ae658, $ffff
-	person_event $9e, 9, 10, $16, $0, 255, 255, $b0, 0, UnknownScript_0x1ae675, $ffff
+	person_event SPRITE_COOLTRAINER_F, 7, 6, $6, $0, 255, 255, $a0, 0, CooltrainerFScript_0x1ae658, $ffff
+	person_event SPRITE_MOLTRES, 9, 10, $16, $0, 255, 255, $b0, 0, MoltresScript_0x1ae675, $ffff
 ; 0x1ae796
 
 

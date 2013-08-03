@@ -6,7 +6,7 @@ RadioTower1F_MapScriptHeader: ; 0x5cd27
 	db 0
 ; 0x5cd29
 
-UnknownScript_0x5cd29: ; 0x5cd29
+ReceptionistScript_0x5cd29: ; 0x5cd29
 	faceplayer
 	loadfont
 	checkbit2 $0013
@@ -24,7 +24,7 @@ UnknownScript_0x5cd37: ; 0x5cd37
 	end
 ; 0x5cd3d
 
-UnknownScript_0x5cd3d: ; 0x5cd3d
+GentlemanScript_0x5cd3d: ; 0x5cd3d
 	faceplayer
 	loadfont
 	2writetext UnknownText_0x5ceba
@@ -115,7 +115,7 @@ UnknownScript_0x5cdcf: ; 0x5cdcf
 	end
 ; 0x5cdd5
 
-UnknownScript_0x5cdd5: ; 0x5cdd5
+CooltrainerFScript_0x5cdd5: ; 0x5cdd5
 	faceplayer
 	loadfont
 	checkbit2 $0000
@@ -186,11 +186,11 @@ UnknownScript_0x5ce4b: ; 0x5ce4b
 	end
 ; 0x5ce51
 
-UnknownScript_0x5ce51: ; 0x5ce51
+LassScript_0x5ce51: ; 0x5ce51
 	jumptextfaceplayer UnknownText_0x5d476
 ; 0x5ce54
 
-UnknownScript_0x5ce54: ; 0x5ce54
+YoungsterScript_0x5ce54: ; 0x5ce54
 	jumptextfaceplayer UnknownText_0x5d4ac
 ; 0x5ce57
 
@@ -492,11 +492,11 @@ RadioTower1F_MapEventHeader: ; 0x5d68e
 
 	; people-events
 	db 6
-	person_event $42, 10, 9, $8, $0, 255, 255, $80, 0, UnknownScript_0x5cd29, $ffff
-	person_event $28, 8, 20, $8, $0, 255, 255, $80, 0, UnknownScript_0x5ce51, $06cf
-	person_event $27, 8, 19, $9, $0, 255, 255, $90, 0, UnknownScript_0x5ce54, $06cf
-	person_event $35, 5, 18, $6, $0, 255, 255, $2, 3, TrainerGruntM3, $06ce
-	person_event $40, 10, 12, $7, $0, 255, 255, $90, 0, UnknownScript_0x5cd3d, $06cf
-	person_event $24, 10, 16, $7, $0, 255, 255, $a0, 0, UnknownScript_0x5cdd5, $06cf
+	person_event SPRITE_RECEPTIONIST, 10, 9, $8, $0, 255, 255, $80, 0, ReceptionistScript_0x5cd29, $ffff
+	person_event SPRITE_LASS, 8, 20, $8, $0, 255, 255, $80, 0, LassScript_0x5ce51, $06cf
+	person_event SPRITE_YOUNGSTER, 8, 19, $9, $0, 255, 255, $90, 0, YoungsterScript_0x5ce54, $06cf
+	person_event SPRITE_ROCKET, 5, 18, $6, $0, 255, 255, $2, 3, TrainerGruntM3, $06ce
+	person_event SPRITE_GENTLEMAN, 10, 12, $7, $0, 255, 255, $90, 0, GentlemanScript_0x5cd3d, $06cf
+	person_event SPRITE_COOLTRAINER_F, 10, 16, $7, $0, 255, 255, $a0, 0, CooltrainerFScript_0x5cdd5, $06cf
 ; 0x5d6fb
 

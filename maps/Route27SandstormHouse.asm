@@ -6,7 +6,7 @@ Route27SandstormHouse_MapScriptHeader: ; 0x7b392
 	db 0
 ; 0x7b394
 
-UnknownScript_0x7b394: ; 0x7b394
+GrannyScript_0x7b394: ; 0x7b394
 	faceplayer
 	loadfont
 	checkbit1 $0075
@@ -104,6 +104,6 @@ Route27SandstormHouse_MapEventHeader: ; 0x7b592
 
 	; people-events
 	db 1
-	person_event $30, 8, 6, $6, $0, 255, 255, $0, 0, UnknownScript_0x7b394, $ffff
+	person_event SPRITE_GRANNY, 8, 6, $6, $0, 255, 255, $0, 0, GrannyScript_0x7b394, $ffff
 ; 0x7b5b9
 

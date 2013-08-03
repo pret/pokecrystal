@@ -109,7 +109,7 @@ PsychicGregScript: ; 0x1a8db7
 	end
 ; 0x1a8dbf
 
-UnknownScript_0x1a8dbf: ; 0x1a8dbf
+BugCatcherScript_0x1a8dbf: ; 0x1a8dbf
 	faceplayer
 	loadfont
 	checkbit1 $0069
@@ -161,15 +161,15 @@ MapRoute37Signpost0Script: ; 0x1a8e06
 	jumptext UnknownText_0x1a9197
 ; 0x1a8e09
 
-UnknownScript_0x1a8e09: ; 0x1a8e09
+FruitTreeScript_0x1a8e09: ; 0x1a8e09
 	fruittree $11
 ; 0x1a8e0b
 
-UnknownScript_0x1a8e0b: ; 0x1a8e0b
+FruitTreeScript_0x1a8e0b: ; 0x1a8e0b
 	fruittree $12
 ; 0x1a8e0d
 
-UnknownScript_0x1a8e0d: ; 0x1a8e0d
+FruitTreeScript_0x1a8e0d: ; 0x1a8e0d
 	fruittree $13
 ; 0x1a8e0f
 
@@ -306,12 +306,12 @@ Route37_MapEventHeader: ; 0x1a91a1
 
 	; people-events
 	db 7
-	person_event $f4, 16, 10, $6, $0, 255, 255, $82, 1, TrainerTwinsAnnandanne1, $ffff
-	person_event $f4, 16, 11, $6, $0, 255, 255, $82, 1, TrainerTwinsAnnandanne2, $ffff
-	person_event $27, 10, 10, $a, $0, 255, 255, $92, 1, TrainerPsychicGreg, $ffff
-	person_event $5d, 9, 17, $1, $0, 255, 255, $0, 0, UnknownScript_0x1a8e09, $ffff
-	person_event $25, 12, 20, $2, $11, 255, 255, $0, 0, UnknownScript_0x1a8dbf, $075b
-	person_event $5d, 9, 20, $1, $0, 255, 255, $0, 0, UnknownScript_0x1a8e0b, $ffff
-	person_event $5d, 11, 19, $1, $0, 255, 255, $0, 0, UnknownScript_0x1a8e0d, $ffff
+	person_event SPRITE_WEIRD_TREE, 16, 10, $6, $0, 255, 255, $82, 1, TrainerTwinsAnnandanne1, $ffff
+	person_event SPRITE_WEIRD_TREE, 16, 11, $6, $0, 255, 255, $82, 1, TrainerTwinsAnnandanne2, $ffff
+	person_event SPRITE_YOUNGSTER, 10, 10, $a, $0, 255, 255, $92, 1, TrainerPsychicGreg, $ffff
+	person_event SPRITE_FRUIT_TREE, 9, 17, $1, $0, 255, 255, $0, 0, FruitTreeScript_0x1a8e09, $ffff
+	person_event SPRITE_BUG_CATCHER, 12, 20, $2, $11, 255, 255, $0, 0, BugCatcherScript_0x1a8dbf, $075b
+	person_event SPRITE_FRUIT_TREE, 9, 20, $1, $0, 255, 255, $0, 0, FruitTreeScript_0x1a8e0b, $ffff
+	person_event SPRITE_FRUIT_TREE, 11, 19, $1, $0, 255, 255, $0, 0, FruitTreeScript_0x1a8e0d, $ffff
 ; 0x1a920c
 

@@ -117,11 +117,11 @@ UnknownScript_0x19ac72: ; 0x19ac72
 	end
 ; 0x19ac82
 
-UnknownScript_0x19ac82: ; 0x19ac82
+RocketScript_0x19ac82: ; 0x19ac82
 	jumptextfaceplayer UnknownText_0x19ad41
 ; 0x19ac85
 
-UnknownScript_0x19ac85: ; 0x19ac85
+OfficerScript_0x19ac85: ; 0x19ac85
 	faceplayer
 	loadfont
 	checkbit1 $0059
@@ -285,8 +285,8 @@ Route43Gate_MapEventHeader: ; 0x19ae5b
 
 	; people-events
 	db 3
-	person_event $43, 8, 4, $9, $0, 255, 255, $80, 0, UnknownScript_0x19ac85, $0735
-	person_event $35, 8, 6, $6, $0, 255, 255, $0, 0, UnknownScript_0x19ac82, $06dc
-	person_event $35, 8, 11, $7, $0, 255, 255, $0, 0, UnknownScript_0x19ac82, $06dc
+	person_event SPRITE_OFFICER, 8, 4, $9, $0, 255, 255, $80, 0, OfficerScript_0x19ac85, $0735
+	person_event SPRITE_ROCKET, 8, 6, $6, $0, 255, 255, $0, 0, RocketScript_0x19ac82, $06dc
+	person_event SPRITE_ROCKET, 8, 11, $7, $0, 255, 255, $0, 0, RocketScript_0x19ac82, $06dc
 ; 0x19ae9c
 

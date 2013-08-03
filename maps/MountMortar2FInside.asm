@@ -101,12 +101,12 @@ MountMortar2FInside_MapEventHeader: ; 0x7e184
 
 	; people-events
 	db 7
-	person_event $54, 26, 32, $1, $0, 255, 255, $1, 0, ItemFragment_0x7e0de, $0680
-	person_event $54, 37, 6, $1, $0, 255, 255, $1, 0, ItemFragment_0x7e0e0, $0681
-	person_event $54, 21, 23, $1, $0, 255, 255, $1, 0, ItemFragment_0x7e0e2, $0682
-	person_event $54, 9, 20, $1, $0, 255, 255, $1, 0, ItemFragment_0x7e0e4, $0683
-	person_event $54, 15, 13, $1, $0, 255, 255, $1, 0, ItemFragment_0x7e0e6, $0684
-	person_event $54, 9, 32, $1, $0, 255, 255, $1, 0, ItemFragment_0x7e0e8, $0685
-	person_event $2b, 30, 17, $a, $0, 255, 255, $b2, 2, TrainerSupernerdHugh, $ffff
+	person_event SPRITE_POKE_BALL, 26, 32, $1, $0, 255, 255, $1, 0, ItemFragment_0x7e0de, $0680
+	person_event SPRITE_POKE_BALL, 37, 6, $1, $0, 255, 255, $1, 0, ItemFragment_0x7e0e0, $0681
+	person_event SPRITE_POKE_BALL, 21, 23, $1, $0, 255, 255, $1, 0, ItemFragment_0x7e0e2, $0682
+	person_event SPRITE_POKE_BALL, 9, 20, $1, $0, 255, 255, $1, 0, ItemFragment_0x7e0e4, $0683
+	person_event SPRITE_POKE_BALL, 15, 13, $1, $0, 255, 255, $1, 0, ItemFragment_0x7e0e6, $0684
+	person_event SPRITE_POKE_BALL, 9, 32, $1, $0, 255, 255, $1, 0, ItemFragment_0x7e0e8, $0685
+	person_event SPRITE_SUPER_NERD, 30, 17, $a, $0, 255, 255, $b2, 2, TrainerSupernerdHugh, $ffff
 ; 0x7e1f4
 

@@ -221,7 +221,7 @@ UnknownScript_0x1a556c: ; 0x1a556c
 	end
 ; 0x1a5570
 
-UnknownScript_0x1a5570: ; 0x1a5570
+FisherScript_0x1a5570: ; 0x1a5570
 	faceplayer
 	loadfont
 	checkbit1 $0053
@@ -289,7 +289,7 @@ ReceivedSpearowMailText: ; 0x1a55cd
 	db "DARK CAVE leads",$4E
 	db "to another road@"
 
-UnknownScript_0x1a55ed: ; 0x1a55ed
+YoungsterScript_0x1a55ed: ; 0x1a55ed
 	jumptextfaceplayer UnknownText_0x1a59d5
 ; 0x1a55f0
 
@@ -301,11 +301,11 @@ MapRoute31Signpost1Script: ; 0x1a55f3
 	jumptext UnknownText_0x1a5a6e
 ; 0x1a55f6
 
-UnknownScript_0x1a55f6: ; 0x1a55f6
+CooltrainerMScript_0x1a55f6: ; 0x1a55f6
 	jumptextfaceplayer UnknownText_0x1a55ff
 ; 0x1a55f9
 
-UnknownScript_0x1a55f9: ; 0x1a55f9
+FruitTreeScript_0x1a55f9: ; 0x1a55f9
 	fruittree $7
 ; 0x1a55fb
 
@@ -464,12 +464,12 @@ Route31_MapEventHeader: ; 0x1a5a79
 
 	; people-events
 	db 7
-	person_event $3a, 11, 21, $6, $0, 255, 255, $0, 0, UnknownScript_0x1a5570, $ffff
-	person_event $27, 9, 13, $2, $11, 255, 255, $0, 0, UnknownScript_0x1a55ed, $ffff
-	person_event $25, 17, 25, $8, $0, 255, 255, $b2, 5, TrainerBug_catcherWade1, $ffff
-	person_event $23, 12, 37, $2, $11, 255, 255, $0, 0, UnknownScript_0x1a55f6, $ffff
-	person_event $5d, 11, 20, $1, $0, 255, 255, $0, 0, UnknownScript_0x1a55f9, $ffff
-	person_event $54, 9, 33, $1, $0, 255, 255, $1, 0, ItemFragment_0x1a55fb, $06ae
-	person_event $54, 19, 23, $1, $0, 255, 255, $1, 0, ItemFragment_0x1a55fd, $06af
+	person_event SPRITE_FISHER, 11, 21, $6, $0, 255, 255, $0, 0, FisherScript_0x1a5570, $ffff
+	person_event SPRITE_YOUNGSTER, 9, 13, $2, $11, 255, 255, $0, 0, YoungsterScript_0x1a55ed, $ffff
+	person_event SPRITE_BUG_CATCHER, 17, 25, $8, $0, 255, 255, $b2, 5, TrainerBug_catcherWade1, $ffff
+	person_event SPRITE_COOLTRAINER_M, 12, 37, $2, $11, 255, 255, $0, 0, CooltrainerMScript_0x1a55f6, $ffff
+	person_event SPRITE_FRUIT_TREE, 11, 20, $1, $0, 255, 255, $0, 0, FruitTreeScript_0x1a55f9, $ffff
+	person_event SPRITE_POKE_BALL, 9, 33, $1, $0, 255, 255, $1, 0, ItemFragment_0x1a55fb, $06ae
+	person_event SPRITE_POKE_BALL, 19, 23, $1, $0, 255, 255, $1, 0, ItemFragment_0x1a55fd, $06af
 ; 0x1a5af3
 

@@ -6,11 +6,11 @@ CeruleanPokeCenter1F_MapScriptHeader: ; 0x18820d
 	db 0
 ; 0x18820f
 
-UnknownScript_0x18820f: ; 0x18820f
+NurseScript_0x18820f: ; 0x18820f
 	jumpstd $0000
 ; 0x188212
 
-UnknownScript_0x188212: ; 0x188212
+SuperNerdScript_0x188212: ; 0x188212
 	special $00a0
 	iftrue UnknownScript_0x18821b
 	jumptextfaceplayer UnknownText_0x188221
@@ -20,7 +20,7 @@ UnknownScript_0x18821b: ; 0x18821b
 	jumptextfaceplayer UnknownText_0x18828c
 ; 0x18821e
 
-UnknownScript_0x18821e: ; 0x18821e
+GymGuyScript_0x18821e: ; 0x18821e
 	jumptextfaceplayer UnknownText_0x1882ff
 ; 0x188221
 
@@ -73,8 +73,8 @@ CeruleanPokeCenter1F_MapEventHeader: ; 0x188386
 
 	; people-events
 	db 3
-	person_event $37, 5, 7, $6, $0, 255, 255, $0, 0, UnknownScript_0x18820f, $ffff
-	person_event $2b, 8, 12, $5, $1, 255, 255, $0, 0, UnknownScript_0x188212, $ffff
-	person_event $48, 9, 5, $2, $11, 255, 255, $a0, 0, UnknownScript_0x18821e, $ffff
+	person_event SPRITE_NURSE, 5, 7, $6, $0, 255, 255, $0, 0, NurseScript_0x18820f, $ffff
+	person_event SPRITE_SUPER_NERD, 8, 12, $5, $1, 255, 255, $0, 0, SuperNerdScript_0x188212, $ffff
+	person_event SPRITE_GYM_GUY, 9, 5, $2, $11, 255, 255, $a0, 0, GymGuyScript_0x18821e, $ffff
 ; 0x1883c2
 

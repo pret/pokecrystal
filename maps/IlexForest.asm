@@ -88,7 +88,7 @@ UnknownScript_0x6eb74: ; 0x6eb74
 	return
 ; 0x6eb7b
 
-UnknownScript_0x6eb7b: ; 0x6eb7b
+YoungsterScript_0x6eb7b: ; 0x6eb7b
 	faceplayer
 	loadfont
 	checkbit1 $0029
@@ -106,7 +106,7 @@ UnknownScript_0x6eb89: ; 0x6eb89
 	end
 ; 0x6eb8f
 
-UnknownScript_0x6eb8f: ; 0x6eb8f
+BirdScript_0x6eb8f: ; 0x6eb8f
 	copybytetovar FarfetchdPosition
 	if_equal $1, UnknownScript_0x6ebba
 	if_equal $2, UnknownScript_0x6ebd9
@@ -370,7 +370,7 @@ UnknownScript_0x6eda1: ; 0x6eda1
 	end
 ; 0x6edae
 
-UnknownScript_0x6edae: ; 0x6edae
+BlackBeltScript_0x6edae: ; 0x6edae
 	faceplayer
 	loadfont
 	checkbit1 $0010
@@ -398,7 +398,7 @@ UnknownScript_0x6edd8: ; 0x6edd8
 	end
 ; 0x6edde
 
-UnknownScript_0x6edde: ; 0x6edde
+RockerScript_0x6edde: ; 0x6edde
 	faceplayer
 	loadfont
 	checkbit1 $005f
@@ -445,7 +445,7 @@ Bug_catcherWayneScript: ; 0x6ee05
 	end
 ; 0x6ee0d
 
-UnknownScript_0x6ee0d: ; 0x6ee0d
+LassScript_0x6ee0d: ; 0x6ee0d
 	jumptextfaceplayer UnknownText_0x6f2af
 ; 0x6ee10
 
@@ -1016,17 +1016,17 @@ IlexForest_MapEventHeader: ; 0x6f5e7
 
 	; people-events
 	db 11
-	person_event $4e, 35, 18, $3, $0, 255, 255, $b0, 0, UnknownScript_0x6eb8f, $06e9
-	person_event $27, 32, 11, $6, $0, 255, 255, $a0, 0, UnknownScript_0x6eb7b, $06f3
-	person_event $41, 32, 9, $9, $0, 255, 255, $0, 0, UnknownScript_0x6edae, $06f4
-	person_event $2c, 18, 19, $9, $0, 255, 255, $0, 0, UnknownScript_0x6edde, $ffff
-	person_event $54, 36, 24, $1, $0, 255, 255, $1, 0, ItemFragment_0x6ee10, $0671
-	person_event $b, 33, 12, $7, $0, 255, 255, $0, 0, ObjectEvent, $07a5
-	person_event $28, 28, 7, $9, $0, 255, 255, $a0, 0, UnknownScript_0x6ee0d, $06ed
-	person_event $27, 5, 16, $7, $0, 255, 255, $a2, 0, TrainerBug_catcherWayne, $ffff
-	person_event $54, 21, 13, $1, $0, 255, 255, $1, 0, ItemFragment_0x6ee12, $07b9
-	person_event $54, 11, 21, $1, $0, 255, 255, $1, 0, ItemFragment_0x6ee14, $07ba
-	person_event $54, 5, 31, $1, $0, 255, 255, $1, 0, ItemFragment_0x6ee16, $07bb
+	person_event SPRITE_BIRD, 35, 18, $3, $0, 255, 255, $b0, 0, BirdScript_0x6eb8f, $06e9
+	person_event SPRITE_YOUNGSTER, 32, 11, $6, $0, 255, 255, $a0, 0, YoungsterScript_0x6eb7b, $06f3
+	person_event SPRITE_BLACK_BELT, 32, 9, $9, $0, 255, 255, $0, 0, BlackBeltScript_0x6edae, $06f4
+	person_event SPRITE_ROCKER, 18, 19, $9, $0, 255, 255, $0, 0, RockerScript_0x6edde, $ffff
+	person_event SPRITE_POKE_BALL, 36, 24, $1, $0, 255, 255, $1, 0, ItemFragment_0x6ee10, $0671
+	person_event SPRITE_KURT, 33, 12, $7, $0, 255, 255, $0, 0, ObjectEvent, $07a5
+	person_event SPRITE_LASS, 28, 7, $9, $0, 255, 255, $a0, 0, LassScript_0x6ee0d, $06ed
+	person_event SPRITE_YOUNGSTER, 5, 16, $7, $0, 255, 255, $a2, 0, TrainerBug_catcherWayne, $ffff
+	person_event SPRITE_POKE_BALL, 21, 13, $1, $0, 255, 255, $1, 0, ItemFragment_0x6ee12, $07b9
+	person_event SPRITE_POKE_BALL, 11, 21, $1, $0, 255, 255, $1, 0, ItemFragment_0x6ee14, $07ba
+	person_event SPRITE_POKE_BALL, 5, 31, $1, $0, 255, 255, $1, 0, ItemFragment_0x6ee16, $07bb
 ; 0x6f6a4
 
 

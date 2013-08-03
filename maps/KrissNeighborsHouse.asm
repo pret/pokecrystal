@@ -6,11 +6,11 @@ KrissNeighborsHouse_MapScriptHeader: ; 0x7acec
 	db 0
 ; 0x7acee
 
-UnknownScript_0x7acee: ; 0x7acee
+CooltrainerFScript_0x7acee: ; 0x7acee
 	jumptextfaceplayer UnknownText_0x7ad2f
 ; 0x7acf1
 
-UnknownScript_0x7acf1: ; 0x7acf1
+PokefanFScript_0x7acf1: ; 0x7acf1
 	jumptextfaceplayer UnknownText_0x7add4
 ; 0x7acf4
 
@@ -116,7 +116,7 @@ KrissNeighborsHouse_MapEventHeader: ; 0x7aeb0
 
 	; people-events
 	db 2
-	person_event $24, 7, 6, $9, $0, 255, 255, $80, 0, UnknownScript_0x7acee, $ffff
-	person_event $2e, 7, 9, $8, $0, 255, 255, $80, 0, UnknownScript_0x7acf1, $0793
+	person_event SPRITE_COOLTRAINER_F, 7, 6, $9, $0, 255, 255, $80, 0, CooltrainerFScript_0x7acee, $ffff
+	person_event SPRITE_POKEFAN_F, 7, 9, $8, $0, 255, 255, $80, 0, PokefanFScript_0x7acf1, $0793
 ; 0x7aee9
 

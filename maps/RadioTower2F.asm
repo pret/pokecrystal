@@ -10,11 +10,11 @@ UnknownScript_0x5d6fd: ; 0x5d6fd
 	end
 ; 0x5d6fe
 
-UnknownScript_0x5d6fe: ; 0x5d6fe
+SuperNerdScript_0x5d6fe: ; 0x5d6fe
 	jumptextfaceplayer UnknownText_0x5d924
 ; 0x5d701
 
-UnknownScript_0x5d701: ; 0x5d701
+TeacherScript_0x5d701: ; 0x5d701
 	faceplayer
 	loadfont
 	checkbit2 $0013
@@ -32,7 +32,7 @@ UnknownScript_0x5d70f: ; 0x5d70f
 	end
 ; 0x5d715
 
-UnknownScript_0x5d715: ; 0x5d715
+JigglypuffScript_0x5d715: ; 0x5d715
 	loadfont
 	2writetext UnknownText_0x5d9b6
 	cry JIGGLYPUFF
@@ -41,11 +41,11 @@ UnknownScript_0x5d715: ; 0x5d715
 	end
 ; 0x5d71f
 
-UnknownScript_0x5d71f: ; 0x5d71f
+BlackBeltScript_0x5d71f: ; 0x5d71f
 	jumptextfaceplayer UnknownText_0x5d9cb
 ; 0x5d722
 
-UnknownScript_0x5d722: ; 0x5d722
+BlackBeltScript_0x5d722: ; 0x5d722
 	jumptextfaceplayer UnknownText_0x5da44
 ; 0x5d725
 
@@ -165,7 +165,7 @@ GruntF2Script: ; 0x5d76d
 	end
 ; 0x5d775
 
-UnknownScript_0x5d775: ; 0x5d775
+BuenaScript_0x5d775: ; 0x5d775
 	faceplayer
 	loadfont
 	checkbit2 $0013
@@ -389,7 +389,7 @@ UnknownScript_0x5d8fe: ; 0x5d8fe
 	end
 ; 0x5d8ff
 
-UnknownScript_0x5d8ff: ; 0x5d8ff
+ReceptionistScript_0x5d8ff: ; 0x5d8ff
 	faceplayer
 	loadfont
 	checkitem BLUE_CARD
@@ -773,16 +773,16 @@ RadioTower2F_MapEventHeader: ; 0x5e481
 
 	; people-events
 	db 11
-	person_event $2b, 10, 10, $8, $0, 255, 255, $a0, 0, UnknownScript_0x5d6fe, $06cf
-	person_event $29, 6, 21, $5, $1, 255, 255, $80, 0, UnknownScript_0x5d701, $ffff
-	person_event $35, 8, 5, $7, $0, 255, 255, $2, 3, TrainerGruntM4, $06ce
-	person_event $35, 8, 12, $6, $0, 255, 255, $2, 3, TrainerGruntM5, $06ce
-	person_event $35, 5, 8, $6, $0, 255, 255, $2, 2, TrainerGruntM6, $06ce
-	person_event $36, 9, 14, $7, $0, 255, 255, $82, 3, TrainerGruntF2, $06ce
-	person_event $41, 5, 4, $6, $0, 255, 255, $0, 0, UnknownScript_0x5d71f, $06d1
-	person_event $41, 5, 5, $6, $0, 255, 255, $0, 0, UnknownScript_0x5d722, $06d0
-	person_event $94, 5, 16, $16, $0, 255, 255, $0, 0, UnknownScript_0x5d715, $ffff
-	person_event $2a, 9, 18, $9, $0, 255, 255, $80, 0, UnknownScript_0x5d775, $ffff
-	person_event $42, 11, 16, $9, $0, 255, 255, $a0, 0, UnknownScript_0x5d8ff, $06cf
+	person_event SPRITE_SUPER_NERD, 10, 10, $8, $0, 255, 255, $a0, 0, SuperNerdScript_0x5d6fe, $06cf
+	person_event SPRITE_TEACHER, 6, 21, $5, $1, 255, 255, $80, 0, TeacherScript_0x5d701, $ffff
+	person_event SPRITE_ROCKET, 8, 5, $7, $0, 255, 255, $2, 3, TrainerGruntM4, $06ce
+	person_event SPRITE_ROCKET, 8, 12, $6, $0, 255, 255, $2, 3, TrainerGruntM5, $06ce
+	person_event SPRITE_ROCKET, 5, 8, $6, $0, 255, 255, $2, 2, TrainerGruntM6, $06ce
+	person_event SPRITE_ROCKET_GIRL, 9, 14, $7, $0, 255, 255, $82, 3, TrainerGruntF2, $06ce
+	person_event SPRITE_BLACK_BELT, 5, 4, $6, $0, 255, 255, $0, 0, BlackBeltScript_0x5d71f, $06d1
+	person_event SPRITE_BLACK_BELT, 5, 5, $6, $0, 255, 255, $0, 0, BlackBeltScript_0x5d722, $06d0
+	person_event SPRITE_JIGGLYPUFF, 5, 16, $16, $0, 255, 255, $0, 0, JigglypuffScript_0x5d715, $ffff
+	person_event SPRITE_BUENA, 9, 18, $9, $0, 255, 255, $80, 0, BuenaScript_0x5d775, $ffff
+	person_event SPRITE_RECEPTIONIST, 11, 16, $9, $0, 255, 255, $a0, 0, ReceptionistScript_0x5d8ff, $06cf
 ; 0x5e53e
 

@@ -6,7 +6,7 @@ LavenderTownSpeechHouse_MapScriptHeader: ; 0x7ea45
 	db 0
 ; 0x7ea47
 
-UnknownScript_0x7ea47: ; 0x7ea47
+PokefanFScript_0x7ea47: ; 0x7ea47
 	jumptextfaceplayer UnknownText_0x7ea4d
 ; 0x7ea4a
 
@@ -44,6 +44,6 @@ LavenderTownSpeechHouse_MapEventHeader: ; 0x7eac4
 
 	; people-events
 	db 1
-	person_event $2e, 7, 6, $7, $0, 255, 255, $90, 0, UnknownScript_0x7ea47, $ffff
+	person_event SPRITE_POKEFAN_F, 7, 6, $7, $0, 255, 255, $90, 0, PokefanFScript_0x7ea47, $ffff
 ; 0x7eaeb
 

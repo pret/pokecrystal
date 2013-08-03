@@ -6,7 +6,7 @@ MountMoonGiftShop_MapScriptHeader: ; 0x771a6
 	db 0
 ; 0x771a8
 
-UnknownScript_0x771a8: ; 0x771a8
+GrampsScript_0x771a8: ; 0x771a8
 	faceplayer
 	loadfont
 	pokemart $0, $001f
@@ -14,7 +14,7 @@ UnknownScript_0x771a8: ; 0x771a8
 	end
 ; 0x771b0
 
-UnknownScript_0x771b0: ; 0x771b0
+LassScript_0x771b0: ; 0x771b0
 	jumptextfaceplayer UnknownText_0x771b3
 ; 0x771b3
 
@@ -41,9 +41,9 @@ MountMoonGiftShop_MapEventHeader: ; 0x771e7
 
 	; people-events
 	db 4
-	person_event $2f, 7, 8, $6, $0, 255, 1, $0, 0, UnknownScript_0x771a8, $ffff
-	person_event $2f, 6, 5, $9, $0, 255, 2, $0, 0, UnknownScript_0x771a8, $ffff
-	person_event $28, 10, 5, $5, $1, 255, 1, $0, 0, UnknownScript_0x771b0, $ffff
-	person_event $28, 8, 9, $4, $10, 255, 2, $0, 0, UnknownScript_0x771b0, $ffff
+	person_event SPRITE_GRAMPS, 7, 8, $6, $0, 255, 1, $0, 0, GrampsScript_0x771a8, $ffff
+	person_event SPRITE_GRAMPS, 6, 5, $9, $0, 255, 2, $0, 0, GrampsScript_0x771a8, $ffff
+	person_event SPRITE_LASS, 10, 5, $5, $1, 255, 1, $0, 0, LassScript_0x771b0, $ffff
+	person_event SPRITE_LASS, 8, 9, $4, $10, 255, 2, $0, 0, LassScript_0x771b0, $ffff
 ; 0x7722b
 

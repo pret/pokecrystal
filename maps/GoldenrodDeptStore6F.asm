@@ -91,11 +91,11 @@ MenuData2_0x56480: ; 0x56480
 ; 0x564bf
 
 
-UnknownScript_0x564bf: ; 0x564bf
+LassScript_0x564bf: ; 0x564bf
 	jumptextfaceplayer UnknownText_0x5654b
 ; 0x564c2
 
-UnknownScript_0x564c2: ; 0x564c2
+SuperNerdScript_0x564c2: ; 0x564c2
 	jumptextfaceplayer UnknownText_0x565ca
 ; 0x564c5
 
@@ -179,7 +179,7 @@ GoldenrodDeptStore6F_MapEventHeader: ; 0x5664a
 
 	; people-events
 	db 2
-	person_event $28, 6, 14, $5, $1, 255, 255, $a0, 0, UnknownScript_0x564bf, $ffff
-	person_event $2b, 6, 12, $7, $0, 255, 255, $80, 0, UnknownScript_0x564c2, $ffff
+	person_event SPRITE_LASS, 6, 14, $5, $1, 255, 255, $a0, 0, LassScript_0x564bf, $ffff
+	person_event SPRITE_SUPER_NERD, 6, 12, $7, $0, 255, 255, $80, 0, SuperNerdScript_0x564c2, $ffff
 ; 0x56697
 

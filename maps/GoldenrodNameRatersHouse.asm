@@ -6,7 +6,7 @@ GoldenrodNameRatersHouse_MapScriptHeader: ; 0x5577a
 	db 0
 ; 0x5577c
 
-UnknownScript_0x5577c: ; 0x5577c
+GentlemanScript_0x5577c: ; 0x5577c
 	faceplayer
 	loadfont
 	special $0057
@@ -45,6 +45,6 @@ GoldenrodNameRatersHouse_MapEventHeader: ; 0x55953
 
 	; people-events
 	db 1
-	person_event $40, 8, 6, $6, $2, 255, 255, $0, 0, UnknownScript_0x5577c, $ffff
+	person_event SPRITE_GENTLEMAN, 8, 6, $6, $2, 255, 255, $0, 0, GentlemanScript_0x5577c, $ffff
 ; 0x5597f
 

@@ -28,7 +28,7 @@ UnknownScript_0x77241: ; 0x77241
 	return
 ; 0x77244
 
-UnknownScript_0x77244: ; 0x77244
+HoOhScript_0x77244: ; 0x77244
 	faceplayer
 	loadfont
 	2writetext UnknownText_0x77260
@@ -65,7 +65,7 @@ TinTowerRoof_MapEventHeader: ; 0x7726a
 
 	; people-events
 	db 1
-	person_event $a2, 9, 13, $16, $0, 255, 255, $80, 0, UnknownScript_0x77244, $073c
+	person_event SPRITE_HO_OH, 9, 13, $16, $0, 255, 255, $80, 0, HoOhScript_0x77244, $073c
 ; 0x77282
 
 

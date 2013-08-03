@@ -6,7 +6,7 @@ VermilionPortPassage_MapScriptHeader: ; 0x77018
 	db 0
 ; 0x7701a
 
-UnknownScript_0x7701a: ; 0x7701a
+TeacherScript_0x7701a: ; 0x7701a
 	jumptextfaceplayer UnknownText_0x7701d
 ; 0x7701d
 
@@ -37,6 +37,6 @@ VermilionPortPassage_MapEventHeader: ; 0x7705a
 
 	; people-events
 	db 1
-	person_event $29, 5, 21, $8, $0, 255, 255, $0, 0, UnknownScript_0x7701a, $ffff
+	person_event SPRITE_TEACHER, 5, 21, $8, $0, 255, 255, $0, 0, TeacherScript_0x7701a, $ffff
 ; 0x77086
 

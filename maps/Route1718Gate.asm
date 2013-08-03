@@ -13,7 +13,7 @@ UnknownScript_0x7360d: ; 0x7360d
 	end
 ; 0x7360e
 
-UnknownScript_0x7360e: ; 0x7360e
+OfficerScript_0x7360e: ; 0x7360e
 	jumptextfaceplayer UnknownText_0x7362c
 ; 0x73611
 
@@ -75,7 +75,7 @@ Route1718Gate_MapEventHeader: ; 0x736b6
 
 	; people-events
 	db 1
-	person_event $43, 6, 9, $6, $0, 255, 255, $90, 0, UnknownScript_0x7360e, $ffff
+	person_event SPRITE_OFFICER, 6, 9, $6, $0, 255, 255, $90, 0, OfficerScript_0x7360e, $ffff
 ; 0x736ed
 
 

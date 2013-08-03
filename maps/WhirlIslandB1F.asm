@@ -26,7 +26,7 @@ ItemFragment_0x18c418: ; 0x18c418
 	db ESCAPE_ROPE, 1
 ; 0x18c41a
 
-UnknownScript_0x18c41a: ; 0x18c41a
+BoulderScript_0x18c41a: ; 0x18c41a
 	jumpstd $000e
 ; 0x18c41d
 
@@ -75,11 +75,11 @@ WhirlIslandB1F_MapEventHeader: ; 0x18c426
 
 	; people-events
 	db 6
-	person_event $54, 17, 11, $1, $0, 255, 255, $1, 0, ItemFragment_0x18c410, $0691
-	person_event $54, 22, 6, $1, $0, 255, 255, $1, 0, ItemFragment_0x18c412, $0692
-	person_event $54, 27, 37, $1, $0, 255, 255, $1, 0, ItemFragment_0x18c414, $0693
-	person_event $54, 12, 21, $1, $0, 255, 255, $1, 0, ItemFragment_0x18c416, $0694
-	person_event $54, 30, 23, $1, $0, 255, 255, $1, 0, ItemFragment_0x18c418, $0695
-	person_event $5a, 30, 27, $19, $0, 255, 255, $0, 0, UnknownScript_0x18c41a, $ffff
+	person_event SPRITE_POKE_BALL, 17, 11, $1, $0, 255, 255, $1, 0, ItemFragment_0x18c410, $0691
+	person_event SPRITE_POKE_BALL, 22, 6, $1, $0, 255, 255, $1, 0, ItemFragment_0x18c412, $0692
+	person_event SPRITE_POKE_BALL, 27, 37, $1, $0, 255, 255, $1, 0, ItemFragment_0x18c414, $0693
+	person_event SPRITE_POKE_BALL, 12, 21, $1, $0, 255, 255, $1, 0, ItemFragment_0x18c416, $0694
+	person_event SPRITE_POKE_BALL, 30, 23, $1, $0, 255, 255, $1, 0, ItemFragment_0x18c418, $0695
+	person_event SPRITE_BOULDER, 30, 27, $19, $0, 255, 255, $0, 0, BoulderScript_0x18c41a, $ffff
 ; 0x18c4b6
 

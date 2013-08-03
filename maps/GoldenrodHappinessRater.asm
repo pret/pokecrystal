@@ -6,7 +6,7 @@ GoldenrodHappinessRater_MapScriptHeader: ; 0x54951
 	db 0
 ; 0x54953
 
-UnknownScript_0x54953: ; 0x54953
+TeacherScript_0x54953: ; 0x54953
 	faceplayer
 	loadfont
 	special $0059
@@ -62,11 +62,11 @@ UnknownScript_0x54991: ; 0x54991
 	end
 ; 0x54997
 
-UnknownScript_0x54997: ; 0x54997
+PokefanMScript_0x54997: ; 0x54997
 	jumptextfaceplayer UnknownText_0x54b04
 ; 0x5499a
 
-UnknownScript_0x5499a: ; 0x5499a
+TwinScript_0x5499a: ; 0x5499a
 	jumptextfaceplayer UnknownText_0x54b67
 ; 0x5499d
 
@@ -159,8 +159,8 @@ GoldenrodHappinessRater_MapEventHeader: ; 0x54b9c
 
 	; people-events
 	db 3
-	person_event $29, 8, 6, $6, $0, 255, 255, $90, 0, UnknownScript_0x54953, $ffff
-	person_event $2d, 7, 9, $8, $0, 255, 255, $0, 0, UnknownScript_0x54997, $ffff
-	person_event $26, 10, 9, $5, $1, 255, 255, $a0, 0, UnknownScript_0x5499a, $ffff
+	person_event SPRITE_TEACHER, 8, 6, $6, $0, 255, 255, $90, 0, TeacherScript_0x54953, $ffff
+	person_event SPRITE_POKEFAN_M, 7, 9, $8, $0, 255, 255, $0, 0, PokefanMScript_0x54997, $ffff
+	person_event SPRITE_TWIN, 10, 9, $5, $1, 255, 255, $a0, 0, TwinScript_0x5499a, $ffff
 ; 0x54be2
 

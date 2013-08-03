@@ -37,8 +37,8 @@ WhirlIslandB2F_MapEventHeader: ; 0x18c4be
 
 	; people-events
 	db 3
-	person_event $54, 15, 14, $1, $0, 255, 255, $1, 0, ItemFragment_0x18c4b8, $0696
-	person_event $54, 8, 10, $1, $0, 255, 255, $1, 0, ItemFragment_0x18c4ba, $0697
-	person_event $54, 16, 9, $1, $0, 255, 255, $1, 0, ItemFragment_0x18c4bc, $0698
+	person_event SPRITE_POKE_BALL, 15, 14, $1, $0, 255, 255, $1, 0, ItemFragment_0x18c4b8, $0696
+	person_event SPRITE_POKE_BALL, 8, 10, $1, $0, 255, 255, $1, 0, ItemFragment_0x18c4ba, $0697
+	person_event SPRITE_POKE_BALL, 16, 9, $1, $0, 255, 255, $1, 0, ItemFragment_0x18c4bc, $0698
 ; 0x18c4ff
 

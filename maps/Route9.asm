@@ -320,11 +320,11 @@ Route9_MapEventHeader: ; 0x1ab2c7
 
 	; people-events
 	db 6
-	person_event $27, 15, 27, $8, $0, 255, 255, $a2, 3, TrainerCamperDean, $ffff
-	person_event $28, 12, 43, $a, $0, 255, 255, $a2, 3, TrainerPicnickerHeidi, $ffff
-	person_event $27, 8, 15, $a, $0, 255, 255, $a2, 5, TrainerCamperSid, $ffff
-	person_event $28, 19, 16, $7, $0, 255, 255, $a2, 1, TrainerPicnickerEdna, $ffff
-	person_event $2d, 7, 32, $9, $0, 255, 255, $b2, 2, TrainerHikerTim, $ffff
-	person_event $2d, 19, 40, $9, $0, 255, 255, $b2, 4, TrainerHikerSidney, $ffff
+	person_event SPRITE_YOUNGSTER, 15, 27, $8, $0, 255, 255, $a2, 3, TrainerCamperDean, $ffff
+	person_event SPRITE_LASS, 12, 43, $a, $0, 255, 255, $a2, 3, TrainerPicnickerHeidi, $ffff
+	person_event SPRITE_YOUNGSTER, 8, 15, $a, $0, 255, 255, $a2, 5, TrainerCamperSid, $ffff
+	person_event SPRITE_LASS, 19, 16, $7, $0, 255, 255, $a2, 1, TrainerPicnickerEdna, $ffff
+	person_event SPRITE_POKEFAN_M, 7, 32, $9, $0, 255, 255, $b2, 2, TrainerHikerTim, $ffff
+	person_event SPRITE_POKEFAN_M, 19, 40, $9, $0, 255, 255, $b2, 4, TrainerHikerSidney, $ffff
 ; 0x1ab32a
 

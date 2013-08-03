@@ -61,7 +61,7 @@ MapColosseumSignpost1Script: ; 0x193493
 	end
 ; 0x193499
 
-UnknownScript_0x193499: ; 0x193499
+ChrisScript_0x193499: ; 0x193499
 	loadfont
 	2writetext UnknownText_0x1934a0
 	closetext
@@ -93,7 +93,7 @@ Colosseum_MapEventHeader: ; 0x1934b7
 
 	; people-events
 	db 2
-	person_event $1, 8, 7, $9, $0, 255, 255, $0, 0, UnknownScript_0x193499, $0000
-	person_event $1, 8, 10, $8, $0, 255, 255, $0, 0, UnknownScript_0x193499, $0001
+	person_event SPRITE_CHRIS, 8, 7, $9, $0, 255, 255, $0, 0, ChrisScript_0x193499, $0000
+	person_event SPRITE_CHRIS, 8, 10, $8, $0, 255, 255, $0, 0, ChrisScript_0x193499, $0001
 ; 0x1934eb
 

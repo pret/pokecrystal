@@ -77,7 +77,7 @@ UnknownScript_0x1a8041: ; 0x1a8041
 	end
 ; 0x1a806f
 
-UnknownScript_0x1a806f: ; 0x1a806f
+TeacherScript_0x1a806f: ; 0x1a806f
 	faceplayer
 	loadfont
 	checkbit1 $0040
@@ -113,11 +113,11 @@ UnknownScript_0x1a8095: ; 0x1a8095
 	end
 ; 0x1a809b
 
-UnknownScript_0x1a809b: ; 0x1a809b
+FisherScript_0x1a809b: ; 0x1a809b
 	jumptextfaceplayer UnknownText_0x1a8274
 ; 0x1a809e
 
-UnknownScript_0x1a809e: ; 0x1a809e
+SilverScript_0x1a809e: ; 0x1a809e
 	loadfont
 	2writetext UnknownText_0x1a82a6
 	closetext
@@ -321,8 +321,8 @@ NewBarkTown_MapEventHeader: ; 0x1a834d
 
 	; people-events
 	db 3
-	person_event $29, 12, 10, $3, $1, 255, 255, $0, 0, UnknownScript_0x1a806f, $ffff
-	person_event $3a, 13, 16, $4, $10, 255, 255, $a0, 0, UnknownScript_0x1a809b, $ffff
-	person_event $4, 6, 7, $9, $0, 255, 255, $0, 0, UnknownScript_0x1a809e, $06bd
+	person_event SPRITE_TEACHER, 12, 10, $3, $1, 255, 255, $0, 0, TeacherScript_0x1a806f, $ffff
+	person_event SPRITE_FISHER, 13, 16, $4, $10, 255, 255, $a0, 0, FisherScript_0x1a809b, $ffff
+	person_event SPRITE_SILVER, 6, 7, $9, $0, 255, 255, $0, 0, SilverScript_0x1a809e, $06bd
 ; 0x1a83b2
 

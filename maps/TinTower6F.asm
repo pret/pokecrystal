@@ -27,6 +27,6 @@ TinTower6F_MapEventHeader: ; 0x185ae6
 
 	; people-events
 	db 1
-	person_event $54, 12, 12, $1, $0, 255, 255, $1, 0, ItemFragment_0x185ae4, $07c6
+	person_event SPRITE_POKE_BALL, 12, 12, $1, $0, 255, 255, $1, 0, ItemFragment_0x185ae4, $07c6
 ; 0x185b03
 

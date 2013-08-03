@@ -6,7 +6,7 @@ MrPsychicsHouse_MapScriptHeader: ; 0x18a778
 	db 0
 ; 0x18a77a
 
-UnknownScript_0x18a77a: ; 0x18a77a
+FishingGuruScript_0x18a77a: ; 0x18a77a
 	faceplayer
 	loadfont
 	checkbit1 $00e3
@@ -61,6 +61,6 @@ MrPsychicsHouse_MapEventHeader: ; 0x18a7f0
 
 	; people-events
 	db 1
-	person_event $3b, 7, 9, $8, $0, 255, 255, $a0, 0, UnknownScript_0x18a77a, $ffff
+	person_event SPRITE_FISHING_GURU, 7, 9, $8, $0, 255, 255, $a0, 0, FishingGuruScript_0x18a77a, $ffff
 ; 0x18a817
 

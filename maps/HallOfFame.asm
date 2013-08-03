@@ -119,7 +119,7 @@ HallOfFame_MapEventHeader: ; 0x181678
 
 	; people-events
 	db 1
-	person_event $1e, 16, 8, $7, $0, 255, 255, $0, 0, ObjectEvent, $ffff
+	person_event SPRITE_LANCE, 16, 8, $7, $0, 255, 255, $0, 0, ObjectEvent, $ffff
 ; 0x181695
 
 

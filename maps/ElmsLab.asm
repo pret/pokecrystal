@@ -1381,11 +1381,11 @@ ElmsLab_MapEventHeader: ; 0x7a3de
 
 	; people-events
 	db 6
-	person_event $10, 6, 9, $6, $0, 255, 255, $0, 0, ProfElmScript, $ffff
-	person_event $3c, 13, 6, $3, $0, 255, 255, $90, 0, ElmsAideScript, $0701
-	person_event $54, 7, 10, $1, $0, 255, 255, $0, 0, CyndaquilPokeBallScript, $0640
-	person_event $54, 7, 11, $1, $0, 255, 255, $0, 0, TotodilePokeBallScript, $0641
-	person_event $54, 7, 12, $1, $0, 255, 255, $0, 0, ChikoritaPokeBallScript, $0642
-	person_event $43, 7, 9, $7, $0, 255, 255, $90, 0, $4f1a, $0702
+	person_event SPRITE_ELM, 6, 9, $6, $0, 255, 255, $0, 0, ProfElmScript, $ffff
+	person_event SPRITE_SCIENTIST, 13, 6, $3, $0, 255, 255, $90, 0, ElmsAideScript, $0701
+	person_event SPRITE_POKE_BALL, 7, 10, $1, $0, 255, 255, $0, 0, CyndaquilPokeBallScript, $0640
+	person_event SPRITE_POKE_BALL, 7, 11, $1, $0, 255, 255, $0, 0, TotodilePokeBallScript, $0641
+	person_event SPRITE_POKE_BALL, 7, 12, $1, $0, 255, 255, $0, 0, ChikoritaPokeBallScript, $0642
+	person_event SPRITE_OFFICER, 7, 9, $7, $0, 255, 255, $90, 0, $4f1a, $0702
 ; 0x7a4cc
 

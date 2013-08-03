@@ -53,9 +53,9 @@ RuinsofAlphAerodactylItemRoom_MapEventHeader: ; 0x59ae6
 
 	; people-events
 	db 4
-	person_event $54, 10, 6, $1, $0, 255, 255, $1, 0, ItemFragment_0x59ab6, $07a0
-	person_event $54, 10, 9, $1, $0, 255, 255, $1, 0, ItemFragment_0x59ab8, $07a1
-	person_event $54, 8, 6, $1, $0, 255, 255, $1, 0, ItemFragment_0x59aba, $07a2
-	person_event $54, 8, 9, $1, $0, 255, 255, $1, 0, ItemFragment_0x59abc, $07a3
+	person_event SPRITE_POKE_BALL, 10, 6, $1, $0, 255, 255, $1, 0, ItemFragment_0x59ab6, $07a0
+	person_event SPRITE_POKE_BALL, 10, 9, $1, $0, 255, 255, $1, 0, ItemFragment_0x59ab8, $07a1
+	person_event SPRITE_POKE_BALL, 8, 6, $1, $0, 255, 255, $1, 0, ItemFragment_0x59aba, $07a2
+	person_event SPRITE_POKE_BALL, 8, 9, $1, $0, 255, 255, $1, 0, ItemFragment_0x59abc, $07a3
 ; 0x59b3e
 

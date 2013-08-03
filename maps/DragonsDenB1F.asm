@@ -201,7 +201,7 @@ TwinsLeaandpia2Script: ; 0x18c952
 	end
 ; 0x18c95a
 
-UnknownScript_0x18c95a: ; 0x18c95a
+PokeBallScript_0x18c95a: ; 0x18c95a
 	giveitem DRAGON_FANG, $1
 	iffalse UnknownScript_0x18c970
 	disappear $2
@@ -226,7 +226,7 @@ UnknownScript_0x18c970: ; 0x18c970
 	end
 ; 0x18c97e
 
-UnknownScript_0x18c97e: ; 0x18c97e
+SilverScript_0x18c97e: ; 0x18c97e
 	playmusic $001f
 	faceplayer
 	loadfont
@@ -484,14 +484,14 @@ DragonsDenB1F_MapEventHeader: ; 0x18cf73
 
 	; people-events
 	db 9
-	person_event $54, 20, 39, $1, $0, 255, 255, $0, 0, UnknownScript_0x18c95a, $06a8
-	person_event $19, 34, 18, $7, $0, 255, 255, $90, 0, ObjectEvent, $06d8
-	person_event $4, 27, 24, $2, $22, 255, 255, $0, 0, UnknownScript_0x18c97e, $06c6
-	person_event $23, 12, 24, $7, $0, 255, 255, $82, 4, TrainerCooltrainermDarin, $ffff
-	person_event $24, 12, 12, $6, $0, 255, 255, $82, 3, TrainerCooltrainerfCara, $ffff
-	person_event $26, 21, 8, $9, $0, 255, 255, $82, 1, $4932, $ffff
-	person_event $26, 22, 8, $9, $0, 255, 255, $82, 1, TrainerTwinsLeaandpia2, $ffff
-	person_event $54, 8, 34, $1, $0, 255, 255, $1, 0, ItemFragment_0x18c9a1, $07bf
-	person_event $54, 24, 9, $1, $0, 255, 255, $1, 0, ItemFragment_0x18c9a3, $07c0
+	person_event SPRITE_POKE_BALL, 20, 39, $1, $0, 255, 255, $0, 0, PokeBallScript_0x18c95a, $06a8
+	person_event SPRITE_CLAIR, 34, 18, $7, $0, 255, 255, $90, 0, ObjectEvent, $06d8
+	person_event SPRITE_SILVER, 27, 24, $2, $22, 255, 255, $0, 0, SilverScript_0x18c97e, $06c6
+	person_event SPRITE_COOLTRAINER_M, 12, 24, $7, $0, 255, 255, $82, 4, TrainerCooltrainermDarin, $ffff
+	person_event SPRITE_COOLTRAINER_F, 12, 12, $6, $0, 255, 255, $82, 3, TrainerCooltrainerfCara, $ffff
+	person_event SPRITE_TWIN, 21, 8, $9, $0, 255, 255, $82, 1, $4932, $ffff
+	person_event SPRITE_TWIN, 22, 8, $9, $0, 255, 255, $82, 1, TrainerTwinsLeaandpia2, $ffff
+	person_event SPRITE_POKE_BALL, 8, 34, $1, $0, 255, 255, $1, 0, ItemFragment_0x18c9a1, $07bf
+	person_event SPRITE_POKE_BALL, 24, 9, $1, $0, 255, 255, $1, 0, ItemFragment_0x18c9a3, $07c0
 ; 0x18d014
 

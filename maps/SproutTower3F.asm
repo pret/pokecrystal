@@ -388,12 +388,12 @@ SproutTower3F_MapEventHeader: ; 0x184f8e
 
 	; people-events
 	db 7
-	person_event $3e, 17, 12, $9, $0, 255, 255, $92, 3, TrainerSageJin, $ffff
-	person_event $3e, 12, 12, $6, $0, 255, 255, $92, 2, TrainerSageTroy, $ffff
-	person_event $3e, 6, 14, $6, $0, 255, 255, $90, 0, SageLiScript, $ffff
-	person_event $3e, 15, 15, $8, $0, 255, 255, $92, 3, TrainerSageNeal, $ffff
-	person_event $54, 18, 10, $1, $0, 255, 255, $1, 0, ItemFragment_0x184a19, $0649
-	person_event $54, 5, 18, $1, $0, 255, 255, $1, 0, ItemFragment_0x184a1b, $064a
-	person_event $4, 8, 14, $7, $0, 255, 255, $0, 0, ObjectEvent, $06c4
+	person_event SPRITE_SAGE, 17, 12, $9, $0, 255, 255, $92, 3, TrainerSageJin, $ffff
+	person_event SPRITE_SAGE, 12, 12, $6, $0, 255, 255, $92, 2, TrainerSageTroy, $ffff
+	person_event SPRITE_SAGE, 6, 14, $6, $0, 255, 255, $90, 0, SageLiScript, $ffff
+	person_event SPRITE_SAGE, 15, 15, $8, $0, 255, 255, $92, 3, TrainerSageNeal, $ffff
+	person_event SPRITE_POKE_BALL, 18, 10, $1, $0, 255, 255, $1, 0, ItemFragment_0x184a19, $0649
+	person_event SPRITE_POKE_BALL, 5, 18, $1, $0, 255, 255, $1, 0, ItemFragment_0x184a1b, $064a
+	person_event SPRITE_SILVER, 8, 14, $7, $0, 255, 255, $0, 0, ObjectEvent, $06c4
 ; 0x18501a
 

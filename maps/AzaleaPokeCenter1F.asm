@@ -13,19 +13,19 @@ UnknownScript_0x18db27: ; 0x18db27
 	end
 ; 0x18db28
 
-UnknownScript_0x18db28: ; 0x18db28
+NurseScript_0x18db28: ; 0x18db28
 	jumpstd $0000
 ; 0x18db2b
 
-UnknownScript_0x18db2b: ; 0x18db2b
+GentlemanScript_0x18db2b: ; 0x18db2b
 	jumptextfaceplayer UnknownText_0x18db34
 ; 0x18db2e
 
-UnknownScript_0x18db2e: ; 0x18db2e
+FishingGuruScript_0x18db2e: ; 0x18db2e
 	jumptextfaceplayer UnknownText_0x18dbee
 ; 0x18db31
 
-UnknownScript_0x18db31: ; 0x18db31
+PokefanFScript_0x18db31: ; 0x18db31
 	jumptextfaceplayer UnknownText_0x18dc19
 ; 0x18db34
 
@@ -87,9 +87,9 @@ AzaleaPokeCenter1F_MapEventHeader: ; 0x18dccf
 
 	; people-events
 	db 4
-	person_event $37, 5, 7, $6, $0, 255, 255, $0, 0, UnknownScript_0x18db28, $ffff
-	person_event $40, 10, 13, $4, $10, 255, 255, $0, 0, UnknownScript_0x18db2b, $ffff
-	person_event $3b, 5, 10, $6, $0, 255, 255, $0, 0, UnknownScript_0x18db2e, $ffff
-	person_event $2e, 8, 5, $2, $21, 255, 255, $0, 0, UnknownScript_0x18db31, $ffff
+	person_event SPRITE_NURSE, 5, 7, $6, $0, 255, 255, $0, 0, NurseScript_0x18db28, $ffff
+	person_event SPRITE_GENTLEMAN, 10, 13, $4, $10, 255, 255, $0, 0, GentlemanScript_0x18db2b, $ffff
+	person_event SPRITE_FISHING_GURU, 5, 10, $6, $0, 255, 255, $0, 0, FishingGuruScript_0x18db2e, $ffff
+	person_event SPRITE_POKEFAN_F, 8, 5, $2, $21, 255, 255, $0, 0, PokefanFScript_0x18db31, $ffff
 ; 0x18dd18
 

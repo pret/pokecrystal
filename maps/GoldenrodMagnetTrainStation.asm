@@ -13,7 +13,7 @@ UnknownScript_0x550eb: ; 0x550eb
 	end
 ; 0x550ec
 
-UnknownScript_0x550ec: ; 0x550ec
+OfficerScript_0x550ec: ; 0x550ec
 	faceplayer
 	loadfont
 	checkbit1 $00cd
@@ -74,7 +74,7 @@ UnknownScript_0x55130: ; 0x55130
 	end
 ; 0x55143
 
-UnknownScript_0x55143: ; 0x55143
+GentlemanScript_0x55143: ; 0x55143
 	jumptextfaceplayer UnknownText_0x552a3
 ; 0x55146
 
@@ -187,7 +187,7 @@ GoldenrodMagnetTrainStation_MapEventHeader: ; 0x5531f
 
 	; people-events
 	db 2
-	person_event $43, 13, 13, $6, $0, 255, 255, $0, 0, UnknownScript_0x550ec, $ffff
-	person_event $40, 18, 15, $2, $22, 255, 255, $0, 0, UnknownScript_0x55143, $0749
+	person_event SPRITE_OFFICER, 13, 13, $6, $0, 255, 255, $0, 0, OfficerScript_0x550ec, $ffff
+	person_event SPRITE_GENTLEMAN, 18, 15, $2, $22, 255, 255, $0, 0, GentlemanScript_0x55143, $0749
 ; 0x5535b
 

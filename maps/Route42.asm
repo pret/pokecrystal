@@ -273,15 +273,15 @@ ItemFragment_0x1a934b: ; 0x1a934b
 	db SUPER_POTION, 1
 ; 0x1a934d
 
-UnknownScript_0x1a934d: ; 0x1a934d
+FruitTreeScript_0x1a934d: ; 0x1a934d
 	fruittree $15
 ; 0x1a934f
 
-UnknownScript_0x1a934f: ; 0x1a934f
+FruitTreeScript_0x1a934f: ; 0x1a934f
 	fruittree $16
 ; 0x1a9351
 
-UnknownScript_0x1a9351: ; 0x1a9351
+FruitTreeScript_0x1a9351: ; 0x1a9351
 	fruittree $17
 ; 0x1a9353
 
@@ -412,14 +412,14 @@ Route42_MapEventHeader: ; 0x1a95c9
 
 	; people-events
 	db 9
-	person_event $3a, 14, 44, $8, $0, 255, 255, $a2, 1, TrainerFisherTully1, $ffff
-	person_event $2d, 13, 55, $a, $0, 255, 255, $b2, 3, TrainerHikerBenjamin, $ffff
-	person_event $2b, 12, 51, $6, $0, 255, 255, $92, 3, TrainerPokemaniacShane, $ffff
-	person_event $5d, 20, 31, $1, $0, 255, 255, $0, 0, UnknownScript_0x1a934d, $ffff
-	person_event $5d, 20, 32, $1, $0, 255, 255, $0, 0, UnknownScript_0x1a934f, $ffff
-	person_event $5d, 20, 33, $1, $0, 255, 255, $0, 0, UnknownScript_0x1a9351, $ffff
-	person_event $54, 8, 10, $1, $0, 255, 255, $1, 0, ItemFragment_0x1a9349, $06b3
-	person_event $54, 12, 37, $1, $0, 255, 255, $1, 0, ItemFragment_0x1a934b, $06b4
-	person_event $63, 20, 30, $1, $0, 255, 255, $90, 0, ObjectEvent, $07af
+	person_event SPRITE_FISHER, 14, 44, $8, $0, 255, 255, $a2, 1, TrainerFisherTully1, $ffff
+	person_event SPRITE_POKEFAN_M, 13, 55, $a, $0, 255, 255, $b2, 3, TrainerHikerBenjamin, $ffff
+	person_event SPRITE_SUPER_NERD, 12, 51, $6, $0, 255, 255, $92, 3, TrainerPokemaniacShane, $ffff
+	person_event SPRITE_FRUIT_TREE, 20, 31, $1, $0, 255, 255, $0, 0, FruitTreeScript_0x1a934d, $ffff
+	person_event SPRITE_FRUIT_TREE, 20, 32, $1, $0, 255, 255, $0, 0, FruitTreeScript_0x1a934f, $ffff
+	person_event SPRITE_FRUIT_TREE, 20, 33, $1, $0, 255, 255, $0, 0, FruitTreeScript_0x1a9351, $ffff
+	person_event SPRITE_POKE_BALL, 8, 10, $1, $0, 255, 255, $1, 0, ItemFragment_0x1a9349, $06b3
+	person_event SPRITE_POKE_BALL, 12, 37, $1, $0, 255, 255, $1, 0, ItemFragment_0x1a934b, $06b4
+	person_event SPRITE_SUICUNE, 20, 30, $1, $0, 255, 255, $90, 0, ObjectEvent, $07af
 ; 0x1a967e
 

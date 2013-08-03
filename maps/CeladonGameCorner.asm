@@ -6,15 +6,15 @@ CeladonGameCorner_MapScriptHeader: ; 0x7211b
 	db 0
 ; 0x7211d
 
-UnknownScript_0x7211d: ; 0x7211d
+ClerkScript_0x7211d: ; 0x7211d
 	jumpstd $0032
 ; 0x72120
 
-UnknownScript_0x72120: ; 0x72120
+ReceptionistScript_0x72120: ; 0x72120
 	jumptextfaceplayer UnknownText_0x721d0
 ; 0x72123
 
-UnknownScript_0x72123: ; 0x72123
+PokefanMScript_0x72123: ; 0x72123
 	faceplayer
 	loadfont
 	2writetext UnknownText_0x72215
@@ -24,7 +24,7 @@ UnknownScript_0x72123: ; 0x72123
 	end
 ; 0x7212e
 
-UnknownScript_0x7212e: ; 0x7212e
+TeacherScript_0x7212e: ; 0x7212e
 	faceplayer
 	loadfont
 	2writetext UnknownText_0x72242
@@ -34,7 +34,7 @@ UnknownScript_0x7212e: ; 0x7212e
 	end
 ; 0x72139
 
-UnknownScript_0x72139: ; 0x72139
+FishingGuruScript_0x72139: ; 0x72139
 	faceplayer
 	loadfont
 	2writetext UnknownText_0x72295
@@ -44,7 +44,7 @@ UnknownScript_0x72139: ; 0x72139
 	end
 ; 0x72144
 
-UnknownScript_0x72144: ; 0x72144
+FisherScript_0x72144: ; 0x72144
 	faceplayer
 	loadfont
 	checkbit1 $00ce
@@ -96,7 +96,7 @@ CeladonGymGuyScript: ; 0x7218d
 	jumptextfaceplayer CeladonGymGuyText
 ; 0x72190
 
-UnknownScript_0x72190: ; 0x72190
+GrampsScript_0x72190: ; 0x72190
 	faceplayer
 	loadfont
 	2writetext UnknownText_0x724ad
@@ -319,14 +319,14 @@ CeladonGameCorner_MapEventHeader: ; 0x725a4
 
 	; people-events
 	db 9
-	person_event $39, 6, 9, $6, $0, 255, 255, $a0, 0, UnknownScript_0x7211d, $ffff
-	person_event $42, 6, 7, $6, $0, 255, 255, $a0, 0, UnknownScript_0x72120, $ffff
-	person_event $2d, 14, 18, $8, $0, 255, 255, $80, 0, UnknownScript_0x72123, $ffff
-	person_event $29, 11, 21, $9, $0, 255, 255, $90, 0, UnknownScript_0x7212e, $ffff
-	person_event $3b, 11, 15, $9, $0, 255, 255, $a0, 0, UnknownScript_0x72139, $ffff
-	person_event $3a, 14, 12, $8, $0, 255, 2, $80, 0, UnknownScript_0x72144, $ffff
-	person_event $3a, 14, 12, $8, $0, 255, 4, $80, 0, UnknownScript_0x72144, $ffff
-	person_event $48, 7, 15, $6, $0, 255, 255, $80, 0, CeladonGymGuyScript, $ffff
-	person_event $2f, 12, 6, $8, $0, 255, 255, $a0, 0, UnknownScript_0x72190, $ffff
+	person_event SPRITE_CLERK, 6, 9, $6, $0, 255, 255, $a0, 0, ClerkScript_0x7211d, $ffff
+	person_event SPRITE_RECEPTIONIST, 6, 7, $6, $0, 255, 255, $a0, 0, ReceptionistScript_0x72120, $ffff
+	person_event SPRITE_POKEFAN_M, 14, 18, $8, $0, 255, 255, $80, 0, PokefanMScript_0x72123, $ffff
+	person_event SPRITE_TEACHER, 11, 21, $9, $0, 255, 255, $90, 0, TeacherScript_0x7212e, $ffff
+	person_event SPRITE_FISHING_GURU, 11, 15, $9, $0, 255, 255, $a0, 0, FishingGuruScript_0x72139, $ffff
+	person_event SPRITE_FISHER, 14, 12, $8, $0, 255, 2, $80, 0, FisherScript_0x72144, $ffff
+	person_event SPRITE_FISHER, 14, 12, $8, $0, 255, 4, $80, 0, FisherScript_0x72144, $ffff
+	person_event SPRITE_GYM_GUY, 7, 15, $6, $0, 255, 255, $80, 0, CeladonGymGuyScript, $ffff
+	person_event SPRITE_GRAMPS, 12, 6, $8, $0, 255, 255, $a0, 0, GrampsScript_0x72190, $ffff
 ; 0x726e7
 

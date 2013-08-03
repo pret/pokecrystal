@@ -91,7 +91,7 @@ MapMountMoonSquareSignpost1Script: ; 0x7711b
 	jumptext UnknownText_0x7713b
 ; 0x7711e
 
-UnknownScript_0x7711e: ; 0x7711e
+RockScript_0x7711e: ; 0x7711e
 	jumpstd $000f
 ; 0x77121
 
@@ -174,8 +174,8 @@ MountMoonSquare_MapEventHeader: ; 0x77158
 
 	; people-events
 	db 3
-	person_event $4d, 10, 10, $6, $0, 255, 255, $0, 0, ObjectEvent, $0779
-	person_event $4d, 10, 11, $6, $0, 255, 255, $0, 0, ObjectEvent, $0779
-	person_event $59, 11, 11, $18, $0, 255, 255, $0, 0, UnknownScript_0x7711e, $0778
+	person_event SPRITE_FAIRY, 10, 10, $6, $0, 255, 255, $0, 0, ObjectEvent, $0779
+	person_event SPRITE_FAIRY, 10, 11, $6, $0, 255, 255, $0, 0, ObjectEvent, $0779
+	person_event SPRITE_ROCK, 11, 11, $18, $0, 255, 255, $0, 0, RockScript_0x7711e, $0778
 ; 0x771a6
 

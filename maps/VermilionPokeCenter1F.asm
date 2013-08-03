@@ -6,11 +6,11 @@ VermilionPokeCenter1F_MapScriptHeader: ; 0x191601
 	db 0
 ; 0x191603
 
-UnknownScript_0x191603: ; 0x191603
+NurseScript_0x191603: ; 0x191603
 	jumpstd $0000
 ; 0x191606
 
-UnknownScript_0x191606: ; 0x191606
+FishingGuruScript_0x191606: ; 0x191606
 	faceplayer
 	loadfont
 	checkbit1 $0750
@@ -28,11 +28,11 @@ UnknownScript_0x191614: ; 0x191614
 	end
 ; 0x19161a
 
-UnknownScript_0x19161a: ; 0x19161a
+SailorScript_0x19161a: ; 0x19161a
 	jumptextfaceplayer UnknownText_0x1916fe
 ; 0x19161d
 
-UnknownScript_0x19161d: ; 0x19161d
+BugCatcherScript_0x19161d: ; 0x19161d
 	jumptextfaceplayer UnknownText_0x19173b
 ; 0x191620
 
@@ -88,9 +88,9 @@ VermilionPokeCenter1F_MapEventHeader: ; 0x191791
 
 	; people-events
 	db 4
-	person_event $37, 5, 7, $6, $0, 255, 255, $0, 0, UnknownScript_0x191603, $ffff
-	person_event $3b, 6, 11, $6, $0, 255, 255, $80, 0, UnknownScript_0x191606, $ffff
-	person_event $49, 9, 10, $4, $10, 255, 255, $90, 0, UnknownScript_0x19161a, $ffff
-	person_event $25, 9, 5, $3, $0, 255, 255, $a0, 0, UnknownScript_0x19161d, $ffff
+	person_event SPRITE_NURSE, 5, 7, $6, $0, 255, 255, $0, 0, NurseScript_0x191603, $ffff
+	person_event SPRITE_FISHING_GURU, 6, 11, $6, $0, 255, 255, $80, 0, FishingGuruScript_0x191606, $ffff
+	person_event SPRITE_SAILOR, 9, 10, $4, $10, 255, 255, $90, 0, SailorScript_0x19161a, $ffff
+	person_event SPRITE_BUG_CATCHER, 9, 5, $3, $0, 255, 255, $a0, 0, BugCatcherScript_0x19161d, $ffff
 ; 0x1917da
 

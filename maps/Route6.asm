@@ -64,7 +64,7 @@ PokefanmAllanScript: ; 0x1ad949
 	end
 ; 0x1ad951
 
-UnknownScript_0x1ad951: ; 0x1ad951
+PokefanMScript_0x1ad951: ; 0x1ad951
 	jumptextfaceplayer UnknownText_0x1ad957
 ; 0x1ad954
 
@@ -139,8 +139,8 @@ Route6_MapEventHeader: ; 0x1adadb
 
 	; people-events
 	db 3
-	person_event $2d, 8, 21, $6, $0, 255, 255, $b0, 2, UnknownScript_0x1ad951, $0771
-	person_event $2d, 16, 13, $9, $0, 255, 255, $82, 0, TrainerPokefanmRex, $ffff
-	person_event $2d, 16, 14, $8, $0, 255, 255, $82, 0, TrainerPokefanmAllan, $ffff
+	person_event SPRITE_POKEFAN_M, 8, 21, $6, $0, 255, 255, $b0, 2, PokefanMScript_0x1ad951, $0771
+	person_event SPRITE_POKEFAN_M, 16, 13, $9, $0, 255, 255, $82, 0, TrainerPokefanmRex, $ffff
+	person_event SPRITE_POKEFAN_M, 16, 14, $8, $0, 255, 255, $82, 0, TrainerPokefanmAllan, $ffff
 ; 0x1adb17
 
