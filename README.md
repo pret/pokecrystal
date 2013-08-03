@@ -31,4 +31,3 @@ Eventually this will not be necessary.
 * Hang out with us on irc: **[nucleus.kafuka.org #skeetendo](https://kiwiirc.com/client/irc.nolimitzone.com/?#skeetendo)**
 
 * Disassembly of **[Pokémon Red](http://bitbucket.org/iimarckus/pokered)**.
-
