@@ -93,6 +93,13 @@ pip install -r requirements.txt
 
 Make sure you downloaded a base rom. Name it **baserom.gbc**.
 
+**pokecrystal** only compiles with the use of a git submodule. To activate the submodule type:
+
+```
+git submodule init
+git submodule update
+```
+
 Now you should be able to build **pokecrystal.gbc** for the first time.
 
 This compiles a new rom from the source code, with any patches filled in from the base rom.
@@ -138,6 +145,10 @@ which rgbasm
 # download pokecrystal
 git clone git://github.com/kanzure/pokecrystal.git
 cd pokecrystal
+
+# grab extras/ which is required for compiling
+git submodule init
+git submodule update
 
 # install python requirements
 pip install -r requirements.txt
