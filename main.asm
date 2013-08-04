@@ -1,23 +1,23 @@
-SECTION "bank0",HOME
-SECTION "rst0",HOME[$0]
+SECTION "bank0",ROM0
+SECTION "rst0",ROM0[$0]
 	di
 	jp Start
 
-SECTION "rst8",HOME[$8] ; FarCall
+SECTION "rst8",ROM0[$8] ; FarCall
 	jp FarJpHl
 
-SECTION "rst10",HOME[$10] ; Bankswitch
+SECTION "rst10",ROM0[$10] ; Bankswitch
 	ld [hROMBank], a
 	ld [MBC3RomBank], a
 	ret
 
-SECTION "rst18",HOME[$18] ; Unused
+SECTION "rst18",ROM0[$18] ; Unused
 	rst $38
 
-SECTION "rst20",HOME[$20] ; Unused
+SECTION "rst20",ROM0[$20] ; Unused
 	rst $38
 
-SECTION "rst28",HOME[$28] ; JumpTable
+SECTION "rst28",ROM0[$28] ; JumpTable
 	push de
 	ld e, a
 	ld d, 00
@@ -31,30 +31,30 @@ SECTION "rst28",HOME[$28] ; JumpTable
 
 ; rst30 is midst rst28
 
-SECTION "rst38",HOME[$38] ; Unused
+SECTION "rst38",ROM0[$38] ; Unused
 	rst $38
 
-SECTION "vblank",HOME[$40] ; vblank interrupt
+SECTION "vblank",ROM0[$40] ; vblank interrupt
 	jp VBlank
 
-SECTION "lcd",HOME[$48] ; lcd interrupt
+SECTION "lcd",ROM0[$48] ; lcd interrupt
 	jp $0552
 
-SECTION "timer",HOME[$50] ; timer interrupt
+SECTION "timer",ROM0[$50] ; timer interrupt
 	jp $3e93
 
-SECTION "serial",HOME[$58] ; serial interrupt
+SECTION "serial",ROM0[$58] ; serial interrupt
 	jp $06ef
 
-SECTION "joypad",HOME[$60] ; joypad interrupt
+SECTION "joypad",ROM0[$60] ; joypad interrupt
 	jp JoypadInt
 
-SECTION "romheader",HOME[$100]
+SECTION "romheader",ROM0[$100]
 Start:
 	nop
 	jp $016e
 
-SECTION "start",HOME[$150]
+SECTION "start",ROM0[$150]
 
 INCBIN "baserom.gbc", $150, $283 - $150
 
@@ -5524,7 +5524,7 @@ SFXChannelsOff: ; 3e21
 INCBIN "baserom.gbc", $3e32, $3fb5 - $3e32
 
 
-SECTION "bank1",DATA,BANK[$1]
+SECTION "bank1",ROMX,BANK[$1]
 
 INCBIN "baserom.gbc", $4000, $5f99 - $4000
 
@@ -6205,7 +6205,7 @@ SpecialGiveShuckle: ; 7305
 INCBIN "baserom.gbc", $737e, $747b - $737e
 
 
-SECTION "bank2",DATA,BANK[$2]
+SECTION "bank2",ROMX,BANK[$2]
 
 INCBIN "baserom.gbc", $8000, $854b - $8000
 
@@ -6435,7 +6435,7 @@ INCBIN "tilesets/dark.pal"
 INCBIN "baserom.gbc", $b419, $b825 - $b419
 
 
-SECTION "bank3",DATA,BANK[$3]
+SECTION "bank3",ROMX,BANK[$3]
 
 INCBIN "baserom.gbc", $c000, $29
 
@@ -7374,7 +7374,7 @@ INCLUDE "items/item_effects.asm"
 INCBIN "baserom.gbc", $f780, $fa0b - $f780
 
 
-SECTION "bank4",DATA,BANK[$4]
+SECTION "bank4",ROMX,BANK[$4]
 
 INCBIN "baserom.gbc", $10000, $10b16 - $10000
 
@@ -8754,7 +8754,7 @@ root	set root+1
 ; 13d96
 
 
-SECTION "bank5",DATA,BANK[$5]
+SECTION "bank5",ROMX,BANK[$5]
 
 INCBIN "baserom.gbc", $14000, $14032 - $14000
 
@@ -9268,7 +9268,7 @@ MenuData15a08: ; 0x15a08
 INCBIN "baserom.gbc", $15a20, $174ba - $15a20
 
 
-SECTION "bank6",DATA,BANK[$6]
+SECTION "bank6",ROMX,BANK[$6]
 
 Tileset03GFX: ; 0x18000
 INCBIN "gfx/tilesets/03.lz"
@@ -9347,7 +9347,7 @@ INCBIN "tilesets/20_collision.bin"
 ; 0x1bdfe
 
 
-SECTION "bank7",DATA,BANK[$7]
+SECTION "bank7",ROMX,BANK[$7]
 
 INCBIN "baserom.gbc", $1c000, $1c30c - $1c000
 
@@ -9452,7 +9452,7 @@ Music_Clair:         INCLUDE "audio/music/clair.asm"
 Music_MobileAdapter: INCLUDE "audio/music/mobileadapter.asm"
 
 
-SECTION "bank8",DATA,BANK[$8]
+SECTION "bank8",ROMX,BANK[$8]
 
 INCBIN "baserom.gbc", $20000, $20181 - $20000
 
@@ -9573,7 +9573,7 @@ INCLUDE "stats/egg_move_pointers.asm"
 INCLUDE "stats/egg_moves.asm"
 
 
-SECTION "bank9",DATA,BANK[$9]
+SECTION "bank9",ROMX,BANK[$9]
 
 INCBIN "baserom.gbc", $24000, $244c3 - $24000
 
@@ -10051,7 +10051,7 @@ INCLUDE "battle/moves/move_effects.asm"
 INCBIN "baserom.gbc", $27a28, $27a2d - $27a28
 
 
-SECTION "bankA",DATA,BANK[$A]
+SECTION "bankA",ROMX,BANK[$A]
 
 INCBIN "baserom.gbc", $28000, $28785 - $28000
 
@@ -10156,7 +10156,7 @@ INCBIN "gfx/misc/dude.lz"
 ; 2bce1
 
 
-SECTION "bankB",DATA,BANK[$B]
+SECTION "bankB",ROMX,BANK[$B]
 
 INCBIN "baserom.gbc", $2C000, $2c1ef - $2C000
 
@@ -10458,7 +10458,7 @@ FillBox: ; 2ef6e
 
 
 
-SECTION "bankC",DATA,BANK[$C]
+SECTION "bankC",ROMX,BANK[$C]
 
 Tileset15GFX: ; 0x30000
 INCBIN "gfx/tilesets/15.lz"
@@ -10550,12 +10550,12 @@ INCBIN "gfx/tilesets/30.lz"
 INCBIN "baserom.gbc", $329ed, $333f0 - $329ed
 
 
-SECTION "bankD",DATA,BANK[$D]
+SECTION "bankD",ROMX,BANK[$D]
 
 INCLUDE "battle/effect_commands.asm"
 
 
-SECTION "bankE",DATA,BANK[$E]
+SECTION "bankE",ROMX,BANK[$E]
 
 INCBIN "baserom.gbc", $38000, $38591 - $38000
 
@@ -10573,7 +10573,7 @@ INCLUDE "trainers/trainer_pointers.asm"
 INCLUDE "trainers/trainers.asm"
 
 
-SECTION "bankF",DATA,BANK[$F]
+SECTION "bankF",ROMX,BANK[$F]
 
 INCBIN "baserom.gbc", $3c000, $3cc83 - $3c000
 
@@ -11793,7 +11793,7 @@ INCLUDE "battle/effect_command_pointers.asm"
 
 
 
-SECTION "bank10",DATA,BANK[$10]
+SECTION "bank10",ROMX,BANK[$10]
 
 INCBIN "baserom.gbc", $40000, $40c65-$40000
 
@@ -11816,7 +11816,7 @@ INCLUDE "stats/evos_attacks_pointers.asm"
 INCLUDE "stats/evos_attacks.asm"
 
 
-SECTION "bank11",DATA,BANK[$11]
+SECTION "bank11",ROMX,BANK[$11]
 
 FruitTreeScript: ; 44000
 	3callasm BANK(GetCurTreeFruit), GetCurTreeFruit
@@ -12491,7 +12491,7 @@ MenuData44964: ; 0x44964
 	db "ATTACH MAIL@"
 	db "CANCEL@"
 
-SECTION "bank12",DATA,BANK[$12]
+SECTION "bank12",ROMX,BANK[$12]
 
 INCBIN "baserom.gbc", $48000, $48e9b - $48000
 
@@ -12874,7 +12874,7 @@ UpdateOTPointer: ; 0x4a83a
 INCBIN "baserom.gbc", $4a843, $4ae78 - $4a843
 
 
-SECTION "bank13",DATA,BANK[$13]
+SECTION "bank13",ROMX,BANK[$13]
 
 INCBIN "baserom.gbc", $4c000, $4c075 - $4c000
 
@@ -13564,7 +13564,7 @@ INCBIN "gfx/evo/bubble.2bpp"
 INCBIN "baserom.gbc", $4e881, $4f31c - $4e881
 
 
-SECTION "bank14",DATA,BANK[$14]
+SECTION "bank14",ROMX,BANK[$14]
 
 INCBIN "baserom.gbc", $50000, $5005f-$50000
 
@@ -13990,7 +13990,7 @@ INCLUDE "stats/pokemon_names.asm"
 INCBIN "baserom.gbc", $53D84, $53e2e - $53D84
 
 
-SECTION "bank15",DATA,BANK[$15]
+SECTION "bank15",ROMX,BANK[$15]
 
 ;                          Map Scripts I
 
@@ -14013,7 +14013,7 @@ INCLUDE "maps/GoldenrodDeptStoreRoof.asm"
 INCLUDE "maps/GoldenrodGameCorner.asm"
 
 
-SECTION "bank16",DATA,BANK[$16]
+SECTION "bank16",ROMX,BANK[$16]
 
 ;                          Map Scripts II
 
@@ -14043,7 +14043,7 @@ INCLUDE "maps/OlivineLighthouse3F.asm"
 INCLUDE "maps/OlivineLighthouse4F.asm"
 
 
-SECTION "bank17",DATA,BANK[$17]
+SECTION "bank17",ROMX,BANK[$17]
 
 ;                         Map Scripts III
 
@@ -14055,7 +14055,7 @@ INCLUDE "maps/RadioTower3F.asm"
 INCLUDE "maps/RadioTower4F.asm"
 
 
-SECTION "bank18",DATA,BANK[$18]
+SECTION "bank18",ROMX,BANK[$18]
 
 ;                          Map Scripts IV
 
@@ -14069,12 +14069,12 @@ INCLUDE "maps/Route34IlexForestGate.asm"
 INCLUDE "maps/DayCare.asm"
 
 
-SECTION "bank19",DATA,BANK[$19]
+SECTION "bank19",ROMX,BANK[$19]
 
 INCBIN "baserom.gbc", $64000, $67308 - $64000
 
 
-SECTION "bank1A",DATA,BANK[$1A]
+SECTION "bank1A",ROMX,BANK[$1A]
 
 ;                          Map Scripts V
 
@@ -14093,7 +14093,7 @@ INCLUDE "maps/Route36RuinsofAlphgate.asm"
 INCLUDE "maps/Route36NationalParkgate.asm"
 
 
-SECTION "bank1B",DATA,BANK[$1B]
+SECTION "bank1B",ROMX,BANK[$1B]
 
 ;                          Map Scripts VI
 
@@ -14105,7 +14105,7 @@ INCLUDE "maps/TeamRocketBaseB3F.asm"
 INCLUDE "maps/IlexForest.asm"
 
 
-SECTION "bank1C",DATA,BANK[$1C]
+SECTION "bank1C",ROMX,BANK[$1C]
 
 ;                         Map Scripts VII
 
@@ -14134,7 +14134,7 @@ INCLUDE "maps/Route7SaffronGate.asm"
 INCLUDE "maps/Route1718Gate.asm"
 
 
-SECTION "bank1D",DATA,BANK[$1D]
+SECTION "bank1D",ROMX,BANK[$1D]
 
 ;                         Map Scripts VIII
 
@@ -14160,7 +14160,7 @@ INCLUDE "maps/MountMoonGiftShop.asm"
 INCLUDE "maps/TinTowerRoof.asm"
 
 
-SECTION "bank1E",DATA,BANK[$1E]
+SECTION "bank1E",ROMX,BANK[$1E]
 
 ;                          Map Scripts IX
 
@@ -14176,7 +14176,7 @@ INCLUDE "maps/Route27SandstormHouse.asm"
 INCLUDE "maps/Route2946Gate.asm"
 
 
-SECTION "bank1F",DATA,BANK[$1F]
+SECTION "bank1F",ROMX,BANK[$1F]
 
 ;                          Map Scripts X
 
@@ -14206,7 +14206,7 @@ INCLUDE "maps/Route8SaffronGate.asm"
 INCLUDE "maps/Route12SuperRodHouse.asm"
 
 
-SECTION "bank20",DATA,BANK[$20]
+SECTION "bank20",ROMX,BANK[$20]
 
 
 DoPlayerMovement: ; 80000
@@ -15157,7 +15157,7 @@ INCBIN "gfx/debug/color_test.2bpp"
 INCBIN "baserom.gbc", $82153, $823c8-$82153
 
 
-SECTION "bank21",DATA,BANK[$21]
+SECTION "bank21",ROMX,BANK[$21]
 
 INCBIN "baserom.gbc", $84000, $84a2e - $84000
 
@@ -15439,7 +15439,7 @@ HallOfFame3: ; 0x8640e
 
 INCBIN "baserom.gbc", $86455, $88000 - $86455
 
-SECTION "bank22",DATA,BANK[$22]
+SECTION "bank22",ROMX,BANK[$22]
 
 INCBIN "baserom.gbc", $88000, $88258 - $88000
 
@@ -15752,7 +15752,7 @@ GetNthPartyMon: ; 0x8b1ce
 INCBIN "baserom.gbc", $8b1e1, $8ba24-$8b1e1
 
 
-SECTION "bank23",DATA,BANK[$23]
+SECTION "bank23",ROMX,BANK[$23]
 
 INCBIN "baserom.gbc", $8c000, $8c011 - $8c000
 
@@ -16564,7 +16564,7 @@ SudowoodoIcon:    INCBIN "gfx/icon/sudowoodo.2bpp" ; 0x8fe0d
 BigmonIcon:       INCBIN "gfx/icon/bigmon.2bpp" ; 0x8fe8d
 
 
-SECTION "bank24",DATA,BANK[$24]
+SECTION "bank24",ROMX,BANK[$24]
 
 INCBIN "baserom.gbc", $90000, $909F2-$90000
 
@@ -17057,7 +17057,7 @@ INCLUDE "stats/wild/fish.asm"
 INCBIN "baserom.gbc", $926c7, $93a31 - $926c7
 
 
-SECTION "bank25",DATA,BANK[$25]
+SECTION "bank25",ROMX,BANK[$25]
 
 MapGroupPointers: ; 0x94000
 ; pointers to the first map header of each map group
@@ -17752,7 +17752,7 @@ INCLUDE "engine/scripting.asm"
 INCBIN "baserom.gbc", $97c20, $97f7e - $97c20
 
 
-SECTION "bank26",DATA,BANK[$26]
+SECTION "bank26",ROMX,BANK[$26]
 
 ;                          Map Scripts XI
 
@@ -17776,7 +17776,7 @@ INCLUDE "maps/Route2Gate.asm"
 INCLUDE "maps/VictoryRoadGate.asm"
 
 
-SECTION "bank27",DATA,BANK[$27]
+SECTION "bank27",ROMX,BANK[$27]
 
 ;                         Map Scripts XII
 
@@ -17806,17 +17806,17 @@ INCLUDE "maps/Route40BattleTowerGate.asm"
 INCLUDE "maps/BattleTowerOutside.asm"
 
 
-SECTION "bank28",DATA,BANK[$28]
+SECTION "bank28",ROMX,BANK[$28]
 
 INCBIN "baserom.gbc", $a0000, $a1eca - $a0000
 
 
-SECTION "bank29",DATA,BANK[$29]
+SECTION "bank29",ROMX,BANK[$29]
 
 INCBIN "baserom.gbc", $a4000, $a64ad - $a4000
 
 
-SECTION "bank2A",DATA,BANK[$2A]
+SECTION "bank2A",ROMX,BANK[$2A]
 
 Route32_BlockData: ; 0xa8000
 	INCBIN "maps/Route32.blk"
@@ -18127,7 +18127,7 @@ Route22_BlockData: ; 0xabef7
 ; 0xabfab
 
 
-SECTION "bank2B",DATA,BANK[$2B]
+SECTION "bank2B",ROMX,BANK[$2B]
 
 Route14_BlockData: ; 0xac000
 	INCBIN "maps/Route14.blk"
@@ -18682,7 +18682,7 @@ OlivineLighthouse6F_BlockData: ; 0xaff00
 ; 0xaff5a
 
 
-SECTION "bank2C",DATA,BANK[$2C]
+SECTION "bank2C",ROMX,BANK[$2C]
 
 BetaCave2_BlockData: ; 0xb0000
 	INCBIN "maps/BetaCave2.blk"
@@ -19033,7 +19033,7 @@ GoldenrodDeptStoreRoof_BlockData: ; 0xb1b22
 ; 0xb1b42
 
 
-SECTION "bank2D",DATA,BANK[$2D]
+SECTION "bank2D",ROMX,BANK[$2D]
 
 Tileset21GFX: ; 0xb4000
 INCBIN "gfx/tilesets/21.lz"
@@ -19150,7 +19150,7 @@ INCBIN "tilesets/16_collision.bin"
 ; 0xb7ea8
 
 
-SECTION "bank2E",DATA,BANK[$2E]
+SECTION "bank2E",ROMX,BANK[$2E]
 
 INCBIN "baserom.gbc", $B8000, $b8219 - $b8000
 
@@ -19395,7 +19395,7 @@ WildRockMonTable: ; b83de
 INCBIN "baserom.gbc", $b83e5, $b9e8b - $b83e5
 
 
-SECTION "bank2F",DATA,BANK[$2F]
+SECTION "bank2F",ROMX,BANK[$2F]
 
 INCBIN "baserom.gbc", $bc000, $bc09c - $bc000
 
@@ -19824,20 +19824,20 @@ ElmPhoneScript2: ; 0xbd081
 INCBIN "baserom.gbc", $bd0d0, $be699-$bd0d0
 
 
-SECTION "bank30",DATA,BANK[$30]
+SECTION "bank30",ROMX,BANK[$30]
 
 INCLUDE "gfx/overworld/sprites_1.asm"
 
-SECTION "bank31",DATA,BANK[$31]
+SECTION "bank31",ROMX,BANK[$31]
 
 INCLUDE "gfx/overworld/sprites_2.asm"
 
-SECTION "bank32",DATA,BANK[$32]
+SECTION "bank32",ROMX,BANK[$32]
 
 INCBIN "baserom.gbc", $c8000, $cbe2b - $c8000
 
 
-SECTION "bank33",DATA,BANK[$33]
+SECTION "bank33",ROMX,BANK[$33]
 
 INCBIN "baserom.gbc", $cc000, $cfd9e - $cc000
 
@@ -19849,7 +19849,7 @@ Music_PostCredits: INCLUDE "audio/music/postcredits.asm"
 
 ;                       Pic animations I
 
-SECTION "bank34",DATA,BANK[$34]
+SECTION "bank34",ROMX,BANK[$34]
 
 ; Pic animations asm
 INCBIN "baserom.gbc", $d0000, $d0695 - $d0000
@@ -19893,7 +19893,7 @@ INCLUDE "gfx/pics/unown_bitmasks.asm"
 
 ;                       Pic animations II
 
-SECTION "bank35",DATA,BANK[$35]
+SECTION "bank35",ROMX,BANK[$35]
 
 ; Frame definitions
 FramesPointers: INCLUDE "gfx/pics/frame_pointers.asm"
@@ -19903,7 +19903,7 @@ INCLUDE "gfx/pics/kanto_frames.asm"
 
 ;                       Pic animations III
 
-SECTION "bank36",DATA,BANK[$36]
+SECTION "bank36",ROMX,BANK[$36]
 
 FontInversed: INCBIN "gfx/misc/font_inversed.1bpp"
 
@@ -19915,7 +19915,7 @@ UnownFramesPointers: INCLUDE "gfx/pics/unown_frame_pointers.asm"
 INCLUDE "gfx/pics/unown_frames.asm"
 
 
-SECTION "bank37",DATA,BANK[$37]
+SECTION "bank37",ROMX,BANK[$37]
 
 Tileset31GFX: ; 0xdc000
 INCBIN "gfx/tilesets/31.lz"
@@ -20029,12 +20029,12 @@ INCBIN "tilesets/36_collision.bin"
 ; 0xdfd90
 
 
-SECTION "bank38",DATA,BANK[$38]
+SECTION "bank38",ROMX,BANK[$38]
 
 INCBIN "baserom.gbc", $e0000, $e37f9 - $e0000
 
 
-SECTION "bank39",DATA,BANK[$39]
+SECTION "bank39",ROMX,BANK[$39]
 
 INCBIN "baserom.gbc", $e4000, $e555d - $e4000
 
@@ -20197,7 +20197,7 @@ INCBIN "baserom.gbc", $e799a, $e7a70 - $e799a
 
 ; ================================================================
 ;           Sound engine and music/sound effect pointers
-SECTION "bank3A",DATA,BANK[$3A]
+SECTION "bank3A",ROMX,BANK[$3A]
 
 
 ; The sound engine. Interfaces are in bank 0
@@ -20238,7 +20238,7 @@ Music_LookPokemaniac:       INCLUDE "audio/music/lookpokemaniac.asm"
 Music_TrainerVictory:       INCLUDE "audio/music/trainervictory.asm"
 
 
-SECTION "bank3B",DATA,BANK[$3B]
+SECTION "bank3B",ROMX,BANK[$3B]
 
 ;                           Songs II
 
@@ -20275,7 +20275,7 @@ Music_DancingHall:          INCLUDE "audio/music/dancinghall.asm"
 Music_ContestResults:       INCLUDE "audio/music/bugcatchingcontestresults.asm"
 Music_Route30:              INCLUDE "audio/music/route30.asm"
 
-SECTION "bank3C",DATA,BANK[$3C]
+SECTION "bank3C",ROMX,BANK[$3C]
 
 ;                          Songs III
 
@@ -20294,7 +20294,7 @@ INCLUDE "audio/cry_headers.asm"
 INCBIN "baserom.gbc", $f2d69, $f3fb6 - $f2d69
 
 
-SECTION "bank3D",DATA,BANK[$3D]
+SECTION "bank3D",ROMX,BANK[$3D]
 
 ;                           Songs IV
 
@@ -20336,7 +20336,7 @@ Music_LookKimonoGirl:       INCLUDE "audio/music/lookkimonogirl.asm"
 Music_PokeFluteChannel:     INCLUDE "audio/music/pokeflutechannel.asm"
 Music_BugCatchingContest:   INCLUDE "audio/music/bugcatchingcontest.asm"
 
-SECTION "bank3E",DATA,BANK[$3E]
+SECTION "bank3E",ROMX,BANK[$3E]
 
 FontExtra:
 INCBIN "gfx/misc/font_extra.2bpp", $0, $200
@@ -20567,7 +20567,7 @@ DoBadgeTypeBoosts: ; fbe24
 ; fbe91
 
 
-SECTION "bank3F",DATA,BANK[$3F]
+SECTION "bank3F",ROMX,BANK[$3F]
 
 DoTileAnimation: ; fc000
 ; Iterate over a given pointer array of animation functions
@@ -21600,12 +21600,12 @@ Trades: ; 0xfce58
 INCBIN "baserom.gbc", $fcf38, $fd1d2-$fcf38
 
 
-SECTION "bank40",DATA,BANK[$40]
+SECTION "bank40",ROMX,BANK[$40]
 
 INCBIN "baserom.gbc", $100000, $10389d - $100000
 
 
-SECTION "bank41",DATA,BANK[$41]
+SECTION "bank41",ROMX,BANK[$41]
 
 INCBIN "baserom.gbc", $104000, $104350 - $104000
 
@@ -22152,7 +22152,7 @@ Function1060bb: ; 1060bb
 INCBIN "baserom.gbc", $1060bc, $106dbc - $1060bc
 
 
-SECTION "bank42",DATA,BANK[$42]
+SECTION "bank42",ROMX,BANK[$42]
 
 INCBIN "baserom.gbc", $108000, $109407 - $108000
 
@@ -22166,7 +22166,7 @@ INCBIN "baserom.gbc", $10983f, $1099aa - $10983f
 INCLUDE "engine/credits.asm"
 
 
-SECTION "bank43",DATA,BANK[$43]
+SECTION "bank43",ROMX,BANK[$43]
 
 INCBIN "baserom.gbc", $10c000, $10ed67 - $10c000
 
@@ -22534,7 +22534,7 @@ TitleScreenPalettes:
 	RGB 00, 00, 00
 	RGB 00, 00, 00
 
-SECTION "bank44",DATA,BANK[$44]
+SECTION "bank44",ROMX,BANK[$44]
 
 INCBIN "baserom.gbc", $110000, $110fad - $110000
 
@@ -22551,7 +22551,7 @@ HTTPRankingURL: ; 0x111020
 
 INCBIN "baserom.gbc", $111044, $113f84 - $111044
 
-SECTION "bank45",DATA,BANK[$45]
+SECTION "bank45",ROMX,BANK[$45]
 
 INCBIN "baserom.gbc", $114000, $117a7f - $114000
 
@@ -22902,7 +22902,7 @@ Function117cdd: ; 0x117cdd
 	ret
 
 
-SECTION "bank46",DATA,BANK[$46]
+SECTION "bank46",ROMX,BANK[$46]
 
 INCBIN "baserom.gbc", $118000, $118ba5 - $118000
 
@@ -22933,12 +22933,12 @@ db $0
 
 INCBIN "baserom.gbc", $118d35, $11bc9e - $118d35
 
-SECTION "bank47",DATA,BANK[$47]
+SECTION "bank47",ROMX,BANK[$47]
 
 INCBIN "baserom.gbc", $11c000, $11f686 - $11c000
 
 
-SECTION "bank48",DATA,BANK[$48]
+SECTION "bank48",ROMX,BANK[$48]
 
 PicPointers:
 INCLUDE "gfx/pics/pic_pointers.asm"
@@ -22961,7 +22961,7 @@ TyphlosionFrontpic:  INCBIN "gfx/pics/157/front.lz"
 ; 123ffa
 
 
-SECTION "bank49",DATA,BANK[$49]
+SECTION "bank49",ROMX,BANK[$49]
 
 UnownPicPointers:
 INCLUDE "gfx/pics/unown_pic_pointers.asm"
@@ -22987,7 +22987,7 @@ QuilavaFrontpic:     INCBIN "gfx/pics/156/front.lz"
 ; 127ffe
 
 
-SECTION "bank4a",DATA,BANK[$4a]
+SECTION "bank4a",ROMX,BANK[$4a]
 
 TrainerPicPointers:
 INCLUDE "gfx/pics/trainer_pic_pointers.asm"
@@ -23015,7 +23015,7 @@ OmastarBackpic:      INCBIN "gfx/pics/139/back.lz"
 ; 12bffe
 
 
-SECTION "bank4b",DATA,BANK[$4b]
+SECTION "bank4b",ROMX,BANK[$4b]
 
 ;                            Pics IV
 
@@ -23042,7 +23042,7 @@ UnownEFrontpic:      INCBIN "gfx/pics/201e/front.lz"
 ; 130000
 
 
-SECTION "bank4C",DATA,BANK[$4C]
+SECTION "bank4C",ROMX,BANK[$4C]
 
 ;                             Pics V
 
@@ -23070,7 +23070,7 @@ HeracrossFrontpic:   INCBIN "gfx/pics/214/front.lz"
 ; 133fff
 
 
-SECTION "bank4d",DATA,BANK[$4d]
+SECTION "bank4d",ROMX,BANK[$4d]
 
 ;                            Pics VI
 
@@ -23100,7 +23100,7 @@ DunsparceFrontpic:   INCBIN "gfx/pics/206/front.lz"
 ; 137fff
 
 
-SECTION "bank4E",DATA,BANK[$4E]
+SECTION "bank4E",ROMX,BANK[$4E]
 
 ;                           Pics VII
 
@@ -23132,7 +23132,7 @@ KangaskhanBackpic:   INCBIN "gfx/pics/115/back.lz"
 ; 13c000
 
 
-SECTION "bank4f",DATA,BANK[$4f]
+SECTION "bank4f",ROMX,BANK[$4f]
 
 ;                          Pics VIII
 
@@ -23166,7 +23166,7 @@ QuagsireFrontpic:    INCBIN "gfx/pics/195/front.lz"
 ; 13fff7
 
 
-SECTION "bank50",DATA,BANK[$50]
+SECTION "bank50",ROMX,BANK[$50]
 
 ;                            Pics IX
 
@@ -23204,7 +23204,7 @@ ParasectBackpic:     INCBIN "gfx/pics/047/back.lz"
 ; 144000
 
 
-SECTION "bank51",DATA,BANK[$51]
+SECTION "bank51",ROMX,BANK[$51]
 
 ;                             Pics X
 
@@ -23246,7 +23246,7 @@ UnownFBackpic:       INCBIN "gfx/pics/201f/back.lz"
 ; 148000
 
 
-SECTION "bank52",DATA,BANK[$52]
+SECTION "bank52",ROMX,BANK[$52]
 
 ;                            Pics XI
 
@@ -23291,7 +23291,7 @@ SnorlaxBackpic:      INCBIN "gfx/pics/143/back.lz"
 ; 14bffb
 
 
-SECTION "bank53",DATA,BANK[$53]
+SECTION "bank53",ROMX,BANK[$53]
 
 ;                           Pics XII
 
@@ -23339,7 +23339,7 @@ StarmieBackpic:      INCBIN "gfx/pics/121/back.lz"
 ; 150000
 
 
-SECTION "bank54",DATA,BANK[$54]
+SECTION "bank54",ROMX,BANK[$54]
 
 ;                           Pics XIII
 
@@ -23389,7 +23389,7 @@ ElectrodeFrontpic:   INCBIN "gfx/pics/101/front.lz"
 ; 153fe3
 
 
-SECTION "bank55",DATA,BANK[$55]
+SECTION "bank55",ROMX,BANK[$55]
 
 ;                           Pics XIV
 
@@ -23442,7 +23442,7 @@ SwinubBackpic:       INCBIN "gfx/pics/220/back.lz"
 ; 158000
 
 
-SECTION "bank56",DATA,BANK[$56]
+SECTION "bank56",ROMX,BANK[$56]
 
 ;                            Pics XV
 
@@ -23498,7 +23498,7 @@ MagnemiteBackpic:    INCBIN "gfx/pics/081/back.lz"
 ; 15bffa
 
 
-SECTION "bank57",DATA,BANK[$57]
+SECTION "bank57",ROMX,BANK[$57]
 
 ;                           Pics XVI
 
@@ -23558,7 +23558,7 @@ UnownHBackpic:       INCBIN "gfx/pics/201h/back.lz"
 ; 15ffff
 
 
-SECTION "bank58",DATA,BANK[$58]
+SECTION "bank58",ROMX,BANK[$58]
 
 ;                           Pics XVII
 
@@ -23626,7 +23626,7 @@ UnownDBackpic:       INCBIN "gfx/pics/201d/back.lz"
 ; 163ffc
 
 
-SECTION "bank59",DATA,BANK[$59]
+SECTION "bank59",ROMX,BANK[$59]
 
 ;                           Pics XVIII
 
@@ -23693,7 +23693,7 @@ UnownRBackpic:       INCBIN "gfx/pics/201r/back.lz"
 ; 1669d3
 
 
-SECTION "bank5A",DATA,BANK[$5A]
+SECTION "bank5A",ROMX,BANK[$5A]
 
 ; This bank is identical to bank 59!
 ; It's also unreferenced, so it's a free bank
@@ -23760,22 +23760,22 @@ INCBIN "gfx/pics/201i/back.lz"
 INCBIN "gfx/pics/201r/back.lz"
 
 
-SECTION "bank5B",DATA,BANK[$5B]
+SECTION "bank5B",ROMX,BANK[$5B]
 
 INCBIN "baserom.gbc", $16c000, $16d7fe - $16c000
 
 
-SECTION "bank5C",DATA,BANK[$5C]
+SECTION "bank5C",ROMX,BANK[$5C]
 
 INCBIN "baserom.gbc", $170000, $17367f - $170000
 
 
-SECTION "bank5D",DATA,BANK[$5D]
+SECTION "bank5D",ROMX,BANK[$5D]
 
 INCBIN "baserom.gbc", $174000, $177561 - $174000
 
 
-SECTION "bank5E",DATA,BANK[$5E]
+SECTION "bank5E",ROMX,BANK[$5E]
 
 INCBIN "baserom.gbc", $178000, $1f
 
@@ -23798,12 +23798,12 @@ INCBIN "gfx/misc/mobile_adapter.2bpp"
 INCBIN "baserom.gbc", $17a68f, $17b629 - $17a68f
 
 
-SECTION "bank5F",DATA,BANK[$5F]
+SECTION "bank5F",ROMX,BANK[$5F]
 
 INCBIN "baserom.gbc", $17c000, $17ff6c - $17c000
 
 
-SECTION "bank60",DATA,BANK[$60]
+SECTION "bank60",ROMX,BANK[$60]
 
 ;                        Map Scripts XIII
 
@@ -23822,7 +23822,7 @@ PokedexEntries1:
 INCLUDE "stats/pokedex/entries_1.asm"
 
 
-SECTION "bank61",DATA,BANK[$61]
+SECTION "bank61",ROMX,BANK[$61]
 
 ;                        Map Scripts XIV
 
@@ -23843,7 +23843,7 @@ INCLUDE "maps/BurnedTower1F.asm"
 INCLUDE "maps/BurnedTowerB1F.asm"
 
 
-SECTION "bank62",DATA,BANK[$62]
+SECTION "bank62",ROMX,BANK[$62]
 
 ;                         Map Scripts XV
 
@@ -23873,7 +23873,7 @@ INCLUDE "maps/Route5SaffronCityGate.asm"
 INCLUDE "maps/Route5CleanseTagSpeechHouse.asm"
 
 
-SECTION "bank63",DATA,BANK[$63]
+SECTION "bank63",ROMX,BANK[$63]
 
 ;                        Map Scripts XVI
 
@@ -23903,7 +23903,7 @@ INCLUDE "maps/KurtsHouse.asm"
 INCLUDE "maps/AzaleaGym.asm"
 
 
-SECTION "bank64",DATA,BANK[$64]
+SECTION "bank64",ROMX,BANK[$64]
 
 ;                        Map Scripts XVII
 
@@ -23927,7 +23927,7 @@ INCLUDE "maps/MobileTradeRoomMobile.asm"
 INCLUDE "maps/MobileBattleRoom.asm"
 
 
-SECTION "bank65",DATA,BANK[$65]
+SECTION "bank65",ROMX,BANK[$65]
 
 ;                       Map Scripts XVIII
 
@@ -23958,7 +23958,7 @@ INCLUDE "maps/MrPokemonsHouse.asm"
 INCLUDE "maps/Route31VioletGate.asm"
 
 
-SECTION "bank66",DATA,BANK[$66]
+SECTION "bank66",ROMX,BANK[$66]
 
 ;                        Map Scripts XIX
 
@@ -23979,7 +23979,7 @@ INCLUDE "maps/BluesHouse.asm"
 INCLUDE "maps/OaksLab.asm"
 
 
-SECTION "bank67",DATA,BANK[$67]
+SECTION "bank67",ROMX,BANK[$67]
 
 ;                         Map Scripts XX
 
@@ -23992,7 +23992,7 @@ INCLUDE "maps/Route19.asm"
 INCLUDE "maps/Route25.asm"
 
 
-SECTION "bank68",DATA,BANK[$68]
+SECTION "bank68",ROMX,BANK[$68]
 
 ;                        Map Scripts XXI
 
@@ -24010,7 +24010,7 @@ INCLUDE "maps/PewterPokeCEnter2FBeta.asm"
 INCLUDE "maps/PewterSnoozeSpeechHouse.asm"
 
 
-SECTION "bank69",DATA,BANK[$69]
+SECTION "bank69",ROMX,BANK[$69]
 
 ;                        Map Scripts XXII
 
@@ -24025,7 +24025,7 @@ INCLUDE "maps/Route41.asm"
 INCLUDE "maps/Route12.asm"
 
 
-SECTION "bank6A",DATA,BANK[$6A]
+SECTION "bank6A",ROMX,BANK[$6A]
 
 ;                       Map Scripts XXIII
 
@@ -24046,7 +24046,7 @@ INCLUDE "maps/Route19FuchsiaGate.asm"
 INCLUDE "maps/SeafoamGym.asm"
 
 
-SECTION "bank6B",DATA,BANK[$6B]
+SECTION "bank6B",ROMX,BANK[$6B]
 
 ;                        Map Scripts XXIV
 
@@ -24074,7 +24074,7 @@ INCLUDE "maps/SilverCavePokeCenter1F.asm"
 INCLUDE "maps/Route28FamousSpeechHouse.asm"
 
 
-SECTION "bank6C",DATA,BANK[$6C]
+SECTION "bank6C",ROMX,BANK[$6C]
 
 ;                         Common text I
 
@@ -24086,7 +24086,7 @@ INCLUDE "maps/SilverCaveOutside.asm"
 INCLUDE "maps/Route10North.asm"
 
 
-SECTION "bank6D",DATA,BANK[$6D]
+SECTION "bank6D",ROMX,BANK[$6D]
 
 INCLUDE "text/phone/mom.tx"
 INCLUDE "text/phone/bill.tx"
@@ -24094,7 +24094,7 @@ INCLUDE "text/phone/elm.tx"
 INCLUDE "text/phone/trainers1.tx"
 
 
-SECTION "bank6E",DATA,BANK[$6E]
+SECTION "bank6E",ROMX,BANK[$6E]
 
 ;                       Pokedex entries II
 ;                            065-128
@@ -24102,7 +24102,7 @@ PokedexEntries2:
 INCLUDE "stats/pokedex/entries_2.asm"
 
 
-SECTION "bank6F",DATA,BANK[$6F]
+SECTION "bank6F",ROMX,BANK[$6F]
 
 _FruitBearingTreeText: ; 0x1bc000
 	db $0, "It's a fruit-", $4f
@@ -24136,21 +24136,21 @@ _NothingHereText: ; 0x1bc055
 INCBIN "baserom.gbc", $1bc06b, $1be08d - $1bc06b
 
 
-SECTION "bank70",DATA,BANK[$70]
+SECTION "bank70",ROMX,BANK[$70]
 
 ;                         Common text II
 
 INCLUDE "text/common_2.tx"
 
 
-SECTION "bank71",DATA,BANK[$71]
+SECTION "bank71",ROMX,BANK[$71]
 
 ;                        Common text III
 
 INCLUDE "text/common_3.tx"
 
 
-SECTION "bank72",DATA,BANK[$72]
+SECTION "bank72",ROMX,BANK[$72]
 
 ;                   Item names & descriptions
 
@@ -24200,7 +24200,7 @@ RegionCheck: ; 0x1caea1
 	ret
 
 
-SECTION "bank73",DATA,BANK[$73]
+SECTION "bank73",ROMX,BANK[$73]
 
                       ; Pokedex entries III
                             ; 129-192
@@ -24208,7 +24208,7 @@ PokedexEntries3:
 INCLUDE "stats/pokedex/entries_3.asm"
 
 
-SECTION "bank74",DATA,BANK[$74]
+SECTION "bank74",ROMX,BANK[$74]
 
 ;                       Pokedex entries IV
                             ; 193-251
@@ -24216,13 +24216,13 @@ PokedexEntries4:
 INCLUDE "stats/pokedex/entries_4.asm"
 
 
-SECTION "bank75",DATA,BANK[$75]
+SECTION "bank75",ROMX,BANK[$75]
 
 
-SECTION "bank76",DATA,BANK[$76]
+SECTION "bank76",ROMX,BANK[$76]
 
 
-SECTION "bank77",DATA,BANK[$77]
+SECTION "bank77",ROMX,BANK[$77]
 
 INCBIN "baserom.gbc", $1dc000, $1dc5a1 - $1dc000
 
@@ -24286,7 +24286,7 @@ INCBIN "gfx/misc/pokegear.lz"
 INCBIN "baserom.gbc", $1de5c7, $1df238 - $1de5c7
 
 
-SECTION "bank78",DATA,BANK[$78]
+SECTION "bank78",ROMX,BANK[$78]
 
 Tileset33Meta: ; 0x1e0000
 INCBIN "tilesets/33_metatiles.bin"
@@ -24305,34 +24305,34 @@ INCBIN "tilesets/36_metatiles.bin"
 ; 0x1e1000
 
 
-SECTION "bank79",DATA,BANK[$79]
+SECTION "bank79",ROMX,BANK[$79]
 
 
-SECTION "bank7A",DATA,BANK[$7A]
+SECTION "bank7A",ROMX,BANK[$7A]
 
 
-SECTION "bank7B",DATA,BANK[$7B]
+SECTION "bank7B",ROMX,BANK[$7B]
 
 INCBIN "baserom.gbc", $1ec000, $1ecf02 - $1ec000
 
 
-SECTION "bank7C",DATA,BANK[$7C]
+SECTION "bank7C",ROMX,BANK[$7C]
 
 INCBIN "baserom.gbc", $1f0000, $1f09d8 - $1f0000
 
 
-SECTION "bank7D",DATA,BANK[$7D]
+SECTION "bank7D",ROMX,BANK[$7D]
 
 INCBIN "baserom.gbc", $1f4000, $1f636a - $1f4000
 
 
-SECTION "bank7E",DATA,BANK[$7E]
+SECTION "bank7E",ROMX,BANK[$7E]
 
 INCBIN "baserom.gbc", $1f8000, $1fb8a8 - $1f8000
 
 
-SECTION "bank7F",DATA,BANK[$7F]
+SECTION "bank7F",ROMX,BANK[$7F]
 
-SECTION "stadium2",DATA[$8000-$220],BANK[$7F]
+SECTION "stadium2",ROMX[$8000-$220],BANK[$7F]
 INCBIN "baserom.gbc", $1ffde0, $220
 
