@@ -25,7 +25,8 @@ pokecrystal.gbc: pokecrystal.o
 	rgbfix -Cjv -i BYTE -k 01 -l 0x33 -m 0x10 -p 0 -r 3 -t PM_CRYSTAL $@
 
 pngs:
-	cd extras/pokemontools/ && python gfx.py mass-decompress && python gfx.py dump-pngs
+	python extras/pokemontools/gfx.py mass-decompress
+	python extras/pokemontools/gfx.py dump-pngs
 
 lzs: $(LZ_GFX) $(TWOBPP_GFX)
 	@:
