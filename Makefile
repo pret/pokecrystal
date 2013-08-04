@@ -31,7 +31,7 @@ pngs:
 lzs: $(LZ_GFX) $(TWOBPP_GFX)
 	@:
 
-gfx/pics/%/front.lz: gfx/pics/%/front.png gfx/pics/%/tiles.2bpp
+gfx/pics/%/front.lz: gfx/pics/%/tiles.2bpp gfx/pics/%/front.png
 	python extras/pokemontools/gfx.py png-to-lz --front $^
 gfx/pics/%/tiles.2bpp: gfx/pics/%/tiles.png
 	python extras/pokemontools/gfx.py png-to-2bpp $<
