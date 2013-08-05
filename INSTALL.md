@@ -81,7 +81,7 @@ git clone https://github.com/kanzure/pokecrystal
 cd pokecrystal
 
 # install python requirements
-pip install -r requirements.txt
+pip install -r extras/requirements.txt
 ```
 
 ## Don't forget baserom.gbc!!
@@ -138,7 +138,7 @@ git submodule init
 git submodule update
 
 # install python requirements
-pip install -r requirements.txt
+pip install -r extras/requirements.txt
 
 # use hexdump to diff binary files
 git config diff.hex.textconv hexdump
