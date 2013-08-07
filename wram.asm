@@ -1,27 +1,24 @@
-SECTION "tiles0",VRAM[$8000]
+SECTION "tiles0",VRAM[$8000],BANK[0]
 VTiles0:
-SECTION "tiles1",VRAM[$8800]
+SECTION "tiles1",VRAM[$8800],BANK[0]
 VTiles1:
-SECTION "tiles2",VRAM[$9000]
+SECTION "tiles2",VRAM[$9000],BANK[0]
 VTiles2:
-SECTION "bgmap0",VRAM[$9800]
+SECTION "bgmap0",VRAM[$9800],BANK[0]
 VBGMap0:
-SECTION "bgmap1",VRAM[$9C00]
+SECTION "bgmap1",VRAM[$9C00],BANK[0]
 VBGMap1:
 
 
-; WRAM banks 0 and 1 are included as BSS labels.
-; Other WRAM banks (2-7) are constants for now.
 
+SECTION "WRAMBank0",WRAM0[$c000]
 
-SECTION "WRAMBank0",BSS[$c000]
-
-SECTION "stack",BSS[$c000]
+SECTION "stack",WRAM0[$c000]
 	ds $100
 Stack: ; c100
 
 
-SECTION "audio",BSS[$c100]
+SECTION "audio",WRAM0[$c100]
 MusicPlaying: ; c100
 ; nonzero if playing
 	ds 1
@@ -309,7 +306,7 @@ CurMusic: ; c2c0
 ; id of music currently playing
 	ds 1
 
-SECTION "auto",BSS[$c2c7]
+SECTION "auto",WRAM0[$c2c7]
 InputType: ; c2c7
 AUTO_INPUT EQU $ff
 	ds 1
@@ -320,19 +317,19 @@ AutoInputBank: ; c2ca
 AutoInputLength: ; c2cb
 	ds 1
 
-SECTION "linkbattle",BSS[$c2dc]
+SECTION "linkbattle",WRAM0[$c2dc]
 InLinkBattle: ; c2dc
 ; 0 not in link battle
 ; 1 link battle
 ; 4 mobile battle
 	ds 1
 
-SECTION "scriptengine",BSS[$c2dd]
+SECTION "scriptengine",WRAM0[$c2dd]
 ScriptVar: ; c2dd
 	ds 1
 
 
-SECTION "tiles",BSS[$c2fa]
+SECTION "tiles",WRAM0[$c2fa]
 TileDown: ; c2fa
 	ds 1
 TileUp: ; c2fb
@@ -351,12 +348,12 @@ TilePermissions: ; c2fe
 ; bit 0: right
 	ds 1
 
-SECTION "icons",BSS[$c3b6]
+SECTION "icons",WRAM0[$c3b6]
 
 CurIcon: ; c3b6
 	ds 1
 
-SECTION "gfx",BSS[$c400]
+SECTION "gfx",WRAM0[$c400]
 
 Sprites: ; c400
 ; 4 bytes per sprite
@@ -379,7 +376,7 @@ TileMap: ; c4a0
 	ds 360
 
 
-SECTION "BattleMons",BSS[$c608]
+SECTION "BattleMons",WRAM0[$c608]
 
 EnemyMoveStruct:
 EnemyMoveAnimation: ; c608
@@ -776,19 +773,19 @@ LastEnemyMove: ; c71c
 	ds 1
 
 
-SECTION "battle",BSS[$c734]
+SECTION "battle",WRAM0[$c734]
 BattleEnded: ; c734
 	ds 1
 
 
-SECTION "overworldmap",BSS[$c800]
+SECTION "overworldmap",WRAM0[$c800]
 OverworldMap: ; c800
 	ds 1300
 OverworldMapEnd:
 	
 	ds 12
 
-SECTION "gfx2",BSS[$cd20]
+SECTION "gfx2",WRAM0[$cd20]
 BGMapBuffer:
 CreditsPos: ; cd20
 	ds 2
@@ -845,7 +842,7 @@ TileX: ; cf83
 
 
 
-SECTION "VBlank",BSS[$cfb2]
+SECTION "VBlank",WRAM0[$cfb2]
 TextDelayFrames: ; cfb2
 	ds 1
 VBlankOccurred: ; cfb3
@@ -857,7 +854,7 @@ GameTimerPause: ; cfbc
 ; bit 0
 	ds 1
 
-SECTION "Engine",BSS[$cfc2]
+SECTION "Engine",WRAM0[$cfc2]
 FXAnimID:
 FXAnimIDLo: ; cfc2
 	ds 1
@@ -905,7 +902,7 @@ Options2: ; cfd1
 	ds 46
 	
 
-SECTION "WRAMBank1",BSS[$d000]
+SECTION "WRAMBank1",WRAMX[$d000],BANK[1]
 
 	ds 2
 	
@@ -1082,7 +1079,7 @@ CurPartyLevel: ; d143
 	ds 1
 
 
-SECTION "connections",BSS[$d1a9]
+SECTION "connections",WRAMX[$d1a9],BANK[1]
 
 MapConnections:
 
@@ -1201,7 +1198,7 @@ MovementType:
 Buffer2: ; d1eb
 	ds 1
 
-SECTION "BattleMons2",BSS[$d1fa]
+SECTION "BattleMons2",WRAMX[$d1fa],BANK[1]
 LinkBattleRNs: ; d1fa
 	ds 10
 
@@ -1387,7 +1384,7 @@ CurDamage: ; d256
 	ds 2
 
 
-SECTION "TimeOfDay",BSS[$d269]
+SECTION "TimeOfDay",WRAMX[$d269],BANK[1]
 
 TimeOfDay: ; d269
 MORN     EQU 0
@@ -1396,7 +1393,7 @@ NITE     EQU 2
 DARKNESS EQU 3
 	ds 1
 
-SECTION "OTParty",BSS[$d280]
+SECTION "OTParty",WRAMX[$d280],BANK[1]
 
 OTPartyCount: ; d280
 	ds 1 ; number of Pokémon in party
@@ -1526,7 +1523,7 @@ OTPartyMon5Nickname: ; d416
 OTPartyMon6Nickname: ; d421
 	ds 11
 
-SECTION "Scripting",BSS[$d434]
+SECTION "Scripting",WRAMX[$d434],BANK[1]
 ScriptFlags: ; d434
 SCRIPT_RUNNING EQU 2
 	ds 1
@@ -1551,7 +1548,7 @@ ScriptPos: ; d43a
 ScriptDelay: ; d44d
 	ds 1
 
-SECTION "Player",BSS[$d472]
+SECTION "Player",WRAMX[$d472],BANK[1]
 PlayerGender: ; d472
 ; bit 0:
 ;	0 male
@@ -1623,7 +1620,7 @@ PlayerDirection: ; d4de
 	ds 1
 
 
-SECTION "MapEngine",BSS[$d4e4]
+SECTION "MapEngine",WRAMX[$d4e4],BANK[1]
 StandingTile: ; d4e4
 	ds 1
 StandingTile2: ; d4e5
@@ -1648,7 +1645,7 @@ PlayerSpriteY: ; d4ee
 	ds 1
 
 
-SECTION "Objects",BSS[$d71e]
+SECTION "Objects",WRAMX[$d71e],BANK[1]
 MapObjects: ; d71e
 
 PLAYER_OBJECT EQU 0
@@ -1658,7 +1655,7 @@ OBJECT_LENGTH EQU $10
 	ds OBJECT_LENGTH * NUM_OBJECTS
 
 
-SECTION "Status",BSS[$d841]
+SECTION "Status",WRAMX[$d841],BANK[1]
 TimeOfDayPal: ; d841
 	ds 1
 	ds 4
@@ -1686,7 +1683,7 @@ JohtoBadges: ; d857
 KantoBadges: ; d858
 	ds 1
 	
-SECTION "Items",BSS[$d859]
+SECTION "Items",WRAMX[$d859],BANK[1]
 TMsHMs: ; d859
 	ds 57
 
@@ -1705,7 +1702,7 @@ NumBalls: ; d8d7
 Balls: ; d8d8
 	ds 25
 	
-SECTION "overworld",BSS[$d95b]
+SECTION "overworld",WRAMX[$d95b],BANK[1]
 WhichRegisteredItem: ; d95b
 REGISTERED_POCKET EQU %11000000
 REGISTERED_NUMBER EQU %00111111
@@ -1721,7 +1718,7 @@ PLAYER_SURF      EQU 4
 PLAYER_SURF_PIKA EQU 8
 	ds 1
 
-SECTION "scriptram",BSS[$d962]
+SECTION "scriptram",WRAMX[$d962],BANK[1]
 MooMooBerries: ; d962
 	ds 1 ; how many berries fed to MooMoo
 UndergroundSwitchPositions: ; d963
@@ -1729,7 +1726,7 @@ UndergroundSwitchPositions: ; d963
 FarfetchdPosition: ; d964
 	ds 1 ; which position the ilex farfetch'd is in
 
-SECTION "Events",BSS[$dad4]
+SECTION "Events",WRAMX[$dad4],BANK[1]
 
 ;RoomDecorations: ; dac6
 ;	db 7
@@ -1747,7 +1744,7 @@ LugiaEvent: ; dad5
 ;SalesmanMahoganyTownEvent: ; db5c
 ;RedGyaradosEvent: ; db5c
 
-SECTION "BoxNames",BSS[$db75]
+SECTION "BoxNames",WRAMX[$db75],BANK[1]
 ; 8 chars + $50
 Box1Name: ; db75
 	ds 9
@@ -1778,13 +1775,13 @@ Box13Name: ; dbe1
 Box14Name: ; dbea
 	ds 9
 
-SECTION "bike", BSS[$dbf5]
+SECTION "bike", WRAMX[$dbf5],BANK[1]
 BikeFlags: ; dbf5
 ; bit 1: always on bike
 ; bit 2: downhill
 	ds 1
 
-SECTION "decorations", BSS[$dc0f]
+SECTION "decorations", WRAMX[$dc0f],BANK[1]
 ; Sprite id of each decoration
 Bed: ; dc0f
 	ds 1
@@ -1803,21 +1800,21 @@ RightOrnament: ; dc15
 BigDoll: ; dc16
 	ds 1
 
-SECTION "fruittrees", BSS[$dc27]
+SECTION "fruittrees", WRAMX[$dc27],BANK[1]
 FruitTreeFlags: ; dc27
 	ds 1
 
-SECTION "steps", BSS[$dc73]
+SECTION "steps", WRAMX[$dc73],BANK[1]
 StepCount: ; dc73
 	ds 1
 PoisonStepCount: ; dc74
 	ds 1
 
-SECTION "FlypointPermissions", BSS[$dca5]
+SECTION "FlypointPermissions", WRAMX[$dca5],BANK[1]
 FlypointPerms: ; dca5
 	ds 4
 
-SECTION "BackupMapInfo", BSS[$dcad]
+SECTION "BackupMapInfo", WRAMX[$dcad],BANK[1]
 
 ; used on maps like second floor pokécenter, which are reused, so we know which
 ; map to return to
@@ -1826,7 +1823,7 @@ BackupMapGroup: ; dcad
 BackupMapNumber: ; dcae
 	ds 1
 
-SECTION "PlayerMapInfo", BSS[$dcb4]
+SECTION "PlayerMapInfo", WRAMX[$dcb4],BANK[1]
 
 WarpNumber: ; dcb4
 	ds 1
@@ -1839,7 +1836,7 @@ YCoord: ; dcb7
 XCoord: ; dcb8
 	ds 1 ; current x coordinate relative to top-left corner of current map
 
-SECTION "PlayerParty",BSS[$dcd7]
+SECTION "PlayerParty",WRAMX[$dcd7],BANK[1]
 
 PartyCount: ; dcd7
 	ds 1 ; number of Pokémon in party
@@ -1959,7 +1956,7 @@ PartyMon5Nickname: ; de6d
 PartyMon6Nickname: ; de78
 	ds 11
 
-SECTION "Pokedex",BSS[$de99]
+SECTION "Pokedex",WRAMX[$de99],BANK[1]
 PokedexSeen: ; de99
 	ds 32
 EndPokedexSeen:
@@ -1971,7 +1968,7 @@ UnownDex: ; ded9
 UnlockedUnowns: ; def3
 	ds 1
 
-SECTION "Breeding",BSS[$def5]
+SECTION "Breeding",WRAMX[$def5],BANK[1]
 DaycareMan: ; def5
 ; bit 7: active
 ; bit 6: monsters are compatible
@@ -2021,7 +2018,7 @@ EggSpecies: ; df7b
 	ds 1
 	ds 31
 
-SECTION "RoamMons",BSS[$dfcf]
+SECTION "RoamMons",WRAMX[$dfcf],BANK[1]
 RoamMon1Species: ; dfcf
 	ds 1
 RoamMon1Level: ; dfd0
@@ -2063,14 +2060,15 @@ RoamMon3DVs: ; dfe2
 
 
 
-; SECTION "WRAMBank5",BSS[$d000]
+SECTION "WRAMBank5",WRAMX[$d000],BANK[5]
 
 ; 8 4-color palettes
-Unkn1Pals EQU $d000
-Unkn2Pals EQU $d040
-BGPals    EQU $d080
-OBPals    EQU $d0c0
-
-
-
+Unkn1Pals:
+	ds $40
+Unkn2Pals:
+	ds $40
+BGPals:
+	ds $40
+OBPals:
+	ds $40
 
