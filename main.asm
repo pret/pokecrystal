@@ -11511,7 +11511,7 @@ GetBaseData: ; 3856
 ; 389c
 
 
-GetCurNick; 389c
+GetCurNick: ; 389c
 	ld a, [CurPartyMon]
 	ld hl, PartyMonNicknames
 
@@ -19798,7 +19798,7 @@ SpecialGiveShuckle: ; 7305
 	dec a
 	ld hl, PartyMon1Nickname
 	call SkipNames
-	ld de, .Shuckie
+	ld de, SpecialShuckleNick
 	call CopyName2
 
 ; OT.
@@ -19806,7 +19806,7 @@ SpecialGiveShuckle: ; 7305
 	dec a
 	ld hl, PartyMon1OT
 	call SkipNames
-	ld de, .Mania
+	ld de, SpecialShuckleOT
 	call CopyName2
 
 ; Bittable2 flag for this event.
@@ -19822,14 +19822,164 @@ SpecialGiveShuckle: ; 7305
 	ld [ScriptVar], a
 	ret
 
-.Mania
+SpecialShuckleOT:
 	db "MANIA@"
-.Shuckie
+SpecialShuckleNick:
 	db "SHUCKIE@"
 ; 737e
 
 
-INCBIN "baserom.gbc", $737e, $746e - $737e
+SpecialReturnShuckle: ; 737e
+	callba Function50000
+	jr c, .asm_73e6
+
+	ld a, [CurPartySpecies]
+	cp SHUCKLE
+	jr nz, .DontReturn
+
+	ld a, [CurPartyMon]
+	ld hl, PartyMon1ID
+	ld bc, PartyMon2 - PartyMon1
+	call AddNTimes
+
+; OT ID
+	ld a, [hli]
+	cp $2
+	jr nz, .DontReturn
+	ld a, [hl]
+	cp $6
+	jr nz, .DontReturn
+
+; OT
+	ld a, [CurPartyMon]
+	ld hl, PartyMon1OT
+	call SkipNames
+	ld de, SpecialShuckleOT
+.CheckOT
+	ld a, [de]
+	cp [hl]
+	jr nz, .DontReturn
+	cp "@"
+	jr z, .asm_73bb
+	inc de
+	inc hl
+	jr .CheckOT
+
+.asm_73bb
+	callba Functione538
+	jr c, .asm_73f1
+	ld a, [CurPartyMon]
+	ld hl, PartyMon1Happiness
+	ld bc, PartyMon2 - PartyMon1
+	call AddNTimes
+	ld a, [hl]
+	cp 150
+	ld a, $3
+	jr nc, .asm_73e2
+	xor a
+	ld [$d10b], a
+	callab Functione039
+	ld a, $2
+
+.asm_73e2
+	ld [ScriptVar], a
+	ret
+
+.asm_73e6
+	ld a, $1
+	ld [ScriptVar], a
+	ret
+
+.DontReturn
+	xor a
+	ld [ScriptVar], a
+	ret
+
+.asm_73f1
+	ld a, $4
+	ld [ScriptVar], a
+	ret
+; 73f7
+
+Function73f7: ; 73f7
+	callba Function50000
+	jr c, .asm_740e
+	ld a, [CurPartySpecies]
+	ld [ScriptVar], a
+	ld [$d265], a
+	call GetPokemonName
+	jp Function746e
+
+.asm_740e
+	xor a
+	ld [ScriptVar], a
+	ret
+; 7413
+
+Function7413: ; 7413
+	ld hl, Data7459
+	jr Function7420
+
+Function7418: ; 7418
+	ld hl, Data7462
+	jr Function7420
+
+Function741d: ; 741d
+	ld hl, Data746b
+
+Function7420: ; 7420
+	push hl
+	callba Function50000
+	pop hl
+	jr c, .asm_744e
+	ld a, [CurPartySpecies]
+	cp EGG
+	jr z, .asm_7453
+	push hl
+	call GetCurNick
+	call Function746e
+	pop hl
+	call RNG
+.next
+	sub [hl]
+	jr c, .asm_7444
+	inc hl
+	inc hl
+	inc hl
+	jr .next
+
+.asm_7444
+	inc hl
+	ld a, [hli]
+	ld [ScriptVar], a
+	ld c, [hl]
+	call ChangeHappiness
+	ret
+
+.asm_744e
+	xor a
+	ld [ScriptVar], a
+	ret
+
+.asm_7453
+	ld a, $1
+	ld [ScriptVar], a
+	ret
+; 7459
+
+Data7459: ; 7459
+	db $4c, $02, $09
+	db $80, $03, $0a
+	db $ff, $04, $0b
+
+Data7462: ; 7462
+	db $9a, $02, $0c
+	db $4c, $03, $0d
+	db $ff, $04, $0e
+
+Data746b: ; 746b
+	db $ff, $02, $12
+; 746e
 
 Function746e: ; 746e
 	ld hl, StringBuffer1
@@ -19838,7 +19988,9 @@ Function746e: ; 746e
 	jp CopyBytes
 ; 747a
 
-INCBIN "baserom.gbc", $747a, $747b - $747a
+Function747a: ; 747a
+	ret
+; 747b
 
 
 SECTION "bank2",DATA,BANK[$2]
@@ -19851,7 +20003,7 @@ Function8000: ; 8000
 	call ClearSprites
 	ld hl, TileMap
 	ld bc, $0168
-	ld a, $7f
+	ld a, " "
 	call ByteFill
 	ld hl, AttrMap
 	ld bc, $0168
@@ -21049,7 +21201,7 @@ SpecialsPointers: ; c029
 	dbw $09, $6feb
 	dbw $09, $7043
 	dbw BANK(SpecialGiveShuckle), SpecialGiveShuckle
-	dbw $01, $737e
+	dbw BANK(SpecialReturnShuckle), SpecialReturnShuckle
 	dbw $01, $73f7
 	dbw BANK(SpecialCheckPokerus),SpecialCheckPokerus
 	dbw BANK(Function24b25), Function24b25
@@ -26227,7 +26379,7 @@ PokemonActionSubmenu: ; 12a88
 	ld a, $9
 	ld hl, $4d19
 	rst FarCall
-	call $389c
+	call GetCurNick
 	ld a, [MenuSelection]
 	ld hl, .Actions
 	ld de, 3
@@ -26346,7 +26498,7 @@ GiveTakePartyMonItem: ; 12b60
 	call Function1c07
 	jr c, .asm_12ba6
 
-	call $389c
+	call GetCurNick
 	ld hl, StringBuffer1
 	ld de, $d050
 	ld bc, $b
@@ -26669,7 +26821,7 @@ Function12d45: ; 12d45
 	jr nc, .asm_12dbe
 	call GetPartyItemLocation
 	ld [hl], $0
-	call $389c
+	call GetCurNick
 	ld hl, $6de7
 	call Function1d67
 	jr .asm_12dc6
@@ -52738,7 +52890,19 @@ Function4f301: ; 4f301
 
 SECTION "bank14",DATA,BANK[$14]
 
-INCBIN "baserom.gbc", $50000, $5001d - $50000
+Function50000: ; 50000
+	call Function2ed3
+	xor a
+	ld [PartyMenuActionText], a
+	call WhiteBGMap
+	call Function5003f
+	call WaitBGMap
+	call Function32f9
+	call DelayFrame
+	call PartyMenuSelect
+	call Function2b74
+	ret
+; 5001d
 
 
 Function5001d: ; 5001d
