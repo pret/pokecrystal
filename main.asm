@@ -66168,7 +66168,11 @@ INCBIN "baserom.gbc", $fba2e, $fbbfc - $fba2e
 
 INCLUDE "battle/magikarp_length.asm"
 
-INCBIN "baserom.gbc", $fbccf, $fbda4 - $fbccf
+INCBIN "baserom.gbc", $fbccf, $fbced - $fbccf
+
+INCLUDE "battle/hidden_power.asm"
+
+INCBIN "baserom.gbc", $fbd54, $fbda4 - $fbd54
 
 
 DoWeatherModifiers: ; fbda4

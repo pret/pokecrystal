@@ -10623,11 +10623,7 @@ BattleCommand6d: ; 37be8
 	ld a, [AttackMissed]
 	and a
 	ret nz
-
-	ld a, $3e
-	ld hl, $7ced
-	rst FarCall
-
+	callba GetHiddenPower
 	ret
 ; 37bf4
 
