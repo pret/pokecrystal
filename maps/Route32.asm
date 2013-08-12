@@ -39,7 +39,7 @@ UnknownScript_0x19046c: ; 0x19046c
 	return
 ; 0x19046f
 
-UnknownScript_0x19046f: ; 0x19046f
+CooltrainerMScript_0x19046f: ; 0x19046f
 	faceplayer
 UnknownScript_0x190470: ; 0x190470
 	loadfont
@@ -103,7 +103,7 @@ UnknownScript_0x1904ab: ; 0x1904ab
 	end
 ; 0x1904ce
 
-UnknownScript_0x1904ce: ; 0x1904ce
+FisherScript_0x1904ce: ; 0x1904ce
 	faceplayer
 	loadfont
 	checkbit1 $004e
@@ -127,7 +127,7 @@ UnknownScript_0x1904e9: ; 0x1904e9
 	2jump UnknownScript_0x1904f3
 ; 0x1904f2
 
-UnknownScript_0x1904f2: ; 0x1904f2
+FisherScript_0x1904f2: ; 0x1904f2
 	faceplayer
 UnknownScript_0x1904f3: ; 0x1904f3
 	dotrigger $2
@@ -627,7 +627,7 @@ Bird_keeperPeterScript: ; 0x190731
 	end
 ; 0x190739
 
-UnknownScript_0x190739: ; 0x190739
+LassScript_0x190739: ; 0x190739
 	faceplayer
 	loadfont
 	checkbit1 $0063
@@ -1104,19 +1104,19 @@ Route32_MapEventHeader: ; 0x19138d
 
 	; people-events
 	db 14
-	person_event $3a, 53, 12, $6, $0, 255, 255, $a2, 1, TrainerFisherJustin, $ffff
-	person_event $3a, 60, 16, $7, $0, 255, 255, $a2, 3, TrainerFisherRalph1, $ffff
-	person_event $3a, 52, 10, $8, $0, 255, 255, $a2, 1, TrainerFisherHenry, $ffff
-	person_event $27, 26, 16, $9, $0, 255, 255, $92, 3, TrainerYoungsterAlbert, $ffff
-	person_event $27, 67, 8, $a, $0, 255, 255, $92, 3, TrainerYoungsterGordon, $ffff
-	person_event $27, 49, 7, $7, $0, 255, 255, $a2, 3, TrainerCamperRoland, $ffff
-	person_event $28, 34, 14, $8, $0, 255, 255, $a2, 1, TrainerPicnickerLiz1, $ffff
-	person_event $23, 12, 23, $8, $0, 255, 255, $0, 0, UnknownScript_0x19046f, $ffff
-	person_event $27, 86, 15, $7, $0, 255, 255, $92, 3, TrainerBird_keeperPeter, $ffff
-	person_event $3a, 74, 11, $6, $0, 255, 255, $0, 0, UnknownScript_0x1904f2, $06fc
-	person_event $54, 57, 10, $1, $0, 255, 255, $1, 0, ItemFragment_0x190773, $06b0
-	person_event $3a, 17, 19, $9, $0, 255, 255, $0, 0, UnknownScript_0x1904ce, $ffff
-	person_event $28, 71, 16, $8, $0, 255, 255, $0, 0, UnknownScript_0x190739, $0758
-	person_event $54, 34, 7, $1, $0, 255, 255, $1, 0, ItemFragment_0x190775, $06b1
+	person_event SPRITE_FISHER, 53, 12, $6, $0, 255, 255, $a2, 1, TrainerFisherJustin, $ffff
+	person_event SPRITE_FISHER, 60, 16, $7, $0, 255, 255, $a2, 3, TrainerFisherRalph1, $ffff
+	person_event SPRITE_FISHER, 52, 10, $8, $0, 255, 255, $a2, 1, TrainerFisherHenry, $ffff
+	person_event SPRITE_YOUNGSTER, 26, 16, $9, $0, 255, 255, $92, 3, TrainerYoungsterAlbert, $ffff
+	person_event SPRITE_YOUNGSTER, 67, 8, $a, $0, 255, 255, $92, 3, TrainerYoungsterGordon, $ffff
+	person_event SPRITE_YOUNGSTER, 49, 7, $7, $0, 255, 255, $a2, 3, TrainerCamperRoland, $ffff
+	person_event SPRITE_LASS, 34, 14, $8, $0, 255, 255, $a2, 1, TrainerPicnickerLiz1, $ffff
+	person_event SPRITE_COOLTRAINER_M, 12, 23, $8, $0, 255, 255, $0, 0, CooltrainerMScript_0x19046f, $ffff
+	person_event SPRITE_YOUNGSTER, 86, 15, $7, $0, 255, 255, $92, 3, TrainerBird_keeperPeter, $ffff
+	person_event SPRITE_FISHER, 74, 11, $6, $0, 255, 255, $0, 0, FisherScript_0x1904f2, $06fc
+	person_event SPRITE_POKE_BALL, 57, 10, $1, $0, 255, 255, $1, 0, ItemFragment_0x190773, $06b0
+	person_event SPRITE_FISHER, 17, 19, $9, $0, 255, 255, $0, 0, FisherScript_0x1904ce, $ffff
+	person_event SPRITE_LASS, 71, 16, $8, $0, 255, 255, $0, 0, LassScript_0x190739, $0758
+	person_event SPRITE_POKE_BALL, 34, 7, $1, $0, 255, 255, $1, 0, ItemFragment_0x190775, $06b1
 ; 0x19148b
 

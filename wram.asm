@@ -1079,6 +1079,10 @@ CurPartyLevel: ; d143
 	ds 1
 
 
+SECTION "UsedSprites",WRAMX[$d154],BANK[1]
+UsedSprites: ; d154
+	ds 32
+
 SECTION "connections",WRAMX[$d1a9],BANK[1]
 
 MapConnections:
@@ -1655,6 +1659,11 @@ OBJECT_LENGTH EQU $10
 	ds OBJECT_LENGTH * NUM_OBJECTS
 
 
+SECTION "VariableSprites",WRAMX[$d82e],BANK[1]
+VariableSprites: ; d82e
+	ds $10
+
+
 SECTION "Status",WRAMX[$d841],BANK[1]
 TimeOfDayPal: ; d841
 	ds 1
@@ -1982,7 +1991,7 @@ BreedMon1Nick: ; def6
 BreedMon1OT: ; df01
 	ds 11
 BreedMon1Stats:
-Breedmon1Species: ; df0c
+BreedMon1Species: ; df0c
 	ds 1
 	ds 31
 

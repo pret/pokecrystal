@@ -6,7 +6,7 @@ Route15FuchsiaGate_MapScriptHeader: ; 0x19679c
 	db 0
 ; 0x19679e
 
-UnknownScript_0x19679e: ; 0x19679e
+OfficerScript_0x19679e: ; 0x19679e
 	jumptextfaceplayer UnknownText_0x1967a1
 ; 0x1967a1
 
@@ -36,6 +36,6 @@ Route15FuchsiaGate_MapEventHeader: ; 0x1967e1
 
 	; people-events
 	db 1
-	person_event $43, 6, 9, $6, $0, 255, 255, $90, 0, UnknownScript_0x19679e, $ffff
+	person_event SPRITE_OFFICER, 6, 9, $6, $0, 255, 255, $90, 0, OfficerScript_0x19679e, $ffff
 ; 0x196808
 

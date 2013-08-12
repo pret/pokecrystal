@@ -228,11 +228,11 @@ ItemFragment_0x1a978d: ; 0x1a978d
 	db X_SPEED, 1
 ; 0x1a978f
 
-UnknownScript_0x1a978f: ; 0x1a978f
+FruitTreeScript_0x1a978f: ; 0x1a978f
 	fruittree $4
 ; 0x1a9791
 
-UnknownScript_0x1a9791: ; 0x1a9791
+FruitTreeScript_0x1a9791: ; 0x1a9791
 	fruittree $a
 ; 0x1a9793
 
@@ -327,11 +327,11 @@ Route46_MapEventHeader: ; 0x1a99db
 
 	; people-events
 	db 6
-	person_event $2d, 23, 16, $8, $0, 255, 255, $b2, 2, TrainerHikerBailey, $ffff
-	person_event $27, 18, 8, $7, $0, 255, 255, $a2, 2, TrainerCamperTed, $ffff
-	person_event $28, 17, 6, $6, $0, 255, 255, $a2, 2, TrainerPicnickerErin1, $ffff
-	person_event $5d, 9, 11, $1, $0, 255, 255, $0, 0, UnknownScript_0x1a978f, $ffff
-	person_event $5d, 10, 12, $1, $0, 255, 255, $0, 0, UnknownScript_0x1a9791, $ffff
-	person_event $54, 19, 5, $1, $0, 255, 255, $1, 0, ItemFragment_0x1a978d, $06bc
+	person_event SPRITE_POKEFAN_M, 23, 16, $8, $0, 255, 255, $b2, 2, TrainerHikerBailey, $ffff
+	person_event SPRITE_YOUNGSTER, 18, 8, $7, $0, 255, 255, $a2, 2, TrainerCamperTed, $ffff
+	person_event SPRITE_LASS, 17, 6, $6, $0, 255, 255, $a2, 2, TrainerPicnickerErin1, $ffff
+	person_event SPRITE_FRUIT_TREE, 9, 11, $1, $0, 255, 255, $0, 0, FruitTreeScript_0x1a978f, $ffff
+	person_event SPRITE_FRUIT_TREE, 10, 12, $1, $0, 255, 255, $0, 0, FruitTreeScript_0x1a9791, $ffff
+	person_event SPRITE_POKE_BALL, 19, 5, $1, $0, 255, 255, $1, 0, ItemFragment_0x1a978d, $06bc
 ; 0x1a9a43
 

@@ -140,22 +140,22 @@ UnknownScript_0x18012b: ; 0x18012b
 	end
 ; 0x18012c
 
-UnknownScript_0x18012c: ; 0x18012c
+NurseScript_0x18012c: ; 0x18012c
 	jumpstd $0000
 ; 0x18012f
 
-UnknownScript_0x18012f: ; 0x18012f
+ClerkScript_0x18012f: ; 0x18012f
 	loadfont
 	pokemart $0, $0020
 	loadmovesprites
 	end
 ; 0x180136
 
-UnknownScript_0x180136: ; 0x180136
+CooltrainerMScript_0x180136: ; 0x180136
 	jumptextfaceplayer UnknownText_0x180178
 ; 0x180139
 
-UnknownScript_0x180139: ; 0x180139
+GrampsScript_0x180139: ; 0x180139
 	faceplayer
 	loadfont
 	2writetext UnknownText_0x180335
@@ -178,7 +178,7 @@ UnknownScript_0x180154: ; 0x180154
 	end
 ; 0x18015a
 
-UnknownScript_0x18015a: ; 0x18015a
+JynxScript_0x18015a: ; 0x18015a
 	loadfont
 	2writetext UnknownText_0x180433
 	cry ABRA
@@ -317,11 +317,11 @@ IndigoPlateauPokeCenter1F_MapEventHeader: ; 0x180441
 
 	; people-events
 	db 6
-	person_event $37, 11, 7, $6, $0, 255, 255, $0, 0, UnknownScript_0x18012c, $ffff
-	person_event $39, 11, 15, $6, $0, 255, 255, $0, 0, UnknownScript_0x18012f, $ffff
-	person_event $23, 15, 15, $2, $22, 255, 255, $0, 0, UnknownScript_0x180136, $ffff
-	person_event $4, 13, 20, $7, $0, 255, 255, $0, 0, ObjectEvent, $077b
-	person_event $2f, 13, 5, $6, $0, 255, 255, $90, 0, UnknownScript_0x180139, $077c
-	person_event $91, 13, 4, $16, $0, 255, 255, $b0, 0, UnknownScript_0x18015a, $077c
+	person_event SPRITE_NURSE, 11, 7, $6, $0, 255, 255, $0, 0, NurseScript_0x18012c, $ffff
+	person_event SPRITE_CLERK, 11, 15, $6, $0, 255, 255, $0, 0, ClerkScript_0x18012f, $ffff
+	person_event SPRITE_COOLTRAINER_M, 15, 15, $2, $22, 255, 255, $0, 0, CooltrainerMScript_0x180136, $ffff
+	person_event SPRITE_SILVER, 13, 20, $7, $0, 255, 255, $0, 0, ObjectEvent, $077b
+	person_event SPRITE_GRAMPS, 13, 5, $6, $0, 255, 255, $90, 0, GrampsScript_0x180139, $077c
+	person_event SPRITE_JYNX, 13, 4, $16, $0, 255, 255, $b0, 0, JynxScript_0x18015a, $077c
 ; 0x1804b9
 

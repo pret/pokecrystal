@@ -6,7 +6,7 @@ Route12SuperRodHouse_MapScriptHeader: ; 0x7f482
 	db 0
 ; 0x7f484
 
-UnknownScript_0x7f484: ; 0x7f484
+FishingGuruScript_0x7f484: ; 0x7f484
 	faceplayer
 	loadfont
 	checkbit1 $0019
@@ -90,6 +90,6 @@ Route12SuperRodHouse_MapEventHeader: ; 0x7f60b
 
 	; people-events
 	db 1
-	person_event $3b, 7, 9, $6, $0, 255, 255, $80, 0, UnknownScript_0x7f484, $ffff
+	person_event SPRITE_FISHING_GURU, 7, 9, $6, $0, 255, 255, $80, 0, FishingGuruScript_0x7f484, $ffff
 ; 0x7f628
 

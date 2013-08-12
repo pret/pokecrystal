@@ -49,7 +49,7 @@ UnknownScript_0x180742: ; 0x180742
 	end
 ; 0x18075a
 
-UnknownScript_0x18075a: ; 0x18075a
+KogaScript_0x18075a: ; 0x18075a
 	faceplayer
 	loadfont
 	checkbit1 $05b9
@@ -148,6 +148,6 @@ KogasRoom_MapEventHeader: ; 0x18095f
 
 	; people-events
 	db 1
-	person_event $21, 11, 9, $6, $0, 255, 255, $90, 0, UnknownScript_0x18075a, $ffff
+	person_event SPRITE_KOGA, 11, 9, $6, $0, 255, 255, $90, 0, KogaScript_0x18075a, $ffff
 ; 0x180986
 

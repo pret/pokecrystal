@@ -81,7 +81,7 @@ TradeCenter_MapEventHeader: ; 0x193429
 
 	; people-events
 	db 2
-	person_event $1, 8, 7, $9, $0, 255, 255, $0, 0, UnknownScript_0x193499, $0000
-	person_event $1, 8, 10, $8, $0, 255, 255, $0, 0, UnknownScript_0x193499, $0001
+	person_event SPRITE_CHRIS, 8, 7, $9, $0, 255, 255, $0, 0, ChrisScript_0x193499, $0000
+	person_event SPRITE_CHRIS, 8, 10, $8, $0, 255, 255, $0, 0, ChrisScript_0x193499, $0001
 ; 0x19345d
 

@@ -90,7 +90,7 @@ UnknownScript_0x6a1ee: ; 0x6a1ee
 	end
 ; 0x6a204
 
-UnknownScript_0x6a204: ; 0x6a204
+OfficerScript_0x6a204: ; 0x6a204
 	checkcode $b
 	if_equal SUNDAY, UnknownScript_0x6a2c7
 	if_equal MONDAY, UnknownScript_0x6a2c7
@@ -209,7 +209,7 @@ UnknownScript_0x6a2c7: ; 0x6a2c7
 	jumptextfaceplayer UnknownText_0x6a894
 ; 0x6a2ca
 
-UnknownScript_0x6a2ca: ; 0x6a2ca
+OfficerScript_0x6a2ca: ; 0x6a2ca
 	faceplayer
 	loadfont
 	checkbit2 $0051
@@ -220,7 +220,7 @@ UnknownScript_0x6a2ca: ; 0x6a2ca
 	end
 ; 0x6a2d8
 
-UnknownScript_0x6a2d8: ; 0x6a2d8
+YoungsterScript_0x6a2d8: ; 0x6a2d8
 	jumptextfaceplayer UnknownText_0x6a8d8
 ; 0x6a2db
 
@@ -450,8 +450,8 @@ Route35NationalParkgate_MapEventHeader: ; 0x6a9d2
 
 	; people-events
 	db 3
-	person_event $43, 5, 6, $6, $0, 255, 255, $a0, 0, UnknownScript_0x6a204, $0745
-	person_event $27, 9, 10, $2, $11, 255, 255, $80, 0, UnknownScript_0x6a2d8, $0734
-	person_event $43, 7, 4, $9, $0, 255, 255, $a0, 0, UnknownScript_0x6a2ca, $0746
+	person_event SPRITE_OFFICER, 5, 6, $6, $0, 255, 255, $a0, 0, OfficerScript_0x6a204, $0745
+	person_event SPRITE_YOUNGSTER, 9, 10, $2, $11, 255, 255, $80, 0, YoungsterScript_0x6a2d8, $0734
+	person_event SPRITE_OFFICER, 7, 4, $9, $0, 255, 255, $a0, 0, OfficerScript_0x6a2ca, $0746
 ; 0x6aa18
 

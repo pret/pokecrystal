@@ -6,7 +6,7 @@ Route43MahoganyGate_MapScriptHeader: ; 0x19ab09
 	db 0
 ; 0x19ab0b
 
-UnknownScript_0x19ab0b: ; 0x19ab0b
+OfficerScript_0x19ab0b: ; 0x19ab0b
 	faceplayer
 	loadfont
 	checkbit1 $0022
@@ -56,6 +56,6 @@ Route43MahoganyGate_MapEventHeader: ; 0x19ab91
 
 	; people-events
 	db 1
-	person_event $43, 8, 4, $9, $0, 255, 255, $80, 0, UnknownScript_0x19ab0b, $ffff
+	person_event SPRITE_OFFICER, 8, 4, $9, $0, 255, 255, $80, 0, OfficerScript_0x19ab0b, $ffff
 ; 0x19abb8
 

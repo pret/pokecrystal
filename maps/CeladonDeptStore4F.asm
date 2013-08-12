@@ -6,7 +6,7 @@ CeladonDeptStore4F_MapScriptHeader: ; 0x70f0b
 	db 0
 ; 0x70f0d
 
-UnknownScript_0x70f0d: ; 0x70f0d
+ClerkScript_0x70f0d: ; 0x70f0d
 	faceplayer
 	loadfont
 	pokemart $0, $001a
@@ -14,11 +14,11 @@ UnknownScript_0x70f0d: ; 0x70f0d
 	end
 ; 0x70f15
 
-UnknownScript_0x70f15: ; 0x70f15
+SuperNerdScript_0x70f15: ; 0x70f15
 	jumptextfaceplayer UnknownText_0x70f21
 ; 0x70f18
 
-UnknownScript_0x70f18: ; 0x70f18
+YoungsterScript_0x70f18: ; 0x70f18
 	jumptextfaceplayer UnknownText_0x70f55
 ; 0x70f1b
 
@@ -69,8 +69,8 @@ CeladonDeptStore4F_MapEventHeader: ; 0x70fbc
 
 	; people-events
 	db 3
-	person_event $39, 9, 17, $7, $0, 255, 255, $90, 0, UnknownScript_0x70f0d, $ffff
-	person_event $2b, 10, 11, $5, $1, 255, 255, $a0, 0, UnknownScript_0x70f15, $ffff
-	person_event $27, 6, 12, $7, $0, 255, 255, $0, 0, UnknownScript_0x70f18, $ffff
+	person_event SPRITE_CLERK, 9, 17, $7, $0, 255, 255, $90, 0, ClerkScript_0x70f0d, $ffff
+	person_event SPRITE_SUPER_NERD, 10, 11, $5, $1, 255, 255, $a0, 0, SuperNerdScript_0x70f15, $ffff
+	person_event SPRITE_YOUNGSTER, 6, 12, $7, $0, 255, 255, $0, 0, YoungsterScript_0x70f18, $ffff
 ; 0x71002
 

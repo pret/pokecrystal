@@ -6,7 +6,7 @@ Route39Barn_MapScriptHeader: ; 0x9cc74
 	db 0
 ; 0x9cc76
 
-UnknownScript_0x9cc76: ; 0x9cc76
+TwinScript_0x9cc76: ; 0x9cc76
 	faceplayer
 	loadfont
 	checkbit1 $003d
@@ -26,7 +26,7 @@ UnknownScript_0x9cc87: ; 0x9cc87
 	end
 ; 0x9cc90
 
-UnknownScript_0x9cc90: ; 0x9cc90
+TwinScript_0x9cc90: ; 0x9cc90
 	faceplayer
 	loadfont
 	checkbit1 $003d
@@ -46,7 +46,7 @@ UnknownScript_0x9cca1: ; 0x9cca1
 	end
 ; 0x9ccaa
 
-UnknownScript_0x9ccaa: ; 0x9ccaa
+TaurosScript_0x9ccaa: ; 0x9ccaa
 	loadfont
 	checkbit1 $003d
 	iftrue UnknownScript_0x9cd25
@@ -211,8 +211,8 @@ Route39Barn_MapEventHeader: ; 0x9ce7b
 
 	; people-events
 	db 3
-	person_event $26, 7, 6, $9, $0, 255, 255, $0, 0, UnknownScript_0x9cc76, $ffff
-	person_event $26, 7, 8, $8, $0, 255, 255, $a0, 0, UnknownScript_0x9cc90, $ffff
-	person_event $99, 7, 7, $16, $0, 255, 255, $0, 0, UnknownScript_0x9ccaa, $ffff
+	person_event SPRITE_TWIN, 7, 6, $9, $0, 255, 255, $0, 0, TwinScript_0x9cc76, $ffff
+	person_event SPRITE_TWIN, 7, 8, $8, $0, 255, 255, $a0, 0, TwinScript_0x9cc90, $ffff
+	person_event SPRITE_TAUROS, 7, 7, $16, $0, 255, 255, $0, 0, TaurosScript_0x9ccaa, $ffff
 ; 0x9ceb2
 

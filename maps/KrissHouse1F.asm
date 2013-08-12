@@ -123,7 +123,7 @@ UnknownScript_0x7a57e: ; 0x7a57e
 	end
 ; 0x7a582
 
-UnknownScript_0x7a582: ; 0x7a582
+MomScript_0x7a582: ; 0x7a582
 	faceplayer
 	setbit1 $0001
 	checktriggers
@@ -167,7 +167,7 @@ UnknownScript_0x7a5b8: ; 0x7a5b8
 	end
 ; 0x7a5c1
 
-UnknownScript_0x7a5c1: ; 0x7a5c1
+PokefanFScript_0x7a5c1: ; 0x7a5c1
 	faceplayer
 	loadfont
 	checktime $1
@@ -407,10 +407,10 @@ KrissHouse1F_MapEventHeader: ; 0x7ab31
 
 	; people-events
 	db 5
-	person_event $c, 8, 11, $8, $0, 255, 255, $0, 0, UnknownScript_0x7a582, $06c7
-	person_event $c, 6, 6, $7, $0, 255, 1, $0, 0, UnknownScript_0x7a582, $06c8
-	person_event $c, 8, 11, $8, $0, 255, 2, $0, 0, UnknownScript_0x7a582, $06c8
-	person_event $c, 6, 4, $7, $0, 255, 4, $0, 0, UnknownScript_0x7a582, $06c8
-	person_event $2e, 8, 8, $9, $0, 255, 255, $80, 0, UnknownScript_0x7a5c1, $0792
+	person_event SPRITE_MOM, 8, 11, $8, $0, 255, 255, $0, 0, MomScript_0x7a582, $06c7
+	person_event SPRITE_MOM, 6, 6, $7, $0, 255, 1, $0, 0, MomScript_0x7a582, $06c8
+	person_event SPRITE_MOM, 8, 11, $8, $0, 255, 2, $0, 0, MomScript_0x7a582, $06c8
+	person_event SPRITE_MOM, 6, 4, $7, $0, 255, 4, $0, 0, MomScript_0x7a582, $06c8
+	person_event SPRITE_POKEFAN_F, 8, 8, $9, $0, 255, 255, $80, 0, PokefanFScript_0x7a5c1, $0792
 ; 0x7abab
 

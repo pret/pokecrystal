@@ -117,7 +117,7 @@ ItemFragment_0x1ac304: ; 0x1ac304
 	db ELIXER, 1
 ; 0x1ac306
 
-UnknownScript_0x1ac306: ; 0x1ac306
+FruitTreeScript_0x1ac306: ; 0x1ac306
 	fruittree $19
 ; 0x1ac308
 
@@ -232,13 +232,13 @@ Route2_MapEventHeader: ; 0x1ac4af
 
 	; people-events
 	db 8
-	person_event $25, 49, 14, $8, $0, 255, 255, $b2, 5, TrainerBug_catcherRob, $ffff
-	person_event $25, 8, 10, $1f, $0, 255, 255, $b2, 3, TrainerBug_catcherEd, $ffff
-	person_event $25, 44, 4, $9, $0, 255, 255, $b2, 3, TrainerBug_catcherDoug, $ffff
-	person_event $54, 33, 4, $1, $0, 255, 255, $1, 0, ItemFragment_0x1ac2fe, $0783
-	person_event $54, 27, 6, $1, $0, 255, 255, $1, 0, ItemFragment_0x1ac300, $0784
-	person_event $54, 6, 23, $1, $0, 255, 255, $1, 0, ItemFragment_0x1ac302, $0785
-	person_event $54, 54, 18, $1, $0, 255, 255, $1, 0, ItemFragment_0x1ac304, $0786
-	person_event $5d, 18, 14, $1, $0, 255, 255, $0, 0, UnknownScript_0x1ac306, $ffff
+	person_event SPRITE_BUG_CATCHER, 49, 14, $8, $0, 255, 255, $b2, 5, TrainerBug_catcherRob, $ffff
+	person_event SPRITE_BUG_CATCHER, 8, 10, $1f, $0, 255, 255, $b2, 3, TrainerBug_catcherEd, $ffff
+	person_event SPRITE_BUG_CATCHER, 44, 4, $9, $0, 255, 255, $b2, 3, TrainerBug_catcherDoug, $ffff
+	person_event SPRITE_POKE_BALL, 33, 4, $1, $0, 255, 255, $1, 0, ItemFragment_0x1ac2fe, $0783
+	person_event SPRITE_POKE_BALL, 27, 6, $1, $0, 255, 255, $1, 0, ItemFragment_0x1ac300, $0784
+	person_event SPRITE_POKE_BALL, 6, 23, $1, $0, 255, 255, $1, 0, ItemFragment_0x1ac302, $0785
+	person_event SPRITE_POKE_BALL, 54, 18, $1, $0, 255, 255, $1, 0, ItemFragment_0x1ac304, $0786
+	person_event SPRITE_FRUIT_TREE, 18, 14, $1, $0, 255, 255, $0, 0, FruitTreeScript_0x1ac306, $ffff
 ; 0x1ac554
 

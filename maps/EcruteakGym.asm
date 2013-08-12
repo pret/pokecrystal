@@ -19,7 +19,7 @@ UnknownScript_0x99d57: ; 0x99d57
 	end
 ; 0x99d58
 
-UnknownScript_0x99d58: ; 0x99d58
+MortyScript_0x99d58: ; 0x99d58
 	faceplayer
 	loadfont
 	checkbit1 $04c0
@@ -484,12 +484,12 @@ EcruteakGym_MapEventHeader: ; 0x9a4e9
 
 	; people-events
 	db 7
-	person_event $15, 5, 9, $6, $0, 255, 255, $b0, 0, UnknownScript_0x99d58, $ffff
-	person_event $3e, 11, 6, $9, $0, 255, 255, $92, 1, TrainerSageJeffrey, $ffff
-	person_event $3e, 17, 7, $9, $0, 255, 255, $92, 3, TrainerSagePing, $ffff
-	person_event $30, 9, 11, $8, $0, 255, 255, $b2, 1, TrainerMediumMartha, $ffff
-	person_event $30, 13, 11, $8, $0, 255, 255, $b2, 1, TrainerMediumGrace, $ffff
-	person_event $48, 19, 11, $6, $0, 255, 255, $80, 0, EcruteakGymGuyScript, $ffff
-	person_event $2f, 18, 8, $6, $0, 255, 255, $a0, 0, ObjectEvent, $07a8
+	person_event SPRITE_MORTY, 5, 9, $6, $0, 255, 255, $b0, 0, MortyScript_0x99d58, $ffff
+	person_event SPRITE_SAGE, 11, 6, $9, $0, 255, 255, $92, 1, TrainerSageJeffrey, $ffff
+	person_event SPRITE_SAGE, 17, 7, $9, $0, 255, 255, $92, 3, TrainerSagePing, $ffff
+	person_event SPRITE_GRANNY, 9, 11, $8, $0, 255, 255, $b2, 1, TrainerMediumMartha, $ffff
+	person_event SPRITE_GRANNY, 13, 11, $8, $0, 255, 255, $b2, 1, TrainerMediumGrace, $ffff
+	person_event SPRITE_GYM_GUY, 19, 11, $6, $0, 255, 255, $80, 0, EcruteakGymGuyScript, $ffff
+	person_event SPRITE_GRAMPS, 18, 8, $6, $0, 255, 255, $a0, 0, ObjectEvent, $07a8
 ; 0x9a5f9
 

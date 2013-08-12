@@ -6,7 +6,7 @@ GuideGentsHouse_MapScriptHeader: ; 0x196c05
 	db 0
 ; 0x196c07
 
-UnknownScript_0x196c07: ; 0x196c07
+GrampsScript_0x196c07: ; 0x196c07
 	jumptextfaceplayer UnknownText_0x196c0d
 ; 0x196c0a
 
@@ -44,6 +44,6 @@ GuideGentsHouse_MapEventHeader: ; 0x196c89
 
 	; people-events
 	db 1
-	person_event $2f, 7, 6, $9, $0, 255, 255, $0, 0, UnknownScript_0x196c07, $06ff
+	person_event SPRITE_GRAMPS, 7, 6, $9, $0, 255, 255, $0, 0, GrampsScript_0x196c07, $06ff
 ; 0x196cb0
 

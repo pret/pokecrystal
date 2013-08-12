@@ -6,7 +6,7 @@ VioletGym_MapScriptHeader: ; 0x683c0
 	db 0
 ; 0x683c2
 
-UnknownScript_0x683c2: ; 0x683c2
+FalknerScript_0x683c2: ; 0x683c2
 	faceplayer
 	loadfont
 	checkbit1 $04bd
@@ -311,9 +311,9 @@ VioletGym_MapEventHeader: ; 0x68a0c
 
 	; people-events
 	db 4
-	person_event $12, 5, 9, $6, $0, 255, 255, $90, 0, UnknownScript_0x683c2, $ffff
-	person_event $27, 10, 11, $8, $2, 255, 255, $92, 3, TrainerBird_keeperRod, $ffff
-	person_event $27, 14, 6, $9, $2, 255, 255, $92, 3, TrainerBird_keeperAbe, $ffff
-	person_event $48, 17, 11, $6, $0, 255, 255, $80, 0, VioletGymGuyScript, $ffff
+	person_event SPRITE_FALKNER, 5, 9, $6, $0, 255, 255, $90, 0, FalknerScript_0x683c2, $ffff
+	person_event SPRITE_YOUNGSTER, 10, 11, $8, $2, 255, 255, $92, 3, TrainerBird_keeperRod, $ffff
+	person_event SPRITE_YOUNGSTER, 14, 6, $9, $2, 255, 255, $92, 3, TrainerBird_keeperAbe, $ffff
+	person_event SPRITE_GYM_GUY, 17, 11, $6, $0, 255, 255, $80, 0, VioletGymGuyScript, $ffff
 ; 0x68a5a
 

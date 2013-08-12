@@ -6,7 +6,7 @@ DiglettsCave_MapScriptHeader: ; 0x74000
 	db 0
 ; 0x74002
 
-UnknownScript_0x74002: ; 0x74002
+PokefanMScript_0x74002: ; 0x74002
 	jumptextfaceplayer UnknownText_0x74008
 ; 0x74005
 
@@ -45,6 +45,6 @@ DiglettsCave_MapEventHeader: ; 0x74049
 
 	; people-events
 	db 1
-	person_event $2d, 35, 7, $6, $0, 255, 255, $0, 0, UnknownScript_0x74002, $ffff
+	person_event SPRITE_POKEFAN_M, 35, 7, $6, $0, 255, 255, $0, 0, PokefanMScript_0x74002, $ffff
 ; 0x7407f
 

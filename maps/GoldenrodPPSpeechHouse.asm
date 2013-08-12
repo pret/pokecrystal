@@ -6,11 +6,11 @@ GoldenrodPPSpeechHouse_MapScriptHeader: ; 0x55648
 	db 0
 ; 0x5564a
 
-UnknownScript_0x5564a: ; 0x5564a
+FisherScript_0x5564a: ; 0x5564a
 	jumptextfaceplayer UnknownText_0x55659
 ; 0x5564d
 
-UnknownScript_0x5564d: ; 0x5564d
+LassScript_0x5564d: ; 0x5564d
 	jumptextfaceplayer UnknownText_0x556ca
 ; 0x55650
 
@@ -68,7 +68,7 @@ GoldenrodPPSpeechHouse_MapEventHeader: ; 0x55741
 
 	; people-events
 	db 2
-	person_event $3a, 8, 6, $4, $10, 255, 255, $a0, 0, UnknownScript_0x5564a, $ffff
-	person_event $28, 7, 9, $8, $10, 255, 255, $0, 0, UnknownScript_0x5564d, $ffff
+	person_event SPRITE_FISHER, 8, 6, $4, $10, 255, 255, $a0, 0, FisherScript_0x5564a, $ffff
+	person_event SPRITE_LASS, 7, 9, $8, $10, 255, 255, $0, 0, LassScript_0x5564d, $ffff
 ; 0x5577a
 

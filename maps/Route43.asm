@@ -454,7 +454,7 @@ MapRoute43Signpost2Script: ; 0x19d263
 	jumptext UnknownText_0x19d6c9
 ; 0x19d266
 
-UnknownScript_0x19d266: ; 0x19d266
+FruitTreeScript_0x19d266: ; 0x19d266
 	fruittree $8
 ; 0x19d268
 
@@ -639,13 +639,13 @@ Route43_MapEventHeader: ; 0x19d78c
 
 	; people-events
 	db 8
-	person_event $2b, 9, 17, $8, $0, 255, 255, $92, 2, TrainerPokemaniacBen, $ffff
-	person_event $2b, 24, 17, $a, $0, 255, 255, $92, 3, TrainerPokemaniacBrent1, $ffff
-	person_event $2b, 11, 18, $6, $0, 255, 255, $92, 2, TrainerPokemaniacRon, $ffff
-	person_event $3a, 20, 8, $9, $0, 255, 255, $a2, 4, TrainerFisherMarvin, $ffff
-	person_event $28, 29, 13, $6, $0, 255, 255, $a2, 2, TrainerPicnickerTiffany3, $ffff
-	person_event $27, 44, 17, $a, $0, 255, 255, $a2, 3, TrainerCamperSpencer, $ffff
-	person_event $5d, 30, 5, $1, $0, 255, 255, $0, 0, UnknownScript_0x19d266, $ffff
-	person_event $54, 36, 16, $1, $0, 255, 255, $1, 0, ItemFragment_0x19d268, $06b5
+	person_event SPRITE_SUPER_NERD, 9, 17, $8, $0, 255, 255, $92, 2, TrainerPokemaniacBen, $ffff
+	person_event SPRITE_SUPER_NERD, 24, 17, $a, $0, 255, 255, $92, 3, TrainerPokemaniacBrent1, $ffff
+	person_event SPRITE_SUPER_NERD, 11, 18, $6, $0, 255, 255, $92, 2, TrainerPokemaniacRon, $ffff
+	person_event SPRITE_FISHER, 20, 8, $9, $0, 255, 255, $a2, 4, TrainerFisherMarvin, $ffff
+	person_event SPRITE_LASS, 29, 13, $6, $0, 255, 255, $a2, 2, TrainerPicnickerTiffany3, $ffff
+	person_event SPRITE_YOUNGSTER, 44, 17, $a, $0, 255, 255, $a2, 3, TrainerCamperSpencer, $ffff
+	person_event SPRITE_FRUIT_TREE, 30, 5, $1, $0, 255, 255, $0, 0, FruitTreeScript_0x19d266, $ffff
+	person_event SPRITE_POKE_BALL, 36, 16, $1, $0, 255, 255, $1, 0, ItemFragment_0x19d268, $06b5
 ; 0x19d822
 

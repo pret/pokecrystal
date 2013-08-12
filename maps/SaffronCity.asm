@@ -15,7 +15,7 @@ UnknownScript_0x199326: ; 0x199326
 	return
 ; 0x19932a
 
-UnknownScript_0x19932a: ; 0x19932a
+LassScript_0x19932a: ; 0x19932a
 	faceplayer
 	loadfont
 	checkbit1 $00c9
@@ -33,7 +33,7 @@ UnknownScript_0x199338: ; 0x199338
 	end
 ; 0x19933e
 
-UnknownScript_0x19933e: ; 0x19933e
+PokefanMScript_0x19933e: ; 0x19933e
 	faceplayer
 	loadfont
 	checkbit1 $00c9
@@ -51,15 +51,15 @@ UnknownScript_0x19934c: ; 0x19934c
 	end
 ; 0x199352
 
-UnknownScript_0x199352: ; 0x199352
+CooltrainerMScript_0x199352: ; 0x199352
 	jumptextfaceplayer UnknownText_0x1994fe
 ; 0x199355
 
-UnknownScript_0x199355: ; 0x199355
+CooltrainerFScript_0x199355: ; 0x199355
 	jumptextfaceplayer UnknownText_0x19958e
 ; 0x199358
 
-UnknownScript_0x199358: ; 0x199358
+FisherScript_0x199358: ; 0x199358
 	faceplayer
 	loadfont
 	checkbit1 $00c9
@@ -77,15 +77,15 @@ UnknownScript_0x199366: ; 0x199366
 	end
 ; 0x19936c
 
-UnknownScript_0x19936c: ; 0x19936c
+YoungsterScript_0x19936c: ; 0x19936c
 	jumptextfaceplayer UnknownText_0x1996a5
 ; 0x19936f
 
-UnknownScript_0x19936f: ; 0x19936f
+YoungsterScript_0x19936f: ; 0x19936f
 	jumptextfaceplayer UnknownText_0x1996e5
 ; 0x199372
 
-UnknownScript_0x199372: ; 0x199372
+LassScript_0x199372: ; 0x199372
 	jumptextfaceplayer UnknownText_0x199745
 ; 0x199375
 
@@ -295,13 +295,13 @@ SaffronCity_MapEventHeader: ; 0x19989c
 
 	; people-events
 	db 8
-	person_event $28, 18, 11, $5, $2, 255, 255, $80, 0, UnknownScript_0x19932a, $ffff
-	person_event $2d, 34, 23, $5, $2, 255, 255, $b0, 0, UnknownScript_0x19933e, $ffff
-	person_event $23, 11, 36, $5, $1, 255, 255, $a0, 0, UnknownScript_0x199352, $ffff
-	person_event $24, 28, 24, $5, $2, 255, 255, $80, 0, UnknownScript_0x199355, $ffff
-	person_event $3a, 16, 31, $6, $0, 255, 255, $a0, 0, UnknownScript_0x199358, $ffff
-	person_event $27, 23, 19, $4, $10, 255, 255, $90, 0, UnknownScript_0x19936c, $ffff
-	person_event $27, 26, 39, $2, $11, 255, 255, $80, 0, UnknownScript_0x19936f, $ffff
-	person_event $28, 12, 23, $3, $0, 255, 255, $a0, 0, UnknownScript_0x199372, $ffff
+	person_event SPRITE_LASS, 18, 11, $5, $2, 255, 255, $80, 0, LassScript_0x19932a, $ffff
+	person_event SPRITE_POKEFAN_M, 34, 23, $5, $2, 255, 255, $b0, 0, PokefanMScript_0x19933e, $ffff
+	person_event SPRITE_COOLTRAINER_M, 11, 36, $5, $1, 255, 255, $a0, 0, CooltrainerMScript_0x199352, $ffff
+	person_event SPRITE_COOLTRAINER_F, 28, 24, $5, $2, 255, 255, $80, 0, CooltrainerFScript_0x199355, $ffff
+	person_event SPRITE_FISHER, 16, 31, $6, $0, 255, 255, $a0, 0, FisherScript_0x199358, $ffff
+	person_event SPRITE_YOUNGSTER, 23, 19, $4, $10, 255, 255, $90, 0, YoungsterScript_0x19936c, $ffff
+	person_event SPRITE_YOUNGSTER, 26, 39, $2, $11, 255, 255, $80, 0, YoungsterScript_0x19936f, $ffff
+	person_event SPRITE_LASS, 12, 23, $3, $0, 255, 255, $a0, 0, LassScript_0x199372, $ffff
 ; 0x19997d
 

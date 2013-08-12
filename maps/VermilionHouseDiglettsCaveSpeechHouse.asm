@@ -6,7 +6,7 @@ VermilionHouseDiglettsCaveSpeechHouse_MapScriptHeader: ; 0x19202f
 	db 0
 ; 0x192031
 
-UnknownScript_0x192031: ; 0x192031
+GentlemanScript_0x192031: ; 0x192031
 	jumptextfaceplayer UnknownText_0x192034
 ; 0x192034
 
@@ -35,6 +35,6 @@ VermilionHouseDiglettsCaveSpeechHouse_MapEventHeader: ; 0x192086
 
 	; people-events
 	db 1
-	person_event $40, 7, 5, $4, $10, 255, 255, $80, 0, UnknownScript_0x192031, $ffff
+	person_event SPRITE_GENTLEMAN, 7, 5, $4, $10, 255, 255, $80, 0, GentlemanScript_0x192031, $ffff
 ; 0x1920a3
 

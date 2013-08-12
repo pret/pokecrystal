@@ -6,15 +6,15 @@ NationalPark_MapScriptHeader: ; 0x5c000
 	db 0
 ; 0x5c002
 
-UnknownScript_0x5c002: ; 0x5c002
+LassScript_0x5c002: ; 0x5c002
 	jumptextfaceplayer UnknownText_0x5c1d3
 ; 0x5c005
 
-UnknownScript_0x5c005: ; 0x5c005
+PokefanFScript_0x5c005: ; 0x5c005
 	jumptextfaceplayer UnknownText_0x5c22e
 ; 0x5c008
 
-UnknownScript_0x5c008: ; 0x5c008
+TeacherScript_0x5c008: ; 0x5c008
 	faceplayer
 	loadfont
 	checkbit1 $0057
@@ -32,19 +32,19 @@ UnknownScript_0x5c021: ; 0x5c021
 	end
 ; 0x5c023
 
-UnknownScript_0x5c023: ; 0x5c023
+YoungsterScript_0x5c023: ; 0x5c023
 	jumptextfaceplayer UnknownText_0x5c35d
 ; 0x5c026
 
-UnknownScript_0x5c026: ; 0x5c026
+YoungsterScript_0x5c026: ; 0x5c026
 	jumptextfaceplayer UnknownText_0x5c38f
 ; 0x5c029
 
-UnknownScript_0x5c029: ; 0x5c029
+TeacherScript_0x5c029: ; 0x5c029
 	jumptextfaceplayer UnknownText_0x5c3bc
 ; 0x5c02c
 
-UnknownScript_0x5c02c: ; 0x5c02c
+GrowlitheScript_0x5c02c: ; 0x5c02c
 	faceplayer
 	loadfont
 	2writetext UnknownText_0x5c416
@@ -54,7 +54,7 @@ UnknownScript_0x5c02c: ; 0x5c02c
 	end
 ; 0x5c037
 
-UnknownScript_0x5c037: ; 0x5c037
+GameboyKidScript_0x5c037: ; 0x5c037
 	faceplayer
 	loadfont
 	2writetext UnknownText_0x5c42a
@@ -608,19 +608,19 @@ NationalPark_MapEventHeader: ; 0x5c806
 
 	; people-events
 	db 14
-	person_event $28, 28, 19, $5, $1, 255, 255, $a0, 0, UnknownScript_0x5c002, $ffff
-	person_event $2e, 8, 18, $6, $0, 255, 255, $0, 0, UnknownScript_0x5c005, $ffff
-	person_event $29, 44, 31, $6, $0, 255, 255, $a0, 0, UnknownScript_0x5c008, $ffff
-	person_event $27, 45, 15, $8, $0, 255, 255, $0, 0, UnknownScript_0x5c023, $ffff
-	person_event $27, 45, 14, $6, $0, 255, 255, $80, 0, UnknownScript_0x5c026, $ffff
-	person_event $29, 45, 21, $2, $21, 255, 255, $0, 0, UnknownScript_0x5c029, $ffff
-	person_event $82, 44, 30, $16, $0, 255, 255, $0, 0, UnknownScript_0x5c02c, $ffff
-	person_event $27, 27, 31, $a, $0, 255, 255, $92, 3, TrainerSchoolboyJack1, $ffff
-	person_event $2e, 33, 22, $a, $0, 255, 255, $82, 2, TrainerPokefanfBeverly1, $ffff
-	person_event $2d, 13, 20, $a, $0, 255, 255, $82, 2, TrainerPokefanmWilliam, $ffff
-	person_event $28, 18, 12, $a, $0, 255, 255, $92, 3, TrainerLassKrise, $ffff
-	person_event $54, 16, 39, $1, $0, 255, 255, $1, 0, ItemFragment_0x5c1cc, $0658
-	person_event $3, 10, 30, $6, $0, 255, 255, $0, 0, UnknownScript_0x5c037, $ffff
-	person_event $54, 47, 5, $1, $0, 255, 255, $1, 0, ItemFragment_0x5c1ce, $0659
+	person_event SPRITE_LASS, 28, 19, $5, $1, 255, 255, $a0, 0, LassScript_0x5c002, $ffff
+	person_event SPRITE_POKEFAN_F, 8, 18, $6, $0, 255, 255, $0, 0, PokefanFScript_0x5c005, $ffff
+	person_event SPRITE_TEACHER, 44, 31, $6, $0, 255, 255, $a0, 0, TeacherScript_0x5c008, $ffff
+	person_event SPRITE_YOUNGSTER, 45, 15, $8, $0, 255, 255, $0, 0, YoungsterScript_0x5c023, $ffff
+	person_event SPRITE_YOUNGSTER, 45, 14, $6, $0, 255, 255, $80, 0, YoungsterScript_0x5c026, $ffff
+	person_event SPRITE_TEACHER, 45, 21, $2, $21, 255, 255, $0, 0, TeacherScript_0x5c029, $ffff
+	person_event SPRITE_GROWLITHE, 44, 30, $16, $0, 255, 255, $0, 0, GrowlitheScript_0x5c02c, $ffff
+	person_event SPRITE_YOUNGSTER, 27, 31, $a, $0, 255, 255, $92, 3, TrainerSchoolboyJack1, $ffff
+	person_event SPRITE_POKEFAN_F, 33, 22, $a, $0, 255, 255, $82, 2, TrainerPokefanfBeverly1, $ffff
+	person_event SPRITE_POKEFAN_M, 13, 20, $a, $0, 255, 255, $82, 2, TrainerPokefanmWilliam, $ffff
+	person_event SPRITE_LASS, 18, 12, $a, $0, 255, 255, $92, 3, TrainerLassKrise, $ffff
+	person_event SPRITE_POKE_BALL, 16, 39, $1, $0, 255, 255, $1, 0, ItemFragment_0x5c1cc, $0658
+	person_event SPRITE_GAMEBOY_KID, 10, 30, $6, $0, 255, 255, $0, 0, GameboyKidScript_0x5c037, $ffff
+	person_event SPRITE_POKE_BALL, 47, 5, $1, $0, 255, 255, $1, 0, ItemFragment_0x5c1ce, $0659
 ; 0x5c8ea
 

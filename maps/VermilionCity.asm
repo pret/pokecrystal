@@ -15,15 +15,15 @@ UnknownScript_0x1aa97f: ; 0x1aa97f
 	return
 ; 0x1aa983
 
-UnknownScript_0x1aa983: ; 0x1aa983
+TeacherScript_0x1aa983: ; 0x1aa983
 	jumptextfaceplayer UnknownText_0x1aaa15
 ; 0x1aa986
 
-UnknownScript_0x1aa986: ; 0x1aa986
+GrampsScript_0x1aa986: ; 0x1aa986
 	jumptextfaceplayer UnknownText_0x1aaa6f
 ; 0x1aa989
 
-UnknownScript_0x1aa989: ; 0x1aa989
+MachopScript_0x1aa989: ; 0x1aa989
 	loadfont
 	2writetext UnknownText_0x1aaaca
 	cry MACHOP
@@ -37,11 +37,11 @@ UnknownScript_0x1aa989: ; 0x1aa989
 	end
 ; 0x1aa99b
 
-UnknownScript_0x1aa99b: ; 0x1aa99b
+SuperNerdScript_0x1aa99b: ; 0x1aa99b
 	jumptextfaceplayer UnknownText_0x1aab1a
 ; 0x1aa99e
 
-UnknownScript_0x1aa99e: ; 0x1aa99e
+BigSnorlaxScript_0x1aa99e: ; 0x1aa99e
 	loadfont
 	special $0060
 	iftrue UnknownScript_0x1aa9ab
@@ -65,7 +65,7 @@ UnknownScript_0x1aa9ab: ; 0x1aa9ab
 	end
 ; 0x1aa9c2
 
-UnknownScript_0x1aa9c2: ; 0x1aa9c2
+PokefanMScript_0x1aa9c2: ; 0x1aa9c2
 	faceplayer
 	loadfont
 	checkbit1 $00e2
@@ -300,11 +300,11 @@ VermilionCity_MapEventHeader: ; 0x1aae77
 
 	; people-events
 	db 6
-	person_event $29, 13, 22, $2, $11, 255, 255, $0, 0, UnknownScript_0x1aa983, $ffff
-	person_event $2f, 10, 27, $9, $0, 255, 255, $0, 0, UnknownScript_0x1aa986, $ffff
-	person_event $9a, 11, 30, $16, $0, 255, 255, $90, 0, UnknownScript_0x1aa989, $ffff
-	person_event $2b, 20, 18, $2, $11, 255, 255, $a0, 0, UnknownScript_0x1aa99b, $ffff
-	person_event $33, 12, 38, $15, $0, 255, 255, $0, 0, UnknownScript_0x1aa99e, $0770
-	person_event $2d, 16, 35, $6, $0, 255, 255, $80, 0, UnknownScript_0x1aa9c2, $ffff
+	person_event SPRITE_TEACHER, 13, 22, $2, $11, 255, 255, $0, 0, TeacherScript_0x1aa983, $ffff
+	person_event SPRITE_GRAMPS, 10, 27, $9, $0, 255, 255, $0, 0, GrampsScript_0x1aa986, $ffff
+	person_event SPRITE_MACHOP, 11, 30, $16, $0, 255, 255, $90, 0, MachopScript_0x1aa989, $ffff
+	person_event SPRITE_SUPER_NERD, 20, 18, $2, $11, 255, 255, $a0, 0, SuperNerdScript_0x1aa99b, $ffff
+	person_event SPRITE_BIG_SNORLAX, 12, 38, $15, $0, 255, 255, $0, 0, BigSnorlaxScript_0x1aa99e, $0770
+	person_event SPRITE_POKEFAN_M, 16, 35, $6, $0, 255, 255, $80, 0, PokefanMScript_0x1aa9c2, $ffff
 ; 0x1aaf25
 

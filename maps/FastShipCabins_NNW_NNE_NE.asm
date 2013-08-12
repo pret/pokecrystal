@@ -180,7 +180,7 @@ BurglarCoreyScript: ; 0x755e9
 	end
 ; 0x755f1
 
-UnknownScript_0x755f1: ; 0x755f1
+SailorScript_0x755f1: ; 0x755f1
 	playmusic $000a
 	faceplayer
 	loadfont
@@ -384,12 +384,12 @@ FastShipCabins_NNW_NNE_NE_MapEventHeader: ; 0x759ce
 
 	; people-events
 	db 7
-	person_event $23, 7, 8, $a, $0, 255, 255, $82, 2, TrainerCooltrainermSean, $073a
-	person_event $24, 9, 5, $7, $0, 255, 255, $82, 3, TrainerCooltrainerfCarol, $073a
-	person_event $2b, 9, 5, $7, $0, 255, 255, $92, 3, TrainerPokemaniacEthan, $073b
-	person_event $2d, 21, 8, $7, $0, 255, 255, $b2, 3, TrainerHikerNoland, $0739
-	person_event $49, 30, 8, $3, $0, 255, 255, $90, 0, UnknownScript_0x755f1, $072d
-	person_event $40, 34, 11, $3, $0, 255, 255, $92, 1, TrainerGentlemanEdward, $073a
-	person_event $4b, 34, 6, $7, $0, 255, 255, $a2, 4, TrainerBurglarCorey, $073b
+	person_event SPRITE_COOLTRAINER_M, 7, 8, $a, $0, 255, 255, $82, 2, TrainerCooltrainermSean, $073a
+	person_event SPRITE_COOLTRAINER_F, 9, 5, $7, $0, 255, 255, $82, 3, TrainerCooltrainerfCarol, $073a
+	person_event SPRITE_SUPER_NERD, 9, 5, $7, $0, 255, 255, $92, 3, TrainerPokemaniacEthan, $073b
+	person_event SPRITE_POKEFAN_M, 21, 8, $7, $0, 255, 255, $b2, 3, TrainerHikerNoland, $0739
+	person_event SPRITE_SAILOR, 30, 8, $3, $0, 255, 255, $90, 0, SailorScript_0x755f1, $072d
+	person_event SPRITE_GENTLEMAN, 34, 11, $3, $0, 255, 255, $92, 1, TrainerGentlemanEdward, $073a
+	person_event SPRITE_PHARMACIST, 34, 6, $7, $0, 255, 255, $a2, 4, TrainerBurglarCorey, $073b
 ; 0x75a4d
 

@@ -451,7 +451,7 @@ MapRoute38Signpost1Script: ; 0x1a1f30
 	jumptext UnknownText_0x1a2324
 ; 0x1a1f33
 
-UnknownScript_0x1a1f33: ; 0x1a1f33
+FruitTreeScript_0x1a1f33: ; 0x1a1f33
 	fruittree $3
 ; 0x1a1f35
 
@@ -610,12 +610,12 @@ Route38_MapEventHeader: ; 0x1a23bb
 
 	; people-events
 	db 7
-	person_event $66, 5, 8, $9, $0, 255, 255, $92, 1, TrainerSchoolboyChad1, $ffff
-	person_event $28, 7, 19, $a, $0, 255, 255, $92, 2, TrainerLassDana1, $ffff
-	person_event $66, 19, 16, $a, $0, 255, 255, $92, 1, TrainerBird_keeperToby, $ffff
-	person_event $2a, 13, 23, $6, $0, 255, 255, $92, 1, TrainerBeautyValerie, $ffff
-	person_event $49, 9, 28, $1e, $0, 255, 255, $92, 2, TrainerSailorHarry, $ffff
-	person_event $5d, 14, 16, $1, $0, 255, 255, $0, 0, UnknownScript_0x1a1f33, $ffff
-	person_event $2a, 12, 9, $a, $0, 255, 255, $92, 1, TrainerBeautyOlivia, $ffff
+	person_event SPRITE_STANDING_YOUNGSTER, 5, 8, $9, $0, 255, 255, $92, 1, TrainerSchoolboyChad1, $ffff
+	person_event SPRITE_LASS, 7, 19, $a, $0, 255, 255, $92, 2, TrainerLassDana1, $ffff
+	person_event SPRITE_STANDING_YOUNGSTER, 19, 16, $a, $0, 255, 255, $92, 1, TrainerBird_keeperToby, $ffff
+	person_event SPRITE_BUENA, 13, 23, $6, $0, 255, 255, $92, 1, TrainerBeautyValerie, $ffff
+	person_event SPRITE_SAILOR, 9, 28, $1e, $0, 255, 255, $92, 2, TrainerSailorHarry, $ffff
+	person_event SPRITE_FRUIT_TREE, 14, 16, $1, $0, 255, 255, $0, 0, FruitTreeScript_0x1a1f33, $ffff
+	person_event SPRITE_BUENA, 12, 9, $a, $0, 255, 255, $92, 1, TrainerBeautyOlivia, $ffff
 ; 0x1a2430
 

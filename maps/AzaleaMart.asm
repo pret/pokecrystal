@@ -6,18 +6,18 @@ AzaleaMart_MapScriptHeader: ; 0x18e03e
 	db 0
 ; 0x18e040
 
-UnknownScript_0x18e040: ; 0x18e040
+ClerkScript_0x18e040: ; 0x18e040
 	loadfont
 	pokemart $0, $0003
 	loadmovesprites
 	end
 ; 0x18e047
 
-UnknownScript_0x18e047: ; 0x18e047
+CooltrainerMScript_0x18e047: ; 0x18e047
 	jumptextfaceplayer UnknownText_0x18e04d
 ; 0x18e04a
 
-UnknownScript_0x18e04a: ; 0x18e04a
+BugCatcherScript_0x18e04a: ; 0x18e04a
 	jumptextfaceplayer UnknownText_0x18e0b6
 ; 0x18e04d
 
@@ -58,8 +58,8 @@ AzaleaMart_MapEventHeader: ; 0x18e118
 
 	; people-events
 	db 3
-	person_event $39, 7, 5, $9, $0, 255, 255, $0, 0, UnknownScript_0x18e040, $ffff
-	person_event $23, 9, 6, $7, $0, 255, 255, $0, 0, UnknownScript_0x18e047, $ffff
-	person_event $25, 6, 11, $5, $2, 255, 255, $80, 0, UnknownScript_0x18e04a, $ffff
+	person_event SPRITE_CLERK, 7, 5, $9, $0, 255, 255, $0, 0, ClerkScript_0x18e040, $ffff
+	person_event SPRITE_COOLTRAINER_M, 9, 6, $7, $0, 255, 255, $0, 0, CooltrainerMScript_0x18e047, $ffff
+	person_event SPRITE_BUG_CATCHER, 6, 11, $5, $2, 255, 255, $80, 0, BugCatcherScript_0x18e04a, $ffff
 ; 0x18e14f
 

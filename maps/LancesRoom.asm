@@ -348,8 +348,8 @@ LancesRoom_MapEventHeader: ; 0x1813f4
 
 	; people-events
 	db 3
-	person_event $1e, 7, 9, $6, $0, 255, 255, $0, 0, $4e7b, $ffff
-	person_event $29, 11, 8, $7, $0, 255, 255, $a0, 0, ObjectEvent, $075f
-	person_event $5, 11, 8, $7, $0, 255, 255, $0, 0, ObjectEvent, $075f
+	person_event SPRITE_LANCE, 7, 9, $6, $0, 255, 255, $0, 0, $4e7b, $ffff
+	person_event SPRITE_TEACHER, 11, 8, $7, $0, 255, 255, $a0, 0, ObjectEvent, $075f
+	person_event SPRITE_OAK, 11, 8, $7, $0, 255, 255, $0, 0, ObjectEvent, $075f
 ; 0x181445
 

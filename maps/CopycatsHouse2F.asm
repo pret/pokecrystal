@@ -25,7 +25,7 @@ UnknownScript_0x18aeb0: ; 0x18aeb0
 	return
 ; 0x18aeb1
 
-UnknownScript_0x18aeb1: ; 0x18aeb1
+CopycatScript_0x18aeb1: ; 0x18aeb1
 	faceplayer
 	checkbit1 $00d1
 	iftrue UnknownScript_0x18af6f
@@ -184,7 +184,7 @@ UnknownScript_0x18afba: ; 0x18afba
 	end
 ; 0x18afbc
 
-UnknownScript_0x18afbc: ; 0x18afbc
+MoltresScript_0x18afbc: ; 0x18afbc
 	loadfont
 	2writetext UnknownText_0x18b476
 	cry DODRIO
@@ -195,7 +195,9 @@ UnknownScript_0x18afbc: ; 0x18afbc
 	end
 ; 0x18afca
 
-UnknownScript_0x18afca: ; 0x18afca
+FairyScript_0x18afca:
+MonsterScript_0x18afca:
+BirdScript_0x18afca: ; 0x18afca
 	jumptext UnknownText_0x18b4c4
 ; 0x18afcd
 
@@ -368,11 +370,11 @@ CopycatsHouse2F_MapEventHeader: ; 0x18b4f0
 
 	; people-events
 	db 6
-	person_event $fb, 7, 8, $8, $0, 255, 255, $80, 0, UnknownScript_0x18aeb1, $06ee
-	person_event $9e, 8, 10, $16, $0, 255, 255, $b0, 0, UnknownScript_0x18afbc, $ffff
-	person_event $4d, 5, 10, $6, $0, 255, 255, $80, 0, UnknownScript_0x18afca, $0773
-	person_event $4c, 5, 6, $6, $0, 255, 255, $a0, 0, UnknownScript_0x18afca, $ffff
-	person_event $4e, 5, 11, $6, $0, 255, 255, $90, 0, UnknownScript_0x18afca, $ffff
-	person_event $fb, 7, 8, $8, $0, 255, 255, $90, 0, UnknownScript_0x18aeb1, $06ef
+	person_event SPRITE_COPYCAT, 7, 8, $8, $0, 255, 255, $80, 0, CopycatScript_0x18aeb1, $06ee
+	person_event SPRITE_MOLTRES, 8, 10, $16, $0, 255, 255, $b0, 0, MoltresScript_0x18afbc, $ffff
+	person_event SPRITE_FAIRY, 5, 10, $6, $0, 255, 255, $80, 0, FairyScript_0x18afca, $0773
+	person_event SPRITE_MONSTER, 5, 6, $6, $0, 255, 255, $a0, 0, MonsterScript_0x18afca, $ffff
+	person_event SPRITE_BIRD, 5, 11, $6, $0, 255, 255, $90, 0, BirdScript_0x18afca, $ffff
+	person_event SPRITE_COPYCAT, 7, 8, $8, $0, 255, 255, $90, 0, CopycatScript_0x18aeb1, $06ef
 ; 0x18b553
 

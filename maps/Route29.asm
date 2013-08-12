@@ -107,7 +107,7 @@ UnknownScript_0x1a0fe5: ; 0x1a0fe5
 	end
 ; 0x1a0ff1
 
-UnknownScript_0x1a0ff1: ; 0x1a0ff1
+CooltrainerMScript_0x1a0ff1: ; 0x1a0ff1
 	faceplayer
 	loadfont
 	checkcode $10
@@ -144,19 +144,19 @@ UnknownScript_0x1a1022: ; 0x1a1022
 	end
 ; 0x1a1028
 
-UnknownScript_0x1a1028: ; 0x1a1028
+YoungsterScript_0x1a1028: ; 0x1a1028
 	jumptextfaceplayer UnknownText_0x1a1214
 ; 0x1a102b
 
-UnknownScript_0x1a102b: ; 0x1a102b
+TeacherScript_0x1a102b: ; 0x1a102b
 	jumptextfaceplayer UnknownText_0x1a126c
 ; 0x1a102e
 
-UnknownScript_0x1a102e: ; 0x1a102e
+FisherScript_0x1a102e: ; 0x1a102e
 	jumptextfaceplayer UnknownText_0x1a12d9
 ; 0x1a1031
 
-UnknownScript_0x1a1031: ; 0x1a1031
+CooltrainerMScript_0x1a1031: ; 0x1a1031
 	faceplayer
 	loadfont
 	checktime $2
@@ -177,7 +177,7 @@ UnknownScript_0x1a1043: ; 0x1a1043
 	end
 ; 0x1a1049
 
-UnknownScript_0x1a1049: ; 0x1a1049
+TeacherScript_0x1a1049: ; 0x1a1049
 	faceplayer
 	loadfont
 	checkbit1 $0065
@@ -224,7 +224,7 @@ MapRoute29Signpost1Script: ; 0x1a1086
 	jumptext UnknownText_0x1a15b9
 ; 0x1a1089
 
-UnknownScript_0x1a1089: ; 0x1a1089
+FruitTreeScript_0x1a1089: ; 0x1a1089
 	fruittree $1
 ; 0x1a108b
 
@@ -433,13 +433,13 @@ Route29_MapEventHeader: ; 0x1a15e4
 
 	; people-events
 	db 8
-	person_event $23, 16, 54, $3, $0, 255, 255, $80, 0, UnknownScript_0x1a0ff1, $ffff
-	person_event $27, 20, 31, $4, $10, 255, 255, $a0, 0, UnknownScript_0x1a1028, $ffff
-	person_event $29, 15, 19, $5, $1, 255, 255, $a0, 0, UnknownScript_0x1a102b, $ffff
-	person_event $5d, 6, 16, $1, $0, 255, 255, $0, 0, UnknownScript_0x1a1089, $ffff
-	person_event $3a, 7, 29, $7, $0, 255, 255, $90, 0, UnknownScript_0x1a102e, $ffff
-	person_event $23, 8, 17, $6, $0, 255, 255, $80, 0, UnknownScript_0x1a1031, $ffff
-	person_event $29, 16, 33, $3, $0, 255, 255, $0, 0, UnknownScript_0x1a1049, $0759
-	person_event $54, 6, 52, $1, $0, 255, 255, $1, 0, ItemFragment_0x1a108b, $06ad
+	person_event SPRITE_COOLTRAINER_M, 16, 54, $3, $0, 255, 255, $80, 0, CooltrainerMScript_0x1a0ff1, $ffff
+	person_event SPRITE_YOUNGSTER, 20, 31, $4, $10, 255, 255, $a0, 0, YoungsterScript_0x1a1028, $ffff
+	person_event SPRITE_TEACHER, 15, 19, $5, $1, 255, 255, $a0, 0, TeacherScript_0x1a102b, $ffff
+	person_event SPRITE_FRUIT_TREE, 6, 16, $1, $0, 255, 255, $0, 0, FruitTreeScript_0x1a1089, $ffff
+	person_event SPRITE_FISHER, 7, 29, $7, $0, 255, 255, $90, 0, FisherScript_0x1a102e, $ffff
+	person_event SPRITE_COOLTRAINER_M, 8, 17, $6, $0, 255, 255, $80, 0, CooltrainerMScript_0x1a1031, $ffff
+	person_event SPRITE_TEACHER, 16, 33, $3, $0, 255, 255, $0, 0, TeacherScript_0x1a1049, $0759
+	person_event SPRITE_POKE_BALL, 6, 52, $1, $0, 255, 255, $1, 0, ItemFragment_0x1a108b, $06ad
 ; 0x1a1671
 

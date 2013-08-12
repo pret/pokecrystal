@@ -6,19 +6,19 @@ GoldenrodDeptStore1F_MapScriptHeader: ; 0x5597f
 	db 0
 ; 0x55981
 
-UnknownScript_0x55981: ; 0x55981
+ReceptionistScript_0x55981: ; 0x55981
 	jumptextfaceplayer UnknownText_0x55993
 ; 0x55984
 
-UnknownScript_0x55984: ; 0x55984
+GentlemanScript_0x55984: ; 0x55984
 	jumptextfaceplayer UnknownText_0x559b7
 ; 0x55987
 
-UnknownScript_0x55987: ; 0x55987
+PokefanFScript_0x55987: ; 0x55987
 	jumptextfaceplayer UnknownText_0x55a1a
 ; 0x5598a
 
-UnknownScript_0x5598a: ; 0x5598a
+BugCatcherScript_0x5598a: ; 0x5598a
 	jumptextfaceplayer UnknownText_0x55a3a
 ; 0x5598d
 
@@ -91,9 +91,9 @@ GoldenrodDeptStore1F_MapEventHeader: ; 0x55b03
 
 	; people-events
 	db 4
-	person_event $42, 5, 14, $6, $0, 255, 255, $0, 0, UnknownScript_0x55981, $ffff
-	person_event $2e, 8, 9, $6, $0, 255, 255, $0, 0, UnknownScript_0x55987, $ffff
-	person_event $25, 9, 9, $5, $1, 255, 255, $a0, 0, UnknownScript_0x5598a, $ffff
-	person_event $40, 9, 15, $2, $11, 255, 255, $0, 0, UnknownScript_0x55984, $ffff
+	person_event SPRITE_RECEPTIONIST, 5, 14, $6, $0, 255, 255, $0, 0, ReceptionistScript_0x55981, $ffff
+	person_event SPRITE_POKEFAN_F, 8, 9, $6, $0, 255, 255, $0, 0, PokefanFScript_0x55987, $ffff
+	person_event SPRITE_BUG_CATCHER, 9, 9, $5, $1, 255, 255, $a0, 0, BugCatcherScript_0x5598a, $ffff
+	person_event SPRITE_GENTLEMAN, 9, 15, $2, $11, 255, 255, $0, 0, GentlemanScript_0x55984, $ffff
 ; 0x55b5b
 

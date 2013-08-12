@@ -6,7 +6,7 @@ ManiasHouse_MapScriptHeader: ; 0x9d276
 	db 0
 ; 0x9d278
 
-UnknownScript_0x9d278: ; 0x9d278
+RockerScript_0x9d278: ; 0x9d278
 	faceplayer
 	loadfont
 	checkbit1 $0046
@@ -212,6 +212,6 @@ ManiasHouse_MapEventHeader: ; 0x9d5f0
 
 	; people-events
 	db 1
-	person_event $2c, 8, 6, $3, $0, 255, 255, $0, 0, UnknownScript_0x9d278, $ffff
+	person_event SPRITE_ROCKER, 8, 6, $3, $0, 255, 255, $0, 0, RockerScript_0x9d278, $ffff
 ; 0x9d60d
 

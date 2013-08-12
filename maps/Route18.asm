@@ -126,7 +126,7 @@ Route18_MapEventHeader: ; 0x1ad077
 
 	; people-events
 	db 2
-	person_event $27, 16, 13, $a, $0, 255, 255, $92, 3, TrainerBird_keeperBoris, $ffff
-	person_event $27, 10, 17, $6, $0, 255, 255, $92, 3, TrainerBird_keeperBob, $ffff
+	person_event SPRITE_YOUNGSTER, 16, 13, $a, $0, 255, 255, $92, 3, TrainerBird_keeperBoris, $ffff
+	person_event SPRITE_YOUNGSTER, 10, 17, $6, $0, 255, 255, $92, 3, TrainerBird_keeperBob, $ffff
 ; 0x1ad0a6
 

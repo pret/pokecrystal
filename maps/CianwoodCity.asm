@@ -78,7 +78,7 @@ UnknownScript_0x1a0083: ; 0x1a0083
 	end
 ; 0x1a0084
 
-UnknownScript_0x1a0084: ; 0x1a0084
+PokefanFScript_0x1a0084: ; 0x1a0084
 	faceplayer
 	loadfont
 	checkbit1 $0011
@@ -109,15 +109,15 @@ UnknownScript_0x1a00b1: ; 0x1a00b1
 	end
 ; 0x1a00b3
 
-UnknownScript_0x1a00b3: ; 0x1a00b3
+StandingYoungsterScript_0x1a00b3: ; 0x1a00b3
 	jumptextfaceplayer UnknownText_0x1a02df
 ; 0x1a00b6
 
-UnknownScript_0x1a00b6: ; 0x1a00b6
+PokefanMScript_0x1a00b6: ; 0x1a00b6
 	jumptextfaceplayer UnknownText_0x1a0319
 ; 0x1a00b9
 
-UnknownScript_0x1a00b9: ; 0x1a00b9
+LassScript_0x1a00b9: ; 0x1a00b9
 	jumptextfaceplayer UnknownText_0x1a0394
 ; 0x1a00bc
 
@@ -149,7 +149,7 @@ MapCianwoodCitySignpost2Script: ; 0x1a00ce
 	jumpstd $0010
 ; 0x1a00d1
 
-UnknownScript_0x1a00d1: ; 0x1a00d1
+RockScript_0x1a00d1: ; 0x1a00d1
 	jumpstd $000f
 ; 0x1a00d4
 
@@ -394,17 +394,17 @@ CianwoodCity_MapEventHeader: ; 0x1a0772
 
 	; people-events
 	db 12
-	person_event $66, 41, 25, $3, $0, 255, 255, $a0, 0, UnknownScript_0x1a00b3, $ffff
-	person_event $2d, 37, 21, $5, $1, 255, 255, $0, 0, UnknownScript_0x1a00b6, $ffff
-	person_event $28, 46, 18, $4, $20, 255, 255, $0, 0, UnknownScript_0x1a00b9, $ffff
-	person_event $59, 20, 12, $18, $0, 255, 255, $0, 0, UnknownScript_0x1a00d1, $ffff
-	person_event $59, 21, 13, $18, $0, 255, 255, $0, 0, UnknownScript_0x1a00d1, $ffff
-	person_event $59, 29, 8, $18, $0, 255, 255, $0, 0, UnknownScript_0x1a00d1, $ffff
-	person_event $59, 33, 9, $18, $0, 255, 255, $0, 0, UnknownScript_0x1a00d1, $ffff
-	person_event $59, 31, 14, $18, $0, 255, 255, $0, 0, UnknownScript_0x1a00d1, $ffff
-	person_event $59, 23, 8, $18, $0, 255, 255, $0, 0, UnknownScript_0x1a00d1, $ffff
-	person_event $2e, 50, 14, $5, $1, 255, 255, $0, 0, UnknownScript_0x1a0084, $ffff
-	person_event $2b, 25, 15, $7, $0, 255, 255, $90, 0, ObjectEvent, $07ad
-	person_event $63, 18, 14, $1, $0, 255, 255, $90, 0, ObjectEvent, $07ae
+	person_event SPRITE_STANDING_YOUNGSTER, 41, 25, $3, $0, 255, 255, $a0, 0, StandingYoungsterScript_0x1a00b3, $ffff
+	person_event SPRITE_POKEFAN_M, 37, 21, $5, $1, 255, 255, $0, 0, PokefanMScript_0x1a00b6, $ffff
+	person_event SPRITE_LASS, 46, 18, $4, $20, 255, 255, $0, 0, LassScript_0x1a00b9, $ffff
+	person_event SPRITE_ROCK, 20, 12, $18, $0, 255, 255, $0, 0, RockScript_0x1a00d1, $ffff
+	person_event SPRITE_ROCK, 21, 13, $18, $0, 255, 255, $0, 0, RockScript_0x1a00d1, $ffff
+	person_event SPRITE_ROCK, 29, 8, $18, $0, 255, 255, $0, 0, RockScript_0x1a00d1, $ffff
+	person_event SPRITE_ROCK, 33, 9, $18, $0, 255, 255, $0, 0, RockScript_0x1a00d1, $ffff
+	person_event SPRITE_ROCK, 31, 14, $18, $0, 255, 255, $0, 0, RockScript_0x1a00d1, $ffff
+	person_event SPRITE_ROCK, 23, 8, $18, $0, 255, 255, $0, 0, RockScript_0x1a00d1, $ffff
+	person_event SPRITE_POKEFAN_F, 50, 14, $5, $1, 255, 255, $0, 0, PokefanFScript_0x1a0084, $ffff
+	person_event SPRITE_SUPER_NERD, 25, 15, $7, $0, 255, 255, $90, 0, ObjectEvent, $07ad
+	person_event SPRITE_SUICUNE, 18, 14, $1, $0, 255, 255, $90, 0, ObjectEvent, $07ae
 ; 0x1a0867
 

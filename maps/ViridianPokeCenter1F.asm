@@ -6,11 +6,11 @@ ViridianPokeCenter1F_MapScriptHeader: ; 0x9b68e
 	db 0
 ; 0x9b690
 
-UnknownScript_0x9b690: ; 0x9b690
+NurseScript_0x9b690: ; 0x9b690
 	jumpstd $0000
 ; 0x9b693
 
-UnknownScript_0x9b693: ; 0x9b693
+CooltrainerMScript_0x9b693: ; 0x9b693
 	faceplayer
 	loadfont
 	checkbit1 $0775
@@ -28,11 +28,11 @@ UnknownScript_0x9b6a1: ; 0x9b6a1
 	end
 ; 0x9b6a7
 
-UnknownScript_0x9b6a7: ; 0x9b6a7
+CooltrainerFScript_0x9b6a7: ; 0x9b6a7
 	jumptextfaceplayer UnknownText_0x9b76b
 ; 0x9b6aa
 
-UnknownScript_0x9b6aa: ; 0x9b6aa
+BugCatcherScript_0x9b6aa: ; 0x9b6aa
 	jumptextfaceplayer UnknownText_0x9b7c8
 ; 0x9b6ad
 
@@ -85,9 +85,9 @@ ViridianPokeCenter1F_MapEventHeader: ; 0x9b7ef
 
 	; people-events
 	db 4
-	person_event $37, 5, 7, $6, $0, 255, 255, $0, 0, UnknownScript_0x9b690, $ffff
-	person_event $23, 8, 12, $5, $1, 255, 255, $80, 0, UnknownScript_0x9b693, $ffff
-	person_event $24, 7, 9, $7, $0, 255, 255, $90, 0, UnknownScript_0x9b6a7, $ffff
-	person_event $25, 10, 5, $9, $0, 255, 255, $a0, 0, UnknownScript_0x9b6aa, $ffff
+	person_event SPRITE_NURSE, 5, 7, $6, $0, 255, 255, $0, 0, NurseScript_0x9b690, $ffff
+	person_event SPRITE_COOLTRAINER_M, 8, 12, $5, $1, 255, 255, $80, 0, CooltrainerMScript_0x9b693, $ffff
+	person_event SPRITE_COOLTRAINER_F, 7, 9, $7, $0, 255, 255, $90, 0, CooltrainerFScript_0x9b6a7, $ffff
+	person_event SPRITE_BUG_CATCHER, 10, 5, $9, $0, 255, 255, $a0, 0, BugCatcherScript_0x9b6aa, $ffff
 ; 0x9b838
 

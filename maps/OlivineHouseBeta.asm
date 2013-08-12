@@ -6,11 +6,11 @@ OlivineHouseBeta_MapScriptHeader: ; 0x9c58d
 	db 0
 ; 0x9c58f
 
-UnknownScript_0x9c58f: ; 0x9c58f
+TeacherScript_0x9c58f: ; 0x9c58f
 	jumptextfaceplayer UnknownText_0x9c5a2
 ; 0x9c592
 
-UnknownScript_0x9c592: ; 0x9c592
+RhydonScript_0x9c592: ; 0x9c592
 	loadfont
 	2writetext UnknownText_0x9c5f0
 	cry RHYDON
@@ -58,7 +58,7 @@ OlivineHouseBeta_MapEventHeader: ; 0x9c601
 
 	; people-events
 	db 2
-	person_event $29, 7, 6, $3, $0, 255, 255, $0, 0, UnknownScript_0x9c58f, $ffff
-	person_event $9d, 8, 10, $4, $20, 255, 255, $0, 0, UnknownScript_0x9c592, $ffff
+	person_event SPRITE_TEACHER, 7, 6, $3, $0, 255, 255, $0, 0, TeacherScript_0x9c58f, $ffff
+	person_event SPRITE_RHYDON, 8, 10, $4, $20, 255, 255, $0, 0, RhydonScript_0x9c592, $ffff
 ; 0x9c635
 

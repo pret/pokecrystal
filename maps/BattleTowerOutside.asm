@@ -21,15 +21,15 @@ UnknownScript_0x9f85b: ; 0x9f85b
 	return
 ; 0x9f85f
 
-UnknownScript_0x9f85f: ; 0x9f85f
+StandingYoungsterScript_0x9f85f: ; 0x9f85f
 	jumptextfaceplayer UnknownText_0x9f930
 ; 0x9f862
 
-UnknownScript_0x9f862: ; 0x9f862
+BuenaScript_0x9f862: ; 0x9f862
 	jumptextfaceplayer UnknownText_0x9f9db
 ; 0x9f865
 
-UnknownScript_0x9f865: ; 0x9f865
+SailorScript_0x9f865: ; 0x9f865
 	jumptextfaceplayer UnknownText_0x9fa8c
 ; 0x9f868
 
@@ -138,10 +138,10 @@ BattleTowerOutside_MapEventHeader: ; 0x9fb5f
 
 	; people-events
 	db 4
-	person_event $66, 16, 10, $7, $0, 255, 255, $80, 0, UnknownScript_0x9f85f, $ffff
-	person_event $2a, 15, 17, $2, $11, 255, 255, $a0, 0, UnknownScript_0x9f862, $ffff
-	person_event $49, 22, 16, $5, $1, 255, 255, $0, 0, UnknownScript_0x9f865, $07cf
-	person_event $28, 28, 16, $3, $0, 255, 255, $a0, 0, ObjectEvent, $ffff
+	person_event SPRITE_STANDING_YOUNGSTER, 16, 10, $7, $0, 255, 255, $80, 0, StandingYoungsterScript_0x9f85f, $ffff
+	person_event SPRITE_BUENA, 15, 17, $2, $11, 255, 255, $a0, 0, BuenaScript_0x9f862, $ffff
+	person_event SPRITE_SAILOR, 22, 16, $5, $1, 255, 255, $0, 0, SailorScript_0x9f865, $07cf
+	person_event SPRITE_LASS, 28, 16, $3, $0, 255, 255, $a0, 0, ObjectEvent, $ffff
 ; 0x9fbb2
 
 

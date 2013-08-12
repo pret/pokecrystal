@@ -6,7 +6,7 @@ Route16FuchsiaSpeechHouse_MapScriptHeader: ; 0x73371
 	db 0
 ; 0x73373
 
-UnknownScript_0x73373: ; 0x73373
+SuperNerdScript_0x73373: ; 0x73373
 	jumptextfaceplayer UnknownText_0x73379
 ; 0x73376
 
@@ -40,6 +40,6 @@ Route16FuchsiaSpeechHouse_MapEventHeader: ; 0x733bc
 
 	; people-events
 	db 1
-	person_event $2b, 7, 6, $6, $0, 255, 255, $a0, 0, UnknownScript_0x73373, $ffff
+	person_event SPRITE_SUPER_NERD, 7, 6, $6, $0, 255, 255, $a0, 0, SuperNerdScript_0x73373, $ffff
 ; 0x733e3
 

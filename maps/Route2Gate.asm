@@ -6,7 +6,7 @@ Route2Gate_MapScriptHeader: ; 0x9b950
 	db 0
 ; 0x9b952
 
-UnknownScript_0x9b952: ; 0x9b952
+ScientistScript_0x9b952: ; 0x9b952
 	jumptextfaceplayer UnknownText_0x9b955
 ; 0x9b955
 
@@ -40,6 +40,6 @@ Route2Gate_MapEventHeader: ; 0x9b9ca
 
 	; people-events
 	db 1
-	person_event $3c, 8, 10, $4, $20, 255, 255, $90, 0, UnknownScript_0x9b952, $ffff
+	person_event SPRITE_SCIENTIST, 8, 10, $4, $20, 255, 255, $90, 0, ScientistScript_0x9b952, $ffff
 ; 0x9b9f1
 

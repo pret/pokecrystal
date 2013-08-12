@@ -6,7 +6,7 @@ VermilionHouseFishingSpeechHouse_MapScriptHeader: ; 0x19148b
 	db 0
 ; 0x19148d
 
-UnknownScript_0x19148d: ; 0x19148d
+FishingGuruScript_0x19148d: ; 0x19148d
 	jumptextfaceplayer UnknownText_0x191496
 ; 0x191490
 
@@ -62,6 +62,6 @@ VermilionHouseFishingSpeechHouse_MapEventHeader: ; 0x1915df
 
 	; people-events
 	db 1
-	person_event $3b, 8, 6, $6, $0, 255, 255, $a0, 0, UnknownScript_0x19148d, $ffff
+	person_event SPRITE_FISHING_GURU, 8, 6, $6, $0, 255, 255, $a0, 0, FishingGuruScript_0x19148d, $ffff
 ; 0x191601
 

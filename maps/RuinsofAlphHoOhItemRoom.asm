@@ -53,9 +53,9 @@ RuinsofAlphHoOhItemRoom_MapEventHeader: ; 0x59948
 
 	; people-events
 	db 4
-	person_event $54, 10, 6, $1, $0, 255, 255, $1, 0, ItemFragment_0x59918, $0794
-	person_event $54, 10, 9, $1, $0, 255, 255, $1, 0, ItemFragment_0x5991a, $0795
-	person_event $54, 8, 6, $1, $0, 255, 255, $1, 0, ItemFragment_0x5991c, $0796
-	person_event $54, 8, 9, $1, $0, 255, 255, $1, 0, ItemFragment_0x5991e, $0797
+	person_event SPRITE_POKE_BALL, 10, 6, $1, $0, 255, 255, $1, 0, ItemFragment_0x59918, $0794
+	person_event SPRITE_POKE_BALL, 10, 9, $1, $0, 255, 255, $1, 0, ItemFragment_0x5991a, $0795
+	person_event SPRITE_POKE_BALL, 8, 6, $1, $0, 255, 255, $1, 0, ItemFragment_0x5991c, $0796
+	person_event SPRITE_POKE_BALL, 8, 9, $1, $0, 255, 255, $1, 0, ItemFragment_0x5991e, $0797
 ; 0x599a0
 

@@ -6,7 +6,7 @@ Route5CleanseTagSpeechHouse_MapScriptHeader: ; 0x18b632
 	db 0
 ; 0x18b634
 
-UnknownScript_0x18b634: ; 0x18b634
+GrannyScript_0x18b634: ; 0x18b634
 	faceplayer
 	loadfont
 	checkbit1 $00db
@@ -24,7 +24,7 @@ UnknownScript_0x18b64d: ; 0x18b64d
 	end
 ; 0x18b64f
 
-UnknownScript_0x18b64f: ; 0x18b64f
+TeacherScript_0x18b64f: ; 0x18b64f
 	jumptextfaceplayer UnknownText_0x18b6de
 ; 0x18b652
 
@@ -75,8 +75,8 @@ Route5CleanseTagSpeechHouse_MapEventHeader: ; 0x18b744
 
 	; people-events
 	db 2
-	person_event $30, 9, 6, $1f, $0, 255, 255, $b0, 0, UnknownScript_0x18b634, $ffff
-	person_event $29, 7, 9, $8, $0, 255, 255, $80, 0, UnknownScript_0x18b64f, $ffff
+	person_event SPRITE_GRANNY, 9, 6, $1f, $0, 255, 255, $b0, 0, GrannyScript_0x18b634, $ffff
+	person_event SPRITE_TEACHER, 7, 9, $8, $0, 255, 255, $80, 0, TeacherScript_0x18b64f, $ffff
 ; 0x18b778
 
 

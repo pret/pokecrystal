@@ -6,11 +6,11 @@ OlivineLighthouse1F_MapScriptHeader: ; 0x5ae65
 	db 0
 ; 0x5ae67
 
-UnknownScript_0x5ae67: ; 0x5ae67
+SailorScript_0x5ae67: ; 0x5ae67
 	jumptextfaceplayer UnknownText_0x5ae6d
 ; 0x5ae6a
 
-UnknownScript_0x5ae6a: ; 0x5ae6a
+PokefanFScript_0x5ae6a: ; 0x5ae6a
 	jumptextfaceplayer UnknownText_0x5aec2
 ; 0x5ae6d
 
@@ -52,7 +52,7 @@ OlivineLighthouse1F_MapEventHeader: ; 0x5af36
 
 	; people-events
 	db 2
-	person_event $49, 6, 12, $6, $0, 255, 255, $0, 0, UnknownScript_0x5ae67, $ffff
-	person_event $2e, 13, 20, $4, $20, 255, 255, $0, 0, UnknownScript_0x5ae6a, $ffff
+	person_event SPRITE_SAILOR, 6, 12, $6, $0, 255, 255, $0, 0, SailorScript_0x5ae67, $ffff
+	person_event SPRITE_POKEFAN_F, 13, 20, $4, $20, 255, 255, $0, 0, PokefanFScript_0x5ae6a, $ffff
 ; 0x5af6f
 

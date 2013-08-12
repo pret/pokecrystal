@@ -151,7 +151,7 @@ Kimono_girlMikiScript: ; 0x994be
 	end
 ; 0x994c6
 
-UnknownScript_0x994c6: ; 0x994c6
+GentlemanScript_0x994c6: ; 0x994c6
 	faceplayer
 	loadfont
 	2writetext UnknownText_0x9980a
@@ -205,7 +205,7 @@ UnknownScript_0x99515: ; 0x99515
 	end
 ; 0x9951b
 
-UnknownScript_0x9951b: ; 0x9951b
+RhydonScript_0x9951b: ; 0x9951b
 	loadfont
 	2writetext UnknownText_0x99a0a
 	cry RHYDON
@@ -214,11 +214,11 @@ UnknownScript_0x9951b: ; 0x9951b
 	end
 ; 0x99525
 
-UnknownScript_0x99525: ; 0x99525
+CooltrainerMScript_0x99525: ; 0x99525
 	jumptextfaceplayer UnknownText_0x99a24
 ; 0x99528
 
-UnknownScript_0x99528: ; 0x99528
+GrannyScript_0x99528: ; 0x99528
 	jumptextfaceplayer UnknownText_0x99aaa
 ; 0x9952b
 
@@ -425,14 +425,14 @@ DanceTheatre_MapEventHeader: ; 0x99baa
 
 	; people-events
 	db 9
-	person_event $3d, 6, 4, $1e, $0, 255, 255, $a2, 0, TrainerKimono_girlNaoko2, $ffff
-	person_event $3d, 5, 6, $a, $0, 255, 255, $92, 0, TrainerKimono_girlSayo, $ffff
-	person_event $3d, 6, 10, $3, $0, 255, 255, $82, 0, TrainerKimono_girlZuki, $ffff
-	person_event $3d, 5, 13, $a, $0, 255, 255, $92, 0, TrainerKimono_girlKuni, $ffff
-	person_event $3d, 6, 15, $1f, $0, 255, 255, $a2, 0, TrainerKimono_girlMiki, $ffff
-	person_event $40, 14, 11, $7, $0, 255, 255, $0, 0, UnknownScript_0x994c6, $ffff
-	person_event $9d, 12, 10, $16, $0, 255, 255, $90, 0, UnknownScript_0x9951b, $ffff
-	person_event $23, 14, 14, $8, $0, 255, 255, $80, 0, UnknownScript_0x99525, $ffff
-	person_event $30, 10, 7, $7, $0, 255, 255, $0, 0, UnknownScript_0x99528, $ffff
+	person_event SPRITE_KIMONO_GIRL, 6, 4, $1e, $0, 255, 255, $a2, 0, TrainerKimono_girlNaoko2, $ffff
+	person_event SPRITE_KIMONO_GIRL, 5, 6, $a, $0, 255, 255, $92, 0, TrainerKimono_girlSayo, $ffff
+	person_event SPRITE_KIMONO_GIRL, 6, 10, $3, $0, 255, 255, $82, 0, TrainerKimono_girlZuki, $ffff
+	person_event SPRITE_KIMONO_GIRL, 5, 13, $a, $0, 255, 255, $92, 0, TrainerKimono_girlKuni, $ffff
+	person_event SPRITE_KIMONO_GIRL, 6, 15, $1f, $0, 255, 255, $a2, 0, TrainerKimono_girlMiki, $ffff
+	person_event SPRITE_GENTLEMAN, 14, 11, $7, $0, 255, 255, $0, 0, GentlemanScript_0x994c6, $ffff
+	person_event SPRITE_RHYDON, 12, 10, $16, $0, 255, 255, $90, 0, RhydonScript_0x9951b, $ffff
+	person_event SPRITE_COOLTRAINER_M, 14, 14, $8, $0, 255, 255, $80, 0, CooltrainerMScript_0x99525, $ffff
+	person_event SPRITE_GRANNY, 10, 7, $7, $0, 255, 255, $0, 0, GrannyScript_0x99528, $ffff
 ; 0x99c39
 

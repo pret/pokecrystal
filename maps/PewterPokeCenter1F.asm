@@ -6,15 +6,15 @@ PewterPokeCenter1F_MapScriptHeader: ; 0x1a2ee5
 	db 0
 ; 0x1a2ee7
 
-UnknownScript_0x1a2ee7: ; 0x1a2ee7
+NurseScript_0x1a2ee7: ; 0x1a2ee7
 	jumpstd $0000
 ; 0x1a2eea
 
-UnknownScript_0x1a2eea: ; 0x1a2eea
+TeacherScript_0x1a2eea: ; 0x1a2eea
 	jumptextfaceplayer UnknownText_0x1a2f01
 ; 0x1a2eed
 
-UnknownScript_0x1a2eed: ; 0x1a2eed
+JigglypuffScript_0x1a2eed: ; 0x1a2eed
 	loadfont
 	2writetext UnknownText_0x1a2f5d
 	cry JIGGLYPUFF
@@ -23,11 +23,11 @@ UnknownScript_0x1a2eed: ; 0x1a2eed
 	end
 ; 0x1a2ef7
 
-UnknownScript_0x1a2ef7: ; 0x1a2ef7
+BugCatcherScript_0x1a2ef7: ; 0x1a2ef7
 	jumptextfaceplayer UnknownText_0x1a2f75
 ; 0x1a2efa
 
-UnknownScript_0x1a2efa: ; 0x1a2efa
+PokefanMScript_0x1a2efa: ; 0x1a2efa
 	faceplayer
 	loadfont
 	trade $4
@@ -79,10 +79,10 @@ PewterPokeCenter1F_MapEventHeader: ; 0x1a2ff4
 
 	; people-events
 	db 5
-	person_event $37, 5, 7, $6, $0, 255, 255, $0, 0, UnknownScript_0x1a2ee7, $ffff
-	person_event $29, 10, 12, $6, $0, 255, 255, $a0, 0, UnknownScript_0x1a2eea, $ffff
-	person_event $94, 7, 5, $16, $0, 255, 255, $0, 0, UnknownScript_0x1a2eed, $ffff
-	person_event $25, 7, 6, $6, $0, 255, 255, $90, 0, UnknownScript_0x1a2ef7, $ffff
-	person_event $2d, 6, 11, $6, $0, 255, 255, $80, 0, UnknownScript_0x1a2efa, $ffff
+	person_event SPRITE_NURSE, 5, 7, $6, $0, 255, 255, $0, 0, NurseScript_0x1a2ee7, $ffff
+	person_event SPRITE_TEACHER, 10, 12, $6, $0, 255, 255, $a0, 0, TeacherScript_0x1a2eea, $ffff
+	person_event SPRITE_JIGGLYPUFF, 7, 5, $16, $0, 255, 255, $0, 0, JigglypuffScript_0x1a2eed, $ffff
+	person_event SPRITE_BUG_CATCHER, 7, 6, $6, $0, 255, 255, $90, 0, BugCatcherScript_0x1a2ef7, $ffff
+	person_event SPRITE_POKEFAN_M, 6, 11, $6, $0, 255, 255, $80, 0, PokefanMScript_0x1a2efa, $ffff
 ; 0x1a304a
 

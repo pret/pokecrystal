@@ -6,11 +6,11 @@ CeladonMansion1F_MapScriptHeader: ; 0x713ed
 	db 0
 ; 0x713ef
 
-UnknownScript_0x713ef: ; 0x713ef
+GrannyScript_0x713ef: ; 0x713ef
 	jumptextfaceplayer UnknownText_0x71416
 ; 0x713f2
 
-UnknownScript_0x713f2: ; 0x713f2
+GrowlitheScript_0x713f2: ; 0x713f2
 	loadfont
 	2writetext UnknownText_0x71470
 	cry MEOWTH
@@ -19,7 +19,7 @@ UnknownScript_0x713f2: ; 0x713f2
 	end
 ; 0x713fc
 
-UnknownScript_0x713fc: ; 0x713fc
+ClefairyScript_0x713fc: ; 0x713fc
 	loadfont
 	2writetext UnknownText_0x7147f
 	cry CLEFAIRY
@@ -28,7 +28,7 @@ UnknownScript_0x713fc: ; 0x713fc
 	end
 ; 0x71406
 
-UnknownScript_0x71406: ; 0x71406
+GrowlitheScript_0x71406: ; 0x71406
 	loadfont
 	2writetext UnknownText_0x71496
 	cry NIDORAN_F
@@ -96,9 +96,9 @@ CeladonMansion1F_MapEventHeader: ; 0x714cc
 
 	; people-events
 	db 4
-	person_event $30, 9, 5, $3, $0, 255, 255, $0, 0, UnknownScript_0x713ef, $ffff
-	person_event $82, 10, 6, $16, $0, 255, 255, $0, 0, UnknownScript_0x713f2, $ffff
-	person_event $8f, 8, 7, $16, $0, 255, 255, $0, 0, UnknownScript_0x713fc, $ffff
-	person_event $82, 8, 8, $16, $2, 255, 255, $90, 0, UnknownScript_0x71406, $ffff
+	person_event SPRITE_GRANNY, 9, 5, $3, $0, 255, 255, $0, 0, GrannyScript_0x713ef, $ffff
+	person_event SPRITE_GROWLITHE, 10, 6, $16, $0, 255, 255, $0, 0, GrowlitheScript_0x713f2, $ffff
+	person_event SPRITE_CLEFAIRY, 8, 7, $16, $0, 255, 255, $0, 0, ClefairyScript_0x713fc, $ffff
+	person_event SPRITE_GROWLITHE, 8, 8, $16, $2, 255, 255, $90, 0, GrowlitheScript_0x71406, $ffff
 ; 0x7152e
 

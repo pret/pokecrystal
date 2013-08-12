@@ -13,19 +13,19 @@ UnknownScript_0x196458: ; 0x196458
 	end
 ; 0x196459
 
-UnknownScript_0x196459: ; 0x196459
+NurseScript_0x196459: ; 0x196459
 	jumpstd $0000
 ; 0x19645c
 
-UnknownScript_0x19645c: ; 0x19645c
+CooltrainerMScript_0x19645c: ; 0x19645c
 	jumptextfaceplayer UnknownText_0x196494
 ; 0x19645f
 
-UnknownScript_0x19645f: ; 0x19645f
+CooltrainerFScript_0x19645f: ; 0x19645f
 	jumptextfaceplayer UnknownText_0x1964dc
 ; 0x196462
 
-UnknownScript_0x196462: ; 0x196462
+JanineImpersonatorScript_0x196462: ; 0x196462
 	faceplayer
 	loadfont
 	2writetext UnknownText_0x19652e
@@ -107,9 +107,9 @@ FuchsiaPokeCenter1F_MapEventHeader: ; 0x19656e
 
 	; people-events
 	db 4
-	person_event $37, 5, 7, $6, $0, 255, 255, $a0, 0, UnknownScript_0x196459, $ffff
-	person_event $23, 8, 12, $5, $1, 255, 255, $0, 0, UnknownScript_0x19645c, $ffff
-	person_event $24, 8, 5, $5, $1, 255, 255, $0, 0, UnknownScript_0x19645f, $ffff
-	person_event $fc, 7, 9, $6, $0, 255, 255, $90, 0, UnknownScript_0x196462, $ffff
+	person_event SPRITE_NURSE, 5, 7, $6, $0, 255, 255, $a0, 0, NurseScript_0x196459, $ffff
+	person_event SPRITE_COOLTRAINER_M, 8, 12, $5, $1, 255, 255, $0, 0, CooltrainerMScript_0x19645c, $ffff
+	person_event SPRITE_COOLTRAINER_F, 8, 5, $5, $1, 255, 255, $0, 0, CooltrainerFScript_0x19645f, $ffff
+	person_event SPRITE_JANINE_IMPERSONATOR, 7, 9, $6, $0, 255, 255, $90, 0, JanineImpersonatorScript_0x196462, $ffff
 ; 0x1965b7
 

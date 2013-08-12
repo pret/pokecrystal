@@ -6,7 +6,7 @@ OlivineVoltorbHouse_MapScriptHeader: ; 0x9c55a
 	db 0
 ; 0x9c55c
 
-UnknownScript_0x9c55c: ; 0x9c55c
+FishingGuruScript_0x9c55c: ; 0x9c55c
 	faceplayer
 	loadfont
 	trade $2
@@ -38,6 +38,6 @@ OlivineVoltorbHouse_MapEventHeader: ; 0x9c566
 
 	; people-events
 	db 1
-	person_event $3b, 7, 6, $3, $0, 255, 255, $80, 0, UnknownScript_0x9c55c, $ffff
+	person_event SPRITE_FISHING_GURU, 7, 6, $3, $0, 255, 255, $80, 0, FishingGuruScript_0x9c55c, $ffff
 ; 0x9c58d
 

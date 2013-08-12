@@ -26,7 +26,7 @@ UnknownScript_0x194e23: ; 0x194e23
 	return
 ; 0x194e24
 
-UnknownScript_0x194e24: ; 0x194e24
+ClairScript_0x194e24: ; 0x194e24
 	faceplayer
 	loadfont
 	checkbit2 $0022
@@ -428,10 +428,10 @@ BlackthornGym1F_MapEventHeader: ; 0x1956ae
 
 	; people-events
 	db 5
-	person_event $19, 7, 9, $6, $0, 255, 255, $90, 0, UnknownScript_0x194e24, $ffff
-	person_event $23, 10, 10, $6, $0, 255, 255, $82, 3, TrainerCooltrainermMike, $ffff
-	person_event $23, 18, 5, $6, $0, 255, 255, $82, 3, TrainerCooltrainermPaul, $ffff
-	person_event $24, 6, 13, $6, $0, 255, 255, $82, 1, TrainerCooltrainerfLola, $ffff
-	person_event $48, 19, 11, $6, $0, 255, 255, $80, 0, BlackthornGymGuyScript, $ffff
+	person_event SPRITE_CLAIR, 7, 9, $6, $0, 255, 255, $90, 0, ClairScript_0x194e24, $ffff
+	person_event SPRITE_COOLTRAINER_M, 10, 10, $6, $0, 255, 255, $82, 3, TrainerCooltrainermMike, $ffff
+	person_event SPRITE_COOLTRAINER_M, 18, 5, $6, $0, 255, 255, $82, 3, TrainerCooltrainermPaul, $ffff
+	person_event SPRITE_COOLTRAINER_F, 6, 13, $6, $0, 255, 255, $82, 1, TrainerCooltrainerfLola, $ffff
+	person_event SPRITE_GYM_GUY, 19, 11, $6, $0, 255, 255, $80, 0, BlackthornGymGuyScript, $ffff
 ; 0x195722
 

@@ -6,18 +6,18 @@ EcruteakMart_MapScriptHeader: ; 0x99c39
 	db 0
 ; 0x99c3b
 
-UnknownScript_0x99c3b: ; 0x99c3b
+ClerkScript_0x99c3b: ; 0x99c3b
 	loadfont
 	pokemart $0, $000e
 	loadmovesprites
 	end
 ; 0x99c42
 
-UnknownScript_0x99c42: ; 0x99c42
+SuperNerdScript_0x99c42: ; 0x99c42
 	jumptextfaceplayer UnknownText_0x99c48
 ; 0x99c45
 
-UnknownScript_0x99c45: ; 0x99c45
+GrannyScript_0x99c45: ; 0x99c45
 	jumptextfaceplayer UnknownText_0x99cd5
 ; 0x99c48
 
@@ -57,8 +57,8 @@ EcruteakMart_MapEventHeader: ; 0x99d12
 
 	; people-events
 	db 3
-	person_event $39, 7, 5, $9, $0, 255, 255, $0, 0, UnknownScript_0x99c3b, $ffff
-	person_event $2b, 6, 9, $5, $1, 255, 255, $a0, 0, UnknownScript_0x99c42, $ffff
-	person_event $30, 10, 10, $7, $0, 255, 255, $0, 0, UnknownScript_0x99c45, $ffff
+	person_event SPRITE_CLERK, 7, 5, $9, $0, 255, 255, $0, 0, ClerkScript_0x99c3b, $ffff
+	person_event SPRITE_SUPER_NERD, 6, 9, $5, $1, 255, 255, $a0, 0, SuperNerdScript_0x99c42, $ffff
+	person_event SPRITE_GRANNY, 10, 10, $7, $0, 255, 255, $0, 0, GrannyScript_0x99c45, $ffff
 ; 0x99d49
 

@@ -186,9 +186,9 @@ Route4_MapEventHeader: ; 0x1ae3ab
 
 	; people-events
 	db 4
-	person_event $27, 13, 21, $6, $0, 255, 255, $92, 3, TrainerBird_keeperHank, $ffff
-	person_event $28, 12, 13, $8, $0, 255, 255, $a2, 4, TrainerPicnickerHope, $ffff
-	person_event $28, 10, 25, $9, $0, 255, 255, $a2, 4, TrainerPicnickerSharon, $ffff
-	person_event $54, 7, 30, $1, $0, 255, 255, $1, 0, ItemFragment_0x1ae20f, $0787
+	person_event SPRITE_YOUNGSTER, 13, 21, $6, $0, 255, 255, $92, 3, TrainerBird_keeperHank, $ffff
+	person_event SPRITE_LASS, 12, 13, $8, $0, 255, 255, $a2, 4, TrainerPicnickerHope, $ffff
+	person_event SPRITE_LASS, 10, 25, $9, $0, 255, 255, $a2, 4, TrainerPicnickerSharon, $ffff
+	person_event SPRITE_POKE_BALL, 7, 30, $1, $0, 255, 255, $1, 0, ItemFragment_0x1ae20f, $0787
 ; 0x1ae3f4
 

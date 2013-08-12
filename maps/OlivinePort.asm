@@ -28,7 +28,7 @@ UnknownScript_0x748b1: ; 0x748b1
 	end
 ; 0x748c0
 
-UnknownScript_0x748c0: ; 0x748c0
+SailorScript_0x748c0: ; 0x748c0
 	faceplayer
 	loadfont
 	checkbit1 $0000
@@ -102,7 +102,7 @@ UnknownScript_0x7494e: ; 0x7494e
 	loadmovesprites
 	setbit1 $0001
 	applymovement $0, MovementData_0x74a37
-	2jump UnknownScript_0x748c0
+	2jump SailorScript_0x748c0
 ; 0x7496d
 
 UnknownScript_0x7496d: ; 0x7496d
@@ -148,7 +148,7 @@ UnknownScript_0x74992: ; 0x74992
 	end
 ; 0x7499c
 
-UnknownScript_0x7499c: ; 0x7499c
+SailorScript_0x7499c: ; 0x7499c
 	faceplayer
 	loadfont
 	checkbit1 $0000
@@ -176,12 +176,12 @@ UnknownScript_0x749c0: ; 0x749c0
 	checkcode $9
 	if_equal $3, UnknownScript_0x749e5
 	applymovement $0, MovementData_0x74a3f
-	2jump UnknownScript_0x748c0
+	2jump SailorScript_0x748c0
 ; 0x749e5
 
 UnknownScript_0x749e5: ; 0x749e5
 	applymovement $0, MovementData_0x74a49
-	2jump UnknownScript_0x748c0
+	2jump SailorScript_0x748c0
 ; 0x749ec
 
 UnknownScript_0x749ec: ; 0x749ec
@@ -205,11 +205,11 @@ UnknownScript_0x749f8: ; 0x749f8
 	end
 ; 0x749fe
 
-UnknownScript_0x749fe: ; 0x749fe
+SailorScript_0x749fe: ; 0x749fe
 	jumptextfaceplayer UnknownText_0x74cd7
 ; 0x74a01
 
-UnknownScript_0x74a01: ; 0x74a01
+FishingGuruScript_0x74a01: ; 0x74a01
 	faceplayer
 	loadfont
 	2writetext UnknownText_0x74bf4
@@ -219,7 +219,7 @@ UnknownScript_0x74a01: ; 0x74a01
 	end
 ; 0x74a0c
 
-UnknownScript_0x74a0c: ; 0x74a0c
+FishingGuruScript_0x74a0c: ; 0x74a0c
 	faceplayer
 	loadfont
 	2writetext UnknownText_0x74c35
@@ -229,7 +229,7 @@ UnknownScript_0x74a0c: ; 0x74a0c
 	end
 ; 0x74a17
 
-UnknownScript_0x74a17: ; 0x74a17
+YoungsterScript_0x74a17: ; 0x74a17
 	faceplayer
 	loadfont
 	2writetext UnknownText_0x74c76
@@ -239,7 +239,7 @@ UnknownScript_0x74a17: ; 0x74a17
 	end
 ; 0x74a22
 
-UnknownScript_0x74a22: ; 0x74a22
+CooltrainerFScript_0x74a22: ; 0x74a22
 	faceplayer
 	loadfont
 	2writetext UnknownText_0x74ca2
@@ -419,12 +419,12 @@ OlivinePort_MapEventHeader: ; 0x74d18
 
 	; people-events
 	db 7
-	person_event $49, 27, 11, $7, $0, 255, 255, $0, 0, UnknownScript_0x748c0, $072a
-	person_event $49, 19, 11, $7, $0, 255, 255, $0, 0, UnknownScript_0x749fe, $0737
-	person_event $49, 19, 10, $9, $0, 255, 255, $0, 0, UnknownScript_0x7499c, $0738
-	person_event $3b, 18, 8, $7, $0, 255, 255, $0, 0, UnknownScript_0x74a01, $0737
-	person_event $3b, 18, 17, $7, $0, 255, 255, $0, 0, UnknownScript_0x74a0c, $0737
-	person_event $27, 19, 8, $6, $0, 255, 255, $0, 0, UnknownScript_0x74a17, $0738
-	person_event $24, 19, 15, $6, $0, 255, 255, $0, 0, UnknownScript_0x74a22, $0738
+	person_event SPRITE_SAILOR, 27, 11, $7, $0, 255, 255, $0, 0, SailorScript_0x748c0, $072a
+	person_event SPRITE_SAILOR, 19, 11, $7, $0, 255, 255, $0, 0, SailorScript_0x749fe, $0737
+	person_event SPRITE_SAILOR, 19, 10, $9, $0, 255, 255, $0, 0, SailorScript_0x7499c, $0738
+	person_event SPRITE_FISHING_GURU, 18, 8, $7, $0, 255, 255, $0, 0, FishingGuruScript_0x74a01, $0737
+	person_event SPRITE_FISHING_GURU, 18, 17, $7, $0, 255, 255, $0, 0, FishingGuruScript_0x74a0c, $0737
+	person_event SPRITE_YOUNGSTER, 19, 8, $6, $0, 255, 255, $0, 0, YoungsterScript_0x74a17, $0738
+	person_event SPRITE_COOLTRAINER_F, 19, 15, $6, $0, 255, 255, $0, 0, CooltrainerFScript_0x74a22, $0738
 ; 0x74d90
 

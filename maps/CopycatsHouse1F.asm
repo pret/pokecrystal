@@ -6,11 +6,11 @@ CopycatsHouse1F_MapScriptHeader: ; 0x18ad11
 	db 0
 ; 0x18ad13
 
-UnknownScript_0x18ad13: ; 0x18ad13
+PokefanMScript_0x18ad13: ; 0x18ad13
 	jumptextfaceplayer UnknownText_0x18ad34
 ; 0x18ad16
 
-UnknownScript_0x18ad16: ; 0x18ad16
+PokefanFScript_0x18ad16: ; 0x18ad16
 	faceplayer
 	loadfont
 	checkbit1 $00c9
@@ -28,7 +28,7 @@ UnknownScript_0x18ad24: ; 0x18ad24
 	end
 ; 0x18ad2a
 
-UnknownScript_0x18ad2a: ; 0x18ad2a
+ClefairyScript_0x18ad2a: ; 0x18ad2a
 	loadfont
 	2writetext UnknownText_0x18ae4b
 	cry BLISSEY
@@ -85,8 +85,8 @@ CopycatsHouse1F_MapEventHeader: ; 0x18ae5e
 
 	; people-events
 	db 3
-	person_event $2d, 7, 6, $6, $0, 255, 255, $0, 0, UnknownScript_0x18ad13, $ffff
-	person_event $2e, 8, 9, $8, $0, 255, 255, $a0, 0, UnknownScript_0x18ad16, $ffff
-	person_event $8f, 10, 10, $16, $0, 255, 255, $0, 0, UnknownScript_0x18ad2a, $ffff
+	person_event SPRITE_POKEFAN_M, 7, 6, $6, $0, 255, 255, $0, 0, PokefanMScript_0x18ad13, $ffff
+	person_event SPRITE_POKEFAN_F, 8, 9, $8, $0, 255, 255, $a0, 0, PokefanFScript_0x18ad16, $ffff
+	person_event SPRITE_CLEFAIRY, 10, 10, $16, $0, 255, 255, $0, 0, ClefairyScript_0x18ad2a, $ffff
 ; 0x18ae9a
 

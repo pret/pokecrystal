@@ -41,7 +41,7 @@ UnknownScript_0x1a088c: ; 0x1a088c
 	end
 ; 0x1a089c
 
-UnknownScript_0x1a089c: ; 0x1a089c
+FisherScript_0x1a089c: ; 0x1a089c
 	jumptextfaceplayer UnknownText_0x1a0a71
 ; 0x1a089f
 
@@ -609,14 +609,14 @@ Route27_MapEventHeader: ; 0x1a0ead
 
 	; people-events
 	db 9
-	person_event $23, 11, 52, $7, $0, 255, 255, $82, 3, TrainerCooltrainermBlake, $ffff
-	person_event $23, 10, 62, $9, $0, 255, 255, $82, 4, TrainerCooltrainermBrian, $ffff
-	person_event $24, 14, 76, $7, $0, 255, 255, $82, 4, TrainerCooltrainerfReena1, $ffff
-	person_event $24, 10, 41, $1f, $0, 255, 255, $82, 2, TrainerCooltrainerfMegan, $ffff
-	person_event $27, 11, 69, $8, $0, 255, 255, $92, 3, TrainerPsychicGilbert, $ffff
-	person_event $27, 17, 62, $9, $0, 255, 255, $92, 3, TrainerBird_keeperJose2, $ffff
-	person_event $54, 16, 64, $1, $0, 255, 255, $1, 0, ItemFragment_0x1a0a62, $06ab
-	person_event $54, 16, 57, $1, $0, 255, 255, $1, 0, ItemFragment_0x1a0a64, $06ac
-	person_event $3a, 14, 25, $3, $0, 255, 255, $0, 3, UnknownScript_0x1a089c, $ffff
+	person_event SPRITE_COOLTRAINER_M, 11, 52, $7, $0, 255, 255, $82, 3, TrainerCooltrainermBlake, $ffff
+	person_event SPRITE_COOLTRAINER_M, 10, 62, $9, $0, 255, 255, $82, 4, TrainerCooltrainermBrian, $ffff
+	person_event SPRITE_COOLTRAINER_F, 14, 76, $7, $0, 255, 255, $82, 4, TrainerCooltrainerfReena1, $ffff
+	person_event SPRITE_COOLTRAINER_F, 10, 41, $1f, $0, 255, 255, $82, 2, TrainerCooltrainerfMegan, $ffff
+	person_event SPRITE_YOUNGSTER, 11, 69, $8, $0, 255, 255, $92, 3, TrainerPsychicGilbert, $ffff
+	person_event SPRITE_YOUNGSTER, 17, 62, $9, $0, 255, 255, $92, 3, TrainerBird_keeperJose2, $ffff
+	person_event SPRITE_POKE_BALL, 16, 64, $1, $0, 255, 255, $1, 0, ItemFragment_0x1a0a62, $06ab
+	person_event SPRITE_POKE_BALL, 16, 57, $1, $0, 255, 255, $1, 0, ItemFragment_0x1a0a64, $06ac
+	person_event SPRITE_FISHER, 14, 25, $3, $0, 255, 255, $0, 3, FisherScript_0x1a089c, $ffff
 ; 0x1a0f4c
 

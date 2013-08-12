@@ -6,19 +6,19 @@ LavenderPokeCenter1F_MapScriptHeader: ; 0x7e69e
 	db 0
 ; 0x7e6a0
 
-UnknownScript_0x7e6a0: ; 0x7e6a0
+NurseScript_0x7e6a0: ; 0x7e6a0
 	jumpstd $0000
 ; 0x7e6a3
 
-UnknownScript_0x7e6a3: ; 0x7e6a3
+GentlemanScript_0x7e6a3: ; 0x7e6a3
 	jumptextfaceplayer UnknownText_0x7e6bd
 ; 0x7e6a6
 
-UnknownScript_0x7e6a6: ; 0x7e6a6
+TeacherScript_0x7e6a6: ; 0x7e6a6
 	jumptextfaceplayer UnknownText_0x7e710
 ; 0x7e6a9
 
-UnknownScript_0x7e6a9: ; 0x7e6a9
+YoungsterScript_0x7e6a9: ; 0x7e6a9
 	faceplayer
 	loadfont
 	checkbit1 $00c9
@@ -92,9 +92,9 @@ LavenderPokeCenter1F_MapEventHeader: ; 0x7e872
 
 	; people-events
 	db 4
-	person_event $37, 5, 7, $6, $0, 255, 255, $0, 0, UnknownScript_0x7e6a0, $ffff
-	person_event $40, 10, 11, $5, $1, 255, 255, $0, 0, UnknownScript_0x7e6a3, $ffff
-	person_event $29, 7, 9, $6, $0, 255, 255, $a0, 0, UnknownScript_0x7e6a6, $ffff
-	person_event $27, 9, 5, $4, $10, 255, 255, $80, 0, UnknownScript_0x7e6a9, $ffff
+	person_event SPRITE_NURSE, 5, 7, $6, $0, 255, 255, $0, 0, NurseScript_0x7e6a0, $ffff
+	person_event SPRITE_GENTLEMAN, 10, 11, $5, $1, 255, 255, $0, 0, GentlemanScript_0x7e6a3, $ffff
+	person_event SPRITE_TEACHER, 7, 9, $6, $0, 255, 255, $a0, 0, TeacherScript_0x7e6a6, $ffff
+	person_event SPRITE_YOUNGSTER, 9, 5, $4, $10, 255, 255, $80, 0, YoungsterScript_0x7e6a9, $ffff
 ; 0x7e8bb
 

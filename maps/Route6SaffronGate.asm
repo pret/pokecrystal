@@ -13,7 +13,7 @@ UnknownScript_0x1926e9: ; 0x1926e9
 	end
 ; 0x1926ea
 
-UnknownScript_0x1926ea: ; 0x1926ea
+OfficerScript_0x1926ea: ; 0x1926ea
 	faceplayer
 	loadfont
 	checkbit1 $00c9
@@ -73,6 +73,6 @@ Route6SaffronGate_MapEventHeader: ; 0x192807
 
 	; people-events
 	db 1
-	person_event $43, 8, 4, $9, $0, 255, 255, $90, 0, UnknownScript_0x1926ea, $ffff
+	person_event SPRITE_OFFICER, 8, 4, $9, $0, 255, 255, $90, 0, OfficerScript_0x1926ea, $ffff
 ; 0x19282e
 

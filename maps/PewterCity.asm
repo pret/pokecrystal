@@ -15,15 +15,15 @@ UnknownScript_0x18c005: ; 0x18c005
 	return
 ; 0x18c009
 
-UnknownScript_0x18c009: ; 0x18c009
+CooltrainerFScript_0x18c009: ; 0x18c009
 	jumptextfaceplayer UnknownText_0x18c042
 ; 0x18c00c
 
-UnknownScript_0x18c00c: ; 0x18c00c
+BugCatcherScript_0x18c00c: ; 0x18c00c
 	jumptextfaceplayer UnknownText_0x18c080
 ; 0x18c00f
 
-UnknownScript_0x18c00f: ; 0x18c00f
+GrampsScript_0x18c00f: ; 0x18c00f
 	faceplayer
 	loadfont
 	checkbit1 $0079
@@ -71,11 +71,11 @@ MapPewterCitySignpost6Script: ; 0x18c03b
 	jumpstd $0011
 ; 0x18c03e
 
-UnknownScript_0x18c03e: ; 0x18c03e
+FruitTreeScript_0x18c03e: ; 0x18c03e
 	fruittree $1c
 ; 0x18c040
 
-UnknownScript_0x18c040: ; 0x18c040
+FruitTreeScript_0x18c040: ; 0x18c040
 	fruittree $1d
 ; 0x18c042
 
@@ -179,10 +179,10 @@ PewterCity_MapEventHeader: ; 0x18c2f5
 
 	; people-events
 	db 5
-	person_event $24, 15, 23, $2, $22, 255, 255, $a0, 0, UnknownScript_0x18c009, $ffff
-	person_event $25, 33, 18, $2, $22, 255, 255, $80, 0, UnknownScript_0x18c00c, $ffff
-	person_event $2f, 21, 33, $5, $2, 255, 255, $90, 0, UnknownScript_0x18c00f, $ffff
-	person_event $5d, 7, 36, $1, $0, 255, 255, $0, 0, UnknownScript_0x18c03e, $ffff
-	person_event $5d, 7, 34, $1, $0, 255, 255, $0, 0, UnknownScript_0x18c040, $ffff
+	person_event SPRITE_COOLTRAINER_F, 15, 23, $2, $22, 255, 255, $a0, 0, CooltrainerFScript_0x18c009, $ffff
+	person_event SPRITE_BUG_CATCHER, 33, 18, $2, $22, 255, 255, $80, 0, BugCatcherScript_0x18c00c, $ffff
+	person_event SPRITE_GRAMPS, 21, 33, $5, $2, 255, 255, $90, 0, GrampsScript_0x18c00f, $ffff
+	person_event SPRITE_FRUIT_TREE, 7, 36, $1, $0, 255, 255, $0, 0, FruitTreeScript_0x18c03e, $ffff
+	person_event SPRITE_FRUIT_TREE, 7, 34, $1, $0, 255, 255, $0, 0, FruitTreeScript_0x18c040, $ffff
 ; 0x18c378
 

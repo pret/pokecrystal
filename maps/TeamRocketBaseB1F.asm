@@ -847,11 +847,11 @@ TeamRocketBaseB1F_MapEventHeader: ; 0x6cdeb
 
 	; people-events
 	db 6
-	person_event $35, 4, 4, $6, $0, 255, 255, $0, 0, ObjectEvent, $06d9
-	person_event $35, 8, 6, $9, $0, 255, 255, $2, 3, TrainerGruntM16, $06da
-	person_event $3c, 16, 22, $8, $0, 255, 255, $92, 3, TrainerScientistJed, $06da
-	person_event $54, 10, 31, $1, $0, 255, 255, $1, 0, ItemFragment_0x6cac4, $0669
-	person_event $54, 19, 18, $1, $0, 255, 255, $1, 0, ItemFragment_0x6cac6, $066a
-	person_event $54, 16, 25, $1, $0, 255, 255, $1, 0, ItemFragment_0x6cac8, $066b
+	person_event SPRITE_ROCKET, 4, 4, $6, $0, 255, 255, $0, 0, ObjectEvent, $06d9
+	person_event SPRITE_ROCKET, 8, 6, $9, $0, 255, 255, $2, 3, TrainerGruntM16, $06da
+	person_event SPRITE_SCIENTIST, 16, 22, $8, $0, 255, 255, $92, 3, TrainerScientistJed, $06da
+	person_event SPRITE_POKE_BALL, 10, 31, $1, $0, 255, 255, $1, 0, ItemFragment_0x6cac4, $0669
+	person_event SPRITE_POKE_BALL, 19, 18, $1, $0, 255, 255, $1, 0, ItemFragment_0x6cac6, $066a
+	person_event SPRITE_POKE_BALL, 16, 25, $1, $0, 255, 255, $1, 0, ItemFragment_0x6cac8, $066b
 ; 0x6cf70
 

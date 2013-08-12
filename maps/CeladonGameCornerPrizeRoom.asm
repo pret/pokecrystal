@@ -6,11 +6,11 @@ CeladonGameCornerPrizeRoom_MapScriptHeader: ; 0x726e7
 	db 0
 ; 0x726e9
 
-UnknownScript_0x726e9: ; 0x726e9
+GentlemanScript_0x726e9: ; 0x726e9
 	jumptextfaceplayer UnknownText_0x728b8
 ; 0x726ec
 
-UnknownScript_0x726ec: ; 0x726ec
+PharmacistScript_0x726ec: ; 0x726ec
 	jumptextfaceplayer UnknownText_0x728e9
 ; 0x726ef
 
@@ -302,7 +302,7 @@ CeladonGameCornerPrizeRoom_MapEventHeader: ; 0x72a34
 
 	; people-events
 	db 2
-	person_event $40, 6, 4, $6, $0, 255, 255, $80, 0, UnknownScript_0x726e9, $ffff
-	person_event $4b, 8, 8, $4, $10, 255, 255, $a0, 0, UnknownScript_0x726ec, $ffff
+	person_event SPRITE_GENTLEMAN, 6, 4, $6, $0, 255, 255, $80, 0, GentlemanScript_0x726e9, $ffff
+	person_event SPRITE_PHARMACIST, 8, 8, $4, $10, 255, 255, $a0, 0, PharmacistScript_0x726ec, $ffff
 ; 0x72a68
 

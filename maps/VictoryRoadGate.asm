@@ -23,7 +23,7 @@ UnknownScript_0x9b9fd: ; 0x9b9fd
 	2jump UnknownScript_0x9ba04
 ; 0x9ba03
 
-UnknownScript_0x9ba03: ; 0x9ba03
+OfficerScript_0x9ba03: ; 0x9ba03
 	faceplayer
 UnknownScript_0x9ba04: ; 0x9ba04
 	loadfont
@@ -46,11 +46,11 @@ UnknownScript_0x9ba19: ; 0x9ba19
 	end
 ; 0x9ba21
 
-UnknownScript_0x9ba21: ; 0x9ba21
+BlackBeltScript_0x9ba21: ; 0x9ba21
 	jumptextfaceplayer UnknownText_0x9baf1
 ; 0x9ba24
 
-UnknownScript_0x9ba24: ; 0x9ba24
+BlackBeltScript_0x9ba24: ; 0x9ba24
 	jumptextfaceplayer UnknownText_0x9bb37
 ; 0x9ba27
 
@@ -122,9 +122,9 @@ VictoryRoadGate_MapEventHeader: ; 0x9bb9b
 
 	; people-events
 	db 3
-	person_event $43, 15, 12, $9, $0, 255, 255, $0, 0, UnknownScript_0x9ba03, $ffff
-	person_event $41, 9, 11, $9, $0, 255, 255, $0, 0, UnknownScript_0x9ba21, $074f
-	person_event $41, 9, 16, $8, $0, 255, 255, $0, 0, UnknownScript_0x9ba24, $0750
+	person_event SPRITE_OFFICER, 15, 12, $9, $0, 255, 255, $0, 0, OfficerScript_0x9ba03, $ffff
+	person_event SPRITE_BLACK_BELT, 9, 11, $9, $0, 255, 255, $0, 0, BlackBeltScript_0x9ba21, $074f
+	person_event SPRITE_BLACK_BELT, 9, 16, $8, $0, 255, 255, $0, 0, BlackBeltScript_0x9ba24, $0750
 ; 0x9bbf8
 
 

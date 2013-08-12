@@ -15,11 +15,11 @@ UnknownScript_0x9f665: ; 0x9f665
 	return
 ; 0x9f669
 
-UnknownScript_0x9f669: ; 0x9f669
+RockerScript_0x9f669: ; 0x9f669
 	jumptextfaceplayer UnknownText_0x9f716
 ; 0x9f66c
 
-UnknownScript_0x9f66c: ; 0x9f66c
+TwinScript_0x9f66c: ; 0x9f66c
 	jumptextfaceplayer UnknownText_0x9f7c8
 ; 0x9f66f
 
@@ -84,7 +84,7 @@ Route40BattleTowerGate_MapEventHeader: ; 0x9f81e
 
 	; people-events
 	db 2
-	person_event $2c, 7, 7, $3, $0, 255, 255, $a0, 0, UnknownScript_0x9f669, $07cf
-	person_event $26, 9, 11, $4, $10, 255, 255, $80, 0, UnknownScript_0x9f66c, $ffff
+	person_event SPRITE_ROCKER, 7, 7, $3, $0, 255, 255, $a0, 0, RockerScript_0x9f669, $07cf
+	person_event SPRITE_TWIN, 9, 11, $4, $10, 255, 255, $80, 0, TwinScript_0x9f66c, $ffff
 ; 0x9f852
 

@@ -312,9 +312,9 @@ FastShipCabins_SW_SSW_NW_MapEventHeader: ; 0x75e42
 
 	; people-events
 	db 4
-	person_event $3a, 19, 5, $1e, $0, 255, 255, $82, 2, TrainerFirebreatherLyle, $0739
-	person_event $25, 19, 10, $a, $0, 255, 255, $b2, 2, TrainerBug_catcherKen, $073b
-	person_event $2a, 30, 5, $a, $0, 255, 255, $92, 3, TrainerBeautyCassie, $073a
-	person_event $2c, 32, 7, $1e, $0, 255, 255, $82, 2, TrainerGuitaristClyde, $073b
+	person_event SPRITE_FISHER, 19, 5, $1e, $0, 255, 255, $82, 2, TrainerFirebreatherLyle, $0739
+	person_event SPRITE_BUG_CATCHER, 19, 10, $a, $0, 255, 255, $b2, 2, TrainerBug_catcherKen, $073b
+	person_event SPRITE_BUENA, 30, 5, $a, $0, 255, 255, $92, 3, TrainerBeautyCassie, $073a
+	person_event SPRITE_ROCKER, 32, 7, $1e, $0, 255, 255, $82, 2, TrainerGuitaristClyde, $073b
 ; 0x75ea4
 
