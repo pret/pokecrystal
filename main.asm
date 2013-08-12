@@ -35691,7 +35691,7 @@ Function2715c: ; 2715c
 	jr .asm_27177
 
 .asm_27171
-	callba GetPlayerBackpic
+	callba GetBattleBackpic
 
 .asm_27177
 	callba Function3f47c
@@ -47540,13 +47540,13 @@ Function3fbd6: ; 3fbd6
 ; 3fbf8
 
 Function3fbf8: ; 3fbf8
-	call GetPlayerBackpic
+	call GetBattleBackpic
 	call Function3fc30
 	ret
 ; 3fbff
 
 
-GetPlayerBackpic: ; 3fbff
+GetBattleBackpic: ; 3fbff
 ; Load the player character's backpic (6x6) into VRAM starting from $9310.
 
 ; Special exception for Dude.
@@ -57081,9 +57081,7 @@ Function86810: ; 86810
 	ld bc, $0168
 	ld a, $7f
 	call ByteFill
-	ld a, $22
-	ld hl, $4825
-	rst FarCall
+	callba GetPlayerBackpic
 	ld a, $31
 	ld [$ffad], a
 	ld hl, $c51e
@@ -57233,16 +57231,16 @@ GetPlayerIcon: ; 8832c
 ; Get the player icon corresponding to gender
 
 ; Male
-	ld de, $4000 ; KrissMIcon
-	ld b, $30 ; BANK(KrissMIcon)
+	ld de, ChrisSpriteGFX
+	ld b, BANK(ChrisSpriteGFX)
 	
 	ld a, [PlayerGender]
 	bit 0, a
 	jr z, .done
 	
 ; Female
-	ld de, $7a40 ; KrissFIcon
-	ld b, $31 ; BANK(KrissFIcon)
+	ld de, KrisSpriteGFX
+	ld b, BANK(KrisSpriteGFX)
 	
 .done
 	ret
@@ -57252,7 +57250,7 @@ GetPlayerIcon: ; 8832c
 INCBIN "baserom.gbc", $8833e, $88825 - $8833e
 
 
-Function88825: ; 88825
+GetPlayerBackpic: ; 88825
 	ld a, [PlayerGender]
 	bit 0, a
 	jr z, .asm_88830
@@ -57260,8 +57258,8 @@ Function88825: ; 88825
 	ret
 
 .asm_88830
-	ld hl, $7a1a
-	ld b, $a
+	ld hl, ChrisBackpic
+	ld b, BANK(ChrisBackpic)
 	ld de, $9310
 	ld c, $31
 	ld a, $40
