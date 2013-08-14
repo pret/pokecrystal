@@ -20014,7 +20014,43 @@ Function8000: ; 8000
 	ret
 ; 8029
 
-INCBIN "baserom.gbc", $8029, $807e - $8029
+Function8029: ; 8029
+	ld a, $ff
+	ld [$d4cd], a
+	ld [$d4ce], a
+	ld a, $0
+	ld hl, $4071
+	call Function19a6
+	ld b, $0
+	call $408f
+	ld a, $0
+	call GetMapObject
+	ld hl, $0008
+	add hl, bc
+	ld e, $80
+	ld a, [$d45b]
+	bit 2, a
+	jr nz, .asm_8059
+	ld a, [PlayerGender]
+	bit 0, a
+	jr z, .asm_8059
+	ld e, $90
+
+.asm_8059
+	ld [hl], e
+	ld a, $0
+	ld [hConnectionStripLength], a
+	ld bc, MapObjects
+	ld a, $0
+	ld [hConnectedMapWidth], a
+	ld de, $d4d6
+	call Function8116
+	ld a, $0
+	ld [$d4cf], a
+	ret
+; 8071
+
+INCBIN "baserom.gbc", $8071, $807e - $8071
 
 
 Function807e: ; 807e
@@ -20031,7 +20067,18 @@ Function807e: ; 807e
 	ret
 ; 808f
 
-INCBIN "baserom.gbc", $808f, $80a1 - $808f
+Function808f: ; 808f
+	push bc
+	ld a, [XCoord]
+	add $4
+	ld d, a
+	ld a, [YCoord]
+	add $4
+	ld e, a
+	pop bc
+	call Function807e
+	ret
+; 80a1
 
 
 Function80a1: ; 80a1
@@ -20051,7 +20098,34 @@ Function80a1: ; 80a1
 	ret
 ; 80b8
 
-INCBIN "baserom.gbc", $80b8, $80e7 - $80b8
+Function80b8: ; 80b8
+	ld a, [XCoord]
+	add $4
+	ld d, a
+	ld hl, MapX
+	sub [hl]
+	ld [hl], d
+	ld hl, $d721
+	ld [hl], d
+	ld hl, MapX2
+	ld [hl], d
+	ld d, a
+	ld a, [YCoord]
+	add $4
+	ld e, a
+	ld hl, MapY
+	sub [hl]
+	ld [hl], e
+	ld hl, $d720
+	ld [hl], e
+	ld hl, MapY2
+	ld [hl], e
+	ld e, a
+	ld a, [$d4cd]
+	cp $0
+	ret nz
+	ret
+; 80e7
 
 
 Function80e7: ; 80e7
@@ -20142,7 +20216,194 @@ Function811d: ; 811d
 	ret
 ; 8177
 
-INCBIN "baserom.gbc", $8177, $8286 - $8177
+Function8177: ; 8177
+	ld bc, $d72e
+	ld a, $1
+.asm_817c
+	ld [hConnectionStripLength], a
+	ld hl, $0001
+	add hl, bc
+	ld a, [hl]
+	and a
+	jr z, .asm_81bb
+	ld hl, $0000
+	add hl, bc
+	ld a, [hl]
+	cp $ff
+	jr nz, .asm_81bb
+	ld a, [XCoord]
+	ld d, a
+	ld a, [YCoord]
+	ld e, a
+	ld hl, $0003
+	add hl, bc
+	ld a, [hl]
+	add $1
+	sub d
+	jr c, .asm_81bb
+	cp $c
+	jr nc, .asm_81bb
+	ld hl, $0002
+	add hl, bc
+	ld a, [hl]
+	add $1
+	sub e
+	jr c, .asm_81bb
+	cp $b
+	jr nc, .asm_81bb
+	push bc
+	call Function80e7
+	pop bc
+	jp c, Function81c9
+
+.asm_81bb
+	ld hl, $0010
+	add hl, bc
+	ld b, h
+	ld c, l
+	ld a, [hConnectionStripLength]
+	inc a
+	cp $10
+	jr nz, .asm_817c
+	ret
+; 81c9
+
+Function81c9: ; 81c9
+	ret
+; 81ca
+
+Function81ca: ; 81ca
+	nop
+	ld a, [$d151]
+	cp $ff
+	ret z
+	ld hl, Table81d6
+	rst JumpTable
+	ret
+; 81d6
+
+Table81d6: ; 81d6
+	dw Function81e5
+	dw Function81de
+	dw Function8232
+	dw Function8239
+; 81de
+
+Function81de: ; 81de
+	ld a, [YCoord]
+	sub $1
+	jr Function81ea
+
+Function81e5: ; 81e5
+	ld a, [YCoord]
+	add $9
+
+Function81ea: ; 81ea
+	ld d, a
+	ld a, [XCoord]
+	ld e, a
+	ld bc, $d72e
+	ld a, $1
+.asm_81f4
+	ld [hConnectionStripLength], a
+	ld hl, $0001
+	add hl, bc
+	ld a, [hl]
+	and a
+	jr z, .asm_8224
+	ld hl, $0002
+	add hl, bc
+	ld a, d
+	cp [hl]
+	jr nz, .asm_8224
+	ld hl, $0000
+	add hl, bc
+	ld a, [hl]
+	cp $ff
+	jr nz, .asm_8224
+	ld hl, $0003
+	add hl, bc
+	ld a, [hl]
+	add $1
+	sub e
+	jr c, .asm_8224
+	cp $c
+	jr nc, .asm_8224
+	push de
+	push bc
+	call Function80e7
+	pop bc
+	pop de
+
+.asm_8224
+	ld hl, $0010
+	add hl, bc
+	ld b, h
+	ld c, l
+	ld a, [hConnectionStripLength]
+	inc a
+	cp $10
+	jr nz, .asm_81f4
+	ret
+; 8232
+
+Function8232: ; 8232
+	ld a, [XCoord]
+	sub $1
+	jr Function823e
+
+Function8239: ; 8239
+	ld a, [XCoord]
+	add $a
+
+Function823e: ; 823e
+	ld e, a
+	ld a, [YCoord]
+	ld d, a
+	ld bc, $d72e
+	ld a, $1
+.asm_8248
+	ld [hConnectionStripLength], a
+	ld hl, $0001
+	add hl, bc
+	ld a, [hl]
+	and a
+	jr z, .asm_8278
+	ld hl, $0003
+	add hl, bc
+	ld a, e
+	cp [hl]
+	jr nz, .asm_8278
+	ld hl, $0000
+	add hl, bc
+	ld a, [hl]
+	cp $ff
+	jr nz, .asm_8278
+	ld hl, $0002
+	add hl, bc
+	ld a, [hl]
+	add $1
+	sub d
+	jr c, .asm_8278
+	cp $b
+	jr nc, .asm_8278
+	push de
+	push bc
+	call Function80e7
+	pop bc
+	pop de
+
+.asm_8278
+	ld hl, $0010
+	add hl, bc
+	ld b, h
+	ld c, l
+	ld a, [hConnectionStripLength]
+	inc a
+	cp $10
+	jr nz, .asm_8248
+	ret
+; 8286
 
 
 Function8286: ; 8286
@@ -20238,7 +20499,89 @@ Function830d: ; 830d
 	ret
 ; 831e
 
-INCBIN "baserom.gbc", $831e, $839e - $831e
+Function831e: ; 831e
+	ld a, [$ffe0]
+	call Function1b1e
+	ld a, $3e
+	call Function1b3f
+	ld a, [CurFruit]
+	dec a
+	jr z, .asm_833b
+	ld a, [$ffe0]
+	ld b, a
+	ld c, $0
+	ld d, $1
+	call $4341
+	call Function1b35
+
+.asm_833b
+	ld a, $47
+	call Function1b3f
+	ret
+; 8341
+
+Function8341: ; 8341
+	push de
+	push bc
+	ld a, c
+	call GetMapObject
+	ld hl, $0000
+	add hl, bc
+	ld a, [hl]
+	call Function1ae5
+	ld d, b
+	ld e, c
+	pop bc
+	ld a, b
+	call GetMapObject
+	ld hl, $0000
+	add hl, bc
+	ld a, [hl]
+	call Function1ae5
+	ld hl, $0010
+	add hl, bc
+	ld a, [hl]
+	ld hl, $0011
+	add hl, bc
+	ld c, [hl]
+	ld b, a
+	ld hl, $0010
+	add hl, de
+	ld a, [hl]
+	ld hl, $0011
+	add hl, de
+	ld e, [hl]
+	ld d, a
+	pop af
+	call Function1b5f
+	ret
+; 8379
+
+Function8379: ; 8379
+	call Function1b1e
+	call $4388
+	call Function1b3f
+	ld a, $47
+	call Function1b3f
+	ret
+; 8388
+
+Function8388: ; 8388
+	ld a, [PlayerDirection]
+	srl a
+	srl a
+	and 3
+	ld e, a
+	ld d, 0
+	ld hl, .data_839a
+	add hl, de
+	ld a, [hl]
+	ret
+; 839a
+
+.data_839a
+	db 8, 9, 10, 11
+; 839e
 
 
 Function839e: ; 839e
@@ -20528,6 +20871,7 @@ Function84ef: ; 84ef
 
 INCBIN "baserom.gbc", $850b, $854b - $850b
 
+
 GetPredefFn: ; 854b
 ; input:
 ;	[$cfb4] id
@@ -20645,7 +20989,40 @@ PredefPointers: ; 856b
 	dwb $43ff, $2d
 ; 864c
 
-INCBIN "baserom.gbc", $864c, $8a68 - $864c
+
+Function864c: ; 864c
+	call Function8d55
+	jp nz, $4d59
+	ld a, b
+	cp $ff
+	jr nz, .asm_865a
+	ld a, [SGBPredef]
+
+.asm_865a
+	cp $fc
+	jp z, $4ade
+	ld l, a
+	ld h, 0
+	add hl, hl
+	ld de, $466f
+	add hl, de
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	ld de, Function8a60
+	push de
+	jp [hl]
+; 866f
+
+INCBIN "baserom.gbc", $866f, $8a60 - $866f
+
+Function8a60: ; 8a60
+	push de
+	call $5809
+	pop hl
+	jp $5809
+; 8a68
+
 
 CheckShininess: ; 0x8a68
 ; given a pointer to Attack/Defense DV in bc, determine if monster is shiny.
@@ -20672,8 +21049,55 @@ CheckShininess: ; 0x8a68
 .NotShiny
 	and a ; clear carry flag
 	ret
+; 8a88
 
-INCBIN "baserom.gbc", $8a88, $8ad1 - $8a88
+
+Function8a88: ; 8a88
+	ld a, [hl]
+	cp $a0
+	jr c, .asm_8aa2
+	ld a, [hli]
+	and $f
+	cp $a
+	jr c, .asm_8aa2
+	ld a, [hl]
+	cp $a0
+	jr c, .asm_8aa2
+	ld a, [hl]
+	and $f
+	cp $a
+	jr c, .asm_8aa2
+	scf
+	ret
+
+.asm_8aa2
+	and a
+	ret
+; 8aa4
+
+Function8aa4: ; 8aa4
+	push de
+	push bc
+	ld hl, $5ce6
+	ld de, $cda9
+	ld bc, $0010
+	call CopyBytes
+	pop bc
+	pop de
+	ld a, c
+	ld [$cdac], a
+	ld a, b
+	ld [$cdad], a
+	ld a, e
+	ld [$cdae], a
+	ld a, d
+	ld [$cdaf], a
+	ld hl, $cda9
+	call $5809
+	ld hl, $5a86
+	call $5809
+	ret
+; 8ad1
 
 
 Function8ad1: ; 8ad1
@@ -20684,7 +21108,54 @@ Function8ad1: ; 8ad1
 	ret
 ; 8ade
 
-INCBIN "baserom.gbc", $8ade, $8cb4 - $8ade
+Function8ade: ; 8ade
+	ld hl, $cd9b
+	ld a, [$cda9]
+	ld e, a
+	ld d, $0
+	add hl, de
+	ld e, l
+	ld d, h
+	ld a, [de]
+	and a
+	ld e, $5
+	jr z, .asm_8af7
+	dec a
+	ld e, $a
+	jr z, .asm_8af7
+	ld e, $f
+
+.asm_8af7
+	push de
+	ld hl, $cdb3
+	ld bc, $0006
+	ld a, [$cda9]
+	call AddNTimes
+	pop de
+	ld [hl], e
+	ret
+; 8b07
+
+Function8b07: ; 8b07
+	call Function8d55
+	ret z
+	ld hl, $4b2f
+	ld de, $d000
+	ld bc, $0008
+	ld a, $5
+	call Function306b
+	ld hl, $4b37
+	ld de, MartPointer
+	ld bc, $0008
+	ld a, $5
+	call Function306b
+	call Function96a4
+	ld a, $1
+	ld [hCGBPalUpdate], a
+	ret
+; 8b2f
+
+INCBIN "baserom.gbc", $8b2f, $8cb4 - $8b2f
 
 Function8cb4: ; 8cb4
 	ld l, e
@@ -20738,7 +21209,122 @@ Function8d55: ; 8d55
 	ret
 ; 8d59
 
-INCBIN "baserom.gbc", $8d59, $8e85 - $8d59
+Function8d59: ; 8d59
+	ld a, b
+	cp $ff
+	jr nz, .asm_8d61
+	ld a, [SGBPredef]
+
+.asm_8d61
+	cp $fc
+	jp z, $56f3
+	call $5673
+	ld l, a
+	ld h, $0
+	add hl, hl
+	ld de, $4d7a
+	add hl, de
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	ld de, $4d79
+	push de
+	jp [hl]
+; 8d79
+
+Function8d79: ; 8d79
+	ret
+; 8d7a
+
+INCBIN "baserom.gbc", $8d7a, $8db8 - $8d7a
+
+Function8db8: ; 8db8
+	ld hl, $5c67
+	ld de, $d000
+	ld c, $4
+	call $5615
+	ld hl, $5c67
+	ld de, $d020
+	ld c, $4
+	call $5615
+	ld hl, $5c67
+	ld de, MartPointer
+	ld c, $2
+	call $5615
+	jr .asm_8e23
+
+	ld de, $d000
+	call $5729
+	push hl
+	call $5643
+	call $573a
+	push hl
+	call $5643
+	ld a, [EnemyHPPal]
+	ld l, a
+	ld h, $0
+	add hl, hl
+	add hl, hl
+	ld bc, $68be
+	add hl, bc
+	call $5643
+	ld a, [PlayerHPPal]
+	ld l, a
+	ld h, $0
+	add hl, hl
+	add hl, hl
+	ld bc, $68be
+	add hl, bc
+	call $5643
+	ld hl, $68ca
+	call $5643
+	ld de, MartPointer
+	pop hl
+	call $5643
+	pop hl
+	call $5643
+	ld a, $1
+	ld [SGBPredef], a
+	call Function96a4
+
+.asm_8e23
+	call Function8e85
+	ld hl, AttrMap
+	ld bc, $0168
+	ld a, $2
+	call ByteFill
+	ld hl, $ce29
+	ld bc, $080a
+	ld a, $0
+	call $5663
+	ld hl, $cde3
+	ld bc, $070a
+	ld a, $1
+	call $5663
+	ld hl, AttrMap
+	ld bc, $040a
+	ld a, $2
+	call $5663
+	ld hl, $ce6f
+	ld bc, $050a
+	ld a, $3
+	call $5663
+	ld hl, $cebf
+	ld bc, $0109
+	ld a, $4
+	call $5663
+	ld hl, $cec9
+	ld bc, $0078
+	ld a, $7
+	call ByteFill
+	ld hl, $579c
+	ld de, $d050
+	ld bc, $0030
+	ld a, $5
+	call Function306b
+	call $56b3
+	ret
+; 8e85
 
 
 Function8e85: ; 8e85
@@ -20757,7 +21343,91 @@ Function8e85: ; 8e85
 	ret
 ; 8e9f
 
-INCBIN "baserom.gbc", $8e9f, $9610 - $8e9f
+Function8e9f: ; 8e9f
+	callba Function100dc0
+	ld hl, $7311
+	jr nc, .asm_8ead
+	ld hl, $7309
+
+.asm_8ead
+	ld de, $d000
+	ld bc, $0008
+	ld a, $5
+	call Function306b
+	ret
+; 8eb9
+
+Function8eb9: ; 8eb9
+	ld a, [PlayerGender]
+	bit 0, a
+	jr z, .asm_8ec5
+	ld hl, $7759
+	jr .asm_8ec8
+
+.asm_8ec5
+	ld hl, $7729
+
+.asm_8ec8
+	ld de, $d000
+	ld bc, $0030
+	ld a, $5
+	call Function306b
+	call Function96a4
+	ld a, $1
+	ld [hCGBPalUpdate], a
+	ret
+; 8edb
+
+Function8edb: ; 8edb
+	ld de, $d000
+	ld a, [$cda1]
+	ld l, a
+	ld h, $0
+	add hl, hl
+	add hl, hl
+	ld bc, $68be
+	add hl, bc
+	call $5643
+	ld a, [CurPartySpecies]
+	ld bc, TempMonDVs
+	call $574b
+	call $5643
+	ld hl, $68ca
+	call $5643
+	ld hl, $4f52
+	ld de, $d018
+	ld bc, $0018
+	ld a, $5
+	call Function306b
+	call Function9699
+	ld hl, AttrMap
+	ld bc, $0814
+	ld a, $1
+	call $5663
+	ld hl, $cf23
+	ld bc, $000a
+	ld a, $2
+	call ByteFill
+	ld hl, $ce4a
+	ld bc, $0202
+	ld a, $3
+	call $5663
+	ld hl, $ce4c
+	ld bc, $0202
+	ld a, $4
+	call $5663
+	ld hl, $ce4e
+	ld bc, $0202
+	ld a, $5
+	call $5663
+	call $56b3
+	call Function96a4
+	ld a, $1
+	ld [hCGBPalUpdate], a
+	ret
+; 8f52
+
+INCBIN "baserom.gbc", $8f52, $9610 - $8f52
 
 
 Function9610: ; 9610
@@ -20805,7 +21475,83 @@ Function9630: ; 9630
 	ret
 ; 9643
 
-INCBIN "baserom.gbc", $9643, $9699 - $9643
+Function9643: ; 9643
+	ld a, [rSVBK]
+	push af
+	ld a, $5
+	ld [rSVBK], a
+	ld a, $ff
+	ld [de], a
+	inc de
+	ld a, $7f
+	ld [de], a
+	inc de
+	ld c, $4
+.asm_9654
+	ld a, [hli]
+	ld [de], a
+	inc de
+	dec c
+	jr nz, .asm_9654
+	xor a
+	ld [de], a
+	inc de
+	ld [de], a
+	inc de
+	pop af
+	ld [rSVBK], a
+	ret
+; 9663
+
+Function9663: ; 9663
+.asm_9663
+	push bc
+	push hl
+.asm_9665
+	ld [hli], a
+	dec c
+	jr nz, .asm_9665
+	pop hl
+	ld bc, $0014
+	add hl, bc
+	pop bc
+	dec b
+	jr nz, .asm_9663
+	ret
+; 9673
+
+Function9673: ; 9673
+	push af
+	push bc
+	push de
+	push hl
+	ld a, [rSVBK]
+	push af
+	ld a, $5
+	ld [rSVBK], a
+	ld hl, $d000
+	ld c, $8
+.asm_9683
+	ld a, $ff
+	ld [hli], a
+	ld [hli], a
+	ld [hli], a
+	ld [hli], a
+	xor a
+	ld [hli], a
+	ld [hli], a
+	ld [hli], a
+	ld [hli], a
+	dec c
+	jr nz, .asm_9683
+	pop af
+	ld [rSVBK], a
+	pop hl
+	pop de
+	pop bc
+	pop af
+	ret
+; 9699
 
 
 Function9699: ; 9699
@@ -20869,7 +21615,33 @@ Function96b3: ; 96b3
 	ret
 ; 96f3
 
-INCBIN "baserom.gbc", $96f3, $971a - $96f3
+Function96f3: ; 96f3
+	ld hl, $cd9b
+	ld a, [$cda9]
+	ld e, a
+	ld d, $0
+	add hl, de
+	ld e, l
+	ld d, h
+	ld a, [de]
+	inc a
+	ld e, a
+	ld hl, $ce0c
+	ld bc, $0028
+	ld a, [$cda9]
+.asm_970b
+	and a
+	jr z, .asm_9712
+	add hl, bc
+	dec a
+	jr .asm_970b
+
+.asm_9712
+	ld bc, $0208
+	ld a, e
+	call $5663
+	ret
+; 971a
 
 
 Function971a: ; 971a
@@ -20881,7 +21653,85 @@ Function971a: ; 971a
 	ret
 ; 9729
 
-INCBIN "baserom.gbc", $9729, $9809 - $9729
+Function9729: ; 9729
+	push de
+	callba Function3da85
+	ld c, l
+	ld b, h
+	ld a, [TempBattleMonSpecies]
+	call $574b
+	pop de
+	ret
+; 973a
+
+Function973a: ; 973a
+	push de
+	callba Function3da97
+	ld c, l
+	ld b, h
+	ld a, [TempEnemyMonSpecies]
+	call $5764
+	pop de
+	ret
+; 974b
+
+Function974b: ; 974b
+	and a
+	jp nz, $57f9
+	ld a, [$d45b]
+	bit 2, a
+	jr nz, .asm_9760
+	ld a, [PlayerGender]
+	and a
+	jr z, .asm_9760
+	ld hl, FalknerPalette
+	ret
+
+.asm_9760
+	ld hl, $70ce
+	ret
+; 9764
+
+Function9764: ; 9764
+	and a
+	jp nz, $57f9
+	ld a, [TrainerClass]
+	ld l, a
+	ld h, $0
+	add hl, hl
+	add hl, hl
+	ld bc, $70ce
+	add hl, bc
+	ret
+; 9775
+
+INCBIN "baserom.gbc", $9775, $97ee - $9775
+
+Function97ee: ; 97ee
+	ld l, a
+	ld h, $0
+	add hl, hl
+	add hl, hl
+	add hl, hl
+	ld bc, $68ce
+	add hl, bc
+	ret
+; 97f9
+
+Function97f9: ; 97f9
+	push bc
+	call $57ee
+	pop bc
+	push hl
+	call CheckShininess
+	pop hl
+	ret nc
+	inc hl
+	inc hl
+	inc hl
+	inc hl
+	ret
+; 9809
 
 Function9809: ; 9809
 	ld a, [$cfbe]
