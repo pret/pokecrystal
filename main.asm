@@ -143,10 +143,14 @@ Function17d: ; 17d
 	call Function245
 	call ClearSprites
 	call Function270
-	ld a, $1
-	rst Bankswitch
 
-	call $4031
+
+	ld a, BANK(Function4031)
+	rst Bankswitch
+	call Function4031
+
+; Note that Function642e is called later assuming it's in the same bank.
+
 	xor a
 	ld [$ffde], a
 	ld [$ffcf], a
@@ -164,25 +168,22 @@ Function17d: ; 17d
 	ld [rLCDC], a
 	ld a, $ff
 	ld [$ffcb], a
-	ld a, $2
-	ld hl, $5890
-	rst FarCall
+	callba Function9890
 	ld a, $9c
 	ld [$ffd7], a
 	xor a
 	ld [hBGMapAddress], a
-	ld a, $5
-	ld hl, $4089
-	rst FarCall
+	callba Function14089
 	xor a
 	ld [$6000], a
 	ld [$0000], a
+
 	ld a, [hCGB]
 	and a
 	jr z, .asm_22b
 	call Function2ff7
-
 .asm_22b
+
 	xor a
 	ld [rIF], a
 	ld a, $f
@@ -194,7 +195,7 @@ Function17d: ; 17d
 	call CleanSoundRestart
 	xor a
 	ld [CurMusic], a
-	jp $642e
+	jp Function642e
 ; 245
 
 Function245: ; 245
@@ -319,7 +320,7 @@ Function4a3: ; 4a3
 	ld a, [hCGB]
 	and a
 	jr z, .asm_4af
-	ld hl, $0517
+	ld hl, IncGradGBPalTable_00
 	ld b, $4
 	jr Function4c7
 
@@ -20963,7 +20964,7 @@ PredefPointers: ; 856b
 	dwb $5853, $02
 	dwb $464c, $02 ; LoadSGBLayout, BANK(LoadSGBLayout)
 	dwb $5d11, $24
-	dwb $4a88, $02
+	dwb CheckContestMon, BANK(CheckContestMon)
 	dwb $420f, $23
 	dwb $4000, $23
 	dwb $4000, $23
@@ -21052,7 +21053,7 @@ CheckShininess: ; 0x8a68
 ; 8a88
 
 
-Function8a88: ; 8a88
+CheckContestMon: ; 8a88
 	ld a, [hl]
 	cp $a0
 	jr c, .asm_8aa2
