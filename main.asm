@@ -74214,7 +74214,7 @@ SECTION "bank7A",DATA,BANK[$7A]
 
 SECTION "bank7B",DATA,BANK[$7B]
 
-INCBIN "baserom.gbc", $1ec000, $1ecf02 - $1ec000
+INCLUDE "text/battle_tower.asm"
 
 
 SECTION "bank7C",DATA,BANK[$7C]
