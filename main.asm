@@ -55874,7 +55874,7 @@ INCLUDE "maps/DayCare.asm"
 
 SECTION "bank19",DATA,BANK[$19]
 
-INCBIN "baserom.gbc", $64000, $67308 - $64000
+INCLUDE "text/phone/extra.asm"
 
 
 SECTION "bank1A",DATA,BANK[$1A]
