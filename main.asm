@@ -62874,7 +62874,7 @@ INCBIN "baserom.gbc", $a0000, $a1eca - $a0000
 
 SECTION "bank29",DATA,BANK[$29]
 
-INCBIN "baserom.gbc", $a4000, $a64ad - $a4000
+INCLUDE "text/phone/extra2.asm"
 
 
 SECTION "bank2A",DATA,BANK[$2A]
