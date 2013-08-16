@@ -60264,8 +60264,21 @@ PokegearSpritesGFX: ; 914dd
 INCBIN "gfx/misc/pokegear_sprites.lz"
 ; 91508
 
-INCBIN "baserom.gbc", $91508, $91ae1 - $91508
+INCBIN "baserom.gbc", $91508, $918bf - $91508
 
+RadioChannels: ; 918bf
+; Buena's Password is at 0x917c3
+	db "OAK's ", $e1, $e2, " Talk@"
+	db "#DEX Show@"
+	db "#MON Music@"
+	db "Lucky Channel@"
+	db "?????@"
+	db "Places & People@"
+	db "Let's All Sing!@"
+	db "# FLUTE@"
+; 9191c
+
+INCBIN "baserom.gbc", $9191c, $91ae1 - $9191c
 
 Function91ae1: ; 91ae1
 	ld a, e
