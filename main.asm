@@ -73636,7 +73636,7 @@ INCBIN "baserom.gbc", $17093c, $17367f - $17093c
 
 SECTION "bank5D",DATA,BANK[$5D]
 
-INCBIN "baserom.gbc", $174000, $177561 - $174000
+INCLUDE "text/phone/extra3.asm"
 
 
 SECTION "bank5E",DATA,BANK[$5E]
