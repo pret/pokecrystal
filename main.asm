@@ -5592,7 +5592,7 @@ Function1d19: ; 1d19
 ; 1d35
 
 
-Function1d35: ; 0x1d35
+LoadMenuDataHeader: ; 0x1d35
 	call Function1d3c
 	call Function1c00
 	ret
@@ -5625,7 +5625,7 @@ Function1d57: ; 1d57
 
 Function1d58: ; 1d58
 	ld hl, MenuDataHeader_0x1d5f
-	call Function1d35
+	call LoadMenuDataHeader
 	ret
 ; 1d5f
 
@@ -5645,7 +5645,7 @@ Function1d67: ; 1d67
 
 Function1d6e: ; 1d6e
 	ld hl, MenuDataHeader_0x1d75
-	call Function1d35
+	call LoadMenuDataHeader
 	ret
 ; 1d75
 
@@ -5687,7 +5687,7 @@ Function1d81: ; 0x1d81
 ; 0x1dab
 
 Function1dab: ; 1dab
-	call Function1d35
+	call LoadMenuDataHeader
 	call Function1d81
 	call Function1c17
 	ld a, [$cfa9]
@@ -5718,7 +5718,7 @@ Function1dcf: ; 1dcf
 	ld bc, $0e07
 	jr .asm_1dd9
 
-	call Function1d35
+	call LoadMenuDataHeader
 	jr .asm_1dfe
 
 .asm_1dd9
@@ -17757,7 +17757,7 @@ NamePlayer: ; 0x6074
 ; 60e9
 
 Function60e9: ; 60e9
-	call Function1d35
+	call LoadMenuDataHeader
 	call Function1d81
 	ld a, [$cfa9]
 	dec a
@@ -26626,7 +26626,7 @@ StartMenu: ; 125cd
 	ld hl, .ContestMenuDataHeader
 .GotMenuData
 
-	call Function1d35
+	call LoadMenuDataHeader
 	call .SetUpMenuItems
 	ld a, [$d0d2]
 	ld [$cf88], a
@@ -27344,7 +27344,7 @@ GiveTakePartyMonItem: ; 12b60
 	jr z, .asm_12ba6
 
 	ld hl, GiveTakeItemMenuData
-	call Function1d35
+	call LoadMenuDataHeader
 	call Function1d81
 	call Function1c07
 	jr c, .asm_12ba6
@@ -27626,7 +27626,7 @@ Function12d45: ; 12d45
 	cp $2
 	jr z, .asm_12d6d
 	ld hl, $6dc9
-	call Function1d35
+	call LoadMenuDataHeader
 	call Function1d81
 	call Function1c07
 	jp c, $6dc6
@@ -35248,7 +35248,7 @@ Function24d19: ; 24d19
 	call Function24dd4
 	callba Function8ea4a
 	ld hl, MenuDataHeader_0x24d3f
-	call Function1d35
+	call LoadMenuDataHeader
 	call Function24d47
 	call Function24d91
 
@@ -35550,7 +35550,7 @@ MenuData2_0x24edc: ; 24edc
 
 Function24ef2: ; 4ef2
 	ld hl, MenuDataHeader_0x24f2c
-	call Function1d35
+	call LoadMenuDataHeader
 	ld a, [$d0d2]
 	ld [$cf88], a
 	call Function2039
@@ -35564,14 +35564,14 @@ Function24ef2: ; 4ef2
 Function24f0b: ; 24f0b
 ; Safari battle menu (untranslated).
 	ld hl, MenuDataHeader_0x24f4e
-	call Function1d35
+	call LoadMenuDataHeader
 	jr Function24f19
 ; 24f13
 
 Function24f13: ; 24f13
 ; Park battle menu.
 	ld hl, MenuDataHeader_0x24f89
-	call Function1d35
+	call LoadMenuDataHeader
 ; 24f19
 
 Function24f19: ; 24f19
@@ -35675,7 +35675,7 @@ Function24fb2: ; 24fb2
 
 Function24fbf: ; 24fbf
 	ld hl, $50ed
-	call Function1d35
+	call LoadMenuDataHeader
 	call Function24ff9
 	ret
 ; 24fc9
@@ -35688,7 +35688,7 @@ Function24fc9: ; 24fc9
 	ld a, e
 	ld [Buffer2], a
 	ld hl, $50f5
-	call Function1d35
+	call LoadMenuDataHeader
 	call Function24ff9
 	ret
 ; 24fe1
@@ -35700,7 +35700,7 @@ Function24fe1: ; 24fe1
 	ld a, e
 	ld [Buffer2], a
 	ld hl, $50fd
-	call Function1d35
+	call LoadMenuDataHeader
 	call Function24ff9
 	ret
 ; 24ff9
@@ -36180,7 +36180,7 @@ _KrisDecorationMenu: ; 0x2675c
 	ld a, [$cf76]
 	push af
 	ld hl, $679a
-	call Function1d35
+	call LoadMenuDataHeader
 	xor a
 	ld [$d1ee], a
 	ld a, $1
@@ -50370,7 +50370,7 @@ Function44806: ; 0x44806
 
 Function4484a: ; 0x4484a
 	ld hl, MenuData44964
-	call Function1d35
+	call LoadMenuDataHeader
 	call Function1d81
 	call Function1c07
 	jr c, .asm_44860
@@ -50658,7 +50658,7 @@ Function492a5: ; 492a5
 
 Function492b9: ; 492b9
 	ld hl, $530a
-	call Function1d35
+	call LoadMenuDataHeader
 	ld a, $e
 	call Predef
 	push bc
@@ -50739,7 +50739,7 @@ MainMenu: ; 49cdc
 	ld [$cf76], a
 	call Function49e09
 	ld hl, MenuDataHeader_0x49d14
-	call Function1d35
+	call LoadMenuDataHeader
 	call Function49de4
 	call Function1c17
 	jr c, .quit
@@ -58017,15 +58017,18 @@ SECTION "bank22",DATA,BANK[$22]
 
 INCBIN "baserom.gbc", $88000, $88258 - $88000
 
-MovePlayerPicRight: ; 0x88258
-	ld hl, $c4f6
-	ld de, $0001
+MovePlayerPicRight: ; 88258
+	hlcoord 6, 4
+	ld de, 1
 	jr MovePlayerPic
-MovePlayerPicLeft
-	ld hl, $c4fd
+
+MovePlayerPicLeft: ; 88260
+	hlcoord 13, 4
 	ld de, -1
 	; fallthrough
-MovePlayerPic: ; 0x88266
+
+MovePlayerPic: ; 88266
+; Move player pic at hl by de * 7 tiles.
 	ld c, $8
 .loop
 	push bc
@@ -58059,24 +58062,67 @@ MovePlayerPic: ; 0x88266
 	pop bc
 	pop hl
 	jr .loop
+; 88297
 
-ShowPlayerNamingChoices: ; 0x88297
-	ld hl, $42b5 ; male
+ShowPlayerNamingChoices: ; 88297
+	ld hl, ChrisNameMenuHeader
 	ld a, [PlayerGender]
 	bit 0, a
-	jr z, .skip
-	ld hl, $42e5 ; female
-.skip
-	call Function1d35
+	jr z, .GotGender
+	ld hl, KrisNameMenuHeader
+.GotGender
+	call LoadMenuDataHeader
 	call Function1d81
 	ld a, [$cfa9]
 	dec a
 	call Function1db8
 	call Function1c17
 	ret
-; 0x882b5
+; 882b5
 
-INCBIN "baserom.gbc", $882b5, $8832c - $882b5
+ChrisNameMenuHeader: ; 882b5
+	db $40 ; flags
+	db 00, 00 ; start coords
+	db 11, 10 ; end coords
+	dw MenuData2_0x882be
+	db 1 ; ????
+	db 0 ; default option
+; 882be
+
+MenuData2_0x882be: ; 882be
+	db $91 ; flags
+	db 5 ; items
+	db "NEW NAME@"
+	db "CHRIS@"
+	db "MAT@"
+	db "ALLAN@"
+	db "JON@"
+	db 2 ; displacement
+	db " NAME @" ; title
+; 882e5
+
+KrisNameMenuHeader: ; 882e5
+	db $40 ; flags
+	db 00, 00 ; start coords
+	db 11, 10 ; end coords
+	dw MenuData2_0x882ee
+	db 1 ; ????
+	db 0 ; default option
+; 882ee
+
+MenuData2_0x882ee: ; 882ee
+	db $91 ; flags
+	db 5 ; items
+	db "NEW NAME@"
+	db "KRIS@"
+	db "AMANDA@"
+	db "JUANA@"
+	db "JODI@"
+	db 2 ; displacement
+	db " NAME @" ; title
+; 88318
+
+INCBIN "baserom.gbc", $88318, $8832c - $88318
 
 GetPlayerIcon: ; 8832c
 ; Get the player icon corresponding to gender
@@ -69646,7 +69692,7 @@ Function100b12: ; 100b12
 	ret c
 	ld hl, $4f2c
 	ld a, $9
-	ld de, Function1d35
+	ld de, LoadMenuDataHeader
 	call FarJpDe
 	ld a, $9
 	ld [$cf94], a
@@ -72104,7 +72150,7 @@ Function117b14:
 	dec [hl]
 	ret nz
 	ld hl, Data117cbc
-	call Function1d35
+	call LoadMenuDataHeader
 	call Function1cbb
 	call Function1cfd
 	jp Function117cdd
@@ -72116,7 +72162,7 @@ Function117b28:
 
 Function117b31:
 	ld hl, Data117cc4
-	call Function1d35
+	call LoadMenuDataHeader
 	call Function1cbb
 	call Function1cfd
 	ld hl, $c550
@@ -72264,7 +72310,7 @@ Function117bb6:
 
 Function117c4a:
 	ld hl, Data117cbc
-	call Function1d35
+	call LoadMenuDataHeader
 	call Function1cbb
 	call Function1cfd
 	ld a, $41
