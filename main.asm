@@ -74441,15 +74441,15 @@ Function1f8000: ; 1f8000
 	ld a, [$be46]
 	ld c, a
 	ld a, b
-	ld b, $0
+	ld b, 0
 	add hl, bc
 	ld [hl], a
 	call CloseSRAM
 	push af
-	ld hl, $414e
-	ld bc, $000b
+	ld hl, BattleTowerTrainers
+	ld bc, 11
 	call AddNTimes
-	ld bc, $000b
+	ld bc, 11
 	call CopyBytes
 	call Function1f8081
 	pop af
@@ -74480,9 +74480,10 @@ Function1f8081: ; 1f8081
 .asm_1f8089
 	ld a, [$d800]
 	dec a
-	ld hl, $4450
-	ld bc, $04d7
+	ld hl, BattleTowerMons
+	ld bc, BattleTowerMons2 - BattleTowerMons1
 	call AddNTimes
+
 	ld a, [hRandomAdd]
 	ld b, a
 .asm_1f8099
@@ -74491,9 +74492,10 @@ Function1f8081: ; 1f8081
 	add b
 	ld b, a
 	and $1f
-	cp $15
+	cp (BattleTowerMons2 - BattleTowerMons1) / ($3b)
 	jr nc, .asm_1f8099
-	ld bc, $003b
+
+	ld bc, $3b
 	call AddNTimes
 	ld a, [hli]
 	ld b, a
@@ -74535,12 +74537,13 @@ Function1f8081: ; 1f8081
 	ld a, [$be56]
 	cp b
 	jr z, .asm_1f8089
-	ld bc, $003b
+
+	ld bc, $3b
 	call CopyBytes
 	ld a, [$d265]
 	push af
 	push de
-	ld hl, $ffc5
+	ld hl, -$3b
 	add hl, de
 	ld a, [hl]
 	ld [$d265], a
@@ -74575,7 +74578,84 @@ Function1f8081: ; 1f8081
 	ret
 ; 1f814e
 
-INCBIN "baserom.gbc", $1f814e, $1fb8a8 - $1f814e
+BattleTowerTrainers: ; 1f814e
+	db "HANSON@@@@", FISHER
+	db "SAWYER@@@@", POKEMANIAC
+	db "MASUDA@@@@", GUITARIST
+	db "NICKEL@@@@", SCIENTIST
+	db "OLSON@@@@@", POKEFANM
+	db "ZABOROWSKI", LASS
+	db "WRIGHT@@@@", YOUNGSTER
+	db "ALEXANDER@", HIKER
+	db "KAWAKAMI@@", TEACHER
+	db "BICKETT@@@", POKEFANM
+	db "SAITO@@@@@", KIMONO_GIRL
+	db "CRAWFORD@@", BOARDER
+	db "DIAZ@@@@@@", PICNICKER
+	db "ERICKSON@@", BIKER
+	db "FAIRFIELD@", JUGGLER
+	db "HUNTER@@@@", POKEFANF
+	db "HILL@@@@@@", FIREBREATHER
+	db "JAVIER@@@@", SWIMMERF
+	db "KAUFMAN@@@", SWIMMERM
+	db "LANCASTER@", SKIER
+	db "McMAHILL@@", CAMPER
+	db "OBRIEN@@@@", GENTLEMAN
+	db "FROST@@@@@", BEAUTY
+	db "MORSE@@@@@", SUPER_NERD
+	db "YUFUNE@@@@", BLACKBELT_T
+	db "RAJAN@@@@@", COOLTRAINERF
+	db "RODRIGUEZ@", OFFICER
+	db "SANTIAGO@@", PSYCHIC_T
+	db "STOCK@@@@@", POKEFANM
+	db "THURMAN@@@", SCIENTIST
+	db "VALENTINO@", BEAUTY
+	db "WAGNER@@@@", CAMPER
+	db "YATES@@@@@", BIRD_KEEPER
+	db "ANDREWS@@@", PICNICKER
+	db "BAHN@@@@@@", POKEMANIAC
+	db "MORI@@@@@@", SCIENTIST
+	db "BUCKMAN@@@", SAGE
+	db "COBB@@@@@@", SCHOOLBOY
+	db "HUGHES@@@@", FISHER
+	db "ARITA@@@@@", KIMONO_GIRL
+	db "EASTON@@@@", PSYCHIC_T
+	db "FREEMAN@@@", CAMPER
+	db "GIESE@@@@@", LASS
+	db "HATCHER@@@", GENTLEMAN
+	db "JACKSON@@@", POKEFANF
+	db "KAHN@@@@@@", POKEMANIAC
+	db "LEONG@@@@@", YOUNGSTER
+	db "MARINO@@@@", TEACHER
+	db "NEWMAN@@@@", SAILOR
+	db "NGUYEN@@@@", BLACKBELT_T
+	db "OGDEN@@@@@", SUPER_NERD
+	db "PARK@@@@@@", COOLTRAINERF
+	db "RAINE@@@@@", SWIMMERM
+	db "SELLS@@@@@", BIRD_KEEPER
+	db "ROCKWELL@@", BOARDER
+	db "THORNTON@@", LASS
+	db "TURNER@@@@", OFFICER
+	db "VAN DYKE@@", SKIER
+	db "WALKER@@@@", SCHOOLBOY
+	db "MEYER@@@@@", SWIMMERF
+	db "JOHNSON@@@", YOUNGSTER
+	db "ADAMS@@@@@", GUITARIST
+	db "SMITH@@@@@", BUG_CATCHER
+	db "TAJIRI@@@@", BUG_CATCHER
+	db "BAKER@@@@@", POKEMANIAC
+	db "COLLINS@@@", SCIENTIST
+	db "SMART@@@@@", SUPER_NERD
+	db "DYKSTRA@@@", SWIMMERF
+	db "EATON@@@@@", BIKER
+	db "WONG@@@@@@", FIREBREATHER
+; 1f8450
+
+BattleTowerMons: ; 1f8450
+	INCLUDE "stats/battle_tower.asm"
+; 1fb4b6
+
+INCBIN "baserom.gbc", $1fb4b6, $1fb8a8 - $1fb4b6
 
 
 SECTION "bank7F",DATA,BANK[$7F]
