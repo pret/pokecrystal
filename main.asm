@@ -16985,9 +16985,7 @@ MysteryGift: ; 5b54
 ; 5b64
 
 OptionsMenu: ; 5b64
-	ld a, $39
-	ld hl, $41d0
-	rst FarCall
+	callba _OptionsMenu
 	ret
 ; 5b6b
 
@@ -66373,7 +66371,587 @@ INCBIN "baserom.gbc", $e0000, $e37f9 - $e0000
 
 SECTION "bank39",DATA,BANK[$39]
 
-INCBIN "baserom.gbc", $e4000, $e4579 - $e4000
+INCBIN "baserom.gbc", $e4000, $e41d0 - $e4000
+
+_OptionsMenu: ; e41d0
+	ld hl, $ffaa
+	ld a, [hl]
+	push af
+	ld [hl], $1
+	call WhiteBGMap
+	ld hl, TileMap
+	ld b, $10
+	ld c, $12
+	call TextBox
+	ld hl, $c4ca
+	ld de, Stringe4241
+	call PlaceString
+	xor a
+	ld [$cf63], a
+	ld c, $6
+.asm_e41f3
+	push bc
+	xor a
+	ld [$ffa9], a
+	call Functione42d6
+	pop bc
+	ld hl, $cf63
+	inc [hl]
+	dec c
+	jr nz, .asm_e41f3
+	call Functione4512
+	xor a
+	ld [$cf63], a
+	inc a
+	ld [hBGMapMode], a
+	call WaitBGMap
+	ld b, $8
+	call GetSGBLayout
+	call Function32f9
+.asm_e4217
+	call Functiona57
+	ld a, [hJoyPressed]
+	and $a
+	jr nz, .asm_e4234
+	call Functione452a
+	jr c, .asm_e422a
+	call Functione42d6
+	jr c, .asm_e4234
+
+.asm_e422a
+	call Functione455c
+	ld c, $3
+	call DelayFrames
+	jr .asm_e4217
+
+.asm_e4234
+	ld de, SFX_TRANSACTION
+	call StartSFX
+	call WaitSFX
+	pop af
+	ld [$ffaa], a
+	ret
+; e4241
+
+Stringe4241: ; e4241
+	db "TEXT SPEED", $22
+	db "        :", $22
+	db "BATTLE SCENE", $22
+	db "        :", $22
+	db "BATTLE STYLE", $22
+	db "        :", $22
+	db "SOUND", $22
+	db "        :", $22
+	db "PRINT", $22
+	db "        :", $22
+	db "MENU ACCOUNT", $22
+	db "        :", $22
+	db "FRAME", $22
+	db "        :TYPE", $22
+	db "CANCEL@"
+; e42d6
+
+
+Functione42d6: ; e42d6
+	ld a, [$cf63]
+	ld e, a
+	ld d, 0
+	ld hl, .Pointers
+	add hl, de
+	add hl, de
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	jp [hl]
+; e42e5
+
+.Pointers
+	dw Options_TextSpeed
+	dw Options_BattleScene
+	dw Options_BattleStyle
+	dw Options_Sound
+	dw Options_Print
+	dw Options_MenuAccount
+	dw Options_Frame
+	dw Options_Cancel
+; e42f5
+
+
+Options_TextSpeed: ; e42f5
+	call Functione4346
+	ld a, [hJoyPressed]
+	bit 5, a
+	jr nz, .asm_e430d
+	bit 4, a
+	jr z, .asm_e431f
+	ld a, c
+	cp $2
+	jr c, .asm_e4309
+	ld c, $ff
+
+.asm_e4309
+	inc c
+	ld a, e
+	jr .asm_e4315
+
+.asm_e430d
+	ld a, c
+	and a
+	jr nz, .asm_e4313
+	ld c, $3
+
+.asm_e4313
+	dec c
+	ld a, d
+
+.asm_e4315
+	ld b, a
+	ld a, [Options]
+	and $f0
+	or b
+	ld [Options], a
+
+.asm_e431f
+	ld b, 0
+	ld hl, .Strings
+	add hl, bc
+	add hl, bc
+	ld e, [hl]
+	inc hl
+	ld d, [hl]
+	ld hl, $c4e7
+	call PlaceString
+	and a
+	ret
+; e4331
+
+.Strings
+	dw .Fast
+	dw .Mid
+	dw .Slow
+
+.Fast
+	db "FAST@"
+.Mid
+	db "MID @"
+.Slow
+	db "SLOW@"
+; e4346
+
+
+Functione4346: ; e4346
+	ld a, [Options]
+	and $7
+	cp $5
+	jr z, .asm_e4359
+	cp $1
+	jr z, .asm_e435f
+	ld c, $1
+	ld de, $0105
+	ret
+
+.asm_e4359
+	ld c, $2
+	ld de, $0301
+	ret
+
+.asm_e435f
+	ld c, $0
+	ld de, $0503
+	ret
+; e4365
+
+
+Options_BattleScene: ; e4365
+	ld hl, Options
+	ld a, [hJoyPressed]
+	bit 5, a
+	jr nz, .asm_e4378
+	bit 4, a
+	jr z, .asm_e437e
+	bit 7, [hl]
+	jr nz, .asm_e4384
+	jr .asm_e438b
+
+.asm_e4378
+	bit 7, [hl]
+	jr z, .asm_e438b
+	jr .asm_e4384
+
+.asm_e437e
+	bit 7, [hl]
+	jr z, .asm_e4384
+	jr .asm_e438b
+
+.asm_e4384
+	res 7, [hl]
+	ld de, .On
+	jr .asm_e4390
+
+.asm_e438b
+	set 7, [hl]
+	ld de, .Off
+
+.asm_e4390
+	ld hl, $c50f
+	call PlaceString
+	and a
+	ret
+; e4398
+
+.On
+	db "ON @"
+.Off
+	db "OFF@"
+; e43a0
+
+
+Options_BattleStyle: ; e43a0
+	ld hl, Options
+	ld a, [hJoyPressed]
+	bit 5, a
+	jr nz, .asm_e43b3
+	bit 4, a
+	jr z, .asm_e43b9
+	bit 6, [hl]
+	jr nz, .asm_e43bd
+	jr .asm_e43c4
+
+.asm_e43b3
+	bit 6, [hl]
+	jr z, .asm_e43c4
+	jr .asm_e43bd
+
+.asm_e43b9
+	bit 6, [hl]
+	jr nz, .asm_e43c4
+
+.asm_e43bd
+	res 6, [hl]
+	ld de, .Shift
+	jr .asm_e43c9
+
+.asm_e43c4
+	set 6, [hl]
+	ld de, .Set
+
+.asm_e43c9
+	ld hl, $c537
+	call PlaceString
+	and a
+	ret
+; e43d1
+
+.Shift
+	db "SHIFT@"
+.Set
+	db "SET  @"
+; e43dd
+
+
+Options_Sound: ; e43dd
+	ld hl, Options
+	ld a, [hJoyPressed]
+	bit 5, a
+	jr nz, .asm_e43f0
+	bit 4, a
+	jr z, .asm_e43f6
+	bit 5, [hl]
+	jr nz, .asm_e43fc
+	jr .asm_e4406
+
+.asm_e43f0
+	bit 5, [hl]
+	jr z, .asm_e4406
+	jr .asm_e43fc
+
+.asm_e43f6
+	bit 5, [hl]
+	jr nz, .asm_e440b
+	jr .asm_e4401
+
+.asm_e43fc
+	res 5, [hl]
+	call Function3d47
+
+.asm_e4401
+	ld de, .Mono
+	jr .asm_e440e
+
+.asm_e4406
+	set 5, [hl]
+	call Function3d47
+
+.asm_e440b
+	ld de, .Stereo
+
+.asm_e440e
+	ld hl, $c55f
+	call PlaceString
+	and a
+	ret
+; e4416
+
+.Mono
+	db "MONO  @"
+.Stereo
+	db "STEREO@"
+; e4424
+
+
+Options_Print: ; e4424
+	call $4491
+	ld a, [hJoyPressed]
+	bit 5, a
+	jr nz, .asm_e443c
+	bit 4, a
+	jr z, .asm_e4448
+	ld a, c
+	cp $4
+	jr c, .asm_e4438
+	ld c, $ff
+
+.asm_e4438
+	inc c
+	ld a, e
+	jr .asm_e4444
+
+.asm_e443c
+	ld a, c
+	and a
+	jr nz, .asm_e4442
+	ld c, $5
+
+.asm_e4442
+	dec c
+	ld a, d
+
+.asm_e4444
+	ld b, a
+	ld [GBPrinter], a
+
+.asm_e4448
+	ld b, $0
+	ld hl, $445a
+	add hl, bc
+	add hl, bc
+	ld e, [hl]
+	inc hl
+	ld d, [hl]
+	ld hl, $c587
+	call PlaceString
+	and a
+	ret
+; e445a
+
+.Strings
+	dw .Lightest
+	dw .Lighter
+	dw .Normal
+	dw .Darker
+	dw .Darkest
+
+.Lightest
+	db "LIGHTEST@"
+.Lighter
+	db "LIGHTER @"
+.Normal
+	db "NORMAL  @"
+.Darker
+	db "DARKER  @"
+.Darkest
+	db "DARKEST @"
+; e4491
+
+
+Functione4491: ; e4491
+	ld a, [GBPrinter]
+	and a
+	jr z, .asm_e44a9
+	cp $20
+	jr z, .asm_e44af
+	cp $60
+	jr z, .asm_e44b5
+	cp $7f
+	jr z, .asm_e44bb
+	ld c, $2
+	ld de, $2060
+	ret
+
+.asm_e44a9
+	ld c, $0
+	ld de, $7f20
+	ret
+
+.asm_e44af
+	ld c, $1
+	ld de, $0040
+	ret
+
+.asm_e44b5
+	ld c, $3
+	ld de, $407f
+	ret
+
+.asm_e44bb
+	ld c, $4
+	ld de, $6000
+	ret
+; e44c1
+
+Options_MenuAccount: ; e44c1
+	ld hl, Options2
+	ld a, [hJoyPressed]
+	bit 5, a
+	jr nz, .asm_e44d4
+	bit 4, a
+	jr z, .asm_e44da
+	bit 0, [hl]
+	jr nz, .asm_e44de
+	jr .asm_e44e5
+
+.asm_e44d4
+	bit 0, [hl]
+	jr z, .asm_e44e5
+	jr .asm_e44de
+
+.asm_e44da
+	bit 0, [hl]
+	jr nz, .asm_e44e5
+
+.asm_e44de
+	res 0, [hl]
+	ld de, .Off
+	jr .asm_e44ea
+
+.asm_e44e5
+	set 0, [hl]
+	ld de, .On
+
+.asm_e44ea
+	ld hl, $c5af
+	call PlaceString
+	and a
+	ret
+; e44f2
+
+.Off
+	db "OFF@"
+.On
+	db "ON @"
+; e44fa
+
+
+Options_Frame: ; e44fa
+	ld hl, TextBoxFrame
+	ld a, [hJoyPressed]
+	bit 5, a
+	jr nz, .asm_e450d
+	bit 4, a
+	jr nz, .asm_e4509
+	and a
+	ret
+
+.asm_e4509
+	ld a, [hl]
+	inc a
+	jr .asm_e450f
+
+.asm_e450d
+	ld a, [hl]
+	dec a
+
+.asm_e450f
+	and $7
+	ld [hl], a
+	; fallthrough
+; e4512
+
+Functione4512: ; e4512
+	ld a, [TextBoxFrame]
+	ld hl, $c5dc
+	add "1"
+	ld [hl], a
+	call Functione5f
+	and a
+	ret
+; e4520
+
+Options_Cancel: ; e4520
+	ld a, [hJoyPressed]
+	and BUTTON_A
+	jr nz, .asm_e4528
+	and a
+	ret
+
+.asm_e4528
+	scf
+	ret
+; e452a
+
+Functione452a: ; e452a
+	ld hl, $cf63
+	ld a, [$ffa9]
+	cp $80
+	jr z, .asm_e4539
+	cp $40
+	jr z, .asm_e454b
+	and a
+	ret
+
+.asm_e4539
+	ld a, [hl]
+	cp $7
+	jr nz, .asm_e4542
+	ld [hl], $0
+	scf
+	ret
+
+.asm_e4542
+	cp $5
+	jr nz, .asm_e4548
+	ld [hl], $5
+
+.asm_e4548
+	inc [hl]
+	scf
+	ret
+
+.asm_e454b
+	ld a, [hl]
+	cp $6
+	jr nz, .asm_e4554
+	ld [hl], $5
+	scf
+	ret
+
+.asm_e4554
+	and a
+	jr nz, .asm_e4559
+	ld [hl], $8
+
+.asm_e4559
+	dec [hl]
+	scf
+	ret
+; e455c
+
+Functione455c: ; e455c
+	ld hl, $c4b5
+	ld de, $0014
+	ld c, $10
+.asm_e4564
+	ld [hl], $7f
+	add hl, de
+	dec c
+	jr nz, .asm_e4564
+	ld hl, $c4c9
+	ld bc, $0028
+	ld a, [$cf63]
+	call AddNTimes
+	ld [hl], $ed
+	ret
+; e4579
 
 
 Functione4579: ; e4579
