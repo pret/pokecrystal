@@ -50770,18 +50770,12 @@ MenuData2_0x49d1c: ; 49d1c
 	dw MainMenuText
 ; 49d20
 
-MainMenuText:
-ContinueText: ; 0x49d24
+MainMenuText: ; 49d24
 	db "CONTINUE@"
-NewGameText: ; 0x49d2d
 	db "NEW GAME@"
-OptionText: ; 0x49d36
 	db "OPTION@"
-MysteryGiftText: ; 0x49d3d
 	db "MYSTERY GIFT@"
-MobileText: ; 0x49d4a
 	db "MOBILE@"
-MobileStudiumText: ; 0x49d51
 	db "MOBILE STUDIUM@"
 
 Label49d60: ; 0x49d60
