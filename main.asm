@@ -298,7 +298,7 @@ Function485: ; 485
 Function48c: ; 48c
 	ld a, [TimeOfDayPal]
 	ld b, a
-	ld hl, $0538
+	ld hl, IncGradGBPalTable_11
 	ld a, l
 	sub b
 	ld l, a
@@ -325,7 +325,7 @@ Function4a3: ; 4a3
 	jr Function4c7
 
 .asm_4af
-	ld hl, IncGradGBPalTable_01
+	ld hl, IncGradGBPalTable_08
 	ld b, $4
 	jr Function4c7
 ; 4b6
@@ -334,12 +334,12 @@ Function4b6: ; 4b6
 	ld a, [hCGB]
 	and a
 	jr z, .asm_4c2
-	ld hl, $0526
+	ld hl, IncGradGBPalTable_05
 	ld b, $3
 	jr Function4c7
 
 .asm_4c2
-	ld hl, $053e
+	ld hl, IncGradGBPalTable_13
 	ld b, $3
 ; 4c7
 
@@ -365,12 +365,12 @@ Function4dd: ; 4dd
 	ld a, [hCGB]
 	and a
 	jr z, .asm_4e9
-	ld hl, $0522
+	ld hl, IncGradGBPalTable_04 - 1
 	ld b, $4
 	jr Function501
 
 .asm_4e9
-	ld hl, $053a
+	ld hl, IncGradGBPalTable_12 - 1
 	ld b, $4
 	jr Function501
 ; 4f0
@@ -379,12 +379,12 @@ Function4f0: ; 4f0
 	ld a, [hCGB]
 	and a
 	jr z, .asm_4fc
-	ld hl, $052b
+	ld hl, IncGradGBPalTable_07 - 1
 	ld b, $3
 	jr Function501
 
 .asm_4fc
-	ld hl, $0543
+	ld hl, IncGradGBPalTable_15 - 1
 	ld b, $3
 	; fallthrough
 ; 501
@@ -412,64 +412,65 @@ IncGradGBPalTable_00: ; 517
 	db %11111111 ; obp1
 	db %11111111 ; obp2
 	             ; and so on...
+IncGradGBPalTable_01: ; 51a
 	db %11111110
 	db %11111110
 	db %11111110
-
+IncGradGBPalTable_02: ; 51d
 	db %11111001
 	db %11111001
 	db %11111001
-
+IncGradGBPalTable_03: ; 520
 	db %11100100
 	db %11100100
 	db %11100100
-
+IncGradGBPalTable_04: ; 523
 	db %11100100
 	db %11100100
 	db %11100100
-
+IncGradGBPalTable_05: ; 526
 	db %10010000
 	db %10010000
 	db %10010000
-
+IncGradGBPalTable_06: ; 529
 	db %01000000
 	db %01000000
 	db %01000000
-
+IncGradGBPalTable_07: ; 52c
 	db %00000000
 	db %00000000
 	db %00000000
 ; 52f
 
-IncGradGBPalTable_01: ; 52f
-	db %11111111 ; bgp
-	db %11111111 ; obp1
-	db %11111111 ; obp2
-	             ; and so on...
+IncGradGBPalTable_08: ; 52f
+	db %11111111
+	db %11111111
+	db %11111111
+IncGradGBPalTable_09: ; 532
 	db %11111110
 	db %11111110
 	db %11111000
-
+IncGradGBPalTable_10: ; 535
 	db %11111001
 	db %11100100
 	db %11100100
-	
+IncGradGBPalTable_11: ; 538
 	db %11100100
 	db %11010000
 	db %11100000
-	
+IncGradGBPalTable_12: ; 53b
 	db %11100100
 	db %11010000
 	db %11100000
-	
+IncGradGBPalTable_13: ; 53e
 	db %10010000
 	db %10000000
 	db %10010000
-	
+IncGradGBPalTable_14: ; 541
 	db %01000000
 	db %01000000
 	db %01000000
-	
+IncGradGBPalTable_15: ; 544
 	db %00000000
 	db %00000000
 	db %00000000
