@@ -41,6 +41,9 @@ hMathBuffer        EQU $ffb8
 
 hLCDStatCustom     EQU $ffc6
 
+hWX                EQU $ffd1
+hWY                EQU $ffd2
+
 hBGMapMode         EQU $ffd4
 hBGMapThird        EQU $ffd5
 hBGMapAddress      EQU $ffd6
