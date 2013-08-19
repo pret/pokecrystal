@@ -41,6 +41,8 @@ hMathBuffer        EQU $ffb8
 
 hLCDStatCustom     EQU $ffc6
 
+hSCX               EQU $ffcf
+hSCY               EQU $ffd0
 hWX                EQU $ffd1
 hWY                EQU $ffd2
 
