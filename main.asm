@@ -153,8 +153,8 @@ Init: ; 17d
 	call Function4031
 	xor a
 	ld [$ffde], a
-	ld [$ffcf], a
-	ld [$ffd0], a
+	ld [hSCX], a
+	ld [hSCY], a
 	ld [rJOYP], a
 	ld a, $8
 	ld [rSTAT], a
@@ -17961,8 +17961,8 @@ Function620b: ; 620b
 	call Function3200
 	xor a
 	ld [hLCDStatCustom], a
-	ld [$ffcf], a
-	ld [$ffd0], a
+	ld [hSCX], a
+	ld [hSCY], a
 	ld a, $7
 	ld [hWX], a
 	ld a, $90
@@ -18060,11 +18060,11 @@ TitleScreenEntrance: ; 62bc
 
 ; Animate the logo:
 ; Move each line by 4 pixels until our count hits 0.
-	ld a, [$ffcf]
+	ld a, [hSCX]
 	and a
 	jr z, .done
 	sub 4
-	ld [$ffcf], a
+	ld [hSCX], a
 
 ; Lay out a base (all lines scrolling together).
 	ld e, a
@@ -18292,8 +18292,8 @@ Function642e: ; 642e
 	xor a
 	ld [hBGMapAddress], a
 	ld [hJoyDown], a
-	ld [$ffcf], a
-	ld [$ffd0], a
+	ld [hSCX], a
+	ld [hSCY], a
 	ld a, $90
 	ld [hWY], a
 	call WaitBGMap
@@ -18351,8 +18351,8 @@ Function6473: ; 6473
 	ld a, $98
 	ld [$d153], a
 	xor a
-	ld [$ffcf], a
-	ld [$ffd0], a
+	ld [hSCX], a
+	ld [hSCY], a
 	call Function5958
 	ret
 ; 64b9
@@ -26361,8 +26361,8 @@ Function11915: ; 11915
 	callab Function8cf53
 	call ClearSprites
 	xor a
-	ld [$ffcf], a
-	ld [$ffd0], a
+	ld [hSCX], a
+	ld [hSCY], a
 	scf
 	ret
 ; 11940
@@ -26458,9 +26458,9 @@ Function11c51: ; 11c51
 	ld [hli], a
 	ld [hl], $7e
 	xor a
-	ld [$ffd0], a
+	ld [hSCY], a
 	ld [$c3bf], a
-	ld [$ffcf], a
+	ld [hSCX], a
 	ld [$c3c0], a
 	ld [$cf63], a
 	ld [$cf64], a
@@ -48345,7 +48345,7 @@ Function3fb6c: ; 3fb6c
 	call Function3fbd6
 	xor a
 	ld [$ffde], a
-	ld [$ffd0], a
+	ld [hSCY], a
 	ld a, $90
 	ld [hWY], a
 	ld [rWY], a
@@ -48374,7 +48374,7 @@ Function3fb6c: ; 3fb6c
 	ld a, $90
 	ld [hWY], a
 	xor a
-	ld [$ffcf], a
+	ld [hSCX], a
 	ret
 ; 3fbd6
 
@@ -48611,7 +48611,7 @@ Function40000: ; 40000
 	ld a, [hWY]
 	ld h, a
 	push hl
-	ld a, [$ffcf]
+	ld a, [hSCX]
 	push af
 	ld hl, Options
 	ld a, [hl]
@@ -48652,7 +48652,7 @@ Function40000: ; 40000
 	pop af
 	ld [Options], a
 	pop af
-	ld [$ffcf], a
+	ld [hSCX], a
 	pop hl
 	ld a, l
 	ld [hWX], a
@@ -53352,8 +53352,8 @@ Function4e881: ; 4e881
 	xor a
 	call ByteFill
 	xor a
-	ld [$ffd0], a
-	ld [$ffcf], a
+	ld [hSCY], a
+	ld [hSCX], a
 	call EnableLCD
 	ld hl, $68bd
 	call PrintText
@@ -53390,8 +53390,8 @@ Function4e8c2: ; 4e8c2
 	dec c
 	jr nz, .asm_4e8ee
 	xor a
-	ld [$ffd0], a
-	ld [$ffcf], a
+	ld [hSCY], a
+	ld [hSCX], a
 	call EnableLCD
 	call Function3200
 	call Function32f9
@@ -53439,7 +53439,7 @@ Function4e980: ; 4e980
 Function4e998: ; 4e998
 	call Function4e9e5
 	ld a, $90
-	ld [$ffcf], a
+	ld [hSCX], a
 	ld a, $e4
 	call DmgToCgbBGPals
 	ld de, $e4e4
@@ -53459,7 +53459,7 @@ Function4e9ab: ; 4e9ab
 	cp $60
 	jr c, .asm_4e9b3
 	ld a, d
-	ld [$ffcf], a
+	ld [hSCX], a
 	call Function4e9f1
 	inc e
 	inc e
@@ -57755,9 +57755,9 @@ Function865b5: ; 865b5
 	ld a, $13
 	call Predef
 	ld a, $d0
-	ld [$ffd0], a
+	ld [hSCY], a
 	ld a, $90
-	ld [$ffcf], a
+	ld [hSCX], a
 	call WaitBGMap
 	xor a
 	ld [hBGMapMode], a
@@ -57776,30 +57776,30 @@ Function865b5: ; 865b5
 	call WaitBGMap
 	xor a
 	ld [hBGMapMode], a
-	ld [$ffd0], a
+	ld [hSCY], a
 	call Function86643
 	ret
 ; 86635
 
 Function86635: ; 86635
 .asm_86635
-	ld a, [$ffcf]
+	ld a, [hSCX]
 	cp $70
 	ret z
 	add $4
-	ld [$ffcf], a
+	ld [hSCX], a
 	call DelayFrame
 	jr .asm_86635
 ; 86643
 
 Function86643: ; 86643
 .asm_86643
-	ld a, [$ffcf]
+	ld a, [hSCX]
 	and a
 	ret z
 	dec a
 	dec a
-	ld [$ffcf], a
+	ld [hSCX], a
 	call DelayFrame
 	jr .asm_86643
 ; 86650
@@ -57940,9 +57940,9 @@ Function86810: ; 86810
 	ld a, $13
 	call Predef
 	ld a, $d0
-	ld [$ffd0], a
+	ld [hSCY], a
 	ld a, $90
-	ld [$ffcf], a
+	ld [hSCX], a
 	call WaitBGMap
 	xor a
 	ld [hBGMapMode], a
@@ -57967,11 +57967,11 @@ Function86810: ; 86810
 	ld a, $13
 	call Predef
 	ld a, $c0
-	ld [$ffcf], a
+	ld [hSCX], a
 	call WaitBGMap
 	xor a
 	ld [hBGMapMode], a
-	ld [$ffd0], a
+	ld [hSCY], a
 	call Function86643
 	xor a
 	ld [hBGMapMode], a
@@ -62668,7 +62668,7 @@ Function97ebc: ; 97ebc
 ; 97ec3
 
 Function97ec3: ; 97ec3
-	ld a, [$ffd0]
+	ld a, [hSCY]
 	ld hl, $0004
 	add hl, bc
 	ld [hl], a
@@ -62686,24 +62686,24 @@ Function97ecd: ; 97ecd
 	jr z, .asm_97ee4
 	ld hl, $0002
 	add hl, bc
-	ld a, [$ffd0]
+	ld a, [hSCY]
 	sub [hl]
-	ld [$ffd0], a
+	ld [hSCY], a
 	ret
 
 .asm_97ee4
 	ld hl, $0002
 	add hl, bc
-	ld a, [$ffd0]
+	ld a, [hSCY]
 	add [hl]
-	ld [$ffd0], a
+	ld [hSCY], a
 	ret
 
 .asm_97eee
 	ld hl, $0004
 	add hl, bc
 	ld a, [hl]
-	ld [$ffd0], a
+	ld [hSCY], a
 	call Function97e72
 	ret
 ; 97ef9
@@ -65436,8 +65436,8 @@ Functioncc11c: ; cc11c
 	call Functioncc8a4
 	call Functioncc1e2
 	xor a
-	ld [$ffcf], a
-	ld [$ffd0], a
+	ld [hSCX], a
+	ld [hSCY], a
 	call Functioncc1fb
 	call Functioncc1bb
 
@@ -65752,8 +65752,8 @@ Functioncc8f6: ; cc8f6
 	ld de, $e4e4
 	call DmgToCgbObjPals
 	xor a
-	ld [$ffcf], a
-	ld [$ffd0], a
+	ld [hSCX], a
+	ld [hSCY], a
 	call Functioncc1fb
 	ld a, $1
 	ld [hBGMapMode], a
@@ -66971,8 +66971,8 @@ Functione4579: ; e4579
 	xor a
 	ld [hBGMapAddress], a
 	ld [hJoyDown], a
-	ld [$ffcf], a
-	ld [$ffd0], a
+	ld [hSCX], a
+	ld [hSCY], a
 	ld a, $90
 	ld [hWY], a
 	call WaitBGMap
@@ -67060,8 +67060,8 @@ Functione45e8: ; e45e8
 	ld [$cf63], a
 	ld [$cf64], a
 	ld [$cf65], a
-	ld [$ffcf], a
-	ld [$ffd0], a
+	ld [hSCX], a
+	ld [hSCY], a
 	ld a, $1
 	ld [hBGMapMode], a
 	ld a, $90
@@ -67129,8 +67129,8 @@ Functione48ac: ; e48ac
 	call ClearSprites
 	call ClearTileMap
 	xor a
-	ld [$ffcf], a
-	ld [$ffd0], a
+	ld [hSCX], a
+	ld [hSCY], a
 	ld a, $7
 	ld [hWX], a
 	ld a, $90
@@ -72331,9 +72331,9 @@ StartTitleScreen: ; 10ed67
 	
 ;
 	ld a, $70
-	ld [$ffcf], a
+	ld [hSCX], a
 	ld a, $8
-	ld [$ffd0], a
+	ld [hSCY], a
 	ld a, $7
 	ld [hWX], a
 	ld a, $90

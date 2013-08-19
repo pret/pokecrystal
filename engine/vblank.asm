@@ -86,10 +86,10 @@ VBlank0: ; 2b1
 	ld [$ff8a], a
 	
 ; scroll x
-	ld a, [$ffcf]
+	ld a, [hSCX]
 	ld [rSCX], a
 ; scroll y
-	ld a, [$ffd0]
+	ld a, [hSCY]
 	ld [rSCY], a
 ; window y
 	ld a, [hWY]
@@ -215,11 +215,11 @@ VBlank1: ; 337
 	ld [$ff8a], a
 	
 ; scroll x
-	ld a, [$ffcf]
+	ld a, [hSCX]
 	ld [rSCX], a
 	
 ; scroll y
-	ld a, [$ffd0]
+	ld a, [hSCY]
 	ld [rSCY], a
 	
 ; time-sensitive fns
@@ -323,10 +323,10 @@ VBlank3: ; 396
 	ld [$ff8a], a
 	
 ; scroll x
-	ld a, [$ffcf]
+	ld a, [hSCX]
 	ld [rSCX], a
 ; scroll y
-	ld a, [$ffd0]
+	ld a, [hSCY]
 	ld [rSCY], a
 	
 ; any pals to update?
@@ -455,7 +455,7 @@ VBlank5: ; 400
 	ld [$ff8a], a
 	
 ; scroll x
-	ld a, [$ffcf]
+	ld a, [hSCX]
 	ld [rSCX], a
 	
 ; if we can update pals, skip this part
