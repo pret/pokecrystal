@@ -20,7 +20,7 @@ SECTION "rst20",HOME[$20] ; Unused
 SECTION "rst28",HOME[$28] ; JumpTable
 	push de
 	ld e, a
-	ld d, 00
+	ld d, 0
 	add hl, de
 	add hl, de
 	ld a, [hli]
@@ -52,7 +52,7 @@ SECTION "joypad",HOME[$60] ; joypad interrupt
 SECTION "romheader",HOME[$100]
 Start:
 	nop
-	jp Function16e
+	jp _Start
 
 SECTION "start",HOME[$150]
 
@@ -71,10 +71,10 @@ Reset: ; 150
 	set 7, [hl]
 	ld c, $20
 	call DelayFrames
-	jr Function17d
+	jr Init
 ; 16e
 
-Function16e: ; 16e
+_Start: ; 16e
 	cp $11
 	jr z, .asm_175
 	xor a
@@ -89,7 +89,7 @@ Function16e: ; 16e
 	ld [$ffea], a
 ; 17d
 
-Function17d: ; 17d
+Init: ; 17d
 	di
 	xor a
 	ld [rIF], a
@@ -109,10 +109,12 @@ Function17d: ; 17d
 	ld [$d000], a
 	ld a, $4
 	ld [rTAC], a
-.asm_1a2
+
+.wait
 	ld a, [rLY]
-	cp $91
-	jr nz, .asm_1a2
+	cp 145
+	jr nz, .wait
+
 	xor a
 	ld [rLCDC], a
 	ld hl, $c000
@@ -137,20 +139,18 @@ Function17d: ; 17d
 	ld [$ffea], a
 	pop af
 	ld [hCGB], a
-	call Function25a
+	call ClearWRAM
 	ld a, $1
 	ld [rSVBK], a
-	call Function245
+	call ClearVRAM
 	call ClearSprites
 	call Function270
 
 
 	ld a, BANK(Function4031)
 	rst Bankswitch
+
 	call Function4031
-
-; Note that Function642e is called later assuming it's in the same bank.
-
 	xor a
 	ld [$ffde], a
 	ld [$ffcf], a
@@ -174,9 +174,10 @@ Function17d: ; 17d
 	xor a
 	ld [hBGMapAddress], a
 	callba Function14089
+
 	xor a
-	ld [$6000], a
-	ld [$0000], a
+	ld [MBC3LatchClock], a
+	ld [MBC3SRAMEnable], a
 
 	ld a, [hCGB]
 	and a
@@ -189,6 +190,7 @@ Function17d: ; 17d
 	ld a, $f
 	ld [rIE], a
 	ei
+
 	call DelayFrame
 	ld a, $30
 	call Predef
@@ -198,12 +200,16 @@ Function17d: ; 17d
 	jp Function642e
 ; 245
 
-Function245: ; 245
-	ld a, $1
+ClearVRAM: ; 245
+; Wipe VRAM banks 0 and 1
+
+	ld a, 1
 	ld [rVBK], a
-	call $024f
+	call .clear
+
 	xor a
 	ld [rVBK], a
+.clear
 	ld hl, VTiles0
 	ld bc, $2000
 	xor a
@@ -211,8 +217,10 @@ Function245: ; 245
 	ret
 ; 25a
 
-Function25a: ; 25a
-	ld a, $1
+ClearWRAM: ; 25a
+; Wipe swappable WRAM banks (1-7)
+
+	ld a, 1
 .asm_25c
 	push af
 	ld [rSVBK], a
@@ -222,7 +230,7 @@ Function25a: ; 25a
 	call ByteFill
 	pop af
 	inc a
-	cp $8
+	cp 8
 	jr nc, .asm_25c
 	ret
 ; 270
@@ -237,7 +245,6 @@ Function270: ; 270
 	call CloseSRAM
 	ret
 ; 283
-
 
 
 VBlank: ; 283
@@ -18205,14 +18212,14 @@ Function6389: ; 6389
 	ld a, $13
 	ld hl, $554c
 	rst FarCall
-	jp Function17d
+	jp Init
 ; 6392
 
 Function6392: ; 6392
 	ld a, $13
 	ld hl, $53b1
 	rst FarCall
-	jp Function17d
+	jp Init
 ; 639b
 
 Function639b: ; 639b
