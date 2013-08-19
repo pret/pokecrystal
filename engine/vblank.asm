@@ -92,10 +92,10 @@ VBlank0: ; 2b1
 	ld a, [$ffd0]
 	ld [rSCY], a
 ; window y
-	ld a, [$ffd2]
+	ld a, [hWY]
 	ld [rWY], a
 ; window x + 7
-	ld a, [$ffd1]
+	ld a, [hWX]
 	ld [rWX], a
 	
 ; some time management is in order

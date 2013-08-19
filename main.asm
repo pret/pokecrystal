@@ -159,10 +159,10 @@ Init: ; 17d
 	ld a, $8
 	ld [rSTAT], a
 	ld a, $90
-	ld [$ffd2], a
+	ld [hWY], a
 	ld [rWY], a
 	ld a, $7
-	ld [$ffd1], a
+	ld [hWX], a
 	ld [rWX], a
 	ld a, $e3
 	ld [rLCDC], a
@@ -8966,7 +8966,7 @@ Function2de2: ; 2de2
 	ld [hBGMapMode], a
 	call Function2e31
 	ld a, $90
-	ld [$ffd2], a
+	ld [hWY], a
 	call Functione4a
 	ld a, $2e
 	ld hl, $4000
@@ -17849,17 +17849,17 @@ IntroFadePalettes: ; 0x617c
 
 Function6182: ; 6182
 	ld a, $77
-	ld [$ffd1], a
+	ld [hWX], a
 	call DelayFrame
 	ld a, $e4
 	call DmgToCgbBGPals
 .asm_618e
 	call DelayFrame
-	ld a, [$ffd1]
+	ld a, [hWX]
 	sub $8
 	cp $ff
 	ret z
-	ld [$ffd1], a
+	ld [hWX], a
 	jr .asm_618e
 ; 619c
 
@@ -17964,9 +17964,9 @@ Function620b: ; 620b
 	ld [$ffcf], a
 	ld [$ffd0], a
 	ld a, $7
-	ld [$ffd1], a
+	ld [hWX], a
 	ld a, $90
-	ld [$ffd2], a
+	ld [hWY], a
 	ld b, $8
 	call GetSGBLayout
 	call Function485
@@ -18101,7 +18101,7 @@ TitleScreenEntrance: ; 62bc
 	call StartMusic
 
 	ld a, $88
-	ld [$ffd2], a
+	ld [hWY], a
 	ret
 ; 62f6
 
@@ -18295,7 +18295,7 @@ Function642e: ; 642e
 	ld [$ffcf], a
 	ld [$ffd0], a
 	ld a, $90
-	ld [$ffd2], a
+	ld [hWY], a
 	call WaitBGMap
 	jp Function620b
 ; 6454
@@ -18325,7 +18325,7 @@ Function6473: ; 6473
 	ld [hLCDStatCustom], a
 	ld [hBGMapMode], a
 	ld a, $90
-	ld [$ffd2], a
+	ld [hWY], a
 	call Function2173
 	ld a, $9c
 	call Function64b9
@@ -18340,7 +18340,7 @@ Function6473: ; 6473
 	ld [hCGBPalUpdate], a
 	xor a
 	ld [hBGMapMode], a
-	ld [$ffd2], a
+	ld [hWY], a
 	ld a, $1
 	ld hl, $64db
 	rst FarCall
@@ -18378,7 +18378,7 @@ Function64bf: ; 64bf
 Function64cd: ; 64cd
 	call Functione5f
 	ld a, $90
-	ld [$ffd2], a
+	ld [hWY], a
 	call Function2e31
 	call $0e51
 	ret
@@ -26467,7 +26467,7 @@ Function11c51: ; 11c51
 	ld [hBGMapMode], a
 	ld [PlayerEvaLevel], a
 	ld a, $7
-	ld [$ffd1], a
+	ld [hWX], a
 	ret
 ; 11cb7
 
@@ -37949,7 +37949,7 @@ Function2ee2f: ; 2ee2f
 	call ClearTileMap
 	xor a
 	ld [hBGMapMode], a
-	ld [$ffd2], a
+	ld [hWY], a
 	ld [rWY], a
 	ld [$ffde], a
 	ret
@@ -48347,7 +48347,7 @@ Function3fb6c: ; 3fb6c
 	ld [$ffde], a
 	ld [$ffd0], a
 	ld a, $90
-	ld [$ffd2], a
+	ld [hWY], a
 	ld [rWY], a
 	call WaitBGMap
 	xor a
@@ -48364,7 +48364,7 @@ Function3fb6c: ; 3fb6c
 	ld a, $13
 	call Predef
 	xor a
-	ld [$ffd2], a
+	ld [hWY], a
 	ld [rWY], a
 	call WaitBGMap
 	call HideSprites
@@ -48372,7 +48372,7 @@ Function3fb6c: ; 3fb6c
 	call GetSGBLayout
 	call Function32f9
 	ld a, $90
-	ld [$ffd2], a
+	ld [hWY], a
 	xor a
 	ld [$ffcf], a
 	ret
@@ -48606,9 +48606,9 @@ INCLUDE "battle/effect_command_pointers.asm"
 SECTION "bank10",DATA,BANK[$10]
 
 Function40000: ; 40000
-	ld a, [$ffd1]
+	ld a, [hWX]
 	ld l, a
-	ld a, [$ffd2]
+	ld a, [hWY]
 	ld h, a
 	push hl
 	ld a, [$ffcf]
@@ -48655,9 +48655,9 @@ Function40000: ; 40000
 	ld [$ffcf], a
 	pop hl
 	ld a, l
-	ld [$ffd1], a
+	ld [hWX], a
 	ld a, h
-	ld [$ffd2], a
+	ld [hWY], a
 	ret
 ; 40063
 
@@ -60350,7 +60350,7 @@ Function91af3: ; 91af3
 	ld [$ffaa], a
 	call WhiteBGMap
 	ld a, $90
-	ld [$ffd2], a
+	ld [hWY], a
 	xor a
 	ld [hBGMapAddress], a
 	ld a, $98
@@ -64264,7 +64264,7 @@ Functionb800a: ; b800a
 	ld [$c2d8], a
 	ld a, $90
 	ld [rWY], a
-	ld [$ffd2], a
+	ld [hWY], a
 	xor a
 	ld [hLCDStatCustom], a
 	ret
@@ -66974,7 +66974,7 @@ Functione4579: ; e4579
 	ld [$ffcf], a
 	ld [$ffd0], a
 	ld a, $90
-	ld [$ffd2], a
+	ld [hWY], a
 	call WaitBGMap
 	ld b, $19
 	call GetSGBLayout
@@ -67065,7 +67065,7 @@ Functione45e8: ; e45e8
 	ld a, $1
 	ld [hBGMapMode], a
 	ld a, $90
-	ld [$ffd2], a
+	ld [hWY], a
 	ld de, $e4e4
 	call DmgToCgbObjPals
 	ret
@@ -67132,9 +67132,9 @@ Functione48ac: ; e48ac
 	ld [$ffcf], a
 	ld [$ffd0], a
 	ld a, $7
-	ld [$ffd1], a
+	ld [hWX], a
 	ld a, $90
-	ld [$ffd2], a
+	ld [hWY], a
 	pop af
 	ld [$ff9e], a
 	pop af
@@ -72335,9 +72335,9 @@ StartTitleScreen: ; 10ed67
 	ld a, $8
 	ld [$ffd0], a
 	ld a, $7
-	ld [$ffd1], a
+	ld [hWX], a
 	ld a, $90
-	ld [$ffd2], a
+	ld [hWY], a
 	
 	ld a, $1
 	ld [hCGBPalUpdate], a
