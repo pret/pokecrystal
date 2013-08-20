@@ -1670,13 +1670,13 @@ Functiondbd: ; dbd
 Functiondc9: ; dc9
 	ld a, [rLCDC]
 	bit 7, a
-	jp z, $0f89
+	jp z, Copy2bpp
+
 	ld a, [hROMBank]
 	push af
-	ld a, $41
+	ld a, BANK(Function104284)
 	rst Bankswitch
-
-	call $4284
+	call Function104284
 	pop af
 	rst Bankswitch
 
@@ -1686,13 +1686,13 @@ Functiondc9: ; dc9
 Functionddc: ; ddc
 	ld a, [rLCDC]
 	bit 7, a
-	jp z, $0fa4
+	jp z, Copy1bpp
+
 	ld a, [hROMBank]
 	push af
-	ld a, $41
+	ld a, BANK(Function1042b2)
 	rst Bankswitch
-
-	call $42b2
+	call Function1042b2
 	pop af
 	rst Bankswitch
 
@@ -1705,11 +1705,9 @@ Functiondef: ; def
 	push af
 	ld a, [hBuffer]
 	rst Bankswitch
-
 	call FarCopyBytesDouble
 	pop af
 	rst Bankswitch
-
 	ret
 ; dfd
 
@@ -1826,7 +1824,7 @@ Functione73: ; e73
 	pop bc
 	pop hl
 	ld de, $a000
-	call Functioneba
+	call Request2bpp
 	call CloseSRAM
 	ret
 ; e8d
@@ -1889,11 +1887,12 @@ FarCopyBytesDouble: ; e9b
 ; 0xeba
 
 
-Functioneba: ; eba
+Request2bpp: ; eba
 	ld a, [hBGMapMode]
 	push af
 	xor a
 	ld [hBGMapMode], a
+
 	ld a, [hROMBank]
 	push af
 	ld a, b
@@ -1901,6 +1900,7 @@ Functioneba: ; eba
 
 	ld a, [$ffd3]
 	push af
+
 	ld a, $8
 	ld [$ffd3], a
 	ld a, [InLinkBattle]
@@ -1921,19 +1921,23 @@ Functioneba: ; eba
 	ld [$cf6a], a
 	ld a, h
 	ld [$cf6b], a
+
 .asm_eec
 	ld a, c
 	ld hl, $ffd3
 	cp [hl]
 	jr nc, .asm_f08
+
 	ld [$cf67], a
-.asm_ef6
+.wait
 	call DelayFrame
 	ld a, [$cf67]
 	and a
-	jr nz, .asm_ef6
+	jr nz, .wait
+
 	pop af
 	ld [$ffd3], a
+
 	pop af
 	rst Bankswitch
 
@@ -1956,11 +1960,13 @@ Functioneba: ; eba
 	jr .asm_eec
 ; f1e
 
-Functionf1e: ; f1e
+
+Request1bpp: ; f1e
 	ld a, [hBGMapMode]
 	push af
 	xor a
 	ld [hBGMapMode], a
+
 	ld a, [hROMBank]
 	push af
 	ld a, b
@@ -1968,6 +1974,7 @@ Functionf1e: ; f1e
 
 	ld a, [$ffd3]
 	push af
+
 	ld a, $8
 	ld [$ffd3], a
 	ld a, [InLinkBattle]
@@ -1993,14 +2000,17 @@ Functionf1e: ; f1e
 	ld hl, $ffd3
 	cp [hl]
 	jr nc, .asm_f6c
+
 	ld [$cf6c], a
-.asm_f5a
+.wait
 	call DelayFrame
 	ld a, [$cf6c]
 	and a
-	jr nz, .asm_f5a
+	jr nz, .wait
+
 	pop af
 	ld [$ffd3], a
+
 	pop af
 	rst Bankswitch
 
@@ -2023,15 +2033,24 @@ Functionf1e: ; f1e
 	jr .asm_f50
 ; f82
 
-Functionf82: ; f82
+
+Get2bpp: ; f82
 	ld a, [rLCDC]
 	bit 7, a
-	jp nz, Functioneba
+	jp nz, Request2bpp
+
+Copy2bpp: ; f89
+; copy c 2bpp tiles from b:de to hl
+
 	push hl
 	ld h, d
 	ld l, e
 	pop de
+
+; bank
 	ld a, b
+
+; bc = c * $10
 	push af
 	swap c
 	ld a, $f
@@ -2041,19 +2060,29 @@ Functionf82: ; f82
 	and c
 	ld c, a
 	pop af
+
 	jp FarCopyBytes
 ; f9d
 
-Functionf9d: ; f9d
+
+Get1bpp: ; f9d
 	ld a, [rLCDC]
 	bit 7, a
-	jp nz, Functionf1e
+	jp nz, Request1bpp
+
+Copy1bpp: ; fa4
+; copy c 1bpp tiles from b:de to hl
+
 	push de
 	ld d, h
 	ld e, l
+
+; bank
 	ld a, b
+
+; bc = c * $10 / 2
 	push af
-	ld h, $0
+	ld h, 0
 	ld l, c
 	add hl, hl
 	add hl, hl
@@ -2061,10 +2090,10 @@ Functionf9d: ; f9d
 	ld b, h
 	ld c, l
 	pop af
+
 	pop hl
 	jp FarCopyBytesDouble
 ; fb6
-
 
 
 ClearBox: ; fb6
@@ -17337,7 +17366,7 @@ Function61cd: ; 61cd
 	callba GetPlayerIcon
 	ld c, $c
 	ld hl, VTiles0
-	call Functioneba
+	call Request2bpp
 	ld hl, Sprites
 	ld de, .data_61fe
 	ld a, [de]
@@ -17707,7 +17736,7 @@ Copyright: ; 63e2
 	ld de, CopyrightGFX
 	ld hl, VTiles2 + $600 ; tile $60
 	ld bc, BANK(CopyrightGFX) << 8 + $1d
-	call Functioneba
+	call Request2bpp
 	hlcoord 2, 7
 	ld de, CopyrightString
 	jp PlaceString
@@ -25440,7 +25469,7 @@ Function1089d: ; 1089d
 	ld d, [hl]
 	ld hl, $9500
 	ld bc, $040f
-	call Functioneba
+	call Request2bpp
 	ret
 
 .asm_108c5
@@ -25891,11 +25920,11 @@ Function11c51: ; 11c51
 	ld de, $5e65
 	ld hl, $8eb0
 	ld bc, $0401
-	call Functionf9d
+	call Get1bpp
 	ld de, $5e6d
 	ld hl, $8f20
 	ld bc, $0401
-	call Functionf9d
+	call Get1bpp
 	ld de, $9600
 	ld hl, $5cb7
 	ld bc, $0010
@@ -28537,7 +28566,7 @@ Function140ed: ; 140ed
 Function1412a: ; 1412a
 	ld a, $1
 	ld [rVBK], a
-	call Functionf82
+	call Get2bpp
 	xor a
 	ld [rVBK], a
 	ret
@@ -29188,7 +29217,7 @@ Function14418: ; 14418
 
 .asm_14426
 	ld [rVBK], a
-	call Functionf82
+	call Get2bpp
 	pop af
 	ld [rVBK], a
 	ret
@@ -45650,15 +45679,15 @@ Function3edad: ; 3edad
 	ld de, $4ac0
 	ld hl, $96c0
 	ld bc, $3e04
-	call Functionf9d
+	call Get1bpp
 	ld de, $4ae0
 	ld hl, $9730
 	ld bc, $3e06
-	call Functionf9d
+	call Get1bpp
 	ld de, $4b10
 	ld hl, $9550
 	ld bc, $3e08
-	jp Functionf82
+	jp Get2bpp
 ; 3edd1
 
 
@@ -46943,7 +46972,7 @@ Function3f568: ; 3f568
 	ld de, $d000
 	ld hl, VBGMap0
 	ld bc, $0f40
-	call Functioneba
+	call Request2bpp
 	pop af
 	ld [rVBK], a
 	pop af
@@ -47843,7 +47872,7 @@ Function3fbd6: ; 3fbd6
 	ld de, $d000
 	ld hl, VBGMap0
 	ld bc, $0f40
-	call Functioneba
+	call Request2bpp
 	pop af
 	ld [rSVBK], a
 	ret
@@ -47902,7 +47931,7 @@ Function3fc30: ; 3fc30
 	ld a, [hROMBank]
 	ld b, a
 	ld c, $31
-	call Functionf82
+	call Get2bpp
 	pop af
 	ld [rSVBK], a
 	call Function3fc5b
@@ -48378,7 +48407,7 @@ Function4143b: ; 4143b
 	ld c, $31
 	ld a, [hROMBank]
 	ld b, a
-	call Functionf82
+	call Get2bpp
 	call CloseSRAM
 	ret
 ; 41478
@@ -48460,7 +48489,7 @@ Function41a2c: ; 41a2c
 	ld de, $a188
 	ld hl, $9400
 	ld bc, $101b
-	call Functioneba
+	call Request2bpp
 	call CloseSRAM
 	ret
 ; 41a58
@@ -50046,7 +50075,7 @@ Function48e81: ; 48e81
 	ld d, [hl]
 	ld hl, $9500
 	ld bc, $120f
-	call Functioneba
+	call Request2bpp
 	ret
 ; 48e93
 
@@ -52475,7 +52504,7 @@ Function4e607: ; 4e607
 	ld de, $6831
 	ld hl, VTiles0
 	ld bc, $1308
-	call Functioneba
+	call Request2bpp
 	xor a
 	ld [Danger], a
 	call WaitBGMap
@@ -52492,7 +52521,7 @@ Function4e607: ; 4e607
 	ld de, VTiles2
 	ld hl, $9310
 	ld bc, $0031
-	call Functioneba
+	call Request2bpp
 	ld a, $31
 	ld [$d1ec], a
 	call Function4e755
@@ -52864,7 +52893,7 @@ Function4e906: ; 4e906
 	ld de, $d000
 	ld b, $0
 	ld c, $40
-	call Functioneba
+	call Request2bpp
 	pop af
 	ld [rSVBK], a
 	ret
@@ -53074,11 +53103,11 @@ Function4ea82: ; 4ea82
 	ld de, $d000
 	ld hl, VTiles2
 	ld bc, Text_1354
-	call Functionf82
+	call Get2bpp
 	ld de, $4200
 	ld hl, VTiles1
 	ld bc, Function3e80
-	call Functionf9d
+	call Get1bpp
 	call Function4eac5
 	call WaitBGMap
 .asm_4eac0
@@ -55198,7 +55227,7 @@ Function5120d: ; 5120d
 	ld c, $31
 	ld a, [hROMBank]
 	ld b, a
-	call Functionf82
+	call Get2bpp
 	pop af
 	ld [rSVBK], a
 	call WaitBGMap
@@ -55227,7 +55256,7 @@ DecompressPredef: ; 5125d
 	pop hl
 	ld a, [hROMBank]
 	ld b, a
-	call Functionf82
+	call Get2bpp
 
 	pop af
 	ld [rSVBK], a
@@ -57380,7 +57409,7 @@ Function86810: ; 86810
 	ld hl, $9630
 	ld de, $40d0
 	ld bc, $3e01
-	call Functioneba
+	call Request2bpp
 	ld hl, TileMap
 	ld bc, $0168
 	ld a, $7f
@@ -57640,7 +57669,7 @@ Function88840: ; 88840
 	ld hl, VTiles2
 	ld b, $22
 	ld c, $31
-	call Functionf82
+	call Get2bpp
 	call WaitBGMap
 	ld a, $1
 	ld [hBGMapMode], a
@@ -57672,7 +57701,7 @@ DrawIntroPlayerPic: ; 88874
 	ld hl, VTiles2
 	ld b, BANK(ChrisPic)
 	ld c, $31
-	call Functionf82
+	call Get2bpp
 
 ; Draw
 	xor a
@@ -57699,7 +57728,7 @@ GetKrisBackpic: ; 88ec9
 	ld de, KrisBackpic
 	ld hl, $9310
 	ld bc, $2231
-	call Functionf82
+	call Get2bpp
 	ret
 ; 88ed6
 
@@ -58911,7 +58940,7 @@ Function8e79d: ; 8e79d
 .asm_8e7a8
 	ld hl, VTiles0
 	ld bc, $2301
-	call Functioneba
+	call Request2bpp
 	ld c, $8
 	ld d, $0
 .asm_8e7b5
@@ -59104,7 +59133,7 @@ GetIcon: ; 8ea1e
 GetGFXUnlessMobile: ; 8ea3f
 	ld a, [InLinkBattle]
 	cp 4 ; Mobile Link Battle
-	jp nz, Functioneba
+	jp nz, Request2bpp
 	jp Functiondc9
 ; 8ea4a
 
@@ -59763,7 +59792,7 @@ Function91af3: ; 91af3
 	ld de, $62e1
 	ld hl, $9300
 	ld bc, $2406
-	call Functionf1e
+	call Request1bpp
 	call FlyMap
 	call Function91c8f
 	ld b, $2
@@ -60301,7 +60330,7 @@ TownMapPlayerIcon: ; 91fa6
 ; Standing icon
 	ld hl, $8100
 	ld c, 4 ; # tiles
-	call Functioneba
+	call Request2bpp
 	
 ; Walking icon
 	ld hl, $00c0
@@ -60311,7 +60340,7 @@ TownMapPlayerIcon: ; 91fa6
 	ld hl, $8140
 	ld c, 4 ; # tiles
 	ld a, $30
-	call Functioneba
+	call Request2bpp
 	
 ; Animation/palette
 	ld de, $0000
@@ -63773,7 +63802,7 @@ Functionb80c6: ; b80c6
 	ld de, $5344
 	ld hl, $9600
 	ld bc, $3e0e
-	call Functionf82
+	call Get2bpp
 	ret
 ; b80d3
 
@@ -64216,7 +64245,7 @@ Functionb9229: ; b9229
 .asm_b9268
 	ld hl, VTiles1
 	ld bc, $7780
-	call Functionf9d
+	call Get1bpp
 	pop de
 	call Functionb92b8
 	call EnableLCD
@@ -66477,7 +66506,7 @@ Functione45e8: ; e45e8
 	ld de, $47cc
 	ld hl, VTiles2
 	ld bc, $391c
-	call Functionf9d
+	call Get1bpp
 	ld a, [rSVBK]
 	push af
 	ld a, $6
@@ -66489,11 +66518,11 @@ Functione45e8: ; e45e8
 	ld hl, VTiles0
 	ld de, $d000
 	ld bc, $0180
-	call Functioneba
+	call Request2bpp
 	ld hl, VTiles1
 	ld de, $d800
 	ld bc, $0180
-	call Functioneba
+	call Request2bpp
 	pop af
 	ld [rSVBK], a
 	ld a, $23
@@ -66961,7 +66990,7 @@ Functionfb449: ; fb449
 	ld bc, Function3e80
 	ld a, [rLCDC]
 	bit 7, a
-	jp z, $0fa4
+	jp z, Copy1bpp
 	ld de, $4200
 	ld hl, VTiles1
 	ld bc, $3e20
@@ -69547,7 +69576,7 @@ Function1009d2: ; 1009d2
 	ld hl, $d800
 	ld de, VBGMap0
 	ld bc, $0324
-	call Functionf82
+	call Get2bpp
 	pop af
 	ld [rVBK], a
 	pop af
@@ -71407,11 +71436,11 @@ Function106594: ; 106594
 	ld de, $65ad
 	ld hl, VTiles1
 	ld bc, $4180
-	call Functionf82
+	call Get2bpp
 	ld de, $6dad
 	ld hl, $97f0
 	ld bc, $4101
-	call Functionf82
+	call Get2bpp
 	ret
 ; 1065ad
 
@@ -71457,15 +71486,15 @@ Function109847: ; 109847
 	ld de, $5c24
 	ld hl, $9200
 	ld bc, $4209
-	call Functioneba
+	call Request2bpp
 	ld de, $4000
 	ld hl, $9600
 	ld bc, $391d
-	call Functioneba
+	call Request2bpp
 	ld de, $7d2e
 	ld hl, $9400
 	ld bc, $3210
-	call Functioneba
+	call Request2bpp
 	ld a, $ff
 	ld [$cf64], a
 	xor a
@@ -71475,7 +71504,7 @@ Function109847: ; 109847
 	ld d, h
 	ld hl, VTiles2
 	ld bc, $4210
-	call Functioneba
+	call Request2bpp
 	call $5a95
 	xor a
 	ld [$cf66], a
@@ -73641,7 +73670,7 @@ Function16d69a: ; 16d69a
 	ld de, $52c1
 	ld hl, $9760
 	ld bc, $5b08
-	call Functionf82
+	call Get2bpp
 	ret
 ; 16d6a7
 
