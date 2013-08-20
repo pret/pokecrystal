@@ -60936,19 +60936,21 @@ TownMapPlayerIcon: ; 91fa6
 ; 0x91ff2
 
 Function91ff2: ; 91ff2
-	ld hl, $4ba0
+	ld hl, TownMapGFX
 	ld de, VTiles2
-	ld bc, $3e30
+	ld bc, BANK(TownMapGFX) << 8 + $30
 	call Functione73
 	ret
 ; 91fff
 
 
-JohtoMap:
-INCBIN "baserom.gbc", $91fff, $92168 - $91fff
+JohtoMap: ; 91fff
+INCBIN "gfx/misc/johto.bin"
+; 92168
 
-KantoMap:
-INCBIN "baserom.gbc", $92168, $922d1 - $92168
+KantoMap: ; 92168
+INCBIN "gfx/misc/kanto.bin"
+; 922d1
 
 
 INCBIN "baserom.gbc", $922d1, $92402 - $922d1
