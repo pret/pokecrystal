@@ -2780,14 +2780,14 @@ Function1836: ; 1836
 
 Function184a: ; 184a
 	ld a, [StandingTile]
-	call GetTileType
+	call GetTileCollision
 	ld b, a
 	ret
 ; 1852
 
 Function1852: ; 1852
 	ld a, [StandingTile]
-	call GetTileType
+	call GetTileCollision
 	sub $1
 	ret z
 	and a
@@ -2796,20 +2796,20 @@ Function1852: ; 1852
 
 
 
-GetTileType: ; 185d
-; Get the properties of tile a in TileTypeTable
+GetTileCollision: ; 185d
+; Get the collision type of tile a.
 
 	push de
 	push hl
 
-	ld hl, TileTypeTable
+	ld hl, TileCollisionTable
 	ld e, a
 	ld d, 0
 	add hl, de
 
 	ld a, [hROMBank]
 	push af
-	ld a, BANK(TileTypeTable)
+	ld a, BANK(TileCollisionTable)
 	rst Bankswitch
 	ld e, [hl]
 	pop af
@@ -17270,7 +17270,7 @@ Function6f07: ; 6f07
 	add hl, bc
 	ld a, [hl]
 	ld d, a
-	call GetTileType
+	call GetTileCollision
 	and a
 	jr z, Function6f3e
 	scf
@@ -17283,7 +17283,7 @@ Function6f2c: ; 6f2c
 	ld hl, $000e
 	add hl, bc
 	ld a, [hl]
-	call GetTileType
+	call GetTileCollision
 	cp $1
 	jr z, Function6f3e
 	scf
@@ -17403,12 +17403,12 @@ Function6fa1: ; 6fa1
 
 .asm_6fc2
 	call Function2a3c
-	call GetTileType
+	call GetTileCollision
 	pop de
 	and a
 	jr nz, .asm_6fd7
 	call Function2a3c
-	call GetTileType
+	call GetTileCollision
 	and a
 	jr nz, .asm_6fd7
 	xor a
@@ -21065,7 +21065,7 @@ CheckSurfOW: ; c9e7
 
 ; Must be facing water.
 	ld a, [EngineBuffer1]
-	call GetTileType
+	call GetTileCollision
 	cp 1 ; surfable
 	jr nz, .quit
 
@@ -49999,8 +49999,7 @@ INCBIN "tilesets/04_palette_map.bin"
 
 INCBIN "baserom.gbc", $4ce05, $4ce1f - $4ce05
 
-TileTypeTable: ; 4ce1f
-; 256 tiletypes
+TileCollisionTable: ; 4ce1f
 ; 00 land
 ; 01 water
 ; 0f wall
@@ -55022,7 +55021,7 @@ CheckRiding: ; 803ca
 CheckWalkable: ; 803d3
 ; Return 0 if tile a is land. Otherwise, return carry.
 
-	call GetTileType
+	call GetTileCollision
 	and a ; land
 	ret z
 	scf
@@ -55034,7 +55033,7 @@ CheckSurfable: ; 803da
 ; Return 0 if tile a is water, or 1 if land.
 ; Otherwise, return carry.
 
-	call GetTileType
+	call GetTileCollision
 	cp 1
 	jr z, .Water
 
