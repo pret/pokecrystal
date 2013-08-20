@@ -33624,7 +33624,7 @@ INCBIN "tilesets/17_collision.bin"
 
 ; todo
 Tileset31Meta: ; 0x23891
-INCBIN "tilesets/31_metatiles.bin", $0, $280
+INCBIN "tilesets/31_metatiles.bin"
 ; 0x23b11
 
 EggMovePointers: ; 0x23b11
@@ -67517,13 +67517,13 @@ Music_BugCatchingContest:   INCLUDE "audio/music/bugcatchingcontest.asm"
 SECTION "bank3E",DATA,BANK[$3E]
 
 FontExtra:
-INCBIN "gfx/misc/font_extra.2bpp", $0, $200
+INCBIN "gfx/misc/font_extra.2bpp"
 
 Font:
-INCBIN "gfx/misc/font.1bpp", $0, $400
+INCBIN "gfx/misc/font.1bpp"
 
 FontBattleExtra:
-INCBIN "gfx/misc/font_battle_extra.2bpp", $0, $200
+INCBIN "gfx/misc/font_battle_extra.2bpp"
 
 Frames: ; f8800
 INCBIN "gfx/frames/1.1bpp"
