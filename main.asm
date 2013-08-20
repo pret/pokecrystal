@@ -2797,23 +2797,27 @@ Function1852: ; 1852
 
 
 GetTileType: ; 185d
-; checks the properties of a tile
-; input: a = tile id
+; Get the properties of tile a in TileTypeTable
+
 	push de
 	push hl
+
 	ld hl, TileTypeTable
 	ld e, a
-	ld d, $00
+	ld d, 0
 	add hl, de
-	ld a, [hROMBank] ; current bank
+
+	ld a, [hROMBank]
 	push af
 	ld a, BANK(TileTypeTable)
 	rst Bankswitch
-	ld e, [hl] ; get tile type
+	ld e, [hl]
 	pop af
-	rst Bankswitch ; return to current bank
+	rst Bankswitch
+
 	ld a, e
-	and a, $0f ; lo nybble only
+	and $f ; lo nybble only
+
 	pop hl
 	pop de
 	ret
@@ -2852,21 +2856,19 @@ Function188e: ; 188e
 	ret
 ; 1894
 
-Function1894: ; 1894
+CheckCutTreeTile: ; 1894
 	cp $12
 	ret z
 	cp $1a
 	ret
 ; 189a
 
-Function189a: ; 189a
+CheckHeadbuttTreeTile: ; 189a
 	cp $15
 	ret z
 	cp $1d
 	ret
 ; 18a0
-
-
 
 CheckCounterTile: ; 18a0
 	cp $90
@@ -2893,9 +2895,9 @@ CheckIceTile: ; 18ac
 
 CheckWhirlpoolTile: ; 18b4
 	nop
-	cp $24 ; whirlpool 1
+	cp $24
 	ret z
-	cp $2c ; whirlpool 2
+	cp $2c
 	ret z
 	scf
 	ret
@@ -2908,19 +2910,17 @@ CheckWaterfallTile: ; 18bd
 	ret
 ; 18c3
 
-
-Function18c3: ; 18c3
+CheckStandingOnEntrance: ; 18c3
 	ld a, [StandingTile]
-	cp $71
+	cp $71 ; door
 	ret z
 	cp $79
 	ret z
-	cp $7a
+	cp $7a ; stairs
 	ret z
-	cp $7b
+	cp $7b ; cave
 	ret
 ; 18d2
-
 
 
 GetMapObject: ; 18d2
@@ -21332,7 +21332,7 @@ Functionce7d: ; ce7d
 
 Functionce86: ; ce86
 	call GetFacingTileCoord
-	call Function189a
+	call CheckHeadbuttTreeTile
 	jr nz, .asm_ce97
 	ld hl, $4ea7
 	call Function31cd
@@ -50001,8 +50001,12 @@ INCBIN "baserom.gbc", $4ce05, $4ce1f - $4ce05
 
 TileTypeTable: ; 4ce1f
 ; 256 tiletypes
-; 00 = land
-; 01 = water
+; 00 land
+; 01 water
+; 0f wall
+; 11 talkable water
+; 1f talkable wall
+
 	db $00, $00, $00, $00, $00, $00, $00, $0f
 	db $00, $00, $00, $00, $00, $00, $00, $0f
 	db $00, $00, $1f, $00, $00, $1f, $00, $00
@@ -50011,7 +50015,7 @@ TileTypeTable: ; 4ce1f
 	db $01, $01, $11, $00, $11, $01, $01, $0f
 	db $01, $01, $01, $01, $01, $01, $01, $01
 	db $01, $01, $01, $01, $01, $01, $01, $01
-	
+
 	db $00, $00, $00, $00, $00, $00, $00, $00
 	db $00, $00, $00, $00, $00, $00, $00, $00
 	db $00, $00, $00, $00, $00, $00, $00, $00
@@ -50020,7 +50024,7 @@ TileTypeTable: ; 4ce1f
 	db $00, $00, $0f, $00, $00, $00, $00, $00
 	db $00, $00, $00, $00, $00, $00, $00, $00
 	db $00, $00, $00, $00, $00, $00, $00, $00
-	
+
 	db $0f, $0f, $0f, $0f, $0f, $00, $00, $00
 	db $0f, $0f, $0f, $0f, $0f, $00, $00, $00
 	db $0f, $0f, $0f, $0f, $0f, $0f, $0f, $0f
@@ -50029,7 +50033,7 @@ TileTypeTable: ; 4ce1f
 	db $00, $00, $00, $00, $00, $00, $00, $00
 	db $00, $00, $00, $00, $00, $00, $00, $00
 	db $00, $00, $00, $00, $00, $00, $00, $00
-	
+
 	db $01, $01, $01, $01, $01, $01, $01, $01
 	db $01, $01, $01, $01, $01, $01, $01, $01
 	db $00, $00, $00, $00, $00, $00, $00, $00
@@ -60477,7 +60481,7 @@ Function97c5f: ; 97c5f
 	ld hl, $765b
 	rst FarCall
 	jr c, .asm_97cb9
-	call Function1894
+	call CheckCutTreeTile
 	jr nz, .asm_97c7b
 	ld a, $3
 	ld hl, $5186
@@ -60504,7 +60508,7 @@ Function97c5f: ; 97c5f
 
 .asm_97c9b
 	ld a, [EngineBuffer1]
-	call Function189a
+	call CheckHeadbuttTreeTile
 	jr nz, .asm_97cad
 	ld a, $3
 	ld hl, $4ec9
