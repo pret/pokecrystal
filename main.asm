@@ -209,7 +209,7 @@ Init: ; 17d
 
 	xor a
 	ld [MBC3LatchClock], a
-	ld [MBC3SRAMEnable], a
+	ld [MBC3SRamEnable], a
 
 	ld a, [hCGB]
 	and a
