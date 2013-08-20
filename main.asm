@@ -18292,27 +18292,36 @@ Data63ca: ; 63ca
 INCBIN "baserom.gbc", $63ca, $63e2 - $63ca
 
 
-Function63e2: ; 63e2
+Copyright: ; 63e2
 	call ClearTileMap
 	call Functione5f
-	ld de, Function4000
-	ld hl, $9600
-	ld bc, $391d
+	ld de, CopyrightGFX
+	ld hl, VTiles2 + $600 ; tile $60
+	ld bc, BANK(CopyrightGFX) << 8 + $1d
 	call Functioneba
-	ld hl, $c52e
-	ld de, $63fd
+	hlcoord 2, 7
+	ld de, CopyrightString
 	jp PlaceString
 ; 63fd
 
-; 63fd
+CopyrightString: ; 63fd
+	; ©1995-2001 Nintendo
 	db $60, $61, $62, $63, $64, $65, $66
-	db $67, $68, $69, $6a, $6b, $6c, $4e
+	db $67, $68, $69, $6a, $6b, $6c
 
+	db $4e
+
+	; ©1995-2001 Creatures inc.
 	db $60, $61, $62, $63, $64, $65, $66, $6d
-	db $6e, $6f, $70, $71, $72, $7a, $7b, $7c, $4e
+	db $6e, $6f, $70, $71, $72, $7a, $7b, $7c
 
+	db $4e
+
+	; ©1995-2001 GAME FREAK inc.
 	db $60, $61, $62, $63, $64, $65, $66, $73, $74
-	db $75, $76, $77, $78, $79, $7a, $7b, $7c, "@"
+	db $75, $76, $77, $78, $79, $7a, $7b, $7c
+
+	db "@"
 ; 642e
 
 GameInit: ; 642e
@@ -66413,7 +66422,9 @@ INCBIN "baserom.gbc", $e0000, $e37f9 - $e0000
 
 SECTION "bank39",DATA,BANK[$39]
 
-INCBIN "baserom.gbc", $e4000, $e41d0 - $e4000
+CopyrightGFX: ; e4000
+INCBIN "gfx/misc/copyright.2bpp"
+; e41d0
 
 _OptionsMenu: ; e41d0
 	ld hl, $ffaa
@@ -66997,7 +67008,7 @@ Functione455c: ; e455c
 
 
 Functione4579: ; e4579
-	ld de, $0000
+	ld de, MUSIC_NONE
 	call StartMusic
 	call WhiteBGMap
 	call ClearTileMap
@@ -67014,11 +67025,9 @@ Functione4579: ; e4579
 	ld b, $19
 	call GetSGBLayout
 	call Function32f9
-	ld c, $a
+	ld c, 10
 	call DelayFrames
-	ld hl, $63e2
-	ld a, $1
-	rst FarCall
+	callab Copyright
 	call WaitBGMap
 	ld c, $64
 	call DelayFrames
