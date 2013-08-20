@@ -27,7 +27,7 @@ SECTION "rst28",HOME[$28] ; JumpTable
 	ld h, [hl]
 	ld l, a
 	pop de
-	jp [hl] ; (actually jp hl)
+	jp [hl]
 
 ; rst30 is midst rst28
 
@@ -64,15 +64,19 @@ Reset: ; 150
 	call ClearPalettes
 	xor a
 	ld [rIF], a
-	ld a, $1
+	ld a, 1 ; VBlank int
 	ld [rIE], a
 	ei
+
 	ld hl, $cfbe
 	set 7, [hl]
-	ld c, $20
+
+	ld c, 32
 	call DelayFrames
+
 	jr Init
 ; 16e
+
 
 _Start: ; 16e
 	cp $11
@@ -89,8 +93,11 @@ _Start: ; 16e
 	ld [$ffea], a
 ; 17d
 
+
 Init: ; 17d
+
 	di
+
 	xor a
 	ld [rIF], a
 	ld [rIE], a
@@ -107,7 +114,8 @@ Init: ; 17d
 	ld [rTMA], a
 	ld [rTAC], a
 	ld [$d000], a
-	ld a, $4
+
+	ld a, %100 ; Start timer at 4096Hz
 	ld [rTAC], a
 
 .wait
@@ -117,63 +125,87 @@ Init: ; 17d
 
 	xor a
 	ld [rLCDC], a
+
+; Clear WRAM bank 0
 	ld hl, $c000
-	ld bc, $1000
+	ld bc, $d000 - $c000
 .asm_1b1
-	ld [hl], $0
+	ld [hl], 0
 	inc hl
 	dec bc
 	ld a, b
 	or c
 	jr nz, .asm_1b1
-	ld sp, $c0ff
+
+	ld sp, Stack - 1
+
+; Clear HRAM
 	ld a, [hCGB]
 	push af
 	ld a, [$ffea]
 	push af
 	xor a
-	ld hl, hPushOAM
-	ld bc, $007f
+	ld hl, $ff80
+	ld bc, $ffff - $ff80
 	call ByteFill
 	pop af
 	ld [$ffea], a
 	pop af
 	ld [hCGB], a
+
 	call ClearWRAM
-	ld a, $1
+	ld a, 1
 	ld [rSVBK], a
 	call ClearVRAM
 	call ClearSprites
 	call Function270
 
 
-	ld a, BANK(Function4031)
+	ld a, BANK(LoadPushOAM)
 	rst Bankswitch
 
-	call Function4031
+	call LoadPushOAM
+
 	xor a
 	ld [$ffde], a
 	ld [hSCX], a
 	ld [hSCY], a
 	ld [rJOYP], a
-	ld a, $8
+
+	ld a, $8 ; HBlank int enable
 	ld [rSTAT], a
+
 	ld a, $90
 	ld [hWY], a
 	ld [rWY], a
-	ld a, $7
+
+	ld a, 7
 	ld [hWX], a
 	ld [rWX], a
-	ld a, $e3
+
+	ld a, %11100011
+	; LCD on
+	; Win tilemap 1
+	; Win on
+	; BG/Win tiledata 0
+	; BG Tilemap 0
+	; OBJ 8x8
+	; OBJ on
+	; BG on
 	ld [rLCDC], a
+
 	ld a, $ff
 	ld [$ffcb], a
+
 	callba Function9890
+
 	ld a, $9c
 	ld [$ffd7], a
+
 	xor a
 	ld [hBGMapAddress], a
-	callba Function14089
+
+	callba StartClock
 
 	xor a
 	ld [MBC3LatchClock], a
@@ -187,18 +219,21 @@ Init: ; 17d
 
 	xor a
 	ld [rIF], a
-	ld a, $f
+	ld a, %1111 ; VBlank, LCDStat, Timer, Serial interrupts
 	ld [rIE], a
 	ei
 
 	call DelayFrame
+
 	ld a, $30
 	call Predef
+
 	call CleanSoundRestart
 	xor a
 	ld [CurMusic], a
-	jp Function642e
+	jp GameInit
 ; 245
+
 
 ClearVRAM: ; 245
 ; Wipe VRAM banks 0 and 1
@@ -13043,7 +13078,7 @@ Function4000: ; 4000
 	db "Waiting...!@"
 ; 4031
 
-Function4031: ; 4031
+LoadPushOAM: ; 4031
 	ld c, hPushOAM & $ff
 	ld b, PushOAMEnd - PushOAM
 	ld hl, PushOAM
@@ -18280,7 +18315,7 @@ Function63e2: ; 63e2
 	db $75, $76, $77, $78, $79, $7a, $7b, $7c, "@"
 ; 642e
 
-Function642e: ; 642e
+GameInit: ; 642e
 	ld a, $5
 	ld hl, $4f1c
 	rst FarCall
@@ -28969,7 +29004,7 @@ Function1406a: ; 1406a
 
 
 
-Function14089: ; 14089
+StartClock: ; 14089
 	call GetClock
 	call Function1409b
 	call FixDays
