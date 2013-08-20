@@ -71,18 +71,18 @@ VBlank0: ; 2b1
 ; advance rng
 	ld a, [rDIV]
 	ld b, a
-	ld a, [$ffe1]
+	ld a, [hRandomAdd]
 	adc b
-	ld [$ffe1], a
+	ld [hRandomAdd], a
 	
 	ld a, [rDIV]
 	ld b, a
-	ld a, [$ffe2]
+	ld a, [hRandomSub]
 	sbc b
-	ld [$ffe2], a
+	ld [hRandomSub], a
 	
 ; save bank
-	ld a, [$ff9d] ; current bank
+	ld a, [hROMBank] ; current bank
 	ld [$ff8a], a
 	
 ; scroll x
@@ -123,7 +123,7 @@ VBlank0: ; 2b1
 	
 .doneframeaction
 ; oam update off?
-	ld a, [$ffd8]
+	ld a, [hOAMUpdate]
 	and a
 	jr nz, .vblankoccurred
 	
@@ -172,7 +172,7 @@ VBlank0: ; 2b1
 	rst Bankswitch ; restore bank
 	
 ; 
-	ld a, [$ff98]
+	ld a, [hSeconds]
 	ld [$ffe3], a
 	
 	ret
@@ -183,7 +183,7 @@ VBlank2: ; 325
 ; sound only
 
 ; save bank
-	ld a, [$ff9d]
+	ld a, [hROMBank]
 	ld [$ff8a], a
 	
 ; update sound
@@ -211,7 +211,7 @@ VBlank1: ; 337
 ; sound / lcd stat
 
 ; save bank
-	ld a, [$ff9d]
+	ld a, [hROMBank]
 	ld [$ff8a], a
 	
 ; scroll x
@@ -291,7 +291,7 @@ UpdatePals: ; 37f
 ; update pals for either dmg or cgb
 
 ; check cgb
-	ld a, [$ffe6]
+	ld a, [hCGB]
 	and a
 	jp nz, UpdateCGBPals
 	
@@ -319,7 +319,7 @@ VBlank3: ; 396
 ; sound / lcd stat
 
 ; save bank
-	ld a, [$ff9d]
+	ld a, [hROMBank]
 	ld [$ff8a], a
 	
 ; scroll x
@@ -330,7 +330,7 @@ VBlank3: ; 396
 	ld [rSCY], a
 	
 ; any pals to update?
-	ld a, [$ffe5]
+	ld a, [hCGBPalUpdate]
 	and a
 	call nz, ForceUpdateCGBPals
 	jr c, .vblankoccurred
@@ -404,7 +404,7 @@ VBlank4: ; 3df
 ; sound
 
 ; save bank
-	ld a, [$ff9d]
+	ld a, [hROMBank]
 	ld [$ff8a], a
 	
 	call UpdateBGMap
@@ -451,7 +451,7 @@ VBlank5: ; 400
 ; 
 
 ; save bank
-	ld a, [$ff9d]
+	ld a, [hROMBank]
 	ld [$ff8a], a
 	
 ; scroll x
@@ -509,7 +509,7 @@ VBlank6: ; 436
 ; sound
 
 ; save bank
-	ld a, [$ff9d]
+	ld a, [hROMBank]
 	ld [$ff8a], a
 	
 ; inc frame counter
