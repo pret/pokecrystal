@@ -1,3 +1,4 @@
+OddEgg1:
 	db PICHU
 	db NO_ITEM
 	db THUNDERSHOCK, CHARM, DIZZY_PUNCH, NONE
@@ -24,6 +25,7 @@
 	bigdw 8 ; SDef
 	db "EGG@@@@@@@@"
 
+OddEgg2:
 	db PICHU
 	db NO_ITEM
 	db THUNDERSHOCK, CHARM, DIZZY_PUNCH, NONE

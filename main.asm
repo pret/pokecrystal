@@ -71766,7 +71766,107 @@ UnknownText_0x11ac1f: ; 0x11ac1f
 	db "Please wait…", $57
 ; 0x11ac3e
 
-INCBIN "baserom.gbc", $11ac3e, $11bc9e - $11ac3e
+INCBIN "baserom.gbc", $11ac3e, $11b98f - $11ac3e
+
+Function11b98f: ; 11b98f
+	ld hl, PartyCount
+	ld a, [hl]
+	ld e, a
+	inc [hl]
+	ld a, [BGMapBuffer]
+	ld l, a
+	ld a, [$cd21]
+	ld h, a
+	inc hl
+	ld bc, PartySpecies
+	ld d, e
+.asm_11b9a2
+	inc bc
+	dec d
+	jr nz, .asm_11b9a2
+	ld a, e
+	ld [CurPartyMon], a
+	ld a, [hl]
+	ld [bc], a
+	inc bc
+	ld a, $ff
+	ld [bc], a
+	ld hl, PartyMon1Species
+	ld bc, $0030
+	ld a, e
+	ld [$cd2a], a
+.asm_11b9ba
+	add hl, bc
+	dec a
+	and a
+	jr nz, .asm_11b9ba
+	ld e, l
+	ld d, h
+	ld a, [CreditsTimer]
+	ld l, a
+	ld a, [$cd23]
+	ld h, a
+	ld bc, $0030
+	call CopyBytes
+	ld hl, PartyMon1OT
+	ld bc, $000b
+	ld a, [$cd2a]
+.asm_11b9d8
+	add hl, bc
+	dec a
+	and a
+	jr nz, .asm_11b9d8
+	ld e, l
+	ld d, h
+	ld a, [$cd24]
+	ld l, a
+	ld a, [$cd25]
+	ld h, a
+	ld bc, $000a
+	call CopyBytes
+	ld a, $50
+	ld [de], a
+	ld hl, PartyMon1Nickname
+	ld bc, $000b
+	ld a, [$cd2a]
+.asm_11b9f9
+	add hl, bc
+	dec a
+	and a
+	jr nz, .asm_11b9f9
+	ld e, l
+	ld d, h
+	ld a, [$cd26]
+	ld l, a
+	ld a, [$cd27]
+	ld h, a
+	ld bc, $000a
+	call CopyBytes
+	ld a, $50
+	ld [de], a
+	ld hl, $a600
+	ld bc, $002f
+	ld a, [$cd2a]
+.asm_11ba1a
+	add hl, bc
+	dec a
+	and a
+	jr nz, .asm_11ba1a
+	ld a, $0
+	call GetSRAMBank
+	ld e, l
+	ld d, h
+	ld a, [$cd28]
+	ld l, a
+	ld a, [$cd29]
+	ld h, a
+	ld bc, $002f
+	call CopyBytes
+	call CloseSRAM
+	ret
+; 11ba38
+
+INCBIN "baserom.gbc", $11ba38, $11bc9e - $11ba38
 
 
 SECTION "bank47",ROMX,BANK[$47]
@@ -73883,7 +73983,102 @@ BattleTowerMons: ; 1f8450
 	INCLUDE "stats/battle_tower.asm"
 ; 1fb4b6
 
-INCBIN "baserom.gbc", $1fb4b6, $1fb56e - $1fb4b6
+
+GiveOddEgg: ; 1fb4b6
+
+; Figure out which egg to give.
+	call RNG
+	ld hl, .Probabilities
+	ld c, 0
+	ld b, c
+.next
+	ld a, [hli]
+	ld e, a
+	ld a, [hli]
+	ld d, a
+	ld a, d
+	cp $ff
+	jr nz, .first
+	ld a, e
+	cp $ff
+	jr z, .done
+.first
+	ld a, [hRandomSub]
+	cp d
+	jr c, .done
+	jr z, .second
+	jr .good
+.second
+	ld a, [hRandomAdd]
+	cp e
+	jr c, .done
+	jr z, .done
+.good
+	inc bc
+	jr .next
+.done
+
+	ld hl, OddEggs
+	ld a, OddEgg2 - OddEgg1
+	call AddNTimes
+	ld de, EnemyMoveAnimation
+	ld bc, $0046
+	call CopyBytes
+	ld a, EGG_TICKET
+	ld [CurItem], a
+	ld a, $1
+	ld [$d10c], a
+	ld a, $ff
+	ld [$d107], a
+	ld hl, NumItems
+	call Function2f53
+	ld a, EGG
+	ld [$cd2a], a
+	ld a, $29
+	ld [$cd20], a
+	ld a, $cd
+	ld [$cd21], a
+	ld a, $8
+	ld [$cd22], a
+	ld a, $c6
+	ld [$cd23], a
+
+	ld hl, .Odd
+	ld de, $cd2b
+	ld bc, $000b
+	call CopyBytes
+
+	ld a, $2b
+	ld [$cd24], a
+	ld a, $cd
+	ld [$cd25], a
+	ld a, $38
+	ld [$cd26], a
+	ld a, $c6
+	ld [$cd27], a
+	callba Function11b98f
+	ret
+; 1fb546
+
+.Odd
+	db "ODD@@@@@@@@@"
+
+.Probabilities
+	dw $147a ; 92% ->  8%
+	dw $170a ; 91% ->  1%
+	dw $3fff ; 75% -> 16%
+	dw $47ad ; 72% ->  3%
+	dw $70a3 ; 56% -> 16%
+	dw $7851 ; 53% ->  3%
+	dw $9c28 ; 39% -> 14%
+	dw $a147 ; 37% ->  2%
+	dw $bae0 ; 27% -> 10%
+	dw $bfff ; 25% ->  2%
+	dw $deb7 ; 13% -> 12%
+	dw $e3d6 ; 11% ->  2%
+	dw $fd6f ;  1% -> 10%
+	dw $ffff ;  0% ->  1%
+; 1fb56e
 
 OddEggs: ; 1fb56e
 	INCLUDE "stats/odd_eggs.asm"
