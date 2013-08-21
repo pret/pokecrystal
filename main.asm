@@ -225,73 +225,24 @@ Function501: ; 501
 ; 517
 
 
-IncGradGBPalTable_00: ; 517
-	db %11111111 ; bgp
-	db %11111111 ; obp1
-	db %11111111 ; obp2
-	             ; and so on...
-IncGradGBPalTable_01: ; 51a
-	db %11111110
-	db %11111110
-	db %11111110
-IncGradGBPalTable_02: ; 51d
-	db %11111001
-	db %11111001
-	db %11111001
-IncGradGBPalTable_03: ; 520
-	db %11100100
-	db %11100100
-	db %11100100
-IncGradGBPalTable_04: ; 523
-	db %11100100
-	db %11100100
-	db %11100100
-IncGradGBPalTable_05: ; 526
-	db %10010000
-	db %10010000
-	db %10010000
-IncGradGBPalTable_06: ; 529
-	db %01000000
-	db %01000000
-	db %01000000
-IncGradGBPalTable_07: ; 52c
-	db %00000000
-	db %00000000
-	db %00000000
-; 52f
-
-IncGradGBPalTable_08: ; 52f
-	db %11111111
-	db %11111111
-	db %11111111
-IncGradGBPalTable_09: ; 532
-	db %11111110
-	db %11111110
-	db %11111000
-IncGradGBPalTable_10: ; 535
-	db %11111001
-	db %11100100
-	db %11100100
-IncGradGBPalTable_11: ; 538
-	db %11100100
-	db %11010000
-	db %11100000
-IncGradGBPalTable_12: ; 53b
-	db %11100100
-	db %11010000
-	db %11100000
-IncGradGBPalTable_13: ; 53e
-	db %10010000
-	db %10000000
-	db %10010000
-IncGradGBPalTable_14: ; 541
-	db %01000000
-	db %01000000
-	db %01000000
-IncGradGBPalTable_15: ; 544
-	db %00000000
-	db %00000000
-	db %00000000
+; 517
+IncGradGBPalTable_00: db %11111111, %11111111, %11111111
+IncGradGBPalTable_01: db %11111110, %11111110, %11111110
+IncGradGBPalTable_02: db %11111001, %11111001, %11111001
+IncGradGBPalTable_03: db %11100100, %11100100, %11100100
+IncGradGBPalTable_04: db %11100100, %11100100, %11100100
+IncGradGBPalTable_05: db %10010000, %10010000, %10010000
+IncGradGBPalTable_06: db %01000000, %01000000, %01000000
+IncGradGBPalTable_07: db %00000000, %00000000, %00000000
+;                           bgp       obp1       obp2
+IncGradGBPalTable_08: db %11111111, %11111111, %11111111
+IncGradGBPalTable_09: db %11111110, %11111110, %11111000
+IncGradGBPalTable_10: db %11111001, %11100100, %11100100
+IncGradGBPalTable_11: db %11100100, %11010000, %11100000
+IncGradGBPalTable_12: db %11100100, %11010000, %11100000
+IncGradGBPalTable_13: db %10010000, %10000000, %10010000
+IncGradGBPalTable_14: db %01000000, %01000000, %01000000
+IncGradGBPalTable_15: db %00000000, %00000000, %00000000
 ; 547
 
 
