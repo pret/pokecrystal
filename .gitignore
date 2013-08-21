@@ -1,6 +1,9 @@
 # precompiled python
 *.pyc
 
+# precompiled jython
+*$py.class
+
 # compiled object file
 *.o
 
@@ -37,5 +40,3 @@ pokecrystal.rtc
 
 # some users are dumping png.py into extras/
 extras/png.py
-
-*$py.class
