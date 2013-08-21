@@ -2836,14 +2836,14 @@ Function1875: ; 1875
 
 .asm_1882
 	ld a, d
-	and $7
+	and 7
 	ret z
 	scf
 	ret
 
 .asm_1888
 	ld a, d
-	and $7
+	and 7
 	ret z
 	scf
 	ret
@@ -20900,7 +20900,109 @@ Functionc785: ; c785
 	ret
 ; c796
 
-INCBIN "baserom.gbc", $c796, $c8ac - $c796
+INCBIN "baserom.gbc", $c796, $c7c4 - $c796
+
+UnknownText_0xc7c4: ; 0xc7c4
+	text_jump UnknownText_0x1c05dd, BANK(UnknownText_0x1c05dd)
+	db $50
+; 0xc7c9
+
+INCBIN "baserom.gbc", $c7c9, $c7ce - $c7c9
+
+Functionc7ce: ; c7ce
+	call GetFacingTileCoord
+	ld c, a
+	push de
+	ld a, $5
+	ld hl, $49f5
+	rst FarCall
+	pop de
+	jr nc, .asm_c7fc
+	call Function2a66
+	ld c, [hl]
+	push hl
+	ld hl, $4862
+	call $4840
+	pop hl
+	jr nc, .asm_c7fc
+	ld a, l
+	ld [$d1ec], a
+	ld a, h
+	ld [$d1ed], a
+	ld a, b
+	ld [$d1ee], a
+	ld a, c
+	ld [$d1ef], a
+	xor a
+	ret
+
+.asm_c7fc
+	scf
+	ret
+; c7fe
+
+INCBIN "baserom.gbc", $c7fe, $c802 - $c7fe
+
+UnknownScript_0xc802: ; 0xc802
+	3callasm BANK(GetPartyNick), GetPartyNick
+	2writetext UnknownText_0xc7c4
+	reloadmappart
+	3callasm BANK(Functionc810), Functionc810
+	loadmovesprites
+	end
+; 0xc810
+
+Functionc810: ; c810
+	ld hl, $d1ec
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	ld a, [$d1ee]
+	ld [hl], a
+	xor a
+	ld [hBGMapMode], a
+	call Function2173
+	call Function1ad2
+	call DelayFrame
+	ld a, [$d1ef]
+	ld e, a
+	callba Function8c940
+	call Function2879
+	call Function2914
+	call Function1ad2
+	call DelayFrame
+	call Functione51
+	ret
+; c840
+
+Functionc840: ; c840
+	push bc
+	ld a, [$d199]
+	ld de, 3
+	call IsInArray
+	pop bc
+	jr nc, .asm_c860
+	inc hl
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	ld de, 3
+	ld a, c
+	call IsInArray
+	jr nc, .asm_c860
+	inc hl
+	ld b, [hl]
+	inc hl
+	ld c, [hl]
+	scf
+	ret
+
+.asm_c860
+	xor a
+	ret
+; c862
+
+INCBIN "baserom.gbc", $c862, $c8ac - $c862
 
 Functionc8ac: ; c8ac
 	call Functionc8b5
@@ -21052,7 +21154,7 @@ CheckDirection: ; c9cb
 ; c9e7
 
 
-CheckSurfOW: ; c9e7
+TrySurfOW: ; c9e7
 ; Checking a tile in the overworld.
 ; Return carry if surfing is allowed.
 
@@ -21235,7 +21337,90 @@ Functioncb07: ; cb07
 	ret
 ; cb1c
 
-INCBIN "baserom.gbc", $cb1c, $cb95 - $cb1c
+INCBIN "baserom.gbc", $cb1c, $cb20 - $cb1c
+
+UnknownScript_0xcb20: ; 0xcb20
+	3callasm BANK(GetPartyNick), GetPartyNick
+	2writetext UnknownText_0xcb51
+	closetext
+	loadmovesprites
+	playsound SFX_BUBBLEBEAM
+.loop
+	applymovement $0, WaterfallStep
+	3callasm BANK(Functioncb38), Functioncb38
+	iffalse .loop
+	end
+; 0xcb38
+
+Functioncb38: ; cb38
+	xor a
+	ld [ScriptVar], a
+	ld a, [StandingTile]
+	call CheckWaterfallTile
+	ret z
+	ld a, $41
+	ld hl, $60c1
+	rst FarCall
+	ld a, $1
+	ld [ScriptVar], a
+	ret
+; cb4f
+
+WaterfallStep: ; cb4f
+	turn_waterfall_up
+	step_end
+; cb51
+
+UnknownText_0xcb51: ; 0xcb51
+	text_jump UnknownText_0x1c068e, BANK(UnknownText_0x1c068e)
+	db "@"
+; 0xcb56
+
+TryWaterfallOW: ; cb56
+	ld d, WATERFALL
+	call CheckPartyMove
+	jr c, .asm_cb74
+	ld de, $0022
+	call CheckFlag2
+	jr c, .asm_cb74
+	call Functioncb07
+	jr c, .asm_cb74
+	ld a, BANK(UnknownScript_0xcb86)
+	ld hl, UnknownScript_0xcb86
+	call PushScriptPointer
+	scf
+	ret
+
+.asm_cb74
+	ld a, BANK(UnknownScript_0xcb7e)
+	ld hl, UnknownScript_0xcb7e
+	call PushScriptPointer
+	scf
+	ret
+; cb7e
+
+UnknownScript_0xcb7e: ; 0xcb7e
+	jumptext UnknownText_0xcb81
+; 0xcb81
+
+UnknownText_0xcb81: ; 0xcb81
+	text_jump UnknownText_0x1c06a3, BANK(UnknownText_0x1c06a3)
+	db "@"
+; 0xcb86
+
+UnknownScript_0xcb86: ; 0xcb86
+	loadfont
+	2writetext UnknownText_0xcb90
+	yesorno
+	iftrue UnknownScript_0xcb20
+	loadmovesprites
+	end
+; 0xcb90
+
+UnknownText_0xcb90: ; 0xcb90
+	text_jump UnknownText_0x1c06bf, BANK(UnknownText_0x1c06bf)
+	db "@"
+; 0xcb95
 
 
 Functioncb95: ; cb95
@@ -21282,33 +21467,46 @@ Functioncce5: ; cce5
 Functionccee: ; ccee
 	ld de, $001d
 	call CheckBadge
-	jr c, .asm_cd06
-	jr .asm_cd09
+	jr c, Functioncd06
+	jr Functioncd09
+; ccf8
 
-	ld hl, .data_cd01
+Functionccf8: ; ccf8
+	ld hl, UnknownText_0xcd01
 	call Function1d67
 	ld a, $80
 	ret
+; cd01
 
-.data_cd01
-	db $16
-	db $51
-	db $47
-	db $70
-	db $50
+UnknownText_0xcd01: ; 0xcd01
+	text_jump UnknownText_0x1c0751, BANK(UnknownText_0x1c0751)
+	db "@"
+; 0xcd06
 
-.asm_cd06
+Functioncd06: ; cd06
 	ld a, $80
 	ret
+; cd09
 
-.asm_cd09
+Functioncd09: ; cd09
 	ld hl, $4d29
 	call Function31cd
 	ld a, $81
 	ret
 ; cd12
 
-INCBIN "baserom.gbc", $cd12, $cd9d - $cd12
+INCBIN "baserom.gbc", $cd12, $cd1d - $cd12
+
+Functioncd1d: ; cd1d
+	ld hl, PartySpecies
+	add hl, de
+	ld a, [hl]
+	ld [$d1ef], a
+	call GetPartyNick
+	ret
+; cd29
+
+INCBIN "baserom.gbc", $cd29, $cd9d - $cd29
 
 Functioncd9d: ; cd9d
 	call Functionc6ea
@@ -21321,7 +21519,101 @@ Functioncd9d: ; cd9d
 	ret
 ; cdae
 
-INCBIN "baserom.gbc", $cdae, $ce7d - $cdae
+INCBIN "baserom.gbc", $cdae, $cdd9 - $cdae
+
+UnknownText_0xcdd9: ; 0xcdd9
+	text_jump UnknownText_0x1c0816, BANK(UnknownText_0x1c0816)
+	db "@"
+; 0xcdde
+
+Functioncdde: ; cdde
+	call GetFacingTileCoord
+	ld c, a
+	push de
+	call CheckWhirlpoolTile
+	pop de
+	jr c, .asm_ce09
+	call Function2a66
+	ld c, [hl]
+	push hl
+	ld hl, $48a4
+	call $4840
+	pop hl
+	jr nc, .asm_ce09
+	ld a, l
+	ld [$d1ec], a
+	ld a, h
+	ld [$d1ed], a
+	ld a, b
+	ld [$d1ee], a
+	ld a, c
+	ld [$d1ef], a
+	xor a
+	ret
+
+.asm_ce09
+	scf
+	ret
+; ce0b
+
+INCBIN "baserom.gbc", $ce0b, $ce0f - $ce0b
+
+UnknownScript_0xce0f: ; 0xce0f
+	3callasm $03, $4706
+	2writetext UnknownText_0xcdd9
+	reloadmappart
+	3callasm $03, $4e1d
+	loadmovesprites
+	end
+; 0xce1d
+
+INCBIN "baserom.gbc", $ce1d, $ce3e - $ce1d
+
+TryWhirlpoolOW: ; ce3e
+	ld d, WHIRLPOOL
+	call CheckPartyMove
+	jr c, .asm_ce5c
+	ld de, $0021
+	call CheckFlag2
+	jr c, .asm_ce5c
+	call Functioncdde
+	jr c, .asm_ce5c
+	ld a, BANK(UnknownScript_0xce6e)
+	ld hl, UnknownScript_0xce6e
+	call PushScriptPointer
+	scf
+	ret
+
+.asm_ce5c
+	ld a, BANK(UnknownScript_0xce66)
+	ld hl, UnknownScript_0xce66
+	call PushScriptPointer
+	scf
+	ret
+; ce66
+
+UnknownScript_0xce66: ; 0xce66
+	jumptext UnknownText_0xce69
+; 0xce69
+
+UnknownText_0xce69: ; 0xce69
+	text_jump UnknownText_0x1c082b, BANK(UnknownText_0x1c082b)
+	db "@"
+; 0xce6e
+
+UnknownScript_0xce6e: ; 0xce6e
+	loadfont
+	2writetext UnknownText_0xce78
+	yesorno
+	iftrue UnknownScript_0xce0f
+	loadmovesprites
+	end
+; 0xce78
+
+UnknownText_0xce78: ; 0xce78
+	text_jump UnknownText_0x1c0864, BANK(UnknownText_0x1c0864)
+	db "@"
+; 0xce7d
 
 Functionce7d: ; ce7d
 	call Functionce86
@@ -21345,7 +21637,24 @@ Functionce86: ; ce86
 	ret
 ; ce9d
 
-INCBIN "baserom.gbc", $ce9d, $ceeb - $ce9d
+INCBIN "baserom.gbc", $ce9d, $cec9 - $ce9d
+
+TryHeadbuttOW: ; cec9
+	ld d, $1d
+	call CheckPartyMove
+	jr c, .asm_ceda
+	ld a, $3
+	ld hl, $4edc
+	call PushScriptPointer
+	scf
+	ret
+
+.asm_ceda
+	xor a
+	ret
+; cedc
+
+INCBIN "baserom.gbc", $cedc, $ceeb - $cedc
 
 Functionceeb: ; ceeb
 	call Functioncef4
@@ -21504,7 +21813,64 @@ Functiond121: ; d121
 	ret
 ; d13e
 
-INCBIN "baserom.gbc", $d13e, $d1d5 - $d13e
+INCBIN "baserom.gbc", $d13e, $d186 - $d13e
+
+TryCutOW: ; d186
+	ld d, CUT
+	call CheckPartyMove
+	jr c, .asm_d19f
+	ld de, $001c
+	call CheckFlag2
+	jr c, .asm_d19f
+	ld a, BANK(UnknownScript_0xd1a9)
+	ld hl, UnknownScript_0xd1a9
+	call PushScriptPointer
+	scf
+	ret
+
+.asm_d19f
+	ld a, BANK(UnknownScript_0xd1cd)
+	ld hl, UnknownScript_0xd1cd
+	call PushScriptPointer
+	scf
+	ret
+; d1a9
+
+UnknownScript_0xd1a9: ; 0xd1a9
+	loadfont
+	2writetext UnknownText_0xd1c8
+	yesorno
+	iffalse .script_d1b8
+	3callasm BANK(Functiond1ba), Functiond1ba
+	iftrue UnknownScript_0xc802
+.script_d1b8
+	loadmovesprites
+	end
+; 0xd1ba
+
+Functiond1ba: ; d1ba
+	xor a
+	ld [ScriptVar], a
+	call Functionc7ce
+	ret c
+	ld a, $1
+	ld [ScriptVar], a
+	ret
+; d1c8
+
+UnknownText_0xd1c8: ; 0xd1c8
+	text_jump UnknownText_0x1c09dd, BANK(UnknownText_0x1c09dd)
+	db "@"
+; 0xd1cd
+
+UnknownScript_0xd1cd: ; 0xd1cd
+	jumptext UnknownText_0xd1d0
+; 0xd1d0
+
+UnknownText_0xd1d0: ; 0xd1d0
+	text_jump UnknownText_0x1c0a05, BANK(UnknownText_0x1c0a05)
+	db "@"
+; 0xd1d5
 
 
 Functiond1d5: ; d1d5
@@ -21515,13 +21881,17 @@ Functiond1d5: ; d1d5
 	pop de
 	ld a, [$d142]
 	dec a
-	ld hl, $51e9
+	ld hl, Tabled1e9
 	rst JumpTable
 	ret
 ; d1e9
 
-INCBIN "baserom.gbc", $d1e9, $d1f1 - $d1e9
-
+Tabled1e9: ; d1e9
+	dw Functiond1f1
+	dw Functiond1f6
+	dw Functiond1fb
+	dw Functiond201
+; d1f1
 
 Functiond1f1: ; d1f1
 	ld h, d
@@ -21548,6 +21918,7 @@ Functiond201: ; d201
 	call GetTMHMNumber
 	jp Functiond3c4
 ; d20d
+
 
 Functiond20d: ; d20d
 	call Functiond27b
@@ -28809,7 +29180,17 @@ Function149dd: ; 149dd
 	ret
 ; 149ea
 
-INCBIN "baserom.gbc", $149ea, $14a07 - $149ea
+INCBIN "baserom.gbc", $149ea, $149f5 - $149ea
+
+Function149f5: ; 149f5
+	ld a, c
+	ld hl, $4a00
+	ld de, $0001
+	call IsInArray
+	ret
+; 14a00
+
+INCBIN "baserom.gbc", $14a00, $14a07 - $14a00
 
 
 Function14a07: ; 14a07
@@ -57198,7 +57579,64 @@ GetTimePalFade: ; 8c17c
 	db %00000000
 ; 8c20f
 
-INCBIN "baserom.gbc", $8c20f, $8cf53 - $8c20f
+INCBIN "baserom.gbc", $8c20f, $8c940 - $8c20f
+
+Function8c940: ; 8c940
+	ld a, e
+	and $1
+	ld [$cf63], a
+	call $496d
+	call WaitSFX
+	ld de, $001e
+	call StartSFX
+.asm_8c952
+	ld a, [$cf63]
+	bit 7, a
+	jr nz, .asm_8c96c
+	ld a, $90
+	ld [$c3b5], a
+	ld hl, $4f7a
+	ld a, $23
+	rst FarCall
+	call $4a0c
+	call DelayFrame
+	jr .asm_8c952
+
+.asm_8c96c
+	ret
+; 8c96d
+
+Function8c96d: ; 8c96d
+	ld hl, $4f53
+	ld a, $23
+	rst FarCall
+	ld de, $49cc
+	ld hl, VTiles1
+	ld bc, $2304
+	call Request2bpp
+	ld de, $498c
+	ld hl, $8840
+	ld bc, $2304
+	call Request2bpp
+	ret
+; 8c98c
+
+INCBIN "baserom.gbc", $8c98c, $8ca0c - $8c98c
+
+Function8ca0c: ; 8ca0c
+	ld a, [$cf63]
+	ld e, a
+	ld d, $0
+	ld hl, $4a1b
+	add hl, de
+	add hl, de
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	jp [hl]
+; 8ca1b
+
+INCBIN "baserom.gbc", $8ca1b, $8cf53 - $8ca1b
 
 
 Function8cf53: ; 8cf53
@@ -60480,43 +60918,36 @@ Function97c5f: ; 97c5f
 	ld hl, $765b
 	rst FarCall
 	jr c, .asm_97cb9
+
 	call CheckCutTreeTile
-	jr nz, .asm_97c7b
-	ld a, $3
-	ld hl, $5186
-	rst FarCall
+	jr nz, .whirlpool
+	callba TryCutOW
 	jr .asm_97cb9
 
-.asm_97c7b
+.whirlpool
 	ld a, [EngineBuffer1]
 	call CheckWhirlpoolTile
-	jr nz, .asm_97c8b
-	ld a, $3
-	ld hl, $4e3e
-	rst FarCall
+	jr nz, .waterfall
+	callba TryWhirlpoolOW
 	jr .asm_97cb9
 
-.asm_97c8b
+.waterfall
 	ld a, [EngineBuffer1]
 	call CheckWaterfallTile
-	jr nz, .asm_97c9b
-	ld a, $3
-	ld hl, $4b56
-	rst FarCall
+	jr nz, .headbutt
+	callba TryWaterfallOW
 	jr .asm_97cb9
 
-.asm_97c9b
+.headbutt
 	ld a, [EngineBuffer1]
 	call CheckHeadbuttTreeTile
-	jr nz, .asm_97cad
-	ld a, $3
-	ld hl, $4ec9
-	rst FarCall
+	jr nz, .surf
+	callba TryHeadbuttOW
 	jr c, .asm_97cb9
 	jr .asm_97cb7
 
-.asm_97cad
-	callba CheckSurfOW
+.surf
+	callba TrySurfOW
 	jr nc, .asm_97cb7
 	jr .asm_97cb9
 
@@ -69959,7 +70390,13 @@ Function1060bb: ; 1060bb
 	ret
 ; 1060bc
 
-INCBIN "baserom.gbc", $1060bc, $1060d3 - $1060bc
+INCBIN "baserom.gbc", $1060bc, $1060c1 - $1060bc
+
+Function1060c1: ; 1060c1
+	ret
+; 1060c2
+
+INCBIN "baserom.gbc", $1060c2, $1060d3 - $1060c2
 
 
 Function1060d3: ; 1060d3
