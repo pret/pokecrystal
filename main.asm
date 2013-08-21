@@ -73883,7 +73883,11 @@ BattleTowerMons: ; 1f8450
 	INCLUDE "stats/battle_tower.asm"
 ; 1fb4b6
 
-INCBIN "baserom.gbc", $1fb4b6, $1fb8a8 - $1fb4b6
+INCBIN "baserom.gbc", $1fb4b6, $1fb56e - $1fb4b6
+
+OddEggs: ; 1fb56e
+	INCLUDE "stats/odd_eggs.asm"
+; 1fb8a8
 
 
 SECTION "bank7F",ROMX,BANK[$7F]
