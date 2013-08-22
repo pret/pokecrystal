@@ -15271,7 +15271,7 @@ Function5bae: ; 5bae
 	call Function5ca6
 	ld a, $1
 	call GetSRAMBank
-	ld hl, $ad10
+	ld hl, BoxCount
 	call Function5ca1
 	call CloseSRAM
 	ld hl, NumItems
@@ -22813,39 +22813,41 @@ INCBIN "baserom.gbc", $da96, $dcb6 - $da96
 
 
 Functiondcb6: ; dcb6
+
 	ld a, b
-	ld hl, $ad26
-	ld bc, $0020
+	ld hl, BoxMons
+	ld bc, BoxMon2 - BoxMon1
 	call AddNTimes
 	ld b, h
 	ld c, l
-	ld hl, $0017
+	ld hl, BoxMon1PP - BoxMon1
 	add hl, bc
 	push hl
 	push bc
 	ld de, TempMonPP
-	ld bc, $0004
+	ld bc, NUM_MOVES
 	call CopyBytes
 	pop bc
-	ld hl, $0002
+	ld hl, BoxMon1Moves - BoxMon1
 	add hl, bc
 	push hl
-	ld de, TempMonMove1
-	ld bc, $0004
+	ld de, TempMonMoves
+	ld bc, NUM_MOVES
 	call CopyBytes
 	pop hl
 	pop de
+
 	ld a, [$cfa9]
 	push af
 	ld a, [MonType]
 	push af
-	ld b, $0
+	ld b, 0
 .asm_dcec
 	ld a, [hli]
 	and a
 	jr z, .asm_dd18
 	ld [TempMonMove1], a
-	ld a, $2
+	ld a, BOXMON
 	ld [MonType], a
 	ld a, b
 	ld [$cfa9], a
@@ -22867,7 +22869,7 @@ Functiondcb6: ; dcb6
 	inc de
 	inc b
 	ld a, b
-	cp $4
+	cp NUM_MOVES
 	jr c, .asm_dcec
 
 .asm_dd18
@@ -22878,15 +22880,16 @@ Functiondcb6: ; dcb6
 	ret
 ; dd21
 
+
 INCBIN "baserom.gbc", $dd21, $de6e - $dd21
 
 
 Functionde6e: ; de6e
-	ld a, $1
+	ld a, 1 ; BANK(BoxCount)
 	call GetSRAMBank
-	ld de, $ad10
+	ld de, BoxCount
 	ld a, [de]
-	cp $14
+	cp 20
 	jp nc, Functiondf42
 	inc a
 	ld [de], a
@@ -22903,21 +22906,21 @@ Functionde6e: ; de6e
 	inc a
 	jr nz, .asm_de85
 	call GetBaseData
-	call Functiondf47
+	call ShiftBoxMon
 	ld hl, PlayerName
-	ld de, $afa6
-	ld bc, $000b
+	ld de, BoxMonOT
+	ld bc, BoxMon2OT - BoxMon1OT
 	call CopyBytes
 	ld a, [CurPartySpecies]
 	ld [$d265], a
 	call GetPokemonName
-	ld de, $b082
+	ld de, BoxMon1Nickname
 	ld hl, StringBuffer1
-	ld bc, $000b
+	ld bc, BoxMon2Nickname - BoxMon1Nickname
 	call CopyBytes
-	ld hl, EnemyMonSpecies
-	ld de, $ad26
-	ld bc, $0006
+	ld hl, EnemyMon
+	ld de, BoxMon1
+	ld bc, 6 ; species + item + moves
 	call CopyBytes
 	ld hl, PlayerID
 	ld a, [hli]
@@ -22973,9 +22976,9 @@ Functionde6e: ; de6e
 	dec a
 	call SetSeenAndCaughtMon
 	ld a, [CurPartySpecies]
-	cp $c9
+	cp UNOWN
 	jr nz, .asm_df20
-	ld hl, $ad3b
+	ld hl, BoxMon1DVs
 	ld a, $2d
 	call Predef
 	ld hl, $7a18
@@ -22983,15 +22986,15 @@ Functionde6e: ; de6e
 	rst FarCall
 
 .asm_df20
-	ld hl, $ad28
+	ld hl, BoxMon1Moves
 	ld de, TempMonMove1
-	ld bc, $0004
+	ld bc, NUM_MOVES
 	call CopyBytes
-	ld hl, $ad3d
+	ld hl, BoxMon1PP
 	ld de, TempMonPP
-	ld bc, $0004
+	ld bc, NUM_MOVES
 	call CopyBytes
-	ld b, $0
+	ld b, 0
 	call Functiondcb6
 	call CloseSRAM
 	scf
@@ -23004,44 +23007,51 @@ Functiondf42: ; df42
 	ret
 ; df47
 
-Functiondf47: ; df47
-	ld hl, $afa6
-	ld bc, $000b
-	call $5f5f
-	ld hl, $b082
-	ld bc, $000b
-	call $5f5f
-	ld hl, $ad26
-	ld bc, $0020
-	ld a, [$ad10]
-	cp $2
+ShiftBoxMon: ; df47
+	ld hl, BoxMonOT
+	ld bc, BoxMon2OT - BoxMon1OT
+	call .asm_df5f
+
+	ld hl, BoxMonNicknames
+	ld bc, BoxMon2Nickname - BoxMon1Nickname
+	call .asm_df5f
+
+	ld hl, BoxMons
+	ld bc, BoxMon2 - BoxMon1
+
+.asm_df5f
+	ld a, [BoxCount]
+	cp 2
 	ret c
+
 	push hl
 	call AddNTimes
 	dec hl
 	ld e, l
 	ld d, h
 	pop hl
-	ld a, [$ad10]
+
+	ld a, [BoxCount]
 	dec a
 	call AddNTimes
 	dec hl
+
 	push hl
-	ld a, [$ad10]
+	ld a, [BoxCount]
 	dec a
-	ld hl, $0000
+	ld hl, 0
 	call AddNTimes
 	ld c, l
 	ld b, h
 	pop hl
-.asm_df83
+.loop
 	ld a, [hld]
 	ld [de], a
 	dec de
 	dec bc
 	ld a, c
 	or b
-	jr nz, .asm_df83
+	jr nz, .loop
 	ret
 ; df8c
 
@@ -23138,13 +23148,16 @@ INCBIN "baserom.gbc", $e035, $e039 - $e035
 
 
 Functione039: ; e039
+
 	ld hl, PartyCount
+
 	ld a, [$d10b]
 	and a
 	jr z, .asm_e04a
-	ld a, $1
+
+	ld a, 1 ; BANK(BoxCount)
 	call GetSRAMBank
-	ld hl, $ad10
+	ld hl, BoxCount
 
 .asm_e04a
 	ld a, [hl]
@@ -23152,7 +23165,7 @@ Functione039: ; e039
 	ld [hli], a
 	ld a, [CurPartyMon]
 	ld c, a
-	ld b, $0
+	ld b, 0
 	add hl, bc
 	ld e, l
 	ld d, h
@@ -23168,7 +23181,7 @@ Functione039: ; e039
 	ld a, [$d10b]
 	and a
 	jr z, .asm_e06d
-	ld hl, $afa6
+	ld hl, BoxMonOT
 	ld d, $13
 
 .asm_e06d
@@ -23178,7 +23191,7 @@ Functione039: ; e039
 	cp d
 	jr nz, .asm_e07e
 	ld [hl], $ff
-	jp $60f0
+	jp .asm_60f0
 
 .asm_e07e
 	ld d, h
@@ -23189,17 +23202,17 @@ Functione039: ; e039
 	ld a, [$d10b]
 	and a
 	jr z, .asm_e090
-	ld bc, $b082
-
+	ld bc, BoxMonNicknames
 .asm_e090
 	call CopyDataUntil
-	ld hl, PartyMon1Species
-	ld bc, $0030
+
+	ld hl, PartyMons
+	ld bc, PartyMon2 - PartyMon1
 	ld a, [$d10b]
 	and a
 	jr z, .asm_e0a5
-	ld hl, $ad26
-	ld bc, $0020
+	ld hl, BoxMons
+	ld bc, BoxMon2 - BoxMon1
 
 .asm_e0a5
 	ld a, [CurPartyMon]
@@ -23209,13 +23222,13 @@ Functione039: ; e039
 	ld a, [$d10b]
 	and a
 	jr z, .asm_e0bc
-	ld bc, $0020
+	ld bc, BoxMon2 - BoxMon1
 	add hl, bc
-	ld bc, $afa6
+	ld bc, BoxMonOT
 	jr .asm_e0c3
 
 .asm_e0bc
-	ld bc, $0030
+	ld bc, PartyMon2 - PartyMon1
 	add hl, bc
 	ld bc, PartyMon1OT
 
@@ -23225,24 +23238,26 @@ Functione039: ; e039
 	ld a, [$d10b]
 	and a
 	jr z, .asm_e0d2
-	ld hl, $b082
+	ld hl, BoxMonNicknames
 
 .asm_e0d2
-	ld bc, $000b
+	ld bc, BoxMon2Nickname - BoxMon1Nickname
 	ld a, [CurPartyMon]
 	call AddNTimes
 	ld d, h
 	ld e, l
-	ld bc, $000b
+	ld bc, BoxMon2Nickname - BoxMon1Nickname
 	add hl, bc
-	ld bc, $de83
+	ld bc, PartyMonNicknamesEnd
 	ld a, [$d10b]
 	and a
 	jr z, .asm_e0ed
-	ld bc, $b15e
+	ld bc, BoxMonNicknamesEnd
 
 .asm_e0ed
 	call CopyDataUntil
+
+.asm_60f0
 	ld a, [$d10b]
 	and a
 	jp nz, CloseSRAM
@@ -24234,22 +24249,22 @@ Functionf8ec: ; f8ec
 	push af
 	ld a, [MonType]
 	and a
-	ld hl, PartyMon1Move1
-	ld bc, $0030
+	ld hl, PartyMon1Moves
+	ld bc, PartyMon2 - PartyMon1
 	jr z, .asm_f91a
-	ld hl, OTPartyMon1Move1
+	ld hl, OTPartyMon1Moves
 	dec a
 	jr z, .asm_f91a
-	ld hl, TempMonMove1
+	ld hl, TempMonMoves
 	dec a
 	jr z, .asm_f915
-	ld hl, TempMonMove1
+	ld hl, TempMonMoves
 	dec a
 	jr z, .asm_f915
-	ld hl, BattleMonMove1
+	ld hl, BattleMonMoves
 
 .asm_f915
-	call $7969
+	call Function7969
 	jr .asm_f91d
 
 .asm_f91a
@@ -24271,7 +24286,7 @@ Functionf8ec: ; f8ec
 	push bc
 	ld bc, $0015
 	ld a, [MonType]
-	cp $4
+	cp WILDMON
 	jr nz, .asm_f942
 	ld bc, $0006
 
@@ -24300,6 +24315,8 @@ Functionf8ec: ; f8ec
 Functionf963: ; f963
 	ld a, [CurPartyMon]
 	call AddNTimes
+
+Function7969: ; 7969
 	ld a, [$cfa9]
 	ld c, a
 	ld b, $0
@@ -53616,9 +53633,9 @@ Function508d5: ; 508d5
 	jr .asm_50905
 
 .asm_508f1
-	ld a, $1
+	ld a, 1 ; BANK(BoxSpecies)
 	call GetSRAMBank
-	ld hl, $ad11
+	ld hl, BoxSpecies
 	call .asm_50905
 	call CloseSRAM
 	ret
@@ -53912,13 +53929,13 @@ GetGender: ; 50bdd
 	jr z, .PartyMon
 	
 ; 2: BoxMon
-	ld hl, $ad26 + $15 ; BoxMon1DVs
-	ld bc, $20 ; BoxMon2 - BoxMon1
+	ld hl, BoxMon1DVs
+	ld bc, BoxMon2 - BoxMon1
 	dec a
 	jr z, .BoxMon
 	
 ; 3: Unknown
-	ld hl, TempMonDVs ; DVBuffer
+	ld hl, TempMonDVs
 	dec a
 	jr z, .DVs
 	
