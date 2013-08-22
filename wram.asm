@@ -1982,6 +1982,7 @@ PartyMon5Nickname: ; de6d
 	ds 11
 PartyMon6Nickname: ; de78
 	ds 11
+PartyMonNicknamesEnd
 
 SECTION "Pokedex",WRAMX[$de99],BANK[1]
 PokedexSeen: ; de99
@@ -2271,4 +2272,5 @@ BoxMon19Nickname: ; b148
 	ds 11
 BoxMon20Nickname: ; b153
 	ds 11
+BoxMonNicknamesEnd
 
