@@ -732,7 +732,7 @@ Function75f: ; 75f
 .asm_763
 	ld a, [hl]
 	ld [$ffcd], a
-	call $078a
+	call Function78a
 	push bc
 	ld b, a
 	inc hl
@@ -780,9 +780,9 @@ Function78a: ; 78a
 	ld a, [$ffcb]
 	cp $1
 	jr nz, .asm_7c0
-	call $082b
+	call Function82b
 	jr z, .asm_7c0
-	call $0825
+	call .asm_825
 	push hl
 	ld hl, $cf5c
 	inc [hl]
@@ -792,9 +792,9 @@ Function78a: ; 78a
 
 .asm_7b7
 	pop hl
-	call $082b
+	call Function82b
 	jr nz, .asm_79b
-	jp $0833
+	jp Function833
 
 .asm_7c0
 	ld a, [rIE]
@@ -832,7 +832,7 @@ Function78a: ; 78a
 	ld a, [$ffce]
 	cp $fe
 	ret nz
-	call $082b
+	call Function82b
 	jr z, .asm_813
 	push hl
 	ld hl, $cf5c
@@ -845,8 +845,8 @@ Function78a: ; 78a
 
 .asm_80d
 	pop hl
-	call $082b
-	jr z, .asm_833
+	call Function82b
+	jr z, Function833
 
 .asm_813
 	ld a, [rIE]
@@ -857,22 +857,26 @@ Function78a: ; 78a
 	ld a, [hl]
 	ld [$ffcd], a
 	call DelayFrame
-	jp $078a
+	jp Function78a
 
+.asm_825
 	ld a, $f
 .asm_827
 	dec a
 	jr nz, .asm_827
 	ret
+; 82b
 
+Function82b: ; 82b
 	push hl
 	ld hl, $cf5b
 	ld a, [hli]
 	or [hl]
 	pop hl
 	ret
+; 833
 
-.asm_833
+Function833: ; 833
 	dec a
 	ld [$cf5b], a
 	ld [$cf5c], a
@@ -925,9 +929,9 @@ Function87d: ; 87d
 	ld a, $ff
 	ld [$cf52], a
 .asm_882
-	call $08c1
+	call Function8c1
 	call DelayFrame
-	call $082b
+	call Function82b
 	jr z, .asm_89e
 	push hl
 	ld hl, $cf5c
@@ -938,7 +942,7 @@ Function87d: ; 87d
 	jr nz, .asm_89d
 	pop hl
 	xor a
-	jp $0833
+	jp Function833
 
 .asm_89d
 	pop hl
@@ -950,13 +954,13 @@ Function87d: ; 87d
 	ld b, $a
 .asm_8a6
 	call DelayFrame
-	call $08c1
+	call Function8c1
 	dec b
 	jr nz, .asm_8a6
 	ld b, $a
 .asm_8b1
 	call DelayFrame
-	call $0908
+	call Function908
 	dec b
 	jr nz, .asm_8b1
 	ld a, [$cf52]
@@ -978,7 +982,7 @@ Function8c1: ; 8c1
 	ld b, $80
 
 .asm_8d7
-	call $08f3
+	call Function8f3
 	ld a, [$cf56]
 	add b
 	ld [$ffcd], a
@@ -991,7 +995,7 @@ Function8c1: ; 8c1
 	ld [rSC], a
 
 .asm_8ee
-	call $08f3
+	call Function8f3
 	pop bc
 	ret
 ; 8f3
@@ -1084,7 +1088,7 @@ Functiona46: ; a46
 	ld a, $1
 	ld [hOAMUpdate], a
 	call WaitBGMap
-	call $0a36
+	call Functiona36
 	pop af
 	ld [hOAMUpdate], a
 	ret
@@ -1135,7 +1139,7 @@ Functiona80: ; a80
 .asm_a8d
 	push hl
 	ld hl, $c606
-	call $0b06
+	call Functionb06
 	pop hl
 	call Functiona57
 	ld a, [$ffa9]
@@ -4663,7 +4667,7 @@ Function2147: ; 2147
 
 Function2173: ; 2173
 	call Function217a
-	call $0db1
+	call Functiondb1
 	ret
 ; 217a
 
@@ -6564,16 +6568,19 @@ Function2b3c: ; 2b3c
 	call Function2bae
 	call Function1ad2
 	call Function1d7d
-	call $0d90
-	jr .asm_2b5c
+	call Functiond90
+	jr Function2b5c
+; 2b4c
 
+Function2b4c: ; 2b4c
 	call WhiteBGMap
 	call Function1d7d
 	call Function2bae
 	call Function1ad2
-	call $0d90
+	call Functiond90
+; 2b5c
 
-.asm_2b5c
+Function2b5c: ; 2b5c
 	ld b, $9
 	call GetSGBLayout
 	ld a, $12
@@ -6621,7 +6628,7 @@ Function2bae: ; 2bae
 	ld a, $5
 	ld hl, $4168
 	rst FarCall
-	call $0e51
+	call Functione51
 	call Functione5f
 	ld a, [hROMBank]
 	push af
@@ -8188,6 +8195,8 @@ Function31be: ; 31be
 
 Function31cd: ; 31cd
 	ld a, [hROMBank]
+
+Function31cf: ; 31cf
 	ld [$d0e8], a
 	ld a, l
 	ld [$d0e9], a
@@ -15172,7 +15181,7 @@ Function5b44: ; 5b44
 	ld [$ffde], a
 	call ClearTileMap
 	call Functione5f
-	call $0e51
+	call Functione51
 	call Function1fbf
 	ret
 ; 5b54
@@ -15589,7 +15598,7 @@ Function5e34: ; 5e34
 ; 5e48
 
 Function5e48: ; 5e48
-	call $06e3
+	call Function6e3
 	and $80
 	jr z, .asm_5e5b
 	ld a, $8
@@ -15628,7 +15637,7 @@ Function5e5d: ; 5e5d
 ; 5e85
 
 Function5e85: ; 5e85
-	call $06e3
+	call Function6e3
 	and $80
 	jr z, .asm_5e93
 	ld de, $0408
@@ -15798,7 +15807,7 @@ OakSpeech: ; 0x5f99
 	ld a, $24
 	ld hl, $4672
 	rst FarCall
-	call $04dd
+	call Function4dd
 	call ClearTileMap
 
 	ld de, MUSIC_ROUTE_30
@@ -16586,7 +16595,7 @@ Function64cd: ; 64cd
 	ld a, $90
 	ld [hWY], a
 	call Function2e31
-	call $0e51
+	call Functione51
 	ret
 ; 64db
 
@@ -18719,7 +18728,7 @@ Function831e: ; 831e
 	call Function1b3f
 	ld a, [CurFruit]
 	dec a
-	jr z, .asm_833b
+	jr z, Function833b
 	ld a, [$ffe0]
 	ld b, a
 	ld c, $0
@@ -18727,7 +18736,7 @@ Function831e: ; 831e
 	call Function8341
 	call Function1b35
 
-.asm_833b
+Function833b
 	ld a, $47
 	call Function1b3f
 	ret
@@ -25027,7 +25036,7 @@ INCBIN "baserom.gbc", $11bf7, $11c51 - $11bf7
 Function11c51: ; 11c51
 	call ClearSprites
 	callab Function8cf53
-	call $0e51
+	call Functione51
 	call Functione5f
 	ld de, $5e65
 	ld hl, $8eb0
@@ -25359,7 +25368,7 @@ StartMenu: ; 125cd
 	call MenuFunc_1e7f
 	call .DrawBugContestStatus
 	call Function1ad2
-	call $0d90
+	call Functiond90
 	call $2b5c
 	ret
 ; 126d3
@@ -25629,7 +25638,7 @@ StartMenu_Quit: ; 128f0
 	jr c, .asm_12903
 	ld a, $4
 	ld hl, $760b
-	call $31cf
+	call Function31cf
 	ld a, 4
 	ret
 .asm_12903
@@ -27591,7 +27600,7 @@ Function1409b: ; 1409b
 ; 140ae
 
 Function140ae: ; 140ae
-	call $06e3
+	call Function6e3
 	ld c, a
 	and $c0
 	jr nz, .asm_140c8
@@ -32999,7 +33008,7 @@ Function24528: ; 24528
 	call Function2173
 	call Function321c
 	call Function1ad2
-	call $0e51
+	call Functione51
 	ret
 ; 24547
 
@@ -47571,7 +47580,7 @@ Function414b7: ; 414b7
 ; 414fb
 
 Function414fb: ; 414fb
-	call $0e51
+	call Functione51
 	ld hl, VTiles1
 	ld bc, $0800
 .asm_41504
@@ -49574,7 +49583,7 @@ Function49e09: ; 49e09
 
 
 Function49e27: ; 49e27
-	call $06e3
+	call Function6e3
 	and $80
 	jr nz, .asm_49e39
 	ld hl, $c5b8
@@ -49593,7 +49602,7 @@ Function49e3d: ; 49e3d
 	ld a, [$cfcd]
 	and a
 	ret z
-	call $06e3
+	call Function6e3
 	and $80
 	jp nz, Function49e75
 	call UpdateTime
@@ -49668,7 +49677,7 @@ Function49ed0: ; 49ed0
 	ld [$ffde], a
 	call ClearTileMap
 	call Functione5f
-	call $0e51
+	call Functione51
 	call Function1fbf
 	ret
 ; 49ee0
@@ -51948,7 +51957,7 @@ Function4e881: ; 4e881
 	call ClearTileMap
 	call ClearSprites
 	call DisableLCD
-	call $0e51
+	call Functione51
 	call $0e58
 	ld hl, VBGMap0
 	ld bc, VBlank5
@@ -51977,7 +51986,7 @@ Function4e8c2: ; 4e8c2
 	call ClearTileMap
 	call ClearSprites
 	call DisableLCD
-	call $0e51
+	call Functione51
 	call $0e58
 	ld hl, VBGMap0
 	ld bc, VBlank5
@@ -73015,7 +73024,7 @@ Function17c000: ; 17c000
 	ld bc, $0310
 	xor a
 	call ByteFill
-	call $0e51
+	call Functione51
 	call Functione5f
 	ld hl, $4b83
 	ld de, TileMap
