@@ -65753,8 +65753,8 @@ Functione465e: ; e465e
 Functione4670: ; e4670
 	ld a, [$cf63]
 	ld e, a
-	ld d, $0
-	ld hl, $467f
+	ld d, 0
+	ld hl, .pointers
 	add hl, de
 	add hl, de
 	ld a, [hli]
@@ -65763,7 +65763,90 @@ Functione4670: ; e4670
 	jp [hl]
 ; e467f
 
-INCBIN "baserom.gbc", $e467f, $e48ac - $e467f
+.pointers
+	dw Functione468c
+	dw Functione468d
+	dw Functione46ba
+	dw Functione46dd
+; e4687
+
+Functione4687: ; e4687
+	ld hl, $cf63
+	inc [hl]
+	ret
+; e468c
+
+Functione468c: ; e468c
+	ret
+; e468d
+
+Functione468d: ; e468d
+	ld hl, $cf65
+	ld a, [hl]
+	cp $20
+	jr nc, .asm_e4697
+	inc [hl]
+	ret
+
+.asm_e4697
+	ld [hl], 0
+	ld hl, .GAME_FREAK
+	decoord 5, 10
+	ld bc, .end - .GAME_FREAK
+	call CopyBytes
+	call Functione4687
+	ld de, SFX_GAME_FREAK_PRESENTS
+	call StartSFX
+	ret
+; e46af
+
+.GAME_FREAK
+	;  G  A  M  E   _  F  R  E  A  K
+	db 0, 1, 2, 3, 13, 4, 5, 3, 1, 6
+.end
+	db "@"
+; e46ba
+
+Functione46ba: ; e46ba
+	ld hl, $cf65
+	ld a, [hl]
+	cp $40
+	jr nc, .asm_e46c4
+	inc [hl]
+	ret
+
+.asm_e46c4
+	ld [hl], 0
+	ld hl, .presents
+	decoord 7,11
+	ld bc, .end - .presents
+	call CopyBytes
+	call Functione4687
+	ret
+; e46d6
+
+.presents
+	db 7, 8, 9, 10, 11, 12
+.end
+	db "@"
+; e46dd
+
+Functione46dd: ; e46dd
+	ld hl, $cf65
+	ld a, [hl]
+	cp $80
+	jr nc, .asm_e46e7
+	inc [hl]
+	ret
+
+.asm_e46e7
+	ld hl, $cf63
+	set 7, [hl]
+	ret
+; e46ed
+
+
+INCBIN "baserom.gbc", $e46ed, $e48ac - $e46ed
 
 
 Functione48ac: ; e48ac
@@ -65776,6 +65859,8 @@ Functione48ac: ; e48ac
 	ld a, [$ff9e]
 	push af
 	call Functione4901
+
+Functione48bc: ; e48bc
 	call Functiona57
 	ld a, [$ffa9]
 	and $f
@@ -65786,7 +65871,7 @@ Functione48ac: ; e48ac
 	call Functione490f
 	callba Function8cf69
 	call DelayFrame
-	jp $48bc
+	jp Functione48bc
 
 .asm_e48db
 	ld de, $0000
