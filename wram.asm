@@ -1753,23 +1753,20 @@ UndergroundSwitchPositions: ; d963
 FarfetchdPosition: ; d964
 	ds 1 ; which position the ilex farfetch'd is in
 
-SECTION "Events",WRAMX[$dad4],BANK[1]
+SECTION "Events",WRAMX[$da72],BANK[1]
 
+EventFlags: ; da72
 ;RoomDecorations: ; dac6
-;	db 7
-
-HoOhEvent: ; dad4
-	ds 1
-LugiaEvent: ; dad5
-	ds 1
-
-; TODO
+;HoOhEvent: ; dad4
+;LugiaEvent: ; dad5
 ;SuicuneEvent: ; dad8 (tin tower)
 ;TeamRocketAzaleaTownAttackEvent: ; db51
 ;SudowoodoEvent: ; db51
 ;PoliceAtElmsLabEvent: ; db52
 ;SalesmanMahoganyTownEvent: ; db5c
 ;RedGyaradosEvent: ; db5c
+	ds 250
+; db6c
 
 SECTION "BoxNames",WRAMX[$db75],BANK[1]
 ; 8 chars + $50

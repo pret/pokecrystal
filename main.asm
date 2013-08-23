@@ -7267,7 +7267,7 @@ Function2e5d: ; 2e5d
 
 
 BitTable1Func: ; 0x2e6f
-	ld hl, $da72
+	ld hl, EventFlags
 	call BitTableFunc
 	ret
 
