@@ -7266,12 +7266,12 @@ Function2e5d: ; 2e5d
 ; 2e6f
 
 
-BitTable1Func: ; 0x2e6f
+EventFlagAction: ; 0x2e6f
 	ld hl, EventFlags
-	call BitTableFunc
+	call FlagAction
 	ret
 
-BitTableFunc: ; 0x2e76
+FlagAction: ; 0x2e76
 ; Perform a function on a bit in memory.
 
 ; inputs:
@@ -9224,7 +9224,7 @@ CheckTrainerBattle: ; 360d
 	inc hl
 	ld d, [hl]
 	ld b, CHECK_FLAG
-	call BitTable1Func
+	call EventFlagAction
 	ld a, c
 	pop de
 	pop bc
@@ -9379,7 +9379,7 @@ Function36f5: ; 36f5
 	ld e, l
 	push de
 	ld b, $2
-	call BitTable1Func
+	call EventFlagAction
 	pop de
 	ld a, c
 	and a
@@ -30776,7 +30776,7 @@ Function15cef: ; 15cef
 	ld d, $0
 	ld b, $1
 	ld hl, WalkingDirection
-	call BitTableFunc
+	call FlagAction
 	call Function15fc3
 	ld de, Money
 	ld bc, $ffc3
@@ -30838,7 +30838,7 @@ Function15da5: ; 15da5
 	ld d, $0
 	ld b, $2
 	ld hl, WalkingDirection
-	call BitTableFunc
+	call FlagAction
 	ld a, c
 	and a
 	jr nz, .asm_15dd8
@@ -34862,7 +34862,7 @@ Function26a3b: ; 26a3b
 	push bc
 	call Function26a30
 	pop bc
-	call BitTable1Func
+	call EventFlagAction
 	ret
 ; 26a44
 
@@ -48336,7 +48336,7 @@ GetFruitTreeFlag: ; 44078
 	ld e, a
 	ld d, 0
 	ld hl, FruitTreeFlags
-	call BitTableFunc
+	call FlagAction
 	pop de
 	pop hl
 	ret
@@ -56916,7 +56916,7 @@ SpecialHoOhChamber: ; 0x8addb
 	call GetSecondaryMapHeaderPointer
 	ld de, $0326
 	ld b, $1
-	call BitTable1Func
+	call EventFlagAction
 .done
 	ret
 ; 0x8adef
@@ -56935,7 +56935,7 @@ Function8ae30: ; 8ae30
 	jr nz, .asm_8ae4a
 	ld de, $0329
 	ld b, $1
-	call BitTable1Func
+	call EventFlagAction
 	scf
 	jr .asm_8ae4b
 
@@ -60459,7 +60459,7 @@ CheckSignFlag: ; 96ad8
 	ld e, l
 	ld d, h
 	ld b, $2
-	call BitTable1Func
+	call EventFlagAction
 	ld a, c
 	and a
 	pop hl
@@ -63124,7 +63124,7 @@ Functionb8172: ; b8172
 	ld d, h
 	ld e, l
 	ld b, $2
-	call BitTable1Func
+	call EventFlagAction
 	ld a, c
 	and a
 	jr z, .asm_b81df
