@@ -7343,7 +7343,7 @@ FlagAction: ; 0x2e76
 Function2ead: ; 2ead
 	ld de, $000b
 	ld b, $2
-	callba GetFlag2
+	callba EngineFlagAction
 	ld a, c
 	and a
 	ret
@@ -18031,7 +18031,7 @@ SpecialGiveShuckle: ; 7305
 	ld de, SpecialShuckleOT
 	call CopyName2
 
-; Bittable2 flag for this event.
+; Engine flag for this event.
 	ld hl, $dc1e
 	set 5, [hl]
 
@@ -20764,12 +20764,11 @@ GetPartyNick: ; c706
 	ret
 ; c721
 
-CheckFlag2: ; c721
-; using bittable2
-; check flag id in de
-; return carry if flag is not set
+CheckEngineFlag: ; c721
+; Check engine flag de
+; Return carry if flag is not set
 	ld b, $02 ; check flag
-	callba GetFlag2
+	callba EngineFlagAction
 	ld a, c
 	and a
 	jr nz, .isset
@@ -20782,7 +20781,7 @@ CheckFlag2: ; c721
 
 CheckBadge: ; c731
 ; input: a = badge flag id ($1b-$2b)
-	call CheckFlag2
+	call CheckEngineFlag
 	ret nc
 	ld hl, BadgeRequiredText
 	call Function1d67 ; push text to queue
@@ -21136,7 +21135,7 @@ TrySurfOW: ; c9e7
 	jr c, .quit
 
 	ld de, $1e ; FLAG_FOG_BADGE
-	call CheckFlag2
+	call CheckEngineFlag
 	jr c, .quit
 
 	ld d, SURF
@@ -21341,7 +21340,7 @@ TryWaterfallOW: ; cb56
 	call CheckPartyMove
 	jr c, .asm_cb74
 	ld de, $0022
-	call CheckFlag2
+	call CheckEngineFlag
 	jr c, .asm_cb74
 	call Functioncb07
 	jr c, .asm_cb74
@@ -21534,7 +21533,7 @@ TryWhirlpoolOW: ; ce3e
 	call CheckPartyMove
 	jr c, .asm_ce5c
 	ld de, $0021
-	call CheckFlag2
+	call CheckEngineFlag
 	jr c, .asm_ce5c
 	call Functioncdde
 	jr c, .asm_ce5c
@@ -21780,7 +21779,7 @@ TryCutOW: ; d186
 	call CheckPartyMove
 	jr c, .asm_d19f
 	ld de, $001c
-	call CheckFlag2
+	call CheckEngineFlag
 	jr c, .asm_d19f
 	ld a, BANK(UnknownScript_0xd1a9)
 	ld hl, UnknownScript_0xd1a9
@@ -55472,8 +55471,8 @@ Function80422: ; 80422
 
 
 
-GetFlag2: ; 80430
-; Do action b on flag de from BitTable2
+EngineFlagAction: ; 80430
+; Do action b on engine flag de
 ;
 ;   b = 0: reset flag
 ;     = 1: set flag
@@ -55491,8 +55490,8 @@ GetFlag2: ; 80430
 	jr c, .read ; cp 0 can't set carry!
 	jr .invalid
 	
-; There are only $a2 flags in BitTable2, so anything beyond that
-; is invalid too.
+; There are only $a2 engine flags, so
+; anything beyond that is invalid too.
 	
 .ceiling
 	ld a, e
@@ -55506,10 +55505,10 @@ GetFlag2: ; 80430
 	ld e, a
 	ld d, a
 	
-; Read BitTable2 for this flag's location.
+; Get this flag's location.
 	
 .read
-	ld hl, BitTable2
+	ld hl, EngineFlags
 ; location
 	add hl, de
 	add hl, de
@@ -55557,8 +55556,8 @@ GetFlag2: ; 80430
 ; 80462
 
 
-BitTable2: ; 80462
-INCLUDE "engine/bittable2.asm"
+EngineFlags: ; 80462
+INCLUDE "engine/engine_flags.asm"
 ; 80648
 
 
