@@ -1757,11 +1757,7 @@ SECTION "Events",WRAMX[$da72],BANK[1]
 
 EventFlags: ; da72
 ;RoomDecorations: ; dac6
-;HoOhEvent: ; dad4
-;LugiaEvent: ; dad5
-;SuicuneEvent: ; dad8 (tin tower)
 ;TeamRocketAzaleaTownAttackEvent: ; db51
-;SudowoodoEvent: ; db51
 ;PoliceAtElmsLabEvent: ; db52
 ;SalesmanMahoganyTownEvent: ; db5c
 ;RedGyaradosEvent: ; db5c

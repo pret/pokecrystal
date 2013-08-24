@@ -13,6 +13,7 @@ INCLUDE "constants/map_constants.asm"
 INCLUDE "constants/item_constants.asm"
 INCLUDE "constants/trainer_constants.asm"
 INCLUDE "constants/script_constants.asm"
+INCLUDE "constants/event_flags.asm"
 INCLUDE "constants/music_constants.asm"
 
 
