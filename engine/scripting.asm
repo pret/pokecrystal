@@ -1497,9 +1497,9 @@ Script_loadtrainer: ; 0x97424
 Script_startbattle: ; 0x97436
 ; script command 0x5f
 
-	call $2879
-	ld a, $16
-	call $2d83
+	call Function2879
+	ld a, PREDEF_START_BATTLE
+	call Predef
 	ld a, [$d0ee]
 	and $3f
 	ld [$c2dd], a
