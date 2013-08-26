@@ -20302,7 +20302,7 @@ SpecialsPointers: ; c029
 	dbw BANK(SpecialGameboyCheck),SpecialGameboyCheck
 	dbw BANK(SpecialTrainerHouse),SpecialTrainerHouse
 	dbw $05, $6dc7
-	dbw BANK(SpecialRoamMons), SpecialRoamMons
+	dbw BANK(InitRoamMons), InitRoamMons
 	dbw $03, $448f
 	dbw $03, $449f
 	dbw $03, $44ac
@@ -35666,9 +35666,8 @@ Function2a288: ; 2a288
 ; 2a2a0
 
 
-SpecialRoamMons: ; 2a2a0
+InitRoamMons: ; 2a2a0
 ; initialize RoamMon structs
-; include commented-out parts from the gs function
 
 ; species
 	ld a, RAIKOU
