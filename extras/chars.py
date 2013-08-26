@@ -270,6 +270,7 @@ jap_chars.update({
     0xE1: "ゅ",
     0xE2: "ょ",
     0xE3: "ー",
+    0xE9: "ァ",
 })
 
 #some of the japanese characters can probably fit into the english table

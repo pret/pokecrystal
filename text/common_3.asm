@@ -1,1455 +1,1553 @@
-_OakText6: ; 0x1c4000
-	db $0, "Now, what did you", $4f
-	db "say your name was?", $58
-; 0x1c4026
+UnknownText_0x1c0000: ; 1c0000
+	db $0, "Oh, no picture?", $4f
+	db "Come again, OK?", $57
+; 1c0021
 
-_OakText7: ; 0x1c4026
-	db $0, $52, ", are you", $4f
-	db "ready?", $51
-	db "Your very own", $4f
-	db "#MON story is", $55
-	db "about to unfold.", $51
-	db "You'll face fun", $4f
-	db "times and tough", $55
-	db "challenges.", $51
-	db "A world of dreams", $4f
-	db "and adventures", $51
-	db "with #MON", $4f
-	db "awaits! Let's go!", $51
-	db "I'll be seeing you", $4f
-	db "later!", $57
-; 0x1c40e6
+UnknownText_0x1c0021: ; 1c0021
+	db $0, "An EGG? My talent", $4f
+	db "is worth more…", $57
+; 1c0043
 
-UnknownText_0x1c40e6: ; 0x1c40e6
-	db $0, "The clock's time", $4f
-	db "may be wrong.", $51
-	db "Please reset the", $4f
-	db "time.", $58
-; 0x1c411c
+UnknownText_0x1c0043: ; 1c0043
+	db $0, "Hello, hello! I'm", $4f
+	db "the NAME RATER.", $51
+	db "I rate the names", $4f
+	db "of #MON.", $51
+	db "Would you like me", $4f
+	db "to rate names?", $57
+; 1c00a0
 
-UnknownText_0x1c411c: ; 0x1c411c
-	db $0, "Set with the", $4f
-	db "Control Pad.", $51
-	db "Confirm: A Button", $4f
-	db "Cancel:  B Button", $57
-; 0x1c415b
+UnknownText_0x1c00a0: ; 1c00a0
+	db $0, "Which #MON's", $4f
+	db "nickname should I", $55
+	db "rate for you?", $58
+; 1c00cd
 
-UnknownText_0x1c415b: ; 0x1c415b
-	db $0, "Is this OK?", $57
-; 0x1c4168
-
-UnknownText_0x1c4168: ; 0x1c4168
-	db $0, "The clock has been", $4f
-	db "reset.", $57
-; 0x1c4183
-
-UnknownText_0x1c4183: ; 0x1c4183
-	db $0, "Too much time has", $4f
-	db "elapsed. Please", $55
-	db "try again.", $58
-; 0x1c41b1
-
-UnknownText_0x1c41b1: ; 0x1c41b1
-	db $0, "If you trade that", $4f
-	db "#MON, you won't", $55
-	db "be able to battle.", $58
-; 0x1c41e6
-
-UnknownText_0x1c41e6: ; 0x1c41e6
-	db $0, "Your friend's", $4f
-	db "@"
-	text_from_ram $d073
-	db $0, " appears", $55
-	db "to be abnormal!", $58
-; 0x1c4212
-
-UnknownText_0x1c4212: ; 0x1c4212
-	db $0, "Trade @"
-	text_from_ram $d004
-	db $0, $4f
-	db "for @"
-	text_from_ram $d073
-	db $0, "?", $57
-; 0x1c422a
-
-UnknownText_0x1c422a: ; 0x1c422a
-	db $0, "To enter a mobile", $4f
-	db "battle, you must", $51
-	db "pick a team of", $4f
-	db "three #MON.", $51
-	db "Is that OK?", $57
-; 0x1c4275
-
-UnknownText_0x1c4275: ; 0x1c4275
-	db $0, "Need more info on", $4f
-	db "mobile battles?", $57
-; 0x1c4298
-
-UnknownText_0x1c4298: ; 0x1c4298
-	db $0, "For a mobile", $4f
-	db "battle, choose", $55
-	db "three #MON.", $51
-	db "The maximum daily", $4f
-	db "play time is ten", $51
-	db "minutes for each", $4f
-	db "linked player.", $51
-	db "If a battle isn't", $4f
-	db "finished within", $51
-	db "the time limit,", $4f
-	db "the player with", $51
-	db "the fewest fainted", $4f
-	db "#MON wins.", $51
-	db "If tied, the team", $4f
-	db "that lost the", $51
-	db "least amount of HP", $4f
-	db "wins.", $57
-; 0x1c439c
-
-UnknownText_0x1c439c: ; 0x1c439c
-	db $0, "Today's remaining", $4f
-	db "time is @"
-	deciram $d086, $12
-	db $0, " min.", $51
-	db "Would you like to", $4f
-	db "battle?", $57
-; 0x1c43dc
-
-UnknownText_0x1c43dc: ; 0x1c43dc
-	db $0, "There are only @"
-	deciram $d086, $12
-	db $0, $4f
-	db "min. left today.", $51
-	db "Want a quick", $4f
-	db "battle?", $57
-; 0x1c4419
-
-UnknownText_0x1c4419: ; 0x1c4419
-	db $0, "There is only", $4f
-	db "1 min. left today!", $51
-	db "Want to rush", $4f
-	db "through a battle?", $57
-; 0x1c445a
-
-UnknownText_0x1c445a: ; 0x1c445a
-	db $0, "There is less than", $4f
-	db "1 min. left today!", $51
-	db "Please try again", $4f
-	db "tomorrow.", $57
-; 0x1c449c
-
-UnknownText_0x1c449c: ; 0x1c449c
-	db $0, "Try again using", $4f
-	db "the same settings?", $57
-; 0x1c44c0
-
-UnknownText_0x1c44c0: ; 0x1c44c0
-	db $0, "There is less than", $4f
-	db "1 min. left today!", $57
-; 0x1c44e7
-
-UnknownText_0x1c44e7: ; 0x1c44e7
-	db $0, "No time left for", $4f
-	db "linking today.", $57
-; 0x1c4508
-
-UnknownText_0x1c4508: ; 0x1c4508
-	db $0, "Pick three #MON", $4f
-	db "for battle.", $57
-; 0x1c4525
-
-UnknownText_0x1c4525: ; 0x1c4525
-	db $0, "Today's remaining", $4f
-	db "time is @"
-	deciram $d086, $12
-	db $0, " min.", $57
-; 0x1c454b
-
-UnknownText_0x1c454b: ; 0x1c454b
-	db $0, "Would you like to", $4f
-	db "save the game?", $57
-; 0x1c456d
-
-UnknownText_0x1c456d: ; 0x1c456d
-	db $0, "SAVING… DON'T TURN", $4f
-	db "OFF THE POWER.", $57
-; 0x1c4590
-
-UnknownText_0x1c4590: ; 0x1c4590
-	db $0, $52, " saved", $4f
-	db "the game.", $57
-; 0x1c45a3
-
-UnknownText_0x1c45a3: ; 0x1c45a3
-	db $0, "There is already a", $4f
-	db "save file. Is it", $55
-	db "OK to overwrite?", $57
-; 0x1c45d9
-
-UnknownText_0x1c45d9: ; 0x1c45d9
-	db $0, "There is another", $4f
-	db "save file. Is it", $55
-	db "OK to overwrite?", $57
-; 0x1c460d
-
-UnknownText_0x1c460d: ; 0x1c460d
-	db $0, "The save file is", $4f
-	db "corrupted!", $58
-; 0x1c462a
-
-UnknownText_0x1c462a: ; 0x1c462a
-	db $0, "When you change a", $4f
-	db "#MON BOX, data", $55
-	db "will be saved. OK?", $57
-; 0x1c465f
-
-UnknownText_0x1c465f: ; 0x1c465f
-	db $0, "Each time you move", $4f
-	db "a #MON, data", $55
-	db "will be saved. OK?", $57
-; 0x1c4693
-
-UnknownText_0x1c4693: ; 0x1c4693
-	db $0, "The window save", $4f
-	db "area was exceeded.", $57
-; 0x1c46b7
-
-UnknownText_0x1c46b7: ; 0x1c46b7
-	db $0, "No windows avail-", $4f
-	db "able for popping.", $57
-; 0x1c46dc
-
-UnknownText_0x1c46dc: ; 0x1c46dc
-	db $0, "Corrupted event!", $58
-; 0x1c46ee
-
-_ObjectEventText: ; 0x1c46ee
-	db $0, "Object event", $57
-; 0x1c46fc
-
-UnknownText_0x1c46fc: ; 0x1c46fc
-	db $0, "BG event", $57
-; 0x1c4706
-
-UnknownText_0x1c4706: ; 0x1c4706
-	db $0, "Coordinates event", $57
-; 0x1c4719
-
-UnknownText_0x1c4719: ; 0x1c4719
-	db $0, $52, " received", $4f
-	db "@"
-	text_from_ram $d0ac
-	db $0, ".", $57
-; 0x1c472c
-
-UnknownText_0x1c472c: ; 0x1c472c
-	db $0, $52, " put the", $4f
-	db "@"
-	text_from_ram $d073
-	db $0, " in", $55
-	db "the @"
-	text_from_ram $d099
-	db $0, ".", $58
-; 0x1c474b
-
-UnknownText_0x1c474b: ; 0x1c474b
-	db $0, "The @"
-	text_from_ram $d099
-	db $0, $4f
-	db "is full…", $58
-; 0x1c475f
-
-UnknownText_0x1c475f: ; 0x1c475f
-	db $0, "I see all.", $4f
-	db "I know all…", $51
-	db "Certainly, I know", $4f
-	db "of your #MON!", $57
-; 0x1c4797
-
-UnknownText_0x1c4797: ; 0x1c4797
-	db $0, "Whaaaat? I can't", $4f
-	db "tell a thing!", $51
-	db "How could I not", $4f
-	db "know of this?", $57
-; 0x1c47d4
-
-UnknownText_0x1c47d4: ; 0x1c47d4
-	db $0, "Hm… I see you met", $4f
-	db "@"
-	text_from_ram $d003
-	db $0, " here:", $55
-	db "@"
-	text_from_ram $d00e
-	db $0, "!", $58
-; 0x1c47fa
-
-UnknownText_0x1c47fa: ; 0x1c47fa
-	db $0, "The time was", $4f
-	db "@"
-	text_from_ram $d01f
-	db $0, "!", $51
-	db "Its level was @"
-	text_from_ram $d036
-	db $0, "!", $51
-	db "Am I good or what?", $58
-; 0x1c4837
-
-UnknownText_0x1c4837: ; 0x1c4837
+UnknownText_0x1c00cd: ; 1c00cd
 	db $0, "Hm… @"
-	text_from_ram $d003
-	db $0, $4f
-	db "came from @"
-	text_from_ram $d02a
-	db $0, $55
-	db "in a trade?", $51
-	db "@"
-	text_from_ram $d00e
-	db $0, $4f
-	db "was where @"
-	text_from_ram $d02a
-	db $0, $55
-	db "met @"
-	text_from_ram $d003
-	db $0, "!", $58
-; 0x1c487f
-
-UnknownText_0x1c487f: ; 0x1c487f
-	db $0, "What!? Incredible!", $51
-	db "I don't understand", $4f
-	db "how, but it is", $51
-	db "incredible!", $4f
-	db "You are special.", $51
-	db "I can't tell where", $4f
-	db "you met it, but it", $55
-	db "was at level @"
-	text_from_ram $d036
-	db $0, ".", $51
-	db "Am I good or what?", $58
-; 0x1c491d
-
-UnknownText_0x1c491d: ; 0x1c491d
-	db $0, "Hey!", $51
-	db "That's an EGG!", $51
-	db "You can't say that", $4f
-	db "you've met it yet…", $57
-; 0x1c4955
-
-UnknownText_0x1c4955: ; 0x1c4955
-	db $0, "Fufufu! I saw that", $4f
-	db "you'd do nothing!", $57
-; 0x1c497a
-
-UnknownText_0x1c497a: ; 0x1c497a
-	db $0, "Incidentally…", $51
-	db "It would be wise", $4f
-	db "to raise your", $51
-	db "#MON with a", $4f
-	db "little more care.", $57
-; 0x1c49c6
-
-UnknownText_0x1c49c6: ; 0x1c49c6
-	db $0, "Incidentally…", $51
-	db "It seems to have", $4f
-	db "grown a little.", $51
-	db "@"
-	text_from_ram $d003
-	db $0, " seems", $4f
-	db "to be becoming", $55
-	db "more confident.", $57
-; 0x1c4a21
-
-UnknownText_0x1c4a21: ; 0x1c4a21
-	db $0, "Incidentally…", $51
-	db "@"
-	text_from_ram $d003
-	db $0, " has", $4f
-	db "grown. It's gained", $55
-	db "much strength.", $57
-; 0x1c4a5b
-
-UnknownText_0x1c4a5b: ; 0x1c4a5b
-	db $0, "Incidentally…", $51
-	db "It certainly has", $4f
-	db "grown mighty!", $51
-	db "This @"
-	text_from_ram $d003
-	db $0, $4f
-	db "must have come", $51
-	db "through numerous", $4f
-	db "#MON battles.", $51
-	db "It looks brimming", $4f
-	db "with confidence.", $57
-; 0x1c4ae5
-
-UnknownText_0x1c4ae5: ; 0x1c4ae5
-	db $0, "Incidentally…", $51
-	db "I'm impressed by", $4f
-	db "your dedication.", $51
-	db "It's been a long", $4f
-	db "time since I've", $51
-	db "seen a #MON as", $4f
-	db "mighty as this", $55
-	db "@"
-	text_from_ram $d003
-	db $0, ".", $51
-	db "I'm sure that", $4f
-	db "seeing @"
-	text_from_ram $d003
-	db $0, $51
-	db "in battle would", $4f
-	db "excite anyone.", $57
-; 0x1c4b92
-
-UnknownText_0x1c4b92: ; 0x1c4b92
-	db $0, "Congratulations!", $4f
-	db "Your @"
-	text_from_ram $d086
-	db $50
-; 0x1c4bae
-
-UnknownText_0x1c4bae: ; 0x1c4bae
-	db $50
-; 0x1c4baf
-
-UnknownText_0x1c4baf: ; 0x1c4baf
-	db $0, $51
-	db "evolved into", $4f
-	db "@"
 	text_from_ram $d073
-	db $0, "!", $57
-; 0x1c4bc5
-
-UnknownText_0x1c4bc5: ; 0x1c4bc5
-	db $0, "Huh? @"
-	text_from_ram $d086
-	db $0, $4f
-	db "stopped evolving!", $58
-; 0x1c4be3
-
-UnknownText_0x1c4be3: ; 0x1c4be3
-	db $0, "What? @"
-	text_from_ram $d086
-	db $0, $4f
-	db "is evolving!", $57
-; 0x1c4bfd
-
-UnknownText_0x1c4bfd: ; 0x1c4bfd
-	db $0, "How many?", $57
-; 0x1c4c08
-
-UnknownText_0x1c4c08: ; 0x1c4c08
-	deciram $d10c, $12
-	db $0, " @"
-	text_from_ram $d086
-	db $0, "(S)", $4f
-	db "will be ¥@"
-	deciram $ffc3, $36
-	db $0, ".", $57
-; 0x1c4c28
-
-UnknownText_0x1c4c28: ; 0x1c4c28
-	db $0, "Hello, dear.", $51
-	db "I sell inexpensive", $4f
-	db "herbal medicine.", $51
-	db "They're good, but", $4f
-	db "a trifle bitter.", $51
-	db "Your #MON may", $4f
-	db "not like them.", $51
-	db "Hehehehe…", $57
-; 0x1c4ca3
-
-UnknownText_0x1c4ca3: ; 0x1c4ca3
-	db $0, "How many?", $57
-; 0x1c4cae
-
-UnknownText_0x1c4cae: ; 0x1c4cae
-	deciram $d10c, $12
-	db $0, " @"
-	text_from_ram $d086
-	db $0, "(S)", $4f
-	db "will be ¥@"
-	deciram $ffc3, $36
-	db $0, ".", $57
-; 0x1c4cce
-
-UnknownText_0x1c4cce: ; 0x1c4cce
-	db $0, "Thank you, dear.", $4f
-	db "Hehehehe…", $57
-; 0x1c4cea
-
-UnknownText_0x1c4cea: ; 0x1c4cea
-	db $0, "Oh? Your PACK is", $4f
-	db "full, dear.", $57
-; 0x1c4d08
-
-UnknownText_0x1c4d08: ; 0x1c4d08
-	db $0, "Hehehe… You don't", $4f
-	db "have the money.", $57
-; 0x1c4d2a
-
-UnknownText_0x1c4d2a: ; 0x1c4d2a
-	db $0, "Come again, dear.", $4f
-	db "Hehehehe…", $57
-; 0x1c4d47
-
-UnknownText_0x1c4d47: ; 0x1c4d47
-	db $0, "Hiya! Care to see", $4f
-	db "some bargains?", $51
-	db "I sell rare items", $4f
-	db "that nobody else", $51
-	db "carries--but only", $4f
-	db "one of each item.", $57
-; 0x1c4db0
-
-UnknownText_0x1c4db0: ; 0x1c4db0
-	text_from_ram $d086
-	db $0, " costs", $4f
-	db "¥@"
-	deciram $ffc3, $36
-	db $0, ". Want it?", $57
-; 0x1c4dcd
-
-UnknownText_0x1c4dcd: ; 0x1c4dcd
-	db $0, "Thanks.", $57
-; 0x1c4dd6
-
-UnknownText_0x1c4dd6: ; 0x1c4dd6
-	db $0, "Uh-oh, your PACK", $4f
-	db "is chock-full.", $57
-; 0x1c4df7
-
-UnknownText_0x1c4df7: ; 0x1c4df7
-	db $0, "You bought that", $4f
-	db "already. I'm all", $55
-	db "sold out of it.", $57
-; 0x1c4e28
-
-UnknownText_0x1c4e28: ; 0x1c4e28
-	db $0, "Uh-oh, you're", $4f
-	db "short on funds.", $57
-; 0x1c4e46
-
-UnknownText_0x1c4e46: ; 0x1c4e46
-	db $0, "Come by again", $4f
-	db "sometime.", $57
-; 0x1c4e5f
-
-UnknownText_0x1c4e5f: ; 0x1c4e5f
-	db $0, "What's up? Need", $4f
-	db "some medicine?", $57
-; 0x1c4e7e
-
-UnknownText_0x1c4e7e: ; 0x1c4e7e
-	db $0, "How many?", $57
-; 0x1c4e89
-
-UnknownText_0x1c4e89: ; 0x1c4e89
-	deciram $d10c, $12
-	db $0, " @"
-	text_from_ram $d086
-	db $0, "(S)", $4f
-	db "will cost ¥@"
-	deciram $ffc3, $36
-	db $0, ".", $57
-; 0x1c4eab
-
-UnknownText_0x1c4eab: ; 0x1c4eab
-	db $0, "Thanks much!", $57
-; 0x1c4eb9
-
-UnknownText_0x1c4eb9: ; 0x1c4eb9
-	db $0, "You don't have any", $4f
-	db "more space.", $57
-; 0x1c4ed8
-
-UnknownText_0x1c4ed8: ; 0x1c4ed8
-	db $0, "Huh? That's not", $4f
-	db "enough money.", $57
-; 0x1c4ef6
-
-UnknownText_0x1c4ef6: ; 0x1c4ef6
-	db $0, "All right.", $4f
-	db "See you around.", $57
-; 0x1c4f12
-
-UnknownText_0x1c4f12: ; 0x1c4f12
-	db $0, "You don't have", $4f
-	db "anything to sell.", $58
-; 0x1c4f33
-
-UnknownText_0x1c4f33: ; 0x1c4f33
-	db $0, "How many?", $57
-; 0x1c4f3e
-
-UnknownText_0x1c4f3e: ; 0x1c4f3e
-	db $0, "I can pay you", $4f
-	db "¥@"
-	deciram $ffc3, $36
-	db $0, ".", $51
-	db "Is that OK?", $57
-; 0x1c4f62
-
-UnknownText_0x1c4f62: ; 0x1c4f62
-	db $0, "Welcome! How may I", $4f
-	db "help you?", $57
-; 0x1c4f80
-
-UnknownText_0x1c4f80: ; 0x1c4f80
-	db $0, "Here you are.", $4f
-	db "Thank you!", $57
-; 0x1c4f9a
-
-UnknownText_0x1c4f9a: ; 0x1c4f9a
-	db $0, "You don't have", $4f
-	db "enough money.", $57
-; 0x1c4fb7
-
-UnknownText_0x1c4fb7: ; 0x1c4fb7
-	db $0, "You can't carry", $4f
-	db "any more items.", $57
-; 0x1c4fd7
-
-UnknownText_0x1c4fd7: ; 0x1c4fd7
-	db $0, "Sorry, I can't buy", $4f
-	db "that from you.", $58
-; 0x1c4ff9
-
-UnknownText_0x1c4ff9: ; 0x1c4ff9
-	db $0, "Please come again!", $57
-; 0x1c500d
-
-UnknownText_0x1c500d: ; 0x1c500d
-	db $0, "Can I do anything", $4f
-	db "else for you?", $57
-; 0x1c502e
-
-UnknownText_0x1c502e: ; 0x1c502e
-	db $0, "Got ¥@"
-	deciram $ffc3, $36
-	db $0, " for", $4f
-	db "@"
-	text_from_ram $d086
-	db $0, "(S).", $57
-; 0x1c5049
-
-UnknownText_0x1c5049: ; 0x1c5049
-	db $0, "Bet how many", $4f
-	db "coins?", $57
-; 0x1c505e
-
-UnknownText_0x1c505e: ; 0x1c505e
-	db $0, "Start!", $57
-; 0x1c5066
-
-UnknownText_0x1c5066: ; 0x1c5066
-	db $0, "Not enough", $4f
-	db "coins.", $58
-; 0x1c5079
-
-UnknownText_0x1c5079: ; 0x1c5079
-	db $0, "Darn… Ran out of", $4f
-	db "coins…", $57
-; 0x1c5092
-
-UnknownText_0x1c5092: ; 0x1c5092
-	db $0, "Play again?", $57
-; 0x1c509f
-
-UnknownText_0x1c509f: ; 0x1c509f
-	db $0, "lined up!", $4f
-	db "Won @"
-	text_from_ram $d086
-	db $0, " coins!", $57
-; 0x1c50bb
-
-UnknownText_0x1c50bb: ; 0x1c50bb
-	db $0, "Darn!", $57
-; 0x1c50c2
-
-_MobileStadiumEntryText: ; 0x1c50c2
-	db $0, "Data for use in", $4f
-	db "the MOBILE STADIUM", $51
-	db "of the N64 #MON", $4f
-	db "STADIUM 2 can be", $55
-	db "read here.", $51
-	db "Read the data?", $57
-; 0x1c5121
-
-_MobileStadiumSuccessText: ; 0x1c5121
-	db $0, "Data transfer is", $4f
-	db "complete.", $51
-	db "We hope you enjoy", $4f
-	db "MOBILE STADIUM", $51
-	db "battles in the N64", $4f
-	db "#MON STADIUM 2.", $51
-	db $57
-; 0x1c5182
-
-UnknownText_0x1c5182: ; 0x1c5182
-	db $0, "Clock time unknown", $57
-; 0x1c5196
-
-UnknownText_0x1c5196: ; 0x1c5196
-	db $0, "Delete the saved", $4f
-	db "LOG-IN PASSWORD?", $57
-; 0x1c51b9
-
-UnknownText_0x1c51b9: ; 0x1c51b9
-	db $0, "Deleted the LOG-IN", $4f
-	db "PASSWORD.", $57
-; 0x1c51d7
-
-UnknownText_0x1c51d7: ; 0x1c51d7
-	db $0, "Pick three #MON", $4f
-	db "for battle.", $58
-; 0x1c51f4
-
-UnknownText_0x1c51f4: ; 0x1c51f4
-	text_from_ram $d006
-	db $0, ",", $4f
-	db "@"
-	text_from_ram $d00c
-	db $0, " and", $55
-	db "@"
-	text_from_ram $d012
-	db $0, ".", $51
-	db "Use these three?", $57
-; 0x1c521c
-
-UnknownText_0x1c521c: ; 0x1c521c
-	db $0, "Only three #MON", $4f
-	db "may enter.", $58
-; 0x1c5238
-
-UnknownText_0x1c5238: ; 0x1c5238
-	db $0, "The CARD FOLDER", $4f
-	db "stores your and", $51
-	db "your friends'", $4f
-	db "CARDS.", $51
-	db "A CARD contains", $4f
-	db "information like", $51
-	db "the person's name,", $4f
-	db "phone number and", $55
-	db "profile.", $51
-	db $57
-; 0x1c52bc
-
-UnknownText_0x1c52bc: ; 0x1c52bc
-	db $0, "This is your CARD.", $51
-	db "Once you've", $4f
-	db "entered your phone", $51
-	db "number, you can", $4f
-	db "trade CARDS with", $55
-	db "your friends.", $51
-	db $57
-; 0x1c531e
-
-UnknownText_0x1c531e: ; 0x1c531e
-	db $0, "If you have your", $4f
-	db "friend's CARD, you", $51
-	db "can use it to make", $4f
-	db "a call from a", $51
-	db "mobile phone on", $4f
-	db "the 2nd floor of a", $55
-	db "#MON CENTER.", $51
-	db $57
-; 0x1c5394
-
-UnknownText_0x1c5394: ; 0x1c5394
-	db $0, "To safely store", $4f
-	db "your collection of", $51
-	db "CARDS, you must", $4f
-	db "set a PASSCODE for", $55
-	db "your CARD FOLDER.", $51
-	db $57
-; 0x1c53ee
-
-UnknownText_0x1c53ee: ; 0x1c53ee
-	db $0, "If the CARD FOLDER", $4f
-	db "is deleted, all", $51
-	db "its CARDS and the", $4f
-	db "PASSCODE will also", $55
-	db "be deleted.", $51
-	db "Beware--a deleted", $4f
-	db "CARD FOLDER can't", $55
-	db "be restored.", $51
-	db "Want to delete", $4f
-	db "your CARD FOLDER?", $57
-; 0x1c5494
-
-UnknownText_0x1c5494: ; 0x1c5494
-	db $0, "Are you sure you", $4f
-	db "want to delete it?", $57
-; 0x1c54b9
-
-UnknownText_0x1c54b9: ; 0x1c54b9
-	db $0, "The CARD FOLDER", $4f
-	db "has been deleted.", $51
-	db $57
-; 0x1c54dd
-
-UnknownText_0x1c54dd: ; 0x1c54dd
-	db $0, "There is an older", $4f
-	db "CARD FOLDER from a", $55
-	db "previous journey.", $51
-	db "Do you want to", $4f
-	db "open it?", $57
-; 0x1c552d
-
-UnknownText_0x1c552d: ; 0x1c552d
-	db $0, "Delete the old", $4f
-	db "CARD FOLDER?", $57
-; 0x1c554a
-
-UnknownText_0x1c554a: ; 0x1c554a
-	db $0, "Finish registering", $4f
-	db "CARDS?", $57
-; 0x1c5565
-
-UnknownText_0x1c5565: ; 0x1c5565
-	db $0, "Huh? Sorry, wrong", $4f
-	db "number!", $57
-; 0x1c5580
-
-UnknownText_0x1c5580: ; 0x1c5580
-	db $0, "Click!", $57
-; 0x1c5588
-
-UnknownText_0x1c5588: ; 0x1c5588
-	db $0, $56, $57
-; 0x1c558b
-
-UnknownText_0x1c558b: ; 0x1c558b
-	db $0, "That number is out", $4f
-	db "of the area.", $57
-; 0x1c55ac
-
-UnknownText_0x1c55ac: ; 0x1c55ac
-	db $0, "Just go talk to", $4f
-	db "that person!", $57
-; 0x1c55ca
-
-UnknownText_0x1c55ca: ; 0x1c55ca
-	db $0, "Thank you!", $57
-; 0x1c55d6
-
-UnknownText_0x1c55d6: ; 0x1c55d6
-	db $0, "  :", $57
-; 0x1c55db
-
-UnknownText_0x1c55db: ; 0x1c55db
-	db $0, "Password OK.", $4f
-	db "Select CONTINUE &", $55
-	db "reset settings.", $58
-; 0x1c560b
-
-UnknownText_0x1c560b: ; 0x1c560b
-	db $0, "Wrong password!", $58
-; 0x1c561c
-
-UnknownText_0x1c561c: ; 0x1c561c
-	db $0, "Reset the clock?", $57
-; 0x1c562e
-
-UnknownText_0x1c562e: ; 0x1c562e
-	db $0, "Please enter the", $4f
-	db "password.", $57
-; 0x1c564a
-
-UnknownText_0x1c564a: ; 0x1c564a
-	db $0, "Clear all save", $4f
-	db "data?", $57
-; 0x1c5660
-
-UnknownText_0x1c5660: ; 0x1c5660
-	text_from_ram $d050
-	db $0, " learned", $4f
-	db "@"
-	text_from_ram $d086
-	db $0, "!@"
-	sound0
-	text_waitbutton
-	db $50
-; 0x1c5677
-
-UnknownText_0x1c5677: ; 0x1c5677
-	db $50
-; 0x1c5678
-
-UnknownText_0x1c5678: ; 0x1c5678
-	db $0, "Which move should", $4e, "be forgotten?", $57
-; 0x1c5699
-
-UnknownText_0x1c5699: ; 0x1c5699
-	db $0, "Stop learning", $4f
-	db "@"
-	text_from_ram $d086
-	db $0, "?", $57
-; 0x1c56af
-
-UnknownText_0x1c56af: ; 0x1c56af
-	text_from_ram $d050
-	db $0, $4f
-	db "did not learn", $55
-	db "@"
-	text_from_ram $d086
-	db $0, ".", $58
-; 0x1c56c9
-
-UnknownText_0x1c56c9: ; 0x1c56c9
-	text_from_ram $d050
-	db $0, " is", $4f
-	db "trying to learn", $55
-	db "@"
-	text_from_ram $d086
-	db $0, ".", $51
-	db "But @"
-	text_from_ram $d050
-	db $0, $4f
-	db "can't learn more", $55
-	db "than four moves.", $51
-	db "Delete an older", $4f
-	db "move to make room", $55
-	db "for @"
-	text_from_ram $d086
-	db $0, "?", $57
-; 0x1c5740
-
-UnknownText_0x1c5740: ; 0x1c5740
-	db $0, "1, 2 and…@"
-	interpret_data
-	db $50
-; 0x1c574d
-
-UnknownText_0x1c574d: ; 0x1c574d
-	db $50
-; 0x1c574e
-
-UnknownText_0x1c574e: ; 0x1c574e
-	db $0, " Poof!@"
-	interpret_data
-	db $0, $51
-	db "@"
-	text_from_ram $d050
-	db $0, " forgot", $4f
-	db "@"
-	text_from_ram $d073
-	db $0, ".", $51
-	db "And…", $58
-; 0x1c5772
-
-UnknownText_0x1c5772: ; 0x1c5772
-	db $0, "HM moves can't be", $4f
-	db "forgotten now.", $58
-; 0x1c5793
-
-UnknownText_0x1c5793: ; 0x1c5793
-	db $0, "Play with three", $4f
-	db "coins?", $57
-; 0x1c57ab
-
-UnknownText_0x1c57ab: ; 0x1c57ab
-	db $0, "Not enough coins…", $58
-; 0x1c57be
-
-UnknownText_0x1c57be: ; 0x1c57be
-	db $0, "Choose a card.", $57
-; 0x1c57ce
-
-UnknownText_0x1c57ce: ; 0x1c57ce
-	db $0, "Place your bet.", $57
-; 0x1c57df
-
-UnknownText_0x1c57df: ; 0x1c57df
-	db $0, "Want to play", $4f
-	db "again?", $57
-; 0x1c57f4
-
-UnknownText_0x1c57f4: ; 0x1c57f4
-	db $0, "The cards have", $4f
-	db "been shuffled.", $58
-; 0x1c5813
-
-UnknownText_0x1c5813: ; 0x1c5813
-	db $0, "Yeah!", $57
-; 0x1c581a
-
-UnknownText_0x1c581a: ; 0x1c581a
-	db $0, "Darn…", $57
-; 0x1c5821
-
-UnknownText_0x1c5821: ; 0x1c5821
-	current_day
-	db $50
-; 0x1c5823
-
-UnknownText_0x1c5823: ; 0x1c5823
-	db $50
-; 0x1c5824
-
-UnknownText_0x1c5824: ; 0x1c5824
-	db $0, $56, $57
-; 0x1c5827
-
-UnknownText_0x1c5827: ; 0x1c5827
-	db $0, "You're out of the", $4f
-	db "service area.", $58
-; 0x1c5847
-
-UnknownText_0x1c5847: ; 0x1c5847
-	db $0, "Whom do you want", $4f
-	db "to call?", $57
-; 0x1c5862
-
-UnknownText_0x1c5862: ; 0x1c5862
-	db $0, "Press any button", $4f
-	db "to exit.", $57
-; 0x1c587d
-
-UnknownText_0x1c587d: ; 0x1c587d
-	db $0, "Delete this stored", $4f
-	db "phone number?", $57
-; 0x1c589f
-
-UnknownText_0x1c589f: ; 0x1c589f
-	db $0, "Which prize would", $4f
-	db "you like?", $57
-; 0x1c58bc
-
-UnknownText_0x1c58bc: ; 0x1c58bc
+	db $0, "…", $4f
+	db "That's a fairly", $55
+	db "decent name.", $51
+	db "But, how about a", $4f
+	db "slightly better", $55
+	db "nickname?", $51
+	db "Want me to give it", $4f
+	db "a better name?", $57
+; 1c0142
+
+UnknownText_0x1c0142: ; 1c0142
+	db $0, "All right. What", $4f
+	db "name should we", $55
+	db "give it, then?", $58
+; 1c0171
+
+UnknownText_0x1c0171: ; 1c0171
+	db $0, "That's a better", $4f
+	db "name than before!", $51
+	db "Well done!", $57
+; 1c019e
+
+UnknownText_0x1c019e: ; 1c019e
+	db $0, "OK, then. Come", $4f
+	db "again sometime.", $57
+; 1c01be
+
+UnknownText_0x1c01be: ; 1c01be
+	db $0, "Hm… @"
 	text_from_ram $d073
 	db $0, "?", $4f
-	db "Is that right?", $57
-; 0x1c58d1
-
-UnknownText_0x1c58d1: ; 0x1c58d1
-	db $0, "Here you go!", $51
-	db $57
-; 0x1c58e0
-
-UnknownText_0x1c58e0: ; 0x1c58e0
-	db $0, "You don't have", $4f
-	db "enough points.", $51
-	db $57
-; 0x1c58ff
-
-UnknownText_0x1c58ff: ; 0x1c58ff
-	db $0, "You have no room", $4f
-	db "for it.", $51
-	db $57
-; 0x1c591a
-
-UnknownText_0x1c591a: ; 0x1c591a
-	db $0, "Oh. Please come", $4f
-	db "back again!", $57
-; 0x1c5937
-
-UnknownText_0x1c5937: ; 0x1c5937
-	db $0, "Excuse me!", $51
-	db $57
-; 0x1c5944
-
-UnknownText_0x1c5944: ; 0x1c5944
-	db $0, "Excuse me.", $4f
-	db "You're not ready.", $51
-	db $57
-; 0x1c5962
-
-UnknownText_0x1c5962: ; 0x1c5962
-	db $0, "Please return when", $4f
-	db "you're ready.", $57
-; 0x1c5983
-
-UnknownText_0x1c5983: ; 0x1c5983
-	db $0, "You need at least", $4f
-	db "three #MON.", $51
-	db $57
-; 0x1c59a3
-
-UnknownText_0x1c59a3: ; 0x1c59a3
-	db $0, "Sorry, an EGG", $4f
-	db "doesn't qualify.", $51
-	db $57
-; 0x1c59c3
-
-UnknownText_0x1c59c3: ; 0x1c59c3
-	db $0, "Only three #MON", $4f
-	db "may be entered.", $51
-	db $57
-; 0x1c59e5
-
-UnknownText_0x1c59e5: ; 0x1c59e5
-	db $0, "The @"
-	text_from_ram $d086
-	db $0, " #MON", $4f
-	db "must all be", $55
-	db "different kinds.", $51
-	db $57
-; 0x1c5a13
-
-UnknownText_0x1c5a13: ; 0x1c5a13
-	db $0, "The @"
-	text_from_ram $d086
-	db $0, " #MON", $4f
-	db "must not hold the", $55
-	db "same items.", $51
-	db $57
-; 0x1c5a42
-
-UnknownText_0x1c5a42: ; 0x1c5a42
-	db $0, "You can't take an", $4f
-	db "EGG!", $51
-	db $57
-; 0x1c5a5a
-
-UnknownText_0x1c5a5a: ; 0x1c5a5a
-	db $0, "It dodged the", $4f
-	db "thrown BALL!", $51
-	db "This #MON", $4f
-	db "can't be caught!", $58
-; 0x1c5a90
-
-UnknownText_0x1c5a90: ; 0x1c5a90
-	db $0, "You missed the", $4f
-	db "#MON!", $58
-; 0x1c5aa6
-
-UnknownText_0x1c5aa6: ; 0x1c5aa6
-	db $0, "Oh no! The #MON", $4f
-	db "broke free!", $58
-; 0x1c5ac3
-
-UnknownText_0x1c5ac3: ; 0x1c5ac3
-	db $0, "Aww! It appeared", $4f
-	db "to be caught!", $58
-; 0x1c5ae3
-
-UnknownText_0x1c5ae3: ; 0x1c5ae3
-	db $0, "Aargh!", $4f
-	db "Almost had it!", $58
-; 0x1c5afa
-
-UnknownText_0x1c5afa: ; 0x1c5afa
-	db $0, "Shoot! It was so", $4f
-	db "close too!", $58
-; 0x1c5b17
-
-UnknownText_0x1c5b17: ; 0x1c5b17
-	db $0, "Gotcha! @"
-	text_from_ram $c616
+	db "What a great name!", $55
+	db "It's perfect.", $51
+	db "Treat @"
+	text_from_ram $d073
 	db $0, $4f
-	db "was caught!@"
-	sound0x02
-	db $50
-; 0x1c5b34
+	db "with loving care.", $57
+; 1c0208
 
-UnknownText_0x1c5b34: ; 0x1c5b34
-	db $50
-; 0x1c5b35
+UnknownText_0x1c0208: ; 1c0208
+	db $0, "Whoa… That's just", $4f
+	db "an EGG.", $57
+; 1c0222
 
-UnknownText_0x1c5b35: ; 0x1c5b35
-	text_waitbutton
-	db $50
-; 0x1c5b37
+UnknownText_0x1c0222: ; 1c0222
+	db $0, "It might look the", $4f
+	db "same as before,", $51
+	db "but this new name", $4f
+	db "is much better!", $51
+	db "Well done!", $57
+; 1c0272
 
-UnknownText_0x1c5b37: ; 0x1c5b37
-	db $50
-; 0x1c5b38
+UnknownText_0x1c0272: ; 1c0272
+	db $0, "All right. This", $4f
+	db "#MON is now", $55
+	db "named @"
+	text_from_ram $d073
+	db $0, ".", $58
+; 1c029c
 
-UnknownText_0x1c5b38: ; 0x1c5b38
-	text_from_ram $d050
-	db $0, " was", $4f
-	db "sent to BILL's PC.", $58
-; 0x1c5b53
+UnknownText_0x1c029c: ; 1c029c
+	text_from_ram $d073
+	db $0, " gained@"
+	db "@"
+; 1c02a9
 
-UnknownText_0x1c5b53: ; 0x1c5b53
-	text_from_ram $c616
-	db $0, "'s data", $4f
-	db "was newly added to", $55
-	db "the #DEX.@"
-	sound0x2C
-	text_waitbutton
-	db $50
-; 0x1c5b7e
+UnknownText_0x1c02a9: ; 1c02a9
+	db $0, $4f
+	db "a boosted", $55
+	db "@"
+	deciram $d086, $24
+	db $0, " EXP. Points!", $58
+; 1c02c9
 
-UnknownText_0x1c5b7e: ; 0x1c5b7e
-	db $50
-; 0x1c5b7f
+UnknownText_0x1c02c9: ; 1c02c9
+	db $0, $4f
+	db "@"
+	deciram $d086, $24
+	db $0, " EXP. Points!", $58
+; 1c02df
 
-UnknownText_0x1c5b7f: ; 0x1c5b7f
-	db $0, "Give a nickname to", $4f
+UnknownText_0x1c02df: ; 1c02df
+	db $0, "Go! @"
+	db "@"
+; 1c02e6
+
+UnknownText_0x1c02e6: ; 1c02e6
+	db $0, "Do it! @"
+	db "@"
+; 1c02f0
+
+UnknownText_0x1c02f0: ; 1c02f0
+	db $0, "Go for it,", $4f
+	db "@"
+	db "@"
+; 1c02fe
+
+UnknownText_0x1c02fe: ; 1c02fe
+	db $0, "Your foe's weak!", $4f
+	db "Get'm, @"
+	db "@"
+; 1c0317
+
+UnknownText_0x1c0317: ; 1c0317
+	text_from_ram $c621
+	db $0, "!", $57
+; 1c031d
+
+UnknownText_0x1c031d: ; 1c031d
+	text_from_ram $c621
+	db $0, ",@"
+	db "@"
+; 1c0324
+
+UnknownText_0x1c0324: ; 1c0324
+	db $0, " that's", $4f
+	db "enough! Come back!@"
+	db "@"
+; 1c0340
+
+UnknownText_0x1c0340: ; 1c0340
+	db $0, " OK!", $4f
+	db "Come back!@"
+	db "@"
+; 1c0352
+
+UnknownText_0x1c0352: ; 1c0352
+	db $0, " good!", $4f
+	db "Come back!@"
+	db "@"
+; 1c0366
+
+UnknownText_0x1c0366: ; 1c0366
+	db $0, " come", $4f
+	db "back!", $57
+; 1c0373
+
+UnknownText_0x1c0373: ; 1c0373
+	db $0, "Booted up a TM.", $58
+; 1c0384
+
+UnknownText_0x1c0384: ; 1c0384
+	db $0, "Booted up an HM.", $58
+; 1c0396
+
+UnknownText_0x1c0396: ; 1c0396
+	db $0, "It contained", $4f
+	db "@"
+	text_from_ram $d086
+	db $0, ".", $51
+	db "Teach @"
+	text_from_ram $d086
+	db $0, $4f
+	db "to a #MON?", $57
+; 1c03c2
+
+UnknownText_0x1c03c2: ; 1c03c2
+	text_from_ram $d086
+	db $0, " is", $4f
+	db "not compatible", $55
+	db "with @"
+	text_from_ram $d073
+	db $0, ".", $51
+	db "It can't learn", $4f
+	db "@"
+	text_from_ram $d086
+	db $0, ".", $58
+; 1c03fa
+
+UnknownText_0x1c03fa: ; 1c03fa
+	db $0, "You have no room", $4f
+	db "for any more", $55
 	db "@"
 	text_from_ram $d073
-	db $0, "?", $57
-; 0x1c5b9a
+	db $0, "S.", $58
+; 1c0421
 
-UnknownText_0x1c5b9a: ; 0x1c5b9a
+UnknownText_0x1c0421: ; 1c0421
+	db $0, "You received", $4f
+	db "@"
 	text_from_ram $d073
-	db $0, "'s", $4f
+	db $0, "!", $58
+; 1c0436
+
+UnknownText_0x1c0436: ; 1c0436
+	db $0, "The link has been", $4f
+	db "cancelled.", $58
+; 1c0454
+
+UnknownText_0x1c0454: ; 1c0454
+	db $0, "Communication", $4f
+	db "error.", $58
+; 1c046a
+
+UnknownText_0x1c046a: ; 1c046a
+	db $0, "Must retrieve GIFT", $4f
+	db "at #MON CENTER.", $58
+; 1c048e
+
+UnknownText_0x1c048e: ; 1c048e
+	db $0, "Your friend isn't", $4f
+	db "ready.", $58
+; 1c04a7
+
+UnknownText_0x1c04a7: ; 1c04a7
+	db $0, "Sorry--only five", $4f
+	db "GIFTS a day.", $58
+; 1c04c6
+
+UnknownText_0x1c04c6: ; 1c04c6
+	db $0, "Sorry. One GIFT", $4f
+	db "a day per person.", $58
+; 1c04e9
+
+UnknownText_0x1c04e9: ; 1c04e9
+	text_from_ram $c903
+	db $0, " sent", $4f
 	db "@"
+	text_from_ram $d073
+	db $0, ".", $58
+; 1c04fa
+
+UnknownText_0x1c04fa: ; 1c04fa
+	text_from_ram $c903
+	db $0, " sent", $4f
+	db "@"
+	text_from_ram $d073
+	db $0, $55
+	db "to @"
+	text_from_ram $c953
+	db $0, "'s home.", $58
+; 1c051a
+
+UnknownText_0x1c051a: ; 1c051a
+	db $0, "Received", $4f
+	db "@"
+	text_from_ram $c850
+	db $0, "'s CARD.", $58
+; 1c0531
+
+UnknownText_0x1c0531: ; 1c0531
+	text_from_ram $c850
+	db $0, "'s CARD was", $4f
+	db "listed as no.@"
+	deciram $d265, $12
+	db $0, ".", $58
+; 1c0555
+
+UnknownText_0x1c0555: ; 1c0555
+	db $0, "The CARD was not", $4f
+	db "registered.", $58
+; 1c0573
+
+UnknownText_0x1c0573: ; 1c0573
+	db $0, "The link has been", $4f
+	db "cancelled.", $58
+; 1c0591
+
+UnknownText_0x1c0591: ; 1c0591
+	db $0, "Communication", $4f
+	db "error.", $58
+; 1c05a7
+
+_BadgeRequiredText: ; 1c05a7
+	db $0, "Sorry! A new BADGE", $4f
+	db "is required.", $58
+; 1c05c8
+
+UnknownText_0x1c05c8: ; 1c05c8
+	db $0, "Can't use that", $4f
+	db "here.", $58
+; 1c05dd
+
+UnknownText_0x1c05dd: ; 1c05dd
 	text_from_ram $d086
-	db $0, " rose.", $58
-; 0x1c5bac
+	db $0, " used", $4f
+	db "CUT!", $58
+; 1c05ec
 
-UnknownText_0x1c5bac: ; 0x1c5bac
-	db $0, "That can't be used", $4f
-	db "on this #MON.", $58
-; 0x1c5bcd
+UnknownText_0x1c05ec: ; 1c05ec
+	db $0, "There's nothing to", $4f
+	db "CUT here.", $58
+; 1c0609
 
-UnknownText_0x1c5bcd: ; 0x1c5bcd
-	db $0, "The REPEL used", $4f
-	db "earlier is still", $55
-	db "in effect.", $58
-; 0x1c5bf9
-
-UnknownText_0x1c5bf9: ; 0x1c5bf9
-	db $0, "Played the #", $4f
-	db "FLUTE.", $51
-	db "Now, that's a", $4f
-	db "catchy tune!", $58
-; 0x1c5c28
-
-UnknownText_0x1c5c28: ; 0x1c5c28
-	db $0, "All sleeping", $4f
-	db "#MON woke up.", $58
-; 0x1c5c44
-
-UnknownText_0x1c5c44: ; 0x1c5c44
-	db $0, $52, " played the", $4f
-	db "# FLUTE.@"
+UnknownText_0x1c0609: ; 1c0609
+	db $0, "A blinding FLASH", $4f
+	db "lights the area!@"
 	text_waitbutton
-	db $50
-; 0x1c5c5d
-
-UnknownText_0x1c5c5d: ; 0x1c5c5d
-	db $50
-; 0x1c5c5e
-
-UnknownText_0x1c5c5e: ; 0x1c5c5e
-	db $0, "You now have", $4f
 	db "@"
-	deciram $dc4b, $12
-	db $0, " points.", $57
-; 0x1c5c7b
+; 1c062e
 
-UnknownText_0x1c5c7b: ; 0x1c5c7b
-	db $0, "Coins:", $4f
+UnknownText_0x1c062e: ; 1c062e
 	db "@"
-	deciram $d855, $24
-	db $50
-; 0x1c5c89
+; 1c062f
 
-UnknownText_0x1c5c89: ; 0x1c5c89
-	db $50
-; 0x1c5c8a
-
-UnknownText_0x1c5c8a: ; 0x1c5c8a
-	db $0, "Raise the PP of", $4f
-	db "which move?", $57
-; 0x1c5ca7
-
-UnknownText_0x1c5ca7: ; 0x1c5ca7
-	db $0, "Restore the PP of", $4f
-	db "which move?", $57
-; 0x1c5cc6
-
-UnknownText_0x1c5cc6: ; 0x1c5cc6
+_UsedSurfText: ; 1c062f
 	text_from_ram $d086
-	db $0, "'s PP", $4f
-	db "is maxed out.", $58
-; 0x1c5cdd
+	db $0, " used", $4f
+	db "SURF!", $57
+; 1c063f
 
-UnknownText_0x1c5cdd: ; 0x1c5cdd
+_CantSurfText: ; 1c063f
+	db $0, "You can't SURF", $4f
+	db "here.", $58
+; 1c0654
+
+_AlreadySurfingText: ; 1c0654
+	db $0, "You're already", $4f
+	db "SURFING.", $58
+; 1c066c
+
+_AskSurfText: ; 1c066c
+	db $0, "The water is calm.", $4f
+	db "Want to SURF?", $57
+; 1c068e
+
+UnknownText_0x1c068e: ; 1c068e
 	text_from_ram $d086
-	db $0, "'s PP", $4f
-	db "increased.", $58
-; 0x1c5cf1
+	db $0, " used", $4f
+	db "WATERFALL!", $57
+; 1c06a3
 
-UnknownText_0x1c5cf1: ; 0x1c5cf1
-	db $0, "PP was restored.", $58
-; 0x1c5d03
+UnknownText_0x1c06a3: ; 1c06a3
+	db $0, "Wow, it's a huge", $4f
+	db "waterfall.", $57
+; 1c06bf
 
-UnknownText_0x1c5d03: ; 0x1c5d03
-	db $0, "There was a trophy", $4f
-	db "inside!@"
-	sound0
-	db $0, $51
+UnknownText_0x1c06bf: ; 1c06bf
+	db $0, "Do you want to use", $4f
+	db "WATERFALL?", $57
+; 1c06de
+
+UnknownText_0x1c06de: ; 1c06de
+	text_from_ram $d086
+	db $0, " used", $4f
+	db "DIG!", $57
+; 1c06ed
+
+UnknownText_0x1c06ed: ; 1c06ed
+	db $0, $52, " used an", $4f
+	db "ESCAPE ROPE.", $57
+; 1c0705
+
+UnknownText_0x1c0705: ; 1c0705
+	db $0, "Can't use that", $4f
+	db "here.", $57
+; 1c071a
+
+UnknownText_0x1c071a: ; 1c071a
+	db $0, "Return to the last", $4f
+	db "#MON CENTER.", $57
+; 1c073b
+
+UnknownText_0x1c073b: ; 1c073b
+	db $0, "Can't use that", $4f
+	db "here.", $51
+	db $57
+; 1c0751
+
+UnknownText_0x1c0751: ; 1c0751
+	db $0, "A #MON is using", $4f
+	db "STRENGTH already.", $58
+; 1c0774
+
+UnknownText_0x1c0774: ; 1c0774
+	text_from_ram $d086
+	db $0, " used", $4f
+	db "STRENGTH!", $57
+; 1c0788
+
+UnknownText_0x1c0788: ; 1c0788
+	text_from_ram $d073
+	db $0, " can", $4f
+	db "move boulders.", $58
+; 1c07a0
+
+UnknownText_0x1c07a0: ; 1c07a0
+	db $0, "A #MON may be", $4f
+	db "able to move this.", $51
+	db "Want to use", $4f
+	db "STRENGTH?", $57
+; 1c07d8
+
+UnknownText_0x1c07d8: ; 1c07d8
+	db $0, "Boulders may now", $4f
+	db "be moved!", $57
+; 1c07f4
+
+UnknownText_0x1c07f4: ; 1c07f4
+	db $0, "A #MON may be", $4f
+	db "able to move this.", $57
+; 1c0816
+
+UnknownText_0x1c0816: ; 1c0816
+	text_from_ram $d086
+	db $0, " used", $4f
+	db "WHIRLPOOL!", $58
+; 1c082b
+
+UnknownText_0x1c082b: ; 1c082b
+	db $0, "It's a vicious", $4f
+	db "whirlpool!", $51
+	db "A #MON may be", $4f
+	db "able to pass it.", $57
+; 1c0864
+
+UnknownText_0x1c0864: ; 1c0864
+	db $0, "A whirlpool is in", $4f
+	db "the way.", $51
+	db "Want to use", $4f
+	db "WHIRLPOOL?", $57
+; 1c0897
+
+UnknownText_0x1c0897: ; 1c0897
+	text_from_ram $d086
+	db $0, " did a", $4f
+	db "HEADBUTT!", $58
+; 1c08ac
+
+UnknownText_0x1c08ac: ; 1c08ac
+	db $0, "Nope. Nothing…", $57
+; 1c08bc
+
+UnknownText_0x1c08bc: ; 1c08bc
+	db $0, "A #MON could be", $4f
+	db "in this tree.", $51
+	db "Want to HEADBUTT", $4f
+	db "it?", $57
+; 1c08f0
+
+UnknownText_0x1c08f0: ; 1c08f0
+	text_from_ram $d086
+	db $0, " used", $4f
+	db "ROCK SMASH!", $58
+; 1c0906
+
+UnknownText_0x1c0906: ; 1c0906
+	db $0, "Maybe a #MON", $4f
+	db "can break this.", $57
+; 1c0924
+
+UnknownText_0x1c0924: ; 1c0924
+	db $0, "This rock looks", $4f
+	db "breakable.", $51
+	db "Want to use ROCK", $4f
+	db "SMASH?", $57
+; 1c0958
+
+UnknownText_0x1c0958: ; 1c0958
+	db $0, "Oh!", $4f
+	db "A bite!", $58
+; 1c0965
+
+UnknownText_0x1c0965: ; 1c0965
+	db $0, "Not even a nibble!", $58
+; 1c0979
+
+UnknownText_0x1c0979: ; 1c0979
+	db $0, "Looks like there's", $4f
+	db "nothing here.", $58
+; 1c099a
+
+UnknownText_0x1c099a: ; 1c099a
+	db $0, "You can't get off", $4f
+	db "here!", $57
+; 1c09b2
+
+UnknownText_0x1c09b2: ; 1c09b2
+	db $0, $52, " got on the", $4f
 	db "@"
-	text_from_ram PlayerName
-	db $0, " sent the", $4f
-	db "trophy home.", $58
-; 0x1c5d3e
+	text_from_ram $d086
+	db $0, ".", $57
+; 1c09c7
 
-UnknownText_0x1c5d3e: ; 0x1c5d3e
-	db $0, "It looks bitter…", $58
-; 0x1c5d50
+UnknownText_0x1c09c7: ; 1c09c7
+	db $0, $52, " got off", $4f
+	db "the @"
+	text_from_ram $d086
+	db $0, ".", $57
+; 1c09dd
 
-UnknownText_0x1c5d50: ; 0x1c5d50
-	db $0, "That can't be used", $4f
-	db "on an EGG.", $58
-; 0x1c5d6e
+UnknownText_0x1c09dd: ; 1c09dd
+	db $0, "This tree can be", $4f
+	db "CUT!", $51
+	db "Want to use CUT?", $57
+; 1c0a05
 
-UnknownText_0x1c5d6e: ; 0x1c5d6e
+UnknownText_0x1c0a05: ; 1c0a05
+	db $0, "This tree can be", $4f
+	db "CUT!", $57
+; 1c0a1c
+
+UnknownText_0x1c0a1c: ; 1c0a1c
+	db $0, $52, " found", $4f
+	db "@"
+	text_from_ram $d099
+	db $0, "!", $57
+; 1c0a2c
+
+UnknownText_0x1c0a2c: ; 1c0a2c
+	db $0, "But ", $52, " can't", $4f
+	db "carry any more", $55
+	db "items.", $57
+; 1c0a4e
+
+UnknownText_0x1c0a4e: ; 1c0a4e
+	db $0, $52, " is out of", $4f
+	db "useable #MON!", $51
+	db $52, " whited", $4f
+	db "out!", $57
+; 1c0a77
+
+UnknownText_0x1c0a77: ; 1c0a77
+	db $0, "Yes! ITEMFINDER", $4f
+	db "indicates there's", $55
+	db "an item nearby.", $58
+; 1c0aa9
+
+UnknownText_0x1c0aa9: ; 1c0aa9
+	db $0, "Nope! ITEMFINDER", $4f
+	db "isn't responding.", $58
+; 1c0acc
+
+UnknownText_0x1c0acc: ; 1c0acc
+	text_from_ram $d099
+	db $0, $4f
+	db "fainted!", $58
+; 1c0ada
+
+UnknownText_0x1c0ada: ; 1c0ada
+	db $0, $52, " is out of", $4f
+	db "useable #MON!", $51
+	db $52, " whited", $4f
+	db "out!", $58
+; 1c0b03
+
+UnknownText_0x1c0b03: ; 1c0b03
+	text_from_ram $d099
+	db $0, " used", $4f
+	db "SWEET SCENT!", $57
+; 1c0b1a
+
+UnknownText_0x1c0b1a: ; 1c0b1a
+	db $0, "Looks like there's", $4f
+	db "nothing here…", $57
+; 1c0b3b
+
+UnknownText_0x1c0b3b: ; 1c0b3b
+	db $0, $52, " sprinkled", $4f
+	db "water.", $51
+	db "But nothing", $4f
+	db "happened…", $57
+; 1c0b65
+
+UnknownText_0x1c0b65: ; 1c0b65
+	db $0, $52, "'s #MON", $4f
+	db "were all healed!", $57
+; 1c0b7f
+
+UnknownText_0x1c0b7f: ; 1c0b7f
+	db $0, "An EGG can't hold", $4f
+	db "an item.", $58
+; 1c0b9a
+
+UnknownText_0x1c0b9a: ; 1c0b9a
+	db $0, "No items.", $57
+; 1c0ba5
+
+UnknownText_0x1c0ba5: ; 1c0ba5
+	db $0, "Throw away how", $4f
+	db "many?", $57
+; 1c0bbb
+
+UnknownText_0x1c0bbb: ; 1c0bbb
+	db $0, "Throw away @"
+	deciram $d10c, $12
+	db $0, $4f
+	db "@"
+	text_from_ram $d086
+	db $0, "(S)?", $57
+; 1c0bd8
+
+UnknownText_0x1c0bd8: ; 1c0bd8
+	db $0, "Threw away", $4f
+	db "@"
+	text_from_ram $d086
+	db $0, "(S).", $58
+; 1c0bee
+
+UnknownText_0x1c0bee: ; 1c0bee
 	db $0, "OAK: ", $52, "!", $4f
 	db "This isn't the", $55
 	db "time to use that!", $58
-; 0x1c5d97
+; 1c0c17
 
-UnknownText_0x1c5d97: ; 0x1c5d97
-	db $0, "That belongs to", $4f
-	db "someone else!", $58
-; 0x1c5db6
+UnknownText_0x1c0c17: ; 1c0c17
+	db $0, "You don't have a", $4f
+	db "#MON!", $58
+; 1c0c2e
 
-UnknownText_0x1c5db6: ; 0x1c5db6
-	db $0, "It won't have any", $4f
-	db "effect.", $58
-; 0x1c5dd0
-
-UnknownText_0x1c5dd0: ; 0x1c5dd0
-	db $0, "The trainer", $4f
-	db "blocked the BALL!", $58
-; 0x1c5def
-
-UnknownText_0x1c5def: ; 0x1c5def
-	db $0, "Don't be a thief!", $58
-; 0x1c5e01
-
-UnknownText_0x1c5e01: ; 0x1c5e01
-	db $0, "Cycling isn't", $4f
-	db "allowed here.", $58
-; 0x1c5e1d
-
-UnknownText_0x1c5e1d: ; 0x1c5e1d
-	db $0, "Can't get on your", $4f
-	db "@"
-	text_from_ram $d073
-	db $0, " now.", $58
-; 0x1c5e3a
-
-UnknownText_0x1c5e3a: ; 0x1c5e3a
-	db $0, "The #MON BOX", $4f
-	db "is full. That", $55
-	db "can't be used now.", $58
-; 0x1c5e68
-
-UnknownText_0x1c5e68: ; 0x1c5e68
-	db $0, $52, " used the@"
-	text_dunno1
-	text_from_ram $d086
-	db $0, ".", $57
-; 0x1c5e7b
-
-UnknownText_0x1c5e7b: ; 0x1c5e7b
-	db $0, $52, " got on the@"
-	text_dunno1
-	text_from_ram $d086
-	db $0, ".", $58
-; 0x1c5e90
-
-UnknownText_0x1c5e90: ; 0x1c5e90
-	db $0, $52, " got off@"
-	text_dunno1
-	db $0, "the @"
-	text_from_ram $d086
-	db $0, ".", $58
-; 0x1c5ea8
-
-UnknownText_0x1c5ea8: ; 0x1c5ea8
-	text_from_ram $d073
-	db $0, " knows", $4f
+UnknownText_0x1c0c2e: ; 1c0c2e
+	db $0, "Registered the", $4f
 	db "@"
 	text_from_ram $d086
 	db $0, ".", $58
-; 0x1c5eba
+; 1c0c45
 
-UnknownText_0x1c5eba: ; 0x1c5eba
-	db $0, "That #MON knows", $4f
-	db "only one move.", $57
-; 0x1c5eda
+UnknownText_0x1c0c45: ; 1c0c45
+	db $0, "You can't register", $4f
+	db "that item.", $58
+; 1c0c63
 
-UnknownText_0x1c5eda: ; 0x1c5eda
-	db $0, "Oh, make it forget", $4f
+UnknownText_0x1c0c63: ; 1c0c63
+	db $0, "Where should this", $4f
+	db "be moved to?", $57
+; 1c0c83
+
+UnknownText_0x1c0c83: ; 1c0c83
+	db $0, $57
+; 1c0c85
+
+UnknownText_0x1c0c85: ; 1c0c85
+	db $0, "You can't use it", $4f
+	db "in a battle.", $58
+; 1c0ca3
+
+UnknownText_0x1c0ca3: ; 1c0ca3
+	db $0, "Are you a boy?", $4f
+	db "Or are you a girl?", $57
+; 1c0cc6
+
+UnknownText_0x1c0cc6: ; 1c0cc6
+	db $0, $5a, "'s", $4f
 	db "@"
-	text_from_ram $d073
+	text_from_ram $d086
+	db "@"
+; 1c0ccf
+
+UnknownText_0x1c0ccf: ; 1c0ccf
+	db "@"
+; 1c0cd0
+
+UnknownText_0x1c0cd0: ; 1c0cd0
+	interpret_data
+	db $0, $4c, "went way up!", $58
+; 1c0ce0
+
+UnknownText_0x1c0ce0: ; 1c0ce0
+	db $0, " went up!", $58
+; 1c0ceb
+
+UnknownText_0x1c0ceb: ; 1c0ceb
+	db $0, $59, "'s", $4f
+	db "@"
+	text_from_ram $d086
+	db "@"
+; 1c0cf4
+
+UnknownText_0x1c0cf4: ; 1c0cf4
+	db "@"
+; 1c0cf5
+
+UnknownText_0x1c0cf5: ; 1c0cf5
+	interpret_data
+	db $0, $4c, "sharply fell!", $58
+; 1c0d06
+
+UnknownText_0x1c0d06: ; 1c0d06
+	db $0, " fell!", $58
+; 1c0d0e
+
+UnknownText_0x1c0d0e: ; 1c0d0e
+	db $0, $5a, "@"
+	db "@"
+; 1c0d12
+
+UnknownText_0x1c0d12: ; 1c0d12
+	db $0, $4f
+	db "made a whirlwind!", $58
+; 1c0d26
+
+UnknownText_0x1c0d26: ; 1c0d26
+	db $0, $4f
+	db "took in sunlight!", $58
+; 1c0d3a
+
+UnknownText_0x1c0d3a: ; 1c0d3a
+	db $0, $4f
+	db "lowered its head!", $58
+; 1c0d4e
+
+UnknownText_0x1c0d4e: ; 1c0d4e
+	db $0, $4f
+	db "is glowing!", $58
+; 1c0d5c
+
+UnknownText_0x1c0d5c: ; 1c0d5c
+	db $0, $4f
+	db "flew up high!", $58
+; 1c0d6c
+
+UnknownText_0x1c0d6c: ; 1c0d6c
+	db $0, $4f
+	db "dug a hole!", $58
+; 1c0d7a
+
+_ActorNameText: ; 1c0d7a
+	db $0, $5a, "@"
+	db "@"
+; 1c0d7e
+
+_UsedMove1Text: ; 1c0d7e
+	db $0, $4f
+	db "used @"
+	db "@"
+; 1c0d87
+
+_UsedMove2Text: ; 1c0d87
+	db $0, $4f
+	db "used @"
+	db "@"
+; 1c0d90
+
+_UsedInsteadText: ; 1c0d90
+	db $0, "instead,", $55
+	db "@"
+	db "@"
+; 1c0d9c
+
+_MoveNameText: ; 1c0d9c
+	text_from_ram StringBuffer2
+	db "@"
+; 1c0da0
+
+UnknownText_0x1c0da0: ; 1c0da0
+	db "@"
+; 1c0da1
+
+_EndUsedMove1Text: ; 1c0da1
+	db $0, "!", $57
+; 1c0da4
+
+_EndUsedMove2Text: ; 1c0da4
+	db $0, "!", $57
+; 1c0da7
+
+_EndUsedMove3Text: ; 1c0da7
+	db $0, "!", $57
+; 1c0daa
+
+_EndUsedMove4Text: ; 1c0daa
+	db $0, "!", $57
+; 1c0dad
+
+_EndUsedMove5Text: ; 1c0dad
+	db $0, "!", $57
+; 1c0db0
+
+UnknownText_0x1c0db0: ; 1c0db0
+	db $0, "Huh?", $51
+	db "@"
+	db "@"
+; 1c0db8
+
+UnknownText_0x1c0db8: ; 1c0db8
+	db $0, $57
+; 1c0dba
+
+UnknownText_0x1c0dba: ; 1c0dba
+	text_from_ram StringBuffer1
+	db $0, " came", $4f
+	db "out of its EGG!@"
+	sound0x02
+	text_waitbutton
+	db "@"
+; 1c0dd7
+
+UnknownText_0x1c0dd7: ; 1c0dd7
+	db "@"
+; 1c0dd8
+
+UnknownText_0x1c0dd8: ; 1c0dd8
+	db $0, "Give a nickname to", $4f
+	db "@"
+	text_from_ram StringBuffer1
 	db $0, "?", $57
-; 0x1c5ef5
+; 1c0df3
 
-UnknownText_0x1c5ef5: ; 0x1c5ef5
-	db $0, "Done! Your #MON", $4f
-	db "forgot the move.", $57
-; 0x1c5f17
+UnknownText_0x1c0df3: ; 1c0df3
+	db $0, "It's @"
+	text_from_ram $df2f
+	db $0, $4f
+	db "that was left with", $55
+	db "the DAY-CARE LADY.", $57
+; 1c0e24
 
-UnknownText_0x1c5f17: ; 0x1c5f17
-	db $0, "An EGG doesn't", $4f
-	db "know any moves!", $57
-; 0x1c5f36
+UnknownText_0x1c0e24: ; 1c0e24
+	db $0, "It's @"
+	text_from_ram $def6
+	db $0, $4f
+	db "that was left with", $55
+	db "the DAY-CARE MAN.", $57
+; 1c0e54
 
-UnknownText_0x1c5f36: ; 0x1c5f36
-	db $0, "No? Come visit me", $4f
-	db "again.", $57
-; 0x1c5f50
+UnknownText_0x1c0e54: ; 1c0e54
+	db $0, "It's brimming with", $4f
+	db "energy.", $58
+; 1c0e6f
 
-UnknownText_0x1c5f50: ; 0x1c5f50
-	db $0, "Which move should", $4f
-	db "it forget, then?", $58
-; 0x1c5f74
+UnknownText_0x1c0e6f: ; 1c0e6f
+	db $0, "It has no interest", $4f
+	db "in @"
+	text_from_ram $d073
+	db $0, ".", $58
+; 1c0e8d
 
-UnknownText_0x1c5f74: ; 0x1c5f74
-	db $0, "Um… Oh, yes, I'm", $4f
-	db "the MOVE DELETER.", $51
-	db "I can make #MON", $4f
-	db "forget moves.", $51
-	db "Shall I make a", $4f
-	db "#MON forget?", $57
-; 0x1c5fd1
+UnknownText_0x1c0e8d: ; 1c0e8d
+	db $0, "It appears to care", $4f
+	db "for @"
+	text_from_ram $d073
+	db $0, ".", $58
+; 1c0eac
 
-UnknownText_0x1c5fd1: ; 0x1c5fd1
-	db $0, "Which #MON?", $58
-; 0x1c5fde
+UnknownText_0x1c0eac: ; 1c0eac
+	db $0, "It's friendly with", $4f
+	db "@"
+	text_from_ram $d073
+	db $0, ".", $58
+; 1c0ec6
 
-UnknownText_0x1c5fde: ; 0x1c5fde
-	db $0, " DST,", $4f
-	db "is that OK?", $57
-; 0x1c5ff1
+UnknownText_0x1c0ec6: ; 1c0ec6
+	db $0, "It shows interest", $4f
+	db "in @"
+	text_from_ram $d073
+	db $0, ".", $58
+; 1c0ee3
 
-UnknownText_0x1c5ff1: ; 0x1c5ff1
+_EmptyMailboxText: ; 1c0ee3
+	db $0, "There's no MAIL", $4f
+	db "here.", $58
+; 1c0ef9
+
+ClearedMailPutAwayText: ; 1c0ef9
+	db $0, "The cleared MAIL", $4f
+	db "was put away.", $58
+; 1c0f19
+
+MailPackFullText: ; 1c0f19
+	db $0, "The PACK is full.", $58
+; 1c0f2c
+
+MailMessageLostText: ; 1c0f2c
+	db $0, "The MAIL's message", $4f
+	db "will be lost. OK?", $57
+; 1c0f51
+
+MailAlreadyHoldingItemText: ; 1c0f51
+	db $0, "It's already hold-", $4f
+	db "ing an item.", $58
+; 1c0f71
+
+MailEggText: ; 1c0f71
+	db $0, "An EGG can't hold", $4f
+	db "any MAIL.", $58
+; 1c0f8d
+
+MailMovedFromBoxText: ; 1c0f8d
+	db $0, "The MAIL was moved", $4f
+	db "from the MAILBOX.", $58
+; 1c0fb3
+
+UnknownText_0x1c0fb3: ; 1c0fb3
+	db $0, "Yes", $58
+; 1c0fb8
+
+UnknownText_0x1c0fb8: ; 1c0fb8
+	db $0, "No", $58
+; 1c0fbc
+
+UnknownText_0x1c0fbc: ; 1c0fbc
+	deciram $cf64, $13
+	db $0, " @"
+	text_from_ram $d073
+	db $0, $4f
+	db "Animation type @"
+	text_from_ram $d086
+	db "@"
+; 1c0fdc
+
+UnknownText_0x1c0fdc: ; 1c0fdc
+	db "@"
+; 1c0fdd
+
+UnknownText_0x1c0fdd: ; 1c0fdd
+	db $0, "#MON number?", $57
+; 1c0feb
+
+UnknownText_0x1c0feb: ; 1c0feb
+	text_from_ram $d073
+	db $0, " was", $4f
+	db "sent to BILL's PC.", $58
+; 1c1006
+
+UnknownText_0x1c1006: ; 1c1006
+	db $0, "You gotta have", $4f
+	db "#MON to call!", $58
+; 1c1024
+
+UnknownText_0x1c1024: ; 1c1024
+	db $0, "What?", $57
+; 1c102b
+
+UnknownText_0x1c102b: ; 1c102b
+	db $0, "There is a #MON", $4f
+	db "holding MAIL.", $51
+	db "Please remove the", $4f
+	db "MAIL.", $58
+; 1c1062
+
+UnknownText_0x1c1062: ; 1c1062
+	db $0, "You don't have a", $4f
+	db "single #MON!", $58
+; 1c1080
+
+UnknownText_0x1c1080: ; 1c1080
+	db $0, "You can't deposit", $4f
+	db "your last #MON!", $58
+; 1c10a2
+
+UnknownText_0x1c10a2: ; 1c10a2
+	db $0, "You can't take any", $4f
+	db "more #MON.", $58
+; 1c10c0
+
+UnknownText_0x1c10c0: ; 1c10c0
+	db $0, "Caught @"
+	text_from_ram $d073
+	db $0, "!", $58
+; 1c10cf
+
+UnknownText_0x1c10cf: ; 1c10cf
+	db $0, "Switch #MON?", $57
+; 1c10dd
+
+UnknownText_0x1c10dd: ; 1c10dd
+	db $0, "You already caught", $4f
+	db "a @"
+	text_from_ram $d073
+	db $0, ".", $58
+; 1c10fa
+
+UnknownText_0x1c10fa: ; 1c10fa
+	db $0, "This Bug-Catching", $4f
+	db "Contest winner is@"
+	interpret_data
+	db $0, "…", $51
+	db "@"
+	text_from_ram $d016
 	db $0, ",", $4f
-	db "is that OK?", $57
-; 0x1c6000
+	db "who caught a", $55
+	db "@"
+	text_from_ram $d073
+	db $0, "!@"
+	db "@"
+; 1c113f
 
-UnknownText_0x1c6000: ; 0x1c6000
-	db $0, "Do you want to", $4f
-	db "switch to Daylight", $55
-	db "Saving Time?", $57
-; 0x1c6030
+UnknownText_0x1c113f: ; 1c113f
+	db $0, $51
+	db "The winning score", $4f
+	db "was @"
+	deciram $d004, $23
+	db $0, " points!", $58
+; 1c1166
 
-UnknownText_0x1c6030: ; 0x1c6030
-	db $0, "I set the clock", $4f
-	db "forward by one", $55
-	db "hour.", $58
-; 0x1c6056
+UnknownText_0x1c1166: ; 1c1166
+	db $0, "Placing second was", $4f
+	db "@"
+	text_from_ram $d016
+	db $0, ",", $51
+	db "who caught a", $4f
+	db "@"
+	text_from_ram $d073
+	db $0, "!@"
+	db "@"
+; 1c1196
 
-UnknownText_0x1c6056: ; 0x1c6056
-	db $0, "Is Daylight Saving", $4f
-	db "Time over?", $57
-; 0x1c6075
+UnknownText_0x1c1196: ; 1c1196
+	db $0, $51
+	db "The score was", $4f
+	db "@"
+	deciram $d008, $23
+	db $0, " points!", $58
+; 1c11b5
 
-UnknownText_0x1c6075: ; 0x1c6075
-	db $0, "I put the clock", $4f
-	db "back one hour.", $58
-; 0x1c6095
+UnknownText_0x1c11b5: ; 1c11b5
+	db $0, "Placing third was", $4f
+	db "@"
+	text_from_ram $d016
+	db $0, ",", $51
+	db "who caught a", $4f
+	db "@"
+	text_from_ram $d073
+	db $0, "!@"
+	db "@"
+; 1c11e4
 
-UnknownText_0x1c6095: ; 0x1c6095
-	db $0, "Do you want to", $4f
-	db "adjust your clock", $51
-	db "for Daylight", $4f
-	db "Saving Time?", $57
-; 0x1c60d1
+UnknownText_0x1c11e4: ; 1c11e4
+	db $0, $51
+	db "The score was", $4f
+	db "@"
+	deciram $d00c, $23
+	db $0, " points!", $58
+; 1c1203
 
-UnknownText_0x1c60d1: ; 0x1c60d1
-	db $0, "I lost the in-", $4f
-	db "struction booklet", $55
-	db "for the #GEAR.", $51
-	db "Come back again in", $4f
-	db "a while.", $58
-; 0x1c611e
+UnknownText_0x1c1203: ; 1c1203
+	db $0, "Let me measure", $4f
+	db "that MAGIKARP.", $51
+	db "…Hm, it measures", $4f
+	db "@"
+	text_from_ram $d073
+	db $0, ".", $58
+; 1c123a
 
+UnknownText_0x1c123a: ; 1c123a
+	db $0, "CURRENT RECORD", $51
+	db "@"
+	text_from_ram $d073
+	db $0, " caught by", $4f
+	db "@"
+	text_from_ram $dfea
+	text_waitbutton
+	db "@"
+; 1c1260
+
+UnknownText_0x1c1260: ; 1c1260
+	db "@"
+; 1c1261
+
+UnknownText_0x1c1261: ; 1c1261
+	db $0, "Congratulations!", $51
+	db "We have a match", $4f
+	db "with the ID number", $51
+	db "of @"
+	text_from_ram $d073
+	db $0, " in", $4f
+	db "your party.", $58
+; 1c12ae
+
+UnknownText_0x1c12ae: ; 1c12ae
+	db $0, "Congratulations!", $51
+	db "We have a match", $4f
+	db "with the ID number", $51
+	db "of @"
+	text_from_ram $d073
+	db $0, " in", $4f
+	db "your PC BOX.", $58
+; 1c12fc
+
+UnknownText_0x1c12fc: ; 1c12fc
+	db $0, "Give a nickname to", $4f
+	db "the @"
+	text_from_ram $d073
+	db $0, " you", $55
+	db "received?", $57
+; 1c1328
+
+UnknownText_0x1c1328: ; 1c1328
+	db $0, "Bzzzzt! You must", $4f
+	db "have a #MON to", $55
+	db "use this!", $58
+; 1c1353
+
+UnknownText_0x1c1353: ; 1c1353
+	db $0, $52, " turned on", $4f
+	db "the PC.", $58
+; 1c1368
+
+UnknownText_0x1c1368: ; 1c1368
+	db $0, "What do you want", $4f
+	db "to do?", $57
+; 1c1381
+
+_KrissPCHowManyWithdrawText: ; 1c1381
+	db $0, "How many do you", $4f
+	db "want to withdraw?", $57
+; 1c13a4
+
+_KrissPCWithdrewItemsText: ; 1c13a4
+	db $0, "Withdrew @"
+	deciram $d10c, $12
+	db $0, $4f
+	db "@"
+	text_from_ram $d086
+	db $0, "(S).", $58
+; 1c13bf
+
+_KrissPCNoRoomWithdrawText: ; 1c13bf
+	db $0, "There's no room", $4f
+	db "for more items.", $58
+; 1c13df
+
+UnknownText_0x1c13df: ; 1c13df
+	db $0, "No items here!", $58
+; 1c13ef
+
+_KrissPCHowManyDepositText: ; 1c13ef
+	db $0, "How many do you", $4f
+	db "want to deposit?", $57
+; 1c1411
+
+_KrissPCDepositItemsText: ; 1c1411
+	db $0, "Deposited @"
+	deciram $d10c, $12
+	db $0, $4f
+	db "@"
+	text_from_ram $d086
+	db $0, "(S).", $58
+; 1c142d
+
+_KrissPCNoRoomDepositText: ; 1c142d
+	db $0, "There's no room to", $4f
+	db "store items.", $58
+; 1c144d
+
+UnknownText_0x1c144d: ; 1c144d
+	db $0, $52, " turned on", $4f
+	db "the PC.", $58
+; 1c1462
+
+UnknownText_0x1c1462: ; 1c1462
+	db $0, "Access whose PC?", $57
+; 1c1474
+
+UnknownText_0x1c1474: ; 1c1474
+	db $0, "BILL's PC", $4f
+	db "accessed.", $51
+	db "#MON Storage", $4f
+	db "System opened.", $58
+; 1c14a4
+
+UnknownText_0x1c14a4: ; 1c14a4
+	db $0, "Accessed own PC.", $51
+	db "Item Storage", $4f
+	db "System opened.", $58
+; 1c14d2
+
+UnknownText_0x1c14d2: ; 1c14d2
+	db $0, "PROF.OAK's PC", $4f
+	db "accessed.", $51
+	db "#DEX Rating", $4f
+	db "System opened.", $58
+; 1c1505
+
+UnknownText_0x1c1505: ; 1c1505
+	db $0, "…", $4f
+	db "Link closed…", $57
+; 1c1515
+
+_OakPCText1: ; 1c1515
+	db $0, "Want to get your", $4f
+	db "#DEX rated?", $57
+; 1c1533
+
+_OakPCText2: ; 1c1533
+	db $0, "Current #DEX", $4f
+	db "completion level:", $58
+; 1c1553
+
+_OakPCText3: ; 1c1553
+	text_from_ram $d099
+	db $0, " #MON seen", $4f
+	db "@"
+	text_from_ram $d0ac
+	db $0, " #MON owned", $51
+	db "PROF.OAK's", $4f
+	db "Rating:", $57
+; 1c1585
+
+_OakRating01: ; 1c1585
+	db $0, "Look for #MON", $4f
+	db "in grassy areas!", $57
+; 1c15a5
+
+_OakRating02: ; 1c15a5
+	db $0, "Good. I see you", $4f
+	db "understand how to", $55
+	db "use # BALLS.", $57
+; 1c15d5
+
+_OakRating03: ; 1c15d5
+	db $0, "You're getting", $4f
+	db "good at this.", $51
+	db "But you have a", $4f
+	db "long way to go.", $57
+; 1c1611
+
+_OakRating04: ; 1c1611
+	db $0, "You need to fill", $4f
+	db "up the #DEX.", $51
+	db "Catch different", $4f
+	db "kinds of #MON!", $57
+; 1c164f
+
+_OakRating05: ; 1c164f
+	db $0, "You're trying--I", $4f
+	db "can see that.", $51
+	db "Your #DEX is", $4f
+	db "coming together.", $57
+; 1c168c
+
+_OakRating06: ; 1c168c
+	db $0, "To evolve, some", $4f
+	db "#MON grow,", $51
+	db "others use the", $4f
+	db "effects of STONES.", $57
+; 1c16ca
+
+_OakRating07: ; 1c16ca
+	db $0, "Have you gotten a", $4f
+	db "fishing ROD? You", $51
+	db "can catch #MON", $4f
+	db "by fishing.", $57
+; 1c1709
+
+_OakRating08: ; 1c1709
+	db $0, "Excellent! You", $4f
+	db "seem to like col-", $55
+	db "lecting things!", $57
+; 1c173b
+
+_OakRating09: ; 1c173b
+	db $0, "Some #MON only", $4f
+	db "appear during", $51
+	db "certain times of", $4f
+	db "the day.", $57
+; 1c1773
+
+_OakRating10: ; 1c1773
+	db $0, "Your #DEX is", $4f
+	db "filling up. Keep", $55
+	db "up the good work!", $57
+; 1c17a4
+
+_OakRating11: ; 1c17a4
+	db $0, "I'm impressed.", $4f
+	db "You're evolving", $51
+	db "#MON, not just", $4f
+	db "catching them.", $57
+; 1c17e0
+
+_OakRating12: ; 1c17e0
+	db $0, "Have you met KURT?", $4f
+	db "His custom BALLS", $55
+	db "should help.", $57
+; 1c1812
+
+_OakRating13: ; 1c1812
+	db $0, "Wow. You've found", $4f
+	db "more #MON than", $51
+	db "the last #DEX", $4f
+	db "research project.", $57
+; 1c1853
+
+_OakRating14: ; 1c1853
+	db $0, "Are you trading", $4f
+	db "your #MON?", $51
+	db "It's tough to do", $4f
+	db "this alone!", $57
+; 1c188b
+
+_OakRating15: ; 1c188b
+	db $0, "Wow! You've hit", $4f
+	db "200! Your #DEX", $55
+	db "is looking great!", $57
+; 1c18bc
+
+_OakRating16: ; 1c18bc
+	db $0, "You've found so", $4f
+	db "many #MON!", $51
+	db "You've really", $4f
+	db "helped my studies!", $57
+; 1c18f7
+
+_OakRating17: ; 1c18f7
+	db $0, "Magnificent! You", $4f
+	db "could become a", $51
+	db "#MON professor", $4f
+	db "right now!", $57
+; 1c1932
+
+_OakRating18: ; 1c1932
+	db $0, "Your #DEX is", $4f
+	db "amazing! You're", $51
+	db "ready to turn", $4f
+	db "professional!", $57
+; 1c196b
+
+_OakRating19: ; 1c196b
+	db $0, "Whoa! A perfect", $4f
+	db "#DEX! I've", $51
+	db "dreamt about this!", $4f
+	db "Congratulations!", $57
+; 1c19aa
+
+_OakPCText4: ; 1c19aa
+	db $0, "The link to PROF.", $4f
+	db "OAK's PC closed.", $57
+; 1c19cd
+
+UnknownText_0x1c19cd: ; 1c19cd
+	db $0, "Triple-theme", $4f
+	db "trainer ranking!", $51
+	db "The SAVE file you", $4f
+	db "just sent might", $55
+	db "make the rankings!", $51
+	db $57
+; 1c1a22
+
+UnknownText_0x1c1a22: ; 1c1a22
+	db $0, "There is no", $4f
+	db "ranking data.", $51
+	db "Link to obtain", $4f
+	db "ranking data.", $51
+	db $57
+; 1c1a5b
+
+UnknownText_0x1c1a5b: ; 1c1a5b
+	db $0, " , yeah!", $57
+; 1c1a65
+
+UnknownText_0x1c1a65: ; 1c1a65
+	db $0, "Darn…", $57
+; 1c1a6c
+
+UnknownText_0x1c1a6c: ; 1c1a6c
+	db $0, "Would you like to", $4f
+	db "end the Contest?", $57
+; 1c1a90
+
+UnknownText_0x1c1a90: ; 1c1a90
+	db $0, "Toss out how many", $4f
+	db "@"
+	text_from_ram $d086
+	db $0, "(S)?", $57
+; 1c1aad
+
+UnknownText_0x1c1aad: ; 1c1aad
+	db $0, "Throw away @"
+	deciram $d10c, $12
+	db $0, $4f
+	db "@"
+	text_from_ram $d086
+	db $0, "(S)?", $57
+; 1c1aca
+
+UnknownText_0x1c1aca: ; 1c1aca
+	db $0, "Discarded", $4f
+	db "@"
+	text_from_ram $d073
+	db $0, "(S).", $58
+; 1c1adf
+
+UnknownText_0x1c1adf: ; 1c1adf
+	db $0, "That's too impor-", $4f
+	db "tant to toss out!", $58
+; 1c1b03
+
+UnknownText_0x1c1b03: ; 1c1b03
+	db $0, "OAK: ", $52, "!", $4f
+	db "This isn't the", $55
+	db "time to use that!", $57
+; 1c1b2c
+
+UnknownText_0x1c1b2c: ; 1c1b2c
+	db $0, "Took @"
+	text_from_ram $d050
+	db $0, "'s", $4f
+	db "@"
+	text_from_ram $d073
+	db $0, " and", $51
+	db "made it hold", $4f
+	db "@"
+	text_from_ram $d086
+	db $0, ".", $58
+; 1c1b57
+
+UnknownText_0x1c1b57: ; 1c1b57
+	db $0, "Made @"
+	text_from_ram $d050
+	db $0, $4f
+	db "hold @"
+	text_from_ram $d086
+	db $0, ".", $58
+; 1c1b6f
+
+UnknownText_0x1c1b6f: ; 1c1b6f
+	db $0, "Please remove the", $4f
+	db "MAIL first.", $58
+; 1c1b8e
+
+UnknownText_0x1c1b8e: ; 1c1b8e
+	text_from_ram $d050
+	db $0, " isn't", $4f
+	db "holding anything.", $58
+; 1c1baa
+
+UnknownText_0x1c1baa: ; 1c1baa
+	db $0, "Item storage space", $4f
+	db "full.", $58
+; 1c1bc4
+
+UnknownText_0x1c1bc4: ; 1c1bc4
+	db $0, "Took @"
+	text_from_ram $d073
+	db $0, $4f
+	db "from @"
+	text_from_ram $d050
+	db $0, ".", $58
+; 1c1bdc
+
+UnknownText_0x1c1bdc: ; 1c1bdc
+	text_from_ram $d050
+	db $0, " is", $4f
+	db "already holding", $51
+	db "@"
+	text_from_ram $d073
+	db $0, ".", $4f
+	db "Switch items?", $57
+; 1c1c09
+
+UnknownText_0x1c1c09: ; 1c1c09
+	db $0, "This item can't be", $4f
+	db "held.", $58
+; 1c1c22
+
+UnknownText_0x1c1c22: ; 1c1c22
+	db $0, "The MAIL will lose", $4f
+	db "its message. OK?", $57
+; 1c1c47
+
+UnknownText_0x1c1c47: ; 1c1c47
+	db $0, "MAIL detached from", $4f
+	db "@"
+	text_from_ram $d073
+	db $0, ".", $58
+; 1c1c62
+
+UnknownText_0x1c1c62: ; 1c1c62
+	db $0, "There's no space", $4f
+	db "for removing MAIL.", $58
+; 1c1c86
+
+UnknownText_0x1c1c86: ; 1c1c86
+	db $0, "Send the removed", $4f
+	db "MAIL to your PC?", $57
+; 1c1ca9
+
+UnknownText_0x1c1ca9: ; 1c1ca9
+	db $0, "Your PC's MAILBOX", $4f
+	db "is full.", $58
+; 1c1cc4
+
+UnknownText_0x1c1cc4: ; 1c1cc4
+	db $0, "The MAIL was sent", $4f
+	db "to your PC.", $58
+; 1c1ce3
+
+UnknownText_0x1c1ce3: ; 1c1ce3
+	db $0, "Not enough HP!", $58
+; 1c1cf3
+
+UnknownText_0x1c1cf3: ; 1c1cf3
+	db $0, "An item in your", $4f
+	db "PACK may be", $51
+	db "registered for use", $4f
+	db "on SELECT Button.", $57
+; 1c1d35
+
+_OakText1: ; 1c1d35
+	db $0, "Hello! Sorry to", $4f
+	db "keep you waiting!", $51
+	db "Welcome to the", $4f
+	db "world of #MON!", $51
+	db "My name is OAK.", $51
+	db "People call me the", $4f
+	db "#MON PROF.", $58
+; 1c1da4
+
+_OakText2: ; 1c1da4
+	db $0, "This world is in-", $4f
+	db "habited by crea-", $55
+	db "tures that we call", $55
+	db "#MON.@"
+	db "@"
+; 1c1de2
+
+_OakText3: ; 1c1de2
+	text_waitbutton
+	db "@"
+; 1c1de4
+
+UnknownText_0x1c1de4: ; 1c1de4
+	db "@"
+; 1c1de5
+
+_OakText4: ; 1c1de5
+	db $0, "People and #MON", $4f
+	db "live together by", $51
+	db "supporting each", $4f
+	db "other.", $51
+	db "Some people play", $4f
+	db "with #MON, some", $55
+	db "battle with them.", $58
+; 1c1e51
+
+_OakText5: ; 1c1e51
+	db $0, "But we don't know", $4f
+	db "everything about", $55
+	db "#MON yet.", $51
+	db "There are still", $4f
+	db "many mysteries to", $55
+	db "solve.", $51
+	db "That's why I study", $4f
+	db "#MON every day.", $58
+; 1c1ec9
