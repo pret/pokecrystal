@@ -2743,7 +2743,7 @@ Function184a: ; 184a
 Function1852: ; 1852
 	ld a, [StandingTile]
 	call GetTileCollision
-	sub $1
+	sub 1
 	ret z
 	and a
 	ret
@@ -35345,11 +35345,12 @@ SECTION "bankA",ROMX,BANK[$A]
 INCBIN "baserom.gbc", $28000, $2a0e7 - $28000
 
 Function2a0e7: ; 2a0e7
+; Try to trigger a wild encounter.
 	call Function2a103
 	jr nc, .asm_2a0f8
 	call Function2a14f
 	jr nz, .asm_2a0f8
-	call $61df
+	call Function2a1df
 	jr nc, .asm_2a0f8
 	xor a
 	ret
@@ -35375,19 +35376,20 @@ Function2a103: ; 2a103
 Function2a111: ; 2a111
 	ld hl, $d25a
 	call Function1852
-	ld a, $3
+	ld a, 3
 	jr z, .asm_2a11e
 	ld a, [TimeOfDay]
-
 .asm_2a11e
 	ld c, a
-	ld b, $0
+	ld b, 0
 	add hl, bc
 	ld b, [hl]
 	ret
 ; 2a124
 
 Function2a124: ; 2a124
+; Pokemon March and Ruins of Alph signal double encounter rate.
+; Pokemon Lullaby halves encounter rate.
 	ld a, [CurMusic]
 	cp MUSIC_POKEMON_MARCH
 	jr z, .asm_2a135
@@ -35404,17 +35406,18 @@ Function2a124: ; 2a124
 ; 2a138
 
 Function2a138: ; 2a138
+; Cleanse Tag halves encounter rate.
 	ld hl, PartyMon1Item
-	ld de, $0030
+	ld de, PartyMon2 - PartyMon1
 	ld a, [PartyCount]
 	ld c, a
-.asm_2a142
+.next
 	ld a, [hl]
-	cp $5e
+	cp CLEANSE_TAG
 	jr z, .asm_2a14c
 	add hl, de
 	dec c
-	jr nz, .asm_2a142
+	jr nz, .next
 	ret
 
 .asm_2a14c
@@ -35424,9 +35427,10 @@ Function2a138: ; 2a138
 
 Function2a14f: ; 2a14f
 	call Function2a200
-	jp nc, $61c1
+	jp nc, .asm_2a1c1
 	call Function2a2ce
-	jp c, $61c9
+	jp c, .asm_2a1c9
+
 	inc hl
 	inc hl
 	inc hl
@@ -35436,7 +35440,7 @@ Function2a14f: ; 2a14f
 	inc hl
 	inc hl
 	ld a, [TimeOfDay]
-	ld bc, $000e
+	ld bc, $e
 	call AddNTimes
 	ld de, $61cb
 
@@ -35444,7 +35448,7 @@ Function2a14f: ; 2a14f
 	push hl
 .asm_2a175
 	call RNG
-	cp $64
+	cp 100
 	jr nc, .asm_2a175
 	inc a
 	ld b, a
@@ -35459,24 +35463,25 @@ Function2a14f: ; 2a14f
 
 .asm_2a187
 	ld c, [hl]
-	ld b, $0
+	ld b, 0
 	pop hl
 	add hl, bc
 	ld a, [hli]
 	ld b, a
 	call Function1852
 	jr nz, .asm_2a1aa
+
 	call RNG
-	cp $59
+	cp 89
 	jr c, .asm_2a1aa
 	inc b
-	cp $a5
+	cp 165
 	jr c, .asm_2a1aa
 	inc b
-	cp $d8
+	cp 216
 	jr c, .asm_2a1aa
 	inc b
-	cp $f2
+	cp 242
 	jr c, .asm_2a1aa
 	inc b
 
@@ -35486,9 +35491,11 @@ Function2a14f: ; 2a14f
 	ld b, [hl]
 	call Function2a4a0
 	jr c, .asm_2a1c1
+
 	ld a, b
-	cp $c9
+	cp UNOWN
 	jr nz, .asm_2a1bf
+
 	ld a, [UnlockedUnowns]
 	and a
 	jr z, .asm_2a1c1
@@ -35497,25 +35504,29 @@ Function2a14f: ; 2a14f
 	jr .asm_2a1c5
 
 .asm_2a1c1
-	ld a, $1
+	ld a, 1
 	and a
 	ret
 
 .asm_2a1c5
 	ld a, b
 	ld [$d22e], a
+
+.asm_2a1c9
 	xor a
 	ret
 ; 2a1cb
 
+
 INCBIN "baserom.gbc", $2a1cb, $2a1df - $2a1cb
+
 
 Function2a1df: ; 2a1df
 	ld a, [$dca1]
 	and a
 	jr z, .asm_2a1fe
 	ld hl, PartyMon1CurHP
-	ld bc, $002f
+	ld bc, PartyMon2 - PartyMon1 - 1
 .asm_2a1eb
 	ld a, [hli]
 	or [hl]
@@ -35524,10 +35535,12 @@ Function2a1df: ; 2a1df
 	jr .asm_2a1eb
 
 .asm_2a1f2
+; to PartyMonLevel
 	dec hl
 	dec hl
 	dec hl
 	dec hl
+
 	ld a, [CurPartyLevel]
 	cp [hl]
 	jr nc, .asm_2a1fe
@@ -35544,25 +35557,26 @@ Function2a200: ; 2a200
 	jr z, .asm_2a21d
 	ld hl, WildMons5
 	ld bc, $002f
-	call $623d
+	call .asm_2a23d
 	ret c
 	ld hl, WildMons1
 	ld de, WildMons3
-	call $6235
+	call .asm_2a235
 	ld bc, $002f
 	jr .asm_2a27a
 
 .asm_2a21d
 	ld hl, WildMons6
 	ld bc, $0009
-	call $623d
+	call .asm_2a23d
 	ret c
 	ld hl, WildMons2
 	ld de, WildMons4
-	call $6235
+	call .asm_2a235
 	ld bc, $0009
 	jr .asm_2a27a
 
+.asm_2a235
 	call Function2f17
 	and a
 	ret z
@@ -35570,7 +35584,8 @@ Function2a200: ; 2a200
 	ld l, e
 	ret
 
-	call $627f
+.asm_2a23d
+	call Function2a27f
 	push hl
 	ld hl, $dc20
 	bit 2, [hl]
@@ -35582,7 +35597,7 @@ Function2a200: ; 2a200
 	ld a, [$dfcd]
 	cp e
 	jr nz, .asm_2a25c
-	call $6288
+	call Function2a288
 	jr nc, .asm_2a278
 	scf
 	ret
@@ -35599,7 +35614,7 @@ Function2a200: ; 2a200
 	ld a, [$dc5b]
 	cp e
 	jr nz, .asm_2a278
-	call $6288
+	call Function2a288
 	jr nc, .asm_2a278
 	scf
 	ret
@@ -35609,16 +35624,19 @@ Function2a200: ; 2a200
 	ret
 
 .asm_2a27a
-	call $627f
-	jr .asm_2a288
+	call Function2a27f
+	jr Function2a288
+; 2a27f
 
+Function2a27f: ; 2a27f
 	ld a, [MapGroup]
 	ld d, a
 	ld a, [MapNumber]
 	ld e, a
 	ret
+; 2a288
 
-.asm_2a288
+Function2a288: ; 2a288
 	push hl
 	ld a, [hl]
 	inc a
@@ -35634,7 +35652,7 @@ Function2a200: ; 2a200
 .asm_2a296
 	pop hl
 	add hl, bc
-	jr .asm_2a288
+	jr Function2a288
 
 .asm_2a29a
 	pop hl
@@ -35646,6 +35664,7 @@ Function2a200: ; 2a200
 	scf
 	ret
 ; 2a2a0
+
 
 SpecialRoamMons: ; 2a2a0
 ; initialize RoamMon structs
@@ -35697,17 +35716,17 @@ Function2a2ce: ; 2a2ce
 	push hl
 	call Function1852
 	jr z, .asm_2a30a
-	call $627f
+	call Function2a27f
 	call RNG
-	cp $64
+	cp 100
 	jr nc, .asm_2a30a
-	and $3
+	and 3
 	jr z, .asm_2a30a
 	dec a
 	ld hl, RoamMon1MapGroup
 	ld c, a
-	ld b, $0
-	ld a, $7
+	ld b, 0
+	ld a, 7
 	call AddNTimes
 	ld a, d
 	cp [hl]
@@ -35723,7 +35742,7 @@ Function2a2ce: ; 2a2ce
 	ld [$d22e], a
 	ld a, [hl]
 	ld [CurPartyLevel], a
-	ld a, $5
+	ld a, BATTLETYPE_ROAMING
 	ld [BattleType], a
 	pop hl
 	scf
