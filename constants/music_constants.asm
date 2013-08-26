@@ -149,7 +149,7 @@ SFX_POKEFLUTE                   EQU $26
 SFX_ELEVATOR_END                EQU $27
 SFX_THROW_BALL                  EQU $28
 SFX_BALL_POOF                   EQU $29
-SFX_UNKNOWN_3A                  EQU $2a
+SFX_UNKNOWN_2A                  EQU $2a
 SFX_RUN                         EQU $2b
 SFX_SLOT_MACHINE_START          EQU $2c
 SFX_FANFARE                     EQU $2d
@@ -254,7 +254,7 @@ SFX_MORNING_SUN                 EQU $8f
 SFX_LEVEL_UP                    EQU $90
 SFX_KEY_ITEM                    EQU $91
 SFX_FANFARE_2                   EQU $92
-SFX_REGISTER_PHONE_#            EQU $93
+SFX_REGISTER_PHONE_NUMBER       EQU $93
 SFX_3RD_PLACE                   EQU $94
 SFX_GET_EGG_FROM_DAYCARE_MAN    EQU $95
 SFX_GET_EGG_FROM_DAYCARE_LADY   EQU $96

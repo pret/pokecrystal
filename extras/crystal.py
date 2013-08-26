@@ -1993,7 +1993,7 @@ movement_command_bases = {
     0x45: "accelerate_last",
     0x46: ["step_sleep", ["duration", DecimalParam]],
     0x47: "step_end",
-    0x49: "hide_person",
+    0x49: "remove_person",
 
     # do these next two have any params ??
     0x4C: "teleport_from",

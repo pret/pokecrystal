@@ -103,7 +103,7 @@ Joypad: ; 935
 ; For example, soft reset:
 	and BUTTON_A | BUTTON_B | SELECT | START
 	cp  BUTTON_A | BUTTON_B | SELECT | START
-	jp z, $0150 ; reset
+	jp z, Reset
 	
 	ret
 ; 984
