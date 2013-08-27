@@ -13,7 +13,7 @@ UnknownScript_0x9df9d: ; 0x9df9d
 	end
 ; 0x9df9e
 
-UnknownScript_0x9df9e: ; 0x9df9e
+PharmacistScript_0x9df9e: ; 0x9df9e
 	faceplayer
 	loadfont
 	checkbit1 $0023
@@ -89,6 +89,6 @@ CianwoodPharmacy_MapEventHeader: ; 0x9e0b7
 
 	; people-events
 	db 1
-	person_event $4b, 7, 6, $6, $0, 255, 255, $80, 0, UnknownScript_0x9df9e, $ffff
+	person_event SPRITE_PHARMACIST, 7, 6, $6, $0, 255, 255, $80, 0, PharmacistScript_0x9df9e, $ffff
 ; 0x9e0de
 

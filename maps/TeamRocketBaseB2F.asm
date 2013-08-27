@@ -278,7 +278,7 @@ GruntM19Script: ; 0x6d0f9
 	end
 ; 0x6d101
 
-UnknownScript_0x6d101: ; 0x6d101
+VoltorbScript_0x6d101: ; 0x6d101
 	cry ELECTRODE
 	loadpokedata ELECTRODE, 23
 	startbattle
@@ -297,7 +297,7 @@ UnknownScript_0x6d101: ; 0x6d101
 	2jump UnknownScript_0x6d184
 ; 0x6d12c
 
-UnknownScript_0x6d12c: ; 0x6d12c
+VoltorbScript_0x6d12c: ; 0x6d12c
 	cry ELECTRODE
 	loadpokedata ELECTRODE, 23
 	startbattle
@@ -316,7 +316,7 @@ UnknownScript_0x6d12c: ; 0x6d12c
 	2jump UnknownScript_0x6d184
 ; 0x6d157
 
-UnknownScript_0x6d157: ; 0x6d157
+VoltorbScript_0x6d157: ; 0x6d157
 	cry ELECTRODE
 	loadpokedata ELECTRODE, 23
 	startbattle
@@ -990,19 +990,19 @@ TeamRocketBaseB2F_MapEventHeader: ; 0x6de44
 
 	; people-events
 	db 14
-	person_event $35, 20, 24, $7, $0, 255, 255, $0, 0, ObjectEvent, $06de
-	person_event $36, 20, 24, $7, $0, 255, 255, $80, 0, ObjectEvent, $06dd
-	person_event $1e, 17, 9, $6, $0, 255, 255, $0, 0, ObjectEvent, $06d6
-	person_event $4f, 17, 13, $9, $0, 255, 255, $0, 0, ObjectEvent, $06df
-	person_event $9b, 9, 11, $16, $0, 255, 255, $0, 0, UnknownScript_0x6d101, $06e0
-	person_event $9b, 11, 11, $16, $0, 255, 255, $0, 0, UnknownScript_0x6d12c, $06e1
-	person_event $9b, 13, 11, $16, $0, 255, 255, $0, 0, UnknownScript_0x6d157, $06e2
-	person_event $9b, 9, 26, $16, $0, 255, 255, $0, 0, ObjectEvent, $06e0
-	person_event $9b, 11, 26, $16, $0, 255, 255, $0, 0, ObjectEvent, $06e1
-	person_event $9b, 13, 26, $16, $0, 255, 255, $0, 0, ObjectEvent, $06e2
-	person_event $35, 17, 29, $6, $0, 255, 255, $2, 3, TrainerGruntM17, $06da
-	person_event $35, 5, 8, $a, $0, 255, 255, $2, 1, TrainerGruntM18, $06da
-	person_event $35, 18, 25, $8, $0, 255, 255, $2, 4, TrainerGruntM19, $06da
-	person_event $54, 14, 7, $1, $0, 255, 255, $1, 0, ItemFragment_0x6d20d, $066c
+	person_event SPRITE_ROCKET, 20, 24, $7, $0, 255, 255, $0, 0, ObjectEvent, $06de
+	person_event SPRITE_ROCKET_GIRL, 20, 24, $7, $0, 255, 255, $80, 0, ObjectEvent, $06dd
+	person_event SPRITE_LANCE, 17, 9, $6, $0, 255, 255, $0, 0, ObjectEvent, $06d6
+	person_event SPRITE_DRAGON, 17, 13, $9, $0, 255, 255, $0, 0, ObjectEvent, $06df
+	person_event SPRITE_VOLTORB, 9, 11, $16, $0, 255, 255, $0, 0, VoltorbScript_0x6d101, $06e0
+	person_event SPRITE_VOLTORB, 11, 11, $16, $0, 255, 255, $0, 0, VoltorbScript_0x6d12c, $06e1
+	person_event SPRITE_VOLTORB, 13, 11, $16, $0, 255, 255, $0, 0, VoltorbScript_0x6d157, $06e2
+	person_event SPRITE_VOLTORB, 9, 26, $16, $0, 255, 255, $0, 0, ObjectEvent, $06e0
+	person_event SPRITE_VOLTORB, 11, 26, $16, $0, 255, 255, $0, 0, ObjectEvent, $06e1
+	person_event SPRITE_VOLTORB, 13, 26, $16, $0, 255, 255, $0, 0, ObjectEvent, $06e2
+	person_event SPRITE_ROCKET, 17, 29, $6, $0, 255, 255, $2, 3, TrainerGruntM17, $06da
+	person_event SPRITE_ROCKET, 5, 8, $a, $0, 255, 255, $2, 1, TrainerGruntM18, $06da
+	person_event SPRITE_ROCKET, 18, 25, $8, $0, 255, 255, $2, 4, TrainerGruntM19, $06da
+	person_event SPRITE_POKE_BALL, 14, 7, $1, $0, 255, 255, $1, 0, ItemFragment_0x6d20d, $066c
 ; 0x6dfd4
 

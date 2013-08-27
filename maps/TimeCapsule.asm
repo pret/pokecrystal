@@ -49,7 +49,7 @@ MapTimeCapsuleSignpost1Script: ; 0x193514
 	end
 ; 0x19351a
 
-UnknownScript_0x19351a: ; 0x19351a
+ChrisScript_0x19351a: ; 0x19351a
 	loadfont
 	2writetext UnknownText_0x193521
 	closetext
@@ -81,7 +81,7 @@ TimeCapsule_MapEventHeader: ; 0x193538
 
 	; people-events
 	db 2
-	person_event $1, 8, 7, $9, $0, 255, 255, $0, 0, UnknownScript_0x19351a, $0000
-	person_event $1, 8, 10, $8, $0, 255, 255, $0, 0, UnknownScript_0x19351a, $0001
+	person_event SPRITE_CHRIS, 8, 7, $9, $0, 255, 255, $0, 0, ChrisScript_0x19351a, $0000
+	person_event SPRITE_CHRIS, 8, 10, $8, $0, 255, 255, $0, 0, ChrisScript_0x19351a, $0001
 ; 0x19356c
 

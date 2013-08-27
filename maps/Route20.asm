@@ -180,8 +180,8 @@ Route20_MapEventHeader: ; 0x1acef8
 
 	; people-events
 	db 3
-	person_event $32, 12, 56, $a, $0, 255, 255, $a2, 3, TrainerSwimmerfNicole, $ffff
-	person_event $32, 17, 49, $a, $0, 255, 255, $a2, 3, TrainerSwimmerfLori, $ffff
-	person_event $31, 17, 16, $a, $0, 255, 255, $82, 3, TrainerSwimmermCameron, $ffff
+	person_event SPRITE_SWIMMER_GIRL, 12, 56, $a, $0, 255, 255, $a2, 3, TrainerSwimmerfNicole, $ffff
+	person_event SPRITE_SWIMMER_GIRL, 17, 49, $a, $0, 255, 255, $a2, 3, TrainerSwimmerfLori, $ffff
+	person_event SPRITE_SWIMMER_GUY, 17, 16, $a, $0, 255, 255, $82, 3, TrainerSwimmermCameron, $ffff
 ; 0x1acf2f
 

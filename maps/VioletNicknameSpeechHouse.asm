@@ -6,15 +6,15 @@ VioletNicknameSpeechHouse_MapScriptHeader: ; 0x693e7
 	db 0
 ; 0x693e9
 
-UnknownScript_0x693e9: ; 0x693e9
+TeacherScript_0x693e9: ; 0x693e9
 	jumptextfaceplayer UnknownText_0x693fa
 ; 0x693ec
 
-UnknownScript_0x693ec: ; 0x693ec
+LassScript_0x693ec: ; 0x693ec
 	jumptextfaceplayer UnknownText_0x6945e
 ; 0x693ef
 
-UnknownScript_0x693ef: ; 0x693ef
+BirdScript_0x693ef: ; 0x693ef
 	faceplayer
 	loadfont
 	2writetext UnknownText_0x6947c
@@ -59,8 +59,8 @@ VioletNicknameSpeechHouse_MapEventHeader: ; 0x69490
 
 	; people-events
 	db 3
-	person_event $29, 7, 6, $9, $0, 255, 255, $0, 0, UnknownScript_0x693e9, $ffff
-	person_event $28, 8, 10, $7, $0, 255, 255, $a0, 0, UnknownScript_0x693ec, $ffff
-	person_event $4e, 6, 9, $5, $1, 255, 255, $b0, 0, UnknownScript_0x693ef, $ffff
+	person_event SPRITE_TEACHER, 7, 6, $9, $0, 255, 255, $0, 0, TeacherScript_0x693e9, $ffff
+	person_event SPRITE_LASS, 8, 10, $7, $0, 255, 255, $a0, 0, LassScript_0x693ec, $ffff
+	person_event SPRITE_BIRD, 6, 9, $5, $1, 255, 255, $b0, 0, BirdScript_0x693ef, $ffff
 ; 0x694c7
 

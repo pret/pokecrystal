@@ -6,15 +6,15 @@ GoldenrodPokeComCenter2FMobile_MapScriptHeader: ; 0x625cf
 	db 0
 ; 0x625d1
 
-UnknownScript_0x625d1: ; 0x625d1
+ScientistScript_0x625d1: ; 0x625d1
 	jumptextfaceplayer UnknownText_0x62674
 ; 0x625d4
 
-UnknownScript_0x625d4: ; 0x625d4
+ScientistScript_0x625d4: ; 0x625d4
 	jumptextfaceplayer UnknownText_0x626f9
 ; 0x625d7
 
-UnknownScript_0x625d7: ; 0x625d7
+ScientistScript_0x625d7: ; 0x625d7
 	jumptextfaceplayer UnknownText_0x62795
 ; 0x625da
 
@@ -267,8 +267,8 @@ GoldenrodPokeComCenter2FMobile_MapEventHeader: ; 0x62c32
 
 	; people-events
 	db 3
-	person_event $3c, 32, 8, $4, $10, 255, 255, $80, 0, UnknownScript_0x625d1, $ffff
-	person_event $3c, 31, 11, $7, $0, 255, 255, $90, 0, UnknownScript_0x625d4, $ffff
-	person_event $3c, 33, 11, $7, $0, 255, 255, $a0, 0, UnknownScript_0x625d7, $ffff
+	person_event SPRITE_SCIENTIST, 32, 8, $4, $10, 255, 255, $80, 0, ScientistScript_0x625d1, $ffff
+	person_event SPRITE_SCIENTIST, 31, 11, $7, $0, 255, 255, $90, 0, ScientistScript_0x625d4, $ffff
+	person_event SPRITE_SCIENTIST, 33, 11, $7, $0, 255, 255, $a0, 0, ScientistScript_0x625d7, $ffff
 ; 0x62c78
 

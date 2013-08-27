@@ -192,7 +192,7 @@ UnknownScript_0x18d100: ; 0x18d100
 	end
 ; 0x18d1a5
 
-UnknownScript_0x18d1a5: ; 0x18d1a5
+ElderScript_0x18d1a5: ; 0x18d1a5
 	faceplayer
 	loadfont
 	checkbit1 $0000
@@ -256,7 +256,7 @@ UnknownScript_0x18d1ff: ; 0x18d1ff
 	end
 ; 0x18d205
 
-UnknownScript_0x18d205: ; 0x18d205
+ElderScript_0x18d205: ; 0x18d205
 	faceplayer
 	loadfont
 	2writetext UnknownText_0x18d840
@@ -265,7 +265,7 @@ UnknownScript_0x18d205: ; 0x18d205
 	end
 ; 0x18d20d
 
-UnknownScript_0x18d20d: ; 0x18d20d
+ElderScript_0x18d20d: ; 0x18d20d
 	faceplayer
 	loadfont
 	2writetext UnknownText_0x18d8b1
@@ -673,9 +673,9 @@ DragonShrine_MapEventHeader: ; 0x18dabc
 
 	; people-events
 	db 4
-	person_event $9, 5, 9, $6, $0, 255, 255, $0, 0, UnknownScript_0x18d1a5, $0000
-	person_event $9, 8, 6, $9, $0, 255, 255, $0, 0, UnknownScript_0x18d205, $0000
-	person_event $9, 8, 11, $8, $0, 255, 255, $0, 0, UnknownScript_0x18d20d, $0000
-	person_event $19, 12, 8, $7, $0, 255, 255, $90, 0, ObjectEvent, $0790
+	person_event SPRITE_ELDER, 5, 9, $6, $0, 255, 255, $0, 0, ElderScript_0x18d1a5, $0000
+	person_event SPRITE_ELDER, 8, 6, $9, $0, 255, 255, $0, 0, ElderScript_0x18d205, $0000
+	person_event SPRITE_ELDER, 8, 11, $8, $0, 255, 255, $0, 0, ElderScript_0x18d20d, $0000
+	person_event SPRITE_CLAIR, 12, 8, $7, $0, 255, 255, $90, 0, ObjectEvent, $0790
 ; 0x18db00
 

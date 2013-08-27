@@ -6,7 +6,7 @@ BillsHouse_MapScriptHeader: ; 0x189536
 	db 0
 ; 0x189538
 
-UnknownScript_0x189538: ; 0x189538
+GrampsScript_0x189538: ; 0x189538
 	faceplayer
 	loadfont
 	checkbit1 $0000
@@ -368,6 +368,6 @@ BillsHouse_MapEventHeader: ; 0x189b42
 
 	; people-events
 	db 1
-	person_event $2f, 7, 6, $7, $20, 255, 255, $90, 0, UnknownScript_0x189538, $ffff
+	person_event SPRITE_GRAMPS, 7, 6, $7, $20, 255, 255, $90, 0, GrampsScript_0x189538, $ffff
 ; 0x189b5f
 

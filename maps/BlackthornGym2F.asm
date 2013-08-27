@@ -65,7 +65,7 @@ UnknownScript_0x195758: ; 0x195758
 ; 0x19575e
 
 
-UnknownScript_0x19575e: ; 0x19575e
+BoulderScript_0x19575e: ; 0x19575e
 	jumpstd $000e
 ; 0x195761
 
@@ -189,13 +189,13 @@ BlackthornGym2F_MapEventHeader: ; 0x1958c0
 
 	; people-events
 	db 8
-	person_event $23, 5, 8, $9, $0, 255, 255, $82, 1, TrainerCooltrainermCody, $ffff
-	person_event $24, 15, 8, $8, $0, 255, 255, $82, 1, TrainerCooltrainerfFran, $ffff
-	person_event $5a, 6, 12, $19, $0, 255, 255, $0, 0, UnknownScript_0x19575e, $0706
-	person_event $5a, 7, 6, $19, $0, 255, 255, $0, 0, UnknownScript_0x19575e, $0707
-	person_event $5a, 20, 10, $19, $0, 255, 255, $0, 0, UnknownScript_0x19575e, $0708
-	person_event $5a, 7, 7, $19, $0, 255, 255, $0, 0, UnknownScript_0x19575e, $ffff
-	person_event $5a, 5, 10, $19, $0, 255, 255, $0, 0, UnknownScript_0x19575e, $ffff
-	person_event $5a, 18, 12, $19, $0, 255, 255, $0, 0, UnknownScript_0x19575e, $ffff
+	person_event SPRITE_COOLTRAINER_M, 5, 8, $9, $0, 255, 255, $82, 1, TrainerCooltrainermCody, $ffff
+	person_event SPRITE_COOLTRAINER_F, 15, 8, $8, $0, 255, 255, $82, 1, TrainerCooltrainerfFran, $ffff
+	person_event SPRITE_BOULDER, 6, 12, $19, $0, 255, 255, $0, 0, BoulderScript_0x19575e, $0706
+	person_event SPRITE_BOULDER, 7, 6, $19, $0, 255, 255, $0, 0, BoulderScript_0x19575e, $0707
+	person_event SPRITE_BOULDER, 20, 10, $19, $0, 255, 255, $0, 0, BoulderScript_0x19575e, $0708
+	person_event SPRITE_BOULDER, 7, 7, $19, $0, 255, 255, $0, 0, BoulderScript_0x19575e, $ffff
+	person_event SPRITE_BOULDER, 5, 10, $19, $0, 255, 255, $0, 0, BoulderScript_0x19575e, $ffff
+	person_event SPRITE_BOULDER, 18, 12, $19, $0, 255, 255, $0, 0, BoulderScript_0x19575e, $ffff
 ; 0x195947
 

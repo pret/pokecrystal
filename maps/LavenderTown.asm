@@ -15,19 +15,19 @@ UnknownScript_0x1ad6e0: ; 0x1ad6e0
 	return
 ; 0x1ad6e4
 
-UnknownScript_0x1ad6e4: ; 0x1ad6e4
+PokefanMScript_0x1ad6e4: ; 0x1ad6e4
 	jumptextfaceplayer UnknownText_0x1ad702
 ; 0x1ad6e7
 
-UnknownScript_0x1ad6e7: ; 0x1ad6e7
+TeacherScript_0x1ad6e7: ; 0x1ad6e7
 	jumptextfaceplayer UnknownText_0x1ad73a
 ; 0x1ad6ea
 
-UnknownScript_0x1ad6ea: ; 0x1ad6ea
+GrampsScript_0x1ad6ea: ; 0x1ad6ea
 	jumptextfaceplayer UnknownText_0x1ad75c
 ; 0x1ad6ed
 
-UnknownScript_0x1ad6ed: ; 0x1ad6ed
+YoungsterScript_0x1ad6ed: ; 0x1ad6ed
 	jumptextfaceplayer UnknownText_0x1ad7ac
 ; 0x1ad6f0
 
@@ -136,9 +136,9 @@ LavenderTown_MapEventHeader: ; 0x1ad8ac
 
 	; people-events
 	db 4
-	person_event $2d, 11, 16, $5, $1, 255, 255, $80, 0, UnknownScript_0x1ad6e4, $ffff
-	person_event $29, 19, 6, $5, $1, 255, 255, $90, 0, UnknownScript_0x1ad6e7, $ffff
-	person_event $2f, 16, 18, $7, $0, 255, 255, $0, 0, UnknownScript_0x1ad6ea, $ffff
-	person_event $27, 15, 10, $5, $1, 255, 255, $a0, 1, UnknownScript_0x1ad6ed, $ffff
+	person_event SPRITE_POKEFAN_M, 11, 16, $5, $1, 255, 255, $80, 0, PokefanMScript_0x1ad6e4, $ffff
+	person_event SPRITE_TEACHER, 19, 6, $5, $1, 255, 255, $90, 0, TeacherScript_0x1ad6e7, $ffff
+	person_event SPRITE_GRAMPS, 16, 18, $7, $0, 255, 255, $0, 0, GrampsScript_0x1ad6ea, $ffff
+	person_event SPRITE_YOUNGSTER, 15, 10, $5, $1, 255, 255, $a0, 1, YoungsterScript_0x1ad6ed, $ffff
 ; 0x1ad927
 

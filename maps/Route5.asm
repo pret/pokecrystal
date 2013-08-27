@@ -6,7 +6,7 @@ Route5_MapScriptHeader: ; 0x1adb17
 	db 0
 ; 0x1adb19
 
-UnknownScript_0x1adb19: ; 0x1adb19
+PokefanMScript_0x1adb19: ; 0x1adb19
 	jumptextfaceplayer UnknownText_0x1adb22
 ; 0x1adb1c
 
@@ -58,6 +58,6 @@ Route5_MapEventHeader: ; 0x1adbc7
 
 	; people-events
 	db 1
-	person_event $2d, 20, 21, $6, $0, 255, 255, $80, 0, UnknownScript_0x1adb19, $0771
+	person_event SPRITE_POKEFAN_M, 20, 21, $6, $0, 255, 255, $80, 0, PokefanMScript_0x1adb19, $0771
 ; 0x1adbf8
 

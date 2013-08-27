@@ -6,11 +6,11 @@ Route2946Gate_MapScriptHeader: ; 0x7b5b9
 	db 0
 ; 0x7b5bb
 
-UnknownScript_0x7b5bb: ; 0x7b5bb
+OfficerScript_0x7b5bb: ; 0x7b5bb
 	jumptextfaceplayer UnknownText_0x7b5c1
 ; 0x7b5be
 
-UnknownScript_0x7b5be: ; 0x7b5be
+YoungsterScript_0x7b5be: ; 0x7b5be
 	jumptextfaceplayer UnknownText_0x7b60d
 ; 0x7b5c1
 
@@ -51,8 +51,8 @@ Route2946Gate_MapEventHeader: ; 0x7b674
 
 	; people-events
 	db 2
-	person_event $43, 8, 4, $9, $0, 255, 255, $80, 0, UnknownScript_0x7b5bb, $ffff
-	person_event $27, 8, 10, $4, $10, 255, 255, $a0, 0, UnknownScript_0x7b5be, $ffff
+	person_event SPRITE_OFFICER, 8, 4, $9, $0, 255, 255, $80, 0, OfficerScript_0x7b5bb, $ffff
+	person_event SPRITE_YOUNGSTER, 8, 10, $4, $10, 255, 255, $a0, 0, YoungsterScript_0x7b5be, $ffff
 ; 0x7b6a8
 
 

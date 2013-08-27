@@ -6,19 +6,19 @@ SproutTower1F_MapScriptHeader: ; 0x1844fc
 	db 0
 ; 0x1844fe
 
-UnknownScript_0x1844fe: ; 0x1844fe
+SageScript_0x1844fe: ; 0x1844fe
 	jumptextfaceplayer UnknownText_0x1845d8
 ; 0x184501
 
-UnknownScript_0x184501: ; 0x184501
+SageScript_0x184501: ; 0x184501
 	jumptextfaceplayer UnknownText_0x18460a
 ; 0x184504
 
-UnknownScript_0x184504: ; 0x184504
+GrannyScript_0x184504: ; 0x184504
 	jumptextfaceplayer UnknownText_0x184649
 ; 0x184507
 
-UnknownScript_0x184507: ; 0x184507
+TeacherScript_0x184507: ; 0x184507
 	jumptextfaceplayer UnknownText_0x18469d
 ; 0x18450a
 
@@ -135,11 +135,11 @@ SproutTower1F_MapEventHeader: ; 0x184703
 
 	; people-events
 	db 6
-	person_event $3e, 8, 11, $6, $0, 255, 255, $90, 0, UnknownScript_0x1844fe, $ffff
-	person_event $3e, 11, 10, $2, $11, 255, 255, $90, 0, UnknownScript_0x184501, $ffff
-	person_event $30, 16, 15, $8, $0, 255, 255, $0, 0, UnknownScript_0x184504, $ffff
-	person_event $29, 13, 13, $7, $0, 255, 255, $0, 0, UnknownScript_0x184507, $ffff
-	person_event $3e, 9, 7, $7, $0, 255, 255, $92, 4, TrainerSageChow, $ffff
-	person_event $54, 11, 20, $1, $0, 255, 255, $1, 0, ItemFragment_0x18451e, $0647
+	person_event SPRITE_SAGE, 8, 11, $6, $0, 255, 255, $90, 0, SageScript_0x1844fe, $ffff
+	person_event SPRITE_SAGE, 11, 10, $2, $11, 255, 255, $90, 0, SageScript_0x184501, $ffff
+	person_event SPRITE_GRANNY, 16, 15, $8, $0, 255, 255, $0, 0, GrannyScript_0x184504, $ffff
+	person_event SPRITE_TEACHER, 13, 13, $7, $0, 255, 255, $0, 0, TeacherScript_0x184507, $ffff
+	person_event SPRITE_SAGE, 9, 7, $7, $0, 255, 255, $92, 4, TrainerSageChow, $ffff
+	person_event SPRITE_POKE_BALL, 11, 20, $1, $0, 255, 255, $1, 0, ItemFragment_0x18451e, $0647
 ; 0x18477a
 

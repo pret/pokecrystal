@@ -6,7 +6,7 @@ MahoganyGym_MapScriptHeader: ; 0x199a9c
 	db 0
 ; 0x199a9e
 
-UnknownScript_0x199a9e: ; 0x199a9e
+PryceScript_0x199a9e: ; 0x199a9e
 	faceplayer
 	loadfont
 	checkbit1 $04c3
@@ -450,12 +450,12 @@ MahoganyGym_MapEventHeader: ; 0x19a2df
 
 	; people-events
 	db 7
-	person_event $18, 7, 9, $6, $0, 255, 255, $b0, 0, UnknownScript_0x199a9e, $ffff
-	person_event $2a, 10, 8, $6, $0, 255, 255, $82, 1, TrainerSkierRoxanne, $ffff
-	person_event $2c, 21, 4, $7, $0, 255, 255, $92, 1, TrainerBoarderRonald, $ffff
-	person_event $2a, 21, 13, $7, $0, 255, 255, $82, 1, TrainerSkierClarissa, $ffff
-	person_event $2c, 13, 9, $6, $0, 255, 255, $92, 1, TrainerBoarderBrad, $ffff
-	person_event $2c, 8, 6, $a, $0, 255, 255, $92, 1, TrainerBoarderDouglas, $ffff
-	person_event $48, 19, 11, $6, $0, 255, 255, $80, 0, MahoganyGymGuyScript, $ffff
+	person_event SPRITE_PRYCE, 7, 9, $6, $0, 255, 255, $b0, 0, PryceScript_0x199a9e, $ffff
+	person_event SPRITE_BUENA, 10, 8, $6, $0, 255, 255, $82, 1, TrainerSkierRoxanne, $ffff
+	person_event SPRITE_ROCKER, 21, 4, $7, $0, 255, 255, $92, 1, TrainerBoarderRonald, $ffff
+	person_event SPRITE_BUENA, 21, 13, $7, $0, 255, 255, $82, 1, TrainerSkierClarissa, $ffff
+	person_event SPRITE_ROCKER, 13, 9, $6, $0, 255, 255, $92, 1, TrainerBoarderBrad, $ffff
+	person_event SPRITE_ROCKER, 8, 6, $a, $0, 255, 255, $92, 1, TrainerBoarderDouglas, $ffff
+	person_event SPRITE_GYM_GUY, 19, 11, $6, $0, 255, 255, $80, 0, MahoganyGymGuyScript, $ffff
 ; 0x19a354
 

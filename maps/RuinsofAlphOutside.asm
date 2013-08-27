@@ -60,7 +60,7 @@ UnknownScript_0x5803a: ; 0x5803a
 	2jump UnknownScript_0x58044
 ; 0x58043
 
-UnknownScript_0x58043: ; 0x58043
+ScientistScript_0x58043: ; 0x58043
 	faceplayer
 UnknownScript_0x58044: ; 0x58044
 	loadfont
@@ -78,7 +78,7 @@ UnknownScript_0x58044: ; 0x58044
 	end
 ; 0x58061
 
-UnknownScript_0x58061: ; 0x58061
+FisherScript_0x58061: ; 0x58061
 	faceplayer
 	loadfont
 	checkbit1 $00bc
@@ -93,7 +93,7 @@ UnknownScript_0x58070: ;0x58070
 	end
 ; 0x58076
 
-UnknownScript_0x58076: ; 0x58076
+YoungsterScript_0x58076: ; 0x58076
 	faceplayer
 	loadfont
 	2writetext UnknownText_0x58449
@@ -102,7 +102,7 @@ UnknownScript_0x58076: ; 0x58076
 	end
 ; 0x5807e
 
-UnknownScript_0x5807e: ; 0x5807e
+YoungsterScript_0x5807e: ; 0x5807e
 	faceplayer
 	loadfont
 	2writetext UnknownText_0x5848e
@@ -346,10 +346,10 @@ RuinsofAlphOutside_MapEventHeader: ; 0x584c3
 
 	; people-events
 	db 5
-	person_event $27, 24, 8, $6, $0, 255, 255, $2, 1, TrainerPsychicNathan, $ffff
-	person_event $3c, 19, 15, $7, $0, 255, 255, $0, 0, UnknownScript_0x58043, $0703
-	person_event $3a, 21, 17, $3, $0, 255, 255, $a0, 0, UnknownScript_0x58061, $078e
-	person_event $27, 15, 18, $2, $11, 255, 255, $b0, 0, UnknownScript_0x58076, $078f
-	person_event $27, 12, 16, $7, $0, 255, 255, $80, 0, UnknownScript_0x5807e, $078f
+	person_event SPRITE_YOUNGSTER, 24, 8, $6, $0, 255, 255, $2, 1, TrainerPsychicNathan, $ffff
+	person_event SPRITE_SCIENTIST, 19, 15, $7, $0, 255, 255, $0, 0, ScientistScript_0x58043, $0703
+	person_event SPRITE_FISHER, 21, 17, $3, $0, 255, 255, $a0, 0, FisherScript_0x58061, $078e
+	person_event SPRITE_YOUNGSTER, 15, 18, $2, $11, 255, 255, $b0, 0, YoungsterScript_0x58076, $078f
+	person_event SPRITE_YOUNGSTER, 12, 16, $7, $0, 255, 255, $80, 0, YoungsterScript_0x5807e, $078f
 ; 0x58560
 

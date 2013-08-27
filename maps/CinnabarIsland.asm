@@ -15,7 +15,7 @@ UnknownScript_0x1ac9ac: ; 0x1ac9ac
 	return
 ; 0x1ac9b0
 
-UnknownScript_0x1ac9b0: ; 0x1ac9b0
+BlueScript_0x1ac9b0: ; 0x1ac9b0
 	faceplayer
 	loadfont
 	2writetext UnknownText_0x1ac9d2
@@ -133,6 +133,6 @@ CinnabarIsland_MapEventHeader: ; 0x1accf4
 
 	; people-events
 	db 1
-	person_event $7, 10, 13, $3, $0, 255, 255, $0, 0, UnknownScript_0x1ac9b0, $0775
+	person_event SPRITE_BLUE, 10, 13, $3, $0, 255, 255, $0, 0, BlueScript_0x1ac9b0, $0775
 ; 0x1acd20
 

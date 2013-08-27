@@ -6,7 +6,7 @@ VermilionGym_MapScriptHeader: ; 0x1920a3
 	db 0
 ; 0x1920a5
 
-UnknownScript_0x1920a5: ; 0x1920a5
+SurgeScript_0x1920a5: ; 0x1920a5
 	faceplayer
 	loadfont
 	checkbit2 $0025
@@ -328,10 +328,10 @@ VermilionGym_MapEventHeader: ; 0x19263d
 
 	; people-events
 	db 5
-	person_event $1f, 6, 9, $6, $0, 255, 255, $b0, 0, UnknownScript_0x1920a5, $ffff
-	person_event $40, 12, 12, $8, $0, 255, 255, $92, 4, TrainerGentlemanGregory, $ffff
-	person_event $2c, 11, 8, $6, $3, 255, 255, $82, 3, TrainerGuitaristVincent, $ffff
-	person_event $2b, 14, 4, $9, $0, 255, 255, $92, 4, TrainerJugglerHorton, $ffff
-	person_event $48, 19, 11, $6, $0, 255, 255, $90, 1, VermilionGymGuyScript, $ffff
+	person_event SPRITE_SURGE, 6, 9, $6, $0, 255, 255, $b0, 0, SurgeScript_0x1920a5, $ffff
+	person_event SPRITE_GENTLEMAN, 12, 12, $8, $0, 255, 255, $92, 4, TrainerGentlemanGregory, $ffff
+	person_event SPRITE_ROCKER, 11, 8, $6, $3, 255, 255, $82, 3, TrainerGuitaristVincent, $ffff
+	person_event SPRITE_SUPER_NERD, 14, 4, $9, $0, 255, 255, $92, 4, TrainerJugglerHorton, $ffff
+	person_event SPRITE_GYM_GUY, 19, 11, $6, $0, 255, 255, $90, 1, VermilionGymGuyScript, $ffff
 ; 0x1926e3
 

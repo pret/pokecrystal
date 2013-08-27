@@ -56,7 +56,7 @@ UnknownScript_0x1883de: ; 0x1883de
 	end
 ; 0x188432
 
-UnknownScript_0x188432: ; 0x188432
+MistyScript_0x188432: ; 0x188432
 	faceplayer
 	loadfont
 	checkbit2 $0024
@@ -432,11 +432,11 @@ CeruleanGym_MapEventHeader: ; 0x188a51
 
 	; people-events
 	db 6
-	person_event $35, 14, 8, $6, $0, 255, 255, $0, 0, ObjectEvent, $076d
-	person_event $1d, 7, 9, $6, $0, 255, 255, $80, 0, UnknownScript_0x188432, $076f
-	person_event $32, 10, 8, $9, $0, 255, 255, $a2, 3, TrainerSwimmerfDiana, $076f
-	person_event $32, 13, 5, $9, $0, 255, 255, $a2, 1, TrainerSwimmerfBriana, $076f
-	person_event $31, 13, 12, $8, $0, 255, 255, $82, 3, TrainerSwimmermParker, $076f
-	person_event $48, 17, 11, $6, $0, 255, 255, $90, 0, CeruleanGymGuyScript, $076f
+	person_event SPRITE_ROCKET, 14, 8, $6, $0, 255, 255, $0, 0, ObjectEvent, $076d
+	person_event SPRITE_MISTY, 7, 9, $6, $0, 255, 255, $80, 0, MistyScript_0x188432, $076f
+	person_event SPRITE_SWIMMER_GIRL, 10, 8, $9, $0, 255, 255, $a2, 3, TrainerSwimmerfDiana, $076f
+	person_event SPRITE_SWIMMER_GIRL, 13, 5, $9, $0, 255, 255, $a2, 1, TrainerSwimmerfBriana, $076f
+	person_event SPRITE_SWIMMER_GUY, 13, 12, $8, $0, 255, 255, $82, 3, TrainerSwimmermParker, $076f
+	person_event SPRITE_GYM_GUY, 17, 11, $6, $0, 255, 255, $90, 0, CeruleanGymGuyScript, $076f
 ; 0x188abe
 

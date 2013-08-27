@@ -13,7 +13,7 @@ UnknownScript_0x19aea2: ; 0x19aea2
 	end
 ; 0x19aea3
 
-UnknownScript_0x19aea3: ; 0x19aea3
+RedsMomScript_0x19aea3: ; 0x19aea3
 	faceplayer
 	loadfont
 	checkbit1 $00cc
@@ -93,6 +93,6 @@ RedsHouse1F_MapEventHeader: ; 0x19b017
 
 	; people-events
 	db 1
-	person_event $e, 7, 9, $8, $0, 255, 255, $0, 0, UnknownScript_0x19aea3, $ffff
+	person_event SPRITE_REDS_MOM, 7, 9, $8, $0, 255, 255, $0, 0, RedsMomScript_0x19aea3, $ffff
 ; 0x19b048
 

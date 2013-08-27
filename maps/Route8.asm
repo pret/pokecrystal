@@ -159,7 +159,7 @@ MapRoute8Signpost0Script: ; 0x6c069
 	jumptext UnknownText_0x6c2b7
 ; 0x6c06c
 
-UnknownScript_0x6c06c: ; 0x6c06c
+FruitTreeScript_0x6c06c: ; 0x6c06c
 	fruittree $1b
 ; 0x6c06e
 
@@ -274,11 +274,11 @@ Route8_MapEventHeader: ; 0x6c2e1
 
 	; people-events
 	db 6
-	person_event $4a, 12, 14, $8, $0, 255, 255, $82, 5, TrainerBikerDwayne, $ffff
-	person_event $4a, 13, 14, $8, $0, 255, 255, $a2, 5, TrainerBikerHarris, $ffff
-	person_event $4a, 14, 14, $8, $0, 255, 255, $92, 5, TrainerBikerZeke, $ffff
-	person_event $2b, 6, 27, $6, $0, 255, 255, $b2, 3, TrainerSupernerdSam, $ffff
-	person_event $2b, 16, 35, $a, $0, 255, 255, $b2, 4, TrainerSupernerdTom, $ffff
-	person_event $5d, 9, 37, $1, $0, 255, 255, $0, 0, UnknownScript_0x6c06c, $ffff
+	person_event SPRITE_BIKER, 12, 14, $8, $0, 255, 255, $82, 5, TrainerBikerDwayne, $ffff
+	person_event SPRITE_BIKER, 13, 14, $8, $0, 255, 255, $a2, 5, TrainerBikerHarris, $ffff
+	person_event SPRITE_BIKER, 14, 14, $8, $0, 255, 255, $92, 5, TrainerBikerZeke, $ffff
+	person_event SPRITE_SUPER_NERD, 6, 27, $6, $0, 255, 255, $b2, 3, TrainerSupernerdSam, $ffff
+	person_event SPRITE_SUPER_NERD, 16, 35, $a, $0, 255, 255, $b2, 4, TrainerSupernerdTom, $ffff
+	person_event SPRITE_FRUIT_TREE, 9, 37, $1, $0, 255, 255, $0, 0, FruitTreeScript_0x6c06c, $ffff
 ; 0x6c349
 

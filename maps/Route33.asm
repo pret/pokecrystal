@@ -6,7 +6,7 @@ Route33_MapScriptHeader: ; 0x1ac000
 	db 0
 ; 0x1ac002
 
-UnknownScript_0x1ac002: ; 0x1ac002
+LassScript_0x1ac002: ; 0x1ac002
 	jumptextfaceplayer UnknownText_0x1ac1e7
 ; 0x1ac005
 
@@ -171,7 +171,7 @@ MapRoute33Signpost0Script: ; 0x1ac0e7
 	jumptext UnknownText_0x1ac279
 ; 0x1ac0ea
 
-UnknownScript_0x1ac0ea: ; 0x1ac0ea
+FruitTreeScript_0x1ac0ea: ; 0x1ac0ea
 	fruittree $6
 ; 0x1ac0ec
 
@@ -235,8 +235,8 @@ Route33_MapEventHeader: ; 0x1ac283
 
 	; people-events
 	db 3
-	person_event $2d, 17, 10, $a, $0, 255, 255, $b2, 2, TrainerHikerAnthony2, $ffff
-	person_event $28, 20, 17, $2, $11, 255, 255, $90, 0, UnknownScript_0x1ac002, $ffff
-	person_event $5d, 20, 18, $1, $0, 255, 255, $0, 0, UnknownScript_0x1ac0ea, $ffff
+	person_event SPRITE_POKEFAN_M, 17, 10, $a, $0, 255, 255, $b2, 2, TrainerHikerAnthony2, $ffff
+	person_event SPRITE_LASS, 20, 17, $2, $11, 255, 255, $90, 0, LassScript_0x1ac002, $ffff
+	person_event SPRITE_FRUIT_TREE, 20, 18, $1, $0, 255, 255, $0, 0, FruitTreeScript_0x1ac0ea, $ffff
 ; 0x1ac2ba
 

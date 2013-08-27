@@ -6,18 +6,18 @@ OlivineMart_MapScriptHeader: ; 0x9cac5
 	db 0
 ; 0x9cac7
 
-UnknownScript_0x9cac7: ; 0x9cac7
+ClerkScript_0x9cac7: ; 0x9cac7
 	loadfont
 	pokemart $0, $000d
 	loadmovesprites
 	end
 ; 0x9cace
 
-UnknownScript_0x9cace: ; 0x9cace
+CooltrainerFScript_0x9cace: ; 0x9cace
 	jumptextfaceplayer UnknownText_0x9cad4
 ; 0x9cad1
 
-UnknownScript_0x9cad1: ; 0x9cad1
+LassScript_0x9cad1: ; 0x9cad1
 	jumptextfaceplayer UnknownText_0x9cb16
 ; 0x9cad4
 
@@ -57,8 +57,8 @@ OlivineMart_MapEventHeader: ; 0x9cb9e
 
 	; people-events
 	db 3
-	person_event $39, 7, 5, $9, $0, 255, 255, $0, 0, UnknownScript_0x9cac7, $ffff
-	person_event $24, 6, 10, $5, $2, 255, 255, $a0, 0, UnknownScript_0x9cace, $ffff
-	person_event $28, 10, 5, $8, $0, 255, 255, $0, 0, UnknownScript_0x9cad1, $ffff
+	person_event SPRITE_CLERK, 7, 5, $9, $0, 255, 255, $0, 0, ClerkScript_0x9cac7, $ffff
+	person_event SPRITE_COOLTRAINER_F, 6, 10, $5, $2, 255, 255, $a0, 0, CooltrainerFScript_0x9cace, $ffff
+	person_event SPRITE_LASS, 10, 5, $8, $0, 255, 255, $0, 0, LassScript_0x9cad1, $ffff
 ; 0x9cbd5
 

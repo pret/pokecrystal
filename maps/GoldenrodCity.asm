@@ -43,7 +43,7 @@ UnknownScript_0x198908: ; 0x198908
 	return
 ; 0x198909
 
-UnknownScript_0x198909: ; 0x198909
+PokefanMScript_0x198909: ; 0x198909
 	faceplayer
 	loadfont
 	2writetext UnknownText_0x199042
@@ -163,15 +163,15 @@ UnknownScript_0x1989dd: ; 0x1989dd
 	end
 ; 0x1989e3
 
-UnknownScript_0x1989e3: ; 0x1989e3
+PokefanMScript_0x1989e3: ; 0x1989e3
 	jumptextfaceplayer UnknownText_0x198a69
 ; 0x1989e6
 
-UnknownScript_0x1989e6: ; 0x1989e6
+YoungsterScript_0x1989e6: ; 0x1989e6
 	jumptextfaceplayer UnknownText_0x198aa9
 ; 0x1989e9
 
-UnknownScript_0x1989e9: ; 0x1989e9
+CooltrainerFScript_0x1989e9: ; 0x1989e9
 	faceplayer
 	loadfont
 	checkbit1 $0021
@@ -189,7 +189,7 @@ UnknownScript_0x1989f7: ; 0x1989f7
 	end
 ; 0x1989fd
 
-UnknownScript_0x1989fd: ; 0x1989fd
+CooltrainerFScript_0x1989fd: ; 0x1989fd
 	faceplayer
 	loadfont
 	checkbit2 $0000
@@ -207,19 +207,19 @@ UnknownScript_0x198a0b: ; 0x198a0b
 	end
 ; 0x198a11
 
-UnknownScript_0x198a11: ; 0x198a11
+YoungsterScript_0x198a11: ; 0x198a11
 	jumptextfaceplayer UnknownText_0x198c36
 ; 0x198a14
 
-UnknownScript_0x198a14: ; 0x198a14
+LassScript_0x198a14: ; 0x198a14
 	jumptextfaceplayer UnknownText_0x198c83
 ; 0x198a17
 
-UnknownScript_0x198a17: ; 0x198a17
+GrampsScript_0x198a17: ; 0x198a17
 	jumptextfaceplayer UnknownText_0x198ccf
 ; 0x198a1a
 
-UnknownScript_0x198a1a: ; 0x198a1a
+RocketScript_0x198a1a: ; 0x198a1a
 	loadfont
 	2writetext UnknownText_0x198d0d
 	keeptextopen
@@ -231,27 +231,27 @@ UnknownScript_0x198a1a: ; 0x198a1a
 	end
 ; 0x198a29
 
-UnknownScript_0x198a29: ; 0x198a29
+RocketScript_0x198a29: ; 0x198a29
 	jumptextfaceplayer UnknownText_0x198d4e
 ; 0x198a2c
 
-UnknownScript_0x198a2c: ; 0x198a2c
+RocketScript_0x198a2c: ; 0x198a2c
 	jumptextfaceplayer UnknownText_0x198d6d
 ; 0x198a2f
 
-UnknownScript_0x198a2f: ; 0x198a2f
+RocketScript_0x198a2f: ; 0x198a2f
 	jumptextfaceplayer UnknownText_0x198daa
 ; 0x198a32
 
-UnknownScript_0x198a32: ; 0x198a32
+RocketScript_0x198a32: ; 0x198a32
 	jumptextfaceplayer UnknownText_0x198de2
 ; 0x198a35
 
-UnknownScript_0x198a35: ; 0x198a35
+RocketScript_0x198a35: ; 0x198a35
 	jumptextfaceplayer UnknownText_0x198e1f
 ; 0x198a38
 
-UnknownScript_0x198a38: ; 0x198a38
+RocketScript_0x198a38: ; 0x198a38
 	jumptextfaceplayer UnknownText_0x198e4b
 ; 0x198a3b
 
@@ -605,20 +605,20 @@ GoldenrodCity_MapEventHeader: ; 0x1991d1
 
 	; people-events
 	db 15
-	person_event $2d, 22, 11, $7, $0, 255, 255, $0, 0, UnknownScript_0x1989e3, $06cf
-	person_event $27, 21, 34, $2, $11, 255, 255, $0, 0, UnknownScript_0x1989e6, $06cf
-	person_event $24, 20, 16, $8, $0, 255, 255, $a0, 0, UnknownScript_0x1989e9, $06cf
-	person_event $24, 30, 24, $2, $21, 255, 255, $0, 0, UnknownScript_0x1989fd, $06cf
-	person_event $27, 21, 23, $2, $11, 255, 255, $80, 0, UnknownScript_0x198a11, $06cf
-	person_event $28, 14, 21, $5, $2, 255, 255, $a0, 0, UnknownScript_0x198a14, $06cf
-	person_event $2f, 31, 15, $5, $1, 255, 255, $0, 0, UnknownScript_0x198a17, $06cf
-	person_event $35, 20, 8, $7, $0, 255, 255, $0, 0, UnknownScript_0x198a1a, $06cc
-	person_event $35, 24, 32, $7, $0, 255, 255, $0, 0, UnknownScript_0x198a29, $06cd
-	person_event $35, 19, 12, $6, $0, 255, 255, $0, 0, UnknownScript_0x198a2c, $06cd
-	person_event $35, 27, 20, $9, $0, 255, 255, $0, 0, UnknownScript_0x198a2f, $06ce
-	person_event $35, 24, 33, $7, $0, 255, 255, $0, 0, UnknownScript_0x198a32, $06ce
-	person_event $35, 11, 33, $6, $0, 255, 255, $0, 0, UnknownScript_0x198a35, $06ce
-	person_event $35, 14, 35, $8, $0, 255, 255, $0, 0, UnknownScript_0x198a38, $06ce
-	person_event $2d, 26, 16, $3, $0, 255, 255, $80, 0, UnknownScript_0x198909, $076a
+	person_event SPRITE_POKEFAN_M, 22, 11, $7, $0, 255, 255, $0, 0, PokefanMScript_0x1989e3, $06cf
+	person_event SPRITE_YOUNGSTER, 21, 34, $2, $11, 255, 255, $0, 0, YoungsterScript_0x1989e6, $06cf
+	person_event SPRITE_COOLTRAINER_F, 20, 16, $8, $0, 255, 255, $a0, 0, CooltrainerFScript_0x1989e9, $06cf
+	person_event SPRITE_COOLTRAINER_F, 30, 24, $2, $21, 255, 255, $0, 0, CooltrainerFScript_0x1989fd, $06cf
+	person_event SPRITE_YOUNGSTER, 21, 23, $2, $11, 255, 255, $80, 0, YoungsterScript_0x198a11, $06cf
+	person_event SPRITE_LASS, 14, 21, $5, $2, 255, 255, $a0, 0, LassScript_0x198a14, $06cf
+	person_event SPRITE_GRAMPS, 31, 15, $5, $1, 255, 255, $0, 0, GrampsScript_0x198a17, $06cf
+	person_event SPRITE_ROCKET, 20, 8, $7, $0, 255, 255, $0, 0, RocketScript_0x198a1a, $06cc
+	person_event SPRITE_ROCKET, 24, 32, $7, $0, 255, 255, $0, 0, RocketScript_0x198a29, $06cd
+	person_event SPRITE_ROCKET, 19, 12, $6, $0, 255, 255, $0, 0, RocketScript_0x198a2c, $06cd
+	person_event SPRITE_ROCKET, 27, 20, $9, $0, 255, 255, $0, 0, RocketScript_0x198a2f, $06ce
+	person_event SPRITE_ROCKET, 24, 33, $7, $0, 255, 255, $0, 0, RocketScript_0x198a32, $06ce
+	person_event SPRITE_ROCKET, 11, 33, $6, $0, 255, 255, $0, 0, RocketScript_0x198a35, $06ce
+	person_event SPRITE_ROCKET, 14, 35, $8, $0, 255, 255, $0, 0, RocketScript_0x198a38, $06ce
+	person_event SPRITE_POKEFAN_M, 26, 16, $3, $0, 255, 255, $80, 0, PokefanMScript_0x198909, $076a
 ; 0x199321
 

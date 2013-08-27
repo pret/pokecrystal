@@ -6,7 +6,7 @@ LakeofRageMagikarpHouse_MapScriptHeader: ; 0x19a6ac
 	db 0
 ; 0x19a6ae
 
-UnknownScript_0x19a6ae: ; 0x19a6ae
+FishingGuruScript_0x19a6ae: ; 0x19a6ae
 	faceplayer
 	loadfont
 	checkbit1 $003a
@@ -214,6 +214,6 @@ LakeofRageMagikarpHouse_MapEventHeader: ; 0x19aae2
 
 	; people-events
 	db 1
-	person_event $3b, 7, 6, $3, $0, 255, 255, $0, 0, UnknownScript_0x19a6ae, $ffff
+	person_event SPRITE_FISHING_GURU, 7, 6, $3, $0, 255, 255, $0, 0, FishingGuruScript_0x19a6ae, $ffff
 ; 0x19ab09
 

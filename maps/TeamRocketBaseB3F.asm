@@ -17,7 +17,7 @@ TeamRocketBaseB3F_MapScriptHeader: ; 0x6dfd4
 ; 0x6dfe9
 
 UnknownScript_0x6dfe9: ; 0x6dfe9
-	priorityjump UnknownScript_0x6dffc
+	priorityjump LanceScript_0x6dffc
 	end
 ; 0x6dfed
 
@@ -44,7 +44,7 @@ UnknownScript_0x6dff7: ; 0x6dff7
 	return
 ; 0x6dffc
 
-UnknownScript_0x6dffc: ; 0x6dffc
+LanceScript_0x6dffc: ; 0x6dffc
 	spriteface $0, $2
 	pause 5
 	spriteface $4, $3
@@ -81,7 +81,7 @@ UnknownScript_0x6e019: ; 0x6e019
 	end
 ; 0x6e048
 
-UnknownScript_0x6e048: ; 0x6e048
+RocketScript_0x6e048: ; 0x6e048
 	jumptextfaceplayer UnknownText_0x6e235
 ; 0x6e04b
 
@@ -120,7 +120,7 @@ UnknownScript_0x6e056: ; 0x6e056
 	end
 ; 0x6e091
 
-UnknownScript_0x6e091: ; 0x6e091
+MoltresScript_0x6e091: ; 0x6e091
 	loadfont
 	2writetext UnknownText_0x6e585
 	closetext
@@ -646,19 +646,19 @@ TeamRocketBaseB3F_MapEventHeader: ; 0x6e9e4
 
 	; people-events
 	db 14
-	person_event $1e, 18, 29, $6, $0, 255, 255, $0, 0, UnknownScript_0x6dffc, $06d7
-	person_event $35, 7, 12, $7, $0, 255, 255, $0, 0, ObjectEvent, $06db
-	person_event $9e, 6, 11, $16, $0, 255, 255, $90, 0, UnknownScript_0x6e091, $06da
-	person_event $36, 11, 25, $7, $0, 255, 255, $82, 0, TrainerGruntF5, $06da
-	person_event $35, 18, 9, $a, $0, 255, 255, $2, 3, TrainerGruntM28, $06da
-	person_event $3c, 15, 27, $7, $0, 255, 255, $92, 0, TrainerScientistRoss, $06da
-	person_event $3c, 19, 15, $9, $0, 255, 255, $92, 3, TrainerScientistMitch, $06da
-	person_event $35, 18, 28, $6, $0, 255, 255, $0, 0, UnknownScript_0x6e048, $06da
-	person_event $4, 9, 8, $6, $0, 255, 255, $0, 0, ObjectEvent, $06c0
-	person_event $54, 16, 5, $1, $0, 255, 255, $1, 0, ItemFragment_0x6e120, $066d
-	person_event $54, 16, 7, $1, $0, 255, 255, $1, 0, ItemFragment_0x6e122, $066e
-	person_event $54, 13, 32, $1, $0, 255, 255, $1, 0, ItemFragment_0x6e124, $066f
-	person_event $54, 6, 21, $1, $0, 255, 255, $1, 0, ItemFragment_0x6e126, $0670
-	person_event $54, 14, 18, $1, $0, 255, 255, $1, 0, ItemFragment_0x6e128, $0654
+	person_event SPRITE_LANCE, 18, 29, $6, $0, 255, 255, $0, 0, LanceScript_0x6dffc, $06d7
+	person_event SPRITE_ROCKET, 7, 12, $7, $0, 255, 255, $0, 0, ObjectEvent, $06db
+	person_event SPRITE_MOLTRES, 6, 11, $16, $0, 255, 255, $90, 0, MoltresScript_0x6e091, $06da
+	person_event SPRITE_ROCKET_GIRL, 11, 25, $7, $0, 255, 255, $82, 0, TrainerGruntF5, $06da
+	person_event SPRITE_ROCKET, 18, 9, $a, $0, 255, 255, $2, 3, TrainerGruntM28, $06da
+	person_event SPRITE_SCIENTIST, 15, 27, $7, $0, 255, 255, $92, 0, TrainerScientistRoss, $06da
+	person_event SPRITE_SCIENTIST, 19, 15, $9, $0, 255, 255, $92, 3, TrainerScientistMitch, $06da
+	person_event SPRITE_ROCKET, 18, 28, $6, $0, 255, 255, $0, 0, RocketScript_0x6e048, $06da
+	person_event SPRITE_SILVER, 9, 8, $6, $0, 255, 255, $0, 0, ObjectEvent, $06c0
+	person_event SPRITE_POKE_BALL, 16, 5, $1, $0, 255, 255, $1, 0, ItemFragment_0x6e120, $066d
+	person_event SPRITE_POKE_BALL, 16, 7, $1, $0, 255, 255, $1, 0, ItemFragment_0x6e122, $066e
+	person_event SPRITE_POKE_BALL, 13, 32, $1, $0, 255, 255, $1, 0, ItemFragment_0x6e124, $066f
+	person_event SPRITE_POKE_BALL, 6, 21, $1, $0, 255, 255, $1, 0, ItemFragment_0x6e126, $0670
+	person_event SPRITE_POKE_BALL, 14, 18, $1, $0, 255, 255, $1, 0, ItemFragment_0x6e128, $0654
 ; 0x6eafe
 

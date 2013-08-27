@@ -75,11 +75,11 @@ UnknownScript_0x7ca79: ; 0x7ca79
 	return
 ; 0x7ca7a
 
-UnknownScript_0x7ca7a: ; 0x7ca7a
+SuperNerdScript_0x7ca7a: ; 0x7ca7a
 	jumptextfaceplayer UnknownText_0x7d176
 ; 0x7ca7d
 
-UnknownScript_0x7ca7d: ; 0x7ca7d
+TeacherScript_0x7ca7d: ; 0x7ca7d
 	jumptextfaceplayer UnknownText_0x7d1d0
 ; 0x7ca80
 
@@ -1055,16 +1055,16 @@ UndergroundPathSwitchRoomEntrances_MapEventHeader: ; 0x7d689
 
 	; people-events
 	db 11
-	person_event $4b, 16, 13, $9, $0, 255, 255, $a2, 2, TrainerBurglarDuncan, $06ce
-	person_event $4b, 12, 8, $8, $0, 255, 255, $a2, 2, TrainerBurglarEddie, $06ce
-	person_event $35, 6, 21, $6, $0, 255, 255, $2, 3, TrainerGruntM13, $06ce
-	person_event $35, 6, 15, $6, $0, 255, 255, $2, 3, TrainerGruntM11, $06ce
-	person_event $35, 6, 7, $6, $0, 255, 255, $2, 3, TrainerGruntM25, $06ce
-	person_event $36, 16, 23, $6, $0, 255, 255, $82, 1, TrainerGruntF3, $06ce
-	person_event $29, 31, 7, $6, $0, 255, 255, $0, 0, UnknownScript_0x7ca7d, $ffff
-	person_event $2b, 31, 23, $6, $0, 255, 255, $0, 0, UnknownScript_0x7ca7a, $ffff
-	person_event $54, 16, 5, $1, $0, 255, 255, $1, 0, ItemFragment_0x7ce7d, $0673
-	person_event $54, 13, 18, $1, $0, 255, 255, $1, 0, ItemFragment_0x7ce7f, $0674
-	person_event $4, 7, 27, $6, $0, 255, 255, $0, 0, ObjectEvent, $06c1
+	person_event SPRITE_PHARMACIST, 16, 13, $9, $0, 255, 255, $a2, 2, TrainerBurglarDuncan, $06ce
+	person_event SPRITE_PHARMACIST, 12, 8, $8, $0, 255, 255, $a2, 2, TrainerBurglarEddie, $06ce
+	person_event SPRITE_ROCKET, 6, 21, $6, $0, 255, 255, $2, 3, TrainerGruntM13, $06ce
+	person_event SPRITE_ROCKET, 6, 15, $6, $0, 255, 255, $2, 3, TrainerGruntM11, $06ce
+	person_event SPRITE_ROCKET, 6, 7, $6, $0, 255, 255, $2, 3, TrainerGruntM25, $06ce
+	person_event SPRITE_ROCKET_GIRL, 16, 23, $6, $0, 255, 255, $82, 1, TrainerGruntF3, $06ce
+	person_event SPRITE_TEACHER, 31, 7, $6, $0, 255, 255, $0, 0, TeacherScript_0x7ca7d, $ffff
+	person_event SPRITE_SUPER_NERD, 31, 23, $6, $0, 255, 255, $0, 0, SuperNerdScript_0x7ca7a, $ffff
+	person_event SPRITE_POKE_BALL, 16, 5, $1, $0, 255, 255, $1, 0, ItemFragment_0x7ce7d, $0673
+	person_event SPRITE_POKE_BALL, 13, 18, $1, $0, 255, 255, $1, 0, ItemFragment_0x7ce7f, $0674
+	person_event SPRITE_SILVER, 7, 27, $6, $0, 255, 255, $0, 0, ObjectEvent, $06c1
 ; 0x7d779
 

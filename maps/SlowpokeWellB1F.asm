@@ -6,7 +6,7 @@ SlowpokeWellB1F_MapScriptHeader: ; 0x5a5d3
 	db 0
 ; 0x5a5d5
 
-UnknownScript_0x5a5d5: ; 0x5a5d5
+KurtScript_0x5a5d5: ; 0x5a5d5
 	jumptextfaceplayer UnknownText_0x5a6b5
 ; 0x5a5d8
 
@@ -158,7 +158,7 @@ GruntF1Script: ; 0x5a679
 	end
 ; 0x5a681
 
-UnknownScript_0x5a681: ; 0x5a681
+SlowpokeScript_0x5a681: ; 0x5a681
 	faceplayer
 	loadfont
 	cry SLOWPOKE
@@ -176,7 +176,7 @@ UnknownScript_0x5a68f: ; 0x5a68f
 	end
 ; 0x5a695
 
-UnknownScript_0x5a695: ; 0x5a695
+SlowpokeScript_0x5a695: ; 0x5a695
 	faceplayer
 	loadfont
 	2writetext UnknownText_0x5ac61
@@ -186,7 +186,7 @@ UnknownScript_0x5a695: ; 0x5a695
 	end
 ; 0x5a6a0
 
-UnknownScript_0x5a6a0: ; 0x5a6a0
+BoulderScript_0x5a6a0: ; 0x5a6a0
 	jumpstd $000e
 ; 0x5a6a3
 
@@ -379,14 +379,14 @@ SlowpokeWellB1F_MapEventHeader: ; 0x5ac84
 
 	; people-events
 	db 9
-	person_event $35, 11, 19, $6, $0, 255, 255, $2, 3, TrainerGruntM29, $06fc
-	person_event $35, 6, 9, $6, $0, 255, 255, $2, 1, TrainerGruntM1, $06fc
-	person_event $35, 10, 9, $9, $0, 255, 255, $2, 2, TrainerGruntM2, $06fc
-	person_event $36, 8, 14, $9, $0, 255, 255, $82, 4, TrainerGruntF1, $06fc
-	person_event $45, 8, 11, $1, $0, 255, 255, $80, 0, UnknownScript_0x5a681, $06fb
-	person_event $45, 6, 10, $1, $0, 255, 255, $80, 0, UnknownScript_0x5a695, $06fb
-	person_event $b, 18, 20, $7, $0, 255, 255, $0, 0, UnknownScript_0x5a5d5, $0740
-	person_event $5a, 6, 7, $19, $0, 255, 255, $0, 0, UnknownScript_0x5a6a0, $ffff
-	person_event $54, 7, 14, $1, $0, 255, 255, $1, 0, ItemFragment_0x5a6a3, $0662
+	person_event SPRITE_ROCKET, 11, 19, $6, $0, 255, 255, $2, 3, TrainerGruntM29, $06fc
+	person_event SPRITE_ROCKET, 6, 9, $6, $0, 255, 255, $2, 1, TrainerGruntM1, $06fc
+	person_event SPRITE_ROCKET, 10, 9, $9, $0, 255, 255, $2, 2, TrainerGruntM2, $06fc
+	person_event SPRITE_ROCKET_GIRL, 8, 14, $9, $0, 255, 255, $82, 4, TrainerGruntF1, $06fc
+	person_event SPRITE_SLOWPOKE, 8, 11, $1, $0, 255, 255, $80, 0, SlowpokeScript_0x5a681, $06fb
+	person_event SPRITE_SLOWPOKE, 6, 10, $1, $0, 255, 255, $80, 0, SlowpokeScript_0x5a695, $06fb
+	person_event SPRITE_KURT, 18, 20, $7, $0, 255, 255, $0, 0, KurtScript_0x5a5d5, $0740
+	person_event SPRITE_BOULDER, 6, 7, $19, $0, 255, 255, $0, 0, BoulderScript_0x5a6a0, $ffff
+	person_event SPRITE_POKE_BALL, 7, 14, $1, $0, 255, 255, $1, 0, ItemFragment_0x5a6a3, $0662
 ; 0x5ad09
 

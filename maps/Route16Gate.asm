@@ -13,7 +13,7 @@ UnknownScript_0x733e9: ; 0x733e9
 	end
 ; 0x733ea
 
-UnknownScript_0x733ea: ; 0x733ea
+OfficerScript_0x733ea: ; 0x733ea
 	jumptextfaceplayer UnknownText_0x73408
 ; 0x733ed
 
@@ -81,6 +81,6 @@ Route16Gate_MapEventHeader: ; 0x734df
 
 	; people-events
 	db 1
-	person_event $43, 6, 9, $6, $0, 255, 255, $90, 0, UnknownScript_0x733ea, $ffff
+	person_event SPRITE_OFFICER, 6, 9, $6, $0, 255, 255, $90, 0, OfficerScript_0x733ea, $ffff
 ; 0x73516
 

@@ -46,15 +46,15 @@ UnknownScript_0x98593: ; 0x98593
 	return
 ; 0x9859a
 
-UnknownScript_0x9859a: ; 0x9859a
+SageScript_0x9859a: ; 0x9859a
 	jumptextfaceplayer UnknownText_0x9862b
 ; 0x9859d
 
-UnknownScript_0x9859d: ; 0x9859d
+SageScript_0x9859d: ; 0x9859d
 	jumptextfaceplayer UnknownText_0x9868b
 ; 0x985a0
 
-UnknownScript_0x985a0: ; 0x985a0
+SageScript_0x985a0: ; 0x985a0
 	jumptextfaceplayer UnknownText_0x987af
 ; 0x985a3
 
@@ -383,11 +383,11 @@ WiseTriosRoom_MapEventHeader: ; 0x98dea
 
 	; people-events
 	db 6
-	person_event $3e, 6, 10, $3, $0, 255, 255, $0, 0, UnknownScript_0x9859a, $07ab
-	person_event $3e, 11, 10, $5, $1, 255, 255, $0, 0, UnknownScript_0x9859d, $07ab
-	person_event $3e, 9, 11, $8, $0, 255, 255, $0, 0, UnknownScript_0x985a0, $07ab
-	person_event $3e, 6, 8, $6, $0, 255, 255, $2, 2, TrainerSageGaku, $07ac
-	person_event $3e, 10, 8, $7, $0, 255, 255, $2, 2, TrainerSageMasa, $07ac
-	person_event $3e, 8, 10, $8, $0, 255, 255, $2, 2, TrainerSageKoji, $07ac
+	person_event SPRITE_SAGE, 6, 10, $3, $0, 255, 255, $0, 0, SageScript_0x9859a, $07ab
+	person_event SPRITE_SAGE, 11, 10, $5, $1, 255, 255, $0, 0, SageScript_0x9859d, $07ab
+	person_event SPRITE_SAGE, 9, 11, $8, $0, 255, 255, $0, 0, SageScript_0x985a0, $07ab
+	person_event SPRITE_SAGE, 6, 8, $6, $0, 255, 255, $2, 2, TrainerSageGaku, $07ac
+	person_event SPRITE_SAGE, 10, 8, $7, $0, 255, 255, $2, 2, TrainerSageMasa, $07ac
+	person_event SPRITE_SAGE, 8, 10, $8, $0, 255, 255, $2, 2, TrainerSageKoji, $07ac
 ; 0x98e55
 

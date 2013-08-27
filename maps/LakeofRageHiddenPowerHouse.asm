@@ -6,7 +6,7 @@ LakeofRageHiddenPowerHouse_MapScriptHeader: ; 0x19a525
 	db 0
 ; 0x19a527
 
-UnknownScript_0x19a527: ; 0x19a527
+FisherScript_0x19a527: ; 0x19a527
 	faceplayer
 	loadfont
 	checkbit1 $0058
@@ -82,6 +82,6 @@ LakeofRageHiddenPowerHouse_MapEventHeader: ; 0x19a685
 
 	; people-events
 	db 1
-	person_event $3a, 7, 6, $3, $0, 255, 255, $0, 0, UnknownScript_0x19a527, $ffff
+	person_event SPRITE_FISHER, 7, 6, $3, $0, 255, 255, $0, 0, FisherScript_0x19a527, $ffff
 ; 0x19a6ac
 

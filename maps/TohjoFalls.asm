@@ -27,6 +27,6 @@ TohjoFalls_MapEventHeader: ; 0x18db04
 
 	; people-events
 	db 1
-	person_event $54, 10, 6, $1, $0, 255, 255, $1, 0, ItemFragment_0x18db02, $06a9
+	person_event SPRITE_POKE_BALL, 10, 6, $1, $0, 255, 255, $1, 0, ItemFragment_0x18db02, $06a9
 ; 0x18db21
 

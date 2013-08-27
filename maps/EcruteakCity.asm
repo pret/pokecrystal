@@ -15,23 +15,23 @@ UnknownScript_0x1a4005: ; 0x1a4005
 	return
 ; 0x1a4009
 
-UnknownScript_0x1a4009: ; 0x1a4009
+GrampsScript_0x1a4009: ; 0x1a4009
 	jumptextfaceplayer UnknownText_0x1a4105
 ; 0x1a400c
 
-UnknownScript_0x1a400c: ; 0x1a400c
+GrampsScript_0x1a400c: ; 0x1a400c
 	jumptextfaceplayer UnknownText_0x1a4147
 ; 0x1a400f
 
-UnknownScript_0x1a400f: ; 0x1a400f
+GrampsScript_0x1a400f: ; 0x1a400f
 	jumptextfaceplayer UnknownText_0x1a43cb
 ; 0x1a4012
 
-UnknownScript_0x1a4012: ; 0x1a4012
+LassScript_0x1a4012: ; 0x1a4012
 	jumptextfaceplayer UnknownText_0x1a41db
 ; 0x1a4015
 
-UnknownScript_0x1a4015: ; 0x1a4015
+LassScript_0x1a4015: ; 0x1a4015
 	faceplayer
 	loadfont
 	checkbit1 $007b
@@ -49,7 +49,7 @@ UnknownScript_0x1a4023: ; 0x1a4023
 	end
 ; 0x1a4029
 
-UnknownScript_0x1a4029: ; 0x1a4029
+FisherScript_0x1a4029: ; 0x1a4029
 	faceplayer
 	loadfont
 	checkbit1 $0020
@@ -67,7 +67,7 @@ UnknownScript_0x1a4037: ; 0x1a4037
 	end
 ; 0x1a403d
 
-UnknownScript_0x1a403d: ; 0x1a403d
+YoungsterScript_0x1a403d: ; 0x1a403d
 	jumptextfaceplayer UnknownText_0x1a4386
 ; 0x1a4040
 
@@ -283,12 +283,12 @@ EcruteakCity_MapEventHeader: ; 0x1a45fc
 
 	; people-events
 	db 7
-	person_event $2f, 19, 22, $2, $11, 255, 255, $0, 0, UnknownScript_0x1a4009, $ffff
-	person_event $2f, 25, 24, $3, $0, 255, 255, $0, 0, UnknownScript_0x1a400c, $ffff
-	person_event $28, 33, 25, $5, $2, 255, 255, $90, 0, UnknownScript_0x1a4012, $ffff
-	person_event $28, 13, 7, $7, $0, 255, 255, $0, 0, UnknownScript_0x1a4015, $ffff
-	person_event $3a, 26, 13, $5, $1, 255, 255, $a0, 0, UnknownScript_0x1a4029, $ffff
-	person_event $27, 18, 14, $2, $11, 255, 255, $80, 0, UnknownScript_0x1a403d, $ffff
-	person_event $2f, 11, 7, $2, $11, 255, 255, $a0, 0, UnknownScript_0x1a400f, $07a9
+	person_event SPRITE_GRAMPS, 19, 22, $2, $11, 255, 255, $0, 0, GrampsScript_0x1a4009, $ffff
+	person_event SPRITE_GRAMPS, 25, 24, $3, $0, 255, 255, $0, 0, GrampsScript_0x1a400c, $ffff
+	person_event SPRITE_LASS, 33, 25, $5, $2, 255, 255, $90, 0, LassScript_0x1a4012, $ffff
+	person_event SPRITE_LASS, 13, 7, $7, $0, 255, 255, $0, 0, LassScript_0x1a4015, $ffff
+	person_event SPRITE_FISHER, 26, 13, $5, $1, 255, 255, $a0, 0, FisherScript_0x1a4029, $ffff
+	person_event SPRITE_YOUNGSTER, 18, 14, $2, $11, 255, 255, $80, 0, YoungsterScript_0x1a403d, $ffff
+	person_event SPRITE_GRAMPS, 11, 7, $2, $11, 255, 255, $a0, 0, GrampsScript_0x1a400f, $07a9
 ; 0x1a46d0
 

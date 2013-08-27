@@ -6,7 +6,7 @@ CharcoalKiln_MapScriptHeader: ; 0x18dd18
 	db 0
 ; 0x18dd1a
 
-UnknownScript_0x18dd1a: ; 0x18dd1a
+BlackBeltScript_0x18dd1a: ; 0x18dd1a
 	faceplayer
 	loadfont
 	checkbit1 $0010
@@ -33,7 +33,7 @@ UnknownScript_0x18dd34: ; 0x18dd34
 	end
 ; 0x18dd3a
 
-UnknownScript_0x18dd3a: ; 0x18dd3a
+YoungsterScript_0x18dd3a: ; 0x18dd3a
 	faceplayer
 	loadfont
 	checkbit1 $005e
@@ -64,7 +64,7 @@ UnknownScript_0x18dd61: ; 0x18dd61
 	end
 ; 0x18dd63
 
-UnknownScript_0x18dd63: ; 0x18dd63
+MoltresScript_0x18dd63: ; 0x18dd63
 	faceplayer
 	loadfont
 	2writetext UnknownText_0x18dfe5
@@ -163,8 +163,8 @@ CharcoalKiln_MapEventHeader: ; 0x18dff8
 
 	; people-events
 	db 3
-	person_event $41, 7, 6, $3, $0, 255, 255, $0, 0, UnknownScript_0x18dd1a, $06f7
-	person_event $27, 7, 9, $2, $11, 255, 255, $0, 0, UnknownScript_0x18dd3a, $06f6
-	person_event $9e, 10, 9, $16, $22, 255, 255, $b0, 0, UnknownScript_0x18dd63, $06f5
+	person_event SPRITE_BLACK_BELT, 7, 6, $3, $0, 255, 255, $0, 0, BlackBeltScript_0x18dd1a, $06f7
+	person_event SPRITE_YOUNGSTER, 7, 9, $2, $11, 255, 255, $0, 0, YoungsterScript_0x18dd3a, $06f6
+	person_event SPRITE_MOLTRES, 10, 9, $16, $22, 255, 255, $b0, 0, MoltresScript_0x18dd63, $06f5
 ; 0x18e03e
 

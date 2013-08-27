@@ -6,18 +6,18 @@ ViridianMart_MapScriptHeader: ; 0x9b5e5
 	db 0
 ; 0x9b5e7
 
-UnknownScript_0x9b5e7: ; 0x9b5e7
+ClerkScript_0x9b5e7: ; 0x9b5e7
 	loadfont
 	pokemart $0, $0012
 	loadmovesprites
 	end
 ; 0x9b5ee
 
-UnknownScript_0x9b5ee: ; 0x9b5ee
+LassScript_0x9b5ee: ; 0x9b5ee
 	jumptextfaceplayer UnknownText_0x9b5f4
 ; 0x9b5f1
 
-UnknownScript_0x9b5f1: ; 0x9b5f1
+CooltrainerMScript_0x9b5f1: ; 0x9b5f1
 	jumptextfaceplayer UnknownText_0x9b61a
 ; 0x9b5f4
 
@@ -51,8 +51,8 @@ ViridianMart_MapEventHeader: ; 0x9b657
 
 	; people-events
 	db 3
-	person_event $39, 7, 5, $9, $0, 255, 255, $0, 0, UnknownScript_0x9b5e7, $ffff
-	person_event $28, 6, 11, $5, $2, 255, 255, $0, 0, UnknownScript_0x9b5ee, $ffff
-	person_event $23, 10, 5, $7, $0, 255, 255, $0, 0, UnknownScript_0x9b5f1, $ffff
+	person_event SPRITE_CLERK, 7, 5, $9, $0, 255, 255, $0, 0, ClerkScript_0x9b5e7, $ffff
+	person_event SPRITE_LASS, 6, 11, $5, $2, 255, 255, $0, 0, LassScript_0x9b5ee, $ffff
+	person_event SPRITE_COOLTRAINER_M, 10, 5, $7, $0, 255, 255, $0, 0, CooltrainerMScript_0x9b5f1, $ffff
 ; 0x9b68e
 

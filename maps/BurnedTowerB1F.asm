@@ -98,7 +98,7 @@ UnknownScript_0x18616b: ; 0x18616b
 	end
 ; 0x186212
 
-UnknownScript_0x186212: ; 0x186212
+SuperNerdScript_0x186212: ; 0x186212
 	faceplayer
 	loadfont
 	2writetext UnknownText_0x18626a
@@ -123,7 +123,7 @@ ItemFragment_0x186231: ; 0x186231
 	db TM_20, 1
 ; 0x186233
 
-UnknownScript_0x186233: ; 0x186233
+BoulderScript_0x186233: ; 0x186233
 	jumpstd $000e
 ; 0x186236
 
@@ -254,15 +254,15 @@ BurnedTowerB1F_MapEventHeader: ; 0x1863de
 
 	; people-events
 	db 9
-	person_event $5a, 12, 21, $19, $0, 255, 255, $0, 0, UnknownScript_0x186233, $ffff
-	person_event $65, 7, 11, $16, $0, 255, 255, $b0, 0, ObjectEvent, $074a
-	person_event $64, 7, 16, $16, $0, 255, 255, $80, 0, ObjectEvent, $074a
-	person_event $63, 8, 14, $16, $0, 255, 255, $90, 0, ObjectEvent, $074a
-	person_event $65, 7, 11, $6, $0, 255, 255, $d0, 0, ObjectEvent, $074b
-	person_event $64, 7, 16, $6, $0, 255, 255, $d0, 0, ObjectEvent, $074b
-	person_event $63, 8, 14, $6, $0, 255, 255, $d0, 0, ObjectEvent, $074b
-	person_event $54, 8, 20, $1, $0, 255, 255, $1, 0, ItemFragment_0x186231, $0657
-	person_event $2b, 16, 14, $7, $0, 255, 255, $90, 0, UnknownScript_0x186212, $07aa
+	person_event SPRITE_BOULDER, 12, 21, $19, $0, 255, 255, $0, 0, BoulderScript_0x186233, $ffff
+	person_event SPRITE_RAIKOU, 7, 11, $16, $0, 255, 255, $b0, 0, ObjectEvent, $074a
+	person_event SPRITE_ENTEI, 7, 16, $16, $0, 255, 255, $80, 0, ObjectEvent, $074a
+	person_event SPRITE_SUICUNE, 8, 14, $16, $0, 255, 255, $90, 0, ObjectEvent, $074a
+	person_event SPRITE_RAIKOU, 7, 11, $6, $0, 255, 255, $d0, 0, ObjectEvent, $074b
+	person_event SPRITE_ENTEI, 7, 16, $6, $0, 255, 255, $d0, 0, ObjectEvent, $074b
+	person_event SPRITE_SUICUNE, 8, 14, $6, $0, 255, 255, $d0, 0, ObjectEvent, $074b
+	person_event SPRITE_POKE_BALL, 8, 20, $1, $0, 255, 255, $1, 0, ItemFragment_0x186231, $0657
+	person_event SPRITE_SUPER_NERD, 16, 14, $7, $0, 255, 255, $90, 0, SuperNerdScript_0x186212, $07aa
 ; 0x18647f
 
 

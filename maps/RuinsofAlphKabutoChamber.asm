@@ -62,7 +62,7 @@ UnknownScript_0x58751: ; 0x58751
 	end
 ; 0x58769
 
-UnknownScript_0x58769: ; 0x58769
+ReceptionistScript_0x58769: ; 0x58769
 	jumptextfaceplayer UnknownText_0x58800
 ; 0x5876c
 
@@ -96,7 +96,7 @@ UnknownScript_0x58778: ; 0x58778
 	end
 ; 0x587a8
 
-UnknownScript_0x587a8: ; 0x587a8
+ScientistScript_0x587a8: ; 0x587a8
 	faceplayer
 	loadfont
 	checkcode $e
@@ -289,7 +289,7 @@ RuinsofAlphKabutoChamber_MapEventHeader: ; 0x58b85
 
 	; people-events
 	db 2
-	person_event $42, 9, 9, $6, $0, 255, 255, $0, 0, UnknownScript_0x58769, $074e
-	person_event $3c, 5, 7, $7, $0, 255, 255, $90, 0, UnknownScript_0x587a8, $ffff
+	person_event SPRITE_RECEPTIONIST, 9, 9, $6, $0, 255, 255, $0, 0, ReceptionistScript_0x58769, $074e
+	person_event SPRITE_SCIENTIST, 5, 7, $7, $0, 255, 255, $90, 0, ScientistScript_0x587a8, $ffff
 ; 0x58bdc
 

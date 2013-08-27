@@ -21,7 +21,7 @@ pokecrystal.o: $(TEXTFILES:.asm=.tx) wram.asm constants.asm $(shell find constan
 	@rm -f $@
 
 pokecrystal.gbc: pokecrystal.o
-	rgblink -o $@ $<
+	rgblink -n pokecrystal.sym -m pokecrystal.map -o $@ $<
 	rgbfix -Cjv -i BYTE -k 01 -l 0x33 -m 0x10 -p 0 -r 3 -t PM_CRYSTAL $@
 
 pngs:

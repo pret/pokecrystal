@@ -6,7 +6,7 @@ CeladonGym_MapScriptHeader: ; 0x72a68
 	db 0
 ; 0x72a6a
 
-UnknownScript_0x72a6a: ; 0x72a6a
+ErikaScript_0x72a6a: ; 0x72a6a
 	faceplayer
 	loadfont
 	checkbit2 $0026
@@ -356,11 +356,11 @@ CeladonGym_MapEventHeader: ; 0x72fdf
 
 	; people-events
 	db 6
-	person_event $20, 7, 9, $6, $0, 255, 255, $a0, 0, UnknownScript_0x72a6a, $ffff
-	person_event $28, 12, 11, $8, $0, 255, 255, $92, 2, TrainerLassMichelle, $ffff
-	person_event $28, 12, 6, $9, $0, 255, 255, $a2, 2, TrainerPicnickerTanya, $ffff
-	person_event $2a, 9, 7, $9, $0, 255, 255, $92, 2, TrainerBeautyJulia, $ffff
-	person_event $26, 14, 8, $6, $0, 255, 255, $82, 1, TrainerTwinsJoandzoe1, $ffff
-	person_event $26, 14, 9, $6, $0, 255, 255, $82, 1, TrainerTwinsJoandzoe2, $ffff
+	person_event SPRITE_ERIKA, 7, 9, $6, $0, 255, 255, $a0, 0, ErikaScript_0x72a6a, $ffff
+	person_event SPRITE_LASS, 12, 11, $8, $0, 255, 255, $92, 2, TrainerLassMichelle, $ffff
+	person_event SPRITE_LASS, 12, 6, $9, $0, 255, 255, $a2, 2, TrainerPicnickerTanya, $ffff
+	person_event SPRITE_BUENA, 9, 7, $9, $0, 255, 255, $92, 2, TrainerBeautyJulia, $ffff
+	person_event SPRITE_TWIN, 14, 8, $6, $0, 255, 255, $82, 1, TrainerTwinsJoandzoe1, $ffff
+	person_event SPRITE_TWIN, 14, 9, $6, $0, 255, 255, $82, 1, TrainerTwinsJoandzoe2, $ffff
 ; 0x73047
 

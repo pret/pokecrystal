@@ -6,7 +6,7 @@ PokemonFanClub_MapScriptHeader: ; 0x1917e7
 	db 0
 ; 0x1917e9
 
-UnknownScript_0x1917e9: ; 0x1917e9
+GentlemanScript_0x1917e9: ; 0x1917e9
 	faceplayer
 	loadfont
 	checkbit1 $00d4
@@ -45,11 +45,11 @@ UnknownScript_0x19181f: ; 0x19181f
 	end
 ; 0x191821
 
-UnknownScript_0x191821: ; 0x191821
+ReceptionistScript_0x191821: ; 0x191821
 	jumptextfaceplayer UnknownText_0x191b6d
 ; 0x191824
 
-UnknownScript_0x191824: ; 0x191824
+FisherScript_0x191824: ; 0x191824
 	faceplayer
 	loadfont
 	checkbit1 $00d2
@@ -102,15 +102,15 @@ UnknownScript_0x191865: ; 0x191865
 	end
 ; 0x19186b
 
-UnknownScript_0x19186b: ; 0x19186b
+TeacherScript_0x19186b: ; 0x19186b
 	jumptextfaceplayer UnknownText_0x191d73
 ; 0x19186e
 
-UnknownScript_0x19186e: ; 0x19186e
+FairyScript_0x19186e: ; 0x19186e
 	jumptext UnknownText_0x191db1
 ; 0x191871
 
-UnknownScript_0x191871: ; 0x191871
+OddishScript_0x191871: ; 0x191871
 	loadfont
 	2writetext UnknownText_0x191de9
 	cry BAYLEEF
@@ -299,11 +299,11 @@ PokemonFanClub_MapEventHeader: ; 0x191e4d
 
 	; people-events
 	db 6
-	person_event $40, 5, 7, $6, $0, 255, 255, $0, 0, UnknownScript_0x1917e9, $ffff
-	person_event $42, 5, 8, $6, $0, 255, 255, $a0, 0, UnknownScript_0x191821, $ffff
-	person_event $3a, 7, 6, $9, $0, 255, 255, $0, 0, UnknownScript_0x191824, $ffff
-	person_event $29, 6, 11, $8, $0, 255, 255, $0, 0, UnknownScript_0x19186b, $ffff
-	person_event $4d, 8, 6, $6, $0, 255, 255, $0, 0, UnknownScript_0x19186e, $0774
-	person_event $85, 7, 11, $16, $0, 255, 255, $a0, 0, UnknownScript_0x191871, $ffff
+	person_event SPRITE_GENTLEMAN, 5, 7, $6, $0, 255, 255, $0, 0, GentlemanScript_0x1917e9, $ffff
+	person_event SPRITE_RECEPTIONIST, 5, 8, $6, $0, 255, 255, $a0, 0, ReceptionistScript_0x191821, $ffff
+	person_event SPRITE_FISHER, 7, 6, $9, $0, 255, 255, $0, 0, FisherScript_0x191824, $ffff
+	person_event SPRITE_TEACHER, 6, 11, $8, $0, 255, 255, $0, 0, TeacherScript_0x19186b, $ffff
+	person_event SPRITE_FAIRY, 8, 6, $6, $0, 255, 255, $0, 0, FairyScript_0x19186e, $0774
+	person_event SPRITE_ODDISH, 7, 11, $16, $0, 255, 255, $a0, 0, OddishScript_0x191871, $ffff
 ; 0x191eb5
 

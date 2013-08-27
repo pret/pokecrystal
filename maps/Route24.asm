@@ -6,7 +6,7 @@ Route24_MapScriptHeader: ; 0x1adbf8
 	db 0
 ; 0x1adbfa
 
-UnknownScript_0x1adbfa: ; 0x1adbfa
+RocketScript_0x1adbfa: ; 0x1adbfa
 	faceplayer
 	playmusic $0039
 	loadfont
@@ -113,6 +113,6 @@ Route24_MapEventHeader: ; 0x1adf50
 
 	; people-events
 	db 1
-	person_event $35, 11, 12, $3, $0, 255, 255, $0, 0, UnknownScript_0x1adbfa, $076c
+	person_event SPRITE_ROCKET, 11, 12, $3, $0, 255, 255, $0, 0, RocketScript_0x1adbfa, $076c
 ; 0x1adf63
 

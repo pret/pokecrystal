@@ -6,7 +6,7 @@ GoldenrodDeptStore4F_MapScriptHeader: ; 0x55ee7
 	db 0
 ; 0x55ee9
 
-UnknownScript_0x55ee9: ; 0x55ee9
+ClerkScript_0x55ee9: ; 0x55ee9
 	faceplayer
 	loadfont
 	pokemart $0, $0008
@@ -14,15 +14,15 @@ UnknownScript_0x55ee9: ; 0x55ee9
 	end
 ; 0x55ef1
 
-UnknownScript_0x55ef1: ; 0x55ef1
+CooltrainerMScript_0x55ef1: ; 0x55ef1
 	jumptextfaceplayer UnknownText_0x55f08
 ; 0x55ef4
 
-UnknownScript_0x55ef4: ; 0x55ef4
+BugCatcherScript_0x55ef4: ; 0x55ef4
 	jumptextfaceplayer UnknownText_0x55f52
 ; 0x55ef7
 
-UnknownScript_0x55ef7: ; 0x55ef7
+GameboyKidScript_0x55ef7: ; 0x55ef7
 	faceplayer
 	loadfont
 	2writetext UnknownText_0x55f74
@@ -92,9 +92,9 @@ GoldenrodDeptStore4F_MapEventHeader: ; 0x56038
 
 	; people-events
 	db 4
-	person_event $39, 9, 17, $7, $0, 255, 255, $0, 0, UnknownScript_0x55ee9, $ffff
-	person_event $23, 11, 15, $9, $0, 255, 255, $0, 0, UnknownScript_0x55ef1, $ffff
-	person_event $25, 6, 11, $5, $1, 255, 255, $0, 0, UnknownScript_0x55ef4, $ffff
-	person_event $3, 5, 9, $6, $0, 255, 255, $0, 0, UnknownScript_0x55ef7, $ffff
+	person_event SPRITE_CLERK, 9, 17, $7, $0, 255, 255, $0, 0, ClerkScript_0x55ee9, $ffff
+	person_event SPRITE_COOLTRAINER_M, 11, 15, $9, $0, 255, 255, $0, 0, CooltrainerMScript_0x55ef1, $ffff
+	person_event SPRITE_BUG_CATCHER, 6, 11, $5, $1, 255, 255, $0, 0, BugCatcherScript_0x55ef4, $ffff
+	person_event SPRITE_GAMEBOY_KID, 5, 9, $6, $0, 255, 255, $0, 0, GameboyKidScript_0x55ef7, $ffff
 ; 0x5608b
 

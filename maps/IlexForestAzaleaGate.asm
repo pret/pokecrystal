@@ -6,11 +6,11 @@ IlexForestAzaleaGate_MapScriptHeader: ; 0x62c78
 	db 0
 ; 0x62c7a
 
-UnknownScript_0x62c7a: ; 0x62c7a
+OfficerScript_0x62c7a: ; 0x62c7a
 	jumptextfaceplayer UnknownText_0x62c80
 ; 0x62c7d
 
-UnknownScript_0x62c7d: ; 0x62c7d
+GrannyScript_0x62c7d: ; 0x62c7d
 	jumptextfaceplayer UnknownText_0x62cb0
 ; 0x62c80
 
@@ -47,7 +47,7 @@ IlexForestAzaleaGate_MapEventHeader: ; 0x62cf4
 
 	; people-events
 	db 2
-	person_event $43, 6, 9, $6, $0, 255, 255, $80, 0, UnknownScript_0x62c7a, $ffff
-	person_event $30, 7, 5, $6, $0, 255, 255, $b0, 0, UnknownScript_0x62c7d, $ffff
+	person_event SPRITE_OFFICER, 6, 9, $6, $0, 255, 255, $80, 0, OfficerScript_0x62c7a, $ffff
+	person_event SPRITE_GRANNY, 7, 5, $6, $0, 255, 255, $b0, 0, GrannyScript_0x62c7d, $ffff
 ; 0x62d28
 

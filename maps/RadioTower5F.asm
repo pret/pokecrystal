@@ -51,7 +51,7 @@ UnknownScript_0x60011: ; 0x60011
 	end
 ; 0x60046
 
-UnknownScript_0x60046: ; 0x60046
+GentlemanScript_0x60046: ; 0x60046
 	faceplayer
 	loadfont
 	checkbit1 $0021
@@ -160,7 +160,7 @@ UnknownScript_0x600f1: ; 0x600f1
 	end
 ; 0x600fb
 
-UnknownScript_0x600fb: ; 0x600fb
+RockerScript_0x600fb: ; 0x600fb
 	jumptextfaceplayer UnknownText_0x608be
 ; 0x600fe
 
@@ -428,10 +428,10 @@ RadioTower5F_MapEventHeader: ; 0x60906
 
 	; people-events
 	db 5
-	person_event $40, 10, 7, $3, $0, 255, 255, $0, 0, UnknownScript_0x60046, $ffff
-	person_event $35, 9, 17, $8, $0, 255, 255, $0, 0, ObjectEvent, $06ce
-	person_event $36, 6, 21, $8, $0, 255, 255, $82, 1, TrainerExecutivef1, $06ce
-	person_event $2c, 9, 17, $8, $0, 255, 255, $80, 0, UnknownScript_0x600fb, $06d0
-	person_event $54, 9, 12, $1, $0, 255, 255, $1, 0, ItemFragment_0x600fe, $07cd
+	person_event SPRITE_GENTLEMAN, 10, 7, $3, $0, 255, 255, $0, 0, GentlemanScript_0x60046, $ffff
+	person_event SPRITE_ROCKET, 9, 17, $8, $0, 255, 255, $0, 0, ObjectEvent, $06ce
+	person_event SPRITE_ROCKET_GIRL, 6, 21, $8, $0, 255, 255, $82, 1, TrainerExecutivef1, $06ce
+	person_event SPRITE_ROCKER, 9, 17, $8, $0, 255, 255, $80, 0, RockerScript_0x600fb, $06d0
+	person_event SPRITE_POKE_BALL, 9, 12, $1, $0, 255, 255, $1, 0, ItemFragment_0x600fe, $07cd
 ; 0x60980
 

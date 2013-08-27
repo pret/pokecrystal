@@ -6,7 +6,7 @@ ViridianGym_MapScriptHeader: ; 0x9aa24
 	db 0
 ; 0x9aa26
 
-UnknownScript_0x9aa26: ; 0x9aa26
+BlueScript_0x9aa26: ; 0x9aa26
 	faceplayer
 	loadfont
 	checkbit2 $002a
@@ -166,7 +166,7 @@ ViridianGym_MapEventHeader: ; 0x9ae04
 
 	; people-events
 	db 2
-	person_event $7, 7, 9, $6, $0, 255, 255, $0, 0, UnknownScript_0x9aa26, $0776
-	person_event $48, 17, 11, $6, $0, 255, 255, $90, 0, ViridianGymGuyScript, $0776
+	person_event SPRITE_BLUE, 7, 9, $6, $0, 255, 255, $0, 0, BlueScript_0x9aa26, $0776
+	person_event SPRITE_GYM_GUY, 17, 11, $6, $0, 255, 255, $90, 0, ViridianGymGuyScript, $0776
 ; 0x9ae38
 

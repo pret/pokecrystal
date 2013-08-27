@@ -6,23 +6,23 @@ TrainerHouse1F_MapScriptHeader: ; 0x9af65
 	db 0
 ; 0x9af67
 
-UnknownScript_0x9af67: ; 0x9af67
+ReceptionistScript_0x9af67: ; 0x9af67
 	jumptextfaceplayer UnknownText_0x9af7f
 ; 0x9af6a
 
-UnknownScript_0x9af6a: ; 0x9af6a
+CooltrainerMScript_0x9af6a: ; 0x9af6a
 	jumptextfaceplayer UnknownText_0x9b025
 ; 0x9af6d
 
-UnknownScript_0x9af6d: ; 0x9af6d
+CooltrainerFScript_0x9af6d: ; 0x9af6d
 	jumptextfaceplayer UnknownText_0x9b0b5
 ; 0x9af70
 
-UnknownScript_0x9af70: ; 0x9af70
+YoungsterScript_0x9af70: ; 0x9af70
 	jumptextfaceplayer UnknownText_0x9b11d
 ; 0x9af73
 
-UnknownScript_0x9af73: ; 0x9af73
+GentlemanScript_0x9af73: ; 0x9af73
 	jumptextfaceplayer UnknownText_0x9b1c9
 ; 0x9af76
 
@@ -141,10 +141,10 @@ TrainerHouse1F_MapEventHeader: ; 0x9b31f
 
 	; people-events
 	db 5
-	person_event $42, 15, 4, $9, $0, 255, 255, $a0, 0, UnknownScript_0x9af67, $ffff
-	person_event $23, 15, 11, $7, $0, 255, 255, $0, 0, UnknownScript_0x9af6a, $ffff
-	person_event $24, 6, 10, $6, $2, 255, 255, $80, 0, UnknownScript_0x9af6d, $ffff
-	person_event $27, 12, 8, $5, $2, 255, 255, $80, 0, UnknownScript_0x9af70, $ffff
-	person_event $40, 8, 6, $9, $0, 255, 255, $0, 0, UnknownScript_0x9af73, $ffff
+	person_event SPRITE_RECEPTIONIST, 15, 4, $9, $0, 255, 255, $a0, 0, ReceptionistScript_0x9af67, $ffff
+	person_event SPRITE_COOLTRAINER_M, 15, 11, $7, $0, 255, 255, $0, 0, CooltrainerMScript_0x9af6a, $ffff
+	person_event SPRITE_COOLTRAINER_F, 6, 10, $6, $2, 255, 255, $80, 0, CooltrainerFScript_0x9af6d, $ffff
+	person_event SPRITE_YOUNGSTER, 12, 8, $5, $2, 255, 255, $80, 0, YoungsterScript_0x9af70, $ffff
+	person_event SPRITE_GENTLEMAN, 8, 6, $9, $0, 255, 255, $0, 0, GentlemanScript_0x9af73, $ffff
 ; 0x9b384
 

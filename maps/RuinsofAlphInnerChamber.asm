@@ -33,15 +33,15 @@ UnknownScript_0x58f6e: ; 0x58f6e
 	end
 ; 0x58f7d
 
-UnknownScript_0x58f7d: ; 0x58f7d
+FisherScript_0x58f7d: ; 0x58f7d
 	jumptextfaceplayer UnknownText_0x58fac
 ; 0x58f80
 
-UnknownScript_0x58f80: ; 0x58f80
+TeacherScript_0x58f80: ; 0x58f80
 	jumptextfaceplayer UnknownText_0x58fda
 ; 0x58f83
 
-UnknownScript_0x58f83: ; 0x58f83
+GrampsScript_0x58f83: ; 0x58f83
 	jumptextfaceplayer UnknownText_0x59024
 ; 0x58f86
 
@@ -132,8 +132,8 @@ RuinsofAlphInnerChamber_MapEventHeader: ; 0x59097
 
 	; people-events
 	db 3
-	person_event $3a, 11, 7, $3, $0, 255, 255, $a0, 0, UnknownScript_0x58f7d, $0705
-	person_event $29, 17, 18, $2, $11, 255, 255, $0, 0, UnknownScript_0x58f80, $0705
-	person_event $2f, 23, 15, $7, $0, 255, 255, $b0, 0, UnknownScript_0x58f83, $0705
+	person_event SPRITE_FISHER, 11, 7, $3, $0, 255, 255, $a0, 0, FisherScript_0x58f7d, $0705
+	person_event SPRITE_TEACHER, 17, 18, $2, $11, 255, 255, $0, 0, TeacherScript_0x58f80, $0705
+	person_event SPRITE_GRAMPS, 23, 15, $7, $0, 255, 255, $b0, 0, GrampsScript_0x58f83, $0705
 ; 0x59173
 

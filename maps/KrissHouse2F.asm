@@ -38,19 +38,19 @@ UnknownScript_0x7abc5: ; 0x7abc5
 	db 0, 0, 0 ; filler
 
 
-UnknownScript_0x7abcc: ; 0x7abcc
+Doll1Script_0x7abcc: ; 0x7abcc
 	describedecoration $1
 ; 0x7abce
 
-UnknownScript_0x7abce: ; 0x7abce
+Doll2Script_0x7abce: ; 0x7abce
 	describedecoration $2
 ; 0x7abd0
 
-UnknownScript_0x7abd0: ; 0x7abd0
+BigDollScript_0x7abd0: ; 0x7abd0
 	describedecoration $3
 ; 0x7abd2
 
-UnknownScript_0x7abd2: ; 0x7abd2
+ConsoleScript_0x7abd2: ; 0x7abd2
 	describedecoration $4
 ; 0x7abd4
 
@@ -154,9 +154,9 @@ KrissHouse2F_MapEventHeader: ; 0x7ac99
 
 	; people-events
 	db 4
-	person_event $f0, 6, 8, $1, $0, 255, 255, $0, 0, UnknownScript_0x7abd2, $0741
-	person_event $f1, 8, 8, $1, $0, 255, 255, $0, 0, UnknownScript_0x7abcc, $0742
-	person_event $f2, 8, 9, $1, $0, 255, 255, $0, 0, UnknownScript_0x7abce, $0743
-	person_event $f3, 5, 4, $21, $0, 255, 255, $0, 0, UnknownScript_0x7abd0, $0744
+	person_event SPRITE_CONSOLE, 6, 8, $1, $0, 255, 255, $0, 0, ConsoleScript_0x7abd2, $0741
+	person_event SPRITE_DOLL_1, 8, 8, $1, $0, 255, 255, $0, 0, Doll1Script_0x7abcc, $0742
+	person_event SPRITE_DOLL_2, 8, 9, $1, $0, 255, 255, $0, 0, Doll2Script_0x7abce, $0743
+	person_event SPRITE_BIG_DOLL, 5, 4, $21, $0, 255, 255, $0, 0, BigDollScript_0x7abd0, $0744
 ; 0x7acec
 

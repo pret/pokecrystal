@@ -65,7 +65,7 @@ UnknownScript_0x59192: ; 0x59192
 	end
 ; 0x591d1
 
-UnknownScript_0x591d1: ; 0x591d1
+ScientistScript_0x591d1: ; 0x591d1
 	faceplayer
 	loadfont
 	checkcode $e
@@ -83,7 +83,7 @@ UnknownScript_0x591df: ; 0x591df
 	end
 ; 0x591e5
 
-UnknownScript_0x591e5: ; 0x591e5
+ScientistScript_0x591e5: ; 0x591e5
 	faceplayer
 	loadfont
 	checkcode $e
@@ -120,7 +120,7 @@ UnknownScript_0x5920b: ; 0x5920b
 	end
 ; 0x59214
 
-UnknownScript_0x59214: ; 0x59214
+ScientistScript_0x59214: ; 0x59214
 	faceplayer
 	loadfont
 	checkcode $e
@@ -404,8 +404,8 @@ RuinsofAlphResearchCenter_MapEventHeader: ; 0x598d0
 
 	; people-events
 	db 3
-	person_event $3c, 9, 8, $7, $0, 255, 255, $90, 0, UnknownScript_0x591e5, $ffff
-	person_event $3c, 6, 9, $2, $12, 255, 255, $90, 0, UnknownScript_0x59214, $ffff
-	person_event $3c, 9, 6, $7, $0, 255, 255, $90, 0, UnknownScript_0x591d1, $0704
+	person_event SPRITE_SCIENTIST, 9, 8, $7, $0, 255, 255, $90, 0, ScientistScript_0x591e5, $ffff
+	person_event SPRITE_SCIENTIST, 6, 9, $2, $12, 255, 255, $90, 0, ScientistScript_0x59214, $ffff
+	person_event SPRITE_SCIENTIST, 9, 6, $7, $0, 255, 255, $90, 0, ScientistScript_0x591d1, $0704
 ; 0x59916
 

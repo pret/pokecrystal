@@ -118,7 +118,7 @@ GruntM15Script: ; 0x7d9b7
 	end
 ; 0x7d9bf
 
-UnknownScript_0x7d9bf: ; 0x7d9bf
+GentlemanScript_0x7d9bf: ; 0x7d9bf
 	faceplayer
 	loadfont
 	checkbit1 $004a
@@ -265,12 +265,12 @@ UndergroundWarehouse_MapEventHeader: ; 0x7dd84
 
 	; people-events
 	db 7
-	person_event $35, 12, 13, $7, $0, 255, 255, $2, 3, TrainerGruntM24, $06ce
-	person_event $35, 19, 12, $7, $0, 255, 255, $2, 3, TrainerGruntM14, $06ce
-	person_event $35, 7, 18, $9, $0, 255, 255, $2, 4, TrainerGruntM15, $06ce
-	person_event $40, 12, 16, $3, $0, 255, 255, $0, 0, UnknownScript_0x7d9bf, $06ce
-	person_event $54, 19, 22, $1, $0, 255, 255, $1, 0, ItemFragment_0x7d9e4, $0679
-	person_event $54, 13, 17, $1, $0, 255, 255, $1, 0, ItemFragment_0x7d9e6, $067a
-	person_event $54, 5, 6, $1, $0, 255, 255, $1, 0, ItemFragment_0x7d9e8, $0655
+	person_event SPRITE_ROCKET, 12, 13, $7, $0, 255, 255, $2, 3, TrainerGruntM24, $06ce
+	person_event SPRITE_ROCKET, 19, 12, $7, $0, 255, 255, $2, 3, TrainerGruntM14, $06ce
+	person_event SPRITE_ROCKET, 7, 18, $9, $0, 255, 255, $2, 4, TrainerGruntM15, $06ce
+	person_event SPRITE_GENTLEMAN, 12, 16, $3, $0, 255, 255, $0, 0, GentlemanScript_0x7d9bf, $06ce
+	person_event SPRITE_POKE_BALL, 19, 22, $1, $0, 255, 255, $1, 0, ItemFragment_0x7d9e4, $0679
+	person_event SPRITE_POKE_BALL, 13, 17, $1, $0, 255, 255, $1, 0, ItemFragment_0x7d9e6, $067a
+	person_event SPRITE_POKE_BALL, 5, 6, $1, $0, 255, 255, $1, 0, ItemFragment_0x7d9e8, $0655
 ; 0x7ddf4
 

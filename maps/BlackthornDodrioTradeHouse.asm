@@ -6,7 +6,7 @@ BlackthornDodrioTradeHouse_MapScriptHeader: ; 0x195a28
 	db 0
 ; 0x195a2a
 
-UnknownScript_0x195a2a: ; 0x195a2a
+LassScript_0x195a2a: ; 0x195a2a
 	faceplayer
 	loadfont
 	trade $3
@@ -38,6 +38,6 @@ BlackthornDodrioTradeHouse_MapEventHeader: ; 0x195a34
 
 	; people-events
 	db 1
-	person_event $28, 7, 6, $3, $0, 255, 255, $a0, 0, UnknownScript_0x195a2a, $ffff
+	person_event SPRITE_LASS, 7, 6, $3, $0, 255, 255, $a0, 0, LassScript_0x195a2a, $ffff
 ; 0x195a5b
 

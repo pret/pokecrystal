@@ -44,7 +44,7 @@ UnknownScript_0x76766: ; 0x76766
 	end
 ; 0x76767
 
-UnknownScript_0x76767: ; 0x76767
+SailorScript_0x76767: ; 0x76767
 	faceplayer
 	loadfont
 	checkbit1 $0030
@@ -635,17 +635,17 @@ FastShipB1F_MapEventHeader: ; 0x76ee9
 
 	; people-events
 	db 12
-	person_event $49, 10, 34, $6, $0, 255, 255, $90, 0, UnknownScript_0x76767, $072e
-	person_event $49, 10, 35, $6, $0, 255, 255, $90, 0, UnknownScript_0x76767, $072f
-	person_event $49, 15, 13, $7, $0, 255, 255, $92, 3, TrainerSailorJeff, $0739
-	person_event $28, 8, 10, $7, $0, 255, 255, $a2, 1, TrainerPicnickerDebra, $0739
-	person_event $2b, 13, 30, $9, $0, 255, 255, $92, 1, TrainerJugglerFritz, $0739
-	person_event $49, 8, 21, $9, $0, 255, 255, $92, 4, TrainerSailorGarrett, $073a
-	person_event $3a, 12, 29, $7, $0, 255, 255, $a2, 3, TrainerFisherJonah, $073a
-	person_event $41, 15, 19, $1f, $0, 255, 255, $b2, 3, TrainerBlackbeltWai, $073a
-	person_event $49, 8, 27, $9, $0, 255, 255, $92, 4, TrainerSailorKenneth, $073b
-	person_event $29, 15, 13, $7, $0, 255, 255, $82, 3, TrainerTeacherShirley, $073b
-	person_event $27, 13, 18, $3, $0, 255, 255, $92, 1, TrainerSchoolboyNate, $073b
-	person_event $27, 15, 18, $a, $0, 255, 255, $92, 1, TrainerSchoolboyRicky, $073b
+	person_event SPRITE_SAILOR, 10, 34, $6, $0, 255, 255, $90, 0, SailorScript_0x76767, $072e
+	person_event SPRITE_SAILOR, 10, 35, $6, $0, 255, 255, $90, 0, SailorScript_0x76767, $072f
+	person_event SPRITE_SAILOR, 15, 13, $7, $0, 255, 255, $92, 3, TrainerSailorJeff, $0739
+	person_event SPRITE_LASS, 8, 10, $7, $0, 255, 255, $a2, 1, TrainerPicnickerDebra, $0739
+	person_event SPRITE_SUPER_NERD, 13, 30, $9, $0, 255, 255, $92, 1, TrainerJugglerFritz, $0739
+	person_event SPRITE_SAILOR, 8, 21, $9, $0, 255, 255, $92, 4, TrainerSailorGarrett, $073a
+	person_event SPRITE_FISHER, 12, 29, $7, $0, 255, 255, $a2, 3, TrainerFisherJonah, $073a
+	person_event SPRITE_BLACK_BELT, 15, 19, $1f, $0, 255, 255, $b2, 3, TrainerBlackbeltWai, $073a
+	person_event SPRITE_SAILOR, 8, 27, $9, $0, 255, 255, $92, 4, TrainerSailorKenneth, $073b
+	person_event SPRITE_TEACHER, 15, 13, $7, $0, 255, 255, $82, 3, TrainerTeacherShirley, $073b
+	person_event SPRITE_YOUNGSTER, 13, 18, $3, $0, 255, 255, $92, 1, TrainerSchoolboyNate, $073b
+	person_event SPRITE_YOUNGSTER, 15, 18, $a, $0, 255, 255, $92, 1, TrainerSchoolboyRicky, $073b
 ; 0x76faa
 

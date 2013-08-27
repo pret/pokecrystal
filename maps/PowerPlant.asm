@@ -42,7 +42,7 @@ UnknownScript_0x188dc5: ; 0x188dc5
 	end
 ; 0x188df5
 
-UnknownScript_0x188df5: ; 0x188df5
+OfficerScript_0x188df5: ; 0x188df5
 	faceplayer
 	loadfont
 	checkbit1 $00c9
@@ -69,7 +69,7 @@ UnknownScript_0x188e0f: ; 0x188e0f
 	end
 ; 0x188e15
 
-UnknownScript_0x188e15: ; 0x188e15
+GymGuyScript_0x188e15: ; 0x188e15
 	faceplayer
 	loadfont
 	checkbit1 $00c9
@@ -87,7 +87,7 @@ UnknownScript_0x188e23: ; 0x188e23
 	end
 ; 0x188e29
 
-UnknownScript_0x188e29: ; 0x188e29
+GymGuyScript_0x188e29: ; 0x188e29
 	faceplayer
 	loadfont
 	checkbit1 $00c9
@@ -105,7 +105,7 @@ UnknownScript_0x188e37: ; 0x188e37
 	end
 ; 0x188e3d
 
-UnknownScript_0x188e3d: ; 0x188e3d
+OfficerScript_0x188e3d: ; 0x188e3d
 	faceplayer
 	loadfont
 	checkbit1 $00c9
@@ -123,7 +123,7 @@ UnknownScript_0x188e4b: ; 0x188e4b
 	end
 ; 0x188e51
 
-UnknownScript_0x188e51: ; 0x188e51
+GymGuyScript_0x188e51: ; 0x188e51
 	faceplayer
 	loadfont
 	checkbit1 $00c9
@@ -141,7 +141,7 @@ UnknownScript_0x188e5f: ; 0x188e5f
 	end
 ; 0x188e65
 
-UnknownScript_0x188e65: ; 0x188e65
+FisherScript_0x188e65: ; 0x188e65
 	faceplayer
 	loadfont
 	checkbit1 $00c9
@@ -200,7 +200,7 @@ UnknownScript_0x188ec5: ; 0x188ec5
 	end
 ; 0x188ecb
 
-UnknownScript_0x188ecb: ; 0x188ecb
+GymGuyScript_0x188ecb: ; 0x188ecb
 	faceplayer
 	loadfont
 	trade $6
@@ -399,12 +399,12 @@ PowerPlant_MapEventHeader: ; 0x1894b9
 
 	; people-events
 	db 7
-	person_event $43, 18, 8, $6, $0, 255, 255, $a0, 0, UnknownScript_0x188df5, $ffff
-	person_event $48, 13, 6, $3, $0, 255, 255, $90, 0, UnknownScript_0x188e15, $ffff
-	person_event $48, 15, 10, $7, $0, 255, 255, $90, 0, UnknownScript_0x188e29, $ffff
-	person_event $43, 7, 13, $8, $0, 255, 255, $a0, 0, UnknownScript_0x188e3d, $ffff
-	person_event $48, 6, 11, $5, $1, 255, 255, $90, 0, UnknownScript_0x188e51, $ffff
-	person_event $3a, 14, 18, $7, $0, 255, 255, $80, 0, UnknownScript_0x188e65, $ffff
-	person_event $48, 9, 9, $7, $0, 255, 255, $90, 0, UnknownScript_0x188ecb, $ffff
+	person_event SPRITE_OFFICER, 18, 8, $6, $0, 255, 255, $a0, 0, OfficerScript_0x188df5, $ffff
+	person_event SPRITE_GYM_GUY, 13, 6, $3, $0, 255, 255, $90, 0, GymGuyScript_0x188e15, $ffff
+	person_event SPRITE_GYM_GUY, 15, 10, $7, $0, 255, 255, $90, 0, GymGuyScript_0x188e29, $ffff
+	person_event SPRITE_OFFICER, 7, 13, $8, $0, 255, 255, $a0, 0, OfficerScript_0x188e3d, $ffff
+	person_event SPRITE_GYM_GUY, 6, 11, $5, $1, 255, 255, $90, 0, GymGuyScript_0x188e51, $ffff
+	person_event SPRITE_FISHER, 14, 18, $7, $0, 255, 255, $80, 0, FisherScript_0x188e65, $ffff
+	person_event SPRITE_GYM_GUY, 9, 9, $7, $0, 255, 255, $90, 0, GymGuyScript_0x188ecb, $ffff
 ; 0x189536
 

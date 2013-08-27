@@ -213,9 +213,9 @@ Route3_MapEventHeader: ; 0x1ae18a
 
 	; people-events
 	db 4
-	person_event $3a, 16, 30, $7, $0, 255, 255, $82, 2, TrainerFirebreatherOtis, $ffff
-	person_event $27, 11, 14, $8, $0, 255, 255, $92, 3, TrainerYoungsterWarren, $ffff
-	person_event $27, 7, 20, $a, $0, 255, 255, $92, 1, TrainerYoungsterJimmy, $ffff
-	person_event $3a, 9, 53, $a, $0, 255, 255, $82, 3, TrainerFirebreatherBurt, $ffff
+	person_event SPRITE_FISHER, 16, 30, $7, $0, 255, 255, $82, 2, TrainerFirebreatherOtis, $ffff
+	person_event SPRITE_YOUNGSTER, 11, 14, $8, $0, 255, 255, $92, 3, TrainerYoungsterWarren, $ffff
+	person_event SPRITE_YOUNGSTER, 7, 20, $a, $0, 255, 255, $92, 1, TrainerYoungsterJimmy, $ffff
+	person_event SPRITE_FISHER, 9, 53, $a, $0, 255, 255, $82, 3, TrainerFirebreatherBurt, $ffff
 ; 0x1ae1ce
 

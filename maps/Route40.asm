@@ -139,11 +139,11 @@ SwimmermRandallScript: ; 0x1a61bc
 	end
 ; 0x1a61c4
 
-UnknownScript_0x1a61c4: ; 0x1a61c4
+LassScript_0x1a61c4: ; 0x1a61c4
 	jumptextfaceplayer UnknownText_0x1a6429
 ; 0x1a61c7
 
-UnknownScript_0x1a61c7: ; 0x1a61c7
+PokefanMScript_0x1a61c7: ; 0x1a61c7
 	special $00a0
 	iftrue UnknownScript_0x1a61d0
 	jumptextfaceplayer UnknownText_0x1a646a
@@ -153,15 +153,15 @@ UnknownScript_0x1a61d0: ; 0x1a61d0
 	jumptextfaceplayer UnknownText_0x1a649b
 ; 0x1a61d3
 
-UnknownScript_0x1a61d3: ; 0x1a61d3
+LassScript_0x1a61d3: ; 0x1a61d3
 	jumptextfaceplayer UnknownText_0x1a64e6
 ; 0x1a61d6
 
-UnknownScript_0x1a61d6: ; 0x1a61d6
+StandingYoungsterScript_0x1a61d6: ; 0x1a61d6
 	jumptextfaceplayer UnknownText_0x1a6564
 ; 0x1a61d9
 
-UnknownScript_0x1a61d9: ; 0x1a61d9
+BuenaScript_0x1a61d9: ; 0x1a61d9
 	faceplayer
 	loadfont
 	checkbit1 $006f
@@ -204,7 +204,7 @@ MapRoute40Signpost0Script: ; 0x1a6213
 	jumptext UnknownText_0x1a6767
 ; 0x1a6216
 
-UnknownScript_0x1a6216: ; 0x1a6216
+RockScript_0x1a6216: ; 0x1a6216
 	jumpstd $000f
 ; 0x1a6219
 
@@ -415,17 +415,17 @@ Route40_MapEventHeader: ; 0x1a678e
 
 	; people-events
 	db 12
-	person_event $f5, 19, 18, $9, $0, 255, 255, $82, 4, TrainerSwimmermSimon, $ffff
-	person_event $f5, 34, 22, $8, $0, 255, 255, $82, 5, TrainerSwimmermRandall, $ffff
-	person_event $32, 23, 7, $9, $0, 255, 255, $a2, 4, TrainerSwimmerfElaine, $ffff
-	person_event $32, 29, 14, $1f, $0, 255, 255, $a2, 3, TrainerSwimmerfPaula, $ffff
-	person_event $59, 15, 11, $18, $0, 255, 255, $0, 0, UnknownScript_0x1a6216, $ffff
-	person_event $59, 13, 10, $18, $0, 255, 255, $0, 0, UnknownScript_0x1a6216, $ffff
-	person_event $59, 12, 11, $18, $0, 255, 255, $0, 0, UnknownScript_0x1a6216, $ffff
-	person_event $28, 17, 15, $6, $0, 255, 255, $0, 0, UnknownScript_0x1a61c4, $ffff
-	person_event $2a, 14, 12, $3, $0, 255, 255, $0, 0, UnknownScript_0x1a61d9, $075e
-	person_event $2d, 10, 11, $9, $0, 255, 255, $0, 0, UnknownScript_0x1a61c7, $ffff
-	person_event $28, 8, 17, $3, $0, 255, 255, $a0, 0, UnknownScript_0x1a61d3, $ffff
-	person_event $66, 13, 20, $3, $0, 255, 255, $90, 0, UnknownScript_0x1a61d6, $07cf
+	person_event SPRITE_OLIVINE_RIVAL, 19, 18, $9, $0, 255, 255, $82, 4, TrainerSwimmermSimon, $ffff
+	person_event SPRITE_OLIVINE_RIVAL, 34, 22, $8, $0, 255, 255, $82, 5, TrainerSwimmermRandall, $ffff
+	person_event SPRITE_SWIMMER_GIRL, 23, 7, $9, $0, 255, 255, $a2, 4, TrainerSwimmerfElaine, $ffff
+	person_event SPRITE_SWIMMER_GIRL, 29, 14, $1f, $0, 255, 255, $a2, 3, TrainerSwimmerfPaula, $ffff
+	person_event SPRITE_ROCK, 15, 11, $18, $0, 255, 255, $0, 0, RockScript_0x1a6216, $ffff
+	person_event SPRITE_ROCK, 13, 10, $18, $0, 255, 255, $0, 0, RockScript_0x1a6216, $ffff
+	person_event SPRITE_ROCK, 12, 11, $18, $0, 255, 255, $0, 0, RockScript_0x1a6216, $ffff
+	person_event SPRITE_LASS, 17, 15, $6, $0, 255, 255, $0, 0, LassScript_0x1a61c4, $ffff
+	person_event SPRITE_BUENA, 14, 12, $3, $0, 255, 255, $0, 0, BuenaScript_0x1a61d9, $075e
+	person_event SPRITE_POKEFAN_M, 10, 11, $9, $0, 255, 255, $0, 0, PokefanMScript_0x1a61c7, $ffff
+	person_event SPRITE_LASS, 8, 17, $3, $0, 255, 255, $a0, 0, LassScript_0x1a61d3, $ffff
+	person_event SPRITE_STANDING_YOUNGSTER, 13, 20, $3, $0, 255, 255, $90, 0, StandingYoungsterScript_0x1a61d6, $07cf
 ; 0x1a683f
 

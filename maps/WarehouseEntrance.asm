@@ -229,7 +229,7 @@ PokemaniacDonaldScript: ; 0x7c12a
 	end
 ; 0x7c132
 
-UnknownScript_0x7c132: ; 0x7c132
+GrannyScript_0x7c132: ; 0x7c132
 	loadfont
 	checkcode $b
 	if_equal SUNDAY, UnknownScript_0x7c140
@@ -243,7 +243,7 @@ UnknownScript_0x7c140: ; 0x7c140
 	end
 ; 0x7c146
 
-UnknownScript_0x7c146: ; 0x7c146
+GrampsScript_0x7c146: ; 0x7c146
 	loadfont
 	checkbit2 $0056
 	iftrue UnknownScript_0x7c300
@@ -260,7 +260,7 @@ UnknownScript_0x7c156: ; 0x7c156
 	end
 ; 0x7c161
 
-UnknownScript_0x7c161: ; 0x7c161
+SuperNerdScript_0x7c161: ; 0x7c161
 	loadfont
 	checkcode $b
 	if_equal TUESDAY, UnknownScript_0x7c173
@@ -352,7 +352,7 @@ UnknownScript_0x7c208: ; 0x7c208
 	end
 ; 0x7c20e
 
-UnknownScript_0x7c20e: ; 0x7c20e
+SuperNerdScript_0x7c20e: ; 0x7c20e
 	loadfont
 	checkcode $b
 	if_equal SUNDAY, UnknownScript_0x7c220
@@ -770,14 +770,14 @@ WarehouseEntrance_MapEventHeader: ; 0x7c936
 
 	; people-events
 	db 9
-	person_event $2b, 35, 9, $8, $0, 255, 255, $b2, 3, TrainerSupernerdEric, $ffff
-	person_event $2b, 13, 10, $7, $0, 255, 255, $b2, 2, TrainerSupernerdTeru, $ffff
-	person_event $2b, 31, 7, $a, $0, 255, 255, $92, 2, TrainerPokemaniacIssac, $ffff
-	person_event $2b, 10, 6, $9, $0, 255, 255, $92, 3, TrainerPokemaniacDonald, $ffff
-	person_event $54, 29, 11, $1, $0, 255, 255, $1, 0, ItemFragment_0x7c306, $0672
-	person_event $2f, 15, 11, $8, $0, 255, 255, $b0, 0, UnknownScript_0x7c146, $0753
-	person_event $2b, 18, 11, $8, $0, 255, 255, $90, 0, UnknownScript_0x7c161, $0754
-	person_event $2b, 19, 11, $8, $0, 255, 255, $a0, 0, UnknownScript_0x7c20e, $0755
-	person_event $30, 25, 11, $8, $0, 255, 255, $b0, 0, UnknownScript_0x7c132, $0752
+	person_event SPRITE_SUPER_NERD, 35, 9, $8, $0, 255, 255, $b2, 3, TrainerSupernerdEric, $ffff
+	person_event SPRITE_SUPER_NERD, 13, 10, $7, $0, 255, 255, $b2, 2, TrainerSupernerdTeru, $ffff
+	person_event SPRITE_SUPER_NERD, 31, 7, $a, $0, 255, 255, $92, 2, TrainerPokemaniacIssac, $ffff
+	person_event SPRITE_SUPER_NERD, 10, 6, $9, $0, 255, 255, $92, 3, TrainerPokemaniacDonald, $ffff
+	person_event SPRITE_POKE_BALL, 29, 11, $1, $0, 255, 255, $1, 0, ItemFragment_0x7c306, $0672
+	person_event SPRITE_GRAMPS, 15, 11, $8, $0, 255, 255, $b0, 0, GrampsScript_0x7c146, $0753
+	person_event SPRITE_SUPER_NERD, 18, 11, $8, $0, 255, 255, $90, 0, SuperNerdScript_0x7c161, $0754
+	person_event SPRITE_SUPER_NERD, 19, 11, $8, $0, 255, 255, $a0, 0, SuperNerdScript_0x7c20e, $0755
+	person_event SPRITE_GRANNY, 25, 11, $8, $0, 255, 255, $b0, 0, GrannyScript_0x7c132, $0752
 ; 0x7c9e8
 

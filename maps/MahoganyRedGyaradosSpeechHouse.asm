@@ -6,11 +6,11 @@ MahoganyRedGyaradosSpeechHouse_MapScriptHeader: ; 0x19997d
 	db 0
 ; 0x19997f
 
-UnknownScript_0x19997f: ; 0x19997f
+BlackBeltScript_0x19997f: ; 0x19997f
 	jumptextfaceplayer UnknownText_0x19999c
 ; 0x199982
 
-UnknownScript_0x199982: ; 0x199982
+TeacherScript_0x199982: ; 0x199982
 	faceplayer
 	loadfont
 	checkbit2 $0013
@@ -73,7 +73,7 @@ MahoganyRedGyaradosSpeechHouse_MapEventHeader: ; 0x199a72
 
 	; people-events
 	db 2
-	person_event $41, 7, 6, $9, $0, 255, 255, $0, 0, UnknownScript_0x19997f, $ffff
-	person_event $29, 9, 10, $4, $10, 255, 255, $90, 0, UnknownScript_0x199982, $ffff
+	person_event SPRITE_BLACK_BELT, 7, 6, $9, $0, 255, 255, $0, 0, BlackBeltScript_0x19997f, $ffff
+	person_event SPRITE_TEACHER, 9, 10, $4, $10, 255, 255, $90, 0, TeacherScript_0x199982, $ffff
 ; 0x199a9c
 

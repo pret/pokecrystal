@@ -29,7 +29,7 @@ UnknownScript_0x1a46e5: ; 0x1a46e5
 	return
 ; 0x1a46e8
 
-UnknownScript_0x1a46e8: ; 0x1a46e8
+SuperNerdScript_0x1a46e8: ; 0x1a46e8
 	faceplayer
 	loadfont
 	checkbit1 $04c4
@@ -56,15 +56,15 @@ UnknownScript_0x1a4702: ; 0x1a4702
 	end
 ; 0x1a4708
 
-UnknownScript_0x1a4708: ; 0x1a4708
+GrampsScript_0x1a4708: ; 0x1a4708
 	jumptextfaceplayer UnknownText_0x1a48c3
 ; 0x1a470b
 
-UnknownScript_0x1a470b: ; 0x1a470b
+GrampsScript_0x1a470b: ; 0x1a470b
 	jumptextfaceplayer UnknownText_0x1a48fb
 ; 0x1a470e
 
-UnknownScript_0x1a470e: ; 0x1a470e
+BlackBeltScript_0x1a470e: ; 0x1a470e
 	faceplayer
 	loadfont
 	checkbit1 $0021
@@ -82,19 +82,19 @@ UnknownScript_0x1a471c: ; 0x1a471c
 	end
 ; 0x1a4722
 
-UnknownScript_0x1a4722: ; 0x1a4722
+CooltrainerFScript_0x1a4722: ; 0x1a4722
 	jumptextfaceplayer UnknownText_0x1a49bd
 ; 0x1a4725
 
-UnknownScript_0x1a4725: ; 0x1a4725
+YoungsterScript_0x1a4725: ; 0x1a4725
 	jumptextfaceplayer UnknownText_0x1a49f1
 ; 0x1a4728
 
-UnknownScript_0x1a4728: ; 0x1a4728
+CooltrainerFScript_0x1a4728: ; 0x1a4728
 	jumptextfaceplayer UnknownText_0x1a4b1e
 ; 0x1a472b
 
-UnknownScript_0x1a472b: ; 0x1a472b
+YoungsterScript_0x1a472b: ; 0x1a472b
 	faceplayer
 	loadfont
 	checkbit1 $006d
@@ -336,14 +336,14 @@ BlackthornCity_MapEventHeader: ; 0x1a4c57
 
 	; people-events
 	db 9
-	person_event $2b, 16, 22, $6, $0, 255, 255, $80, 0, UnknownScript_0x1a46e8, $06e3
-	person_event $2b, 16, 23, $6, $0, 255, 255, $80, 0, UnknownScript_0x1a46e8, $06e4
-	person_event $2f, 6, 24, $6, $0, 255, 255, $0, 0, UnknownScript_0x1a4708, $074c
-	person_event $2f, 6, 25, $8, $0, 255, 255, $0, 0, UnknownScript_0x1a470b, $074d
-	person_event $41, 35, 28, $5, $1, 255, 255, $90, 0, UnknownScript_0x1a470e, $ffff
-	person_event $24, 29, 13, $5, $2, 255, 255, $80, 0, UnknownScript_0x1a4722, $ffff
-	person_event $27, 19, 17, $5, $1, 255, 255, $0, 0, UnknownScript_0x1a4725, $ffff
-	person_event $27, 24, 26, $6, $0, 255, 255, $0, 0, UnknownScript_0x1a472b, $075d
-	person_event $24, 23, 39, $7, $0, 255, 255, $a0, 0, UnknownScript_0x1a4728, $ffff
+	person_event SPRITE_SUPER_NERD, 16, 22, $6, $0, 255, 255, $80, 0, SuperNerdScript_0x1a46e8, $06e3
+	person_event SPRITE_SUPER_NERD, 16, 23, $6, $0, 255, 255, $80, 0, SuperNerdScript_0x1a46e8, $06e4
+	person_event SPRITE_GRAMPS, 6, 24, $6, $0, 255, 255, $0, 0, GrampsScript_0x1a4708, $074c
+	person_event SPRITE_GRAMPS, 6, 25, $8, $0, 255, 255, $0, 0, GrampsScript_0x1a470b, $074d
+	person_event SPRITE_BLACK_BELT, 35, 28, $5, $1, 255, 255, $90, 0, BlackBeltScript_0x1a470e, $ffff
+	person_event SPRITE_COOLTRAINER_F, 29, 13, $5, $2, 255, 255, $80, 0, CooltrainerFScript_0x1a4722, $ffff
+	person_event SPRITE_YOUNGSTER, 19, 17, $5, $1, 255, 255, $0, 0, YoungsterScript_0x1a4725, $ffff
+	person_event SPRITE_YOUNGSTER, 24, 26, $6, $0, 255, 255, $0, 0, YoungsterScript_0x1a472b, $075d
+	person_event SPRITE_COOLTRAINER_F, 23, 39, $7, $0, 255, 255, $a0, 0, CooltrainerFScript_0x1a4728, $ffff
 ; 0x1a4d1d
 

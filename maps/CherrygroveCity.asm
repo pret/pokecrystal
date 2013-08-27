@@ -27,7 +27,7 @@ UnknownScript_0x19c00f: ; 0x19c00f
 	return
 ; 0x19c013
 
-UnknownScript_0x19c013: ; 0x19c013
+GrampsScript_0x19c013: ; 0x19c013
 	faceplayer
 	loadfont
 	2writetext UnknownText_0x19c1e3
@@ -189,7 +189,7 @@ UnknownScript_0x19c12f: ; 0x19c12f
 	end
 ; 0x19c146
 
-UnknownScript_0x19c146: ; 0x19c146
+TeacherScript_0x19c146: ; 0x19c146
 	faceplayer
 	loadfont
 	checkbit2 $0001
@@ -207,7 +207,7 @@ UnknownScript_0x19c154: ; 0x19c154
 	end
 ; 0x19c15a
 
-UnknownScript_0x19c15a: ; 0x19c15a
+YoungsterScript_0x19c15a: ; 0x19c15a
 	faceplayer
 	loadfont
 	checkbit2 $000b
@@ -225,7 +225,7 @@ UnknownScript_0x19c168: ; 0x19c168
 	end
 ; 0x19c16e
 
-UnknownScript_0x19c16e: ; 0x19c16e
+FisherScript_0x19c16e: ; 0x19c16e
 	faceplayer
 	loadfont
 	checkbit1 $004d
@@ -574,10 +574,10 @@ CherrygroveCity_MapEventHeader: ; 0x19c829
 
 	; people-events
 	db 5
-	person_event $2f, 10, 36, $6, $0, 255, 255, $0, 0, UnknownScript_0x19c013, $06fe
-	person_event $4, 10, 43, $3, $0, 255, 255, $0, 0, ObjectEvent, $06be
-	person_event $29, 16, 31, $5, $1, 255, 255, $90, 0, UnknownScript_0x19c146, $ffff
-	person_event $27, 11, 27, $5, $1, 255, 255, $80, 0, UnknownScript_0x19c15a, $ffff
-	person_event $3a, 16, 11, $9, $0, 255, 255, $a0, 0, UnknownScript_0x19c16e, $ffff
+	person_event SPRITE_GRAMPS, 10, 36, $6, $0, 255, 255, $0, 0, GrampsScript_0x19c013, $06fe
+	person_event SPRITE_SILVER, 10, 43, $3, $0, 255, 255, $0, 0, ObjectEvent, $06be
+	person_event SPRITE_TEACHER, 16, 31, $5, $1, 255, 255, $90, 0, TeacherScript_0x19c146, $ffff
+	person_event SPRITE_YOUNGSTER, 11, 27, $5, $1, 255, 255, $80, 0, YoungsterScript_0x19c15a, $ffff
+	person_event SPRITE_FISHER, 16, 11, $9, $0, 255, 255, $a0, 0, FisherScript_0x19c16e, $ffff
 ; 0x19c8ad
 

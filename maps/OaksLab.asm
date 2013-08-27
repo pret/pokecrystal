@@ -10,7 +10,7 @@ UnknownScript_0x19b3c7: ; 0x19b3c7
 	end
 ; 0x19b3c8
 
-UnknownScript_0x19b3c8: ; 0x19b3c8
+OakScript_0x19b3c8: ; 0x19b3c8
 	faceplayer
 	loadfont
 	checkbit1 $074f
@@ -56,15 +56,15 @@ UnknownScript_0x19b408: ; 0x19b408
 	2jump UnknownScript_0x19b3ea
 ; 0x19b40f
 
-UnknownScript_0x19b40f: ; 0x19b40f
+ScientistScript_0x19b40f: ; 0x19b40f
 	jumptextfaceplayer UnknownText_0x19b7fb
 ; 0x19b412
 
-UnknownScript_0x19b412: ; 0x19b412
+ScientistScript_0x19b412: ; 0x19b412
 	jumptextfaceplayer UnknownText_0x19b859
 ; 0x19b415
 
-UnknownScript_0x19b415: ; 0x19b415
+ScientistScript_0x19b415: ; 0x19b415
 	jumptextfaceplayer UnknownText_0x19b8a7
 ; 0x19b418
 
@@ -263,10 +263,10 @@ OaksLab_MapEventHeader: ; 0x19ba33
 
 	; people-events
 	db 4
-	person_event $5, 6, 8, $6, $0, 255, 255, $0, 0, UnknownScript_0x19b3c8, $ffff
-	person_event $3c, 12, 5, $5, $1, 255, 255, $90, 0, UnknownScript_0x19b40f, $ffff
-	person_event $3c, 13, 12, $4, $10, 255, 255, $90, 0, UnknownScript_0x19b412, $ffff
-	person_event $3c, 8, 5, $2, $11, 255, 255, $90, 0, UnknownScript_0x19b415, $ffff
+	person_event SPRITE_OAK, 6, 8, $6, $0, 255, 255, $0, 0, OakScript_0x19b3c8, $ffff
+	person_event SPRITE_SCIENTIST, 12, 5, $5, $1, 255, 255, $90, 0, ScientistScript_0x19b40f, $ffff
+	person_event SPRITE_SCIENTIST, 13, 12, $4, $10, 255, 255, $90, 0, ScientistScript_0x19b412, $ffff
+	person_event SPRITE_SCIENTIST, 8, 5, $2, $11, 255, 255, $90, 0, ScientistScript_0x19b415, $ffff
 ; 0x19bac7
 
 

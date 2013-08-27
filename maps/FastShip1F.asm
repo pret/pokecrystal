@@ -44,7 +44,7 @@ UnknownScript_0x7515d: ; 0x7515d
 	end
 ; 0x75160
 
-UnknownScript_0x75160: ; 0x75160
+SailorScript_0x75160: ; 0x75160
 	faceplayer
 	loadfont
 	checkbit1 $0031
@@ -108,7 +108,7 @@ UnknownScript_0x751c7: ; 0x751c7
 	end
 ; 0x751d0
 
-UnknownScript_0x751d0: ; 0x751d0
+SailorScript_0x751d0: ; 0x751d0
 	faceplayer
 	loadfont
 	checkbit1 $0030
@@ -126,7 +126,7 @@ UnknownScript_0x751de: ; 0x751de
 	end
 ; 0x751e4
 
-UnknownScript_0x751e4: ; 0x751e4
+SailorScript_0x751e4: ; 0x751e4
 	jumptextfaceplayer UnknownText_0x753c0
 ; 0x751e7
 
@@ -329,9 +329,9 @@ FastShip1F_MapEventHeader: ; 0x754f1
 
 	; people-events
 	db 4
-	person_event $49, 6, 29, $6, $0, 255, 255, $0, 0, UnknownScript_0x75160, $ffff
-	person_event $49, 11, 18, $9, $0, 255, 255, $0, 0, UnknownScript_0x751d0, $ffff
-	person_event $49, 21, 26, $5, $2, 255, 255, $0, 0, UnknownScript_0x751e4, $ffff
-	person_event $40, 10, 23, $9, $0, 255, 255, $0, 0, ObjectEvent, $072c
+	person_event SPRITE_SAILOR, 6, 29, $6, $0, 255, 255, $0, 0, SailorScript_0x75160, $ffff
+	person_event SPRITE_SAILOR, 11, 18, $9, $0, 255, 255, $0, 0, SailorScript_0x751d0, $ffff
+	person_event SPRITE_SAILOR, 21, 26, $5, $2, 255, 255, $0, 0, SailorScript_0x751e4, $ffff
+	person_event SPRITE_GENTLEMAN, 10, 23, $9, $0, 255, 255, $0, 0, ObjectEvent, $072c
 ; 0x75577
 

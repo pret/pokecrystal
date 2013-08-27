@@ -6,7 +6,7 @@ DarkCaveBlackthornEntrance_MapScriptHeader: ; 0x18c71e
 	db 0
 ; 0x18c720
 
-UnknownScript_0x18c720: ; 0x18c720
+PharmacistScript_0x18c720: ; 0x18c720
 	faceplayer
 	loadfont
 	checkbit1 $0072
@@ -72,8 +72,8 @@ DarkCaveBlackthornEntrance_MapEventHeader: ; 0x18c83d
 
 	; people-events
 	db 3
-	person_event $4b, 7, 11, $3, $0, 255, 255, $0, 0, UnknownScript_0x18c720, $ffff
-	person_event $54, 28, 25, $1, $0, 255, 255, $1, 0, ItemFragment_0x18c73b, $06a1
-	person_event $54, 26, 11, $1, $0, 255, 255, $1, 0, ItemFragment_0x18c73d, $06a2
+	person_event SPRITE_PHARMACIST, 7, 11, $3, $0, 255, 255, $0, 0, PharmacistScript_0x18c720, $ffff
+	person_event SPRITE_POKE_BALL, 28, 25, $1, $0, 255, 255, $1, 0, ItemFragment_0x18c73b, $06a1
+	person_event SPRITE_POKE_BALL, 26, 11, $1, $0, 255, 255, $1, 0, ItemFragment_0x18c73d, $06a2
 ; 0x18c874
 

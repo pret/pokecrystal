@@ -6,11 +6,11 @@ VioletPokeCenter1F_MapScriptHeader: ; 0x694c7
 	db 0
 ; 0x694c9
 
-UnknownScript_0x694c9: ; 0x694c9
+NurseScript_0x694c9: ; 0x694c9
 	jumpstd $0000
 ; 0x694cc
 
-UnknownScript_0x694cc: ; 0x694cc
+ScientistScript_0x694cc: ; 0x694cc
 	faceplayer
 	loadfont
 	checkbit1 $002c
@@ -79,15 +79,15 @@ UnknownScript_0x6953a: ; 0x6953a
 	2jump UnknownScript_0x694d7
 ; 0x69540
 
-UnknownScript_0x69540: ; 0x69540
+GameboyKidScript_0x69540: ; 0x69540
 	jumptextfaceplayer UnknownText_0x69809
 ; 0x69543
 
-UnknownScript_0x69543: ; 0x69543
+GentlemanScript_0x69543: ; 0x69543
 	jumptextfaceplayer UnknownText_0x6983c
 ; 0x69546
 
-UnknownScript_0x69546: ; 0x69546
+YoungsterScript_0x69546: ; 0x69546
 	jumptextfaceplayer UnknownText_0x698b8
 ; 0x69549
 
@@ -223,10 +223,10 @@ VioletPokeCenter1F_MapEventHeader: ; 0x69935
 
 	; people-events
 	db 5
-	person_event $37, 5, 7, $6, $0, 255, 255, $0, 0, UnknownScript_0x694c9, $ffff
-	person_event $3, 10, 11, $6, $0, 255, 255, $a0, 0, UnknownScript_0x69540, $ffff
-	person_event $40, 8, 5, $3, $0, 255, 255, $0, 0, UnknownScript_0x69543, $ffff
-	person_event $27, 5, 12, $6, $0, 255, 255, $80, 0, UnknownScript_0x69546, $ffff
-	person_event $3c, 7, 8, $6, $0, 255, 255, $90, 0, UnknownScript_0x694cc, $0700
+	person_event SPRITE_NURSE, 5, 7, $6, $0, 255, 255, $0, 0, NurseScript_0x694c9, $ffff
+	person_event SPRITE_GAMEBOY_KID, 10, 11, $6, $0, 255, 255, $a0, 0, GameboyKidScript_0x69540, $ffff
+	person_event SPRITE_GENTLEMAN, 8, 5, $3, $0, 255, 255, $0, 0, GentlemanScript_0x69543, $ffff
+	person_event SPRITE_YOUNGSTER, 5, 12, $6, $0, 255, 255, $80, 0, YoungsterScript_0x69546, $ffff
+	person_event SPRITE_SCIENTIST, 7, 8, $6, $0, 255, 255, $90, 0, ScientistScript_0x694cc, $0700
 ; 0x6998b
 

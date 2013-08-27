@@ -6,11 +6,11 @@ Route31VioletGate_MapScriptHeader: ; 0x197632
 	db 0
 ; 0x197634
 
-UnknownScript_0x197634: ; 0x197634
+OfficerScript_0x197634: ; 0x197634
 	jumptextfaceplayer UnknownText_0x19763a
 ; 0x197637
 
-UnknownScript_0x197637: ; 0x197637
+CooltrainerFScript_0x197637: ; 0x197637
 	jumptextfaceplayer UnknownText_0x197661
 ; 0x19763a
 
@@ -45,8 +45,8 @@ Route31VioletGate_MapEventHeader: ; 0x19768c
 
 	; people-events
 	db 2
-	person_event $43, 6, 9, $6, $0, 255, 255, $80, 0, UnknownScript_0x197634, $ffff
-	person_event $24, 6, 5, $3, $0, 255, 255, $90, 0, UnknownScript_0x197637, $ffff
+	person_event SPRITE_OFFICER, 6, 9, $6, $0, 255, 255, $80, 0, OfficerScript_0x197634, $ffff
+	person_event SPRITE_COOLTRAINER_F, 6, 5, $3, $0, 255, 255, $90, 0, CooltrainerFScript_0x197637, $ffff
 ; 0x1976c0
 
 

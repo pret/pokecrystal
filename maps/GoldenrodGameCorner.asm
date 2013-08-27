@@ -31,7 +31,7 @@ UnknownScript_0x56c19: ;0x56c19
 	return
 ; 0x56c1a
 
-UnknownScript_0x56c1a: ; 0x56c1a
+PokefanMScript_0x56c1a: ; 0x56c1a
 	faceplayer
 	loadfont
 	2writetext UnknownText_0x5718a
@@ -41,11 +41,11 @@ UnknownScript_0x56c1a: ; 0x56c1a
 	end
 ; 0x56c25
 
-UnknownScript_0x56c25: ; 0x56c25
+ClerkScript_0x56c25: ; 0x56c25
 	jumpstd $0032
 ; 0x56c28
 
-UnknownScript_0x56c28: ; 0x56c28
+ReceptionistScript_0x56c28: ; 0x56c28
 	faceplayer
 	loadfont
 	2writetext UnknownText_0x56e50
@@ -161,7 +161,7 @@ MenuData2_0x56cd1: ; 0x56cd1
 ; 0x56d01
 
 
-UnknownScript_0x56d01: ; 0x56d01
+ReceptionistScript_0x56d01: ; 0x56d01
 	faceplayer
 	loadfont
 	2writetext UnknownText_0x56e50
@@ -256,7 +256,7 @@ MenuData2_0x56db8: ; 0x56db8
 ; 0x56df1
 
 
-UnknownScript_0x56df1: ; 0x56df1
+PharmacistScript_0x56df1: ; 0x56df1
 	faceplayer
 	loadfont
 	2writetext UnknownText_0x56f55
@@ -266,7 +266,7 @@ UnknownScript_0x56df1: ; 0x56df1
 	end
 ; 0x56dfc
 
-UnknownScript_0x56dfc: ; 0x56dfc
+PokefanMScript_0x56dfc: ; 0x56dfc
 	faceplayer
 	loadfont
 	2writetext UnknownText_0x56f9e
@@ -276,7 +276,7 @@ UnknownScript_0x56dfc: ; 0x56dfc
 	end
 ; 0x56e07
 
-UnknownScript_0x56e07: ; 0x56e07
+CooltrainerMScript_0x56e07: ; 0x56e07
 	faceplayer
 	loadfont
 	2writetext UnknownText_0x56ff4
@@ -286,7 +286,7 @@ UnknownScript_0x56e07: ; 0x56e07
 	end
 ; 0x56e12
 
-UnknownScript_0x56e12: ; 0x56e12
+PokefanFScript_0x56e12: ; 0x56e12
 	faceplayer
 	loadfont
 	2writetext UnknownText_0x5702b
@@ -296,11 +296,11 @@ UnknownScript_0x56e12: ; 0x56e12
 	end
 ; 0x56e1d
 
-UnknownScript_0x56e1d: ; 0x56e1d
+CooltrainerFScript_0x56e1d: ; 0x56e1d
 	jumptextfaceplayer UnknownText_0x57097
 ; 0x56e20
 
-UnknownScript_0x56e20: ; 0x56e20
+GentlemanScript_0x56e20: ; 0x56e20
 	faceplayer
 	loadfont
 	2writetext UnknownText_0x570b1
@@ -310,7 +310,7 @@ UnknownScript_0x56e20: ; 0x56e20
 	end
 ; 0x56e2b
 
-UnknownScript_0x56e2b: ; 0x56e2b
+PokefanMScript_0x56e2b: ; 0x56e2b
 	jumptextfaceplayer UnknownText_0x5710d
 ; 0x56e2e
 
@@ -501,18 +501,18 @@ GoldenrodGameCorner_MapEventHeader: ; 0x571db
 
 	; people-events
 	db 12
-	person_event $39, 6, 7, $6, $0, 255, 255, $80, 0, UnknownScript_0x56c25, $ffff
-	person_event $42, 6, 20, $6, $0, 255, 255, $80, 0, UnknownScript_0x56c28, $ffff
-	person_event $42, 6, 22, $6, $0, 255, 255, $80, 0, UnknownScript_0x56d01, $ffff
-	person_event $4b, 11, 12, $8, $0, 255, 2, $90, 0, UnknownScript_0x56df1, $ffff
-	person_event $4b, 11, 12, $8, $0, 255, 4, $90, 0, UnknownScript_0x56df1, $ffff
-	person_event $2d, 14, 15, $9, $0, 255, 255, $b0, 0, UnknownScript_0x56dfc, $ffff
-	person_event $23, 12, 18, $8, $0, 255, 255, $90, 0, UnknownScript_0x56e07, $ffff
-	person_event $2e, 10, 21, $9, $0, 255, 255, $80, 0, UnknownScript_0x56e12, $ffff
-	person_event $24, 7, 14, $2, $12, 255, 255, $a0, 0, UnknownScript_0x56e1d, $ffff
-	person_event $40, 14, 9, $9, $0, 255, 255, $90, 0, UnknownScript_0x56e20, $ffff
-	person_event $2d, 13, 6, $2, $11, 255, 255, $b0, 0, UnknownScript_0x56e2b, $ffff
-	person_event $2d, 14, 21, $9, $0, 255, 255, $80, 0, UnknownScript_0x56c1a, $076b
+	person_event SPRITE_CLERK, 6, 7, $6, $0, 255, 255, $80, 0, ClerkScript_0x56c25, $ffff
+	person_event SPRITE_RECEPTIONIST, 6, 20, $6, $0, 255, 255, $80, 0, ReceptionistScript_0x56c28, $ffff
+	person_event SPRITE_RECEPTIONIST, 6, 22, $6, $0, 255, 255, $80, 0, ReceptionistScript_0x56d01, $ffff
+	person_event SPRITE_PHARMACIST, 11, 12, $8, $0, 255, 2, $90, 0, PharmacistScript_0x56df1, $ffff
+	person_event SPRITE_PHARMACIST, 11, 12, $8, $0, 255, 4, $90, 0, PharmacistScript_0x56df1, $ffff
+	person_event SPRITE_POKEFAN_M, 14, 15, $9, $0, 255, 255, $b0, 0, PokefanMScript_0x56dfc, $ffff
+	person_event SPRITE_COOLTRAINER_M, 12, 18, $8, $0, 255, 255, $90, 0, CooltrainerMScript_0x56e07, $ffff
+	person_event SPRITE_POKEFAN_F, 10, 21, $9, $0, 255, 255, $80, 0, PokefanFScript_0x56e12, $ffff
+	person_event SPRITE_COOLTRAINER_F, 7, 14, $2, $12, 255, 255, $a0, 0, CooltrainerFScript_0x56e1d, $ffff
+	person_event SPRITE_GENTLEMAN, 14, 9, $9, $0, 255, 255, $90, 0, GentlemanScript_0x56e20, $ffff
+	person_event SPRITE_POKEFAN_M, 13, 6, $2, $11, 255, 255, $b0, 0, PokefanMScript_0x56e2b, $ffff
+	person_event SPRITE_POKEFAN_M, 14, 21, $9, $0, 255, 255, $80, 0, PokefanMScript_0x56c1a, $076b
 ; 0x57322
 
 

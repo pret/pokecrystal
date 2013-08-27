@@ -6,7 +6,7 @@ PokeSeersHouse_MapScriptHeader: ; 0x9e36c
 	db 0
 ; 0x9e36e
 
-UnknownScript_0x9e36e: ; 0x9e36e
+GrannyScript_0x9e36e: ; 0x9e36e
 	faceplayer
 	loadfont
 	special $0091
@@ -32,6 +32,6 @@ PokeSeersHouse_MapEventHeader: ; 0x9e376
 
 	; people-events
 	db 1
-	person_event $30, 7, 6, $6, $0, 255, 255, $80, 0, UnknownScript_0x9e36e, $ffff
+	person_event SPRITE_GRANNY, 7, 6, $6, $0, 255, 255, $80, 0, GrannyScript_0x9e36e, $ffff
 ; 0x9e393
 

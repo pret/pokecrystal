@@ -49,7 +49,7 @@ UnknownScript_0x180bd6: ; 0x180bd6
 	end
 ; 0x180bee
 
-UnknownScript_0x180bee: ; 0x180bee
+KarenScript_0x180bee: ; 0x180bee
 	faceplayer
 	loadfont
 	checkbit1 $05bb
@@ -149,6 +149,6 @@ KarensRoom_MapEventHeader: ; 0x180e05
 
 	; people-events
 	db 1
-	person_event $1b, 11, 9, $6, $0, 255, 255, $80, 0, UnknownScript_0x180bee, $ffff
+	person_event SPRITE_KAREN, 11, 9, $6, $0, 255, 255, $80, 0, KarenScript_0x180bee, $ffff
 ; 0x180e2c
 

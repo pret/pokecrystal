@@ -6,11 +6,11 @@ OlivinePunishmentSpeechHouse_MapScriptHeader: ; 0x9c635
 	db 0
 ; 0x9c637
 
-UnknownScript_0x9c637: ; 0x9c637
+PokefanMScript_0x9c637: ; 0x9c637
 	jumptextfaceplayer UnknownText_0x9c643
 ; 0x9c63a
 
-UnknownScript_0x9c63a: ; 0x9c63a
+LassScript_0x9c63a: ; 0x9c63a
 	jumptextfaceplayer UnknownText_0x9c6b1
 ; 0x9c63d
 
@@ -57,7 +57,7 @@ OlivinePunishmentSpeechHouse_MapEventHeader: ; 0x9c6e5
 
 	; people-events
 	db 2
-	person_event $2d, 6, 5, $3, $0, 255, 255, $0, 0, UnknownScript_0x9c637, $ffff
-	person_event $28, 9, 9, $5, $2, 255, 255, $0, 0, UnknownScript_0x9c63a, $ffff
+	person_event SPRITE_POKEFAN_M, 6, 5, $3, $0, 255, 255, $0, 0, PokefanMScript_0x9c637, $ffff
+	person_event SPRITE_LASS, 9, 9, $5, $2, 255, 255, $0, 0, LassScript_0x9c63a, $ffff
 ; 0x9c719
 

@@ -6,7 +6,7 @@ Route7SaffronGate_MapScriptHeader: ; 0x73516
 	db 0
 ; 0x73518
 
-UnknownScript_0x73518: ; 0x73518
+OfficerScript_0x73518: ; 0x73518
 	faceplayer
 	loadfont
 	checkbit1 $00c9
@@ -61,6 +61,6 @@ Route7SaffronGate_MapEventHeader: ; 0x735e0
 
 	; people-events
 	db 1
-	person_event $43, 6, 9, $6, $0, 255, 255, $90, 0, UnknownScript_0x73518, $ffff
+	person_event SPRITE_OFFICER, 6, 9, $6, $0, 255, 255, $90, 0, OfficerScript_0x73518, $ffff
 ; 0x73607
 

@@ -6,7 +6,7 @@ EarlsPokemonAcademy_MapScriptHeader: ; 0x68a5a
 	db 0
 ; 0x68a5c
 
-UnknownScript_0x68a5c: ; 0x68a5c
+FisherScript_0x68a5c: ; 0x68a5c
 	applymovement $2, MovementData_0x68b2d
 	faceplayer
 	loadfont
@@ -33,11 +33,11 @@ UnknownScript_0x68a7d: ; 0x68a7d
 	end
 ; 0x68a83
 
-UnknownScript_0x68a83: ; 0x68a83
+YoungsterScript_0x68a83: ; 0x68a83
 	jumptextfaceplayer UnknownText_0x68d80
 ; 0x68a86
 
-UnknownScript_0x68a86: ; 0x68a86
+GameboyKidScript_0x68a86: ; 0x68a86
 	faceplayer
 	loadfont
 	2writetext UnknownText_0x68dda
@@ -47,7 +47,7 @@ UnknownScript_0x68a86: ; 0x68a86
 	end
 ; 0x68a91
 
-UnknownScript_0x68a91: ; 0x68a91
+GameboyKidScript_0x68a91: ; 0x68a91
 	faceplayer
 	loadfont
 	2writetext UnknownText_0x68e07
@@ -57,7 +57,7 @@ UnknownScript_0x68a91: ; 0x68a91
 	end
 ; 0x68a9c
 
-UnknownScript_0x68a9c: ; 0x68a9c
+YoungsterScript_0x68a9c: ; 0x68a9c
 	jumptextfaceplayer UnknownText_0x68e39
 ; 0x68a9f
 
@@ -134,7 +134,7 @@ UnknownText_0x68af2: ; 0x68af2
 ; 0x68b0b
 
 
-UnknownScript_0x68b0b: ; 0x68b0b
+PokedexScript_0x68b0b: ; 0x68b0b
 	loadfont
 	2writetext UnknownText_0x69136
 	yesorno
@@ -403,11 +403,11 @@ EarlsPokemonAcademy_MapEventHeader: ; 0x69375
 
 	; people-events
 	db 6
-	person_event $3a, 6, 8, $6, $0, 255, 255, $a0, 0, UnknownScript_0x68a5c, $06cb
-	person_event $27, 9, 6, $7, $0, 255, 255, $80, 0, UnknownScript_0x68a83, $ffff
-	person_event $3, 15, 7, $6, $0, 255, 255, $0, 0, UnknownScript_0x68a86, $ffff
-	person_event $3, 15, 8, $8, $0, 255, 255, $80, 0, UnknownScript_0x68a91, $ffff
-	person_event $27, 11, 8, $7, $0, 255, 255, $0, 0, UnknownScript_0x68a9c, $ffff
-	person_event $55, 8, 6, $1, $0, 255, 255, $0, 0, UnknownScript_0x68b0b, $ffff
+	person_event SPRITE_FISHER, 6, 8, $6, $0, 255, 255, $a0, 0, FisherScript_0x68a5c, $06cb
+	person_event SPRITE_YOUNGSTER, 9, 6, $7, $0, 255, 255, $80, 0, YoungsterScript_0x68a83, $ffff
+	person_event SPRITE_GAMEBOY_KID, 15, 7, $6, $0, 255, 255, $0, 0, GameboyKidScript_0x68a86, $ffff
+	person_event SPRITE_GAMEBOY_KID, 15, 8, $8, $0, 255, 255, $80, 0, GameboyKidScript_0x68a91, $ffff
+	person_event SPRITE_YOUNGSTER, 11, 8, $7, $0, 255, 255, $0, 0, YoungsterScript_0x68a9c, $ffff
+	person_event SPRITE_POKEDEX, 8, 6, $1, $0, 255, 255, $0, 0, PokedexScript_0x68b0b, $ffff
 ; 0x693e7
 

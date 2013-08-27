@@ -74,7 +74,7 @@ UnknownScript_0x98061: ; 0x98061
 	end
 ; 0x98062
 
-UnknownScript_0x98062: ; 0x98062
+SageScript_0x98062: ; 0x98062
 	faceplayer
 	loadfont
 	checkbit1 $0021
@@ -132,7 +132,7 @@ UnknownScript_0x980aa: ; 0x980aa
 	end
 ; 0x980b0
 
-UnknownScript_0x980b0: ; 0x980b0
+SageScript_0x980b0: ; 0x980b0
 	faceplayer
 	loadfont
 	checkbit1 $0078
@@ -150,7 +150,7 @@ UnknownScript_0x980be: ; 0x980be
 	end
 ; 0x980c4
 
-UnknownScript_0x980c4: ; 0x980c4
+GrampsScript_0x980c4: ; 0x980c4
 	jumptextfaceplayer UnknownText_0x984ab
 ; 0x980c7
 
@@ -291,9 +291,9 @@ EcruteakHouse_MapEventHeader: ; 0x98502
 
 	; people-events
 	db 4
-	person_event $3e, 10, 8, $6, $0, 255, 255, $0, 0, UnknownScript_0x98062, $0766
-	person_event $3e, 10, 9, $6, $0, 255, 255, $0, 0, UnknownScript_0x98062, $0767
-	person_event $3e, 13, 10, $2, $11, 255, 255, $0, 0, UnknownScript_0x980b0, $07b1
-	person_event $2f, 15, 7, $2, $11, 255, 255, $0, 0, UnknownScript_0x980c4, $07b1
+	person_event SPRITE_SAGE, 10, 8, $6, $0, 255, 255, $0, 0, SageScript_0x98062, $0766
+	person_event SPRITE_SAGE, 10, 9, $6, $0, 255, 255, $0, 0, SageScript_0x98062, $0767
+	person_event SPRITE_SAGE, 13, 10, $2, $11, 255, 255, $0, 0, SageScript_0x980b0, $07b1
+	person_event SPRITE_GRAMPS, 15, 7, $2, $11, 255, 255, $0, 0, GrampsScript_0x980c4, $07b1
 ; 0x98565
 

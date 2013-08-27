@@ -6,7 +6,7 @@ SafariZoneWardensHome_MapScriptHeader: ; 0x1965c4
 	db 0
 ; 0x1965c6
 
-UnknownScript_0x1965c6: ; 0x1965c6
+LassScript_0x1965c6: ; 0x1965c6
 	faceplayer
 	loadfont
 	checkbit1 $00d9
@@ -94,6 +94,6 @@ SafariZoneWardensHome_MapEventHeader: ; 0x19676b
 
 	; people-events
 	db 1
-	person_event $28, 8, 6, $9, $0, 255, 255, $a0, 0, UnknownScript_0x1965c6, $ffff
+	person_event SPRITE_LASS, 8, 6, $9, $0, 255, 255, $a0, 0, LassScript_0x1965c6, $ffff
 ; 0x19679c
 
