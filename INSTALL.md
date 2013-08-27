@@ -9,12 +9,9 @@ md5: 9f2922b235a5eeb78d65594e82ef5dde
 
 Save it as **baserom.gbc** in the repository.
 
-
 Feel free to ask us on
 **[nucleus.kafuka.org #skeetendo](https://kiwiirc.com/client/irc.nolimitzone.com/?#skeetendo)**
 if something goes wrong.
-
-
 
 # Windows
 
@@ -39,7 +36,6 @@ During the install:
  * **python-setuptools**
  * **unzip**
 
-
 ## Using Cygwin
 
 Launch the **Cygwin terminal**.
@@ -56,7 +52,6 @@ pwd
 cd /away/we/go
 ```
 
-
 ## Getting up and running
 
 We need three things to assemble the source into a rom.
@@ -64,8 +59,6 @@ We need three things to assemble the source into a rom.
 1. **rgbds**
 2. a **pokecrystal** repository
 3. a **base rom**
-
--
 
 We use **rgbds** to spit out a Game Boy rom from source.
 ```bash
@@ -96,10 +89,17 @@ md5: 9f2922b235a5eeb78d65594e82ef5dde
 
 Name it **baserom.gbc**.
 
--
+**pokecrystal** only compiles with the use of a git submodule. To activate the submodule type:
+
+```
+git submodule init
+git submodule update
+```
 
 Now you should be able to build **pokecrystal.gbc** for the first time.
-This assembles a new rom from the source code.
+
+This compiles a new rom from the source code, with any patches filled in from the base rom.
+
 ```bash
 make
 ```
@@ -111,8 +111,6 @@ If the last line is `cmp baserom.gbc pokecrystal.gbc`, the build was successful!
 Your first build processes every source file at once.
 After that, **only modified source files have to be processed again**,
 so compiling again should be a few seconds faster.
-
-
 
 # Linux
 
@@ -131,7 +129,16 @@ cd ..
 # download pokecrystal
 git clone git://github.com/kanzure/pokecrystal.git
 cd pokecrystal
-pip install -r requirements.txt
+
+# grab extras/ which is required for compiling
+git submodule init
+git submodule update
+
+# install python requirements
+pip install -r extras/requirements.txt
+
+# use hexdump to diff binary files
+git config diff.hex.textconv hexdump
 ```
 
 Put your base rom in the pokecrystal repository. Name it **baserom.gbc**.
@@ -143,7 +150,6 @@ make
 
 That will take between 3 and 15 seconds, depending on your computer.
 If you see `cmp baserom.gbc pokecrystal.gbc` as the last line, the build was successful! Rejoice!
-
 
 
 # Now what?
@@ -169,3 +175,10 @@ We'll be happy to answer any **questions** on
 **[nucleus.kafuka.org #skeetendo](https://kiwiirc.com/client/irc.nolimitzone.com/?#skeetendo)**.
 
 
+Other **make targets** that may come in handy:
+
+`make clean` deletes any preprocessed source files (.tx), rgbds object files and pokecrystal.gbc, in case something goes wrong.
+
+`make pngs` decompresses any **lz** files in gfx/ and then exports any graphics files to **png**.
+
+`make lzs` does the reverse. This is already part of the build process, so **modified pngs will automatically be converted to 2bpp and lz-compressed** without any additional work.
