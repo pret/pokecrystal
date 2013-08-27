@@ -4,7 +4,7 @@ SECTION "rst0",ROM0[$0]
 	jp Start
 
 SECTION "rst8",ROM0[$8] ; FarCall
-	jp FarJpHl
+	jp FarCall_hl
 
 SECTION "rst10",ROM0[$10] ; Bankswitch
 	ld [hROMBank], a
@@ -6985,27 +6985,28 @@ Function2d43: ; 2d43
 ; 2d54
 
 
-FarJpDe: ; 2d54
+FarCall_de: ; 2d54
+; Call a:de.
+; Preserves other registers.
+
 	ld [hBuffer], a
 	ld a, [hROMBank]
 	push af
 	ld a, [hBuffer]
 	rst Bankswitch
-	call Function2d61
-	jr ReturnFarJump
-; 2d61
+	call .de
+	jr ReturnFarCall
 
-Function2d61: ; 2d61
+.de
 	push de
 	ret
 ; 2d63
 
 
-FarJpHl: ; 2d63
-; Jump to a:hl.
-; Preserves all registers besides a.
+FarCall_hl: ; 2d63
+; Call a:hl.
+; Preserves other registers.
 
-; Switch to the new bank.
 	ld [hBuffer], a
 	ld a, [hROMBank]
 	push af
@@ -7014,7 +7015,7 @@ FarJpHl: ; 2d63
 	call Function2d82
 ; 2d6e
 
-ReturnFarJump: ; 2d6e
+ReturnFarCall: ; 2d6e
 ; We want to retain the contents of f.
 ; To do this, we can pop to bc instead of af.
 	
@@ -7650,11 +7651,14 @@ CloseSRAM: ; 2fe1
 	ret
 ; 2fec
 
-JpHl: ; 2fec
+
+; Register aliases
+
+_hl_: ; 2fec
 	jp [hl]
 ; 2fed
 
-JpDe: ; 2fed
+_de_: ; 2fed
 	push de
 	ret
 ; 2fef
@@ -8170,11 +8174,12 @@ Function31be: ; 31be
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	call JpHl
+
+	call _hl_
+
 	pop hl
 	ld a, h
 	rst Bankswitch
-
 	ret
 ; 31cd
 
@@ -11702,7 +11707,7 @@ Function444d: ; 444d
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	call JpHl
+	call _hl_
 	ret
 ; 445f
 
@@ -34544,7 +34549,7 @@ Function25072: ; 25072
 	ld a, [$cf87]
 	ld d, a
 	ld a, [$cf8a]
-	call FarJpDe
+	call FarCall_de
 	ret
 ; 25097
 
@@ -48744,7 +48749,7 @@ AIChooseMove: ; 440ce
 	ld h, [hl]
 	ld l, a
 	ld a, BANK(AIScoring)
-	call FarJpHl
+	call FarCall_hl
 
 	jr .CheckLayer
 
@@ -51643,7 +51648,7 @@ StatsScreenInit: ; 4dc8a
 	ld hl, $753e
 	rst FarCall ; this loads graphics
 	pop hl
-	call JpHl
+	call _hl_
 	call WhiteBGMap
 	call ClearTileMap
 	pop bc
@@ -69428,7 +69433,7 @@ Function100b12: ; 100b12
 	ld hl, $4f2c
 	ld a, $9
 	ld de, LoadMenuDataHeader
-	call FarJpDe
+	call FarCall_de
 	ld a, $9
 	ld [$cf94], a
 	ld a, [$d0d2]
