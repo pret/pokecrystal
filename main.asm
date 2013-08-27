@@ -5554,7 +5554,7 @@ Function261b: ; 261b
 	ret
 ; 261f
 
-PushScriptPointer: ; 261f
+CallScript: ; 261f
 ; Call a script at a:hl.
 
 	ld [ScriptBank], a
@@ -5575,7 +5575,7 @@ Function2631: ; 2631
 	and a
 	ret nz
 	call GetMapEventBank
-	jr PushScriptPointer
+	jr CallScript
 ; 263b
 
 Function263b: ; 263b
@@ -21139,7 +21139,7 @@ TrySurfOW: ; c9e7
 
 	ld a, BANK(AskSurfScript)
 	ld hl, AskSurfScript
-	call PushScriptPointer
+	call CallScript
 
 	scf
 	ret
@@ -21355,14 +21355,14 @@ TryWaterfallOW: ; cb56
 	jr c, .asm_cb74
 	ld a, BANK(UnknownScript_0xcb86)
 	ld hl, UnknownScript_0xcb86
-	call PushScriptPointer
+	call CallScript
 	scf
 	ret
 
 .asm_cb74
 	ld a, BANK(UnknownScript_0xcb7e)
 	ld hl, UnknownScript_0xcb7e
-	call PushScriptPointer
+	call CallScript
 	scf
 	ret
 ; cb7e
@@ -21549,14 +21549,14 @@ TryWhirlpoolOW: ; ce3e
 	jr c, .asm_ce5c
 	ld a, BANK(UnknownScript_0xce6e)
 	ld hl, UnknownScript_0xce6e
-	call PushScriptPointer
+	call CallScript
 	scf
 	ret
 
 .asm_ce5c
 	ld a, BANK(UnknownScript_0xce66)
 	ld hl, UnknownScript_0xce66
-	call PushScriptPointer
+	call CallScript
 	scf
 	ret
 ; ce66
@@ -21614,7 +21614,7 @@ TryHeadbuttOW: ; cec9
 	jr c, .asm_ceda
 	ld a, $3
 	ld hl, $4edc
-	call PushScriptPointer
+	call CallScript
 	scf
 	ret
 
@@ -21794,14 +21794,14 @@ TryCutOW: ; d186
 	jr c, .asm_d19f
 	ld a, BANK(UnknownScript_0xd1a9)
 	ld hl, UnknownScript_0xd1a9
-	call PushScriptPointer
+	call CallScript
 	scf
 	ret
 
 .asm_d19f
 	ld a, BANK(UnknownScript_0xd1cd)
 	ld hl, UnknownScript_0xd1cd
-	call PushScriptPointer
+	call CallScript
 	scf
 	ret
 ; d1a9
@@ -27514,7 +27514,7 @@ Function1365b: ; 1365b
 	ld [$d03f + 2], a
 	ld a, BANK(UnknownScript_0x1369a)
 	ld hl, UnknownScript_0x1369a
-	call PushScriptPointer
+	call CallScript
 	scf
 	ret
 
@@ -53358,7 +53358,7 @@ Function505da: ; 505da
 .asm_50622
 	ld a, $14
 	ld hl, UnknownScript_0x50669
-	call PushScriptPointer
+	call CallScript
 	scf
 	ret
 
@@ -60436,7 +60436,7 @@ CheckTileEvent: ; 96874
 	ld h, [hl]
 	ld l, a
 	call GetMapEventBank
-	call PushScriptPointer
+	call CallScript
 	ret
 ; 968c7
 
@@ -60502,7 +60502,7 @@ Function968ec: ; 968ec
 	call GetMapEventBank
 	call GetFarHalfword
 	call GetMapEventBank
-	call PushScriptPointer
+	call CallScript
 
 	ld hl, ScriptFlags
 	res 3, [hl]
@@ -60519,7 +60519,7 @@ Function968ec: ; 968ec
 	ld h, [hl]
 	ld l, a
 	ld a, [$d44e]
-	call PushScriptPointer
+	call CallScript
 	scf
 	ret
 
@@ -60561,7 +60561,7 @@ Function9693a: ; 9693a
 .asm_96966
 	ld a, $4
 	ld hl, $75f8
-	call PushScriptPointer
+	call CallScript
 	scf
 	ret
 ; 96970
@@ -60685,7 +60685,7 @@ TryObjectEvent: ; 969b5
 	ld h, [hl]
 	ld l, a
 	call GetMapEventBank
-	call PushScriptPointer
+	call CallScript
 ;	ld a, -1
 	ret
 ; 96a12
@@ -60783,7 +60783,7 @@ TryReadSign: ; 96a38
 	ld h, [hl]
 	ld l, a
 	call GetMapEventBank
-	call PushScriptPointer
+	call CallScript
 	scf
 	ret
 
@@ -60797,7 +60797,7 @@ TryReadSign: ; 96a38
 	call FarCopyBytes
 	ld a, $4
 	ld hl, $7625
-	call PushScriptPointer
+	call CallScript
 	scf
 	ret
 
@@ -60828,7 +60828,7 @@ TryReadSign: ; 96a38
 	call GetMapEventBank
 	call GetFarHalfword
 	call GetMapEventBank
-	call PushScriptPointer
+	call CallScript
 	scf
 	ret
 
@@ -60908,7 +60908,7 @@ PlayerMovement: ; 96af0
 ; force the player to move in some direction
 	ld a, $4
 	ld hl, $653d
-	call PushScriptPointer
+	call CallScript
 ;	ld a, -1
 	ld c, a
 	scf
@@ -60938,7 +60938,7 @@ CheckMenuOW: ; 96b30
 
 	ld a, BANK(StartMenuScript)
 	ld hl, StartMenuScript
-	call PushScriptPointer
+	call CallScript
 	scf
 	ret
 
@@ -60950,7 +60950,7 @@ CheckMenuOW: ; 96b30
 	call PlayTalkObject
 	ld a, BANK(SelectMenuScript)
 	ld hl, SelectMenuScript
-	call PushScriptPointer
+	call CallScript
 	scf
 	ret
 ; 96b58
@@ -61061,7 +61061,7 @@ Function96bd7: ; 96bd7
 	ret nz
 	ld a, $4
 	ld hl, $7619
-	call PushScriptPointer
+	call CallScript
 	scf
 	ret
 ; 96beb
@@ -61250,7 +61250,7 @@ Function97c30: ; 97c30
 	ld h, [hl]
 	ld l, a
 	ld a, [$d45d]
-	call PushScriptPointer
+	call CallScript
 	scf
 	push af
 	xor a
@@ -61363,7 +61363,7 @@ Function97cc0: ; 97cc0
 	jr .asm_97cf4
 
 .asm_97cf4
-	call PushScriptPointer
+	call CallScript
 	scf
 	ret
 ; 97cf9
