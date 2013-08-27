@@ -7326,8 +7326,8 @@ FlagAction: ; 0x2e76
 
 
 Function2ead: ; 2ead
-	ld de, $000b
-	ld b, $2
+	ld de, ENGINE_POKEDEX
+	ld b, CHECK_FLAG
 	callba EngineFlagAction
 	ld a, c
 	and a
@@ -20737,7 +20737,7 @@ Functionc6f5: ; c6f5
 GetPartyNick: ; c706
 ; write CurPartyMon nickname to StringBuffer1-3
 	ld hl, PartyMon1Nickname
-	ld a, $02
+	ld a, BOXMON
 	ld [MonType], a
 	ld a, [CurPartyMon]
 	call GetNick
@@ -20752,7 +20752,7 @@ GetPartyNick: ; c706
 CheckEngineFlag: ; c721
 ; Check engine flag de
 ; Return carry if flag is not set
-	ld b, $02 ; check flag
+	ld b, CHECK_FLAG
 	callba EngineFlagAction
 	ld a, c
 	and a
@@ -20765,7 +20765,8 @@ CheckEngineFlag: ; c721
 ; c731
 
 CheckBadge: ; c731
-; input: a = badge flag id ($1b-$2b)
+; Check engine flag a (ENGINE_ZEPHYRBADGE thru ENGINE_EARTHBADGE)
+; Display "Badge required" text and return carry if the badge is not owned
 	call CheckEngineFlag
 	ret nc
 	ld hl, BadgeRequiredText
@@ -20775,8 +20776,10 @@ CheckBadge: ; c731
 ; c73d
 
 BadgeRequiredText: ; c73d
-	TX_FAR _BadgeRequiredText	; Sorry! A new BADGE
-	db "@"						; is required.
+	; Sorry! A new BADGE
+	; is required.
+	TX_FAR _BadgeRequiredText
+	db "@"
 ; c742
 
 CheckPartyMove: ; c742
@@ -20956,10 +20959,9 @@ Functionc8ac: ; c8ac
 ; c8b5
 
 Functionc8b5: ; c8b5
-	ld de, $001b
-	ld a, $3
-	ld hl, $4731
-	rst FarCall
+; Flash
+	ld de, ENGINE_ZEPHYRBADGE
+	callba CheckBadge
 	jr c, .asm_c8dd
 	push hl
 	ld a, $22
@@ -21119,7 +21121,7 @@ TrySurfOW: ; c9e7
 	call CheckDirection
 	jr c, .quit
 
-	ld de, $1e ; FLAG_FOG_BADGE
+	ld de, ENGINE_FOGBADGE
 	call CheckEngineFlag
 	jr c, .quit
 
@@ -21183,7 +21185,7 @@ Functionca3b: ; ca3b
 
 Functionca52: ; ca52
 ; Fly
-	ld de, $0020 ; storm badge
+	ld de, ENGINE_STORMBADGE
 	call CheckBadge
 	jr c, .asm_ca85
 	call GetMapPermission
@@ -21246,10 +21248,9 @@ Functioncade: ; cade
 ; cae7
 
 Functioncae7: ; cae7
-	ld de, $0022
-	ld a, $3
-	ld hl, $4731
-	rst FarCall
+; Waterfall
+	ld de, ENGINE_RISINGBADGE
+	callba CheckBadge
 	ld a, $80
 	ret c
 	call Functioncb07
@@ -21324,7 +21325,7 @@ TryWaterfallOW: ; cb56
 	ld d, WATERFALL
 	call CheckPartyMove
 	jr c, .asm_cb74
-	ld de, $0022
+	ld de, ENGINE_RISINGBADGE
 	call CheckEngineFlag
 	jr c, .asm_cb74
 	call Functioncb07
@@ -21409,7 +21410,8 @@ Functioncce5: ; cce5
 ; ccee
 
 Functionccee: ; ccee
-	ld de, $001d
+; Strength
+	ld de, ENGINE_PLAINBADGE
 	call CheckBadge
 	jr c, Functioncd06
 	jr Functioncd09
@@ -21517,7 +21519,7 @@ TryWhirlpoolOW: ; ce3e
 	ld d, WHIRLPOOL
 	call CheckPartyMove
 	jr c, .asm_ce5c
-	ld de, $0021
+	ld de, ENGINE_GLACIERBADGE
 	call CheckEngineFlag
 	jr c, .asm_ce5c
 	call Functioncdde
@@ -21764,7 +21766,7 @@ TryCutOW: ; d186
 	ld d, CUT
 	call CheckPartyMove
 	jr c, .asm_d19f
-	ld de, $001c
+	ld de, ENGINE_HIVEBADGE
 	call CheckEngineFlag
 	jr c, .asm_d19f
 	ld a, BANK(UnknownScript_0xd1a9)
@@ -26359,9 +26361,7 @@ Function12e55: ; 12e55
 ; 12e6a
 
 Function12e6a: ; 12e6a
-	ld a, $3
-	ld hl, $4ce5
-	rst FarCall
+	callba Functioncce5
 	ld a, [$d0ec]
 	cp $1
 	jr nz, .asm_12e7c
