@@ -1627,7 +1627,12 @@ SATURDAY  EQU 6
 PlayerSprite: ; d4d8
 	ds 1
 
-	ds 5
+	ds 3
+
+PlayerPalette: ; d4dc
+	ds 1
+
+	ds 1
 
 PlayerDirection: ; d4de
 ; uses bits 2 and 3 / $0c / %00001100
@@ -1638,7 +1643,16 @@ PlayerDirection: ; d4de
 	ds 1
 
 
-SECTION "MapEngine",WRAMX[$d4e4],BANK[1]
+SECTION "MapEngine",WRAMX[$d4e1],BANK[1]
+PlayerAction: ; d4e1
+; 1 standing
+; 2 walking
+; 4 spinning
+; 6 fishing
+	ds 1
+
+	ds 2
+
 StandingTile: ; d4e4
 	ds 1
 StandingTile2: ; d4e5
