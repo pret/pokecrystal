@@ -21191,7 +21191,7 @@ Functionca52: ; ca52
 	call GetMapPermission
 	call CheckOutdoorMap
 	jr z, .asm_ca64
-	jr .asm_ca88
+	jr .indoors
 
 .asm_ca64
 	xor a
@@ -21213,7 +21213,7 @@ Functionca52: ; ca52
 	ld a, $82
 	ret
 
-.asm_ca88
+.indoors
 	ld a, $2
 	ret
 
@@ -21225,7 +21225,7 @@ Functionca52: ; ca52
 ; ca94
 
 Functionca94: ; ca94
-	ld hl, Datacaa3
+	ld hl, UnknownScript_0xcaa3
 	call Function31cd
 	ld a, $81
 	ret
@@ -21237,8 +21237,29 @@ Functionca9d: ; ca9d
 	ret
 ; caa3
 
-Datacaa3: ; caa3
-INCBIN "baserom.gbc", $caa3, $cade - $caa3
+UnknownScript_0xcaa3: ; 0xcaa3
+	reloadmappart
+	3callasm BANK(HideSprites), HideSprites
+	special $0035
+	3callasm $23, $4aed
+	3call BANK(UnknownScript_0x122c1), UnknownScript_0x122c1
+	special $0000
+	3callasm $05, $54f1
+	writecode $8, $0
+	newloadmap $fc
+	3callasm $23, $4b33
+	special $003b
+	3callasm BANK(Functioncacb), Functioncacb
+	end
+; 0xcacb
+
+Functioncacb: ; cacb
+	callba Function561d
+	call DelayFrame
+	call Functione4a
+	callba Function106594
+	ret
+; cade
 
 Functioncade: ; cade
 	call Functioncae7
@@ -21255,7 +21276,7 @@ Functioncae7: ; cae7
 	ret c
 	call Functioncb07
 	jr c, .asm_cb01
-	ld hl, $4b1c
+	ld hl, UnknownScript_0xcb1c
 	call Function31cd
 	ld a, $81
 	ret
@@ -21269,7 +21290,7 @@ Functioncae7: ; cae7
 Functioncb07: ; cb07
 	ld a, [PlayerDirection]
 	and $c
-	cp $4
+	cp FACE_UP
 	jr nz, .asm_cb1a
 	ld a, [TileUp]
 	call CheckWaterfallTile
@@ -21282,7 +21303,9 @@ Functioncb07: ; cb07
 	ret
 ; cb1c
 
-INCBIN "baserom.gbc", $cb1c, $cb20 - $cb1c
+UnknownScript_0xcb1c: ; 0xcb1c
+	reloadmappart
+	special $0035
 
 UnknownScript_0xcb20: ; 0xcb20
 	3callasm BANK(GetPartyNick), GetPartyNick
