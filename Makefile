@@ -25,21 +25,22 @@ pokecrystal.gbc: pokecrystal.o
 	rgbfix -Cjv -i BYTE -k 01 -l 0x33 -m 0x10 -p 0 -r 3 -t PM_CRYSTAL $@
 
 pngs:
-	cd extras && python gfx.py mass-decompress && python gfx.py dump-pngs
+	python extras/pokemontools/gfx.py mass-decompress
+	python extras/pokemontools/gfx.py dump-pngs
 
 lzs: $(LZ_GFX) $(TWOBPP_GFX)
 	@:
 
 gfx/pics/%/front.lz: gfx/pics/%/tiles.2bpp gfx/pics/%/front.png
-	python extras/gfx.py png-to-lz --front $^
+	python extras/pokemontools/gfx.py png-to-lz --front $^
 gfx/pics/%/tiles.2bpp: gfx/pics/%/tiles.png
-	python extras/gfx.py png-to-2bpp $<
+	python extras/pokemontools/gfx.py png-to-2bpp $<
 gfx/pics/%/back.lz: gfx/pics/%/back.png
-	python extras/gfx.py png-to-lz --vert $<
+	python extras/pokemontools/gfx.py png-to-lz --vert $<
 gfx/trainers/%.lz: gfx/trainers/%.png
-	python extras/gfx.py png-to-lz --vert $<
+	python extras/pokemontools/gfx.py png-to-lz --vert $<
 .png.lz:
-	python extras/gfx.py png-to-lz $<
+	python extras/pokemontools/gfx.py png-to-lz $<
 .png.2bpp:
-	python extras/gfx.py png-to-lz $<
+	python extras/pokemontools/gfx.py png-to-lz $<
 
