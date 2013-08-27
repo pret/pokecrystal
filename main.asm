@@ -100,7 +100,6 @@ RTC: ; 46f
 	ld a, [VramState]
 	bit 0, a ; obj update
 	ret z
-; 47e
 
 TimeOfDayPals: ; 47e
 	callab _TimeOfDayPals
@@ -171,7 +170,7 @@ Function4c7: ; 4c7
 	ld a, [hli]
 	ld d, a
 	call DmgToCgbObjPals
-	ld c, $8
+	ld c, 8
 	call DelayFrames
 	pop de
 	dec b
@@ -216,7 +215,7 @@ Function501: ; 501
 	call DmgToCgbObjPals
 	ld a, [hld]
 	call DmgToCgbBGPals
-	ld c, $8
+	ld c, 8
 	call DelayFrames
 	pop de
 	dec b
@@ -282,41 +281,33 @@ Function552: ; 552
 
 DisableLCD: ; 568
 ; Turn the LCD off
-; Most of this is just going through the motions
 
-; don't need to do anything if lcd is already off
+; Don't need to do anything if the LCD is already off
 	ld a, [rLCDC]
 	bit 7, a ; lcd enable
 	ret z
-	
-; reset ints
+
 	xor a
 	ld [rIF], a
-	
-; save enabled ints
 	ld a, [rIE]
 	ld b, a
 	
-; disable vblank
+; Disable VBlank
 	res 0, a ; vblank
 	ld [rIE], a
-	
+
 .wait
-; wait until vblank
+; Wait until VBlank would normally happen
 	ld a, [rLY]
-	cp 145 ; >144 (ensure beginning of vblank)
+	cp 145
 	jr nz, .wait
-	
-; turn lcd off
+
 	ld a, [rLCDC]
 	and %01111111 ; lcd enable off
 	ld [rLCDC], a
-	
-; reset ints
+
 	xor a
 	ld [rIF], a
-	
-; restore enabled ints
 	ld a, b
 	ld [rIE], a
 	ret
@@ -355,13 +346,9 @@ LatchClock: ; 59c
 
 
 UpdateTime: ; 5a7
-; get rtc data
 	call GetClock
-; condense days to one byte, update rtc w/ new day count
 	call FixDays
-; add game time to rtc time
 	call FixTime
-; update time of day (0 = morn, 1 = day, 2 = nite)
 	callba GetTimeOfDay
 	ret
 ; 5b7
@@ -373,40 +360,38 @@ GetClock: ; 5b7
 ; enable clock r/w
 	ld a, SRAM_ENABLE
 	ld [MBC3SRamEnable], a
-	
-; get clock data
-; stored 'backwards' in hram
-	
+
+; clock data is 'backwards' in hram
+
 	call LatchClock
 	ld hl, MBC3SRamBank
 	ld de, MBC3RTC
-	
-; seconds
+
 	ld [hl], RTC_S
 	ld a, [de]
 	and $3f
 	ld [hRTCSeconds], a
-; minutes
+
 	ld [hl], RTC_M
 	ld a, [de]
 	and $3f
 	ld [hRTCMinutes], a
-; hours
+
 	ld [hl], RTC_H
 	ld a, [de]
 	and $1f
 	ld [hRTCHours], a
-; day lo
+
 	ld [hl], RTC_DL
 	ld a, [de]
 	ld [hRTCDayLo], a
-; day hi
+
 	ld [hl], RTC_DH
 	ld a, [de]
 	ld [hRTCDayHi], a
-	
-; cleanup
-	call CloseSRAM ; unlatch clock, disable clock r/w
+
+; unlatch clock / disable clock r/w
+	call CloseSRAM
 	ret
 ; 5e8
 
