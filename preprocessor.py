@@ -12,7 +12,6 @@ from extras.pokemontools.crystal import (
     DataByteWordMacro,
     PointerLabelBeforeBank,
     PointerLabelAfterBank,
-    MoneyByteParam,
     ItemFragment,
     TextEndingCommand,
     text_command_classes,
