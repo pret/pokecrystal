@@ -249,10 +249,11 @@ Function547: ; 547
 	cp rSCX & $ff
 	ret nz
 	ld c, a
-	ld a, [$d100]
+	ld a, [LYOverrides]
 	ld [$ff00+c], a
 	ret
 ; 552
+
 
 LCD: ; 552
 	push af
@@ -264,7 +265,7 @@ LCD: ; 552
 	push bc
 	ld a, [rLY]
 	ld c, a
-	ld b, $d100 >> 8
+	ld b, LYOverrides >> 8
 	ld a, [bc]
 	ld b, a
 	ld a, [hLCDStatCustom]
@@ -277,7 +278,6 @@ LCD: ; 552
 	pop af
 	reti
 ; 568
-
 
 
 DisableLCD: ; 568
@@ -71398,7 +71398,7 @@ StartTitleScreen: ; 10ed67
 	call DrawGraphic
 	
 ; Draw copyright text
-	ld hl, $9c03 ; BG Map 1 (3,0)
+	ld hl, $9c03 ; BGMap1(3,0)
 	ld bc, $010d ; 13x1
 	ld d, $c
 	ld e, $10
@@ -71436,11 +71436,9 @@ StartTitleScreen: ; 10ed67
 	
 ; LY/SCX trickery starts here
 	
-; Save WRAM bank
 	ld a, [rSVBK]
 	push af
-; WRAM bank 5
-	ld a, 5
+	ld a, 5 ; BANK(LYOverrides)
 	ld [rSVBK], a
 	
 ; Make alternating lines come in from opposite sides
@@ -71448,28 +71446,27 @@ StartTitleScreen: ; 10ed67
 ; ( This part is actually totally pointless, you can't
 ;   see anything until these values are overwritten!  )
 
-	ld b, 40 ; alternate for 80 lines
-	ld hl, $d100 ; LY buffer
+	ld b, 80 / 2 ; alternate for 80 lines
+	ld hl, LYOverrides
 .loop
 ; $00 is the middle position
-	ld [hl], $70 ; coming from the left
+	ld [hl], +112 ; coming from the left
 	inc hl
-	ld [hl], $90 ; coming from the right
+	ld [hl], -112 ; coming from the right
 	inc hl
 	dec b
 	jr nz, .loop
 	
 ; Make sure the rest of the buffer is empty
-	ld hl, $d150
+	ld hl, LYOverrides + 80
 	xor a
-	ld bc, $0040
+	ld bc, LYOverridesEnd - (LYOverrides + 80)
 	call ByteFill
 	
 ; Let LCD Stat know we're messing around with SCX
 	ld a, rSCX - rJOYP
 	ld [hLCDStatCustom], a
 	
-; Restore WRAM bank
 	pop af
 	ld [rSVBK], a
 	
@@ -71483,14 +71480,13 @@ StartTitleScreen: ; 10ed67
 	set 2, a
 	ld [rLCDC], a
 	
-;
-	ld a, $70
+	ld a, +112
 	ld [hSCX], a
-	ld a, $8
+	ld a, 8
 	ld [hSCY], a
-	ld a, $7
+	ld a, 7
 	ld [hWX], a
-	ld a, $90
+	ld a, -112
 	ld [hWY], a
 	
 	ld a, $1
