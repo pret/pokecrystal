@@ -498,8 +498,6 @@ def macro_translator(macro, token, line):
             elif param_klass.byte_type == "dw":
                 if param_klass.size == 2:
                     allowed_length += 1 # just label
-                elif param_klass == MoneyByteParam:
-                    allowed_length += 1
                 elif param_klass.size == 3:
                     allowed_length += 2 # bank and label
                 else:
