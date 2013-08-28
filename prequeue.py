@@ -13,4 +13,4 @@ if __name__ == '__main__':
         dest = os.path.splitext(source)[0] + '.tx'
         sys.stdin  = open(source, 'r')
         sys.stdout = open(dest, 'w')
-        preprocessor.preprocess()
+        preprocessor.preprocess(preprocessor.macros)
