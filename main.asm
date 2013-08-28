@@ -44,7 +44,7 @@ SECTION "timer",ROM0[$50] ; timer interrupt
 	jp Timer
 
 SECTION "serial",ROM0[$58] ; serial interrupt
-	jp Function6ef
+	jp Serial
 
 SECTION "joypad",ROM0[$60] ; joypad interrupt
 	jp JoypadInt
@@ -633,20 +633,24 @@ Function6e3: ; 6e3
 
 
 
-Function6ef: ; 6ef
+Serial: ; 6ef
 	push af
 	push bc
 	push de
 	push hl
+
 	ld a, [$ffc9]
 	and a
 	jr nz, .asm_71c
+
 	ld a, [$c2d4]
 	bit 0, a
 	jr nz, .asm_721
+
 	ld a, [$ffcb]
 	inc a
 	jr z, .asm_726
+
 	ld a, [rSB]
 	ld [$ffce], a
 	ld a, [$ffcd]
@@ -654,7 +658,8 @@ Function6ef: ; 6ef
 	ld a, [$ffcb]
 	cp $2
 	jr z, .asm_752
-	ld a, $0
+
+	ld a, $00
 	ld [rSC], a
 	ld a, $80
 	ld [rSC], a
@@ -688,7 +693,7 @@ Function6ef: ; 6ef
 	ld a, [rDIV]
 	bit 7, a
 	jr nz, .asm_73f
-	ld a, $0
+	ld a, $00
 	ld [rSC], a
 	ld a, $80
 	ld [rSC], a
