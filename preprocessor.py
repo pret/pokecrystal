@@ -557,8 +557,8 @@ def macro_translator(macro, token, line):
                 output += ("db " + params[index+1].strip() + "\n")
                 index += 2
                 correction += 1
-            elif size == 3 and issubclass(param_klass, MoneyByteParam):
-                output += ("db " + MoneyByteParam.from_asm(param) + "\n")
+            elif size == 3 and "from_asm" in dir(param_klass):
+                output += ("db " + param_klass.from_asm(param) + "\n")
                 index += 1
             else:
                 raise Exception, "dunno what to do with this macro " + \
