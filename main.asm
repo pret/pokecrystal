@@ -632,7 +632,6 @@ Function6e3: ; 6e3
 ; 6ef
 
 
-
 Serial: ; 6ef
 	push af
 	push bc
@@ -652,16 +651,18 @@ Serial: ; 6ef
 	jr z, .asm_726
 
 	ld a, [rSB]
-	ld [$ffce], a
-	ld a, [$ffcd]
+	ld [hSerialReceive], a
+
+	ld a, [hSerialSend]
 	ld [rSB], a
+
 	ld a, [$ffcb]
 	cp $2
 	jr z, .asm_752
 
-	ld a, $00
+	ld a, 0 << rSC_ON
 	ld [rSC], a
-	ld a, $80
+	ld a, 1 << rSC_ON
 	ld [rSC], a
 	jr .asm_752
 
@@ -681,21 +682,24 @@ Serial: ; 6ef
 	jr nz, .asm_752
 
 .asm_730
-	ld [$ffce], a
+	ld [hSerialReceive], a
 	ld [$ffcb], a
 	cp $2
 	jr z, .asm_74f
+
 	xor a
 	ld [rSB], a
 	ld a, $3
 	ld [rDIV], a
+
 .asm_73f
 	ld a, [rDIV]
 	bit 7, a
 	jr nz, .asm_73f
-	ld a, $00
+
+	ld a, 0 << rSC_ON
 	ld [rSC], a
-	ld a, $80
+	ld a, 1 << rSC_ON
 	ld [rSC], a
 	jr .asm_752
 
@@ -707,7 +711,7 @@ Serial: ; 6ef
 	ld a, $1
 	ld [$ffca], a
 	ld a, $fe
-	ld [$ffcd], a
+	ld [hSerialSend], a
 
 .asm_75a
 	pop hl
@@ -722,7 +726,7 @@ Function75f: ; 75f
 	ld [$ffcc], a
 .asm_763
 	ld a, [hl]
-	ld [$ffcd], a
+	ld [hSerialSend], a
 	call Function78a
 	push bc
 	ld b, a
@@ -820,7 +824,7 @@ Function78a: ; 78a
 	ld [$cf5e], a
 
 .asm_7f8
-	ld a, [$ffce]
+	ld a, [hSerialReceive]
 	cp $fe
 	ret nz
 	call Function82b
@@ -846,7 +850,7 @@ Function78a: ; 78a
 	ld a, $fe
 	ret z
 	ld a, [hl]
-	ld [$ffcd], a
+	ld [hSerialSend], a
 	call DelayFrame
 	jp Function78a
 
@@ -883,7 +887,7 @@ Function83b: ; 83b
 .asm_847
 	call DelayFrame
 	ld a, [hl]
-	ld [$ffcd], a
+	ld [hSerialSend], a
 	call Function78a
 	ld b, a
 	inc hl
@@ -976,7 +980,7 @@ Function8c1: ; 8c1
 	call Function8f3
 	ld a, [$cf56]
 	add b
-	ld [$ffcd], a
+	ld [hSerialSend], a
 	ld a, [$ffcb]
 	cp $2
 	jr nz, .asm_8ee
@@ -992,13 +996,13 @@ Function8c1: ; 8c1
 ; 8f3
 
 Function8f3: ; 8f3
-	ld a, [$ffce]
+	ld a, [hSerialReceive]
 	ld [$cf51], a
 	and $f0
 	cp b
 	ret nz
 	xor a
-	ld [$ffce], a
+	ld [hSerialReceive], a
 	ld a, [$cf51]
 	and $f
 	ld [$cf52], a
@@ -1007,7 +1011,7 @@ Function8f3: ; 8f3
 
 Function908: ; 908
 	xor a
-	ld [$ffcd], a
+	ld [hSerialSend], a
 	ld a, [$ffcb]
 	cp $2
 	ret nz
@@ -1025,7 +1029,7 @@ Function919: ; 919
 	ld a, $2
 	ld [rSB], a
 	xor a
-	ld [$ffce], a
+	ld [hSerialReceive], a
 	ld a, $0
 	ld [rSC], a
 	ld a, $80
