@@ -38,7 +38,7 @@ SECTION "vblank",ROM0[$40] ; vblank interrupt
 	jp VBlank
 
 SECTION "lcd",ROM0[$48] ; lcd interrupt
-	jp Function552
+	jp LCD
 
 SECTION "timer",ROM0[$50] ; timer interrupt
 	jp Function3e93
@@ -138,13 +138,13 @@ Function4a3: ; 4a3
 	and a
 	jr z, .asm_4af
 	ld hl, IncGradGBPalTable_00
-	ld b, $4
-	jr Function4c7
+	ld b, 4
+	jr FadeOut
 
 .asm_4af
 	ld hl, IncGradGBPalTable_08
-	ld b, $4
-	jr Function4c7
+	ld b, 4
+	jr FadeOut
 ; 4b6
 
 Function4b6: ; 4b6
@@ -152,16 +152,15 @@ Function4b6: ; 4b6
 	and a
 	jr z, .asm_4c2
 	ld hl, IncGradGBPalTable_05
-	ld b, $3
-	jr Function4c7
+	ld b, 3
+	jr FadeOut
 
 .asm_4c2
 	ld hl, IncGradGBPalTable_13
-	ld b, $3
+	ld b, 3
 ; 4c7
 
-Function4c7: ; 4c7
-.asm_4c7
+FadeOut: ; 4c7
 	push de
 	ld a, [hli]
 	call DmgToCgbBGPals
@@ -174,7 +173,7 @@ Function4c7: ; 4c7
 	call DelayFrames
 	pop de
 	dec b
-	jr nz, .asm_4c7
+	jr nz, FadeOut
 	ret
 ; 4dd
 
@@ -183,13 +182,13 @@ Function4dd: ; 4dd
 	and a
 	jr z, .asm_4e9
 	ld hl, IncGradGBPalTable_04 - 1
-	ld b, $4
-	jr Function501
+	ld b, 4
+	jr FadeIn
 
 .asm_4e9
 	ld hl, IncGradGBPalTable_12 - 1
-	ld b, $4
-	jr Function501
+	ld b, 4
+	jr FadeIn
 ; 4f0
 
 Function4f0: ; 4f0
@@ -197,16 +196,16 @@ Function4f0: ; 4f0
 	and a
 	jr z, .asm_4fc
 	ld hl, IncGradGBPalTable_07 - 1
-	ld b, $3
-	jr Function501
+	ld b, 3
+	jr FadeIn
 
 .asm_4fc
 	ld hl, IncGradGBPalTable_15 - 1
-	ld b, $3
+	ld b, 3
 	; fallthrough
 ; 501
 
-Function501: ; 501
+FadeIn: ; 501
 	push de
 	ld a, [hld]
 	ld d, a
@@ -219,7 +218,7 @@ Function501: ; 501
 	call DelayFrames
 	pop de
 	dec b
-	jr nz, Function501
+	jr nz, FadeIn
 	ret
 ; 517
 
@@ -247,7 +246,7 @@ IncGradGBPalTable_15: db %00000000, %00000000, %00000000
 
 Function547: ; 547
 	ld a, [hLCDStatCustom]
-	cp $43
+	cp rSCX & $ff
 	ret nz
 	ld c, a
 	ld a, [$d100]
@@ -255,15 +254,17 @@ Function547: ; 547
 	ret
 ; 552
 
-Function552: ; 552
+LCD: ; 552
 	push af
 	ld a, [hLCDStatCustom]
 	and a
-	jr z, .asm_566
+	jr z, .done
+
+; At this point it's assumed we're in WRAM bank 5!
 	push bc
 	ld a, [rLY]
 	ld c, a
-	ld b, $d1
+	ld b, $d100 >> 8
 	ld a, [bc]
 	ld b, a
 	ld a, [hLCDStatCustom]
@@ -272,7 +273,7 @@ Function552: ; 552
 	ld [$ff00+c], a
 	pop bc
 
-.asm_566
+.done
 	pop af
 	reti
 ; 568
