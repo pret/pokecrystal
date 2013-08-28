@@ -13,7 +13,6 @@ from extras.pokemontools.crystal import (
     PointerLabelBeforeBank,
     PointerLabelAfterBank,
     ItemFragment,
-    TextEndingCommand,
     text_command_classes,
     movement_command_classes,
     music_classes,
@@ -41,6 +40,13 @@ show_original_lines = False
 
 # helpful for debugging macros
 do_macro_sanity_check = False
+
+class SkippableMacro(object):
+    macro_name = "db"
+
+skippable_macros = [SkippableMacro]
+
+macros += skippable_macros
 
 chars = {
 "ガ": 0x05,
@@ -437,7 +443,7 @@ def is_based_on(something, base):
     options += [something.__name__]
     return (base in options)
 
-def macro_translator(macro, token, line):
+def macro_translator(macro, token, line, skippable_macros):
     """
     Converts a line with a macro into a rgbasm-compatible line.
     """
@@ -476,10 +482,10 @@ def macro_translator(macro, token, line):
     if show_original_lines:
         sys.stdout.write("; original_line: " + original_line)
 
-    # "db" is a macro because of TextEndingCommand
+    # "db" is a macro because of SkippableMacro
     # rgbasm can handle "db" so no preprocessing is required
     # (don't check its param count)
-    if macro.macro_name == "db" and macro in [TextEndingCommand, ItemFragment]:
+    if macro.macro_name == "db" and macro in skippable_macros:
         sys.stdout.write(original_line)
         return
 
@@ -582,7 +588,7 @@ def macro_translator(macro, token, line):
 
     sys.stdout.write(output)
 
-def read_line(l):
+def read_line(l, skippable_macros):
     """Preprocesses a given line of asm."""
 
     # strip comments from asm
@@ -610,14 +616,18 @@ def read_line(l):
     else:
         macro, token = macro_test(asm)
         if macro:
-            macro_translator(macro, token, asm)
+            macro_translator(macro, token, asm, skippable_macros)
         else:
             sys.stdout.write(asm)
 
     if comment: sys.stdout.write(comment)
 
-def preprocess(lines=None):
+def preprocess(skippable_macros=None, lines=None):
     """Main entry point for the preprocessor."""
+    if skippable_macros == None:
+        # Note that this is bad because the macro table doesn't include the
+        # skippable macros.
+        skippable_macros = [SkippableMacro]
 
     if not lines:
         # read each line from stdin
@@ -627,8 +637,8 @@ def preprocess(lines=None):
         lines = lines.split("\n")
 
     for l in lines:
-        read_line(l)
+        read_line(l, skippable_macros)
 
 # only run against stdin when not included as a module
 if __name__ == "__main__":
-    preprocess()
+    preprocess(skippable_macros=skippable_macros)
