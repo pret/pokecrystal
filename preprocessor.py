@@ -425,6 +425,18 @@ def macro_test(asm):
     else:
         return (None, None)
 
+def is_based_on(something, base):
+    """
+    Checks whether or not 'something' is a class that is a subclass of a class
+    by name. This is a terrible hack but it removes a direct dependency on
+    existing macros.
+
+    Used by macro_translator.
+    """
+    options = [str(klass.__name__) for klass in something.__bases__]
+    options += [something.__name__]
+    return (base in options)
+
 def macro_translator(macro, token, line):
     """
     Converts a line with a macro into a rgbasm-compatible line.
@@ -540,14 +552,14 @@ def macro_translator(macro, token, line):
 
             output += ("; " + description + "\n")
 
-            if   size == 3 and issubclass(param_klass, PointerLabelBeforeBank):
+            if   size == 3 and is_based_on(param_klass, "PointerLabelBeforeBank"):
                 # write the bank first
                 output += ("db " + param + "\n")
                 # write the pointer second
                 output += ("dw " + params[index+1].strip() + "\n")
                 index += 2
                 correction += 1
-            elif size == 3 and issubclass(param_klass, PointerLabelAfterBank):
+            elif size == 3 and is_based_on(param_klass, "PointerLabelAfterBank"):
                 # write the pointer first
                 output += ("dw " + param + "\n")
                 # write the bank second
