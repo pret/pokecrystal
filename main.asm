@@ -41,7 +41,7 @@ SECTION "lcd",ROM0[$48] ; lcd interrupt
 	jp LCD
 
 SECTION "timer",ROM0[$50] ; timer interrupt
-	jp Function3e93
+	jp Timer
 
 SECTION "serial",ROM0[$58] ; serial interrupt
 	jp Function6ef
@@ -328,7 +328,7 @@ AskTimer: ; 591
 	ld a, [$ffe9]
 	and a
 	jr z, .asm_59a
-	call Function3e93
+	call Timer
 
 .asm_59a
 	pop af
@@ -10975,28 +10975,36 @@ Function3e80: ; 3e80
 ; 3e93
 
 
-Function3e93: ; 3e93
+Timer: ; 3e93
 	push af
 	push bc
 	push de
 	push hl
+
 	ld a, [$ffe9]
 	and a
 	jr z, .asm_3ed2
+
 	xor a
 	ld [rTAC], a
+
+; Turn off timer interrupt
 	ld a, [rIF]
-	and $1b
+	and 1 << VBLANK | 1 << LCD_STAT | 1 << SERIAL | 1 << JOYPAD
 	ld [rIF], a
+
 	ld a, [$c86a]
 	or a
 	jr z, .asm_3ed2
+
 	ld a, [$c822]
 	bit 1, a
 	jr nz, .asm_3eca
+
 	ld a, [rSC]
-	and $80
+	and 1 << rSC_ON
 	jr nz, .asm_3eca
+
 	ld a, [hROMBank]
 	push af
 	ld a, $44
@@ -11004,16 +11012,17 @@ Function3e93: ; 3e93
 	rst Bankswitch
 
 	call $58de
+
 	pop bc
 	ld a, b
 	ld [$c981], a
 	rst Bankswitch
 
-
 .asm_3eca
 	ld a, [rTMA]
 	ld [rTIMA], a
-	ld a, $6
+
+	ld a, 1 << rTAC_ON | rTAC_65536_HZ
 	ld [rTAC], a
 
 .asm_3ed2
