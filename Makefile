@@ -19,8 +19,10 @@ pokecrystal.o: $(TEXTFILES:.asm=.tx) wram.asm constants.asm $(shell find constan
 .asm.tx:
 	$(eval TEXTQUEUE := $(TEXTQUEUE) $<)
 	@rm -f $@
+baserom:
+	python -c "import os; assert 'baserom.gbc' in os.listdir('.'), 'Wait! Need baserom.gbc first. Check README and INSTALL for details.';"
 
-pokecrystal.gbc: pokecrystal.o
+pokecrystal.gbc: baserom pokecrystal.o
 	rgblink -n pokecrystal.sym -m pokecrystal.map -o $@ $<
 	rgbfix -Cjv -i BYTE -k 01 -l 0x33 -m 0x10 -p 0 -r 3 -t PM_CRYSTAL $@
 
