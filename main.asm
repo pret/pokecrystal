@@ -56957,7 +56957,7 @@ Function86810: ; 86810
 	callba GetPlayerBackpic
 	ld a, $31
 	ld [$ffad], a
-	ld hl, $c51e
+	hlcoord 6, 6
 	ld bc, $0606
 	ld a, $13
 	call Predef
@@ -56984,7 +56984,7 @@ Function86810: ; 86810
 	rst FarCall
 	xor a
 	ld [$ffad], a
-	ld hl, $c510
+	hlcoord 12, 5
 	ld bc, $0707
 	ld a, $13
 	call Predef
@@ -56997,29 +56997,29 @@ Function86810: ; 86810
 	call Function86643
 	xor a
 	ld [hBGMapMode], a
-	ld hl, $c4c8
+	hlcoord 0, 2
 	ld bc, $0809
 	call TextBox
-	ld hl, $c590
+	hlcoord 0, 12
 	ld bc, $0412
 	call TextBox
-	ld hl, $c4f2
+	hlcoord 2, 4
 	ld de, PlayerName
 	call PlaceString
-	ld hl, $c519
+	hlcoord 1, 6
 	ld a, $73
 	ld [hli], a
 	ld a, $74
 	ld [hli], a
 	ld [hl], $f3
-	ld hl, $c51c
+	hlcoord 4, 6
 	ld de, PlayerID
 	ld bc, $8205
 	call PrintNum
-	ld hl, $c541
-	ld de, $68ed
+	hlcoord 1, 8
+	ld de, .PlayTime
 	call PlaceString
-	ld hl, $c557
+	hlcoord 3, 9
 	ld de, GameTimeHours
 	ld bc, $0203
 	call PrintNum
@@ -57033,7 +57033,10 @@ Function86810: ; 86810
 	ret
 ; 868ed
 
-INCBIN "baserom.gbc", $868ed, $88000 - $868ed
+.PlayTime
+	db "PLAY TIME@"
+; 868f7
+
 
 SECTION "bank22",ROMX,BANK[$22]
 
