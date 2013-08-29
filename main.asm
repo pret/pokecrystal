@@ -58,7 +58,7 @@ SECTION "start",ROM0[$150]
 
 INCLUDE "engine/init.asm"
 
-VBlank: ; 283
+
 INCLUDE "engine/vblank.asm"
 
 
