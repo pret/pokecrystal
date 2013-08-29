@@ -65788,7 +65788,7 @@ Options_TextSpeed: ; e42f5
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
-	ld hl, $c4e7
+	hlcoord 11, 3
 	call PlaceString
 	and a
 	ret
@@ -65862,7 +65862,7 @@ Options_BattleScene: ; e4365
 	ld de, .Off
 
 .asm_e4390
-	ld hl, $c50f
+	hlcoord 11, 5
 	call PlaceString
 	and a
 	ret
@@ -65905,7 +65905,7 @@ Options_BattleStyle: ; e43a0
 	ld de, .Set
 
 .asm_e43c9
-	ld hl, $c537
+	hlcoord 11, 7
 	call PlaceString
 	and a
 	ret
@@ -65955,7 +65955,7 @@ Options_Sound: ; e43dd
 	ld de, .Stereo
 
 .asm_e440e
-	ld hl, $c55f
+	hlcoord 11, 9
 	call PlaceString
 	and a
 	ret
@@ -66007,7 +66007,7 @@ Options_Print: ; e4424
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
-	ld hl, $c587
+	hlcoord 11, 11
 	call PlaceString
 	and a
 	ret
@@ -66098,7 +66098,7 @@ Options_MenuAccount: ; e44c1
 	ld de, .On
 
 .asm_e44ea
-	ld hl, $c5af
+	hlcoord 11, 13
 	call PlaceString
 	and a
 	ret
@@ -66206,7 +66206,7 @@ Functione452a: ; e452a
 ; e455c
 
 Functione455c: ; e455c
-	ld hl, $c4b5
+	hlcoord 1, 1
 	ld de, $0014
 	ld c, $10
 .asm_e4564
@@ -66214,7 +66214,7 @@ Functione455c: ; e455c
 	add hl, de
 	dec c
 	jr nz, .asm_e4564
-	ld hl, $c4c9
+	hlcoord 1, 2
 	ld bc, $0028
 	ld a, [$cf63]
 	call AddNTimes
