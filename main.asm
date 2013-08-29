@@ -20853,12 +20853,15 @@ CheckPartyMove: ; c742
 ; c779
 
 Functionc779: ; c779
-	ld hl, $4780
+	ld hl, UnknownText_0xc780
 	call Function1d67
 	ret
 ; c780
 
-INCBIN "baserom.gbc", $c780, $c785 - $c780
+UnknownText_0xc780: ; 0xc780
+	text_jump UnknownText_0x1c05c8, BANK(UnknownText_0x1c05c8)
+	db "@"
+; 0xc785
 
 Functionc785: ; c785
 	call Functionc6ea
@@ -26272,13 +26275,13 @@ Function12d45: ; 12d45
 	call LoadMenuDataHeader
 	call Function1d81
 	call Function1c07
-	jp c, $6dc6
+	jp c, .asm_12dc6
 	ld a, [$cfa9]
 	cp $1
 	jr z, .asm_12d6d
 	cp $2
 	jr z, .asm_12d76
-	jp $6dc6
+	jp .asm_12dc6
 
 .asm_12d6d
 	ld a, $2e
@@ -26288,24 +26291,24 @@ Function12d45: ; 12d45
 	ret
 
 .asm_12d76
-	ld hl, $6df1
+	ld hl, UnknownText_0x12df1
 	call Function12cf5
 	jr c, .asm_12d9a
 	ld a, [CurPartyMon]
 	ld b, a
 	callba Function4456e
 	jr c, .asm_12d92
-	ld hl, $6dfb
+	ld hl, UnknownText_0x12dfb
 	call Function1d67
 	jr .asm_12dc6
 
 .asm_12d92
-	ld hl, $6df6
+	ld hl, UnknownText_0x12df6
 	call Function1d67
 	jr .asm_12dc6
 
 .asm_12d9a
-	ld hl, $6de2
+	ld hl, UnknownText_0x12de2
 	call Function12cf5
 	jr c, .asm_12dc6
 	call GetPartyItemLocation
@@ -26316,12 +26319,12 @@ Function12d45: ; 12d45
 	call GetPartyItemLocation
 	ld [hl], $0
 	call GetCurNick
-	ld hl, $6de7
+	ld hl, UnknownText_0x12de7
 	call Function1d67
 	jr .asm_12dc6
 
 .asm_12dbe
-	ld hl, $6dec
+	ld hl, UnknownText_0x12dec
 	call Function1d67
 	jr .asm_12dc6
 
@@ -26330,7 +26333,39 @@ Function12d45: ; 12d45
 	ret
 ; 12dc9
 
-INCBIN "baserom.gbc", $12dc9, $12e00 - $12dc9
+
+INCBIN "baserom.gbc", $12dc9, $12de2 - $12dc9
+
+
+UnknownText_0x12de2: ; 0x12de2
+	text_jump UnknownText_0x1c1c22, BANK(UnknownText_0x1c1c22)
+	db "@"
+; 0x12de7
+
+UnknownText_0x12de7: ; 0x12de7
+	text_jump UnknownText_0x1c1c47, BANK(UnknownText_0x1c1c47)
+	db "@"
+; 0x12dec
+
+UnknownText_0x12dec: ; 0x12dec
+	text_jump UnknownText_0x1c1c62, BANK(UnknownText_0x1c1c62)
+	db "@"
+; 0x12df1
+
+UnknownText_0x12df1: ; 0x12df1
+	text_jump UnknownText_0x1c1c86, BANK(UnknownText_0x1c1c86)
+	db "@"
+; 0x12df6
+
+UnknownText_0x12df6: ; 0x12df6
+	text_jump UnknownText_0x1c1ca9, BANK(UnknownText_0x1c1ca9)
+	db "@"
+; 0x12dfb
+
+UnknownText_0x12dfb: ; 0x12dfb
+	text_jump UnknownText_0x1c1cc4, BANK(UnknownText_0x1c1cc4)
+	db "@"
+; 0x12e00
 
 
 OpenPartyStats: ; 12e00
