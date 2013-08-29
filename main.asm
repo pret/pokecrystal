@@ -851,7 +851,7 @@ Functiona1b: ; a1b
 	jr z, .asm_a34
 
 	ld a, [$ffa9]
-	and $9
+	and START | BUTTON_A
 	jr nz, .asm_a34
 
 	dec c
@@ -919,14 +919,14 @@ Functiona57: ; a57
 ; a80
 
 Functiona80: ; a80
-	ld a, [hConnectionStripLength]
+	ld a, [$ffaf]
 	push af
-	ld a, [hConnectedMapWidth]
+	ld a, [$ffb0]
 	push af
 	xor a
-	ld [hConnectionStripLength], a
+	ld [$ffaf], a
 	ld a, $6
-	ld [hConnectedMapWidth], a
+	ld [$ffb0], a
 .asm_a8d
 	push hl
 	ld hl, $c606
@@ -937,22 +937,19 @@ Functiona80: ; a80
 	and $3
 	jr z, .asm_a8d
 	pop af
-	ld [hConnectedMapWidth], a
+	ld [$ffb0], a
 	pop af
-	ld [hConnectionStripLength], a
+	ld [$ffaf], a
 	ret
 ; aa5
 
 Functionaa5: ; aa5
-.asm_aa5
 	call Functiona57
 	ld a, [$ffa9]
-	and $3
-	jr z, .asm_aa5
+	and BUTTON_A | BUTTON_B
+	jr z, Functionaa5
 	ret
 ; aaf
-
-
 
 Functionaaf: ; aaf
 	ld a, [InLinkBattle]
@@ -966,7 +963,7 @@ Functionaaf: ; aaf
 	ret
 
 .asm_ac1
-	ld c, $41
+	ld c, 65
 	jp DelayFrames
 ; ac6
 
@@ -978,10 +975,7 @@ Functionac6: ; ac6
 	ld a, [InputType]
 	or a
 	jr z, .asm_ad9
-	ld a, $77
-	ld hl, $628a
-	rst FarCall
-
+	callba Function1de28a
 .asm_ad9
 	call Functionaf5
 	call Functiona57
@@ -1023,37 +1017,37 @@ Functionb06: ; b06
 	cp b
 	pop bc
 	jr nz, .asm_b27
-	ld a, [hConnectionStripLength]
+	ld a, [$ffaf]
 	dec a
-	ld [hConnectionStripLength], a
+	ld [$ffaf], a
 	ret nz
-	ld a, [hConnectedMapWidth]
+	ld a, [$ffb0]
 	dec a
-	ld [hConnectedMapWidth], a
+	ld [$ffb0], a
 	ret nz
 	ld a, $7a
 	ld [hl], a
 	ld a, $ff
-	ld [hConnectionStripLength], a
+	ld [$ffaf], a
 	ld a, $6
-	ld [hConnectedMapWidth], a
+	ld [$ffb0], a
 	ret
 
 .asm_b27
-	ld a, [hConnectionStripLength]
+	ld a, [$ffaf]
 	and a
 	ret z
 	dec a
-	ld [hConnectionStripLength], a
+	ld [$ffaf], a
 	ret nz
 	dec a
-	ld [hConnectionStripLength], a
-	ld a, [hConnectedMapWidth]
+	ld [$ffaf], a
+	ld a, [$ffb0]
 	dec a
-	ld [hConnectedMapWidth], a
+	ld [$ffb0], a
 	ret nz
 	ld a, $6
-	ld [hConnectedMapWidth], a
+	ld [$ffb0], a
 	ld a, $ee
 	ld [hl], a
 	ret
@@ -24665,9 +24659,7 @@ Function107bb: ; 107bb
 	ld a, [InputType]
 	or a
 	jr z, .asm_107ca
-	ld a, $77
-	ld hl, $628f
-	rst FarCall
+	callba Function1de28f
 
 .asm_107ca
 	call Function107d7
@@ -43088,10 +43080,7 @@ Function3e139: ; 3e139
 	ld a, [InputType]
 	or a
 	jr z, .asm_3e171
-	ld a, $77
-	ld hl, $6294
-	rst FarCall
-
+	callba Function1de294
 .asm_3e171
 	call Function3e19b
 	ret c
@@ -74326,20 +74315,24 @@ Function1de27f: ; 1de27f
 
 Function1de28a: ; 1de28a
 	ld hl, DudeAutoInput_A
-	jr .asm_1de299
+	jr Function1de299
+; 1de28f
 
+Function1de28f: ; 1de28f
 	ld hl, DudeAutoInput_RightA
-	jr .asm_1de299
+	jr Function1de299
+; 1de294
 
+Function1de294: ; 1de294
 	ld hl, DudeAutoInput_DownA
-	jr .asm_1de299
+	jr Function1de299
+; 1de299
 
-.asm_1de299
+Function1de299: ; 1de299
 	ld a, $77
 	call StartAutoInput
 	ret
 ; 1de29f
-
 
 
 DudeAutoInput_A: ; 1de29f
