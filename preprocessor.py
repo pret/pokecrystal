@@ -10,8 +10,6 @@ from extras.pokemontools.crystal import (
     Signpost,
     PeopleEvent,
     DataByteWordMacro,
-    PointerLabelBeforeBank,
-    PointerLabelAfterBank,
     ItemFragment,
     text_command_classes,
     movement_command_classes,
