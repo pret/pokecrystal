@@ -13,9 +13,9 @@ VBGMap1:
 
 SECTION "WRAMBank0",WRAM0[$c000]
 
-SECTION "stack",WRAM0[$c000]
-	ds $100
-Stack: ; c100
+SECTION "stack",WRAM0[$c0ff]
+Stack: ; c0ff
+	ds -$100
 
 
 SECTION "audio",WRAM0[$c100]
