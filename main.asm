@@ -839,19 +839,24 @@ INCLUDE "engine/joypad.asm"
 
 
 Functiona1b: ; a1b
-.asm_a1b
+
 	call DelayFrame
+
 	push bc
 	call Functiona57
 	pop bc
+
 	ld a, [hJoyDown]
-	cp $46
+	cp D_UP | SELECT | BUTTON_B
 	jr z, .asm_a34
+
 	ld a, [$ffa9]
 	and $9
 	jr nz, .asm_a34
+
 	dec c
-	jr nz, .asm_a1b
+	jr nz, Functiona1b
+
 	and a
 	ret
 
@@ -861,22 +866,20 @@ Functiona1b: ; a1b
 ; a36
 
 
-
 Functiona36: ; a36
-.asm_a36
 	call DelayFrame
 	call GetJoypadPublic
 	ld a, [hJoyPressed]
-	and $3
+	and BUTTON_A | BUTTON_B
 	ret nz
 	call RTC
-	jr .asm_a36
+	jr Functiona36
 ; a46
 
 Functiona46: ; a46
 	ld a, [hOAMUpdate]
 	push af
-	ld a, $1
+	ld a, 1
 	ld [hOAMUpdate], a
 	call WaitBGMap
 	call Functiona36
@@ -885,8 +888,6 @@ Functiona46: ; a46
 	ret
 ; a57
 
-
-
 Functiona57: ; a57
 	call GetJoypadPublic
 	ld a, [$ffaa]
@@ -894,13 +895,12 @@ Functiona57: ; a57
 	ld a, [hJoyPressed]
 	jr z, .asm_a63
 	ld a, [hJoyDown]
-
 .asm_a63
 	ld [$ffa9], a
 	ld a, [hJoyPressed]
 	and a
 	jr z, .asm_a70
-	ld a, $f
+	ld a, 15
 	ld [TextDelayFrames], a
 	ret
 
@@ -913,7 +913,7 @@ Functiona57: ; a57
 	ret
 
 .asm_a7a
-	ld a, $5
+	ld a, 5
 	ld [TextDelayFrames], a
 	ret
 ; a80
