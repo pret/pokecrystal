@@ -21454,7 +21454,7 @@ Functioncb95: ; cb95
 .asm_cba1
 	ld [Buffer2], a
 .asm_cba4
-	ld hl, $4bb2
+	ld hl, Tablecbb2
 	call Functionc6f5
 	jr nc, .asm_cba4
 	and $7f
@@ -21462,12 +21462,134 @@ Functioncb95: ; cb95
 	ret
 ; cbb2
 
-INCBIN "baserom.gbc", $cbb2, $cc61 - $cbb2
+Tablecbb2: ; cbb2
+	dw Functioncbb8
+	dw Functioncbd8
+	dw Functioncc06
+; cbb8
+
+Functioncbb8: ; cbb8
+	call GetMapPermission
+	cp $4
+	jr z, .asm_cbc6
+	cp $7
+	jr z, .asm_cbc6
+.asm_cbc3
+	ld a, $2
+	ret
+
+.asm_cbc6
+	ld hl, $dca9
+	ld a, [hli]
+	and a
+	jr z, .asm_cbc3
+	ld a, [hli]
+	and a
+	jr z, .asm_cbc3
+	ld a, [hl]
+	and a
+	jr z, .asm_cbc3
+	ld a, $1
+	ret
+; cbd8
+
+Functioncbd8: ; cbd8
+	ld hl, $dca9
+	ld de, $d146
+	ld bc, $0003
+	call CopyBytes
+	call GetPartyNick
+	ld a, [Buffer2]
+	cp $2
+	jr nz, .asm_cbf7
+	ld hl, $4c35
+	call Function31cd
+	ld a, $81
+	ret
+
+.asm_cbf7
+	callba Function8ae4e
+	ld hl, UnknownScript_0xcc2b
+	call Function31cd
+	ld a, $81
+	ret
+; cc06
+
+Functioncc06: ; cc06
+	ld a, [Buffer2]
+	cp $2
+	jr nz, .asm_cc19
+	ld hl, UnknownText_0xcc26
+	call Function1d4f
+	call Functiona80
+	call Function1c17
+
+.asm_cc19
+	ld a, $80
+	ret
+; cc1c
+
+UnknownText_0xcc1c: ; 0xcc1c
+	; used DIG!
+	text_jump UnknownText_0x1c06de, BANK(UnknownText_0x1c06de)
+	db "@"
+; 0xcc21
+
+UnknownText_0xcc21: ; 0xcc21
+	; used an ESCAPE ROPE.
+	text_jump UnknownText_0x1c06ed, BANK(UnknownText_0x1c06ed)
+	db "@"
+; 0xcc26
+
+UnknownText_0xcc26: ; 0xcc26
+	; Can't use that here.
+	text_jump UnknownText_0x1c0705, BANK(UnknownText_0x1c0705)
+	db "@"
+; 0xcc2b
+
+UnknownScript_0xcc2b: ; 0xcc2b
+	reloadmappart
+	special $0035
+	2writetext UnknownText_0xcc21
+	2jump UnknownScript_0xcc3c
+; 0xcc35
+
+UnknownScript_0xcc35: ; 0xcc35
+	reloadmappart
+	special $0035
+	2writetext UnknownText_0xcc1c
+
+UnknownScript_0xcc3c: ; 0xcc3c
+	closetext
+	loadmovesprites
+	playsound $0013
+	applymovement $0, MovementData_0xcc59
+	3call BANK(UnknownScript_0x122c1), UnknownScript_0x122c1
+	special $0000
+	writecode $8, $0
+	newloadmap $f5
+	playsound $0014
+	applymovement $0, MovementData_0xcc5d
+	end
+; 0xcc59
+
+MovementData_0xcc59: ; 0xcc59
+	step_wait5
+	turn_away_down
+	hide_person
+	step_end
+; 0xcc5d
+
+MovementData_0xcc5d: ; 0xcc5d
+	db $3c, $58
+	turn_away_down
+	step_end
+; 0xcc61
 
 Functioncc61: ; cc61
 	call Functionc6ea
 .asm_cc64
-	ld hl, $4c72
+	ld hl, Tablecc72
 	call Functionc6f5
 	jr nc, .asm_cc64
 	and $7f
@@ -21475,7 +21597,51 @@ Functioncc61: ; cc61
 	ret
 ; cc72
 
-INCBIN "baserom.gbc", $cc72, $cce5 - $cc72
+Tablecc72: ; cc72
+	dw Functioncc78
+	dw Functioncc9c
+	dw Functioncca8
+; cc78
+
+Functioncc78: ; cc78
+	call GetMapPermission
+	call CheckOutdoorMap
+	jr z, .asm_cc82
+	jr .asm_cc99
+
+.asm_cc82
+	ld a, [$dcb2]
+	ld d, a
+	ld a, [$dcb3]
+	ld e, a
+	callba Function15344
+	jr nc, .asm_cc99
+	ld a, c
+	ld [$d001], a
+	ld a, $1
+	ret
+
+.asm_cc99
+	ld a, $2
+	ret
+; cc9c
+
+Functioncc9c: ; cc9c
+	call GetPartyNick
+	ld hl, $4cbb
+	call Function31cd
+	ld a, $81
+	ret
+; cca8
+
+Functioncca8: ; cca8
+	ld hl, $4cb6
+	call Function1d67
+	ld a, $80
+	ret
+; ccb1
+
+INCBIN "baserom.gbc", $ccb1, $cce5 - $ccb1
 
 Functioncce5: ; cce5
 	call Functionccee
@@ -57286,8 +57452,9 @@ ClearScreenArea: ; 0x896ff
 ; hl = address of upper left corner of the area
 ; b = height
 ; c = width
-	ld a,  $7f    ; blank tile
-	ld de, 20     ; screen width
+
+	ld a, " " ; blank tile
+	ld de, 20 ; screen width
 .loop
 	push bc
 	push hl
@@ -57300,6 +57467,7 @@ ClearScreenArea: ; 0x896ff
 	add hl, de
 	dec b
 	jr nz, .loop
+
 	dec hl
 	inc c
 	inc c
@@ -57324,7 +57492,7 @@ SpecialHoOhChamber: ; 0x8addb
 	jr nz, .done ; if not, we're done
 	call GetSecondaryMapHeaderPointer
 	ld de, $0326
-	ld b, $1
+	ld b, SET_FLAG
 	call EventFlagAction
 .done
 	ret
@@ -57335,29 +57503,54 @@ INCBIN "baserom.gbc", $8adef, $8ae30 - $8adef
 Function8ae30: ; 8ae30
 	push de
 	push bc
+
 	call GetSecondaryMapHeaderPointer
 	ld a, h
-	cp $58
+	cp RuinsofAlphAerodactylChamber_SecondMapHeader >> 8
 	jr nz, .asm_8ae4a
 	ld a, l
-	cp $e8
+	cp RuinsofAlphAerodactylChamber_SecondMapHeader & $ff
 	jr nz, .asm_8ae4a
+
 	ld de, $0329
-	ld b, $1
+	ld b, SET_FLAG
 	call EventFlagAction
+
 	scf
-	jr .asm_8ae4b
+	jr .done
 
 .asm_8ae4a
 	and a
 
-.asm_8ae4b
+.done
 	pop bc
 	pop de
 	ret
 ; 8ae4e
 
-INCBIN "baserom.gbc", $8ae4e, $8b170 - $8ae4e
+Function8ae4e: ; 8ae4e
+	push hl
+	push de
+
+	call GetSecondaryMapHeaderPointer
+	ld a, h
+	cp RuinsofAlphKabutoChamber_SecondMapHeader >> 8
+	jr nz, .done
+	ld a, l
+	cp RuinsofAlphKabutoChamber_SecondMapHeader & $ff
+	jr nz, .done
+
+	ld de, $0327
+	ld b, SET_FLAG
+	call EventFlagAction
+
+.done
+	pop de
+	pop hl
+	ret
+; 8ae68
+
+INCBIN "baserom.gbc", $8ae68, $8b170 - $8ae68
 
 SpecialDratini: ; 0x8b170
 ; if ScriptVar is 0 or 1, change the moveset of the last Dratini in the party.
