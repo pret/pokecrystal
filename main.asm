@@ -21562,13 +21562,13 @@ UnknownScript_0xcc35: ; 0xcc35
 UnknownScript_0xcc3c: ; 0xcc3c
 	closetext
 	loadmovesprites
-	playsound $0013
+	playsound SFX_WARP_TO
 	applymovement $0, MovementData_0xcc59
 	3call BANK(UnknownScript_0x122c1), UnknownScript_0x122c1
 	special $0000
 	writecode $8, $0
 	newloadmap $f5
-	playsound $0014
+	playsound SFX_WARP_FROM
 	applymovement $0, MovementData_0xcc5d
 	end
 ; 0xcc59
