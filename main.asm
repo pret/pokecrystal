@@ -57498,7 +57498,47 @@ SpecialHoOhChamber: ; 0x8addb
 	ret
 ; 0x8adef
 
-INCBIN "baserom.gbc", $8adef, $8ae30 - $8adef
+Function8adef: ; 8adef
+	call GetSecondaryMapHeaderPointer
+	ld de, $0328
+	ld b, CHECK_FLAG
+	call EventFlagAction
+	ld a, c
+	and a
+	jr nz, .asm_8ae2f
+
+	ld a, WATER_STONE
+	ld [CurItem], a
+	ld hl, NumItems
+	call Function2f79
+	jr c, .asm_8ae24
+
+	ld a, [PartyCount]
+	ld b, a
+	inc b
+.asm_8ae10
+	dec b
+	jr z, .asm_8ae2f
+	ld a, b
+	dec a
+	ld [CurPartyMon], a
+	push bc
+	ld a, $1
+	call GetPartyParamLocation
+	pop bc
+	ld a, [hl]
+	cp $18
+	jr nz, .asm_8ae10
+
+.asm_8ae24
+	call GetSecondaryMapHeaderPointer
+	ld de, $0328
+	ld b, SET_FLAG
+	call EventFlagAction
+
+.asm_8ae2f
+	ret
+; 8ae30
 
 Function8ae30: ; 8ae30
 	push de
