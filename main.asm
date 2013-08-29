@@ -20896,7 +20896,7 @@ Functionc7ce: ; c7ce
 	ld c, [hl]
 	push hl
 	ld hl, $4862
-	call $4840
+	call Functionc840
 	pop hl
 	jr nc, .asm_c7fc
 	ld a, l
@@ -21016,11 +21016,36 @@ Functionc8b5: ; c8b5
 ; c8e0
 
 Functionc8e0: ; c8e0
-	ld hl, $48e6
+	ld hl, UnknownScript_0xc8e6
 	jp Function31cd
 ; c8e6
 
-INCBIN "baserom.gbc", $c8e6, $c909 - $c8e6
+UnknownScript_0xc8e6: ; 0xc8e6
+	reloadmappart
+	special $0035
+	2writetext UnknownText_0xc8f3
+	3callasm $23, $47e1
+	loadmovesprites
+	end
+; 0xc8f3
+
+UnknownText_0xc8f3: ; 0xc8f3
+	text_jump UnknownText_0x1c0609, BANK(UnknownText_0x1c0609)
+	start_asm
+; 0xc8f8
+
+Functionc8f8: ; c8f8
+	call WaitSFX
+	ld de, SFX_FLASH
+	call StartSFX
+	call WaitSFX
+	ld hl, UnknownText_0xc908
+	ret
+; c908
+
+UnknownText_0xc908: ; 0xc908
+	db "@"
+; 0xc909
 
 Functionc909: ; c909
 	call Functionc6ea
@@ -21485,13 +21510,20 @@ Functioncd06: ; cd06
 ; cd09
 
 Functioncd09: ; cd09
-	ld hl, $4d29
+	ld hl, UnknownScript_0xcd29
 	call Function31cd
 	ld a, $81
 	ret
 ; cd12
 
-INCBIN "baserom.gbc", $cd12, $cd1d - $cd12
+Functioncd12: ; cd12
+	ld hl, BikeFlags
+	set 0, [hl]
+	ld a, [CurPartyMon]
+	ld e, a
+	ld d, 0
+	; fallthrough
+; cd1d
 
 Functioncd1d: ; cd1d
 	ld hl, PartySpecies
@@ -21502,7 +21534,30 @@ Functioncd1d: ; cd1d
 	ret
 ; cd29
 
-INCBIN "baserom.gbc", $cd29, $cd9d - $cd29
+UnknownScript_0xcd29: ; 0xcd29
+	reloadmappart
+	special $0035
+	3callasm BANK(Functioncd12), Functioncd12
+	2writetext UnknownText_0xcd41
+	copybytetovar $d1ef
+	cry $0000
+	pause 3
+	2writetext UnknownText_0xcd46
+	loadmovesprites
+	end
+; 0xcd41
+
+UnknownText_0xcd41: ; 0xcd41
+	text_jump UnknownText_0x1c0774, BANK(UnknownText_0x1c0774)
+	db $50
+; 0xcd46
+
+UnknownText_0xcd46: ; 0xcd46
+	text_jump UnknownText_0x1c0788, BANK(UnknownText_0x1c0788)
+	db $50
+; 0xcd4b
+
+INCBIN "baserom.gbc", $cd4b, $cd9d - $cd4b
 
 Functioncd9d: ; cd9d
 	call Functionc6ea
@@ -21533,7 +21588,7 @@ Functioncdde: ; cdde
 	ld c, [hl]
 	push hl
 	ld hl, $48a4
-	call $4840
+	call Functionc840
 	pop hl
 	jr nc, .asm_ce09
 	ld a, l
@@ -21555,15 +21610,33 @@ Functioncdde: ; cdde
 INCBIN "baserom.gbc", $ce0b, $ce0f - $ce0b
 
 UnknownScript_0xce0f: ; 0xce0f
-	3callasm $03, $4706
+	3callasm BANK(GetPartyNick), GetPartyNick
 	2writetext UnknownText_0xcdd9
 	reloadmappart
-	3callasm $03, $4e1d
+	3callasm BANK(Functionce1d), Functionce1d
 	loadmovesprites
 	end
 ; 0xce1d
 
-INCBIN "baserom.gbc", $ce1d, $ce3e - $ce1d
+Functionce1d: ; ce1d
+	ld hl, $d1ec
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	ld a, [$d1ee]
+	ld [hl], a
+	xor a
+	ld [hBGMapMode], a
+	call Function2173
+	ld a, [$d1ef]
+	ld e, a
+	ld a, $23
+	ld hl, $47d4
+	rst FarCall
+	call Function2879
+	call Function2914
+	ret
+; ce3e
 
 TryWhirlpoolOW: ; ce3e
 	ld d, WHIRLPOOL
@@ -21622,7 +21695,7 @@ Functionce86: ; ce86
 	call GetFacingTileCoord
 	call CheckHeadbuttTreeTile
 	jr nz, .asm_ce97
-	ld hl, $4ea7
+	ld hl, UnknownScript_0xcea7
 	call Function31cd
 	ld a, $81
 	ret
@@ -21633,7 +21706,38 @@ Functionce86: ; ce86
 	ret
 ; ce9d
 
-INCBIN "baserom.gbc", $ce9d, $cec9 - $ce9d
+UnknownText_0xce9d: ; 0xce9d
+	text_jump UnknownText_0x1c0897, BANK(UnknownText_0x1c0897)
+	db $50
+; 0xcea2
+
+UnknownText_0xcea2: ; 0xcea2
+	text_jump UnknownText_0x1c08ac, BANK(UnknownText_0x1c08ac)
+	db $50
+; 0xcea7
+
+UnknownScript_0xcea7: ; 0xcea7
+	reloadmappart
+	special $0035
+	3callasm BANK(GetPartyNick), GetPartyNick
+	2writetext UnknownText_0xce9d
+	reloadmappart
+	3callasm $23, $480a
+	3callasm $2e, $41ea
+	iffalse UnknownScript_0xcec3
+	loadmovesprites
+	battlecheck
+	startbattle
+	returnafterbattle
+	end
+; 0xcec3
+
+UnknownScript_0xcec3: ; 0xcec3
+	2writetext UnknownText_0xcea2
+	closetext
+	loadmovesprites
+	end
+; 0xcec9
 
 TryHeadbuttOW: ; cec9
 	ld d, $1d
@@ -21665,7 +21769,7 @@ Functioncef4: ; cef4
 	ld a, d
 	cp $18
 	jr nz, .asm_cf07
-	ld hl, $4f2e
+	ld hl, UnknownScript_0xcf2e
 	call Function31cd
 	ld a, $81
 	ret
@@ -21698,7 +21802,37 @@ Functioncf0d: ; cf0d
 	ret
 ; cf2e
 
-INCBIN "baserom.gbc", $cf2e, $cf8e - $cf2e
+UnknownScript_0xcf2e: ; 0xcf2e
+	reloadmappart
+	special $0035
+	3callasm BANK(GetPartyNick), GetPartyNick
+	2writetext UnknownText_0xcf58
+	loadmovesprites
+	special $003b
+	playsound SFX_STRENGTH
+	earthquake 84
+	applymovement2 MovementData_0xcf55
+	disappear $fe
+	3callasm $2e, $4219
+	copybytetovar $d22e
+	iffalse .done
+	battlecheck
+	startbattle
+	returnafterbattle
+.done
+	end
+; 0xcf55
+
+MovementData_0xcf55: ; 0xcf55
+	db $57, $0a
+	step_end
+
+UnknownText_0xcf58: ; 0xcf58
+	text_jump UnknownText_0x1c08f0, BANK(UnknownText_0x1c08f0)
+	db $50
+; 0xcf5d
+
+INCBIN "baserom.gbc", $cf5d, $cf8e - $cf5d
 
 
 Functioncf8e: ; cf8e
@@ -53534,7 +53668,7 @@ Function506bc: ; 506bc
 UnknownScript_0x506c8: ; 0x506c8
 	reloadmappart
 	special $0035
-	3callasm $03, $4706
+	3callasm BANK(GetPartyNick), GetPartyNick
 	2writetext UnknownText_0x50726
 	closetext
 	3callasm BANK(Function506ef), Function506ef
@@ -58000,7 +58134,17 @@ Function8c6ef: ; 8c6ef
 	ret
 ; 8c6f7
 
-INCBIN "baserom.gbc", $8c6f7, $8c940 - $8c6f7
+INCBIN "baserom.gbc", $8c6f7, $8c7d4 - $8c6f7
+
+Function8c7d4: ; 8c7d4
+	call WaitSFX
+	ld de, $0053
+	call StartSFX
+	call WaitSFX
+	ret
+; 8c7e1
+
+INCBIN "baserom.gbc", $8c7e1, $8c940 - $8c7e1
 
 Function8c940: ; 8c940
 	ld a, e
