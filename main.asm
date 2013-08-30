@@ -668,12 +668,12 @@ SafeTileAnimation: ; 17d3
 ; 17ff
 
 
-Function17ff: ; 17ff
+GetSpritePalette: ; 17ff
 	push hl
 	push de
 	push bc
 	ld c, a
-	callba GetSpritePalette
+	callba _GetSpritePalette
 	ld a, c
 	pop bc
 	pop de
@@ -16422,7 +16422,7 @@ Function811d: ; 811d
 	call Function180e
 	ld [$c2f2], a
 	ld a, [hl]
-	call Function17ff
+	call GetSpritePalette
 	ld [$c2f3], a
 	ld hl, $0008
 	add hl, bc
@@ -26460,7 +26460,7 @@ Function142a7: ; 142a7
 ; 142c4
 
 
-GetSpritePalette: ; 142c4
+_GetSpritePalette: ; 142c4
 	ld a, c
 	call GetMonSprite
 	jr c, .asm_142d8
