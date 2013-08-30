@@ -740,6 +740,8 @@ Function1836: ; 1836
 	ret
 ; 184a
 
+
+
 Function184a: ; 184a
 	ld a, [StandingTile]
 	call GetTileCollision
@@ -755,7 +757,6 @@ Function1852: ; 1852
 	and a
 	ret
 ; 185d
-
 
 
 GetTileCollision: ; 185d
@@ -2449,11 +2450,11 @@ AskSerial: ; 2063
 ; 208a
 
 
-Function208a: ; 208a
+ResetGameTime: ; 208a
 	xor a
 	ld [GameTimeCap], a
 	ld [GameTimeHours], a
-	ld [$d4c5], a
+	ld [GameTimeHours + 1], a
 	ld [GameTimeMinutes], a
 	ld [GameTimeSeconds], a
 	ld [GameTimeFrames], a
@@ -13222,64 +13223,80 @@ Function5ba7: ; 5ba7
 ; 5bae
 
 Function5bae: ; 5bae
+
 	ld hl, Sprites
 	ld bc, $0bcc
 	xor a
 	call ByteFill
+
 	ld hl, $d000
 	ld bc, $047b
 	xor a
 	call ByteFill
+
 	ld hl, PlayerID
 	ld bc, $0b7a
 	xor a
 	call ByteFill
+
 	ld a, [rLY]
 	ld [$ffe3], a
 	call DelayFrame
 	ld a, [hRandomSub]
 	ld [PlayerID], a
+
 	ld a, [rLY]
 	ld [$ffe3], a
 	call DelayFrame
 	ld a, [hRandomAdd]
 	ld [PlayerID + 1], a
+
 	call RNG
 	ld [$d84a], a
 	call DelayFrame
 	call RNG
 	ld [$d84b], a
+
 	ld hl, PartyCount
 	call Function5ca1
+
 	xor a
 	ld [$db72], a
 	ld [$d4b4], a
+
 	call Function5ca6
-	ld a, $1
+
+	ld a, 1
 	call GetSRAMBank
 	ld hl, BoxCount
 	call Function5ca1
 	call CloseSRAM
+	
 	ld hl, NumItems
 	call Function5ca1
+
 	ld hl, NumKeyItems
 	call Function5ca1
+
 	ld hl, NumBalls
 	call Function5ca1
-	ld hl, $d8f1
+
+	ld hl, PCItems
 	call Function5ca1
+
 	xor a
 	ld [RoamMon1Species], a
 	ld [RoamMon2Species], a
 	ld [RoamMon3Species], a
-	ld a, $ff
+	ld a, -1
 	ld [RoamMon1MapGroup], a
 	ld [RoamMon2MapGroup], a
 	ld [RoamMon3MapGroup], a
 	ld [RoamMon1MapNumber], a
 	ld [RoamMon2MapNumber], a
 	ld [RoamMon3MapNumber], a
-	ld a, $0
+
+	ld a, 0
 	call GetSRAMBank
 	ld hl, $abe2
 	xor a
@@ -13287,38 +13304,50 @@ Function5bae: ; 5bae
 	dec a
 	ld [hl], a
 	call CloseSRAM
+
 	call Function5d33
 	call Function5cd3
+
 	xor a
 	ld [MonType], a
+
 	ld [JohtoBadges], a
 	ld [KantoBadges], a
+
 	ld [$d855], a
 	ld [$d856], a
+
 	ld [Money], a
-	ld a, $b
-	ld [$d84f], a
-	ld a, $b8
-	ld [$d850], a
+	ld a, 3000 >> 8
+	ld [Money + 1], a
+	ld a, 3000 & $ff
+	ld [Money + 2], a
+
 	xor a
 	ld [$dc17], a
+
 	ld hl, $dc19
 	ld [hl], $0
 	inc hl
 	ld [hl], $8
 	inc hl
 	ld [hl], $fc
+
 	call Function5ce9
+
 	ld a, $9
 	ld hl, $6751
 	rst FarCall
+
 	ld a, $11
 	ld hl, $4765
 	rst FarCall
+
 	ld a, $41
 	ld hl, $61c0
 	rst FarCall
-	call Function208a
+
+	call ResetGameTime
 	ret
 ; 5ca1
 
@@ -28443,7 +28472,7 @@ Function157e9: ; 0x157e9
 	ld [$d10c], a
 	ld a, [Buffer2]
 	ld [$d107], a
-	ld hl, $d8f1
+	ld hl, PCItems
 	call Function2f53
 	ld a, $3b
 	call Predef
@@ -28484,7 +28513,7 @@ KrisTossItemMenu: ; 0x1585f
 .asm_15868
 	call Function15985
 	jr c, .asm_15878
-	ld de, $d8f1
+	ld de, PCItems
 	ld a, $4
 	ld hl, $69f4
 	rst $8
@@ -28629,7 +28658,7 @@ Function1590a: ; 0x1590a
 	ld [Buffer1], a
 	ld a, [$d107]
 	ld [Buffer2], a
-	ld hl, $d8f1
+	ld hl, PCItems
 	call Function2f66
 	jr nc, .asm_15965
 	ld a, [Buffer1]
@@ -28763,7 +28792,7 @@ MenuData15a08: ; 0x15a08
 	db %10110000
 	db 4, 8 ; rows/cols?
 	db 2 ; horizontal spacing?
-	dbw 0, $d8f1
+	dbw 0, PCItems
 	dbw BANK(Function24ab4), Function24ab4
 	dbw BANK(Function24ac3), Function24ac3
 	dbw BANK(Function244c3), Function244c3
@@ -66926,7 +66955,7 @@ Functionfd0c3: ; fd0c3
 	ld [CurItem], a
 	ld a, $1
 	ld [$d10c], a
-	ld hl, $d8f1
+	ld hl, PCItems
 	call Function2f66
 	ret
 ; fd0eb
