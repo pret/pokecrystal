@@ -626,7 +626,7 @@ def preprocess(macros, skippable_macros=None, lines=None):
     macro_table = make_macro_table(list(set(macros + skippable_macros)))
 
     # HACK for pokecrystal. Must be after make_macro_table call.
-    skippable_macros += ["TextEndingCommand"]
+    skippable_macros += ["TextEndingCommand", "ItemFragment"]
 
     if not lines:
         # read each line from stdin
