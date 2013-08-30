@@ -72632,13 +72632,8 @@ INCBIN "baserom.gbc", $1f4018, $1f636a - $1f4018
 
 SECTION "bank7E",ROMX,BANK[$7E]
 
-; 1fc000
-	INCLUDE "stats/battle_tower.asm"
-; 1fb4b6
-
-; 1fb4b6
-	INCLUDE "stats/odd_eggs.asm"
-; 1fb8a8
+INCLUDE "stats/battle_tower.asm"
+INCLUDE "stats/odd_eggs.asm"
 
 
 SECTION "bank7F",ROMX,BANK[$7F]
