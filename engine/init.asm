@@ -79,7 +79,7 @@ Init: ; 17d
 	or c
 	jr nz, .asm_1b1
 
-	ld sp, Stack - 1
+	ld sp, Stack
 
 ; Clear HRAM
 	ld a, [hCGB]

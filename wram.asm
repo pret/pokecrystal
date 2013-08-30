@@ -13,9 +13,9 @@ VBGMap1:
 
 SECTION "WRAMBank0",WRAM0[$c000]
 
-SECTION "stack",WRAM0[$c000]
-	ds $100
-Stack: ; c100
+SECTION "stack",WRAM0[$c0ff]
+Stack: ; c0ff
+	ds -$100
 
 
 SECTION "audio",WRAM0[$c100]
@@ -1642,8 +1642,8 @@ PlayerDirection: ; d4de
 ; $11 right
 	ds 1
 
+	ds 2
 
-SECTION "MapEngine",WRAMX[$d4e1],BANK[1]
 PlayerAction: ; d4e1
 ; 1 standing
 ; 2 walking
@@ -1742,7 +1742,12 @@ NumBalls: ; d8d7
 Balls: ; d8d8
 	ds 25
 BallsEnd
-	
+
+PCItems: ; d8f1
+	ds 101
+PCItemsEnd
+
+
 SECTION "overworld",WRAMX[$d95b],BANK[1]
 WhichRegisteredItem: ; d95b
 REGISTERED_POCKET EQU %11000000
