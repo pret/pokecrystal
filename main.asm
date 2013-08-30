@@ -13225,17 +13225,17 @@ Function5ba7: ; 5ba7
 Function5bae: ; 5bae
 
 	ld hl, Sprites
-	ld bc, $0bcc
+	ld bc, Options - Sprites
 	xor a
 	call ByteFill
 
 	ld hl, $d000
-	ld bc, $047b
+	ld bc, PlayerID - $d000
 	xor a
 	call ByteFill
 
 	ld hl, PlayerID
-	ld bc, $0b7a
+	ld bc, $dff5 - PlayerID
 	xor a
 	call ByteFill
 
