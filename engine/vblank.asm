@@ -6,6 +6,8 @@
 
 ; This prevents the display and audio output from lagging.
 
+
+VBlank: ; 283
 	push af
 	push bc
 	push de

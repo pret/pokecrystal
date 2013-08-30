@@ -1,3 +1,102 @@
+GiveOddEgg: ; 1fb4b6
+
+; Figure out which egg to give.
+	call RNG
+	ld hl, .Probabilities
+	ld c, 0
+	ld b, c
+.next
+	ld a, [hli]
+	ld e, a
+	ld a, [hli]
+	ld d, a
+	ld a, d
+	cp $ff
+	jr nz, .first
+	ld a, e
+	cp $ff
+	jr z, .done
+.first
+	ld a, [hRandomSub]
+	cp d
+	jr c, .done
+	jr z, .second
+	jr .good
+.second
+	ld a, [hRandomAdd]
+	cp e
+	jr c, .done
+	jr z, .done
+.good
+	inc bc
+	jr .next
+.done
+
+	ld hl, OddEggs
+	ld a, OddEgg2 - OddEgg1
+	call AddNTimes
+	ld de, EnemyMoveAnimation
+	ld bc, $0046
+	call CopyBytes
+	ld a, EGG_TICKET
+	ld [CurItem], a
+	ld a, $1
+	ld [$d10c], a
+	ld a, $ff
+	ld [$d107], a
+	ld hl, NumItems
+	call Function2f53
+	ld a, EGG
+	ld [$cd2a], a
+	ld a, $29
+	ld [$cd20], a
+	ld a, $cd
+	ld [$cd21], a
+	ld a, $8
+	ld [$cd22], a
+	ld a, $c6
+	ld [$cd23], a
+
+	ld hl, .Odd
+	ld de, $cd2b
+	ld bc, $000b
+	call CopyBytes
+
+	ld a, $2b
+	ld [$cd24], a
+	ld a, $cd
+	ld [$cd25], a
+	ld a, $38
+	ld [$cd26], a
+	ld a, $c6
+	ld [$cd27], a
+	callba Function11b98f
+	ret
+; 1fb546
+
+.Odd
+	db "ODD@@@@@@@@@"
+
+.Probabilities
+	dw $147a ; 92% ->  8%
+	dw $170a ; 91% ->  1%
+	dw $3fff ; 75% -> 16%
+	dw $47ad ; 72% ->  3%
+	dw $70a3 ; 56% -> 16%
+	dw $7851 ; 53% ->  3%
+	dw $9c28 ; 39% -> 14%
+	dw $a147 ; 37% ->  2%
+	dw $bae0 ; 27% -> 10%
+	dw $bfff ; 25% ->  2%
+	dw $deb7 ; 13% -> 12%
+	dw $e3d6 ; 11% ->  2%
+	dw $fd6f ;  1% -> 10%
+	dw $ffff ;  0% ->  1%
+; 1fb56e
+
+
+OddEggs: ; 1fb56e
+
 OddEgg1:
 	db PICHU
 	db NO_ITEM
