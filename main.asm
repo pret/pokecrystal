@@ -7374,19 +7374,20 @@ Function3718: ; 3718
 
 
 
-Function3741: ; 3741
+IsAPokemon: ; 3741
+; Return carry if species a is not a Pokemon.
 	and a
-	jr z, .asm_374c
+	jr z, .NotAPokemon
 	cp EGG
-	jr z, .asm_374e
+	jr z, .Pokemon
 	cp $fc
-	jr c, .asm_374e
+	jr c, .Pokemon
 
-.asm_374c
+.NotAPokemon
 	scf
 	ret
 
-.asm_374e
+.Pokemon
 	and a
 	ret
 ; 3750
@@ -7460,7 +7461,7 @@ Function3786: ; 3786
 
 Function378b: ; 378b
 	ld a, [CurPartySpecies]
-	call Function3741
+	call IsAPokemon
 	jr c, .asm_37ad
 	push hl
 	ld de, VTiles2
