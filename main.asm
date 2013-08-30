@@ -421,51 +421,13 @@ UpdateBGMap: ; 164c
 	
 .row
 ; write a row of 20 tiles
+rept 9
 	pop de
 	ld [hl], e
 	inc l
 	ld [hl], d
 	inc l
-	pop de
-	ld [hl], e
-	inc l
-	ld [hl], d
-	inc l
-	pop de
-	ld [hl], e
-	inc l
-	ld [hl], d
-	inc l
-	pop de
-	ld [hl], e
-	inc l
-	ld [hl], d
-	inc l
-	pop de
-	ld [hl], e
-	inc l
-	ld [hl], d
-	inc l
-	pop de
-	ld [hl], e
-	inc l
-	ld [hl], d
-	inc l
-	pop de
-	ld [hl], e
-	inc l
-	ld [hl], d
-	inc l
-	pop de
-	ld [hl], e
-	inc l
-	ld [hl], d
-	inc l
-	pop de
-	ld [hl], e
-	inc l
-	ld [hl], d
-	inc l
+endr
 	pop de
 	ld [hl], e
 	inc l
@@ -528,6 +490,8 @@ GetTiles2: ; 1717
 	
 .loop
 ; put 1 tile (16 bytes) into hl from sp
+
+rept 3
 	pop de
 	ld [hl], e
 	inc l
@@ -537,24 +501,7 @@ GetTiles2: ; 1717
 	inc l
 	ld [hl], d
 	inc l
-	pop de
-	ld [hl], e
-	inc l
-	ld [hl], e
-	inc l
-	ld [hl], d
-	inc l
-	ld [hl], d
-	inc l
-	pop de
-	ld [hl], e
-	inc l
-	ld [hl], e
-	inc l
-	ld [hl], d
-	inc l
-	ld [hl], d
-	inc l
+endr
 	pop de
 	ld [hl], e
 	inc l
@@ -639,41 +586,13 @@ GetTiles: ; 177d
 	
 .loop
 ; put 1 tile (16 bytes) into hl from sp
+rept 7
 	pop de
 	ld [hl], e
 	inc l
 	ld [hl], d
 	inc l
-	pop de
-	ld [hl], e
-	inc l
-	ld [hl], d
-	inc l
-	pop de
-	ld [hl], e
-	inc l
-	ld [hl], d
-	inc l
-	pop de
-	ld [hl], e
-	inc l
-	ld [hl], d
-	inc l
-	pop de
-	ld [hl], e
-	inc l
-	ld [hl], d
-	inc l
-	pop de
-	ld [hl], e
-	inc l
-	ld [hl], d
-	inc l
-	pop de
-	ld [hl], e
-	inc l
-	ld [hl], d
-	inc l
+endr
 	pop de
 	ld [hl], e
 	inc l
