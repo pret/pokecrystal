@@ -2217,7 +2217,7 @@ Script_readcoins: ; 0x97747
 
 	call Unknown_0x97771
 	ld hl, StringBuffer1
-	ld de, $d855
+	ld de, Coins
 	ld bc, $4206
 	call PrintNum
 	ld de, StringBuffer1

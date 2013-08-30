@@ -13314,8 +13314,8 @@ Function5bae: ; 5bae
 	ld [JohtoBadges], a
 	ld [KantoBadges], a
 
-	ld [$d855], a
-	ld [$d856], a
+	ld [Coins], a
+	ld [Coins + 1], a
 
 	ld [Money], a
 	ld a, 3000 >> 8
@@ -29656,7 +29656,7 @@ Function16053: ; 16053
 
 Function1606f: ; 1606f
 	ld a, $2
-	ld de, $d855
+	ld de, Coins
 	call $6055
 	ld a, $2
 	ld bc, $608d
@@ -29681,7 +29681,7 @@ INCBIN "baserom.gbc", $1608d, $1608f - $1608d
 
 Function1608f: ; 1608f
 	ld a, $2
-	ld de, $d855
+	ld de, Coins
 	call $6037
 	jr nc, .asm_1609f
 	xor a
@@ -29698,7 +29698,7 @@ Function1608f: ; 1608f
 
 Function160a1: ; 160a1
 	ld a, $2
-	ld de, $d855
+	ld de, Coins
 	jp $600d
 ; 160a9
 
@@ -32087,7 +32087,7 @@ Function24b25: ; 24b25
 	ld hl, $c4c5
 	ld de, String24b8e
 	call PlaceString
-	ld de, $d855
+	ld de, Coins
 	ld bc, $0204
 	ld hl, $c4c1
 	call PrintNum
@@ -32110,7 +32110,7 @@ Function24b4e: ; 24b4e
 	ld de, CoinString
 	call PlaceString
 	ld hl, $c4eb
-	ld de, $d855
+	ld de, Coins
 	ld bc, $0204
 	call PrintNum
 	ret
