@@ -41,6 +41,9 @@ hMathBuffer        EQU $ffb8
 
 hLCDStatCustom     EQU $ffc6
 
+hSerialSend        EQU $ffcd
+hSerialReceive     EQU $ffce
+
 hSCX               EQU $ffcf
 hSCY               EQU $ffd0
 hWX                EQU $ffd1

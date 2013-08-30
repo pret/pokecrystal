@@ -21,15 +21,29 @@ RTC_DH EQU $0c ; Upper 1 bit of Day Counter, Carry Bit, Halt Flag
         ; Bit 6  Halt (0=Active, 1=Stop Timer)
         ; Bit 7  Day Counter Carry Bit (1=Counter Overflow)
 
+; interrupt flags
+VBLANK   EQU 0
+LCD_STAT EQU 1
+TIMER    EQU 2
+SERIAL   EQU 3
+JOYPAD   EQU 4
 
 ; Hardware registers
 rJOYP       EQU $ff00 ; Joypad (R/W)
 rSB         EQU $ff01 ; Serial transfer data (R/W)
 rSC         EQU $ff02 ; Serial Transfer Control (R/W)
+rSC_ON    EQU 7
+rSC_CGB   EQU 1
+rSC_CLOCK EQU 0
 rDIV        EQU $ff04 ; Divider Register (R/W)
 rTIMA       EQU $ff05 ; Timer counter (R/W)
 rTMA        EQU $ff06 ; Timer Modulo (R/W)
 rTAC        EQU $ff07 ; Timer Control (R/W)
+rTAC_ON        EQU 2
+rTAC_4096_HZ   EQU 0
+rTAC_262144_HZ EQU 1
+rTAC_65536_HZ  EQU 2 
+rTAC_16384_HZ  EQU 3
 rIF         EQU $ff0f ; Interrupt Flag (R/W)
 rNR10       EQU $ff10 ; Channel 1 Sweep register (R/W)
 rNR11       EQU $ff11 ; Channel 1 Sound length/Wave pattern duty (R/W)

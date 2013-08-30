@@ -26,7 +26,7 @@
 	ld l, a
 	
 ; down to business
-	call JpHl
+	call _hl_
 	
 ; since this is called once per frame
 	call GameTimer

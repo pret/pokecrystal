@@ -2098,15 +2098,18 @@ RoamMon3DVs: ; dfe2
 SECTION "WRAMBank5",WRAMX[$d000],BANK[5]
 
 ; 8 4-color palettes
-Unkn1Pals:
+Unkn1Pals: ; d000
 	ds $40
-Unkn2Pals:
+Unkn2Pals: ; d040
 	ds $40
-BGPals:
+BGPals: ; d080
 	ds $40
-OBPals:
+OBPals: ; d0c0
 	ds $40
 
+LYOverrides: ; d100
+	ds 144
+LYOverridesEnd
 
 
 SECTION "SRAMBank1",SRAM,BANK[1]

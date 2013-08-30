@@ -4,7 +4,7 @@ SECTION "rst0",ROM0[$0]
 	jp Start
 
 SECTION "rst8",ROM0[$8] ; FarCall
-	jp FarJpHl
+	jp FarCall_hl
 
 SECTION "rst10",ROM0[$10] ; Bankswitch
 	ld [hROMBank], a
@@ -38,13 +38,13 @@ SECTION "vblank",ROM0[$40] ; vblank interrupt
 	jp VBlank
 
 SECTION "lcd",ROM0[$48] ; lcd interrupt
-	jp Function552
+	jp LCD
 
 SECTION "timer",ROM0[$50] ; timer interrupt
-	jp Function3e93
+	jp Timer
 
 SECTION "serial",ROM0[$58] ; serial interrupt
-	jp Function6ef
+	jp Serial
 
 SECTION "joypad",ROM0[$60] ; joypad interrupt
 	jp JoypadInt
@@ -138,13 +138,13 @@ Function4a3: ; 4a3
 	and a
 	jr z, .asm_4af
 	ld hl, IncGradGBPalTable_00
-	ld b, $4
-	jr Function4c7
+	ld b, 4
+	jr FadeOut
 
 .asm_4af
 	ld hl, IncGradGBPalTable_08
-	ld b, $4
-	jr Function4c7
+	ld b, 4
+	jr FadeOut
 ; 4b6
 
 Function4b6: ; 4b6
@@ -152,16 +152,15 @@ Function4b6: ; 4b6
 	and a
 	jr z, .asm_4c2
 	ld hl, IncGradGBPalTable_05
-	ld b, $3
-	jr Function4c7
+	ld b, 3
+	jr FadeOut
 
 .asm_4c2
 	ld hl, IncGradGBPalTable_13
-	ld b, $3
+	ld b, 3
 ; 4c7
 
-Function4c7: ; 4c7
-.asm_4c7
+FadeOut: ; 4c7
 	push de
 	ld a, [hli]
 	call DmgToCgbBGPals
@@ -174,7 +173,7 @@ Function4c7: ; 4c7
 	call DelayFrames
 	pop de
 	dec b
-	jr nz, .asm_4c7
+	jr nz, FadeOut
 	ret
 ; 4dd
 
@@ -183,13 +182,13 @@ Function4dd: ; 4dd
 	and a
 	jr z, .asm_4e9
 	ld hl, IncGradGBPalTable_04 - 1
-	ld b, $4
-	jr Function501
+	ld b, 4
+	jr FadeIn
 
 .asm_4e9
 	ld hl, IncGradGBPalTable_12 - 1
-	ld b, $4
-	jr Function501
+	ld b, 4
+	jr FadeIn
 ; 4f0
 
 Function4f0: ; 4f0
@@ -197,16 +196,16 @@ Function4f0: ; 4f0
 	and a
 	jr z, .asm_4fc
 	ld hl, IncGradGBPalTable_07 - 1
-	ld b, $3
-	jr Function501
+	ld b, 3
+	jr FadeIn
 
 .asm_4fc
 	ld hl, IncGradGBPalTable_15 - 1
-	ld b, $3
+	ld b, 3
 	; fallthrough
 ; 501
 
-Function501: ; 501
+FadeIn: ; 501
 	push de
 	ld a, [hld]
 	ld d, a
@@ -219,7 +218,7 @@ Function501: ; 501
 	call DelayFrames
 	pop de
 	dec b
-	jr nz, Function501
+	jr nz, FadeIn
 	ret
 ; 517
 
@@ -247,23 +246,26 @@ IncGradGBPalTable_15: db %00000000, %00000000, %00000000
 
 Function547: ; 547
 	ld a, [hLCDStatCustom]
-	cp $43
+	cp rSCX & $ff
 	ret nz
 	ld c, a
-	ld a, [$d100]
+	ld a, [LYOverrides]
 	ld [$ff00+c], a
 	ret
 ; 552
 
-Function552: ; 552
+
+LCD: ; 552
 	push af
 	ld a, [hLCDStatCustom]
 	and a
-	jr z, .asm_566
+	jr z, .done
+
+; At this point it's assumed we're in WRAM bank 5!
 	push bc
 	ld a, [rLY]
 	ld c, a
-	ld b, $d1
+	ld b, LYOverrides >> 8
 	ld a, [bc]
 	ld b, a
 	ld a, [hLCDStatCustom]
@@ -272,11 +274,10 @@ Function552: ; 552
 	ld [$ff00+c], a
 	pop bc
 
-.asm_566
+.done
 	pop af
 	reti
 ; 568
-
 
 
 DisableLCD: ; 568
@@ -327,7 +328,7 @@ AskTimer: ; 591
 	ld a, [$ffe9]
 	and a
 	jr z, .asm_59a
-	call Function3e93
+	call Timer
 
 .asm_59a
 	pop af
@@ -631,31 +632,37 @@ Function6e3: ; 6e3
 ; 6ef
 
 
-
-Function6ef: ; 6ef
+Serial: ; 6ef
 	push af
 	push bc
 	push de
 	push hl
+
 	ld a, [$ffc9]
 	and a
 	jr nz, .asm_71c
+
 	ld a, [$c2d4]
 	bit 0, a
 	jr nz, .asm_721
+
 	ld a, [$ffcb]
 	inc a
 	jr z, .asm_726
+
 	ld a, [rSB]
-	ld [$ffce], a
-	ld a, [$ffcd]
+	ld [hSerialReceive], a
+
+	ld a, [hSerialSend]
 	ld [rSB], a
+
 	ld a, [$ffcb]
 	cp $2
 	jr z, .asm_752
-	ld a, $0
+
+	ld a, 0 << rSC_ON
 	ld [rSC], a
-	ld a, $80
+	ld a, 1 << rSC_ON
 	ld [rSC], a
 	jr .asm_752
 
@@ -675,21 +682,24 @@ Function6ef: ; 6ef
 	jr nz, .asm_752
 
 .asm_730
-	ld [$ffce], a
+	ld [hSerialReceive], a
 	ld [$ffcb], a
 	cp $2
 	jr z, .asm_74f
+
 	xor a
 	ld [rSB], a
 	ld a, $3
 	ld [rDIV], a
+
 .asm_73f
 	ld a, [rDIV]
 	bit 7, a
 	jr nz, .asm_73f
-	ld a, $0
+
+	ld a, 0 << rSC_ON
 	ld [rSC], a
-	ld a, $80
+	ld a, 1 << rSC_ON
 	ld [rSC], a
 	jr .asm_752
 
@@ -701,7 +711,7 @@ Function6ef: ; 6ef
 	ld a, $1
 	ld [$ffca], a
 	ld a, $fe
-	ld [$ffcd], a
+	ld [hSerialSend], a
 
 .asm_75a
 	pop hl
@@ -716,7 +726,7 @@ Function75f: ; 75f
 	ld [$ffcc], a
 .asm_763
 	ld a, [hl]
-	ld [$ffcd], a
+	ld [hSerialSend], a
 	call Function78a
 	push bc
 	ld b, a
@@ -814,7 +824,7 @@ Function78a: ; 78a
 	ld [$cf5e], a
 
 .asm_7f8
-	ld a, [$ffce]
+	ld a, [hSerialReceive]
 	cp $fe
 	ret nz
 	call Function82b
@@ -840,7 +850,7 @@ Function78a: ; 78a
 	ld a, $fe
 	ret z
 	ld a, [hl]
-	ld [$ffcd], a
+	ld [hSerialSend], a
 	call DelayFrame
 	jp Function78a
 
@@ -877,7 +887,7 @@ Function83b: ; 83b
 .asm_847
 	call DelayFrame
 	ld a, [hl]
-	ld [$ffcd], a
+	ld [hSerialSend], a
 	call Function78a
 	ld b, a
 	inc hl
@@ -970,7 +980,7 @@ Function8c1: ; 8c1
 	call Function8f3
 	ld a, [$cf56]
 	add b
-	ld [$ffcd], a
+	ld [hSerialSend], a
 	ld a, [$ffcb]
 	cp $2
 	jr nz, .asm_8ee
@@ -986,13 +996,13 @@ Function8c1: ; 8c1
 ; 8f3
 
 Function8f3: ; 8f3
-	ld a, [$ffce]
+	ld a, [hSerialReceive]
 	ld [$cf51], a
 	and $f0
 	cp b
 	ret nz
 	xor a
-	ld [$ffce], a
+	ld [hSerialReceive], a
 	ld a, [$cf51]
 	and $f
 	ld [$cf52], a
@@ -1001,7 +1011,7 @@ Function8f3: ; 8f3
 
 Function908: ; 908
 	xor a
-	ld [$ffcd], a
+	ld [hSerialSend], a
 	ld a, [$ffcb]
 	cp $2
 	ret nz
@@ -1019,7 +1029,7 @@ Function919: ; 919
 	ld a, $2
 	ld [rSB], a
 	xor a
-	ld [$ffce], a
+	ld [hSerialReceive], a
 	ld a, $0
 	ld [rSC], a
 	ld a, $80
@@ -5554,7 +5564,7 @@ Function261b: ; 261b
 	ret
 ; 261f
 
-PushScriptPointer: ; 261f
+CallScript: ; 261f
 ; Call a script at a:hl.
 
 	ld [ScriptBank], a
@@ -5575,7 +5585,7 @@ Function2631: ; 2631
 	and a
 	ret nz
 	call GetMapEventBank
-	jr PushScriptPointer
+	jr CallScript
 ; 263b
 
 Function263b: ; 263b
@@ -6985,27 +6995,28 @@ Function2d43: ; 2d43
 ; 2d54
 
 
-FarJpDe: ; 2d54
+FarCall_de: ; 2d54
+; Call a:de.
+; Preserves other registers.
+
 	ld [hBuffer], a
 	ld a, [hROMBank]
 	push af
 	ld a, [hBuffer]
 	rst Bankswitch
-	call Function2d61
-	jr ReturnFarJump
-; 2d61
+	call .de
+	jr ReturnFarCall
 
-Function2d61: ; 2d61
+.de
 	push de
 	ret
 ; 2d63
 
 
-FarJpHl: ; 2d63
-; Jump to a:hl.
-; Preserves all registers besides a.
+FarCall_hl: ; 2d63
+; Call a:hl.
+; Preserves other registers.
 
-; Switch to the new bank.
 	ld [hBuffer], a
 	ld a, [hROMBank]
 	push af
@@ -7014,7 +7025,7 @@ FarJpHl: ; 2d63
 	call Function2d82
 ; 2d6e
 
-ReturnFarJump: ; 2d6e
+ReturnFarCall: ; 2d6e
 ; We want to retain the contents of f.
 ; To do this, we can pop to bc instead of af.
 	
@@ -7650,11 +7661,14 @@ CloseSRAM: ; 2fe1
 	ret
 ; 2fec
 
-JpHl: ; 2fec
+
+; Register aliases
+
+_hl_: ; 2fec
 	jp [hl]
 ; 2fed
 
-JpDe: ; 2fed
+_de_: ; 2fed
 	push de
 	ret
 ; 2fef
@@ -8170,11 +8184,12 @@ Function31be: ; 31be
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	call JpHl
+
+	call _hl_
+
 	pop hl
 	ld a, h
 	rst Bankswitch
-
 	ret
 ; 31cd
 
@@ -10969,28 +10984,36 @@ Function3e80: ; 3e80
 ; 3e93
 
 
-Function3e93: ; 3e93
+Timer: ; 3e93
 	push af
 	push bc
 	push de
 	push hl
+
 	ld a, [$ffe9]
 	and a
 	jr z, .asm_3ed2
+
 	xor a
 	ld [rTAC], a
+
+; Turn off timer interrupt
 	ld a, [rIF]
-	and $1b
+	and 1 << VBLANK | 1 << LCD_STAT | 1 << SERIAL | 1 << JOYPAD
 	ld [rIF], a
+
 	ld a, [$c86a]
 	or a
 	jr z, .asm_3ed2
+
 	ld a, [$c822]
 	bit 1, a
 	jr nz, .asm_3eca
+
 	ld a, [rSC]
-	and $80
+	and 1 << rSC_ON
 	jr nz, .asm_3eca
+
 	ld a, [hROMBank]
 	push af
 	ld a, $44
@@ -10998,16 +11021,17 @@ Function3e93: ; 3e93
 	rst Bankswitch
 
 	call $58de
+
 	pop bc
 	ld a, b
 	ld [$c981], a
 	rst Bankswitch
 
-
 .asm_3eca
 	ld a, [rTMA]
 	ld [rTIMA], a
-	ld a, $6
+
+	ld a, 1 << rTAC_ON | rTAC_65536_HZ
 	ld [rTAC], a
 
 .asm_3ed2
@@ -11702,7 +11726,7 @@ Function444d: ; 444d
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	call JpHl
+	call _hl_
 	ret
 ; 445f
 
@@ -21139,7 +21163,7 @@ TrySurfOW: ; c9e7
 
 	ld a, BANK(AskSurfScript)
 	ld hl, AskSurfScript
-	call PushScriptPointer
+	call CallScript
 
 	scf
 	ret
@@ -21355,14 +21379,14 @@ TryWaterfallOW: ; cb56
 	jr c, .asm_cb74
 	ld a, BANK(UnknownScript_0xcb86)
 	ld hl, UnknownScript_0xcb86
-	call PushScriptPointer
+	call CallScript
 	scf
 	ret
 
 .asm_cb74
 	ld a, BANK(UnknownScript_0xcb7e)
 	ld hl, UnknownScript_0xcb7e
-	call PushScriptPointer
+	call CallScript
 	scf
 	ret
 ; cb7e
@@ -21549,14 +21573,14 @@ TryWhirlpoolOW: ; ce3e
 	jr c, .asm_ce5c
 	ld a, BANK(UnknownScript_0xce6e)
 	ld hl, UnknownScript_0xce6e
-	call PushScriptPointer
+	call CallScript
 	scf
 	ret
 
 .asm_ce5c
 	ld a, BANK(UnknownScript_0xce66)
 	ld hl, UnknownScript_0xce66
-	call PushScriptPointer
+	call CallScript
 	scf
 	ret
 ; ce66
@@ -21614,7 +21638,7 @@ TryHeadbuttOW: ; cec9
 	jr c, .asm_ceda
 	ld a, $3
 	ld hl, $4edc
-	call PushScriptPointer
+	call CallScript
 	scf
 	ret
 
@@ -21794,14 +21818,14 @@ TryCutOW: ; d186
 	jr c, .asm_d19f
 	ld a, BANK(UnknownScript_0xd1a9)
 	ld hl, UnknownScript_0xd1a9
-	call PushScriptPointer
+	call CallScript
 	scf
 	ret
 
 .asm_d19f
 	ld a, BANK(UnknownScript_0xd1cd)
 	ld hl, UnknownScript_0xd1cd
-	call PushScriptPointer
+	call CallScript
 	scf
 	ret
 ; d1a9
@@ -27514,7 +27538,7 @@ Function1365b: ; 1365b
 	ld [$d03f + 2], a
 	ld a, BANK(UnknownScript_0x1369a)
 	ld hl, UnknownScript_0x1369a
-	call PushScriptPointer
+	call CallScript
 	scf
 	ret
 
@@ -34544,7 +34568,7 @@ Function25072: ; 25072
 	ld a, [$cf87]
 	ld d, a
 	ld a, [$cf8a]
-	call FarJpDe
+	call FarCall_de
 	ret
 ; 25097
 
@@ -48744,7 +48768,7 @@ AIChooseMove: ; 440ce
 	ld h, [hl]
 	ld l, a
 	ld a, BANK(AIScoring)
-	call FarJpHl
+	call FarCall_hl
 
 	jr .CheckLayer
 
@@ -51643,7 +51667,7 @@ StatsScreenInit: ; 4dc8a
 	ld hl, $753e
 	rst FarCall ; this loads graphics
 	pop hl
-	call JpHl
+	call _hl_
 	call WhiteBGMap
 	call ClearTileMap
 	pop bc
@@ -53358,7 +53382,7 @@ Function505da: ; 505da
 .asm_50622
 	ld a, $14
 	ld hl, UnknownScript_0x50669
-	call PushScriptPointer
+	call CallScript
 	scf
 	ret
 
@@ -60436,7 +60460,7 @@ CheckTileEvent: ; 96874
 	ld h, [hl]
 	ld l, a
 	call GetMapEventBank
-	call PushScriptPointer
+	call CallScript
 	ret
 ; 968c7
 
@@ -60502,7 +60526,7 @@ Function968ec: ; 968ec
 	call GetMapEventBank
 	call GetFarHalfword
 	call GetMapEventBank
-	call PushScriptPointer
+	call CallScript
 
 	ld hl, ScriptFlags
 	res 3, [hl]
@@ -60519,7 +60543,7 @@ Function968ec: ; 968ec
 	ld h, [hl]
 	ld l, a
 	ld a, [$d44e]
-	call PushScriptPointer
+	call CallScript
 	scf
 	ret
 
@@ -60561,7 +60585,7 @@ Function9693a: ; 9693a
 .asm_96966
 	ld a, $4
 	ld hl, $75f8
-	call PushScriptPointer
+	call CallScript
 	scf
 	ret
 ; 96970
@@ -60685,7 +60709,7 @@ TryObjectEvent: ; 969b5
 	ld h, [hl]
 	ld l, a
 	call GetMapEventBank
-	call PushScriptPointer
+	call CallScript
 ;	ld a, -1
 	ret
 ; 96a12
@@ -60783,7 +60807,7 @@ TryReadSign: ; 96a38
 	ld h, [hl]
 	ld l, a
 	call GetMapEventBank
-	call PushScriptPointer
+	call CallScript
 	scf
 	ret
 
@@ -60797,7 +60821,7 @@ TryReadSign: ; 96a38
 	call FarCopyBytes
 	ld a, $4
 	ld hl, $7625
-	call PushScriptPointer
+	call CallScript
 	scf
 	ret
 
@@ -60828,7 +60852,7 @@ TryReadSign: ; 96a38
 	call GetMapEventBank
 	call GetFarHalfword
 	call GetMapEventBank
-	call PushScriptPointer
+	call CallScript
 	scf
 	ret
 
@@ -60908,7 +60932,7 @@ PlayerMovement: ; 96af0
 ; force the player to move in some direction
 	ld a, $4
 	ld hl, $653d
-	call PushScriptPointer
+	call CallScript
 ;	ld a, -1
 	ld c, a
 	scf
@@ -60938,7 +60962,7 @@ CheckMenuOW: ; 96b30
 
 	ld a, BANK(StartMenuScript)
 	ld hl, StartMenuScript
-	call PushScriptPointer
+	call CallScript
 	scf
 	ret
 
@@ -60950,7 +60974,7 @@ CheckMenuOW: ; 96b30
 	call PlayTalkObject
 	ld a, BANK(SelectMenuScript)
 	ld hl, SelectMenuScript
-	call PushScriptPointer
+	call CallScript
 	scf
 	ret
 ; 96b58
@@ -61061,7 +61085,7 @@ Function96bd7: ; 96bd7
 	ret nz
 	ld a, $4
 	ld hl, $7619
-	call PushScriptPointer
+	call CallScript
 	scf
 	ret
 ; 96beb
@@ -61250,7 +61274,7 @@ Function97c30: ; 97c30
 	ld h, [hl]
 	ld l, a
 	ld a, [$d45d]
-	call PushScriptPointer
+	call CallScript
 	scf
 	push af
 	xor a
@@ -61363,7 +61387,7 @@ Function97cc0: ; 97cc0
 	jr .asm_97cf4
 
 .asm_97cf4
-	call PushScriptPointer
+	call CallScript
 	scf
 	ret
 ; 97cf9
@@ -69428,7 +69452,7 @@ Function100b12: ; 100b12
 	ld hl, $4f2c
 	ld a, $9
 	ld de, LoadMenuDataHeader
-	call FarJpDe
+	call FarCall_de
 	ld a, $9
 	ld [$cf94], a
 	ld a, [$d0d2]
@@ -71392,7 +71416,7 @@ StartTitleScreen: ; 10ed67
 	call DrawGraphic
 	
 ; Draw copyright text
-	ld hl, $9c03 ; BG Map 1 (3,0)
+	ld hl, $9c03 ; BGMap1(3,0)
 	ld bc, $010d ; 13x1
 	ld d, $c
 	ld e, $10
@@ -71430,11 +71454,9 @@ StartTitleScreen: ; 10ed67
 	
 ; LY/SCX trickery starts here
 	
-; Save WRAM bank
 	ld a, [rSVBK]
 	push af
-; WRAM bank 5
-	ld a, 5
+	ld a, 5 ; BANK(LYOverrides)
 	ld [rSVBK], a
 	
 ; Make alternating lines come in from opposite sides
@@ -71442,28 +71464,27 @@ StartTitleScreen: ; 10ed67
 ; ( This part is actually totally pointless, you can't
 ;   see anything until these values are overwritten!  )
 
-	ld b, 40 ; alternate for 80 lines
-	ld hl, $d100 ; LY buffer
+	ld b, 80 / 2 ; alternate for 80 lines
+	ld hl, LYOverrides
 .loop
 ; $00 is the middle position
-	ld [hl], $70 ; coming from the left
+	ld [hl], +112 ; coming from the left
 	inc hl
-	ld [hl], $90 ; coming from the right
+	ld [hl], -112 ; coming from the right
 	inc hl
 	dec b
 	jr nz, .loop
 	
 ; Make sure the rest of the buffer is empty
-	ld hl, $d150
+	ld hl, LYOverrides + 80
 	xor a
-	ld bc, $0040
+	ld bc, LYOverridesEnd - (LYOverrides + 80)
 	call ByteFill
 	
 ; Let LCD Stat know we're messing around with SCX
 	ld a, rSCX - rJOYP
 	ld [hLCDStatCustom], a
 	
-; Restore WRAM bank
 	pop af
 	ld [rSVBK], a
 	
@@ -71477,14 +71498,13 @@ StartTitleScreen: ; 10ed67
 	set 2, a
 	ld [rLCDC], a
 	
-;
-	ld a, $70
+	ld a, +112
 	ld [hSCX], a
-	ld a, $8
+	ld a, 8
 	ld [hSCY], a
-	ld a, $7
+	ld a, 7
 	ld [hWX], a
-	ld a, $90
+	ld a, -112
 	ld [hWY], a
 	
 	ld a, $1
