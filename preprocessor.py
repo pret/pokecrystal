@@ -10,7 +10,6 @@ from extras.pokemontools.crystal import (
     Signpost,
     PeopleEvent,
     DataByteWordMacro,
-    ItemFragment,
     text_command_classes,
     movement_command_classes,
     music_classes,
@@ -23,7 +22,6 @@ even_more_macros = [
     Signpost,
     PeopleEvent,
     DataByteWordMacro,
-    ItemFragment,
 ]
 
 macros = command_classes
