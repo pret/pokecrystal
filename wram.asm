@@ -1982,6 +1982,7 @@ PartyMon5Nickname: ; de6d
 	ds 11
 PartyMon6Nickname: ; de78
 	ds 11
+PartyMonNicknamesEnd
 
 SECTION "Pokedex",WRAMX[$de99],BANK[1]
 PokedexSeen: ; de99
@@ -2098,4 +2099,178 @@ BGPals:
 	ds $40
 OBPals:
 	ds $40
+
+
+
+SECTION "SRAMBank1",SRAM,BANK[1]
+
+SECTION "BoxMons",SRAM[$ad10],BANK[1]
+BoxCount: ; ad10
+	ds 1
+BoxSpecies: ; ad11
+	ds 20
+	ds 1
+BoxMons:
+BoxMon1:
+BoxMon1Species: ; ad26
+	ds 1
+BoxMon1Item: ; ad27
+	ds 1
+BoxMon1Moves: ; ad28
+	ds 4
+BoxMon1ID: ; ad2c
+	ds 2
+BoxMon1Exp: ; ad2e
+	ds 3
+BoxMon1HPExp: ; ad31
+	ds 2
+BoxMon1AtkExp: ; ad33
+	ds 2
+BoxMon1DefExp: ; ad35
+	ds 2
+BoxMon1SpdExp: ; ad37
+	ds 2
+BoxMon1SpcExp: ; ad39
+	ds 2
+BoxMon1DVs: ; ad3b
+	ds 2
+BoxMon1PP: ; ad3d
+	ds 4
+BoxMon1Happiness: ; ad41
+	ds 1
+BoxMon1PokerusStatus: ; ad42
+	ds 1
+BoxMon1CaughtData:
+BoxMon1CaughtTime:
+BoxMon1CaughtLevel: ; ad43
+	ds 1
+BoxMon1CaughtGender:
+BoxMon1CaughtLocation: ; ad44
+	ds 1
+BoxMon1Level: ; ad45
+	ds 1
+
+BoxMon2: ; ad46
+	ds 32
+BoxMon3: ; ad66
+	ds 32
+BoxMon4: ; ad86
+	ds 32
+BoxMon5: ; ada6
+	ds 32
+BoxMon6: ; adc6
+	ds 32
+BoxMon7: ; ade6
+	ds 32
+BoxMon8: ; ae06
+	ds 32
+BoxMon9: ; ae26
+	ds 32
+BoxMon10: ; ae46
+	ds 32
+BoxMon11: ; ae66
+	ds 32
+BoxMon12: ; ae86
+	ds 32
+BoxMon13: ; aea6
+	ds 32
+BoxMon14: ; aec6
+	ds 32
+BoxMon15: ; aee6
+	ds 32
+BoxMon16: ; af06
+	ds 32
+BoxMon17: ; af26
+	ds 32
+BoxMon18: ; af46
+	ds 32
+BoxMon19: ; af66
+	ds 32
+BoxMon20: ; af86
+	ds 32
+
+BoxMonOT:
+BoxMon1OT: ; afa6
+	ds 11
+BoxMon2OT: ; afb1
+	ds 11
+BoxMon3OT: ; afbc
+	ds 11
+BoxMon4OT: ; afc7
+	ds 11
+BoxMon5OT: ; afd2
+	ds 11
+BoxMon6OT: ; afdd
+	ds 11
+BoxMon7OT: ; afe8
+	ds 11
+BoxMon8OT: ; aff3
+	ds 11
+BoxMon9OT: ; affe
+	ds 11
+BoxMon10OT: ; b009
+	ds 11
+BoxMon11OT: ; b014
+	ds 11
+BoxMon12OT: ; b01f
+	ds 11
+BoxMon13OT: ; b02a
+	ds 11
+BoxMon14OT: ; b035
+	ds 11
+BoxMon15OT: ; b040
+	ds 11
+BoxMon16OT: ; b04b
+	ds 11
+BoxMon17OT: ; b056
+	ds 11
+BoxMon18OT: ; b061
+	ds 11
+BoxMon19OT: ; b06c
+	ds 11
+BoxMon20OT: ; b077
+	ds 11
+
+BoxMonNicknames:
+BoxMon1Nickname: ; b082
+	ds 11
+BoxMon2Nickname: ; b08d
+	ds 11
+BoxMon3Nickname: ; b098
+	ds 11
+BoxMon4Nickname: ; b0a3
+	ds 11
+BoxMon5Nickname: ; b0ae
+	ds 11
+BoxMon6Nickname: ; b0b9
+	ds 11
+BoxMon7Nickname: ; b0c4
+	ds 11
+BoxMon8Nickname: ; b0cf
+	ds 11
+BoxMon9Nickname: ; b0da
+	ds 11
+BoxMon10Nickname: ; b0e5
+	ds 11
+BoxMon11Nickname: ; b0f0
+	ds 11
+BoxMon12Nickname: ; b0fb
+	ds 11
+BoxMon13Nickname: ; b106
+	ds 11
+BoxMon14Nickname: ; b111
+	ds 11
+BoxMon15Nickname: ; b11c
+	ds 11
+BoxMon16Nickname: ; b127
+	ds 11
+BoxMon17Nickname: ; b132
+	ds 11
+BoxMon18Nickname: ; b13d
+	ds 11
+BoxMon19Nickname: ; b148
+	ds 11
+BoxMon20Nickname: ; b153
+	ds 11
+BoxMonNicknamesEnd
 
