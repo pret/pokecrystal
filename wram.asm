@@ -1642,8 +1642,8 @@ PlayerDirection: ; d4de
 ; $11 right
 	ds 1
 
+	ds 2
 
-SECTION "MapEngine",WRAMX[$d4e1],BANK[1]
 PlayerAction: ; d4e1
 ; 1 standing
 ; 2 walking
