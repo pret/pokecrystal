@@ -1742,7 +1742,12 @@ NumBalls: ; d8d7
 Balls: ; d8d8
 	ds 25
 BallsEnd
-	
+
+PCItems: ; d8f1
+	ds 101
+PCItemsEnd
+
+
 SECTION "overworld",WRAMX[$d95b],BANK[1]
 WhichRegisteredItem: ; d95b
 REGISTERED_POCKET EQU %11000000
