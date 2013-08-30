@@ -7377,7 +7377,7 @@ Function3718: ; 3718
 Function3741: ; 3741
 	and a
 	jr z, .asm_374c
-	cp $fd
+	cp EGG
 	jr z, .asm_374e
 	cp $fc
 	jr c, .asm_374e
@@ -24912,7 +24912,7 @@ INCBIN "baserom.gbc", $12f5b, $12fba - $12f5b
 
 Function12fba: ; 12fba
 	ld a, [CurPartySpecies]
-	cp $fd
+	cp EGG
 	jr z, .asm_12fd2
 	ld hl, Options
 	ld a, [hl]
@@ -25025,13 +25025,13 @@ Function1308f: ; 1308f
 	inc a
 	ld [CurPartyMon], a
 	ld c, a
-	ld b, $0
+	ld b, 0
 	ld hl, PartySpecies
 	add hl, bc
 	ld a, [hl]
 	cp $ff
 	jr z, .asm_130a7
-	cp $fd
+	cp EGG
 	ret nz
 	jr .asm_1308f
 
@@ -25044,11 +25044,11 @@ Function1308f: ; 1308f
 	dec a
 	ld [CurPartyMon], a
 	ld c, a
-	ld b, $0
+	ld b, 0
 	ld hl, PartySpecies
 	add hl, bc
 	ld a, [hl]
-	cp $fd
+	cp EGG
 	ret nz
 	ld a, [CurPartyMon]
 	and a
@@ -25302,14 +25302,14 @@ Function132da: ; 132da
 	ret z
 	ld c, a
 	ld e, a
-	ld d, $0
+	ld d, 0
 	ld hl, PartyCount
 	add hl, de
 .asm_132e7
 	ld a, [hl]
 	and a
 	jr z, .asm_132f3
-	cp $fd
+	cp EGG
 	jr z, .asm_132f3
 	cp $fc
 	jr c, .asm_132f8
@@ -25334,7 +25334,7 @@ Function132fe: ; 132fe
 	cp c
 	ret z
 	ld e, c
-	ld d, $0
+	ld d, 0
 	ld hl, PartySpecies
 	add hl, de
 .asm_1330f
@@ -25343,7 +25343,7 @@ Function132fe: ; 132fe
 	ret z
 	and a
 	jr z, .asm_1331e
-	cp $fd
+	cp EGG
 	jr z, .asm_1331e
 	cp $fc
 	jr c, .asm_13321
@@ -25353,8 +25353,8 @@ Function132fe: ; 132fe
 	jr .asm_1330f
 
 .asm_13321
-	ld hl, $c4b2
-	ld [hl], $ed
+	hlcoord 18, 0
+	ld [hl], "▶"
 	ret
 ; 13327
 
@@ -34860,7 +34860,7 @@ Function2c7fb: ; 2c7fb
 	callba PartyMenuSelect
 	push af
 	ld a, [CurPartySpecies]
-	cp $fd
+	cp EGG
 	pop bc
 	jr z, .asm_2c854
 	push bc
@@ -39983,10 +39983,10 @@ Function3d887: ; 3d887
 	ld hl, PartySpecies
 	ld a, [CurPartyMon]
 	ld c, a
-	ld b, $0
+	ld b, 0
 	add hl, bc
 	ld a, [hl]
-	cp $fd
+	cp EGG
 	ld hl, BattleText_0x80b26
 	jr z, .asm_3d8ae
 	ld hl, BattleText_0x80b0b
@@ -47627,9 +47627,9 @@ Function4484a: ; 0x4484a
 	callba PartyMenuSelect
 	jr c, .asm_44939
 	ld a, [CurPartySpecies]
-	cp $fd
+	cp EGG
 	jr z, .asm_44923
-	ld a, $1
+	ld a, PartyMon1Item - PartyMon1
 	call GetPartyParamLocation
 	ld a, [hl]
 	and a
@@ -51404,14 +51404,14 @@ INCBIN "baserom.gbc", $5036b, $50389 - $5036b
 
 
 Function50389: ; 50389
-	ld a, $d8
+	ld a, PartySpecies & $ff
 	add b
 	ld e, a
-	ld a, $dc
-	adc $0
+	ld a, PartySpecies >> 8
+	adc 0
 	ld d, a
 	ld a, [de]
-	cp $fd
+	cp EGG
 	ret
 ; 50396
 
@@ -51422,7 +51422,7 @@ Function50396: ; 50396
 	ld a, [PartyMenuActionText]
 	and $f
 	ld e, a
-	ld d, $0
+	ld d, 0
 	ld hl, $43b2
 	add hl, de
 	add hl, de
@@ -54798,12 +54798,12 @@ Function8653f: ; 8653f
 	ld [de], a
 	inc de
 	ld hl, PartySpecies
-	ld c, $0
+	ld c, 0
 .asm_86556
 	ld a, [hli]
 	cp $ff
 	jr z, .asm_865b1
-	cp $fd
+	cp EGG
 	jr nz, .asm_86562
 	inc c
 	jr .asm_86556
@@ -55021,7 +55021,7 @@ Function86748: ; 86748
 	ld hl, $c50a
 	call Function378b
 	ld a, [CurPartySpecies]
-	cp $fd
+	cp EGG
 	jr z, .asm_867f8
 	ld hl, $c5a5
 	ld a, $74
