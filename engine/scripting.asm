@@ -843,7 +843,7 @@ Script_trainerstatus: ; 0x97132
 	ld d, [hl]
 	call GetScriptByte
 	ld b, a
-	call BitTable1Func
+	call EventFlagAction
 	ld a, c
 	and a
 	ret z
@@ -1256,7 +1256,7 @@ Unknown_0x9730b: ; 0x9730b
 	xor a
 	ret
 .asm_97321
-	call BitTable1Func
+	call EventFlagAction
 	ret
 ; 0x97325
 
@@ -1497,9 +1497,9 @@ Script_loadtrainer: ; 0x97424
 Script_startbattle: ; 0x97436
 ; script command 0x5f
 
-	call $2879
-	ld a, $16
-	call $2d83
+	call Function2879
+	ld a, PREDEF_START_BATTLE
+	call Predef
 	ld a, [$d0ee]
 	and $3f
 	ld [$c2dd], a
@@ -2677,7 +2677,7 @@ Script_setbit1: ; 0x97988
 	call GetScriptByte
 	ld d, a
 	ld b, $1
-	call BitTable1Func
+	call EventFlagAction
 	ret
 ; 0x97996
 
@@ -2691,7 +2691,7 @@ Script_clearbit1: ; 0x97996
 	call GetScriptByte
 	ld d, a
 	ld b, $0
-	call BitTable1Func
+	call EventFlagAction
 	ret
 ; 0x979a4
 
@@ -2705,7 +2705,7 @@ Script_checkbit1: ; 0x979a4
 	call GetScriptByte
 	ld d, a
 	ld b, $2
-	call BitTable1Func
+	call EventFlagAction
 	ld a, c
 	and a
 	jr z, .asm_979b7 ; 0x979b3 $2

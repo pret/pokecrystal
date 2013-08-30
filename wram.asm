@@ -1627,7 +1627,12 @@ SATURDAY  EQU 6
 PlayerSprite: ; d4d8
 	ds 1
 
-	ds 5
+	ds 3
+
+PlayerPalette: ; d4dc
+	ds 1
+
+	ds 1
 
 PlayerDirection: ; d4de
 ; uses bits 2 and 3 / $0c / %00001100
@@ -1638,7 +1643,16 @@ PlayerDirection: ; d4de
 	ds 1
 
 
-SECTION "MapEngine",WRAMX[$d4e4],BANK[1]
+SECTION "MapEngine",WRAMX[$d4e1],BANK[1]
+PlayerAction: ; d4e1
+; 1 standing
+; 2 walking
+; 4 spinning
+; 6 fishing
+	ds 1
+
+	ds 2
+
 StandingTile: ; d4e4
 	ds 1
 StandingTile2: ; d4e5
@@ -1753,23 +1767,16 @@ UndergroundSwitchPositions: ; d963
 FarfetchdPosition: ; d964
 	ds 1 ; which position the ilex farfetch'd is in
 
-SECTION "Events",WRAMX[$dad4],BANK[1]
+SECTION "Events",WRAMX[$da72],BANK[1]
 
+EventFlags: ; da72
 ;RoomDecorations: ; dac6
-;	db 7
-
-HoOhEvent: ; dad4
-	ds 1
-LugiaEvent: ; dad5
-	ds 1
-
-; TODO
-;SuicuneEvent: ; dad8 (tin tower)
 ;TeamRocketAzaleaTownAttackEvent: ; db51
-;SudowoodoEvent: ; db51
 ;PoliceAtElmsLabEvent: ; db52
 ;SalesmanMahoganyTownEvent: ; db5c
 ;RedGyaradosEvent: ; db5c
+	ds 250
+; db6c
 
 SECTION "BoxNames",WRAMX[$db75],BANK[1]
 ; 8 chars + $50
