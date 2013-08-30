@@ -1574,9 +1574,7 @@ Function1c07: ; 0x1c07
 	ret
 
 Function1c10: ; 0x1c10
-	ld hl, $446d
-	ld a, $9
-	rst $8
+	callab Function2446d
 	ret
 
 Function1c17: ; 0x1c17
@@ -4630,9 +4628,7 @@ Function2b74: ; 0x2b74
 	call Function3200
 	ld b, $9
 	call GetSGBLayout
-	ld a, $12
-	ld hl, $5409
-	rst $8
+	callba Function49409
 	call Function485
 	call DelayFrame
 	ld a, $1
@@ -19499,7 +19495,7 @@ Functioncbd8: ; cbd8
 	ld a, [Buffer2]
 	cp $2
 	jr nz, .asm_cbf7
-	ld hl, $4c35
+	ld hl, UnknownScript_0xcc35
 	call Function31cd
 	ld a, $81
 	ret
@@ -23576,9 +23572,7 @@ StartMenu: ; 125cd
 	call .DrawBugContestStatusBox
 	call Function2e31
 	call Function2e20
-	ld a, $1
-	ld hl, $64bf
-	rst $8
+	callba Function64bf
 	call .DrawBugContestStatus
 	call Function485
 	jr .Select
@@ -28453,9 +28447,7 @@ Function157e9: ; 0x157e9
 .askquantity
 	ld hl, .HowManyText
 	call Function1d4f
-	ld a, $9
-	ld hl, $4fbf
-	rst $8
+	callba Function24fbf
 	call Function1c07
 	call Function1c07
 	jr c, .done
@@ -28550,20 +28542,14 @@ KrisDepositItemMenu: ; 0x1588b
 	jr c, .asm_158b6
 	call Function2ed3
 	call Function1d6e
-	ld a, $4
-	ld hl, $46a5
-	rst $8
+	callba Function106a5
 .asm_1589c
-	ld a, $4
-	ld hl, $46be
-	rst $8
+	callba Function106be
 	ld a, [$cf66]
 	and a
 	jr z, .asm_158b3
 	call Function158cc
-	ld a, $4
-	ld hl, CheckRegisteredItem
-	rst $8
+	callba CheckRegisteredItem
 	jr .asm_1589c
 
 .asm_158b3
@@ -28595,9 +28581,7 @@ Function158cc: ; 0x158cc
 	push af
 	ld a, $0
 	ld [$c2ce], a
-	ld a, $3
-	ld hl, $5453
-	rst $8
+	callba CheckItemMenu
 	ld a, [$d142]
 	ld hl, JumpTable158e7
 	rst JumpTable
@@ -28631,9 +28615,7 @@ JumpTable158e7: ; 0x158e7
 ; 0x1590a
 
 Function1590a: ; 0x1590a
-	ld a, $3
-	ld hl, $5427
-	rst $8
+	callba _CheckTossableItem
 	ld a, [$d142]
 	and a
 	jr z, .asm_1591d
@@ -28644,9 +28626,7 @@ Function1590a: ; 0x1590a
 .asm_1591d
 	ld hl, .HowManyText
 	call Function1d4f
-	ld a, $9
-	ld hl, $4fbf
-	rst $8
+	callba Function24fbf
 	push af
 	call Function1c07
 	call Function1c07
@@ -28698,9 +28678,7 @@ Function1590a: ; 0x1590a
 
 
 KrisMailBoxMenu: ; 0x1597d
-	ld a, $11
-	ld hl, $47a0
-	rst $8
+	callba _KrisMailBoxMenu
 	xor a
 	ret
 ; 0x15985
@@ -47638,27 +47616,15 @@ Function4484a: ; 0x4484a
 	ld [PartyMenuActionText], a
 	call WhiteBGMap
 .asm_448dc
-	ld a, $14
-	ld hl, $404f
-	rst $8
-	ld a, $14
-	ld hl, $4405
-	rst $8
-	ld a, $14
-	ld hl, $43e0
-	rst $8
-	ld a, $14
-	ld hl, PickedFruitTree
-	rst $8
-	ld a, $14
-	ld hl, $449a
-	rst $8
+	callba Function5004f
+	callba Function50405
+	callba Function503e0
+	callba WritePartyMenuTilemap
+	callba PrintPartyMenuText
 	call WaitBGMap
 	call Function32f9
 	call DelayFrame
-	ld a, $14
-	ld hl, $4457
-	rst $8
+	callba PartyMenuSelect
 	jr c, .asm_44939
 	ld a, [CurPartySpecies]
 	cp $fd
@@ -56192,7 +56158,7 @@ GetTimePalFade: ; 8c17c
 
 
 Function8c20f: ; 8c20f
-	call $426d
+	call Function8c26d
 	ld a, [rBGP]
 	ld [$cfc7], a
 	ld a, [rOBP0]
@@ -56208,7 +56174,7 @@ Function8c20f: ; 8c20f
 	ld a, [$cf63]
 	bit 7, a
 	jr nz, .asm_8c23a
-	call $4314
+	call Function8c314
 	call DelayFrame
 	jr .asm_8c22b
 
@@ -56247,12 +56213,12 @@ Function8c26d: ; 8c26d
 	callba Function6454
 	call Function1ad2
 	call DelayFrame
-	call $42a0
-	call $4f4f
+	call Function8c2a0
+	call Function8cf4f
 	jr .asm_8c28b
 
 .asm_8c288
-	call $42aa
+	call Function8c2aa
 
 .asm_8c28b
 	ld a, $90
@@ -56265,14 +56231,14 @@ Function8c26d: ; 8c26d
 	ld [hli], a
 	ld [hli], a
 	ld [hl], a
-	call $46d8
+	call Function8c6d8
 	ret
 ; 8c2a0
 
 Function8c2a0: ; 8c2a0
-	call $42aa
+	call Function8c2aa
 	ld hl, VBGMap0
-	call $42cf
+	call Function8c2cf
 	ret
 ; 8c2aa
 
@@ -56344,9 +56310,9 @@ Function8c6d8: ; 8c6d8
 	ld a, $5
 	ld [rSVBK], a
 	ld hl, $d100
-	call $46ef
+	call Function8c6ef
 	ld hl, $d200
-	call $46ef
+	call Function8c6ef
 	pop af
 	ld [rSVBK], a
 	ret
@@ -56378,7 +56344,7 @@ Function8c940: ; 8c940
 	ld a, e
 	and $1
 	ld [$cf63], a
-	call $496d
+	call Function8c96d
 	call WaitSFX
 	ld de, $001e
 	call StartSFX
@@ -56388,10 +56354,10 @@ Function8c940: ; 8c940
 	jr nz, .asm_8c96c
 	ld a, $90
 	ld [$c3b5], a
-	ld hl, $4f7a
+	ld hl, Function8cf7a
 	ld a, $23
 	rst FarCall
-	call $4a0c
+	call Function8ca0c
 	call DelayFrame
 	jr .asm_8c952
 
@@ -56400,7 +56366,7 @@ Function8c940: ; 8c940
 ; 8c96d
 
 Function8c96d: ; 8c96d
-	ld hl, $4f53
+	ld hl, Function8cf53
 	ld a, $23
 	rst FarCall
 	ld de, $49cc
@@ -64197,7 +64163,7 @@ Options_Sound: ; e43dd
 
 
 Options_Print: ; e4424
-	call $4491
+	call Functione4491
 	ld a, [hJoyPressed]
 	bit 5, a
 	jr nz, .asm_e443c
