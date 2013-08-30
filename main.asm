@@ -6367,87 +6367,19 @@ Function327b: ; 327b
 	ld c, $41
 .asm_328c
 	pop de
-.asm_328d
+
+rept 9
+.loop\@
 	ld a, [$ff00+c]
 	and b
-	jr nz, .asm_328d
+	jr nz, .loop\@
 	ld [hl], e
 	inc l
 	ld [hl], d
 	inc l
 	pop de
-.asm_3296
-	ld a, [$ff00+c]
-	and b
-	jr nz, .asm_3296
-	ld [hl], e
-	inc l
-	ld [hl], d
-	inc l
-	pop de
-.asm_329f
-	ld a, [$ff00+c]
-	and b
-	jr nz, .asm_329f
-	ld [hl], e
-	inc l
-	ld [hl], d
-	inc l
-	pop de
-.asm_32a8
-	ld a, [$ff00+c]
-	and b
-	jr nz, .asm_32a8
-	ld [hl], e
-	inc l
-	ld [hl], d
-	inc l
-	pop de
-.asm_32b1
-	ld a, [$ff00+c]
-	and b
-	jr nz, .asm_32b1
-	ld [hl], e
-	inc l
-	ld [hl], d
-	inc l
-	pop de
-.asm_32ba
-	ld a, [$ff00+c]
-	and b
-	jr nz, .asm_32ba
-	ld [hl], e
-	inc l
-	ld [hl], d
-	inc l
-	pop de
-.asm_32c3
-	ld a, [$ff00+c]
-	and b
-	jr nz, .asm_32c3
-	ld [hl], e
-	inc l
-	ld [hl], d
-	inc l
-	pop de
-.asm_32cc
-	ld a, [$ff00+c]
-	and b
-	jr nz, .asm_32cc
-	ld [hl], e
-	inc l
-	ld [hl], d
-	inc l
-	pop de
-.asm_32d5
-	ld a, [$ff00+c]
-	and b
-	jr nz, .asm_32d5
-	ld [hl], e
-	inc l
-	ld [hl], d
-	inc l
-	pop de
+endr
+
 .asm_32de
 	ld a, [$ff00+c]
 	and b
@@ -6456,6 +6388,7 @@ Function327b: ; 327b
 	inc l
 	ld [hl], d
 	inc l
+
 	ld de, $000c
 	add hl, de
 	ld a, [$ffd3]
