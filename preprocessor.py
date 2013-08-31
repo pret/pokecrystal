@@ -446,6 +446,60 @@ def is_based_on(something, base):
     options += [something.__name__]
     return (base in options)
 
+def check_macro_sanity(params, macro, original_line):
+    """
+    Checks whether or not the correct number of arguments are being passed to a
+    certain macro. There are a number of possibilities based on the types of
+    parameters that define the macro.
+
+    @param params: a list of parameters given to the macro
+    @param macro: macro klass
+    @param original_line: the line being preprocessed
+    """
+    allowed_length = 0
+
+    for (index, param_type) in macro.param_types.items():
+        param_klass = param_type["class"]
+
+        if param_klass.byte_type == "db":
+            allowed_length += 1 # just one value
+        elif param_klass.byte_type == "dw":
+            if param_klass.size == 2:
+                allowed_length += 1 # just label
+            elif param_klass.size == 3:
+                allowed_length += 2 # bank and label
+            else:
+                raise MacroException(
+                    "dunno what to do with a macro param with a size > 3 (size={size})"
+                    .format(size=param_klass.size)
+                )
+        else:
+            raise MacroException(
+                "dunno what to do with this non db/dw macro param: {klass} in line {line}"
+                .format(klass=param_klass, line=original_line)
+            )
+
+    # sometimes the allowed length can vary
+    if hasattr(macro, "allowed_lengths"):
+        allowed_lengths = macro.allowed_lengths + [allowed_length]
+    else:
+        allowed_lengths = [allowed_length]
+
+    # used twice, so precompute once
+    params_len = len(params)
+
+    if params_len not in allowed_lengths:
+        raise PreprocessorException(
+            "mismatched number of parameters ({count}, instead of any of {allowed}) on this line: {line}"
+            .format(
+                count=params_len,
+                allowed=allowed_lengths,
+                line=original_line,
+            )
+        )
+
+    return True
+
 def macro_translator(macro, token, line, show_original_lines=False, do_macro_sanity_check=False):
     """
     Converts a line with a macro into a rgbasm-compatible line.
@@ -500,56 +554,10 @@ def macro_translator(macro, token, line, show_original_lines=False, do_macro_san
     if not macro.override_byte_check:
         sys.stdout.write("db ${0:02X}\n".format(macro.id))
 
-    # --- long-winded sanity check goes here ---
-
+    # Does the number of parameters on this line match any allowed number of
+    # parameters that the macro expects?
     if do_macro_sanity_check:
-
-        # sanity check... this won't work because PointerLabelBeforeBank shows
-        # up as two params, so these two lengths will always be different.
-        #assert len(params) == len(macro.param_types), \
-        #       "mismatched number of parameters on this line: " + \
-        #       original_line
-
-        # v2 sanity check :) although it sorta sucks that this loop happens twice?
-        allowed_length = 0
-        for (index, param_type) in macro.param_types.items():
-            param_klass = param_type["class"]
-
-            if param_klass.byte_type == "db":
-                allowed_length += 1 # just one value
-            elif param_klass.byte_type == "dw":
-                if param_klass.size == 2:
-                    allowed_length += 1 # just label
-                elif param_klass.size == 3:
-                    allowed_length += 2 # bank and label
-                else:
-                    raise MacroException(
-                        "dunno what to do with a macro param with a size > 3 (size={size})"
-                        .format(size=param_klass.size)
-                    )
-            else:
-                raise MacroException(
-                    "dunno what to do with this non db/dw macro param: {klass} in line {line}"
-                    .format(klass=param_klass, line=original_line)
-                )
-
-        # sometimes the allowed length can vary
-        if hasattr(macro, "allowed_lengths"):
-            allowed_lengths = macro.allowed_lengths + [allowed_length]
-        else:
-            allowed_lengths = [allowed_length]
-
-        if len(params) not in allowed_lengths:
-            raise PreprocessorException(
-                "mismatched number of parameters ({count}, instead of any of {allowed}) on this line: {line}"
-                .format(
-                    count=len(params),
-                    allowed=allowed_lengths,
-                    line=original_line,
-                )
-            )
-
-    # --- end of ridiculously long sanity check ---
+        check_macro_sanity(params, macro, original_line)
 
     # used for storetext
     correction = 0
