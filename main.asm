@@ -13993,42 +13993,54 @@ Function60fa: ; 60fa
 ; 610f
 
 Function610f: ; 610f
+
 	ld a, [hROMBank]
 	push af
-	ld a, $20
+
+	ld a, 0 << 7 | 32 ; fade out
 	ld [MusicFade], a
 	ld de, MUSIC_NONE
 	ld a, e
 	ld [MusicFadeIDLo], a
 	ld a, d
 	ld [MusicFadeIDHi], a
+
 	ld de, SFX_ESCAPE_ROPE
 	call StartSFX
 	pop af
 	rst Bankswitch
 
-	ld c, $8
+	ld c, 8
 	call DelayFrames
+
 	ld hl, $5249
 	ld b, $13
 	call Function61b4
-	ld c, $8
+
+	ld c, 8
 	call DelayFrames
+
 	ld hl, $52d9
 	ld b, $13
 	call Function61b4
-	ld c, $8
+
+	ld c, 8
 	call DelayFrames
+
 	ld hl, $c50a
-	ld b, $7
-	ld c, $7
+	ld b, 7
+	ld c, 7
 	call ClearBox
-	ld c, $3
+
+	ld c, 3
 	call DelayFrames
+
 	call Function61cd
 	call Functione5f
-	ld c, $32
+
+	ld c, 50
 	call DelayFrames
+
 	call Function4b6
 	call ClearTileMap
 	ret
@@ -14036,11 +14048,11 @@ Function610f: ; 610f
 
 Function616a: ; 616a
 	ld hl, IntroFadePalettes
-	ld b, $6
+	ld b, IntroFadePalettesEnd - IntroFadePalettes
 .asm_616f
 	ld a, [hli]
 	call DmgToCgbBGPals
-	ld c, $a
+	ld c, 10
 	call DelayFrames
 	dec b
 	jr nz, .asm_616f
@@ -14054,6 +14066,7 @@ IntroFadePalettes: ; 0x617c
 	db %11111000
 	db %11110100
 	db %11100100
+IntroFadePalettesEnd
 ; 6182
 
 Function6182: ; 6182
@@ -14099,14 +14112,17 @@ Function61b4: ; 61b4
 ; 61cd
 
 Function61cd: ; 61cd
+
 	callba GetPlayerIcon
 	ld c, $c
 	ld hl, VTiles0
 	call Request2bpp
+
 	ld hl, Sprites
 	ld de, .data_61fe
 	ld a, [de]
 	inc de
+
 	ld c, a
 .asm_61e4
 	ld a, [de]
@@ -14118,14 +14134,15 @@ Function61cd: ; 61cd
 	ld a, [de]
 	inc de
 	ld [hli], a
-	ld b, $0
+
+	ld b, 0
 	ld a, [PlayerGender]
 	bit 0, a
 	jr z, .asm_61f8
-	ld b, $1
-
+	ld b, 1
 .asm_61f8
 	ld a, b
+
 	ld [hli], a
 	dec c
 	jr nz, .asm_61e4
@@ -14183,7 +14200,6 @@ Function620b: ; 620b
 	cp $5
 	jr c, .asm_625e
 	xor a
-
 .asm_625e
 	ld e, a
 	ld d, 0
