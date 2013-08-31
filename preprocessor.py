@@ -478,7 +478,7 @@ def macro_translator(macro, token, line):
 
         # check if there are no params (redundant)
         if len(params) == 1 and params[0] == "":
-            raise Exception, "macro has no params?"
+            raise Exception("macro has no params?")
 
     # write out a comment showing the original line
     if show_original_lines:
@@ -519,10 +519,14 @@ def macro_translator(macro, token, line):
                 elif param_klass.size == 3:
                     allowed_length += 2 # bank and label
                 else:
-                    raise Exception, "dunno what to do with a macro param with a size > 3"
+                    raise Exception(
+                        "dunno what to do with a macro param with a size > 3"
+                    )
             else:
-                raise Exception, "dunno what to do with this non db/dw macro param: " + \
-                                 str(param_klass) + " in line: " + original_line
+                raise Exception(
+                    "dunno what to do with this non db/dw macro param: {klass} in line {line}"
+                    .format(klass=param_klass, line=original_line)
+                )
 
         # sometimes the allowed length can vary
         if hasattr(macro, "allowed_lengths"):
@@ -577,9 +581,13 @@ def macro_translator(macro, token, line):
                 output += ("db " + param_klass.from_asm(param) + "\n")
                 index += 1
             else:
-                raise Exception, "dunno what to do with this macro " + \
-                "param (" + str(param_klass) + ") " + "on this line: " + \
-                original_line
+                raise Exception(
+                    "dunno what to do with this macro param ({klass}) in line: {line}"
+                    .format(
+                        klass=param_klass,
+                        line=original_line,
+                    )
+                )
 
         # or just print out the byte
         else:
