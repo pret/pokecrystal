@@ -427,12 +427,10 @@ def macro_test(asm, macro_table):
     token = extract_token(asm)
 
     # skip db and dw since rgbasm handles those and they aren't macros
-    if token not in ["db", "dw"]:
-        # check against all names
-        if token in macro_table:
-            return (macro_table[token], token)
-
-    return (None, None)
+    if token is not None and token not in ["db", "dw"] and token in macro_table:
+        return (macro_table[token], token)
+    else:
+        return (None, None)
 
 def is_based_on(something, base):
     """
@@ -611,6 +609,10 @@ def macro_translator(macro, token, line, show_original_lines=False, do_macro_san
 def read_line(l, macro_table):
     """Preprocesses a given line of asm."""
 
+    if l in ["\n", ""]:
+        sys.stdout.write(l)
+        return # jump out early
+
     # strip comments from asm
     asm, comment = separate_comment(l)
 
@@ -624,7 +626,7 @@ def read_line(l, macro_table):
         sys.stdout.write(asm)
 
     # ascii string macro preserves the bytes as ascii (skip the translator)
-    elif len(asm) > 6 and "ascii " == asm[:6] or "\tascii " == asm[:7]:
+    elif len(asm) > 6 and ("ascii " == asm[:6] or "\tascii " == asm[:7]):
         asm = asm.replace("ascii", "db", 1)
         sys.stdout.write(asm)
 
@@ -640,7 +642,8 @@ def read_line(l, macro_table):
         else:
             sys.stdout.write(asm)
 
-    if comment: sys.stdout.write(comment)
+    if comment:
+        sys.stdout.write(comment)
 
 def preprocess(macro_table, lines=None):
     """Main entry point for the preprocessor."""
