@@ -532,10 +532,7 @@ def macro_translator(macro, token, line):
 
     index = 0
     while index < len(params):
-        try:
-            param_type  = macro.param_types[index - correction]
-        except KeyError as exception:
-            raise Exception("line is: " + str(line) + " and macro is: " + str(macro))
+        param_type  = macro.param_types[index - correction]
         description = param_type["name"]
         param_klass = param_type["class"]
         byte_type   = param_klass.byte_type # db or dw
