@@ -7380,7 +7380,7 @@ IsAPokemon: ; 3741
 	jr z, .NotAPokemon
 	cp EGG
 	jr z, .Pokemon
-	cp $fc
+	cp NUM_POKEMON + 1
 	jr c, .Pokemon
 
 .NotAPokemon
@@ -25312,7 +25312,7 @@ Function132da: ; 132da
 	jr z, .asm_132f3
 	cp EGG
 	jr z, .asm_132f3
-	cp $fc
+	cp NUM_POKEMON + 1
 	jr c, .asm_132f8
 
 .asm_132f3
@@ -25346,7 +25346,7 @@ Function132fe: ; 132fe
 	jr z, .asm_1331e
 	cp EGG
 	jr z, .asm_1331e
-	cp $fc
+	cp NUM_POKEMON + 1
 	jr c, .asm_13321
 
 .asm_1331e
@@ -46769,7 +46769,7 @@ GetPreEvolution: ; 42581
 .asm_425a2
 	inc c
 	ld a, c
-	cp CELEBI
+	cp NUM_POKEMON
 	jr c, .asm_42583
 	and a
 	ret
@@ -56572,9 +56572,9 @@ INCBIN "baserom.gbc", $8d03d, $8d04c - $8d03d
 Function8d04c: ; 8d04c
 	call Function8d0ec
 	call Function8d132
-	cp $fd
+	cp EGG
 	jr z, .asm_8d0b9
-	cp $fc
+	cp NUM_POKEMON + 1
 	jr z, .asm_8d0b6
 	call Function8d1a2
 	ld a, [$c3ba]
@@ -63320,9 +63320,9 @@ INCBIN "baserom.gbc", $cc9c4, $cca09 - $cc9c4
 Functioncca09: ; cca09
 	call Functionccaaa
 	call Functionce7d1
-	cp $fd
+	cp EGG
 	jp z, $4aa5
-	cp $fc
+	cp NUM_POKEMON + 1
 	jp z, $4aa2
 	push af
 	ld hl, $d419
