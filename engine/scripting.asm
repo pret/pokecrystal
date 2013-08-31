@@ -2363,7 +2363,7 @@ Script_checkitem: ; 0x97812
 	call GetScriptByte
 	ld [$d106], a
 	ld hl, $d892
-	call Function2f79
+	call PickUpItem
 	ret nc
 	ld a, $1
 	ld [$c2dd], a

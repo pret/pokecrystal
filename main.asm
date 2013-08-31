@@ -5549,20 +5549,20 @@ Function2f66: ; 2f66
 	ret
 ; 2f79
 
-Function2f79: ; 2f79
+PickUpItem: ; 2f79
 	push hl
 	push de
 	push bc
 	ld a, [hROMBank]
 	push af
-	ld a, BANK(Functiond244)
+	ld a, BANK(_PickUpItem)
 	rst Bankswitch
 
-	call Functiond244
+	call _PickUpItem
+
 	pop bc
 	ld a, b
 	rst Bankswitch
-
 	pop bc
 	pop de
 	pop hl
@@ -20275,7 +20275,7 @@ Functiond20d: ; d20d
 	jp Functiond2ff
 ; d244
 
-Functiond244: ; d244
+_PickUpItem: ; d244
 	call Functiond27b
 	jr nz, .asm_d278
 	push hl
@@ -32235,7 +32235,7 @@ Function24c64: ; 24c64
 	push hl
 	ld [CurItem], a
 	ld hl, NumItems
-	call Function2f79
+	call PickUpItem
 	pop hl
 	jr nc, .asm_24c89
 	ld a, [hl]
@@ -55485,7 +55485,7 @@ Function8adef: ; 8adef
 	ld a, WATER_STONE
 	ld [CurItem], a
 	ld hl, NumItems
-	call Function2f79
+	call PickUpItem
 	jr c, .asm_8ae24
 
 	ld a, [PartyCount]
