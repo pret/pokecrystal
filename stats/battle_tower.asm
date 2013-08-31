@@ -15,7 +15,7 @@ Function1f8000: ; 1f8000
 	ld a, [hRandomAdd]
 	ld b, a
 .asm_1f8022
-	call RNG
+	call Random
 	ld a, [hRandomAdd]
 	add b
 	ld b, a
@@ -83,7 +83,7 @@ Function1f8081: ; 1f8081
 	ld a, [hRandomAdd]
 	ld b, a
 .asm_1f8099
-	call RNG
+	call Random
 	ld a, [hRandomAdd]
 	add b
 	ld b, a

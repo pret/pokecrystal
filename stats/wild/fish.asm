@@ -39,7 +39,7 @@ Fish: ; 9241a
 ; Fish for monsters with rod b from encounter data in FishGroup at hl.
 ; Return monster e at level d.
 
-	call RNG
+	call Random
 
 ; Got a bite?
 	cp [hl]
@@ -59,7 +59,7 @@ Fish: ; 9241a
 	ld l, a
 	
 ; Encounter chance for this monster:
-	call RNG
+	call Random
 	
 .CheckEncounter
 	cp [hl]
