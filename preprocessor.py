@@ -534,9 +534,15 @@ def macro_translator(macro, token, line):
         else:
             allowed_lengths = [allowed_length]
 
-        assert len(params) in allowed_lengths, \
-               "mismatched number of parameters on this line: " + \
-               original_line
+        if len(params) not in allowed_lengths:
+            raise PreprocessorException(
+                "mismatched number of parameters ({count}, instead of any of {allowed}) on this line: {line}"
+                .format(
+                    count=len(params),
+                    allowed=allowed_lengths,
+                    line=original_line,
+                )
+            )
 
     # --- end of ridiculously long sanity check ---
 
