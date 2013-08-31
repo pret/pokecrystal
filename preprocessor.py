@@ -658,8 +658,11 @@ def preprocess(macro_table, lines=None):
     for l in lines:
         read_line(l, macro_table)
 
-# only run against stdin when not included as a module
-if __name__ == "__main__":
+def main():
     macros = load_pokecrystal_macros()
     macro_table = make_macro_table(macros)
     preprocess(macro_table)
+
+# only run against stdin when not included as a module
+if __name__ == "__main__":
+    main()
