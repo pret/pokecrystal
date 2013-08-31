@@ -302,6 +302,16 @@ chars = {
 "9": 0xFF
 }
 
+class PreprocessorException(Exception):
+    """
+    There was a problem in the preprocessor.
+    """
+
+class MacroException(PreprocessorException):
+    """
+    There was a problem with a macro.
+    """
+
 def separate_comment(l):
     """
     Separates asm and comments on a single line.
