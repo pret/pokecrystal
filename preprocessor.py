@@ -449,7 +449,8 @@ def macro_translator(macro, token, line):
     Converts a line with a macro into a rgbasm-compatible line.
     """
 
-    assert macro.macro_name == token, "macro/token mismatch"
+    if macro.macro_name != token:
+        raise MacroException("macro/token mismatch")
 
     original_line = line
 
