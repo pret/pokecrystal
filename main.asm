@@ -5607,14 +5607,13 @@ BattleRandom: ; 2f9f
 ; It handles all RNG calls in the battle engine, allowing
 ; link battles to remain in sync using a shared PRNG.
 
-; Save bank
-	ld a, [hROMBank] ; bank
+	ld a, [hROMBank]
 	push af
-; Bankswitch
 	ld a, BANK(_BattleRandom)
 	rst Bankswitch
+
 	call _BattleRandom
-; Restore bank
+
 	ld [$cfb6], a
 	pop af
 	rst Bankswitch
