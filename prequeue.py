@@ -9,9 +9,15 @@ import os
 import sys
 import preprocessor
 
-if __name__ == '__main__':
+def main():
+    macros = preprocessor.load_pokecrystal_macros()
+    macro_table = preprocessor.make_macro_table(macros)
+
     for source in sys.argv[1:]:
         dest = os.path.splitext(source)[0] + '.tx'
         sys.stdin  = open(source, 'r')
         sys.stdout = open(dest, 'w')
-        preprocessor.preprocess(preprocessor.load_pokecrystal_macros())
+        preprocessor.preprocess(macro_table)
+
+if __name__ == '__main__':
+    main()

@@ -642,9 +642,8 @@ def read_line(l, macro_table):
 
     if comment: sys.stdout.write(comment)
 
-def preprocess(macros, lines=None):
+def preprocess(macro_table, lines=None):
     """Main entry point for the preprocessor."""
-    macro_table = make_macro_table(macros)
 
     if not lines:
         # read each line from stdin
@@ -658,4 +657,6 @@ def preprocess(macros, lines=None):
 
 # only run against stdin when not included as a module
 if __name__ == "__main__":
-    preprocess(load_pokecrystal_macros())
+    macros = load_pokecrystal_macros()
+    macro_table = make_macro_table(macros)
+    preprocess(macro_table)
