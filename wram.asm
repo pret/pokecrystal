@@ -1712,7 +1712,10 @@ StatusFlags2: ; d84d
 Money: ; d84e
 	ds 3
 
-	ds 6
+	ds 4
+
+Coins: ; d855
+	ds 2
 	
 Badges:
 JohtoBadges: ; d857

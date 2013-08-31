@@ -1988,7 +1988,7 @@ Script_random: ; 0x97640
 	ld b, a
 .asm_97653
 	push bc
-	call RNG
+	call Random
 	pop bc
 	ld a, [$ffe1]
 	cp b
@@ -1996,7 +1996,7 @@ Script_random: ; 0x97640
 	jr .asm_97666 ; 0x9765d $7
 .asm_9765f
 	push bc
-	call RNG
+	call Random
 	pop bc
 	ld a, [$ffe1]
 .asm_97666
@@ -2217,7 +2217,7 @@ Script_readcoins: ; 0x97747
 
 	call Unknown_0x97771
 	ld hl, StringBuffer1
-	ld de, $d855
+	ld de, Coins
 	ld bc, $4206
 	call PrintNum
 	ld de, StringBuffer1
@@ -2363,7 +2363,7 @@ Script_checkitem: ; 0x97812
 	call GetScriptByte
 	ld [$d106], a
 	ld hl, $d892
-	call Function2f79
+	call PickUpItem
 	ret nc
 	ld a, $1
 	ld [$c2dd], a
