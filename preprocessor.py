@@ -12,35 +12,46 @@ from extras.pokemontools.crystal import (
     Signpost,
     PeopleEvent,
     DataByteWordMacro,
-    ItemFragment,
     text_command_classes,
     movement_command_classes,
     music_classes,
     effect_classes,
 )
 
-even_more_macros = [
-    Warp,
-    XYTrigger,
-    Signpost,
-    PeopleEvent,
-    DataByteWordMacro,
-    ItemFragment,
-]
+def load_pokecrystal_macros():
+    """
+    Construct a list of macros that are needed for pokecrystal preprocessing.
+    """
+    ourmacros = []
 
-macros = command_classes
-macros += even_more_macros
-macros += [each[1] for each in text_command_classes]
-macros += movement_command_classes
-macros += music_classes
-macros += effect_classes
+    even_more_macros = [
+        Warp,
+        XYTrigger,
+        Signpost,
+        PeopleEvent,
+        DataByteWordMacro,
+    ]
 
-def preprocess(macros):
+    ourmacros += command_classes
+    ourmacros += even_more_macros
+    ourmacros += [each[1] for each in text_command_classes]
+    ourmacros += movement_command_classes
+    ourmacros += music_classes
+    ourmacros += effect_classes
+
+    return ourmacros
+
+def preprocess(macro_table, lines=None):
     """
     Entry point for the preprocessor.
     """
-    return preprocessor.preprocess(macros)
+    return preprocessor.preprocess(macro_table, lines=lines)
+
+def main():
+    macros = load_pokecrystal_macros()
+    macro_table = preprocessor.make_macro_table(macros)
+    preprocess(macro_table)
 
 # only run against stdin when not included as a module
 if __name__ == "__main__":
-    preprocess(macros)
+    main()

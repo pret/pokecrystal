@@ -308,7 +308,7 @@ Script_2writetext: ; 0x96e9b
 	ld h, a
 	ld a, [ScriptBank]
 	ld b, a
-	call $269a
+	call Function269a
 	ret
 ; 0x96eab
 
@@ -323,7 +323,7 @@ Script_3writetext: ; 0x96eab
 	ld l, a
 	call GetScriptByte
 	ld h, a
-	call $269a
+	call Function269a
 	ret
 ; 0x96ebb
 
@@ -348,7 +348,7 @@ Script_repeattext: ; 0x96ebb
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	call $269a
+	call Function269a
 	ret
 .asm_96ed8
 	ret
@@ -357,7 +357,7 @@ Script_repeattext: ; 0x96ebb
 Script_closetext: ; 0x96ed9
 ; script command 0x54
 
-	jp $0a46
+	jp Functiona46
 ; 0x96edc
 
 Script_keeptextopen: ; 0x96edc
@@ -367,8 +367,8 @@ Script_keeptextopen: ; 0x96edc
 	push af
 	ld a, $1
 	ld [$ffd8], a
-	call $31f6
-	call $0aaf
+	call WaitBGMap
+	call Functionaaf
 	pop af
 	ld [$ffd8], a
 	ret
@@ -377,7 +377,7 @@ Script_keeptextopen: ; 0x96edc
 Script_yesorno: ; 0x96eed
 ; script command 0x4e
 
-	call $1dcf
+	call Function1dcf
 	ld a, $0
 	jr c, .asm_96ef6 ; 0x96ef2 $2
 	ld a, $1
@@ -397,16 +397,16 @@ Script_loadmenudata: ; 0x96efa
 	ld h, a
 	ld de, $1d35
 	ld a, [ScriptBank]
-	call $26b7
-	call $1ad2
+	call Function26b7
+	call Function1ad2
 	ret
 ; 0x96f0f
 
 Script_writebackup: ; 0x96f0f
 ; script command 0x50
 
-	call $1c17
-	call $1ad2
+	call Function1c17
+	call Function1ad2
 	ret
 ; 0x96f16
 
@@ -470,7 +470,7 @@ Script_storetext: ; 0x96f52
 ;     pointer (PointerLabelBeforeBank)
 ;     memory (SingleByteParam)
 
-	call $106c
+	call Function106c
 	call GetScriptByte
 	ld c, a
 	ld a, $47
@@ -539,7 +539,7 @@ Script_verbosegiveitem2: ; 0x96f8e
 	ld a, [de]
 	ld [$d10c], a
 	ld hl, $d892
-	call $2f66
+	call Function2f66
 	ld a, $1
 	jr c, .asm_96fb0 ; 0x96fad $1
 	xor a
@@ -561,7 +561,7 @@ Script_itemnotify: ; 0x96fc6
 	call CurItemName
 	ld b, BANK(PutItemInPocketText)
 	ld hl, PutItemInPocketText
-	call $269a
+	call Function269a
 	ret
 ; 0x96fd5
 
@@ -572,7 +572,7 @@ Script_pocketisfull: ; 0x96fd5
 	call CurItemName
 	ld b, BANK(PocketIsFullText)
 	ld hl, PocketIsFullText
-	call $269a
+	call Function269a
 	ret
 ; 0x96fe4
 
@@ -732,7 +732,7 @@ Script_askforphonenumber: ; 0x970be
 ; parameters:
 ;     number (SingleByteParam)
 
-	call $1dcf
+	call Function1dcf
 	jr c, .asm_970d6 ; 0x970c1 $13
 	call GetScriptByte
 	ld c, a
@@ -814,7 +814,7 @@ Script_trainertext: ; 0x9710f
 	ld l, a
 	ld a, [$d03e]
 	ld b, a
-	call $269a
+	call Function269a
 	ret
 ; 0x97125
 
@@ -843,7 +843,7 @@ Script_trainerstatus: ; 0x97132
 	ld d, [hl]
 	call GetScriptByte
 	ld b, a
-	call BitTable1Func
+	call EventFlagAction
 	ld a, c
 	and a
 	ret z
@@ -907,7 +907,7 @@ Script_playrammusic: ; 0x9717a
 Script_playmapmusic: ; 0x97185
 ; script command 0x82
 
-	call $3cdf
+	call Function3cdf
 	ret
 ; 0x97189
 
@@ -988,7 +988,7 @@ Script_cry: ; 0x971d1
 	jr nz, .asm_971df ; 0x971da $3
 	ld a, [$c2dd]
 .asm_971df
-	call $37ce
+	call Function37ce
 	ret
 ; 0x971e3
 
@@ -1039,7 +1039,7 @@ Function971fa: ; 971fa
 	ld h, a
 	ld a, [ScriptBank]
 	ld b, a
-	call $26c7
+	call Function26c7
 	ret c
 	ld a, SCRIPT_WAIT_MOVEMENT
 	ld [ScriptMode], a
@@ -1145,13 +1145,13 @@ Script_spriteface: ; 0x97274
 Unknown_0x9728b: ; 0x9728b
 	ld a, d
 	push de
-	call $18de
+	call Function18de
 	jr c, .asm_972b9 ; 0x97290 $27
 	ld hl, $0000
 	add hl, bc
 	ld a, [hl]
 	push bc
-	call $1836
+	call Function1836
 	pop bc
 	jr c, .asm_972b9 ; 0x9729c $1b
 	ld hl, $0004
@@ -1160,13 +1160,13 @@ Unknown_0x9728b: ; 0x9728b
 	jr nz, .asm_972b9 ; 0x972a4 $13
 	pop de
 	ld a, e
-	call $1af8
+	call Function1af8
 	ld hl, $d0ed
 	bit 6, [hl]
 	jr nz, .asm_972b5 ; 0x972b0 $3
 	call Unknown_0x972bc
 .asm_972b5
-	call $1ad2
+	call Function1ad2
 	ret
 .asm_972b9
 	pop de
@@ -1175,7 +1175,7 @@ Unknown_0x9728b: ; 0x9728b
 ; 0x972bc
 
 Unknown_0x972bc: ; 0x972bc
-	call $217a
+	call Function217a
 	ld hl, TileMap
 	ld bc, $0168
 .asm_972c5
@@ -1211,7 +1211,7 @@ Script_appear: ; 0x972dd
 
 	call GetScriptByte
 	call Unknown_0x971e3
-	call $1956
+	call Function1956
 	ld a, [$ffaf]
 	ld b, $0
 	call Unknown_0x9730b
@@ -1229,7 +1229,7 @@ Script_disappear: ; 0x972ee
 	jr nz, .asm_972fa ; 0x972f6 $2
 	ld a, [$ffe0]
 .asm_972fa
-	call $199f
+	call Function199f
 	ld a, [$ffaf]
 	ld b, $1
 	call Unknown_0x9730b
@@ -1241,7 +1241,7 @@ Script_disappear: ; 0x972ee
 
 Unknown_0x9730b: ; 0x9730b
 	push bc
-	call $18d2
+	call GetMapObject
 	ld hl, $000c
 	add hl, bc
 	pop bc
@@ -1256,7 +1256,7 @@ Unknown_0x9730b: ; 0x9730b
 	xor a
 	ret
 .asm_97321
-	call BitTable1Func
+	call EventFlagAction
 	ret
 ; 0x97325
 
@@ -1497,9 +1497,9 @@ Script_loadtrainer: ; 0x97424
 Script_startbattle: ; 0x97436
 ; script command 0x5f
 
-	call $2879
-	ld a, $16
-	call $2d83
+	call Function2879
+	ld a, PREDEF_START_BATTLE
+	call Predef
 	ld a, [$d0ee]
 	and $3f
 	ld [$c2dd], a
@@ -1513,7 +1513,7 @@ Script_catchtutorial: ; 0x97447
 
 	call GetScriptByte
 	ld [$d230], a
-	call $2879
+	call Function2879
 	ld a, $13
 	ld hl, $6554
 	rst $8
@@ -1559,7 +1559,7 @@ Script_reloadmap: ; 0x97491
 	ld a, $f3
 	ld [$ff9f], a
 	ld a, $1
-	call $261b
+	call Function261b
 	call StopScript
 	ret
 ; 0x974a2
@@ -1835,7 +1835,7 @@ Script_priorityjump: ; 0x975aa
 Script_checktriggers: ; 0x975c2
 ; script command 0x13
 
-	call $211b
+	call Function211b
 	jr z, .asm_975cb ; 0x975c5 $4
 	ld [$c2dd], a
 	ret
@@ -1855,7 +1855,7 @@ Script_checkmaptriggers: ; 0x975d1
 	ld b, a
 	call GetScriptByte
 	ld c, a
-	call $2147
+	call Function2147
 	ld a, d
 	or e
 	jr z, .asm_975e5 ; 0x975de $5
@@ -1894,7 +1894,7 @@ Script_domaptrigger: ; 0x975f5
 	; fallthrough
 
 Unknown_975fd: ; 0x975fd
-	call $2147
+	call Function2147
 	ld a, d
 	or e
 	jr z, .asm_97608 ; 0x97602 $4
@@ -1988,7 +1988,7 @@ Script_random: ; 0x97640
 	ld b, a
 .asm_97653
 	push bc
-	call $2f8c
+	call Random
 	pop bc
 	ld a, [$ffe1]
 	cp b
@@ -1996,7 +1996,7 @@ Script_random: ; 0x97640
 	jr .asm_97666 ; 0x9765d $7
 .asm_9765f
 	push bc
-	call $2f8c
+	call Random
 	pop bc
 	ld a, [$ffe1]
 .asm_97666
@@ -2004,7 +2004,7 @@ Script_random: ; 0x97640
 	ld a, [$c2dd]
 	ld c, a
 	pop af
-	call $3110
+	call SimpleDivide
 	ld [$c2dd], a
 	ret
 ; 0x97673
@@ -2091,7 +2091,7 @@ Script_pokenamemem: ; 0x976ae
 	ld a, [$c2dd]
 .asm_976b7
 	ld [$d265], a
-	call $343b
+	call GetPokemonName
 	ld de, StringBuffer1
 
 Unknown_976c0: ; 0x976c0
@@ -2205,7 +2205,7 @@ Script_readmoney: ; 0x97732
 	call Unknown_0x97861
 	ld hl, StringBuffer1
 	ld bc, $4306
-	call $3198
+	call PrintNum
 	ld de, StringBuffer1
 	jp Unknown_976c0
 ; 0x97747
@@ -2217,9 +2217,9 @@ Script_readcoins: ; 0x97747
 
 	call Unknown_0x97771
 	ld hl, StringBuffer1
-	ld de, $d855
+	ld de, Coins
 	ld bc, $4206
-	call $3198
+	call PrintNum
 	ld de, StringBuffer1
 	jp Unknown_976c0
 ; 0x9775c
@@ -2233,7 +2233,7 @@ Script_RAM2MEM: ; 0x9775c
 	ld de, $c2dd
 	ld hl, StringBuffer1
 	ld bc, $4103
-	call $3198
+	call PrintNum
 	ld de, StringBuffer1
 	jp Unknown_976c0
 ; 0x97771
@@ -2320,7 +2320,7 @@ Script_giveitem: ; 0x977ca
 	call GetScriptByte
 	ld [$d10c], a
 	ld hl, $d892
-	call $2f66
+	call Function2f66
 	jr nc, .asm_977eb ; 0x977e3 $6
 	ld a, $1
 	ld [$c2dd], a
@@ -2346,7 +2346,7 @@ Script_takeitem: ; 0x977f0
 	ld a, $ff
 	ld [$d107], a
 	ld hl, $d892
-	call $2f53
+	call Function2f53
 	ret nc
 	ld a, $1
 	ld [$c2dd], a
@@ -2363,7 +2363,7 @@ Script_checkitem: ; 0x97812
 	call GetScriptByte
 	ld [$d106], a
 	ld hl, $d892
-	call $2f79
+	call PickUpItem
 	ret nc
 	ld a, $1
 	ld [$c2dd], a
@@ -2677,7 +2677,7 @@ Script_setbit1: ; 0x97988
 	call GetScriptByte
 	ld d, a
 	ld b, $1
-	call BitTable1Func
+	call EventFlagAction
 	ret
 ; 0x97996
 
@@ -2691,7 +2691,7 @@ Script_clearbit1: ; 0x97996
 	call GetScriptByte
 	ld d, a
 	ld b, $0
-	call BitTable1Func
+	call EventFlagAction
 	ret
 ; 0x979a4
 
@@ -2705,7 +2705,7 @@ Script_checkbit1: ; 0x979a4
 	call GetScriptByte
 	ld d, a
 	ld b, $2
-	call BitTable1Func
+	call EventFlagAction
 	ld a, c
 	and a
 	jr z, .asm_979b7 ; 0x979b3 $2
@@ -2839,7 +2839,7 @@ Script_warp: ; 0x97a1d
 	ld a, $f1
 	ld [$ff9f], a
 	ld a, $1
-	call $261b
+	call Function261b
 	call StopScript
 	ret
 .asm_97a4a
@@ -2851,7 +2851,7 @@ Script_warp: ; 0x97a1d
 	ld a, $fb
 	ld [$ff9f], a
 	ld a, $1
-	call $261b
+	call Function261b
 	call StopScript
 	ret
 ; 0x97a65
@@ -2935,8 +2935,8 @@ Script_changemap: ; 0x97ab3
 	ld [$d1a1], a
 	call GetScriptByte
 	ld [$d1a2], a
-	call $24e4
-	call $2879
+	call Function24e4
+	call Function2879
 	ret
 ; 0x97acc
 
@@ -2953,10 +2953,10 @@ Script_changeblock: ; 0x97acc
 	call GetScriptByte
 	add $4
 	ld e, a
-	call $2a66
+	call Function2a66
 	call GetScriptByte
 	ld [hl], a
-	call $2879
+	call Function2879
 	ret
 ; 0x97ae3
 
@@ -2965,19 +2965,19 @@ Script_reloadmappart: ; 0x97ae3
 
 	xor a
 	ld [$ffd4], a
-	call $2173
-	call $2914
+	call Function2173
+	call Function2914
 	ld a, $41
 	ld hl, $4061
 	rst $8
-	call $1ad2
+	call Function1ad2
 	ret
 ; 0x97af6
 
 Script_warpcheck: ; 0x97af6
 ; script command 0x8e
 
-	call $224a
+	call Function224a
 	ret nc
 	callba Function966d0
 	ret
@@ -2996,7 +2996,7 @@ Script_newloadmap: ; 0x97b08
 	call GetScriptByte
 	ld [$ff9f], a
 	ld a, $1
-	call $261b
+	call Function261b
 	call StopScript
 	ret
 ; 0x97b16
@@ -3011,7 +3011,7 @@ Script_reloadandreturn: ; 0x97b16
 Script_loadfont: ; 0x97b1c
 ; script command 0x47
 
-	call $2e08
+	call Function2e08
 	ret
 ; 0x97b20
 
@@ -3020,7 +3020,7 @@ Script_refreshscreen: ; 0x97b20
 ; parameters:
 ;     dummy (SingleByteParam)
 
-	call $2dba
+	call ResetWindow
 	call GetScriptByte
 	ret
 ; 0x97b27
@@ -3043,8 +3043,8 @@ LoadMoveSpritesScript: ; 97b2e
 Script_loadmovesprites: ; 0x97b2f
 ; script command 0x49
 
-	call $2e20
-	call $2dcf
+	call Function2e20
+	call Function2dcf
 	ret
 ; 0x97b36
 
@@ -3206,7 +3206,7 @@ Script_credits: ; 0x97bf3
 DisplayCredits:
 	call Script_resetfuncs
 	ld a, $3
-	call $261b
+	call Function261b
 	call StopScript
 	ret
 ; 0x97c05

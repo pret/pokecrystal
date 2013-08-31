@@ -6,6 +6,8 @@
 
 ; This prevents the display and audio output from lagging.
 
+
+VBlank: ; 283
 	push af
 	push bc
 	push de
@@ -26,7 +28,7 @@
 	ld l, a
 	
 ; down to business
-	call JpHl
+	call _hl_
 	
 ; since this is called once per frame
 	call GameTimer

@@ -154,7 +154,7 @@ CheckPlayerTurn:
 
 ; 'must recharge!'
 	ld hl, MustRechargeText
-	call FarBattleTextBox
+	call StdBattleTextBox
 
 	call CantMove
 	jp Function0x34385
@@ -179,7 +179,7 @@ CheckPlayerTurn:
 .WokeUp
 ; 'woke up!'
 	ld hl, WokeUpText
-	call FarBattleTextBox
+	call StdBattleTextBox
 
 	call CantMove
 	call UpdateBattleMonInParty
@@ -195,7 +195,7 @@ CheckPlayerTurn:
 .FastAsleep
 ; 'fast asleep!'
 	ld hl, FastAsleepText
-	call FarBattleTextBox
+	call StdBattleTextBox
 
 ; Snore and Sleep Talk bypass sleep.
 	ld a, [CurPlayerMove]
@@ -221,7 +221,7 @@ CheckPlayerTurn:
 
 ; 'frozen solid!'
 	ld hl, FrozenSolidText
-	call FarBattleTextBox
+	call StdBattleTextBox
 
 	call CantMove
 	jp Function0x34385
@@ -236,7 +236,7 @@ CheckPlayerTurn:
 
 ; 'flinched!'
 	ld hl, FlinchedText
-	call FarBattleTextBox
+	call StdBattleTextBox
 
 	call CantMove
 	jp Function0x34385
@@ -256,7 +256,7 @@ CheckPlayerTurn:
 
 ; 'disabled no more!'
 	ld hl, DisabledNoMoreText
-	call FarBattleTextBox
+	call StdBattleTextBox
 
 
 .CheckConfused
@@ -272,7 +272,7 @@ CheckPlayerTurn:
 
 ; 'confused no more!'
 	ld hl, ConfusedNoMoreText
-	call FarBattleTextBox
+	call StdBattleTextBox
 
 	jr .CheckAttract
 
@@ -280,7 +280,7 @@ CheckPlayerTurn:
 .Confused
 ; 'confused!'
 	ld hl, IsConfusedText
-	call FarBattleTextBox
+	call StdBattleTextBox
 
 	xor a
 	ld [$cfca], a
@@ -288,7 +288,7 @@ CheckPlayerTurn:
 	call FarPlayBattleAnimation
 
 ; 50% chance of hitting itself
-	call FarBattleRNG
+	call BattleRandom
 	cp $80
 	jr nc, .CheckAttract
 
@@ -310,7 +310,7 @@ CheckPlayerTurn:
 
 ; 'in love with'
 	ld hl, InLoveWithText
-	call FarBattleTextBox
+	call StdBattleTextBox
 
 	xor a
 	ld [$cfca], a
@@ -319,13 +319,13 @@ CheckPlayerTurn:
 	call FarPlayBattleAnimation
 
 ; 50% chance of infatuation
-	call FarBattleRNG
+	call BattleRandom
 	cp $80
 	jr c, .CheckDisabledMove
 
 ; 'infatuation kept it from attacking!'
 	ld hl, InfatuationText
-	call FarBattleTextBox
+	call StdBattleTextBox
 
 	call CantMove
 	jp Function0x34385
@@ -353,13 +353,13 @@ CheckPlayerTurn:
 	ret z
 
 ; 25% chance to be fully paralyzed
-	call FarBattleRNG
+	call BattleRandom
 	cp $3f
 	ret nc
 
 ; 'fully paralyzed!'
 	ld hl, FullyParalyzedText
-	call FarBattleTextBox
+	call StdBattleTextBox
 	call CantMove
 	jp Function0x34385
 ; 341f0
@@ -412,7 +412,7 @@ CheckEnemyTurn: ; 3421f
 
 ; 'must recharge!'
 	ld hl, MustRechargeText
-	call FarBattleTextBox
+	call StdBattleTextBox
 	call CantMove
 	jp Function0x34385
 
@@ -429,7 +429,7 @@ CheckEnemyTurn: ; 3421f
 
 ; 'fast asleep!'
 	ld hl, FastAsleepText
-	call FarBattleTextBox
+	call StdBattleTextBox
 	xor a
 	ld [$cfca], a
 	ld de, ANIM_SLEEP
@@ -440,7 +440,7 @@ CheckEnemyTurn: ; 3421f
 .WokeUp
 ; 'woke up!'
 	ld hl, WokeUpText
-	call FarBattleTextBox
+	call StdBattleTextBox
 	call CantMove
 	call UpdateEnemyMonInParty
 	ld hl, $6036
@@ -475,7 +475,7 @@ CheckEnemyTurn: ; 3421f
 
 ; 'frozen solid!'
 	ld hl, FrozenSolidText
-	call FarBattleTextBox
+	call StdBattleTextBox
 	call CantMove
 	jp Function0x34385
 
@@ -489,7 +489,7 @@ CheckEnemyTurn: ; 3421f
 
 ; 'flinched!'
 	ld hl, FlinchedText
-	call FarBattleTextBox
+	call StdBattleTextBox
 
 	call CantMove
 	jp Function0x34385
@@ -511,7 +511,7 @@ CheckEnemyTurn: ; 3421f
 
 ; 'disabled no more!'
 	ld hl, DisabledNoMoreText
-	call FarBattleTextBox
+	call StdBattleTextBox
 
 
 .CheckConfused
@@ -528,7 +528,7 @@ CheckEnemyTurn: ; 3421f
 
 ; 'confused no more!'
 	ld hl, ConfusedNoMoreText
-	call FarBattleTextBox
+	call StdBattleTextBox
 
 	jr .CheckAttract
 
@@ -536,7 +536,7 @@ CheckEnemyTurn: ; 3421f
 .Confused
 ; 'confused!'
 	ld hl, IsConfusedText
-	call FarBattleTextBox
+	call StdBattleTextBox
 
 	xor a
 	ld [$cfca], a
@@ -544,7 +544,7 @@ CheckEnemyTurn: ; 3421f
 	call FarPlayBattleAnimation
 
 ; 50% chance of hitting itself
-	call FarBattleRNG
+	call BattleRandom
 	cp $80
 	jr nc, .CheckAttract
 
@@ -555,7 +555,7 @@ CheckEnemyTurn: ; 3421f
 
 ; 'hurt itself in its confusion!'
 	ld hl, HurtItselfText
-	call FarBattleTextBox
+	call StdBattleTextBox
 
 	call Function0x355dd
 
@@ -589,7 +589,7 @@ CheckEnemyTurn: ; 3421f
 
 ; 'in love with'
 	ld hl, InLoveWithText
-	call FarBattleTextBox
+	call StdBattleTextBox
 
 	xor a
 	ld [$cfca], a
@@ -598,13 +598,13 @@ CheckEnemyTurn: ; 3421f
 	call FarPlayBattleAnimation
 
 ; 50% chance of infatuation
-	call FarBattleRNG
+	call BattleRandom
 	cp $80
 	jr c, .CheckDisabledMove
 
 ; 'infatuation kept it from attacking!'
 	ld hl, InfatuationText
-	call FarBattleTextBox
+	call StdBattleTextBox
 
 	call CantMove
 	jp Function0x34385
@@ -633,13 +633,13 @@ CheckEnemyTurn: ; 3421f
 	ret z
 
 ; 25% chance to be fully paralyzed
-	call FarBattleRNG
+	call BattleRandom
 	cp $3f
 	ret nc
 
 ; 'fully paralyzed!'
 	ld hl, FullyParalyzedText
-	call FarBattleTextBox
+	call StdBattleTextBox
 
 	call CantMove
 
@@ -668,7 +668,7 @@ MoveDisabled: ; 3438d
 
 ; 'disabled!'
 	ld hl, DisabledMoveText
-	jp FarBattleTextBox
+	jp StdBattleTextBox
 ; 343a5
 
 
@@ -676,7 +676,7 @@ HitConfusion: ; 343a5
 
 ; 'hurt itself in its confusion!'
 	ld hl, HurtItselfText
-	call FarBattleTextBox
+	call StdBattleTextBox
 
 	xor a
 	ld [CriticalHit], a
@@ -808,7 +808,7 @@ BattleCommand02: ; 343db
 
 ; Random number from 0 to obedience level + monster level
 .rand1
-	call FarBattleRNG
+	call BattleRandom
 	swap a
 	cp b
 	jr nc, .rand1
@@ -826,7 +826,7 @@ BattleCommand02: ; 343db
 
 ; Another random number from 0 to obedience level + monster level
 .rand2
-	call FarBattleRNG
+	call BattleRandom
 	cp b
 	jr nc, .rand2
 
@@ -843,7 +843,7 @@ BattleCommand02: ; 343db
 	ld b, a
 
 ; The chance of napping is the difference out of 256.
-	call FarBattleRNG
+	call BattleRandom
 	swap a
 	sub b
 	jr c, .Nap
@@ -854,7 +854,7 @@ BattleCommand02: ; 343db
 
 ; 'won't obey!'
 	ld hl, WontObeyText
-	call FarBattleTextBox
+	call StdBattleTextBox
 
 	call HitConfusion
 
@@ -862,7 +862,7 @@ BattleCommand02: ; 343db
 
 
 .Nap
-	call FarBattleRNG
+	call BattleRandom
 	add a
 	swap a
 	and 7
@@ -876,7 +876,7 @@ BattleCommand02: ; 343db
 
 
 .DoNothing
-	call FarBattleRNG
+	call BattleRandom
 	and 3
 
 ; 'loafing around!'
@@ -898,7 +898,7 @@ BattleCommand02: ; 343db
 	ld hl, IgnoredOrdersText
 
 .Print
-	call FarBattleTextBox
+	call StdBattleTextBox
 	jp Function0x3450c
 
 
@@ -964,7 +964,7 @@ BattleCommand02: ; 343db
 
 
 .RandomMove
-	call FarBattleRNG
+	call BattleRandom
 	and 3
 
 	cp b
@@ -1043,7 +1043,7 @@ IgnoreSleepOnly: ; 3451f
 
 ; 'ignored orders…sleeping!'
 	ld hl, IgnoredSleepingText
-	call FarBattleTextBox
+	call StdBattleTextBox
 
 	call EndMoveEffect
 
@@ -1192,7 +1192,7 @@ BattleCommand04: ; 34555
 ; 'but no pp is left for the move'
 	ld hl, NoPPLeftText
 .print
-	call FarBattleTextBox
+	call StdBattleTextBox
 	ld b, 1
 	ret
 ; 34602
@@ -1324,7 +1324,7 @@ BattleCommand05: ; 34631
 	ld hl, .Chances
 	ld b, 0
 	add hl, bc
-	call FarBattleRNG
+	call BattleRandom
 	cp [hl]
 	ret nc
 	ld a, 1
@@ -2338,7 +2338,7 @@ BattleCommand08: ; 34cfd
 
 ; Multiply by 85-100%...
 .loop
-	call FarBattleRNG
+	call BattleRandom
 	rrca
 	cp $d9 ; 85%
 	jr c, .loop
@@ -2423,7 +2423,7 @@ BattleCommand09: ; 34d32
 	cp $ff
 	jr z, .Hit
 
-	call FarBattleRNG
+	call BattleRandom
 	cp b
 	jr nc, .Miss
 
@@ -2471,7 +2471,7 @@ BattleCommand09: ; 34d32
 
 ; 'protecting itself!'
 	ld hl, ProtectingItselfText
-	call FarBattleTextBox
+	call StdBattleTextBox
 
 	ld c, 40
 	call DelayFrames
@@ -2701,7 +2701,7 @@ BattleCommand90: ; 34ecc
 	ld hl, EnemyMoveEffectChance
 .asm_34ee1
 
-	call FarBattleRNG
+	call BattleRandom
 	cp [hl]
 	pop hl
 	ret c
@@ -2986,7 +2986,7 @@ BattleCommand0e: ; 3505e
 	cp HELD_FOCUS_BAND
 	ld b, $0
 	jr nz, .asm_3508b ; 3507a $f
-	call FarBattleRNG
+	call BattleRandom
 	cp c
 	jr nc, .asm_3508b ; 35080 $9
 	call BattleCommand4b
@@ -3014,7 +3014,7 @@ BattleCommand0e: ; 3505e
 	dec a
 	jr nz, .asm_350ab ; 350a3 $6
 	ld hl, EnduredText
-	jp FarBattleTextBox
+	jp StdBattleTextBox
 
 .asm_350ab
 	call GetOpponentItem
@@ -3023,7 +3023,7 @@ BattleCommand0e: ; 3505e
 	call GetItemName
 
 	ld hl, HungOnText
-	jp FarBattleTextBox
+	jp StdBattleTextBox
 
 .asm_50bb
 	ld a, BATTLE_VARS_SUBSTATUS4_OPP
@@ -3105,7 +3105,7 @@ Function0x350e4: ; 350e4
 	ld [hl], a
 .asm_3513e
 	ld hl, CrashedText
-	call FarBattleTextBox
+	call StdBattleTextBox
 	ld a, $1
 	ld [$c689], a
 	call Function0x37e36
@@ -3123,7 +3123,7 @@ Function0x35157: ; 35157
 	ld h, d
 	ld l, e
 .asm_35162
-	jp FarBattleTextBox
+	jp StdBattleTextBox
 ; 35165
 
 
@@ -3157,7 +3157,7 @@ BattleCommand0f: ; 35175
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	call FarBattleTextBox
+	call StdBattleTextBox
 
 	xor a
 	ld [CriticalHit], a
@@ -3211,7 +3211,7 @@ BattleCommand10: ; 351ad
 	jr nc, .print
 	ld hl, NotVeryEffectiveText ; 'not very effective'
 .print
-	jp FarBattleTextBox
+	jp StdBattleTextBox
 ; 351c0
 
 
@@ -3237,7 +3237,7 @@ BattleCommand11: ; 351c0
 	jr z, .asm_35231
 
 	ld hl, TookDownWithItText
-	call FarBattleTextBox
+	call StdBattleTextBox
 
 	ld a, [hBattleTurn]
 	and a
@@ -3332,7 +3332,7 @@ BattleCommand12: ; 35250
 
 	call SwitchTurn
 	ld hl, RageBuildingText
-	call FarBattleTextBox
+	call StdBattleTextBox
 	jp SwitchTurn
 ; 3527b
 
@@ -3822,7 +3822,7 @@ BattleCommanda1: ; 35461
 	ld a, $1
 	ld [$c72d], a
 	ld hl, BeatUpAttackText
-	call FarBattleTextBox
+	call StdBattleTextBox
 	ld a, [EnemyMonSpecies]
 	ld [CurSpecies], a
 	call $3856
@@ -3923,11 +3923,11 @@ BattleCommanda1: ; 35461
 	ld [$d265], a
 	call $343b
 	ld hl, BeatUpAttackText
-	call FarBattleTextBox
+	call StdBattleTextBox
 	jp EnemyAttackDamage
 .asm_3557d
 	ld hl, BeatUpAttackText
-	call FarBattleTextBox
+	call StdBattleTextBox
 	ld a, [BattleMonSpecies]
 	ld [CurSpecies], a
 	call GetBaseData
@@ -4332,7 +4332,7 @@ BattleCommand3f: ; 35726
 	add b
 	ld b, a
 .asm_3575d
-	call FarBattleRNG
+	call BattleRandom
 	and a
 	jr z, .asm_3575d ; 35761 $fa
 	cp b
@@ -4555,7 +4555,7 @@ BattleCommand41: ; 35864
 	bit 4, [hl]
 	jp nz, Function0x35923
 	set 4, [hl]
-	call FarBattleRNG
+	call BattleRandom
 	and $3
 	inc a
 	inc a
@@ -4626,7 +4626,7 @@ BattleCommand41: ; 35864
 	call Function0x37e01
 
 	ld hl, GotAnEncoreText
-	jp FarBattleTextBox
+	jp StdBattleTextBox
 ; 35923
 
 
@@ -4673,7 +4673,7 @@ BattleCommand42: ; 35926
 	rst FarCall
 
 	ld hl, SharedPainText
-	jp FarBattleTextBox
+	jp StdBattleTextBox
 
 .asm_3597d
 	ld a, [hld]
@@ -4782,7 +4782,7 @@ BattleCommand44: ; 359e6
 
 	call SwitchTurn
 .asm_35a13
-	call FarBattleRNG
+	call BattleRandom
 	and $1f
 	cp $a
 	jr c, .asm_35a24 ; 35a1a $8
@@ -4815,7 +4815,7 @@ BattleCommand44: ; 359e6
 	ld a, $29
 	call Predef
 	ld hl, $5452
-	jp FarBattleTextBox
+	jp StdBattleTextBox
 .asm_35a50
 	jp Function0x37354
 ; 35a53
@@ -4835,7 +4835,7 @@ BattleCommand45: ; 35a53
 	call Function0x37e01
 
 	ld hl, TookAimText
-	jp FarBattleTextBox
+	jp StdBattleTextBox
 
 .asm_35a6e
 	call Function0x37e77
@@ -4938,7 +4938,7 @@ BattleCommand46: ; 35a74
 	call Function0x37e01
 
 	ld hl, SketchedText
-	jp FarBattleTextBox
+	jp StdBattleTextBox
 
 .asm_35b10
 	call Function0x37e77
@@ -5005,7 +5005,7 @@ BattleCommand48: ; 35b33
 	dec hl
 .asm_35b62
 	push hl
-	call FarBattleRNG
+	call BattleRandom
 	and $3
 	ld c, a
 	ld b, $0
@@ -5131,7 +5131,7 @@ BattleCommand49: ; 35bff
 	set 6, [hl]
 	call Function0x37e01
 	ld hl, DestinyBondEffectText
-	jp FarBattleTextBox
+	jp StdBattleTextBox
 ; 35c0f
 
 
@@ -5173,7 +5173,7 @@ BattleCommand4a: ; 35c0f
 	jr z, .asm_35c91 ; 35c46 $49
 	push bc
 	call GetMoveName
-	call FarBattleRNG
+	call BattleRandom
 	and $3
 	inc a
 	inc a
@@ -5216,7 +5216,7 @@ BattleCommand4a: ; 35c0f
 	ld a, d
 	ld [$d265], a
 	ld hl, SpiteEffectText
-	jp FarBattleTextBox
+	jp StdBattleTextBox
 .asm_35c91
 	jp PrintDidntAffect2
 ; 35c94
@@ -5294,7 +5294,7 @@ BattleCommand4c: ; 35cc9
 	call Function0x37e01
 
 	ld hl, BellChimedText
-	call FarBattleTextBox
+	call StdBattleTextBox
 
 	ld a, [hBattleTurn]
 	and a
@@ -5452,7 +5452,7 @@ Function0x35d7e: ; 35d7e
 Function0x35de0: ; 35de0
 
 	ld hl, SubTookDamageText
-	call FarBattleTextBox
+	call StdBattleTextBox
 
 	ld de, $c6e0
 	ld a, [hBattleTurn]
@@ -5479,7 +5479,7 @@ Function0x35de0: ; 35de0
 	res 4, [hl]
 
 	ld hl, SubFadedText
-	call FarBattleTextBox
+	call StdBattleTextBox
 
 	call SwitchTurn
 	call BattleCommanda7
@@ -5576,7 +5576,7 @@ BattleCommand14: ; 35e5c
 	ld b, $3
 
 .asm_35ea4
-	call FarBattleRNG
+	call BattleRandom
 	and b
 	jr z, .asm_35ea4
 	cp 7
@@ -5587,7 +5587,7 @@ BattleCommand14: ; 35e5c
 	call RefreshBattleHuds
 
 	ld hl, FellAsleepText
-	call FarBattleTextBox
+	call StdBattleTextBox
 
 	ld a, $f
 	ld hl, $5de9
@@ -5600,7 +5600,7 @@ BattleCommand14: ; 35e5c
 	push hl
 	call Function0x37e77
 	pop hl
-	jp FarBattleTextBox
+	jp StdBattleTextBox
 ; 35ece
 
 
@@ -5625,7 +5625,7 @@ Function0x35ece: ; 35ece
 	bit 5, a
 	jr nz, .asm_35eec
 
-	call FarBattleRNG
+	call BattleRandom
 	cp $40
 	ret c
 
@@ -5664,7 +5664,7 @@ BattleCommand13: ; 35eee
 	call RefreshBattleHuds
 
 	ld hl, WasPoisonedText
-	call FarBattleTextBox
+	call StdBattleTextBox
 
 	ld a, $f
 	ld hl, $5de9
@@ -5715,7 +5715,7 @@ BattleCommand2f: ; 35f2c
 	ld a, [PlayerSubStatus5]
 	bit 5, a
 	jr nz, .asm_35f89 ; 35f80 $7
-	call FarBattleRNG
+	call BattleRandom
 	cp $40
 	jr c, .asm_35fb8 ; 35f87 $2f
 .asm_35f89
@@ -5729,7 +5729,7 @@ BattleCommand2f: ; 35f2c
 	call Function0x35fc0
 
 	ld hl, WasPoisonedText
-	call FarBattleTextBox
+	call StdBattleTextBox
 
 	jr .asm_35fb1 ; 35fa2 $d
 .asm_35fa4
@@ -5739,7 +5739,7 @@ BattleCommand2f: ; 35f2c
 	call Function0x35fc0
 
 	ld hl, BadlyPoisonedText
-	call FarBattleTextBox
+	call StdBattleTextBox
 
 .asm_35fb1
 	ld a, $f
@@ -5751,7 +5751,7 @@ BattleCommand2f: ; 35f2c
 	push hl
 	call Function0x37e77
 	pop hl
-	jp FarBattleTextBox
+	jp StdBattleTextBox
 ; 35fc0
 
 
@@ -5807,7 +5807,7 @@ BattleCommand15: ; 35fff
 ; draintarget
 	call Function0x36011
 	ld hl, SuckedHealthText
-	jp FarBattleTextBox
+	jp StdBattleTextBox
 ; 36008
 
 
@@ -5815,7 +5815,7 @@ BattleCommand16: ; 36008
 ; eatdream
 	call Function0x36011
 	ld hl, DreamEatenText
-	jp FarBattleTextBox
+	jp StdBattleTextBox
 ; 36011
 
 
@@ -5938,7 +5938,7 @@ BattleCommand17: ; 3608c
 	call RefreshBattleHuds
 
 	ld hl, WasBurnedText
-	call FarBattleTextBox
+	call StdBattleTextBox
 
 	ld a, $f
 	ld hl, $5de9
@@ -5970,7 +5970,7 @@ Defrost: ; 360dd
 	call UpdateOpponentInParty
 
 	ld hl, DefrostedOpponentText
-	jp FarBattleTextBox
+	jp StdBattleTextBox
 ; 36102
 
 
@@ -6011,7 +6011,7 @@ BattleCommand18: ; 36102
 	call RefreshBattleHuds
 
 	ld hl, WasFrozenText
-	call FarBattleTextBox
+	call StdBattleTextBox
 
 	ld a, $f
 	ld hl, $5de9
@@ -6375,7 +6375,7 @@ BattleCommand1d: ; 362e3
 	cp EFFECT_ACCURACY_DOWN_HIT
 	jr z, .DidntMiss
 
-	call FarBattleRNG
+	call BattleRandom
 	cp $40
 	jr c, .Failed
 
@@ -6596,7 +6596,7 @@ BattleCommand8e: ; 3644c
 	inc b
 	call GetStatName
 	ld hl, WontRiseAnymoreText
-	jp FarBattleTextBox
+	jp StdBattleTextBox
 ; 3646a
 
 
@@ -6612,14 +6612,14 @@ BattleCommand8f: ; 3646a
 	jp z, TryPrintButItFailed
 	dec a
 	ld hl, ProtectedByMistText
-	jp z, FarBattleTextBox
+	jp z, StdBattleTextBox
 	ld a, [LoweredStat]
 	and $f
 	ld b, a
 	inc b
 	call GetStatName
 	ld hl, WontDropAnymoreText
-	jp FarBattleTextBox
+	jp StdBattleTextBox
 ; 3648f
 
 
@@ -6789,7 +6789,7 @@ BattleCommandac: ; 3658f
 
 ; 1/3 chance of each status
 .loop
-	call FarBattleRNG
+	call BattleRandom
 	swap a
 	and 3
 	jr z, .loop
@@ -6972,7 +6972,7 @@ BattleCommand21: ; 36671
 	res 0, [hl]
 
 	ld hl, UnleashedEnergyText
-	call FarBattleTextBox
+	call StdBattleTextBox
 
 	ld a, BATTLE_VARS_MOVE_POWER
 	call GetBattleVarPair
@@ -7018,7 +7018,7 @@ BattleCommand21: ; 36671
 
 .asm_366dc
 	ld hl, StoringEnergyText
-	call FarBattleTextBox
+	call StdBattleTextBox
 	jp EndMoveEffect
 ; 366e5
 
@@ -7043,7 +7043,7 @@ BattleCommand22: ; 366e5
 	ld [de], a
 	ld [PlayerMoveEffect], a
 	ld [EnemyMoveEffect], a
-	call FarBattleRNG
+	call BattleRandom
 	and $1
 	inc a
 	inc a
@@ -7080,7 +7080,7 @@ BattleCommand3e: ; 3671a
 	pop af
 	jr nz, .asm_3674c ; 3673f $b
 	set 7, [hl]
-	call FarBattleRNG
+	call BattleRandom
 	and $1
 	inc a
 	inc a
@@ -7110,7 +7110,7 @@ BattleCommand3d: ; 36751
 	ld a, BATTLE_VARS_SUBSTATUS3
 	call GetBattleVarPair
 	set 1, [hl]
-	call FarBattleRNG
+	call BattleRandom
 	and $1
 	inc a
 	ld [de], a
@@ -7152,7 +7152,7 @@ BattleCommanda0: ; 36778
 	ld c, a
 	inc c
 .asm_367ac
-	call FarBattleRNG
+	call BattleRandom
 	cp c
 	jr nc, .asm_367ac ; 367b0 $fa
 	srl b
@@ -7177,7 +7177,7 @@ BattleCommanda0: ; 36778
 	ld c, a
 	inc c
 .asm_367d2
-	call FarBattleRNG
+	call BattleRandom
 	cp c
 	jr nc, .asm_367d2 ; 367d6 $fa
 	srl b
@@ -7199,7 +7199,7 @@ BattleCommanda0: ; 36778
 	call Function0x36804
 
 	ld hl, FledFromBattleText
-	jp FarBattleTextBox
+	jp StdBattleTextBox
 ; 36804
 
 
@@ -7242,7 +7242,7 @@ BattleCommand23: ; 3680f
 	ld c, a
 	inc c
 .asm_36845
-	call FarBattleRNG
+	call BattleRandom
 	cp c
 	jr nc, .asm_36845 ; 36849 $fa
 	srl b
@@ -7282,7 +7282,7 @@ BattleCommand23: ; 3680f
 	ld a, [CurOTMon]
 	ld c, a
 .asm_3689a
-	call FarBattleRNG
+	call BattleRandom
 	and $7
 	cp b
 	jr nc, .asm_3689a ; 368a0 $f8
@@ -7305,7 +7305,7 @@ BattleCommand23: ; 3680f
 	rst FarCall
 
 	ld hl, DraggedOutText
-	call FarBattleTextBox
+	call StdBattleTextBox
 
 	ld hl, $5c23
 	jp CallBankF
@@ -7332,7 +7332,7 @@ BattleCommand23: ; 3680f
 	ld c, a
 	inc c
 .asm_368e6
-	call FarBattleRNG
+	call BattleRandom
 	cp c
 	jr nc, .asm_368e6
 
@@ -7378,7 +7378,7 @@ BattleCommand23: ; 3680f
 	ld a, [CurBattleMon]
 	ld c, a
 .asm_3693a
-	call FarBattleRNG
+	call BattleRandom
 	and $7
 	cp b
 	jr nc, .asm_3693a
@@ -7402,7 +7402,7 @@ BattleCommand23: ; 3680f
 	call CallBankF
 
 	ld hl, DraggedOutText
-	call FarBattleTextBox
+	call StdBattleTextBox
 
 	ld hl, $5c23
 	jp CallBankF
@@ -7428,7 +7428,7 @@ BattleCommand23: ; 3680f
 	jr z, .asm_36991
 	ld hl, BlownAwayText
 .asm_36991
-	jp FarBattleTextBox
+	jp StdBattleTextBox
 ; 36994
 
 
@@ -7496,7 +7496,7 @@ BattleCommand24: ; 369b6
 	cp EFFECT_TRIPLE_KICK
 	jr nz, .asm_36a2b
 .asm_369ec
-	call FarBattleRNG
+	call BattleRandom
 	and $3
 	jr z, .asm_369ec
 	dec a
@@ -7530,11 +7530,11 @@ BattleCommand24: ; 369b6
 	call BattleCommanda8
 	jp EndMoveEffect
 .asm_36a2b
-	call FarBattleRNG
+	call BattleRandom
 	and $3
 	cp $2
 	jr c, .asm_36a39 ; 36a32 $5
-	call FarBattleRNG
+	call BattleRandom
 	and $3
 .asm_36a39
 	inc a
@@ -7569,7 +7569,7 @@ BattleCommand24: ; 369b6
 	call CleanGetBattleVarPair
 	cp EFFECT_BEAT_UP
 	jr z, .asm_36a67
-	call FarBattleTextBox
+	call StdBattleTextBox
 .asm_36a67
 
 	pop bc
@@ -7670,7 +7670,7 @@ BattleCommand4d: ; 36ac9
 	ld d, h
 	ld e, l
 	call GetUserItem
-	call FarBattleRNG
+	call BattleRandom
 	cp c
 	ret nc
 	call EndRechargeOpp
@@ -7767,7 +7767,7 @@ BattleCommand39: ; 36b4d
 	ld hl, IgnoredOrders2Text
 	ld a, [AlreadyDisobeyed]
 	and a
-	call nz, FarBattleTextBox
+	call nz, StdBattleTextBox
 
 	call BattleCommand0a
 	xor a
@@ -7917,7 +7917,7 @@ BattleCommand3b: ; 36c2d
 	call CleanGetBattleVarPair
 	bit 4, a
 	ret nz
-	call FarBattleRNG
+	call BattleRandom
 	and 3
 	inc a
 	inc a
@@ -7941,7 +7941,7 @@ BattleCommand3b: ; 36c2d
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	jp FarBattleTextBox
+	jp StdBattleTextBox
 
 .Traps
 	dbw BIND,      UsedBindText      ; 'used BIND on'
@@ -7962,7 +7962,7 @@ BattleCommand28: ; 36c7e
 	set 1, [hl]
 	call Function0x37e01
 	ld hl, MistText
-	jp FarBattleTextBox
+	jp StdBattleTextBox
 .asm_36c92
 	call Function0x37e77
 	jp PrintButItFailed
@@ -7979,7 +7979,7 @@ BattleCommand29: ; 36c98
 	set 2, [hl]
 	call Function0x37e01
 	ld hl, GettingPumpedText
-	jp FarBattleTextBox
+	jp StdBattleTextBox
 .asm_36cac
 	call Function0x37e77
 	jp PrintButItFailed
@@ -8048,7 +8048,7 @@ BattleCommand27: ; 36cb2
 	call Predef
 	call RefreshBattleHuds
 	ld hl, RecoilText
-	jp FarBattleTextBox
+	jp StdBattleTextBox
 ; 36d1d
 
 
@@ -8085,7 +8085,7 @@ BattleCommand2a: ; 36d3b
 	call GetItemName
 	call Function0x37e77
 	ld hl, ProtectedByText
-	jp FarBattleTextBox
+	jp StdBattleTextBox
 
 .asm_36d53
 	ld a, BATTLE_VARS_SUBSTATUS3_OPP
@@ -8094,7 +8094,7 @@ BattleCommand2a: ; 36d3b
 	jr z, .asm_36d65
 	call Function0x37e77
 	ld hl, AlreadyConfusedText
-	jp FarBattleTextBox
+	jp StdBattleTextBox
 
 .asm_36d65
 	call CheckSubstituteOpp
@@ -8116,7 +8116,7 @@ Function0x36d70: ; 36d70
 
 .asm_36d7b
 	set 7, [hl]
-	call FarBattleRNG
+	call BattleRandom
 	and 3
 	inc a
 	inc a
@@ -8137,7 +8137,7 @@ Function0x36d70: ; 36d70
 	call Function0x37e54
 
 	ld hl, BecameConfusedText
-	call FarBattleTextBox
+	call StdBattleTextBox
 
 	call GetOpponentItem
 	ld a, b
@@ -8182,7 +8182,7 @@ BattleCommand30: ; 36dc7
 	call GetItemName
 	call Function0x37e77
 	ld hl, ProtectedByText
-	jp FarBattleTextBox
+	jp StdBattleTextBox
 .asm_36def
 	ld a, [hBattleTurn]
 	and a
@@ -8196,7 +8196,7 @@ BattleCommand30: ; 36dc7
 	ld a, [PlayerSubStatus5]
 	bit 5, a
 	jr nz, .asm_36e0e ; 36e05 $7
-	call FarBattleRNG
+	call BattleRandom
 	cp $40
 	jr c, .asm_36e52 ; 36e0c $44
 .asm_36e0e
@@ -8227,7 +8227,7 @@ BattleCommand30: ; 36dc7
 .asm_36e49
 	call Function0x37e77
 	ld hl, AlreadyParalyzedText
-	jp FarBattleTextBox
+	jp StdBattleTextBox
 .asm_36e52
 	jp PrintDidntAffect2
 .asm_36e55
@@ -8338,7 +8338,7 @@ BattleCommand31: ; 36e7c
 	call BattleCommanda6
 .asm_36eeb
 	ld hl, MadeSubstituteText
-	call FarBattleTextBox
+	call StdBattleTextBox
 	jp RefreshBattleHuds
 .asm_36ef4
 	call Function0x34548
@@ -8350,7 +8350,7 @@ BattleCommand31: ; 36e7c
 	call nz, BattleCommand0c
 	ld hl, TooWeakSubText
 .asm_36f08
-	jp FarBattleTextBox
+	jp StdBattleTextBox
 ; 36f0b
 
 BattleCommand32: ; 36f0b
@@ -8463,7 +8463,7 @@ BattleCommand33: ; 36f46
 	call GetMoveName
 	call Function0x37e01
 	ld hl, LearnedMoveText
-	jp FarBattleTextBox
+	jp StdBattleTextBox
 .asm_36f9a
 	jp Function0x37357
 ; 36f9d
@@ -8496,14 +8496,14 @@ BattleCommand35: ; 36f9d
 	set 7, [hl]
 	call Function0x37e01
 	ld hl, WasSeededText
-	jp FarBattleTextBox
+	jp StdBattleTextBox
 .asm_36fd2
 	call Function0x37e77
 	jp PrintDoesntAffect
 .asm_36fd8
 	call Function0x37e77
 	ld hl, EvadedText
-	jp FarBattleTextBox
+	jp StdBattleTextBox
 ; 36fe1
 
 
@@ -8558,7 +8558,7 @@ BattleCommand37: ; 36fed
 	and a
 	jr z, .asm_37059 ; 3702c $2b
 .asm_3702e
-	call FarBattleRNG
+	call BattleRandom
 	and $7
 	jr z, .asm_3702e ; 37033 $f9
 	inc a
@@ -8579,7 +8579,7 @@ BattleCommand37: ; 36fed
 	ld [$d265], a
 	call GetMoveName
 	ld hl, WasDisabledText
-	jp FarBattleTextBox
+	jp StdBattleTextBox
 .asm_37059
 	jp Function0x37354
 ; 3705c
@@ -8608,7 +8608,7 @@ BattleCommand1e: ; 3705c
 	inc [hl]
 .asm_37079
 	ld hl, CoinsScatteredText
-	jp FarBattleTextBox
+	jp StdBattleTextBox
 ; 3707f
 
 
@@ -8677,7 +8677,7 @@ BattleCommand1f: ; 3707f
 	call Function0x37e77
 	jp PrintButItFailed
 .asm_370d9
-	call FarBattleRNG
+	call BattleRandom
 	and $3
 	ld c, a
 	ld b, $0
@@ -8706,7 +8706,7 @@ BattleCommand1f: ; 3707f
 	rst FarCall
 	call Function0x37e01
 	ld hl, TransformedTypeText
-	jp FarBattleTextBox
+	jp StdBattleTextBox
 ; 3710e
 
 
@@ -8733,7 +8733,7 @@ BattleCommand20: ; 3710e
 	call Function0x37e01
 
 	ld hl, EliminatedStatsText
-	jp FarBattleTextBox
+	jp StdBattleTextBox
 
 .Fill
 	ld b, PlayerStatLevelsEnd - PlayerStatLevels
@@ -8787,7 +8787,7 @@ BattleCommand2c: ; 3713e
 	jr z, .asm_37186 ; 37181 $3
 	ld hl, RestedText
 .asm_37186
-	call FarBattleTextBox
+	call StdBattleTextBox
 	ld a, [hBattleTurn]
 	and a
 	jr nz, .asm_37193 ; 3718c $5
@@ -8816,12 +8816,12 @@ BattleCommand2c: ; 3713e
 	call UpdateUserInParty
 	call RefreshBattleHuds
 	ld hl, RegainedHealthText
-	jp FarBattleTextBox
+	jp StdBattleTextBox
 
 .asm_371c4
 	call Function0x37e77
 	ld hl, HPIsFullText
-	jp FarBattleTextBox
+	jp StdBattleTextBox
 ; 371cd
 
 
@@ -8958,7 +8958,7 @@ BattleCommand2d: ; 371cd
 	ld a, $a4
 	call nz, Function0x37e44
 	ld hl, TransformedText
-	jp FarBattleTextBox
+	jp StdBattleTextBox
 ; 372c6
 
 
@@ -9056,7 +9056,7 @@ BattleCommand2e: ; 372fc
 
 .asm_37331
 	call Function0x37e01
-	jp FarBattleTextBox
+	jp StdBattleTextBox
 
 .asm_37337
 	call Function0x37e77
@@ -9067,14 +9067,14 @@ BattleCommand2e: ; 372fc
 PrintDoesntAffect: ; 3733d
 ; 'it doesn't affect'
 	ld hl, DoesntAffectText
-	jp FarBattleTextBox
+	jp StdBattleTextBox
 ; 37343
 
 
 PrintNothingHappened: ; 37343
 ; 'but nothing happened!'
 	ld hl, NothingHappenedText
-	jp FarBattleTextBox
+	jp StdBattleTextBox
 ; 37349
 
 
@@ -9090,7 +9090,7 @@ TryPrintButItFailed: ; 37349
 PrintButItFailed: ; 3734e
 ; 'but it failed!'
 	ld hl, ButItFailedText
-	jp FarBattleTextBox
+	jp StdBattleTextBox
 ; 37354
 
 
@@ -9109,7 +9109,7 @@ Function0x37357: ; 37357
 PrintDidntAffect: ; 37360
 ; 'it didn't affect'
 	ld hl, DidntAffect1Text
-	jp FarBattleTextBox
+	jp StdBattleTextBox
 ; 37366
 
 
@@ -9124,7 +9124,7 @@ PrintDidntAffect2: ; 37366
 PrintParalyze: ; 37372
 ; 'paralyzed! maybe it can't attack!'
 	ld hl, ParalyzedText
-	jp FarBattleTextBox
+	jp StdBattleTextBox
 ; 37378
 
 
@@ -9189,7 +9189,7 @@ BattleCommand1b: ; 373c9
 .asm_373de
 	call Function0x37e77
 	ld hl, MirrorMoveFailedText
-	call FarBattleTextBox
+	call StdBattleTextBox
 	jp EndMoveEffect
 .asm_373ea
 	ld a, b
@@ -9235,7 +9235,7 @@ BattleCommand34: ; 37418
 	call Function0x37e36
 
 .GetMove
-	call FarBattleRNG
+	call BattleRandom
 
 ; No invalid moves.
 	cp BEAT_UP + 1
@@ -9391,7 +9391,7 @@ BattleCommand50: ; 37492
 .asm_374f8
 	call GetItemName
 	ld hl, StoleText
-	jp FarBattleTextBox
+	jp StdBattleTextBox
 
 .asm_37501
 	ld a, 1
@@ -9422,7 +9422,7 @@ BattleCommand51: ; 37517
 	set 7, [hl]
 	call Function0x37e01
 	ld hl, CantEscapeNowText
-	jp FarBattleTextBox
+	jp StdBattleTextBox
 .asm_37530
 	call Function0x37e77
 	jp PrintButItFailed
@@ -9447,7 +9447,7 @@ BattleCommand52: ; 37536
 	set 0, [hl]
 	call Function0x37e01
 	ld hl, StartedNightmareText
-	jp FarBattleTextBox
+	jp StdBattleTextBox
 .asm_3755d
 	call Function0x37e77
 	jp PrintButItFailed
@@ -9475,7 +9475,7 @@ BattleCommand53: ; 37563
 .asm_3757f
 	call RefreshBattleHuds
 	ld hl, WasDefrostedText
-	jp FarBattleTextBox
+	jp StdBattleTextBox
 ; 37588
 
 
@@ -9536,7 +9536,7 @@ BattleCommand54: ; 37588
 	call CallBankF
 	call UpdateUserInParty
 	ld hl, PutACurseText
-	jp FarBattleTextBox
+	jp StdBattleTextBox
 .asm_37604
 	call Function0x37e77
 	jp PrintButItFailed
@@ -9545,7 +9545,7 @@ BattleCommand54: ; 37588
 	call GetStatName
 	call Function0x37e77
 	ld hl, WontRiseAnymoreText
-	jp FarBattleTextBox
+	jp StdBattleTextBox
 ; 37618
 
 
@@ -9559,7 +9559,7 @@ BattleCommand55: ; 37618
 	set 2, [hl]
 	call Function0x37e01
 	ld hl, ProtectedItselfText
-	jp FarBattleTextBox
+	jp StdBattleTextBox
 ; 3762c
 
 
@@ -9596,7 +9596,7 @@ Function0x3762c: ; 3762c
 	jr .asm_37665
 
 .asm_37656
-	call FarBattleRNG
+	call BattleRandom
 	and a
 	jr z, .asm_37656
 
@@ -9631,7 +9631,7 @@ BattleCommand5a: ; 3766f
 	set SUBSTATUS_ENDURE, [hl]
 	call Function0x37e01
 	ld hl, BracedItselfText
-	jp FarBattleTextBox
+	jp StdBattleTextBox
 ; 37683
 
 
@@ -9651,7 +9651,7 @@ BattleCommand56: ; 37683
 	set 0, [hl]
 	call Function0x37e01
 	ld hl, SpikesText
-	jp FarBattleTextBox
+	jp StdBattleTextBox
 
 .failed
 	jp Function0x37354
@@ -9673,7 +9673,7 @@ BattleCommand57: ; 376a0
 	set SUBSTATUS_IDENTIFIED, [hl]
 	call Function0x37e01
 	ld hl, IdentifiedText
-	jp FarBattleTextBox
+	jp StdBattleTextBox
 .asm_376bf
 	jp Function0x37354
 ; 376c2
@@ -9706,7 +9706,7 @@ BattleCommand58: ; 376c2
 .asm_376e9
 	call Function0x37e01
 	ld hl, StartPerishText
-	jp FarBattleTextBox
+	jp StdBattleTextBox
 .asm_376f2
 	call Function0x37e77
 	jp PrintButItFailed
@@ -9725,7 +9725,7 @@ BattleCommand59: ; 376f8
 	ld [WeatherCount], a
 	call Function0x37e01
 	ld hl, SandstormBrewedText
-	jp FarBattleTextBox
+	jp StdBattleTextBox
 .asm_37712
 	call Function0x37e77
 	jp PrintButItFailed
@@ -9911,7 +9911,7 @@ BattleCommand5f: ; 377ce
 
 ; 'fell in love!'
 	ld hl, FellInLoveText
-	jp FarBattleTextBox
+	jp StdBattleTextBox
 
 .asm_377f2
 	jp Function0x37354
@@ -10029,7 +10029,7 @@ BattleCommand61: ; 37874
 	and a
 	jp nz, Function0x37e77
 	push bc
-	call FarBattleRNG
+	call BattleRandom
 	ld b, a
 	ld hl, .table_37907
 	ld c, 0
@@ -10071,7 +10071,7 @@ BattleCommand61: ; 37874
 	call CallBankF
 	call SwitchTurn
 	ld hl, RegainedHealthText
-	call FarBattleTextBox
+	call StdBattleTextBox
 	call SwitchTurn
 	call UpdateOpponentInParty
 	jr .asm_37904 ; 378f1 $11
@@ -10081,7 +10081,7 @@ BattleCommand61: ; 37874
 	jr nc, .asm_37904 ; 378f9 $9
 	call Function0x37e77
 	ld hl, RefusedGiftText
-	call FarBattleTextBox
+	call StdBattleTextBox
 .asm_37904
 	jp EndMoveEffect
 
@@ -10141,7 +10141,7 @@ BattleCommand64: ; 37939
 	ld [de], a
 	call Function0x37e01
 	ld hl, CoveredByVeilText
-	jp FarBattleTextBox
+	jp StdBattleTextBox
 .asm_3795c
 	call Function0x37e77
 	jp PrintButItFailed
@@ -10177,7 +10177,7 @@ BattleCommand65: ; 37972
 	ld [AttackMissed], a
 	call BattleCommandaa
 	ld hl, SafeguardProtectText
-	call FarBattleTextBox
+	call StdBattleTextBox
 	jp EndMoveEffect
 ; 37991
 
@@ -10186,7 +10186,7 @@ BattleCommand66: ; 37991
 ; getmagnitude
 
 	push bc
-	call FarBattleRNG
+	call BattleRandom
 	ld b, a
 	ld hl, .Magnitudes
 .asm_37999
@@ -10204,7 +10204,7 @@ BattleCommand66: ; 37991
 	ld [$d265], a
 	call BattleCommandaa
 	ld hl, MagnitudeText
-	call FarBattleTextBox
+	call StdBattleTextBox
 	pop de
 	pop bc
 	ret
@@ -10485,7 +10485,7 @@ BattleCommand69: ; 37b39
 	jr z, .asm_37b4a ; 37b40 $8
 	res 7, [hl]
 	ld hl, ShedLeechSeedText
-	call FarBattleTextBox
+	call StdBattleTextBox
 .asm_37b4a
 	ld hl, PlayerScreens
 	ld de, $c730
@@ -10500,7 +10500,7 @@ BattleCommand69: ; 37b39
 	res 0, [hl]
 	ld hl, BlewSpikesText
 	push de
-	call FarBattleTextBox
+	call StdBattleTextBox
 	pop de
 .asm_37b69
 	ld a, [de]
@@ -10509,7 +10509,7 @@ BattleCommand69: ; 37b39
 	xor a
 	ld [de], a
 	ld hl, ReleasedByText
-	jp FarBattleTextBox
+	jp StdBattleTextBox
 ; 37b74
 
 
@@ -10600,14 +10600,14 @@ BattleCommand6a6c: ; 37b7e
 
 ; 'regained health!'
 	ld hl, RegainedHealthText
-	jp FarBattleTextBox
+	jp StdBattleTextBox
 
 .Full
 	call Function0x37e77
 
 ; 'hp is full!'
 	ld hl, HPIsFullText
-	jp FarBattleTextBox
+	jp StdBattleTextBox
 
 .Multipliers
 	dw GetEighthMaxHP
@@ -10636,7 +10636,7 @@ BattleCommand6e: ; 37bf4
 	ld [WeatherCount], a
 	call Function0x37e01
 	ld hl, DownpourText
-	jp FarBattleTextBox
+	jp StdBattleTextBox
 ; 37c07
 
 
@@ -10648,7 +10648,7 @@ BattleCommand6f: ; 37c07
 	ld [WeatherCount], a
 	call Function0x37e01
 	ld hl, SunGotBrightText
-	jp FarBattleTextBox
+	jp StdBattleTextBox
 ; 37c1a
 
 
@@ -10685,7 +10685,7 @@ BattleCommand95: ; 37c1a
 	jr nz, .asm_37c41 ; 37c47 $f8
 
 	ld hl, BellyDrumText
-	jp FarBattleTextBox
+	jp StdBattleTextBox
 .asm_37c4f
 	call Function0x37e77
 	jp PrintButItFailed
@@ -10735,7 +10735,7 @@ BattleCommand96: ; 37c55
 .asm_37c8c
 	call Function0x37e01
 	ld hl, CopiedStatsText
-	jp FarBattleTextBox
+	jp StdBattleTextBox
 ; 37c95
 
 
@@ -10884,7 +10884,7 @@ BattleCommand9c: ; 37d34
 	call BattleCommand0a
 	call BattleCommandaa
 	ld hl, ForesawAttackText
-	call FarBattleTextBox
+	call StdBattleTextBox
 	call BattleCommand0c
 	ld de, $c727
 	ld a, [hBattleTurn]

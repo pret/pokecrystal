@@ -166,7 +166,7 @@ ParkBall: ; e8a2
 .asm_e98e
 	ld b, a
 	ld [MagikarpLength], a
-	call RNG
+	call Random
 
 	cp b
 	ld a, $0
@@ -1212,7 +1212,7 @@ BitterBerry: ; f16a
 	call $7789
 
 	ld hl, $4d81
-	call FarBattleTextBox
+	call StdBattleTextBox
 
 	ld a, $0
 

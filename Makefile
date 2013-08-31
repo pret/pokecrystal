@@ -7,8 +7,8 @@ PNG_GFX    := $(shell find gfx/ -type f -name '*.png')
 LZ_GFX     := $(shell find gfx/ -type f -name '*.lz')
 TWOBPP_GFX := $(shell find gfx/ -type f -name '*.2bpp')
 
-all: pokecrystal.gbc
-	cmp baserom.gbc $<
+all: baserom.gbc pokecrystal.gbc
+	cmp baserom.gbc pokecrystal.gbc
 clean:
 	rm -f pokecrystal.o pokecrystal.gbc
 	@echo 'rm -f $(TEXTFILES:.asm=.tx)'
@@ -19,6 +19,8 @@ pokecrystal.o: $(TEXTFILES:.asm=.tx) wram.asm constants.asm $(shell find constan
 .asm.tx:
 	$(eval TEXTQUEUE := $(TEXTQUEUE) $<)
 	@rm -f $@
+baserom.gbc:
+	python -c "import os; assert 'baserom.gbc' in os.listdir('.'), 'Wait! Need baserom.gbc first. Check README and INSTALL for details.';"
 
 pokecrystal.gbc: pokecrystal.o
 	rgblink -n pokecrystal.sym -m pokecrystal.map -o $@ $<
