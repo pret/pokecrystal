@@ -427,12 +427,10 @@ def macro_test(asm, macro_table):
     token = extract_token(asm)
 
     # skip db and dw since rgbasm handles those and they aren't macros
-    if token not in ["db", "dw"]:
-        # check against all names
-        if token in macro_table:
-            return (macro_table[token], token)
-
-    return (None, None)
+    if token is not None and token not in ["db", "dw"] and token in macro_table:
+        return (macro_table[token], token)
+    else:
+        return (None, None)
 
 def is_based_on(something, base):
     """
@@ -619,6 +617,10 @@ def macro_translator(macro, token, line, show_original_lines=False, do_macro_san
 def read_line(l, macro_table):
     """Preprocesses a given line of asm."""
 
+    if l in ["\n", ""] or l[0] == ";":
+        sys.stdout.write(l)
+        return # jump out early
+
     # strip comments from asm
     asm, comment = separate_comment(l)
 
@@ -632,7 +634,7 @@ def read_line(l, macro_table):
         sys.stdout.write(asm)
 
     # ascii string macro preserves the bytes as ascii (skip the translator)
-    elif len(asm) > 6 and "ascii " == asm[:6] or "\tascii " == asm[:7]:
+    elif len(asm) > 6 and ("ascii " == asm[:6] or "\tascii " == asm[:7]):
         asm = asm.replace("ascii", "db", 1)
         sys.stdout.write(asm)
 
@@ -648,11 +650,11 @@ def read_line(l, macro_table):
         else:
             sys.stdout.write(asm)
 
-    if comment: sys.stdout.write(comment)
+    if comment:
+        sys.stdout.write(comment)
 
-def preprocess(macros, lines=None):
+def preprocess(macro_table, lines=None):
     """Main entry point for the preprocessor."""
-    macro_table = make_macro_table(macros)
 
     if not lines:
         # read each line from stdin
@@ -664,6 +666,11 @@ def preprocess(macros, lines=None):
     for l in lines:
         read_line(l, macro_table)
 
+def main():
+    macros = load_pokecrystal_macros()
+    macro_table = make_macro_table(macros)
+    preprocess(macro_table)
+
 # only run against stdin when not included as a module
 if __name__ == "__main__":
-    preprocess(load_pokecrystal_macros())
+    main()
