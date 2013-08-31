@@ -39,12 +39,6 @@ def load_pokecrystal_macros():
 
     return ourmacros
 
-# show lines before preprocessing in stdout
-show_original_lines = False
-
-# helpful for debugging macros
-do_macro_sanity_check = False
-
 chars = {
 "ガ": 0x05,
 "ギ": 0x06,
@@ -310,6 +304,16 @@ chars = {
 "9": 0xFF
 }
 
+class PreprocessorException(Exception):
+    """
+    There was a problem in the preprocessor.
+    """
+
+class MacroException(PreprocessorException):
+    """
+    There was a problem with a macro.
+    """
+
 def separate_comment(l):
     """
     Separates asm and comments on a single line.
@@ -442,12 +446,15 @@ def is_based_on(something, base):
     options += [something.__name__]
     return (base in options)
 
-def macro_translator(macro, token, line):
+def macro_translator(macro, token, line, show_original_lines=False, do_macro_sanity_check=False):
     """
     Converts a line with a macro into a rgbasm-compatible line.
-    """
 
-    assert macro.macro_name == token, "macro/token mismatch"
+    @param show_original_lines: show lines before preprocessing in stdout
+    @param do_macro_sanity_check: helpful for debugging macros
+    """
+    if macro.macro_name != token:
+        raise MacroException("macro/token mismatch")
 
     original_line = line
 
@@ -475,7 +482,7 @@ def macro_translator(macro, token, line):
 
         # check if there are no params (redundant)
         if len(params) == 1 and params[0] == "":
-            raise Exception, "macro has no params?"
+            raise MacroException("macro has no params?")
 
     # write out a comment showing the original line
     if show_original_lines:
@@ -516,10 +523,15 @@ def macro_translator(macro, token, line):
                 elif param_klass.size == 3:
                     allowed_length += 2 # bank and label
                 else:
-                    raise Exception, "dunno what to do with a macro param with a size > 3"
+                    raise MacroException(
+                        "dunno what to do with a macro param with a size > 3 (size={size})"
+                        .format(size=param_klass.size)
+                    )
             else:
-                raise Exception, "dunno what to do with this non db/dw macro param: " + \
-                                 str(param_klass) + " in line: " + original_line
+                raise MacroException(
+                    "dunno what to do with this non db/dw macro param: {klass} in line {line}"
+                    .format(klass=param_klass, line=original_line)
+                )
 
         # sometimes the allowed length can vary
         if hasattr(macro, "allowed_lengths"):
@@ -527,9 +539,15 @@ def macro_translator(macro, token, line):
         else:
             allowed_lengths = [allowed_length]
 
-        assert len(params) in allowed_lengths, \
-               "mismatched number of parameters on this line: " + \
-               original_line
+        if len(params) not in allowed_lengths:
+            raise PreprocessorException(
+                "mismatched number of parameters ({count}, instead of any of {allowed}) on this line: {line}"
+                .format(
+                    count=len(params),
+                    allowed=allowed_lengths,
+                    line=original_line,
+                )
+            )
 
     # --- end of ridiculously long sanity check ---
 
@@ -574,9 +592,13 @@ def macro_translator(macro, token, line):
                 output += ("db " + param_klass.from_asm(param) + "\n")
                 index += 1
             else:
-                raise Exception, "dunno what to do with this macro " + \
-                "param (" + str(param_klass) + ") " + "on this line: " + \
-                original_line
+                raise MacroException(
+                    "dunno what to do with this macro param ({klass}) in line: {line}"
+                    .format(
+                        klass=param_klass,
+                        line=original_line,
+                    )
+                )
 
         # or just print out the byte
         else:
