@@ -609,7 +609,7 @@ def macro_translator(macro, token, line, show_original_lines=False, do_macro_san
 def read_line(l, macro_table):
     """Preprocesses a given line of asm."""
 
-    if l in ["\n", ""]:
+    if l in ["\n", ""] or l[0] == ";":
         sys.stdout.write(l)
         return # jump out early
 
