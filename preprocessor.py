@@ -31,12 +31,6 @@ macros += movement_command_classes
 macros += music_classes
 macros += effect_classes
 
-# show lines before preprocessing in stdout
-show_original_lines = False
-
-# helpful for debugging macros
-do_macro_sanity_check = False
-
 chars = {
 "ガ": 0x05,
 "ギ": 0x06,
@@ -444,11 +438,13 @@ def is_based_on(something, base):
     options += [something.__name__]
     return (base in options)
 
-def macro_translator(macro, token, line):
+def macro_translator(macro, token, line, show_original_lines=False, do_macro_sanity_check=False):
     """
     Converts a line with a macro into a rgbasm-compatible line.
-    """
 
+    @param show_original_lines: show lines before preprocessing in stdout
+    @param do_macro_sanity_check: helpful for debugging macros
+    """
     if macro.macro_name != token:
         raise MacroException("macro/token mismatch")
 
