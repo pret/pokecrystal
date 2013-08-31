@@ -14172,7 +14172,7 @@ Function620b: ; 620b
 	push af
 	ld a, $5
 	ld [rSVBK], a
-	call FarStartTitleScreen
+	call TitleScreen
 	call DelayFrame
 .asm_6226
 	call Function627b
@@ -14221,8 +14221,8 @@ Function620b: ; 620b
 ; 6274
 
 
-FarStartTitleScreen: ; 6274
-	callba StartTitleScreen
+TitleScreen: ; 6274
+	callba _TitleScreen
 	ret
 ; 627b
 
@@ -69682,7 +69682,7 @@ SECTION "bank43",ROMX,BANK[$43]
 
 INCBIN "baserom.gbc", $10c000, $10ed67 - $10c000
 
-StartTitleScreen: ; 10ed67
+_TitleScreen: ; 10ed67
 
 	call WhiteBGMap
 	call ClearSprites
