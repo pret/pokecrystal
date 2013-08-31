@@ -31,9 +31,6 @@ macros += movement_command_classes
 macros += music_classes
 macros += effect_classes
 
-# show lines before preprocessing in stdout
-show_original_lines = False
-
 # helpful for debugging macros
 do_macro_sanity_check = False
 
@@ -434,11 +431,12 @@ def is_based_on(something, base):
     options += [something.__name__]
     return (base in options)
 
-def macro_translator(macro, token, line):
+def macro_translator(macro, token, line, show_original_lines=False):
     """
     Converts a line with a macro into a rgbasm-compatible line.
-    """
 
+    @param show_original_lines: show lines before preprocessing in stdout
+    """
     assert macro.macro_name == token, "macro/token mismatch"
 
     original_line = line
