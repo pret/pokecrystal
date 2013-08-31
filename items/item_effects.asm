@@ -166,7 +166,7 @@ ParkBall: ; e8a2
 .asm_e98e
 	ld b, a
 	ld [MagikarpLength], a
-	call RNG
+	call Random
 
 	cp b
 	ld a, $0

@@ -129,7 +129,7 @@ AIScoring_RedStatMods: ; 385e0
 	jr .checkmove
 
 .discourage
-	call RNG
+	call Random
 	cp 30
 	jr c, .checkmove
 	inc [hl]
@@ -430,7 +430,7 @@ AIScoring_LeechHit: ; 387f7
 	ret
 
 .asm_38815
-	call RNG
+	call Random
 
 	cp $64
 	ret c
@@ -575,7 +575,7 @@ AIScoring_Explosion: ; 388a6
 	call AICheckEnemyQuarterHP
 	ret nc
 
-	call RNG
+	call Random
 	cp 20
 	ret c
 
@@ -588,7 +588,7 @@ AIScoring_Explosion: ; 388a6
 
 
 AIScoring_DreamEater: ; 388ca
-	call RNG
+	call Random
 
 	cp $19
 	ret c
@@ -612,7 +612,7 @@ AIScoring_EvasionUp: ; 388d4
 	bit 0, a
 	jr nz, .asm_388ef
 
-	call RNG
+	call Random
 
 	cp $b2
 	jr nc, .asm_38911
@@ -628,7 +628,7 @@ AIScoring_EvasionUp: ; 388d4
 
 	jr nc, .asm_3890f
 
-	call RNG
+	call Random
 
 	cp $a
 	jr c, .asm_388ef
@@ -683,7 +683,7 @@ AIScoring_EvasionUp: ; 388d4
 	ret
 
 .asm_38938
-	call RNG
+	call Random
 	cp $50
 	ret c
 	dec [hl]
@@ -744,7 +744,7 @@ AIScoring_MirrorMove: ; 3895b
 	call AICompareSpeed
 
 	ret nc
-	call RNG
+	call Random
 
 	cp $19
 	ret c
@@ -766,7 +766,7 @@ AIScoring_AccuracyDown: ; 38985
 	bit 0, a
 	jr nz, .asm_3899d
 
-	call RNG
+	call Random
 
 	cp $b2
 	jr nc, .asm_389bf
@@ -782,7 +782,7 @@ AIScoring_AccuracyDown: ; 38985
 
 	jr nc, .asm_389bd
 
-	call RNG
+	call Random
 
 	cp $a
 	jr c, .asm_3899d
@@ -837,7 +837,7 @@ AIScoring_AccuracyDown: ; 38985
 	ret
 
 .asm_389e6
-	call RNG
+	call Random
 	cp $50
 	ret c
 	dec [hl]
@@ -878,7 +878,7 @@ AIScoring_Haze: ; 389f5
 
 .asm_38a12
 	pop hl
-	call RNG
+	call Random
 	cp $28
 	ret c
 	dec [hl]
@@ -894,7 +894,7 @@ AIScoring_Haze: ; 389f5
 AIScoring_Bide: ; 38a1e
 	call AICheckEnemyMaxHP
 	ret c
-	call RNG
+	call Random
 	cp $19
 	ret c
 	inc [hl]
@@ -926,7 +926,7 @@ AIScoring_Moonlight: ; 38a3a
 	ret
 
 .asm_38a45
-	call RNG
+	call Random
 	cp $19
 	ret c
 	dec [hl]
@@ -948,7 +948,7 @@ AIScoring_LightScreen:
 AIScoring_Reflect: ; 38a54
 	call AICheckEnemyMaxHP
 	ret c
-	call RNG
+	call Random
 	cp $14
 	ret c
 	inc [hl]
@@ -1041,7 +1041,7 @@ AIScoring_Unused2B: ; 38a9c
 	ret c
 
 .asm_38acd
-	call RNG
+	call Random
 	cp $c8
 	ret c
 
@@ -1061,7 +1061,7 @@ AIScoring_Unused2B: ; 38a9c
 AIScoring_Confuse: ; 38adb
 	call AICheckPlayerHalfHP
 	ret c
-	call RNG
+	call Random
 	cp $19
 	jr c, .asm_38ae7
 	inc [hl]
@@ -1156,7 +1156,7 @@ AIScoring_SpeedDownHit: ; 38b40
 	ret nz
 	call AICompareSpeed
 	ret c
-	call RNG
+	call Random
 	cp 30
 	ret c
 	dec [hl]
@@ -1183,7 +1183,7 @@ AIScoring_HyperBeam: ; 38b63
 	ret
 
 .asm_38b72
-	call RNG
+	call Random
 	cp 40
 	ret c
 	inc [hl]
@@ -1334,7 +1334,7 @@ AIScoring_Counter: ; 38bf1
 
 
 .asm_38c30
-	call RNG
+	call Random
 	cp $64
 	jr c, .asm_38c38
 
@@ -1388,7 +1388,7 @@ AIScoring_Encore: ; 38c3b
 	jr nc, .asm_38c81
 
 .asm_38c78
-	call RNG
+	call Random
 	cp $46
 	ret c
 	dec [hl]
@@ -1527,7 +1527,7 @@ AIScoring_Spite: ; 38cd5
 	cp $f
 	jr nc, .asm_38d0b
 
-	call RNG
+	call Random
 	cp $64
 	ret nc
 
@@ -1536,7 +1536,7 @@ AIScoring_Spite: ; 38cd5
 	ret
 
 .asm_38d0d
-	call RNG
+	call Random
 	cp $64
 	ret c
 	dec [hl]
@@ -1700,7 +1700,7 @@ AIScoring_Conversion2: ; 38d98
 	ret
 
 .asm_38dc9
-	call RNG
+	call Random
 
 	cp $19
 	ret c
@@ -1722,7 +1722,7 @@ AIScoring_Disable: ; 38dd1
 	pop hl
 	jr nc, .asm_38dee
 
-	call RNG
+	call Random
 	cp 100
 	ret c
 	dec [hl]
@@ -1734,7 +1734,7 @@ AIScoring_Disable: ; 38dd1
 	ret nz
 
 .asm_38df3
-	call RNG
+	call Random
 	cp 20
 	ret c
 	inc [hl]
@@ -1961,7 +1961,7 @@ AIScoring_Protect: ; 38ed2
 	inc [hl]
 
 .asm_38f14
-	call RNG
+	call Random
 	cp 20
 	ret c
 	inc [hl]
@@ -1985,14 +1985,14 @@ AIScoring_Foresight: ; 38f1d
 	cp GHOST
 	jr z, .asm_38f41
 
-	call RNG
+	call Random
 	cp 20
 	ret c
 	inc [hl]
 	ret
 
 .asm_38f41
-	call RNG
+	call Random
 	cp 100
 	ret c
 	dec [hl]
@@ -2169,7 +2169,7 @@ AIScoring_Rollout: ; 38fef
 	cp 8
 	jr nc, .asm_39020
 
-	call RNG
+	call Random
 	cp 200
 	ret nc
 	dec [hl]
@@ -2196,7 +2196,7 @@ AIScoring_Attract: ; 39026
 	ret
 
 .asm_39032
-	call RNG
+	call Random
 	cp 200
 	ret nc
 	dec [hl]
@@ -2558,7 +2558,7 @@ AIScoring_MirrorCoat: ; 3918b
 
 
 .asm_391ca
-	call RNG
+	call Random
 	cp 100
 	jr c, .asm_391d2
 	dec [hl]
@@ -2634,7 +2634,7 @@ AIScoring_Solarbeam: ; 3920b
 	cp WEATHER_RAIN
 	ret nz
 
-	call RNG
+	call Random
 	cp 25 ; 1/10
 	ret c
 
@@ -2657,7 +2657,7 @@ AIScoring_Thunder: ; 39225
 	cp WEATHER_SUN
 	ret nz
 
-	call RNG
+	call Random
 	cp 25 ; 1/10
 	ret c
 
@@ -3150,7 +3150,7 @@ AIScoring_Cautious: ; 39418
 	pop hl
 	jr nc, .asm_39425
 
-	call RNG
+	call Random
 	cp 230
 	ret nc
 
@@ -3274,7 +3274,7 @@ AIScoring_Risky: ; 394a9
 	call AICheckEnemyMaxHP
 	jr c, .nextmove
 
-	call RNG
+	call Random
 	cp 200 ; 1/5
 	jr c, .nextmove
 
@@ -3347,14 +3347,14 @@ AIGetEnemyMove: ; 39508
 
 
 Function_0x39521: ; 39521
-	call RNG
+	call Random
 	cp 50 ; 1/5
 	ret
 ; 39527
 
 
 Function_0x39527: ; 39527
-	call RNG
+	call Random
 	cp $80 ; 1/2
 	ret
 ; 3952d

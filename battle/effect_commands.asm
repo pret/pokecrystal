@@ -288,7 +288,7 @@ CheckPlayerTurn:
 	call FarPlayBattleAnimation
 
 ; 50% chance of hitting itself
-	call FarBattleRNG
+	call BattleRandom
 	cp $80
 	jr nc, .CheckAttract
 
@@ -319,7 +319,7 @@ CheckPlayerTurn:
 	call FarPlayBattleAnimation
 
 ; 50% chance of infatuation
-	call FarBattleRNG
+	call BattleRandom
 	cp $80
 	jr c, .CheckDisabledMove
 
@@ -353,7 +353,7 @@ CheckPlayerTurn:
 	ret z
 
 ; 25% chance to be fully paralyzed
-	call FarBattleRNG
+	call BattleRandom
 	cp $3f
 	ret nc
 
@@ -544,7 +544,7 @@ CheckEnemyTurn: ; 3421f
 	call FarPlayBattleAnimation
 
 ; 50% chance of hitting itself
-	call FarBattleRNG
+	call BattleRandom
 	cp $80
 	jr nc, .CheckAttract
 
@@ -598,7 +598,7 @@ CheckEnemyTurn: ; 3421f
 	call FarPlayBattleAnimation
 
 ; 50% chance of infatuation
-	call FarBattleRNG
+	call BattleRandom
 	cp $80
 	jr c, .CheckDisabledMove
 
@@ -633,7 +633,7 @@ CheckEnemyTurn: ; 3421f
 	ret z
 
 ; 25% chance to be fully paralyzed
-	call FarBattleRNG
+	call BattleRandom
 	cp $3f
 	ret nc
 
@@ -808,7 +808,7 @@ BattleCommand02: ; 343db
 
 ; Random number from 0 to obedience level + monster level
 .rand1
-	call FarBattleRNG
+	call BattleRandom
 	swap a
 	cp b
 	jr nc, .rand1
@@ -826,7 +826,7 @@ BattleCommand02: ; 343db
 
 ; Another random number from 0 to obedience level + monster level
 .rand2
-	call FarBattleRNG
+	call BattleRandom
 	cp b
 	jr nc, .rand2
 
@@ -843,7 +843,7 @@ BattleCommand02: ; 343db
 	ld b, a
 
 ; The chance of napping is the difference out of 256.
-	call FarBattleRNG
+	call BattleRandom
 	swap a
 	sub b
 	jr c, .Nap
@@ -862,7 +862,7 @@ BattleCommand02: ; 343db
 
 
 .Nap
-	call FarBattleRNG
+	call BattleRandom
 	add a
 	swap a
 	and 7
@@ -876,7 +876,7 @@ BattleCommand02: ; 343db
 
 
 .DoNothing
-	call FarBattleRNG
+	call BattleRandom
 	and 3
 
 ; 'loafing around!'
@@ -964,7 +964,7 @@ BattleCommand02: ; 343db
 
 
 .RandomMove
-	call FarBattleRNG
+	call BattleRandom
 	and 3
 
 	cp b
@@ -1324,7 +1324,7 @@ BattleCommand05: ; 34631
 	ld hl, .Chances
 	ld b, 0
 	add hl, bc
-	call FarBattleRNG
+	call BattleRandom
 	cp [hl]
 	ret nc
 	ld a, 1
@@ -2338,7 +2338,7 @@ BattleCommand08: ; 34cfd
 
 ; Multiply by 85-100%...
 .loop
-	call FarBattleRNG
+	call BattleRandom
 	rrca
 	cp $d9 ; 85%
 	jr c, .loop
@@ -2423,7 +2423,7 @@ BattleCommand09: ; 34d32
 	cp $ff
 	jr z, .Hit
 
-	call FarBattleRNG
+	call BattleRandom
 	cp b
 	jr nc, .Miss
 
@@ -2701,7 +2701,7 @@ BattleCommand90: ; 34ecc
 	ld hl, EnemyMoveEffectChance
 .asm_34ee1
 
-	call FarBattleRNG
+	call BattleRandom
 	cp [hl]
 	pop hl
 	ret c
@@ -2986,7 +2986,7 @@ BattleCommand0e: ; 3505e
 	cp HELD_FOCUS_BAND
 	ld b, $0
 	jr nz, .asm_3508b ; 3507a $f
-	call FarBattleRNG
+	call BattleRandom
 	cp c
 	jr nc, .asm_3508b ; 35080 $9
 	call BattleCommand4b
@@ -4332,7 +4332,7 @@ BattleCommand3f: ; 35726
 	add b
 	ld b, a
 .asm_3575d
-	call FarBattleRNG
+	call BattleRandom
 	and a
 	jr z, .asm_3575d ; 35761 $fa
 	cp b
@@ -4555,7 +4555,7 @@ BattleCommand41: ; 35864
 	bit 4, [hl]
 	jp nz, Function0x35923
 	set 4, [hl]
-	call FarBattleRNG
+	call BattleRandom
 	and $3
 	inc a
 	inc a
@@ -4782,7 +4782,7 @@ BattleCommand44: ; 359e6
 
 	call SwitchTurn
 .asm_35a13
-	call FarBattleRNG
+	call BattleRandom
 	and $1f
 	cp $a
 	jr c, .asm_35a24 ; 35a1a $8
@@ -5005,7 +5005,7 @@ BattleCommand48: ; 35b33
 	dec hl
 .asm_35b62
 	push hl
-	call FarBattleRNG
+	call BattleRandom
 	and $3
 	ld c, a
 	ld b, $0
@@ -5173,7 +5173,7 @@ BattleCommand4a: ; 35c0f
 	jr z, .asm_35c91 ; 35c46 $49
 	push bc
 	call GetMoveName
-	call FarBattleRNG
+	call BattleRandom
 	and $3
 	inc a
 	inc a
@@ -5576,7 +5576,7 @@ BattleCommand14: ; 35e5c
 	ld b, $3
 
 .asm_35ea4
-	call FarBattleRNG
+	call BattleRandom
 	and b
 	jr z, .asm_35ea4
 	cp 7
@@ -5625,7 +5625,7 @@ Function0x35ece: ; 35ece
 	bit 5, a
 	jr nz, .asm_35eec
 
-	call FarBattleRNG
+	call BattleRandom
 	cp $40
 	ret c
 
@@ -5715,7 +5715,7 @@ BattleCommand2f: ; 35f2c
 	ld a, [PlayerSubStatus5]
 	bit 5, a
 	jr nz, .asm_35f89 ; 35f80 $7
-	call FarBattleRNG
+	call BattleRandom
 	cp $40
 	jr c, .asm_35fb8 ; 35f87 $2f
 .asm_35f89
@@ -6375,7 +6375,7 @@ BattleCommand1d: ; 362e3
 	cp EFFECT_ACCURACY_DOWN_HIT
 	jr z, .DidntMiss
 
-	call FarBattleRNG
+	call BattleRandom
 	cp $40
 	jr c, .Failed
 
@@ -6789,7 +6789,7 @@ BattleCommandac: ; 3658f
 
 ; 1/3 chance of each status
 .loop
-	call FarBattleRNG
+	call BattleRandom
 	swap a
 	and 3
 	jr z, .loop
@@ -7043,7 +7043,7 @@ BattleCommand22: ; 366e5
 	ld [de], a
 	ld [PlayerMoveEffect], a
 	ld [EnemyMoveEffect], a
-	call FarBattleRNG
+	call BattleRandom
 	and $1
 	inc a
 	inc a
@@ -7080,7 +7080,7 @@ BattleCommand3e: ; 3671a
 	pop af
 	jr nz, .asm_3674c ; 3673f $b
 	set 7, [hl]
-	call FarBattleRNG
+	call BattleRandom
 	and $1
 	inc a
 	inc a
@@ -7110,7 +7110,7 @@ BattleCommand3d: ; 36751
 	ld a, BATTLE_VARS_SUBSTATUS3
 	call GetBattleVarPair
 	set 1, [hl]
-	call FarBattleRNG
+	call BattleRandom
 	and $1
 	inc a
 	ld [de], a
@@ -7152,7 +7152,7 @@ BattleCommanda0: ; 36778
 	ld c, a
 	inc c
 .asm_367ac
-	call FarBattleRNG
+	call BattleRandom
 	cp c
 	jr nc, .asm_367ac ; 367b0 $fa
 	srl b
@@ -7177,7 +7177,7 @@ BattleCommanda0: ; 36778
 	ld c, a
 	inc c
 .asm_367d2
-	call FarBattleRNG
+	call BattleRandom
 	cp c
 	jr nc, .asm_367d2 ; 367d6 $fa
 	srl b
@@ -7242,7 +7242,7 @@ BattleCommand23: ; 3680f
 	ld c, a
 	inc c
 .asm_36845
-	call FarBattleRNG
+	call BattleRandom
 	cp c
 	jr nc, .asm_36845 ; 36849 $fa
 	srl b
@@ -7282,7 +7282,7 @@ BattleCommand23: ; 3680f
 	ld a, [CurOTMon]
 	ld c, a
 .asm_3689a
-	call FarBattleRNG
+	call BattleRandom
 	and $7
 	cp b
 	jr nc, .asm_3689a ; 368a0 $f8
@@ -7332,7 +7332,7 @@ BattleCommand23: ; 3680f
 	ld c, a
 	inc c
 .asm_368e6
-	call FarBattleRNG
+	call BattleRandom
 	cp c
 	jr nc, .asm_368e6
 
@@ -7378,7 +7378,7 @@ BattleCommand23: ; 3680f
 	ld a, [CurBattleMon]
 	ld c, a
 .asm_3693a
-	call FarBattleRNG
+	call BattleRandom
 	and $7
 	cp b
 	jr nc, .asm_3693a
@@ -7496,7 +7496,7 @@ BattleCommand24: ; 369b6
 	cp EFFECT_TRIPLE_KICK
 	jr nz, .asm_36a2b
 .asm_369ec
-	call FarBattleRNG
+	call BattleRandom
 	and $3
 	jr z, .asm_369ec
 	dec a
@@ -7530,11 +7530,11 @@ BattleCommand24: ; 369b6
 	call BattleCommanda8
 	jp EndMoveEffect
 .asm_36a2b
-	call FarBattleRNG
+	call BattleRandom
 	and $3
 	cp $2
 	jr c, .asm_36a39 ; 36a32 $5
-	call FarBattleRNG
+	call BattleRandom
 	and $3
 .asm_36a39
 	inc a
@@ -7670,7 +7670,7 @@ BattleCommand4d: ; 36ac9
 	ld d, h
 	ld e, l
 	call GetUserItem
-	call FarBattleRNG
+	call BattleRandom
 	cp c
 	ret nc
 	call EndRechargeOpp
@@ -7917,7 +7917,7 @@ BattleCommand3b: ; 36c2d
 	call CleanGetBattleVarPair
 	bit 4, a
 	ret nz
-	call FarBattleRNG
+	call BattleRandom
 	and 3
 	inc a
 	inc a
@@ -8116,7 +8116,7 @@ Function0x36d70: ; 36d70
 
 .asm_36d7b
 	set 7, [hl]
-	call FarBattleRNG
+	call BattleRandom
 	and 3
 	inc a
 	inc a
@@ -8196,7 +8196,7 @@ BattleCommand30: ; 36dc7
 	ld a, [PlayerSubStatus5]
 	bit 5, a
 	jr nz, .asm_36e0e ; 36e05 $7
-	call FarBattleRNG
+	call BattleRandom
 	cp $40
 	jr c, .asm_36e52 ; 36e0c $44
 .asm_36e0e
@@ -8558,7 +8558,7 @@ BattleCommand37: ; 36fed
 	and a
 	jr z, .asm_37059 ; 3702c $2b
 .asm_3702e
-	call FarBattleRNG
+	call BattleRandom
 	and $7
 	jr z, .asm_3702e ; 37033 $f9
 	inc a
@@ -8677,7 +8677,7 @@ BattleCommand1f: ; 3707f
 	call Function0x37e77
 	jp PrintButItFailed
 .asm_370d9
-	call FarBattleRNG
+	call BattleRandom
 	and $3
 	ld c, a
 	ld b, $0
@@ -9235,7 +9235,7 @@ BattleCommand34: ; 37418
 	call Function0x37e36
 
 .GetMove
-	call FarBattleRNG
+	call BattleRandom
 
 ; No invalid moves.
 	cp BEAT_UP + 1
@@ -9596,7 +9596,7 @@ Function0x3762c: ; 3762c
 	jr .asm_37665
 
 .asm_37656
-	call FarBattleRNG
+	call BattleRandom
 	and a
 	jr z, .asm_37656
 
@@ -10029,7 +10029,7 @@ BattleCommand61: ; 37874
 	and a
 	jp nz, Function0x37e77
 	push bc
-	call FarBattleRNG
+	call BattleRandom
 	ld b, a
 	ld hl, .table_37907
 	ld c, 0
@@ -10186,7 +10186,7 @@ BattleCommand66: ; 37991
 ; getmagnitude
 
 	push bc
-	call FarBattleRNG
+	call BattleRandom
 	ld b, a
 	ld hl, .Magnitudes
 .asm_37999

@@ -1988,7 +1988,7 @@ Script_random: ; 0x97640
 	ld b, a
 .asm_97653
 	push bc
-	call RNG
+	call Random
 	pop bc
 	ld a, [$ffe1]
 	cp b
@@ -1996,7 +1996,7 @@ Script_random: ; 0x97640
 	jr .asm_97666 ; 0x9765d $7
 .asm_9765f
 	push bc
-	call RNG
+	call Random
 	pop bc
 	ld a, [$ffe1]
 .asm_97666

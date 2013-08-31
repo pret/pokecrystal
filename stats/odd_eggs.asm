@@ -1,7 +1,7 @@
 GiveOddEgg: ; 1fb4b6
 
 ; Figure out which egg to give.
-	call RNG
+	call Random
 	ld hl, .Probabilities
 	ld c, 0
 	ld b, c
