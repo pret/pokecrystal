@@ -8178,24 +8178,25 @@ MobileTextBorder: ; 3ab2
 
 
 BattleTextBox: ; 3ac3
+; Open a textbox and print text at hl.
 	push hl
 	call SpeechTextBox
 	call MobileTextBorder
-	call Function1ad2 ; UpdateSprites
-	call Function321c ; refresh?
+	call Function1ad2
+	call Function321c
 	pop hl
 	call PrintTextBoxText
 	ret
 ; 3ad5
 
 
-FarBattleTextBox: ; 3ad5
-; Open a textbox and print text at 20:hl.
+StdBattleTextBox: ; 3ad5
+; Open a textbox and print battle text at 20:hl.
 
 	ld a, [hROMBank]
 	push af
 
-	ld a, $20
+	ld a, BANK(BattleText)
 	rst Bankswitch
 
 	call BattleTextBox
@@ -36361,7 +36362,7 @@ Function3c0e5: ; 3c0e5
 	ld hl, $5863
 
 .asm_3c115
-	call FarBattleTextBox
+	call StdBattleTextBox
 
 .asm_3c118
 	call Function3ceec
@@ -36624,7 +36625,7 @@ Function3c27c: ; 3c27c
 	ld [hl], a
 	call GetItemName
 	ld hl, $4bde
-	call FarBattleTextBox
+	call StdBattleTextBox
 	callab BattleCommand8c
 	pop af
 	bit 7, a
@@ -36635,7 +36636,7 @@ Function3c27c: ; 3c27c
 	call Function3ee0f
 	call Function3c8e4
 	ld hl, $4d97
-	jp FarBattleTextBox
+	jp StdBattleTextBox
 ; 3c300
 
 Function3c300: ; 3c300
@@ -36945,7 +36946,7 @@ Function3c4df: ; 3c4df
 	res 4, [hl]
 	call SetEnemyTurn
 	ld hl, $4c8a
-	jp FarBattleTextBox
+	jp StdBattleTextBox
 
 .asm_3c518
 	ld hl, EnemySubStatus5
@@ -36969,7 +36970,7 @@ Function3c4df: ; 3c4df
 	res 4, [hl]
 	call SetPlayerTurn
 	ld hl, $4c8a
-	jp FarBattleTextBox
+	jp StdBattleTextBox
 ; 3c543
 
 
@@ -37278,7 +37279,7 @@ Function3c716: ; 3c716
 
 .asm_3c733
 	push de
-	call FarBattleTextBox
+	call StdBattleTextBox
 	pop de
 	xor a
 	ld [$cfca], a
@@ -37332,7 +37333,7 @@ Function3c716: ; 3c716
 	ld [hBGMapMode], a
 	call Function3ccef
 	ld hl, $480e
-	call FarBattleTextBox
+	call StdBattleTextBox
 
 .asm_3c7a1
 	call Function3c706
@@ -37348,7 +37349,7 @@ Function3c716: ; 3c716
 	call GetQuarterMaxHP
 	call Function3cc3f
 	ld hl, $4822
-	call FarBattleTextBox
+	call StdBattleTextBox
 
 .asm_3c7c5
 	call Function3c706
@@ -37364,7 +37365,7 @@ Function3c716: ; 3c716
 	call GetQuarterMaxHP
 	call Function3cc3f
 	ld hl, $4836
-	call FarBattleTextBox
+	call StdBattleTextBox
 
 .asm_3c7e9
 	ld hl, BattleMonHP
@@ -37415,7 +37416,7 @@ Function3c801: ; 3c801
 	ld [$d265], a
 	push af
 	ld hl, $4864
-	call FarBattleTextBox
+	call StdBattleTextBox
 	pop af
 	ret nz
 	ld a, $0
@@ -37510,7 +37511,7 @@ Function3c874: ; 3c874
 	ld hl, $4df5
 
 .asm_3c8e1
-	jp FarBattleTextBox
+	jp StdBattleTextBox
 ; 3c8e4
 
 Function3c8e4: ; 3c8e4
@@ -37563,7 +37564,7 @@ Function3c8eb: ; 3c8eb
 	call Function3c8e4
 	call Function3ccef
 	ld hl, $4880
-	jp FarBattleTextBox
+	jp StdBattleTextBox
 ; 3c93c
 
 Function3c93c: ; 3c93c
@@ -37702,7 +37703,7 @@ Function3c93c: ; 3c93c
 	call Function3ddc8
 	call Function3c8e4
 	ld hl, $4899
-	jp FarBattleTextBox
+	jp StdBattleTextBox
 ; 3ca26
 
 Function3ca26: ; 3ca26
@@ -37733,7 +37734,7 @@ Function3ca26: ; 3ca26
 	cp $1
 	ret nz
 	ld hl, $48b6
-	call FarBattleTextBox
+	call StdBattleTextBox
 	ld a, $10
 	call GetBattleVarPair
 	push af
@@ -37784,7 +37785,7 @@ Function3ca8f: ; 3ca8f
 	call UpdateBattleHuds
 	call SetEnemyTurn
 	ld hl, $524b
-	jp FarBattleTextBox
+	jp StdBattleTextBox
 
 .asm_3cac9
 	ld a, [EnemyMonStatus]
@@ -37810,7 +37811,7 @@ Function3ca8f: ; 3ca8f
 	call UpdateBattleHuds
 	call SetPlayerTurn
 	ld hl, $524b
-	jp FarBattleTextBox
+	jp StdBattleTextBox
 ; 3cafb
 
 Function3cafb: ; 3cafb
@@ -37847,7 +37848,7 @@ Function3cafb: ; 3cafb
 .asm_3cb2e
 	ld [hBattleTurn], a
 	ld hl, $48d2
-	jp FarBattleTextBox
+	jp StdBattleTextBox
 ; 3cb36
 
 
@@ -37904,7 +37905,7 @@ FadeLightScreen: ; 3cb80
 	push hl
 	push de
 	ld hl, BattleText_0x808e7
-	call FarBattleTextBox
+	call StdBattleTextBox
 	pop de
 	pop hl
 	ret
@@ -37918,7 +37919,7 @@ FadeReflect: ; 3cb91
 	ret nz
 	res SCREENS_REFLECT, [hl]
 	ld hl, BattleText_0x80905
-	jp FarBattleTextBox
+	jp StdBattleTextBox
 ; 3cb9e
 
 HandleWeather: ; 3cb9e
@@ -37991,7 +37992,7 @@ HandleWeather: ; 3cb9e
 	call Function3cc3f
 
 	ld hl, BattleText_0x8084d
-	jp FarBattleTextBox
+	jp StdBattleTextBox
 
 .asm_3cc13
 	ld hl, .WeatherEndedMessages
@@ -38010,7 +38011,7 @@ HandleWeather: ; 3cb9e
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	jp FarBattleTextBox
+	jp StdBattleTextBox
 ; 3cc2d
 
 .WeatherMessages
@@ -38521,7 +38522,7 @@ Function3cef1: ; 3cef1
 	ld bc, $050b
 	call ClearBox
 	ld hl, BattleText_0x80a75
-	jp FarBattleTextBox
+	jp StdBattleTextBox
 ; 3cf14
 
 Function3cf14: ; 3cf14
@@ -38535,7 +38536,7 @@ Function3cf14: ; 3cf14
 	ld bc, $040a
 	call ClearBox
 	ld hl, BattleText_0x809a8
-	jp FarBattleTextBox
+	jp StdBattleTextBox
 ; 3cf35
 
 Function3cf35: ; 3cf35
@@ -38620,7 +38621,7 @@ Function3cfa4: ; 3cfa4
 	call z, Function3d0ea
 	callab Function39939
 	ld hl, BattleText_0x809da
-	call FarBattleTextBox
+	call StdBattleTextBox
 	call Function3d2f1
 	jr z, .asm_3cff5
 	ld a, [InLinkBattle]
@@ -38729,11 +38730,11 @@ Function3d02b: ; 3d02b
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	jp FarBattleTextBox
+	jp StdBattleTextBox
 
 .asm_3d07b
 	ld hl, BattleText_0x809be
-	jp FarBattleTextBox
+	jp StdBattleTextBox
 ; 3d081
 
 Function3d081: ; 3d081
@@ -39013,7 +39014,7 @@ Function3d1f8: ; 3d1f8
 	dec a
 	ret nz
 	ld hl, BattleText_0x80a83
-	call FarBattleTextBox
+	call StdBattleTextBox
 .asm_3d20a
 	ld bc, $0107
 	call Function1dd2
@@ -39188,7 +39189,7 @@ Function3d34f: ; 3d34f
 	cp [hl]
 	jr nz, .asm_3d360
 	ld hl, BattleText_0x80c0d
-	call FarBattleTextBox
+	call StdBattleTextBox
 	scf
 	ret
 
@@ -39309,7 +39310,7 @@ LostBattle: ; 3d38e
 	jr z, .asm_3d417
 
 .asm_3d412
-	call FarBattleTextBox
+	call StdBattleTextBox
 
 .end
 	scf
@@ -39827,7 +39828,7 @@ Function3d74b: ; 3d74b
 	push af
 	callab Function39939
 	ld hl, BattleText_0x80aca
-	call FarBattleTextBox
+	call StdBattleTextBox
 	ld bc, $0107
 	call Function1dd2
 	ld a, [$cfa9]
@@ -39878,7 +39879,7 @@ Function3d7a0: ; 3d7a0
 Function3d7b8: ; 3d7b8
 	callab Function39939
 	ld hl, BattleText_0x80af8
-	call FarBattleTextBox
+	call StdBattleTextBox
 	jp WaitBGMap
 ; 3d7c7
 
@@ -40009,7 +40010,7 @@ Function3d887: ; 3d887
 	ld hl, BattleText_0x80b0b
 
 .asm_3d8ae
-	call FarBattleTextBox
+	call StdBattleTextBox
 
 .asm_3d8b1
 	xor a
@@ -40063,7 +40064,7 @@ Function3d8b3: ; 3d8b3
 	call SetPlayerTurn
 	call GetItemName
 	ld hl, BattleText_0x80b89
-	call FarBattleTextBox
+	call StdBattleTextBox
 	jp .asm_3d9a2
 
 .asm_3d916
@@ -40140,7 +40141,7 @@ Function3d8b3: ; 3d8b3
 	ld hl, BattleText_0x80b49
 
 .asm_3d995
-	call FarBattleTextBox
+	call StdBattleTextBox
 	ld a, $1
 	ld [$d266], a
 	call Function309d
@@ -40183,7 +40184,7 @@ Function3d8b3: ; 3d8b3
 	pop de
 	call WaitSFX
 	ld hl, BattleText_0x80b77
-	call FarBattleTextBox
+	call StdBattleTextBox
 	call WaitSFX
 	call Function309d
 	scf
@@ -40195,7 +40196,7 @@ Function3d8b3: ; 3d8b3
 	bit 4, [hl]
 	jr nz, .asm_3da05
 	ld hl, BattleText_0x81863
-	call FarBattleTextBox
+	call StdBattleTextBox
 
 .asm_3da05
 	call WaitSFX
@@ -40488,7 +40489,7 @@ Function3dc23: ; 3dc23
 	ret z
 	push bc
 	ld hl, BattleText_0x80bae
-	call FarBattleTextBox
+	call StdBattleTextBox
 	call GetEighthMaxHP
 	call Function3cc39
 	pop hl
@@ -40565,7 +40566,7 @@ Function3dc5b: ; 3dc5b
 	ld hl, BattleText_0x809a8
 
 .asm_3dcdf
-	call FarBattleTextBox
+	call StdBattleTextBox
 	scf
 	ret
 
@@ -40701,7 +40702,7 @@ Function3dd2f: ; 3dd2f
 	ld a, $9
 	rst FarCall
 	ld hl, RecoveredUsingText
-	jp FarBattleTextBox
+	jp StdBattleTextBox
 ; 3ddc8
 
 
@@ -40812,7 +40813,7 @@ Function3de51: ; 3de51
 	call GetItemName
 	call Function3ddc8
 	ld hl, BattleText_0x80dab
-	call FarBattleTextBox
+	call StdBattleTextBox
 	ld a, [hBattleTurn]
 	and a
 	jr nz, .asm_3de90
@@ -40892,7 +40893,7 @@ Function3deb1: ; 3deb1
 	ld [de], a
 	call GetItemName
 	ld hl, BattleText_0x80bde
-	call FarBattleTextBox
+	call StdBattleTextBox
 	callab BattleCommand8c
 	ret
 
@@ -41328,7 +41329,7 @@ Function3e19b: ; 3e19b
 	bit 4, [hl]
 	jr nz, .asm_3e1c5
 	ld hl, $5863
-	call FarBattleTextBox
+	call StdBattleTextBox
 	ld c, $3c
 	call DelayFrames
 
@@ -41391,7 +41392,7 @@ Function3e1c7: ; 3e1c7
 
 Function3e22b: ; 3e22b
 	ld hl, BattleText_0x80bf3
-	call FarBattleTextBox
+	call StdBattleTextBox
 	jp Function3e139
 ; 3e234
 
@@ -41546,7 +41547,7 @@ Function3e358: ; 3e358
 	cp d
 	jr nz, .asm_3e36b
 	ld hl, BattleText_0x80c0d
-	call FarBattleTextBox
+	call StdBattleTextBox
 	jp $6299
 
 .asm_3e36b
@@ -41559,7 +41560,7 @@ Function3e358: ; 3e358
 
 .asm_3e378
 	ld hl, BattleText_0x80c22
-	call FarBattleTextBox
+	call StdBattleTextBox
 	jp $6299
 
 .asm_3e381
@@ -41919,7 +41920,7 @@ Function3e4bc: ; 3e4bc
 	ld hl, Function3cc39
 
 .asm_3e613
-	call FarBattleTextBox
+	call StdBattleTextBox
 	call Function30b4
 	jp Function3e4bc
 ; 3e61c
@@ -42168,7 +42169,7 @@ Function3e786: ; 3e786
 
 .asm_3e7b4
 	ld hl, BattleText_0x80c72
-	call FarBattleTextBox
+	call StdBattleTextBox
 	ld c, $3c
 	call DelayFrames
 	xor a
@@ -43811,7 +43812,7 @@ Function3ee3b: ; 3ee3b
 	call StartSFX
 	call WaitSFX
 	ld hl, BattleText_0x80c9c
-	call FarBattleTextBox
+	call StdBattleTextBox
 	call Function309d
 
 .asm_3f057
@@ -44064,7 +44065,7 @@ Function3f136: ; 3f136
 	rst FarCall
 	call WaitSFX
 	ld hl, BattleText_0x80c9c
-	call FarBattleTextBox
+	call StdBattleTextBox
 	pop de
 	inc e
 	ld b, $0
@@ -44353,7 +44354,7 @@ Function3f360: ; 3f360
 	push hl
 	call Function30b4
 	pop hl
-	jp FarBattleTextBox
+	jp StdBattleTextBox
 ; 3f390
 
 
@@ -44912,7 +44913,7 @@ Function3f71d: ; 3f71d
 	ld de, $d850
 	call Function3d0be
 	ld hl, BattleText_0x80730
-	call FarBattleTextBox
+	call StdBattleTextBox
 	ld a, [$cfc0]
 	bit 0, a
 	ret z
@@ -45752,7 +45753,7 @@ BattleStartMessage: ; 3fc8b
 	ld hl, $4000
 	rst FarCall
 	pop hl
-	call FarBattleTextBox
+	call StdBattleTextBox
 
 	call Function3f830
 	ret nz
@@ -54111,6 +54112,7 @@ INCLUDE "engine/engine_flags.asm"
 
 INCBIN "baserom.gbc", $80648, $80730-$80648
 
+BattleText:
 INCLUDE "text/battle.asm"
 
 INCBIN "baserom.gbc", $818ac, $81fe3-$818ac
@@ -68010,7 +68012,7 @@ Function100bc2: ; 100bc2
 	ld hl, $4c39
 
 .asm_100c6b
-	call FarBattleTextBox
+	call StdBattleTextBox
 	call Function30b4
 	jp Function100bc2
 ; 100c74

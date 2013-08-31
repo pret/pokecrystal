@@ -1212,7 +1212,7 @@ BitterBerry: ; f16a
 	call $7789
 
 	ld hl, $4d81
-	call FarBattleTextBox
+	call StdBattleTextBox
 
 	ld a, $0
 
