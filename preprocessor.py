@@ -10,7 +10,6 @@ from extras.pokemontools.crystal import (
     Signpost,
     PeopleEvent,
     DataByteWordMacro,
-    ItemFragment,
     text_command_classes,
     movement_command_classes,
     music_classes,
@@ -23,7 +22,6 @@ even_more_macros = [
     Signpost,
     PeopleEvent,
     DataByteWordMacro,
-    ItemFragment,
 ]
 
 macros = command_classes
@@ -38,9 +36,6 @@ show_original_lines = False
 
 # helpful for debugging macros
 do_macro_sanity_check = False
-
-class SkippableMacro(object):
-    macro_name = "db"
 
 chars = {
 "ガ": 0x05,
@@ -418,11 +413,14 @@ def macro_test(asm, macro_table):
     """
     # macros are determined by the first symbol on the line
     token = extract_token(asm)
-    # check against all names
-    if token in macro_table:
-        return (macro_table[token], token)
-    else:
-        return (None, None)
+
+    # skip db and dw since rgbasm handles those and they aren't macros
+    if token not in ["db", "dw"]:
+        # check against all names
+        if token in macro_table:
+            return (macro_table[token], token)
+
+    return (None, None)
 
 def is_based_on(something, base):
     """
@@ -436,7 +434,7 @@ def is_based_on(something, base):
     options += [something.__name__]
     return (base in options)
 
-def macro_translator(macro, token, line, skippable_macros):
+def macro_translator(macro, token, line):
     """
     Converts a line with a macro into a rgbasm-compatible line.
     """
@@ -475,10 +473,9 @@ def macro_translator(macro, token, line, skippable_macros):
     if show_original_lines:
         sys.stdout.write("; original_line: " + original_line)
 
-    # "db" is a macro because of SkippableMacro
-    # rgbasm can handle "db" so no preprocessing is required
-    # (don't check its param count)
-    if macro.__name__ in skippable_macros or (macro.macro_name == "db" and macro in skippable_macros):
+    # rgbasm can handle "db" so no preprocessing is required, plus this wont be
+    # reached because of earlier checks in macro_test.
+    if macro.macro_name in ["db", "dw"]:
         sys.stdout.write(original_line)
         return
 
@@ -584,7 +581,7 @@ def macro_translator(macro, token, line, skippable_macros):
 
     sys.stdout.write(output)
 
-def read_line(l, skippable_macros, macro_table):
+def read_line(l, macro_table):
     """Preprocesses a given line of asm."""
 
     # strip comments from asm
@@ -612,21 +609,15 @@ def read_line(l, skippable_macros, macro_table):
     else:
         macro, token = macro_test(asm, macro_table)
         if macro:
-            macro_translator(macro, token, asm, skippable_macros)
+            macro_translator(macro, token, asm)
         else:
             sys.stdout.write(asm)
 
     if comment: sys.stdout.write(comment)
 
-def preprocess(macros, skippable_macros=None, lines=None):
+def preprocess(macros, lines=None):
     """Main entry point for the preprocessor."""
-    if skippable_macros == None:
-        skippable_macros = [SkippableMacro]
-
-    macro_table = make_macro_table(list(set(macros + skippable_macros)))
-
-    # HACK for pokecrystal. Must be after make_macro_table call.
-    skippable_macros += ["TextEndingCommand", "ItemFragment"]
+    macro_table = make_macro_table(macros)
 
     if not lines:
         # read each line from stdin
@@ -636,7 +627,7 @@ def preprocess(macros, skippable_macros=None, lines=None):
         lines = lines.split("\n")
 
     for l in lines:
-        read_line(l, skippable_macros, macro_table)
+        read_line(l, macro_table)
 
 # only run against stdin when not included as a module
 if __name__ == "__main__":
