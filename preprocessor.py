@@ -478,7 +478,7 @@ def macro_translator(macro, token, line):
 
         # check if there are no params (redundant)
         if len(params) == 1 and params[0] == "":
-            raise Exception("macro has no params?")
+            raise MacroException("macro has no params?")
 
     # write out a comment showing the original line
     if show_original_lines:
@@ -519,11 +519,11 @@ def macro_translator(macro, token, line):
                 elif param_klass.size == 3:
                     allowed_length += 2 # bank and label
                 else:
-                    raise Exception(
+                    raise MacroException(
                         "dunno what to do with a macro param with a size > 3"
                     )
             else:
-                raise Exception(
+                raise MacroException(
                     "dunno what to do with this non db/dw macro param: {klass} in line {line}"
                     .format(klass=param_klass, line=original_line)
                 )
@@ -581,7 +581,7 @@ def macro_translator(macro, token, line):
                 output += ("db " + param_klass.from_asm(param) + "\n")
                 index += 1
             else:
-                raise Exception(
+                raise MacroException(
                     "dunno what to do with this macro param ({klass}) in line: {line}"
                     .format(
                         klass=param_klass,
