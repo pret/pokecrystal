@@ -520,7 +520,8 @@ def macro_translator(macro, token, line):
                     allowed_length += 2 # bank and label
                 else:
                     raise MacroException(
-                        "dunno what to do with a macro param with a size > 3"
+                        "dunno what to do with a macro param with a size > 3 (size={size})"
+                        .format(size=param_klass.size)
                     )
             else:
                 raise MacroException(
