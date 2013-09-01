@@ -65390,41 +65390,41 @@ DoBadgeTypeBoosts: ; fbe24
 SECTION "bank3F",ROMX,BANK[$3F]
 
 _AnimateTileset: ; fc000
-; Iterate over a given pointer array of animation functions
-; (one per frame).
+; Iterate over a given pointer array of
+; animation functions (one per frame).
+
 ; Typically in wra1, vra0
 
-; Beginning of animation pointer array
 	ld a, [TilesetAnim]
 	ld e, a
 	ld a, [TilesetAnim + 1]
 	ld d, a
 
-; Play this frame.
-	ld a, [hTileAnimFrame] ; frame count
+	ld a, [hTileAnimFrame]
 	ld l, a
 	inc a
 	ld [hTileAnimFrame], a
-	
-; Each pointer has:
+
 	ld h, 0
 	add hl, hl
 	add hl, hl
 	add hl, de
 
-; 2-byte parameter (all functions take input de)
+; 2-byte parameter
+; All functions take input de.
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
 	inc hl
-	
+
 ; Function address
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	
+
 	jp [hl]
 ; fc01b
+
 
 Tileset00Anim: ; 0xfc01b
 Tileset02Anim: ; 0xfc01b
