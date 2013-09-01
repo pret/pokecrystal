@@ -131,8 +131,8 @@ VBlank0: ; 2b1
 	
 ; update oam by dma transfer
 	call hPushOAM
-;	403f:
-;		ld a, $c4
+;	@PushOAM:
+;		ld a, Sprites >> 8
 ;		ld [rDMA], a
 ;		ld a, $28
 ;	.loop
@@ -233,8 +233,8 @@ VBlank1: ; 337
 	call LoadTiles
 ; update oam by dma transfer
 	call hPushOAM
-;	403f:
-;		ld a, $c4
+;	@PushOAM:
+;		ld a, Sprites >> 8
 ;		ld [rDMA], a
 ;		ld a, $28
 ;	.loop
@@ -342,8 +342,8 @@ VBlank3: ; 396
 	
 ; update oam by dma transfer
 	call hPushOAM
-;	403f:
-;		ld a, $c4 ; Sprites / $100
+;	@PushOAM:
+;		ld a, Sprites >> 8
 ;		ld [rDMA], a
 ;		ld a, $28
 ;	.loop
@@ -414,8 +414,8 @@ VBlank4: ; 3df
 	
 ; update oam by dma transfer
 	call hPushOAM
-;	403f:
-;		ld a, $c4
+;	@PushOAM:
+;		ld a, Sprites >> 8
 ;		ld [rDMA], a
 ;		ld a, $28
 ;	.loop

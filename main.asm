@@ -9199,7 +9199,7 @@ LoadPushOAM: ; 4031
 ; 403f
 
 PushOAM: ; 403f
-	ld a, $c4
+	ld a, Sprites >> 8
 	ld [rDMA], a
 	ld a, $28
 .loop
