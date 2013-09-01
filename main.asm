@@ -65527,46 +65527,46 @@ Tileset24Anim: ; 0xfc1e7
 Tileset30Anim: ; 0xfc1e7
 ;	   param, function
 	dw $9140, WriteTileToBuffer
-	dw $0000, $471e
+	dw $0000, Functionfc71e
 	dw $cf41, ScrollTileRightLeft
-	dw $0000, $471e
+	dw $0000, Functionfc71e
 	dw $9140, WriteTileFromBuffer
-	dw $0000, $471e
+	dw $0000, Functionfc71e
 	dw $0000, TileAnimationPalette
-	dw $0000, $471e
+	dw $0000, Functionfc71e
 	dw $9400, WriteTileToBuffer
-	dw $0000, $471e
+	dw $0000, Functionfc71e
 	dw $cf41, ScrollTileDown
-	dw $0000, $471e
+	dw $0000, Functionfc71e
 	dw $cf41, ScrollTileDown
-	dw $0000, $471e
+	dw $0000, Functionfc71e
 	dw $cf41, ScrollTileDown
-	dw $0000, $471e
+	dw $0000, Functionfc71e
 	dw $9400, WriteTileFromBuffer
-	dw $0000, $471e
+	dw $0000, Functionfc71e
 	dw $0000, DoneTileAnimation
 ; 0xfc233
 
 Tileset29Anim: ; 0xfc233
 ;	   param, function
 	dw $9350, WriteTileToBuffer
-	dw $0000, $471e
+	dw $0000, Functionfc71e
 	dw $cf41, ScrollTileRightLeft
-	dw $0000, $471e
+	dw $0000, Functionfc71e
 	dw $9350, WriteTileFromBuffer
-	dw $0000, $471e
+	dw $0000, Functionfc71e
 	dw $0000, TileAnimationPalette
-	dw $0000, $471e
+	dw $0000, Functionfc71e
 	dw $9310, WriteTileToBuffer
-	dw $0000, $471e
+	dw $0000, Functionfc71e
 	dw $cf41, ScrollTileDown
-	dw $0000, $471e
+	dw $0000, Functionfc71e
 	dw $cf41, ScrollTileDown
-	dw $0000, $471e
+	dw $0000, Functionfc71e
 	dw $cf41, ScrollTileDown
-	dw $0000, $471e
+	dw $0000, Functionfc71e
 	dw $9310, WriteTileFromBuffer
-	dw $0000, $471e
+	dw $0000, Functionfc71e
 	dw $0000, DoneTileAnimation
 ; 0xfc27f
 
@@ -66328,7 +66328,45 @@ TileAnimationPalette: ; fc6d7
 ; fc71e
 
 
-INCBIN "baserom.gbc", $fc71e, $fc750 - $fc71e
+Functionfc71e: ; fc71e
+	ld a, [hCGB]
+	and a
+	ret z
+
+	ld a, [rBGP]
+	cp $e4
+	ret nz
+
+	ld a, [$d847]
+	cp $ff
+	ret nz
+
+	ld a, [rSVBK]
+	push af
+
+	ld a, 5
+	ld [rSVBK], a
+	ld a, $a0
+	ld [rBGPI], a
+	ld a, [$ff9b]
+	and 2
+	jr nz, .asm_fc743
+	ld hl, $d020
+	jr .asm_fc746
+
+.asm_fc743
+	ld hl, $d022
+
+.asm_fc746
+	ld a, [hli]
+	ld [rBGPD], a
+	ld a, [hli]
+	ld [rBGPD], a
+
+	pop af
+	ld [rSVBK], a
+	ret
+; fc750
 
 
 SproutPillarTilePointers: ; fc750
