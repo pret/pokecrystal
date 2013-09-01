@@ -829,7 +829,23 @@ WILDMON    EQU 4
 CurSpecies: ; cf60
 	ds 1
 
-	ds $13
+	ds 6
+
+Requested2bpp: ; cf67
+	ds 1
+Requested2bppSource: ; cf68
+	ds 2
+Requested2bppDest: ; cf6a
+	ds 2
+
+Requested1bpp: ; cf6c
+	ds 1
+Requested1bppSource: ; cf6d
+	ds 2
+Requested1bppDest: ; cf6f
+	ds 2
+
+	ds 3
 
 MenuSelection:; cf74
 	ds 1

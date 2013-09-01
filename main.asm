@@ -425,7 +425,7 @@ endr
 Serve1bppRequest: ; 170a
 ; Only call during the first fifth of VBlank
 
-	ld a, [$cf6c]
+	ld a, [Requested1bpp]
 	and a
 	ret z
 
@@ -436,29 +436,29 @@ Serve1bppRequest: ; 170a
 	cp 146
 	ret nc
 
-; Copy [$cf6c] 1bpp tiles from [$cf6d-e] to [$cf6f-70]
+; Copy [Requested1bpp] 1bpp tiles from [Requested1bppSource] to [Requested1bppDest]
 
 	ld [hSPBuffer], sp
 
 ; Source
-	ld hl, $cf6d
+	ld hl, Requested1bppSource
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
 	ld sp, hl
 	
 ; Destination
-	ld hl, $cf6f
+	ld hl, Requested1bppDest
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
 	
 ; # tiles to copy
-	ld a, [$cf6c]
+	ld a, [Requested1bpp]
 	ld b, a
 
 	xor a
-	ld [$cf6c], a
+	ld [Requested1bpp], a
 
 .next
 
@@ -488,11 +488,11 @@ endr
 
 
 	ld a, l
-	ld [$cf6f], a
+	ld [Requested1bppDest], a
 	ld a, h
-	ld [$cf70], a
+	ld [Requested1bppDest + 1], a
 
-	ld [$cf6d], sp
+	ld [Requested1bppSource], sp
 
 	ld a, [hSPBuffer]
 	ld l, a
@@ -506,7 +506,7 @@ endr
 Serve2bppRequest: ; 1769
 ; Only call during the first fifth of VBlank
 
-	ld a, [$cf67]
+	ld a, [Requested2bpp]
 	and a
 	ret z
 
@@ -521,34 +521,34 @@ Serve2bppRequest: ; 1769
 
 Serve2bppRequest@VBlank: ; 1778
 
-	ld a, [$cf67]
+	ld a, [Requested2bpp]
 	and a
 	ret z
 
 _Serve2bppRequest: ; 177d
-; Copy [$cf67] 2bpp tiles from [$cf68-9] to [$cf6a-b]
+; Copy [Requested2bpp] 2bpp tiles from [Requested2bppSource] to [Requested2bppDest]
 
 	ld [hSPBuffer], sp
 	
 ; Source
-	ld hl, $cf68
+	ld hl, Requested2bppSource
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
 	ld sp, hl
 	
 ; Destination
-	ld hl, $cf6a
+	ld hl, Requested2bppDest
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
 	
 ; # tiles to copy
-	ld a, [$cf67]
+	ld a, [Requested2bpp]
 	ld b, a
 
 	xor a
-	ld [$cf67], a
+	ld [Requested2bpp], a
 	
 .next
 
@@ -570,11 +570,11 @@ endr
 
 
 	ld a, l
-	ld [$cf6a], a
+	ld [Requested2bppDest], a
 	ld a, h
-	ld [$cf6b], a
+	ld [Requested2bppDest + 1], a
 
-	ld [$cf68], sp
+	ld [Requested2bppSource], sp
 
 	ld a, [hSPBuffer]
 	ld l, a
@@ -8209,16 +8209,19 @@ Function3b0c: ; 3b0c
 	ld a, [hLCDStatCustom]
 	and a
 	ret z
-	ld a, $0
-	ld [$cf68], a
+
+	ld a, $00
+	ld [Requested2bppSource], a
 	ld a, $d2
-	ld [$cf69], a
-	ld a, $0
-	ld [$cf6a], a
+	ld [Requested2bppSource + 1], a
+
+	ld a, $00
+	ld [Requested2bppDest], a
 	ld a, $d1
-	ld [$cf6b], a
+	ld [Requested2bppDest + 1], a
+
 	ld a, $9
-	ld [$cf67], a
+	ld [Requested2bpp], a
 	ret
 ; 3b2a
 

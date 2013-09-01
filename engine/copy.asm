@@ -248,13 +248,13 @@ Request2bpp: ; eba
 
 .asm_edc
 	ld a, e
-	ld [$cf68], a
+	ld [Requested2bppSource], a
 	ld a, d
-	ld [$cf69], a
+	ld [Requested2bppSource + 1], a
 	ld a, l
-	ld [$cf6a], a
+	ld [Requested2bppDest], a
 	ld a, h
-	ld [$cf6b], a
+	ld [Requested2bppDest + 1], a
 
 .asm_eec
 	ld a, c
@@ -262,10 +262,10 @@ Request2bpp: ; eba
 	cp [hl]
 	jr nc, .asm_f08
 
-	ld [$cf67], a
+	ld [Requested2bpp], a
 .wait
 	call DelayFrame
-	ld a, [$cf67]
+	ld a, [Requested2bpp]
 	and a
 	jr nz, .wait
 
@@ -281,10 +281,10 @@ Request2bpp: ; eba
 
 .asm_f08
 	ld a, [$ffd3]
-	ld [$cf67], a
+	ld [Requested2bpp], a
 .asm_f0d
 	call DelayFrame
-	ld a, [$cf67]
+	ld a, [Requested2bpp]
 	and a
 	jr nz, .asm_f0d
 	ld a, c
@@ -322,23 +322,23 @@ Request1bpp: ; f1e
 
 .asm_f40
 	ld a, e
-	ld [$cf6d], a
+	ld [Requested1bppSource], a
 	ld a, d
-	ld [$cf6e], a
+	ld [Requested1bppSource + 1], a
 	ld a, l
-	ld [$cf6f], a
+	ld [Requested1bppDest], a
 	ld a, h
-	ld [$cf70], a
+	ld [Requested1bppDest + 1], a
 .asm_f50
 	ld a, c
 	ld hl, $ffd3
 	cp [hl]
 	jr nc, .asm_f6c
 
-	ld [$cf6c], a
+	ld [Requested1bpp], a
 .wait
 	call DelayFrame
-	ld a, [$cf6c]
+	ld a, [Requested1bpp]
 	and a
 	jr nz, .wait
 
@@ -354,10 +354,10 @@ Request1bpp: ; f1e
 
 .asm_f6c
 	ld a, [$ffd3]
-	ld [$cf6c], a
+	ld [Requested1bpp], a
 .asm_f71
 	call DelayFrame
-	ld a, [$cf6c]
+	ld a, [Requested1bpp]
 	and a
 	jr nz, .asm_f71
 	ld a, c
