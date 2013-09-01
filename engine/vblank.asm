@@ -119,8 +119,8 @@ VBlank0: ; 2b1
 	call UpdateBGMap
 	
 ; these have their own timing checks
-	call SafeLoadTiles
-	call SafeLoadTiles2
+	call Serve2bppRequest
+	call Serve1bppRequest
 	call SafeTileAnimation
 	
 .doneframeaction
@@ -230,7 +230,7 @@ VBlank1: ; 337
 	
 ; these have their own timing checks
 	call UpdateBGMap
-	call LoadTiles
+	call Serve2bppRequest@VBlank
 ; update oam by dma transfer
 	call hPushOAM
 ;	@PushOAM:
@@ -338,7 +338,7 @@ VBlank3: ; 396
 	jr c, .vblankoccurred
 ; else
 	call UpdateBGMap
-	call LoadTiles
+	call Serve2bppRequest@VBlank
 	
 ; update oam by dma transfer
 	call hPushOAM
@@ -410,7 +410,7 @@ VBlank4: ; 3df
 	ld [$ff8a], a
 	
 	call UpdateBGMap
-	call SafeLoadTiles
+	call Serve2bppRequest
 	
 ; update oam by dma transfer
 	call hPushOAM
@@ -465,7 +465,7 @@ VBlank5: ; 400
 	jr c, .vblankoccurred
 	
 	call UpdateBGMap
-	call SafeLoadTiles
+	call Serve2bppRequest
 	
 .vblankoccurred
 ; tell other fns vblank happened
@@ -521,8 +521,8 @@ VBlank6: ; 436
 	call UpdateCGBPals
 	jr c, .vblankoccurred
 	
-	call SafeLoadTiles
-	call SafeLoadTiles2
+	call Serve2bppRequest
+	call Serve1bppRequest
 	call DMATransfer
 	
 .vblankoccurred

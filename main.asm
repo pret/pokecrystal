@@ -422,7 +422,7 @@ endr
 ; 170a
 
 
-SafeLoadTiles2: ; 170a
+Serve1bppRequest: ; 170a
 ; Only call during the first fifth of VBlank
 
 	ld a, [$cf6c]
@@ -436,7 +436,6 @@ SafeLoadTiles2: ; 170a
 	cp 146
 	ret nc
 
-GetTiles2: ; 1717
 ; Copy [$cf6c] 1bpp tiles from [$cf6d-e] to [$cf6f-70]
 
 	ld [hSPBuffer], sp
@@ -504,7 +503,7 @@ endr
 ; 1769
 
 
-SafeLoadTiles: ; 1769
+Serve2bppRequest: ; 1769
 ; Only call during the first fifth of VBlank
 
 	ld a, [$cf67]
@@ -517,16 +516,16 @@ SafeLoadTiles: ; 1769
 	ret c
 	cp 146
 	ret nc
-	jr GetTiles
+	jr _Serve2bppRequest
 
 
-LoadTiles: ; 1778
+Serve2bppRequest@VBlank: ; 1778
 
 	ld a, [$cf67]
 	and a
 	ret z
 
-GetTiles: ; 177d
+_Serve2bppRequest: ; 177d
 ; Copy [$cf67] 2bpp tiles from [$cf68-9] to [$cf6a-b]
 
 	ld [hSPBuffer], sp
