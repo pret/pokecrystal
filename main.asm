@@ -587,47 +587,42 @@ endr
 
 
 SafeTileAnimation: ; 17d3
-; call from vblank
+; Only call during the first fifth of VBlank
 
 	ld a, [$ffde]
 	and a
 	ret z
 	
-; abort if too far into vblank
+; Back out if we're too far into VBlank
 	ld a, [rLY]
-; ret unless ly = 144-150
 	cp 144
 	ret c
 	cp 151
 	ret nc
-	
-; save affected banks
-; switch to new banks
+
 	ld a, [hROMBank]
-	push af ; save bank
+	push af
 	ld a, BANK(DoTileAnimation)
-	rst Bankswitch ; bankswitch
+	rst Bankswitch
 
 	ld a, [rSVBK]
-	push af ; save wram bank
-	ld a, $1 ; wram bank 1
+	push af
+	ld a, 1
 	ld [rSVBK], a
 
 	ld a, [rVBK]
-	push af ; save vram bank
-	ld a, $0 ; vram bank 0
+	push af
+	ld a, 0
 	ld [rVBK], a
-	
-; take care of tile animation queue
+
 	call DoTileAnimation
-	
-; restore affected banks
+
 	pop af
 	ld [rVBK], a
 	pop af
 	ld [rSVBK], a
 	pop af
-	rst Bankswitch ; bankswitch
+	rst Bankswitch
 	ret
 ; 17ff
 
@@ -644,6 +639,7 @@ GetSpritePalette: ; 17ff
 	pop hl
 	ret
 ; 180e
+
 
 Function180e: ; 180e
 	push hl
