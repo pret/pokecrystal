@@ -141,153 +141,120 @@ INCLUDE "engine/text.asm"
 
 
 DMATransfer: ; 15d8
-; DMA transfer
-; return carry if successful
+; Return carry if the transfer is completed.
 
-; anything to transfer?
 	ld a, [hDMATransfer]
 	and a
 	ret z
-; start transfer
+
+; Start transfer
 	ld [rHDMA5], a
-; indicate that transfer has occurred
+
+; Execution is halted until the transfer is complete.
+
 	xor a
 	ld [hDMATransfer], a
-; successful transfer
 	scf
 	ret
 ; 15e3
 
 
 UpdateBGMapBuffer: ; 15e3
-; write [$ffdc] 16x8 tiles from BGMapBuffer to bg map addresses in BGMapBufferPtrs
-; [$ffdc] must be even since this is done in 16x16 blocks
+; Copy [$ffdc] 16x8 tiles from BGMapBuffer
+; to bg map addresses in BGMapBufferPtrs.
 
-; return carry if successful
+; [$ffdc] must be even since this is done in pairs.
 
-; any tiles to update?
+; Return carry on success.
+
 	ld a, [hBGMapUpdate]
 	and a
 	ret z
-; save wram bank
+
 	ld a, [rVBK]
 	push af
-; save sp
 	ld [hSPBuffer], sp
-	
-; temp stack
+
 	ld hl, BGMapBufferPtrs
 	ld sp, hl
-; we can now pop the addresses of affected spots in bg map
-	
-; get pal and tile buffers
+
+; We can now pop the addresses of affected spots on the BG Map
+
 	ld hl, BGMapPalBuffer
 	ld de, BGMapBuffer
 
-.loop
-; draw one 16x16 block
 
-; top half:
+.next
+; Copy a pair of 16x8 blocks (one 16x16 block)
 
-; get bg map address
+rept 2
+; Get our BG Map address
 	pop bc
-; update palettes
-	ld a, $1
+
+; Palettes
+	ld a, 1
 	ld [rVBK], a
-; tile 1
+
 	ld a, [hli]
 	ld [bc], a
 	inc c
-; tile 2
 	ld a, [hli]
 	ld [bc], a
 	dec c
-; update tiles
-	ld a, $0
-	ld [rVBK], a
-; tile 1
-	ld a, [de]
-	inc de
-	ld [bc], a
-	inc c
-; tile 2
-	ld a, [de]
-	inc de
-	ld [bc], a
-	
-; bottom half:
 
-; get bg map address
-	pop bc
-; update palettes
-	ld a, $1
+; Tiles
+	ld a, 0
 	ld [rVBK], a
-; tile 1
-	ld a, [hli]
-	ld [bc], a
-	inc c
-; tile 2
-	ld a, [hli]
-	ld [bc], a
-	dec c
-; update tiles
-	ld a, $0
-	ld [rVBK], a
-; tile 1
+
 	ld a, [de]
 	inc de
 	ld [bc], a
 	inc c
-; tile 2
 	ld a, [de]
 	inc de
 	ld [bc], a
-	
-; we've done 2 16x8 blocks
+endr
+
+; We've done 2 16x8 blocks
 	ld a, [$ffdc]
 	dec a
 	dec a
 	ld [$ffdc], a
-	
-; if there are more left, get the next 16x16 block
-	jr nz, .loop
-	
-	
-; restore sp
+
+	jr nz, .next
+
+
 	ld a, [hSPBuffer]
 	ld l, a
-	ld a, [$ffda]
+	ld a, [hSPBuffer + 1]
 	ld h, a
 	ld sp, hl
-	
-; restore vram bank
+
 	pop af
 	ld [rVBK], a
-	
-; we don't need to update bg map until new tiles are loaded
+
 	xor a
 	ld [hBGMapUpdate], a
-	
-; successfully updated bg map
 	scf
 	ret
 ; 163a
 
 
 WaitTop: ; 163a
+; Wait until the top third of the BG Map is being updated.
+
 	ld a, [hBGMapMode]
 	and a
 	ret z
-	
-; wait until top third of bg map can be updated
+
 	ld a, [hBGMapThird]
 	and a
-	jr z, .quit
-	
+	jr z, .done
+
 	call DelayFrame
 	jr WaitTop
-	
-.quit
+
+.done
 	xor a
 	ld [hBGMapMode], a
 	ret
@@ -295,133 +262,141 @@ WaitTop: ; 163a
 
 
 UpdateBGMap: ; 164c
-; get mode
+; Update the BG Map, in thirds, from TileMap and AttrMap.
+
 	ld a, [hBGMapMode]
 	and a
 	ret z
-	
-; don't save bg map address
+
+; BG Map 0
 	dec a ; 1
-	jr z, .tiles
+	jr z, .Tiles
 	dec a ; 2
-	jr z, .attr
-	dec a ; ?
-	
-; save bg map address
+	jr z, .Attr
+
+; BG Map 1
+	dec a
+
 	ld a, [hBGMapAddress]
 	ld l, a
-	ld a, [$ffd7]
+	ld a, [hBGMapAddress + 1]
 	ld h, a
 	push hl
 
-; bg map 1 (VBGMap1)
 	xor a
 	ld [hBGMapAddress], a
-	ld a, $9c
-	ld [$ffd7], a
-	
-; get mode again
+	ld a, VBGMap1 >> 8
+	ld [hBGMapAddress + 1], a
+
 	ld a, [hBGMapMode]
 	push af
 	cp 3
-	call z, .tiles
+	call z, .Tiles
 	pop af
 	cp 4
-	call z, .attr
-	
-; restore bg map address
+	call z, .Attr
+
 	pop hl
 	ld a, l
 	ld [hBGMapAddress], a
 	ld a, h
-	ld [$ffd7], a
+	ld [hBGMapAddress + 1], a
 	ret
-	
-.attr
-; switch vram banks
+
+
+.Attr
 	ld a, 1
 	ld [rVBK], a
-; bg map 1
+
 	ld hl, AttrMap
-	call .getthird
-; restore vram bank
+	call .update
+
 	ld a, 0
 	ld [rVBK], a
 	ret
-	
-.tiles
-; bg map 0
+
+
+.Tiles
 	ld hl, TileMap
-	
-.getthird
-; save sp
+
+
+.update
 	ld [hSPBuffer], sp
 	
-; # tiles to move down * 6 (which third?)
+; Which third?
 	ld a, [hBGMapThird]
 	and a ; 0
 	jr z, .top
 	dec a ; 1
 	jr z, .middle
+	; 2
 
-; .bottom ; 2
-; move 12 tiles down
-	ld de, $00f0 ; TileMap(0,12) - TileMap
+
+THIRD_HEIGHT EQU SCREEN_HEIGHT / 3
+
+
+.bottom
+	ld de, 2 * THIRD_HEIGHT * SCREEN_WIDTH
 	add hl, de
-; stack now points to source
 	ld sp, hl
-; get bg map address
-	ld a, [$ffd7]
+
+	ld a, [hBGMapAddress + 1]
 	ld h, a
 	ld a, [hBGMapAddress]
 	ld l, a
-; move 12 tiles down
-	ld de, $0180 ; bgm(0,12)
+
+	ld de, 2 * THIRD_HEIGHT * BG_MAP_WIDTH
 	add hl, de
-; start at top next time
+
+; Next time: top third
 	xor a
 	jr .start
-	
+
+
 .middle
-; move 6 tiles down
-	ld de, $0078 ; TileMap(0,6) - TileMap
+	ld de, THIRD_HEIGHT * SCREEN_WIDTH
 	add hl, de
-; stack now points to source
 	ld sp, hl
-; get bg map address
-	ld a, [$ffd7]
+
+	ld a, [hBGMapAddress + 1]
 	ld h, a
 	ld a, [hBGMapAddress]
 	ld l, a
-; move 6 tiles down
-	ld de, $00c0 ; bgm(0,6)
+
+	ld de, THIRD_HEIGHT * BG_MAP_WIDTH
 	add hl, de
-; start at bottom next time
+
+; Next time: bottom third
 	ld a, 2
 	jr .start
-	
+
+
 .top
-; stack now points to source
 	ld sp, hl
-; get bg map address
-	ld a, [$ffd7]
+
+	ld a, [hBGMapAddress + 1]
 	ld h, a
 	ld a, [hBGMapAddress]
 	ld l, a
-; start at middle next time
+
+; Next time: middle third
 	ld a, 1
-	
+
+
 .start
-; which third to draw next update
+; Which third to update next time
 	ld [hBGMapThird], a
-; # rows per third
-	ld a, 6 ; SCREEN_HEIGHT / 3
-; # tiles from the edge of the screen to the next row
-	ld bc, $000d ; BG_WIDTH + 1 - SCREEN_WIDTH
-	
+
+; Rows of tiles in a third
+	ld a, SCREEN_HEIGHT / 3
+
+; Discrepancy between TileMap and BGMap
+	ld bc, BG_MAP_WIDTH - (SCREEN_WIDTH - 1)
+
+
 .row
-; write a row of 20 tiles
-rept 9
+; Copy a row of 20 tiles
+rept SCREEN_WIDTH / 2 - 1
 	pop de
 	ld [hl], e
 	inc l
@@ -432,16 +407,15 @@ endr
 	ld [hl], e
 	inc l
 	ld [hl], d
-; next row
+
 	add hl, bc
-; done?
 	dec a
 	jr nz, .row
-	
-; restore sp
+
+
 	ld a, [hSPBuffer]
 	ld l, a
-	ld a, [$ffda]
+	ld a, [hSPBuffer + 1]
 	ld h, a
 	ld sp, hl
 	ret
@@ -449,47 +423,45 @@ endr
 
 
 SafeLoadTiles2: ; 170a
-; only execute during first fifth of vblank
-; any tiles to draw?
+; Only call during the first fifth of VBlank
+
 	ld a, [$cf6c]
 	and a
 	ret z
-; abort if too far into vblank
+
+; Back out if we're too far into VBlank
 	ld a, [rLY]
-; ly = 144-145?
 	cp 144
 	ret c
 	cp 146
 	ret nc
-	
+
 GetTiles2: ; 1717
-; load [$cf6c] tiles from [$cf6d-e] to [$cf6f-70]
-; save sp
+; Copy [$cf6c] 1bpp tiles from [$cf6d-e] to [$cf6f-70]
+
 	ld [hSPBuffer], sp
-	
-; sp = [$cf6d-e] tile source
+
+; Source
 	ld hl, $cf6d
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
 	ld sp, hl
 	
-; hl = [$cf6f-70] tile dest
+; Destination
 	ld hl, $cf6f
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
 	
-; # tiles to draw
+; # tiles to copy
 	ld a, [$cf6c]
 	ld b, a
-	
-; clear tile queue
+
 	xor a
 	ld [$cf6c], a
-	
-.loop
-; put 1 tile (16 bytes) into hl from sp
+
+.next
 
 rept 3
 	pop de
@@ -510,25 +482,22 @@ endr
 	ld [hl], d
 	inc l
 	ld [hl], d
-; next tile
+
 	inc hl
-; done?
 	dec b
-	jr nz, .loop
-	
-; update $cf6f-70
+	jr nz, .next
+
+
 	ld a, l
 	ld [$cf6f], a
 	ld a, h
 	ld [$cf70], a
-	
-; update $cf6d-e
+
 	ld [$cf6d], sp
-	
-; restore sp
+
 	ld a, [hSPBuffer]
 	ld l, a
-	ld a, [$ffda]
+	ld a, [hSPBuffer + 1]
 	ld h, a
 	ld sp, hl
 	ret
@@ -536,56 +505,54 @@ endr
 
 
 SafeLoadTiles: ; 1769
-; only execute during first fifth of vblank
-; any tiles to draw?
+; Only call during the first fifth of VBlank
+
 	ld a, [$cf67]
 	and a
 	ret z
-; abort if too far into vblank
+
+; Back out if we're too far into VBlank
 	ld a, [rLY]
-; ly = 144-145?
 	cp 144
 	ret c
 	cp 146
 	ret nc
 	jr GetTiles
-	
+
+
 LoadTiles: ; 1778
-; use only if time is allotted
-; any tiles to draw?
+
 	ld a, [$cf67]
 	and a
 	ret z
-; get tiles
-	
-GetTiles: ; 177d
-; load [$cf67] tiles from [$cf68-9] to [$cf6a-b]
 
-; save sp
+GetTiles: ; 177d
+; Copy [$cf67] 2bpp tiles from [$cf68-9] to [$cf6a-b]
+
 	ld [hSPBuffer], sp
 	
-; sp = [$cf68-9] tile source
+; Source
 	ld hl, $cf68
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
 	ld sp, hl
 	
-; hl = [$cf6a-b] tile dest
+; Destination
 	ld hl, $cf6a
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
 	
-; # tiles to draw
+; # tiles to copy
 	ld a, [$cf67]
 	ld b, a
-; clear tile queue
+
 	xor a
 	ld [$cf67], a
 	
-.loop
-; put 1 tile (16 bytes) into hl from sp
+.next
+
 rept 7
 	pop de
 	ld [hl], e
@@ -597,25 +564,22 @@ endr
 	ld [hl], e
 	inc l
 	ld [hl], d
-; next tile
+
 	inc hl
-; done?
 	dec b
-	jr nz, .loop
-	
-; update $cf6a-b
+	jr nz, .next
+
+
 	ld a, l
 	ld [$cf6a], a
 	ld a, h
 	ld [$cf6b], a
-	
-; update $cf68-9
+
 	ld [$cf68], sp
-	
-; restore sp
+
 	ld a, [hSPBuffer]
 	ld l, a
-	ld a, [$ffda]
+	ld a, [hSPBuffer + 1]
 	ld h, a
 	ld sp, hl
 	ret
