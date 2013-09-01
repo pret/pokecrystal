@@ -2644,7 +2644,7 @@ Function2173: ; 2173
 Function217a: ; 217a
 	ld a, [hROMBank]
 	push af
-	ld a, [TileSetBlocksBank]
+	ld a, [TilesetBlocksBank]
 	rst Bankswitch
 
 	call Function2198
@@ -2692,7 +2692,7 @@ Function2198: ; 2198
 	add hl, hl
 	add hl, hl
 	add hl, hl
-	ld a, [TileSetBlocksAddress]
+	ld a, [TilesetBlocksAddress]
 	add l
 	ld l, a
 	ld a, [$d1de]
@@ -3965,11 +3965,11 @@ Function2816: ; 2816
 ; 2821
 
 Function2821: ; 2821
-	ld hl, TileSetAddress
+	ld hl, TilesetAddress
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	ld a, [TileSetBank]
+	ld a, [TilesetBank]
 	ld e, a
 	ld a, [rSVBK]
 	push af
@@ -4340,7 +4340,7 @@ Function2a3c: ; 2a3c
 	ld h, $0
 	add hl, hl
 	add hl, hl
-	ld a, [TileSetCollisionAddress]
+	ld a, [TilesetCollisionAddress]
 	ld c, a
 	ld a, [$d1e1]
 	ld b, a
@@ -4356,7 +4356,7 @@ Function2a3c: ; 2a3c
 	inc hl
 
 .asm_2a5c
-	ld a, [TileSetCollisionBank]
+	ld a, [TilesetCollisionBank]
 	call GetFarByte
 	ret
 
@@ -4944,7 +4944,7 @@ Function2d27: ; 2d27
 	ld bc, $000f
 	ld a, [$d199]
 	call AddNTimes
-	ld de, TileSetBank
+	ld de, TilesetBank
 	ld bc, $000f
 	ld a, $13
 	call FarCopyBytes
@@ -48657,7 +48657,7 @@ Function4c000: ; 4c000
 	push hl
 	srl a
 	jr c, .asm_4c021
-	ld hl, TileSetPalettes
+	ld hl, TilesetPalettes
 	add [hl]
 	ld l, a
 	ld a, [$d1e7]
@@ -48668,7 +48668,7 @@ Function4c000: ; 4c000
 	jr .asm_4c031
 
 .asm_4c021
-	ld hl, TileSetPalettes
+	ld hl, TilesetPalettes
 	add [hl]
 	ld l, a
 	ld a, [$d1e7]
@@ -48700,7 +48700,7 @@ Function4c03f: ; 4c03f
 	push hl
 	srl a
 	jr c, .asm_4c05b
-	ld hl, TileSetPalettes
+	ld hl, TilesetPalettes
 	add [hl]
 	ld l, a
 	ld a, [$d1e7]
@@ -48711,7 +48711,7 @@ Function4c03f: ; 4c03f
 	jr .asm_4c06b
 
 .asm_4c05b
-	ld hl, TileSetPalettes
+	ld hl, TilesetPalettes
 	add [hl]
 	ld l, a
 	ld a, [$d1e7]
@@ -65395,9 +65395,9 @@ _AnimateTileset: ; fc000
 ; Typically in wra1, vra0
 
 ; Beginning of animation pointer array
-	ld a, [TileSetAnim]
+	ld a, [TilesetAnim]
 	ld e, a
-	ld a, [TileSetAnim + 1]
+	ld a, [TilesetAnim + 1]
 	ld d, a
 
 ; Play this frame.

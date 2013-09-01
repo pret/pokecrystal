@@ -1176,25 +1176,25 @@ EastConnectionWindow: ; d1d7
 	ds 2
 
 
-TileSetHeader:
-TileSetBank: ; d1d9
+TilesetHeader:
+TilesetBank: ; d1d9
 	ds 1
-TileSetAddress: ; d1da
+TilesetAddress: ; d1da
 	ds 2
-TileSetBlocksBank: ; d1dc
+TilesetBlocksBank: ; d1dc
 	ds 1
-TileSetBlocksAddress: ; d1dd
+TilesetBlocksAddress: ; d1dd
 	ds 2
-TileSetCollisionBank: ; d1df
+TilesetCollisionBank: ; d1df
 	ds 1
-TileSetCollisionAddress: ; d1e0
+TilesetCollisionAddress: ; d1e0
 	ds 2
-TileSetAnim: ; d1e2
+TilesetAnim: ; d1e2
 ; bank 3f
 	ds 2
 ; unused ; d1e4
 	ds 2
-TileSetPalettes: ; d1e6
+TilesetPalettes: ; d1e6
 ; bank 3f
 	ds 2
 
