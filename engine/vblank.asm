@@ -121,7 +121,7 @@ VBlank0: ; 2b1
 ; these have their own timing checks
 	call Serve2bppRequest
 	call Serve1bppRequest
-	call SafeTileAnimation
+	call AnimateTileset
 	
 .doneframeaction
 ; oam update off?

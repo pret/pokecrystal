@@ -585,7 +585,7 @@ endr
 ; 17d3
 
 
-SafeTileAnimation: ; 17d3
+AnimateTileset: ; 17d3
 ; Only call during the first fifth of VBlank
 
 	ld a, [$ffde]
@@ -601,7 +601,7 @@ SafeTileAnimation: ; 17d3
 
 	ld a, [hROMBank]
 	push af
-	ld a, BANK(DoTileAnimation)
+	ld a, BANK(_AnimateTileset)
 	rst Bankswitch
 
 	ld a, [rSVBK]
@@ -614,7 +614,7 @@ SafeTileAnimation: ; 17d3
 	ld a, 0
 	ld [rVBK], a
 
-	call DoTileAnimation
+	call _AnimateTileset
 
 	pop af
 	ld [rVBK], a
@@ -65389,7 +65389,7 @@ DoBadgeTypeBoosts: ; fbe24
 
 SECTION "bank3F",ROMX,BANK[$3F]
 
-DoTileAnimation: ; fc000
+_AnimateTileset: ; fc000
 ; Iterate over a given pointer array of animation functions
 ; (one per frame).
 ; Typically in wra1, vra0
