@@ -30299,9 +30299,7 @@ SECTION "bank6",ROMX,BANK[$6]
 
 Tileset03GFX: ; 0x18000
 INCBIN "gfx/tilesets/03.lz"
-; 0x18605
-
-	db $00
+; 0x18606
 
 Tileset03Meta: ; 0x18606
 INCBIN "tilesets/03_metatiles.bin"
@@ -30314,9 +30312,7 @@ INCBIN "tilesets/03_collision.bin"
 Tileset00GFX: ; 0x19006
 Tileset01GFX: ; 0x19006
 INCBIN "gfx/tilesets/01.lz"
-; 0x19c0d
-
-	db $00
+; 0x19c0e
 
 Tileset00Meta: ; 0x19c0e
 Tileset01Meta: ; 0x19c0e
@@ -30330,14 +30326,7 @@ INCBIN "tilesets/01_collision.bin"
 
 Tileset29GFX: ; 0x1a60e
 INCBIN "gfx/tilesets/29.lz"
-; 0x1af38
-
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
+; 0x1af3e
 
 Tileset29Meta: ; 0x1af3e
 INCBIN "tilesets/29_metatiles.bin"
@@ -30349,21 +30338,7 @@ INCBIN "tilesets/29_collision.bin"
 
 Tileset20GFX: ; 0x1b43e
 INCBIN "gfx/tilesets/20.lz"
-; 0x1b8f1
-
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
+; 0x1b8fe
 
 Tileset20Meta: ; 0x1b8fe
 INCBIN "tilesets/20_metatiles.bin"
@@ -30398,9 +30373,7 @@ INCBIN "baserom.gbc", $1c021, $1c30c - $1c021
 
 Tileset07GFX: ; 0x1c30c
 INCBIN "gfx/tilesets/07.lz"
-; 0x1c73b
-
-	db $00
+; 0x1c73c
 
 Tileset07Meta: ; 0x1c73c
 INCBIN "tilesets/07_metatiles.bin"
@@ -30412,13 +30385,7 @@ INCBIN "tilesets/07_collision.bin"
 
 Tileset09GFX: ; 0x1cc3c
 INCBIN "gfx/tilesets/09.lz"
-; 0x1d047
-
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
+; 0x1d04c
 
 Tileset09Meta: ; 0x1d04c
 INCBIN "tilesets/09_metatiles.bin"
@@ -30430,16 +30397,7 @@ INCBIN "tilesets/09_collision.bin"
 
 Tileset06GFX: ; 0x1d54c
 INCBIN "gfx/tilesets/06.lz"
-; 0x1d924
-
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
+; 0x1d92c
 
 Tileset06Meta: ; 0x1d92c
 INCBIN "tilesets/06_metatiles.bin"
@@ -30463,22 +30421,7 @@ INCBIN "tilesets/13_collision.bin"
 
 Tileset24GFX: ; 0x1ea8c
 INCBIN "gfx/tilesets/24.lz"
-; 0x1ee0e
-
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
+; 0x1ee1c
 
 Tileset24Meta: ; 0x1ee1c
 Tileset30Meta: ; 0x1ee1c
@@ -30503,23 +30446,7 @@ INCBIN "baserom.gbc", $20000, $20181 - $20000
 
 Tileset23GFX: ; 0x20181
 INCBIN "gfx/tilesets/23.lz"
-; 0x206d2
-
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
+; 0x206e1
 
 Tileset23Meta: ; 0x206e1
 INCBIN "tilesets/23_metatiles.bin"
@@ -30531,9 +30458,7 @@ INCBIN "tilesets/23_collision.bin"
 
 Tileset10GFX: ; 0x20be1
 INCBIN "gfx/tilesets/10.lz"
-; 0x213e0
-
-	db $00
+; 0x213e1
 
 Tileset10Meta: ; 0x213e1
 INCBIN "tilesets/10_metatiles.bin"
@@ -30545,19 +30470,7 @@ INCBIN "tilesets/10_collision.bin"
 
 Tileset12GFX: ; 0x218e1
 INCBIN "gfx/tilesets/12.lz"
-; 0x22026
-
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
+; 0x22031
 
 Tileset12Meta: ; 0x22031
 INCBIN "tilesets/12_metatiles.bin"
@@ -30569,23 +30482,7 @@ INCBIN "tilesets/12_collision.bin"
 
 Tileset14GFX: ; 0x22531
 INCBIN "gfx/tilesets/14.lz"
-; 0x22ae2
-
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
+; 0x22af1
 
 Tileset14Meta: ; 0x22af1
 INCBIN "tilesets/14_metatiles.bin"
@@ -35321,17 +35218,7 @@ SECTION "bankC",ROMX,BANK[$C]
 
 Tileset15GFX: ; 0x30000
 INCBIN "gfx/tilesets/15.lz"
-; 0x304d7
-
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
+; 0x304e0
 
 Tileset15Meta: ; 0x304e0
 INCBIN "tilesets/15_metatiles.bin"
@@ -35343,16 +35230,7 @@ INCBIN "tilesets/15_collision.bin"
 
 Tileset25GFX: ; 0x309e0
 INCBIN "gfx/tilesets/25.lz"
-; 0x30e78
-
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
+; 0x30e80
 
 Tileset25Meta: ; 0x30e80
 INCBIN "tilesets/25_metatiles.bin"
@@ -35364,12 +35242,7 @@ INCBIN "tilesets/25_collision.bin"
 
 Tileset27GFX: ; 0x31380
 INCBIN "gfx/tilesets/27.lz"
-; 0x318dc
-
-	db $00
-	db $00
-	db $00
-	db $00
+; 0x318e0
 
 Tileset27Meta: ; 0x318e0
 INCBIN "tilesets/27_metatiles.bin"
@@ -35381,18 +35254,7 @@ INCBIN "tilesets/27_collision.bin"
 
 Tileset28GFX: ; 0x31de0
 INCBIN "gfx/tilesets/28.lz"
-; 0x321a6
-
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
+; 0x321b0
 
 Tileset28Meta: ; 0x321b0
 INCBIN "tilesets/28_metatiles.bin"
@@ -35404,9 +35266,9 @@ INCBIN "tilesets/28_collision.bin"
 
 Tileset30GFX: ; 0x326b0
 INCBIN "gfx/tilesets/30.lz"
-; 0x329ed
+; 0x329f0
 
-INCBIN "baserom.gbc", $329ed, $333f0 - $329ed
+INCBIN "baserom.gbc", $329f0, $333f0 - $329f0
 
 
 SECTION "bankD",ROMX,BANK[$D]
@@ -60328,21 +60190,7 @@ SECTION "bank2D",ROMX,BANK[$2D]
 
 Tileset21GFX: ; 0xb4000
 INCBIN "gfx/tilesets/21.lz"
-; 0xb4893
-
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
+; 0xb48a0
 
 Tileset21Meta: ; 0xb48a0
 INCBIN "tilesets/21_metatiles.bin"
@@ -60354,23 +60202,7 @@ INCBIN "tilesets/21_collision.bin"
 
 Tileset22GFX: ; 0xb4da0
 INCBIN "gfx/tilesets/22.lz"
-; 0xb50d1
-
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
+; 0xb50e0
 
 Tileset22Meta: ; 0xb50e0
 INCBIN "tilesets/22_metatiles.bin"
@@ -60382,13 +60214,7 @@ INCBIN "tilesets/22_collision.bin"
 
 Tileset08GFX: ; 0xb55e0
 INCBIN "gfx/tilesets/08.lz"
-; 0xb59db
-
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
+; 0xb59e0
 
 Tileset08Meta: ; 0xb59e0
 INCBIN "tilesets/08_metatiles.bin"
@@ -60401,9 +60227,7 @@ INCBIN "tilesets/08_collision.bin"
 Tileset02GFX: ; 0xb5ee0
 Tileset04GFX: ; 0xb5ee0
 INCBIN "gfx/tilesets/04.lz"
-; 0xb6ae7
-
-	db $00
+; 0xb6ae8
 
 Tileset02Meta: ; 0xb6ae8
 INCBIN "tilesets/02_metatiles.bin"
@@ -60415,22 +60239,7 @@ INCBIN "tilesets/02_collision.bin"
 
 Tileset16GFX: ; 0xb74e8
 INCBIN "gfx/tilesets/16.lz"
-; 0xb799a
-
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
+; 0xb79a8
 
 Tileset16Meta: ; 0xb79a8
 INCBIN "tilesets/16_metatiles.bin"
@@ -62491,17 +62300,11 @@ SECTION "bank37",ROMX,BANK[$37]
 
 Tileset31GFX: ; 0xdc000
 INCBIN "gfx/tilesets/31.lz"
-; 0xdc3ce
-
-	db $00
-	db $00
+; 0xdc3d0
 
 Tileset18GFX: ; 0xdc3d0
 INCBIN "gfx/tilesets/18.lz"
-; 0xdcc4e
-
-	db $00
-	db $00
+; 0xdcc50
 
 Tileset18Meta: ; 0xdcc50
 INCBIN "tilesets/18_metatiles.bin"
@@ -62513,16 +62316,7 @@ INCBIN "tilesets/18_collision.bin"
 
 Tileset05GFX: ; 0xdd150
 INCBIN "gfx/tilesets/05.lz"
-; 0xdd5f8
-
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
+; 0xdd600
 
 Tileset05Meta: ; 0xdd600
 INCBIN "tilesets/05_metatiles.bin"
@@ -62534,20 +62328,7 @@ INCBIN "tilesets/05_collision.bin"
 
 Tileset19GFX: ; 0xddb00
 INCBIN "gfx/tilesets/19.lz"
-; 0xddf64
-
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
+; 0xddf70
 
 Tileset19Meta: ; 0xddf70
 INCBIN "tilesets/19_metatiles.bin"
@@ -62563,14 +62344,7 @@ INCBIN "tilesets/31_collision.bin"
 
 Tileset11GFX: ; 0xde570
 INCBIN "gfx/tilesets/11.lz"
-; 0xde98a
-
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
+; 0xde990
 
 Tileset11Meta: ; 0xde990
 INCBIN "tilesets/11_metatiles.bin"
@@ -71218,9 +70992,7 @@ Tileset34GFX: ; 0x1dc5a1
 Tileset35GFX: ; 0x1dc5a1
 Tileset36GFX: ; 0x1dc5a1
 INCBIN "gfx/tilesets/36.lz"
-; 0x1dd1a8
-
-	db $00
+; 0x1dd1a9
 
 Tileset26Meta: ; 0x1dd1a9
 INCBIN "tilesets/26_metatiles.bin"
