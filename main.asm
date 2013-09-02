@@ -25256,7 +25256,7 @@ Function13256: ; 13256
 	ld a, [CurSpecies]
 	ld b, a
 	ld hl, $c592
-	ld a, $2a
+	ld a, PREDEF_PRINT_MOVE_TYPE
 	call Predef
 	ld a, [CurSpecies]
 	dec a
@@ -41578,10 +41578,10 @@ Function3e643: ; 3e643
 	ld a, [$d0e3]
 	and a
 	jr z, .asm_3e6bf
-	ld hl, BattleMonMove1
-	call $66a5
-	ld hl, BattleMonPPMove1
-	call $66a5
+	ld hl, BattleMonMoves
+	call .asm_3e6a5
+	ld hl, BattleMonPP
+	call .asm_3e6a5
 	ld hl, PlayerDisableCount
 	ld a, [hl]
 	swap a
@@ -41615,26 +41615,27 @@ Function3e643: ; 3e643
 	ld a, [PlayerSubStatus5]
 	bit 3, a
 	jr nz, .asm_3e69e
-	ld hl, PartyMon1Move1
+	ld hl, PartyMon1Moves
 	ld a, [CurBattleMon]
 	call GetPartyLocation
 	push hl
-	call $66a5
+	call .asm_3e6a5
 	pop hl
 	ld bc, $0015
 	add hl, bc
-	call $66a5
+	call .asm_3e6a5
 
 .asm_3e69e
 	xor a
 	ld [$d0e3], a
 	jp Function3e4bc
 
+.asm_3e6a5
 	push hl
 	ld a, [$d0e3]
 	dec a
 	ld c, a
-	ld b, $0
+	ld b, 0
 	add hl, bc
 	ld d, h
 	ld e, l
@@ -41642,7 +41643,7 @@ Function3e643: ; 3e643
 	ld a, [$cfa9]
 	dec a
 	ld c, a
-	ld b, $0
+	ld b, 0
 	add hl, bc
 	ld a, [de]
 	ld b, [hl]
@@ -41660,64 +41661,73 @@ Function3e643: ; 3e643
 MoveInfoBox: ; 3e6c8
 	xor a
 	ld [hBGMapMode], a
-	ld hl, $c540
-	ld b, $3
-	ld c, $9
+
+	hlcoord 0, 8
+	ld b, 3
+	ld c, 9
 	call TextBox
 	call MobileTextBorder
+
 	ld a, [PlayerDisableCount]
 	and a
 	jr z, .asm_3e6f4
+
 	swap a
 	and $f
 	ld b, a
 	ld a, [$cfa9]
 	cp b
 	jr nz, .asm_3e6f4
-	ld hl, $c569
+
+	hlcoord 1, 10
 	ld de, .Disabled
 	call PlaceString
-	jr .asm_3e74e
+	jr .done
 
 .asm_3e6f4
 	ld hl, $cfa9
 	dec [hl]
 	call SetPlayerTurn
-	ld hl, BattleMonMove1
+	ld hl, BattleMonMoves
 	ld a, [$cfa9]
 	ld c, a
-	ld b, $0
+	ld b, 0
 	add hl, bc
 	ld a, [hl]
 	ld [CurPlayerMove], a
+
 	ld a, [CurBattleMon]
 	ld [CurPartyMon], a
-	ld a, $4
+	ld a, WILDMON
 	ld [MonType], a
 	callab Functionf8ec
+
 	ld hl, $cfa9
 	ld c, [hl]
 	inc [hl]
-	ld b, $0
-	ld hl, BattleMonPPMove1
+	ld b, 0
+	ld hl, BattleMonPP
 	add hl, bc
 	ld a, [hl]
 	and $3f
 	ld [StringBuffer1], a
 	call Function3e75f
-	ld hl, $c555
+
+	hlcoord 1, 9
 	ld de, .Type
 	call PlaceString
-	ld hl, $c583
-	ld [hl], $f3
+
+	hlcoord 7, 11
+	ld [hl], "/"
+
 	callab UpdateMoveData
 	ld a, [PlayerMoveAnimation]
 	ld b, a
-	ld hl, $c56a
-	ld a, $2a
+	hlcoord 2, 10
+	ld a, PREDEF_PRINT_MOVE_TYPE
 	call Predef
 
-.asm_3e74e
+.done
 	ret
 ; 3e74f
 
@@ -41729,11 +41739,11 @@ MoveInfoBox: ; 3e6c8
 
 
 Function3e75f: ; 3e75f
-	ld hl, $c581
+	hlcoord 5, 11
 	ld a, [InLinkBattle]
 	cp $4
 	jr c, .asm_3e76c
-	ld hl, $c581
+	hlcoord 5, 11
 
 .asm_3e76c
 	push hl
@@ -41743,7 +41753,7 @@ Function3e75f: ; 3e75f
 	pop hl
 	inc hl
 	inc hl
-	ld [hl], $f3
+	ld [hl], "/"
 	inc hl
 	ld de, $d265
 	ld bc, $0102
@@ -41752,12 +41762,13 @@ Function3e75f: ; 3e75f
 ; 3e786
 
 Function3e786: ; 3e786
-	ld a, $a5
+	ld a, STRUGGLE
 	ld [CurPlayerMove], a
 	ld a, [PlayerDisableCount]
 	and a
-	ld hl, BattleMonPPMove1
+	ld hl, BattleMonPP
 	jr nz, .asm_3e79f
+
 	ld a, [hli]
 	or [hl]
 	inc hl
@@ -41791,7 +41802,7 @@ Function3e786: ; 3e786
 .asm_3e7b4
 	ld hl, BattleText_0x80c72
 	call StdBattleTextBox
-	ld c, $3c
+	ld c, 60
 	call DelayFrames
 	xor a
 	ret
@@ -47785,7 +47796,7 @@ Function49e3d: ; 49e3d
 	ld a, $24
 	ld hl, $4b3e
 	rst FarCall
-	ld [hl], $9c
+	ld [hl], ":"
 	inc hl
 	ld de, hMinutes
 	ld bc, $8102
