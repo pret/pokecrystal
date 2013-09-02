@@ -1307,23 +1307,28 @@ GetSpriteDirection: ; 1b07
 ; 1b0f
 
 
-Function1b0f: ; 1b0f
-	add $10
+Cosine: ; 1b0f
+; Return d * cos(a) in hl
+	add $10 ; 90 degrees
 
-Function1b11: ; 1b11
+Sine: ; 1b11
+; Return d * sin(a) in hl
+; a is a signed 6-bit value.
+
 	ld e, a
 
 	ld a, [hROMBank]
 	push af
-	ld a, BANK(Function84d9)
+	ld a, BANK(_Sine)
 	rst Bankswitch
 
-	call Function84d9
+	call _Sine
 
 	pop af
 	rst Bankswitch
 	ret
 ; 1b1e
+
 
 Function1b1e: ; 1b1e
 	ld [$d003], a
@@ -11138,7 +11143,7 @@ Function4c5d: ; 4c5d
 	inc [hl]
 	ld a, [hl]
 	ld d, $60
-	call Function1b11
+	call Sine
 	ld a, h
 	sub $60
 	ld hl, $001a
@@ -11211,7 +11216,7 @@ Function4cc9: ; 4cc9
 	inc [hl]
 	ld a, [hl]
 	ld d, $60
-	call Function1b11
+	call Sine
 	ld a, h
 	sub $60
 	ld hl, $001a
@@ -11302,7 +11307,7 @@ Function4d4f: ; 4d4f
 	inc [hl]
 	ld a, [hl]
 	ld d, $60
-	call Function1b11
+	call Sine
 	ld a, h
 	sub $60
 	ld hl, $001a
@@ -17031,17 +17036,22 @@ Function849d: ; 849d
 	ret
 ; 84d9
 
-Function84d9: ; 84d9
+_Sine: ; 84d9
+; A simple sine function.
+; Return d * sin(e) in hl.
+
+; e is a signed 6-bit value.
 	ld a, e
-	and $3f
-	cp $20
-	jr nc, .asm_84e5
+	and %111111
+	cp  %100000
+	jr nc, .negative
+
 	call Function84ef
 	ld a, h
 	ret
 
-.asm_84e5
-	and $1f
+.negative
+	and %011111
 	call Function84ef
 	ld a, h
 	xor $ff
@@ -17053,27 +17063,36 @@ Function84ef: ; 84ef
 	ld e, a
 	ld a, d
 	ld d, 0
-	ld hl, $450b
+	ld hl, SineWave
 	add hl, de
 	add hl, de
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
 	ld hl, 0
-.asm_84fe
-	srl a
-	jr nc, .asm_8503
-	add hl, de
 
-.asm_8503
+; Factor amplitude
+.multiply
+	srl a
+	jr nc, .even
+	add hl, de
+.even
 	sla e
 	rl d
 	and a
-	jr nz, .asm_84fe
+	jr nz, .multiply
 	ret
 ; 850b
 
-INCBIN "baserom.gbc", $850b, $854b - $850b
+SineWave: ; 850b
+; A $20-word table representing a sine wave.
+; 90 degrees is index $10 at a base amplitude of $100.
+x	set 0
+	rept $20
+	dw (sin(x) + (sin(x) & $ff)) >> 8 ; round up
+x	set x + $100 * $40000
+	endr
+; 854b
 
 
 GetPredefFn: ; 854b
