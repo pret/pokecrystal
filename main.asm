@@ -528,19 +528,16 @@ ResetGameTime: ; 208a
 
 
 GameTimer: ; 209e
-; precautionary
+
 	nop
-	
-; save wram bank
+
 	ld a, [rSVBK]
 	push af
-	
-	ld a, $1
+	ld a, 1
 	ld [rSVBK], a
-	
+
 	call UpdateGameTimer
-	
-; restore wram bank
+
 	pop af
 	ld [rSVBK], a
 	ret
@@ -548,110 +545,105 @@ GameTimer: ; 209e
 
 
 UpdateGameTimer: ; 20ad
-; increment the game timer by one frame
-; capped at 999:59:59.00 after exactly 1000 hours
+; Increment the game timer by one frame.
+; The game timer is capped at 999:59:59.00.
 
-; pause game update?
+
+; Don't update if game logic is paused.
 	ld a, [$c2cd]
 	and a
 	ret nz
-	
-; game timer paused?
+
+; Is the timer paused?
 	ld hl, GameTimerPause
 	bit 0, [hl]
 	ret z
-	
-; reached cap? (999:00:00.00)
+
+; Is the timer already capped?
 	ld hl, GameTimeCap
 	bit 0, [hl]
 	ret nz
-	
-; increment frame counter
-	ld hl, GameTimeFrames ; frame counter
+
+
+; +1 frame
+	ld hl, GameTimeFrames
 	ld a, [hl]
 	inc a
 
-; reached 1 second?
 	cp 60 ; frames/second
-	jr nc, .second ; 20c5 $2
-	
-; update frame counter
+	jr nc, .second
+
 	ld [hl], a
 	ret
-	
+
+
 .second
-; reset frame counter
 	xor a
 	ld [hl], a
-	
-; increment second counter
+
+; +1 second
 	ld hl, GameTimeSeconds
 	ld a, [hl]
 	inc a
-	
-; reached 1 minute?
+
 	cp 60 ; seconds/minute
 	jr nc, .minute
-	
-; update second counter
+
 	ld [hl], a
 	ret
-	
+
+
 .minute
-; reset second counter
 	xor a
 	ld [hl], a
-	
-; increment minute counter
+
+; +1 minute
 	ld hl, GameTimeMinutes
 	ld a, [hl]
 	inc a
-	
-; reached 1 hour?
+
 	cp 60 ; minutes/hour
 	jr nc, .hour
-	
-; update minute counter
+
 	ld [hl], a
 	ret
-	
+
+
 .hour
-; reset minute counter
 	xor a
 	ld [hl], a
-	
-; increment hour counter
+
+; +1 hour
 	ld a, [GameTimeHours]
 	ld h, a
-	ld a, [GameTimeHours+1]
+	ld a, [GameTimeHours + 1]
 	ld l, a
 	inc hl
-	
-; reached 1000 hours?
+
+
+; Cap the timer after 1000 hours.
 	ld a, h
-	cp $3 ; 1000 / $100
-	jr c, .updatehr
-	
+	cp 1000 / $100
+	jr c, .ok
+
 	ld a, l
-	cp $e8 ; 1000 & $ff
-	jr c, .updatehr
-	
-; cap at 999:59:59.00
+	cp 1000 % $100
+	jr c, .ok
+
 	ld hl, GameTimeCap
-	set 0, [hl] ; stop timer
-	
-	ld a, 59
+	set 0, [hl]
+
+	ld a, 59 ; 999:59:59.00
 	ld [GameTimeMinutes], a
 	ld [GameTimeSeconds], a
-	
-; this will never be run again
 	ret
-	
-.updatehr
+
+
+.ok
 	ld a, h
 	ld [GameTimeHours], a
 	ld a, l
-	ld [GameTimeHours+1], a
+	ld [GameTimeHours + 1], a
 	ret
 ; 210f
 
