@@ -23053,8 +23053,108 @@ Function114dd: ; 114dd
 	ret
 ; 114e7
 
-INCBIN "baserom.gbc", $114e7, $11621 - $114e7
+Function114e7: ; 114e7
+	ld hl, $dc23
+	call Function115cf
+	call Function115c8
+	and a
+	jr z, .asm_114fa
 
+	ld b, a
+	callba Function13988
+
+.asm_114fa
+	xor a
+	ret
+; 114fc
+
+INCBIN "baserom.gbc", $114fc, $115c8 - $114fc
+
+Function115c8: ; 115c8
+	ld a, [$cfd7]
+	ret
+; 115cc
+
+Function115cc: ; 115cc
+	ld a, $ff
+	ret
+; 115cf
+
+Function115cf: ; 115cf
+	xor a
+	jr .asm_11605
+
+	inc hl
+	xor a
+	jr .asm_115f8
+
+	inc hl
+	inc hl
+	xor a
+	jr .asm_115eb
+
+	inc hl
+	inc hl
+	inc hl
+	ld a, [hSeconds]
+	ld c, a
+	sub [hl]
+	jr nc, .asm_115e6
+	add $3c
+
+.asm_115e6
+	ld [hl], c
+	dec hl
+	ld [$cfd4], a
+
+.asm_115eb
+	ld a, [hMinutes]
+	ld c, a
+	sbc [hl]
+	jr nc, .asm_115f3
+	add $3c
+
+.asm_115f3
+	ld [hl], c
+	dec hl
+	ld [$cfd5], a
+
+.asm_115f8
+	ld a, [hHours]
+	ld c, a
+	sbc [hl]
+	jr nc, .asm_11600
+	add $18
+
+.asm_11600
+	ld [hl], c
+	dec hl
+	ld [$cfd6], a
+
+.asm_11605
+	ld a, [CurDay]
+	ld c, a
+	sbc [hl]
+	jr nc, .asm_1160e
+	add $8c
+
+.asm_1160e
+	ld [hl], c
+	ld [$cfd7], a
+	ret
+; 11613
+
+Function11613: ; 11613
+	ld a, [CurDay]
+	ld [hli], a
+	ld a, [hHours]
+	ld [hli], a
+	ld a, [hMinutes]
+	ld [hli], a
+	ld a, [hSeconds]
+	ld [hli], a
+	ret
+; 11621
 
 Function11621: ; 11621
 	ld a, [CurDay]
@@ -25958,7 +26058,38 @@ UnknownScript_0x1369a: ; 0x1369a
 ; 0x1369d
 
 
-INCBIN "baserom.gbc", $1369d, $13b87 - $1369d
+INCBIN "baserom.gbc", $1369d, $13988 - $1369d
+
+Function13988: ; 13988
+	ld hl, PartyMon1PokerusStatus
+	ld a, [PartyCount]
+	and a
+	ret z
+	ld c, a
+.asm_13991
+	ld a, [hl]
+	and $f
+	jr z, .asm_139a0
+	sub b
+	jr nc, .asm_1399a
+	xor a
+
+.asm_1399a
+	ld d, a
+	ld a, [hl]
+	and $f0
+	add d
+	ld [hl], a
+
+.asm_139a0
+	ld de, PartyMon2 - PartyMon1
+	add hl, de
+	dec c
+	jr nz, .asm_13991
+	ret
+; 139a8
+
+INCBIN "baserom.gbc", $139a8, $13b87 - $139a8
 
 
 GetSquareRoot: ; 13b87
