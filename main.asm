@@ -54,14 +54,11 @@ Start:
 	nop
 	jp _Start
 
+
 SECTION "start",ROM0[$150]
 
 INCLUDE "engine/init.asm"
-
-
 INCLUDE "engine/vblank.asm"
-
-
 INCLUDE "engine/delay.asm"
 
 
@@ -92,29 +89,13 @@ UpdateTimePals: ; 485
 
 
 INCLUDE "engine/fade.asm"
-
-
 INCLUDE "engine/lcd.asm"
-
-
 INCLUDE "engine/time.asm"
-
-
 INCLUDE "engine/serial.asm"
-
-
 INCLUDE "engine/joypad.asm"
-
-
 INCLUDE "engine/decompress.asm"
-
-
 INCLUDE "engine/palettes.asm"
-
-
 INCLUDE "engine/copy.asm"
-
-
 INCLUDE "engine/text.asm"
 
 
