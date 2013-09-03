@@ -23043,7 +23043,43 @@ Function113da: ; 113da
 	ret
 ; 113e5
 
-INCBIN "baserom.gbc", $113e5, $11413 - $113e5
+Function113e5: ; 113e5
+	xor a
+	ld [$d464], a
+
+Function113e9: ; 113e9
+	ld a, [$d464]
+	cp 3
+	jr c, .asm_113f2
+	ld a, 3
+
+.asm_113f2
+	ld e, a
+	ld d, 0
+	ld hl, .data_113fd
+	add hl, de
+	ld a, [hl]
+	jp Function1142e
+; 113fd
+
+.data_113fd
+	db 20, 10, 5, 3
+; 11401
+
+Function11401: ; 11401
+	call Function1143c
+	ret nc
+	ld hl, $d464
+	ld a, [hl]
+	cp 3
+	jr nc, .asm_1140e
+	inc [hl]
+
+.asm_1140e
+	call Function113e9
+	scf
+	ret
+; 11413
 
 Function11413: ; 11413
 	ld a, 1
@@ -23069,7 +23105,77 @@ Function11420: ; 11420
 	ret
 ; 1142e
 
-INCBIN "baserom.gbc", $1142e, $114dd - $1142e
+Function1142e: ; 1142e
+	ld hl, $d465
+	ld [hl], a
+	call UpdateTime
+	ld hl, $d466
+	call Function1162e
+	ret
+; 1143c
+
+Function1143c: ; 1143c
+	ld hl, $d466
+	call Function115d6
+	call Function115ae
+	ld hl, $d465
+	call Function11586
+	ret
+; 1144c
+
+Function1144c: ; 1144c
+	ld hl, $dc1c
+	jp Function11413
+; 11452
+
+Function11452: ; 11452
+	ld hl, $dc1c
+	call Function11420
+	ret nc
+	xor a
+	ld hl, $dc1e
+	ld [hli], a
+	ld [hli], a
+	ld [hli], a
+	ld [hl], a
+	ld hl, $dc4c
+	ld [hli], a
+	ld [hli], a
+	ld [hli], a
+	ld [hli], a
+	ld hl, $dc50
+	ld [hli], a
+	ld [hli], a
+	ld [hli], a
+	ld [hli], a
+	ld hl, $dc54
+	ld [hli], a
+	ld [hli], a
+	ld [hli], a
+	ld [hli], a
+	ld hl, $dc58
+	ld a, [hl]
+	and a
+	jr z, .asm_11480
+	dec [hl]
+	jr nz, .asm_11483
+
+.asm_11480
+	call Function11485
+
+.asm_11483
+	jr Function1144c
+; 11485
+
+Function11485: ; 11485
+	call Random
+	and 3
+	add 3
+	ld [$dc58], a
+	ret
+; 11490
+
+INCBIN "baserom.gbc", $11490, $114dd - $11490
 
 
 Function114dd: ; 114dd
@@ -23249,17 +23355,23 @@ Function115cc: ; 115cc
 
 Function115cf: ; 115cf
 	xor a
-	jr .asm_11605
+	jr Function11605
+; 115d2
 
+Function115d2: ; 115d2
 	inc hl
 	xor a
-	jr .asm_115f8
+	jr Function115f8
+; 115d6
 
+Function115d6: ; 115d6
 	inc hl
 	inc hl
 	xor a
-	jr .asm_115eb
+	jr Function115eb
+; 115db
 
+Function115db: ; 115db
 	inc hl
 	inc hl
 	inc hl
@@ -23267,44 +23379,40 @@ Function115cf: ; 115cf
 	ld c, a
 	sub [hl]
 	jr nc, .asm_115e6
-	add $3c
-
+	add 60
 .asm_115e6
 	ld [hl], c
 	dec hl
 	ld [$cfd4], a
 
-.asm_115eb
+Function115eb: ; 115eb
 	ld a, [hMinutes]
 	ld c, a
 	sbc [hl]
 	jr nc, .asm_115f3
-	add $3c
-
+	add 60
 .asm_115f3
 	ld [hl], c
 	dec hl
 	ld [$cfd5], a
 
-.asm_115f8
+Function115f8: ; 115f8
 	ld a, [hHours]
 	ld c, a
 	sbc [hl]
 	jr nc, .asm_11600
-	add $18
-
+	add 24
 .asm_11600
 	ld [hl], c
 	dec hl
 	ld [$cfd6], a
 
-.asm_11605
+Function11605
 	ld a, [CurDay]
 	ld c, a
 	sbc [hl]
 	jr nc, .asm_1160e
-	add $8c
-
+	add 140
 .asm_1160e
 	ld [hl], c
 	ld [$cfd7], a
