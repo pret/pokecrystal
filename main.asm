@@ -23186,9 +23186,14 @@ TMHMMoves: ; 1167a
 	db FLASH
 	db WHIRLPOOL
 	db WATERFALL
-; 116b3
 
-INCBIN "baserom.gbc", $116b3, $116b7 - $116b3
+; Move tutor
+	db FLAMETHROWER
+	db THUNDERBOLT
+	db ICE_BEAM
+
+	db 0 ; end
+; 116b7
 
 Function116b7: ; 0x116b7
 	call Function2ed3
