@@ -17,34 +17,7 @@ SECTION "start",ROM0[$150]
 INCLUDE "engine/init.asm"
 INCLUDE "engine/vblank.asm"
 INCLUDE "engine/delay.asm"
-
-
-RTC: ; 46f
-; update time and time-sensitive palettes
-
-; rtc enabled?
-	ld a, [$c2ce]
-	cp 0
-	ret z
-	
-	call UpdateTime
-	
-; obj update on?
-	ld a, [VramState]
-	bit 0, a ; obj update
-	ret z
-
-TimeOfDayPals: ; 47e
-	callab _TimeOfDayPals
-	ret
-; 485
-
-UpdateTimePals: ; 485
-	callab _UpdateTimePals
-	ret
-; 48c
-
-
+INCLUDE "engine/rtc.asm"
 INCLUDE "engine/fade.asm"
 INCLUDE "engine/lcd.asm"
 INCLUDE "engine/time.asm"
