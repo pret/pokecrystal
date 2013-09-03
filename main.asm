@@ -141,153 +141,120 @@ INCLUDE "engine/text.asm"
 
 
 DMATransfer: ; 15d8
-; DMA transfer
-; return carry if successful
+; Return carry if the transfer is completed.
 
-; anything to transfer?
 	ld a, [hDMATransfer]
 	and a
 	ret z
-; start transfer
+
+; Start transfer
 	ld [rHDMA5], a
-; indicate that transfer has occurred
+
+; Execution is halted until the transfer is complete.
+
 	xor a
 	ld [hDMATransfer], a
-; successful transfer
 	scf
 	ret
 ; 15e3
 
 
 UpdateBGMapBuffer: ; 15e3
-; write [$ffdc] 16x8 tiles from BGMapBuffer to bg map addresses in BGMapBufferPtrs
-; [$ffdc] must be even since this is done in 16x16 blocks
+; Copy [$ffdc] 16x8 tiles from BGMapBuffer
+; to bg map addresses in BGMapBufferPtrs.
 
-; return carry if successful
+; [$ffdc] must be even since this is done in pairs.
 
-; any tiles to update?
+; Return carry on success.
+
 	ld a, [hBGMapUpdate]
 	and a
 	ret z
-; save wram bank
+
 	ld a, [rVBK]
 	push af
-; save sp
 	ld [hSPBuffer], sp
-	
-; temp stack
+
 	ld hl, BGMapBufferPtrs
 	ld sp, hl
-; we can now pop the addresses of affected spots in bg map
-	
-; get pal and tile buffers
+
+; We can now pop the addresses of affected spots on the BG Map
+
 	ld hl, BGMapPalBuffer
 	ld de, BGMapBuffer
 
-.loop
-; draw one 16x16 block
 
-; top half:
+.next
+; Copy a pair of 16x8 blocks (one 16x16 block)
 
-; get bg map address
+rept 2
+; Get our BG Map address
 	pop bc
-; update palettes
-	ld a, $1
+
+; Palettes
+	ld a, 1
 	ld [rVBK], a
-; tile 1
+
 	ld a, [hli]
 	ld [bc], a
 	inc c
-; tile 2
 	ld a, [hli]
 	ld [bc], a
 	dec c
-; update tiles
-	ld a, $0
-	ld [rVBK], a
-; tile 1
-	ld a, [de]
-	inc de
-	ld [bc], a
-	inc c
-; tile 2
-	ld a, [de]
-	inc de
-	ld [bc], a
-	
-; bottom half:
 
-; get bg map address
-	pop bc
-; update palettes
-	ld a, $1
+; Tiles
+	ld a, 0
 	ld [rVBK], a
-; tile 1
-	ld a, [hli]
-	ld [bc], a
-	inc c
-; tile 2
-	ld a, [hli]
-	ld [bc], a
-	dec c
-; update tiles
-	ld a, $0
-	ld [rVBK], a
-; tile 1
+
 	ld a, [de]
 	inc de
 	ld [bc], a
 	inc c
-; tile 2
 	ld a, [de]
 	inc de
 	ld [bc], a
-	
-; we've done 2 16x8 blocks
+endr
+
+; We've done 2 16x8 blocks
 	ld a, [$ffdc]
 	dec a
 	dec a
 	ld [$ffdc], a
-	
-; if there are more left, get the next 16x16 block
-	jr nz, .loop
-	
-	
-; restore sp
+
+	jr nz, .next
+
+
 	ld a, [hSPBuffer]
 	ld l, a
-	ld a, [$ffda]
+	ld a, [hSPBuffer + 1]
 	ld h, a
 	ld sp, hl
-	
-; restore vram bank
+
 	pop af
 	ld [rVBK], a
-	
-; we don't need to update bg map until new tiles are loaded
+
 	xor a
 	ld [hBGMapUpdate], a
-	
-; successfully updated bg map
 	scf
 	ret
 ; 163a
 
 
 WaitTop: ; 163a
+; Wait until the top third of the BG Map is being updated.
+
 	ld a, [hBGMapMode]
 	and a
 	ret z
-	
-; wait until top third of bg map can be updated
+
 	ld a, [hBGMapThird]
 	and a
-	jr z, .quit
-	
+	jr z, .done
+
 	call DelayFrame
 	jr WaitTop
-	
-.quit
+
+.done
 	xor a
 	ld [hBGMapMode], a
 	ret
@@ -295,133 +262,141 @@ WaitTop: ; 163a
 
 
 UpdateBGMap: ; 164c
-; get mode
+; Update the BG Map, in thirds, from TileMap and AttrMap.
+
 	ld a, [hBGMapMode]
 	and a
 	ret z
-	
-; don't save bg map address
+
+; BG Map 0
 	dec a ; 1
-	jr z, .tiles
+	jr z, .Tiles
 	dec a ; 2
-	jr z, .attr
-	dec a ; ?
-	
-; save bg map address
+	jr z, .Attr
+
+; BG Map 1
+	dec a
+
 	ld a, [hBGMapAddress]
 	ld l, a
-	ld a, [$ffd7]
+	ld a, [hBGMapAddress + 1]
 	ld h, a
 	push hl
 
-; bg map 1 (VBGMap1)
 	xor a
 	ld [hBGMapAddress], a
-	ld a, $9c
-	ld [$ffd7], a
-	
-; get mode again
+	ld a, VBGMap1 >> 8
+	ld [hBGMapAddress + 1], a
+
 	ld a, [hBGMapMode]
 	push af
 	cp 3
-	call z, .tiles
+	call z, .Tiles
 	pop af
 	cp 4
-	call z, .attr
-	
-; restore bg map address
+	call z, .Attr
+
 	pop hl
 	ld a, l
 	ld [hBGMapAddress], a
 	ld a, h
-	ld [$ffd7], a
+	ld [hBGMapAddress + 1], a
 	ret
-	
-.attr
-; switch vram banks
+
+
+.Attr
 	ld a, 1
 	ld [rVBK], a
-; bg map 1
+
 	ld hl, AttrMap
-	call .getthird
-; restore vram bank
+	call .update
+
 	ld a, 0
 	ld [rVBK], a
 	ret
-	
-.tiles
-; bg map 0
+
+
+.Tiles
 	ld hl, TileMap
-	
-.getthird
-; save sp
+
+
+.update
 	ld [hSPBuffer], sp
 	
-; # tiles to move down * 6 (which third?)
+; Which third?
 	ld a, [hBGMapThird]
 	and a ; 0
 	jr z, .top
 	dec a ; 1
 	jr z, .middle
+	; 2
 
-; .bottom ; 2
-; move 12 tiles down
-	ld de, $00f0 ; TileMap(0,12) - TileMap
+
+THIRD_HEIGHT EQU SCREEN_HEIGHT / 3
+
+
+.bottom
+	ld de, 2 * THIRD_HEIGHT * SCREEN_WIDTH
 	add hl, de
-; stack now points to source
 	ld sp, hl
-; get bg map address
-	ld a, [$ffd7]
+
+	ld a, [hBGMapAddress + 1]
 	ld h, a
 	ld a, [hBGMapAddress]
 	ld l, a
-; move 12 tiles down
-	ld de, $0180 ; bgm(0,12)
+
+	ld de, 2 * THIRD_HEIGHT * BG_MAP_WIDTH
 	add hl, de
-; start at top next time
+
+; Next time: top third
 	xor a
 	jr .start
-	
+
+
 .middle
-; move 6 tiles down
-	ld de, $0078 ; TileMap(0,6) - TileMap
+	ld de, THIRD_HEIGHT * SCREEN_WIDTH
 	add hl, de
-; stack now points to source
 	ld sp, hl
-; get bg map address
-	ld a, [$ffd7]
+
+	ld a, [hBGMapAddress + 1]
 	ld h, a
 	ld a, [hBGMapAddress]
 	ld l, a
-; move 6 tiles down
-	ld de, $00c0 ; bgm(0,6)
+
+	ld de, THIRD_HEIGHT * BG_MAP_WIDTH
 	add hl, de
-; start at bottom next time
+
+; Next time: bottom third
 	ld a, 2
 	jr .start
-	
+
+
 .top
-; stack now points to source
 	ld sp, hl
-; get bg map address
-	ld a, [$ffd7]
+
+	ld a, [hBGMapAddress + 1]
 	ld h, a
 	ld a, [hBGMapAddress]
 	ld l, a
-; start at middle next time
+
+; Next time: middle third
 	ld a, 1
-	
+
+
 .start
-; which third to draw next update
+; Which third to update next time
 	ld [hBGMapThird], a
-; # rows per third
-	ld a, 6 ; SCREEN_HEIGHT / 3
-; # tiles from the edge of the screen to the next row
-	ld bc, $000d ; BG_WIDTH + 1 - SCREEN_WIDTH
-	
+
+; Rows of tiles in a third
+	ld a, SCREEN_HEIGHT / 3
+
+; Discrepancy between TileMap and BGMap
+	ld bc, BG_MAP_WIDTH - (SCREEN_WIDTH - 1)
+
+
 .row
-; write a row of 20 tiles
-rept 9
+; Copy a row of 20 tiles
+rept SCREEN_WIDTH / 2 - 1
 	pop de
 	ld [hl], e
 	inc l
@@ -432,64 +407,60 @@ endr
 	ld [hl], e
 	inc l
 	ld [hl], d
-; next row
+
 	add hl, bc
-; done?
 	dec a
 	jr nz, .row
-	
-; restore sp
+
+
 	ld a, [hSPBuffer]
 	ld l, a
-	ld a, [$ffda]
+	ld a, [hSPBuffer + 1]
 	ld h, a
 	ld sp, hl
 	ret
 ; 170a
 
 
-SafeLoadTiles2: ; 170a
-; only execute during first fifth of vblank
-; any tiles to draw?
-	ld a, [$cf6c]
+Serve1bppRequest: ; 170a
+; Only call during the first fifth of VBlank
+
+	ld a, [Requested1bpp]
 	and a
 	ret z
-; abort if too far into vblank
+
+; Back out if we're too far into VBlank
 	ld a, [rLY]
-; ly = 144-145?
 	cp 144
 	ret c
 	cp 146
 	ret nc
-	
-GetTiles2: ; 1717
-; load [$cf6c] tiles from [$cf6d-e] to [$cf6f-70]
-; save sp
+
+; Copy [Requested1bpp] 1bpp tiles from [Requested1bppSource] to [Requested1bppDest]
+
 	ld [hSPBuffer], sp
-	
-; sp = [$cf6d-e] tile source
-	ld hl, $cf6d
+
+; Source
+	ld hl, Requested1bppSource
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
 	ld sp, hl
 	
-; hl = [$cf6f-70] tile dest
-	ld hl, $cf6f
+; Destination
+	ld hl, Requested1bppDest
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
 	
-; # tiles to draw
-	ld a, [$cf6c]
+; # tiles to copy
+	ld a, [Requested1bpp]
 	ld b, a
-	
-; clear tile queue
+
 	xor a
-	ld [$cf6c], a
-	
-.loop
-; put 1 tile (16 bytes) into hl from sp
+	ld [Requested1bpp], a
+
+.next
 
 rept 3
 	pop de
@@ -510,82 +481,77 @@ endr
 	ld [hl], d
 	inc l
 	ld [hl], d
-; next tile
+
 	inc hl
-; done?
 	dec b
-	jr nz, .loop
-	
-; update $cf6f-70
+	jr nz, .next
+
+
 	ld a, l
-	ld [$cf6f], a
+	ld [Requested1bppDest], a
 	ld a, h
-	ld [$cf70], a
-	
-; update $cf6d-e
-	ld [$cf6d], sp
-	
-; restore sp
+	ld [Requested1bppDest + 1], a
+
+	ld [Requested1bppSource], sp
+
 	ld a, [hSPBuffer]
 	ld l, a
-	ld a, [$ffda]
+	ld a, [hSPBuffer + 1]
 	ld h, a
 	ld sp, hl
 	ret
 ; 1769
 
 
-SafeLoadTiles: ; 1769
-; only execute during first fifth of vblank
-; any tiles to draw?
-	ld a, [$cf67]
+Serve2bppRequest: ; 1769
+; Only call during the first fifth of VBlank
+
+	ld a, [Requested2bpp]
 	and a
 	ret z
-; abort if too far into vblank
+
+; Back out if we're too far into VBlank
 	ld a, [rLY]
-; ly = 144-145?
 	cp 144
 	ret c
 	cp 146
 	ret nc
-	jr GetTiles
-	
-LoadTiles: ; 1778
-; use only if time is allotted
-; any tiles to draw?
-	ld a, [$cf67]
+	jr _Serve2bppRequest
+
+
+Serve2bppRequest@VBlank: ; 1778
+
+	ld a, [Requested2bpp]
 	and a
 	ret z
-; get tiles
-	
-GetTiles: ; 177d
-; load [$cf67] tiles from [$cf68-9] to [$cf6a-b]
 
-; save sp
+_Serve2bppRequest: ; 177d
+; Copy [Requested2bpp] 2bpp tiles from [Requested2bppSource] to [Requested2bppDest]
+
 	ld [hSPBuffer], sp
 	
-; sp = [$cf68-9] tile source
-	ld hl, $cf68
+; Source
+	ld hl, Requested2bppSource
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
 	ld sp, hl
 	
-; hl = [$cf6a-b] tile dest
-	ld hl, $cf6a
+; Destination
+	ld hl, Requested2bppDest
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
 	
-; # tiles to draw
-	ld a, [$cf67]
+; # tiles to copy
+	ld a, [Requested2bpp]
 	ld b, a
-; clear tile queue
+
 	xor a
-	ld [$cf67], a
+	ld [Requested2bpp], a
 	
-.loop
-; put 1 tile (16 bytes) into hl from sp
+.next
+
 rept 7
 	pop de
 	ld [hl], e
@@ -597,73 +563,65 @@ endr
 	ld [hl], e
 	inc l
 	ld [hl], d
-; next tile
+
 	inc hl
-; done?
 	dec b
-	jr nz, .loop
-	
-; update $cf6a-b
+	jr nz, .next
+
+
 	ld a, l
-	ld [$cf6a], a
+	ld [Requested2bppDest], a
 	ld a, h
-	ld [$cf6b], a
-	
-; update $cf68-9
-	ld [$cf68], sp
-	
-; restore sp
+	ld [Requested2bppDest + 1], a
+
+	ld [Requested2bppSource], sp
+
 	ld a, [hSPBuffer]
 	ld l, a
-	ld a, [$ffda]
+	ld a, [hSPBuffer + 1]
 	ld h, a
 	ld sp, hl
 	ret
 ; 17d3
 
 
-SafeTileAnimation: ; 17d3
-; call from vblank
+AnimateTileset: ; 17d3
+; Only call during the first fifth of VBlank
 
 	ld a, [$ffde]
 	and a
 	ret z
 	
-; abort if too far into vblank
+; Back out if we're too far into VBlank
 	ld a, [rLY]
-; ret unless ly = 144-150
 	cp 144
 	ret c
 	cp 151
 	ret nc
-	
-; save affected banks
-; switch to new banks
+
 	ld a, [hROMBank]
-	push af ; save bank
-	ld a, BANK(DoTileAnimation)
-	rst Bankswitch ; bankswitch
+	push af
+	ld a, BANK(_AnimateTileset)
+	rst Bankswitch
 
 	ld a, [rSVBK]
-	push af ; save wram bank
-	ld a, $1 ; wram bank 1
+	push af
+	ld a, 1
 	ld [rSVBK], a
 
 	ld a, [rVBK]
-	push af ; save vram bank
-	ld a, $0 ; vram bank 0
+	push af
+	ld a, 0
 	ld [rVBK], a
-	
-; take care of tile animation queue
-	call DoTileAnimation
-	
-; restore affected banks
+
+	call _AnimateTileset
+
 	pop af
 	ld [rVBK], a
 	pop af
 	ld [rSVBK], a
 	pop af
-	rst Bankswitch ; bankswitch
+	rst Bankswitch
 	ret
 ; 17ff
 
@@ -680,6 +638,7 @@ GetSpritePalette: ; 17ff
 	pop hl
 	ret
 ; 180e
+
 
 Function180e: ; 180e
 	push hl
@@ -1348,23 +1307,28 @@ GetSpriteDirection: ; 1b07
 ; 1b0f
 
 
-Function1b0f: ; 1b0f
-	add $10
+Cosine: ; 1b0f
+; Return d * cos(a) in hl
+	add $10 ; 90 degrees
 
-Function1b11: ; 1b11
+Sine: ; 1b11
+; Return d * sin(a) in hl
+; a is a signed 6-bit value.
+
 	ld e, a
 
 	ld a, [hROMBank]
 	push af
-	ld a, BANK(Function84d9)
+	ld a, BANK(_Sine)
 	rst Bankswitch
 
-	call Function84d9
+	call _Sine
 
 	pop af
 	rst Bankswitch
 	ret
 ; 1b1e
+
 
 Function1b1e: ; 1b1e
 	ld [$d003], a
@@ -2685,7 +2649,7 @@ Function2173: ; 2173
 Function217a: ; 217a
 	ld a, [hROMBank]
 	push af
-	ld a, [TileSetBlocksBank]
+	ld a, [TilesetBlocksBank]
 	rst Bankswitch
 
 	call Function2198
@@ -2733,7 +2697,7 @@ Function2198: ; 2198
 	add hl, hl
 	add hl, hl
 	add hl, hl
-	ld a, [TileSetBlocksAddress]
+	ld a, [TilesetBlocksAddress]
 	add l
 	ld l, a
 	ld a, [$d1de]
@@ -4006,11 +3970,11 @@ Function2816: ; 2816
 ; 2821
 
 Function2821: ; 2821
-	ld hl, TileSetAddress
+	ld hl, TilesetAddress
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	ld a, [TileSetBank]
+	ld a, [TilesetBank]
 	ld e, a
 	ld a, [rSVBK]
 	push af
@@ -4381,7 +4345,7 @@ Function2a3c: ; 2a3c
 	ld h, $0
 	add hl, hl
 	add hl, hl
-	ld a, [TileSetCollisionAddress]
+	ld a, [TilesetCollisionAddress]
 	ld c, a
 	ld a, [$d1e1]
 	ld b, a
@@ -4397,7 +4361,7 @@ Function2a3c: ; 2a3c
 	inc hl
 
 .asm_2a5c
-	ld a, [TileSetCollisionBank]
+	ld a, [TilesetCollisionBank]
 	call GetFarByte
 	ret
 
@@ -4985,7 +4949,7 @@ Function2d27: ; 2d27
 	ld bc, $000f
 	ld a, [$d199]
 	call AddNTimes
-	ld de, TileSetBank
+	ld de, TilesetBank
 	ld bc, $000f
 	ld a, $13
 	call FarCopyBytes
@@ -8250,16 +8214,19 @@ Function3b0c: ; 3b0c
 	ld a, [hLCDStatCustom]
 	and a
 	ret z
-	ld a, $0
-	ld [$cf68], a
+
+	ld a, $00
+	ld [Requested2bppSource], a
 	ld a, $d2
-	ld [$cf69], a
-	ld a, $0
-	ld [$cf6a], a
+	ld [Requested2bppSource + 1], a
+
+	ld a, $00
+	ld [Requested2bppDest], a
 	ld a, $d1
-	ld [$cf6b], a
+	ld [Requested2bppDest + 1], a
+
 	ld a, $9
-	ld [$cf67], a
+	ld [Requested2bpp], a
 	ret
 ; 3b2a
 
@@ -9239,7 +9206,7 @@ LoadPushOAM: ; 4031
 ; 403f
 
 PushOAM: ; 403f
-	ld a, $c4
+	ld a, Sprites >> 8
 	ld [rDMA], a
 	ld a, $28
 .loop
@@ -11176,7 +11143,7 @@ Function4c5d: ; 4c5d
 	inc [hl]
 	ld a, [hl]
 	ld d, $60
-	call Function1b11
+	call Sine
 	ld a, h
 	sub $60
 	ld hl, $001a
@@ -11249,7 +11216,7 @@ Function4cc9: ; 4cc9
 	inc [hl]
 	ld a, [hl]
 	ld d, $60
-	call Function1b11
+	call Sine
 	ld a, h
 	sub $60
 	ld hl, $001a
@@ -11340,7 +11307,7 @@ Function4d4f: ; 4d4f
 	inc [hl]
 	ld a, [hl]
 	ld d, $60
-	call Function1b11
+	call Sine
 	ld a, h
 	sub $60
 	ld hl, $001a
@@ -17069,17 +17036,22 @@ Function849d: ; 849d
 	ret
 ; 84d9
 
-Function84d9: ; 84d9
+_Sine: ; 84d9
+; A simple sine function.
+; Return d * sin(e) in hl.
+
+; e is a signed 6-bit value.
 	ld a, e
-	and $3f
-	cp $20
-	jr nc, .asm_84e5
+	and %111111
+	cp  %100000
+	jr nc, .negative
+
 	call Function84ef
 	ld a, h
 	ret
 
-.asm_84e5
-	and $1f
+.negative
+	and %011111
 	call Function84ef
 	ld a, h
 	xor $ff
@@ -17091,27 +17063,36 @@ Function84ef: ; 84ef
 	ld e, a
 	ld a, d
 	ld d, 0
-	ld hl, $450b
+	ld hl, SineWave
 	add hl, de
 	add hl, de
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
 	ld hl, 0
-.asm_84fe
-	srl a
-	jr nc, .asm_8503
-	add hl, de
 
-.asm_8503
+; Factor amplitude
+.multiply
+	srl a
+	jr nc, .even
+	add hl, de
+.even
 	sla e
 	rl d
 	and a
-	jr nz, .asm_84fe
+	jr nz, .multiply
 	ret
 ; 850b
 
-INCBIN "baserom.gbc", $850b, $854b - $850b
+SineWave: ; 850b
+; A $20-word table representing a sine wave.
+; 90 degrees is index $10 at a base amplitude of $100.
+x	set 0
+	rept $20
+	dw (sin(x) + (sin(x) & $ff)) >> 8 ; round up
+x	set x + $100 * $40000
+	endr
+; 854b
 
 
 GetPredefFn: ; 854b
@@ -17168,7 +17149,7 @@ PredefPointers: ; 856b
 	dwb $46e0, $03
 	dwb Functione167, BANK(Functione167)
 	dwb Functione17b, BANK(Functione17b)
-	dwb $5639, $04
+	dwb CanLearnTMHMMove, BANK(CanLearnTMHMMove)
 	dwb $566a, $04
 	dwb $4eef, $0a
 	dwb $4b3e, $0b ; PrintMoveDescription, BANK(PrintMoveDescription)
@@ -23062,7 +23043,139 @@ Function113da: ; 113da
 	ret
 ; 113e5
 
-INCBIN "baserom.gbc", $113e5, $114dd - $113e5
+Function113e5: ; 113e5
+	xor a
+	ld [$d464], a
+
+Function113e9: ; 113e9
+	ld a, [$d464]
+	cp 3
+	jr c, .asm_113f2
+	ld a, 3
+
+.asm_113f2
+	ld e, a
+	ld d, 0
+	ld hl, .data_113fd
+	add hl, de
+	ld a, [hl]
+	jp Function1142e
+; 113fd
+
+.data_113fd
+	db 20, 10, 5, 3
+; 11401
+
+Function11401: ; 11401
+	call Function1143c
+	ret nc
+	ld hl, $d464
+	ld a, [hl]
+	cp 3
+	jr nc, .asm_1140e
+	inc [hl]
+
+.asm_1140e
+	call Function113e9
+	scf
+	ret
+; 11413
+
+Function11413: ; 11413
+	ld a, 1
+
+Function11415: ; 11415
+	ld [hl], a
+	push hl
+	call UpdateTime
+	pop hl
+	inc hl
+	call Function11621
+	ret
+; 11420
+
+Function11420: ; 11420
+	inc hl
+	push hl
+	call Function115cf
+	call Function115c8
+	pop hl
+	dec hl
+	call Function11586
+	ret
+; 1142e
+
+Function1142e: ; 1142e
+	ld hl, $d465
+	ld [hl], a
+	call UpdateTime
+	ld hl, $d466
+	call Function1162e
+	ret
+; 1143c
+
+Function1143c: ; 1143c
+	ld hl, $d466
+	call Function115d6
+	call Function115ae
+	ld hl, $d465
+	call Function11586
+	ret
+; 1144c
+
+Function1144c: ; 1144c
+	ld hl, $dc1c
+	jp Function11413
+; 11452
+
+Function11452: ; 11452
+	ld hl, $dc1c
+	call Function11420
+	ret nc
+	xor a
+	ld hl, $dc1e
+	ld [hli], a
+	ld [hli], a
+	ld [hli], a
+	ld [hl], a
+	ld hl, $dc4c
+	ld [hli], a
+	ld [hli], a
+	ld [hli], a
+	ld [hli], a
+	ld hl, $dc50
+	ld [hli], a
+	ld [hli], a
+	ld [hli], a
+	ld [hli], a
+	ld hl, $dc54
+	ld [hli], a
+	ld [hli], a
+	ld [hli], a
+	ld [hli], a
+	ld hl, $dc58
+	ld a, [hl]
+	and a
+	jr z, .asm_11480
+	dec [hl]
+	jr nz, .asm_11483
+
+.asm_11480
+	call Function11485
+
+.asm_11483
+	jr Function1144c
+; 11485
+
+Function11485: ; 11485
+	call Random
+	and 3
+	add 3
+	ld [$dc58], a
+	ret
+; 11490
+
+INCBIN "baserom.gbc", $11490, $114dd - $11490
 
 
 Function114dd: ; 114dd
@@ -23072,8 +23185,251 @@ Function114dd: ; 114dd
 	ret
 ; 114e7
 
-INCBIN "baserom.gbc", $114e7, $11621 - $114e7
+Function114e7: ; 114e7
+	ld hl, $dc23
+	call Function115cf
+	call Function115c8
+	and a
+	jr z, .asm_114fa
 
+	ld b, a
+	callba Function13988
+
+.asm_114fa
+	xor a
+	ret
+; 114fc
+
+Function114fc: ; 114fc
+	ld a, $2
+	ld hl, $dc3a
+	ld [hl], a
+	call UpdateTime
+	ld hl, $dc3b
+	call Function11621
+	ret
+; 1150c
+
+Function1150c: ; 1150c
+	ld hl, $dc3b
+	call Function115cf
+	call Function115c8
+	ld hl, $dc3a
+	call Function11586
+	ret
+; 1151c
+
+Function1151c: ; 1151c
+	ld hl, $dc1e
+	set 2, [hl]
+	ret
+; 11522
+
+Function11522: ; 11522
+	and a
+	ld hl, $dc1e
+	bit 2, [hl]
+	ret nz
+	scf
+	ret
+; 1152b
+
+Function1152b: ; 1152b
+	call Function11534
+	ld hl, $dc2d
+	jp Function11415
+; 11534
+
+Function11534: ; 11534
+	call GetWeekday
+	ld c, a
+	ld a, $5
+	sub c
+	jr z, .asm_1153f
+	jr nc, .asm_11541
+
+.asm_1153f
+	add $7
+
+.asm_11541
+	ret
+; 11542
+
+Function11542: ; 11542
+	ld hl, $dc2d
+	jp Function11420
+; 11548
+
+Function11548: ; 11548
+	ld a, $0
+	call GetSRAMBank
+	ld hl, $abfa
+	ld a, [hli]
+	ld [Buffer1], a
+	ld a, [hl]
+	ld [Buffer2], a
+	call CloseSRAM
+	ld hl, Buffer1
+	call Function11420
+	jr nc, .asm_11572
+	ld hl, Buffer1
+	call Function11413
+	call CloseSRAM
+	callba Function1050c8
+
+.asm_11572
+	ld a, $0
+	call GetSRAMBank
+	ld hl, Buffer1
+	ld a, [hli]
+	ld [$abfa], a
+	ld a, [hl]
+	ld [$abfb], a
+	call CloseSRAM
+	ret
+; 11586
+
+Function11586: ; 11586
+	cp $ff
+	jr z, .asm_11595
+	ld c, a
+	ld a, [hl]
+	sub c
+	jr nc, .asm_11590
+	xor a
+
+.asm_11590
+	ld [hl], a
+	jr z, .asm_11595
+	xor a
+	ret
+
+.asm_11595
+	xor a
+	ld [hl], a
+	scf
+	ret
+; 11599
+
+Function11599: ; 11599
+	ld a, [$cfd7]
+	and a
+	jr nz, Function115cc
+	ld a, [$cfd6]
+	and a
+	jr nz, Function115cc
+	ld a, [$cfd5]
+	jr nz, Function115cc
+	ld a, [$cfd4]
+	ret
+; 115ae
+
+Function115ae: ; 115ae
+	ld a, [$cfd7]
+	and a
+	jr nz, Function115cc
+	ld a, [$cfd6]
+	and a
+	jr nz, Function115cc
+	ld a, [$cfd5]
+	ret
+; 115be
+
+Function115be: ; 115be
+	ld a, [$cfd7]
+	and a
+	jr nz, Function115cc
+	ld a, [$cfd6]
+	ret
+; 115c8
+
+Function115c8: ; 115c8
+	ld a, [$cfd7]
+	ret
+; 115cc
+
+Function115cc: ; 115cc
+	ld a, $ff
+	ret
+; 115cf
+
+Function115cf: ; 115cf
+	xor a
+	jr Function11605
+; 115d2
+
+Function115d2: ; 115d2
+	inc hl
+	xor a
+	jr Function115f8
+; 115d6
+
+Function115d6: ; 115d6
+	inc hl
+	inc hl
+	xor a
+	jr Function115eb
+; 115db
+
+Function115db: ; 115db
+	inc hl
+	inc hl
+	inc hl
+	ld a, [hSeconds]
+	ld c, a
+	sub [hl]
+	jr nc, .asm_115e6
+	add 60
+.asm_115e6
+	ld [hl], c
+	dec hl
+	ld [$cfd4], a
+
+Function115eb: ; 115eb
+	ld a, [hMinutes]
+	ld c, a
+	sbc [hl]
+	jr nc, .asm_115f3
+	add 60
+.asm_115f3
+	ld [hl], c
+	dec hl
+	ld [$cfd5], a
+
+Function115f8: ; 115f8
+	ld a, [hHours]
+	ld c, a
+	sbc [hl]
+	jr nc, .asm_11600
+	add 24
+.asm_11600
+	ld [hl], c
+	dec hl
+	ld [$cfd6], a
+
+Function11605
+	ld a, [CurDay]
+	ld c, a
+	sbc [hl]
+	jr nc, .asm_1160e
+	add 140
+.asm_1160e
+	ld [hl], c
+	ld [$cfd7], a
+	ret
+; 11613
+
+Function11613: ; 11613
+	ld a, [CurDay]
+	ld [hli], a
+	ld a, [hHours]
+	ld [hli], a
+	ld a, [hMinutes]
+	ld [hli], a
+	ld a, [hSeconds]
+	ld [hli], a
+	ret
+; 11621
 
 Function11621: ; 11621
 	ld a, [CurDay]
@@ -23081,9 +23437,73 @@ Function11621: ; 11621
 	ret
 ; 11626
 
-INCBIN "baserom.gbc", $11626, $1167a - $11626
+Function11626: ; 11626
+	ld a, [CurDay]
+	ld [hli], a
+	ld a, [hHours]
+	ld [hli], a
+	ret
+; 1162e
 
-TechnicalMachines: ; 0x1167a
+Function1162e: ; 1162e
+	ld a, [CurDay]
+	ld [hli], a
+	ld a, [hHours]
+	ld [hli], a
+	ld a, [hMinutes]
+	ld [hli], a
+	ret
+; 11639
+
+CanLearnTMHMMove: ; 11639
+	ld a, [CurPartySpecies]
+	ld [CurSpecies], a
+	call GetBaseData
+	ld hl, BaseTMHM
+	push hl
+
+	ld a, [$d262]
+	ld b, a
+	ld c, 0
+	ld hl, TMHMMoves
+.loop
+	ld a, [hli]
+	and a
+	jr z, .end
+	cp b
+	jr z, .asm_11659
+	inc c
+	jr .loop
+
+.asm_11659
+	pop hl
+	ld b, CHECK_FLAG
+	push de
+	ld d, 0
+	ld a, PREDEF_FLAG
+	call Predef
+	pop de
+	ret
+
+.end
+	pop hl
+	ld c, 0
+	ret
+; 1166a
+
+GetTMHMMove: ; 1166a
+	ld a, [$d265]
+	dec a
+	ld hl, TMHMMoves
+	ld b, 0
+	ld c, a
+	add hl, bc
+	ld a, [hl]
+	ld [$d265], a
+	ret
+; 1167a
+
+TMHMMoves: ; 1167a
 	db DYNAMICPUNCH
 	db HEADBUTT
 	db CURSE
@@ -23142,7 +23562,13 @@ TechnicalMachines: ; 0x1167a
 	db WHIRLPOOL
 	db WATERFALL
 
-INCBIN "baserom.gbc", $116b3, $116b7 - $116b3
+; Move tutor
+	db FLAMETHROWER
+	db THUNDERBOLT
+	db ICE_BEAM
+
+	db 0 ; end
+; 116b7
 
 Function116b7: ; 0x116b7
 	call Function2ed3
@@ -25275,7 +25701,7 @@ Function13256: ; 13256
 	ld a, [CurSpecies]
 	ld b, a
 	ld hl, $c592
-	ld a, $2a
+	ld a, PREDEF_PRINT_MOVE_TYPE
 	call Predef
 	ld a, [CurSpecies]
 	dec a
@@ -25907,7 +26333,38 @@ UnknownScript_0x1369a: ; 0x1369a
 ; 0x1369d
 
 
-INCBIN "baserom.gbc", $1369d, $13b87 - $1369d
+INCBIN "baserom.gbc", $1369d, $13988 - $1369d
+
+Function13988: ; 13988
+	ld hl, PartyMon1PokerusStatus
+	ld a, [PartyCount]
+	and a
+	ret z
+	ld c, a
+.asm_13991
+	ld a, [hl]
+	and $f
+	jr z, .asm_139a0
+	sub b
+	jr nc, .asm_1399a
+	xor a
+
+.asm_1399a
+	ld d, a
+	ld a, [hl]
+	and $f0
+	add d
+	ld [hl], a
+
+.asm_139a0
+	ld de, PartyMon2 - PartyMon1
+	add hl, de
+	dec c
+	jr nz, .asm_13991
+	ret
+; 139a8
+
+INCBIN "baserom.gbc", $139a8, $13b87 - $139a8
 
 
 GetSquareRoot: ; 13b87
@@ -30338,81 +30795,7 @@ INCBIN "baserom.gbc", $16f5e, $174ba - $16f5e
 
 SECTION "bank6",ROMX,BANK[$6]
 
-Tileset03GFX: ; 0x18000
-INCBIN "gfx/tilesets/03.lz"
-; 0x18605
-
-	db $00
-
-Tileset03Meta: ; 0x18606
-INCBIN "tilesets/03_metatiles.bin"
-; 0x18e06
-
-Tileset03Coll: ; 0x18e06
-INCBIN "tilesets/03_collision.bin"
-; 0x19006
-
-Tileset00GFX: ; 0x19006
-Tileset01GFX: ; 0x19006
-INCBIN "gfx/tilesets/01.lz"
-; 0x19c0d
-
-	db $00
-
-Tileset00Meta: ; 0x19c0e
-Tileset01Meta: ; 0x19c0e
-INCBIN "tilesets/01_metatiles.bin"
-; 0x1a40e
-
-Tileset00Coll: ; 0x1a40e
-Tileset01Coll: ; 0x1a40e
-INCBIN "tilesets/01_collision.bin"
-; 0x1a60e
-
-Tileset29GFX: ; 0x1a60e
-INCBIN "gfx/tilesets/29.lz"
-; 0x1af38
-
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-
-Tileset29Meta: ; 0x1af3e
-INCBIN "tilesets/29_metatiles.bin"
-; 0x1b33e
-
-Tileset29Coll: ; 0x1b33e
-INCBIN "tilesets/29_collision.bin"
-; 0x1b43e
-
-Tileset20GFX: ; 0x1b43e
-INCBIN "gfx/tilesets/20.lz"
-; 0x1b8f1
-
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-
-Tileset20Meta: ; 0x1b8fe
-INCBIN "tilesets/20_metatiles.bin"
-; 0x1bcfe
-
-Tileset20Coll: ; 0x1bcfe
-INCBIN "tilesets/20_collision.bin"
-; 0x1bdfe
+INCLUDE "tilesets/data_1.asm"
 
 
 SECTION "bank7",ROMX,BANK[$7]
@@ -30437,99 +30820,7 @@ Function1c000: ; 1c000
 
 INCBIN "baserom.gbc", $1c021, $1c30c - $1c021
 
-Tileset07GFX: ; 0x1c30c
-INCBIN "gfx/tilesets/07.lz"
-; 0x1c73b
-
-	db $00
-
-Tileset07Meta: ; 0x1c73c
-INCBIN "tilesets/07_metatiles.bin"
-; 0x1cb3c
-
-Tileset07Coll: ; 0x1cb3c
-INCBIN "tilesets/07_collision.bin"
-; 0x1cc3c
-
-Tileset09GFX: ; 0x1cc3c
-INCBIN "gfx/tilesets/09.lz"
-; 0x1d047
-
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-
-Tileset09Meta: ; 0x1d04c
-INCBIN "tilesets/09_metatiles.bin"
-; 0x1d44c
-
-Tileset09Coll: ; 0x1d44c
-INCBIN "tilesets/09_collision.bin"
-; 0x1d54c
-
-Tileset06GFX: ; 0x1d54c
-INCBIN "gfx/tilesets/06.lz"
-; 0x1d924
-
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-
-Tileset06Meta: ; 0x1d92c
-INCBIN "tilesets/06_metatiles.bin"
-; 0x1dd2c
-
-Tileset06Coll: ; 0x1dd2c
-INCBIN "tilesets/06_collision.bin"
-; 0x1de2c
-
-Tileset13GFX: ; 0x1de2c
-INCBIN "gfx/tilesets/13.lz"
-; 0x1e58c
-
-Tileset13Meta: ; 0x1e58c
-INCBIN "tilesets/13_metatiles.bin"
-; 0x1e98c
-
-Tileset13Coll: ; 0x1e98c
-INCBIN "tilesets/13_collision.bin"
-; 0x1ea8c
-
-Tileset24GFX: ; 0x1ea8c
-INCBIN "gfx/tilesets/24.lz"
-; 0x1ee0e
-
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-
-Tileset24Meta: ; 0x1ee1c
-Tileset30Meta: ; 0x1ee1c
-INCBIN "tilesets/30_metatiles.bin"
-; 0x1f21c
-
-Tileset24Coll: ; 0x1f21c
-Tileset30Coll: ; 0x1f21c
-INCBIN "tilesets/30_collision.bin"
-; 0x1f31c
+INCLUDE "tilesets/data_2.asm"
 
 ;                           Songs i
 
@@ -30542,116 +30833,7 @@ SECTION "bank8",ROMX,BANK[$8]
 
 INCBIN "baserom.gbc", $20000, $20181 - $20000
 
-Tileset23GFX: ; 0x20181
-INCBIN "gfx/tilesets/23.lz"
-; 0x206d2
-
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-
-Tileset23Meta: ; 0x206e1
-INCBIN "tilesets/23_metatiles.bin"
-; 0x20ae1
-
-Tileset23Coll: ; 0x20ae1
-INCBIN "tilesets/23_collision.bin"
-; 0x20be1
-
-Tileset10GFX: ; 0x20be1
-INCBIN "gfx/tilesets/10.lz"
-; 0x213e0
-
-	db $00
-
-Tileset10Meta: ; 0x213e1
-INCBIN "tilesets/10_metatiles.bin"
-; 0x217e1
-
-Tileset10Coll: ; 0x217e1
-INCBIN "tilesets/10_collision.bin"
-; 0x218e1
-
-Tileset12GFX: ; 0x218e1
-INCBIN "gfx/tilesets/12.lz"
-; 0x22026
-
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-
-Tileset12Meta: ; 0x22031
-INCBIN "tilesets/12_metatiles.bin"
-; 0x22431
-
-Tileset12Coll: ; 0x22431
-INCBIN "tilesets/12_collision.bin"
-; 0x22531
-
-Tileset14GFX: ; 0x22531
-INCBIN "gfx/tilesets/14.lz"
-; 0x22ae2
-
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-
-Tileset14Meta: ; 0x22af1
-INCBIN "tilesets/14_metatiles.bin"
-; 0x22ef1
-
-Tileset14Coll: ; 0x22ef1
-INCBIN "tilesets/14_collision.bin"
-; 0x22ff1
-
-Tileset17GFX: ; 0x22ff1
-INCBIN "gfx/tilesets/17.lz"
-; 0x23391
-
-Tileset17Meta: ; 0x23391
-INCBIN "tilesets/17_metatiles.bin"
-; 0x23791
-
-Tileset17Coll: ; 0x23791
-INCBIN "tilesets/17_collision.bin"
-; 0x23891
-
-; todo
-Tileset31Meta: ; 0x23891
-INCBIN "tilesets/31_metatiles.bin"
-; 0x23b11
+INCLUDE "tilesets/data_3.asm"
 
 EggMovePointers: ; 0x23b11
 INCLUDE "stats/egg_move_pointers.asm"
@@ -35360,94 +35542,9 @@ FillBox: ; 2ef6e
 
 SECTION "bankC",ROMX,BANK[$C]
 
-Tileset15GFX: ; 0x30000
-INCBIN "gfx/tilesets/15.lz"
-; 0x304d7
+INCLUDE "tilesets/data_4.asm"
 
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-
-Tileset15Meta: ; 0x304e0
-INCBIN "tilesets/15_metatiles.bin"
-; 0x308e0
-
-Tileset15Coll: ; 0x308e0
-INCBIN "tilesets/15_collision.bin"
-; 0x309e0
-
-Tileset25GFX: ; 0x309e0
-INCBIN "gfx/tilesets/25.lz"
-; 0x30e78
-
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-
-Tileset25Meta: ; 0x30e80
-INCBIN "tilesets/25_metatiles.bin"
-; 0x31280
-
-Tileset25Coll: ; 0x31280
-INCBIN "tilesets/25_collision.bin"
-; 0x31380
-
-Tileset27GFX: ; 0x31380
-INCBIN "gfx/tilesets/27.lz"
-; 0x318dc
-
-	db $00
-	db $00
-	db $00
-	db $00
-
-Tileset27Meta: ; 0x318e0
-INCBIN "tilesets/27_metatiles.bin"
-; 0x31ce0
-
-Tileset27Coll: ; 0x31ce0
-INCBIN "tilesets/27_collision.bin"
-; 0x31de0
-
-Tileset28GFX: ; 0x31de0
-INCBIN "gfx/tilesets/28.lz"
-; 0x321a6
-
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-
-Tileset28Meta: ; 0x321b0
-INCBIN "tilesets/28_metatiles.bin"
-; 0x325b0
-
-Tileset28Coll: ; 0x325b0
-INCBIN "tilesets/28_collision.bin"
-; 0x326b0
-
-Tileset30GFX: ; 0x326b0
-INCBIN "gfx/tilesets/30.lz"
-; 0x329ed
-
-INCBIN "baserom.gbc", $329ed, $333f0 - $329ed
+INCBIN "baserom.gbc", $329f0, $333f0 - $329f0
 
 
 SECTION "bankD",ROMX,BANK[$D]
@@ -41957,10 +42054,10 @@ Function3e643: ; 3e643
 	ld a, [$d0e3]
 	and a
 	jr z, .asm_3e6bf
-	ld hl, BattleMonMove1
-	call $66a5
-	ld hl, BattleMonPPMove1
-	call $66a5
+	ld hl, BattleMonMoves
+	call .asm_3e6a5
+	ld hl, BattleMonPP
+	call .asm_3e6a5
 	ld hl, PlayerDisableCount
 	ld a, [hl]
 	swap a
@@ -41994,26 +42091,27 @@ Function3e643: ; 3e643
 	ld a, [PlayerSubStatus5]
 	bit 3, a
 	jr nz, .asm_3e69e
-	ld hl, PartyMon1Move1
+	ld hl, PartyMon1Moves
 	ld a, [CurBattleMon]
 	call GetPartyLocation
 	push hl
-	call $66a5
+	call .asm_3e6a5
 	pop hl
 	ld bc, $0015
 	add hl, bc
-	call $66a5
+	call .asm_3e6a5
 
 .asm_3e69e
 	xor a
 	ld [$d0e3], a
 	jp Function3e4bc
 
+.asm_3e6a5
 	push hl
 	ld a, [$d0e3]
 	dec a
 	ld c, a
-	ld b, $0
+	ld b, 0
 	add hl, bc
 	ld d, h
 	ld e, l
@@ -42021,7 +42119,7 @@ Function3e643: ; 3e643
 	ld a, [$cfa9]
 	dec a
 	ld c, a
-	ld b, $0
+	ld b, 0
 	add hl, bc
 	ld a, [de]
 	ld b, [hl]
@@ -42039,64 +42137,73 @@ Function3e643: ; 3e643
 MoveInfoBox: ; 3e6c8
 	xor a
 	ld [hBGMapMode], a
-	ld hl, $c540
-	ld b, $3
-	ld c, $9
+
+	hlcoord 0, 8
+	ld b, 3
+	ld c, 9
 	call TextBox
 	call MobileTextBorder
+
 	ld a, [PlayerDisableCount]
 	and a
 	jr z, .asm_3e6f4
+
 	swap a
 	and $f
 	ld b, a
 	ld a, [$cfa9]
 	cp b
 	jr nz, .asm_3e6f4
-	ld hl, $c569
+
+	hlcoord 1, 10
 	ld de, .Disabled
 	call PlaceString
-	jr .asm_3e74e
+	jr .done
 
 .asm_3e6f4
 	ld hl, $cfa9
 	dec [hl]
 	call SetPlayerTurn
-	ld hl, BattleMonMove1
+	ld hl, BattleMonMoves
 	ld a, [$cfa9]
 	ld c, a
-	ld b, $0
+	ld b, 0
 	add hl, bc
 	ld a, [hl]
 	ld [CurPlayerMove], a
+
 	ld a, [CurBattleMon]
 	ld [CurPartyMon], a
-	ld a, $4
+	ld a, WILDMON
 	ld [MonType], a
 	callab Functionf8ec
+
 	ld hl, $cfa9
 	ld c, [hl]
 	inc [hl]
-	ld b, $0
-	ld hl, BattleMonPPMove1
+	ld b, 0
+	ld hl, BattleMonPP
 	add hl, bc
 	ld a, [hl]
 	and $3f
 	ld [StringBuffer1], a
 	call Function3e75f
-	ld hl, $c555
+
+	hlcoord 1, 9
 	ld de, .Type
 	call PlaceString
-	ld hl, $c583
-	ld [hl], $f3
+
+	hlcoord 7, 11
+	ld [hl], "/"
+
 	callab UpdateMoveData
 	ld a, [PlayerMoveAnimation]
 	ld b, a
-	ld hl, $c56a
-	ld a, $2a
+	hlcoord 2, 10
+	ld a, PREDEF_PRINT_MOVE_TYPE
 	call Predef
 
-.asm_3e74e
+.done
 	ret
 ; 3e74f
 
@@ -42108,11 +42215,11 @@ MoveInfoBox: ; 3e6c8
 
 
 Function3e75f: ; 3e75f
-	ld hl, $c581
+	hlcoord 5, 11
 	ld a, [InLinkBattle]
 	cp $4
 	jr c, .asm_3e76c
-	ld hl, $c581
+	hlcoord 5, 11
 
 .asm_3e76c
 	push hl
@@ -42122,7 +42229,7 @@ Function3e75f: ; 3e75f
 	pop hl
 	inc hl
 	inc hl
-	ld [hl], $f3
+	ld [hl], "/"
 	inc hl
 	ld de, $d265
 	ld bc, $0102
@@ -42131,12 +42238,13 @@ Function3e75f: ; 3e75f
 ; 3e786
 
 Function3e786: ; 3e786
-	ld a, $a5
+	ld a, STRUGGLE
 	ld [CurPlayerMove], a
 	ld a, [PlayerDisableCount]
 	and a
-	ld hl, BattleMonPPMove1
+	ld hl, BattleMonPP
 	jr nz, .asm_3e79f
+
 	ld a, [hli]
 	or [hl]
 	inc hl
@@ -42170,7 +42278,7 @@ Function3e786: ; 3e786
 .asm_3e7b4
 	ld hl, BattleText_0x80c72
 	call StdBattleTextBox
-	ld c, $3c
+	ld c, 60
 	call DelayFrames
 	xor a
 	ret
@@ -48164,7 +48272,7 @@ Function49e3d: ; 49e3d
 	ld a, $24
 	ld hl, $4b3e
 	rst FarCall
-	ld [hl], $9c
+	ld [hl], ":"
 	inc hl
 	ld de, hMinutes
 	ld bc, $8102
@@ -48698,7 +48806,7 @@ Function4c000: ; 4c000
 	push hl
 	srl a
 	jr c, .asm_4c021
-	ld hl, TileSetPalettes
+	ld hl, TilesetPalettes
 	add [hl]
 	ld l, a
 	ld a, [$d1e7]
@@ -48709,7 +48817,7 @@ Function4c000: ; 4c000
 	jr .asm_4c031
 
 .asm_4c021
-	ld hl, TileSetPalettes
+	ld hl, TilesetPalettes
 	add [hl]
 	ld l, a
 	ld a, [$d1e7]
@@ -48741,7 +48849,7 @@ Function4c03f: ; 4c03f
 	push hl
 	srl a
 	jr c, .asm_4c05b
-	ld hl, TileSetPalettes
+	ld hl, TilesetPalettes
 	add [hl]
 	ld l, a
 	ld a, [$d1e7]
@@ -48752,7 +48860,7 @@ Function4c03f: ; 4c03f
 	jr .asm_4c06b
 
 .asm_4c05b
-	ld hl, TileSetPalettes
+	ld hl, TilesetPalettes
 	add [hl]
 	ld l, a
 	ld a, [$d1e7]
@@ -48774,134 +48882,8 @@ Function4c03f: ; 4c03f
 ; 4c075
 
 
-Tileset03PalMap: ; 0x4c075
-INCBIN "tilesets/03_palette_map.bin"
-; 0x4c0e5
+INCLUDE "tilesets/palette_maps.asm"
 
-Tileset00PalMap: ; 0x4c0e5
-Tileset01PalMap: ; 0x4c0e5
-INCBIN "tilesets/01_palette_map.bin"
-; 0x4c155
-
-Tileset02PalMap: ; 0x4c155
-INCBIN "tilesets/02_palette_map.bin"
-; 0x4c1c5
-
-Tileset05PalMap: ; 0x4c1c5
-INCBIN "tilesets/05_palette_map.bin"
-; 0x4c235
-
-Tileset06PalMap: ; 0x4c235
-INCBIN "tilesets/06_palette_map.bin"
-; 0x4c2a5
-
-Tileset07PalMap: ; 0x4c2a5
-INCBIN "tilesets/07_palette_map.bin"
-; 0x4c315
-
-Tileset08PalMap: ; 0x4c315
-INCBIN "tilesets/08_palette_map.bin"
-; 0x4c385
-
-Tileset09PalMap: ; 0x4c385
-INCBIN "tilesets/09_palette_map.bin"
-; 0x4c3f5
-
-Tileset10PalMap: ; 0x4c3f5
-INCBIN "tilesets/10_palette_map.bin"
-; 0x4c465
-
-Tileset11PalMap: ; 0x4c465
-INCBIN "tilesets/11_palette_map.bin"
-; 0x4c4d5
-
-Tileset12PalMap: ; 0x4c4d5
-INCBIN "tilesets/12_palette_map.bin"
-; 0x4c545
-
-Tileset13PalMap: ; 0x4c545
-INCBIN "tilesets/13_palette_map.bin"
-; 0x4c5b5
-
-Tileset14PalMap: ; 0x4c5b5
-INCBIN "tilesets/14_palette_map.bin"
-; 0x4c625
-
-Tileset15PalMap: ; 0x4c625
-INCBIN "tilesets/15_palette_map.bin"
-; 0x4c695
-
-Tileset16PalMap: ; 0x4c695
-INCBIN "tilesets/16_palette_map.bin"
-; 0x4c705
-
-Tileset23PalMap: ; 0x4c705
-INCBIN "tilesets/23_palette_map.bin"
-; 0x4c775
-
-Tileset24PalMap: ; 0x4c775
-Tileset30PalMap: ; 0x4c775
-INCBIN "tilesets/30_palette_map.bin"
-; 0x4c7e5
-
-Tileset25PalMap: ; 0x4c7e5
-INCBIN "tilesets/25_palette_map.bin"
-; 0x4c855
-
-Tileset26PalMap: ; 0x4c855
-Tileset32PalMap: ; 0x4c855
-Tileset33PalMap: ; 0x4c855
-Tileset34PalMap: ; 0x4c855
-Tileset35PalMap: ; 0x4c855
-Tileset36PalMap: ; 0x4c855
-INCBIN "tilesets/36_palette_map.bin"
-; 0x4c8c5
-
-Tileset27PalMap: ; 0x4c8c5
-INCBIN "tilesets/27_palette_map.bin"
-; 0x4c935
-
-Tileset17PalMap: ; 0x4c935
-INCBIN "tilesets/17_palette_map.bin"
-; 0x4c9a5
-
-Tileset28PalMap: ; 0x4c9a5
-INCBIN "tilesets/28_palette_map.bin"
-; 0x4ca15
-
-Tileset18PalMap: ; 0x4ca15
-INCBIN "tilesets/18_palette_map.bin"
-; 0x4ca85
-
-Tileset19PalMap: ; 0x4ca85
-INCBIN "tilesets/19_palette_map.bin"
-; 0x4caf5
-
-Tileset20PalMap: ; 0x4caf5
-INCBIN "tilesets/20_palette_map.bin"
-; 0x4cb65
-
-INCBIN "baserom.gbc", $4cb65, $4cbd5-$4cb65
-
-Tileset29PalMap: ; 0x4cbd5
-INCBIN "tilesets/29_palette_map.bin"
-; 0x4cc45
-
-Tileset31PalMap: ; 0x4cc45
-INCBIN "tilesets/31_palette_map.bin"
-; 0x4ccb5
-
-Tileset21PalMap: ; 0x4ccb5
-INCBIN "tilesets/21_palette_map.bin"
-; 0x4cd25
-
-Tileset22PalMap: ; 0x4cd25
-INCBIN "tilesets/22_palette_map.bin"
-; 0x4cd95
-
-Tileset04PalMap: ; 0x4cd95
-INCBIN "tilesets/04_palette_map.bin"
-; 0x4ce05
 
 INCBIN "baserom.gbc", $4ce05, $4ce1f - $4ce05
 
@@ -49538,304 +49520,7 @@ Function4d54c: ; 4d54c
 INCBIN "baserom.gbc", $4d580, $4d596 - $4d580
 
 Tilesets:
-
-Tileset00: ; 0x4d596
-	dbw BANK(Tileset00GFX), Tileset00GFX
-	dbw BANK(Tileset00Meta), Tileset00Meta
-	dbw BANK(Tileset00Coll), Tileset00Coll
-	dw Tileset00Anim
-	dw $0000
-	dw Tileset00PalMap
-
-Tileset01: ; 0x4d5a5
-	dbw BANK(Tileset01GFX), Tileset01GFX
-	dbw BANK(Tileset01Meta), Tileset01Meta
-	dbw BANK(Tileset01Coll), Tileset01Coll
-	dw Tileset01Anim
-	dw $0000
-	dw Tileset01PalMap
-
-Tileset02: ; 0x4d5b4
-	dbw BANK(Tileset02GFX), Tileset02GFX
-	dbw BANK(Tileset02Meta), Tileset02Meta
-	dbw BANK(Tileset02Coll), Tileset02Coll
-	dw Tileset02Anim
-	dw $0000
-	dw Tileset02PalMap
-
-Tileset03: ; 0x4d5c3
-	dbw BANK(Tileset03GFX), Tileset03GFX
-	dbw BANK(Tileset03Meta), Tileset03Meta
-	dbw BANK(Tileset03Coll), Tileset03Coll
-	dw Tileset03Anim
-	dw $0000
-	dw Tileset03PalMap
-
-Tileset04: ; 0x4d5d2
-	dbw BANK(Tileset04GFX), Tileset04GFX
-	dbw BANK(Tileset04Meta), Tileset04Meta
-	dbw BANK(Tileset04Coll), Tileset04Coll
-	dw Tileset04Anim
-	dw $0000
-	dw Tileset04PalMap
-
-Tileset05: ; 0x4d5e1
-	dbw BANK(Tileset05GFX), Tileset05GFX
-	dbw BANK(Tileset05Meta), Tileset05Meta
-	dbw BANK(Tileset05Coll), Tileset05Coll
-	dw Tileset05Anim
-	dw $0000
-	dw Tileset05PalMap
-
-Tileset06: ; 0x4d5f0
-	dbw BANK(Tileset06GFX), Tileset06GFX
-	dbw BANK(Tileset06Meta), Tileset06Meta
-	dbw BANK(Tileset06Coll), Tileset06Coll
-	dw Tileset06Anim
-	dw $0000
-	dw Tileset06PalMap
-
-Tileset07: ; 0x4d5ff
-	dbw BANK(Tileset07GFX), Tileset07GFX
-	dbw BANK(Tileset07Meta), Tileset07Meta
-	dbw BANK(Tileset07Coll), Tileset07Coll
-	dw Tileset07Anim
-	dw $0000
-	dw Tileset07PalMap
-
-Tileset08: ; 0x4d60e
-	dbw BANK(Tileset08GFX), Tileset08GFX
-	dbw BANK(Tileset08Meta), Tileset08Meta
-	dbw BANK(Tileset08Coll), Tileset08Coll
-	dw Tileset08Anim
-	dw $0000
-	dw Tileset08PalMap
-
-Tileset09: ; 0x4d61d
-	dbw BANK(Tileset09GFX), Tileset09GFX
-	dbw BANK(Tileset09Meta), Tileset09Meta
-	dbw BANK(Tileset09Coll), Tileset09Coll
-	dw Tileset09Anim
-	dw $0000
-	dw Tileset09PalMap
-
-Tileset10: ; 0x4d62c
-	dbw BANK(Tileset10GFX), Tileset10GFX
-	dbw BANK(Tileset10Meta), Tileset10Meta
-	dbw BANK(Tileset10Coll), Tileset10Coll
-	dw Tileset10Anim
-	dw $0000
-	dw Tileset10PalMap
-
-Tileset11: ; 0x4d63b
-	dbw BANK(Tileset11GFX), Tileset11GFX
-	dbw BANK(Tileset11Meta), Tileset11Meta
-	dbw BANK(Tileset11Coll), Tileset11Coll
-	dw Tileset11Anim
-	dw $0000
-	dw Tileset11PalMap
-
-Tileset12: ; 0x4d64a
-	dbw BANK(Tileset12GFX), Tileset12GFX
-	dbw BANK(Tileset12Meta), Tileset12Meta
-	dbw BANK(Tileset12Coll), Tileset12Coll
-	dw Tileset12Anim
-	dw $0000
-	dw Tileset12PalMap
-
-Tileset13: ; 0x4d659
-	dbw BANK(Tileset13GFX), Tileset13GFX
-	dbw BANK(Tileset13Meta), Tileset13Meta
-	dbw BANK(Tileset13Coll), Tileset13Coll
-	dw Tileset13Anim
-	dw $0000
-	dw Tileset13PalMap
-
-Tileset14: ; 0x4d668
-	dbw BANK(Tileset14GFX), Tileset14GFX
-	dbw BANK(Tileset14Meta), Tileset14Meta
-	dbw BANK(Tileset14Coll), Tileset14Coll
-	dw Tileset14Anim
-	dw $0000
-	dw Tileset14PalMap
-
-Tileset15: ; 0x4d677
-	dbw BANK(Tileset15GFX), Tileset15GFX
-	dbw BANK(Tileset15Meta), Tileset15Meta
-	dbw BANK(Tileset15Coll), Tileset15Coll
-	dw Tileset15Anim
-	dw $0000
-	dw Tileset15PalMap
-
-Tileset16: ; 0x4d686
-	dbw BANK(Tileset16GFX), Tileset16GFX
-	dbw BANK(Tileset16Meta), Tileset16Meta
-	dbw BANK(Tileset16Coll), Tileset16Coll
-	dw Tileset16Anim
-	dw $0000
-	dw Tileset16PalMap
-
-Tileset17: ; 0x4d695
-	dbw BANK(Tileset17GFX), Tileset17GFX
-	dbw BANK(Tileset17Meta), Tileset17Meta
-	dbw BANK(Tileset17Coll), Tileset17Coll
-	dw Tileset17Anim
-	dw $0000
-	dw Tileset17PalMap
-
-Tileset18: ; 0x4d6a4
-	dbw BANK(Tileset18GFX), Tileset18GFX
-	dbw BANK(Tileset18Meta), Tileset18Meta
-	dbw BANK(Tileset18Coll), Tileset18Coll
-	dw Tileset18Anim
-	dw $0000
-	dw Tileset18PalMap
-
-Tileset19: ; 0x4d6b3
-	dbw BANK(Tileset19GFX), Tileset19GFX
-	dbw BANK(Tileset19Meta), Tileset19Meta
-	dbw BANK(Tileset19Coll), Tileset19Coll
-	dw Tileset19Anim
-	dw $0000
-	dw Tileset19PalMap
-
-Tileset20: ; 0x4d6c2
-	dbw BANK(Tileset20GFX), Tileset20GFX
-	dbw BANK(Tileset20Meta), Tileset20Meta
-	dbw BANK(Tileset20Coll), Tileset20Coll
-	dw Tileset20Anim
-	dw $0000
-	dw Tileset20PalMap
-
-Tileset21: ; 0x4d6d1
-	dbw BANK(Tileset21GFX), Tileset21GFX
-	dbw BANK(Tileset21Meta), Tileset21Meta
-	dbw BANK(Tileset21Coll), Tileset21Coll
-	dw Tileset21Anim
-	dw $0000
-	dw Tileset21PalMap
-
-Tileset22: ; 0x4d6e0
-	dbw BANK(Tileset22GFX), Tileset22GFX
-	dbw BANK(Tileset22Meta), Tileset22Meta
-	dbw BANK(Tileset22Coll), Tileset22Coll
-	dw Tileset22Anim
-	dw $0000
-	dw Tileset22PalMap
-
-Tileset23: ; 0x4d6ef
-	dbw BANK(Tileset23GFX), Tileset23GFX
-	dbw BANK(Tileset23Meta), Tileset23Meta
-	dbw BANK(Tileset23Coll), Tileset23Coll
-	dw Tileset23Anim
-	dw $0000
-	dw Tileset23PalMap
-
-Tileset24: ; 0x4d6fe
-	dbw BANK(Tileset24GFX), Tileset24GFX
-	dbw BANK(Tileset24Meta), Tileset24Meta
-	dbw BANK(Tileset24Coll), Tileset24Coll
-	dw Tileset24Anim
-	dw $0000
-	dw Tileset24PalMap
-
-Tileset25: ; 0x4d70d
-	dbw BANK(Tileset25GFX), Tileset25GFX
-	dbw BANK(Tileset25Meta), Tileset25Meta
-	dbw BANK(Tileset25Coll), Tileset25Coll
-	dw Tileset25Anim
-	dw $0000
-	dw Tileset25PalMap
-
-Tileset26: ; 0x4d71c
-	dbw BANK(Tileset26GFX), Tileset26GFX
-	dbw BANK(Tileset26Meta), Tileset26Meta
-	dbw BANK(Tileset26Coll), Tileset26Coll
-	dw Tileset26Anim
-	dw $0000
-	dw Tileset26PalMap
-
-Tileset27: ; 0x4d72b
-	dbw BANK(Tileset27GFX), Tileset27GFX
-	dbw BANK(Tileset27Meta), Tileset27Meta
-	dbw BANK(Tileset27Coll), Tileset27Coll
-	dw Tileset27Anim
-	dw $0000
-	dw Tileset27PalMap
-
-Tileset28: ; 0x4d73a
-	dbw BANK(Tileset28GFX), Tileset28GFX
-	dbw BANK(Tileset28Meta), Tileset28Meta
-	dbw BANK(Tileset28Coll), Tileset28Coll
-	dw Tileset28Anim
-	dw $0000
-	dw Tileset28PalMap
-
-Tileset29: ; 0x4d749
-	dbw BANK(Tileset29GFX), Tileset29GFX
-	dbw BANK(Tileset29Meta), Tileset29Meta
-	dbw BANK(Tileset29Coll), Tileset29Coll
-	dw Tileset29Anim
-	dw $0000
-	dw Tileset29PalMap
-
-Tileset30: ; 0x4d758
-	dbw BANK(Tileset30GFX), Tileset30GFX
-	dbw BANK(Tileset30Meta), Tileset30Meta
-	dbw BANK(Tileset30Coll), Tileset30Coll
-	dw Tileset30Anim
-	dw $0000
-	dw Tileset30PalMap
-
-Tileset31: ; 0x4d767
-	dbw BANK(Tileset31GFX), Tileset31GFX
-	dbw BANK(Tileset31Meta), Tileset31Meta
-	dbw BANK(Tileset31Coll), Tileset31Coll
-	dw Tileset31Anim
-	dw $0000
-	dw Tileset31PalMap
-
-Tileset32: ; 0x4d776
-	dbw BANK(Tileset32GFX), Tileset32GFX
-	dbw BANK(Tileset32Meta), Tileset32Meta
-	dbw BANK(Tileset32Coll), Tileset32Coll
-	dw Tileset32Anim
-	dw $0000
-	dw Tileset32PalMap
-
-Tileset33: ; 0x4d785
-	dbw BANK(Tileset33GFX), Tileset33GFX
-	dbw BANK(Tileset33Meta), Tileset33Meta
-	dbw BANK(Tileset33Coll), Tileset33Coll
-	dw Tileset33Anim
-	dw $0000
-	dw Tileset33PalMap
-
-Tileset34: ; 0x4d794
-	dbw BANK(Tileset34GFX), Tileset34GFX
-	dbw BANK(Tileset34Meta), Tileset34Meta
-	dbw BANK(Tileset34Coll), Tileset34Coll
-	dw Tileset34Anim
-	dw $0000
-	dw Tileset34PalMap
-
-Tileset35: ; 0x4d7a3
-	dbw BANK(Tileset35GFX), Tileset35GFX
-	dbw BANK(Tileset35Meta), Tileset35Meta
-	dbw BANK(Tileset35Coll), Tileset35Coll
-	dw Tileset35Anim
-	dw $0000
-	dw Tileset35PalMap
-
-Tileset36: ; 0x4d7b2
-	dbw BANK(Tileset36GFX), Tileset36GFX
-	dbw BANK(Tileset36Meta), Tileset36Meta
-	dbw BANK(Tileset36Coll), Tileset36Coll
-	dw Tileset36Anim
-	dw $0000
-	dw Tileset36PalMap
-
-; 0x4d7c1
+INCLUDE "tilesets/tileset_headers.asm"
 
 INCBIN "baserom.gbc", $4d7c1, $4d860 - $4d7c1
 
@@ -60352,1336 +60037,22 @@ INCLUDE "text/phone/extra2.asm"
 
 SECTION "bank2A",ROMX,BANK[$2A]
 
-Route32_BlockData: ; 0xa8000
-	INCBIN "maps/Route32.blk"
-; 0xa81c2
-
-Route40_BlockData: ; 0xa81c2
-	INCBIN "maps/Route40.blk"
-; 0xa8276
-
-Route36_BlockData: ; 0xa8276
-	INCBIN "maps/Route36.blk"
-; 0xa8384
-
-Route44_BlockData: ; 0xa8384
-	INCBIN "maps/Route44.blk"
-; 0xa8492
-
-Route28_BlockData: ; 0xa8492
-	INCBIN "maps/Route28.blk"
-; 0xa8546
-
-BetaHerosHouse_BlockData: ; 0xa8546
-	INCBIN "maps/BetaHerosHouse.blk"
-; 0xa8552
-
-CeladonCity_BlockData: ; 0xa8552
-	INCBIN "maps/CeladonCity.blk"
-; 0xa86ba
-
-SaffronCity_BlockData: ; 0xa86ba
-	INCBIN "maps/SaffronCity.blk"
-; 0xa8822
-
-Route2_BlockData: ; 0xa8822
-	INCBIN "maps/Route2.blk"
-; 0xa8930
-
-ElmsHouse_BlockData: ; 0xa8930
-	INCBIN "maps/ElmsHouse.blk"
-; 0xa8940
-
-BetaSproutTower1_BlockData: ; 0xa8940
-	INCBIN "maps/BetaSproutTower1.blk"
-; 0xa899a
-
-Route11_BlockData: ; 0xa899a
-	INCBIN "maps/Route11.blk"
-; 0xa8a4e
-
-BetaSproutTower5_BlockData: ; 0xa8a4e
-	INCBIN "maps/BetaSproutTower5.blk"
-; 0xa8aa8
-
-Route15_BlockData: ; 0xa8aa8
-	INCBIN "maps/Route15.blk"
-; 0xa8b5c
-
-BetaSproutTower9_BlockData: ; 0xa8b5c
-	INCBIN "maps/BetaSproutTower9.blk"
-; 0xa8b80
-
-Route19_BlockData: ; 0xa8b80
-	INCBIN "maps/Route19.blk"
-; 0xa8c34
-
-BetaBlackthornCity_BlockData: ; 0xa8c34
-	INCBIN "maps/BetaBlackthornCity.blk"
-; 0xa8d9c
-
-Route10South_BlockData: ; 0xa8d9c
-	INCBIN "maps/Route10South.blk"
-; 0xa8df6
-
-CinnabarPokeCenter2FBeta_BlockData: ; 0xa8df6
-	INCBIN "maps/CinnabarPokeCenter2FBeta.blk"
-; 0xa8e16
-
-Route41_BlockData: ; 0xa8e16
-	INCBIN "maps/Route41.blk"
-; 0xa90b9
-
-Route33_BlockData: ; 0xa90b9
-	INCBIN "maps/Route33.blk"
-; 0xa9113
-
-Route45_BlockData: ; 0xa9113
-	INCBIN "maps/Route45.blk"
-; 0xa92d5
-
-Route29_BlockData: ; 0xa92d5
-	INCBIN "maps/Route29.blk"
-; 0xa93e3
-
-Route37_BlockData: ; 0xa93e3
-	INCBIN "maps/Route37.blk"
-; 0xa943d
-
-LavenderTown_BlockData: ; 0xa943d
-	INCBIN "maps/LavenderTown.blk"
-; 0xa9497
-
-PalletTown_BlockData: ; 0xa9497
-	INCBIN "maps/PalletTown.blk"
-; 0xa94f1
-
-Route25_BlockData: ; 0xa94f1
-	INCBIN "maps/Route25.blk"
-; 0xa95ff
-
-Route24_BlockData: ; 0xa95ff
-	INCBIN "maps/Route24.blk"
-; 0xa9659
-
-BetaVioletCity_BlockData: ; 0xa9659
-	INCBIN "maps/BetaVioletCity.blk"
-; 0xa97c1
-
-Route3_BlockData: ; 0xa97c1
-	INCBIN "maps/Route3.blk"
-; 0xa98cf
-
-PewterCity_BlockData: ; 0xa98cf
-	INCBIN "maps/PewterCity.blk"
-; 0xa9a37
-
-BetaIlexForest_BlockData: ; 0xa9a37
-	INCBIN "maps/BetaIlexForest.blk"
-; 0xa9b9f
-
-BetaSproutTower2_BlockData: ; 0xa9b9f
-	INCBIN "maps/BetaSproutTower2.blk"
-; 0xa9bf9
-
-Route12_BlockData: ; 0xa9bf9
-	INCBIN "maps/Route12.blk"
-; 0xa9d07
-
-BetaGoldenrodCity_BlockData: ; 0xa9d07
-	INCBIN "maps/BetaGoldenrodCity.blk"
-; 0xa9e6f
-
-Route20_BlockData: ; 0xa9e6f
-	INCBIN "maps/Route20.blk"
-; 0xa9f7d
-
-BetaSproutTower6_BlockData: ; 0xa9f7d
-	INCBIN "maps/BetaSproutTower6.blk"
-; 0xa9fd7
-
-BetaPokecenterMainHouse_BlockData: ; 0xa9fd7
-	INCBIN "maps/BetaPokecenterMainHouse.blk"
-; 0xa9ff7
-
-Route30_BlockData: ; 0xa9ff7
-	INCBIN "maps/Route30.blk"
-; 0xaa105
-
-Route26_BlockData: ; 0xaa105
-	INCBIN "maps/Route26.blk"
-; 0xaa321
-
-Route42_BlockData: ; 0xaa321
-	INCBIN "maps/Route42.blk"
-; 0xaa42f
-
-Route34_BlockData: ; 0xaa42f
-	INCBIN "maps/Route34.blk"
-; 0xaa53d
-
-Route46_BlockData: ; 0xaa53d
-	INCBIN "maps/Route46.blk"
-; 0xaa5f1
-
-FuchsiaCity_BlockData: ; 0xaa5f1
-	INCBIN "maps/FuchsiaCity.blk"
-; 0xaa759
-
-Route38_BlockData: ; 0xaa759
-	INCBIN "maps/Route38.blk"
-; 0xaa80d
-
-BetaCianwoodCity_BlockData: ; 0xaa80d
-	INCBIN "maps/BetaCianwoodCity.blk"
-; 0xaa867
-
-OlivineVoltorbHouse_BlockData: ; 0xaa867
-	INCBIN "maps/OlivineVoltorbHouse.blk"
-; 0xaa877
-
-SafariZoneFuchsiaGateBeta_BlockData: ; 0xaa877
-	INCBIN "maps/SafariZoneFuchsiaGateBeta.blk"
-; 0xaa88b
-
-BetaTeakCity_BlockData: ; 0xaa88b
-	INCBIN "maps/BetaTeakCity.blk"
-; 0xaa9f3
-
-BetaCherrygroveCity_BlockData: ; 0xaa9f3
-	INCBIN "maps/BetaCherrygroveCity.blk"
-; 0xaaa4d
-
-CinnabarIsland_BlockData: ; 0xaaa4d
-	INCBIN "maps/CinnabarIsland.blk"
-; 0xaaaa7
-
-Route4_BlockData: ; 0xaaaa7
-	INCBIN "maps/Route4.blk"
-; 0xaab5b
-
-Route8_BlockData: ; 0xaab5b
-	INCBIN "maps/Route8.blk"
-; 0xaac0f
-
-BetaSproutTower3_BlockData: ; 0xaac0f
-	INCBIN "maps/BetaSproutTower3.blk"
-; 0xaac69
-
-ViridianCity_BlockData: ; 0xaac69
-	INCBIN "maps/ViridianCity.blk"
-; 0xaadd1
-
-Route13_BlockData: ; 0xaadd1
-	INCBIN "maps/Route13.blk"
-; 0xaaedf
-
-Route21_BlockData: ; 0xaaedf
-	INCBIN "maps/Route21.blk"
-; 0xaaf93
-
-BetaSproutTower7_BlockData: ; 0xaaf93
-	INCBIN "maps/BetaSproutTower7.blk"
-; 0xaafed
-
-Route17_BlockData: ; 0xaafed
-	INCBIN "maps/Route17.blk"
-; 0xab1af
-
-BetaMahoganyTown_BlockData: ; 0xab1af
-	INCBIN "maps/BetaMahoganyTown.blk"
-; 0xab209
-
-Route31_BlockData: ; 0xab209
-	INCBIN "maps/Route31.blk"
-; 0xab2bd
-
-Route27_BlockData: ; 0xab2bd
-	INCBIN "maps/Route27.blk"
-; 0xab425
-
-Route35_BlockData: ; 0xab425
-	INCBIN "maps/Route35.blk"
-; 0xab4d9
-
-Route43_BlockData: ; 0xab4d9
-	INCBIN "maps/Route43.blk"
-; 0xab5e7
-
-Route39_BlockData: ; 0xab5e7
-	INCBIN "maps/Route39.blk"
-; 0xab69b
-
-KrissHouse1F_BlockData: ; 0xab69b
-	INCBIN "maps/KrissHouse1F.blk"
-; 0xab6af
-
-Route38EcruteakGate_BlockData: ; 0xab6af
-	INCBIN "maps/Route38EcruteakGate.blk"
-; 0xab6c3
-
-BetaAzaleaTown_BlockData: ; 0xab6c3
-	INCBIN "maps/BetaAzaleaTown.blk"
-; 0xab82b
-
-VermilionCity_BlockData: ; 0xab82b
-	INCBIN "maps/VermilionCity.blk"
-; 0xab993
-
-BetaOlivineCity_BlockData: ; 0xab993
-	INCBIN "maps/BetaOlivineCity.blk"
-; 0xabafb
-
-BetaNewBarkTown_BlockData: ; 0xabafb
-	INCBIN "maps/BetaNewBarkTown.blk"
-; 0xabb55
-
-ElmsLab_BlockData: ; 0xabb55
-	INCBIN "maps/ElmsLab.blk"
-; 0xabb73
-
-CeruleanCity_BlockData: ; 0xabb73
-	INCBIN "maps/CeruleanCity.blk"
-; 0xabcdb
-
-Route1_BlockData: ; 0xabcdb
-	INCBIN "maps/Route1.blk"
-; 0xabd8f
-
-Route5_BlockData: ; 0xabd8f
-	INCBIN "maps/Route5.blk"
-; 0xabde9
-
-Route9_BlockData: ; 0xabde9
-	INCBIN "maps/Route9.blk"
-; 0xabef7
-
-Route22_BlockData: ; 0xabef7
-	INCBIN "maps/Route22.blk"
-; 0xabfab
+INCLUDE "maps/blockdata_1.asm"
 
 
 SECTION "bank2B",ROMX,BANK[$2B]
 
-Route14_BlockData: ; 0xac000
-	INCBIN "maps/Route14.blk"
-; 0xac0b4
-
-BetaSproutTower8_BlockData: ; 0xac0b4
-	INCBIN "maps/BetaSproutTower8.blk"
-; 0xac10e
-
-OlivineMart_BlockData: ; 0xac10e
-	INCBIN "maps/OlivineMart.blk"
-; 0xac126
-
-Route10North_BlockData: ; 0xac126
-	INCBIN "maps/Route10North.blk"
-; 0xac180
-
-BetaLakeOfRage_BlockData: ; 0xac180
-	INCBIN "maps/BetaLakeOfRage.blk"
-; 0xac2e8
-
-OlivinePokeCenter1F_BlockData: ; 0xac2e8
-	INCBIN "maps/OlivinePokeCenter1F.blk"
-; 0xac2fc
-
-BetaPewterMuseumOfScience1F_BlockData: ; 0xac2fc
-	INCBIN "maps/BetaPewterMuseumOfScience1F.blk"
-; 0xac324
-
-BetaPewterMuseumOfScience2F_BlockData: ; 0xac324
-	INCBIN "maps/BetaPewterMuseumOfScience2F.blk"
-; 0xac340
-
-EarlsPokemonAcademy_BlockData: ; 0xac340
-	INCBIN "maps/EarlsPokemonAcademy.blk"
-; 0xac360
-
-BetaCinnabarIslandPokemonLabHallway_BlockData: ; 0xac360
-	INCBIN "maps/BetaCinnabarIslandPokemonLabHallway.blk"
-; 0xac384
-
-BetaCinnabarIslandPokemonLabRoom1_BlockData: ; 0xac384
-	INCBIN "maps/BetaCinnabarIslandPokemonLabRoom1.blk"
-; 0xac394
-
-BetaCinnabarIslandPokemonLabRoom2_BlockData: ; 0xac394
-	INCBIN "maps/BetaCinnabarIslandPokemonLabRoom2.blk"
-; 0xac3a4
-
-BetaCinnabarIslandPokemonLabRoom3_BlockData: ; 0xac3a4
-	INCBIN "maps/BetaCinnabarIslandPokemonLabRoom3.blk"
-; 0xac3b4
-
-GoldenrodDeptStore1F_BlockData: ; 0xac3b4
-	INCBIN "maps/GoldenrodDeptStore1F.blk"
-; 0xac3d4
-
-GoldenrodDeptStore2F_BlockData: ; 0xac3d4
-	INCBIN "maps/GoldenrodDeptStore2F.blk"
-; 0xac3f4
-
-GoldenrodDeptStore3F_BlockData: ; 0xac3f4
-	INCBIN "maps/GoldenrodDeptStore3F.blk"
-; 0xac414
-
-GoldenrodDeptStore4F_BlockData: ; 0xac414
-	INCBIN "maps/GoldenrodDeptStore4F.blk"
-; 0xac434
-
-GoldenrodDeptStore5F_BlockData: ; 0xac434
-	INCBIN "maps/GoldenrodDeptStore5F.blk"
-; 0xac454
-
-GoldenrodDeptStore6F_BlockData: ; 0xac454
-	INCBIN "maps/GoldenrodDeptStore6F.blk"
-; 0xac474
-
-GoldenrodDeptStoreElevator_BlockData: ; 0xac474
-	INCBIN "maps/GoldenrodDeptStoreElevator.blk"
-; 0xac478
-
-CeladonMansion1F_BlockData: ; 0xac478
-	INCBIN "maps/CeladonMansion1F.blk"
-; 0xac48c
-
-CeladonMansion2F_BlockData: ; 0xac48c
-	INCBIN "maps/CeladonMansion2F.blk"
-; 0xac4a0
-
-CeladonMansion3F_BlockData: ; 0xac4a0
-	INCBIN "maps/CeladonMansion3F.blk"
-; 0xac4b4
-
-CeladonMansionRoof_BlockData: ; 0xac4b4
-	INCBIN "maps/CeladonMansionRoof.blk"
-; 0xac4c8
-
-BetaHouse_BlockData: ; 0xac4c8
-	INCBIN "maps/BetaHouse.blk"
-; 0xac4d8
-
-CeladonGameCorner_BlockData: ; 0xac4d8
-	INCBIN "maps/CeladonGameCorner.blk"
-; 0xac51e
-
-CeladonGameCornerPrizeRoom_BlockData: ; 0xac51e
-	INCBIN "maps/CeladonGameCornerPrizeRoom.blk"
-; 0xac527
-
-Colosseum_BlockData: ; 0xac527
-	INCBIN "maps/Colosseum.blk"
-; 0xac53b
-
-TradeCenter_BlockData: ; 0xac53b
-	INCBIN "maps/TradeCenter.blk"
-; 0xac54f
-
-EcruteakLugiaSpeechHouse_BlockData: ; 0xac54f
-	INCBIN "maps/EcruteakLugiaSpeechHouse.blk"
-; 0xac55f
-
-BetaCave_BlockData: ; 0xac55f
-	INCBIN "maps/BetaCave.blk"
-; 0xac5b9
-
-UnionCaveB1F_BlockData: ; 0xac5b9
-	INCBIN "maps/UnionCaveB1F.blk"
-; 0xac66d
-
-UnionCaveB2F_BlockData: ; 0xac66d
-	INCBIN "maps/UnionCaveB2F.blk"
-; 0xac721
-
-UnionCave1F_BlockData: ; 0xac721
-	INCBIN "maps/UnionCave1F.blk"
-; 0xac7d5
-
-NationalPark_BlockData: ; 0xac7d5
-	INCBIN "maps/NationalPark.blk"
-; 0xac9f1
-
-Route6UndergroundEntrance_BlockData: ; 0xac9f1
-	INCBIN "maps/Route6UndergroundEntrance.blk"
-; 0xaca01
-
-BetaPokecenterTradeStation_BlockData: ; 0xaca01
-	INCBIN "maps/BetaPokecenterTradeStation.blk"
-; 0xaca11
-
-KurtsHouse_BlockData: ; 0xaca11
-	INCBIN "maps/KurtsHouse.blk"
-; 0xaca31
-
-GoldenrodMagnetTrainStation_BlockData: ; 0xaca31
-	INCBIN "maps/GoldenrodMagnetTrainStation.blk"
-; 0xaca8b
-
-RuinsofAlphOutside_BlockData: ; 0xaca8b
-	INCBIN "maps/RuinsofAlphOutside.blk"
-; 0xacb3f
-
-BetaAlphRuinUnsolvedPuzzleRoom_BlockData: ; 0xacb3f
-	INCBIN "maps/BetaAlphRuinUnsolvedPuzzleRoom.blk"
-; 0xacb53
-
-RuinsofAlphInnerChamber_BlockData: ; 0xacb53
-	INCBIN "maps/RuinsofAlphInnerChamber.blk"
-; 0xacbdf
-
-RuinsofAlphHoOhChamber_BlockData: ; 0xacbdf
-	INCBIN "maps/RuinsofAlphHoOhChamber.blk"
-; 0xacbf3
-
-SproutTower1F_BlockData: ; 0xacbf3
-	INCBIN "maps/SproutTower1F.blk"
-; 0xacc43
-
-BetaSproutTowerCutOut1_BlockData: ; 0xacc43
-	INCBIN "maps/BetaSproutTowerCutOut1.blk"
-; 0xacc4d
-
-SproutTower2F_BlockData: ; 0xacc4d
-	INCBIN "maps/SproutTower2F.blk"
-; 0xacc9d
-
-BetaSproutTowerCutOut2_BlockData: ; 0xacc9d
-	INCBIN "maps/BetaSproutTowerCutOut2.blk"
-; 0xacca7
-
-SproutTower3F_BlockData: ; 0xacca7
-	INCBIN "maps/SproutTower3F.blk"
-; 0xaccf7
-
-BetaSproutTowerCutOut3_BlockData: ; 0xaccf7
-	INCBIN "maps/BetaSproutTowerCutOut3.blk"
-; 0xacd01
-
-RadioTower1F_BlockData: ; 0xacd01
-	INCBIN "maps/RadioTower1F.blk"
-; 0xacd25
-
-RadioTower2F_BlockData: ; 0xacd25
-	INCBIN "maps/RadioTower2F.blk"
-; 0xacd49
-
-RadioTower3F_BlockData: ; 0xacd49
-	INCBIN "maps/RadioTower3F.blk"
-; 0xacd6d
-
-RadioTower4F_BlockData: ; 0xacd6d
-	INCBIN "maps/RadioTower4F.blk"
-; 0xacd91
-
-RadioTower5F_BlockData: ; 0xacd91
-	INCBIN "maps/RadioTower5F.blk"
-; 0xacdb5
-
-NewBarkTown_BlockData: ; 0xacdb5
-	INCBIN "maps/NewBarkTown.blk"
-; 0xace0f
-
-CherrygroveCity_BlockData: ; 0xace0f
-	INCBIN "maps/CherrygroveCity.blk"
-; 0xacec3
-
-VioletCity_BlockData: ; 0xacec3
-	INCBIN "maps/VioletCity.blk"
-; 0xad02b
-
-AzaleaTown_BlockData: ; 0xad02b
-	INCBIN "maps/AzaleaTown.blk"
-; 0xad0df
-
-CianwoodCity_BlockData: ; 0xad0df
-	INCBIN "maps/CianwoodCity.blk"
-; 0xad274
-
-GoldenrodCity_BlockData: ; 0xad274
-	INCBIN "maps/GoldenrodCity.blk"
-; 0xad3dc
-
-OlivineCity_BlockData: ; 0xad3dc
-	INCBIN "maps/OlivineCity.blk"
-; 0xad544
-
-EcruteakCity_BlockData: ; 0xad544
-	INCBIN "maps/EcruteakCity.blk"
-; 0xad6ac
-
-MahoganyTown_BlockData: ; 0xad6ac
-	INCBIN "maps/MahoganyTown.blk"
-; 0xad706
-
-LakeofRage_BlockData: ; 0xad706
-	INCBIN "maps/LakeofRage.blk"
-; 0xad86e
-
-BlackthornCity_BlockData: ; 0xad86e
-	INCBIN "maps/BlackthornCity.blk"
-; 0xad9d6
-
-SilverCaveOutside_BlockData: ; 0xad9d6
-	INCBIN "maps/SilverCaveOutside.blk"
-; 0xadb3e
-
-Route6_BlockData: ; 0xadb3e
-	INCBIN "maps/Route6.blk"
-; 0xadb98
-
-Route7_BlockData: ; 0xadb98
-	INCBIN "maps/Route7.blk"
-; 0xadbf2
-
-Route16_BlockData: ; 0xadbf2
-	INCBIN "maps/Route16.blk"
-; 0xadc4c
-
-Route18_BlockData: ; 0xadc4c
-	INCBIN "maps/Route18.blk"
-; 0xadca6
-
-WarehouseEntrance_BlockData: ; 0xadca6
-	INCBIN "maps/WarehouseEntrance.blk"
-; 0xaddb4
-
-UndergroundPathSwitchRoomEntrances_BlockData: ; 0xaddb4
-	INCBIN "maps/UndergroundPathSwitchRoomEntrances.blk"
-; 0xadec2
-
-GoldenrodDeptStoreB1F_BlockData: ; 0xadec2
-	INCBIN "maps/GoldenrodDeptStoreB1F.blk"
-; 0xadf1c
-
-UndergroundWarehouse_BlockData: ; 0xadf1c
-	INCBIN "maps/UndergroundWarehouse.blk"
-; 0xadf76
-
-BetaElevator_BlockData: ; 0xadf76
-	INCBIN "maps/BetaElevator.blk"
-; 0xadf8f
-
-TinTower1F_BlockData: ; 0xadf8f
-	INCBIN "maps/TinTower1F.blk"
-; 0xadfe9
-
-TinTower2F_BlockData: ; 0xadfe9
-	INCBIN "maps/TinTower2F.blk"
-; 0xae043
-
-TinTower3F_BlockData: ; 0xae043
-	INCBIN "maps/TinTower3F.blk"
-; 0xae09d
-
-TinTower4F_BlockData: ; 0xae09d
-	INCBIN "maps/TinTower4F.blk"
-; 0xae0f7
-
-TinTower5F_BlockData: ; 0xae0f7
-	INCBIN "maps/TinTower5F.blk"
-; 0xae151
-
-TinTower6F_BlockData: ; 0xae151
-	INCBIN "maps/TinTower6F.blk"
-; 0xae1ab
-
-TinTower7F_BlockData: ; 0xae1ab
-	INCBIN "maps/TinTower7F.blk"
-; 0xae205
-
-TinTower8F_BlockData: ; 0xae205
-	INCBIN "maps/TinTower8F.blk"
-; 0xae25f
-
-TinTower9F_BlockData: ; 0xae25f
-	INCBIN "maps/TinTower9F.blk"
-; 0xae2b9
-
-TinTowerRoof_BlockData: ; 0xae2b9
-	INCBIN "maps/TinTowerRoof.blk"
-; 0xae313
-
-BurnedTower1F_BlockData: ; 0xae313
-	INCBIN "maps/BurnedTower1F.blk"
-; 0xae36d
-
-BurnedTowerB1F_BlockData: ; 0xae36d
-	INCBIN "maps/BurnedTowerB1F.blk"
-; 0xae3c7
-
-BetaCaveTestMap_BlockData: ; 0xae3c7
-	INCBIN "maps/BetaCaveTestMap.blk"
-; 0xae4d5
-
-MountMortar1FOutside_BlockData: ; 0xae4d5
-	INCBIN "maps/MountMortar1FOutside.blk"
-; 0xae63d
-
-MountMortar1FInside_BlockData: ; 0xae63d
-	INCBIN "maps/MountMortar1FInside.blk"
-; 0xae859
-
-MountMortar2FInside_BlockData: ; 0xae859
-	INCBIN "maps/MountMortar2FInside.blk"
-; 0xae9c1
-
-MountMortarB1F_BlockData: ; 0xae9c1
-	INCBIN "maps/MountMortarB1F.blk"
-; 0xaeb29
-
-IcePath1F_BlockData: ; 0xaeb29
-	INCBIN "maps/IcePath1F.blk"
-; 0xaec91
-
-IcePathB1F_BlockData: ; 0xaec91
-	INCBIN "maps/IcePathB1F.blk"
-; 0xaed45
-
-IcePathB2FMahoganySide_BlockData: ; 0xaed45
-	INCBIN "maps/IcePathB2FMahoganySide.blk"
-; 0xaed9f
-
-IcePathB2FBlackthornSide_BlockData: ; 0xaed9f
-	INCBIN "maps/IcePathB2FBlackthornSide.blk"
-; 0xaedcc
-
-IcePathB3F_BlockData: ; 0xaedcc
-	INCBIN "maps/IcePathB3F.blk"
-; 0xaee26
-
-WhirlIslandNW_BlockData: ; 0xaee26
-	INCBIN "maps/WhirlIslandNW.blk"
-; 0xaee53
-
-WhirlIslandNE_BlockData: ; 0xaee53
-	INCBIN "maps/WhirlIslandNE.blk"
-; 0xaeead
-
-WhirlIslandSW_BlockData: ; 0xaeead
-	INCBIN "maps/WhirlIslandSW.blk"
-; 0xaef07
-
-WhirlIslandCave_BlockData: ; 0xaef07
-	INCBIN "maps/WhirlIslandCave.blk"
-; 0xaef34
-
-WhirlIslandSE_BlockData: ; 0xaef34
-	INCBIN "maps/WhirlIslandSE.blk"
-; 0xaef61
-
-WhirlIslandB1F_BlockData: ; 0xaef61
-	INCBIN "maps/WhirlIslandB1F.blk"
-; 0xaf0c9
-
-WhirlIslandB2F_BlockData: ; 0xaf0c9
-	INCBIN "maps/WhirlIslandB2F.blk"
-; 0xaf17d
-
-WhirlIslandLugiaChamber_BlockData: ; 0xaf17d
-	INCBIN "maps/WhirlIslandLugiaChamber.blk"
-; 0xaf1d7
-
-SilverCaveRoom1_BlockData: ; 0xaf1d7
-	INCBIN "maps/SilverCaveRoom1.blk"
-; 0xaf28b
-
-SilverCaveRoom2_BlockData: ; 0xaf28b
-	INCBIN "maps/SilverCaveRoom2.blk"
-; 0xaf399
-
-SilverCaveRoom3_BlockData: ; 0xaf399
-	INCBIN "maps/SilverCaveRoom3.blk"
-; 0xaf44d
-
-BetaRocketHideout1_BlockData: ; 0xaf44d
-	INCBIN "maps/BetaRocketHideout1.blk"
-; 0xaf55b
-
-BetaRocketHideout2_BlockData: ; 0xaf55b
-	INCBIN "maps/BetaRocketHideout2.blk"
-; 0xaf669
-
-BetaEmptyHouse_BlockData: ; 0xaf669
-	INCBIN "maps/BetaEmptyHouse.blk"
-; 0xaf777
-
-BetaRocketHideout3_BlockData: ; 0xaf777
-	INCBIN "maps/BetaRocketHideout3.blk"
-; 0xaf885
-
-MahoganyMart1F_BlockData: ; 0xaf885
-	INCBIN "maps/MahoganyMart1F.blk"
-; 0xaf895
-
-TeamRocketBaseB1F_BlockData: ; 0xaf895
-	INCBIN "maps/TeamRocketBaseB1F.blk"
-; 0xaf91c
-
-TeamRocketBaseB2F_BlockData: ; 0xaf91c
-	INCBIN "maps/TeamRocketBaseB2F.blk"
-; 0xaf9a3
-
-TeamRocketBaseB3F_BlockData: ; 0xaf9a3
-	INCBIN "maps/TeamRocketBaseB3F.blk"
-; 0xafa2a
-
-BetaRoute23EarlyVersion_BlockData: ; 0xafa2a
-	INCBIN "maps/BetaRoute23EarlyVersion.blk"
-; 0xafa84
-
-IndigoPlateauPokeCenter1F_BlockData: ; 0xafa84
-	INCBIN "maps/IndigoPlateauPokeCenter1F.blk"
-; 0xafac3
-
-WillsRoom_BlockData: ; 0xafac3
-	INCBIN "maps/WillsRoom.blk"
-; 0xafaf0
-
-KogasRoom_BlockData: ; 0xafaf0
-	INCBIN "maps/KogasRoom.blk"
-; 0xafb1d
-
-BrunosRoom_BlockData: ; 0xafb1d
-	INCBIN "maps/BrunosRoom.blk"
-; 0xafb4a
-
-KarensRoom_BlockData: ; 0xafb4a
-	INCBIN "maps/KarensRoom.blk"
-; 0xafb77
-
-AzaleaGym_BlockData: ; 0xafb77
-	INCBIN "maps/AzaleaGym.blk"
-; 0xafb9f
-
-VioletGym_BlockData: ; 0xafb9f
-	INCBIN "maps/VioletGym.blk"
-; 0xafbc7
-
-GoldenrodGym_BlockData: ; 0xafbc7
-	INCBIN "maps/GoldenrodGym.blk"
-; 0xafc21
-
-EcruteakGym_BlockData: ; 0xafc21
-	INCBIN "maps/EcruteakGym.blk"
-; 0xafc4e
-
-MahoganyGym_BlockData: ; 0xafc4e
-	INCBIN "maps/MahoganyGym.blk"
-; 0xafc7b
-
-OlivineGym_BlockData: ; 0xafc7b
-	INCBIN "maps/OlivineGym.blk"
-; 0xafca3
-
-BetaUnknown_BlockData: ; 0xafca3
-	INCBIN "maps/BetaUnknown.blk"
-; 0xafcb7
-
-CianwoodGym_BlockData: ; 0xafcb7
-	INCBIN "maps/CianwoodGym.blk"
-; 0xafce4
-
-BlackthornGym1F_BlockData: ; 0xafce4
-	INCBIN "maps/BlackthornGym1F.blk"
-; 0xafd11
-
-BlackthornGym2F_BlockData: ; 0xafd11
-	INCBIN "maps/BlackthornGym2F.blk"
-; 0xafd3e
-
-OlivineLighthouse1F_BlockData: ; 0xafd3e
-	INCBIN "maps/OlivineLighthouse1F.blk"
-; 0xafd98
-
-OlivineLighthouse2F_BlockData: ; 0xafd98
-	INCBIN "maps/OlivineLighthouse2F.blk"
-; 0xafdf2
-
-OlivineLighthouse3F_BlockData: ; 0xafdf2
-	INCBIN "maps/OlivineLighthouse3F.blk"
-; 0xafe4c
-
-OlivineLighthouse4F_BlockData: ; 0xafe4c
-	INCBIN "maps/OlivineLighthouse4F.blk"
-; 0xafea6
-
-OlivineLighthouse5F_BlockData: ; 0xafea6
-	INCBIN "maps/OlivineLighthouse5F.blk"
-; 0xaff00
-
-OlivineLighthouse6F_BlockData: ; 0xaff00
-	INCBIN "maps/OlivineLighthouse6F.blk"
-; 0xaff5a
+INCLUDE "maps/blockdata_2.asm"
 
 
 SECTION "bank2C",ROMX,BANK[$2C]
 
-BetaCave2_BlockData: ; 0xb0000
-	INCBIN "maps/BetaCave2.blk"
-; 0xb0023
-
-SlowpokeWellB1F_BlockData: ; 0xb0023
-	INCBIN "maps/SlowpokeWellB1F.blk"
-; 0xb007d
-
-SlowpokeWellB2F_BlockData: ; 0xb007d
-	INCBIN "maps/SlowpokeWellB2F.blk"
-; 0xb00d7
-
-IlexForest_BlockData: ; 0xb00d7
-	INCBIN "maps/IlexForest.blk"
-; 0xb026c
-
-DarkCaveVioletEntrance_BlockData: ; 0xb026c
-	INCBIN "maps/DarkCaveVioletEntrance.blk"
-; 0xb03d4
-
-DarkCaveBlackthornEntrance_BlockData: ; 0xb03d4
-	INCBIN "maps/DarkCaveBlackthornEntrance.blk"
-; 0xb04e2
-
-RuinsofAlphResearchCenter_BlockData: ; 0xb04e2
-	INCBIN "maps/RuinsofAlphResearchCenter.blk"
-; 0xb04f2
-
-GoldenrodBikeShop_BlockData: ; 0xb04f2
-	INCBIN "maps/GoldenrodBikeShop.blk"
-; 0xb0502
-
-DanceTheatre_BlockData: ; 0xb0502
-	INCBIN "maps/DanceTheatre.blk"
-; 0xb052c
-
-EcruteakHouse_BlockData: ; 0xb052c
-	INCBIN "maps/EcruteakHouse.blk"
-; 0xb0586
-
-GoldenrodGameCorner_BlockData: ; 0xb0586
-	INCBIN "maps/GoldenrodGameCorner.blk"
-; 0xb05cc
-
-Route35NationalParkgate_BlockData: ; 0xb05cc
-	INCBIN "maps/Route35NationalParkgate.blk"
-; 0xb05dc
-
-Route36NationalParkgate_BlockData: ; 0xb05dc
-	INCBIN "maps/Route36NationalParkgate.blk"
-; 0xb05f0
-
-FastShip1F_BlockData: ; 0xb05f0
-	INCBIN "maps/FastShip1F.blk"
-; 0xb0680
-
-FastShipB1F_BlockData: ; 0xb0680
-	INCBIN "maps/FastShipB1F.blk"
-; 0xb0700
-
-BetaSsAquaInsideCutOut_BlockData: ; 0xb0700
-	INCBIN "maps/BetaSsAquaInsideCutOut.blk"
-; 0xb0710
-
-FastShipCabins_NNW_NNE_NE_BlockData: ; 0xb0710
-	INCBIN "maps/FastShipCabins_NNW_NNE_NE.blk"
-; 0xb0750
-
-FastShipCabins_SW_SSW_NW_BlockData: ; 0xb0750
-	INCBIN "maps/FastShipCabins_SW_SSW_NW.blk"
-; 0xb0790
-
-FastShipCabins_SE_SSE_CaptainsCabin_BlockData: ; 0xb0790
-	INCBIN "maps/FastShipCabins_SE_SSE_CaptainsCabin.blk"
-; 0xb07e5
-
-OlivinePort_BlockData: ; 0xb07e5
-	INCBIN "maps/OlivinePort.blk"
-; 0xb0899
-
-VermilionPort_BlockData: ; 0xb0899
-	INCBIN "maps/VermilionPort.blk"
-; 0xb094d
-
-OlivineCafe_BlockData: ; 0xb094d
-	INCBIN "maps/OlivineCafe.blk"
-; 0xb095d
-
-KrissHouse2F_BlockData: ; 0xb095d
-	INCBIN "maps/KrissHouse2F.blk"
-; 0xb0969
-
-SaffronTrainStation_BlockData: ; 0xb0969
-	INCBIN "maps/SaffronTrainStation.blk"
-; 0xb09c3
-
-CeruleanGym_BlockData: ; 0xb09c3
-	INCBIN "maps/CeruleanGym.blk"
-; 0xb09eb
-
-VermilionGym_BlockData: ; 0xb09eb
-	INCBIN "maps/VermilionGym.blk"
-; 0xb0a18
-
-SaffronGym_BlockData: ; 0xb0a18
-	INCBIN "maps/SaffronGym.blk"
-; 0xb0a72
-
-PowerPlant_BlockData: ; 0xb0a72
-	INCBIN "maps/PowerPlant.blk"
-; 0xb0acc
-
-PokemonFanClub_BlockData: ; 0xb0acc
-	INCBIN "maps/PokemonFanClub.blk"
-; 0xb0ae0
-
-FightingDojo_BlockData: ; 0xb0ae0
-	INCBIN "maps/FightingDojo.blk"
-; 0xb0afe
-
-SilphCo1F_BlockData: ; 0xb0afe
-	INCBIN "maps/SilphCo1F.blk"
-; 0xb0b1e
-
-ViridianGym_BlockData: ; 0xb0b1e
-	INCBIN "maps/ViridianGym.blk"
-; 0xb0b4b
-
-TrainerHouse1F_BlockData: ; 0xb0b4b
-	INCBIN "maps/TrainerHouse1F.blk"
-; 0xb0b6e
-
-TrainerHouseB1F_BlockData: ; 0xb0b6e
-	INCBIN "maps/TrainerHouseB1F.blk"
-; 0xb0b96
-
-RedsHouse1F_BlockData: ; 0xb0b96
-	INCBIN "maps/RedsHouse1F.blk"
-; 0xb0ba6
-
-RedsHouse2F_BlockData: ; 0xb0ba6
-	INCBIN "maps/RedsHouse2F.blk"
-; 0xb0bb6
-
-OaksLab_BlockData: ; 0xb0bb6
-	INCBIN "maps/OaksLab.blk"
-; 0xb0bd4
-
-MrFujisHouse_BlockData: ; 0xb0bd4
-	INCBIN "maps/MrFujisHouse.blk"
-; 0xb0be8
-
-LavRadioTower1F_BlockData: ; 0xb0be8
-	INCBIN "maps/LavRadioTower1F.blk"
-; 0xb0c10
-
-SilverCaveItemRooms_BlockData: ; 0xb0c10
-	INCBIN "maps/SilverCaveItemRooms.blk"
-; 0xb0c6a
-
-DayCare_BlockData: ; 0xb0c6a
-	INCBIN "maps/DayCare.blk"
-; 0xb0c7e
-
-SoulHouse_BlockData: ; 0xb0c7e
-	INCBIN "maps/SoulHouse.blk"
-; 0xb0c92
-
-PewterGym_BlockData: ; 0xb0c92
-	INCBIN "maps/PewterGym.blk"
-; 0xb0cb5
-
-CeladonGym_BlockData: ; 0xb0cb5
-	INCBIN "maps/CeladonGym.blk"
-; 0xb0ce2
-
-BetaHouse2_BlockData: ; 0xb0ce2
-	INCBIN "maps/BetaHouse2.blk"
-; 0xb0cf6
-
-CeladonCafe_BlockData: ; 0xb0cf6
-	INCBIN "maps/CeladonCafe.blk"
-; 0xb0d0e
-
-BetaCeladonMansion_BlockData: ; 0xb0d0e
-	INCBIN "maps/BetaCeladonMansion.blk"
-; 0xb0d26
-
-RockTunnel1F_BlockData: ; 0xb0d26
-	INCBIN "maps/RockTunnel1F.blk"
-; 0xb0e34
-
-RockTunnelB1F_BlockData: ; 0xb0e34
-	INCBIN "maps/RockTunnelB1F.blk"
-; 0xb0f42
-
-DiglettsCave_BlockData: ; 0xb0f42
-	INCBIN "maps/DiglettsCave.blk"
-; 0xb0ff6
-
-MountMoon_BlockData: ; 0xb0ff6
-	INCBIN "maps/MountMoon.blk"
-; 0xb107d
-
-SeafoamGym_BlockData: ; 0xb107d
-	INCBIN "maps/SeafoamGym.blk"
-; 0xb1091
-
-MrPokemonsHouse_BlockData: ; 0xb1091
-	INCBIN "maps/MrPokemonsHouse.blk"
-; 0xb10a1
-
-VictoryRoadGate_BlockData: ; 0xb10a1
-	INCBIN "maps/VictoryRoadGate.blk"
-; 0xb10fb
-
-OlivinePortPassage_BlockData: ; 0xb10fb
-	INCBIN "maps/OlivinePortPassage.blk"
-; 0xb1155
-
-FuchsiaGym_BlockData: ; 0xb1155
-	INCBIN "maps/FuchsiaGym.blk"
-; 0xb1182
-
-SafariZoneBeta_BlockData: ; 0xb1182
-	INCBIN "maps/SafariZoneBeta.blk"
-; 0xb1236
-
-Underground_BlockData: ; 0xb1236
-	INCBIN "maps/Underground.blk"
-; 0xb1260
-
-Route39Barn_BlockData: ; 0xb1260
-	INCBIN "maps/Route39Barn.blk"
-; 0xb1270
-
-VictoryRoad_BlockData: ; 0xb1270
-	INCBIN "maps/VictoryRoad.blk"
-; 0xb13d8
-
-Route23_BlockData: ; 0xb13d8
-	INCBIN "maps/Route23.blk"
-; 0xb1432
-
-LancesRoom_BlockData: ; 0xb1432
-	INCBIN "maps/LancesRoom.blk"
-; 0xb146e
-
-HallOfFame_BlockData: ; 0xb146e
-	INCBIN "maps/HallOfFame.blk"
-; 0xb1491
-
-CopycatsHouse1F_BlockData: ; 0xb1491
-	INCBIN "maps/CopycatsHouse1F.blk"
-; 0xb14a1
-
-CopycatsHouse2F_BlockData: ; 0xb14a1
-	INCBIN "maps/CopycatsHouse2F.blk"
-; 0xb14b0
-
-GoldenrodFlowerShop_BlockData: ; 0xb14b0
-	INCBIN "maps/GoldenrodFlowerShop.blk"
-; 0xb14c0
-
-MountMoonSquare_BlockData: ; 0xb14c0
-	INCBIN "maps/MountMoonSquare.blk"
-; 0xb1547
-
-WiseTriosRoom_BlockData: ; 0xb1547
-	INCBIN "maps/WiseTriosRoom.blk"
-; 0xb1557
-
-DragonsDen1F_BlockData: ; 0xb1557
-	INCBIN "maps/DragonsDen1F.blk"
-; 0xb1584
-
-DragonsDenB1F_BlockData: ; 0xb1584
-	INCBIN "maps/DragonsDenB1F.blk"
-; 0xb16ec
-
-TohjoFalls_BlockData: ; 0xb16ec
-	INCBIN "maps/TohjoFalls.blk"
-; 0xb1773
-
-RuinsofAlphHoOhItemRoom_BlockData: ; 0xb1773
-	INCBIN "maps/RuinsofAlphHoOhItemRoom.blk"
-; 0xb1787
-
-RuinsofAlphHoOhWordRoom_BlockData: ; 0xb1787
-	INCBIN "maps/RuinsofAlphHoOhWordRoom.blk"
-; 0xb17ff
-
-RuinsofAlphKabutoWordRoom_BlockData: ; 0xb17ff
-	INCBIN "maps/RuinsofAlphKabutoWordRoom.blk"
-; 0xb1845
-
-RuinsofAlphOmanyteWordRoom_BlockData: ; 0xb1845
-	INCBIN "maps/RuinsofAlphOmanyteWordRoom.blk"
-; 0xb1895
-
-RuinsofAlphAerodactylWordRoom_BlockData: ; 0xb1895
-	INCBIN "maps/RuinsofAlphAerodactylWordRoom.blk"
-; 0xb18db
-
-DragonShrine_BlockData: ; 0xb18db
-	INCBIN "maps/DragonShrine.blk"
-; 0xb18f4
-
-BattleTower1F_BlockData: ; 0xb18f4
-	INCBIN "maps/BattleTower1F.blk"
-; 0xb191c
-
-BattleTowerBattleRoom_BlockData: ; 0xb191c
-	INCBIN "maps/BattleTowerBattleRoom.blk"
-; 0xb192c
-
-GoldenrodPokeComCenter2FMobile_BlockData: ; 0xb192c
-	INCBIN "maps/GoldenrodPokeComCenter2FMobile.blk"
-; 0xb1a2c
-
-MobileTradeRoomMobile_BlockData: ; 0xb1a2c
-	INCBIN "maps/MobileTradeRoomMobile.blk"
-; 0xb1a40
-
-MobileBattleRoom_BlockData: ; 0xb1a40
-	INCBIN "maps/MobileBattleRoom.blk"
-; 0xb1a54
-
-BattleTowerHallway_BlockData: ; 0xb1a54
-	INCBIN "maps/BattleTowerHallway.blk"
-; 0xb1a6a
-
-BattleTowerElevator_BlockData: ; 0xb1a6a
-	INCBIN "maps/BattleTowerElevator.blk"
-; 0xb1a6e
-
-BattleTowerOutside_BlockData: ; 0xb1a6e
-	INCBIN "maps/BattleTowerOutside.blk"
-; 0xb1afa
-
-BetaBlank_BlockData: ; 0xb1afa
-	INCBIN "maps/BetaBlank.blk"
-; 0xb1b22
-
-GoldenrodDeptStoreRoof_BlockData: ; 0xb1b22
-	INCBIN "maps/GoldenrodDeptStoreRoof.blk"
-; 0xb1b42
+INCLUDE "maps/blockdata_3.asm"
 
 
 SECTION "bank2D",ROMX,BANK[$2D]
 
-Tileset21GFX: ; 0xb4000
-INCBIN "gfx/tilesets/21.lz"
-; 0xb4893
-
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-
-Tileset21Meta: ; 0xb48a0
-INCBIN "tilesets/21_metatiles.bin"
-; 0xb4ca0
-
-Tileset21Coll: ; 0xb4ca0
-INCBIN "tilesets/21_collision.bin"
-; 0xb4da0
-
-Tileset22GFX: ; 0xb4da0
-INCBIN "gfx/tilesets/22.lz"
-; 0xb50d1
-
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-
-Tileset22Meta: ; 0xb50e0
-INCBIN "tilesets/22_metatiles.bin"
-; 0xb54e0
-
-Tileset22Coll: ; 0xb54e0
-INCBIN "tilesets/22_collision.bin"
-; 0xb55e0
-
-Tileset08GFX: ; 0xb55e0
-INCBIN "gfx/tilesets/08.lz"
-; 0xb59db
-
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-
-Tileset08Meta: ; 0xb59e0
-INCBIN "tilesets/08_metatiles.bin"
-; 0xb5de0
-
-Tileset08Coll: ; 0xb5de0
-INCBIN "tilesets/08_collision.bin"
-; 0xb5ee0
-
-Tileset02GFX: ; 0xb5ee0
-Tileset04GFX: ; 0xb5ee0
-INCBIN "gfx/tilesets/04.lz"
-; 0xb6ae7
-
-	db $00
-
-Tileset02Meta: ; 0xb6ae8
-INCBIN "tilesets/02_metatiles.bin"
-; 0xb72e8
-
-Tileset02Coll: ; 0xb72e8
-INCBIN "tilesets/02_collision.bin"
-; 0xb74e8
-
-Tileset16GFX: ; 0xb74e8
-INCBIN "gfx/tilesets/16.lz"
-; 0xb799a
-
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-
-Tileset16Meta: ; 0xb79a8
-INCBIN "tilesets/16_metatiles.bin"
-; 0xb7da8
-
-Tileset16Coll: ; 0xb7da8
-INCBIN "tilesets/16_collision.bin"
-; 0xb7ea8
+INCLUDE "tilesets/data_5.asm"
 
 
 SECTION "bank2E",ROMX,BANK[$2E]
@@ -63732,116 +62103,7 @@ INCLUDE "gfx/pics/unown_frames.asm"
 
 SECTION "bank37",ROMX,BANK[$37]
 
-Tileset31GFX: ; 0xdc000
-INCBIN "gfx/tilesets/31.lz"
-; 0xdc3ce
-
-	db $00
-	db $00
-
-Tileset18GFX: ; 0xdc3d0
-INCBIN "gfx/tilesets/18.lz"
-; 0xdcc4e
-
-	db $00
-	db $00
-
-Tileset18Meta: ; 0xdcc50
-INCBIN "tilesets/18_metatiles.bin"
-; 0xdd050
-
-Tileset18Coll: ; 0xdd050
-INCBIN "tilesets/18_collision.bin"
-; 0xdd150
-
-Tileset05GFX: ; 0xdd150
-INCBIN "gfx/tilesets/05.lz"
-; 0xdd5f8
-
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-
-Tileset05Meta: ; 0xdd600
-INCBIN "tilesets/05_metatiles.bin"
-; 0xdda00
-
-Tileset05Coll: ; 0xdda00
-INCBIN "tilesets/05_collision.bin"
-; 0xddb00
-
-Tileset19GFX: ; 0xddb00
-INCBIN "gfx/tilesets/19.lz"
-; 0xddf64
-
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-
-Tileset19Meta: ; 0xddf70
-INCBIN "tilesets/19_metatiles.bin"
-; 0xde370
-
-Tileset19Coll: ; 0xde370
-INCBIN "tilesets/19_collision.bin"
-; 0xde470
-
-Tileset31Coll: ; 0xde470
-INCBIN "tilesets/31_collision.bin"
-; 0xde570
-
-Tileset11GFX: ; 0xde570
-INCBIN "gfx/tilesets/11.lz"
-; 0xde98a
-
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
-
-Tileset11Meta: ; 0xde990
-INCBIN "tilesets/11_metatiles.bin"
-; 0xded90
-
-Tileset11Coll: ; 0xded90
-INCBIN "tilesets/11_collision.bin"
-; 0xdee90
-
-Tileset04Meta: ; 0xdee90
-INCBIN "tilesets/04_metatiles.bin"
-; 0xdf690
-
-Tileset04Coll: ; 0xdf690
-INCBIN "tilesets/04_collision.bin"
-; 0xdf890
-
-Tileset32Meta: ; 0xdf890
-INCBIN "tilesets/32_metatiles.bin"
-; 0xdfc90
-
-Tileset32Coll: ; 0xdfc90
-Tileset33Coll: ; 0xdfc90
-Tileset34Coll: ; 0xdfc90
-Tileset35Coll: ; 0xdfc90
-Tileset36Coll: ; 0xdfc90
-INCBIN "tilesets/36_collision.bin"
-; 0xdfd90
+INCLUDE "tilesets/data_6.asm"
 
 
 SECTION "bank38",ROMX,BANK[$38]
@@ -64916,7 +63178,7 @@ Music_RivalBattle:          INCLUDE "audio/music/rivalbattle.asm"
 Music_RocketBattle:         INCLUDE "audio/music/rocketbattle.asm"
 Music_ElmsLab:              INCLUDE "audio/music/elmslab.asm"
 Music_DarkCave:             INCLUDE "audio/music/darkcave.asm"
-Music_JohtoGymBattle:       INCLUDE "audio/music/johtogymleaderbattle.asm"
+Music_JohtoGymBattle:       INCLUDE "audio/music/johtogymbattle.asm"
 Music_ChampionBattle:       INCLUDE "audio/music/championbattle.asm"
 Music_SSAqua:               INCLUDE "audio/music/ssaqua.asm"
 Music_NewBarkTown:          INCLUDE "audio/music/newbarktown.asm"
@@ -64935,9 +63197,9 @@ SECTION "bank3B",ROMX,BANK[$3B]
 Music_Route1:               INCLUDE "audio/music/route1.asm"
 Music_Route3:               INCLUDE "audio/music/route3.asm"
 Music_Route12:              INCLUDE "audio/music/route12.asm"
-Music_KantoGymBattle:       INCLUDE "audio/music/kantogymleaderbattle.asm"
+Music_KantoGymBattle:       INCLUDE "audio/music/kantogymbattle.asm"
 Music_KantoTrainerBattle:   INCLUDE "audio/music/kantotrainerbattle.asm"
-Music_KantoWildBattle:      INCLUDE "audio/music/kantowildpokemonbattle.asm"
+Music_KantoWildBattle:      INCLUDE "audio/music/kantowildbattle.asm"
 Music_PokemonCenter:        INCLUDE "audio/music/pokemoncenter.asm"
 Music_LookLass:             INCLUDE "audio/music/looklass.asm"
 Music_LookOfficer:          INCLUDE "audio/music/lookofficer.asm"
@@ -64954,15 +63216,15 @@ Music_IndigoPlateau:        INCLUDE "audio/music/indigoplateau.asm"
 Music_Route37:              INCLUDE "audio/music/route37.asm"
 Music_RocketHideout:        INCLUDE "audio/music/rockethideout.asm"
 Music_DragonsDen:           INCLUDE "audio/music/dragonsden.asm"
-Music_RuinsOfAlphRadio:     INCLUDE "audio/music/ruinsofalphradiosignal.asm"
+Music_RuinsOfAlphRadio:     INCLUDE "audio/music/ruinsofalphradio.asm"
 Music_LookBeauty:           INCLUDE "audio/music/lookbeauty.asm"
 Music_Route26:              INCLUDE "audio/music/route26.asm"
 Music_EcruteakCity:         INCLUDE "audio/music/ecruteakcity.asm"
-Music_LakeOfRageRocketRadio:INCLUDE "audio/music/lakeofragerocketsradiosignal.asm"
+Music_LakeOfRageRocketRadio:INCLUDE "audio/music/lakeofragerocketradio.asm"
 Music_MagnetTrain:          INCLUDE "audio/music/magnettrain.asm"
 Music_LavenderTown:         INCLUDE "audio/music/lavendertown.asm"
 Music_DancingHall:          INCLUDE "audio/music/dancinghall.asm"
-Music_ContestResults:       INCLUDE "audio/music/bugcatchingcontestresults.asm"
+Music_ContestResults:       INCLUDE "audio/music/contestresults.asm"
 Music_Route30:              INCLUDE "audio/music/route30.asm"
 
 SECTION "bank3C",ROMX,BANK[$3C]
@@ -65005,8 +63267,8 @@ Music_NationalPark:         INCLUDE "audio/music/nationalpark.asm"
 Music_AzaleaTown:           INCLUDE "audio/music/azaleatown.asm"
 Music_CherrygroveCity:      INCLUDE "audio/music/cherrygrovecity.asm"
 Music_UnionCave:            INCLUDE "audio/music/unioncave.asm"
-Music_JohtoWildBattle:      INCLUDE "audio/music/johtowildpokemonbattle.asm"
-Music_JohtoWildBattleNight: INCLUDE "audio/music/johtowildpokemonbattlenight.asm"
+Music_JohtoWildBattle:      INCLUDE "audio/music/johtowildbattle.asm"
+Music_JohtoWildBattleNight: INCLUDE "audio/music/johtowildbattlenight.asm"
 Music_JohtoTrainerBattle:   INCLUDE "audio/music/johtotrainerbattle.asm"
 Music_LookYoungster:        INCLUDE "audio/music/lookyoungster.asm"
 Music_TinTower:             INCLUDE "audio/music/tintower.asm"
@@ -65430,42 +63692,42 @@ DoBadgeTypeBoosts: ; fbe24
 
 SECTION "bank3F",ROMX,BANK[$3F]
 
-DoTileAnimation: ; fc000
-; Iterate over a given pointer array of animation functions
-; (one per frame).
+_AnimateTileset: ; fc000
+; Iterate over a given pointer array of
+; animation functions (one per frame).
+
 ; Typically in wra1, vra0
 
-; Beginning of animation pointer array
-	ld a, [TileSetAnim]
+	ld a, [TilesetAnim]
 	ld e, a
-	ld a, [TileSetAnim + 1]
+	ld a, [TilesetAnim + 1]
 	ld d, a
 
-; Play this frame.
-	ld a, [hTileAnimFrame] ; frame count
+	ld a, [hTileAnimFrame]
 	ld l, a
 	inc a
 	ld [hTileAnimFrame], a
-	
-; Each pointer has:
+
 	ld h, 0
 	add hl, hl
 	add hl, hl
 	add hl, de
 
-; 2-byte parameter (all functions take input de)
+; 2-byte parameter
+; All functions take input de.
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
 	inc hl
-	
+
 ; Function address
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	
+
 	jp [hl]
 ; fc01b
+
 
 Tileset00Anim: ; 0xfc01b
 Tileset02Anim: ; 0xfc01b
@@ -65568,46 +63830,46 @@ Tileset24Anim: ; 0xfc1e7
 Tileset30Anim: ; 0xfc1e7
 ;	   param, function
 	dw $9140, WriteTileToBuffer
-	dw $0000, $471e
+	dw $0000, Functionfc71e
 	dw $cf41, ScrollTileRightLeft
-	dw $0000, $471e
+	dw $0000, Functionfc71e
 	dw $9140, WriteTileFromBuffer
-	dw $0000, $471e
+	dw $0000, Functionfc71e
 	dw $0000, TileAnimationPalette
-	dw $0000, $471e
+	dw $0000, Functionfc71e
 	dw $9400, WriteTileToBuffer
-	dw $0000, $471e
+	dw $0000, Functionfc71e
 	dw $cf41, ScrollTileDown
-	dw $0000, $471e
+	dw $0000, Functionfc71e
 	dw $cf41, ScrollTileDown
-	dw $0000, $471e
+	dw $0000, Functionfc71e
 	dw $cf41, ScrollTileDown
-	dw $0000, $471e
+	dw $0000, Functionfc71e
 	dw $9400, WriteTileFromBuffer
-	dw $0000, $471e
+	dw $0000, Functionfc71e
 	dw $0000, DoneTileAnimation
 ; 0xfc233
 
 Tileset29Anim: ; 0xfc233
 ;	   param, function
 	dw $9350, WriteTileToBuffer
-	dw $0000, $471e
+	dw $0000, Functionfc71e
 	dw $cf41, ScrollTileRightLeft
-	dw $0000, $471e
+	dw $0000, Functionfc71e
 	dw $9350, WriteTileFromBuffer
-	dw $0000, $471e
+	dw $0000, Functionfc71e
 	dw $0000, TileAnimationPalette
-	dw $0000, $471e
+	dw $0000, Functionfc71e
 	dw $9310, WriteTileToBuffer
-	dw $0000, $471e
+	dw $0000, Functionfc71e
 	dw $cf41, ScrollTileDown
-	dw $0000, $471e
+	dw $0000, Functionfc71e
 	dw $cf41, ScrollTileDown
-	dw $0000, $471e
+	dw $0000, Functionfc71e
 	dw $cf41, ScrollTileDown
-	dw $0000, $471e
+	dw $0000, Functionfc71e
 	dw $9310, WriteTileFromBuffer
-	dw $0000, $471e
+	dw $0000, Functionfc71e
 	dw $0000, DoneTileAnimation
 ; 0xfc27f
 
@@ -66369,7 +64631,45 @@ TileAnimationPalette: ; fc6d7
 ; fc71e
 
 
-INCBIN "baserom.gbc", $fc71e, $fc750 - $fc71e
+Functionfc71e: ; fc71e
+	ld a, [hCGB]
+	and a
+	ret z
+
+	ld a, [rBGP]
+	cp $e4
+	ret nz
+
+	ld a, [$d847]
+	cp $ff
+	ret nz
+
+	ld a, [rSVBK]
+	push af
+
+	ld a, 5
+	ld [rSVBK], a
+	ld a, $a0
+	ld [rBGPI], a
+	ld a, [$ff9b]
+	and 2
+	jr nz, .asm_fc743
+	ld hl, $d020
+	jr .asm_fc746
+
+.asm_fc743
+	ld hl, $d022
+
+.asm_fc746
+	ld a, [hli]
+	ld [rBGPD], a
+	ld a, [hli]
+	ld [rBGPD], a
+
+	pop af
+	ld [rSVBK], a
+	ret
+; fc750
 
 
 SproutPillarTilePointers: ; fc750
@@ -68800,7 +67100,19 @@ Function10486d: ; 10486d
 	ret
 ; 1048ba
 
-INCBIN "baserom.gbc", $1048ba, $1050d9 - $1048ba
+INCBIN "baserom.gbc", $1048ba, $1050c8 - $1048ba
+
+Function1050c8: ; 1050c8
+	call Function105106
+	ld a, [$abe5]
+	cp $ff
+	jr z, .asm_1050d6
+	xor a
+	ld [$abe5], a
+
+.asm_1050d6
+	jp CloseSRAM
+; 1050d9
 
 
 Function1050d9: ; 1050d9
@@ -72416,24 +70728,7 @@ INCBIN "gfx/misc/unown_font.2bpp"
 
 INCBIN "baserom.gbc", $1dc1b0, $1dc5a1 - $1dc1b0
 
-Tileset26GFX: ; 0x1dc5a1
-Tileset32GFX: ; 0x1dc5a1
-Tileset33GFX: ; 0x1dc5a1
-Tileset34GFX: ; 0x1dc5a1
-Tileset35GFX: ; 0x1dc5a1
-Tileset36GFX: ; 0x1dc5a1
-INCBIN "gfx/tilesets/36.lz"
-; 0x1dd1a8
-
-	db $00
-
-Tileset26Meta: ; 0x1dd1a9
-INCBIN "tilesets/26_metatiles.bin"
-; 0x1dd5a9
-
-Tileset26Coll: ; 0x1dd5a9
-INCBIN "tilesets/26_collision.bin"
-; 0x1dd6a9
+INCLUDE "tilesets/data_7.asm"
 
 INCBIN "baserom.gbc", $1dd6a9, $1ddf1c - $1dd6a9
 
@@ -72593,21 +70888,7 @@ INCBIN "baserom.gbc", $1de5e6, $1df238 - $1de5e6
 
 SECTION "bank78",ROMX,BANK[$78]
 
-Tileset33Meta: ; 0x1e0000
-INCBIN "tilesets/33_metatiles.bin"
-; 0x1e0400
-
-Tileset34Meta: ; 0x1e0400
-INCBIN "tilesets/34_metatiles.bin"
-; 0x1e0800
-
-Tileset35Meta: ; 0x1e0800
-INCBIN "tilesets/35_metatiles.bin"
-; 0x1e0c00
-
-Tileset36Meta: ; 0x1e0c00
-INCBIN "tilesets/36_metatiles.bin"
-; 0x1e1000
+INCLUDE "tilesets/data_8.asm"
 
 
 SECTION "bank79",ROMX,BANK[$79]
