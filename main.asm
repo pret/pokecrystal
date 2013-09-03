@@ -23043,7 +23043,33 @@ Function113da: ; 113da
 	ret
 ; 113e5
 
-INCBIN "baserom.gbc", $113e5, $114dd - $113e5
+INCBIN "baserom.gbc", $113e5, $11413 - $113e5
+
+Function11413: ; 11413
+	ld a, 1
+
+Function11415: ; 11415
+	ld [hl], a
+	push hl
+	call UpdateTime
+	pop hl
+	inc hl
+	call Function11621
+	ret
+; 11420
+
+Function11420: ; 11420
+	inc hl
+	push hl
+	call Function115cf
+	call Function115c8
+	pop hl
+	dec hl
+	call Function11586
+	ret
+; 1142e
+
+INCBIN "baserom.gbc", $1142e, $114dd - $1142e
 
 
 Function114dd: ; 114dd
@@ -23068,7 +23094,148 @@ Function114e7: ; 114e7
 	ret
 ; 114fc
 
-INCBIN "baserom.gbc", $114fc, $115c8 - $114fc
+Function114fc: ; 114fc
+	ld a, $2
+	ld hl, $dc3a
+	ld [hl], a
+	call UpdateTime
+	ld hl, $dc3b
+	call Function11621
+	ret
+; 1150c
+
+Function1150c: ; 1150c
+	ld hl, $dc3b
+	call Function115cf
+	call Function115c8
+	ld hl, $dc3a
+	call Function11586
+	ret
+; 1151c
+
+Function1151c: ; 1151c
+	ld hl, $dc1e
+	set 2, [hl]
+	ret
+; 11522
+
+Function11522: ; 11522
+	and a
+	ld hl, $dc1e
+	bit 2, [hl]
+	ret nz
+	scf
+	ret
+; 1152b
+
+Function1152b: ; 1152b
+	call Function11534
+	ld hl, $dc2d
+	jp Function11415
+; 11534
+
+Function11534: ; 11534
+	call GetWeekday
+	ld c, a
+	ld a, $5
+	sub c
+	jr z, .asm_1153f
+	jr nc, .asm_11541
+
+.asm_1153f
+	add $7
+
+.asm_11541
+	ret
+; 11542
+
+Function11542: ; 11542
+	ld hl, $dc2d
+	jp Function11420
+; 11548
+
+Function11548: ; 11548
+	ld a, $0
+	call GetSRAMBank
+	ld hl, $abfa
+	ld a, [hli]
+	ld [Buffer1], a
+	ld a, [hl]
+	ld [Buffer2], a
+	call CloseSRAM
+	ld hl, Buffer1
+	call Function11420
+	jr nc, .asm_11572
+	ld hl, Buffer1
+	call Function11413
+	call CloseSRAM
+	callba Function1050c8
+
+.asm_11572
+	ld a, $0
+	call GetSRAMBank
+	ld hl, Buffer1
+	ld a, [hli]
+	ld [$abfa], a
+	ld a, [hl]
+	ld [$abfb], a
+	call CloseSRAM
+	ret
+; 11586
+
+Function11586: ; 11586
+	cp $ff
+	jr z, .asm_11595
+	ld c, a
+	ld a, [hl]
+	sub c
+	jr nc, .asm_11590
+	xor a
+
+.asm_11590
+	ld [hl], a
+	jr z, .asm_11595
+	xor a
+	ret
+
+.asm_11595
+	xor a
+	ld [hl], a
+	scf
+	ret
+; 11599
+
+Function11599: ; 11599
+	ld a, [$cfd7]
+	and a
+	jr nz, Function115cc
+	ld a, [$cfd6]
+	and a
+	jr nz, Function115cc
+	ld a, [$cfd5]
+	jr nz, Function115cc
+	ld a, [$cfd4]
+	ret
+; 115ae
+
+Function115ae: ; 115ae
+	ld a, [$cfd7]
+	and a
+	jr nz, Function115cc
+	ld a, [$cfd6]
+	and a
+	jr nz, Function115cc
+	ld a, [$cfd5]
+	ret
+; 115be
+
+Function115be: ; 115be
+	ld a, [$cfd7]
+	and a
+	jr nz, Function115cc
+	ld a, [$cfd6]
+	ret
+; 115c8
 
 Function115c8: ; 115c8
 	ld a, [$cfd7]
@@ -66825,7 +66992,19 @@ Function10486d: ; 10486d
 	ret
 ; 1048ba
 
-INCBIN "baserom.gbc", $1048ba, $1050d9 - $1048ba
+INCBIN "baserom.gbc", $1048ba, $1050c8 - $1048ba
+
+Function1050c8: ; 1050c8
+	call Function105106
+	ld a, [$abe5]
+	cp $ff
+	jr z, .asm_1050d6
+	xor a
+	ld [$abe5], a
+
+.asm_1050d6
+	jp CloseSRAM
+; 1050d9
 
 
 Function1050d9: ; 1050d9
