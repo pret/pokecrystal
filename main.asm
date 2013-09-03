@@ -17149,7 +17149,7 @@ PredefPointers: ; 856b
 	dwb $46e0, $03
 	dwb Functione167, BANK(Functione167)
 	dwb Functione17b, BANK(Functione17b)
-	dwb $5639, $04
+	dwb CanLearnTMHMMove, BANK(CanLearnTMHMMove)
 	dwb $566a, $04
 	dwb $4eef, $0a
 	dwb $4b3e, $0b ; PrintMoveDescription, BANK(PrintMoveDescription)
@@ -23062,7 +23062,59 @@ Function11621: ; 11621
 	ret
 ; 11626
 
-INCBIN "baserom.gbc", $11626, $1166a - $11626
+Function11626: ; 11626
+	ld a, [CurDay]
+	ld [hli], a
+	ld a, [hHours]
+	ld [hli], a
+	ret
+; 1162e
+
+Function1162e: ; 1162e
+	ld a, [CurDay]
+	ld [hli], a
+	ld a, [hHours]
+	ld [hli], a
+	ld a, [hMinutes]
+	ld [hli], a
+	ret
+; 11639
+
+CanLearnTMHMMove: ; 11639
+	ld a, [CurPartySpecies]
+	ld [CurSpecies], a
+	call GetBaseData
+	ld hl, BaseTMHM
+	push hl
+
+	ld a, [$d262]
+	ld b, a
+	ld c, 0
+	ld hl, TMHMMoves
+.loop
+	ld a, [hli]
+	and a
+	jr z, .end
+	cp b
+	jr z, .asm_11659
+	inc c
+	jr .loop
+
+.asm_11659
+	pop hl
+	ld b, CHECK_FLAG
+	push de
+	ld d, 0
+	ld a, PREDEF_FLAG
+	call Predef
+	pop de
+	ret
+
+.end
+	pop hl
+	ld c, 0
+	ret
+; 1166a
 
 GetTMHMMove: ; 1166a
 	ld a, [$d265]
