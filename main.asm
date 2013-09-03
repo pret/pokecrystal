@@ -23062,9 +23062,21 @@ Function11621: ; 11621
 	ret
 ; 11626
 
-INCBIN "baserom.gbc", $11626, $1167a - $11626
+INCBIN "baserom.gbc", $11626, $1166a - $11626
 
-TechnicalMachines: ; 0x1167a
+GetTMHMMove: ; 1166a
+	ld a, [$d265]
+	dec a
+	ld hl, TMHMMoves
+	ld b, 0
+	ld c, a
+	add hl, bc
+	ld a, [hl]
+	ld [$d265], a
+	ret
+; 1167a
+
+TMHMMoves: ; 1167a
 	db DYNAMICPUNCH
 	db HEADBUTT
 	db CURSE
@@ -23122,6 +23134,7 @@ TechnicalMachines: ; 0x1167a
 	db FLASH
 	db WHIRLPOOL
 	db WATERFALL
+; 116b3
 
 INCBIN "baserom.gbc", $116b3, $116b7 - $116b3
 
