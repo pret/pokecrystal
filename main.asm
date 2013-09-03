@@ -33796,29 +33796,29 @@ Function2709e: ; 2709e
 
 
 GetTrainerDVs: ; 270c4
-; get dvs based on trainer class
-; output: bc
+; Return the DVs of OtherTrainerClass in bc
+
 	push hl
-; dec trainer class so there's no filler entry for $00
 	ld a, [OtherTrainerClass]
 	dec a
 	ld c, a
-	ld b, $0
-; seek table
+	ld b, 0
+
 	ld hl, TrainerClassDVs
 	add hl, bc
 	add hl, bc
-; get dvs
+
 	ld a, [hli]
 	ld b, a
 	ld c, [hl]
-; we're done
+
 	pop hl
 	ret
 ; 270d6
 
-TrainerClassDVs ; 270d6
-;   AtkDef, SpdSpc
+TrainerClassDVs: ; 270d6
+	;  Atk  Spd
+	;  Def  Spc
 	db $9A, $77 ; falkner
 	db $88, $88 ; bugsy
 	db $98, $88 ; whitney
