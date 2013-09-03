@@ -49,7 +49,9 @@ SECTION "serial",ROM0[$58] ; serial interrupt
 SECTION "joypad",ROM0[$60] ; joypad interrupt
 	jp JoypadInt
 
-SECTION "romheader",ROM0[$100]
+
+SECTION "header",ROM0[$100]
+
 Start:
 	nop
 	jp _Start
