@@ -85,9 +85,8 @@ TimeOfDayPals: ; 47e
 	ret
 ; 485
 
-
-Function485: ; 485
-	callab UpdateTimePals
+UpdateTimePals: ; 485
+	callab _UpdateTimePals
 	ret
 ; 48c
 
@@ -4572,7 +4571,7 @@ Function2b74: ; 0x2b74
 	ld b, $9
 	call GetSGBLayout
 	callba Function49409
-	call Function485
+	call UpdateTimePals
 	call DelayFrame
 	ld a, $1
 	ld [$ffde], a
@@ -6866,7 +6865,7 @@ Function350c: ; 350c
 Function3524: ; 3524
 	ld hl, VramState
 	bit 0, [hl]
-	jp nz, Function485
+	jp nz, UpdateTimePals
 	jp Function32f9
 ; 352f
 
@@ -14142,7 +14141,7 @@ Function620b: ; 620b
 	ld [hWY], a
 	ld b, $8
 	call GetSGBLayout
-	call Function485
+	call UpdateTimePals
 	ld a, [$cf64]
 	cp $5
 	jr c, .asm_625e
@@ -18230,7 +18229,7 @@ SpecialsPointers: ; c029
 	dbw $23, $40ab
 	dbw BANK(Functiond91), Functiond91
 	dbw BANK(WhiteBGMap), WhiteBGMap
-	dbw BANK(Function485), Function485
+	dbw BANK(UpdateTimePals), UpdateTimePals
 	dbw BANK(ClearTileMap), ClearTileMap
 	dbw BANK(Function1ad2), Function1ad2
 	dbw BANK(Functione4a), Functione4a
@@ -23997,12 +23996,12 @@ StartMenu: ; 125cd
 	call Function2e20
 	callba Function64bf
 	call .DrawBugContestStatus
-	call Function485
+	call UpdateTimePals
 	jr .Select
 
 .Reopen
 	call Function1ad2
-	call Function485
+	call UpdateTimePals
 	call .SetUpMenuItems
 	ld a, [$d0d2]
 	ld [$cf88], a
@@ -24050,7 +24049,7 @@ StartMenu: ; 125cd
 	call Function1c07
 .ReturnEnd2
 	call Function2dcf
-	call Function485
+	call UpdateTimePals
 	ret
 
 .GetInput
@@ -57048,7 +57047,7 @@ _TimeOfDayPals: ; 8c011
 	ld [rSVBK], a
 	
 ; update palettes
-	call UpdateTimePals
+	call _UpdateTimePals
 	call DelayFrame
 	
 ; successful change
@@ -57062,7 +57061,7 @@ _TimeOfDayPals: ; 8c011
 ; 8c070
 
 
-UpdateTimePals: ; 8c070
+_UpdateTimePals: ; 8c070
 	ld c, $9 ; normal
 	call GetTimePalFade
 	call DmgToCgbTimePals
