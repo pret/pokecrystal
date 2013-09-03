@@ -34,19 +34,21 @@ SECTION "rst28",ROM0[$28] ; JumpTable
 SECTION "rst38",ROM0[$38] ; Unused
 	rst $38
 
-SECTION "vblank",ROM0[$40] ; vblank interrupt
+; Game Boy hardware interrupts
+
+SECTION "vblank",ROM0[$40]
 	jp VBlank
 
-SECTION "lcd",ROM0[$48] ; lcd interrupt
+SECTION "lcd",ROM0[$48]
 	jp LCD
 
-SECTION "timer",ROM0[$50] ; timer interrupt
+SECTION "timer",ROM0[$50]
 	jp Timer
 
-SECTION "serial",ROM0[$58] ; serial interrupt
+SECTION "serial",ROM0[$58]
 	jp Serial
 
-SECTION "joypad",ROM0[$60] ; joypad interrupt
+SECTION "joypad",ROM0[$60]
 	jp JoypadInt
 
 
