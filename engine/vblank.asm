@@ -119,9 +119,9 @@ VBlank0: ; 2b1
 	call UpdateBGMap
 	
 ; these have their own timing checks
-	call SafeLoadTiles
-	call SafeLoadTiles2
-	call SafeTileAnimation
+	call Serve2bppRequest
+	call Serve1bppRequest
+	call AnimateTileset
 	
 .doneframeaction
 ; oam update off?
@@ -131,8 +131,8 @@ VBlank0: ; 2b1
 	
 ; update oam by dma transfer
 	call hPushOAM
-;	403f:
-;		ld a, $c4
+;	@PushOAM:
+;		ld a, Sprites >> 8
 ;		ld [rDMA], a
 ;		ld a, $28
 ;	.loop
@@ -230,11 +230,11 @@ VBlank1: ; 337
 	
 ; these have their own timing checks
 	call UpdateBGMap
-	call LoadTiles
+	call Serve2bppRequest@VBlank
 ; update oam by dma transfer
 	call hPushOAM
-;	403f:
-;		ld a, $c4
+;	@PushOAM:
+;		ld a, Sprites >> 8
 ;		ld [rDMA], a
 ;		ld a, $28
 ;	.loop
@@ -338,12 +338,12 @@ VBlank3: ; 396
 	jr c, .vblankoccurred
 ; else
 	call UpdateBGMap
-	call LoadTiles
+	call Serve2bppRequest@VBlank
 	
 ; update oam by dma transfer
 	call hPushOAM
-;	403f:
-;		ld a, $c4 ; Sprites / $100
+;	@PushOAM:
+;		ld a, Sprites >> 8
 ;		ld [rDMA], a
 ;		ld a, $28
 ;	.loop
@@ -410,12 +410,12 @@ VBlank4: ; 3df
 	ld [$ff8a], a
 	
 	call UpdateBGMap
-	call SafeLoadTiles
+	call Serve2bppRequest
 	
 ; update oam by dma transfer
 	call hPushOAM
-;	403f:
-;		ld a, $c4
+;	@PushOAM:
+;		ld a, Sprites >> 8
 ;		ld [rDMA], a
 ;		ld a, $28
 ;	.loop
@@ -465,7 +465,7 @@ VBlank5: ; 400
 	jr c, .vblankoccurred
 	
 	call UpdateBGMap
-	call SafeLoadTiles
+	call Serve2bppRequest
 	
 .vblankoccurred
 ; tell other fns vblank happened
@@ -521,8 +521,8 @@ VBlank6: ; 436
 	call UpdateCGBPals
 	jr c, .vblankoccurred
 	
-	call SafeLoadTiles
-	call SafeLoadTiles2
+	call Serve2bppRequest
+	call Serve1bppRequest
 	call DMATransfer
 	
 .vblankoccurred
