@@ -33530,8 +33530,37 @@ Function26a3b: ; 26a3b
 	ret
 ; 26a44
 
-INCBIN "baserom.gbc", $26a44, $26c72 - $26a44
+INCBIN "baserom.gbc", $26a44, $26b8d - $26a44
 
+
+DecorationNames: ; 26b8d
+	db "CANCEL@"
+	db "PUT IT AWAY@"
+	db "MAGNAPLANT@"
+	db "TROPICPLANT@"
+	db "JUMBOPLANT@"
+	db "TOWN MAP@"
+	db "NES@"
+	db "SUPER NES@"
+	db "NINTENDO 64@"
+	db "VIRTUAL BOY@"
+	db "GOLD TROPHY@"
+	db "SILVER TROPHY@"
+	db "SURF PIKACHU DOLL@"
+	db " BED@"
+	db " CARPET@"
+	db " POSTER@"
+	db " DOLL@"
+	db "BIG @"
+	db "FEATHERY@"
+	db "PIKACHU@"
+	db "PINK@"
+	db "POLKADOT@"
+	db "RED@"
+	db "BLUE@"
+	db "YELLOW@"
+	db "GREEN@"
+; 26c72
 
 Function26c72: ; 26c72
 	ld a, [hli]
@@ -33613,7 +33642,7 @@ Function26cca: ; 26cca
 
 Function26ccf: ; 26ccf
 	push bc
-	ld hl, $6b8d
+	ld hl, DecorationNames
 	call GetNthString
 	ld d, h
 	ld e, l
