@@ -15094,56 +15094,81 @@ Function8a60: ; 8a60
 ; 8a68
 
 
-CheckShininess: ; 0x8a68
-; given a pointer to Attack/Defense DV in bc, determine if monster is shiny.
-; if shiny, set carry.
-	ld l,c
-	ld h,b
-	ld a,[hl]
-	and a,%00100000 ; is attack DV xx1x?
-	jr z,.NotShiny
-	ld a,[hli]
-	and a,%1111
-	cp $A ; is defense DV 1010?
-	jr nz,.NotShiny
-	ld a,[hl]
-	and a,%11110000
-	cp $A0 ; is speed DV 1010?
-	jr nz,.NotShiny
-	ld a,[hl]
-	and a,%1111
-	cp $A ; is special DV 1010?
-	jr nz,.NotShiny
+CheckShininess: ; 8a68
+; Check if a mon is shiny by DVs at bc.
+; Return carry if shiny.
+
+	ld l, c
+	ld h, b
+
+; Attack
+	ld a, [hl]
+	and %0010 << 4
+	jr z, .NotShiny
+
+; Defense
+	ld a, [hli]
+	and %1111
+	cp  %1010
+	jr nz, .NotShiny
+
+; Speed
+	ld a, [hl]
+	and %1111 << 4
+	cp  %1010 << 4
+	jr nz, .NotShiny
+
+; Special
+	ld a, [hl]
+	and %1111
+	cp  %1010
+	jr nz, .NotShiny
+
+.Shiny
 	scf
 	ret
+
 .NotShiny
-	and a ; clear carry flag
+	and a
 	ret
 ; 8a88
 
 
 CheckContestMon: ; 8a88
+; Check a mon's DVs at hl in the bug catching contest.
+; Return shiny if its DVs are good enough to place in the contest.
+
+; Attack
 	ld a, [hl]
-	cp $a0
-	jr c, .asm_8aa2
+	cp 10 << 4
+	jr c, .Bad
+
+; Defense
 	ld a, [hli]
 	and $f
-	cp $a
-	jr c, .asm_8aa2
+	cp 10
+	jr c, .Bad
+
+; Speed
 	ld a, [hl]
-	cp $a0
-	jr c, .asm_8aa2
+	cp 10 << 4
+	jr c, .Bad
+
+; Special
 	ld a, [hl]
 	and $f
-	cp $a
-	jr c, .asm_8aa2
+	cp 10
+	jr c, .Bad
+
+.Good
 	scf
 	ret
 
-.asm_8aa2
+.Bad
 	and a
 	ret
 ; 8aa4
+
 
 Function8aa4: ; 8aa4
 	push de
