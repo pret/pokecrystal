@@ -2910,74 +2910,55 @@ INCLUDE "engine/farcall.asm"
 
 
 Predef: ; 2d83
-; call a function from given id a
+; Call predefined function a.
+; Preserves bc, de, hl and f.
 
-; relies on $cfb4-8
-
-; this function is somewhat unreadable at a glance
-; the execution flow is as follows:
-;	save bank
-;	get function from id
-;	call function
-;	restore bank
-; these are pushed to the stack in reverse
-
-; most of the $cfbx trickery is just juggling hl (which is preserved)
-; this allows hl, de and bc to be passed to the function
-
-; input:
-;	a: id
-;	parameters bc, de, hl
-
-; store id
-	ld [$cfb4], a
-	
-; save bank
-	ld a, [hROMBank] ; current bank
+	ld [PredefID], a
+	ld a, [hROMBank]
 	push af
-	
-; get Predef function to call
-; GetPredefFn also stores hl in $cfb5-6
-	ld a, BANK(GetPredefFn)
+
+	ld a, BANK(GetPredefPointer)
 	rst Bankswitch
-	call GetPredefFn
-; switch bank to Predef function
+	call GetPredefPointer ; stores hl in PredefTemp
+
+; Switch to the new function's bank
 	rst Bankswitch
-	
-; clean up after Predef call
-	ld hl, .cleanup
+
+; Instead of directly calling stuff,
+; push it to the stack in reverse.
+
+	ld hl, .Return
 	push hl
 	
-; call Predef function from ret
-	ld a, [$cfb7]
+; Call the Predef function
+	ld a, [PredefAddress]
 	ld h, a
-	ld a, [$cfb8]
+	ld a, [PredefAddress + 1]
 	ld l, a
 	push hl
-	
-; get hl back
-	ld a, [$cfb5]
+
+; Get hl back
+	ld a, [PredefTemp]
 	ld h, a
-	ld a, [$cfb6]
+	ld a, [PredefTemp + 1]
 	ld l, a
 	ret
 
-.cleanup
-; store hl
+.Return
+; Clean up after the Predef call
+
 	ld a, h
-	ld [$cfb5], a
+	ld [PredefTemp], a
 	ld a, l
-	ld [$cfb6], a
-	
-; restore bank
-	pop hl ; popping a pushed af. h = a (old bank)
+	ld [PredefTemp+1], a
+
+	pop hl
 	ld a, h
 	rst Bankswitch
-	
-; get hl back
-	ld a, [$cfb5]
+
+	ld a, [PredefTemp]
 	ld h, a
-	ld a, [$cfb6]
+	ld a, [PredefTemp + 1]
 	ld l, a
 	ret
 ; 2dba
@@ -14969,39 +14950,31 @@ x	set x + $100 * $40000
 ; 854b
 
 
-GetPredefFn: ; 854b
-; input:
-;	[$cfb4] id
+GetPredefPointer: ; 854b
+; Return the bank and address of PredefID in a and PredefAddress.
 
-; save hl for later
+; Save hl for later (back in Predef)
 	ld a, h
-	ld [$cfb5], a
+	ld [PredefTemp], a
 	ld a, l
-	ld [$cfb6], a
-	
+	ld [PredefTemp + 1], a
+
 	push de
-	
-; get id
-	ld a, [$cfb4]
+	ld a, [PredefID]
 	ld e, a
-	ld d, $0
+	ld d, 0
 	ld hl, PredefPointers
-; seek
 	add hl, de
 	add hl, de
 	add hl, de
-	
 	pop de
-	
-; store address in [$cfb7-8]
-; addr lo
+
 	ld a, [hli]
-	ld [$cfb8], a
-; addr hi
+	ld [PredefAddress + 1], a
 	ld a, [hli]
-	ld [$cfb7], a
-; get bank
+	ld [PredefAddress], a
 	ld a, [hl]
+
 	ret
 ; 856b
 
