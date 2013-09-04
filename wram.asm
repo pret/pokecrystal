@@ -860,7 +860,14 @@ TextDelayFrames: ; cfb2
 VBlankOccurred: ; cfb3
 	ds 1
 
-	ds 8
+PredefID: ; cfb4
+	ds 1
+PredefTemp: ; cfb5
+	ds 2
+PredefAddress: ; cfb7
+	ds 2
+
+	ds 3
 
 GameTimerPause: ; cfbc
 ; bit 0
