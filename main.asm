@@ -665,28 +665,11 @@ Function2198: ; 2198
 	ld a, [TilesetBlocksAddress]
 	add l
 	ld l, a
-	ld a, [$d1de]
+	ld a, [TilesetBlocksAddress + 1]
 	adc h
 	ld h, a
-	ld a, [hli]
-	ld [de], a
-	inc de
-	ld a, [hli]
-	ld [de], a
-	inc de
-	ld a, [hli]
-	ld [de], a
-	inc de
-	ld a, [hli]
-	ld [de], a
-	inc de
-	ld a, e
-	add $14
-	ld e, a
-	jr nc, .asm_21d8
-	inc d
 
-.asm_21d8
+rept 3
 	ld a, [hli]
 	ld [de], a
 	inc de
@@ -699,32 +682,15 @@ Function2198: ; 2198
 	ld a, [hli]
 	ld [de], a
 	inc de
-	ld a, e
-	add $14
-	ld e, a
-	jr nc, .asm_21eb
-	inc d
 
-.asm_21eb
-	ld a, [hli]
-	ld [de], a
-	inc de
-	ld a, [hli]
-	ld [de], a
-	inc de
-	ld a, [hli]
-	ld [de], a
-	inc de
-	ld a, [hli]
-	ld [de], a
-	inc de
 	ld a, e
-	add $14
+	add 20
 	ld e, a
-	jr nc, .asm_21fe
+	jr nc, .next\@
 	inc d
+.next\@
+endr
 
-.asm_21fe
 	ld a, [hli]
 	ld [de], a
 	inc de
@@ -737,6 +703,7 @@ Function2198: ; 2198
 	ld a, [hli]
 	ld [de], a
 	inc de
+
 	pop hl
 	ld de, $0004
 	add hl, de
@@ -764,9 +731,7 @@ Function2198: ; 2198
 Function222a: ; 222a
 	ld a, $fa
 	ld [$ff9f], a
-	ld a, $5
-	ld hl, $5363
-	rst FarCall
+	callba Function15363
 	xor a
 	ld [$ff9f], a
 	ret
@@ -776,9 +741,7 @@ Function2238: ; 2238
 	call Function2252
 	ret nc
 	push bc
-	ld a, $5
-	ld hl, $49af
-	rst FarCall
+	callba Function149af
 	pop bc
 	ret nc
 	call Function22a7
@@ -796,18 +759,18 @@ Function224a: ; 224a
 ; 2252
 
 Function2252: ; 2252
-	ld a, $5
-	ld hl, $499a
-	rst FarCall
+	callba Function1499a
 	ret nc
+
 	ld a, [hROMBank]
 	push af
+
 	call Function2c52
 	call Function2266
+
 	pop de
 	ld a, d
 	rst Bankswitch
-
 	ret
 ; 2266
 
@@ -872,11 +835,12 @@ Function22a3: ; 22a3
 Function22a7: ; 22a7
 	ld a, [hROMBank]
 	push af
+
 	call Function2c52
 	call Function22b4
+
 	pop af
 	rst Bankswitch
-
 	scf
 	ret
 ; 22b4
@@ -936,15 +900,15 @@ CheckIndoorMap: ; 22f4
 	ret
 ; 2300
 
-
 Function2300: ; 2300
-	cp $3
+	cp INDOOR
 	ret z
-	cp $6
+	cp GATE
 	ret z
 	cp $5
 	ret
 ; 2309
+
 
 Function2309: ; 2309
 	call Function2326
@@ -963,8 +927,6 @@ Function2317: ; 2317
 	call Function2336
 	ret
 ; 2326
-
-
 
 Function2326: ; 2326
 	call Function2c3d
@@ -1021,35 +983,36 @@ Function2368: ; 2368
 	ld [SouthConnectedMapGroup], a
 	ld [WestConnectedMapGroup], a
 	ld [EastConnectedMapGroup], a
+
 	ld a, [$d1a8]
 	ld b, a
+
 	bit 3, b
 	jr z, .asm_2384
-	ld de, NorthConnectedMapGroup
+	ld de, NorthMapConnection
 	call GetMapConnection
 
 .asm_2384
 	bit 2, b
 	jr z, .asm_238e
-	ld de, SouthConnectedMapGroup
+	ld de, SouthMapConnection
 	call GetMapConnection
 
 .asm_238e
 	bit 1, b
 	jr z, .asm_2398
-	ld de, WestConnectedMapGroup
+	ld de, WestMapConnection
 	call GetMapConnection
 
 .asm_2398
 	bit 0, b
 	jr z, .asm_23a2
-	ld de, EastConnectedMapGroup
+	ld de, EastMapConnection
 	call GetMapConnection
 
 .asm_23a2
 	ret
 ; 23a3
-
 
 
 GetMapConnection: ; 23a3
@@ -1513,6 +1476,7 @@ Function261b: ; 261b
 	ret
 ; 261f
 
+
 CallScript: ; 261f
 ; Call a script at a:hl.
 
@@ -1521,10 +1485,10 @@ CallScript: ; 261f
 	ld [ScriptPos], a
 	ld a, h
 	ld [ScriptPos + 1], a
-	
+
 	ld a, $ff
 	ld [ScriptRunning], a
-	
+
 	scf
 	ret
 ; 2631
@@ -1543,17 +1507,17 @@ Function263b: ; 263b
 	push af
 	call Function2c52
 	call Function2653
-	jr nc, .asm_2650
+	jr nc, .done
+
 	call GetMapEventBank
 	ld b, a
 	ld d, h
 	ld e, l
 	call Function2674
 
-.asm_2650
+.done
 	pop af
 	rst Bankswitch
-
 	ret
 ; 2653
 
@@ -1614,7 +1578,7 @@ Function269a: ; 269a
 	push hl
 	call SpeechTextBox
 	call Function2e31
-	ld a, $1
+	ld a, 1
 	ld [hOAMUpdate], a
 	call Function321c
 	pop hl
@@ -1628,20 +1592,21 @@ Function269a: ; 269a
 ; 26b7
 
 Function26b7: ; 26b7
+; Call a:de.
+
 	ld [hBuffer], a
 	ld a, [hROMBank]
 	push af
 	ld a, [hBuffer]
 	rst Bankswitch
 
-	call Function26c5
+	call .de
+
 	pop af
 	rst Bankswitch
-
 	ret
-; 26c5
 
-Function26c5: ; 26c5
+.de
 	push de
 	ret
 ; 26c7
@@ -1654,10 +1619,10 @@ Function26c7: ; 26c7
 
 	ld a, c
 	call Function19e9
+
 	pop hl
 	ld a, h
 	rst Bankswitch
-
 	ret
 ; 26d4
 
@@ -1667,10 +1632,8 @@ GetScriptByte: ; 0x26d4
 
 	push hl
 	push bc
-
 	ld a, [hROMBank]
 	push af
-
 	ld a, [ScriptBank]
 	rst Bankswitch
 
@@ -1690,7 +1653,6 @@ GetScriptByte: ; 0x26d4
 	pop af
 	rst Bankswitch
 	ld a, b
-
 	pop bc
 	pop hl
 	ret
@@ -57849,9 +57811,7 @@ Function9673e: ; 9673e
 	ld [$d453], a
 	ld [$d454], a
 	call Function968d1
-	ld a, $5
-	ld hl, $5363
-	rst FarCall
+	callba Function15363
 	call Function966cb
 	ld a, [$ff9f]
 	cp $f7
