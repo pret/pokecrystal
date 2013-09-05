@@ -16536,7 +16536,11 @@ Functionc3ef: ; c3ef
 	ret
 ; c3fc
 
-INCBIN "baserom.gbc", $c3fc, $c403 - $c3fc
+Functionc3fc: ; c3fc
+	ld a, [ScriptVar]
+	ld [$dfce], a
+	ret
+; c403
 
 
 Functionc403: ; c403
@@ -16564,7 +16568,18 @@ SpecialCheckPokerus: ; c419
 	jp ScriptReturnCarry
 ; c422
 
-INCBIN "baserom.gbc", $c422, $c43d - $c422
+Functionc422: ; c422
+	callba Function1152b
+	ld hl, $dc9d
+	res 0, [hl]
+	callba Function5d33
+	ret
+; c434
+
+Functionc434: ; c434
+	callba Function11542
+	jp ScriptReturnCarry
+; c43d
 
 SpecialSnorlaxAwake: ; 0xc43d
 ; Check if the Poké Flute channel is playing, and if the player is standing
