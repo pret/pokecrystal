@@ -49,15 +49,15 @@ SailorScript_0x748c0: ; 0x748c0
 	iffalse UnknownScript_0x7490a
 	clearbit1 $073a
 	setbit1 $073b
-	clearbit1 $0557
-	clearbit1 $0567
-	clearbit1 $049b
-	clearbit1 $04b2
-	clearbit1 $0445
-	clearbit1 $0589
-	clearbit1 $057b
-	clearbit1 $0459
-	clearbit1 $04ac
+	clearbit1 EVENT_BEAT_COOLTRAINERM_SEAN
+	clearbit1 EVENT_BEAT_COOLTRAINERF_CAROL
+	clearbit1 EVENT_BEAT_GENTLEMAN_EDWARD
+	clearbit1 EVENT_BEAT_BEAUTY_CASSIE
+	clearbit1 EVENT_BEAT_PSYCHIC_RODNEY
+	clearbit1 EVENT_BEAT_SUPER_NERD_SHAWN
+	clearbit1 EVENT_BEAT_SAILOR_GARRETT
+	clearbit1 EVENT_BEAT_FISHER_JONAH
+	clearbit1 EVENT_BEAT_BLACKBELT_WAI
 UnknownScript_0x7490a: ; 0x7490a
 	clearbit1 $002f
 	appear $2

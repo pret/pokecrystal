@@ -45,7 +45,7 @@ UnknownScript_0x1a001e: ; 0x1a001e
 	disappear $d
 	pause 10
 	dotrigger $0
-	clearbit1 $07af
+	clearbit1 EVENT_SAW_SUICUNE_ON_ROUTE_42
 	domaptrigger GROUP_ROUTE_42, MAP_ROUTE_42, $1
 	checkbit1 $0333
 	iftrue UnknownScript_0x1a0083
@@ -81,11 +81,11 @@ UnknownScript_0x1a0083: ; 0x1a0083
 PokefanFScript_0x1a0084: ; 0x1a0084
 	faceplayer
 	loadfont
-	checkbit1 $0011
+	checkbit1 EVENT_GOT_HM02_FLY
 	iftrue UnknownScript_0x1a00ad
 	2writetext UnknownText_0x1a00f1
 	keeptextopen
-	checkbit1 $04c2
+	checkbit1 EVENT_BEAT_CHUCK
 	iftrue UnknownScript_0x1a009c
 	2writetext UnknownText_0x1a0163
 	closetext
@@ -98,7 +98,7 @@ UnknownScript_0x1a009c: ; 0x1a009c
 	keeptextopen
 	verbosegiveitem HM_02, 1
 	iffalse UnknownScript_0x1a00b1
-	setbit1 $0011
+	setbit1 EVENT_GOT_HM02_FLY
 	2writetext UnknownText_0x1a021d
 	keeptextopen
 UnknownScript_0x1a00ad: ; 0x1a00ad

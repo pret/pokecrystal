@@ -22,7 +22,7 @@ UnknownScript_0x99d57: ; 0x99d57
 MortyScript_0x99d58: ; 0x99d58
 	faceplayer
 	loadfont
-	checkbit1 $04c0
+	checkbit1 EVENT_BEAT_MORTY
 	iftrue UnknownScript_0x99d8c
 	2writetext UnknownText_0x99e65
 	closetext
@@ -31,7 +31,7 @@ MortyScript_0x99d58: ; 0x99d58
 	loadtrainer MORTY, 1
 	startbattle
 	returnafterbattle
-	setbit1 $04c0
+	setbit1 EVENT_BEAT_MORTY
 	loadfont
 	2writetext UnknownText_0x9a043
 	playsound $009c
@@ -43,17 +43,17 @@ MortyScript_0x99d58: ; 0x99d58
 	setbit1 $0766
 	setbit1 $0767
 UnknownScript_0x99d8c: ; 0x99d8c	
-	checkbit1 $000c
+	checkbit1 EVENT_GOT_TM30_SHADOW_BALL
 	iftrue UnknownScript_0x99db1
-	setbit1 $0415
-	setbit1 $0416
-	setbit1 $058b
-	setbit1 $058c
+	setbit1 EVENT_BEAT_SAGE_JEFFREY
+	setbit1 EVENT_BEAT_SAGE_PING
+	setbit1 EVENT_BEAT_MEDIUM_MARTHA
+	setbit1 EVENT_BEAT_MEDIUM_GRACE
 	2writetext UnknownText_0x9a059
 	keeptextopen
 	verbosegiveitem TM_30, 1
 	iffalse UnknownScript_0x99db5
-	setbit1 $000c
+	setbit1 EVENT_GOT_TM30_SHADOW_BALL
 	2writetext UnknownText_0x9a0ec
 	closetext
 	loadmovesprites
@@ -218,7 +218,7 @@ MediumGraceScript: ; 0x99e31
 EcruteakGymGuyScript: ; 0x99e39
 	faceplayer
 	loadfont
-	checkbit1 $04c0
+	checkbit1 EVENT_BEAT_MORTY
 	iftrue .EcruteakGymGuyWinScript
 	2writetext EcruteakGymGuyText
 	closetext

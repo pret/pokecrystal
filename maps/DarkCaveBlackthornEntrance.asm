@@ -9,13 +9,13 @@ DarkCaveBlackthornEntrance_MapScriptHeader: ; 0x18c71e
 PharmacistScript_0x18c720: ; 0x18c720
 	faceplayer
 	loadfont
-	checkbit1 $0072
+	checkbit1 EVENT_GOT_BLACKGLASSES_IN_DARK_CAVE
 	iftrue UnknownScript_0x18c735
 	2writetext UnknownText_0x18c73f
 	keeptextopen
 	verbosegiveitem BLACKGLASSES, 1
 	iffalse UnknownScript_0x18c739
-	setbit1 $0072
+	setbit1 EVENT_GOT_BLACKGLASSES_IN_DARK_CAVE
 UnknownScript_0x18c735: ; 0x18c735
 	2writetext UnknownText_0x18c80c
 	closetext

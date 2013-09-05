@@ -23,7 +23,7 @@ GentlemanScript_0x7ee6c: ; 0x7ee6c
 	loadfont
 	checkbit2 $0003
 	iftrue .UnknownScript_0x7ee8e
-	checkbit1 $00c9
+	checkbit1 EVENT_RETURNED_MACHINE_PART
 	iftrue .UnknownScript_0x7ee80
 	2writetext UnknownText_0x7effb
 	closetext

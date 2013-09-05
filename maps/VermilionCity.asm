@@ -60,7 +60,7 @@ UnknownScript_0x1aa9ab: ; 0x1aa9ab
 	loadpokedata SNORLAX, 50
 	startbattle
 	disappear $6
-	setbit1 $0750
+	setbit1 EVENT_FOUGHT_SNORLAX
 	returnafterbattle
 	end
 ; 0x1aa9c2

@@ -13,7 +13,7 @@ NurseScript_0x191603: ; 0x191603
 FishingGuruScript_0x191606: ; 0x191606
 	faceplayer
 	loadfont
-	checkbit1 $0750
+	checkbit1 EVENT_FOUGHT_SNORLAX
 	iftrue UnknownScript_0x191614
 	2writetext UnknownText_0x191620
 	closetext

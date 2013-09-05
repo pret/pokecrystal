@@ -13,7 +13,7 @@ NurseScript_0x694c9: ; 0x694c9
 ScientistScript_0x694cc: ; 0x694cc
 	faceplayer
 	loadfont
-	checkbit1 $002c
+	checkbit1 EVENT_REFUSED_TO_TAKE_EGG_FROM_ELMS_AIDE
 	iftrue UnknownScript_0x6953a
 	2writetext UnknownText_0x69555
 UnknownScript_0x694d7: ; 0x694d7
@@ -24,9 +24,9 @@ UnknownScript_0x694d7: ; 0x694d7
 	giveegg TOGEPI, 5
 	stringtotext .eggname, $1
 	2call UnknownScript_0x69527
-	setbit1 $002d
-	clearbit1 $0701
-	clearbit1 $0054
+	setbit1 EVENT_GOT_TOGEPI_EGG_FROM_ELMS_AIDE
+	clearbit1 EVENT_ELMS_AIDE_IN_LAB
+	clearbit1 EVENT_TOGEPI_HATCHED
 	domaptrigger GROUP_ROUTE_32, MAP_ROUTE_32, $1
 	2writetext UnknownText_0x695c5
 	closetext
@@ -70,7 +70,7 @@ UnknownScript_0x69531: ; 0x69531
 	2writetext UnknownText_0x696f2
 	closetext
 	loadmovesprites
-	setbit1 $002c
+	setbit1 EVENT_REFUSED_TO_TAKE_EGG_FROM_ELMS_AIDE
 	end
 ; 0x6953a
 

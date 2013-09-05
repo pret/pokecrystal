@@ -16,7 +16,7 @@ RuinsofAlphOmanyteChamber_MapScriptHeader: ; 0x58bdc
 
 UnknownScript_0x58be9: ; 0x58be9
 	special $0084
-	checkbit1 $0328
+	checkbit1 EVENT_WALL_OPENED_IN_OMANYTE_CHAMBER
 	iftrue UnknownScript_0x58bf3
 	end
 ; 0x58bf3
@@ -31,7 +31,7 @@ UnknownScript_0x58bf7: ; 0x58bf7
 ; 0x58bf8
 
 UnknownScript_0x58bf8: ; 0x58bf8
-	checkbit1 $0328
+	checkbit1 EVENT_WALL_OPENED_IN_OMANYTE_CHAMBER
 	iftrue UnknownScript_0x58c02
 	changeblock $4, $0, $2e
 UnknownScript_0x58c02: ; 0x58c02
@@ -107,7 +107,7 @@ MapRuinsofAlphOmanyteChamberSignpost4Script: ; 0x58c69
 ; 0x58c74
 
 MapRuinsofAlphOmanyteChamberSignpost5Script: ; 0x58c74
-	checkbit1 $0328
+	checkbit1 EVENT_WALL_OPENED_IN_OMANYTE_CHAMBER
 	iftrue UnknownScript_0x58c85
 	loadfont
 	2writetext UnknownText_0x58cc0

@@ -16,7 +16,7 @@ UnknownScript_0x9df9d: ; 0x9df9d
 PharmacistScript_0x9df9e: ; 0x9df9e
 	faceplayer
 	loadfont
-	checkbit1 $0023
+	checkbit1 EVENT_GOT_SECRETPOTION_FROM_PHARMACY
 	iftrue UnknownScript_0x9dfc4
 	checkbit1 $0037
 	iffalse UnknownScript_0x9dfc4
@@ -27,7 +27,7 @@ PharmacistScript_0x9df9e: ; 0x9df9e
 	playsound $0091
 	waitbutton
 	itemnotify
-	setbit1 $0023
+	setbit1 EVENT_GOT_SECRETPOTION_FROM_PHARMACY
 	2writetext UnknownText_0x9e070
 	closetext
 	loadmovesprites

@@ -9,7 +9,7 @@ MountMortarB1F_MapScriptHeader: ; 0x7e1f4
 BlackBeltScript_0x7e1f6: ; 0x7e1f6
 	faceplayer
 	loadfont
-	checkbit1 $0061
+	checkbit1 EVENT_GOT_TYROGUE_FROM_KIYO
 	iftrue UnknownScript_0x7e231
 	checkbit1 $04a9
 	iftrue UnknownScript_0x7e217
@@ -32,7 +32,7 @@ UnknownScript_0x7e217: ; 0x7e217
 	playsound $0002
 	waitbutton
 	givepoke TYROGUE, 10, 0, 0
-	setbit1 $0061
+	setbit1 EVENT_GOT_TYROGUE_FROM_KIYO
 UnknownScript_0x7e231: ; 0x7e231
 	2writetext UnknownText_0x7e36a
 	closetext

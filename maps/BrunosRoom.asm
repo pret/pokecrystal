@@ -24,11 +24,11 @@ UnknownScript_0x180997: ; 0x180997
 ; 0x180998
 
 UnknownScript_0x180998: ; 0x180998
-	checkbit1 $030d
+	checkbit1 EVENT_KOGAS_ROOM_ENTRANCE_CLOSED
 	iffalse UnknownScript_0x1809a2
 	changeblock $4, $e, $2a
 UnknownScript_0x1809a2: ; 0x1809a2
-	checkbit1 $030e
+	checkbit1 EVENT_BRUNOS_ROOM_EXIT_OPEN
 	iffalse UnknownScript_0x1809ac
 	changeblock $4, $2, $16
 UnknownScript_0x1809ac: ; 0x1809ac
@@ -44,7 +44,7 @@ UnknownScript_0x1809ad: ; 0x1809ad
 	reloadmappart
 	loadmovesprites
 	dotrigger $1
-	setbit1 $030d
+	setbit1 EVENT_KOGAS_ROOM_ENTRANCE_CLOSED
 	waitbutton
 	end
 ; 0x1809c5
@@ -70,7 +70,7 @@ BrunoScript_0x1809c5: ; 0x1809c5
 	changeblock $4, $2, $16
 	reloadmappart
 	loadmovesprites
-	setbit1 $030e
+	setbit1 EVENT_BRUNOS_ROOM_EXIT_OPEN
 	waitbutton
 	end
 ; 0x1809f3

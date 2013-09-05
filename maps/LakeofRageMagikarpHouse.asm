@@ -13,7 +13,7 @@ FishingGuruScript_0x19a6ae: ; 0x19a6ae
 	iftrue UnknownScript_0x19a6fe
 	checkbit1 $0039
 	iftrue UnknownScript_0x19a6e0
-	checkbit1 $0022
+	checkbit1 EVENT_CLEARED_ROCKET_HIDEOUT
 	iftrue UnknownScript_0x19a6d7
 	checkbit1 $0038
 	iftrue UnknownScript_0x19a6d1

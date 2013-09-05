@@ -11,7 +11,7 @@ IlexForest_MapScriptHeader: ; 0x6eafe
 ; 0x6eb03
 
 UnknownScript_0x6eb03: ; 0x6eb03
-	checkbit1 $0010
+	checkbit1 EVENT_GOT_HM01_CUT
 	iftrue UnknownScript_0x6eb34
 	copybytetovar FarfetchdPosition
 	if_equal $1, UnknownScript_0x6eb35
@@ -373,12 +373,12 @@ UnknownScript_0x6eda1: ; 0x6eda1
 BlackBeltScript_0x6edae: ; 0x6edae
 	faceplayer
 	loadfont
-	checkbit1 $0010
+	checkbit1 EVENT_GOT_HM01_CUT
 	iftrue UnknownScript_0x6edd8
 	2writetext UnknownText_0x6f099
 	keeptextopen
 	verbosegiveitem HM_01, 1
-	setbit1 $0010
+	setbit1 EVENT_GOT_HM01_CUT
 	2writetext UnknownText_0x6f141
 	closetext
 	loadmovesprites
@@ -401,13 +401,13 @@ UnknownScript_0x6edd8: ; 0x6edd8
 RockerScript_0x6edde: ; 0x6edde
 	faceplayer
 	loadfont
-	checkbit1 $005f
+	checkbit1 EVENT_GOT_TM02_HEADBUTT
 	iftrue UnknownScript_0x6edf3
 	2writetext UnknownText_0x6f21b
 	keeptextopen
 	verbosegiveitem TM_02, 1
 	iffalse UnknownScript_0x6edf7
-	setbit1 $005f
+	setbit1 EVENT_GOT_TM02_HEADBUTT
 UnknownScript_0x6edf3: ; 0x6edf3
 	2writetext UnknownText_0x6f26d
 	closetext

@@ -98,21 +98,21 @@ UnknownScript_0x78ba5: ; 0x78ba5
 ProfElmScript: ; 0x78be0
 	faceplayer
 	loadfont
-	checkbit1 $0024
+	checkbit1 EVENT_GOT_SS_TICKET_FROM_ELM
 	iftrue UnknownScript_0x78bee
 	checkbit1 $0044
 	iftrue ElmGiveTicketScript
 UnknownScript_0x78bee: ; 0x78bee
-	checkbit1 $007c
+	checkbit1 EVENT_GOT_MASTER_BALL_FROM_ELM
 	iftrue UnknownScript_0x78bfa
 	checkbit2 $0022
 	iftrue ElmGiveMasterBallScript
 UnknownScript_0x78bfa: ; 0x78bfa
-	checkbit1 $0056
+	checkbit1 EVENT_GOT_EVERSTONE_FROM_ELM
 	iftrue UnknownScript_0x78e16
-	checkbit1 $0055
+	checkbit1 EVENT_SHOWED_TOGEPI_TO_ELM
 	iftrue UnknownScript_0x78e03
-	checkbit1 $0077
+	checkbit1 EVENT_TOLD_ELM_ABOUT_TOGEPI_OVER_THE_PHONE
 	iffalse UnknownScript_0x78c35
 	writebyte TOGEPI
 	special $0043
@@ -137,20 +137,20 @@ UnknownScript_0x78c22: ; 0x78c22
 ; 0x78c35
 
 UnknownScript_0x78c35: ; 0x78c35
-	checkbit1 $002d
+	checkbit1 EVENT_GOT_TOGEPI_EGG_FROM_ELMS_AIDE
 	iffalse UnknownScript_0x78c41
-	checkbit1 $0054
+	checkbit1 EVENT_TOGEPI_HATCHED
 	iftrue UnknownScript_0x78c22
 UnknownScript_0x78c41: ; 0x78c41
-	checkbit1 $002d ; why are we checking it again?
+	checkbit1 EVENT_GOT_TOGEPI_EGG_FROM_ELMS_AIDE ; why are we checking it again?
 	iftrue ElmWaitingEggHatchScript
 	checkbit2 $001b
 	iftrue ElmAideHasEggScript
-	checkbit1 $001f
+	checkbit1 EVENT_GAVE_MYSTERY_EGG_TO_ELM
 	iftrue ElmStudyingEggScript
-	checkbit1 $001e
+	checkbit1 EVENT_GOT_MYSTERY_EGG_FROM_MR_POKEMON
 	iftrue ElmAfterTheftScript
-	checkbit1 $001a
+	checkbit1 EVENT_GOT_A_POKEMON_FROM_ELM
 	iftrue ElmDescribesMrPokemonScript
 	2writetext UnknownText_0x79375
 	closetext
@@ -169,7 +169,7 @@ LabTryToLeaveScript: ; 0x78c65
 ; 0x78c73
 
 CyndaquilPokeBallScript: ; 0x78c73
-	checkbit1 $001a
+	checkbit1 EVENT_GOT_A_POKEMON_FROM_ELM
 	iftrue LookAtElmPokeBallScript
 	spriteface $2, $0
 	refreshscreen $0
@@ -182,7 +182,7 @@ CyndaquilPokeBallScript: ; 0x78c73
 	yesorno
 	iffalse DidntChooseStarterScript
 	disappear $4
-	setbit1 $001b
+	setbit1 EVENT_GOT_CYNDAQUIL_FROM_ELM
 	2writetext ChoseStarterText
 	keeptextopen
 	waitbutton
@@ -200,7 +200,7 @@ CyndaquilPokeBallScript: ; 0x78c73
 ; 0x78cb5
 
 TotodilePokeBallScript: ; 0x78cb5
-	checkbit1 $001a
+	checkbit1 EVENT_GOT_A_POKEMON_FROM_ELM
 	iftrue LookAtElmPokeBallScript
 	spriteface $2, $0
 	refreshscreen $0
@@ -213,7 +213,7 @@ TotodilePokeBallScript: ; 0x78cb5
 	yesorno
 	iffalse DidntChooseStarterScript
 	disappear $5
-	setbit1 $001c
+	setbit1 EVENT_GOT_TOTODILE_FROM_ELM
 	2writetext ChoseStarterText
 	keeptextopen
 	waitbutton
@@ -229,7 +229,7 @@ TotodilePokeBallScript: ; 0x78cb5
 ; 0x78cf1
 
 ChikoritaPokeBallScript: ; 0x78cf1
-	checkbit1 $001a
+	checkbit1 EVENT_GOT_A_POKEMON_FROM_ELM
 	iftrue LookAtElmPokeBallScript
 	spriteface $2, $0
 	refreshscreen $0
@@ -242,7 +242,7 @@ ChikoritaPokeBallScript: ; 0x78cf1
 	yesorno
 	iffalse DidntChooseStarterScript
 	disappear $6
-	setbit1 $001d
+	setbit1 EVENT_GOT_CHIKORITA_FROM_ELM
 	2writetext ChoseStarterText
 	keeptextopen
 	waitbutton
@@ -287,7 +287,7 @@ ElmDirectionsScript: ; 0x78d33
 	2writetext ElmDirectionsText3
 	closetext
 	loadmovesprites
-	setbit1 $001a
+	setbit1 EVENT_GOT_A_POKEMON_FROM_ELM
 	setbit1 $06be
 	dotrigger $5
 	domaptrigger GROUP_NEW_BARK_TOWN, MAP_NEW_BARK_TOWN, $1
@@ -311,7 +311,7 @@ LookAtElmPokeBallScript: ; 0x78d6d
 
 MapElmsLabSignpost0Script: ; 0x78d74
 	loadfont
-	checkbit1 $001a
+	checkbit1 EVENT_GOT_A_POKEMON_FROM_ELM
 	iftrue UnknownScript_0x78d81
 	2writetext UnknownText_0x79690
 	closetext
@@ -361,7 +361,7 @@ ElmAfterTheftScript: ; 0x78da2
 	keeptextopen
 	2writetext ElmAfterTheftText5
 	keeptextopen
-	setbit1 $001f
+	setbit1 EVENT_GAVE_MYSTERY_EGG_TO_ELM
 	setbit2 $0010
 	domaptrigger GROUP_ROUTE_29, MAP_ROUTE_29, $1
 	clearbit1 $0715
@@ -399,7 +399,7 @@ ShowElmTogepiScript: ; 0x78dee
 	closetext
 	loadmovesprites
 	showemote $0, $2, 15
-	setbit1 $0055
+	setbit1 EVENT_SHOWED_TOGEPI_TO_ELM
 	loadfont
 	2writetext ShowElmTogepiText2
 	keeptextopen
@@ -413,7 +413,7 @@ UnknownScript_0x78e03: ; 0x78e03
 	2writetext ElmGiveEverstoneText2
 	closetext
 	loadmovesprites
-	setbit1 $0056
+	setbit1 EVENT_GOT_EVERSTONE_FROM_ELM
 	end
 ; 0x78e16
 
@@ -430,7 +430,7 @@ ElmGiveMasterBallScript: ; 0x78e1c
 	keeptextopen
 	verbosegiveitem MASTER_BALL, 1
 	iffalse .notdone
-	setbit1 $007c
+	setbit1 EVENT_GOT_MASTER_BALL_FROM_ELM
 	2writetext ElmGiveMasterBallText2
 	closetext
 .notdone
@@ -442,7 +442,7 @@ ElmGiveTicketScript: ; 0x78e2f
 	2writetext ElmGiveTicketText1
 	keeptextopen
 	verbosegiveitem S_S_TICKET, 1
-	setbit1 $0024
+	setbit1 EVENT_GOT_SS_TICKET_FROM_ELM
 	2writetext ElmGiveTicketText2
 	closetext
 	loadmovesprites
@@ -560,11 +560,11 @@ UnknownScript_0x78ee2: ; 0x78ee2
 ElmsAideScript: ; 0x78ee6
 	faceplayer
 	loadfont
-	checkbit1 $002d
+	checkbit1 EVENT_GOT_TOGEPI_EGG_FROM_ELMS_AIDE
 	iftrue UnknownScript_0x78f0c
-	checkbit1 $001f
+	checkbit1 EVENT_GAVE_MYSTERY_EGG_TO_ELM
 	iftrue UnknownScript_0x78f06
-	checkbit1 $001e
+	checkbit1 EVENT_GOT_MYSTERY_EGG_FROM_MR_POKEMON
 	iftrue UnknownScript_0x78f00
 	2writetext UnknownText_0x79f65
 	closetext
@@ -617,7 +617,7 @@ MapElmsLabSignpost14Script: ; 0x78f33
 	loadfont
 	checkbit2 $0043
 	iftrue UnknownScript_0x78f49
-	checkbit1 $0043
+	checkbit1 EVENT_ELM_CALLED_ABOUT_STOLEN_POKEMON
 	iftrue UnknownScript_0x78f43
 	2jump UnknownScript_0x78f49
 ; 0x78f43

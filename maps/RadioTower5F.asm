@@ -54,7 +54,7 @@ UnknownScript_0x60011: ; 0x60011
 GentlemanScript_0x60046: ; 0x60046
 	faceplayer
 	loadfont
-	checkbit1 $0021
+	checkbit1 EVENT_CLEARED_RADIO_TOWER
 	iftrue UnknownScript_0x60054
 	2writetext UnknownText_0x60246
 	closetext
@@ -122,7 +122,7 @@ UnknownScript_0x6006e: ; 0x6006e
 	pause 15
 	special $0032
 	setbit1 $0571
-	setbit1 $0021
+	setbit1 EVENT_CLEARED_RADIO_TOWER
 	clearbit2 $0013
 	setbit1 $06cc
 	setbit1 $06cd
@@ -148,7 +148,7 @@ UnknownScript_0x6006e: ; 0x6006e
 	loadmovesprites
 	dotrigger $2
 	domaptrigger GROUP_ECRUTEAK_HOUSE, MAP_ECRUTEAK_HOUSE, $0
-	setbit1 $0078
+	setbit1 EVENT_GOT_CLEAR_BELL
 	setbit1 $0761
 	2jump UnknownScript_0x600f1
 ; 0x600f1

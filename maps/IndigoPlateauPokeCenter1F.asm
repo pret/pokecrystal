@@ -25,26 +25,26 @@ UnknownScript_0x18000a: ; 0x18000a
 	domaptrigger GROUP_LANCES_ROOM, MAP_LANCES_ROOM, $0
 	domaptrigger GROUP_HALL_OF_FAME, MAP_HALL_OF_FAME, $0
 	clearbit1 $0309
-	clearbit1 $030a
-	clearbit1 $030b
-	clearbit1 $030c
-	clearbit1 $030d
-	clearbit1 $030e
-	clearbit1 $030f
-	clearbit1 $0310
-	clearbit1 $0311
+	clearbit1 EVENT_WILLS_ROOM_EXIT_OPEN
+	clearbit1 EVENT_WILLS_ROOM_ENTRANCE_CLOSED
+	clearbit1 EVENT_KOGAS_ROOM_EXIT_OPEN
+	clearbit1 EVENT_KOGAS_ROOM_ENTRANCE_CLOSED
+	clearbit1 EVENT_BRUNOS_ROOM_EXIT_OPEN
+	clearbit1 EVENT_KARENS_ROOM_ENTRANCE_CLOSED
+	clearbit1 EVENT_KARENS_ROOM_EXIT_OPEN
+	clearbit1 EVENT_LANCES_ROOM_ENTRANCE_CLOSED
 	clearbit1 $0312
 	clearbit1 $05b8
 	clearbit1 $05b9
 	clearbit1 $05ba
-	clearbit1 $05bb
-	clearbit1 $05bc
+	clearbit1 EVENT_BEAT_ELITE_4_KAREN
+	clearbit1 EVENT_BEAT_CHAMPION_LANCE
 	setbit1 $075f
 	return
 ; 0x180053
 
 UnknownScript_0x180053: ; 0x180053
-	checkbit1 $0319
+	checkbit1 EVENT_BEAT_RIVAL_IN_MT_MOON
 	iffalse UnknownScript_0x18012b
 	checkbit2 $005d
 	iftrue UnknownScript_0x18012b
@@ -67,7 +67,7 @@ UnknownScript_0x180053: ; 0x180053
 ; 0x180094
 
 UnknownScript_0x180094: ; 0x180094
-	checkbit1 $0319
+	checkbit1 EVENT_BEAT_RIVAL_IN_MT_MOON
 	iffalse UnknownScript_0x18012b
 	checkbit2 $005d
 	iftrue UnknownScript_0x18012b
@@ -91,9 +91,9 @@ UnknownScript_0x1800ce: ; 0x1800ce
 	closetext
 	loadmovesprites
 	setbit1 $077b
-	checkbit1 $001c
+	checkbit1 EVENT_GOT_TOTODILE_FROM_ELM
 	iftrue UnknownScript_0x1800f3
-	checkbit1 $001d
+	checkbit1 EVENT_GOT_CHIKORITA_FROM_ELM
 	iftrue UnknownScript_0x180103
 	winlosstext UnknownText_0x180295, UnknownText_0x1802fd
 	setlasttalked $5

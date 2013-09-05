@@ -48,13 +48,13 @@ TeacherScript_0x62d63: ; 0x62d63
 	loadfont
 	checkbit1 $00c0
 	iftrue UnknownScript_0x62d84
-	checkbit1 $007a
+	checkbit1 EVENT_GOT_TM12_SWEET_SCENT
 	iftrue UnknownScript_0x62d7e
 	2writetext UnknownText_0x62d9d
 	keeptextopen
 	verbosegiveitem TM_12, 1
 	iffalse UnknownScript_0x62d82
-	setbit1 $007a
+	setbit1 EVENT_GOT_TM12_SWEET_SCENT
 UnknownScript_0x62d7e: ; 0x62d7e
 	2writetext UnknownText_0x62df6
 	closetext

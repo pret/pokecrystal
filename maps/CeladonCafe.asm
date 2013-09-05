@@ -92,7 +92,7 @@ MapCeladonCafeSignpost0Script: ; 0x730ad
 ; 0x730b0
 
 MapCeladonCafeSignpost1Script: ; 0x730b0
-	checkbit1 $00f9
+	checkbit1 EVENT_FOUND_LEFTOVERS_IN_CELADON_CAFE
 	iftrue UnknownScript_0x730db
 	giveitem LEFTOVERS, $1
 	iffalse UnknownScript_0x730cd
@@ -103,7 +103,7 @@ MapCeladonCafeSignpost1Script: ; 0x730b0
 	waitbutton
 	itemnotify
 	loadmovesprites
-	setbit1 $00f9
+	setbit1 EVENT_FOUND_LEFTOVERS_IN_CELADON_CAFE
 	end
 ; 0x730cd
 

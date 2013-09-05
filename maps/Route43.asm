@@ -11,7 +11,7 @@ Route43_MapScriptHeader: ; 0x19d04c
 ; 0x19d051
 
 UnknownScript_0x19d051: ; 0x19d051
-	checkbit1 $0022
+	checkbit1 EVENT_CLEARED_ROCKET_HIDEOUT
 	iftrue UnknownScript_0x19d05c
 	domaptrigger GROUP_ROUTE_43_GATE, MAP_ROUTE_43_GATE, $0
 	return
@@ -137,13 +137,13 @@ UnknownScript_0x19d0cf: ; 0x19d0cf
 	if_equal $1, UnknownScript_0x19d0f6
 	if_equal $0, UnknownScript_0x19d0fc
 UnknownScript_0x19d0ea: ; 0x19d0ea
-	checkbit1 $00cd
+	checkbit1 EVENT_RESTORED_POWER_TO_KANTO
 	iftrue UnknownScript_0x19d123
 UnknownScript_0x19d0f0: ; 0x19d0f0
 	checkbit1 $0044
 	iftrue UnknownScript_0x19d116
 UnknownScript_0x19d0f6: ; 0x19d0f6
-	checkbit1 $0022
+	checkbit1 EVENT_CLEARED_ROCKET_HIDEOUT
 	iftrue UnknownScript_0x19d109
 UnknownScript_0x19d0fc: ; 0x19d0fc
 	loadtrainer POKEMANIAC, BRENT1
@@ -305,11 +305,11 @@ PicnickerTiffany3Script: ; 0x19d17c
 	iftrue UnknownScript_0x19d245
 	checkpoke CLEFAIRY
 	iffalse UnknownScript_0x19d233
-	checkbit1 $0293
+	checkbit1 EVENT_SHOWED_TIFFANY_CLEFAIRY
 	iftrue UnknownScript_0x19d1aa
 	2writetext UnknownText_0x19d618
 	keeptextopen
-	setbit1 $0293
+	setbit1 EVENT_SHOWED_TIFFANY_CLEFAIRY
 	2call UnknownScript_0x19d239
 	2jump UnknownScript_0x19d1ad
 ; 0x19d1aa
@@ -334,13 +334,13 @@ UnknownScript_0x19d1c1: ; 0x19d1c1
 	if_equal $1, UnknownScript_0x19d1e8
 	if_equal $0, UnknownScript_0x19d1ee
 UnknownScript_0x19d1dc: ; 0x19d1dc
-	checkbit1 $00cd
+	checkbit1 EVENT_RESTORED_POWER_TO_KANTO
 	iftrue UnknownScript_0x19d215
 UnknownScript_0x19d1e2: ; 0x19d1e2
 	checkbit1 $0044
 	iftrue UnknownScript_0x19d208
 UnknownScript_0x19d1e8: ; 0x19d1e8
-	checkbit1 $0021
+	checkbit1 EVENT_CLEARED_RADIO_TOWER
 	iftrue UnknownScript_0x19d1fb
 UnknownScript_0x19d1ee: ; 0x19d1ee
 	loadtrainer PICNICKER, TIFFANY3

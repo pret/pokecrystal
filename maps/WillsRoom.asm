@@ -28,7 +28,7 @@ UnknownScript_0x1804cb: ; 0x1804cb
 	iffalse UnknownScript_0x1804d5
 	changeblock $4, $e, $2a
 UnknownScript_0x1804d5: ; 0x1804d5
-	checkbit1 $030a
+	checkbit1 EVENT_WILLS_ROOM_EXIT_OPEN
 	iffalse UnknownScript_0x1804df
 	changeblock $4, $2, $16
 UnknownScript_0x1804df: ; 0x1804df
@@ -70,7 +70,7 @@ WillScript_0x1804f8: ; 0x1804f8
 	changeblock $4, $2, $16
 	reloadmappart
 	loadmovesprites
-	setbit1 $030a
+	setbit1 EVENT_WILLS_ROOM_EXIT_OPEN
 	waitbutton
 	end
 ; 0x180526

@@ -11,7 +11,7 @@ KurtsHouse_MapScriptHeader: ; 0x18e14f
 ; 0x18e154
 
 UnknownScript_0x18e154: ; 0x18e154
-	checkbit1 $002b
+	checkbit1 EVENT_CLEARED_SLOWPOKE_WELL
 	iffalse UnknownScript_0x18e177
 	checkbit1 $00c0
 	iftrue UnknownScript_0x18e177
@@ -38,7 +38,7 @@ KurtScript_0x18e178: ; 0x18e178
 	loadfont
 	checkbit1 $0035
 	iftrue UnknownScript_0x18e1cc
-	checkbit1 $002b
+	checkbit1 EVENT_CLEARED_SLOWPOKE_WELL
 	iftrue UnknownScript_0x18e1bf
 	2writetext UnknownText_0x18e473
 	closetext
@@ -91,7 +91,7 @@ UnknownScript_0x18e1cc: ; 0x18e1cc
 	iftrue UnknownScript_0x18e322
 	checkbit1 $025e
 	iftrue UnknownScript_0x18e338
-	checkbit1 $00be
+	checkbit1 EVENT_CAN_GIVE_GS_BALL_TO_KURT
 	iftrue UnknownScript_0x18e34e
 UnknownScript_0x18e202: ; 0x18e202
 	checkbit1 $0001
@@ -317,7 +317,7 @@ UnknownScript_0x18e378: ; 0x18e378
 	closetext
 	loadmovesprites
 	setbit1 $00c0
-	clearbit1 $00be
+	clearbit1 EVENT_CAN_GIVE_GS_BALL_TO_KURT
 	clearbit1 $00bf
 	special $006a
 	pause 20
@@ -388,7 +388,7 @@ TwinScript_0x18e3ed: ; 0x18e3ed
 	iftrue UnknownScript_0x18e420
 	checkbit1 $0030
 	iftrue UnknownScript_0x18e427
-	checkbit1 $002b
+	checkbit1 EVENT_CLEARED_SLOWPOKE_WELL
 	iftrue UnknownScript_0x18e419
 	checkbit1 $06fa
 	iftrue UnknownScript_0x18e420

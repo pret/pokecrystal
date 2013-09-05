@@ -9,11 +9,11 @@ Route35Goldenrodgate_MapScriptHeader: ; 0x69d35
 OfficerScript_0x69d37: ; 0x69d37
 	faceplayer
 	loadfont
-	checkbit1 $0052
+	checkbit1 EVENT_GOT_HP_UP_FROM_RANDY
 	iftrue UnknownScript_0x69d92
-	checkbit1 $0051
+	checkbit1 EVENT_GAVE_KENYA
 	iftrue UnknownScript_0x69d85
-	checkbit1 $0050
+	checkbit1 EVENT_GOT_KENYA
 	iftrue UnknownScript_0x69d73
 	2writetext UnknownText_0x69ddd
 	yesorno
@@ -28,7 +28,7 @@ OfficerScript_0x69d37: ; 0x69d37
 	waitbutton
 	givepoke SPEAROW, 10, 0, 1, GiftSpearowName, GiftSpearowOTName
 	givepokeitem GiftSpearowMail
-	setbit1 $0050
+	setbit1 EVENT_GOT_KENYA
 UnknownScript_0x69d73: ; 0x69d73
 	2writetext UnknownText_0x69ed6
 	closetext
@@ -55,7 +55,7 @@ UnknownScript_0x69d85: ; 0x69d85
 	keeptextopen
 	verbosegiveitem HP_UP, 1
 	iffalse UnknownScript_0x69d96
-	setbit1 $0052
+	setbit1 EVENT_GOT_HP_UP_FROM_RANDY
 UnknownScript_0x69d92: ; 0x69d92
 	2writetext UnknownText_0x69fd9
 	closetext
@@ -77,7 +77,7 @@ GiftSpearowOTName: ; 0x69dbf
 PokefanFScript_0x69dc6: ; 0x69dc6
 	faceplayer
 	loadfont
-	checkbit1 $002a
+	checkbit1 EVENT_FOUGHT_SUDOWOODO
 	iftrue UnknownScript_0x69dd4
 	2writetext UnknownText_0x6a00a
 	closetext

@@ -9,13 +9,13 @@ Route30BerrySpeechHouse_MapScriptHeader: ; 0x196d62
 PokefanMScript_0x196d64: ; 0x196d64
 	faceplayer
 	loadfont
-	checkbit1 $0027
+	checkbit1 EVENT_GOT_BERRY_FROM_ROUTE_30_HOUSE
 	iftrue UnknownScript_0x196d79
 	2writetext UnknownText_0x196d82
 	keeptextopen
 	verbosegiveitem BERRY, 1
 	iffalse UnknownScript_0x196d7d
-	setbit1 $0027
+	setbit1 EVENT_GOT_BERRY_FROM_ROUTE_30_HOUSE
 UnknownScript_0x196d79: ; 0x196d79
 	2writetext UnknownText_0x196dec
 	closetext

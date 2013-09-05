@@ -81,7 +81,7 @@ GruntM1Script: ; 0x5a5f8
 	2writetext KurtLeaveSlowpokeWellText
 	closetext
 	loadmovesprites
-	setbit1 $002b
+	setbit1 EVENT_CLEARED_SLOWPOKE_WELL
 	variablesprite $6, $4
 	domaptrigger GROUP_AZALEA_TOWN, MAP_AZALEA_TOWN, $1
 	clearbit1 $06f3

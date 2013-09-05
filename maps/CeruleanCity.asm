@@ -18,7 +18,7 @@ UnknownScript_0x184005: ; 0x184005
 CooltrainerMScript_0x184009: ; 0x184009
 	faceplayer
 	loadfont
-	checkbit1 $00c9
+	checkbit1 EVENT_RETURNED_MACHINE_PART
 	iftrue UnknownScript_0x184017
 	2writetext UnknownText_0x1840bc
 	closetext
@@ -72,9 +72,9 @@ CooltrainerFScript_0x18402a: ; 0x18402a
 FisherScript_0x18404a: ; 0x18404a
 	faceplayer
 	loadfont
-	checkbit1 $00c9
+	checkbit1 EVENT_RETURNED_MACHINE_PART
 	iftrue UnknownScript_0x184058
-	checkbit1 $00cb
+	checkbit1 EVENT_MET_ROCKET_GRUNT_AT_CERULEAN_GYM
 	iftrue UnknownScript_0x18405e
 UnknownScript_0x184058: ; 0x184058
 	2writetext UnknownText_0x18424e
