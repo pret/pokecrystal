@@ -91,7 +91,7 @@ UnknownScript_0x1a4d79: ; 0x1a4d79
 	if_equal $1, UnknownScript_0x1a4d96
 	if_equal $0, UnknownScript_0x1a4d9c
 UnknownScript_0x1a4d90: ; 0x1a4d90
-	checkbit1 $00cd
+	checkbit1 EVENT_RESTORED_POWER_TO_KANTO
 	iftrue UnknownScript_0x1a4db6
 UnknownScript_0x1a4d96: ; 0x1a4d96
 	checkbit1 $0044
@@ -242,7 +242,7 @@ UnknownScript_0x1a4e35: ; 0x1a4e35
 	if_equal $1, UnknownScript_0x1a4e52
 	if_equal $0, UnknownScript_0x1a4e58
 UnknownScript_0x1a4e4c: ; 0x1a4e4c
-	checkbit1 $00cd
+	checkbit1 EVENT_RESTORED_POWER_TO_KANTO
 	iftrue UnknownScript_0x1a4e72
 UnknownScript_0x1a4e52: ; 0x1a4e52
 	checkbit1 $0044

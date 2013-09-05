@@ -9,7 +9,7 @@ CianwoodGym_MapScriptHeader: ; 0x9d60d
 ChuckScript_0x9d60f: ; 0x9d60f
 	faceplayer
 	loadfont
-	checkbit1 $04c2
+	checkbit1 EVENT_BEAT_CHUCK
 	iftrue UnknownScript_0x9d656
 	2writetext UnknownText_0x9d6f9
 	closetext
@@ -33,7 +33,7 @@ ChuckScript_0x9d60f: ; 0x9d60f
 	loadtrainer CHUCK, 1
 	startbattle
 	returnafterbattle
-	setbit1 $04c2
+	setbit1 EVENT_BEAT_CHUCK
 	loadfont
 	2writetext UnknownText_0x9d835
 	playsound $009c
@@ -42,17 +42,17 @@ ChuckScript_0x9d60f: ; 0x9d60f
 	checkcode $7
 	2call UnknownScript_0x9d681
 UnknownScript_0x9d656: ; 0x9d656
-	checkbit1 $000a
+	checkbit1 EVENT_GOT_TM01_DYNAMICPUNCH
 	iftrue UnknownScript_0x9d67b
-	setbit1 $04a5
-	setbit1 $04a7
-	setbit1 $04a8
-	setbit1 $04aa
+	setbit1 EVENT_BEAT_BLACKBELT_YOSHI
+	setbit1 EVENT_BEAT_BLACKBELT_LAO
+	setbit1 EVENT_BEAT_BLACKBELT_NOB
+	setbit1 EVENT_BEAT_BLACKBELT_LUNG
 	2writetext UnknownText_0x9d84d
 	keeptextopen
 	verbosegiveitem TM_01, 1
 	iffalse UnknownScript_0x9d67f
-	setbit1 $000a
+	setbit1 EVENT_GOT_TM01_DYNAMICPUNCH
 	2writetext UnknownText_0x9d8da
 	closetext
 	loadmovesprites

@@ -88,7 +88,7 @@ UnknownScript_0x1a16ff: ; 0x1a16ff
 	checkbit1 $0044
 	iftrue UnknownScript_0x1a174b
 UnknownScript_0x1a1705: ; 0x1a1705
-	checkbit1 $0021
+	checkbit1 EVENT_CLEARED_RADIO_TOWER
 	iftrue UnknownScript_0x1a173e
 UnknownScript_0x1a170b: ; 0x1a170b
 	checkbit2 $0047
@@ -137,7 +137,7 @@ UnknownScript_0x1a174b: ; 0x1a174b
 	startbattle
 	returnafterbattle
 	clearbit2 $006b
-	checkbit1 $0338
+	checkbit1 EVENT_JOEY_HP_UP
 	iftrue UnknownScript_0x1a176f
 	checkbit1 $0266
 	iftrue UnknownScript_0x1a176e
@@ -158,7 +158,7 @@ UnknownScript_0x1a176f: ; 0x1a176f
 	closetext
 	verbosegiveitem HP_UP, 1
 	iffalse UnknownScript_0x1a179f
-	clearbit1 $0338
+	clearbit1 EVENT_JOEY_HP_UP
 	setbit1 $0266
 	2jump UnknownScript_0x1a178f
 ; 0x1a1783
@@ -199,7 +199,7 @@ UnknownScript_0x1a179b: ; 0x1a179b
 ; 0x1a179f
 
 UnknownScript_0x1a179f: ; 0x1a179f
-	setbit1 $0338
+	setbit1 EVENT_JOEY_HP_UP
 	jumpstd $0021
 	end
 ; 0x1a17a6
@@ -270,7 +270,7 @@ Bug_catcherDonScript: ; 0x1a17ca
 YoungsterScript_0x1a17d2: ; 0x1a17d2
 	faceplayer
 	loadfont
-	checkbit1 $001f
+	checkbit1 EVENT_GAVE_MYSTERY_EGG_TO_ELM
 	iftrue UnknownScript_0x1a17e0
 	2writetext UnknownText_0x1a1a6a
 	closetext

@@ -11,7 +11,7 @@ TinTowerRoof_MapScriptHeader: ; 0x7722b
 ; 0x77230
 
 UnknownScript_0x77230: ; 0x77230
-	checkbit1 $0317
+	checkbit1 EVENT_FOUGHT_HO_OH
 	iftrue UnknownScript_0x77241
 	checkitem RAINBOW_WING
 	iftrue UnknownScript_0x7723e
@@ -35,13 +35,13 @@ HoOhScript_0x77244: ; 0x77244
 	cry HO_OH
 	pause 15
 	loadmovesprites
-	setbit1 $0317
+	setbit1 EVENT_FOUGHT_HO_OH
 	writecode $3, $a
 	loadpokedata HO_OH, 60
 	startbattle
 	disappear $2
 	returnafterbattle
-	setbit1 $07b7
+	setbit1 EVENT_SET_WHEN_FOUGHT_HO_OH
 	end
 ; 0x77260
 

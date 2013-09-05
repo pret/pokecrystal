@@ -36,7 +36,7 @@ UnknownScript_0x196e56: ; 0x196e56
 	playsound $0091
 	waitbutton
 	itemnotify
-	setbit1 $001e
+	setbit1 EVENT_GOT_MYSTERY_EGG_FROM_MR_POKEMON
 	blackoutmod GROUP_CHERRYGROVE_CITY, MAP_CHERRYGROVE_CITY
 	2writetext UnknownText_0x196feb
 	keeptextopen
@@ -56,7 +56,7 @@ GentlemanScript_0x196e97: ; 0x196e97
 	loadfont
 	checkitem RED_SCALE
 	iftrue UnknownScript_0x196eb0
-	checkbit1 $001f
+	checkbit1 EVENT_GAVE_MYSTERY_EGG_TO_ELM
 	iftrue UnknownScript_0x196eaa
 	2writetext UnknownText_0x197134
 	closetext
@@ -136,9 +136,9 @@ UnknownScript_0x196ec9: ; 0x196ec9
 	domaptrigger GROUP_ELMS_LAB, MAP_ELMS_LAB, $3
 	specialphonecall $2
 	clearbit1 $0702
-	checkbit1 $001c
+	checkbit1 EVENT_GOT_TOTODILE_FROM_ELM
 	iftrue UnknownScript_0x196f49
-	checkbit1 $001d
+	checkbit1 EVENT_GOT_CHIKORITA_FROM_ELM
 	iftrue UnknownScript_0x196f4d
 	setbit1 $0641
 	end

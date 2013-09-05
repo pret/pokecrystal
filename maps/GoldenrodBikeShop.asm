@@ -13,7 +13,7 @@ UnknownScript_0x5474f: ; 0x5474f
 ClerkScript_0x54750: ; 0x54750
 	faceplayer
 	loadfont
-	checkbit1 $005b
+	checkbit1 EVENT_GOT_BICYCLE
 	iftrue UnknownScript_0x54775
 	2writetext UnknownText_0x54787
 	yesorno
@@ -27,7 +27,7 @@ ClerkScript_0x54750: ; 0x54750
 	waitbutton
 	itemnotify
 	setbit2 $0014
-	setbit1 $005b
+	setbit1 EVENT_GOT_BICYCLE
 UnknownScript_0x54775: ; 0x54775
 	2writetext UnknownText_0x5485f
 	closetext

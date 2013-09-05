@@ -23,7 +23,7 @@ UnknownScript_0x18c89e: ; 0x18c89e
 ; 0x18c89f
 
 UnknownScript_0x18c89f: ; 0x18c89f
-	checkbit1 $0319
+	checkbit1 EVENT_BEAT_RIVAL_IN_MT_MOON
 	iftrue UnknownScript_0x18c8a8
 	disappear $4
 	return
@@ -62,7 +62,7 @@ UnknownScript_0x18c8b8: ; 0x18c8b8
 	playsound $0001
 	waitbutton
 	itemnotify
-	setbit1 $000f
+	setbit1 EVENT_GOT_TM24_DRAGONBREATH
 	2writetext UnknownText_0x18ca0d
 	keeptextopen
 	2writetext UnknownText_0x18caf1

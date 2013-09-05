@@ -15,28 +15,28 @@ WarehouseEntrance_MapScriptHeader: ; 0x7c038
 ; 0x7c043
 
 UnknownScript_0x7c043: ; 0x7c043
-	clearbit1 $02d3
-	clearbit1 $02d4
-	clearbit1 $02d5
-	clearbit1 $02d6
-	clearbit1 $02d7
-	clearbit1 $02d8
-	clearbit1 $02d9
-	clearbit1 $02da
-	clearbit1 $02db
-	clearbit1 $02dc
-	clearbit1 $02dd
-	clearbit1 $02de
-	clearbit1 $02df
-	clearbit1 $02e0
-	clearbit1 $02e1
+	clearbit1 EVENT_SWITCH_1
+	clearbit1 EVENT_SWITCH_2
+	clearbit1 EVENT_SWITCH_3
+	clearbit1 EVENT_EMERGENCY_SWITCH
+	clearbit1 EVENT_SWITCH_4
+	clearbit1 EVENT_SWITCH_5
+	clearbit1 EVENT_SWITCH_6
+	clearbit1 EVENT_SWITCH_7
+	clearbit1 EVENT_SWITCH_8
+	clearbit1 EVENT_SWITCH_9
+	clearbit1 EVENT_SWITCH_10
+	clearbit1 EVENT_SWITCH_11
+	clearbit1 EVENT_SWITCH_12
+	clearbit1 EVENT_SWITCH_13
+	clearbit1 EVENT_SWITCH_14
 	writebyte $0
 	copyvartobyte UndergroundSwitchPositions
 	return
 ; 0x7c076
 
 UnknownScript_0x7c076: ; 0x7c076
-	checkbit1 $0049
+	checkbit1 EVENT_USED_BASEMENT_KEY
 	iffalse UnknownScript_0x7c07d
 	return
 ; 0x7c07d
@@ -470,7 +470,7 @@ UnknownScript_0x7c2cd: ; 0x7c2cd
 
 MapWarehouseEntranceSignpost0Script: ; 0x7c2d6
 	loadfont
-	checkbit1 $0049
+	checkbit1 EVENT_USED_BASEMENT_KEY
 	iftrue UnknownScript_0x7c2fa
 	checkitem BASEMENT_KEY
 	iftrue UnknownScript_0x7c2e8
@@ -488,7 +488,7 @@ UnknownScript_0x7c2e8: ; 0x7c2e8
 	changeblock $12, $6, $2e
 	reloadmappart
 	loadmovesprites
-	setbit1 $0049
+	setbit1 EVENT_USED_BASEMENT_KEY
 	end
 ; 0x7c2fa
 

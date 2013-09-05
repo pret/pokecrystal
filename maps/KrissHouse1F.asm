@@ -131,11 +131,11 @@ MomScript_0x7a582: ; 0x7a582
 	loadfont
 	checkbit1 $0076
 	iftrue UnknownScript_0x7a5af
-	checkbit1 $0040
+	checkbit1 EVENT_TALKED_TO_MOM_AFTER_MYSTERY_EGG_QUEST
 	iftrue UnknownScript_0x7a5b8
-	checkbit1 $001f
+	checkbit1 EVENT_GAVE_MYSTERY_EGG_TO_ELM
 	iftrue UnknownScript_0x7a5b5
-	checkbit1 $001a
+	checkbit1 EVENT_GOT_A_POKEMON_FROM_ELM
 	iftrue UnknownScript_0x7a5a9
 	2writetext UnknownText_0x7a8b5
 	closetext
@@ -160,7 +160,7 @@ UnknownScript_0x7a5af: ; 0x7a5af
 UnknownScript_0x7a5b5: ; 0x7a5b5
 	setbit1 $0076
 UnknownScript_0x7a5b8: ; 0x7a5b8
-	setbit1 $0040
+	setbit1 EVENT_TALKED_TO_MOM_AFTER_MYSTERY_EGG_QUEST
 	special $0022
 	closetext
 	loadmovesprites

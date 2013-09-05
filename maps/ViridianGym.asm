@@ -18,7 +18,7 @@ BlueScript_0x9aa26: ; 0x9aa26
 	loadtrainer BLUE, 1
 	startbattle
 	returnafterbattle
-	setbit1 $04cc
+	setbit1 EVENT_BEAT_BLUE
 	loadfont
 	2writetext UnknownText_0x9ac0f
 	playsound $009c
@@ -40,7 +40,7 @@ UnknownScript_0x9aa51: ; 0x9aa51
 ViridianGymGuyScript: ; 0x9aa57
 	faceplayer
 	loadfont
-	checkbit1 $04cc
+	checkbit1 EVENT_BEAT_BLUE
 	iftrue .ViridianGymGuyWinScript
 	2writetext ViridianGymGuyText
 	closetext

@@ -19,7 +19,7 @@ JanineScript_0x195db9: ; 0x195db9
 	loadtrainer JANINE, 1
 	startbattle
 	returnafterbattle
-	setbit1 $04c9
+	setbit1 EVENT_BEAT_JANINE
 	setbit1 $0517
 	setbit1 $051a
 	setbit1 $0482
@@ -41,13 +41,13 @@ UnknownScript_0x195e00: ; 0x195e00
 	faceplayer
 	loadfont
 UnknownScript_0x195e02: ; 0x195e02
-	checkbit1 $00dd
+	checkbit1 EVENT_GOT_TM06_TOXIC
 	iftrue UnknownScript_0x195e15
 	2writetext UnknownText_0x196002
 	keeptextopen
 	verbosegiveitem TM_06, 1
 	iffalse UnknownScript_0x195e15
-	setbit1 $00dd
+	setbit1 EVENT_GOT_TM06_TOXIC
 UnknownScript_0x195e15: ; 0x195e15
 	2writetext UnknownText_0x196074
 	closetext
@@ -206,7 +206,7 @@ UnknownScript_0x195efd: ; 0x195efd
 FuchsiaGymGuyScript: ; 0x195f03
 	faceplayer
 	loadfont
-	checkbit1 $04c9
+	checkbit1 EVENT_BEAT_JANINE
 	iftrue .FuchsiaGymGuyWinScript
 	2writetext FuchsiaGymGuyText
 	closetext

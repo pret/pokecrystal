@@ -170,7 +170,7 @@ BuenaScript_0x5d775: ; 0x5d775
 	loadfont
 	checkbit2 $0013
 	iftrue UnknownScript_0x5d865
-	checkbit1 $033d
+	checkbit1 EVENT_MET_BUENA
 	iffalse UnknownScript_0x5d800
 	checkbit2 $0060
 	iftrue UnknownScript_0x5d82f
@@ -231,7 +231,7 @@ UnknownScript_0x5d7be: ; 0x5d7be
 UnknownScript_0x5d800: ; 0x5d800
 	2writetext UnknownText_0x5dcf4
 	keeptextopen
-	setbit1 $033d
+	setbit1 EVENT_MET_BUENA
 	verbosegiveitem BLUE_CARD, 1
 UnknownScript_0x5d80a: ; 0x5d80a
 	2writetext UnknownText_0x5de10
@@ -239,7 +239,7 @@ UnknownScript_0x5d80a: ; 0x5d80a
 	loadmovesprites
 	checkcellnum $25
 	iftrue UnknownScript_0x5d81a
-	checkbit1 $033c
+	checkbit1 EVENT_BUENA_OFFERED_HER_PHONE_NUMBER
 	iftrue UnknownScript_0x5d8cc
 UnknownScript_0x5d81a: ; 0x5d81a
 	spriteface $b, $3
@@ -263,7 +263,7 @@ UnknownScript_0x5d82f: ; 0x5d82f
 	loadmovesprites
 	checkcellnum $25
 	iftrue UnknownScript_0x5d83f
-	checkbit1 $033c
+	checkbit1 EVENT_BUENA_OFFERED_HER_PHONE_NUMBER
 	iftrue UnknownScript_0x5d8cc
 UnknownScript_0x5d83f: ; 0x5d83f
 	spriteface $b, $3
@@ -303,7 +303,7 @@ UnknownScript_0x5d86b: ; 0x5d86b
 	loadmovesprites
 	checkcellnum $25
 	iftrue UnknownScript_0x5d87b
-	checkbit1 $029e
+	checkbit1 EVENT_BUENA_OFFERED_HER_PHONE_NUMBER_NO_BLUE_CARD
 	iftrue UnknownScript_0x5d8cc
 UnknownScript_0x5d87b: ; 0x5d87b
 	spriteface $b, $3
@@ -316,7 +316,7 @@ UnknownScript_0x5d87f: ; 0x5d87f
 	loadmovesprites
 	checkcellnum $25
 	iftrue UnknownScript_0x5d88f
-	checkbit1 $029e
+	checkbit1 EVENT_BUENA_OFFERED_HER_PHONE_NUMBER_NO_BLUE_CARD
 	iftrue UnknownScript_0x5d8cc
 UnknownScript_0x5d88f: ; 0x5d88f
 	spriteface $b, $3
@@ -329,7 +329,7 @@ UnknownScript_0x5d893: ; 0x5d893
 	loadmovesprites
 	checkcellnum $25
 	iftrue UnknownScript_0x5d8a3
-	checkbit1 $033c
+	checkbit1 EVENT_BUENA_OFFERED_HER_PHONE_NUMBER
 	iftrue UnknownScript_0x5d8cc
 UnknownScript_0x5d8a3: ; 0x5d8a3
 	end
@@ -343,11 +343,11 @@ UnknownScript_0x5d8a4: ; 0x5d8a4
 	pause 15
 	spriteface $0, $1
 	pause 15
-	checkbit1 $029e
+	checkbit1 EVENT_BUENA_OFFERED_HER_PHONE_NUMBER_NO_BLUE_CARD
 	iftrue UnknownScript_0x5d8cc
 	showemote $0, $b, 15
-	setbit1 $029e
-	setbit1 $033c
+	setbit1 EVENT_BUENA_OFFERED_HER_PHONE_NUMBER_NO_BLUE_CARD
+	setbit1 EVENT_BUENA_OFFERED_HER_PHONE_NUMBER
 	loadfont
 	2writetext UnknownText_0x5e1ee
 	2jump UnknownScript_0x5d8d0

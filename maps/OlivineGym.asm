@@ -9,7 +9,7 @@ OlivineGym_MapScriptHeader: ; 0x9c12d
 JasmineScript_0x9c12f: ; 0x9c12f
 	faceplayer
 	loadfont
-	checkbit1 $04c1
+	checkbit1 EVENT_BEAT_JASMINE
 	iftrue UnknownScript_0x9c159
 	2writetext UnknownText_0x9c1b9
 	closetext
@@ -18,7 +18,7 @@ JasmineScript_0x9c12f: ; 0x9c12f
 	loadtrainer JASMINE, 1
 	startbattle
 	returnafterbattle
-	setbit1 $04c1
+	setbit1 EVENT_BEAT_JASMINE
 	loadfont
 	2writetext UnknownText_0x9c33a
 	playsound $009c
@@ -27,13 +27,13 @@ JasmineScript_0x9c12f: ; 0x9c12f
 	checkcode $7
 	2call UnknownScript_0x9c178
 UnknownScript_0x9c159: ; 0x9c159
-	checkbit1 $000d
+	checkbit1 EVENT_GOT_TM23_IRON_TAIL
 	iftrue UnknownScript_0x9c172
 	2writetext UnknownText_0x9c354
 	keeptextopen
 	verbosegiveitem TM_23, 1
 	iffalse UnknownScript_0x9c176
-	setbit1 $000d
+	setbit1 EVENT_GOT_TM23_IRON_TAIL
 	2writetext UnknownText_0x9c3a5
 	closetext
 	loadmovesprites
@@ -64,9 +64,9 @@ UnknownScript_0x9c184: ; 0x9c184
 
 OlivineGymGuyScript: ; 0x9c187
 	faceplayer
-	checkbit1 $04c1
+	checkbit1 EVENT_BEAT_JASMINE
 	iftrue .OlivineGymGuyWinScript
-	checkbit1 $0020
+	checkbit1 EVENT_JASMINE_RETURNED_TO_GYM
 	iffalse .OlivineGymGuyPreScript
 	loadfont
 	2writetext OlivineGymGuyText

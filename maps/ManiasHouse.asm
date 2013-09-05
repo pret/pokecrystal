@@ -9,9 +9,9 @@ ManiasHouse_MapScriptHeader: ; 0x9d276
 RockerScript_0x9d278: ; 0x9d278
 	faceplayer
 	loadfont
-	checkbit1 $0046
+	checkbit1 EVENT_MANIA_TOOK_SHUCKIE_OR_LET_YOU_KEEP_HIM
 	iftrue UnknownScript_0x9d2fa
-	checkbit1 $0045
+	checkbit1 EVENT_GOT_SHUCKIE
 	iftrue UnknownScript_0x9d2a4
 	2writetext UnknownText_0x9d303
 	yesorno
@@ -25,7 +25,7 @@ RockerScript_0x9d278: ; 0x9d278
 	playsound $0091
 	waitbutton
 	loadmovesprites
-	setbit1 $0045
+	setbit1 EVENT_GOT_SHUCKIE
 	end
 ; 0x9d2a4
 
@@ -64,7 +64,7 @@ UnknownScript_0x9d2bc: ; 0x9d2bc
 	2writetext UnknownText_0x9d4b1
 	closetext
 	loadmovesprites
-	setbit1 $0046
+	setbit1 EVENT_MANIA_TOOK_SHUCKIE_OR_LET_YOU_KEEP_HIM
 	end
 ; 0x9d2df
 
@@ -79,7 +79,7 @@ UnknownScript_0x9d2e5: ; 0x9d2e5
 	2writetext UnknownText_0x9d4e3
 	closetext
 	loadmovesprites
-	setbit1 $0046
+	setbit1 EVENT_MANIA_TOOK_SHUCKIE_OR_LET_YOU_KEEP_HIM
 	end
 ; 0x9d2ee
 

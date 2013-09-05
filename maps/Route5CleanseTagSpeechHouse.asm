@@ -9,13 +9,13 @@ Route5CleanseTagSpeechHouse_MapScriptHeader: ; 0x18b632
 GrannyScript_0x18b634: ; 0x18b634
 	faceplayer
 	loadfont
-	checkbit1 $00db
+	checkbit1 EVENT_GOT_CLEANSE_TAG
 	iftrue UnknownScript_0x18b649
 	2writetext UnknownText_0x18b655
 	keeptextopen
 	verbosegiveitem CLEANSE_TAG, 1
 	iffalse UnknownScript_0x18b64d
-	setbit1 $00db
+	setbit1 EVENT_GOT_CLEANSE_TAG
 UnknownScript_0x18b649: ; 0x18b649
 	2writetext UnknownText_0x18b6a7
 	closetext

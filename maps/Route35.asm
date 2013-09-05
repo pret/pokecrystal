@@ -292,7 +292,7 @@ UnknownScript_0x19c9bb: ; 0x19c9bb
 	if_equal $1, UnknownScript_0x19c9ec
 	if_equal $0, UnknownScript_0x19c9f2
 UnknownScript_0x19c9da: ; 0x19c9da
-	checkbit1 $00cd
+	checkbit1 EVENT_RESTORED_POWER_TO_KANTO
 	iftrue UnknownScript_0x19ca26
 UnknownScript_0x19c9e0: ; 0x19c9e0
 	checkbit1 $0044

@@ -146,7 +146,7 @@ UnknownScript_0x780bd: ; 0x780bd
 	if_equal $1, UnknownScript_0x780ee
 	if_equal $0, UnknownScript_0x780f4
 UnknownScript_0x780dc: ; 0x780dc
-	checkbit1 $00cd
+	checkbit1 EVENT_RESTORED_POWER_TO_KANTO
 	iftrue UnknownScript_0x78128
 UnknownScript_0x780e2: ; 0x780e2
 	checkbit1 $0044
@@ -303,13 +303,13 @@ UnknownScript_0x7819f: ; 0x7819f
 	if_equal $1, UnknownScript_0x781d0
 	if_equal $0, UnknownScript_0x781d6
 UnknownScript_0x781be: ; 0x781be
-	checkbit1 $00cd
+	checkbit1 EVENT_RESTORED_POWER_TO_KANTO
 	iftrue UnknownScript_0x7820a
 UnknownScript_0x781c4: ; 0x781c4
 	checkbit1 $0044
 	iftrue UnknownScript_0x781fd
 UnknownScript_0x781ca: ; 0x781ca
-	checkbit1 $0021
+	checkbit1 EVENT_CLEARED_RADIO_TOWER
 	iftrue UnknownScript_0x781f0
 UnknownScript_0x781d0: ; 0x781d0
 	checkbit2 $0049
@@ -560,7 +560,7 @@ TrainerCooltrainerfIrene: ; 0x782b8
 CooltrainerfIreneScript: ; 0x782c4
 	talkaftercancel
 	loadfont
-	checkbit1 $0070
+	checkbit1 EVENT_GOT_SOFT_SAND_FROM_KATE
 	iftrue UnknownScript_0x782d2
 	2writetext UnknownText_0x7877f
 	closetext
@@ -598,7 +598,7 @@ TrainerCooltrainerfJenn: ; 0x782d8
 CooltrainerfJennScript: ; 0x782e4
 	talkaftercancel
 	loadfont
-	checkbit1 $0070
+	checkbit1 EVENT_GOT_SOFT_SAND_FROM_KATE
 	iftrue UnknownScript_0x782f2
 	2writetext UnknownText_0x78836
 	closetext
@@ -636,13 +636,13 @@ TrainerCooltrainerfKate: ; 0x782f8
 CooltrainerfKateScript: ; 0x78304
 	talkaftercancel
 	loadfont
-	checkbit1 $0070
+	checkbit1 EVENT_GOT_SOFT_SAND_FROM_KATE
 	iftrue UnknownScript_0x78319
 	2writetext UnknownText_0x788e2
 	keeptextopen
 	verbosegiveitem SOFT_SAND, 1
 	iffalse UnknownScript_0x7831d
-	setbit1 $0070
+	setbit1 EVENT_GOT_SOFT_SAND_FROM_KATE
 UnknownScript_0x78319: ; 0x78319
 	2writetext UnknownText_0x7892b
 	closetext

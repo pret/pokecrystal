@@ -17,7 +17,7 @@ GentlemanScript_0x188bd7: ; 0x188bd7
 GymGuyScript_0x188bda: ; 0x188bda
 	faceplayer
 	loadfont
-	checkbit1 $00c9
+	checkbit1 EVENT_RETURNED_MACHINE_PART
 	iftrue UnknownScript_0x188be8
 	2writetext UnknownText_0x188c26
 	closetext

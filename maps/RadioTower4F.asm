@@ -13,9 +13,9 @@ FisherScript_0x5eb82: ; 0x5eb82
 TeacherScript_0x5eb85: ; 0x5eb85
 	faceplayer
 	loadfont
-	checkbit1 $0048
+	checkbit1 EVENT_GOT_PINK_BOW_FROM_MARY
 	iftrue UnknownScript_0x5ebac
-	checkbit1 $0021
+	checkbit1 EVENT_CLEARED_RADIO_TOWER
 	iftrue UnknownScript_0x5eb99
 	2writetext UnknownText_0x5ec68
 	closetext
@@ -31,7 +31,7 @@ UnknownScript_0x5eb99: ; 0x5eb99
 	2writetext UnknownText_0x5ecef
 	closetext
 	loadmovesprites
-	setbit1 $0048
+	setbit1 EVENT_GOT_PINK_BOW_FROM_MARY
 	end
 ; 0x5ebac
 

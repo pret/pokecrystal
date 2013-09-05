@@ -70,13 +70,13 @@ UnknownScript_0x1ac051: ; 0x1ac051
 	if_equal $1, UnknownScript_0x1ac082
 	if_equal $0, UnknownScript_0x1ac088
 UnknownScript_0x1ac070: ; 0x1ac070
-	checkbit1 $00cd
+	checkbit1 EVENT_RESTORED_POWER_TO_KANTO
 	iftrue UnknownScript_0x1ac0bc
 UnknownScript_0x1ac076: ; 0x1ac076
 	checkbit1 $0044
 	iftrue UnknownScript_0x1ac0af
 UnknownScript_0x1ac07c: ; 0x1ac07c
-	checkbit1 $0021
+	checkbit1 EVENT_CLEARED_RADIO_TOWER
 	iftrue UnknownScript_0x1ac0a2
 UnknownScript_0x1ac082: ; 0x1ac082
 	checkbit2 $0047

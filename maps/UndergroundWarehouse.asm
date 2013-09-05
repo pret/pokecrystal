@@ -11,21 +11,21 @@ UndergroundWarehouse_MapScriptHeader: ; 0x7d94b
 ; 0x7d950
 
 UnknownScript_0x7d950: ; 0x7d950
-	clearbit1 $02d3
-	clearbit1 $02d4
-	clearbit1 $02d5
-	clearbit1 $02d6
-	clearbit1 $02d7
-	clearbit1 $02d8
-	clearbit1 $02d9
-	clearbit1 $02da
-	clearbit1 $02db
-	clearbit1 $02dc
-	clearbit1 $02dd
-	clearbit1 $02de
-	clearbit1 $02df
-	clearbit1 $02e0
-	clearbit1 $02e1
+	clearbit1 EVENT_SWITCH_1
+	clearbit1 EVENT_SWITCH_2
+	clearbit1 EVENT_SWITCH_3
+	clearbit1 EVENT_EMERGENCY_SWITCH
+	clearbit1 EVENT_SWITCH_4
+	clearbit1 EVENT_SWITCH_5
+	clearbit1 EVENT_SWITCH_6
+	clearbit1 EVENT_SWITCH_7
+	clearbit1 EVENT_SWITCH_8
+	clearbit1 EVENT_SWITCH_9
+	clearbit1 EVENT_SWITCH_10
+	clearbit1 EVENT_SWITCH_11
+	clearbit1 EVENT_SWITCH_12
+	clearbit1 EVENT_SWITCH_13
+	clearbit1 EVENT_SWITCH_14
 	writebyte $0
 	copyvartobyte UndergroundSwitchPositions
 	return

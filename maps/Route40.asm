@@ -164,21 +164,21 @@ StandingYoungsterScript_0x1a61d6: ; 0x1a61d6
 BuenaScript_0x1a61d9: ; 0x1a61d9
 	faceplayer
 	loadfont
-	checkbit1 $006f
+	checkbit1 EVENT_GOT_SHARP_BEAK_FROM_MONICA
 	iftrue UnknownScript_0x1a6207
 	checkcode $b
 	if_not_equal MONDAY, UnknownScript_0x1a620d
-	checkbit1 $006e
+	checkbit1 EVENT_MET_MONICA_OF_MONDAY
 	iftrue UnknownScript_0x1a61f4
 	2writetext UnknownText_0x1a6606
 	keeptextopen
-	setbit1 $006e
+	setbit1 EVENT_MET_MONICA_OF_MONDAY
 UnknownScript_0x1a61f4: ; 0x1a61f4
 	2writetext UnknownText_0x1a6636
 	keeptextopen
 	verbosegiveitem SHARP_BEAK, 1
 	iffalse UnknownScript_0x1a620b
-	setbit1 $006f
+	setbit1 EVENT_GOT_SHARP_BEAK_FROM_MONICA
 	2writetext UnknownText_0x1a666c
 	closetext
 	loadmovesprites

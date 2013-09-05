@@ -77,7 +77,7 @@ UnknownScript_0x192895: ; 0x192895
 ; 0x19289d
 
 LinkReceptionistScript_0x19289d: ; 0x19289d
-	checkbit1 $001f
+	checkbit1 EVENT_GAVE_MYSTERY_EGG_TO_ELM
 	iffalse UnknownScript_0x19288d
 	loadfont
 	2writetext UnknownText_0x192e3a
@@ -190,7 +190,7 @@ UnknownScript_0x19294a: ; 0x19294a
 ; 0x192952
 
 LinkReceptionistScript_0x192952: ; 0x192952
-	checkbit1 $001f
+	checkbit1 EVENT_GAVE_MYSTERY_EGG_TO_ELM
 	iffalse UnknownScript_0x192895
 	loadfont
 	2writetext UnknownText_0x192de0

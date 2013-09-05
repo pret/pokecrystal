@@ -16,7 +16,7 @@ LassScript_0x9dbd2: ; 0x9dbd2
 
 CianwoodGymGuyScript: ; 0x9dbd5
 	faceplayer
-	checkbit1 $04c2
+	checkbit1 EVENT_BEAT_CHUCK
 	iftrue .CianwoodGymGuyWinScript
 	loadfont
 	2writetext CianwoodGymGuyText
