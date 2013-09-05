@@ -42,7 +42,7 @@ UnknownScript_0x1883de: ; 0x1883de
 	applymovement $2, MovementData_0x1884e8
 	playsound $0023
 	disappear $2
-	setbit1 $00cb
+	setbit1 EVENT_MET_ROCKET_GRUNT_AT_CERULEAN_GYM
 	clearbit1 $076c
 	clearbit1 $076e
 	dotrigger $0
@@ -68,10 +68,10 @@ MistyScript_0x188432: ; 0x188432
 	loadtrainer MISTY, 1
 	startbattle
 	returnafterbattle
-	setbit1 $04c6
-	setbit1 $03f9
-	setbit1 $03fa
-	setbit1 $05a8
+	setbit1 EVENT_BEAT_MISTY
+	setbit1 EVENT_BEAT_SWIMMERF_DIANA
+	setbit1 EVENT_BEAT_SWIMMERF_BRIANA
+	setbit1 EVENT_BEAT_SWIMMERM_PARKER
 	loadfont
 	2writetext UnknownText_0x188768
 	playsound $009c
@@ -174,7 +174,7 @@ SwimmermParkerScript: ; 0x18849a
 CeruleanGymGuyScript: ; 0x1884a2
 	faceplayer
 	loadfont
-	checkbit1 $04c6
+	checkbit1 EVENT_BEAT_MISTY
 	iftrue .CeruleanGymGuyWinScript
 	2writetext CeruleanGymGuyText
 	closetext

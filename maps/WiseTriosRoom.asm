@@ -23,9 +23,9 @@ UnknownScript_0x98573: ; 0x98573
 ; 0x98574
 
 UnknownScript_0x98574: ; 0x98574
-	checkbit1 $0335
+	checkbit1 EVENT_FOUGHT_SUICUNE
 	iftrue UnknownScript_0x98593
-	checkbit1 $0334
+	checkbit1 EVENT_KOJI_ALLOWS_YOU_PASSAGE_TO_TIN_TOWER
 	iftrue UnknownScript_0x9858c
 	checkitem CLEAR_BELL
 	iftrue UnknownScript_0x9858c
@@ -152,7 +152,7 @@ TrainerSageKoji: ; 0x985ec
 ; 0x985f8
 
 SageKojiScript: ; 0x985f8
-	checkbit1 $0334
+	checkbit1 EVENT_KOJI_ALLOWS_YOU_PASSAGE_TO_TIN_TOWER
 	iftrue UnknownScript_0x9861b
 	pause 10
 	showemote $0, $7, 20
@@ -164,7 +164,7 @@ SageKojiScript: ; 0x985f8
 	loadmovesprites
 	applymovement $7, MovementData_0x98628
 	spriteface $7, $1
-	setbit1 $0334
+	setbit1 EVENT_KOJI_ALLOWS_YOU_PASSAGE_TO_TIN_TOWER
 	dotrigger $1
 	end
 ; 0x9861b

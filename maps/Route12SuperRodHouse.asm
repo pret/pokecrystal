@@ -9,7 +9,7 @@ Route12SuperRodHouse_MapScriptHeader: ; 0x7f482
 FishingGuruScript_0x7f484: ; 0x7f484
 	faceplayer
 	loadfont
-	checkbit1 $0019
+	checkbit1 EVENT_GOT_SUPER_ROD
 	iftrue UnknownScript_0x7f4a0
 	2writetext UnknownText_0x7f4af
 	yesorno
@@ -18,7 +18,7 @@ FishingGuruScript_0x7f484: ; 0x7f484
 	keeptextopen
 	verbosegiveitem SUPER_ROD, 1
 	iffalse UnknownScript_0x7f4aa
-	setbit1 $0019
+	setbit1 EVENT_GOT_SUPER_ROD
 UnknownScript_0x7f4a0: ; 0x7f4a0
 	2writetext UnknownText_0x7f57c
 	closetext

@@ -23,7 +23,7 @@ UnknownScript_0x6c65b: ; 0x6c65b
 ; 0x6c65e
 
 SecurityCamera1a: ; 0x6c65e
-	checkbit1 $02e4
+	checkbit1 EVENT_SECURITY_CAMERA_1
 	iftrue NoSecurityCamera
 	2call PlaySecurityCameraSounds
 	checkbit1 $06da
@@ -44,12 +44,12 @@ SecurityCamera1a: ; 0x6c65e
 	applymovement $2, SecurityCameraMovement1
 	2call TrainerCameraGrunt2
 	if_equal $1, NoSecurityCamera
-	setbit1 $02e4
+	setbit1 EVENT_SECURITY_CAMERA_1
 	end
 ; 0x6c6a7
 
 SecurityCamera1b: ; 0x6c6a7
-	checkbit1 $02e4
+	checkbit1 EVENT_SECURITY_CAMERA_1
 	iftrue NoSecurityCamera
 	2call PlaySecurityCameraSounds
 	checkbit1 $06da
@@ -70,12 +70,12 @@ SecurityCamera1b: ; 0x6c6a7
 	applymovement $2, SecurityCameraMovement1
 	2call TrainerCameraGrunt2
 	if_equal $1, NoSecurityCamera
-	setbit1 $02e4
+	setbit1 EVENT_SECURITY_CAMERA_1
 	end
 ; 0x6c6f0
 
 SecurityCamera2a: ; 0x6c6f0
-	checkbit1 $02e5
+	checkbit1 EVENT_SECURITY_CAMERA_2
 	iftrue NoSecurityCamera
 	2call PlaySecurityCameraSounds
 	checkbit1 $06da
@@ -97,12 +97,12 @@ SecurityCamera2a: ; 0x6c6f0
 	applymovement $2, SecurityCameraMovement3
 	2call TrainerCameraGrunt2
 	if_equal $1, NoSecurityCamera
-	setbit1 $02e5
+	setbit1 EVENT_SECURITY_CAMERA_2
 	end
 ; 0x6c73c
 
 SecurityCamera2b: ; 0x6c73c
-	checkbit1 $02e5
+	checkbit1 EVENT_SECURITY_CAMERA_2
 	iftrue NoSecurityCamera
 	2call PlaySecurityCameraSounds
 	checkbit1 $06da
@@ -124,12 +124,12 @@ SecurityCamera2b: ; 0x6c73c
 	applymovement $2, SecurityCameraMovement5
 	2call TrainerCameraGrunt2
 	if_equal $1, NoSecurityCamera
-	setbit1 $02e5
+	setbit1 EVENT_SECURITY_CAMERA_2
 	end
 ; 0x6c788
 
 SecurityCamera3a: ; 0x6c788
-	checkbit1 $02e6
+	checkbit1 EVENT_SECURITY_CAMERA_3
 	iftrue NoSecurityCamera
 	2call PlaySecurityCameraSounds
 	checkbit1 $06da
@@ -151,12 +151,12 @@ SecurityCamera3a: ; 0x6c788
 	applymovement $2, SecurityCameraMovement6
 	2call TrainerCameraGrunt2
 	if_equal $1, NoSecurityCamera
-	setbit1 $02e6
+	setbit1 EVENT_SECURITY_CAMERA_3
 	end
 ; 0x6c7d4
 
 SecurityCamera3b: ; 0x6c7d4
-	checkbit1 $02e6
+	checkbit1 EVENT_SECURITY_CAMERA_3
 	iftrue NoSecurityCamera
 	2call PlaySecurityCameraSounds
 	checkbit1 $06da
@@ -178,12 +178,12 @@ SecurityCamera3b: ; 0x6c7d4
 	applymovement $2, SecurityCameraMovement7
 	2call TrainerCameraGrunt2
 	if_equal $1, NoSecurityCamera
-	setbit1 $02e6
+	setbit1 EVENT_SECURITY_CAMERA_3
 	end
 ; 0x6c820
 
 SecurityCamera4: ; 0x6c820
-	checkbit1 $02e7
+	checkbit1 EVENT_SECURITY_CAMERA_4
 	iftrue NoSecurityCamera
 	2call PlaySecurityCameraSounds
 	checkbit1 $06da
@@ -205,12 +205,12 @@ SecurityCamera4: ; 0x6c820
 	applymovement $2, SecurityCameraMovement8
 	2call TrainerCameraGrunt2
 	if_equal $1, NoSecurityCamera
-	setbit1 $02e7
+	setbit1 EVENT_SECURITY_CAMERA_4
 	end
 ; 0x6c86c
 
 SecurityCamera5: ; 0x6c86c
-	checkbit1 $02e8
+	checkbit1 EVENT_SECURITY_CAMERA_5
 	iftrue NoSecurityCamera
 	2call PlaySecurityCameraSounds
 	checkbit1 $06da
@@ -232,7 +232,7 @@ SecurityCamera5: ; 0x6c86c
 	applymovement $2, SecurityCameraMovement9
 	2call TrainerCameraGrunt2
 	if_equal $1, NoSecurityCamera
-	setbit1 $02e8
+	setbit1 EVENT_SECURITY_CAMERA_5
 	end
 ; 0x6c8b8
 
@@ -284,179 +284,179 @@ PlaySecurityCameraSounds: ; 0x6c8e3
 ; 0x6c900
 
 ExplodingTrap1: ; 0x6c900
-	checkbit1 $02e9
+	checkbit1 EVENT_EXPLODING_TRAP_1
 	iftrue NoExplodingTrap
 	2call KoffingExplodingTrap
 	returnafterbattle
-	setbit1 $02e9
+	setbit1 EVENT_EXPLODING_TRAP_1
 	end
 
 ExplodingTrap2: ; 0x6c90e
-	checkbit1 $02ea
+	checkbit1 EVENT_EXPLODING_TRAP_2
 	iftrue NoExplodingTrap
 	2call VoltorbExplodingTrap
 	returnafterbattle
-	setbit1 $02ea
+	setbit1 EVENT_EXPLODING_TRAP_2
 	end
 
 ExplodingTrap3: ; 0x6c91c
-	checkbit1 $02eb
+	checkbit1 EVENT_EXPLODING_TRAP_3
 	iftrue NoExplodingTrap
 	2call GeodudeExplodingTrap
 	returnafterbattle
-	setbit1 $02eb
+	setbit1 EVENT_EXPLODING_TRAP_3
 	end
 
 ExplodingTrap4: ; 0x6c92a
-	checkbit1 $02ec
+	checkbit1 EVENT_EXPLODING_TRAP_4
 	iftrue NoExplodingTrap
 	2call VoltorbExplodingTrap
 	returnafterbattle
-	setbit1 $02ec
+	setbit1 EVENT_EXPLODING_TRAP_4
 	end
 
 ExplodingTrap5: ; 0x6c938
-	checkbit1 $02ed
+	checkbit1 EVENT_EXPLODING_TRAP_5
 	iftrue NoExplodingTrap
 	2call GeodudeExplodingTrap
 	returnafterbattle
-	setbit1 $02ed
+	setbit1 EVENT_EXPLODING_TRAP_5
 	end
 
 ExplodingTrap6: ; 0x6c946
-	checkbit1 $02ee
+	checkbit1 EVENT_EXPLODING_TRAP_6
 	iftrue NoExplodingTrap
 	2call KoffingExplodingTrap
 	returnafterbattle
-	setbit1 $02ee
+	setbit1 EVENT_EXPLODING_TRAP_6
 	end
 
 ExplodingTrap7: ; 0x6c954
-	checkbit1 $02ef
+	checkbit1 EVENT_EXPLODING_TRAP_7
 	iftrue NoExplodingTrap
 	2call VoltorbExplodingTrap
 	returnafterbattle
-	setbit1 $02ef
+	setbit1 EVENT_EXPLODING_TRAP_7
 	end
 
 ExplodingTrap8: ; 0x6c962
-	checkbit1 $02f0
+	checkbit1 EVENT_EXPLODING_TRAP_8
 	iftrue NoExplodingTrap
 	2call KoffingExplodingTrap
 	returnafterbattle
-	setbit1 $02f0
+	setbit1 EVENT_EXPLODING_TRAP_8
 	end
 
 ExplodingTrap9: ; 0x6c970
-	checkbit1 $02f1
+	checkbit1 EVENT_EXPLODING_TRAP_9
 	iftrue NoExplodingTrap
 	2call KoffingExplodingTrap
 	returnafterbattle
-	setbit1 $02f1
+	setbit1 EVENT_EXPLODING_TRAP_9
 	end
 
 ExplodingTrap10: ; 0x6c97e
-	checkbit1 $02f2
+	checkbit1 EVENT_EXPLODING_TRAP_10
 	iftrue NoExplodingTrap
 	2call VoltorbExplodingTrap
 	returnafterbattle
-	setbit1 $02f2
+	setbit1 EVENT_EXPLODING_TRAP_10
 	end
 
 ExplodingTrap11: ; 0x6c98c
-	checkbit1 $02f3
+	checkbit1 EVENT_EXPLODING_TRAP_11
 	iftrue NoExplodingTrap
 	2call GeodudeExplodingTrap
 	returnafterbattle
-	setbit1 $02f3
+	setbit1 EVENT_EXPLODING_TRAP_11
 	end
 
 ExplodingTrap12: ; 0x6c99a
-	checkbit1 $02f4
+	checkbit1 EVENT_EXPLODING_TRAP_12
 	iftrue NoExplodingTrap
 	2call GeodudeExplodingTrap
 	returnafterbattle
-	setbit1 $02f4
+	setbit1 EVENT_EXPLODING_TRAP_12
 	end
 
 ExplodingTrap13: ; 0x6c9a8
-	checkbit1 $02f5
+	checkbit1 EVENT_EXPLODING_TRAP_13
 	iftrue NoExplodingTrap
 	2call GeodudeExplodingTrap
 	returnafterbattle
-	setbit1 $02f5
+	setbit1 EVENT_EXPLODING_TRAP_13
 	end
 
 ExplodingTrap14: ; 0x6c9b6
-	checkbit1 $02f6
+	checkbit1 EVENT_EXPLODING_TRAP_14
 	iftrue NoExplodingTrap
 	2call KoffingExplodingTrap
 	returnafterbattle
-	setbit1 $02f6
+	setbit1 EVENT_EXPLODING_TRAP_14
 	end
 
 ExplodingTrap15: ; 0x6c9c4
-	checkbit1 $02f7
+	checkbit1 EVENT_EXPLODING_TRAP_15
 	iftrue NoExplodingTrap
 	2call VoltorbExplodingTrap
 	returnafterbattle
-	setbit1 $02f7
+	setbit1 EVENT_EXPLODING_TRAP_15
 	end
 
 ExplodingTrap16: ; 0x6c9d2
-	checkbit1 $02f8
+	checkbit1 EVENT_EXPLODING_TRAP_16
 	iftrue NoExplodingTrap
 	2call KoffingExplodingTrap
 	returnafterbattle
-	setbit1 $02f8
+	setbit1 EVENT_EXPLODING_TRAP_16
 	end
 
 ExplodingTrap17: ; 0x6c9e0
-	checkbit1 $02f9
+	checkbit1 EVENT_EXPLODING_TRAP_17
 	iftrue NoExplodingTrap
 	2call VoltorbExplodingTrap
 	returnafterbattle
-	setbit1 $02f9
+	setbit1 EVENT_EXPLODING_TRAP_17
 	end
 
 ExplodingTrap18: ; 0x6c9ee
-	checkbit1 $02fa
+	checkbit1 EVENT_EXPLODING_TRAP_18
 	iftrue NoExplodingTrap
 	2call GeodudeExplodingTrap
 	returnafterbattle
-	setbit1 $02fa
+	setbit1 EVENT_EXPLODING_TRAP_18
 	end
 
 ExplodingTrap19: ; 0x6c9fc
-	checkbit1 $02fb
+	checkbit1 EVENT_EXPLODING_TRAP_19
 	iftrue NoExplodingTrap
 	2call GeodudeExplodingTrap
 	returnafterbattle
-	setbit1 $02fb
+	setbit1 EVENT_EXPLODING_TRAP_19
 	end
 
 ExplodingTrap20: ; 0x6ca0a
-	checkbit1 $02fc
+	checkbit1 EVENT_EXPLODING_TRAP_20
 	iftrue NoExplodingTrap
 	2call VoltorbExplodingTrap
 	returnafterbattle
-	setbit1 $02fc
+	setbit1 EVENT_EXPLODING_TRAP_20
 	end
 
 ExplodingTrap21: ; 0x6ca18
-	checkbit1 $02fd
+	checkbit1 EVENT_EXPLODING_TRAP_21
 	iftrue NoExplodingTrap
 	2call KoffingExplodingTrap
 	returnafterbattle
-	setbit1 $02fd
+	setbit1 EVENT_EXPLODING_TRAP_21
 	end
 
 ExplodingTrap22: ; 0x6ca26
-	checkbit1 $02fe
+	checkbit1 EVENT_EXPLODING_TRAP_22
 	iftrue NoExplodingTrap
 	2call VoltorbExplodingTrap
 	returnafterbattle
-	setbit1 $02fe
+	setbit1 EVENT_EXPLODING_TRAP_22
 	end
 
 VoltorbExplodingTrap: ; 0x6ca34
@@ -561,18 +561,18 @@ MapTeamRocketBaseB1FSignpost7Script: ; 0x6ca99
 
 MapTeamRocketBaseB1FSignpost0Script: ; 0x6ca9c
 	loadfont
-	checkbit1 $02e3
+	checkbit1 EVENT_TURNED_OFF_SECURITY_CAMERAS
 	iftrue UnknownScript_0x6cabe
 	2writetext UnknownText_0x6cdad
 	playsound $0021
 	closetext
 	loadmovesprites
-	setbit1 $02e3
-	setbit1 $02e4
-	setbit1 $02e5
-	setbit1 $02e6
-	setbit1 $02e7
-	setbit1 $02e8
+	setbit1 EVENT_TURNED_OFF_SECURITY_CAMERAS
+	setbit1 EVENT_SECURITY_CAMERA_1
+	setbit1 EVENT_SECURITY_CAMERA_2
+	setbit1 EVENT_SECURITY_CAMERA_3
+	setbit1 EVENT_SECURITY_CAMERA_4
+	setbit1 EVENT_SECURITY_CAMERA_5
 	end
 ; 0x6cabe
 

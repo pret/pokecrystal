@@ -64,9 +64,9 @@ MapKrissHouse2FSignpost4Script: ; 0x7abd8
 ; 0x7abda
 
 MapKrissHouse2FSignpost2Script: ; 0x7abda
-	checkbit1 $001a
+	checkbit1 EVENT_GOT_A_POKEMON_FROM_ELM
 	iftrue UnknownScript_0x7ac07
-	checkbit1 $0325
+	checkbit1 EVENT_LISTENED_TO_RADIO_IN_NEIGHBORS_HOUSE
 	iftrue UnknownScript_0x7ac0a
 	playmusic $001d
 	loadfont
@@ -80,7 +80,7 @@ MapKrissHouse2FSignpost2Script: ; 0x7abda
 	2writetext UnknownText_0x7ac84
 	pause 45
 	loadmovesprites
-	setbit1 $0325
+	setbit1 EVENT_LISTENED_TO_RADIO_IN_NEIGHBORS_HOUSE
 	end
 ; 0x7ac07
 

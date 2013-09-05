@@ -42,7 +42,7 @@ UnknownScript_0x181454: ; 0x181454
 	clearbit1 $0738
 	domaptrigger GROUP_SPROUT_TOWER_3F, MAP_SPROUT_TOWER_3F, $1
 	special $001b
-	checkbit1 $0024
+	checkbit1 EVENT_GOT_SS_TICKET_FROM_ELM
 	iftrue UnknownScript_0x181497
 	specialphonecall $5
 UnknownScript_0x181497: ; 0x181497

@@ -24,7 +24,7 @@ UnknownScript_0x180e3d: ; 0x180e3d
 ; 0x180e3e
 
 UnknownScript_0x180e3e: ; 0x180e3e
-	checkbit1 $0311
+	checkbit1 EVENT_LANCES_ROOM_ENTRANCE_CLOSED
 	iffalse UnknownScript_0x180e48
 	changeblock $4, $16, $34
 UnknownScript_0x180e48: ; 0x180e48
@@ -44,7 +44,7 @@ UnknownScript_0x180e53: ; 0x180e53
 	reloadmappart
 	loadmovesprites
 	dotrigger $1
-	setbit1 $0311
+	setbit1 EVENT_LANCES_ROOM_ENTRANCE_CLOSED
 	end
 ; 0x180e6a
 
@@ -69,7 +69,7 @@ UnknownScript_0x180e7b: ; 0x180e7b
 	startbattle
 	reloadmapmusic
 	returnafterbattle
-	setbit1 $05bc
+	setbit1 EVENT_BEAT_CHAMPION_LANCE
 	loadfont
 	2writetext UnknownText_0x181132
 	closetext
@@ -78,7 +78,7 @@ UnknownScript_0x180e7b: ; 0x180e7b
 	changeblock $4, $0, $b
 	reloadmappart
 	loadmovesprites
-	setbit1 $0311
+	setbit1 EVENT_LANCES_ROOM_ENTRANCE_CLOSED
 	musicfadeout $0038, $10
 	pause 30
 	showemote $0, $2, 15

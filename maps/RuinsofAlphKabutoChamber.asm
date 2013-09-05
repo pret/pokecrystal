@@ -15,7 +15,7 @@ RuinsofAlphKabutoChamber_MapScriptHeader: ; 0x5871e
 ; 0x5872b
 
 UnknownScript_0x5872b: ; 0x5872b
-	checkbit1 $0327
+	checkbit1 EVENT_WALL_OPENED_IN_KABUTO_CHAMBER
 	iftrue UnknownScript_0x58732
 	end
 ; 0x58732
@@ -33,7 +33,7 @@ UnknownScript_0x58736: ; 0x58736
 ; 0x58737
 
 UnknownScript_0x58737: ; 0x58737
-	checkbit1 $0327
+	checkbit1 EVENT_WALL_OPENED_IN_KABUTO_CHAMBER
 	iftrue UnknownScript_0x58741
 	changeblock $4, $0, $2e
 UnknownScript_0x58741: ; 0x58741
@@ -101,7 +101,7 @@ ScientistScript_0x587a8: ; 0x587a8
 	loadfont
 	checkcode $e
 	if_equal 26, UnknownScript_0x587cf
-	checkbit1 $0327
+	checkbit1 EVENT_WALL_OPENED_IN_KABUTO_CHAMBER
 	iftrue UnknownScript_0x587c9
 	checkbit1 $02a1
 	iffalse UnknownScript_0x587c0
@@ -147,7 +147,7 @@ MapRuinsofAlphKabutoChamberSignpost4Script: ; 0x587db
 ; 0x587e6
 
 MapRuinsofAlphKabutoChamberSignpost5Script: ; 0x587e6
-	checkbit1 $0327
+	checkbit1 EVENT_WALL_OPENED_IN_KABUTO_CHAMBER
 	iftrue UnknownScript_0x587f7
 	loadfont
 	2writetext UnknownText_0x58ad9

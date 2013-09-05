@@ -28,7 +28,7 @@ UnknownScript_0x58f6e: ; 0x58f6e
 	closetext
 	loadmovesprites
 	dotrigger $0
-	setbit1 $002e
+	setbit1 EVENT_MADE_UNOWN_APPEAR_IN_RUINS
 	clearbit1 $078e
 	end
 ; 0x58f7d

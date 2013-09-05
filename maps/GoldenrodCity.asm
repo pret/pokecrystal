@@ -174,7 +174,7 @@ YoungsterScript_0x1989e6: ; 0x1989e6
 CooltrainerFScript_0x1989e9: ; 0x1989e9
 	faceplayer
 	loadfont
-	checkbit1 $0021
+	checkbit1 EVENT_CLEARED_RADIO_TOWER
 	iftrue UnknownScript_0x1989f7
 	2writetext UnknownText_0x198ae6
 	closetext

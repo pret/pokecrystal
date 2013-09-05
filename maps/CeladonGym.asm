@@ -19,23 +19,23 @@ ErikaScript_0x72a6a: ; 0x72a6a
 	startbattle
 	returnafterbattle
 	setbit1 $04c8
-	setbit1 $051d
-	setbit1 $0490
-	setbit1 $04ba
-	setbit1 $0468
+	setbit1 EVENT_BEAT_LASS_MICHELLE
+	setbit1 EVENT_BEAT_PICNICKER_TANYA
+	setbit1 EVENT_BEAT_BEAUTY_JULIA
+	setbit1 EVENT_BEAT_TWINS_JO_AND_ZOE
 	loadfont
 	2writetext UnknownText_0x72c96
 	playsound $009c
 	waitbutton
 	setbit2 $0026
 UnknownScript_0x72a9b: ; 0x72a9b
-	checkbit1 $00dc
+	checkbit1 EVENT_GOT_TM19_GIGA_DRAIN
 	iftrue UnknownScript_0x72aae
 	2writetext UnknownText_0x72cb0
 	keeptextopen
 	verbosegiveitem TM_19, 1
 	iffalse UnknownScript_0x72aae
-	setbit1 $00dc
+	setbit1 EVENT_GOT_TM19_GIGA_DRAIN
 UnknownScript_0x72aae: ; 0x72aae
 	2writetext UnknownText_0x72d8f
 	closetext

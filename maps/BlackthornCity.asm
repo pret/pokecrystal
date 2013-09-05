@@ -32,9 +32,9 @@ UnknownScript_0x1a46e5: ; 0x1a46e5
 SuperNerdScript_0x1a46e8: ; 0x1a46e8
 	faceplayer
 	loadfont
-	checkbit1 $04c4
+	checkbit1 EVENT_BEAT_CLAIR
 	iftrue UnknownScript_0x1a4702
-	checkbit1 $0021
+	checkbit1 EVENT_CLEARED_RADIO_TOWER
 	iftrue UnknownScript_0x1a46fc
 	2writetext UnknownText_0x1a477a
 	closetext
@@ -67,7 +67,7 @@ GrampsScript_0x1a470b: ; 0x1a470b
 BlackBeltScript_0x1a470e: ; 0x1a470e
 	faceplayer
 	loadfont
-	checkbit1 $0021
+	checkbit1 EVENT_CLEARED_RADIO_TOWER
 	iftrue UnknownScript_0x1a471c
 	2writetext UnknownText_0x1a494a
 	closetext
@@ -97,21 +97,21 @@ CooltrainerFScript_0x1a4728: ; 0x1a4728
 YoungsterScript_0x1a472b: ; 0x1a472b
 	faceplayer
 	loadfont
-	checkbit1 $006d
+	checkbit1 EVENT_GOT_SPELL_TAG_FROM_SANTOS
 	iftrue UnknownScript_0x1a4759
 	checkcode $b
 	if_not_equal SATURDAY, UnknownScript_0x1a475f
-	checkbit1 $006c
+	checkbit1 EVENT_MET_SANTOS_OF_SATURDAY
 	iftrue UnknownScript_0x1a4746
 	2writetext UnknownText_0x1a4a27
 	keeptextopen
-	setbit1 $006c
+	setbit1 EVENT_MET_SANTOS_OF_SATURDAY
 UnknownScript_0x1a4746: ; 0x1a4746
 	2writetext UnknownText_0x1a4a57
 	keeptextopen
 	verbosegiveitem SPELL_TAG, 1
 	iffalse UnknownScript_0x1a475d
-	setbit1 $006d
+	setbit1 EVENT_GOT_SPELL_TAG_FROM_SANTOS
 	2writetext UnknownText_0x1a4a6b
 	closetext
 	loadmovesprites

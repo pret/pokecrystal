@@ -16,12 +16,12 @@ UnknownScript_0x19aea2: ; 0x19aea2
 RedsMomScript_0x19aea3: ; 0x19aea3
 	faceplayer
 	loadfont
-	checkbit1 $00cc
+	checkbit1 EVENT_MET_REDS_MOM
 	iftrue UnknownScript_0x19aeb4
 	2writetext UnknownText_0x19aec0
 	closetext
 	loadmovesprites
-	setbit1 $00cc
+	setbit1 EVENT_MET_REDS_MOM
 	end
 ; 0x19aeb4
 

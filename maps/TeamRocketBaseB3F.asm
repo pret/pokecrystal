@@ -125,7 +125,7 @@ MoltresScript_0x6e091: ; 0x6e091
 	2writetext UnknownText_0x6e585
 	closetext
 	loadmovesprites
-	setbit1 $02ff
+	setbit1 EVENT_LEARNED_HAIL_GIOVANNI
 	end
 ; 0x6e09b
 

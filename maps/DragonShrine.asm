@@ -201,7 +201,7 @@ ElderScript_0x18d1a5: ; 0x18d1a5
 	iftrue UnknownScript_0x18d1ff
 	checkbit1 $00bd
 	iffalse UnknownScript_0x18d1c5
-	checkbit1 $0319
+	checkbit1 EVENT_BEAT_RIVAL_IN_MT_MOON
 	iftrue UnknownScript_0x18d1f3
 	2writetext UnknownText_0x18d724
 	closetext

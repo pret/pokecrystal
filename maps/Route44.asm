@@ -62,7 +62,7 @@ UnknownScript_0x19d86a: ; 0x19d86a
 	if_equal $1, UnknownScript_0x19d887
 	if_equal $0, UnknownScript_0x19d88d
 UnknownScript_0x19d881: ; 0x19d881
-	checkbit1 $00cd
+	checkbit1 EVENT_RESTORED_POWER_TO_KANTO
 	iftrue UnknownScript_0x19d8a7
 UnknownScript_0x19d887: ; 0x19d887
 	checkbit1 $0044
@@ -90,7 +90,7 @@ UnknownScript_0x19d8a7: ; 0x19d8a7
 	startbattle
 	returnafterbattle
 	clearbit2 $0079
-	checkbit1 $0339
+	checkbit1 EVENT_VANCE_CARBOS
 	iftrue UnknownScript_0x19d8cb
 	checkbit1 $0267
 	iftrue UnknownScript_0x19d8ca
@@ -111,7 +111,7 @@ UnknownScript_0x19d8cb: ; 0x19d8cb
 	closetext
 	verbosegiveitem CARBOS, 1
 	iffalse UnknownScript_0x19d903
-	clearbit1 $0339
+	clearbit1 EVENT_VANCE_CARBOS
 	setbit1 $0267
 	2jump UnknownScript_0x19d8eb
 ; 0x19d8df
@@ -162,7 +162,7 @@ UnknownScript_0x19d8ff: ; 0x19d8ff
 ; 0x19d903
 
 UnknownScript_0x19d903: ; 0x19d903
-	setbit1 $0339
+	setbit1 EVENT_VANCE_CARBOS
 	jumpstd $0021
 	end
 ; 0x19d90a
@@ -259,7 +259,7 @@ UnknownScript_0x19d96e: ; 0x19d96e
 	if_equal $1, UnknownScript_0x19d98b
 	if_equal $0, UnknownScript_0x19d991
 UnknownScript_0x19d985: ; 0x19d985
-	checkbit1 $00cd
+	checkbit1 EVENT_RESTORED_POWER_TO_KANTO
 	iftrue UnknownScript_0x19d9ab
 UnknownScript_0x19d98b: ; 0x19d98b
 	checkbit1 $0044
@@ -292,11 +292,11 @@ UnknownScript_0x19d9ab: ; 0x19d9ab
 
 UnknownScript_0x19d9b4: ; 0x19d9b4
 	2call UnknownScript_0x19d8fb
-	checkbit1 $032f
+	checkbit1 EVENT_WILTON_HAS_ULTRA_BALL
 	iftrue UnknownScript_0x19d9c9
-	checkbit1 $0330
+	checkbit1 EVENT_WILTON_HAS_GREAT_BALL
 	iftrue UnknownScript_0x19d9d2
-	checkbit1 $0331
+	checkbit1 EVENT_WILTON_HAS_POKE_BALL
 	iftrue UnknownScript_0x19d9db
 UnknownScript_0x19d9c9: ; 0x19d9c9
 	verbosegiveitem ULTRA_BALL, 1

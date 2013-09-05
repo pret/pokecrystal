@@ -55,13 +55,13 @@ UnknownScript_0x1a9a6f: ; 0x1a9a6f
 FisherScript_0x1a9a75: ; 0x1a9a75
 	faceplayer
 	loadfont
-	checkbit1 $00e0
+	checkbit1 EVENT_GOT_TM42_DREAM_EATER
 	iftrue UnknownScript_0x1a9a8a
 	2writetext UnknownText_0x1a9cc4
 	keeptextopen
 	verbosegiveitem TM_42, 1
 	iffalse UnknownScript_0x1a9a8e
-	setbit1 $00e0
+	setbit1 EVENT_GOT_TM42_DREAM_EATER
 UnknownScript_0x1a9a8a: ; 0x1a9a8a
 	2writetext UnknownText_0x1a9d86
 	closetext

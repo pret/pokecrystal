@@ -7,9 +7,9 @@ GoldenrodFlowerShop_MapScriptHeader: ; 0x5535b
 ; 0x5535d
 
 TeacherScript_0x5535d: ; 0x5535d
-	checkbit1 $002a
+	checkbit1 EVENT_FOUGHT_SUDOWOODO
 	iftrue UnknownScript_0x5538f
-	checkbit1 $005c
+	checkbit1 EVENT_GOT_SQUIRTBOTTLE
 	iftrue UnknownScript_0x55399
 	checkbit1 $00b9
 	iffalse UnknownScript_0x5539f
@@ -22,7 +22,7 @@ TeacherScript_0x5535d: ; 0x5535d
 	2writetext UnknownText_0x554c2
 	keeptextopen
 	verbosegiveitem SQUIRTBOTTLE, 1
-	setbit1 $005c
+	setbit1 EVENT_GOT_SQUIRTBOTTLE
 	loadmovesprites
 	setbit1 $0769
 	clearbit1 $0768
@@ -53,9 +53,9 @@ UnknownScript_0x5539f: ; 0x5539f
 LassScript_0x553a2: ; 0x553a2
 	faceplayer
 	loadfont
-	checkbit1 $002a
+	checkbit1 EVENT_FOUGHT_SUDOWOODO
 	iftrue UnknownScript_0x553c5
-	checkbit1 $005c
+	checkbit1 EVENT_GOT_SQUIRTBOTTLE
 	iftrue UnknownScript_0x553bf
 	2writetext UnknownText_0x55561
 	closetext

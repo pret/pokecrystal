@@ -47,7 +47,7 @@ FishingGuruScript_0x72139: ; 0x72139
 FisherScript_0x72144: ; 0x72144
 	faceplayer
 	loadfont
-	checkbit1 $00ce
+	checkbit1 EVENT_GOT_COINS_FROM_GAMBLER_AT_CELADON
 	iftrue .UnknownScript_0x72169
 	2writetext UnknownText_0x722dc
 	keeptextopen
@@ -58,7 +58,7 @@ FisherScript_0x72144: ; 0x72144
 	stringtotext .coinname, $1
 	2call .UnknownScript_0x72172
 	givecoins 18
-	setbit1 $00ce
+	setbit1 EVENT_GOT_COINS_FROM_GAMBLER_AT_CELADON
 .UnknownScript_0x72169 ; 0x72169
 	2writetext UnknownText_0x72345
 	closetext

@@ -15,7 +15,7 @@ RuinsofAlphAerodactylChamber_MapScriptHeader: ; 0x58da0
 ; 0x58dad
 
 UnknownScript_0x58dad: ; 0x58dad
-	checkbit1 $0329
+	checkbit1 EVENT_WALL_OPENED_IN_AERODACTYL_CHAMBER
 	iftrue UnknownScript_0x58db4
 	end
 ; 0x58db4
@@ -30,7 +30,7 @@ UnknownScript_0x58db8: ; 0x58db8
 ; 0x58db9
 
 UnknownScript_0x58db9: ; 0x58db9
-	checkbit1 $0329
+	checkbit1 EVENT_WALL_OPENED_IN_AERODACTYL_CHAMBER
 	iftrue UnknownScript_0x58dc3
 	changeblock $4, $0, $2e
 UnknownScript_0x58dc3: ; 0x58dc3
@@ -106,7 +106,7 @@ MapRuinsofAlphAerodactylChamberSignpost4Script: ; 0x58e2a
 ; 0x58e35
 
 MapRuinsofAlphAerodactylChamberSignpost5Script: ; 0x58e35
-	checkbit1 $0329
+	checkbit1 EVENT_WALL_OPENED_IN_AERODACTYL_CHAMBER
 	iftrue UnknownScript_0x58e46
 	loadfont
 	2writetext UnknownText_0x58e81

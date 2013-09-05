@@ -24,7 +24,7 @@ UnknownScript_0x19abc9: ; 0x19abc9
 ; 0x19abca
 
 UnknownScript_0x19abca: ; 0x19abca
-	checkbit1 $0022
+	checkbit1 EVENT_CLEARED_ROCKET_HIDEOUT
 	iftrue UnknownScript_0x19abd5
 	domaptrigger GROUP_ROUTE_43, MAP_ROUTE_43, $0
 	return
@@ -124,13 +124,13 @@ RocketScript_0x19ac82: ; 0x19ac82
 OfficerScript_0x19ac85: ; 0x19ac85
 	faceplayer
 	loadfont
-	checkbit1 $0059
+	checkbit1 EVENT_GOT_TM36_SLUDGE_BOMB
 	iftrue UnknownScript_0x19ac9c
 	2writetext UnknownText_0x19ad9b
 	keeptextopen
 	verbosegiveitem TM_36, 1
 	iffalse UnknownScript_0x19aca0
-	setbit1 $0059
+	setbit1 EVENT_GOT_TM36_SLUDGE_BOMB
 	loadmovesprites
 	end
 ; 0x19ac9c
