@@ -155,6 +155,7 @@ Function1052: ; 1052
 
 PrintText: ; 1057
 	call Function106c
+Function105a: ; 105a
 	push hl
 	hlcoord 1, 14
 	ld bc, 18 + 3<<8
