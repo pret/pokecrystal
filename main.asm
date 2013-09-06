@@ -3073,7 +3073,7 @@ Function2e4e: ; 2e4e
 
 Function2e50: ; 2e50
 	xor a
-	ld hl, $da72
+	ld hl, EventFlags
 	ld [hli], a
 	ret
 ; 2e56
@@ -5025,7 +5025,7 @@ CheckTrainerBattle: ; 360d
 	pop af
 	ld [$ffe0], a
 	ld a, b
-	ld [CurFruit], a
+	ld [$d03f], a
 	ld a, c
 	ld [MartPointer], a
 	jr Function367e
@@ -5033,7 +5033,7 @@ CheckTrainerBattle: ; 360d
 
 Function3674: ; 3674
 	ld a, $1
-	ld [CurFruit], a
+	ld [$d03f], a
 	ld a, $ff
 	ld [MartPointer], a
 
@@ -10336,7 +10336,7 @@ Function57bc: ; 57bc
 
 .asm_57c4
 	ld a, $0
-	ld [$d4e1], a
+	ld [PlayerAction], a
 	ret
 ; 57ca
 
@@ -12116,7 +12116,7 @@ TitleScreenEntrance: ; 62bc
 
 ; Lay out a base (all lines scrolling together).
 	ld e, a
-	ld hl, $d100
+	ld hl, LYOverrides
 	ld bc, 8 * 10 ; logo height
 	call ByteFill
 
@@ -14568,7 +14568,7 @@ Function831e: ; 831e
 	call Function1b1e
 	ld a, $3e
 	call Function1b3f
-	ld a, [CurFruit]
+	ld a, [$d03f]
 	dec a
 	jr z, Function833b
 	ld a, [$ffe0]
@@ -14983,7 +14983,7 @@ PredefPointers: ; 856b
 ; address, bank
 
 	dwb Function6508, BANK(Function6508)
-	dwb $747a, $01
+	dwb Function747a, BANK(Function747a)
 	dwb $4658, $03
 	dwb $57c1, $13 ; Flag, BANK(Flag)
 	dwb $4699, $03
@@ -14997,7 +14997,7 @@ PredefPointers: ; 856b
 	dwb Functione167, BANK(Functione167)
 	dwb Functione17b, BANK(Functione17b)
 	dwb CanLearnTMHMMove, BANK(CanLearnTMHMMove)
-	dwb $566a, $04
+	dwb GetTMHMMove, BANK(GetTMHMMove)
 	dwb $4eef, $0a
 	dwb $4b3e, $0b ; PrintMoveDescription, BANK(PrintMoveDescription)
 	dwb Function3df48, BANK(Function3df48) ; UpdatePlayerHUD
@@ -15013,7 +15013,7 @@ PredefPointers: ; 856b
 	dwb $61e6, $10
 	dwb $4f63, $0a
 	dwb $4f24, $0a
-	dwb $484a, $14
+	dwb Function5084a, BANK(Function5084a)
 	dwb $4d6f, $14
 	dwb $4d2e, $14
 	dwb $4cdb, $14
@@ -15027,11 +15027,11 @@ PredefPointers: ; 856b
 	dwb PrintMoveType, BANK(PrintMoveType)
 	dwb PrintType, BANK(PrintType)
 	dwb PrintMonTypes, BANK(PrintMonTypes)
-	dwb $5040, $14 ; GetUnownLetter
+	dwb GetUnownLetter, BANK(GetUnownLetter)
 	dwb $7cdd, $32
 	dwb $40d5, $33
 	dwb $5853, $02
-	dwb $464c, $02 ; LoadSGBLayout, BANK(LoadSGBLayout)
+	dwb Function864c, BANK(Function864c) ; LoadSGBLayout, BANK(LoadSGBLayout)
 	dwb $5d11, $24
 	dwb CheckContestMon, BANK(CheckContestMon)
 	dwb Function8c20f, BANK(Function8c20f)
@@ -15049,7 +15049,7 @@ PredefPointers: ; 856b
 	dwb DecompressPredef, BANK(DecompressPredef)
 	dwb Function0x347d3, BANK(Function0x347d3)
 	dwb $7908, $3e
-	dwb $7877, $3e
+	dwb Functionfb877, BANK(Functionfb877)
 	dwb $4000, $34
 	dwb Function50d0a, BANK(Function50d0a)
 	dwb $40a3, $34
@@ -16087,10 +16087,10 @@ SpecialsPointers: ; c029
 	dbw $0a, $5ed9
 	dbw $0a, $5eaf
 	dbw $0a, $5f47
-	dbw $03, $42f6
-	dbw $03, $4309
+	dbw BANK(Functionc2f6), Functionc2f6
+	dbw BANK(Functionc309), Functionc309
 	dbw $41, $50b9
-	dbw $03, $434a
+	dbw BANK(Functionc34a), Functionc34a
 	dbw $13, $59e5
 	dbw $04, $7a12
 	dbw $04, $7a31
@@ -16099,7 +16099,7 @@ SpecialsPointers: ; c029
 	dbw $3e, $7cd2
 	dbw $03, $4658
 	dbw $05, $559a
-	dbw $03, $42e7
+	dbw BANK(Functionc2e7), Functionc2e7
 	dbw $05, $66d6
 	dbw $05, $672a
 	dbw $05, $6936
@@ -16108,14 +16108,14 @@ SpecialsPointers: ; c029
 	dbw $23, $4c04
 	dbw BANK(SpecialNameRival), SpecialNameRival
 	dbw $24, $4913
-	dbw $03, $42c0
-	dbw $03, $42cd
-	dbw $03, $4355
-	dbw $03, $4360
-	dbw $03, $4373
-	dbw $03, $4380
-	dbw $03, $438d
-	dbw $03, $43db
+	dbw BANK(Functionc2c0), Functionc2c0
+	dbw BANK(Functionc2cd), Functionc2cd
+	dbw BANK(Functionc355), Functionc355
+	dbw BANK(Functionc360), Functionc360
+	dbw BANK(Functionc373), Functionc373
+	dbw BANK(Functionc380), Functionc380
+	dbw BANK(Functionc38d), Functionc38d
+	dbw BANK(Functionc3db), Functionc3db
 	dbw BANK(Function8c084), Function8c084
 	dbw $23, $4092
 	dbw $23, $40b6
@@ -16127,49 +16127,49 @@ SpecialsPointers: ; c029
 	dbw BANK(ClearTileMap), ClearTileMap
 	dbw BANK(Function1ad2), Function1ad2
 	dbw BANK(Functione4a), Functione4a
-	dbw $03, $4230
-	dbw $03, $4252
+	dbw BANK(Functionc230), Functionc230
+	dbw BANK(Functionc252), Functionc252
 	dbw BANK(WaitSFX),WaitSFX
 	dbw BANK(Function3cdf), Function3cdf
 	dbw BANK(Function3d47), Function3d47
 	dbw $04, $6324
-	dbw $02, $4379
-	dbw $03, $425a
+	dbw BANK(Function8379), Function8379
+	dbw BANK(Functionc25a), Functionc25a
 	dbw $03, $4268
 	dbw $03, $4276
 	dbw $03, $4284
-	dbw $03, $43ef
+	dbw BANK(Functionc3ef), Functionc3ef
 	dbw $05, $7421
 	dbw $05, $7440
 	dbw $04, $79a8
-	dbw $03, $43fc
+	dbw BANK(Functionc3fc), Functionc3fc
 	dbw $09, $6feb
 	dbw $09, $7043
 	dbw BANK(SpecialGiveShuckle), SpecialGiveShuckle
 	dbw BANK(SpecialReturnShuckle), SpecialReturnShuckle
-	dbw $01, $73f7
+	dbw BANK(Function73f7), Function73f7
 	dbw BANK(SpecialCheckPokerus),SpecialCheckPokerus
 	dbw BANK(Function24b25), Function24b25
-	dbw $09, $4b4e
+	dbw BANK(Function24b4e), Function24b4e
 	dbw BANK(Function24ae8), Function24ae8
 	dbw $13, $587a
-	dbw $03, $4434
-	dbw $03, $4422
+	dbw BANK(Functionc434), Functionc434
+	dbw BANK(Functionc422), Functionc422
 	dbw $13, $59d3
 	dbw $22, $4018
-	dbw $03, $42b9
-	dbw $03, $42da
-	dbw $01, $718d
-	dbw $01, $71ac
+	dbw BANK(Functionc2b9), Functionc2b9
+	dbw BANK(Functionc2da), Functionc2da
+	dbw BANK(Function718d), Function718d
+	dbw BANK(Function71ac), Function71ac
 	dbw $0a, $64ab
 	dbw $0a, $651f
 	dbw $0a, $6567
 	dbw BANK(Function14209), Function14209
 	dbw $3e, $7841
 	dbw BANK(SpecialSnorlaxAwake),SpecialSnorlaxAwake
-	dbw $01, $7413
-	dbw $01, $7418
-	dbw $01, $741d
+	dbw BANK(Function7413), Function7413
+	dbw BANK(Function7418), Function7418
+	dbw BANK(Function741d), Function741d
 	dbw $03, $4472
 	dbw BANK(ProfOaksPCBoot), ProfOaksPCBoot
 	dbw BANK(SpecialGameboyCheck),SpecialGameboyCheck
@@ -16200,9 +16200,9 @@ SpecialsPointers: ; c029
 	dbw $40, $51f1
 	dbw $40, $5220
 	dbw $40, $5225
-	dbw $40, $5231
+	dbw BANK(Function101231), Function101231
 	dbw BANK(Function4925b), Function4925b
-	dbw $22, $6def
+	dbw BANK(Function8adef), Function8adef
 	dbw $47, $41ab
 	dbw $5c, $4687
 	dbw $22, $6e68
@@ -16212,14 +16212,14 @@ SpecialsPointers: ; c029
 	dbw $5f, $753d
 	dbw $40, $7612
 	dbw BANK(SpecialHoOhChamber),SpecialHoOhChamber
-	dbw $40, $6142
+	dbw BANK(Function102142), Function102142
 	dbw $12, $589a
 	dbw $12, $5bf9
 	dbw $13, $70bc
 	dbw $22, $6f6b
 	dbw $22, $6fd4
 	dbw BANK(SpecialDratini),SpecialDratini
-	dbw $04, $5485
+	dbw BANK(Function11485), Function11485
 	dbw BANK(SpecialBeastsCheck),SpecialBeastsCheck
 	dbw BANK(SpecialMonCheck),SpecialMonCheck
 	dbw BANK(Functionc225), Functionc225
@@ -20074,7 +20074,7 @@ Functione277: ; e277
 	and a
 	jr z, .asm_e2e1
 	ld a, [CurItem]
-	ld [$ad27], a
+	ld [BoxMon1Item], a
 
 .asm_e2e1
 	ld a, [CurPartySpecies]
@@ -20144,7 +20144,7 @@ Functione277: ; e277
 .asm_e35e
 	ld a, $1
 	call GetSRAMBank
-	ld de, $afa6
+	ld de, BoxMon1OT
 .asm_e366
 	ld a, [ScriptBank]
 	call GetFarByte
@@ -20156,7 +20156,7 @@ Functione277: ; e277
 	ld a, [ScriptBank]
 	call GetFarByte
 	ld b, a
-	ld hl, $ad2c
+	ld hl, BoxMon1ID
 	call Random
 	ld [hli], a
 	call Random
@@ -20203,7 +20203,7 @@ Functione277: ; e277
 	ld a, $1
 	call GetSRAMBank
 	ld hl, $d050
-	ld de, $b082
+	ld de, BoxMon1Nickname
 	ld bc, $000b
 	call CopyBytes
 	call CloseSRAM
@@ -20298,7 +20298,7 @@ ClearPCItemScreen: ; e58b
 
 Functione5bb: ; e5bb
 	ld a, [CurPartyMon]
-	ld hl, $ad26
+	ld hl, BoxMon1Species
 	ld bc, $0020
 	call AddNTimes
 	ld de, TempMonSpecies
@@ -24168,7 +24168,7 @@ Function1344a: ; 1344a
 	ld a, b
 	ld [EngineBuffer1], a
 	ld a, e
-	ld [CurFruit], a
+	ld [$d03f], a
 	ld a, d
 	ld [MartPointer], a
 	call Function1345a
@@ -24178,7 +24178,7 @@ Function1344a: ; 1344a
 Function1345a: ; 1345a
 	ld de, CurMart
 	ld bc, $0004
-	ld hl, CurFruit
+	ld hl, $d03f
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -24199,7 +24199,7 @@ Function1345a: ; 1345a
 ; 1347d
 
 Function1347d: ; 1347d
-	ld hl, CurFruit
+	ld hl, $d03f
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -24250,7 +24250,7 @@ Function1347d: ; 1347d
 
 Function134c0: ; 134c0
 	push af
-	ld hl, CurFruit
+	ld hl, $d03f
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -27081,7 +27081,7 @@ Function150f9: ; 150f9
 	push de
 	ld a, $1
 	call GetSRAMBank
-	ld hl, $ad10
+	ld hl, BoxCount
 	ld de, EnemyMoveAnimation
 	ld bc, $01e0
 	call CopyBytes
@@ -27800,7 +27800,7 @@ Function15985: ; 0x15985
 	jr .asm_159f8
 
 .asm_159ef
-	call $56c7
+	call Function156c6
 
 .asm_159f2
 	ld a, $9
@@ -27946,7 +27946,7 @@ INCBIN "baserom.gbc", $15aee, $15b10 - $15aee
 
 Function15b10: ; 15b10
 	ld a, b
-	ld [CurFruit], a
+	ld [$d03f], a
 	ld a, e
 	ld [MartPointer], a
 	ld a, d
@@ -28068,7 +28068,7 @@ ReadMart: ; 15bbb
 	ld l, a
 	ld de, CurMart
 .CopyMart
-	ld a, [CurFruit]
+	ld a, [$d03f]
 	call GetFarByte
 	ld [de], a
 	inc hl
@@ -32018,7 +32018,7 @@ Function26cc0: ; 26cc0
 	jr Function26cda
 
 Function26cca: ; 26cca
-	call $6ccf
+	call Function26ccf
 	jr Function26cda
 
 Function26ccf: ; 26ccf
@@ -32085,7 +32085,7 @@ INCBIN "baserom.gbc", $26f19, $26f59 - $26f19
 
 Function26f59: ; 26f59
 	ld a, b
-	ld hl, $6f5f
+	ld hl, Table26f5f
 	rst JumpTable
 	ret
 ; 26f5f
@@ -39367,7 +39367,7 @@ Function3deb1: ; 3deb1
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	ld a, $d
+	ld a, BANK(BattleCommand70)
 	rst FarCall
 	pop bc
 	pop de
@@ -39390,13 +39390,13 @@ Function3deb1: ; 3deb1
 ; 3defc
 
 .data_3defc
-	dbw $1f, $61ac
-	dbw $20, $61b0
-	dbw $21, $61b4
-	dbw $22, $61b8
-	dbw $23, $61bc
-	dbw $24, $61c0
-	dbw $25, $61c4
+	dbw $1f, BattleCommand70
+	dbw $20, BattleCommand71
+	dbw $21, BattleCommand72
+	dbw $22, BattleCommand73
+	dbw $23, BattleCommand74
+	dbw $24, BattleCommand75
+	dbw $25, BattleCommand76
 	db $ff
 ; 3df12
 
@@ -47380,12 +47380,12 @@ CheckOwnMonAnywhere: ; 0x4a721
 ; run CheckOwnMon on each Pokémon in the PC
 	ld a, $1
 	call GetSRAMBank
-	ld a, [$ad10]
+	ld a, [BoxCount]
 	and a
 	jr z, .asm_4a766 ; 0x4a748 $1c
 	ld d, a
-	ld hl, $ad26
-	ld bc, $afa6
+	ld hl, BoxMon1Species
+	ld bc, BoxMon1OT
 .asm_4a751
 	call CheckOwnMon
 	jr nc, .asm_4a75a ; 0x4a754 $4
@@ -48374,7 +48374,7 @@ Function4db49: ; 4db49
 Function4db83: ; 4db83
 	ld a, $1
 	call GetSRAMBank
-	ld hl, $ad43
+	ld hl, BoxMon1CaughtLevel
 	call $5b53
 	call CloseSRAM
 	ret
@@ -48384,7 +48384,7 @@ Function4db92: ; 4db92
 	push bc
 	ld a, $1
 	call GetSRAMBank
-	ld hl, $ad43
+	ld hl, BoxMon1CaughtLevel
 	pop bc
 	call $5baf
 	call CloseSRAM
@@ -49313,7 +49313,7 @@ Function4e9d6: ; 4e9d6
 ; 4e9e5
 
 Function4e9e5: ; 4e9e5
-	ld hl, $d100
+	ld hl, LYOverrides
 	ld a, $90
 	ld bc, $0090
 	call ByteFill
@@ -49321,7 +49321,7 @@ Function4e9e5: ; 4e9e5
 ; 4e9f1
 
 Function4e9f1: ; 4e9f1
-	ld hl, $d100
+	ld hl, LYOverrides
 	ld a, d
 	ld c, $3e
 .asm_4e9f7
@@ -49628,7 +49628,7 @@ WritePartyMenuTilemap: ; 0x5005f
 	cp $ff
 	jr z, .asm_50084 ; 0x5007a $8
 	push hl
-	ld hl, $4089
+	ld hl, Table50089
 	rst JumpTable
 	pop hl
 	jr .asm_50077 ; 0x50082 $f3
@@ -50365,7 +50365,7 @@ Function505da: ; 505da
 	ld a, [CurPartyMon]
 	ld e, a
 	ld d, 0
-	ld hl, CurFruit
+	ld hl, $d03f
 	add hl, de
 	ld [hl], c
 	ld a, [EngineBuffer1]
@@ -50459,7 +50459,7 @@ UnknownScript_0x50677: ; 50677
 Function5067b: ; 5067b
 	xor a
 	ld [CurPartyMon], a
-	ld de, CurFruit
+	ld de, $d03f
 .asm_50682
 	push de
 	ld a, [de]
@@ -52216,7 +52216,7 @@ TrySurfStep: ; 801c0
 	jr c, .asm_801f1
 
 	call Function80341
-	ld [CurFruit], a
+	ld [$d03f], a
 	and a
 	jr z, .asm_801f1
 	cp 2
@@ -55980,7 +55980,7 @@ Function8b342: ; 8b342
 	xor a
 .asm_8b348
 	push af
-	ld hl, $7354
+	ld hl, Table8b354
 	rst JumpTable
 	pop af
 	inc a
@@ -56417,7 +56417,7 @@ _TimeOfDayPals: ; 8c011
 	
 	
 ; restore bg palette 8
-	ld hl, CurFruit ; last byte in Unkn1Pals
+	ld hl, $d03f ; last byte in Unkn1Pals
 	
 ; save wram bank
 	ld a, [rSVBK]
@@ -56955,7 +56955,7 @@ Function8c6d8: ; 8c6d8
 	push af
 	ld a, $5
 	ld [rSVBK], a
-	ld hl, $d100
+	ld hl, LYOverrides
 	call Function8c6ef
 	ld hl, $d200
 	call Function8c6ef
@@ -62962,7 +62962,7 @@ Functioncc8a4: ; cc8a4
 ; cc8d3
 
 Functioncc8d3: ; cc8d3
-	ld hl, $d100
+	ld hl, LYOverrides
 	ld bc, $0354
 .asm_cc8d9
 	ld [hl], $0
@@ -65440,7 +65440,7 @@ Functionfb4f2: ; fb4f2
 	ld de, $4700
 	ld bc, $3e03
 	call Functiondc9
-	call $74cc
+	call Functionfb4cc
 	ld de, $4ac0
 	ld hl, $96c0
 	ld bc, $3e04
@@ -65461,7 +65461,7 @@ Functionfb4f2: ; fb4f2
 ; fb53e
 
 Functionfb53e: ; fb53e
-	call $74be
+	call Functionfb4be
 	ld de, $4ac0
 	ld hl, $96c0
 	ld bc, $3e04
@@ -67907,7 +67907,7 @@ Function100276: ; 100276
 .asm_1002b1
 	call Function1002c9
 	call Function1002dc
-	ld de, $424d
+	ld de, String10024d
 	call Function100232
 	ld c, $2
 	ret
@@ -70979,7 +70979,7 @@ Function109847: ; 109847
 	call $5a95
 	xor a
 	ld [$cf66], a
-	ld hl, $d100
+	ld hl, LYOverrides
 	ld bc, Start
 	xor a
 	call ByteFill
@@ -72240,10 +72240,10 @@ UnknownText_0x11ac0b: ; 0x11ac0b
 ; 0x11ac1f
 
 UnknownText_0x11ac1f: ; 0x11ac1f
-	text_from_ram $d099
+	text_from_ram StringBuffer3
 	db $0, "'s ROOM", $4f
 	db "@"
-	text_from_ram $d0ac
+	text_from_ram StringBuffer4
 	db $0, "?", $55
 	db "Please wait…", $57
 ; 0x11ac3e
