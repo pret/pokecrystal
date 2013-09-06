@@ -16071,43 +16071,43 @@ Functionc01b: ; c01b
 
 SpecialsPointers: ; c029
 	dbw BANK(Function97c28), Function97c28
-	dbw $0a, $5ce8
-	dbw $0a, $5d11
-	dbw $0a, $5d92
-	dbw $0a, $5e66
-	dbw $0a, $5e82
-	dbw $0a, $5efa
-	dbw $0a, $5eee
-	dbw $0a, $5c92
-	dbw $0a, $5cf1
-	dbw $0a, $5cfa
-	dbw $0a, $5bfb
-	dbw $0a, $5c7b
-	dbw $0a, $5ec4
-	dbw $0a, $5ed9
-	dbw $0a, $5eaf
-	dbw $0a, $5f47
+	dbw BANK(Function29ce8), Function29ce8
+	dbw BANK(Function29d11), Function29d11
+	dbw BANK(Function29d92), Function29d92
+	dbw BANK(Function29e66), Function29e66
+	dbw BANK(Function29e82), Function29e82
+	dbw BANK(Function29efa), Function29efa
+	dbw BANK(Function29eee), Function29eee
+	dbw BANK(Function29c92), Function29c92
+	dbw BANK(Function29cf1), Function29cf1
+	dbw BANK(Function29cfa), Function29cfa
+	dbw BANK(Function29bfb), Function29bfb
+	dbw BANK(Function29c7b), Function29c7b
+	dbw BANK(Function29ec4), Function29ec4
+	dbw BANK(Function29ed9), Function29ed9
+	dbw BANK(Function29eaf), Function29eaf
+	dbw BANK(Function29f47), Function29f47
 	dbw BANK(Functionc2f6), Functionc2f6
 	dbw BANK(Functionc309), Functionc309
-	dbw $41, $50b9
+	dbw BANK(Function1050b9), Function1050b9
 	dbw BANK(Functionc34a), Functionc34a
-	dbw $13, $59e5
-	dbw $04, $7a12
-	dbw $04, $7a31
-	dbw $04, $75db
-	dbw $3e, $7b32
-	dbw $3e, $7cd2
-	dbw $03, $4658
-	dbw $05, $559a
+	dbw BANK(Function4d9e5), Function4d9e5
+	dbw BANK(Function13a12), Function13a12
+	dbw BANK(Function13a31), Function13a31
+	dbw BANK(Function135db), Function135db
+	dbw BANK(Functionfbb32), Functionfbb32
+	dbw BANK(Functionfbcd2), Functionfbcd2
+	dbw BANK(Functionc658), Functionc658
+	dbw BANK(Function1559a), Function1559a
 	dbw BANK(Functionc2e7), Functionc2e7
-	dbw $05, $66d6
-	dbw $05, $672a
-	dbw $05, $6936
-	dbw $0b, $4547
-	dbw $05, $6218
-	dbw $23, $4c04
+	dbw BANK(Function166d6), Function166d6
+	dbw BANK(Function1672a), Function1672a
+	dbw BANK(Function16936), Function16936
+	dbw BANK(Function2c547), Function2c547
+	dbw BANK(Function16218), Function16218
+	dbw BANK(Function8cc04), Function8cc04
 	dbw BANK(SpecialNameRival), SpecialNameRival
-	dbw $24, $4913
+	dbw BANK(Function90913), Function90913
 	dbw BANK(Functionc2c0), Functionc2c0
 	dbw BANK(Functionc2cd), Functionc2cd
 	dbw BANK(Functionc355), Functionc355
@@ -16117,10 +16117,10 @@ SpecialsPointers: ; c029
 	dbw BANK(Functionc38d), Functionc38d
 	dbw BANK(Functionc3db), Functionc3db
 	dbw BANK(Function8c084), Function8c084
-	dbw $23, $4092
-	dbw $23, $40b6
+	dbw BANK(Function8c092), Function8c092
+	dbw BANK(Function8c0b6), Function8c0b6
 	dbw BANK(Function8c079), Function8c079
-	dbw $23, $40ab
+	dbw BANK(Function8c0ab), Function8c0ab
 	dbw BANK(Functiond91), Functiond91
 	dbw BANK(WhiteBGMap), WhiteBGMap
 	dbw BANK(UpdateTimePals), UpdateTimePals
@@ -16132,19 +16132,19 @@ SpecialsPointers: ; c029
 	dbw BANK(WaitSFX),WaitSFX
 	dbw BANK(Function3cdf), Function3cdf
 	dbw BANK(Function3d47), Function3d47
-	dbw $04, $6324
+	dbw BANK(Function12324), Function12324
 	dbw BANK(Function8379), Function8379
 	dbw BANK(Functionc25a), Functionc25a
-	dbw $03, $4268
-	dbw $03, $4276
-	dbw $03, $4284
+	dbw BANK(Functionc268), Functionc268
+	dbw BANK(Functionc276), Functionc276
+	dbw BANK(Functionc284), Functionc284
 	dbw BANK(Functionc3ef), Functionc3ef
-	dbw $05, $7421
-	dbw $05, $7440
-	dbw $04, $79a8
+	dbw BANK(Function17421), Function17421
+	dbw BANK(Function17440), Function17440
+	dbw BANK(Function139a8), Function139a8
 	dbw BANK(Functionc3fc), Functionc3fc
-	dbw $09, $6feb
-	dbw $09, $7043
+	dbw BANK(Function26feb), Function26feb
+	dbw BANK(Function27043), Function27043
 	dbw BANK(SpecialGiveShuckle), SpecialGiveShuckle
 	dbw BANK(SpecialReturnShuckle), SpecialReturnShuckle
 	dbw BANK(Function73f7), Function73f7
@@ -16152,92 +16152,92 @@ SpecialsPointers: ; c029
 	dbw BANK(Function24b25), Function24b25
 	dbw BANK(Function24b4e), Function24b4e
 	dbw BANK(Function24ae8), Function24ae8
-	dbw $13, $587a
+	dbw BANK(Function4d87a), Function4d87a
 	dbw BANK(Functionc434), Functionc434
 	dbw BANK(Functionc422), Functionc422
-	dbw $13, $59d3
-	dbw $22, $4018
+	dbw BANK(Function4d9d3), Function4d9d3
+	dbw BANK(Function88018), Function88018
 	dbw BANK(Functionc2b9), Functionc2b9
 	dbw BANK(Functionc2da), Functionc2da
 	dbw BANK(Function718d), Function718d
 	dbw BANK(Function71ac), Function71ac
-	dbw $0a, $64ab
-	dbw $0a, $651f
-	dbw $0a, $6567
+	dbw BANK(Function2a4ab), Function2a4ab
+	dbw BANK(Function2a51f), Function2a51f
+	dbw BANK(Function2a567), Function2a567
 	dbw BANK(Function14209), Function14209
-	dbw $3e, $7841
+	dbw BANK(Functionfb841), Functionfb841
 	dbw BANK(SpecialSnorlaxAwake),SpecialSnorlaxAwake
 	dbw BANK(Function7413), Function7413
 	dbw BANK(Function7418), Function7418
 	dbw BANK(Function741d), Function741d
-	dbw $03, $4472
+	dbw BANK(Functionc472), Functionc472
 	dbw BANK(ProfOaksPCBoot), ProfOaksPCBoot
 	dbw BANK(SpecialGameboyCheck),SpecialGameboyCheck
 	dbw BANK(SpecialTrainerHouse),SpecialTrainerHouse
-	dbw $05, $6dc7
+	dbw BANK(Function16dc7), Function16dc7
 	dbw BANK(InitRoamMons), InitRoamMons
-	dbw $03, $448f
-	dbw $03, $449f
-	dbw $03, $44ac
-	dbw $46, $6c3e
-	dbw $46, $7444
-	dbw $46, $75e8
-	dbw $46, $77e5
-	dbw $46, $7879
-	dbw $46, $7920
-	dbw $46, $793b
-	dbw $5c, $40b0
-	dbw $5c, $40ba
-	dbw $5c, $4114
-	dbw $5c, $4215
-	dbw $5c, $44e1
-	dbw $5c, $421d
-	dbw $5c, $4b44
-	dbw $46, $7a38
-	dbw $5c, $4bd3
-	dbw $45, $7656
+	dbw BANK(Functionc48f), Functionc48f
+	dbw BANK(Functionc49f), Functionc49f
+	dbw BANK(Functionc4ac), Functionc4ac
+	dbw BANK(Function11ac3e), Function11ac3e
+	dbw BANK(Function11b444), Function11b444
+	dbw BANK(Function11b5e8), Function11b5e8
+	dbw BANK(Function11b7e5), Function11b7e5
+	dbw BANK(Function11b879), Function11b879
+	dbw BANK(Function11b920), Function11b920
+	dbw BANK(Function11b93b), Function11b93b
+	dbw BANK(Function1700b0), Function1700b0
+	dbw BANK(Function1700ba), Function1700ba
+	dbw BANK(Function170114), Function170114
+	dbw BANK(Function170215), Function170215
+	dbw BANK(Function1704e1), Function1704e1
+	dbw BANK(Function17021d), Function17021d
+	dbw BANK(Function170b44), Function170b44
+	dbw BANK(Function11ba38), Function11ba38
+	dbw BANK(Function170bd3), Function170bd3
+	dbw BANK(Function117656), Function117656
 	dbw BANK(Reset), Reset
-	dbw $40, $51f1
-	dbw $40, $5220
-	dbw $40, $5225
+	dbw BANK(Function1011f1), Function1011f1
+	dbw BANK(Function101220), Function101220
+	dbw BANK(Function101225), Function101225
 	dbw BANK(Function101231), Function101231
 	dbw BANK(Function4925b), Function4925b
 	dbw BANK(Function8adef), Function8adef
-	dbw $47, $41ab
-	dbw $5c, $4687
-	dbw $22, $6e68
-	dbw $5f, $5224
-	dbw $5f, $52b6
-	dbw $5f, $52ce
-	dbw $5f, $753d
-	dbw $40, $7612
+	dbw BANK(Function11c1ab), Function11c1ab
+	dbw BANK(Function170687), Function170687
+	dbw BANK(Function8ae68), Function8ae68
+	dbw BANK(Function17d224), Function17d224
+	dbw BANK(Function17d2b6), Function17d2b6
+	dbw BANK(Function17d2ce), Function17d2ce
+	dbw BANK(Function17f53d), Function17f53d
+	dbw BANK(Function103612), Function103612
 	dbw BANK(SpecialHoOhChamber),SpecialHoOhChamber
 	dbw BANK(Function102142), Function102142
-	dbw $12, $589a
-	dbw $12, $5bf9
-	dbw $13, $70bc
-	dbw $22, $6f6b
-	dbw $22, $6fd4
+	dbw BANK(Function4989a), Function4989a
+	dbw BANK(Function49bf9), Function49bf9
+	dbw BANK(Function4f0bc), Function4f0bc
+	dbw BANK(Function8af6b), Function8af6b
+	dbw BANK(Function8afd4), Function8afd4
 	dbw BANK(SpecialDratini),SpecialDratini
 	dbw BANK(Function11485), Function11485
 	dbw BANK(SpecialBeastsCheck),SpecialBeastsCheck
 	dbw BANK(SpecialMonCheck),SpecialMonCheck
 	dbw BANK(Functionc225), Functionc225
-	dbw $5c, $4bd2
-	dbw $40, $766e
-	dbw $40, $77eb
-	dbw $40, $783c
-	dbw $41, $60a2
+	dbw BANK(Function170bd2), Function170bd2
+	dbw BANK(Function10366e), Function10366e
+	dbw BANK(Function1037eb), Function1037eb
+	dbw BANK(Function10383c), Function10383c
+	dbw BANK(Function1060a2), Function1060a2
 	dbw BANK(Function14168), Function14168
-	dbw $40, $77c2
-	dbw $41, $630f
-	dbw $40, $7780
-	dbw $40, $787b
-	dbw $12, $6e12
-	dbw $41, $47eb
-	dbw $12, $6927
-	dbw $24, $4a54
-	dbw $24, $4a88
+	dbw BANK(Function1037c2), Function1037c2
+	dbw BANK(Function10630f), Function10630f
+	dbw BANK(Function103780), Function103780
+	dbw BANK(Function10387b), Function10387b
+	dbw BANK(Function4ae12), Function4ae12
+	dbw BANK(Function1047eb), Function1047eb
+	dbw BANK(Function4a927), Function4a927
+	dbw BANK(Function90a54), Function90a54
+	dbw BANK(Function90a88), Function90a88
 	dbw BANK(Functionc224), Functionc224
 ; c224
 
@@ -16279,33 +16279,36 @@ Functionc25a: ; c25a
 	ld a, [ScriptVar]
 	ld b, a
 	callba Function4dbd2
-	jr z, .asm_c298
-	jr .asm_c292
+	jr z, Functionc298
+	jr Functionc292
 
+Functionc268: ; c268
 	ld a, [ScriptVar]
 	ld b, a
 	callba Function4dbd9
-	jr z, .asm_c298
-	jr .asm_c292
+	jr z, Functionc298
+	jr Functionc292
 
+Functionc276: ; c276
 	ld a, [ScriptVar]
 	ld b, a
 	callba Function4dbe0
-	jr z, .asm_c298
-	jr .asm_c292
+	jr z, Functionc298
+	jr Functionc292
 
+Functionc284: ; c284
 	ld a, [ScriptVar]
 	ld b, a
 	callba Function4dbe6
-	jr z, .asm_c298
-	jr .asm_c292
+	jr z, Functionc298
+	jr Functionc292
 
-.asm_c292
+Functionc292: ; c292
 	ld a, $1
 	ld [ScriptVar], a
 	ret
 
-.asm_c298
+Functionc298: ; c298
 	xor a
 	ld [ScriptVar], a
 	ret
@@ -31001,25 +31004,26 @@ Function17421: ; 17421
 	call Function37ce
 	ld a, [DaycareLady]
 	bit 0, a
-	jr z, .asm_1745f
+	jr z, Function1745f
 	call Functionaaf
 	ld hl, BreedMon2Nick
 	call Function1746c
 	jp PrintText
 
+Function17440: ; 17440
 	ld hl, $7462
 	call PrintText
 	ld a, [BreedMon2Species]
 	call Function37ce
 	ld a, [DaycareMan]
 	bit 0, a
-	jr z, .asm_1745f
+	jr z, Function1745f
 	call Functionaaf
 	ld hl, BreedMon1Nick
 	call Function1746c
 	jp PrintText
 
-.asm_1745f
+Function1745f: ; 1745f
 	jp Functiona80
 ; 17462
 
@@ -78086,16 +78090,21 @@ Function101220: ; 101220
 	ret
 ; 101225
 
-INCBIN "baserom.gbc", $101225, $101231 - $101225
+Function101225: ; 101225
+	ld d, $1
+	ld e, $40
+	ld bc, $5297
+	call Function100000
+	jr Function10123d
 
 Function101231: ; 101231
 	ld d, $2
 	ld e, $40
 	ld bc, $5297
 	call Function100000
-	jr .asm_10123d
+	jr Function10123d
 
-.asm_10123d
+Function10123d: ; 10123d
 	xor a
 	ld [ScriptVar], a
 	ld a, c
