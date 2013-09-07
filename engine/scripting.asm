@@ -1787,15 +1787,15 @@ StdScript: ; 0x9757b
 	ld e, a
 	call GetScriptByte
 	ld d, a
-	ld hl, $4000 ; StdScripts
+	ld hl, StdScripts
 	add hl, de
 	add hl, de
 	add hl, de
-	ld a, $2f ; BANK(StdScripts)
+	ld a, BANK(StdScripts)
 	call GetFarByte
 	ld b, a
 	inc hl
-	ld a, $2f ; BANK(StdScripts)
+	ld a, BANK(StdScripts)
 	call GetFarHalfword
 	ret
 ; 0x97596
