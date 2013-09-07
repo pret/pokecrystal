@@ -75059,7 +75059,7 @@ UnknownScript_0xbcdcd: ; 0xbcdcd
 UnknownScript_0xbcde0: ; 0xbcde0
 	3writetext $6c, $47e3
 	special $0050
-	loadmenudata $4e54
+	loadmenudata MenuDataHeader_0xbce54
 	interpretmenu2
 	writebackup
 	if_equal $1, UnknownScript_0xbcdf7
@@ -75116,7 +75116,23 @@ UnknownScript_0xbce4d: ; 0xbce4d
 	end
 ; 0xbce54
 
-INCBIN "baserom.gbc", $bce54, $bce7f - $bce54
+
+MenuDataHeader_0xbce54: ; 0xbce54
+	db $40 ; flags
+	db 04, 00 ; start coords
+	db 11, 15 ; end coords
+	dw MenuData2_0xbce5c
+	db 1 ; default option
+; 0xbce5c
+
+MenuData2_0xbce5c: ; 0xbce5c
+	db $80 ; flags
+	db 3 ; items
+	db " 50 :  ¥1000@"
+	db "500 : ¥10000@"
+	db "CANCEL@"
+; 0xbce7f
+
 
 UnknownScript_0xbce7f: ; 0xbce7f
 	faceplayer
@@ -75439,6 +75455,8 @@ ElmPhoneScript2: ; 0xbd081
 	3writetext BANK(ElmPhoneUnusedText), ElmPhoneUnusedText
 	specialphonecall $0000
 	end
+; bd0d0
+
 
 INCBIN "baserom.gbc", $bd0d0, $be699-$bd0d0
 
