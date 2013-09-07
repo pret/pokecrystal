@@ -14999,7 +14999,7 @@ PredefPointers: ; 856b
 	dwb CanLearnTMHMMove, BANK(CanLearnTMHMMove)
 	dwb GetTMHMMove, BANK(GetTMHMMove)
 	dwb Function28eef, BANK(Function28eef)
-	dwb $4b3e, $0b ; PrintMoveDescription, BANK(PrintMoveDescription)
+	dwb PrintMoveDesc, BANK(PrintMoveDesc)
 	dwb Function3df48, BANK(Function3df48) ; UpdatePlayerHUD
 	dwb FillBox, BANK(FillBox)
 	dwb Function3d873, BANK(Function3d873)
@@ -39844,7 +39844,7 @@ Function2c7fb: ; 2c7fb
 INCBIN "baserom.gbc", $2c867, $2cb3e - $2c867
 
 
-PrintMoveDescription: ; 2cb3e
+PrintMoveDesc: ; 2cb3e
 	push hl
 	ld hl, MoveDescriptions
 	ld a, [CurSpecies]
