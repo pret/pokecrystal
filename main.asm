@@ -73343,35 +73343,45 @@ UnknownScript_0xbc375: ; 0xbc375
 
 UnknownScript_0xbc380: ; 0xbc380
 	checkbit1 $0716
-	iftrue $4389
+	iftrue .skip1
 	clearbit1 $0720
+.skip1
 	checkbit1 $0717
-	iftrue $4392
+	iftrue .skip2
 	clearbit1 $0721
+.skip2
 	checkbit1 $0718
-	iftrue $439b
+	iftrue .skip3
 	clearbit1 $0722
+.skip3
 	checkbit1 $0719
-	iftrue $43a4
+	iftrue .skip4
 	clearbit1 $0723
+.skip4
 	checkbit1 $071a
-	iftrue $43ad
+	iftrue .skip5
 	clearbit1 $0724
+.skip5
 	checkbit1 $071b
-	iftrue $43b6
+	iftrue .skip6
 	clearbit1 $0725
+.skip6
 	checkbit1 $071c
-	iftrue $43bf
+	iftrue .skip7
 	clearbit1 $0726
+.skip7
 	checkbit1 $071d
-	iftrue $43c8
+	iftrue .skip8
 	clearbit1 $0727
+.skip8
 	checkbit1 $071e
-	iftrue $43d1
+	iftrue .skip9
 	clearbit1 $0728
+.skip9
 	checkbit1 $071f
-	iftrue $43da
+	iftrue .skip10
 	clearbit1 $0729
+.skip10
 	end
 ; 0xbc3db
 
@@ -73518,7 +73528,7 @@ UnknownScript_0xbc3db: ; 0xbc3db
 UnknownScript_0xbc574: ; 0xbc574
 	special $005d
 	checkcode $17
-	if_equal $5, $45c9
+	if_equal $5, UnknownScript_0xbc5c9
 	if_equal $7, UnknownScript_0xbc5ce
 	if_equal $b, UnknownScript_0xbc5d3
 	if_equal $d, UnknownScript_0xbc5d8
@@ -73538,6 +73548,8 @@ UnknownScript_0xbc574: ; 0xbc574
 	if_equal $21, UnknownScript_0xbc61e
 	if_equal $22, UnknownScript_0xbc623
 	if_equal $23, UnknownScript_0xbc628
+
+UnknownScript_0xbc5c9: ; bc5c9
 	3writetext $6c, $49fe
 	end
 ; 0xbc5ce
@@ -73640,7 +73652,7 @@ UnknownScript_0xbc628: ; 0xbc628
 UnknownScript_0xbc62d: ; 0xbc62d
 	special $005d
 	checkcode $17
-	if_equal $5, $4682
+	if_equal $5, UnknownScript_0xbc682
 	if_equal $7, UnknownScript_0xbc687
 	if_equal $b, UnknownScript_0xbc68c
 	if_equal $d, UnknownScript_0xbc691
@@ -73660,6 +73672,8 @@ UnknownScript_0xbc62d: ; 0xbc62d
 	if_equal $21, UnknownScript_0xbc6d7
 	if_equal $22, UnknownScript_0xbc6dc
 	if_equal $23, UnknownScript_0xbc6e1
+
+UnknownScript_0xbc682: ; bc682
 	3writetext $6c, $4a82
 	end
 ; 0xbc687
