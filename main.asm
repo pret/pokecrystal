@@ -14984,21 +14984,21 @@ PredefPointers: ; 856b
 
 	dwb Function6508, BANK(Function6508)
 	dwb Function747a, BANK(Function747a)
-	dwb $4658, $03
-	dwb $57c1, $13 ; Flag, BANK(Flag)
-	dwb $4699, $03
+	dwb Functionc658, BANK(Functionc658)
+	dwb Function4d7c1, BANK(Function4d7c1)
+	dwb Functionc699, BANK(Functionc699)
 	dwb FillPP, BANK(FillPP)
 	dwb Functiond88c, BANK(Functiond88c)
-	dwb $5a96, $03
-	dwb $5b3f, $03
+	dwb Functionda96, BANK(Functionda96)
+	dwb Functiondb3f, BANK(Functiondb3f)
 	dwb Functionde6e, BANK(Functionde6e)
 	dwb Functiondf8c, BANK(Functiondf8c)
-	dwb $46e0, $03
+	dwb Functionc6e0, BANK(Functionc6e0)
 	dwb Functione167, BANK(Functione167)
 	dwb Functione17b, BANK(Functione17b)
 	dwb CanLearnTMHMMove, BANK(CanLearnTMHMMove)
 	dwb GetTMHMMove, BANK(GetTMHMMove)
-	dwb $4eef, $0a
+	dwb Function28eef, BANK(Function28eef)
 	dwb $4b3e, $0b ; PrintMoveDescription, BANK(PrintMoveDescription)
 	dwb Function3df48, BANK(Function3df48) ; UpdatePlayerHUD
 	dwb FillBox, BANK(FillBox)
@@ -15010,57 +15010,58 @@ PredefPointers: ; 856b
 	dwb Function3f47c, BANK(Function3f47c)
 	dwb Function42487, BANK(Function42487)
 	dwb FillMoves, BANK(FillMoves)
-	dwb $61e6, $10
-	dwb $4f63, $0a
-	dwb $4f24, $0a
+	dwb Function421e6, BANK(Function421e6)
+	dwb Function28f63, BANK(Function28f63)
+	dwb Function28f24, BANK(Function28f24)
 	dwb Function5084a, BANK(Function5084a)
-	dwb $4d6f, $14
-	dwb $4d2e, $14
-	dwb $4cdb, $14
-	dwb $4c50, $14
+	dwb Function50d6f, BANK(Function50d6f)
+	dwb Function50d2e, BANK(Function50d2e)
+	dwb Function50cdb, BANK(Function50cdb)
+	dwb Function50c50, BANK(Function50c50)
 	dwb GetGender, BANK(GetGender)
 	dwb StatsScreenInit, BANK(StatsScreenInit)
 	dwb DrawPlayerHP, BANK(DrawPlayerHP)
 	dwb DrawEnemyHP, BANK(DrawEnemyHP)
-	dwb $4b7b, $14
+	dwb Function50b7b, BANK(Function50b7b)
 	dwb GetTypeName, BANK(GetTypeName)
 	dwb PrintMoveType, BANK(PrintMoveType)
 	dwb PrintType, BANK(PrintType)
 	dwb PrintMonTypes, BANK(PrintMonTypes)
 	dwb GetUnownLetter, BANK(GetUnownLetter)
-	dwb $7cdd, $32
-	dwb $40d5, $33
-	dwb $5853, $02
-	dwb Function864c, BANK(Function864c) ; LoadSGBLayout, BANK(LoadSGBLayout)
-	dwb $5d11, $24
+	dwb Functioncbcdd, BANK(Functioncbcdd)
+	dwb Functioncc0d5, BANK(Functioncc0d5)
+	dwb Function9853, BANK(Function9853)
+	dwb Function864c, BANK(Function864c)
+	dwb Function91d11, BANK(Function91d11)
 	dwb CheckContestMon, BANK(CheckContestMon)
 	dwb Function8c20f, BANK(Function8c20f)
-	dwb $4000, $23
-	dwb $4000, $23
+	dwb Function8c000, BANK(Function8c000)
+	dwb Function8c000, BANK(Function8c000)
 	dwb Functioncc0d6, BANK(Functioncc0d6)
-	dwb $40d5, $33
-	dwb $40d5, $33
-	dwb $51d0, $3f
+	dwb Functioncc0d5, BANK(Functioncc0d5)
+	dwb Functioncc0d5, BANK(Functioncc0d5)
+	dwb Functionfd1d0, BANK(Functionfd1d0)
 	dwb PartyMonItemName, BANK(PartyMonItemName)
-	dwb $5077, $14
-	dwb $516c, $14
-	dwb $508b, $14
+	dwb Function51077, BANK(Function51077)
+	dwb Function5116c, BANK(Function5116c)
+	dwb Function5108b, BANK(Function5108b)
 	dwb Function5120d, BANK(Function5120d)
 	dwb DecompressPredef, BANK(DecompressPredef)
 	dwb Function0x347d3, BANK(Function0x347d3)
-	dwb $7908, $3e
+	dwb Functionfb908, BANK(Functionfb908)
 	dwb Functionfb877, BANK(Functionfb877)
-	dwb $4000, $34
+	dwb Functiond0000, BANK(Functiond0000)
 	dwb Function50d0a, BANK(Function50d0a)
-	dwb $40a3, $34
-	dwb $408e, $34
-	dwb $4669, $34
-	dwb $466e, $34
-	dwb $43ff, $2d
+	dwb Functiond00a3, BANK(Functiond00a3)
+	dwb Functiond008e, BANK(Functiond008e)
+	dwb Functiond0669, BANK(Functiond0669)
+	dwb Functiond066e, BANK(Functiond066e)
+	dbw $ff, Function2d43 ; ????
 ; 864c
 
 
 Function864c: ; 864c
+; LoadSGBLayout
 	call Function8d55
 	jp nz, Function8d59
 	ld a, b
@@ -37249,7 +37250,57 @@ Function28eff: ; 28eff
 	ret
 ; 28f09
 
-INCBIN "baserom.gbc", $28f09, $28f63 - $28f09
+INCBIN "baserom.gbc", $28f09, $28f24 - $28f09
+
+Function28f24: ; 28f24
+	xor a
+	ld [$cf66], a
+	ld hl, $c6e7
+	ld de, $c719
+	call Function297ff
+	ld hl, PlayerSDefLevel
+	ld de, PlayerLightScreenCount
+	call Function29814
+	ld de, .data_28f3f
+	jr Function28fa1
+
+.data_28f3f
+	db $1b
+	db $1
+	db $1c
+	db $21
+	db $2d
+	db $27
+	db $23
+	db $3
+	db $25
+	db $28
+	db $25
+	db $1e
+	db $29
+	db $6
+	db $16
+	db $1f
+	db $19
+	db $17
+	db $22
+	db $1f
+	db $2a
+	db $e
+	db $3
+	db $24
+	db $5
+	db $25
+	db $2
+	db $27
+	db $25
+	db $1d
+	db $2c
+	db $2e
+	db $1e
+	db $18
+	db $1f
+	db $2b
 
 Function28f63: ; 28f63
 	xor a
@@ -37261,7 +37312,7 @@ Function28f63: ; 28f63
 	ld de, PlayerSDefLevel
 	call Function29814
 	ld de, .data_28f7e
-	jr .asm_28fa1
+	jr Function28fa1
 
 .data_28f7e
 	db $1a
@@ -37300,7 +37351,7 @@ Function28f63: ; 28f63
 	db $1f
 	db $2b
 
-.asm_28fa1
+Function28fa1: ; 28fa1
 	ld hl, BattleEnded
 	ld [hl], e
 	inc hl
@@ -37321,9 +37372,8 @@ Function28f63: ; 28f63
 	ld a, [$cf66]
 	and a
 	jr nz, .asm_28fca
-	ld de, $0022
+	ld de, MUSIC_EVOLUTION
 	call StartMusic2
-
 .asm_28fca
 	call Function29082
 	jr nc, .asm_28fca
@@ -51170,6 +51220,8 @@ Function421d8: ; 421d8
 	ld c, a
 	ld b, $1
 	call Function42577
+
+Function421e6: ; 421e6
 	xor a
 	ld [$d268], a
 	dec a
@@ -59547,31 +59599,32 @@ Function50d0a: ; 50d0a
 	ld a, [de]
 	or b
 	pop de
-	jr nz, .asm_50d2e
+	jr nz, Function50d2e
 	push de
-	ld de, .data_50d21
-	call $4d25
+	ld de, .string_50d21
+	call Function50d25
 	pop de
 	ld a, $1
 	and a
 	ret
 
-.data_50d21
-	db $85
-	db $8d
-	db $93
-	db $50
-	db $1a
-	db $13
-	db $22
-	db $1a
-	db $13
-	db $22
-	db $1a
-	db $77
-	db $c9
+.string_50d21
+	db "カセト@"
+; 50d25
 
-.asm_50d2e
+Function50d25: ; 50d25
+	ld a, [de]
+	inc de
+	ld [hli], a
+	ld a, [de]
+	inc de
+	ld [hli], a
+	ld a, [de]
+	ld [hl], a
+	ret
+; 50d2e
+
+Function50d2e: ; 50d2e
 	push de
 	ld a, [de]
 	ld de, $4d5f
@@ -62016,7 +62069,7 @@ Function84742: ; 84742
 ; 8474c
 
 Function8474c: ; 8474c
-	ld de, $005b
+	ld de, MUSIC_PRINTER
 	call StartMusic2
 	ret
 ; 84753
@@ -66990,7 +67043,7 @@ Function8ccc9: ; 8ccc9
 	ld [hli], a
 	ld [hli], a
 	ld [hli], a
-	ld de, $0005
+	ld de, MUSIC_MAGNET_TRAIN
 	call StartMusic2
 	ret
 ; 8cd27
@@ -75097,6 +75150,8 @@ Functiond065c: ; d065c
 Functiond0669: ; d0669
 	ld a, $1
 	ld [$c2c6], a
+
+Functiond066e: ; d066e
 	call Functiond01c6
 	jr c, .asm_d068c
 	ld h, d
