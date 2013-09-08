@@ -27582,7 +27582,7 @@ Function15cef: ; 15cef
 	call Function15ffa
 	ld a, $4
 	call Function15c7d
-	call Functiona36
+	call TextBoxWaitLoop
 
 .asm_15d68
 	call SpeechTextBox
@@ -27596,14 +27596,14 @@ Function15cef: ; 15cef
 .asm_15d6f
 	ld a, $3
 	call Function15c7d
-	call Functiona36
+	call TextBoxWaitLoop
 	and a
 	ret
 
 .asm_15d79
 	ld a, $2
 	call Function15c7d
-	call Functiona36
+	call TextBoxWaitLoop
 	and a
 	ret
 ; 15d83
@@ -27665,7 +27665,7 @@ Function15da5: ; 15da5
 .asm_15dd8
 	ld a, $5
 	call Function15c7d
-	call Functiona36
+	call TextBoxWaitLoop
 	scf
 	ret
 ; 15de2
@@ -27798,7 +27798,7 @@ Function15efd: ; 15efd
 	ld a, $9
 	ld hl, $4af0
 	rst FarCall
-	call Functiona36
+	call TextBoxWaitLoop
 
 .asm_15f6e
 	call Function1c07
@@ -27844,7 +27844,7 @@ Function15fc3: ; 15fc3
 
 Function15fcd: ; 15fcd
 	call Function1d4f
-	call Functiona36
+	call TextBoxWaitLoop
 	call Function1c07
 	ret
 ; 15fd7
@@ -30616,7 +30616,7 @@ ProfOaksPC: ; 0x265d3
 .shutdown
 	ld hl, OakPCText4
 	call PrintText
-	call Functiona36
+	call TextBoxWaitLoop
 	call Function1c07
 	ret
 ; 0x265ee
@@ -30626,7 +30626,7 @@ ProfOaksPCBoot ; 0x265ee
 	call PrintText
 	call Rate
 	call StartSFX ; sfx loaded by previous Rate function call
-	call Functiona36
+	call TextBoxWaitLoop
 	call WaitSFX
 	ret
 ; 0x26601
@@ -30638,7 +30638,7 @@ Function26601: ; 0x26601
 	call StartMusic
 	pop de
 	call StartSFX
-	call Functiona36
+	call TextBoxWaitLoop
 	call WaitSFX
 	ret
 ; 0x26616
@@ -30658,7 +30658,7 @@ Rate: ; 0x26616
 	call ClearOakRatingBuffers
 	ld hl, OakPCText3
 	call PrintText
-	call Functiona36
+	call TextBoxWaitLoop
 	ld a, [$d003]
 	ld hl, OakRatings
 	call FindOakRating
@@ -65098,7 +65098,7 @@ Function100232: ; 100232
 	pop de
 	call PlaceString
 	call Function100320
-	call Functiona36
+	call TextBoxWaitLoop
 	ret
 ; 10024d
 
@@ -65198,7 +65198,7 @@ Function100301: ; 100301
 	callba Function10202c
 	callba Function115dd3
 	call Function100320
-	call Functiona36
+	call TextBoxWaitLoop
 	ret
 ; 100320
 
@@ -66880,7 +66880,7 @@ Function102142: ; 102142
 	call Function1d4f
 	ld de, $0090
 	call StartSFX
-	call Functiona36
+	call TextBoxWaitLoop
 	call Function1c07
 	call Function10219f
 	ld hl, $61d6
@@ -66923,7 +66923,7 @@ Function10219f: ; 10219f
 	call Function10218d
 	ld de, EnemyMoveEffect
 	callba Function8ac4e
-	call Functiona36
+	call TextBoxWaitLoop
 	call PlayClickSFX
 	call Function1013aa
 	ret
@@ -66946,7 +66946,7 @@ INCBIN "baserom.gbc", $1021d1, $1021e0 - $1021d1
 
 Function1021e0: ; 1021e0
 	call Function1d4f
-	call Functiona36
+	call TextBoxWaitLoop
 	call Function1c07
 	ret
 ; 1021ea

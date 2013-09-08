@@ -368,7 +368,7 @@ Script_keeptextopen: ; 0x96edc
 	ld a, $1
 	ld [$ffd8], a
 	call WaitBGMap
-	call Functionaaf
+	call TextBoxPrompt
 	pop af
 	ld [$ffd8], a
 	ret
