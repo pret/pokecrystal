@@ -14,22 +14,22 @@ Start:
 
 SECTION "start",ROM0[$150]
 
-INCLUDE "engine/init.asm"
-INCLUDE "engine/vblank.asm"
-INCLUDE "engine/delay.asm"
-INCLUDE "engine/rtc.asm"
-INCLUDE "engine/fade.asm"
-INCLUDE "engine/lcd.asm"
-INCLUDE "engine/time.asm"
-INCLUDE "engine/serial.asm"
-INCLUDE "engine/joypad.asm"
-INCLUDE "engine/decompress.asm"
-INCLUDE "engine/palettes.asm"
-INCLUDE "engine/copy.asm"
-INCLUDE "engine/text.asm"
-INCLUDE "engine/video.asm"
-INCLUDE "engine/map_objects.asm"
-INCLUDE "engine/sine.asm"
+INCLUDE "common/init.asm"
+INCLUDE "common/vblank.asm"
+INCLUDE "common/delay.asm"
+INCLUDE "common/rtc.asm"
+INCLUDE "common/fade.asm"
+INCLUDE "common/lcd.asm"
+INCLUDE "common/time.asm"
+INCLUDE "common/serial.asm"
+INCLUDE "common/joypad.asm"
+INCLUDE "common/decompress.asm"
+INCLUDE "common/palettes.asm"
+INCLUDE "common/copy.asm"
+INCLUDE "common/text.asm"
+INCLUDE "common/video.asm"
+INCLUDE "common/map_objects.asm"
+INCLUDE "common/sine.asm"
 
 Function1b1e: ; 1b1e
 	ld [$d003], a
@@ -473,7 +473,7 @@ Function1d19: ; 1d19
 ; 1d35
 
 
-INCLUDE "engine/menu.asm"
+INCLUDE "common/menu.asm"
 
 
 AskSerial: ; 2063
@@ -515,7 +515,7 @@ AskSerial: ; 2063
 ; 208a
 
 
-INCLUDE "engine/game_time.asm"
+INCLUDE "common/game_time.asm"
 
 
 Function210f: ; 210f
@@ -2906,7 +2906,7 @@ Function2d43: ; 2d43
 ; 2d54
 
 
-INCLUDE "engine/farcall.asm"
+INCLUDE "common/farcall.asm"
 
 
 Predef: ; 2d83
