@@ -13,7 +13,7 @@ NurseScript_0x69b52: ; 0x69b52
 FishingGuruScript_0x69b55: ; 0x69b55
 	faceplayer
 	loadfont
-	checkbit1 $0017
+	checkbit1 EVENT_GOT_OLD_ROD
 	iftrue UnknownScript_0x69b7a
 	2writetext UnknownText_0x69b83
 	yesorno
@@ -24,7 +24,7 @@ FishingGuruScript_0x69b55: ; 0x69b55
 	2writetext UnknownText_0x69c1b
 	closetext
 	loadmovesprites
-	setbit1 $0017
+	setbit1 EVENT_GOT_OLD_ROD
 	end
 ; 0x69b74
 

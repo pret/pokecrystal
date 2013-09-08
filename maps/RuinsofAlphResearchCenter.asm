@@ -90,7 +90,7 @@ ScientistScript_0x591e5: ; 0x591e5
 	if_equal 26, UnknownScript_0x5920b
 	checkbit2 $000c
 	iftrue UnknownScript_0x59205
-	checkbit1 $002e
+	checkbit1 EVENT_MADE_UNOWN_APPEAR_IN_RUINS
 	iftrue UnknownScript_0x591ff
 	2writetext UnknownText_0x593ed
 	closetext
@@ -125,7 +125,7 @@ ScientistScript_0x59214: ; 0x59214
 	loadfont
 	checkcode $e
 	if_equal 26, UnknownScript_0x5922e
-	checkbit1 $002e
+	checkbit1 EVENT_MADE_UNOWN_APPEAR_IN_RUINS
 	iftrue UnknownScript_0x59228
 	2writetext UnknownText_0x5954f
 	closetext

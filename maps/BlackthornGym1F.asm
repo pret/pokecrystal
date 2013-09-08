@@ -31,7 +31,7 @@ ClairScript_0x194e24: ; 0x194e24
 	loadfont
 	checkbit2 $0022
 	iftrue UnknownScript_0x194e69
-	checkbit1 $04c4
+	checkbit1 EVENT_BEAT_CLAIR
 	iftrue UnknownScript_0x194e63
 	2writetext UnknownText_0x194efa
 	closetext
@@ -40,16 +40,16 @@ ClairScript_0x194e24: ; 0x194e24
 	loadtrainer CLAIR, 1
 	startbattle
 	returnafterbattle
-	setbit1 $04c4
+	setbit1 EVENT_BEAT_CLAIR
 	loadfont
 	2writetext UnknownText_0x19500e
 	closetext
 	loadmovesprites
-	setbit1 $054a
-	setbit1 $054b
-	setbit1 $054c
-	setbit1 $055d
-	setbit1 $055e
+	setbit1 EVENT_BEAT_COOLTRAINERM_PAUL
+	setbit1 EVENT_BEAT_COOLTRAINERM_CODY
+	setbit1 EVENT_BEAT_COOLTRAINERM_MIKE
+	setbit1 EVENT_BEAT_COOLTRAINERF_FRAN
+	setbit1 EVENT_BEAT_COOLTRAINERF_LOLA
 	clearbit1 $0736
 	setbit1 $074c
 	clearbit1 $074d
@@ -64,7 +64,7 @@ UnknownScript_0x194e63: ; 0x194e63
 ; 0x194e69
 
 UnknownScript_0x194e69: ; 0x194e69
-	checkbit1 $000f
+	checkbit1 EVENT_GOT_TM24_DRAGONBREATH
 	iftrue UnknownScript_0x194e94
 	2writetext UnknownText_0x195196
 	keeptextopen
@@ -75,7 +75,7 @@ UnknownScript_0x194e69: ; 0x194e69
 	playsound $0001
 	waitbutton
 	itemnotify
-	setbit1 $000f
+	setbit1 EVENT_GOT_TM24_DRAGONBREATH
 	2writetext UnknownText_0x1951d1
 	keeptextopen
 	2jump UnknownScript_0x194e94
@@ -185,7 +185,7 @@ CooltrainerfLolaScript: ; 0x194ece
 BlackthornGymGuyScript: ; 0x194ed6
 	faceplayer
 	loadfont
-	checkbit1 $04c4
+	checkbit1 EVENT_BEAT_CLAIR
 	iftrue .BlackthornGymGuyWinScript
 	2writetext BlackthornGymGuyText
 	closetext

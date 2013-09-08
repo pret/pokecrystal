@@ -26,7 +26,7 @@ UnknownScript_0x1a9218: ; 0x1a9218
 	disappear $a
 	pause 10
 	dotrigger $0
-	clearbit1 $07b0
+	clearbit1 EVENT_SAW_SUICUNE_ON_ROUTE_36
 	domaptrigger GROUP_ROUTE_36, MAP_ROUTE_36, $1
 	end
 ; 0x1a9233
@@ -90,13 +90,13 @@ UnknownScript_0x1a927f: ; 0x1a927f
 	if_equal $1, UnknownScript_0x1a92a6
 	if_equal $0, UnknownScript_0x1a92ac
 UnknownScript_0x1a929a: ; 0x1a929a
-	checkbit1 $00cd
+	checkbit1 EVENT_RESTORED_POWER_TO_KANTO
 	iftrue UnknownScript_0x1a92d3
 UnknownScript_0x1a92a0: ; 0x1a92a0
 	checkbit1 $0044
 	iftrue UnknownScript_0x1a92c6
 UnknownScript_0x1a92a6: ; 0x1a92a6
-	checkbit1 $0022
+	checkbit1 EVENT_CLEARED_ROCKET_HIDEOUT
 	iftrue UnknownScript_0x1a92b9
 UnknownScript_0x1a92ac: ; 0x1a92ac
 	loadtrainer FISHER, TULLY1

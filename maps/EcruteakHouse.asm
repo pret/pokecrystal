@@ -23,11 +23,11 @@ UnknownScript_0x9800e: ; 0x9800e
 ; 0x9800f
 
 UnknownScript_0x9800f: ; 0x9800f
-	checkbit1 $0335
+	checkbit1 EVENT_FOUGHT_SUICUNE
 	iftrue UnknownScript_0x98033
-	checkbit1 $0334
+	checkbit1 EVENT_KOJI_ALLOWS_YOU_PASSAGE_TO_TIN_TOWER
 	iftrue UnknownScript_0x98033
-	checkbit1 $0021
+	checkbit1 EVENT_CLEARED_RADIO_TOWER
 	iftrue UnknownScript_0x98022
 	return
 ; 0x98022
@@ -77,7 +77,7 @@ UnknownScript_0x98061: ; 0x98061
 SageScript_0x98062: ; 0x98062
 	faceplayer
 	loadfont
-	checkbit1 $0021
+	checkbit1 EVENT_CLEARED_RADIO_TOWER
 	iftrue UnknownScript_0x9807c
 	checkbit2 $001e
 	iftrue UnknownScript_0x98076
@@ -95,7 +95,7 @@ UnknownScript_0x98076: ; 0x98076
 ; 0x9807c
 
 UnknownScript_0x9807c: ; 0x9807c
-	checkbit1 $0334
+	checkbit1 EVENT_KOJI_ALLOWS_YOU_PASSAGE_TO_TIN_TOWER
 	iftrue UnknownScript_0x980a4
 	checkbit1 $0000
 	iftrue UnknownScript_0x980aa
@@ -135,7 +135,7 @@ UnknownScript_0x980aa: ; 0x980aa
 SageScript_0x980b0: ; 0x980b0
 	faceplayer
 	loadfont
-	checkbit1 $0078
+	checkbit1 EVENT_GOT_CLEAR_BELL
 	iftrue UnknownScript_0x980be
 	2writetext UnknownText_0x9840b
 	closetext

@@ -80,7 +80,7 @@ UnknownScript_0x75f09: ; 0x75f09
 GentlemanScript_0x75f1f: ; 0x75f1f
 	faceplayer
 	loadfont
-	checkbit1 $0071
+	checkbit1 EVENT_GOT_METAL_COAT_FROM_GRANDPA_ON_SS_AQUA
 	iftrue UnknownScript_0x75f67
 	checkbit1 $0732
 	iftrue UnknownScript_0x75f58
@@ -96,7 +96,7 @@ UnknownScript_0x75f37: ; 0x75f37
 	keeptextopen
 	verbosegiveitem METAL_COAT, 1
 	iffalse UnknownScript_0x75f44
-	setbit1 $0071
+	setbit1 EVENT_GOT_METAL_COAT_FROM_GRANDPA_ON_SS_AQUA
 UnknownScript_0x75f44: ; 0x75f44
 	loadmovesprites
 	waitbutton
@@ -116,7 +116,7 @@ UnknownScript_0x75f58: ; 0x75f58
 	keeptextopen
 	verbosegiveitem METAL_COAT, 1
 	iffalse UnknownScript_0x75f65
-	setbit1 $0071
+	setbit1 EVENT_GOT_METAL_COAT_FROM_GRANDPA_ON_SS_AQUA
 UnknownScript_0x75f65: ; 0x75f65
 	loadmovesprites
 	end

@@ -11,7 +11,7 @@ Route31_MapScriptHeader: ; 0x1a5437
 ; 0x1a543c
 
 UnknownScript_0x1a543c: ; 0x1a543c
-	checkbit1 $0040
+	checkbit1 EVENT_TALKED_TO_MOM_AFTER_MYSTERY_EGG_QUEST
 	iffalse UnknownScript_0x1a5443
 	return
 ; 0x1a5443
@@ -84,7 +84,7 @@ UnknownScript_0x1a54b2: ; 0x1a54b2
 	checkbit1 $0044
 	iftrue UnknownScript_0x1a54fe
 UnknownScript_0x1a54b8: ; 0x1a54b8
-	checkbit1 $0021
+	checkbit1 EVENT_CLEARED_RADIO_TOWER
 	iftrue UnknownScript_0x1a54f1
 UnknownScript_0x1a54be: ; 0x1a54be
 	checkbit2 $0049
@@ -138,13 +138,13 @@ UnknownScript_0x1a54fe: ; 0x1a54fe
 
 UnknownScript_0x1a5507: ; 0x1a5507
 	2call UnknownScript_0x1a5568
-	checkbit1 $032b
+	checkbit1 EVENT_WADE_HAS_BERRY
 	iftrue UnknownScript_0x1a5522
-	checkbit1 $032c
+	checkbit1 EVENT_WADE_HAS_PSNCUREBERRY
 	iftrue UnknownScript_0x1a552b
-	checkbit1 $032d
+	checkbit1 EVENT_WADE_HAS_PRZCUREBERRY
 	iftrue UnknownScript_0x1a5534
-	checkbit1 $032e
+	checkbit1 EVENT_WADE_HAS_BITTER_BERRY
 	iftrue UnknownScript_0x1a553d
 UnknownScript_0x1a5522: ; 0x1a5522
 	verbosegiveitem BERRY, 1
@@ -224,9 +224,9 @@ UnknownScript_0x1a556c: ; 0x1a556c
 FisherScript_0x1a5570: ; 0x1a5570
 	faceplayer
 	loadfont
-	checkbit1 $0053
+	checkbit1 EVENT_GOT_TM50_NIGHTMARE
 	iftrue UnknownScript_0x1a55af
-	checkbit1 $0050
+	checkbit1 EVENT_GOT_KENYA
 	iftrue UnknownScript_0x1a5584
 	2writetext UnknownText_0x1a56d9
 	closetext
@@ -246,10 +246,10 @@ UnknownScript_0x1a5584: ; 0x1a5584
 	keeptextopen
 	2writetext UnknownText_0x1a57ba
 	keeptextopen
-	setbit1 $0051
+	setbit1 EVENT_GAVE_KENYA
 	verbosegiveitem TM_50, 1
 	iffalse UnknownScript_0x1a55b3
-	setbit1 $0053
+	setbit1 EVENT_GOT_TM50_NIGHTMARE
 UnknownScript_0x1a55af: ; 0x1a55af
 	2writetext UnknownText_0x1a5896
 	closetext

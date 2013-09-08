@@ -45,11 +45,11 @@ PokefanmDerek1Script: ; 0x1a5b0b
 	iftrue UnknownScript_0x1a5b6e
 	checkpoke PIKACHU
 	iffalse UnknownScript_0x1a5b5c
-	checkbit1 $028d
+	checkbit1 EVENT_SHOWED_DEREK_PIKACHU
 	iftrue UnknownScript_0x1a5b33
 	2writetext UnknownText_0x1a5cf8
 	keeptextopen
-	setbit1 $028d
+	setbit1 EVENT_SHOWED_DEREK_PIKACHU
 	2call UnknownScript_0x1a5b62
 	2jump UnknownScript_0x1a5b36
 ; 0x1a5b33

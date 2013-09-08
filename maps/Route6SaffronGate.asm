@@ -16,7 +16,7 @@ UnknownScript_0x1926e9: ; 0x1926e9
 OfficerScript_0x1926ea: ; 0x1926ea
 	faceplayer
 	loadfont
-	checkbit1 $00c9
+	checkbit1 EVENT_RETURNED_MACHINE_PART
 	iftrue UnknownScript_0x1926f8
 	2writetext UnknownText_0x1926fe
 	closetext

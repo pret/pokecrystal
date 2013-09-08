@@ -9,9 +9,9 @@ PokemonFanClub_MapScriptHeader: ; 0x1917e7
 GentlemanScript_0x1917e9: ; 0x1917e9
 	faceplayer
 	loadfont
-	checkbit1 $00d4
+	checkbit1 EVENT_LISTENED_TO_FAN_CLUB_PRESIDENT
 	iftrue UnknownScript_0x191815
-	checkbit1 $00d3
+	checkbit1 EVENT_LISTENED_TO_FAN_CLUB_PRESIDENT_BUT_BAG_WAS_FULL
 	iftrue UnknownScript_0x191802
 	2writetext UnknownText_0x191881
 	yesorno
@@ -23,7 +23,7 @@ UnknownScript_0x191802: ; 0x191802
 	keeptextopen
 	verbosegiveitem RARE_CANDY, 1
 	iffalse UnknownScript_0x19181f
-	setbit1 $00d4
+	setbit1 EVENT_LISTENED_TO_FAN_CLUB_PRESIDENT
 	2writetext UnknownText_0x191a72
 	closetext
 	loadmovesprites
@@ -52,9 +52,9 @@ ReceptionistScript_0x191821: ; 0x191821
 FisherScript_0x191824: ; 0x191824
 	faceplayer
 	loadfont
-	checkbit1 $00d2
+	checkbit1 EVENT_GOT_LOST_ITEM_FROM_FAN_CLUB
 	iftrue UnknownScript_0x19185f
-	checkbit1 $00c9
+	checkbit1 EVENT_RETURNED_MACHINE_PART
 	iftrue UnknownScript_0x191838
 	2writetext UnknownText_0x191ba0
 	closetext
@@ -64,7 +64,7 @@ FisherScript_0x191824: ; 0x191824
 
 UnknownScript_0x191838: ; 0x191838
 	2writetext UnknownText_0x191bff
-	checkbit1 $00cf
+	checkbit1 EVENT_MET_COPYCAT_FOUND_OUT_ABOUT_LOST_ITEM
 	iftrue UnknownScript_0x191844
 	closetext
 	loadmovesprites
@@ -83,7 +83,7 @@ UnknownScript_0x191844: ; 0x191844
 	playsound $0091
 	waitbutton
 	itemnotify
-	setbit1 $00d2
+	setbit1 EVENT_GOT_LOST_ITEM_FROM_FAN_CLUB
 	loadmovesprites
 	end
 ; 0x19185f

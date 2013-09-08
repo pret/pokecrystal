@@ -280,13 +280,13 @@ CooltrainerMScript_0x19efac: ; 0x19efac
 	loadfont
 	checkbit1 $0558
 	iftrue UnknownScript_0x19efda
-	checkbit1 $00d8
+	checkbit1 EVENT_CLEARED_NUGGET_BRIDGE
 	iftrue UnknownScript_0x19efc7
 	2writetext UnknownText_0x19f43b
 	keeptextopen
 	verbosegiveitem NUGGET, 1
 	iffalse UnknownScript_0x19efde
-	setbit1 $00d8
+	setbit1 EVENT_CLEARED_NUGGET_BRIDGE
 UnknownScript_0x19efc7: ; 0x19efc7
 	2writetext UnknownText_0x19f49d
 	closetext

@@ -27,7 +27,7 @@ UnknownScript_0x62f88: ; 0x62f88
 GrampsScript_0x62f8f: ; 0x62f8f
 	faceplayer
 	loadfont
-	checkbit1 $033e
+	checkbit1 EVENT_GOT_ODD_EGG
 	iftrue UnknownScript_0x62fbd
 	2writetext UnknownText_0x630ce
 	keeptextopen
@@ -42,7 +42,7 @@ GrampsScript_0x62f8f: ; 0x62f8f
 	2writetext UnknownText_0x631c3
 	closetext
 	loadmovesprites
-	setbit1 $033e
+	setbit1 EVENT_GOT_ODD_EGG
 	end
 ; 0x62fb6
 

@@ -9,7 +9,7 @@ Route39Barn_MapScriptHeader: ; 0x9cc74
 TwinScript_0x9cc76: ; 0x9cc76
 	faceplayer
 	loadfont
-	checkbit1 $003d
+	checkbit1 EVENT_HEALED_MOOMOO
 	iftrue UnknownScript_0x9cc87
 	2writetext UnknownText_0x9cd2e
 	closetext
@@ -29,7 +29,7 @@ UnknownScript_0x9cc87: ; 0x9cc87
 TwinScript_0x9cc90: ; 0x9cc90
 	faceplayer
 	loadfont
-	checkbit1 $003d
+	checkbit1 EVENT_HEALED_MOOMOO
 	iftrue UnknownScript_0x9cca1
 	2writetext UnknownText_0x9cd2e
 	closetext
@@ -48,14 +48,14 @@ UnknownScript_0x9cca1: ; 0x9cca1
 
 TaurosScript_0x9ccaa: ; 0x9ccaa
 	loadfont
-	checkbit1 $003d
+	checkbit1 EVENT_HEALED_MOOMOO
 	iftrue UnknownScript_0x9cd25
 	2writetext UnknownText_0x9cd70
 	writebyte MILTANK
 	special $005f
 	keeptextopen
 	2writetext UnknownText_0x9cd80
-	checkbit1 $003f
+	checkbit1 EVENT_TALKED_TO_FARMER_ABOUT_MOOMOO
 	iftrue UnknownScript_0x9ccc6
 	closetext
 	loadmovesprites
@@ -109,7 +109,7 @@ UnknownScript_0x9cd04: ; 0x9cd04
 	2writetext UnknownText_0x9ce1b
 	closetext
 	loadmovesprites
-	setbit1 $003d
+	setbit1 EVENT_HEALED_MOOMOO
 	end
 ; 0x9cd19
 

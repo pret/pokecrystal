@@ -42,7 +42,7 @@ UnknownScript_0x7001f: ; 0x7001f
 ; 0x70022
 
 LanceScript_0x70022: ; 0x70022
-	checkbit1 $0026
+	checkbit1 EVENT_REFUSED_TO_HELP_LANCE_AT_LAKE_OF_RAGE
 	iftrue UnknownScript_0x70057
 	loadfont
 	2writetext UnknownText_0x70157
@@ -59,7 +59,7 @@ UnknownScript_0x70035: ; 0x70035
 	applymovement $2, MovementData_0x70155
 	disappear $2
 	clearbit1 $06d5
-	setbit1 $0060
+	setbit1 EVENT_DECIDED_TO_HELP_LANCE
 	domaptrigger GROUP_MAHOGANY_MART_1F, MAP_MAHOGANY_MART_1F, $1
 	end
 ; 0x7004e
@@ -68,7 +68,7 @@ UnknownScript_0x7004e: ; 0x7004e
 	2writetext UnknownText_0x70371
 	closetext
 	loadmovesprites
-	setbit1 $0026
+	setbit1 EVENT_REFUSED_TO_HELP_LANCE_AT_LAKE_OF_RAGE
 	end
 ; 0x70057
 
@@ -110,7 +110,7 @@ UnknownScript_0x7007a: ; 0x7007a
 GrampsScript_0x7008e: ; 0x7008e
 	faceplayer
 	loadfont
-	checkbit1 $0022
+	checkbit1 EVENT_CLEARED_ROCKET_HIDEOUT
 	iftrue UnknownScript_0x7009c
 	2writetext UnknownText_0x703f8
 	closetext
@@ -140,7 +140,7 @@ MapLakeofRageSignpost0Script: ; 0x700a8
 MapLakeofRageSignpost1Script: ; 0x700ab
 	loadfont
 	2writetext UnknownText_0x70903
-	checkbit1 $0022
+	checkbit1 EVENT_CLEARED_ROCKET_HIDEOUT
 	iftrue UnknownScript_0x700b8
 	closetext
 	loadmovesprites
@@ -273,21 +273,21 @@ CooltrainerfLoisScript: ; 0x70106
 SuperNerdScript_0x7010e: ; 0x7010e
 	faceplayer
 	loadfont
-	checkbit1 $006b
+	checkbit1 EVENT_GOT_BLACKBELT_FROM_WESLEY
 	iftrue UnknownScript_0x7013c
 	checkcode $b
 	if_not_equal WEDNESDAY, UnknownScript_0x70142
-	checkbit1 $006a
+	checkbit1 EVENT_MET_WESLEY_OF_WEDNESDAY
 	iftrue UnknownScript_0x70129
 	2writetext UnknownText_0x70784
 	keeptextopen
-	setbit1 $006a
+	setbit1 EVENT_MET_WESLEY_OF_WEDNESDAY
 UnknownScript_0x70129: ; 0x70129
 	2writetext UnknownText_0x707dd
 	keeptextopen
 	verbosegiveitem BLACKBELT, 1
 	iffalse UnknownScript_0x70140
-	setbit1 $006b
+	setbit1 EVENT_GOT_BLACKBELT_FROM_WESLEY
 	2writetext UnknownText_0x7080b
 	closetext
 	loadmovesprites

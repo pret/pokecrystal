@@ -33,7 +33,7 @@ UnknownScript_0x185bf8: ; 0x185bf8
 	iftrue UnknownScript_0x185c02
 	changeblock $a, $8, $32
 UnknownScript_0x185c02: ; 0x185c02
-	checkbit1 $007b
+	checkbit1 EVENT_RELEASED_THE_BEASTS
 	iftrue UnknownScript_0x185c0c
 	changeblock $6, $e, $9
 UnknownScript_0x185c0c: ; 0x185c0c
@@ -66,9 +66,9 @@ UnknownScript_0x185c25: ; 0x185c25
 	2writetext UnknownText_0x185cd9
 	closetext
 	loadmovesprites
-	checkbit1 $001c
+	checkbit1 EVENT_GOT_TOTODILE_FROM_ELM
 	iftrue UnknownScript_0x185c60
-	checkbit1 $001d
+	checkbit1 EVENT_GOT_CHIKORITA_FROM_ELM
 	iftrue UnknownScript_0x185c70
 	winlosstext UnknownText_0x185d9b, UnknownText_0x185e2c
 	setlasttalked $4

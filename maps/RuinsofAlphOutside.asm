@@ -25,7 +25,7 @@ UnknownScript_0x5800e: ; 0x5800e
 UnknownScript_0x5800f: ; 0x5800f
 	checkbit2 $000c
 	iftrue UnknownScript_0x5802c
-	checkbit1 $002e
+	checkbit1 EVENT_MADE_UNOWN_APPEAR_IN_RUINS
 	iftrue UnknownScript_0x5801e
 	2jump UnknownScript_0x5802c
 ; 0x5801e

@@ -23,7 +23,7 @@ UnknownScript_0x18615f: ; 0x18615f
 ; 0x186160
 
 UnknownScript_0x186160: ; 0x186160
-	checkbit1 $007b
+	checkbit1 EVENT_RELEASED_THE_BEASTS
 	iftrue UnknownScript_0x18616a
 	changeblock $6, $e, $2
 UnknownScript_0x18616a: ; 0x18616a
@@ -80,11 +80,11 @@ UnknownScript_0x18616b: ; 0x18616b
 	waitbutton
 	special $003d
 	dotrigger $1
-	setbit1 $007b
+	setbit1 EVENT_RELEASED_THE_BEASTS
 	special $0069
 	domaptrigger GROUP_ECRUTEAK_GYM, MAP_ECRUTEAK_GYM, $1
 	domaptrigger GROUP_CIANWOOD_CITY, MAP_CIANWOOD_CITY, $1
-	clearbit1 $07ae
+	clearbit1 EVENT_SAW_SUICUNE_AT_CIANWOOD_CITY
 	setbit1 $07a8
 	clearbit1 $07a9
 	setbit1 $0764

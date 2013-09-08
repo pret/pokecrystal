@@ -134,7 +134,7 @@ UnknownScript_0x19e13b: ; 0x19e13b
 ; 0x19e13f
 
 UnknownScript_0x19e13f: ; 0x19e13f
-	setbit1 $033a
+	setbit1 EVENT_PARRY_IRON
 	jumpstd $0021
 	end
 ; 0x19e146
@@ -258,7 +258,7 @@ UnknownScript_0x19e1b8: ; 0x19e1b8
 	if_equal $1, UnknownScript_0x19e1d5
 	if_equal $0, UnknownScript_0x19e1db
 UnknownScript_0x19e1cf: ; 0x19e1c
-	checkbit1 $00cd
+	checkbit1 EVENT_RESTORED_POWER_TO_KANTO
 	iftrue UnknownScript_0x19e1f5
 UnknownScript_0x19e1d5: ; 0x19e1d5
 	checkbit1 $0044
@@ -286,7 +286,7 @@ UnknownScript_0x19e1f5: ; 0x19e1f5
 	startbattle
 	returnafterbattle
 	clearbit2 $007b
-	checkbit1 $033a
+	checkbit1 EVENT_PARRY_IRON
 	iftrue UnknownScript_0x19e219
 	checkbit1 $0268
 	iftrue UnknownScript_0x19e218
@@ -307,7 +307,7 @@ UnknownScript_0x19e219: ; 0x19e219
 	closetext
 	verbosegiveitem IRON, 1
 	iffalse UnknownScript_0x19e13f
-	clearbit1 $033a
+	clearbit1 EVENT_PARRY_IRON
 	setbit1 $0268
 	2jump UnknownScript_0x19e127
 ; 0x19e22d

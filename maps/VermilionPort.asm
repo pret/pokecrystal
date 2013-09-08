@@ -61,16 +61,16 @@ SailorScript_0x74dc4: ; 0x74dc4
 	waitbutton
 	setbit1 $073a
 	clearbit1 $073b
-	clearbit1 $04eb
-	clearbit1 $042f
-	clearbit1 $0540
-	clearbit1 $0493
-	clearbit1 $04d4
-	clearbit1 $04dd
-	clearbit1 $057c
-	clearbit1 $05b7
-	clearbit1 $0476
-	clearbit1 $0477
+	clearbit1 EVENT_BEAT_POKEMANIAC_ETHAN
+	clearbit1 EVENT_BEAT_BURGLAR_COREY
+	clearbit1 EVENT_BEAT_BUG_CATCHER_KEN
+	clearbit1 EVENT_BEAT_GUITARIST_CLYDE
+	clearbit1 EVENT_BEAT_POKEFANM_JEREMY
+	clearbit1 EVENT_BEAT_POKEFANF_GEORGIA
+	clearbit1 EVENT_BEAT_SAILOR_KENNETH
+	clearbit1 EVENT_BEAT_TEACHER_SHIRLEY
+	clearbit1 EVENT_BEAT_SCHOOLBOY_NATE
+	clearbit1 EVENT_BEAT_SCHOOLBOY_RICKY
 	setbit1 $002f
 	appear $2
 	domaptrigger GROUP_FAST_SHIP_1F, MAP_FAST_SHIP_1F, $1

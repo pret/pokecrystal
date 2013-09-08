@@ -9,12 +9,12 @@ SafariZoneWardensHome_MapScriptHeader: ; 0x1965c4
 LassScript_0x1965c6: ; 0x1965c6
 	faceplayer
 	loadfont
-	checkbit1 $00d9
+	checkbit1 EVENT_TALKED_TO_WARDENS_GRANDDAUGHTER
 	iftrue UnknownScript_0x1965d7
 	2writetext UnknownText_0x1965e6
 	closetext
 	loadmovesprites
-	setbit1 $00d9
+	setbit1 EVENT_TALKED_TO_WARDENS_GRANDDAUGHTER
 	end
 ; 0x1965d7
 

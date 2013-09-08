@@ -18,10 +18,10 @@ SurgeScript_0x1920a5: ; 0x1920a5
 	loadtrainer LT_SURGE, 1
 	startbattle
 	returnafterbattle
-	setbit1 $04c7
-	setbit1 $049c
-	setbit1 $0494
-	setbit1 $0497
+	setbit1 EVENT_BEAT_LTSURGE
+	setbit1 EVENT_BEAT_GENTLEMAN_GREGORY
+	setbit1 EVENT_BEAT_GUITARIST_VINCENT
+	setbit1 EVENT_BEAT_JUGGLER_HORTON
 	loadfont
 	2writetext UnknownText_0x192277
 	playsound $009c
@@ -130,7 +130,7 @@ JugglerHortonScript: ; 0x192113
 VermilionGymGuyScript: ; 0x19211b
 	faceplayer
 	loadfont
-	checkbit1 $04c7
+	checkbit1 EVENT_BEAT_LTSURGE
 	iftrue .VermilionGymGuyWinScript
 	2writetext VermilionGymGuyText
 	closetext

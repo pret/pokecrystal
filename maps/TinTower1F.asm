@@ -26,7 +26,7 @@ UnknownScript_0x18502e: ; 0x18502e
 ; 0x18502f
 
 UnknownScript_0x18502f: ; 0x18502f
-	checkbit1 $0336
+	checkbit1 EVENT_GOT_RAINBOW_WING
 	iftrue UnknownScript_0x185047
 	checkbit1 $0044
 	iffalse UnknownScript_0x185050
@@ -35,7 +35,7 @@ UnknownScript_0x18502f: ; 0x18502f
 	clearbit1 $07c5
 	setbit1 $07b6
 UnknownScript_0x185047: ; 0x185047
-	checkbit1 $0317
+	checkbit1 EVENT_FOUGHT_HO_OH
 	iffalse UnknownScript_0x18504f
 	appear $5
 UnknownScript_0x18504f: ; 0x18504f
@@ -43,7 +43,7 @@ UnknownScript_0x18504f: ; 0x18504f
 ; 0x185050
 
 UnknownScript_0x185050: ; 0x185050
-	checkbit1 $0335
+	checkbit1 EVENT_FOUGHT_SUICUNE
 	iftrue UnknownScript_0x185077
 	appear $2
 	writebyte RAIKOU
@@ -79,7 +79,7 @@ UnknownScript_0x185077: ; 0x185077
 ; 0x185084
 
 UnknownScript_0x185084: ; 0x185084
-	checkbit1 $0336
+	checkbit1 EVENT_GOT_RAINBOW_WING
 	iftrue UnknownScript_0x18508e
 	changeblock $a, $2, $9
 UnknownScript_0x18508e: ; 0x18508e
@@ -126,15 +126,15 @@ UnknownScript_0x1850d7: ; 0x1850d7
 	startbattle
 	reloadmapmusic
 	disappear $2
-	setbit1 $0335
-	setbit1 $07af
+	setbit1 EVENT_FOUGHT_SUICUNE
+	setbit1 EVENT_SAW_SUICUNE_ON_ROUTE_42
 	domaptrigger GROUP_ROUTE_42, MAP_ROUTE_42, $0
-	setbit1 $07b0
+	setbit1 EVENT_SAW_SUICUNE_ON_ROUTE_36
 	domaptrigger GROUP_ROUTE_36, MAP_ROUTE_36, $0
-	setbit1 $07ae
+	setbit1 EVENT_SAW_SUICUNE_AT_CIANWOOD_CITY
 	domaptrigger GROUP_CIANWOOD_CITY, MAP_CIANWOOD_CITY, $0
 	dotrigger $1
-	clearbit1 $07b7
+	clearbit1 EVENT_SET_WHEN_FOUGHT_HO_OH
 	returnafterbattle
 	pause 20
 	spriteface $0, $0
@@ -186,7 +186,7 @@ SageScript_0x185179: ; 0x185179
 ; 0x18517c
 
 SageScript_0x18517c: ; 0x18517c
-	checkbit1 $0317
+	checkbit1 EVENT_FOUGHT_HO_OH
 	iftrue UnknownScript_0x185185
 	jumptextfaceplayer UnknownText_0x1855ee
 ; 0x185185
@@ -198,9 +198,9 @@ UnknownScript_0x185185: ; 0x185185
 SageScript_0x185188: ; 0x185188
 	faceplayer
 	loadfont
-	checkbit1 $0317
+	checkbit1 EVENT_FOUGHT_HO_OH
 	iftrue UnknownScript_0x1851b6
-	checkbit1 $0336
+	checkbit1 EVENT_GOT_RAINBOW_WING
 	iftrue UnknownScript_0x1851b0
 	2writetext UnknownText_0x185629
 	keeptextopen
@@ -212,7 +212,7 @@ SageScript_0x185188: ; 0x185188
 	playsound $001b
 	changeblock $a, $2, $20
 	reloadmappart
-	setbit1 $0336
+	setbit1 EVENT_GOT_RAINBOW_WING
 	loadmovesprites
 	loadfont
 UnknownScript_0x1851b0: ; 0x1851b0
@@ -230,7 +230,7 @@ UnknownScript_0x1851b6: ; 0x1851b6
 ; 0x1851bc
 
 SageScript_0x1851bc: ; 0x1851bc
-	checkbit1 $0317
+	checkbit1 EVENT_FOUGHT_HO_OH
 	iftrue UnknownScript_0x1851c5
 	jumptextfaceplayer UnknownText_0x185654
 ; 0x1851c5

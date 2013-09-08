@@ -18,11 +18,11 @@ SabrinaScript_0x189c2e: ; 0x189c2e
 	loadtrainer SABRINA, 1
 	startbattle
 	returnafterbattle
-	setbit1 $04ca
-	setbit1 $0590
-	setbit1 $0591
-	setbit1 $043b
-	setbit1 $0444
+	setbit1 EVENT_BEAT_SABRINA
+	setbit1 EVENT_BEAT_MEDIUM_REBECCA
+	setbit1 EVENT_BEAT_MEDIUM_DORIS
+	setbit1 EVENT_BEAT_PSYCHIC_FRANKLIN
+	setbit1 EVENT_BEAT_PSYCHIC_JARED
 	loadfont
 	2writetext UnknownText_0x189e95
 	playsound $009c
@@ -160,7 +160,7 @@ PsychicJaredScript: ; 0x189cb3
 SaffronGymGuyScript: ; 0x189cbb
 	faceplayer
 	loadfont
-	checkbit1 $04ca
+	checkbit1 EVENT_BEAT_SABRINA
 	iftrue .SaffronGymGuyWinScript
 	2writetext SaffronGymGuyText
 	closetext

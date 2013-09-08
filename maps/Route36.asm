@@ -44,7 +44,7 @@ UnknownScript_0x19401b: ; 0x19401b
 	spriteface $0, $0
 	pause 10
 	dotrigger $0
-	clearbit1 $07ae
+	clearbit1 EVENT_SAW_SUICUNE_AT_CIANWOOD_CITY
 	domaptrigger GROUP_CIANWOOD_CITY, MAP_CIANWOOD_CITY, $1
 	end
 ; 0x19403c
@@ -81,7 +81,7 @@ WateredWeirdTreeScript: ; 0x194053
 	loadmovesprites
 	loadpokedata SUDOWOODO, 20
 	startbattle
-	setbit1 $002a
+	setbit1 EVENT_FOUGHT_SUDOWOODO
 	if_equal $2, UnknownScript_0x19407b
 	disappear $4
 	variablesprite $4, $26
@@ -137,9 +137,9 @@ UnknownScript_0x1940b3: ; 0x1940b3
 FisherScript_0x1940b9: ; 0x1940b9
 	faceplayer
 	loadfont
-	checkbit1 $004b
+	checkbit1 EVENT_GOT_TM08_ROCK_SMASH
 	iftrue UnknownScript_0x1940da
-	checkbit1 $002a
+	checkbit1 EVENT_FOUGHT_SUDOWOODO
 	iftrue UnknownScript_0x1940cd
 	2writetext UnknownText_0x19446f
 	closetext
@@ -152,7 +152,7 @@ UnknownScript_0x1940cd: ; 0x1940cd
 	keeptextopen
 	verbosegiveitem TM_08, 1
 	iffalse UnknownScript_0x1940de
-	setbit1 $004b
+	setbit1 EVENT_GOT_TM08_ROCK_SMASH
 UnknownScript_0x1940da: ; 0x1940da
 	2writetext UnknownText_0x19452c
 	closetext
@@ -164,7 +164,7 @@ UnknownScript_0x1940de: ; 0x1940de
 LassScript_0x1940e0: ; 0x1940e0
 	faceplayer
 	loadfont
-	checkbit1 $002a
+	checkbit1 EVENT_FOUGHT_SUDOWOODO
 	iftrue UnknownScript_0x1940ee
 	2writetext UnknownText_0x194626
 	closetext
@@ -239,7 +239,7 @@ UnknownScript_0x194140: ; 0x194140
 	if_equal $1, UnknownScript_0x194171
 	if_equal $0, UnknownScript_0x194177
 UnknownScript_0x19415f: ; 0x19415f
-	checkbit1 $00cd
+	checkbit1 EVENT_RESTORED_POWER_TO_KANTO
 	iftrue UnknownScript_0x1941ab
 UnknownScript_0x194165: ; 0x194165
 	checkbit1 $0044
@@ -384,21 +384,21 @@ PsychicMarkScript: ; 0x1941f9
 YoungsterScript_0x194201: ; 0x194201
 	faceplayer
 	loadfont
-	checkbit1 $0067
+	checkbit1 EVENT_GOT_HARD_STONE_FROM_ARTHUR
 	iftrue UnknownScript_0x19422f
 	checkcode $b
 	if_not_equal THURSDAY, UnknownScript_0x194235
-	checkbit1 $0066
+	checkbit1 EVENT_MET_ARTHUR_OF_THURSDAY
 	iftrue UnknownScript_0x19421c
 	2writetext UnknownText_0x194800
 	keeptextopen
-	setbit1 $0066
+	setbit1 EVENT_MET_ARTHUR_OF_THURSDAY
 UnknownScript_0x19421c: ; 0x19421c
 	2writetext UnknownText_0x19482d
 	keeptextopen
 	verbosegiveitem HARD_STONE, 1
 	iffalse UnknownScript_0x194233
-	setbit1 $0067
+	setbit1 EVENT_GOT_HARD_STONE_FROM_ARTHUR
 	2writetext UnknownText_0x194847
 	closetext
 	loadmovesprites

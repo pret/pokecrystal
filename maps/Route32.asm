@@ -43,11 +43,11 @@ CooltrainerMScript_0x19046f: ; 0x19046f
 	faceplayer
 UnknownScript_0x190470: ; 0x190470
 	loadfont
-	checkbit1 $005d
+	checkbit1 EVENT_GOT_MIRACLE_SEED_IN_ROUTE_32
 	iftrue UnknownScript_0x1904a5
 	checkbit2 $001b
 	iffalse UnknownScript_0x19049f
-	checkbit1 $002d
+	checkbit1 EVENT_GOT_TOGEPI_EGG_FROM_ELMS_AIDE
 	iftrue UnknownScript_0x19048f
 	2writetext UnknownText_0x1907ab
 	closetext
@@ -67,7 +67,7 @@ UnknownScript_0x19048f: ; 0x19048f
 	keeptextopen
 	verbosegiveitem MIRACLE_SEED, 1
 	iffalse UnknownScript_0x1904a9
-	setbit1 $005d
+	setbit1 EVENT_GOT_MIRACLE_SEED_IN_ROUTE_32
 	2jump UnknownScript_0x1904a5
 ; 0x19049f
 
@@ -106,13 +106,13 @@ UnknownScript_0x1904ab: ; 0x1904ab
 FisherScript_0x1904ce: ; 0x1904ce
 	faceplayer
 	loadfont
-	checkbit1 $004e
+	checkbit1 EVENT_GOT_TM05_ROAR
 	iftrue UnknownScript_0x1904e3
 	2writetext UnknownText_0x191133
 	keeptextopen
 	verbosegiveitem TM_05, 1
 	iffalse UnknownScript_0x1904e7
-	setbit1 $004e
+	setbit1 EVENT_GOT_TM05_ROAR
 UnknownScript_0x1904e3: ; 0x1904e3
 	2writetext UnknownText_0x19118c
 	closetext
@@ -266,7 +266,7 @@ UnknownScript_0x19057d: ; 0x19057d
 	if_equal $1, UnknownScript_0x1905ae
 	if_equal $0, UnknownScript_0x1905b4
 UnknownScript_0x19059c: ; 0x19059c
-	checkbit1 $00cd
+	checkbit1 EVENT_RESTORED_POWER_TO_KANTO
 	iftrue UnknownScript_0x1905e8
 UnknownScript_0x1905a2: ; 0x1905a2
 	checkbit1 $0044
@@ -453,10 +453,10 @@ UnknownScript_0x19068c: ; 0x19068c
 	checkbit1 $0044
 	iftrue UnknownScript_0x1906d8
 UnknownScript_0x190692: ; 0x190692
-	checkbit1 $0021
+	checkbit1 EVENT_CLEARED_RADIO_TOWER
 	iftrue UnknownScript_0x1906cb
 UnknownScript_0x190698: ; 0x190698
-	checkbit1 $0022
+	checkbit1 EVENT_CLEARED_ROCKET_HIDEOUT
 	iftrue UnknownScript_0x1906be
 UnknownScript_0x19069e: ; 0x19069e
 	checkbit2 $0048
@@ -630,21 +630,21 @@ Bird_keeperPeterScript: ; 0x190731
 LassScript_0x190739: ; 0x190739
 	faceplayer
 	loadfont
-	checkbit1 $0063
+	checkbit1 EVENT_GOT_POISON_BARB_FROM_FRIEDA
 	iftrue UnknownScript_0x190767
 	checkcode $b
 	if_not_equal FRIDAY, UnknownScript_0x19076d
-	checkbit1 $0062
+	checkbit1 EVENT_MET_FRIEDA_OF_FRIDAY
 	iftrue UnknownScript_0x190754
 	2writetext UnknownText_0x1911c1
 	keeptextopen
-	setbit1 $0062
+	setbit1 EVENT_MET_FRIEDA_OF_FRIDAY
 UnknownScript_0x190754: ; 0x190754
 	2writetext UnknownText_0x191204
 	keeptextopen
 	verbosegiveitem POISON_BARB, 1
 	iffalse UnknownScript_0x19076b
-	setbit1 $0063
+	setbit1 EVENT_GOT_POISON_BARB_FROM_FRIEDA
 	2writetext UnknownText_0x191222
 	closetext
 	loadmovesprites

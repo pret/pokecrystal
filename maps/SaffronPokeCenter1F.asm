@@ -23,7 +23,7 @@ UnknownScript_0x18a489: ; 0x18a489
 FisherScript_0x18a48c: ; 0x18a48c
 	faceplayer
 	loadfont
-	checkbit1 $00c9
+	checkbit1 EVENT_RETURNED_MACHINE_PART
 	iftrue UnknownScript_0x18a49a
 	2writetext UnknownText_0x18a5d3
 	closetext

@@ -16,13 +16,13 @@ UnknownScript_0x1ae657: ; 0x1ae657
 CooltrainerFScript_0x1ae658: ; 0x1ae658
 	faceplayer
 	loadfont
-	checkbit1 $0074
+	checkbit1 EVENT_GOT_TM47_STEEL_WING
 	iftrue UnknownScript_0x1ae66f
 	2writetext UnknownText_0x1ae682
 	keeptextopen
 	verbosegiveitem TM_47, 1
 	iffalse UnknownScript_0x1ae66d
-	setbit1 $0074
+	setbit1 EVENT_GOT_TM47_STEEL_WING
 UnknownScript_0x1ae66d: ; 0x1ae66d
 	loadmovesprites
 	end

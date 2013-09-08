@@ -50,12 +50,12 @@ UnknownScript_0x1ab52b: ; 0x1ab52b
 SeafoamGymGuyScript: ; 0x1ab531
 	faceplayer
 	loadfont
-	checkbit1 $00d5
+	checkbit1 EVENT_TALKED_TO_SEAFOAM_GYM_GUY_ONCE
 	iftrue .TalkedToSeafoamGymGuyScript
 	2writetext SeafoamGymGuyWinText
 	closetext
 	loadmovesprites
-	setbit1 $00d5
+	setbit1 EVENT_TALKED_TO_SEAFOAM_GYM_GUY_ONCE
 	end
 
 .TalkedToSeafoamGymGuyScript

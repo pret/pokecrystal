@@ -18,7 +18,7 @@ UnknownScript_0x199326: ; 0x199326
 LassScript_0x19932a: ; 0x19932a
 	faceplayer
 	loadfont
-	checkbit1 $00c9
+	checkbit1 EVENT_RETURNED_MACHINE_PART
 	iftrue UnknownScript_0x199338
 	2writetext UnknownText_0x19938d
 	closetext
@@ -36,7 +36,7 @@ UnknownScript_0x199338: ; 0x199338
 PokefanMScript_0x19933e: ; 0x19933e
 	faceplayer
 	loadfont
-	checkbit1 $00c9
+	checkbit1 EVENT_RETURNED_MACHINE_PART
 	iftrue UnknownScript_0x19934c
 	2writetext UnknownText_0x199460
 	closetext
@@ -62,7 +62,7 @@ CooltrainerFScript_0x199355: ; 0x199355
 FisherScript_0x199358: ; 0x199358
 	faceplayer
 	loadfont
-	checkbit1 $00c9
+	checkbit1 EVENT_RETURNED_MACHINE_PART
 	iftrue UnknownScript_0x199366
 	2writetext UnknownText_0x1995fc
 	closetext
