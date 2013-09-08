@@ -1054,7 +1054,7 @@ Text_0A: ; 14ed
 	push bc
 	call GetJoypadPublic
 	ld a, [hJoyDown]
-	and BUTTON_A | BUTTON_B
+	and A_BUTTON | B_BUTTON
 	jr nz, .asm_14fd
 	ld c, 30
 	call DelayFrames
@@ -1136,7 +1136,7 @@ Text_0C: ; 1543
 	ld [hli], a
 	call GetJoypadPublic
 	ld a, [hJoyDown]
-	and BUTTON_A | BUTTON_B
+	and A_BUTTON | B_BUTTON
 	jr nz, .asm_155a
 	ld c, 10
 	call DelayFrames

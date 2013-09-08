@@ -23902,9 +23902,9 @@ StartMenu: ; 125cd
 	call .PrintMenuAccount
 	call Function1f1a
 	ld a, [$cf73]
-	cp BUTTON_B
+	cp B_BUTTON
 	jr z, .b
-	cp BUTTON_A
+	cp A_BUTTON
 	jr z, .a
 	jr .loop
 .a
@@ -31482,11 +31482,11 @@ Function16be4: ; 16be4
 	call Functiona57
 
 	ld a, [hJoyPressed]
-	and BUTTON_B
+	and B_BUTTON
 	jr nz, .asm_16c95
 
 	ld a, [hJoyPressed]
-	and BUTTON_A
+	and A_BUTTON
 	jr nz, .asm_16c82
 
 	call Function16ca0
@@ -61158,7 +61158,7 @@ CheckForcedMovementInput: ; 802cb
 	ld hl, .data_802e8
 	add hl, de
 	ld a, [CurInput]
-	and BUTTON_A | BUTTON_B | SELECT | START
+	and A_BUTTON | B_BUTTON | SELECT | START
 	or [hl]
 	ld [CurInput], a
 	ret
@@ -70599,7 +70599,7 @@ OWPlayerInput: ; 96974
 
 CheckAPressOW: ; 96999
 	ld a, [hJoyPressed]
-	and BUTTON_A
+	and A_BUTTON
 	ret z
 	call TryObjectEvent
 	ret c
@@ -75887,7 +75887,7 @@ Functione4512: ; e4512
 
 Options_Cancel: ; e4520
 	ld a, [hJoyPressed]
-	and BUTTON_A
+	and A_BUTTON
 	jr nz, .asm_e4528
 	and a
 	ret
@@ -90228,7 +90228,7 @@ Function1de299: ; 1de299
 
 DudeAutoInput_A: ; 1de29f
 	db NO_INPUT, $50
-	db BUTTON_A, $00
+	db A_BUTTON, $00
 	db NO_INPUT, $ff ; end
 ; 1de2a5
 	
@@ -90236,7 +90236,7 @@ DudeAutoInput_RightA: ; 1de2a5
 	db NO_INPUT, $08
 	db D_RIGHT,  $00
 	db NO_INPUT, $08
-	db BUTTON_A, $00
+	db A_BUTTON, $00
 	db NO_INPUT, $ff ; end
 ; 1de2af
 	
@@ -90250,7 +90250,7 @@ DudeAutoInput_DownA: ; 1de2af
 	db NO_INPUT, $fe
 	db NO_INPUT, $fe
 	db NO_INPUT, $fe
-	db BUTTON_A, $00
+	db A_BUTTON, $00
 	db NO_INPUT, $ff ; end
 ; 1de2c5
 
