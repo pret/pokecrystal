@@ -11004,7 +11004,7 @@ NewGame: ; 5b6b
 	xor a
 	ld [$c2cc], a
 
-    ; clear the screen and setup wram
+	; clear the screen and setup wram
 	call InitNewGame
 
 	call Function5b44
