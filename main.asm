@@ -14984,21 +14984,21 @@ PredefPointers: ; 856b
 
 	dwb Function6508, BANK(Function6508)
 	dwb Function747a, BANK(Function747a)
-	dwb $4658, $03
-	dwb $57c1, $13 ; Flag, BANK(Flag)
-	dwb $4699, $03
+	dwb Functionc658, BANK(Functionc658)
+	dwb Function4d7c1, BANK(Function4d7c1)
+	dwb Functionc699, BANK(Functionc699)
 	dwb FillPP, BANK(FillPP)
 	dwb Functiond88c, BANK(Functiond88c)
-	dwb $5a96, $03
-	dwb $5b3f, $03
+	dwb Functionda96, BANK(Functionda96)
+	dwb Functiondb3f, BANK(Functiondb3f)
 	dwb Functionde6e, BANK(Functionde6e)
 	dwb Functiondf8c, BANK(Functiondf8c)
-	dwb $46e0, $03
+	dwb Functionc6e0, BANK(Functionc6e0)
 	dwb Functione167, BANK(Functione167)
 	dwb Functione17b, BANK(Functione17b)
 	dwb CanLearnTMHMMove, BANK(CanLearnTMHMMove)
 	dwb GetTMHMMove, BANK(GetTMHMMove)
-	dwb $4eef, $0a
+	dwb Function28eef, BANK(Function28eef)
 	dwb $4b3e, $0b ; PrintMoveDescription, BANK(PrintMoveDescription)
 	dwb Function3df48, BANK(Function3df48) ; UpdatePlayerHUD
 	dwb FillBox, BANK(FillBox)
@@ -15010,57 +15010,58 @@ PredefPointers: ; 856b
 	dwb Function3f47c, BANK(Function3f47c)
 	dwb Function42487, BANK(Function42487)
 	dwb FillMoves, BANK(FillMoves)
-	dwb $61e6, $10
-	dwb $4f63, $0a
-	dwb $4f24, $0a
+	dwb Function421e6, BANK(Function421e6)
+	dwb Function28f63, BANK(Function28f63)
+	dwb Function28f24, BANK(Function28f24)
 	dwb Function5084a, BANK(Function5084a)
-	dwb $4d6f, $14
-	dwb $4d2e, $14
-	dwb $4cdb, $14
-	dwb $4c50, $14
+	dwb Function50d6f, BANK(Function50d6f)
+	dwb Function50d2e, BANK(Function50d2e)
+	dwb Function50cdb, BANK(Function50cdb)
+	dwb Function50c50, BANK(Function50c50)
 	dwb GetGender, BANK(GetGender)
 	dwb StatsScreenInit, BANK(StatsScreenInit)
 	dwb DrawPlayerHP, BANK(DrawPlayerHP)
 	dwb DrawEnemyHP, BANK(DrawEnemyHP)
-	dwb $4b7b, $14
+	dwb Function50b7b, BANK(Function50b7b)
 	dwb GetTypeName, BANK(GetTypeName)
 	dwb PrintMoveType, BANK(PrintMoveType)
 	dwb PrintType, BANK(PrintType)
 	dwb PrintMonTypes, BANK(PrintMonTypes)
 	dwb GetUnownLetter, BANK(GetUnownLetter)
-	dwb $7cdd, $32
-	dwb $40d5, $33
-	dwb $5853, $02
-	dwb Function864c, BANK(Function864c) ; LoadSGBLayout, BANK(LoadSGBLayout)
-	dwb $5d11, $24
+	dwb Functioncbcdd, BANK(Functioncbcdd)
+	dwb Functioncc0d5, BANK(Functioncc0d5)
+	dwb Function9853, BANK(Function9853)
+	dwb Function864c, BANK(Function864c)
+	dwb Function91d11, BANK(Function91d11)
 	dwb CheckContestMon, BANK(CheckContestMon)
 	dwb Function8c20f, BANK(Function8c20f)
-	dwb $4000, $23
-	dwb $4000, $23
+	dwb Function8c000, BANK(Function8c000)
+	dwb Function8c000, BANK(Function8c000)
 	dwb Functioncc0d6, BANK(Functioncc0d6)
-	dwb $40d5, $33
-	dwb $40d5, $33
-	dwb $51d0, $3f
+	dwb Functioncc0d5, BANK(Functioncc0d5)
+	dwb Functioncc0d5, BANK(Functioncc0d5)
+	dwb Functionfd1d0, BANK(Functionfd1d0)
 	dwb PartyMonItemName, BANK(PartyMonItemName)
-	dwb $5077, $14
-	dwb $516c, $14
-	dwb $508b, $14
+	dwb Function51077, BANK(Function51077)
+	dwb Function5116c, BANK(Function5116c)
+	dwb Function5108b, BANK(Function5108b)
 	dwb Function5120d, BANK(Function5120d)
 	dwb DecompressPredef, BANK(DecompressPredef)
 	dwb Function0x347d3, BANK(Function0x347d3)
-	dwb $7908, $3e
+	dwb Functionfb908, BANK(Functionfb908)
 	dwb Functionfb877, BANK(Functionfb877)
-	dwb $4000, $34
+	dwb Functiond0000, BANK(Functiond0000)
 	dwb Function50d0a, BANK(Function50d0a)
-	dwb $40a3, $34
-	dwb $408e, $34
-	dwb $4669, $34
-	dwb $466e, $34
-	dwb $43ff, $2d
+	dwb Functiond00a3, BANK(Functiond00a3)
+	dwb Functiond008e, BANK(Functiond008e)
+	dwb Functiond0669, BANK(Functiond0669)
+	dwb Functiond066e, BANK(Functiond066e)
+	dbw $ff, Function2d43 ; ????
 ; 864c
 
 
 Function864c: ; 864c
+; LoadSGBLayout
 	call Function8d55
 	jp nz, Function8d59
 	ld a, b
@@ -15250,7 +15251,60 @@ Function8b07: ; 8b07
 	ret
 ; 8b2f
 
-INCBIN "baserom.gbc", $8b2f, $8cb4 - $8b2f
+INCBIN "baserom.gbc", $8b2f, $8c43 - $8b2f
+
+Function8c43: ; 8c43
+	ld a, [$d10a]
+	and a
+	jr z, .asm_8c52
+	cp $1
+	jr z, .asm_8c57
+	cp $2
+	jr z, .asm_8c70
+	ret
+
+.asm_8c52
+	ld de, $d092
+	jr .asm_8c5a
+
+.asm_8c57
+	ld de, $d09a
+
+.asm_8c5a
+	ld l, c
+	ld h, $0
+	add hl, hl
+	add hl, hl
+	ld bc, $68be
+	add hl, bc
+	ld bc, $0004
+	ld a, $5
+	call Function306b
+	ld a, $1
+	ld [hCGBPalUpdate], a
+	ret
+
+.asm_8c70
+	ld e, c
+	inc e
+	ld hl, $cdf8
+	ld bc, $0028
+	ld a, [CurPartyMon]
+.asm_8c7b
+	and a
+	jr z, .asm_8c82
+	add hl, bc
+	dec a
+	jr .asm_8c7b
+
+.asm_8c82
+	ld bc, $0208
+	ld a, e
+	call Function9663
+	ret
+; 8c8a
+
+INCBIN "baserom.gbc", $8c8a, $8cb4 - $8c8a
 
 Function8cb4: ; 8cb4
 	ld l, e
@@ -15881,7 +15935,37 @@ Function981a: ; 981a
 	ret
 ; 9853
 
-INCBIN "baserom.gbc", $9853, $9890 - $9853
+Function9853: ; 9853
+	call Function8d55
+	ret nz
+	di
+	ld a, [$cfbe]
+	push af
+	set 7, a
+	ld [$cfbe], a
+	xor a
+	ld [rJOYP], a
+	ld [hSGB], a
+	call Function994a
+	jr nc, .asm_988a
+	ld a, $1
+	ld [hSGB], a
+	call Function98eb
+	call Function99b4
+	call Function9a7a
+	call Function993f
+	call Function992c
+	call Function9a7a
+	call Function993f
+	ld hl, $5d66
+	call Function981a
+
+.asm_988a
+	pop af
+	ld [$cfbe], a
+	ei
+	ret
+; 9890
 
 
 Function9890: ; 9890
@@ -15940,7 +16024,181 @@ Function98df: ; 98df
 	ret
 ; 98eb
 
-INCBIN "baserom.gbc", $98eb, $9a52 - $98eb
+Function98eb: ; 98eb
+	ld hl, $58ff
+	ld c, $9
+.asm_98f0
+	push bc
+	ld a, [hli]
+	push hl
+	ld h, [hl]
+	ld l, a
+	call Function981a
+	pop hl
+	inc hl
+	pop bc
+	dec c
+	jr nz, .asm_98f0
+	ret
+; 98ff
+
+INCBIN "baserom.gbc", $98ff, $992c - $98ff
+
+Function992c: ; 992c
+	call Function9938
+	push de
+	call Function9a24
+	pop hl
+	call Function99d8
+	ret
+; 9938
+
+Function9938: ; 9938
+	ld hl, $651e
+	ld de, $606e
+	ret
+; 993f
+
+Function993f: ; 993f
+	ld hl, VTiles0
+	ld bc, $2000
+	xor a
+	call ByteFill
+	ret
+; 994a
+
+Function994a: ; 994a
+	ld hl, $5d26
+	call Function981a
+	call Function9a7a
+	ld a, [rJOYP]
+	and $3
+	cp $3
+	jr nz, .asm_99a6
+	ld a, $20
+	ld [rJOYP], a
+	ld a, [rJOYP]
+	ld a, [rJOYP]
+	call Function9a7a
+	call Function9a7a
+	ld a, $30
+	ld [rJOYP], a
+	call Function9a7a
+	call Function9a7a
+	ld a, $10
+	ld [rJOYP], a
+	ld a, [rJOYP]
+	ld a, [rJOYP]
+	ld a, [rJOYP]
+	ld a, [rJOYP]
+	ld a, [rJOYP]
+	ld a, [rJOYP]
+	call Function9a7a
+	call Function9a7a
+	ld a, $30
+	ld [rJOYP], a
+	ld a, [rJOYP]
+	ld a, [rJOYP]
+	ld a, [rJOYP]
+	call Function9a7a
+	call Function9a7a
+	ld a, [rJOYP]
+	and $3
+	cp $3
+	jr nz, .asm_99a6
+	call Function99ab
+	and a
+	ret
+
+.asm_99a6
+	call Function99ab
+	scf
+	ret
+; 99ab
+
+Function99ab: ; 99ab
+	ld hl, $5d16
+	call Function981a
+	jp Function9a7a
+; 99b4
+
+Function99b4: ; 99b4
+	call DisableLCD
+	ld a, $e4
+	ld [rBGP], a
+	ld hl, $5df6
+	ld de, VTiles1
+	ld bc, $1000
+	call CopyData
+	call DrawDefaultTiles
+	ld a, $e3
+	ld [rLCDC], a
+	ld hl, $5d06
+	call Function981a
+	xor a
+	ld [rBGP], a
+	ret
+; 99d8
+
+Function99d8: ; 99d8
+	call DisableLCD
+	ld a, $e4
+	ld [rBGP], a
+	ld de, VTiles1
+	ld bc, $0140
+	call CopyData
+	ld b, $12
+.asm_99ea
+	push bc
+	ld bc, $000c
+	call CopyData
+	ld bc, $0028
+	call ClearBytes
+	ld bc, $000c
+	call CopyData
+	pop bc
+	dec b
+	jr nz, .asm_99ea
+	ld bc, $0140
+	call CopyData
+	ld bc, Start
+	call ClearBytes
+	ld bc, $0080
+	call CopyData
+	call DrawDefaultTiles
+	ld a, $e3
+	ld [rLCDC], a
+	ld hl, $5d46
+	call Function981a
+	xor a
+	ld [rBGP], a
+	ret
+; 9a24
+
+Function9a24: ; 9a24
+	call DisableLCD
+	ld a, $e4
+	ld [rBGP], a
+	ld de, VTiles1
+	ld b, $80
+.asm_9a30
+	push bc
+	ld bc, $0010
+	call CopyData
+	ld bc, $0010
+	call ClearBytes
+	pop bc
+	dec b
+	jr nz, .asm_9a30
+	call DrawDefaultTiles
+	ld a, $e3
+	ld [rLCDC], a
+	ld hl, $5d36
+	call Function981a
+	xor a
+	ld [rBGP], a
+	ret
+; 9a52
 
 CopyData: ; 0x9a52
 ; copy bc bytes of data from hl to de
@@ -16951,7 +17209,62 @@ Functionc677: ; c677
 	ret
 ; c699
 
-INCBIN "baserom.gbc", $c699, $c6ea - $c699
+Functionc699: ; c699
+	ld a, b
+	or c
+	jr z, .asm_c6dd
+	push hl
+	xor a
+	ld [hMultiplicand], a
+	ld a, b
+	ld [$ffb5], a
+	ld a, c
+	ld [$ffb6], a
+	ld a, $30
+	ld [hMultiplier], a
+	call Multiply
+	ld a, d
+	and a
+	jr z, .asm_c6cc
+	srl d
+	rr e
+	srl d
+	rr e
+	ld a, [$ffb5]
+	ld b, a
+	ld a, [$ffb6]
+	srl b
+	rr a
+	srl b
+	rr a
+	ld [$ffb6], a
+	ld a, b
+	ld [$ffb5], a
+
+.asm_c6cc
+	ld a, e
+	ld [hMultiplier], a
+	ld b, $4
+	call Divide
+	ld a, [$ffb6]
+	ld e, a
+	pop hl
+	and a
+	ret nz
+	ld e, $1
+	ret
+
+.asm_c6dd
+	ld e, $0
+	ret
+; c6e0
+
+Functionc6e0: ; c6e0
+	call WaitBGMap
+	call Functiond627
+	call WaitBGMap
+	ret
+; c6ea
 
 
 Functionc6ea: ; c6ea
@@ -19022,7 +19335,440 @@ GetItemPrice: ; d486
 	ret
 ; d497
 
-INCBIN "baserom.gbc", $d497, $d88c - $d497
+INCBIN "baserom.gbc", $d497, $d627 - $d497
+
+Functiond627: ; d627
+	call Functiond65f
+	jr c, .asm_d645
+	call Functiond670
+.asm_d62f
+	push bc
+	push hl
+	call Functiond6e2
+	pop hl
+	pop bc
+	push af
+	push bc
+	push hl
+	call Functiond730
+	call Functiond7c9
+	pop hl
+	pop bc
+	pop af
+	jr nc, .asm_d62f
+	ret
+
+.asm_d645
+	call Functiond670
+.asm_d648
+	push bc
+	push hl
+	call Functiond6f5
+	pop hl
+	pop bc
+	ret c
+	push af
+	push bc
+	push hl
+	call Functiond749
+	call Functiond7c9
+	pop hl
+	pop bc
+	pop af
+	jr nc, .asm_d648
+	ret
+; d65f
+
+Functiond65f: ; d65f
+	ld a, [Buffer2]
+	and a
+	jr nz, .asm_d66e
+	ld a, [Buffer1]
+	cp $30
+	jr nc, .asm_d66e
+	and a
+	ret
+
+.asm_d66e
+	scf
+	ret
+; d670
+
+Functiond670: ; d670
+	push hl
+	ld hl, Buffer1
+	ld a, [hli]
+	ld e, a
+	ld a, [hli]
+	ld d, a
+	ld a, [hli]
+	ld c, a
+	ld a, [hli]
+	ld b, a
+	pop hl
+	call Functionc699
+	ld a, e
+	ld [$d1f1], a
+	ld a, [$d1ee]
+	ld c, a
+	ld a, [$d1ef]
+	ld b, a
+	ld a, [Buffer1]
+	ld e, a
+	ld a, [Buffer2]
+	ld d, a
+	call Functionc699
+	ld a, e
+	ld [$d1f2], a
+	push hl
+	ld hl, $d1ec
+	ld a, [hli]
+	ld c, a
+	ld a, [hli]
+	ld b, a
+	ld a, [hli]
+	ld e, a
+	ld a, [hli]
+	ld d, a
+	pop hl
+	ld a, e
+	sub c
+	ld e, a
+	ld a, d
+	sbc b
+	ld d, a
+	jr c, .asm_d6c1
+	ld a, [$d1ec]
+	ld [$d1f5], a
+	ld a, [$d1ee]
+	ld [$d1f6], a
+	ld bc, $0001
+	jr .asm_d6d9
+
+.asm_d6c1
+	ld a, [$d1ec]
+	ld [$d1f6], a
+	ld a, [$d1ee]
+	ld [$d1f5], a
+	ld a, e
+	xor $ff
+	inc a
+	ld e, a
+	ld a, d
+	xor $ff
+	ld d, a
+	ld bc, rIE
+
+.asm_d6d9
+	ld a, d
+	ld [$d1f3], a
+	ld a, e
+	ld [$d1f4], a
+	ret
+; d6e2
+
+Functiond6e2: ; d6e2
+	ld hl, $d1f1
+	ld a, [$d1f2]
+	cp [hl]
+	jr nz, .asm_d6ed
+	scf
+	ret
+
+.asm_d6ed
+	ld a, c
+	add [hl]
+	ld [hl], a
+	call Functiond839
+	and a
+	ret
+; d6f5
+
+Functiond6f5: ; d6f5
+.asm_d6f5
+	ld hl, $d1ec
+	ld a, [hli]
+	ld e, a
+	ld a, [hli]
+	ld d, a
+	ld a, e
+	cp [hl]
+	jr nz, .asm_d707
+	inc hl
+	ld a, d
+	cp [hl]
+	jr nz, .asm_d707
+	scf
+	ret
+
+.asm_d707
+	ld l, e
+	ld h, d
+	add hl, bc
+	ld a, l
+	ld [$d1ec], a
+	ld a, h
+	ld [$d1ed], a
+	push hl
+	push de
+	push bc
+	ld hl, Buffer1
+	ld a, [hli]
+	ld e, a
+	ld a, [hli]
+	ld d, a
+	ld a, [hli]
+	ld c, a
+	ld a, [hli]
+	ld b, a
+	call Functionc699
+	pop bc
+	pop de
+	pop hl
+	ld a, e
+	ld hl, $d1f1
+	cp [hl]
+	jr z, .asm_d6f5
+	ld [hl], a
+	and a
+	ret
+; d730
+
+Functiond730: ; d730
+	call Functiond784
+	ld d, $6
+	ld a, [$d10a]
+	and $1
+	ld b, a
+	ld a, [$d1f1]
+	ld e, a
+	ld c, a
+	push de
+	call Functiond771
+	pop de
+	call Functiond7b4
+	ret
+; d749
+
+Functiond749: ; d749
+	call Functiond784
+	ld a, [$d1ec]
+	ld c, a
+	ld a, [$d1ed]
+	ld b, a
+	ld a, [Buffer1]
+	ld e, a
+	ld a, [Buffer2]
+	ld d, a
+	call Functionc699
+	ld c, e
+	ld d, $6
+	ld a, [$d10a]
+	and $1
+	ld b, a
+	push de
+	call Functiond771
+	pop de
+	call Functiond7b4
+	ret
+; d771
+
+Functiond771: ; d771
+	ld a, [$d10a]
+	cp $2
+	jr nz, .asm_d780
+	ld a, $28
+	add l
+	ld l, a
+	ld a, $0
+	adc h
+	ld h, a
+
+.asm_d780
+	call DrawHPBar
+	ret
+; d784
+
+Functiond784: ; d784
+	ld a, [$d10a]
+	and a
+	ret z
+	cp $1
+	jr z, .asm_d792
+	ld de, $0016
+	jr .asm_d795
+
+.asm_d792
+	ld de, $0015
+
+.asm_d795
+	push hl
+	add hl, de
+	ld a, $7f
+	ld [hli], a
+	ld [hli], a
+	ld [hld], a
+	dec hl
+	ld a, [$d1ec]
+	ld [$d087], a
+	ld a, [$d1ed]
+	ld [StringBuffer2], a
+	ld de, StringBuffer2
+	ld bc, $0203
+	call PrintNum
+	pop hl
+	ret
+; d7b4
+
+Functiond7b4: ; d7b4
+	ld a, [hCGB]
+	and a
+	ret z
+	ld hl, $d1f0
+	call SetHPPal
+	ld a, [$d1f0]
+	ld c, a
+	callba Function8c43
+	ret
+; d7c9
+
+Functiond7c9: ; d7c9
+	ld a, [hCGB]
+	and a
+	jr nz, .asm_d7d5
+	call DelayFrame
+	call DelayFrame
+	ret
+
+.asm_d7d5
+	ld a, [$d10a]
+	and a
+	jr z, .asm_d829
+	cp $1
+	jr z, .asm_d82d
+	ld a, [CurPartyMon]
+	cp $3
+	jr nc, .asm_d7ea
+	ld c, $0
+	jr .asm_d7ec
+
+.asm_d7ea
+	ld c, $1
+
+.asm_d7ec
+	push af
+	cp $2
+	jr z, .asm_d7ff
+	cp $5
+	jr z, .asm_d7ff
+	ld a, $2
+	ld [hBGMapMode], a
+	ld a, c
+	ld [hBGMapThird], a
+	call DelayFrame
+
+.asm_d7ff
+	ld a, $1
+	ld [hBGMapMode], a
+	ld a, c
+	ld [hBGMapThird], a
+	call DelayFrame
+	pop af
+	cp $2
+	jr z, .asm_d813
+	cp $5
+	jr z, .asm_d813
+	ret
+
+.asm_d813
+	inc c
+	ld a, $2
+	ld [hBGMapMode], a
+	ld a, c
+	ld [hBGMapThird], a
+	call DelayFrame
+	ld a, $1
+	ld [hBGMapMode], a
+	ld a, c
+	ld [hBGMapThird], a
+	call DelayFrame
+	ret
+
+.asm_d829
+	ld c, $0
+	jr .asm_d82f
+
+.asm_d82d
+	ld c, $1
+
+.asm_d82f
+	call DelayFrame
+	ld a, c
+	ld [hBGMapThird], a
+	call DelayFrame
+	ret
+; d839
+
+Functiond839: ; d839
+	ld a, [Buffer1]
+	ld c, a
+	ld b, $0
+	ld hl, $0000
+	ld a, [$d1f1]
+	cp $30
+	jr nc, .asm_d885
+	and a
+	jr z, .asm_d880
+	call AddNTimes
+	ld b, $0
+.asm_d851
+	ld a, l
+	sub $30
+	ld l, a
+	ld a, h
+	sbc $0
+	ld h, a
+	jr c, .asm_d85e
+	inc b
+	jr .asm_d851
+
+.asm_d85e
+	push bc
+	ld bc, $0080
+	add hl, bc
+	pop bc
+	ld a, l
+	sub $30
+	ld l, a
+	ld a, h
+	sbc $0
+	ld h, a
+	jr c, .asm_d86f
+	inc b
+
+.asm_d86f
+	ld a, [$d1f5]
+	cp b
+	jr nc, .asm_d87c
+	ld a, [$d1f6]
+	cp b
+	jr c, .asm_d87c
+	ld a, b
+
+.asm_d87c
+	ld [$d1ec], a
+	ret
+
+.asm_d880
+	xor a
+	ld [$d1ec], a
+	ret
+
+.asm_d885
+	ld a, [Buffer1]
+	ld [$d1ec], a
+	ret
+; d88c
 
 
 Functiond88c: ; d88c
@@ -19375,7 +20121,307 @@ FillPP: ; da6d
 	ret
 ; da96
 
-INCBIN "baserom.gbc", $da96, $dcb6 - $da96
+Functionda96: ; da96
+	ld hl, PartyCount
+	ld a, [hl]
+	cp $6
+	scf
+	ret z
+	inc a
+	ld [hl], a
+	ld c, a
+	ld b, $0
+	add hl, bc
+	ld a, [CurPartySpecies]
+	ld [hli], a
+	ld [hl], $ff
+	ld hl, PartyMon1Species
+	ld a, [PartyCount]
+	dec a
+	ld bc, $0030
+	call AddNTimes
+	ld e, l
+	ld d, h
+	ld hl, TempMonSpecies
+	call CopyBytes
+	ld hl, PartyMon1OT
+	ld a, [PartyCount]
+	dec a
+	call SkipNames
+	ld d, h
+	ld e, l
+	ld hl, OTPartyMon1OT
+	ld a, [CurPartyMon]
+	call SkipNames
+	ld bc, $000b
+	call CopyBytes
+	ld hl, PartyMon1Nickname
+	ld a, [PartyCount]
+	dec a
+	call SkipNames
+	ld d, h
+	ld e, l
+	ld hl, OTPartyMon1Nickname
+	ld a, [CurPartyMon]
+	call SkipNames
+	ld bc, $000b
+	call CopyBytes
+	ld a, [CurPartySpecies]
+	ld [$d265], a
+	cp $fd
+	jr z, .asm_db12
+	dec a
+	call SetSeenAndCaughtMon
+	ld hl, PartyMon1Happiness
+	ld a, [PartyCount]
+	dec a
+	ld bc, $0030
+	call AddNTimes
+	ld [hl], $46
+
+.asm_db12
+	ld a, [CurPartySpecies]
+	cp $c9
+	jr nz, .asm_db3d
+	ld hl, PartyMon1DVs
+	ld a, [PartyCount]
+	dec a
+	ld bc, $0030
+	call AddNTimes
+	ld a, $2d
+	call Predef
+	callab Functionfba18
+	ld a, [$def4]
+	and a
+	jr nz, .asm_db3d
+	ld a, [UnownLetter]
+	ld [$def4], a
+
+.asm_db3d
+	and a
+	ret
+; db3f
+
+Functiondb3f: ; db3f
+	ld a, $1
+	call GetSRAMBank
+	ld a, [$d10b]
+	and a
+	jr z, .asm_db60
+	cp $2
+	jr z, .asm_db60
+	cp $3
+	ld hl, BreedMon1Species
+	jr z, .asm_db9b
+	ld hl, BoxCount
+	ld a, [hl]
+	cp $14
+	jr nz, .asm_db69
+	jp Functiondcb1
+
+.asm_db60
+	ld hl, PartyCount
+	ld a, [hl]
+	cp $6
+	jp z, Functiondcb1
+
+.asm_db69
+	inc a
+	ld [hl], a
+	ld c, a
+	ld b, $0
+	add hl, bc
+	ld a, [$d10b]
+	cp $2
+	ld a, [BreedMon1Species]
+	jr z, .asm_db7c
+	ld a, [CurPartySpecies]
+
+.asm_db7c
+	ld [hli], a
+	ld [hl], $ff
+	ld a, [$d10b]
+	dec a
+	ld hl, PartyMon1Species
+	ld bc, $0030
+	ld a, [PartyCount]
+	jr nz, .asm_db97
+	ld hl, BoxMon1Species
+	ld bc, $0020
+	ld a, [BoxCount]
+
+.asm_db97
+	dec a
+	call AddNTimes
+
+.asm_db9b
+	push hl
+	ld e, l
+	ld d, h
+	ld a, [$d10b]
+	and a
+	ld hl, BoxMon1Species
+	ld bc, $0020
+	jr z, .asm_dbb7
+	cp $2
+	ld hl, BreedMon1Species
+	jr z, .asm_dbbd
+	ld hl, PartyMon1Species
+	ld bc, $0030
+
+.asm_dbb7
+	ld a, [CurPartyMon]
+	call AddNTimes
+
+.asm_dbbd
+	ld bc, $0020
+	call CopyBytes
+	ld a, [$d10b]
+	cp $3
+	ld de, BreedMon1OT
+	jr z, .asm_dbe2
+	dec a
+	ld hl, PartyMon1OT
+	ld a, [PartyCount]
+	jr nz, .asm_dbdc
+	ld hl, BoxMon1OT
+	ld a, [BoxCount]
+
+.asm_dbdc
+	dec a
+	call SkipNames
+	ld d, h
+	ld e, l
+
+.asm_dbe2
+	ld hl, BoxMon1OT
+	ld a, [$d10b]
+	and a
+	jr z, .asm_dbf5
+	ld hl, BreedMon1OT
+	cp $2
+	jr z, .asm_dbfb
+	ld hl, PartyMon1OT
+
+.asm_dbf5
+	ld a, [CurPartyMon]
+	call SkipNames
+
+.asm_dbfb
+	ld bc, $000b
+	call CopyBytes
+	ld a, [$d10b]
+	cp $3
+	ld de, BreedMon1Nick
+	jr z, .asm_dc20
+	dec a
+	ld hl, PartyMon1Nickname
+	ld a, [PartyCount]
+	jr nz, .asm_dc1a
+	ld hl, BoxMon1Nickname
+	ld a, [BoxCount]
+
+.asm_dc1a
+	dec a
+	call SkipNames
+	ld d, h
+	ld e, l
+
+.asm_dc20
+	ld hl, BoxMon1Nickname
+	ld a, [$d10b]
+	and a
+	jr z, .asm_dc33
+	ld hl, BreedMon1Nick
+	cp $2
+	jr z, .asm_dc39
+	ld hl, PartyMon1Nickname
+
+.asm_dc33
+	ld a, [CurPartyMon]
+	call SkipNames
+
+.asm_dc39
+	ld bc, $000b
+	call CopyBytes
+	pop hl
+	ld a, [$d10b]
+	cp $1
+	jr z, .asm_dca4
+	cp $3
+	jp z, .asm_dcac
+	push hl
+	srl a
+	add $2
+	ld [MonType], a
+	ld a, $1f
+	call Predef
+	callab Function50e1b
+	ld a, d
+	ld [CurPartyLevel], a
+	pop hl
+	ld b, h
+	ld c, l
+	ld hl, $001f
+	add hl, bc
+	ld [hl], a
+	ld hl, $0024
+	add hl, bc
+	ld d, h
+	ld e, l
+	ld hl, $000a
+	add hl, bc
+	push bc
+	ld b, $1
+	call Functione167
+	pop bc
+	ld a, [$d10b]
+	and a
+	jr nz, .asm_dcac
+	ld hl, $0020
+	add hl, bc
+	xor a
+	ld [hl], a
+	ld hl, $0022
+	add hl, bc
+	ld d, h
+	ld e, l
+	ld a, [CurPartySpecies]
+	cp $fd
+	jr z, .asm_dc9e
+	inc hl
+	inc hl
+	ld a, [hli]
+	ld [de], a
+	ld a, [hl]
+	inc de
+	ld [de], a
+	jr .asm_dcac
+
+.asm_dc9e
+	xor a
+	ld [de], a
+	inc de
+	ld [de], a
+	jr .asm_dcac
+
+.asm_dca4
+	ld a, [BoxCount]
+	dec a
+	ld b, a
+	call Functiondcb6
+
+.asm_dcac
+	call CloseSRAM
+	and a
+	ret
+; dcb1
+
+Functiondcb1: ; dcb1
+	call CloseSRAM
+	scf
+	ret
+; dcb6
 
 
 Functiondcb6: ; dcb6
@@ -36204,7 +37250,328 @@ Function28eff: ; 28eff
 	ret
 ; 28f09
 
-INCBIN "baserom.gbc", $28f09, $29bfb - $28f09
+INCBIN "baserom.gbc", $28f09, $28f24 - $28f09
+
+Function28f24: ; 28f24
+	xor a
+	ld [$cf66], a
+	ld hl, $c6e7
+	ld de, $c719
+	call Function297ff
+	ld hl, PlayerSDefLevel
+	ld de, PlayerLightScreenCount
+	call Function29814
+	ld de, .data_28f3f
+	jr Function28fa1
+
+.data_28f3f
+	db $1b
+	db $1
+	db $1c
+	db $21
+	db $2d
+	db $27
+	db $23
+	db $3
+	db $25
+	db $28
+	db $25
+	db $1e
+	db $29
+	db $6
+	db $16
+	db $1f
+	db $19
+	db $17
+	db $22
+	db $1f
+	db $2a
+	db $e
+	db $3
+	db $24
+	db $5
+	db $25
+	db $2
+	db $27
+	db $25
+	db $1d
+	db $2c
+	db $2e
+	db $1e
+	db $18
+	db $1f
+	db $2b
+
+Function28f63: ; 28f63
+	xor a
+	ld [$cf66], a
+	ld hl, $c719
+	ld de, $c6e7
+	call Function297ff
+	ld hl, PlayerLightScreenCount
+	ld de, PlayerSDefLevel
+	call Function29814
+	ld de, .data_28f7e
+	jr Function28fa1
+
+.data_28f7e
+	db $1a
+	db $17
+	db $22
+	db $1f
+	db $2a
+	db $6
+	db $3
+	db $24
+	db $5
+	db $25
+	db $2
+	db $27
+	db $25
+	db $1d
+	db $2c
+	db $2f
+	db $1e
+	db $18
+	db $1f
+	db $1b
+	db $1
+	db $1c
+	db $22
+	db $27
+	db $23
+	db $3
+	db $25
+	db $28
+	db $25
+	db $1e
+	db $29
+	db $e
+	db $16
+	db $1f
+	db $2b
+
+Function28fa1: ; 28fa1
+	ld hl, BattleEnded
+	ld [hl], e
+	inc hl
+	ld [hl], d
+	ld a, [$ffde]
+	push af
+	xor a
+	ld [$ffde], a
+	ld hl, VramState
+	ld a, [hl]
+	push af
+	res 0, [hl]
+	ld hl, Options
+	ld a, [hl]
+	push af
+	set 4, [hl]
+	call Function28fdb
+	ld a, [$cf66]
+	and a
+	jr nz, .asm_28fca
+	ld de, MUSIC_EVOLUTION
+	call StartMusic2
+.asm_28fca
+	call Function29082
+	jr nc, .asm_28fca
+	pop af
+	ld [Options], a
+	pop af
+	ld [VramState], a
+	pop af
+	ld [$ffde], a
+	ret
+; 28fdb
+
+Function28fdb: ; 28fdb
+	xor a
+	ld [$cf63], a
+	call WhiteBGMap
+	call ClearSprites
+	call ClearTileMap
+	call DisableLCD
+	call Functione58
+	callab Function8cf53
+	ld a, [hCGB]
+	and a
+	jr z, .asm_2900b
+	ld a, $1
+	ld [rVBK], a
+	ld hl, VTiles0
+	ld bc, $2000
+	xor a
+	call ByteFill
+	ld a, $0
+	ld [rVBK], a
+
+.asm_2900b
+	ld hl, VBGMap0
+	ld bc, $0800
+	ld a, $7f
+	call ByteFill
+	ld hl, $599b
+	ld de, $9310
+	call Decompress
+	ld hl, $591b
+	ld de, $8ed0
+	ld bc, $0010
+	ld a, $a
+	call FarCopyBytes
+	ld hl, $592b
+	ld de, $8ee0
+	ld bc, $0010
+	ld a, $a
+	call FarCopyBytes
+	xor a
+	ld [hSCX], a
+	ld [hSCY], a
+	ld a, $7
+	ld [hWX], a
+	ld a, $90
+	ld [hWY], a
+	callba Function4d7fd
+	call EnableLCD
+	call Function2982b
+	ld a, [PlayerSDefLevel]
+	ld hl, $c6fd
+	ld de, VTiles0
+	call Function29491
+	ld a, [PlayerLightScreenCount]
+	ld hl, $c72f
+	ld de, $8310
+	call Function29491
+	ld a, [PlayerSDefLevel]
+	ld de, PlayerAccLevel
+	call Function294a9
+	ld a, [PlayerLightScreenCount]
+	ld de, PlayerReflectCount
+	call Function294a9
+	call Function297ed
+	ret
+; 29082
+
+Function29082: ; 29082
+	ld a, [$cf63]
+	bit 7, a
+	jr nz, .asm_2909b
+	call Function290a0
+	callab Function8cf69
+	ld hl, $cf65
+	inc [hl]
+	call DelayFrame
+	and a
+	ret
+
+.asm_2909b
+	call Functione51
+	scf
+	ret
+; 290a0
+
+Function290a0: ; 290a0
+	ld a, [$cf63]
+	ld e, a
+	ld d, $0
+	ld hl, $50af
+	add hl, de
+	add hl, de
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	jp [hl]
+; 290af
+
+INCBIN "baserom.gbc", $290af, $29491 - $290af
+
+Function29491: ; 29491
+	push de
+	push af
+	ld a, $2d
+	call Predef
+	pop af
+	ld [CurPartySpecies], a
+	ld [CurSpecies], a
+	call GetBaseData
+	pop de
+	ld a, $3c
+	call Predef
+	ret
+; 294a9
+
+Function294a9: ; 294a9
+	push de
+	ld [$d265], a
+	call GetPokemonName
+	ld hl, StringBuffer1
+	pop de
+	ld bc, $000b
+	call CopyBytes
+	ret
+; 294bb
+
+INCBIN "baserom.gbc", $294bb, $297ed - $294bb
+
+Function297ed: ; 297ed
+	ld a, [hSGB]
+	and a
+	ld a, $e4
+	jr z, .asm_297f6
+	ld a, $f0
+
+.asm_297f6
+	call Functioncf8
+	ld a, $e4
+	call DmgToCgbBGPals
+	ret
+; 297ff
+
+Function297ff: ; 297ff
+	push de
+	ld de, $c736
+	ld bc, $000b
+	call CopyBytes
+	pop hl
+	ld de, $c741
+	ld bc, $000b
+	call CopyBytes
+	ret
+; 29814
+
+Function29814: ; 29814
+	ld a, [hl]
+	ld [$c74c], a
+	ld a, [de]
+	ld [$c74d], a
+	ret
+; 2981d
+
+INCBIN "baserom.gbc", $2981d, $2982b - $2981d
+
+Function2982b: ; 2982b
+	call DelayFrame
+	ld de, $5adb
+	ld hl, $8620
+	ld bc, $0a06
+	call Request2bpp
+	ld de, $5b3b
+	ld hl, $8680
+	ld bc, $0a0c
+	call Request2bpp
+	ld de, $593b
+	ld hl, $8740
+	ld bc, $0a04
+	call Request2bpp
+	xor a
+	ld hl, $c300
+	ld [hli], a
+	ld [hl], $62
+	ret
+; 2985a
+
+INCBIN "baserom.gbc", $2985a, $29bfb - $2985a
 
 Function29bfb: ; 29bfb
 	ld hl, PartySpecies
@@ -36736,7 +38103,161 @@ Function29f47: ; 29f47
 	ret
 ; 29f54
 
-INCBIN "baserom.gbc", $29f54, $2a0e7 - $29f54
+INCBIN "baserom.gbc", $29f54, $2a01f - $29f54
+
+Function2a01f: ; 2a01f
+	ld hl, TileMap
+	ld bc, $0168
+	xor a
+	call ByteFill
+	ld a, e
+	and a
+	jr nz, .asm_2a043
+	ld de, TileMap
+	ld hl, WildMons1
+	call Function2a052
+	ld hl, WildMons2
+	call Function2a06e
+	call Function2a0b7
+	call Function2a0cf
+	ret
+
+.asm_2a043
+	ld de, TileMap
+	ld hl, WildMons3
+	call Function2a052
+	ld hl, WildMons4
+	jp Function2a06e
+; 2a052
+
+Function2a052: ; 2a052
+.asm_2a052
+	ld a, [hl]
+	cp $ff
+	ret z
+	push hl
+	ld a, [hli]
+	ld b, a
+	ld a, [hli]
+	ld c, a
+	inc hl
+	inc hl
+	inc hl
+	ld a, $15
+	call Function2a088
+	jr nc, .asm_2a067
+	ld [de], a
+	inc de
+
+.asm_2a067
+	pop hl
+	ld bc, $002f
+	add hl, bc
+	jr .asm_2a052
+; 2a06e
+
+Function2a06e: ; 2a06e
+.asm_2a06e
+	ld a, [hl]
+	cp $ff
+	ret z
+	push hl
+	ld a, [hli]
+	ld b, a
+	ld a, [hli]
+	ld c, a
+	inc hl
+	ld a, $3
+	call Function2a088
+	jr nc, .asm_2a081
+	ld [de], a
+	inc de
+
+.asm_2a081
+	pop hl
+	ld bc, $0009
+	add hl, bc
+	jr .asm_2a06e
+; 2a088
+
+Function2a088: ; 2a088
+	inc hl
+.asm_2a089
+	push af
+	ld a, [$d265]
+	cp [hl]
+	jr z, .asm_2a098
+	inc hl
+	inc hl
+	pop af
+	dec a
+	jr nz, .asm_2a089
+	and a
+	ret
+
+.asm_2a098
+	pop af
+	jp Function2a09c
+; 2a09c
+
+Function2a09c: ; 2a09c
+	push de
+	call GetWorldMapLocation
+	ld c, a
+	ld hl, TileMap
+	ld de, $0168
+.asm_2a0a7
+	ld a, [hli]
+	cp c
+	jr z, .asm_2a0b4
+	dec de
+	ld a, e
+	or d
+	jr nz, .asm_2a0a7
+	ld a, c
+	pop de
+	scf
+	ret
+
+.asm_2a0b4
+	pop de
+	and a
+	ret
+; 2a0b7
+
+Function2a0b7: ; 2a0b7
+	ld a, [RoamMon1Species]
+	ld b, a
+	ld a, [$d265]
+	cp b
+	ret nz
+	ld a, [RoamMon1MapGroup]
+	ld b, a
+	ld a, [RoamMon1MapNumber]
+	ld c, a
+	call Function2a09c
+	ret nc
+	ld [de], a
+	inc de
+	ret
+; 2a0cf
+
+Function2a0cf: ; 2a0cf
+	ld a, [RoamMon2Species]
+	ld b, a
+	ld a, [$d265]
+	cp b
+	ret nz
+	ld a, [RoamMon2MapGroup]
+	ld b, a
+	ld a, [RoamMon2MapNumber]
+	ld c, a
+	call Function2a09c
+	ret nc
+	ld [de], a
+	inc de
+	ret
+; 2a0e7
 
 Function2a0e7: ; 2a0e7
 ; Try to trigger a wild encounter.
@@ -49699,6 +51220,8 @@ Function421d8: ; 421d8
 	ld c, a
 	ld b, $1
 	call Function42577
+
+Function421e6: ; 421e6
 	xor a
 	ld [$d268], a
 	dec a
@@ -54200,7 +55723,82 @@ INCBIN "baserom.gbc", $4d580, $4d596 - $4d580
 Tilesets:
 INCLUDE "tilesets/tileset_headers.asm"
 
-INCBIN "baserom.gbc", $4d7c1, $4d860 - $4d7c1
+Function4d7c1: ; 4d7c1
+	push hl
+	push bc
+	push bc
+	srl c
+	srl c
+	srl c
+	ld b, $0
+	add hl, bc
+	pop bc
+	ld a, c
+	and $7
+	ld c, a
+	ld a, $1
+	jr z, .asm_4d7da
+.asm_4d7d6
+	add a
+	dec c
+	jr nz, .asm_4d7d6
+
+.asm_4d7da
+	ld c, a
+	dec b
+	jr z, .asm_4d7e7
+	dec b
+	jr z, .asm_4d7ec
+	ld a, c
+	cpl
+	and [hl]
+	ld [hl], a
+	jr .asm_4d7f9
+
+.asm_4d7e7
+	ld a, [hl]
+	or c
+	ld [hl], a
+	jr .asm_4d7f9
+
+.asm_4d7ec
+	ld a, d
+	cp $0
+	jr nz, .asm_4d7f5
+	ld a, [hl]
+	and c
+	jr .asm_4d7f9
+
+.asm_4d7f5
+	call GetFarByte
+	and c
+
+.asm_4d7f9
+	pop bc
+	pop hl
+	ld c, a
+	ret
+; 4d7fd
+
+Function4d7fd: ; 4d7fd
+	ld a, [PlayerLightScreenCount]
+	ld hl, $c72f
+	ld de, VTiles2
+	push de
+	push af
+	ld a, $2d
+	call Predef
+	pop af
+	ld [CurPartySpecies], a
+	ld [CurSpecies], a
+	call GetBaseData
+	pop de
+	ld a, $3e
+	call Predef
+	ret
+; 4d81e
+
+INCBIN "baserom.gbc", $4d81e, $4d860 - $4d81e
 
 CheckPokerus: ; 4d860
 ; Return carry if a monster in your party has Pokerus
@@ -57714,7 +59312,39 @@ DrawHP: ; 50b10
 ; 50b7b
 
 
-INCBIN "baserom.gbc", $50b7b, $50bdd - $50b7b
+Function50b7b: ; 50b7b
+	push bc
+	push hl
+	ld de, $4bb5
+	call PlaceString
+	pop hl
+	pop bc
+	add hl, bc
+	ld bc, $0014
+	add hl, bc
+	ld de, TempMonAtk
+	ld bc, $0203
+	call Function50bab
+	ld de, TempMonDef
+	call Function50bab
+	ld de, TempMonSpclAtk
+	call Function50bab
+	ld de, TempMonSpclDef
+	call Function50bab
+	ld de, TempMonSpd
+	jp PrintNum
+; 50bab
+
+Function50bab: ; 50bab
+	push hl
+	call PrintNum
+	pop hl
+	ld de, $0028
+	add hl, de
+	ret
+; 50bb5
+
+INCBIN "baserom.gbc", $50bb5, $50bdd - $50bb5
 
 
 GetGender: ; 50bdd
@@ -57835,7 +59465,128 @@ GetGender: ; 50bdd
 	ret
 ; 50c50
 
-INCBIN "baserom.gbc", $50c50, $50d0a - $50c50
+Function50c50: ; 50c50
+	ld a, [$d0eb]
+	inc a
+	ld c, a
+	ld a, $4
+	sub c
+	ld b, a
+	push hl
+	ld a, [Buffer1]
+	ld e, a
+	ld d, $0
+	ld a, $3e
+	call Function50cc9
+	ld a, b
+	and a
+	jr z, .asm_50c6f
+	ld c, a
+	ld a, $e3
+	call Function50cc9
+
+.asm_50c6f
+	pop hl
+	inc hl
+	inc hl
+	inc hl
+	ld d, h
+	ld e, l
+	ld hl, TempMonMove1
+	ld b, $0
+.asm_50c7a
+	ld a, [hli]
+	and a
+	jr z, .asm_50cc8
+	push bc
+	push hl
+	push de
+	ld hl, $cfa9
+	ld a, [hl]
+	push af
+	ld [hl], b
+	push hl
+	callab Functionf8ec
+	pop hl
+	pop af
+	ld [hl], a
+	pop de
+	pop hl
+	push hl
+	ld bc, $0014
+	add hl, bc
+	ld a, [hl]
+	and $3f
+	ld [$d077], a
+	ld h, d
+	ld l, e
+	push hl
+	ld de, $d077
+	ld bc, $0102
+	call PrintNum
+	ld a, $f3
+	ld [hli], a
+	ld de, $d265
+	ld bc, $0102
+	call PrintNum
+	pop hl
+	ld a, [Buffer1]
+	ld e, a
+	ld d, $0
+	add hl, de
+	ld d, h
+	ld e, l
+	pop hl
+	pop bc
+	inc b
+	ld a, b
+	cp $4
+	jr nz, .asm_50c7a
+
+.asm_50cc8
+	ret
+; 50cc9
+
+Function50cc9: ; 50cc9
+.asm_50cc9
+	ld [hli], a
+	ld [hld], a
+	add hl, de
+	dec c
+	jr nz, .asm_50cc9
+	ret
+; 50cd0
+
+INCBIN "baserom.gbc", $50cd0, $50cdb - $50cd0
+
+Function50cdb: ; 50cdb
+	push hl
+	push hl
+	ld hl, PartyMon1Nickname
+	ld a, [CurPartyMon]
+	call GetNick
+	pop hl
+	call PlaceString
+	call Function5084a
+	pop hl
+	ld a, [CurPartySpecies]
+	cp $fd
+	jr z, .asm_50d09
+	push hl
+	ld bc, $fff4
+	add hl, bc
+	ld b, $0
+	call DrawEnemyHP
+	pop hl
+	ld bc, $0005
+	add hl, bc
+	push de
+	call PrintLevel
+	pop de
+
+.asm_50d09
+	ret
+; 50d0a
 
 
 Function50d0a: ; 50d0a
@@ -57848,31 +59599,32 @@ Function50d0a: ; 50d0a
 	ld a, [de]
 	or b
 	pop de
-	jr nz, .asm_50d2e
+	jr nz, Function50d2e
 	push de
-	ld de, .data_50d21
-	call $4d25
+	ld de, .string_50d21
+	call Function50d25
 	pop de
 	ld a, $1
 	and a
 	ret
 
-.data_50d21
-	db $85
-	db $8d
-	db $93
-	db $50
-	db $1a
-	db $13
-	db $22
-	db $1a
-	db $13
-	db $22
-	db $1a
-	db $77
-	db $c9
+.string_50d21
+	db "カセト@"
+; 50d25
 
-.asm_50d2e
+Function50d25: ; 50d25
+	ld a, [de]
+	inc de
+	ld [hli], a
+	ld a, [de]
+	inc de
+	ld [hli], a
+	ld a, [de]
+	ld [hl], a
+	ret
+; 50d2e
+
+Function50d2e: ; 50d2e
 	push de
 	ld a, [de]
 	ld de, $4d5f
@@ -57901,7 +59653,61 @@ Function50d0a: ; 50d0a
 	ret
 ; 50d5b
 
-INCBIN "baserom.gbc", $50d5b, $50db9 - $50d5b
+INCBIN "baserom.gbc", $50d5b, $50d6f - $50d5b
+
+Function50d6f: ; 50d6f
+	ld de, $d25e
+	ld b, $0
+.asm_50d74
+	ld a, [de]
+	inc de
+	and a
+	jr z, .asm_50da7
+	push de
+	push hl
+	push hl
+	ld [CurSpecies], a
+	ld a, $2
+	ld [$cf61], a
+	call GetName
+	ld de, StringBuffer1
+	pop hl
+	push bc
+	call PlaceString
+	pop bc
+	ld a, b
+	ld [$d0eb], a
+	inc b
+	pop hl
+	push bc
+	ld a, [Buffer1]
+	ld c, a
+	ld b, $0
+	add hl, bc
+	pop bc
+	pop de
+	ld a, b
+	cp $4
+	jr z, .asm_50db8
+	jr .asm_50d74
+
+.asm_50da7
+	ld a, b
+.asm_50da8
+	push af
+	ld [hl], $e3
+	ld a, [Buffer1]
+	ld c, a
+	ld b, $0
+	add hl, bc
+	pop af
+	inc a
+	cp $4
+	jr nz, .asm_50da8
+
+.asm_50db8
+	ret
+; 50db9
 
 Function50db9: ; 50db9
 	ld a, [$d263]
@@ -58168,7 +59974,206 @@ GetUnownLetter: ; 51040
 ; 51077
 
 
-INCBIN "baserom.gbc", $51077, $511c5 - $51077
+Function51077: ; 51077
+	ld a, [CurPartySpecies]
+	ld [CurSpecies], a
+	call IsAPokemon
+	ret c
+	ld a, [rSVBK]
+	push af
+	call Function510a5
+	pop af
+	ld [rSVBK], a
+	ret
+; 5108b
+
+Function5108b: ; 5108b
+	ld a, [CurPartySpecies]
+	ld [CurSpecies], a
+	call IsAPokemon
+	ret c
+	ld a, [rSVBK]
+	push af
+	xor a
+	ld [hBGMapMode], a
+	call Function510a5
+	call Function51103
+	pop af
+	ld [rSVBK], a
+	ret
+; 510a5
+
+Function510a5: ; 510a5
+	push de
+	call GetBaseData
+	ld a, [BasePicSize]
+	and $f
+	ld b, a
+	push bc
+	call Function510d7
+	ld a, $6
+	ld [rSVBK], a
+	ld a, b
+	ld de, $d800
+	call FarDecompress
+	pop bc
+	ld hl, Unkn1Pals
+	ld de, $d800
+	call Function512ab
+	pop hl
+	push hl
+	ld de, Unkn1Pals
+	ld c, $31
+	ld a, [hROMBank]
+	ld b, a
+	call Get2bpp
+	pop hl
+	ret
+; 510d7
+
+Function510d7: ; 510d7
+	ld a, [CurPartySpecies]
+	cp $c9
+	jr z, .asm_510e5
+	ld a, [CurPartySpecies]
+	ld d, $48
+	jr .asm_510ea
+
+.asm_510e5
+	ld a, [UnownLetter]
+	ld d, $49
+
+.asm_510ea
+	ld hl, Function50000
+	dec a
+	ld bc, $0006
+	call AddNTimes
+	ld a, d
+	call GetFarByte
+	call Function511c5
+	push af
+	inc hl
+	ld a, d
+	call GetFarHalfword
+	pop bc
+	ret
+; 51103
+
+Function51103: ; 51103
+	ld a, $1
+	ld [rVBK], a
+	push hl
+	ld de, Unkn1Pals
+	ld c, $31
+	ld a, [hROMBank]
+	ld b, a
+	call Get2bpp
+	pop hl
+	ld de, $0310
+	add hl, de
+	push hl
+	ld a, $1
+	ld hl, BasePicSize
+	call Function307b
+	pop hl
+	and $f
+	ld de, $d990
+	ld c, $19
+	cp $5
+	jr z, .asm_5113b
+	ld de, $da40
+	ld c, $24
+	cp $6
+	jr z, .asm_5113b
+	ld de, $db10
+	ld c, $31
+
+.asm_5113b
+	push hl
+	push bc
+	call Function5114f
+	pop bc
+	pop hl
+	ld de, Unkn1Pals
+	ld a, [hROMBank]
+	ld b, a
+	call Get2bpp
+	xor a
+	ld [rVBK], a
+	ret
+; 5114f
+
+Function5114f: ; 5114f
+	ld hl, Unkn1Pals
+	swap c
+	ld a, c
+	and $f
+	ld b, a
+	ld a, c
+	and $f0
+	ld c, a
+	push bc
+	call Function512f2
+	pop bc
+.asm_51161
+	push bc
+	ld c, $0
+	call Function512f2
+	pop bc
+	dec b
+	jr nz, .asm_51161
+	ret
+; 5116c
+
+Function5116c: ; 5116c
+	ld a, [CurPartySpecies]
+	call IsAPokemon
+	ret c
+	ld a, [CurPartySpecies]
+	ld b, a
+	ld a, [UnownLetter]
+	ld c, a
+	ld a, [rSVBK]
+	push af
+	ld a, $6
+	ld [rSVBK], a
+	push de
+	ld hl, Function50000
+	ld a, b
+	ld d, $48
+	cp $c9
+	jr nz, .asm_51190
+	ld a, c
+	ld d, $49
+
+.asm_51190
+	dec a
+	ld bc, $0006
+	call AddNTimes
+	ld bc, $0003
+	add hl, bc
+	ld a, d
+	call GetFarByte
+	call Function511c5
+	push af
+	inc hl
+	ld a, d
+	call GetFarHalfword
+	ld de, Unkn1Pals
+	pop af
+	call FarDecompress
+	ld hl, Unkn1Pals
+	ld c, $24
+	call Function5127c
+	pop hl
+	ld de, Unkn1Pals
+	ld a, [hROMBank]
+	ld b, a
+	call Get2bpp
+	pop af
+	ld [rSVBK], a
+	ret
+; 511c5
 
 
 Function511c5: ; 511c5
@@ -58259,7 +60264,137 @@ DecompressPredef: ; 5125d
 ; 5127c
 
 
-INCBIN "baserom.gbc", $5127c, $51322 - $5127c
+Function5127c: ; 5127c
+	push de
+	push bc
+	ld a, [$c2c6]
+	and a
+	jr z, .asm_512a8
+	ld a, c
+	cp $31
+	ld de, $0310
+	jr z, .asm_51296
+	cp $24
+	ld de, $0240
+	jr z, .asm_51296
+	ld de, $0190
+
+.asm_51296
+	ld a, [hl]
+	ld b, $0
+	ld c, $8
+.asm_5129b
+	rra
+	rl b
+	dec c
+	jr nz, .asm_5129b
+	ld a, b
+	ld [hli], a
+	dec de
+	ld a, e
+	or d
+	jr nz, .asm_51296
+
+.asm_512a8
+	pop bc
+	pop de
+	ret
+; 512ab
+
+Function512ab: ; 512ab
+	ld a, b
+	cp $6
+	jr z, .asm_512bd
+	cp $5
+	jr z, .asm_512d2
+.asm_512b4
+	ld c, $70
+	call Function512f2
+	dec b
+	jr nz, .asm_512b4
+	ret
+
+.asm_512bd
+	ld c, $70
+	xor a
+	call Function512ed
+.asm_512c3
+	ld c, $10
+	xor a
+	call Function512ed
+	ld c, $60
+	call Function512f2
+	dec b
+	jr nz, .asm_512c3
+	ret
+
+.asm_512d2
+	ld c, $70
+	xor a
+	call Function512ed
+.asm_512d8
+	ld c, $20
+	xor a
+	call Function512ed
+	ld c, $50
+	call Function512f2
+	dec b
+	jr nz, .asm_512d8
+	ld c, $70
+	xor a
+	call Function512ed
+	ret
+; 512ed
+
+Function512ed: ; 512ed
+.asm_512ed
+	ld [hli], a
+	dec c
+	jr nz, .asm_512ed
+	ret
+; 512f2
+
+Function512f2: ; 512f2
+	ld a, [$c2c6]
+	and a
+	jr nz, .asm_512ff
+.asm_512f8
+	ld a, [de]
+	inc de
+	ld [hli], a
+	dec c
+	jr nz, .asm_512f8
+	ret
+
+.asm_512ff
+	push bc
+.asm_51300
+	ld a, [de]
+	inc de
+	ld b, a
+	xor a
+	rr b
+	rla
+	rr b
+	rla
+	rr b
+	rla
+	rr b
+	rla
+	rr b
+	rla
+	rr b
+	rla
+	rr b
+	rla
+	rr b
+	rla
+	ld [hli], a
+	dec c
+	jr nz, .asm_51300
+	pop bc
+	ret
+; 51322
 
 Function51322: ; 51322
 	ld a, $1
@@ -59934,7 +62069,7 @@ Function84742: ; 84742
 ; 8474c
 
 Function8474c: ; 8474c
-	ld de, $005b
+	ld de, MUSIC_PRINTER
 	call StartMusic2
 	ret
 ; 84753
@@ -64021,7 +66156,9 @@ INCBIN "baserom.gbc", $8b960, $8ba24 - $8b960
 
 SECTION "bank23",ROMX,BANK[$23]
 
-INCBIN "baserom.gbc", $8c000, $8c001 - $8c000
+Function8c000: ; 8c000
+	ret
+; 8c001
 
 
 Function8c001: ; 8c001
@@ -64906,7 +67043,7 @@ Function8ccc9: ; 8ccc9
 	ld [hli], a
 	ld [hli], a
 	ld [hli], a
-	ld de, $0005
+	ld de, MUSIC_MAGNET_TRAIN
 	call StartMusic2
 	ret
 ; 8cd27
@@ -67474,7 +69611,277 @@ FlyMap: ; 91c90
 	ret
 ; 91d11
 
-INCBIN "baserom.gbc", $91d11, $91ee4 - $91d11
+Function91d11: ; 91d11
+	ld a, [DefaultFlypoint]
+	push af
+	ld a, [$d003]
+	push af
+	ld a, e
+	ld [DefaultFlypoint], a
+	call ClearSprites
+	xor a
+	ld [hBGMapMode], a
+	ld a, $1
+	ld [$ffaa], a
+	ld de, $62d1
+	ld hl, $87f0
+	ld bc, $2401
+	call Request2bpp
+	call Function91ed0
+	ld hl, $8780
+	ld c, $4
+	call Request2bpp
+	call Function91ff2
+	call FillKantoMap
+	call Function91de9
+	call TownMapPals
+	ld hl, VBGMap1
+	call TownMapBGUpdate
+	call FillJohtoMap
+	call Function91de9
+	call TownMapPals
+	ld hl, VBGMap0
+	call TownMapBGUpdate
+	ld b, $2
+	call GetSGBLayout
+	call Function32f9
+	xor a
+	ld [hBGMapMode], a
+	xor a
+	call Function91e1e
+.asm_91d6e
+	call Functiona57
+	ld hl, hJoyPressed
+	ld a, [hl]
+	and $3
+	jr nz, .asm_91d8f
+	ld a, [hJoypadDown]
+	and $4
+	jr nz, .asm_91d87
+	call Function91d9b
+	call Function91dcd
+	jr .asm_91d8a
+
+.asm_91d87
+	call Function91e5a
+
+.asm_91d8a
+	call DelayFrame
+	jr .asm_91d6e
+
+.asm_91d8f
+	call ClearSprites
+	pop af
+	ld [$d003], a
+	pop af
+	ld [DefaultFlypoint], a
+	ret
+; 91d9b
+
+Function91d9b: ; 91d9b
+	ld a, [hl]
+	and $20
+	jr nz, .asm_91da6
+	ld a, [hl]
+	and $10
+	jr nz, .asm_91db7
+	ret
+
+.asm_91da6
+	ld a, [hWY]
+	cp $90
+	ret z
+	call ClearSprites
+	ld a, $90
+	ld [hWY], a
+	xor a
+	call Function91e1e
+	ret
+
+.asm_91db7
+	ld a, [StatusFlags]
+	bit 6, a
+	ret z
+	ld a, [hWY]
+	and a
+	ret z
+	call ClearSprites
+	xor a
+	ld [hWY], a
+	ld a, $1
+	call Function91e1e
+	ret
+; 91dcd
+
+Function91dcd: ; 91dcd
+	ld a, [$ff9b]
+	ld e, a
+	and $f
+	ret nz
+	ld a, e
+	and $10
+	jr nz, .asm_91ddc
+	call ClearSprites
+	ret
+
+.asm_91ddc
+	ld hl, TileMap
+	ld de, Sprites
+	ld bc, $00a0
+	call CopyBytes
+	ret
+; 91de9
+
+Function91de9: ; 91de9
+	ld hl, TileMap
+	ld bc, $0014
+	ld a, $7f
+	call ByteFill
+	ld hl, $c4b4
+	ld a, $6
+	ld [hli], a
+	ld bc, $0012
+	ld a, $7
+	call ByteFill
+	ld [hl], $17
+	call GetPokemonName
+	ld hl, $c4a2
+	call PlaceString
+	ld h, b
+	ld l, c
+	ld de, $5e16
+	call PlaceString
+	ret
+; 91e16
+
+INCBIN "baserom.gbc", $91e16, $91e1e - $91e16
+
+Function91e1e: ; 91e1e
+	ld [$d003], a
+	ld e, a
+	callba Function2a01f
+	ld de, TileMap
+	ld hl, Sprites
+.asm_91e2e
+	ld a, [de]
+	and a
+	jr z, .asm_91e4d
+	push de
+	ld e, a
+	push hl
+	callba GetLandmarkCoords
+	pop hl
+	ld a, d
+	sub $4
+	ld [hli], a
+	ld a, e
+	sub $4
+	ld [hli], a
+	ld a, $7f
+	ld [hli], a
+	xor a
+	ld [hli], a
+	pop de
+	inc de
+	jr .asm_91e2e
+
+.asm_91e4d
+	ld hl, Sprites
+	ld de, TileMap
+	ld bc, $00a0
+	call CopyBytes
+	ret
+; 91e5a
+
+Function91e5a: ; 91e5a
+	call Function91ea9
+	ret c
+	ld a, [DefaultFlypoint]
+	ld e, a
+	callba GetLandmarkCoords
+	ld c, e
+	ld b, d
+	ld de, $5e9c
+	ld hl, Sprites
+.asm_91e70
+	ld a, [de]
+	cp $80
+	jr z, .asm_91e91
+	add b
+	ld [hli], a
+	inc de
+	ld a, [de]
+	add c
+	ld [hli], a
+	inc de
+	ld a, [de]
+	add $78
+	ld [hli], a
+	inc de
+	push bc
+	ld c, $0
+	ld a, [PlayerGender]
+	bit 0, a
+	jr z, .asm_91e8c
+	inc c
+
+.asm_91e8c
+	ld a, c
+	ld [hli], a
+	pop bc
+	jr .asm_91e70
+
+.asm_91e91
+	ld hl, $c410
+	ld bc, $0090
+	xor a
+	call ByteFill
+	ret
+; 91e9c
+
+INCBIN "baserom.gbc", $91e9c, $91ea9 - $91e9c
+
+Function91ea9: ; 91ea9
+	ld a, [DefaultFlypoint]
+	cp $5f
+	jr z, .asm_91ebc
+	cp $2f
+	jr c, .asm_91ebc
+	ld a, [$d003]
+	and a
+	jr z, .asm_91ec4
+	jr .asm_91ec2
+
+.asm_91ebc
+	ld a, [$d003]
+	and a
+	jr nz, .asm_91ec4
+
+.asm_91ec2
+	and a
+	ret
+
+.asm_91ec4
+	ld hl, Sprites
+	ld bc, $00a0
+	xor a
+	call ByteFill
+	scf
+	ret
+; 91ed0
+
+Function91ed0: ; 91ed0
+	ld a, [DefaultFlypoint]
+	cp $5f
+	jr z, .asm_91ede
+	callba GetPlayerIcon
+	ret
+
+.asm_91ede
+	ld de, $4cb2
+	ld b, $24
+	ret
+; 91ee4
 
 TownMapBGUpdate: ; 91ee4
 ; Update BG Map tiles and attributes
@@ -70795,7 +73202,59 @@ INCLUDE "gfx/overworld/sprites_2.asm"
 
 SECTION "bank32",ROMX,BANK[$32]
 
-INCBIN "baserom.gbc", $c8000, $cbe2b - $c8000
+INCBIN "baserom.gbc", $c8000, $cbcdd - $c8000
+
+Functioncbcdd: ; cbcdd
+	call Functioncbce5
+	ld a, [hCGB]
+	and a
+	ret nz
+	ret
+; cbce5
+
+Functioncbce5: ; cbce5
+	ld a, [hCGB]
+	and a
+	jr nz, .asm_cbd06
+	ld a, [TimeOfDayPal]
+	and $3
+	cp $3
+	ld a, $0
+	jr z, .asm_cbcf7
+	ld a, $aa
+
+.asm_cbcf7
+	call DmgToCgbBGPals
+	ld c, $4
+	call DelayFrames
+	callba _UpdateTimePals
+	ret
+
+.asm_cbd06
+	ld a, [rSVBK]
+	push af
+	ld a, $5
+	ld [rSVBK], a
+	ld hl, BGPals
+	ld c, $20
+.asm_cbd12
+	ld a, $bc
+	ld [hli], a
+	ld a, $7e
+	ld [hli], a
+	dec c
+	jr nz, .asm_cbd12
+	pop af
+	ld [rSVBK], a
+	ld a, $1
+	ld [hCGBPalUpdate], a
+	ld c, $4
+	call DelayFrames
+	callba _UpdateTimePals
+	ret
+; cbd2e
+
+INCBIN "baserom.gbc", $cbd2e, $cbe2b - $cbd2e
 
 
 SECTION "bank33",ROMX,BANK[$33]
@@ -70875,7 +73334,11 @@ Functioncc0c7: ; cc0c7
 	jp PrintText
 ; cc0d0
 
-INCBIN "baserom.gbc", $cc0d0, $cc0d6 - $cc0d0
+INCBIN "baserom.gbc", $cc0d0, $cc0d5 - $cc0d0
+
+Functioncc0d5: ; cc0d5
+	ret
+; cc0d6
 
 
 Functioncc0d6: ; cc0d6
@@ -71690,7 +74153,1030 @@ Music_PostCredits: INCLUDE "audio/music/postcredits.asm"
 SECTION "bank34",ROMX,BANK[$34]
 
 ; Pic animations asm
-INCBIN "baserom.gbc", $d0000, $d0695 - $d0000
+Functiond0000: ; d0000
+	ld hl, $c4ac
+	ld a, [IsInBattle]
+	cp $1
+	jr z, .asm_d0012
+	ld e, $0
+	ld d, $0
+	call Functiond008e
+	ret
+
+.asm_d0012
+	ld e, $1
+	ld d, $0
+	call Functiond008e
+	ret
+; d001a
+
+INCBIN "baserom.gbc", $d001a, $d008e - $d001a
+
+Functiond008e: ; d008e
+	call Functiond01c6
+	ret c
+	call Functiond00a3
+.asm_d0095
+	call Functiond00b4
+	push af
+	callba Function10402d
+	pop af
+	jr nc, .asm_d0095
+	ret
+; d00a3
+
+Functiond00a3: ; d00a3
+	push hl
+	ld c, e
+	ld b, $0
+	ld hl, $4042
+	add hl, bc
+	add hl, bc
+	ld a, [hli]
+	ld b, [hl]
+	ld c, a
+	pop hl
+	call Functiond01d6
+	ret
+; d00b4
+
+Functiond00b4: ; d00b4
+	ld a, [rSVBK]
+	push af
+	ld a, $2
+	ld [rSVBK], a
+	ld a, [$d168]
+	ld c, a
+	ld b, $0
+	ld hl, $d169
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	add hl, bc
+	ld a, [hl]
+	ld hl, $40da
+	rst JumpTable
+	ld a, [$d168]
+	ld c, a
+	pop af
+	ld [rSVBK], a
+	ld a, c
+	and $80
+	ret z
+	scf
+	ret
+; d00da
+
+Tabled00da: ; d00da
+	dw Functiond0171
+	dw Functiond0166
+	dw Functiond00f2
+	dw Functiond00fe
+	dw Functiond010b
+	dw Functiond011d
+	dw Functiond012f
+	dw Functiond0141
+	dw Functiond0155
+	dw Functiond017a
+	dw Functiond0188
+	dw Functiond0196
+; d00f2
+
+Functiond00f2: ; d00f2
+	ld a, $12
+	ld [$d181], a
+	ld a, [$d168]
+	inc a
+	ld [$d168], a
+
+Functiond00fe: ; d00fe
+	ld hl, $d181
+	dec [hl]
+	ret nz
+	ld a, [$d168]
+	inc a
+	ld [$d168], a
+	ret
+; d010b
+
+Functiond010b: ; d010b
+	ld c, $0
+	ld b, $0
+	call Functiond0228
+	call Functiond0504
+	ld a, [$d168]
+	inc a
+	ld [$d168], a
+	ret
+; d011d
+
+Functiond011d: ; d011d
+	ld c, $0
+	ld b, $4
+	call Functiond0228
+	call Functiond0504
+	ld a, [$d168]
+	inc a
+	ld [$d168], a
+	ret
+; d012f
+
+Functiond012f: ; d012f
+	ld c, $1
+	ld b, $0
+	call Functiond0228
+	call Functiond0504
+	ld a, [$d168]
+	inc a
+	ld [$d168], a
+	ret
+; d0141
+
+Functiond0141: ; d0141
+	call Functiond0250
+	ld a, [$d17e]
+	bit 7, a
+	ret z
+	call Functiond04bd
+	ld a, [$d168]
+	inc a
+	ld [$d168], a
+	ret
+; d0155
+
+Functiond0155: ; d0155
+	call Functiond0250
+	ld a, [$d17e]
+	bit 7, a
+	ret z
+	ld a, [$d168]
+	inc a
+	ld [$d168], a
+	ret
+; d0166
+
+Functiond0166: ; d0166
+	call Functiond01a9
+	ld a, [$d168]
+	inc a
+	ld [$d168], a
+	ret
+; d0171
+
+Functiond0171: ; d0171
+	call Functiond01a9
+	ld hl, $d168
+	set 7, [hl]
+	ret
+; d017a
+
+Functiond017a: ; d017a
+	ld a, [$d16b]
+	call Function37e2
+	ld a, [$d168]
+	inc a
+	ld [$d168], a
+	ret
+; d0188
+
+Functiond0188: ; d0188
+	ld a, [$d16b]
+	call Function37d5
+	ld a, [$d168]
+	inc a
+	ld [$d168], a
+	ret
+; d0196
+
+Functiond0196: ; d0196
+	ld a, $f
+	ld [CryTracks], a
+	ld a, [$d16b]
+	call Function37c4
+	ld a, [$d168]
+	inc a
+	ld [$d168], a
+	ret
+; d01a9
+
+Functiond01a9: ; d01a9
+	ld a, [rSVBK]
+	push af
+	ld a, $2
+	ld [rSVBK], a
+	call Functiond04bd
+	callba Function10402d
+	call Functiond0536
+	callba Function104047
+	pop af
+	ld [rSVBK], a
+	ret
+; d01c6
+
+Functiond01c6: ; d01c6
+	ld a, [CurPartySpecies]
+	cp $fd
+	jr z, .asm_d01d4
+	call IsAPokemon
+	jr c, .asm_d01d4
+	and a
+	ret
+
+.asm_d01d4
+	scf
+	ret
+; d01d6
+
+Functiond01d6: ; d01d6
+	ld a, [rSVBK]
+	push af
+	ld a, $2
+	ld [rSVBK], a
+	push bc
+	push de
+	push hl
+	ld hl, $d168
+	ld bc, $0029
+	xor a
+	call ByteFill
+	pop hl
+	pop de
+	pop bc
+	ld a, c
+	ld [$d169], a
+	ld a, b
+	ld [$d16a], a
+	ld a, l
+	ld [$d16f], a
+	ld a, h
+	ld [$d170], a
+	ld a, d
+	ld [$d16e], a
+	ld a, $1
+	ld hl, CurPartySpecies
+	call Function307b
+	ld [$d16b], a
+	ld a, $1
+	ld hl, UnownLetter
+	call Function307b
+	ld [$d16c], a
+	call Functiond065c
+	ld [$d16d], a
+	call Functiond05b4
+	ld a, c
+	ld [$d171], a
+	pop af
+	ld [rSVBK], a
+	ret
+; d0228
+
+Functiond0228: ; d0228
+	ld a, [rSVBK]
+	push af
+	ld a, $2
+	ld [rSVBK], a
+	push bc
+	ld hl, $d172
+	ld bc, $001f
+	xor a
+	call ByteFill
+	pop bc
+	ld a, b
+	ld [$d173], a
+	ld a, c
+	ld [$d172], a
+	call Functiond055c
+	call Functiond05ce
+	call Functiond061b
+	pop af
+	ld [rSVBK], a
+	ret
+; d0250
+
+Functiond0250: ; d0250
+	xor a
+	ld [hBGMapMode], a
+
+Functiond0253: ; d0253
+	ld a, [$d17e]
+	and $7f
+	ld hl, Tabled025d
+	rst JumpTable
+	ret
+; d025d
+
+Tabled025d: ; d025d
+	dw Functiond0261
+	dw Functiond0282
+; d0261
+
+Functiond0261: ; d0261
+	call Functiond02f8
+	ld a, [$d182]
+	cp $ff
+	jr z, Functiond02a8
+	cp $fe
+	jr z, Functiond028e
+	cp $fd
+	jr z, Functiond0296
+	call Functiond02c8
+	ld a, [$d183]
+	call Functiond02ae
+	ld [$d181], a
+	call Functiond02dc
+
+Functiond0282: ; d0282
+	ld a, [$d181]
+	dec a
+	ld [$d181], a
+	ret nz
+	call Functiond02e4
+	ret
+; d028e
+
+Functiond028e: ; d028e
+	ld a, [$d183]
+	ld [$d17f], a
+	jr Functiond0253
+; d0296
+
+Functiond0296: ; d0296
+	ld a, [$d17f]
+	and a
+	ret z
+	dec a
+	ld [$d17f], a
+	ret z
+	ld a, [$d183]
+	ld [$d17d], a
+	jr Functiond0253
+; d02a8
+
+Functiond02a8: ; d02a8
+	ld hl, $d17e
+	set 7, [hl]
+	ret
+; d02ae
+
+Functiond02ae: ; d02ae
+	ld c, a
+	ld b, $0
+	ld hl, $0000
+	ld a, [$d173]
+	call AddNTimes
+	ld a, h
+	swap a
+	and $f0
+	ld h, a
+	ld a, l
+	swap a
+	and $f
+	or h
+	add c
+	ret
+; d02c8
+
+Functiond02c8: ; d02c8
+	call Functiond04bd
+	ld a, [$d182]
+	and a
+	ret z
+	call Functiond031b
+	push hl
+	call Functiond033b
+	pop hl
+	call Functiond036b
+	ret
+; d02dc
+
+Functiond02dc: ; d02dc
+	ld a, [$d17e]
+	inc a
+	ld [$d17e], a
+	ret
+; d02e4
+
+Functiond02e4: ; d02e4
+	ld a, [$d17e]
+	dec a
+	ld [$d17e], a
+	ret
+; d02ec
+
+Functiond02ec: ; d02ec
+	ld a, [$d16b]
+	cp $c9
+	ret
+; d02f2
+
+Functiond02f2: ; d02f2
+	ld a, [$d16b]
+	cp $fd
+	ret
+; d02f8
+
+Functiond02f8: ; d02f8
+	push hl
+	ld a, [$d17d]
+	ld e, a
+	ld d, $0
+	ld hl, $d175
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	add hl, de
+	add hl, de
+	ld a, [$d174]
+	call GetFarHalfword
+	ld a, l
+	ld [$d182], a
+	ld a, h
+	ld [$d183], a
+	ld hl, $d17d
+	inc [hl]
+	pop hl
+	ret
+; d031b
+
+Functiond031b: ; d031b
+	ld a, [$d182]
+	dec a
+	ld c, a
+	ld b, $0
+	ld hl, $d178
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	add hl, bc
+	add hl, bc
+	ld a, [$d177]
+	call GetFarHalfword
+	ld a, [$d177]
+	call GetFarByte
+	ld [$d180], a
+	inc hl
+	ret
+; d033b
+
+Functiond033b: ; d033b
+	call Functiond0356
+	push bc
+	ld hl, $d17b
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	ld a, [$d180]
+	call AddNTimes
+	pop bc
+	ld de, $d188
+	ld a, [$d17a]
+	call FarCopyBytes
+	ret
+; d0356
+
+Functiond0356: ; d0356
+	push hl
+	ld a, [$d171]
+	sub $5
+	ld c, a
+	ld b, $0
+	ld hl, $4368
+	add hl, bc
+	ld c, [hl]
+	ld b, $0
+	pop hl
+	ret
+; d0368
+
+INCBIN "baserom.gbc", $d0368, $d036b - $d0368
+
+Functiond036b: ; d036b
+	xor a
+	ld [$d187], a
+	ld [$d186], a
+	ld [$d185], a
+.asm_d0375
+	push hl
+	call Functiond0392
+	pop hl
+	ld a, b
+	and a
+	jr z, .asm_d038a
+	ld a, [$d177]
+	call GetFarByte
+	inc hl
+	push hl
+	call Functiond03bd
+	pop hl
+
+.asm_d038a
+	push hl
+	call Functiond0499
+	pop hl
+	jr nc, .asm_d0375
+	ret
+; d0392
+
+Functiond0392: ; d0392
+	ld a, [$d187]
+	and $f8
+	rrca
+	rrca
+	rrca
+	ld e, a
+	ld d, $0
+	ld hl, $d188
+	add hl, de
+	ld b, [hl]
+	ld a, [$d187]
+	and $7
+	jr z, .asm_d03b0
+	ld c, a
+	ld a, b
+.asm_d03ab
+	rrca
+	dec c
+	jr nz, .asm_d03ab
+	ld b, a
+
+.asm_d03b0
+	xor a
+	bit 0, b
+	jr z, .asm_d03b7
+	ld a, $1
+
+.asm_d03b7
+	ld b, a
+	ld hl, $d187
+	inc [hl]
+	ret
+; d03bd
+
+Functiond03bd: ; d03bd
+	push af
+	call Functiond03cd
+	pop af
+	push hl
+	call Functiond03f7
+	ld hl, $d16e
+	add [hl]
+	pop hl
+	ld [hl], a
+	ret
+; d03cd
+
+Functiond03cd: ; d03cd
+	call Functiond046c
+	ld a, [$d186]
+	ld bc, $0014
+	call AddNTimes
+	ld a, [$c2c6]
+	and a
+	jr nz, .asm_d03e8
+	ld a, [$d185]
+	ld e, a
+	ld d, $0
+	add hl, de
+	jr .asm_d03f3
+
+.asm_d03e8
+	ld a, [$d185]
+	ld e, a
+	ld a, l
+	sub e
+	ld l, a
+	ld a, h
+	sbc $0
+	ld h, a
+
+.asm_d03f3
+	ret
+; d03f4
+
+INCBIN "baserom.gbc", $d03f4, $d03f7 - $d03f4
+
+Functiond03f7: ; d03f7
+	push af
+	ld a, [$d171]
+	cp $5
+	jr z, .asm_d0405
+	cp $6
+	jr z, .asm_d041a
+	pop af
+	ret
+
+.asm_d0405
+	pop af
+	cp $19
+	jr nc, .asm_d0417
+	push hl
+	push de
+	ld hl, $442f
+	ld e, a
+	ld d, $0
+	add hl, de
+	ld a, [hl]
+	pop de
+	pop hl
+	ret
+
+.asm_d0417
+	add $18
+	ret
+
+.asm_d041a
+	pop af
+	cp $24
+	jr nc, .asm_d042c
+	push hl
+	push de
+	ld hl, $4448
+	ld e, a
+	ld d, $0
+	add hl, de
+	ld a, [hl]
+	pop de
+	pop hl
+	ret
+
+.asm_d042c
+	add $d
+	ret
+; d042f
+
+INCBIN "baserom.gbc", $d042f, $d046c - $d042f
+
+Functiond046c: ; d046c
+	ld hl, $d16f
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	ld a, [$d171]
+	ld de, $0000
+	ld bc, $0006
+	cp $7
+	jr z, .asm_d048f
+	ld de, $0015
+	ld bc, $0019
+	cp $6
+	jr z, .asm_d048f
+	ld de, $0029
+	ld bc, $002d
+
+.asm_d048f
+	ld a, [$c2c6]
+	and a
+	jr nz, .asm_d0497
+	add hl, de
+	ret
+
+.asm_d0497
+	add hl, bc
+	ret
+; d0499
+
+Functiond0499: ; d0499
+	ld a, [$d186]
+	inc a
+	ld [$d186], a
+	ld c, a
+	ld a, [$d171]
+	cp c
+	jr nz, .asm_d04bb
+	xor a
+	ld [$d186], a
+	ld a, [$d185]
+	inc a
+	ld [$d185], a
+	ld c, a
+	ld a, [$d171]
+	cp c
+	jr nz, .asm_d04bb
+	scf
+	ret
+
+.asm_d04bb
+	xor a
+	ret
+; d04bd
+
+Functiond04bd: ; d04bd
+	call Functiond04f6
+	ld a, [$c2c6]
+	and a
+	jr nz, .asm_d04ce
+	ld de, $0001
+	ld bc, $0000
+	jr .asm_d04d4
+
+.asm_d04ce
+	ld de, rIE
+	ld bc, $0006
+
+.asm_d04d4
+	ld hl, $d16f
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	add hl, bc
+	ld c, $7
+	ld b, $7
+	ld a, [$d16e]
+.asm_d04e2
+	push bc
+	push hl
+	push de
+	ld de, $0014
+.asm_d04e8
+	ld [hl], a
+	inc a
+	add hl, de
+	dec b
+	jr nz, .asm_d04e8
+	pop de
+	pop hl
+	add hl, de
+	pop bc
+	dec c
+	jr nz, .asm_d04e2
+	ret
+; d04f6
+
+Functiond04f6: ; d04f6
+	ld hl, $d16f
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	ld b, $7
+	ld c, $7
+	call ClearBox
+	ret
+; d0504
+
+Functiond0504: ; d0504
+	ld a, [rSVBK]
+	push af
+	ld a, $2
+	ld [rSVBK], a
+	xor a
+	ld [hBGMapMode], a
+	call Functiond051b
+	callba Function104047
+	pop af
+	ld [rSVBK], a
+	ret
+; d051b
+
+Functiond051b: ; d051b
+	call Functiond0551
+	ld b, $7
+	ld c, $7
+	ld de, $0014
+.asm_d0525
+	push bc
+	push hl
+.asm_d0527
+	ld a, [hl]
+	or $8
+	ld [hl], a
+	add hl, de
+	dec c
+	jr nz, .asm_d0527
+	pop hl
+	inc hl
+	pop bc
+	dec b
+	jr nz, .asm_d0525
+	ret
+; d0536
+
+Functiond0536: ; d0536
+	call Functiond0551
+	ld b, $7
+	ld c, $7
+	ld de, $0014
+.asm_d0540
+	push bc
+	push hl
+.asm_d0542
+	ld a, [hl]
+	and $f7
+	ld [hl], a
+	add hl, de
+	dec c
+	jr nz, .asm_d0542
+	pop hl
+	inc hl
+	pop bc
+	dec b
+	jr nz, .asm_d0540
+	ret
+; d0551
+
+Functiond0551: ; d0551
+	ld hl, $d16f
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	ld de, $0939
+	add hl, de
+	ret
+; d055c
+
+Functiond055c: ; d055c
+	call Functiond02f2
+	jr z, .asm_d0597
+	ld c, $34
+	ld hl, UnownAnimationPointers
+	ld de, UnownAnimationExtraPointers
+	call Functiond02ec
+	jr z, .asm_d0576
+	ld c, $34
+	ld hl, AnimationPointers
+	ld de, AnimationExtraPointers
+
+.asm_d0576
+	ld a, [$d172]
+	and a
+	jr z, .asm_d057e
+	ld h, d
+	ld l, e
+
+.asm_d057e
+	ld a, [$d16d]
+	dec a
+	ld e, a
+	ld d, $0
+	add hl, de
+	add hl, de
+	ld a, c
+	ld [$d174], a
+	call GetFarHalfword
+	ld a, l
+	ld [$d175], a
+	ld a, h
+	ld [$d176], a
+	ret
+
+.asm_d0597
+	ld hl, EggAnimation
+	ld c, $34
+	ld a, [$d172]
+	and a
+	jr z, .asm_d05a7
+	ld hl, EggAnimationExtra
+	ld c, $34
+
+.asm_d05a7
+	ld a, c
+	ld [$d174], a
+	ld a, l
+	ld [$d175], a
+	ld a, h
+	ld [$d176], a
+	ret
+; d05b4
+
+Functiond05b4: ; d05b4
+	ld a, [rSVBK]
+	push af
+	ld a, $1
+	ld [rSVBK], a
+	ld a, [CurPartySpecies]
+	ld [CurSpecies], a
+	call GetBaseData
+	ld a, [BasePicSize]
+	and $f
+	ld c, a
+	pop af
+	ld [rSVBK], a
+	ret
+; d05ce
+
+Functiond05ce: ; d05ce
+	call Functiond02f2
+	jr z, .asm_d0609
+	call Functiond02ec
+	ld b, $36
+	ld c, $36
+	ld hl, PikachuAnimationExtra
+	jr z, .asm_d05ef
+	ld a, [$d16b]
+	cp $98
+	ld b, $35
+	ld c, $35
+	ld hl, $4000
+	jr c, .asm_d05ef
+	ld c, $36
+
+.asm_d05ef
+	ld a, c
+	ld [$d177], a
+	ld a, [$d16d]
+	dec a
+	ld e, a
+	ld d, $0
+	add hl, de
+	add hl, de
+	ld a, b
+	call GetFarHalfword
+	ld a, l
+	ld [$d178], a
+	ld a, h
+	ld [$d179], a
+	ret
+
+.asm_d0609
+	ld hl, $598b
+	ld c, $36
+	ld a, c
+	ld [$d177], a
+	ld a, l
+	ld [$d178], a
+	ld a, h
+	ld [$d179], a
+	ret
+; d061b
+
+Functiond061b: ; d061b
+	call Functiond02f2
+	jr z, .asm_d064a
+	call Functiond02ec
+	ld a, $34
+	ld hl, UnownBitmasksPointers
+	jr z, .asm_d062f
+	ld a, $34
+	ld hl, BitmasksPointers
+
+.asm_d062f
+	ld [$d17a], a
+	ld a, [$d16d]
+	dec a
+	ld e, a
+	ld d, $0
+	add hl, de
+	add hl, de
+	ld a, [$d17a]
+	call GetFarHalfword
+	ld a, l
+	ld [$d17b], a
+	ld a, h
+	ld [$d17c], a
+	ret
+
+.asm_d064a
+	ld c, $34
+	ld hl, EggBitmasks
+	ld a, c
+	ld [$d17a], a
+	ld a, l
+	ld [$d17b], a
+	ld a, h
+	ld [$d17c], a
+	ret
+; d065c
+
+Functiond065c: ; d065c
+	call Functiond02ec
+	jr z, .asm_d0665
+	ld a, [$d16b]
+	ret
+
+.asm_d0665
+	ld a, [$d16c]
+	ret
+; d0669
+
+Functiond0669: ; d0669
+	ld a, $1
+	ld [$c2c6], a
+
+Functiond066e: ; d066e
+	call Functiond01c6
+	jr c, .asm_d068c
+	ld h, d
+	ld l, e
+	push bc
+	push hl
+	ld de, VTiles2
+	ld a, $3e
+	call Predef
+	pop hl
+	pop bc
+	ld d, $0
+	ld e, c
+	call Functiond008e
+	xor a
+	ld [$c2c6], a
+	ret
+
+.asm_d068c
+	xor a
+	ld [$c2c6], a
+	inc a
+	ld [CurPartySpecies], a
+	ret
+; d0695
 
 ; Pic animations are assembled in 3 parts:
 
@@ -76104,7 +79590,13 @@ Functionfd117: ; fd117
 	ret
 ; fd136
 
-INCBIN "baserom.gbc", $fd136, $fd1d2 - $fd136
+INCBIN "baserom.gbc", $fd136, $fd1d0 - $fd136
+
+Functionfd1d0: ; fd1d0
+	ret
+; fd1d1
+
+INCBIN "baserom.gbc", $fd1d1, $fd1d2 - $fd1d1
 
 
 SECTION "bank40",ROMX,BANK[$40]
@@ -78714,7 +82206,14 @@ Function10402d: ; 10402d
 	jp Function104177
 ; 104033
 
-INCBIN "baserom.gbc", $104033, $104061 - $104033
+INCBIN "baserom.gbc", $104033, $104047 - $104033
+
+Function104047: ; 104047
+	ld hl, $404d
+	jp Function104177
+; 10404d
+
+INCBIN "baserom.gbc", $10404d, $104061 - $10404d
 
 
 Function104061: ; 104061
