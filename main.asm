@@ -11003,7 +11003,10 @@ OptionsMenu: ; 5b64
 NewGame: ; 5b6b
 	xor a
 	ld [$c2cc], a
-	call Function5ba7
+
+    ; clear the screen and setup wram
+	call InitNewGame
+
 	call Function5b44
 	call Function5b8f
 	call OakSpeech
@@ -11035,14 +11038,14 @@ Function5b8f: ; 5b8f
 	ret
 ; 5ba7
 
-Function5ba7: ; 5ba7
+InitNewGame: ; 5ba7
 	xor a
 	ld [hBGMapMode], a
-	call Function5bae
+	call SetupNewGame
 	ret
 ; 5bae
 
-Function5bae: ; 5bae
+SetupNewGame: ; 5bae
 
 	ld hl, Sprites
 	ld bc, Options - Sprites
