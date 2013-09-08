@@ -433,7 +433,7 @@ Functionac6: ; ac6
 
 ; exit condition
 	ld a, [hJoyPressed]
-    and BUTTON_A | BUTTON_B
+	and BUTTON_A | BUTTON_B
 	jr nz, .done
 
 ; exit condition wasn't met
