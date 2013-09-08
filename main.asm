@@ -827,20 +827,27 @@ _de_: ; 2fed
 ; 2fef
 
 
-Function2fef: ; 2fef
+; The CGB hardware introduces Double Speed Mode.
+; While active, the clock speed is doubled.
+
+; The hardware can switch between normal speed
+; and double speed at any time, but LCD output
+; collapses during the switch.
+
+DoubleSpeed: ; 2fef
 	ld hl, rKEY1
 	bit 7, [hl]
-	jr z, Function2ffd
+	jr z, SwitchSpeed
 	ret
 ; 2ff7
 
-Function2ff7: ; 2ff7
+NormalSpeed: ; 2ff7
 	ld hl, rKEY1
 	bit 7, [hl]
 	ret z
 ; 2ffd
 
-Function2ffd: ; 2ffd
+SwitchSpeed: ; 2ffd
 	set 0, [hl]
 	xor a
 	ld [rIF], a
@@ -76483,7 +76490,7 @@ Function1000a4: ; 1000a4
 	ld [$ffe9], a
 	xor a
 	ld [$ff9e], a
-	call Function2ff7
+	call NormalSpeed
 	xor a
 	ld [rIF], a
 	ld a, [BGMapBuffer]
@@ -81935,7 +81942,7 @@ Function1183cb: ; 1183cb
 	di
 	ld a, [rIE]
 	ld [$cd32], a
-	call Function2fef
+	call DoubleSpeed
 	xor a
 	ld [rIF], a
 	ld [$c300], a
@@ -81984,7 +81991,7 @@ Function118452: ; 118452
 	ld [$ffc9], a
 	ld [$ffe9], a
 	ld [$ff9e], a
-	call Function2ff7
+	call NormalSpeed
 	xor a
 	ld [rIF], a
 	ld a, [$cd32]
