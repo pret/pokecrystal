@@ -823,56 +823,56 @@ CheckTossableItem: ; 2f46
 	ret
 ; 2f53
 
-Function2f53: ; 2f53
+TossItem: ; 2f53
 	push hl
 	push de
 	push bc
 	ld a, [hROMBank]
 	push af
-	ld a, $3
+	ld a, BANK(_TossItem)
 	rst Bankswitch
 
-	call $520d
+	call _TossItem
+
 	pop bc
 	ld a, b
 	rst Bankswitch
-
 	pop bc
 	pop de
 	pop hl
 	ret
 ; 2f66
 
-Function2f66: ; 2f66
+ReceiveItem: ; 2f66
 	push bc
 	ld a, [hROMBank]
 	push af
-	ld a, $3
+	ld a, BANK(_ReceiveItem)
 	rst Bankswitch
-
 	push hl
 	push de
-	call $51d5
+
+	call _ReceiveItem
+
 	pop de
 	pop hl
 	pop bc
 	ld a, b
 	rst Bankswitch
-
 	pop bc
 	ret
 ; 2f79
 
-PickUpItem: ; 2f79
+CheckItem: ; 2f79
 	push hl
 	push de
 	push bc
 	ld a, [hROMBank]
 	push af
-	ld a, BANK(_PickUpItem)
+	ld a, BANK(_CheckItem)
 	rst Bankswitch
 
-	call _PickUpItem
+	call _CheckItem
 
 	pop bc
 	ld a, b
@@ -14138,7 +14138,7 @@ Functionc309: ; c309
 	ld a, $1
 	ld [$d10c], a
 	ld hl, NumItems
-	call Function2f66
+	call ReceiveItem
 	jr nc, .asm_c33d
 	xor a
 	ld [$abe2], a
@@ -14238,7 +14238,7 @@ Functionc3ae: ; c3ae
 	ld a, $36
 	ld [CurItem], a
 	ld hl, NumItems
-	call PickUpItem
+	call CheckItem
 	jr nc, .asm_c3c9
 	and a
 	ret
@@ -16271,7 +16271,7 @@ UnknownText_0xd1d0: ; 0xd1d0
 ; 0xd1d5
 
 
-Functiond1d5: ; d1d5
+_ReceiveItem: ; d1d5
 	call Functiond27b
 	jp nz, Functiond29c
 	push hl
@@ -16318,7 +16318,7 @@ Functiond201: ; d201
 ; d20d
 
 
-Functiond20d: ; d20d
+_TossItem: ; d20d
 	call Functiond27b
 	jr nz, .asm_d241
 	push hl
@@ -16366,7 +16366,7 @@ Functiond20d: ; d20d
 	jp Functiond2ff
 ; d244
 
-_PickUpItem: ; d244
+_CheckItem: ; d244
 	call Functiond27b
 	jr nz, .asm_d278
 	push hl
@@ -16424,7 +16424,7 @@ Functiond27b: ; d27b
 ; d283
 
 Functiond283: ; d283
-	ld c, $14
+	ld c, 20
 	ld a, e
 	cp TMsHMsEnd % $100
 	jr nz, .asm_d28e
@@ -16433,7 +16433,7 @@ Functiond283: ; d283
 	ret z
 
 .asm_d28e
-	ld c, $32
+	ld c, 50
 	ld a, e
 	cp BallsEnd % $100
 	jr nz, .asm_d299
@@ -19469,7 +19469,7 @@ Functionf795: ; f795
 	ld hl, NumItems
 	ld a, $1
 	ld [$d10c], a
-	jp Function2f53
+	jp TossItem
 ; f7a0
 
 Functionf7a0: ; f7a0
@@ -22296,7 +22296,7 @@ Function12cdf: ; 12cdf
 	ld a, $1
 	ld [$d10c], a
 	ld hl, NumItems
-	jp Function2f66
+	jp ReceiveItem
 ; 12cea
 
 INCBIN "baserom.gbc", $12cea, $12cf5 - $12cea
@@ -27034,14 +27034,14 @@ Function157e9: ; 0x157e9
 	ld a, [$d107]
 	ld [Buffer2], a
 	ld hl, NumItems
-	call Function2f66
+	call ReceiveItem
 	jr nc, .PackFull
 	ld a, [Buffer1]
 	ld [$d10c], a
 	ld a, [Buffer2]
 	ld [$d107], a
 	ld hl, PCItems
-	call Function2f53
+	call TossItem
 	ld a, $3b
 	call Predef
 	ld hl, .WithdrewText
@@ -27215,14 +27215,14 @@ Function1590a: ; 0x1590a
 	ld a, [$d107]
 	ld [Buffer2], a
 	ld hl, PCItems
-	call Function2f66
+	call ReceiveItem
 	jr nc, .asm_15965
 	ld a, [Buffer1]
 	ld [$d10c], a
 	ld a, [Buffer2]
 	ld [$d107], a
 	ld hl, NumItems
-	call Function2f53
+	call TossItem
 	ld a, $3b
 	call Predef
 	ld hl, .DepositText
@@ -27790,7 +27790,7 @@ Function15cef: ; 15cef
 	call Function1600b
 	jr c, .asm_15d79
 	ld hl, NumItems
-	call Function2f66
+	call ReceiveItem
 	jr nc, .asm_15d6f
 	ld a, [$d107]
 	ld e, a
@@ -28008,7 +28008,7 @@ Function15efd: ; 15efd
 	call Function15fd7
 	ld a, [$d107]
 	ld hl, NumItems
-	call Function2f53
+	call TossItem
 	ld a, $3b
 	call Predef
 	ld hl, $c5b9
@@ -31297,7 +31297,7 @@ Function24c64: ; 24c64
 	push hl
 	ld [CurItem], a
 	ld hl, NumItems
-	call PickUpItem
+	call CheckItem
 	pop hl
 	jr nc, .asm_24c89
 	ld a, [hl]
@@ -50166,7 +50166,7 @@ Function4484a: ; 0x4484a
 	ld a, $1
 	ld [$d10c], a
 	ld hl, NumItems
-	call Function2f66
+	call ReceiveItem
 	jr c, .asm_4489e
 	ld hl, .PackFullText
 	jp Function1d67
@@ -51580,12 +51580,12 @@ Function4a927: ; 4a927
 	ld a, [ScriptVar]
 	ld [CurItem], a
 	ld hl, PCItems
-	call PickUpItem
+	call CheckItem
 	jr c, .asm_4a948
 	ld a, [ScriptVar]
 	ld [CurItem], a
 	ld hl, NumItems
-	call PickUpItem
+	call CheckItem
 	jr c, .asm_4a948
 	xor a
 	ld [ScriptVar], a
@@ -60621,7 +60621,7 @@ Function88211: ; 88211
 	ld hl, NumItems
 	ld a, b
 	ld [$d10c], a
-	call Function2f53
+	call TossItem
 	pop bc
 	ld a, c
 	sub b
@@ -62461,7 +62461,7 @@ Function8adef: ; 8adef
 	ld a, WATER_STONE
 	ld [CurItem], a
 	ld hl, NumItems
-	call PickUpItem
+	call CheckItem
 	jr c, .asm_8ae24
 
 	ld a, [PartyCount]
@@ -62781,7 +62781,7 @@ Function8afd4: ; 8afd4
 	ld a, $1
 	ld [$d10c], a
 	ld hl, NumItems
-	call Function2f66
+	call ReceiveItem
 	pop hl
 	jr nc, .asm_8b04c
 	ld a, [hl]
@@ -76543,7 +76543,7 @@ Functionfd0c3: ; fd0c3
 	ld a, $1
 	ld [$d10c], a
 	ld hl, PCItems
-	call Function2f66
+	call ReceiveItem
 	ret
 ; fd0eb
 
