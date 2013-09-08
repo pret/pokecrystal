@@ -59141,26 +59141,33 @@ Function508d5: ; 508d5
 
 
 PrintMonTypes: ; 5090d
+; Print both types of CurSpecies on the stats screen at hl.
+
 	push hl
 	call GetBaseData
 	pop hl
+
 	push hl
 	ld a, [BaseType1]
-	call .asm_50928
+	call .PrintType
+
 	ld a, [BaseType1]
 	ld b, a
 	ld a, [BaseType2]
 	cp b
 	pop hl
-	jr z, .asm_5092b
+	jr z, .HideSecondType
+
+; Next row
 	ld bc, 20
 	add hl, bc
 
-.asm_50928
+.PrintType
 	ld b, a
 	jr PrintType
 
-.asm_5092b
+.HideSecondType
+; This doesn't actually do anything.
 	ld a, " "
 	ld bc, 20 - 3
 	add hl, bc
