@@ -768,32 +768,37 @@ Function2ee4: ; 2ee4
 INCLUDE "common/string.asm"
 
 
-Function2f17: ; 2f17
+IsInJohto: ; 2f17
+; Return 0 if the player is in Johto, and 1 in Kanto.
+
 	ld a, [MapGroup]
 	ld b, a
 	ld a, [MapNumber]
 	ld c, a
 	call GetWorldMapLocation
-	cp $5f
-	jr z, .asm_2f39
-	cp $0
-	jr nz, .asm_2f35
+
+	cp $5f ; SS Aqua
+	jr z, .Johto
+
+	cp $0 ; Poke Center 2F
+	jr nz, .CheckRegion
+
 	ld a, [BackupMapGroup]
 	ld b, a
 	ld a, [BackupMapNumber]
 	ld c, a
 	call GetWorldMapLocation
 
-.asm_2f35
-	cp $2f
-	jr nc, .asm_2f3b
+.CheckRegion
+	cp $2f ; Pallet Town
+	jr nc, .Kanto
 
-.asm_2f39
+.Johto
 	xor a
 	ret
 
-.asm_2f3b
-	ld a, $1
+.Kanto
+	ld a, 1
 	ret
 ; 2f3e
 
@@ -36055,7 +36060,7 @@ Function2a200: ; 2a200
 	jr .asm_2a27a
 
 .asm_2a235
-	call Function2f17
+	call IsInJohto
 	and a
 	ret z
 	ld h, d
