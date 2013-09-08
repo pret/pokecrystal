@@ -302,14 +302,15 @@ Functiona1b: ; a1b
 ; a36
 
 
-Functiona36: ; a36
+TextBoxWaitLoop: ; a36
+; Loop until the player presses a button.
 	call DelayFrame
 	call GetJoypadPublic
 	ld a, [hJoyPressed]
 	and BUTTON_A | BUTTON_B
 	ret nz
 	call RTC
-	jr Functiona36
+	jr TextBoxWaitLoop
 ; a46
 
 Functiona46: ; a46
@@ -318,7 +319,7 @@ Functiona46: ; a46
 	ld a, 1
 	ld [hOAMUpdate], a
 	call WaitBGMap
-	call Functiona36
+	call TextBoxWaitLoop
 	pop af
 	ld [hOAMUpdate], a
 	ret
@@ -387,44 +388,62 @@ Functionaa5: ; aa5
 	ret
 ; aaf
 
-Functionaaf: ; aaf
+TextBoxPrompt: ; aaf
+; Wait for player to dismiss the textbox, then play a sound effect. Textboxes
+; in link battles get to skip the poll for player input and don't play the
+; sound effect.
+;
+; This is not called for the last textbox in a sequence.
+
 	ld a, [InLinkBattle]
 	and a
-	jr nz, .asm_ac1
-	call Functionac6
+	jr nz, .onlydelay
+
+	call Functionac6 ; poll for input
 	push de
 	ld de, SFX_READ_TEXT_2
 	call StartSFX
 	pop de
 	ret
 
-.asm_ac1
+.onlydelay
+; pause instead of waiting for player input
 	ld c, 65
 	jp DelayFrames
 ; ac6
 
 Functionac6: ; ac6
+; Wait for the player to dismiss the textbox, accomplished by pressing either
+; or both of the a and b buttons.
+; see also TextBoxWaitLoop
+
 	ld a, [hOAMUpdate]
 	push af
 	ld a, $1
 	ld [hOAMUpdate], a
 	ld a, [InputType]
 	or a
-	jr z, .asm_ad9
+	jr z, .playerwait
 	callba Function1de28a
-.asm_ad9
+
+.playerwait
+; wait for player to press a and/or b
 	call Functionaf5
 	call Functiona57
+
+; exit condition
 	ld a, [hJoyPressed]
-	and $3
-	jr nz, .asm_af1
+	and BUTTON_A | BUTTON_B
+	jr nz, .done
+
+; exit condition wasn't met
 	call RTC
 	ld a, $1
 	ld [hBGMapMode], a
 	call DelayFrame
-	jr .asm_ad9
+	jr .playerwait
 
-.asm_af1
+.done
 	pop af
 	ld [hOAMUpdate], a
 	ret

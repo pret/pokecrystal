@@ -602,7 +602,7 @@ Function12f2: ; 12f2
 
 .asm_1301
 	call Function13b6
-	call Functionaaf
+	call TextBoxPrompt
 	ld hl, $c5b9
 	ld bc, $0312
 	call ClearBox
@@ -625,7 +625,7 @@ Char4B: ; 131f
 	call Function13b6
 
 	push de
-	call Functionaaf
+	call TextBoxPrompt
 	pop de
 
 	ld a, [InLinkBattle]
@@ -675,7 +675,7 @@ Function135a: ; 135a
 
 .asm_1368
 	call Function13b6
-	call Functionaaf
+	call TextBoxPrompt
 	ld a, [InLinkBattle]
 	cp $3
 	jr z, .asm_137c
@@ -993,7 +993,7 @@ Text_06:: ; 149f
 	push hl
 	call Function13c7
 	push bc
-	call Functionaaf
+	call TextBoxPrompt
 	pop bc
 	call Function13cd
 	pop hl
@@ -1154,7 +1154,7 @@ Text_0D: ; 1562
 ; display arrow
 	push hl
 	push bc
-	call Functionaaf
+	call TextBoxPrompt
 	pop bc
 	pop hl
 	ret
