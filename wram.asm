@@ -477,7 +477,10 @@ BattleMonType1: ; c64a
 BattleMonType2: ; c64b
 	ds 1
 
-	ds 23
+	ds 10
+
+OTName: ; c656
+	ds 13
 
 CurOTMon: ; c663
 	ds 1
