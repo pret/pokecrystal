@@ -59296,7 +59296,121 @@ Dark:
 ; 50a28
 
 
-INCBIN "baserom.gbc", $50a28, $50b0a - $50a28
+Function50a28: ; 50a28
+	ld hl, Strings50a42
+	ld a, [TrainerClass]
+	dec a
+	ld c, a
+	ld b, 0
+	add hl, bc
+	add hl, bc
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	ld de, StringBuffer1
+.copy
+	ld a, [hli]
+	ld [de], a
+	inc de
+	cp "@"
+	jr nz, .copy
+	ret
+; 50a42
+
+Strings50a42: ; 50a42
+; Untranslated trainer class names from Red.
+
+	dw .Youngster
+	dw .BugCatcher
+	dw .Lass
+	dw OTName
+	dw .JrTrainerM
+	dw .JrTrainerF
+	dw .Pokemaniac
+	dw .SuperNerd
+	dw OTName
+	dw OTName
+	dw .Burglar
+	dw .Engineer
+	dw .Jack
+	dw OTName
+	dw .Swimmer
+	dw OTName
+	dw OTName
+	dw .Beauty
+	dw OTName
+	dw .Rocker
+	dw .Juggler
+	dw OTName
+	dw OTName
+	dw .Blackbelt
+	dw OTName
+	dw .ProfOak
+	dw .Chief
+	dw .Scientist
+	dw OTName
+	dw .Rocket
+	dw .CooltrainerM
+	dw .CooltrainerF
+	dw OTName
+	dw OTName
+	dw OTName
+	dw OTName
+	dw OTName
+	dw OTName
+	dw OTName
+	dw OTName
+	dw OTName
+	dw OTName
+	dw OTName
+	dw OTName
+	dw OTName
+	dw OTName
+	dw OTName
+
+.Youngster
+	db "たんパン@"
+.BugCatcher
+	db "むしとり@"
+.Lass
+	db "ミニスカ@"
+.JrTrainerM
+	db "ボーイ@"
+.JrTrainerF
+	db "ガール@"
+.Pokemaniac
+	db "マニア@"
+.SuperNerd
+	db "りかけい@"
+.Burglar
+	db "どろぼう@"
+.Engineer
+	db "ォヤジ@"
+.Jack
+	db "ジャック@"
+.Swimmer
+	db "かいパン@"
+.Beauty
+	db "おねえさん@"
+.Rocker
+	db "グループ@"
+.Juggler
+	db "ジャグラー@"
+.Blackbelt
+	db "からて@"
+.ProfOak
+	db "ォーキド@"
+.Chief
+	db "チーフ@"
+.Scientist
+	db "けんきゅういん@"
+.Rocket
+	db "だんいん@"
+.CooltrainerM
+	db "エりート♂@"
+.CooltrainerF
+	db "エりート♀@"
+; 50b0a
 
 
 DrawPlayerHP: ; 50b0a
