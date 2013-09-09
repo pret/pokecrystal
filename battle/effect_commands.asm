@@ -9328,72 +9328,102 @@ BattleCommand50: ; 37492
 
 	ld a, [hBattleTurn]
 	and a
-	jr nz, .asm_374ce ; 37495 $37
-	call .asm_37501
+	jr nz, .enemy
+
+; The player needs to be able to steal an item.
+
+	call .playeritem
 	ld a, [hl]
 	and a
 	ret nz
-	call .asm_3750c
+
+; The enemy needs to have an item to steal.
+
+	call .enemyitem
 	ld a, [hl]
 	and a
 	ret z
+
+; Can't steal mail.
+
 	ld [$d265], a
 	ld d, a
-	ld a, $2e
-	ld hl, $5e76
-	rst FarCall
+	callba ItemIsMail
 	ret c
+
 	ld a, [EffectFailed]
 	and a
 	ret nz
+
 	ld a, [InLinkBattle]
 	and a
-	jr z, .asm_374be ; 374b7 $5
+	jr z, .stealenemyitem
+
 	ld a, [IsInBattle]
 	dec a
 	ret z
-.asm_374be
-	call .asm_3750c
+
+.stealenemyitem
+	call .enemyitem
 	xor a
 	ld [hl], a
 	ld [de], a
-	call .asm_37501
+
+	call .playeritem
 	ld a, [$d265]
 	ld [hl], a
 	ld [de], a
-	jr .asm_374f8 ; 374cc $2a
-.asm_374ce
-	call .asm_3750c
+	jr .stole
+
+
+.enemy
+
+; The enemy can't already have an item.
+
+	call .enemyitem
 	ld a, [hl]
 	and a
 	ret nz
-	call .asm_37501
+
+; The player must have an item to steal.
+
+	call .playeritem
 	ld a, [hl]
 	and a
 	ret z
+
+; Can't steal mail!
+
 	ld [$d265], a
 	ld d, a
-	ld a, $2e
-	ld hl, $5e76
-	rst FarCall
+	callba ItemIsMail
 	ret c
+
 	ld a, [EffectFailed]
 	and a
 	ret nz
-	call .asm_37501
+
+; If the enemy steals your item,
+; it's gone for good if you don't get it back.
+
+	call .playeritem
 	xor a
 	ld [hl], a
 	ld [de], a
-	call .asm_3750c
+
+	call .enemyitem
 	ld a, [$d265]
 	ld [hl], a
 	ld [de], a
-.asm_374f8
+
+
+.stole
 	call GetItemName
 	ld hl, StoleText
 	jp StdBattleTextBox
 
-.asm_37501
+
+.playeritem
 	ld a, 1
 	call BattlePartyAttr
 	ld d, h
@@ -9401,9 +9431,9 @@ BattleCommand50: ; 37492
 	ld hl, BattleMonItem
 	ret
 
-.asm_3750c
+.enemyitem
 	ld a, 1
-	call $396d ; GetOTStat_Battle
+	call OTPartyAttr
 	ld d, h
 	ld e, l
 	ld hl, EnemyMonItem

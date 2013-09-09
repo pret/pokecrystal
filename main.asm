@@ -29816,7 +29816,7 @@ Function16798: ; 16798
 	ld a, [CurPartyMon]
 	call AddNTimes
 	ld d, [hl]
-	callba Functionb9e76
+	callba ItemIsMail
 	jr c, .asm_167ed
 	ld hl, PartyMon1Nickname
 	ld a, [CurPartyMon]
@@ -32931,7 +32931,7 @@ Function24dd4: ; 24dd4
 	ld a, $1
 	call GetPartyParamLocation
 	ld d, [hl]
-	callba Functionb9e76
+	callba ItemIsMail
 	pop hl
 	ld a, $14
 	jr c, .asm_24e2c
@@ -36226,7 +36226,7 @@ Function29bfb: ; 29bfb
 	push hl
 	push bc
 	ld d, [hl]
-	callba Functionb9e76
+	callba ItemIsMail
 	pop bc
 	pop hl
 	jr c, .asm_29c5e
@@ -70346,14 +70346,26 @@ Functionb92b8: ; b92b8
 INCBIN "baserom.gbc", $b92f7, $b9e76 - $b92f7
 
 
-Functionb9e76: ; b9e76
+ItemIsMail: ; b9e76
 	ld a, d
-	ld hl, $5e80
-	ld de, $0001
+	ld hl, .items
+	ld de, 1
 	jp IsInArray
 ; b9e80
 
-INCBIN "baserom.gbc", $b9e80, $b9e8b - $b9e80
+.items
+	db FLOWER_MAIL
+	db SURF_MAIL
+	db LITEBLUEMAIL
+	db PORTRAITMAIL
+	db LOVELY_MAIL
+	db EON_MAIL
+	db MORPH_MAIL
+	db BLUESKY_MAIL
+	db MUSIC_MAIL
+	db MIRAGE_MAIL
+	db $ff
+; b9e8b
 
 
 SECTION "bank2F",ROMX,BANK[$2F]
