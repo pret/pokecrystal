@@ -13271,7 +13271,7 @@ SpecialsPointers: ; c029
 	dbw BANK(Functionc422), Functionc422
 	dbw BANK(Function4d9d3), Function4d9d3
 	dbw BANK(Function88018), Function88018
-	dbw BANK(Functionc2b9), Functionc2b9
+	dbw BANK(SpecialNameRater), SpecialNameRater
 	dbw BANK(Functionc2da), Functionc2da
 	dbw BANK(Function718d), Function718d
 	dbw BANK(Function71ac), Function71ac
@@ -13442,8 +13442,8 @@ SpecialNameRival: ; 0xc29d
 DefaultRivalName: ; 0xc2b2
 	db "SILVER@"
 
-Functionc2b9: ; c2b9
-	callba Functionfb6ed
+SpecialNameRater: ; c2b9
+	callba NameRater
 	ret
 ; c2c0
 
@@ -73868,26 +73868,26 @@ Functionfb634: ; fb634
 
 INCBIN "baserom.gbc", $fb656, $fb6ed - $fb656
 
-Functionfb6ed: ; fb6ed
-	ld hl, $780f
+NameRater: ; fb6ed
+	ld hl, UnknownText_0xfb80f
 	call PrintText
 	call Function1dcf
 	jp c, .asm_fb77e
-	ld hl, $7814
+	ld hl, UnknownText_0xfb814
 	call PrintText
 	callba Function50000
 	jr c, .asm_fb77e
 	ld a, [CurPartySpecies]
-	cp $fd
+	cp EGG
 	jr z, .asm_fb783
 	call GetCurNick
 	call Functionfb78a
 	jr c, .asm_fb779
-	ld hl, $7819
+	ld hl, UnknownText_0xfb819
 	call PrintText
 	call Function1dcf
 	jr c, .asm_fb77e
-	ld hl, $781e
+	ld hl, UnknownText_0xfb81e
 	call PrintText
 	xor a
 	ld [MonType], a
@@ -73895,14 +73895,14 @@ Functionfb6ed: ; fb6ed
 	ld [$d265], a
 	ld [CurSpecies], a
 	call GetBaseData
-	ld b, $0
+	ld b, 0
 	ld de, StringBuffer2
 	callba Function116b7
 	call Functionfb7be
-	ld hl, $7837
+	ld hl, UnknownText_0xfb837
 	jr c, .asm_fb76c
 	call Functionfb7d3
-	ld hl, $7837
+	ld hl, UnknownText_0xfb837
 	jr c, .asm_fb76c
 	ld hl, PartyMon1Nickname
 	ld bc, $000b
@@ -73913,26 +73913,26 @@ Functionfb6ed: ; fb6ed
 	ld hl, StringBuffer2
 	ld bc, $000b
 	call CopyBytes
-	ld hl, $7823
+	ld hl, UnknownText_0xfb823
 
 .asm_fb76c
 	push hl
 	call GetCurNick
-	ld hl, $783c
+	ld hl, UnknownText_0xfb83c
 	call PrintText
 	pop hl
 	jr .asm_fb786
 
 .asm_fb779
-	ld hl, $782d
+	ld hl, UnknownText_0xfb82d
 	jr .asm_fb786
 
 .asm_fb77e
-	ld hl, $7828
+	ld hl, UnknownText_0xfb828
 	jr .asm_fb786
 
 .asm_fb783
-	ld hl, $7832
+	ld hl, UnknownText_0xfb832
 
 .asm_fb786
 	call PrintText
@@ -73949,7 +73949,7 @@ Functionfb78a: ; fb78a
 	call .asm_fb7b1
 	jr c, .asm_fb7bc
 	ld hl, PartyMon1ID
-	ld bc, $0030
+	ld bc, PartyMon2 - PartyMon1
 	ld a, [CurPartyMon]
 	call AddNTimes
 	ld de, PlayerID
@@ -73972,12 +73972,12 @@ Functionfb78a: ; fb78a
 
 Functionfb7be: ; fb7be
 	ld hl, StringBuffer2
-	ld c, $a
+	ld c, 10
 .asm_fb7c3
 	ld a, [hli]
-	cp $50
+	cp "@"
 	jr z, .asm_fb7cf
-	cp $7f
+	cp " "
 	jr nz, .asm_fb7d1
 	dec c
 	jr nz, .asm_fb7c3
@@ -74008,7 +74008,7 @@ Functionfb7d3: ; fb7d3
 	ld de, StringBuffer2
 .asm_fb7f2
 	ld a, [de]
-	cp $50
+	cp "@"
 	jr z, .asm_fb800
 	cp [hl]
 	jr nz, .asm_fb7fe
@@ -74026,19 +74026,84 @@ Functionfb7d3: ; fb7d3
 ; fb802
 
 Functionfb802: ; fb802
-	ld c, $0
+	ld c, 0
 .asm_fb804
 	ld a, [hli]
-	cp $50
+	cp "@"
 	ret z
 	inc c
 	ld a, c
-	cp $a
+	cp 10
 	jr nz, .asm_fb804
 	ret
 ; fb80f
 
-INCBIN "baserom.gbc", $fb80f, $fb841 - $fb80f
+UnknownText_0xfb80f: ; 0xfb80f
+	; Hello, hello! I'm the NAME RATER.
+	; I rate the names of #MON.
+	; Would you like me to rate names?
+	text_jump UnknownText_0x1c0043, BANK(UnknownText_0x1c0043)
+	db "@"
+; 0xfb814
+
+UnknownText_0xfb814: ; 0xfb814
+	; Which #MON's nickname should I rate for you?
+	text_jump UnknownText_0x1c00a0, BANK(UnknownText_0x1c00a0)
+	db "@"
+; 0xfb819
+
+UnknownText_0xfb819: ; 0xfb819
+	; Hm… @ … That's a fairly decent name.
+	; But, how about a slightly better nickname?
+	; Want me to give it a better name?
+	text_jump UnknownText_0x1c00cd, BANK(UnknownText_0x1c00cd)
+	db "@"
+; 0xfb81e
+
+UnknownText_0xfb81e: ; 0xfb81e
+	; All right. What name should we give it, then?
+	text_jump UnknownText_0x1c0142, BANK(UnknownText_0x1c0142)
+	db "@"
+; 0xfb823
+
+UnknownText_0xfb823: ; 0xfb823
+	; That's a better name than before! Well done!
+	text_jump UnknownText_0x1c0171, BANK(UnknownText_0x1c0171)
+	db "@"
+; 0xfb828
+
+UnknownText_0xfb828: ; 0xfb828
+	; OK, then. Come again sometime.
+	text_jump UnknownText_0x1c019e, BANK(UnknownText_0x1c019e)
+	db "@"
+; 0xfb82d
+
+UnknownText_0xfb82d: ; 0xfb82d
+	; Hm… @ ? What a great name! It's perfect.
+	; Treat @ with loving care.
+	text_jump UnknownText_0x1c01be, BANK(UnknownText_0x1c01be)
+	db "@"
+; 0xfb832
+
+UnknownText_0xfb832: ; 0xfb832
+	; Whoa… That's just an EGG.
+	text_jump UnknownText_0x1c0208, BANK(UnknownText_0x1c0208)
+	db "@"
+; 0xfb837
+
+UnknownText_0xfb837: ; 0xfb837
+	; It might look the same as before,
+	; but this new name is much better! Well done!
+	text_jump UnknownText_0x1c0222, BANK(UnknownText_0x1c0222)
+	db "@"
+; 0xfb83c
+
+UnknownText_0xfb83c: ; 0xfb83c
+	; All right. This #MON is now named @ .
+	text_jump UnknownText_0x1c0272, BANK(UnknownText_0x1c0272)
+	db "@"
+; 0xfb841
+
 
 Functionfb841: ; fb841
 	ld a, [ScriptVar]
