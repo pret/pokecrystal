@@ -474,15 +474,14 @@ Function1d19: ; 1d19
 
 
 INCLUDE "common/menu.asm"
-
 INCLUDE "common/handshake.asm"
-
 INCLUDE "common/game_time.asm"
-
 INCLUDE "common/map.asm"
 
 
 Function2d43: ; 2d43
+; Inexplicably empty.
+; Seen in PredefPointers.
 	nop
 	nop
 	nop
@@ -504,7 +503,6 @@ Function2d43: ; 2d43
 
 
 INCLUDE "common/farcall.asm"
-
 INCLUDE "common/predef.asm"
 
 
@@ -624,7 +622,7 @@ Function2ebb: ; 2ebb
 	bit 1, a
 	ret z
 	ld a, [hJoyDown]
-	bit 1, a
+	bit A_BUTTON, a
 	ret
 ; 2ec6
 
@@ -639,7 +637,6 @@ Function2ec8: ; 2ec8
 	dec a
 	ret
 ; 2ecb
-
 
 Function2ecb: ; 2ecb
 	push hl
@@ -718,9 +715,7 @@ Function2f3e: ; 2f3e
 
 
 INCLUDE "common/item.asm"
-
 INCLUDE "common/random.asm"
-
 INCLUDE "common/sram.asm"
 
 
@@ -764,6 +759,7 @@ HideSprites: ; 3016
 	ret
 ; 3026
 
+
 CopyBytes: ; 0x3026
 ; copy bc bytes from hl to de
 	inc b  ; we bail the moment b hits 0, so include the last run
@@ -794,9 +790,9 @@ SwapBytes: ; 0x3034
 	; retrieve the previous value of [hl]; put it in [de]
 	pop af
 	ld [de], a
+	inc de
 
 	; handle loop stuff
-	inc de
 	dec bc
 	ld a, b
 	or c
@@ -858,7 +854,7 @@ GetFarHalfword: ; 0x305d
 	ret
 ; 0x306b
 
-Function306b: ; 306b
+FarCopyWRAM: ; 306b
 	ld [hBuffer], a
 	ld a, [rSVBK]
 	push af
@@ -870,7 +866,7 @@ Function306b: ; 306b
 	ret
 ; 307b
 
-Function307b: ; 307b
+GetFarWRAMByte: ; 307b
 	ld [hBuffer], a
 	ld a, [rSVBK]
 	push af
@@ -884,7 +880,7 @@ Function307b: ; 307b
 	ret
 ; 308d
 
-Function308d: ; 308d
+GetFarWRAMWord: ; 308d
 	ld [hBuffer], a
 	ld a, [rSVBK]
 	push af
@@ -897,6 +893,7 @@ Function308d: ; 308d
 	ld [rSVBK], a
 	ret
 ; 309d
+
 
 Function309d: ; 309d
 	ld a, [rSVBK]
@@ -12440,12 +12437,12 @@ Function8b07: ; 8b07
 	ld de, $d000
 	ld bc, $0008
 	ld a, $5
-	call Function306b
+	call FarCopyWRAM
 	ld hl, $4b37
 	ld de, MartPointer
 	ld bc, $0008
 	ld a, $5
-	call Function306b
+	call FarCopyWRAM
 	call Function96a4
 	ld a, $1
 	ld [hCGBPalUpdate], a
@@ -12480,7 +12477,7 @@ Function8c43: ; 8c43
 	add hl, bc
 	ld bc, $0004
 	ld a, $5
-	call Function306b
+	call FarCopyWRAM
 	ld a, $1
 	ld [hCGBPalUpdate], a
 	ret
@@ -12543,7 +12540,7 @@ Function8cb4: ; 8cb4
 	ld de, $d000
 	ld bc, $0008
 	ld a, $5
-	call Function306b
+	call FarCopyWRAM
 	call Function96a4
 	call Function9699
 	call Function96b3
@@ -12671,7 +12668,7 @@ Function8db8: ; 8db8
 	ld de, $d050
 	ld bc, $0030
 	ld a, $5
-	call Function306b
+	call FarCopyWRAM
 	call Function96b3
 	ret
 ; 8e85
@@ -12689,7 +12686,7 @@ Function8e85: ; 8e85
 	ld de, $d038
 	ld bc, $0008
 	ld a, $5
-	call Function306b
+	call FarCopyWRAM
 	ret
 ; 8e9f
 
@@ -12703,7 +12700,7 @@ Function8e9f: ; 8e9f
 	ld de, $d000
 	ld bc, $0008
 	ld a, $5
-	call Function306b
+	call FarCopyWRAM
 	ret
 ; 8eb9
 
@@ -12721,7 +12718,7 @@ Function8eb9: ; 8eb9
 	ld de, $d000
 	ld bc, $0030
 	ld a, $5
-	call Function306b
+	call FarCopyWRAM
 	call Function96a4
 	ld a, $1
 	ld [hCGBPalUpdate], a
@@ -12748,7 +12745,7 @@ Function8edb: ; 8edb
 	ld de, $d018
 	ld bc, $0018
 	ld a, $5
-	call Function306b
+	call FarCopyWRAM
 	call Function9699
 	ld hl, AttrMap
 	ld bc, $0814
@@ -12917,7 +12914,7 @@ Function96a4: ; 96a4
 	ld de, $d080
 	ld bc, $0080
 	ld a, $5
-	call Function306b
+	call FarCopyWRAM
 	ret
 ; 96b3
 
@@ -12999,7 +12996,7 @@ Function971a: ; 971a
 	ld de, MartPointer
 	ld bc, $0010
 	ld a, $5
-	call Function306b
+	call FarCopyWRAM
 	ret
 ; 9729
 
@@ -20807,7 +20804,7 @@ Function12434: ; 12434
 	ld de, CurMart
 	ld bc, $0008
 	ld a, $5
-	call Function306b
+	call FarCopyWRAM
 	ld a, $1
 	ld [hCGBPalUpdate], a
 	ret
@@ -50219,7 +50216,7 @@ Function49409: ; 49409
 	ld de, $d038
 	ld bc, $0008
 	ld a, $5
-	call Function306b
+	call FarCopyWRAM
 	ret
 ; 49418
 
@@ -50282,7 +50279,7 @@ Function49811: ; 49811
 	ld de, $d010
 	ld bc, $0030
 	ld a, $5
-	call Function306b
+	call FarCopyWRAM
 	callba Function96a4
 	ret
 ; 49826
@@ -54331,7 +54328,7 @@ Function4ea0a: ; 4ea0a
 	ld de, $cd53
 	ld bc, $000c
 	ld a, $5
-	call Function306b
+	call FarCopyWRAM
 	ld a, [rSVBK]
 	push af
 	ld a, $1
@@ -54353,7 +54350,7 @@ Function4ea0a: ; 4ea0a
 Function4ea44: ; 4ea44
 	ld a, $0
 	ld hl, InLinkBattle
-	call Function307b
+	call GetFarWRAMByte
 	cp $4
 	jr z, .asm_4ea59
 	ld a, [Options]
@@ -54380,7 +54377,7 @@ Function4ea44: ; 4ea44
 .asm_4ea72
 	ld a, $5
 	ld hl, $dc00
-	call Function307b
+	call GetFarWRAMByte
 	bit 0, a
 	jr z, .asm_4ea80
 	and a
@@ -57145,7 +57142,7 @@ Function51103: ; 51103
 	push hl
 	ld a, $1
 	ld hl, BasePicSize
-	call Function307b
+	call GetFarWRAMByte
 	pop hl
 	and $f
 	ld de, $d990
@@ -71107,11 +71104,11 @@ Functiond01d6: ; d01d6
 	ld [$d16e], a
 	ld a, $1
 	ld hl, CurPartySpecies
-	call Function307b
+	call GetFarWRAMByte
 	ld [$d16b], a
 	ld a, $1
 	ld hl, UnownLetter
-	call Function307b
+	call GetFarWRAMByte
 	ld [$d16c], a
 	call Functiond065c
 	ld [$d16d], a
@@ -76812,7 +76809,7 @@ Function10039c: ; 10039c
 	ld de, $d000
 	ld bc, $0054
 	ld a, $3
-	call Function306b
+	call FarCopyWRAM
 	ret
 ; 1003ab
 
@@ -76824,7 +76821,7 @@ Function1003ba: ; 1003ba
 	ld de, $d080
 	ld bc, $0054
 	ld a, $3
-	call Function306b
+	call FarCopyWRAM
 	ret
 ; 1003c9
 
@@ -76833,7 +76830,7 @@ Function1003c9: ; 1003c9
 	ld de, $ccb4
 	ld bc, $0054
 	ld a, $3
-	call Function306b
+	call FarCopyWRAM
 	ret
 ; 1003d8
 
@@ -77477,7 +77474,7 @@ Function100989: ; 100989
 Function1009a5: ; 1009a5
 	ld bc, $0168
 	ld a, $3
-	call Function306b
+	call FarCopyWRAM
 	ret
 ; 1009ae
 
@@ -78530,7 +78527,7 @@ Function10218d: ; 10218d
 	ld de, EnemyMoveAnimation
 	ld bc, $0026
 	ld a, $5
-	call Function306b
+	call FarCopyWRAM
 	ld de, EnemyMoveEffect
 	ret
 ; 10219f
