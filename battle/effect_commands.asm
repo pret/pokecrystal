@@ -9457,22 +9457,30 @@ BattleCommand52: ; 37536
 BattleCommand53: ; 37563
 ; defrost
 
+; Thaw the user.
+
 	ld a, BATTLE_VARS_STATUS
 	call GetBattleVarPair
-	bit 5, [hl]
+	bit FRZ, [hl]
 	ret z
-	res 5, [hl]
+	res FRZ, [hl]
+
+; Don't update the enemy's party struct in a wild battle.
+
 	ld a, [hBattleTurn]
 	and a
-	jr z, .asm_37578 ; 37570 $6
+	jr z, .party
+
 	ld a, [IsInBattle]
 	dec a
-	jr z, .asm_3757f ; 37576 $7
-.asm_37578
-	ld a, $20
+	jr z, .done
+
+.party
+	ld a, PartyMon1Status - PartyMon1
 	call UserPartyAttr
-	res 5, [hl]
-.asm_3757f
+	res FRZ, [hl]
+
+.done
 	call RefreshBattleHuds
 	ld hl, WasDefrostedText
 	jp StdBattleTextBox
