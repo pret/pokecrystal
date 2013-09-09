@@ -9486,25 +9486,40 @@ BattleCommand54: ; 37588
 	ld bc, PlayerStatLevels
 	ld a, [hBattleTurn]
 	and a
-	jr z, .asm_37599 ; 37591 $6
+	jr z, .go
 	ld de, EnemyMonType1
 	ld bc, EnemyStatLevels
-.asm_37599
+
+.go
+
+; Curse is different for Ghost-types.
+
 	ld a, [de]
-	cp $8
-	jr z, .asm_375d7 ; 3759c $39
+	cp GHOST
+	jr z, .ghost
 	inc de
 	ld a, [de]
-	cp $8
-	jr z, .asm_375d7 ; 375a2 $33
+	cp GHOST
+	jr z, .ghost
+
+
+; If no stats can be increased, don't.
+
+; Attack
 	ld a, [bc]
-	cp $d
-	jr c, .asm_375af ; 375a7 $6
+	cp 13 ; max
+	jr c, .raise
+
+; Defense
 	inc bc
 	ld a, [bc]
-	cp $d
-	jr nc, .asm_3760a ; 375ad $5b
-.asm_375af
+	cp 13 ; max
+	jr nc, .cantraise
+
+.raise
+
+; Raise Attack and Defense, and lower Speed.
+
 	ld a, $1
 	ld [$c689], a
 	call Function0x37e01
@@ -9519,29 +9534,43 @@ BattleCommand54: ; 37588
 	call ResetMiss
 	call BattleCommand71
 	jp BattleCommand8c
-.asm_375d7
+
+
+.ghost
+
+; Cut HP in half and put a curse on the opponent.
+
 	call CheckHiddenOpponent
-	jr nz, .asm_37604 ; 375da $28
+	jr nz, .failed
+
 	call CheckSubstituteOpp
-	jr nz, .asm_37604 ; 375df $23
+	jr nz, .failed
+
 	ld a, BATTLE_VARS_SUBSTATUS1_OPP
 	call GetBattleVarPair
 	bit 1, [hl]
-	jr nz, .asm_37604 ; 375e8 $1a
+	jr nz, .failed
+
 	set 1, [hl]
 	call Function0x37e01
-	ld hl, $4c9f
+	ld hl, GetHalfMaxHP
 	call CallBankF
-	ld hl, $4c3f
+	ld hl, Function3cc3f
 	call CallBankF
 	call UpdateUserInParty
 	ld hl, PutACurseText
 	jp StdBattleTextBox
-.asm_37604
+
+.failed
 	call Function0x37e77
 	jp PrintButItFailed
-.asm_3760a
-	ld b, $8
+
+
+.cantraise
+
+; Can't raise either stat.
+
+	ld b, $8 ; ABILITY
 	call GetStatName
 	call Function0x37e77
 	ld hl, WontRiseAnymoreText
