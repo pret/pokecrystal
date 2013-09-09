@@ -11988,7 +11988,7 @@ PredefPointers: ; 856b
 	dwb Function6508, BANK(Function6508)
 	dwb Function747a, BANK(Function747a)
 	dwb Functionc658, BANK(Functionc658)
-	dwb Function4d7c1, BANK(Function4d7c1)
+	dwb FlagPredef, BANK(FlagPredef)
 	dwb Functionc699, BANK(Functionc699)
 	dwb FillPP, BANK(FillPP)
 	dwb Functiond88c, BANK(Functiond88c)
@@ -52635,57 +52635,73 @@ INCBIN "baserom.gbc", $4d580, $4d596 - $4d580
 Tilesets:
 INCLUDE "tilesets/tileset_headers.asm"
 
-Function4d7c1: ; 4d7c1
+
+FlagPredef: ; 4d7c1
+; Perform action b on flag c in flag array hl.
+; If checking a flag, check flag array d:hl unless d is 0.
+
+; For longer flag arrays, see FlagAction.
+
 	push hl
 	push bc
+
+; Divide by 8 to get the byte we want.
 	push bc
 	srl c
 	srl c
 	srl c
-	ld b, $0
+	ld b, 0
 	add hl, bc
 	pop bc
+
+; Which bit we want from the byte
 	ld a, c
-	and $7
+	and 7
 	ld c, a
-	ld a, $1
-	jr z, .asm_4d7da
-.asm_4d7d6
+
+; Shift left until we can mask the bit
+	ld a, 1
+	jr z, .shifted
+.shift
 	add a
 	dec c
-	jr nz, .asm_4d7d6
-
-.asm_4d7da
+	jr nz, .shift
+.shifted
 	ld c, a
+
+; What are we doing to this flag?
 	dec b
-	jr z, .asm_4d7e7
+	jr z, .set ; 1
 	dec b
-	jr z, .asm_4d7ec
+	jr z, .check ; 2
+
+.reset
 	ld a, c
 	cpl
 	and [hl]
 	ld [hl], a
-	jr .asm_4d7f9
+	jr .done
 
-.asm_4d7e7
+.set
 	ld a, [hl]
 	or c
 	ld [hl], a
-	jr .asm_4d7f9
+	jr .done
 
-.asm_4d7ec
+.check
 	ld a, d
-	cp $0
-	jr nz, .asm_4d7f5
+	cp 0
+	jr nz, .farcheck
+
 	ld a, [hl]
 	and c
-	jr .asm_4d7f9
+	jr .done
 
-.asm_4d7f5
+.farcheck
 	call GetFarByte
 	and c
 
-.asm_4d7f9
+.done
 	pop bc
 	pop hl
 	ld c, a
