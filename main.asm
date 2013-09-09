@@ -12065,7 +12065,7 @@ PredefPointers: ; 856b
 
 Function864c: ; 864c
 ; LoadSGBLayout
-	call Function8d55
+	call CheckCGB
 	jp nz, Function8d59
 	ld a, b
 	cp $ff
@@ -12236,7 +12236,7 @@ Function8ade: ; 8ade
 ; 8b07
 
 Function8b07: ; 8b07
-	call Function8d55
+	call CheckCGB
 	ret z
 	ld hl, $4b2f
 	ld de, $d000
@@ -12317,7 +12317,7 @@ Function8cb4: ; 8cb4
 	add hl, hl
 	ld de, $4d05
 	add hl, de
-	call Function8d55
+	call CheckCGB
 	jr nz, .asm_8cf0
 	push hl
 	ld hl, $5ce6
@@ -12355,7 +12355,7 @@ Function8cb4: ; 8cb4
 INCBIN "baserom.gbc", $8d05, $8d55 - $8d05
 
 
-Function8d55: ; 8d55
+CheckCGB: ; 8d55
 	ld a, [hCGB]
 	and a
 	ret
@@ -12939,7 +12939,7 @@ Function981a: ; 981a
 ; 9853
 
 Function9853: ; 9853
-	call Function8d55
+	call CheckCGB
 	ret nz
 	di
 	ld a, [$cfbe]
@@ -12972,7 +12972,7 @@ Function9853: ; 9853
 
 
 Function9890: ; 9890
-	call Function8d55
+	call CheckCGB
 	ret z
 	ld a, $1
 	ld [rVBK], a
