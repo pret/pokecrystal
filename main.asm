@@ -26733,11 +26733,11 @@ OpenMartDialog: ; 15a45
 ; 15a57
 
 .dialogs
-       dw MartDialog
-       dw HerbShop
-       dw BargainShop
-       dw Pharmacist
-       dw VendingMachine
+	dw MartDialog
+	dw HerbShop
+	dw BargainShop
+	dw Pharmacist
+	dw VendingMachine
 ; 15a61
 
 MartDialog: ; 15a61
@@ -26865,12 +26865,12 @@ Function15b47: ; 15b47
 	ret
 
 .table_15b56
-       dw Function15b62
-       dw Function15b6e
-       dw Function15b8d
-       dw Function15b9a
-       dw Function15ba3
-       dw Function15baf
+	dw Function15b62
+	dw Function15b6e
+	dw Function15b8d
+	dw Function15b9a
+	dw Function15ba3
+	dw Function15baf
 ; 15b62
 
 Function15b62: ; 15b62
@@ -27107,11 +27107,11 @@ Function15ca3: ; 15ca3
 ; 15cb0
 
 .data_15cb0 ; 15cb0
-       dwb $5cbf, 0
-       dwb $5ccb, 0
-       dwb $5cd7, 1
-       dwb $5ce3, 0
-       dwb $5cbf, 2
+	 dwb $5cbf, 0
+	 dwb $5ccb, 0
+	 dwb $5cd7, 1
+	 dwb $5ce3, 0
+	 dwb $5cbf, 2
 ; 15cbf
 
 INCBIN "baserom.gbc", $15cbf, $15cef - $15cbf
@@ -27791,7 +27791,7 @@ Function16798: ; 16798
 	ld a, [CurPartyMon]
 	call AddNTimes
 	ld d, [hl]
-	callba Functionb9e76
+	callba ItemIsMail
 	jr c, .asm_167ed
 	ld hl, PartyMon1Nickname
 	ld a, [CurPartyMon]
@@ -30906,7 +30906,7 @@ Function24dd4: ; 24dd4
 	ld a, $1
 	call GetPartyParamLocation
 	ld d, [hl]
-	callba Functionb9e76
+	callba ItemIsMail
 	pop hl
 	ld a, $14
 	jr c, .asm_24e2c
@@ -34522,7 +34522,7 @@ Function29bfb: ; 29bfb
 	push hl
 	push bc
 	ld d, [hl]
-	callba Functionb9e76
+	callba ItemIsMail
 	pop bc
 	pop hl
 	jr c, .asm_29c5e
@@ -53392,14 +53392,14 @@ StatsScreenMain: ; 0x4dcd2
 INCBIN "baserom.gbc", $4dcf7, $4dd2a - $4dcf7
 
 StatsScreenPointerTable: ; 4dd2a
-    dw $5d72 ; regular pokémon
-    dw EggStatsInit ; egg
-    dw $5de6
-    dw $5dac
-    dw $5dc6
-    dw $5de6
-    dw $5dd6
-    dw $5d6c
+	dw $5d72 ; regular pokémon
+	dw EggStatsInit ; egg
+	dw $5de6
+	dw $5dac
+	dw $5dc6
+	dw $5de6
+	dw $5dd6
+	dw $5d6c
 
 ; 4dd3a
 
@@ -53416,10 +53416,10 @@ EggStatsInit: ; 4dda1
 INCBIN "baserom.gbc", $4ddac, $4e21e - $4ddac
 
 IDNoString: ; 4e21e
-    db $73, "№.@"
+	db $73, "№.@"
 
 OTString: ; 4e222
-    db "OT/@"
+	db "OT/@"
 ; 4e226
 
 INCBIN "baserom.gbc", $4e226, $4e33a - $4e226
@@ -53481,22 +53481,22 @@ EggStatsScreen: ; 4e33a
 ; 0x4e3c0
 
 EggString: ; 4e3c0
-    db "EGG@"
+	db "EGG@"
 
 FiveQMarkString: ; 4e3c4
-    db "?????@"
+	db "?????@"
 
 EggSoonString: ; 0x4e3ca
-    db "It's making sounds", $4e, "inside. It's going", $4e, "to hatch soon!@"
+	db "It's making sounds", $4e, "inside. It's going", $4e, "to hatch soon!@"
 
 EggCloseString: ; 0x4e3fd
-    db "It moves around", $4e, "inside sometimes.", $4e, "It must be close", $4e, "to hatching.@"
+	db "It moves around", $4e, "inside sometimes.", $4e, "It must be close", $4e, "to hatching.@"
 
 EggMoreTimeString: ; 0x4e43d
-    db "Wonder what's", $4e, "inside? It needs", $4e, "more time, though.@"
+	db "Wonder what's", $4e, "inside? It needs", $4e, "more time, though.@"
 
 EggALotMoreTimeString: ; 0x4e46e
-    db "This EGG needs a", $4e, "lot more time to", $4e, "hatch.@"
+	db "This EGG needs a", $4e, "lot more time to", $4e, "hatch.@"
 
 ; 0x4e497
 
@@ -55357,35 +55357,35 @@ PrintPartyMenuText: ; 5049a
 ; 0x504d2
 
 PartyMenuStrings: ; 0x504d2
-    dw ChooseAMonString
-    dw UseOnWhichPKMNString
-    dw WhichPKMNString
-    dw TeachWhichPKMNString
-    dw MoveToWhereString
-    dw UseOnWhichPKMNString
-    dw ChooseAMonString ; Probably used to be ChooseAFemalePKMNString
-    dw ChooseAMonString ; Probably used to be ChooseAMalePKMNString
-    dw ToWhichPKMNString
+	dw ChooseAMonString
+	dw UseOnWhichPKMNString
+	dw WhichPKMNString
+	dw TeachWhichPKMNString
+	dw MoveToWhereString
+	dw UseOnWhichPKMNString
+	dw ChooseAMonString ; Probably used to be ChooseAFemalePKMNString
+	dw ChooseAMonString ; Probably used to be ChooseAMalePKMNString
+	dw ToWhichPKMNString
 
 ChooseAMonString: ; 0x504e4
-    db "Choose a #MON.@"
+	db "Choose a #MON.@"
 UseOnWhichPKMNString: ; 0x504f3
-    db "Use on which ", $e1, $e2, "?@"
+	db "Use on which ", $e1, $e2, "?@"
 WhichPKMNString: ; 0x50504
-    db "Which ", $e1, $e2, "?@"
+	db "Which ", $e1, $e2, "?@"
 TeachWhichPKMNString: ; 0x5050e
-    db "Teach which ", $e1, $e2, "?@"
+	db "Teach which ", $e1, $e2, "?@"
 MoveToWhereString: ; 0x5051e
-    db "Move to where?@"
+	db "Move to where?@"
 ChooseAFemalePKMNString: ; 0x5052d  ; UNUSED
-    db "Choose a ♀", $e1, $e2, ".@"
+	db "Choose a ♀", $e1, $e2, ".@"
 ChooseAMalePKMNString: ; 0x5053b    ; UNUSED
-    db "Choose a ♂", $e1, $e2, ".@"
+	db "Choose a ♂", $e1, $e2, ".@"
 ToWhichPKMNString: ; 0x50549
-    db "To which ", $e1, $e2, "?@"
+	db "To which ", $e1, $e2, "?@"
 
 YouHaveNoPKMNString: ; 0x50556
-    db "You have no ", $e1, $e2, "!@"
+	db "You have no ", $e1, $e2, "!@"
 
 
 Function50566: ; 50566
@@ -69675,14 +69675,26 @@ Functionb92b8: ; b92b8
 INCBIN "baserom.gbc", $b92f7, $b9e76 - $b92f7
 
 
-Functionb9e76: ; b9e76
+ItemIsMail: ; b9e76
 	ld a, d
-	ld hl, $5e80
-	ld de, $0001
+	ld hl, .items
+	ld de, 1
 	jp IsInArray
 ; b9e80
 
-INCBIN "baserom.gbc", $b9e80, $b9e8b - $b9e80
+.items
+	db FLOWER_MAIL
+	db SURF_MAIL
+	db LITEBLUEMAIL
+	db PORTRAITMAIL
+	db LOVELY_MAIL
+	db EON_MAIL
+	db MORPH_MAIL
+	db BLUESKY_MAIL
+	db MUSIC_MAIL
+	db MIRAGE_MAIL
+	db $ff
+; b9e8b
 
 
 SECTION "bank2F",ROMX,BANK[$2F]
@@ -86674,7 +86686,7 @@ RegionCheck: ; 0x1caea1
 
 SECTION "bank73",ROMX,BANK[$73]
 
-                      ; Pokedex entries III
+;                       Pokedex entries III
                             ; 129-192
 PokedexEntries3:
 INCLUDE "stats/pokedex/entries_3.asm"

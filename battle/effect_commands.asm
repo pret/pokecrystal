@@ -9328,72 +9328,102 @@ BattleCommand50: ; 37492
 
 	ld a, [hBattleTurn]
 	and a
-	jr nz, .asm_374ce ; 37495 $37
-	call .asm_37501
+	jr nz, .enemy
+
+; The player needs to be able to steal an item.
+
+	call .playeritem
 	ld a, [hl]
 	and a
 	ret nz
-	call .asm_3750c
+
+; The enemy needs to have an item to steal.
+
+	call .enemyitem
 	ld a, [hl]
 	and a
 	ret z
+
+; Can't steal mail.
+
 	ld [$d265], a
 	ld d, a
-	ld a, $2e
-	ld hl, $5e76
-	rst FarCall
+	callba ItemIsMail
 	ret c
+
 	ld a, [EffectFailed]
 	and a
 	ret nz
+
 	ld a, [InLinkBattle]
 	and a
-	jr z, .asm_374be ; 374b7 $5
+	jr z, .stealenemyitem
+
 	ld a, [IsInBattle]
 	dec a
 	ret z
-.asm_374be
-	call .asm_3750c
+
+.stealenemyitem
+	call .enemyitem
 	xor a
 	ld [hl], a
 	ld [de], a
-	call .asm_37501
+
+	call .playeritem
 	ld a, [$d265]
 	ld [hl], a
 	ld [de], a
-	jr .asm_374f8 ; 374cc $2a
-.asm_374ce
-	call .asm_3750c
+	jr .stole
+
+
+.enemy
+
+; The enemy can't already have an item.
+
+	call .enemyitem
 	ld a, [hl]
 	and a
 	ret nz
-	call .asm_37501
+
+; The player must have an item to steal.
+
+	call .playeritem
 	ld a, [hl]
 	and a
 	ret z
+
+; Can't steal mail!
+
 	ld [$d265], a
 	ld d, a
-	ld a, $2e
-	ld hl, $5e76
-	rst FarCall
+	callba ItemIsMail
 	ret c
+
 	ld a, [EffectFailed]
 	and a
 	ret nz
-	call .asm_37501
+
+; If the enemy steals your item,
+; it's gone for good if you don't get it back.
+
+	call .playeritem
 	xor a
 	ld [hl], a
 	ld [de], a
-	call .asm_3750c
+
+	call .enemyitem
 	ld a, [$d265]
 	ld [hl], a
 	ld [de], a
-.asm_374f8
+
+
+.stole
 	call GetItemName
 	ld hl, StoleText
 	jp StdBattleTextBox
 
-.asm_37501
+
+.playeritem
 	ld a, 1
 	call BattlePartyAttr
 	ld d, h
@@ -9401,9 +9431,9 @@ BattleCommand50: ; 37492
 	ld hl, BattleMonItem
 	ret
 
-.asm_3750c
+.enemyitem
 	ld a, 1
-	call $396d ; GetOTStat_Battle
+	call OTPartyAttr
 	ld d, h
 	ld e, l
 	ld hl, EnemyMonItem
@@ -9413,17 +9443,27 @@ BattleCommand50: ; 37492
 
 BattleCommand51: ; 37517
 ; arenatrap
+
+; Doesn't work on an absent opponent.
+
 	call CheckHiddenOpponent
-	jr nz, .asm_37530 ; 3751a $14
+	jr nz, .failed
+
+; Don't trap if the opponent is already trapped.
+
 	ld a, BATTLE_VARS_SUBSTATUS5
 	call GetBattleVarPair
-	bit 7, [hl]
-	jr nz, .asm_37530 ; 37523 $b
-	set 7, [hl]
+	bit SUBSTATUS_CANT_RUN, [hl]
+	jr nz, .failed
+
+; Otherwise trap the opponent.
+
+	set SUBSTATUS_CANT_RUN, [hl]
 	call Function0x37e01
 	ld hl, CantEscapeNowText
 	jp StdBattleTextBox
-.asm_37530
+
+.failed
 	call Function0x37e77
 	jp PrintButItFailed
 ; 37536
@@ -9432,23 +9472,38 @@ BattleCommand51: ; 37517
 BattleCommand52: ; 37536
 ; nightmare
 
+; Can't hit an absent opponent.
+
 	call CheckHiddenOpponent
-	jr nz, .asm_3755d ; 37539 $22
+	jr nz, .failed
+
+; Can't hit a substitute.
+
 	call CheckSubstituteOpp
-	jr nz, .asm_3755d ; 3753e $1d
+	jr nz, .failed
+
+; Only works on a sleeping opponent.
+
 	ld a, BATTLE_VARS_STATUS_OPP
 	call GetBattleVarPair
-	and $7
-	jr z, .asm_3755d ; 37547 $14
+	and SLP
+	jr z, .failed
+
+; Bail if the opponent is already having a nightmare.
+
 	ld a, BATTLE_VARS_SUBSTATUS1_OPP
 	call GetBattleVarPair
-	bit 0, [hl]
-	jr nz, .asm_3755d ; 37550 $b
-	set 0, [hl]
+	bit SUBSTATUS_NIGHTMARE, [hl]
+	jr nz, .failed
+
+; Otherwise give the opponent a nightmare.
+
+	set SUBSTATUS_NIGHTMARE, [hl]
 	call Function0x37e01
 	ld hl, StartedNightmareText
 	jp StdBattleTextBox
-.asm_3755d
+
+.failed
 	call Function0x37e77
 	jp PrintButItFailed
 ; 37563
@@ -9457,22 +9512,30 @@ BattleCommand52: ; 37536
 BattleCommand53: ; 37563
 ; defrost
 
+; Thaw the user.
+
 	ld a, BATTLE_VARS_STATUS
 	call GetBattleVarPair
-	bit 5, [hl]
+	bit FRZ, [hl]
 	ret z
-	res 5, [hl]
+	res FRZ, [hl]
+
+; Don't update the enemy's party struct in a wild battle.
+
 	ld a, [hBattleTurn]
 	and a
-	jr z, .asm_37578 ; 37570 $6
+	jr z, .party
+
 	ld a, [IsInBattle]
 	dec a
-	jr z, .asm_3757f ; 37576 $7
-.asm_37578
-	ld a, $20
+	jr z, .done
+
+.party
+	ld a, PartyMon1Status - PartyMon1
 	call UserPartyAttr
-	res 5, [hl]
-.asm_3757f
+	res FRZ, [hl]
+
+.done
 	call RefreshBattleHuds
 	ld hl, WasDefrostedText
 	jp StdBattleTextBox
@@ -9486,25 +9549,40 @@ BattleCommand54: ; 37588
 	ld bc, PlayerStatLevels
 	ld a, [hBattleTurn]
 	and a
-	jr z, .asm_37599 ; 37591 $6
+	jr z, .go
 	ld de, EnemyMonType1
 	ld bc, EnemyStatLevels
-.asm_37599
+
+.go
+
+; Curse is different for Ghost-types.
+
 	ld a, [de]
-	cp $8
-	jr z, .asm_375d7 ; 3759c $39
+	cp GHOST
+	jr z, .ghost
 	inc de
 	ld a, [de]
-	cp $8
-	jr z, .asm_375d7 ; 375a2 $33
+	cp GHOST
+	jr z, .ghost
+
+
+; If no stats can be increased, don't.
+
+; Attack
 	ld a, [bc]
-	cp $d
-	jr c, .asm_375af ; 375a7 $6
+	cp 13 ; max
+	jr c, .raise
+
+; Defense
 	inc bc
 	ld a, [bc]
-	cp $d
-	jr nc, .asm_3760a ; 375ad $5b
-.asm_375af
+	cp 13 ; max
+	jr nc, .cantraise
+
+.raise
+
+; Raise Attack and Defense, and lower Speed.
+
 	ld a, $1
 	ld [$c689], a
 	call Function0x37e01
@@ -9519,29 +9597,43 @@ BattleCommand54: ; 37588
 	call ResetMiss
 	call BattleCommand71
 	jp BattleCommand8c
-.asm_375d7
+
+
+.ghost
+
+; Cut HP in half and put a curse on the opponent.
+
 	call CheckHiddenOpponent
-	jr nz, .asm_37604 ; 375da $28
+	jr nz, .failed
+
 	call CheckSubstituteOpp
-	jr nz, .asm_37604 ; 375df $23
+	jr nz, .failed
+
 	ld a, BATTLE_VARS_SUBSTATUS1_OPP
 	call GetBattleVarPair
 	bit 1, [hl]
-	jr nz, .asm_37604 ; 375e8 $1a
+	jr nz, .failed
+
 	set 1, [hl]
 	call Function0x37e01
-	ld hl, $4c9f
+	ld hl, GetHalfMaxHP
 	call CallBankF
-	ld hl, $4c3f
+	ld hl, Function3cc3f
 	call CallBankF
 	call UpdateUserInParty
 	ld hl, PutACurseText
 	jp StdBattleTextBox
-.asm_37604
+
+.failed
 	call Function0x37e77
 	jp PrintButItFailed
-.asm_3760a
-	ld b, $8
+
+
+.cantraise
+
+; Can't raise either stat.
+
+	ld b, $8 ; ABILITY
 	call GetStatName
 	call Function0x37e77
 	ld hl, WontRiseAnymoreText

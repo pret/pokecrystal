@@ -11,7 +11,7 @@ import preprocessor
 
 def main():
     macros = preprocessor.load_pokecrystal_macros()
-    macro_table = preprocessor.make_macro_table(macros)
+    macro_table = preprocessor.preprocessor.make_macro_table(macros)
 
     stdout = sys.stdout
 
