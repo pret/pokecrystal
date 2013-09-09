@@ -12340,9 +12340,9 @@ Function8d59: ; 8d59
 	jp z, Function96f3
 	call Function9673
 	ld l, a
-	ld h, $0
+	ld h, 0
 	add hl, hl
-	ld de, $4d7a
+	ld de, Table8d7a
 	add hl, de
 	ld a, [hli]
 	ld h, [hl]
@@ -12356,7 +12356,39 @@ Function8d79: ; 8d79
 	ret
 ; 8d7a
 
-INCBIN "baserom.gbc", $8d7a, $8db8 - $8d7a
+Table8d7a: ; 8d7a
+	dw Function8db8
+	dw Function8ddb
+	dw Function8eb9
+	dw Function8edb
+	dw Function8f70
+	dw Function906e
+	dw Function90f8
+	dw Function9122
+	dw Function91ad
+	dw Function91c8
+	dw Function91d1
+	dw Function91e4
+	dw Function9228
+	dw Function9251
+	dw Function9373
+	dw Function93a6
+	dw Function93ba
+	dw Function9195
+	dw Function9499
+	dw Function94d0
+	dw Function93d3
+	dw Function9289
+	dw Function903e
+	dw Function8fca
+	dw Function925e
+	dw Function94fa
+	dw Function9529
+	dw Function9555
+	dw Function9578
+	dw Function9591
+	dw Function9542
+; 8db8
 
 Function8db8: ; 8db8
 	ld hl, $5c67
@@ -12371,8 +12403,9 @@ Function8db8: ; 8db8
 	ld de, MartPointer
 	ld c, $2
 	call $5615
-	jr .asm_8e23
+	jr Function8e23
 
+Function8ddb: ; 8ddb
 	ld de, $d000
 	call Function9729
 	push hl
@@ -12407,7 +12440,7 @@ Function8db8: ; 8db8
 	ld [SGBPredef], a
 	call Function96a4
 
-.asm_8e23
+Function8e23: ; 8e23
 	call Function8e85
 	ld hl, AttrMap
 	ld bc, $0168
@@ -12547,7 +12580,670 @@ Function8edb: ; 8edb
 	ret
 ; 8f52
 
-INCBIN "baserom.gbc", $8f52, $9610 - $8f52
+INCBIN "baserom.gbc", $8f52, $8f70 - $8f52
+
+Function8f70: ; 8f70
+	ld de, Unkn1Pals
+	ld a, $1d
+	call Function9625
+	call Function9630
+	ld a, [CurPartySpecies]
+	cp $ff
+	jr nz, .asm_8f8a
+	ld hl, $4fba
+	call Function9630
+	jr .asm_8f90
+
+.asm_8f8a
+	call Function9775
+	call Function9643
+
+.asm_8f90
+	call Function9699
+	ld hl, $cdee
+	ld bc, $0707
+	ld a, $1
+	call Function9663
+	call Function971a
+	ld hl, $4fc2
+	ld de, $d078
+	ld bc, $0008
+	ld a, $5
+	call FarCopyWRAM
+	call Function96b3
+	call Function96a4
+	ld a, $1
+	ld [hCGBPalUpdate], a
+	ret
+; 8fba
+
+INCBIN "baserom.gbc", $8fba, $8fca - $8fba
+
+Function8fca: ; 8fca
+	ld de, Unkn1Pals
+	ld a, $1d
+	call Function9625
+	call Function9630
+	ld a, [CurPartySpecies]
+	cp $ff
+	jr nz, .asm_8fe4
+	ld hl, $5036
+	call Function9630
+	jr .asm_8fed
+
+.asm_8fe4
+	ld bc, TempMonDVs
+	call Function974b
+	call Function9643
+
+.asm_8fed
+	call Function9699
+	ld hl, $ce2a
+	ld bc, $0707
+	ld a, $1
+	call Function9663
+	call Function971a
+	call Function96b3
+	call Function96a4
+	ld a, $1
+	ld [hCGBPalUpdate], a
+	ret
+; 9009
+
+INCBIN "baserom.gbc", $9009, $903e - $9009
+
+Function903e: ; 903e
+	ld de, Unkn1Pals
+	ld a, $1d
+	call Function9625
+	call Function9630
+	ld a, [CurPartySpecies]
+	call Function9775
+	call Function9643
+	call Function9699
+	ld hl, $ce44
+	ld bc, $0707
+	ld a, $1
+	call Function9663
+	call Function971a
+	call Function96b3
+	call Function96a4
+	ld a, $1
+	ld [hCGBPalUpdate], a
+	ret
+; 906e
+
+Function906e: ; 906e
+	ld hl, $77a9
+	ld de, Unkn1Pals
+	ld bc, $0080
+	ld a, $5
+	call FarCopyWRAM
+	call Function9699
+	ld hl, $ce01
+	ld bc, $0a03
+	ld a, $2
+	call Function9663
+	ld hl, $ce12
+	ld bc, $0a03
+	ld a, $2
+	call Function9663
+	ld hl, $ce29
+	ld bc, $0603
+	ld a, $3
+	call Function9663
+	ld hl, $ce3a
+	ld bc, $0603
+	ld a, $3
+	call Function9663
+	ld hl, $ce51
+	ld bc, $0203
+	ld a, $4
+	call Function9663
+	ld hl, $ce62
+	ld bc, $0203
+	ld a, $4
+	call Function9663
+	ld hl, $ce05
+	ld bc, $020c
+	ld a, $1
+	call Function9663
+	ld hl, $ce04
+	ld bc, $0a01
+	ld a, $1
+	call Function9663
+	ld hl, $ce11
+	ld bc, $0a01
+	ld a, $1
+	call Function9663
+	ld hl, $cec9
+	ld bc, $0078
+	ld a, $7
+	call ByteFill
+	call Function96b3
+	call Function96a4
+	ld a, $1
+	ld [hCGBPalUpdate], a
+	ret
+; 90f8
+
+Function90f8: ; 90f8
+	ld hl, $5ca7
+	call Function9610
+	call Function9699
+	ld de, Unkn2Pals
+	ld a, $3c
+	call Function9625
+	call Function9630
+	ld hl, $ce51
+	ld bc, $0c14
+	ld a, $1
+	call Function9663
+	call Function96b3
+	call Function96a4
+	ld a, $1
+	ld [hCGBPalUpdate], a
+	ret
+; 9122
+
+Function9122: ; 9122
+	ld b, $0
+	ld hl, $512d
+	add hl, bc
+	add hl, bc
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	jp [hl]
+; 912d
+
+INCBIN "baserom.gbc", $912d, $9195 - $912d
+
+Function9195: ; 9195
+	ld hl, $7789
+	ld de, Unkn1Pals
+	ld bc, $0028
+	ld a, $5
+	call FarCopyWRAM
+	call Function96a4
+	call Function9699
+	call Function96b3
+	ret
+; 91ad
+
+Function91ad: ; 91ad
+	ld hl, $7641
+	ld de, Unkn1Pals
+	ld bc, $0080
+	ld a, $5
+	call FarCopyWRAM
+	ld hl, $5cb7
+	call Function9610
+	call Function9699
+	call Function96b3
+	ret
+; 91c8
+
+Function91c8: ; 91c8
+	call Functionb1de
+	ld a, $9
+	ld [SGBPredef], a
+	ret
+; 91d1
+
+Function91d1: ; 91d1
+	ld hl, $5c57
+	call Function9610
+	call Function8e9f
+	call Function8e85
+	call Function971a
+	call Function96b3
+	ret
+; 91e4
+
+Function91e4: ; 91e4
+	ld de, Unkn1Pals
+	ld a, c
+	and a
+	jr z, .asm_91f5
+	ld a, $1a
+	call Function9625
+	call Function9630
+	jr .asm_921a
+
+.asm_91f5
+	ld hl, PartyMon1DVs
+	ld bc, $0030
+	ld a, [CurPartyMon]
+	call AddNTimes
+	ld c, l
+	ld b, h
+	ld a, [PlayerHPPal]
+	call Function974b
+	call Function9643
+	ld hl, $579c
+	ld de, $d050
+	ld bc, $0030
+	ld a, $5
+	call FarCopyWRAM
+
+.asm_921a
+	call Function9699
+	call Function96b3
+	call Function96a4
+	ld a, $1
+	ld [hCGBPalUpdate], a
+	ret
+; 9228
+
+Function9228: ; 9228
+	ld hl, $76f1
+	ld de, Unkn1Pals
+	ld bc, $0028
+	ld a, $5
+	call FarCopyWRAM
+	ld hl, $7719
+	ld de, Unkn2Pals
+	ld bc, $0010
+	ld a, $5
+	call FarCopyWRAM
+	ld a, $8
+	ld [SGBPredef], a
+	call Function96a4
+	ld a, $1
+	ld [hCGBPalUpdate], a
+	ret
+; 9251
+
+Function9251: ; 9251
+	ld hl, $5cb7
+	call Function9610
+	call Function9699
+	call Function96b3
+	ret
+; 925e
+
+Function925e: ; 925e
+	ld hl, $5bc7
+	call Function9610
+	ld de, Unkn2Pals
+	ld a, $4c
+	call Function9625
+	call Function9630
+	ld a, [rSVBK]
+	push af
+	ld a, $5
+	ld [rSVBK], a
+	ld hl, Unkn2Pals
+	ld a, $1f
+	ld [hli], a
+	ld a, $0
+	ld [hl], a
+	pop af
+	ld [rSVBK], a
+	call Function9699
+	call Function96b3
+	ret
+; 9289
+
+Function9289: ; 9289
+	ld de, Unkn1Pals
+	xor a
+	call Function976b
+	call Function9643
+	ld a, $1
+	call Function976b
+	call Function9643
+	ld a, $3
+	call Function976b
+	call Function9643
+	ld a, $2
+	call Function976b
+	call Function9643
+	ld a, $4
+	call Function976b
+	call Function9643
+	ld a, $7
+	call Function976b
+	call Function9643
+	ld a, $6
+	call Function976b
+	call Function9643
+	ld a, $5
+	call Function976b
+	call Function9643
+	ld a, $24
+	call Function9625
+	call Function9630
+	ld hl, AttrMap
+	ld bc, $0168
+	ld a, [PlayerGender]
+	and a
+	ld a, $1
+	jr z, .asm_92e3
+	ld a, $0
+
+.asm_92e3
+	call ByteFill
+	ld hl, $cdfb
+	ld bc, $0705
+	ld a, [PlayerGender]
+	and a
+	ld a, $0
+	jr z, .asm_92f6
+	ld a, $1
+
+.asm_92f6
+	call Function9663
+	ld hl, $cdff
+	ld [hl], $1
+	ld hl, $ceb7
+	ld bc, $0204
+	ld a, $1
+	call Function9663
+	ld hl, $cebb
+	ld bc, $0204
+	ld a, $2
+	call Function9663
+	ld hl, $cebf
+	ld bc, $0204
+	ld a, $3
+	call Function9663
+	ld hl, $cec3
+	ld bc, $0204
+	ld a, $4
+	call Function9663
+	ld hl, $cef3
+	ld bc, $0204
+	ld a, $5
+	call Function9663
+	ld hl, $cef7
+	ld bc, $0204
+	ld a, $6
+	call Function9663
+	ld hl, $cefb
+	ld bc, $0204
+	ld a, $7
+	call Function9663
+	ld a, [PlayerGender]
+	and a
+	push af
+	jr z, .asm_935d
+	ld hl, $ceff
+	ld bc, $0204
+	ld a, $1
+	call Function9663
+
+.asm_935d
+	pop af
+	ld c, $0
+	jr nz, .asm_9363
+	inc c
+
+.asm_9363
+	ld a, c
+	ld hl, $cdff
+	ld [hl], a
+	call Function96b3
+	call Function96a4
+	ld a, $1
+	ld [hCGBPalUpdate], a
+	ret
+; 9373
+
+Function9373: ; 9373
+	ld de, Unkn1Pals
+	ld a, $10
+	call Function9625
+	call Function9630
+	ld a, [PlayerHPPal]
+	ld l, a
+	ld h, $0
+	add hl, hl
+	add hl, hl
+	ld bc, $68be
+	add hl, bc
+	call Function9643
+	call Function9699
+	ld hl, $cdf8
+	ld bc, $0209
+	ld a, $1
+	call Function9663
+	call Function96b3
+	call Function96a4
+	ld a, $1
+	ld [hCGBPalUpdate], a
+	ret
+; 93a6
+
+Function93a6: ; 93a6
+	ld hl, $5c47
+	call Function9610
+	call Function9699
+	call Function96b3
+	call Function96a4
+	ld a, $1
+	ld [hCGBPalUpdate], a
+	ret
+; 93ba
+
+Function93ba: ; 93ba
+	ld de, Unkn1Pals
+	ld a, $1d
+	call Function9625
+	call Function9630
+	call Function9699
+	call Function96b3
+	call Function96a4
+	ld a, $1
+	ld [hCGBPalUpdate], a
+	ret
+; 93d3
+
+Function93d3: ; 93d3
+	ld a, [BattleType]
+	cp $3
+	jr z, .asm_93e6
+	ld a, [PlayerGender]
+	bit 0, a
+	jr z, .asm_93e6
+	ld hl, $5469
+	jr .asm_93e9
+
+.asm_93e6
+	ld hl, $5439
+
+.asm_93e9
+	ld de, Unkn1Pals
+	ld bc, $0040
+	ld a, $5
+	call FarCopyWRAM
+	call Function9699
+	ld hl, AttrMap
+	ld bc, $010a
+	ld a, $1
+	call Function9663
+	ld hl, $cde3
+	ld bc, $010a
+	ld a, $2
+	call Function9663
+	ld hl, $ce08
+	ld bc, $0901
+	ld a, $3
+	call Function9663
+	ld hl, $ce65
+	ld bc, $0305
+	ld a, $4
+	call Function9663
+	ld hl, $ce15
+	ld bc, $0305
+	ld a, $5
+	call Function9663
+	call Function96b3
+	call Function96a4
+	ld a, $1
+	ld [hCGBPalUpdate], a
+	ret
+; 9439
+
+INCBIN "baserom.gbc", $9439, $9499 - $9439
+
+Function9499: ; 9499
+	call Function91c8
+	ld de, $0014
+	ld hl, AttrMap
+	ld a, [$cf82]
+.asm_94a5
+	and a
+	jr z, .asm_94ac
+	dec a
+	add hl, de
+	jr .asm_94a5
+
+.asm_94ac
+	ld a, [$cf83]
+	ld e, a
+	ld d, $0
+	add hl, de
+	ld a, [$cf82]
+	ld b, a
+	ld a, [$cf84]
+	inc a
+	sub b
+	ld b, a
+	ld a, [$cf83]
+	ld c, a
+	ld a, [$cf85]
+	sub c
+	inc a
+	ld c, a
+	ld a, $0
+	call Function9663
+	call Function96b3
+	ret
+; 94d0
+
+Function94d0: ; 94d0
+	ld hl, $5ba7
+	call Function9610
+	call Function9699
+	ld hl, $ce29
+	ld bc, $0a14
+	ld a, $2
+	call Function9663
+	ld hl, $ce51
+	ld bc, $0614
+	ld a, $1
+	call Function9663
+	call Function96b3
+	call Function96a4
+	ld a, $1
+	ld [hCGBPalUpdate], a
+	ret
+; 94fa
+
+Function94fa: ; 94fa
+	ld de, Unkn1Pals
+	ld a, $4e
+	call Function9625
+	call Function9630
+	ld hl, $5521
+	ld de, Unkn2Pals
+	call Function9630
+	ld hl, $5521
+	ld de, $d048
+	call Function9630
+	call Function9699
+	call Function96b3
+	call Function96a4
+	ret
+; 9521
+
+INCBIN "baserom.gbc", $9521, $9529 - $9521
+
+Function9529: ; 9529
+	ld de, Unkn1Pals
+	ld a, [CurPartySpecies]
+	ld bc, TempMonDVs
+	call Function974b
+	call Function9643
+	call Function9699
+	call Function96b3
+	call Function96a4
+	ret
+; 9542
+
+Function9542: ; 9542
+	ld de, Unkn1Pals
+	ld a, [CurPartySpecies]
+	call Function9775
+	call Function9643
+	call Function9699
+	call Function96b3
+	ret
+; 9555
+
+Function9555: ; 9555
+	ld hl, $5cc7
+	call Function9610
+	ld hl, $7681
+	ld de, Unkn2Pals
+	ld bc, $0008
+	ld a, $5
+	call FarCopyWRAM
+	ld de, $d078
+	ld a, $1c
+	call Function9625
+	call Function9630
+	call Function9699
+	ret
+; 9578
+
+Function9578: ; 9578
+	ld de, Unkn1Pals
+	ld a, [CurPartySpecies]
+	ld bc, TempMonDVs
+	call Function9764
+	call Function9643
+	call Function9699
+	call Function96b3
+	call Function96a4
+	ret
+; 9591
+
+Function9591: ; 9591
+	ld hl, $55e0
+	ld de, Unkn1Pals
+	ld bc, $0010
+	ld a, $5
+	call FarCopyWRAM
+	call Function96a4
+	call Function9699
+	ld hl, $ce68
+	ld bc, $080e
+	ld a, $1
+	call Function9663
+	ld hl, $ce3e
+	ld bc, $0112
+	ld a, $1
+	call Function9663
+	ld hl, $cf1a
+	ld bc, $0112
+	ld a, $1
+	call Function9663
+	ld hl, AttrMap
+	ld bc, $1102
+	ld a, $1
+	call Function9663
+	ld hl, $ce4f
+	ld bc, $0c01
+	ld a, $1
+	call Function9663
+	call Function96b3
+	ret
+; 95e0
+
+INCBIN "baserom.gbc", $95e0, $9610 - $95e0
 
 
 Function9610: ; 9610
@@ -12816,6 +13512,8 @@ Function9764: ; 9764
 	and a
 	jp nz, Function97f9
 	ld a, [TrainerClass]
+
+Function976b: ; 976b
 	ld l, a
 	ld h, $0
 	add hl, hl
@@ -13248,7 +13946,106 @@ INCBIN "baserom.gbc", $b0ae, $b0d2 - $b0ae
 TrainerPalettes:
 INCLUDE "gfx/trainers/palette_pointers.asm"
 
-INCBIN "baserom.gbc", $b1de, $b319 - $b1de
+Functionb1de: ; b1de
+	callba Function494ac
+	jr c, .asm_b230
+	ld a, [$d19a]
+	and $7
+	ld e, a
+	ld d, $0
+	ld hl, $7279
+	add hl, de
+	add hl, de
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	ld a, [TimeOfDayPal]
+	and $3
+	add a
+	add a
+	add a
+	ld e, a
+	ld d, $0
+	add hl, de
+	ld e, l
+	ld d, h
+	ld a, [rSVBK]
+	push af
+	ld a, $5
+	ld [rSVBK], a
+	ld hl, Unkn1Pals
+	ld b, $8
+.asm_b210
+	ld a, [de]
+	push de
+	push hl
+	ld l, a
+	ld h, $0
+	add hl, hl
+	add hl, hl
+	add hl, hl
+	ld de, MornPal
+	add hl, de
+	ld e, l
+	ld d, h
+	pop hl
+	ld c, $8
+.asm_b222
+	ld a, [de]
+	inc de
+	ld [hli], a
+	dec c
+	jr nz, .asm_b222
+	pop de
+	inc de
+	dec b
+	jr nz, .asm_b210
+	pop af
+	ld [rSVBK], a
+
+.asm_b230
+	ld a, [TimeOfDayPal]
+	and $3
+	ld bc, $0040
+	ld hl, $7469
+	call AddNTimes
+	ld de, Unkn2Pals
+	ld bc, $0040
+	ld a, $5
+	call FarCopyWRAM
+	ld a, [$d19a]
+	cp $1
+	jr z, .asm_b253
+	cp $2
+	ret nz
+
+.asm_b253
+	ld a, [MapGroup]
+	ld l, a
+	ld h, $0
+	add hl, hl
+	add hl, hl
+	add hl, hl
+	ld de, $7569
+	add hl, de
+	ld a, [TimeOfDayPal]
+	and $3
+	cp $2
+	jr c, .asm_b26d
+	inc hl
+	inc hl
+	inc hl
+	inc hl
+
+.asm_b26d
+	ld de, $d032
+	ld bc, $0004
+	ld a, $5
+	call FarCopyWRAM
+	ret
+; b279
+
+INCBIN "baserom.gbc", $b279, $b319 - $b279
 
 MornPal: ; 0xb319
 INCBIN "tilesets/morn.pal"
@@ -49998,7 +50795,143 @@ Function49409: ; 49409
 	ret
 ; 49418
 
-INCBIN "baserom.gbc", $49418, $49797 - $49418
+INCBIN "baserom.gbc", $49418, $494ac - $49418
+
+Function494ac: ; 494ac
+	ld a, [$d199]
+	cp $15
+	jr z, .asm_494c9
+	cp $16
+	jr z, .asm_494ce
+	cp $1d
+	jr z, .asm_494d3
+	cp $5
+	jr z, .asm_494e1
+	cp $1b
+	jr z, .asm_494e6
+	cp $d
+	jr z, .asm_494eb
+	jr .asm_494f0
+
+.asm_494c9
+	call Function494f2
+	scf
+	ret
+
+.asm_494ce
+	call Function49541
+	scf
+	ret
+
+.asm_494d3
+	ld a, [$d19a]
+	and $7
+	cp $3
+	jr z, .asm_494f0
+	call Function49590
+	scf
+	ret
+
+.asm_494e1
+	call Function495df
+	scf
+	ret
+
+.asm_494e6
+	call Function4962e
+	scf
+	ret
+
+.asm_494eb
+	call Function496c5
+	scf
+	ret
+
+.asm_494f0
+	and a
+	ret
+; 494f2
+
+Function494f2: ; 494f2
+	ld a, $5
+	ld de, Unkn1Pals
+	ld hl, $5501
+	ld bc, $0040
+	call FarCopyWRAM
+	ret
+; 49501
+
+INCBIN "baserom.gbc", $49501, $49541 - $49501
+
+Function49541: ; 49541
+	ld a, $5
+	ld de, Unkn1Pals
+	ld hl, $5550
+	ld bc, $0040
+	call FarCopyWRAM
+	ret
+; 49550
+
+INCBIN "baserom.gbc", $49550, $49590 - $49550
+
+Function49590: ; 49590
+	ld a, $5
+	ld de, Unkn1Pals
+	ld hl, $559f
+	ld bc, $0040
+	call FarCopyWRAM
+	ret
+; 4959f
+
+INCBIN "baserom.gbc", $4959f, $495df - $4959f
+
+Function495df: ; 495df
+	ld a, $5
+	ld de, Unkn1Pals
+	ld hl, $55ee
+	ld bc, $0040
+	call FarCopyWRAM
+	ret
+; 495ee
+
+INCBIN "baserom.gbc", $495ee, $4962e - $495ee
+
+Function4962e: ; 4962e
+	ld a, $5
+	ld de, Unkn1Pals
+	ld hl, $563d
+	ld bc, $0040
+	call FarCopyWRAM
+	ret
+; 4963d
+
+INCBIN "baserom.gbc", $4963d, $496c5 - $4963d
+
+Function496c5: ; 496c5
+	ld a, $5
+	ld de, Unkn1Pals
+	ld hl, $567d
+	ld bc, $0040
+	call FarCopyWRAM
+	ld a, $5
+	ld de, $d020
+	ld hl, $56fe
+	ld bc, $0008
+	call FarCopyWRAM
+	ld a, $5
+	ld de, $d018
+	ld hl, $56ad
+	ld bc, $0008
+	call FarCopyWRAM
+	ld a, $5
+	ld de, $d030
+	ld hl, $56bd
+	ld bc, $0008
+	call FarCopyWRAM
+	ret
+; 496fe
+
+INCBIN "baserom.gbc", $496fe, $49797 - $496fe
 
 Function49797: ; 49797
 	ld hl, AttrMap
