@@ -9432,23 +9432,38 @@ BattleCommand51: ; 37517
 BattleCommand52: ; 37536
 ; nightmare
 
+; Can't hit an absent opponent.
+
 	call CheckHiddenOpponent
-	jr nz, .asm_3755d ; 37539 $22
+	jr nz, .failed
+
+; Can't hit a substitute.
+
 	call CheckSubstituteOpp
-	jr nz, .asm_3755d ; 3753e $1d
+	jr nz, .failed
+
+; Only works on a sleeping opponent.
+
 	ld a, BATTLE_VARS_STATUS_OPP
 	call GetBattleVarPair
-	and $7
-	jr z, .asm_3755d ; 37547 $14
+	and SLP
+	jr z, .failed
+
+; Bail if the opponent is already having a nightmare.
+
 	ld a, BATTLE_VARS_SUBSTATUS1_OPP
 	call GetBattleVarPair
-	bit 0, [hl]
-	jr nz, .asm_3755d ; 37550 $b
-	set 0, [hl]
+	bit SUBSTATUS_NIGHTMARE, [hl]
+	jr nz, .failed
+
+; Otherwise give the opponent a nightmare.
+
+	set SUBSTATUS_NIGHTMARE, [hl]
 	call Function0x37e01
 	ld hl, StartedNightmareText
 	jp StdBattleTextBox
-.asm_3755d
+
+.failed
 	call Function0x37e77
 	jp PrintButItFailed
 ; 37563
