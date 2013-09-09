@@ -13242,7 +13242,7 @@ SpecialsPointers: ; c029
 	dbw BANK(Function1ad2), Function1ad2
 	dbw BANK(Functione4a), Functione4a
 	dbw BANK(Functionc230), Functionc230
-	dbw BANK(Functionc252), Functionc252
+	dbw BANK(SpecialSeenMon), SpecialSeenMon
 	dbw BANK(WaitSFX),WaitSFX
 	dbw BANK(Function3cdf), Function3cdf
 	dbw BANK(Function3d47), Function3d47
@@ -13352,10 +13352,10 @@ SpecialsPointers: ; c029
 	dbw BANK(Function4a927), Function4a927
 	dbw BANK(Function90a54), Function90a54
 	dbw BANK(Function90a88), Function90a88
-	dbw BANK(Functionc224), Functionc224
+	dbw BANK(SpecialNone), SpecialNone
 ; c224
 
-Functionc224: ; c224
+SpecialNone: ; c224
 	ret
 ; c225
 
@@ -13382,7 +13382,7 @@ Functionc230: ; c230
 	ret
 ; c252
 
-Functionc252: ; c252
+SpecialSeenMon: ; c252
 	ld a, [ScriptVar]
 	dec a
 	call SetSeenMon
