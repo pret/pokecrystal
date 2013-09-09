@@ -950,6 +950,7 @@ PrintLetterDelay: ; 313d
 	ret
 ; 318c
 
+
 CopyDataUntil: ; 318c
 ; Copies [hl, bc) to [de, bc - hl).
 ; In other words, the source data is from hl up to but not including bc,
@@ -966,12 +967,15 @@ CopyDataUntil: ; 318c
 	ret
 ; 0x3198
 
+
 PrintNum: ; 3198
 	ld a, [hROMBank]
 	push af
 	ld a, BANK(_PrintNum)
 	rst Bankswitch
+
 	call _PrintNum
+
 	pop af
 	rst Bankswitch
 	ret
@@ -981,18 +985,18 @@ PrintNum: ; 3198
 Function31a4: ; 31a4
 	ld a, [hROMBank]
 	push af
-	ld a, $41
+	ld a, BANK(Function1061ef)
 	rst Bankswitch
 
-	call $61ef
+	call Function1061ef
+
 	pop af
 	rst Bankswitch
-
 	ret
 ; 31b0
 
 
-Function31b0: ; 31b0
+FarPrintText: ; 31b0
 	ld [hBuffer], a
 	ld a, [hROMBank]
 	push af
@@ -1000,13 +1004,14 @@ Function31b0: ; 31b0
 	rst Bankswitch
 
 	call PrintText
+
 	pop af
 	rst Bankswitch
-
 	ret
 ; 31be
 
-Function31be: ; 31be
+
+CallPointerAt: ; 31be
 	ld a, [hROMBank]
 	push af
 	ld a, [hli]
@@ -1024,10 +1029,13 @@ Function31be: ; 31be
 	ret
 ; 31cd
 
+
 Function31cd: ; 31cd
+; Push pointer hl in the current bank to $d0e8.
 	ld a, [hROMBank]
 
 Function31cf: ; 31cf
+; Push pointer a:hl to $d0e8.
 	ld [$d0e8], a
 	ld a, l
 	ld [$d0e9], a
@@ -1091,15 +1099,15 @@ Function3200: ; 0x3200
 	ld a, [hCGB]
 	and a
 	jr z, .asm_320e
-	ld a, $2
+	ld a, 2
 	ld [hBGMapMode], a
-	ld c, $4
+	ld c, 4
 	call DelayFrames
 
 .asm_320e
-	ld a, $1
+	ld a, 1
 	ld [hBGMapMode], a
-	ld c, $4
+	ld c, 4
 	call DelayFrames
 	ret
 ; 0x3218
@@ -1116,9 +1124,11 @@ Function321c: ; 321c
 	ld a, [hCGB]
 	and a
 	jr z, .asm_322e
+
 	ld a, [$c2ce]
 	cp 0
 	jr z, .asm_322e
+
 	ld a, 1
 	ld [hBGMapMode], a
 	jr Function323d
@@ -1267,25 +1277,27 @@ ClearPalettes: ; 3317
 	ret
 	
 .cgb
-; Save WRAM bank
 	ld a, [rSVBK]
 	push af
-; WRAM bank 5
+
 	ld a, 5
 	ld [rSVBK], a
+
 ; Fill BGPals and OBPals with $ffff (white)
 	ld hl, BGPals
-	ld bc, $0080
+	ld bc, $80
 	ld a, $ff
 	call ByteFill
-; Restore WRAM bank
+
 	pop af
 	ld [rSVBK], a
+
 ; Request palette update
 	ld a, 1
 	ld [hCGBPalUpdate], a
 	ret
 ; 333e
+
 
 ClearSGB: ; 333e
 	ld b, $ff
@@ -1360,9 +1372,9 @@ CountSetBits: ; 0x335f
 
 GetWeekday: ; 3376
 	ld a, [CurDay]
-.loop
+.mod
 	sub 7
-	jr nc, .loop
+	jr nc, .mod
 	add 7
 	ret
 ; 3380
@@ -2177,7 +2189,7 @@ Function3718: ; 3718
 	ld h, [hl]
 	ld l, a
 	call GetMapEventBank
-	call Function31b0
+	call FarPrintText
 	call WaitBGMap
 	call Functiona80
 	ret
@@ -30456,7 +30468,7 @@ Function247f0: ; 247f0
 	ld d, h
 	ld e, l
 	ld hl, $cf98
-	jp Function31be
+	jp CallPointerAt
 ; 2486e
 
 Function2486e: ; 2486e
@@ -30464,7 +30476,7 @@ Function2486e: ; 2486e
 	ld d, h
 	ld e, l
 	ld hl, $cf98
-	call Function31be
+	call CallPointerAt
 	pop hl
 	ld a, [$cf93]
 	and a
@@ -30475,7 +30487,7 @@ Function2486e: ; 2486e
 	ld d, h
 	ld e, l
 	ld hl, $cf9b
-	call Function31be
+	call CallPointerAt
 
 .asm_2488a
 	ret
@@ -30528,7 +30540,7 @@ Function248b8: ; 248b8
 	dec a
 	call Function248d5
 	ld hl, $cf9e
-	call Function31be
+	call CallPointerAt
 	ret
 ; 248d5
 
@@ -49955,7 +49967,7 @@ Function492b9: ; 492b9
 	pop de
 	ld a, $b
 	ld hl, $48ce
-	call Function31b0
+	call FarPrintText
 	jr .asm_49300
 
 .asm_492e5
