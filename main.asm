@@ -1383,39 +1383,38 @@ GetWeekday: ; 3376
 SetSeenAndCaughtMon: ; 3380
 	push af
 	ld c, a
-	ld hl, PokedexSeen
-	ld b, 1
-	call GetWramFlag
+	ld hl, PokedexCaught
+	ld b, SET_FLAG
+	call PokedexFlagAction
 	pop af
 	; fallthrough
 ; 338b
 
-SetCaughtMon: ; 338b
-	ld c, a
-	ld hl, PokedexCaught
-	ld b, 1
-	jr GetWramFlag
-; 3393
-
-CheckSeenMon: ; 3393
+SetSeenMon: ; 338b
 	ld c, a
 	ld hl, PokedexSeen
-	ld b, 2
-	jr GetWramFlag
-; 339b
+	ld b, SET_FLAG
+	jr PokedexFlagAction
+; 3393
 
-CheckCaughtMon: ; 339b
+CheckCaughtMon: ; 3393
 	ld c, a
 	ld hl, PokedexCaught
-	ld b, 2
+	ld b, CHECK_FLAG
+	jr PokedexFlagAction
+; 339b
+
+CheckSeenMon: ; 339b
+	ld c, a
+	ld hl, PokedexSeen
+	ld b, CHECK_FLAG
 	; fallthrough
 ; 33a1
 
-GetWramFlag: ; 33a1
+PokedexFlagAction: ; 33a1
 	ld d, 0
 	ld a, PREDEF_FLAG
 	call Predef
-
 	ld a, c
 	and a
 	ret
@@ -8612,7 +8611,7 @@ Function5f6b: ; 5f6b
 	bit 0, a
 	ret z
 	push hl
-	ld hl, PokedexSeen
+	ld hl, PokedexCaught
 	ld b, $20
 	call CountSetBits
 	pop hl
@@ -13517,7 +13516,7 @@ Functionc225: ; c225
 Functionc230: ; c230
 	ld a, [ScriptVar]
 	dec a
-	call CheckSeenMon
+	call CheckCaughtMon
 	ret nz
 	ld a, [ScriptVar]
 	dec a
@@ -13533,7 +13532,7 @@ Functionc230: ; c230
 Functionc252: ; c252
 	ld a, [ScriptVar]
 	dec a
-	call SetCaughtMon
+	call SetSeenMon
 	ret
 ; c25a
 
@@ -17018,7 +17017,7 @@ Functiond88c: ; d88c
 	ld [$d265], a
 	dec a
 	push de
-	call CheckSeenMon
+	call CheckCaughtMon
 	ld a, [$d265]
 	dec a
 	call SetSeenAndCaughtMon
@@ -17924,10 +17923,10 @@ Functiondf8c: ; df8c
 	ld a, [CurPartySpecies]
 	dec a
 	push af
-	call CheckSeenMon
+	call CheckCaughtMon
 	pop af
 	push bc
-	call CheckCaughtMon
+	call CheckSeenMon
 	push bc
 	call Functiond88c
 	pop bc
@@ -17938,7 +17937,7 @@ Functiondf8c: ; df8c
 	dec a
 	ld c, a
 	ld d, $0
-	ld hl, PokedexSeen
+	ld hl, PokedexCaught
 	ld b, $0
 	ld a, $3
 	call Predef
@@ -17952,7 +17951,7 @@ Functiondf8c: ; df8c
 	dec a
 	ld c, a
 	ld d, $0
-	ld hl, PokedexCaught
+	ld hl, PokedexSeen
 	ld b, $0
 	ld a, $3
 	call Predef
@@ -31577,12 +31576,12 @@ Function26601: ; 0x26601
 
 Rate: ; 0x26616
 ; calculate Seen/Owned
-	ld hl, PokedexCaught
-	ld b, EndPokedexCaught - PokedexCaught
-	call CountSetBits
-	ld [DefaultFlypoint], a
 	ld hl, PokedexSeen
 	ld b, EndPokedexSeen - PokedexSeen
+	call CountSetBits
+	ld [DefaultFlypoint], a
+	ld hl, PokedexCaught
+	ld b, EndPokedexCaught - PokedexCaught
 	call CountSetBits
 	ld [$d003], a
 
@@ -35982,7 +35981,7 @@ Function2a4ab: ; 2a4ab
 	push bc
 	dec c
 	ld a, c
-	call CheckCaughtMon
+	call CheckSeenMon
 	pop bc
 	jr nz, .asm_2a514
 	ld de, StringBuffer1
@@ -36474,7 +36473,7 @@ Function2c0c5: ; 2c0c5
 	ret nz
 	ld a, [TempEnemyMonSpecies]
 	dec a
-	call CheckSeenMon
+	call CheckCaughtMon
 	ret z
 	ld hl, $c4b5
 	ld [hl], $5d
@@ -44694,7 +44693,7 @@ LoadEnemyMon: ; 3e8eb
 	dec a
 	ld c, a
 	ld b, 1 ; set
-	ld hl, PokedexCaught
+	ld hl, PokedexSeen
 	ld a, PREDEF_FLAG
 	call Predef
 
@@ -47986,7 +47985,7 @@ Function40bd0: ; 40bd0
 	push hl
 	ld a, [$d265]
 	dec a
-	call CheckCaughtMon
+	call CheckSeenMon
 	pop hl
 	pop de
 	ret
@@ -49198,7 +49197,7 @@ Function4424d: ; 4424d
 	call PrintNum
 	ld a, [$d265]
 	dec a
-	call CheckSeenMon
+	call CheckCaughtMon
 	pop hl
 	pop bc
 	ret z
@@ -83255,7 +83254,7 @@ Function11d493: ; 11d493
 	ld hl, rSVBK
 	ld e, $1
 	ld [hl], e
-	call CheckCaughtMon
+	call CheckSeenMon
 	ld hl, rSVBK
 	ld e, $5
 	ld [hl], e
