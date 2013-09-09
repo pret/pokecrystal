@@ -2026,12 +2026,12 @@ PartyMon6Nickname: ; de78
 PartyMonNicknamesEnd
 
 SECTION "Pokedex",WRAMX[$de99],BANK[1]
-PokedexSeen: ; de99
-	ds 32
-EndPokedexSeen:
-PokedexCaught: ; deb9
+PokedexCaught: ; de99
 	ds 32
 EndPokedexCaught:
+PokedexSeen: ; deb9
+	ds 32
+EndPokedexSeen:
 UnownDex: ; ded9
 	ds 26
 UnlockedUnowns: ; def3

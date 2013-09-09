@@ -474,15 +474,14 @@ Function1d19: ; 1d19
 
 
 INCLUDE "common/menu.asm"
-
 INCLUDE "common/handshake.asm"
-
 INCLUDE "common/game_time.asm"
-
 INCLUDE "common/map.asm"
 
 
 Function2d43: ; 2d43
+; Inexplicably empty.
+; Seen in PredefPointers.
 	nop
 	nop
 	nop
@@ -504,7 +503,6 @@ Function2d43: ; 2d43
 
 
 INCLUDE "common/farcall.asm"
-
 INCLUDE "common/predef.asm"
 
 
@@ -624,7 +622,7 @@ Function2ebb: ; 2ebb
 	bit 1, a
 	ret z
 	ld a, [hJoyDown]
-	bit 1, a
+	bit A_BUTTON, a
 	ret
 ; 2ec6
 
@@ -639,7 +637,6 @@ Function2ec8: ; 2ec8
 	dec a
 	ret
 ; 2ecb
-
 
 Function2ecb: ; 2ecb
 	push hl
@@ -718,9 +715,7 @@ Function2f3e: ; 2f3e
 
 
 INCLUDE "common/item.asm"
-
 INCLUDE "common/random.asm"
-
 INCLUDE "common/sram.asm"
 
 
@@ -764,139 +759,9 @@ HideSprites: ; 3016
 	ret
 ; 3026
 
-CopyBytes: ; 0x3026
-; copy bc bytes from hl to de
-	inc b  ; we bail the moment b hits 0, so include the last run
-	inc c  ; same thing; include last byte
-	jr .HandleLoop
-.CopyByte
-	ld a, [hli]
-	ld [de], a
-	inc de
-.HandleLoop
-	dec c
-	jr nz, .CopyByte
-	dec b
-	jr nz, .CopyByte
-	ret
 
-SwapBytes: ; 0x3034
-; swap bc bytes between hl and de
-.Loop
-	; stash [hl] away on the stack
-	ld a, [hl]
-	push af
+INCLUDE "common/copy2.asm"
 
-	; copy a byte from [de] to [hl]
-	ld a, [de]
-	ld [hli], a
-
-	; retrieve the previous value of [hl]; put it in [de]
-	pop af
-	ld [de], a
-
-	; handle loop stuff
-	inc de
-	dec bc
-	ld a, b
-	or c
-	jr nz, .Loop
-	ret
-
-ByteFill: ; 0x3041
-; fill bc bytes with the value of a, starting at hl
-	inc b  ; we bail the moment b hits 0, so include the last run
-	inc c  ; same thing; include last byte
-	jr .HandleLoop
-.PutByte
-	ld [hli], a
-.HandleLoop
-	dec c
-	jr nz, .PutByte
-	dec b
-	jr nz, .PutByte
-	ret
-
-GetFarByte: ; 0x304d
-; retrieve a single byte from a:hl, and return it in a.
-	; bankswitch to new bank
-	ld [hBuffer], a
-	ld a, [hROMBank]
-	push af
-	ld a, [hBuffer]
-	rst Bankswitch
-
-	; get byte from new bank
-	ld a, [hl]
-	ld [hBuffer], a
-
-	; bankswitch to previous bank
-	pop af
-	rst Bankswitch
-
-	; return retrieved value in a
-	ld a, [hBuffer]
-	ret
-
-GetFarHalfword: ; 0x305d
-; retrieve a halfword from a:hl, and return it in hl.
-	; bankswitch to new bank
-	ld [hBuffer], a
-	ld a, [hROMBank]
-	push af
-	ld a, [hBuffer]
-	rst Bankswitch
-
-	; get halfword from new bank, put it in hl
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-
-	; bankswitch to previous bank and return
-	pop af
-	rst Bankswitch
-	ret
-; 0x306b
-
-Function306b: ; 306b
-	ld [hBuffer], a
-	ld a, [rSVBK]
-	push af
-	ld a, [hBuffer]
-	ld [rSVBK], a
-	call CopyBytes
-	pop af
-	ld [rSVBK], a
-	ret
-; 307b
-
-Function307b: ; 307b
-	ld [hBuffer], a
-	ld a, [rSVBK]
-	push af
-	ld a, [hBuffer]
-	ld [rSVBK], a
-	ld a, [hl]
-	ld [hBuffer], a
-	pop af
-	ld [rSVBK], a
-	ld a, [hBuffer]
-	ret
-; 308d
-
-Function308d: ; 308d
-	ld [hBuffer], a
-	ld a, [rSVBK]
-	push af
-	ld a, [hBuffer]
-	ld [rSVBK], a
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	pop af
-	ld [rSVBK], a
-	ret
-; 309d
 
 Function309d: ; 309d
 	ld a, [rSVBK]
@@ -996,81 +861,7 @@ AddNTimes: ; 0x30fe
 ; 0x3105
 
 
-SimpleMultiply: ; 3105
-; Return a * c.
-	and a
-	ret z
-
-	push bc
-	ld b, a
-	xor a
-.loop
-	add c
-	dec b
-	jr nz, .loop
-	pop bc
-	ret
-; 3110
-
-
-SimpleDivide: ; 3110
-; Divide a by c. Return quotient b and remainder a.
-	ld b, 0
-.loop
-	inc b
-	sub c
-	jr nc, .loop
-	dec b
-	add c
-	ret
-; 3119
-
-
-Multiply: ; 3119
-; Multiply hMultiplicand (3 bytes) by hMultiplier. Result in hProduct.
-; All values are big endian.
-	push hl
-	push bc
-
-	callab _Multiply
-
-	pop bc
-	pop hl
-	ret
-; 3124
-
-
-Divide: ; 3124
-; Divide hDividend length b (max 4 bytes) by hDivisor. Result in hQuotient.
-; All values are big endian.
-	push hl
-	push de
-	push bc
-	ld a, [hROMBank]
-	push af
-	ld a, BANK(_Divide)
-	rst Bankswitch
-
-	call _Divide
-
-	pop af
-	rst Bankswitch
-	pop bc
-	pop de
-	pop hl
-	ret
-; 3136
-
-
-SubtractSigned: ; 3136
-; Return a - b, sign in carry.
-	sub b
-	ret nc
-	cpl
-	add 1
-	scf
-	ret
-; 313d
+INCLUDE "common/math.asm"
 
 
 PrintLetterDelay: ; 313d
@@ -1159,6 +950,7 @@ PrintLetterDelay: ; 313d
 	ret
 ; 318c
 
+
 CopyDataUntil: ; 318c
 ; Copies [hl, bc) to [de, bc - hl).
 ; In other words, the source data is from hl up to but not including bc,
@@ -1175,12 +967,15 @@ CopyDataUntil: ; 318c
 	ret
 ; 0x3198
 
+
 PrintNum: ; 3198
 	ld a, [hROMBank]
 	push af
 	ld a, BANK(_PrintNum)
 	rst Bankswitch
+
 	call _PrintNum
+
 	pop af
 	rst Bankswitch
 	ret
@@ -1190,18 +985,18 @@ PrintNum: ; 3198
 Function31a4: ; 31a4
 	ld a, [hROMBank]
 	push af
-	ld a, $41
+	ld a, BANK(Function1061ef)
 	rst Bankswitch
 
-	call $61ef
+	call Function1061ef
+
 	pop af
 	rst Bankswitch
-
 	ret
 ; 31b0
 
 
-Function31b0: ; 31b0
+FarPrintText: ; 31b0
 	ld [hBuffer], a
 	ld a, [hROMBank]
 	push af
@@ -1209,13 +1004,14 @@ Function31b0: ; 31b0
 	rst Bankswitch
 
 	call PrintText
+
 	pop af
 	rst Bankswitch
-
 	ret
 ; 31be
 
-Function31be: ; 31be
+
+CallPointerAt: ; 31be
 	ld a, [hROMBank]
 	push af
 	ld a, [hli]
@@ -1233,10 +1029,13 @@ Function31be: ; 31be
 	ret
 ; 31cd
 
+
 Function31cd: ; 31cd
+; Push pointer hl in the current bank to $d0e8.
 	ld a, [hROMBank]
 
 Function31cf: ; 31cf
+; Push pointer a:hl to $d0e8.
 	ld [$d0e8], a
 	ld a, l
 	ld [$d0e9], a
@@ -1300,15 +1099,15 @@ Function3200: ; 0x3200
 	ld a, [hCGB]
 	and a
 	jr z, .asm_320e
-	ld a, $2
+	ld a, 2
 	ld [hBGMapMode], a
-	ld c, $4
+	ld c, 4
 	call DelayFrames
 
 .asm_320e
-	ld a, $1
+	ld a, 1
 	ld [hBGMapMode], a
-	ld c, $4
+	ld c, 4
 	call DelayFrames
 	ret
 ; 0x3218
@@ -1325,9 +1124,11 @@ Function321c: ; 321c
 	ld a, [hCGB]
 	and a
 	jr z, .asm_322e
+
 	ld a, [$c2ce]
 	cp 0
 	jr z, .asm_322e
+
 	ld a, 1
 	ld [hBGMapMode], a
 	jr Function323d
@@ -1476,25 +1277,27 @@ ClearPalettes: ; 3317
 	ret
 	
 .cgb
-; Save WRAM bank
 	ld a, [rSVBK]
 	push af
-; WRAM bank 5
+
 	ld a, 5
 	ld [rSVBK], a
+
 ; Fill BGPals and OBPals with $ffff (white)
 	ld hl, BGPals
-	ld bc, $0080
+	ld bc, $80
 	ld a, $ff
 	call ByteFill
-; Restore WRAM bank
+
 	pop af
 	ld [rSVBK], a
+
 ; Request palette update
 	ld a, 1
 	ld [hCGBPalUpdate], a
 	ret
 ; 333e
+
 
 ClearSGB: ; 333e
 	ld b, $ff
@@ -1569,9 +1372,9 @@ CountSetBits: ; 0x335f
 
 GetWeekday: ; 3376
 	ld a, [CurDay]
-.loop
+.mod
 	sub 7
-	jr nc, .loop
+	jr nc, .mod
 	add 7
 	ret
 ; 3380
@@ -1580,39 +1383,38 @@ GetWeekday: ; 3376
 SetSeenAndCaughtMon: ; 3380
 	push af
 	ld c, a
-	ld hl, PokedexSeen
-	ld b, 1
-	call GetWramFlag
+	ld hl, PokedexCaught
+	ld b, SET_FLAG
+	call PokedexFlagAction
 	pop af
 	; fallthrough
 ; 338b
 
-SetCaughtMon: ; 338b
-	ld c, a
-	ld hl, PokedexCaught
-	ld b, 1
-	jr GetWramFlag
-; 3393
-
-CheckSeenMon: ; 3393
+SetSeenMon: ; 338b
 	ld c, a
 	ld hl, PokedexSeen
-	ld b, 2
-	jr GetWramFlag
-; 339b
+	ld b, SET_FLAG
+	jr PokedexFlagAction
+; 3393
 
-CheckCaughtMon: ; 339b
+CheckCaughtMon: ; 3393
 	ld c, a
 	ld hl, PokedexCaught
-	ld b, 2
+	ld b, CHECK_FLAG
+	jr PokedexFlagAction
+; 339b
+
+CheckSeenMon: ; 339b
+	ld c, a
+	ld hl, PokedexSeen
+	ld b, CHECK_FLAG
 	; fallthrough
 ; 33a1
 
-GetWramFlag: ; 33a1
+PokedexFlagAction: ; 33a1
 	ld d, 0
 	ld a, PREDEF_FLAG
 	call Predef
-
 	ld a, c
 	and a
 	ret
@@ -2386,7 +2188,7 @@ Function3718: ; 3718
 	ld h, [hl]
 	ld l, a
 	call GetMapEventBank
-	call Function31b0
+	call FarPrintText
 	call WaitBGMap
 	call Functiona80
 	ret
@@ -8809,7 +8611,7 @@ Function5f6b: ; 5f6b
 	bit 0, a
 	ret z
 	push hl
-	ld hl, PokedexSeen
+	ld hl, PokedexCaught
 	ld b, $20
 	call CountSetBits
 	pop hl
@@ -12186,7 +11988,7 @@ PredefPointers: ; 856b
 	dwb Function6508, BANK(Function6508)
 	dwb Function747a, BANK(Function747a)
 	dwb Functionc658, BANK(Functionc658)
-	dwb Function4d7c1, BANK(Function4d7c1)
+	dwb FlagPredef, BANK(FlagPredef)
 	dwb Functionc699, BANK(Functionc699)
 	dwb FillPP, BANK(FillPP)
 	dwb Functiond88c, BANK(Functiond88c)
@@ -12261,39 +12063,7 @@ PredefPointers: ; 856b
 ; 864c
 
 
-Function864c: ; 864c
-; LoadSGBLayout
-	call Function8d55
-	jp nz, Function8d59
-	ld a, b
-	cp $ff
-	jr nz, .asm_865a
-	ld a, [SGBPredef]
-
-.asm_865a
-	cp $fc
-	jp z, Function8ade
-	ld l, a
-	ld h, 0
-	add hl, hl
-	ld de, $466f
-	add hl, de
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	ld de, Function8a60
-	push de
-	jp [hl]
-; 866f
-
-INCBIN "baserom.gbc", $866f, $8a60 - $866f
-
-Function8a60: ; 8a60
-	push de
-	call Function9809
-	pop hl
-	jp Function9809
-; 8a68
+INCLUDE "predef/sgb.asm"
 
 
 CheckShininess: ; 8a68
@@ -12338,7 +12108,7 @@ CheckShininess: ; 8a68
 
 CheckContestMon: ; 8a88
 ; Check a mon's DVs at hl in the bug catching contest.
-; Return shiny if its DVs are good enough to place in the contest.
+; Return carry if its DVs are good enough to place in the contest.
 
 ; Attack
 	ld a, [hl]
@@ -12434,18 +12204,18 @@ Function8ade: ; 8ade
 ; 8b07
 
 Function8b07: ; 8b07
-	call Function8d55
+	call CheckCGB
 	ret z
 	ld hl, $4b2f
 	ld de, $d000
 	ld bc, $0008
 	ld a, $5
-	call Function306b
+	call FarCopyWRAM
 	ld hl, $4b37
 	ld de, MartPointer
 	ld bc, $0008
 	ld a, $5
-	call Function306b
+	call FarCopyWRAM
 	call Function96a4
 	ld a, $1
 	ld [hCGBPalUpdate], a
@@ -12480,7 +12250,7 @@ Function8c43: ; 8c43
 	add hl, bc
 	ld bc, $0004
 	ld a, $5
-	call Function306b
+	call FarCopyWRAM
 	ld a, $1
 	ld [hCGBPalUpdate], a
 	ret
@@ -12515,7 +12285,7 @@ Function8cb4: ; 8cb4
 	add hl, hl
 	ld de, $4d05
 	add hl, de
-	call Function8d55
+	call CheckCGB
 	jr nz, .asm_8cf0
 	push hl
 	ld hl, $5ce6
@@ -12543,7 +12313,7 @@ Function8cb4: ; 8cb4
 	ld de, $d000
 	ld bc, $0008
 	ld a, $5
-	call Function306b
+	call FarCopyWRAM
 	call Function96a4
 	call Function9699
 	call Function96b3
@@ -12553,231 +12323,10 @@ Function8cb4: ; 8cb4
 INCBIN "baserom.gbc", $8d05, $8d55 - $8d05
 
 
-Function8d55: ; 8d55
-	ld a, [hCGB]
-	and a
-	ret
-; 8d59
-
-Function8d59: ; 8d59
-	ld a, b
-	cp $ff
-	jr nz, .asm_8d61
-	ld a, [SGBPredef]
-
-.asm_8d61
-	cp $fc
-	jp z, Function96f3
-	call Function9673
-	ld l, a
-	ld h, $0
-	add hl, hl
-	ld de, $4d7a
-	add hl, de
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	ld de, Function8d79
-	push de
-	jp [hl]
-; 8d79
-
-Function8d79: ; 8d79
-	ret
-; 8d7a
-
-INCBIN "baserom.gbc", $8d7a, $8db8 - $8d7a
-
-Function8db8: ; 8db8
-	ld hl, $5c67
-	ld de, $d000
-	ld c, $4
-	call $5615
-	ld hl, $5c67
-	ld de, $d020
-	ld c, $4
-	call $5615
-	ld hl, $5c67
-	ld de, MartPointer
-	ld c, $2
-	call $5615
-	jr .asm_8e23
-
-	ld de, $d000
-	call Function9729
-	push hl
-	call Function9643
-	call Function973a
-	push hl
-	call Function9643
-	ld a, [EnemyHPPal]
-	ld l, a
-	ld h, $0
-	add hl, hl
-	add hl, hl
-	ld bc, $68be
-	add hl, bc
-	call Function9643
-	ld a, [PlayerHPPal]
-	ld l, a
-	ld h, $0
-	add hl, hl
-	add hl, hl
-	ld bc, $68be
-	add hl, bc
-	call Function9643
-	ld hl, $68ca
-	call Function9643
-	ld de, MartPointer
-	pop hl
-	call Function9643
-	pop hl
-	call Function9643
-	ld a, $1
-	ld [SGBPredef], a
-	call Function96a4
-
-.asm_8e23
-	call Function8e85
-	ld hl, AttrMap
-	ld bc, $0168
-	ld a, $2
-	call ByteFill
-	ld hl, $ce29
-	ld bc, $080a
-	ld a, $0
-	call Function9663
-	ld hl, $cde3
-	ld bc, $070a
-	ld a, $1
-	call Function9663
-	ld hl, AttrMap
-	ld bc, $040a
-	ld a, $2
-	call Function9663
-	ld hl, $ce6f
-	ld bc, $050a
-	ld a, $3
-	call Function9663
-	ld hl, $cebf
-	ld bc, $0109
-	ld a, $4
-	call Function9663
-	ld hl, $cec9
-	ld bc, $0078
-	ld a, $7
-	call ByteFill
-	ld hl, $579c
-	ld de, $d050
-	ld bc, $0030
-	ld a, $5
-	call Function306b
-	call Function96b3
-	ret
-; 8e85
+INCLUDE "predef/cgb.asm"
 
 
-Function8e85: ; 8e85
-	ld a, $40
-	ld hl, $4dc0
-	rst FarCall
-	ld hl, $7311
-	jr nc, .asm_8e93
-	ld hl, $7309
-
-.asm_8e93
-	ld de, $d038
-	ld bc, $0008
-	ld a, $5
-	call Function306b
-	ret
-; 8e9f
-
-Function8e9f: ; 8e9f
-	callba Function100dc0
-	ld hl, $7311
-	jr nc, .asm_8ead
-	ld hl, $7309
-
-.asm_8ead
-	ld de, $d000
-	ld bc, $0008
-	ld a, $5
-	call Function306b
-	ret
-; 8eb9
-
-Function8eb9: ; 8eb9
-	ld a, [PlayerGender]
-	bit 0, a
-	jr z, .asm_8ec5
-	ld hl, $7759
-	jr .asm_8ec8
-
-.asm_8ec5
-	ld hl, $7729
-
-.asm_8ec8
-	ld de, $d000
-	ld bc, $0030
-	ld a, $5
-	call Function306b
-	call Function96a4
-	ld a, $1
-	ld [hCGBPalUpdate], a
-	ret
-; 8edb
-
-Function8edb: ; 8edb
-	ld de, $d000
-	ld a, [$cda1]
-	ld l, a
-	ld h, $0
-	add hl, hl
-	add hl, hl
-	ld bc, $68be
-	add hl, bc
-	call Function9643
-	ld a, [CurPartySpecies]
-	ld bc, TempMonDVs
-	call Function974b
-	call Function9643
-	ld hl, $68ca
-	call Function9643
-	ld hl, $4f52
-	ld de, $d018
-	ld bc, $0018
-	ld a, $5
-	call Function306b
-	call Function9699
-	ld hl, AttrMap
-	ld bc, $0814
-	ld a, $1
-	call Function9663
-	ld hl, $cf23
-	ld bc, $000a
-	ld a, $2
-	call ByteFill
-	ld hl, $ce4a
-	ld bc, $0202
-	ld a, $3
-	call Function9663
-	ld hl, $ce4c
-	ld bc, $0202
-	ld a, $4
-	call Function9663
-	ld hl, $ce4e
-	ld bc, $0202
-	ld a, $5
-	call Function9663
-	call Function96b3
-	call Function96a4
-	ld a, $1
-	ld [hCGBPalUpdate], a
-	ret
-; 8f52
-
-INCBIN "baserom.gbc", $8f52, $9610 - $8f52
+INCBIN "baserom.gbc", $95e0, $9610 - $95e0
 
 
 Function9610: ; 9610
@@ -12917,7 +12466,7 @@ Function96a4: ; 96a4
 	ld de, $d080
 	ld bc, $0080
 	ld a, $5
-	call Function306b
+	call FarCopyWRAM
 	ret
 ; 96b3
 
@@ -12999,7 +12548,7 @@ Function971a: ; 971a
 	ld de, MartPointer
 	ld bc, $0010
 	ld a, $5
-	call Function306b
+	call FarCopyWRAM
 	ret
 ; 9729
 
@@ -13046,6 +12595,8 @@ Function9764: ; 9764
 	and a
 	jp nz, Function97f9
 	ld a, [TrainerClass]
+
+Function976b: ; 976b
 	ld l, a
 	ld h, $0
 	add hl, hl
@@ -13055,7 +12606,12 @@ Function9764: ; 9764
 	ret
 ; 9775
 
-INCBIN "baserom.gbc", $9775, $97ee - $9775
+Function9775: ; 9775
+	call Function97ee
+	ret
+; 9779
+
+INCBIN "baserom.gbc", $9779, $97ee - $9779
 
 Function97ee: ; 97ee
 	ld l, a
@@ -13137,7 +12693,7 @@ Function981a: ; 981a
 ; 9853
 
 Function9853: ; 9853
-	call Function8d55
+	call CheckCGB
 	ret nz
 	di
 	ld a, [$cfbe]
@@ -13170,7 +12726,7 @@ Function9853: ; 9853
 
 
 Function9890: ; 9890
-	call Function8d55
+	call CheckCGB
 	ret z
 	ld a, $1
 	ld [rVBK], a
@@ -13473,7 +13029,106 @@ INCBIN "baserom.gbc", $b0ae, $b0d2 - $b0ae
 TrainerPalettes:
 INCLUDE "gfx/trainers/palette_pointers.asm"
 
-INCBIN "baserom.gbc", $b1de, $b319 - $b1de
+Functionb1de: ; b1de
+	callba Function494ac
+	jr c, .asm_b230
+	ld a, [$d19a]
+	and $7
+	ld e, a
+	ld d, $0
+	ld hl, $7279
+	add hl, de
+	add hl, de
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	ld a, [TimeOfDayPal]
+	and $3
+	add a
+	add a
+	add a
+	ld e, a
+	ld d, $0
+	add hl, de
+	ld e, l
+	ld d, h
+	ld a, [rSVBK]
+	push af
+	ld a, $5
+	ld [rSVBK], a
+	ld hl, Unkn1Pals
+	ld b, $8
+.asm_b210
+	ld a, [de]
+	push de
+	push hl
+	ld l, a
+	ld h, $0
+	add hl, hl
+	add hl, hl
+	add hl, hl
+	ld de, MornPal
+	add hl, de
+	ld e, l
+	ld d, h
+	pop hl
+	ld c, $8
+.asm_b222
+	ld a, [de]
+	inc de
+	ld [hli], a
+	dec c
+	jr nz, .asm_b222
+	pop de
+	inc de
+	dec b
+	jr nz, .asm_b210
+	pop af
+	ld [rSVBK], a
+
+.asm_b230
+	ld a, [TimeOfDayPal]
+	and $3
+	ld bc, $0040
+	ld hl, $7469
+	call AddNTimes
+	ld de, Unkn2Pals
+	ld bc, $0040
+	ld a, $5
+	call FarCopyWRAM
+	ld a, [$d19a]
+	cp $1
+	jr z, .asm_b253
+	cp $2
+	ret nz
+
+.asm_b253
+	ld a, [MapGroup]
+	ld l, a
+	ld h, $0
+	add hl, hl
+	add hl, hl
+	add hl, hl
+	ld de, $7569
+	add hl, de
+	ld a, [TimeOfDayPal]
+	and $3
+	cp $2
+	jr c, .asm_b26d
+	inc hl
+	inc hl
+	inc hl
+	inc hl
+
+.asm_b26d
+	ld de, $d032
+	ld bc, $0004
+	ld a, $5
+	call FarCopyWRAM
+	ret
+; b279
+
+INCBIN "baserom.gbc", $b279, $b319 - $b279
 
 MornPal: ; 0xb319
 INCBIN "tilesets/morn.pal"
@@ -13587,7 +13242,7 @@ SpecialsPointers: ; c029
 	dbw BANK(Function1ad2), Function1ad2
 	dbw BANK(Functione4a), Functione4a
 	dbw BANK(Functionc230), Functionc230
-	dbw BANK(Functionc252), Functionc252
+	dbw BANK(SpecialSeenMon), SpecialSeenMon
 	dbw BANK(WaitSFX),WaitSFX
 	dbw BANK(Function3cdf), Function3cdf
 	dbw BANK(Function3d47), Function3d47
@@ -13616,7 +13271,7 @@ SpecialsPointers: ; c029
 	dbw BANK(Functionc422), Functionc422
 	dbw BANK(Function4d9d3), Function4d9d3
 	dbw BANK(Function88018), Function88018
-	dbw BANK(Functionc2b9), Functionc2b9
+	dbw BANK(SpecialNameRater), SpecialNameRater
 	dbw BANK(Functionc2da), Functionc2da
 	dbw BANK(Function718d), Function718d
 	dbw BANK(Function71ac), Function71ac
@@ -13697,10 +13352,10 @@ SpecialsPointers: ; c029
 	dbw BANK(Function4a927), Function4a927
 	dbw BANK(Function90a54), Function90a54
 	dbw BANK(Function90a88), Function90a88
-	dbw BANK(Functionc224), Functionc224
+	dbw BANK(SpecialNone), SpecialNone
 ; c224
 
-Functionc224: ; c224
+SpecialNone: ; c224
 	ret
 ; c225
 
@@ -13714,7 +13369,7 @@ Functionc225: ; c225
 Functionc230: ; c230
 	ld a, [ScriptVar]
 	dec a
-	call CheckSeenMon
+	call CheckCaughtMon
 	ret nz
 	ld a, [ScriptVar]
 	dec a
@@ -13727,10 +13382,10 @@ Functionc230: ; c230
 	ret
 ; c252
 
-Functionc252: ; c252
+SpecialSeenMon: ; c252
 	ld a, [ScriptVar]
 	dec a
-	call SetCaughtMon
+	call SetSeenMon
 	ret
 ; c25a
 
@@ -13787,8 +13442,8 @@ SpecialNameRival: ; 0xc29d
 DefaultRivalName: ; 0xc2b2
 	db "SILVER@"
 
-Functionc2b9: ; c2b9
-	callba Functionfb6ed
+SpecialNameRater: ; c2b9
+	callba NameRater
 	ret
 ; c2c0
 
@@ -17215,7 +16870,7 @@ Functiond88c: ; d88c
 	ld [$d265], a
 	dec a
 	push de
-	call CheckSeenMon
+	call CheckCaughtMon
 	ld a, [$d265]
 	dec a
 	call SetSeenAndCaughtMon
@@ -18121,10 +17776,10 @@ Functiondf8c: ; df8c
 	ld a, [CurPartySpecies]
 	dec a
 	push af
-	call CheckSeenMon
+	call CheckCaughtMon
 	pop af
 	push bc
-	call CheckCaughtMon
+	call CheckSeenMon
 	push bc
 	call Functiond88c
 	pop bc
@@ -18135,7 +17790,7 @@ Functiondf8c: ; df8c
 	dec a
 	ld c, a
 	ld d, $0
-	ld hl, PokedexSeen
+	ld hl, PokedexCaught
 	ld b, $0
 	ld a, $3
 	call Predef
@@ -18149,7 +17804,7 @@ Functiondf8c: ; df8c
 	dec a
 	ld c, a
 	ld d, $0
-	ld hl, PokedexCaught
+	ld hl, PokedexSeen
 	ld b, $0
 	ld a, $3
 	call Predef
@@ -20807,7 +20462,7 @@ Function12434: ; 12434
 	ld de, CurMart
 	ld bc, $0008
 	ld a, $5
-	call Function306b
+	call FarCopyWRAM
 	ld a, $1
 	ld [hCGBPalUpdate], a
 	ret
@@ -30665,7 +30320,7 @@ Function247f0: ; 247f0
 	ld d, h
 	ld e, l
 	ld hl, $cf98
-	jp Function31be
+	jp CallPointerAt
 ; 2486e
 
 Function2486e: ; 2486e
@@ -30673,7 +30328,7 @@ Function2486e: ; 2486e
 	ld d, h
 	ld e, l
 	ld hl, $cf98
-	call Function31be
+	call CallPointerAt
 	pop hl
 	ld a, [$cf93]
 	and a
@@ -30684,7 +30339,7 @@ Function2486e: ; 2486e
 	ld d, h
 	ld e, l
 	ld hl, $cf9b
-	call Function31be
+	call CallPointerAt
 
 .asm_2488a
 	ret
@@ -30737,7 +30392,7 @@ Function248b8: ; 248b8
 	dec a
 	call Function248d5
 	ld hl, $cf9e
-	call Function31be
+	call CallPointerAt
 	ret
 ; 248d5
 
@@ -31774,12 +31429,12 @@ Function26601: ; 0x26601
 
 Rate: ; 0x26616
 ; calculate Seen/Owned
-	ld hl, PokedexCaught
-	ld b, EndPokedexCaught - PokedexCaught
-	call CountSetBits
-	ld [DefaultFlypoint], a
 	ld hl, PokedexSeen
 	ld b, EndPokedexSeen - PokedexSeen
+	call CountSetBits
+	ld [DefaultFlypoint], a
+	ld hl, PokedexCaught
+	ld b, EndPokedexCaught - PokedexCaught
 	call CountSetBits
 	ld [$d003], a
 
@@ -36179,7 +35834,7 @@ Function2a4ab: ; 2a4ab
 	push bc
 	dec c
 	ld a, c
-	call CheckCaughtMon
+	call CheckSeenMon
 	pop bc
 	jr nz, .asm_2a514
 	ld de, StringBuffer1
@@ -36671,7 +36326,7 @@ Function2c0c5: ; 2c0c5
 	ret nz
 	ld a, [TempEnemyMonSpecies]
 	dec a
-	call CheckSeenMon
+	call CheckCaughtMon
 	ret z
 	ld hl, $c4b5
 	ld [hl], $5d
@@ -44891,7 +44546,7 @@ LoadEnemyMon: ; 3e8eb
 	dec a
 	ld c, a
 	ld b, 1 ; set
-	ld hl, PokedexCaught
+	ld hl, PokedexSeen
 	ld a, PREDEF_FLAG
 	call Predef
 
@@ -48183,7 +47838,7 @@ Function40bd0: ; 40bd0
 	push hl
 	ld a, [$d265]
 	dec a
-	call CheckCaughtMon
+	call CheckSeenMon
 	pop hl
 	pop de
 	ret
@@ -49395,7 +49050,7 @@ Function4424d: ; 4424d
 	call PrintNum
 	ld a, [$d265]
 	dec a
-	call CheckSeenMon
+	call CheckCaughtMon
 	pop hl
 	pop bc
 	ret z
@@ -50164,7 +49819,7 @@ Function492b9: ; 492b9
 	pop de
 	ld a, $b
 	ld hl, $48ce
-	call Function31b0
+	call FarPrintText
 	jr .asm_49300
 
 .asm_492e5
@@ -50219,11 +49874,147 @@ Function49409: ; 49409
 	ld de, $d038
 	ld bc, $0008
 	ld a, $5
-	call Function306b
+	call FarCopyWRAM
 	ret
 ; 49418
 
-INCBIN "baserom.gbc", $49418, $49797 - $49418
+INCBIN "baserom.gbc", $49418, $494ac - $49418
+
+Function494ac: ; 494ac
+	ld a, [$d199]
+	cp $15
+	jr z, .asm_494c9
+	cp $16
+	jr z, .asm_494ce
+	cp $1d
+	jr z, .asm_494d3
+	cp $5
+	jr z, .asm_494e1
+	cp $1b
+	jr z, .asm_494e6
+	cp $d
+	jr z, .asm_494eb
+	jr .asm_494f0
+
+.asm_494c9
+	call Function494f2
+	scf
+	ret
+
+.asm_494ce
+	call Function49541
+	scf
+	ret
+
+.asm_494d3
+	ld a, [$d19a]
+	and $7
+	cp $3
+	jr z, .asm_494f0
+	call Function49590
+	scf
+	ret
+
+.asm_494e1
+	call Function495df
+	scf
+	ret
+
+.asm_494e6
+	call Function4962e
+	scf
+	ret
+
+.asm_494eb
+	call Function496c5
+	scf
+	ret
+
+.asm_494f0
+	and a
+	ret
+; 494f2
+
+Function494f2: ; 494f2
+	ld a, $5
+	ld de, Unkn1Pals
+	ld hl, $5501
+	ld bc, $0040
+	call FarCopyWRAM
+	ret
+; 49501
+
+INCBIN "baserom.gbc", $49501, $49541 - $49501
+
+Function49541: ; 49541
+	ld a, $5
+	ld de, Unkn1Pals
+	ld hl, $5550
+	ld bc, $0040
+	call FarCopyWRAM
+	ret
+; 49550
+
+INCBIN "baserom.gbc", $49550, $49590 - $49550
+
+Function49590: ; 49590
+	ld a, $5
+	ld de, Unkn1Pals
+	ld hl, $559f
+	ld bc, $0040
+	call FarCopyWRAM
+	ret
+; 4959f
+
+INCBIN "baserom.gbc", $4959f, $495df - $4959f
+
+Function495df: ; 495df
+	ld a, $5
+	ld de, Unkn1Pals
+	ld hl, $55ee
+	ld bc, $0040
+	call FarCopyWRAM
+	ret
+; 495ee
+
+INCBIN "baserom.gbc", $495ee, $4962e - $495ee
+
+Function4962e: ; 4962e
+	ld a, $5
+	ld de, Unkn1Pals
+	ld hl, $563d
+	ld bc, $0040
+	call FarCopyWRAM
+	ret
+; 4963d
+
+INCBIN "baserom.gbc", $4963d, $496c5 - $4963d
+
+Function496c5: ; 496c5
+	ld a, $5
+	ld de, Unkn1Pals
+	ld hl, $567d
+	ld bc, $0040
+	call FarCopyWRAM
+	ld a, $5
+	ld de, $d020
+	ld hl, $56fe
+	ld bc, $0008
+	call FarCopyWRAM
+	ld a, $5
+	ld de, $d018
+	ld hl, $56ad
+	ld bc, $0008
+	call FarCopyWRAM
+	ld a, $5
+	ld de, $d030
+	ld hl, $56bd
+	ld bc, $0008
+	call FarCopyWRAM
+	ret
+; 496fe
+
+INCBIN "baserom.gbc", $496fe, $49797 - $496fe
 
 Function49797: ; 49797
 	ld hl, AttrMap
@@ -50282,7 +50073,7 @@ Function49811: ; 49811
 	ld de, $d010
 	ld bc, $0030
 	ld a, $5
-	call Function306b
+	call FarCopyWRAM
 	callba Function96a4
 	ret
 ; 49826
@@ -52833,57 +52624,73 @@ INCBIN "baserom.gbc", $4d580, $4d596 - $4d580
 Tilesets:
 INCLUDE "tilesets/tileset_headers.asm"
 
-Function4d7c1: ; 4d7c1
+
+FlagPredef: ; 4d7c1
+; Perform action b on flag c in flag array hl.
+; If checking a flag, check flag array d:hl unless d is 0.
+
+; For longer flag arrays, see FlagAction.
+
 	push hl
 	push bc
+
+; Divide by 8 to get the byte we want.
 	push bc
 	srl c
 	srl c
 	srl c
-	ld b, $0
+	ld b, 0
 	add hl, bc
 	pop bc
+
+; Which bit we want from the byte
 	ld a, c
-	and $7
+	and 7
 	ld c, a
-	ld a, $1
-	jr z, .asm_4d7da
-.asm_4d7d6
+
+; Shift left until we can mask the bit
+	ld a, 1
+	jr z, .shifted
+.shift
 	add a
 	dec c
-	jr nz, .asm_4d7d6
-
-.asm_4d7da
+	jr nz, .shift
+.shifted
 	ld c, a
+
+; What are we doing to this flag?
 	dec b
-	jr z, .asm_4d7e7
+	jr z, .set ; 1
 	dec b
-	jr z, .asm_4d7ec
+	jr z, .check ; 2
+
+.reset
 	ld a, c
 	cpl
 	and [hl]
 	ld [hl], a
-	jr .asm_4d7f9
+	jr .done
 
-.asm_4d7e7
+.set
 	ld a, [hl]
 	or c
 	ld [hl], a
-	jr .asm_4d7f9
+	jr .done
 
-.asm_4d7ec
+.check
 	ld a, d
-	cp $0
-	jr nz, .asm_4d7f5
+	cp 0
+	jr nz, .farcheck
+
 	ld a, [hl]
 	and c
-	jr .asm_4d7f9
+	jr .done
 
-.asm_4d7f5
+.farcheck
 	call GetFarByte
 	and c
 
-.asm_4d7f9
+.done
 	pop bc
 	pop hl
 	ld c, a
@@ -54331,7 +54138,7 @@ Function4ea0a: ; 4ea0a
 	ld de, $cd53
 	ld bc, $000c
 	ld a, $5
-	call Function306b
+	call FarCopyWRAM
 	ld a, [rSVBK]
 	push af
 	ld a, $1
@@ -54353,7 +54160,7 @@ Function4ea0a: ; 4ea0a
 Function4ea44: ; 4ea44
 	ld a, $0
 	ld hl, InLinkBattle
-	call Function307b
+	call GetFarWRAMByte
 	cp $4
 	jr z, .asm_4ea59
 	ld a, [Options]
@@ -54380,7 +54187,7 @@ Function4ea44: ; 4ea44
 .asm_4ea72
 	ld a, $5
 	ld hl, $dc00
-	call Function307b
+	call GetFarWRAMByte
 	bit 0, a
 	jr z, .asm_4ea80
 	and a
@@ -57145,7 +56952,7 @@ Function51103: ; 51103
 	push hl
 	ld a, $1
 	ld hl, BasePicSize
-	call Function307b
+	call GetFarWRAMByte
 	pop hl
 	and $f
 	ld de, $d990
@@ -71119,11 +70926,11 @@ Functiond01d6: ; d01d6
 	ld [$d16e], a
 	ld a, $1
 	ld hl, CurPartySpecies
-	call Function307b
+	call GetFarWRAMByte
 	ld [$d16b], a
 	ld a, $1
 	ld hl, UnownLetter
-	call Function307b
+	call GetFarWRAMByte
 	ld [$d16c], a
 	call Functiond065c
 	ld [$d16d], a
@@ -74073,177 +73880,9 @@ Functionfb634: ; fb634
 
 INCBIN "baserom.gbc", $fb656, $fb6ed - $fb656
 
-Functionfb6ed: ; fb6ed
-	ld hl, $780f
-	call PrintText
-	call Function1dcf
-	jp c, .asm_fb77e
-	ld hl, $7814
-	call PrintText
-	callba Function50000
-	jr c, .asm_fb77e
-	ld a, [CurPartySpecies]
-	cp $fd
-	jr z, .asm_fb783
-	call GetCurNick
-	call Functionfb78a
-	jr c, .asm_fb779
-	ld hl, $7819
-	call PrintText
-	call Function1dcf
-	jr c, .asm_fb77e
-	ld hl, $781e
-	call PrintText
-	xor a
-	ld [MonType], a
-	ld a, [CurPartySpecies]
-	ld [$d265], a
-	ld [CurSpecies], a
-	call GetBaseData
-	ld b, $0
-	ld de, StringBuffer2
-	callba Function116b7
-	call Functionfb7be
-	ld hl, $7837
-	jr c, .asm_fb76c
-	call Functionfb7d3
-	ld hl, $7837
-	jr c, .asm_fb76c
-	ld hl, PartyMon1Nickname
-	ld bc, $000b
-	ld a, [CurPartyMon]
-	call AddNTimes
-	ld e, l
-	ld d, h
-	ld hl, StringBuffer2
-	ld bc, $000b
-	call CopyBytes
-	ld hl, $7823
 
-.asm_fb76c
-	push hl
-	call GetCurNick
-	ld hl, $783c
-	call PrintText
-	pop hl
-	jr .asm_fb786
+INCLUDE "event/name_rater.asm"
 
-.asm_fb779
-	ld hl, $782d
-	jr .asm_fb786
-
-.asm_fb77e
-	ld hl, $7828
-	jr .asm_fb786
-
-.asm_fb783
-	ld hl, $7832
-
-.asm_fb786
-	call PrintText
-	ret
-; fb78a
-
-Functionfb78a: ; fb78a
-	ld hl, PartyMon1OT
-	ld bc, $000b
-	ld a, [CurPartyMon]
-	call AddNTimes
-	ld de, PlayerName
-	ld c, $b
-	call .asm_fb7b1
-	jr c, .asm_fb7bc
-	ld hl, PartyMon1ID
-	ld bc, $0030
-	ld a, [CurPartyMon]
-	call AddNTimes
-	ld de, PlayerID
-	ld c, $2
-.asm_fb7b1
-	ld a, [de]
-	cp [hl]
-	jr nz, .asm_fb7bc
-	inc hl
-	inc de
-	dec c
-	jr nz, .asm_fb7b1
-	and a
-	ret
-
-.asm_fb7bc
-	scf
-	ret
-; fb7be
-
-Functionfb7be: ; fb7be
-	ld hl, StringBuffer2
-	ld c, $a
-.asm_fb7c3
-	ld a, [hli]
-	cp $50
-	jr z, .asm_fb7cf
-	cp $7f
-	jr nz, .asm_fb7d1
-	dec c
-	jr nz, .asm_fb7c3
-
-.asm_fb7cf
-	scf
-	ret
-
-.asm_fb7d1
-	and a
-	ret
-; fb7d3
-
-Functionfb7d3: ; fb7d3
-	ld hl, PartyMon1Nickname
-	ld bc, $000b
-	ld a, [CurPartyMon]
-	call AddNTimes
-	push hl
-	call Functionfb802
-	ld b, c
-	ld hl, StringBuffer2
-	call Functionfb802
-	pop hl
-	ld a, c
-	cp b
-	jr nz, .asm_fb7fe
-	ld de, StringBuffer2
-.asm_fb7f2
-	ld a, [de]
-	cp $50
-	jr z, .asm_fb800
-	cp [hl]
-	jr nz, .asm_fb7fe
-	inc hl
-	inc de
-	jr .asm_fb7f2
-
-.asm_fb7fe
-	and a
-	ret
-
-.asm_fb800
-	scf
-	ret
-; fb802
-
-Functionfb802: ; fb802
-	ld c, $0
-.asm_fb804
-	ld a, [hli]
-	cp $50
-	ret z
-	inc c
-	ld a, c
-	cp $a
-	jr nz, .asm_fb804
-	ret
-; fb80f
-
-INCBIN "baserom.gbc", $fb80f, $fb841 - $fb80f
 
 Functionfb841: ; fb841
 	ld a, [ScriptVar]
@@ -76824,7 +76463,7 @@ Function10039c: ; 10039c
 	ld de, $d000
 	ld bc, $0054
 	ld a, $3
-	call Function306b
+	call FarCopyWRAM
 	ret
 ; 1003ab
 
@@ -76836,7 +76475,7 @@ Function1003ba: ; 1003ba
 	ld de, $d080
 	ld bc, $0054
 	ld a, $3
-	call Function306b
+	call FarCopyWRAM
 	ret
 ; 1003c9
 
@@ -76845,7 +76484,7 @@ Function1003c9: ; 1003c9
 	ld de, $ccb4
 	ld bc, $0054
 	ld a, $3
-	call Function306b
+	call FarCopyWRAM
 	ret
 ; 1003d8
 
@@ -77489,7 +77128,7 @@ Function100989: ; 100989
 Function1009a5: ; 1009a5
 	ld bc, $0168
 	ld a, $3
-	call Function306b
+	call FarCopyWRAM
 	ret
 ; 1009ae
 
@@ -78542,7 +78181,7 @@ Function10218d: ; 10218d
 	ld de, EnemyMoveAnimation
 	ld bc, $0026
 	ld a, $5
-	call Function306b
+	call FarCopyWRAM
 	ld de, EnemyMoveEffect
 	ret
 ; 10219f
@@ -83464,7 +83103,7 @@ Function11d493: ; 11d493
 	ld hl, rSVBK
 	ld e, $1
 	ld [hl], e
-	call CheckCaughtMon
+	call CheckSeenMon
 	ld hl, rSVBK
 	ld e, $5
 	ld [hl], e
