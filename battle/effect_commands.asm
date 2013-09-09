@@ -9413,17 +9413,27 @@ BattleCommand50: ; 37492
 
 BattleCommand51: ; 37517
 ; arenatrap
+
+; Doesn't work on an absent opponent.
+
 	call CheckHiddenOpponent
-	jr nz, .asm_37530 ; 3751a $14
+	jr nz, .failed
+
+; Don't trap if the opponent is already trapped.
+
 	ld a, BATTLE_VARS_SUBSTATUS5
 	call GetBattleVarPair
-	bit 7, [hl]
-	jr nz, .asm_37530 ; 37523 $b
-	set 7, [hl]
+	bit SUBSTATUS_CANT_RUN, [hl]
+	jr nz, .failed
+
+; Otherwise trap the opponent.
+
+	set SUBSTATUS_CANT_RUN, [hl]
 	call Function0x37e01
 	ld hl, CantEscapeNowText
 	jp StdBattleTextBox
-.asm_37530
+
+.failed
 	call Function0x37e77
 	jp PrintButItFailed
 ; 37536
