@@ -12140,7 +12140,7 @@ CheckShininess: ; 8a68
 
 CheckContestMon: ; 8a88
 ; Check a mon's DVs at hl in the bug catching contest.
-; Return shiny if its DVs are good enough to place in the contest.
+; Return carry if its DVs are good enough to place in the contest.
 
 ; Attack
 	ld a, [hl]
