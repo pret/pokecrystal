@@ -12,10 +12,11 @@ all: baserom.gbc pokecrystal.gbc
 	cmp baserom.gbc pokecrystal.gbc
 clean:
 	rm -f pokecrystal.o pokecrystal.gbc
-	@echo 'rm -f $(TEXTFILES:.asm=.tx)'
+	@echo 'Removing preprocessed .tx files...'
 	@rm -f $(TEXTFILES:.asm=.tx)
 pokecrystal.o: $(TEXTFILES:.asm=.tx) wram.asm constants.asm $(shell find constants/ -type f -name '*.asm') hram.asm gbhw.asm $(LZ_GFX) $(TWOBPP_GFX)
-	$(PYTHON) prequeue.py $(TEXTQUEUE)
+	@echo "Preprocessing .asm to .tx..."
+	@$(PYTHON) prequeue.py $(TEXTQUEUE)
 	rgbasm -o pokecrystal.o pokecrystal.asm
 .asm.tx:
 	$(eval TEXTQUEUE := $(TEXTQUEUE) $<)
