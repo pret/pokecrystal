@@ -1,6 +1,8 @@
 BattleCommand5a: ; 3766f
 ; endure
 
+; Endure shares code with Protect. See protect.asm.
+
 	call ProtectChance
 	ret c
 
