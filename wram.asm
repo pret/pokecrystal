@@ -588,6 +588,7 @@ PlayerPerishCount: ; c677
 	ds 1
 PlayerFuryCutterCount: ; c678
 	ds 1
+PlayerProtectCount: ; c679
 	ds 1
 
 EnemyRolloutCount: ; c67a
@@ -603,6 +604,7 @@ EnemyPerishCount: ; c67f
 	ds 1
 EnemyFuryCutterCount: ; c680
 	ds 1
+EnemyProtectCount: ; c681
 	ds 1
 
 PlayerDamageTaken: ; c682
