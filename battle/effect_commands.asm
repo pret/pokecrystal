@@ -9547,66 +9547,77 @@ INCLUDE "battle/effects/curse.asm"
 
 BattleCommand55: ; 37618
 ; protect
-
-	call Function0x3762c
+	call ProtectChance
 	ret c
+
 	ld a, BATTLE_VARS_SUBSTATUS1
 	call GetBattleVarPair
-	set 2, [hl]
+	set SUBSTATUS_PROTECT, [hl]
+
 	call Function0x37e01
+
 	ld hl, ProtectedItselfText
 	jp StdBattleTextBox
 ; 3762c
 
 
-Function0x3762c: ; 3762c
-	ld de, $c679
+ProtectChance: ; 3762c
+
+	ld de, PlayerProtectCount
 	ld a, [hBattleTurn]
 	and a
 	jr z, .asm_37637
-	ld de, $c681
-
+	ld de, EnemyProtectCount
 .asm_37637
-	call Function0x36abf
-	jr nz, .asm_37665
 
-	ld a, $3
+	call Function0x36abf
+	jr nz, .failed
+
+; Can't have a substitute.
+
+	ld a, BATTLE_VARS_SUBSTATUS4
 	call CleanGetBattleVarPair
-	bit 4, a
-	jr nz, .asm_37665
+	bit SUBSTATUS_SUBSTITUTE, a
+	jr nz, .failed
+
+; Halve the chance of a successful Protect for each consecutive use.
 
 	ld b, $ff
 	ld a, [de]
 	ld c, a
-.asm_37649
+.loop
 	ld a, c
 	and a
-	jr z, .asm_37656
-
+	jr z, .done
 	dec c
+
 	srl b
 	ld a, b
 	and a
-	jr nz, .asm_37649
+	jr nz, .loop
+	jr .failed
+.done
 
-	jr .asm_37665
-
-.asm_37656
+.rand
 	call BattleRandom
 	and a
-	jr z, .asm_37656
+	jr z, .rand
 
 	dec a
 	cp b
-	jr nc, .asm_37665
+	jr nc, .failed
+
+; Another consecutive Protect use.
 
 	ld a, [de]
 	inc a
 	ld [de], a
+
 	and a
 	ret
 
-.asm_37665
+
+.failed
 	xor a
 	ld [de], a
 	call Function0x37e77
@@ -9619,13 +9630,15 @@ Function0x3762c: ; 3762c
 BattleCommand5a: ; 3766f
 ; endure
 
-	call Function0x3762c
+	call ProtectChance
 	ret c
 
 	ld a, BATTLE_VARS_SUBSTATUS1
 	call GetBattleVarPair
 	set SUBSTATUS_ENDURE, [hl]
+
 	call Function0x37e01
+
 	ld hl, BracedItselfText
 	jp StdBattleTextBox
 ; 37683
