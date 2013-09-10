@@ -156,7 +156,7 @@ Init: ; 17d
 	ld a, [hCGB]
 	and a
 	jr z, .asm_22b
-	call Function2ff7
+	call NormalSpeed
 .asm_22b
 
 	xor a

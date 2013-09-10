@@ -539,7 +539,7 @@ Script_verbosegiveitem2: ; 0x96f8e
 	ld a, [de]
 	ld [$d10c], a
 	ld hl, $d892
-	call Function2f66
+	call ReceiveItem
 	ld a, $1
 	jr c, .asm_96fb0 ; 0x96fad $1
 	xor a
@@ -2320,7 +2320,7 @@ Script_giveitem: ; 0x977ca
 	call GetScriptByte
 	ld [$d10c], a
 	ld hl, $d892
-	call Function2f66
+	call ReceiveItem
 	jr nc, .asm_977eb ; 0x977e3 $6
 	ld a, $1
 	ld [$c2dd], a
@@ -2346,7 +2346,7 @@ Script_takeitem: ; 0x977f0
 	ld a, $ff
 	ld [$d107], a
 	ld hl, $d892
-	call Function2f53
+	call TossItem
 	ret nc
 	ld a, $1
 	ld [$c2dd], a
@@ -2363,7 +2363,7 @@ Script_checkitem: ; 0x97812
 	call GetScriptByte
 	ld [$d106], a
 	ld hl, $d892
-	call PickUpItem
+	call CheckItem
 	ret nc
 	ld a, $1
 	ld [$c2dd], a
