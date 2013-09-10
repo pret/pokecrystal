@@ -45,7 +45,7 @@ GiveOddEgg: ; 1fb4b6
 	ld a, $ff
 	ld [$d107], a
 	ld hl, NumItems
-	call Function2f53
+	call TossItem
 	ld a, EGG
 	ld [$cd2a], a
 	ld a, $29

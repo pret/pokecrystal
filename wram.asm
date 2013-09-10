@@ -477,7 +477,10 @@ BattleMonType1: ; c64a
 BattleMonType2: ; c64b
 	ds 1
 
-	ds 23
+	ds 10
+
+OTName: ; c656
+	ds 13
 
 CurOTMon: ; c663
 	ds 1
@@ -585,6 +588,7 @@ PlayerPerishCount: ; c677
 	ds 1
 PlayerFuryCutterCount: ; c678
 	ds 1
+PlayerProtectCount: ; c679
 	ds 1
 
 EnemyRolloutCount: ; c67a
@@ -600,6 +604,7 @@ EnemyPerishCount: ; c67f
 	ds 1
 EnemyFuryCutterCount: ; c680
 	ds 1
+EnemyProtectCount: ; c681
 	ds 1
 
 PlayerDamageTaken: ; c682
@@ -2023,12 +2028,12 @@ PartyMon6Nickname: ; de78
 PartyMonNicknamesEnd
 
 SECTION "Pokedex",WRAMX[$de99],BANK[1]
-PokedexSeen: ; de99
-	ds 32
-EndPokedexSeen:
-PokedexCaught: ; deb9
+PokedexCaught: ; de99
 	ds 32
 EndPokedexCaught:
+PokedexSeen: ; deb9
+	ds 32
+EndPokedexSeen:
 UnownDex: ; ded9
 	ds 26
 UnlockedUnowns: ; def3

@@ -101,8 +101,8 @@ Joypad: ; 935
 ; Now that we have the input, we can do stuff with it.
 
 ; For example, soft reset:
-	and BUTTON_A | BUTTON_B | SELECT | START
-	cp  BUTTON_A | BUTTON_B | SELECT | START
+	and A_BUTTON | B_BUTTON | SELECT | START
+	cp  A_BUTTON | B_BUTTON | SELECT | START
 	jp z, Reset
 	
 	ret
@@ -283,11 +283,11 @@ Functiona1b: ; a1b
 	pop bc
 
 	ld a, [hJoyDown]
-	cp D_UP | SELECT | BUTTON_B
+	cp D_UP | SELECT | B_BUTTON
 	jr z, .asm_a34
 
 	ld a, [$ffa9]
-	and START | BUTTON_A
+	and START | A_BUTTON
 	jr nz, .asm_a34
 
 	dec c
@@ -306,7 +306,7 @@ Functiona36: ; a36
 	call DelayFrame
 	call GetJoypadPublic
 	ld a, [hJoyPressed]
-	and BUTTON_A | BUTTON_B
+	and A_BUTTON | B_BUTTON
 	ret nz
 	call RTC
 	jr Functiona36
@@ -382,7 +382,7 @@ Functiona80: ; a80
 Functionaa5: ; aa5
 	call Functiona57
 	ld a, [$ffa9]
-	and BUTTON_A | BUTTON_B
+	and A_BUTTON | B_BUTTON
 	jr z, Functionaa5
 	ret
 ; aaf
