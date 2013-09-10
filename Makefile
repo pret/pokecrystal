@@ -1,7 +1,7 @@
 PYTHON := python
 .SUFFIXES: .asm .tx .o .gbc .png .2bpp .lz
 
-TEXTFILES := $(shell find ./ -type f -name '*.asm' | grep -v pokecrystal.asm | grep -v constants.asm | grep -v gbhw.asm | grep -v hram.asm | grep -v constants | grep -v wram.asm)
+TEXTFILES := $(shell find ./ -type f -name '*.asm')
 TEXTQUEUE :=
 
 PNG_GFX    := $(shell find gfx/ -type f -name '*.png')
@@ -14,10 +14,10 @@ clean:
 	rm -f pokecrystal.o pokecrystal.gbc
 	@echo 'Removing preprocessed .tx files...'
 	@rm -f $(TEXTFILES:.asm=.tx)
-pokecrystal.o: $(TEXTFILES:.asm=.tx) wram.asm constants.asm $(shell find constants/ -type f -name '*.asm') hram.asm gbhw.asm $(LZ_GFX) $(TWOBPP_GFX)
+pokecrystal.o: $(TEXTFILES:.asm=.tx) $(LZ_GFX) $(TWOBPP_GFX)
 	@echo "Preprocessing .asm to .tx..."
 	@$(PYTHON) prequeue.py $(TEXTQUEUE)
-	rgbasm -o pokecrystal.o pokecrystal.asm
+	rgbasm -o pokecrystal.o pokecrystal.tx
 .asm.tx:
 	$(eval TEXTQUEUE := $(TEXTQUEUE) $<)
 	@rm -f $@
