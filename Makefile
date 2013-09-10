@@ -4,6 +4,8 @@ PYTHON := python
 TEXTFILES := $(shell find ./ -type f -name '*.asm')
 TEXTQUEUE :=
 
+OBJS := pokecrystal.o
+
 PNG_GFX    := $(shell find gfx/ -type f -name '*.png')
 LZ_GFX     := $(shell find gfx/ -type f -name '*.lz')
 TWOBPP_GFX := $(shell find gfx/ -type f -name '*.2bpp')
@@ -14,18 +16,21 @@ clean:
 	rm -f pokecrystal.o pokecrystal.gbc
 	@echo 'Removing preprocessed .tx files...'
 	@rm -f $(TEXTFILES:.asm=.tx)
-pokecrystal.o: $(TEXTFILES:.asm=.tx) $(LZ_GFX) $(TWOBPP_GFX)
-	@echo "Preprocessing .asm to .tx..."
-	@$(PYTHON) prequeue.py $(TEXTQUEUE)
-	rgbasm -o pokecrystal.o pokecrystal.tx
-.asm.tx:
-	$(eval TEXTQUEUE := $(TEXTQUEUE) $<)
-	@rm -f $@
+
 baserom.gbc:
 	@echo "Wait! Need baserom.gbc first. Check README and INSTALL for details." && false
 
-pokecrystal.gbc: pokecrystal.o
-	rgblink -n pokecrystal.sym -m pokecrystal.map -o $@ $<
+.asm.tx:
+	$(eval TEXTQUEUE := $(TEXTQUEUE) $<)
+	@rm -f $@
+
+$(OBJS): $(TEXTFILES:.asm=.tx) $(LZ_GFX) $(TWOBPP_GFX)
+	@echo "Preprocessing .asm to .tx..."
+	@$(PYTHON) prequeue.py $(TEXTQUEUE)
+	rgbasm -o $@ $(@:.o=.tx)
+
+pokecrystal.gbc: $(OBJS)
+	rgblink -n pokecrystal.sym -m pokecrystal.map -o pokecrystal.gbc $<
 	rgbfix -Cjv -i BYTE -k 01 -l 0x33 -m 0x10 -p 0 -r 3 -t PM_CRYSTAL $@
 
 pngs:
