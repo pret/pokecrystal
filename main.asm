@@ -14,22 +14,22 @@ Start:
 
 SECTION "start",ROM0[$150]
 
-INCLUDE "common/init.asm"
-INCLUDE "common/vblank.asm"
-INCLUDE "common/delay.asm"
-INCLUDE "common/rtc.asm"
-INCLUDE "common/fade.asm"
-INCLUDE "common/lcd.asm"
-INCLUDE "common/time.asm"
-INCLUDE "common/serial.asm"
-INCLUDE "common/joypad.asm"
-INCLUDE "common/decompress.asm"
-INCLUDE "common/palettes.asm"
-INCLUDE "common/copy.asm"
-INCLUDE "common/text.asm"
-INCLUDE "common/video.asm"
-INCLUDE "common/map_objects.asm"
-INCLUDE "common/sine.asm"
+INCLUDE "home/init.asm"
+INCLUDE "home/vblank.asm"
+INCLUDE "home/delay.asm"
+INCLUDE "home/rtc.asm"
+INCLUDE "home/fade.asm"
+INCLUDE "home/lcd.asm"
+INCLUDE "home/time.asm"
+INCLUDE "home/serial.asm"
+INCLUDE "home/joypad.asm"
+INCLUDE "home/decompress.asm"
+INCLUDE "home/palettes.asm"
+INCLUDE "home/copy.asm"
+INCLUDE "home/text.asm"
+INCLUDE "home/video.asm"
+INCLUDE "home/map_objects.asm"
+INCLUDE "home/sine.asm"
 
 Function1b1e: ; 1b1e
 	ld [$d003], a
@@ -473,10 +473,10 @@ Function1d19: ; 1d19
 ; 1d35
 
 
-INCLUDE "common/menu.asm"
-INCLUDE "common/handshake.asm"
-INCLUDE "common/game_time.asm"
-INCLUDE "common/map.asm"
+INCLUDE "home/menu.asm"
+INCLUDE "home/handshake.asm"
+INCLUDE "home/game_time.asm"
+INCLUDE "home/map.asm"
 
 
 Function2d43: ; 2d43
@@ -502,8 +502,8 @@ Function2d43: ; 2d43
 ; 2d54
 
 
-INCLUDE "common/farcall.asm"
-INCLUDE "common/predef.asm"
+INCLUDE "home/farcall.asm"
+INCLUDE "home/predef.asm"
 
 
 ResetWindow: ; 2dba
@@ -614,7 +614,7 @@ Function2e4e: ; 2e4e
 ; 2e50
 
 
-INCLUDE "common/flag.asm"
+INCLUDE "home/flag.asm"
 
 
 Function2ebb: ; 2ebb
@@ -671,7 +671,7 @@ Function2ee4: ; 2ee4
 ; 2ef6
 
 
-INCLUDE "common/string.asm"
+INCLUDE "home/string.asm"
 
 
 IsInJohto: ; 2f17
@@ -714,9 +714,9 @@ Function2f3e: ; 2f3e
 ; 2f3f
 
 
-INCLUDE "common/item.asm"
-INCLUDE "common/random.asm"
-INCLUDE "common/sram.asm"
+INCLUDE "home/item.asm"
+INCLUDE "home/random.asm"
+INCLUDE "home/sram.asm"
 
 
 ; Register aliases
@@ -731,7 +731,7 @@ _de_: ; 2fed
 ; 2fef
 
 
-INCLUDE "common/double_speed.asm"
+INCLUDE "home/double_speed.asm"
 
 
 ClearSprites: ; 300b
@@ -760,7 +760,7 @@ HideSprites: ; 3016
 ; 3026
 
 
-INCLUDE "common/copy2.asm"
+INCLUDE "home/copy2.asm"
 
 
 Function309d: ; 309d
@@ -861,7 +861,7 @@ AddNTimes: ; 0x30fe
 ; 0x3105
 
 
-INCLUDE "common/math.asm"
+INCLUDE "home/math.asm"
 
 
 PrintLetterDelay: ; 313d
