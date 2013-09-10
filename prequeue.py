@@ -7,11 +7,14 @@ a single process.
 
 import os
 import sys
+
+import extras.pokemontools.config as conf
+
 import preprocessor
 
 def main():
+    config = conf.Config()
     macros = preprocessor.load_pokecrystal_macros()
-    macro_table = preprocessor.preprocessor.make_macro_table(macros)
 
     stdout = sys.stdout
 
@@ -19,7 +22,7 @@ def main():
         dest = os.path.splitext(source)[0] + '.tx'
         sys.stdin  = open(source, 'r')
         sys.stdout = open(dest, 'w')
-        preprocessor.preprocess(macro_table)
+        preprocessor.preprocess(config, macros)
 
     # reset stdout
     sys.stdout = stdout

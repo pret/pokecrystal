@@ -3,6 +3,7 @@
 
 import sys
 
+import extras.pokemontools.config as conf
 import extras.pokemontools.preprocessor as preprocessor
 
 from extras.pokemontools.crystal import (
@@ -41,16 +42,17 @@ def load_pokecrystal_macros():
 
     return ourmacros
 
-def preprocess(macro_table, lines=None):
+def preprocess(config, macros, lines=None):
     """
     Entry point for the preprocessor.
     """
-    return preprocessor.preprocess(macro_table, lines=lines)
+    processor = preprocessor.Preprocessor(config, macros)
+    return processor.preprocess(lines=lines)
 
 def main():
+    config = conf.Config()
     macros = load_pokecrystal_macros()
-    macro_table = preprocessor.make_macro_table(macros)
-    preprocess(macro_table)
+    return preprocess(config, macros)
 
 # only run against stdin when not included as a module
 if __name__ == "__main__":
