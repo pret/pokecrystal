@@ -1,7 +1,9 @@
 # coding: utf-8
 
-# Recursively scan an asm file for rgbasm INCLUDEs and INCBINs.
-# This is used to generate dependencies for each rgbasm object file.
+"""
+Recursively scan an asm file for rgbasm INCLUDEs and INCBINs.
+This is used to generate dependencies for each rgbasm object file.
+"""
 
 import sys
 
