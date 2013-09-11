@@ -86589,7 +86589,7 @@ SECTION "bank6C",ROMX,BANK[$6C]
 
 ;                         Common text I
 
-INCLUDE "text/common.tx"
+INCLUDE "text/common.asm"
 
 ;                        Map Scripts XXV
 
@@ -86599,10 +86599,10 @@ INCLUDE "maps/Route10North.asm"
 
 SECTION "bank6D",ROMX,BANK[$6D]
 
-INCLUDE "text/phone/mom.tx"
-INCLUDE "text/phone/bill.tx"
-INCLUDE "text/phone/elm.tx"
-INCLUDE "text/phone/trainers1.tx"
+INCLUDE "text/phone/mom.asm"
+INCLUDE "text/phone/bill.asm"
+INCLUDE "text/phone/elm.asm"
+INCLUDE "text/phone/trainers1.asm"
 
 
 SECTION "bank6E",ROMX,BANK[$6E]
@@ -86617,21 +86617,21 @@ SECTION "bank6F",ROMX,BANK[$6F]
 
 ;                        Common text II
 
-INCLUDE "text/common_2.tx"
+INCLUDE "text/common_2.asm"
 
 
 SECTION "bank70",ROMX,BANK[$70]
 
 ;                        Common text III
 
-INCLUDE "text/common_3.tx"
+INCLUDE "text/common_3.asm"
 
 
 SECTION "bank71",ROMX,BANK[$71]
 
 ;                        Common text IV
 
-INCLUDE "text/common_4.tx"
+INCLUDE "text/common_4.asm"
 
 
 SECTION "bank72",ROMX,BANK[$72]
