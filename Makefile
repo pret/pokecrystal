@@ -1,5 +1,6 @@
 PYTHON := python
 .SUFFIXES: .asm .tx .o .gbc .png .2bpp .lz
+.SECONDEXPANSION:
 
 TEXTFILES := $(shell find ./ -type f -name '*.asm')
 TEXTQUEUE :=
@@ -9,6 +10,8 @@ OBJS := pokecrystal.o
 PNG_GFX    := $(shell find gfx/ -type f -name '*.png')
 LZ_GFX     := $(shell find gfx/ -type f -name '*.lz')
 TWOBPP_GFX := $(shell find gfx/ -type f -name '*.2bpp')
+
+$(shell $(foreach obj, $(OBJS), $(eval OBJ_$(obj:.o=) := $(shell $(PYTHON) scan_includes.py $(obj:.o=.asm)))))
 
 all: baserom.gbc pokecrystal.gbc
 	cmp baserom.gbc pokecrystal.gbc
@@ -24,9 +27,10 @@ baserom.gbc:
 	$(eval TEXTQUEUE := $(TEXTQUEUE) $<)
 	@rm -f $@
 
-$(OBJS): $(TEXTFILES:.asm=.tx) $(LZ_GFX) $(TWOBPP_GFX)
+$(OBJS): $$(patsubst %.o,%.tx,$$@) $$(patsubst %.asm,%.tx,$$(OBJ_$$(patsubst %.o,%,$$@)))
 	@echo "Preprocessing .asm to .tx..."
 	@$(PYTHON) prequeue.py $(TEXTQUEUE)
+	$(eval TEXTQUEUE := )
 	rgbasm -o $@ $(@:.o=.tx)
 
 pokecrystal.gbc: $(OBJS)
@@ -52,4 +56,7 @@ gfx/trainers/%.lz: gfx/trainers/%.png
 	$(PYTHON) extras/pokemontools/gfx.py png-to-lz $<
 .png.2bpp:
 	$(PYTHON) extras/pokemontools/gfx.py png-to-lz $<
-
+%.2bpp:
+	@:
+%.1bpp:
+	@:
