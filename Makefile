@@ -1,5 +1,6 @@
 PYTHON := python
 .SUFFIXES: .asm .tx .o .gbc .png .2bpp .lz
+.PHONY: all clean pngs gfx
 .SECONDEXPANSION:
 
 TEXTFILES := $(shell find ./ -type f -name '*.asm')
