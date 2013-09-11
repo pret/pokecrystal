@@ -42,7 +42,7 @@ pngs:
 	$(PYTHON) extras/pokemontools/gfx.py mass-decompress
 	$(PYTHON) extras/pokemontools/gfx.py dump-pngs
 
-lzs: $(LZS) $(_2BPPS) $(_1BPPS)
+gfx: $(LZS) $(_2BPPS) $(_1BPPS)
 	@:
 
 gfx/pics/%/front.lz: gfx/pics/%/tiles.2bpp gfx/pics/%/front.png
