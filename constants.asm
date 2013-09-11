@@ -6,6 +6,9 @@ else
 VERSION EQU 1
 endc
 
+INCLUDE "gbhw.asm"
+INCLUDE "hram.asm"
+
 INCLUDE "constants/pokemon_constants.asm"
 INCLUDE "constants/move_constants.asm"
 INCLUDE "constants/battle_constants.asm"

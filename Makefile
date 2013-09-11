@@ -1,37 +1,49 @@
 PYTHON := python
 .SUFFIXES: .asm .tx .o .gbc .png .2bpp .lz
+.PHONY: all clean pngs gfx
+.SECONDEXPANSION:
 
-TEXTFILES := $(shell find ./ -type f -name '*.asm' | grep -v pokecrystal.asm | grep -v constants.asm | grep -v gbhw.asm | grep -v hram.asm | grep -v constants | grep -v wram.asm)
+TEXTFILES := $(shell find ./ -type f -name '*.asm')
 TEXTQUEUE :=
 
-PNG_GFX    := $(shell find gfx/ -type f -name '*.png')
-LZ_GFX     := $(shell find gfx/ -type f -name '*.lz')
-TWOBPP_GFX := $(shell find gfx/ -type f -name '*.2bpp')
+OBJS := pokecrystal.o
+
+PNGS   := $(shell find gfx/ -type f -name '*.png')
+LZS    := $(shell find gfx/ -type f -name '*.lz')
+_2BPPS := $(shell find gfx/ -type f -name '*.2bpp')
+_1BPPS := $(shell find gfx/ -type f -name '*.1bpp')
+
+$(shell $(foreach obj, $(OBJS), $(eval OBJ_$(obj:.o=) := $(shell $(PYTHON) scan_includes.py $(obj:.o=.asm)))))
 
 all: baserom.gbc pokecrystal.gbc
 	cmp baserom.gbc pokecrystal.gbc
 clean:
 	rm -f pokecrystal.o pokecrystal.gbc
-	@echo 'rm -f $(TEXTFILES:.asm=.tx)'
+	@echo 'Removing preprocessed .tx files...'
 	@rm -f $(TEXTFILES:.asm=.tx)
-pokecrystal.o: $(TEXTFILES:.asm=.tx) wram.asm constants.asm $(shell find constants/ -type f -name '*.asm') hram.asm gbhw.asm $(LZ_GFX) $(TWOBPP_GFX)
-	$(PYTHON) prequeue.py $(TEXTQUEUE)
-	rgbasm -o pokecrystal.o pokecrystal.asm
+
+baserom.gbc:
+	@echo "Wait! Need baserom.gbc first. Check README and INSTALL for details." && false
+
 .asm.tx:
 	$(eval TEXTQUEUE := $(TEXTQUEUE) $<)
 	@rm -f $@
-baserom.gbc:
-	$(PYTHON) -c "import os; assert 'baserom.gbc' in os.listdir('.'), 'Wait! Need baserom.gbc first. Check README and INSTALL for details.';"
 
-pokecrystal.gbc: pokecrystal.o
-	rgblink -n pokecrystal.sym -m pokecrystal.map -o $@ $<
+$(OBJS): $$(patsubst %.o,%.tx,$$@) $$(patsubst %.asm,%.tx,$$(OBJ_$$(patsubst %.o,%,$$@)))
+	@echo "Preprocessing .asm to .tx..."
+	@$(PYTHON) prequeue.py $(TEXTQUEUE)
+	$(eval TEXTQUEUE := )
+	rgbasm -o $@ $(@:.o=.tx)
+
+pokecrystal.gbc: $(OBJS)
+	rgblink -n pokecrystal.sym -m pokecrystal.map -o pokecrystal.gbc $<
 	rgbfix -Cjv -i BYTE -k 01 -l 0x33 -m 0x10 -p 0 -r 3 -t PM_CRYSTAL $@
 
 pngs:
 	$(PYTHON) extras/pokemontools/gfx.py mass-decompress
 	$(PYTHON) extras/pokemontools/gfx.py dump-pngs
 
-lzs: $(LZ_GFX) $(TWOBPP_GFX)
+gfx: $(LZS) $(_2BPPS) $(_1BPPS)
 	@:
 
 gfx/pics/%/front.lz: gfx/pics/%/tiles.2bpp gfx/pics/%/front.png
@@ -46,4 +58,9 @@ gfx/trainers/%.lz: gfx/trainers/%.png
 	$(PYTHON) extras/pokemontools/gfx.py png-to-lz $<
 .png.2bpp:
 	$(PYTHON) extras/pokemontools/gfx.py png-to-lz $<
-
+.png.1bpp:
+	$(PYTHON) extras/pokemontools/gfx.py png-to-lz $<
+%.2bpp:
+	@:
+%.1bpp:
+	@:
