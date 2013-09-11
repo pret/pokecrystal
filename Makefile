@@ -7,9 +7,10 @@ TEXTQUEUE :=
 
 OBJS := pokecrystal.o
 
-PNG_GFX    := $(shell find gfx/ -type f -name '*.png')
-LZ_GFX     := $(shell find gfx/ -type f -name '*.lz')
-TWOBPP_GFX := $(shell find gfx/ -type f -name '*.2bpp')
+PNGS   := $(shell find gfx/ -type f -name '*.png')
+LZS    := $(shell find gfx/ -type f -name '*.lz')
+_2BPPS := $(shell find gfx/ -type f -name '*.2bpp')
+_1BPPS := $(shell find gfx/ -type f -name '*.1bpp')
 
 $(shell $(foreach obj, $(OBJS), $(eval OBJ_$(obj:.o=) := $(shell $(PYTHON) scan_includes.py $(obj:.o=.asm)))))
 
@@ -41,7 +42,7 @@ pngs:
 	$(PYTHON) extras/pokemontools/gfx.py mass-decompress
 	$(PYTHON) extras/pokemontools/gfx.py dump-pngs
 
-lzs: $(LZ_GFX) $(TWOBPP_GFX)
+lzs: $(LZS) $(_2BPPS) $(_1BPPS)
 	@:
 
 gfx/pics/%/front.lz: gfx/pics/%/tiles.2bpp gfx/pics/%/front.png
@@ -55,6 +56,8 @@ gfx/trainers/%.lz: gfx/trainers/%.png
 .png.lz:
 	$(PYTHON) extras/pokemontools/gfx.py png-to-lz $<
 .png.2bpp:
+	$(PYTHON) extras/pokemontools/gfx.py png-to-lz $<
+.png.1bpp:
 	$(PYTHON) extras/pokemontools/gfx.py png-to-lz $<
 %.2bpp:
 	@:
