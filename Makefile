@@ -46,7 +46,7 @@ $(OBJS): $$(patsubst %.o,%.tx,$$@) $$(patsubst %.asm,%.tx,$$(OBJ_$$(patsubst %.o
 	rgbasm -o $@ $(@:.o=.tx)
 
 pokecrystal.gbc: $(OBJS)
-	rgblink -n pokecrystal.sym -m pokecrystal.map -o pokecrystal.gbc $<
+	rgblink -n pokecrystal.sym -m pokecrystal.map -o pokecrystal.gbc $^
 	rgbfix -Cjv -i BYTE -k 01 -l 0x33 -m 0x10 -p 0 -r 3 -t PM_CRYSTAL $@
 
 pngs:
