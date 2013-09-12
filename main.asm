@@ -20330,13 +20330,67 @@ INCBIN "baserom.gbc", $11e5d, $122c1 - $11e5d
 
 UnknownScript_0x122c1: ; 0x122c1
 	checkbit2 $0011
-	iffalse $62cd
+	iffalse .script_122cd
 	setbit2 $0051
 	special $0017
+.script_122cd
 	end
 ; 0x122ce
 
-INCBIN "baserom.gbc", $122ce, $12324 - $122ce
+UnknownScript_0x122ce: ; 0x122ce
+	3callasm BANK(Function122f8), Function122f8
+	iffalse UnknownScript_0x122e3
+	disappear $fe
+	loadfont
+	2writetext UnknownText_0x122ee
+	playsound SFX_ITEM
+	pause 60
+	itemnotify
+	loadmovesprites
+	end
+; 0x122e3
+
+UnknownScript_0x122e3: ; 0x122e3
+	loadfont
+	2writetext UnknownText_0x122ee
+	closetext
+	2writetext UnknownText_0x122f3
+	closetext
+	loadmovesprites
+	end
+; 0x122ee
+
+UnknownText_0x122ee: ; 0x122ee
+	; found @ !
+	text_jump UnknownText_0x1c0a1c, BANK(UnknownText_0x1c0a1c)
+	db "@"
+; 0x122f3
+
+UnknownText_0x122f3: ; 0x122f3
+	; But   can't carry any more items.
+	text_jump UnknownText_0x1c0a2c, BANK(UnknownText_0x1c0a2c)
+	db "@"
+; 0x122f8
+
+Function122f8: ; 122f8
+	xor a
+	ld [ScriptVar], a
+	ld a, [EngineBuffer1]
+	ld [$d265], a
+	call GetItemName
+	ld hl, StringBuffer3
+	call CopyName2
+	ld a, [EngineBuffer1]
+	ld [CurItem], a
+	ld a, [CurFruit]
+	ld [$d10c], a
+	ld hl, NumItems
+	call ReceiveItem
+	ret nc
+	ld a, $1
+	ld [ScriptVar], a
+	ret
+; 12324
 
 Function12324: ; 12324
 	ld a, [PartyCount]
@@ -68094,9 +68148,9 @@ Function96beb: ; 96beb
 
 ScriptPointers96c0c: ; 96c0c
 	dbw BANK(UnknownScript_0x96c2d), UnknownScript_0x96c2d
-	dbw $2f, $6675 ; BANK(UnknownScript_0xbe675), UnknownScript_0xbe675
-	dbw $2f, $666a ; BANK(UnknownScript_0xbe66a), UnknownScript_0xbe66a
-	dbw $04, $62ce ; BANK(UnknownScript_0x122ce), UnknownScript_0x122ce
+	dbw BANK(UnknownScript_0xbe675), UnknownScript_0xbe675
+	dbw BANK(UnknownScript_0xbe66a), UnknownScript_0xbe66a
+	dbw BANK(UnknownScript_0x122ce), UnknownScript_0x122ce
 	dbw BANK(UnknownScript_0x96c4d), UnknownScript_0x96c4d
 	dbw BANK(UnknownScript_0x96c34), UnknownScript_0x96c34
 	dbw BANK(FallIntoMapScript), FallIntoMapScript
@@ -69701,7 +69755,40 @@ SECTION "bank2F",ROMX,BANK[$2F]
 
 INCLUDE "engine/std_scripts.asm"
 
-INCBIN "baserom.gbc", $bd0d0, $be699-$bd0d0
+INCBIN "baserom.gbc", $bd0d0, $be66a - $bd0d0
+
+UnknownScript_0xbe66a: ; 0xbe66a
+	faceplayer
+	trainerstatus $2
+	iftrue $6698
+	loadtrainerdata
+	playrammusic
+	2jump UnknownScript_0xbe68a
+; 0xbe675
+
+UnknownScript_0xbe675: ; 0xbe675
+	loadtrainerdata
+	playrammusic
+	showemote $0, $fe, 30
+	3callasm BANK(Function831e), Function831e
+	applymovement2 $d007
+	writepersonxy $fe
+	faceperson $0, $fe
+	2jump UnknownScript_0xbe68a
+; 0xbe68a
+
+UnknownScript_0xbe68a: ; 0xbe68a
+	loadfont
+	trainertext $0
+	closetext
+	loadmovesprites
+	loadtrainerdata
+	startbattle
+	returnafterbattle
+	trainerstatus $1
+	loadvar $d04d, $ff
+	scripttalkafter
+; 0xbe699
 
 
 SECTION "bank30",ROMX,BANK[$30]
