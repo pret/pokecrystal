@@ -114,7 +114,7 @@ Channel1Octave: ; c114
 ; 0: highest
 ; 7: lowest
 	ds 1
-Channel1StartingOctave ; c115
+Channel1StartingOctave: ; c115
 ; raises existing octaves by this value
 ; used for repeating phrases in a higher octave to save space
 	ds 1
@@ -125,7 +125,7 @@ Channel1NoteDuration: ; c116
 	ds 1
 ; c118
 	ds 1
-Channel1LoopCount ; c119
+Channel1LoopCount: ; c119
 	ds 1
 Channel1Tempo: ; c11a
 	ds 2
@@ -308,7 +308,6 @@ CurMusic: ; c2c0
 
 SECTION "auto",WRAM0[$c2c7]
 InputType: ; c2c7
-AUTO_INPUT EQU $ff
 	ds 1
 AutoInputAddress: ; c2c8
 	ds 2
@@ -370,7 +369,7 @@ Sprites: ; c400
 ;		bit 3: vram bank (cgb only)
 ;		bit 2-0: pal # (cgb only)
 	ds 160
-SpritesEnd
+SpritesEnd:
 
 TileMap: ; c4a0
 ; 20x18 grid of 8x8 tiles
@@ -825,10 +824,6 @@ AttrMap: ; cdd9
 	ds 30
 	
 MonType: ; cf5f
-PARTYMON   EQU 0
-OTPARTYMON EQU 1
-BOXMON     EQU 2
-WILDMON    EQU 4
 	ds 1
 
 CurSpecies: ; cf60
@@ -960,19 +955,9 @@ MovementAnimation: ; d042
 	ds 1
 
 WalkingDirection: ; d043
-STANDING EQU -1
-DOWN     EQU 0
-UP       EQU 1
-LEFT     EQU 2
-RIGHT    EQU 3
 	ds 1
 
 FacingDirection: ; d044
-FACE_CURRENT EQU 0
-FACE_DOWN  EQU 8
-FACE_UP    EQU 4
-FACE_LEFT  EQU 2
-FACE_RIGHT EQU 1
 	ds 1
 
 WalkingX: ; d045
@@ -1013,7 +998,7 @@ VramState: ; d0ed
 
 CurMart: ; d0f0
 	ds 16
-CurMartEnd
+CurMartEnd:
 
 	ds 6
 
@@ -1098,7 +1083,7 @@ TempMonSpclAtk: ; d13a
 	ds 2
 TempMonSpclDef: ; d13c
 	ds 2
-TempMonEnd ; d13e
+TempMonEnd: ; d13e
 
 	ds 3
 
@@ -1262,7 +1247,7 @@ EnemyMonMove3: ; d20a
 	ds 1
 EnemyMonMove4: ; d20b
 	ds 1
-EnemyMonMovesEnd
+EnemyMonMovesEnd:
 
 EnemyMonDVs:
 EnemyMonAtkDefDV: ; d20c
@@ -1311,7 +1296,7 @@ EnemyMonSpclAtk: ; d220
 	ds 2
 EnemyMonSpclDef: ; d222
 	ds 2
-EnemyMonStatsEnd
+EnemyMonStatsEnd:
 
 EnemyMonType1: ; d224
 	ds 1
@@ -1326,7 +1311,7 @@ EnemyMonCatchRate: ; d22b
 EnemyMonBaseExp: ; d22c
 	ds 1
 
-EnemyMonEnd
+EnemyMonEnd:
 
 
 IsInBattle: ; d22d
@@ -1427,10 +1412,6 @@ CurDamage: ; d256
 SECTION "TimeOfDay",WRAMX[$d269],BANK[1]
 
 TimeOfDay: ; d269
-MORN     EQU 0
-DAY      EQU 1
-NITE     EQU 2
-DARKNESS EQU 3
 	ds 1
 
 SECTION "OTParty",WRAMX[$d280],BANK[1]
@@ -1565,7 +1546,6 @@ OTPartyMon6Nickname: ; d421
 
 SECTION "Scripting",WRAMX[$d434],BANK[1]
 ScriptFlags: ; d434
-SCRIPT_RUNNING EQU 2
 	ds 1
 ScriptFlags2: ; d435
 	ds 1
@@ -1573,10 +1553,6 @@ ScriptFlags3: ; d436
 	ds 1
 
 ScriptMode: ; d437
-SCRIPT_OFF EQU 0
-SCRIPT_READ EQU 1
-SCRIPT_WAIT_MOVEMENT EQU 2
-SCRIPT_WAIT EQU 3
 	ds 1
 ScriptRunning: ; d438
 	ds 1
@@ -1639,13 +1615,6 @@ GameTimeFrames: ; d4c8
 	ds 2
 
 CurDay: ; d4cb
-SUNDAY    EQU 0
-MONDAY    EQU 1
-TUESDAY   EQU 2
-WEDNESDAY EQU 3
-THURSDAY  EQU 4
-FRIDAY    EQU 5
-SATURDAY  EQU 6
 	ds 1
 
 	ds 10
@@ -1707,11 +1676,6 @@ PlayerSpriteY: ; d4ee
 
 SECTION "Objects",WRAMX[$d71e],BANK[1]
 MapObjects: ; d71e
-
-PLAYER_OBJECT EQU 0
-
-NUM_OBJECTS   EQU $10
-OBJECT_LENGTH EQU $10
 	ds OBJECT_LENGTH * NUM_OBJECTS
 
 
@@ -1754,45 +1718,38 @@ KantoBadges: ; d858
 SECTION "Items",WRAMX[$d859],BANK[1]
 TMsHMs: ; d859
 	ds 57
-TMsHMsEnd
+TMsHMsEnd:
 
 NumItems: ; d892
 	ds 1
 Items: ; d893
 	ds 41
-ItemsEnd
+ItemsEnd:
 
 NumKeyItems: ; d8bc
 	ds 1
 KeyItems: ; d8bd
 	ds 26
-KeyItemsEnd
+KeyItemsEnd:
 
 NumBalls: ; d8d7
 	ds 1
 Balls: ; d8d8
 	ds 25
-BallsEnd
+BallsEnd:
 
 PCItems: ; d8f1
 	ds 101
-PCItemsEnd
+PCItemsEnd:
 
 
 SECTION "overworld",WRAMX[$d95b],BANK[1]
 WhichRegisteredItem: ; d95b
-REGISTERED_POCKET EQU %11000000
-REGISTERED_NUMBER EQU %00111111
 	ds 1
 RegisteredItem: ; d95c
 	ds 1
 
 PlayerState: ; d95d
-PLAYER_NORMAL    EQU 0
-PLAYER_BIKE      EQU 1
-PLAYER_SLIP      EQU 2
-PLAYER_SURF      EQU 4
-PLAYER_SURF_PIKA EQU 8
 	ds 1
 
 SECTION "scriptram",WRAMX[$d962],BANK[1]
@@ -2025,7 +1982,7 @@ PartyMon5Nickname: ; de6d
 	ds 11
 PartyMon6Nickname: ; de78
 	ds 11
-PartyMonNicknamesEnd
+PartyMonNicknamesEnd:
 
 SECTION "Pokedex",WRAMX[$de99],BANK[1]
 PokedexCaught: ; de99
@@ -2145,7 +2102,7 @@ OBPals: ; d0c0
 
 LYOverrides: ; d100
 	ds 144
-LYOverridesEnd
+LYOverridesEnd:
 
 
 SECTION "SRAMBank1",SRAM,BANK[1]
@@ -2318,5 +2275,5 @@ BoxMon19Nickname: ; b148
 	ds 11
 BoxMon20Nickname: ; b153
 	ds 11
-BoxMonNicknamesEnd
+BoxMonNicknamesEnd:
 
