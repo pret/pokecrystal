@@ -5,15 +5,17 @@ Recursively scan an asm file for rgbasm INCLUDEs and INCBINs.
 This is used to generate dependencies for each rgbasm object file.
 """
 
+import os
 import sys
 
 def scan_for_includes(filename):
 	filenames = []
-	for line in open(filename, 'r').readlines():
-		if 'INCLUDE' in line or 'INCBIN' in line:
-			line = line.split(';')[0]
+	if os.path.exists(filename):
+		for line in open(filename, 'r').readlines():
 			if 'INCLUDE' in line or 'INCBIN' in line:
-				filenames += [line.split('"')[1]]
+				line = line.split(';')[0]
+				if 'INCLUDE' in line or 'INCBIN' in line:
+					filenames += [line.split('"')[1]]
 	return filenames
 
 def recursive_scan_for_includes(filename):
