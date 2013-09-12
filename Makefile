@@ -3,7 +3,7 @@ PYTHON := python
 .PHONY: all clean pngs gfx
 .SECONDEXPANSION:
 
-TEXTFILES := $(shell find ./ -type f -name '*.asm')
+TEXTFILES := $(shell find ./ -type f -name '*.asm' | grep -v globals.asm)
 TEXTQUEUE :=
 
 OBJS := pokecrystal.o
@@ -13,12 +13,19 @@ LZS    := $(shell find gfx/ -type f -name '*.lz')
 _2BPPS := $(shell find gfx/ -type f -name '*.2bpp')
 _1BPPS := $(shell find gfx/ -type f -name '*.1bpp')
 
-$(shell $(foreach obj, $(OBJS), $(eval OBJ_$(obj:.o=) := $(shell $(PYTHON) scan_includes.py $(obj:.o=.asm)))))
+# generate a list of dependencies for each object file
+$(shell \
+	$(foreach obj, $(OBJS), \
+		$(eval OBJ_$(obj:.o=) := \
+		$(shell $(PYTHON) scan_includes.py $(obj:.o=.asm) | sed s/globals.asm//g)) \
+	) \
+)
 
-all: baserom.gbc pokecrystal.gbc
+all: baserom.gbc globals.asm pokecrystal.gbc
 	cmp baserom.gbc pokecrystal.gbc
 clean:
 	rm -f pokecrystal.o pokecrystal.gbc
+	rm -f globals.asm globals.tx
 	@echo 'Removing preprocessed .tx files...'
 	@rm -f $(TEXTFILES:.asm=.tx)
 
@@ -29,10 +36,13 @@ baserom.gbc:
 	$(eval TEXTQUEUE := $(TEXTQUEUE) $<)
 	@rm -f $@
 
-$(OBJS): $$(patsubst %.o,%.tx,$$@) $$(patsubst %.asm,%.tx,$$(OBJ_$$(patsubst %.o,%,$$@)))
+globals.asm: $(TEXTFILES:.asm=.tx)
+	@echo "Creating globals.asm..."
+	@touch globals.asm
 	@echo "Preprocessing .asm to .tx..."
-	@$(PYTHON) prequeue.py $(TEXTQUEUE)
-	$(eval TEXTQUEUE := )
+	@$(PYTHON) prequeue.py $(TEXTQUEUE) globals.asm
+
+$(OBJS): $$(patsubst %.o,%.tx,$$@) $$(patsubst %.asm,%.tx,$$(OBJ_$$(patsubst %.o,%,$$@)))
 	rgbasm -o $@ $(@:.o=.tx)
 
 pokecrystal.gbc: $(OBJS)
