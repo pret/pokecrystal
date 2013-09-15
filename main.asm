@@ -11086,7 +11086,7 @@ Function8029: ; 8029
 	ld [$d4cd], a
 	ld [$d4ce], a
 	ld a, $0
-	ld hl, $4071
+	ld hl, Data8071
 	call Function19a6
 	ld b, $0
 	call Function808f
@@ -11117,8 +11117,9 @@ Function8029: ; 8029
 	ret
 ; 8071
 
+Data8071: ; 8071
 INCBIN "baserom.gbc", $8071, $807e - $8071
-
+; 807e
 
 Function807e: ; 807e
 	push de
@@ -12206,23 +12207,202 @@ Function8ade: ; 8ade
 Function8b07: ; 8b07
 	call CheckCGB
 	ret z
-	ld hl, $4b2f
+	ld hl, Palette8b2f
 	ld de, $d000
 	ld bc, $0008
 	ld a, $5
 	call FarCopyWRAM
-	ld hl, $4b37
+
+	ld hl, Palette8b37
 	ld de, MartPointer
 	ld bc, $0008
 	ld a, $5
 	call FarCopyWRAM
+
 	call Function96a4
 	ld a, $1
 	ld [hCGBPalUpdate], a
 	ret
 ; 8b2f
 
-INCBIN "baserom.gbc", $8b2f, $8c43 - $8b2f
+Palette8b2f: ; 8b2f
+	RGB 31, 31, 31
+	RGB 18, 23, 31
+	RGB 15, 20, 31
+	RGB 00, 00, 00
+; 8b37
+
+Palette8b37: ; 8b37
+	RGB 31, 31, 31
+	RGB 31, 31, 12
+	RGB 08, 16, 28
+	RGB 00, 00, 00
+; 8b3f
+
+Function8b3f: ; 8b3f
+	call CheckCGB
+	ret nz
+	ld a, [hSGB]
+	and a
+	ret z
+	ld hl, $5a86
+	jp Function9809
+; 8b4d
+
+Function8b4d: ; 8b4d
+	call CheckCGB
+	jr nz, .asm_8b5c
+	ld a, [hSGB]
+	and a
+	ret z
+	ld hl, $5c26
+	jp Function9809
+
+.asm_8b5c
+	ld de, Unkn2Pals
+	ld a, $3b
+	call Function9625
+	jp Function9630
+; 8b67
+
+Function8b67: ; 8b67
+	call CheckCGB
+	jr nz, .asm_8b76
+	ld a, [hSGB]
+	and a
+	ret z
+	ld hl, $5c36
+	jp Function9809
+
+.asm_8b76
+	ld de, Unkn2Pals
+	ld a, $3c
+	call Function9625
+	jp Function9630
+; 8b81
+
+Function8b81: ; 8b81
+	call CheckCGB
+	jr nz, .asm_8bb2
+	ld a, [hSGB]
+	and a
+	ret z
+	ld a, c
+	push af
+	ld hl, $5ce6
+	ld de, $cda9
+	ld bc, $0010
+	call CopyBytes
+	pop af
+	call Function9775
+	ld a, [hli]
+	ld [$cdac], a
+	ld a, [hli]
+	ld [$cdad], a
+	ld a, [hli]
+	ld [$cdae], a
+	ld a, [hl]
+	ld [$cdaf], a
+	ld hl, $cda9
+	jp Function9809
+
+.asm_8bb2
+	ld de, Unkn2Pals
+	ld a, c
+	call Function9775
+	call Function9643
+	ret
+; 8bbd
+
+Function8bbd: ; 8bbd
+	ld a, [TrainerClass]
+	call Function976b
+	ld a, e
+	jr .asm_8bd7
+
+	ld a, [CurPartySpecies]
+	call Function97ee
+	ld a, e
+	bit 7, a
+	jr z, .asm_8bd7
+	and $7f
+	inc hl
+	inc hl
+	inc hl
+	inc hl
+
+.asm_8bd7
+	push hl
+	ld hl, Unkn1Pals
+	ld de, $0008
+.asm_8bde
+	and a
+	jr z, .asm_8be5
+	add hl, de
+	dec a
+	jr .asm_8bde
+
+.asm_8be5
+	ld e, l
+	ld d, h
+	pop hl
+	call Function9643
+	ret
+; 8bec
+
+Function8bec: ; 8bec
+	ld a, [hCGB]
+	and a
+	jr nz, .asm_8bf7
+	ld hl, PlayerLightScreenCount
+	jp Function9809
+
+.asm_8bf7
+	ld a, [EnemyLightScreenCount]
+	ld c, a
+	ld a, [EnemyReflectCount]
+	ld hl, AttrMap
+	ld de, $0014
+.asm_8c04
+	and a
+	jr z, .asm_8c0b
+	add hl, de
+	dec a
+	jr .asm_8c04
+
+.asm_8c0b
+	ld b, $0
+	add hl, bc
+	ld bc, $0604
+	ld a, [$c705]
+	and $3
+	call Function9663
+	call Function323d
+	ret
+; 8c1d
+
+Function8c1d: ; 8c1d
+	call CheckCGB
+	ret z
+	ld a, e
+	and a
+	jr z, .asm_8c2d
+	ld a, [CurPartySpecies]
+	call Function9775
+	jr .asm_8c33
+
+.asm_8c2d
+	ld a, [TrainerClass]
+	call Function976b
+
+.asm_8c33
+	ld de, Unkn1Pals
+	call Function9643
+	call Function9699
+	call Function96b3
+	call Function96a4
+	ret
+; 8c43
 
 Function8c43: ; 8c43
 	ld a, [$d10a]
@@ -12275,7 +12455,30 @@ Function8c43: ; 8c43
 	ret
 ; 8c8a
 
-INCBIN "baserom.gbc", $8c8a, $8cb4 - $8c8a
+Function8c8a: ; 8c8a
+	call CheckCGB
+	ret z
+	ld hl, $4f6a
+	ld b, $0
+	dec c
+	add hl, bc
+	add hl, bc
+	ld a, [rSVBK]
+	push af
+	ld a, $5
+	ld [rSVBK], a
+	ld a, [hli]
+	ld [Unkn1Pals], a
+	ld [$d010], a
+	ld a, [hl]
+	ld [$d001], a
+	ld [$d011], a
+	pop af
+	ld [rSVBK], a
+	call Function96a4
+	ld a, $1
+	ret
+; 8cb4
 
 Function8cb4: ; 8cb4
 	ld l, e
@@ -12283,7 +12486,7 @@ Function8cb4: ; 8cb4
 	add hl, hl
 	add hl, hl
 	add hl, hl
-	ld de, $4d05
+	ld de, Data8d05
 	add hl, de
 	call CheckCGB
 	jr nz, .asm_8cf0
@@ -12320,8 +12523,9 @@ Function8cb4: ; 8cb4
 	ret
 ; 8d05
 
+Data8d05: ; 8d05
 INCBIN "baserom.gbc", $8d05, $8d55 - $8d05
-
+; 8d55
 
 INCLUDE "predef/cgb.asm"
 
