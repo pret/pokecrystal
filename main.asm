@@ -78413,6 +78413,7 @@ UpdateUsedMoves: ; 105ed0
 
 Mobile_HallOfFame2: ; 0x105ef6
 	ret
+; 105ef7
 
 INCBIN "baserom.gbc", $105ef7, $105f33 - $105ef7
 
@@ -78494,7 +78495,6 @@ Function1060b5: ; 1060b5
 INCBIN "baserom.gbc", $1060b6, $1060bb - $1060b6
 
 Function1060bb: ; 1060bb
-; commented out
 	ret
 ; 1060bc
 
