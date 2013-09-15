@@ -13350,7 +13350,7 @@ DarkPal: ; 0xb3d9
 INCBIN "tilesets/dark.pal"
 ; 0xb419
 
-INCBIN "baserom.gbc", $b419, $b825 - $b419
+INCBIN "baserom.gbc", $b419, $b829 - $b419
 
 
 SECTION "bank3",ROMX,BANK[$3]
