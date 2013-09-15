@@ -58239,7 +58239,7 @@ INCBIN "gfx/fx/039.lz"
 
 INCBIN "baserom.gbc", $8640b, $8640e - $8640b
 
-HallOfFame3: ; 0x8640e
+HallOfFame: ; 0x8640e
 	call Function8648e
 	ld a, [StatusFlags]
 	push af
@@ -78411,7 +78411,7 @@ UpdateUsedMoves: ; 105ed0
 
 
 
-HallOfFame2: ; 0x105ef6
+Mobile_HallOfFame2: ; 0x105ef6
 	ret
 
 INCBIN "baserom.gbc", $105ef7, $105f33 - $105ef7
@@ -78456,7 +78456,7 @@ Function10606a: ; 10606a
 
 INCBIN "baserom.gbc", $10606b, $106078 - $10606b
 
-HallOfFame1: ; 0x106078
+Mobile_HallOfFame: ; 0x106078
 	ret
 
 INCBIN "baserom.gbc", $106079, $106086 - $106079
