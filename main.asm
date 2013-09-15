@@ -12530,7 +12530,7 @@ INCBIN "baserom.gbc", $8d05, $8d55 - $8d05
 INCLUDE "predef/cgb.asm"
 
 
-INCBIN "baserom.gbc", $95e0, $9610 - $95e0
+INCBIN "baserom.gbc", $95f0, $9610 - $95f0
 
 
 Function9610: ; 9610

@@ -889,7 +889,7 @@ Function9578: ; 9578
 ; 9591
 
 Function9591: ; 9591
-	ld hl, $55e0
+	ld hl, Palette95e0
 	ld de, Unkn1Pals
 	ld bc, $0010
 	ld a, $5
@@ -919,4 +919,16 @@ Function9591: ; 9591
 	call Function96b3
 	ret
 ; 95e0
+
+Palette95e0: ; 95e0
+	RGB 31, 31, 31
+	RGB 16, 31, 14
+	RGB 05, 14, 21
+	RGB 05, 13, 10
+
+	RGB 31, 31, 31
+	RGB 11, 21, 25
+	RGB 05, 14, 21
+	RGB 00, 03, 19
+; 95f0
 
