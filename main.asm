@@ -12071,19 +12071,25 @@ SECTION "bank3",ROMX,BANK[$3]
 
 Functionc000: ; c000
 	ld a, [TimeOfDay]
-	ld hl, $4012
-	ld de, $0002
+	ld hl, Datac012
+	ld de, 2
 	call IsInArray
 	inc hl
 	ld c, [hl]
 	ret c
+
 	xor a
 	ld c, a
 	ret
 ; c012
 
-INCBIN "baserom.gbc", $c012, $c01b - $c012
-
+Datac012: ; c012
+	db MORN, 1
+	db DAY,  2
+	db NITE, 4
+	db NITE, 4
+	db $ff
+; c01b
 
 Functionc01b: ; c01b
 	ld hl, SpecialsPointers
