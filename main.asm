@@ -511,12 +511,12 @@ ResetWindow: ; 2dba
 	call Function1fbf
 	ld a, [hROMBank]
 	push af
-	ld a, $1
+	ld a, BANK(Function6454) ; and BANK(Function64bf)
 	rst Bankswitch
 
-	call $6454
+	call Function6454
 	call Function2e20
-	call $64bf
+	call Function64bf
 
 	pop af
 	rst Bankswitch
@@ -549,12 +549,8 @@ Function2de2: ; 2de2
 	ld a, $90
 	ld [hWY], a
 	call Functione4a
-	ld a, $2e
-	ld hl, $4000
-	rst FarCall
-	ld a, $41
-	ld hl, $6594
-	rst FarCall
+	callba Functionb8000
+	callba Function106594
 	ret
 ; 2e08
 
@@ -562,13 +558,13 @@ Function2e08: ; 2e08
 	call Function1fbf
 	ld a, [hROMBank]
 	push af
-	ld a, $1
+	ld a, BANK(Function6454) ; and BANK(Function64bf)
 	rst Bankswitch
 
-	call $6454
+	call Function6454
 	call SpeechTextBox
 	call Function2e20
-	call $64bf
+	call Function64bf
 	pop af
 	rst Bankswitch
 
@@ -580,9 +576,7 @@ Function2e20: ; 2e20
 	push af
 	ld a, $1
 	ld [hOAMUpdate], a
-	ld a, $41
-	ld hl, $4110
-	rst FarCall
+	callba Function104110
 	pop af
 	ld [hOAMUpdate], a
 	ret
@@ -19646,9 +19640,7 @@ StartMenu: ; 125cd
 	ld de, SFX_MENU
 	call StartSFX
 
-	ld a, $1
-	ld hl, $6454
-	rst FarCall
+	callba Function6454
 
 	ld hl, StatusFlags2
 	bit 2, [hl] ; bug catching contest
@@ -67408,9 +67400,7 @@ SECTION "bank2E",ROMX,BANK[$2E]
 Functionb8000: ; b8000
 	xor a
 	ld [hBGMapMode], a
-	ld a, $2e
-	ld hl, $400a
-	rst FarCall
+	callba Functionb800a
 	ret
 ; b800a
 
