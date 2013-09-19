@@ -58007,237 +58007,159 @@ INCBIN "baserom.gbc", $847bd, $84a2e - $847bd
 FX00GFX:
 FX01GFX: ; 84a2e
 INCBIN "gfx/fx/001.lz"
-; 84b15
-
-INCBIN "baserom.gbc", $84b15, $84b1e - $84b15
+; 84b1e
 
 FX02GFX: ; 84b1e
 INCBIN "gfx/fx/002.lz"
-; 84b7a
-
-INCBIN "baserom.gbc", $84b7a, $84b7e - $84b7a
+; 84b7e
 
 FX03GFX: ; 84b7e
 INCBIN "gfx/fx/003.lz"
-; 84bd0
-
-INCBIN "baserom.gbc", $84bd0, $84bde - $84bd0
+; 84bde
 
 FX04GFX: ; 84bde
 INCBIN "gfx/fx/004.lz"
-; 84ca5
-
-INCBIN "baserom.gbc", $84ca5, $84cae - $84ca5
+; 84cae
 
 FX05GFX: ; 84cae
 INCBIN "gfx/fx/005.lz"
-; 84de2
-
-INCBIN "baserom.gbc", $84de2, $84dee - $84de2
+; 84dee
 
 FX07GFX: ; 84dee
 INCBIN "gfx/fx/007.lz"
-; 84e70
-
-INCBIN "baserom.gbc", $84e70, $84e7e - $84e70
+; 84e7e
 
 FX08GFX: ; 84e7e
 INCBIN "gfx/fx/008.lz"
-; 84ed4
-
-INCBIN "baserom.gbc", $84ed4, $84ede - $84ed4
+; 84ede
 
 FX10GFX: ; 84ede
 INCBIN "gfx/fx/010.lz"
-; 84f13
-
-INCBIN "baserom.gbc", $84f13, $84f1e - $84f13
+; 84f1e
 
 FX09GFX: ; 84f1e
 INCBIN "gfx/fx/009.lz"
-; 85009
-
-INCBIN "baserom.gbc", $85009, $8500e - $85009
+; 8500e
 
 FX12GFX: ; 8500e
 INCBIN "gfx/fx/012.lz"
-; 8506f
-
-INCBIN "baserom.gbc", $8506f, $8507e - $8506f
+; 8507e
 
 FX06GFX: ; 8507e
 INCBIN "gfx/fx/006.lz"
-; 8515c
-
-INCBIN "baserom.gbc", $8515c, $8515e - $8515c
+; 8515e
 
 FX11GFX: ; 8515e
 INCBIN "gfx/fx/011.lz"
-; 851ad
-
-INCBIN "baserom.gbc", $851ad, $851ae - $851ad
+; 851ae
 
 FX13GFX: ; 851ae
 INCBIN "gfx/fx/013.lz"
-; 85243
-
-INCBIN "baserom.gbc", $85243, $8524e - $85243
+; 8524e
 
 FX14GFX: ; 8524e
 INCBIN "gfx/fx/014.lz"
-; 852ff
-
-INCBIN "baserom.gbc", $852ff, $8530e - $852ff
+; 8520e
 
 FX24GFX: ; 8530e
 INCBIN "gfx/fx/024.lz"
-; 8537c
-
-INCBIN "baserom.gbc", $8537c, $8537e - $8537c
+; 8537e
 
 FX15GFX: ; 8537e
 INCBIN "gfx/fx/015.lz"
-; 8539a
-
-INCBIN "baserom.gbc", $8539a, $8539e - $8539a
+; 8539e
 
 FX16GFX: ; 8539e
 INCBIN "gfx/fx/016.lz"
-; 8542d
-
-INCBIN "baserom.gbc", $8542d, $8542e - $8542d
+; 8542e
 
 FX17GFX: ; 8542e
 INCBIN "gfx/fx/017.lz"
-; 85477
-
-INCBIN "baserom.gbc", $85477, $8547e - $85477
+; 8547e
 
 FX18GFX: ; 8547e
 INCBIN "gfx/fx/018.lz"
-; 854eb
-
-INCBIN "baserom.gbc", $854eb, $854ee - $854eb
+; 854ee
 
 FX19GFX: ; 854ee
 INCBIN "gfx/fx/019.lz"
-; 855a9
-
-INCBIN "baserom.gbc", $855a9, $855ae - $855a9
+; 855ae
 
 FX20GFX: ; 855ae
 INCBIN "gfx/fx/020.lz"
-; 85627
-
-INCBIN "baserom.gbc", $85627, $8562e - $85627
+; 8562e
 
 FX22GFX: ; 8562e
 INCBIN "gfx/fx/022.lz"
-; 856ec
-
-INCBIN "baserom.gbc", $856ec, $856ee - $856ec
+; 856ee
 
 FX21GFX: ; 856ee
 INCBIN "gfx/fx/021.lz"
-; 85767
-
-INCBIN "baserom.gbc", $85767, $8576e - $85767
+; 8576e
 
 FX23GFX: ; 8576e
 INCBIN "gfx/fx/023.lz"
-; 857d0
-
-INCBIN "baserom.gbc", $857d0, $857de - $857d0
+; 857de
 
 FX26GFX: ; 857de
 INCBIN "gfx/fx/026.lz"
-; 85838
-
-INCBIN "baserom.gbc", $85838, $8583e - $85838
+; 8583e
 
 FX27GFX: ; 8583e
 INCBIN "gfx/fx/027.lz"
-; 858b0
-
-INCBIN "baserom.gbc", $858b0, $858be - $858b0
+; 858be
 
 FX28GFX: ; 858be
 INCBIN "gfx/fx/028.lz"
-; 85948
-
-INCBIN "baserom.gbc", $85948, $8594e - $85948
+; 8594e
 
 FX29GFX: ; 8594e
 INCBIN "gfx/fx/029.lz"
-; 859a8
-
-INCBIN "baserom.gbc", $859a8, $859ae - $859a8
+; 859ae
 
 FX30GFX: ; 859ae
 INCBIN "gfx/fx/030.lz"
-; 859ff
-
-INCBIN "baserom.gbc", $859ff, $85a0e - $859ff
+; 8590e
 
 FX31GFX: ; 85a0e
 INCBIN "gfx/fx/031.lz"
-; 85ba1
-
-INCBIN "baserom.gbc", $85ba1, $85bae - $85ba1
+; 85bae
 
 FX32GFX: ; 85bae
 INCBIN "gfx/fx/032.lz"
-; 85d09
-
-INCBIN "baserom.gbc", $85d09, $85d0e - $85d09
+; 85d0e
 
 FX33GFX: ; 85d0e
 INCBIN "gfx/fx/033.lz"
-; 85def
-
-INCBIN "baserom.gbc", $85def, $85dfe - $85def
+; 85dfe
 
 FX34GFX: ; 85dfe
 INCBIN "gfx/fx/034.lz"
-; 85e96
-
-INCBIN "baserom.gbc", $85e96, $85e9e - $85e96
+; 85e9e
 
 FX25GFX: ; 85e9e
 INCBIN "gfx/fx/025.lz"
-; 85fb8
-
-INCBIN "baserom.gbc", $85fb8, $85fbe - $85fb8
+; 85fbe
 
 FX35GFX: ; 85fbe
 INCBIN "gfx/fx/035.lz"
-; 86099
-
-INCBIN "baserom.gbc", $86099, $8609e - $86099
+; 8609e
 
 FX36GFX: ; 8609e
 INCBIN "gfx/fx/036.lz"
-; 86174
-
-INCBIN "baserom.gbc", $86174, $8617e - $86174
+; 8617e
 
 FX37GFX: ; 8617e
 INCBIN "gfx/fx/037.lz"
-; 862eb
-
-INCBIN "baserom.gbc", $862eb, $862ee - $862eb
+; 862ee
 
 FX38GFX: ; 862ee
 INCBIN "gfx/fx/038.lz"
-; 8637f
-
-INCBIN "baserom.gbc", $8637f, $8638e - $8637f
+; 8638e
 
 FX39GFX: ; 8638e
 INCBIN "gfx/fx/039.lz"
-; 8640b
-
-INCBIN "baserom.gbc", $8640b, $8640e - $8640b
+; 8640e
 
 HallOfFame: ; 0x8640e
 	call Function8648e
