@@ -68460,7 +68460,46 @@ RockMons: ; b83de
 	db $ff ; end
 ; b83e5
 
-INCBIN "baserom.gbc", $b83e5, $b841f - $b83e5
+Functionb83e5: ; b83e5
+	push hl
+	call Functionb8443
+	pop hl
+	and a
+	jr z, .asm_b83f6
+	cp $1
+	jr z, .asm_b8400
+	cp $2
+	jr z, .asm_b840b
+	ret
+
+.asm_b83f6
+	ld a, $a
+	call Function2fb1
+	and a
+	jr nz, Functionb843b
+	jr Functionb841f
+
+.asm_b8400
+	ld a, $a
+	call Function2fb1
+	cp $5
+	jr nc, Functionb843b
+	jr Functionb841f
+
+.asm_b840b
+	ld a, $a
+	call Function2fb1
+	cp $8
+	jr nc, Functionb843b
+	jr .asm_b8416
+
+.asm_b8416
+	ld a, [hli]
+	cp $ff
+	jr nz, .asm_b8416
+	call Functionb841f
+	ret
+; b841f
 
 Functionb841f: ; b841f
 ; Read a TreeMons table.
@@ -68478,7 +68517,8 @@ Functionb841f: ; b841f
 .asm_b842c
 	ld a, [hli]
 	cp $ff
-	jr z, .asm_b843b
+	jr z, Functionb843b
+
 	ld a, [hli]
 	ld [$d22e], a
 	ld a, [hl]
@@ -68486,14 +68526,137 @@ Functionb841f: ; b841f
 	scf
 	ret
 
-.asm_b843b
+Functionb843b: ; b843b
 	xor a
 	ld [$d22e], a
 	ld [CurPartyLevel], a
 	ret
 ; b8443
 
-INCBIN "baserom.gbc", $b8443, $b8f8f - $b8443
+Functionb8443: ; b8443
+	call Functionb8466
+	ld [Buffer1], a
+	call Functionb849d
+	ld [Buffer2], a
+	ld c, a
+	ld a, [Buffer1]
+	sub c
+	jr z, .asm_b8463
+	jr nc, .asm_b845a
+	add $a
+
+.asm_b845a
+	cp $5
+	jr c, .asm_b8460
+	xor a
+	ret
+
+.asm_b8460
+	ld a, $1
+	ret
+
+.asm_b8463
+	ld a, $2
+	ret
+; b8466
+
+Functionb8466: ; b8466
+	call GetFacingTileCoord
+	ld hl, $0000
+	ld c, e
+	ld b, $0
+	ld a, d
+	and a
+	jr z, .asm_b8477
+
+.asm_b8473
+	add hl, bc
+	dec a
+	jr nz, .asm_b8473
+
+.asm_b8477
+	add hl, bc
+	ld c, d
+	add hl, bc
+	ld a, h
+	ld [hProduct], a
+	ld a, l
+	ld [hMultiplicand], a
+	ld a, $5
+	ld [hMultiplier], a
+	ld b, $2
+	call Divide
+	ld a, [$ffb5]
+	ld [hProduct], a
+	ld a, [$ffb6]
+	ld [hMultiplicand], a
+	ld a, $a
+	ld [hMultiplier], a
+	ld b, $2
+	call Divide
+	ld a, [hMultiplier]
+	ret
+; b849d
+
+Functionb849d: ; b849d
+	ld a, [PlayerID]
+	ld [hProduct], a
+	ld a, [$d47c]
+	ld [hMultiplicand], a
+	ld a, $a
+	ld [hMultiplier], a
+	ld b, $2
+	call Divide
+	ld a, [hMultiplier]
+	ret
+; b84b3
+
+Functionb84b3: ; b84b3
+	ld a, [rVBK]
+	push af
+	ld a, $1
+	ld [rVBK], a
+	ld de, FishingGFX
+	ld a, [PlayerGender]
+	bit 0, a
+	jr z, .asm_b84c7
+	ld de, KrisFishingGFX
+
+.asm_b84c7
+	ld hl, $8020
+	call Functionb84e3
+	ld hl, $8060
+	call Functionb84e3
+	ld hl, $80a0
+	call Functionb84e3
+	ld hl, $8fc0
+	call Functionb84e3
+	pop af
+	ld [rVBK], a
+	ret
+; b84e3
+
+Functionb84e3: ; b84e3
+	ld bc, $2e02
+	push de
+	call Get2bpp
+	pop de
+	ld hl, $0020
+	add hl, de
+	ld d, h
+	ld e, l
+	ret
+; b84f2
+
+FishingGFX: ; b84f2
+INCBIN "baserom.gbc", $b84f2, $b8582 - $b84f2
+; b8582
+
+KrisFishingGFX: ; b8582
+INCBIN "baserom.gbc", $b8582, $b8612 - $b8582
+; b8612
+
+INCBIN "baserom.gbc", $b8612, $b8f8f - $b8612
 
 Functionb8f8f: ; b8f8f
 	ld a, c
