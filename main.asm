@@ -59326,7 +59326,7 @@ DrawIntroPlayerPic: ; 88874
 .GotPic
 	ld hl, VTiles2
 	ld b, BANK(ChrisPic)
-	ld c, $31
+	ld c, 7 * 7 ; dimensions
 	call Get2bpp
 
 ; Draw
@@ -59353,15 +59353,17 @@ GetKrisBackpic: ; 88ec9
 ; Kris's backpic is uncompressed.
 	ld de, KrisBackpic
 	ld hl, $9310
-	ld bc, $2231
+	ld bc, BANK(KrisBackpic) << 8 + (7 * 7) ; dimensions
 	call Get2bpp
 	ret
 ; 88ed6
 
 KrisBackpic: ; 88ed6
+INCBIN "baserom.gbc", $88ed6, $89116 - $88ed6
+; 89116
 
 
-INCBIN "baserom.gbc", $88ed6, $89160 - $88ed6
+INCBIN "baserom.gbc", $89116, $89160 - $89116
 
 Function89160: ; 89160
 	push af
