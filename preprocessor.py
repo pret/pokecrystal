@@ -3,7 +3,7 @@
 
 import sys
 
-import extras.pokemontools.config as conf
+import extras.pokemontools.configuration as configiguration
 import extras.pokemontools.preprocessor as preprocessor
 
 from extras.pokemontools.crystal import (
@@ -50,7 +50,7 @@ def preprocess(config, macros, lines=None):
     return processor.preprocess(lines=lines)
 
 def main():
-    config = conf.Config()
+    config = configuration.Config()
     macros = load_pokecrystal_macros()
     return preprocess(config, macros)
 
