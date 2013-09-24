@@ -1676,7 +1676,7 @@ PlayerSpriteY: ; d4ee
 
 SECTION "Objects",WRAMX[$d71e],BANK[1]
 MapObjects: ; d71e
-	ds OBJECT_LENGTH * NUM_OBJECTS
+	ds $10 ; OBJECT_LENGTH * NUM_OBJECTS
 
 
 SECTION "VariableSprites",WRAMX[$d82e],BANK[1]
