@@ -2773,7 +2773,7 @@ Unknown_0x979ee: ; 0x979ee
 Script_wildoff: ; 0x979f5
 ; script command 0x38
 
-	ld hl, $d84c
+	ld hl, StatusFlags
 	set 5, [hl]
 	ret
 ; 0x979fb
@@ -2781,7 +2781,7 @@ Script_wildoff: ; 0x979f5
 Script_wildon: ; 0x979fb
 ; script command 0x37
 
-	ld hl, $d84c
+	ld hl, StatusFlags
 	res 5, [hl]
 	ret
 ; 0x97a01
