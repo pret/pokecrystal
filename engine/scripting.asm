@@ -54,8 +54,8 @@ ScriptCommandTable: ; 0x96cb1
 	dw Script_checkbit2
 	dw Script_clearbit2
 	dw Script_setbit2
-	dw Script_wildoff
 	dw Script_wildon
+	dw Script_wildoff
 	dw Script_xycompare
 	dw Script_warpmod
 	dw Script_blackoutmod
@@ -2770,7 +2770,7 @@ Unknown_0x979ee: ; 0x979ee
 	ret
 ; 0x979f5
 
-Script_wildon: ; 0x979f5
+Script_wildoff: ; 0x979f5
 ; script command 0x38
 
 	ld hl, $d84c
@@ -2778,7 +2778,7 @@ Script_wildon: ; 0x979f5
 	ret
 ; 0x979fb
 
-Script_wildoff: ; 0x979fb
+Script_wildon: ; 0x979fb
 ; script command 0x37
 
 	ld hl, $d84c
