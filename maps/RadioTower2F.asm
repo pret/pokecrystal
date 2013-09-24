@@ -17,7 +17,7 @@ SuperNerdScript_0x5d6fe: ; 0x5d6fe
 TeacherScript_0x5d701: ; 0x5d701
 	faceplayer
 	loadfont
-	checkbit2 $0013
+	checkflag $0013
 	iftrue UnknownScript_0x5d70f
 	2writetext UnknownText_0x5d956
 	closetext
@@ -168,15 +168,15 @@ GruntF2Script: ; 0x5d76d
 BuenaScript_0x5d775: ; 0x5d775
 	faceplayer
 	loadfont
-	checkbit2 $0013
+	checkflag $0013
 	iftrue UnknownScript_0x5d865
 	checkevent EVENT_MET_BUENA
 	iffalse UnknownScript_0x5d800
-	checkbit2 $0060
+	checkflag $0060
 	iftrue UnknownScript_0x5d82f
 	checkcode $a
 	if_greater_than $12, UnknownScript_0x5d893
-	checkbit2 $005f
+	checkflag $005f
 	iffalse UnknownScript_0x5d80a
 	checkitem BLUE_CARD
 	iffalse UnknownScript_0x5d86b
@@ -213,7 +213,7 @@ UnknownScript_0x5d7be: ; 0x5d7be
 	writevarcode $18
 	waitbutton
 	playsound $0022
-	setbit2 $0060
+	setflag $0060
 	pause 20
 	spriteface $b, $3
 	loadfont
@@ -272,7 +272,7 @@ UnknownScript_0x5d83f: ; 0x5d83f
 ; 0x5d845
 
 UnknownScript_0x5d845: ; 0x5d845
-	setbit2 $0060
+	setflag $0060
 	loadfont
 	2writetext UnknownText_0x5e01c
 	closetext

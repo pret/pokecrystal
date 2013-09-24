@@ -72,7 +72,7 @@ MapRuinsofAlphHoOhChamberSignpost2Script: ; 0x585ae
 UnknownScript_0x585ba: ; 0x585ba
 	setevent $0705
 	setevent $02a0
-	setbit2 $002e
+	setflag $002e
 	domaptrigger GROUP_RUINS_OF_ALPH_INNER_CHAMBER, MAP_RUINS_OF_ALPH_INNER_CHAMBER, $1
 	earthquake 30
 	showemote $0, $0, 15

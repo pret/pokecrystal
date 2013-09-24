@@ -100,7 +100,7 @@ UnknownScript_0x196ec9: ; 0x196ec9
 	2writetext UnknownText_0x1973cc
 	playsound $0001
 	waitbutton
-	setbit2 $000b
+	setflag $000b
 	2writetext UnknownText_0x1973de
 	closetext
 	loadmovesprites

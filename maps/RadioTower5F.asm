@@ -123,12 +123,12 @@ UnknownScript_0x6006e: ; 0x6006e
 	special $0032
 	setevent $0571
 	setevent EVENT_CLEARED_RADIO_TOWER
-	clearbit2 $0013
+	clearflag $0013
 	setevent $06cc
 	setevent $06cd
 	setevent $06ce
 	clearevent $0736
-	clearbit2 $0017
+	clearflag $0017
 	clearevent $06cf
 	clearevent $06d0
 	setevent $06e3

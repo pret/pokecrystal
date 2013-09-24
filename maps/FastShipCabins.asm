@@ -52,7 +52,7 @@ TwinScript_0x75ebb: ; 0x75ebb
 	showemote $0, $3, 15
 	applymovement $4, MovementData_0x7600c
 	spriteface $3, $3
-	checkbit2 $0063
+	checkflag $0063
 	iftrue UnknownScript_0x75f03
 	loadfont
 	2writetext UnknownText_0x76284

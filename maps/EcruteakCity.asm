@@ -11,7 +11,7 @@ EcruteakCity_MapScriptHeader: ; 0x1a4000
 ; 0x1a4005
 
 UnknownScript_0x1a4005: ; 0x1a4005
-	setbit2 $0048
+	setflag $0048
 	return
 ; 0x1a4009
 

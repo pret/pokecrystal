@@ -13,7 +13,7 @@ GoldenrodDeptStoreRoof_MapScriptHeader: ; 0x56713
 ; 0x5671b
 
 UnknownScript_0x5671b: ; 0x5671b
-	checkbit2 $0061
+	checkflag $0061
 	iftrue UnknownScript_0x56722
 	return
 ; 0x56722
@@ -25,7 +25,7 @@ UnknownScript_0x56722: ; 0x56722
 ; 0x5672b
 
 UnknownScript_0x5672b: ; 0x5672b
-	checkbit2 $0061
+	checkflag $0061
 	iftrue UnknownScript_0x56738
 	setevent $06f0
 	clearevent $06f1

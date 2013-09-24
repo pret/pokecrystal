@@ -9,7 +9,7 @@ VermilionGym_MapScriptHeader: ; 0x1920a3
 SurgeScript_0x1920a5: ; 0x1920a5
 	faceplayer
 	loadfont
-	checkbit2 $0025
+	checkflag $0025
 	iftrue UnknownScript_0x1920d9
 	2writetext UnknownText_0x192142
 	closetext
@@ -26,7 +26,7 @@ SurgeScript_0x1920a5: ; 0x1920a5
 	2writetext UnknownText_0x192277
 	playsound $009c
 	waitbutton
-	setbit2 $0025
+	setflag $0025
 	2writetext UnknownText_0x192291
 	closetext
 	loadmovesprites
@@ -149,7 +149,7 @@ MapVermilionGymSignpost14Script: ; 0x19212f
 ; 0x192132
 
 MapVermilionGymSignpost16Script: ; 0x192132
-	checkbit2 $0025
+	checkflag $0025
 	iftrue UnknownScript_0x19213b
 	jumpstd $002d
 ; 0x19213b

@@ -78,7 +78,7 @@ MapRuinsofAlphKabutoChamberSignpost2Script: ; 0x5876c
 UnknownScript_0x58778: ; 0x58778
 	setevent $0705
 	setevent $02a1
-	setbit2 $002b
+	setflag $002b
 	setevent $074e
 	domaptrigger GROUP_RUINS_OF_ALPH_INNER_CHAMBER, MAP_RUINS_OF_ALPH_INNER_CHAMBER, $1
 	earthquake 30

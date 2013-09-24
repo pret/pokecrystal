@@ -15,7 +15,7 @@ UnknownScript_0x18e154: ; 0x18e154
 	iffalse UnknownScript_0x18e177
 	checkevent $00c0
 	iftrue UnknownScript_0x18e177
-	checkbit2 $0050
+	checkflag $0050
 	iftrue UnknownScript_0x18e16f
 	disappear $5
 	appear $2
@@ -178,7 +178,7 @@ UnknownScript_0x18e293: ; 0x18e293
 
 UnknownScript_0x18e299: ; 0x18e299
 	setevent $0000
-	setbit2 $0050
+	setflag $0050
 UnknownScript_0x18e29f: ; 0x18e29f
 	2writetext UnknownText_0x18e779
 	closetext
@@ -204,7 +204,7 @@ UnknownScript_0x18e2b2: ; 0x18e2b2
 ; 0x18e2b4
 
 UnknownScript_0x18e2b4: ; 0x18e2b4
-	checkbit2 $0050
+	checkflag $0050
 	iftrue UnknownScript_0x18e3c5
 	2writetext UnknownText_0x18e7fb
 	keeptextopen
@@ -216,7 +216,7 @@ UnknownScript_0x18e2c4: ; 0x18e2c4
 ; 0x18e2ca
 
 UnknownScript_0x18e2ca: ; 0x18e2ca
-	checkbit2 $0050
+	checkflag $0050
 	iftrue UnknownScript_0x18e3c5
 	2writetext UnknownText_0x18e7fb
 	keeptextopen
@@ -228,7 +228,7 @@ UnknownScript_0x18e2da: ; 0x18e2da
 ; 0x18e2e0
 
 UnknownScript_0x18e2e0: ; 0x18e2e0
-	checkbit2 $0050
+	checkflag $0050
 	iftrue UnknownScript_0x18e3c5
 	2writetext UnknownText_0x18e7fb
 	keeptextopen
@@ -240,7 +240,7 @@ UnknownScript_0x18e2f0: ; 0x18e2f0
 ; 0x18e2f6
 
 UnknownScript_0x18e2f6: ; 0x18e2f6
-	checkbit2 $0050
+	checkflag $0050
 	iftrue UnknownScript_0x18e3c5
 	2writetext UnknownText_0x18e7fb
 	keeptextopen
@@ -252,7 +252,7 @@ UnknownScript_0x18e306: ; 0x18e306
 ; 0x18e30c
 
 UnknownScript_0x18e30c: ; 0x18e30c
-	checkbit2 $0050
+	checkflag $0050
 	iftrue UnknownScript_0x18e3c5
 	2writetext UnknownText_0x18e7fb
 	keeptextopen
@@ -264,7 +264,7 @@ UnknownScript_0x18e31c: ; 0x18e31c
 ; 0x18e322
 
 UnknownScript_0x18e322: ; 0x18e322
-	checkbit2 $0050
+	checkflag $0050
 	iftrue UnknownScript_0x18e3c5
 	2writetext UnknownText_0x18e7fb
 	keeptextopen
@@ -276,7 +276,7 @@ UnknownScript_0x18e332: ; 0x18e332
 ; 0x18e338
 
 UnknownScript_0x18e338: ; 0x18e338
-	checkbit2 $0050
+	checkflag $0050
 	iftrue UnknownScript_0x18e3c5
 	2writetext UnknownText_0x18e7fb
 	keeptextopen
@@ -297,12 +297,12 @@ UnknownScript_0x18e34e: ; 0x18e34e
 	loadmovesprites
 	setevent $00bf
 	takeitem GS_BALL, 1
-	setbit2 $0050
+	setflag $0050
 	end
 ; 0x18e368
 
 UnknownScript_0x18e368: ; 0x18e368
-	checkbit2 $0050
+	checkflag $0050
 	iffalse UnknownScript_0x18e378
 	2writetext UnknownText_0x18e934
 	closetext

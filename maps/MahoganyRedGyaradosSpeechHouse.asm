@@ -13,7 +13,7 @@ BlackBeltScript_0x19997f: ; 0x19997f
 TeacherScript_0x199982: ; 0x199982
 	faceplayer
 	loadfont
-	checkbit2 $0013
+	checkflag $0013
 	iftrue UnknownScript_0x199990
 	2writetext UnknownText_0x199a0e
 	closetext

@@ -226,7 +226,7 @@ HikerParry3Script: ; 0x19e17e
 	writecode $17, $23
 	talkaftercancel
 	loadfont
-	checkbit2 $007b
+	checkflag $007b
 	iftrue UnknownScript_0x19e1b8
 	checkcellnum $23
 	iftrue UnknownScript_0x19e127
@@ -268,7 +268,7 @@ UnknownScript_0x19e1db: ; 0x19e1db
 	startbattle
 	returnafterbattle
 	loadvar $da0c, $1
-	clearbit2 $007b
+	clearflag $007b
 	end
 ; 0x19e1e8
 
@@ -277,7 +277,7 @@ UnknownScript_0x19e1e8: ; 0x19e1e8
 	startbattle
 	returnafterbattle
 	loadvar $da0c, $2
-	clearbit2 $007b
+	clearflag $007b
 	end
 ; 0x19e1f5
 
@@ -285,7 +285,7 @@ UnknownScript_0x19e1f5: ; 0x19e1f5
 	loadtrainer HIKER, PARRY2
 	startbattle
 	returnafterbattle
-	clearbit2 $007b
+	clearflag $007b
 	checkevent EVENT_PARRY_IRON
 	iftrue UnknownScript_0x19e219
 	checkevent $0268

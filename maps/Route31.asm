@@ -45,9 +45,9 @@ Bug_catcherWade1Script: ; 0x1a5453
 	writecode $17, $10
 	talkaftercancel
 	loadfont
-	checkbit2 $006c
+	checkflag $006c
 	iftrue UnknownScript_0x1a5493
-	checkbit2 $007f
+	checkflag $007f
 	iftrue UnknownScript_0x1a5507
 	checkcellnum $10
 	iftrue UnknownScript_0x1a5558
@@ -87,17 +87,17 @@ UnknownScript_0x1a54b8: ; 0x1a54b8
 	checkevent EVENT_CLEARED_RADIO_TOWER
 	iftrue UnknownScript_0x1a54f1
 UnknownScript_0x1a54be: ; 0x1a54be
-	checkbit2 $0049
+	checkflag $0049
 	iftrue UnknownScript_0x1a54e4
 UnknownScript_0x1a54c4: ; 0x1a54c4
-	checkbit2 $0046
+	checkflag $0046
 	iftrue UnknownScript_0x1a54d7
 UnknownScript_0x1a54ca: ; 0x1a54ca
 	loadtrainer BUG_CATCHER, WADE1
 	startbattle
 	returnafterbattle
 	loadvar $d9fa, $1
-	clearbit2 $006c
+	clearflag $006c
 	end
 ; 0x1a54d7
 
@@ -106,7 +106,7 @@ UnknownScript_0x1a54d7: ; 0x1a54d7
 	startbattle
 	returnafterbattle
 	loadvar $d9fa, $2
-	clearbit2 $006c
+	clearflag $006c
 	end
 ; 0x1a54e4
 
@@ -115,7 +115,7 @@ UnknownScript_0x1a54e4: ; 0x1a54e4
 	startbattle
 	returnafterbattle
 	loadvar $d9fa, $3
-	clearbit2 $006c
+	clearflag $006c
 	end
 ; 0x1a54f1
 
@@ -124,7 +124,7 @@ UnknownScript_0x1a54f1: ; 0x1a54f1
 	startbattle
 	returnafterbattle
 	loadvar $d9fa, $4
-	clearbit2 $006c
+	clearflag $006c
 	end
 ; 0x1a54fe
 
@@ -132,7 +132,7 @@ UnknownScript_0x1a54fe: ; 0x1a54fe
 	loadtrainer BUG_CATCHER, WADE5
 	startbattle
 	returnafterbattle
-	clearbit2 $006c
+	clearflag $006c
 	end
 ; 0x1a5507
 
@@ -168,7 +168,7 @@ UnknownScript_0x1a553d: ; 0x1a553d
 	verbosegiveitem BITTER_BERRY, 1
 	iffalse UnknownScript_0x1a5549
 UnknownScript_0x1a5543: ; 0x1a5543
-	clearbit2 $007f
+	clearflag $007f
 	2jump UnknownScript_0x1a5558
 ; 0x1a5549
 

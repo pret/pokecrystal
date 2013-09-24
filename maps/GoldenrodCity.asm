@@ -13,8 +13,8 @@ GoldenrodCity_MapScriptHeader: ; 0x1988d0
 ; 0x1988d8
 
 UnknownScript_0x1988d8: ; 0x1988d8
-	setbit2 $0046
-	setbit2 $0016
+	setflag $0046
+	setflag $0016
 	checkevent $00b9
 	iftrue UnknownScript_0x1988e7
 	clearevent $0769
@@ -36,7 +36,7 @@ UnknownScript_0x1988fd: ; 0x1988fd
 ; 0x198900
 
 UnknownScript_0x198900: ; 0x198900
-	checkbit2 $005e
+	checkflag $005e
 	iftrue UnknownScript_0x198908
 	appear $10
 UnknownScript_0x198908: ; 0x198908
@@ -144,7 +144,7 @@ UnknownScript_0x1989ca: ; 0x1989ca
 	playsound $001f
 	disappear $10
 	clearevent $076b
-	setbit2 $005e
+	setflag $005e
 	waitbutton
 	end
 ; 0x1989d7
@@ -192,7 +192,7 @@ UnknownScript_0x1989f7: ; 0x1989f7
 CooltrainerFScript_0x1989fd: ; 0x1989fd
 	faceplayer
 	loadfont
-	checkbit2 $0000
+	checkflag $0000
 	iftrue UnknownScript_0x198a0b
 	2writetext UnknownText_0x198b73
 	closetext

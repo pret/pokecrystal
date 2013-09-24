@@ -16,7 +16,7 @@ UnknownScript_0x1ab4fa: ; 0x1ab4fa
 BlaineScript_0x1ab4fb: ; 0x1ab4fb
 	faceplayer
 	loadfont
-	checkbit2 $0029
+	checkflag $0029
 	iftrue UnknownScript_0x1ab52b
 	2writetext UnknownText_0x1ab548
 	closetext
@@ -33,7 +33,7 @@ UnknownScript_0x1ab516: ; 0x1ab516
 	2writetext UnknownText_0x1ab683
 	playsound $009c
 	waitbutton
-	setbit2 $0029
+	setflag $0029
 	2writetext UnknownText_0x1ab69d
 	closetext
 	loadmovesprites

@@ -38,7 +38,7 @@ ChuckScript_0x9d60f: ; 0x9d60f
 	2writetext UnknownText_0x9d835
 	playsound $009c
 	waitbutton
-	setbit2 $0020
+	setflag $0020
 	checkcode $7
 	2call UnknownScript_0x9d681
 UnknownScript_0x9d656: ; 0x9d656
@@ -202,7 +202,7 @@ BoulderScript_0x9d6e0: ; 0x9d6e0
 ; 0x9d6e3
 
 MapCianwoodGymSignpost1Script: ; 0x9d6e3
-	checkbit2 $0020
+	checkflag $0020
 	iftrue UnknownScript_0x9d6ec
 	jumpstd $002d
 ; 0x9d6ec

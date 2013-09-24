@@ -50,7 +50,7 @@ UnknownScript_0x54037: ; 0x54037
 UnknownScript_0x54044: ; 0x54044
 	checkevent EVENT_GOT_TM45_ATTRACT
 	iftrue UnknownScript_0x54077
-	checkbit2 $001d
+	checkflag $001d
 	iftrue UnknownScript_0x54064
 	2writetext UnknownText_0x54222
 	keeptextopen
@@ -58,7 +58,7 @@ UnknownScript_0x54044: ; 0x54044
 	2writetext UnknownText_0x54273
 	playsound $009c
 	waitbutton
-	setbit2 $001d
+	setflag $001d
 	checkcode $7
 	2call UnknownScript_0x5407d
 UnknownScript_0x54064: ; 0x54064
@@ -244,7 +244,7 @@ GoldenrodGymGuyScript: ; 0x540f7
 ; 0x5410c
 
 MapGoldenrodGymSignpost1Script: ; 0x5410c
-	checkbit2 $001d
+	checkflag $001d
 	iftrue UnknownScript_0x54115
 	jumpstd $002d
 ; 0x54115

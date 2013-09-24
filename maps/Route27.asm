@@ -98,9 +98,9 @@ Bird_keeperJose2Script: ; 0x1a08bf
 	writecode $17, $d
 	talkaftercancel
 	loadfont
-	checkbit2 $0069
+	checkflag $0069
 	iftrue UnknownScript_0x1a08ff
-	checkbit2 $007e
+	checkflag $007e
 	iftrue UnknownScript_0x1a0945
 	checkcellnum $d
 	iftrue UnknownScript_0x1a0963
@@ -142,7 +142,7 @@ UnknownScript_0x1a0922: ; 0x1a0922
 	startbattle
 	returnafterbattle
 	loadvar $d9f7, $1
-	clearbit2 $0069
+	clearflag $0069
 	end
 ; 0x1a092f
 
@@ -151,7 +151,7 @@ UnknownScript_0x1a092f: ; 0x1a092f
 	startbattle
 	returnafterbattle
 	loadvar $d9f7, $2
-	clearbit2 $0069
+	clearflag $0069
 	end
 ; 0x1a093c
 
@@ -159,7 +159,7 @@ UnknownScript_0x1a093c: ; 0x1a093c
 	loadtrainer BIRD_KEEPER, JOSE3
 	startbattle
 	returnafterbattle
-	clearbit2 $0069
+	clearflag $0069
 	end
 ; 0x1a0945
 
@@ -167,7 +167,7 @@ UnknownScript_0x1a0945: ; 0x1a0945
 	2call UnknownScript_0x1a0973
 	verbosegiveitem STAR_PIECE, 1
 	iffalse UnknownScript_0x1a0954
-	clearbit2 $007e
+	clearflag $007e
 	2jump UnknownScript_0x1a0963
 ; 0x1a0954
 
@@ -302,7 +302,7 @@ CooltrainerfReena1Script: ; 0x1a09af
 	writecode $17, $e
 	talkaftercancel
 	loadfont
-	checkbit2 $006a
+	checkflag $006a
 	iftrue UnknownScript_0x1a09e9
 	checkcellnum $e
 	iftrue UnknownScript_0x1a0a3b
@@ -344,7 +344,7 @@ UnknownScript_0x1a0a0c: ; 0x1a0a0c
 	startbattle
 	returnafterbattle
 	loadvar $d9f8, $1
-	clearbit2 $006a
+	clearflag $006a
 	end
 ; 0x1a0a19
 
@@ -353,7 +353,7 @@ UnknownScript_0x1a0a19: ; 0x1a0a19
 	startbattle
 	returnafterbattle
 	loadvar $d9f8, $2
-	clearbit2 $006a
+	clearflag $006a
 	end
 ; 0x1a0a26
 
@@ -361,7 +361,7 @@ UnknownScript_0x1a0a26: ; 0x1a0a26
 	loadtrainer COOLTRAINERF, REENA3
 	startbattle
 	returnafterbattle
-	clearbit2 $006a
+	clearflag $006a
 	end
 ; 0x1a0a2f
 

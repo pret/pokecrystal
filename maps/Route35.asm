@@ -256,9 +256,9 @@ Bug_catcherArnie1Script: ; 0x19c97b
 	writecode $17, $17
 	talkaftercancel
 	loadfont
-	checkbit2 $0072
+	checkflag $0072
 	iftrue UnknownScript_0x19c9bb
-	checkbit2 $00a1
+	checkflag $00a1
 	iftrue UnknownScript_0x19ca2f
 	checkcellnum $17
 	iftrue UnknownScript_0x19c90f
@@ -298,17 +298,17 @@ UnknownScript_0x19c9e0: ; 0x19c9e0
 	checkevent $0044
 	iftrue UnknownScript_0x19ca19
 UnknownScript_0x19c9e6: ; 0x19c9e6
-	checkbit2 $004b
+	checkflag $004b
 	iftrue UnknownScript_0x19ca0c
 UnknownScript_0x19c9ec: ; 0x19c9ec
-	checkbit2 $004a
+	checkflag $004a
 	iftrue UnknownScript_0x19c9ff
 UnknownScript_0x19c9f2: ; 0x19c9f2
 	loadtrainer BUG_CATCHER, ARNIE1
 	startbattle
 	returnafterbattle
 	loadvar $da01, $1
-	clearbit2 $0072
+	clearflag $0072
 	end
 ; 0x19c9ff
 
@@ -317,7 +317,7 @@ UnknownScript_0x19c9ff: ; 0x19c9ff
 	startbattle
 	returnafterbattle
 	loadvar $da01, $2
-	clearbit2 $0072
+	clearflag $0072
 	end
 ; 0x19ca0c
 
@@ -326,7 +326,7 @@ UnknownScript_0x19ca0c: ; 0x19ca0c
 	startbattle
 	returnafterbattle
 	loadvar $da01, $3
-	clearbit2 $0072
+	clearflag $0072
 	end
 ; 0x19ca19
 
@@ -335,7 +335,7 @@ UnknownScript_0x19ca19: ; 0x19ca19
 	startbattle
 	returnafterbattle
 	loadvar $da01, $4
-	clearbit2 $0072
+	clearflag $0072
 	end
 ; 0x19ca26
 
@@ -343,7 +343,7 @@ UnknownScript_0x19ca26: ; 0x19ca26
 	loadtrainer BUG_CATCHER, ARNIE5
 	startbattle
 	returnafterbattle
-	clearbit2 $0072
+	clearflag $0072
 	end
 ; 0x19ca2f
 

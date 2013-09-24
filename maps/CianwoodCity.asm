@@ -23,7 +23,7 @@ UnknownScript_0x1a000e: ; 0x1a000e
 ; 0x1a000f
 
 UnknownScript_0x1a000f: ; 0x1a000f
-	setbit2 $0045
+	setflag $0045
 	setevent $07aa
 	checkevent $0333
 	iffalse UnknownScript_0x1a001d

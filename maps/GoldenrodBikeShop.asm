@@ -26,7 +26,7 @@ ClerkScript_0x54750: ; 0x54750
 	playsound $0091
 	waitbutton
 	itemnotify
-	setbit2 $0014
+	setflag $0014
 	setevent EVENT_GOT_BICYCLE
 UnknownScript_0x54775: ; 0x54775
 	2writetext UnknownText_0x5485f

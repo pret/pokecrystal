@@ -7,7 +7,7 @@ FuchsiaGym_MapScriptHeader: ; 0x195db7
 ; 0x195db9
 
 JanineScript_0x195db9: ; 0x195db9
-	checkbit2 $0027
+	checkflag $0027
 	iftrue UnknownScript_0x195e00
 	applymovement $2, MovementData_0x195f27
 	faceplayer
@@ -33,7 +33,7 @@ JanineScript_0x195db9: ; 0x195db9
 	2writetext UnknownText_0x195feb
 	playsound $009c
 	waitbutton
-	setbit2 $0027
+	setflag $0027
 	2jump UnknownScript_0x195e02
 ; 0x195e00
 
@@ -221,7 +221,7 @@ FuchsiaGymGuyScript: ; 0x195f03
 ; 0x195f17
 
 MapFuchsiaGymSignpost1Script: ; 0x195f17
-	checkbit2 $0027
+	checkflag $0027
 	iftrue UnknownScript_0x195f20
 	jumpstd $002d
 ; 0x195f20

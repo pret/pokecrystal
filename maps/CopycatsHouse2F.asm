@@ -11,7 +11,7 @@ CopycatsHouse2F_MapScriptHeader: ; 0x18ae9a
 ; 0x18ae9f
 
 UnknownScript_0x18ae9f: ; 0x18ae9f
-	checkbit2 $0063
+	checkflag $0063
 	iftrue UnknownScript_0x18aeac
 	disappear $7
 	appear $2
@@ -33,7 +33,7 @@ CopycatScript_0x18aeb1: ; 0x18aeb1
 	iftrue UnknownScript_0x18af5b
 	checkitem LOST_ITEM
 	iftrue UnknownScript_0x18af4a
-	checkbit2 $0063
+	checkflag $0063
 	iftrue UnknownScript_0x18aed4
 	applymovement $2, MovementData_0x18afd0
 	faceplayer
@@ -50,7 +50,7 @@ UnknownScript_0x18aedc: ; 0x18aedc
 	checkevent EVENT_RETURNED_MACHINE_PART
 	iftrue UnknownScript_0x18af16
 	loadfont
-	checkbit2 $0063
+	checkflag $0063
 	iftrue UnknownScript_0x18aef2
 	2writetext UnknownText_0x18afda
 	2jump UnknownScript_0x18aef5
@@ -61,7 +61,7 @@ UnknownScript_0x18aef2: ; 0x18aef2
 UnknownScript_0x18aef5: ; 0x18aef5
 	closetext
 	loadmovesprites
-	checkbit2 $0063
+	checkflag $0063
 	iftrue UnknownScript_0x18af04
 	applymovement $2, MovementData_0x18afd0
 	2jump UnknownScript_0x18af08
@@ -82,7 +82,7 @@ UnknownScript_0x18af08: ; 0x18af08
 
 UnknownScript_0x18af16: ; 0x18af16
 	loadfont
-	checkbit2 $0063
+	checkflag $0063
 	iftrue UnknownScript_0x18af23
 	2writetext UnknownText_0x18b064
 	2jump UnknownScript_0x18af26
@@ -93,7 +93,7 @@ UnknownScript_0x18af23: ; 0x18af23
 UnknownScript_0x18af26: ; 0x18af26
 	closetext
 	loadmovesprites
-	checkbit2 $0063
+	checkflag $0063
 	iftrue UnknownScript_0x18af35
 	applymovement $2, MovementData_0x18afd0
 	2jump UnknownScript_0x18af39
@@ -138,7 +138,7 @@ UnknownScript_0x18af5c: ; 0x18af5c
 ; 0x18af6f
 
 UnknownScript_0x18af6f: ; 0x18af6f
-	checkbit2 $0063
+	checkflag $0063
 	iftrue UnknownScript_0x18af80
 	applymovement $2, MovementData_0x18afd0
 	faceplayer
@@ -153,7 +153,7 @@ UnknownScript_0x18af80: ; 0x18af80
 UnknownScript_0x18af88: ; 0x18af88
 	special $005e
 	loadfont
-	checkbit2 $0063
+	checkflag $0063
 	iftrue UnknownScript_0x18af98
 	2writetext UnknownText_0x18b298
 	2jump UnknownScript_0x18af9b
@@ -164,7 +164,7 @@ UnknownScript_0x18af98: ; 0x18af98
 UnknownScript_0x18af9b: ; 0x18af9b
 	closetext
 	loadmovesprites
-	checkbit2 $0063
+	checkflag $0063
 	iftrue UnknownScript_0x18afaa
 	applymovement $2, MovementData_0x18afd0
 	2jump UnknownScript_0x18afae

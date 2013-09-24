@@ -23,7 +23,7 @@ UnknownScript_0x1a0f5a: ; 0x1a0f5a
 ; 0x1a0f5b
 
 UnknownScript_0x1a0f5b: ; 0x1a0f5b
-	checkbit2 $001b
+	checkflag $001b
 	iftrue UnknownScript_0x1a0f64
 UnknownScript_0x1a0f61: ; 0x1a0f61
 	disappear $8

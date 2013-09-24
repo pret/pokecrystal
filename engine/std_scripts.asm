@@ -138,7 +138,7 @@ PokeCenterNurseScript: ; bc09c
 	checkphonecall
 	iftrue .done
 ; Has Pokerus already been found in the Pokecenter?
-	checkbit2 $000d
+	checkflag $000d
 	iftrue .done
 ; Check for Pokerus
 	special $004e ; SPECIAL_CHECKPOKERUS
@@ -178,7 +178,7 @@ PokeCenterNurseScript: ; bc09c
 	loadmovesprites
 .endpokerus
 ; Don't tell us about Pokerus again
-	setbit2 $000d
+	setflag $000d
 ; Trigger Elm's Pokerus phone call
 	specialphonecall $0001
 	end
@@ -359,7 +359,7 @@ UnknownScript_0xbc23e: ; 0xbc23e
 ; 0xbc242
 
 UnknownScript_0xbc242: ; 0xbc242
-	setbit2 $0013
+	setflag $0013
 	setevent $06cf
 	setevent $06d1
 	clearevent $06ce
@@ -380,7 +380,7 @@ UnknownScript_0xbc25c: ; 0xbc25c
 	applymovement $0, MovementData_0xbcea1
 
 UnknownScript_0xbc274: ; bc274
-	clearbit2 $0011
+	clearflag $0011
 	clearevent $02d2
 	clearevent $0313
 	clearevent $0314
@@ -440,7 +440,7 @@ UnknownScript_0xbc2b1: ; 0xbc2b1
 	setevent $0727
 	setevent $0728
 	setevent $0729
-	setbit2 $0051
+	setflag $0051
 	special $003c
 	end
 ; 0xbc31e
@@ -659,8 +659,8 @@ UnknownScript_0xbc3db: ; 0xbc3db
 	setevent $07af
 	setevent $07ae
 	setevent $07cf
-	setbit2 $000e
-	setbit2 $0017
+	setflag $000e
+	setflag $0017
 	variablesprite $4, $52
 	variablesprite $5, $4
 	variablesprite $6, $35
@@ -2398,7 +2398,7 @@ UnknownScript_0xbcf2f: ; 0xbcf2f
 	2jump UnknownScript_0xbcf37
 
 UnknownScript_0xbcf37: ; 0xbcf37
-	checkbit2 $0008
+	checkflag $0008
 	iffalse UnknownScript_0xbcf49
 	checkmoney $1, 0
 	if_equal $0, UnknownScript_0xbcf55
@@ -2436,13 +2436,13 @@ UnknownScript_0xbcf79: ; 0xbcf79
 	2jump MomPhoneWontSaveMoneyScript
 
 MomPhoneSaveMoneyScript: ; 0xbcf87
-	setbit2 $0008
+	setflag $0008
 	3writetext $6d, $4289
 	keeptextopen
 	2jump MomPhoneHangUpScript
 
 MomPhoneWontSaveMoneyScript: ; 0xbcf92
-	clearbit2 $0008
+	clearflag $0008
 	3writetext BANK(MomPhoneWontSaveMoneyText), MomPhoneWontSaveMoneyText
 	keeptextopen
 	2jump MomPhoneHangUpScript
@@ -2465,7 +2465,7 @@ MomPhoneNoGymQuestScript: ; 0xbcfac
 
 MomPhoneLectureScript: ; 0xbcfb1
 	setevent $0040
-	setbit2 $0009
+	setflag $0009
 	specialphonecall $0000
 	3writetext BANK(MomPhoneLectureText), MomPhoneLectureText
 	yesorno

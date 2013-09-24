@@ -51,9 +51,9 @@ ScriptCommandTable: ; 0x96cb1
 	dw Script_checkevent
 	dw Script_clearevent
 	dw Script_setevent
-	dw Script_checkbit2
-	dw Script_clearbit2
-	dw Script_setbit2
+	dw Script_checkflag
+	dw Script_clearflag
+	dw Script_setflag
 	dw Script_wildon
 	dw Script_wildoff
 	dw Script_xycompare
@@ -2715,7 +2715,7 @@ Script_checkevent: ; 0x979a4
 	ret
 ; 0x979bb
 
-Script_setbit2: ; 0x979bb
+Script_setflag: ; 0x979bb
 ; script command 0x36
 ; parameters:
 ;     bit_number (MultiByteParam)
@@ -2729,7 +2729,7 @@ Script_setbit2: ; 0x979bb
 	ret
 ; 0x979c9
 
-Script_clearbit2: ; 0x979c9
+Script_clearflag: ; 0x979c9
 ; script command 0x35
 ; parameters:
 ;     bit_number (MultiByteParam)
@@ -2743,7 +2743,7 @@ Script_clearbit2: ; 0x979c9
 	ret
 ; 0x979d7
 
-Script_checkbit2: ; 0x979d7
+Script_checkflag: ; 0x979d7
 ; script command 0x34
 ; parameters:
 ;     bit_number (MultiByteParam)

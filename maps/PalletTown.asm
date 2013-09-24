@@ -11,7 +11,7 @@ PalletTown_MapScriptHeader: ; 0x1ac6cc
 ; 0x1ac6d1
 
 UnknownScript_0x1ac6d1: ; 0x1ac6d1
-	setbit2 $0035
+	setflag $0035
 	return
 ; 0x1ac6d5
 

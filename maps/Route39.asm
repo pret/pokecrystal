@@ -39,7 +39,7 @@ PokefanmDerek1Script: ; 0x1a5b0b
 	writecode $17, $1c
 	talkaftercancel
 	loadfont
-	checkbit2 $0083
+	checkflag $0083
 	iftrue UnknownScript_0x1a5b4a
 	checkcellnum $1c
 	iftrue UnknownScript_0x1a5b6e
@@ -69,7 +69,7 @@ UnknownScript_0x1a5b4a: ; 0x1a5b4a
 	2call UnknownScript_0x1a5b7a
 	verbosegiveitem NUGGET, 1
 	iffalse UnknownScript_0x1a5b59
-	clearbit2 $0083
+	clearflag $0083
 	2jump UnknownScript_0x1a5b6e
 ; 0x1a5b59
 

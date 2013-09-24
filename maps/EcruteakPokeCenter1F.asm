@@ -51,7 +51,7 @@ UnknownScript_0x98e95: ; 0x98e95
 	playsound $0023
 	disappear $6
 	clearevent $0712
-	setbit2 $0053
+	setflag $0053
 	dotrigger $1
 	waitbutton
 	end

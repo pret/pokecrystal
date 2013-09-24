@@ -88,9 +88,9 @@ LassDana1Script: ; 0x1a1d42
 	writecode $17, $1a
 	talkaftercancel
 	loadfont
-	checkbit2 $0074
+	checkflag $0074
 	iftrue UnknownScript_0x1a1d82
-	checkbit2 $0082
+	checkflag $0082
 	iftrue UnknownScript_0x1a1df6
 	checkcellnum $1a
 	iftrue UnknownScript_0x1a1e17
@@ -133,14 +133,14 @@ UnknownScript_0x1a1dad: ; 0x1a1dad
 	checkevent EVENT_CLEARED_RADIO_TOWER
 	iftrue UnknownScript_0x1a1dd3
 UnknownScript_0x1a1db3: ; 0x1a1db3
-	checkbit2 $0045
+	checkflag $0045
 	iftrue UnknownScript_0x1a1dc6
 UnknownScript_0x1a1db9: ; 0x1a1db9
 	loadtrainer LASS, DANA1
 	startbattle
 	returnafterbattle
 	loadvar $da03, $1
-	clearbit2 $0074
+	clearflag $0074
 	end
 ; 0x1a1dc6
 
@@ -149,7 +149,7 @@ UnknownScript_0x1a1dc6: ; 0x1a1dc6
 	startbattle
 	returnafterbattle
 	loadvar $da03, $2
-	clearbit2 $0074
+	clearflag $0074
 	end
 ; 0x1a1dd3
 
@@ -158,7 +158,7 @@ UnknownScript_0x1a1dd3: ; 0x1a1dd3
 	startbattle
 	returnafterbattle
 	loadvar $da03, $3
-	clearbit2 $0074
+	clearflag $0074
 	end
 ; 0x1a1de0
 
@@ -167,7 +167,7 @@ UnknownScript_0x1a1de0: ; 0x1a1de0
 	startbattle
 	returnafterbattle
 	loadvar $da03, $4
-	clearbit2 $0074
+	clearflag $0074
 	end
 ; 0x1a1ded
 
@@ -175,7 +175,7 @@ UnknownScript_0x1a1ded: ; 0x1a1ded
 	loadtrainer LASS, DANA5
 	startbattle
 	returnafterbattle
-	clearbit2 $0074
+	clearflag $0074
 	end
 ; 0x1a1df6
 
@@ -183,7 +183,7 @@ UnknownScript_0x1a1df6: ; 0x1a1df6
 	2call UnknownScript_0x1a1e27
 	verbosegiveitem THUNDERSTONE, 1
 	iffalse UnknownScript_0x1a1e08
-	clearbit2 $0082
+	clearflag $0082
 	setevent $0102
 	2jump UnknownScript_0x1a1e17
 ; 0x1a1e08
@@ -261,7 +261,7 @@ SchoolboyChad1Script: ; 0x1a1e3b
 	writecode $17, $1b
 	talkaftercancel
 	loadfont
-	checkbit2 $0075
+	checkflag $0075
 	iftrue UnknownScript_0x1a1e75
 	checkcellnum $1b
 	iftrue UnknownScript_0x1a1ef5
@@ -304,14 +304,14 @@ UnknownScript_0x1a1ea0: ; 0x1a1ea0
 	checkevent EVENT_CLEARED_RADIO_TOWER
 	iftrue UnknownScript_0x1a1ec6
 UnknownScript_0x1a1ea6: ; 0x1a1ea6
-	checkbit2 $0049
+	checkflag $0049
 	iftrue UnknownScript_0x1a1eb9
 UnknownScript_0x1a1eac: ; 0x1a1eac
 	loadtrainer SCHOOLBOY, CHAD1
 	startbattle
 	returnafterbattle
 	loadvar $da04, $1
-	clearbit2 $0075
+	clearflag $0075
 	end
 ; 0x1a1eb9
 
@@ -320,7 +320,7 @@ UnknownScript_0x1a1eb9: ; 0x1a1eb9
 	startbattle
 	returnafterbattle
 	loadvar $da04, $2
-	clearbit2 $0075
+	clearflag $0075
 	end
 ; 0x1a1ec6
 
@@ -329,7 +329,7 @@ UnknownScript_0x1a1ec6: ; 0x1a1ec6
 	startbattle
 	returnafterbattle
 	loadvar $da04, $3
-	clearbit2 $0075
+	clearflag $0075
 	end
 ; 0x1a1ed3
 
@@ -338,7 +338,7 @@ UnknownScript_0x1a1ed3: ; 0x1a1ed3
 	startbattle
 	returnafterbattle
 	loadvar $da04, $4
-	clearbit2 $0075
+	clearflag $0075
 	end
 ; 0x1a1ee0
 
@@ -346,7 +346,7 @@ UnknownScript_0x1a1ee0: ; 0x1a1ee0
 	loadtrainer SCHOOLBOY, CHAD5
 	startbattle
 	returnafterbattle
-	clearbit2 $0075
+	clearflag $0075
 	end
 ; 0x1a1ee9
 

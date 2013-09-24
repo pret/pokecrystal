@@ -29,7 +29,7 @@ UnknownScript_0x194e23: ; 0x194e23
 ClairScript_0x194e24: ; 0x194e24
 	faceplayer
 	loadfont
-	checkbit2 $0022
+	checkflag $0022
 	iftrue UnknownScript_0x194e69
 	checkevent EVENT_BEAT_CLAIR
 	iftrue UnknownScript_0x194e63
@@ -200,7 +200,7 @@ BlackthornGymGuyScript: ; 0x194ed6
 ; 0x194eea
 
 MapBlackthornGym1FSignpost1Script: ; 0x194eea
-	checkbit2 $0022
+	checkflag $0022
 	iftrue UnknownScript_0x194ef3
 	jumpstd $002d
 ; 0x194ef3

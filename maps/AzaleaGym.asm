@@ -23,7 +23,7 @@ BugsyScript_0x18ec1e: ; 0x18ec1e
 	2writetext UnknownText_0x18ee14
 	playsound $009c
 	waitbutton
-	setbit2 $001c
+	setflag $001c
 	checkcode $7
 	2call UnknownScript_0x18ec73
 UnknownScript_0x18ec48: ; 0x18ec48
@@ -230,7 +230,7 @@ AzaleaGymGuyScript: ; 0x18ece6
 ; 0x18ecfb
 
 MapAzaleaGymSignpost1Script: ; 0x18ecfb
-	checkbit2 $001c
+	checkflag $001c
 	iftrue UnknownScript_0x18ed04
 	jumpstd $002d
 ; 0x18ed04

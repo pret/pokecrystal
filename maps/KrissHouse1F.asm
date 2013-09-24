@@ -40,8 +40,8 @@ UnknownScript_0x7a4f6: ; 0x7a4f6
 	keeptextopen
 	stringtotext GearName, $1
 	2call UnknownScript_0x7a57e
-	setbit2 $0004
-	setbit2 $0002
+	setflag $0004
+	setflag $0002
 	addcellnum $1
 	dotrigger $1
 	setevent $06c7

@@ -59,7 +59,7 @@ PicnickerErin1Script: ; 0x1a96a0
 	writecode $17, $24
 	talkaftercancel
 	loadfont
-	checkbit2 $007c
+	checkflag $007c
 	iftrue UnknownScript_0x1a96da
 	checkcellnum $24
 	iftrue UnknownScript_0x1a975b
@@ -101,7 +101,7 @@ UnknownScript_0x1a96fd: ; 0x1a96fd
 	startbattle
 	returnafterbattle
 	loadvar $da0d, $1
-	clearbit2 $007c
+	clearflag $007c
 	end
 ; 0x1a970a
 
@@ -110,7 +110,7 @@ UnknownScript_0x1a970a: ; 0x1a970a
 	startbattle
 	returnafterbattle
 	loadvar $da0d, $2
-	clearbit2 $007c
+	clearflag $007c
 	end
 ; 0x1a9717
 
@@ -118,7 +118,7 @@ UnknownScript_0x1a9717: ; 0x1a9717
 	loadtrainer PICNICKER, ERIN3
 	startbattle
 	returnafterbattle
-	clearbit2 $007c
+	clearflag $007c
 	checkevent EVENT_ERIN_CALCIUM
 	iftrue UnknownScript_0x1a973b
 	checkevent $0269

@@ -79,7 +79,7 @@ SageScript_0x98062: ; 0x98062
 	loadfont
 	checkevent EVENT_CLEARED_RADIO_TOWER
 	iftrue UnknownScript_0x9807c
-	checkbit2 $001e
+	checkflag $001e
 	iftrue UnknownScript_0x98076
 	2writetext UnknownText_0x980d1
 	closetext

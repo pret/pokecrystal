@@ -23,7 +23,7 @@ JasmineScript_0x9c12f: ; 0x9c12f
 	2writetext UnknownText_0x9c33a
 	playsound $009c
 	waitbutton
-	setbit2 $001f
+	setflag $001f
 	checkcode $7
 	2call UnknownScript_0x9c178
 UnknownScript_0x9c159: ; 0x9c159
@@ -92,7 +92,7 @@ OlivineGymGuyScript: ; 0x9c187
 ; 0x9c1a9
 
 MapOlivineGymSignpost1Script: ; 0x9c1a9
-	checkbit2 $001f
+	checkflag $001f
 	iftrue UnknownScript_0x9c1b2
 	jumpstd $002d
 ; 0x9c1b2

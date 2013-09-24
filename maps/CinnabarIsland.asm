@@ -11,7 +11,7 @@ CinnabarIsland_MapScriptHeader: ; 0x1ac9a7
 ; 0x1ac9ac
 
 UnknownScript_0x1ac9ac: ; 0x1ac9ac
-	setbit2 $003f
+	setflag $003f
 	return
 ; 0x1ac9b0
 

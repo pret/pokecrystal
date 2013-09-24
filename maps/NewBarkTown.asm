@@ -23,7 +23,7 @@ UnknownScript_0x1a800e: ; 0x1a800e
 ; 0x1a800f
 
 UnknownScript_0x1a800f: ; 0x1a800f
-	setbit2 $0041
+	setflag $0041
 	clearevent $0076
 	return
 ; 0x1a8016

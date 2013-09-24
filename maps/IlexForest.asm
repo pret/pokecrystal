@@ -528,7 +528,7 @@ UnknownScript_0x6ee42: ; 0x6ee42
 	pause 30
 	spriteface $0, $0
 	pause 20
-	clearbit2 $0064
+	clearflag $0064
 	special $008f
 	loadpokedata CELEBI, 30
 	startbattle

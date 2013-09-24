@@ -59,7 +59,7 @@ SailorHuey1Script: ; 0x5af91
 	writecode $17, $7
 	talkaftercancel
 	loadfont
-	checkbit2 $0066
+	checkflag $0066
 	iftrue UnknownScript_0x5afc7
 	checkcellnum $7
 	iftrue UnknownScript_0x5b05f
@@ -103,7 +103,7 @@ UnknownScript_0x5aff4: ; 0x5aff4
 	startbattle
 	returnafterbattle
 	loadvar $d9f4, $1
-	clearbit2 $0066
+	clearflag $0066
 	end
 ; 0x5b001
 
@@ -112,7 +112,7 @@ UnknownScript_0x5b001: ; 0x5b001
 	startbattle
 	returnafterbattle
 	loadvar $d9f4, $2
-	clearbit2 $0066
+	clearflag $0066
 	end
 ; 0x5b00e
 
@@ -121,7 +121,7 @@ UnknownScript_0x5b00e: ; 0x5b00e
 	startbattle
 	returnafterbattle
 	loadvar $d9f4, $3
-	clearbit2 $0066
+	clearflag $0066
 	end
 ; 0x5b01b
 
@@ -129,7 +129,7 @@ UnknownScript_0x5b01b: ; 0x5b01b
 	loadtrainer SAILOR, HUEY4
 	startbattle
 	returnafterbattle
-	clearbit2 $0066
+	clearflag $0066
 	checkevent EVENT_HUEY_PROTEIN
 	iftrue UnknownScript_0x5b03f
 	checkevent $0265

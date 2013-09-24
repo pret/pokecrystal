@@ -172,7 +172,7 @@ GentlemanScript_0x994c6: ; 0x994c6
 ; 0x994f3
 
 UnknownScript_0x994f3: ; 0x994f3
-	checkbit2 $0063
+	checkflag $0063
 	iftrue UnknownScript_0x994ff
 	2writetext UnknownText_0x99891
 	closetext

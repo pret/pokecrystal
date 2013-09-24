@@ -23,7 +23,7 @@ UnknownScript_0x19c00e: ; 0x19c00e
 ; 0x19c00f
 
 UnknownScript_0x19c00f: ; 0x19c00f
-	setbit2 $0042
+	setflag $0042
 	return
 ; 0x19c013
 
@@ -75,7 +75,7 @@ UnknownScript_0x19c01f: ; 0x19c01f
 	keeptextopen
 	stringtotext .mapcardname, $1
 	2call .UnknownScript_0x19c097
-	setbit2 $0001
+	setflag $0001
 	2writetext UnknownText_0x19c438
 	keeptextopen
 	2writetext UnknownText_0x19c451
@@ -192,7 +192,7 @@ UnknownScript_0x19c12f: ; 0x19c12f
 TeacherScript_0x19c146: ; 0x19c146
 	faceplayer
 	loadfont
-	checkbit2 $0001
+	checkflag $0001
 	iftrue UnknownScript_0x19c154
 	2writetext UnknownText_0x19c650
 	closetext
@@ -210,7 +210,7 @@ UnknownScript_0x19c154: ; 0x19c154
 YoungsterScript_0x19c15a: ; 0x19c15a
 	faceplayer
 	loadfont
-	checkbit2 $000b
+	checkflag $000b
 	iftrue UnknownScript_0x19c168
 	2writetext UnknownText_0x19c6d6
 	closetext

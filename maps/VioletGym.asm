@@ -23,7 +23,7 @@ FalknerScript_0x683c2: ; 0x683c2
 	2writetext UnknownText_0x685af
 	playsound $009c
 	waitbutton
-	setbit2 $001b
+	setflag $001b
 	checkcode $7
 	2call UnknownScript_0x68418
 UnknownScript_0x683ec: ; 0x683ec
@@ -142,7 +142,7 @@ VioletGymGuyScript: ; 0x6844f
 ; 0x68463
 
 MapVioletGymSignpost1Script: ; 0x68463
-	checkbit2 $001b
+	checkflag $001b
 	iftrue UnknownScript_0x6846c
 	jumpstd $002d
 ; 0x6846c

@@ -245,7 +245,7 @@ UnknownScript_0x7c140: ; 0x7c140
 
 GrampsScript_0x7c146: ; 0x7c146
 	loadfont
-	checkbit2 $0056
+	checkflag $0056
 	iftrue UnknownScript_0x7c300
 	checkcode $b
 	if_equal MONDAY, UnknownScript_0x7c156
@@ -270,7 +270,7 @@ SuperNerdScript_0x7c161: ; 0x7c161
 ; 0x7c173
 
 UnknownScript_0x7c173: ; 0x7c173
-	checkbit2 $005a
+	checkflag $005a
 	iftrue UnknownScript_0x7c208
 	special $0051
 	2writetext UnknownText_0x7c5f9
@@ -283,7 +283,7 @@ UnknownScript_0x7c173: ; 0x7c173
 	special $0061
 	if_equal $0, UnknownScript_0x7c1fc
 	if_equal $1, UnknownScript_0x7c1fc
-	setbit2 $005a
+	setflag $005a
 	if_equal $2, UnknownScript_0x7c1a9
 	if_equal $3, UnknownScript_0x7c1b5
 	2jump UnknownScript_0x7c1c1
@@ -362,7 +362,7 @@ SuperNerdScript_0x7c20e: ; 0x7c20e
 ; 0x7c220
 
 UnknownScript_0x7c220: ; 0x7c220
-	checkbit2 $005a
+	checkflag $005a
 	iftrue UnknownScript_0x7c2b5
 	special $0051
 	2writetext UnknownText_0x7c75c
@@ -375,7 +375,7 @@ UnknownScript_0x7c220: ; 0x7c220
 	special $0062
 	if_equal $0, UnknownScript_0x7c2a9
 	if_equal $1, UnknownScript_0x7c2a9
-	setbit2 $005a
+	setflag $005a
 	if_equal $2, UnknownScript_0x7c256
 	if_equal $3, UnknownScript_0x7c262
 	2jump UnknownScript_0x7c26e

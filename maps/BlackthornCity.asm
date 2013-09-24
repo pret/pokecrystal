@@ -13,7 +13,7 @@ BlackthornCity_MapScriptHeader: ; 0x1a46d0
 ; 0x1a46d8
 
 UnknownScript_0x1a46d8: ; 0x1a46d8
-	setbit2 $004b
+	setflag $004b
 	return
 ; 0x1a46dc
 

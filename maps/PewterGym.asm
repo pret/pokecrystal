@@ -9,7 +9,7 @@ PewterGym_MapScriptHeader: ; 0x1a2862
 BrockScript_0x1a2864: ; 0x1a2864
 	faceplayer
 	loadfont
-	checkbit2 $0023
+	checkflag $0023
 	iftrue UnknownScript_0x1a2892
 	2writetext UnknownText_0x1a28d0
 	closetext
@@ -24,7 +24,7 @@ BrockScript_0x1a2864: ; 0x1a2864
 	2writetext UnknownText_0x1a2a3d
 	playsound $009c
 	waitbutton
-	setbit2 $0023
+	setflag $0023
 	2writetext UnknownText_0x1a2a57
 	closetext
 	loadmovesprites
@@ -85,7 +85,7 @@ PewterGymGuyScript: ; 0x1a28ac
 ; 0x1a28c0
 
 MapPewterGymSignpost1Script: ; 0x1a28c0
-	checkbit2 $0023
+	checkflag $0023
 	iftrue UnknownScript_0x1a28c9
 	jumpstd $002d
 ; 0x1a28c9

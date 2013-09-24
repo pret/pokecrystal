@@ -71,7 +71,7 @@ MapRuinsofAlphAerodactylChamberSignpost2Script: ; 0x58deb
 UnknownScript_0x58df7: ; 0x58df7
 	setevent $0705
 	setevent $02a3
-	setbit2 $002d
+	setflag $002d
 	domaptrigger GROUP_RUINS_OF_ALPH_INNER_CHAMBER, MAP_RUINS_OF_ALPH_INNER_CHAMBER, $1
 	earthquake 30
 	showemote $0, $0, 15

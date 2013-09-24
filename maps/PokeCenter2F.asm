@@ -333,7 +333,7 @@ UnknownScript_0x192a25: ; 0x192a25
 LinkReceptionistScript_0x192a2d: ; 0x192a2d
 	checkevent $0712
 	iftrue UnknownScript_0x192a25
-	checkbit2 $0053
+	checkflag $0053
 	iftrue UnknownScript_0x192a25
 	special $000a
 	faceplayer
@@ -460,7 +460,7 @@ UnknownScript_0x192af7: ; 0x192af7
 ; 0x192b04
 
 UnknownScript_0x192b04: ; 0x192b04
-	checkbit2 $0063
+	checkflag $0063
 	iftrue UnknownScript_0x192b12
 	applymovement2 MovementData_0x192cca
 	applymovement $0, MovementData_0x192cde
@@ -485,7 +485,7 @@ UnknownScript_0x192b12: ; 0x192b12
 	writebyte $80
 	special $0098
 	applymovement $0, MovementData_0x192d1c
-	setbit2 $009f
+	setflag $009f
 	special $0038
 	loadfont
 	2writetext UnknownText_0x19329a
@@ -497,7 +497,7 @@ UnknownScript_0x192b12: ; 0x192b12
 ; 0x192b50
 
 UnknownScript_0x192b50: ; 0x192b50
-	checkbit2 $009f
+	checkflag $009f
 	iftrue UnknownScript_0x192b63
 	applymovement $2, MovementData_0x192d04
 	applymovement $0, MovementData_0x192cf5
@@ -508,7 +508,7 @@ UnknownScript_0x192b50: ; 0x192b50
 UnknownScript_0x192b63: ; 0x192b63
 	applymovement $2, MovementData_0x192d04
 	applymovement $0, MovementData_0x192d28
-	clearbit2 $009f
+	clearflag $009f
 	playsound $00ca
 	applymovement $0, MovementData_0x192d17
 	writebyte $90
@@ -521,7 +521,7 @@ UnknownScript_0x192b63: ; 0x192b63
 ; 0x192b8a
 
 UnknownScript_0x192b8a: ; 0x192b8a
-	checkbit2 $009f
+	checkflag $009f
 	iftrue UnknownScript_0x192b9d
 	applymovement $3, MovementData_0x192d04
 	applymovement $0, MovementData_0x192cf5
@@ -532,7 +532,7 @@ UnknownScript_0x192b8a: ; 0x192b8a
 UnknownScript_0x192b9d: ; 0x192b9d
 	applymovement $3, MovementData_0x192d04
 	applymovement $0, MovementData_0x192d28
-	clearbit2 $009f
+	clearflag $009f
 	playsound $00ca
 	applymovement $0, MovementData_0x192d17
 	writebyte $90
@@ -545,7 +545,7 @@ UnknownScript_0x192b9d: ; 0x192b9d
 ; 0x192bc4
 
 UnknownScript_0x192bc4: ; 0x192bc4
-	checkbit2 $0063
+	checkflag $0063
 	iftrue UnknownScript_0x192bec
 	checkcode $9
 	if_equal $2, UnknownScript_0x192bdc
@@ -604,7 +604,7 @@ UnknownScript_0x192c20: ; 0x192c20
 	special $0098
 	applymovement $0, MovementData_0x192d22
 	faceperson $0, $4
-	setbit2 $009f
+	setflag $009f
 	special $0038
 	loadfont
 	2writetext UnknownText_0x19329a
@@ -617,7 +617,7 @@ UnknownScript_0x192c20: ; 0x192c20
 
 UnknownScript_0x192c4e: ; 0x192c4e
 	special $0008
-	checkbit2 $009f
+	checkflag $009f
 	iftrue UnknownScript_0x192c66
 	applymovement $4, MovementData_0x192d08
 	applymovement $0, MovementData_0x192cf9
@@ -628,7 +628,7 @@ UnknownScript_0x192c4e: ; 0x192c4e
 UnknownScript_0x192c66: ; 0x192c66
 	applymovement $4, MovementData_0x192d08
 	applymovement $0, MovementData_0x192cfc
-	clearbit2 $009f
+	clearflag $009f
 	playsound $00ca
 	applymovement $0, MovementData_0x192d17
 	writebyte $90

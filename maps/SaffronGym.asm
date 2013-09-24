@@ -9,7 +9,7 @@ SaffronGym_MapScriptHeader: ; 0x189c2c
 SabrinaScript_0x189c2e: ; 0x189c2e
 	faceplayer
 	loadfont
-	checkbit2 $0028
+	checkflag $0028
 	iftrue UnknownScript_0x189c65
 	2writetext UnknownText_0x189cdf
 	closetext
@@ -27,7 +27,7 @@ SabrinaScript_0x189c2e: ; 0x189c2e
 	2writetext UnknownText_0x189e95
 	playsound $009c
 	waitbutton
-	setbit2 $0028
+	setflag $0028
 	2writetext UnknownText_0x189ead
 	closetext
 	loadmovesprites
@@ -175,7 +175,7 @@ SaffronGymGuyScript: ; 0x189cbb
 ; 0x189ccf
 
 MapSaffronGymSignpost0Script: ; 0x189ccf
-	checkbit2 $0028
+	checkflag $0028
 	iftrue UnknownScript_0x189cd8
 	jumpstd $002d
 ; 0x189cd8

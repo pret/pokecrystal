@@ -55,9 +55,9 @@ FisherTully1Script: ; 0x1a923f
 	writecode $17, $1d
 	talkaftercancel
 	loadfont
-	checkbit2 $0076
+	checkflag $0076
 	iftrue UnknownScript_0x1a927f
-	checkbit2 $0084
+	checkflag $0084
 	iftrue UnknownScript_0x1a92dc
 	checkcellnum $1d
 	iftrue UnknownScript_0x1a92fd
@@ -103,7 +103,7 @@ UnknownScript_0x1a92ac: ; 0x1a92ac
 	startbattle
 	returnafterbattle
 	loadvar $da06, $1
-	clearbit2 $0076
+	clearflag $0076
 	end
 ; 0x1a92b9
 
@@ -112,7 +112,7 @@ UnknownScript_0x1a92b9: ; 0x1a92b9
 	startbattle
 	returnafterbattle
 	loadvar $da06, $2
-	clearbit2 $0076
+	clearflag $0076
 	end
 ; 0x1a92c6
 
@@ -121,7 +121,7 @@ UnknownScript_0x1a92c6: ; 0x1a92c6
 	startbattle
 	returnafterbattle
 	loadvar $da06, $3
-	clearbit2 $0076
+	clearflag $0076
 	end
 ; 0x1a92d3
 
@@ -129,7 +129,7 @@ UnknownScript_0x1a92d3: ; 0x1a92d3
 	loadtrainer FISHER, TULLY4
 	startbattle
 	returnafterbattle
-	clearbit2 $0076
+	clearflag $0076
 	end
 ; 0x1a92dc
 
@@ -137,7 +137,7 @@ UnknownScript_0x1a92dc: ; 0x1a92dc
 	2call UnknownScript_0x1a930d
 	verbosegiveitem WATER_STONE, 1
 	iffalse UnknownScript_0x1a92ee
-	clearbit2 $0084
+	clearflag $0084
 	setevent $0103
 	2jump UnknownScript_0x1a92fd
 ; 0x1a92ee

@@ -55,7 +55,7 @@ UnknownScript_0x59192: ; 0x59192
 	2writetext UnknownText_0x592fa
 	playsound $0001
 	waitbutton
-	setbit2 $000c
+	setflag $000c
 	2writetext UnknownText_0x59311
 	closetext
 	loadmovesprites
@@ -88,7 +88,7 @@ ScientistScript_0x591e5: ; 0x591e5
 	loadfont
 	checkcode $e
 	if_equal 26, UnknownScript_0x5920b
-	checkbit2 $000c
+	checkflag $000c
 	iftrue UnknownScript_0x59205
 	checkevent EVENT_MADE_UNOWN_APPEAR_IN_RUINS
 	iftrue UnknownScript_0x591ff

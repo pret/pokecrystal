@@ -203,9 +203,9 @@ SchoolboyAlan1Script: ; 0x194100
 	writecode $17, $18
 	talkaftercancel
 	loadfont
-	checkbit2 $0073
+	checkflag $0073
 	iftrue UnknownScript_0x194140
-	checkbit2 $0081
+	checkflag $0081
 	iftrue UnknownScript_0x1941b4
 	checkcellnum $18
 	iftrue UnknownScript_0x1941d5
@@ -245,17 +245,17 @@ UnknownScript_0x194165: ; 0x194165
 	checkevent $0044
 	iftrue UnknownScript_0x19419e
 UnknownScript_0x19416b: ; 0x19416b
-	checkbit2 $004b
+	checkflag $004b
 	iftrue UnknownScript_0x194191
 UnknownScript_0x194171: ; 0x194171
-	checkbit2 $0047
+	checkflag $0047
 	iftrue UnknownScript_0x194184
 UnknownScript_0x194177: ; 0x194177
 	loadtrainer SCHOOLBOY, ALAN1
 	startbattle
 	returnafterbattle
 	loadvar $da02, $1
-	clearbit2 $0073
+	clearflag $0073
 	end
 ; 0x194184
 
@@ -264,7 +264,7 @@ UnknownScript_0x194184: ; 0x194184
 	startbattle
 	returnafterbattle
 	loadvar $da02, $2
-	clearbit2 $0073
+	clearflag $0073
 	end
 ; 0x194191
 
@@ -273,7 +273,7 @@ UnknownScript_0x194191: ; 0x194191
 	startbattle
 	returnafterbattle
 	loadvar $da02, $3
-	clearbit2 $0073
+	clearflag $0073
 	end
 ; 0x19419e
 
@@ -282,7 +282,7 @@ UnknownScript_0x19419e: ; 0x19419e
 	startbattle
 	returnafterbattle
 	loadvar $da02, $4
-	clearbit2 $0073
+	clearflag $0073
 	end
 ; 0x1941ab
 
@@ -290,7 +290,7 @@ UnknownScript_0x1941ab: ; 0x1941ab
 	loadtrainer SCHOOLBOY, ALAN5
 	startbattle
 	returnafterbattle
-	clearbit2 $0073
+	clearflag $0073
 	end
 ; 0x1941b4
 
@@ -298,7 +298,7 @@ UnknownScript_0x1941b4: ; 0x1941b4
 	2call UnknownScript_0x1941e5
 	verbosegiveitem FIRE_STONE, 1
 	iffalse UnknownScript_0x1941c6
-	clearbit2 $0081
+	clearflag $0081
 	setevent $0101
 	2jump UnknownScript_0x1941d5
 ; 0x1941c6

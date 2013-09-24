@@ -25,7 +25,7 @@ UnknownScript_0x70011: ; 0x70011
 ; 0x70012
 
 UnknownScript_0x70012: ; 0x70012
-	setbit2 $004a
+	setflag $004a
 	return
 ; 0x70016
 

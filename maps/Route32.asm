@@ -45,7 +45,7 @@ UnknownScript_0x190470: ; 0x190470
 	loadfont
 	checkevent EVENT_GOT_MIRACLE_SEED_IN_ROUTE_32
 	iftrue UnknownScript_0x1904a5
-	checkbit2 $001b
+	checkflag $001b
 	iffalse UnknownScript_0x19049f
 	checkevent EVENT_GOT_TOGEPI_EGG_FROM_ELMS_AIDE
 	iftrue UnknownScript_0x19048f
@@ -230,9 +230,9 @@ FisherRalph1Script: ; 0x19053d
 	writecode $17, $11
 	talkaftercancel
 	loadfont
-	checkbit2 $006d
+	checkflag $006d
 	iftrue UnknownScript_0x19057d
-	checkbit2 $0052
+	checkflag $0052
 	iftrue UnknownScript_0x1905f1
 	checkcellnum $11
 	iftrue UnknownScript_0x190603
@@ -272,17 +272,17 @@ UnknownScript_0x1905a2: ; 0x1905a2
 	checkevent $0044
 	iftrue UnknownScript_0x1905db
 UnknownScript_0x1905a8: ; 0x1905a8
-	checkbit2 $004a
+	checkflag $004a
 	iftrue UnknownScript_0x1905ce
 UnknownScript_0x1905ae: ; 0x1905ae
-	checkbit2 $0048
+	checkflag $0048
 	iftrue UnknownScript_0x1905c1
 UnknownScript_0x1905b4: ; 0x1905b4
 	loadtrainer FISHER, RALPH1
 	startbattle
 	returnafterbattle
 	loadvar $d9fb, $1
-	clearbit2 $006d
+	clearflag $006d
 	end
 ; 0x1905c1
 
@@ -291,7 +291,7 @@ UnknownScript_0x1905c1: ; 0x1905c1
 	startbattle
 	returnafterbattle
 	loadvar $d9fb, $2
-	clearbit2 $006d
+	clearflag $006d
 	end
 ; 0x1905ce
 
@@ -300,7 +300,7 @@ UnknownScript_0x1905ce: ; 0x1905ce
 	startbattle
 	returnafterbattle
 	loadvar $d9fb, $3
-	clearbit2 $006d
+	clearflag $006d
 	end
 ; 0x1905db
 
@@ -309,7 +309,7 @@ UnknownScript_0x1905db: ; 0x1905db
 	startbattle
 	returnafterbattle
 	loadvar $d9fb, $4
-	clearbit2 $006d
+	clearflag $006d
 	end
 ; 0x1905e8
 
@@ -317,7 +317,7 @@ UnknownScript_0x1905e8: ; 0x1905e8
 	loadtrainer FISHER, RALPH5
 	startbattle
 	returnafterbattle
-	clearbit2 $006d
+	clearflag $006d
 	end
 ; 0x1905f1
 
@@ -416,7 +416,7 @@ PicnickerLiz1Script: ; 0x190633
 	writecode $17, $12
 	talkaftercancel
 	loadfont
-	checkbit2 $006e
+	checkflag $006e
 	iftrue UnknownScript_0x19066d
 	checkcellnum $12
 	iftrue UnknownScript_0x1906ed
@@ -459,14 +459,14 @@ UnknownScript_0x190698: ; 0x190698
 	checkevent EVENT_CLEARED_ROCKET_HIDEOUT
 	iftrue UnknownScript_0x1906be
 UnknownScript_0x19069e: ; 0x19069e
-	checkbit2 $0048
+	checkflag $0048
 	iftrue UnknownScript_0x1906b1
 UnknownScript_0x1906a4: ; 0x1906a4
 	loadtrainer PICNICKER, LIZ1
 	startbattle
 	returnafterbattle
 	loadvar $d9fc, $1
-	clearbit2 $006e
+	clearflag $006e
 	end
 ; 0x1906b1
 
@@ -475,7 +475,7 @@ UnknownScript_0x1906b1: ; 0x1906b1
 	startbattle
 	returnafterbattle
 	loadvar $d9fc, $2
-	clearbit2 $006e
+	clearflag $006e
 	end
 ; 0x1906be
 
@@ -484,7 +484,7 @@ UnknownScript_0x1906be: ; 0x1906be
 	startbattle
 	returnafterbattle
 	loadvar $d9fc, $3
-	clearbit2 $006e
+	clearflag $006e
 	end
 ; 0x1906cb
 
@@ -493,7 +493,7 @@ UnknownScript_0x1906cb: ; 0x1906cb
 	startbattle
 	returnafterbattle
 	loadvar $d9fc, $4
-	clearbit2 $006e
+	clearflag $006e
 	end
 ; 0x1906d8
 
@@ -501,7 +501,7 @@ UnknownScript_0x1906d8: ; 0x1906d8
 	loadtrainer PICNICKER, LIZ5
 	startbattle
 	returnafterbattle
-	clearbit2 $006e
+	clearflag $006e
 	end
 ; 0x1906e1
 

@@ -11,7 +11,7 @@ DayCare_MapScriptHeader: ; 0x62f76
 ; 0x62f7b
 
 UnknownScript_0x62f7b: ; 0x62f7b
-	checkbit2 $0005
+	checkflag $0005
 	iftrue UnknownScript_0x62f88
 	clearevent $06e5
 	setevent $06e6
@@ -64,7 +64,7 @@ UnknownScript_0x62fbd: ; 0x62fbd
 GrannyScript_0x62fc3: ; 0x62fc3
 	faceplayer
 	loadfont
-	checkbit2 $0005
+	checkflag $0005
 	iftrue UnknownScript_0x62fd1
 	special $001f
 	closetext

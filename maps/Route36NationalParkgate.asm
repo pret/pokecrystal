@@ -31,7 +31,7 @@ UnknownScript_0x6ab13: ; 0x6ab13
 ; 0x6ab17
 
 UnknownScript_0x6ab17: ; 0x6ab17
-	checkbit2 $0011
+	checkflag $0011
 	iftrue UnknownScript_0x6ab20
 	dotrigger $0
 	return
@@ -49,7 +49,7 @@ UnknownScript_0x6ab23: ; 0x6ab23
 	if_equal TUESDAY, UnknownScript_0x6ab42
 	if_equal THURSDAY, UnknownScript_0x6ab42
 	if_equal SATURDAY, UnknownScript_0x6ab42
-	checkbit2 $0011
+	checkflag $0011
 	iftrue UnknownScript_0x6ab42
 	disappear $2
 	appear $d
@@ -151,7 +151,7 @@ OfficerScript_0x6abe0: ; 0x6abe0
 	if_equal FRIDAY, UnknownScript_0x6acf1
 	faceplayer
 	loadfont
-	checkbit2 $0051
+	checkflag $0051
 	iftrue UnknownScript_0x6ac91
 	2call UnknownScript_0x6ad02
 	2writetext UnknownText_0x6add5
@@ -162,7 +162,7 @@ OfficerScript_0x6abe0: ; 0x6abe0
 	special $0016
 	clearevent $0308
 UnknownScript_0x6ac10: ; 0x6ac10
-	setbit2 $0011
+	setflag $0011
 	special $003c
 	2writetext UnknownText_0x6ae87
 	keeptextopen
@@ -173,7 +173,7 @@ UnknownScript_0x6ac10: ; 0x6ac10
 	2writetext UnknownText_0x6aecc
 	closetext
 	loadmovesprites
-	setbit2 $0011
+	setflag $0011
 	special $0018
 	spriteface $0, $2
 	playsound $0023
@@ -311,7 +311,7 @@ UnknownScript_0x6acf1: ; 0x6acf1
 OfficerScript_0x6acf4: ; 0x6acf4
 	faceplayer
 	loadfont
-	checkbit2 $0051
+	checkflag $0051
 	iftrue UnknownScript_0x6ac91
 	2writetext UnknownText_0x6b370
 	closetext

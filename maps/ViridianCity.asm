@@ -11,7 +11,7 @@ ViridianCity_MapScriptHeader: ; 0x1a9a43
 ; 0x1a9a48
 
 UnknownScript_0x1a9a48: ; 0x1a9a48
-	setbit2 $0036
+	setflag $0036
 	return
 ; 0x1a9a4c
 

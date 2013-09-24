@@ -15,12 +15,12 @@ UnknownScript_0x1ad318: ; 0x1ad318
 	if_greater_than $5, UnknownScript_0x1ad328
 	checkcode $12
 	if_less_than $d, UnknownScript_0x1ad328
-	setbit2 $0019
+	setflag $0019
 	return
 ; 0x1ad328
 
 UnknownScript_0x1ad328: ; 0x1ad328
-	clearbit2 $0019
+	clearflag $0019
 	return
 ; 0x1ad32c
 

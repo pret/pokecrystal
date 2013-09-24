@@ -362,7 +362,7 @@ UnknownScript_0x6d184: ; 0x6d184
 	applymovement $4, MovementData_0x6d283
 	disappear $4
 	setevent EVENT_CLEARED_ROCKET_HIDEOUT
-	clearbit2 $000e
+	clearflag $000e
 	setevent $06dc
 	setevent $0757
 	dotrigger $3

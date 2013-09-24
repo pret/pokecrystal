@@ -104,7 +104,7 @@ PokemaniacBrent1Script: ; 0x19d095
 	writecode $17, $1e
 	talkaftercancel
 	loadfont
-	checkbit2 $0077
+	checkflag $0077
 	iftrue UnknownScript_0x19d0cf
 	checkcellnum $1e
 	iftrue UnknownScript_0x19d138
@@ -150,7 +150,7 @@ UnknownScript_0x19d0fc: ; 0x19d0fc
 	startbattle
 	returnafterbattle
 	loadvar $da07, $1
-	clearbit2 $0077
+	clearflag $0077
 	end
 ; 0x19d109
 
@@ -159,7 +159,7 @@ UnknownScript_0x19d109: ; 0x19d109
 	startbattle
 	returnafterbattle
 	loadvar $da07, $2
-	clearbit2 $0077
+	clearflag $0077
 	end
 ; 0x19d116
 
@@ -168,7 +168,7 @@ UnknownScript_0x19d116: ; 0x19d116
 	startbattle
 	returnafterbattle
 	loadvar $da07, $3
-	clearbit2 $0077
+	clearflag $0077
 	end
 ; 0x19d123
 
@@ -176,7 +176,7 @@ UnknownScript_0x19d123: ; 0x19d123
 	loadtrainer POKEMANIAC, BRENT4
 	startbattle
 	returnafterbattle
-	clearbit2 $0077
+	clearflag $0077
 	end
 ; 0x19d12c
 
@@ -297,9 +297,9 @@ PicnickerTiffany3Script: ; 0x19d17c
 	writecode $17, $1f
 	talkaftercancel
 	loadfont
-	checkbit2 $0078
+	checkflag $0078
 	iftrue UnknownScript_0x19d1c1
-	checkbit2 $0085
+	checkflag $0085
 	iftrue UnknownScript_0x19d21e
 	checkcellnum $1f
 	iftrue UnknownScript_0x19d245
@@ -347,7 +347,7 @@ UnknownScript_0x19d1ee: ; 0x19d1ee
 	startbattle
 	returnafterbattle
 	loadvar $da08, $1
-	clearbit2 $0078
+	clearflag $0078
 	end
 ; 0x19d1fb
 
@@ -356,7 +356,7 @@ UnknownScript_0x19d1fb: ; 0x19d1fb
 	startbattle
 	returnafterbattle
 	loadvar $da08, $2
-	clearbit2 $0078
+	clearflag $0078
 	end
 ; 0x19d208
 
@@ -365,7 +365,7 @@ UnknownScript_0x19d208: ; 0x19d208
 	startbattle
 	returnafterbattle
 	loadvar $da08, $3
-	clearbit2 $0078
+	clearflag $0078
 	end
 ; 0x19d215
 
@@ -373,7 +373,7 @@ UnknownScript_0x19d215: ; 0x19d215
 	loadtrainer PICNICKER, TIFFANY4
 	startbattle
 	returnafterbattle
-	clearbit2 $0078
+	clearflag $0078
 	end
 ; 0x19d21e
 
@@ -381,7 +381,7 @@ UnknownScript_0x19d21e: ; 0x19d21e
 	2call UnknownScript_0x19d255
 	verbosegiveitem PINK_BOW, 1
 	iffalse UnknownScript_0x19d230
-	clearbit2 $0085
+	clearflag $0085
 	setevent $0104
 	2jump UnknownScript_0x19d245
 ; 0x19d230

@@ -11,7 +11,7 @@ Route34_MapScriptHeader: ; 0x78000
 ; 0x78005
 
 UnknownScript_0x78005: ; 0x78005
-	checkbit2 $0005
+	checkflag $0005
 	iftrue UnknownScript_0x78014
 	clearevent $06e5
 	setevent $06e6
@@ -25,7 +25,7 @@ UnknownScript_0x78014: ; 0x78014
 ; 0x7801d
 
 UnknownScript_0x7801d: ; 0x7801d
-	checkbit2 $0006
+	checkflag $0006
 	iffalse UnknownScript_0x78029
 	clearevent $06e7
 	2jump UnknownScript_0x7802f
@@ -37,7 +37,7 @@ UnknownScript_0x78029: ; 0x78029
 ; 0x7802f
 
 UnknownScript_0x7802f: ; 0x7802f
-	checkbit2 $0007
+	checkflag $0007
 	iffalse UnknownScript_0x78039
 	clearevent $06e8
 	return
@@ -55,7 +55,7 @@ GrampsScript_0x7803d: ; 0x7803d
 	closetext
 	loadmovesprites
 	if_equal $1, UnknownScript_0x7805a
-	clearbit2 $0005
+	clearflag $0005
 	checkcode $9
 	if_equal $3, UnknownScript_0x7805b
 	applymovement $8, MovementData_0x78333
@@ -110,9 +110,9 @@ CamperTodd1Script: ; 0x7807d
 	writecode $17, $14
 	talkaftercancel
 	loadfont
-	checkbit2 $0070
+	checkflag $0070
 	iftrue UnknownScript_0x780bd
-	checkbit2 $0061
+	checkflag $0061
 	iftrue UnknownScript_0x78131
 	checkcellnum $14
 	iftrue UnknownScript_0x78143
@@ -152,17 +152,17 @@ UnknownScript_0x780e2: ; 0x780e2
 	checkevent $0044
 	iftrue UnknownScript_0x7811b
 UnknownScript_0x780e8: ; 0x780e8
-	checkbit2 $004b
+	checkflag $004b
 	iftrue UnknownScript_0x7810e
 UnknownScript_0x780ee: ; 0x780ee
-	checkbit2 $0045
+	checkflag $0045
 	iftrue UnknownScript_0x78101
 UnknownScript_0x780f4: ; 0x780f4
 	loadtrainer CAMPER, TODD1
 	startbattle
 	returnafterbattle
 	loadvar $d9fe, $1
-	clearbit2 $0070
+	clearflag $0070
 	end
 ; 0x78101
 
@@ -171,7 +171,7 @@ UnknownScript_0x78101: ; 0x78101
 	startbattle
 	returnafterbattle
 	loadvar $d9fe, $2
-	clearbit2 $0070
+	clearflag $0070
 	end
 ; 0x7810e
 
@@ -180,7 +180,7 @@ UnknownScript_0x7810e: ; 0x7810e
 	startbattle
 	returnafterbattle
 	loadvar $d9fe, $3
-	clearbit2 $0070
+	clearflag $0070
 	end
 ; 0x7811b
 
@@ -189,7 +189,7 @@ UnknownScript_0x7811b: ; 0x7811b
 	startbattle
 	returnafterbattle
 	loadvar $d9fe, $4
-	clearbit2 $0070
+	clearflag $0070
 	end
 ; 0x78128
 
@@ -197,7 +197,7 @@ UnknownScript_0x78128: ; 0x78128
 	loadtrainer CAMPER, TODD5
 	startbattle
 	returnafterbattle
-	clearbit2 $0070
+	clearflag $0070
 	end
 ; 0x78131
 
@@ -267,9 +267,9 @@ PicnickerGina1Script: ; 0x7815f
 	writecode $17, $15
 	talkaftercancel
 	loadfont
-	checkbit2 $0071
+	checkflag $0071
 	iftrue UnknownScript_0x7819f
-	checkbit2 $0080
+	checkflag $0080
 	iftrue UnknownScript_0x78213
 	checkcellnum $15
 	iftrue UnknownScript_0x78234
@@ -312,14 +312,14 @@ UnknownScript_0x781ca: ; 0x781ca
 	checkevent EVENT_CLEARED_RADIO_TOWER
 	iftrue UnknownScript_0x781f0
 UnknownScript_0x781d0: ; 0x781d0
-	checkbit2 $0049
+	checkflag $0049
 	iftrue UnknownScript_0x781e3
 UnknownScript_0x781d6: ; 0x781d6
 	loadtrainer PICNICKER, GINA1
 	startbattle
 	returnafterbattle
 	loadvar $d9ff, $1
-	clearbit2 $0071
+	clearflag $0071
 	end
 ; 0x781e3
 
@@ -328,7 +328,7 @@ UnknownScript_0x781e3: ; 0x781e3
 	startbattle
 	returnafterbattle
 	loadvar $d9ff, $2
-	clearbit2 $0071
+	clearflag $0071
 	end
 ; 0x781f0
 
@@ -337,7 +337,7 @@ UnknownScript_0x781f0: ; 0x781f0
 	startbattle
 	returnafterbattle
 	loadvar $d9ff, $3
-	clearbit2 $0071
+	clearflag $0071
 	end
 ; 0x781fd
 
@@ -346,7 +346,7 @@ UnknownScript_0x781fd: ; 0x781fd
 	startbattle
 	returnafterbattle
 	loadvar $d9ff, $4
-	clearbit2 $0071
+	clearflag $0071
 	end
 ; 0x7820a
 
@@ -354,7 +354,7 @@ UnknownScript_0x7820a: ; 0x7820a
 	loadtrainer PICNICKER, GINA5
 	startbattle
 	returnafterbattle
-	clearbit2 $0071
+	clearflag $0071
 	end
 ; 0x78213
 
@@ -362,7 +362,7 @@ UnknownScript_0x78213: ; 0x78213
 	2call UnknownScript_0x78244
 	verbosegiveitem LEAF_STONE, 1
 	iffalse UnknownScript_0x78225
-	clearbit2 $0080
+	clearflag $0080
 	setevent $0100
 	2jump UnknownScript_0x78234
 ; 0x78225

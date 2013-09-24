@@ -51,7 +51,7 @@ YoungsterJoey1Script: ; 0x1a16a6
 	writecode $17, $f
 	talkaftercancel
 	loadfont
-	checkbit2 $006b
+	checkflag $006b
 	iftrue UnknownScript_0x1a16e0
 	checkcellnum $f
 	iftrue UnknownScript_0x1a178f
@@ -91,17 +91,17 @@ UnknownScript_0x1a1705: ; 0x1a1705
 	checkevent EVENT_CLEARED_RADIO_TOWER
 	iftrue UnknownScript_0x1a173e
 UnknownScript_0x1a170b: ; 0x1a170b
-	checkbit2 $0047
+	checkflag $0047
 	iftrue UnknownScript_0x1a1731
 UnknownScript_0x1a1711: ; 0x1a1711
-	checkbit2 $0046
+	checkflag $0046
 	iftrue UnknownScript_0x1a1724
 UnknownScript_0x1a1717: ; 0x1a717
 	loadtrainer YOUNGSTER, JOEY1
 	startbattle
 	returnafterbattle
 	loadvar $d9f9, $1
-	clearbit2 $006b
+	clearflag $006b
 	end
 ; 0x1a1724
 
@@ -110,7 +110,7 @@ UnknownScript_0x1a1724: ; 0x1a1724
 	startbattle
 	returnafterbattle
 	loadvar $d9f9, $2
-	clearbit2 $006b
+	clearflag $006b
 	end
 ; 0x1a1731
 
@@ -119,7 +119,7 @@ UnknownScript_0x1a1731: ; 0x1a1731
 	startbattle
 	returnafterbattle
 	loadvar $d9f9, $3
-	clearbit2 $006b
+	clearflag $006b
 	end
 ; 0x1a173e
 
@@ -128,7 +128,7 @@ UnknownScript_0x1a173e: ; 0x1a173e
 	startbattle
 	returnafterbattle
 	loadvar $d9f9, $4
-	clearbit2 $006b
+	clearflag $006b
 	end
 ; 0x1a174b
 
@@ -136,7 +136,7 @@ UnknownScript_0x1a174b: ; 0x1a174b
 	loadtrainer YOUNGSTER, JOEY5
 	startbattle
 	returnafterbattle
-	clearbit2 $006b
+	clearflag $006b
 	checkevent EVENT_JOEY_HP_UP
 	iftrue UnknownScript_0x1a176f
 	checkevent $0266

@@ -23,7 +23,7 @@ PryceScript_0x199a9e: ; 0x199a9e
 	2writetext UnknownText_0x199d3b
 	playsound $009c
 	waitbutton
-	setbit2 $0021
+	setflag $0021
 	checkcode $7
 	2call UnknownScript_0x199af6
 UnknownScript_0x199ac8: ; 0x199ac8
@@ -230,7 +230,7 @@ MahoganyGymGuyScript: ; 0x199b69
 ; 0x199b7d
 
 MapMahoganyGymSignpost1Script: ; 0x199b7d
-	checkbit2 $0021
+	checkflag $0021
 	iftrue UnknownScript_0x199b86
 	jumpstd $002d
 ; 0x199b86

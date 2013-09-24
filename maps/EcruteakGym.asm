@@ -36,7 +36,7 @@ MortyScript_0x99d58: ; 0x99d58
 	2writetext UnknownText_0x9a043
 	playsound $009c
 	waitbutton
-	setbit2 $001e
+	setflag $001e
 	checkcode $7
 	2call UnknownScript_0x99db7
 	domaptrigger GROUP_ECRUTEAK_HOUSE, MAP_ECRUTEAK_HOUSE, $1
@@ -233,7 +233,7 @@ EcruteakGymGuyScript: ; 0x99e39
 ; 0x99e4d
 
 MapEcruteakGymSignpost1Script: ; 0x99e4d
-	checkbit2 $001e
+	checkflag $001e
 	iftrue UnknownScript_0x99e56
 	jumpstd $002d
 ; 0x99e56

@@ -9,7 +9,7 @@ CeladonGym_MapScriptHeader: ; 0x72a68
 ErikaScript_0x72a6a: ; 0x72a6a
 	faceplayer
 	loadfont
-	checkbit2 $0026
+	checkflag $0026
 	iftrue UnknownScript_0x72a9b
 	2writetext UnknownText_0x72b28
 	closetext
@@ -27,7 +27,7 @@ ErikaScript_0x72a6a: ; 0x72a6a
 	2writetext UnknownText_0x72c96
 	playsound $009c
 	waitbutton
-	setbit2 $0026
+	setflag $0026
 UnknownScript_0x72a9b: ; 0x72a9b
 	checkevent EVENT_GOT_TM19_GIGA_DRAIN
 	iftrue UnknownScript_0x72aae
@@ -189,7 +189,7 @@ TwinsJoandzoe2Script: ; 0x72b10
 ; 0x72b18
 
 MapCeladonGymSignpost1Script: ; 0x72b18
-	checkbit2 $0026
+	checkflag $0026
 	iftrue UnknownScript_0x72b21
 	jumpstd $002d
 ; 0x72b21

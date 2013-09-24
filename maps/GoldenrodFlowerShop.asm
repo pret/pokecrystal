@@ -15,7 +15,7 @@ TeacherScript_0x5535d: ; 0x5535d
 	iffalse UnknownScript_0x5539f
 	checkevent $00ba
 	iffalse UnknownScript_0x5538f
-	checkbit2 $001d
+	checkflag $001d
 	iffalse UnknownScript_0x5539c
 	faceplayer
 	loadfont

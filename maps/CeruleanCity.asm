@@ -11,7 +11,7 @@ CeruleanCity_MapScriptHeader: ; 0x184000
 ; 0x184005
 
 UnknownScript_0x184005: ; 0x184005
-	setbit2 $0038
+	setflag $0038
 	return
 ; 0x184009
 

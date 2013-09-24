@@ -21,7 +21,7 @@ SuperNerdScript_0x7ee69: ; 0x7ee69
 GentlemanScript_0x7ee6c: ; 0x7ee6c
 	faceplayer
 	loadfont
-	checkbit2 $0003
+	checkflag $0003
 	iftrue .UnknownScript_0x7ee8e
 	checkevent EVENT_RETURNED_MACHINE_PART
 	iftrue .UnknownScript_0x7ee80
@@ -36,7 +36,7 @@ GentlemanScript_0x7ee6c: ; 0x7ee6c
 	keeptextopen
 	stringtotext .expncardname, $1
 	2call .UnknownScript_0x7ee94
-	setbit2 $0003
+	setflag $0003
 .UnknownScript_0x7ee8e ; 0x7ee8e
 	2writetext UnknownText_0x7f141
 	closetext
@@ -56,7 +56,7 @@ GentlemanScript_0x7ee6c: ; 0x7ee6c
 SuperNerdScript_0x7eea2: ; 0x7eea2
 	faceplayer
 	loadfont
-	checkbit2 $0003
+	checkflag $0003
 	iftrue UnknownScript_0x7eeb0
 	2writetext UnknownText_0x7f193
 	closetext

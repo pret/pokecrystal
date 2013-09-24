@@ -28,7 +28,7 @@ UnknownScript_0x198013: ; 0x198013
 ; 0x198014
 
 UnknownScript_0x198014: ; 0x198014
-	setbit2 $0044
+	setflag $0044
 	return
 ; 0x198018
 
@@ -175,7 +175,7 @@ UnknownScript_0x1980e5: ; 0x1980e5
 	closetext
 	verbosegiveitem GS_BALL, 1
 	spriteface $d, $2
-	setbit2 $0064
+	setflag $0064
 	clearevent $06ed
 	setevent $06eb
 	dotrigger $0

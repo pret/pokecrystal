@@ -23,7 +23,7 @@ UnknownScript_0x19000e: ; 0x19000e
 ; 0x19000f
 
 UnknownScript_0x19000f: ; 0x19000f
-	setbit2 $0049
+	setflag $0049
 	return
 ; 0x190013
 

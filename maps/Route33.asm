@@ -34,9 +34,9 @@ HikerAnthony2Script: ; 0x1ac011
 	writecode $17, $13
 	talkaftercancel
 	loadfont
-	checkbit2 $006f
+	checkflag $006f
 	iftrue UnknownScript_0x1ac051
-	checkbit2 $00a0
+	checkflag $00a0
 	iftrue UnknownScript_0x1ac0c5
 	checkcellnum $13
 	iftrue UnknownScript_0x1ac0d7
@@ -79,14 +79,14 @@ UnknownScript_0x1ac07c: ; 0x1ac07c
 	checkevent EVENT_CLEARED_RADIO_TOWER
 	iftrue UnknownScript_0x1ac0a2
 UnknownScript_0x1ac082: ; 0x1ac082
-	checkbit2 $0047
+	checkflag $0047
 	iftrue UnknownScript_0x1ac095
 UnknownScript_0x1ac088: ; 0x1ac088
 	loadtrainer HIKER, ANTHONY2
 	startbattle
 	returnafterbattle
 	loadvar $d9fd, $1
-	clearbit2 $006f
+	clearflag $006f
 	end
 ; 0x1ac095
 
@@ -95,7 +95,7 @@ UnknownScript_0x1ac095: ; 0x1ac095
 	startbattle
 	returnafterbattle
 	loadvar $d9fd, $2
-	clearbit2 $006f
+	clearflag $006f
 	end
 ; 0x1ac0a2
 
@@ -104,7 +104,7 @@ UnknownScript_0x1ac0a2: ; 0x1ac0a2
 	startbattle
 	returnafterbattle
 	loadvar $d9fd, $3
-	clearbit2 $006f
+	clearflag $006f
 	end
 ; 0x1ac0af
 
@@ -113,7 +113,7 @@ UnknownScript_0x1ac0af: ; 0x1ac0af
 	startbattle
 	returnafterbattle
 	loadvar $d9fd, $4
-	clearbit2 $006f
+	clearflag $006f
 	end
 ; 0x1ac0bc
 
@@ -121,7 +121,7 @@ UnknownScript_0x1ac0bc: ; 0x1ac0bc
 	loadtrainer HIKER, ANTHONY5
 	startbattle
 	returnafterbattle
-	clearbit2 $006f
+	clearflag $006f
 	end
 ; 0x1ac0c5
 

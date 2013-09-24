@@ -24,7 +24,7 @@ UnknownScript_0x74d9e: ; 0x74d9e
 ; 0x74da2
 
 UnknownScript_0x74da2: ; 0x74da2
-	setbit2 $003a
+	setflag $003a
 	return
 ; 0x74da6
 

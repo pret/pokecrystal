@@ -122,7 +122,7 @@ BugCatcherScript_0x1a8dbf: ; 0x1a8dbf
 	keeptextopen
 	setevent EVENT_MET_SUNNY_OF_SUNDAY
 UnknownScript_0x1a8dda: ; 0x1a8dda
-	checkbit2 $0063
+	checkflag $0063
 	iftrue UnknownScript_0x1a8de7
 	2writetext UnknownText_0x1a9004
 	keeptextopen

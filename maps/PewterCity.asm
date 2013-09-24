@@ -11,7 +11,7 @@ PewterCity_MapScriptHeader: ; 0x18c000
 ; 0x18c005
 
 UnknownScript_0x18c005: ; 0x18c005
-	setbit2 $0037
+	setflag $0037
 	return
 ; 0x18c009
 

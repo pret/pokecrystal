@@ -160,7 +160,7 @@ UnknownScript_0x18d100: ; 0x18d100
 	loadfont
 	2writetext UnknownText_0x18d9bf
 	closetext
-	setbit2 $0022
+	setflag $0022
 	playsound $009c
 	waitbutton
 	special $003d

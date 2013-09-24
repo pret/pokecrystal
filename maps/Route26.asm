@@ -59,7 +59,7 @@ CooltrainermGaven3Script: ; 0x1a4d3f
 	writecode $17, $b
 	talkaftercancel
 	loadfont
-	checkbit2 $0067
+	checkflag $0067
 	iftrue UnknownScript_0x1a4d79
 	checkcellnum $b
 	iftrue UnknownScript_0x1a4dcb
@@ -101,7 +101,7 @@ UnknownScript_0x1a4d9c: ; 0x1a4d9c
 	startbattle
 	returnafterbattle
 	loadvar $d9f5, $1
-	clearbit2 $0067
+	clearflag $0067
 	end
 ; 0x1a4da9
 
@@ -110,7 +110,7 @@ UnknownScript_0x1a4da9: ; 0x1a4da9
 	startbattle
 	returnafterbattle
 	loadvar $d9f5, $2
-	clearbit2 $0067
+	clearflag $0067
 	end
 ; 0x1a4db6
 
@@ -118,7 +118,7 @@ UnknownScript_0x1a4db6: ; 0x1a4db6
 	loadtrainer COOLTRAINERM, GAVEN2
 	startbattle
 	returnafterbattle
-	clearbit2 $0067
+	clearflag $0067
 	end
 ; 0x1a4dbf
 
@@ -210,7 +210,7 @@ CooltrainerfBeth1Script: ; 0x1a4dfb
 	writecode $17, $c
 	talkaftercancel
 	loadfont
-	checkbit2 $0068
+	checkflag $0068
 	iftrue UnknownScript_0x1a4e35
 	checkcellnum $c
 	iftrue UnknownScript_0x1a4e87
@@ -252,7 +252,7 @@ UnknownScript_0x1a4e58: ; 0x1a4e58
 	startbattle
 	returnafterbattle
 	loadvar $d9f6, $1
-	clearbit2 $0068
+	clearflag $0068
 	end
 ; 0x1a4e65
 
@@ -261,7 +261,7 @@ UnknownScript_0x1a4e65: ; 0x1a4e65
 	startbattle
 	returnafterbattle
 	loadvar $d9f6, $2
-	clearbit2 $0068
+	clearflag $0068
 	end
 ; 0x1a4e72
 
@@ -269,7 +269,7 @@ UnknownScript_0x1a4e72: ; 0x1a4e72
 	loadtrainer COOLTRAINERF, BETH3
 	startbattle
 	returnafterbattle
-	clearbit2 $0068
+	clearflag $0068
 	end
 ; 0x1a4e7b
 

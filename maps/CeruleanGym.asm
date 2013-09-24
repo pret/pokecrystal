@@ -59,7 +59,7 @@ UnknownScript_0x1883de: ; 0x1883de
 MistyScript_0x188432: ; 0x188432
 	faceplayer
 	loadfont
-	checkbit2 $0024
+	checkflag $0024
 	iftrue UnknownScript_0x188460
 	2writetext UnknownText_0x188674
 	closetext
@@ -76,7 +76,7 @@ MistyScript_0x188432: ; 0x188432
 	2writetext UnknownText_0x188768
 	playsound $009c
 	waitbutton
-	setbit2 $0024
+	setflag $0024
 UnknownScript_0x188460: ; 0x188460
 	2writetext UnknownText_0x188782
 	closetext
@@ -215,7 +215,7 @@ MapCeruleanGymSignpost2Script: ; 0x1884c6
 ; 0x1884d3
 
 UnknownScript_0x1884d3: ; 0x1884d3
-	checkbit2 $0024
+	checkflag $0024
 	iftrue UnknownScript_0x1884dc
 	jumpstd $002d
 ; 0x1884dc

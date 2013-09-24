@@ -105,7 +105,7 @@ ProfElmScript: ; 0x78be0
 UnknownScript_0x78bee: ; 0x78bee
 	checkevent EVENT_GOT_MASTER_BALL_FROM_ELM
 	iftrue UnknownScript_0x78bfa
-	checkbit2 $0022
+	checkflag $0022
 	iftrue ElmGiveMasterBallScript
 UnknownScript_0x78bfa: ; 0x78bfa
 	checkevent EVENT_GOT_EVERSTONE_FROM_ELM
@@ -144,7 +144,7 @@ UnknownScript_0x78c35: ; 0x78c35
 UnknownScript_0x78c41: ; 0x78c41
 	checkevent EVENT_GOT_TOGEPI_EGG_FROM_ELMS_AIDE ; why are we checking it again?
 	iftrue ElmWaitingEggHatchScript
-	checkbit2 $001b
+	checkflag $001b
 	iftrue ElmAideHasEggScript
 	checkevent EVENT_GAVE_MYSTERY_EGG_TO_ELM
 	iftrue ElmStudyingEggScript
@@ -362,7 +362,7 @@ ElmAfterTheftScript: ; 0x78da2
 	2writetext ElmAfterTheftText5
 	keeptextopen
 	setevent EVENT_GAVE_MYSTERY_EGG_TO_ELM
-	setbit2 $0010
+	setflag $0010
 	domaptrigger GROUP_ROUTE_29, MAP_ROUTE_29, $1
 	clearevent $0715
 	setevent $0714
@@ -615,7 +615,7 @@ MeetCopScript: ; 0x78f16
 
 MapElmsLabSignpost14Script: ; 0x78f33
 	loadfont
-	checkbit2 $0043
+	checkflag $0043
 	iftrue UnknownScript_0x78f49
 	checkevent EVENT_ELM_CALLED_ABOUT_STOLEN_POKEMON
 	iftrue UnknownScript_0x78f43

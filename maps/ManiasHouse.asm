@@ -30,7 +30,7 @@ RockerScript_0x9d278: ; 0x9d278
 ; 0x9d2a4
 
 UnknownScript_0x9d2a4: ; 0x9d2a4
-	checkbit2 $0055
+	checkflag $0055
 	iffalse UnknownScript_0x9d2bc
 	2writetext UnknownText_0x9d3ed
 	closetext

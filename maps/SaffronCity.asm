@@ -11,7 +11,7 @@ SaffronCity_MapScriptHeader: ; 0x199321
 ; 0x199326
 
 UnknownScript_0x199326: ; 0x199326
-	setbit2 $003c
+	setflag $003c
 	return
 ; 0x19932a
 

@@ -30,7 +30,7 @@ Bird_keeperVance1Script: ; 0x19d830
 	writecode $17, $20
 	talkaftercancel
 	loadfont
-	checkbit2 $0079
+	checkflag $0079
 	iftrue UnknownScript_0x19d86a
 	checkcellnum $20
 	iftrue UnknownScript_0x19d8eb
@@ -72,7 +72,7 @@ UnknownScript_0x19d88d: ; 0x19d88d
 	startbattle
 	returnafterbattle
 	loadvar $da09, $1
-	clearbit2 $0079
+	clearflag $0079
 	end
 ; 0x19d89a
 
@@ -81,7 +81,7 @@ UnknownScript_0x19d89a: ; 0x19d89a
 	startbattle
 	returnafterbattle
 	loadvar $da09, $2
-	clearbit2 $0079
+	clearflag $0079
 	end
 ; 0x19d8a7
 
@@ -89,7 +89,7 @@ UnknownScript_0x19d8a7: ; 0x19d8a7
 	loadtrainer BIRD_KEEPER, VANCE3
 	startbattle
 	returnafterbattle
-	clearbit2 $0079
+	clearflag $0079
 	checkevent EVENT_VANCE_CARBOS
 	iftrue UnknownScript_0x19d8cb
 	checkevent $0267
@@ -225,9 +225,9 @@ FisherWilton1Script: ; 0x19d92e
 	writecode $17, $21
 	talkaftercancel
 	loadfont
-	checkbit2 $007a
+	checkflag $007a
 	iftrue UnknownScript_0x19d96e
-	checkbit2 $0086
+	checkflag $0086
 	iftrue UnknownScript_0x19d9b4
 	checkcellnum $21
 	iftrue UnknownScript_0x19d8eb
@@ -269,7 +269,7 @@ UnknownScript_0x19d991: ; 0x19d991
 	startbattle
 	returnafterbattle
 	loadvar $da0a, $1
-	clearbit2 $007a
+	clearflag $007a
 	end
 ; 0x19d99e
 
@@ -278,7 +278,7 @@ UnknownScript_0x19d99e: ; 0x19d99e
 	startbattle
 	returnafterbattle
 	loadvar $da0a, $2
-	clearbit2 $007a
+	clearflag $007a
 	end
 ; 0x19d9ab
 
@@ -286,7 +286,7 @@ UnknownScript_0x19d9ab: ; 0x19d9ab
 	loadtrainer FISHER, WILTON3
 	startbattle
 	returnafterbattle
-	clearbit2 $007a
+	clearflag $007a
 	end
 ; 0x19d9b4
 
@@ -314,7 +314,7 @@ UnknownScript_0x19d9db: ; 0x19d9db
 	verbosegiveitem POKE_BALL, 1
 	iffalse UnknownScript_0x19d9e7
 UnknownScript_0x19d9e1: ; 0x19d9e1
-	clearbit2 $0086
+	clearflag $0086
 	2jump UnknownScript_0x19d8eb
 ; 0x19d9e7
 

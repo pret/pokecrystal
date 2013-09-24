@@ -9,7 +9,7 @@ ViridianGym_MapScriptHeader: ; 0x9aa24
 BlueScript_0x9aa26: ; 0x9aa26
 	faceplayer
 	loadfont
-	checkbit2 $002a
+	checkflag $002a
 	iftrue UnknownScript_0x9aa51
 	2writetext UnknownText_0x9aa7b
 	closetext
@@ -23,7 +23,7 @@ BlueScript_0x9aa26: ; 0x9aa26
 	2writetext UnknownText_0x9ac0f
 	playsound $009c
 	waitbutton
-	setbit2 $002a
+	setflag $002a
 	2writetext UnknownText_0x9ac27
 	closetext
 	loadmovesprites
@@ -55,7 +55,7 @@ ViridianGymGuyScript: ; 0x9aa57
 ; 0x9aa6b
 
 MapViridianGymSignpost1Script: ; 0x9aa6b
-	checkbit2 $002a
+	checkflag $002a
 	iftrue UnknownScript_0x9aa74
 	jumpstd $002d
 ; 0x9aa74

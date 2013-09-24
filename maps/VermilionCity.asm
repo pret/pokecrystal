@@ -11,7 +11,7 @@ VermilionCity_MapScriptHeader: ; 0x1aa97a
 ; 0x1aa97f
 
 UnknownScript_0x1aa97f: ; 0x1aa97f
-	setbit2 $003a
+	setflag $003a
 	return
 ; 0x1aa983
 

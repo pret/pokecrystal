@@ -46,7 +46,7 @@ UnknownScript_0x18000a: ; 0x18000a
 UnknownScript_0x180053: ; 0x180053
 	checkevent EVENT_BEAT_RIVAL_IN_MT_MOON
 	iffalse UnknownScript_0x18012b
-	checkbit2 $005d
+	checkflag $005d
 	iftrue UnknownScript_0x18012b
 	checkcode $b
 	if_equal SUNDAY, UnknownScript_0x18012b
@@ -69,7 +69,7 @@ UnknownScript_0x180053: ; 0x180053
 UnknownScript_0x180094: ; 0x180094
 	checkevent EVENT_BEAT_RIVAL_IN_MT_MOON
 	iffalse UnknownScript_0x18012b
-	checkbit2 $005d
+	checkflag $005d
 	iftrue UnknownScript_0x18012b
 	checkcode $b
 	if_equal SUNDAY, UnknownScript_0x18012b
@@ -135,7 +135,7 @@ UnknownScript_0x180113: ; 0x180113
 	disappear $5
 	dotrigger $0
 	playmapmusic
-	setbit2 $005d
+	setflag $005d
 UnknownScript_0x18012b: ; 0x18012b
 	end
 ; 0x18012c
