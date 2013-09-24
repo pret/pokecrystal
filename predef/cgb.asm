@@ -224,7 +224,7 @@ Function8edb: ; 8edb
 	call Function9643
 	ld hl, $68ca
 	call Function9643
-	ld hl, $4f52
+	ld hl, Palette8f52
 	ld de, $d018
 	ld bc, $0018
 	ld a, $5
@@ -257,7 +257,24 @@ Function8edb: ; 8edb
 	ret
 ; 8f52
 
-INCBIN "baserom.gbc", $8f52, $8f70 - $8f52
+Palette8f52: ; 8f52
+	RGB 31, 31, 31
+	RGB 31, 19, 31
+	RGB 31, 15, 31
+	RGB 00, 00, 00
+
+	RGB 31, 31, 31
+	RGB 21, 31, 14
+	RGB 17, 31, 00
+	RGB 00, 00, 00
+
+	RGB 31, 31, 31
+	RGB 17, 31, 31
+	RGB 17, 31, 31
+	RGB 00, 00, 00
+; 8f6a
+
+INCBIN "baserom.gbc", $8f6a, $8f70 - $8f6a
 
 Function8f70: ; 8f70
 	ld de, Unkn1Pals
@@ -267,7 +284,7 @@ Function8f70: ; 8f70
 	ld a, [CurPartySpecies]
 	cp $ff
 	jr nz, .asm_8f8a
-	ld hl, $4fba
+	ld hl, Palette8fba
 	call Function9630
 	jr .asm_8f90
 
@@ -282,7 +299,7 @@ Function8f70: ; 8f70
 	ld a, $1
 	call Function9663
 	call Function971a
-	ld hl, $4fc2
+	ld hl, Palette8fc2
 	ld de, $d078
 	ld bc, $0008
 	ld a, $5
@@ -294,7 +311,18 @@ Function8f70: ; 8f70
 	ret
 ; 8fba
 
-INCBIN "baserom.gbc", $8fba, $8fca - $8fba
+Palette8fba: ; 8fba
+	RGB 11, 23, 00
+	RGB 07, 17, 00
+	RGB 06, 16, 03
+	RGB 05, 12, 01
+
+Palette8fc2: ; 8fc2
+	RGB 00, 00, 00
+	RGB 11, 23, 00
+	RGB 07, 17, 00
+	RGB 00, 00, 00
+; 8fca
 
 Function8fca: ; 8fca
 	ld de, Unkn1Pals
@@ -304,7 +332,7 @@ Function8fca: ; 8fca
 	ld a, [CurPartySpecies]
 	cp $ff
 	jr nz, .asm_8fe4
-	ld hl, $5036
+	ld hl, Palette9036
 	call Function9630
 	jr .asm_8fed
 
@@ -327,7 +355,14 @@ Function8fca: ; 8fca
 	ret
 ; 9009
 
-INCBIN "baserom.gbc", $9009, $903e - $9009
+INCBIN "baserom.gbc", $9009, $9036 - $9009
+
+Palette9036: ; 9036
+	RGB 31, 15, 00
+	RGB 23, 12, 00
+	RGB 15, 07, 00
+	RGB 00, 00, 00
+; 903e
 
 Function903e: ; 903e
 	ld de, Unkn1Pals
@@ -351,7 +386,7 @@ Function903e: ; 903e
 ; 906e
 
 Function906e: ; 906e
-	ld hl, $77a9
+	ld hl, Paletteb7a9
 	ld de, Unkn1Pals
 	ld bc, $0080
 	ld a, $5
@@ -889,7 +924,7 @@ Function9578: ; 9578
 ; 9591
 
 Function9591: ; 9591
-	ld hl, $55e0
+	ld hl, Palette95e0
 	ld de, Unkn1Pals
 	ld bc, $0010
 	ld a, $5
@@ -919,4 +954,16 @@ Function9591: ; 9591
 	call Function96b3
 	ret
 ; 95e0
+
+Palette95e0: ; 95e0
+	RGB 31, 31, 31
+	RGB 16, 31, 14
+	RGB 05, 14, 21
+	RGB 05, 13, 10
+
+	RGB 31, 31, 31
+	RGB 11, 21, 25
+	RGB 05, 14, 21
+	RGB 00, 03, 19
+; 95f0
 
