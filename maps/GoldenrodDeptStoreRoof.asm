@@ -27,14 +27,14 @@ UnknownScript_0x56722: ; 0x56722
 UnknownScript_0x5672b: ; 0x5672b
 	checkbit2 $0061
 	iftrue UnknownScript_0x56738
-	setbit1 $06f0
-	clearbit1 $06f1
+	setevent $06f0
+	clearevent $06f1
 	return
 ; 0x56738
 
 UnknownScript_0x56738: ; 0x56738
-	clearbit1 $06f0
-	setbit1 $06f1
+	clearevent $06f0
+	setevent $06f1
 	return
 ; 0x5673f
 

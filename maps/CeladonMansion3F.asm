@@ -28,14 +28,14 @@ UnknownScript_0x7167e: ; 0x7167e
 	2writetext UnknownText_0x71763
 	closetext
 	loadmovesprites
-	setbit1 EVENT_ENABLE_DIPLOMA_PRINTING
+	setevent EVENT_ENABLE_DIPLOMA_PRINTING
 	end
 ; 0x71696
 
 GymGuyScript_0x71696: ; 0x71696
 	faceplayer
 	loadfont
-	checkbit1 EVENT_ENABLE_DIPLOMA_PRINTING
+	checkevent EVENT_ENABLE_DIPLOMA_PRINTING
 	iftrue UnknownScript_0x716a4
 	2writetext UnknownText_0x717b4
 	closetext

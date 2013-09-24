@@ -25,15 +25,15 @@ UnknownScript_0x56099: ; 0x56099
 ClerkScript_0x5609c: ; 0x5609c
 	faceplayer
 	loadfont
-	checkbit1 EVENT_GOT_TM02_HEADBUTT
+	checkevent EVENT_GOT_TM02_HEADBUTT
 	iftrue UnknownScript_0x560ad
-	checkbit1 EVENT_GOT_TM08_ROCK_SMASH
+	checkevent EVENT_GOT_TM08_ROCK_SMASH
 	iftrue UnknownScript_0x560c2
 	2jump UnknownScript_0x560b6
 ; 0x560ad
 
 UnknownScript_0x560ad: ; 0x560ad
-	checkbit1 EVENT_GOT_TM08_ROCK_SMASH
+	checkevent EVENT_GOT_TM08_ROCK_SMASH
 	iftrue UnknownScript_0x560c8
 	2jump UnknownScript_0x560bc
 ; 0x560b6

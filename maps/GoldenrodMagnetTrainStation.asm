@@ -16,7 +16,7 @@ UnknownScript_0x550eb: ; 0x550eb
 OfficerScript_0x550ec: ; 0x550ec
 	faceplayer
 	loadfont
-	checkbit1 EVENT_RESTORED_POWER_TO_KANTO
+	checkevent EVENT_RESTORED_POWER_TO_KANTO
 	iftrue UnknownScript_0x550fa
 	2writetext UnknownText_0x55160
 	closetext

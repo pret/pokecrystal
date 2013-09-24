@@ -24,7 +24,7 @@ UnknownScript_0x1a800e: ; 0x1a800e
 
 UnknownScript_0x1a800f: ; 0x1a800f
 	setbit2 $0041
-	clearbit1 $0076
+	clearevent $0076
 	return
 ; 0x1a8016
 
@@ -80,11 +80,11 @@ UnknownScript_0x1a8041: ; 0x1a8041
 TeacherScript_0x1a806f: ; 0x1a806f
 	faceplayer
 	loadfont
-	checkbit1 EVENT_TALKED_TO_MOM_AFTER_MYSTERY_EGG_QUEST
+	checkevent EVENT_TALKED_TO_MOM_AFTER_MYSTERY_EGG_QUEST
 	iftrue UnknownScript_0x1a8095
-	checkbit1 EVENT_GAVE_MYSTERY_EGG_TO_ELM
+	checkevent EVENT_GAVE_MYSTERY_EGG_TO_ELM
 	iftrue UnknownScript_0x1a808f
-	checkbit1 EVENT_GOT_A_POKEMON_FROM_ELM
+	checkevent EVENT_GOT_A_POKEMON_FROM_ELM
 	iftrue UnknownScript_0x1a8089
 	2writetext UnknownText_0x1a80f7
 	closetext

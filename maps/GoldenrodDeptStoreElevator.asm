@@ -15,32 +15,32 @@ MapGoldenrodDeptStoreElevatorSignpost0Script: ; 0x56699
 	playsound $006e
 	earthquake 60
 	waitbutton
-	checkbit1 $0307
+	checkevent $0307
 	iftrue UnknownScript_0x566df
-	checkbit1 $0304
+	checkevent $0304
 	iftrue UnknownScript_0x566cb
-	checkbit1 $0305
+	checkevent $0305
 	iftrue UnknownScript_0x566d5
-	checkbit1 $0306
+	checkevent $0306
 	iftrue UnknownScript_0x566c1
 UnknownScript_0x566c1: ;0x566c1
-	setbit1 $0304
-	clearbit1 $0305
-	clearbit1 $0306
+	setevent $0304
+	clearevent $0305
+	clearevent $0306
 	end
 ; 0x566cb
 
 UnknownScript_0x566cb: ; 0x566cb
-	clearbit1 $0304
-	setbit1 $0305
-	clearbit1 $0306
+	clearevent $0304
+	setevent $0305
+	clearevent $0306
 	end
 ; 0x566d5
 
 UnknownScript_0x566d5: ; 0x566d5
-	clearbit1 $0304
-	clearbit1 $0305
-	setbit1 $0306
+	clearevent $0304
+	clearevent $0305
+	setevent $0306
 	end
 ; 0x566df
 

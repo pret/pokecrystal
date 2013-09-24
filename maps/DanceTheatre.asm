@@ -156,17 +156,17 @@ GentlemanScript_0x994c6: ; 0x994c6
 	loadfont
 	2writetext UnknownText_0x9980a
 	keeptextopen
-	checkbit1 EVENT_GOT_HM03_SURF
+	checkevent EVENT_GOT_HM03_SURF
 	iftrue UnknownScript_0x99515
-	checkbit1 EVENT_BEAT_KIMONO_GIRL_NAOKO
+	checkevent EVENT_BEAT_KIMONO_GIRL_NAOKO
 	iffalse UnknownScript_0x994f3
-	checkbit1 EVENT_BEAT_KIMONO_GIRL_SAYO
+	checkevent EVENT_BEAT_KIMONO_GIRL_SAYO
 	iffalse UnknownScript_0x994f3
-	checkbit1 EVENT_BEAT_KIMONO_GIRL_ZUKI
+	checkevent EVENT_BEAT_KIMONO_GIRL_ZUKI
 	iffalse UnknownScript_0x994f3
-	checkbit1 EVENT_BEAT_KIMONO_GIRL_KUNI
+	checkevent EVENT_BEAT_KIMONO_GIRL_KUNI
 	iffalse UnknownScript_0x994f3
-	checkbit1 EVENT_BEAT_KIMONO_GIRL_MIKI
+	checkevent EVENT_BEAT_KIMONO_GIRL_MIKI
 	iffalse UnknownScript_0x994f3
 	2jump UnknownScript_0x99505
 ; 0x994f3
@@ -191,7 +191,7 @@ UnknownScript_0x99505: ; 0x99505
 	2writetext UnknownText_0x9991a
 	keeptextopen
 	verbosegiveitem HM_03, 1
-	setbit1 EVENT_GOT_HM03_SURF
+	setevent EVENT_GOT_HM03_SURF
 	2writetext UnknownText_0x9999b
 	closetext
 	loadmovesprites

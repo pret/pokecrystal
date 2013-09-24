@@ -13,13 +13,13 @@ UnknownScript_0x19b3c7: ; 0x19b3c7
 OakScript_0x19b3c8: ; 0x19b3c8
 	faceplayer
 	loadfont
-	checkbit1 $074f
+	checkevent $074f
 	iftrue UnknownScript_0x19b3ea
-	checkbit1 $00e1
+	checkevent $00e1
 	iftrue UnknownScript_0x19b3dd
 	2writetext UnknownText_0x19b427
 	keeptextopen
-	setbit1 $00e1
+	setevent $00e1
 UnknownScript_0x19b3dd: ; 0x19b3dd
 	checkcode $7
 	if_equal $10, UnknownScript_0x19b3f7
@@ -40,7 +40,7 @@ UnknownScript_0x19b3ea: ; 0x19b3ea
 UnknownScript_0x19b3f7: ; 0x19b3f7
 	2writetext UnknownText_0x19b4fc
 	keeptextopen
-	setbit1 $074f
+	setevent $074f
 	2jump UnknownScript_0x19b3ea
 ; 0x19b401
 

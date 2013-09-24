@@ -11,9 +11,9 @@ KurtsHouse_MapScriptHeader: ; 0x18e14f
 ; 0x18e154
 
 UnknownScript_0x18e154: ; 0x18e154
-	checkbit1 EVENT_CLEARED_SLOWPOKE_WELL
+	checkevent EVENT_CLEARED_SLOWPOKE_WELL
 	iffalse UnknownScript_0x18e177
-	checkbit1 $00c0
+	checkevent $00c0
 	iftrue UnknownScript_0x18e177
 	checkbit2 $0050
 	iftrue UnknownScript_0x18e16f
@@ -36,15 +36,15 @@ UnknownScript_0x18e177: ; 0x18e177
 KurtScript_0x18e178: ; 0x18e178
 	faceplayer
 	loadfont
-	checkbit1 $0035
+	checkevent $0035
 	iftrue UnknownScript_0x18e1cc
-	checkbit1 EVENT_CLEARED_SLOWPOKE_WELL
+	checkevent EVENT_CLEARED_SLOWPOKE_WELL
 	iftrue UnknownScript_0x18e1bf
 	2writetext UnknownText_0x18e473
 	closetext
 	loadmovesprites
 	special $006a
-	setbit1 $06fa
+	setevent $06fa
 	checkcode $9
 	if_equal $1, UnknownScript_0x18e1ab
 	spriteface $0, $0
@@ -73,30 +73,30 @@ UnknownScript_0x18e1bf: ; 0x18e1bf
 	keeptextopen
 	verbosegiveitem LURE_BALL, 1
 	iffalse UnknownScript_0x18e2b2
-	setbit1 $0035
+	setevent $0035
 UnknownScript_0x18e1cc: ; 0x18e1cc
-	checkbit1 $0000
+	checkevent $0000
 	iftrue UnknownScript_0x18e29f
-	checkbit1 $0258
+	checkevent $0258
 	iftrue UnknownScript_0x18e2b4
-	checkbit1 $0259
+	checkevent $0259
 	iftrue UnknownScript_0x18e2ca
-	checkbit1 $025a
+	checkevent $025a
 	iftrue UnknownScript_0x18e2e0
-	checkbit1 $025b
+	checkevent $025b
 	iftrue UnknownScript_0x18e2f6
-	checkbit1 $025c
+	checkevent $025c
 	iftrue UnknownScript_0x18e30c
-	checkbit1 $025d
+	checkevent $025d
 	iftrue UnknownScript_0x18e322
-	checkbit1 $025e
+	checkevent $025e
 	iftrue UnknownScript_0x18e338
-	checkbit1 EVENT_CAN_GIVE_GS_BALL_TO_KURT
+	checkevent EVENT_CAN_GIVE_GS_BALL_TO_KURT
 	iftrue UnknownScript_0x18e34e
 UnknownScript_0x18e202: ; 0x18e202
-	checkbit1 $0001
+	checkevent $0001
 	iftrue UnknownScript_0x18e212
-	checkbit1 $0002
+	checkevent $0002
 	iftrue UnknownScript_0x18e212
 	2writetext UnknownText_0x18e6c9
 	closetext
@@ -115,9 +115,9 @@ UnknownScript_0x18e212: ; 0x18e212
 	iftrue UnknownScript_0x18e249
 	checkitem PNK_APRICORN
 	iftrue UnknownScript_0x18e249
-	checkbit1 $0001
+	checkevent $0001
 	iftrue UnknownScript_0x18e2ae
-	checkbit1 $0002
+	checkevent $0002
 	iftrue UnknownScript_0x18e243
 	loadmovesprites
 	end
@@ -133,7 +133,7 @@ UnknownScript_0x18e243: ; 0x18e243
 UnknownScript_0x18e249: ; 0x18e249
 	2writetext UnknownText_0x18e736
 	keeptextopen
-	setbit1 $0002
+	setevent $0002
 	special $0056
 	if_equal $0, UnknownScript_0x18e2a5
 	if_equal $59, UnknownScript_0x18e275
@@ -142,42 +142,42 @@ UnknownScript_0x18e249: ; 0x18e249
 	if_equal $61, UnknownScript_0x18e287
 	if_equal $63, UnknownScript_0x18e28d
 	if_equal $65, UnknownScript_0x18e293
-	setbit1 $0258
+	setevent $0258
 	2jump UnknownScript_0x18e299
 ; 0x18e275
 
 UnknownScript_0x18e275: ; 0x18e275
-	setbit1 $0259
+	setevent $0259
 	2jump UnknownScript_0x18e299
 ; 0x18e27b
 
 UnknownScript_0x18e27b: ; 0x18e27b
-	setbit1 $025a
+	setevent $025a
 	2jump UnknownScript_0x18e299
 ; 0x18e281
 
 UnknownScript_0x18e281: ; 0x18e281
-	setbit1 $025b
+	setevent $025b
 	2jump UnknownScript_0x18e299
 ; 0x18e287
 
 UnknownScript_0x18e287: ; 0x18e287
-	setbit1 $025c
+	setevent $025c
 	2jump UnknownScript_0x18e299
 ; 0x18e28d
 
 UnknownScript_0x18e28d: ; 0x18e28d
-	setbit1 $025d
+	setevent $025d
 	2jump UnknownScript_0x18e299
 ; 0x18e293
 
 UnknownScript_0x18e293: ; 0x18e293
-	setbit1 $025e
+	setevent $025e
 	2jump UnknownScript_0x18e299
 ; 0x18e299
 
 UnknownScript_0x18e299: ; 0x18e299
-	setbit1 $0000
+	setevent $0000
 	setbit2 $0050
 UnknownScript_0x18e29f: ; 0x18e29f
 	2writetext UnknownText_0x18e779
@@ -194,7 +194,7 @@ UnknownScript_0x18e2a5: ; 0x18e2a5
 ; 0x18e2ab
 
 UnknownScript_0x18e2ab: ; 0x18e2ab
-	setbit1 $0001
+	setevent $0001
 UnknownScript_0x18e2ae: ; 0x18e2ae
 	2writetext UnknownText_0x18e82a
 	closetext
@@ -211,7 +211,7 @@ UnknownScript_0x18e2b4: ; 0x18e2b4
 	verbosegiveitem2 LEVEL_BALL, $16
 	iffalse UnknownScript_0x18e2b2
 UnknownScript_0x18e2c4: ; 0x18e2c4
-	clearbit1 $0258
+	clearevent $0258
 	2jump UnknownScript_0x18e2ab
 ; 0x18e2ca
 
@@ -223,7 +223,7 @@ UnknownScript_0x18e2ca: ; 0x18e2ca
 	verbosegiveitem2 LURE_BALL, $16
 	iffalse UnknownScript_0x18e2b2
 UnknownScript_0x18e2da: ; 0x18e2da
-	clearbit1 $0259
+	clearevent $0259
 	2jump UnknownScript_0x18e2ab
 ; 0x18e2e0
 
@@ -235,7 +235,7 @@ UnknownScript_0x18e2e0: ; 0x18e2e0
 	verbosegiveitem2 MOON_BALL, $16
 	iffalse UnknownScript_0x18e2b2
 UnknownScript_0x18e2f0: ; 0x18e2f0
-	clearbit1 $025a
+	clearevent $025a
 	2jump UnknownScript_0x18e2ab
 ; 0x18e2f6
 
@@ -247,7 +247,7 @@ UnknownScript_0x18e2f6: ; 0x18e2f6
 	verbosegiveitem2 FRIEND_BALL, $16
 	iffalse UnknownScript_0x18e2b2
 UnknownScript_0x18e306: ; 0x18e306
-	clearbit1 $025b
+	clearevent $025b
 	2jump UnknownScript_0x18e2ab
 ; 0x18e30c
 
@@ -259,7 +259,7 @@ UnknownScript_0x18e30c: ; 0x18e30c
 	verbosegiveitem2 FAST_BALL, $16
 	iffalse UnknownScript_0x18e2b2
 UnknownScript_0x18e31c: ; 0x18e31c
-	clearbit1 $025c
+	clearevent $025c
 	2jump UnknownScript_0x18e2ab
 ; 0x18e322
 
@@ -271,7 +271,7 @@ UnknownScript_0x18e322: ; 0x18e322
 	verbosegiveitem2 HEAVY_BALL, $16
 	iffalse UnknownScript_0x18e2b2
 UnknownScript_0x18e332: ; 0x18e332
-	clearbit1 $025d
+	clearevent $025d
 	2jump UnknownScript_0x18e2ab
 ; 0x18e338
 
@@ -283,19 +283,19 @@ UnknownScript_0x18e338: ; 0x18e338
 	verbosegiveitem2 LOVE_BALL, $16
 	iffalse UnknownScript_0x18e2b2
 UnknownScript_0x18e348: ; 0x18e348
-	clearbit1 $025e
+	clearevent $025e
 	2jump UnknownScript_0x18e2ab
 ; 0x18e34e
 
 UnknownScript_0x18e34e: ; 0x18e34e
-	checkbit1 $00bf
+	checkevent $00bf
 	iftrue UnknownScript_0x18e368
 	checkitem GS_BALL
 	iffalse UnknownScript_0x18e202
 	2writetext UnknownText_0x18e8ab
 	closetext
 	loadmovesprites
-	setbit1 $00bf
+	setevent $00bf
 	takeitem GS_BALL, 1
 	setbit2 $0050
 	end
@@ -316,9 +316,9 @@ UnknownScript_0x18e378: ; 0x18e378
 	2writetext UnknownText_0x18e95c
 	closetext
 	loadmovesprites
-	setbit1 $00c0
-	clearbit1 EVENT_CAN_GIVE_GS_BALL_TO_KURT
-	clearbit1 $00bf
+	setevent $00c0
+	clearevent EVENT_CAN_GIVE_GS_BALL_TO_KURT
+	clearevent $00bf
 	special $006a
 	pause 20
 	showemote $0, $2, 30
@@ -337,7 +337,7 @@ UnknownScript_0x18e3a2: ; 0x18e3a2
 UnknownScript_0x18e3ac: ; 0x18e3ac
 	playsound $0023
 	disappear $2
-	clearbit1 $07a4
+	clearevent $07a4
 	waitbutton
 	special $003d
 	domaptrigger GROUP_AZALEA_TOWN, MAP_AZALEA_TOWN, $2
@@ -347,10 +347,10 @@ UnknownScript_0x18e3ac: ; 0x18e3ac
 KurtScript_0x18e3bd: ; 0x18e3bd
 	faceplayer
 	loadfont
-	checkbit1 $00bf
+	checkevent $00bf
 	iftrue UnknownScript_0x18e3e0
 UnknownScript_0x18e3c5: ; 0x18e3c5
-	checkbit1 $00bb
+	checkevent $00bb
 	iffalse UnknownScript_0x18e3d4
 	2writetext UnknownText_0x18e7d8
 	closetext
@@ -364,7 +364,7 @@ UnknownScript_0x18e3d4: ; 0x18e3d4
 	closetext
 	loadmovesprites
 	spriteface $5, $1
-	setbit1 $00bb
+	setevent $00bb
 	end
 ; 0x18e3e0
 
@@ -380,17 +380,17 @@ UnknownScript_0x18e3e0: ; 0x18e3e0
 
 TwinScript_0x18e3ed: ; 0x18e3ed
 	faceplayer
-	checkbit1 $0000
+	checkevent $0000
 	iftrue UnknownScript_0x18e42f
-	checkbit1 $0001
+	checkevent $0001
 	iftrue UnknownScript_0x18e448
-	checkbit1 $00c0
+	checkevent $00c0
 	iftrue UnknownScript_0x18e420
-	checkbit1 $0030
+	checkevent $0030
 	iftrue UnknownScript_0x18e427
-	checkbit1 EVENT_CLEARED_SLOWPOKE_WELL
+	checkevent EVENT_CLEARED_SLOWPOKE_WELL
 	iftrue UnknownScript_0x18e419
-	checkbit1 $06fa
+	checkevent $06fa
 	iftrue UnknownScript_0x18e420
 	loadfont
 	2writetext UnknownText_0x18e9b5
@@ -427,7 +427,7 @@ TwinScript_0x18e42e: ; 0x18e42e
 	faceplayer
 UnknownScript_0x18e42f: ; 0x18e42f
 	loadfont
-	checkbit1 $00bf
+	checkevent $00bf
 	iftrue UnknownScript_0x18e43f
 	2writetext UnknownText_0x18eab2
 	closetext

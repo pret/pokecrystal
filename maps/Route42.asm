@@ -26,7 +26,7 @@ UnknownScript_0x1a9218: ; 0x1a9218
 	disappear $a
 	pause 10
 	dotrigger $0
-	clearbit1 EVENT_SAW_SUICUNE_ON_ROUTE_36
+	clearevent EVENT_SAW_SUICUNE_ON_ROUTE_36
 	domaptrigger GROUP_ROUTE_36, MAP_ROUTE_36, $1
 	end
 ; 0x1a9233
@@ -61,11 +61,11 @@ FisherTully1Script: ; 0x1a923f
 	iftrue UnknownScript_0x1a92dc
 	checkcellnum $1d
 	iftrue UnknownScript_0x1a92fd
-	checkbit1 $028f
+	checkevent $028f
 	iftrue UnknownScript_0x1a9268
 	2writetext UnknownText_0x1a93ab
 	keeptextopen
-	setbit1 $028f
+	setevent $028f
 	2call UnknownScript_0x1a92f1
 	2jump UnknownScript_0x1a926b
 ; 0x1a9268
@@ -90,13 +90,13 @@ UnknownScript_0x1a927f: ; 0x1a927f
 	if_equal $1, UnknownScript_0x1a92a6
 	if_equal $0, UnknownScript_0x1a92ac
 UnknownScript_0x1a929a: ; 0x1a929a
-	checkbit1 EVENT_RESTORED_POWER_TO_KANTO
+	checkevent EVENT_RESTORED_POWER_TO_KANTO
 	iftrue UnknownScript_0x1a92d3
 UnknownScript_0x1a92a0: ; 0x1a92a0
-	checkbit1 $0044
+	checkevent $0044
 	iftrue UnknownScript_0x1a92c6
 UnknownScript_0x1a92a6: ; 0x1a92a6
-	checkbit1 EVENT_CLEARED_ROCKET_HIDEOUT
+	checkevent EVENT_CLEARED_ROCKET_HIDEOUT
 	iftrue UnknownScript_0x1a92b9
 UnknownScript_0x1a92ac: ; 0x1a92ac
 	loadtrainer FISHER, TULLY1
@@ -138,7 +138,7 @@ UnknownScript_0x1a92dc: ; 0x1a92dc
 	verbosegiveitem WATER_STONE, 1
 	iffalse UnknownScript_0x1a92ee
 	clearbit2 $0084
-	setbit1 $0103
+	setevent $0103
 	2jump UnknownScript_0x1a92fd
 ; 0x1a92ee
 

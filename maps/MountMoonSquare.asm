@@ -20,7 +20,7 @@ UnknownScript_0x77092: ; 0x77092
 ; 0x77093
 
 UnknownScript_0x77093: ; 0x77093
-	setbit1 $00ec
+	setevent $00ec
 	return
 ; 0x77097
 
@@ -72,7 +72,7 @@ UnknownScript_0x7709a: ; 0x7709a
 	disappear $2
 	disappear $3
 	stopfollow
-	clearbit1 $00ec
+	clearevent $00ec
 	setbit2 $0058
 	end
 ; 0x77117

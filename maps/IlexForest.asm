@@ -11,7 +11,7 @@ IlexForest_MapScriptHeader: ; 0x6eafe
 ; 0x6eb03
 
 UnknownScript_0x6eb03: ; 0x6eb03
-	checkbit1 EVENT_GOT_HM01_CUT
+	checkevent EVENT_GOT_HM01_CUT
 	iftrue UnknownScript_0x6eb34
 	copybytetovar FarfetchdPosition
 	if_equal $1, UnknownScript_0x6eb35
@@ -91,7 +91,7 @@ UnknownScript_0x6eb74: ; 0x6eb74
 YoungsterScript_0x6eb7b: ; 0x6eb7b
 	faceplayer
 	loadfont
-	checkbit1 $0029
+	checkevent $0029
 	iftrue UnknownScript_0x6eb89
 	2writetext UnknownText_0x6ef5c
 	closetext
@@ -326,8 +326,8 @@ UnknownScript_0x6ed50: ; 0x6ed50
 	appear $2
 	loadvar FarfetchdPosition, $a
 	appear $4
-	setbit1 $06f7
-	setbit1 $0029
+	setevent $06f7
+	setevent $0029
 	end
 ; 0x6ed74
 
@@ -373,21 +373,21 @@ UnknownScript_0x6eda1: ; 0x6eda1
 BlackBeltScript_0x6edae: ; 0x6edae
 	faceplayer
 	loadfont
-	checkbit1 EVENT_GOT_HM01_CUT
+	checkevent EVENT_GOT_HM01_CUT
 	iftrue UnknownScript_0x6edd8
 	2writetext UnknownText_0x6f099
 	keeptextopen
 	verbosegiveitem HM_01, 1
-	setbit1 EVENT_GOT_HM01_CUT
+	setevent EVENT_GOT_HM01_CUT
 	2writetext UnknownText_0x6f141
 	closetext
 	loadmovesprites
-	setbit1 $06e9
-	setbit1 $06f3
-	setbit1 $06f4
-	clearbit1 $06f5
-	clearbit1 $06f6
-	clearbit1 $06f7
+	setevent $06e9
+	setevent $06f3
+	setevent $06f4
+	clearevent $06f5
+	clearevent $06f6
+	clearevent $06f7
 	end
 ; 0x6edd8
 
@@ -401,13 +401,13 @@ UnknownScript_0x6edd8: ; 0x6edd8
 RockerScript_0x6edde: ; 0x6edde
 	faceplayer
 	loadfont
-	checkbit1 EVENT_GOT_TM02_HEADBUTT
+	checkevent EVENT_GOT_TM02_HEADBUTT
 	iftrue UnknownScript_0x6edf3
 	2writetext UnknownText_0x6f21b
 	keeptextopen
 	verbosegiveitem TM_02, 1
 	iffalse UnknownScript_0x6edf7
-	setbit1 EVENT_GOT_TM02_HEADBUTT
+	setevent EVENT_GOT_TM02_HEADBUTT
 UnknownScript_0x6edf3: ; 0x6edf3
 	2writetext UnknownText_0x6f26d
 	closetext
@@ -491,7 +491,7 @@ MapIlexForestSignpost0Script: ; 0x6ee24
 ; 0x6ee27
 
 MapIlexForestSignpost4Script: ; 0x6ee27
-	checkbit1 $00c0
+	checkevent $00c0
 	iftrue UnknownScript_0x6ee30
 	2jump UnknownScript_0x6ee35
 ; 0x6ee30
@@ -514,10 +514,10 @@ UnknownScript_0x6ee38: ; 0x6ee38
 
 UnknownScript_0x6ee42: ; 0x6ee42
 	takeitem GS_BALL, 1
-	clearbit1 $00c0
-	setbit1 $07a4
+	clearevent $00c0
+	setevent $07a4
 	disappear $8
-	clearbit1 $06eb
+	clearevent $06eb
 	2writetext UnknownText_0x6f43b
 	closetext
 	loadmovesprites

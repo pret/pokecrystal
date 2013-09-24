@@ -11,7 +11,7 @@ RadioTower3F_MapScriptHeader: ; 0x5e53e
 ; 0x5e543
 
 UnknownScript_0x5e543: ; 0x5e543
-	checkbit1 EVENT_USED_THE_CARD_KEY_IN_THE_RADIO_TOWER
+	checkevent EVENT_USED_THE_CARD_KEY_IN_THE_RADIO_TOWER
 	iftrue UnknownScript_0x5e54a
 	return
 ; 0x5e54a
@@ -29,7 +29,7 @@ SuperNerdScript_0x5e553: ; 0x5e553
 GymGuyScript_0x5e556: ; 0x5e556
 	faceplayer
 	loadfont
-	checkbit1 EVENT_CLEARED_RADIO_TOWER
+	checkevent EVENT_CLEARED_RADIO_TOWER
 	iftrue UnknownScript_0x5e564
 	2writetext UnknownText_0x5e682
 	closetext
@@ -47,11 +47,11 @@ UnknownScript_0x5e564: ; 0x5e564
 CooltrainerFScript_0x5e56a: ; 0x5e56a
 	faceplayer
 	loadfont
-	checkbit1 EVENT_GOT_SUNNY_DAY_FROM_RADIO_TOWER
+	checkevent EVENT_GOT_SUNNY_DAY_FROM_RADIO_TOWER
 	iftrue UnknownScript_0x5e59d
-	checkbit1 EVENT_CLEARED_RADIO_TOWER
+	checkevent EVENT_CLEARED_RADIO_TOWER
 	iftrue UnknownScript_0x5e58a
-	checkbit1 EVENT_USED_THE_CARD_KEY_IN_THE_RADIO_TOWER
+	checkevent EVENT_USED_THE_CARD_KEY_IN_THE_RADIO_TOWER
 	iftrue UnknownScript_0x5e584
 	2writetext UnknownText_0x5e754
 	closetext
@@ -74,7 +74,7 @@ UnknownScript_0x5e58a: ; 0x5e58a
 	2writetext UnknownText_0x5e821
 	closetext
 	loadmovesprites
-	setbit1 EVENT_GOT_SUNNY_DAY_FROM_RADIO_TOWER
+	setevent EVENT_GOT_SUNNY_DAY_FROM_RADIO_TOWER
 	end
 ; 0x5e59d
 
@@ -206,7 +206,7 @@ MapRadioTower3FSignpost2Script: ; 0x5e5f3
 	loadfont
 	2writetext UnknownText_0x5eaa4
 	closetext
-	checkbit1 EVENT_USED_THE_CARD_KEY_IN_THE_RADIO_TOWER
+	checkevent EVENT_USED_THE_CARD_KEY_IN_THE_RADIO_TOWER
 	iftrue UnknownScript_0x5e603
 	checkitem CARD_KEY
 	iftrue UnknownScript_0x5e605
@@ -218,7 +218,7 @@ UnknownScript_0x5e603: ; 0x5e603
 UnknownScript_0x5e605: ; 0x5e605
 	2writetext UnknownText_0x5eabc
 	closetext
-	setbit1 EVENT_USED_THE_CARD_KEY_IN_THE_RADIO_TOWER
+	setevent EVENT_USED_THE_CARD_KEY_IN_THE_RADIO_TOWER
 	playsound $001f
 	changeblock $e, $2, $2a
 	changeblock $e, $4, $1

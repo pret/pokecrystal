@@ -11,7 +11,7 @@ Route19_MapScriptHeader: ; 0x19e9d9
 ; 0x19e9de
 
 UnknownScript_0x19e9de: ; 0x19e9de
-	checkbit1 $00d7
+	checkevent $00d7
 	iftrue UnknownScript_0x19e9fc
 	changeblock $6, $6, $7a
 	changeblock $8, $6, $7a
@@ -142,7 +142,7 @@ SwimmermTuckerScript: ; 0x19ea45
 FisherScript_0x19ea4d: ; 0x19ea4d
 	faceplayer
 	loadfont
-	checkbit1 $00d7
+	checkevent $00d7
 	iftrue UnknownScript_0x19ea5b
 	2writetext UnknownText_0x19ecaf
 	closetext
@@ -160,7 +160,7 @@ UnknownScript_0x19ea5b: ; 0x19ea5b
 FisherScript_0x19ea61: ; 0x19ea61
 	faceplayer
 	loadfont
-	checkbit1 $00d7
+	checkevent $00d7
 	iftrue UnknownScript_0x19ea6f
 	2writetext UnknownText_0x19ed45
 	closetext

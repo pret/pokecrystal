@@ -21,7 +21,7 @@ GentlemanScript_0x196973: ; 0x196973
 TeacherScript_0x196976: ; 0x196976
 	faceplayer
 	loadfont
-	checkbit1 EVENT_GAVE_MYSTERY_EGG_TO_ELM
+	checkevent EVENT_GAVE_MYSTERY_EGG_TO_ELM
 	iftrue UnknownScript_0x196984
 	2writetext UnknownText_0x1969f1
 	closetext

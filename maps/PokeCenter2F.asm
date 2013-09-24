@@ -17,8 +17,8 @@ PokeCenter2F_MapScriptHeader: ; 0x192845
 UnknownScript_0x19285f: ; 0x19285f
 	special $0011
 	if_equal $0, UnknownScript_0x192872
-	clearbit1 $0711
-	checkbit1 $0001
+	clearevent $0711
+	checkevent $0001
 	iftrue UnknownScript_0x192872
 	priorityjump UnknownScript_0x192887
 ; 0x192872
@@ -54,7 +54,7 @@ UnknownScript_0x192883: ; 0x192883
 
 UnknownScript_0x192887: ; 0x192887
 	appear $5
-	setbit1 $0001
+	setevent $0001
 	end
 ; 0x19288d
 
@@ -77,7 +77,7 @@ UnknownScript_0x192895: ; 0x192895
 ; 0x19289d
 
 LinkReceptionistScript_0x19289d: ; 0x19289d
-	checkbit1 EVENT_GAVE_MYSTERY_EGG_TO_ELM
+	checkevent EVENT_GAVE_MYSTERY_EGG_TO_ELM
 	iffalse UnknownScript_0x19288d
 	loadfont
 	2writetext UnknownText_0x192e3a
@@ -190,7 +190,7 @@ UnknownScript_0x19294a: ; 0x19294a
 ; 0x192952
 
 LinkReceptionistScript_0x192952: ; 0x192952
-	checkbit1 EVENT_GAVE_MYSTERY_EGG_TO_ELM
+	checkevent EVENT_GAVE_MYSTERY_EGG_TO_ELM
 	iffalse UnknownScript_0x192895
 	loadfont
 	2writetext UnknownText_0x192de0
@@ -331,7 +331,7 @@ UnknownScript_0x192a25: ; 0x192a25
 ; 0x192a2d
 
 LinkReceptionistScript_0x192a2d: ; 0x192a2d
-	checkbit1 $0712
+	checkevent $0712
 	iftrue UnknownScript_0x192a25
 	checkbit2 $0053
 	iftrue UnknownScript_0x192a25
@@ -653,7 +653,7 @@ MapPokeCenter2FSignpost0Script: ; 0x192c93
 OfficerScript_0x192c9a: ; 0x192c9a
 	faceplayer
 	loadfont
-	checkbit1 $0711
+	checkevent $0711
 	iftrue UnknownScript_0x192cb8
 	2writetext UnknownText_0x193190
 	yesorno
@@ -664,7 +664,7 @@ OfficerScript_0x192c9a: ; 0x192c9a
 	special $0012
 	iffalse UnknownScript_0x192cbe
 	itemnotify
-	setbit1 $0711
+	setevent $0711
 UnknownScript_0x192cb8: ; 0x192cb8
 	2writetext UnknownText_0x1931d2
 	closetext

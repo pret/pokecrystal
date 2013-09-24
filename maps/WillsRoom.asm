@@ -24,11 +24,11 @@ UnknownScript_0x1804ca: ; 0x1804ca
 ; 0x1804cb
 
 UnknownScript_0x1804cb: ; 0x1804cb
-	checkbit1 $0309
+	checkevent $0309
 	iffalse UnknownScript_0x1804d5
 	changeblock $4, $e, $2a
 UnknownScript_0x1804d5: ; 0x1804d5
-	checkbit1 EVENT_WILLS_ROOM_EXIT_OPEN
+	checkevent EVENT_WILLS_ROOM_EXIT_OPEN
 	iffalse UnknownScript_0x1804df
 	changeblock $4, $2, $16
 UnknownScript_0x1804df: ; 0x1804df
@@ -44,7 +44,7 @@ UnknownScript_0x1804e0: ; 0x1804e0
 	reloadmappart
 	loadmovesprites
 	dotrigger $1
-	setbit1 $0309
+	setevent $0309
 	waitbutton
 	end
 ; 0x1804f8
@@ -52,7 +52,7 @@ UnknownScript_0x1804e0: ; 0x1804e0
 WillScript_0x1804f8: ; 0x1804f8
 	faceplayer
 	loadfont
-	checkbit1 $05b8
+	checkevent $05b8
 	iftrue UnknownScript_0x180526
 	2writetext UnknownText_0x180531
 	closetext
@@ -61,7 +61,7 @@ WillScript_0x1804f8: ; 0x1804f8
 	loadtrainer WILL, 1
 	startbattle
 	returnafterbattle
-	setbit1 $05b8
+	setevent $05b8
 	loadfont
 	2writetext UnknownText_0x180644
 	closetext
@@ -70,7 +70,7 @@ WillScript_0x1804f8: ; 0x1804f8
 	changeblock $4, $2, $16
 	reloadmappart
 	loadmovesprites
-	setbit1 EVENT_WILLS_ROOM_EXIT_OPEN
+	setevent EVENT_WILLS_ROOM_EXIT_OPEN
 	waitbutton
 	end
 ; 0x180526

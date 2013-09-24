@@ -11,21 +11,21 @@ UndergroundWarehouse_MapScriptHeader: ; 0x7d94b
 ; 0x7d950
 
 UnknownScript_0x7d950: ; 0x7d950
-	clearbit1 EVENT_SWITCH_1
-	clearbit1 EVENT_SWITCH_2
-	clearbit1 EVENT_SWITCH_3
-	clearbit1 EVENT_EMERGENCY_SWITCH
-	clearbit1 EVENT_SWITCH_4
-	clearbit1 EVENT_SWITCH_5
-	clearbit1 EVENT_SWITCH_6
-	clearbit1 EVENT_SWITCH_7
-	clearbit1 EVENT_SWITCH_8
-	clearbit1 EVENT_SWITCH_9
-	clearbit1 EVENT_SWITCH_10
-	clearbit1 EVENT_SWITCH_11
-	clearbit1 EVENT_SWITCH_12
-	clearbit1 EVENT_SWITCH_13
-	clearbit1 EVENT_SWITCH_14
+	clearevent EVENT_SWITCH_1
+	clearevent EVENT_SWITCH_2
+	clearevent EVENT_SWITCH_3
+	clearevent EVENT_EMERGENCY_SWITCH
+	clearevent EVENT_SWITCH_4
+	clearevent EVENT_SWITCH_5
+	clearevent EVENT_SWITCH_6
+	clearevent EVENT_SWITCH_7
+	clearevent EVENT_SWITCH_8
+	clearevent EVENT_SWITCH_9
+	clearevent EVENT_SWITCH_10
+	clearevent EVENT_SWITCH_11
+	clearevent EVENT_SWITCH_12
+	clearevent EVENT_SWITCH_13
+	clearevent EVENT_SWITCH_14
 	writebyte $0
 	copyvartobyte UndergroundSwitchPositions
 	return
@@ -121,15 +121,15 @@ GruntM15Script: ; 0x7d9b7
 GentlemanScript_0x7d9bf: ; 0x7d9bf
 	faceplayer
 	loadfont
-	checkbit1 $004a
+	checkevent $004a
 	iftrue UnknownScript_0x7d9de
 	2writetext UnknownText_0x7dbc6
 	keeptextopen
 	verbosegiveitem CARD_KEY, 1
-	setbit1 $004a
-	setbit1 $0304
-	clearbit1 $0305
-	clearbit1 $0306
+	setevent $004a
+	setevent $0304
+	clearevent $0305
+	clearevent $0306
 	2writetext UnknownText_0x7dc5b
 	keeptextopen
 UnknownScript_0x7d9de: ; 0x7d9de

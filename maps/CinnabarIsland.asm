@@ -24,7 +24,7 @@ BlueScript_0x1ac9b0: ; 0x1ac9b0
 	playsound $0013
 	applymovement $2, MovementData_0x1ac9d0
 	disappear $2
-	clearbit1 $0776
+	clearevent $0776
 	end
 ; 0x1ac9c4
 

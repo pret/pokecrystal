@@ -60,7 +60,7 @@ UnknownScript_0x1aa9ab: ; 0x1aa9ab
 	loadpokedata SNORLAX, 50
 	startbattle
 	disappear $6
-	setbit1 EVENT_FOUGHT_SNORLAX
+	setevent EVENT_FOUGHT_SNORLAX
 	returnafterbattle
 	end
 ; 0x1aa9c2
@@ -68,7 +68,7 @@ UnknownScript_0x1aa9ab: ; 0x1aa9ab
 PokefanMScript_0x1aa9c2: ; 0x1aa9c2
 	faceplayer
 	loadfont
-	checkbit1 $00e2
+	checkevent $00e2
 	iftrue UnknownScript_0x1aa9f7
 	checkcode $7
 	if_equal $10, UnknownScript_0x1aa9ea
@@ -99,7 +99,7 @@ UnknownScript_0x1aa9ea: ; 0x1aa9ea
 	keeptextopen
 	verbosegiveitem HP_UP, 1
 	iffalse UnknownScript_0x1aa9fb
-	setbit1 $00e2
+	setevent $00e2
 UnknownScript_0x1aa9f7: ; 0x1aa9f7
 	2writetext UnknownText_0x1aad4a
 	closetext

@@ -63,11 +63,11 @@ PicnickerErin1Script: ; 0x1a96a0
 	iftrue UnknownScript_0x1a96da
 	checkcellnum $24
 	iftrue UnknownScript_0x1a975b
-	checkbit1 $029d
+	checkevent $029d
 	iftrue UnknownScript_0x1a96c3
 	2writetext UnknownText_0x1a98c6
 	keeptextopen
-	setbit1 $029d
+	setevent $029d
 	2call UnknownScript_0x1a974f
 	2jump UnknownScript_0x1a96c6
 ; 0x1a96c3
@@ -91,10 +91,10 @@ UnknownScript_0x1a96da: ; 0x1a96da
 	if_equal $1, UnknownScript_0x1a96f7
 	if_equal $0, UnknownScript_0x1a96fd
 UnknownScript_0x1a96f1: ; 0x1a96f1
-	checkbit1 EVENT_RESTORED_POWER_TO_KANTO
+	checkevent EVENT_RESTORED_POWER_TO_KANTO
 	iftrue UnknownScript_0x1a9717
 UnknownScript_0x1a96f7: ; 0x1a96f7
-	checkbit1 $0044
+	checkevent $0044
 	iftrue UnknownScript_0x1a970a
 UnknownScript_0x1a96fd: ; 0x1a96fd
 	loadtrainer PICNICKER, ERIN1
@@ -119,14 +119,14 @@ UnknownScript_0x1a9717: ; 0x1a9717
 	startbattle
 	returnafterbattle
 	clearbit2 $007c
-	checkbit1 EVENT_ERIN_CALCIUM
+	checkevent EVENT_ERIN_CALCIUM
 	iftrue UnknownScript_0x1a973b
-	checkbit1 $0269
+	checkevent $0269
 	iftrue UnknownScript_0x1a973a
 	2call UnknownScript_0x1a9772
 	verbosegiveitem CALCIUM, 1
 	iffalse UnknownScript_0x1a976b
-	setbit1 $0269
+	setevent $0269
 	2jump UnknownScript_0x1a975b
 ; 0x1a973a
 
@@ -140,8 +140,8 @@ UnknownScript_0x1a973b: ; 0x1a973b
 	closetext
 	verbosegiveitem CALCIUM, 1
 	iffalse UnknownScript_0x1a976b
-	clearbit1 EVENT_ERIN_CALCIUM
-	setbit1 $0269
+	clearevent EVENT_ERIN_CALCIUM
+	setevent $0269
 	2jump UnknownScript_0x1a975b
 ; 0x1a974f
 
@@ -181,7 +181,7 @@ UnknownScript_0x1a9767: ; 0x1a9767
 ; 0x1a976b
 
 UnknownScript_0x1a976b: ; 0x1a976b
-	setbit1 EVENT_ERIN_CALCIUM
+	setevent EVENT_ERIN_CALCIUM
 	jumpstd $002b
 	end
 ; 0x1a9772

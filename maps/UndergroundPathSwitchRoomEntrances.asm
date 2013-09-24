@@ -23,51 +23,51 @@ UnknownScript_0x7c9f6: ; 0x7c9f6
 ; 0x7c9f7
 
 UnknownScript_0x7c9f7: ; 0x7c9f7
-	checkbit1 EVENT_SWITCH_4
+	checkevent EVENT_SWITCH_4
 	iffalse UnknownScript_0x7ca01
 	changeblock $10, $6, $2d
 UnknownScript_0x7ca01: ; 0x7ca01
-	checkbit1 EVENT_SWITCH_5
+	checkevent EVENT_SWITCH_5
 	iffalse UnknownScript_0x7ca0b
 	changeblock $a, $6, $2d
 UnknownScript_0x7ca0b: ; 0x7ca0b
-	checkbit1 EVENT_SWITCH_6
+	checkevent EVENT_SWITCH_6
 	iffalse UnknownScript_0x7ca15
 	changeblock $2, $6, $2d
 UnknownScript_0x7ca15: ; 0x7ca15
-	checkbit1 EVENT_SWITCH_7
+	checkevent EVENT_SWITCH_7
 	iffalse UnknownScript_0x7ca1f
 	changeblock $2, $a, $2d
 UnknownScript_0x7ca1f: ; 0x7ca15
-	checkbit1 EVENT_SWITCH_8
+	checkevent EVENT_SWITCH_8
 	iffalse UnknownScript_0x7ca29
 	changeblock $a, $a, $2d
 UnknownScript_0x7ca29: ; 0x7ca29
-	checkbit1 EVENT_SWITCH_9
+	checkevent EVENT_SWITCH_9
 	iffalse UnknownScript_0x7ca33
 	changeblock $10, $a, $2d
 UnknownScript_0x7ca33: ; 0x7ca33
-	checkbit1 EVENT_SWITCH_10
+	checkevent EVENT_SWITCH_10
 	iffalse UnknownScript_0x7ca41
 	changeblock $c, $6, $2a
 	changeblock $c, $8, $2d
 UnknownScript_0x7ca41: ; 0x7ca41
-	checkbit1 EVENT_SWITCH_11
+	checkevent EVENT_SWITCH_11
 	iffalse UnknownScript_0x7ca4f
 	changeblock $6, $6, $2a
 	changeblock $6, $8, $2d
 UnknownScript_0x7ca4f: ; 0x7ca4f
-	checkbit1 EVENT_SWITCH_12
+	checkevent EVENT_SWITCH_12
 	iffalse UnknownScript_0x7ca5d
 	changeblock $c, $a, $2a
 	changeblock $c, $c, $2d
 UnknownScript_0x7ca5d: ; 0x7ca5d
-	checkbit1 EVENT_SWITCH_13
+	checkevent EVENT_SWITCH_13
 	iffalse UnknownScript_0x7ca6b
 	changeblock $6, $a, $2a
 	changeblock $6, $c, $2d
 UnknownScript_0x7ca6b: ; 0x7ca6b
-	checkbit1 EVENT_SWITCH_14
+	checkevent EVENT_SWITCH_14
 	iffalse UnknownScript_0x7ca79
 	changeblock $12, $a, $2a
 	changeblock $12, $c, $2d
@@ -124,9 +124,9 @@ UnknownScript_0x7caaa: ; 0x7caaa
 ; 0x7cad4
 
 UnknownScript_0x7cad4: ; 0x7cad4
-	checkbit1 $06c5
+	checkevent $06c5
 	iftrue UnknownScript_0x7cae1
-	setbit1 $06c5
+	setevent $06c5
 	domaptrigger GROUP_BURNED_TOWER_1F, MAP_BURNED_TOWER_1F, $1
 UnknownScript_0x7cae1: ; 0x7cae1
 	playmusic $001f
@@ -134,10 +134,10 @@ UnknownScript_0x7cae1: ; 0x7cae1
 	2writetext UnknownText_0x7ce9d
 	closetext
 	loadmovesprites
-	setbit1 $06c1
-	checkbit1 EVENT_GOT_TOTODILE_FROM_ELM
+	setevent $06c1
+	checkevent EVENT_GOT_TOTODILE_FROM_ELM
 	iftrue UnknownScript_0x7cb09
-	checkbit1 EVENT_GOT_CHIKORITA_FROM_ELM
+	checkevent EVENT_GOT_CHIKORITA_FROM_ELM
 	iftrue UnknownScript_0x7cb19
 	winlosstext UnknownText_0x7cf5d, UnknownText_0x7d102
 	setlasttalked $c
@@ -355,7 +355,7 @@ MapUndergroundPathSwitchRoomEntrancesSignpost0Script: ; 0x7cbab
 	loadfont
 	2writetext UnknownText_0x7d554
 	keeptextopen
-	checkbit1 EVENT_SWITCH_1
+	checkevent EVENT_SWITCH_1
 	iftrue UnknownScript_0x7cbcb
 	2writetext UnknownText_0x7d617
 	yesorno
@@ -363,7 +363,7 @@ MapUndergroundPathSwitchRoomEntrancesSignpost0Script: ; 0x7cbab
 	copybytetovar UndergroundSwitchPositions
 	addvar $1
 	copyvartobyte UndergroundSwitchPositions
-	setbit1 EVENT_SWITCH_1
+	setevent EVENT_SWITCH_1
 	2jump UnknownScript_0x7cc8d
 ; 0x7cbcb
 
@@ -374,7 +374,7 @@ UnknownScript_0x7cbcb: ; 0x7cbcb
 	copybytetovar UndergroundSwitchPositions
 	addvar -1
 	copyvartobyte UndergroundSwitchPositions
-	clearbit1 EVENT_SWITCH_1
+	clearevent EVENT_SWITCH_1
 	2jump UnknownScript_0x7cc8d
 ; 0x7cbe0
 
@@ -382,7 +382,7 @@ MapUndergroundPathSwitchRoomEntrancesSignpost1Script: ; 0x7cbe0
 	loadfont
 	2writetext UnknownText_0x7d643
 	keeptextopen
-	checkbit1 EVENT_SWITCH_2
+	checkevent EVENT_SWITCH_2
 	iftrue UnknownScript_0x7cc00
 	2writetext UnknownText_0x7d617
 	yesorno
@@ -390,7 +390,7 @@ MapUndergroundPathSwitchRoomEntrancesSignpost1Script: ; 0x7cbe0
 	copybytetovar UndergroundSwitchPositions
 	addvar $2
 	copyvartobyte UndergroundSwitchPositions
-	setbit1 EVENT_SWITCH_2
+	setevent EVENT_SWITCH_2
 	2jump UnknownScript_0x7cc8d
 ; 0x7cc00
 
@@ -401,7 +401,7 @@ UnknownScript_0x7cc00: ; 0x7cc00
 	copybytetovar UndergroundSwitchPositions
 	addvar -2
 	copyvartobyte UndergroundSwitchPositions
-	clearbit1 EVENT_SWITCH_2
+	clearevent EVENT_SWITCH_2
 	2jump UnknownScript_0x7cc8d
 ; 0x7cc15
 
@@ -409,7 +409,7 @@ MapUndergroundPathSwitchRoomEntrancesSignpost2Script: ; 0x7cc15
 	loadfont
 	2writetext UnknownText_0x7d65a
 	keeptextopen
-	checkbit1 EVENT_SWITCH_3
+	checkevent EVENT_SWITCH_3
 	iftrue UnknownScript_0x7cc35
 	2writetext UnknownText_0x7d617
 	yesorno
@@ -417,7 +417,7 @@ MapUndergroundPathSwitchRoomEntrancesSignpost2Script: ; 0x7cc15
 	copybytetovar UndergroundSwitchPositions
 	addvar $3
 	copyvartobyte UndergroundSwitchPositions
-	setbit1 EVENT_SWITCH_3
+	setevent EVENT_SWITCH_3
 	2jump UnknownScript_0x7cc8d
 ; 0x7cc35
 
@@ -428,7 +428,7 @@ UnknownScript_0x7cc35: ; 0x7cc35
 	copybytetovar UndergroundSwitchPositions
 	addvar -3
 	copyvartobyte UndergroundSwitchPositions
-	clearbit1 EVENT_SWITCH_3
+	clearevent EVENT_SWITCH_3
 	2jump UnknownScript_0x7cc8d
 ; 0x7cc4a
 
@@ -436,17 +436,17 @@ MapUndergroundPathSwitchRoomEntrancesSignpost3Script: ; 0x7cc4a
 	loadfont
 	2writetext UnknownText_0x7d671
 	keeptextopen
-	checkbit1 EVENT_EMERGENCY_SWITCH
+	checkevent EVENT_EMERGENCY_SWITCH
 	iftrue UnknownScript_0x7cc70
 	2writetext UnknownText_0x7d617
 	yesorno
 	iffalse UnknownScript_0x7cc8b
 	writebyte $7
 	copyvartobyte UndergroundSwitchPositions
-	setbit1 EVENT_EMERGENCY_SWITCH
-	setbit1 EVENT_SWITCH_1
-	setbit1 EVENT_SWITCH_2
-	setbit1 EVENT_SWITCH_3
+	setevent EVENT_EMERGENCY_SWITCH
+	setevent EVENT_SWITCH_1
+	setevent EVENT_SWITCH_2
+	setevent EVENT_SWITCH_3
 	2jump UnknownScript_0x7cc8d
 ; 0x7cc70
 
@@ -456,10 +456,10 @@ UnknownScript_0x7cc70: ; 0x7cc70
 	iffalse UnknownScript_0x7cc8b
 	writebyte $0
 	copyvartobyte UndergroundSwitchPositions
-	clearbit1 EVENT_EMERGENCY_SWITCH
-	clearbit1 EVENT_SWITCH_1
-	clearbit1 EVENT_SWITCH_2
-	clearbit1 EVENT_SWITCH_3
+	clearevent EVENT_EMERGENCY_SWITCH
+	clearevent EVENT_SWITCH_1
+	clearevent EVENT_SWITCH_2
+	clearevent EVENT_SWITCH_3
 	2jump UnknownScript_0x7cc8d
 ; 0x7cc8b
 
@@ -602,143 +602,143 @@ UnknownScript_0x7cd79: ; 0x7cd79
 
 UnknownScript_0x7cda5: ; 0x7cda5
 	changeblock $10, $6, $2d
-	setbit1 EVENT_SWITCH_4
+	setevent EVENT_SWITCH_4
 	end
 ; 0x7cdad
 
 UnknownScript_0x7cdad: ; 0x7cdad
 	changeblock $a, $6, $2d
-	setbit1 EVENT_SWITCH_5
+	setevent EVENT_SWITCH_5
 	end
 ; 0x7cdb5
 
 UnknownScript_0x7cdb5: ; 0x7cdb5
 	changeblock $2, $6, $2d
-	setbit1 EVENT_SWITCH_6
+	setevent EVENT_SWITCH_6
 	end
 ; 0x7cdbd
 
 UnknownScript_0x7cdbd: ; 0x7cdbd
 	changeblock $2, $a, $2d
-	setbit1 EVENT_SWITCH_7
+	setevent EVENT_SWITCH_7
 	end
 ; 0x7cdc5
 
 UnknownScript_0x7cdc5: ; 0x7cdc5
 	changeblock $a, $a, $2d
-	setbit1 EVENT_SWITCH_8
+	setevent EVENT_SWITCH_8
 	end
 ; 0x7cdcd
 
 UnknownScript_0x7cdcd: ; 0x7cdcd
 	changeblock $10, $a, $2d
-	setbit1 EVENT_SWITCH_9
+	setevent EVENT_SWITCH_9
 	end
 ; 0x7cdd5
 
 UnknownScript_0x7cdd5: ; 0x7cdd5
 	changeblock $c, $6, $2a
 	changeblock $c, $8, $2d
-	setbit1 EVENT_SWITCH_10
+	setevent EVENT_SWITCH_10
 	end
 ; 0x7cde1
 
 UnknownScript_0x7cde1: ; 0x7cde1
 	changeblock $6, $6, $2a
 	changeblock $6, $8, $2d
-	setbit1 EVENT_SWITCH_11
+	setevent EVENT_SWITCH_11
 	end
 ; 0x7cded
 
 UnknownScript_0x7cded: ; 0x7cded
 	changeblock $c, $a, $2a
 	changeblock $c, $c, $2d
-	setbit1 EVENT_SWITCH_12
+	setevent EVENT_SWITCH_12
 	end
 ; 0x7cdf9
 
 UnknownScript_0x7cdf9: ; 0x7cdf9
 	changeblock $6, $a, $2a
 	changeblock $6, $c, $2d
-	setbit1 EVENT_SWITCH_13
+	setevent EVENT_SWITCH_13
 	end
 ; 0x7ce05
 
 UnknownScript_0x7ce05: ; 0x7ce05
 	changeblock $12, $a, $2a
 	changeblock $12, $c, $2d
-	setbit1 EVENT_SWITCH_14
+	setevent EVENT_SWITCH_14
 	end
 ; 0x7ce11
 
 UnknownScript_0x7ce11: ; 0x7ce11
 	changeblock $10, $6, $3e
-	clearbit1 EVENT_SWITCH_4
+	clearevent EVENT_SWITCH_4
 	end
 ; 0x7ce19
 
 UnknownScript_0x7ce19: ; 0x7ce19
 	changeblock $a, $6, $3e
-	clearbit1 EVENT_SWITCH_5
+	clearevent EVENT_SWITCH_5
 	end
 ; 0x7ce21
 
 UnknownScript_0x7ce21: ; 0x7ce21
 	changeblock $2, $6, $3e
-	clearbit1 EVENT_SWITCH_6
+	clearevent EVENT_SWITCH_6
 	end
 ; 0x7ce29
 
 UnknownScript_0x7ce29: ; 0x7ce29
 	changeblock $2, $a, $3e
-	clearbit1 EVENT_SWITCH_7
+	clearevent EVENT_SWITCH_7
 	end
 ; 0x7ce31
 
 UnknownScript_0x7ce31: ; 0x7ce31
 	changeblock $a, $a, $3e
-	clearbit1 EVENT_SWITCH_8
+	clearevent EVENT_SWITCH_8
 	end
 ; 0x7ce39
 
 UnknownScript_0x7ce39: ; 0x7ce39
 	changeblock $10, $a, $3e
-	clearbit1 EVENT_SWITCH_9
+	clearevent EVENT_SWITCH_9
 	end
 ; 0x7ce41
 
 UnknownScript_0x7ce41: ; 0x7ce41
 	changeblock $c, $6, $3f
 	changeblock $c, $8, $3d
-	clearbit1 EVENT_SWITCH_10
+	clearevent EVENT_SWITCH_10
 	end
 ; 0x7ce4d
 
 UnknownScript_0x7ce4d: ; 0x7ce4d
 	changeblock $6, $6, $3f
 	changeblock $6, $8, $3d
-	clearbit1 EVENT_SWITCH_11
+	clearevent EVENT_SWITCH_11
 	end
 ; 0x7ce59
 
 UnknownScript_0x7ce59: ; 0x7ce59
 	changeblock $c, $a, $3f
 	changeblock $c, $c, $3d
-	clearbit1 EVENT_SWITCH_12
+	clearevent EVENT_SWITCH_12
 	end
 ; 0x7ce65
 
 UnknownScript_0x7ce65: ; 0x7ce65
 	changeblock $6, $a, $3f
 	changeblock $6, $c, $3d
-	clearbit1 EVENT_SWITCH_13
+	clearevent EVENT_SWITCH_13
 	end
 ; 0x7ce71
 
 UnknownScript_0x7ce71: ; 0x7ce71
 	changeblock $12, $a, $3f
 	changeblock $12, $c, $3d
-	clearbit1 EVENT_SWITCH_14
+	clearevent EVENT_SWITCH_14
 	end
 ; 0x7ce7d
 

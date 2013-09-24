@@ -72,7 +72,7 @@ PokeCenterNurseScript: ; bc09c
 
 .morn
 ; Different text if we're in the com center
-	checkbit1 $032a
+	checkevent $032a
 	iftrue .morn_comcenter
 ; Good morning! Welcome to ...
 	3writetext BANK(UnknownText_0x1b0000), UnknownText_0x1b0000
@@ -86,7 +86,7 @@ PokeCenterNurseScript: ; bc09c
 
 .day
 ; Different text if we're in the com center
-	checkbit1 $032a
+	checkevent $032a
 	iftrue .day_comcenter
 ; Hello! Welcome to ...
 	3writetext BANK(UnknownText_0x1b002b), UnknownText_0x1b002b
@@ -100,7 +100,7 @@ PokeCenterNurseScript: ; bc09c
 
 .nite
 ; Different text if we're in the com center
-	checkbit1 $032a
+	checkevent $032a
 	iftrue .nite_comcenter
 ; Good evening! You're out late. ...
 	3writetext BANK(UnknownText_0x1b004f), UnknownText_0x1b004f
@@ -114,7 +114,7 @@ PokeCenterNurseScript: ; bc09c
 
 .heal
 ; If we come back, don't welcome us to the com center again
-	clearbit1 $032a
+	clearevent $032a
 ; Ask if you want to heal
 	3writetext BANK(UnknownText_0x1b017a), UnknownText_0x1b017a
 	yesorno
@@ -164,7 +164,7 @@ PokeCenterNurseScript: ; bc09c
 ; Different text for com center (excludes 'in a Pokemon Center')
 ; Since flag $32a is cleared when healing,
 ; this text is never actually seen
-	checkbit1 $032a
+	checkevent $032a
 	iftrue .pokerus_comcenter
 ; Your Pokemon appear to be infected ...
 	3writetext BANK(UnknownText_0x1b0241), UnknownText_0x1b0241
@@ -354,17 +354,17 @@ UnknownRawText_0xbc235: ; bc235
 ; bc23e
 
 UnknownScript_0xbc23e: ; 0xbc23e
-	clearbit1 $06cd
+	clearevent $06cd
 	end
 ; 0xbc242
 
 UnknownScript_0xbc242: ; 0xbc242
 	setbit2 $0013
-	setbit1 $06cf
-	setbit1 $06d1
-	clearbit1 $06ce
-	clearbit1 $0025
-	setbit1 $0756
+	setevent $06cf
+	setevent $06d1
+	clearevent $06ce
+	clearevent $0025
+	setevent $0756
 	specialphonecall $0004
 	domaptrigger GROUP_MAHOGANY_TOWN, MAP_MAHOGANY_TOWN, $1
 	end
@@ -373,19 +373,19 @@ UnknownScript_0xbc242: ; 0xbc242
 UnknownScript_0xbc25c: ; 0xbc25c
 	special $0034
 	2call UnknownScript_0xbc380
-	setbit1 $0747
-	clearbit1 $0748
-	setbit1 $02d2
+	setevent $0747
+	clearevent $0748
+	setevent $02d2
 	warp GROUP_ROUTE_36_NATIONAL_PARK_GATE, MAP_ROUTE_36_NATIONAL_PARK_GATE, $0, $4
 	applymovement $0, MovementData_0xbcea1
 
 UnknownScript_0xbc274: ; bc274
 	clearbit2 $0011
-	clearbit1 $02d2
-	clearbit1 $0313
-	clearbit1 $0314
-	clearbit1 $0315
-	clearbit1 $0316
+	clearevent $02d2
+	clearevent $0313
+	clearevent $0314
+	clearevent $0315
+	clearevent $0316
 	loadfont
 	3writetext $6c, $45bf
 	closetext
@@ -407,7 +407,7 @@ UnknownScript_0xbc274: ; bc274
 UnknownScript_0xbc2b1: ; 0xbc2b1
 	3writetext $6c, $465b
 	keeptextopen
-	checkbit1 $0308
+	checkevent $0308
 	iffalse $42c4
 	3writetext $6c, $46d9
 	closetext
@@ -420,33 +420,33 @@ UnknownScript_0xbc2b1: ; 0xbc2b1
 	loadmovesprites
 	dotrigger $0
 	domaptrigger GROUP_ROUTE_35_NATIONAL_PARK_GATE, MAP_ROUTE_35_NATIONAL_PARK_GATE, $0
-	setbit1 $0716
-	setbit1 $0717
-	setbit1 $0718
-	setbit1 $0719
-	setbit1 $071a
-	setbit1 $071b
-	setbit1 $071c
-	setbit1 $071d
-	setbit1 $071e
-	setbit1 $071f
-	setbit1 $0720
-	setbit1 $0721
-	setbit1 $0722
-	setbit1 $0723
-	setbit1 $0724
-	setbit1 $0725
-	setbit1 $0726
-	setbit1 $0727
-	setbit1 $0728
-	setbit1 $0729
+	setevent $0716
+	setevent $0717
+	setevent $0718
+	setevent $0719
+	setevent $071a
+	setevent $071b
+	setevent $071c
+	setevent $071d
+	setevent $071e
+	setevent $071f
+	setevent $0720
+	setevent $0721
+	setevent $0722
+	setevent $0723
+	setevent $0724
+	setevent $0725
+	setevent $0726
+	setevent $0727
+	setevent $0728
+	setevent $0729
 	setbit2 $0051
 	special $003c
 	end
 ; 0xbc31e
 
 UnknownScript_0xbc31e: ; 0xbc31e
-	setbit1 $0000
+	setevent $0000
 	itemtotext SUN_STONE, $1
 	3writetext $6c, $4621
 	closetext
@@ -476,189 +476,189 @@ UnknownScript_0xbc343: ; 0xbc343
 UnknownScript_0xbc354: ; 0xbc354
 	3writetext $6c, $48cc
 	keeptextopen
-	setbit1 $0313
+	setevent $0313
 	2jump UnknownScript_0xbc2b1
 ; 0xbc35f
 
 UnknownScript_0xbc35f: ; 0xbc35f
 	3writetext $6c, $48cc
 	keeptextopen
-	setbit1 $0314
+	setevent $0314
 	2jump UnknownScript_0xbc2b1
 ; 0xbc36a
 
 UnknownScript_0xbc36a: ; 0xbc36a
 	3writetext $6c, $48cc
 	keeptextopen
-	setbit1 $0315
+	setevent $0315
 	2jump UnknownScript_0xbc2b1
 ; 0xbc375
 
 UnknownScript_0xbc375: ; 0xbc375
 	3writetext $6c, $48cc
 	keeptextopen
-	setbit1 $0316
+	setevent $0316
 	2jump $42a9
 ; 0xbc380
 
 UnknownScript_0xbc380: ; 0xbc380
-	checkbit1 $0716
+	checkevent $0716
 	iftrue .skip1
-	clearbit1 $0720
+	clearevent $0720
 .skip1
-	checkbit1 $0717
+	checkevent $0717
 	iftrue .skip2
-	clearbit1 $0721
+	clearevent $0721
 .skip2
-	checkbit1 $0718
+	checkevent $0718
 	iftrue .skip3
-	clearbit1 $0722
+	clearevent $0722
 .skip3
-	checkbit1 $0719
+	checkevent $0719
 	iftrue .skip4
-	clearbit1 $0723
+	clearevent $0723
 .skip4
-	checkbit1 $071a
+	checkevent $071a
 	iftrue .skip5
-	clearbit1 $0724
+	clearevent $0724
 .skip5
-	checkbit1 $071b
+	checkevent $071b
 	iftrue .skip6
-	clearbit1 $0725
+	clearevent $0725
 .skip6
-	checkbit1 $071c
+	checkevent $071c
 	iftrue .skip7
-	clearbit1 $0726
+	clearevent $0726
 .skip7
-	checkbit1 $071d
+	checkevent $071d
 	iftrue .skip8
-	clearbit1 $0727
+	clearevent $0727
 .skip8
-	checkbit1 $071e
+	checkevent $071e
 	iftrue .skip9
-	clearbit1 $0728
+	clearevent $0728
 .skip9
-	checkbit1 $071f
+	checkevent $071f
 	iftrue .skip10
-	clearbit1 $0729
+	clearevent $0729
 .skip10
 	end
 ; 0xbc3db
 
 UnknownScript_0xbc3db: ; 0xbc3db
-	setbit1 $06cb
-	setbit1 $06ce
-	setbit1 $06cd
-	setbit1 $06d0
-	setbit1 $06f3
-	setbit1 $06e9
-	setbit1 $06f4
-	setbit1 $06d5
-	setbit1 $06de
-	setbit1 $06dd
-	setbit1 $06df
-	setbit1 $06c0
-	setbit1 $06e4
-	setbit1 $0025
-	setbit1 $06be
-	setbit1 $06bf
-	setbit1 $06c1
-	setbit1 $06f9
-	setbit1 $06fd
-	setbit1 $06ff
-	setbit1 $0700
-	setbit1 $0702
-	setbit1 $0703
-	setbit1 $0704
-	setbit1 $070d
-	setbit1 $070e
-	setbit1 $070f
-	setbit1 $0710
-	setbit1 $0715
-	setbit1 $0716
-	setbit1 $0717
-	setbit1 $0718
-	setbit1 $0719
-	setbit1 $071a
-	setbit1 $071b
-	setbit1 $071c
-	setbit1 $071d
-	setbit1 $071e
-	setbit1 $071f
-	setbit1 $0720
-	setbit1 $0721
-	setbit1 $0722
-	setbit1 $0723
-	setbit1 $0724
-	setbit1 $0725
-	setbit1 $0726
-	setbit1 $0727
-	setbit1 $0728
-	setbit1 $0729
-	setbit1 $072c
-	setbit1 $072f
-	setbit1 $072d
-	setbit1 $0735
-	setbit1 $0736
-	setbit1 $073c
-	setbit1 $073d
-	setbit1 $0741
-	setbit1 $0742
-	setbit1 $0743
-	setbit1 $0744
-	setbit1 $02a4
-	setbit1 $02af
-	setbit1 $0749
-	setbit1 $06d3
-	setbit1 $074d
-	setbit1 $0712
-	setbit1 $0713
-	setbit1 $0711
-	setbit1 $06d4
-	setbit1 $0304
-	setbit1 $0307
-	setbit1 $06d8
-	setbit1 $06c3
-	setbit1 $06c2
-	setbit1 $06c6
-	setbit1 $075f
-	setbit1 $0731
-	setbit1 $074a
-	setbit1 $0762
-	setbit1 $0738
-	setbit1 $073a
-	setbit1 $073b
-	setbit1 $0733
-	setbit1 $073f
-	setbit1 $078d
-	setbit1 $0766
-	setbit1 $0768
-	setbit1 $0769
-	setbit1 $076a
-	setbit1 $078e
-	setbit1 $078f
-	setbit1 $0790
-	setbit1 $0791
-	setbit1 $0793
-	setbit1 $07a4
-	setbit1 $07a4
-	setbit1 $07a5
-	setbit1 $06ec
-	setbit1 $06ed
-	setbit1 $06f0
-	setbit1 $07a9
-	setbit1 $07aa
-	setbit1 $06c8
-	setbit1 $07ac
-	setbit1 $07ad
-	setbit1 $07b5
-	setbit1 $07b6
-	setbit1 $07c5
-	setbit1 $07b7
-	setbit1 $07b0
-	setbit1 $07af
-	setbit1 $07ae
-	setbit1 $07cf
+	setevent $06cb
+	setevent $06ce
+	setevent $06cd
+	setevent $06d0
+	setevent $06f3
+	setevent $06e9
+	setevent $06f4
+	setevent $06d5
+	setevent $06de
+	setevent $06dd
+	setevent $06df
+	setevent $06c0
+	setevent $06e4
+	setevent $0025
+	setevent $06be
+	setevent $06bf
+	setevent $06c1
+	setevent $06f9
+	setevent $06fd
+	setevent $06ff
+	setevent $0700
+	setevent $0702
+	setevent $0703
+	setevent $0704
+	setevent $070d
+	setevent $070e
+	setevent $070f
+	setevent $0710
+	setevent $0715
+	setevent $0716
+	setevent $0717
+	setevent $0718
+	setevent $0719
+	setevent $071a
+	setevent $071b
+	setevent $071c
+	setevent $071d
+	setevent $071e
+	setevent $071f
+	setevent $0720
+	setevent $0721
+	setevent $0722
+	setevent $0723
+	setevent $0724
+	setevent $0725
+	setevent $0726
+	setevent $0727
+	setevent $0728
+	setevent $0729
+	setevent $072c
+	setevent $072f
+	setevent $072d
+	setevent $0735
+	setevent $0736
+	setevent $073c
+	setevent $073d
+	setevent $0741
+	setevent $0742
+	setevent $0743
+	setevent $0744
+	setevent $02a4
+	setevent $02af
+	setevent $0749
+	setevent $06d3
+	setevent $074d
+	setevent $0712
+	setevent $0713
+	setevent $0711
+	setevent $06d4
+	setevent $0304
+	setevent $0307
+	setevent $06d8
+	setevent $06c3
+	setevent $06c2
+	setevent $06c6
+	setevent $075f
+	setevent $0731
+	setevent $074a
+	setevent $0762
+	setevent $0738
+	setevent $073a
+	setevent $073b
+	setevent $0733
+	setevent $073f
+	setevent $078d
+	setevent $0766
+	setevent $0768
+	setevent $0769
+	setevent $076a
+	setevent $078e
+	setevent $078f
+	setevent $0790
+	setevent $0791
+	setevent $0793
+	setevent $07a4
+	setevent $07a4
+	setevent $07a5
+	setevent $06ec
+	setevent $06ed
+	setevent $06f0
+	setevent $07a9
+	setevent $07aa
+	setevent $06c8
+	setevent $07ac
+	setevent $07ad
+	setevent $07b5
+	setevent $07b6
+	setevent $07c5
+	setevent $07b7
+	setevent $07b0
+	setevent $07af
+	setevent $07ae
+	setevent $07cf
 	setbit2 $000e
 	setbit2 $0017
 	variablesprite $4, $52
@@ -670,18 +670,18 @@ UnknownScript_0xbc3db: ; 0xbc3db
 	variablesprite $a, $a
 	variablesprite $b, $28
 	variablesprite $c, $28
-	setbit1 $00fb
-	setbit1 $076d
-	setbit1 $076c
-	setbit1 $076e
-	setbit1 $076f
-	setbit1 $0773
-	setbit1 $0776
-	setbit1 $0777
-	setbit1 $0779
-	setbit1 $0772
-	setbit1 $077b
-	setbit1 $0036
+	setevent $00fb
+	setevent $076d
+	setevent $076c
+	setevent $076e
+	setevent $076f
+	setevent $0773
+	setevent $0776
+	setevent $0777
+	setevent $0779
+	setevent $0772
+	setevent $077b
+	setevent $0036
 	return
 ; 0xbc574
 
@@ -2332,18 +2332,18 @@ UnusedPhoneScript: ; 0xbcea5
 	end
 
 MomPhoneScript: ; 0xbceaa
-	checkbit1 $0040
+	checkevent $0040
 	iftrue .bcec5
-	checkbit1 $0041 ; if dude talked to you, then you left home without talking to mom
+	checkevent $0041 ; if dude talked to you, then you left home without talking to mom
 	iftrue MomPhoneLectureScript
-	checkbit1 $001f
+	checkevent $001f
 	iftrue MomPhoneNoGymQuestScript
-	checkbit1 $001a
+	checkevent $001a
 	iftrue MomPhoneNoPokedexScript
 	2jump MomPhoneNoPokemonScript
 
 .bcec5 ; 0xbcec5
-	checkbit1 $0007
+	checkevent $0007
 	iftrue MomPhoneHangUpScript
 	3writetext BANK(MomPhoneGreetingText), MomPhoneGreetingText
 	keeptextopen
@@ -2464,7 +2464,7 @@ MomPhoneNoGymQuestScript: ; 0xbcfac
 	end
 
 MomPhoneLectureScript: ; 0xbcfb1
-	setbit1 $0040
+	setevent $0040
 	setbit2 $0009
 	specialphonecall $0000
 	3writetext BANK(MomPhoneLectureText), MomPhoneLectureText
@@ -2517,22 +2517,22 @@ BillPhoneScript2: ; 0xbd007
 ElmPhoneScript1: ; 0xbd00d
 	checkcode $14
 	if_equal $1, .pokerus
-	checkbit1 $0055
+	checkevent $0055
 	iftrue .discovery
-	checkbit1 $002d
+	checkevent $002d
 	iffalse .next
-	checkbit1 $0054
+	checkevent $0054
 	iftrue .egghatched
 .next
-	checkbit1 $002d
+	checkevent $002d
 	iftrue .eggunhatched
-	checkbit1 $0701
+	checkevent $0701
 	iftrue .assistant
-	checkbit1 $001f
+	checkevent $001f
 	iftrue .checkingegg
-	checkbit1 $0043
+	checkevent $0043
 	iftrue .stolen
-	checkbit1 $001e
+	checkevent $001e
 	iftrue .sawmrpokemon
 	3writetext BANK(ElmPhoneStartText), ElmPhoneStartText
 	end
@@ -2559,7 +2559,7 @@ ElmPhoneScript1: ; 0xbd00d
 
 .egghatched ; 0xbd061
 	3writetext BANK(ElmPhoneEggHatchedText), ElmPhoneEggHatchedText
-	setbit1 $0077
+	setevent $0077
 	end
 
 .discovery ; 0xbd069
@@ -2591,14 +2591,14 @@ ElmPhoneScript2: ; 0xbd081
 .disaster ; 0xbd09f
 	3writetext BANK(ElmPhoneDisasterText), ElmPhoneDisasterText
 	specialphonecall $0000
-	setbit1 $0043
+	setevent $0043
 	end
 
 .assistant ; 0xbd0aa
 	3writetext BANK(ElmPhoneEggAssistantText), ElmPhoneEggAssistantText
 	specialphonecall $0000
-	clearbit1 $0700
-	setbit1 $0701
+	clearevent $0700
+	setevent $0701
 	end
 
 .rocket ; 0xbd0b8

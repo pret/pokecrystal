@@ -63,7 +63,7 @@ UnknownScript_0x184947: ; 0x184947
 SageLiScript: ; 0x1849a6
 	faceplayer
 	loadfont
-	checkbit1 EVENT_GOT_HM05_FLASH
+	checkevent EVENT_GOT_HM05_FLASH
 	iftrue UnknownScript_0x1849d1
 	2writetext SageLiSeenText
 	closetext
@@ -76,8 +76,8 @@ SageLiScript: ; 0x1849a6
 	2writetext UnknownText_0x184cc2
 	keeptextopen
 	verbosegiveitem HM_05, 1
-	setbit1 EVENT_GOT_HM05_FLASH
-	setbit1 EVENT_BEAT_SAGE_LI
+	setevent EVENT_GOT_HM05_FLASH
+	setevent EVENT_BEAT_SAGE_LI
 	2writetext UnknownText_0x184d13
 	closetext
 	loadmovesprites

@@ -55,11 +55,11 @@ YoungsterJoey1Script: ; 0x1a16a6
 	iftrue UnknownScript_0x1a16e0
 	checkcellnum $f
 	iftrue UnknownScript_0x1a178f
-	checkbit1 $0273
+	checkevent $0273
 	iftrue UnknownScript_0x1a16c9
 	2writetext UnknownText_0x1a18c2
 	keeptextopen
-	setbit1 $0273
+	setevent $0273
 	2call UnknownScript_0x1a1783
 	2jump UnknownScript_0x1a16cc
 ; 0x1a16c9
@@ -85,10 +85,10 @@ UnknownScript_0x1a16e0: ; 0x1a16e0
 	if_equal $1, UnknownScript_0x1a1711
 	if_equal $0, UnknownScript_0x1a1717
 UnknownScript_0x1a16ff: ; 0x1a16ff
-	checkbit1 $0044
+	checkevent $0044
 	iftrue UnknownScript_0x1a174b
 UnknownScript_0x1a1705: ; 0x1a1705
-	checkbit1 EVENT_CLEARED_RADIO_TOWER
+	checkevent EVENT_CLEARED_RADIO_TOWER
 	iftrue UnknownScript_0x1a173e
 UnknownScript_0x1a170b: ; 0x1a170b
 	checkbit2 $0047
@@ -137,14 +137,14 @@ UnknownScript_0x1a174b: ; 0x1a174b
 	startbattle
 	returnafterbattle
 	clearbit2 $006b
-	checkbit1 EVENT_JOEY_HP_UP
+	checkevent EVENT_JOEY_HP_UP
 	iftrue UnknownScript_0x1a176f
-	checkbit1 $0266
+	checkevent $0266
 	iftrue UnknownScript_0x1a176e
 	2call UnknownScript_0x1a17a6
 	verbosegiveitem HP_UP, 1
 	iffalse UnknownScript_0x1a179f
-	setbit1 $0266
+	setevent $0266
 	2jump UnknownScript_0x1a178f
 ; 0x1a176e
 
@@ -158,8 +158,8 @@ UnknownScript_0x1a176f: ; 0x1a176f
 	closetext
 	verbosegiveitem HP_UP, 1
 	iffalse UnknownScript_0x1a179f
-	clearbit1 EVENT_JOEY_HP_UP
-	setbit1 $0266
+	clearevent EVENT_JOEY_HP_UP
+	setevent $0266
 	2jump UnknownScript_0x1a178f
 ; 0x1a1783
 
@@ -199,7 +199,7 @@ UnknownScript_0x1a179b: ; 0x1a179b
 ; 0x1a179f
 
 UnknownScript_0x1a179f: ; 0x1a179f
-	setbit1 EVENT_JOEY_HP_UP
+	setevent EVENT_JOEY_HP_UP
 	jumpstd $0021
 	end
 ; 0x1a17a6
@@ -270,7 +270,7 @@ Bug_catcherDonScript: ; 0x1a17ca
 YoungsterScript_0x1a17d2: ; 0x1a17d2
 	faceplayer
 	loadfont
-	checkbit1 EVENT_GAVE_MYSTERY_EGG_TO_ELM
+	checkevent EVENT_GAVE_MYSTERY_EGG_TO_ELM
 	iftrue UnknownScript_0x1a17e0
 	2writetext UnknownText_0x1a1a6a
 	closetext

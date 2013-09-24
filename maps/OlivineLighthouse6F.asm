@@ -11,11 +11,11 @@ JasmineScript_0x60b91: ; 0x60b91
 	loadfont
 	checkitem SECRETPOTION
 	iftrue UnknownScript_0x60bab
-	checkbit1 $0037
+	checkevent $0037
 	iftrue UnknownScript_0x60ba5
 	2writetext UnknownText_0x60c81
 	keeptextopen
-	setbit1 $0037
+	setevent $0037
 UnknownScript_0x60ba5: ; 0x60ba5
 	2writetext UnknownText_0x60d64
 	closetext
@@ -64,8 +64,8 @@ UnknownScript_0x60bab: ; 0x60bab
 	2writetext UnknownText_0x60e6c
 	closetext
 	loadmovesprites
-	setbit1 EVENT_JASMINE_RETURNED_TO_GYM
-	clearbit1 $06d3
+	setevent EVENT_JASMINE_RETURNED_TO_GYM
+	clearevent $06d3
 	checkcode $9
 	if_equal $0, UnknownScript_0x60c17
 	if_equal $3, UnknownScript_0x60c1e
@@ -107,7 +107,7 @@ UnknownScript_0x60c39: ; 0x60c39
 MonsterScript_0x60c3a: ; 0x60c3a
 	faceplayer
 	loadfont
-	checkbit1 EVENT_JASMINE_RETURNED_TO_GYM
+	checkevent EVENT_JASMINE_RETURNED_TO_GYM
 	iftrue UnknownScript_0x60c51
 	2writetext UnknownText_0x60f03
 	writebyte AMPHAROS

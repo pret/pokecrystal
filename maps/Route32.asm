@@ -43,11 +43,11 @@ CooltrainerMScript_0x19046f: ; 0x19046f
 	faceplayer
 UnknownScript_0x190470: ; 0x190470
 	loadfont
-	checkbit1 EVENT_GOT_MIRACLE_SEED_IN_ROUTE_32
+	checkevent EVENT_GOT_MIRACLE_SEED_IN_ROUTE_32
 	iftrue UnknownScript_0x1904a5
 	checkbit2 $001b
 	iffalse UnknownScript_0x19049f
-	checkbit1 EVENT_GOT_TOGEPI_EGG_FROM_ELMS_AIDE
+	checkevent EVENT_GOT_TOGEPI_EGG_FROM_ELMS_AIDE
 	iftrue UnknownScript_0x19048f
 	2writetext UnknownText_0x1907ab
 	closetext
@@ -67,7 +67,7 @@ UnknownScript_0x19048f: ; 0x19048f
 	keeptextopen
 	verbosegiveitem MIRACLE_SEED, 1
 	iffalse UnknownScript_0x1904a9
-	setbit1 EVENT_GOT_MIRACLE_SEED_IN_ROUTE_32
+	setevent EVENT_GOT_MIRACLE_SEED_IN_ROUTE_32
 	2jump UnknownScript_0x1904a5
 ; 0x19049f
 
@@ -106,13 +106,13 @@ UnknownScript_0x1904ab: ; 0x1904ab
 FisherScript_0x1904ce: ; 0x1904ce
 	faceplayer
 	loadfont
-	checkbit1 EVENT_GOT_TM05_ROAR
+	checkevent EVENT_GOT_TM05_ROAR
 	iftrue UnknownScript_0x1904e3
 	2writetext UnknownText_0x191133
 	keeptextopen
 	verbosegiveitem TM_05, 1
 	iffalse UnknownScript_0x1904e7
-	setbit1 EVENT_GOT_TM05_ROAR
+	setevent EVENT_GOT_TM05_ROAR
 UnknownScript_0x1904e3: ; 0x1904e3
 	2writetext UnknownText_0x19118c
 	closetext
@@ -236,11 +236,11 @@ FisherRalph1Script: ; 0x19053d
 	iftrue UnknownScript_0x1905f1
 	checkcellnum $11
 	iftrue UnknownScript_0x190603
-	checkbit1 $0277
+	checkevent $0277
 	iftrue UnknownScript_0x190566
 	2writetext UnknownText_0x190bf8
 	keeptextopen
-	setbit1 $0277
+	setevent $0277
 	2call UnknownScript_0x1905f7
 	2jump UnknownScript_0x190569
 ; 0x190566
@@ -266,10 +266,10 @@ UnknownScript_0x19057d: ; 0x19057d
 	if_equal $1, UnknownScript_0x1905ae
 	if_equal $0, UnknownScript_0x1905b4
 UnknownScript_0x19059c: ; 0x19059c
-	checkbit1 EVENT_RESTORED_POWER_TO_KANTO
+	checkevent EVENT_RESTORED_POWER_TO_KANTO
 	iftrue UnknownScript_0x1905e8
 UnknownScript_0x1905a2: ; 0x1905a2
-	checkbit1 $0044
+	checkevent $0044
 	iftrue UnknownScript_0x1905db
 UnknownScript_0x1905a8: ; 0x1905a8
 	checkbit2 $004a
@@ -420,11 +420,11 @@ PicnickerLiz1Script: ; 0x190633
 	iftrue UnknownScript_0x19066d
 	checkcellnum $12
 	iftrue UnknownScript_0x1906ed
-	checkbit1 $0279
+	checkevent $0279
 	iftrue UnknownScript_0x190656
 	2writetext UnknownText_0x191060
 	keeptextopen
-	setbit1 $0279
+	setevent $0279
 	2call UnknownScript_0x1906e1
 	2jump UnknownScript_0x190659
 ; 0x190656
@@ -450,13 +450,13 @@ UnknownScript_0x19066d: ; 0x19066d
 	if_equal $1, UnknownScript_0x19069e
 	if_equal $0, UnknownScript_0x1906a4
 UnknownScript_0x19068c: ; 0x19068c
-	checkbit1 $0044
+	checkevent $0044
 	iftrue UnknownScript_0x1906d8
 UnknownScript_0x190692: ; 0x190692
-	checkbit1 EVENT_CLEARED_RADIO_TOWER
+	checkevent EVENT_CLEARED_RADIO_TOWER
 	iftrue UnknownScript_0x1906cb
 UnknownScript_0x190698: ; 0x190698
-	checkbit1 EVENT_CLEARED_ROCKET_HIDEOUT
+	checkevent EVENT_CLEARED_ROCKET_HIDEOUT
 	iftrue UnknownScript_0x1906be
 UnknownScript_0x19069e: ; 0x19069e
 	checkbit2 $0048
@@ -630,21 +630,21 @@ Bird_keeperPeterScript: ; 0x190731
 LassScript_0x190739: ; 0x190739
 	faceplayer
 	loadfont
-	checkbit1 EVENT_GOT_POISON_BARB_FROM_FRIEDA
+	checkevent EVENT_GOT_POISON_BARB_FROM_FRIEDA
 	iftrue UnknownScript_0x190767
 	checkcode $b
 	if_not_equal FRIDAY, UnknownScript_0x19076d
-	checkbit1 EVENT_MET_FRIEDA_OF_FRIDAY
+	checkevent EVENT_MET_FRIEDA_OF_FRIDAY
 	iftrue UnknownScript_0x190754
 	2writetext UnknownText_0x1911c1
 	keeptextopen
-	setbit1 EVENT_MET_FRIEDA_OF_FRIDAY
+	setevent EVENT_MET_FRIEDA_OF_FRIDAY
 UnknownScript_0x190754: ; 0x190754
 	2writetext UnknownText_0x191204
 	keeptextopen
 	verbosegiveitem POISON_BARB, 1
 	iffalse UnknownScript_0x19076b
-	setbit1 EVENT_GOT_POISON_BARB_FROM_FRIEDA
+	setevent EVENT_GOT_POISON_BARB_FROM_FRIEDA
 	2writetext UnknownText_0x191222
 	closetext
 	loadmovesprites

@@ -9,18 +9,18 @@ LakeofRageMagikarpHouse_MapScriptHeader: ; 0x19a6ac
 FishingGuruScript_0x19a6ae: ; 0x19a6ae
 	faceplayer
 	loadfont
-	checkbit1 $003a
+	checkevent $003a
 	iftrue UnknownScript_0x19a6fe
-	checkbit1 $0039
+	checkevent $0039
 	iftrue UnknownScript_0x19a6e0
-	checkbit1 EVENT_CLEARED_ROCKET_HIDEOUT
+	checkevent EVENT_CLEARED_ROCKET_HIDEOUT
 	iftrue UnknownScript_0x19a6d7
-	checkbit1 $0038
+	checkevent $0038
 	iftrue UnknownScript_0x19a6d1
 	2writetext UnknownText_0x19a72e
 	closetext
 	loadmovesprites
-	setbit1 $0038
+	setevent $0038
 	end
 ; 0x19a6d1
 
@@ -35,7 +35,7 @@ UnknownScript_0x19a6d7: ; 0x19a6d7
 	2writetext UnknownText_0x19a890
 	closetext
 	loadmovesprites
-	setbit1 $0039
+	setevent $0039
 	end
 ; 0x19a6e0
 
@@ -60,13 +60,13 @@ UnknownScript_0x19a6fe: ; 0x19a6fe
 	2writetext UnknownText_0x19a9c3
 	closetext
 	loadmovesprites
-	clearbit1 $003a
+	clearevent $003a
 	end
 ; 0x19a711
 
 UnknownScript_0x19a711: ; 0x19a711
 	loadmovesprites
-	setbit1 $003a
+	setevent $003a
 	end
 ; 0x19a716
 

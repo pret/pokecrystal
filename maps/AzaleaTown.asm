@@ -58,10 +58,10 @@ UnknownScript_0x198049: ; 0x198049
 	2writetext UnknownText_0x19814d
 	closetext
 	loadmovesprites
-	setbit1 $06bf
-	checkbit1 EVENT_GOT_TOTODILE_FROM_ELM
+	setevent $06bf
+	checkevent EVENT_GOT_TOTODILE_FROM_ELM
 	iftrue UnknownScript_0x198071
-	checkbit1 EVENT_GOT_CHIKORITA_FROM_ELM
+	checkevent EVENT_GOT_CHIKORITA_FROM_ELM
 	iftrue UnknownScript_0x198081
 	winlosstext UnknownText_0x1981e6, UnknownText_0x19835b
 	setlasttalked $b
@@ -119,7 +119,7 @@ AzaleaRocketScript_0x1980ae: ; 0x1980ae
 GrampsScript_0x1980b1: ; 0x1980b1
 	faceplayer
 	loadfont
-	checkbit1 EVENT_CLEARED_SLOWPOKE_WELL
+	checkevent EVENT_CLEARED_SLOWPOKE_WELL
 	iftrue UnknownScript_0x1980bf
 	2writetext UnknownText_0x19841b
 	closetext
@@ -176,8 +176,8 @@ UnknownScript_0x1980e5: ; 0x1980e5
 	verbosegiveitem GS_BALL, 1
 	spriteface $d, $2
 	setbit2 $0064
-	clearbit1 $06ed
-	setbit1 $06eb
+	clearevent $06ed
+	setevent $06eb
 	dotrigger $0
 	loadmovesprites
 	end

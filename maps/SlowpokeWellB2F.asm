@@ -9,13 +9,13 @@ SlowpokeWellB2F_MapScriptHeader: ; 0x5ad09
 GymGuyScript_0x5ad0b: ; 0x5ad0b
 	faceplayer
 	loadfont
-	checkbit1 EVENT_GOT_KINGS_ROCK_IN_SLOWPOKE_WELL
+	checkevent EVENT_GOT_KINGS_ROCK_IN_SLOWPOKE_WELL
 	iftrue UnknownScript_0x5ad22
 	2writetext UnknownText_0x5ad2a
 	keeptextopen
 	verbosegiveitem KINGS_ROCK, 1
 	iffalse UnknownScript_0x5ad20
-	setbit1 EVENT_GOT_KINGS_ROCK_IN_SLOWPOKE_WELL
+	setevent EVENT_GOT_KINGS_ROCK_IN_SLOWPOKE_WELL
 UnknownScript_0x5ad20: ; 0x5ad20
 	loadmovesprites
 	end

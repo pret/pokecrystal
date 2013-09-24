@@ -50,7 +50,7 @@ UnknownScript_0x98e95: ; 0x98e95
 	applymovement $6, MovementData_0x98ece
 	playsound $0023
 	disappear $6
-	clearbit1 $0712
+	clearevent $0712
 	setbit2 $0053
 	dotrigger $1
 	waitbutton

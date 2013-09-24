@@ -107,7 +107,7 @@ OfficerScript_0x6a204: ; 0x6a204
 	checkcode $1
 	if_less_than $1, UnknownScript_0x6a271
 	special $0016
-	clearbit1 $0308
+	clearevent $0308
 UnknownScript_0x6a234: ; 0x6a234
 	setbit2 $0011
 	special $003c
@@ -153,7 +153,7 @@ UnknownScript_0x6a271: ; 0x6a271
 	iffalse UnknownScript_0x6a2a9
 	special $0016
 	iftrue UnknownScript_0x6a2af
-	setbit1 $0308
+	setevent $0308
 	2writetext UnknownText_0x6a537
 	keeptextopen
 	2writetext UnknownText_0x6a56b

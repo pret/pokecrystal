@@ -9,13 +9,13 @@ Route2NuggetSpeechHouse_MapScriptHeader: ; 0x9b845
 FisherScript_0x9b847: ; 0x9b847
 	faceplayer
 	loadfont
-	checkbit1 $00c8
+	checkevent $00c8
 	iftrue UnknownScript_0x9b85c
 	2writetext UnknownText_0x9b865
 	keeptextopen
 	verbosegiveitem NUGGET, 1
 	iffalse UnknownScript_0x9b860
-	setbit1 $00c8
+	setevent $00c8
 UnknownScript_0x9b85c: ; 0x9b85c
 	2writetext UnknownText_0x9b8e5
 	closetext

@@ -43,7 +43,7 @@ UnknownScript_0x6ab20: ; 0x6ab20
 ; 0x6ab23
 
 UnknownScript_0x6ab23: ; 0x6ab23
-	checkbit1 $02d2
+	checkevent $02d2
 	iftrue UnknownScript_0x6ab46
 	checkcode $b
 	if_equal TUESDAY, UnknownScript_0x6ab42
@@ -99,43 +99,43 @@ UnknownScript_0x6ab76: ; 0x6ab76
 ; 0x6ab8c
 
 UnknownScript_0x6ab8c: ; 0x6ab8c
-	checkbit1 $0716
+	checkevent $0716
 	iftrue UnknownScript_0x6ab94
 	appear $3
 UnknownScript_0x6ab94: ; 0x6ab94
-	checkbit1 $0717
+	checkevent $0717
 	iftrue UnknownScript_0x6ab9c
 	appear $4
 UnknownScript_0x6ab9c: ; 0x6ab9c
-	checkbit1 $0718
+	checkevent $0718
 	iftrue UnknownScript_0x6aba4
 	appear $5
 UnknownScript_0x6aba4: ; 0x6aba4
-	checkbit1 $0719
+	checkevent $0719
 	iftrue UnknownScript_0x6abac
 	appear $6
 UnknownScript_0x6abac: ; 0x6abac
-	checkbit1 $071a
+	checkevent $071a
 	iftrue UnknownScript_0x6abb4
 	appear $7
 UnknownScript_0x6abb4: ; 0x6abb4
-	checkbit1 $071b
+	checkevent $071b
 	iftrue UnknownScript_0x6abbc
 	appear $8
 UnknownScript_0x6abbc: ; 0x6abbc
-	checkbit1 $071c
+	checkevent $071c
 	iftrue UnknownScript_0x6abc4
 	appear $9
 UnknownScript_0x6abc4: ; 0x6abc4
-	checkbit1 $071d
+	checkevent $071d
 	iftrue UnknownScript_0x6abcc
 	appear $a
 UnknownScript_0x6abcc: ; 0x6abcc
-	checkbit1 $071e
+	checkevent $071e
 	iftrue UnknownScript_0x6abd4
 	appear $b
 UnknownScript_0x6abd4: ; 0x6abd4
-	checkbit1 $071f
+	checkevent $071f
 	iftrue UnknownScript_0x6abdc
 	appear $c
 UnknownScript_0x6abdc: ; 0x6abdc
@@ -160,7 +160,7 @@ OfficerScript_0x6abe0: ; 0x6abe0
 	checkcode $1
 	if_less_than $1, UnknownScript_0x6ac41
 	special $0016
-	clearbit1 $0308
+	clearevent $0308
 UnknownScript_0x6ac10: ; 0x6ac10
 	setbit2 $0011
 	special $003c
@@ -197,7 +197,7 @@ UnknownScript_0x6ac4d: ; 0x6ac4d
 	iffalse UnknownScript_0x6ac79
 	special $0016
 	iftrue UnknownScript_0x6ac7f
-	setbit1 $0308
+	setevent $0308
 	2writetext UnknownText_0x6b021
 	keeptextopen
 	2writetext UnknownText_0x6b055
@@ -243,13 +243,13 @@ UnknownScript_0x6ac8b: ; 0x6ac8b
 ; 0x6ac91
 
 UnknownScript_0x6ac91: ; 0x6ac91
-	checkbit1 $0313
+	checkevent $0313
 	iftrue UnknownScript_0x6acaf
-	checkbit1 $0314
+	checkevent $0314
 	iftrue UnknownScript_0x6acbe
-	checkbit1 $0315
+	checkevent $0315
 	iftrue UnknownScript_0x6accd
-	checkbit1 $0316
+	checkevent $0316
 	iftrue UnknownScript_0x6acdc
 	2writetext UnknownText_0x6b32b
 	closetext
@@ -262,7 +262,7 @@ UnknownScript_0x6acaf: ; 0x6acaf
 	keeptextopen
 	verbosegiveitem SUN_STONE, 1
 	iffalse UnknownScript_0x6aceb
-	clearbit1 $0313
+	clearevent $0313
 	loadmovesprites
 	end
 ; 0x6acbe
@@ -272,7 +272,7 @@ UnknownScript_0x6acbe: ; 0x6acbe
 	keeptextopen
 	verbosegiveitem EVERSTONE, 1
 	iffalse UnknownScript_0x6aceb
-	clearbit1 $0314
+	clearevent $0314
 	loadmovesprites
 	end
 ; 0x6accd
@@ -282,7 +282,7 @@ UnknownScript_0x6accd: ; 0x6accd
 	keeptextopen
 	verbosegiveitem GOLD_BERRY, 1
 	iffalse UnknownScript_0x6aceb
-	clearbit1 $0315
+	clearevent $0315
 	loadmovesprites
 	end
 ; 0x6acdc
@@ -292,7 +292,7 @@ UnknownScript_0x6acdc: ; 0x6acdc
 	keeptextopen
 	verbosegiveitem BERRY, 1
 	iffalse UnknownScript_0x6aceb
-	clearbit1 $0316
+	clearevent $0316
 	loadmovesprites
 	end
 ; 0x6aceb
@@ -327,7 +327,7 @@ UnknownScript_0x6ad02: ; 0x6ad02
 YoungsterScript_0x6ad06: ; 0x6ad06
 	faceplayer
 	loadfont
-	checkbit1 $0000
+	checkevent $0000
 	iffalse UnknownScript_0x6ad14
 	2writetext UnknownText_0x6b399
 	closetext
@@ -345,7 +345,7 @@ UnknownScript_0x6ad14: ; 0x6ad14
 YoungsterScript_0x6ad1a: ; 0x6ad1a
 	faceplayer
 	loadfont
-	checkbit1 $0000
+	checkevent $0000
 	iffalse UnknownScript_0x6ad28
 	2writetext UnknownText_0x6b40f
 	closetext
@@ -363,7 +363,7 @@ UnknownScript_0x6ad28: ; 0x6ad28
 RockerScript_0x6ad2e: ; 0x6ad2e
 	faceplayer
 	loadfont
-	checkbit1 $0000
+	checkevent $0000
 	iffalse UnknownScript_0x6ad3c
 	2writetext UnknownText_0x6b462
 	closetext
@@ -381,7 +381,7 @@ UnknownScript_0x6ad3c: ; 0x6ad3c
 PokefanMScript_0x6ad42: ; 0x6ad42
 	faceplayer
 	loadfont
-	checkbit1 $0000
+	checkevent $0000
 	iffalse UnknownScript_0x6ad50
 	2writetext UnknownText_0x6b4da
 	closetext
@@ -399,7 +399,7 @@ UnknownScript_0x6ad50: ; 0x6ad50
 YoungsterScript_0x6ad56: ; 0x6ad56
 	faceplayer
 	loadfont
-	checkbit1 $0000
+	checkevent $0000
 	iffalse UnknownScript_0x6ad64
 	2writetext UnknownText_0x6b54e
 	closetext
@@ -417,7 +417,7 @@ UnknownScript_0x6ad64: ; 0x6ad64
 YoungsterScript_0x6ad6a: ; 0x6ad6a
 	faceplayer
 	loadfont
-	checkbit1 $0000
+	checkevent $0000
 	iffalse UnknownScript_0x6ad78
 	2writetext UnknownText_0x6b5b0
 	closetext
@@ -435,7 +435,7 @@ UnknownScript_0x6ad78: ; 0x6ad78
 LassScript_0x6ad7e: ; 0x6ad7e
 	faceplayer
 	loadfont
-	checkbit1 $0000
+	checkevent $0000
 	iffalse UnknownScript_0x6ad8c
 	2writetext UnknownText_0x6b64b
 	closetext
@@ -453,7 +453,7 @@ UnknownScript_0x6ad8c: ; 0x6ad8c
 YoungsterScript_0x6ad92: ; 0x6ad92
 	faceplayer
 	loadfont
-	checkbit1 $0000
+	checkevent $0000
 	iffalse UnknownScript_0x6ada0
 	2writetext UnknownText_0x6b6b8
 	closetext
@@ -471,7 +471,7 @@ UnknownScript_0x6ada0: ; 0x6ada0
 YoungsterScript_0x6ada6: ; 0x6ada6
 	faceplayer
 	loadfont
-	checkbit1 $0000
+	checkevent $0000
 	iffalse UnknownScript_0x6adb4
 	2writetext UnknownText_0x6b71b
 	closetext
@@ -489,7 +489,7 @@ UnknownScript_0x6adb4: ; 0x6adb4
 YoungsterScript_0x6adba: ; 0x6adba
 	faceplayer
 	loadfont
-	checkbit1 $0000
+	checkevent $0000
 	iffalse UnknownScript_0x6adc8
 	2writetext UnknownText_0x6b76f
 	closetext

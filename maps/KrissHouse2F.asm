@@ -18,8 +18,8 @@ UnknownScript_0x7abb3: ; 0x7abb3
 
 UnknownScript_0x7abb4: ; 0x7abb4
 	special $004a
-	setbit1 $0007
-	checkbit1 $0036
+	setevent $0007
+	checkevent $0036
 	iftrue UnknownScript_0x7abc4
 	jumpstd $0018
 	return
@@ -55,7 +55,7 @@ ConsoleScript_0x7abd2: ; 0x7abd2
 ; 0x7abd4
 
 MapKrissHouse2FSignpost4: ; 0x7abd4
-	dw $02cc ; bit1
+	dw $02cc ; event
 	dw MapKrissHouse2FSignpost4Script
 ; 0x7abd8
 
@@ -64,9 +64,9 @@ MapKrissHouse2FSignpost4Script: ; 0x7abd8
 ; 0x7abda
 
 MapKrissHouse2FSignpost2Script: ; 0x7abda
-	checkbit1 EVENT_GOT_A_POKEMON_FROM_ELM
+	checkevent EVENT_GOT_A_POKEMON_FROM_ELM
 	iftrue UnknownScript_0x7ac07
-	checkbit1 EVENT_LISTENED_TO_RADIO_IN_NEIGHBORS_HOUSE
+	checkevent EVENT_LISTENED_TO_RADIO_IN_NEIGHBORS_HOUSE
 	iftrue UnknownScript_0x7ac0a
 	playmusic $001d
 	loadfont
@@ -80,7 +80,7 @@ MapKrissHouse2FSignpost2Script: ; 0x7abda
 	2writetext UnknownText_0x7ac84
 	pause 45
 	loadmovesprites
-	setbit1 EVENT_LISTENED_TO_RADIO_IN_NEIGHBORS_HOUSE
+	setevent EVENT_LISTENED_TO_RADIO_IN_NEIGHBORS_HOUSE
 	end
 ; 0x7ac07
 

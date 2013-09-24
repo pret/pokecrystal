@@ -32,12 +32,12 @@ UnknownScript_0x74da6: ; 0x74da6
 	applymovement $0, MovementData_0x74ef3
 	appear $2
 	dotrigger $0
-	setbit1 $0731
-	setbit1 $0730
-	setbit1 $0739
-	clearbit1 $0733
-	setbit1 $0030
-	setbit1 $0000
+	setevent $0731
+	setevent $0730
+	setevent $0739
+	clearevent $0733
+	setevent $0030
+	setevent $0000
 	blackoutmod GROUP_VERMILION_CITY, MAP_VERMILION_CITY
 	end
 ; 0x74dc4
@@ -45,7 +45,7 @@ UnknownScript_0x74da6: ; 0x74da6
 SailorScript_0x74dc4: ; 0x74dc4
 	faceplayer
 	loadfont
-	checkbit1 $0000
+	checkevent $0000
 	iftrue UnknownScript_0x74e1a
 	2writetext UnknownText_0x74f06
 	closetext
@@ -59,19 +59,19 @@ SailorScript_0x74dc4: ; 0x74dc4
 	playsound $0023
 	special $002e
 	waitbutton
-	setbit1 $073a
-	clearbit1 $073b
-	clearbit1 EVENT_BEAT_POKEMANIAC_ETHAN
-	clearbit1 EVENT_BEAT_BURGLAR_COREY
-	clearbit1 EVENT_BEAT_BUG_CATCHER_KEN
-	clearbit1 EVENT_BEAT_GUITARIST_CLYDE
-	clearbit1 EVENT_BEAT_POKEFANM_JEREMY
-	clearbit1 EVENT_BEAT_POKEFANF_GEORGIA
-	clearbit1 EVENT_BEAT_SAILOR_KENNETH
-	clearbit1 EVENT_BEAT_TEACHER_SHIRLEY
-	clearbit1 EVENT_BEAT_SCHOOLBOY_NATE
-	clearbit1 EVENT_BEAT_SCHOOLBOY_RICKY
-	setbit1 $002f
+	setevent $073a
+	clearevent $073b
+	clearevent EVENT_BEAT_POKEMANIAC_ETHAN
+	clearevent EVENT_BEAT_BURGLAR_COREY
+	clearevent EVENT_BEAT_BUG_CATCHER_KEN
+	clearevent EVENT_BEAT_GUITARIST_CLYDE
+	clearevent EVENT_BEAT_POKEFANM_JEREMY
+	clearevent EVENT_BEAT_POKEFANF_GEORGIA
+	clearevent EVENT_BEAT_SAILOR_KENNETH
+	clearevent EVENT_BEAT_TEACHER_SHIRLEY
+	clearevent EVENT_BEAT_SCHOOLBOY_NATE
+	clearevent EVENT_BEAT_SCHOOLBOY_RICKY
+	setevent $002f
 	appear $2
 	domaptrigger GROUP_FAST_SHIP_1F, MAP_FAST_SHIP_1F, $1
 	warp GROUP_FAST_SHIP_1F, MAP_FAST_SHIP_1F, $19, $1
@@ -87,9 +87,9 @@ UnknownScript_0x74e1a: ; 0x74e1a
 
 UnknownScript_0x74e20: ; 0x74e20
 	spriteface $3, $3
-	checkbit1 $0000
+	checkevent $0000
 	iftrue UnknownScript_0x74e86
-	checkbit1 $0001
+	checkevent $0001
 	iftrue UnknownScript_0x74e86
 	spriteface $0, $2
 	loadfont
@@ -109,7 +109,7 @@ UnknownScript_0x74e20: ; 0x74e20
 	2writetext UnknownText_0x74fc2
 	closetext
 	loadmovesprites
-	setbit1 $0001
+	setevent $0001
 	applymovement $0, MovementData_0x74ef8
 	2jump SailorScript_0x74dc4
 ; 0x74e68
@@ -160,7 +160,7 @@ UnknownScript_0x74e8d: ; 0x74e8d
 SailorScript_0x74e97: ; 0x74e97
 	faceplayer
 	loadfont
-	checkbit1 $0000
+	checkevent $0000
 	iftrue UnknownScript_0x74e1a
 	checkcode $b
 	if_equal MONDAY, UnknownScript_0x74eda
@@ -178,7 +178,7 @@ SailorScript_0x74e97: ; 0x74e97
 	2writetext UnknownText_0x74fc2
 	closetext
 	loadmovesprites
-	setbit1 $0001
+	setevent $0001
 	applymovement $0, MovementData_0x74efe
 	2jump SailorScript_0x74dc4
 ; 0x74ed4

@@ -13,13 +13,13 @@ ReceptionistScript_0x18abe5: ; 0x18abe5
 OfficerScript_0x18abe8: ; 0x18abe8
 	faceplayer
 	loadfont
-	checkbit1 EVENT_GOT_UP_GRADE
+	checkevent EVENT_GOT_UP_GRADE
 	iftrue UnknownScript_0x18abfd
 	2writetext UnknownText_0x18ac36
 	keeptextopen
 	verbosegiveitem UP_GRADE, 1
 	iffalse UnknownScript_0x18ac01
-	setbit1 EVENT_GOT_UP_GRADE
+	setevent EVENT_GOT_UP_GRADE
 UnknownScript_0x18abfd: ; 0x18abfd
 	2writetext UnknownText_0x18aca8
 	closetext

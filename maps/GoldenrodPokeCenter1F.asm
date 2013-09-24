@@ -18,7 +18,7 @@ UnknownScript_0x60f94: ; 0x60f94
 ; 0x60f9e
 
 UnknownScript_0x60f9e: ; 0x60f9e
-	checkbit1 EVENT_GOT_GS_BALL_FROM_POKECOM_CENTER
+	checkevent EVENT_GOT_GS_BALL_FROM_POKECOM_CENTER
 	iftrue UnknownScript_0x60fd8
 	playsound $0023
 	moveperson $3, $0, $7
@@ -31,8 +31,8 @@ UnknownScript_0x60f9e: ; 0x60f9e
 	2writetext UnknownText_0x622f0
 	closetext
 	verbosegiveitem GS_BALL, 1
-	setbit1 EVENT_GOT_GS_BALL_FROM_POKECOM_CENTER
-	setbit1 EVENT_CAN_GIVE_GS_BALL_TO_KURT
+	setevent EVENT_GOT_GS_BALL_FROM_POKECOM_CENTER
+	setevent EVENT_CAN_GIVE_GS_BALL_TO_KURT
 	2writetext UnknownText_0x62359
 	closetext
 	loadmovesprites
@@ -52,7 +52,7 @@ UnknownScript_0x60fd9: ; 0x60fd9
 ; 0x60fe3
 
 UnknownScript_0x60fe3: ; 0x60fe3
-	checkbit1 EVENT_GOT_GS_BALL_FROM_POKECOM_CENTER
+	checkevent EVENT_GOT_GS_BALL_FROM_POKECOM_CENTER
 	iftrue UnknownScript_0x6101d
 	playsound $0023
 	moveperson $3, $0, $7
@@ -65,8 +65,8 @@ UnknownScript_0x60fe3: ; 0x60fe3
 	2writetext UnknownText_0x622f0
 	closetext
 	verbosegiveitem GS_BALL, 1
-	setbit1 EVENT_GOT_GS_BALL_FROM_POKECOM_CENTER
-	setbit1 EVENT_CAN_GIVE_GS_BALL_TO_KURT
+	setevent EVENT_GOT_GS_BALL_FROM_POKECOM_CENTER
+	setevent EVENT_CAN_GIVE_GS_BALL_TO_KURT
 	2writetext UnknownText_0x62359
 	closetext
 	loadmovesprites

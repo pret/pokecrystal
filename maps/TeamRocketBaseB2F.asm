@@ -33,7 +33,7 @@ UnknownScript_0x6cf88: ; 0x6cf88
 ; 0x6cf89
 
 UnknownScript_0x6cf89: ; 0x6cf89
-	checkbit1 EVENT_OPENED_DOOR_TO_ROCKET_HIDEOUT_TRANSMITTER
+	checkevent EVENT_OPENED_DOOR_TO_ROCKET_HIDEOUT_TRANSMITTER
 	iftrue UnknownScript_0x6cf90
 	return
 ; 0x6cf90
@@ -97,11 +97,11 @@ UnknownScript_0x6cfac: ; 0x6cfac
 	loadtrainer EXECUTIVEF, 2
 	startbattle
 	disappear $5
-	setbit1 $06dd
-	setbit1 $06de
-	setbit1 $06d6
+	setevent $06dd
+	setevent $06de
+	setevent $06d6
 	returnafterbattle
-	setbit1 $0570
+	setevent $0570
 	loadfont
 	2writetext UnknownText_0x6d4c6
 	closetext
@@ -116,7 +116,7 @@ UnknownScript_0x6cfac: ; 0x6cfac
 	pause 15
 	special $0032
 	dotrigger $2
-	clearbit1 $06d6
+	clearevent $06d6
 	spriteface $4, $0
 	loadfont
 	2writetext UnknownText_0x6d5d8
@@ -177,7 +177,7 @@ UnknownScript_0x6d091: ; 0x6d091
 	closetext
 	loadmovesprites
 	dotrigger $1
-	setbit1 $004c
+	setevent $004c
 	checkcode $9
 	if_equal $3, UnknownScript_0x6d0be
 	applymovement $4, MovementData_0x6d212
@@ -285,11 +285,11 @@ VoltorbScript_0x6d101: ; 0x6d101
 	iftrue UnknownScript_0x6d182
 	disappear $6
 	disappear $9
-	checkbit1 $06e0
+	checkevent $06e0
 	iffalse UnknownScript_0x6d182
-	checkbit1 $06e1
+	checkevent $06e1
 	iffalse UnknownScript_0x6d182
-	checkbit1 $06e2
+	checkevent $06e2
 	iffalse UnknownScript_0x6d182
 	returnafterbattle
 	special $003c
@@ -304,11 +304,11 @@ VoltorbScript_0x6d12c: ; 0x6d12c
 	iftrue UnknownScript_0x6d182
 	disappear $7
 	disappear $a
-	checkbit1 $06e0
+	checkevent $06e0
 	iffalse UnknownScript_0x6d182
-	checkbit1 $06e1
+	checkevent $06e1
 	iffalse UnknownScript_0x6d182
-	checkbit1 $06e2
+	checkevent $06e2
 	iffalse UnknownScript_0x6d182
 	returnafterbattle
 	special $003c
@@ -323,11 +323,11 @@ VoltorbScript_0x6d157: ; 0x6d157
 	iftrue UnknownScript_0x6d182
 	disappear $8
 	disappear $b
-	checkbit1 $06e0
+	checkevent $06e0
 	iffalse UnknownScript_0x6d182
-	checkbit1 $06e1
+	checkevent $06e1
 	iffalse UnknownScript_0x6d182
-	checkbit1 $06e2
+	checkevent $06e2
 	iffalse UnknownScript_0x6d182
 	returnafterbattle
 	special $003c
@@ -349,7 +349,7 @@ UnknownScript_0x6d184: ; 0x6d184
 	2writetext UnknownText_0x6d809
 	keeptextopen
 	verbosegiveitem HM_06, 1
-	setbit1 EVENT_GOT_HM06_WHIRLPOOL
+	setevent EVENT_GOT_HM06_WHIRLPOOL
 	2writetext UnknownText_0x6d8f8
 	closetext
 	loadmovesprites
@@ -361,18 +361,18 @@ UnknownScript_0x6d184: ; 0x6d184
 	spriteface $0, $0
 	applymovement $4, MovementData_0x6d283
 	disappear $4
-	setbit1 EVENT_CLEARED_ROCKET_HIDEOUT
+	setevent EVENT_CLEARED_ROCKET_HIDEOUT
 	clearbit2 $000e
-	setbit1 $06dc
-	setbit1 $0757
+	setevent $06dc
+	setevent $0757
 	dotrigger $3
-	clearbit1 $0735
-	setbit1 EVENT_TURNED_OFF_SECURITY_CAMERAS
-	setbit1 EVENT_SECURITY_CAMERA_1
-	setbit1 EVENT_SECURITY_CAMERA_2
-	setbit1 EVENT_SECURITY_CAMERA_3
-	setbit1 EVENT_SECURITY_CAMERA_4
-	setbit1 EVENT_SECURITY_CAMERA_5
+	clearevent $0735
+	setevent EVENT_TURNED_OFF_SECURITY_CAMERAS
+	setevent EVENT_SECURITY_CAMERA_1
+	setevent EVENT_SECURITY_CAMERA_2
+	setevent EVENT_SECURITY_CAMERA_3
+	setevent EVENT_SECURITY_CAMERA_4
+	setevent EVENT_SECURITY_CAMERA_5
 	end
 ; 0x6d1d7
 
@@ -384,7 +384,7 @@ MapTeamRocketBaseB2FSignpostPtr1: ; 0x6d1d7
 
 MapTeamRocketBaseB2FSignpost1Script: ; 0x6d1db
 	loadfont
-	checkbit1 EVENT_LEARNED_HAIL_GIOVANNI
+	checkevent EVENT_LEARNED_HAIL_GIOVANNI
 	iftrue UnknownScript_0x6d1e8
 	2writetext UnknownText_0x6dd39
 	closetext
@@ -399,14 +399,14 @@ UnknownScript_0x6d1e8: ; 0x6d1e8
 	changeblock $e, $c, $7
 	reloadmappart
 	loadmovesprites
-	setbit1 EVENT_OPENED_DOOR_TO_ROCKET_HIDEOUT_TRANSMITTER
+	setevent EVENT_OPENED_DOOR_TO_ROCKET_HIDEOUT_TRANSMITTER
 	waitbutton
 	end
 ; 0x6d1fa
 
 MapTeamRocketBaseB2FSignpost21Script: ; 0x6d1fa
 	loadfont
-	checkbit1 EVENT_CLEARED_ROCKET_HIDEOUT
+	checkevent EVENT_CLEARED_ROCKET_HIDEOUT
 	iftrue UnknownScript_0x6d207
 	2writetext UnknownText_0x6dda7
 	closetext

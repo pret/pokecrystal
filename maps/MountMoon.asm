@@ -30,9 +30,9 @@ UnknownScript_0x7408e: ; 0x7408e
 	2writetext UnknownText_0x74105
 	closetext
 	loadmovesprites
-	checkbit1 EVENT_GOT_TOTODILE_FROM_ELM
+	checkevent EVENT_GOT_TOTODILE_FROM_ELM
 	iftrue UnknownScript_0x740c3
-	checkbit1 EVENT_GOT_CHIKORITA_FROM_ELM
+	checkevent EVENT_GOT_CHIKORITA_FROM_ELM
 	iftrue UnknownScript_0x740d3
 	winlosstext UnknownText_0x7419d, UnknownText_0x742e0
 	setlasttalked $2
@@ -72,7 +72,7 @@ UnknownScript_0x740e3: ; 0x740e3
 	applymovement $2, MovementData_0x740fd
 	disappear $2
 	dotrigger $1
-	setbit1 EVENT_BEAT_RIVAL_IN_MT_MOON
+	setevent EVENT_BEAT_RIVAL_IN_MT_MOON
 	playmapmusic
 	end
 ; 0x740f9

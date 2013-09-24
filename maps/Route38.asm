@@ -94,11 +94,11 @@ LassDana1Script: ; 0x1a1d42
 	iftrue UnknownScript_0x1a1df6
 	checkcellnum $1a
 	iftrue UnknownScript_0x1a1e17
-	checkbit1 $0289
+	checkevent $0289
 	iftrue UnknownScript_0x1a1d6b
 	2writetext UnknownText_0x1a20ec
 	keeptextopen
-	setbit1 $0289
+	setevent $0289
 	2call UnknownScript_0x1a1e0b
 	2jump UnknownScript_0x1a1d6e
 ; 0x1a1d6b
@@ -124,13 +124,13 @@ UnknownScript_0x1a1d82: ; 0x1a1d82
 	if_equal $1, UnknownScript_0x1a1db3
 	if_equal $0, UnknownScript_0x1a1db9
 UnknownScript_0x1a1da1: ; 0x1a1da1
-	checkbit1 EVENT_RESTORED_POWER_TO_KANTO
+	checkevent EVENT_RESTORED_POWER_TO_KANTO
 	iftrue UnknownScript_0x1a1ded
 UnknownScript_0x1a1da7: ; 0x1a1da7
-	checkbit1 $0044
+	checkevent $0044
 	iftrue UnknownScript_0x1a1de0
 UnknownScript_0x1a1dad: ; 0x1a1dad
-	checkbit1 EVENT_CLEARED_RADIO_TOWER
+	checkevent EVENT_CLEARED_RADIO_TOWER
 	iftrue UnknownScript_0x1a1dd3
 UnknownScript_0x1a1db3: ; 0x1a1db3
 	checkbit2 $0045
@@ -184,7 +184,7 @@ UnknownScript_0x1a1df6: ; 0x1a1df6
 	verbosegiveitem THUNDERSTONE, 1
 	iffalse UnknownScript_0x1a1e08
 	clearbit2 $0082
-	setbit1 $0102
+	setevent $0102
 	2jump UnknownScript_0x1a1e17
 ; 0x1a1e08
 
@@ -265,11 +265,11 @@ SchoolboyChad1Script: ; 0x1a1e3b
 	iftrue UnknownScript_0x1a1e75
 	checkcellnum $1b
 	iftrue UnknownScript_0x1a1ef5
-	checkbit1 $028b
+	checkevent $028b
 	iftrue UnknownScript_0x1a1e5e
 	2writetext UnknownText_0x1a200e
 	keeptextopen
-	setbit1 $028b
+	setevent $028b
 	2call UnknownScript_0x1a1ee9
 	2jump UnknownScript_0x1a1e61
 ; 0x1a1e5e
@@ -295,13 +295,13 @@ UnknownScript_0x1a1e75: ; 0x1a1e75
 	if_equal $1, UnknownScript_0x1a1ea6
 	if_equal $0, UnknownScript_0x1a1eac
 UnknownScript_0x1a1e94: ; 0x1a1e94
-	checkbit1 EVENT_RESTORED_POWER_TO_KANTO
+	checkevent EVENT_RESTORED_POWER_TO_KANTO
 	iftrue UnknownScript_0x1a1ee0
 UnknownScript_0x1a1e9a: ; 0x1a1e9a
-	checkbit1 $0044
+	checkevent $0044
 	iftrue UnknownScript_0x1a1ed3
 UnknownScript_0x1a1ea0: ; 0x1a1ea0
-	checkbit1 EVENT_CLEARED_RADIO_TOWER
+	checkevent EVENT_CLEARED_RADIO_TOWER
 	iftrue UnknownScript_0x1a1ec6
 UnknownScript_0x1a1ea6: ; 0x1a1ea6
 	checkbit2 $0049

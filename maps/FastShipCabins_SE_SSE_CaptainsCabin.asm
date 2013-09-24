@@ -13,7 +13,7 @@ UnknownScript_0x75ea6: ; 0x75ea6
 CaptainScript_0x75ea7: ; 0x75ea7
 	faceplayer
 	loadfont
-	checkbit1 $0030
+	checkevent $0030
 	iftrue UnknownScript_0x75eb5
 	2writetext UnknownText_0x76012
 	closetext
@@ -72,7 +72,7 @@ UnknownScript_0x75f09: ; 0x75f09
 	loadfont
 	2writetext UnknownText_0x76143
 	keeptextopen
-	setbit1 $072b
+	setevent $072b
 	domaptrigger GROUP_FAST_SHIP_1F, MAP_FAST_SHIP_1F, $0
 	2jump UnknownScript_0x75f37
 ; 0x75f1f
@@ -80,9 +80,9 @@ UnknownScript_0x75f09: ; 0x75f09
 GentlemanScript_0x75f1f: ; 0x75f1f
 	faceplayer
 	loadfont
-	checkbit1 EVENT_GOT_METAL_COAT_FROM_GRANDPA_ON_SS_AQUA
+	checkevent EVENT_GOT_METAL_COAT_FROM_GRANDPA_ON_SS_AQUA
 	iftrue UnknownScript_0x75f67
-	checkbit1 $0732
+	checkevent $0732
 	iftrue UnknownScript_0x75f58
 	2writetext UnknownText_0x760ae
 	closetext
@@ -96,7 +96,7 @@ UnknownScript_0x75f37: ; 0x75f37
 	keeptextopen
 	verbosegiveitem METAL_COAT, 1
 	iffalse UnknownScript_0x75f44
-	setbit1 EVENT_GOT_METAL_COAT_FROM_GRANDPA_ON_SS_AQUA
+	setevent EVENT_GOT_METAL_COAT_FROM_GRANDPA_ON_SS_AQUA
 UnknownScript_0x75f44: ; 0x75f44
 	loadmovesprites
 	waitbutton
@@ -105,8 +105,8 @@ UnknownScript_0x75f44: ; 0x75f44
 	loadfont
 	2writetext UnknownText_0x76645
 	closetext
-	setbit1 $0031
-	setbit1 $0032
+	setevent $0031
+	setevent $0032
 	loadmovesprites
 	end
 ; 0x75f58
@@ -116,7 +116,7 @@ UnknownScript_0x75f58: ; 0x75f58
 	keeptextopen
 	verbosegiveitem METAL_COAT, 1
 	iffalse UnknownScript_0x75f65
-	setbit1 EVENT_GOT_METAL_COAT_FROM_GRANDPA_ON_SS_AQUA
+	setevent EVENT_GOT_METAL_COAT_FROM_GRANDPA_ON_SS_AQUA
 UnknownScript_0x75f65: ; 0x75f65
 	loadmovesprites
 	end

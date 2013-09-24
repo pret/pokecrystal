@@ -26,7 +26,7 @@ UnknownScript_0x18d023: ; 0x18d023
 	2writetext UnknownText_0x18d2ea
 	keeptextopen
 UnknownScript_0x18d030: ; 0x18d030
-	setbit1 $0001
+	setevent $0001
 	2writetext UnknownText_0x18d3bc
 	keeptextopen
 	loadmenudata MenuDataHeader_0x18d215
@@ -39,7 +39,7 @@ UnknownScript_0x18d030: ; 0x18d030
 ; 0x18d049
 
 UnknownScript_0x18d049: ; 0x18d049
-	setbit1 $0002
+	setevent $0002
 	2writetext UnknownText_0x18d3d3
 	keeptextopen
 	loadmenudata MenuDataHeader_0x18d234
@@ -49,7 +49,7 @@ UnknownScript_0x18d049: ; 0x18d049
 	if_equal $2, UnknownScript_0x18d0a9
 	if_equal $3, UnknownScript_0x18d0cb
 UnknownScript_0x18d061: ; 0x18d061
-	setbit1 $0003
+	setevent $0003
 	2writetext UnknownText_0x18d3f3
 	keeptextopen
 	loadmenudata MenuDataHeader_0x18d258
@@ -59,7 +59,7 @@ UnknownScript_0x18d061: ; 0x18d061
 	if_equal $2, UnknownScript_0x18d0a9
 	if_equal $3, UnknownScript_0x18d0a9
 UnknownScript_0x18d079: ; 0x18d079
-	setbit1 $0004
+	setevent $0004
 	2writetext UnknownText_0x18d420
 	keeptextopen
 	loadmenudata MenuDataHeader_0x18d283
@@ -69,7 +69,7 @@ UnknownScript_0x18d079: ; 0x18d079
 	if_equal $2, UnknownScript_0x18d0cb
 	if_equal $3, UnknownScript_0x18d0a9
 UnknownScript_0x18d091: ; 0x18d091
-	setbit1 $0005
+	setevent $0005
 	2writetext UnknownText_0x18d44a
 	keeptextopen
 	loadmenudata MenuDataHeader_0x18d2a5
@@ -79,17 +79,17 @@ UnknownScript_0x18d091: ; 0x18d091
 	if_equal $2, UnknownScript_0x18d0a9
 	if_equal $3, UnknownScript_0x18d0cb
 UnknownScript_0x18d0a9: ; 0x18d0a9
-	checkbit1 $0005
+	checkevent $0005
 	iftrue UnknownScript_0x18d100
 	2writetext UnknownText_0x18d82d
 	keeptextopen
-	checkbit1 $0004
+	checkevent $0004
 	iftrue UnknownScript_0x18d091
-	checkbit1 $0003
+	checkevent $0003
 	iftrue UnknownScript_0x18d079
-	checkbit1 $0002
+	checkevent $0002
 	iftrue UnknownScript_0x18d061
-	checkbit1 $0001
+	checkevent $0001
 	iftrue UnknownScript_0x18d049
 UnknownScript_0x18d0cb: ; 0x18d0cb
 	loadmovesprites
@@ -103,17 +103,17 @@ UnknownScript_0x18d0cb: ; 0x18d0cb
 	2writetext UnknownText_0x18d816
 	closetext
 	loadmovesprites
-	setbit1 $00c1
+	setevent $00c1
 	loadfont
-	checkbit1 $0005
+	checkevent $0005
 	iftrue UnknownScript_0x18d091
-	checkbit1 $0004
+	checkevent $0004
 	iftrue UnknownScript_0x18d079
-	checkbit1 $0003
+	checkevent $0003
 	iftrue UnknownScript_0x18d061
-	checkbit1 $0002
+	checkevent $0002
 	iftrue UnknownScript_0x18d049
-	checkbit1 $0001
+	checkevent $0001
 	iftrue UnknownScript_0x18d030
 UnknownScript_0x18d100: ; 0x18d100
 	2writetext UnknownText_0x18d47c
@@ -188,20 +188,20 @@ UnknownScript_0x18d100: ; 0x18d100
 	playsound $001f
 	disappear $5
 	waitbutton
-	setbit1 $0000
+	setevent $0000
 	end
 ; 0x18d1a5
 
 ElderScript_0x18d1a5: ; 0x18d1a5
 	faceplayer
 	loadfont
-	checkbit1 $0000
+	checkevent $0000
 	iftrue UnknownScript_0x18d1f9
-	checkbit1 $0006
+	checkevent $0006
 	iftrue UnknownScript_0x18d1ff
-	checkbit1 $00bd
+	checkevent $00bd
 	iffalse UnknownScript_0x18d1c5
-	checkbit1 EVENT_BEAT_RIVAL_IN_MT_MOON
+	checkevent EVENT_BEAT_RIVAL_IN_MT_MOON
 	iftrue UnknownScript_0x18d1f3
 	2writetext UnknownText_0x18d724
 	closetext
@@ -218,10 +218,10 @@ UnknownScript_0x18d1c5: ; 0x18d1c5
 	playsound $0002
 	waitbutton
 	givepoke DRATINI, 15, 0, 0
-	checkbit1 $00c1
+	checkevent $00c1
 	special $0094
-	setbit1 $00bd
-	setbit1 $0006
+	setevent $00bd
+	setevent $0006
 	2writetext UnknownText_0x18d6ca
 	closetext
 	loadmovesprites

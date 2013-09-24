@@ -87,7 +87,7 @@ UnknownScript_0x19c01f: ; 0x19c01f
 	applymovement $2, MovementData_0x19c1cb
 	playsound $001f
 	disappear $2
-	clearbit1 EVENT_GUIDE_GENT_VISIBLE_IN_CHERRYGROVE
+	clearevent EVENT_GUIDE_GENT_VISIBLE_IN_CHERRYGROVE
 	waitbutton
 	end
 
@@ -123,9 +123,9 @@ UnknownScript_0x19c0ae: ; 0x19c0ae
 	2writetext UnknownText_0x19c4e2
 	closetext
 	loadmovesprites
-	checkbit1 EVENT_GOT_TOTODILE_FROM_ELM
+	checkevent EVENT_GOT_TOTODILE_FROM_ELM
 	iftrue UnknownScript_0x19c0ee
-	checkbit1 EVENT_GOT_CHIKORITA_FROM_ELM
+	checkevent EVENT_GOT_CHIKORITA_FROM_ELM
 	iftrue UnknownScript_0x19c104
 	winlosstext UnknownText_0x19c57f, UnknownText_0x19c5e6
 	setlasttalked $3
@@ -228,13 +228,13 @@ UnknownScript_0x19c168: ; 0x19c168
 FisherScript_0x19c16e: ; 0x19c16e
 	faceplayer
 	loadfont
-	checkbit1 EVENT_GOT_MYSTIC_WATER_IN_CHERRYGROVE
+	checkevent EVENT_GOT_MYSTIC_WATER_IN_CHERRYGROVE
 	iftrue UnknownScript_0x19c183
 	2writetext UnknownText_0x19c766
 	keeptextopen
 	verbosegiveitem MYSTIC_WATER, 1
 	iffalse UnknownScript_0x19c187
-	setbit1 EVENT_GOT_MYSTIC_WATER_IN_CHERRYGROVE
+	setevent EVENT_GOT_MYSTIC_WATER_IN_CHERRYGROVE
 UnknownScript_0x19c183: ; 0x19c183
 	2writetext UnknownText_0x19c7c1
 	closetext

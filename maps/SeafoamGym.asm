@@ -28,7 +28,7 @@ BlaineScript_0x1ab4fb: ; 0x1ab4fb
 	appear $3
 UnknownScript_0x1ab516: ; 0x1ab516
 	returnafterbattle
-	setbit1 $04cb
+	setevent $04cb
 	loadfont
 	2writetext UnknownText_0x1ab683
 	playsound $009c
@@ -50,12 +50,12 @@ UnknownScript_0x1ab52b: ; 0x1ab52b
 SeafoamGymGuyScript: ; 0x1ab531
 	faceplayer
 	loadfont
-	checkbit1 EVENT_TALKED_TO_SEAFOAM_GYM_GUY_ONCE
+	checkevent EVENT_TALKED_TO_SEAFOAM_GYM_GUY_ONCE
 	iftrue .TalkedToSeafoamGymGuyScript
 	2writetext SeafoamGymGuyWinText
 	closetext
 	loadmovesprites
-	setbit1 EVENT_TALKED_TO_SEAFOAM_GYM_GUY_ONCE
+	setevent EVENT_TALKED_TO_SEAFOAM_GYM_GUY_ONCE
 	end
 
 .TalkedToSeafoamGymGuyScript

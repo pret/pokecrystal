@@ -63,9 +63,9 @@ SailorHuey1Script: ; 0x5af91
 	iftrue UnknownScript_0x5afc7
 	checkcellnum $7
 	iftrue UnknownScript_0x5b05f
-	checkbit1 $0263
+	checkevent $0263
 	iftrue UnknownScript_0x5afb0
-	setbit1 $0263
+	setevent $0263
 	2call UnknownScript_0x5b053
 	2jump UnknownScript_0x5afb3
 ; 0x5afb0
@@ -90,13 +90,13 @@ UnknownScript_0x5afc7: ; 0x5afc7
 	if_equal $1, UnknownScript_0x5afee
 	if_equal $0, UnknownScript_0x5aff4
 UnknownScript_0x5afe2: ; 0x5afe2
-	checkbit1 EVENT_RESTORED_POWER_TO_KANTO
+	checkevent EVENT_RESTORED_POWER_TO_KANTO
 	iftrue UnknownScript_0x5b01b
 UnknownScript_0x5afe8: ; 0x5afe8
-	checkbit1 $0044
+	checkevent $0044
 	iftrue UnknownScript_0x5b00e
 UnknownScript_0x5afee: ; 0x5afee
-	checkbit1 EVENT_CLEARED_RADIO_TOWER
+	checkevent EVENT_CLEARED_RADIO_TOWER
 	iftrue UnknownScript_0x5b001
 UnknownScript_0x5aff4: ; 0x5aff4
 	loadtrainer SAILOR, HUEY1
@@ -130,14 +130,14 @@ UnknownScript_0x5b01b: ; 0x5b01b
 	startbattle
 	returnafterbattle
 	clearbit2 $0066
-	checkbit1 EVENT_HUEY_PROTEIN
+	checkevent EVENT_HUEY_PROTEIN
 	iftrue UnknownScript_0x5b03f
-	checkbit1 $0265
+	checkevent $0265
 	iftrue UnknownScript_0x5b03e
 	2call UnknownScript_0x5b076
 	verbosegiveitem PROTEIN, 1
 	iffalse UnknownScript_0x5b06f
-	setbit1 $0265
+	setevent $0265
 	2jump UnknownScript_0x5b05f
 ; 0x5b03e
 
@@ -151,8 +151,8 @@ UnknownScript_0x5b03f: ; 0x5b03f
 	closetext
 	verbosegiveitem PROTEIN, 1
 	iffalse UnknownScript_0x5b06f
-	clearbit1 EVENT_HUEY_PROTEIN
-	setbit1 $0265
+	clearevent EVENT_HUEY_PROTEIN
+	setevent $0265
 	2jump UnknownScript_0x5b05f
 ; 0x5b053
 
@@ -192,7 +192,7 @@ UnknownScript_0x5b06b: ; 0x5b06b
 ; 0x5b06f
 
 UnknownScript_0x5b06f: ; 0x5b06f
-	setbit1 EVENT_HUEY_PROTEIN
+	setevent EVENT_HUEY_PROTEIN
 	jumpstd $0021
 	end
 ; 0x5b076

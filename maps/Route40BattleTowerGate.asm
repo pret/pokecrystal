@@ -11,7 +11,7 @@ Route40BattleTowerGate_MapScriptHeader: ; 0x9f660
 ; 0x9f665
 
 UnknownScript_0x9f665: ; 0x9f665
-	clearbit1 $07cf
+	clearevent $07cf
 	return
 ; 0x9f669
 

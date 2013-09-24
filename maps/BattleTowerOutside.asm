@@ -17,7 +17,7 @@ UnknownScript_0x9f85a: ; 0x9f85a
 ; 0x9f85b
 
 UnknownScript_0x9f85b: ; 0x9f85b
-	clearbit1 $07cf
+	clearevent $07cf
 	return
 ; 0x9f85f
 

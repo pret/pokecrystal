@@ -20,7 +20,7 @@ UnknownScript_0x5400b: ; 0x5400b
 
 WhitneyScript_0x5400c: ; 0x5400c
 	faceplayer
-	checkbit1 EVENT_BEAT_WHITNEY
+	checkevent EVENT_BEAT_WHITNEY
 	iftrue UnknownScript_0x54037
 	loadfont
 	2writetext UnknownText_0x54122
@@ -30,16 +30,16 @@ WhitneyScript_0x5400c: ; 0x5400c
 	loadtrainer WHITNEY, 1
 	startbattle
 	returnafterbattle
-	setbit1 EVENT_BEAT_WHITNEY
-	setbit1 EVENT_MADE_WHITNEY_CRY
+	setevent EVENT_BEAT_WHITNEY
+	setevent EVENT_MADE_WHITNEY_CRY
 	dotrigger $1
-	setbit1 EVENT_BEAT_BEAUTY_VICTORIA
-	setbit1 EVENT_BEAT_BEAUTY_SAMANTHA
-	setbit1 EVENT_BEAT_LASS_CARRIE
-	setbit1 EVENT_BEAT_LASS_BRIDGET
+	setevent EVENT_BEAT_BEAUTY_VICTORIA
+	setevent EVENT_BEAT_BEAUTY_SAMANTHA
+	setevent EVENT_BEAT_LASS_CARRIE
+	setevent EVENT_BEAT_LASS_BRIDGET
 UnknownScript_0x54037: ; 0x54037
 	loadfont
-	checkbit1 EVENT_MADE_WHITNEY_CRY
+	checkevent EVENT_MADE_WHITNEY_CRY
 	iffalse UnknownScript_0x54044
 	2writetext UnknownText_0x541f4
 	closetext
@@ -48,7 +48,7 @@ UnknownScript_0x54037: ; 0x54037
 ; 0x54044
 
 UnknownScript_0x54044: ; 0x54044
-	checkbit1 EVENT_GOT_TM45_ATTRACT
+	checkevent EVENT_GOT_TM45_ATTRACT
 	iftrue UnknownScript_0x54077
 	checkbit2 $001d
 	iftrue UnknownScript_0x54064
@@ -66,7 +66,7 @@ UnknownScript_0x54064: ; 0x54064
 	keeptextopen
 	verbosegiveitem TM_45, 1
 	iffalse UnknownScript_0x5407b
-	setbit1 EVENT_GOT_TM45_ATTRACT
+	setevent EVENT_GOT_TM45_ATTRACT
 	2writetext UnknownText_0x54302
 	closetext
 	loadmovesprites
@@ -134,7 +134,7 @@ WhitneyCriesScript: ; 0x540a0
 	loadmovesprites
 	applymovement $4, BridgetWalksAwayMovement
 	dotrigger $0
-	clearbit1 EVENT_MADE_WHITNEY_CRY
+	clearevent EVENT_MADE_WHITNEY_CRY
 	end
 ; 0x540bb
 
@@ -227,7 +227,7 @@ BeautySamanthaScript: ; 0x540ef
 
 GoldenrodGymGuyScript: ; 0x540f7
 	faceplayer
-	checkbit1 EVENT_BEAT_WHITNEY
+	checkevent EVENT_BEAT_WHITNEY
 	iftrue .GoldenrodGymGuyWinScript
 	loadfont
 	2writetext GoldenrodGymGuyText

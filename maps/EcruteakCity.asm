@@ -34,7 +34,7 @@ LassScript_0x1a4012: ; 0x1a4012
 LassScript_0x1a4015: ; 0x1a4015
 	faceplayer
 	loadfont
-	checkbit1 EVENT_RELEASED_THE_BEASTS
+	checkevent EVENT_RELEASED_THE_BEASTS
 	iftrue UnknownScript_0x1a4023
 	2writetext UnknownText_0x1a421a
 	closetext
@@ -52,7 +52,7 @@ UnknownScript_0x1a4023: ; 0x1a4023
 FisherScript_0x1a4029: ; 0x1a4029
 	faceplayer
 	loadfont
-	checkbit1 EVENT_JASMINE_RETURNED_TO_GYM
+	checkevent EVENT_JASMINE_RETURNED_TO_GYM
 	iftrue UnknownScript_0x1a4037
 	2writetext UnknownText_0x1a42ac
 	closetext

@@ -23,7 +23,7 @@ UnknownScript_0x748b1: ; 0x748b1
 	applymovement $0, MovementData_0x74a32
 	appear $2
 	dotrigger $0
-	setbit1 $0000
+	setevent $0000
 	blackoutmod GROUP_OLIVINE_CITY, MAP_OLIVINE_CITY
 	end
 ; 0x748c0
@@ -31,7 +31,7 @@ UnknownScript_0x748b1: ; 0x748b1
 SailorScript_0x748c0: ; 0x748c0
 	faceplayer
 	loadfont
-	checkbit1 $0000
+	checkevent $0000
 	iftrue UnknownScript_0x74919
 	2writetext UnknownText_0x74a55
 	closetext
@@ -45,21 +45,21 @@ SailorScript_0x748c0: ; 0x748c0
 	playsound $0023
 	special $002e
 	waitbutton
-	checkbit1 $0030
+	checkevent $0030
 	iffalse UnknownScript_0x7490a
-	clearbit1 $073a
-	setbit1 $073b
-	clearbit1 EVENT_BEAT_COOLTRAINERM_SEAN
-	clearbit1 EVENT_BEAT_COOLTRAINERF_CAROL
-	clearbit1 EVENT_BEAT_GENTLEMAN_EDWARD
-	clearbit1 EVENT_BEAT_BEAUTY_CASSIE
-	clearbit1 EVENT_BEAT_PSYCHIC_RODNEY
-	clearbit1 EVENT_BEAT_SUPER_NERD_SHAWN
-	clearbit1 EVENT_BEAT_SAILOR_GARRETT
-	clearbit1 EVENT_BEAT_FISHER_JONAH
-	clearbit1 EVENT_BEAT_BLACKBELT_WAI
+	clearevent $073a
+	setevent $073b
+	clearevent EVENT_BEAT_COOLTRAINERM_SEAN
+	clearevent EVENT_BEAT_COOLTRAINERF_CAROL
+	clearevent EVENT_BEAT_GENTLEMAN_EDWARD
+	clearevent EVENT_BEAT_BEAUTY_CASSIE
+	clearevent EVENT_BEAT_PSYCHIC_RODNEY
+	clearevent EVENT_BEAT_SUPER_NERD_SHAWN
+	clearevent EVENT_BEAT_SAILOR_GARRETT
+	clearevent EVENT_BEAT_FISHER_JONAH
+	clearevent EVENT_BEAT_BLACKBELT_WAI
 UnknownScript_0x7490a: ; 0x7490a
-	clearbit1 $002f
+	clearevent $002f
 	appear $2
 	domaptrigger GROUP_FAST_SHIP_1F, MAP_FAST_SHIP_1F, $1
 	warp GROUP_FAST_SHIP_1F, MAP_FAST_SHIP_1F, $19, $1
@@ -75,13 +75,13 @@ UnknownScript_0x74919: ; 0x74919
 
 UnknownScript_0x7491f: ; 0x7491f
 	spriteface $4, $3
-	checkbit1 $0000
+	checkevent $0000
 	iftrue UnknownScript_0x7498b
-	checkbit1 $0001
+	checkevent $0001
 	iftrue UnknownScript_0x7498b
 	spriteface $0, $2
 	loadfont
-	checkbit1 $0030
+	checkevent $0030
 	iffalse UnknownScript_0x7494e
 	checkcode $b
 	if_equal SUNDAY, UnknownScript_0x74977
@@ -100,7 +100,7 @@ UnknownScript_0x7494e: ; 0x7494e
 	2writetext UnknownText_0x74b11
 	closetext
 	loadmovesprites
-	setbit1 $0001
+	setevent $0001
 	applymovement $0, MovementData_0x74a37
 	2jump SailorScript_0x748c0
 ; 0x7496d
@@ -151,9 +151,9 @@ UnknownScript_0x74992: ; 0x74992
 SailorScript_0x7499c: ; 0x7499c
 	faceplayer
 	loadfont
-	checkbit1 $0000
+	checkevent $0000
 	iftrue UnknownScript_0x74919
-	checkbit1 $0030
+	checkevent $0030
 	iffalse UnknownScript_0x749c0
 	checkcode $b
 	if_equal SUNDAY, UnknownScript_0x749f2
@@ -172,7 +172,7 @@ UnknownScript_0x749c0: ; 0x749c0
 	2writetext UnknownText_0x74b11
 	closetext
 	loadmovesprites
-	setbit1 $0001
+	setevent $0001
 	checkcode $9
 	if_equal $3, UnknownScript_0x749e5
 	applymovement $0, MovementData_0x74a3f

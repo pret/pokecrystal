@@ -48,9 +48,9 @@ ScriptCommandTable: ; 0x96cb1
 	dw Script_giveegg
 	dw Script_givepokeitem
 	dw Script_checkpokeitem
-	dw Script_checkbit1
-	dw Script_clearbit1
-	dw Script_setbit1
+	dw Script_checkevent
+	dw Script_clearevent
+	dw Script_setevent
 	dw Script_checkbit2
 	dw Script_clearbit2
 	dw Script_setbit2
@@ -2667,7 +2667,7 @@ Script_giveegg: ; 0x97968
 	ret
 ; 0x97988
 
-Script_setbit1: ; 0x97988
+Script_setevent: ; 0x97988
 ; script command 0x33
 ; parameters:
 ;     bit_number (MultiByteParam)
@@ -2681,7 +2681,7 @@ Script_setbit1: ; 0x97988
 	ret
 ; 0x97996
 
-Script_clearbit1: ; 0x97996
+Script_clearevent: ; 0x97996
 ; script command 0x32
 ; parameters:
 ;     bit_number (MultiByteParam)
@@ -2695,7 +2695,7 @@ Script_clearbit1: ; 0x97996
 	ret
 ; 0x979a4
 
-Script_checkbit1: ; 0x979a4
+Script_checkevent: ; 0x979a4
 ; script command 0x31
 ; parameters:
 ;     bit_number (MultiByteParam)

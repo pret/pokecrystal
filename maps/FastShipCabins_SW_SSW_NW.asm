@@ -149,11 +149,11 @@ MapFastShipCabins_SW_SSW_NWSignpost1Script: ; 0x75aac
 	2writetext UnknownText_0x75dc1
 	closetext
 	loadmovesprites
-	checkbit1 $0031
+	checkevent $0031
 	iftrue UnknownScript_0x75ae1
-	checkbit1 $0032
+	checkevent $0032
 	iftrue UnknownScript_0x75ae2
-	checkbit1 $0030
+	checkevent $0030
 	iftrue UnknownScript_0x75ae2
 UnknownScript_0x75ae1: ; 0x75ae1
 	end
@@ -162,13 +162,13 @@ UnknownScript_0x75ae1: ; 0x75ae1
 UnknownScript_0x75ae2: ; 0x75ae2
 	playsound $0027
 	pause 30
-	checkbit1 $002f
+	checkevent $002f
 	iftrue UnknownScript_0x75af7
 	loadfont
 	2writetext UnknownText_0x75e0f
 	closetext
 	loadmovesprites
-	setbit1 $0031
+	setevent $0031
 	end
 ; 0x75af7
 
@@ -177,7 +177,7 @@ UnknownScript_0x75af7: ; 0x75af7
 	2writetext UnknownText_0x75dde
 	closetext
 	loadmovesprites
-	setbit1 $0031
+	setevent $0031
 	end
 ; 0x75b01
 

@@ -51,7 +51,7 @@ UnknownScript_0x1a83d1: ; 0x1a83d1
 	applymovement $2, MovementData_0x1a8463
 	playsound $001f
 	disappear $2
-	clearbit1 $06cb
+	clearevent $06cb
 	waitbutton
 	end
 ; 0x1a8403

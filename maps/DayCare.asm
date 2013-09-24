@@ -13,21 +13,21 @@ DayCare_MapScriptHeader: ; 0x62f76
 UnknownScript_0x62f7b: ; 0x62f7b
 	checkbit2 $0005
 	iftrue UnknownScript_0x62f88
-	clearbit1 $06e5
-	setbit1 $06e6
+	clearevent $06e5
+	setevent $06e6
 	return
 ; 0x62f88
 
 UnknownScript_0x62f88: ; 0x62f88
-	setbit1 $06e5
-	clearbit1 $06e6
+	setevent $06e5
+	clearevent $06e6
 	return
 ; 0x62f8f
 
 GrampsScript_0x62f8f: ; 0x62f8f
 	faceplayer
 	loadfont
-	checkbit1 EVENT_GOT_ODD_EGG
+	checkevent EVENT_GOT_ODD_EGG
 	iftrue UnknownScript_0x62fbd
 	2writetext UnknownText_0x630ce
 	keeptextopen
@@ -42,7 +42,7 @@ GrampsScript_0x62f8f: ; 0x62f8f
 	2writetext UnknownText_0x631c3
 	closetext
 	loadmovesprites
-	setbit1 EVENT_GOT_ODD_EGG
+	setevent EVENT_GOT_ODD_EGG
 	end
 ; 0x62fb6
 

@@ -18,8 +18,8 @@ BrockScript_0x1a2864: ; 0x1a2864
 	loadtrainer BROCK, 1
 	startbattle
 	returnafterbattle
-	setbit1 EVENT_BEAT_BROCK
-	setbit1 EVENT_BEAT_CAMPER_JERRY
+	setevent EVENT_BEAT_BROCK
+	setevent EVENT_BEAT_CAMPER_JERRY
 	loadfont
 	2writetext UnknownText_0x1a2a3d
 	playsound $009c
@@ -70,7 +70,7 @@ CamperJerryScript: ; 0x1a28a4
 PewterGymGuyScript: ; 0x1a28ac
 	faceplayer
 	loadfont
-	checkbit1 EVENT_BEAT_BROCK
+	checkevent EVENT_BEAT_BROCK
 	iftrue .PewterGymGuyWinScript
 	2writetext PewterGymGuyText
 	closetext

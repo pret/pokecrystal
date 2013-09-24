@@ -24,27 +24,27 @@ UnknownScript_0x18000a: ; 0x18000a
 	domaptrigger GROUP_KARENS_ROOM, MAP_KARENS_ROOM, $0
 	domaptrigger GROUP_LANCES_ROOM, MAP_LANCES_ROOM, $0
 	domaptrigger GROUP_HALL_OF_FAME, MAP_HALL_OF_FAME, $0
-	clearbit1 $0309
-	clearbit1 EVENT_WILLS_ROOM_EXIT_OPEN
-	clearbit1 EVENT_WILLS_ROOM_ENTRANCE_CLOSED
-	clearbit1 EVENT_KOGAS_ROOM_EXIT_OPEN
-	clearbit1 EVENT_KOGAS_ROOM_ENTRANCE_CLOSED
-	clearbit1 EVENT_BRUNOS_ROOM_EXIT_OPEN
-	clearbit1 EVENT_KARENS_ROOM_ENTRANCE_CLOSED
-	clearbit1 EVENT_KARENS_ROOM_EXIT_OPEN
-	clearbit1 EVENT_LANCES_ROOM_ENTRANCE_CLOSED
-	clearbit1 $0312
-	clearbit1 $05b8
-	clearbit1 $05b9
-	clearbit1 $05ba
-	clearbit1 EVENT_BEAT_ELITE_4_KAREN
-	clearbit1 EVENT_BEAT_CHAMPION_LANCE
-	setbit1 $075f
+	clearevent $0309
+	clearevent EVENT_WILLS_ROOM_EXIT_OPEN
+	clearevent EVENT_WILLS_ROOM_ENTRANCE_CLOSED
+	clearevent EVENT_KOGAS_ROOM_EXIT_OPEN
+	clearevent EVENT_KOGAS_ROOM_ENTRANCE_CLOSED
+	clearevent EVENT_BRUNOS_ROOM_EXIT_OPEN
+	clearevent EVENT_KARENS_ROOM_ENTRANCE_CLOSED
+	clearevent EVENT_KARENS_ROOM_EXIT_OPEN
+	clearevent EVENT_LANCES_ROOM_ENTRANCE_CLOSED
+	clearevent $0312
+	clearevent $05b8
+	clearevent $05b9
+	clearevent $05ba
+	clearevent EVENT_BEAT_ELITE_4_KAREN
+	clearevent EVENT_BEAT_CHAMPION_LANCE
+	setevent $075f
 	return
 ; 0x180053
 
 UnknownScript_0x180053: ; 0x180053
-	checkbit1 EVENT_BEAT_RIVAL_IN_MT_MOON
+	checkevent EVENT_BEAT_RIVAL_IN_MT_MOON
 	iffalse UnknownScript_0x18012b
 	checkbit2 $005d
 	iftrue UnknownScript_0x18012b
@@ -67,7 +67,7 @@ UnknownScript_0x180053: ; 0x180053
 ; 0x180094
 
 UnknownScript_0x180094: ; 0x180094
-	checkbit1 EVENT_BEAT_RIVAL_IN_MT_MOON
+	checkevent EVENT_BEAT_RIVAL_IN_MT_MOON
 	iffalse UnknownScript_0x18012b
 	checkbit2 $005d
 	iftrue UnknownScript_0x18012b
@@ -90,10 +90,10 @@ UnknownScript_0x1800ce: ; 0x1800ce
 	2writetext UnknownText_0x1801f5
 	closetext
 	loadmovesprites
-	setbit1 $077b
-	checkbit1 EVENT_GOT_TOTODILE_FROM_ELM
+	setevent $077b
+	checkevent EVENT_GOT_TOTODILE_FROM_ELM
 	iftrue UnknownScript_0x1800f3
-	checkbit1 EVENT_GOT_CHIKORITA_FROM_ELM
+	checkevent EVENT_GOT_CHIKORITA_FROM_ELM
 	iftrue UnknownScript_0x180103
 	winlosstext UnknownText_0x180295, UnknownText_0x1802fd
 	setlasttalked $5

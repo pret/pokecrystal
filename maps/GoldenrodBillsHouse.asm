@@ -9,7 +9,7 @@ GoldenrodBillsHouse_MapScriptHeader: ; 0x54be2
 BillScript_0x54be4: ; 0x54be4
 	faceplayer
 	loadfont
-	checkbit1 EVENT_GOT_EEVEE
+	checkevent EVENT_GOT_EEVEE
 	iftrue UnknownScript_0x54c1f
 	2writetext UnknownText_0x54c74
 	yesorno
@@ -23,7 +23,7 @@ BillScript_0x54be4: ; 0x54be4
 	playsound $0002
 	waitbutton
 	givepoke EEVEE, 20, 0, 0
-	setbit1 EVENT_GOT_EEVEE
+	setevent EVENT_GOT_EEVEE
 	2writetext UnknownText_0x54dc1
 	closetext
 	loadmovesprites
@@ -54,7 +54,7 @@ UnknownScript_0x54c1f: ; 0x54c1f
 PokefanFScript_0x54c25: ; 0x54c25
 	faceplayer
 	loadfont
-	checkbit1 $0712
+	checkevent $0712
 	iffalse UnknownScript_0x54c33
 	2writetext UnknownText_0x54ea8
 	closetext
