@@ -3187,9 +3187,9 @@ Script_halloffame: ; 0x97bd5
 
 	ld hl, $cfbc
 	res 0, [hl]
-	callba HallOfFame1
-	callba HallOfFame2
-	callba HallOfFame3
+	callba Mobile_HallOfFame
+	callba Mobile_HallOfFame2
+	callba HallOfFame
 	ld hl, $cfbc
 	set 0, [hl]
 	jr DisplayCredits

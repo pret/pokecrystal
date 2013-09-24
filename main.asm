@@ -504,109 +504,8 @@ Function2d43: ; 2d43
 
 INCLUDE "home/farcall.asm"
 INCLUDE "home/predef.asm"
+INCLUDE "home/window.asm"
 
-
-ResetWindow: ; 2dba
-
-	call Function1fbf
-	ld a, [hROMBank]
-	push af
-	ld a, $1
-	rst Bankswitch
-
-	call $6454
-	call Function2e20
-	call $64bf
-
-	pop af
-	rst Bankswitch
-	ret
-; 2dcf
-
-
-Function2dcf: ; 2dcf
-	ld a, [hOAMUpdate]
-	push af
-	ld a, $1
-	ld [hOAMUpdate], a
-	call Function2de2
-	pop af
-	ld [hOAMUpdate], a
-	ld hl, VramState
-	res 6, [hl]
-	ret
-; 2de2
-
-Function2de2: ; 2de2
-	call Function1fbf
-	xor a
-	ld [hBGMapMode], a
-	call Function2173
-	call Function2e20
-	xor a
-	ld [hBGMapMode], a
-	call Function2e31
-	ld a, $90
-	ld [hWY], a
-	call Functione4a
-	ld a, $2e
-	ld hl, $4000
-	rst FarCall
-	ld a, $41
-	ld hl, $6594
-	rst FarCall
-	ret
-; 2e08
-
-Function2e08: ; 2e08
-	call Function1fbf
-	ld a, [hROMBank]
-	push af
-	ld a, $1
-	rst Bankswitch
-
-	call $6454
-	call SpeechTextBox
-	call Function2e20
-	call $64bf
-	pop af
-	rst Bankswitch
-
-	ret
-; 2e20
-
-Function2e20: ; 2e20
-	ld a, [hOAMUpdate]
-	push af
-	ld a, $1
-	ld [hOAMUpdate], a
-	ld a, $41
-	ld hl, $4110
-	rst FarCall
-	pop af
-	ld [hOAMUpdate], a
-	ret
-; 2e31
-
-Function2e31: ; 2e31
-	ld a, [hOAMUpdate]
-	push af
-	ld a, [hBGMapMode]
-	push af
-	xor a
-	ld [hBGMapMode], a
-	ld a, $1
-	ld [hOAMUpdate], a
-	call Function1ad2
-	xor a
-	ld [hOAMUpdate], a
-	call DelayFrame
-	pop af
-	ld [hBGMapMode], a
-	pop af
-	ld [hOAMUpdate], a
-	ret
-; 2e4e
 
 Function2e4e: ; 2e4e
 	scf
@@ -815,27 +714,29 @@ CopyName2: ; 30d9
 ; 30e1
 
 IsInArray: ; 30e1
-; searches an array at hl for the value in a.
-; skips (de - 1) bytes between reads, so to check every byte, de should be 1.
-; if found, returns count in b and sets carry.
-	ld b,0
-	ld c,a
+; Find value a for every de bytes in array hl.
+; Return index in b and carry if found.
+
+	ld b, 0
+	ld c, a
 .loop
-	ld a,[hl]
-	cp a, $FF
-	jr z,.NotInArray
+	ld a, [hl]
+	cp $ff
+	jr z, .NotInArray
 	cp c
-	jr z,.InArray
+	jr z, .InArray
 	inc b
-	add hl,de
+	add hl, de
 	jr .loop
+
 .NotInArray
 	and a
 	ret
+
 .InArray
 	scf
 	ret
-; 0x30f4
+; 30f4
 
 SkipNames: ; 0x30f4
 ; skips n names where n = a
@@ -1380,45 +1281,7 @@ GetWeekday: ; 3376
 ; 3380
 
 
-SetSeenAndCaughtMon: ; 3380
-	push af
-	ld c, a
-	ld hl, PokedexCaught
-	ld b, SET_FLAG
-	call PokedexFlagAction
-	pop af
-	; fallthrough
-; 338b
-
-SetSeenMon: ; 338b
-	ld c, a
-	ld hl, PokedexSeen
-	ld b, SET_FLAG
-	jr PokedexFlagAction
-; 3393
-
-CheckCaughtMon: ; 3393
-	ld c, a
-	ld hl, PokedexCaught
-	ld b, CHECK_FLAG
-	jr PokedexFlagAction
-; 339b
-
-CheckSeenMon: ; 339b
-	ld c, a
-	ld hl, PokedexSeen
-	ld b, CHECK_FLAG
-	; fallthrough
-; 33a1
-
-PokedexFlagAction: ; 33a1
-	ld d, 0
-	ld a, PREDEF_FLAG
-	call Predef
-	ld a, c
-	and a
-	ret
-; 33ab
+INCLUDE "home/pokedex_flags.asm"
 
 
 NamesPointerTable: ; 33ab
@@ -11086,7 +10949,7 @@ Function8029: ; 8029
 	ld [$d4cd], a
 	ld [$d4ce], a
 	ld a, $0
-	ld hl, $4071
+	ld hl, Data8071
 	call Function19a6
 	ld b, $0
 	call Function808f
@@ -11117,8 +10980,9 @@ Function8029: ; 8029
 	ret
 ; 8071
 
+Data8071: ; 8071
 INCBIN "baserom.gbc", $8071, $807e - $8071
-
+; 807e
 
 Function807e: ; 807e
 	push de
@@ -12063,1109 +11927,32 @@ PredefPointers: ; 856b
 ; 864c
 
 
-INCLUDE "predef/sgb.asm"
-
-
-CheckShininess: ; 8a68
-; Check if a mon is shiny by DVs at bc.
-; Return carry if shiny.
-
-	ld l, c
-	ld h, b
-
-; Attack
-	ld a, [hl]
-	and %0010 << 4
-	jr z, .NotShiny
-
-; Defense
-	ld a, [hli]
-	and %1111
-	cp  %1010
-	jr nz, .NotShiny
-
-; Speed
-	ld a, [hl]
-	and %1111 << 4
-	cp  %1010 << 4
-	jr nz, .NotShiny
-
-; Special
-	ld a, [hl]
-	and %1111
-	cp  %1010
-	jr nz, .NotShiny
-
-.Shiny
-	scf
-	ret
-
-.NotShiny
-	and a
-	ret
-; 8a88
-
-
-CheckContestMon: ; 8a88
-; Check a mon's DVs at hl in the bug catching contest.
-; Return carry if its DVs are good enough to place in the contest.
-
-; Attack
-	ld a, [hl]
-	cp 10 << 4
-	jr c, .Bad
-
-; Defense
-	ld a, [hli]
-	and $f
-	cp 10
-	jr c, .Bad
-
-; Speed
-	ld a, [hl]
-	cp 10 << 4
-	jr c, .Bad
-
-; Special
-	ld a, [hl]
-	and $f
-	cp 10
-	jr c, .Bad
-
-.Good
-	scf
-	ret
-
-.Bad
-	and a
-	ret
-; 8aa4
-
-
-Function8aa4: ; 8aa4
-	push de
-	push bc
-	ld hl, $5ce6
-	ld de, $cda9
-	ld bc, $0010
-	call CopyBytes
-	pop bc
-	pop de
-	ld a, c
-	ld [$cdac], a
-	ld a, b
-	ld [$cdad], a
-	ld a, e
-	ld [$cdae], a
-	ld a, d
-	ld [$cdaf], a
-	ld hl, $cda9
-	call Function9809
-	ld hl, $5a86
-	call Function9809
-	ret
-; 8ad1
-
-
-Function8ad1: ; 8ad1
-	ld hl, $5c57
-	call Function9610
-	call Function971a
-	call Function9699
-	ret
-; 8ade
-
-Function8ade: ; 8ade
-	ld hl, $cd9b
-	ld a, [$cda9]
-	ld e, a
-	ld d, $0
-	add hl, de
-	ld e, l
-	ld d, h
-	ld a, [de]
-	and a
-	ld e, $5
-	jr z, .asm_8af7
-	dec a
-	ld e, $a
-	jr z, .asm_8af7
-	ld e, $f
-
-.asm_8af7
-	push de
-	ld hl, $cdb3
-	ld bc, $0006
-	ld a, [$cda9]
-	call AddNTimes
-	pop de
-	ld [hl], e
-	ret
-; 8b07
-
-Function8b07: ; 8b07
-	call CheckCGB
-	ret z
-	ld hl, $4b2f
-	ld de, $d000
-	ld bc, $0008
-	ld a, $5
-	call FarCopyWRAM
-	ld hl, $4b37
-	ld de, MartPointer
-	ld bc, $0008
-	ld a, $5
-	call FarCopyWRAM
-	call Function96a4
-	ld a, $1
-	ld [hCGBPalUpdate], a
-	ret
-; 8b2f
-
-INCBIN "baserom.gbc", $8b2f, $8c43 - $8b2f
-
-Function8c43: ; 8c43
-	ld a, [$d10a]
-	and a
-	jr z, .asm_8c52
-	cp $1
-	jr z, .asm_8c57
-	cp $2
-	jr z, .asm_8c70
-	ret
-
-.asm_8c52
-	ld de, $d092
-	jr .asm_8c5a
-
-.asm_8c57
-	ld de, $d09a
-
-.asm_8c5a
-	ld l, c
-	ld h, $0
-	add hl, hl
-	add hl, hl
-	ld bc, $68be
-	add hl, bc
-	ld bc, $0004
-	ld a, $5
-	call FarCopyWRAM
-	ld a, $1
-	ld [hCGBPalUpdate], a
-	ret
-
-.asm_8c70
-	ld e, c
-	inc e
-	ld hl, $cdf8
-	ld bc, $0028
-	ld a, [CurPartyMon]
-.asm_8c7b
-	and a
-	jr z, .asm_8c82
-	add hl, bc
-	dec a
-	jr .asm_8c7b
-
-.asm_8c82
-	ld bc, $0208
-	ld a, e
-	call Function9663
-	ret
-; 8c8a
-
-INCBIN "baserom.gbc", $8c8a, $8cb4 - $8c8a
-
-Function8cb4: ; 8cb4
-	ld l, e
-	ld h, $0
-	add hl, hl
-	add hl, hl
-	add hl, hl
-	ld de, $4d05
-	add hl, de
-	call CheckCGB
-	jr nz, .asm_8cf0
-	push hl
-	ld hl, $5ce6
-	ld de, $cda9
-	ld bc, $0010
-	call CopyBytes
-	pop hl
-	inc hl
-	inc hl
-	ld a, [hli]
-	ld [$cdac], a
-	ld a, [hli]
-	ld [$cdad], a
-	ld a, [hli]
-	ld [$cdae], a
-	ld a, [hli]
-	ld [$cdaf], a
-	ld hl, $cda9
-	call Function9809
-	ld hl, $5a86
-	call Function9809
-	ret
-
-.asm_8cf0
-	ld de, $d000
-	ld bc, $0008
-	ld a, $5
-	call FarCopyWRAM
-	call Function96a4
-	call Function9699
-	call Function96b3
-	ret
-; 8d05
-
-INCBIN "baserom.gbc", $8d05, $8d55 - $8d05
-
-
-INCLUDE "predef/cgb.asm"
-
-
-INCBIN "baserom.gbc", $95e0, $9610 - $95e0
-
-
-Function9610: ; 9610
-	ld de, $d000
-	ld c, $4
-.asm_9615
-	push bc
-	ld a, [hli]
-	push hl
-	call Function9625
-	call Function9630
-	pop hl
-	inc hl
-	pop bc
-	dec c
-	jr nz, .asm_9615
-	ret
-; 9625
-
-Function9625: ; 9625
-	ld l, a
-	ld h, $0
-	add hl, hl
-	add hl, hl
-	add hl, hl
-	ld bc, $5df6
-	add hl, bc
-	ret
-; 9630
-
-Function9630: ; 9630
-	ld a, [rSVBK]
-	push af
-	ld a, $5
-	ld [rSVBK], a
-	ld c, $8
-.asm_9639
-	ld a, [hli]
-	ld [de], a
-	inc de
-	dec c
-	jr nz, .asm_9639
-	pop af
-	ld [rSVBK], a
-	ret
-; 9643
-
-Function9643: ; 9643
-	ld a, [rSVBK]
-	push af
-	ld a, $5
-	ld [rSVBK], a
-	ld a, $ff
-	ld [de], a
-	inc de
-	ld a, $7f
-	ld [de], a
-	inc de
-	ld c, $4
-.asm_9654
-	ld a, [hli]
-	ld [de], a
-	inc de
-	dec c
-	jr nz, .asm_9654
-	xor a
-	ld [de], a
-	inc de
-	ld [de], a
-	inc de
-	pop af
-	ld [rSVBK], a
-	ret
-; 9663
-
-Function9663: ; 9663
-.asm_9663
-	push bc
-	push hl
-.asm_9665
-	ld [hli], a
-	dec c
-	jr nz, .asm_9665
-	pop hl
-	ld bc, $0014
-	add hl, bc
-	pop bc
-	dec b
-	jr nz, .asm_9663
-	ret
-; 9673
-
-Function9673: ; 9673
-	push af
-	push bc
-	push de
-	push hl
-	ld a, [rSVBK]
-	push af
-	ld a, $5
-	ld [rSVBK], a
-	ld hl, $d000
-	ld c, $8
-.asm_9683
-	ld a, $ff
-	ld [hli], a
-	ld [hli], a
-	ld [hli], a
-	ld [hli], a
-	xor a
-	ld [hli], a
-	ld [hli], a
-	ld [hli], a
-	ld [hli], a
-	dec c
-	jr nz, .asm_9683
-	pop af
-	ld [rSVBK], a
-	pop hl
-	pop de
-	pop bc
-	pop af
-	ret
-; 9699
-
-
-Function9699: ; 9699
-	ld hl, AttrMap
-	ld bc, $0168
-	xor a
-	call ByteFill
-	ret
-; 96a4
-
-Function96a4: ; 96a4
-	ld hl, $d000
-	ld de, $d080
-	ld bc, $0080
-	ld a, $5
-	call FarCopyWRAM
-	ret
-; 96b3
-
-Function96b3: ; 96b3
-	ld a, [rLCDC]
-	bit 7, a
-	jr z, .asm_96d0
-	ld a, [hBGMapMode]
-	push af
-	ld a, $2
-	ld [hBGMapMode], a
-	call DelayFrame
-	call DelayFrame
-	call DelayFrame
-	call DelayFrame
-	pop af
-	ld [hBGMapMode], a
-	ret
-
-.asm_96d0
-	ld hl, AttrMap
-	ld de, VBGMap0
-	ld b, $12
-	ld a, $1
-	ld [rVBK], a
-.asm_96dc
-	ld c, $14
-.asm_96de
-	ld a, [hli]
-	ld [de], a
-	inc de
-	dec c
-	jr nz, .asm_96de
-	ld a, $c
-	add e
-	jr nc, .asm_96ea
-	inc d
-
-.asm_96ea
-	ld e, a
-	dec b
-	jr nz, .asm_96dc
-	ld a, $0
-	ld [rVBK], a
-	ret
-; 96f3
-
-Function96f3: ; 96f3
-	ld hl, $cd9b
-	ld a, [$cda9]
-	ld e, a
-	ld d, $0
-	add hl, de
-	ld e, l
-	ld d, h
-	ld a, [de]
-	inc a
-	ld e, a
-	ld hl, $ce0c
-	ld bc, $0028
-	ld a, [$cda9]
-.asm_970b
-	and a
-	jr z, .asm_9712
-	add hl, bc
-	dec a
-	jr .asm_970b
-
-.asm_9712
-	ld bc, $0208
-	ld a, e
-	call Function9663
-	ret
-; 971a
-
-
-Function971a: ; 971a
-	ld hl, $7681
-	ld de, MartPointer
-	ld bc, $0010
-	ld a, $5
-	call FarCopyWRAM
-	ret
-; 9729
-
-Function9729: ; 9729
-	push de
-	callba Function3da85
-	ld c, l
-	ld b, h
-	ld a, [TempBattleMonSpecies]
-	call Function974b
-	pop de
-	ret
-; 973a
-
-Function973a: ; 973a
-	push de
-	callba Function3da97
-	ld c, l
-	ld b, h
-	ld a, [TempEnemyMonSpecies]
-	call Function9764
-	pop de
-	ret
-; 974b
-
-Function974b: ; 974b
-	and a
-	jp nz, Function97f9
-	ld a, [$d45b]
-	bit 2, a
-	jr nz, .asm_9760
-	ld a, [PlayerGender]
-	and a
-	jr z, .asm_9760
-	ld hl, FalknerPalette
-	ret
-
-.asm_9760
-	ld hl, $70ce
-	ret
-; 9764
-
-Function9764: ; 9764
-	and a
-	jp nz, Function97f9
-	ld a, [TrainerClass]
-
-Function976b: ; 976b
-	ld l, a
-	ld h, $0
-	add hl, hl
-	add hl, hl
-	ld bc, $70ce
-	add hl, bc
-	ret
-; 9775
-
-Function9775: ; 9775
-	call Function97ee
-	ret
-; 9779
-
-INCBIN "baserom.gbc", $9779, $97ee - $9779
-
-Function97ee: ; 97ee
-	ld l, a
-	ld h, $0
-	add hl, hl
-	add hl, hl
-	add hl, hl
-	ld bc, $68ce
-	add hl, bc
-	ret
-; 97f9
-
-Function97f9: ; 97f9
-	push bc
-	call Function97ee
-	pop bc
-	push hl
-	call CheckShininess
-	pop hl
-	ret nc
-	inc hl
-	inc hl
-	inc hl
-	inc hl
-	ret
-; 9809
-
-Function9809: ; 9809
-	ld a, [$cfbe]
-	push af
-	set 7, a
-	ld [$cfbe], a
-	call Function981a
-	pop af
-	ld [$cfbe], a
-	ret
-; 981a
-
-Function981a: ; 981a
-	ld a, [hl]
-	and $7
-	ret z
-	ld b, a
-.asm_981f
-	push bc
-	xor a
-	ld [rJOYP], a
-	ld a, $30
-	ld [rJOYP], a
-	ld b, $10
-.asm_9829
-	ld e, $8
-	ld a, [hli]
-	ld d, a
-.asm_982d
-	bit 0, d
-	ld a, $10
-	jr nz, .asm_9835
-	ld a, $20
-
-.asm_9835
-	ld [rJOYP], a
-	ld a, $30
-	ld [rJOYP], a
-	rr d
-	dec e
-	jr nz, .asm_982d
-	dec b
-	jr nz, .asm_9829
-	ld a, $20
-	ld [rJOYP], a
-	ld a, $30
-	ld [rJOYP], a
-	call Function9a7a
-	pop bc
-	dec b
-	jr nz, .asm_981f
-	ret
-; 9853
-
-Function9853: ; 9853
-	call CheckCGB
-	ret nz
-	di
-	ld a, [$cfbe]
-	push af
-	set 7, a
-	ld [$cfbe], a
-	xor a
-	ld [rJOYP], a
-	ld [hSGB], a
-	call Function994a
-	jr nc, .asm_988a
-	ld a, $1
-	ld [hSGB], a
-	call Function98eb
-	call Function99b4
-	call Function9a7a
-	call Function993f
-	call Function992c
-	call Function9a7a
-	call Function993f
-	ld hl, $5d66
-	call Function981a
-
-.asm_988a
-	pop af
-	ld [$cfbe], a
-	ei
-	ret
-; 9890
-
-
-Function9890: ; 9890
-	call CheckCGB
-	ret z
-	ld a, $1
-	ld [rVBK], a
-	ld hl, VTiles0
-	ld bc, $2000
-	xor a
-	call ByteFill
-	ld a, $0
-	ld [rVBK], a
-	ld a, $80
-	ld [rBGPI], a
-	ld c, $20
-.asm_98ac
-	ld a, $ff
-	ld [rBGPD], a
-	ld a, $7f
-	ld [rBGPD], a
-	dec c
-	jr nz, .asm_98ac
-	ld a, $80
-	ld [rOBPI], a
-	ld c, $20
-.asm_98bd
-	ld a, $ff
-	ld [rOBPD], a
-	ld a, $7f
-	ld [rOBPD], a
-	dec c
-	jr nz, .asm_98bd
-	ld a, [rSVBK]
-	push af
-	ld a, $5
-	ld [rSVBK], a
-	ld hl, $d000
-	call Function98df
-	ld hl, $d080
-	call Function98df
-	pop af
-	ld [rSVBK], a
-	ret
-; 98df
-
-Function98df: ; 98df
-	ld c, $40
-.asm_98e1
-	ld a, $ff
-	ld [hli], a
-	ld a, $7f
-	ld [hli], a
-	dec c
-	jr nz, .asm_98e1
-	ret
-; 98eb
-
-Function98eb: ; 98eb
-	ld hl, $58ff
-	ld c, $9
-.asm_98f0
-	push bc
-	ld a, [hli]
-	push hl
-	ld h, [hl]
-	ld l, a
-	call Function981a
-	pop hl
-	inc hl
-	pop bc
-	dec c
-	jr nz, .asm_98f0
-	ret
-; 98ff
-
-INCBIN "baserom.gbc", $98ff, $992c - $98ff
-
-Function992c: ; 992c
-	call Function9938
-	push de
-	call Function9a24
-	pop hl
-	call Function99d8
-	ret
-; 9938
-
-Function9938: ; 9938
-	ld hl, $651e
-	ld de, $606e
-	ret
-; 993f
-
-Function993f: ; 993f
-	ld hl, VTiles0
-	ld bc, $2000
-	xor a
-	call ByteFill
-	ret
-; 994a
-
-Function994a: ; 994a
-	ld hl, $5d26
-	call Function981a
-	call Function9a7a
-	ld a, [rJOYP]
-	and $3
-	cp $3
-	jr nz, .asm_99a6
-	ld a, $20
-	ld [rJOYP], a
-	ld a, [rJOYP]
-	ld a, [rJOYP]
-	call Function9a7a
-	call Function9a7a
-	ld a, $30
-	ld [rJOYP], a
-	call Function9a7a
-	call Function9a7a
-	ld a, $10
-	ld [rJOYP], a
-	ld a, [rJOYP]
-	ld a, [rJOYP]
-	ld a, [rJOYP]
-	ld a, [rJOYP]
-	ld a, [rJOYP]
-	ld a, [rJOYP]
-	call Function9a7a
-	call Function9a7a
-	ld a, $30
-	ld [rJOYP], a
-	ld a, [rJOYP]
-	ld a, [rJOYP]
-	ld a, [rJOYP]
-	call Function9a7a
-	call Function9a7a
-	ld a, [rJOYP]
-	and $3
-	cp $3
-	jr nz, .asm_99a6
-	call Function99ab
-	and a
-	ret
-
-.asm_99a6
-	call Function99ab
-	scf
-	ret
-; 99ab
-
-Function99ab: ; 99ab
-	ld hl, $5d16
-	call Function981a
-	jp Function9a7a
-; 99b4
-
-Function99b4: ; 99b4
-	call DisableLCD
-	ld a, $e4
-	ld [rBGP], a
-	ld hl, $5df6
-	ld de, VTiles1
-	ld bc, $1000
-	call CopyData
-	call DrawDefaultTiles
-	ld a, $e3
-	ld [rLCDC], a
-	ld hl, $5d06
-	call Function981a
-	xor a
-	ld [rBGP], a
-	ret
-; 99d8
-
-Function99d8: ; 99d8
-	call DisableLCD
-	ld a, $e4
-	ld [rBGP], a
-	ld de, VTiles1
-	ld bc, $0140
-	call CopyData
-	ld b, $12
-.asm_99ea
-	push bc
-	ld bc, $000c
-	call CopyData
-	ld bc, $0028
-	call ClearBytes
-	ld bc, $000c
-	call CopyData
-	pop bc
-	dec b
-	jr nz, .asm_99ea
-	ld bc, $0140
-	call CopyData
-	ld bc, Start
-	call ClearBytes
-	ld bc, $0080
-	call CopyData
-	call DrawDefaultTiles
-	ld a, $e3
-	ld [rLCDC], a
-	ld hl, $5d46
-	call Function981a
-	xor a
-	ld [rBGP], a
-	ret
-; 9a24
-
-Function9a24: ; 9a24
-	call DisableLCD
-	ld a, $e4
-	ld [rBGP], a
-	ld de, VTiles1
-	ld b, $80
-.asm_9a30
-	push bc
-	ld bc, $0010
-	call CopyData
-	ld bc, $0010
-	call ClearBytes
-	pop bc
-	dec b
-	jr nz, .asm_9a30
-	call DrawDefaultTiles
-	ld a, $e3
-	ld [rLCDC], a
-	ld hl, $5d36
-	call Function981a
-	xor a
-	ld [rBGP], a
-	ret
-; 9a52
-
-CopyData: ; 0x9a52
-; copy bc bytes of data from hl to de
-	ld a, [hli]
-	ld [de], a
-	inc de
-	dec bc
-	ld a, c
-	or b
-	jr nz, CopyData
-	ret
-; 0x9a5b
-
-ClearBytes: ; 0x9a5b
-; clear bc bytes of data starting from de
-	xor a
-	ld [de], a
-	inc de
-	dec bc
-	ld a, c
-	or b
-	jr nz, ClearBytes
-	ret
-; 0x9a64
-
-DrawDefaultTiles: ; 0x9a64
-; Draw 240 tiles (2/3 of the screen) from tiles in VRAM
-	ld hl, VBGMap0 ; BG Map 0
-	ld de, 32 - 20
-	ld a, $80 ; starting tile
-	ld c, 12 + 1
-.line
-	ld b, 20
-.tile
-	ld [hli], a
-	inc a
-	dec b
-	jr nz, .tile
-; next line
-	add hl, de
-	dec c
-	jr nz, .line
-	ret
-; 0x9a7a
-
-Function9a7a: ; 9a7a
-	ld de, $1b58
-.asm_9a7d
-	nop
-	nop
-	nop
-	dec de
-	ld a, d
-	or e
-	jr nz, .asm_9a7d
-	ret
-; 9a86
-
-INCBIN "baserom.gbc", $9a86, $a51e - $9a86
-
-SGBBorder:
-INCBIN "gfx/misc/sgb_border.2bpp"
-
-INCBIN "baserom.gbc", $a8be, $a8d6 - $a8be
-
-PokemonPalettes:
-INCLUDE "gfx/pics/palette_pointers.asm"
-
-INCBIN "baserom.gbc", $b0ae, $b0d2 - $b0ae
-
-TrainerPalettes:
-INCLUDE "gfx/trainers/palette_pointers.asm"
-
-Functionb1de: ; b1de
-	callba Function494ac
-	jr c, .asm_b230
-	ld a, [$d19a]
-	and $7
-	ld e, a
-	ld d, $0
-	ld hl, $7279
-	add hl, de
-	add hl, de
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	ld a, [TimeOfDayPal]
-	and $3
-	add a
-	add a
-	add a
-	ld e, a
-	ld d, $0
-	add hl, de
-	ld e, l
-	ld d, h
-	ld a, [rSVBK]
-	push af
-	ld a, $5
-	ld [rSVBK], a
-	ld hl, Unkn1Pals
-	ld b, $8
-.asm_b210
-	ld a, [de]
-	push de
-	push hl
-	ld l, a
-	ld h, $0
-	add hl, hl
-	add hl, hl
-	add hl, hl
-	ld de, MornPal
-	add hl, de
-	ld e, l
-	ld d, h
-	pop hl
-	ld c, $8
-.asm_b222
-	ld a, [de]
-	inc de
-	ld [hli], a
-	dec c
-	jr nz, .asm_b222
-	pop de
-	inc de
-	dec b
-	jr nz, .asm_b210
-	pop af
-	ld [rSVBK], a
-
-.asm_b230
-	ld a, [TimeOfDayPal]
-	and $3
-	ld bc, $0040
-	ld hl, $7469
-	call AddNTimes
-	ld de, Unkn2Pals
-	ld bc, $0040
-	ld a, $5
-	call FarCopyWRAM
-	ld a, [$d19a]
-	cp $1
-	jr z, .asm_b253
-	cp $2
-	ret nz
-
-.asm_b253
-	ld a, [MapGroup]
-	ld l, a
-	ld h, $0
-	add hl, hl
-	add hl, hl
-	add hl, hl
-	ld de, $7569
-	add hl, de
-	ld a, [TimeOfDayPal]
-	and $3
-	cp $2
-	jr c, .asm_b26d
-	inc hl
-	inc hl
-	inc hl
-	inc hl
-
-.asm_b26d
-	ld de, $d032
-	ld bc, $0004
-	ld a, $5
-	call FarCopyWRAM
-	ret
-; b279
-
-INCBIN "baserom.gbc", $b279, $b319 - $b279
-
-MornPal: ; 0xb319
-INCBIN "tilesets/morn.pal"
-; 0xb359
-
-DayPal: ; 0xb359
-INCBIN "tilesets/day.pal"
-; 0xb399
-
-NitePal: ; 0xb399
-INCBIN "tilesets/nite.pal"
-; 0xb3d9
-
-DarkPal: ; 0xb3d9
-INCBIN "tilesets/dark.pal"
-; 0xb419
-
-INCBIN "baserom.gbc", $b419, $b825 - $b419
+INCLUDE "engine/color.asm"
 
 
 SECTION "bank3",ROMX,BANK[$3]
 
 Functionc000: ; c000
 	ld a, [TimeOfDay]
-	ld hl, $4012
-	ld de, $0002
+	ld hl, Datac012
+	ld de, 2
 	call IsInArray
 	inc hl
 	ld c, [hl]
 	ret c
+
 	xor a
 	ld c, a
 	ret
 ; c012
 
-INCBIN "baserom.gbc", $c012, $c01b - $c012
-
+Datac012: ; c012
+	db MORN, 1
+	db DAY,  2
+	db NITE, 4
+	db NITE, 4
+	db $ff
+; c01b
 
 Functionc01b: ; c01b
 	ld hl, SpecialsPointers
@@ -20330,13 +19117,67 @@ INCBIN "baserom.gbc", $11e5d, $122c1 - $11e5d
 
 UnknownScript_0x122c1: ; 0x122c1
 	checkbit2 $0011
-	iffalse $62cd
+	iffalse .script_122cd
 	setbit2 $0051
 	special $0017
+.script_122cd
 	end
 ; 0x122ce
 
-INCBIN "baserom.gbc", $122ce, $12324 - $122ce
+UnknownScript_0x122ce: ; 0x122ce
+	3callasm BANK(Function122f8), Function122f8
+	iffalse UnknownScript_0x122e3
+	disappear $fe
+	loadfont
+	2writetext UnknownText_0x122ee
+	playsound SFX_ITEM
+	pause 60
+	itemnotify
+	loadmovesprites
+	end
+; 0x122e3
+
+UnknownScript_0x122e3: ; 0x122e3
+	loadfont
+	2writetext UnknownText_0x122ee
+	closetext
+	2writetext UnknownText_0x122f3
+	closetext
+	loadmovesprites
+	end
+; 0x122ee
+
+UnknownText_0x122ee: ; 0x122ee
+	; found @ !
+	text_jump UnknownText_0x1c0a1c, BANK(UnknownText_0x1c0a1c)
+	db "@"
+; 0x122f3
+
+UnknownText_0x122f3: ; 0x122f3
+	; But   can't carry any more items.
+	text_jump UnknownText_0x1c0a2c, BANK(UnknownText_0x1c0a2c)
+	db "@"
+; 0x122f8
+
+Function122f8: ; 122f8
+	xor a
+	ld [ScriptVar], a
+	ld a, [EngineBuffer1]
+	ld [$d265], a
+	call GetItemName
+	ld hl, StringBuffer3
+	call CopyName2
+	ld a, [EngineBuffer1]
+	ld [CurItem], a
+	ld a, [CurFruit]
+	ld [$d10c], a
+	ld hl, NumItems
+	call ReceiveItem
+	ret nc
+	ld a, $1
+	ld [ScriptVar], a
+	ret
+; 12324
 
 Function12324: ; 12324
 	ld a, [PartyCount]
@@ -20668,9 +19509,7 @@ StartMenu: ; 125cd
 	ld de, SFX_MENU
 	call StartSFX
 
-	ld a, $1
-	ld hl, $6454
-	rst FarCall
+	callba Function6454
 
 	ld hl, StatusFlags2
 	bit 2, [hl] ; bug catching contest
@@ -59029,239 +57868,161 @@ INCBIN "baserom.gbc", $847bd, $84a2e - $847bd
 FX00GFX:
 FX01GFX: ; 84a2e
 INCBIN "gfx/fx/001.lz"
-; 84b15
-
-INCBIN "baserom.gbc", $84b15, $84b1e - $84b15
+; 84b1e
 
 FX02GFX: ; 84b1e
 INCBIN "gfx/fx/002.lz"
-; 84b7a
-
-INCBIN "baserom.gbc", $84b7a, $84b7e - $84b7a
+; 84b7e
 
 FX03GFX: ; 84b7e
 INCBIN "gfx/fx/003.lz"
-; 84bd0
-
-INCBIN "baserom.gbc", $84bd0, $84bde - $84bd0
+; 84bde
 
 FX04GFX: ; 84bde
 INCBIN "gfx/fx/004.lz"
-; 84ca5
-
-INCBIN "baserom.gbc", $84ca5, $84cae - $84ca5
+; 84cae
 
 FX05GFX: ; 84cae
 INCBIN "gfx/fx/005.lz"
-; 84de2
-
-INCBIN "baserom.gbc", $84de2, $84dee - $84de2
+; 84dee
 
 FX07GFX: ; 84dee
 INCBIN "gfx/fx/007.lz"
-; 84e70
-
-INCBIN "baserom.gbc", $84e70, $84e7e - $84e70
+; 84e7e
 
 FX08GFX: ; 84e7e
 INCBIN "gfx/fx/008.lz"
-; 84ed4
-
-INCBIN "baserom.gbc", $84ed4, $84ede - $84ed4
+; 84ede
 
 FX10GFX: ; 84ede
 INCBIN "gfx/fx/010.lz"
-; 84f13
-
-INCBIN "baserom.gbc", $84f13, $84f1e - $84f13
+; 84f1e
 
 FX09GFX: ; 84f1e
 INCBIN "gfx/fx/009.lz"
-; 85009
-
-INCBIN "baserom.gbc", $85009, $8500e - $85009
+; 8500e
 
 FX12GFX: ; 8500e
 INCBIN "gfx/fx/012.lz"
-; 8506f
-
-INCBIN "baserom.gbc", $8506f, $8507e - $8506f
+; 8507e
 
 FX06GFX: ; 8507e
 INCBIN "gfx/fx/006.lz"
-; 8515c
-
-INCBIN "baserom.gbc", $8515c, $8515e - $8515c
+; 8515e
 
 FX11GFX: ; 8515e
 INCBIN "gfx/fx/011.lz"
-; 851ad
-
-INCBIN "baserom.gbc", $851ad, $851ae - $851ad
+; 851ae
 
 FX13GFX: ; 851ae
 INCBIN "gfx/fx/013.lz"
-; 85243
-
-INCBIN "baserom.gbc", $85243, $8524e - $85243
+; 8524e
 
 FX14GFX: ; 8524e
 INCBIN "gfx/fx/014.lz"
-; 852ff
-
-INCBIN "baserom.gbc", $852ff, $8530e - $852ff
+; 8520e
 
 FX24GFX: ; 8530e
 INCBIN "gfx/fx/024.lz"
-; 8537c
-
-INCBIN "baserom.gbc", $8537c, $8537e - $8537c
+; 8537e
 
 FX15GFX: ; 8537e
 INCBIN "gfx/fx/015.lz"
-; 8539a
-
-INCBIN "baserom.gbc", $8539a, $8539e - $8539a
+; 8539e
 
 FX16GFX: ; 8539e
 INCBIN "gfx/fx/016.lz"
-; 8542d
-
-INCBIN "baserom.gbc", $8542d, $8542e - $8542d
+; 8542e
 
 FX17GFX: ; 8542e
 INCBIN "gfx/fx/017.lz"
-; 85477
-
-INCBIN "baserom.gbc", $85477, $8547e - $85477
+; 8547e
 
 FX18GFX: ; 8547e
 INCBIN "gfx/fx/018.lz"
-; 854eb
-
-INCBIN "baserom.gbc", $854eb, $854ee - $854eb
+; 854ee
 
 FX19GFX: ; 854ee
 INCBIN "gfx/fx/019.lz"
-; 855a9
-
-INCBIN "baserom.gbc", $855a9, $855ae - $855a9
+; 855ae
 
 FX20GFX: ; 855ae
 INCBIN "gfx/fx/020.lz"
-; 85627
-
-INCBIN "baserom.gbc", $85627, $8562e - $85627
+; 8562e
 
 FX22GFX: ; 8562e
 INCBIN "gfx/fx/022.lz"
-; 856ec
-
-INCBIN "baserom.gbc", $856ec, $856ee - $856ec
+; 856ee
 
 FX21GFX: ; 856ee
 INCBIN "gfx/fx/021.lz"
-; 85767
-
-INCBIN "baserom.gbc", $85767, $8576e - $85767
+; 8576e
 
 FX23GFX: ; 8576e
 INCBIN "gfx/fx/023.lz"
-; 857d0
-
-INCBIN "baserom.gbc", $857d0, $857de - $857d0
+; 857de
 
 FX26GFX: ; 857de
 INCBIN "gfx/fx/026.lz"
-; 85838
-
-INCBIN "baserom.gbc", $85838, $8583e - $85838
+; 8583e
 
 FX27GFX: ; 8583e
 INCBIN "gfx/fx/027.lz"
-; 858b0
-
-INCBIN "baserom.gbc", $858b0, $858be - $858b0
+; 858be
 
 FX28GFX: ; 858be
 INCBIN "gfx/fx/028.lz"
-; 85948
-
-INCBIN "baserom.gbc", $85948, $8594e - $85948
+; 8594e
 
 FX29GFX: ; 8594e
 INCBIN "gfx/fx/029.lz"
-; 859a8
-
-INCBIN "baserom.gbc", $859a8, $859ae - $859a8
+; 859ae
 
 FX30GFX: ; 859ae
 INCBIN "gfx/fx/030.lz"
-; 859ff
-
-INCBIN "baserom.gbc", $859ff, $85a0e - $859ff
+; 8590e
 
 FX31GFX: ; 85a0e
 INCBIN "gfx/fx/031.lz"
-; 85ba1
-
-INCBIN "baserom.gbc", $85ba1, $85bae - $85ba1
+; 85bae
 
 FX32GFX: ; 85bae
 INCBIN "gfx/fx/032.lz"
-; 85d09
-
-INCBIN "baserom.gbc", $85d09, $85d0e - $85d09
+; 85d0e
 
 FX33GFX: ; 85d0e
 INCBIN "gfx/fx/033.lz"
-; 85def
-
-INCBIN "baserom.gbc", $85def, $85dfe - $85def
+; 85dfe
 
 FX34GFX: ; 85dfe
 INCBIN "gfx/fx/034.lz"
-; 85e96
-
-INCBIN "baserom.gbc", $85e96, $85e9e - $85e96
+; 85e9e
 
 FX25GFX: ; 85e9e
 INCBIN "gfx/fx/025.lz"
-; 85fb8
-
-INCBIN "baserom.gbc", $85fb8, $85fbe - $85fb8
+; 85fbe
 
 FX35GFX: ; 85fbe
 INCBIN "gfx/fx/035.lz"
-; 86099
-
-INCBIN "baserom.gbc", $86099, $8609e - $86099
+; 8609e
 
 FX36GFX: ; 8609e
 INCBIN "gfx/fx/036.lz"
-; 86174
-
-INCBIN "baserom.gbc", $86174, $8617e - $86174
+; 8617e
 
 FX37GFX: ; 8617e
 INCBIN "gfx/fx/037.lz"
-; 862eb
-
-INCBIN "baserom.gbc", $862eb, $862ee - $862eb
+; 862ee
 
 FX38GFX: ; 862ee
 INCBIN "gfx/fx/038.lz"
-; 8637f
-
-INCBIN "baserom.gbc", $8637f, $8638e - $8637f
+; 8638e
 
 FX39GFX: ; 8638e
 INCBIN "gfx/fx/039.lz"
-; 8640b
+; 8640e
 
-INCBIN "baserom.gbc", $8640b, $8640e - $8640b
-
-HallOfFame3: ; 0x8640e
+HallOfFame: ; 0x8640e
 	call Function8648e
 	ld a, [StatusFlags]
 	push af
@@ -60348,7 +59109,7 @@ DrawIntroPlayerPic: ; 88874
 .GotPic
 	ld hl, VTiles2
 	ld b, BANK(ChrisPic)
-	ld c, $31
+	ld c, 7 * 7 ; dimensions
 	call Get2bpp
 
 ; Draw
@@ -60375,15 +59136,17 @@ GetKrisBackpic: ; 88ec9
 ; Kris's backpic is uncompressed.
 	ld de, KrisBackpic
 	ld hl, $9310
-	ld bc, $2231
+	ld bc, BANK(KrisBackpic) << 8 + (7 * 7) ; dimensions
 	call Get2bpp
 	ret
 ; 88ed6
 
 KrisBackpic: ; 88ed6
+INCBIN "baserom.gbc", $88ed6, $89116 - $88ed6
+; 89116
 
 
-INCBIN "baserom.gbc", $88ed6, $89160 - $88ed6
+INCBIN "baserom.gbc", $89116, $89160 - $89116
 
 Function89160: ; 89160
 	push af
@@ -62422,116 +61185,7 @@ Function8b154: ; 8b154
 
 INCBIN "baserom.gbc", $8b15e, $8b170 - $8b15e
 
-SpecialDratini: ; 0x8b170
-; if ScriptVar is 0 or 1, change the moveset of the last Dratini in the party.
-;  0: give it a special moveset with Extremespeed.
-;  1: give it the normal moveset of a level 15 Dratini.
-
-	ld a, [ScriptVar]
-	cp $2
-	ret nc
-	ld bc, PartyCount
-	ld a, [bc]
-	ld hl, 0
-	call GetNthPartyMon
-	ld a, [bc]
-	ld c, a
-	ld de, PartyMon2 - PartyMon1
-.CheckForDratini
-; start at the end of the party and search backwards for a Dratini
-	ld a, [hl]
-	cp DRATINI
-	jr z, .GiveMoveset
-	ld a, l
-	sub e
-	ld l, a
-	ld a, h
-	sbc d
-	ld h, a
-	dec c
-	jr nz, .CheckForDratini
-	ret
-
-.GiveMoveset
-	push hl
-	ld a, [ScriptVar]
-	ld hl, .Movesets
-	ld bc, .Moveset1 - .Moveset0
-	call AddNTimes
-
-	; get address of mon's first move
-	pop de
-	inc de
-	inc de
-
-.GiveMoves
-	ld a, [hl]
-	and a ; is the move 00?
-	ret z ; if so, we're done here
-
-	push hl
-	push de
-	ld [de], a ; give the Pokémon the new move
-
-	; get the PP of the new move
-	dec a
-	ld hl, Moves + PlayerMovePP - PlayerMoveStruct
-	ld bc, Move2 - Move1
-	call AddNTimes
-	ld a, BANK(Moves)
-	call GetFarByte
-
-	; get the address of the move's PP and update the PP
-	ld hl, PartyMon1PP - PartyMon1Moves
-	add hl, de
-	ld [hl], a
-
-	pop de
-	pop hl
-	inc de
-	inc hl
-	jr .GiveMoves
-
-.Movesets
-.Moveset0
-; Dratini does not normally learn Extremespeed. This is a special gift.
-	db WRAP
-	db THUNDER_WAVE
-	db TWISTER
-	db EXTREMESPEED
-	db 0
-.Moveset1
-; This is the normal moveset of a level 15 Dratini
-	db WRAP
-	db LEER
-	db THUNDER_WAVE
-	db TWISTER
-	db 0
-
-GetNthPartyMon: ; 0x8b1ce
-; inputs:
-; hl must be set to 0 before calling this function.
-; a must be set to the number of Pokémon in the party.
-
-; outputs:
-; returns the address of the last Pokémon in the party in hl.
-; sets carry if a is 0.
-
-	ld de, PartyMon1
-	add hl, de
-	and a
-	jr z, .EmptyParty
-	dec a
-	ret z
-	ld de, PartyMon2 - PartyMon1
-.loop
-	add hl, de
-	dec a
-	jr nz, .loop
-	ret
-.EmptyParty
-	scf
-	ret
+INCLUDE "event/dratini.asm"
 
 Function8b1e1: ; 8b1e1
 	ld de, $71ed
@@ -64838,354 +63492,8 @@ Function8ea4a: ; 8ea4a
 
 INCBIN "baserom.gbc", $8ea71, $8eab3 - $8ea71
 
-ReadMonMenuIcon: ; 8eab3
-	cp EGG
-	jr z, .egg
-	dec a
-	ld hl, MonMenuIcons
-	ld e, a
-	ld d, 0
-	add hl, de
-	ld a, [hl]
-	ret
-.egg
-	ld a, ICON_EGG
-	ret
-; 8eac4
 
-MonMenuIcons: ; 8eac4
-	db ICON_BULBASAUR    ; BULBASAUR
-	db ICON_BULBASAUR    ; IVYSAUR
-	db ICON_BULBASAUR    ; VENUSAUR
-	db ICON_CHARMANDER   ; CHARMANDER
-	db ICON_CHARMANDER   ; CHARMELEON
-	db ICON_BIGMON       ; CHARIZARD
-	db ICON_SQUIRTLE     ; SQUIRTLE
-	db ICON_SQUIRTLE     ; WARTORTLE
-	db ICON_SQUIRTLE     ; BLASTOISE
-	db ICON_CATERPILLAR  ; CATERPIE
-	db ICON_CATERPILLAR  ; METAPOD
-	db ICON_MOTH         ; BUTTERFREE
-	db ICON_CATERPILLAR  ; WEEDLE
-	db ICON_CATERPILLAR  ; KAKUNA
-	db ICON_BUG          ; BEEDRILL
-	db ICON_BIRD         ; PIDGEY
-	db ICON_BIRD         ; PIDGEOTTO
-	db ICON_BIRD         ; PIDGEOT
-	db ICON_FOX          ; RATTATA
-	db ICON_FOX          ; RATICATE
-	db ICON_BIRD         ; SPEAROW
-	db ICON_BIRD         ; FEAROW
-	db ICON_SERPENT      ; EKANS
-	db ICON_SERPENT      ; ARBOK
-	db ICON_PIKACHU      ; PIKACHU
-	db ICON_PIKACHU      ; RAICHU
-	db ICON_MONSTER      ; SANDSHREW
-	db ICON_MONSTER      ; SANDSLASH
-	db ICON_FOX          ; NIDORAN_F
-	db ICON_FOX          ; NIDORINA
-	db ICON_MONSTER      ; NIDOQUEEN
-	db ICON_FOX          ; NIDORAN_M
-	db ICON_FOX          ; NIDORINO
-	db ICON_MONSTER      ; NIDOKING
-	db ICON_CLEFAIRY     ; CLEFAIRY
-	db ICON_CLEFAIRY     ; CLEFABLE
-	db ICON_FOX          ; VULPIX
-	db ICON_FOX          ; NINETALES
-	db ICON_JIGGLYPUFF   ; JIGGLYPUFF
-	db ICON_JIGGLYPUFF   ; WIGGLYTUFF
-	db ICON_BAT          ; ZUBAT
-	db ICON_BAT          ; GOLBAT
-	db ICON_ODDISH       ; ODDISH
-	db ICON_ODDISH       ; GLOOM
-	db ICON_ODDISH       ; VILEPLUME
-	db ICON_BUG          ; PARAS
-	db ICON_BUG          ; PARASECT
-	db ICON_CATERPILLAR  ; VENONAT
-	db ICON_MOTH         ; VENOMOTH
-	db ICON_DIGLETT      ; DIGLETT
-	db ICON_DIGLETT      ; DUGTRIO
-	db ICON_FOX          ; MEOWTH
-	db ICON_FOX          ; PERSIAN
-	db ICON_MONSTER      ; PSYDUCK
-	db ICON_MONSTER      ; GOLDUCK
-	db ICON_FIGHTER      ; MANKEY
-	db ICON_FIGHTER      ; PRIMEAPE
-	db ICON_FOX          ; GROWLITHE
-	db ICON_FOX          ; ARCANINE
-	db ICON_POLIWAG      ; POLIWAG
-	db ICON_POLIWAG      ; POLIWHIRL
-	db ICON_POLIWAG      ; POLIWRATH
-	db ICON_HUMANSHAPE   ; ABRA
-	db ICON_HUMANSHAPE   ; KADABRA
-	db ICON_HUMANSHAPE   ; ALAKAZAM
-	db ICON_FIGHTER      ; MACHOP
-	db ICON_FIGHTER      ; MACHOKE
-	db ICON_FIGHTER      ; MACHAMP
-	db ICON_ODDISH       ; BELLSPROUT
-	db ICON_ODDISH       ; WEEPINBELL
-	db ICON_ODDISH       ; VICTREEBEL
-	db ICON_JELLYFISH    ; TENTACOOL
-	db ICON_JELLYFISH    ; TENTACRUEL
-	db ICON_GEODUDE      ; GEODUDE
-	db ICON_GEODUDE      ; GRAVELER
-	db ICON_GEODUDE      ; GOLEM
-	db ICON_EQUINE       ; PONYTA
-	db ICON_EQUINE       ; RAPIDASH
-	db ICON_SLOWPOKE     ; SLOWPOKE
-	db ICON_SLOWPOKE     ; SLOWBRO
-	db ICON_VOLTORB      ; MAGNEMITE
-	db ICON_VOLTORB      ; MAGNETON
-	db ICON_BIRD         ; FARFETCH_D
-	db ICON_BIRD         ; DODUO
-	db ICON_BIRD         ; DODRIO
-	db ICON_LAPRAS       ; SEEL
-	db ICON_LAPRAS       ; DEWGONG
-	db ICON_BLOB         ; GRIMER
-	db ICON_BLOB         ; MUK
-	db ICON_SHELL        ; SHELLDER
-	db ICON_SHELL        ; CLOYSTER
-	db ICON_GHOST        ; GASTLY
-	db ICON_GHOST        ; HAUNTER
-	db ICON_GHOST        ; GENGAR
-	db ICON_SERPENT      ; ONIX
-	db ICON_HUMANSHAPE   ; DROWZEE
-	db ICON_HUMANSHAPE   ; HYPNO
-	db ICON_SHELL        ; KRABBY
-	db ICON_SHELL        ; KINGLER
-	db ICON_VOLTORB      ; VOLTORB
-	db ICON_VOLTORB      ; ELECTRODE
-	db ICON_ODDISH       ; EXEGGCUTE
-	db ICON_ODDISH       ; EXEGGUTOR
-	db ICON_MONSTER      ; CUBONE
-	db ICON_MONSTER      ; MAROWAK
-	db ICON_FIGHTER      ; HITMONLEE
-	db ICON_FIGHTER      ; HITMONCHAN
-	db ICON_MONSTER      ; LICKITUNG
-	db ICON_BLOB         ; KOFFING
-	db ICON_BLOB         ; WEEZING
-	db ICON_EQUINE       ; RHYHORN
-	db ICON_MONSTER      ; RHYDON
-	db ICON_CLEFAIRY     ; CHANSEY
-	db ICON_ODDISH       ; TANGELA
-	db ICON_MONSTER      ; KANGASKHAN
-	db ICON_FISH         ; HORSEA
-	db ICON_FISH         ; SEADRA
-	db ICON_FISH         ; GOLDEEN
-	db ICON_FISH         ; SEAKING
-	db ICON_STARYU       ; STARYU
-	db ICON_STARYU       ; STARMIE
-	db ICON_HUMANSHAPE   ; MR__MIME
-	db ICON_BUG          ; SCYTHER
-	db ICON_HUMANSHAPE   ; JYNX
-	db ICON_HUMANSHAPE   ; ELECTABUZZ
-	db ICON_HUMANSHAPE   ; MAGMAR
-	db ICON_BUG          ; PINSIR
-	db ICON_EQUINE       ; TAUROS
-	db ICON_FISH         ; MAGIKARP
-	db ICON_GYARADOS     ; GYARADOS
-	db ICON_LAPRAS       ; LAPRAS
-	db ICON_BLOB         ; DITTO
-	db ICON_FOX          ; EEVEE
-	db ICON_FOX          ; VAPOREON
-	db ICON_FOX          ; JOLTEON
-	db ICON_FOX          ; FLAREON
-	db ICON_VOLTORB      ; PORYGON
-	db ICON_SHELL        ; OMANYTE
-	db ICON_SHELL        ; OMASTAR
-	db ICON_SHELL        ; KABUTO
-	db ICON_SHELL        ; KABUTOPS
-	db ICON_BIRD         ; AERODACTYL
-	db ICON_SNORLAX      ; SNORLAX
-	db ICON_BIRD         ; ARTICUNO
-	db ICON_BIRD         ; ZAPDOS
-	db ICON_BIRD         ; MOLTRES
-	db ICON_SERPENT      ; DRATINI
-	db ICON_SERPENT      ; DRAGONAIR
-	db ICON_BIGMON       ; DRAGONITE
-	db ICON_HUMANSHAPE   ; MEWTWO
-	db ICON_HUMANSHAPE   ; MEW
-	db ICON_ODDISH       ; CHIKORITA
-	db ICON_ODDISH       ; BAYLEEF
-	db ICON_ODDISH       ; MEGANIUM
-	db ICON_FOX          ; CYNDAQUIL
-	db ICON_FOX          ; QUILAVA
-	db ICON_FOX          ; TYPHLOSION
-	db ICON_MONSTER      ; TOTODILE
-	db ICON_MONSTER      ; CROCONAW
-	db ICON_MONSTER      ; FERALIGATR
-	db ICON_FOX          ; SENTRET
-	db ICON_FOX          ; FURRET
-	db ICON_BIRD         ; HOOTHOOT
-	db ICON_BIRD         ; NOCTOWL
-	db ICON_BUG          ; LEDYBA
-	db ICON_BUG          ; LEDIAN
-	db ICON_BUG          ; SPINARAK
-	db ICON_BUG          ; ARIADOS
-	db ICON_BAT          ; CROBAT
-	db ICON_FISH         ; CHINCHOU
-	db ICON_FISH         ; LANTURN
-	db ICON_PIKACHU      ; PICHU
-	db ICON_CLEFAIRY     ; CLEFFA
-	db ICON_JIGGLYPUFF   ; IGGLYBUFF
-	db ICON_CLEFAIRY     ; TOGEPI
-	db ICON_BIRD         ; TOGETIC
-	db ICON_BIRD         ; NATU
-	db ICON_BIRD         ; XATU
-	db ICON_FOX          ; MAREEP
-	db ICON_MONSTER      ; FLAAFFY
-	db ICON_MONSTER      ; AMPHAROS
-	db ICON_ODDISH       ; BELLOSSOM
-	db ICON_JIGGLYPUFF   ; MARILL
-	db ICON_JIGGLYPUFF   ; AZUMARILL
-	db ICON_SUDOWOODO    ; SUDOWOODO
-	db ICON_POLIWAG      ; POLITOED
-	db ICON_ODDISH       ; HOPPIP
-	db ICON_ODDISH       ; SKIPLOOM
-	db ICON_ODDISH       ; JUMPLUFF
-	db ICON_MONSTER      ; AIPOM
-	db ICON_ODDISH       ; SUNKERN
-	db ICON_ODDISH       ; SUNFLORA
-	db ICON_BUG          ; YANMA
-	db ICON_MONSTER      ; WOOPER
-	db ICON_MONSTER      ; QUAGSIRE
-	db ICON_FOX          ; ESPEON
-	db ICON_FOX          ; UMBREON
-	db ICON_BIRD         ; MURKROW
-	db ICON_SLOWPOKE     ; SLOWKING
-	db ICON_GHOST        ; MISDREAVUS
-	db ICON_UNOWN        ; UNOWN
-	db ICON_GHOST        ; WOBBUFFET
-	db ICON_EQUINE       ; GIRAFARIG
-	db ICON_BUG          ; PINECO
-	db ICON_BUG          ; FORRETRESS
-	db ICON_SERPENT      ; DUNSPARCE
-	db ICON_BUG          ; GLIGAR
-	db ICON_SERPENT      ; STEELIX
-	db ICON_MONSTER      ; SNUBBULL
-	db ICON_MONSTER      ; GRANBULL
-	db ICON_FISH         ; QWILFISH
-	db ICON_BUG          ; SCIZOR
-	db ICON_BUG          ; SHUCKLE
-	db ICON_BUG          ; HERACROSS
-	db ICON_FOX          ; SNEASEL
-	db ICON_MONSTER      ; TEDDIURSA
-	db ICON_MONSTER      ; URSARING
-	db ICON_BLOB         ; SLUGMA
-	db ICON_BLOB         ; MAGCARGO
-	db ICON_EQUINE       ; SWINUB
-	db ICON_EQUINE       ; PILOSWINE
-	db ICON_SHELL        ; CORSOLA
-	db ICON_FISH         ; REMORAID
-	db ICON_FISH         ; OCTILLERY
-	db ICON_MONSTER      ; DELIBIRD
-	db ICON_FISH         ; MANTINE
-	db ICON_BIRD         ; SKARMORY
-	db ICON_FOX          ; HOUNDOUR
-	db ICON_FOX          ; HOUNDOOM
-	db ICON_BIGMON       ; KINGDRA
-	db ICON_EQUINE       ; PHANPY
-	db ICON_EQUINE       ; DONPHAN
-	db ICON_VOLTORB      ; PORYGON2
-	db ICON_EQUINE       ; STANTLER
-	db ICON_MONSTER      ; SMEARGLE
-	db ICON_FIGHTER      ; TYROGUE
-	db ICON_FIGHTER      ; HITMONTOP
-	db ICON_HUMANSHAPE   ; SMOOCHUM
-	db ICON_HUMANSHAPE   ; ELEKID
-	db ICON_HUMANSHAPE   ; MAGBY
-	db ICON_EQUINE       ; MILTANK
-	db ICON_CLEFAIRY     ; BLISSEY
-	db ICON_FOX          ; RAIKOU
-	db ICON_FOX          ; ENTEI
-	db ICON_FOX          ; SUICUNE
-	db ICON_MONSTER      ; LARVITAR
-	db ICON_MONSTER      ; PUPITAR
-	db ICON_MONSTER      ; TYRANITAR
-	db ICON_LUGIA        ; LUGIA
-	db ICON_HO_OH        ; HO_OH
-	db ICON_HUMANSHAPE   ; CELEBI
-
-IconPointers:
-	dw NullIcon
-	dw PoliwagIcon
-	dw JigglypuffIcon
-	dw DiglettIcon
-	dw PikachuIcon
-	dw StaryuIcon
-	dw FishIcon
-	dw BirdIcon
-	dw MonsterIcon
-	dw ClefairyIcon
-	dw OddishIcon
-	dw BugIcon
-	dw GhostIcon
-	dw LaprasIcon
-	dw HumanshapeIcon
-	dw FoxIcon
-	dw EquineIcon
-	dw ShellIcon
-	dw BlobIcon
-	dw SerpentIcon
-	dw VoltorbIcon
-	dw SquirtleIcon
-	dw BulbasaurIcon
-	dw CharmanderIcon
-	dw CaterpillarIcon
-	dw UnownIcon
-	dw GeodudeIcon
-	dw FighterIcon
-	dw EggIcon
-	dw JellyfishIcon
-	dw MothIcon
-	dw BatIcon
-	dw SnorlaxIcon
-	dw HoOhIcon
-	dw LugiaIcon
-	dw GyaradosIcon
-	dw SlowpokeIcon
-	dw SudowoodoIcon
-	dw BigmonIcon
-
-NullIcon:
-PoliwagIcon:      INCBIN "gfx/icon/poliwag.2bpp" ; 0x8ec0d
-JigglypuffIcon:   INCBIN "gfx/icon/jigglypuff.2bpp" ; 0x8ec8d
-DiglettIcon:      INCBIN "gfx/icon/diglett.2bpp" ; 0x8ed0d
-PikachuIcon:      INCBIN "gfx/icon/pikachu.2bpp" ; 0x8ed8d
-StaryuIcon:       INCBIN "gfx/icon/staryu.2bpp" ; 0x8ee0d
-FishIcon:         INCBIN "gfx/icon/fish.2bpp" ; 0x8ee8d
-BirdIcon:         INCBIN "gfx/icon/bird.2bpp" ; 0x8ef0d
-MonsterIcon:      INCBIN "gfx/icon/monster.2bpp" ; 0x8ef8d
-ClefairyIcon:     INCBIN "gfx/icon/clefairy.2bpp" ; 0x8f00d
-OddishIcon:       INCBIN "gfx/icon/oddish.2bpp" ; 0x8f08d
-BugIcon:          INCBIN "gfx/icon/bug.2bpp" ; 0x8f10d
-GhostIcon:        INCBIN "gfx/icon/ghost.2bpp" ; 0x8f18d
-LaprasIcon:       INCBIN "gfx/icon/lapras.2bpp" ; 0x8f20d
-HumanshapeIcon:   INCBIN "gfx/icon/humanshape.2bpp" ; 0x8f28d
-FoxIcon:          INCBIN "gfx/icon/fox.2bpp" ; 0x8f30d
-EquineIcon:       INCBIN "gfx/icon/equine.2bpp" ; 0x8f38d
-ShellIcon:        INCBIN "gfx/icon/shell.2bpp" ; 0x8f40d
-BlobIcon:         INCBIN "gfx/icon/blob.2bpp" ; 0x8f48d
-SerpentIcon:      INCBIN "gfx/icon/serpent.2bpp" ; 0x8f50d
-VoltorbIcon:      INCBIN "gfx/icon/voltorb.2bpp" ; 0x8f58d
-SquirtleIcon:     INCBIN "gfx/icon/squirtle.2bpp" ; 0x8f60d
-BulbasaurIcon:    INCBIN "gfx/icon/bulbasaur.2bpp" ; 0x8f68d
-CharmanderIcon:   INCBIN "gfx/icon/charmander.2bpp" ; 0x8f70d
-CaterpillarIcon:  INCBIN "gfx/icon/caterpillar.2bpp" ; 0x8f78d
-UnownIcon:        INCBIN "gfx/icon/unown.2bpp" ; 0x8f80d
-GeodudeIcon:      INCBIN "gfx/icon/geodude.2bpp" ; 0x8f88d
-FighterIcon:      INCBIN "gfx/icon/fighter.2bpp" ; 0x8f90d
-EggIcon:          INCBIN "gfx/icon/egg.2bpp" ; 0x8f98d
-JellyfishIcon:    INCBIN "gfx/icon/jellyfish.2bpp" ; 0x8fa0d
-MothIcon:         INCBIN "gfx/icon/moth.2bpp" ; 0x8fa8d
-BatIcon:          INCBIN "gfx/icon/bat.2bpp" ; 0x8fb0d
-SnorlaxIcon:      INCBIN "gfx/icon/snorlax.2bpp" ; 0x8fb8d
-HoOhIcon:        INCBIN "gfx/icon/ho_oh.2bpp" ; 0x8fc0d
-LugiaIcon:        INCBIN "gfx/icon/lugia.2bpp" ; 0x8fc8d
-GyaradosIcon:     INCBIN "gfx/icon/gyarados.2bpp" ; 0x8fd0d
-SlowpokeIcon:     INCBIN "gfx/icon/slowpoke.2bpp" ; 0x8fd8d
-SudowoodoIcon:    INCBIN "gfx/icon/sudowoodo.2bpp" ; 0x8fe0d
-BigmonIcon:       INCBIN "gfx/icon/bigmon.2bpp" ; 0x8fe8d
+INCLUDE "menu/mon_icons.asm"
 
 
 SECTION "bank24",ROMX,BANK[$24]
@@ -68094,9 +66402,9 @@ Function96beb: ; 96beb
 
 ScriptPointers96c0c: ; 96c0c
 	dbw BANK(UnknownScript_0x96c2d), UnknownScript_0x96c2d
-	dbw $2f, $6675 ; BANK(UnknownScript_0xbe675), UnknownScript_0xbe675
-	dbw $2f, $666a ; BANK(UnknownScript_0xbe66a), UnknownScript_0xbe66a
-	dbw $04, $62ce ; BANK(UnknownScript_0x122ce), UnknownScript_0x122ce
+	dbw BANK(UnknownScript_0xbe675), UnknownScript_0xbe675
+	dbw BANK(UnknownScript_0xbe66a), UnknownScript_0xbe66a
+	dbw BANK(UnknownScript_0x122ce), UnknownScript_0x122ce
 	dbw BANK(UnknownScript_0x96c4d), UnknownScript_0x96c4d
 	dbw BANK(UnknownScript_0x96c34), UnknownScript_0x96c34
 	dbw BANK(FallIntoMapScript), FallIntoMapScript
@@ -68961,9 +67269,7 @@ SECTION "bank2E",ROMX,BANK[$2E]
 Functionb8000: ; b8000
 	xor a
 	ld [hBGMapMode], a
-	ld a, $2e
-	ld hl, $400a
-	rst FarCall
+	callba Functionb800a
 	ret
 ; b800a
 
@@ -69482,7 +67788,46 @@ RockMons: ; b83de
 	db $ff ; end
 ; b83e5
 
-INCBIN "baserom.gbc", $b83e5, $b841f - $b83e5
+Functionb83e5: ; b83e5
+	push hl
+	call Functionb8443
+	pop hl
+	and a
+	jr z, .asm_b83f6
+	cp $1
+	jr z, .asm_b8400
+	cp $2
+	jr z, .asm_b840b
+	ret
+
+.asm_b83f6
+	ld a, $a
+	call Function2fb1
+	and a
+	jr nz, Functionb843b
+	jr Functionb841f
+
+.asm_b8400
+	ld a, $a
+	call Function2fb1
+	cp $5
+	jr nc, Functionb843b
+	jr Functionb841f
+
+.asm_b840b
+	ld a, $a
+	call Function2fb1
+	cp $8
+	jr nc, Functionb843b
+	jr .asm_b8416
+
+.asm_b8416
+	ld a, [hli]
+	cp $ff
+	jr nz, .asm_b8416
+	call Functionb841f
+	ret
+; b841f
 
 Functionb841f: ; b841f
 ; Read a TreeMons table.
@@ -69500,7 +67845,8 @@ Functionb841f: ; b841f
 .asm_b842c
 	ld a, [hli]
 	cp $ff
-	jr z, .asm_b843b
+	jr z, Functionb843b
+
 	ld a, [hli]
 	ld [$d22e], a
 	ld a, [hl]
@@ -69508,14 +67854,137 @@ Functionb841f: ; b841f
 	scf
 	ret
 
-.asm_b843b
+Functionb843b: ; b843b
 	xor a
 	ld [$d22e], a
 	ld [CurPartyLevel], a
 	ret
 ; b8443
 
-INCBIN "baserom.gbc", $b8443, $b8f8f - $b8443
+Functionb8443: ; b8443
+	call Functionb8466
+	ld [Buffer1], a
+	call Functionb849d
+	ld [Buffer2], a
+	ld c, a
+	ld a, [Buffer1]
+	sub c
+	jr z, .asm_b8463
+	jr nc, .asm_b845a
+	add $a
+
+.asm_b845a
+	cp $5
+	jr c, .asm_b8460
+	xor a
+	ret
+
+.asm_b8460
+	ld a, $1
+	ret
+
+.asm_b8463
+	ld a, $2
+	ret
+; b8466
+
+Functionb8466: ; b8466
+	call GetFacingTileCoord
+	ld hl, $0000
+	ld c, e
+	ld b, $0
+	ld a, d
+	and a
+	jr z, .asm_b8477
+
+.asm_b8473
+	add hl, bc
+	dec a
+	jr nz, .asm_b8473
+
+.asm_b8477
+	add hl, bc
+	ld c, d
+	add hl, bc
+	ld a, h
+	ld [hProduct], a
+	ld a, l
+	ld [hMultiplicand], a
+	ld a, $5
+	ld [hMultiplier], a
+	ld b, $2
+	call Divide
+	ld a, [$ffb5]
+	ld [hProduct], a
+	ld a, [$ffb6]
+	ld [hMultiplicand], a
+	ld a, $a
+	ld [hMultiplier], a
+	ld b, $2
+	call Divide
+	ld a, [hMultiplier]
+	ret
+; b849d
+
+Functionb849d: ; b849d
+	ld a, [PlayerID]
+	ld [hProduct], a
+	ld a, [$d47c]
+	ld [hMultiplicand], a
+	ld a, $a
+	ld [hMultiplier], a
+	ld b, $2
+	call Divide
+	ld a, [hMultiplier]
+	ret
+; b84b3
+
+Functionb84b3: ; b84b3
+	ld a, [rVBK]
+	push af
+	ld a, $1
+	ld [rVBK], a
+	ld de, FishingGFX
+	ld a, [PlayerGender]
+	bit 0, a
+	jr z, .asm_b84c7
+	ld de, KrisFishingGFX
+
+.asm_b84c7
+	ld hl, $8020
+	call Functionb84e3
+	ld hl, $8060
+	call Functionb84e3
+	ld hl, $80a0
+	call Functionb84e3
+	ld hl, $8fc0
+	call Functionb84e3
+	pop af
+	ld [rVBK], a
+	ret
+; b84e3
+
+Functionb84e3: ; b84e3
+	ld bc, $2e02
+	push de
+	call Get2bpp
+	pop de
+	ld hl, $0020
+	add hl, de
+	ld d, h
+	ld e, l
+	ret
+; b84f2
+
+FishingGFX: ; b84f2
+INCBIN "baserom.gbc", $b84f2, $b8582 - $b84f2
+; b8582
+
+KrisFishingGFX: ; b8582
+INCBIN "baserom.gbc", $b8582, $b8612 - $b8582
+; b8612
+
+INCBIN "baserom.gbc", $b8612, $b8f8f - $b8612
 
 Functionb8f8f: ; b8f8f
 	ld a, c
@@ -69701,7 +68170,40 @@ SECTION "bank2F",ROMX,BANK[$2F]
 
 INCLUDE "engine/std_scripts.asm"
 
-INCBIN "baserom.gbc", $bd0d0, $be699-$bd0d0
+INCBIN "baserom.gbc", $bd0d0, $be66a - $bd0d0
+
+UnknownScript_0xbe66a: ; 0xbe66a
+	faceplayer
+	trainerstatus $2
+	iftrue $6698
+	loadtrainerdata
+	playrammusic
+	2jump UnknownScript_0xbe68a
+; 0xbe675
+
+UnknownScript_0xbe675: ; 0xbe675
+	loadtrainerdata
+	playrammusic
+	showemote $0, $fe, 30
+	3callasm BANK(Function831e), Function831e
+	applymovement2 $d007
+	writepersonxy $fe
+	faceperson $0, $fe
+	2jump UnknownScript_0xbe68a
+; 0xbe68a
+
+UnknownScript_0xbe68a: ; 0xbe68a
+	loadfont
+	trainertext $0
+	closetext
+	loadmovesprites
+	loadtrainerdata
+	startbattle
+	returnafterbattle
+	trainerstatus $1
+	loadvar $d04d, $ff
+	scripttalkafter
+; 0xbe699
 
 
 SECTION "bank30",ROMX,BANK[$30]
@@ -79400,75 +77902,341 @@ UpdateUsedMoves: ; 105ed0
 
 
 
-HallOfFame2: ; 0x105ef6
+Mobile_HallOfFame2: ; 0x105ef6
 	ret
+; 105ef7
 
-INCBIN "baserom.gbc", $105ef7, $105f33 - $105ef7
+Function105ef7: ; 105ef7
+	ld a, $5
+	call GetSRAMBank
+	ld hl, GameTimeHours
+	ld de, $a001
+	ld bc, $0004
+	call CopyBytes
+	ld hl, $a010
+	ld de, $a005
+	ld bc, $0004
+	call CopyBytes
+	ld hl, $a039
+	ld de, $a009
+	ld bc, $0004
+	call CopyBytes
+	ld hl, $a01b
+	ld de, $a00d
+	ld bc, $0003
+	call CopyBytes
+	call Function106162
+	call CloseSRAM
+	ret
+; 105f33
 
 Function105f33: ; 105f33
 	ret
 ; 105f34
 
-INCBIN "baserom.gbc", $105f34, $105f79 - $105f34
+Function105f34: ; 105f34
+	ld a, $5
+	call GetSRAMBank
+	ld de, Buffer1
+	ld hl, $a07b
+	ld a, [de]
+	cp [hl]
+	jr z, .asm_105f47
+	jr nc, .asm_105f4f
+	jr .asm_105f55
+
+.asm_105f47
+	inc hl
+	inc de
+	ld a, [de]
+	cp [hl]
+	dec hl
+	dec de
+	jr c, .asm_105f55
+
+.asm_105f4f
+	ld a, [de]
+	inc de
+	ld [hli], a
+	ld a, [de]
+	dec de
+	ld [hl], a
+
+.asm_105f55
+	ld hl, $a07d
+	ld a, [hli]
+	or [hl]
+	dec hl
+	jr z, .asm_105f6d
+	ld a, [de]
+	cp [hl]
+	jr z, .asm_105f65
+	jr c, .asm_105f6d
+	jr .asm_105f72
+
+.asm_105f65
+	inc hl
+	inc de
+	ld a, [de]
+	cp [hl]
+	jr nc, .asm_105f72
+	dec hl
+	dec de
+
+.asm_105f6d
+	ld a, [de]
+	inc de
+	ld [hli], a
+	ld a, [de]
+	ld [hl], a
+
+.asm_105f72
+	call Function106162
+	call CloseSRAM
+	ret
+; 105f79
 
 Function105f79: ; 105f79
 	ret
 ; 105f7a
 
-INCBIN "baserom.gbc", $105f7a, $106008 - $105f7a
+Function105f7a: ; 105f7a
+	ld a, $5
+	call GetSRAMBank
+	ld a, [hProduct]
+	ld hl, $a07f
+	cp [hl]
+	jr z, .asm_105f8b
+	jr nc, .asm_105f92
+	jr .asm_105f98
+
+.asm_105f8b
+	inc hl
+	ld a, [hMultiplicand]
+	cp [hl]
+	jr c, .asm_105f98
+	dec hl
+
+.asm_105f92
+	ld a, [hProduct]
+	ld [hli], a
+	ld a, [hMultiplicand]
+	ld [hl], a
+
+.asm_105f98
+	call Function106162
+	call CloseSRAM
+	ret
+; 105f9f
+
+Function105f9f: ; 105f9f
+	ret
+; 105fa0
+
+Function105fa0: ; 105fa0
+	ld a, $5
+	call GetSRAMBank
+	ld hl, $a070
+	inc [hl]
+	jr nz, .asm_105fae
+	dec hl
+	inc [hl]
+	inc hl
+
+.asm_105fae
+	dec hl
+	ld a, [$a071]
+	cp [hl]
+	jr z, .asm_105fb9
+	jr c, .asm_105fc1
+	jr .asm_105fc9
+
+.asm_105fb9
+	inc hl
+	ld a, [$a072]
+	cp [hl]
+	jr nc, .asm_105fc9
+	dec hl
+
+.asm_105fc1
+	ld a, [hli]
+	ld [$a071], a
+	ld a, [hl]
+	ld [$a072], a
+
+.asm_105fc9
+	call Function106162
+	call CloseSRAM
+	ret
+; 105fd0
+
+Function105fd0: ; 105fd0
+	ret
+; 105fd1
+
+Function105fd1: ; 105fd1
+	ld a, $5
+	call GetSRAMBank
+	ld hl, $a06f
+	xor a
+	ld [hli], a
+	ld [hl], a
+	call Function106162
+	call CloseSRAM
+	ret
+; 105fe3
+
+Function105fe3: ; 105fe3
+	ret
+; 105fe4
+
+Function105fe4: ; 105fe4
+	ld a, $5
+	call GetSRAMBank
+	ld hl, $a076
+	ld a, e
+	add [hl]
+	ld [hld], a
+	ld a, d
+	adc [hl]
+	ld [hld], a
+	jr nc, .asm_106001
+	inc [hl]
+	jr nz, .asm_106001
+	dec hl
+	inc [hl]
+	jr nz, .asm_106001
+	ld a, $ff
+	ld [hli], a
+	ld [hli], a
+	ld [hli], a
+	ld [hl], a
+
+.asm_106001
+	call Function106162
+	call CloseSRAM
+	ret
+; 106008
 
 
 Function106008: ; 106008
 	ret
 ; 106009
 
-INCBIN "baserom.gbc", $106009, $106050 - $106009
+Function106009: ; 106009
+	ld a, $5
+	call GetSRAMBank
+	ld hl, $a07a
+	ld a, [bc]
+	dec bc
+	add [hl]
+	ld [hld], a
+	ld a, [bc]
+	dec bc
+	adc [hl]
+	ld [hld], a
+	ld a, [bc]
+	adc [hl]
+	ld [hld], a
+	jr nc, .asm_106027
+	inc [hl]
+	jr nz, .asm_106027
+	ld a, $ff
+	ld [hli], a
+	ld [hli], a
+	ld [hli], a
+	ld [hl], a
+
+.asm_106027
+	call Function106162
+	call CloseSRAM
+	ret
+; 10602e
+
+INCBIN "baserom.gbc", $10602e, $106050 - $10602e
 
 
 Function106050: ; 106050
 	ret
 ; 106051
 
-INCBIN "baserom.gbc", $106051, $10605d - $106051
+Function106051: ; 106051
+	ld a, [BattleType]
+	cp $3
+	ret z
+	ld hl, $a01b
+	jp Function10611d
+; 10605d
 
 
 Function10605d: ; 10605d
 	ret
 ; 10605e
 
-INCBIN "baserom.gbc", $10605e, $10606a - $10605e
+Function10605e: ; 10605e
+	ld a, [BattleType]
+	cp $3
+	ret z
+	ld hl, $a01e
+	jp Function10611d
+; 10606a
 
 
 Function10606a: ; 10606a
 	ret
 ; 10606b
 
-INCBIN "baserom.gbc", $10606b, $106078 - $10606b
+Function10606b: ; 10606b
+	ld hl, $a021
+	jp Function10611d
+; 106071
 
-HallOfFame1: ; 0x106078
+INCBIN "baserom.gbc", $106071, $106078 - $106071
+
+Mobile_HallOfFame: ; 0x106078
 	ret
 
-INCBIN "baserom.gbc", $106079, $106086 - $106079
+Function106079: ; 106079
+	ld hl, $a027
+	jp Function10611d
+; 10607f
+
+INCBIN "baserom.gbc", $10607f, $106086 - $10607f
 
 
 Function106086: ; 106086
 	ret
 ; 106087
 
-INCBIN "baserom.gbc", $106087, $106094 - $106087
+Function106087: ; 106087
+	ld hl, $a02d
+	jp Function10611d
+; 10608d
+
+INCBIN "baserom.gbc", $10608d, $106094 - $10608d
 
 
 Function106094: ; 106094
 	ret
 ; 106095
 
-INCBIN "baserom.gbc", $106095, $1060a2 - $106095
+Function106095: ; 106095
+	ld hl, $a033
+	jp Function10611d
+; 10609b
+
+INCBIN "baserom.gbc", $10609b, $1060a2 - $10609b
 
 Function1060a2: ; 1060a2
 	ret
 ; 1060a3
 
-INCBIN "baserom.gbc", $1060a3, $1060af - $1060a3
+Function1060a3: ; 1060a3
+	ld hl, $a039
+	jp Function10611d
+; 1060a9
+
+INCBIN "baserom.gbc", $1060a9, $1060af - $1060a9
 
 Function1060af: ; 1060af
 	ret
@@ -79483,7 +78251,6 @@ Function1060b5: ; 1060b5
 INCBIN "baserom.gbc", $1060b6, $1060bb - $1060b6
 
 Function1060bb: ; 1060bb
-; commented out
 	ret
 ; 1060bc
 
@@ -79527,14 +78294,125 @@ Function106101: ; 106101
 	ret
 ; 106102
 
-INCBIN "baserom.gbc", $106102, $106107 - $106102
-
+Function106102: ; 106102
+	ld hl, $a066
+	jr Function10611d
+; 106107
 
 Function106107: ; 106107
 	ret
 ; 106108
 
-INCBIN "baserom.gbc", $106108, $106187 - $106108
+Function106108: ; 106108
+	ld hl, $a069
+	jr Function10611d
+; 10610d
+
+Function10610d: ; 10610d
+	ret
+; 10610e
+
+Function10610e: ; 10610e
+	ld a, [hBattleTurn]
+	and a
+	ret nz
+	ld hl, $a06c
+	jr Function10611d
+; 106117
+
+Function106117: ; 106117
+	push bc
+	ld bc, 3
+	jr Function10612d
+; 10611d
+
+Function10611d: ; 10611d
+	push bc
+	ld bc, 2
+	jr Function10612d
+; 106123
+
+Function106123: ; 106123
+	push bc
+	ld bc, 1
+	jr Function10612d
+; 106129
+
+Function106129: ; 106129
+	push bc
+	ld bc, 0
+
+Function10612d: ; 10612d
+	ld a, $5
+	call GetSRAMBank
+	push hl
+	push de
+	ld e, c
+	inc e
+.asm_106136
+	ld a, [hli]
+	inc a
+	jr nz, .asm_10613d
+	dec e
+	jr nz, .asm_106136
+
+.asm_10613d
+	pop de
+	pop hl
+	jr z, .asm_10614d
+	add hl, bc
+.asm_106142
+	inc [hl]
+	jr nz, .asm_10614d
+	ld a, c
+	and a
+	jr z, .asm_10614d
+	dec hl
+	dec c
+	jr .asm_106142
+
+.asm_10614d
+	call Function106162
+	call CloseSRAM
+	pop bc
+	ret
+; 106155
+
+INCBIN "baserom.gbc", $106155, $106162 - $106155
+
+Function106162: ; 106162
+	push de
+	call Function10616e
+	ld hl, $a081
+	ld [hl], d
+	inc hl
+	ld [hl], e
+	pop de
+	ret
+; 10616e
+
+Function10616e: ; 10616e
+	push bc
+	ld hl, $a001
+	ld bc, $0080
+	xor a
+	ld de, $0000
+.asm_106179
+	ld a, e
+	add [hl]
+	ld e, a
+	jr nc, .asm_10617f
+	inc d
+
+.asm_10617f
+	inc hl
+	dec bc
+	ld a, b
+	or c
+	jr nz, .asm_106179
+	pop bc
+	ret
+; 106187
 
 
 Function106187: ; 106187
@@ -80194,497 +79072,13 @@ SECTION "bank43",ROMX,BANK[$43]
 
 INCBIN "baserom.gbc", $10c000, $10ed67 - $10c000
 
-_TitleScreen: ; 10ed67
+INCLUDE "engine/title.asm"
 
-	call WhiteBGMap
-	call ClearSprites
-	call ClearTileMap
-	
-; Turn BG Map update off
-	xor a
-	ld [hBGMapMode], a
-	
-; Reset timing variables
-	ld hl, $cf63
-	ld [hli], a ; cf63 ; Scene?
-	ld [hli], a ; cf64
-	ld [hli], a ; cf65 ; Timer lo
-	ld [hl], a  ; cf66 ; Timer hi
-	
-; Turn LCD off
-	call DisableLCD
-	
-	
-; VRAM bank 1
-	ld a, 1
-	ld [rVBK], a
-	
-	
-; Decompress running Suicune gfx
-	ld hl, TitleSuicuneGFX
-	ld de, VTiles1
-	call Decompress
-	
-	
-; Clear screen palettes
-	ld hl, VBGMap0
-	ld bc, $0280
-	xor a
-	call ByteFill
-	
-
-; Fill tile palettes:
-
-; BG Map 1:
-
-; line 0 (copyright)
-	ld hl, VBGMap1
-	ld bc, $0020 ; one row
-	ld a, 7 ; palette
-	call ByteFill
-
-
-; BG Map 0:
-
-; Apply logo gradient:
-
-; lines 3-4
-	ld hl, $9860 ; (0,3)
-	ld bc, $0040 ; 2 rows
-	ld a, 2
-	call ByteFill
-; line 5
-	ld hl, $98a0 ; (0,5)
-	ld bc, $0020 ; 1 row
-	ld a, 3
-	call ByteFill
-; line 6
-	ld hl, $98c0 ; (0,6)
-	ld bc, $0020 ; 1 row
-	ld a, 4
-	call ByteFill
-; line 7
-	ld hl, $98e0 ; (0,7)
-	ld bc, $0020 ; 1 row
-	ld a, 5
-	call ByteFill
-; lines 8-9
-	ld hl, $9900 ; (0,8)
-	ld bc, $0040 ; 2 rows
-	ld a, 6
-	call ByteFill
-	
-
-; 'CRYSTAL VERSION'
-	ld hl, $9925 ; (5,9)
-	ld bc, $000b ; length of version text
-	ld a, 1
-	call ByteFill
-	
-; Suicune gfx
-	ld hl, $9980 ; (0,12)
-	ld bc, $00c0 ; the rest of the screen
-	ld a, 8
-	call ByteFill
-	
-	
-; Back to VRAM bank 0
-	ld a, $0
-	ld [rVBK], a
-	
-	
-; Decompress logo
-	ld hl, TitleLogoGFX
-	ld de, VTiles1
-	call Decompress
-	
-; Decompress background crystal
-	ld hl, TitleCrystalGFX
-	ld de, VTiles0
-	call Decompress
-	
-	
-; Clear screen tiles
-	ld hl, VBGMap0
-	ld bc, $0800
-	ld a, $7f
-	call ByteFill
-	
-; Draw Pokemon logo
-	ld hl, $c4dc ; TileMap(0,3)
-	ld bc, $0714 ; 20x7
-	ld d, $80
-	ld e, $14
-	call DrawGraphic
-	
-; Draw copyright text
-	ld hl, $9c03 ; BGMap1(3,0)
-	ld bc, $010d ; 13x1
-	ld d, $c
-	ld e, $10
-	call DrawGraphic
-	
-; Initialize running Suicune?
-	ld d, $0
-	call Function10eed2
-	
-; Initialize background crystal
-	call Function10ef06
-	
-; Save WRAM bank
-	ld a, [rSVBK]
-	push af
-; WRAM bank 5
-	ld a, 5
-	ld [rSVBK], a
-	
-; Update palette colors
-	ld hl, TitleScreenPalettes
-	ld de, $d000
-	ld bc, $0080
-	call CopyBytes
-	
-	ld hl, TitleScreenPalettes
-	ld de, $d080
-	ld bc, $0080
-	call CopyBytes
-	
-; Restore WRAM bank
-	pop af
-	ld [rSVBK], a
-	
-	
-; LY/SCX trickery starts here
-	
-	ld a, [rSVBK]
-	push af
-	ld a, 5 ; BANK(LYOverrides)
-	ld [rSVBK], a
-	
-; Make alternating lines come in from opposite sides
-
-; ( This part is actually totally pointless, you can't
-;   see anything until these values are overwritten!  )
-
-	ld b, 80 / 2 ; alternate for 80 lines
-	ld hl, LYOverrides
-.loop
-; $00 is the middle position
-	ld [hl], +112 ; coming from the left
-	inc hl
-	ld [hl], -112 ; coming from the right
-	inc hl
-	dec b
-	jr nz, .loop
-	
-; Make sure the rest of the buffer is empty
-	ld hl, LYOverrides + 80
-	xor a
-	ld bc, LYOverridesEnd - (LYOverrides + 80)
-	call ByteFill
-	
-; Let LCD Stat know we're messing around with SCX
-	ld a, rSCX - rJOYP
-	ld [hLCDStatCustom], a
-	
-	pop af
-	ld [rSVBK], a
-	
-	
-; Reset audio
-	call ChannelsOff
-	call EnableLCD
-	
-; Set sprite size to 8x16
-	ld a, [rLCDC]
-	set 2, a
-	ld [rLCDC], a
-	
-	ld a, +112
-	ld [hSCX], a
-	ld a, 8
-	ld [hSCY], a
-	ld a, 7
-	ld [hWX], a
-	ld a, -112
-	ld [hWY], a
-	
-	ld a, $1
-	ld [hCGBPalUpdate], a
-	
-; Update BG Map 0 (bank 0)
-	ld [hBGMapMode], a
-	
-	xor a
-	ld [DefaultFlypoint], a
-	
-; Play starting sound effect
-	call SFXChannelsOff
-	ld de, SFX_TITLE_SCREEN_ENTRANCE
-	call StartSFX
-	
-	ret
-; 10eea7
-
-Function10eea7: ; 10eea7
-	ld hl, DefaultFlypoint
-	ld a, [hl]
-	ld c, a
-	inc [hl]
-	and $7
-	ret nz
-	ld a, c
-	and $18
-	sla a
-	swap a
-	ld e, a
-	ld d, $0
-	ld hl, $6ece
-	add hl, de
-	ld d, [hl]
-	xor a
-	ld [hBGMapMode], a
-	call Function10eed2
-	ld a, $1
-	ld [hBGMapMode], a
-	ld a, $3
-	ld [hBGMapThird], a
-	ret
-; 10eece
-
-INCBIN "baserom.gbc", $10eece, $10eed2 - $10eece
-
-
-Function10eed2: ; 10eed2
-	ld hl, $c596
-	ld b, $6
-.asm_10eed7
-	ld c, $8
-.asm_10eed9
-	ld a, d
-	ld [hli], a
-	inc d
-	dec c
-	jr nz, .asm_10eed9
-	ld a, $c
-	add l
-	ld l, a
-	ld a, $0
-	adc h
-	ld h, a
-	ld a, $8
-	add d
-	ld d, a
-	dec b
-	jr nz, .asm_10eed7
-	ret
-; 10eeef
-
-Function10eeef: ; 10eeef
-.asm_10eeef
-	push de
-	push bc
-	push hl
-.asm_10eef2
-	ld a, d
-	ld [hli], a
-	inc d
-	dec c
-	jr nz, .asm_10eef2
-	pop hl
-	ld bc, $0014
-	add hl, bc
-	pop bc
-	pop de
-	ld a, e
-	add d
-	ld d, a
-	dec b
-	jr nz, .asm_10eeef
-	ret
-; 10ef06
-
-Function10ef06: ; 10ef06
-	ld hl, Sprites
-	ld d, $de
-	ld e, $0
-	ld c, $5
-.asm_10ef0f
-	push bc
-	call Function10ef1c
-	pop bc
-	ld a, $10
-	add d
-	ld d, a
-	dec c
-	jr nz, .asm_10ef0f
-	ret
-; 10ef1c
-
-Function10ef1c: ; 10ef1c
-	ld c, $6
-	ld b, $40
-.asm_10ef20
-	ld a, d
-	ld [hli], a
-	ld a, b
-	ld [hli], a
-	add $8
-	ld b, a
-	ld a, e
-	ld [hli], a
-	inc e
-	inc e
-	ld a, $80
-	ld [hli], a
-	dec c
-	jr nz, .asm_10ef20
-	ret
-; 10ef32
-
-
-AnimateTitleCrystal: ; 10ef32
-; Move the title screen crystal downward until it's fully visible
-
-; Stop at y=6
-; y is really from the bottom of the sprite, which is two tiles high
-	ld hl, Sprites
-	ld a, [hl]
-	cp 6 + 16
-	ret z
-	
-; Move all 30 parts of the crystal down by 2
-	ld c, 30
-.loop
-	ld a, [hl]
-	add 2
-	ld [hli], a
-	inc hl
-	inc hl
-	inc hl
-	dec c
-	jr nz, .loop
-	
-	ret
-; 10ef46
-
-TitleSuicuneGFX: ; 10ef46
-INCBIN "gfx/title/suicune.lz"
-; 10f31b
-
-INCBIN "baserom.gbc", $10f31b, $10f326 - $10f31b
-
-TitleLogoGFX: ; 10f326
-INCBIN "gfx/title/logo.lz"
-; 10fced
-
-INCBIN "baserom.gbc", $10fced, $10fcee - $10fced
-
-TitleCrystalGFX: ; 10fcee
-INCBIN "gfx/title/crystal.lz"
-; 10fed7
-
-INCBIN "baserom.gbc", $10fed7, $10fede - $10fed7
-
-TitleScreenPalettes:
-; BG
-	RGB 00, 00, 00
-	RGB 19, 00, 00
-	RGB 15, 08, 31
-	RGB 15, 08, 31
-	
-	RGB 00, 00, 00
-	RGB 31, 31, 31
-	RGB 15, 16, 31
-	RGB 31, 01, 13
-	
-	RGB 00, 00, 00
-	RGB 07, 07, 07
-	RGB 31, 31, 31
-	RGB 02, 03, 30
-	
-	RGB 00, 00, 00
-	RGB 13, 13, 13
-	RGB 31, 31, 18
-	RGB 02, 03, 30
-	
-	RGB 00, 00, 00
-	RGB 19, 19, 19
-	RGB 29, 28, 12
-	RGB 02, 03, 30
-	
-	RGB 00, 00, 00
-	RGB 25, 25, 25
-	RGB 28, 25, 06
-	RGB 02, 03, 30
-	
-	RGB 00, 00, 00
-	RGB 31, 31, 31
-	RGB 26, 21, 00
-	RGB 02, 03, 30
-	
-	RGB 00, 00, 00
-	RGB 11, 11, 19
-	RGB 31, 31, 31
-	RGB 00, 00, 00
-	
-; OBJ
-	RGB 00, 00, 00
-	RGB 10, 00, 15
-	RGB 17, 05, 22
-	RGB 19, 09, 31
-	
-	RGB 31, 31, 31
-	RGB 00, 00, 00
-	RGB 00, 00, 00
-	RGB 00, 00, 00
-	
-	RGB 31, 31, 31
-	RGB 00, 00, 00
-	RGB 00, 00, 00
-	RGB 00, 00, 00
-	
-	RGB 31, 31, 31
-	RGB 00, 00, 00
-	RGB 00, 00, 00
-	RGB 00, 00, 00
-	
-	RGB 31, 31, 31
-	RGB 00, 00, 00
-	RGB 00, 00, 00
-	RGB 00, 00, 00
-	
-	RGB 31, 31, 31
-	RGB 00, 00, 00
-	RGB 00, 00, 00
-	RGB 00, 00, 00
-	
-	RGB 31, 31, 31
-	RGB 00, 00, 00
-	RGB 00, 00, 00
-	RGB 00, 00, 00
-	
-	RGB 31, 31, 31
-	RGB 00, 00, 00
-	RGB 00, 00, 00
-	RGB 00, 00, 00
 
 SECTION "bank44",ROMX,BANK[$44]
 
-INCBIN "baserom.gbc", $110000, $110fad - $110000
+INCLUDE "lib/mobile/main.asm"
 
-URIPrefix: ; 0x110fad
-	ascii "http://"
-HTTPDownloadURL: ; 0x110fb4
-	ascii "gameboy.datacenter.ne.jp/cgb/download"
-HTTPUploadURL: ; 0x110fd9
-	ascii "gameboy.datacenter.ne.jp/cgb/upload"
-HTTPUtilityURL: ; 0x110ffc
-	ascii "gameboy.datacenter.ne.jp/cgb/utility"
-HTTPRankingURL: ; 0x111020
-	ascii "gameboy.datacenter.ne.jp/cgb/ranking"
-
-INCBIN "baserom.gbc", $111044, $113f84 - $111044
 
 SECTION "bank45",ROMX,BANK[$45]
 
