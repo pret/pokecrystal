@@ -3,7 +3,7 @@
 
 import sys
 
-import extras.pokemontools.configuration as configiguration
+import extras.pokemontools.configuration as configuration
 import extras.pokemontools.preprocessor as preprocessor
 
 from extras.pokemontools.crystal import (
