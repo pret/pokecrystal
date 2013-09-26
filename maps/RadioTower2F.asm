@@ -175,7 +175,7 @@ BuenaScript_0x5d775: ; 0x5d775
 	checkflag $0060
 	iftrue UnknownScript_0x5d82f
 	checkcode $a
-	if_greater_than $12, UnknownScript_0x5d893
+	if_less_than $12, UnknownScript_0x5d893
 	checkflag $005f
 	iffalse UnknownScript_0x5d80a
 	checkitem BLUE_CARD

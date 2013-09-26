@@ -158,7 +158,7 @@ OfficerScript_0x6abe0: ; 0x6abe0
 	yesorno
 	iffalse UnknownScript_0x6ac73
 	checkcode $1
-	if_less_than $1, UnknownScript_0x6ac41
+	if_greater_than $1, UnknownScript_0x6ac41
 	special $0016
 	clearevent $0308
 UnknownScript_0x6ac10: ; 0x6ac10
@@ -186,7 +186,7 @@ UnknownScript_0x6ac10: ; 0x6ac10
 
 UnknownScript_0x6ac41: ; 0x6ac41
 	checkcode $1
-	if_greater_than $6, UnknownScript_0x6ac4d
+	if_less_than $6, UnknownScript_0x6ac4d
 	checkcode $10
 	if_equal $0, UnknownScript_0x6ac85
 UnknownScript_0x6ac4d: ; 0x6ac4d

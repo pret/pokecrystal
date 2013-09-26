@@ -32,7 +32,7 @@ UnknownScript_0x5800f: ; 0x5800f
 
 UnknownScript_0x5801e: ; 0x5801e
 	checkcode $e
-	if_less_than $2, UnknownScript_0x58027
+	if_greater_than $2, UnknownScript_0x58027
 	2jump UnknownScript_0x5802c
 ; 0x58027
 

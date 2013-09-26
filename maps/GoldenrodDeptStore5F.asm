@@ -72,8 +72,8 @@ ReceptionistScript_0x560ce: ; 0x560ce
 	special $0059
 	2writetext UnknownText_0x56143
 	keeptextopen
-	if_less_than $95, UnknownScript_0x560ee
-	if_less_than $31, UnknownScript_0x560fd
+	if_greater_than $95, UnknownScript_0x560ee
+	if_greater_than $31, UnknownScript_0x560fd
 	2jump UnknownScript_0x56103
 ; 0x560ee
 

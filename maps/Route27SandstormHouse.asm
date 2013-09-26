@@ -14,7 +14,7 @@ GrannyScript_0x7b394: ; 0x7b394
 	special $0059
 	2writetext UnknownText_0x7b3c6
 	keeptextopen
-	if_less_than $95, UnknownScript_0x7b3aa
+	if_greater_than $95, UnknownScript_0x7b3aa
 	2jump UnknownScript_0x7b3bd
 ; 0x7b3aa
 

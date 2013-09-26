@@ -9,8 +9,8 @@ ScriptCommandTable: ; 0x96cb1
 	dw Script_if_not_equal
 	dw Script_iffalse
 	dw Script_iftrue
-	dw Script_if_less_than
 	dw Script_if_greater_than
+	dw Script_if_less_than
 	dw Script_jumpstd
 	dw Script_callstd
 	dw Script_3callasm
@@ -1734,7 +1734,7 @@ Script_if_not_equal: ; 0x9754b
 	jr SkipTwoScriptBytes ; 0x97554 $40
 ; 0x97556
 
-Script_if_less_than: ; 0x97556
+Script_if_greater_than: ; 0x97556
 ; script command 0xa
 ; parameters:
 ;     byte (SingleByteParam)
@@ -1748,7 +1748,7 @@ Script_if_less_than: ; 0x97556
 	jr SkipTwoScriptBytes ; 0x97560 $34
 ; 0x97562
 
-Script_if_greater_than: ; 0x97562
+Script_if_less_than: ; 0x97562
 ; script command 0xb
 ; parameters:
 ;     byte (SingleByteParam)

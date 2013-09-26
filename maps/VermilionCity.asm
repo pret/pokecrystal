@@ -72,8 +72,8 @@ PokefanMScript_0x1aa9c2: ; 0x1aa9c2
 	iftrue UnknownScript_0x1aa9f7
 	checkcode $7
 	if_equal $10, UnknownScript_0x1aa9ea
-	if_less_than $d, UnknownScript_0x1aa9e4
-	if_less_than $9, UnknownScript_0x1aa9de
+	if_greater_than $d, UnknownScript_0x1aa9e4
+	if_greater_than $9, UnknownScript_0x1aa9de
 	2writetext UnknownText_0x1aabc8
 	closetext
 	loadmovesprites

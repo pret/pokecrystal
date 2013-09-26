@@ -11,7 +11,7 @@ CooltrainerMScript_0x71670: ; 0x71670
 	loadfont
 	2writetext UnknownText_0x716ce
 	checkcode $5
-	if_less_than $f8, UnknownScript_0x7167e
+	if_greater_than $f8, UnknownScript_0x7167e
 	closetext
 	loadmovesprites
 	end

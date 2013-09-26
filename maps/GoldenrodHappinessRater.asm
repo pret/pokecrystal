@@ -12,11 +12,11 @@ TeacherScript_0x54953: ; 0x54953
 	special $0059
 	2writetext UnknownText_0x549a3
 	keeptextopen
-	if_less_than $f9, UnknownScript_0x54973
-	if_less_than $c7, UnknownScript_0x54979
-	if_less_than $95, UnknownScript_0x5497f
-	if_less_than $63, UnknownScript_0x54985
-	if_less_than $31, UnknownScript_0x5498b
+	if_greater_than $f9, UnknownScript_0x54973
+	if_greater_than $c7, UnknownScript_0x54979
+	if_greater_than $95, UnknownScript_0x5497f
+	if_greater_than $63, UnknownScript_0x54985
+	if_greater_than $31, UnknownScript_0x5498b
 	2jump UnknownScript_0x54991
 ; 0x54973
 

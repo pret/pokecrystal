@@ -2298,8 +2298,8 @@ UnknownScript_0xbce7f: ; 0xbce7f
 	faceplayer
 	loadfont
 	special $0059
-	if_greater_than $32, UnknownScript_0xbce9a
-	if_greater_than $96, UnknownScript_0xbce93
+	if_less_than $32, UnknownScript_0xbce9a
+	if_less_than $96, UnknownScript_0xbce93
 	3writetext $6c, $492a
 	closetext
 	loadmovesprites
@@ -2497,7 +2497,7 @@ BillPhoneScript1: ; 0xbcfc5
 	checkcode $10
 	RAM2MEM $0
 	if_equal $0, .full
-	if_greater_than $6, .nearlyfull
+	if_less_than $6, .nearlyfull
 	3writetext BANK(BillPhoneNotFullText), BillPhoneNotFullText
 	end
 
