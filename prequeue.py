@@ -8,12 +8,12 @@ a single process.
 import os
 import sys
 
-import extras.pokemontools.config as conf
+import extras.pokemontools.configuration as configuration
 
 import preprocessor
 
 def main():
-    config = conf.Config()
+    config = configuration.Config()
     macros = preprocessor.load_pokecrystal_macros()
 
     stdout = sys.stdout
