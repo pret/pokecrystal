@@ -42,9 +42,9 @@ UnknownScript_0x1883de: ; 0x1883de
 	applymovement $2, MovementData_0x1884e8
 	playsound $0023
 	disappear $2
-	setbit1 EVENT_MET_ROCKET_GRUNT_AT_CERULEAN_GYM
-	clearbit1 $076c
-	clearbit1 $076e
+	setevent EVENT_MET_ROCKET_GRUNT_AT_CERULEAN_GYM
+	clearevent $076c
+	clearevent $076e
 	dotrigger $0
 	domaptrigger GROUP_ROUTE_25, MAP_ROUTE_25, $1
 	domaptrigger GROUP_POWER_PLANT, MAP_POWER_PLANT, $0
@@ -59,7 +59,7 @@ UnknownScript_0x1883de: ; 0x1883de
 MistyScript_0x188432: ; 0x188432
 	faceplayer
 	loadfont
-	checkbit2 $0024
+	checkflag $0024
 	iftrue UnknownScript_0x188460
 	2writetext UnknownText_0x188674
 	closetext
@@ -68,15 +68,15 @@ MistyScript_0x188432: ; 0x188432
 	loadtrainer MISTY, 1
 	startbattle
 	returnafterbattle
-	setbit1 EVENT_BEAT_MISTY
-	setbit1 EVENT_BEAT_SWIMMERF_DIANA
-	setbit1 EVENT_BEAT_SWIMMERF_BRIANA
-	setbit1 EVENT_BEAT_SWIMMERM_PARKER
+	setevent EVENT_BEAT_MISTY
+	setevent EVENT_BEAT_SWIMMERF_DIANA
+	setevent EVENT_BEAT_SWIMMERF_BRIANA
+	setevent EVENT_BEAT_SWIMMERM_PARKER
 	loadfont
 	2writetext UnknownText_0x188768
 	playsound $009c
 	waitbutton
-	setbit2 $0024
+	setflag $0024
 UnknownScript_0x188460: ; 0x188460
 	2writetext UnknownText_0x188782
 	closetext
@@ -174,7 +174,7 @@ SwimmermParkerScript: ; 0x18849a
 CeruleanGymGuyScript: ; 0x1884a2
 	faceplayer
 	loadfont
-	checkbit1 EVENT_BEAT_MISTY
+	checkevent EVENT_BEAT_MISTY
 	iftrue .CeruleanGymGuyWinScript
 	2writetext CeruleanGymGuyText
 	closetext
@@ -195,7 +195,7 @@ MapCeruleanGymSignpostItem0: ; 0x1884b6
 ; 0x1884b9
 
 MapCeruleanGymSignpost1Script: ; 0x1884b9
-	checkbit1 $076f
+	checkevent $076f
 	iffalse UnknownScript_0x1884d3
 	loadfont
 	2writetext UnknownText_0x188610
@@ -205,7 +205,7 @@ MapCeruleanGymSignpost1Script: ; 0x1884b9
 ; 0x1884c6
 
 MapCeruleanGymSignpost2Script: ; 0x1884c6
-	checkbit1 $076f
+	checkevent $076f
 	iffalse UnknownScript_0x1884d3
 	loadfont
 	2writetext UnknownText_0x188642
@@ -215,7 +215,7 @@ MapCeruleanGymSignpost2Script: ; 0x1884c6
 ; 0x1884d3
 
 UnknownScript_0x1884d3: ; 0x1884d3
-	checkbit2 $0024
+	checkflag $0024
 	iftrue UnknownScript_0x1884dc
 	jumpstd $002d
 ; 0x1884dc

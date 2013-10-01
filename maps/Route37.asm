@@ -112,17 +112,17 @@ PsychicGregScript: ; 0x1a8db7
 BugCatcherScript_0x1a8dbf: ; 0x1a8dbf
 	faceplayer
 	loadfont
-	checkbit1 EVENT_GOT_MAGNET_FROM_SUNNY
+	checkevent EVENT_GOT_MAGNET_FROM_SUNNY
 	iftrue UnknownScript_0x1a8dfa
 	checkcode $b
 	if_not_equal SUNDAY, UnknownScript_0x1a8e00
-	checkbit1 EVENT_MET_SUNNY_OF_SUNDAY
+	checkevent EVENT_MET_SUNNY_OF_SUNDAY
 	iftrue UnknownScript_0x1a8dda
 	2writetext UnknownText_0x1a8fc8
 	keeptextopen
-	setbit1 EVENT_MET_SUNNY_OF_SUNDAY
+	setevent EVENT_MET_SUNNY_OF_SUNDAY
 UnknownScript_0x1a8dda: ; 0x1a8dda
-	checkbit2 $0063
+	checkflag $0063
 	iftrue UnknownScript_0x1a8de7
 	2writetext UnknownText_0x1a9004
 	keeptextopen
@@ -135,7 +135,7 @@ UnknownScript_0x1a8de7: ; 0x1a8de7
 UnknownScript_0x1a8deb: ; 0x1a8deb
 	verbosegiveitem MAGNET, 1
 	iffalse UnknownScript_0x1a8dfe
-	setbit1 EVENT_GOT_MAGNET_FROM_SUNNY
+	setevent EVENT_GOT_MAGNET_FROM_SUNNY
 	2writetext UnknownText_0x1a905a
 	closetext
 	loadmovesprites

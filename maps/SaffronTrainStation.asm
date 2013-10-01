@@ -16,7 +16,7 @@ UnknownScript_0x18a81d: ; 0x18a81d
 OfficerScript_0x18a81e: ; 0x18a81e
 	faceplayer
 	loadfont
-	checkbit1 EVENT_RESTORED_POWER_TO_KANTO
+	checkevent EVENT_RESTORED_POWER_TO_KANTO
 	iftrue UnknownScript_0x18a82c
 	2writetext UnknownText_0x18a8a9
 	closetext
@@ -40,7 +40,7 @@ UnknownScript_0x18a82c: ; 0x18a82c
 	warpcheck
 	newloadmap $f9
 	applymovement $0, MovementData_0x18a854
-	unknown0xa8 $14
+	wait $14
 	end
 ; 0x18a854
 
@@ -77,7 +77,7 @@ UnknownScript_0x18a862: ; 0x18a862
 GymGuyScript_0x18a875: ; 0x18a875
 	faceplayer
 	loadfont
-	checkbit1 EVENT_RETURNED_MACHINE_PART
+	checkevent EVENT_RETURNED_MACHINE_PART
 	iftrue UnknownScript_0x18a883
 	2writetext UnknownText_0x18a9ca
 	closetext

@@ -11,7 +11,7 @@ GoldenrodGameCorner_MapScriptHeader: ; 0x56bf4
 ; 0x56bf9
 
 UnknownScript_0x56bf9: ; 0x56bf9
-	checkbit1 $0044
+	checkevent $0044
 	iffalse UnknownScript_0x56c19
 	checkitem COIN_CASE
 	iffalse UnknownScript_0x56c0e
@@ -24,7 +24,7 @@ UnknownScript_0x56c0e: ; 0x56c0e
 ; 0x56c11
 
 UnknownScript_0x56c11: ; 0x56c11
-	checkbit2 $005e
+	checkflag $005e
 	iftrue UnknownScript_0x56c19
 	disappear $d
 UnknownScript_0x56c19: ;0x56c19

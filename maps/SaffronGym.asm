@@ -9,7 +9,7 @@ SaffronGym_MapScriptHeader: ; 0x189c2c
 SabrinaScript_0x189c2e: ; 0x189c2e
 	faceplayer
 	loadfont
-	checkbit2 $0028
+	checkflag $0028
 	iftrue UnknownScript_0x189c65
 	2writetext UnknownText_0x189cdf
 	closetext
@@ -18,16 +18,16 @@ SabrinaScript_0x189c2e: ; 0x189c2e
 	loadtrainer SABRINA, 1
 	startbattle
 	returnafterbattle
-	setbit1 EVENT_BEAT_SABRINA
-	setbit1 EVENT_BEAT_MEDIUM_REBECCA
-	setbit1 EVENT_BEAT_MEDIUM_DORIS
-	setbit1 EVENT_BEAT_PSYCHIC_FRANKLIN
-	setbit1 EVENT_BEAT_PSYCHIC_JARED
+	setevent EVENT_BEAT_SABRINA
+	setevent EVENT_BEAT_MEDIUM_REBECCA
+	setevent EVENT_BEAT_MEDIUM_DORIS
+	setevent EVENT_BEAT_PSYCHIC_FRANKLIN
+	setevent EVENT_BEAT_PSYCHIC_JARED
 	loadfont
 	2writetext UnknownText_0x189e95
 	playsound $009c
 	waitbutton
-	setbit2 $0028
+	setflag $0028
 	2writetext UnknownText_0x189ead
 	closetext
 	loadmovesprites
@@ -160,7 +160,7 @@ PsychicJaredScript: ; 0x189cb3
 SaffronGymGuyScript: ; 0x189cbb
 	faceplayer
 	loadfont
-	checkbit1 EVENT_BEAT_SABRINA
+	checkevent EVENT_BEAT_SABRINA
 	iftrue .SaffronGymGuyWinScript
 	2writetext SaffronGymGuyText
 	closetext
@@ -175,7 +175,7 @@ SaffronGymGuyScript: ; 0x189cbb
 ; 0x189ccf
 
 MapSaffronGymSignpost0Script: ; 0x189ccf
-	checkbit2 $0028
+	checkflag $0028
 	iftrue UnknownScript_0x189cd8
 	jumpstd $002d
 ; 0x189cd8

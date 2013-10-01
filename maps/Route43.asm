@@ -11,7 +11,7 @@ Route43_MapScriptHeader: ; 0x19d04c
 ; 0x19d051
 
 UnknownScript_0x19d051: ; 0x19d051
-	checkbit1 EVENT_CLEARED_ROCKET_HIDEOUT
+	checkevent EVENT_CLEARED_ROCKET_HIDEOUT
 	iftrue UnknownScript_0x19d05c
 	domaptrigger GROUP_ROUTE_43_GATE, MAP_ROUTE_43_GATE, $0
 	return
@@ -104,15 +104,15 @@ PokemaniacBrent1Script: ; 0x19d095
 	writecode $17, $1e
 	talkaftercancel
 	loadfont
-	checkbit2 $0077
+	checkflag $0077
 	iftrue UnknownScript_0x19d0cf
 	checkcellnum $1e
 	iftrue UnknownScript_0x19d138
-	checkbit1 $0291
+	checkevent $0291
 	iftrue UnknownScript_0x19d0b8
 	2writetext UnknownText_0x19d359
 	keeptextopen
-	setbit1 $0291
+	setevent $0291
 	2call UnknownScript_0x19d12c
 	2jump UnknownScript_0x19d0bb
 ; 0x19d0b8
@@ -137,20 +137,20 @@ UnknownScript_0x19d0cf: ; 0x19d0cf
 	if_equal $1, UnknownScript_0x19d0f6
 	if_equal $0, UnknownScript_0x19d0fc
 UnknownScript_0x19d0ea: ; 0x19d0ea
-	checkbit1 EVENT_RESTORED_POWER_TO_KANTO
+	checkevent EVENT_RESTORED_POWER_TO_KANTO
 	iftrue UnknownScript_0x19d123
 UnknownScript_0x19d0f0: ; 0x19d0f0
-	checkbit1 $0044
+	checkevent $0044
 	iftrue UnknownScript_0x19d116
 UnknownScript_0x19d0f6: ; 0x19d0f6
-	checkbit1 EVENT_CLEARED_ROCKET_HIDEOUT
+	checkevent EVENT_CLEARED_ROCKET_HIDEOUT
 	iftrue UnknownScript_0x19d109
 UnknownScript_0x19d0fc: ; 0x19d0fc
 	loadtrainer POKEMANIAC, BRENT1
 	startbattle
 	returnafterbattle
 	loadvar $da07, $1
-	clearbit2 $0077
+	clearflag $0077
 	end
 ; 0x19d109
 
@@ -159,7 +159,7 @@ UnknownScript_0x19d109: ; 0x19d109
 	startbattle
 	returnafterbattle
 	loadvar $da07, $2
-	clearbit2 $0077
+	clearflag $0077
 	end
 ; 0x19d116
 
@@ -168,7 +168,7 @@ UnknownScript_0x19d116: ; 0x19d116
 	startbattle
 	returnafterbattle
 	loadvar $da07, $3
-	clearbit2 $0077
+	clearflag $0077
 	end
 ; 0x19d123
 
@@ -176,7 +176,7 @@ UnknownScript_0x19d123: ; 0x19d123
 	loadtrainer POKEMANIAC, BRENT4
 	startbattle
 	returnafterbattle
-	clearbit2 $0077
+	clearflag $0077
 	end
 ; 0x19d12c
 
@@ -297,19 +297,19 @@ PicnickerTiffany3Script: ; 0x19d17c
 	writecode $17, $1f
 	talkaftercancel
 	loadfont
-	checkbit2 $0078
+	checkflag $0078
 	iftrue UnknownScript_0x19d1c1
-	checkbit2 $0085
+	checkflag $0085
 	iftrue UnknownScript_0x19d21e
 	checkcellnum $1f
 	iftrue UnknownScript_0x19d245
 	checkpoke CLEFAIRY
 	iffalse UnknownScript_0x19d233
-	checkbit1 EVENT_SHOWED_TIFFANY_CLEFAIRY
+	checkevent EVENT_SHOWED_TIFFANY_CLEFAIRY
 	iftrue UnknownScript_0x19d1aa
 	2writetext UnknownText_0x19d618
 	keeptextopen
-	setbit1 EVENT_SHOWED_TIFFANY_CLEFAIRY
+	setevent EVENT_SHOWED_TIFFANY_CLEFAIRY
 	2call UnknownScript_0x19d239
 	2jump UnknownScript_0x19d1ad
 ; 0x19d1aa
@@ -334,20 +334,20 @@ UnknownScript_0x19d1c1: ; 0x19d1c1
 	if_equal $1, UnknownScript_0x19d1e8
 	if_equal $0, UnknownScript_0x19d1ee
 UnknownScript_0x19d1dc: ; 0x19d1dc
-	checkbit1 EVENT_RESTORED_POWER_TO_KANTO
+	checkevent EVENT_RESTORED_POWER_TO_KANTO
 	iftrue UnknownScript_0x19d215
 UnknownScript_0x19d1e2: ; 0x19d1e2
-	checkbit1 $0044
+	checkevent $0044
 	iftrue UnknownScript_0x19d208
 UnknownScript_0x19d1e8: ; 0x19d1e8
-	checkbit1 EVENT_CLEARED_RADIO_TOWER
+	checkevent EVENT_CLEARED_RADIO_TOWER
 	iftrue UnknownScript_0x19d1fb
 UnknownScript_0x19d1ee: ; 0x19d1ee
 	loadtrainer PICNICKER, TIFFANY3
 	startbattle
 	returnafterbattle
 	loadvar $da08, $1
-	clearbit2 $0078
+	clearflag $0078
 	end
 ; 0x19d1fb
 
@@ -356,7 +356,7 @@ UnknownScript_0x19d1fb: ; 0x19d1fb
 	startbattle
 	returnafterbattle
 	loadvar $da08, $2
-	clearbit2 $0078
+	clearflag $0078
 	end
 ; 0x19d208
 
@@ -365,7 +365,7 @@ UnknownScript_0x19d208: ; 0x19d208
 	startbattle
 	returnafterbattle
 	loadvar $da08, $3
-	clearbit2 $0078
+	clearflag $0078
 	end
 ; 0x19d215
 
@@ -373,7 +373,7 @@ UnknownScript_0x19d215: ; 0x19d215
 	loadtrainer PICNICKER, TIFFANY4
 	startbattle
 	returnafterbattle
-	clearbit2 $0078
+	clearflag $0078
 	end
 ; 0x19d21e
 
@@ -381,8 +381,8 @@ UnknownScript_0x19d21e: ; 0x19d21e
 	2call UnknownScript_0x19d255
 	verbosegiveitem PINK_BOW, 1
 	iffalse UnknownScript_0x19d230
-	clearbit2 $0085
-	setbit1 $0104
+	clearflag $0085
+	setevent $0104
 	2jump UnknownScript_0x19d245
 ; 0x19d230
 

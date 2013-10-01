@@ -12,15 +12,15 @@ Route16_MapScriptHeader: ; 0x1ad313
 
 UnknownScript_0x1ad318: ; 0x1ad318
 	checkcode $13
-	if_greater_than $5, UnknownScript_0x1ad328
+	if_less_than $5, UnknownScript_0x1ad328
 	checkcode $12
-	if_less_than $d, UnknownScript_0x1ad328
-	setbit2 $0019
+	if_greater_than $d, UnknownScript_0x1ad328
+	setflag $0019
 	return
 ; 0x1ad328
 
 UnknownScript_0x1ad328: ; 0x1ad328
-	clearbit2 $0019
+	clearflag $0019
 	return
 ; 0x1ad32c
 

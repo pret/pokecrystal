@@ -19116,9 +19116,9 @@ BoxNameInputUpper:
 INCBIN "baserom.gbc", $11e5d, $122c1 - $11e5d
 
 UnknownScript_0x122c1: ; 0x122c1
-	checkbit2 $0011
+	checkflag $0011
 	iffalse .script_122cd
-	setbit2 $0051
+	setflag $0051
 	special $0017
 .script_122cd
 	end
@@ -19409,7 +19409,7 @@ UnknownScript_0x124c8: ; 0x124c8
 	special $002e
 	pause 40
 	special $001b
-	checkbit2 $0011
+	checkflag $0011
 	iftrue .script_64f2
 	3callasm BANK(HalveMoney), HalveMoney
 	3callasm BANK(Function12527), Function12527
@@ -54426,7 +54426,7 @@ UnknownScript_0x506c8: ; 0x506c8
 	closetext
 	3callasm BANK(Function506ef), Function506ef
 	iffalse UnknownScript_0x506e9
-	checkbit2 $0011
+	checkflag $0011
 	iftrue UnknownScript_0x506e5
 	battlecheck
 	startbattle

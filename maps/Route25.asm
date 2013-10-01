@@ -39,7 +39,7 @@ UnknownScript_0x19eea0: ; 0x19eea0
 	spriteface $0, $2
 	applymovement $2, MovementData_0x19f000
 	disappear $2
-	clearbit1 $076f
+	clearevent $076f
 	dotrigger $0
 	special $003d
 	end
@@ -66,7 +66,7 @@ UnknownScript_0x19eee0: ; 0x19eee0
 	spriteface $0, $2
 	applymovement $2, MovementData_0x19f000
 	disappear $2
-	clearbit1 $076f
+	clearevent $076f
 	dotrigger $0
 	special $003d
 	end
@@ -278,15 +278,15 @@ SupernerdPatScript: ; 0x19efa4
 CooltrainerMScript_0x19efac: ; 0x19efac
 	faceplayer
 	loadfont
-	checkbit1 $0558
+	checkevent $0558
 	iftrue UnknownScript_0x19efda
-	checkbit1 EVENT_CLEARED_NUGGET_BRIDGE
+	checkevent EVENT_CLEARED_NUGGET_BRIDGE
 	iftrue UnknownScript_0x19efc7
 	2writetext UnknownText_0x19f43b
 	keeptextopen
 	verbosegiveitem NUGGET, 1
 	iffalse UnknownScript_0x19efde
-	setbit1 EVENT_CLEARED_NUGGET_BRIDGE
+	setevent EVENT_CLEARED_NUGGET_BRIDGE
 UnknownScript_0x19efc7: ; 0x19efc7
 	2writetext UnknownText_0x19f49d
 	closetext
@@ -295,7 +295,7 @@ UnknownScript_0x19efc7: ; 0x19efc7
 	loadtrainer COOLTRAINERM, KEVIN
 	startbattle
 	returnafterbattle
-	setbit1 $0558
+	setevent $0558
 	loadfont
 UnknownScript_0x19efda: ; 0x19efda
 	2writetext UnknownText_0x19f520

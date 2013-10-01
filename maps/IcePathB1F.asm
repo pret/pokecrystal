@@ -38,25 +38,25 @@ StoneTable_0x7e4c7: ; 0x7e4c7
 
 UnknownScript_0x7e4d8: ; 0x7e4d8
 	disappear 2
-	clearbit1 EVENT_BOULDER_IN_ICE_PATH_1
+	clearevent EVENT_BOULDER_IN_ICE_PATH_1
 	2jump UnknownScript_0x7e4f8
 ; 0x7e4e0
 
 UnknownScript_0x7e4e0: ; 0x7e4e0
 	disappear 3
-	clearbit1 EVENT_BOULDER_IN_ICE_PATH_2
+	clearevent EVENT_BOULDER_IN_ICE_PATH_2
 	2jump UnknownScript_0x7e4f8
 ; 0x7e4e8
 
 UnknownScript_0x7e4e8: ; 0x7e4e8
 	disappear 4
-	clearbit1 EVENT_BOULDER_IN_ICE_PATH_3
+	clearevent EVENT_BOULDER_IN_ICE_PATH_3
 	2jump UnknownScript_0x7e4f8
 ; 0x7e4f0
 
 UnknownScript_0x7e4f0: ; 0x7e4f0
 	disappear 5
-	clearbit1 EVENT_BOULDER_IN_ICE_PATH_4
+	clearevent EVENT_BOULDER_IN_ICE_PATH_4
 	2jump UnknownScript_0x7e4f8
 ; 0x7e4f8
 

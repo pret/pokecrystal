@@ -11,7 +11,7 @@ Route34IlexForestGate_MapScriptHeader: ; 0x62d28
 ; 0x62d2d
 
 UnknownScript_0x62d2d: ; 0x62d2d
-	checkbit1 $00c0
+	checkevent $00c0
 	iffalse UnknownScript_0x62d38
 	disappear $2
 	appear $5
@@ -25,7 +25,7 @@ UnknownScript_0x62d38: ; 0x62d38
 ; 0x62d3d
 
 UnknownScript_0x62d3d: ; 0x62d3d
-	checkbit1 $00c0
+	checkevent $00c0
 	iffalse UnknownScript_0x62d62
 	showemote $0, $5, 20
 	spriteface $5, $2
@@ -46,15 +46,15 @@ UnknownScript_0x62d62: ; 0x62d62
 TeacherScript_0x62d63: ; 0x62d63
 	faceplayer
 	loadfont
-	checkbit1 $00c0
+	checkevent $00c0
 	iftrue UnknownScript_0x62d84
-	checkbit1 EVENT_GOT_TM12_SWEET_SCENT
+	checkevent EVENT_GOT_TM12_SWEET_SCENT
 	iftrue UnknownScript_0x62d7e
 	2writetext UnknownText_0x62d9d
 	keeptextopen
 	verbosegiveitem TM_12, 1
 	iffalse UnknownScript_0x62d82
-	setbit1 EVENT_GOT_TM12_SWEET_SCENT
+	setevent EVENT_GOT_TM12_SWEET_SCENT
 UnknownScript_0x62d7e: ; 0x62d7e
 	2writetext UnknownText_0x62df6
 	closetext

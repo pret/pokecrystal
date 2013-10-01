@@ -23,16 +23,16 @@ UnknownScript_0x5800e: ; 0x5800e
 ; 0x5800f
 
 UnknownScript_0x5800f: ; 0x5800f
-	checkbit2 $000c
+	checkflag $000c
 	iftrue UnknownScript_0x5802c
-	checkbit1 EVENT_MADE_UNOWN_APPEAR_IN_RUINS
+	checkevent EVENT_MADE_UNOWN_APPEAR_IN_RUINS
 	iftrue UnknownScript_0x5801e
 	2jump UnknownScript_0x5802c
 ; 0x5801e
 
 UnknownScript_0x5801e: ; 0x5801e
 	checkcode $e
-	if_less_than $2, UnknownScript_0x58027
+	if_greater_than $2, UnknownScript_0x58027
 	2jump UnknownScript_0x5802c
 ; 0x58027
 
@@ -81,9 +81,9 @@ UnknownScript_0x58044: ; 0x58044
 FisherScript_0x58061: ; 0x58061
 	faceplayer
 	loadfont
-	checkbit1 $00bc
+	checkevent $00bc
 	iftrue UnknownScript_0x58070
-	setbit1 $00bc
+	setevent $00bc
 	2writetext UnknownText_0x583a4
 	keeptextopen
 UnknownScript_0x58070: ;0x58070

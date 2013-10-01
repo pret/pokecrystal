@@ -11,7 +11,7 @@ CooltrainerMScript_0x71670: ; 0x71670
 	loadfont
 	2writetext UnknownText_0x716ce
 	checkcode $5
-	if_less_than $f8, UnknownScript_0x7167e
+	if_greater_than $f8, UnknownScript_0x7167e
 	closetext
 	loadmovesprites
 	end
@@ -28,14 +28,14 @@ UnknownScript_0x7167e: ; 0x7167e
 	2writetext UnknownText_0x71763
 	closetext
 	loadmovesprites
-	setbit1 EVENT_ENABLE_DIPLOMA_PRINTING
+	setevent EVENT_ENABLE_DIPLOMA_PRINTING
 	end
 ; 0x71696
 
 GymGuyScript_0x71696: ; 0x71696
 	faceplayer
 	loadfont
-	checkbit1 EVENT_ENABLE_DIPLOMA_PRINTING
+	checkevent EVENT_ENABLE_DIPLOMA_PRINTING
 	iftrue UnknownScript_0x716a4
 	2writetext UnknownText_0x717b4
 	closetext

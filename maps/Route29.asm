@@ -23,7 +23,7 @@ UnknownScript_0x1a0f5a: ; 0x1a0f5a
 ; 0x1a0f5b
 
 UnknownScript_0x1a0f5b: ; 0x1a0f5b
-	checkbit2 $001b
+	checkflag $001b
 	iftrue UnknownScript_0x1a0f64
 UnknownScript_0x1a0f61: ; 0x1a0f61
 	disappear $8
@@ -42,7 +42,7 @@ UnknownScript_0x1a0f6d: ; 0x1a0f6d
 	showemote $0, $2, 15
 	applymovement $2, MovementData_0x1a108d
 	spriteface $0, $2
-	setbit1 EVENT_DUDE_TALKED_TO_YOU
+	setevent EVENT_DUDE_TALKED_TO_YOU
 	loadfont
 	2writetext UnknownText_0x1a10df
 	yesorno
@@ -59,7 +59,7 @@ UnknownScript_0x1a0f6d: ; 0x1a0f6d
 	closetext
 	loadmovesprites
 	dotrigger $0
-	setbit1 EVENT_LEARNED_TO_CATCH_POKEMON
+	setevent EVENT_LEARNED_TO_CATCH_POKEMON
 	end
 ; 0x1a0fa3
 
@@ -68,7 +68,7 @@ UnknownScript_0x1a0fa3: ; 0x1a0fa3
 	showemote $0, $2, 15
 	applymovement $2, MovementData_0x1a1094
 	spriteface $0, $2
-	setbit1 EVENT_DUDE_TALKED_TO_YOU
+	setevent EVENT_DUDE_TALKED_TO_YOU
 	loadfont
 	2writetext UnknownText_0x1a10df
 	yesorno
@@ -85,7 +85,7 @@ UnknownScript_0x1a0fa3: ; 0x1a0fa3
 	closetext
 	loadmovesprites
 	dotrigger $0
-	setbit1 EVENT_LEARNED_TO_CATCH_POKEMON
+	setevent EVENT_LEARNED_TO_CATCH_POKEMON
 	end
 ; 0x1a0fd9
 
@@ -112,9 +112,9 @@ CooltrainerMScript_0x1a0ff1: ; 0x1a0ff1
 	loadfont
 	checkcode $10
 	if_equal $0, UnknownScript_0x1a101c
-	checkbit1 EVENT_LEARNED_TO_CATCH_POKEMON
+	checkevent EVENT_LEARNED_TO_CATCH_POKEMON
 	iftrue UnknownScript_0x1a101c
-	checkbit1 EVENT_GAVE_MYSTERY_EGG_TO_ELM
+	checkevent EVENT_GAVE_MYSTERY_EGG_TO_ELM
 	iffalse UnknownScript_0x1a101c
 	2writetext UnknownText_0x1a11e3
 	yesorno
@@ -126,7 +126,7 @@ CooltrainerMScript_0x1a0ff1: ; 0x1a0ff1
 	2writetext UnknownText_0x1a114d
 	closetext
 	loadmovesprites
-	setbit1 EVENT_LEARNED_TO_CATCH_POKEMON
+	setevent EVENT_LEARNED_TO_CATCH_POKEMON
 	end
 ; 0x1a101c
 
@@ -180,21 +180,21 @@ UnknownScript_0x1a1043: ; 0x1a1043
 TeacherScript_0x1a1049: ; 0x1a1049
 	faceplayer
 	loadfont
-	checkbit1 EVENT_GOT_PINK_BOW_FROM_TUSCANY
+	checkevent EVENT_GOT_PINK_BOW_FROM_TUSCANY
 	iftrue UnknownScript_0x1a1077
 	checkcode $b
 	if_not_equal TUESDAY, UnknownScript_0x1a107d
-	checkbit1 EVENT_MET_TUSCANY_OF_TUESDAY
+	checkevent EVENT_MET_TUSCANY_OF_TUESDAY
 	iftrue UnknownScript_0x1a1064
 	2writetext UnknownText_0x1a13b2
 	keeptextopen
-	setbit1 EVENT_MET_TUSCANY_OF_TUESDAY
+	setevent EVENT_MET_TUSCANY_OF_TUESDAY
 UnknownScript_0x1a1064: ; 0x1a1064
 	2writetext UnknownText_0x1a142f
 	keeptextopen
 	verbosegiveitem PINK_BOW, 1
 	iffalse UnknownScript_0x1a107b
-	setbit1 EVENT_GOT_PINK_BOW_FROM_TUSCANY
+	setevent EVENT_GOT_PINK_BOW_FROM_TUSCANY
 	2writetext UnknownText_0x1a146f
 	closetext
 	loadmovesprites

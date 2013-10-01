@@ -34,7 +34,7 @@ UnknownScript_0x6dfef: ; 0x6dfef
 ; 0x6dff0
 
 UnknownScript_0x6dff0: ; 0x6dff0
-	checkbit1 $0303
+	checkevent $0303
 	iftrue UnknownScript_0x6dff7
 	return
 ; 0x6dff7
@@ -107,7 +107,7 @@ UnknownScript_0x6e056: ; 0x6e056
 	loadtrainer EXECUTIVEM, 4
 	startbattle
 	returnafterbattle
-	setbit1 $0574
+	setevent $0574
 	loadfont
 	2writetext UnknownText_0x6e548
 	closetext
@@ -125,7 +125,7 @@ MoltresScript_0x6e091: ; 0x6e091
 	2writetext UnknownText_0x6e585
 	closetext
 	loadmovesprites
-	setbit1 EVENT_LEARNED_HAIL_GIOVANNI
+	setevent EVENT_LEARNED_HAIL_GIOVANNI
 	end
 ; 0x6e09b
 
@@ -155,7 +155,7 @@ GruntF5Script: ; 0x6e0a7
 	2writetext UnknownText_0x6e611
 	closetext
 	loadmovesprites
-	setbit1 $0301
+	setevent $0301
 	end
 ; 0x6e0b2
 
@@ -185,7 +185,7 @@ GruntM28Script: ; 0x6e0be
 	2writetext UnknownText_0x6e737
 	closetext
 	loadmovesprites
-	setbit1 $0302
+	setevent $0302
 	end
 ; 0x6e0c9
 
@@ -255,9 +255,9 @@ MapTeamRocketBaseB3FSignpostPtr1: ; 0x6e0f1
 
 MapTeamRocketBaseB3FSignpost1Script: ; 0x6e0f5
 	loadfont
-	checkbit1 $0301
+	checkevent $0301
 	iffalse UnknownScript_0x6e105
-	checkbit1 $0302
+	checkevent $0302
 	iffalse UnknownScript_0x6e105
 	2jump UnknownScript_0x6e10b
 ; 0x6e105
@@ -276,7 +276,7 @@ UnknownScript_0x6e10b: ; 0x6e10b
 	changeblock $a, $8, $7
 	reloadmappart
 	loadmovesprites
-	setbit1 $0303
+	setevent $0303
 	waitbutton
 	end
 ; 0x6e11d

@@ -19,7 +19,7 @@ UnknownScript_0x7673b: ; 0x7673b
 ; 0x7673c
 
 UnknownScript_0x7673c: ; 0x7673c
-	checkbit1 $072f
+	checkevent $072f
 	iftrue UnknownScript_0x76766
 	applymovement $3, MovementData_0x76876
 	moveperson $2, $1e, $6
@@ -30,7 +30,7 @@ UnknownScript_0x7673c: ; 0x7673c
 ; 0x76751
 
 UnknownScript_0x76751: ; 0x76751
-	checkbit1 $072e
+	checkevent $072e
 	iftrue UnknownScript_0x76766
 	applymovement $2, MovementData_0x76871
 	moveperson $3, $1f, $6
@@ -47,17 +47,17 @@ UnknownScript_0x76766: ; 0x76766
 SailorScript_0x76767: ; 0x76767
 	faceplayer
 	loadfont
-	checkbit1 $0030
+	checkevent $0030
 	iftrue UnknownScript_0x767a0
-	checkbit1 $0033
+	checkevent $0033
 	iftrue UnknownScript_0x7678d
-	checkbit1 $0034
+	checkevent $0034
 	iftrue UnknownScript_0x76787
 	2writetext UnknownText_0x7687b
 	closetext
 	loadmovesprites
-	setbit1 $0034
-	clearbit1 $072d
+	setevent $0034
+	clearevent $072d
 	end
 ; 0x76787
 
@@ -70,7 +70,7 @@ UnknownScript_0x76787: ; 0x76787
 
 UnknownScript_0x7678d: ; 0x7678d
 	2writetext UnknownText_0x7692e
-	checkbit1 $0032
+	checkevent $0032
 	iffalse UnknownScript_0x76799
 	closetext
 	loadmovesprites

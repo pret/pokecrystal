@@ -9,7 +9,7 @@ RadioTower1F_MapScriptHeader: ; 0x5cd27
 ReceptionistScript_0x5cd29: ; 0x5cd29
 	faceplayer
 	loadfont
-	checkbit2 $0013
+	checkflag $0013
 	iftrue UnknownScript_0x5cd37
 	2writetext UnknownText_0x5ce77
 	closetext
@@ -34,7 +34,7 @@ GentlemanScript_0x5cd3d: ; 0x5cd3d
 	special $0054
 UnknownScript_0x5cd4c: ; 0x5cd4c
 	special $0055
-	checkbit2 $004e
+	checkflag $004e
 	iftrue UnknownScript_0x5cd84
 	2writetext UnknownText_0x5cf3a
 	keeptextopen
@@ -73,7 +73,7 @@ UnknownScript_0x5cd8a: ; 0x5cd8a
 	giveitem MASTER_BALL, $1
 	iffalse UnknownScript_0x5cdcf
 	itemnotify
-	setbit2 $004e
+	setflag $004e
 	2jump UnknownScript_0x5cd84
 ; 0x5cd9f
 
@@ -85,7 +85,7 @@ UnknownScript_0x5cd9f: ; 0x5cd9f
 	giveitem EXP_SHARE, $1
 	iffalse UnknownScript_0x5cdcf
 	itemnotify
-	setbit2 $004e
+	setflag $004e
 	2jump UnknownScript_0x5cd84
 ; 0x5cdb4
 
@@ -97,7 +97,7 @@ UnknownScript_0x5cdb4: ; 0x5cdb4
 	giveitem PP_UP, $1
 	iffalse UnknownScript_0x5cdcf
 	itemnotify
-	setbit2 $004e
+	setflag $004e
 	2jump UnknownScript_0x5cd84
 ; 0x5cdc9
 
@@ -118,7 +118,7 @@ UnknownScript_0x5cdcf: ; 0x5cdcf
 CooltrainerFScript_0x5cdd5: ; 0x5cdd5
 	faceplayer
 	loadfont
-	checkbit2 $0000
+	checkflag $0000
 	iftrue UnknownScript_0x5ce2d
 	2writetext UnknownText_0x5d12d
 	yesorno
@@ -154,7 +154,7 @@ CooltrainerFScript_0x5cdd5: ; 0x5cdd5
 	2call UnknownScript_0x5ce3e
 	2writetext UnknownText_0x5d3c0
 	keeptextopen
-	setbit2 $0000
+	setflag $0000
 UnknownScript_0x5ce2d: ; 0x5ce2d
 	2writetext UnknownText_0x5d3e5
 	closetext

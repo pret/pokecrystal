@@ -9,9 +9,9 @@ MountMortarB1F_MapScriptHeader: ; 0x7e1f4
 BlackBeltScript_0x7e1f6: ; 0x7e1f6
 	faceplayer
 	loadfont
-	checkbit1 EVENT_GOT_TYROGUE_FROM_KIYO
+	checkevent EVENT_GOT_TYROGUE_FROM_KIYO
 	iftrue UnknownScript_0x7e231
-	checkbit1 $04a9
+	checkevent $04a9
 	iftrue UnknownScript_0x7e217
 	2writetext UnknownText_0x7e24d
 	closetext
@@ -20,7 +20,7 @@ BlackBeltScript_0x7e1f6: ; 0x7e1f6
 	loadtrainer BLACKBELT_T, KIYO
 	startbattle
 	returnafterbattle
-	setbit1 $04a9
+	setevent $04a9
 	loadfont
 UnknownScript_0x7e217: ; 0x7e217
 	2writetext UnknownText_0x7e2c0
@@ -32,7 +32,7 @@ UnknownScript_0x7e217: ; 0x7e217
 	playsound $0002
 	waitbutton
 	givepoke TYROGUE, 10, 0, 0
-	setbit1 EVENT_GOT_TYROGUE_FROM_KIYO
+	setevent EVENT_GOT_TYROGUE_FROM_KIYO
 UnknownScript_0x7e231: ; 0x7e231
 	2writetext UnknownText_0x7e36a
 	closetext

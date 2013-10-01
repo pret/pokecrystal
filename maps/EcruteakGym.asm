@@ -22,7 +22,7 @@ UnknownScript_0x99d57: ; 0x99d57
 MortyScript_0x99d58: ; 0x99d58
 	faceplayer
 	loadfont
-	checkbit1 EVENT_BEAT_MORTY
+	checkevent EVENT_BEAT_MORTY
 	iftrue UnknownScript_0x99d8c
 	2writetext UnknownText_0x99e65
 	closetext
@@ -31,29 +31,29 @@ MortyScript_0x99d58: ; 0x99d58
 	loadtrainer MORTY, 1
 	startbattle
 	returnafterbattle
-	setbit1 EVENT_BEAT_MORTY
+	setevent EVENT_BEAT_MORTY
 	loadfont
 	2writetext UnknownText_0x9a043
 	playsound $009c
 	waitbutton
-	setbit2 $001e
+	setflag $001e
 	checkcode $7
 	2call UnknownScript_0x99db7
 	domaptrigger GROUP_ECRUTEAK_HOUSE, MAP_ECRUTEAK_HOUSE, $1
-	setbit1 $0766
-	setbit1 $0767
+	setevent $0766
+	setevent $0767
 UnknownScript_0x99d8c: ; 0x99d8c	
-	checkbit1 EVENT_GOT_TM30_SHADOW_BALL
+	checkevent EVENT_GOT_TM30_SHADOW_BALL
 	iftrue UnknownScript_0x99db1
-	setbit1 EVENT_BEAT_SAGE_JEFFREY
-	setbit1 EVENT_BEAT_SAGE_PING
-	setbit1 EVENT_BEAT_MEDIUM_MARTHA
-	setbit1 EVENT_BEAT_MEDIUM_GRACE
+	setevent EVENT_BEAT_SAGE_JEFFREY
+	setevent EVENT_BEAT_SAGE_PING
+	setevent EVENT_BEAT_MEDIUM_MARTHA
+	setevent EVENT_BEAT_MEDIUM_GRACE
 	2writetext UnknownText_0x9a059
 	keeptextopen
 	verbosegiveitem TM_30, 1
 	iffalse UnknownScript_0x99db5
-	setbit1 EVENT_GOT_TM30_SHADOW_BALL
+	setevent EVENT_GOT_TM30_SHADOW_BALL
 	2writetext UnknownText_0x9a0ec
 	closetext
 	loadmovesprites
@@ -218,7 +218,7 @@ MediumGraceScript: ; 0x99e31
 EcruteakGymGuyScript: ; 0x99e39
 	faceplayer
 	loadfont
-	checkbit1 EVENT_BEAT_MORTY
+	checkevent EVENT_BEAT_MORTY
 	iftrue .EcruteakGymGuyWinScript
 	2writetext EcruteakGymGuyText
 	closetext
@@ -233,7 +233,7 @@ EcruteakGymGuyScript: ; 0x99e39
 ; 0x99e4d
 
 MapEcruteakGymSignpost1Script: ; 0x99e4d
-	checkbit2 $001e
+	checkflag $001e
 	iftrue UnknownScript_0x99e56
 	jumpstd $002d
 ; 0x99e56

@@ -11,7 +11,7 @@ FuchsiaCity_MapScriptHeader: ; 0x194b19
 ; 0x194b1e
 
 UnknownScript_0x194b1e: ; 0x194b1e
-	setbit2 $003e
+	setflag $003e
 	return
 ; 0x194b22
 

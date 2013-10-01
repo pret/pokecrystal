@@ -19,14 +19,14 @@ UnknownScript_0x7a4d7: ; 0x7a4d7
 ; 0x7a4d8
 
 UnknownScript_0x7a4d8: ; 0x7a4d8
-	setbit1 $0000
+	setevent $0000
 ; 0x7a4db
 
 UnknownScript_0x7a4db: ; 0x7a4db
 	playmusic $004e
 	showemote $0, $2, 15
 	spriteface $0, $2
-	checkbit1 $0000
+	checkevent $0000
 	iffalse UnknownScript_0x7a4f2
 	applymovement $2, MovementData_0x7a5fc
 	2jump UnknownScript_0x7a4f6
@@ -40,12 +40,12 @@ UnknownScript_0x7a4f6: ; 0x7a4f6
 	keeptextopen
 	stringtotext GearName, $1
 	2call UnknownScript_0x7a57e
-	setbit2 $0004
-	setbit2 $0002
+	setflag $0004
+	setflag $0002
 	addcellnum $1
 	dotrigger $1
-	setbit1 $06c7
-	clearbit1 $06c8
+	setevent $06c7
+	clearevent $06c8
 	2writetext UnknownText_0x7a6bd
 	keeptextopen
 	special $0025
@@ -86,9 +86,9 @@ UnknownScript_0x7a549: ; 0x7a549
 	2writetext UnknownText_0x7a850
 	closetext
 	loadmovesprites
-	checkbit1 $0000
+	checkevent $0000
 	iftrue UnknownScript_0x7a55d
-	checkbit1 $0001
+	checkevent $0001
 	iffalse UnknownScript_0x7a564
 	2jump UnknownScript_0x7a56b
 ; 0x7a55d
@@ -125,17 +125,17 @@ UnknownScript_0x7a57e: ; 0x7a57e
 
 MomScript_0x7a582: ; 0x7a582
 	faceplayer
-	setbit1 $0001
+	setevent $0001
 	checktriggers
 	iffalse UnknownScript_0x7a572
 	loadfont
-	checkbit1 $0076
+	checkevent $0076
 	iftrue UnknownScript_0x7a5af
-	checkbit1 EVENT_TALKED_TO_MOM_AFTER_MYSTERY_EGG_QUEST
+	checkevent EVENT_TALKED_TO_MOM_AFTER_MYSTERY_EGG_QUEST
 	iftrue UnknownScript_0x7a5b8
-	checkbit1 EVENT_GAVE_MYSTERY_EGG_TO_ELM
+	checkevent EVENT_GAVE_MYSTERY_EGG_TO_ELM
 	iftrue UnknownScript_0x7a5b5
-	checkbit1 EVENT_GOT_A_POKEMON_FROM_ELM
+	checkevent EVENT_GOT_A_POKEMON_FROM_ELM
 	iftrue UnknownScript_0x7a5a9
 	2writetext UnknownText_0x7a8b5
 	closetext
@@ -158,9 +158,9 @@ UnknownScript_0x7a5af: ; 0x7a5af
 ; 0x7a5b5
 
 UnknownScript_0x7a5b5: ; 0x7a5b5
-	setbit1 $0076
+	setevent $0076
 UnknownScript_0x7a5b8: ; 0x7a5b8
-	setbit1 EVENT_TALKED_TO_MOM_AFTER_MYSTERY_EGG_QUEST
+	setevent EVENT_TALKED_TO_MOM_AFTER_MYSTERY_EGG_QUEST
 	special $0022
 	closetext
 	loadmovesprites

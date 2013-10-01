@@ -11,7 +11,7 @@ CeladonCity_MapScriptHeader: ; 0x1a9f3a
 ; 0x1a9f3f
 
 UnknownScript_0x1a9f3f: ; 0x1a9f3f
-	setbit2 $003d
+	setflag $003d
 	return
 ; 0x1a9f43
 

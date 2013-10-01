@@ -11,7 +11,7 @@ LavenderTown_MapScriptHeader: ; 0x1ad6db
 ; 0x1ad6e0
 
 UnknownScript_0x1ad6e0: ; 0x1ad6e0
-	setbit2 $003b
+	setflag $003b
 	return
 ; 0x1ad6e4
 

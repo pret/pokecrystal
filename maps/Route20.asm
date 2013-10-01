@@ -11,7 +11,7 @@ Route20_MapScriptHeader: ; 0x1acd20
 ; 0x1acd25
 
 UnknownScript_0x1acd25: ; 0x1acd25
-	setbit1 $00d7
+	setevent $00d7
 	return
 ; 0x1acd29
 

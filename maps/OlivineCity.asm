@@ -23,7 +23,7 @@ UnknownScript_0x1a882e: ; 0x1a882e
 ; 0x1a882f
 
 UnknownScript_0x1a882f: ; 0x1a882f
-	setbit2 $0047
+	setflag $0047
 	return
 ; 0x1a8833
 

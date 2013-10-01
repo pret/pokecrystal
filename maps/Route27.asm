@@ -98,17 +98,17 @@ Bird_keeperJose2Script: ; 0x1a08bf
 	writecode $17, $d
 	talkaftercancel
 	loadfont
-	checkbit2 $0069
+	checkflag $0069
 	iftrue UnknownScript_0x1a08ff
-	checkbit2 $007e
+	checkflag $007e
 	iftrue UnknownScript_0x1a0945
 	checkcellnum $d
 	iftrue UnknownScript_0x1a0963
-	checkbit1 $026f
+	checkevent $026f
 	iftrue UnknownScript_0x1a08e8
 	2writetext UnknownText_0x1a0e42
 	keeptextopen
-	setbit1 $026f
+	setevent $026f
 	2call UnknownScript_0x1a0957
 	2jump UnknownScript_0x1a08eb
 ; 0x1a08e8
@@ -132,17 +132,17 @@ UnknownScript_0x1a08ff: ; 0x1a08ff
 	if_equal $1, UnknownScript_0x1a091c
 	if_equal $0, UnknownScript_0x1a0922
 UnknownScript_0x1a0916: ; 0x1a0916
-	checkbit1 EVENT_RESTORED_POWER_TO_KANTO
+	checkevent EVENT_RESTORED_POWER_TO_KANTO
 	iftrue UnknownScript_0x1a093c
 UnknownScript_0x1a091c: ; 0x1a091c
-	checkbit1 $0044
+	checkevent $0044
 	iftrue UnknownScript_0x1a092f
 UnknownScript_0x1a0922: ; 0x1a0922
 	loadtrainer BIRD_KEEPER, JOSE2
 	startbattle
 	returnafterbattle
 	loadvar $d9f7, $1
-	clearbit2 $0069
+	clearflag $0069
 	end
 ; 0x1a092f
 
@@ -151,7 +151,7 @@ UnknownScript_0x1a092f: ; 0x1a092f
 	startbattle
 	returnafterbattle
 	loadvar $d9f7, $2
-	clearbit2 $0069
+	clearflag $0069
 	end
 ; 0x1a093c
 
@@ -159,7 +159,7 @@ UnknownScript_0x1a093c: ; 0x1a093c
 	loadtrainer BIRD_KEEPER, JOSE3
 	startbattle
 	returnafterbattle
-	clearbit2 $0069
+	clearflag $0069
 	end
 ; 0x1a0945
 
@@ -167,7 +167,7 @@ UnknownScript_0x1a0945: ; 0x1a0945
 	2call UnknownScript_0x1a0973
 	verbosegiveitem STAR_PIECE, 1
 	iffalse UnknownScript_0x1a0954
-	clearbit2 $007e
+	clearflag $007e
 	2jump UnknownScript_0x1a0963
 ; 0x1a0954
 
@@ -302,15 +302,15 @@ CooltrainerfReena1Script: ; 0x1a09af
 	writecode $17, $e
 	talkaftercancel
 	loadfont
-	checkbit2 $006a
+	checkflag $006a
 	iftrue UnknownScript_0x1a09e9
 	checkcellnum $e
 	iftrue UnknownScript_0x1a0a3b
-	checkbit1 $0271
+	checkevent $0271
 	iftrue UnknownScript_0x1a09d2
 	2writetext UnknownText_0x1a0c35
 	keeptextopen
-	setbit1 $0271
+	setevent $0271
 	2call UnknownScript_0x1a0a2f
 	2jump UnknownScript_0x1a09d5
 ; 0x1a09d2
@@ -334,17 +334,17 @@ UnknownScript_0x1a09e9: ; 0x1a09e9
 	if_equal $1, UnknownScript_0x1a0a06
 	if_equal $0, UnknownScript_0x1a0a0c
 UnknownScript_0x1a0a00: ; 0x1a0a00
-	checkbit1 EVENT_RESTORED_POWER_TO_KANTO
+	checkevent EVENT_RESTORED_POWER_TO_KANTO
 	iftrue UnknownScript_0x1a0a26
 UnknownScript_0x1a0a06: ; 0x1a0a06
-	checkbit1 $0044
+	checkevent $0044
 	iftrue UnknownScript_0x1a0a19
 UnknownScript_0x1a0a0c: ; 0x1a0a0c
 	loadtrainer COOLTRAINERF, REENA1
 	startbattle
 	returnafterbattle
 	loadvar $d9f8, $1
-	clearbit2 $006a
+	clearflag $006a
 	end
 ; 0x1a0a19
 
@@ -353,7 +353,7 @@ UnknownScript_0x1a0a19: ; 0x1a0a19
 	startbattle
 	returnafterbattle
 	loadvar $d9f8, $2
-	clearbit2 $006a
+	clearflag $006a
 	end
 ; 0x1a0a26
 
@@ -361,7 +361,7 @@ UnknownScript_0x1a0a26: ; 0x1a0a26
 	loadtrainer COOLTRAINERF, REENA3
 	startbattle
 	returnafterbattle
-	clearbit2 $006a
+	clearflag $006a
 	end
 ; 0x1a0a2f
 

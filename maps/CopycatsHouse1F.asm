@@ -13,7 +13,7 @@ PokefanMScript_0x18ad13: ; 0x18ad13
 PokefanFScript_0x18ad16: ; 0x18ad16
 	faceplayer
 	loadfont
-	checkbit1 EVENT_RETURNED_MACHINE_PART
+	checkevent EVENT_RETURNED_MACHINE_PART
 	iftrue UnknownScript_0x18ad24
 	2writetext UnknownText_0x18ad95
 	closetext

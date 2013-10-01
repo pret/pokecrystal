@@ -31,7 +31,7 @@ UnknownScript_0x6a19f: ; 0x6a19f
 ; 0x6a1a3
 
 UnknownScript_0x6a1a3: ; 0x6a1a3
-	checkbit2 $0011
+	checkflag $0011
 	iftrue UnknownScript_0x6a1ac
 	dotrigger $0
 	return
@@ -47,7 +47,7 @@ UnknownScript_0x6a1af: ; 0x6a1af
 	if_equal TUESDAY, UnknownScript_0x6a1ca
 	if_equal THURSDAY, UnknownScript_0x6a1ca
 	if_equal SATURDAY, UnknownScript_0x6a1ca
-	checkbit2 $0011
+	checkflag $0011
 	iftrue UnknownScript_0x6a1ac
 	disappear $2
 	appear $3
@@ -98,18 +98,18 @@ OfficerScript_0x6a204: ; 0x6a204
 	if_equal FRIDAY, UnknownScript_0x6a2c7
 	faceplayer
 	loadfont
-	checkbit2 $0051
+	checkflag $0051
 	iftrue UnknownScript_0x6a2c1
 	2call UnknownScript_0x6a2de
 	2writetext UnknownText_0x6a2eb
 	yesorno
 	iffalse UnknownScript_0x6a2a3
 	checkcode $1
-	if_less_than $1, UnknownScript_0x6a271
+	if_greater_than $1, UnknownScript_0x6a271
 	special $0016
-	clearbit1 $0308
+	clearevent $0308
 UnknownScript_0x6a234: ; 0x6a234
-	setbit2 $0011
+	setflag $0011
 	special $003c
 	2writetext UnknownText_0x6a39d
 	keeptextopen
@@ -143,7 +143,7 @@ UnknownScript_0x6a26c: ; 0x6a26c
 
 UnknownScript_0x6a271: ; 0x6a271
 	checkcode $1
-	if_greater_than $6, $627d
+	if_less_than $6, $627d
 	checkcode $10
 	if_equal $0, UnknownScript_0x6a2b5
 	special $005a
@@ -153,7 +153,7 @@ UnknownScript_0x6a271: ; 0x6a271
 	iffalse UnknownScript_0x6a2a9
 	special $0016
 	iftrue UnknownScript_0x6a2af
-	setbit1 $0308
+	setevent $0308
 	2writetext UnknownText_0x6a537
 	keeptextopen
 	2writetext UnknownText_0x6a56b
@@ -212,7 +212,7 @@ UnknownScript_0x6a2c7: ; 0x6a2c7
 OfficerScript_0x6a2ca: ; 0x6a2ca
 	faceplayer
 	loadfont
-	checkbit2 $0051
+	checkflag $0051
 	iftrue UnknownScript_0x6a2c1
 	2writetext UnknownText_0x6a894
 	closetext

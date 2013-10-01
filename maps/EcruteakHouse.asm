@@ -23,19 +23,19 @@ UnknownScript_0x9800e: ; 0x9800e
 ; 0x9800f
 
 UnknownScript_0x9800f: ; 0x9800f
-	checkbit1 EVENT_FOUGHT_SUICUNE
+	checkevent EVENT_FOUGHT_SUICUNE
 	iftrue UnknownScript_0x98033
-	checkbit1 EVENT_KOJI_ALLOWS_YOU_PASSAGE_TO_TIN_TOWER
+	checkevent EVENT_KOJI_ALLOWS_YOU_PASSAGE_TO_TIN_TOWER
 	iftrue UnknownScript_0x98033
-	checkbit1 EVENT_CLEARED_RADIO_TOWER
+	checkevent EVENT_CLEARED_RADIO_TOWER
 	iftrue UnknownScript_0x98022
 	return
 ; 0x98022
 
 UnknownScript_0x98022: ; 0x98022
-	clearbit1 $0766
-	setbit1 $0767
-	setbit1 $07b1
+	clearevent $0766
+	setevent $0767
+	setevent $07b1
 	checkitem CLEAR_BELL
 	iftrue UnknownScript_0x98032
 	dotrigger $0
@@ -44,12 +44,12 @@ UnknownScript_0x98032: ; 0x98032
 ; 0x98033
 
 UnknownScript_0x98033: ; 0x98033
-	clearbit1 $07b1
+	clearevent $07b1
 	return
 ; 0x98037
 
 UnknownScript_0x98037: ; 0x98037
-	checkbit1 $0767
+	checkevent $0767
 	iftrue UnknownScript_0x98061
 	applymovement $3, MovementData_0x980c7
 	moveperson $2, $4, $6
@@ -60,7 +60,7 @@ UnknownScript_0x98037: ; 0x98037
 ; 0x9804c
 
 UnknownScript_0x9804c: ; 0x9804c
-	checkbit1 $0766
+	checkevent $0766
 	iftrue UnknownScript_0x98061
 	applymovement $2, MovementData_0x980cc
 	moveperson $3, $5, $6
@@ -77,9 +77,9 @@ UnknownScript_0x98061: ; 0x98061
 SageScript_0x98062: ; 0x98062
 	faceplayer
 	loadfont
-	checkbit1 EVENT_CLEARED_RADIO_TOWER
+	checkevent EVENT_CLEARED_RADIO_TOWER
 	iftrue UnknownScript_0x9807c
-	checkbit2 $001e
+	checkflag $001e
 	iftrue UnknownScript_0x98076
 	2writetext UnknownText_0x980d1
 	closetext
@@ -95,9 +95,9 @@ UnknownScript_0x98076: ; 0x98076
 ; 0x9807c
 
 UnknownScript_0x9807c: ; 0x9807c
-	checkbit1 EVENT_KOJI_ALLOWS_YOU_PASSAGE_TO_TIN_TOWER
+	checkevent EVENT_KOJI_ALLOWS_YOU_PASSAGE_TO_TIN_TOWER
 	iftrue UnknownScript_0x980a4
-	checkbit1 $0000
+	checkevent $0000
 	iftrue UnknownScript_0x980aa
 	checkitem CLEAR_BELL
 	iftrue UnknownScript_0x98093
@@ -112,9 +112,9 @@ UnknownScript_0x98093: ; 0x98093
 	closetext
 	loadmovesprites
 	dotrigger $1
-	setbit1 $0767
-	clearbit1 $0766
-	setbit1 $0000
+	setevent $0767
+	clearevent $0766
+	setevent $0000
 	end
 ; 0x980a4
 
@@ -135,7 +135,7 @@ UnknownScript_0x980aa: ; 0x980aa
 SageScript_0x980b0: ; 0x980b0
 	faceplayer
 	loadfont
-	checkbit1 EVENT_GOT_CLEAR_BELL
+	checkevent EVENT_GOT_CLEAR_BELL
 	iftrue UnknownScript_0x980be
 	2writetext UnknownText_0x9840b
 	closetext

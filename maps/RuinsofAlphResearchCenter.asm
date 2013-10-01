@@ -55,7 +55,7 @@ UnknownScript_0x59192: ; 0x59192
 	2writetext UnknownText_0x592fa
 	playsound $0001
 	waitbutton
-	setbit2 $000c
+	setflag $000c
 	2writetext UnknownText_0x59311
 	closetext
 	loadmovesprites
@@ -88,9 +88,9 @@ ScientistScript_0x591e5: ; 0x591e5
 	loadfont
 	checkcode $e
 	if_equal 26, UnknownScript_0x5920b
-	checkbit2 $000c
+	checkflag $000c
 	iftrue UnknownScript_0x59205
-	checkbit1 EVENT_MADE_UNOWN_APPEAR_IN_RUINS
+	checkevent EVENT_MADE_UNOWN_APPEAR_IN_RUINS
 	iftrue UnknownScript_0x591ff
 	2writetext UnknownText_0x593ed
 	closetext
@@ -116,7 +116,7 @@ UnknownScript_0x5920b: ; 0x5920b
 	2writetext UnknownText_0x594cb
 	closetext
 	loadmovesprites
-	clearbit1 $078f
+	clearevent $078f
 	end
 ; 0x59214
 
@@ -125,7 +125,7 @@ ScientistScript_0x59214: ; 0x59214
 	loadfont
 	checkcode $e
 	if_equal 26, UnknownScript_0x5922e
-	checkbit1 EVENT_MADE_UNOWN_APPEAR_IN_RUINS
+	checkevent EVENT_MADE_UNOWN_APPEAR_IN_RUINS
 	iftrue UnknownScript_0x59228
 	2writetext UnknownText_0x5954f
 	closetext
@@ -149,7 +149,7 @@ UnknownScript_0x5922e: ; 0x5922e
 
 MapRuinsofAlphResearchCenterSignpost1Script: ; 0x59234
 	loadfont
-	checkbit1 $0704
+	checkevent $0704
 	iftrue UnknownScript_0x59241
 	checkcode $e
 	if_equal 26, UnknownScript_0x59247
@@ -169,7 +169,7 @@ UnknownScript_0x59247: ; 0x59247
 
 MapRuinsofAlphResearchCenterSignpost2Script: ; 0x5924d
 	loadfont
-	checkbit1 $0704
+	checkevent $0704
 	iftrue UnknownScript_0x5925a
 	checkcode $e
 	if_equal 26, UnknownScript_0x59260

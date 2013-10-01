@@ -9,13 +9,13 @@ MrPsychicsHouse_MapScriptHeader: ; 0x18a778
 FishingGuruScript_0x18a77a: ; 0x18a77a
 	faceplayer
 	loadfont
-	checkbit1 EVENT_GOT_TM29_PSYCHIC
+	checkevent EVENT_GOT_TM29_PSYCHIC
 	iftrue UnknownScript_0x18a78f
 	2writetext UnknownText_0x18a798
 	keeptextopen
 	verbosegiveitem TM_29, 1
 	iffalse UnknownScript_0x18a793
-	setbit1 EVENT_GOT_TM29_PSYCHIC
+	setevent EVENT_GOT_TM29_PSYCHIC
 UnknownScript_0x18a78f: ; 0x18a78f
 	2writetext UnknownText_0x18a7bb
 	closetext

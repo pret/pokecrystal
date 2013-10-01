@@ -11,7 +11,7 @@ VioletCity_MapScriptHeader: ; 0x1a83b2
 ; 0x1a83b7
 
 UnknownScript_0x1a83b7: ; 0x1a83b7
-	setbit2 $0043
+	setflag $0043
 	return
 ; 0x1a83bb
 
@@ -51,7 +51,7 @@ UnknownScript_0x1a83d1: ; 0x1a83d1
 	applymovement $2, MovementData_0x1a8463
 	playsound $001f
 	disappear $2
-	clearbit1 $06cb
+	clearevent $06cb
 	waitbutton
 	end
 ; 0x1a8403

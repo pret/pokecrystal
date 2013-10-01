@@ -11,7 +11,7 @@ PewterCity_MapScriptHeader: ; 0x18c000
 ; 0x18c005
 
 UnknownScript_0x18c005: ; 0x18c005
-	setbit2 $0037
+	setflag $0037
 	return
 ; 0x18c009
 
@@ -26,12 +26,12 @@ BugCatcherScript_0x18c00c: ; 0x18c00c
 GrampsScript_0x18c00f: ; 0x18c00f
 	faceplayer
 	loadfont
-	checkbit1 EVENT_GOT_SILVER_WING
+	checkevent EVENT_GOT_SILVER_WING
 	iftrue UnknownScript_0x18c023
 	2writetext UnknownText_0x18c0c6
 	keeptextopen
 	verbosegiveitem SILVER_WING, 1
-	setbit1 EVENT_GOT_SILVER_WING
+	setevent EVENT_GOT_SILVER_WING
 	loadmovesprites
 	end
 ; 0x18c023

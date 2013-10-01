@@ -11,7 +11,7 @@ Route31_MapScriptHeader: ; 0x1a5437
 ; 0x1a543c
 
 UnknownScript_0x1a543c: ; 0x1a543c
-	checkbit1 EVENT_TALKED_TO_MOM_AFTER_MYSTERY_EGG_QUEST
+	checkevent EVENT_TALKED_TO_MOM_AFTER_MYSTERY_EGG_QUEST
 	iffalse UnknownScript_0x1a5443
 	return
 ; 0x1a5443
@@ -45,17 +45,17 @@ Bug_catcherWade1Script: ; 0x1a5453
 	writecode $17, $10
 	talkaftercancel
 	loadfont
-	checkbit2 $006c
+	checkflag $006c
 	iftrue UnknownScript_0x1a5493
-	checkbit2 $007f
+	checkflag $007f
 	iftrue UnknownScript_0x1a5507
 	checkcellnum $10
 	iftrue UnknownScript_0x1a5558
-	checkbit1 $0275
+	checkevent $0275
 	iftrue UnknownScript_0x1a547c
 	2writetext UnknownText_0x1a5671
 	closetext
-	setbit1 $0275
+	setevent $0275
 	2call UnknownScript_0x1a554c
 	2jump UnknownScript_0x1a547f
 ; 0x1a547c
@@ -81,23 +81,23 @@ UnknownScript_0x1a5493: ; 0x1a5493
 	if_equal $1, UnknownScript_0x1a54c4
 	if_equal $0, UnknownScript_0x1a54ca
 UnknownScript_0x1a54b2: ; 0x1a54b2
-	checkbit1 $0044
+	checkevent $0044
 	iftrue UnknownScript_0x1a54fe
 UnknownScript_0x1a54b8: ; 0x1a54b8
-	checkbit1 EVENT_CLEARED_RADIO_TOWER
+	checkevent EVENT_CLEARED_RADIO_TOWER
 	iftrue UnknownScript_0x1a54f1
 UnknownScript_0x1a54be: ; 0x1a54be
-	checkbit2 $0049
+	checkflag $0049
 	iftrue UnknownScript_0x1a54e4
 UnknownScript_0x1a54c4: ; 0x1a54c4
-	checkbit2 $0046
+	checkflag $0046
 	iftrue UnknownScript_0x1a54d7
 UnknownScript_0x1a54ca: ; 0x1a54ca
 	loadtrainer BUG_CATCHER, WADE1
 	startbattle
 	returnafterbattle
 	loadvar $d9fa, $1
-	clearbit2 $006c
+	clearflag $006c
 	end
 ; 0x1a54d7
 
@@ -106,7 +106,7 @@ UnknownScript_0x1a54d7: ; 0x1a54d7
 	startbattle
 	returnafterbattle
 	loadvar $d9fa, $2
-	clearbit2 $006c
+	clearflag $006c
 	end
 ; 0x1a54e4
 
@@ -115,7 +115,7 @@ UnknownScript_0x1a54e4: ; 0x1a54e4
 	startbattle
 	returnafterbattle
 	loadvar $d9fa, $3
-	clearbit2 $006c
+	clearflag $006c
 	end
 ; 0x1a54f1
 
@@ -124,7 +124,7 @@ UnknownScript_0x1a54f1: ; 0x1a54f1
 	startbattle
 	returnafterbattle
 	loadvar $d9fa, $4
-	clearbit2 $006c
+	clearflag $006c
 	end
 ; 0x1a54fe
 
@@ -132,19 +132,19 @@ UnknownScript_0x1a54fe: ; 0x1a54fe
 	loadtrainer BUG_CATCHER, WADE5
 	startbattle
 	returnafterbattle
-	clearbit2 $006c
+	clearflag $006c
 	end
 ; 0x1a5507
 
 UnknownScript_0x1a5507: ; 0x1a5507
 	2call UnknownScript_0x1a5568
-	checkbit1 EVENT_WADE_HAS_BERRY
+	checkevent EVENT_WADE_HAS_BERRY
 	iftrue UnknownScript_0x1a5522
-	checkbit1 EVENT_WADE_HAS_PSNCUREBERRY
+	checkevent EVENT_WADE_HAS_PSNCUREBERRY
 	iftrue UnknownScript_0x1a552b
-	checkbit1 EVENT_WADE_HAS_PRZCUREBERRY
+	checkevent EVENT_WADE_HAS_PRZCUREBERRY
 	iftrue UnknownScript_0x1a5534
-	checkbit1 EVENT_WADE_HAS_BITTER_BERRY
+	checkevent EVENT_WADE_HAS_BITTER_BERRY
 	iftrue UnknownScript_0x1a553d
 UnknownScript_0x1a5522: ; 0x1a5522
 	verbosegiveitem BERRY, 1
@@ -168,7 +168,7 @@ UnknownScript_0x1a553d: ; 0x1a553d
 	verbosegiveitem BITTER_BERRY, 1
 	iffalse UnknownScript_0x1a5549
 UnknownScript_0x1a5543: ; 0x1a5543
-	clearbit2 $007f
+	clearflag $007f
 	2jump UnknownScript_0x1a5558
 ; 0x1a5549
 
@@ -224,9 +224,9 @@ UnknownScript_0x1a556c: ; 0x1a556c
 FisherScript_0x1a5570: ; 0x1a5570
 	faceplayer
 	loadfont
-	checkbit1 EVENT_GOT_TM50_NIGHTMARE
+	checkevent EVENT_GOT_TM50_NIGHTMARE
 	iftrue UnknownScript_0x1a55af
-	checkbit1 EVENT_GOT_KENYA
+	checkevent EVENT_GOT_KENYA
 	iftrue UnknownScript_0x1a5584
 	2writetext UnknownText_0x1a56d9
 	closetext
@@ -246,10 +246,10 @@ UnknownScript_0x1a5584: ; 0x1a5584
 	keeptextopen
 	2writetext UnknownText_0x1a57ba
 	keeptextopen
-	setbit1 EVENT_GAVE_KENYA
+	setevent EVENT_GAVE_KENYA
 	verbosegiveitem TM_50, 1
 	iffalse UnknownScript_0x1a55b3
-	setbit1 EVENT_GOT_TM50_NIGHTMARE
+	setevent EVENT_GOT_TM50_NIGHTMARE
 UnknownScript_0x1a55af: ; 0x1a55af
 	2writetext UnknownText_0x1a5896
 	closetext

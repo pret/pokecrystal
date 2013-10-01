@@ -15,28 +15,28 @@ WarehouseEntrance_MapScriptHeader: ; 0x7c038
 ; 0x7c043
 
 UnknownScript_0x7c043: ; 0x7c043
-	clearbit1 EVENT_SWITCH_1
-	clearbit1 EVENT_SWITCH_2
-	clearbit1 EVENT_SWITCH_3
-	clearbit1 EVENT_EMERGENCY_SWITCH
-	clearbit1 EVENT_SWITCH_4
-	clearbit1 EVENT_SWITCH_5
-	clearbit1 EVENT_SWITCH_6
-	clearbit1 EVENT_SWITCH_7
-	clearbit1 EVENT_SWITCH_8
-	clearbit1 EVENT_SWITCH_9
-	clearbit1 EVENT_SWITCH_10
-	clearbit1 EVENT_SWITCH_11
-	clearbit1 EVENT_SWITCH_12
-	clearbit1 EVENT_SWITCH_13
-	clearbit1 EVENT_SWITCH_14
+	clearevent EVENT_SWITCH_1
+	clearevent EVENT_SWITCH_2
+	clearevent EVENT_SWITCH_3
+	clearevent EVENT_EMERGENCY_SWITCH
+	clearevent EVENT_SWITCH_4
+	clearevent EVENT_SWITCH_5
+	clearevent EVENT_SWITCH_6
+	clearevent EVENT_SWITCH_7
+	clearevent EVENT_SWITCH_8
+	clearevent EVENT_SWITCH_9
+	clearevent EVENT_SWITCH_10
+	clearevent EVENT_SWITCH_11
+	clearevent EVENT_SWITCH_12
+	clearevent EVENT_SWITCH_13
+	clearevent EVENT_SWITCH_14
 	writebyte $0
 	copyvartobyte UndergroundSwitchPositions
 	return
 ; 0x7c076
 
 UnknownScript_0x7c076: ; 0x7c076
-	checkbit1 EVENT_USED_BASEMENT_KEY
+	checkevent EVENT_USED_BASEMENT_KEY
 	iffalse UnknownScript_0x7c07d
 	return
 ; 0x7c07d
@@ -245,7 +245,7 @@ UnknownScript_0x7c140: ; 0x7c140
 
 GrampsScript_0x7c146: ; 0x7c146
 	loadfont
-	checkbit2 $0056
+	checkflag $0056
 	iftrue UnknownScript_0x7c300
 	checkcode $b
 	if_equal MONDAY, UnknownScript_0x7c156
@@ -270,7 +270,7 @@ SuperNerdScript_0x7c161: ; 0x7c161
 ; 0x7c173
 
 UnknownScript_0x7c173: ; 0x7c173
-	checkbit2 $005a
+	checkflag $005a
 	iftrue UnknownScript_0x7c208
 	special $0051
 	2writetext UnknownText_0x7c5f9
@@ -283,30 +283,30 @@ UnknownScript_0x7c173: ; 0x7c173
 	special $0061
 	if_equal $0, UnknownScript_0x7c1fc
 	if_equal $1, UnknownScript_0x7c1fc
-	setbit2 $005a
+	setflag $005a
 	if_equal $2, UnknownScript_0x7c1a9
 	if_equal $3, UnknownScript_0x7c1b5
 	2jump UnknownScript_0x7c1c1
 ; 0x7c1a9
 
 UnknownScript_0x7c1a9: ; 0x7c1a9
-	setbit1 $0000
-	clearbit1 $0001
-	clearbit1 $0002
+	setevent $0000
+	clearevent $0001
+	clearevent $0002
 	2jump UnknownScript_0x7c1cd
 ; 0x7c1b5
 
 UnknownScript_0x7c1b5: ; 0x7c1b5
-	clearbit1 $0000
-	setbit1 $0001
-	clearbit1 $0002
+	clearevent $0000
+	setevent $0001
+	clearevent $0002
 	2jump UnknownScript_0x7c1cd
 ; 0x7c1c1
 
 UnknownScript_0x7c1c1: ; 0x7c1c1
-	clearbit1 $0000
-	clearbit1 $0001
-	setbit1 $0002
+	clearevent $0000
+	clearevent $0001
+	setevent $0002
 	2jump UnknownScript_0x7c1cd
 ; 0x7c1cd
 
@@ -324,9 +324,9 @@ UnknownScript_0x7c1cd: ; 0x7c1cd
 	loadfont
 	2writetext UnknownText_0x7c6d8
 	closetext
-	checkbit1 $0000
+	checkevent $0000
 	iftrue UnknownScript_0x7c2bb
-	checkbit1 $0001
+	checkevent $0001
 	iftrue UnknownScript_0x7c2c4
 	2jump UnknownScript_0x7c2cd
 ; 0x7c1fc
@@ -362,7 +362,7 @@ SuperNerdScript_0x7c20e: ; 0x7c20e
 ; 0x7c220
 
 UnknownScript_0x7c220: ; 0x7c220
-	checkbit2 $005a
+	checkflag $005a
 	iftrue UnknownScript_0x7c2b5
 	special $0051
 	2writetext UnknownText_0x7c75c
@@ -375,30 +375,30 @@ UnknownScript_0x7c220: ; 0x7c220
 	special $0062
 	if_equal $0, UnknownScript_0x7c2a9
 	if_equal $1, UnknownScript_0x7c2a9
-	setbit2 $005a
+	setflag $005a
 	if_equal $2, UnknownScript_0x7c256
 	if_equal $3, UnknownScript_0x7c262
 	2jump UnknownScript_0x7c26e
 ; 0x7c256
 
 UnknownScript_0x7c256: ; 0x7c256
-	setbit1 $0000
-	clearbit1 $0001
-	clearbit1 $0002
+	setevent $0000
+	clearevent $0001
+	clearevent $0002
 	2jump UnknownScript_0x7c27a
 ; 0x7c262
 
 UnknownScript_0x7c262: ; 0x7c262
-	clearbit1 $0000
-	setbit1 $0001
-	clearbit1 $0002
+	clearevent $0000
+	setevent $0001
+	clearevent $0002
 	2jump UnknownScript_0x7c27a
 ; 0x7c26e
 
 UnknownScript_0x7c26e: ; 0x7c26e
-	clearbit1 $0000
-	clearbit1 $0001
-	setbit1 $0002
+	clearevent $0000
+	clearevent $0001
+	setevent $0002
 	2jump UnknownScript_0x7c27a
 ; 0x7c27a
 
@@ -416,9 +416,9 @@ UnknownScript_0x7c27a: ; 0x7c27a
 	loadfont
 	2writetext UnknownText_0x7c82a
 	closetext
-	checkbit1 $0000
+	checkevent $0000
 	iftrue UnknownScript_0x7c2bb
-	checkbit1 $0001
+	checkevent $0001
 	iftrue UnknownScript_0x7c2c4
 	2jump UnknownScript_0x7c2cd
 ; 0x7c2a9
@@ -470,7 +470,7 @@ UnknownScript_0x7c2cd: ; 0x7c2cd
 
 MapWarehouseEntranceSignpost0Script: ; 0x7c2d6
 	loadfont
-	checkbit1 EVENT_USED_BASEMENT_KEY
+	checkevent EVENT_USED_BASEMENT_KEY
 	iftrue UnknownScript_0x7c2fa
 	checkitem BASEMENT_KEY
 	iftrue UnknownScript_0x7c2e8
@@ -488,7 +488,7 @@ UnknownScript_0x7c2e8: ; 0x7c2e8
 	changeblock $12, $6, $2e
 	reloadmappart
 	loadmovesprites
-	setbit1 EVENT_USED_BASEMENT_KEY
+	setevent EVENT_USED_BASEMENT_KEY
 	end
 ; 0x7c2fa
 

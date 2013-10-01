@@ -9,12 +9,12 @@ Route27SandstormHouse_MapScriptHeader: ; 0x7b392
 GrannyScript_0x7b394: ; 0x7b394
 	faceplayer
 	loadfont
-	checkbit1 EVENT_GOT_TM37_SANDSTORM
+	checkevent EVENT_GOT_TM37_SANDSTORM
 	iftrue UnknownScript_0x7b3b7
 	special $0059
 	2writetext UnknownText_0x7b3c6
 	keeptextopen
-	if_less_than $95, UnknownScript_0x7b3aa
+	if_greater_than $95, UnknownScript_0x7b3aa
 	2jump UnknownScript_0x7b3bd
 ; 0x7b3aa
 
@@ -23,7 +23,7 @@ UnknownScript_0x7b3aa: ; 0x7b3aa
 	keeptextopen
 	verbosegiveitem TM_37, 1
 	iffalse UnknownScript_0x7b3bb
-	setbit1 EVENT_GOT_TM37_SANDSTORM
+	setevent EVENT_GOT_TM37_SANDSTORM
 UnknownScript_0x7b3b7: ; 0x7b3b7
 	2writetext UnknownText_0x7b48f
 	closetext

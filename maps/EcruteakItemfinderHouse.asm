@@ -9,7 +9,7 @@ EcruteakItemfinderHouse_MapScriptHeader: ; 0x9a5f9
 CooltrainerMScript_0x9a5fb: ; 0x9a5fb
 	faceplayer
 	loadfont
-	checkbit1 EVENT_GOT_ITEMFINDER
+	checkevent EVENT_GOT_ITEMFINDER
 	iftrue UnknownScript_0x9a614
 	2writetext UnknownText_0x9a63c
 	yesorno
@@ -17,7 +17,7 @@ CooltrainerMScript_0x9a5fb: ; 0x9a5fb
 	2writetext UnknownText_0x9a6b5
 	keeptextopen
 	verbosegiveitem ITEMFINDER, 1
-	setbit1 EVENT_GOT_ITEMFINDER
+	setevent EVENT_GOT_ITEMFINDER
 UnknownScript_0x9a614: ; 0x9a614
 	2writetext UnknownText_0x9a70e
 	closetext

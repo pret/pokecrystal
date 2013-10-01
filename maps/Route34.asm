@@ -11,40 +11,40 @@ Route34_MapScriptHeader: ; 0x78000
 ; 0x78005
 
 UnknownScript_0x78005: ; 0x78005
-	checkbit2 $0005
+	checkflag $0005
 	iftrue UnknownScript_0x78014
-	clearbit1 $06e5
-	setbit1 $06e6
+	clearevent $06e5
+	setevent $06e6
 	2jump UnknownScript_0x7801d
 ; 0x78014
 
 UnknownScript_0x78014: ; 0x78014
-	setbit1 $06e5
-	clearbit1 $06e6
+	setevent $06e5
+	clearevent $06e6
 	2jump UnknownScript_0x7801d
 ; 0x7801d
 
 UnknownScript_0x7801d: ; 0x7801d
-	checkbit2 $0006
+	checkflag $0006
 	iffalse UnknownScript_0x78029
-	clearbit1 $06e7
+	clearevent $06e7
 	2jump UnknownScript_0x7802f
 ; 0x78029
 
 UnknownScript_0x78029: ; 0x78029
-	setbit1 $06e7
+	setevent $06e7
 	2jump UnknownScript_0x7802f
 ; 0x7802f
 
 UnknownScript_0x7802f: ; 0x7802f
-	checkbit2 $0007
+	checkflag $0007
 	iffalse UnknownScript_0x78039
-	clearbit1 $06e8
+	clearevent $06e8
 	return
 ; 0x78039
 
 UnknownScript_0x78039: ; 0x78039
-	setbit1 $06e8
+	setevent $06e8
 	return
 ; 0x7803d
 
@@ -55,7 +55,7 @@ GrampsScript_0x7803d: ; 0x7803d
 	closetext
 	loadmovesprites
 	if_equal $1, UnknownScript_0x7805a
-	clearbit2 $0005
+	clearflag $0005
 	checkcode $9
 	if_equal $3, UnknownScript_0x7805b
 	applymovement $8, MovementData_0x78333
@@ -110,17 +110,17 @@ CamperTodd1Script: ; 0x7807d
 	writecode $17, $14
 	talkaftercancel
 	loadfont
-	checkbit2 $0070
+	checkflag $0070
 	iftrue UnknownScript_0x780bd
-	checkbit2 $0061
+	checkflag $0061
 	iftrue UnknownScript_0x78131
 	checkcellnum $14
 	iftrue UnknownScript_0x78143
-	checkbit1 $027d
+	checkevent $027d
 	iftrue UnknownScript_0x780a6
 	2writetext UnknownText_0x784f0
 	keeptextopen
-	setbit1 $027d
+	setevent $027d
 	2call UnknownScript_0x78137
 	2jump UnknownScript_0x780a9
 ; 0x780a6
@@ -146,23 +146,23 @@ UnknownScript_0x780bd: ; 0x780bd
 	if_equal $1, UnknownScript_0x780ee
 	if_equal $0, UnknownScript_0x780f4
 UnknownScript_0x780dc: ; 0x780dc
-	checkbit1 EVENT_RESTORED_POWER_TO_KANTO
+	checkevent EVENT_RESTORED_POWER_TO_KANTO
 	iftrue UnknownScript_0x78128
 UnknownScript_0x780e2: ; 0x780e2
-	checkbit1 $0044
+	checkevent $0044
 	iftrue UnknownScript_0x7811b
 UnknownScript_0x780e8: ; 0x780e8
-	checkbit2 $004b
+	checkflag $004b
 	iftrue UnknownScript_0x7810e
 UnknownScript_0x780ee: ; 0x780ee
-	checkbit2 $0045
+	checkflag $0045
 	iftrue UnknownScript_0x78101
 UnknownScript_0x780f4: ; 0x780f4
 	loadtrainer CAMPER, TODD1
 	startbattle
 	returnafterbattle
 	loadvar $d9fe, $1
-	clearbit2 $0070
+	clearflag $0070
 	end
 ; 0x78101
 
@@ -171,7 +171,7 @@ UnknownScript_0x78101: ; 0x78101
 	startbattle
 	returnafterbattle
 	loadvar $d9fe, $2
-	clearbit2 $0070
+	clearflag $0070
 	end
 ; 0x7810e
 
@@ -180,7 +180,7 @@ UnknownScript_0x7810e: ; 0x7810e
 	startbattle
 	returnafterbattle
 	loadvar $d9fe, $3
-	clearbit2 $0070
+	clearflag $0070
 	end
 ; 0x7811b
 
@@ -189,7 +189,7 @@ UnknownScript_0x7811b: ; 0x7811b
 	startbattle
 	returnafterbattle
 	loadvar $d9fe, $4
-	clearbit2 $0070
+	clearflag $0070
 	end
 ; 0x78128
 
@@ -197,7 +197,7 @@ UnknownScript_0x78128: ; 0x78128
 	loadtrainer CAMPER, TODD5
 	startbattle
 	returnafterbattle
-	clearbit2 $0070
+	clearflag $0070
 	end
 ; 0x78131
 
@@ -267,17 +267,17 @@ PicnickerGina1Script: ; 0x7815f
 	writecode $17, $15
 	talkaftercancel
 	loadfont
-	checkbit2 $0071
+	checkflag $0071
 	iftrue UnknownScript_0x7819f
-	checkbit2 $0080
+	checkflag $0080
 	iftrue UnknownScript_0x78213
 	checkcellnum $15
 	iftrue UnknownScript_0x78234
-	checkbit1 $027f
+	checkevent $027f
 	iftrue UnknownScript_0x78188
 	2writetext UnknownText_0x785b8
 	keeptextopen
-	setbit1 $027f
+	setevent $027f
 	2call UnknownScript_0x78228
 	2jump UnknownScript_0x7818b
 ; 0x78188
@@ -303,23 +303,23 @@ UnknownScript_0x7819f: ; 0x7819f
 	if_equal $1, UnknownScript_0x781d0
 	if_equal $0, UnknownScript_0x781d6
 UnknownScript_0x781be: ; 0x781be
-	checkbit1 EVENT_RESTORED_POWER_TO_KANTO
+	checkevent EVENT_RESTORED_POWER_TO_KANTO
 	iftrue UnknownScript_0x7820a
 UnknownScript_0x781c4: ; 0x781c4
-	checkbit1 $0044
+	checkevent $0044
 	iftrue UnknownScript_0x781fd
 UnknownScript_0x781ca: ; 0x781ca
-	checkbit1 EVENT_CLEARED_RADIO_TOWER
+	checkevent EVENT_CLEARED_RADIO_TOWER
 	iftrue UnknownScript_0x781f0
 UnknownScript_0x781d0: ; 0x781d0
-	checkbit2 $0049
+	checkflag $0049
 	iftrue UnknownScript_0x781e3
 UnknownScript_0x781d6: ; 0x781d6
 	loadtrainer PICNICKER, GINA1
 	startbattle
 	returnafterbattle
 	loadvar $d9ff, $1
-	clearbit2 $0071
+	clearflag $0071
 	end
 ; 0x781e3
 
@@ -328,7 +328,7 @@ UnknownScript_0x781e3: ; 0x781e3
 	startbattle
 	returnafterbattle
 	loadvar $d9ff, $2
-	clearbit2 $0071
+	clearflag $0071
 	end
 ; 0x781f0
 
@@ -337,7 +337,7 @@ UnknownScript_0x781f0: ; 0x781f0
 	startbattle
 	returnafterbattle
 	loadvar $d9ff, $3
-	clearbit2 $0071
+	clearflag $0071
 	end
 ; 0x781fd
 
@@ -346,7 +346,7 @@ UnknownScript_0x781fd: ; 0x781fd
 	startbattle
 	returnafterbattle
 	loadvar $d9ff, $4
-	clearbit2 $0071
+	clearflag $0071
 	end
 ; 0x7820a
 
@@ -354,7 +354,7 @@ UnknownScript_0x7820a: ; 0x7820a
 	loadtrainer PICNICKER, GINA5
 	startbattle
 	returnafterbattle
-	clearbit2 $0071
+	clearflag $0071
 	end
 ; 0x78213
 
@@ -362,8 +362,8 @@ UnknownScript_0x78213: ; 0x78213
 	2call UnknownScript_0x78244
 	verbosegiveitem LEAF_STONE, 1
 	iffalse UnknownScript_0x78225
-	clearbit2 $0080
-	setbit1 $0100
+	clearflag $0080
+	setevent $0100
 	2jump UnknownScript_0x78234
 ; 0x78225
 
@@ -421,7 +421,7 @@ OfficerScript_0x7824c: ; 0x7824c
 	loadfont
 	checktime $4
 	iffalse UnknownScript_0x78276
-	checkbit1 $0546
+	checkevent $0546
 	iftrue UnknownScript_0x78270
 	playmusic $000c
 	2writetext UnknownText_0x785e4
@@ -431,7 +431,7 @@ OfficerScript_0x7824c: ; 0x7824c
 	loadtrainer OFFICER, KEITH
 	startbattle
 	returnafterbattle
-	setbit1 $0546
+	setevent $0546
 	loadmovesprites
 	end
 ; 0x78270
@@ -560,7 +560,7 @@ TrainerCooltrainerfIrene: ; 0x782b8
 CooltrainerfIreneScript: ; 0x782c4
 	talkaftercancel
 	loadfont
-	checkbit1 EVENT_GOT_SOFT_SAND_FROM_KATE
+	checkevent EVENT_GOT_SOFT_SAND_FROM_KATE
 	iftrue UnknownScript_0x782d2
 	2writetext UnknownText_0x7877f
 	closetext
@@ -598,7 +598,7 @@ TrainerCooltrainerfJenn: ; 0x782d8
 CooltrainerfJennScript: ; 0x782e4
 	talkaftercancel
 	loadfont
-	checkbit1 EVENT_GOT_SOFT_SAND_FROM_KATE
+	checkevent EVENT_GOT_SOFT_SAND_FROM_KATE
 	iftrue UnknownScript_0x782f2
 	2writetext UnknownText_0x78836
 	closetext
@@ -636,13 +636,13 @@ TrainerCooltrainerfKate: ; 0x782f8
 CooltrainerfKateScript: ; 0x78304
 	talkaftercancel
 	loadfont
-	checkbit1 EVENT_GOT_SOFT_SAND_FROM_KATE
+	checkevent EVENT_GOT_SOFT_SAND_FROM_KATE
 	iftrue UnknownScript_0x78319
 	2writetext UnknownText_0x788e2
 	keeptextopen
 	verbosegiveitem SOFT_SAND, 1
 	iffalse UnknownScript_0x7831d
-	setbit1 EVENT_GOT_SOFT_SAND_FROM_KATE
+	setevent EVENT_GOT_SOFT_SAND_FROM_KATE
 UnknownScript_0x78319: ; 0x78319
 	2writetext UnknownText_0x7892b
 	closetext

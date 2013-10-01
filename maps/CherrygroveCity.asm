@@ -23,7 +23,7 @@ UnknownScript_0x19c00e: ; 0x19c00e
 ; 0x19c00f
 
 UnknownScript_0x19c00f: ; 0x19c00f
-	setbit2 $0042
+	setflag $0042
 	return
 ; 0x19c013
 
@@ -75,7 +75,7 @@ UnknownScript_0x19c01f: ; 0x19c01f
 	keeptextopen
 	stringtotext .mapcardname, $1
 	2call .UnknownScript_0x19c097
-	setbit2 $0001
+	setflag $0001
 	2writetext UnknownText_0x19c438
 	keeptextopen
 	2writetext UnknownText_0x19c451
@@ -87,7 +87,7 @@ UnknownScript_0x19c01f: ; 0x19c01f
 	applymovement $2, MovementData_0x19c1cb
 	playsound $001f
 	disappear $2
-	clearbit1 EVENT_GUIDE_GENT_VISIBLE_IN_CHERRYGROVE
+	clearevent EVENT_GUIDE_GENT_VISIBLE_IN_CHERRYGROVE
 	waitbutton
 	end
 
@@ -123,9 +123,9 @@ UnknownScript_0x19c0ae: ; 0x19c0ae
 	2writetext UnknownText_0x19c4e2
 	closetext
 	loadmovesprites
-	checkbit1 EVENT_GOT_TOTODILE_FROM_ELM
+	checkevent EVENT_GOT_TOTODILE_FROM_ELM
 	iftrue UnknownScript_0x19c0ee
-	checkbit1 EVENT_GOT_CHIKORITA_FROM_ELM
+	checkevent EVENT_GOT_CHIKORITA_FROM_ELM
 	iftrue UnknownScript_0x19c104
 	winlosstext UnknownText_0x19c57f, UnknownText_0x19c5e6
 	setlasttalked $3
@@ -192,7 +192,7 @@ UnknownScript_0x19c12f: ; 0x19c12f
 TeacherScript_0x19c146: ; 0x19c146
 	faceplayer
 	loadfont
-	checkbit2 $0001
+	checkflag $0001
 	iftrue UnknownScript_0x19c154
 	2writetext UnknownText_0x19c650
 	closetext
@@ -210,7 +210,7 @@ UnknownScript_0x19c154: ; 0x19c154
 YoungsterScript_0x19c15a: ; 0x19c15a
 	faceplayer
 	loadfont
-	checkbit2 $000b
+	checkflag $000b
 	iftrue UnknownScript_0x19c168
 	2writetext UnknownText_0x19c6d6
 	closetext
@@ -228,13 +228,13 @@ UnknownScript_0x19c168: ; 0x19c168
 FisherScript_0x19c16e: ; 0x19c16e
 	faceplayer
 	loadfont
-	checkbit1 EVENT_GOT_MYSTIC_WATER_IN_CHERRYGROVE
+	checkevent EVENT_GOT_MYSTIC_WATER_IN_CHERRYGROVE
 	iftrue UnknownScript_0x19c183
 	2writetext UnknownText_0x19c766
 	keeptextopen
 	verbosegiveitem MYSTIC_WATER, 1
 	iffalse UnknownScript_0x19c187
-	setbit1 EVENT_GOT_MYSTIC_WATER_IN_CHERRYGROVE
+	setevent EVENT_GOT_MYSTIC_WATER_IN_CHERRYGROVE
 UnknownScript_0x19c183: ; 0x19c183
 	2writetext UnknownText_0x19c7c1
 	closetext

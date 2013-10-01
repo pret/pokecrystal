@@ -9,7 +9,7 @@ VermilionGym_MapScriptHeader: ; 0x1920a3
 SurgeScript_0x1920a5: ; 0x1920a5
 	faceplayer
 	loadfont
-	checkbit2 $0025
+	checkflag $0025
 	iftrue UnknownScript_0x1920d9
 	2writetext UnknownText_0x192142
 	closetext
@@ -18,15 +18,15 @@ SurgeScript_0x1920a5: ; 0x1920a5
 	loadtrainer LT_SURGE, 1
 	startbattle
 	returnafterbattle
-	setbit1 EVENT_BEAT_LTSURGE
-	setbit1 EVENT_BEAT_GENTLEMAN_GREGORY
-	setbit1 EVENT_BEAT_GUITARIST_VINCENT
-	setbit1 EVENT_BEAT_JUGGLER_HORTON
+	setevent EVENT_BEAT_LTSURGE
+	setevent EVENT_BEAT_GENTLEMAN_GREGORY
+	setevent EVENT_BEAT_GUITARIST_VINCENT
+	setevent EVENT_BEAT_JUGGLER_HORTON
 	loadfont
 	2writetext UnknownText_0x192277
 	playsound $009c
 	waitbutton
-	setbit2 $0025
+	setflag $0025
 	2writetext UnknownText_0x192291
 	closetext
 	loadmovesprites
@@ -130,7 +130,7 @@ JugglerHortonScript: ; 0x192113
 VermilionGymGuyScript: ; 0x19211b
 	faceplayer
 	loadfont
-	checkbit1 EVENT_BEAT_LTSURGE
+	checkevent EVENT_BEAT_LTSURGE
 	iftrue .VermilionGymGuyWinScript
 	2writetext VermilionGymGuyText
 	closetext
@@ -149,7 +149,7 @@ MapVermilionGymSignpost14Script: ; 0x19212f
 ; 0x192132
 
 MapVermilionGymSignpost16Script: ; 0x192132
-	checkbit2 $0025
+	checkflag $0025
 	iftrue UnknownScript_0x19213b
 	jumpstd $002d
 ; 0x19213b

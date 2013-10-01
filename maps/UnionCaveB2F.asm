@@ -11,7 +11,7 @@ UnionCaveB2F_MapScriptHeader: ; 0x5a308
 ; 0x5a30d
 
 UnknownScript_0x5a30d: ; 0x5a30d
-	checkbit2 $0059
+	checkflag $0059
 	iftrue UnknownScript_0x5a319
 	checkcode $b
 	if_equal FRIDAY, UnknownScript_0x5a31c
@@ -31,7 +31,7 @@ SurfScript_0x5a31f: ; 0x5a31f
 	loadpokedata LAPRAS, 20
 	startbattle
 	disappear $7
-	setbit2 $0059
+	setflag $0059
 	returnafterbattle
 	end
 ; 0x5a32e
