@@ -165,8 +165,8 @@ ScriptCommandTable: ; 0x96cb1
 	dw Script_warpfacing
 	dw Script_storetext
 	dw Script_displaylocation
-	dw Script_unknown0xa6
-	dw Script_unknown0xa7
+	dw Script_trainerclassname
+	dw Script_name
 	dw Script_wait
 	dw Script_unknown0xa9
 ; 0x96e05
@@ -2151,6 +2151,7 @@ Script_displaylocation: ; 0x97701
 ; script command 0xa5
 ; parameters:
 ;     id (SingleByteParam)
+;     memory (SingleByteParam)
 
 	call GetScriptByte
 	jr Unknown_976f4 ; 0x97704 $ee
@@ -2173,8 +2174,11 @@ Script_trainertotext: ; 0x97706
 	jr Unknown_976c0 ; 0x97714 $aa
 ; 0x97716
 
-Script_unknown0xa7: ; 0x97716
+Script_name: ; 0x97716
 ; script command 0xa7
+; parameters:
+;     type (SingleByteParam)
+;     id (SingleByteParam)
 
 	call GetScriptByte
 	ld [$cf61], a
@@ -2187,7 +2191,7 @@ Unknown_9771c: ; 0x9771c
 	jp Unknown_976c0
 ; 0x9772b
 
-Script_unknown0xa6: ; 0x9772b
+Script_trainerclassname: ; 0x9772b
 ; script command 0xa6
 
 	ld a, $7
