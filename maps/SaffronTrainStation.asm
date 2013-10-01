@@ -40,7 +40,7 @@ UnknownScript_0x18a82c: ; 0x18a82c
 	warpcheck
 	newloadmap $f9
 	applymovement $0, MovementData_0x18a854
-	unknown0xa8 $14
+	wait $14
 	end
 ; 0x18a854
 

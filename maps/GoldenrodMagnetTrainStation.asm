@@ -40,7 +40,7 @@ UnknownScript_0x550fa: ; 0x550fa
 	warpcheck
 	newloadmap $f9
 	applymovement $0, MovementData_0x55122
-	unknown0xa8 $14
+	wait $14
 	end
 ; 0x55122
 

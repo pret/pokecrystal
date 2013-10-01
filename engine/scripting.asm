@@ -167,7 +167,7 @@ ScriptCommandTable: ; 0x96cb1
 	dw Script_displaylocation
 	dw Script_unknown0xa6
 	dw Script_unknown0xa7
-	dw Script_unknown0xa8
+	dw Script_wait
 	dw Script_unknown0xa9
 ; 0x96e05
 
@@ -3211,7 +3211,7 @@ DisplayCredits:
 	ret
 ; 0x97c05
 
-Script_unknown0xa8: ; 0x97c05
+Script_wait: ; 0x97c05
 ; script command 0xa8
 ; parameters:
 ;     unknown (SingleByteParam)
