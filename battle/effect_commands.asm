@@ -11015,7 +11015,7 @@ Function0x37e77: ; 37e77
 
 
 BattleCommandaa: ; 37e80
-; wait
+; movedelay
 ; Wait 40 frames.
 	ld c, 40
 	jp DelayFrames
