@@ -59,15 +59,15 @@ CooltrainermGaven3Script: ; 0x1a4d3f
 	writecode $17, $b
 	talkaftercancel
 	loadfont
-	checkbit2 $0067
+	checkflag $0067
 	iftrue UnknownScript_0x1a4d79
 	checkcellnum $b
 	iftrue UnknownScript_0x1a4dcb
-	checkbit1 $026b
+	checkevent $026b
 	iftrue UnknownScript_0x1a4d62
 	2writetext UnknownText_0x1a4fe4
 	keeptextopen
-	setbit1 $026b
+	setevent $026b
 	2call UnknownScript_0x1a4dbf
 	2jump UnknownScript_0x1a4d65
 ; 0x1a4d62
@@ -91,17 +91,17 @@ UnknownScript_0x1a4d79: ; 0x1a4d79
 	if_equal $1, UnknownScript_0x1a4d96
 	if_equal $0, UnknownScript_0x1a4d9c
 UnknownScript_0x1a4d90: ; 0x1a4d90
-	checkbit1 EVENT_RESTORED_POWER_TO_KANTO
+	checkevent EVENT_RESTORED_POWER_TO_KANTO
 	iftrue UnknownScript_0x1a4db6
 UnknownScript_0x1a4d96: ; 0x1a4d96
-	checkbit1 $0044
+	checkevent $0044
 	iftrue UnknownScript_0x1a4da9
 UnknownScript_0x1a4d9c: ; 0x1a4d9c
 	loadtrainer COOLTRAINERM, GAVEN3
 	startbattle
 	returnafterbattle
 	loadvar $d9f5, $1
-	clearbit2 $0067
+	clearflag $0067
 	end
 ; 0x1a4da9
 
@@ -110,7 +110,7 @@ UnknownScript_0x1a4da9: ; 0x1a4da9
 	startbattle
 	returnafterbattle
 	loadvar $d9f5, $2
-	clearbit2 $0067
+	clearflag $0067
 	end
 ; 0x1a4db6
 
@@ -118,7 +118,7 @@ UnknownScript_0x1a4db6: ; 0x1a4db6
 	loadtrainer COOLTRAINERM, GAVEN2
 	startbattle
 	returnafterbattle
-	clearbit2 $0067
+	clearflag $0067
 	end
 ; 0x1a4dbf
 
@@ -210,15 +210,15 @@ CooltrainerfBeth1Script: ; 0x1a4dfb
 	writecode $17, $c
 	talkaftercancel
 	loadfont
-	checkbit2 $0068
+	checkflag $0068
 	iftrue UnknownScript_0x1a4e35
 	checkcellnum $c
 	iftrue UnknownScript_0x1a4e87
-	checkbit1 $026d
+	checkevent $026d
 	iftrue UnknownScript_0x1a4e1e
 	2writetext UnknownText_0x1a51d9
 	keeptextopen
-	setbit1 $026d
+	setevent $026d
 	2call UnknownScript_0x1a4e7b
 	2jump UnknownScript_0x1a4e21
 ; 0x1a4e1e
@@ -242,17 +242,17 @@ UnknownScript_0x1a4e35: ; 0x1a4e35
 	if_equal $1, UnknownScript_0x1a4e52
 	if_equal $0, UnknownScript_0x1a4e58
 UnknownScript_0x1a4e4c: ; 0x1a4e4c
-	checkbit1 EVENT_RESTORED_POWER_TO_KANTO
+	checkevent EVENT_RESTORED_POWER_TO_KANTO
 	iftrue UnknownScript_0x1a4e72
 UnknownScript_0x1a4e52: ; 0x1a4e52
-	checkbit1 $0044
+	checkevent $0044
 	iftrue UnknownScript_0x1a4e65
 UnknownScript_0x1a4e58: ; 0x1a4e58
 	loadtrainer COOLTRAINERF, BETH1
 	startbattle
 	returnafterbattle
 	loadvar $d9f6, $1
-	clearbit2 $0068
+	clearflag $0068
 	end
 ; 0x1a4e65
 
@@ -261,7 +261,7 @@ UnknownScript_0x1a4e65: ; 0x1a4e65
 	startbattle
 	returnafterbattle
 	loadvar $d9f6, $2
-	clearbit2 $0068
+	clearflag $0068
 	end
 ; 0x1a4e72
 
@@ -269,7 +269,7 @@ UnknownScript_0x1a4e72: ; 0x1a4e72
 	loadtrainer COOLTRAINERF, BETH3
 	startbattle
 	returnafterbattle
-	clearbit2 $0068
+	clearflag $0068
 	end
 ; 0x1a4e7b
 

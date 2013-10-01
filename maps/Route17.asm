@@ -11,8 +11,8 @@ Route17_MapScriptHeader: ; 0x1ad0a6
 ; 0x1ad0ab
 
 UnknownScript_0x1ad0ab: ; 0x1ad0ab
-	setbit2 $0019
-	setbit2 $001a
+	setflag $0019
+	setflag $001a
 	return
 ; 0x1ad0b2
 

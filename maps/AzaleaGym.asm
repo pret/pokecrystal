@@ -9,7 +9,7 @@ AzaleaGym_MapScriptHeader: ; 0x18ec1c
 BugsyScript_0x18ec1e: ; 0x18ec1e
 	faceplayer
 	loadfont
-	checkbit1 EVENT_BEAT_BUGSY
+	checkevent EVENT_BEAT_BUGSY
 	iftrue UnknownScript_0x18ec48
 	2writetext UnknownText_0x18ed0b
 	closetext
@@ -18,26 +18,26 @@ BugsyScript_0x18ec1e: ; 0x18ec1e
 	loadtrainer BUGSY, 1
 	startbattle
 	returnafterbattle
-	setbit1 EVENT_BEAT_BUGSY
+	setevent EVENT_BEAT_BUGSY
 	loadfont
 	2writetext UnknownText_0x18ee14
 	playsound $009c
 	waitbutton
-	setbit2 $001c
+	setflag $001c
 	checkcode $7
 	2call UnknownScript_0x18ec73
 UnknownScript_0x18ec48: ; 0x18ec48
-	checkbit1 EVENT_GOT_TM49_FURY_CUTTER
+	checkevent EVENT_GOT_TM49_FURY_CUTTER
 	iftrue UnknownScript_0x18ec6d
-	setbit1 EVENT_BEAT_TWINS_AMY_AND_MAY
-	setbit1 EVENT_BEAT_BUG_CATCHER_BENNY
-	setbit1 EVENT_BEAT_BUG_CATCHER_AL
-	setbit1 EVENT_BEAT_BUG_CATCHER_JOSH
+	setevent EVENT_BEAT_TWINS_AMY_AND_MAY
+	setevent EVENT_BEAT_BUG_CATCHER_BENNY
+	setevent EVENT_BEAT_BUG_CATCHER_AL
+	setevent EVENT_BEAT_BUG_CATCHER_JOSH
 	2writetext UnknownText_0x18ee2b
 	keeptextopen
 	verbosegiveitem TM_49, 1
 	iffalse UnknownScript_0x18ec71
-	setbit1 EVENT_GOT_TM49_FURY_CUTTER
+	setevent EVENT_GOT_TM49_FURY_CUTTER
 	2writetext UnknownText_0x18eefa
 	closetext
 	loadmovesprites
@@ -213,7 +213,7 @@ Bug_catcherJoshScript: ; 0x18ecde
 
 AzaleaGymGuyScript: ; 0x18ece6
 	faceplayer
-	checkbit1 EVENT_BEAT_BUGSY
+	checkevent EVENT_BEAT_BUGSY
 	iftrue .AzaleaGymGuyWinScript
 	loadfont
 	2writetext AzaleaGymGuyText
@@ -230,7 +230,7 @@ AzaleaGymGuyScript: ; 0x18ece6
 ; 0x18ecfb
 
 MapAzaleaGymSignpost1Script: ; 0x18ecfb
-	checkbit2 $001c
+	checkflag $001c
 	iftrue UnknownScript_0x18ed04
 	jumpstd $002d
 ; 0x18ed04

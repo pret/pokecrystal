@@ -9,7 +9,7 @@ VioletGym_MapScriptHeader: ; 0x683c0
 FalknerScript_0x683c2: ; 0x683c2
 	faceplayer
 	loadfont
-	checkbit1 EVENT_BEAT_FALKNER
+	checkevent EVENT_BEAT_FALKNER
 	iftrue UnknownScript_0x683ec
 	2writetext UnknownText_0x68473
 	closetext
@@ -18,26 +18,26 @@ FalknerScript_0x683c2: ; 0x683c2
 	loadtrainer FALKNER, 1
 	startbattle
 	returnafterbattle
-	setbit1 EVENT_BEAT_FALKNER
+	setevent EVENT_BEAT_FALKNER
 	loadfont
 	2writetext UnknownText_0x685af
 	playsound $009c
 	waitbutton
-	setbit2 $001b
+	setflag $001b
 	checkcode $7
 	2call UnknownScript_0x68418
 UnknownScript_0x683ec: ; 0x683ec
-	checkbit1 EVENT_GOT_TM31_MUD_SLAP
+	checkevent EVENT_GOT_TM31_MUD_SLAP
 	iftrue UnknownScript_0x68412
-	setbit1 EVENT_BEAT_BIRD_KEEPER_ROD
-	setbit1 EVENT_BEAT_BIRD_KEEPER_ABE
+	setevent EVENT_BEAT_BIRD_KEEPER_ROD
+	setevent EVENT_BEAT_BIRD_KEEPER_ABE
 	domaptrigger GROUP_ELMS_LAB, MAP_ELMS_LAB, $2
 	specialphonecall $3
 	2writetext UnknownText_0x685c8
 	keeptextopen
 	verbosegiveitem TM_31, 1
 	iffalse UnknownScript_0x68416
-	setbit1 EVENT_GOT_TM31_MUD_SLAP
+	setevent EVENT_GOT_TM31_MUD_SLAP
 	2writetext UnknownText_0x68648
 	closetext
 	loadmovesprites
@@ -127,7 +127,7 @@ Bird_keeperAbeScript: ; 0x68447
 VioletGymGuyScript: ; 0x6844f
 	faceplayer
 	loadfont
-	checkbit1 EVENT_BEAT_FALKNER
+	checkevent EVENT_BEAT_FALKNER
 	iftrue .VioletGymGuyWinScript
 	2writetext VioletGymGuyText
 	closetext
@@ -142,7 +142,7 @@ VioletGymGuyScript: ; 0x6844f
 ; 0x68463
 
 MapVioletGymSignpost1Script: ; 0x68463
-	checkbit2 $001b
+	checkflag $001b
 	iftrue UnknownScript_0x6846c
 	jumpstd $002d
 ; 0x6846c

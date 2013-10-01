@@ -9,25 +9,25 @@ BillsHouse_MapScriptHeader: ; 0x189536
 GrampsScript_0x189538: ; 0x189538
 	faceplayer
 	loadfont
-	checkbit1 $0000
+	checkevent $0000
 	iftrue UnknownScript_0x1896ba
-	checkbit1 EVENT_GOT_THUNDERSTONE_FROM_BILLS_GRANDPA
+	checkevent EVENT_GOT_THUNDERSTONE_FROM_BILLS_GRANDPA
 	iftrue UnknownScript_0x1896c0
-	checkbit1 EVENT_MET_BILLS_GRANDPA
+	checkevent EVENT_MET_BILLS_GRANDPA
 	iftrue UnknownScript_0x189553
 	2writetext UnknownText_0x1896ce
 	keeptextopen
-	setbit1 EVENT_MET_BILLS_GRANDPA
+	setevent EVENT_MET_BILLS_GRANDPA
 UnknownScript_0x189553: ; 0x189553
-	checkbit1 EVENT_SHOWED_PICHU_TO_BILLS_GRANDPA
+	checkevent EVENT_SHOWED_PICHU_TO_BILLS_GRANDPA
 	iftrue UnknownScript_0x189697
-	checkbit1 EVENT_SHOWED_GROWLITHE_VULPIX_TO_BILLS_GRANDPA
+	checkevent EVENT_SHOWED_GROWLITHE_VULPIX_TO_BILLS_GRANDPA
 	iftrue UnknownScript_0x189680
-	checkbit1 EVENT_SHOWED_STARYU_TO_BILLS_GRANDPA
+	checkevent EVENT_SHOWED_STARYU_TO_BILLS_GRANDPA
 	iftrue UnknownScript_0x189669
-	checkbit1 EVENT_SHOWED_ODDISH_TO_BILLS_GRANDPA
+	checkevent EVENT_SHOWED_ODDISH_TO_BILLS_GRANDPA
 	iftrue UnknownScript_0x189652
-	checkbit1 EVENT_SHOWED_LICKITUNG_TO_BILLS_GRANDPA
+	checkevent EVENT_SHOWED_LICKITUNG_TO_BILLS_GRANDPA
 	iftrue UnknownScript_0x18963b
 	2writetext UnknownText_0x1898c0
 	keeptextopen
@@ -39,7 +39,7 @@ UnknownScript_0x189553: ; 0x189553
 	iffalse UnknownScript_0x1896aa
 	if_not_equal LICKITUNG, UnknownScript_0x1896c6
 	2call UnknownScript_0x1896b0
-	setbit1 EVENT_SHOWED_LICKITUNG_TO_BILLS_GRANDPA
+	setevent EVENT_SHOWED_LICKITUNG_TO_BILLS_GRANDPA
 	2jump UnknownScript_0x18963b
 ; 0x189592
 
@@ -54,7 +54,7 @@ UnknownScript_0x189592: ; 0x189592
 	iffalse UnknownScript_0x1896aa
 	if_not_equal ODDISH, UnknownScript_0x1896c6
 	2call UnknownScript_0x1896b0
-	setbit1 EVENT_SHOWED_ODDISH_TO_BILLS_GRANDPA
+	setevent EVENT_SHOWED_ODDISH_TO_BILLS_GRANDPA
 	2jump UnknownScript_0x189652
 ; 0x1895b3
 
@@ -69,7 +69,7 @@ UnknownScript_0x1895b3: ; 0x1895b3
 	iffalse UnknownScript_0x1896aa
 	if_not_equal STARYU, UnknownScript_0x1896c6
 	2call UnknownScript_0x1896b0
-	setbit1 EVENT_SHOWED_STARYU_TO_BILLS_GRANDPA
+	setevent EVENT_SHOWED_STARYU_TO_BILLS_GRANDPA
 	2jump UnknownScript_0x189669
 ; 0x1895d4
 
@@ -86,7 +86,7 @@ UnknownScript_0x1895d4: ; 0x1895d4
 	iffalse UnknownScript_0x1896aa
 	if_not_equal GROWLITHE, UnknownScript_0x1896c6
 	2call UnknownScript_0x1896b0
-	setbit1 EVENT_SHOWED_GROWLITHE_VULPIX_TO_BILLS_GRANDPA
+	setevent EVENT_SHOWED_GROWLITHE_VULPIX_TO_BILLS_GRANDPA
 	2jump UnknownScript_0x189680
 ; 0x1895f9
 
@@ -101,7 +101,7 @@ UnknownScript_0x1895f9: ; 0x1895f9
 	iffalse UnknownScript_0x1896aa
 	if_not_equal VULPIX, UnknownScript_0x1896c6
 	2call UnknownScript_0x1896b0
-	setbit1 EVENT_SHOWED_GROWLITHE_VULPIX_TO_BILLS_GRANDPA
+	setevent EVENT_SHOWED_GROWLITHE_VULPIX_TO_BILLS_GRANDPA
 	2jump UnknownScript_0x189680
 ; 0x18961a
 
@@ -116,54 +116,54 @@ UnknownScript_0x18961a: ; 0x18961a
 	iffalse UnknownScript_0x1896aa
 	if_not_equal PICHU, UnknownScript_0x1896c6
 	2call UnknownScript_0x1896b0
-	setbit1 EVENT_SHOWED_PICHU_TO_BILLS_GRANDPA
+	setevent EVENT_SHOWED_PICHU_TO_BILLS_GRANDPA
 	2jump UnknownScript_0x189697
 ; 0x18963b
 
 UnknownScript_0x18963b: ; 0x18963b
-	checkbit1 EVENT_GOT_EVERSTONE_FROM_BILLS_GRANDPA
+	checkevent EVENT_GOT_EVERSTONE_FROM_BILLS_GRANDPA
 	iftrue UnknownScript_0x189592
 	2call UnknownScript_0x1896b5
 	verbosegiveitem EVERSTONE, 1
 	iffalse UnknownScript_0x1896cc
-	setbit1 EVENT_GOT_EVERSTONE_FROM_BILLS_GRANDPA
-	setbit1 $0000
+	setevent EVENT_GOT_EVERSTONE_FROM_BILLS_GRANDPA
+	setevent $0000
 	loadmovesprites
 	end
 ; 0x189652
 
 UnknownScript_0x189652: ; 0x189652
-	checkbit1 EVENT_GOT_LEAF_STONE_FROM_BILLS_GRANDPA
+	checkevent EVENT_GOT_LEAF_STONE_FROM_BILLS_GRANDPA
 	iftrue UnknownScript_0x1895b3
 	2call UnknownScript_0x1896b5
 	verbosegiveitem LEAF_STONE, 1
 	iffalse UnknownScript_0x1896cc
-	setbit1 EVENT_GOT_LEAF_STONE_FROM_BILLS_GRANDPA
-	setbit1 $0000
+	setevent EVENT_GOT_LEAF_STONE_FROM_BILLS_GRANDPA
+	setevent $0000
 	loadmovesprites
 	end
 ; 0x189669
 
 UnknownScript_0x189669: ; 0x189669
-	checkbit1 EVENT_GOT_WATER_STONE_FROM_BILLS_GRANDPA
+	checkevent EVENT_GOT_WATER_STONE_FROM_BILLS_GRANDPA
 	iftrue UnknownScript_0x1895d4
 	2call UnknownScript_0x1896b5
 	verbosegiveitem WATER_STONE, 1
 	iffalse UnknownScript_0x1896cc
-	setbit1 EVENT_GOT_WATER_STONE_FROM_BILLS_GRANDPA
-	setbit1 $0000
+	setevent EVENT_GOT_WATER_STONE_FROM_BILLS_GRANDPA
+	setevent $0000
 	loadmovesprites
 	end
 ; 0x189680
 
 UnknownScript_0x189680: ; 0x189680
-	checkbit1 EVENT_GOT_FIRE_STONE_FROM_BILLS_GRANDPA
+	checkevent EVENT_GOT_FIRE_STONE_FROM_BILLS_GRANDPA
 	iftrue UnknownScript_0x18961a
 	2call UnknownScript_0x1896b5
 	verbosegiveitem FIRE_STONE, 1
 	iffalse UnknownScript_0x1896cc
-	setbit1 EVENT_GOT_FIRE_STONE_FROM_BILLS_GRANDPA
-	setbit1 $0000
+	setevent EVENT_GOT_FIRE_STONE_FROM_BILLS_GRANDPA
+	setevent $0000
 	loadmovesprites
 	end
 ; 0x189697
@@ -172,7 +172,7 @@ UnknownScript_0x189697: ; 0x189697
 	2call UnknownScript_0x1896b5
 	verbosegiveitem THUNDERSTONE, 1
 	iffalse UnknownScript_0x1896cc
-	setbit1 EVENT_GOT_THUNDERSTONE_FROM_BILLS_GRANDPA
+	setevent EVENT_GOT_THUNDERSTONE_FROM_BILLS_GRANDPA
 	loadmovesprites
 	end
 ; 0x1896a5

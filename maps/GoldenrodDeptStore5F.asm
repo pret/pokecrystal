@@ -25,15 +25,15 @@ UnknownScript_0x56099: ; 0x56099
 ClerkScript_0x5609c: ; 0x5609c
 	faceplayer
 	loadfont
-	checkbit1 EVENT_GOT_TM02_HEADBUTT
+	checkevent EVENT_GOT_TM02_HEADBUTT
 	iftrue UnknownScript_0x560ad
-	checkbit1 EVENT_GOT_TM08_ROCK_SMASH
+	checkevent EVENT_GOT_TM08_ROCK_SMASH
 	iftrue UnknownScript_0x560c2
 	2jump UnknownScript_0x560b6
 ; 0x560ad
 
 UnknownScript_0x560ad: ; 0x560ad
-	checkbit1 EVENT_GOT_TM08_ROCK_SMASH
+	checkevent EVENT_GOT_TM08_ROCK_SMASH
 	iftrue UnknownScript_0x560c8
 	2jump UnknownScript_0x560bc
 ; 0x560b6
@@ -67,13 +67,13 @@ ReceptionistScript_0x560ce: ; 0x560ce
 	loadfont
 	checkcode $b
 	if_not_equal SUNDAY, UnknownScript_0x56112
-	checkbit2 $005b
+	checkflag $005b
 	iftrue UnknownScript_0x56112
 	special $0059
 	2writetext UnknownText_0x56143
 	keeptextopen
-	if_less_than $95, UnknownScript_0x560ee
-	if_less_than $31, UnknownScript_0x560fd
+	if_greater_than $95, UnknownScript_0x560ee
+	if_greater_than $31, UnknownScript_0x560fd
 	2jump UnknownScript_0x56103
 ; 0x560ee
 
@@ -82,7 +82,7 @@ UnknownScript_0x560ee: ; 0x560ee
 	keeptextopen
 	verbosegiveitem TM_27, 1
 	iffalse UnknownScript_0x56116
-	setbit2 $005b
+	setflag $005b
 	loadmovesprites
 	end
 ; 0x560fd
@@ -99,7 +99,7 @@ UnknownScript_0x56103: ; 0x56103
 	keeptextopen
 	verbosegiveitem TM_21, 1
 	iffalse UnknownScript_0x56116
-	setbit2 $005b
+	setflag $005b
 	loadmovesprites
 	end
 ; 0x56112

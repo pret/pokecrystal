@@ -9,8 +9,8 @@ ScriptCommandTable: ; 0x96cb1
 	dw Script_if_not_equal
 	dw Script_iffalse
 	dw Script_iftrue
-	dw Script_if_less_than
 	dw Script_if_greater_than
+	dw Script_if_less_than
 	dw Script_jumpstd
 	dw Script_callstd
 	dw Script_3callasm
@@ -48,14 +48,14 @@ ScriptCommandTable: ; 0x96cb1
 	dw Script_giveegg
 	dw Script_givepokeitem
 	dw Script_checkpokeitem
-	dw Script_checkbit1
-	dw Script_clearbit1
-	dw Script_setbit1
-	dw Script_checkbit2
-	dw Script_clearbit2
-	dw Script_setbit2
-	dw Script_wildoff
+	dw Script_checkevent
+	dw Script_clearevent
+	dw Script_setevent
+	dw Script_checkflag
+	dw Script_clearflag
+	dw Script_setflag
 	dw Script_wildon
+	dw Script_wildoff
 	dw Script_xycompare
 	dw Script_warpmod
 	dw Script_blackoutmod
@@ -165,9 +165,9 @@ ScriptCommandTable: ; 0x96cb1
 	dw Script_warpfacing
 	dw Script_storetext
 	dw Script_displaylocation
-	dw Script_unknown0xa6
-	dw Script_unknown0xa7
-	dw Script_unknown0xa8
+	dw Script_trainerclassname
+	dw Script_name
+	dw Script_wait
 	dw Script_unknown0xa9
 ; 0x96e05
 
@@ -1734,7 +1734,7 @@ Script_if_not_equal: ; 0x9754b
 	jr SkipTwoScriptBytes ; 0x97554 $40
 ; 0x97556
 
-Script_if_less_than: ; 0x97556
+Script_if_greater_than: ; 0x97556
 ; script command 0xa
 ; parameters:
 ;     byte (SingleByteParam)
@@ -1748,7 +1748,7 @@ Script_if_less_than: ; 0x97556
 	jr SkipTwoScriptBytes ; 0x97560 $34
 ; 0x97562
 
-Script_if_greater_than: ; 0x97562
+Script_if_less_than: ; 0x97562
 ; script command 0xb
 ; parameters:
 ;     byte (SingleByteParam)
@@ -2151,6 +2151,7 @@ Script_displaylocation: ; 0x97701
 ; script command 0xa5
 ; parameters:
 ;     id (SingleByteParam)
+;     memory (SingleByteParam)
 
 	call GetScriptByte
 	jr Unknown_976f4 ; 0x97704 $ee
@@ -2173,8 +2174,11 @@ Script_trainertotext: ; 0x97706
 	jr Unknown_976c0 ; 0x97714 $aa
 ; 0x97716
 
-Script_unknown0xa7: ; 0x97716
+Script_name: ; 0x97716
 ; script command 0xa7
+; parameters:
+;     type (SingleByteParam)
+;     id (SingleByteParam)
 
 	call GetScriptByte
 	ld [$cf61], a
@@ -2187,7 +2191,7 @@ Unknown_9771c: ; 0x9771c
 	jp Unknown_976c0
 ; 0x9772b
 
-Script_unknown0xa6: ; 0x9772b
+Script_trainerclassname: ; 0x9772b
 ; script command 0xa6
 
 	ld a, $7
@@ -2667,7 +2671,7 @@ Script_giveegg: ; 0x97968
 	ret
 ; 0x97988
 
-Script_setbit1: ; 0x97988
+Script_setevent: ; 0x97988
 ; script command 0x33
 ; parameters:
 ;     bit_number (MultiByteParam)
@@ -2681,7 +2685,7 @@ Script_setbit1: ; 0x97988
 	ret
 ; 0x97996
 
-Script_clearbit1: ; 0x97996
+Script_clearevent: ; 0x97996
 ; script command 0x32
 ; parameters:
 ;     bit_number (MultiByteParam)
@@ -2695,7 +2699,7 @@ Script_clearbit1: ; 0x97996
 	ret
 ; 0x979a4
 
-Script_checkbit1: ; 0x979a4
+Script_checkevent: ; 0x979a4
 ; script command 0x31
 ; parameters:
 ;     bit_number (MultiByteParam)
@@ -2715,7 +2719,7 @@ Script_checkbit1: ; 0x979a4
 	ret
 ; 0x979bb
 
-Script_setbit2: ; 0x979bb
+Script_setflag: ; 0x979bb
 ; script command 0x36
 ; parameters:
 ;     bit_number (MultiByteParam)
@@ -2729,7 +2733,7 @@ Script_setbit2: ; 0x979bb
 	ret
 ; 0x979c9
 
-Script_clearbit2: ; 0x979c9
+Script_clearflag: ; 0x979c9
 ; script command 0x35
 ; parameters:
 ;     bit_number (MultiByteParam)
@@ -2743,7 +2747,7 @@ Script_clearbit2: ; 0x979c9
 	ret
 ; 0x979d7
 
-Script_checkbit2: ; 0x979d7
+Script_checkflag: ; 0x979d7
 ; script command 0x34
 ; parameters:
 ;     bit_number (MultiByteParam)
@@ -2770,18 +2774,18 @@ Unknown_0x979ee: ; 0x979ee
 	ret
 ; 0x979f5
 
-Script_wildon: ; 0x979f5
+Script_wildoff: ; 0x979f5
 ; script command 0x38
 
-	ld hl, $d84c
+	ld hl, StatusFlags
 	set 5, [hl]
 	ret
 ; 0x979fb
 
-Script_wildoff: ; 0x979fb
+Script_wildon: ; 0x979fb
 ; script command 0x37
 
-	ld hl, $d84c
+	ld hl, StatusFlags
 	res 5, [hl]
 	ret
 ; 0x97a01
@@ -3211,7 +3215,7 @@ DisplayCredits:
 	ret
 ; 0x97c05
 
-Script_unknown0xa8: ; 0x97c05
+Script_wait: ; 0x97c05
 ; script command 0xa8
 ; parameters:
 ;     unknown (SingleByteParam)

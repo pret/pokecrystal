@@ -45,9 +45,9 @@ UnknownScript_0x188dc5: ; 0x188dc5
 OfficerScript_0x188df5: ; 0x188df5
 	faceplayer
 	loadfont
-	checkbit1 EVENT_RETURNED_MACHINE_PART
+	checkevent EVENT_RETURNED_MACHINE_PART
 	iftrue UnknownScript_0x188e0f
-	checkbit1 EVENT_MET_MANAGER_AT_POWER_PLANT
+	checkevent EVENT_MET_MANAGER_AT_POWER_PLANT
 	iftrue UnknownScript_0x188e09
 	2writetext UnknownText_0x188ee0
 	closetext
@@ -72,7 +72,7 @@ UnknownScript_0x188e0f: ; 0x188e0f
 GymGuyScript_0x188e15: ; 0x188e15
 	faceplayer
 	loadfont
-	checkbit1 EVENT_RETURNED_MACHINE_PART
+	checkevent EVENT_RETURNED_MACHINE_PART
 	iftrue UnknownScript_0x188e23
 	2writetext UnknownText_0x188fcf
 	closetext
@@ -90,7 +90,7 @@ UnknownScript_0x188e23: ; 0x188e23
 GymGuyScript_0x188e29: ; 0x188e29
 	faceplayer
 	loadfont
-	checkbit1 EVENT_RETURNED_MACHINE_PART
+	checkevent EVENT_RETURNED_MACHINE_PART
 	iftrue UnknownScript_0x188e37
 	2writetext UnknownText_0x189079
 	closetext
@@ -108,7 +108,7 @@ UnknownScript_0x188e37: ; 0x188e37
 OfficerScript_0x188e3d: ; 0x188e3d
 	faceplayer
 	loadfont
-	checkbit1 EVENT_RETURNED_MACHINE_PART
+	checkevent EVENT_RETURNED_MACHINE_PART
 	iftrue UnknownScript_0x188e4b
 	2writetext UnknownText_0x18910e
 	closetext
@@ -126,7 +126,7 @@ UnknownScript_0x188e4b: ; 0x188e4b
 GymGuyScript_0x188e51: ; 0x188e51
 	faceplayer
 	loadfont
-	checkbit1 EVENT_RETURNED_MACHINE_PART
+	checkevent EVENT_RETURNED_MACHINE_PART
 	iftrue UnknownScript_0x188e5f
 	2writetext UnknownText_0x1891c2
 	closetext
@@ -144,18 +144,18 @@ UnknownScript_0x188e5f: ; 0x188e5f
 FisherScript_0x188e65: ; 0x188e65
 	faceplayer
 	loadfont
-	checkbit1 EVENT_RETURNED_MACHINE_PART
+	checkevent EVENT_RETURNED_MACHINE_PART
 	iftrue UnknownScript_0x188eac
 	checkitem MACHINE_PART
 	iftrue UnknownScript_0x188e93
-	checkbit1 EVENT_MET_MANAGER_AT_POWER_PLANT
+	checkevent EVENT_MET_MANAGER_AT_POWER_PLANT
 	iftrue UnknownScript_0x188e8d
 	2writetext UnknownText_0x189264
 	closetext
 	loadmovesprites
-	setbit1 EVENT_MET_MANAGER_AT_POWER_PLANT
-	clearbit1 $076d
-	clearbit1 EVENT_FOUND_MACHINE_PART_IN_CERULEAN_GYM
+	setevent EVENT_MET_MANAGER_AT_POWER_PLANT
+	clearevent $076d
+	clearevent EVENT_FOUND_MACHINE_PART_IN_CERULEAN_GYM
 	domaptrigger GROUP_CERULEAN_GYM, MAP_CERULEAN_GYM, $1
 	dotrigger $1
 	end
@@ -172,20 +172,20 @@ UnknownScript_0x188e93: ; 0x188e93
 	2writetext UnknownText_0x18936e
 	keeptextopen
 	takeitem MACHINE_PART, 1
-	setbit1 EVENT_RETURNED_MACHINE_PART
-	clearbit1 $0772
-	setbit1 $0771
-	setbit1 $076c
-	setbit1 EVENT_RESTORED_POWER_TO_KANTO
-	clearbit1 $0749
+	setevent EVENT_RETURNED_MACHINE_PART
+	clearevent $0772
+	setevent $0771
+	setevent $076c
+	setevent EVENT_RESTORED_POWER_TO_KANTO
+	clearevent $0749
 UnknownScript_0x188eac: ; 0x188eac
-	checkbit1 EVENT_GOT_TM07_ZAP_CANNON
+	checkevent EVENT_GOT_TM07_ZAP_CANNON
 	iftrue UnknownScript_0x188ec5
 	2writetext UnknownText_0x1893c4
 	keeptextopen
 	verbosegiveitem TM_07, 1
 	iffalse UnknownScript_0x188ec3
-	setbit1 EVENT_GOT_TM07_ZAP_CANNON
+	setevent EVENT_GOT_TM07_ZAP_CANNON
 	2writetext UnknownText_0x1893f4
 	closetext
 UnknownScript_0x188ec3: ; 0x188ec3

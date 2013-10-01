@@ -2201,7 +2201,7 @@ Teleport:
 BeatUp:
 	checkobedience
 	usedmovetext
-	wait
+	movedelay
 	doturn
 	startloop
 	effect0x0a

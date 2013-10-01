@@ -47,14 +47,14 @@ UnknownScript_0x60011: ; 0x60011
 	verbosegiveitem BASEMENT_KEY, 1
 	loadmovesprites
 	dotrigger $1
-	setbit1 $0573
+	setevent $0573
 	end
 ; 0x60046
 
 GentlemanScript_0x60046: ; 0x60046
 	faceplayer
 	loadfont
-	checkbit1 EVENT_CLEARED_RADIO_TOWER
+	checkevent EVENT_CLEARED_RADIO_TOWER
 	iftrue UnknownScript_0x60054
 	2writetext UnknownText_0x60246
 	closetext
@@ -121,18 +121,18 @@ UnknownScript_0x6006e: ; 0x6006e
 	disappear $4
 	pause 15
 	special $0032
-	setbit1 $0571
-	setbit1 EVENT_CLEARED_RADIO_TOWER
-	clearbit2 $0013
-	setbit1 $06cc
-	setbit1 $06cd
-	setbit1 $06ce
-	clearbit1 $0736
-	clearbit2 $0017
-	clearbit1 $06cf
-	clearbit1 $06d0
-	setbit1 $06e3
-	clearbit1 $06e4
+	setevent $0571
+	setevent EVENT_CLEARED_RADIO_TOWER
+	clearflag $0013
+	setevent $06cc
+	setevent $06cd
+	setevent $06ce
+	clearevent $0736
+	clearflag $0017
+	clearevent $06cf
+	clearevent $06d0
+	setevent $06e3
+	clearevent $06e4
 	special $003c
 	disappear $2
 	moveperson $2, $c, $0
@@ -148,8 +148,8 @@ UnknownScript_0x6006e: ; 0x6006e
 	loadmovesprites
 	dotrigger $2
 	domaptrigger GROUP_ECRUTEAK_HOUSE, MAP_ECRUTEAK_HOUSE, $0
-	setbit1 EVENT_GOT_CLEAR_BELL
-	setbit1 $0761
+	setevent EVENT_GOT_CLEAR_BELL
+	setevent $0761
 	2jump UnknownScript_0x600f1
 ; 0x600f1
 

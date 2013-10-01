@@ -19,9 +19,9 @@ MapKrissNeighborsHouseSignpost1Script: ; 0x7acf4
 ; 0x7acf7
 
 MapKrissNeighborsHouseSignpost2Script: ; 0x7acf7
-	checkbit1 EVENT_GOT_A_POKEMON_FROM_ELM
+	checkevent EVENT_GOT_A_POKEMON_FROM_ELM
 	iftrue UnknownScript_0x7ad24
-	checkbit1 EVENT_LISTENED_TO_RADIO_IN_NEIGHBORS_HOUSE
+	checkevent EVENT_LISTENED_TO_RADIO_IN_NEIGHBORS_HOUSE
 	iftrue UnknownScript_0x7ad27
 	playmusic $001d
 	loadfont
@@ -35,7 +35,7 @@ MapKrissNeighborsHouseSignpost2Script: ; 0x7acf7
 	2writetext UnknownText_0x7ae9b
 	pause 45
 	loadmovesprites
-	setbit1 EVENT_LISTENED_TO_RADIO_IN_NEIGHBORS_HOUSE
+	setevent EVENT_LISTENED_TO_RADIO_IN_NEIGHBORS_HOUSE
 	end
 ; 0x7ad24
 

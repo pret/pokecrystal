@@ -32,8 +32,8 @@ UnknownScript_0x7513b: ; 0x7513b
 	playsound $001c
 	earthquake 30
 	blackoutmod GROUP_FAST_SHIP_CABINS_SW_SSW_NW, MAP_FAST_SHIP_CABINS_SW_SSW_NW
-	clearbit1 $0031
-	checkbit1 $0030
+	clearevent $0031
+	checkevent $0030
 	iftrue UnknownScript_0x7515d
 	dotrigger $2
 	end
@@ -47,9 +47,9 @@ UnknownScript_0x7515d: ; 0x7515d
 SailorScript_0x75160: ; 0x75160
 	faceplayer
 	loadfont
-	checkbit1 $0031
+	checkevent $0031
 	iftrue UnknownScript_0x7517a
-	checkbit1 $002f
+	checkevent $002f
 	iftrue UnknownScript_0x75174
 	2writetext UnknownText_0x7523b
 	closetext
@@ -65,7 +65,7 @@ UnknownScript_0x75174: ; 0x75174
 ; 0x7517a
 
 UnknownScript_0x7517a: ; 0x7517a
-	checkbit1 $002f
+	checkevent $002f
 	iftrue UnknownScript_0x7519c
 	2writetext UnknownText_0x754be
 	closetext
@@ -74,7 +74,7 @@ UnknownScript_0x7517a: ; 0x7517a
 	playsound $0023
 	special $002e
 	waitbutton
-	setbit1 $072b
+	setevent $072b
 	domaptrigger GROUP_VERMILION_PORT, MAP_VERMILION_PORT, $1
 	warp GROUP_VERMILION_PORT, MAP_VERMILION_PORT, $7, $11
 	end
@@ -88,7 +88,7 @@ UnknownScript_0x7519c: ; 0x7519c
 	playsound $0023
 	special $002e
 	waitbutton
-	setbit1 $072a
+	setevent $072a
 	domaptrigger GROUP_OLIVINE_PORT, MAP_OLIVINE_PORT, $1
 	warp GROUP_OLIVINE_PORT, MAP_OLIVINE_PORT, $7, $17
 	end
@@ -111,7 +111,7 @@ UnknownScript_0x751c7: ; 0x751c7
 SailorScript_0x751d0: ; 0x751d0
 	faceplayer
 	loadfont
-	checkbit1 $0030
+	checkevent $0030
 	iftrue UnknownScript_0x751de
 	2writetext UnknownText_0x752f9
 	closetext

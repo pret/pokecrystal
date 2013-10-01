@@ -18,7 +18,7 @@ DaisyScript_0x19b0d0: ; 0x19b0d0
 ; 0x19b0de
 
 UnknownScript_0x19b0de: ; 0x19b0de
-	checkbit2 $005c
+	checkflag $005c
 	iftrue UnknownScript_0x19b11e
 	2writetext UnknownText_0x19b1b6
 	yesorno
@@ -28,7 +28,7 @@ UnknownScript_0x19b0de: ; 0x19b0de
 	special $0063
 	if_equal $0, UnknownScript_0x19b124
 	if_equal $1, UnknownScript_0x19b12a
-	setbit2 $005c
+	setflag $005c
 	2writetext UnknownText_0x19b266
 	closetext
 	loadmovesprites

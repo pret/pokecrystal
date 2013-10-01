@@ -61,11 +61,11 @@ JugglerIrwin1Script: ; 0x19c8cf
 	loadfont
 	checkcellnum $16
 	iftrue UnknownScript_0x19c90f
-	checkbit1 $0281
+	checkevent $0281
 	iftrue UnknownScript_0x19c8ec
 	2writetext UnknownText_0x19cd5a
 	keeptextopen
-	setbit1 $0281
+	setevent $0281
 	2call UnknownScript_0x19c903
 	2jump UnknownScript_0x19c8ef
 ; 0x19c8ec
@@ -256,17 +256,17 @@ Bug_catcherArnie1Script: ; 0x19c97b
 	writecode $17, $17
 	talkaftercancel
 	loadfont
-	checkbit2 $0072
+	checkflag $0072
 	iftrue UnknownScript_0x19c9bb
-	checkbit2 $00a1
+	checkflag $00a1
 	iftrue UnknownScript_0x19ca2f
 	checkcellnum $17
 	iftrue UnknownScript_0x19c90f
-	checkbit1 $0283
+	checkevent $0283
 	iftrue UnknownScript_0x19c9a4
 	2writetext UnknownText_0x19cdf6
 	keeptextopen
-	setbit1 $0283
+	setevent $0283
 	2call UnknownScript_0x19c903
 	2jump UnknownScript_0x19c9a7
 ; 0x19c9a4
@@ -292,23 +292,23 @@ UnknownScript_0x19c9bb: ; 0x19c9bb
 	if_equal $1, UnknownScript_0x19c9ec
 	if_equal $0, UnknownScript_0x19c9f2
 UnknownScript_0x19c9da: ; 0x19c9da
-	checkbit1 EVENT_RESTORED_POWER_TO_KANTO
+	checkevent EVENT_RESTORED_POWER_TO_KANTO
 	iftrue UnknownScript_0x19ca26
 UnknownScript_0x19c9e0: ; 0x19c9e0
-	checkbit1 $0044
+	checkevent $0044
 	iftrue UnknownScript_0x19ca19
 UnknownScript_0x19c9e6: ; 0x19c9e6
-	checkbit2 $004b
+	checkflag $004b
 	iftrue UnknownScript_0x19ca0c
 UnknownScript_0x19c9ec: ; 0x19c9ec
-	checkbit2 $004a
+	checkflag $004a
 	iftrue UnknownScript_0x19c9ff
 UnknownScript_0x19c9f2: ; 0x19c9f2
 	loadtrainer BUG_CATCHER, ARNIE1
 	startbattle
 	returnafterbattle
 	loadvar $da01, $1
-	clearbit2 $0072
+	clearflag $0072
 	end
 ; 0x19c9ff
 
@@ -317,7 +317,7 @@ UnknownScript_0x19c9ff: ; 0x19c9ff
 	startbattle
 	returnafterbattle
 	loadvar $da01, $2
-	clearbit2 $0072
+	clearflag $0072
 	end
 ; 0x19ca0c
 
@@ -326,7 +326,7 @@ UnknownScript_0x19ca0c: ; 0x19ca0c
 	startbattle
 	returnafterbattle
 	loadvar $da01, $3
-	clearbit2 $0072
+	clearflag $0072
 	end
 ; 0x19ca19
 
@@ -335,7 +335,7 @@ UnknownScript_0x19ca19: ; 0x19ca19
 	startbattle
 	returnafterbattle
 	loadvar $da01, $4
-	clearbit2 $0072
+	clearflag $0072
 	end
 ; 0x19ca26
 
@@ -343,7 +343,7 @@ UnknownScript_0x19ca26: ; 0x19ca26
 	loadtrainer BUG_CATCHER, ARNIE5
 	startbattle
 	returnafterbattle
-	clearbit2 $0072
+	clearflag $0072
 	end
 ; 0x19ca2f
 
@@ -388,7 +388,7 @@ OfficerScript_0x19ca49: ; 0x19ca49
 	loadfont
 	checktime $4
 	iffalse UnknownScript_0x19ca73
-	checkbit1 $0547
+	checkevent $0547
 	iftrue UnknownScript_0x19ca6d
 	playmusic $000c
 	2writetext UnknownText_0x19ceea
@@ -398,7 +398,7 @@ OfficerScript_0x19ca49: ; 0x19ca49
 	loadtrainer OFFICER, DIRK
 	startbattle
 	returnafterbattle
-	setbit1 $0547
+	setevent $0547
 	loadmovesprites
 	end
 ; 0x19ca6d

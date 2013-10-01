@@ -16,7 +16,7 @@ UnknownScript_0x9b38a: ; 0x9b38a
 UnknownScript_0x9b38b: ; 0x9b38b
 	spriteface $0, $1
 	loadfont
-	checkbit2 $0057
+	checkflag $0057
 	iftrue UnknownScript_0x9b3f7
 	2writetext UnknownText_0x9b420
 	keeptextopen
@@ -34,7 +34,7 @@ UnknownScript_0x9b3aa: ; 0x9b3aa
 	2writetext UnknownText_0x9b487
 	yesorno
 	iffalse UnknownScript_0x9b3ed
-	setbit2 $0057
+	setflag $0057
 	2writetext UnknownText_0x9b4a2
 	closetext
 	loadmovesprites

@@ -11,7 +11,7 @@ CopycatsHouse2F_MapScriptHeader: ; 0x18ae9a
 ; 0x18ae9f
 
 UnknownScript_0x18ae9f: ; 0x18ae9f
-	checkbit2 $0063
+	checkflag $0063
 	iftrue UnknownScript_0x18aeac
 	disappear $7
 	appear $2
@@ -27,13 +27,13 @@ UnknownScript_0x18aeb0: ; 0x18aeb0
 
 CopycatScript_0x18aeb1: ; 0x18aeb1
 	faceplayer
-	checkbit1 EVENT_GOT_PASS_FROM_COPYCAT
+	checkevent EVENT_GOT_PASS_FROM_COPYCAT
 	iftrue UnknownScript_0x18af6f
-	checkbit1 EVENT_RETURNED_LOST_ITEM_TO_COPYCAT
+	checkevent EVENT_RETURNED_LOST_ITEM_TO_COPYCAT
 	iftrue UnknownScript_0x18af5b
 	checkitem LOST_ITEM
 	iftrue UnknownScript_0x18af4a
-	checkbit2 $0063
+	checkflag $0063
 	iftrue UnknownScript_0x18aed4
 	applymovement $2, MovementData_0x18afd0
 	faceplayer
@@ -47,10 +47,10 @@ UnknownScript_0x18aed4: ; 0x18aed4
 	variablesprite $b, $60
 UnknownScript_0x18aedc: ; 0x18aedc
 	special $005e
-	checkbit1 EVENT_RETURNED_MACHINE_PART
+	checkevent EVENT_RETURNED_MACHINE_PART
 	iftrue UnknownScript_0x18af16
 	loadfont
-	checkbit2 $0063
+	checkflag $0063
 	iftrue UnknownScript_0x18aef2
 	2writetext UnknownText_0x18afda
 	2jump UnknownScript_0x18aef5
@@ -61,7 +61,7 @@ UnknownScript_0x18aef2: ; 0x18aef2
 UnknownScript_0x18aef5: ; 0x18aef5
 	closetext
 	loadmovesprites
-	checkbit2 $0063
+	checkflag $0063
 	iftrue UnknownScript_0x18af04
 	applymovement $2, MovementData_0x18afd0
 	2jump UnknownScript_0x18af08
@@ -82,7 +82,7 @@ UnknownScript_0x18af08: ; 0x18af08
 
 UnknownScript_0x18af16: ; 0x18af16
 	loadfont
-	checkbit2 $0063
+	checkflag $0063
 	iftrue UnknownScript_0x18af23
 	2writetext UnknownText_0x18b064
 	2jump UnknownScript_0x18af26
@@ -93,7 +93,7 @@ UnknownScript_0x18af23: ; 0x18af23
 UnknownScript_0x18af26: ; 0x18af26
 	closetext
 	loadmovesprites
-	checkbit2 $0063
+	checkflag $0063
 	iftrue UnknownScript_0x18af35
 	applymovement $2, MovementData_0x18afd0
 	2jump UnknownScript_0x18af39
@@ -109,7 +109,7 @@ UnknownScript_0x18af39: ; 0x18af39
 	2writetext UnknownText_0x18b116
 	closetext
 	loadmovesprites
-	setbit1 EVENT_MET_COPYCAT_FOUND_OUT_ABOUT_LOST_ITEM
+	setevent EVENT_MET_COPYCAT_FOUND_OUT_ABOUT_LOST_ITEM
 	end
 ; 0x18af4a
 
@@ -118,8 +118,8 @@ UnknownScript_0x18af4a: ; 0x18af4a
 	2writetext UnknownText_0x18b17f
 	keeptextopen
 	takeitem LOST_ITEM, 1
-	setbit1 EVENT_RETURNED_LOST_ITEM_TO_COPYCAT
-	clearbit1 $0773
+	setevent EVENT_RETURNED_LOST_ITEM_TO_COPYCAT
+	clearevent $0773
 	2jump UnknownScript_0x18af5c
 ; 0x18af5b
 
@@ -130,7 +130,7 @@ UnknownScript_0x18af5c: ; 0x18af5c
 	keeptextopen
 	verbosegiveitem PASS, 1
 	iffalse UnknownScript_0x18afba
-	setbit1 EVENT_GOT_PASS_FROM_COPYCAT
+	setevent EVENT_GOT_PASS_FROM_COPYCAT
 	2writetext UnknownText_0x18b214
 	closetext
 	loadmovesprites
@@ -138,7 +138,7 @@ UnknownScript_0x18af5c: ; 0x18af5c
 ; 0x18af6f
 
 UnknownScript_0x18af6f: ; 0x18af6f
-	checkbit2 $0063
+	checkflag $0063
 	iftrue UnknownScript_0x18af80
 	applymovement $2, MovementData_0x18afd0
 	faceplayer
@@ -153,7 +153,7 @@ UnknownScript_0x18af80: ; 0x18af80
 UnknownScript_0x18af88: ; 0x18af88
 	special $005e
 	loadfont
-	checkbit2 $0063
+	checkflag $0063
 	iftrue UnknownScript_0x18af98
 	2writetext UnknownText_0x18b298
 	2jump UnknownScript_0x18af9b
@@ -164,7 +164,7 @@ UnknownScript_0x18af98: ; 0x18af98
 UnknownScript_0x18af9b: ; 0x18af9b
 	closetext
 	loadmovesprites
-	checkbit2 $0063
+	checkflag $0063
 	iftrue UnknownScript_0x18afaa
 	applymovement $2, MovementData_0x18afd0
 	2jump UnknownScript_0x18afae

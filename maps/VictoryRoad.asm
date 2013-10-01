@@ -56,10 +56,10 @@ UnknownScript_0x744d4: ; 0x744d4
 	2writetext UnknownText_0x7455f
 	closetext
 	loadmovesprites
-	setbit1 $06c2
-	checkbit1 EVENT_GOT_TOTODILE_FROM_ELM
+	setevent $06c2
+	checkevent EVENT_GOT_TOTODILE_FROM_ELM
 	iftrue UnknownScript_0x744ff
-	checkbit1 EVENT_GOT_CHIKORITA_FROM_ELM
+	checkevent EVENT_GOT_CHIKORITA_FROM_ELM
 	iftrue UnknownScript_0x7450f
 	winlosstext UnknownText_0x7463d, UnknownText_0x747aa
 	setlasttalked $2

@@ -7,7 +7,7 @@ FuchsiaGym_MapScriptHeader: ; 0x195db7
 ; 0x195db9
 
 JanineScript_0x195db9: ; 0x195db9
-	checkbit2 $0027
+	checkflag $0027
 	iftrue UnknownScript_0x195e00
 	applymovement $2, MovementData_0x195f27
 	faceplayer
@@ -19,11 +19,11 @@ JanineScript_0x195db9: ; 0x195db9
 	loadtrainer JANINE, 1
 	startbattle
 	returnafterbattle
-	setbit1 EVENT_BEAT_JANINE
-	setbit1 $0517
-	setbit1 $051a
-	setbit1 $0482
-	setbit1 $041e
+	setevent EVENT_BEAT_JANINE
+	setevent $0517
+	setevent $051a
+	setevent $0482
+	setevent $041e
 	variablesprite $7, $28
 	variablesprite $8, $28
 	variablesprite $9, $28
@@ -33,7 +33,7 @@ JanineScript_0x195db9: ; 0x195db9
 	2writetext UnknownText_0x195feb
 	playsound $009c
 	waitbutton
-	setbit2 $0027
+	setflag $0027
 	2jump UnknownScript_0x195e02
 ; 0x195e00
 
@@ -41,13 +41,13 @@ UnknownScript_0x195e00: ; 0x195e00
 	faceplayer
 	loadfont
 UnknownScript_0x195e02: ; 0x195e02
-	checkbit1 EVENT_GOT_TM06_TOXIC
+	checkevent EVENT_GOT_TM06_TOXIC
 	iftrue UnknownScript_0x195e15
 	2writetext UnknownText_0x196002
 	keeptextopen
 	verbosegiveitem TM_06, 1
 	iffalse UnknownScript_0x195e15
-	setbit1 EVENT_GOT_TM06_TOXIC
+	setevent EVENT_GOT_TM06_TOXIC
 UnknownScript_0x195e15: ; 0x195e15
 	2writetext UnknownText_0x196074
 	closetext
@@ -56,7 +56,7 @@ UnknownScript_0x195e15: ; 0x195e15
 ; 0x195e1b
 
 FuschiaGym1Script_0x195e1b: ; 0x195e1b
-	checkbit1 $0517
+	checkevent $0517
 	iftrue UnknownScript_0x195e2c
 	applymovement $3, MovementData_0x195f27
 	faceplayer
@@ -65,7 +65,7 @@ FuschiaGym1Script_0x195e1b: ; 0x195e1b
 UnknownScript_0x195e2c: ; 0x195e2c
 	faceplayer
 	loadfont
-	checkbit1 $0517
+	checkevent $0517
 	iftrue UnknownScript_0x195e4f
 	2writetext UnknownText_0x1960e6
 	closetext
@@ -75,7 +75,7 @@ UnknownScript_0x195e2c: ; 0x195e2c
 	startbattle
 	iftrue UnknownScript_0x195e4a
 	returnafterbattle
-	setbit1 $0517
+	setevent $0517
 	end
 ; 0x195e4a
 
@@ -93,7 +93,7 @@ UnknownScript_0x195e4f: ; 0x195e4f
 ; 0x195e55
 
 FuschiaGym2Script_0x195e55: ; 0x195e55
-	checkbit1 $051a
+	checkevent $051a
 	iftrue UnknownScript_0x195e66
 	applymovement $4, MovementData_0x195f27
 	faceplayer
@@ -102,7 +102,7 @@ FuschiaGym2Script_0x195e55: ; 0x195e55
 UnknownScript_0x195e66: ; 0x195e66
 	faceplayer
 	loadfont
-	checkbit1 $051a
+	checkevent $051a
 	iftrue UnknownScript_0x195e89
 	2writetext UnknownText_0x196166
 	closetext
@@ -112,7 +112,7 @@ UnknownScript_0x195e66: ; 0x195e66
 	startbattle
 	iftrue UnknownScript_0x195e84
 	returnafterbattle
-	setbit1 $051a
+	setevent $051a
 	end
 ; 0x195e84
 
@@ -130,7 +130,7 @@ UnknownScript_0x195e89: ; 0x195e89
 ; 0x195e8f
 
 FuschiaGym3Script_0x195e8f: ; 0x195e8f
-	checkbit1 $0482
+	checkevent $0482
 	iftrue UnknownScript_0x195ea0
 	applymovement $5, MovementData_0x195f27
 	faceplayer
@@ -139,7 +139,7 @@ FuschiaGym3Script_0x195e8f: ; 0x195e8f
 UnknownScript_0x195ea0: ; 0x195ea0
 	faceplayer
 	loadfont
-	checkbit1 $0482
+	checkevent $0482
 	iftrue UnknownScript_0x195ec3
 	2writetext UnknownText_0x1961bb
 	closetext
@@ -149,7 +149,7 @@ UnknownScript_0x195ea0: ; 0x195ea0
 	startbattle
 	iftrue UnknownScript_0x195ebe
 	returnafterbattle
-	setbit1 $0482
+	setevent $0482
 	end
 ; 0x195ebe
 
@@ -167,7 +167,7 @@ UnknownScript_0x195ec3: ; 0x195ec3
 ; 0x195ec9
 
 FuschiaGym4Script_0x195ec9: ; 0x195ec9
-	checkbit1 $041e
+	checkevent $041e
 	iftrue UnknownScript_0x195eda
 	applymovement $6, MovementData_0x195f27
 	faceplayer
@@ -176,7 +176,7 @@ FuschiaGym4Script_0x195ec9: ; 0x195ec9
 UnknownScript_0x195eda: ; 0x195eda
 	faceplayer
 	loadfont
-	checkbit1 $041e
+	checkevent $041e
 	iftrue UnknownScript_0x195efd
 	2writetext UnknownText_0x196228
 	closetext
@@ -186,7 +186,7 @@ UnknownScript_0x195eda: ; 0x195eda
 	startbattle
 	iftrue UnknownScript_0x195ef8
 	returnafterbattle
-	setbit1 $041e
+	setevent $041e
 	end
 ; 0x195ef8
 
@@ -206,7 +206,7 @@ UnknownScript_0x195efd: ; 0x195efd
 FuchsiaGymGuyScript: ; 0x195f03
 	faceplayer
 	loadfont
-	checkbit1 EVENT_BEAT_JANINE
+	checkevent EVENT_BEAT_JANINE
 	iftrue .FuchsiaGymGuyWinScript
 	2writetext FuchsiaGymGuyText
 	closetext
@@ -221,7 +221,7 @@ FuchsiaGymGuyScript: ; 0x195f03
 ; 0x195f17
 
 MapFuchsiaGymSignpost1Script: ; 0x195f17
-	checkbit2 $0027
+	checkflag $0027
 	iftrue UnknownScript_0x195f20
 	jumpstd $002d
 ; 0x195f20

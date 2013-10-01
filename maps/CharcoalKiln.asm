@@ -9,9 +9,9 @@ CharcoalKiln_MapScriptHeader: ; 0x18dd18
 BlackBeltScript_0x18dd1a: ; 0x18dd1a
 	faceplayer
 	loadfont
-	checkbit1 EVENT_GOT_HM01_CUT
+	checkevent EVENT_GOT_HM01_CUT
 	iftrue UnknownScript_0x18dd34
-	checkbit1 EVENT_CLEARED_SLOWPOKE_WELL
+	checkevent EVENT_CLEARED_SLOWPOKE_WELL
 	iftrue UnknownScript_0x18dd2e
 	2writetext UnknownText_0x18dd74
 	closetext
@@ -36,9 +36,9 @@ UnknownScript_0x18dd34: ; 0x18dd34
 YoungsterScript_0x18dd3a: ; 0x18dd3a
 	faceplayer
 	loadfont
-	checkbit1 EVENT_GOT_CHARCOAL_IN_CHARCOAL_KILN
+	checkevent EVENT_GOT_CHARCOAL_IN_CHARCOAL_KILN
 	iftrue UnknownScript_0x18dd5d
-	checkbit1 EVENT_GOT_HM01_CUT
+	checkevent EVENT_GOT_HM01_CUT
 	iftrue UnknownScript_0x18dd4e
 	2writetext UnknownText_0x18dee0
 	closetext
@@ -51,7 +51,7 @@ UnknownScript_0x18dd4e: ; 0x18dd4e
 	keeptextopen
 	verbosegiveitem CHARCOAL, 1
 	iffalse UnknownScript_0x18dd61
-	setbit1 EVENT_GOT_CHARCOAL_IN_CHARCOAL_KILN
+	setevent EVENT_GOT_CHARCOAL_IN_CHARCOAL_KILN
 	loadmovesprites
 	end
 ; 0x18dd5d

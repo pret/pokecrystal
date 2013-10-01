@@ -24,7 +24,7 @@ UnknownScript_0x6c357: ; 0x6c357
 ; 0x6c35b
 
 UnknownScript_0x6c35b: ; 0x6c35b
-	checkbit1 EVENT_UNCOVERED_STAIRCASE_IN_MAHOGANY_MART
+	checkevent EVENT_UNCOVERED_STAIRCASE_IN_MAHOGANY_MART
 	iftrue UnknownScript_0x6c362
 	return
 ; 0x6c362
@@ -37,7 +37,7 @@ UnknownScript_0x6c362: ; 0x6c362
 PharmacistScript_0x6c367: ; 0x6c367
 	faceplayer
 	loadfont
-	checkbit1 EVENT_DECIDED_TO_HELP_LANCE
+	checkevent EVENT_DECIDED_TO_HELP_LANCE
 	iftrue UnknownScript_0x6c375
 	pokemart $0, $000f
 	loadmovesprites
@@ -54,7 +54,7 @@ UnknownScript_0x6c375: ; 0x6c375
 BlackBeltScript_0x6c37b: ; 0x6c37b
 	faceplayer
 	loadfont
-	checkbit1 EVENT_DECIDED_TO_HELP_LANCE
+	checkevent EVENT_DECIDED_TO_HELP_LANCE
 	iftrue UnknownScript_0x6c389
 	2writetext UnknownText_0x6c494
 	closetext
@@ -99,7 +99,7 @@ UnknownScript_0x6c38f: ; 0x6c38f
 	changeblock $6, $2, $1e
 	reloadmappart
 	loadmovesprites
-	setbit1 EVENT_UNCOVERED_STAIRCASE_IN_MAHOGANY_MART
+	setevent EVENT_UNCOVERED_STAIRCASE_IN_MAHOGANY_MART
 	spriteface $4, $2
 	loadfont
 	2writetext UnknownText_0x6c5ba

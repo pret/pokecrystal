@@ -9,7 +9,7 @@ OlivineGoodRodHouse_MapScriptHeader: ; 0x9c719
 FishingGuruScript_0x9c71b: ; 0x9c71b
 	faceplayer
 	loadfont
-	checkbit1 EVENT_GOT_GOOD_ROD
+	checkevent EVENT_GOT_GOOD_ROD
 	iftrue UnknownScript_0x9c740
 	2writetext UnknownText_0x9c749
 	yesorno
@@ -20,7 +20,7 @@ FishingGuruScript_0x9c71b: ; 0x9c71b
 	2writetext UnknownText_0x9c807
 	closetext
 	loadmovesprites
-	setbit1 EVENT_GOT_GOOD_ROD
+	setevent EVENT_GOT_GOOD_ROD
 	end
 ; 0x9c73a
 

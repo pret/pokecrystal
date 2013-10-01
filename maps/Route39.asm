@@ -39,17 +39,17 @@ PokefanmDerek1Script: ; 0x1a5b0b
 	writecode $17, $1c
 	talkaftercancel
 	loadfont
-	checkbit2 $0083
+	checkflag $0083
 	iftrue UnknownScript_0x1a5b4a
 	checkcellnum $1c
 	iftrue UnknownScript_0x1a5b6e
 	checkpoke PIKACHU
 	iffalse UnknownScript_0x1a5b5c
-	checkbit1 EVENT_SHOWED_DEREK_PIKACHU
+	checkevent EVENT_SHOWED_DEREK_PIKACHU
 	iftrue UnknownScript_0x1a5b33
 	2writetext UnknownText_0x1a5cf8
 	keeptextopen
-	setbit1 EVENT_SHOWED_DEREK_PIKACHU
+	setevent EVENT_SHOWED_DEREK_PIKACHU
 	2call UnknownScript_0x1a5b62
 	2jump UnknownScript_0x1a5b36
 ; 0x1a5b33
@@ -69,7 +69,7 @@ UnknownScript_0x1a5b4a: ; 0x1a5b4a
 	2call UnknownScript_0x1a5b7a
 	verbosegiveitem NUGGET, 1
 	iffalse UnknownScript_0x1a5b59
-	clearbit2 $0083
+	clearflag $0083
 	2jump UnknownScript_0x1a5b6e
 ; 0x1a5b59
 
@@ -216,7 +216,7 @@ PokefanFScript_0x1a5bbe: ; 0x1a5bbe
 	loadfont
 	checktime $4
 	iffalse UnknownScript_0x1a5be5
-	checkbit1 $05c2
+	checkevent $05c2
 	iftrue UnknownScript_0x1a5bdf
 	2writetext UnknownText_0x1a5ee8
 	closetext
@@ -225,7 +225,7 @@ PokefanFScript_0x1a5bbe: ; 0x1a5bbe
 	loadtrainer POKEFANF, JAIME
 	startbattle
 	returnafterbattle
-	setbit1 $05c2
+	setevent $05c2
 	loadmovesprites
 	end
 ; 0x1a5bdf

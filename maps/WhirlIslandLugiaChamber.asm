@@ -11,7 +11,7 @@ WhirlIslandLugiaChamber_MapScriptHeader: ; 0x18c4ff
 ; 0x18c504
 
 UnknownScript_0x18c504: ; 0x18c504
-	checkbit1 EVENT_FOUGHT_LUGIA
+	checkevent EVENT_FOUGHT_LUGIA
 	iftrue UnknownScript_0x18c515
 	checkitem SILVER_WING
 	iftrue UnknownScript_0x18c512
@@ -35,7 +35,7 @@ LugiaScript_0x18c518: ; 0x18c518
 	cry LUGIA
 	pause 15
 	loadmovesprites
-	setbit1 EVENT_FOUGHT_LUGIA
+	setevent EVENT_FOUGHT_LUGIA
 	writecode $3, $a
 	loadpokedata LUGIA, 60
 	startbattle

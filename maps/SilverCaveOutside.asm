@@ -11,7 +11,7 @@ SilverCaveOutside_MapScriptHeader: ; 0x1b2042
 ; 0x1b2047
 
 UnknownScript_0x1b2047: ; 0x1b2047
-	setbit2 $004c
+	setflag $004c
 	return
 ; 0x1b204b
 

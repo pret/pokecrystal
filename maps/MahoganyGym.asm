@@ -9,7 +9,7 @@ MahoganyGym_MapScriptHeader: ; 0x199a9c
 PryceScript_0x199a9e: ; 0x199a9e
 	faceplayer
 	loadfont
-	checkbit1 EVENT_BEAT_PRYCE
+	checkevent EVENT_BEAT_PRYCE
 	iftrue UnknownScript_0x199ac8
 	2writetext UnknownText_0x199b8d
 	closetext
@@ -18,27 +18,27 @@ PryceScript_0x199a9e: ; 0x199a9e
 	loadtrainer PRYCE, 1
 	startbattle
 	returnafterbattle
-	setbit1 EVENT_BEAT_PRYCE
+	setevent EVENT_BEAT_PRYCE
 	loadfont
 	2writetext UnknownText_0x199d3b
 	playsound $009c
 	waitbutton
-	setbit2 $0021
+	setflag $0021
 	checkcode $7
 	2call UnknownScript_0x199af6
 UnknownScript_0x199ac8: ; 0x199ac8
-	checkbit1 EVENT_GOT_TM16_ICY_WIND
+	checkevent EVENT_GOT_TM16_ICY_WIND
 	iftrue UnknownScript_0x199af0
-	setbit1 EVENT_BEAT_SKIER_ROXANNE
-	setbit1 EVENT_BEAT_SKIER_CLARISSA
-	setbit1 EVENT_BEAT_BOARDER_RONALD
-	setbit1 EVENT_BEAT_BOARDER_BRAD
-	setbit1 EVENT_BEAT_BOARDER_DOUGLAS
+	setevent EVENT_BEAT_SKIER_ROXANNE
+	setevent EVENT_BEAT_SKIER_CLARISSA
+	setevent EVENT_BEAT_BOARDER_RONALD
+	setevent EVENT_BEAT_BOARDER_BRAD
+	setevent EVENT_BEAT_BOARDER_DOUGLAS
 	2writetext UnknownText_0x199d55
 	keeptextopen
 	verbosegiveitem TM_16, 1
 	iffalse UnknownScript_0x199af4
-	setbit1 EVENT_GOT_TM16_ICY_WIND
+	setevent EVENT_GOT_TM16_ICY_WIND
 	2writetext UnknownText_0x199def
 	closetext
 	loadmovesprites
@@ -215,7 +215,7 @@ BoarderDouglasScript: ; 0x199b61
 MahoganyGymGuyScript: ; 0x199b69
 	faceplayer
 	loadfont
-	checkbit1 EVENT_BEAT_PRYCE
+	checkevent EVENT_BEAT_PRYCE
 	iftrue .MahoganyGymGuyWinScript
 	2writetext MahoganyGymGuyText
 	closetext
@@ -230,7 +230,7 @@ MahoganyGymGuyScript: ; 0x199b69
 ; 0x199b7d
 
 MapMahoganyGymSignpost1Script: ; 0x199b7d
-	checkbit2 $0021
+	checkflag $0021
 	iftrue UnknownScript_0x199b86
 	jumpstd $002d
 ; 0x199b86

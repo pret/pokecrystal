@@ -8,7 +8,7 @@ CherrygroveMart_MapScriptHeader: ; 0x196808
 
 ClerkScript_0x19680a: ; 0x19680a
 	loadfont
-	checkbit1 EVENT_GAVE_MYSTERY_EGG_TO_ELM
+	checkevent EVENT_GAVE_MYSTERY_EGG_TO_ELM
 	iftrue UnknownScript_0x196817
 	pokemart $0, $0000
 	loadmovesprites
@@ -24,7 +24,7 @@ UnknownScript_0x196817: ; 0x196817
 CooltrainerMScript_0x19681d: ; 0x19681d
 	faceplayer
 	loadfont
-	checkbit1 EVENT_GAVE_MYSTERY_EGG_TO_ELM
+	checkevent EVENT_GAVE_MYSTERY_EGG_TO_ELM
 	iftrue UnknownScript_0x19682b
 	2writetext UnknownText_0x196834
 	closetext

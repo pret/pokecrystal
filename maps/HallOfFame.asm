@@ -34,15 +34,15 @@ UnknownScript_0x181454: ; 0x181454
 	pause 15
 	writebyte $2
 	special $003e
-	setbit1 $0044
-	setbit1 $077c
-	setbit1 $06c4
-	clearbit1 $0762
-	setbit1 $0737
-	clearbit1 $0738
+	setevent $0044
+	setevent $077c
+	setevent $06c4
+	clearevent $0762
+	setevent $0737
+	clearevent $0738
 	domaptrigger GROUP_SPROUT_TOWER_3F, MAP_SPROUT_TOWER_3F, $1
 	special $001b
-	checkbit1 EVENT_GOT_SS_TICKET_FROM_ELM
+	checkevent EVENT_GOT_SS_TICKET_FROM_ELM
 	iftrue UnknownScript_0x181497
 	specialphonecall $5
 UnknownScript_0x181497: ; 0x181497

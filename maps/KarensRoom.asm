@@ -24,11 +24,11 @@ UnknownScript_0x180bc0: ; 0x180bc0
 ; 0x180bc1
 
 UnknownScript_0x180bc1: ; 0x180bc1
-	checkbit1 EVENT_KARENS_ROOM_ENTRANCE_CLOSED
+	checkevent EVENT_KARENS_ROOM_ENTRANCE_CLOSED
 	iffalse UnknownScript_0x180bcb
 	changeblock $4, $e, $2a
 UnknownScript_0x180bcb: ; 0x180bcb
-	checkbit1 EVENT_KARENS_ROOM_EXIT_OPEN
+	checkevent EVENT_KARENS_ROOM_EXIT_OPEN
 	iffalse UnknownScript_0x180bd5
 	changeblock $4, $2, $16
 UnknownScript_0x180bd5: ; 0x180bd5
@@ -44,7 +44,7 @@ UnknownScript_0x180bd6: ; 0x180bd6
 	reloadmappart
 	loadmovesprites
 	dotrigger $1
-	setbit1 EVENT_KARENS_ROOM_ENTRANCE_CLOSED
+	setevent EVENT_KARENS_ROOM_ENTRANCE_CLOSED
 	waitbutton
 	end
 ; 0x180bee
@@ -52,7 +52,7 @@ UnknownScript_0x180bd6: ; 0x180bd6
 KarenScript_0x180bee: ; 0x180bee
 	faceplayer
 	loadfont
-	checkbit1 EVENT_BEAT_ELITE_4_KAREN
+	checkevent EVENT_BEAT_ELITE_4_KAREN
 	iftrue UnknownScript_0x180c1c
 	2writetext UnknownText_0x180c27
 	closetext
@@ -61,7 +61,7 @@ KarenScript_0x180bee: ; 0x180bee
 	loadtrainer KAREN, 1
 	startbattle
 	returnafterbattle
-	setbit1 EVENT_BEAT_ELITE_4_KAREN
+	setevent EVENT_BEAT_ELITE_4_KAREN
 	loadfont
 	2writetext UnknownText_0x180d29
 	closetext
@@ -70,7 +70,7 @@ KarenScript_0x180bee: ; 0x180bee
 	changeblock $4, $2, $16
 	reloadmappart
 	loadmovesprites
-	setbit1 EVENT_KARENS_ROOM_EXIT_OPEN
+	setevent EVENT_KARENS_ROOM_EXIT_OPEN
 	waitbutton
 	end
 ; 0x180c1c

@@ -9,7 +9,7 @@ Route19FuchsiaGate_MapScriptHeader: ; 0x1ab3f4
 OfficerScript_0x1ab3f6: ; 0x1ab3f6
 	faceplayer
 	loadfont
-	checkbit1 $00d7
+	checkevent $00d7
 	iftrue UnknownScript_0x1ab404
 	2writetext UnknownText_0x1ab40a
 	closetext

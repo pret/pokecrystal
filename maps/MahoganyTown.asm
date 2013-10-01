@@ -23,7 +23,7 @@ UnknownScript_0x19000e: ; 0x19000e
 ; 0x19000f
 
 UnknownScript_0x19000f: ; 0x19000f
-	setbit2 $0049
+	setflag $0049
 	return
 ; 0x190013
 
@@ -42,7 +42,7 @@ UnknownScript_0x190013: ; 0x190013
 PokefanMScript_0x19002e: ; 0x19002e
 	faceplayer
 UnknownScript_0x19002f: ; 0x19002f
-	checkbit1 EVENT_CLEARED_ROCKET_HIDEOUT
+	checkevent EVENT_CLEARED_ROCKET_HIDEOUT
 	iftrue UnknownScript_0x190039
 	2call UnknownScript_0x190040
 	end
@@ -100,7 +100,7 @@ UnknownScript_0x190078: ; 0x190078
 GrampsScript_0x19007e: ; 0x19007e
 	faceplayer
 	loadfont
-	checkbit1 EVENT_CLEARED_ROCKET_HIDEOUT
+	checkevent EVENT_CLEARED_ROCKET_HIDEOUT
 	iftrue UnknownScript_0x19008c
 	2writetext UnknownText_0x1901e5
 	closetext

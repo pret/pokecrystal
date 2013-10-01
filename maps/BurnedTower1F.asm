@@ -29,11 +29,11 @@ UnknownScript_0x185bf7: ; 0x185bf7
 ; 0x185bf8
 
 UnknownScript_0x185bf8: ; 0x185bf8
-	checkbit1 $0332
+	checkevent $0332
 	iftrue UnknownScript_0x185c02
 	changeblock $a, $8, $32
 UnknownScript_0x185c02: ; 0x185c02
-	checkbit1 EVENT_RELEASED_THE_BEASTS
+	checkevent EVENT_RELEASED_THE_BEASTS
 	iftrue UnknownScript_0x185c0c
 	changeblock $6, $e, $9
 UnknownScript_0x185c0c: ; 0x185c0c
@@ -66,9 +66,9 @@ UnknownScript_0x185c25: ; 0x185c25
 	2writetext UnknownText_0x185cd9
 	closetext
 	loadmovesprites
-	checkbit1 EVENT_GOT_TOTODILE_FROM_ELM
+	checkevent EVENT_GOT_TOTODILE_FROM_ELM
 	iftrue UnknownScript_0x185c60
-	checkbit1 EVENT_GOT_CHIKORITA_FROM_ELM
+	checkevent EVENT_GOT_CHIKORITA_FROM_ELM
 	iftrue UnknownScript_0x185c70
 	winlosstext UnknownText_0x185d9b, UnknownText_0x185e2c
 	setlasttalked $4
@@ -106,7 +106,7 @@ UnknownScript_0x185c80: ; 0x185c80
 	closetext
 	loadmovesprites
 	dotrigger $2
-	setbit1 $06c5
+	setevent $06c5
 	special $006a
 	pause 15
 	earthquake 50
@@ -123,7 +123,7 @@ UnknownScript_0x185c80: ; 0x185c80
 	2writetext UnknownText_0x185e75
 	closetext
 	loadmovesprites
-	setbit1 $0332
+	setevent $0332
 	pause 15
 	warpcheck
 	end

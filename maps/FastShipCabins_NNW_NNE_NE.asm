@@ -192,12 +192,12 @@ SailorScript_0x755f1: ; 0x755f1
 	startbattle
 	reloadmap
 	special $001b
-	setbit1 $057d
+	setevent $057d
 	loadfont
 	2writetext UnknownText_0x758b1
 	closetext
 	loadmovesprites
-	setbit1 $0033
+	setevent $0033
 	domaptrigger GROUP_FAST_SHIP_B1F, MAP_FAST_SHIP_B1F, $1
 	checkcode $9
 	if_equal $3, UnknownScript_0x75629

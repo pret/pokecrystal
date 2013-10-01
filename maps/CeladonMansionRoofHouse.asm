@@ -9,7 +9,7 @@ CeladonMansionRoofHouse_MapScriptHeader: ; 0x71afb
 PharmacistScript_0x71afd: ; 0x71afd
 	faceplayer
 	loadfont
-	checkbit1 EVENT_GOT_TM03_CURSE
+	checkevent EVENT_GOT_TM03_CURSE
 	iftrue UnknownScript_0x71b21
 	2writetext UnknownText_0x71b27
 	keeptextopen
@@ -26,7 +26,7 @@ UnknownScript_0x71b14: ; 0x71b14
 	keeptextopen
 	verbosegiveitem TM_03, 1
 	iffalse UnknownScript_0x71b25
-	setbit1 EVENT_GOT_TM03_CURSE
+	setevent EVENT_GOT_TM03_CURSE
 UnknownScript_0x71b21: ; 0x71b21
 	2writetext UnknownText_0x71db3
 	closetext

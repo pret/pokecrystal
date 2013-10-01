@@ -13,7 +13,7 @@ NurseScript_0x9b690: ; 0x9b690
 CooltrainerMScript_0x9b693: ; 0x9b693
 	faceplayer
 	loadfont
-	checkbit1 $0775
+	checkevent $0775
 	iftrue UnknownScript_0x9b6a1
 	2writetext UnknownText_0x9b6ad
 	closetext

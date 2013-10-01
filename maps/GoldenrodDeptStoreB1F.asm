@@ -13,7 +13,7 @@ GoldenrodDeptStoreB1F_MapScriptHeader: ; 0x7d779
 ; 0x7d781
 
 UnknownScript_0x7d781: ; 0x7d781
-	checkbit1 $004a
+	checkevent $004a
 	iftrue UnknownScript_0x7d78a
 	2jump UnknownScript_0x7d791
 ; 0x7d78a
@@ -24,9 +24,9 @@ UnknownScript_0x7d78a: ; 0x7d78a
 ; 0x7d791
 
 UnknownScript_0x7d791: ; 0x7d791
-	checkbit1 $0305
+	checkevent $0305
 	iftrue UnknownScript_0x7d7a2
-	checkbit1 $0306
+	checkevent $0306
 	iftrue UnknownScript_0x7d7a7
 	changeblock $a, $8, $d
 	return
@@ -43,7 +43,7 @@ UnknownScript_0x7d7a7: ; 0x7d7a7
 ; 0x7d7ac
 
 UnknownScript_0x7d7ac: ; 0x7d7ac
-	clearbit1 $0307
+	clearevent $0307
 	return
 ; 0x7d7b0
 

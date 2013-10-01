@@ -11,7 +11,7 @@ Route23_MapScriptHeader: ; 0x1ae52e
 ; 0x1ae533
 
 UnknownScript_0x1ae533: ; 0x1ae533
-	setbit2 $0040
+	setflag $0040
 	return
 ; 0x1ae537
 

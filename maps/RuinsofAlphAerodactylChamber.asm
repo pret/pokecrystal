@@ -15,7 +15,7 @@ RuinsofAlphAerodactylChamber_MapScriptHeader: ; 0x58da0
 ; 0x58dad
 
 UnknownScript_0x58dad: ; 0x58dad
-	checkbit1 EVENT_WALL_OPENED_IN_AERODACTYL_CHAMBER
+	checkevent EVENT_WALL_OPENED_IN_AERODACTYL_CHAMBER
 	iftrue UnknownScript_0x58db4
 	end
 ; 0x58db4
@@ -30,11 +30,11 @@ UnknownScript_0x58db8: ; 0x58db8
 ; 0x58db9
 
 UnknownScript_0x58db9: ; 0x58db9
-	checkbit1 EVENT_WALL_OPENED_IN_AERODACTYL_CHAMBER
+	checkevent EVENT_WALL_OPENED_IN_AERODACTYL_CHAMBER
 	iftrue UnknownScript_0x58dc3
 	changeblock $4, $0, $2e
 UnknownScript_0x58dc3: ; 0x58dc3
-	checkbit1 $02a3
+	checkevent $02a3
 	iffalse UnknownScript_0x58dca
 	return
 ; 0x58dca
@@ -69,9 +69,9 @@ MapRuinsofAlphAerodactylChamberSignpost2Script: ; 0x58deb
 ; 0x58df7
 
 UnknownScript_0x58df7: ; 0x58df7
-	setbit1 $0705
-	setbit1 $02a3
-	setbit2 $002d
+	setevent $0705
+	setevent $02a3
+	setflag $002d
 	domaptrigger GROUP_RUINS_OF_ALPH_INNER_CHAMBER, MAP_RUINS_OF_ALPH_INNER_CHAMBER, $1
 	earthquake 30
 	showemote $0, $0, 15
@@ -106,7 +106,7 @@ MapRuinsofAlphAerodactylChamberSignpost4Script: ; 0x58e2a
 ; 0x58e35
 
 MapRuinsofAlphAerodactylChamberSignpost5Script: ; 0x58e35
-	checkbit1 EVENT_WALL_OPENED_IN_AERODACTYL_CHAMBER
+	checkevent EVENT_WALL_OPENED_IN_AERODACTYL_CHAMBER
 	iftrue UnknownScript_0x58e46
 	loadfont
 	2writetext UnknownText_0x58e81

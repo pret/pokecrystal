@@ -11,7 +11,7 @@ ViridianCity_MapScriptHeader: ; 0x1a9a43
 ; 0x1a9a48
 
 UnknownScript_0x1a9a48: ; 0x1a9a48
-	setbit2 $0036
+	setflag $0036
 	return
 ; 0x1a9a4c
 
@@ -37,7 +37,7 @@ UnknownScript_0x1a9a5b: ; 0x1a9a5b
 GrampsScript_0x1a9a61: ; 0x1a9a61
 	faceplayer
 	loadfont
-	checkbit1 $0775
+	checkevent $0775
 	iftrue UnknownScript_0x1a9a6f
 	2writetext UnknownText_0x1a9c11
 	closetext
@@ -55,13 +55,13 @@ UnknownScript_0x1a9a6f: ; 0x1a9a6f
 FisherScript_0x1a9a75: ; 0x1a9a75
 	faceplayer
 	loadfont
-	checkbit1 EVENT_GOT_TM42_DREAM_EATER
+	checkevent EVENT_GOT_TM42_DREAM_EATER
 	iftrue UnknownScript_0x1a9a8a
 	2writetext UnknownText_0x1a9cc4
 	keeptextopen
 	verbosegiveitem TM_42, 1
 	iffalse UnknownScript_0x1a9a8e
-	setbit1 EVENT_GOT_TM42_DREAM_EATER
+	setevent EVENT_GOT_TM42_DREAM_EATER
 UnknownScript_0x1a9a8a: ; 0x1a9a8a
 	2writetext UnknownText_0x1a9d86
 	closetext

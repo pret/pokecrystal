@@ -24,11 +24,11 @@ UnknownScript_0x180997: ; 0x180997
 ; 0x180998
 
 UnknownScript_0x180998: ; 0x180998
-	checkbit1 EVENT_KOGAS_ROOM_ENTRANCE_CLOSED
+	checkevent EVENT_KOGAS_ROOM_ENTRANCE_CLOSED
 	iffalse UnknownScript_0x1809a2
 	changeblock $4, $e, $2a
 UnknownScript_0x1809a2: ; 0x1809a2
-	checkbit1 EVENT_BRUNOS_ROOM_EXIT_OPEN
+	checkevent EVENT_BRUNOS_ROOM_EXIT_OPEN
 	iffalse UnknownScript_0x1809ac
 	changeblock $4, $2, $16
 UnknownScript_0x1809ac: ; 0x1809ac
@@ -44,7 +44,7 @@ UnknownScript_0x1809ad: ; 0x1809ad
 	reloadmappart
 	loadmovesprites
 	dotrigger $1
-	setbit1 EVENT_KOGAS_ROOM_ENTRANCE_CLOSED
+	setevent EVENT_KOGAS_ROOM_ENTRANCE_CLOSED
 	waitbutton
 	end
 ; 0x1809c5
@@ -52,7 +52,7 @@ UnknownScript_0x1809ad: ; 0x1809ad
 BrunoScript_0x1809c5: ; 0x1809c5
 	faceplayer
 	loadfont
-	checkbit1 $05ba
+	checkevent $05ba
 	iftrue UnknownScript_0x1809f3
 	2writetext UnknownText_0x1809fe
 	closetext
@@ -61,7 +61,7 @@ BrunoScript_0x1809c5: ; 0x1809c5
 	loadtrainer BRUNO, 1
 	startbattle
 	returnafterbattle
-	setbit1 $05ba
+	setevent $05ba
 	loadfont
 	2writetext UnknownText_0x180b3c
 	closetext
@@ -70,7 +70,7 @@ BrunoScript_0x1809c5: ; 0x1809c5
 	changeblock $4, $2, $16
 	reloadmappart
 	loadmovesprites
-	setbit1 EVENT_BRUNOS_ROOM_EXIT_OPEN
+	setevent EVENT_BRUNOS_ROOM_EXIT_OPEN
 	waitbutton
 	end
 ; 0x1809f3

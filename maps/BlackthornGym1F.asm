@@ -11,15 +11,15 @@ BlackthornGym1F_MapScriptHeader: ; 0x194e00
 ; 0x194e05
 
 UnknownScript_0x194e05: ; 0x194e05
-	checkbit1 $0706
+	checkevent $0706
 	iffalse UnknownScript_0x194e0f
 	changeblock $8, $2, $3b
 UnknownScript_0x194e0f: ; 0x194e0f
-	checkbit1 $0707
+	checkevent $0707
 	iffalse UnknownScript_0x194e19
 	changeblock $2, $4, $3a
 UnknownScript_0x194e19: ; 0x194e19
-	checkbit1 $0708
+	checkevent $0708
 	iffalse UnknownScript_0x194e23
 	changeblock $8, $6, $3b
 UnknownScript_0x194e23: ; 0x194e23
@@ -29,9 +29,9 @@ UnknownScript_0x194e23: ; 0x194e23
 ClairScript_0x194e24: ; 0x194e24
 	faceplayer
 	loadfont
-	checkbit2 $0022
+	checkflag $0022
 	iftrue UnknownScript_0x194e69
-	checkbit1 EVENT_BEAT_CLAIR
+	checkevent EVENT_BEAT_CLAIR
 	iftrue UnknownScript_0x194e63
 	2writetext UnknownText_0x194efa
 	closetext
@@ -40,19 +40,19 @@ ClairScript_0x194e24: ; 0x194e24
 	loadtrainer CLAIR, 1
 	startbattle
 	returnafterbattle
-	setbit1 EVENT_BEAT_CLAIR
+	setevent EVENT_BEAT_CLAIR
 	loadfont
 	2writetext UnknownText_0x19500e
 	closetext
 	loadmovesprites
-	setbit1 EVENT_BEAT_COOLTRAINERM_PAUL
-	setbit1 EVENT_BEAT_COOLTRAINERM_CODY
-	setbit1 EVENT_BEAT_COOLTRAINERM_MIKE
-	setbit1 EVENT_BEAT_COOLTRAINERF_FRAN
-	setbit1 EVENT_BEAT_COOLTRAINERF_LOLA
-	clearbit1 $0736
-	setbit1 $074c
-	clearbit1 $074d
+	setevent EVENT_BEAT_COOLTRAINERM_PAUL
+	setevent EVENT_BEAT_COOLTRAINERM_CODY
+	setevent EVENT_BEAT_COOLTRAINERM_MIKE
+	setevent EVENT_BEAT_COOLTRAINERF_FRAN
+	setevent EVENT_BEAT_COOLTRAINERF_LOLA
+	clearevent $0736
+	setevent $074c
+	clearevent $074d
 	end
 ; 0x194e63
 
@@ -64,7 +64,7 @@ UnknownScript_0x194e63: ; 0x194e63
 ; 0x194e69
 
 UnknownScript_0x194e69: ; 0x194e69
-	checkbit1 EVENT_GOT_TM24_DRAGONBREATH
+	checkevent EVENT_GOT_TM24_DRAGONBREATH
 	iftrue UnknownScript_0x194e94
 	2writetext UnknownText_0x195196
 	keeptextopen
@@ -75,7 +75,7 @@ UnknownScript_0x194e69: ; 0x194e69
 	playsound $0001
 	waitbutton
 	itemnotify
-	setbit1 EVENT_GOT_TM24_DRAGONBREATH
+	setevent EVENT_GOT_TM24_DRAGONBREATH
 	2writetext UnknownText_0x1951d1
 	keeptextopen
 	2jump UnknownScript_0x194e94
@@ -185,7 +185,7 @@ CooltrainerfLolaScript: ; 0x194ece
 BlackthornGymGuyScript: ; 0x194ed6
 	faceplayer
 	loadfont
-	checkbit1 EVENT_BEAT_CLAIR
+	checkevent EVENT_BEAT_CLAIR
 	iftrue .BlackthornGymGuyWinScript
 	2writetext BlackthornGymGuyText
 	closetext
@@ -200,7 +200,7 @@ BlackthornGymGuyScript: ; 0x194ed6
 ; 0x194eea
 
 MapBlackthornGym1FSignpost1Script: ; 0x194eea
-	checkbit2 $0022
+	checkflag $0022
 	iftrue UnknownScript_0x194ef3
 	jumpstd $002d
 ; 0x194ef3

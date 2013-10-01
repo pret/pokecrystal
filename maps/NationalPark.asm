@@ -17,13 +17,13 @@ PokefanFScript_0x5c005: ; 0x5c005
 TeacherScript_0x5c008: ; 0x5c008
 	faceplayer
 	loadfont
-	checkbit1 EVENT_GOT_QUICK_CLAW
+	checkevent EVENT_GOT_QUICK_CLAW
 	iftrue UnknownScript_0x5c01d
 	2writetext UnknownText_0x5c265
 	keeptextopen
 	verbosegiveitem QUICK_CLAW, 1
 	iffalse UnknownScript_0x5c021
-	setbit1 EVENT_GOT_QUICK_CLAW
+	setevent EVENT_GOT_QUICK_CLAW
 UnknownScript_0x5c01d: ; 0x5c01d
 	2writetext UnknownText_0x5c30d
 	closetext
@@ -88,15 +88,15 @@ SchoolboyJack1Script: ; 0x5c04e
 	writecode $17, $5
 	talkaftercancel
 	loadfont
-	checkbit2 $0065
+	checkflag $0065
 	iftrue UnknownScript_0x5c088
 	checkcellnum $5
 	iftrue UnknownScript_0x5c108
-	checkbit1 $025f
+	checkevent $025f
 	iftrue UnknownScript_0x5c071
 	2writetext UnknownText_0x5c4f3
 	keeptextopen
-	setbit1 $025f
+	setevent $025f
 	2call UnknownScript_0x5c0fc
 	2jump UnknownScript_0x5c074
 ; 0x5c071
@@ -122,23 +122,23 @@ UnknownScript_0x5c088: ; 0x5c088
 	if_equal $1, UnknownScript_0x5c0b9
 	if_equal $0, UnknownScript_0x5c0bf
 UnknownScript_0x5c0a7: ; 0x5c0a7
-	checkbit1 EVENT_RESTORED_POWER_TO_KANTO
+	checkevent EVENT_RESTORED_POWER_TO_KANTO
 	iftrue UnknownScript_0x5c0f3
 UnknownScript_0x5c0ad: ; 0x5c0ad
-	checkbit1 $0044
+	checkevent $0044
 	iftrue UnknownScript_0x5c0e6
 UnknownScript_0x5c0b3: ; 0x5c0b3
-	checkbit1 EVENT_CLEARED_RADIO_TOWER
+	checkevent EVENT_CLEARED_RADIO_TOWER
 	iftrue UnknownScript_0x5c0d9
 UnknownScript_0x5c0b9: ; 0x5c0b9
-	checkbit2 $0047
+	checkflag $0047
 	iftrue UnknownScript_0x5c0cc
 UnknownScript_0x5c0bf: ; 0x5c0bf
 	loadtrainer SCHOOLBOY, JACK1
 	startbattle
 	returnafterbattle
 	loadvar $d9f2, $1
-	clearbit2 $0065
+	clearflag $0065
 	end
 ; 0x5c0cc
 
@@ -147,7 +147,7 @@ UnknownScript_0x5c0cc: ; 0x5c0cc
 	startbattle
 	returnafterbattle
 	loadvar $d9f2, $2
-	clearbit2 $0065
+	clearflag $0065
 	end
 ; 0x5c0d9
 
@@ -156,7 +156,7 @@ UnknownScript_0x5c0d9: ; 0x5c0d9
 	startbattle
 	returnafterbattle
 	loadvar $d9f2, $3
-	clearbit2 $0065
+	clearflag $0065
 	end
 ; 0x5c0e6
 
@@ -165,7 +165,7 @@ UnknownScript_0x5c0e6: ; 0x5c0e6
 	startbattle
 	returnafterbattle
 	loadvar $d9f2, $4
-	clearbit2 $0065
+	clearflag $0065
 	end
 ; 0x5c0f3
 
@@ -173,7 +173,7 @@ UnknownScript_0x5c0f3: ; 0x5c0f3
 	loadtrainer SCHOOLBOY, JACK5
 	startbattle
 	returnafterbattle
-	clearbit2 $0065
+	clearflag $0065
 	end
 ; 0x5c0fc
 
@@ -265,17 +265,17 @@ PokefanfBeverly1Script: ; 0x5c138
 	writecode $17, $6
 	talkaftercancel
 	loadfont
-	checkbit2 $007d
+	checkflag $007d
 	iftrue UnknownScript_0x5c177
 	checkcellnum $6
 	iftrue UnknownScript_0x5c19b
 	checkpoke MARILL
 	iffalse UnknownScript_0x5c189
-	checkbit1 EVENT_SHOWED_BEVERLY_MARILL
+	checkevent EVENT_SHOWED_BEVERLY_MARILL
 	iftrue UnknownScript_0x5c160
 	2writetext UnknownText_0x5c5bd
 	keeptextopen
-	setbit1 EVENT_SHOWED_BEVERLY_MARILL
+	setevent EVENT_SHOWED_BEVERLY_MARILL
 	2call UnknownScript_0x5c18f
 	2jump UnknownScript_0x5c163
 ; 0x5c160
@@ -295,7 +295,7 @@ UnknownScript_0x5c177: ; 0x5c177
 	2call UnknownScript_0x5c1a7
 	verbosegiveitem NUGGET, 1
 	iffalse UnknownScript_0x5c186
-	clearbit2 $007d
+	clearflag $007d
 	2jump UnknownScript_0x5c19b
 ; 0x5c186
 

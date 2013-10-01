@@ -13,17 +13,17 @@ GoldenrodCity_MapScriptHeader: ; 0x1988d0
 ; 0x1988d8
 
 UnknownScript_0x1988d8: ; 0x1988d8
-	setbit2 $0046
-	setbit2 $0016
-	checkbit1 $00b9
+	setflag $0046
+	setflag $0016
+	checkevent $00b9
 	iftrue UnknownScript_0x1988e7
-	clearbit1 $0769
+	clearevent $0769
 UnknownScript_0x1988e7: ; 0x1988e7
 	return
 ; 0x1988e8
 
 UnknownScript_0x1988e8: ; 0x1988e8
-	checkbit1 $0044
+	checkevent $0044
 	iffalse UnknownScript_0x198908
 	checkitem COIN_CASE
 	iffalse UnknownScript_0x1988fd
@@ -36,7 +36,7 @@ UnknownScript_0x1988fd: ; 0x1988fd
 ; 0x198900
 
 UnknownScript_0x198900: ; 0x198900
-	checkbit2 $005e
+	checkflag $005e
 	iftrue UnknownScript_0x198908
 	appear $10
 UnknownScript_0x198908: ; 0x198908
@@ -143,8 +143,8 @@ UnknownScript_0x1989c6: ; 0x1989c6
 UnknownScript_0x1989ca: ; 0x1989ca
 	playsound $001f
 	disappear $10
-	clearbit1 $076b
-	setbit2 $005e
+	clearevent $076b
+	setflag $005e
 	waitbutton
 	end
 ; 0x1989d7
@@ -174,7 +174,7 @@ YoungsterScript_0x1989e6: ; 0x1989e6
 CooltrainerFScript_0x1989e9: ; 0x1989e9
 	faceplayer
 	loadfont
-	checkbit1 EVENT_CLEARED_RADIO_TOWER
+	checkevent EVENT_CLEARED_RADIO_TOWER
 	iftrue UnknownScript_0x1989f7
 	2writetext UnknownText_0x198ae6
 	closetext
@@ -192,7 +192,7 @@ UnknownScript_0x1989f7: ; 0x1989f7
 CooltrainerFScript_0x1989fd: ; 0x1989fd
 	faceplayer
 	loadfont
-	checkbit2 $0000
+	checkflag $0000
 	iftrue UnknownScript_0x198a0b
 	2writetext UnknownText_0x198b73
 	closetext

@@ -30,15 +30,15 @@ Bird_keeperVance1Script: ; 0x19d830
 	writecode $17, $20
 	talkaftercancel
 	loadfont
-	checkbit2 $0079
+	checkflag $0079
 	iftrue UnknownScript_0x19d86a
 	checkcellnum $20
 	iftrue UnknownScript_0x19d8eb
-	checkbit1 $0295
+	checkevent $0295
 	iftrue UnknownScript_0x19d853
 	2writetext UnknownText_0x19dbf3
 	keeptextopen
-	setbit1 $0295
+	setevent $0295
 	2call UnknownScript_0x19d8df
 	2jump UnknownScript_0x19d856
 ; 0x19d853
@@ -62,17 +62,17 @@ UnknownScript_0x19d86a: ; 0x19d86a
 	if_equal $1, UnknownScript_0x19d887
 	if_equal $0, UnknownScript_0x19d88d
 UnknownScript_0x19d881: ; 0x19d881
-	checkbit1 EVENT_RESTORED_POWER_TO_KANTO
+	checkevent EVENT_RESTORED_POWER_TO_KANTO
 	iftrue UnknownScript_0x19d8a7
 UnknownScript_0x19d887: ; 0x19d887
-	checkbit1 $0044
+	checkevent $0044
 	iftrue UnknownScript_0x19d89a
 UnknownScript_0x19d88d: ; 0x19d88d
 	loadtrainer BIRD_KEEPER, VANCE1
 	startbattle
 	returnafterbattle
 	loadvar $da09, $1
-	clearbit2 $0079
+	clearflag $0079
 	end
 ; 0x19d89a
 
@@ -81,7 +81,7 @@ UnknownScript_0x19d89a: ; 0x19d89a
 	startbattle
 	returnafterbattle
 	loadvar $da09, $2
-	clearbit2 $0079
+	clearflag $0079
 	end
 ; 0x19d8a7
 
@@ -89,15 +89,15 @@ UnknownScript_0x19d8a7: ; 0x19d8a7
 	loadtrainer BIRD_KEEPER, VANCE3
 	startbattle
 	returnafterbattle
-	clearbit2 $0079
-	checkbit1 EVENT_VANCE_CARBOS
+	clearflag $0079
+	checkevent EVENT_VANCE_CARBOS
 	iftrue UnknownScript_0x19d8cb
-	checkbit1 $0267
+	checkevent $0267
 	iftrue UnknownScript_0x19d8ca
 	2call UnknownScript_0x19d90a
 	verbosegiveitem CARBOS, 1
 	iffalse UnknownScript_0x19d903
-	setbit1 $0267
+	setevent $0267
 	2jump UnknownScript_0x19d8eb
 ; 0x19d8ca
 
@@ -111,8 +111,8 @@ UnknownScript_0x19d8cb: ; 0x19d8cb
 	closetext
 	verbosegiveitem CARBOS, 1
 	iffalse UnknownScript_0x19d903
-	clearbit1 EVENT_VANCE_CARBOS
-	setbit1 $0267
+	clearevent EVENT_VANCE_CARBOS
+	setevent $0267
 	2jump UnknownScript_0x19d8eb
 ; 0x19d8df
 
@@ -162,7 +162,7 @@ UnknownScript_0x19d8ff: ; 0x19d8ff
 ; 0x19d903
 
 UnknownScript_0x19d903: ; 0x19d903
-	setbit1 EVENT_VANCE_CARBOS
+	setevent EVENT_VANCE_CARBOS
 	jumpstd $0021
 	end
 ; 0x19d90a
@@ -225,17 +225,17 @@ FisherWilton1Script: ; 0x19d92e
 	writecode $17, $21
 	talkaftercancel
 	loadfont
-	checkbit2 $007a
+	checkflag $007a
 	iftrue UnknownScript_0x19d96e
-	checkbit2 $0086
+	checkflag $0086
 	iftrue UnknownScript_0x19d9b4
 	checkcellnum $21
 	iftrue UnknownScript_0x19d8eb
-	checkbit1 $0297
+	checkevent $0297
 	iftrue UnknownScript_0x19d957
 	2writetext UnknownText_0x19daa8
 	keeptextopen
-	setbit1 $0297
+	setevent $0297
 	2call UnknownScript_0x19d8df
 	2jump UnknownScript_0x19d95a
 ; 0x19d957
@@ -259,17 +259,17 @@ UnknownScript_0x19d96e: ; 0x19d96e
 	if_equal $1, UnknownScript_0x19d98b
 	if_equal $0, UnknownScript_0x19d991
 UnknownScript_0x19d985: ; 0x19d985
-	checkbit1 EVENT_RESTORED_POWER_TO_KANTO
+	checkevent EVENT_RESTORED_POWER_TO_KANTO
 	iftrue UnknownScript_0x19d9ab
 UnknownScript_0x19d98b: ; 0x19d98b
-	checkbit1 $0044
+	checkevent $0044
 	iftrue UnknownScript_0x19d99e
 UnknownScript_0x19d991: ; 0x19d991
 	loadtrainer FISHER, WILTON1
 	startbattle
 	returnafterbattle
 	loadvar $da0a, $1
-	clearbit2 $007a
+	clearflag $007a
 	end
 ; 0x19d99e
 
@@ -278,7 +278,7 @@ UnknownScript_0x19d99e: ; 0x19d99e
 	startbattle
 	returnafterbattle
 	loadvar $da0a, $2
-	clearbit2 $007a
+	clearflag $007a
 	end
 ; 0x19d9ab
 
@@ -286,17 +286,17 @@ UnknownScript_0x19d9ab: ; 0x19d9ab
 	loadtrainer FISHER, WILTON3
 	startbattle
 	returnafterbattle
-	clearbit2 $007a
+	clearflag $007a
 	end
 ; 0x19d9b4
 
 UnknownScript_0x19d9b4: ; 0x19d9b4
 	2call UnknownScript_0x19d8fb
-	checkbit1 EVENT_WILTON_HAS_ULTRA_BALL
+	checkevent EVENT_WILTON_HAS_ULTRA_BALL
 	iftrue UnknownScript_0x19d9c9
-	checkbit1 EVENT_WILTON_HAS_GREAT_BALL
+	checkevent EVENT_WILTON_HAS_GREAT_BALL
 	iftrue UnknownScript_0x19d9d2
-	checkbit1 EVENT_WILTON_HAS_POKE_BALL
+	checkevent EVENT_WILTON_HAS_POKE_BALL
 	iftrue UnknownScript_0x19d9db
 UnknownScript_0x19d9c9: ; 0x19d9c9
 	verbosegiveitem ULTRA_BALL, 1
@@ -314,7 +314,7 @@ UnknownScript_0x19d9db: ; 0x19d9db
 	verbosegiveitem POKE_BALL, 1
 	iffalse UnknownScript_0x19d9e7
 UnknownScript_0x19d9e1: ; 0x19d9e1
-	clearbit2 $0086
+	clearflag $0086
 	2jump UnknownScript_0x19d8eb
 ; 0x19d9e7
 

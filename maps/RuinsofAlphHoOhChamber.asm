@@ -16,7 +16,7 @@ RuinsofAlphHoOhChamber_MapScriptHeader: ; 0x58560
 
 UnknownScript_0x5856d: ; 0x5856d
 	special $008d
-	checkbit1 EVENT_WALL_OPENED_IN_HO_OH_CHAMBER
+	checkevent EVENT_WALL_OPENED_IN_HO_OH_CHAMBER
 	iftrue UnknownScript_0x58577
 	end
 ; 0x58577
@@ -31,11 +31,11 @@ UnknownScript_0x5857b: ; 0x5857b
 ; 0x5857c
 
 UnknownScript_0x5857c: ; 0x5857c
-	checkbit1 EVENT_WALL_OPENED_IN_HO_OH_CHAMBER
+	checkevent EVENT_WALL_OPENED_IN_HO_OH_CHAMBER
 	iftrue UnknownScript_0x58586
 	changeblock $4, $0, $2e
 UnknownScript_0x58586: ; 0x58586
-	checkbit1 $02a0
+	checkevent $02a0
 	iffalse UnknownScript_0x5858d
 	return
 ; 0x5858d
@@ -70,9 +70,9 @@ MapRuinsofAlphHoOhChamberSignpost2Script: ; 0x585ae
 ; 0x585ba
 
 UnknownScript_0x585ba: ; 0x585ba
-	setbit1 $0705
-	setbit1 $02a0
-	setbit2 $002e
+	setevent $0705
+	setevent $02a0
+	setflag $002e
 	domaptrigger GROUP_RUINS_OF_ALPH_INNER_CHAMBER, MAP_RUINS_OF_ALPH_INNER_CHAMBER, $1
 	earthquake 30
 	showemote $0, $0, 15
@@ -107,7 +107,7 @@ MapRuinsofAlphHoOhChamberSignpost4Script: ; 0x585ed
 ; 0x585f8
 
 MapRuinsofAlphHoOhChamberSignpost5Script: ; 0x585f8
-	checkbit1 EVENT_WALL_OPENED_IN_HO_OH_CHAMBER
+	checkevent EVENT_WALL_OPENED_IN_HO_OH_CHAMBER
 	iftrue UnknownScript_0x58609
 	loadfont
 	2writetext UnknownText_0x58644

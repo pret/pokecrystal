@@ -9,12 +9,12 @@ Route39Farmhouse_MapScriptHeader: ; 0x9ceb2
 PokefanMScript_0x9ceb4: ; 0x9ceb4
 	faceplayer
 	loadfont
-	checkbit1 EVENT_HEALED_MOOMOO
+	checkevent EVENT_HEALED_MOOMOO
 	iftrue UnknownScript_0x9cec5
 	2writetext UnknownText_0x9cf38
 	closetext
 	loadmovesprites
-	setbit1 EVENT_TALKED_TO_FARMER_ABOUT_MOOMOO
+	setevent EVENT_TALKED_TO_FARMER_ABOUT_MOOMOO
 	end
 ; 0x9cec5
 
@@ -71,9 +71,9 @@ UnknownScript_0x9cf08: ; 0x9cf08
 PokefanFScript_0x9cf0e: ; 0x9cf0e
 	faceplayer
 	loadfont
-	checkbit1 EVENT_GOT_TM13_SNORE_FROM_MOOMOO_FARM
+	checkevent EVENT_GOT_TM13_SNORE_FROM_MOOMOO_FARM
 	iftrue UnknownScript_0x9cf2f
-	checkbit1 EVENT_HEALED_MOOMOO
+	checkevent EVENT_HEALED_MOOMOO
 	iftrue UnknownScript_0x9cf22
 	2writetext UnknownText_0x9d0f6
 	closetext
@@ -86,7 +86,7 @@ UnknownScript_0x9cf22: ; 0x9cf22
 	keeptextopen
 	verbosegiveitem TM_13, 1
 	iffalse UnknownScript_0x9cf33
-	setbit1 EVENT_GOT_TM13_SNORE_FROM_MOOMOO_FARM
+	setevent EVENT_GOT_TM13_SNORE_FROM_MOOMOO_FARM
 UnknownScript_0x9cf2f: ; 0x9cf2f
 	2writetext UnknownText_0x9d1c7
 	closetext
