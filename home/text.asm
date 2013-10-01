@@ -2,7 +2,7 @@ ClearBox: ; fb6
 ; Fill a c*b box at hl with blank tiles.
 
 	ld a, " "
-.y
+Functionfb8:
 	push bc
 	push hl
 .x
@@ -14,7 +14,7 @@ ClearBox: ; fb6
 	add hl, bc
 	pop bc
 	dec b
-	jr nz, .y
+	jr nz, Functionfb8
 	ret
 ; fc8
 

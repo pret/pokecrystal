@@ -342,7 +342,56 @@ INCBIN "baserom.gbc",$109b9a,$18 ; ditto.pal
 INCBIN "baserom.gbc",$109bb2,$18 ; igglybuff.pal
 ; 109bca
 
-INCBIN "baserom.gbc", $109bca, $109c24 - $109bca
+; known jump sources: 10989e (42:589e), 109964 (42:5964)
+Function109bca: ; 109bca (42:5bca)
+	ld hl, $cf64
+	ld a, [hl]
+	cp $ff
+	jr z, .asm_109bed
+	and $3
+	ld e, a
+	inc a
+	and $3
+	ld [hl], a
+	ld a, [$cf65]
+	and $3
+	add a
+	add a
+	add e
+	add a
+	ld e, a
+	ld d, $0
+	ld hl, $5bf1
+	add hl, de
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	ret
+.asm_109bed
+	ld hl, $ca00
+	ret
+; 109bf1 (42:5bf1)
+
+INCBIN "baserom.gbc",$109bf1,$109c11 - $109bf1
+
+; known jump sources: 109a1b (42:5a1b)
+Function109c11: ; 109c11 (42:5c11)
+	ld a, $40
+	ld hl, $c55a
+	call Function109c1c
+	ld hl, $c56e
+
+; known jump sources: 109c16 (42:5c16)
+Function109c1c: ; 109c1c (42:5c1c)
+	ld c, $8
+.asm_109c1e
+	ld [hli], a
+	inc a
+	dec c
+	jr nz, .asm_109c1e
+	ret
+; 109c24 (42:5c24)
+
 
 CreditsGFX:
 INCBIN "gfx/credits/border.2bpp"
