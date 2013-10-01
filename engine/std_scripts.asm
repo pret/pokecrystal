@@ -2350,7 +2350,7 @@ MomPhoneScript: ; 0xbceaa
 	mapnametotext $0
 	checkcode $f
 	if_equal $1, UnknownScript_0xbcee7
-	if_equal $2, $4f27
+	if_equal $2, UnknownScript_0xbcf27
 	2jump UnknownScript_0xbcf2f
 
 UnknownScript_0xbcedf: ; 0xbcedf
@@ -2380,14 +2380,16 @@ UnknownScript_0xbcee7: ; 0xbcee7
 	2jump UnknownScript_0xbcf37
 
 .violet ; 0xbcf15
-	displaylocation $7 ; sprout tower
-	3call $3, UnknownScript_0xbcedf
+	displaylocation $7, 1 ; sprout tower
+	2jump UnknownScript_0xbcedf
 .azalea ; 0xbcf1b
-	displaylocation $d ; slowpoke well
-	3call $3, UnknownScript_0xbcedf
+	displaylocation $d, 1 ; slowpoke well
+	2jump UnknownScript_0xbcedf
 .goldenrod ; 0xbcf21
-	displaylocation $11 ; radio tower
-	3call $3, UnknownScript_0xbcedf
+	displaylocation $11, 1 ; radio tower
+	2jump UnknownScript_0xbcedf
+
+UnknownScript_0xbcf27: ; 0xbcf27
 	3writetext $6d, $411c
 	keeptextopen
 	2jump UnknownScript_0xbcf37
