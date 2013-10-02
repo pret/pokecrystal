@@ -13290,9 +13290,7 @@ Functionc922: ; c922 (3:4922)
 	jr nz, .asm_c95c
 	call CheckDirection
 	jr c, .asm_c95c
-	ld a, BANK(CheckFacingObject)
-	ld hl, CheckFacingObject
-	rst $8 ;  ; indirect jump to CheckFacingObject (6fd9 (1:6fd9))
+	callba CheckFacingObject
 	jr c, .asm_c95c
 	ld a, $1
 	ret
@@ -15256,9 +15254,7 @@ Functiond508: ; d508 (3:5508)
 
 ; no known jump sources
 Functiond509: ; d509 (3:5509)
-	ld a, BANK(Function10602e)
-	ld hl, Function10602e
-	rst $8 ;  ; indirect jump to Function10602e (10602e (41:602e))
+	callba Function10602e
 	ret
 
 ; no known jump sources
@@ -17715,9 +17711,7 @@ INCBIN "baserom.gbc",$e4c0,$e4fe - $e4c0
 ; no known jump sources
 Functione4fe: ; e4fe (3:64fe)
 	call Function1d6e
-	ld a, BANK(Functione2391)
-	ld hl, Functione2391
-	rst $8 ;  ; indirect jump to Functione2391 (e2391 (38:6391))
+	callba Functione2391
 	call Function222a
 	call ClearPCItemScreen
 	call Function1c17
@@ -17762,9 +17756,7 @@ Functione538: ; e538
 ; no known jump sources
 Functione559: ; e559 (3:6559)
 	call Function1d6e
-	ld a, BANK(Functione2583)
-	ld hl, Functione2583
-	rst $8 ;  ; indirect jump to Functione2583 (e2583 (38:6583))
+	callba Functione2583
 	call Function222a
 	call ClearPCItemScreen
 	call Function1c17
@@ -17776,9 +17768,7 @@ INCBIN "baserom.gbc",$e56d,$e583 - $e56d
 
 ; no known jump sources
 Functione583: ; e583 (3:6583)
-	ld a, BANK(Functione35aa)
-	ld hl, Functione35aa
-	rst $8 ;  ; indirect jump to Functione35aa (e35aa (38:75aa))
+	callba Functione35aa
 	and a
 	ret
 
@@ -18590,16 +18580,12 @@ Function100d3: ; 100d3 (4:40d3)
 
 ; no known jump sources
 Function100e8: ; 100e8 (4:40e8)
-	ld a, BANK(Function2c76f)
-	ld hl, Function2c76f
-	rst $8 ;  ; indirect jump to Function2c76f (2c76f (b:476f))
+	callba Function2c76f
 	ld b, $5
 	ld c, $1
 	call Function108d4
 	ret c
-	ld a, BANK(_CheckTossableItem)
-	ld hl, _CheckTossableItem
-	rst $8 ;  ; indirect jump to _CheckTossableItem (d427 (3:5427))
+	callba _CheckTossableItem
 	ld a, [$d142]
 	and a
 	jr nz, .asm_1010a
@@ -18674,37 +18660,27 @@ Function10198: ; 10198 (4:4198)
 
 ; known jump sources: 10090 (4:4090), 100cf (4:40cf), 101c1 (4:41c1)
 Function101c5: ; 101c5 (4:41c5)
-	ld a, BANK(_CheckTossableItem)
-	ld hl, _CheckTossableItem
-	rst $8 ;  ; indirect jump to _CheckTossableItem (d427 (3:5427))
+	callba _CheckTossableItem
 	ld a, [$d142]
 	and a
 	jr nz, .asm_101f9
-	ld a, BANK(CheckSelectableItem)
-	ld hl, CheckSelectableItem
-	rst $8 ;  ; indirect jump to CheckSelectableItem (d432 (3:5432))
+	callba CheckSelectableItem
 	ld a, [$d142]
 	and a
 	jr nz, .asm_101eb
-	ld a, BANK(CheckItemMenu)
-	ld hl, CheckItemMenu
-	rst $8 ;  ; indirect jump to CheckItemMenu (d453 (3:5453))
+	callba CheckItemMenu
 	ld a, [$d142]
 	and a
 	jr nz, .asm_10207
 	jr .asm_10227
 .asm_101eb
-	ld a, BANK(CheckItemMenu)
-	ld hl, CheckItemMenu
-	rst $8 ;  ; indirect jump to CheckItemMenu (d453 (3:5453))
+	callba CheckItemMenu
 	ld a, [$d142]
 	and a
 	jr nz, .asm_1020f
 	jr .asm_1022f
 .asm_101f9
-	ld a, BANK(CheckSelectableItem)
-	ld hl, CheckSelectableItem
-	rst $8 ;  ; indirect jump to CheckSelectableItem (d432 (3:5432))
+	callba CheckSelectableItem
 	ld a, [$d142]
 	and a
 	jr nz, .asm_10217
@@ -18817,18 +18793,12 @@ INCBIN "baserom.gbc",$10364,$103fd - $10364
 	callba Function50405
 	callba Function503e0
 .asm_10427
-	ld a, BANK(WritePartyMenuTilemap)
-	ld hl, WritePartyMenuTilemap
-	rst $8 ;  ; indirect jump to WritePartyMenuTilemap (5005f (14:405f))
-	ld a, BANK(PrintPartyMenuText)
-	ld hl, PrintPartyMenuText
-	rst $8 ;  ; indirect jump to PrintPartyMenuText (5049a (14:449a))
+	callba WritePartyMenuTilemap
+	callba PrintPartyMenuText
 	call WaitBGMap
 	call Function32f9
 	call DelayFrame
-	ld a, BANK(PartyMenuSelect)
-	ld hl, PartyMenuSelect
-	rst $8 ;  ; indirect jump to PartyMenuSelect (50457 (14:4457))
+	callba PartyMenuSelect
 	jr c, .asm_10475
 	ld a, [CurPartySpecies] ; $d108
 	cp $fd
@@ -19001,9 +18971,7 @@ Function10566: ; 10566 (4:4566)
 
 ; no known jump sources
 Function10581: ; 10581 (4:4581)
-	ld a, BANK(Function2c76f)
-	ld hl, Function2c76f
-	rst $8 ;  ; indirect jump to Function2c76f (2c76f (b:476f))
+	callba Function2c76f
 	ld b, $5
 	ld c, $1
 	call Function108d4
@@ -19044,9 +19012,7 @@ Function105a6: ; 105a6 (4:45a6)
 
 ; known jump sources: 10523 (4:4523), 10562 (4:4562), 105cf (4:45cf)
 Function105d3: ; 105d3 (4:45d3)
-	ld a, BANK(CheckItemContext)
-	ld hl, CheckItemContext
-	rst $8 ;  ; indirect jump to CheckItemContext (d448 (3:5448))
+	callba CheckItemContext
 	ld a, [$d142]
 
 ; known jump sources: 10590 (4:4590)
@@ -19234,9 +19200,7 @@ Function10726: ; 10726 (4:4726)
 	ld a, $3
 	call Function10762
 	call Function1089a
-	ld a, BANK(Function2c76f)
-	ld hl, Function2c76f
-	rst $8 ;  ; indirect jump to Function2c76f (2c76f (b:476f))
+	callba Function2c76f
 	ld a, [CurItem] ; $d106
 	ld [CurItem], a ; $d106
 	ret
@@ -19376,9 +19340,7 @@ Function10826: ; 10826 (4:4826)
 	ld a, $3
 	call Function10762
 	call Function1089a
-	ld a, BANK(Function2c76f)
-	ld hl, Function2c76f
-	rst $8 ;  ; indirect jump to Function2c76f (2c76f (b:476f))
+	callba Function2c76f
 	ld a, [CurItem] ; $d106
 	ld [CurItem], a ; $d106
 	ret
@@ -19533,9 +19495,7 @@ Function108d4: ; 108d4 (4:48d4)
 	scf
 	ret
 .asm_10923
-	ld a, BANK(Function2490c)
-	ld hl, Function2490c
-	rst $8 ;  ; indirect jump to Function2490c (2490c (9:490c))
+	callba Function2490c
 	ld hl, $4b07
 	call Function10889
 	scf
@@ -19550,9 +19510,7 @@ Function108d4: ; 108d4 (4:48d4)
 	scf
 	ret
 .asm_1093d
-	ld a, BANK(Function2490c)
-	ld hl, Function2490c
-	rst $8 ;  ; indirect jump to Function2490c (2490c (9:490c))
+	callba Function2490c
 	ld de, $20
 	call WaitPlaySFX
 	ld de, $20
@@ -20346,7 +20304,7 @@ Function1173e: ; 1173e (4:573e)
 	ld hl, Function8e83f
 	ld a, BANK(Function8e83f)
 	ld e, $1
-	rst $8 ;  ; indirect jump to Function8e83f (8e83f (23:683f))
+	rst FarCall ;  ; indirect jump to Function8e83f (8e83f (23:683f))
 	ld a, [CurPartySpecies] ; $d108
 	ld [$d265], a
 	call GetPokemonName
@@ -20359,9 +20317,7 @@ Function1173e: ; 1173e (4:573e)
 	inc de
 	ld hl, $c4f5
 	call PlaceString
-	ld a, BANK(GetGender)
-	ld hl, GetGender
-	rst $8 ;  ; indirect jump to GetGender (50bdd (14:4bdd))
+	callba GetGender
 	jr c, .asm_1177c
 	ld a, $ef
 	jr nz, .asm_11778
@@ -20378,9 +20334,7 @@ INCBIN "baserom.gbc",$11780,$1178d - $11780
 
 ; no known jump sources
 Function1178d: ; 1178d (4:578d)
-	ld a, BANK(GetPlayerIcon)
-	ld hl, GetPlayerIcon
-	rst $8 ;  ; indirect jump to GetPlayerIcon (8832c (22:432c))
+	callba GetPlayerIcon
 	call Function11847
 	ld hl, $c4cd
 	ld de, $57a3
@@ -21272,17 +21226,13 @@ Function11fc0: ; 11fc0 (4:5fc0)
 	bit 7, a
 	jr nz, .asm_11fdb
 	call Function12008
-	ld a, BANK(Function8cf62)
-	ld hl, Function8cf62
-	rst $8 ;  ; indirect jump to Function8cf62 (8cf62 (23:4f62))
+	callba Function8cf62
 	call Function11feb
 	call DelayFrame
 	and a
 	ret
 .asm_11fdb
-	ld hl, Function8cf53
-	ld a, BANK(Function8cf53)
-	rst $8 ;  ; indirect jump to Function8cf53 (8cf53 (23:4f53))
+	callab Function8cf53
 	call ClearSprites
 	xor a
 	ld [hSCX], a ; $ff00+$cf
@@ -22562,17 +22512,13 @@ Function129d5: ; 129d5
 Function129f4: ; 129f4
 	push de
 	call PartyMonItemName
-	ld a, BANK(_CheckTossableItem)
-	ld hl, _CheckTossableItem
-	rst $8 ;  ; indirect jump to _CheckTossableItem (d427 (3:5427))
+	callba _CheckTossableItem
 	ld a, [$d142]
 	and a
 	jr nz, .asm_12a3f
 	ld hl, $6a45
 	call Function1d4f
-	ld a, BANK(Function24fbf)
-	ld hl, Function24fbf
-	rst $8 ;  ; indirect jump to Function24fbf (24fbf (9:4fbf))
+	callba Function24fbf
 	push af
 	call Function1c17
 	call Function1c07
@@ -23022,9 +22968,7 @@ Function12cf5: ; 12cf5
 ; known jump sources: 12c5c (4:6c5c)
 Function12cfe: ; 12cfe (4:6cfe)
 	ld de, DefaultFlypoint ; $d002
-	ld a, BANK(Function11e75)
-	ld hl, Function11e75
-	rst $8 ;  ; indirect jump to Function11e75 (11e75 (4:5e75))
+	callba Function11e75
 	ld hl, PlayerName ; $d47d
 	ld de, $d023
 	ld bc, $a
@@ -26644,9 +26588,7 @@ Function14a1a: ; 14a1a
 .asm_14a4a
 	call Function1c07
 	call Functiond90
-	ld a, BANK(Function4cf45)
-	ld hl, Function4cf45
-	rst $8 ;  ; indirect jump to Function4cf45 (4cf45 (13:4f45))
+	callba Function4cf45
 	scf
 	ret
 
@@ -27131,15 +27073,9 @@ Function14ea5: ; 14ea5 (5:4ea5)
 	call Function14fd7
 	call Function1500c
 	call Function15021
-	ld a, BANK(Function44745)
-	ld hl, Function44745
-	rst $8 ;  ; indirect jump to Function44745 (44745 (11:4745))
-	ld a, BANK(Function10619d)
-	ld hl, Function10619d
-	rst $8 ;  ; indirect jump to Function10619d (10619d (41:619d))
-	ld a, BANK(Function1050ea)
-	ld hl, Function1050ea
-	rst $8 ;  ; indirect jump to Function1050ea (1050ea (41:50ea))
+	callba Function44745
+	callba Function10619d
+	callba Function1050ea
 	call Function14e2d
 	call Function14e40
 	call Function14e55
@@ -27153,15 +27089,9 @@ Function14ea5: ; 14ea5 (5:4ea5)
 	call Function15046
 	call Function15067
 	call Function15021
-	ld a, BANK(Function44745)
-	ld hl, Function44745
-	rst $8 ;  ; indirect jump to Function44745 (44745 (11:4745))
-	ld a, BANK(Function10619d)
-	ld hl, Function10619d
-	rst $8 ;  ; indirect jump to Function10619d (10619d (41:619d))
-	ld a, BANK(Function1050ea)
-	ld hl, Function1050ea
-	rst $8 ;  ; indirect jump to Function1050ea (1050ea (41:50ea))
+	callba Function44745
+	callba Function10619d
+	callba Function1050ea
 	call Function14da9
 	call Function14dbb
 	call Function14dd7
@@ -28108,9 +28038,7 @@ INCBIN "baserom.gbc",$157cc,$157d1 - $157cc
 
 KrisWithdrawItemMenu: ; 0x157d1
 	call Function1d6e
-	ld a, BANK(ClearPCItemScreen)
-	ld hl, ClearPCItemScreen
-	rst $8
+	callba ClearPCItemScreen
 .asm_157da
 	call Function15985
 	jr c, .asm_157e4
@@ -28125,9 +28053,7 @@ KrisWithdrawItemMenu: ; 0x157d1
 
 Function157e9: ; 0x157e9
 	; check if the item has a quantity
-	ld a, BANK(_CheckTossableItem)
-	ld hl, _CheckTossableItem
-	rst $8
+	callba _CheckTossableItem
 	ld a, [$d142]
 	and a
 	jr z, .askquantity
@@ -28192,9 +28118,7 @@ Function157e9: ; 0x157e9
 
 KrisTossItemMenu: ; 0x1585f
 	call Function1d6e
-	ld a, BANK(ClearPCItemScreen)
-	ld hl, ClearPCItemScreen
-	rst $8
+	callba ClearPCItemScreen
 .asm_15868
 	call Function15985
 	jr c, .asm_15878
@@ -28210,9 +28134,7 @@ KrisTossItemMenu: ; 0x1585f
 
 
 KrisDecorationMenu: ; 0x1587d
-	ld a, BANK(_KrisDecorationMenu)
-	ld hl, _KrisDecorationMenu
-	rst $8
+	callba _KrisDecorationMenu
 	ld a, c
 	and a
 	ret z
@@ -30515,12 +30437,8 @@ Function16f7a: ; 16f7a (5:6f7a)
 	jp nz, Function1707d
 	ld [hl], $78
 	push de
-	ld a, BANK(Function4dbb8)
-	ld hl, Function4dbb8
-	rst $8 ;  ; indirect jump to Function4dbb8 (4dbb8 (13:5bb8))
-	ld a, BANK(Function10608d)
-	ld hl, Function10608d
-	rst $8 ;  ; indirect jump to Function10608d (10608d (41:608d))
+	callba Function4dbb8
+	callba Function10608d
 	ld a, [CurPartyMon] ; $d109
 	ld hl, PartyMons ; $dcdf (aliases: PartyMon1, PartyMon1Species)
 	ld bc, $30
@@ -30621,9 +30539,7 @@ Function16f7a: ; 16f7a (5:6f7a)
 	ld [MonType], a ; $cf5f
 	push de
 	ld b, $0
-	ld a, BANK(Function116c1)
-	ld hl, Function116c1
-	rst $8 ;  ; indirect jump to Function116c1 (116c1 (4:56c1))
+	callba Function116c1
 	pop hl
 	ld de, StringBuffer1 ; $d073
 	call InitName
@@ -30966,9 +30882,7 @@ Function1727f: ; 1727f (5:727f)
 	push hl
 	push de
 	push bc
-	ld hl, Function8cf69
-	ld a, BANK(Function8cf69)
-	rst $8 ;  ; indirect jump to Function8cf69 (8cf69 (23:4f69))
+	callab Function8cf69
 	call DelayFrame
 	pop bc
 	pop de
@@ -31418,17 +31332,13 @@ Function2011f: ; 2011f (8:411f)
 	ld de, $c541
 	ld a, [$d1ed]
 	ld b, a
-	ld a, BANK(Function5b05)
-	ld hl, Function5b05
-	rst $8 ;  ; indirect jump to Function5b05 (5b05 (1:5b05))
+	callba Function5b05
 	ld a, [$d1ee]
 	ld b, a
 	ld a, [$d1ef]
 	ld c, a
 	ld de, $c54b
-	ld a, BANK(Function1dd6bb)
-	ld hl, Function1dd6bb
-	rst $8 ;  ; indirect jump to Function1dd6bb (1dd6bb (77:56bb))
+	callba Function1dd6bb
 	ld a, [Buffer2] ; $d1eb (aliases: MovementType)
 	ld de, $7f7f
 	call Function20168
@@ -33239,9 +33149,7 @@ Function24ac3: ; 0x24ac3
 	push de
 	ld a, [MenuSelection]
 	ld [CurItem], a
-	ld a, BANK(_CheckTossableItem)
-	ld hl, _CheckTossableItem
-	rst $8
+	callba _CheckTossableItem
 	ld a, [$d142]
 	pop hl
 	and a
@@ -40398,9 +40306,7 @@ Function2c76f: ; 2c76f (b:476f)
 Function2c798: ; 2c798 (b:4798)
 	ld a, [CurItem] ; $d106
 	ld c, a
-	ld hl, GetNumberedTMHM
-	ld a, BANK(GetNumberedTMHM)
-	rst $8 ;  ; indirect jump to GetNumberedTMHM (d417 (3:5417))
+	callab GetNumberedTMHM
 	ld a, c
 	ld [CurItem], a ; $d106
 	ret
@@ -40409,9 +40315,7 @@ Function2c798: ; 2c798 (b:4798)
 Function2c7a7: ; 2c7a7 (b:47a7)
 	ld a, [CurItem] ; $d106
 	ld c, a
-	ld hl, GetTMHMNumber
-	ld a, BANK(GetTMHMNumber)
-	rst $8 ;  ; indirect jump to GetTMHMNumber (d407 (3:5407))
+	callab GetTMHMNumber
 	ld a, c
 	ld [$d265], a
 	ret
@@ -41654,16 +41558,12 @@ Function3822c: ; 3822c (e:422c)
 	ld a, [bc]
 	bit 6, a
 	jr nz, asm_38267
-	ld hl, AICheckEnemyHalfHP
-	ld a, BANK(AICheckEnemyHalfHP)
-	rst $8 ;  ; indirect jump to AICheckEnemyHalfHP (39281 (e:5281))
+	callab AICheckEnemyHalfHP
 	jp c, Function38383
 	ld a, [bc]
 	bit 5, a
 	jp nz, Function38254
-	ld hl, AICheckEnemyQuarterHP
-	ld a, BANK(AICheckEnemyQuarterHP)
-	rst $8 ;  ; indirect jump to AICheckEnemyQuarterHP (39298 (e:5298))
+	callab AICheckEnemyQuarterHP
 	jp nc, Function38281
 	call Random
 	cp $80
@@ -41672,22 +41572,16 @@ Function3822c: ; 3822c (e:422c)
 
 ; known jump sources: 3823d (e:423d)
 Function38254: ; 38254 (e:4254)
-	ld hl, AICheckEnemyQuarterHP
-	ld a, BANK(AICheckEnemyQuarterHP)
-	rst $8 ;  ; indirect jump to AICheckEnemyQuarterHP (39298 (e:5298))
+	callab AICheckEnemyQuarterHP
 	jp c, Function38383
 	call Random
 	cp $32
 	jp c, Function38383
 	jr Function38281
 asm_38267: ; 38267 (e:4267)
-	ld hl, AICheckEnemyHalfHP
-	ld a, BANK(AICheckEnemyHalfHP)
-	rst $8 ;  ; indirect jump to AICheckEnemyHalfHP (39281 (e:5281))
+	callab AICheckEnemyHalfHP
 	jp c, Function38383
-	ld hl, AICheckEnemyQuarterHP
-	ld a, BANK(AICheckEnemyQuarterHP)
-	rst $8 ;  ; indirect jump to AICheckEnemyQuarterHP (39298 (e:5298))
+	callab AICheckEnemyQuarterHP
 	jp nc, Function38281
 	call Random
 	cp $32
@@ -52103,9 +51997,7 @@ Function4013c: ; 4013c (10:413c)
 	ld hl, AttrMap ; $cdd9
 	ld bc, $168
 	call ByteFill
-	ld a, BANK(Function1de171)
-	ld hl, Function1de171
-	rst $8 ;  ; indirect jump to Function1de171 (1de171 (77:6171))
+	callba Function1de171
 	ld hl, $c5f4
 	ld de, $47f2
 	call Function40acd
@@ -52133,9 +52025,7 @@ Function4013c: ; 4013c (10:413c)
 	ld a, $4
 	call Function41423
 	call Function41148
-	ld a, BANK(Function1de171)
-	ld hl, Function1de171
-	rst $8 ;  ; indirect jump to Function1de171 (1de171 (77:6171))
+	callba Function1de171
 	ld hl, $c5f4
 	ld de, $47f2
 	call Function40acd
@@ -52216,9 +52106,7 @@ Function40217: ; 40217 (10:4217)
 	call Function4134f
 	call Function40bb1
 	ld [$c2d6], a
-	ld a, BANK(Function4424d)
-	ld hl, Function4424d
-	rst $8 ;  ; indirect jump to Function4424d (4424d (11:424d))
+	callba Function4424d
 	call Function40ba0
 	call WaitBGMap
 	ld a, $a7
@@ -52279,9 +52167,7 @@ Function402aa: ; 402aa (10:42aa)
 	call Function41478
 	call Function40bb1
 	ld [$c2d6], a
-	ld a, BANK(Function4424d)
-	ld hl, Function4424d
-	rst $8 ;  ; indirect jump to Function4424d (4424d (11:424d))
+	callba Function4424d
 	call Function40ba0
 	call Function4143b
 	call WaitBGMap
@@ -52408,9 +52294,7 @@ Function40443: ; 40443 (10:4443)
 	call Function40fa8
 	xor a
 	ld [$c7db], a
-	ld a, BANK(Function44207)
-	ld hl, Function44207
-	rst $8 ;  ; indirect jump to Function44207 (44207 (11:4207))
+	callba Function44207
 	call WaitBGMap
 	ld a, $10
 	call Function41423
@@ -52455,9 +52339,7 @@ Function4050a: ; 4050a (10:450a)
 	call ByteFill
 	call Function41ae1
 	call Function41af7
-	ld a, BANK(Function1de1d1)
-	ld hl, Function1de1d1
-	rst $8 ;  ; indirect jump to Function1de1d1 (1de1d1 (77:61d1))
+	callba Function1de1d1
 	call Function409cf
 	ld a, $4
 	ld [$c7d3], a
@@ -52473,9 +52355,7 @@ Function4050a: ; 4050a (10:450a)
 	ld [hWY], a ; $ff00+$d2
 	call WaitBGMap
 	call Function41af7
-	ld a, BANK(Function1de1d1)
-	ld hl, Function1de1d1
-	rst $8 ;  ; indirect jump to Function1de1d1 (1de1d1 (77:61d1))
+	callba Function1de1d1
 	call Function409cf
 	call Function41281
 	ld a, $ff
@@ -52538,9 +52418,7 @@ Function405bd: ; 405bd (10:45bd)
 	ld [$c7dd], a
 	call Function41a58
 	call Function40658
-	ld a, BANK(Functionfba2e)
-	ld hl, Functionfba2e
-	rst $8 ;  ; indirect jump to Functionfba2e (fba2e (3e:7a2e))
+	callba Functionfba2e
 	call WaitBGMap
 	ld a, $16
 	call Function41423
@@ -52562,9 +52440,7 @@ Function405df: ; 405df (10:45df)
 	call DelayFrame
 	call Function41a24
 	jr nz, .asm_40603
-	ld a, BANK(Function1ddf26)
-	ld hl, Function1ddf26
-	rst $8 ;  ; indirect jump to Function1ddf26 (1ddf26 (77:5f26))
+	callba Function1ddf26
 	jr .asm_4060f
 .asm_40603
 	ld hl, $550e
@@ -52610,9 +52486,7 @@ Function40610: ; 40610 (10:4610)
 	call Function40654
 	call Function41a58
 	call Function40658
-	ld a, BANK(Functionfba2e)
-	ld hl, Functionfba2e
-	rst $8 ;  ; indirect jump to Functionfba2e (fba2e (3e:7a2e))
+	callba Functionfba2e
 	ld a, $1
 	ld [hBGMapMode], a ; $ff00+$d4
 	call DelayFrame
@@ -55974,9 +55848,7 @@ Function48304: ; 48304 (12:4304)
 	ld a, $29
 .asm_4833f
 	ld [$d0e4], a
-	ld a, BANK(Function104148)
-	ld hl, Function104148
-	rst $8 ;  ; indirect jump to Function104148 (104148 (41:4148))
+	callba Function104148
 .asm_48348
 	call Function350c
 	ld de, $629
@@ -56002,9 +55874,7 @@ Function48304: ; 48304 (12:4304)
 	ld [$d003], a
 .asm_48377
 	call Function48187
-	ld a, BANK(Function104148)
-	ld hl, Function104148
-	rst $8 ;  ; indirect jump to Function104148 (104148 (41:4148))
+	callba Function104148
 	jp Function4840c
 
 ; known jump sources: 4834e (12:434e)
@@ -57298,9 +57168,7 @@ Function48e47: ; 48e47 (12:4e47)
 	ld bc, $8
 	ld a, $5
 	call FarCopyWRAM
-	ld a, BANK(Function96a4)
-	ld hl, Function96a4
-	rst $8 ;  ; indirect jump to Function96a4 (96a4 (2:56a4))
+	callba Function96a4
 	ret
 ; 48e5c (12:4e5c)
 
@@ -57447,9 +57315,7 @@ Function4930f: ; 4930f (12:530f)
 	ld a, [SGBPredef] ; $cd98
 .asm_49317
 	push af
-	ld a, BANK(Function9673)
-	ld hl, Function9673
-	rst $8 ;  ; indirect jump to Function9673 (9673 (2:5673))
+	callba Function9673
 	pop af
 	ld l, a
 	ld h, $0
@@ -57512,12 +57378,8 @@ Function4936e: ; 4936e (12:536e)
 	call Function49351
 	call Function49346
 	call Function49384
-	ld a, BANK(Function96b3)
-	ld hl, Function96b3
-	rst $8 ;  ; indirect jump to Function96b3 (96b3 (2:56b3))
-	ld a, BANK(Function96a4)
-	ld hl, Function96a4
-	rst $8 ;  ; indirect jump to Function96a4 (96a4 (2:56a4))
+	callba Function96b3
+	callba Function96a4
 	ret
 
 ; known jump sources: 49374 (12:5374)
@@ -58664,9 +58526,7 @@ Function4a098: ; 4a098 (12:6098)
 	call Function1bee
 	call WaitBGMap
 	call Function1d6e
-	ld a, BANK(Function89de0)
-	ld hl, Function89de0
-	rst $8 ;  ; indirect jump to Function89de0 (89de0 (22:5de0))
+	callba Function89de0
 	call Function1d7d
 	call Function49351
 	call Function4a485
@@ -58691,9 +58551,7 @@ Function4a0c2: ; 4a0c2 (12:60c2)
 	ld bc, $6
 	call CopyBytes
 	call CloseSRAM
-	ld a, BANK(Function150b9)
-	ld hl, Function150b9
-	rst $8 ;  ; indirect jump to Function150b9 (150b9 (5:50b9))
+	callba Function150b9
 	ld c, $2
 	call DelayFrames
 	ld c, $1
@@ -58703,9 +58561,7 @@ Function4a0c2: ; 4a0c2 (12:60c2)
 	pop af
 	and a
 	jr nz, .asm_4a0f9
-	ld a, BANK(Function1509a)
-	ld hl, Function1509a
-	rst $8 ;  ; indirect jump to Function1509a (1509a (5:509a))
+	callba Function1509a
 .asm_4a0f9
 	ld c, $5
 	call DelayFrames
@@ -58785,9 +58641,7 @@ Function4a149: ; 4a149 (12:6149)
 	call ClearBox
 	ld hl, $c5b9
 	call PlaceString
-	ld a, BANK(Function104148)
-	ld hl, Function104148
-	rst $8 ;  ; indirect jump to Function104148 (104148 (41:4148))
+	callba Function104148
 	call Function32f9
 	call Function1bc9
 	ld hl, $cfa9
@@ -58853,9 +58707,7 @@ INCBIN "baserom.gbc",$4a1ef,$4a20e - $4a1ef
 Function4a20e: ; 4a20e (12:620e)
 	ld a, $1
 	call Function1ff8
-	ld a, BANK(Function1719c8)
-	ld hl, Function1719c8
-	rst $8 ;  ; indirect jump to Function1719c8 (1719c8 (5c:59c8))
+	callba Function1719c8
 	call WhiteBGMap
 	call DelayFrame
 	jr asm_4a239
@@ -58904,9 +58756,7 @@ Function4a28a: ; 4a28a (12:628a)
 	ld hl, $c4c2
 	ld de, $634b
 	call PlaceString
-	ld a, BANK(Function104148)
-	ld hl, Function104148
-	rst $8 ;  ; indirect jump to Function104148 (104148 (41:4148))
+	callba Function104148
 	call Function4a118
 	call Function1bd3
 	push af
@@ -58920,9 +58770,7 @@ Function4a28a: ; 4a28a (12:628a)
 	cp $3
 	jr z, .asm_4a33b
 .asm_4a2df
-	ld a, BANK(Function11765d)
-	ld hl, Function11765d
-	rst $8 ;  ; indirect jump to Function11765d (11765d (45:765d))
+	callba Function11765d
 	call WhiteBGMap
 	call Function1d7d
 	call Functione5f
@@ -58936,9 +58784,7 @@ Function4a28a: ; 4a28a (12:628a)
 	ld b, $3
 	ld c, $4
 	call TextBox
-	ld a, BANK(Function104148)
-	ld hl, Function104148
-	rst $8 ;  ; indirect jump to Function104148 (104148 (41:4148))
+	callba Function104148
 	ld hl, $6362
 	call LoadMenuDataHeader
 	call Function1d81
@@ -58961,9 +58807,7 @@ Function4a28a: ; 4a28a (12:628a)
 	call Function1c07
 .asm_4a33b
 	call Function1d7d
-	ld a, BANK(Function104148)
-	ld hl, Function104148
-	rst $8 ;  ; indirect jump to Function104148 (104148 (41:4148))
+	callba Function104148
 	xor a
 	ret
 ; 4a346 (12:6346)
@@ -59276,9 +59120,7 @@ Function4a6ab: ; 4a6ab (12:66ab)
 	call WhiteBGMap
 	ld b, $8
 	call GetSGBLayout
-	ld a, BANK(Function11c1ab)
-	ld hl, Function11c1ab
-	rst $8 ;  ; indirect jump to Function11c1ab (11c1ab (47:41ab))
+	callba Function11c1ab
 	pop bc
 	call Functione5f
 	jp Function4a4c4
@@ -62087,9 +61929,7 @@ Function4dd3a: ; 4dd3a (13:5d3a)
 .asm_4dd56
 	ld hl, $cf64
 	res 5, [hl]
-	ld a, BANK(Function10402d)
-	ld hl, Function10402d
-	rst $8 ;  ; indirect jump to Function10402d (10402d (41:402d))
+	callba Function10402d
 	ret
 
 ; known jump sources: 4dd97 (13:5d97), 4dd9d (13:5d9d), 4ddb3 (13:5db3), 4ddc2 (13:5dc2), 4dddd (13:5ddd), 4deda (13:5eda), 4dee0 (13:5ee0), 4dee6 (13:5ee6)
@@ -62112,9 +61952,7 @@ Function4dd72: ; 4dd72 (13:5d72)
 	res 6, [hl]
 	call WhiteBGMap
 	call ClearTileMap
-	ld a, BANK(Function10402d)
-	ld hl, Function10402d
-	rst $8 ;  ; indirect jump to Function10402d (10402d (41:402d))
+	callba Function10402d
 	call Function4ddf2
 	ld a, [CurPartySpecies] ; $d108
 	cp $fd
@@ -62200,18 +62038,14 @@ Function4ddf2: ; 4ddf2 (13:5df2)
 	call CopyBytes
 	jr .asm_4de2a
 .asm_4de10
-	ld a, BANK(Function5084a)
-	ld hl, Function5084a
-	rst $8 ;  ; indirect jump to Function5084a (5084a (14:484a))
+	callba Function5084a
 	ld a, [CurPartySpecies] ; $d108
 	cp $fd
 	jr z, .asm_4de2a
 	ld a, [MonType] ; $cf5f
 	cp $2
 	jr c, .asm_4de2a
-	ld a, BANK(Function50890)
-	ld hl, Function50890
-	rst $8 ;  ; indirect jump to Function50890 (50890 (14:4890))
+	callba Function50890
 .asm_4de2a
 	and a
 	ret
@@ -62225,9 +62059,7 @@ Function4de2c: ; 4de2c (13:5e2c)
 	push hl
 	push de
 	push bc
-	ld a, BANK(Functione2f95)
-	ld hl, Functione2f95
-	rst $8 ;  ; indirect jump to Functione2f95 (e2f95 (38:6f95))
+	callba Functione2f95
 	pop bc
 	pop de
 	pop hl
@@ -62387,9 +62219,7 @@ Function4df45: ; 4df45 (13:5f45)
 	ld a, [hli]
 	ld d, a
 	ld e, [hl]
-	ld a, BANK(Functionc699)
-	ld hl, Functionc699
-	rst $8 ;  ; indirect jump to Functionc699 (c699 (3:4699))
+	callba Functionc699
 	ld hl, $cda1
 	call SetHPPal
 	ld b, $3
@@ -62400,9 +62230,7 @@ Function4df45: ; 4df45 (13:5f45)
 ; known jump sources: 4df26 (13:5f26)
 Function4df66: ; 4df66 (13:5f66)
 	push hl
-	ld a, BANK(GetGender)
-	ld hl, GetGender
-	rst $8 ;  ; indirect jump to GetGender (50bdd (14:4bdd))
+	callba GetGender
 	pop hl
 	ret c
 	ld a, $ef
@@ -62437,9 +62265,7 @@ Function4df9b: ; 4df9b (13:5f9b)
 ; known jump sources: 4df41 (13:5f41)
 Function4dfa6: ; 4dfa6 (13:5fa6)
 	ld bc, TempMonDVs ; $d123
-	ld a, BANK(CheckShininess)
-	ld hl, CheckShininess
-	rst $8 ;  ; indirect jump to CheckShininess (8a68 (2:4a68))
+	callba CheckShininess
 	ret nc
 	ld hl, $c4b3
 	ld [hl], $3f
@@ -62480,9 +62306,7 @@ Function4dfed: ; 4dfed (13:5fed)
 	ld a, [$cf64]
 	and $3
 	ld c, a
-	ld a, BANK(Function8c8a)
-	ld hl, Function8c8a
-	rst $8 ;  ; indirect jump to Function8c8a (8c8a (2:4c8a))
+	callba Function8c8a
 	call DelayFrame
 	ld hl, $cf64
 	set 5, [hl]
@@ -62610,9 +62434,7 @@ Function4e0e7: ; 4e0e7 (13:60e7)
 	jr z, .asm_4e111
 	inc a
 	ld d, a
-	ld a, BANK(Function50e47)
-	ld hl, Function50e47
-	rst $8 ;  ; indirect jump to Function50e47 (50e47 (14:4e47))
+	callba Function50e47
 	ld hl, $d118
 	ld hl, $d118
 	ld a, [$FF00+$b6]
@@ -62672,9 +62494,7 @@ Function4e189: ; 4e189 (13:6189)
 	and a
 	ret z
 	ld b, a
-	ld a, BANK(Function28771)
-	ld hl, Function28771
-	rst $8 ;  ; indirect jump to Function28771 (28771 (a:4771))
+	callba Function28771
 	ld a, b
 	ld [$d265], a
 	call GetItemName
@@ -62716,9 +62536,7 @@ Function4e1cc: ; 4e1cc (13:61cc)
 	ld hl, $6216
 	call Function4e528
 	call Function4e505
-	ld a, BANK(CheckNickErrors)
-	ld hl, CheckNickErrors
-	rst $8 ;  ; indirect jump to CheckNickErrors (669f (1:669f))
+	callba CheckNickErrors
 	ld hl, $c5a6
 	call PlaceString
 	ld a, [$d12c]
@@ -63163,9 +62981,7 @@ Function4e56a: ; 4e56a (13:656a)
 	ld hl, $65df
 	ld a, $13
 	call StartAutoInput
-	ld hl, StartBattle
-	ld a, BANK(StartBattle)
-	rst $8 ;  ; indirect jump to StartBattle (3f4c1 (f:74c1))
+	callab StartBattle
 	call StopAutoInput
 	pop af
 	ld [Options], a ; $cfcc
@@ -69772,9 +69588,7 @@ Function8498a: ; 8498a (21:498a)
 	ld [CurPartyMon], a ; $d109
 	ld a, $3
 	ld [MonType], a ; $cf5f
-	ld a, BANK(GetGender)
-	ld hl, GetGender
-	rst $8 ;  ; indirect jump to GetGender (50bdd (14:4bdd))
+	callba GetGender
 	ld a, $7f
 	jr c, .asm_849c3
 	ld a, $ef
@@ -71351,13 +71165,9 @@ Function89240: ; 89240
 
 ; known jump sources: 89e72 (22:5e72), 8a163 (22:6163), 8a2e2 (22:62e2)
 Function89245: ; 89245 (22:5245)
-	ld a, BANK(Function14ea5)
-	ld hl, Function14ea5
-	rst $8 ;  ; indirect jump to Function14ea5 (14ea5 (5:4ea5))
+	callba Function14ea5
 	ret c
-	ld a, BANK(Function150b9)
-	ld hl, Function150b9
-	rst $8 ;  ; indirect jump to Function150b9 (150b9 (5:50b9))
+	callba Function150b9
 	and a
 	ret
 
@@ -72823,9 +72633,7 @@ Function89ae6: ; 89ae6
 
 ; known jump sources: 89b24 (22:5b24)
 Function89b00: ; 89b00 (22:5b00)
-	ld a, BANK(Function49351)
-	ld hl, Function49351
-	rst $8 ;  ; indirect jump to Function49351 (49351 (12:5351))
+	callba Function49351
 	ret
 ; 89b07 (22:5b07)
 
@@ -72833,9 +72641,7 @@ INCBIN "baserom.gbc",$89b07,$89b1e - $89b07
 
 ; known jump sources: 893e2 (22:53e2)
 Function89b1e: ; 89b1e (22:5b1e)
-	ld a, BANK(Function4a485)
-	ld hl, Function4a485
-	rst $8 ;  ; indirect jump to Function4a485 (4a485 (12:6485))
+	callba Function4a485
 	call Function89b00
 	ret
 
@@ -72852,9 +72658,7 @@ Function89b28: ; 89b28 (22:5b28)
 ; known jump sources: 8a182 (22:6182), 8a3c6 (22:63c6), 8a3d5 (22:63d5), 8a9d6 (22:69d6), 8b4bd (22:74bd)
 Function89b3b: ; 89b3b (22:5b3b)
 	call Function8923c
-	ld a, BANK(Function48cda)
-	ld hl, Function48cda
-	rst $8 ;  ; indirect jump to Function48cda (48cda (12:4cda))
+	callba Function48cda
 	ret
 
 Function89b45: ; 89b45
@@ -73160,9 +72964,7 @@ Function89d0d: ; 89d0d (22:5d0d)
 	pop af
 	ld [rSVBK], a ; $ff00+$70
 	call Function32f9
-	ld a, BANK(Function845db)
-	ld hl, Function845db
-	rst $8 ;  ; indirect jump to Function845db (845db (21:45db))
+	callba Function845db
 	call Function89240
 	ld c, $18
 	call DelayFrames
@@ -73190,9 +72992,7 @@ Function89d75: ; 89d75 (22:5d75)
 	push hl
 	call Function8923c
 	call _hl_
-	ld a, BANK(Function104148)
-	ld hl, Function104148
-	rst $8 ;  ; indirect jump to Function104148 (104148 (41:4148))
+	callba Function104148
 	pop hl
 	jr asm_89d90
 
@@ -73226,9 +73026,7 @@ asm_89d90: ; 89d90 (22:5d90)
 ; known jump sources: 89d97 (22:5d97)
 Function89dab: ; 89dab (22:5dab)
 	call Function8923c
-	ld a, BANK(Function241ba)
-	ld hl, Function241ba
-	rst $8 ;  ; indirect jump to Function241ba (241ba (9:41ba))
+	callba Function241ba
 	call Function8923c
 	ld a, c
 	ld hl, $cfa8
@@ -73417,12 +73215,8 @@ Function89ee1: ; 89ee1 (22:5ee1)
 	call WhiteBGMap
 	call Function893e2
 	call Function8923c
-	ld a, BANK(Function4a3a7)
-	ld hl, Function4a3a7
-	rst $8 ;  ; indirect jump to Function4a3a7 (4a3a7 (12:63a7))
-	ld a, BANK(Function49384)
-	ld hl, Function49384
-	rst $8 ;  ; indirect jump to Function49384 (49384 (12:5384))
+	callba Function4a3a7
+	callba Function49384
 	ld hl, $c4a1
 	call Function8a53d
 	ret
@@ -73890,12 +73684,8 @@ Function8a262: ; 8a262 (22:6262)
 	call WhiteBGMap
 	call Function893e2
 	call Function8923c
-	ld a, BANK(Function4a3a7)
-	ld hl, Function4a3a7
-	rst $8 ;  ; indirect jump to Function4a3a7 (4a3a7 (12:63a7))
-	ld a, BANK(Function49384)
-	ld hl, Function49384
-	rst $8 ;  ; indirect jump to Function49384 (49384 (12:5384))
+	callba Function4a3a7
+	callba Function49384
 	ld hl, $c4a1
 	call Function8a53d
 	ld hl, $c4fc
@@ -73976,12 +73766,8 @@ Function8a313: ; 8a313 (22:6313)
 Function8a31c: ; 8a31c (22:631c)
 	push bc
 	call Function8923c
-	ld a, BANK(Function4a3a7)
-	ld hl, Function4a3a7
-	rst $8 ;  ; indirect jump to Function4a3a7 (4a3a7 (12:63a7))
-	ld a, BANK(Function49384)
-	ld hl, Function49384
-	rst $8 ;  ; indirect jump to Function49384 (49384 (12:5384))
+	callba Function4a3a7
+	callba Function49384
 	ld hl, $c4a1
 	call Function8a53d
 	ld hl, $c4fc
@@ -74024,9 +73810,7 @@ Function8a31c: ; 8a31c (22:631c)
 
 ; known jump sources: 8a363 (22:6363)
 Function8a383: ; 8a383 (22:6383)
-	ld a, BANK(Function241ba)
-	ld hl, Function241ba
-	rst $8 ;  ; indirect jump to Function241ba (241ba (9:41ba))
+	callba Function241ba
 	ld a, c
 	ld hl, $cfa8
 	and [hl]
@@ -74533,9 +74317,7 @@ Function8a78c: ; 8a78c (22:678c)
 	call Function891fe
 	ld de, DefaultFlypoint ; $d002
 	ld b, $5
-	ld a, BANK(Function116c1)
-	ld hl, Function116c1
-	rst $8 ;  ; indirect jump to Function116c1 (116c1 (4:56c1))
+	callba Function116c1
 	call Function89160
 	call Function8931b
 	push bc
@@ -74565,9 +74347,7 @@ Function8a7cb: ; 8a7cb (22:67cb)
 	call Function891de
 	ld de, $d008
 	ld c, $0
-	ld a, BANK(Function17a68f)
-	ld hl, Function17a68f
-	rst $8 ;  ; indirect jump to Function17a68f (17a68f (5e:668f))
+	callba Function17a68f
 	jr c, .asm_8a7f4
 	ld hl, $d008
 	ld a, $ff
@@ -74887,9 +74667,7 @@ Function8aa73: ; 8aa73 (22:6a73)
 	call Function891de
 	ld de, $d008
 	ld c, $0
-	ld a, BANK(Function17a68f)
-	ld hl, Function17a68f
-	rst $8 ;  ; indirect jump to Function17a68f (17a68f (5e:668f))
+	callba Function17a68f
 	jr c, .asm_8aa9d
 	ld hl, $d008
 	ld a, $ff
@@ -75019,9 +74797,7 @@ Function8ab77: ; 8ab77 (22:6b77)
 Function8ab93: ; 8ab93 (22:6b93)
 	call WhiteBGMap
 	call Function1d6e
-	ld a, BANK(Function105688)
-	ld hl, Function105688
-	rst $8 ;  ; indirect jump to Function105688 (105688 (41:5688))
+	callba Function105688
 	call ClearSprites
 	call Function891fe
 	call Function89b28
@@ -77531,9 +77307,7 @@ INCBIN "baserom.gbc",$8c3db,$8c3e8 - $8c3db
 
 ; no known jump sources
 Function8c3e8: ; 8c3e8 (23:43e8)
-	ld a, BANK(Function5602)
-	ld hl, Function5602
-	rst $8 ;  ; indirect jump to Function5602 (5602 (1:5602))
+	callba Function5602
 	ld a, $5
 	ld [rSVBK], a ; $ff00+$70
 	call Function8c39c
@@ -77590,9 +77364,7 @@ Function8c419: ; 8c419 (23:4419)
 
 ; no known jump sources
 Function8c43d: ; 8c43d (23:443d)
-	ld a, BANK(Function5602)
-	ld hl, Function5602
-	rst $8 ;  ; indirect jump to Function5602 (5602 (1:5602))
+	callba Function5602
 	ld a, $5
 	ld [rSVBK], a ; $ff00+$70
 	call Function8c39c
@@ -77699,9 +77471,7 @@ INCBIN "baserom.gbc",$8c538,$8c578 - $8c538
 
 ; no known jump sources
 Function8c578: ; 8c578 (23:4578)
-	ld a, BANK(Function5602)
-	ld hl, Function5602
-	rst $8 ;  ; indirect jump to Function5602 (5602 (1:5602))
+	callba Function5602
 	ld a, $5
 	ld [rSVBK], a ; $ff00+$70
 	call Function8c39c
@@ -77962,9 +77732,7 @@ INCBIN "baserom.gbc",$8c728,$8c768 - $8c728
 
 ; no known jump sources
 Function8c768: ; 8c768 (23:4768)
-	ld a, BANK(Function5602)
-	ld hl, Function5602
-	rst $8 ;  ; indirect jump to Function5602 (5602 (1:5602))
+	callba Function5602
 	ld de, $4792
 .asm_8c771
 	ld a, [de]
@@ -78223,9 +77991,7 @@ INCBIN "baserom.gbc",$8cae5,$8caed - $8cae5
 	jr nz, .asm_8cb2e
 	ld a, $0
 	ld [$c3b5], a
-	ld hl, Function8cf7a
-	ld a, BANK(Function8cf7a)
-	rst $8 ;  ; indirect jump to Function8cf7a (8cf7a (23:4f7a))
+	callab Function8cf7a
 	call Function8cbc8
 	call DelayFrame
 	jr .asm_8cb14
@@ -78259,9 +78025,7 @@ INCBIN "baserom.gbc",$8cae5,$8caed - $8cae5
 	jr nz, .asm_8cb7a
 	ld a, $0
 	ld [$c3b5], a
-	ld hl, Function8cf7a
-	ld a, BANK(Function8cf7a)
-	rst $8 ;  ; indirect jump to Function8cf7a (8cf7a (23:4f7a))
+	callab Function8cf7a
 	call Function8cbc8
 	call DelayFrame
 	jr .asm_8cb60
@@ -78292,9 +78056,7 @@ Function8cb82: ; 8cb82 (23:4b82)
 
 ; known jump sources: 8caf8 (23:4af8), 8cb3e (23:4b3e)
 Function8cb9b: ; 8cb9b (23:4b9b)
-	ld hl, Function8cf53
-	ld a, BANK(Function8cf53)
-	rst $8 ;  ; indirect jump to Function8cf53 (8cf53 (23:4f53))
+	callab Function8cf53
 	ld de, $49cc
 	ld hl, $8800
 	ld bc, $2304
@@ -78307,9 +78069,7 @@ Function8cb9b: ; 8cb9b (23:4b9b)
 	ld a, [hl]
 	ld [$d265], a
 	ld e, $84
-	ld a, BANK(Function8e9bc)
-	ld hl, Function8e9bc
-	rst $8 ;  ; indirect jump to Function8e9bc (8e9bc (23:69bc))
+	callba Function8e9bc
 	xor a
 	ld [$cf63], a
 	ret
@@ -79283,23 +79043,17 @@ Function8d35a: ; 8d35a (23:535a)
 
 ; no known jump sources
 Function8d36c: ; 8d36c (23:536c)
-	ld hl, Function11a3b
-	ld a, BANK(Function11a3b)
-	rst $8 ;  ; indirect jump to Function11a3b (11a3b (4:5a3b))
+	callab Function11a3b
 	ret
 
 ; no known jump sources
 Function8d373: ; 8d373 (23:5373)
-	ld hl, Function120c1
-	ld a, BANK(Function120c1)
-	rst $8 ;  ; indirect jump to Function120c1 (120c1 (4:60c1))
+	callab Function120c1
 	ret
 
 ; no known jump sources
 Function8d37a: ; 8d37a (23:537a)
-	ld hl, Functione46ed
-	ld a, BANK(Functione46ed)
-	rst $8 ;  ; indirect jump to Functione46ed (e46ed (39:46ed))
+	callab Functione46ed
 	ret
 
 ; no known jump sources
@@ -79416,16 +79170,12 @@ Function8d3c3: ; 8d3c3 (23:53c3)
 
 ; no known jump sources
 Function8d422: ; 8d422 (23:5422)
-	ld hl, Function9321d
-	ld a, BANK(Function9321d)
-	rst $8 ;  ; indirect jump to Function9321d (9321d (24:721d))
+	callab Function9321d
 	ret
 
 ; no known jump sources
 Function8d429: ; 8d429 (23:5429)
-	ld hl, Function932ac
-	ld a, BANK(Function932ac)
-	rst $8 ;  ; indirect jump to Function932ac (932ac (24:72ac))
+	callab Function932ac
 	ld hl, $cf64
 	ld a, [hl]
 	cp $2
@@ -79468,23 +79218,17 @@ Function8d43e: ; 8d43e (23:543e)
 
 ; no known jump sources
 Function8d46e: ; 8d46e (23:546e)
-	ld hl, Functione00ed
-	ld a, BANK(Functione00ed)
-	rst $8 ;  ; indirect jump to Functione00ed (e00ed (38:40ed))
+	callab Functione00ed
 	ret
 
 ; no known jump sources
 Function8d475: ; 8d475 (23:5475)
-	ld hl, Function90d41
-	ld a, BANK(Function90d41)
-	rst $8 ;  ; indirect jump to Function90d41 (90d41 (24:4d41))
+	callab Function90d41
 	ret
 
 ; no known jump sources
 Function8d47c: ; 8d47c (23:547c)
-	ld hl, Functione21a1
-	ld a, BANK(Functione21a1)
-	rst $8 ;  ; indirect jump to Functione21a1 (e21a1 (38:61a1))
+	callab Functione21a1
 	ret
 
 ; no known jump sources
@@ -79515,9 +79259,7 @@ Function8d52a: ; 8d52a (23:552a)
 
 ; no known jump sources
 Function8d543: ; 8d543 (23:5543)
-	ld hl, Function29676
-	ld a, BANK(Function29676)
-	rst $8 ;  ; indirect jump to Function29676 (29676 (a:5676))
+	callab Function29676
 	ret
 
 ; no known jump sources
@@ -79554,9 +79296,7 @@ Function8d54a: ; 8d54a (23:554a)
 
 ; no known jump sources
 Function8d578: ; 8d578 (23:5578)
-	ld hl, Function91640
-	ld a, BANK(Function91640)
-	rst $8 ;  ; indirect jump to Function91640 (91640 (24:5640))
+	callab Function91640
 	ret
 
 ; no known jump sources
@@ -79689,16 +79429,12 @@ Function8d607: ; 8d607 (23:5607)
 
 ; no known jump sources
 Function8d630: ; 8d630 (23:5630)
-	ld a, BANK(Function108bc7)
-	ld hl, Function108bc7
-	rst $8 ;  ; indirect jump to Function108bc7 (108bc7 (42:4bc7))
+	callba Function108bc7
 	ret
 
 ; no known jump sources
 Function8d637: ; 8d637 (23:5637)
-	ld a, BANK(Function108be0)
-	ld hl, Function108be0
-	rst $8 ;  ; indirect jump to Function108be0 (108be0 (42:4be0))
+	callba Function108be0
 	ret
 
 ; no known jump sources
@@ -79791,16 +79527,12 @@ Function8d6ae: ; 8d6ae (23:56ae)
 
 ; no known jump sources
 Function8d6b7: ; 8d6b7 (23:56b7)
-	ld a, BANK(Function11d0b6)
-	ld hl, Function11d0b6
-	rst $8 ;  ; indirect jump to Function11d0b6 (11d0b6 (47:50b6))
+	callba Function11d0b6
 	ret
 
 ; no known jump sources
 Function8d6be: ; 8d6be (23:56be)
-	ld a, BANK(Function49aa2)
-	ld hl, Function49aa2
-	rst $8 ;  ; indirect jump to Function49aa2 (49aa2 (12:5aa2))
+	callba Function49aa2
 	ret
 
 ; known jump sources: 8d302 (23:5302), 8d483 (23:5483)
@@ -80040,9 +79772,7 @@ Function8e86c: ; 8e86c (23:686c)
 	push hl
 	push bc
 	ld d, a
-	ld hl, ItemIsMail
-	ld a, BANK(ItemIsMail)
-	rst $8 ;  ; indirect jump to ItemIsMail (b9e76 (2e:5e76))
+	callab ItemIsMail
 	pop bc
 	pop hl
 	jr c, .asm_8e88e
@@ -80118,9 +79848,7 @@ Function8e8df: ; 8e8df (23:68df)
 	push hl
 	push bc
 	ld d, a
-	ld hl, ItemIsMail
-	ld a, BANK(ItemIsMail)
-	rst $8 ;  ; indirect jump to ItemIsMail (b9e76 (2e:5e76))
+	callab ItemIsMail
 	pop bc
 	pop hl
 	jr c, .asm_8e900
@@ -80183,9 +79911,7 @@ Function8e936: ; 8e936 (23:6936)
 
 ; known jump sources: 8e93a (23:693a)
 Function8e94c: ; 8e94c (23:694c)
-	ld a, BANK(Function50117)
-	ld hl, Function50117
-	rst $8 ;  ; indirect jump to Function50117 (50117 (14:4117))
+	callba Function50117
 	call GetHPPal
 	ld e, d
 	ld d, $0
@@ -80577,9 +80303,7 @@ Function90074: ; 90074 (24:4074)
 
 ; known jump sources: 90079 (24:4079)
 Function900a6: ; 900a6 (24:40a6)
-	ld a, BANK(Function11401)
-	ld hl, Function11401
-	rst $8 ;  ; indirect jump to Function11401 (11401 (4:5401))
+	callba Function11401
 	ret
 
 ; known jump sources: 901b9 (24:41b9)
@@ -80588,9 +80312,7 @@ Function900ad: ; 900ad (24:40ad)
 	push bc
 	push de
 	push af
-	ld a, BANK(Functionc000)
-	ld hl, Functionc000
-	rst $8 ;  ; indirect jump to Functionc000 (c000 (3:4000))
+	callba Functionc000
 	pop af
 	and $7
 	and c
@@ -80623,9 +80345,7 @@ Function900bf: ; 900bf (24:40bf)
 
 ; known jump sources: 9008e (24:408e)
 Function900de: ; 900de (24:40de)
-	ld a, BANK(Functionc000)
-	ld hl, Functionc000
-	rst $8 ;  ; indirect jump to Functionc000 (c000 (3:4000))
+	callba Functionc000
 	ld a, c
 	ld [EngineBuffer1], a ; $d03e (aliases: MenuItemsList, CurFruitTree, CurInput)
 	ld hl, MartPointer ; $d040 (aliases: Unkn2Pals)
@@ -81072,9 +80792,7 @@ INCBIN "baserom.gbc",$903d6,$90423 - $903d6
 Function90423: ; 90423 (24:4423)
 	push hl
 	push bc
-	ld a, BANK(Function3994c)
-	ld hl, Function3994c
-	rst $8 ;  ; indirect jump to Function3994c (3994c (e:594c))
+	callba Function3994c
 	pop bc
 	pop hl
 	ret
@@ -81083,9 +80801,7 @@ Function90423: ; 90423 (24:4423)
 Function9042e: ; 9042e (24:442e)
 	push hl
 	push bc
-	ld a, BANK(Function3952d)
-	ld hl, Function3952d
-	rst $8 ;  ; indirect jump to Function3952d (3952d (e:552d))
+	callba Function3952d
 	pop bc
 	pop hl
 	ret
@@ -81692,9 +81408,7 @@ Function90b8d: ; 90b8d (24:4b8d)
 	bit 7, a
 	jr nz, .asm_90bc4
 	call Function90f04
-	ld a, BANK(Function8cf69)
-	ld hl, Function8cf69
-	rst $8 ;  ; indirect jump to Function8cf69 (8cf69 (23:4f69))
+	callba Function8cf69
 	call DelayFrame
 	jr .asm_90ba9
 .asm_90bc4
@@ -81972,9 +81686,7 @@ INCBIN "baserom.gbc",$90e36,$90e3f - $90e36
 .asm_90e4e
 	ld e, $1
 .asm_90e50
-	ld a, BANK(Function91ae1)
-	ld hl, Function91ae1
-	rst $8 ;  ; indirect jump to Function91ae1 (91ae1 (24:5ae1))
+	callba Function91ae1
 	ld a, $7
 	ld bc, $12
 	ld hl, $c4c9
@@ -82169,9 +81881,7 @@ Function90f86: ; 90f86 (24:4f86)
 	ld a, [hMinutes] ; $ff00+$96
 	ld c, a
 	ld de, $c546
-	ld a, BANK(Function1dd6bb)
-	ld hl, Function1dd6bb
-	rst $8 ;  ; indirect jump to Function1dd6bb (1dd6bb (77:56bb))
+	callba Function1dd6bb
 	ld hl, $4faf
 	ld bc, $c51e
 	call Function13e5
@@ -82426,7 +82136,7 @@ Function91112: ; 91112 (24:5112)
 	ld a, [EnemyAccLevel] ; $c6d9
 	and a
 	ret z
-	rst $8
+	rst FarCall
 	ret
 .asm_9112e
 	ld a, [$d957]
@@ -82571,9 +82281,7 @@ Function911eb: ; 911eb (24:51eb)
 	inc [hl]
 	ret
 .asm_91234
-	ld a, BANK(Function902e3)
-	ld hl, Function902e3
-	rst $8 ;  ; indirect jump to Function902e3 (902e3 (24:42e3))
+	callba Function902e3
 	ld hl, $5251
 	call PrintText
 	ld a, $8
@@ -82590,9 +82298,7 @@ Function91256: ; 91256 (24:5256)
 	ld a, [hJoyPressed] ; $ff00+$a7
 	and $3
 	ret z
-	ld a, BANK(Function902eb)
-	ld hl, Function902eb
-	rst $8 ;  ; indirect jump to Function902eb (902eb (24:42eb))
+	callba Function902eb
 	ld a, $8
 	ld [$cf63], a
 	ld hl, $54ce
@@ -82727,9 +82433,7 @@ Function91342: ; 91342 (24:5342)
 	ld d, $0
 	add hl, de
 	ld c, [hl]
-	ld a, BANK(Function9038a)
-	ld hl, Function9038a
-	rst $8 ;  ; indirect jump to Function9038a (9038a (24:438a))
+	callba Function9038a
 	ld a, c
 	and a
 	jr z, .asm_91366
@@ -84461,9 +84165,7 @@ Function93259: ; 93259 (24:7259)
 	dec [hl]
 	ld e, a
 	ld d, $70
-	ld a, BANK(Functionce765)
-	ld hl, Functionce765
-	rst $8 ;  ; indirect jump to Functionce765 (ce765 (33:6765))
+	callba Functionce765
 	ld a, e
 	ld hl, $7
 	add hl, bc
@@ -86654,9 +86356,7 @@ Functionb8098: ; b8098 (2e:4098)
 	jr nz, .asm_b80b3
 	call Functionb80d3
 	call Functionb80e1
-	ld a, BANK(Function104303)
-	ld hl, Function104303
-	rst $8 ;  ; indirect jump to Function104303 (104303 (41:4303))
+	callba Function104303
 .asm_b80b3
 	ld a, $80
 	ld a, $70
@@ -86694,9 +86394,7 @@ Functionb80d3: ; b80d3
 Functionb80e1: ; b80e1 (2e:40e1)
 	ld a, [$c2d9]
 	ld e, a
-	ld a, BANK(GetLandmarkName)
-	ld hl, GetLandmarkName
-	rst $8 ;  ; indirect jump to GetLandmarkName (1ca8a5 (72:68a5))
+	callba GetLandmarkName
 	call Functionb8101
 	ld a, $14
 	sub c
@@ -87575,9 +87273,7 @@ Functionb8762: ; b8762 (2e:4762)
 	pop bc
 	call GetWorldMapLocation
 	ld e, a
-	ld a, BANK(GetLandmarkName)
-	ld hl, GetLandmarkName
-	rst $8 ;  ; indirect jump to GetLandmarkName (1ca8a5 (72:68a5))
+	callba GetLandmarkName
 	ld hl, $482f
 	call Functionb91dc
 	ld a, $e
@@ -87663,9 +87359,7 @@ INCBIN "baserom.gbc",$b88fe,$b896e - $b88fe
 
 ; no known jump sources
 Functionb896e: ; b896e (2e:496e)
-	ld a, BANK(Function91868)
-	ld hl, Function91868
-	rst $8 ;  ; indirect jump to Function91868 (91868 (24:5868))
+	callba Function91868
 	ld hl, $4993
 	call PrintText
 	call WaitBGMap
@@ -87725,9 +87419,7 @@ Functionb89d7: ; b89d7 (2e:49d7)
 	dec [hl]
 	ret nz
 	ld de, $1d
-	ld hl, Function91854
-	ld a, BANK(Function91854)
-	rst $8 ;  ; indirect jump to Function91854 (91854 (24:5854))
+	callab Function91854
 	ld hl, $49ff
 	call PrintText
 	ld a, $d
@@ -88018,9 +87710,7 @@ Functionb8b90: ; b8b90 (2e:4b90)
 	jr z, .asm_b8ba3
 	ld de, $50
 .asm_b8ba3
-	ld hl, Function91854
-	ld a, BANK(Function91854)
-	rst $8 ;  ; indirect jump to Function91854 (91854 (24:5854))
+	callab Function91854
 	ret
 ; b8baa (2e:4baa)
 
@@ -88029,13 +87719,9 @@ INCBIN "baserom.gbc",$b8baa,$b8bdc - $b8baa
 ; no known jump sources
 Functionb8bdc: ; b8bdc (2e:4bdc)
 	call Functionb91eb
-	ld hl, Functionc434
-	ld a, BANK(Functionc434)
-	rst $8 ;  ; indirect jump to Functionc434 (c434 (3:4434))
+	callab Functionc434
 	jr nc, .asm_b8bed
-	ld hl, Functionc422
-	ld a, BANK(Functionc422)
-	rst $8 ;  ; indirect jump to Functionc422 (c422 (3:4422))
+	callab Functionc422
 .asm_b8bed
 	ld hl, $4c7e
 	ld a, $1e
@@ -88192,16 +87878,12 @@ Functionb8cf2: ; b8cf2 (2e:4cf2)
 	pop bc
 	jr c, Functionb8cf2
 	push bc
-	ld hl, Function3952d
-	ld a, BANK(Function3952d)
-	rst $8 ;  ; indirect jump to Function3952d (3952d (e:552d))
+	callab Function3952d
 	ld de, StringBuffer1 ; $d073
 	call CopyName1
 	pop bc
 	ld b, $1
-	ld hl, Function3994c
-	ld a, BANK(Function3994c)
-	rst $8 ;  ; indirect jump to Function3994c (3994c (e:594c))
+	callab Function3994c
 	ld hl, $4d51
 	ld a, $2f
 	jp Functionb9221
@@ -88251,9 +87933,7 @@ Functionb8ded: ; b8ded (2e:4ded)
 	ld c, [hl]
 	call GetWorldMapLocation
 	ld e, a
-	ld a, BANK(GetLandmarkName)
-	ld hl, GetLandmarkName
-	rst $8 ;  ; indirect jump to GetLandmarkName (1ca8a5 (72:68a5))
+	callba GetLandmarkName
 	ld hl, $4e23
 	ld a, $31
 	jp Functionb9221
@@ -88647,12 +88327,8 @@ Functionb9122: ; b9122 (2e:5122)
 Functionb912a: ; b912a (2e:512a)
 	ld a, [hBGMapMode] ; $ff00+$d4
 	push af
-	ld a, BANK(Function9189d)
-	ld hl, Function9189d
-	rst $8 ;  ; indirect jump to Function9189d (9189d (24:589d))
-	ld a, BANK(Function918a9)
-	ld hl, Function918a9
-	rst $8 ;  ; indirect jump to Function918a9 (918a9 (24:58a9))
+	callba Function9189d
+	callba Function918a9
 	pop af
 	ld [hBGMapMode], a ; $ff00+$d4
 	ld hl, $dc1f
@@ -88712,9 +88388,7 @@ Functionb91eb: ; b91eb (2e:51eb)
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
-	ld hl, Function91854
-	ld a, BANK(Function91854)
-	rst $8 ;  ; indirect jump to Function91854 (91854 (24:5854))
+	callab Function91854
 	ret
 ; b920b (2e:520b)
 
@@ -89431,9 +89105,7 @@ Functionc82e7: ; c82e7 (32:42e7)
 
 ; known jump sources: c8255 (32:4255), c82c2 (32:42c2)
 Functionc82ee: ; c82ee (32:42ee)
-	ld hl, Functioncc9a1
-	ld a, BANK(Functioncc9a1)
-	rst $8 ;  ; indirect jump to Functioncc9a1 (cc9a1 (33:49a1))
+	callab Functioncc9a1
 	ret
 
 ; no known jump sources
@@ -91831,18 +91503,14 @@ Functionc9059: ; c9059 (32:5059)
 ; known jump sources: c86d6 (32:46d6), c8951 (32:4951), c898c (32:498c), c8997 (32:4997), c8cce (32:4cce), c8d45 (32:4d45), c8f54 (32:4f54), c8f85 (32:4f85), c8fc2 (32:4fc2)
 Functionc905d: ; c905d (32:505d)
 	ld e, a
-	ld hl, Functionce765
-	ld a, BANK(Functionce765)
-	rst $8 ;  ; indirect jump to Functionce765 (ce765 (33:6765))
+	callab Functionce765
 	ld a, e
 	ret
 
 ; known jump sources: c8a24 (32:4a24)
 Functionc9066: ; c9066 (32:5066)
 	ld e, a
-	ld hl, Functionce76b
-	ld a, BANK(Functionce76b)
-	rst $8 ;  ; indirect jump to Functionce76b (ce76b (33:676b))
+	callab Functionce76b
 	ld a, e
 	ret
 ; c906f (32:506f)
@@ -92828,9 +92496,7 @@ Functioncc5b3: ; cc5b3 (33:45b3)
 
 ; no known jump sources
 Functioncc5d0: ; cc5d0 (33:45d0)
-	ld hl, Functionf971
-	ld a, BANK(Functionf971)
-	rst $8 ;  ; indirect jump to Functionf971 (f971 (3:7971))
+	callab Functionf971
 	ld a, c
 	ld [$d416], a
 	ret
@@ -93041,14 +92707,10 @@ Functioncc750: ; cc750 (33:4750)
 	ld a, [hBattleTurn] ; $ff00+$e4
 	and a
 	jr z, .asm_cc768
-	ld hl, Function3f486
-	ld a, BANK(Function3f486)
-	rst $8 ;  ; indirect jump to Function3f486 (3f486 (f:7486))
+	callab Function3f486
 	jr .asm_cc76e
 .asm_cc768
-	ld hl, Function3f447
-	ld a, BANK(Function3f447)
-	rst $8 ;  ; indirect jump to Function3f447 (3f447 (f:7447))
+	callab Function3f447
 .asm_cc76e
 	pop af
 	ld [CurPartySpecies], a ; $d108
@@ -93141,9 +92803,7 @@ Functioncc7cd: ; cc7cd (33:47cd)
 	call Function3af0
 	ld e, a
 	ld d, $0
-	ld hl, PlaySFX
-	ld a, BANK(PlaySFX)
-	rst $8 ;  ; indirect jump to PlaySFX (e8ca6 (3a:4ca6))
+	callab PlaySFX
 	ret
 ; cc7f8 (33:47f8)
 
@@ -93221,9 +92881,7 @@ Functioncc807: ; cc807 (33:4807)
 	ld [$c2b3], a
 	ld a, $1
 	ld [$c2bc], a
-	ld hl, PlayCry
-	ld a, BANK(PlayCry)
-	rst $8 ;  ; indirect jump to PlayCry (e8b79 (3a:4b79))
+	callab PlayCry
 .asm_cc86d
 	pop af
 	ld [rSVBK], a ; $ff00+$70
@@ -93731,9 +93389,7 @@ Functionccb48: ; ccb48
 
 ; known jump sources: cc453 (33:4453)
 Functionccb4f: ; ccb4f (33:4b4f)
-	ld hl, Functionc801a
-	ld a, BANK(Functionc801a)
-	rst $8 ;  ; indirect jump to Functionc801a (c801a (32:401a))
+	callab Functionc801a
 	ret
 ; ccb56 (33:4b56)
 
@@ -100501,9 +100157,7 @@ Functione24e0: ; e24e0 (38:64e0)
 	ld [CurPartyMon], a ; $d109
 	xor a
 	ld [$d10b], a
-	ld a, BANK(Functione039)
-	ld hl, Functione039
-	rst $8 ;  ; indirect jump to Functione039 (e039 (3:6039))
+	callba Functione039
 	call Functione3180
 	ld a, $0
 	ld [$cf63], a
@@ -100741,9 +100395,7 @@ Functione26d8: ; e26d8 (38:66d8)
 	ld [CurPartyMon], a ; $d109
 	ld a, $1
 	ld [$d10b], a
-	ld a, BANK(Functione039)
-	ld hl, Functione039
-	rst $8 ;  ; indirect jump to Functione039 (e039 (3:6039))
+	callba Functione039
 	call Functione3180
 	ld a, $0
 	ld [$cf63], a
@@ -100991,9 +100643,7 @@ Functione2ac6: ; e2ac6 (38:6ac6)
 	call PrintLevel
 	ld a, $3
 	ld [MonType], a ; $cf5f
-	ld a, BANK(GetGender)
-	ld hl, GetGender
-	rst $8 ;  ; indirect jump to GetGender (50bdd (14:4bdd))
+	callba GetGender
 	jr c, .asm_e2b4f
 	ld a, $ef
 	jr nz, .asm_e2b4b
@@ -101006,9 +100656,7 @@ Functione2ac6: ; e2ac6 (38:6ac6)
 	and a
 	ret z
 	ld d, a
-	ld hl, ItemIsMail
-	ld a, BANK(ItemIsMail)
-	rst $8 ;  ; indirect jump to ItemIsMail (b9e76 (2e:5e76))
+	callab ItemIsMail
 	jr c, .asm_e2b61
 	ld a, $5d
 	jr .asm_e2b68
@@ -101446,9 +101094,7 @@ Functione2f18: ; e2f18 (38:6f18)
 	ld hl, $cb2a
 	add [hl]
 	ld [CurPartyMon], a ; $d109
-	ld a, BANK(Functione538)
-	ld hl, Functione538
-	rst $8 ;  ; indirect jump to Functione538 (e538 (3:6538))
+	callba Functione538
 	jr c, .asm_e2f44
 	ld a, [$cb32]
 	and a
@@ -101565,9 +101211,7 @@ Functione2fd6: ; e2fd6 (38:6fd6)
 	ld bc, $30
 	call CopyBytes
 	call CloseSRAM
-	ld a, BANK(Function5088b)
-	ld hl, Function5088b
-	rst $8 ;  ; indirect jump to Function5088b (5088b (14:488b))
+	callba Function5088b
 	ret
 .asm_e3020
 	ld hl, PartySpecies ; $dcd8
@@ -101608,9 +101252,7 @@ Functione2fd6: ; e2fd6 (38:6fd6)
 	ld bc, $20
 	call Functione3389
 	call CloseSRAM
-	ld a, BANK(Function5088b)
-	ld hl, Function5088b
-	rst $8 ;  ; indirect jump to Function5088b (5088b (14:488b))
+	callba Function5088b
 	ret
 
 ; known jump sources: e24af (38:64af)
@@ -101629,9 +101271,7 @@ Functione307c: ; e307c (38:707c)
 	jr c, .asm_e30e4
 	xor a
 	ld [$d10b], a
-	ld a, BANK(Functione039)
-	ld hl, Functione039
-	rst $8 ;  ; indirect jump to Functione039 (e039 (3:6039))
+	callba Functione039
 	ld a, [CurPartySpecies] ; $d108
 	call Function37ce
 	ld hl, TileMap ; $c4a0 (aliases: SpritesEnd)
@@ -101687,9 +101327,7 @@ Functione30fa: ; e30fa (38:70fa)
 	jr c, .asm_e316a
 	ld a, $1
 	ld [$d10b], a
-	ld a, BANK(Functione039)
-	ld hl, Functione039
-	rst $8 ;  ; indirect jump to Functione039 (e039 (3:6039))
+	callba Functione039
 	ld a, [CurPartySpecies] ; $d108
 	call Function37ce
 	ld hl, TileMap ; $c4a0 (aliases: SpritesEnd)
@@ -102015,9 +101653,7 @@ Functione36f9: ; e36f9 (38:76f9)
 	ld a, [MenuSelection] ; $cf74
 	dec a
 	ld c, a
-	ld a, BANK(Function844bc)
-	ld hl, Function844bc
-	rst $8 ;  ; indirect jump to Function844bc (844bc (21:44bc))
+	callba Function844bc
 	call Functione35e2
 	and a
 	ret
@@ -102032,16 +101668,12 @@ Functione36f9: ; e36f9 (38:76f9)
 	ld a, [$db72]
 	cp e
 	ret z
-	ld a, BANK(Function14a83)
-	ld hl, Function14a83
-	rst $8 ;  ; indirect jump to Function14a83 (14a83 (5:4a83))
+	callba Function14a83
 	ret
 .asm_e3745
 	ld b, $4
 	ld de, DefaultFlypoint ; $d002
-	ld a, BANK(Function116c1)
-	ld hl, Function116c1
-	rst $8 ;  ; indirect jump to Function116c1 (116c1 (4:56c1))
+	callba Function116c1
 	call ClearTileMap
 	call Functione51
 	call Functione58
@@ -102949,9 +102581,7 @@ Functione470d: ; e470d (39:470d)
 	add $20
 .asm_e4723
 	ld e, a
-	ld a, BANK(Functionce765)
-	ld hl, Functionce765
-	rst $8 ;  ; indirect jump to Functionce765 (ce765 (33:6765))
+	callba Functionce765
 	ld hl, $7
 	add hl, bc
 	ld [hl], e
@@ -103197,9 +102827,7 @@ Functione495b: ; e495b (39:495b)
 	ld [hWX], a ; $ff00+$d1
 	ld a, $90
 	ld [hWY], a ; $ff00+$d2
-	ld a, BANK(Function8cf53)
-	ld hl, Function8cf53
-	rst $8 ;  ; indirect jump to Function8cf53 (8cf53 (23:4f53))
+	callba Function8cf53
 	call Functione549e
 	xor a
 	ld [$cf64], a
@@ -103337,9 +102965,7 @@ Functione4a7a: ; e4a7a (39:4a7a)
 	ld [hWX], a ; $ff00+$d1
 	ld a, $90
 	ld [hWY], a ; $ff00+$d2
-	ld a, BANK(Function8cf53)
-	ld hl, Function8cf53
-	rst $8 ;  ; indirect jump to Function8cf53 (8cf53 (23:4f53))
+	callba Function8cf53
 	call Functione549e
 	xor a
 	ld [$cf64], a
@@ -103437,9 +103063,7 @@ Functione4b3f: ; e4b3f (39:4b3f)
 	ld a, $90
 	ld [hWY], a ; $ff00+$d2
 	call Functione5516
-	ld a, BANK(Function8cf53)
-	ld hl, Function8cf53
-	rst $8 ;  ; indirect jump to Function8cf53 (8cf53 (23:4f53))
+	callba Function8cf53
 	ld de, $6cd8
 	ld a, $26
 	call Function3b2a
@@ -103475,9 +103099,7 @@ Functione4bd3: ; e4bd3 (39:4bd3)
 .asm_e4bf4
 	ld de, $c5
 	call StartSFX
-	ld a, BANK(Function8d03d)
-	ld hl, Function8d03d
-	rst $8 ;  ; indirect jump to Function8d03d (8d03d (23:503d))
+	callba Function8d03d
 	call Functione4956
 	ret
 
@@ -103588,9 +103210,7 @@ Functione4c86: ; e4c86 (39:4c86)
 	ld [hWX], a ; $ff00+$d1
 	ld a, $90
 	ld [hWY], a ; $ff00+$d2
-	ld a, BANK(Function8cf53)
-	ld hl, Function8cf53
-	rst $8 ;  ; indirect jump to Function8cf53 (8cf53 (23:4f53))
+	callba Function8cf53
 	call Functione549e
 	xor a
 	ld [$cf64], a
@@ -103705,9 +103325,7 @@ Functione4d6d: ; e4d6d (39:4d6d)
 	ld [hWX], a ; $ff00+$d1
 	ld a, $90
 	ld [hWY], a ; $ff00+$d2
-	ld a, BANK(Function8cf53)
-	ld hl, Function8cf53
-	rst $8 ;  ; indirect jump to Function8cf53 (8cf53 (23:4f53))
+	callba Function8cf53
 	ld de, $6c58
 	ld a, $26
 	call Function3b2a
@@ -103751,9 +103369,7 @@ Functione4dfa: ; e4dfa (39:4dfa)
 	ld [$c3c0], a
 	ret
 .asm_e4e2c
-	ld a, BANK(Function8d03d)
-	ld hl, Function8d03d
-	rst $8 ;  ; indirect jump to Function8d03d (8d03d (23:503d))
+	callba Function8d03d
 	ret
 .asm_e4e33
 	ld a, [$c3c0]
@@ -103814,9 +103430,7 @@ Functione4e40: ; e4e40 (39:4e40)
 	ld [hWX], a ; $ff00+$d1
 	ld a, $90
 	ld [hWY], a ; $ff00+$d2
-	ld a, BANK(Function8cf53)
-	ld hl, Function8cf53
-	rst $8 ;  ; indirect jump to Function8cf53 (8cf53 (23:4f53))
+	callba Function8cf53
 	call Functione549e
 	ld de, $4028
 	ld a, $2a
@@ -103889,9 +103503,7 @@ Functione4ef5: ; e4ef5 (39:4ef5)
 	ld [hWX], a ; $ff00+$d1
 	ld a, $90
 	ld [hWY], a ; $ff00+$d2
-	ld a, BANK(Function8cf53)
-	ld hl, Function8cf53
-	rst $8 ;  ; indirect jump to Function8cf53 (8cf53 (23:4f53))
+	callba Function8cf53
 	call Functione549e
 	xor a
 	ld [$cf64], a
@@ -103966,9 +103578,7 @@ Functione4f7e: ; e4f7e (39:4f7e)
 	ld [hWX], a ; $ff00+$d1
 	ld a, $90
 	ld [hWY], a ; $ff00+$d2
-	ld a, BANK(Function8cf53)
-	ld hl, Function8cf53
-	rst $8 ;  ; indirect jump to Function8cf53 (8cf53 (23:4f53))
+	callba Function8cf53
 	ld hl, $c300
 	xor a
 	ld [hli], a
@@ -104042,9 +103652,7 @@ Functione5072: ; e5072 (39:5072)
 	jr nc, .asm_e507c
 	ret
 .asm_e507c
-	ld a, BANK(Function8d03d)
-	ld hl, Function8d03d
-	rst $8 ;  ; indirect jump to Function8d03d (8d03d (23:503d))
+	callba Function8d03d
 	call Functione4956
 	ret
 
@@ -104128,9 +103736,7 @@ Functione50bb: ; e50bb (39:50bb)
 	ld [hWX], a ; $ff00+$d1
 	ld a, $90
 	ld [hWY], a ; $ff00+$d2
-	ld a, BANK(Function8cf53)
-	ld hl, Function8cf53
-	rst $8 ;  ; indirect jump to Function8cf53 (8cf53 (23:4f53))
+	callba Function8cf53
 	call Functione549e
 	xor a
 	ld [$cf64], a
@@ -105559,16 +105165,12 @@ Functionfbd54: ; fbd54
 
 ; no known jump sources
 Functionfbd69: ; fbd69 (3e:7d69)
-	ld a, BANK(BattleCommanda6)
-	ld hl, BattleCommanda6
-	rst $8 ;  ; indirect jump to BattleCommanda6 (365af (d:65af))
+	callba BattleCommanda6
 	jr asm_fbd77
 
 ; no known jump sources
 Functionfbd71: ; fbd71 (3e:7d71)
-	ld a, BANK(BattleCommanda7)
-	ld hl, BattleCommanda7
-	rst $8 ;  ; indirect jump to BattleCommanda7 (365c3 (d:65c3))
+	callba BattleCommanda7
 
 ; known jump sources: fbd6f (3e:7d6f)
 asm_fbd77: ; fbd77 (3e:7d77)
@@ -110921,9 +110523,7 @@ Function1048ba: ; 1048ba (41:48ba)
 	ld de, $49cd
 	call PlaceString
 	call WaitBGMap
-	ld a, BANK(Function2c642)
-	ld hl, Function2c642
-	rst $8 ;  ; indirect jump to Function2c642 (2c642 (b:4642))
+	callba Function2c642
 	call Function1050fb
 	ld a, $2
 	ld [$ca01], a
@@ -110976,31 +110576,21 @@ Function1048ba: ; 1048ba (41:48ba)
 	cp $4
 	jr z, .asm_104963
 	call Function104a71
-	ld a, BANK(Function10619d)
-	ld hl, Function10619d
-	rst $8 ;  ; indirect jump to Function10619d (10619d (41:619d))
-	ld a, BANK(Function1060a9)
-	ld hl, Function1060a9
-	rst $8 ;  ; indirect jump to Function1060a9 (1060a9 (41:60a9))
-	ld a, BANK(Function106187)
-	ld hl, Function106187
-	rst $8 ;  ; indirect jump to Function106187 (106187 (41:6187))
+	callba Function10619d
+	callba Function1060a9
+	callba Function106187
 .asm_104963
 	ld a, [$c90f]
 	and a
 	jr z, .asm_104990
 	ld a, [$c911]
 	ld c, a
-	ld a, BANK(Function2c715)
-	ld hl, Function2c715
-	rst $8 ;  ; indirect jump to Function2c715 (2c715 (b:4715))
+	callba Function2c715
 	push bc
 	call Function105069
 	pop bc
 	jr nz, .asm_104990
-	ld hl, Function26ef5
-	ld a, BANK(Function26ef5)
-	rst $8 ;  ; indirect jump to Function26ef5 (26ef5 (9:6ef5))
+	callab Function26ef5
 	ld h, d
 	ld l, e
 	ld de, StringBuffer1 ; $d073
@@ -111012,9 +110602,7 @@ Function1048ba: ; 1048ba (41:48ba)
 	call Function105106
 	ld a, [$c910]
 	ld c, a
-	ld a, BANK(Function2c708)
-	ld hl, Function2c708
-	rst $8 ;  ; indirect jump to Function2c708 (2c708 (b:4708))
+	callba Function2c708
 	ld a, c
 	ld [$abe4], a
 	ld [$d265], a
@@ -111126,9 +110714,7 @@ Function104a71: ; 104a71 (41:4a71)
 ; known jump sources: 1048e8 (41:48e8)
 Function104a95: ; 104a95 (41:4a95)
 	di
-	ld a, BANK(ClearChannels)
-	ld hl, ClearChannels
-	rst $8 ;  ; indirect jump to ClearChannels (e8fe9 (3a:4fe9))
+	callba ClearChannels
 	call Function104d5e
 .asm_104a9f
 	call Function104d96
@@ -111312,9 +110898,7 @@ Function104bd0: ; 104bd0 (41:4bd0)
 	ld a, [$c850]
 	cp $3
 	jr nc, .asm_104c18
-	ld a, BANK(Function10510b)
-	ld hl, Function10510b
-	rst $8 ;  ; indirect jump to Function10510b (10510b (41:510b))
+	callba Function10510b
 	call Function1050fb
 	ld a, $26
 	ld [$ca02], a
@@ -111345,9 +110929,7 @@ Function104bd0: ; 104bd0 (41:4bd0)
 ; known jump sources: 1056ae (41:56ae)
 Function104c2d: ; 104c2d (41:4c2d)
 	di
-	ld a, BANK(ClearChannels)
-	ld hl, ClearChannels
-	rst $8 ;  ; indirect jump to ClearChannels (e8fe9 (3a:4fe9))
+	callba ClearChannels
 	call Function104d5e
 .asm_104c37
 	call Function104d96
@@ -112070,9 +111652,7 @@ Function105091: ; 105091 (41:5091)
 	pop bc
 	jr z, .asm_1050b0
 	push bc
-	ld hl, Function26f02
-	ld a, BANK(Function26f02)
-	rst $8 ;  ; indirect jump to Function26f02 (26f02 (9:6f02))
+	callab Function26f02
 	pop bc
 .asm_1050b0
 	inc c
@@ -112378,9 +111958,7 @@ Function105688: ; 105688 (41:5688)
 	ld hl, $575e
 	call PrintText
 	ld de, $c850
-	ld a, BANK(Function8ac70)
-	ld hl, Function8ac70
-	rst $8 ;  ; indirect jump to Function8ac70 (8ac70 (22:6c70))
+	callba Function8ac70
 	ld a, c
 	ld [$d265], a
 	ld hl, $5768
@@ -112577,9 +112155,7 @@ Function1057d7: ; 1057d7 (41:57d7)
 	call EnableLCD
 	call WaitBGMap
 	ld b, $2
-	ld a, BANK(Function4930f)
-	ld hl, Function4930f
-	rst $8 ;  ; indirect jump to Function4930f (4930f (12:530f))
+	callba Function4930f
 	jp Function32f9
 
 ; known jump sources: 10585e (41:585e)
@@ -114107,9 +113683,7 @@ Function108bc7: ; 108bc7 (42:4bc7)
 	ld [hl], a
 	ret
 .asm_108bd9
-	ld a, BANK(Function8d036)
-	ld hl, Function8d036
-	rst $8 ;  ; indirect jump to Function8d036 (8d036 (23:5036))
+	callba Function8d036
 	ret
 
 ; no known jump sources
@@ -114636,15 +114210,9 @@ Function117699: ; 117699 (45:7699)
 	call ByteFill
 	call WhiteBGMap
 	call ClearSprites
-	ld a, BANK(Function171c87)
-	ld hl, Function171c87
-	rst $8 ;  ; indirect jump to Function171c87 (171c87 (5c:5c87))
-	ld a, BANK(Function104061)
-	ld hl, Function104061
-	rst $8 ;  ; indirect jump to Function104061 (104061 (41:4061))
-	ld a, BANK(Function8cf53)
-	ld hl, Function8cf53
-	rst $8 ;  ; indirect jump to Function8cf53 (8cf53 (23:4f53))
+	callba Function171c87
+	callba Function104061
+	callba Function8cf53
 	ret
 
 ; known jump sources: 117675 (45:7675), 117707 (45:7707)
@@ -114654,17 +114222,11 @@ Function1176ee: ; 1176ee (45:76ee)
 	bit 7, a
 	jr nz, .asm_117709
 	call Function117719
-	ld a, BANK(Function8cf69)
-	ld hl, Function8cf69
-	rst $8 ;  ; indirect jump to Function8cf69 (8cf69 (23:4f69))
-	ld a, BANK(Function104061)
-	ld hl, Function104061
-	rst $8 ;  ; indirect jump to Function104061 (104061 (41:4061))
+	callba Function8cf69
+	callba Function104061
 	jr Function1176ee
 .asm_117709
-	ld a, BANK(Function8cf53)
-	ld hl, Function8cf53
-	rst $8 ;  ; indirect jump to Function8cf53 (8cf53 (23:4f53))
+	callba Function8cf53
 	call WhiteBGMap
 	call Functionfdb
 	call ClearSprites
@@ -114697,9 +114259,7 @@ Jumptable_117728: ; 117728 (45:7728)
 
 ; no known jump sources
 Function117738: ; 117738 (45:7738)
-	ld a, BANK(Function171ccd)
-	ld hl, Function171ccd
-	rst $8 ;  ; indirect jump to Function171ccd (171ccd (5c:5ccd))
+	callba Function171ccd
 	ld de, $3018
 	ld a, $1d
 	call Function3b2a
@@ -114759,9 +114319,7 @@ Function117764: ; 117764 (45:7764)
 
 ; known jump sources: 117779 (45:7779), 117863 (45:7863)
 Function1177a5: ; 1177a5 (45:77a5)
-	ld a, BANK(Function171cf0)
-	ld hl, Function171cf0
-	rst $8 ;  ; indirect jump to Function171cf0 (171cf0 (5c:5cf0))
+	callba Function171cf0
 	ret
 
 ; known jump sources: 11777e (45:777e), 11786c (45:786c), 1178a7 (45:78a7)
@@ -114932,9 +114490,7 @@ Function1178aa: ; 1178aa (45:78aa)
 	call LoadMenuDataHeader
 	call Function1cbb
 	call Function1cfd
-	ld a, BANK(Function104061)
-	ld hl, Function104061
-	rst $8 ;  ; indirect jump to Function104061 (104061 (41:4061))
+	callba Function104061
 	ld hl, $c550
 	ld de, $79c5
 	call PlaceString
@@ -115037,9 +114593,7 @@ Function117984: ; 117984 (45:7984)
 	call LoadMenuDataHeader
 	call Function1cbb
 	call Function1cfd
-	ld a, BANK(Function104061)
-	ld hl, Function104061
-	rst $8 ;  ; indirect jump to Function104061 (104061 (41:4061))
+	callba Function104061
 	ld hl, $c5b9
 	ld de, $79e1
 	call PlaceString
@@ -115639,12 +115193,8 @@ Function118284: ; 118284
 .asm_1182b0
 	call Function1186f5
 	call Function11a8fa
-	ld a, BANK(Function115dd3)
-	ld hl, Function115dd3
-	rst $8 ;  ; indirect jump to Function115dd3 (115dd3 (45:5dd3))
-	ld a, BANK(Function11619d)
-	ld hl, Function11619d
-	rst $8 ;  ; indirect jump to Function11619d (11619d (45:619d))
+	callba Function115dd3
+	callba Function11619d
 	call DelayFrame
 	ld a, [$cf66]
 	ld hl, $cd33
@@ -116067,9 +115617,7 @@ Function118903: ; 118903 (46:4903)
 	ld a, [$c3f0]
 	ld [$c319], a
 	ld c, $1
-	ld a, BANK(Function115e18)
-	ld hl, Function115e18
-	rst $8 ;  ; indirect jump to Function115e18 (115e18 (45:5e18))
+	callba Function115e18
 	ld a, $8
 	ld [$cd3c], a
 	call Function119ed8
@@ -118433,9 +117981,7 @@ Function11c4be: ; 11c4be (47:44be)
 	ld hl, $cef1
 	ld bc, $28
 	call ByteFill
-	ld a, BANK(Function104061)
-	ld hl, Function104061
-	rst $8 ;  ; indirect jump to Function104061 (104061 (41:4061))
+	callba Function104061
 	ret
 ; 11c4db (47:44db)
 
@@ -118601,9 +118147,7 @@ Function11c618: ; 11c618 (47:4618)
 	ld hl, $ce51
 	ld bc, $c8
 	call ByteFill
-	ld a, BANK(Function104061)
-	ld hl, Function104061
-	rst $8 ;  ; indirect jump to Function104061 (104061 (41:4061))
+	callba Function104061
 	ret
 ; 11c62a (47:462a)
 
@@ -119134,9 +118678,7 @@ Function11c9ab: ; 11c9ab (47:49ab)
 	ld hl, $ce51
 	ld bc, $c8
 	call ByteFill
-	ld a, BANK(Function104061)
-	ld hl, Function104061
-	rst $8 ;  ; indirect jump to Function104061 (104061 (41:4061))
+	callba Function104061
 	ret
 
 ; no known jump sources
@@ -119227,9 +118769,7 @@ Function11ca19: ; 11ca19 (47:4a19)
 	add hl, de
 	dec c
 	jr nz, .asm_11ca22
-	ld a, BANK(Function104061)
-	ld hl, Function104061
-	rst $8 ;  ; indirect jump to Function104061 (104061 (41:4061))
+	callba Function104061
 	ret
 ; 11ca38 (47:4a38)
 
@@ -119590,9 +119130,7 @@ Function11cdaa: ; 11cdaa (47:4daa)
 	ld hl, $cec9
 	ld bc, $50
 	call ByteFill
-	ld a, BANK(Function104061)
-	ld hl, Function104061
-	rst $8 ;  ; indirect jump to Function104061 (104061 (41:4061))
+	callba Function104061
 	ret
 ; 11cdc7 (47:4dc7)
 
@@ -121818,9 +121356,7 @@ Function170729: ; 170729 (5c:4729)
 
 ; no known jump sources
 Function170737: ; 170737 (5c:4737)
-	ld a, BANK(Function14dbb)
-	ld hl, Function14dbb
-	rst $8 ;  ; indirect jump to Function14dbb (14dbb (5:4dbb))
+	callba Function14dbb
 	ret
 
 ; known jump sources: 17074f (5c:474f)
@@ -122301,9 +121837,7 @@ Function170ae8: ; 170ae8 (5c:4ae8)
 	ld [$cd4f], a
 	xor a
 	ld [ScriptVar], a ; $c2dd
-	ld a, BANK(Function119d93)
-	ld hl, Function119d93
-	rst $8 ;  ; indirect jump to Function119d93 (119d93 (46:5d93))
+	callba Function119d93
 	ret nc
 	ld a, $5
 	call GetSRAMBank
@@ -122324,9 +121858,7 @@ Function170b16: ; 170b16 (5c:4b16)
 	ld [$cd4f], a
 	xor a
 	ld [ScriptVar], a ; $c2dd
-	ld a, BANK(Function119dd1)
-	ld hl, Function119dd1
-	rst $8 ;  ; indirect jump to Function119dd1 (119dd1 (46:5dd1))
+	callba Function119dd1
 	ret nc
 	ld a, $5
 	call GetSRAMBank
@@ -122426,9 +121958,7 @@ Function1719c8: ; 1719c8 (5c:59c8)
 
 ; known jump sources: 1719cf (5c:59cf)
 Function1719d6: ; 1719d6 (5c:59d6)
-	ld a, BANK(Function1183cb)
-	ld hl, Function1183cb
-	rst $8 ;  ; indirect jump to Function1183cb (1183cb (46:43cb))
+	callba Function1183cb
 	call Function1719ed
 	ld a, [rSVBK] ; $ff00+$70
 	push af
@@ -122448,15 +121978,9 @@ Function1719ed: ; 1719ed (5c:59ed)
 	ld [$cd4b], a
 	call WhiteBGMap
 	call ClearSprites
-	ld a, BANK(Function171d2b)
-	ld hl, Function171d2b
-	rst $8 ;  ; indirect jump to Function171d2b (171d2b (5c:5d2b))
-	ld a, BANK(Function104061)
-	ld hl, Function104061
-	rst $8 ;  ; indirect jump to Function104061 (104061 (41:4061))
-	ld a, BANK(Function8cf53)
-	ld hl, Function8cf53
-	rst $8 ;  ; indirect jump to Function8cf53 (8cf53 (23:4f53))
+	callba Function171d2b
+	callba Function104061
+	callba Function8cf53
 	ret
 
 ; known jump sources: 1719e6 (5c:59e6), 171a2a (5c:5a2a)
@@ -122466,17 +121990,11 @@ Function171a11: ; 171a11 (5c:5a11)
 	bit 7, a
 	jr nz, .asm_171a2c
 	call Function171a36
-	ld a, BANK(Function8cf69)
-	ld hl, Function8cf69
-	rst $8 ;  ; indirect jump to Function8cf69 (8cf69 (23:4f69))
-	ld a, BANK(Function104061)
-	ld hl, Function104061
-	rst $8 ;  ; indirect jump to Function104061 (104061 (41:4061))
+	callba Function8cf69
+	callba Function104061
 	jr Function171a11
 .asm_171a2c
-	ld a, BANK(Function8cf53)
-	ld hl, Function8cf53
-	rst $8 ;  ; indirect jump to Function8cf53 (8cf53 (23:4f53))
+	callba Function8cf53
 	call ClearSprites
 	ret
 
@@ -122531,9 +122049,7 @@ Function171a5d: ; 171a5d (5c:5a5d)
 	push af
 	ld a, $1
 	ld [rSVBK], a ; $ff00+$70
-	ld a, BANK(Function118452)
-	ld hl, Function118452
-	rst $8 ;  ; indirect jump to Function118452 (118452 (46:4452))
+	callba Function118452
 	pop af
 	ld [rSVBK], a ; $ff00+$70
 	ld a, $a
@@ -122542,9 +122058,7 @@ Function171a5d: ; 171a5d (5c:5a5d)
 
 ; no known jump sources
 Function171a95: ; 171a95 (5c:5a95)
-	ld a, BANK(Function171ccd)
-	ld hl, Function171ccd
-	rst $8 ;  ; indirect jump to Function171ccd (171ccd (5c:5ccd))
+	callba Function171ccd
 	ld hl, $c542
 	ld de, $5aa7
 	call PlaceString
@@ -122578,9 +122092,7 @@ Function171aec: ; 171aec (5c:5aec)
 	push af
 	ld a, $1
 	ld [rSVBK], a ; $ff00+$70
-	ld a, BANK(Function118452)
-	ld hl, Function118452
-	rst $8 ;  ; indirect jump to Function118452 (118452 (46:4452))
+	callba Function118452
 	pop af
 	ld [rSVBK], a ; $ff00+$70
 	ld hl, $c51a
@@ -122745,9 +122257,7 @@ Function171beb: ; 171beb (5c:5beb)
 	call LoadMenuDataHeader
 	call Function1cbb
 	call Function1cfd
-	ld a, BANK(Function104061)
-	ld hl, Function104061
-	rst $8 ;  ; indirect jump to Function104061 (104061 (41:4061))
+	callba Function104061
 	ld hl, $c5b9
 	ld de, $5c73
 	call PlaceString
@@ -122785,17 +122295,11 @@ Function171c41: ; 171c41 (5c:5c41)
 	dec [hl]
 	ret nz
 	call WhiteBGMap
-	ld a, BANK(Function106462)
-	ld hl, Function106462
-	rst $8 ;  ; indirect jump to Function106462 (106462 (41:6462))
-	ld a, BANK(Function106464)
-	ld hl, Function106464
-	rst $8 ;  ; indirect jump to Function106464 (106464 (41:6464))
+	callba Function106462
+	callba Function106464
 	ld a, $2
 	ld [$c303], a
-	ld a, BANK(Function17f555)
-	ld hl, Function17f555
-	rst $8 ;  ; indirect jump to Function17f555 (17f555 (5f:7555))
+	callba Function17f555
 asm_171c60: ; 171c60 (5c:5c60)
 	ld a, $80
 	ld [$cd49], a
@@ -122971,19 +122475,13 @@ INCLUDE "text/phone/extra3.asm"
 SECTION "bank5E",ROMX,BANK[$5E]
 
 Function178000:
-	ld a, BANK(DrawPlayerHUD)
-	ld hl, DrawPlayerHUD
-	rst $8 ;  ; indirect jump to DrawPlayerHUD (3df58 (f:5f58))
+	callba DrawPlayerHUD
 	ld hl, PlayerHPPal ; $cd99
 	call SetHPPal
-	ld a, BANK(Function3e043)
-	ld hl, Function3e043
-	rst $8 ;  ; indirect jump to Function3e043 (3e043 (f:6043))
+	callba Function3e043
 	ld hl, EnemyHPPal ; $cd9a
 	call SetHPPal
-	ld a, BANK(Function3ee27)
-	ld hl, Function3ee27
-	rst $8 ;  ; indirect jump to Function3ee27 (3ee27 (f:6e27))
+	callba Function3ee27
 	ret
 ; 17801f (5e:401f)
 
@@ -123043,20 +122541,12 @@ Function17a6a8: ; 17a6a8 (5e:66a8)
 	pop de
 	call Function17a6f5
 	call Function17aba0
-	ld a, BANK(Function106464)
-	ld hl, Function106464
-	rst $8 ;  ; indirect jump to Function106464 (106464 (41:6464))
+	callba Function106464
 	call Function17ac0c
-	ld a, BANK(Function104000)
-	ld hl, Function104000
-	rst $8 ;  ; indirect jump to Function104000 (104000 (41:4000))
+	callba Function104000
 	call Function17abcf
-	ld a, BANK(Function49409)
-	ld hl, Function49409
-	rst $8 ;  ; indirect jump to Function49409 (49409 (12:5409))
-	ld a, BANK(Function49420)
-	ld hl, Function49420
-	rst $8 ;  ; indirect jump to Function49420 (49420 (12:5420))
+	callba Function49409
+	callba Function49420
 	call Function32f9
 	call DelayFrame
 	ret
@@ -123179,14 +122669,10 @@ Function17a78f: ; 17a78f (5e:678f)
 	bit 7, [hl]
 	res 7, [hl]
 	jr nz, .asm_17a79f
-	ld a, BANK(Function10402d)
-	ld hl, Function10402d
-	rst $8 ;  ; indirect jump to Function10402d (10402d (41:402d))
+	callba Function10402d
 	ret
 .asm_17a79f
-	ld a, BANK(Function104061)
-	ld hl, Function104061
-	rst $8 ;  ; indirect jump to Function104061 (104061 (41:4061))
+	callba Function104061
 	ret
 ; 17a7a6 (5e:67a6)
 

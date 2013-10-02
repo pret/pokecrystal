@@ -201,7 +201,7 @@ Script_3callasm: ; 0x96e17
 	call GetScriptByte
 	ld h, a
 	ld a, b
-	rst $8
+	rst FarCall
 	ret
 ; 0x96e26
 
@@ -233,7 +233,7 @@ Script_2ptcallasm: ; 0x96e35
 	ld h, [hl]
 	ld l, a
 	ld a, b
-	rst $8
+	rst FarCall
 	ret
 ; 0x96e45
 
@@ -435,7 +435,7 @@ Script_interpretmenu2: ; 0x96f30
 
 	ld a, [ScriptBank]
 	ld hl, $1d81
-	rst $8
+	rst FarCall
 	ld a, [$cfa9]
 	jr nc, .asm_96f3d ; 0x96f3a $1
 	xor a
@@ -449,7 +449,7 @@ Script_interpretmenu: ; 0x96f41
 
 	ld a, [ScriptBank]
 	ld hl, $202a
-	rst $8
+	rst FarCall
 	ld a, [$cf88]
 	jr nc, .asm_96f4e ; 0x96f4b $1
 	xor a
@@ -2200,7 +2200,7 @@ Script_stringtotext: ; 0x9777d
 	ld d, a
 	ld a, [ScriptBank]
 	ld hl, $30d6
-	rst $8
+	rst FarCall
 	ld de, StringBuffer2
 	jp Unknown_976c0
 ; 0x97792

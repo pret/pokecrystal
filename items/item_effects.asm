@@ -1170,9 +1170,7 @@ Functionf030: ; f030 (3:7030)
 	res 7, [hl]
 .asm_f04f
 	push bc
-	ld a, BANK(Function0x365d7)
-	ld hl, Function0x365d7
-	rst $8 ;  ; indirect jump to Function0x365d7 (365d7 (d:65d7))
+	callba Function0x365d7
 	pop bc
 	ret
 
@@ -1410,27 +1408,15 @@ Functionf20b: ; f20b (3:720b)
 
 ; known jump sources: f215 (3:7215), f41f (3:741f)
 Functionf21c: ; f21c (3:721c)
-	ld a, BANK(Function5004f)
-	ld hl, Function5004f
-	rst $8 ;  ; indirect jump to Function5004f (5004f (14:404f))
-	ld a, BANK(Function50405)
-	ld hl, Function50405
-	rst $8 ;  ; indirect jump to Function50405 (50405 (14:4405))
-	ld a, BANK(Function503e0)
-	ld hl, Function503e0
-	rst $8 ;  ; indirect jump to Function503e0 (503e0 (14:43e0))
-	ld a, BANK(WritePartyMenuTilemap)
-	ld hl, WritePartyMenuTilemap
-	rst $8 ;  ; indirect jump to WritePartyMenuTilemap (5005f (14:405f))
-	ld a, BANK(PrintPartyMenuText)
-	ld hl, PrintPartyMenuText
-	rst $8 ;  ; indirect jump to PrintPartyMenuText (5049a (14:449a))
+	callba Function5004f
+	callba Function50405
+	callba Function503e0
+	callba WritePartyMenuTilemap
+	callba PrintPartyMenuText
 	call WaitBGMap
 	call Function32f9
 	call DelayFrame
-	ld a, BANK(PartyMenuSelect)
-	ld hl, PartyMenuSelect
-	rst $8 ;  ; indirect jump to PartyMenuSelect (50457 (14:4457))
+	callba PartyMenuSelect
 	ret
 
 ; known jump sources: ef6d (3:6f6d), f28a (3:728a), f40d (3:740d)
@@ -1443,12 +1429,8 @@ Functionf24a: ; f24a (3:724a)
 	push hl
 	push de
 	push bc
-	ld a, BANK(WritePartyMenuTilemap)
-	ld hl, WritePartyMenuTilemap
-	rst $8 ;  ; indirect jump to WritePartyMenuTilemap (5005f (14:405f))
-	ld a, BANK(Function50566)
-	ld hl, Function50566
-	rst $8 ;  ; indirect jump to Function50566 (50566 (14:4566))
+	callba WritePartyMenuTilemap
+	callba Function50566
 	call WaitBGMap
 	call Function32f9
 	call DelayFrame
