@@ -194,6 +194,7 @@ Function658: ; 658
 	ld [$d089], a
 	jr Function677
 
+Function663: ; 663
 	call UpdateTime
 	ld a, [hHours]
 	ld [$d087], a

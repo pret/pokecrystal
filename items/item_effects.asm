@@ -851,8 +851,12 @@ Function_0xed8c: ; ed8c
 ; edab
 
 
-INCBIN "baserom.gbc", $edab, $ee01 - $edab
+INCBIN "baserom.gbc", $edab, $edfa - $edab
 
+; known jump sources: e8c9 (3:68c9), f7a0 (3:77a0)
+Functionedfa: ; edfa (3:6dfa)
+	callba Function2715c
+	ret
 
 Item06: ; ee01
 	callba Function91ae1
