@@ -113339,6 +113339,7 @@ Function106095: ; 106095
 	jp Function10611d
 ; 10609b
 
+Function10609b: ; 10609b
 	ret
 ; 10609c (41:609c)
 
@@ -113409,7 +113410,13 @@ Function1060df: ; 1060df
 	ret
 ; 1060e0
 
-INCBIN "baserom.gbc",$1060e0,$1060fb - $1060e0
+INCBIN "baserom.gbc",$1060e0,$1060e5 - $1060e0
+
+Function1060e5: ; 1060e5
+	ret
+; 1060e6 (41:60e6)
+
+INCBIN "baserom.gbc",$1060e6,$1060fb - $1060e6
 
 
 Function1060fb: ; 1060fb
@@ -122952,7 +122959,22 @@ INCLUDE "text/phone/extra3.asm"
 
 SECTION "bank5E",ROMX,BANK[$5E]
 
-INCBIN "baserom.gbc",$178000,$17801f - $178000
+Function178000:
+	ld a, BANK(DrawPlayerHUD)
+	ld hl, DrawPlayerHUD
+	rst $8 ;  ; indirect jump to DrawPlayerHUD (3df58 (f:5f58))
+	ld hl, PlayerHPPal ; $cd99
+	call SetHPPal
+	ld a, BANK(Function3e043)
+	ld hl, Function3e043
+	rst $8 ;  ; indirect jump to Function3e043 (3e043 (f:6043))
+	ld hl, EnemyHPPal ; $cd9a
+	call SetHPPal
+	ld a, BANK(Function3ee27)
+	ld hl, Function3ee27
+	rst $8 ;  ; indirect jump to Function3ee27 (3ee27 (f:6e27))
+	ret
+; 17801f (5e:401f)
 
 ;                          Songs V
 

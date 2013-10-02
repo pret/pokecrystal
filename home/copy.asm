@@ -106,44 +106,32 @@ Functiondfd: ; dfd
 
 
 Functione4a: ; e4a
-	ld a, $5
-	ld hl, $4135
-	rst FarCall
+	callba Function14135
 	ret
 ; e51
 
 
 
 Functione51: ; e51
-	ld a, $3e
-	ld hl, $7449
-	rst FarCall
+	callba Functionfb449
 	ret
 ; e58
 
 Functione58: ; e58
-	ld a, $3e
-	ld hl, $74be
-	rst FarCall
+	callba Functionfb4be
 	ret
 ; e5f
 
 
 
 Functione5f: ; e5f
-	ld a, $3e
-	ld hl, $748a
-	rst FarCall
-	ld a, $3e
-	ld hl, $74b0
-	rst FarCall
+	callba Functionfb48a
+	callba Functionfb4b0
 	ret
 ; e6c
 
 Functione6c: ; e6c
-	ld a, $3e
-	ld hl, $74b0
-	rst FarCall
+	callba Functionfb4b0
 	ret
 ; e73
 

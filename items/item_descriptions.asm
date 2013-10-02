@@ -4,9 +4,7 @@ GetItemDescription: ; 0x1c8955
 	jr c, .nomovedesc ; if not a TM, use a predefined string
 	ld [$d106], a
 	push de
-	ld a, $b     ; XXX replace this with BANK(label)
-	ld hl, $47b6 ; XXX replace this with label
-	rst FarCall
+	callba Function2c7b6
 	pop hl
 	ld a, [$d265]
 	ld [$cf60], a

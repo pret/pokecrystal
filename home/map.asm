@@ -696,9 +696,7 @@ Function248a: ; 248a
 	call Function24ba
 
 .asm_24b3
-	ld a, $41
-	ld hl, $486d
-	rst FarCall
+	callba Function10486d
 	ret
 ; 24ba
 
@@ -1418,9 +1416,7 @@ Function2821: ; 2821
 	jr .asm_2875
 
 .asm_286f
-	ld a, $7
-	ld hl, $4000
-	rst FarCall
+	callba Function1c000
 
 .asm_2875
 	xor a
@@ -1944,9 +1940,7 @@ FadeToMenu: ; 2b29
 	xor a
 	ld [hBGMapMode], a
 	call Function1d6e
-	ld a, $23
-	ld hl, $4084
-	rst FarCall
+	callba Function8c084
 	call ClearSprites
 	call Function2ed3
 	ret
@@ -1973,13 +1967,9 @@ Function2b4d: ; 2b4d
 Function2b5c: ; 2b5c
 	ld b, $9
 	call GetSGBLayout
-	ld a, $12
-	ld hl, $5409
-	rst FarCall
+	callba Function49409
 	call Function3200
-	ld a, $23
-	ld hl, $4079
-	rst FarCall
+	callba Function8c079
 	call Function2ee4
 	ret
 ; 2b74
@@ -2013,9 +2003,7 @@ Function2b74: ; 0x2b74
 Function2bae: ; 2bae
 	call DisableLCD
 	call ClearSprites
-	ld a, $5
-	ld hl, $4168
-	rst FarCall
+	callba Function14168
 	call Functione51
 	call Functione5f
 	ld a, [hROMBank]
@@ -2025,9 +2013,7 @@ Function2bae: ; 2bae
 	ld a, [MapNumber]
 	ld c, a
 	call Function2c24
-	ld a, $23
-	ld hl, $4001
-	rst FarCall
+	callba Function8c001
 	call Function2173
 	call Function2821
 	ld a, $9
@@ -2278,9 +2264,7 @@ Function2cbd: ; 2cbd
 	jr z, .asm_2cee
 	bit 7, c
 	jr nz, .asm_2cda
-	ld a, $22
-	ld hl, $7342
-	rst FarCall
+	callba Function8b342
 	ld e, c
 	ld d, $0
 .asm_2cd7

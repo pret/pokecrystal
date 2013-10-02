@@ -204,9 +204,7 @@ Function658: ; 658
 	jr Function677
 
 Function677
-	ld a, $5
-	ld hl, $40ed
-	rst FarCall
+	callba Function140ed
 	ret
 ; 67e
 

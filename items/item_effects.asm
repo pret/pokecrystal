@@ -150,9 +150,7 @@ ParkBall: ; e8a2
 	ld d, a
 	push de
 	ld a, [BattleMonItem]
-	ld a, $d
-	ld hl, $7dd0
-	rst FarCall
+	callba GetItem
 
 	ld a, b
 	cp $46
@@ -258,9 +256,7 @@ ParkBall: ; e8a2
 	ld [CurPartySpecies], a
 	ld a, [EnemyMonLevel]
 	ld [CurPartyLevel], a
-	ld a, $f
-	ld hl, $68eb
-	rst FarCall
+	callba LoadEnemyMon
 
 	pop af
 	ld [EnemySubStatus5], a
@@ -296,9 +292,7 @@ ParkBall: ; e8a2
 	ld a, [BattleType]
 	cp $3
 	jp z, $6bd9
-	ld a, $41
-	ld hl, $607f
-	rst FarCall
+	callba Function10607f
 
 	ld hl, $6dc9
 	call $1057
@@ -351,9 +345,7 @@ ParkBall: ; e8a2
 	ld a, $6
 	call Predef
 
-	ld a, $13
-	ld hl, $5b49
-	rst FarCall
+	callba Function4db49
 
 	ld a, [CurItem]
 	cp $a4
@@ -392,9 +384,7 @@ ParkBall: ; e8a2
 	xor a
 	ld [MonType], a
 	ld b, $0
-	ld a, $4
-	ld hl, $56c1
-	rst FarCall
+	callba Function116c1
 
 	call $04b6
 
@@ -412,9 +402,7 @@ ParkBall: ; e8a2
 	ld a, $9
 	call Predef
 
-	ld a, $13
-	ld hl, $5b83
-	rst FarCall
+	callba Function4db83
 
 	ld a, $1
 	call GetSRAMBank
@@ -452,9 +440,7 @@ ParkBall: ; e8a2
 	ld [MonType], a
 	ld de, $d050
 	ld b, $0
-	ld a, $4
-	ld hl, $56c1
-	rst FarCall
+	callba Function116c1
 
 	ld a, $1
 	call GetSRAMBank
@@ -490,9 +476,7 @@ ParkBall: ; e8a2
 
 	jr .asm_ebe2
 
-	ld a, $3
-	ld hl, $66ce
-	rst FarCall
+	callba Functione6ce
 
 	jr .asm_ebe2
 
@@ -762,9 +746,7 @@ Function_0xed12: ; ed12
 	ld [MonType], a
 	ld a, [CurBattleMon]
 	ld [CurPartyMon], a
-	ld a, $14
-	ld hl, $4bdd
-	rst FarCall
+	callba GetGender
 	jr c, .asm_ed66
 
 	ld d, 0
@@ -777,9 +759,7 @@ Function_0xed12: ; ed12
 	ld [CurPartySpecies], a
 	ld a, WILDMON
 	ld [MonType], a
-	ld a, $14
-	ld hl, $4bdd
-	rst FarCall
+	callba GetGender
 	jr c, .asm_ed65
 
 	ld d, 0
@@ -875,17 +855,13 @@ INCBIN "baserom.gbc", $edab, $ee01 - $edab
 
 
 Item06: ; ee01
-	ld a, $24
-	ld hl, $5ae1
-	rst FarCall
+	callba Function91ae1
 	ret
 ; ee08
 
 
 Bicycle: ; ee08
-	ld a, $3
-	ld hl, $50b3
-	rst FarCall
+	callba Functiond0b3
 	ret
 ; ee0f
 
@@ -909,9 +885,7 @@ SunStone: ; ee0f
 	jr z, .asm_ee35
 	ld a, $1
 	ld [$d1e9], a
-	ld a, $10
-	ld hl, $61d8
-	rst FarCall
+	callba Function421d8
 
 	ld a, [$d268]
 	and a
@@ -969,9 +943,7 @@ Calcium: ; ee3d
 	call $1057
 
 	ld c, $2
-	ld a, $1
-	ld hl, $71c2
-	rst FarCall
+	callba ChangeHappiness
 
 	jp $7795
 
@@ -1005,9 +977,7 @@ RareCandy: ; ef14
 	ld [CurPartyLevel], a
 	push de
 	ld d, a
-	ld a, $14
-	ld hl, $4e47
-	rst FarCall
+	callba Function50e47
 
 	pop de
 	ld a, $8
@@ -1045,9 +1015,7 @@ RareCandy: ; ef14
 	ld a, [hl]
 	adc b
 	ld [hl], a
-	ld a, $9
-	ld hl, $709e
-	rst FarCall
+	callba Function2709e
 
 	ld a, $f8
 	call $724a
@@ -1078,9 +1046,7 @@ RareCandy: ; ef14
 
 	xor a
 	ld [$d1e9], a
-	ld a, $10
-	ld hl, $61d8
-	rst FarCall
+	callba Function421d8
 
 	jp $7795
 ; efad
@@ -1097,9 +1063,7 @@ HealPowder: ; efad
 	cp $0
 	jr nz, .asm_efc9
 	ld c, $f
-	ld a, $1
-	ld hl, $71c2
-	rst FarCall
+	callba ChangeHappiness
 
 	call $77d6
 
@@ -1260,9 +1224,7 @@ RevivalHerb: ; f0a9
 	cp $0
 	jr nz, .asm_f0c5
 	ld c, $11
-	ld a, $1
-	ld hl, $71c2
-	rst FarCall
+	callba ChangeHappiness
 
 	call $77d6
 
@@ -1367,9 +1329,7 @@ Function_0xf192: ; f192
 	pop bc
 	cp $0
 	jr nz, .asm_f1a6
-	ld a, $1
-	ld hl, $71c2
-	rst FarCall
+	callba ChangeHappiness
 
 	call $77d6
 
@@ -1803,9 +1763,7 @@ INCBIN "baserom.gbc",$f44a,$f44f - $f44a
 EscapeRope: ; f44f
 	xor a
 	ld [$d0ec], a
-	ld a, $3
-	ld hl, $4b95
-	rst FarCall
+	callba Functioncb95
 
 	ld a, [$d0ec]
 	cp $1
@@ -1911,26 +1869,18 @@ XSpecial: ; f4c5
 	ld [hBattleTurn], a
 	ld [AttackMissed], a
 	ld [$c70d], a
-	ld a, $d
-	ld hl, $61ef
-	rst FarCall
+	callba Function0x361ef
 
 	call WaitSFX
 
-	ld a, $d
-	ld hl, $63b8
-	rst FarCall
+	callba BattleCommand8c
 
-	ld a, $d
-	ld hl, $644c
-	rst FarCall
+	callba BattleCommand8e
 
 	ld a, [CurBattleMon]
 	ld [CurPartyMon], a
 	ld c, $3
-	ld a, $1
-	ld hl, $71c2
-	rst FarCall
+	callba ChangeHappiness
 	ret
 ; f504
 
@@ -2072,17 +2022,13 @@ SuperRod: ; f5ad
 ; f5b1
 
 Function_0xf5b1: ; f5b1
-	ld a, $3
-	ld hl, $4f8e
-	rst FarCall
+	callba Functioncf8e
 	ret
 ; f5b8
 
 
 Itemfinder: ; f5b8
-	ld a, $4
-	ld hl, $6580
-	rst FarCall
+	callba Function12580
 	ret
 ; f5bf
 
@@ -2123,9 +2069,7 @@ Mysteryberry: ; f5bf
 	ld [CurMoveNum], a
 	ld a, $2
 	ld [$d235], a
-	ld a, $f
-	ld hl, $64bc
-	rst FarCall
+	callba Function3e4bc
 
 	pop bc
 	ld a, b
@@ -2221,9 +2165,7 @@ GorgeousBox: ; f767
 ; f769
 
 Function_0xf769: ; f769
-	ld a, $9
-	ld hl, $6f02
-	rst FarCall
+	callba Function26f02
 
 	ld hl, UnknownText_0xf778
 	call $1057

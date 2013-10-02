@@ -561,9 +561,7 @@ Function201c: ; 201c
 Function202a: ; 202a
 	ld a, [hROMBank]
 	ld [$cf94], a
-	ld a, $9
-	ld hl, $400e
-	rst FarCall
+	callba Function2400e
 	ld a, [$cf88]
 	ret
 ; 2039
@@ -571,9 +569,7 @@ Function202a: ; 202a
 Function2039: ; 2039
 	ld a, [hROMBank]
 	ld [$cf94], a
-	ld a, $9
-	ld hl, $4022
-	rst FarCall
+	callba Function24022
 	ld a, [$cf88]
 	ret
 ; 2048
@@ -581,9 +577,7 @@ Function2039: ; 2039
 Function2048: ; 2048
 	ld a, [hROMBank]
 	ld [$cf94], a
-	ld a, $9
-	ld hl, $403c
-	rst FarCall
+	callba Function2403c
 	ld a, [$cf88]
 	ret
 ; 2057

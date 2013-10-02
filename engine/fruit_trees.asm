@@ -58,10 +58,7 @@ CheckFruitTree: ; 44055
 ; 4405f
 
 PickedFruitTree: ; 4405f
-	ld a, $41
-	ld hl, $609b
-	rst FarCall ; empty function
-
+	callba Function10609b ; empty function
 	ld b, 1
 	jp GetFruitTreeFlag
 ; 4406a
