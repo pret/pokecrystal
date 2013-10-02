@@ -17631,6 +17631,7 @@ Functione3de: ; e3de
 	ret
 ; e3fd
 
+Functione3fd: ; e3fd
 	call Functione40a
 	ret c
 	call Functione41c
@@ -18622,21 +18623,15 @@ Function100e8: ; 100e8 (4:40e8)
 ; 10124 (4:4124)
 
 INCBIN "baserom.gbc",$10124,$10159 - $10124
-	ld a, $b
-	ld hl, $47bf
-	rst $8
+	callba Function2c7bf
 	ret c
-	ld a, $b
-	ld hl, $47fb
-	rst $8
+	callba Function2c7fb
 	jr c, .asm_10179
 	ld hl, Options ; $cfcc
 	ld a, [hl]
 	push af
 	res 4, [hl]
-	ld a, $b
-	ld hl, $4867
-	rst $8
+	callba Function2c867
 	pop af
 	ld [Options], a ; $cfcc
 .asm_10179
@@ -18751,9 +18746,7 @@ Function101c5: ; 101c5 (4:41c5)
 ; 10249 (4:4249)
 
 INCBIN "baserom.gbc",$10249,$10311 - $10249
-	ld a, $3
-	ld hl, $5453
-	rst $8
+	callba CheckItemMenu
 	ld a, [$d142]
 	ld hl, $431f
 	rst $28
@@ -18820,15 +18813,9 @@ INCBIN "baserom.gbc",$10364,$103fd - $10364
 	ld a, $8
 	ld [PartyMenuActionText], a ; $d141
 	call WhiteBGMap
-	ld a, $14
-	ld hl, $404f
-	rst $8
-	ld a, $14
-	ld hl, $4405
-	rst $8
-	ld a, $14
-	ld hl, $43e0
-	rst $8
+	callba Function5004f
+	callba Function50405
+	callba Function503e0
 .asm_10427
 	ld a, BANK(WritePartyMenuTilemap)
 	ld hl, WritePartyMenuTilemap
@@ -19086,9 +19073,7 @@ Function105dc: ; 105dc (4:45dc)
 ; 10601 (4:4601)
 
 INCBIN "baserom.gbc",$10601,$10629 - $10601
-	ld a, $3
-	ld hl, $5448
-	rst $8
+	callba CheckItemContext
 	ld a, [$d142]
 	ld hl, $4637
 	rst $28
@@ -22550,9 +22535,83 @@ StartMenu_Pokemon: ; 12976
 	ret
 ; 129d5
 
+Function129d5: ; 129d5
+	ld a, [NumItems] ; $d892 (aliases: TMsHMsEnd)
+	and a
+	ret nz
+	ld a, [NumKeyItems] ; $d8bc (aliases: ItemsEnd)
+	and a
+	ret nz
+	ld a, [NumBalls] ; $d8d7 (aliases: KeyItemsEnd)
+	and a
+	ret nz
+	ld hl, TMsHMs ; $d859
+	ld b, $39
+.asm_129e9
+	ld a, [hli]
+	and a
+	jr nz, .asm_129f2
+	dec b
+	jr nz, .asm_129e9
+	scf
+	ret
+.asm_129f2
+	and a
+	ret
 
-INCBIN "baserom.gbc",$129d5,$12a60 - $129d5
+Function129f4: ; 129f4
+	push de
+	call PartyMonItemName
+	ld a, BANK(_CheckTossableItem)
+	ld hl, _CheckTossableItem
+	rst $8 ;  ; indirect jump to _CheckTossableItem (d427 (3:5427))
+	ld a, [$d142]
+	and a
+	jr nz, .asm_12a3f
+	ld hl, $6a45
+	call Function1d4f
+	ld a, BANK(Function24fbf)
+	ld hl, Function24fbf
+	rst $8 ;  ; indirect jump to Function24fbf (24fbf (9:4fbf))
+	push af
+	call Function1c17
+	call Function1c07
+	pop af
+	jr c, .asm_12a42
+	ld hl, $6a4a
+	call Function1d4f
+	call Function1dcf
+	push af
+	call Function1c07
+	pop af
+	jr c, .asm_12a42
+	pop hl
+	ld a, [$d107]
+	call TossItem
+	call PartyMonItemName
+	ld hl, $6a4f
+	call Function1d4f
+	call Function1c07
+	and a
+	ret
+.asm_12a3f
+	call Function12a54
+.asm_12a42
+	pop hl
+	scf
+	ret
+; 12a45 (4:6a45)
 
+INCBIN "baserom.gbc",$12a45,$12a54 - $12a45
+
+; known jump sources: 12a3f (4:6a3f)
+Function12a54: ; 12a54 (4:6a54)
+	ld hl, $6a5b
+	call Function1d67
+	ret
+; 12a5b (4:6a5b)
+
+INCBIN "baserom.gbc",$12a5b,$12a60 - $12a5b
 
 CantUseItem: ; 12a60
 	ld hl, CantUseItemText
@@ -26567,14 +26626,10 @@ Function14a07: ; 14a07
 
 Function14a1a: ; 14a1a
 	call Function1d6e
-	ld a, $1
-	ld hl, $5e9a
-	rst $8
+	callba Function5e9a
 	call SpeechTextBox
 	call Function1ad2
-	ld a, $13
-	ld hl, $4f45
-	rst $8
+	callba Function4cf45
 	ld hl, $5283
 	call Function14baf
 	jr nz, .asm_14a4a
@@ -27719,12 +27774,8 @@ INCBIN "baserom.gbc",$15440,$154cf - $15440
 	ret
 	ld a, $2
 	call Function263b
-	ld a, $9
-	ld hl, $454f
-	rst $8
-	ld a, $2
-	ld hl, $4177
-	rst $8
+	callba Function2454f
+	callba Function8177
 	ret
 ; 154ea (5:54ea)
 
@@ -27735,6 +27786,8 @@ INCBIN "baserom.gbc",$154ea,$154eb - $154ea
 	ld hl, $d45b
 	set 6, [hl]
 	ret
+
+Function154f7: ; 154f7
 	nop
 	call Function1550c
 	jr c, .asm_15508
@@ -27810,9 +27863,7 @@ Function1554e: ; 1554e (5:554e)
 	ld a, $6
 	call Function3cb4
 	ret
-	ld a, $23
-	ld hl, $4070
-	rst $8
+	callba _UpdateTimePals
 	ret
 	ld e, $0
 	ld a, [MusicFadeIDLo] ; $c2a9
@@ -27894,9 +27945,7 @@ INCBIN "baserom.gbc",$15663,$15668 - $15663
 	call Function156c2
 	ld hl, $5a31
 	call Function15a20
-	ld a, $3
-	ld hl, $63fd
-	rst $8
+	callba Functione3fd
 	and a
 	ret
 ; 15679 (5:5679)
@@ -28150,9 +28199,7 @@ KrisTossItemMenu: ; 0x1585f
 	call Function15985
 	jr c, .asm_15878
 	ld de, PCItems
-	ld a, $4
-	ld hl, $69f4
-	rst $8
+	callba Function129f4
 	jr .asm_15868
 
 .asm_15878
@@ -28205,9 +28252,7 @@ KrisDepositItemMenu: ; 0x1588b
 ; 0x158b8
 
 Function158b8: ; 0x158b8
-	ld a, $4
-	ld hl, $69d5
-	rst $8
+	callba Function129d5
 	ret nc
 	ld hl, Text158c7
 	call Function1d67
@@ -28383,17 +28428,13 @@ Function15985: ; 0x15985
 	call Function156c7
 
 .asm_159f2
-	ld a, $9
-	ld hl, $490c
-	rst $8
+	callba Function2490c
 
 .asm_159f8
 	jp $5989
 
 .asm_159fb
-	ld a, $9
-	ld hl, $4706
-	rst $8
+	callba Function24706
 	call Function1bee
 	and a
 	ret
@@ -30942,18 +30983,14 @@ Function1728f: ; 1728f (5:728f)
 	push af
 	ld de, $0
 	call StartMusic
-	ld a, $2
-	ld hl, $4000
-	rst $8
+	callba Function8000
 	call DisableLCD
 	ld hl, $7393
 	ld de, $8000
 	ld bc, $20
 	ld a, $5
 	call FarCopyBytes
-	ld a, $23
-	ld hl, $4f53
-	rst $8
+	callba Function8cf53
 	ld de, $9000
 	ld a, [$cf63]
 	call Function1723c
@@ -31062,9 +31099,7 @@ INCBIN "baserom.gbc",$17393,$173b3 - $17393
 
 ; known jump sources: 17336 (5:7336)
 Function173b3: ; 173b3 (5:73b3)
-	ld a, $23
-	ld hl, $4f53
-	rst $8
+	callba Function8cf53
 	ld hl, $73ef
 .asm_173bc
 	ld a, [hli]
@@ -32294,6 +32329,8 @@ Function24528: ; 24528
 ; 24547
 
 INCBIN "baserom.gbc",$24547,$2454f - $24547
+
+Function2454f: ; 2454f
 	ld hl, $d81e
 	xor a
 	ld bc, $10
@@ -32574,8 +32611,18 @@ Function246fc: ; 246fc
 	ret
 ; 24706
 
-INCBIN "baserom.gbc",$24706,$2471a - $24706
-
+Function24706: ; 24706 (9:4706)
+	call Function1cfd
+	ld de, $14
+	add hl, de
+	ld de, $28
+	ld a, [$cf92]
+.asm_24713
+	ld [hl], $7f
+	add hl, de
+	dec a
+	jr nz, .asm_24713
+	ret
 
 Function2471a: ; 2471a
 	ld hl, $cf96
@@ -34171,9 +34218,7 @@ Function2513b: ; 2513b (9:513b)
 	call ClearSprites
 	call ClearTileMap
 	call DisableLCD
-	ld a, $22
-	ld hl, $433e
-	rst $8
+	callba Function8833e
 	ld hl, $65c3
 	ld de, $91c0
 	ld bc, $10
@@ -40014,9 +40059,7 @@ INCBIN "baserom.gbc",$2c4d7,$2c4e3 - $2c4d7
 	cp $3
 	jr z, .asm_2c541
 	jr Function2c545
-	ld a, $d
-	ld hl, $77f5
-	rst $8
+	callba Function0x377f5
 	jr c, .asm_2c541
 	ld a, [PlayerSubStatus1] ; $c668
 	bit 7, a
@@ -40042,9 +40085,7 @@ INCBIN "baserom.gbc",$2c4d7,$2c4e3 - $2c4d7
 	ld a, [EnemyScreens] ; $c700
 	bit 5, a
 	ret
-	ld a, $e
-	ld hl, $5251
-	rst $8
+	callba AICheckEnemyMaxHP
 	jr nc, Function2c545
 .asm_2c541
 	ld a, $1
@@ -40381,6 +40422,8 @@ Function2c7b6: ; 2c7b6 (b:47b6)
 	ld a, $f
 	call Predef
 	ret
+
+Function2c7bf: ; 2c7bf (b:47bf)
 	ld hl, Options ; $cfcc
 	ld a, [hl]
 	push af
@@ -40458,7 +40501,7 @@ Function2c80a: ; 2c80a
 	jr .asm_2c821
 ; 2c867
 
-
+Function2c867: ; 2c867
 	ld a, $e
 	call Predef
 	push bc
@@ -40477,25 +40520,19 @@ Function2c80a: ; 2c80a
 	call PrintText
 	jr .asm_2c8b6
 .asm_2c88b
-	ld hl, $79ea
-	ld a, $3
-	rst $8
+	callab Functionf9ea
 	jr c, .asm_2c8b6
 	ld a, $0
 	call Predef
 	ld a, b
 	and a
 	jr z, .asm_2c8b6
-	ld a, $41
-	ld hl, $6049
-	rst $8
+	callba Function106049
 	ld a, [CurItem] ; $d106
 	call IsHM
 	ret c
 	ld c, $5
-	ld hl, $71c2
-	ld a, $1
-	rst $8
+	callab ChangeHappiness
 	call Function2cb0c
 	jr .asm_2c8bd
 .asm_2c8b6
@@ -62043,9 +62080,7 @@ Function4dd3a: ; 4dd3a (13:5d3a)
 	call DelayFrame
 	ret
 .asm_4dd49
-	ld a, $34
-	ld hl, $40b4
-	rst $8
+	callba Functiond00b4
 	jr nc, .asm_4dd56
 	ld hl, $cf64
 	res 6, [hl]
@@ -70977,7 +71012,7 @@ GetPlayerIcon: ; 8832c
 	ret
 ; 8833e
 
-
+Function8833e: ; 8833e
 	ld hl, $4365
 	ld a, [PlayerGender] ; $d472
 	bit 0, a
@@ -76909,6 +76944,7 @@ Function8c0c1: ; 8c0c1
 	ret
 ; 8c0e5
 
+Function8c0e5: ; 8c0e5
 	ld hl, $410f
 	ld a, [$c2d0]
 	cp $4
@@ -80793,9 +80829,7 @@ Function9020d: ; 9020d (24:420d)
 INCBIN "baserom.gbc",$90233,$9026f - $90233
 	call Function9027c
 	call Function9027c
-	ld a, $41
-	ld hl, $60d3
-	rst $8
+	callba Function1060d3
 	ret
 
 ; known jump sources: 9026f (24:426f), 90272 (24:4272)
@@ -81562,9 +81596,7 @@ INCBIN "baserom.gbc",$90a6c,$90a6d - $90a6c
 	ld a, [hMinutes] ; $ff00+$96
 	ld c, a
 	ld de, $c5b9
-	ld a, $77
-	ld hl, $56bb
-	rst $8
+	callba Function1dd6bb
 	ld hl, $4a83
 	ret
 ; 90a83 (24:4a83)
@@ -81697,9 +81729,7 @@ Function90bea: ; 90bea (24:4bea)
 	ld a, $7
 	ld [hWX], a ; $ff00+$d1
 	call Function90c4e
-	ld a, $23
-	ld hl, $4f53
-	rst $8
+	callba Function8cf53
 	call Function90d32
 	ld a, $8
 	call Function3cb4
@@ -81877,9 +81907,7 @@ Function90da8: ; 90da8 (24:4da8)
 	push de
 	jp [hl]
 	call Function90eb0
-	ld a, $24
-	ld hl, $5f13
-	rst $8
+	callba TownMapPals
 	ld a, [$cf65]
 	and a
 	jr nz, .asm_90de8
@@ -105515,6 +105543,7 @@ INCBIN "baserom.gbc",$fbce8,$fbced - $fbce8
 
 INCLUDE "battle/hidden_power.asm"
 
+Functionfbd54: ; fbd54
 	xor a
 	ld [hBGMapMode], a ; $ff00+$d4
 	ld a, [hBattleTurn] ; $ff00+$e4
@@ -107332,9 +107361,7 @@ Functionfd0a6: ; fd0a6 (3f:50a6)
 	ld [$FF00+$c5], a
 	ld de, $d851
 	ld bc, $ffc3
-	ld a, $5
-	ld hl, $5ffa
-	rst $8
+	callba Function15ffa
 	ret
 
 
@@ -110457,9 +110484,7 @@ INCBIN "gfx/ow/misc.2bpp"
 	call Function2e56
 	ld a, $5
 	call Function263b
-	ld a, $25
-	ld hl, $7df9
-	rst $8
+	callba Function97df9
 	ld a, $3
 	call Function263b
 	call Function2cff
@@ -110687,12 +110712,8 @@ Function104718: ; 104718 (41:4718)
 	res 6, [hl]
 	ld a, $1
 	ld [$c2ce], a
-	ld a, $23
-	ld hl, $40e5
-	rst $8
-	ld a, $23
-	ld hl, $4001
-	rst $8
+	callba Function8c0e5
+	callba Function8c001
 	call Function2173
 	call Function104770
 	call Function1047a3
@@ -110706,9 +110727,7 @@ Function104770: ; 104770 (41:4770)
 	ld [$d152], a
 	ld [hSCY], a ; $ff00+$d0
 	ld [hSCX], a ; $ff00+$cf
-	ld a, $1
-	ld hl, $5958
-	rst $8
+	callba Function5958
 	ld a, [rVBK] ; $ff00+$4f
 	push af
 	ld a, $1
@@ -110763,13 +110782,9 @@ Function1047b4: ; 1047b4 (41:47b4)
 	ld [$FF00+$de], a
 	xor a
 	ld [hTileAnimFrame], a ; $ff00+$df
-	ld a, $5
-	ld hl, $4168
-	rst $8
+	callba Function14168
 	call Functione5f
-	ld a, $41
-	ld hl, $6594
-	rst $8
+	callba Function106594
 	ret
 
 Function1047eb: ; 1047eb
@@ -110778,16 +110793,10 @@ Function1047eb: ; 1047eb
 ; 1047f0
 
 	call ClearSprites
-	ld a, $2e
-	ld hl, $4000
-	rst $8
+	callba Functionb8000
 	call Function2914
-	ld a, $1
-	ld hl, $579d
-	rst $8
-	ld a, $5
-	ld hl, $54f7
-	rst $8
+	callba Function579d
+	callba Function154f7
 	ld hl, $d45b
 	bit 6, [hl]
 	jr nz, .asm_104817
@@ -113252,6 +113261,8 @@ Function10602e: ; 10602e (41:602e)
 ; 10602f (41:602f)
 
 INCBIN "baserom.gbc",$10602f,$106049 - $10602f
+
+Function106049: ; 106049
 	ret
 ; 10604a (41:604a)
 

@@ -214,9 +214,7 @@ Script_special: ; 0x96e26
 	ld e, a
 	call GetScriptByte
 	ld d, a
-	ld a, $3
-	ld hl, $401b
-	rst $8
+	callba Functionc01b
 	ret
 ; 0x96e35
 
@@ -421,18 +419,14 @@ Script_pokepic: ; 0x96f16
 	ld a, [$c2dd]
 .asm_96f1f
 	ld [$d108], a
-	ld a, $9
-	ld hl, $44e3
-	rst $8
+	callba Function244e3
 	ret
 ; 0x96f29
 
 Script_pokepicyesorno: ; 0x96f29
 ; script command 0x57
 
-	ld a, $9
-	ld hl, $4528
-	rst $8
+	callba Function24528
 	ret
 ; 0x96f30
 
@@ -473,9 +467,7 @@ Script_storetext: ; 0x96f52
 	call Function106c
 	call GetScriptByte
 	ld c, a
-	ld a, $47
-	ld hl, $4000
-	rst $8
+	callba Function11c000
 	ret
 ; 0x96f60
 
@@ -579,9 +571,7 @@ Script_pocketisfull: ; 0x96fd5
 Script_specialsound: ; 0x96fe4
 ; script command 0x88
 
-	ld a, $3
-	ld hl, $543d
-	rst $8
+	callba CheckItemPocket
 	ld a, [$d142]
 	cp TM_HM
 	ld de, SFX_GET_TM
@@ -660,9 +650,7 @@ Script_pokemart: ; 0x97065
 	ld d, a
 	ld a, [ScriptBank]
 	ld b, a
-	ld a, $5
-	ld hl, $5a45
-	rst $8
+	callba OpenMartDialog
 	ret
 ; 0x9707c
 
@@ -679,9 +667,7 @@ Script_elevator: ; 0x9707c
 	ld d, a
 	ld a, [ScriptBank]
 	ld b, a
-	ld a, $4
-	ld hl, $742d
-	rst $8
+	callba Function1342d
 	ret c
 	ld a, $1
 	ld [$c2dd], a
@@ -695,9 +681,7 @@ Script_trade: ; 0x97099
 
 	call GetScriptByte
 	ld e, a
-	ld a, $3f
-	ld hl, $4ba8
-	rst $8
+	callba Functionfcba8
 	ret
 ; 0x970a4
 
@@ -712,18 +696,14 @@ Script_phonecall: ; 0x970a4
 	ld d, a
 	ld a, [ScriptBank]
 	ld b, a
-	ld a, $24
-	ld hl, $429a
-	rst $8
+	callba Function9029a
 	ret
 ; 0x970b7
 
 Script_hangup: ; 0x970b7
 ; script command 0x99
 
-	ld a, $24
-	ld hl, $42eb
-	rst $8
+	callba Function902eb
 	ret
 ; 0x970be
 
@@ -736,9 +716,7 @@ Script_askforphonenumber: ; 0x970be
 	jr c, .asm_970d6 ; 0x970c1 $13
 	call GetScriptByte
 	ld c, a
-	ld a, $24
-	ld hl, $4000
-	rst $8
+	callba Function90000
 	jr c, .asm_970d2 ; 0x970cd $3
 	xor a
 	jr .asm_970db ; 0x970d0 $9
@@ -760,9 +738,7 @@ Script_describedecoration: ; 0x970df
 
 	call GetScriptByte
 	ld b, a
-	ld a, $9
-	ld hl, $6f59
-	rst $8
+	callba Function26f59
 	ld h, d
 	ld l, e
 	jp ScriptJump
@@ -792,9 +768,7 @@ Script_loadwilddata: ; 0x970fc
 	ld d, a
 	call GetScriptByte
 	ld e, a
-	ld a, $3
-	ld hl, $4403
-	rst $8
+	callba Functionc403
 	ret
 ; 0x9710f
 
@@ -898,9 +872,7 @@ Script_playrammusic: ; 0x9717a
 
 	ld a, [$d22f]
 	ld e, a
-	ld a, $3a
-	ld hl, $500a
-	rst $8
+	callba PlayTrainerEncounterMusic
 	ret
 ; 0x97185
 
@@ -968,9 +940,7 @@ Script_waitbutton: ; 0x971c3
 Script_warpsound: ; 0x971c7
 ; script command 0x87
 
-	ld a, $5
-	ld hl, $4a07
-	rst $8
+	callba Function14a07
 	call StartSFX
 	ret
 ; 0x971d1
@@ -1026,9 +996,7 @@ Script_applymovement: ; 0x971f3
 Function971fa: ; 971fa
 	push bc
 	ld a, c
-	ld a, $1
-	ld hl, $585c
-	rst $8
+	callba Function585c
 	pop bc
 	push bc
 	call Unknown_0x97221
@@ -1048,9 +1016,7 @@ Function971fa: ; 971fa
 ; 0x97221
 
 Unknown_0x97221: ; 0x97221
-	ld a, $1
-	ld hl, $5897
-	rst $8
+	callba Function5897
 	ret
 ; 0x97228
 
@@ -1073,9 +1039,7 @@ Script_faceplayer: ; 0x9722e
 	ld d, $0
 	ld a, [$ffe0]
 	ld e, a
-	ld a, $2
-	ld hl, $4417
-	rst $8
+	callba Function8417
 	ld a, d
 	add a
 	add a
@@ -1107,9 +1071,7 @@ Script_faceperson: ; 0x97248
 .asm_97261
 	ld d, a
 	push de
-	ld a, $2
-	ld hl, $4417
-	rst $8
+	callba Function8417
 	pop bc
 	ret c
 	ld a, d
@@ -1233,9 +1195,7 @@ Script_disappear: ; 0x972ee
 	ld a, [$ffaf]
 	ld b, $1
 	call Unknown_0x9730b
-	ld a, $1
-	ld hl, $5920
-	rst $8
+	callba Function5920
 	ret
 ; 0x9730b
 
@@ -1272,18 +1232,14 @@ Script_follow: ; 0x97325
 	call GetScriptByte
 	call Unknown_0x971e3
 	ld c, a
-	ld a, $1
-	ld hl, $5803
-	rst $8
+	callba Function5803
 	ret
 ; 0x9733a
 
 Script_stopfollow: ; 0x9733a
 ; script command 0x71
 
-	ld a, $1
-	ld hl, $581f
-	rst $8
+	callba Function581f
 	ret
 ; 0x97341
 
@@ -1303,9 +1259,7 @@ Script_moveperson: ; 0x97341
 	call GetScriptByte
 	add $4
 	ld e, a
-	ld a, $2
-	ld hl, $407e
-	rst $8
+	callba Function807e
 	ret
 ; 0x9735b
 
@@ -1321,9 +1275,7 @@ Script_writepersonxy: ; 0x9735b
 	ld a, [$ffe0]
 .asm_97367
 	ld b, a
-	ld a, $2
-	ld hl, $40a1
-	rst $8
+	callba Function80a1
 	ret
 ; 0x9736f
 
@@ -1339,9 +1291,7 @@ Script_follownotexact: ; 0x9736f
 	call GetScriptByte
 	call Unknown_0x971e3
 	ld c, a
-	ld a, $2
-	ld hl, $439e
-	rst $8
+	callba Function839e
 	ret
 ; 0x97384
 
@@ -1356,9 +1306,7 @@ Script_loademote: ; 0x97384
 	ld a, [$c2dd]
 .asm_9738e
 	ld c, a
-	ld a, $5
-	ld hl, $442f
-	rst $8
+	callba Function1442f
 	ret
 ; 0x97396
 
@@ -1514,9 +1462,7 @@ Script_catchtutorial: ; 0x97447
 	call GetScriptByte
 	ld [$d230], a
 	call Function2879
-	ld a, $13
-	ld hl, $6554
-	rst $8
+	callba Function4e554
 	jp Script_reloadmap
 ; 0x97459
 
@@ -1536,9 +1482,7 @@ Script_returnafterbattle: ; 0x97459
 .asm_97470
 	bit 0, d
 	jr z, .asm_9747c ; 0x97472 $8
-	ld a, $3f
-	ld hl, $4fec
-	rst $8
+	callba Functionfcfec
 	jr .asm_9748e ; 0x9747a $12
 .asm_9747c
 	ld a, [$d0ee]
@@ -2061,9 +2005,7 @@ Script_writecode: ; 0x97693
 
 Unknown_0x9769e: ; 0x9769e
 	ld c, a
-	ld a, $20
-	ld hl, $4648
-	rst $8
+	callba Function80648
 	ret
 ; 0x976a6
 
@@ -2140,9 +2082,7 @@ Script_mapnametotext: ; 0x976e9
 
 Unknown_976f4: ; 0x976f4
 	ld e, a
-	ld a, $72
-	ld hl, $68a5
-	rst $8
+	callba GetLandmarkName
 	ld de, StringBuffer1
 	jp Unknown_976c0
 ; 0x97701
@@ -2168,9 +2108,7 @@ Script_trainertotext: ; 0x97706
 	ld c, a
 	call GetScriptByte
 	ld b, a
-	ld a, $e
-	ld hl, $594c
-	rst $8
+	callba Function3994c
 	jr Unknown_976c0 ; 0x97714 $aa
 ; 0x97716
 
@@ -2286,9 +2224,7 @@ Script_givepokeitem: ; 0x97792
 	ld a, [ScriptBank]
 	call FarCopyBytes
 	pop bc
-	ld a, $11
-	ld hl, $46cc
-	rst $8
+	callba Function446cc
 	ret
 ; 0x977b7
 
@@ -2303,9 +2239,7 @@ Script_checkpokeitem: ; 0x977b7
 	ld d, a
 	ld a, [ScriptBank]
 	ld b, a
-	ld a, $11
-	ld hl, $4654
-	rst $8
+	callba Function44654
 	ret
 ; 0x977ca
 
@@ -2382,9 +2316,7 @@ Script_givemoney: ; 0x97829
 
 	call Unknown_0x97861
 	call Unknown_0x9786d
-	ld a, $5
-	ld hl, $5fd7
-	rst $8
+	callba Function15fd7
 	ret
 ; 0x97836
 
@@ -2396,9 +2328,7 @@ Script_takemoney: ; 0x97836
 
 	call Unknown_0x97861
 	call Unknown_0x9786d
-	ld a, $5
-	ld hl, $5ffa
-	rst $8
+	callba Function15ffa
 	ret
 ; 0x97843
 
@@ -2410,9 +2340,7 @@ Script_checkmoney: ; 0x97843
 
 	call Unknown_0x97861
 	call Unknown_0x9786d
-	ld a, $5
-	ld hl, $600b
-	rst $8
+	callba Function1600b
 ; 0x9784f
 
 Unknown_9784f: ; 0x9784f
@@ -2460,9 +2388,7 @@ Script_givecoins: ; 0x97881
 ;     coins (CoinByteParam)
 
 	call Function978a0
-	ld a, $5
-	ld hl, $606f
-	rst $8
+	callba Function1606f
 	ret
 ; 0x9788b
 
@@ -2472,9 +2398,7 @@ Script_takecoins: ; 0x9788b
 ;     coins (CoinByteParam)
 
 	call Function978a0
-	ld a, $5
-	ld hl, $608f
-	rst $8
+	callba Function1608f
 	ret
 ; 0x97895
 
@@ -2484,9 +2408,7 @@ Script_checkcoins: ; 0x97895
 ;     coins (CoinByteParam)
 
 	call Function978a0
-	ld a, $5
-	ld hl, $60a1
-	rst $8
+	callba Function160a1
 	jr Unknown_9784f
 ; 978a0
 
@@ -2506,9 +2428,7 @@ Script_checktime: ; 0x978ae
 
 	xor a
 	ld [$c2dd], a
-	ld a, $3
-	ld hl, $4000
-	rst $8
+	callba Functionc000
 	call GetScriptByte
 	and c
 	ret z
@@ -2543,9 +2463,7 @@ Script_addcellnum: ; 0x978da
 	ld [$c2dd], a
 	call GetScriptByte
 	ld c, a
-	ld a, $24
-	ld hl, $4000
-	rst $8
+	callba Function90000
 	ret nc
 	ld a, $1
 	ld [$c2dd], a
@@ -2561,9 +2479,7 @@ Script_delcellnum: ; 0x978ef
 	ld [$c2dd], a
 	call GetScriptByte
 	ld c, a
-	ld a, $24
-	ld hl, $400f
-	rst $8
+	callba Function9000f
 	ret nc
 	ld a, $1
 	ld [$c2dd], a
@@ -2579,9 +2495,7 @@ Script_checkcellnum: ; 0x97904
 	ld [$c2dd], a
 	call GetScriptByte
 	ld c, a
-	ld a, $24
-	ld hl, $4019
-	rst $8
+	callba Function90019
 	ret nc
 	ld a, $1
 	ld [$c2dd], a
@@ -2641,9 +2555,7 @@ Script_givepoke: ; 0x97932
 	call GetScriptByte
 	call GetScriptByte
 .asm_9795d
-	ld a, $3
-	ld hl, $6277
-	rst $8
+	callba Functione277
 	ld a, b
 	ld [$c2dd], a
 	ret
@@ -2662,9 +2574,7 @@ Script_giveegg: ; 0x97968
 	ld [$d108], a
 	call GetScriptByte
 	ld [$d143], a
-	ld a, $3
-	ld hl, $5f8c
-	rst $8
+	callba Functiondf8c
 	ret nc
 	ld a, $2
 	ld [$c2dd], a
@@ -2768,9 +2678,7 @@ Script_checkflag: ; 0x979d7
 ; 0x979ee
 
 Unknown_0x979ee: ; 0x979ee
-	ld a, $20
-	ld hl, $4430
-	rst $8
+	callba EngineFlagAction
 	ret
 ; 0x979f5
 
@@ -2971,9 +2879,7 @@ Script_reloadmappart: ; 0x97ae3
 	ld [$ffd4], a
 	call Function2173
 	call Function2914
-	ld a, $41
-	ld hl, $4061
-	rst $8
+	callba Function104061
 	call Function1ad2
 	ret
 ; 0x97af6
@@ -3202,9 +3108,7 @@ Script_halloffame: ; 0x97bd5
 Script_credits: ; 0x97bf3
 ; script command 0xa2
 
-	ld a, $21
-	ld hl, $6455
-	rst $8
+	callba Function86455
 	; fallthrough
 
 DisplayCredits:
@@ -3236,9 +3140,7 @@ Script_wait: ; 0x97c05
 Script_unknown0xa9: ; 0x97c15
 ; script command 0xa9
 
-	ld a, $13
-	ld hl, $4ffe
-	rst $8
+	callba Function4cffe
 	ld a, c
 	ld [$c2dd], a
 	ret

@@ -5095,9 +5095,7 @@ BattleCommand48: ; 35b33
 	push bc
 
 	ld b, a
-	ld hl, $45ec
-	ld a, $f
-	rst $8
+	callab Function3c5ec
 	ld a, b
 
 	pop bc
@@ -11024,25 +11022,19 @@ GetMoveByte: ; 37ebb
 
 
 Function0x37ec0: ; 37ec0
-	ld a, $3e
-	ld hl, $7d54
-	rst $8
+	callba Functionfbd54
 	ret
 ; 37ec7
 
 
 Function0x37ec7: ; 37ec7
-	ld a, $3e
-	ld hl, $7d71
-	rst $8
+	callba Functionfbd71
 	ret
 ; 37ece
 
 
 Function0x37ece: ; 37ece
-	ld a, $3e
-	ld hl, $7d69
-	rst $8
+	callba Functionfbd69
 	ret
 ; 37ed5
 
@@ -11052,9 +11044,7 @@ Function0x37ed5: ; 37ed5
 	push hl
 	push de
 	push bc
-	ld a, $13
-	ld hl, $6a44
-	rst $8
+	callba Function4ea44
 	pop bc
 	pop de
 	pop hl
