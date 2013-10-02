@@ -1589,9 +1589,9 @@ Function350c: ; 350c
 	ld a, $9
 	rst Bankswitch
 
-	call $45af
+	call Function245af
 	call Function3524
-	call $45cb
+	call Function245cb
 	pop af
 	rst Bankswitch
 
@@ -2947,11 +2947,11 @@ Function3b2a: ; 3b2a
 	ld [$c3b8], a
 	ld a, [hROMBank]
 	push af
-	ld a, $23
+	ld a, BANK(Function8cfd6)
 	rst Bankswitch
 
 	ld a, [$c3b8]
-	call $4fd6
+	call Function8cfd6
 	pop af
 	rst Bankswitch
 
@@ -2963,11 +2963,11 @@ Function3b3c: ; 3b3c
 	ld [$c3b8], a
 	ld a, [hROMBank]
 	push af
-	ld a, $23
+	ld a, BANK(Function8d120)
 	rst Bankswitch
 
 	ld a, [$c3b8]
-	call $5120
+	call Function8d120
 	pop af
 	rst Bankswitch
 
@@ -3580,11 +3580,11 @@ Function3e32: ; 3e32
 	set 6, [hl]
 	ld a, [hROMBank]
 	push af
-	ld a, $44
+	ld a, BANK(Function110030)
 	ld [$c981], a
 	rst Bankswitch
 
-	jp $4030
+	jp Function110030
 ; 3e60
 
 
@@ -3613,11 +3613,11 @@ Function3e60: ; 3e60
 Function3e80: ; 3e80
 	ld a, [hROMBank]
 	push af
-	ld a, $44
+	ld a, BANK(Function1116c5)
 	ld [$c981], a
 	rst Bankswitch
 
-	call $56c5
+	call Function1116c5
 	pop bc
 	ld a, b
 	ld [$c981], a
@@ -3659,11 +3659,11 @@ Timer: ; 3e93
 
 	ld a, [hROMBank]
 	push af
-	ld a, $44
+	ld a, BANK(Function1118de)
 	ld [$c981], a
 	rst Bankswitch
 
-	call $58de
+	call Function1118de
 
 	pop bc
 	ld a, b
@@ -3689,10 +3689,10 @@ Function3ed7: ; 3ed7
 	ld [$dc02], a
 	ld a, [hROMBank]
 	push af
-	ld a, $45
+	ld a, BANK(Function114243)
 	rst Bankswitch
 
-	call $4243
+	call Function114243
 	pop bc
 	ld a, b
 	rst Bankswitch
