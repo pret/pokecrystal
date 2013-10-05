@@ -1898,7 +1898,7 @@ Function3674: ; 3674
 	ld [MartPointer], a
 
 Function367e: ; 367e
-	call GetMapEventBank
+	call GetMapScriptHeaderBank
 	ld [EngineBuffer1], a
 	ld a, [$ffe0]
 	call GetMapObject
@@ -2010,7 +2010,7 @@ Function36f5: ; 36f5
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	call GetMapEventBank
+	call GetMapScriptHeaderBank
 	call GetFarHalfword
 	ld d, h
 	ld e, l
@@ -2044,7 +2044,7 @@ Function3718: ; 3718
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	call GetMapEventBank
+	call GetMapScriptHeaderBank
 	call FarPrintText
 	call WaitBGMap
 	call Functiona80
@@ -11763,7 +11763,7 @@ PredefPointers: ; 856b
 ; $4b Predef pointers
 ; address, bank
 
-	dwb Function6508, BANK(Function6508)
+	dwb Function6508, BANK(Function6508) ; $0
 	dwb Function747a, BANK(Function747a)
 	dwb Functionc658, BANK(Functionc658)
 	dwb FlagPredef, BANK(FlagPredef)
@@ -11771,7 +11771,7 @@ PredefPointers: ; 856b
 	dwb FillPP, BANK(FillPP)
 	dwb Functiond88c, BANK(Functiond88c)
 	dwb Functionda96, BANK(Functionda96)
-	dwb Functiondb3f, BANK(Functiondb3f)
+	dwb Functiondb3f, BANK(Functiondb3f) ; $8
 	dwb Functionde6e, BANK(Functionde6e)
 	dwb Functiondf8c, BANK(Functiondf8c)
 	dwb Functionc6e0, BANK(Functionc6e0)
@@ -11779,7 +11779,7 @@ PredefPointers: ; 856b
 	dwb Functione17b, BANK(Functione17b)
 	dwb CanLearnTMHMMove, BANK(CanLearnTMHMMove)
 	dwb GetTMHMMove, BANK(GetTMHMMove)
-	dwb Function28eef, BANK(Function28eef)
+	dwb Function28eef, BANK(Function28eef) ; $ 10
 	dwb PrintMoveDesc, BANK(PrintMoveDesc)
 	dwb Function3df48, BANK(Function3df48) ; UpdatePlayerHUD
 	dwb FillBox, BANK(FillBox)
@@ -11787,7 +11787,7 @@ PredefPointers: ; 856b
 	dwb Function3e036, BANK(Function3e036) ; UpdateEnemyHUD
 	dwb StartBattle, BANK(StartBattle)
 	dwb FillInExpBar, BANK(FillInExpBar)
-	dwb Function3f43d, BANK(Function3f43d)
+	dwb Function3f43d, BANK(Function3f43d) ; $18
 	dwb Function3f47c, BANK(Function3f47c)
 	dwb Function42487, BANK(Function42487)
 	dwb FillMoves, BANK(FillMoves)
@@ -11795,7 +11795,7 @@ PredefPointers: ; 856b
 	dwb Function28f63, BANK(Function28f63)
 	dwb Function28f24, BANK(Function28f24)
 	dwb Function5084a, BANK(Function5084a)
-	dwb Function50d6f, BANK(Function50d6f)
+	dwb Function50d6f, BANK(Function50d6f) ; $20
 	dwb Function50d2e, BANK(Function50d2e)
 	dwb Function50cdb, BANK(Function50cdb)
 	dwb Function50c50, BANK(Function50c50)
@@ -11803,7 +11803,7 @@ PredefPointers: ; 856b
 	dwb StatsScreenInit, BANK(StatsScreenInit)
 	dwb DrawPlayerHP, BANK(DrawPlayerHP)
 	dwb DrawEnemyHP, BANK(DrawEnemyHP)
-	dwb Function50b7b, BANK(Function50b7b)
+	dwb Function50b7b, BANK(Function50b7b) ; $28
 	dwb GetTypeName, BANK(GetTypeName)
 	dwb PrintMoveType, BANK(PrintMoveType)
 	dwb PrintType, BANK(PrintType)
@@ -11811,7 +11811,7 @@ PredefPointers: ; 856b
 	dwb GetUnownLetter, BANK(GetUnownLetter)
 	dwb Functioncbcdd, BANK(Functioncbcdd)
 	dwb Functioncc0d5, BANK(Functioncc0d5)
-	dwb Function9853, BANK(Function9853)
+	dwb Function9853, BANK(Function9853) ; $30
 	dwb Function864c, BANK(Function864c)
 	dwb Function91d11, BANK(Function91d11)
 	dwb CheckContestMon, BANK(CheckContestMon)
@@ -11819,7 +11819,7 @@ PredefPointers: ; 856b
 	dwb Function8c000, BANK(Function8c000)
 	dwb Function8c000, BANK(Function8c000)
 	dwb Functioncc0d6, BANK(Functioncc0d6)
-	dwb Functioncc0d5, BANK(Functioncc0d5)
+	dwb Functioncc0d5, BANK(Functioncc0d5) ; $38
 	dwb Functioncc0d5, BANK(Functioncc0d5)
 	dwb Functionfd1d0, BANK(Functionfd1d0)
 	dwb PartyMonItemName, BANK(PartyMonItemName)
@@ -11827,7 +11827,7 @@ PredefPointers: ; 856b
 	dwb Function5116c, BANK(Function5116c)
 	dwb Function5108b, BANK(Function5108b)
 	dwb Function5120d, BANK(Function5120d)
-	dwb DecompressPredef, BANK(DecompressPredef)
+	dwb DecompressPredef, BANK(DecompressPredef) ; $40
 	dwb Function0x347d3, BANK(Function0x347d3)
 	dwb Functionfb908, BANK(Functionfb908)
 	dwb Functionfb877, BANK(Functionfb877)
@@ -11835,7 +11835,7 @@ PredefPointers: ; 856b
 	dwb Function50d0a, BANK(Function50d0a)
 	dwb Functiond00a3, BANK(Functiond00a3)
 	dwb Functiond008e, BANK(Functiond008e)
-	dwb Functiond0669, BANK(Functiond0669)
+	dwb Functiond0669, BANK(Functiond0669) ; $48
 	dwb Functiond066e, BANK(Functiond066e)
 	dbw $ff, Function2d43 ; ????
 ; 864c
@@ -15350,7 +15350,7 @@ Functiond571: ; d571 (3:5571)
 ; known jump sources: d591 (3:5591)
 Functiond595: ; d595 (3:5595)
 	ld hl, $d194
-	ld a, [$d19f]
+	ld a, [MapWidth]
 	add $6
 	add [hl]
 	ld [hli], a
@@ -15383,7 +15383,7 @@ Functiond5a2: ; d5a2 (3:55a2)
 ; known jump sources: d5c2 (3:55c2)
 Functiond5c6: ; d5c6 (3:55c6)
 	ld hl, $d194
-	ld a, [$d19f]
+	ld a, [MapWidth]
 	add $6
 	ld b, a
 	ld a, [hl]
@@ -19841,7 +19841,7 @@ Function114e7: ; 114e7
 	jr z, .asm_114fa
 
 	ld b, a
-	callba Function13988
+	callba ApplyPokerusTick
 
 .asm_114fa
 	xor a
@@ -24691,7 +24691,8 @@ Function1397f: ; 1397f
 	ret
 ; 13988
 
-Function13988: ; 13988
+; decreases all pokemon's pokerus counter by b. if the lower nybble reaches zero, the pokerus is cured.
+ApplyPokerusTick: ; 13988
 	ld hl, PartyMon1PokerusStatus
 	ld a, [PartyCount]
 	and a
@@ -40889,18 +40890,18 @@ INCLUDE "battle/moves/move_descriptions.asm"
 
 
 Function2ed44: ; 2ed44
-	call Function2ede6
+	call ConvertBerriesToBerryJuice
 	ld hl, PartyMon1PokerusStatus
 	ld a, [PartyCount]
 	ld b, a
 	ld de, $0030
-.asm_2ed51
+.loopMons
 	ld a, [hl]
 	and $f
-	jr nz, .asm_2ed9a
+	jr nz, .monHasActivePokerus
 	add hl, de
 	dec b
-	jr nz, .asm_2ed51
+	jr nz, .loopMons
 	ld hl, StatusFlags2
 	bit 6, [hl]
 	ret z
@@ -40910,23 +40911,23 @@ Function2ed44: ; 2ed44
 	ret nz
 	ld a, [hRandomSub]
 	cp $3
-	ret nc
+	ret nc                 ; 3/65536 chance (00 00, 00 01 or 00 02)
 	ld a, [PartyCount]
 	ld b, a
-.asm_2ed70
+.randomMonSelectLoop
 	call Random
 	and $7
 	cp b
-	jr nc, .asm_2ed70
+	jr nc, .randomMonSelectLoop
 	ld hl, PartyMon1PokerusStatus
-	call GetPartyLocation
+	call GetPartyLocation  ; get pokerus byte of random mon
 	ld a, [hl]
 	and $f0
-	ret nz
-.asm_2ed82
+	ret nz                 ; if it already has pokerus, do nothing
+.randomPokerusLoop
 	call Random
 	and a
-	jr z, .asm_2ed82
+	jr z, .randomPokerusLoop
 	ld b, a
 	and $f0
 	jr z, .asm_2ed91
@@ -40943,38 +40944,38 @@ Function2ed44: ; 2ed44
 	ld [hl], a
 	ret
 
-.asm_2ed9a
+.monHasActivePokerus
 	call Random
 	cp $55
-	ret nc
+	ret nc              ; 1/3 chance
 	ld a, [PartyCount]
 	cp $1
-	ret z
+	ret z               ; only one mon, nothing to do
 	ld c, [hl]
 	ld a, b
 	cp $2
-	jr c, .asm_2edc3
+	jr c, .checkPreviousMonsLoop    ; no more mons after this one, go backwards
 	call Random
 	cp $80
-	jr c, .asm_2edc3
-.asm_2edb3
+	jr c, .checkPreviousMonsLoop    ; 1/2 chance, go backwards
+.checkFollowingMonsLoop
 	add hl, de
 	ld a, [hl]
 	and a
-	jr z, .asm_2edd9
+	jr z, .infectMon
 	ld c, a
 	and $3
-	ret z
-	dec b
+	ret z               ; if mon has cured pokerus, stop searching
+	dec b               ; go on to next mon
 	ld a, b
 	cp $1
-	jr nz, .asm_2edb3
+	jr nz, .checkFollowingMonsLoop ; no more mons left
 	ret
 
-.asm_2edc3
+.checkPreviousMonsLoop
 	ld a, [PartyCount]
 	cp b
-	ret z
+	ret z               ; no more mons
 	ld a, l
 	sub e
 	ld l, a
@@ -40983,14 +40984,14 @@ Function2ed44: ; 2ed44
 	ld h, a
 	ld a, [hl]
 	and a
-	jr z, .asm_2edd9
+	jr z, .infectMon
 	ld c, a
 	and $3
-	ret z
-	inc b
-	jr .asm_2edc3
+	ret z               ; if mon has cured pokerus, stop searching
+	inc b               ; go on to next mon
+	jr .checkPreviousMonsLoop
 
-.asm_2edd9
+.infectMon
 	ld a, c
 	and $f0
 	ld b, a
@@ -41003,37 +41004,38 @@ Function2ed44: ; 2ed44
 	ret
 ; 2ede6
 
-Function2ede6: ; 2ede6
+; any berry held by a Shuckle may be converted to berry juice
+ConvertBerriesToBerryJuice: ; 2ede6
 	ld hl, StatusFlags2
 	bit 6, [hl]
 	ret z
 	call Random
 	cp $10
-	ret nc
+	ret nc              ; 1/16 chance
 	ld hl, PartyMons
 	ld a, [PartyCount]
-.asm_2edf8
+.partyMonLoop
 	push af
 	push hl
 	ld a, [hl]
 	cp SHUCKLE
-	jr nz, .asm_2ee08
+	jr nz, .nextMon
 	ld bc, PartyMon1Item - PartyMon1Species
 	add hl, bc
 	ld a, [hl]
 	cp BERRY
-	jr z, .asm_2ee12
+	jr z, .convertToJuice
 
-.asm_2ee08
+.nextMon
 	pop hl
 	ld bc, PartyMon2 - PartyMon1
 	add hl, bc
 	pop af
 	dec a
-	jr nz, .asm_2edf8
+	jr nz, .partyMonLoop
 	ret
 
-.asm_2ee12
+.convertToJuice
 	ld a, BERRY_JUICE
 	ld [hl], a
 	pop hl
@@ -85916,7 +85918,7 @@ CheckTileEvent: ; 96874
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	call GetMapEventBank
+	call GetMapScriptHeaderBank
 	call CallScript
 	ret
 ; 968c7
@@ -85980,9 +85982,9 @@ Function968ec: ; 968ec
 	add hl, de
 	add hl, de
 
-	call GetMapEventBank
+	call GetMapScriptHeaderBank
 	call GetFarHalfword
-	call GetMapEventBank
+	call GetMapScriptHeaderBank
 	call CallScript
 
 	ld hl, ScriptFlags
@@ -86157,7 +86159,7 @@ TryObjectEvent: ; 969b5
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	call GetMapEventBank
+	call GetMapScriptHeaderBank
 	call CallScript
 ;	ld a, -1
 	ret
@@ -86169,7 +86171,7 @@ TryObjectEvent: ; 969b5
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	call GetMapEventBank
+	call GetMapScriptHeaderBank
 	ld de, EngineBuffer1
 	ld bc, 2
 	call FarCopyBytes
@@ -86255,7 +86257,7 @@ TryReadSign: ; 96a38
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	call GetMapEventBank
+	call GetMapScriptHeaderBank
 	call CallScript
 	scf
 	ret
@@ -86264,7 +86266,7 @@ TryReadSign: ; 96a38
 	call CheckSignFlag
 	jp nz, .dontread
 	call PlayTalkObject
-	call GetMapEventBank
+	call GetMapScriptHeaderBank
 	ld de, EngineBuffer1
 	ld bc, 3
 	call FarCopyBytes
@@ -86277,7 +86279,7 @@ TryReadSign: ; 96a38
 .asm_96aa2
 	call CheckSignFlag
 	jr nz, .dontread
-	call GetMapEventBank
+	call GetMapScriptHeaderBank
 	ld de, EngineBuffer1
 	ld bc, 3
 	call FarCopyBytes
@@ -86298,9 +86300,9 @@ TryReadSign: ; 96a38
 	pop hl
 	inc hl
 	inc hl
-	call GetMapEventBank
+	call GetMapScriptHeaderBank
 	call GetFarHalfword
-	call GetMapEventBank
+	call GetMapScriptHeaderBank
 	call CallScript
 	scf
 	ret
@@ -86317,7 +86319,7 @@ CheckSignFlag: ; 96ad8
 	ld h, [hl]
 	ld l, a
 	push hl
-	call GetMapEventBank
+	call GetMapScriptHeaderBank
 	call GetFarHalfword
 	ld e, l
 	ld d, h
@@ -87674,7 +87676,7 @@ Functionb8164: ; b8164
 ; b8172
 
 Functionb8172: ; b8172
-	call GetMapEventBank
+	call GetMapScriptHeaderBank
 	ld [MagikarpLength], a
 	ld a, [XCoord]
 	add $5
@@ -111876,7 +111878,7 @@ Function104820: ; 104820 (41:4820)
 	ld a, [MapY] ; $d4e7
 	sub $4
 	ld b, a
-	ld a, [$d19e]
+	ld a, [MapHeight]
 	add a
 	cp b
 	jr z, .asm_10486b
@@ -111900,7 +111902,7 @@ Function104820: ; 104820 (41:4820)
 	ld a, [MapX] ; $d4e6
 	sub $4
 	ld b, a
-	ld a, [$d19f]
+	ld a, [MapWidth]
 	add a
 	cp b
 	jr z, .asm_10486b
@@ -111928,7 +111930,7 @@ Function10486d: ; 10486d
 	ld c, a
 	ld b, $0
 	add hl, bc
-	ld a, [$d19f]
+	ld a, [MapWidth]
 	add $6
 	ld c, a
 	ld b, $0

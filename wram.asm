@@ -1099,15 +1099,29 @@ SECTION "UsedSprites",WRAMX[$d154],BANK[1]
 UsedSprites: ; d154
 	ds 32
 
-SECTION "map",WRAMX[$d1a3],BANK[1]
+SECTION "map",WRAMX[$d19d],BANK[1]
 
-MapEventBank: ; d1a3
+; both are in blocks (2x2 walkable tiles, 4x4 graphics tiles)
+MapHeader: ; d19d
+MapBorderBlock: ; d19d
 	ds 1
-
-	ds 5
-
-MapConnections:
-
+MapHeight: ; d19e
+	ds 1
+MapWidth: ; d19f
+	ds 1
+MapBlockDataBank: ; d1a0
+	ds 1
+MapBlockDataPointer: ; d1a1
+	ds 2
+MapScriptHeaderBank: ; d1a3
+	ds 1
+MapScriptHeaderPointer: ; d1a4
+	ds 2
+MapEventHeaderPointer: ; d1a6
+	ds 2
+; bit set
+MapConnections: ; d1a8
+	ds 1
 NorthMapConnection: ; d1a9
 NorthConnectedMapGroup: ; d1a9
 	ds 1
