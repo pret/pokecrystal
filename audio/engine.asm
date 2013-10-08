@@ -5,7 +5,7 @@
 ; Notable functions:
 ; 	UpdateSound (called during VBlank)
 ; 	FadeMusic
-; 	PlaySFX
+; 	PlayStereoSFX
 ; 	PlayCry
 
 SoundRestart: ; e8000
@@ -2566,7 +2566,7 @@ LoadSFX: ; e8c04
 ; e8ca6
 
 
-PlaySFX: ; e8ca6
+PlayStereoSFX: ; e8ca6
 ; play sfx de
 
 	call MusicOff
