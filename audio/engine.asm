@@ -2103,7 +2103,7 @@ GetMusicByte: ; e8a3e
 	add hl, bc
 	ld a, [hl]
 	; get byte
-	call LoadMusicByte ; load data into CurMusicByte
+	call _LoadMusicByte ; load data into CurMusicByte
 	inc de ; advance to next byte for next time this is called
 	; update channeldata address
 	ld hl, Channel1MusicAddress - Channel1
@@ -2324,7 +2324,7 @@ _PlayMusic: ; e8b30
 	ld e, [hl]
 	inc hl
 	ld d, [hl] ; music header address
-	call FarLoadMusicByte ; store first byte of music header in a
+	call LoadMusicByte ; store first byte of music header in a
 	rlca
 	rlca
 	and a, $03 ; get number of channels
@@ -2379,7 +2379,7 @@ PlayCry: ; e8b79
 	ld d, [hl]
 	
 ; Read the cry's sound header
-	call FarLoadMusicByte
+	call LoadMusicByte
 	; Top 2 bits contain the number of channels
 	rlca
 	rlca
@@ -2544,7 +2544,7 @@ _PlaySFX: ; e8c04
 	inc hl
 	ld d, [hl]
 	; get # channels
-	call FarLoadMusicByte
+	call LoadMusicByte
 	rlca ; top 2
 	rlca ; bits
 	and a, $03
@@ -2597,7 +2597,7 @@ PlayStereoSFX: ; e8ca6
 	ld d, [hl]
 	
 ; bit 2-3
-	call FarLoadMusicByte
+	call LoadMusicByte
 	rlca
 	rlca
 	and 3 ; ch1-4
@@ -2674,7 +2674,7 @@ LoadChannel: ; e8d1b
 ; input:
 ; 	de:
 	; get pointer to current channel
-	call FarLoadMusicByte
+	call LoadMusicByte
 	inc de
 	and a, $07 ; bit 0-2 (current channel)
 	ld [CurChannel], a
@@ -2693,10 +2693,10 @@ LoadChannel: ; e8d1b
 	; load music pointer
 	ld hl, Channel1MusicAddress - Channel1
 	add hl, bc
-	call FarLoadMusicByte
+	call LoadMusicByte
 	ld [hli], a
 	inc de
-	call FarLoadMusicByte
+	call LoadMusicByte
 	ld [hl], a
 	inc de
 	; load music id
@@ -2745,13 +2745,13 @@ ChannelInit: ; e8d5b
 	ret
 ; e8d76
 
-FarLoadMusicByte: ; e8d76
+LoadMusicByte: ; e8d76
 ; input:
 ;   de = current music address
 ; output:
 ;   a = CurMusicByte
 	ld a, [MusicBank]
-	call LoadMusicByte
+	call _LoadMusicByte
 	ld a, [CurMusicByte]
 	ret
 ; e8d80
