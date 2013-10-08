@@ -3203,13 +3203,13 @@ PlaySFX: ; 3c23
 .play
 	ld a, [hROMBank]
 	push af
-	ld a, BANK(LoadSFX)
+	ld a, BANK(_PlaySFX)
 	ld [hROMBank], a
 	ld [MBC3RomBank], a ; bankswitch
 
 	ld a, e
 	ld [CurSFX], a
-	call LoadSFX
+	call _PlaySFX
 
 	pop af
 	ld [hROMBank], a
