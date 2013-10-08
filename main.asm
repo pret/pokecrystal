@@ -66722,32 +66722,45 @@ Function97d23: ; 97d23
 ; 97d31
 
 Function97d31: ; 97d31
+; Pick a random mon out of ContestMons.
+
 .asm_97d31
 	call Random
 	cp 100 << 1
 	jr nc, .asm_97d31
 	srl a
-	ld hl, Table97d87
-	ld de, 4
-.asm_97d40
-	sub [hl]
-	jr c, .asm_97d46
-	add hl, de
-	jr .asm_97d40
 
-.asm_97d46
+	ld hl, ContestMons
+	ld de, 4
+.CheckMon
+	sub [hl]
+	jr c, .GotMon
+	add hl, de
+	jr .CheckMon
+
+.GotMon
 	inc hl
+
+; Species
 	ld a, [hli]
 	ld [$d22e], a
+
+; Min level
 	ld a, [hli]
 	ld d, a
-	ld a, [hl]
-	sub d
-	jr nz, .asm_97d54
-	ld a, d
-	jr .asm_97d5f
 
-.asm_97d54
+; Max level
+	ld a, [hl]
+
+	sub d
+	jr nz, .RandomLevel
+
+; If min and max are the same.
+	ld a, d
+	jr .GotLevel
+
+.RandomLevel
+; Get a random level between the min and max.
 	ld c, a
 	inc c
 	call Random
@@ -66755,8 +66768,9 @@ Function97d31: ; 97d31
 	call SimpleDivide
 	add d
 
-.asm_97d5f
+.GotLevel
 	ld [CurPartyLevel], a
+
 	xor a
 	ret
 ; 97d64
@@ -66784,18 +66798,19 @@ Function97d64: ; 97d64
 	ret
 ; 97d87
 
-Table97d87: ; 97d87
-	db 20, $0a, $07, $12
-	db 20, $0d, $07, $12
-	db 10, $0b, $09, $12
-	db 10, $0e, $09, $12
-	db  5, $0c, $0c, $0f
-	db  5, $0f, $0c, $0f
-	db 10, $30, $0a, $10
-	db 10, $2e, $0a, $11
-	db  5, $7b, $0d, $0e
-	db  5, $7f, $0d, $0e
-	db -1, $31, $1e, $28
+ContestMons: ; 97d87
+	;   %, species,   min, max
+	db 20, CATERPIE,    7, 18
+	db 20, WEEDLE,      7, 18
+	db 10, METAPOD,     9, 18
+	db 10, KAKUNA,      9, 18
+	db  5, BUTTERFREE, 12, 15
+	db  5, BEEDRILL,   12, 15
+	db 10, VENONAT,    10, 16
+	db 10, PARAS,      10, 17
+	db  5, SCYTHER,    13, 14
+	db  5, PINSIR,     13, 14
+	db -1, VENOMOTH,   30, 40
 ; 97db3
 
 Function97db3: ; 97db3
