@@ -636,7 +636,7 @@ FadeMusic: ; e8358
 	ld a, [MusicFadeIDHi]
 	ld d, a
 	; load new song
-	call LoadMusic
+	call _PlayMusic
 .quit
 	; cleanup
 	pop bc
@@ -658,7 +658,7 @@ FadeMusic: ; e8358
 	ld a, [MusicFadeIDHi]
 	ld d, a
 	; load new song
-	call LoadMusic
+	call _PlayMusic
 	pop bc
 	; fade in
 	ld hl, MusicFade
@@ -2081,7 +2081,7 @@ MusicEB: ; e8a30
 	call GetMusicByte
 	ld d, a
 	push bc
-	call LoadMusic
+	call _PlayMusic
 	pop bc
 	ret
 ; e8a3e
@@ -2308,7 +2308,7 @@ SetLRTracks: ; e8b1b
 	ret
 ; e8b30
 
-LoadMusic: ; e8b30
+_PlayMusic: ; e8b30
 ; load music
 	call MusicOff
 	ld hl, MusicID

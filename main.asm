@@ -3065,7 +3065,7 @@ PlayMusic: ; 3b97
 
 	ld a, [hROMBank]
 	push af
-	ld a, BANK(LoadMusic) ; and BANK(SoundRestart)
+	ld a, BANK(_PlayMusic) ; and BANK(SoundRestart)
 	ld [hROMBank], a
 	ld [MBC3RomBank], a
 
@@ -3073,7 +3073,7 @@ PlayMusic: ; 3b97
 	and a
 	jr z, .nomusic
 
-	call LoadMusic
+	call _PlayMusic
 	jr .end
 
 .nomusic
@@ -3101,16 +3101,16 @@ PlayMusic2: ; 3bbc
 
 	ld a, [hROMBank]
 	push af
-	ld a, BANK(LoadMusic)
+	ld a, BANK(_PlayMusic)
 	ld [hROMBank], a
 	ld [MBC3RomBank], a
 
 	push de
 	ld de, MUSIC_NONE
-	call LoadMusic
+	call _PlayMusic
 	call DelayFrame
 	pop de
-	call LoadMusic
+	call _PlayMusic
 
 	pop af
 	ld [hROMBank], a
