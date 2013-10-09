@@ -71793,159 +71793,119 @@ INCBIN "baserom.gbc", $e491e, $e555d - $e491e
 
 IntroSuicuneRunGFX: ; e555d
 INCBIN "gfx/intro/suicune_run.lz"
-; e592b
-
-INCBIN "baserom.gbc", $e592b, $e592d - $e592b
+; e592d
 
 IntroPichuWooperGFX: ; e592d
 INCBIN "gfx/intro/pichu_wooper.lz"
-; e5c70
-
-INCBIN "baserom.gbc", $e5c70, $e5c7d - $e5c70
+; e5c7d
 
 IntroBackgroundGFX: ; e5c7d
 INCBIN "gfx/intro/background.lz"
-; e5e69
-
-INCBIN "baserom.gbc", $e5e69, $e5e6d - $e5e69
+; e5e6d
 
 IntroTilemap004: ; e5e6d
 INCBIN "gfx/intro/004.lz"
-; e5ec5
-
-INCBIN "baserom.gbc", $e5ec5, $e5ecd - $e5ec5
+; e5ecd
 
 IntroTilemap003: ; e5ecd
 INCBIN "gfx/intro/003.lz"
-; e5ed9
+; e5edd
 
-INCBIN "baserom.gbc", $e5ed9, $e5f5d - $e5ed9
+INCBIN "baserom.gbc", $e5edd, $e5f5d - $e5edd
 
 IntroUnownsGFX: ; e5f5d
 INCBIN "gfx/intro/unowns.lz"
-; e6348
-
-INCBIN "baserom.gbc", $e6348, $e634d - $e6348
+; e634d
 
 IntroPulseGFX: ; e634d
 INCBIN "gfx/intro/pulse.lz"
-; e63d4
-
-INCBIN "baserom.gbc", $e63d4, $e63dd - $e63d4
+; e63dd
 
 IntroTilemap002: ; e63dd
 INCBIN "gfx/intro/002.lz"
-; e6418
-
-INCBIN "baserom.gbc", $e6418, $e641d - $e6418
+; e641d
 
 IntroTilemap001: ; e641d
 INCBIN "gfx/intro/001.lz"
-; e6429
-
-INCBIN "baserom.gbc", $e6429, $e642d - $e6429
+; e642d
 
 IntroTilemap006: ; e642d
 INCBIN "gfx/intro/006.lz"
-; e6472
-
-INCBIN "baserom.gbc", $e6472, $e647d - $e6472
+; e647d
 
 IntroTilemap005: ; e647d
 INCBIN "gfx/intro/005.lz"
-; e6498
-
-INCBIN "baserom.gbc", $e6498, $e649d - $e6498
+; e649d
 
 IntroTilemap008: ; e649d
 INCBIN "gfx/intro/008.lz"
-; e6550
-
-INCBIN "baserom.gbc", $e6550, $e655d - $e6550
+; e655d
 
 IntroTilemap007: ; e655d
 INCBIN "gfx/intro/007.lz"
-; e65a4
+; e65ad
 
-INCBIN "baserom.gbc", $e65a4, $e662d - $e65a4
+INCBIN "baserom.gbc", $e65ad, $e662d - $e65ad
 
 IntroCrystalUnownsGFX: ; e662d
 INCBIN "gfx/intro/crystal_unowns.lz"
-; e6720
-
-INCBIN "baserom.gbc", $e6720, $e672d - $e6720
+; e672d
 
 IntroTilemap017: ; e672d
 INCBIN "gfx/intro/017.lz"
-; e6761
-
-INCBIN "baserom.gbc", $e6761, $e676d - $e6761
+; e676d
 
 IntroTilemap015: ; e676d
 INCBIN "gfx/intro/015.lz"
-; e6794
+; e679d
 
-INCBIN "baserom.gbc", $e6794, $e681d - $e6794
+INCBIN "baserom.gbc", $e679d, $e681d - $e679d
 
 IntroSuicuneCloseGFX: ; e681d
 INCBIN "gfx/intro/suicune_close.lz"
-; e6c37
-
-INCBIN "baserom.gbc", $e6c37, $e6c3d - $e6c37
+; e6c3d
 
 IntroTilemap012: ; e6c3d
 INCBIN "gfx/intro/012.lz"
-; e6d0a
-
-INCBIN "baserom.gbc", $e6d0a, $e6d0d - $e6d0a
+; e6d0d
 
 IntroTilemap011: ; e6d0d
 INCBIN "gfx/intro/011.lz"
-; e6d65
+; e6d6d
 
-INCBIN "baserom.gbc", $e6d65, $e6ded - $e6d65
+INCBIN "baserom.gbc", $e6d6d, $e6ded - $e6d6d
 
 IntroSuicuneJumpGFX: ; e6ded
 INCBIN "gfx/intro/suicune_jump.lz"
-; e72a7
-
-INCBIN "baserom.gbc", $e72a7, $e72ad - $e72a7
+; e72ad
 
 IntroSuicuneBackGFX: ; e72ad
 INCBIN "gfx/intro/suicune_back.lz"
-; e7648
-
-INCBIN "baserom.gbc", $e7648, $e764d - $e7648
+; e764d
 
 IntroTilemap010: ; e764d
 INCBIN "gfx/intro/010.lz"
-; e76a0
-
-INCBIN "baserom.gbc", $e76a0, $e76ad - $e76a0
+; e76ad
 
 IntroTilemap009: ; e76ad
 INCBIN "gfx/intro/009.lz"
-; e76bb
-
-INCBIN "baserom.gbc", $e76bb, $e76bd - $e76bb
+; e76bd
 
 IntroTilemap014: ; e76bd
 INCBIN "gfx/intro/014.lz"
-; e778b
-
-INCBIN "baserom.gbc", $e778b, $e778d - $e778b
+; e778d
 
 IntroTilemap013: ; e778d
 INCBIN "gfx/intro/013.lz"
-; e77d9
+; e77dd
 
-INCBIN "baserom.gbc", $e77d9, $e785d - $e77d9
+INCBIN "baserom.gbc", $e77dd, $e785d - $e77dd
 
 IntroUnownBackGFX: ; e785d
 INCBIN "gfx/intro/unown_back.lz"
-; e799a
+; e799d
 
-INCBIN "baserom.gbc", $e799a, $e7a70 - $e799a
+INCBIN "baserom.gbc", $e799d, $e7a70 - $e799d
 
 
 ; ================================================================
@@ -78936,9 +78896,7 @@ INCBIN "baserom.gbc", $108bbd, $109407 - $108bbd
 
 IntroLogoGFX: ; 109407
 INCBIN "gfx/intro/logo.lz"
-; 10983f
-
-INCBIN "baserom.gbc", $10983f, $109847 - $10983f
+; 109847
 
 
 Function109847: ; 109847
