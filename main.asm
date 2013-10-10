@@ -71555,9 +71555,9 @@ Functione4579: ; e4579
 ; e45e8
 
 Functione45e8: ; e45e8
-	ld de, $47cc
+	ld de, GameFreakLogo
 	ld hl, VTiles2
-	ld bc, $391c
+	ld bc, BANK(GameFreakLogo) << 8 + $1c
 	call Get1bpp
 	ld a, [rSVBK]
 	push af
@@ -71714,8 +71714,11 @@ Functione46dd: ; e46dd
 ; e46ed
 
 
-INCBIN "baserom.gbc", $e46ed, $e48ac - $e46ed
+INCBIN "baserom.gbc", $e46ed, $e47cc - $e46ed
 
+GameFreakLogo: ; e47cc
+INCBIN "gfx/splash/logo.1bpp"
+; e48ac
 
 Functione48ac: ; e48ac
 	ld a, [rSVBK]
