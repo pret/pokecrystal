@@ -1,3 +1,6 @@
+INCLUDE "includes.asm"
+
+
 SECTION "bank0",ROM0
 
 INCLUDE "rst.asm"

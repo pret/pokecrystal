@@ -6,7 +6,7 @@ PYTHON := python
 TEXTFILES := $(shell find ./ -type f -name '*.asm' | grep -v globals.asm)
 TEXTQUEUE :=
 
-OBJS := pokecrystal.o
+OBJS := wram.o main.o
 
 PNGS   := $(shell find gfx/ -type f -name '*.png')
 LZS    := $(shell find gfx/ -type f -name '*.lz')
