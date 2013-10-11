@@ -27928,7 +27928,11 @@ MapGroupRoofs: ; 1c021i
 ; 1c03c
 
 Roofs: ; 1c03c
-INCBIN "baserom.gbc", $1c03c, $1c30c - $1c03c
+INCBIN "gfx/tilesets/roofs/0.2bpp"
+INCBIN "gfx/tilesets/roofs/1.2bpp"
+INCBIN "gfx/tilesets/roofs/2.2bpp"
+INCBIN "gfx/tilesets/roofs/3.2bpp"
+INCBIN "gfx/tilesets/roofs/4.2bpp"
 ; 1c30c
 
 INCLUDE "tilesets/data_2.asm"
