@@ -7,7 +7,7 @@ BattleCommand5a: ; 3766f
 	ret c
 
 	ld a, BATTLE_VARS_SUBSTATUS1
-	call GetBattleVarPair
+	call _GetBattleVar
 	set SUBSTATUS_ENDURE, [hl]
 
 	call Function0x37e01
