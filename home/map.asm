@@ -1418,9 +1418,7 @@ Function2821: ; 2821
 	jr .asm_2875
 
 .asm_286f
-	ld a, $7
-	ld hl, $4000
-	rst FarCall
+	callba LoadMapGroupRoof
 
 .asm_2875
 	xor a
