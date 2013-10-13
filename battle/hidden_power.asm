@@ -94,7 +94,7 @@ GetHiddenPower: ; fbced
 .GotType
 	push af
 	ld a, BATTLE_VARS_MOVE_TYPE
-	call GetBattleVarPair
+	call _GetBattleVar
 	pop af
 	ld [hl], a
 

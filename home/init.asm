@@ -1,6 +1,6 @@
 Reset: ; 150
 	di
-	call CleanSoundRestart
+	call SoundRestart
 	xor a
 	ld [$ffde], a
 	call ClearPalettes
@@ -170,7 +170,7 @@ Init: ; 17d
 	ld a, $30
 	call Predef
 
-	call CleanSoundRestart
+	call SoundRestart
 	xor a
 	ld [CurMusic], a
 	jp GameInit

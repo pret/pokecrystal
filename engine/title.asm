@@ -225,7 +225,7 @@ _TitleScreen: ; 10ed67
 ; Play starting sound effect
 	call SFXChannelsOff
 	ld de, SFX_TITLE_SCREEN_ENTRANCE
-	call StartSFX
+	call PlaySFX
 	
 	ret
 ; 10eea7

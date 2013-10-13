@@ -588,7 +588,7 @@ Script_specialsound: ; 0x96fe4
 	jr z, .play
 	ld de, SFX_ITEM
 .play
-	call StartSFX
+	call PlaySFX
 	call WaitSFX
 	ret
 ; 0x96ffe
@@ -917,7 +917,7 @@ Script_playmusic: ; 0x97189
 ;     music_pointer (MultiByteParam)
 
 	ld de, $0000
-	call StartMusic
+	call PlayMusic
 	xor a
 	ld [$c2a7], a
 	call MaxVolume
@@ -925,7 +925,7 @@ Script_playmusic: ; 0x97189
 	ld e, a
 	call GetScriptByte
 	ld d, a
-	call StartMusic
+	call PlayMusic
 	ret
 ; 0x971a2
 
@@ -954,7 +954,7 @@ Script_playsound: ; 0x971b7
 	ld e, a
 	call GetScriptByte
 	ld d, a
-	call StartSFX
+	call PlaySFX
 	ret
 ; 0x971c3
 
@@ -971,7 +971,7 @@ Script_warpsound: ; 0x971c7
 	ld a, $5
 	ld hl, $4a07
 	rst $8
-	call StartSFX
+	call PlaySFX
 	ret
 ; 0x971d1
 
