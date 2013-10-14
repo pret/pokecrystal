@@ -394,7 +394,7 @@ Functionaaf: ; aaf
 	call Functionac6
 	push de
 	ld de, SFX_READ_TEXT_2
-	call StartSFX
+	call PlaySFX
 	pop de
 	ret
 

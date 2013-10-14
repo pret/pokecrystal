@@ -1091,7 +1091,7 @@ Text_PlaySound:: ; 1500
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
-	call StartSFX
+	call PlaySFX
 	call WaitSFX
 	pop de
 

@@ -223,10 +223,10 @@ ParseCredits: ; 1099aa
 	ld de, MUSIC_CREDITS
 	push de
 	ld de, MUSIC_NONE
-	call StartMusic
+	call PlayMusic
 	call DelayFrame
 	pop de
-	call StartMusic
+	call PlayMusic
 	jp .loop
 	
 .wait2

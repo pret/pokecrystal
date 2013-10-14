@@ -3,12 +3,11 @@
 ; Interfaces are in bank 0.
 
 ; Notable functions:
-; 	UpdateSound (called during VBlank)
 ; 	FadeMusic
-; 	PlaySFX
+; 	PlayStereoSFX
 ; 	PlayCry
 
-SoundRestart: ; e8000
+_SoundRestart: ; e8000
 ; restart sound operation
 ; clear all relevant hardware registers & wram
 	push hl
@@ -65,7 +64,7 @@ MusicFadeRestart: ; e803d
 	push af
 	ld a, [MusicFadeIDLo]
 	push af
-	call SoundRestart
+	call _SoundRestart
 	pop af
 	ld [MusicFadeIDLo], a
 	pop af
@@ -85,7 +84,7 @@ MusicOff: ; e8057
 	ret
 ; e805c
 
-UpdateSound: ; e805c
+_UpdateSound: ; e805c
 ; called once per frame
 	; no use updating audio if it's not playing
 	ld a, [MusicPlaying]
@@ -636,7 +635,7 @@ FadeMusic: ; e8358
 	ld a, [MusicFadeIDHi]
 	ld d, a
 	; load new song
-	call LoadMusic
+	call _PlayMusic
 .quit
 	; cleanup
 	pop bc
@@ -658,7 +657,7 @@ FadeMusic: ; e8358
 	ld a, [MusicFadeIDHi]
 	ld d, a
 	; load new song
-	call LoadMusic
+	call _PlayMusic
 	pop bc
 	; fade in
 	ld hl, MusicFade
@@ -2081,7 +2080,7 @@ MusicEB: ; e8a30
 	call GetMusicByte
 	ld d, a
 	push bc
-	call LoadMusic
+	call _PlayMusic
 	pop bc
 	ret
 ; e8a3e
@@ -2103,7 +2102,7 @@ GetMusicByte: ; e8a3e
 	add hl, bc
 	ld a, [hl]
 	; get byte
-	call LoadMusicByte ; load data into CurMusicByte
+	call _LoadMusicByte ; load data into CurMusicByte
 	inc de ; advance to next byte for next time this is called
 	; update channeldata address
 	ld hl, Channel1MusicAddress - Channel1
@@ -2308,7 +2307,7 @@ SetLRTracks: ; e8b1b
 	ret
 ; e8b30
 
-LoadMusic: ; e8b30
+_PlayMusic: ; e8b30
 ; load music
 	call MusicOff
 	ld hl, MusicID
@@ -2324,7 +2323,7 @@ LoadMusic: ; e8b30
 	ld e, [hl]
 	inc hl
 	ld d, [hl] ; music header address
-	call FarLoadMusicByte ; store first byte of music header in a
+	call LoadMusicByte ; store first byte of music header in a
 	rlca
 	rlca
 	and a, $03 ; get number of channels
@@ -2379,7 +2378,7 @@ PlayCry: ; e8b79
 	ld d, [hl]
 	
 ; Read the cry's sound header
-	call FarLoadMusicByte
+	call LoadMusicByte
 	; Top 2 bits contain the number of channels
 	rlca
 	rlca
@@ -2465,7 +2464,7 @@ PlayCry: ; e8b79
 	ret
 ; e8c04
 
-LoadSFX: ; e8c04
+_PlaySFX: ; e8c04
 ; clear channels if they aren't already
 	call MusicOff
 	ld hl, $c1cc ; Channel5Flags
@@ -2544,7 +2543,7 @@ LoadSFX: ; e8c04
 	inc hl
 	ld d, [hl]
 	; get # channels
-	call FarLoadMusicByte
+	call LoadMusicByte
 	rlca ; top 2
 	rlca ; bits
 	and a, $03
@@ -2566,7 +2565,7 @@ LoadSFX: ; e8c04
 ; e8ca6
 
 
-PlaySFX: ; e8ca6
+PlayStereoSFX: ; e8ca6
 ; play sfx de
 
 	call MusicOff
@@ -2574,7 +2573,7 @@ PlaySFX: ; e8ca6
 ; standard procedure if stereo's off
 	ld a, [Options]
 	bit 5, a
-	jp z, LoadSFX
+	jp z, _PlaySFX
 	
 ; else, let's go ahead with this
 	ld hl, MusicID
@@ -2597,7 +2596,7 @@ PlaySFX: ; e8ca6
 	ld d, [hl]
 	
 ; bit 2-3
-	call FarLoadMusicByte
+	call LoadMusicByte
 	rlca
 	rlca
 	and 3 ; ch1-4
@@ -2674,7 +2673,7 @@ LoadChannel: ; e8d1b
 ; input:
 ; 	de:
 	; get pointer to current channel
-	call FarLoadMusicByte
+	call LoadMusicByte
 	inc de
 	and a, $07 ; bit 0-2 (current channel)
 	ld [CurChannel], a
@@ -2693,10 +2692,10 @@ LoadChannel: ; e8d1b
 	; load music pointer
 	ld hl, Channel1MusicAddress - Channel1
 	add hl, bc
-	call FarLoadMusicByte
+	call LoadMusicByte
 	ld [hli], a
 	inc de
-	call FarLoadMusicByte
+	call LoadMusicByte
 	ld [hl], a
 	inc de
 	; load music id
@@ -2745,13 +2744,13 @@ ChannelInit: ; e8d5b
 	ret
 ; e8d76
 
-FarLoadMusicByte: ; e8d76
+LoadMusicByte: ; e8d76
 ; input:
 ;   de = current music address
 ; output:
 ;   a = CurMusicByte
 	ld a, [MusicBank]
-	call LoadMusicByte
+	call _LoadMusicByte
 	ld a, [CurMusicByte]
 	ret
 ; e8d80
