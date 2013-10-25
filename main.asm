@@ -3037,7 +3037,7 @@ _LoadMusicByte: ; 3b86
 
 	ld a, [de]
 	ld [CurMusicByte], a
-	ld a, $3a ; manual bank restore
+	ld a, BANK(LoadMusicByte)
 
 	ld [hROMBank], a
 	ld [MBC3RomBank], a
