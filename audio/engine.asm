@@ -3,12 +3,11 @@
 ; Interfaces are in bank 0.
 
 ; Notable functions:
-; 	UpdateSound (called during VBlank)
 ; 	FadeMusic
 ; 	PlayStereoSFX
 ; 	PlayCry
 
-SoundRestart: ; e8000
+_SoundRestart: ; e8000
 ; restart sound operation
 ; clear all relevant hardware registers & wram
 	push hl
@@ -65,7 +64,7 @@ MusicFadeRestart: ; e803d
 	push af
 	ld a, [MusicFadeIDLo]
 	push af
-	call SoundRestart
+	call _SoundRestart
 	pop af
 	ld [MusicFadeIDLo], a
 	pop af
@@ -85,7 +84,7 @@ MusicOff: ; e8057
 	ret
 ; e805c
 
-UpdateSound: ; e805c
+_UpdateSound: ; e805c
 ; called once per frame
 	; no use updating audio if it's not playing
 	ld a, [MusicPlaying]

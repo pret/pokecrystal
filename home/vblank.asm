@@ -167,9 +167,9 @@ VBlank0: ; 2b1
 	call Joypad
 	
 ; update sound
-	ld a, BANK(UpdateSound)
+	ld a, BANK(_UpdateSound)
 	rst Bankswitch ; bankswitch
-	call UpdateSound
+	call _UpdateSound
 	ld a, [$ff8a]
 	rst Bankswitch ; restore bank
 	
@@ -189,9 +189,9 @@ VBlank2: ; 325
 	ld [$ff8a], a
 	
 ; update sound
-	ld a, BANK(UpdateSound)
+	ld a, BANK(_UpdateSound)
 	rst Bankswitch ; bankswitch
-	call UpdateSound
+	call _UpdateSound
 	
 ; restore bank
 	ld a, [$ff8a]
@@ -265,9 +265,9 @@ VBlank1: ; 337
 	
 	ei
 ; update sound
-	ld a, BANK(UpdateSound)
+	ld a, BANK(_UpdateSound)
 	rst Bankswitch ; bankswitch
-	call UpdateSound
+	call _UpdateSound
 ; restore bank
 	ld a, [$ff8a]
 	rst Bankswitch
@@ -369,9 +369,9 @@ VBlank3: ; 396
 	
 	ei
 ; update sound
-	ld a, BANK(UpdateSound)
+	ld a, BANK(_UpdateSound)
 	rst Bankswitch ; bankswitch
-	call UpdateSound
+	call _UpdateSound
 ; restore bank
 	ld a, [$ff8a]
 	rst Bankswitch
@@ -434,9 +434,9 @@ VBlank4: ; 3df
 	call AskSerial
 	
 ; update sound
-	ld a, BANK(UpdateSound)
+	ld a, BANK(_UpdateSound)
 	rst Bankswitch ; bankswitch
-	call UpdateSound
+	call _UpdateSound
 ; restore bank
 	ld a, [$ff8a]
 	rst Bankswitch
@@ -486,9 +486,9 @@ VBlank5: ; 400
 	
 	ei
 ; update sound
-	ld a, BANK(UpdateSound)
+	ld a, BANK(_UpdateSound)
 	rst Bankswitch ; bankswitch
-	call UpdateSound
+	call _UpdateSound
 ; restore bank
 	ld a, [$ff8a]
 	rst Bankswitch
@@ -531,9 +531,9 @@ VBlank6: ; 436
 	ld [VBlankOccurred], a
 	
 ; update sound
-	ld a, BANK(UpdateSound)
+	ld a, BANK(_UpdateSound)
 	rst Bankswitch ; bankswitch
-	call UpdateSound
+	call _UpdateSound
 ; restore bank
 	ld a, [$ff8a]
 	rst Bankswitch

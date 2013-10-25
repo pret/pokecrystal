@@ -2975,7 +2975,7 @@ Function3b3c: ; 3b3c
 ; 3b4e
 
 
-CleanSoundRestart: ; 3b4e
+SoundRestart: ; 3b4e
 
 	push hl
 	push de
@@ -2984,11 +2984,11 @@ CleanSoundRestart: ; 3b4e
 
 	ld a, [hROMBank]
 	push af
-	ld a, BANK(SoundRestart)
+	ld a, BANK(_SoundRestart)
 	ld [hROMBank], a
 	ld [MBC3RomBank], a
 
-	call SoundRestart
+	call _SoundRestart
 
 	pop af
 	ld [hROMBank], a
@@ -3002,7 +3002,7 @@ CleanSoundRestart: ; 3b4e
 ; 3b6a
 
 
-CleanUpdateSound: ; 3b6a
+UpdateSound: ; 3b6a
 
 	push hl
 	push de
@@ -3011,11 +3011,11 @@ CleanUpdateSound: ; 3b6a
 
 	ld a, [hROMBank]
 	push af
-	ld a, BANK(UpdateSound)
+	ld a, BANK(_UpdateSound)
 	ld [hROMBank], a
 	ld [MBC3RomBank], a
 
-	call UpdateSound
+	call _UpdateSound
 
 	pop af
 	ld [hROMBank], a
@@ -3055,7 +3055,7 @@ PlayMusic: ; 3b97
 
 	ld a, [hROMBank]
 	push af
-	ld a, BANK(_PlayMusic) ; and BANK(SoundRestart)
+	ld a, BANK(_PlayMusic) ; and BANK(_SoundRestart)
 	ld [hROMBank], a
 	ld [MBC3RomBank], a
 
@@ -3067,7 +3067,7 @@ PlayMusic: ; 3b97
 	jr .end
 
 .nomusic
-	call SoundRestart
+	call _SoundRestart
 
 .end
 	pop af
@@ -3306,7 +3306,7 @@ Function3cb4: ; 3cb4
 	and a
 	ret z
 	dec a
-	call CleanUpdateSound
+	call UpdateSound
 	jr .asm_3cb4
 ; 3cbc
 
