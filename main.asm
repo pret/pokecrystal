@@ -31138,7 +31138,7 @@ INCLUDE "tilesets/data_1.asm"
 
 SECTION "bank7",ROMX,BANK[$7]
 
-Function1c000: ; 1c000
+LoadMapGroupRoof: ; 1c000
 	ld a, [MapGroup]
 	ld e, a
 	ld d, 0

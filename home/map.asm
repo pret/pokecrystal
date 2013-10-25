@@ -1416,7 +1416,7 @@ Function2821: ; 2821
 	jr .asm_2875
 
 .asm_286f
-	callba Function1c000
+	callba LoadMapGroupRoof
 
 .asm_2875
 	xor a
