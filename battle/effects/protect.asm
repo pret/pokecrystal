@@ -4,7 +4,7 @@ BattleCommand55: ; 37618
 	ret c
 
 	ld a, BATTLE_VARS_SUBSTATUS1
-	call GetBattleVarPair
+	call _GetBattleVar
 	set SUBSTATUS_PROTECT, [hl]
 
 	call Function0x37e01
@@ -29,7 +29,7 @@ ProtectChance: ; 3762c
 ; Can't have a substitute.
 
 	ld a, BATTLE_VARS_SUBSTATUS4
-	call CleanGetBattleVarPair
+	call GetBattleVar
 	bit SUBSTATUS_SUBSTITUTE, a
 	jr nz, .failed
 

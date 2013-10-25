@@ -46,7 +46,7 @@ DoTurn: ; 3401d
 DoMove: ; 3402c
 ; Get the user's move effect.
 	ld a, BATTLE_VARS_MOVE_EFFECT
-	call CleanGetBattleVarPair
+	call GetBattleVar
 	ld c, a
 	ld b, 0
 	ld hl, MoveEffectsPointers
@@ -124,7 +124,7 @@ BattleCommand01: ; 34084
 
 ; Move $ff immediately ends the turn.
 	ld a, BATTLE_VARS_MOVE
-	call CleanGetBattleVarPair
+	call GetBattleVar
 	inc a
 	jp z, Function0x34385
 
@@ -367,11 +367,11 @@ CheckPlayerTurn:
 
 CantMove: ; 341f0
 	ld a, BATTLE_VARS_SUBSTATUS1
-	call GetBattleVarPair
+	call _GetBattleVar
 	res 6, [hl]
 
 	ld a, BATTLE_VARS_SUBSTATUS3
-	call GetBattleVarPair
+	call _GetBattleVar
 	ld a, [hl]
 	and $ec
 	ld [hl], a
@@ -379,7 +379,7 @@ CantMove: ; 341f0
 	call ResetFuryCutterCount
 
 	ld a, BATTLE_VARS_MOVE_ANIM
-	call CleanGetBattleVarPair
+	call GetBattleVar
 	cp FLY
 	jr z, .asm_3420f
 
@@ -569,7 +569,7 @@ CheckEnemyTurn: ; 3421f
 ; Flicker the monster pic unless flying or underground.
 	ld de, $0115
 	ld a, BATTLE_VARS_SUBSTATUS3_OPP
-	call CleanGetBattleVarPair
+	call GetBattleVar
 	and $60
 	call z, PlayFXAnimID
 
@@ -658,11 +658,11 @@ MoveDisabled: ; 3438d
 
 ; Make sure any charged moves fail
 	ld a, BATTLE_VARS_SUBSTATUS3
-	call GetBattleVarPair
+	call _GetBattleVar
 	res 4, [hl]
 
 	ld a, BATTLE_VARS_MOVE
-	call CleanGetBattleVarPair
+	call GetBattleVar
 	ld [$d265], a
 	call GetMoveName
 
@@ -693,7 +693,7 @@ HitConfusion: ; 343a5
 ; Flicker the monster pic unless flying or underground.
 	ld de, $0115
 	ld a, BATTLE_VARS_SUBSTATUS3_OPP
-	call CleanGetBattleVarPair
+	call GetBattleVar
 	and $60
 	call z, PlayFXAnimID
 
@@ -1026,7 +1026,7 @@ Function0x3450c: ; 3450c
 IgnoreSleepOnly: ; 3451f
 
 	ld a, BATTLE_VARS_MOVE_ANIM
-	call CleanGetBattleVarPair
+	call GetBattleVar
 
 	cp SNORE
 	jr z, .CheckSleep
@@ -1037,7 +1037,7 @@ IgnoreSleepOnly: ; 3451f
 
 .CheckSleep
 	ld a, BATTLE_VARS_STATUS
-	call CleanGetBattleVarPair
+	call GetBattleVar
 	and 7
 	ret z
 
@@ -1095,7 +1095,7 @@ BattleCommand04: ; 34555
 	ld [bc], a
 
 	ld a, BATTLE_VARS_MOVE
-	call CleanGetBattleVarPair
+	call GetBattleVar
 	cp STRUGGLE
 	ret z
 
@@ -1180,7 +1180,7 @@ BattleCommand04: ; 34555
 	call BattleCommandaa
 ; get move effect
 	ld a, BATTLE_VARS_MOVE_EFFECT
-	call CleanGetBattleVarPair
+	call GetBattleVar
 ; continuous?
 	ld hl, .continuousmoves
 	ld de, 1
@@ -1222,7 +1222,7 @@ Function0x3460b: ; 3460b
 	call UserPartyAttr
 
 	ld a, BATTLE_VARS_MOVE
-	call CleanGetBattleVarPair
+	call GetBattleVar
 	cp MIMIC
 	jr z, .asm_3462f
 
@@ -1250,7 +1250,7 @@ BattleCommand05: ; 34631
 	ld [CriticalHit], a
 
 	ld a, BATTLE_VARS_MOVE_POWER
-	call CleanGetBattleVarPair
+	call GetBattleVar
 	and a
 	ret z
 
@@ -1288,7 +1288,7 @@ BattleCommand05: ; 34631
 
 .FocusEnergy
 	ld a, BATTLE_VARS_SUBSTATUS4
-	call CleanGetBattleVarPair
+	call GetBattleVar
 	bit 2, a
 	jr z, .CheckCritical
 
@@ -1297,7 +1297,7 @@ BattleCommand05: ; 34631
 
 .CheckCritical
 	ld a, BATTLE_VARS_MOVE_ANIM
-	call CleanGetBattleVarPair
+	call GetBattleVar
 	ld de, 1
 	ld hl, .Criticals
 	push bc
@@ -1382,7 +1382,7 @@ BattleCommand4f: ; 346cd
 BattleCommand07: ; 346d2
 ; stab
 	ld a, BATTLE_VARS_MOVE_ANIM
-	call CleanGetBattleVarPair
+	call GetBattleVar
 	cp STRUGGLE
 	ret z
 
@@ -1410,7 +1410,7 @@ BattleCommand07: ; 346d2
 
 .go
 	ld a, BATTLE_VARS_MOVE_TYPE
-	call GetBattleVarPair
+	call _GetBattleVar
 	ld [$d265], a
 
 	push hl
@@ -1457,7 +1457,7 @@ BattleCommand07: ; 346d2
 
 .asm_3473a
 	ld a, BATTLE_VARS_MOVE_TYPE
-	call CleanGetBattleVarPair
+	call GetBattleVar
 	ld b, a
 	ld hl, TypeMatchup
 
@@ -1471,7 +1471,7 @@ BattleCommand07: ; 346d2
 	cp $fe
 	jr nz, .asm_34757
 	ld a, BATTLE_VARS_SUBSTATUS1_OPP
-	call CleanGetBattleVarPair
+	call GetBattleVar
 	bit 3, a
 	jr nz, .end
 
@@ -1579,7 +1579,7 @@ Function0x347d3: ; 347d3
 	push de
 	push bc
 	ld a, BATTLE_VARS_MOVE_TYPE
-	call CleanGetBattleVarPair
+	call GetBattleVar
 	ld d, a
 	ld b, [hl]
 	inc hl
@@ -1594,7 +1594,7 @@ Function0x347d3: ; 347d3
 	cp $fe
 	jr nz, .asm_347fb ; 0x347ee $b
 	ld a, BATTLE_VARS_SUBSTATUS1_OPP
-	call CleanGetBattleVarPair
+	call GetBattleVar
 	bit SUBSTATUS_IDENTIFIED, a
 	jr nz, .asm_3482f ; 0x347f7 $36
 	jr .asm_347e7 ; 0x347f9 $ec
@@ -2388,7 +2388,7 @@ BattleCommand09: ; 34d32
 
 ; Perfect-accuracy moves
 	ld a, BATTLE_VARS_MOVE_EFFECT
-	call CleanGetBattleVarPair
+	call GetBattleVar
 	cp EFFECT_ALWAYS_HIT
 	ret z
 
@@ -2434,7 +2434,7 @@ BattleCommand09: ; 34d32
 .Miss
 ; Keep the damage value intact if we're using (Hi) Jump Kick.
 	ld a, BATTLE_VARS_MOVE_EFFECT
-	call CleanGetBattleVarPair
+	call GetBattleVar
 	cp EFFECT_JUMP_KICK
 	jr z, .Missed
 	call ResetDamage
@@ -2449,12 +2449,12 @@ BattleCommand09: ; 34d32
 ; Return z if we're trying to eat the dream of
 ; a monster that isn't sleeping.
 	ld a, BATTLE_VARS_MOVE_EFFECT
-	call CleanGetBattleVarPair
+	call GetBattleVar
 	cp EFFECT_DREAM_EATER
 	ret nz
 
 	ld a, BATTLE_VARS_STATUS_OPP
-	call CleanGetBattleVarPair
+	call GetBattleVar
 	and SLP
 	ret
 
@@ -2462,7 +2462,7 @@ BattleCommand09: ; 34d32
 .Protect
 ; Return nz if the opponent is protected.
 	ld a, BATTLE_VARS_SUBSTATUS1_OPP
-	call CleanGetBattleVarPair
+	call GetBattleVar
 	bit SUBSTATUS_PROTECT, a
 	ret z
 
@@ -2485,18 +2485,18 @@ BattleCommand09: ; 34d32
 ; Return nz if we are locked-on and aren't trying to use Earthquake,
 ; Fissure or Magnitude on a monster that is flying.
 	ld a, BATTLE_VARS_SUBSTATUS5_OPP
-	call GetBattleVarPair
+	call _GetBattleVar
 	bit SUBSTATUS_LOCK_ON, [hl]
 	res SUBSTATUS_LOCK_ON, [hl]
 	ret z
 
 	ld a, BATTLE_VARS_SUBSTATUS3_OPP
-	call CleanGetBattleVarPair
+	call GetBattleVar
 	bit SUBSTATUS_FLYING, a
 	jr z, .LockedOn
 
 	ld a, BATTLE_VARS_MOVE_ANIM
-	call CleanGetBattleVarPair
+	call GetBattleVar
 
 	cp EARTHQUAKE
 	ret z
@@ -2517,7 +2517,7 @@ BattleCommand09: ; 34d32
 	jr z, .asm_34e00
 
 	ld a, BATTLE_VARS_MOVE_EFFECT
-	call CleanGetBattleVarPair
+	call GetBattleVar
 
 	cp EFFECT_LEECH_HIT
 	ret z
@@ -2535,7 +2535,7 @@ BattleCommand09: ; 34d32
 ; Return z if the current move can hit the opponent.
 
 	ld a, BATTLE_VARS_SUBSTATUS3_OPP
-	call CleanGetBattleVarPair
+	call GetBattleVar
 	and 1 << SUBSTATUS_FLYING | 1 << SUBSTATUS_UNDERGROUND
 	ret z
 
@@ -2543,7 +2543,7 @@ BattleCommand09: ; 34d32
 	jr z, .DigMoves
 
 	ld a, BATTLE_VARS_MOVE_ANIM
-	call CleanGetBattleVarPair
+	call GetBattleVar
 
 	cp GUST
 	ret z
@@ -2556,7 +2556,7 @@ BattleCommand09: ; 34d32
 
 .DigMoves
 	ld a, BATTLE_VARS_MOVE_ANIM
-	call CleanGetBattleVarPair
+	call GetBattleVar
 
 	cp EARTHQUAKE
 	ret z
@@ -2569,7 +2569,7 @@ BattleCommand09: ; 34d32
 .ThunderRain
 ; Return z if the current move always hits in rain, and it is raining.
 	ld a, BATTLE_VARS_MOVE_EFFECT
-	call CleanGetBattleVarPair
+	call GetBattleVar
 	cp EFFECT_THUNDER
 	ret nz
 
@@ -2581,7 +2581,7 @@ BattleCommand09: ; 34d32
 .UnleashedEnergy
 ; Return nz if unleashing energy from Bide.
 	ld a, BATTLE_VARS_SUBSTATUS4
-	call CleanGetBattleVarPair
+	call GetBattleVar
 	bit SUBSTATUS_UNLEASH, a
 	ret
 
@@ -2610,7 +2610,7 @@ BattleCommand09: ; 34d32
 	jr c, .asm_34e6b
 
 	ld a, BATTLE_VARS_SUBSTATUS1_OPP
-	call CleanGetBattleVarPair
+	call GetBattleVar
 	bit SUBSTATUS_IDENTIFIED, a
 	ret nz
 
@@ -2717,17 +2717,17 @@ BattleCommand90: ; 34ecc
 BattleCommand0a: ; 34eee
 
 	ld a, BATTLE_VARS_SUBSTATUS4
-	call CleanGetBattleVarPair
+	call GetBattleVar
 	bit SUBSTATUS_SUBSTITUTE, a
 	ret z
 
 	ld a, BATTLE_VARS_SUBSTATUS3
-	call CleanGetBattleVarPair
+	call GetBattleVar
 	bit SUBSTATUS_CHARGED, a
 	jr nz, .asm_34f18
 
 	ld a, BATTLE_VARS_MOVE_EFFECT
-	call CleanGetBattleVarPair
+	call GetBattleVar
 	cp EFFECT_RAZOR_WIND
 	jr z, .asm_34f21
 	cp EFFECT_SKY_ATTACK
@@ -2764,7 +2764,7 @@ BattleCommand0a: ; 34eee
 
 .Rampage
 	ld a, BATTLE_VARS_MOVE_EFFECT
-	call CleanGetBattleVarPair
+	call GetBattleVar
 	cp EFFECT_ROLLOUT
 	jr z, .asm_34f4d
 	cp EFFECT_RAMPAGE
@@ -2807,7 +2807,7 @@ BattleCommand0b: ; 34f60
 .asm_34f76
 	ld [$cfca], a
 	ld a, BATTLE_VARS_MOVE_EFFECT
-	call CleanGetBattleVarPair
+	call GetBattleVar
 	cp EFFECT_MULTI_HIT
 	jr z, .asm_34fb0
 	cp EFFECT_CONVERSION
@@ -2824,13 +2824,13 @@ BattleCommand0b: ; 34f60
 .asm_34f96
 
 	ld a, BATTLE_VARS_MOVE_ANIM
-	call CleanGetBattleVarPair
+	call GetBattleVar
 	ld e, a
 	ld d, 0
 	call PlayFXAnimID
 
 	ld a, BATTLE_VARS_MOVE_ANIM
-	call CleanGetBattleVarPair
+	call GetBattleVar
 	cp FLY
 	jr z, .asm_34fad
 	cp DIG
@@ -2848,7 +2848,7 @@ BattleCommand0b: ; 34f60
 	cp $1
 	push af
 	ld a, BATTLE_VARS_MOVE_ANIM
-	call CleanGetBattleVarPair
+	call GetBattleVar
 	ld e, a
 	ld d, 0
 	pop af
@@ -2889,7 +2889,7 @@ BattleCommand91_92: ; 34feb
 	xor a
 	ld [$c689], a
 	ld a, BATTLE_VARS_MOVE_ANIM
-	call CleanGetBattleVarPair
+	call GetBattleVar
 	ld e, a
 	ld d, 0
 	jp PlayFXAnimID
@@ -2909,7 +2909,7 @@ BattleCommand93: ; 34ffd
 
 BattleCommand0c: ; 35004
 	ld a, BATTLE_VARS_SUBSTATUS4
-	call CleanGetBattleVarPair
+	call GetBattleVar
 	bit SUBSTATUS_SUBSTITUTE, a
 	ret z
 
@@ -2934,7 +2934,7 @@ BattleCommand0d: ; 35023
 
 	call Function0x350e4
 	ld a, BATTLE_VARS_MOVE_ANIM
-	call GetBattleVarPair
+	call _GetBattleVar
 
 	cp FLY
 	jr z, .asm_3504f ; 35032 $1b
@@ -2959,7 +2959,7 @@ BattleCommand0d: ; 35023
 
 .asm_3504f
 	ld a, BATTLE_VARS_SUBSTATUS3
-	call GetBattleVarPair
+	call _GetBattleVar
 	res SUBSTATUS_UNDERGROUND, [hl]
 	res SUBSTATUS_FLYING, [hl]
 	call Function0x37ece
@@ -2971,7 +2971,7 @@ BattleCommand0e: ; 3505e
 ; checkfaint
 
 	ld a, BATTLE_VARS_SUBSTATUS1_OPP
-	call CleanGetBattleVarPair
+	call GetBattleVar
 	bit SUBSTATUS_ENDURE, a
 	jr z, .asm_35072 ; 35065 $b
 	call BattleCommand4b
@@ -3027,7 +3027,7 @@ BattleCommand0e: ; 3505e
 
 .asm_50bb
 	ld a, BATTLE_VARS_SUBSTATUS4_OPP
-	call CleanGetBattleVarPair
+	call GetBattleVar
 	bit SUBSTATUS_SUBSTITUTE, a
 	ret nz
 
@@ -3065,7 +3065,7 @@ Function0x350e4: ; 350e4
 	and $7f
 	jr z, .asm_35110 ; 0x350ef $1f
 	ld a, BATTLE_VARS_MOVE_EFFECT
-	call CleanGetBattleVarPair
+	call GetBattleVar
 	cp EFFECT_FUTURE_SIGHT
 	ld hl, ButItFailedText
 	ld de, ItFailedText
@@ -3081,7 +3081,7 @@ Function0x350e4: ; 350e4
 	xor a
 	ld [CriticalHit], a
 	ld a, BATTLE_VARS_MOVE_EFFECT
-	call CleanGetBattleVarPair
+	call GetBattleVar
 	cp EFFECT_JUMP_KICK
 	ret nz
 	ld a, [TypeModifier]
@@ -3117,7 +3117,7 @@ Function0x350e4: ; 350e4
 
 Function0x35157: ; 35157
 	ld a, BATTLE_VARS_SUBSTATUS1_OPP
-	call CleanGetBattleVarPair
+	call GetBattleVar
 	bit SUBSTATUS_PROTECT, a
 	jr z, .asm_35162
 	ld h, d
@@ -3192,7 +3192,7 @@ BattleCommandad: ; 351a5
 ; supereffectivelooptext
 
 	ld a, BATTLE_VARS_SUBSTATUS3
-	call GetBattleVarPair
+	call _GetBattleVar
 	bit 2, a
 	ret nz
 
@@ -3232,7 +3232,7 @@ BattleCommand11: ; 351c0
 	ret nz
 
 	ld a, BATTLE_VARS_SUBSTATUS5_OPP
-	call CleanGetBattleVarPair
+	call GetBattleVar
 	bit SUBSTATUS_DESTINY_BOND, a
 	jr z, .asm_35231
 
@@ -3285,7 +3285,7 @@ BattleCommand11: ; 351c0
 
 .asm_35231
 	ld a, BATTLE_VARS_MOVE_EFFECT
-	call CleanGetBattleVarPair
+	call GetBattleVar
 	cp EFFECT_MULTI_HIT
 	jr z, .asm_3524a
 	cp EFFECT_DOUBLE_HIT
@@ -3315,7 +3315,7 @@ BattleCommand12: ; 35250
 	ret nz
 
 	ld a, BATTLE_VARS_SUBSTATUS4_OPP
-	call CleanGetBattleVarPair
+	call GetBattleVar
 	bit SUBSTATUS_RAGE, a
 	ret z
 
@@ -4042,7 +4042,7 @@ BattleCommand62: ; 35612
 ; Return 1 if successful, else 0.
 
 	ld a, BATTLE_VARS_MOVE_EFFECT
-	call CleanGetBattleVarPair
+	call GetBattleVar
 
 ; Selfdestruct and Explosion halve defense.
 	cp EFFECT_EXPLOSION
@@ -4144,7 +4144,7 @@ BattleCommand62: ; 35612
 ; Type
 	ld b, a
 	ld a, BATTLE_VARS_MOVE_TYPE
-	call CleanGetBattleVarPair
+	call GetBattleVar
 	cp b
 	jr nz, .DoneItem
 
@@ -4303,14 +4303,14 @@ BattleCommand3f: ; 35726
 
 .asm_35731
 	ld a, BATTLE_VARS_MOVE_EFFECT
-	call CleanGetBattleVarPair
+	call GetBattleVar
 	cp EFFECT_LEVEL_DAMAGE
 	ld b, [hl]
 	ld a, 0
 	jr z, .asm_3578c
 
 	ld a, BATTLE_VARS_MOVE_EFFECT
-	call CleanGetBattleVarPair
+	call GetBattleVar
 	cp EFFECT_PSYWAVE
 	jr z, .asm_35758
 
@@ -4321,7 +4321,7 @@ BattleCommand3f: ; 35726
 	jr z, .asm_35792
 
 	ld a, BATTLE_VARS_MOVE_POWER
-	call CleanGetBattleVarPair
+	call GetBattleVar
 	ld b, a
 	ld a, $0
 	jr .asm_3578c
@@ -4464,7 +4464,7 @@ BattleCommand40: ; 35813
 	ld a, $1
 	ld [AttackMissed], a
 	ld a, BATTLE_VARS_LAST_COUNTER_MOVE_OPP
-	call CleanGetBattleVarPair
+	call GetBattleVar
 	and a
 	ret z
 	ld b, a
@@ -4481,7 +4481,7 @@ BattleCommand40: ; 35813
 	call Function0x36abf
 	ret z
 	ld a, BATTLE_VARS_LAST_COUNTER_MOVE_OPP
-	call CleanGetBattleVarPair
+	call GetBattleVar
 	dec a
 	ld de, StringBuffer1
 	call GetMoveData
@@ -4524,7 +4524,7 @@ BattleCommand41: ; 35864
 	ld de, PlayerEncoreCount
 .asm_35875
 	ld a, BATTLE_VARS_LAST_MOVE_OPP
-	call CleanGetBattleVarPair
+	call GetBattleVar
 	and a
 	jp z, Function0x35923
 	cp STRUGGLE
@@ -4549,7 +4549,7 @@ BattleCommand41: ; 35864
 	and a
 	jp nz, Function0x35923
 	ld a, BATTLE_VARS_SUBSTATUS5_OPP
-	call GetBattleVarPair
+	call _GetBattleVar
 	bit 4, [hl]
 	jp nz, Function0x35923
 	set 4, [hl]
@@ -4739,7 +4739,7 @@ Function0x359cd: ; 359cd
 BattleCommand43: ; 359d0
 ; snore
 	ld a, BATTLE_VARS_STATUS
-	call CleanGetBattleVarPair
+	call GetBattleVar
 	and SLP
 	ret nz
 	call ResetDamage
@@ -4763,7 +4763,7 @@ BattleCommand44: ; 359e6
 	ld hl, EnemyMonType1
 .asm_359f7
 	ld a, BATTLE_VARS_LAST_COUNTER_MOVE_OPP
-	call CleanGetBattleVarPair
+	call GetBattleVar
 	and a
 	jr z, .asm_35a50 ; 359fd $51
 	push hl
@@ -4791,7 +4791,7 @@ BattleCommand44: ; 359e6
 	ld [hld], a
 	push hl
 	ld a, BATTLE_VARS_MOVE_TYPE
-	call GetBattleVarPair
+	call _GetBattleVar
 	push af
 	push hl
 	ld a, d
@@ -4826,7 +4826,7 @@ BattleCommand45: ; 35a53
 	and a
 	jr nz, .asm_35a6e
 	ld a, BATTLE_VARS_SUBSTATUS5_OPP
-	call GetBattleVarPair
+	call _GetBattleVar
 	set SUBSTATUS_LOCK_ON, [hl]
 	call Function0x37e01
 
@@ -4852,7 +4852,7 @@ BattleCommand46: ; 35a74
 	call CheckSubstituteOpp
 	jp nz, .asm_35b10
 	ld a, BATTLE_VARS_SUBSTATUS5_OPP
-	call GetBattleVarPair
+	call _GetBattleVar
 	bit 3, [hl]
 	jp nz, .asm_35b10
 	ld a, $2
@@ -4866,7 +4866,7 @@ BattleCommand46: ; 35a74
 	ld hl, EnemyMonMoves
 .asm_35aa5
 	ld a, BATTLE_VARS_LAST_COUNTER_MOVE_OPP
-	call CleanGetBattleVarPair
+	call GetBattleVar
 	ld [$d265], a
 	ld b, a
 	and a
@@ -4951,12 +4951,12 @@ BattleCommand47: ; 35b16
 	call Function0x37e01
 
 	ld a, BATTLE_VARS_STATUS_OPP
-	call GetBattleVarPair
+	call _GetBattleVar
 	call Defrost
 
 ; Sharply raise accuracy
 	ld a, BATTLE_VARS_MOVE_EFFECT
-	call GetBattleVarPair
+	call _GetBattleVar
 	ld a, [hl]
 	push hl
 	push af
@@ -4990,7 +4990,7 @@ BattleCommand48: ; 35b33
 	ld d, a
 .asm_35b4f
 	ld a, BATTLE_VARS_STATUS
-	call CleanGetBattleVarPair
+	call GetBattleVar
 	and $7
 	jr z, .asm_35ba3 ; 35b56 $4b
 	ld a, [hl]
@@ -5012,7 +5012,7 @@ BattleCommand48: ; 35b33
 	jr z, .asm_35b62 ; 35b6f $f1
 	ld e, a
 	ld a, BATTLE_VARS_MOVE_ANIM
-	call CleanGetBattleVarPair
+	call GetBattleVar
 	cp e
 	jr z, .asm_35b62 ; 35b78 $e8
 	ld a, e
@@ -5021,7 +5021,7 @@ BattleCommand48: ; 35b33
 	call .asm_35bdf
 	jr z, .asm_35b62 ; 35b81 $df
 	ld a, BATTLE_VARS_MOVE
-	call GetBattleVarPair
+	call _GetBattleVar
 	ld a, e
 	ld [hl], a
 	call Function0x34548
@@ -5059,7 +5059,7 @@ BattleCommand48: ; 35b33
 .asm_35bbe
 	ld b, a
 	ld a, $10
-	call CleanGetBattleVarPair
+	call GetBattleVar
 	ld c, a
 	dec hl
 	ld d, $4
@@ -5121,7 +5121,7 @@ BattleCommand49: ; 35bff
 ; destinybond
 
 	ld a, BATTLE_VARS_SUBSTATUS5
-	call GetBattleVarPair
+	call _GetBattleVar
 	set 6, [hl]
 	call Function0x37e01
 	ld hl, DestinyBondEffectText
@@ -5143,7 +5143,7 @@ BattleCommand4a: ; 35c0f
 	ld hl, BattleMonMoves
 .asm_35c24
 	ld a, BATTLE_VARS_LAST_COUNTER_MOVE_OPP
-	call CleanGetBattleVarPair
+	call GetBattleVar
 	and a
 	jr z, .asm_35c91 ; 35c2a $65
 	cp $a5
@@ -5190,7 +5190,7 @@ BattleCommand4a: ; 35c0f
 	add hl, bc
 	ld e, a
 	ld a, BATTLE_VARS_SUBSTATUS5_OPP
-	call CleanGetBattleVarPair
+	call GetBattleVar
 	bit 3, a
 	jr nz, .asm_35c82 ; 35c70 $10
 	ld a, [hBattleTurn]
@@ -5264,7 +5264,7 @@ BattleCommand4c: ; 35cc9
 ; healbell
 
 	ld a, BATTLE_VARS_SUBSTATUS1
-	call GetBattleVarPair
+	call _GetBattleVar
 	res 0, [hl]
 	ld de, PartyMon1Status
 	ld a, [hBattleTurn]
@@ -5273,7 +5273,7 @@ BattleCommand4c: ; 35cc9
 	ld de, OTPartyMon1Status
 .asm_35cdb
 	ld a, BATTLE_VARS_STATUS
-	call GetBattleVarPair
+	call _GetBattleVar
 	xor a
 	ld [hl], a
 	ld h, d
@@ -5302,7 +5302,7 @@ FarPlayBattleAnimation: ; 35d00
 
 ; battle animations disabled?
 	ld a, BATTLE_VARS_SUBSTATUS3
-	call CleanGetBattleVarPair
+	call GetBattleVar
 	and $60 ; bit 6 | 5
 	ret nz
 
@@ -5467,7 +5467,7 @@ Function0x35de0: ; 35de0
 
 .asm_35dff
 	ld a, BATTLE_VARS_SUBSTATUS4_OPP
-	call GetBattleVarPair
+	call _GetBattleVar
 	res 4, [hl]
 
 	ld hl, SubFadedText
@@ -5476,13 +5476,13 @@ Function0x35de0: ; 35de0
 	call SwitchTurn
 	call BattleCommanda7
 	ld a, BATTLE_VARS_SUBSTATUS3
-	call CleanGetBattleVarPair
+	call GetBattleVar
 	and $60 ; fly | dig
 	call z, Function0x37ec7
 	call SwitchTurn
 
 	ld a, BATTLE_VARS_MOVE_EFFECT
-	call GetBattleVarPair
+	call _GetBattleVar
 	cp EFFECT_MULTI_HIT
 	jr z, .asm_35e3a
 	cp EFFECT_DOUBLE_HIT
@@ -5506,12 +5506,12 @@ Function0x35de0: ; 35de0
 UpdateMoveData: ; 35e40
 
 	ld a, BATTLE_VARS_MOVE_ANIM
-	call GetBattleVarPair
+	call _GetBattleVar
 	ld d, h
 	ld e, l
 
 	ld a, BATTLE_VARS_MOVE
-	call CleanGetBattleVarPair
+	call GetBattleVar
 	ld [$cf60], a ; not CurSpecies
 	ld [$d265], a
 
@@ -5537,7 +5537,7 @@ BattleCommand14: ; 35e5c
 
 .asm_35e70
 	ld a, BATTLE_VARS_STATUS_OPP
-	call GetBattleVarPair
+	call _GetBattleVar
 	ld d, h
 	ld e, l
 	ld a, [de]
@@ -5631,7 +5631,7 @@ BattleCommand13: ; 35eee
 	call CheckSubstituteOpp
 	ret nz
 	ld a, BATTLE_VARS_STATUS_OPP
-	call GetBattleVarPair
+	call _GetBattleVar
 	and a
 	ret nz
 	ld a, [TypeModifier]
@@ -5671,7 +5671,7 @@ BattleCommand2f: ; 35f2c
 	call Function0x35fe1
 	jp z, .asm_35fb8
 	ld a, BATTLE_VARS_STATUS_OPP
-	call CleanGetBattleVarPair
+	call GetBattleVar
 	ld b, a
 	ld hl, AlreadyPoisonedText
 	and $8
@@ -5688,7 +5688,7 @@ BattleCommand2f: ; 35f2c
 .asm_35f5f
 	ld hl, DidntAffect1Text
 	ld a, BATTLE_VARS_STATUS_OPP
-	call CleanGetBattleVarPair
+	call GetBattleVar
 	and a
 	jr nz, .asm_35fb8 ; 35f68 $4e
 	ld a, [hBattleTurn]
@@ -5750,7 +5750,7 @@ Function0x35fc0: ; 35fc0
 
 Function0x35fc9: ; 35fc9
 	ld a, BATTLE_VARS_SUBSTATUS5_OPP
-	call GetBattleVarPair
+	call _GetBattleVar
 	ld a, [hBattleTurn]
 	and a
 	ld de, $c67c
@@ -5758,7 +5758,7 @@ Function0x35fc9: ; 35fc9
 	ld de, $c674
 .asm_35fd9
 	ld a, BATTLE_VARS_MOVE_EFFECT
-	call CleanGetBattleVarPair
+	call GetBattleVar
 	cp EFFECT_TOXIC
 	ret
 ; 35fe1
@@ -5783,7 +5783,7 @@ Function0x35fe1: ; 35fe1
 
 Function0x35ff5: ; 35ff5
 	ld a, BATTLE_VARS_STATUS_OPP
-	call GetBattleVarPair
+	call _GetBattleVar
 	set PSN, [hl]
 	jp UpdateOpponentInParty
 ; 35fff
@@ -5896,7 +5896,7 @@ BattleCommand17: ; 3608c
 	call CheckSubstituteOpp
 	ret nz
 	ld a, BATTLE_VARS_STATUS_OPP
-	call GetBattleVarPair
+	call _GetBattleVar
 	and a
 	jp nz, Defrost
 	ld a, [TypeModifier]
@@ -5914,7 +5914,7 @@ BattleCommand17: ; 3608c
 	call Function0x37962
 	ret nz
 	ld a, BATTLE_VARS_STATUS_OPP
-	call GetBattleVarPair
+	call _GetBattleVar
 	set 4, [hl]
 	call UpdateOpponentInParty
 	ld hl, $6c76
@@ -5966,7 +5966,7 @@ BattleCommand18: ; 36102
 	call CheckSubstituteOpp
 	ret nz
 	ld a, BATTLE_VARS_STATUS_OPP
-	call GetBattleVarPair
+	call _GetBattleVar
 	and a
 	ret nz
 	ld a, [TypeModifier]
@@ -5987,7 +5987,7 @@ BattleCommand18: ; 36102
 	call Function0x37962
 	ret nz
 	ld a, BATTLE_VARS_STATUS_OPP
-	call GetBattleVarPair
+	call _GetBattleVar
 	set 5, [hl]
 	call UpdateOpponentInParty
 	ld de, $0108
@@ -6020,7 +6020,7 @@ BattleCommand19: ; 36165
 	call CheckSubstituteOpp
 	ret nz
 	ld a, BATTLE_VARS_STATUS_OPP
-	call GetBattleVarPair
+	call _GetBattleVar
 	and a
 	ret nz
 	ld a, [TypeModifier]
@@ -6036,7 +6036,7 @@ BattleCommand19: ; 36165
 	call Function0x37962
 	ret nz
 	ld a, BATTLE_VARS_STATUS_OPP
-	call GetBattleVarPair
+	call _GetBattleVar
 	set 6, [hl]
 	call UpdateOpponentInParty
 	ld hl, $6c39
@@ -6229,7 +6229,7 @@ Function0x36281: ; 36281
 	ld hl, $7486
 .asm_36292
 	ld a, $c
-	call CleanGetBattleVarPair
+	call GetBattleVar
 	cp $6b
 	ret nz
 	ld a, $1
@@ -6353,7 +6353,7 @@ BattleCommand1d: ; 362e3
 
 ; Attacking moves that also lower accuracy are unaffected.
 	ld a, BATTLE_VARS_MOVE_EFFECT
-	call CleanGetBattleVarPair
+	call GetBattleVar
 	cp EFFECT_ACCURACY_DOWN_HIT
 	jr z, .DidntMiss
 
@@ -6426,7 +6426,7 @@ BattleCommand1d: ; 362e3
 
 Function0x36391: ; 36391
 	ld a, BATTLE_VARS_MOVE_EFFECT
-	call CleanGetBattleVarPair
+	call GetBattleVar
 	cp EFFECT_ATTACK_DOWN
 	jr c, .asm_363ae
 	cp EFFECT_EVASION_DOWN + 1
@@ -6444,7 +6444,7 @@ Function0x36391: ; 36391
 	ret
 .asm_363b0
 	ld a, BATTLE_VARS_SUBSTATUS4_OPP
-	call CleanGetBattleVarPair
+	call GetBattleVar
 	bit SUBSTATUS_MIST, a
 	ret
 ; 363b8
@@ -6790,7 +6790,7 @@ BattleCommandac: ; 3658f
 BattleCommandaf: ; 365a7
 ; curl
 	ld a, BATTLE_VARS_SUBSTATUS2
-	call GetBattleVarPair
+	call _GetBattleVar
 	set 0, [hl]
 	ret
 ; 365af
@@ -6938,7 +6938,7 @@ BattleCommand21: ; 36671
 ; storeenergy
 
 	ld a, BATTLE_VARS_SUBSTATUS3
-	call CleanGetBattleVarPair
+	call GetBattleVar
 	bit 0, a
 	ret z
 	ld hl, PlayerRolloutCount
@@ -6950,14 +6950,14 @@ BattleCommand21: ; 36671
 	dec [hl]
 	jr nz, .asm_366dc
 	ld a, BATTLE_VARS_SUBSTATUS3
-	call GetBattleVarPair
+	call _GetBattleVar
 	res 0, [hl]
 
 	ld hl, UnleashedEnergyText
 	call StdBattleTextBox
 
 	ld a, BATTLE_VARS_MOVE_POWER
-	call GetBattleVarPair
+	call _GetBattleVar
 	ld a, 1
 	ld [hl], a
 	ld hl, PlayerDamageTaken + 1
@@ -6991,7 +6991,7 @@ BattleCommand21: ; 36671
 	ld [de], a
 
 	ld a, BATTLE_VARS_MOVE_ANIM
-	call GetBattleVarPair
+	call _GetBattleVar
 	ld a, BIDE
 	ld [hl], a
 
@@ -7017,7 +7017,7 @@ BattleCommand22: ; 366e5
 	ld bc, EnemyRolloutCount
 .asm_366f6
 	ld a, BATTLE_VARS_SUBSTATUS3
-	call GetBattleVarPair
+	call _GetBattleVar
 	set 0, [hl]
 	xor a
 	ld [de], a
@@ -7047,7 +7047,7 @@ BattleCommand3e: ; 3671a
 	ld de, EnemyRolloutCount
 .asm_36725
 	ld a, BATTLE_VARS_SUBSTATUS3
-	call GetBattleVarPair
+	call _GetBattleVar
 	bit 1, [hl]
 	ret z
 	ld a, [de]
@@ -7079,7 +7079,7 @@ BattleCommand3d: ; 36751
 
 ; No rampage during Sleep Talk.
 	ld a, BATTLE_VARS_STATUS
-	call CleanGetBattleVarPair
+	call GetBattleVar
 	and 7
 	ret nz
 
@@ -7090,7 +7090,7 @@ BattleCommand3d: ; 36751
 	ld de, EnemyRolloutCount
 .asm_36764
 	ld a, BATTLE_VARS_SUBSTATUS3
-	call GetBattleVarPair
+	call _GetBattleVar
 	set 1, [hl]
 	call BattleRandom
 	and $1
@@ -7116,7 +7116,7 @@ BattleCommanda0: ; 36778
 	jr z, .asm_367b9
 
 	ld a, BATTLE_VARS_SUBSTATUS5_OPP
-	call CleanGetBattleVarPair
+	call GetBattleVar
 	bit SUBSTATUS_CANT_RUN, a
 	jr nz, .asm_367b9
 	ld a, [hBattleTurn]
@@ -7458,12 +7458,12 @@ BattleCommand24: ; 369b6
 .asm_369c7
 
 	ld a, BATTLE_VARS_SUBSTATUS3
-	call GetBattleVarPair
+	call _GetBattleVar
 	bit 2, [hl]
 	jp nz, .asm_36a43
 	set 2, [hl]
 	ld a, BATTLE_VARS_MOVE_EFFECT
-	call GetBattleVarPair
+	call _GetBattleVar
 	ld a, [hl]
 	cp EFFECT_TWINEEDLE
 	jr z, .asm_36a3f
@@ -7505,7 +7505,7 @@ BattleCommand24: ; 369b6
 
 .asm_36a1e
 	ld a, BATTLE_VARS_SUBSTATUS3
-	call GetBattleVarPair
+	call _GetBattleVar
 	res 2, [hl]
 	call BattleCommanda8
 	jp EndMoveEffect
@@ -7534,7 +7534,7 @@ BattleCommand24: ; 369b6
 	jr nz, .asm_36a6b ; 36a46 $23
 .asm_36a48
 	ld a, BATTLE_VARS_SUBSTATUS3
-	call GetBattleVarPair
+	call _GetBattleVar
 	res 2, [hl]
 
 	ld hl, PlayerHitTimesText
@@ -7546,7 +7546,7 @@ BattleCommand24: ; 369b6
 
 	push bc
 	ld a, BATTLE_VARS_MOVE_EFFECT
-	call CleanGetBattleVarPair
+	call GetBattleVar
 	cp EFFECT_BEAT_UP
 	jr z, .asm_36a67
 	call StdBattleTextBox
@@ -7583,7 +7583,7 @@ BattleCommand94: ; 36a82
 	call CheckSubstituteOpp
 	jr nz, .asm_36a9a ; 36a8a $e
 	ld a, BATTLE_VARS_STATUS_OPP
-	call CleanGetBattleVarPair
+	call GetBattleVar
 	and $27
 	jr nz, .asm_36a9a ; 36a93 $5
 	call Function0x36abf
@@ -7599,7 +7599,7 @@ BattleCommand25: ; 36aa0
 	call CheckSubstituteOpp
 	ret nz
 	ld a, BATTLE_VARS_STATUS_OPP
-	call CleanGetBattleVarPair
+	call GetBattleVar
 	and $27
 	ret nz
 	call Function0x36abf
@@ -7614,7 +7614,7 @@ BattleCommand25: ; 36aa0
 
 Function0x36ab5: ; 36ab5
 	ld a, BATTLE_VARS_SUBSTATUS3_OPP
-	call GetBattleVarPair
+	call _GetBattleVar
 	set 3, [hl]
 	jp EndRechargeOpp
 ; 36abf
@@ -7646,7 +7646,7 @@ BattleCommand4d: ; 36ac9
 	call CheckSubstituteOpp
 	ret nz
 	ld a, BATTLE_VARS_MOVE_EFFECT
-	call GetBattleVarPair
+	call _GetBattleVar
 	ld d, h
 	ld e, l
 	call GetUserItem
@@ -7655,7 +7655,7 @@ BattleCommand4d: ; 36ac9
 	ret nc
 	call EndRechargeOpp
 	ld a, BATTLE_VARS_SUBSTATUS3_OPP
-	call GetBattleVarPair
+	call _GetBattleVar
 	set 3, [hl]
 	ret
 ; 36af3
@@ -7713,7 +7713,7 @@ BattleCommand3a: ; 36b3a
 
 ; charged?
 	ld a, BATTLE_VARS_SUBSTATUS3
-	call GetBattleVarPair
+	call _GetBattleVar
 	bit 4, [hl]
 	ret z
 ; go to town
@@ -7730,7 +7730,7 @@ BattleCommand39: ; 36b4d
 
 	call BattleCommand38
 	ld a, BATTLE_VARS_STATUS
-	call CleanGetBattleVarPair
+	call GetBattleVar
 	and $7
 	jr z, .asm_36b65
 
@@ -7741,7 +7741,7 @@ BattleCommand39: ; 36b4d
 
 .asm_36b65
 	ld a, BATTLE_VARS_SUBSTATUS3
-	call GetBattleVarPair
+	call _GetBattleVar
 	set 4, [hl]
 
 	ld hl, IgnoredOrders2Text
@@ -7756,7 +7756,7 @@ BattleCommand39: ; 36b4d
 	ld [$c689], a
 	call Function0x37e36
 	ld a, BATTLE_VARS_MOVE_ANIM
-	call CleanGetBattleVarPair
+	call GetBattleVar
 	cp $13
 	jr z, .asm_36b96 ; 36b8b $9
 	cp $5b
@@ -7767,9 +7767,9 @@ BattleCommand39: ; 36b4d
 	call Function0x37ec0
 .asm_36b99
 	ld a, BATTLE_VARS_SUBSTATUS3
-	call GetBattleVarPair
+	call _GetBattleVar
 	ld a, BATTLE_VARS_MOVE_ANIM
-	call CleanGetBattleVarPair
+	call GetBattleVar
 	ld b, a
 	cp $13
 	jr z, .asm_36bb0 ; 36ba6 $8
@@ -7785,10 +7785,10 @@ BattleCommand39: ; 36b4d
 	call Function0x34548
 	jr nz, .asm_36bc3 ; 36bb5 $c
 	ld a, BATTLE_VARS_LAST_COUNTER_MOVE
-	call GetBattleVarPair
+	call _GetBattleVar
 	ld [hl], b
 	ld a, BATTLE_VARS_LAST_MOVE
-	call GetBattleVarPair
+	call _GetBattleVar
 	ld [hl], b
 
 .asm_36bc3
@@ -7798,7 +7798,7 @@ BattleCommand39: ; 36b4d
 	call BattleTextBox
 
 	ld a, BATTLE_VARS_MOVE_EFFECT
-	call CleanGetBattleVarPair
+	call GetBattleVar
 	cp EFFECT_SKULL_BASH
 	ld b, $fe ; endturn
 	jp z, SkipToBattleCommand
@@ -7810,7 +7810,7 @@ BattleCommand39: ; 36b4d
 	start_asm
 
 	ld a, BATTLE_VARS_MOVE_ANIM
-	call CleanGetBattleVarPair
+	call GetBattleVar
 	cp RAZOR_WIND
 	ld hl, .RazorWind
 	jr z, .asm_36c0d
@@ -7894,7 +7894,7 @@ BattleCommand3b: ; 36c2d
 	and a
 	ret nz
 	ld a, BATTLE_VARS_SUBSTATUS4_OPP
-	call CleanGetBattleVarPair
+	call GetBattleVar
 	bit 4, a
 	ret nz
 	call BattleRandom
@@ -7904,7 +7904,7 @@ BattleCommand3b: ; 36c2d
 	inc a
 	ld [hl], a
 	ld a, BATTLE_VARS_MOVE_ANIM
-	call CleanGetBattleVarPair
+	call GetBattleVar
 	ld [de], a
 	ld b, a
 	ld hl, .Traps
@@ -7936,7 +7936,7 @@ BattleCommand28: ; 36c7e
 ; mist
 
 	ld a, BATTLE_VARS_SUBSTATUS4
-	call GetBattleVarPair
+	call _GetBattleVar
 	bit 1, [hl]
 	jr nz, .asm_36c92 ; 36c85 $b
 	set 1, [hl]
@@ -7953,7 +7953,7 @@ BattleCommand29: ; 36c98
 ; focusenergy
 
 	ld a, BATTLE_VARS_SUBSTATUS4
-	call GetBattleVarPair
+	call _GetBattleVar
 	bit 2, [hl]
 	jr nz, .asm_36cac ; 36c9f $b
 	set 2, [hl]
@@ -7976,7 +7976,7 @@ BattleCommand27: ; 36cb2
 	ld hl, EnemyMonMaxHPHi
 .asm_36cbd
 	ld a, BATTLE_VARS_MOVE_ANIM
-	call CleanGetBattleVarPair
+	call GetBattleVar
 	ld d, a
 	ld a, [CurDamage]
 	ld b, a
@@ -8047,7 +8047,7 @@ BattleCommand2b: ; 36d1d
 	call CheckSubstituteOpp
 	ret nz
 	ld a, BATTLE_VARS_SUBSTATUS3_OPP
-	call GetBattleVarPair
+	call _GetBattleVar
 	bit 7, [hl]
 	ret nz
 	jr Function0x36d70
@@ -8069,7 +8069,7 @@ BattleCommand2a: ; 36d3b
 
 .asm_36d53
 	ld a, BATTLE_VARS_SUBSTATUS3_OPP
-	call GetBattleVarPair
+	call _GetBattleVar
 	bit 7, [hl]
 	jr z, .asm_36d65
 	call Function0x37e77
@@ -8103,7 +8103,7 @@ Function0x36d70: ; 36d70
 	ld [bc], a
 
 	ld a, BATTLE_VARS_MOVE_EFFECT
-	call CleanGetBattleVarPair
+	call GetBattleVar
 	cp EFFECT_CONFUSE_HIT
 	jr z, .asm_36d99
 	cp EFFECT_SNORE
@@ -8132,7 +8132,7 @@ Function0x36d70: ; 36d70
 
 Function0x36db6: ; 36db6
 	ld a, BATTLE_VARS_MOVE_EFFECT
-	call CleanGetBattleVarPair
+	call GetBattleVar
 	cp EFFECT_CONFUSE_HIT
 	ret z
 	cp EFFECT_SNORE
@@ -8147,7 +8147,7 @@ BattleCommand30: ; 36dc7
 ; paralyze
 
 	ld a, BATTLE_VARS_STATUS_OPP
-	call CleanGetBattleVarPair
+	call GetBattleVar
 	bit 6, a
 	jr nz, .asm_36e49 ; 36dce $79
 	ld a, [TypeModifier]
@@ -8181,7 +8181,7 @@ BattleCommand30: ; 36dc7
 	jr c, .asm_36e52 ; 36e0c $44
 .asm_36e0e
 	ld a, BATTLE_VARS_STATUS_OPP
-	call GetBattleVarPair
+	call _GetBattleVar
 	and a
 	jr nz, .asm_36e52 ; 36e14 $3c
 	ld a, [AttackMissed]
@@ -8195,7 +8195,7 @@ BattleCommand30: ; 36dc7
 	ld a, $1
 	ld [$ffd4], a
 	ld a, BATTLE_VARS_STATUS_OPP
-	call GetBattleVarPair
+	call _GetBattleVar
 	set 6, [hl]
 	call UpdateOpponentInParty
 	ld hl, $6c39
@@ -8230,7 +8230,7 @@ Function0x36e5b: ; 36e5b
 .ok
 
 	ld a, BATTLE_VARS_MOVE_TYPE
-	call CleanGetBattleVarPair
+	call GetBattleVar
 	cp NORMAL
 	jr z, .normal
 
@@ -8265,7 +8265,7 @@ BattleCommand31: ; 36e7c
 	ld de, $c6e0
 .asm_36e90
 	ld a, BATTLE_VARS_SUBSTATUS4
-	call CleanGetBattleVarPair
+	call GetBattleVar
 	bit 4, a
 	jr nz, .asm_36ef4 ; 36e97 $5b
 	ld a, [hli]
@@ -8292,7 +8292,7 @@ BattleCommand31: ; 36e7c
 	inc hl
 	ld [hl], e
 	ld a, BATTLE_VARS_SUBSTATUS4
-	call GetBattleVarPair
+	call _GetBattleVar
 	set 4, [hl]
 	ld hl, $c730
 	ld de, $c72e
@@ -8336,7 +8336,7 @@ BattleCommand31: ; 36e7c
 BattleCommand32: ; 36f0b
 ; rechargenextturn
 	ld a, BATTLE_VARS_SUBSTATUS4
-	call GetBattleVarPair
+	call _GetBattleVar
 	set 5, [hl]
 	ret
 ; 36f13
@@ -8345,7 +8345,7 @@ BattleCommand32: ; 36f0b
 EndRechargeOpp: ; 36f13
 	push hl
 	ld a, BATTLE_VARS_SUBSTATUS4_OPP
-	call GetBattleVarPair
+	call _GetBattleVar
 	res 5, [hl]
 	pop hl
 	ret
@@ -8355,7 +8355,7 @@ EndRechargeOpp: ; 36f13
 BattleCommand97: ; 36f1d
 ; rage
 	ld a, BATTLE_VARS_SUBSTATUS4
-	call GetBattleVarPair
+	call _GetBattleVar
 	set 6, [hl]
 	ret
 ; 36f25
@@ -8364,7 +8364,7 @@ BattleCommand97: ; 36f1d
 BattleCommand98: ; 36f25
 ; doubleflyingdamage
 	ld a, BATTLE_VARS_SUBSTATUS3_OPP
-	call CleanGetBattleVarPair
+	call GetBattleVar
 	bit SUBSTATUS_FLYING, a
 	ret z
 	jr DoubleDamage
@@ -8374,7 +8374,7 @@ BattleCommand98: ; 36f25
 BattleCommand99: ; 36f2f
 ; doubleundergrounddamage
 	ld a, BATTLE_VARS_SUBSTATUS3_OPP
-	call CleanGetBattleVarPair
+	call GetBattleVar
 	bit SUBSTATUS_UNDERGROUND, a
 	ret z
 
@@ -8414,7 +8414,7 @@ BattleCommand33: ; 36f46
 	call CheckHiddenOpponent
 	jr nz, .asm_36f9a ; 36f60 $38
 	ld a, BATTLE_VARS_LAST_COUNTER_MOVE_OPP
-	call CleanGetBattleVarPair
+	call GetBattleVar
 	and a
 	jr z, .asm_36f9a ; 36f68 $30
 	cp $a5
@@ -8434,7 +8434,7 @@ BattleCommand33: ; 36f46
 	jr nz, .asm_36f79 ; 36f7c $fb
 	inc hl
 	ld a, BATTLE_VARS_LAST_COUNTER_MOVE_OPP
-	call CleanGetBattleVarPair
+	call GetBattleVar
 	ld [hl], a
 	ld [$d265], a
 	ld bc, $0006
@@ -8470,7 +8470,7 @@ BattleCommand35: ; 36f9d
 	cp $16
 	jr z, .asm_36fd2 ; 36fbc $14
 	ld a, BATTLE_VARS_SUBSTATUS4_OPP
-	call GetBattleVarPair
+	call _GetBattleVar
 	bit 7, [hl]
 	jr nz, .asm_36fd8 ; 36fc5 $11
 	set 7, [hl]
@@ -8512,7 +8512,7 @@ BattleCommand37: ; 36fed
 	and a
 	jr nz, .asm_37059 ; 37006 $51
 	ld a, BATTLE_VARS_LAST_COUNTER_MOVE_OPP
-	call CleanGetBattleVarPair
+	call GetBattleVar
 	and a
 	jr z, .asm_37059 ; 3700e $49
 	cp $a5
@@ -8552,7 +8552,7 @@ BattleCommand37: ; 36fed
 	inc hl
 .asm_37047
 	ld a, BATTLE_VARS_LAST_COUNTER_MOVE_OPP
-	call CleanGetBattleVarPair
+	call GetBattleVar
 	ld [hl], a
 	ld [$d265], a
 	call GetMoveName
@@ -8733,7 +8733,7 @@ BattleCommand2c: ; 3713e
 	ld hl, EnemyMonMaxHPHi
 .asm_3714f
 	ld a, BATTLE_VARS_MOVE_ANIM
-	call CleanGetBattleVarPair
+	call GetBattleVar
 	ld b, a
 	push hl
 	push de
@@ -8752,10 +8752,10 @@ BattleCommand2c: ; 3713e
 	push af
 	call BattleCommandaa
 	ld a, BATTLE_VARS_SUBSTATUS5
-	call GetBattleVarPair
+	call _GetBattleVar
 	res 0, [hl]
 	ld a, BATTLE_VARS_STATUS
-	call GetBattleVarPair
+	call _GetBattleVar
 	ld a, [hl]
 	and a
 	ld [hl], $3
@@ -8806,7 +8806,7 @@ BattleCommand2d: ; 371cd
 
 	call Function0x372d8
 	ld a, BATTLE_VARS_SUBSTATUS5_OPP
-	call GetBattleVarPair
+	call _GetBattleVar
 	bit 3, [hl]
 	jp nz, Function0x372d2
 	call CheckHiddenOpponent
@@ -8817,7 +8817,7 @@ BattleCommand2d: ; 371cd
 	ld a, $1
 	ld [$c689], a
 	ld a, BATTLE_VARS_SUBSTATUS4
-	call GetBattleVarPair
+	call _GetBattleVar
 	bit 4, [hl]
 	push af
 	jr z, .asm_37200 ; 371f4 $a
@@ -8827,7 +8827,7 @@ BattleCommand2d: ; 371cd
 	call Function0x37e44
 .asm_37200
 	ld a, BATTLE_VARS_SUBSTATUS5
-	call GetBattleVarPair
+	call _GetBattleVar
 	set 3, [hl]
 	call Function0x372e7
 	ld hl, BattleMonSpecies
@@ -8963,12 +8963,12 @@ Function0x372d2: ; 372d2
 
 Function0x372d8: ; 372d8
 	ld a, BATTLE_VARS_LAST_COUNTER_MOVE
-	call GetBattleVarPair
+	call _GetBattleVar
 	xor a
 	ld [hl], a
 
 	ld a, BATTLE_VARS_LAST_MOVE
-	call GetBattleVarPair
+	call _GetBattleVar
 	xor a
 	ld [hl], a
 	ret
@@ -9006,7 +9006,7 @@ BattleCommand2e: ; 372fc
 
 .asm_3730d
 	ld a, BATTLE_VARS_MOVE_EFFECT
-	call CleanGetBattleVarPair
+	call GetBattleVar
 	cp EFFECT_LIGHT_SCREEN
 	jr nz, .Reflect
 
@@ -9106,7 +9106,7 @@ PrintParalyze: ; 37372
 
 CheckSubstituteOpp: ; 37378
 	ld a, BATTLE_VARS_SUBSTATUS4_OPP
-	call CleanGetBattleVarPair
+	call GetBattleVar
 	bit 4, a
 	ret
 ; 37380
@@ -9119,7 +9119,7 @@ BattleCommand1a: ; 37380
 	ld c, $3
 	call DelayFrames
 	ld a, BATTLE_VARS_STATUS
-	call GetBattleVarPair
+	call _GetBattleVar
 	xor a
 	ld [hli], a
 	inc hl
@@ -9130,10 +9130,10 @@ BattleCommand1a: ; 37380
 	call BattleCommand0a
 	call Function0x37e36
 	ld a, BATTLE_VARS_SUBSTATUS4
-	call GetBattleVarPair
+	call _GetBattleVar
 	res 7, [hl]
 	ld a, BATTLE_VARS_SUBSTATUS5_OPP
-	call GetBattleVarPair
+	call _GetBattleVar
 	res 6, [hl]
 	call Function0x37ed5
 	ret nc
@@ -9149,9 +9149,9 @@ BattleCommand1b: ; 373c9
 
 	call Function0x372d8
 	ld a, BATTLE_VARS_MOVE
-	call GetBattleVarPair
+	call _GetBattleVar
 	ld a, BATTLE_VARS_LAST_COUNTER_MOVE_OPP
-	call CleanGetBattleVarPair
+	call GetBattleVar
 	and a
 	jr z, .asm_373de ; 373d7 $5
 	call CheckUserMove
@@ -9167,7 +9167,7 @@ BattleCommand1b: ; 373c9
 	ld [$d265], a
 	push af
 	ld a, BATTLE_VARS_MOVE_ANIM
-	call GetBattleVarPair
+	call _GetBattleVar
 	ld d, h
 	ld e, l
 	pop af
@@ -9226,7 +9226,7 @@ BattleCommand34: ; 37418
 
 
 	ld a, BATTLE_VARS_MOVE
-	call GetBattleVarPair
+	call _GetBattleVar
 	ld [hl], b
 	call UpdateMoveData
 	jp ResetTurn
@@ -9422,7 +9422,7 @@ BattleCommand51: ; 37517
 ; Don't trap if the opponent is already trapped.
 
 	ld a, BATTLE_VARS_SUBSTATUS5
-	call GetBattleVarPair
+	call _GetBattleVar
 	bit SUBSTATUS_CANT_RUN, [hl]
 	jr nz, .failed
 
@@ -9455,14 +9455,14 @@ BattleCommand52: ; 37536
 ; Only works on a sleeping opponent.
 
 	ld a, BATTLE_VARS_STATUS_OPP
-	call GetBattleVarPair
+	call _GetBattleVar
 	and SLP
 	jr z, .failed
 
 ; Bail if the opponent is already having a nightmare.
 
 	ld a, BATTLE_VARS_SUBSTATUS1_OPP
-	call GetBattleVarPair
+	call _GetBattleVar
 	bit SUBSTATUS_NIGHTMARE, [hl]
 	jr nz, .failed
 
@@ -9485,7 +9485,7 @@ BattleCommand53: ; 37563
 ; Thaw the user.
 
 	ld a, BATTLE_VARS_STATUS
-	call GetBattleVarPair
+	call _GetBattleVar
 	bit FRZ, [hl]
 	ret z
 	res FRZ, [hl]
@@ -9530,7 +9530,7 @@ BattleCommand57: ; 376a0
 	call CheckHiddenOpponent
 	jr nz, .asm_376bf
 	ld a, BATTLE_VARS_SUBSTATUS1_OPP
-	call GetBattleVarPair
+	call _GetBattleVar
 	bit SUBSTATUS_IDENTIFIED, [hl]
 	jr nz, .asm_376bf
 	set SUBSTATUS_IDENTIFIED, [hl]
@@ -9605,7 +9605,7 @@ BattleCommand5b: ; 37718
 	ld de, EnemyRolloutCount
 .asm_37723
 	ld a, BATTLE_VARS_SUBSTATUS1
-	call CleanGetBattleVarPair
+	call GetBattleVar
 	bit SUBSTATUS_ENCORED, a
 	jr z, .asm_37731
 
@@ -9623,7 +9623,7 @@ BattleCommand5c: ; 37734
 ; rolloutpower
 
 	ld a, BATTLE_VARS_STATUS
-	call CleanGetBattleVarPair
+	call GetBattleVar
 	and 7
 	ret nz
 
@@ -9646,7 +9646,7 @@ BattleCommand5c: ; 37734
 	jr z, .hit
 
 	ld a, BATTLE_VARS_SUBSTATUS1
-	call GetBattleVarPair
+	call _GetBattleVar
 	res 6, [hl]
 	ret
 
@@ -9657,18 +9657,18 @@ BattleCommand5c: ; 37734
 	cp $5
 	jr c, .asm_3776e ; 37763 $9
 	ld a, BATTLE_VARS_SUBSTATUS1
-	call GetBattleVarPair
+	call _GetBattleVar
 	res 6, [hl]
 	jr .asm_37775 ; 3776c $7
 
 .asm_3776e
 	ld a, BATTLE_VARS_SUBSTATUS1
-	call GetBattleVarPair
+	call _GetBattleVar
 	set 6, [hl]
 
 .asm_37775
 	ld a, BATTLE_VARS_SUBSTATUS2
-	call CleanGetBattleVarPair
+	call GetBattleVar
 	bit 0, a
 	jr z, .asm_3777f ; 3777c $1
 	inc b
@@ -9765,7 +9765,7 @@ BattleCommand5f: ; 377ce
 	call CheckHiddenOpponent
 	jr nz, .asm_377f2
 	ld a, BATTLE_VARS_SUBSTATUS1_OPP
-	call GetBattleVarPair
+	call _GetBattleVar
 	bit 7, [hl]
 	jr nz, .asm_377f2
 
@@ -10222,11 +10222,11 @@ Function0x37aab: ; 37aab
 
 Function0x37ab1: ; 37ab1
 	ld a, BATTLE_VARS_STATUS
-	call CleanGetBattleVarPair
+	call GetBattleVar
 	and 7
 	jr nz, .asm_37ac1
 	ld a, BATTLE_VARS_SUBSTATUS1
-	call GetBattleVarPair
+	call _GetBattleVar
 	res 0, [hl]
 
 .asm_37ac1
@@ -10237,11 +10237,11 @@ Function0x37ab1: ; 37ab1
 	res 7, [hl]
 	ld hl, PlayerSubStatus5
 	ld a, BATTLE_VARS_SUBSTATUS5
-	call GetBattleVarPair
+	call _GetBattleVar
 	res 3, [hl]
 	res 4, [hl]
 	ld a, BATTLE_VARS_LAST_MOVE
-	call GetBattleVarPair
+	call _GetBattleVar
 	ld [hl], 0
 	xor a
 	ld [$c730], a
@@ -10329,7 +10329,7 @@ BattleCommand69: ; 37b39
 ; clearhazards
 
 	ld a, BATTLE_VARS_SUBSTATUS4
-	call GetBattleVarPair
+	call _GetBattleVar
 	bit 7, [hl]
 	jr z, .asm_37b4a ; 37b40 $8
 	res 7, [hl]
@@ -10586,7 +10586,7 @@ BattleCommand9a: ; 37c95
 	ld a, $1
 	ld [AttackMissed], a
 	ld a, BATTLE_VARS_LAST_COUNTER_MOVE_OPP
-	call CleanGetBattleVarPair
+	call GetBattleVar
 	and a
 	ret z
 	ld b, a
@@ -10601,7 +10601,7 @@ BattleCommand9a: ; 37c95
 	call Function0x36abf
 	ret z
 	ld a, BATTLE_VARS_LAST_COUNTER_MOVE_OPP
-	call CleanGetBattleVarPair
+	call GetBattleVar
 	dec a
 	ld de, StringBuffer1
 	call GetMoveData
@@ -10700,13 +10700,13 @@ BattleCommand9c: ; 37d34
 	call Function0x34548
 	jr nz, .asm_37d4b ; 37d37 $12
 	ld a, BATTLE_VARS_MOVE_ANIM
-	call CleanGetBattleVarPair
+	call GetBattleVar
 	ld b, a
 	ld a, BATTLE_VARS_LAST_COUNTER_MOVE
-	call GetBattleVarPair
+	call _GetBattleVar
 	ld [hl], b
 	ld a, BATTLE_VARS_LAST_MOVE
-	call GetBattleVarPair
+	call _GetBattleVar
 	ld [hl], b
 .asm_37d4b
 	ld hl, $c71d
@@ -10754,7 +10754,7 @@ BattleCommand9f: ; 37d94
 ; thunderaccuracy
 
 	ld a, BATTLE_VARS_MOVE_TYPE
-	call GetBattleVarPair
+	call _GetBattleVar
 	inc hl
 	ld a, [Weather]
 	cp WEATHER_RAIN
@@ -10771,7 +10771,7 @@ BattleCommand9f: ; 37d94
 
 CheckHiddenOpponent: ; 37daa
 	ld a, BATTLE_VARS_SUBSTATUS3_OPP
-	call CleanGetBattleVarPair
+	call GetBattleVar
 	and $60 ; fly | dig
 	ret
 ; 37db2
@@ -10866,7 +10866,7 @@ Function0x37e19: ; 37e19
 	ld [FXAnimIDHi], a
 
 	ld a, BATTLE_VARS_MOVE_ANIM
-	call CleanGetBattleVarPair
+	call GetBattleVar
 	and a
 	ret z
 
@@ -10891,7 +10891,7 @@ Function0x37e36: ; 37e36
 	ld [FXAnimIDHi], a
 
 	ld a, BATTLE_VARS_MOVE_ANIM
-	call CleanGetBattleVarPair
+	call GetBattleVar
 	and a
 	ret z
 

@@ -2650,15 +2650,15 @@ UpdateBattleHuds: ; 39d4
 ; 39e1
 
 
-CleanGetBattleVarPair: ; 39e1
+GetBattleVar: ; 39e1
 ; Preserves hl.
 	push hl
-	call GetBattleVarPair
+	call _GetBattleVar
 	pop hl
 	ret
 ; 39e7
 
-GetBattleVarPair: ; 39e7
+_GetBattleVar: ; 39e7
 ; Get variable from pair a, depending on whose turn it is.
 ; There are 21 variable pairs.
 
@@ -42820,11 +42820,11 @@ Function3c27c: ; 3c27c
 	xor a
 	ld [hl], a
 	ld a, $2
-	call GetBattleVarPair
+	call _GetBattleVar
 	push af
 	set 7, [hl]
 	ld a, $c
-	call GetBattleVarPair
+	call _GetBattleVar
 	push hl
 	push af
 	xor a
@@ -43445,18 +43445,18 @@ Function3c6de: ; 3c6de
 
 Function3c6ed: ; 3c6ed
 	ld a, $5
-	call GetBattleVarPair
+	call _GetBattleVar
 	res 2, [hl]
 	res 5, [hl]
 	ld a, $9
-	call GetBattleVarPair
+	call _GetBattleVar
 	res 6, [hl]
 	ret
 ; 3c6fe
 
 Function3c6fe: ; 3c6fe
 	ld a, $4
-	call GetBattleVarPair
+	call _GetBattleVar
 	res 6, [hl]
 	ret
 ; 3c706
@@ -43482,7 +43482,7 @@ Function3c716: ; 3c716
 	call Function3c706
 	ret z
 	ld a, $a
-	call CleanGetBattleVarPair
+	call GetBattleVar
 	and $18
 	jr z, .asm_3c768
 	ld hl, $47e2
@@ -43508,7 +43508,7 @@ Function3c716: ; 3c716
 
 .asm_3c74d
 	ld a, $4
-	call CleanGetBattleVarPair
+	call GetBattleVar
 	bit 0, a
 	jr z, .asm_3c765
 	call Function3cc76
@@ -43530,7 +43530,7 @@ Function3c716: ; 3c716
 	call Function3c706
 	jp z, .asm_3c7f7
 	ld a, $3
-	call GetBattleVarPair
+	call _GetBattleVar
 	bit 7, [hl]
 	jr z, .asm_3c7a1
 	call Function3c8e4
@@ -43538,7 +43538,7 @@ Function3c716: ; 3c716
 	ld [$cfca], a
 	ld de, $0107
 	ld a, $7
-	call CleanGetBattleVarPair
+	call GetBattleVar
 	and $60
 	call z, Function3ee0f
 	call Function3c8e4
@@ -43554,7 +43554,7 @@ Function3c716: ; 3c716
 	call Function3c706
 	jr z, .asm_3c7f7
 	ld a, $0
-	call GetBattleVarPair
+	call _GetBattleVar
 	bit 0, [hl]
 	jr z, .asm_3c7c5
 	xor a
@@ -43570,7 +43570,7 @@ Function3c716: ; 3c716
 	call Function3c706
 	jr z, .asm_3c7f7
 	ld a, $0
-	call GetBattleVarPair
+	call _GetBattleVar
 	bit 1, [hl]
 	jr z, .asm_3c7e9
 	xor a
@@ -43624,7 +43624,7 @@ Function3c801: ; 3c801
 
 .asm_3c827
 	ld a, $0
-	call CleanGetBattleVarPair
+	call GetBattleVar
 	bit 4, a
 	ret z
 	dec [hl]
@@ -43636,7 +43636,7 @@ Function3c801: ; 3c801
 	pop af
 	ret nz
 	ld a, $0
-	call GetBattleVarPair
+	call _GetBattleVar
 	res 4, [hl]
 	ld a, [hBattleTurn]
 	and a
@@ -43697,7 +43697,7 @@ Function3c874: ; 3c874
 	and a
 	ret z
 	ld a, $3
-	call CleanGetBattleVarPair
+	call GetBattleVar
 	bit 4, a
 	ret nz
 	ld a, [de]
@@ -43707,7 +43707,7 @@ Function3c874: ; 3c874
 	dec [hl]
 	jr z, .asm_3c8de
 	ld a, $2
-	call CleanGetBattleVarPair
+	call GetBattleVar
 	and $60
 	jr nz, .asm_3c8d3
 	call Function3c8e4
@@ -43956,7 +43956,7 @@ Function3ca26: ; 3ca26
 	ld hl, $48b6
 	call StdBattleTextBox
 	ld a, $10
-	call GetBattleVarPair
+	call _GetBattleVar
 	push af
 	ld a, $f8
 	ld [hl], a
@@ -43971,7 +43971,7 @@ Function3ca26: ; 3ca26
 	ld [CurDamage], a
 	ld [$d257], a
 	ld a, $10
-	call GetBattleVarPair
+	call _GetBattleVar
 	pop af
 	ld [hl], a
 	call UpdateBattleMonInParty
@@ -44177,7 +44177,7 @@ HandleWeather: ; 3cb9e
 
 .asm_3cbd0
 	ld a, BATTLE_VARS_SUBSTATUS3
-	call CleanGetBattleVarPair
+	call GetBattleVar
 	bit SUBSTATUS_UNDERGROUND, a
 	ret nz
 
@@ -46710,7 +46710,7 @@ Function3dc5a: ; 3dc5a
 
 Function3dc5b: ; 3dc5b
 	ld a, $10
-	call CleanGetBattleVarPair
+	call GetBattleVar
 	ld b, a
 	call Function3c5ec
 	ld a, b
@@ -46730,7 +46730,7 @@ Function3dc5b: ; 3dc5b
 	ld a, BANK(DoPlayerTurn)
 	rst FarCall
 	ld a, $10
-	call GetBattleVarPair
+	call _GetBattleVar
 	ld a, $ff
 	ld [hl], a
 	pop af
@@ -46945,7 +46945,7 @@ Function3dde9: ; 3dde9
 	dec hl
 	ld b, [hl]
 	ld a, $b
-	call GetBattleVarPair
+	call _GetBattleVar
 	and b
 	ret z
 	xor a
@@ -46954,18 +46954,18 @@ Function3dde9: ; 3dde9
 	call UpdateOpponentInParty
 	pop bc
 	ld a, $9
-	call GetBattleVarPair
+	call _GetBattleVar
 	and [hl]
 	res 0, [hl]
 	ld a, $5
-	call GetBattleVarPair
+	call _GetBattleVar
 	and [hl]
 	res 0, [hl]
 	ld a, b
 	cp $7f
 	jr nz, .asm_3de26
 	ld a, $7
-	call GetBattleVarPair
+	call _GetBattleVar
 	res 7, [hl]
 
 .asm_3de26
@@ -47000,7 +47000,7 @@ Function3dde9: ; 3dde9
 
 Function3de51: ; 3de51
 	ld a, $7
-	call CleanGetBattleVarPair
+	call GetBattleVar
 	bit 7, a
 	ret z
 	callab GetOpponentItem
@@ -47014,7 +47014,7 @@ Function3de51: ; 3de51
 	ld a, [hl]
 	ld [$d265], a
 	ld a, $7
-	call GetBattleVarPair
+	call _GetBattleVar
 	res 7, [hl]
 	call GetItemName
 	call Function3ddc8
@@ -49653,7 +49653,7 @@ _BattleRandom: ; 3edd8
 
 Function3ee0f: ; 3ee0f
 	ld a, BATTLE_VARS_SUBSTATUS3
-	call CleanGetBattleVarPair
+	call GetBattleVar
 	and 1 << SUBSTATUS_FLYING | 1 << SUBSTATUS_UNDERGROUND
 	ret nz
 ; 3ee17
@@ -106697,7 +106697,7 @@ DoWeatherModifiers: ; fbda4
 	ld de, .WeatherMoveModifiers
 
 	ld a, BATTLE_VARS_MOVE_EFFECT
-	call CleanGetBattleVarPair
+	call GetBattleVar
 	ld c, a
 
 .CheckWeatherMove
@@ -113709,17 +113709,17 @@ UsedMoveText: ; 105db9
 .start
 ; get address for last move
 	ld a, $13 ; last move
-	call GetBattleVarPair
+	call _GetBattleVar
 	ld d, h
 	ld e, l
 	
 ; get address for last counter move
 	ld a, $11
-	call GetBattleVarPair
+	call _GetBattleVar
 	
 ; get move animation (id)
 	ld a, $c ; move animation
-	call CleanGetBattleVarPair
+	call GetBattleVar
 	ld [$d265], a
 	
 ; check actor ????
