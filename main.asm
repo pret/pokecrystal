@@ -3029,7 +3029,7 @@ CleanUpdateSound: ; 3b6a
 ; 3b86
 
 
-LoadMusicByte: ; 3b86
+_LoadMusicByte: ; 3b86
 ; CurMusicByte = [a:de]
 
 	ld [hROMBank], a
