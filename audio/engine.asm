@@ -2465,7 +2465,7 @@ PlayCry: ; e8b79
 	ret
 ; e8c04
 
-LoadSFX: ; e8c04
+_PlaySFX: ; e8c04
 ; clear channels if they aren't already
 	call MusicOff
 	ld hl, $c1cc ; Channel5Flags
@@ -2574,7 +2574,7 @@ PlayStereoSFX: ; e8ca6
 ; standard procedure if stereo's off
 	ld a, [Options]
 	bit 5, a
-	jp z, LoadSFX
+	jp z, _PlaySFX
 	
 ; else, let's go ahead with this
 	ld hl, MusicID
