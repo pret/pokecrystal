@@ -3045,7 +3045,7 @@ LoadMusicByte: ; 3b86
 ; 3b97
 
 
-StartMusic: ; 3b97
+PlayMusic: ; 3b97
 ; Play music de.
 
 	push hl
@@ -3081,7 +3081,7 @@ StartMusic: ; 3b97
 ; 3bbc
 
 
-StartMusic2: ; 3bbc
+PlayMusic2: ; 3bbc
 ; Stop playing music, then play music de.
 
 	push hl
@@ -3347,12 +3347,12 @@ Function3cdf: ; 3cdf
 	jr z, .asm_3cfe
 	push de
 	ld de, MUSIC_NONE
-	call StartMusic
+	call PlayMusic
 	call DelayFrame
 	pop de
 	ld a, e
 	ld [CurMusic], a
-	call StartMusic
+	call PlayMusic
 
 .asm_3cfe
 	pop af
@@ -3377,12 +3377,12 @@ Function3d03: ; 3d03
 .asm_3d18
 	push de
 	ld de, MUSIC_NONE
-	call StartMusic
+	call PlayMusic
 	call DelayFrame
 	pop de
 	ld a, e
 	ld [CurMusic], a
-	call StartMusic
+	call PlayMusic
 	pop af
 	pop bc
 	pop de
@@ -3397,7 +3397,7 @@ Function3d2f: ; 3d2f
 	xor a
 	ld [CurMusic], a
 	ld de, MUSIC_NONE
-	call StartMusic
+	call PlayMusic
 	call DelayFrame
 	xor a
 	ld [$c2c1], a
@@ -3410,12 +3410,12 @@ Function3d47: ; 3d47
 	push bc
 	push af
 	ld de, MUSIC_NONE
-	call StartMusic
+	call PlayMusic
 	call DelayFrame
 	ld a, [CurMusic]
 	ld e, a
 	ld d, 0
-	call StartMusic
+	call PlayMusic
 	pop af
 	pop bc
 	pop de
@@ -7776,12 +7776,12 @@ Function5ac2: ; 5ac2
 
 Function5ae8: ; 5ae8
 	ld de, MUSIC_NONE
-	call StartMusic
+	call PlayMusic
 	call DelayFrame
 	ld de, MUSIC_MAIN_MENU
 	ld a, e
 	ld [CurMusic], a
-	call StartMusic
+	call PlayMusic
 	callba MainMenu
 	jp Function6219
 ; 5b04
@@ -8443,7 +8443,7 @@ OakSpeech: ; 0x5f99
 	call ClearTileMap
 
 	ld de, MUSIC_ROUTE_30
-	call StartMusic
+	call PlayMusic
 
 	call Function4a3
 	call Function4b6
@@ -8940,7 +8940,7 @@ TitleScreenEntrance: ; 62bc
 	
 ; Play the title screen music.
 	ld de, MUSIC_TITLE
-	call StartMusic
+	call PlayMusic
 
 	ld a, $88
 	ld [hWY], a
@@ -14419,13 +14419,13 @@ Functiond0bc: ; d0bc
 	xor a
 	ld [MusicFade], a
 	ld de, $0000
-	call StartMusic
+	call PlayMusic
 	call DelayFrame
 	call MaxVolume
 	ld de, $0013
 	ld a, e
 	ld [CurMusic], a
-	call StartMusic
+	call PlayMusic
 	ld a, $1
 	ret
 
@@ -21709,7 +21709,7 @@ Function123a7: ; 123a7
 
 Function123bf: ; 123bf
 	ld de, $000d
-	call StartMusic
+	call PlayMusic
 	jp Function12459
 ; 123c8
 
@@ -30904,7 +30904,7 @@ Function1728f: ; 1728f (5:728f)
 	ld a, [CurSpecies] ; $cf60
 	push af
 	ld de, $0
-	call StartMusic
+	call PlayMusic
 	callba Function8000
 	call DisableLCD
 	ld hl, $7393
@@ -30920,7 +30920,7 @@ Function1728f: ; 1728f (5:728f)
 	ld a, $fd
 	call Function17224
 	ld de, $22
-	call StartMusic
+	call PlayMusic
 	call EnableLCD
 	ld hl, $c4f7
 	ld b, $98
@@ -34644,7 +34644,7 @@ Function26601: ; 0x26601
 	call Rate
 	push de
 	ld de, MUSIC_NONE
-	call StartMusic
+	call PlayMusic
 	pop de
 	call PlaySFX
 	call Functiona36
@@ -35593,7 +35593,7 @@ Function2805d: ; 2805d
 
 .asm_28091
 	ld de, $0000
-	call StartMusic
+	call PlayMusic
 	ld c, $3
 	call DelayFrames
 	xor a
@@ -35697,13 +35697,13 @@ Function2805d: ; 2805d
 	ld a, $d3
 	ld [$d103], a
 	ld de, $0000
-	call StartMusic
+	call PlayMusic
 	ld a, [$ffcb]
 	cp $2
 	ld c, $42
 	call z, DelayFrames
 	ld de, $002b
-	call StartMusic
+	call PlayMusic
 	jp Function287e3
 ; 28177
 
@@ -35736,7 +35736,7 @@ Function28177: ; 28177
 
 .asm_281ae
 	ld de, $0000
-	call StartMusic
+	call PlayMusic
 	ld c, $3
 	call DelayFrames
 	xor a
@@ -35773,7 +35773,7 @@ Function28177: ; 28177
 	ld a, $1d
 	ld [rIE], a
 	ld de, $0000
-	call StartMusic
+	call PlayMusic
 	call Function287ab
 	ld hl, $d26b
 	call Function287ca
@@ -35939,7 +35939,7 @@ Function28177: ; 28177
 	ld a, $d3
 	ld [$d103], a
 	ld de, $0000
-	call StartMusic
+	call PlayMusic
 	ld a, [$ffcb]
 	cp $2
 	ld c, $42
@@ -35996,7 +35996,7 @@ Function28177: ; 28177
 
 .asm_283a9
 	ld de, $002b
-	call StartMusic
+	call PlayMusic
 	jp Function287e3
 ; 283b2
 
@@ -37604,7 +37604,7 @@ Function28fa1: ; 28fa1
 	and a
 	jr nz, .asm_28fca
 	ld de, MUSIC_EVOLUTION
-	call StartMusic2
+	call PlayMusic2
 .asm_28fca
 	call Function29082
 	jr nc, .asm_28fca
@@ -41101,7 +41101,7 @@ PlayBattleMusic: ; 2ee6c
 	xor a
 	ld [MusicFade], a
 	ld de, MUSIC_NONE
-	call StartMusic
+	call PlayMusic
 	call DelayFrame
 	call MaxVolume
 
@@ -41186,7 +41186,7 @@ PlayBattleMusic: ; 2ee6c
 	ld de, MUSIC_KANTO_TRAINER_BATTLE
 
 .done
-	call StartMusic
+	call PlayMusic
 
 	pop bc
 	pop de
@@ -45006,7 +45006,7 @@ Function3d0be: ; 3d0be
 Function3d0ea: ; 3d0ea
 	push de
 	ld de, MUSIC_NONE
-	call StartMusic
+	call PlayMusic
 	call DelayFrame
 	ld de, MUSIC_WILD_VICTORY
 	ld a, [IsInBattle]
@@ -45032,7 +45032,7 @@ Function3d0ea: ; 3d0ea
 	ld de, MUSIC_TRAINER_VICTORY
 
 .asm_3d11e
-	call StartMusic
+	call PlayMusic
 
 .asm_3d121
 	pop de
@@ -54235,7 +54235,7 @@ asm_421f5
 	call PrintTextBoxText
 	callba Function106094
 	ld de, MUSIC_NONE
-	call StartMusic
+	call PlayMusic
 	ld de, SFX_CAUGHT_MON
 	call PlaySFX
 	call WaitSFX
@@ -61017,7 +61017,7 @@ Function4d3b1: ; 4d3b1
 	call Functione51
 	call Functione5f
 	ld de, $0054
-	call StartMusic
+	call PlayMusic
 	ld hl, $5408
 	call PrintText
 	ld hl, $540d
@@ -61260,7 +61260,7 @@ Function4d54c: ; 4d54c
 	call Functione51
 	call Functione5f
 	ld de, $0054
-	call StartMusic
+	call PlayMusic
 	ld hl, $5580
 	call PrintText
 	ld hl, $5585
@@ -63219,7 +63219,7 @@ Function4e607: ; 4e607
 	ld a, $e4
 	ld [rOBP0], a
 	ld de, $0000
-	call StartMusic
+	call PlayMusic
 	callba Function8cf53
 	ld de, $6831
 	ld hl, VTiles0
@@ -63261,7 +63261,7 @@ Function4e607: ; 4e607
 
 .asm_4e67c
 	ld de, $0022
-	call StartMusic
+	call PlayMusic
 	ld c, $50
 	call DelayFrames
 	ld c, $1
@@ -63850,7 +63850,7 @@ Function4ea82: ; 4ea82
 	and a
 	ret nz
 	ld de, $0000
-	call StartMusic
+	call PlayMusic
 	call ClearTileMap
 	ld hl, $6b76
 	ld de, $d000
@@ -69467,7 +69467,7 @@ Function84742: ; 84742
 
 Function8474c: ; 8474c
 	ld de, MUSIC_PRINTER
-	call StartMusic2
+	call PlayMusic2
 	ret
 ; 84753
 
@@ -70081,10 +70081,10 @@ Function8648e: ; 8648e
 Function864b4: ; 864b4
 	push de
 	ld de, $0000
-	call StartMusic
+	call PlayMusic
 	call DelayFrame
 	pop de
-	call StartMusic
+	call PlayMusic
 	ret
 ; 864c3
 
@@ -78438,7 +78438,7 @@ Function8ccc9: ; 8ccc9
 	ld [hli], a
 	ld [hli], a
 	ld de, MUSIC_MAGNET_TRAIN
-	call StartMusic2
+	call PlayMusic2
 	ret
 ; 8cd27
 
@@ -83113,11 +83113,11 @@ Function91854: ; 91854 (24:5854)
 	ld a, e
 	ld [EnemyTurnsTaken], a ; $c6dc
 	ld de, $0
-	call StartMusic
+	call PlayMusic
 	pop de
 	ld a, e
 	ld [CurMusic], a ; $c2c0
-	call StartMusic
+	call PlayMusic
 	ret
 
 ; no known jump sources
@@ -83126,10 +83126,10 @@ Function91868: ; 91868 (24:5868)
 	ld a, $fe
 	ld [EnemyTurnsTaken], a ; $c6dc
 	ld de, $0
-	call StartMusic
+	call PlayMusic
 	pop de
 	ld de, $3f
-	call StartMusic
+	call PlayMusic
 	ret
 
 ; known jump sources: 9175f (24:575f), 91774 (24:5774), 91789 (24:5789), 9179e (24:579e), 917b3 (24:57b3), 917e3 (24:57e3), 917f8 (24:57f8), 9180d (24:580d), 91837 (24:5837), 9184c (24:584c)
@@ -83156,7 +83156,7 @@ Function91888: ; 91888 (24:5888)
 ; known jump sources: 91888 (24:5888)
 Function9189d: ; 9189d (24:589d)
 	ld de, $0
-	call StartMusic
+	call PlayMusic
 	ld a, $ff
 	ld [EnemyTurnsTaken], a ; $c6dc
 	ret
@@ -84335,7 +84335,7 @@ Function926f7: ; 926f7 (24:66f7)
 	call ClearTileMap
 	call ClearSprites
 	ld de, $0
-	call StartMusic
+	call PlayMusic
 	call DelayFrame
 	call DisableLCD
 	ld hl, $9800
@@ -84385,7 +84385,7 @@ Function926f7: ; 926f7 (24:66f7)
 	ld a, $ff
 	ld [$c709], a
 	ld de, $12
-	call StartMusic
+	call PlayMusic
 	xor a
 	ld [DefaultFlypoint], a ; $d002
 	call Random
@@ -100511,7 +100511,7 @@ Functione00ee: ; e00ee (38:40ee)
 	call ClearTileMap
 	call ClearSprites
 	ld de, $0
-	call StartMusic
+	call PlayMusic
 	call DelayFrame
 	call DisableLCD
 	call Functione51
@@ -100549,7 +100549,7 @@ Functione00ee: ; e00ee (38:40ee)
 	ld [$cf64], a
 	ld [$cf65], a
 	ld de, $12
-	call StartMusic
+	call PlayMusic
 .asm_e0170
 	ld a, [$cf63]
 	bit 7, a
@@ -103788,7 +103788,7 @@ Functione455c: ; e455c
 
 Functione4579: ; e4579
 	ld de, MUSIC_NONE
-	call StartMusic
+	call PlayMusic
 	call WhiteBGMap
 	call ClearTileMap
 	ld a, $98
@@ -104158,7 +104158,7 @@ Functione48bc: ; e48bc
 
 .asm_e48db
 	ld de, $0000
-	call StartMusic
+	call PlayMusic
 
 .asm_e48e1
 	call WhiteBGMap
@@ -104790,7 +104790,7 @@ Functione4d6d: ; e4d6d (39:4d6d)
 	ld a, $26
 	call Function3b2a
 	ld de, $62
-	call StartMusic
+	call PlayMusic
 	xor a
 	ld [$c3c0], a
 	call Functione549e
@@ -125035,7 +125035,7 @@ Function17d2ce: ; 17d2ce
 	ld [MusicFadeIDLo], a
 	ld a, d
 	ld [MusicFadeIDHi], a
-	call StartMusic
+	call PlayMusic
 	call Function222a
 	call Function2b3c
 	ret

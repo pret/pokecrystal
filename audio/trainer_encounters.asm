@@ -8,7 +8,7 @@ PlayTrainerEncounterMusic: ; e900a
 	; play nothing for one frame
 	push de
 	ld de, $0000 ; id: Music_Nothing
-	call StartMusic
+	call PlayMusic
 	call DelayFrame
 	; play new song
 	call MaxVolume
@@ -17,7 +17,7 @@ PlayTrainerEncounterMusic: ; e900a
 	ld hl, TrainerEncounterMusic
 	add hl, de
 	ld e, [hl]
-	call StartMusic
+	call PlayMusic
 	ret
 ; e9027
 

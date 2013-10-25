@@ -889,7 +889,7 @@ Script_playmusic: ; 0x97189
 ;     music_pointer (MultiByteParam)
 
 	ld de, $0000
-	call StartMusic
+	call PlayMusic
 	xor a
 	ld [$c2a7], a
 	call MaxVolume
@@ -897,7 +897,7 @@ Script_playmusic: ; 0x97189
 	ld e, a
 	call GetScriptByte
 	ld d, a
-	call StartMusic
+	call PlayMusic
 	ret
 ; 0x971a2
 
