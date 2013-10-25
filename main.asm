@@ -3173,7 +3173,7 @@ PlayCryHeader: ; 3be3
 ; 3c23
 
 
-StartSFX: ; 3c23
+PlaySFX: ; 3c23
 ; Play sound effect de.
 ; Sound effects are ordered by priority (lowest to highest)
 
@@ -3215,7 +3215,7 @@ StartSFX: ; 3c23
 
 WaitPlaySFX: ; 3c4e
 	call WaitSFX
-	call StartSFX
+	call PlaySFX
 	ret
 ; 3c55
 
@@ -5228,7 +5228,7 @@ Function48b3: ; 48b3
 	call Function6ec1
 	jr c, .asm_48eb
 	ld de, SFX_STRENGTH
-	call StartSFX
+	call PlaySFX
 	call Function5538
 	call Function463f
 	ld hl, $0009
@@ -8629,7 +8629,7 @@ Function610f: ; 610f
 	ld [MusicFadeIDHi], a
 
 	ld de, SFX_ESCAPE_ROPE
-	call StartSFX
+	call PlaySFX
 	pop af
 	rst Bankswitch
 
@@ -9472,7 +9472,7 @@ UnknownText_0x6684: ; 6684
 ; 6689
 	push de
 	ld de, SFX_SWITCH_POKEMON
-	call StartSFX
+	call PlaySFX
 	pop de
 	ld hl, UnknownText_0x6695
 	ret
@@ -13245,7 +13245,7 @@ UnknownText_0xc8f3: ; 0xc8f3
 Functionc8f8: ; c8f8
 	call WaitSFX
 	ld de, SFX_FLASH
-	call StartSFX
+	call PlaySFX
 	call WaitSFX
 	ld hl, UnknownText_0xc908
 	ret
@@ -16610,7 +16610,7 @@ Functiondd21: ; dd21
 	ld a, [BreedMon1Species]
 	ld [CurPartySpecies], a
 	ld de, $0022
-	call StartSFX
+	call PlaySFX
 	call WaitSFX
 	call Functione698
 	ld a, b
@@ -16626,7 +16626,7 @@ Functiondd42: ; dd42
 	ld a, [BreedMon2Species]
 	ld [CurPartySpecies], a
 	ld de, $0022
-	call StartSFX
+	call PlaySFX
 	call WaitSFX
 	call Functione6b3
 	ld a, b
@@ -19273,7 +19273,7 @@ Function1076f: ; 1076f
 	ld [$cf63], a
 	push de
 	ld de, SFX_UNKNOWN_62
-	call StartSFX
+	call PlaySFX
 	pop de
 	scf
 	ret
@@ -19285,7 +19285,7 @@ Function1076f: ; 1076f
 	ld [$cf63], a
 	push de
 	ld de, SFX_UNKNOWN_62
-	call StartSFX
+	call PlaySFX
 	pop de
 	scf
 	ret
@@ -19486,7 +19486,7 @@ Function108d4: ; 108d4 (4:48d4)
 	ld [$cf64], a
 	push de
 	ld de, $62
-	call StartSFX
+	call PlaySFX
 	pop de
 	scf
 	ret
@@ -19496,7 +19496,7 @@ Function108d4: ; 108d4 (4:48d4)
 	ld [$cf64], a
 	push de
 	ld de, $62
-	call StartSFX
+	call PlaySFX
 	pop de
 	scf
 	ret
@@ -21698,7 +21698,7 @@ Function123a7: ; 123a7
 	call Function124a3
 	push de
 	ld de, $0012
-	call StartSFX
+	call PlaySFX
 	pop de
 	ld c, $1e
 	call DelayFrames
@@ -21715,11 +21715,11 @@ Function123bf: ; 123bf
 
 Function123c8: ; 123c8
 	ld de, $00aa
-	call StartSFX
+	call PlaySFX
 	call Function12459
 	call WaitSFX
 	ld de, $000d
-	call StartSFX
+	call PlaySFX
 	ret
 ; 123db
 
@@ -21942,7 +21942,7 @@ StartMenu: ; 125cd
 	call Function1fbf
 
 	ld de, SFX_MENU
-	call StartSFX
+	call PlaySFX
 
 	callba Function6454
 
@@ -23568,10 +23568,10 @@ Function12fd5: ; 12fd5
 
 .asm_13113
 	ld de, $0020
-	call StartSFX
+	call PlaySFX
 	call WaitSFX
 	ld de, $0020
-	call StartSFX
+	call PlaySFX
 	call WaitSFX
 	ld hl, $c4c9
 	ld bc, $0812
@@ -27868,7 +27868,7 @@ Function15650: ; 15650
 	and a
 	ret nz
 	ld de, $000f
-	call StartSFX
+	call PlaySFX
 	ld hl, $5663
 	call Function15a20
 	scf
@@ -27909,7 +27909,7 @@ Function156d0: ; 156d0
 	push de
 	call WaitSFX
 	pop de
-	call StartSFX
+	call PlaySFX
 	ret
 ; 156d9
 
@@ -29099,7 +29099,7 @@ UnknownText_0x15fbe: ; 0x15fbe
 Function15fc3: ; 15fc3
 	call WaitSFX
 	ld de, SFX_TRANSACTION
-	call StartSFX
+	call PlaySFX
 	ret
 ; 15fcd
 
@@ -29646,7 +29646,7 @@ Function16936: ; 16936
 	ld hl, $6998
 	call PrintText
 	ld de, $0096
-	call StartSFX
+	call PlaySFX
 	ld c, $78
 	call DelayFrames
 	ld hl, $699d
@@ -30963,7 +30963,7 @@ Function1728f: ; 1728f (5:728f)
 	jr .asm_172ee
 .asm_17327
 	ld de, $a6
-	call StartSFX
+	call PlaySFX
 	xor a
 	ld [hSCX], a ; $ff00+$cf
 	ld [$c3c0], a
@@ -31014,7 +31014,7 @@ Function1736d: ; 1736d (5:736d)
 	add hl, bc
 	ld [hl], $0
 	ld de, $9e
-	jp StartSFX
+	jp PlaySFX
 ; 17393 (5:7393)
 
 INCBIN "baserom.gbc",$17393,$173b3 - $17393
@@ -31054,7 +31054,7 @@ Function173b3: ; 173b3 (5:73b3)
 	jr .asm_173bc
 .asm_173e5
 	ld de, $a6
-	call StartSFX
+	call PlaySFX
 	call Function1727f
 	ret
 ; 173ef (5:73ef)
@@ -33500,7 +33500,7 @@ Function24d59: ; 24d59
 	set 6, [hl]
 	call Function1bc9
 	ld de, SFX_READ_TEXT_2
-	call StartSFX
+	call PlaySFX
 	ld a, [hJoyPressed]
 	bit 0, a ; A
 	jr nz, .asm_24d84
@@ -33723,7 +33723,7 @@ Function24e99: ; 24e99
 	set 6, [hl]
 	call Function1bc9
 	ld de, SFX_READ_TEXT_2
-	call StartSFX
+	call PlaySFX
 	ld a, [hJoyPressed]
 	bit 1, a
 	jr z, .asm_24ed2
@@ -34634,7 +34634,7 @@ ProfOaksPCBoot ; 0x265ee
 	ld hl, OakPCText2
 	call PrintText
 	call Rate
-	call StartSFX ; sfx loaded by previous Rate function call
+	call PlaySFX ; sfx loaded by previous Rate function call
 	call Functiona36
 	call WaitSFX
 	ret
@@ -34646,7 +34646,7 @@ Function26601: ; 0x26601
 	ld de, MUSIC_NONE
 	call StartMusic
 	pop de
-	call StartSFX
+	call PlaySFX
 	call Functiona36
 	call WaitSFX
 	ret
@@ -40115,7 +40115,7 @@ Function2c547: ; 2c547
 	call Function2c5f9
 	call WaitSFX
 	ld de, $0097
-	call StartSFX
+	call PlaySFX
 	call WaitSFX
 	ld hl, $45db
 	call PrintText
@@ -40466,7 +40466,7 @@ Function2c80a: ; 2c80a
 	push bc
 	push af
 	ld de, SFX_WRONG
-	call StartSFX
+	call PlaySFX
 	call WaitSFX
 	pop af
 	pop bc
@@ -40488,7 +40488,7 @@ Function2c867: ; 2c867
 	jr nz, .asm_2c88b
 	push de
 	ld de, $19
-	call StartSFX
+	call PlaySFX
 	pop de
 	ld hl, $48ce
 	call PrintText
@@ -40821,7 +40821,7 @@ Function2caca: ; 2caca (b:4aca)
 Function2cad6: ; 2cad6 (b:4ad6)
 	push de
 	ld de, $8
-	call StartSFX
+	call PlaySFX
 	pop de
 	ret
 ; 2cadf (b:4adf)
@@ -41729,7 +41729,7 @@ Function38387: ; 38387
 Function3839a: ; 3839a
 	push de
 	ld de, SFX_FULL_HEAL
-	call StartSFX
+	call PlaySFX
 	pop de
 	ret
 ; 383a3
@@ -42545,7 +42545,7 @@ Function3c0e5: ; 3c0e5
 	jr c, .asm_3c126
 
 	ld de, SFX_RUN
-	call StartSFX
+	call PlaySFX
 
 .asm_3c126
 	call SetPlayerTurn
@@ -44714,10 +44714,10 @@ Function3cef1: ; 3cef1
 Function3cf14: ; 3cf14
 	call WaitSFX
 	ld de, SFX_KINESIS
-	call StartSFX
+	call PlaySFX
 	call Function3d432
 	ld de, SFX_UNKNOWN_2A
-	call StartSFX
+	call PlaySFX
 	hlcoord 1, 0
 	ld bc, $040a
 	call ClearBox
@@ -45380,7 +45380,7 @@ Function3d362: ; 3d362
 	call Function3d2e0
 	ret c
 	ld de, SFX_WRONG
-	call StartSFX
+	call PlaySFX
 	call WaitSFX
 	jr .asm_3d362
 ; 3d375
@@ -46728,10 +46728,10 @@ Function3dc5b: ; 3dc5b
 	or [hl]
 	jr nz, .asm_3dce4
 	ld de, SFX_KINESIS
-	call StartSFX
+	call PlaySFX
 	call WaitSFX
 	ld de, SFX_UNKNOWN_2A
-	call StartSFX
+	call PlaySFX
 	call WaitSFX
 	call Function3d432
 	ld hl, BattleText_0x809a8
@@ -49952,7 +49952,7 @@ Function3ee3b: ; 3ee3b
 	cp b
 	jr z, .asm_3f057
 	ld de, SFX_HIT_END_OF_EXP_BAR
-	call StartSFX
+	call PlaySFX
 	call WaitSFX
 	ld hl, BattleText_0x80c9c
 	call StdBattleTextBox
@@ -50200,7 +50200,7 @@ Function3f136: ; 3f136
 	call CopyBytes
 	call Function3dfe
 	ld de, SFX_HIT_END_OF_EXP_BAR
-	call StartSFX
+	call PlaySFX
 	callba Function8e79d
 	call WaitSFX
 	ld hl, BattleText_0x80c9c
@@ -50235,7 +50235,7 @@ Function3f21b: ; 3f21b
 	push bc
 	call WaitSFX
 	ld de, SFX_EXP_BAR
-	call StartSFX
+	call PlaySFX
 	ld c, 10
 	call DelayFrames
 	pop bc
@@ -51795,7 +51795,7 @@ BattleStartMessage: ; 3fc8b
 	jr z, .asm_3fcaa
 
 	ld de, SFX_SHINE
-	call StartSFX
+	call PlaySFX
 	call WaitSFX
 
 	ld c, 20
@@ -51920,7 +51920,7 @@ Function40000: ; 40000
 
 .asm_4003b
 	ld de, SFX_READ_TEXT_2
-	call StartSFX
+	call PlaySFX
 	call WaitSFX
 	call ClearSprites
 	ld a, [$c7d4]
@@ -53395,7 +53395,7 @@ Function40f08: ; 40f08 (10:4f08)
 	ld c, $40
 	call DelayFrames
 	ld de, $15
-	call StartSFX
+	call PlaySFX
 	ld c, $40
 	call DelayFrames
 	ret
@@ -54237,7 +54237,7 @@ asm_421f5
 	ld de, MUSIC_NONE
 	call StartMusic
 	ld de, SFX_CAUGHT_MON
-	call StartSFX
+	call PlaySFX
 	call WaitSFX
 	ld c, $28
 	call DelayFrames
@@ -57443,7 +57443,7 @@ Function492b9: ; 492b9
 	jr nz, .asm_492e5
 	push de
 	ld de, SFX_WRONG
-	call StartSFX
+	call PlaySFX
 	pop de
 	ld a, $b
 	ld hl, $48ce
@@ -59660,7 +59660,7 @@ Function4a94e: ; 4a94e
 
 .asm_4a9b0
 	ld de, $0019
-	call StartSFX
+	call PlaySFX
 	ld hl, $69be
 	call PrintText
 	jr .asm_4a974
@@ -59923,7 +59923,7 @@ Function4ab1a: ; 4ab1a
 	ld a, [hl]
 	ld [CurPartySpecies], a
 	ld de, $0008
-	call StartSFX
+	call PlaySFX
 	call WaitSFX
 	ld a, $1
 	and a
@@ -59934,7 +59934,7 @@ Function4ab1a: ; 4ab1a
 	ld [$d0d8], a
 .asm_4ab73
 	ld de, $0008
-	call StartSFX
+	call PlaySFX
 	call WaitSFX
 	scf
 	ret
@@ -59946,7 +59946,7 @@ Function4ab1a: ; 4ab1a
 	cp $2
 	jr z, .asm_4ab73
 	ld de, $0008
-	call StartSFX
+	call PlaySFX
 	call WaitSFX
 	xor a
 	ld [$d018], a
@@ -60148,7 +60148,7 @@ Function4acaa: ; 4acaa
 	set 6, [hl]
 	call Function1bc9
 	ld de, $0008
-	call StartSFX
+	call PlaySFX
 	ld a, [hJoyPressed]
 	bit 0, a
 	jr nz, .asm_4acf4
@@ -62960,7 +62960,7 @@ EggStatsScreen: ; 4e33a
 	cp 6
 	ret nc
 	ld de, SFX_2_BOOPS
-	call StartSFX
+	call PlaySFX
 	ret
 ; 0x4e3c0
 
@@ -63442,7 +63442,7 @@ Function4e7a6: ; 4e7a6
 	and a
 	ret nz
 	ld de, SFX_EVOLVED
-	call StartSFX
+	call PlaySFX
 	ld hl, $cf63
 	ld a, [hl]
 	push af
@@ -64972,14 +64972,14 @@ PartyMenuSelect: ; 0x50457
 	ld [CurPartySpecies], a
 
 	ld de, SFX_READ_TEXT_2
-	call StartSFX
+	call PlaySFX
 	call WaitSFX
 	and a
 	ret
 
 .exitmenu
 	ld de, SFX_READ_TEXT_2
-	call StartSFX
+	call PlaySFX
 	call WaitSFX
 	scf
 	ret
@@ -65171,7 +65171,7 @@ Function5062e: ; 5062e
 
 Function50658: ; 50658
 	ld de, SFX_POISON
-	call StartSFX
+	call PlaySFX
 	ld b, $2
 	ld a, $2e
 	call Predef
@@ -67809,7 +67809,7 @@ TryJumpLedge: ; 801f3
 	jr z, .DontJump
 
 	ld de, SFX_JUMP_OVER_LEDGE
-	call StartSFX
+	call PlaySFX
 	ld a, STEP_LEDGE
 	call DoStep
 	ld a, 7
@@ -68212,7 +68212,7 @@ PlayBump: ; 803ee
 	call CheckSFX
 	ret c
 	ld de, SFX_BUMP
-	call StartSFX
+	call PlaySFX
 	ret
 ; 803f9
 
@@ -72706,7 +72706,7 @@ Function89a57: ; 89a57
 Function89a8a: ; 89a8a
 	push af
 	ld de, $0062
-	call StartSFX
+	call PlaySFX
 	pop af
 	ret
 ; 89a93
@@ -73767,7 +73767,7 @@ Function8a116: ; 8a116 (22:6116)
 .asm_8a14c
 	call WaitSFX
 	ld de, $ce
-	call StartSFX
+	call PlaySFX
 	ld c, $10
 	call DelayFrames
 .asm_8a15a
@@ -75513,7 +75513,7 @@ Function8afd4: ; 8afd4
 
 .asm_8b051
 	ld de, $0022
-	call StartSFX
+	call PlaySFX
 	ld hl, $707c
 
 .asm_8b05a
@@ -77956,7 +77956,7 @@ INCBIN "baserom.gbc",$8c7c9,$8c7d4 - $8c7c9
 Function8c7d4: ; 8c7d4
 	call WaitSFX
 	ld de, $0053
-	call StartSFX
+	call PlaySFX
 	call WaitSFX
 	ret
 ; 8c7e1
@@ -77970,7 +77970,7 @@ Function8c940: ; 8c940
 	call Function8c96d
 	call WaitSFX
 	ld de, $001e
-	call StartSFX
+	call PlaySFX
 .asm_8c952
 	ld a, [$cf63]
 	bit 7, a
@@ -78257,7 +78257,7 @@ Function8cbc8: ; 8cbc8 (23:4bc8)
 	and $7
 	ret nz
 	ld de, $18
-	call StartSFX
+	call PlaySFX
 	ret
 .asm_8cbe0
 	ld hl, $cf63
@@ -79404,7 +79404,7 @@ Function8d43e: ; 8d43e (23:543e)
 	ld a, $4
 	ld [$cf64], a
 	ld de, $1e
-	call StartSFX
+	call PlaySFX
 	ret
 .asm_8d461
 	inc [hl]
@@ -79452,7 +79452,7 @@ Function8d52a: ; 8d52a (23:552a)
 	and $3
 	ret nz
 	ld de, $3
-	call StartSFX
+	call PlaySFX
 	ret
 .asm_8d53f
 	call Function8d036
@@ -80816,7 +80816,7 @@ Function902c9: ; 902c9
 ; no known jump sources
 Function902e3: ; 902e3 (24:42e3)
 	ld de, $6c
-	call StartSFX
+	call PlaySFX
 	jr asm_902f1
 
 
@@ -80846,7 +80846,7 @@ Function9031d: ; 9031d
 	ld hl, UnknownText_0x9032a
 	call PrintText
 	ld de, SFX_HANG_UP
-	call StartSFX
+	call PlaySFX
 	ret
 ; 9032a
 
@@ -80876,7 +80876,7 @@ Function9033b: ; 9033b
 Function9033f: ; 9033f
 	call WaitSFX
 	ld de, SFX_CALL
-	call StartSFX
+	call PlaySFX
 	call Function90375
 	call Function1ad2
 	callba Function4d188
@@ -81614,7 +81614,7 @@ Function90b8d: ; 90b8d (24:4b8d)
 	jr .asm_90ba9
 .asm_90bc4
 	ld de, $8
-	call StartSFX
+	call PlaySFX
 	call WaitSFX
 	pop af
 	ld [VramState], a ; $d0ed
@@ -82459,12 +82459,12 @@ Function911eb: ; 911eb (24:51eb)
 	xor a
 	ld [$FF00+$aa], a
 	ld de, $6a
-	call StartSFX
+	call PlaySFX
 	ld hl, $524c
 	call PrintText
 	call WaitSFX
 	ld de, $6a
-	call StartSFX
+	call PlaySFX
 	ld hl, $524c
 	call PrintText
 	call WaitSFX
@@ -82769,7 +82769,7 @@ INCBIN "baserom.gbc",$9143f,$91480 - $9143f
 ; known jump sources: 90f71 (24:4f71), 91025 (24:5025), 9114c (24:514c), 911ac (24:51ac)
 Function91480: ; 91480 (24:5480)
 	ld de, $8
-	call StartSFX
+	call PlaySFX
 	ld a, c
 	ld [$cf63], a
 	ld a, b
@@ -84317,7 +84317,7 @@ Function926c7:
 	jr nc, .asm_926d2
 	call WaitSFX
 	ld de, $9d
-	call StartSFX
+	call PlaySFX
 	call WaitSFX
 	call WhiteBGMap
 	ld a, BANK(Function105fd0)
@@ -84701,7 +84701,7 @@ Function929a4: ; 929a4 (24:69a4)
 	and $7
 	ret z
 	ld de, $67
-	call StartSFX
+	call PlaySFX
 	ret
 .asm_929d5
 	call Function92879
@@ -85165,7 +85165,7 @@ Function9307c: ; 9307c (24:707c)
 .asm_930b6
 	call WaitSFX
 	ld de, $68
-	call StartSFX
+	call PlaySFX
 	ld hl, $70cc
 	call PrintText
 	and a
@@ -85414,7 +85414,7 @@ Function932c2: ; 932c2 (24:72c2)
 	and $f
 	ret nz
 	ld de, $16
-	call StartSFX
+	call PlaySFX
 	ret
 .asm_932d6
 	ld hl, $b
@@ -85470,7 +85470,7 @@ Function9331e: ; 9331e (24:731e)
 	push de
 	ld e, a
 	ld d, $0
-	call StartSFX
+	call PlaySFX
 	pop de
 	ret
 ; 93327 (24:7327)
@@ -86096,7 +86096,7 @@ CheckAPressOW: ; 96999
 PlayTalkObject: ; 969ac
 	push de
 	ld de, SFX_READ_TEXT_2
-	call StartSFX
+	call PlaySFX
 	pop de
 	ret
 ; 969b5
@@ -94097,7 +94097,7 @@ Functioncc881: ; cc881
 	ld de, $00ab
 
 .asm_cc8a0
-	call StartSFX
+	call PlaySFX
 	ret
 ; cc8a4
 
@@ -100559,7 +100559,7 @@ Functione00ee: ; e00ee (38:40ee)
 .asm_e017c
 	call WaitSFX
 	ld de, $9d
-	call StartSFX
+	call PlaySFX
 	call WaitSFX
 	call WhiteBGMap
 	ld hl, Options ; $cfcc
@@ -103258,7 +103258,7 @@ _OptionsMenu: ; e41d0
 
 .asm_e4234
 	ld de, SFX_TRANSACTION
-	call StartSFX
+	call PlaySFX
 	call WaitSFX
 	pop af
 	ld [$ffaa], a
@@ -103943,7 +103943,7 @@ Functione468d: ; e468d
 	call CopyBytes
 	call Functione4687
 	ld de, SFX_GAME_FREAK_PRESENTS
-	call StartSFX
+	call PlaySFX
 	ret
 ; e46af
 
@@ -104057,7 +104057,7 @@ Functione470d: ; e470d (39:470d)
 	sub $30
 	ld [hl], a
 	ld de, $c7
-	call StartSFX
+	call PlaySFX
 	ret
 .asm_e4747
 	ld hl, $b
@@ -104067,7 +104067,7 @@ Functione470d: ; e470d (39:470d)
 	add hl, bc
 	ld [hl], $0
 	ld de, $c1
-	call StartSFX
+	call PlaySFX
 	ret
 
 ; no known jump sources
@@ -104087,7 +104087,7 @@ Functione4759: ; e4759 (39:4759)
 	add hl, bc
 	ld [hl], $0
 	ld de, $c2
-	call StartSFX
+	call PlaySFX
 	ret
 
 ; no known jump sources
@@ -104308,7 +104308,7 @@ Functione49d6: ; e49d6 (39:49d6)
 	ld de, $5858
 	call Functione51dc
 	ld de, $be
-	call StartSFX
+	call PlaySFX
 	pop af
 .asm_e49f1
 	ld [$cf65], a
@@ -104452,7 +104452,7 @@ Functione4af7: ; e4af7 (39:4af7)
 	ld de, $3878
 	call Functione51dc
 	ld de, $bf
-	call StartSFX
+	call PlaySFX
 	pop af
 .asm_e4b1c
 	ld [$cf65], a
@@ -104464,7 +104464,7 @@ Functione4af7: ; e4af7 (39:4af7)
 	ld de, $7030
 	call Functione51dc
 	ld de, $be
-	call StartSFX
+	call PlaySFX
 	pop af
 .asm_e4b32
 	ld [$cf65], a
@@ -104548,7 +104548,7 @@ Functione4bd3: ; e4bd3 (39:4bd3)
 	ret
 .asm_e4be2
 	ld de, $c6
-	call StartSFX
+	call PlaySFX
 .asm_e4be8
 	ld a, [$c3c0]
 	and a
@@ -104558,7 +104558,7 @@ Functione4bd3: ; e4bd3 (39:4bd3)
 	ret
 .asm_e4bf4
 	ld de, $c5
-	call StartSFX
+	call PlaySFX
 	callba Function8d03d
 	call Functione4956
 	ret
@@ -104615,14 +104615,14 @@ Functione4c4f: ; e4c4f (39:4c4f)
 	ld a, $27
 	call Function3b2a
 	ld de, $c4
-	call StartSFX
+	call PlaySFX
 	ret
 .asm_e4c73
 	ld de, $b030
 	ld a, $28
 	call Function3b2a
 	ld de, $c4
-	call StartSFX
+	call PlaySFX
 	ret
 .asm_e4c82
 	call Functione4956
@@ -104735,7 +104735,7 @@ Functione4d36: ; e4d36 (39:4d36)
 	push de
 	call SFXChannelsOff
 	pop de
-	call StartSFX
+	call PlaySFX
 	ret
 ; e4d54 (39:4d54)
 
@@ -104818,7 +104818,7 @@ Functione4dfa: ; e4dfa (39:4dfa)
 	ret
 .asm_e4e14
 	ld de, $c8
-	call StartSFX
+	call PlaySFX
 .asm_e4e1a
 	ld a, $1
 	ld [$cf65], a
@@ -105239,7 +105239,7 @@ Functione5152: ; e5152 (39:5152)
 	cp $8
 	ret nz
 	ld de, $cb
-	call StartSFX
+	call PlaySFX
 	ret
 .asm_e5168
 	call WhiteBGMap
@@ -109655,7 +109655,7 @@ Function100902: ; 100902
 	ld de, StringBuffer2
 	call PrintNum
 	ld de, SFX_TWO_PC_BEEPS
-	call StartSFX
+	call PlaySFX
 	callba Function104061
 	ld c, $3c
 	call DelayFrames
@@ -109666,7 +109666,7 @@ Function100902: ; 100902
 	ld hl, $c580
 	call PlaceString
 	ld de, SFX_4_NOTE_DITTY
-	call StartSFX
+	call PlaySFX
 	callba Function104061
 	ld c, $78
 	call DelayFrames
@@ -110182,14 +110182,14 @@ Function100cb5: ; 100cb5
 	ld a, [hl]
 	ld [CurPartySpecies], a
 	ld de, SFX_READ_TEXT_2
-	call StartSFX
+	call PlaySFX
 	call WaitSFX
 	and a
 	ret
 
 .asm_100d17
 	ld de, SFX_READ_TEXT_2
-	call StartSFX
+	call PlaySFX
 	call WaitSFX
 	scf
 	ret
@@ -110223,7 +110223,7 @@ Function100d22: ; 100d22
 .asm_100d56
 	push af
 	ld de, SFX_READ_TEXT_2
-	call StartSFX
+	call PlaySFX
 	pop af
 	bit 1, a
 	jr z, .asm_100d65
@@ -110386,7 +110386,7 @@ Function100e63: ; 100e63
 	call Function100db0
 	ret nc
 	ld de, SFX_ELEVATOR_END
-	call StartSFX
+	call PlaySFX
 	ret
 ; 100e72
 
@@ -110729,7 +110729,7 @@ Function102142: ; 102142
 	ld hl, $61d1
 	call Function1d4f
 	ld de, $0090
-	call StartSFX
+	call PlaySFX
 	call Functiona36
 	call Function1c07
 	call Function10219f
@@ -124594,13 +124594,13 @@ INCBIN "baserom.gbc",$17aa72,$17aa88 - $17aa72
 Function17aa88: ; 17aa88 (5e:6a88)
 	jr c, asm_17aa91
 	ld de, $20
-	call StartSFX
+	call PlaySFX
 	ret
 
 ; known jump sources: 17aa88 (5e:6a88)
 asm_17aa91: ; 17aa91 (5e:6a91)
 	ld de, $19
-	call StartSFX
+	call PlaySFX
 	ret
 
 ; known jump sources: 17a8c1 (5e:68c1), 17a8cf (5e:68cf), 17a907 (5e:6907), 17a911 (5e:6911)

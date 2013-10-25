@@ -532,7 +532,7 @@ Function1ff8: ; 1ff8
 PlayClickSFX: ; 2009 
 	push de
 	ld de, SFX_READ_TEXT_2
-	call StartSFX
+	call PlaySFX
 	pop de
 	ret
 ; 0x2012
