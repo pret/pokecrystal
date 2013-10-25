@@ -197,7 +197,7 @@ endr
 	ld de, $0060
 	add hl, de
 	pop de
-	ld a, [$d19f]
+	ld a, [MapWidth]
 	add $6
 	add e
 	ld e, a
@@ -421,7 +421,7 @@ Function2326: ; 2326
 
 Function2336: ; 2336
 	push af
-	ld hl, $d1a6
+	ld hl, MapEventHeaderPointer
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -438,7 +438,7 @@ Function2336: ; 2336
 ; 234f
 
 Function234f: ; 234f
-	ld hl, $d1a4
+	ld hl, MapScriptHeaderPointer
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -466,7 +466,7 @@ Function2368: ; 2368
 	ld [WestConnectedMapGroup], a
 	ld [EastConnectedMapGroup], a
 
-	ld a, [$d1a8]
+	ld a, [MapConnections]
 	ld b, a
 
 	bit 3, b
@@ -670,10 +670,10 @@ Function2471: ; 2471
 ; 248a
 
 Function248a: ; 248a
-	call GetMapEventBank
+	call GetMapScriptHeaderBank
 	rst Bankswitch
 
-	ld hl, $d1a6
+	ld hl, MapEventHeaderPointer
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -696,9 +696,7 @@ Function248a: ; 248a
 	call Function24ba
 
 .asm_24b3
-	ld a, $41
-	ld hl, $486d
-	rst FarCall
+	callba Function10486d
 	ret
 ; 24ba
 
@@ -730,7 +728,7 @@ Function24e4: ; 24e4
 	ld a, [hROMBank]
 	push af
 	ld hl, OverworldMap
-	ld a, [$d19f]
+	ld a, [MapWidth]
 	ld [hConnectedMapWidth], a
 	add $6
 	ld [hConnectionStripLength], a
@@ -741,14 +739,14 @@ Function24e4: ; 24e4
 	add hl, bc
 	ld c, $3
 	add hl, bc
-	ld a, [$d1a0]
+	ld a, [MapBlockDataBank]
 	rst Bankswitch
 
-	ld a, [$d1a1]
+	ld a, [MapBlockDataPointer]
 	ld e, a
-	ld a, [$d1a2]
+	ld a, [MapBlockDataPointer+1]
 	ld d, a
-	ld a, [$d19e]
+	ld a, [MapHeight]
 	ld b, a
 .asm_250c
 	push hl
@@ -901,7 +899,7 @@ FillSouthConnectionStrip: ; 25d3
 	add hl, de
 	pop de
 
-	ld a, [$d19f]
+	ld a, [MapWidth]
 	add 6
 	add e
 	ld e, a
@@ -918,7 +916,7 @@ FillWestConnectionStrip:
 FillEastConnectionStrip: ; 25f6
 
 .asm_25f6
-	ld a, [$d19f]
+	ld a, [MapWidth]
 	add 6
 	ld [hConnectedMapWidth], a
 
@@ -979,7 +977,7 @@ Function2631: ; 2631
 	ld a, [ScriptRunning]
 	and a
 	ret nz
-	call GetMapEventBank
+	call GetMapScriptHeaderBank
 	jr CallScript
 ; 263b
 
@@ -991,7 +989,7 @@ Function263b: ; 263b
 	call Function2653
 	jr nc, .done
 
-	call GetMapEventBank
+	call GetMapScriptHeaderBank
 	ld b, a
 	ld d, h
 	ld e, l
@@ -1444,7 +1442,7 @@ Function2879: ; 2879
 	dec b
 	jr nz, .asm_2888
 	pop hl
-	ld a, [$d19f]
+	ld a, [MapWidth]
 	add $6
 	ld c, a
 	ld b, $0
@@ -1461,7 +1459,7 @@ Function289d: ; 289d
 	ld h, [hl]
 	ld l, a
 	ld de, $dcb9
-	ld a, [$d19f]
+	ld a, [MapWidth]
 	add $6
 	ld [hConnectionStripLength], a
 	ld a, [$d151]
@@ -1508,7 +1506,7 @@ Function289d: ; 289d
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	ld a, [$d19f]
+	ld a, [MapWidth]
 	add $6
 	ld [hConnectionStripLength], a
 	ld de, $dcb9
@@ -1778,7 +1776,7 @@ Function2a3c: ; 2a3c
 ; 2a66
 
 Function2a66: ; 2a66
-	ld a, [$d19f]
+	ld a, [MapWidth]
 	add $6
 	ld c, a
 	ld b, $0
@@ -1942,9 +1940,7 @@ FadeToMenu: ; 2b29
 	xor a
 	ld [hBGMapMode], a
 	call Function1d6e
-	ld a, $23
-	ld hl, $4084
-	rst FarCall
+	callba Function8c084
 	call ClearSprites
 	call Function2ed3
 	ret
@@ -1971,13 +1967,9 @@ Function2b4d: ; 2b4d
 Function2b5c: ; 2b5c
 	ld b, $9
 	call GetSGBLayout
-	ld a, $12
-	ld hl, $5409
-	rst FarCall
+	callba Function49409
 	call Function3200
-	ld a, $23
-	ld hl, $4079
-	rst FarCall
+	callba Function8c079
 	call Function2ee4
 	ret
 ; 2b74
@@ -2011,9 +2003,7 @@ Function2b74: ; 0x2b74
 Function2bae: ; 2bae
 	call DisableLCD
 	call ClearSprites
-	ld a, $5
-	ld hl, $4168
-	rst FarCall
+	callba Function14168
 	call Functione51
 	call Functione5f
 	ld a, [hROMBank]
@@ -2023,9 +2013,7 @@ Function2bae: ; 2bae
 	ld a, [MapNumber]
 	ld c, a
 	call Function2c24
-	ld a, $23
-	ld hl, $4001
-	rst FarCall
+	callba Function8c001
 	call Function2173
 	call Function2821
 	ld a, $9
@@ -2161,14 +2149,14 @@ Function2c3d: ; 2c3d
 ; 2c52
 
 Function2c52: ; 2c52
-	ld a, [MapEventBank]
+	ld a, [MapScriptHeaderBank]
 	rst Bankswitch
 	ret
 ; 2c57
 
 
-GetMapEventBank: ; 2c57
-	ld a, [MapEventBank]
+GetMapScriptHeaderBank: ; 2c57
+	ld a, [MapScriptHeaderBank]
 	ret
 ; 2c5b
 
@@ -2276,9 +2264,7 @@ Function2cbd: ; 2cbd
 	jr z, .asm_2cee
 	bit 7, c
 	jr nz, .asm_2cda
-	ld a, $22
-	ld hl, $7342
-	rst FarCall
+	callba Function8b342
 	ld e, c
 	ld d, $0
 .asm_2cd7

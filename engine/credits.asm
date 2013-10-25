@@ -283,8 +283,96 @@ ParseCredits: ; 1099aa
 ; 109a95
 
 
-INCBIN "baserom.gbc", $109a95, $109b2c - $109a95
+; known jump sources: 1098ac (42:58ac)
+Function109a95: ; 109a95 (42:5a95)
+	xor a
+	ld [hBGMapMode], a ; $ff00+$d4
+	ld a, $c
+	ld [hBGMapAddress], a ; $ff00+$d6
+	ld a, $28
+	ld hl, TileMap ; $c4a0 (aliases: SpritesEnd)
+	ld bc, $168
+	call ByteFill
+	ld a, $7f
+	ld hl, $c4f0
+	ld bc, $118
+	call ByteFill
+	ld hl, $c4f0
+	ld a, $24
+	call Function109b1d
+	ld hl, $c5f4
+	ld a, $20
+	call Function109b1d
+	ld hl, AttrMap ; $cdd9
+	ld bc, $50
+	xor a
+	call ByteFill
+	ld hl, $ce29
+	ld bc, $14
+	ld a, $1
+	call ByteFill
+	ld hl, $ce3d
+	ld bc, $f0
+	ld a, $2
+	call ByteFill
+	ld hl, $cf2d
+	ld bc, $14
+	ld a, $1
+	call ByteFill
+	call Function3200
+	xor a
+	ld [hBGMapMode], a ; $ff00+$d4
+	ld [hBGMapAddress], a ; $ff00+$d6
+	ld hl, TileMap ; $c4a0 (aliases: SpritesEnd)
+	call Function109aff
+	call Function3200
+	ret
 
+; known jump sources: 109af8 (42:5af8)
+Function109aff: ; 109aff (42:5aff)
+	ld b, $5
+.asm_109b01
+	push hl
+	ld de, $11
+	ld c, $4
+	xor a
+.asm_109b08
+	ld [hli], a
+	inc a
+	ld [hli], a
+	inc a
+	ld [hli], a
+	inc a
+	ld [hl], a
+	inc a
+	add hl, de
+	dec c
+	jr nz, .asm_109b08
+	pop hl
+	inc hl
+	inc hl
+	inc hl
+	inc hl
+	dec b
+	jr nz, .asm_109b01
+	ret
+
+; known jump sources: 109ab7 (42:5ab7), 109abf (42:5abf)
+Function109b1d: ; 109b1d (42:5b1d)
+	ld c, $5
+.asm_109b1f
+	push af
+	ld [hli], a
+	inc a
+	ld [hli], a
+	inc a
+	ld [hli], a
+	inc a
+	ld [hli], a
+	pop af
+	dec c
+	jr nz, .asm_109b1f
+	ret
 
 GetCreditsPalette: ; 109b2c
 	call .GetPalAddress
@@ -342,7 +430,56 @@ INCBIN "baserom.gbc",$109b9a,$18 ; ditto.pal
 INCBIN "baserom.gbc",$109bb2,$18 ; igglybuff.pal
 ; 109bca
 
-INCBIN "baserom.gbc", $109bca, $109c24 - $109bca
+; known jump sources: 10989e (42:589e), 109964 (42:5964)
+Function109bca: ; 109bca (42:5bca)
+	ld hl, $cf64
+	ld a, [hl]
+	cp $ff
+	jr z, .asm_109bed
+	and $3
+	ld e, a
+	inc a
+	and $3
+	ld [hl], a
+	ld a, [$cf65]
+	and $3
+	add a
+	add a
+	add e
+	add a
+	ld e, a
+	ld d, $0
+	ld hl, $5bf1
+	add hl, de
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	ret
+.asm_109bed
+	ld hl, $ca00
+	ret
+; 109bf1 (42:5bf1)
+
+INCBIN "baserom.gbc",$109bf1,$109c11 - $109bf1
+
+; known jump sources: 109a1b (42:5a1b)
+Function109c11: ; 109c11 (42:5c11)
+	ld a, $40
+	ld hl, $c55a
+	call Function109c1c
+	ld hl, $c56e
+
+; known jump sources: 109c16 (42:5c16)
+Function109c1c: ; 109c1c (42:5c1c)
+	ld c, $8
+.asm_109c1e
+	ld [hli], a
+	inc a
+	dec c
+	jr nz, .asm_109c1e
+	ret
+; 109c24 (42:5c24)
+
 
 CreditsGFX:
 INCBIN "gfx/credits/border.2bpp"

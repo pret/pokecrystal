@@ -4469,9 +4469,7 @@ BattleCommand40: ; 35813
 	ret z
 	ld b, a
 
-	ld hl, $45ec
-	ld a, $f
-	rst FarCall
+	callab Function3c5ec
 
 	ld a, b
 	cp $59
@@ -4668,9 +4666,7 @@ BattleCommand42: ; 35926
 	ld hl, $c4ca
 	ld a, $b
 	call Predef
-	ld a, $5e
-	ld hl, $4000
-	rst FarCall
+	callba Function178000
 
 	ld hl, SharedPainText
 	jp StdBattleTextBox
@@ -5099,9 +5095,7 @@ BattleCommand48: ; 35b33
 	push bc
 
 	ld b, a
-	ld hl, $45ec
-	ld a, $f
-	rst $8
+	callab Function3c5ec
 	ld a, b
 
 	pop bc
@@ -5324,9 +5318,7 @@ PlayFXAnimID: ; 35d08
 	ld c, 3
 	call DelayFrames
 
-	ld hl, $40d6
-	ld a, $33
-	rst FarCall ; callab SafePlayBattleAnimation
+	callab Functioncc0d6
 
 	ret
 ; 35d1c
@@ -5589,9 +5581,7 @@ BattleCommand14: ; 35e5c
 	ld hl, FellAsleepText
 	call StdBattleTextBox
 
-	ld a, $f
-	ld hl, $5de9
-	rst FarCall
+	callba Function3dde9
 
 	jp z, Function0x34216
 	ret
@@ -5666,9 +5656,7 @@ BattleCommand13: ; 35eee
 	ld hl, WasPoisonedText
 	call StdBattleTextBox
 
-	ld a, $f
-	ld hl, $5de9
-	rst FarCall
+	callba Function3dde9
 	ret
 ; 35f2c
 
@@ -5742,9 +5730,7 @@ BattleCommand2f: ; 35f2c
 	call StdBattleTextBox
 
 .asm_35fb1
-	ld a, $f
-	ld hl, $5de9
-	rst FarCall
+	callba Function3dde9
 	ret
 
 .asm_35fb8
@@ -5940,9 +5926,7 @@ BattleCommand17: ; 3608c
 	ld hl, WasBurnedText
 	call StdBattleTextBox
 
-	ld a, $f
-	ld hl, $5de9
-	rst FarCall
+	callba Function3dde9
 	ret
 ; 360dd
 
@@ -6013,9 +5997,7 @@ BattleCommand18: ; 36102
 	ld hl, WasFrozenText
 	call StdBattleTextBox
 
-	ld a, $f
-	ld hl, $5de9
-	rst FarCall
+	callba Function3dde9
 	ret nz
 	call Function0x34216
 	call EndRechargeOpp
@@ -7300,9 +7282,7 @@ BattleCommand23: ; 3680f
 	ld a, d
 	inc a
 	ld [$c718], a
-	ld hl, $54c3
-	ld a, $f
-	rst FarCall
+	callab Function3d4c3
 
 	ld hl, DraggedOutText
 	call StdBattleTextBox
@@ -8509,9 +8489,7 @@ BattleCommand35: ; 36f9d
 
 BattleCommand36: ; 36fe1
 	call Function0x37e01
-	ld a, $41
-	ld hl, $60e5
-	rst FarCall
+	callba Function1060e5
 	jp PrintNothingHappened
 ; 36fed
 
@@ -8701,9 +8679,7 @@ BattleCommand1f: ; 3707f
 	inc de
 	ld [de], a
 	ld [$d265], a
-	ld a, $14
-	ld hl, $4964
-	rst FarCall
+	callba GetTypeName
 	call Function0x37e01
 	ld hl, TransformedTypeText
 	jp StdBattleTextBox
@@ -9137,9 +9113,7 @@ CheckSubstituteOpp: ; 37378
 
 
 BattleCommand1a: ; 37380
-	ld a, $41
-	ld hl, $610d
-	rst FarCall
+	callba Function10610d
 	ld a, $4
 	ld [$cfca], a
 	ld c, $3
@@ -9163,12 +9137,8 @@ BattleCommand1a: ; 37380
 	res 6, [hl]
 	call Function0x37ed5
 	ret nc
-	ld a, $f
-	ld hl, $5f58
-	rst FarCall
-	ld a, $f
-	ld hl, $6043
-	rst FarCall
+	callba DrawPlayerHUD
+	callba Function3e043
 	call $31f6
 	jp RefreshBattleHuds
 ; 373c9
@@ -9822,9 +9792,7 @@ Function0x377f5: ; 377f5
 	xor a
 	ld [MonType], a
 
-	ld a, $14
-	ld hl, $4bdd
-	rst FarCall
+	callba GetGender
 	jr c, .asm_37849
 
 	ld b, 1
@@ -9848,9 +9816,7 @@ Function0x377f5: ; 377f5
 	ld [$d124], a
 	ld a, 3
 	ld [MonType], a
-	ld a, $14
-	ld hl, $4bdd
-	rst FarCall
+	callba GetGender
 	pop bc
 	jr c, .asm_37849
 
@@ -9948,13 +9914,13 @@ BattleCommand61: ; 37874
 	ld [$c689], a
 	call Function0x37e01
 	call SwitchTurn
-	ld hl, $5246
+	ld hl, AICheckPlayerMaxHP
 	ld a, [hBattleTurn]
 	and a
 	jr z, .asm_378ce ; 378c9 $3
-	ld hl, $5251
+	ld hl, AICheckEnemyMaxHP
 .asm_378ce
-	ld a, $e
+	ld a, BANK(AICheckPlayerMaxHP)
 	rst FarCall
 	jr c, .asm_378f3 ; 378d1 $20
 	ld hl, $4c8e
@@ -10132,19 +10098,13 @@ BattleCommand67: ; 379c9
 
 	call $1d6e
 
-	ld a, $f
-	ld hl, $52f7
-	rst FarCall
+	callba Function3d2f7
 
-	ld a, $f
-	ld hl, $5380
-	rst FarCall
+	callba Function3d380
 
 	call $3317
 
-	ld a, $f
-	ld hl, $6d9f
-	rst FarCall
+	callba Function3ed9f
 
 	call $1c17
 	call $300b
@@ -10158,9 +10118,7 @@ BattleCommand67: ; 379c9
 	call $32f9
 	call Function0x37a67
 
-	ld a, $f
-	ld hl, $52e0
-	rst FarCall
+	callba Function3d2e0
 
 	jp c, EndMoveEffect
 
@@ -10182,9 +10140,7 @@ BattleCommand67: ; 379c9
 	call Function0x37e01
 	call Function0x37a82
 
-	ld a, $f
-	ld hl, $52e0
-	rst FarCall
+	callba Function3d2e0
 	jp c, EndMoveEffect
 
 	xor a
@@ -10484,9 +10440,7 @@ BattleCommand6a6c: ; 37b7e
 	call Function0x37e01
 	call SwitchTurn
 
-	ld hl, $4cef
-	ld a, $f
-	rst FarCall ; callab 3ccef
+	callab Function3ccef
 
 	call SwitchTurn
 	call UpdateUserInParty
@@ -10552,21 +10506,15 @@ BattleCommand95: ; 37c1a
 	and a
 	jr nz, .asm_37c4f
 
-	ld hl, $4c9f
-	ld a, $f
-	rst FarCall
+	callab GetHalfMaxHP
 
-	ld hl, $4cde
-	ld a, $f
-	rst FarCall
+	callab Function3ccde
 	jr nc, .asm_37c4f
 
 	push bc
 	call Function0x37e01
 	pop bc
-	ld hl, $4c3f
-	ld a, $f
-	rst FarCall
+	callab Function3cc3f
 	call UpdateUserInParty
 	ld a, $5
 
@@ -10642,9 +10590,7 @@ BattleCommand9a: ; 37c95
 	and a
 	ret z
 	ld b, a
-	ld hl, $45ec
-	ld a, $f
-	rst FarCall
+	callab Function3c5ec
 	ld a, b
 	cp $90
 	ret z
@@ -10965,9 +10911,7 @@ Function0x37e47: ; 37e47
 	push hl
 	push de
 	push bc
-	ld hl, $40d6
-	ld a, $33
-	rst FarCall ; callab SafePlayBattleAnimation
+	callab Functioncc0d6
 	pop bc
 	pop de
 	pop hl
@@ -10988,9 +10932,7 @@ Function0x37e54: ; 37e54
 	push bc
 	call SwitchTurn
 
-	ld hl, $40d6
-	ld a, $33
-	rst FarCall ; callab SafePlayBattleAnimation
+	callab Functioncc0d6
 
 	call SwitchTurn
 	pop bc
@@ -11080,25 +11022,19 @@ GetMoveByte: ; 37ebb
 
 
 Function0x37ec0: ; 37ec0
-	ld a, $3e
-	ld hl, $7d54
-	rst $8
+	callba Functionfbd54
 	ret
 ; 37ec7
 
 
 Function0x37ec7: ; 37ec7
-	ld a, $3e
-	ld hl, $7d71
-	rst $8
+	callba Functionfbd71
 	ret
 ; 37ece
 
 
 Function0x37ece: ; 37ece
-	ld a, $3e
-	ld hl, $7d69
-	rst $8
+	callba Functionfbd69
 	ret
 ; 37ed5
 
@@ -11108,9 +11044,7 @@ Function0x37ed5: ; 37ed5
 	push hl
 	push de
 	push bc
-	ld a, $13
-	ld hl, $6a44
-	rst $8
+	callba Function4ea44
 	pop bc
 	pop de
 	pop hl

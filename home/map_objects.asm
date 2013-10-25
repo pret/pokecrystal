@@ -337,9 +337,7 @@ Function1956: ; 1956
 	call Function271e
 	ld a, [hConnectionStripLength]
 	call GetMapObject
-	ld a, $2
-	ld hl, $40e7
-	rst FarCall
+	callba Function80e7
 	ret
 ; 1967
 

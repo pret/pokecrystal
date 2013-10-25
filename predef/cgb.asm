@@ -158,9 +158,9 @@ Function8e23: ; 8e23
 
 
 Function8e85: ; 8e85
-	ld a, $40
-	ld hl, $4dc0
-	rst FarCall
+	callba Function100dc0
+
+Function8e8b: ; 8e8b
 	ld hl, $7311
 	jr nc, .asm_8e93
 	ld hl, $7309

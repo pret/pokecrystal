@@ -192,8 +192,9 @@ Function658: ; 658
 	ld [StringBuffer2], a
 	ld a, $0
 	ld [$d089], a
-	jr .asm_677
+	jr Function677
 
+Function663: ; 663
 	call UpdateTime
 	ld a, [hHours]
 	ld [$d087], a
@@ -201,12 +202,10 @@ Function658: ; 658
 	ld [$d088], a
 	ld a, [hSeconds]
 	ld [$d089], a
-	jr .asm_677
+	jr Function677
 
-.asm_677
-	ld a, $5
-	ld hl, $40ed
-	rst FarCall
+Function677
+	callba Function140ed
 	ret
 ; 67e
 

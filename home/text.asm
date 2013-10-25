@@ -2,7 +2,7 @@ ClearBox: ; fb6
 ; Fill a c*b box at hl with blank tiles.
 
 	ld a, " "
-.y
+Functionfb8:
 	push bc
 	push hl
 .x
@@ -14,7 +14,7 @@ ClearBox: ; fb6
 	add hl, bc
 	pop bc
 	dec b
-	jr nz, .y
+	jr nz, Functionfb8
 	ret
 ; fc8
 
@@ -315,9 +315,7 @@ CheckDict: ; 1087
 Function117b: ; 117b
 	ld c, l
 	ld b, h
-	ld a, $5f
-	ld hl, $7036
-	rst FarCall
+	callba Function17f036
 	jp PlaceNextChar
 ; 1186
 
@@ -463,9 +461,7 @@ Function1205: ; 1205
 	ld de, String12a2
 	call PlaceString
 	push bc
-	ld hl, $5939
-	ld a, $e
-	rst FarCall
+	callab Function39939
 	pop hl
 	ld de, StringBuffer1
 	jr .asm_126a ; 0x1246 $22

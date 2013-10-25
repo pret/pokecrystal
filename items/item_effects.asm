@@ -150,9 +150,7 @@ ParkBall: ; e8a2
 	ld d, a
 	push de
 	ld a, [BattleMonItem]
-	ld a, $d
-	ld hl, $7dd0
-	rst FarCall
+	callba GetItem
 
 	ld a, b
 	cp $46
@@ -258,9 +256,7 @@ ParkBall: ; e8a2
 	ld [CurPartySpecies], a
 	ld a, [EnemyMonLevel]
 	ld [CurPartyLevel], a
-	ld a, $f
-	ld hl, $68eb
-	rst FarCall
+	callba LoadEnemyMon
 
 	pop af
 	ld [EnemySubStatus5], a
@@ -296,9 +292,7 @@ ParkBall: ; e8a2
 	ld a, [BattleType]
 	cp $3
 	jp z, $6bd9
-	ld a, $41
-	ld hl, $607f
-	rst FarCall
+	callba Function10607f
 
 	ld hl, $6dc9
 	call $1057
@@ -351,9 +345,7 @@ ParkBall: ; e8a2
 	ld a, $6
 	call Predef
 
-	ld a, $13
-	ld hl, $5b49
-	rst FarCall
+	callba Function4db49
 
 	ld a, [CurItem]
 	cp $a4
@@ -392,9 +384,7 @@ ParkBall: ; e8a2
 	xor a
 	ld [MonType], a
 	ld b, $0
-	ld a, $4
-	ld hl, $56c1
-	rst FarCall
+	callba Function116c1
 
 	call $04b6
 
@@ -412,9 +402,7 @@ ParkBall: ; e8a2
 	ld a, $9
 	call Predef
 
-	ld a, $13
-	ld hl, $5b83
-	rst FarCall
+	callba Function4db83
 
 	ld a, $1
 	call GetSRAMBank
@@ -452,9 +440,7 @@ ParkBall: ; e8a2
 	ld [MonType], a
 	ld de, $d050
 	ld b, $0
-	ld a, $4
-	ld hl, $56c1
-	rst FarCall
+	callba Function116c1
 
 	ld a, $1
 	call GetSRAMBank
@@ -490,9 +476,7 @@ ParkBall: ; e8a2
 
 	jr .asm_ebe2
 
-	ld a, $3
-	ld hl, $66ce
-	rst FarCall
+	callba Functione6ce
 
 	jr .asm_ebe2
 
@@ -762,9 +746,7 @@ Function_0xed12: ; ed12
 	ld [MonType], a
 	ld a, [CurBattleMon]
 	ld [CurPartyMon], a
-	ld a, $14
-	ld hl, $4bdd
-	rst FarCall
+	callba GetGender
 	jr c, .asm_ed66
 
 	ld d, 0
@@ -777,9 +759,7 @@ Function_0xed12: ; ed12
 	ld [CurPartySpecies], a
 	ld a, WILDMON
 	ld [MonType], a
-	ld a, $14
-	ld hl, $4bdd
-	rst FarCall
+	callba GetGender
 	jr c, .asm_ed65
 
 	ld d, 0
@@ -871,21 +851,21 @@ Function_0xed8c: ; ed8c
 ; edab
 
 
-INCBIN "baserom.gbc", $edab, $ee01 - $edab
+INCBIN "baserom.gbc", $edab, $edfa - $edab
 
+; known jump sources: e8c9 (3:68c9), f7a0 (3:77a0)
+Functionedfa: ; edfa (3:6dfa)
+	callba Function2715c
+	ret
 
 Item06: ; ee01
-	ld a, $24
-	ld hl, $5ae1
-	rst FarCall
+	callba Function91ae1
 	ret
 ; ee08
 
 
 Bicycle: ; ee08
-	ld a, $3
-	ld hl, $50b3
-	rst FarCall
+	callba Functiond0b3
 	ret
 ; ee0f
 
@@ -909,9 +889,7 @@ SunStone: ; ee0f
 	jr z, .asm_ee35
 	ld a, $1
 	ld [$d1e9], a
-	ld a, $10
-	ld hl, $61d8
-	rst FarCall
+	callba Function421d8
 
 	ld a, [$d268]
 	and a
@@ -969,9 +947,7 @@ Calcium: ; ee3d
 	call $1057
 
 	ld c, $2
-	ld a, $1
-	ld hl, $71c2
-	rst FarCall
+	callba ChangeHappiness
 
 	jp $7795
 
@@ -1005,9 +981,7 @@ RareCandy: ; ef14
 	ld [CurPartyLevel], a
 	push de
 	ld d, a
-	ld a, $14
-	ld hl, $4e47
-	rst FarCall
+	callba Function50e47
 
 	pop de
 	ld a, $8
@@ -1045,9 +1019,7 @@ RareCandy: ; ef14
 	ld a, [hl]
 	adc b
 	ld [hl], a
-	ld a, $9
-	ld hl, $709e
-	rst FarCall
+	callba Function2709e
 
 	ld a, $f8
 	call $724a
@@ -1078,9 +1050,7 @@ RareCandy: ; ef14
 
 	xor a
 	ld [$d1e9], a
-	ld a, $10
-	ld hl, $61d8
-	rst FarCall
+	callba Function421d8
 
 	jp $7795
 ; efad
@@ -1097,9 +1067,7 @@ HealPowder: ; efad
 	cp $0
 	jr nz, .asm_efc9
 	ld c, $f
-	ld a, $1
-	ld hl, $71c2
-	rst FarCall
+	callba ChangeHappiness
 
 	call $77d6
 
@@ -1133,7 +1101,118 @@ Miracleberry: ; efcc
 ; efda
 
 
-INCBIN "baserom.gbc", $efda, $f0a9 - $efda
+; known jump sources: efb5 (3:6fb5), efd4 (3:6fd4)
+Functionefda: ; efda (3:6fda)
+	call Functionf30d
+	ld a, $1
+	ret z
+	call Functionf058
+	ld a, $20
+	call GetPartyParamLocation
+	ld a, [hl]
+	and c
+	jr nz, .asm_eff4
+	call Functionf009
+	ld a, $1
+	ret nc
+	ld b, $f9
+.asm_eff4
+	xor a
+	ld [hl], a
+	ld a, b
+	ld [PartyMenuActionText], a ; $d141
+	call Functionf030
+	call Functionf780
+	call Functionf279
+	call Functionf795
+	ld a, $0
+	ret
+
+; known jump sources: efec (3:6fec)
+Functionf009: ; f009 (3:7009)
+	call Functionf2a6
+	jr nc, .asm_f01c
+	ld a, [PlayerSubStatus3] ; $c66a
+	bit 7, a
+	jr z, .asm_f01c
+	ld a, c
+	cp $ff
+	jr nz, .asm_f01c
+	scf
+	ret
+.asm_f01c
+	and a
+	ret
+
+; known jump sources: f156 (3:7156), f1c7 (3:71c7)
+Functionf01e: ; f01e (3:701e)
+	call Functionf2a6
+	ret nc
+	ld a, $22
+	call GetPartyParamLocation
+	ld a, [hli]
+	ld [BattleMonHP], a ; $c63c
+	ld a, [hld]
+	ld [$c63d], a
+	ret
+
+; known jump sources: effa (3:6ffa), f153 (3:7153)
+Functionf030: ; f030 (3:7030)
+	call Functionf2a6
+	ret nc
+	xor a
+	ld [BattleMonStatus], a ; $c63a
+	ld hl, PlayerSubStatus5 ; $c66c
+	res 0, [hl]
+	ld hl, PlayerSubStatus1 ; $c668
+	res 0, [hl]
+	call Functionf058
+	ld a, c
+	cp $ff
+	jr nz, .asm_f04f
+	ld hl, PlayerSubStatus3 ; $c66a
+	res 7, [hl]
+.asm_f04f
+	push bc
+	callba Function0x365d7
+	pop bc
+	ret
+
+; known jump sources: efe0 (3:6fe0), f042 (3:7042)
+Functionf058: ; f058 (3:7058)
+	push hl
+	ld a, [CurItem] ; $d106
+	ld hl, $7071
+	ld bc, $3
+.asm_f062
+	cp [hl]
+	jr z, .asm_f068
+	add hl, bc
+	jr .asm_f062
+.asm_f068
+	inc hl
+	ld b, [hl]
+	inc hl
+	ld a, [hl]
+	ld c, a
+	cp $ff
+	pop hl
+	ret
+; f071 (3:7071)
+
+INCBIN "baserom.gbc",$f071,$f09e - $f071
+
+; known jump sources: efc9 (3:6fc9), efd7 (3:6fd7), f0c5 (3:70c5), f0d3 (3:70d3), f141 (3:7141), f183 (3:7183), f189 (3:7189), f1a6 (3:71a6)
+Functionf09e: ; f09e (3:709e)
+	ld hl, $70a3
+	rst $28
+	ret
+
+; no known jump sources
+Jumptable_f0a3: ; f0a3 (3:70a3)
+	dw Functionf2a2
+	dw Functionf299
+	dw Functionf29e
 
 
 RevivalHerb: ; f0a9
@@ -1147,9 +1226,7 @@ RevivalHerb: ; f0a9
 	cp $0
 	jr nz, .asm_f0c5
 	ld c, $11
-	ld a, $1
-	ld hl, $71c2
-	rst FarCall
+	callba ChangeHappiness
 
 	call $77d6
 
@@ -1254,9 +1331,7 @@ Function_0xf192: ; f192
 	pop bc
 	cp $0
 	jr nz, .asm_f1a6
-	ld a, $1
-	ld hl, $71c2
-	rst FarCall
+	callba ChangeHappiness
 
 	call $77d6
 
@@ -1267,15 +1342,414 @@ Function_0xf192: ; f192
 ; f1a9
 
 
-INCBIN "baserom.gbc", $f1a9, $f44f - $f1a9
+; known jump sources: f186 (3:7186), f193 (3:7193)
+Functionf1a9: ; f1a9 (3:71a9)
+	ld b, $1
+	call Functionf1f9
+	ld a, $2
+	ret c
+	call Functionf30d
+	ld a, $1
+	ret z
+	call Functionf31b
+	ld a, $1
+	ret nc
+	xor a
+	ld [Danger], a ; $c2a6
+	call Functionf395
+	call Functionf2d1
+	call Functionf01e
+	call Functionf1db
+	ld a, $f5
+	ld [PartyMenuActionText], a ; $d141
+	call Functionf279
+	call Functionf795
+	ld a, $0
+	ret
 
+; known jump sources: f117 (3:7117), f159 (3:7159), f1ca (3:71ca), f3f7 (3:73f7), f408 (3:7408)
+Functionf1db: ; f1db (3:71db)
+	push de
+	ld de, $4
+	call WaitPlaySFX
+	pop de
+	ld a, [CurPartyMon] ; $d109
+	ld hl, $c4ab
+	ld bc, $28
+	call AddNTimes
+	ld a, $2
+	ld [$d10a], a
+	ld a, $b
+	jp Predef
+
+; known jump sources: ee11 (3:6e11), ee3f (3:6e3f), ef16 (3:6f16), efaf (3:6faf), efce (3:6fce), f0ab (3:70ab), f0ca (3:70ca), f12a (3:712a), f1ab (3:71ab), f5c7 (3:75c7)
+Functionf1f9: ; f1f9 (3:71f9)
+	call Functionf20b
+	ret c
+	ld a, [CurPartySpecies] ; $d108
+	cp $fd
+	jr nz, .asm_f209
+	call Functionf7e8
+	scf
+	ret
+.asm_f209
+	and a
+	ret
+
+; known jump sources: f1f9 (3:71f9)
+Functionf20b: ; f20b (3:720b)
+	ld a, b
+	ld [PartyMenuActionText], a ; $d141
+	push hl
+	push de
+	push bc
+	call WhiteBGMap
+	call Functionf21c
+	pop bc
+	pop de
+	pop hl
+	ret
+
+; known jump sources: f215 (3:7215), f41f (3:741f)
+Functionf21c: ; f21c (3:721c)
+	callba Function5004f
+	callba Function50405
+	callba Function503e0
+	callba WritePartyMenuTilemap
+	callba PrintPartyMenuText
+	call WaitBGMap
+	call Function32f9
+	call DelayFrame
+	callba PartyMenuSelect
+	ret
+
+; known jump sources: ef6d (3:6f6d), f28a (3:728a), f40d (3:740d)
+Functionf24a: ; f24a (3:724a)
+	ld [PartyMenuActionText], a ; $d141
+	ld a, [CurPartySpecies] ; $d108
+	push af
+	ld a, [CurPartyMon] ; $d109
+	push af
+	push hl
+	push de
+	push bc
+	callba WritePartyMenuTilemap
+	callba Function50566
+	call WaitBGMap
+	call Function32f9
+	call DelayFrame
+	pop bc
+	pop de
+	pop hl
+	pop af
+	ld [CurPartyMon], a ; $d109
+	pop af
+	ld [CurPartySpecies], a ; $d108
+	ret
+
+; known jump sources: f000 (3:7000), f11f (3:711f), f161 (3:7161), f1d2 (3:71d2)
+Functionf279: ; f279 (3:7279)
+	xor a
+	ld [hBGMapMode], a ; $ff00+$d4
+	ld hl, TileMap ; $c4a0 (aliases: SpritesEnd)
+	ld bc, $168
+	ld a, $7f
+	call ByteFill
+	ld a, [PartyMenuActionText] ; $d141
+	call Functionf24a
+	ld a, $1
+	ld [hBGMapMode], a ; $ff00+$d4
+	ld c, $32
+	call DelayFrames
+	jp Functiona80
+
+; known jump sources: f133 (3:7133)
+Functionf299: ; f299 (3:7299)
+	call Functionf7f2
+	jr Functionf2a2
+
+; known jump sources: efb2 (3:6fb2), efd1 (3:6fd1), f0ae (3:70ae), f0cd (3:70cd), f12d (3:712d)
+Functionf29e: ; f29e (3:729e)
+	xor a
+	ld [$d0ec], a
+
+; known jump sources: f29c (3:729c)
+Functionf2a2: ; f2a2 (3:72a2)
+	call ClearPalettes
+	ret
+
+; known jump sources: f009 (3:7009), f01e (3:701e), f030 (3:7030)
+Functionf2a6: ; f2a6 (3:72a6)
+	ld a, [IsInBattle] ; $d22d (aliases: EnemyMonEnd)
+	and a
+	ret z
+	ld a, [CurPartyMon] ; $d109
+	push hl
+	ld hl, CurBattleMon ; $d0d4
+	cp [hl]
+	pop hl
+	jr nz, .asm_f2b8
+	scf
+	ret
+.asm_f2b8
+	xor a
+	ret
+
+; known jump sources: f114 (3:7114)
+Functionf2ba: ; f2ba (3:72ba)
+	call Functionf36f
+	srl d
+	rr e
+	jr asm_f2c6
+
+; known jump sources: f10f (3:710f), f148 (3:7148), f2f5 (3:72f5)
+Functionf2c3: ; f2c3 (3:72c3)
+	call Functionf36f
+asm_f2c6: ; f2c6 (3:72c6)
+	ld a, $22
+	call GetPartyParamLocation
+	ld [hl], d
+	inc hl
+	ld [hl], e
+	jp Functionf328
+
+; known jump sources: f1c4 (3:71c4), f405 (3:7405)
+Functionf2d1: ; f2d1 (3:72d1)
+	ld a, $23
+	call GetPartyParamLocation
+	ld a, [hl]
+	add e
+	ld [hld], a
+	ld a, [hl]
+	adc d
+	ld [hl], a
+	jr c, .asm_f2f5
+	call Functionf328
+	ld a, $23
+	call GetPartyParamLocation
+	ld d, h
+	ld e, l
+	ld a, $25
+	call GetPartyParamLocation
+	ld a, [de]
+	sub [hl]
+	dec de
+	dec hl
+	ld a, [de]
+	sbc [hl]
+	jr c, .asm_f2f8
+.asm_f2f5
+	call Functionf2c3
+.asm_f2f8
+	ret
+
+; known jump sources: f3f3 (3:73f3)
+Functionf2f9: ; f2f9 (3:72f9)
+	ld a, $23
+	call GetPartyParamLocation
+	ld a, [hl]
+	sub e
+	ld [hld], a
+	ld a, [hl]
+	sbc d
+	ld [hl], a
+	jr nc, .asm_f309
+	xor a
+	ld [hld], a
+	ld [hl], a
+.asm_f309
+	call Functionf328
+	ret
+
+; known jump sources: efda (3:6fda), f0d6 (3:70d6), f130 (3:7130), f1b1 (3:71b1), f3ed (3:73ed), f402 (3:7402), f432 (3:7432)
+Functionf30d: ; f30d (3:730d)
+	push de
+	call Functionf35f
+	call Functionf348
+	call Functionf356
+	ld a, d
+	or e
+	pop de
+	ret
+
+; known jump sources: f136 (3:7136), f1b7 (3:71b7), f437 (3:7437)
+Functionf31b: ; f31b (3:731b)
+	call Functionf356
+	ld h, d
+	ld l, e
+	call Functionf36f
+	ld a, l
+	sub e
+	ld a, h
+	sbc d
+	ret
+
+; known jump sources: f2ce (3:72ce), f2de (3:72de), f309 (3:7309)
+Functionf328: ; f328 (3:7328)
+	ld a, $22
+	call GetPartyParamLocation
+	ld a, [hli]
+	ld [$d1ef], a
+	ld a, [hl]
+	ld [$d1ee], a
+	ret
+; f336 (3:7336)
+
+INCBIN "baserom.gbc",$f336,$f348 - $f336
+
+; known jump sources: f311 (3:7311)
+Functionf348: ; f348 (3:7348)
+	ld a, $22
+	call GetPartyParamLocation
+	ld a, [hli]
+	ld [$d1ed], a
+	ld a, [hl]
+	ld [$d1ec], a
+	ret
+
+; known jump sources: f314 (3:7314), f31b (3:731b)
+Functionf356: ; f356 (3:7356)
+	ld a, [$d1ed]
+	ld d, a
+	ld a, [$d1ec]
+	ld e, a
+	ret
+
+; known jump sources: f30e (3:730e)
+Functionf35f: ; f35f (3:735f)
+	push hl
+	ld a, $24
+	call GetPartyParamLocation
+	ld a, [hli]
+	ld [Buffer2], a ; $d1eb (aliases: MovementType)
+	ld a, [hl]
+	ld [Buffer1], a ; $d1ea (aliases: MagikarpLength)
+	pop hl
+	ret
+
+; known jump sources: f2ba (3:72ba), f2c3 (3:72c3), f320 (3:7320)
+Functionf36f: ; f36f (3:736f)
+	ld a, [Buffer2] ; $d1eb (aliases: MovementType)
+	ld d, a
+	ld a, [Buffer1] ; $d1ea (aliases: MagikarpLength)
+	ld e, a
+	ret
+
+; known jump sources: f3f0 (3:73f0), f3fb (3:73fb)
+Functionf378: ; f378 (3:7378)
+	push bc
+	ld a, $24
+	call GetPartyParamLocation
+	ld a, [hli]
+	ld [hPastLeadingZeroes], a ; $ff00+$b3 (aliases: hDividend, hProduct)
+	ld a, [hl]
+	ld [hQuotient], a ; $ff00+$b4 (aliases: hMultiplicand)
+	ld a, $5
+	ld [hDivisor], a ; $ff00+$b7 (aliases: hMultiplier)
+	ld b, $2
+	call Divide
+	ld a, [$FF00+$b5]
+	ld d, a
+	ld a, [$FF00+$b6]
+	ld e, a
+	pop bc
+	ret
+
+; known jump sources: f1c1 (3:71c1)
+Functionf395: ; f395 (3:7395)
+	push hl
+	ld a, [CurItem] ; $d106
+	ld hl, $73af
+	ld d, a
+.asm_f39d
+	ld a, [hli]
+	cp $ff
+	jr z, .asm_f3a9
+	cp d
+	jr z, .asm_f3aa
+	inc hl
+	inc hl
+	jr .asm_f39d
+.asm_f3a9
+	scf
+.asm_f3aa
+	ld e, [hl]
+	inc hl
+	ld d, [hl]
+	pop hl
+	ret
+; f3af (3:73af)
+
+INCBIN "baserom.gbc",$f3af,$f3df - $f3af
+
+Functionf3df: ; f3df (3:73df)
+	ld a, [$d0d8]
+	dec a
+	ld b, a
+	call Functionf419
+	jr c, .asm_f413
+	ld a, b
+	ld [CurPartyMon], a ; $d109
+	call Functionf30d
+	call Functionf378
+	call Functionf2f9
+	push bc
+	call Functionf1db
+	pop bc
+	call Functionf378
+	ld a, c
+	ld [CurPartyMon], a ; $d109
+	call Functionf30d
+	call Functionf2d1
+	call Functionf1db
+	ld a, $f5
+	call Functionf24a
+	call Functiona36
+.asm_f413
+	ld a, b
+	inc a
+	ld [$d0d8], a
+	ret
+
+; known jump sources: f3e4 (3:73e4), f448 (3:7448)
+Functionf419: ; f419 (3:7419)
+	push bc
+	ld a, $1
+	ld [PartyMenuActionText], a ; $d141
+	call Functionf21c
+	pop bc
+	jr c, .asm_f43e
+	ld a, [$d0d8]
+	dec a
+	ld c, a
+	ld a, b
+	cp c
+	jr z, .asm_f440
+	ld a, c
+	ld [CurPartyMon], a ; $d109
+	call Functionf30d
+	jr z, .asm_f440
+	call Functionf31b
+	jr nc, .asm_f440
+	xor a
+	ret
+.asm_f43e
+	scf
+	ret
+.asm_f440
+	push bc
+	ld hl, $744a
+	call Function1d67
+	pop bc
+	jr Functionf419
+; f44a (3:744a)
+
+INCBIN "baserom.gbc",$f44a,$f44f - $f44a
 
 EscapeRope: ; f44f
 	xor a
 	ld [$d0ec], a
-	ld a, $3
-	ld hl, $4b95
-	rst FarCall
+	callba Functioncb95
 
 	ld a, [$d0ec]
 	cp $1
@@ -1381,26 +1855,18 @@ XSpecial: ; f4c5
 	ld [hBattleTurn], a
 	ld [AttackMissed], a
 	ld [$c70d], a
-	ld a, $d
-	ld hl, $61ef
-	rst FarCall
+	callba Function0x361ef
 
 	call WaitSFX
 
-	ld a, $d
-	ld hl, $63b8
-	rst FarCall
+	callba BattleCommand8c
 
-	ld a, $d
-	ld hl, $644c
-	rst FarCall
+	callba BattleCommand8e
 
 	ld a, [CurBattleMon]
 	ld [CurPartyMon], a
 	ld c, $3
-	ld a, $1
-	ld hl, $71c2
-	rst FarCall
+	callba ChangeHappiness
 	ret
 ; f504
 
@@ -1542,17 +2008,13 @@ SuperRod: ; f5ad
 ; f5b1
 
 Function_0xf5b1: ; f5b1
-	ld a, $3
-	ld hl, $4f8e
-	rst FarCall
+	callba Functioncf8e
 	ret
 ; f5b8
 
 
 Itemfinder: ; f5b8
-	ld a, $4
-	ld hl, $6580
-	rst FarCall
+	callba Function12580
 	ret
 ; f5bf
 
@@ -1593,9 +2055,7 @@ Mysteryberry: ; f5bf
 	ld [CurMoveNum], a
 	ld a, $2
 	ld [$d235], a
-	ld a, $f
-	ld hl, $64bc
-	rst FarCall
+	callba Function3e4bc
 
 	pop bc
 	ld a, b
@@ -1691,9 +2151,7 @@ GorgeousBox: ; f767
 ; f769
 
 Function_0xf769: ; f769
-	ld a, $9
-	ld hl, $6f02
-	rst FarCall
+	callba Function26f02
 
 	ld hl, UnknownText_0xf778
 	call $1057
