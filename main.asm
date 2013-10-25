@@ -103846,9 +103846,9 @@ Functione45e8: ; e45e8
 	push af
 	ld a, $6
 	ld [rSVBK], a
-	ld hl, $5407
+	ld hl, IntroLogoGFX
 	ld de, $d000
-	ld a, $42
+	ld a, BANK(IntroLogoGFX)
 	call FarDecompress
 	ld hl, VTiles0
 	ld de, $d000
