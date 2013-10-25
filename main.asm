@@ -93990,7 +93990,7 @@ Functioncc7cd: ; cc7cd (33:47cd)
 	call Function3af0
 	ld e, a
 	ld d, $0
-	callab PlaySFX
+	callab PlayStereoSFX
 	ret
 ; cc7f8 (33:47f8)
 
