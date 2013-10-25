@@ -335,7 +335,7 @@ Function1c89: ; 1c89
 	inc hl
 	ld d, [hl]
 	call Function1cc6
-	call Function1d05
+	call GetTileCoord
 	inc de
 	ld a, [de]
 	inc de
@@ -420,7 +420,8 @@ Function1cfd: ; 1cfd
 ; 1d05
 
 
-Function1d05: ; 1d05
+GetTileCoord: ; 1d05
+; Return the address of TileMap(c, b) in hl.
 	xor a
 	ld h, a
 	ld l, b
@@ -446,6 +447,9 @@ Function1d19: ; 1d19
 	ld c, a
 	ld a, [$cf82]
 	ld b, a
+
+GetAttrCoord: ; 1d21
+; Return the address of AttrMap(c, b) in hl.
 	xor a
 	ld h, a
 	ld l, b
@@ -1620,7 +1624,7 @@ Function352f: ; 352f
 	sub c
 	ld e, a
 	push de
-	call Function1d05
+	call GetTileCoord
 	pop bc
 	jp TextBox
 ; 354b
@@ -7106,7 +7110,7 @@ Function56cd: ; 56cd
 	jr nc, .asm_5760
 	ld c, a
 	push bc
-	call Function1d05
+	call GetTileCoord
 	pop bc
 	ld a, [hl]
 	cp $60
@@ -31403,7 +31407,7 @@ Function20168: ; 20168 (8:4168)
 	ld a, [$d1ec]
 	dec a
 	ld b, a
-	call Function1d05
+	call GetTileCoord
 	pop de
 	ld [hl], d
 	ld bc, $28
@@ -31556,7 +31560,7 @@ Function240db: ; 240db
 	inc hl
 	ld d, [hl]
 	call Function1cc6
-	call Function1d05
+	call GetTileCoord
 	call Function240d3
 	ld b, a
 .asm_240eb
@@ -31928,7 +31932,7 @@ asm_24329
 	ld b, a
 	ld a, [$cfa2]
 	ld c, a
-	call Function1d05
+	call GetTileCoord
 	ld a, [$cfa7]
 	swap a
 	and $f
@@ -32258,7 +32262,7 @@ Function244e3: ; 244e3
 	ld a, [$cf83]
 	inc a
 	ld c, a
-	call Function1d05
+	call GetTileCoord
 	ld a, $80
 	ld [$ffad], a
 	ld bc, $0707
@@ -32730,7 +32734,7 @@ Function247f0: ; 247f0
 	ld b, a
 	ld a, [$cf85]
 	ld c, a
-	call Function1d05
+	call GetTileCoord
 	ld [hl], $61
 
 .asm_2480d
@@ -32767,7 +32771,7 @@ Function247f0: ; 247f0
 	ld b, a
 	ld a, [$cf85]
 	ld c, a
-	call Function1d05
+	call GetTileCoord
 	ld [hl], $ee
 
 .asm_24850
@@ -32844,7 +32848,7 @@ Function2488b: ; 2488b
 	ld a, [$cf83]
 	add $0
 	ld c, a
-	call Function1d05
+	call GetTileCoord
 	ld [hl], $ec
 
 .asm_248b7
@@ -122508,7 +122512,7 @@ Function16d77a: ; 16d77a
 	ld b, a
 	ld a, [$cfa2]
 	ld c, a
-	call Function1d05
+	call GetTileCoord
 	ld a, [$cfa7]
 	swap a
 	and $f
