@@ -1060,27 +1060,28 @@ ReadNoiseSample: ; e85af
 ; sample struct:
 ;	[wx] [yy] [zz]
 ;	w: ? either 2 or 3
-;	x: ? 0-7
-;	zzyy: pointer to sample data
-;		NOTE: these seem to have $4000 added to them later
+;	x: duration
+;	zz: intensity
+;       yy: frequency
 
-	; de = NoiseSampleAddress
+	; de = [NoiseSampleAddress]
 	ld hl, NoiseSampleAddress
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
+
 	; is it empty?
 	ld a, e
 	or d
 	jr z, .quit
-	; get the noise sample
+
 	ld a, [de]
 	inc de
-	; are we done?
-	cp a, $ff
+
+	cp $ff
 	jr z, .quit
-	;
-	and a, $0f ; bottom nybble
+
+	and $f
 	inc a
 	ld [$c2a2], a
 	ld a, [de]
@@ -1091,11 +1092,12 @@ ReadNoiseSample: ; e85af
 	ld [$c294], a
 	xor a
 	ld [$c295], a
-	;
+
 	ld hl, NoiseSampleAddress
 	ld [hl], e
 	inc hl
 	ld [hl], d
+
 	ld hl, Channel1NoteFlags - Channel1
 	add hl, bc
 	set 4, [hl]
