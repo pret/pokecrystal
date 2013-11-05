@@ -1113,7 +1113,7 @@ ParseMusic: ; e85e1
 	jr c, .readnote
 	; then it's a command
 .readcommand
-	call ParseCommand
+	call ParseMusicCommand
 	jr ParseMusic ; start over
 
 .readnote
@@ -1319,7 +1319,7 @@ GetNoiseSample: ; e86c5
 	ret
 ; e870f
 
-ParseCommand ; e870f
+ParseMusicCommand: ; e870f
 	; reload command
 	ld a, [CurMusicByte]
 	; get command #
