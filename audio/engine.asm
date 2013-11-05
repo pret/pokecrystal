@@ -1343,13 +1343,13 @@ MusicCommands: ; e8720
 ; pointer to each command in order
 	; octaves
 	dw MusicD0 ; octave 8
-	dw MusicD0 ; octave 7
-	dw MusicD0 ; octave 6
-	dw MusicD0 ; octave 5
-	dw MusicD0 ; octave 4
-	dw MusicD0 ; octave 3
-	dw MusicD0 ; octave 2
-	dw MusicD0 ; octave 1
+	dw MusicD1 ; octave 7
+	dw MusicD2 ; octave 6
+	dw MusicD3 ; octave 5
+	dw MusicD4 ; octave 4
+	dw MusicD5 ; octave 3
+	dw MusicD6 ; octave 2
+	dw MusicD7 ; octave 1
 	dw MusicD8 ; note length + intensity
 	dw MusicD9 ; set starting octave
 	dw MusicDA ; tempo
@@ -1376,13 +1376,13 @@ MusicCommands: ; e8720
 	dw MusicEF ; stereo panning
 	dw MusicF0 ; sfx noise sampling
 	dw MusicF1 ; nothing
-	dw MusicF1 ; nothing
-	dw MusicF1 ; nothing
-	dw MusicF1 ; nothing
-	dw MusicF1 ; nothing
-	dw MusicF1 ; nothing
-	dw MusicF1 ; nothing
-	dw MusicF1 ; nothing
+	dw MusicF2 ; nothing
+	dw MusicF3 ; nothing
+	dw MusicF4 ; nothing
+	dw MusicF5 ; nothing
+	dw MusicF6 ; nothing
+	dw MusicF7 ; nothing
+	dw MusicF8 ; nothing
 	dw MusicF9 ;
 	dw MusicFA ;
 	dw MusicFB ;
@@ -1393,6 +1393,13 @@ MusicCommands: ; e8720
 ; e8780
 
 MusicF1: ; e8780
+MusicF2: ; e8780
+MusicF3: ; e8780
+MusicF4: ; e8780
+MusicF5: ; e8780
+MusicF6: ; e8780
+MusicF7: ; e8780
+MusicF8: ; e8780
 	ret
 ; e8781
 
@@ -1934,12 +1941,18 @@ MusicDA: ; e899a
 ; e89a6
 
 MusicD0: ; e89a6
-; used by d0-d7
+MusicD1: ; e89a6
+MusicD2: ; e89a6
+MusicD3: ; e89a6
+MusicD4: ; e89a6
+MusicD5: ; e89a6
+MusicD6: ; e89a6
+MusicD7: ; e89a6
 ; set octave based on lo nybble of the command
 	ld hl, Channel1Octave - Channel1
 	add hl, bc
-	ld a, [CurMusicByte] ; get current command
-	and a, $07
+	ld a, [CurMusicByte]
+	and 7
 	ld [hl], a
 	ret
 ; e89b1
