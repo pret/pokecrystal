@@ -86,6 +86,7 @@ INCLUDE "constants/script_constants.asm"
 INCLUDE "constants/event_flags.asm"
 INCLUDE "constants/engine_flags.asm"
 INCLUDE "constants/music_constants.asm"
+INCLUDE "constants/sfx_constants.asm"
 
 
 ; macros require rst vectors to be defined
