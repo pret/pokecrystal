@@ -1,313 +1,312 @@
-_Music_ProfOaksPokemonTalk: ; 0xf4c9f
-	db $80
-	dw _Music_ProfOaksPokemonTalk_Ch1
-	db $01
-	dw _Music_ProfOaksPokemonTalk_Ch2
-	db $02
-	dw _Music_ProfOaksPokemonTalk_Ch3
-; 0xf4ca8
+Music_ProfOaksPokemonTalk: ; f4c9f
+	dbw $80, Music_ProfOaksPokemonTalk_Ch1
+	dbw $01, Music_ProfOaksPokemonTalk_Ch2
+	dbw $02, Music_ProfOaksPokemonTalk_Ch3
+; f4ca8
 
-; 0xf4ca8
-	db $03
-; 0xf4ca9
+INCBIN "baserom.gbc", $f4ca8, $f4ca9 - $f4ca8
 
-_Music_ProfOaksPokemonTalk_Ch1: ; 0xf4ca9
-	tempo $a400
+Music_ProfOaksPokemonTalk_Ch1: ; f4ca9
+	tempo 164
 	volume $77
-	stereopanning $0f
-	vibrato $06, $25
-	dutycycle $01
-	notetype $0c, $94
-	note $07
-	octave3
-	note $c0
-	octave4
-	note $20
-	note $40
-	note $50
-	note $20
-	note $40
-	note $50
-	note $70
-	note $45
-	note $20
-	octave3
-	note $c0
-	note $70
-	note $90
-	note $70
-	note $00
-	note $70
-	note $00
-	note $a0
-	note $b0
-	note $c1
-	note $70
-	note $90
-	note $70
-	note $00
-	note $70
-	note $00
-	note $70
-	note $90
-	note $70
-	note $00
-	note $b3
-	octave4
-	note $45
-	note $20
-	octave3
-	note $c0
-	note $90
-	note $c0
-	note $40
-	note $00
-	note $40
-	note $00
-	note $b0
-	note $c0
-	note $70
-	note $b0
-	note $40
-	note $00
-	note $40
-	note $00
-	note $70
-	note $b0
-	note $40
-	note $00
-	note $40
-	note $00
-	note $b3
-	note $51
-	octave2
-	note $c0
-	octave3
-	note $50
-	note $91
-	note $50
-	note $90
-	note $c0
-	octave4
-	note $20
-	octave3
-	note $c0
-	octave4
-	note $20
-	octave3
-	note $c3
-	note $71
-	note $40
-	note $70
-	note $c1
-	note $70
-	note $c0
-	octave4
-	note $40
-	note $50
-	note $40
-	note $50
-	note $43
-	octave3
-	note $b1
-	octave4
-	note $21
-	note $51
-	note $71
-	note $21
-	note $51
-	note $71
-	note $51
-	note $21
-	octave3
-	note $b0
-	note $00
-	note $c0
-	note $00
-	octave4
-	note $20
-	note $00
-	note $40
-	note $00
-	note $50
-	note $00
-	note $60
-	note $00
-	note $70
-	note $00
-	loopchannel $00, $4cc3 ; end
-; 0xf4d31
+	stereopanning $f
+	vibrato $6, $25
+	dutycycle $1
+	notetype $c, $94
+	note __, 7
+	octave 3
+	note B_, 0
+	octave 4
+	note C#, 0
+	note D#, 0
+	note E_, 0
+	note C#, 0
+	note D#, 0
+	note E_, 0
+	note F#, 0
 
-_Music_ProfOaksPokemonTalk_Ch2: ; 0xf4d31
-	vibrato $08, $24
-	dutycycle $03
-	notetype $0c, $a7
+Music_ProfOaksPokemonTalk_branch_f4cc3: ; f4cc3
+	note D#, 5
+	note C#, 0
+	octave 3
+	note B_, 0
+	note F#, 0
+	note G#, 0
+	note F#, 0
+	note __, 0
+	note F#, 0
+	note __, 0
+	note A_, 0
+	note A#, 0
+	note B_, 1
+	note F#, 0
+	note G#, 0
+	note F#, 0
+	note __, 0
+	note F#, 0
+	note __, 0
+	note F#, 0
+	note G#, 0
+	note F#, 0
+	note __, 0
+	note A#, 3
+	octave 4
+	note D#, 5
+	note C#, 0
+	octave 3
+	note B_, 0
+	note G#, 0
+	note B_, 0
+	note D#, 0
+	note __, 0
+	note D#, 0
+	note __, 0
+	note A#, 0
+	note B_, 0
+	note F#, 0
+	note A#, 0
+	note D#, 0
+	note __, 0
+	note D#, 0
+	note __, 0
+	note F#, 0
+	note A#, 0
+	note D#, 0
+	note __, 0
+	note D#, 0
+	note __, 0
+	note A#, 3
+	note E_, 1
+	octave 2
+	note B_, 0
+	octave 3
+	note E_, 0
+	note G#, 1
+	note E_, 0
+	note G#, 0
+	note B_, 0
+	octave 4
+	note C#, 0
+	octave 3
+	note B_, 0
+	octave 4
+	note C#, 0
+	octave 3
+	note B_, 3
+	note F#, 1
+	note D#, 0
+	note F#, 0
+	note B_, 1
+	note F#, 0
+	note B_, 0
+	octave 4
+	note D#, 0
+	note E_, 0
+	note D#, 0
+	note E_, 0
+	note D#, 3
+	octave 3
+	note A#, 1
+	octave 4
+	note C#, 1
+	note E_, 1
+	note F#, 1
+	note C#, 1
+	note E_, 1
+	note F#, 1
+	note E_, 1
+	note C#, 1
+	octave 3
+	note A#, 0
+	note __, 0
+	note B_, 0
+	note __, 0
+	octave 4
+	note C#, 0
+	note __, 0
+	note D#, 0
+	note __, 0
+	note E_, 0
+	note __, 0
+	note F_, 0
+	note __, 0
+	note F#, 0
+	note __, 0
+	loopchannel 0, Music_ProfOaksPokemonTalk_branch_f4cc3
+
+Music_ProfOaksPokemonTalk_Ch2: ; f4d31
+	vibrato $8, $24
+	dutycycle $3
+	notetype $c, $a7
 	stereopanning $ff
-	octave3
-	note $c0
-	octave4
-	note $20
-	note $40
-	note $50
-	note $20
-	note $40
-	note $50
-	note $70
-	note $40
-	note $50
-	note $70
-	note $90
-	note $50
-	note $70
-	note $90
-	note $b0
-	note $c5
-	note $b0
-	note $90
-	note $75
-	note $60
-	note $70
-	note $93
-	note $77
-	note $73
-	note $95
-	note $70
-	note $50
-	note $45
-	note $30
-	note $40
-	note $53
-	note $47
-	note $43
-	note $55
-	octave3
-	note $c0
-	octave4
-	note $50
-	note $97
-	note $75
-	note $40
-	note $70
-	note $c7
-	note $b3
-	note $c1
-	note $b1
-	note $93
-	note $b1
-	note $91
-	note $71
-	note $20
-	note $00
-	note $40
-	note $00
-	note $50
-	note $00
-	note $70
-	note $00
-	note $80
-	note $00
-	note $90
-	note $00
-	note $b0
-	note $00
-	loopchannel $00, $4d4d ; end
-; 0xf4d82
+	octave 3
+	note B_, 0
+	octave 4
+	note C#, 0
+	note D#, 0
+	note E_, 0
+	note C#, 0
+	note D#, 0
+	note E_, 0
+	note F#, 0
+	note D#, 0
+	note E_, 0
+	note F#, 0
+	note G#, 0
+	note E_, 0
+	note F#, 0
+	note G#, 0
+	note A#, 0
 
-_Music_ProfOaksPokemonTalk_Ch3: ; 0xf4d82
-	vibrato $06, $38
-	notetype $0c, $25
+Music_ProfOaksPokemonTalk_branch_f4d4d: ; f4d4d
+	note B_, 5
+	note A#, 0
+	note G#, 0
+	note F#, 5
+	note F_, 0
+	note F#, 0
+	note G#, 3
+	note F#, 7
+	note F#, 3
+	note G#, 5
+	note F#, 0
+	note E_, 0
+	note D#, 5
+	note D_, 0
+	note D#, 0
+	note E_, 3
+	note D#, 7
+	note D#, 3
+	note E_, 5
+	octave 3
+	note B_, 0
+	octave 4
+	note E_, 0
+	note G#, 7
+	note F#, 5
+	note D#, 0
+	note F#, 0
+	note B_, 7
+	note A#, 3
+	note B_, 1
+	note A#, 1
+	note G#, 3
+	note A#, 1
+	note G#, 1
+	note F#, 1
+	note C#, 0
+	note __, 0
+	note D#, 0
+	note __, 0
+	note E_, 0
+	note __, 0
+	note F#, 0
+	note __, 0
+	note G_, 0
+	note __, 0
+	note G#, 0
+	note __, 0
+	note A#, 0
+	note __, 0
+	loopchannel 0, Music_ProfOaksPokemonTalk_branch_f4d4d
+
+Music_ProfOaksPokemonTalk_Ch3: ; f4d82
+	vibrato $6, $38
+	notetype $c, $25
 	stereopanning $f0
-	note $07
-	octave3
-	note $70
-	note $50
-	note $40
-	note $20
-	note $50
-	note $40
-	note $20
-	octave2
-	note $b0
-	note $c5
-	octave3
-	note $40
-	note $70
-	note $c5
-	note $40
-	note $20
-	octave2
-	note $c3
-	octave3
-	note $c7
-	octave4
-	note $43
-	octave3
-	note $95
-	note $40
-	note $90
-	octave2
-	note $95
-	octave3
-	note $40
-	note $90
-	note $45
-	note $71
-	note $b1
-	note $91
-	note $71
-	note $41
-	note $51
-	note $03
-	note $50
-	note $50
-	note $50
-	note $00
-	note $50
-	note $00
-	note $c3
-	note $71
-	note $03
-	note $70
-	note $70
-	octave2
-	note $c0
-	note $00
-	note $c0
-	note $00
-	octave3
-	note $c3
-	note $71
-	octave4
-	note $71
-	octave3
-	note $51
-	octave4
-	note $51
-	octave3
-	note $21
-	octave4
-	note $21
-	octave2
-	note $b1
-	octave3
-	note $b1
-	octave2
-	note $71
-	octave3
-	note $b0
-	note $00
-	note $90
-	note $00
-	note $70
-	note $00
-	note $50
-	note $00
-	note $40
-	note $00
-	note $20
-	note $00
-	octave2
-	note $b0
-	note $00
-	loopchannel $00, $4d95 ; end
-; 0xf4dea
+	note __, 7
+	octave 3
+	note F#, 0
+	note E_, 0
+	note D#, 0
+	note C#, 0
+	note E_, 0
+	note D#, 0
+	note C#, 0
+	octave 2
+	note A#, 0
+
+Music_ProfOaksPokemonTalk_branch_f4d95: ; f4d95
+	note B_, 5
+	octave 3
+	note D#, 0
+	note F#, 0
+	note B_, 5
+	note D#, 0
+	note C#, 0
+	octave 2
+	note B_, 3
+	octave 3
+	note B_, 7
+	octave 4
+	note D#, 3
+	octave 3
+	note G#, 5
+	note D#, 0
+	note G#, 0
+	octave 2
+	note G#, 5
+	octave 3
+	note D#, 0
+	note G#, 0
+	note D#, 5
+	note F#, 1
+	note A#, 1
+	note G#, 1
+	note F#, 1
+	note D#, 1
+	note E_, 1
+	note __, 3
+	note E_, 0
+	note E_, 0
+	note E_, 0
+	note __, 0
+	note E_, 0
+	note __, 0
+	note B_, 3
+	note F#, 1
+	note __, 3
+	note F#, 0
+	note F#, 0
+	octave 2
+	note B_, 0
+	note __, 0
+	note B_, 0
+	note __, 0
+	octave 3
+	note B_, 3
+	note F#, 1
+	octave 4
+	note F#, 1
+	octave 3
+	note E_, 1
+	octave 4
+	note E_, 1
+	octave 3
+	note C#, 1
+	octave 4
+	note C#, 1
+	octave 2
+	note A#, 1
+	octave 3
+	note A#, 1
+	octave 2
+	note F#, 1
+	octave 3
+	note A#, 0
+	note __, 0
+	note G#, 0
+	note __, 0
+	note F#, 0
+	note __, 0
+	note E_, 0
+	note __, 0
+	note D#, 0
+	note __, 0
+	note C#, 0
+	note __, 0
+	octave 2
+	note A#, 0
+	note __, 0
+	loopchannel 0, Music_ProfOaksPokemonTalk_branch_f4d95
+; f4dea

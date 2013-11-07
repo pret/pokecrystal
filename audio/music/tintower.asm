@@ -1,295 +1,299 @@
-_Music_TinTower: ; 0xf6811
-	db $c0
-	dw _Music_TinTower_Ch1
-	db $01
-	dw _Music_TinTower_Ch2
-	db $02
-	dw _Music_TinTower_Ch3
-	db $03
-	dw _Music_TinTower_Ch4
-; 0xf681d
+Music_TinTower: ; f6811
+	dbw $c0, Music_TinTower_Ch1
+	dbw $01, Music_TinTower_Ch2
+	dbw $02, Music_TinTower_Ch3
+	dbw $03, Music_TinTower_Ch4
+; f681d
 
-_Music_TinTower_Ch1: ; 0xf681d
-	tempo $d000
+
+Music_TinTower_Ch1: ; f681d
+	tempo 208
 	volume $77
-	dutycycle $03
-	tone $0400
-	vibrato $08, $45
-	stereopanning $f0
-	notetype $0c, $a5
-	octave3
-	note $83
-	note $13
-	note $97
-	note $83
-	note $13
-	octave2
-	note $b1
-	octave3
-	note $11
-	note $21
-	octave2
-	note $b1
-	octave3
-	note $83
-	note $13
-	note $93
-	note $63
-	note $83
-	octave2
-	note $83
-	octave3
-	note $85
-	note $b1
-	note $81
-	note $61
-	note $21
-	note $81
-	note $97
-	note $83
-	octave4
-	note $13
-	octave3
-	note $91
-	note $81
-	note $61
-	note $91
-	note $81
-	note $21
-	octave2
-	note $b1
-	octave3
-	note $81
-	note $93
-	note $63
-	note $83
-	octave2
-	note $83
-	octave3
-	note $87
-	intensity $a2
-	octave2
-	note $83
-	note $8b
-	note $83
-	note $87
-	intensity $a7
-	note $83
-	intensity $a2
-	note $93
-	note $97
-	intensity $a7
-	note $83
-	intensity $a2
-	note $93
-	note $97
-	intensity $a7
-	note $b3
-	intensity $a2
-	note $83
-	note $8b
-	note $83
-	note $8b
-	note $83
-	note $8b
-	note $83
-	note $87
-	intensity $a5
-	octave3
-	note $b3
-	loopchannel $00, $682a ; end
-; 0xf688b
+	dutycycle $3
+	tone $0004
+	vibrato $8, $45
 
-_Music_TinTower_Ch2: ; 0xf688b
-	dutycycle $03
-	tone $0200
+Music_TinTower_branch_f682a: ; f682a
+	stereopanning $f0
+	notetype $c, $a5
+	octave 3
+	note G_, 3
+	note C_, 3
+	note G#, 7
+	note G_, 3
+	note C_, 3
+	octave 2
+	note A#, 1
+	octave 3
+	note C_, 1
+	note C#, 1
+	octave 2
+	note A#, 1
+	octave 3
+	note G_, 3
+	note C_, 3
+	note G#, 3
+	note F_, 3
+	note G_, 3
+	octave 2
+	note G_, 3
+	octave 3
+	note G_, 5
+	note A#, 1
+	note G_, 1
+	note F_, 1
+	note C#, 1
+	note G_, 1
+	note G#, 7
+	note G_, 3
+	octave 4
+	note C_, 3
+	octave 3
+	note G#, 1
+	note G_, 1
+	note F_, 1
+	note G#, 1
+	note G_, 1
+	note C#, 1
+	octave 2
+	note A#, 1
+	octave 3
+	note G_, 1
+	note G#, 3
+	note F_, 3
+	note G_, 3
+	octave 2
+	note G_, 3
+	octave 3
+	note G_, 7
+	intensity $a2
+	octave 2
+	note G_, 3
+	note G_, 11
+	note G_, 3
+	note G_, 7
+	intensity $a7
+	note G_, 3
+	intensity $a2
+	note G#, 3
+	note G#, 7
+	intensity $a7
+	note G_, 3
+	intensity $a2
+	note G#, 3
+	note G#, 7
+	intensity $a7
+	note A#, 3
+	intensity $a2
+	note G_, 3
+	note G_, 11
+	note G_, 3
+	note G_, 11
+	note G_, 3
+	note G_, 11
+	note G_, 3
+	note G_, 7
+	intensity $a5
+	octave 3
+	note A#, 3
+	loopchannel 0, Music_TinTower_branch_f682a
+
+Music_TinTower_Ch2: ; f688b
+	dutycycle $3
+	tone $0002
 	vibrato $18, $44
+
+Music_TinTower_branch_f6893: ; f6893
 	stereopanning $ff
-	notetype $0c, $b5
-	octave4
-	note $13
-	note $13
-	note $21
-	note $11
-	octave3
-	note $b1
-	octave4
-	note $21
-	note $13
-	note $63
-	note $23
-	octave3
-	note $b3
-	octave4
-	note $13
-	note $13
-	note $21
-	note $11
-	octave3
-	note $b1
-	octave4
-	note $21
-	note $13
-	octave3
-	note $13
-	octave4
-	note $17
-	stereopanning $0f
-	loopchannel $02, $6895
+
+Music_TinTower_branch_f6895: ; f6895
+	notetype $c, $b5
+	octave 4
+	note C_, 3
+	note C_, 3
+	note C#, 1
+	note C_, 1
+	octave 3
+	note A#, 1
+	octave 4
+	note C#, 1
+	note C_, 3
+	note F_, 3
+	note C#, 3
+	octave 3
+	note A#, 3
+	octave 4
+	note C_, 3
+	note C_, 3
+	note C#, 1
+	note C_, 1
+	octave 3
+	note A#, 1
+	octave 4
+	note C#, 1
+	note C_, 3
+	octave 3
+	note C_, 3
+	octave 4
+	note C_, 7
+	stereopanning $f
+	loopchannel 2, Music_TinTower_branch_f6895
 	intensity $b2
-	octave3
-	note $13
-	note $1b
-	note $13
-	note $17
+	octave 3
+	note C_, 3
+	note C_, 11
+	note C_, 3
+	note C_, 7
 	intensity $b7
-	note $13
+	note C_, 3
 	intensity $b2
-	note $23
-	note $27
+	note C#, 3
+	note C#, 7
 	intensity $b7
-	note $13
+	note C_, 3
 	intensity $b2
-	note $23
-	note $27
+	note C#, 3
+	note C#, 7
 	intensity $b7
-	note $43
+	note D#, 3
 	intensity $90
 	stereopanning $ff
-	note $83
-	octave4
-	note $13
-	octave3
-	note $b1
-	note $91
-	note $81
-	note $91
-	note $83
-	note $13
-	note $87
-	note $83
-	octave4
-	note $13
-	octave3
-	note $b1
-	octave4
-	note $11
-	note $21
-	octave3
-	note $b1
-	octave4
-	note $13
-	octave3
-	note $13
-	octave4
-	note $15
+	note G_, 3
+	octave 4
+	note C_, 3
+	octave 3
+	note A#, 1
+	note G#, 1
+	note G_, 1
+	note G#, 1
+	note G_, 3
+	note C_, 3
+	note G_, 7
+	note G_, 3
+	octave 4
+	note C_, 3
+	octave 3
+	note A#, 1
+	octave 4
+	note C_, 1
+	note C#, 1
+	octave 3
+	note A#, 1
+	octave 4
+	note C_, 3
+	octave 3
+	note C_, 3
+	octave 4
+	note C_, 5
 	intensity $95
-	note $21
-	loopchannel $00, $6893 ; end
-; 0xf68f8
+	note C#, 1
+	loopchannel 0, Music_TinTower_branch_f6893
 
-_Music_TinTower_Ch3: ; 0xf68f8
-	notetype $0c, $14
-	note $0f
-	note $0f
-	note $0f
-	note $09
-	octave2
-	note $81
-	note $91
-	note $b1
-	octave3
-	note $17
-	note $27
-	note $57
-	octave2
-	note $b1
-	octave3
-	note $11
-	note $21
-	note $41
-	note $17
-	note $27
-	note $57
-	octave4
-	note $17
-	octave3
-	note $10
-	note $02
-	note $10
-	note $0a
-	note $10
-	note $02
-	note $10
-	note $06
-	note $13
-	note $20
-	note $02
-	note $20
-	note $06
-	note $13
-	note $20
-	note $02
-	note $20
-	note $06
-	note $43
-	stereopanning $0f
-	note $10
-	note $02
-	note $10
-	note $0a
-	note $10
-	note $02
-	note $10
-	note $02
-	stereopanning $ff
-	octave2
-	note $b1
-	octave3
-	note $11
-	note $21
-	note $41
-	stereopanning $0f
-	note $10
-	note $02
-	note $10
-	note $0a
-	note $10
-	note $02
-	note $10
-	note $0a
-	stereopanning $ff
-	loopchannel $00, $68fb ; end
-; 0xf6948
+Music_TinTower_Ch3: ; f68f8
+	notetype $c, $14
 
-_Music_TinTower_Ch4: ; 0xf6948
-	togglenoise $00
-	notetype $0c
-	stereopanning $0f
-	note $81
+Music_TinTower_branch_f68fb: ; f68fb
+	note __, 15
+	note __, 15
+	note __, 15
+	note __, 9
+	octave 2
+	note G_, 1
+	note G#, 1
+	note A#, 1
+	octave 3
+	note C_, 7
+	note C#, 7
+	note E_, 7
+	octave 2
+	note A#, 1
+	octave 3
+	note C_, 1
+	note C#, 1
+	note D#, 1
+	note C_, 7
+	note C#, 7
+	note E_, 7
+	octave 4
+	note C_, 7
+	octave 3
+	note C_, 0
+	note __, 2
+	note C_, 0
+	note __, 10
+	note C_, 0
+	note __, 2
+	note C_, 0
+	note __, 6
+	note C_, 3
+	note C#, 0
+	note __, 2
+	note C#, 0
+	note __, 6
+	note C_, 3
+	note C#, 0
+	note __, 2
+	note C#, 0
+	note __, 6
+	note D#, 3
+	stereopanning $f
+	note C_, 0
+	note __, 2
+	note C_, 0
+	note __, 10
+	note C_, 0
+	note __, 2
+	note C_, 0
+	note __, 2
+	stereopanning $ff
+	octave 2
+	note A#, 1
+	octave 3
+	note C_, 1
+	note C#, 1
+	note D#, 1
+	stereopanning $f
+	note C_, 0
+	note __, 2
+	note C_, 0
+	note __, 10
+	note C_, 0
+	note __, 2
+	note C_, 0
+	note __, 10
+	stereopanning $ff
+	loopchannel 0, Music_TinTower_branch_f68fb
+
+Music_TinTower_Ch4: ; f6948
+	togglenoise $0
+	notetype $c
+
+Music_TinTower_branch_f694c: ; f694c
+	stereopanning $f
+	note G_, 1
 	stereopanning $f0
-	note $80
-	note $80
-	stereopanning $0f
-	note $81
+	note G_, 0
+	note G_, 0
+	stereopanning $f
+	note G_, 1
 	stereopanning $f0
-	note $63
-	stereopanning $0f
-	note $81
-	note $81
-	note $61
+	note F_, 3
+	stereopanning $f
+	note G_, 1
+	note G_, 1
+	note F_, 1
 	stereopanning $f0
-	note $81
-	stereopanning $0f
-	note $80
-	note $80
+	note G_, 1
+	stereopanning $f
+	note G_, 0
+	note G_, 0
 	stereopanning $f0
-	note $81
-	stereopanning $0f
-	note $63
+	note G_, 1
+	stereopanning $f
+	note F_, 3
 	stereopanning $f0
-	note $81
-	note $81
-	note $61
-	loopchannel $00, $694c ; end
-; 0xf6974
+	note G_, 1
+	note G_, 1
+	note F_, 1
+	loopchannel 0, Music_TinTower_branch_f694c
+; f6974

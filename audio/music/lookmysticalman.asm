@@ -1,621 +1,625 @@
-_Music_LookMysticalMan: ; 0x17843b
-	db $c0
-	dw _Music_LookMysticalMan_Ch1
-	db $01
-	dw _Music_LookMysticalMan_Ch2
-	db $02
-	dw _Music_LookMysticalMan_Ch3
-	db $03
-	dw _Music_LookMysticalMan_Ch4
-; 0x178447
+Music_LookMysticalMan: ; 17843b
+	dbw $c0, Music_LookMysticalMan_Ch1
+	dbw $01, Music_LookMysticalMan_Ch2
+	dbw $02, Music_LookMysticalMan_Ch3
+	dbw $03, Music_LookMysticalMan_Ch4
+; 178447
 
-_Music_LookMysticalMan_Ch1: ; 0x178447
-	tempo $8800
+
+Music_LookMysticalMan_Ch1: ; 178447
+	tempo 136
 	volume $77
-	vibrato $0a, $34
-	tone $0100
-	stereopanning $0f
-	notetype $0c, $b3
-	note $07
-	dutycycle $03
-	notetype $06, $96
-	octave3
-	note $70
-	note $00
-	note $70
-	note $00
-	note $51
-	note $71
-	note $03
-	note $71
-	note $08
-	note $08
-	note $50
-	note $00
-	note $50
-	note $00
-	note $31
-	note $51
-	note $03
-	note $51
-	note $08
-	note $08
-	note $50
-	note $00
-	note $50
-	note $00
-	note $21
-	note $51
-	note $03
-	note $51
-	note $08
-	note $08
-	note $50
-	note $00
-	note $50
-	note $00
-	note $21
-	note $51
-	note $02
-	note $60
-	note $73
-	note $03
-	note $53
-	note $03
-	note $23
-	dutycycle $02
-	callchannel _Music_LookMysticalMan_sub_0x1784f9
-	octave4
-	note $21
-	note $01
-	octave3
-	note $c1
-	note $01
-	note $b1
-	octave4
-	note $25
-	note $03
-	octave3
-	note $73
-	note $03
-	note $53
-	callchannel _Music_LookMysticalMan_sub_0x1784f9
-	octave4
-	note $21
-	note $01
-	note $21
-	note $01
-	octave3
-	note $b1
-	note $c5
-	note $b3
-	note $73
+	vibrato $a, $34
+	tone $0001
+	stereopanning $f
+	notetype $c, $b3
+	note __, 7
+
+Music_LookMysticalMan_branch_178458: ; 178458
+	dutycycle $3
+	notetype $6, $96
+	octave 3
+	note F#, 0
+	note __, 0
+	note F#, 0
+	note __, 0
+	note E_, 1
+	note F#, 1
+	note __, 3
+	note F#, 1
+	note __, 8
+	note __, 8
+	note E_, 0
+	note __, 0
+	note E_, 0
+	note __, 0
+	note D_, 1
+	note E_, 1
+	note __, 3
+	note E_, 1
+	note __, 8
+	note __, 8
+	note E_, 0
+	note __, 0
+	note E_, 0
+	note __, 0
+	note C#, 1
+	note E_, 1
+	note __, 3
+	note E_, 1
+	note __, 8
+	note __, 8
+	note E_, 0
+	note __, 0
+	note E_, 0
+	note __, 0
+	note C#, 1
+	note E_, 1
+	note __, 2
+	note F_, 0
+	note F#, 3
+	note __, 3
+	note E_, 3
+	note __, 3
+	note C#, 3
+	dutycycle $2
+	callchannel Music_LookMysticalMan_branch_1784f9
+	octave 4
+	note C#, 1
+	note __, 1
+	octave 3
+	note B_, 1
+	note __, 1
+	note A#, 1
+	octave 4
+	note C#, 5
+	note __, 3
+	octave 3
+	note F#, 3
+	note __, 3
+	note E_, 3
+	callchannel Music_LookMysticalMan_branch_1784f9
+	octave 4
+	note C#, 1
+	note __, 1
+	note C#, 1
+	note __, 1
+	octave 3
+	note A#, 1
+	note B_, 5
+	note A#, 3
+	note F#, 3
 	intensity $a5
-	dutycycle $00
-	octave4
-	note $71
-	note $b5
-	dutycycle $02
+	dutycycle $0
+	octave 4
+	note F#, 1
+	note A#, 5
+	dutycycle $2
 	intensity $72
-	octave5
-	note $31
-	octave4
-	note $c1
-	note $71
-	note $31
-	loopchannel $04, $44b4
-	octave5
-	note $31
-	octave4
-	note $c1
-	note $71
-	note $31
-	octave3
-	note $a1
-	note $71
-	note $31
-	octave2
-	note $a1
-	note $c1
-	octave3
-	note $31
-	note $71
-	note $a1
-	note $c1
-	octave4
-	note $31
-	note $71
-	note $c1
-	octave5
-	note $31
-	octave4
-	note $91
-	note $51
-	octave3
-	note $c1
-	loopchannel $04, $44d4
-	octave5
-	note $21
-	octave4
-	note $b1
-	note $71
-	note $21
-	octave3
-	note $b1
-	note $71
-	note $21
-	octave2
-	note $b1
-	octave3
-	note $21
-	note $51
-	note $71
-	note $b1
-	octave4
-	note $21
-	note $51
-	note $71
-	note $b1
-	loopchannel $00, $4458 ; end
-; 0x1784f9
 
-_Music_LookMysticalMan_sub_0x1784f9: ; 0x1784f9
-; subroutine
-	note $3f
-	octave4
-	note $31
-	note $01
-	note $51
-	note $01
-	note $71
-	note $35
-	octave3
-	note $5f
-	note $c1
-	note $01
-	octave4
-	note $21
-	note $01
-	note $31
-	octave3
-	note $c5
-	octave4
-	note $51
-	note $01
-	note $51
-	note $01
-	note $31
-	note $25
-	note $21
-	note $01
-	note $21
-	note $01
-	octave3
-	note $c1
-	note $a5
-	endchannel ; end
-; 0x17851a
+Music_LookMysticalMan_branch_1784b4: ; 1784b4
+	octave 5
+	note D_, 1
+	octave 4
+	note B_, 1
+	note F#, 1
+	note D_, 1
+	loopchannel 4, Music_LookMysticalMan_branch_1784b4
+	octave 5
+	note D_, 1
+	octave 4
+	note B_, 1
+	note F#, 1
+	note D_, 1
+	octave 3
+	note A_, 1
+	note F#, 1
+	note D_, 1
+	octave 2
+	note A_, 1
+	note B_, 1
+	octave 3
+	note D_, 1
+	note F#, 1
+	note A_, 1
+	note B_, 1
+	octave 4
+	note D_, 1
+	note F#, 1
+	note B_, 1
 
-_Music_LookMysticalMan_Ch2: ; 0x17851a
-	dutycycle $03
-	vibrato $0a, $34
-	notetype $0c, $b3
-	note $07
-	stereopanning $f0
-	notetype $06, $b8
-	octave3
-	note $c0
-	note $00
-	note $c0
-	note $00
-	note $a1
-	note $c1
-	note $03
-	note $c1
-	note $05
-	stereopanning $ff
-	note $c7
-	note $a3
-	stereopanning $f0
-	note $90
-	note $00
-	note $90
-	note $00
-	note $71
-	note $91
-	note $03
-	note $91
-	note $05
-	stereopanning $ff
-	note $77
-	note $93
-	stereopanning $f0
-	note $a0
-	note $00
-	note $a0
-	note $00
-	note $81
-	note $a1
-	note $03
-	note $a1
-	note $05
-	stereopanning $ff
-	note $a7
-	note $83
-	stereopanning $f0
-	note $70
-	note $00
-	note $70
-	note $00
-	note $51
-	note $71
-	note $02
-	note $a0
-	note $b3
-	note $03
-	note $73
-	note $03
-	note $53
-	callchannel _Music_LookMysticalMan_sub_0x17859a
-	note $71
-	note $01
-	note $51
-	note $01
-	note $31
-	note $55
-	callchannel _Music_LookMysticalMan_sub_0x1785c8
-	callchannel _Music_LookMysticalMan_sub_0x17859a
-	note $71
-	note $01
-	note $71
-	note $01
-	note $51
-	note $35
-	callchannel _Music_LookMysticalMan_sub_0x1785c8
-	notetype $0c, $b7
-	note $c1
-	note $01
-	note $c1
-	note $01
-	octave4
-	note $31
-	note $00
-	note $21
-	note $00
-	octave3
-	note $cf
-	note $01
-	note $c1
-	note $01
-	octave4
-	note $31
-	note $01
-	note $21
-	note $00
-	octave3
-	note $c1
-	note $00
-	note $bf
-	note $01
-	loopchannel $00, $4523 ; end
-; 0x17859a
+Music_LookMysticalMan_branch_1784d4: ; 1784d4
+	octave 5
+	note D_, 1
+	octave 4
+	note G#, 1
+	note E_, 1
+	octave 3
+	note B_, 1
+	loopchannel 4, Music_LookMysticalMan_branch_1784d4
+	octave 5
+	note C#, 1
+	octave 4
+	note A#, 1
+	note F#, 1
+	note C#, 1
+	octave 3
+	note A#, 1
+	note F#, 1
+	note C#, 1
+	octave 2
+	note A#, 1
+	octave 3
+	note C#, 1
+	note E_, 1
+	note F#, 1
+	note A#, 1
+	octave 4
+	note C#, 1
+	note E_, 1
+	note F#, 1
+	note A#, 1
+	loopchannel 0, Music_LookMysticalMan_branch_178458
+; 1784f9
 
-_Music_LookMysticalMan_sub_0x17859a: ; 0x17859a
-; subroutine
-	note $c1
-	note $01
-	octave4
-	note $31
-	note $01
-	note $71
-	note $a5
-	note $c7
-	note $01
-	note $a1
-	note $c1
-	octave5
-	note $21
-	note $31
-	note $01
-	note $21
-	note $01
-	note $31
-	note $25
-	octave4
-	note $cb
+Music_LookMysticalMan_branch_1784f9: ; 1784f9
+	note D_, 15
+	octave 4
+	note D_, 1
+	note __, 1
+	note E_, 1
+	note __, 1
+	note F#, 1
+	note D_, 5
+	octave 3
+	note E_, 15
+	note B_, 1
+	note __, 1
+	octave 4
+	note C#, 1
+	note __, 1
+	note D_, 1
+	octave 3
+	note B_, 5
+	octave 4
+	note E_, 1
+	note __, 1
+	note E_, 1
+	note __, 1
+	note D_, 1
+	note C#, 5
+	note C#, 1
+	note __, 1
+	note C#, 1
+	note __, 1
+	octave 3
+	note B_, 1
+	note A_, 5
+	endchannel
+
+Music_LookMysticalMan_Ch2: ; 17851a
+	dutycycle $3
+	vibrato $a, $34
+	notetype $c, $b3
+	note __, 7
+
+Music_LookMysticalMan_branch_178523: ; 178523
+	stereopanning $f0
+	notetype $6, $b8
+	octave 3
+	note B_, 0
+	note __, 0
+	note B_, 0
+	note __, 0
+	note A_, 1
+	note B_, 1
+	note __, 3
+	note B_, 1
+	note __, 5
+	stereopanning $ff
+	note B_, 7
+	note A_, 3
+	stereopanning $f0
+	note G#, 0
+	note __, 0
+	note G#, 0
+	note __, 0
+	note F#, 1
+	note G#, 1
+	note __, 3
+	note G#, 1
+	note __, 5
+	stereopanning $ff
+	note F#, 7
+	note G#, 3
+	stereopanning $f0
+	note A_, 0
+	note __, 0
+	note A_, 0
+	note __, 0
+	note G_, 1
+	note A_, 1
+	note __, 3
+	note A_, 1
+	note __, 5
+	stereopanning $ff
+	note A_, 7
+	note G_, 3
+	stereopanning $f0
+	note F#, 0
+	note __, 0
+	note F#, 0
+	note __, 0
+	note E_, 1
+	note F#, 1
+	note __, 2
+	note A_, 0
+	note A#, 3
+	note __, 3
+	note F#, 3
+	note __, 3
+	note E_, 3
+	callchannel Music_LookMysticalMan_branch_17859a
+	note F#, 1
+	note __, 1
+	note E_, 1
+	note __, 1
+	note D_, 1
+	note E_, 5
+	callchannel Music_LookMysticalMan_branch_1785c8
+	callchannel Music_LookMysticalMan_branch_17859a
+	note F#, 1
+	note __, 1
+	note F#, 1
+	note __, 1
+	note E_, 1
+	note D_, 5
+	callchannel Music_LookMysticalMan_branch_1785c8
+	notetype $c, $b7
+	note B_, 1
+	note __, 1
+	note B_, 1
+	note __, 1
+	octave 4
+	note D_, 1
+	note __, 0
+	note C#, 1
+	note __, 0
+	octave 3
+	note B_, 15
+	note __, 1
+	note B_, 1
+	note __, 1
+	octave 4
+	note D_, 1
+	note __, 1
+	note C#, 1
+	note __, 0
+	octave 3
+	note B_, 1
+	note __, 0
+	note A#, 15
+	note __, 1
+	loopchannel 0, Music_LookMysticalMan_branch_178523
+; 17859a
+
+Music_LookMysticalMan_branch_17859a: ; 17859a
+	note B_, 1
+	note __, 1
+	octave 4
+	note D_, 1
+	note __, 1
+	note F#, 1
+	note A_, 5
+	note B_, 7
+	note __, 1
+	note A_, 1
+	note B_, 1
+	octave 5
+	note C#, 1
+	note D_, 1
+	note __, 1
+	note C#, 1
+	note __, 1
+	note D_, 1
+	note C#, 5
+	octave 4
+	note B_, 11
 	intensity $88
-	note $b0
-	note $a0
+	note A#, 0
+	note A_, 0
 	intensity $68
-	note $90
-	note $70
+	note G#, 0
+	note F#, 0
 	intensity $b8
-	octave5
-	note $21
-	note $01
-	note $21
-	note $01
-	octave4
-	note $c1
-	note $a5
-	note $81
-	note $01
-	note $81
-	note $01
-	note $71
-	note $55
-	endchannel ; end
-; 0x1785c8
+	octave 5
+	note C#, 1
+	note __, 1
+	note C#, 1
+	note __, 1
+	octave 4
+	note B_, 1
+	note A_, 5
+	note G_, 1
+	note __, 1
+	note G_, 1
+	note __, 1
+	note F#, 1
+	note E_, 5
+	endchannel
+; 1785c8
 
-_Music_LookMysticalMan_sub_0x1785c8: ; 0x1785c8
-; subroutine
-	note $27
+Music_LookMysticalMan_branch_1785c8: ; 1785c8
+	note C#, 7
 	intensity $88
-	note $10
-	octave3
-	note $c0
-	note $b0
+	note C_, 0
+	octave 3
+	note B_, 0
+	note A#, 0
 	intensity $68
-	note $90
-	note $70
+	note G#, 0
+	note F#, 0
 	intensity $48
-	note $50
-	note $20
-	note $00
+	note E_, 0
+	note C#, 0
+	note __, 0
 	intensity $b8
-	endchannel ; end
-; 0x1785db
+	endchannel
 
-_Music_LookMysticalMan_Ch3: ; 0x1785db
-	notetype $06, $16
-	note $0f
-	octave2
-	note $c3
-	octave3
-	note $a1
-	note $01
-	note $73
-	octave2
-	note $c0
-	note $00
-	note $c3
-	note $a1
-	note $c1
-	octave3
-	note $c1
-	octave2
-	note $c1
-	octave3
-	note $a1
-	octave2
-	note $c1
-	octave3
-	note $71
-	note $53
-	note $91
-	note $01
-	note $c3
-	note $50
-	note $00
-	note $55
-	octave2
-	note $b1
-	note $c5
-	note $93
-	note $a3
-	octave3
-	note $81
-	note $01
-	note $53
-	octave2
-	note $a0
-	note $00
-	note $a3
-	note $81
-	note $a1
-	octave3
-	note $a1
-	octave2
-	note $a1
-	octave3
-	note $81
-	octave2
-	note $a1
-	octave3
-	note $51
-	octave2
-	note $73
-	note $b1
-	note $01
-	octave3
-	note $23
-	octave2
-	note $70
-	note $00
-	note $75
-	note $93
-	note $03
-	note $b3
-	note $c3
-	octave3
-	note $a1
-	note $01
-	note $73
-	octave2
-	note $c0
-	note $00
-	note $c5
-	octave3
-	note $31
-	note $01
-	note $71
-	note $35
-	note $53
-	note $91
-	note $01
-	note $c3
-	note $50
-	note $00
-	note $55
-	note $31
-	note $01
-	octave2
-	note $c1
-	note $95
-	note $a3
-	octave3
-	note $21
-	note $01
-	note $53
-	octave2
-	note $a0
-	note $00
-	note $a5
-	octave3
-	note $53
-	note $21
-	octave2
-	note $55
-	loopchannel $02, $4615
-	note $73
-	note $b1
-	note $01
-	octave3
-	note $21
-	note $75
-	octave2
-	note $71
-	note $01
-	octave3
-	note $23
-	octave2
-	note $b1
-	octave3
-	note $75
-	octave2
-	note $c3
-	octave3
-	note $c3
-	octave2
-	note $c3
-	octave3
-	note $71
-	note $a5
-	octave2
-	note $c3
-	octave3
-	note $73
-	octave2
-	note $c3
-	note $a3
-	note $01
-	note $b3
-	note $01
-	note $c5
-	note $01
-	note $c3
-	note $a3
-	note $73
-	note $53
-	octave3
-	note $53
-	octave2
-	note $53
-	note $91
-	octave3
-	note $35
-	octave2
-	note $53
-	note $c3
-	octave3
-	note $53
-	note $73
-	note $01
-	note $53
-	note $01
-	note $27
-	octave2
-	note $c7
-	note $b3
-	loopchannel $00, $45df ; end
-; 0x17868e
+Music_LookMysticalMan_Ch3: ; 1785db
+	notetype $6, $16
+	note __, 15
 
-_Music_LookMysticalMan_Ch4: ; 0x17868e
-	togglenoise $03
-	notetype $0c
-	note $41
-	note $41
-	note $31
-	note $30
-	note $30
-	callchannel _Music_LookMysticalMan_sub_0x1786d3
-	callchannel _Music_LookMysticalMan_sub_0x1786d9
-	callchannel _Music_LookMysticalMan_sub_0x1786d3
-	callchannel _Music_LookMysticalMan_sub_0x1786df
-	loopchannel $02, $4697
-	callchannel _Music_LookMysticalMan_sub_0x1786d3
-	callchannel _Music_LookMysticalMan_sub_0x1786d9
-	callchannel _Music_LookMysticalMan_sub_0x1786d3
-	note $31
-	note $41
-	note $31
-	note $40
-	note $30
-	note $31
-	note $41
-	note $31
-	note $30
-	note $30
-	note $31
-	note $41
-	note $32
-	note $40
-	note $41
-	note $41
-	note $31
-	note $41
-	note $31
-	note $41
-	note $32
-	note $40
-	note $41
-	note $31
-	note $31
-	note $30
-	note $30
-	loopchannel $02, $46ba
-	loopchannel $00, $4697 ; end
-; 0x1786d3
+Music_LookMysticalMan_branch_1785df: ; 1785df
+	octave 2
+	note B_, 3
+	octave 3
+	note A_, 1
+	note __, 1
+	note F#, 3
+	octave 2
+	note B_, 0
+	note __, 0
+	note B_, 3
+	note A_, 1
+	note B_, 1
+	octave 3
+	note B_, 1
+	octave 2
+	note B_, 1
+	octave 3
+	note A_, 1
+	octave 2
+	note B_, 1
+	octave 3
+	note F#, 1
+	note E_, 3
+	note G#, 1
+	note __, 1
+	note B_, 3
+	note E_, 0
+	note __, 0
+	note E_, 5
+	octave 2
+	note A#, 1
+	note B_, 5
+	note G#, 3
+	note A_, 3
+	octave 3
+	note G_, 1
+	note __, 1
+	note E_, 3
+	octave 2
+	note A_, 0
+	note __, 0
+	note A_, 3
+	note G_, 1
+	note A_, 1
+	octave 3
+	note A_, 1
+	octave 2
+	note A_, 1
+	octave 3
+	note G_, 1
+	octave 2
+	note A_, 1
+	octave 3
+	note E_, 1
 
-_Music_LookMysticalMan_sub_0x1786d3: ; 0x1786d3
-; subroutine
-	note $43
-	note $32
-	note $42
-	note $41
-	note $33
-	endchannel ; end
-; 0x1786d9
+Music_LookMysticalMan_branch_178615: ; 178615
+	octave 2
+	note F#, 3
+	note A#, 1
+	note __, 1
+	octave 3
+	note C#, 3
+	octave 2
+	note F#, 0
+	note __, 0
+	note F#, 5
+	note G#, 3
+	note __, 3
+	note A#, 3
+	note B_, 3
+	octave 3
+	note A_, 1
+	note __, 1
+	note F#, 3
+	octave 2
+	note B_, 0
+	note __, 0
+	note B_, 5
+	octave 3
+	note D_, 1
+	note __, 1
+	note F#, 1
+	note D_, 5
+	note E_, 3
+	note G#, 1
+	note __, 1
+	note B_, 3
+	note E_, 0
+	note __, 0
+	note E_, 5
+	note D_, 1
+	note __, 1
+	octave 2
+	note B_, 1
+	note G#, 5
+	note A_, 3
+	octave 3
+	note C#, 1
+	note __, 1
+	note E_, 3
+	octave 2
+	note A_, 0
+	note __, 0
+	note A_, 5
+	octave 3
+	note E_, 3
+	note C#, 1
+	octave 2
+	note E_, 5
+	loopchannel 2, Music_LookMysticalMan_branch_178615
+	note F#, 3
+	note A#, 1
+	note __, 1
+	octave 3
+	note C#, 1
+	note F#, 5
+	octave 2
+	note F#, 1
+	note __, 1
+	octave 3
+	note C#, 3
+	octave 2
+	note A#, 1
+	octave 3
+	note F#, 5
+	octave 2
+	note B_, 3
+	octave 3
+	note B_, 3
+	octave 2
+	note B_, 3
+	octave 3
+	note F#, 1
+	note A_, 5
+	octave 2
+	note B_, 3
+	octave 3
+	note F#, 3
+	octave 2
+	note B_, 3
+	note A_, 3
+	note __, 1
+	note A#, 3
+	note __, 1
+	note B_, 5
+	note __, 1
+	note B_, 3
+	note A_, 3
+	note F#, 3
+	note E_, 3
+	octave 3
+	note E_, 3
+	octave 2
+	note E_, 3
+	note G#, 1
+	octave 3
+	note D_, 5
+	octave 2
+	note E_, 3
+	note B_, 3
+	octave 3
+	note E_, 3
+	note F#, 3
+	note __, 1
+	note E_, 3
+	note __, 1
+	note C#, 7
+	octave 2
+	note B_, 7
+	note A#, 3
+	loopchannel 0, Music_LookMysticalMan_branch_1785df
 
-_Music_LookMysticalMan_sub_0x1786d9: ; 0x1786d9
-; subroutine
-	note $43
-	note $32
-	note $32
-	note $41
-	note $33
-	endchannel ; end
-; 0x1786df
+Music_LookMysticalMan_Ch4: ; 17868e
+	togglenoise $3
+	notetype $c
+	note D#, 1
+	note D#, 1
+	note D_, 1
+	note D_, 0
+	note D_, 0
 
-_Music_LookMysticalMan_sub_0x1786df: ; 0x1786df
-; subroutine
-	note $43
-	note $31
-	note $40
-	note $32
-	note $31
-	note $41
-	note $30
-	note $30
-	endchannel ; end
-; 0x1786e8
+Music_LookMysticalMan_branch_178697: ; 178697
+	callchannel Music_LookMysticalMan_branch_1786d3
+	callchannel Music_LookMysticalMan_branch_1786d9
+	callchannel Music_LookMysticalMan_branch_1786d3
+	callchannel Music_LookMysticalMan_branch_1786df
+	loopchannel 2, Music_LookMysticalMan_branch_178697
+	callchannel Music_LookMysticalMan_branch_1786d3
+	callchannel Music_LookMysticalMan_branch_1786d9
+	callchannel Music_LookMysticalMan_branch_1786d3
+	note D_, 1
+	note D#, 1
+	note D_, 1
+	note D#, 0
+	note D_, 0
+	note D_, 1
+	note D#, 1
+	note D_, 1
+	note D_, 0
+	note D_, 0
+
+Music_LookMysticalMan_branch_1786ba: ; 1786ba
+	note D_, 1
+	note D#, 1
+	note D_, 2
+	note D#, 0
+	note D#, 1
+	note D#, 1
+	note D_, 1
+	note D#, 1
+	note D_, 1
+	note D#, 1
+	note D_, 2
+	note D#, 0
+	note D#, 1
+	note D_, 1
+	note D_, 1
+	note D_, 0
+	note D_, 0
+	loopchannel 2, Music_LookMysticalMan_branch_1786ba
+	loopchannel 0, Music_LookMysticalMan_branch_178697
+; 1786d3
+
+Music_LookMysticalMan_branch_1786d3: ; 1786d3
+	note D#, 3
+	note D_, 2
+	note D#, 2
+	note D#, 1
+	note D_, 3
+	endchannel
+; 1786d9
+
+Music_LookMysticalMan_branch_1786d9: ; 1786d9
+	note D#, 3
+	note D_, 2
+	note D_, 2
+	note D#, 1
+	note D_, 3
+	endchannel
+; 1786df
+
+Music_LookMysticalMan_branch_1786df: ; 1786df
+	note D#, 3
+	note D_, 1
+	note D#, 0
+	note D_, 2
+	note D_, 1
+	note D#, 1
+	note D_, 0
+	note D_, 0
+	endchannel
+; 1786e8

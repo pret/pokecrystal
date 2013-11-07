@@ -1,359 +1,365 @@
-_Music_PalletTown: ; 0xf4b0c
-	db $80
-	dw _Music_PalletTown_Ch1
-	db $01
-	dw _Music_PalletTown_Ch2
-	db $02
-	dw _Music_PalletTown_Ch3
-; 0xf4b15
+Music_PalletTown: ; f4b0c
+	dbw $80, Music_PalletTown_Ch1
+	dbw $01, Music_PalletTown_Ch2
+	dbw $02, Music_PalletTown_Ch3
+; f4b15
 
-_Music_PalletTown_Ch1: ; 0xf4b15
-	tempo $bc00
+
+Music_PalletTown_Ch1: ; f4b15
+	tempo 188
 	volume $77
 	vibrato $12, $24
-	tone $0100
-	stereopanning $0f
-	dutycycle $02
-	notetype $0c, $78
-	octave3
-	note $cb
-	note $a0
-	note $30
-	note $70
-	note $a0
-	note $cb
-	note $40
-	note $80
-	note $c0
-	octave4
-	note $40
-	note $53
-	note $33
-	note $13
-	octave3
-	note $a3
+	tone $0001
+	stereopanning $f
+
+Music_PalletTown_branch_f4b22: ; f4b22
+	dutycycle $2
+	notetype $c, $78
+	octave 3
+	note B_, 11
+	note A_, 0
+	note D_, 0
+	note F#, 0
+	note A_, 0
+	note B_, 11
+	note D#, 0
+	note G_, 0
+	note B_, 0
+	octave 4
+	note D#, 0
+	note E_, 3
+	note D_, 3
+	note C_, 3
+	octave 3
+	note A_, 3
 	intensity $77
-	note $87
+	note G_, 7
 	intensity $78
-	note $73
-	note $a3
-	note $cb
-	note $a0
-	note $30
-	note $70
-	note $a0
-	note $81
-	note $c1
-	octave4
-	note $51
-	note $83
-	note $71
-	note $81
-	note $a1
-	note $51
-	note $31
-	note $11
-	note $51
-	note $71
-	note $51
-	note $31
-	note $11
-	octave3
-	note $c7
+	note F#, 3
+	note A_, 3
+	note B_, 11
+	note A_, 0
+	note D_, 0
+	note F#, 0
+	note A_, 0
+	note G_, 1
+	note B_, 1
+	octave 4
+	note E_, 1
+	note G_, 3
+	note F#, 1
+	note G_, 1
+	note A_, 1
+	note E_, 1
+	note D_, 1
+	note C_, 1
+	note E_, 1
+	note F#, 1
+	note E_, 1
+	note D_, 1
+	note C_, 1
+	octave 3
+	note B_, 7
 	intensity $77
-	note $c7
-	dutycycle $03
+	note B_, 7
+
+Music_PalletTown_branch_f4b59: ; f4b59
+	dutycycle $3
 	intensity $92
-	note $81
-	note $51
-	note $81
-	note $51
-	note $81
-	note $41
-	note $81
-	note $41
+	note G_, 1
+	note E_, 1
+	note G_, 1
+	note E_, 1
+	note G_, 1
+	note D#, 1
+	note G_, 1
+	note D#, 1
 	intensity $5f
-	note $80
-	note $a0
-	note $c0
-	octave4
-	note $10
-	note $31
-	note $83
-	note $31
-	note $11
-	octave3
-	note $c1
-	loopchannel $02, $4b59
+	note G_, 0
+	note A_, 0
+	note B_, 0
+	octave 4
+	note C_, 0
+	note D_, 1
+	note G_, 3
+	note D_, 1
+	note C_, 1
+	octave 3
+	note B_, 1
+	loopchannel 2, Music_PalletTown_branch_f4b59
 	intensity $3f
-	octave4
-	note $13
-	octave3
-	note $c3
-	note $a3
-	note $83
-	note $73
-	note $33
-	note $53
+	octave 4
+	note C_, 3
+	octave 3
+	note B_, 3
+	note A_, 3
+	note G_, 3
+	note F#, 3
+	note D_, 3
+	note E_, 3
 	intensity $72
-	note $10
-	note $50
-	note $80
-	octave4
-	note $10
-	note $30
-	note $a0
-	octave5
-	note $31
+	note C_, 0
+	note E_, 0
+	note G_, 0
+	octave 4
+	note C_, 0
+	note D_, 0
+	note A_, 0
+	octave 5
+	note D_, 1
 	intensity $62
-	note $31
+	note D_, 1
 	intensity $22
-	note $31
+	note D_, 1
 	intensity $2f
-	octave3
-	note $33
-	note $53
-	note $85
-	note $a0
-	note $80
+	octave 3
+	note D_, 3
+	note E_, 3
+	note G_, 5
+	note A_, 0
+	note G_, 0
 	intensity $1f
-	note $77
-	loopchannel $00, $4b22 ; end
-; 0xf4ba1
+	note F#, 7
+	loopchannel 0, Music_PalletTown_branch_f4b22
 
-_Music_PalletTown_Ch2: ; 0xf4ba1
+Music_PalletTown_Ch2: ; f4ba1
 	vibrato $12, $44
-	dutycycle $02
+	dutycycle $2
 	stereopanning $f0
-	notetype $0c, $88
-	octave1
-	note $81
-	note $c1
-	octave2
-	note $31
-	note $85
-	note $73
-	octave1
-	note $81
-	note $c1
-	octave2
-	note $31
-	note $85
-	octave1
-	note $c3
-	octave2
-	note $11
-	octave1
-	note $81
-	note $c1
-	octave2
-	note $13
-	note $31
-	note $51
-	note $71
-	note $81
-	note $31
-	note $03
-	note $33
-	note $73
-	octave1
-	note $81
-	note $c1
-	octave2
-	note $31
-	note $85
-	note $73
-	note $51
-	note $31
-	note $51
-	octave1
-	note $c3
-	octave2
-	note $31
-	note $51
-	note $71
-	note $87
-	note $a7
-	note $81
-	note $31
-	note $81
-	octave3
-	note $33
-	octave2
-	note $c1
-	octave3
-	note $11
-	note $31
-	intensity $a2
-	octave3
-	note $51
-	octave2
-	note $11
-	octave3
-	note $51
-	octave2
-	note $11
-	octave3
-	note $41
-	octave2
-	note $11
-	octave3
-	note $41
-	octave2
-	note $11
-	intensity $93
-	note $85
-	note $80
-	note $82
-	note $31
-	note $83
-	loopchannel $02, $4be5
-	note $11
-	octave3
-	note $53
-	octave2
-	note $10
-	octave3
-	note $12
-	octave2
-	note $11
-	note $51
-	note $11
-	note $31
-	octave3
-	note $33
-	octave2
-	note $30
-	note $82
-	note $51
-	note $81
-	note $51
-	intensity $1f
-	note $73
-	intensity $88
-	note $73
-	note $c3
-	note $83
-	note $a1
-	note $31
-	note $81
-	note $33
-	note $11
-	octave1
-	note $c1
-	note $a1
-	loopchannel $00, $4ba8 ; end
-; 0xf4c2a
 
-_Music_PalletTown_Ch3: ; 0xf4c2a
+Music_PalletTown_branch_f4ba8: ; f4ba8
+	notetype $c, $88
+	octave 1
+	note G_, 1
+	note B_, 1
+	octave 2
+	note D_, 1
+	note G_, 5
+	note F#, 3
+	octave 1
+	note G_, 1
+	note B_, 1
+	octave 2
+	note D_, 1
+	note G_, 5
+	octave 1
+	note B_, 3
+	octave 2
+	note C_, 1
+	octave 1
+	note G_, 1
+	note B_, 1
+	octave 2
+	note C_, 3
+	note D_, 1
+	note E_, 1
+	note F#, 1
+	note G_, 1
+	note D_, 1
+	note __, 3
+	note D_, 3
+	note F#, 3
+	octave 1
+	note G_, 1
+	note B_, 1
+	octave 2
+	note D_, 1
+	note G_, 5
+	note F#, 3
+	note E_, 1
+	note D_, 1
+	note E_, 1
+	octave 1
+	note B_, 3
+	octave 2
+	note D_, 1
+	note E_, 1
+	note F#, 1
+	note G_, 7
+	note A_, 7
+	note G_, 1
+	note D_, 1
+	note G_, 1
+	octave 3
+	note D_, 3
+	octave 2
+	note B_, 1
+	octave 3
+	note C_, 1
+	note D_, 1
+
+Music_PalletTown_branch_f4be5: ; f4be5
+	intensity $a2
+	octave 3
+	note E_, 1
+	octave 2
+	note C_, 1
+	octave 3
+	note E_, 1
+	octave 2
+	note C_, 1
+	octave 3
+	note D#, 1
+	octave 2
+	note C_, 1
+	octave 3
+	note D#, 1
+	octave 2
+	note C_, 1
+	intensity $93
+	note G_, 5
+	note G_, 0
+	note G_, 2
+	note D_, 1
+	note G_, 3
+	loopchannel 2, Music_PalletTown_branch_f4be5
+	note C_, 1
+	octave 3
+	note E_, 3
+	octave 2
+	note C_, 0
+	octave 3
+	note C_, 2
+	octave 2
+	note C_, 1
+	note E_, 1
+	note C_, 1
+	note D_, 1
+	octave 3
+	note D_, 3
+	octave 2
+	note D_, 0
+	note G_, 2
+	note E_, 1
+	note G_, 1
+	note E_, 1
+	intensity $1f
+	note F#, 3
+	intensity $88
+	note F#, 3
+	note B_, 3
+	note G_, 3
+	note A_, 1
+	note D_, 1
+	note G_, 1
+	note D_, 3
+	note C_, 1
+	octave 1
+	note B_, 1
+	note A_, 1
+	loopchannel 0, Music_PalletTown_branch_f4ba8
+
+Music_PalletTown_Ch3: ; f4c2a
 	vibrato $14, $24
-	notetype $0c, $10
-	octave6
-	note $31
-	note $11
-	octave5
-	note $c1
-	note $a1
-	octave6
-	note $81
-	note $51
-	note $71
-	note $51
-	note $35
-	octave5
-	note $c1
-	note $80
-	note $00
-	note $80
-	note $00
-	note $a0
-	note $00
-	note $c0
-	note $00
-	octave6
-	note $17
-	note $01
-	octave5
-	note $71
-	note $81
-	note $a1
-	note $c5
-	octave6
-	note $10
-	octave5
-	note $c0
-	note $a7
-	octave6
-	note $31
-	note $11
-	octave5
-	note $c1
-	octave6
-	note $31
-	note $80
-	note $00
-	note $70
-	note $00
-	note $70
-	note $00
-	note $80
-	note $00
-	note $55
-	note $30
-	note $00
-	note $37
-	note $11
-	octave5
-	note $c1
-	note $a1
-	note $81
-	octave6
-	note $31
-	note $11
-	octave5
-	note $c1
-	note $a1
-	note $87
-	note $01
-	note $81
-	note $a1
-	note $c1
-	octave6
-	note $17
-	note $35
-	note $11
-	octave5
-	note $c7
-	note $01
-	note $81
-	note $a1
-	note $c1
-	octave6
-	note $11
-	note $01
-	note $13
-	note $35
-	note $10
-	note $30
-	octave5
-	note $c7
-	note $01
-	note $c1
-	note $a1
-	note $81
-	note $a7
-	note $53
-	note $c3
-	note $a7
-	note $83
-	note $53
-	note $76
-	note $00
-	note $82
-	note $00
-	note $c2
-	note $00
-	note $c7
-	note $a7
-	loopchannel $00, $4c2d ; end
-; 0xf4c9f
+
+Music_PalletTown_branch_f4c2d: ; f4c2d
+	notetype $c, $10
+	octave 6
+	note D_, 1
+	note C_, 1
+	octave 5
+	note B_, 1
+	note A_, 1
+	octave 6
+	note G_, 1
+	note E_, 1
+	note F#, 1
+	note E_, 1
+	note D_, 5
+	octave 5
+	note B_, 1
+	note G_, 0
+	note __, 0
+	note G_, 0
+	note __, 0
+	note A_, 0
+	note __, 0
+	note B_, 0
+	note __, 0
+	octave 6
+	note C_, 7
+	note __, 1
+	octave 5
+	note F#, 1
+	note G_, 1
+	note A_, 1
+	note B_, 5
+	octave 6
+	note C_, 0
+	octave 5
+	note B_, 0
+	note A_, 7
+	octave 6
+	note D_, 1
+	note C_, 1
+	octave 5
+	note B_, 1
+	octave 6
+	note D_, 1
+	note G_, 0
+	note __, 0
+	note F#, 0
+	note __, 0
+	note F#, 0
+	note __, 0
+	note G_, 0
+	note __, 0
+	note E_, 5
+	note D_, 0
+	note __, 0
+	note D_, 7
+	note C_, 1
+	octave 5
+	note B_, 1
+	note A_, 1
+	note G_, 1
+	octave 6
+	note D_, 1
+	note C_, 1
+	octave 5
+	note B_, 1
+	note A_, 1
+	note G_, 7
+	note __, 1
+	note G_, 1
+	note A_, 1
+	note B_, 1
+	octave 6
+	note C_, 7
+	note D_, 5
+	note C_, 1
+	octave 5
+	note B_, 7
+	note __, 1
+	note G_, 1
+	note A_, 1
+	note B_, 1
+	octave 6
+	note C_, 1
+	note __, 1
+	note C_, 3
+	note D_, 5
+	note C_, 0
+	note D_, 0
+	octave 5
+	note B_, 7
+	note __, 1
+	note B_, 1
+	note A_, 1
+	note G_, 1
+	note A_, 7
+	note E_, 3
+	note B_, 3
+	note A_, 7
+	note G_, 3
+	note E_, 3
+	note F#, 6
+	note __, 0
+	note G_, 2
+	note __, 0
+	note B_, 2
+	note __, 0
+	note B_, 7
+	note A_, 7
+	loopchannel 0, Music_PalletTown_branch_f4c2d
+; f4c9f

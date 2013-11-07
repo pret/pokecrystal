@@ -1,321 +1,323 @@
-_Music_Printer: ; 0xf07fd
-	db $02
-	dw _Music_Printer_Ch3
-; 0xf0800
+Music_Printer: ; f07fd
+	dbw $02, Music_Printer_Ch3
+; f0800
 
-_Music_Printer_Ch3: ; 0xf0800
-	tempo $0001
-	notetype $0c, $20
-	octave4
-	note $c5
-	octave5
-	note $20
-	note $00
-	octave4
-	note $c5
-	octave5
-	note $20
-	note $00
-	octave4
-	note $c0
-	note $00
-	octave5
-	note $50
-	note $00
-	note $40
-	note $00
-	note $20
-	note $00
-	octave4
-	note $c0
-	note $00
-	note $a0
-	note $00
-	note $90
-	note $00
-	note $70
-	note $00
-	note $50
-	note $00
-	note $c0
-	note $00
-	note $50
-	note $00
-	note $c0
-	note $00
-	note $50
-	note $00
-	note $c0
-	note $00
-	note $50
-	note $00
-	note $c0
-	note $00
-	note $50
-	note $00
-	note $c0
-	note $00
-	note $50
-	note $00
-	note $c0
-	note $00
-	note $50
-	note $00
-	note $c0
-	note $00
-	note $50
-	note $00
-	note $c0
-	note $00
-	note $70
-	note $00
-	note $a0
-	note $00
-	note $70
-	note $00
-	note $a0
-	note $00
-	note $70
-	note $00
-	octave5
-	note $20
-	note $10
-	note $20
-	note $00
-	octave4
-	note $70
-	note $00
-	note $50
-	note $00
-	note $90
-	note $00
-	note $50
-	note $00
-	note $90
-	note $00
-	note $50
-	note $00
-	octave5
-	note $50
-	note $40
-	note $50
-	note $00
-	octave4
-	note $40
-	note $00
-	note $50
-	note $00
-	note $c0
-	note $00
-	note $50
-	note $00
-	note $c0
-	note $00
-	note $50
-	note $00
-	note $c0
-	note $00
-	note $50
-	note $00
-	note $c0
-	note $00
-	note $50
-	note $00
-	note $c0
-	note $00
-	note $50
-	note $00
-	note $c0
-	note $00
-	note $50
-	note $00
-	note $c0
-	note $00
-	note $50
-	note $00
-	note $c0
-	note $00
-	note $70
-	note $00
-	note $a0
-	note $00
-	note $70
-	note $00
-	note $a0
-	note $00
-	note $c0
-	note $00
-	note $a0
-	note $00
-	note $90
-	note $00
-	note $70
-	note $00
-	note $50
-	note $00
-	note $c0
-	note $00
-	note $50
-	note $00
-	note $c0
-	note $00
-	note $50
-	note $00
-	octave3
-	note $c0
-	note $00
-	octave4
-	note $20
-	note $00
-	note $30
-	note $00
-	note $40
-	note $00
-	note $70
-	note $00
-	octave3
-	note $c0
-	note $00
-	octave4
-	note $70
-	note $00
-	note $40
-	note $00
-	note $70
-	note $00
-	octave3
-	note $c0
-	note $00
-	octave4
-	note $70
-	note $00
-	note $50
-	note $00
-	note $90
-	note $00
-	octave3
-	note $c0
-	note $00
-	octave4
-	note $90
-	note $00
-	note $50
-	note $00
-	note $90
-	note $00
-	octave3
-	note $c0
-	note $00
-	octave4
-	note $90
-	note $00
-	note $70
-	note $00
-	note $a0
-	note $00
-	note $20
-	note $00
-	note $a0
-	note $00
-	note $70
-	note $00
-	note $a0
-	note $00
-	note $20
-	note $00
-	note $a0
-	note $00
-	note $c0
-	note $b0
-	note $c0
-	note $00
-	note $50
-	note $00
-	note $70
-	note $00
-	note $90
-	note $00
-	octave3
-	note $c0
-	note $00
-	octave4
-	note $20
-	note $00
-	note $30
-	note $00
-	note $40
-	note $00
-	note $70
-	note $00
-	octave3
-	note $c0
-	note $00
-	octave4
-	note $70
-	note $00
-	note $40
-	note $00
-	note $70
-	note $00
-	octave3
-	note $c0
-	note $00
-	octave4
-	note $70
-	note $00
-	note $50
-	note $00
-	note $90
-	note $00
-	octave3
-	note $c0
-	note $00
-	octave4
-	note $90
-	note $00
-	note $50
-	note $00
-	note $90
-	note $00
-	octave3
-	note $c0
-	note $00
-	octave4
-	note $90
-	note $00
-	note $70
-	note $00
-	note $a0
-	note $00
-	note $20
-	note $00
-	note $a0
-	note $00
-	note $70
-	note $00
-	note $a0
-	note $00
-	note $70
-	note $00
-	note $40
-	note $00
-	note $c0
-	note $00
-	note $c0
-	note $00
-	note $a0
-	note $00
-	note $a0
-	note $00
-	note $90
-	note $00
-	octave3
-	note $c0
-	note $00
-	octave4
-	note $20
-	note $00
-	note $40
-	note $00
-	loopchannel $00, $4823 ; end
-; 0xf0941
+
+Music_Printer_Ch3: ; f0800
+	tempo 256
+	notetype $c, $20
+	octave 4
+	note B_, 5
+	octave 5
+	note C#, 0
+	note __, 0
+	octave 4
+	note B_, 5
+	octave 5
+	note C#, 0
+	note __, 0
+	octave 4
+	note B_, 0
+	note __, 0
+	octave 5
+	note E_, 0
+	note __, 0
+	note D#, 0
+	note __, 0
+	note C#, 0
+	note __, 0
+	octave 4
+	note B_, 0
+	note __, 0
+	note A_, 0
+	note __, 0
+	note G#, 0
+	note __, 0
+	note F#, 0
+	note __, 0
+
+Music_Printer_branch_f0823: ; f0823
+	note E_, 0
+	note __, 0
+	note B_, 0
+	note __, 0
+	note E_, 0
+	note __, 0
+	note B_, 0
+	note __, 0
+	note E_, 0
+	note __, 0
+	note B_, 0
+	note __, 0
+	note E_, 0
+	note __, 0
+	note B_, 0
+	note __, 0
+	note E_, 0
+	note __, 0
+	note B_, 0
+	note __, 0
+	note E_, 0
+	note __, 0
+	note B_, 0
+	note __, 0
+	note E_, 0
+	note __, 0
+	note B_, 0
+	note __, 0
+	note E_, 0
+	note __, 0
+	note B_, 0
+	note __, 0
+	note F#, 0
+	note __, 0
+	note A_, 0
+	note __, 0
+	note F#, 0
+	note __, 0
+	note A_, 0
+	note __, 0
+	note F#, 0
+	note __, 0
+	octave 5
+	note C#, 0
+	note C_, 0
+	note C#, 0
+	note __, 0
+	octave 4
+	note F#, 0
+	note __, 0
+	note E_, 0
+	note __, 0
+	note G#, 0
+	note __, 0
+	note E_, 0
+	note __, 0
+	note G#, 0
+	note __, 0
+	note E_, 0
+	note __, 0
+	octave 5
+	note E_, 0
+	note D#, 0
+	note E_, 0
+	note __, 0
+	octave 4
+	note D#, 0
+	note __, 0
+	note E_, 0
+	note __, 0
+	note B_, 0
+	note __, 0
+	note E_, 0
+	note __, 0
+	note B_, 0
+	note __, 0
+	note E_, 0
+	note __, 0
+	note B_, 0
+	note __, 0
+	note E_, 0
+	note __, 0
+	note B_, 0
+	note __, 0
+	note E_, 0
+	note __, 0
+	note B_, 0
+	note __, 0
+	note E_, 0
+	note __, 0
+	note B_, 0
+	note __, 0
+	note E_, 0
+	note __, 0
+	note B_, 0
+	note __, 0
+	note E_, 0
+	note __, 0
+	note B_, 0
+	note __, 0
+	note F#, 0
+	note __, 0
+	note A_, 0
+	note __, 0
+	note F#, 0
+	note __, 0
+	note A_, 0
+	note __, 0
+	note B_, 0
+	note __, 0
+	note A_, 0
+	note __, 0
+	note G#, 0
+	note __, 0
+	note F#, 0
+	note __, 0
+	note E_, 0
+	note __, 0
+	note B_, 0
+	note __, 0
+	note E_, 0
+	note __, 0
+	note B_, 0
+	note __, 0
+	note E_, 0
+	note __, 0
+	octave 3
+	note B_, 0
+	note __, 0
+	octave 4
+	note C#, 0
+	note __, 0
+	note D_, 0
+	note __, 0
+	note D#, 0
+	note __, 0
+	note F#, 0
+	note __, 0
+	octave 3
+	note B_, 0
+	note __, 0
+	octave 4
+	note F#, 0
+	note __, 0
+	note D#, 0
+	note __, 0
+	note F#, 0
+	note __, 0
+	octave 3
+	note B_, 0
+	note __, 0
+	octave 4
+	note F#, 0
+	note __, 0
+	note E_, 0
+	note __, 0
+	note G#, 0
+	note __, 0
+	octave 3
+	note B_, 0
+	note __, 0
+	octave 4
+	note G#, 0
+	note __, 0
+	note E_, 0
+	note __, 0
+	note G#, 0
+	note __, 0
+	octave 3
+	note B_, 0
+	note __, 0
+	octave 4
+	note G#, 0
+	note __, 0
+	note F#, 0
+	note __, 0
+	note A_, 0
+	note __, 0
+	note C#, 0
+	note __, 0
+	note A_, 0
+	note __, 0
+	note F#, 0
+	note __, 0
+	note A_, 0
+	note __, 0
+	note C#, 0
+	note __, 0
+	note A_, 0
+	note __, 0
+	note B_, 0
+	note A#, 0
+	note B_, 0
+	note __, 0
+	note E_, 0
+	note __, 0
+	note F#, 0
+	note __, 0
+	note G#, 0
+	note __, 0
+	octave 3
+	note B_, 0
+	note __, 0
+	octave 4
+	note C#, 0
+	note __, 0
+	note D_, 0
+	note __, 0
+	note D#, 0
+	note __, 0
+	note F#, 0
+	note __, 0
+	octave 3
+	note B_, 0
+	note __, 0
+	octave 4
+	note F#, 0
+	note __, 0
+	note D#, 0
+	note __, 0
+	note F#, 0
+	note __, 0
+	octave 3
+	note B_, 0
+	note __, 0
+	octave 4
+	note F#, 0
+	note __, 0
+	note E_, 0
+	note __, 0
+	note G#, 0
+	note __, 0
+	octave 3
+	note B_, 0
+	note __, 0
+	octave 4
+	note G#, 0
+	note __, 0
+	note E_, 0
+	note __, 0
+	note G#, 0
+	note __, 0
+	octave 3
+	note B_, 0
+	note __, 0
+	octave 4
+	note G#, 0
+	note __, 0
+	note F#, 0
+	note __, 0
+	note A_, 0
+	note __, 0
+	note C#, 0
+	note __, 0
+	note A_, 0
+	note __, 0
+	note F#, 0
+	note __, 0
+	note A_, 0
+	note __, 0
+	note F#, 0
+	note __, 0
+	note D#, 0
+	note __, 0
+	note B_, 0
+	note __, 0
+	note B_, 0
+	note __, 0
+	note A_, 0
+	note __, 0
+	note A_, 0
+	note __, 0
+	note G#, 0
+	note __, 0
+	octave 3
+	note B_, 0
+	note __, 0
+	octave 4
+	note C#, 0
+	note __, 0
+	note D#, 0
+	note __, 0
+	loopchannel 0, Music_Printer_branch_f0823
+; f0941

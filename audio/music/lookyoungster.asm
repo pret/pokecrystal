@@ -1,305 +1,299 @@
-_Music_LookYoungster: ; 0xf66c3
-	db $80
-	dw _Music_LookYoungster_Ch1
-	db $01
-	dw _Music_LookYoungster_Ch2
-	db $02
-	dw _Music_LookYoungster_Ch3
-; 0xf66cc
+Music_LookYoungster: ; f66c3
+	dbw $80, Music_LookYoungster_Ch1
+	dbw $01, Music_LookYoungster_Ch2
+	dbw $02, Music_LookYoungster_Ch3
+; f66cc
 
-_Music_LookYoungster_Ch1: ; 0xf66cc
-	tempo $7600
+
+Music_LookYoungster_Ch1: ; f66cc
+	tempo 118
 	volume $77
-	stereopanning $0f
-	dutycycle $03
-	notetype $0c, $a3
-	octave3
-	note $80
-	note $90
-	note $a0
-	note $b0
+	stereopanning $f
+	dutycycle $3
+	notetype $c, $a3
+	octave 3
+	note G_, 0
+	note G#, 0
+	note A_, 0
+	note A#, 0
 	intensity $3e
-	note $cf
+	note B_, 15
 	intensity $c3
-	octave4
-	note $10
-	note $02
-	note $13
-	note $01
-	note $15
+	octave 4
+	note C_, 0
+	note __, 2
+	note C_, 3
+	note __, 1
+	note C_, 5
 	intensity $b3
-	note $01
-	octave3
-	note $80
-	note $00
-	note $c0
-	note $00
-	note $80
-	note $00
-	octave4
-	note $30
-	note $00
-	note $10
-	note $02
-	note $10
-	note $00
-	note $0f
-	note $01
-	octave3
-	note $80
-	note $00
-	note $c0
-	note $00
-	note $80
-	note $00
-	octave4
-	note $30
-	note $00
-	note $10
-	note $02
-	note $10
-	note $00
-	note $0f
-	loopchannel $00, $66ea ; end
-; 0xf670e
 
-; 0xf670e
-	endchannel
-; 0xf670f
+Music_LookYoungster_branch_f66ea: ; f66ea
+	note __, 1
+	octave 3
+	note G_, 0
+	note __, 0
+	note B_, 0
+	note __, 0
+	note G_, 0
+	note __, 0
+	octave 4
+	note D_, 0
+	note __, 0
+	note C_, 0
+	note __, 2
+	note C_, 0
+	note __, 0
+	note __, 15
+	note __, 1
+	octave 3
+	note G_, 0
+	note __, 0
+	note B_, 0
+	note __, 0
+	note G_, 0
+	note __, 0
+	octave 4
+	note D_, 0
+	note __, 0
+	note C_, 0
+	note __, 2
+	note C_, 0
+	note __, 0
+	note __, 15
+	loopchannel 0, Music_LookYoungster_branch_f66ea
+INCBIN "baserom.gbc", $f670e, $f670f - $f670e
 
-_Music_LookYoungster_Ch2: ; 0xf670f
+Music_LookYoungster_Ch2: ; f670f
 	stereopanning $f0
 	vibrato $12, $26
-	dutycycle $01
-	notetype $0c, $a3
-	octave3
-	note $c0
-	octave4
-	note $10
-	note $20
-	note $30
+	dutycycle $1
+	notetype $c, $a3
+	octave 3
+	note B_, 0
+	octave 4
+	note C_, 0
+	note C#, 0
+	note D_, 0
 	intensity $3e
-	notetype $0c, $2e
-	note $8f
-	notetype $0c, $b3
+	notetype $c, $2e
+	note G_, 15
+	notetype $c, $b3
 	intensity $c3
-	note $60
-	note $02
-	note $63
-	note $01
-	note $75
-	dutycycle $03
-	intensity $b3
-	note $01
-	octave3
-	note $c0
-	note $00
-	octave4
-	note $30
-	note $00
-	octave3
-	note $c0
-	note $00
-	octave4
-	note $80
-	note $00
-	note $60
-	note $02
-	note $60
-	note $00
-	intensity $97
-	dutycycle $02
-	note $40
-	note $60
-	note $40
-	note $30
-	note $10
-	note $00
-	octave3
-	note $90
-	note $02
-	note $60
-	note $00
-	note $80
-	note $00
-	note $90
-	note $00
-	dutycycle $03
-	intensity $b3
-	note $01
-	note $c0
-	note $00
-	octave4
-	note $30
-	note $00
-	octave3
-	note $c0
-	note $00
-	octave4
-	note $80
-	note $00
-	note $60
-	note $02
-	note $60
-	note $00
-	dutycycle $02
-	intensity $97
-	note $90
-	note $b0
-	note $90
-	note $80
-	note $60
-	note $00
-	note $10
-	note $02
-	octave3
-	note $90
-	note $00
-	note $b0
-	note $00
-	octave4
-	note $10
-	note $00
-	loopchannel $00, $672f ; end
-; 0xf6783
+	note F_, 0
+	note __, 2
+	note F_, 3
+	note __, 1
+	note F#, 5
 
-; 0xf6783
-	endchannel
-; 0xf6784
+Music_LookYoungster_branch_f672f: ; f672f
+	dutycycle $3
+	intensity $b3
+	note __, 1
+	octave 3
+	note B_, 0
+	note __, 0
+	octave 4
+	note D_, 0
+	note __, 0
+	octave 3
+	note B_, 0
+	note __, 0
+	octave 4
+	note G_, 0
+	note __, 0
+	note F_, 0
+	note __, 2
+	note F_, 0
+	note __, 0
+	intensity $97
+	dutycycle $2
+	note D#, 0
+	note F_, 0
+	note D#, 0
+	note D_, 0
+	note C_, 0
+	note __, 0
+	octave 3
+	note G#, 0
+	note __, 2
+	note F_, 0
+	note __, 0
+	note G_, 0
+	note __, 0
+	note G#, 0
+	note __, 0
+	dutycycle $3
+	intensity $b3
+	note __, 1
+	note B_, 0
+	note __, 0
+	octave 4
+	note D_, 0
+	note __, 0
+	octave 3
+	note B_, 0
+	note __, 0
+	octave 4
+	note G_, 0
+	note __, 0
+	note F_, 0
+	note __, 2
+	note F_, 0
+	note __, 0
+	dutycycle $2
+	intensity $97
+	note G#, 0
+	note A#, 0
+	note G#, 0
+	note G_, 0
+	note F_, 0
+	note __, 0
+	note C_, 0
+	note __, 2
+	octave 3
+	note G#, 0
+	note __, 0
+	note A#, 0
+	note __, 0
+	octave 4
+	note C_, 0
+	note __, 0
+	loopchannel 0, Music_LookYoungster_branch_f672f
+INCBIN "baserom.gbc", $f6783, $f6784 - $f6783
 
-_Music_LookYoungster_Ch3: ; 0xf6784
+Music_LookYoungster_Ch3: ; f6784
 	stereopanning $ff
-	vibrato $02, $24
-	notetype $0c, $25
-	note $03
-	octave2
-	note $80
-	note $00
-	octave3
-	note $80
-	note $00
-	octave2
-	note $80
-	note $00
-	octave3
-	note $80
-	note $00
-	octave2
-	note $80
-	note $00
-	octave3
-	note $80
-	note $00
+	vibrato $2, $24
+	notetype $c, $25
+	note __, 3
+	octave 2
+	note G_, 0
+	note __, 0
+	octave 3
+	note G_, 0
+	note __, 0
+	octave 2
+	note G_, 0
+	note __, 0
+	octave 3
+	note G_, 0
+	note __, 0
+	octave 2
+	note G_, 0
+	note __, 0
+	octave 3
+	note G_, 0
+	note __, 0
 	intensity $15
-	octave2
-	note $80
-	note $00
-	octave3
-	note $80
-	note $00
-	note $30
-	note $02
-	note $33
-	note $01
-	note $95
+	octave 2
+	note G_, 0
+	note __, 0
+	octave 3
+	note G_, 0
+	note __, 0
+	note D_, 0
+	note __, 2
+	note D_, 3
+	note __, 1
+	note G#, 5
 	intensity $25
-	octave2
-	note $80
-	note $00
-	octave3
-	note $80
-	note $00
-	octave2
-	note $80
-	note $00
-	octave3
-	note $80
-	note $00
-	octave2
-	note $80
-	note $00
-	octave3
-	note $80
-	note $00
-	octave2
-	note $80
-	note $00
-	octave3
-	note $80
-	note $00
-	octave2
-	note $60
-	note $00
-	octave3
-	note $40
-	note $00
-	octave2
-	note $60
-	note $00
-	octave3
-	note $40
-	note $00
-	octave2
-	note $60
-	note $00
-	octave3
-	note $40
-	note $00
-	octave2
-	note $60
-	note $00
-	octave3
-	note $40
-	note $00
-	octave2
-	note $80
-	note $00
-	octave3
-	note $80
-	note $00
-	octave2
-	note $80
-	note $00
-	octave3
-	note $80
-	note $00
-	octave2
-	note $80
-	note $00
-	octave3
-	note $80
-	note $00
-	octave2
-	note $80
-	note $00
-	octave3
-	note $80
-	note $00
-	octave2
-	note $90
-	note $00
-	octave3
-	note $40
-	note $00
-	octave2
-	note $90
-	note $00
-	octave3
-	note $40
-	note $00
-	octave2
-	note $90
-	note $00
-	octave3
-	note $40
-	note $00
-	note $80
-	note $00
-	note $90
-	note $00
-	loopchannel $00, $67ae ; end
-; 0xf6810
 
-	endchannel ; end
-	
-; 0xf6811
+Music_LookYoungster_branch_f67ae: ; f67ae
+	octave 2
+	note G_, 0
+	note __, 0
+	octave 3
+	note G_, 0
+	note __, 0
+	octave 2
+	note G_, 0
+	note __, 0
+	octave 3
+	note G_, 0
+	note __, 0
+	octave 2
+	note G_, 0
+	note __, 0
+	octave 3
+	note G_, 0
+	note __, 0
+	octave 2
+	note G_, 0
+	note __, 0
+	octave 3
+	note G_, 0
+	note __, 0
+	octave 2
+	note F_, 0
+	note __, 0
+	octave 3
+	note D#, 0
+	note __, 0
+	octave 2
+	note F_, 0
+	note __, 0
+	octave 3
+	note D#, 0
+	note __, 0
+	octave 2
+	note F_, 0
+	note __, 0
+	octave 3
+	note D#, 0
+	note __, 0
+	octave 2
+	note F_, 0
+	note __, 0
+	octave 3
+	note D#, 0
+	note __, 0
+	octave 2
+	note G_, 0
+	note __, 0
+	octave 3
+	note G_, 0
+	note __, 0
+	octave 2
+	note G_, 0
+	note __, 0
+	octave 3
+	note G_, 0
+	note __, 0
+	octave 2
+	note G_, 0
+	note __, 0
+	octave 3
+	note G_, 0
+	note __, 0
+	octave 2
+	note G_, 0
+	note __, 0
+	octave 3
+	note G_, 0
+	note __, 0
+	octave 2
+	note G#, 0
+	note __, 0
+	octave 3
+	note D#, 0
+	note __, 0
+	octave 2
+	note G#, 0
+	note __, 0
+	octave 3
+	note D#, 0
+	note __, 0
+	octave 2
+	note G#, 0
+	note __, 0
+	octave 3
+	note D#, 0
+	note __, 0
+	note G_, 0
+	note __, 0
+	note G#, 0
+	note __, 0
+	loopchannel 0, Music_LookYoungster_branch_f67ae
+; f6810
+
+INCBIN "baserom.gbc", $f6810, $f6811 - $f6810

@@ -1,35 +1,31 @@
-_Music_JohtoWildPokemonBattleNight: ; 0xf605c
-	db $80
-	dw _Music_JohtoWildPokemonBattleNight_Ch1
-	db $01
-	dw _Music_JohtoWildPokemonBattleNight_Ch2
-	db $02
-	dw _Music_JohtoWildPokemonBattleNight_Ch3
-; 0xf6065
+Music_JohtoWildBattleNight: ; f605c
+	dbw $80, Music_JohtoWildBattleNight_Ch1
+	dbw $01, Music_JohtoWildBattleNight_Ch2
+	dbw $02, Music_JohtoWildBattleNight_Ch3
+; f6065
 
-_Music_JohtoWildPokemonBattleNight_Ch1: ; 0xf6065
-	tempo $6b00
+
+Music_JohtoWildBattleNight_Ch1: ; f6065
+	tempo 107
 	volume $77
-	dutycycle $03
-	tone $0200
+	dutycycle $3
+	tone $0002
 	vibrato $10, $25
-	loopchannel $00, $5ddb ; end
-; 0xf6076
+	loopchannel 0, Music_JohtoWildBattleNight_branch_f5ddb
 
-_Music_JohtoWildPokemonBattleNight_Ch2: ; 0xf6076
-	dutycycle $03
+Music_JohtoWildBattleNight_Ch2: ; f6076
+	dutycycle $3
 	vibrato $20, $36
-	tone $0100
-	callchannel _Music_JohtoWildPokemonBattle_sub_0xf5f5d
-	notetype $0c, $c2
-	octave4
-	note $85
-	tone $0100
-	dutycycle $02
-	loopchannel $00, $5eb2 ; end
-; 0xf608f
+	tone $0001
+	callchannel Music_JohtoWildBattleNight_branch_f5f5d
+	notetype $c, $c2
+	octave 4
+	note G_, 5
+	tone $0001
+	dutycycle $2
+	loopchannel 0, Music_JohtoWildBattleNight_branch_f5eb2
 
-_Music_JohtoWildPokemonBattleNight_Ch3: ; 0xf608f
-	notetype $0c, $11
-	loopchannel $00, $5f94 ; end
-; 0xf6096
+Music_JohtoWildBattleNight_Ch3: ; f608f
+	notetype $c, $11
+	loopchannel 0, Music_JohtoWildBattleNight_branch_f5f94
+; f6096

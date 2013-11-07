@@ -1,111 +1,114 @@
-_Music_Mom: ; 0xf6bf2
-	db $81
-	dw _Music_Mom_Ch2
-	db $02
-	dw _Music_Mom_Ch3
-	db $03
-	dw _Music_Mom_Ch4
-; 0xf6bfb
+Music_Mom: ; f6bf2
+	dbw $81, Music_Mom_Ch2
+	dbw $02, Music_Mom_Ch3
+	dbw $03, Music_Mom_Ch4
+; f6bfb
 
-_Music_Mom_Ch2: ; 0xf6bfb
-	tempo $9000
+
+Music_Mom_Ch2: ; f6bfb
+	tempo 144
 	volume $77
-	stereopanning $0f
-	dutycycle $02
-	notetype $06, $b3
-	octave3
-	note $c0
-	octave4
-	note $50
-	note $90
-	note $a0
-	note $c7
-	notetype $0c, $b1
-	note $03
-	octave3
-	note $25
-	note $33
-	note $11
-	note $01
-	note $25
-	octave2
-	note $53
-	note $b1
-	note $c1
-	loopchannel $00, $6c0e ; end
-; 0xf6c20
+	stereopanning $f
+	dutycycle $2
+	notetype $6, $b3
+	octave 3
+	note B_, 0
+	octave 4
+	note E_, 0
+	note G#, 0
+	note A_, 0
+	note B_, 7
 
-_Music_Mom_Ch3: ; 0xf6c20
+Music_Mom_branch_f6c0e: ; f6c0e
+	notetype $c, $b1
+	note __, 3
+	octave 3
+	note C#, 5
+	note D_, 3
+	note C_, 1
+	note __, 1
+	note C#, 5
+	octave 2
+	note E_, 3
+	note A#, 1
+	note B_, 1
+	loopchannel 0, Music_Mom_branch_f6c0e
+
+Music_Mom_Ch3: ; f6c20
 	stereopanning $f0
-	notetype $06, $25
-	octave3
-	note $50
-	note $30
-	octave2
-	note $c0
-	note $90
-	note $57
+	notetype $6, $25
+	octave 3
+	note E_, 0
+	note D_, 0
+	octave 2
+	note B_, 0
+	note G#, 0
+	note E_, 7
 	intensity $23
-	octave2
-	note $a1
-	note $05
-	octave4
-	note $51
-	note $01
-	octave2
-	note $a1
-	note $01
-	octave3
-	note $31
-	note $01
-	octave4
-	note $77
-	note $41
-	note $01
-	octave2
-	note $a1
-	note $01
-	octave4
-	note $51
-	note $05
-	octave2
-	note $a1
-	note $01
-	octave4
-	note $31
-	note $05
-	note $23
-	note $31
-	note $01
-	loopchannel $00, $6c2e ; end
-; 0xf6c51
 
-_Music_Mom_Ch4: ; 0xf6c51
-	togglenoise $03
-	notetype $0c, $05
-	note $40
-	note $00
-	note $71
-	note $30
-	note $00
-	note $80
-	note $00
-	note $80
-	note $00
-	note $73
-	note $30
-	note $00
-	note $40
-	note $00
-	note $73
-	note $30
-	note $00
-	note $80
-	note $00
-	note $80
-	note $00
-	note $31
-	note $40
-	note $00
-	loopchannel $00, $6c56 ; end
-; 0xf6c72
+Music_Mom_branch_f6c2e: ; f6c2e
+	octave 2
+	note A_, 1
+	note __, 5
+	octave 4
+	note E_, 1
+	note __, 1
+	octave 2
+	note A_, 1
+	note __, 1
+	octave 3
+	note D_, 1
+	note __, 1
+	octave 4
+	note F#, 7
+	note D#, 1
+	note __, 1
+	octave 2
+	note A_, 1
+	note __, 1
+	octave 4
+	note E_, 1
+	note __, 5
+	octave 2
+	note A_, 1
+	note __, 1
+	octave 4
+	note D_, 1
+	note __, 5
+	note C#, 3
+	note D_, 1
+	note __, 1
+	loopchannel 0, Music_Mom_branch_f6c2e
+
+Music_Mom_Ch4: ; f6c51
+	togglenoise $3
+	notetype $c
+	note __, 5
+
+Music_Mom_branch_f6c56: ; f6c56
+	note D#, 0
+	note __, 0
+	note F#, 1
+	note D_, 0
+	note __, 0
+	note G_, 0
+	note __, 0
+	note G_, 0
+	note __, 0
+	note F#, 3
+	note D_, 0
+	note __, 0
+	note D#, 0
+	note __, 0
+	note F#, 3
+	note D_, 0
+	note __, 0
+	note G_, 0
+	note __, 0
+	note G_, 0
+	note __, 0
+	note D_, 1
+	note D#, 0
+	note __, 0
+	loopchannel 0, Music_Mom_branch_f6c56
+; f6c72

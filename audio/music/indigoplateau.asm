@@ -1,193 +1,192 @@
-_Music_IndigoPlateau: ; 0xee852
-	db $c0
-	dw _Music_IndigoPlateau_Ch1
-	db $01
-	dw _Music_IndigoPlateau_Ch2
-	db $02
-	dw _Music_IndigoPlateau_Ch3
-	db $03
-	dw _Music_IndigoPlateau_Ch4
-; 0xee85e
+Music_IndigoPlateau: ; ee852
+	dbw $c0, Music_IndigoPlateau_Ch1
+	dbw $01, Music_IndigoPlateau_Ch2
+	dbw $02, Music_IndigoPlateau_Ch3
+	dbw $03, Music_IndigoPlateau_Ch4
+; ee85e
 
-_Music_IndigoPlateau_Ch1: ; 0xee85e
-	tempo $8000
+
+Music_IndigoPlateau_Ch1: ; ee85e
+	tempo 128
 	volume $77
-	dutycycle $03
-	tone $0200
-	stereopanning $0f
-	callchannel _Music_IndigoPlateau_sub_0xee881
-	octave3
-	note $33
-	callchannel _Music_IndigoPlateau_sub_0xee881
-	octave3
-	note $43
-	callchannel _Music_IndigoPlateau_sub_0xee881
-	octave3
-	note $43
-	callchannel _Music_IndigoPlateau_sub_0xee881
-	note $b3
-	loopchannel $00, $686a ; end
-; 0xee881
+	dutycycle $3
+	tone $0002
+	stereopanning $f
 
-_Music_IndigoPlateau_sub_0xee881: ; 0xee881
-; subroutine
-	notetype $0c, $b6
-	octave2
-	note $a3
+Music_IndigoPlateau_branch_ee86a: ; ee86a
+	callchannel Music_IndigoPlateau_branch_ee881
+	octave 3
+	note D_, 3
+	callchannel Music_IndigoPlateau_branch_ee881
+	octave 3
+	note D#, 3
+	callchannel Music_IndigoPlateau_branch_ee881
+	octave 3
+	note D#, 3
+	callchannel Music_IndigoPlateau_branch_ee881
+	note A#, 3
+	loopchannel 0, Music_IndigoPlateau_branch_ee86a
+; ee881
+
+Music_IndigoPlateau_branch_ee881: ; ee881
+	notetype $c, $b6
+	octave 2
+	note A_, 3
 	intensity $b2
-	note $a1
-	note $a1
-	note $a1
-	note $a1
-	note $a3
-	note $a1
-	note $a1
+	note A_, 1
+	note A_, 1
+	note A_, 1
+	note A_, 1
+	note A_, 3
+	note A_, 1
+	note A_, 1
 	intensity $a0
-	endchannel ; end
-; 0xee892
+	endchannel
 
-_Music_IndigoPlateau_Ch2: ; 0xee892
-	dutycycle $03
+Music_IndigoPlateau_Ch2: ; ee892
+	dutycycle $3
 	vibrato $10, $22
 	stereopanning $f0
-	callchannel _Music_IndigoPlateau_sub_0xee8e9
-	note $a3
-	callchannel _Music_IndigoPlateau_sub_0xee8e9
-	note $b3
-	callchannel _Music_IndigoPlateau_sub_0xee8e9
-	note $a3
-	callchannel _Music_IndigoPlateau_sub_0xee8e9
-	note $23
-	intensity $c7
-	note $a5
-	note $31
-	note $81
-	note $b1
-	note $a7
-	intensity $b0
-	note $a3
-	callchannel _Music_IndigoPlateau_sub_0xee8e9
-	note $b3
-	intensity $c7
-	octave4
-	note $35
-	note $41
-	note $13
-	note $37
-	intensity $b0
-	octave3
-	note $a3
-	callchannel _Music_IndigoPlateau_sub_0xee8e9
-	note $23
-	intensity $c7
-	octave4
-	note $15
-	octave3
-	note $b1
-	note $a1
-	note $81
-	note $77
-	intensity $b0
-	note $a3
-	callchannel _Music_IndigoPlateau_sub_0xee8e9
-	note $b3
-	intensity $c7
-	octave4
-	note $35
-	note $41
-	note $63
-	note $77
-	intensity $b0
-	octave3
-	note $a3
-	callchannel _Music_IndigoPlateau_sub_0xee8e9
-	note $23
-	loopchannel $00, $6899 ; end
-; 0xee8e9
 
-_Music_IndigoPlateau_sub_0xee8e9: ; 0xee8e9
-; subroutine
-	notetype $0c, $c6
-	octave3
-	note $33
+Music_IndigoPlateau_branch_ee899: ; ee899
+	callchannel Music_IndigoPlateau_branch_ee8e9
+	note A_, 3
+	callchannel Music_IndigoPlateau_branch_ee8e9
+	note A#, 3
+	callchannel Music_IndigoPlateau_branch_ee8e9
+	note A_, 3
+	callchannel Music_IndigoPlateau_branch_ee8e9
+	note C#, 3
+	intensity $c7
+	note A_, 5
+	note D_, 1
+	note G_, 1
+	note A#, 1
+	note A_, 7
+	intensity $b0
+	note A_, 3
+	callchannel Music_IndigoPlateau_branch_ee8e9
+	note A#, 3
+	intensity $c7
+	octave 4
+	note D_, 5
+	note D#, 1
+	note C_, 3
+	note D_, 7
+	intensity $b0
+	octave 3
+	note A_, 3
+	callchannel Music_IndigoPlateau_branch_ee8e9
+	note C#, 3
+	intensity $c7
+	octave 4
+	note C_, 5
+	octave 3
+	note A#, 1
+	note A_, 1
+	note G_, 1
+	note F#, 7
+	intensity $b0
+	note A_, 3
+	callchannel Music_IndigoPlateau_branch_ee8e9
+	note A#, 3
+	intensity $c7
+	octave 4
+	note D_, 5
+	note D#, 1
+	note F_, 3
+	note F#, 7
+	intensity $b0
+	octave 3
+	note A_, 3
+	callchannel Music_IndigoPlateau_branch_ee8e9
+	note C#, 3
+	loopchannel 0, Music_IndigoPlateau_branch_ee899
+; ee8e9
+
+Music_IndigoPlateau_branch_ee8e9: ; ee8e9
+	notetype $c, $c6
+	octave 3
+	note D_, 3
 	intensity $c2
-	note $31
-	note $31
-	note $31
-	note $31
-	note $33
-	note $31
-	note $31
+	note D_, 1
+	note D_, 1
+	note D_, 1
+	note D_, 1
+	note D_, 3
+	note D_, 1
+	note D_, 1
 	intensity $b0
-	endchannel ; end
-; 0xee8fa
+	endchannel
 
-_Music_IndigoPlateau_Ch3: ; 0xee8fa
-	notetype $0c, $19
-	callchannel _Music_IndigoPlateau_sub_0xee915
-	octave3
-	note $a3
-	callchannel _Music_IndigoPlateau_sub_0xee915
-	octave3
-	note $a3
-	callchannel _Music_IndigoPlateau_sub_0xee915
-	octave3
-	note $a3
-	callchannel _Music_IndigoPlateau_sub_0xee915
-	octave3
-	note $73
-	loopchannel $00, $68fd ; end
-; 0xee915
+Music_IndigoPlateau_Ch3: ; ee8fa
+	notetype $c, $19
 
-_Music_IndigoPlateau_sub_0xee915: ; 0xee915
-; subroutine
-	octave3
-	note $30
-	note $02
-	octave2
-	note $a0
-	note $02
-	octave3
-	note $10
-	note $02
-	note $30
-	note $02
-	octave2
-	note $a0
-	note $02
-	endchannel ; end
-; 0xee924
+Music_IndigoPlateau_branch_ee8fd: ; ee8fd
+	callchannel Music_IndigoPlateau_branch_ee915
+	octave 3
+	note A_, 3
+	callchannel Music_IndigoPlateau_branch_ee915
+	octave 3
+	note A_, 3
+	callchannel Music_IndigoPlateau_branch_ee915
+	octave 3
+	note A_, 3
+	callchannel Music_IndigoPlateau_branch_ee915
+	octave 3
+	note F#, 3
+	loopchannel 0, Music_IndigoPlateau_branch_ee8fd
+; ee915
 
-_Music_IndigoPlateau_Ch4: ; 0xee924
+Music_IndigoPlateau_branch_ee915: ; ee915
+	octave 3
+	note D_, 0
+	note __, 2
+	octave 2
+	note A_, 0
+	note __, 2
+	octave 3
+	note C_, 0
+	note __, 2
+	note D_, 0
+	note __, 2
+	octave 2
+	note A_, 0
+	note __, 2
+	endchannel
+
+Music_IndigoPlateau_Ch4: ; ee924
 	stereopanning $f0
-	togglenoise $00
-	notetype $0c
-	note $43
-	note $31
-	note $41
-	note $41
-	note $41
-	note $33
-	note $31
-	note $31
-	notetype $06
-	note $30
-	note $30
-	note $40
-	note $40
-	note $40
-	note $40
-	note $30
-	note $30
-	notetype $0c
-	note $43
-	note $31
-	note $41
-	note $41
-	note $31
-	note $23
-	note $31
-	note $31
-	note $23
-	loopchannel $00, $692a ; end
-; 0xee94b
+	togglenoise $0
+	notetype $c
+
+Music_IndigoPlateau_branch_ee92a: ; ee92a
+	note D#, 3
+	note D_, 1
+	note D#, 1
+	note D#, 1
+	note D#, 1
+	note D_, 3
+	note D_, 1
+	note D_, 1
+	notetype $6
+	note D_, 0
+	note D_, 0
+	note D#, 0
+	note D#, 0
+	note D#, 0
+	note D#, 0
+	note D_, 0
+	note D_, 0
+	notetype $c
+	note D#, 3
+	note D_, 1
+	note D#, 1
+	note D#, 1
+	note D_, 1
+	note C#, 3
+	note D_, 1
+	note D_, 1
+	note C#, 3
+	loopchannel 0, Music_IndigoPlateau_branch_ee92a
+; ee94b

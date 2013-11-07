@@ -1,119 +1,121 @@
-_Music_LookLass: ; 0xed79b
-	db $c0
-	dw _Music_LookLass_Ch1
-	db $01
-	dw _Music_LookLass_Ch2
-	db $02
-	dw _Music_LookLass_Ch3
-	db $03
-	dw _Music_LookLass_Ch4
-; 0xed7a7
+Music_LookLass: ; ed79b
+	dbw $c0, Music_LookLass_Ch1
+	dbw $01, Music_LookLass_Ch2
+	dbw $02, Music_LookLass_Ch3
+	dbw $03, Music_LookLass_Ch4
+; ed7a7
 
-_Music_LookLass_Ch1: ; 0xed7a7
-	tempo $8400
+
+Music_LookLass_Ch1: ; ed7a7
+	tempo 132
 	volume $77
-	tone $0100
-	dutycycle $02
-	notetype $0c, $c7
-	octave3
-	note $c0
-	note $00
-	octave4
-	note $cd
-	stereopanning $0f
-	dutycycle $00
+	tone $0001
+	dutycycle $2
+	notetype $c, $c7
+	octave 3
+	note B_, 0
+	note __, 0
+	octave 4
+	note B_, 13
+	stereopanning $f
+	dutycycle $0
+
+Music_LookLass_branch_ed7bd: ; ed7bd
 	intensity $a2
-	octave3
-	note $53
+	octave 3
+	note E_, 3
 	intensity $a1
-	note $53
-	note $53
-	note $51
+	note E_, 3
+	note E_, 3
+	note E_, 1
 	intensity $a3
-	note $c1
-	loopchannel $00, $57bd ; end
-; 0xed7cd
+	note B_, 1
+	loopchannel 0, Music_LookLass_branch_ed7bd
 
-_Music_LookLass_Ch2: ; 0xed7cd
+Music_LookLass_Ch2: ; ed7cd
 	stereopanning $f0
-	dutycycle $00
-	notetype $0c, $83
-	note $0f
+	dutycycle $0
+	notetype $c, $83
+	note __, 15
+
+Music_LookLass_branch_ed7d5: ; ed7d5
 	intensity $92
-	octave2
-	note $c3
+	octave 2
+	note B_, 3
 	intensity $91
-	note $c3
-	note $c3
-	note $c1
+	note B_, 3
+	note B_, 3
+	note B_, 1
 	intensity $93
-	octave3
-	note $91
-	loopchannel $00, $57d5 ; end
-; 0xed7e6
+	octave 3
+	note G#, 1
+	loopchannel 0, Music_LookLass_branch_ed7d5
 
-_Music_LookLass_Ch3: ; 0xed7e6
-	notetype $0c, $10
-	note $07
-	octave6
-	note $51
-	note $41
-	note $21
-	note $11
-	octave5
-	note $c1
-	note $01
-	octave6
-	note $41
-	note $01
-	note $51
-	note $01
-	note $41
-	note $01
-	note $21
-	note $11
-	octave5
-	note $c1
-	note $a1
-	note $91
-	note $a1
-	note $b1
-	octave6
-	note $21
-	octave5
-	note $c1
-	note $01
-	octave6
-	note $21
-	note $01
-	octave5
-	note $c1
-	note $01
-	note $a1
-	note $01
-	note $91
-	note $71
-	note $51
-	note $41
-	note $51
-	note $71
-	note $91
-	note $a1
-	loopchannel $00, $57ef ; end
-; 0xed81a
+Music_LookLass_Ch3: ; ed7e6
+	notetype $c, $10
+	note __, 7
+	octave 6
+	note E_, 1
+	note D#, 1
+	note C#, 1
+	note C_, 1
 
-_Music_LookLass_Ch4: ; 0xed81a
-	togglenoise $04
-	notetype $0c
-	note $1f
-	notetype $06
-	note $37
-	note $27
-	note $27
-	note $23
-	note $30
-	note $20
-	note $20
-	note $20
-	loopchannel $00, $581f ; end
-; 0xed82d
+Music_LookLass_branch_ed7ef: ; ed7ef
+	octave 5
+	note B_, 1
+	note __, 1
+	octave 6
+	note D#, 1
+	note __, 1
+	note E_, 1
+	note __, 1
+	note D#, 1
+	note __, 1
+	note C#, 1
+	note C_, 1
+	octave 5
+	note B_, 1
+	note A_, 1
+	note G#, 1
+	note A_, 1
+	note A#, 1
+	octave 6
+	note C#, 1
+	octave 5
+	note B_, 1
+	note __, 1
+	octave 6
+	note C#, 1
+	note __, 1
+	octave 5
+	note B_, 1
+	note __, 1
+	note A_, 1
+	note __, 1
+	note G#, 1
+	note F#, 1
+	note E_, 1
+	note D#, 1
+	note E_, 1
+	note F#, 1
+	note G#, 1
+	note A_, 1
+	loopchannel 0, Music_LookLass_branch_ed7ef
+
+Music_LookLass_Ch4: ; ed81a
+	togglenoise $4
+	notetype $c
+	note C_, 15
+
+Music_LookLass_branch_ed81f: ; ed81f
+	notetype $6
+	note D_, 7
+	note C#, 7
+	note C#, 7
+	note C#, 3
+	note D_, 0
+	note C#, 0
+	note C#, 0
+	note C#, 0
+	loopchannel 0, Music_LookLass_branch_ed81f
+; ed82d

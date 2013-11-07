@@ -1,121 +1,122 @@
-_Music_LookHiker: ; 0xf7411
-	db $c0
-	dw _Music_LookHiker_Ch1
-	db $01
-	dw _Music_LookHiker_Ch2
-	db $02
-	dw _Music_LookHiker_Ch3
-	db $03
-	dw _Music_LookHiker_Ch4
-; 0xf741d
+Music_LookHiker: ; f7411
+	dbw $c0, Music_LookHiker_Ch1
+	dbw $01, Music_LookHiker_Ch2
+	dbw $02, Music_LookHiker_Ch3
+	dbw $03, Music_LookHiker_Ch4
+; f741d
 
-_Music_LookHiker_Ch1: ; 0xf741d
-	tempo $8400
+
+Music_LookHiker_Ch1: ; f741d
+	tempo 132
 	volume $77
-	tone $0100
+	tone $0001
 	vibrato $12, $24
-	dutycycle $02
-	stereopanning $0f
-	notetype $0c, $68
-	octave3
-	note $71
-	note $61
-	note $77
-	note $31
-	note $41
-	note $51
-	note $61
-	note $71
-	note $03
-	note $71
-	note $03
-	note $71
-	note $01
-	note $71
-	note $05
-	loopchannel $00, $7433 ; end
-; 0xf7443
+	dutycycle $2
+	stereopanning $f
+	notetype $c, $68
+	octave 3
+	note F#, 1
+	note F_, 1
+	note F#, 7
 
-_Music_LookHiker_Ch2: ; 0xf7443
-	dutycycle $00
-	notetype $0c, $a1
-	note $03
-	octave1
-	note $c0
-	note $c4
-	octave2
-	note $70
-	note $74
-	octave1
-	note $c0
-	octave2
-	note $30
-	note $70
-	note $30
+Music_LookHiker_branch_f7433: ; f7433
+	note D_, 1
+	note D#, 1
+	note E_, 1
+	note F_, 1
+	note F#, 1
+	note __, 3
+	note F#, 1
+	note __, 3
+	note F#, 1
+	note __, 1
+	note F#, 1
+	note __, 5
+	loopchannel 0, Music_LookHiker_branch_f7433
+
+Music_LookHiker_Ch2: ; f7443
+	dutycycle $0
+	notetype $c, $a1
+	note __, 3
+	octave 1
+	note B_, 0
+	note B_, 4
+	octave 2
+	note F#, 0
+	note F#, 4
+	octave 1
+	note B_, 0
+	octave 2
+	note D_, 0
+	note F#, 0
+	note D_, 0
 	intensity $a1
-	octave1
-	note $c0
-	note $c1
-	octave2
-	note $30
-	note $31
-	note $70
-	note $71
-	note $b0
-	note $b1
-	octave1
-	note $c0
-	octave2
-	note $30
-	note $70
-	note $30
-	loopchannel $00, $7457 ; end
-; 0xf746b
 
-_Music_LookHiker_Ch3: ; 0xf746b
+Music_LookHiker_branch_f7457: ; f7457
+	octave 1
+	note B_, 0
+	note B_, 1
+	octave 2
+	note D_, 0
+	note D_, 1
+	note F#, 0
+	note F#, 1
+	note A#, 0
+	note A#, 1
+	octave 1
+	note B_, 0
+	octave 2
+	note D_, 0
+	note F#, 0
+	note D_, 0
+	loopchannel 0, Music_LookHiker_branch_f7457
+
+Music_LookHiker_Ch3: ; f746b
 	vibrato $12, $24
 	stereopanning $f0
-	notetype $0c, $14
-	octave4
-	note $c1
-	note $b1
-	note $c7
-	octave5
-	note $41
-	note $31
-	note $21
-	note $11
-	callchannel _Music_LookHiker_sub_0xf748a
-	note $81
-	note $91
-	note $a1
-	note $b1
-	callchannel _Music_LookHiker_sub_0xf748a
-	loopchannel $00, $7477 ; end
-; 0xf748a
+	notetype $c, $14
+	octave 4
+	note B_, 1
+	note A#, 1
+	note B_, 7
 
-_Music_LookHiker_sub_0xf748a: ; 0xf748a
-; subroutine
-	octave4
-	note $c1
-	note $03
-	note $c1
-	note $03
-	note $c1
-	note $01
-	note $c1
-	note $05
-	endchannel ; end
-; 0xf7494
+Music_LookHiker_branch_f7477: ; f7477
+	octave 5
+	note D#, 1
+	note D_, 1
+	note C#, 1
+	note C_, 1
+	callchannel Music_LookHiker_branch_f748a
+	note G_, 1
+	note G#, 1
+	note A_, 1
+	note A#, 1
+	callchannel Music_LookHiker_branch_f748a
+	loopchannel 0, Music_LookHiker_branch_f7477
+; f748a
 
-_Music_LookHiker_Ch4: ; 0xf7494
-	togglenoise $03
-	notetype $0c
-	note $63
-	note $0f
-	note $41
-	note $81
-	note $31
-	note $81
-	loopchannel $00, $749a ; end
-; 0xf74a2
+Music_LookHiker_branch_f748a: ; f748a
+	octave 4
+	note B_, 1
+	note __, 3
+	note B_, 1
+	note __, 3
+	note B_, 1
+	note __, 1
+	note B_, 1
+	note __, 5
+	endchannel
+
+Music_LookHiker_Ch4: ; f7494
+	togglenoise $3
+	notetype $c
+	note F_, 3
+	note __, 15
+
+Music_LookHiker_branch_f749a: ; f749a
+	note D#, 1
+	note G_, 1
+	note D_, 1
+	note G_, 1
+	loopchannel 0, Music_LookHiker_branch_f749a
+; f74a2

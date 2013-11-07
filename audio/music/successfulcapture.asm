@@ -1,29 +1,25 @@
-_Music_SuccessfulCapture: ; 0xf4602
-	db $80
-	dw _Music_SuccessfulCapture_Ch1
-	db $01
-	dw _Music_SuccessfulCapture_Ch2
-	db $02
-	dw _Music_SuccessfulCapture_Ch3
-; 0xf460b
+Music_SuccessfulCapture: ; f4602
+	dbw $80, Music_SuccessfulCapture_Ch1
+	dbw $01, Music_SuccessfulCapture_Ch2
+	dbw $02, Music_SuccessfulCapture_Ch3
+; f460b
 
-_Music_SuccessfulCapture_Ch1: ; 0xf460b
-	tempo $7e00
+
+Music_SuccessfulCapture_Ch1: ; f460b
+	tempo 126
 	volume $77
-	dutycycle $03
-	tone $0100
-	notetype $0c, $a1
-	jumpchannel $4536 ; end
-; 0xf461b
+	dutycycle $3
+	tone $0001
+	notetype $c, $a1
+	jumpchannel Music_SuccessfulCapture_branch_f4536
 
-_Music_SuccessfulCapture_Ch2: ; 0xf461b
+Music_SuccessfulCapture_Ch2: ; f461b
 	vibrato $12, $24
-	notetype $0c, $c1
-	dutycycle $02
-	jumpchannel $4585 ; end
-; 0xf4626
+	notetype $c, $c1
+	dutycycle $2
+	jumpchannel Music_SuccessfulCapture_branch_f4585
 
-_Music_SuccessfulCapture_Ch3: ; 0xf4626
-	notetype $0c, $25
-	jumpchannel $45cf ; end
-; 0xf462c
+Music_SuccessfulCapture_Ch3: ; f4626
+	notetype $c, $25
+	jumpchannel Music_SuccessfulCapture_branch_f45cf
+; f462c

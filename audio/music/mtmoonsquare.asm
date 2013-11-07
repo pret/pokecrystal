@@ -1,102 +1,120 @@
-_Music_MtMoonSquare: ; 0xf4815
-	db $40
-	dw _Music_MtMoonSquare_Ch1
-	db $01
-	dw _Music_MtMoonSquare_Ch2
-; 0xf481b
+Music_MtMoonSquare: ; f4815
+	dbw $40, Music_MtMoonSquare_Ch1
+	dbw $01, Music_MtMoonSquare_Ch2
+; f481b
 
-_Music_MtMoonSquare_Ch1: ; 0xf481b
-	tempo $7000
+
+Music_MtMoonSquare_Ch1: ; f481b
+	tempo 112
 	volume $77
-	dutycycle $02
-	tone $0100
-	note $00
-	notetype $0c, $44
-	octave4
-	note $31
-	note $51
-	note $73
-	note $71
-	note $a1
-	octave5
-	note $33
-	loopchannel $02, $4829
-	octave4
-	note $51
-	note $71
-	note $93
-	note $91
-	note $c1
-	octave5
-	note $53
-	loopchannel $02, $4835
-	octave4
-	note $21
-	note $31
-	note $53
-	note $51
-	note $81
-	octave5
-	note $23
-	loopchannel $02, $4841
-	octave4
-	note $31
-	note $51
-	note $73
-	note $71
-	note $a1
-	octave5
-	note $33
-	loopchannel $02, $484d
-	loopchannel $00, $4826 ; end
-; 0xf485d
+	dutycycle $2
+	tone $0001
+	note __, 0
 
-_Music_MtMoonSquare_Ch2: ; 0xf485d
-	dutycycle $02
+Music_MtMoonSquare_branch_f4826: ; f4826
+	notetype $c, $44
+
+Music_MtMoonSquare_branch_f4829: ; f4829
+	octave 4
+	note D_, 1
+	note E_, 1
+	note F#, 3
+	note F#, 1
+	note A_, 1
+	octave 5
+	note D_, 3
+	loopchannel 2, Music_MtMoonSquare_branch_f4829
+
+Music_MtMoonSquare_branch_f4835: ; f4835
+	octave 4
+	note E_, 1
+	note F#, 1
+	note G#, 3
+	note G#, 1
+	note B_, 1
+	octave 5
+	note E_, 3
+	loopchannel 2, Music_MtMoonSquare_branch_f4835
+
+Music_MtMoonSquare_branch_f4841: ; f4841
+	octave 4
+	note C#, 1
+	note D_, 1
+	note E_, 3
+	note E_, 1
+	note G_, 1
+	octave 5
+	note C#, 3
+	loopchannel 2, Music_MtMoonSquare_branch_f4841
+
+Music_MtMoonSquare_branch_f484d: ; f484d
+	octave 4
+	note D_, 1
+	note E_, 1
+	note F#, 3
+	note F#, 1
+	note A_, 1
+	octave 5
+	note D_, 3
+	loopchannel 2, Music_MtMoonSquare_branch_f484d
+	loopchannel 0, Music_MtMoonSquare_branch_f4826
+
+Music_MtMoonSquare_Ch2: ; f485d
+	dutycycle $2
 	vibrato $18, $24
-	notetype $0c, $82
-	octave4
-	note $31
-	note $51
-	note $73
-	note $71
-	note $a1
-	octave5
-	note $33
-	notetype $0c, $62
-	loopchannel $02, $4865
-	notetype $0c, $82
-	octave4
-	note $51
-	note $71
-	note $93
-	note $91
-	note $c1
-	octave5
-	note $53
-	notetype $0c, $62
-	loopchannel $02, $4877
-	notetype $0c, $82
-	octave4
-	note $21
-	note $31
-	note $53
-	note $51
-	note $81
-	octave5
-	note $23
-	notetype $0c, $62
-	loopchannel $02, $4889
-	notetype $0c, $82
-	octave4
-	note $31
-	note $51
-	note $73
-	note $71
-	note $a1
-	octave5
-	note $33
-	notetype $0c, $62
-	loopchannel $02, $489b
-	loopchannel $00, $4862 ; end
-; 0xf48ae
+
+Music_MtMoonSquare_branch_f4862: ; f4862
+	notetype $c, $82
+
+Music_MtMoonSquare_branch_f4865: ; f4865
+	octave 4
+	note D_, 1
+	note E_, 1
+	note F#, 3
+	note F#, 1
+	note A_, 1
+	octave 5
+	note D_, 3
+	notetype $c, $62
+	loopchannel 2, Music_MtMoonSquare_branch_f4865
+	notetype $c, $82
+
+Music_MtMoonSquare_branch_f4877: ; f4877
+	octave 4
+	note E_, 1
+	note F#, 1
+	note G#, 3
+	note G#, 1
+	note B_, 1
+	octave 5
+	note E_, 3
+	notetype $c, $62
+	loopchannel 2, Music_MtMoonSquare_branch_f4877
+	notetype $c, $82
+
+Music_MtMoonSquare_branch_f4889: ; f4889
+	octave 4
+	note C#, 1
+	note D_, 1
+	note E_, 3
+	note E_, 1
+	note G_, 1
+	octave 5
+	note C#, 3
+	notetype $c, $62
+	loopchannel 2, Music_MtMoonSquare_branch_f4889
+	notetype $c, $82
+
+Music_MtMoonSquare_branch_f489b: ; f489b
+	octave 4
+	note D_, 1
+	note E_, 1
+	note F#, 3
+	note F#, 1
+	note A_, 1
+	octave 5
+	note D_, 3
+	notetype $c, $62
+	loopchannel 2, Music_MtMoonSquare_branch_f489b
+	loopchannel 0, Music_MtMoonSquare_branch_f4862
+; f48ae

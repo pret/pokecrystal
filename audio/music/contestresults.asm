@@ -1,177 +1,181 @@
-_Music_BugCatchingContestResults: ; 0xefb3e
-	db $c0
-	dw _Music_BugCatchingContestResults_Ch1
-	db $01
-	dw _Music_BugCatchingContestResults_Ch2
-	db $02
-	dw _Music_BugCatchingContestResults_Ch3
-	db $03
-	dw _Music_BugCatchingContestResults_Ch4
-; 0xefb4a
+Music_ContestResults: ; efb3e
+	dbw $c0, Music_ContestResults_Ch1
+	dbw $01, Music_ContestResults_Ch2
+	dbw $02, Music_ContestResults_Ch3
+	dbw $03, Music_ContestResults_Ch4
+; efb4a
 
-_Music_BugCatchingContestResults_Ch1: ; 0xefb4a
-	tempo $9000
+
+Music_ContestResults_Ch1: ; efb4a
+	tempo 144
 	volume $77
-	notetype $0c, $51
-	note $01
-	octave2
-	note $80
-	note $02
-	note $80
-	note $02
-	note $80
-	note $02
-	note $80
-	note $00
-	note $01
-	note $a0
-	note $02
-	note $a0
-	note $02
-	note $a0
-	note $02
-	note $a0
-	note $00
-	note $01
-	note $a0
-	note $02
-	note $a0
-	note $02
-	note $a0
-	note $02
-	note $a0
-	note $00
-	note $01
-	note $c0
-	note $02
-	note $b0
-	note $02
-	note $a0
-	note $02
-	note $80
-	note $00
-	loopchannel $00, $7b52 ; end
-; 0xefb7b
+	notetype $c, $51
 
-_Music_BugCatchingContestResults_Ch2: ; 0xefb7b
-	notetype $0c, $61
-	octave2
-	note $11
-	octave3
-	note $50
-	note $00
-	octave1
-	note $81
-	octave3
-	note $50
-	note $00
-	octave1
-	note $a1
-	octave3
-	note $50
-	note $00
-	octave1
-	note $c1
-	octave3
-	note $50
-	note $00
-	octave2
-	note $31
-	octave3
-	note $60
-	note $00
-	octave1
-	note $a1
-	octave3
-	note $60
-	note $00
-	octave1
-	note $c1
-	octave3
-	note $60
-	note $00
-	octave2
-	note $21
-	octave3
-	note $60
-	note $00
-	octave2
-	note $31
-	octave3
-	note $60
-	note $00
-	octave1
-	note $a1
-	octave3
-	note $60
-	note $00
-	loopchannel $02, $7ba6
-	octave2
-	note $81
-	octave3
-	note $80
-	note $00
-	octave2
-	note $31
-	octave3
-	note $70
-	note $00
-	octave2
-	note $81
-	octave3
-	note $60
-	note $00
-	octave2
-	note $31
-	octave3
-	note $30
-	note $00
-	loopchannel $00, $7b7e ; end
-; 0xefbcc
+Music_ContestResults_branch_efb52: ; efb52
+	note __, 1
+	octave 2
+	note G_, 0
+	note __, 2
+	note G_, 0
+	note __, 2
+	note G_, 0
+	note __, 2
+	note G_, 0
+	note __, 0
+	note __, 1
+	note A_, 0
+	note __, 2
+	note A_, 0
+	note __, 2
+	note A_, 0
+	note __, 2
+	note A_, 0
+	note __, 0
+	note __, 1
+	note A_, 0
+	note __, 2
+	note A_, 0
+	note __, 2
+	note A_, 0
+	note __, 2
+	note A_, 0
+	note __, 0
+	note __, 1
+	note B_, 0
+	note __, 2
+	note A#, 0
+	note __, 2
+	note A_, 0
+	note __, 2
+	note G_, 0
+	note __, 0
+	loopchannel 0, Music_ContestResults_branch_efb52
 
-_Music_BugCatchingContestResults_Ch3: ; 0xefbcc
-	vibrato $08, $24
-	notetype $0c, $23
-	octave4
-	note $54
-	note $00
-	note $50
-	note $60
-	note $83
-	octave5
-	note $13
-	octave4
-	note $c7
-	note $a7
-	note $34
-	note $00
-	note $30
-	note $50
-	note $63
-	note $c3
-	note $a7
-	note $87
-	loopchannel $00, $7bd2 ; end
-; 0xefbe9
+Music_ContestResults_Ch2: ; efb7b
+	notetype $c, $61
 
-_Music_BugCatchingContestResults_Ch4: ; 0xefbe9
-	togglenoise $04
-	notetype $06
-	note $23
-	note $23
-	note $21
-	note $21
-	note $21
-	note $21
-	note $23
-	note $23
-	note $80
-	note $80
-	note $80
-	note $80
-	note $80
-	note $80
-	note $80
-	note $80
-	loopchannel $00, $7bed ; end
-; 0xefc01
+Music_ContestResults_branch_efb7e: ; efb7e
+	octave 2
+	note C_, 1
+	octave 3
+	note E_, 0
+	note __, 0
+	octave 1
+	note G_, 1
+	octave 3
+	note E_, 0
+	note __, 0
+	octave 1
+	note A_, 1
+	octave 3
+	note E_, 0
+	note __, 0
+	octave 1
+	note B_, 1
+	octave 3
+	note E_, 0
+	note __, 0
+	octave 2
+	note D_, 1
+	octave 3
+	note F_, 0
+	note __, 0
+	octave 1
+	note A_, 1
+	octave 3
+	note F_, 0
+	note __, 0
+	octave 1
+	note B_, 1
+	octave 3
+	note F_, 0
+	note __, 0
+	octave 2
+	note C#, 1
+	octave 3
+	note F_, 0
+	note __, 0
+
+Music_ContestResults_branch_efba6: ; efba6
+	octave 2
+	note D_, 1
+	octave 3
+	note F_, 0
+	note __, 0
+	octave 1
+	note A_, 1
+	octave 3
+	note F_, 0
+	note __, 0
+	loopchannel 2, Music_ContestResults_branch_efba6
+	octave 2
+	note G_, 1
+	octave 3
+	note G_, 0
+	note __, 0
+	octave 2
+	note D_, 1
+	octave 3
+	note F#, 0
+	note __, 0
+	octave 2
+	note G_, 1
+	octave 3
+	note F_, 0
+	note __, 0
+	octave 2
+	note D_, 1
+	octave 3
+	note D_, 0
+	note __, 0
+	loopchannel 0, Music_ContestResults_branch_efb7e
+
+Music_ContestResults_Ch3: ; efbcc
+	vibrato $8, $24
+	notetype $c, $23
+
+Music_ContestResults_branch_efbd2: ; efbd2
+	octave 4
+	note E_, 4
+	note __, 0
+	note E_, 0
+	note F_, 0
+	note G_, 3
+	octave 5
+	note C_, 3
+	octave 4
+	note B_, 7
+	note A_, 7
+	note D_, 4
+	note __, 0
+	note D_, 0
+	note E_, 0
+	note F_, 3
+	note B_, 3
+	note A_, 7
+	note G_, 7
+	loopchannel 0, Music_ContestResults_branch_efbd2
+
+Music_ContestResults_Ch4: ; efbe9
+	togglenoise $4
+	notetype $6
+
+Music_ContestResults_branch_efbed: ; efbed
+	note C#, 3
+	note C#, 3
+	note C#, 1
+	note C#, 1
+	note C#, 1
+	note C#, 1
+	note C#, 3
+	note C#, 3
+	note G_, 0
+	note G_, 0
+	note G_, 0
+	note G_, 0
+	note G_, 0
+	note G_, 0
+	note G_, 0
+	note G_, 0
+	loopchannel 0, Music_ContestResults_branch_efbed
+; efc01

@@ -1,622 +1,618 @@
-_Music_GoldSilverOpening: ; 0xf7055
-	db $80
-	dw _Music_GoldSilverOpening_Ch1
-	db $01
-	dw _Music_GoldSilverOpening_Ch2
-	db $02
-	dw _Music_GoldSilverOpening_Ch3
-; 0xf705e
+Music_GoldSilverOpening: ; f7055
+	dbw $80, Music_GoldSilverOpening_Ch1
+	dbw $01, Music_GoldSilverOpening_Ch2
+	dbw $02, Music_GoldSilverOpening_Ch3
+; f705e
 
-_Music_GoldSilverOpening_Ch1: ; 0xf705e
-	tempo $0001
+
+Music_GoldSilverOpening_Ch1: ; f705e
+	tempo 256
 	volume $77
-	tone $0100
-	dutycycle $02
+	tone $0001
+	dutycycle $2
 	stereopanning $f0
-	notetype $0c, $b7
-	octave1
-	note $9f
-	note $9f
-	tempo $a800
-	dutycycle $03
-	notetype $06, $c7
-	octave3
-	note $6b
-	note $a3
-	octave4
-	note $1b
-	octave3
-	note $c1
-	note $b1
-	note $8b
-	note $b3
-	octave4
-	note $4b
-	note $31
-	note $21
-	notetype $06, $b5
-	note $17
-	octave3
-	note $67
-	note $a7
-	note $c3
-	octave4
-	note $13
-	notetype $06, $b3
-	octave3
-	note $b7
-	note $27
-	octave2
-	note $77
-	octave1
-	note $c7
-	notetype $06, $b2
-	note $03
-	octave3
-	note $b3
-	note $b7
-	note $93
-	note $97
-	note $83
-	note $87
-	note $73
-	note $77
-	octave2
-	note $a3
-	note $a7
-	note $93
-	note $97
-	note $83
-	note $87
-	note $73
-	note $a7
-	note $a3
-	note $a7
-	note $95
-	note $95
-	note $73
-	note $83
-	note $63
-	notetype $08, $b3
-	octave4
-	note $60
-	note $80
-	note $a0
-	note $b0
-	note $c0
-	octave5
-	note $10
-	dutycycle $02
-	notetype $0c, $b3
-	note $30
-	note $20
-	note $33
-	note $a0
-	note $90
-	note $a3
-	octave4
-	note $b1
-	octave5
-	note $31
-	note $61
-	note $85
-	note $41
-	note $31
-	note $11
-	note $43
-	note $71
-	dutycycle $03
-	notetype $08, $92
-	note $a0
-	note $60
-	note $40
-	note $10
-	octave4
-	note $a0
-	note $80
-	note $60
-	note $40
-	note $10
-	octave3
-	note $a2
-	notetype $0c, $b2
-	note $b1
-	note $c1
-	octave4
-	note $11
-	note $31
-	note $41
+	notetype $c, $b7
+	octave 1
+	note G#, 15
+	note G#, 15
+	tempo 168
+	dutycycle $3
+	notetype $6, $c7
+	octave 3
+	note F_, 11
+	note A_, 3
+	octave 4
+	note C_, 11
+	octave 3
+	note B_, 1
+	note A#, 1
+	note G_, 11
+	note A#, 3
+	octave 4
+	note D#, 11
+	note D_, 1
+	note C#, 1
+	notetype $6, $b5
+	note C_, 7
+	octave 3
+	note F_, 7
+	note A_, 7
+	note B_, 3
+	octave 4
+	note C_, 3
+	notetype $6, $b3
+	octave 3
+	note A#, 7
+	note C#, 7
+	octave 2
+	note F#, 7
+	octave 1
+	note B_, 7
+	notetype $6, $b2
+	note __, 3
+	octave 3
+	note A#, 3
+	note A#, 7
+	note G#, 3
+	note G#, 7
+	note G_, 3
+	note G_, 7
+	note F#, 3
+	note F#, 7
+	octave 2
+	note A_, 3
+	note A_, 7
+	note G#, 3
+	note G#, 7
+	note G_, 3
+	note G_, 7
+	note F#, 3
+	note A_, 7
+	note A_, 3
+	note A_, 7
+	note G#, 5
+	note G#, 5
+	note F#, 3
+	note G_, 3
+	note F_, 3
+	notetype $8, $b3
+	octave 4
+	note F_, 0
+	note G_, 0
+	note A_, 0
+	note A#, 0
+	note B_, 0
+	octave 5
+	note C_, 0
+	dutycycle $2
+	notetype $c, $b3
+	note D_, 0
+	note C#, 0
+	note D_, 3
+	note A_, 0
+	note G#, 0
+	note A_, 3
+	octave 4
+	note A#, 1
+	octave 5
+	note D_, 1
+	note F_, 1
+	note G_, 5
+	note D#, 1
+	note D_, 1
+	note C_, 1
+	note D#, 3
+	note F#, 1
+	dutycycle $3
+	notetype $8, $92
+	note A_, 0
+	note F_, 0
+	note D#, 0
+	note C_, 0
+	octave 4
+	note A_, 0
+	note G_, 0
+	note F_, 0
+	note D#, 0
+	note C_, 0
+	octave 3
+	note A_, 2
+	notetype $c, $b2
+	note A#, 1
+	note B_, 1
+	octave 4
+	note C_, 1
+	note D_, 1
+	note D#, 1
 	intensity $c2
-	note $61
-	note $81
-	note $af
-	endchannel ; end
-; 0xf70f8
+	note F_, 1
+	note G_, 1
+	note A_, 15
+	endchannel
 
-_Music_GoldSilverOpening_Ch2: ; 0xf70f8
-	tone $0100
-	stereopanning $0f
-	notetype $0c, $b7
-	dutycycle $02
-	octave2
-	note $1f
-	note $1f
-	dutycycle $03
-	notetype $0c, $b2
-	note $01
-	notetype $06, $62
-	octave1
-	note $61
-	note $a1
-	octave2
-	note $11
-	note $51
-	note $61
-	note $a1
-	octave3
-	note $11
-	note $51
-	note $61
-	note $a1
-	octave4
-	note $11
-	note $51
-	note $61
-	note $a1
-	octave5
-	note $11
-	note $51
-	octave1
-	note $41
-	note $81
-	note $b1
-	octave2
-	note $31
-	note $41
-	note $81
-	note $b1
-	octave3
-	note $31
-	note $41
-	note $81
-	note $b1
-	octave4
-	note $31
-	note $41
-	note $81
-	notetype $0c, $b7
-	octave1
-	note $6f
+Music_GoldSilverOpening_Ch2: ; f70f8
+	tone $0001
+	stereopanning $f
+	notetype $c, $b7
+	dutycycle $2
+	octave 2
+	note C_, 15
+	note C_, 15
+	dutycycle $3
+	notetype $c, $b2
+	note __, 1
+	notetype $6, $62
+	octave 1
+	note F_, 1
+	note A_, 1
+	octave 2
+	note C_, 1
+	note E_, 1
+	note F_, 1
+	note A_, 1
+	octave 3
+	note C_, 1
+	note E_, 1
+	note F_, 1
+	note A_, 1
+	octave 4
+	note C_, 1
+	note E_, 1
+	note F_, 1
+	note A_, 1
+	octave 5
+	note C_, 1
+	note E_, 1
+	octave 1
+	note D#, 1
+	note G_, 1
+	note A#, 1
+	octave 2
+	note D_, 1
+	note D#, 1
+	note G_, 1
+	note A#, 1
+	octave 3
+	note D_, 1
+	note D#, 1
+	note G_, 1
+	note A#, 1
+	octave 4
+	note D_, 1
+	note D#, 1
+	note G_, 1
+	notetype $c, $b7
+	octave 1
+	note F_, 15
 	intensity $83
-	octave4
-	note $61
+	octave 4
+	note F_, 1
 	intensity $81
-	note $31
+	note D_, 1
 	intensity $93
-	note $91
+	note G#, 1
 	intensity $91
-	note $61
+	note F_, 1
 	intensity $a3
-	octave5
-	note $21
+	octave 5
+	note C#, 1
 	intensity $a1
-	octave4
-	note $b1
+	octave 4
+	note A#, 1
 	intensity $b3
-	octave5
-	note $71
+	octave 5
+	note F#, 1
 	intensity $c1
-	note $41
+	note D#, 1
 	intensity $b3
-	octave1
-	note $b1
-	notetype $06, $b2
-	octave4
-	note $33
-	note $33
-	octave1
-	note $63
-	octave4
-	note $33
-	note $33
-	octave2
-	note $13
-	octave4
-	note $43
-	note $43
-	octave1
-	note $63
-	octave4
-	note $43
-	note $43
-	octave1
-	note $b3
-	octave3
-	note $33
-	note $33
-	octave1
-	note $c3
-	octave3
-	note $33
-	note $33
-	octave2
-	note $13
-	octave3
-	note $43
-	note $43
-	octave1
-	note $c3
-	octave3
-	note $43
-	note $73
-	octave1
-	note $b3
-	octave3
-	note $33
-	note $33
-	octave1
-	note $c3
-	octave3
-	note $35
-	note $31
-	octave2
-	note $13
-	octave3
-	note $43
-	note $4f
-	octave2
-	note $41
-	octave3
-	note $83
-	note $83
-	note $81
-	octave2
-	note $43
-	octave3
-	note $73
-	note $73
-	octave2
-	note $31
-	octave3
-	note $63
-	note $63
-	note $61
-	octave2
-	note $83
-	octave3
-	note $c3
-	note $c3
-	octave2
-	note $13
-	octave3
-	note $43
-	note $43
-	octave2
-	note $13
-	octave3
-	note $43
-	note $4f
-	notetype $06, $a2
-	note $63
-	note $83
-	note $93
-	notetype $06, $c2
-	note $a3
-	note $b3
-	octave4
-	note $13
-	notetype $06, $d2
-	octave3
-	note $a3
-	octave4
-	note $13
-	note $4f
-	endchannel ; end
-; 0xf71c8
+	octave 1
+	note A#, 1
+	notetype $6, $b2
+	octave 4
+	note D_, 3
+	note D_, 3
+	octave 1
+	note F_, 3
+	octave 4
+	note D_, 3
+	note D_, 3
+	octave 2
+	note C_, 3
+	octave 4
+	note D#, 3
+	note D#, 3
+	octave 1
+	note F_, 3
+	octave 4
+	note D#, 3
+	note D#, 3
+	octave 1
+	note A#, 3
+	octave 3
+	note D_, 3
+	note D_, 3
+	octave 1
+	note B_, 3
+	octave 3
+	note D_, 3
+	note D_, 3
+	octave 2
+	note C_, 3
+	octave 3
+	note D#, 3
+	note D#, 3
+	octave 1
+	note B_, 3
+	octave 3
+	note D#, 3
+	note F#, 3
+	octave 1
+	note A#, 3
+	octave 3
+	note D_, 3
+	note D_, 3
+	octave 1
+	note B_, 3
+	octave 3
+	note D_, 5
+	note D_, 1
+	octave 2
+	note C_, 3
+	octave 3
+	note D#, 3
+	note D#, 15
+	octave 2
+	note D#, 1
+	octave 3
+	note G_, 3
+	note G_, 3
+	note G_, 1
+	octave 2
+	note D#, 3
+	octave 3
+	note F#, 3
+	note F#, 3
+	octave 2
+	note D_, 1
+	octave 3
+	note F_, 3
+	note F_, 3
+	note F_, 1
+	octave 2
+	note G_, 3
+	octave 3
+	note B_, 3
+	note B_, 3
+	octave 2
+	note C_, 3
+	octave 3
+	note D#, 3
+	note D#, 3
+	octave 2
+	note C_, 3
+	octave 3
+	note D#, 3
+	note D#, 15
+	notetype $6, $a2
+	note F_, 3
+	note G_, 3
+	note G#, 3
+	notetype $6, $c2
+	note A_, 3
+	note A#, 3
+	octave 4
+	note C_, 3
+	notetype $6, $d2
+	octave 3
+	note A_, 3
+	octave 4
+	note C_, 3
+	note D#, 15
+	endchannel
 
-_Music_GoldSilverOpening_Ch3: ; 0xf71c8
-	notetype $06, $10
-	octave2
-	note $33
-	notetype $06, $20
-	note $33
-	notetype $06, $30
-	note $33
-	note $0b
-	note $07
-	notetype $06, $10
-	octave2
-	note $40
-	note $00
-	note $80
-	note $00
-	note $b0
-	note $00
-	octave3
-	note $30
-	note $00
-	note $40
-	note $00
-	note $80
-	note $00
-	note $b0
-	note $00
-	octave4
-	note $30
-	note $00
-	note $40
-	note $00
-	note $80
-	note $00
-	note $b0
-	note $00
-	octave5
-	note $30
-	note $00
-	note $40
-	note $00
-	note $80
-	note $00
-	note $b0
-	note $00
-	octave6
-	note $30
-	note $00
-	octave2
-	note $60
-	note $00
-	note $a0
-	note $00
-	octave3
-	note $10
-	note $00
-	note $50
-	note $00
-	note $60
-	note $00
-	note $a0
-	note $00
-	octave4
-	note $10
-	note $00
-	note $50
-	note $00
-	note $60
-	note $00
-	note $a0
-	note $00
-	octave5
-	note $10
-	note $00
-	note $50
-	note $00
-	note $60
-	note $00
-	note $a0
-	note $00
-	octave6
-	note $10
-	note $00
-	note $50
-	note $00
-	octave2
-	note $40
-	note $00
-	note $80
-	note $00
-	note $b0
-	note $00
-	octave3
-	note $30
-	note $00
-	note $40
-	note $00
-	note $80
-	note $00
-	note $b0
-	note $00
-	octave4
-	note $30
-	note $00
-	note $40
-	note $00
-	note $80
-	note $00
-	note $b0
-	note $00
-	octave5
-	note $30
-	note $00
-	note $40
-	note $00
-	note $80
-	note $00
-	note $b0
-	note $00
-	octave6
-	note $30
-	note $00
-	notetype $08, $10
-	note $60
-	octave5
-	note $c0
-	note $a0
-	note $c0
-	note $a0
-	note $60
-	note $a0
-	note $60
-	octave4
-	note $c0
-	octave5
-	note $60
-	octave4
-	note $c0
-	note $a0
-	note $c0
-	note $a0
-	note $60
-	note $a0
-	note $60
-	octave3
-	note $c0
-	octave4
-	note $60
-	octave3
-	note $c0
-	note $a0
-	note $c0
-	note $a0
-	note $60
-	octave5
-	note $a2
-	notetype $0c, $10
-	note $80
-	note $00
-	octave6
-	note $11
-	octave5
-	note $b0
-	note $00
-	octave6
-	note $61
-	note $40
-	note $00
-	note $b1
-	note $90
-	note $00
-	note $0f
-	note $03
-	notetype $06, $10
-	octave2
-	note $80
-	note $02
-	note $a1
-	note $01
-	octave5
-	note $6b
-	note $33
-	note $35
-	note $61
-	note $4b
-	note $91
-	note $01
-	note $75
-	note $41
-	note $6b
-	note $31
-	note $01
-	note $45
-	note $61
-	note $81
-	note $01
-	note $71
-	note $01
-	note $81
-	note $01
-	note $a3
-	note $43
-	note $61
-	note $01
-	octave4
-	note $b0
-	note $00
-	octave5
-	note $30
-	note $00
-	octave4
-	note $b0
-	note $00
-	octave5
-	note $30
-	note $00
-	octave4
-	note $b0
-	note $00
-	octave5
-	note $30
-	note $00
-	octave4
-	note $b0
-	note $00
-	octave5
-	note $10
-	note $00
-	octave4
-	note $b0
-	note $00
-	octave5
-	note $10
-	note $00
-	octave4
-	note $b0
-	note $00
-	octave5
-	note $10
-	note $00
-	octave4
-	note $b0
-	note $00
-	octave5
-	note $30
-	note $00
-	octave4
-	note $b0
-	note $00
-	octave5
-	note $30
-	note $00
-	octave4
-	note $b0
-	note $00
-	octave5
-	note $30
-	note $00
-	octave4
-	note $b0
-	note $00
-	octave5
-	note $10
-	note $00
-	note $30
-	note $00
-	note $60
-	note $00
-	note $30
-	note $00
-	note $60
-	note $00
-	note $80
-	note $00
-	note $b0
-	note $00
-	note $80
-	note $00
-	note $b0
-	note $00
-	note $80
-	note $00
-	note $b0
-	note $00
-	note $70
-	note $00
-	note $b0
-	note $00
-	note $70
-	note $00
-	note $b0
-	note $00
-	note $70
-	note $00
-	note $b0
-	note $08
-	notetype $0c, $10
-	note $0d
-	octave3
-	note $61
-	note $40
-	note $00
-	note $10
-	note $0c
-	endchannel ; end
-; 0xf7308
+Music_GoldSilverOpening_Ch3: ; f71c8
+	notetype $6, $10
+	octave 2
+	note D_, 3
+	notetype $6, $20
+	note D_, 3
+	notetype $6, $30
+	note D_, 3
+	note __, 11
+	note __, 7
+	notetype $6, $10
+	octave 2
+	note D#, 0
+	note __, 0
+	note G_, 0
+	note __, 0
+	note A#, 0
+	note __, 0
+	octave 3
+	note D_, 0
+	note __, 0
+	note D#, 0
+	note __, 0
+	note G_, 0
+	note __, 0
+	note A#, 0
+	note __, 0
+	octave 4
+	note D_, 0
+	note __, 0
+	note D#, 0
+	note __, 0
+	note G_, 0
+	note __, 0
+	note A#, 0
+	note __, 0
+	octave 5
+	note D_, 0
+	note __, 0
+	note D#, 0
+	note __, 0
+	note G_, 0
+	note __, 0
+	note A#, 0
+	note __, 0
+	octave 6
+	note D_, 0
+	note __, 0
+	octave 2
+	note F_, 0
+	note __, 0
+	note A_, 0
+	note __, 0
+	octave 3
+	note C_, 0
+	note __, 0
+	note E_, 0
+	note __, 0
+	note F_, 0
+	note __, 0
+	note A_, 0
+	note __, 0
+	octave 4
+	note C_, 0
+	note __, 0
+	note E_, 0
+	note __, 0
+	note F_, 0
+	note __, 0
+	note A_, 0
+	note __, 0
+	octave 5
+	note C_, 0
+	note __, 0
+	note E_, 0
+	note __, 0
+	note F_, 0
+	note __, 0
+	note A_, 0
+	note __, 0
+	octave 6
+	note C_, 0
+	note __, 0
+	note E_, 0
+	note __, 0
+	octave 2
+	note D#, 0
+	note __, 0
+	note G_, 0
+	note __, 0
+	note A#, 0
+	note __, 0
+	octave 3
+	note D_, 0
+	note __, 0
+	note D#, 0
+	note __, 0
+	note G_, 0
+	note __, 0
+	note A#, 0
+	note __, 0
+	octave 4
+	note D_, 0
+	note __, 0
+	note D#, 0
+	note __, 0
+	note G_, 0
+	note __, 0
+	note A#, 0
+	note __, 0
+	octave 5
+	note D_, 0
+	note __, 0
+	note D#, 0
+	note __, 0
+	note G_, 0
+	note __, 0
+	note A#, 0
+	note __, 0
+	octave 6
+	note D_, 0
+	note __, 0
+	notetype $8, $10
+	note F_, 0
+	octave 5
+	note B_, 0
+	note A_, 0
+	note B_, 0
+	note A_, 0
+	note F_, 0
+	note A_, 0
+	note F_, 0
+	octave 4
+	note B_, 0
+	octave 5
+	note F_, 0
+	octave 4
+	note B_, 0
+	note A_, 0
+	note B_, 0
+	note A_, 0
+	note F_, 0
+	note A_, 0
+	note F_, 0
+	octave 3
+	note B_, 0
+	octave 4
+	note F_, 0
+	octave 3
+	note B_, 0
+	note A_, 0
+	note B_, 0
+	note A_, 0
+	note F_, 0
+	octave 5
+	note A_, 2
+	notetype $c, $10
+	note G_, 0
+	note __, 0
+	octave 6
+	note C_, 1
+	octave 5
+	note A#, 0
+	note __, 0
+	octave 6
+	note F_, 1
+	note D#, 0
+	note __, 0
+	note A#, 1
+	note G#, 0
+	note __, 0
+	note __, 15
+	note __, 3
+	notetype $6, $10
+	octave 2
+	note G_, 0
+	note __, 2
+	note A_, 1
+	note __, 1
+	octave 5
+	note F_, 11
+	note D_, 3
+	note D_, 5
+	note F_, 1
+	note D#, 11
+	note G#, 1
+	note __, 1
+	note F#, 5
+	note D#, 1
+	note F_, 11
+	note D_, 1
+	note __, 1
+	note D#, 5
+	note F_, 1
+	note G_, 1
+	note __, 1
+	note F#, 1
+	note __, 1
+	note G_, 1
+	note __, 1
+	note A_, 3
+	note D#, 3
+	note F_, 1
+	note __, 1
+	octave 4
+	note A#, 0
+	note __, 0
+	octave 5
+	note D_, 0
+	note __, 0
+	octave 4
+	note A#, 0
+	note __, 0
+	octave 5
+	note D_, 0
+	note __, 0
+	octave 4
+	note A#, 0
+	note __, 0
+	octave 5
+	note D_, 0
+	note __, 0
+	octave 4
+	note A#, 0
+	note __, 0
+	octave 5
+	note C_, 0
+	note __, 0
+	octave 4
+	note A#, 0
+	note __, 0
+	octave 5
+	note C_, 0
+	note __, 0
+	octave 4
+	note A#, 0
+	note __, 0
+	octave 5
+	note C_, 0
+	note __, 0
+	octave 4
+	note A#, 0
+	note __, 0
+	octave 5
+	note D_, 0
+	note __, 0
+	octave 4
+	note A#, 0
+	note __, 0
+	octave 5
+	note D_, 0
+	note __, 0
+	octave 4
+	note A#, 0
+	note __, 0
+	octave 5
+	note D_, 0
+	note __, 0
+	octave 4
+	note A#, 0
+	note __, 0
+	octave 5
+	note C_, 0
+	note __, 0
+	note D_, 0
+	note __, 0
+	note F_, 0
+	note __, 0
+	note D_, 0
+	note __, 0
+	note F_, 0
+	note __, 0
+	note G_, 0
+	note __, 0
+	note A#, 0
+	note __, 0
+	note G_, 0
+	note __, 0
+	note A#, 0
+	note __, 0
+	note G_, 0
+	note __, 0
+	note A#, 0
+	note __, 0
+	note F#, 0
+	note __, 0
+	note A#, 0
+	note __, 0
+	note F#, 0
+	note __, 0
+	note A#, 0
+	note __, 0
+	note F#, 0
+	note __, 0
+	note A#, 0
+	note __, 8
+	notetype $c, $10
+	note __, 13
+	octave 3
+	note F_, 1
+	note D#, 0
+	note __, 0
+	note C_, 0
+	note __, 12
+	endchannel
+; f7308

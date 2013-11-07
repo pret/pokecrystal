@@ -1,278 +1,283 @@
-_Music_MagnetTrain: ; 0xef5f0
-	db $c0
-	dw _Music_MagnetTrain_Ch1
-	db $01
-	dw _Music_MagnetTrain_Ch2
-	db $02
-	dw _Music_MagnetTrain_Ch3
-	db $03
-	dw _Music_MagnetTrain_Ch4
-; 0xef5fc
+Music_MagnetTrain: ; ef5f0
+	dbw $c0, Music_MagnetTrain_Ch1
+	dbw $01, Music_MagnetTrain_Ch2
+	dbw $02, Music_MagnetTrain_Ch3
+	dbw $03, Music_MagnetTrain_Ch4
+; ef5fc
 
-_Music_MagnetTrain_Ch1: ; 0xef5fc
-	tempo $6e00
+
+Music_MagnetTrain_Ch1: ; ef5fc
+	tempo 110
 	volume $77
-	stereopanning $0f
+	stereopanning $f
 	vibrato $14, $23
-	dutycycle $02
-	notetype $0c, $b2
-	note $0f
-	note $0f
+	dutycycle $2
+	notetype $c, $b2
+	note __, 15
+	note __, 15
 	intensity $b7
-	octave4
-	note $30
-	note $10
-	octave3
-	note $80
-	octave4
-	note $10
-	note $30
-	note $10
-	octave3
-	note $80
-	octave4
-	note $10
-	note $30
-	note $10
-	octave3
-	note $80
-	octave4
-	note $10
-	note $30
-	note $10
-	octave3
-	note $80
-	octave4
-	note $10
-	note $50
-	note $10
-	octave3
-	note $a0
-	octave4
-	note $10
-	note $50
-	note $10
-	octave3
-	note $a0
-	octave4
-	note $10
-	note $50
-	note $10
-	octave3
-	note $a0
-	octave4
-	note $10
-	note $50
-	note $10
-	notetype $06, $b7
-	note $70
-	note $00
-	note $70
-	note $00
-	notetype $0c, $b7
-	note $3f
-	endchannel ; end
-; 0xef648
+	octave 4
+	note D_, 0
+	note C_, 0
+	octave 3
+	note G_, 0
+	octave 4
+	note C_, 0
+	note D_, 0
+	note C_, 0
+	octave 3
+	note G_, 0
+	octave 4
+	note C_, 0
+	note D_, 0
+	note C_, 0
+	octave 3
+	note G_, 0
+	octave 4
+	note C_, 0
+	note D_, 0
+	note C_, 0
+	octave 3
+	note G_, 0
+	octave 4
+	note C_, 0
+	note E_, 0
+	note C_, 0
+	octave 3
+	note A_, 0
+	octave 4
+	note C_, 0
+	note E_, 0
+	note C_, 0
+	octave 3
+	note A_, 0
+	octave 4
+	note C_, 0
+	note E_, 0
+	note C_, 0
+	octave 3
+	note A_, 0
+	octave 4
+	note C_, 0
+	note E_, 0
+	note C_, 0
+	notetype $6, $b7
+	note F#, 0
+	note __, 0
+	note F#, 0
+	note __, 0
+	notetype $c, $b7
+	note D_, 15
+	endchannel
 
-_Music_MagnetTrain_Ch2: ; 0xef648
+Music_MagnetTrain_Ch2: ; ef648
 	vibrato $14, $23
-	dutycycle $01
-	notetype $0c, $d2
+	dutycycle $1
+	notetype $c, $d2
 	stereopanning $f0
-	notetype $0c, $d8
-	octave1
-	note $6b
-	note $01
-	notetype $06, $d7
-	note $60
-	note $00
-	note $60
-	note $00
-	octave2
-	note $63
-	note $03
-	note $63
-	note $03
-	note $63
-	note $03
-	note $63
-	note $03
-	dutycycle $03
-	notetype $0c, $d7
-	octave4
-	note $8f
-	note $ac
-	note $00
-	notetype $06, $d7
-	note $a0
-	note $00
-	note $a0
-	note $00
-	notetype $0c, $d7
-	note $af
-	endchannel ; end
-; 0xef67d
+	notetype $c, $d8
+	octave 1
+	note F_, 11
+	note __, 1
+	notetype $6, $d7
+	note F_, 0
+	note __, 0
+	note F_, 0
+	note __, 0
+	octave 2
+	note F_, 3
+	note __, 3
+	note F_, 3
+	note __, 3
+	note F_, 3
+	note __, 3
+	note F_, 3
+	note __, 3
+	dutycycle $3
+	notetype $c, $d7
+	octave 4
+	note G_, 15
+	note A_, 12
+	note __, 0
+	notetype $6, $d7
+	note A_, 0
+	note __, 0
+	note A_, 0
+	note __, 0
+	notetype $c, $d7
+	note A_, 15
+	endchannel
 
-_Music_MagnetTrain_Ch3: ; 0xef67d
+Music_MagnetTrain_Ch3: ; ef67d
 	stereopanning $ff
 	vibrato $10, $23
-	notetype $0c, $15
-	octave6
-	note $10
-	octave5
-	note $80
-	note $40
-	note $10
-	note $80
-	note $40
-	note $10
-	octave4
-	note $80
-	octave5
-	note $40
-	note $10
-	octave4
-	note $80
-	note $40
-	octave5
-	note $10
-	octave4
-	note $80
-	note $40
-	note $10
-	note $80
-	note $40
-	note $10
-	octave3
-	note $80
-	octave4
-	note $10
-	note $40
-	note $80
-	note $10
-	note $40
-	note $80
-	octave5
-	note $10
-	octave4
-	note $80
-	octave5
-	note $10
-	note $40
-	note $80
-	note $10
-	octave2
-	note $30
-	octave3
-	note $30
-	octave2
-	note $30
-	octave3
-	note $30
-	octave2
-	note $30
-	octave3
-	note $30
-	octave2
-	note $30
-	octave3
-	note $30
-	octave2
-	note $30
-	octave3
-	note $30
-	octave2
-	note $30
-	octave3
-	note $30
-	octave2
-	note $30
-	octave3
-	note $30
-	octave2
-	note $30
-	octave3
-	note $30
-	octave2
-	note $30
-	octave3
-	note $30
-	octave2
-	note $30
-	octave3
-	note $30
-	octave2
-	note $30
-	octave3
-	note $30
-	octave2
-	note $30
-	octave3
-	note $30
-	octave2
-	note $30
-	octave3
-	note $30
-	octave2
-	note $30
-	octave3
-	note $30
-	octave2
-	note $30
-	octave3
-	note $30
-	octave2
-	note $30
-	octave3
-	note $30
-	octave2
-	note $3f
-	endchannel ; end
-; 0xef6f4
+	notetype $c, $15
+	octave 6
+	note C_, 0
+	octave 5
+	note G_, 0
+	note D#, 0
+	note C_, 0
+	note G_, 0
+	note D#, 0
+	note C_, 0
+	octave 4
+	note G_, 0
+	octave 5
+	note D#, 0
+	note C_, 0
+	octave 4
+	note G_, 0
+	note D#, 0
+	octave 5
+	note C_, 0
+	octave 4
+	note G_, 0
+	note D#, 0
+	note C_, 0
+	note G_, 0
+	note D#, 0
+	note C_, 0
+	octave 3
+	note G_, 0
+	octave 4
+	note C_, 0
+	note D#, 0
+	note G_, 0
+	note C_, 0
+	note D#, 0
+	note G_, 0
+	octave 5
+	note C_, 0
+	octave 4
+	note G_, 0
+	octave 5
+	note C_, 0
+	note D#, 0
+	note G_, 0
+	note C_, 0
+	octave 2
+	note D_, 0
+	octave 3
+	note D_, 0
+	octave 2
+	note D_, 0
+	octave 3
+	note D_, 0
+	octave 2
+	note D_, 0
+	octave 3
+	note D_, 0
+	octave 2
+	note D_, 0
+	octave 3
+	note D_, 0
+	octave 2
+	note D_, 0
+	octave 3
+	note D_, 0
+	octave 2
+	note D_, 0
+	octave 3
+	note D_, 0
+	octave 2
+	note D_, 0
+	octave 3
+	note D_, 0
+	octave 2
+	note D_, 0
+	octave 3
+	note D_, 0
+	octave 2
+	note D_, 0
+	octave 3
+	note D_, 0
+	octave 2
+	note D_, 0
+	octave 3
+	note D_, 0
+	octave 2
+	note D_, 0
+	octave 3
+	note D_, 0
+	octave 2
+	note D_, 0
+	octave 3
+	note D_, 0
+	octave 2
+	note D_, 0
+	octave 3
+	note D_, 0
+	octave 2
+	note D_, 0
+	octave 3
+	note D_, 0
+	octave 2
+	note D_, 0
+	octave 3
+	note D_, 0
+	octave 2
+	note D_, 0
+	octave 3
+	note D_, 0
+	octave 2
+	note D_, 15
+	endchannel
 
-_Music_MagnetTrain_Ch4: ; 0xef6f4
-	togglenoise $03
-	notetype $0c
-	note $cb
-	note $31
-	note $b0
-	note $b0
-	notetype $06
-	note $43
-	note $73
-	note $43
-	note $73
-	note $b3
-	note $73
-	note $b3
-	note $31
-	note $31
-	callchannel _Music_MagnetTrain_sub_0xef71e
-	callchannel _Music_MagnetTrain_sub_0xef71e
-	notetype $0c
-	note $cf
-	endchannel ; end
-; 0xef711
+Music_MagnetTrain_Ch4: ; ef6f4
+	togglenoise $3
+	notetype $c
+	note B_, 11
+	note D_, 1
+	note A#, 0
+	note A#, 0
+	notetype $6
+	note D#, 3
+	note F#, 3
+	note D#, 3
+	note F#, 3
+	note A#, 3
+	note F#, 3
+	note A#, 3
+	note D_, 1
+	note D_, 1
+	callchannel Music_MagnetTrain_branch_ef71e
+	callchannel Music_MagnetTrain_branch_ef71e
+	notetype $c
+	note B_, 15
+	endchannel
+; ef711
+	note G#, 0
+	note G_, 0
+	note G_, 0
+	note G#, 0
+	note G_, 0
+	note G_, 0
+	note G#, 0
+	note G_, 0
+	note G_, 0
+	note G#, 0
+	note G_, 0
+	note G_, 0
+	endchannel
+; ef71e
 
-INCBIN "baserom.gbc", $ef711, $ef71e - $ef711
-
-_Music_MagnetTrain_sub_0xef71e: ; 0xef71e
-; subroutine
-	note $91
-	note $81
-	note $81
-	note $81
-	note $91
-	note $81
-	note $81
-	note $81
-	note $91
-	note $81
-	note $81
-	note $81
-	note $91
-	note $81
-	note $81
-	note $81
-	endchannel ; end
-; 0xef72f
+Music_MagnetTrain_branch_ef71e: ; ef71e
+	note G#, 1
+	note G_, 1
+	note G_, 1
+	note G_, 1
+	note G#, 1
+	note G_, 1
+	note G_, 1
+	note G_, 1
+	note G#, 1
+	note G_, 1
+	note G_, 1
+	note G_, 1
+	note G#, 1
+	note G_, 1
+	note G_, 1
+	note G_, 1
+	endchannel
+; ef72f

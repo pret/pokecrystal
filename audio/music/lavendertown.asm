@@ -1,524 +1,524 @@
-_Music_LavenderTown: ; 0xef72f
-	db $80
-	dw _Music_LavenderTown_Ch1
-	db $01
-	dw _Music_LavenderTown_Ch2
-	db $02
-	dw _Music_LavenderTown_Ch3
-; 0xef738
+Music_LavenderTown: ; ef72f
+	dbw $80, Music_LavenderTown_Ch1
+	dbw $01, Music_LavenderTown_Ch2
+	dbw $02, Music_LavenderTown_Ch3
+; ef738
 
-; 0xef738
-	db $03
-; 0xef739
+INCBIN "baserom.gbc", $ef738, $ef739 - $ef738
 
-_Music_LavenderTown_Ch1: ; 0xef739
-	tempo $a000
+Music_LavenderTown_Ch1: ; ef739
+	tempo 160
 	volume $77
-	stereopanning $0f
-	vibrato $06, $24
-	dutycycle $00
-	notetype $0c, $b3
-	note $0f
-	note $0f
-	note $0f
-	note $0f
-	callchannel _Music_LavenderTown_sub_0xef7fd
-	intensity $93
-	octave5
-	note $31
-	intensity $43
-	note $31
-	intensity $93
-	note $71
-	intensity $43
-	note $71
-	intensity $93
-	note $c1
-	intensity $43
-	note $c1
-	intensity $93
-	note $a1
-	intensity $43
-	note $a1
-	callchannel _Music_LavenderTown_sub_0xef87f
-	intensity $93
-	intensity $93
-	note $61
-	intensity $83
-	note $61
-	intensity $93
-	note $31
-	intensity $43
-	note $31
-	intensity $93
-	octave4
-	note $c1
-	intensity $43
-	note $c1
-	intensity $93
-	note $81
-	intensity $43
-	note $81
-	callchannel _Music_LavenderTown_sub_0xef7fd
-	intensity $93
-	octave5
-	note $31
-	intensity $43
-	note $31
-	intensity $93
-	note $81
-	intensity $43
-	note $81
-	intensity $93
-	note $c1
-	intensity $43
-	note $c1
-	intensity $93
-	note $81
-	intensity $43
-	note $81
-	callchannel _Music_LavenderTown_sub_0xef87f
-	intensity $93
-	octave6
-	note $11
-	intensity $43
-	note $11
-	intensity $93
-	octave5
-	note $81
-	intensity $43
-	note $81
-	intensity $93
-	note $51
-	intensity $43
-	note $51
-	intensity $93
-	note $11
-	intensity $43
-	note $11
-	octave3
-	note $61
-	note $a1
-	octave4
-	note $11
-	note $51
-	note $61
-	note $11
-	octave3
-	note $a1
-	note $61
-	octave3
-	note $11
-	note $51
-	note $81
-	note $c1
-	octave4
-	note $11
-	octave3
-	note $81
-	note $51
-	note $11
-	note $61
-	note $a1
-	octave4
-	note $11
-	note $51
-	note $61
-	note $11
-	octave3
-	note $a1
-	note $61
-	loopchannel $02, $77ca
-	note $71
-	note $a1
-	octave4
-	note $11
-	note $71
-	note $a1
-	note $11
-	octave3
-	note $a1
-	note $71
-	note $81
-	octave4
-	note $11
-	note $31
-	note $61
-	note $81
-	note $61
-	note $31
-	note $11
-	octave3
-	note $c7
-	note $c7
-	loopchannel $00, $774c ; end
-; 0xef7fd
+	stereopanning $f
+	vibrato $6, $24
+	dutycycle $0
+	notetype $c, $b3
+	note __, 15
+	note __, 15
+	note __, 15
+	note __, 15
 
-_Music_LavenderTown_sub_0xef7fd: ; 0xef7fd
-; subroutine
-	intensity $83
-	octave5
-	note $11
-	intensity $43
-	note $11
-	intensity $83
-	note $81
-	intensity $43
-	note $81
-	intensity $83
-	octave6
-	note $11
-	intensity $43
-	note $11
-	intensity $83
-	octave5
-	note $81
-	intensity $43
-	note $81
-	intensity $83
-	note $31
-	intensity $43
-	note $31
-	intensity $83
-	note $a1
-	intensity $43
-	note $a1
-	intensity $83
-	octave6
-	note $31
-	intensity $43
-	note $31
-	intensity $83
-	octave5
-	note $a1
-	intensity $43
-	note $a1
-	intensity $83
-	note $51
-	intensity $43
-	note $51
-	intensity $83
-	note $c1
-	intensity $43
-	note $c1
-	intensity $83
-	octave6
-	note $51
-	intensity $43
-	note $51
-	intensity $83
-	octave5
-	note $c1
-	intensity $43
-	note $c1
-	intensity $83
-	note $21
-	intensity $43
-	note $21
-	intensity $83
-	note $81
-	intensity $43
-	note $81
-	intensity $83
-	note $b1
-	intensity $43
-	note $b1
-	intensity $83
-	note $81
-	intensity $43
-	note $81
-	intensity $83
-	note $11
-	intensity $43
-	note $11
-	intensity $83
-	note $61
-	intensity $43
-	note $61
-	intensity $83
-	octave6
-	note $11
-	intensity $43
-	note $11
-	intensity $83
-	octave5
-	note $61
-	intensity $43
-	note $61
-	endchannel ; end
-; 0xef87f
-
-_Music_LavenderTown_sub_0xef87f: ; 0xef87f
-; subroutine
+Music_LavenderTown_branch_ef74c: ; ef74c
+	callchannel Music_LavenderTown_branch_ef7fd
 	intensity $93
-	octave5
-	note $81
-	intensity $83
-	note $81
-	intensity $83
-	note $61
+	octave 5
+	note D_, 1
 	intensity $43
-	note $61
-	intensity $83
-	note $31
+	note D_, 1
+	intensity $93
+	note F#, 1
 	intensity $43
-	note $31
-	intensity $83
-	note $81
+	note F#, 1
+	intensity $93
+	note B_, 1
 	intensity $43
-	note $81
-	endchannel ; end
-; 0xef899
+	note B_, 1
+	intensity $93
+	note A_, 1
+	intensity $43
+	note A_, 1
+	callchannel Music_LavenderTown_branch_ef87f
+	intensity $93
+	intensity $93
+	note F_, 1
+	intensity $83
+	note F_, 1
+	intensity $93
+	note D_, 1
+	intensity $43
+	note D_, 1
+	intensity $93
+	octave 4
+	note B_, 1
+	intensity $43
+	note B_, 1
+	intensity $93
+	note G_, 1
+	intensity $43
+	note G_, 1
+	callchannel Music_LavenderTown_branch_ef7fd
+	intensity $93
+	octave 5
+	note D_, 1
+	intensity $43
+	note D_, 1
+	intensity $93
+	note G_, 1
+	intensity $43
+	note G_, 1
+	intensity $93
+	note B_, 1
+	intensity $43
+	note B_, 1
+	intensity $93
+	note G_, 1
+	intensity $43
+	note G_, 1
+	callchannel Music_LavenderTown_branch_ef87f
+	intensity $93
+	octave 6
+	note C_, 1
+	intensity $43
+	note C_, 1
+	intensity $93
+	octave 5
+	note G_, 1
+	intensity $43
+	note G_, 1
+	intensity $93
+	note E_, 1
+	intensity $43
+	note E_, 1
+	intensity $93
+	note C_, 1
+	intensity $43
+	note C_, 1
+	octave 3
+	note F_, 1
+	note A_, 1
+	octave 4
+	note C_, 1
+	note E_, 1
+	note F_, 1
+	note C_, 1
+	octave 3
+	note A_, 1
+	note F_, 1
 
-_Music_LavenderTown_Ch2: ; 0xef899
-	dutycycle $01
-	vibrato $08, $24
+Music_LavenderTown_branch_ef7ca: ; ef7ca
+	octave 3
+	note C_, 1
+	note E_, 1
+	note G_, 1
+	note B_, 1
+	octave 4
+	note C_, 1
+	octave 3
+	note G_, 1
+	note E_, 1
+	note C_, 1
+	note F_, 1
+	note A_, 1
+	octave 4
+	note C_, 1
+	note E_, 1
+	note F_, 1
+	note C_, 1
+	octave 3
+	note A_, 1
+	note F_, 1
+	loopchannel 2, Music_LavenderTown_branch_ef7ca
+	note F#, 1
+	note A_, 1
+	octave 4
+	note C_, 1
+	note F#, 1
+	note A_, 1
+	note C_, 1
+	octave 3
+	note A_, 1
+	note F#, 1
+	note G_, 1
+	octave 4
+	note C_, 1
+	note D_, 1
+	note F_, 1
+	note G_, 1
+	note F_, 1
+	note D_, 1
+	note C_, 1
+	octave 3
+	note B_, 7
+	note B_, 7
+	loopchannel 0, Music_LavenderTown_branch_ef74c
+; ef7fd
+
+Music_LavenderTown_branch_ef7fd: ; ef7fd
+	intensity $83
+	octave 5
+	note C_, 1
+	intensity $43
+	note C_, 1
+	intensity $83
+	note G_, 1
+	intensity $43
+	note G_, 1
+	intensity $83
+	octave 6
+	note C_, 1
+	intensity $43
+	note C_, 1
+	intensity $83
+	octave 5
+	note G_, 1
+	intensity $43
+	note G_, 1
+	intensity $83
+	note D_, 1
+	intensity $43
+	note D_, 1
+	intensity $83
+	note A_, 1
+	intensity $43
+	note A_, 1
+	intensity $83
+	octave 6
+	note D_, 1
+	intensity $43
+	note D_, 1
+	intensity $83
+	octave 5
+	note A_, 1
+	intensity $43
+	note A_, 1
+	intensity $83
+	note E_, 1
+	intensity $43
+	note E_, 1
+	intensity $83
+	note B_, 1
+	intensity $43
+	note B_, 1
+	intensity $83
+	octave 6
+	note E_, 1
+	intensity $43
+	note E_, 1
+	intensity $83
+	octave 5
+	note B_, 1
+	intensity $43
+	note B_, 1
+	intensity $83
+	note C#, 1
+	intensity $43
+	note C#, 1
+	intensity $83
+	note G_, 1
+	intensity $43
+	note G_, 1
+	intensity $83
+	note A#, 1
+	intensity $43
+	note A#, 1
+	intensity $83
+	note G_, 1
+	intensity $43
+	note G_, 1
+	intensity $83
+	note C_, 1
+	intensity $43
+	note C_, 1
+	intensity $83
+	note F_, 1
+	intensity $43
+	note F_, 1
+	intensity $83
+	octave 6
+	note C_, 1
+	intensity $43
+	note C_, 1
+	intensity $83
+	octave 5
+	note F_, 1
+	intensity $43
+	note F_, 1
+	endchannel
+; ef87f
+
+Music_LavenderTown_branch_ef87f: ; ef87f
+	intensity $93
+	octave 5
+	note G_, 1
+	intensity $83
+	note G_, 1
+	intensity $83
+	note F_, 1
+	intensity $43
+	note F_, 1
+	intensity $83
+	note D_, 1
+	intensity $43
+	note D_, 1
+	intensity $83
+	note G_, 1
+	intensity $43
+	note G_, 1
+	endchannel
+
+Music_LavenderTown_Ch2: ; ef899
+	dutycycle $1
+	vibrato $8, $24
 	stereopanning $ff
-	notetype $0c, $a3
-	octave5
-	note $11
+
+Music_LavenderTown_branch_ef8a0: ; ef8a0
+	notetype $c, $a3
+	octave 5
+	note C_, 1
 	intensity $63
-	note $11
+	note C_, 1
 	intensity $a3
-	note $81
+	note G_, 1
 	intensity $63
-	note $81
+	note G_, 1
 	intensity $a3
-	note $c1
+	note B_, 1
 	intensity $63
-	note $c1
+	note B_, 1
 	intensity $a3
-	note $71
+	note F#, 1
 	intensity $63
-	note $71
-	loopchannel $03, $78a0
+	note F#, 1
+	loopchannel 3, Music_LavenderTown_branch_ef8a0
 	intensity $a3
-	note $11
+	note C_, 1
 	intensity $63
-	note $11
+	note C_, 1
 	intensity $a3
-	note $81
+	note G_, 1
 	intensity $63
-	note $81
+	note G_, 1
 	intensity $a3
-	note $c1
+	note B_, 1
 	intensity $63
-	note $c1
+	note B_, 1
 	intensity $a3
-	octave6
-	note $31
+	octave 6
+	note D_, 1
 	intensity $63
-	note $31
+	note D_, 1
+
+Music_LavenderTown_branch_ef8d7: ; ef8d7
 	intensity $b5
-	callchannel _Music_LavenderTown_sub_0xef915
-	octave2
-	note $73
-	octave3
-	note $13
-	note $73
-	note $a3
-	octave2
-	note $83
-	octave3
-	note $13
-	note $33
-	note $83
-	note $63
-	note $33
-	octave2
-	note $c3
-	note $83
-	callchannel _Music_LavenderTown_sub_0xef915
-	octave2
-	note $83
-	octave3
-	note $13
-	note $63
-	note $83
-	note $13
-	note $63
-	note $83
-	note $63
-	note $13
-	note $53
-	note $83
-	octave4
-	note $13
+	callchannel Music_LavenderTown_branch_ef915
+	octave 2
+	note F#, 3
+	octave 3
+	note C_, 3
+	note F#, 3
+	note A_, 3
+	octave 2
+	note G_, 3
+	octave 3
+	note C_, 3
+	note D_, 3
+	note G_, 3
+	note F_, 3
+	note D_, 3
+	octave 2
+	note B_, 3
+	note G_, 3
+	callchannel Music_LavenderTown_branch_ef915
+	octave 2
+	note G_, 3
+	octave 3
+	note C_, 3
+	note F_, 3
+	note G_, 3
+	note C_, 3
+	note F_, 3
+	note G_, 3
+	note F_, 3
+	note C_, 3
+	note E_, 3
+	note G_, 3
+	octave 4
+	note C_, 3
 	intensity $b7
-	octave2
-	note $6f
-	note $1f
-	note $6f
-	note $1f
-	note $6f
-	note $7f
-	note $8f
-	octave1
-	note $87
+	octave 2
+	note F_, 15
+	note C_, 15
+	note F_, 15
+	note C_, 15
+	note F_, 15
+	note F#, 15
+	note G_, 15
+	octave 1
+	note G_, 7
 	intensity $57
-	octave5
-	note $30
-	note $60
-	note $85
-	loopchannel $00, $78d7 ; end
-; 0xef915
+	octave 5
+	note D_, 0
+	note F_, 0
+	note G_, 5
+	loopchannel 0, Music_LavenderTown_branch_ef8d7
+; ef915
 
-_Music_LavenderTown_sub_0xef915: ; 0xef915
-; subroutine
-	octave2
-	note $13
-	note $83
-	octave3
-	note $53
-	octave2
-	note $83
-	note $33
-	note $a3
-	octave3
-	note $63
-	octave2
-	note $a3
-	note $53
-	note $c3
-	octave3
-	note $83
-	note $63
-	note $53
-	note $23
-	octave2
-	note $b3
-	note $83
-	note $63
-	octave3
-	note $13
-	note $a3
-	note $13
-	endchannel ; end
-; 0xef932
+Music_LavenderTown_branch_ef915: ; ef915
+	octave 2
+	note C_, 3
+	note G_, 3
+	octave 3
+	note E_, 3
+	octave 2
+	note G_, 3
+	note D_, 3
+	note A_, 3
+	octave 3
+	note F_, 3
+	octave 2
+	note A_, 3
+	note E_, 3
+	note B_, 3
+	octave 3
+	note G_, 3
+	note F_, 3
+	note E_, 3
+	note C#, 3
+	octave 2
+	note A#, 3
+	note G_, 3
+	note F_, 3
+	octave 3
+	note C_, 3
+	note A_, 3
+	note C_, 3
+	endchannel
 
-_Music_LavenderTown_Ch3: ; 0xef932
+Music_LavenderTown_Ch3: ; ef932
 	vibrato $12, $24
-	notetype $0c, $13
+	notetype $c, $13
 	stereopanning $f0
-	note $0f
-	note $0f
-	note $0f
-	note $07
-	octave5
-	note $53
-	note $63
+	note __, 15
+	note __, 15
+	note __, 15
+	note __, 7
+	octave 5
+	note E_, 3
+	note F_, 3
+
+Music_LavenderTown_branch_ef941: ; ef941
 	intensity $12
-	octave5
-	note $83
-	note $03
-	note $83
-	note $03
-	note $53
-	note $03
-	note $53
-	note $63
-	note $83
-	note $63
-	note $53
-	note $c3
-	note $27
-	note $01
-	note $21
-	note $31
-	note $51
-	note $69
-	note $81
-	note $61
-	note $51
-	note $37
-	octave4
-	note $a3
-	octave5
-	note $33
-	note $5b
-	note $61
-	note $51
-	note $3b
-	note $51
-	note $61
-	note $83
-	note $03
-	note $83
-	note $03
-	note $53
-	note $03
-	note $53
-	note $63
-	note $83
-	note $63
-	note $53
-	note $c3
-	note $27
-	note $01
-	note $21
-	note $31
-	note $51
-	note $69
-	note $81
-	note $61
-	note $51
-	note $3b
-	note $11
-	note $31
-	note $1f
-	note $1b
-	note $03
+	octave 5
+	note G_, 3
+	note __, 3
+	note G_, 3
+	note __, 3
+	note E_, 3
+	note __, 3
+	note E_, 3
+	note F_, 3
+	note G_, 3
+	note F_, 3
+	note E_, 3
+	note B_, 3
+	note C#, 7
+	note __, 1
+	note C#, 1
+	note D_, 1
+	note E_, 1
+	note F_, 9
+	note G_, 1
+	note F_, 1
+	note E_, 1
+	note D_, 7
+	octave 4
+	note A_, 3
+	octave 5
+	note D_, 3
+	note E_, 11
+	note F_, 1
+	note E_, 1
+	note D_, 11
+	note E_, 1
+	note F_, 1
+	note G_, 3
+	note __, 3
+	note G_, 3
+	note __, 3
+	note E_, 3
+	note __, 3
+	note E_, 3
+	note F_, 3
+	note G_, 3
+	note F_, 3
+	note E_, 3
+	note B_, 3
+	note C#, 7
+	note __, 1
+	note C#, 1
+	note D_, 1
+	note E_, 1
+	note F_, 9
+	note G_, 1
+	note F_, 1
+	note E_, 1
+	note D_, 11
+	note C_, 1
+	note D_, 1
+	note C_, 15
+	note C_, 11
+	note __, 3
 	intensity $24
-	note $a1
-	note $81
-	note $a1
-	note $c1
-	octave6
-	note $13
-	octave5
-	note $83
-	note $63
-	note $53
-	note $33
-	note $13
-	note $a1
-	note $81
-	note $a1
-	note $c1
-	octave6
-	note $13
-	octave5
-	note $83
-	octave6
-	note $63
-	notetype $08, $24
-	note $51
-	note $61
-	note $51
-	notetype $0c, $24
-	note $33
-	note $13
-	octave5
-	note $a1
-	note $81
-	note $a1
-	note $c1
-	octave6
-	note $13
-	octave5
-	note $83
-	note $a1
-	note $81
-	note $a1
-	note $c1
-	octave6
-	note $13
-	note $23
-	note $3b
-	note $13
-	octave5
-	note $cb
-	note $51
-	note $61
-	loopchannel $00, $7941 ; end
-; 0xef9bc
+	note A_, 1
+	note G_, 1
+	note A_, 1
+	note B_, 1
+	octave 6
+	note C_, 3
+	octave 5
+	note G_, 3
+	note F_, 3
+	note E_, 3
+	note D_, 3
+	note C_, 3
+	note A_, 1
+	note G_, 1
+	note A_, 1
+	note B_, 1
+	octave 6
+	note C_, 3
+	octave 5
+	note G_, 3
+	octave 6
+	note F_, 3
+	notetype $8, $24
+	note E_, 1
+	note F_, 1
+	note E_, 1
+	notetype $c, $24
+	note D_, 3
+	note C_, 3
+	octave 5
+	note A_, 1
+	note G_, 1
+	note A_, 1
+	note B_, 1
+	octave 6
+	note C_, 3
+	octave 5
+	note G_, 3
+	note A_, 1
+	note G_, 1
+	note A_, 1
+	note B_, 1
+	octave 6
+	note C_, 3
+	note C#, 3
+	note D_, 11
+	note C_, 3
+	octave 5
+	note B_, 11
+	note E_, 1
+	note F_, 1
+	loopchannel 0, Music_LavenderTown_branch_ef941
+; ef9bc

@@ -1,327 +1,329 @@
-_Music_LakeOfRage: ; 0xee6c5
-	db $c0
-	dw _Music_LakeOfRage_Ch1
-	db $01
-	dw _Music_LakeOfRage_Ch2
-	db $02
-	dw _Music_LakeOfRage_Ch3
-	db $03
-	dw _Music_LakeOfRage_Ch4
-; 0xee6d1
+Music_LakeOfRage: ; ee6c5
+	dbw $c0, Music_LakeOfRage_Ch1
+	dbw $01, Music_LakeOfRage_Ch2
+	dbw $02, Music_LakeOfRage_Ch3
+	dbw $03, Music_LakeOfRage_Ch4
+; ee6d1
 
-_Music_LakeOfRage_Ch1: ; 0xee6d1
-	tempo $9000
+
+Music_LakeOfRage_Ch1: ; ee6d1
+	tempo 144
 	volume $77
-	dutycycle $03
-	tone $0200
-	vibrato $08, $22
+	dutycycle $3
+	tone $0002
+	vibrato $8, $22
 	stereopanning $f0
-	notetype $0c, $b4
-	octave3
-	note $35
-	note $39
-	note $35
-	note $35
-	note $53
-	intensity $b5
-	note $75
-	note $55
-	note $33
-	octave4
-	note $35
-	note $13
-	note $51
-	note $33
-	octave3
-	note $c5
-	note $81
-	notetype $08, $b5
-	note $33
-	note $83
-	note $c3
-	notetype $0c, $b4
-	note $32
-	note $70
-	intensity $b7
-	note $a7
-	note $73
-	note $a2
-	octave4
-	note $20
-	note $3b
-	notetype $08, $b4
-	octave3
-	note $13
-	octave2
-	note $c3
-	note $a3
-	notetype $08, $b7
-	note $ab
-	notetype $0c, $b7
-	octave3
-	note $1b
-	intensity $b4
-	note $53
-	note $31
-	intensity $b7
-	octave2
-	note $a9
-	intensity $b4
-	octave3
-	note $53
-	note $32
-	note $50
-	intensity $b7
-	note $77
-	note $35
-	note $10
-	note $50
-	note $17
-	note $55
-	note $50
-	note $80
-	note $57
-	note $85
-	note $70
-	note $80
-	intensity $a0
-	note $a6
-	intensity $a7
-	note $a6
-	note $a0
-	octave4
-	note $10
-	intensity $a0
-	note $35
-	intensity $a7
-	note $35
-	loopchannel $00, $66e9 ; end
-; 0xee749
+	notetype $c, $b4
+	octave 3
+	note D_, 5
+	note D_, 9
+	note D_, 5
+	note D_, 5
+	note E_, 3
 
-_Music_LakeOfRage_Ch2: ; 0xee749
-	dutycycle $03
+Music_LakeOfRage_branch_ee6e9: ; ee6e9
+	intensity $b5
+	note F#, 5
+	note E_, 5
+	note D_, 3
+	octave 4
+	note D_, 5
+	note C_, 3
+	note E_, 1
+	note D_, 3
+	octave 3
+	note B_, 5
+	note G_, 1
+	notetype $8, $b5
+	note D_, 3
+	note G_, 3
+	note B_, 3
+	notetype $c, $b4
+	note D_, 2
+	note F#, 0
+	intensity $b7
+	note A_, 7
+	note F#, 3
+	note A_, 2
+	octave 4
+	note C#, 0
+	note D_, 11
+	notetype $8, $b4
+	octave 3
+	note C_, 3
+	octave 2
+	note B_, 3
+	note A_, 3
+	notetype $8, $b7
+	note A_, 11
+	notetype $c, $b7
+	octave 3
+	note C_, 11
+	intensity $b4
+	note E_, 3
+	note D_, 1
+	intensity $b7
+	octave 2
+	note A_, 9
+	intensity $b4
+	octave 3
+	note E_, 3
+	note D_, 2
+	note E_, 0
+	intensity $b7
+	note F#, 7
+	note D_, 5
+	note C_, 0
+	note E_, 0
+	note C_, 7
+	note E_, 5
+	note E_, 0
+	note G_, 0
+	note E_, 7
+	note G_, 5
+	note F#, 0
+	note G_, 0
+	intensity $a0
+	note A_, 6
+	intensity $a7
+	note A_, 6
+	note A_, 0
+	octave 4
+	note C_, 0
+	intensity $a0
+	note D_, 5
+	intensity $a7
+	note D_, 5
+	loopchannel 0, Music_LakeOfRage_branch_ee6e9
+
+Music_LakeOfRage_Ch2: ; ee749
+	dutycycle $3
 	vibrato $20, $44
 	stereopanning $ff
-	notetype $0c, $90
-	octave3
-	note $87
+	notetype $c, $90
+	octave 3
+	note G_, 7
 	intensity $97
-	note $87
+	note G_, 7
 	intensity $a0
-	note $a7
+	note A_, 7
 	intensity $a7
-	note $a7
-	notetype $08, $c7
-	octave4
-	note $3f
-	octave3
-	note $a3
-	octave4
-	note $33
-	note $af
-	octave5
-	note $13
-	octave4
-	note $c3
-	notetype $0c, $c7
-	note $8b
-	note $c3
-	note $a2
-	note $80
+	note A_, 7
+
+Music_LakeOfRage_branch_ee75e: ; ee75e
+	notetype $8, $c7
+	octave 4
+	note D_, 15
+	octave 3
+	note A_, 3
+	octave 4
+	note D_, 3
+	note A_, 15
+	octave 5
+	note C_, 3
+	octave 4
+	note B_, 3
+	notetype $c, $c7
+	note G_, 11
+	note B_, 3
+	note A_, 2
+	note G_, 0
 	intensity $b0
-	note $7b
+	note F#, 11
 	intensity $b7
-	note $7f
-	notetype $08, $c3
-	octave3
-	note $83
-	note $73
-	note $53
-	note $1e
-	notetype $0c, $c3
-	octave4
-	note $10
-	note $50
-	note $80
-	note $00
-	note $50
-	note $80
+	note F#, 15
+	notetype $8, $c3
+	octave 3
+	note G_, 3
+	note F#, 3
+	note E_, 3
+	note C_, 14
+	notetype $c, $c3
+	octave 4
+	note C_, 0
+	note E_, 0
+	note G_, 0
+	note __, 0
+	note E_, 0
+	note G_, 0
 	intensity $c5
-	octave5
-	note $19
+	octave 5
+	note C_, 9
 	intensity $c3
-	octave4
-	note $a3
-	note $83
-	note $73
-	note $51
-	notetype $08, $c3
-	note $33
-	note $53
-	note $73
-	notetype $08, $c7
-	note $ab
-	notetype $08, $c3
-	octave3
-	note $83
-	note $73
-	note $53
-	octave4
-	note $13
-	octave3
-	note $c3
-	note $a3
-	octave4
-	note $53
-	note $33
-	note $13
-	note $83
-	note $73
-	note $53
-	notetype $08, $c7
-	note $7f
-	note $33
-	note $73
-	notetype $0c, $c7
-	note $af
-	loopchannel $00, $675e ; end
-; 0xee7c1
+	octave 4
+	note A_, 3
+	note G_, 3
+	note F#, 3
+	note E_, 1
+	notetype $8, $c3
+	note D_, 3
+	note E_, 3
+	note F#, 3
+	notetype $8, $c7
+	note A_, 11
+	notetype $8, $c3
+	octave 3
+	note G_, 3
+	note F#, 3
+	note E_, 3
+	octave 4
+	note C_, 3
+	octave 3
+	note B_, 3
+	note A_, 3
+	octave 4
+	note E_, 3
+	note D_, 3
+	note C_, 3
+	note G_, 3
+	note F#, 3
+	note E_, 3
+	notetype $8, $c7
+	note F#, 15
+	note D_, 3
+	note F#, 3
+	notetype $c, $c7
+	note A_, 15
+	loopchannel 0, Music_LakeOfRage_branch_ee75e
 
-_Music_LakeOfRage_Ch3: ; 0xee7c1
-	stereopanning $0f
-	notetype $0c, $16
-	octave3
-	note $83
-	note $01
-	note $83
-	note $05
-	note $73
-	note $01
-	note $73
-	note $01
-	note $53
-	octave3
-	note $33
-	octave2
-	note $a1
-	octave3
-	note $33
-	octave2
-	note $a1
-	octave3
-	note $31
-	note $51
-	note $63
-	note $11
-	note $63
-	note $11
-	note $61
-	note $71
-	note $83
-	note $31
-	note $83
-	note $31
-	note $81
-	note $c1
-	note $a1
-	note $31
-	note $71
-	note $a3
-	note $31
-	note $51
-	note $71
-	note $a1
-	note $71
-	note $a1
-	octave4
-	note $33
-	octave3
-	note $a1
-	octave4
-	note $31
-	note $71
-	octave3
-	note $53
-	note $11
-	note $53
-	note $11
-	note $51
-	note $11
-	note $83
-	note $11
-	note $83
-	note $11
-	note $81
-	note $11
-	note $73
-	note $31
-	note $73
-	note $31
-	note $71
-	note $31
-	note $a1
-	note $31
-	note $71
-	octave4
-	note $33
-	octave3
-	note $31
-	note $51
-	note $71
-	note $83
-	note $11
-	note $83
-	note $11
-	note $81
-	note $11
-	note $83
-	note $11
-	note $83
-	note $11
-	note $81
-	note $11
-	note $73
-	note $31
-	note $73
-	note $31
-	note $71
-	note $31
-	note $33
-	octave2
-	note $a1
-	octave3
-	note $33
-	octave2
-	note $a1
-	octave3
-	note $31
-	octave2
-	note $a1
-	loopchannel $00, $67d0 ; end
-; 0xee835
+Music_LakeOfRage_Ch3: ; ee7c1
+	stereopanning $f
+	notetype $c, $16
+	octave 3
+	note G_, 3
+	note __, 1
+	note G_, 3
+	note __, 5
+	note F#, 3
+	note __, 1
+	note F#, 3
+	note __, 1
+	note E_, 3
 
-_Music_LakeOfRage_Ch4: ; 0xee835
+Music_LakeOfRage_branch_ee7d0: ; ee7d0
+	octave 3
+	note D_, 3
+	octave 2
+	note A_, 1
+	octave 3
+	note D_, 3
+	octave 2
+	note A_, 1
+	octave 3
+	note D_, 1
+	note E_, 1
+	note F_, 3
+	note C_, 1
+	note F_, 3
+	note C_, 1
+	note F_, 1
+	note F#, 1
+	note G_, 3
+	note D_, 1
+	note G_, 3
+	note D_, 1
+	note G_, 1
+	note B_, 1
+	note A_, 1
+	note D_, 1
+	note F#, 1
+	note A_, 3
+	note D_, 1
+	note E_, 1
+	note F#, 1
+	note A_, 1
+	note F#, 1
+	note A_, 1
+	octave 4
+	note D_, 3
+	octave 3
+	note A_, 1
+	octave 4
+	note D_, 1
+	note F#, 1
+	octave 3
+	note E_, 3
+	note C_, 1
+	note E_, 3
+	note C_, 1
+	note E_, 1
+	note C_, 1
+	note G_, 3
+	note C_, 1
+	note G_, 3
+	note C_, 1
+	note G_, 1
+	note C_, 1
+	note F#, 3
+	note D_, 1
+	note F#, 3
+	note D_, 1
+	note F#, 1
+	note D_, 1
+	note A_, 1
+	note D_, 1
+	note F#, 1
+	octave 4
+	note D_, 3
+	octave 3
+	note D_, 1
+	note E_, 1
+	note F#, 1
+	note G_, 3
+	note C_, 1
+	note G_, 3
+	note C_, 1
+	note G_, 1
+	note C_, 1
+	note G_, 3
+	note C_, 1
+	note G_, 3
+	note C_, 1
+	note G_, 1
+	note C_, 1
+	note F#, 3
+	note D_, 1
+	note F#, 3
+	note D_, 1
+	note F#, 1
+	note D_, 1
+	note D_, 3
+	octave 2
+	note A_, 1
+	octave 3
+	note D_, 3
+	octave 2
+	note A_, 1
+	octave 3
+	note D_, 1
+	octave 2
+	note A_, 1
+	loopchannel 0, Music_LakeOfRage_branch_ee7d0
+
+Music_LakeOfRage_Ch4: ; ee835
 	stereopanning $f0
-	togglenoise $03
-	notetype $0c
-	note $31
-	note $30
-	note $30
-	note $81
-	note $31
-	note $30
-	note $30
-	note $75
-	note $31
-	note $30
-	note $30
-	note $81
-	note $31
-	note $30
-	note $30
-	note $72
-	note $30
-	note $30
-	note $30
-	loopchannel $00, $683b ; end
-; 0xee852
+	togglenoise $3
+	notetype $c
+
+Music_LakeOfRage_branch_ee83b: ; ee83b
+	note D_, 1
+	note D_, 0
+	note D_, 0
+	note G_, 1
+	note D_, 1
+	note D_, 0
+	note D_, 0
+	note F#, 5
+	note D_, 1
+	note D_, 0
+	note D_, 0
+	note G_, 1
+	note D_, 1
+	note D_, 0
+	note D_, 0
+	note F#, 2
+	note D_, 0
+	note D_, 0
+	note D_, 0
+	loopchannel 0, Music_LakeOfRage_branch_ee83b
+; ee852

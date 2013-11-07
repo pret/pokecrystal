@@ -1,473 +1,472 @@
-_Music_PokemonMarch: ; 0xf6e23
-	db $c0
-	dw _Music_PokemonMarch_Ch1
-	db $01
-	dw _Music_PokemonMarch_Ch2
-	db $02
-	dw _Music_PokemonMarch_Ch3
-	db $03
-	dw _Music_PokemonMarch_Ch4
-; 0xf6e2f
+Music_PokemonMarch: ; f6e23
+	dbw $c0, Music_PokemonMarch_Ch1
+	dbw $01, Music_PokemonMarch_Ch2
+	dbw $02, Music_PokemonMarch_Ch3
+	dbw $03, Music_PokemonMarch_Ch4
+; f6e2f
 
-_Music_PokemonMarch_Ch1: ; 0xf6e2f
-	tempo $9000
+
+Music_PokemonMarch_Ch1: ; f6e2f
+	tempo 144
 	volume $77
 	stereopanning $f0
-	dutycycle $03
-	tone $0100
-	notetype $0c, $42
-	octave3
-	note $33
+	dutycycle $3
+	tone $0001
+	notetype $c, $42
+	octave 3
+	note D_, 3
 	intensity $62
-	note $33
+	note D_, 3
 	intensity $82
-	note $33
+	note D_, 3
 	intensity $a2
-	note $33
-	notetype $08, $a2
-	callchannel _Music_PokemonMarch_sub_0xf6eae
-	note $41
-	note $11
-	note $41
-	note $11
-	callchannel _Music_PokemonMarch_sub_0xf6eae
-	note $41
-	note $11
-	note $41
-	note $81
-	callchannel _Music_PokemonMarch_sub_0xf6eae
-	note $11
-	note $11
-	note $41
-	note $11
-	callchannel _Music_PokemonMarch_sub_0xf6eae
-	note $41
-	note $11
-	note $21
-	note $41
-	callchannel _Music_PokemonMarch_sub_0xf6eb8
-	note $61
-	note $31
-	note $61
-	note $31
-	callchannel _Music_PokemonMarch_sub_0xf6eb8
-	note $61
-	note $31
-	note $61
-	note $a1
-	callchannel _Music_PokemonMarch_sub_0xf6eb8
-	note $31
-	note $31
-	note $61
-	note $31
-	callchannel _Music_PokemonMarch_sub_0xf6eb8
-	note $61
-	note $31
-	note $61
-	note $81
-	callchannel _Music_PokemonMarch_sub_0xf6eb8
-	note $61
-	note $31
-	note $61
-	note $31
-	callchannel _Music_PokemonMarch_sub_0xf6eae
-	note $41
-	note $11
-	note $41
-	note $11
-	octave2
-	note $b1
-	note $b1
-	octave3
-	note $11
-	note $31
-	note $21
-	note $11
-	octave2
-	note $b1
-	note $03
-	note $41
-	note $03
-	octave3
-	note $41
-	note $41
-	note $61
-	note $81
-	note $71
-	note $61
-	note $43
-	note $61
-	note $83
-	note $b1
-	loopchannel $00, $6e4c ; end
-; 0xf6eae
+	note D_, 3
+	notetype $8, $a2
 
-_Music_PokemonMarch_sub_0xf6eae: ; 0xf6eae
-; subroutine
-	note $03
-	octave3
-	note $40
-	note $30
-	note $41
-	note $01
-	note $41
-	note $41
-	note $01
-	endchannel ; end
-; 0xf6eb8
+Music_PokemonMarch_branch_f6e4c: ; f6e4c
+	callchannel Music_PokemonMarch_branch_f6eae
+	note D#, 1
+	note C_, 1
+	note D#, 1
+	note C_, 1
+	callchannel Music_PokemonMarch_branch_f6eae
+	note D#, 1
+	note C_, 1
+	note D#, 1
+	note G_, 1
+	callchannel Music_PokemonMarch_branch_f6eae
+	note C_, 1
+	note C_, 1
+	note D#, 1
+	note C_, 1
+	callchannel Music_PokemonMarch_branch_f6eae
+	note D#, 1
+	note C_, 1
+	note C#, 1
+	note D#, 1
+	callchannel Music_PokemonMarch_branch_f6eb8
+	note F_, 1
+	note D_, 1
+	note F_, 1
+	note D_, 1
+	callchannel Music_PokemonMarch_branch_f6eb8
+	note F_, 1
+	note D_, 1
+	note F_, 1
+	note A_, 1
+	callchannel Music_PokemonMarch_branch_f6eb8
+	note D_, 1
+	note D_, 1
+	note F_, 1
+	note D_, 1
+	callchannel Music_PokemonMarch_branch_f6eb8
+	note F_, 1
+	note D_, 1
+	note F_, 1
+	note G_, 1
+	callchannel Music_PokemonMarch_branch_f6eb8
+	note F_, 1
+	note D_, 1
+	note F_, 1
+	note D_, 1
+	callchannel Music_PokemonMarch_branch_f6eae
+	note D#, 1
+	note C_, 1
+	note D#, 1
+	note C_, 1
+	octave 2
+	note A#, 1
+	note A#, 1
+	octave 3
+	note C_, 1
+	note D_, 1
+	note C#, 1
+	note C_, 1
+	octave 2
+	note A#, 1
+	note __, 3
+	note D#, 1
+	note __, 3
+	octave 3
+	note D#, 1
+	note D#, 1
+	note F_, 1
+	note G_, 1
+	note F#, 1
+	note F_, 1
+	note D#, 3
+	note F_, 1
+	note G_, 3
+	note A#, 1
+	loopchannel 0, Music_PokemonMarch_branch_f6e4c
+; f6eae
 
-_Music_PokemonMarch_sub_0xf6eb8: ; 0xf6eb8
-; subroutine
-	note $03
-	note $60
-	note $50
-	note $61
-	note $01
-	note $61
-	note $61
-	note $01
-	endchannel ; end
-; 0xf6ec1
+Music_PokemonMarch_branch_f6eae: ; f6eae
+	note __, 3
+	octave 3
+	note D#, 0
+	note D_, 0
+	note D#, 1
+	note __, 1
+	note D#, 1
+	note D#, 1
+	note __, 1
+	endchannel
+; f6eb8
 
-_Music_PokemonMarch_Ch2: ; 0xf6ec1
-	dutycycle $02
+Music_PokemonMarch_branch_f6eb8: ; f6eb8
+	note __, 3
+	note F_, 0
+	note E_, 0
+	note F_, 1
+	note __, 1
+	note F_, 1
+	note F_, 1
+	note __, 1
+	endchannel
+
+Music_PokemonMarch_Ch2: ; f6ec1
+	dutycycle $2
 	vibrato $10, $22
-	notetype $0c, $b2
-	octave3
-	note $83
-	note $83
-	note $83
-	note $83
-	notetype $0c, $b7
-	octave3
-	note $9b
-	notetype $08, $b3
-	note $41
-	note $91
-	note $b1
-	octave4
-	note $11
-	note $0f
-	note $05
-	notetype $08, $b7
-	octave3
-	note $9f
-	notetype $08, $b3
-	note $41
-	note $93
-	note $b1
-	octave4
-	note $13
-	note $21
-	note $13
-	note $21
-	note $13
-	note $21
-	note $11
-	octave3
-	note $b1
-	note $91
-	notetype $08, $b7
-	note $bf
-	notetype $08, $b3
-	note $b1
-	note $61
-	note $b1
-	octave4
-	note $11
-	note $31
-	note $0f
-	note $05
-	notetype $08, $b7
-	octave3
-	note $bf
-	notetype $08, $b3
-	note $61
-	note $b3
-	octave4
-	note $11
-	note $33
-	note $41
-	note $33
-	note $41
-	note $33
-	note $41
-	note $31
-	note $11
-	octave3
-	note $c1
-	notetype $08, $b7
-	note $bf
-	notetype $08, $b3
-	note $a1
-	note $b3
-	octave4
-	note $11
-	notetype $08, $b7
-	octave3
-	note $9f
-	notetype $08, $b3
-	note $b1
-	note $93
-	note $61
-	note $41
-	note $41
-	note $61
-	note $81
-	note $71
-	note $61
-	note $41
-	note $01
-	octave4
-	note $40
-	note $30
-	note $40
-	note $04
-	octave3
-	note $81
-	note $81
-	note $91
-	note $b1
-	note $a1
-	note $91
-	note $81
-	note $01
-	octave4
-	note $80
-	note $70
-	note $80
-	note $04
-	loopchannel $00, $6ece ; end
-; 0xf6f4d
+	notetype $c, $b2
+	octave 3
+	note G_, 3
+	note G_, 3
+	note G_, 3
+	note G_, 3
 
-_Music_PokemonMarch_Ch3: ; 0xf6f4d
-	stereopanning $0f
-	notetype $0c, $16
-	note $0f
-	notetype $08, $16
-	callchannel _Music_PokemonMarch_sub_0xf6fe8
-	note $01
-	octave4
-	note $41
-	callchannel _Music_PokemonMarch_sub_0xf6fe8
-	octave4
-	note $91
-	note $41
-	callchannel _Music_PokemonMarch_sub_0xf6fe8
-	note $01
-	octave4
-	note $41
-	octave3
-	note $91
-	note $01
-	octave4
-	note $41
-	octave3
-	note $41
-	note $01
-	octave4
-	note $41
-	octave3
-	note $91
-	note $01
-	octave4
-	note $41
-	octave3
-	note $41
-	note $81
-	note $91
-	octave3
-	note $b1
-	note $01
-	octave4
-	note $61
-	octave3
-	note $61
-	note $01
-	octave4
-	note $61
-	octave3
-	note $81
-	note $01
-	octave4
-	note $61
-	octave3
-	note $a1
-	note $00
-	octave4
-	note $61
-	note $00
-	loopchannel $03, $6f7b
-	octave3
-	note $b1
-	note $01
-	octave4
-	note $61
-	octave3
-	note $61
-	note $01
-	octave4
-	note $61
-	octave3
-	note $b1
-	note $01
-	octave4
-	note $61
-	note $31
-	note $11
-	octave3
-	note $c1
-	note $b1
-	note $01
-	octave4
-	note $61
-	octave3
-	note $61
-	note $01
-	octave4
-	note $61
-	octave3
-	note $81
-	note $01
-	octave4
-	note $61
-	octave3
-	note $61
-	note $81
-	note $b1
-	note $91
-	note $01
-	octave4
-	note $41
-	octave3
-	note $41
-	note $01
-	octave4
-	note $41
-	octave3
-	note $61
-	note $01
-	octave4
-	note $41
-	octave3
-	note $91
-	note $01
-	octave4
-	note $11
-	note $41
-	note $41
-	note $61
-	note $81
-	note $71
-	note $61
-	note $41
-	note $03
-	octave3
-	note $41
-	note $03
-	octave4
-	note $81
-	note $81
-	note $91
-	note $b1
-	note $a1
-	note $91
-	note $81
-	note $01
-	note $41
-	note $61
-	note $01
-	note $91
-	loopchannel $00, $6f56 ; end
-; 0xf6fe8
+Music_PokemonMarch_branch_f6ece: ; f6ece
+	notetype $c, $b7
+	octave 3
+	note G#, 11
+	notetype $8, $b3
+	note D#, 1
+	note G#, 1
+	note A#, 1
+	octave 4
+	note C_, 1
+	note __, 15
+	note __, 5
+	notetype $8, $b7
+	octave 3
+	note G#, 15
+	notetype $8, $b3
+	note D#, 1
+	note G#, 3
+	note A#, 1
+	octave 4
+	note C_, 3
+	note C#, 1
+	note C_, 3
+	note C#, 1
+	note C_, 3
+	note C#, 1
+	note C_, 1
+	octave 3
+	note A#, 1
+	note G#, 1
+	notetype $8, $b7
+	note A#, 15
+	notetype $8, $b3
+	note A#, 1
+	note F_, 1
+	note A#, 1
+	octave 4
+	note C_, 1
+	note D_, 1
+	note __, 15
+	note __, 5
+	notetype $8, $b7
+	octave 3
+	note A#, 15
+	notetype $8, $b3
+	note F_, 1
+	note A#, 3
+	octave 4
+	note C_, 1
+	note D_, 3
+	note D#, 1
+	note D_, 3
+	note D#, 1
+	note D_, 3
+	note D#, 1
+	note D_, 1
+	note C_, 1
+	octave 3
+	note B_, 1
+	notetype $8, $b7
+	note A#, 15
+	notetype $8, $b3
+	note A_, 1
+	note A#, 3
+	octave 4
+	note C_, 1
+	notetype $8, $b7
+	octave 3
+	note G#, 15
+	notetype $8, $b3
+	note A#, 1
+	note G#, 3
+	note F_, 1
+	note D#, 1
+	note D#, 1
+	note F_, 1
+	note G_, 1
+	note F#, 1
+	note F_, 1
+	note D#, 1
+	note __, 1
+	octave 4
+	note D#, 0
+	note D_, 0
+	note D#, 0
+	note __, 4
+	octave 3
+	note G_, 1
+	note G_, 1
+	note G#, 1
+	note A#, 1
+	note A_, 1
+	note G#, 1
+	note G_, 1
+	note __, 1
+	octave 4
+	note G_, 0
+	note F#, 0
+	note G_, 0
+	note __, 4
+	loopchannel 0, Music_PokemonMarch_branch_f6ece
 
-_Music_PokemonMarch_sub_0xf6fe8: ; 0xf6fe8
-; subroutine
-	octave3
-	note $91
-	note $01
-	octave4
-	note $41
-	octave3
-	note $41
-	note $01
-	octave4
-	note $41
-	octave3
-	note $61
-	note $01
-	octave4
-	note $41
-	octave3
-	note $81
-	endchannel ; end
-; 0xf6ffa
+Music_PokemonMarch_Ch3: ; f6f4d
+	stereopanning $f
+	notetype $c, $16
+	note __, 15
+	notetype $8, $16
 
-_Music_PokemonMarch_Ch4: ; 0xf6ffa
+Music_PokemonMarch_branch_f6f56: ; f6f56
+	callchannel Music_PokemonMarch_branch_f6fe8
+	note __, 1
+	octave 4
+	note D#, 1
+	callchannel Music_PokemonMarch_branch_f6fe8
+	octave 4
+	note G#, 1
+	note D#, 1
+	callchannel Music_PokemonMarch_branch_f6fe8
+	note __, 1
+	octave 4
+	note D#, 1
+	octave 3
+	note G#, 1
+	note __, 1
+	octave 4
+	note D#, 1
+	octave 3
+	note D#, 1
+	note __, 1
+	octave 4
+	note D#, 1
+	octave 3
+	note G#, 1
+	note __, 1
+	octave 4
+	note D#, 1
+	octave 3
+	note D#, 1
+	note G_, 1
+	note G#, 1
+
+Music_PokemonMarch_branch_f6f7b: ; f6f7b
+	octave 3
+	note A#, 1
+	note __, 1
+	octave 4
+	note F_, 1
+	octave 3
+	note F_, 1
+	note __, 1
+	octave 4
+	note F_, 1
+	octave 3
+	note G_, 1
+	note __, 1
+	octave 4
+	note F_, 1
+	octave 3
+	note A_, 1
+	note __, 0
+	octave 4
+	note F_, 1
+	note __, 0
+	loopchannel 3, Music_PokemonMarch_branch_f6f7b
+	octave 3
+	note A#, 1
+	note __, 1
+	octave 4
+	note F_, 1
+	octave 3
+	note F_, 1
+	note __, 1
+	octave 4
+	note F_, 1
+	octave 3
+	note A#, 1
+	note __, 1
+	octave 4
+	note F_, 1
+	note D_, 1
+	note C_, 1
+	octave 3
+	note B_, 1
+	note A#, 1
+	note __, 1
+	octave 4
+	note F_, 1
+	octave 3
+	note F_, 1
+	note __, 1
+	octave 4
+	note F_, 1
+	octave 3
+	note G_, 1
+	note __, 1
+	octave 4
+	note F_, 1
+	octave 3
+	note F_, 1
+	note G_, 1
+	note A#, 1
+	note G#, 1
+	note __, 1
+	octave 4
+	note D#, 1
+	octave 3
+	note D#, 1
+	note __, 1
+	octave 4
+	note D#, 1
+	octave 3
+	note F_, 1
+	note __, 1
+	octave 4
+	note D#, 1
+	octave 3
+	note G#, 1
+	note __, 1
+	octave 4
+	note C_, 1
+	note D#, 1
+	note D#, 1
+	note F_, 1
+	note G_, 1
+	note F#, 1
+	note F_, 1
+	note D#, 1
+	note __, 3
+	octave 3
+	note D#, 1
+	note __, 3
+	octave 4
+	note G_, 1
+	note G_, 1
+	note G#, 1
+	note A#, 1
+	note A_, 1
+	note G#, 1
+	note G_, 1
+	note __, 1
+	note D#, 1
+	note F_, 1
+	note __, 1
+	note G#, 1
+	loopchannel 0, Music_PokemonMarch_branch_f6f56
+; f6fe8
+
+Music_PokemonMarch_branch_f6fe8: ; f6fe8
+	octave 3
+	note G#, 1
+	note __, 1
+	octave 4
+	note D#, 1
+	octave 3
+	note D#, 1
+	note __, 1
+	octave 4
+	note D#, 1
+	octave 3
+	note F_, 1
+	note __, 1
+	octave 4
+	note D#, 1
+	octave 3
+	note G_, 1
+	endchannel
+
+Music_PokemonMarch_Ch4: ; f6ffa
 	stereopanning $f0
-	togglenoise $05
-	notetype $08
-	callchannel _Music_PokemonMarch_sub_0xf704c
-	callchannel _Music_PokemonMarch_sub_0xf7042
-	note $13
-	note $11
-	note $13
-	note $11
-	note $13
-	note $14
-	notetype $06
-	note $30
-	note $30
-	note $20
-	note $20
-	notetype $08
-	callchannel _Music_PokemonMarch_sub_0xf7042
-	callchannel _Music_PokemonMarch_sub_0xf704c
-	callchannel _Music_PokemonMarch_sub_0xf7042
-	callchannel _Music_PokemonMarch_sub_0xf704c
-	callchannel _Music_PokemonMarch_sub_0xf7042
-	callchannel _Music_PokemonMarch_sub_0xf704c
-	callchannel _Music_PokemonMarch_sub_0xf7042
-	callchannel _Music_PokemonMarch_sub_0xf704c
-	note $23
-	note $21
-	note $23
-	note $21
-	note $25
-	note $11
-	notetype $04
-	note $04
-	notetype $06
-	note $30
-	note $30
-	notetype $08
-	callchannel _Music_PokemonMarch_sub_0xf704c
-	loopchannel $00, $7003 ; end
-; 0xf7042
+	togglenoise $5
+	notetype $8
+	callchannel Music_PokemonMarch_branch_f704c
 
-_Music_PokemonMarch_sub_0xf7042: ; 0xf7042
-; subroutine
-	note $13
-	note $11
-	note $13
-	note $11
-	note $13
-	note $31
-	note $31
-	note $21
-	note $21
-	endchannel ; end
-; 0xf704c
+Music_PokemonMarch_branch_f7003: ; f7003
+	callchannel Music_PokemonMarch_branch_f7042
+	note C_, 3
+	note C_, 1
+	note C_, 3
+	note C_, 1
+	note C_, 3
+	note C_, 4
+	notetype $6
+	note D_, 0
+	note D_, 0
+	note C#, 0
+	note C#, 0
+	notetype $8
+	callchannel Music_PokemonMarch_branch_f7042
+	callchannel Music_PokemonMarch_branch_f704c
+	callchannel Music_PokemonMarch_branch_f7042
+	callchannel Music_PokemonMarch_branch_f704c
+	callchannel Music_PokemonMarch_branch_f7042
+	callchannel Music_PokemonMarch_branch_f704c
+	callchannel Music_PokemonMarch_branch_f7042
+	callchannel Music_PokemonMarch_branch_f704c
+	note C#, 3
+	note C#, 1
+	note C#, 3
+	note C#, 1
+	note C#, 5
+	note C_, 1
+	notetype $4
+	note __, 4
+	notetype $6
+	note D_, 0
+	note D_, 0
+	notetype $8
+	callchannel Music_PokemonMarch_branch_f704c
+	loopchannel 0, Music_PokemonMarch_branch_f7003
+; f7042
 
-_Music_PokemonMarch_sub_0xf704c: ; 0xf704c
-; subroutine
-	note $13
-	note $11
-	note $13
-	note $13
-	note $13
-	note $21
-	note $31
-	note $21
-	endchannel ; end
-; 0xf7055
+Music_PokemonMarch_branch_f7042: ; f7042
+	note C_, 3
+	note C_, 1
+	note C_, 3
+	note C_, 1
+	note C_, 3
+	note D_, 1
+	note D_, 1
+	note C#, 1
+	note C#, 1
+	endchannel
+; f704c
+
+Music_PokemonMarch_branch_f704c: ; f704c
+	note C_, 3
+	note C_, 1
+	note C_, 3
+	note C_, 3
+	note C_, 3
+	note C#, 1
+	note D_, 1
+	note C#, 1
+	endchannel
+; f7055

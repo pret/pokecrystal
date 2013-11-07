@@ -1,357 +1,349 @@
-_Music_VermilionCity: ; 0xeb676
-	db $80
-	dw _Music_VermilionCity_Ch1
-	db $01
-	dw _Music_VermilionCity_Ch2
-	db $02
-	dw _Music_VermilionCity_Ch3
-; 0xeb67f
+Music_VermilionCity: ; eb676
+	dbw $80, Music_VermilionCity_Ch1
+	dbw $01, Music_VermilionCity_Ch2
+	dbw $02, Music_VermilionCity_Ch3
+; eb67f
 
-; 0xeb67f
-	db $03
-; 0xeb680
+INCBIN "baserom.gbc", $eb67f, $eb680 - $eb67f
 
-_Music_VermilionCity_Ch1: ; 0xeb680
-	stereopanning $0f
-	tempo $b000
+Music_VermilionCity_Ch1: ; eb680
+	stereopanning $f
+	tempo 176
 	volume $77
-	dutycycle $02
-	notetype $0c, $65
-	octave4
-	note $c3
-	note $93
-	note $73
-	note $53
-	note $33
-	octave3
-	note $c3
-	note $a1
-	note $c0
-	octave4
-	note $30
-	note $50
-	note $90
-	note $c0
-	octave5
-	note $30
+	dutycycle $2
+	notetype $c, $65
+	octave 4
+	note B_, 3
+	note G#, 3
+	note F#, 3
+	note E_, 3
+	note D_, 3
+	octave 3
+	note B_, 3
+	note A_, 1
+	note B_, 0
+	octave 4
+	note D_, 0
+	note E_, 0
+	note G#, 0
+	note B_, 0
+	octave 5
+	note D_, 0
 	vibrato $10, $23
-	dutycycle $01
-	notetype $0c, $85
-	callchannel _Music_VermilionCity_sub_0xeb6f9
-	note $63
-	octave4
-	note $33
-	note $23
-	note $53
-	callchannel _Music_VermilionCity_sub_0xeb6f9
-	callchannel _Music_VermilionCity_sub_0xeb701
-	dutycycle $02
-	notetype $0c, $85
-	callchannel _Music_VermilionCity_sub_0xeb6f9
-	note $63
-	octave4
-	note $33
-	note $50
-	note $20
-	octave3
-	note $a0
-	note $50
-	octave4
-	note $20
-	octave3
-	note $a0
-	note $50
-	note $10
-	callchannel _Music_VermilionCity_sub_0xeb6f9
-	callchannel _Music_VermilionCity_sub_0xeb701
+
+Music_VermilionCity_branch_eb6a0: ; eb6a0
+	dutycycle $1
+	notetype $c, $85
+	callchannel Music_VermilionCity_branch_eb6f9
+	note F_, 3
+	octave 4
+	note D_, 3
+	note C#, 3
+	note E_, 3
+	callchannel Music_VermilionCity_branch_eb6f9
+	callchannel Music_VermilionCity_branch_eb701
+	dutycycle $2
+	notetype $c, $85
+	callchannel Music_VermilionCity_branch_eb6f9
+	note F_, 3
+	octave 4
+	note D_, 3
+	note E_, 0
+	note C#, 0
+	octave 3
+	note A_, 0
+	note E_, 0
+	octave 4
+	note C#, 0
+	octave 3
+	note A_, 0
+	note E_, 0
+	note C_, 0
+	callchannel Music_VermilionCity_branch_eb6f9
+	callchannel Music_VermilionCity_branch_eb701
 	intensity $93
-	dutycycle $00
-	note $01
-	note $71
-	note $01
-	note $71
-	note $01
-	note $71
-	note $01
-	note $71
-	callchannel _Music_VermilionCity_sub_0xeb70c
-	callchannel _Music_VermilionCity_sub_0xeb70c
+	dutycycle $0
+	note __, 1
+	note F#, 1
+	note __, 1
+	note F#, 1
+	note __, 1
+	note F#, 1
+	note __, 1
+	note F#, 1
+	callchannel Music_VermilionCity_branch_eb70c
+	callchannel Music_VermilionCity_branch_eb70c
 	intensity $87
-	dutycycle $02
-	octave4
-	note $37
-	octave3
-	note $97
-	note $57
-	note $c7
-	note $a3
-	note $93
-	note $73
-	note $53
-	octave2
-	note $c3
-	note $93
-	note $c3
-	octave3
-	note $33
-	loopchannel $00, $76a0 ; end
-; 0xeb6f9
+	dutycycle $2
+	octave 4
+	note D_, 7
+	octave 3
+	note G#, 7
+	note E_, 7
+	note B_, 7
+	note A_, 3
+	note G#, 3
+	note F#, 3
+	note E_, 3
+	octave 2
+	note B_, 3
+	note G#, 3
+	note B_, 3
+	octave 3
+	note D_, 3
+	loopchannel 0, Music_VermilionCity_branch_eb6a0
+; eb6f9
 
-_Music_VermilionCity_sub_0xeb6f9: ; 0xeb6f9
-; subroutine
-	octave3
-	note $23
-	note $53
-	note $71
-	note $a1
-	note $51
-	note $91
-	endchannel ; end
-; 0xeb701
+Music_VermilionCity_branch_eb6f9: ; eb6f9
+	octave 3
+	note C#, 3
+	note E_, 3
+	note F#, 1
+	note A_, 1
+	note E_, 1
+	note G#, 1
+	endchannel
+; eb701
 
-_Music_VermilionCity_sub_0xeb701: ; 0xeb701
-; subroutine
-	note $31
-	note $61
-	note $a1
-	octave4
-	note $31
-	note $51
-	note $21
-	octave3
-	note $a1
-	note $51
-	endchannel ; end
-; 0xeb70c
+Music_VermilionCity_branch_eb701: ; eb701
+	note D_, 1
+	note F_, 1
+	note A_, 1
+	octave 4
+	note D_, 1
+	note E_, 1
+	note C#, 1
+	octave 3
+	note A_, 1
+	note E_, 1
+	endchannel
+; eb70c
 
-_Music_VermilionCity_sub_0xeb70c: ; 0xeb70c
-; subroutine
-	note $01
-	note $71
-	note $a1
-	note $71
-	octave4
-	note $31
-	octave3
-	note $71
-	note $a1
-	note $71
-	note $01
-	note $91
-	note $c1
-	note $91
-	octave4
-	note $51
-	octave3
-	note $91
-	note $c1
-	note $91
-	endchannel ; end
-; 0xeb721
+Music_VermilionCity_branch_eb70c: ; eb70c
+	note __, 1
+	note F#, 1
+	note A_, 1
+	note F#, 1
+	octave 4
+	note D_, 1
+	octave 3
+	note F#, 1
+	note A_, 1
+	note F#, 1
+	note __, 1
+	note G#, 1
+	note B_, 1
+	note G#, 1
+	octave 4
+	note E_, 1
+	octave 3
+	note G#, 1
+	note B_, 1
+	note G#, 1
+	endchannel
 
-_Music_VermilionCity_Ch2: ; 0xeb721
+Music_VermilionCity_Ch2: ; eb721
 	stereopanning $ff
-	dutycycle $03
-	notetype $0c, $77
+	dutycycle $3
+	notetype $c, $77
 	vibrato $10, $23
-	octave5
-	note $53
-	note $33
-	octave4
-	note $c3
-	note $93
-	note $73
-	note $53
-	note $73
-	note $93
-	notetype $0c, $97
-	callchannel _Music_VermilionCity_sub_0xeb768
-	note $91
-	callchannel _Music_VermilionCity_sub_0xeb768
-	note $51
+	octave 5
+	note E_, 3
+	note D_, 3
+	octave 4
+	note B_, 3
+	note G#, 3
+	note F#, 3
+	note E_, 3
+	note F#, 3
+	note G#, 3
+
+Music_VermilionCity_branch_eb735: ; eb735
+	notetype $c, $97
+	callchannel Music_VermilionCity_branch_eb768
+	note G#, 1
+	callchannel Music_VermilionCity_branch_eb768
+	note E_, 1
 	intensity $b7
-	octave3
-	note $c3
-	octave4
-	note $23
-	note $33
-	note $53
-	callchannel _Music_VermilionCity_sub_0xeb77e
-	callchannel _Music_VermilionCity_sub_0xeb77e
-	note $75
-	note $50
-	note $70
-	note $57
-	note $a5
-	note $90
-	note $a0
-	note $97
-	note $9d
-	notetype $06, $57
-	note $00
-	octave4
-	note $50
-	note $90
-	note $c0
-	notetype $0c, $87
-	octave5
-	note $5f
-	loopchannel $00, $7735 ; end
-; 0xeb768
+	octave 3
+	note B_, 3
+	octave 4
+	note C#, 3
+	note D_, 3
+	note E_, 3
+	callchannel Music_VermilionCity_branch_eb77e
+	callchannel Music_VermilionCity_branch_eb77e
+	note F#, 5
+	note E_, 0
+	note F#, 0
+	note E_, 7
+	note A_, 5
+	note G#, 0
+	note A_, 0
+	note G#, 7
+	note G#, 13
+	notetype $6, $57
+	note __, 0
+	octave 4
+	note E_, 0
+	note G#, 0
+	note B_, 0
+	notetype $c, $87
+	octave 5
+	note E_, 15
+	loopchannel 0, Music_VermilionCity_branch_eb735
+; eb768
 
-_Music_VermilionCity_sub_0xeb768: ; 0xeb768
-; subroutine
-	octave1
-	note $a7
-	octave2
-	note $73
-	note $53
-	note $35
-	note $20
-	note $30
-	note $57
-	octave1
-	note $a7
-	octave2
-	note $73
-	note $53
-	note $35
-	note $50
-	note $30
-	note $21
-	note $51
-	octave1
-	note $a1
-	endchannel ; end
-; 0xeb77e
+Music_VermilionCity_branch_eb768: ; eb768
+	octave 1
+	note A_, 7
+	octave 2
+	note F#, 3
+	note E_, 3
+	note D_, 5
+	note C#, 0
+	note D_, 0
+	note E_, 7
+	octave 1
+	note A_, 7
+	octave 2
+	note F#, 3
+	note E_, 3
+	note D_, 5
+	note E_, 0
+	note D_, 0
+	note C#, 1
+	note E_, 1
+	octave 1
+	note A_, 1
+	endchannel
+; eb77e
 
-_Music_VermilionCity_sub_0xeb77e: ; 0xeb77e
-; subroutine
-	note $77
-	note $c7
-	note $a3
-	note $93
-	note $73
-	note $53
-	endchannel ; end
-; 0xeb785
+Music_VermilionCity_branch_eb77e: ; eb77e
+	note F#, 7
+	note B_, 7
+	note A_, 3
+	note G#, 3
+	note F#, 3
+	note E_, 3
+	endchannel
 
-_Music_VermilionCity_Ch3: ; 0xeb785
+Music_VermilionCity_Ch3: ; eb785
 	stereopanning $f0
 	vibrato $22, $23
-	notetype $0c, $25
-	octave2
-	note $53
-	note $c3
-	octave3
-	note $53
-	note $c3
-	note $33
-	note $53
-	note $31
-	octave3
-	note $c0
-	note $90
-	note $70
-	note $50
-	note $30
-	octave2
-	note $c0
-	notetype $0c, $22
-	callchannel _Music_VermilionCity_sub_0xeb7de
-	octave5
-	note $a5
+	notetype $c, $25
+	octave 2
+	note E_, 3
+	note B_, 3
+	octave 3
+	note E_, 3
+	note B_, 3
+	note D_, 3
+	note E_, 3
+	note D_, 1
+	octave 3
+	note B_, 0
+	note G#, 0
+	note F#, 0
+	note E_, 0
+	note D_, 0
+	octave 2
+	note B_, 0
+
+Music_VermilionCity_branch_eb79e: ; eb79e
+	notetype $c, $22
+	callchannel Music_VermilionCity_branch_eb7de
+	octave 5
+	note A_, 5
 	intensity $24
-	note $50
-	note $90
-	callchannel _Music_VermilionCity_sub_0xeb7de
-	note $a7
+	note E_, 0
+	note G#, 0
+	callchannel Music_VermilionCity_branch_eb7de
+	note A_, 7
 	intensity $14
-	octave3
-	note $33
-	note $23
-	octave2
-	note $c3
-	note $a3
-	octave3
-	note $31
-	note $03
-	note $30
-	note $30
-	callchannel _Music_VermilionCity_sub_0xeb7f5
-	octave4
-	note $31
-	octave3
-	note $31
-	note $01
-	note $31
-	callchannel _Music_VermilionCity_sub_0xeb7f5
+	octave 3
+	note D_, 3
+	note C#, 3
+	octave 2
+	note B_, 3
+	note A_, 3
+	octave 3
+	note D_, 1
+	note __, 3
+	note D_, 0
+	note D_, 0
+	callchannel Music_VermilionCity_branch_eb7f5
+	octave 4
+	note D_, 1
+	octave 3
+	note D_, 1
+	note __, 1
+	note D_, 1
+	callchannel Music_VermilionCity_branch_eb7f5
 	intensity $25
-	octave3
-	note $57
-	octave4
-	note $57
-	octave3
-	note $c7
-	octave4
-	note $57
-	octave2
-	note $5f
-	octave3
-	note $5d
+	octave 3
+	note E_, 7
+	octave 4
+	note E_, 7
+	octave 3
+	note B_, 7
+	octave 4
+	note E_, 7
+	octave 2
+	note E_, 15
+	octave 3
+	note E_, 13
 	intensity $22
-	octave5
-	note $50
-	note $90
-	loopchannel $00, $779e ; end
-; 0xeb7de
+	octave 5
+	note E_, 0
+	note G#, 0
+	loopchannel 0, Music_VermilionCity_branch_eb79e
+; eb7de
 
-_Music_VermilionCity_sub_0xeb7de: ; 0xeb7de
-; subroutine
-	octave5
-	note $a7
-	octave6
-	note $33
-	note $23
-	octave5
-	note $c5
-	note $a0
-	note $c0
-	octave6
-	note $27
-	octave5
-	note $a7
-	octave6
-	note $33
-	note $23
-	octave5
-	note $c5
-	octave6
-	note $20
-	octave5
-	note $c0
-	endchannel ; end
-; 0xeb7f5
+Music_VermilionCity_branch_eb7de: ; eb7de
+	octave 5
+	note A_, 7
+	octave 6
+	note D_, 3
+	note C#, 3
+	octave 5
+	note B_, 5
+	note A_, 0
+	note B_, 0
+	octave 6
+	note C#, 7
+	octave 5
+	note A_, 7
+	octave 6
+	note D_, 3
+	note C#, 3
+	octave 5
+	note B_, 5
+	octave 6
+	note C#, 0
+	octave 5
+	note B_, 0
+	endchannel
+; eb7f5
 
-_Music_VermilionCity_sub_0xeb7f5: ; 0xeb7f5
-; subroutine
-	note $a0
-	note $00
-	note $a1
-	note $01
-	note $71
-	note $51
-	note $03
-	note $50
-	note $50
-	octave4
-	note $50
-	note $00
-	note $31
-	note $01
-	octave3
-	note $c0
-	octave4
-	note $20
-	endchannel ; end
-; 0xeb808
+Music_VermilionCity_branch_eb7f5: ; eb7f5
+	note A_, 0
+	note __, 0
+	note A_, 1
+	note __, 1
+	note F#, 1
+	note E_, 1
+	note __, 3
+	note E_, 0
+	note E_, 0
+	octave 4
+	note E_, 0
+	note __, 0
+	note D_, 1
+	note __, 1
+	octave 3
+	note B_, 0
+	octave 4
+	note C#, 0
+	endchannel
+; eb808

@@ -1,401 +1,400 @@
-_Music_CeladonCity: ; 0xf435b
-	db $80
-	dw _Music_CeladonCity_Ch1
-	db $01
-	dw _Music_CeladonCity_Ch2
-	db $02
-	dw _Music_CeladonCity_Ch3
-; 0xf4364
+Music_CeladonCity: ; f435b
+	dbw $80, Music_CeladonCity_Ch1
+	dbw $01, Music_CeladonCity_Ch2
+	dbw $02, Music_CeladonCity_Ch3
+; f4364
 
-_Music_CeladonCity_Ch1: ; 0xf4364
-	tempo $9200
+
+Music_CeladonCity_Ch1: ; f4364
+	tempo 146
 	volume $77
-	tone $0100
-	stereopanning $0f
-	notetype $0c, $a6
-	octave3
-	note $a6
+	tone $0001
+
+Music_CeladonCity_branch_f436c: ; f436c
+	stereopanning $f
+	notetype $c, $a6
+	octave 3
+	note A_, 6
 	intensity $a1
-	note $90
-	note $a0
-	note $32
-	note $51
-	note $71
-	callchannel _Music_CeladonCity_sub_0xf43cc
-	note $31
-	note $70
-	note $a0
-	note $30
-	note $70
-	note $a0
-	note $70
-	loopchannel $03, $437d
-	note $31
-	note $80
-	note $c0
-	octave4
-	note $30
-	note $10
-	octave3
-	note $c0
-	note $80
-	callchannel _Music_CeladonCity_sub_0xf43cc
-	note $30
-	note $20
-	note $30
-	note $50
-	note $70
-	note $80
-	note $a0
-	note $c0
-	note $a1
-	note $81
-	note $71
-	note $51
-	note $7f
-	callchannel _Music_CeladonCity_sub_0xf43e1
-	callchannel _Music_CeladonCity_sub_0xf43fe
-	octave2
-	note $c1
-	note $b0
-	note $c0
-	octave3
-	note $30
-	note $80
-	note $a0
-	note $80
-	note $70
-	note $80
-	note $a0
-	note $90
-	note $a0
-	octave4
-	note $10
-	octave3
-	note $c0
-	note $a0
-	callchannel _Music_CeladonCity_sub_0xf43e1
-	callchannel _Music_CeladonCity_sub_0xf43fe
-	note $31
-	note $20
-	note $30
-	note $70
-	note $80
-	note $a0
-	note $80
-	note $a7
-	loopchannel $00, $436c ; end
-; 0xf43cc
+	note G#, 0
+	note A_, 0
+	note D_, 2
+	note E_, 1
+	note F#, 1
+	callchannel Music_CeladonCity_branch_f43cc
 
-_Music_CeladonCity_sub_0xf43cc: ; 0xf43cc
-; subroutine
-	note $31
-	note $80
-	note $c0
-	note $30
-	note $80
-	note $c0
-	note $80
-	loopchannel $03, $43cc
-	note $31
-	note $70
-	note $a0
-	octave4
-	note $30
-	note $20
-	note $30
-	octave3
-	note $a0
-	endchannel ; end
-; 0xf43e1
+Music_CeladonCity_branch_f437d: ; f437d
+	note D_, 1
+	note F#, 0
+	note A_, 0
+	note D_, 0
+	note F#, 0
+	note A_, 0
+	note F#, 0
+	loopchannel 3, Music_CeladonCity_branch_f437d
+	note D_, 1
+	note G_, 0
+	note B_, 0
+	octave 4
+	note D_, 0
+	note C_, 0
+	octave 3
+	note B_, 0
+	note G_, 0
+	callchannel Music_CeladonCity_branch_f43cc
+	note D_, 0
+	note C#, 0
+	note D_, 0
+	note E_, 0
+	note F#, 0
+	note G_, 0
+	note A_, 0
+	note B_, 0
+	note A_, 1
+	note G_, 1
+	note F#, 1
+	note E_, 1
+	note F#, 15
+	callchannel Music_CeladonCity_branch_f43e1
+	callchannel Music_CeladonCity_branch_f43fe
+	octave 2
+	note B_, 1
+	note A#, 0
+	note B_, 0
+	octave 3
+	note D_, 0
+	note G_, 0
+	note A_, 0
+	note G_, 0
+	note F#, 0
+	note G_, 0
+	note A_, 0
+	note G#, 0
+	note A_, 0
+	octave 4
+	note C_, 0
+	octave 3
+	note B_, 0
+	note A_, 0
+	callchannel Music_CeladonCity_branch_f43e1
+	callchannel Music_CeladonCity_branch_f43fe
+	note D_, 1
+	note C#, 0
+	note D_, 0
+	note F#, 0
+	note G_, 0
+	note A_, 0
+	note G_, 0
+	note A_, 7
+	loopchannel 0, Music_CeladonCity_branch_f436c
+; f43cc
 
-_Music_CeladonCity_sub_0xf43e1: ; 0xf43e1
-; subroutine
-	octave2
-	note $81
-	note $c0
-	octave3
-	note $30
-	loopchannel $04, $43e1
-	note $11
-	octave2
-	note $c0
-	octave3
-	note $10
-	note $30
-	note $50
-	note $70
-	note $a0
-	note $80
-	note $a0
-	note $c0
-	octave4
-	note $10
-	note $30
-	note $20
-	note $30
-	octave3
-	note $c0
-	endchannel ; end
-; 0xf43fe
+Music_CeladonCity_branch_f43cc: ; f43cc
+	note D_, 1
+	note G_, 0
+	note B_, 0
+	note D_, 0
+	note G_, 0
+	note B_, 0
+	note G_, 0
+	loopchannel 3, Music_CeladonCity_branch_f43cc
+	note D_, 1
+	note F#, 0
+	note A_, 0
+	octave 4
+	note D_, 0
+	note C#, 0
+	note D_, 0
+	octave 3
+	note A_, 0
+	endchannel
+; f43e1
 
-_Music_CeladonCity_sub_0xf43fe: ; 0xf43fe
-; subroutine
-	note $31
-	note $70
-	note $a0
-	loopchannel $04, $43fe
-	endchannel ; end
-; 0xf4406
+Music_CeladonCity_branch_f43e1: ; f43e1
+	octave 2
+	note G_, 1
+	note B_, 0
+	octave 3
+	note D_, 0
+	loopchannel 4, Music_CeladonCity_branch_f43e1
+	note C_, 1
+	octave 2
+	note B_, 0
+	octave 3
+	note C_, 0
+	note D_, 0
+	note E_, 0
+	note F#, 0
+	note A_, 0
+	note G_, 0
+	note A_, 0
+	note B_, 0
+	octave 4
+	note C_, 0
+	note D_, 0
+	note C#, 0
+	note D_, 0
+	octave 3
+	note B_, 0
+	endchannel
+; f43fe
 
-_Music_CeladonCity_Ch2: ; 0xf4406
+Music_CeladonCity_branch_f43fe: ; f43fe
+	note D_, 1
+	note F#, 0
+	note A_, 0
+	loopchannel 4, Music_CeladonCity_branch_f43fe
+	endchannel
+
+Music_CeladonCity_Ch2: ; f4406
 	vibrato $12, $34
-	dutycycle $02
+	dutycycle $2
 	stereopanning $f0
-	notetype $0c, $b7
-	octave4
-	note $30
-	note $20
-	note $30
-	note $50
-	note $70
-	note $50
-	note $70
-	note $80
-	note $a7
-	callchannel _Music_CeladonCity_sub_0xf4463
-	note $a3
-	note $73
-	note $a1
-	note $75
-	note $a0
-	note $80
-	note $70
-	note $80
-	note $a1
-	note $c1
-	note $83
-	note $c3
-	callchannel _Music_CeladonCity_sub_0xf4463
+	notetype $c, $b7
+	octave 4
+	note D_, 0
+	note C#, 0
+	note D_, 0
+	note E_, 0
+	note F#, 0
+	note E_, 0
+	note F#, 0
+	note G_, 0
+	note A_, 7
+
+Music_CeladonCity_branch_f441a: ; f441a
+	callchannel Music_CeladonCity_branch_f4463
+	note A_, 3
+	note F#, 3
+	note A_, 1
+	note F#, 5
+	note A_, 0
+	note G_, 0
+	note F#, 0
+	note G_, 0
+	note A_, 1
+	note B_, 1
+	note G_, 3
+	note B_, 3
+	callchannel Music_CeladonCity_branch_f4463
 	intensity $c1
-	note $a1
-	note $81
-	note $71
-	note $81
-	note $71
-	note $51
-	note $31
-	note $21
-	note $33
-	note $30
-	note $50
-	note $70
-	note $a0
+	note A_, 1
+	note G_, 1
+	note F#, 1
+	note G_, 1
+	note F#, 1
+	note E_, 1
+	note D_, 1
+	note C#, 1
+	note D_, 3
+	note D_, 0
+	note E_, 0
+	note F#, 0
+	note A_, 0
 	intensity $b3
-	octave5
-	note $35
+	octave 5
+	note D_, 5
 	intensity $a2
-	octave1
-	note $71
-	callchannel _Music_CeladonCity_sub_0xf4474
-	octave1
-	note $82
-	note $c0
-	note $a1
-	octave2
-	note $31
-	octave1
-	note $a5
-	note $71
-	callchannel _Music_CeladonCity_sub_0xf4474
-	octave1
-	note $a2
-	octave2
-	note $30
-	note $a3
-	note $35
+	octave 1
+	note F#, 1
+	callchannel Music_CeladonCity_branch_f4474
+	octave 1
+	note G_, 2
+	note B_, 0
+	note A_, 1
+	octave 2
+	note D_, 1
+	octave 1
+	note A_, 5
+	note F#, 1
+	callchannel Music_CeladonCity_branch_f4474
+	octave 1
+	note A_, 2
+	octave 2
+	note D_, 0
+	note A_, 3
+	note D_, 5
 	intensity $97
-	octave4
-	note $70
-	note $a0
-	octave5
-	note $3f
-	loopchannel $00, $441a ; end
-; 0xf4463
+	octave 4
+	note F#, 0
+	note A_, 0
+	octave 5
+	note D_, 15
+	loopchannel 0, Music_CeladonCity_branch_f441a
+; f4463
 
-_Music_CeladonCity_sub_0xf4463: ; 0xf4463
-; subroutine
+Music_CeladonCity_branch_f4463: ; f4463
 	intensity $b2
-	octave4
-	note $c3
-	note $83
-	note $c1
-	note $85
-	note $c0
-	note $80
-	note $a0
-	note $c0
-	octave5
-	note $11
-	octave4
-	note $c1
-	note $a7
-	endchannel ; end
-; 0xf4474
+	octave 4
+	note B_, 3
+	note G_, 3
+	note B_, 1
+	note G_, 5
+	note B_, 0
+	note G_, 0
+	note A_, 0
+	note B_, 0
+	octave 5
+	note C_, 1
+	octave 4
+	note B_, 1
+	note A_, 7
+	endchannel
+; f4474
 
-_Music_CeladonCity_sub_0xf4474: ; 0xf4474
-; subroutine
-	note $82
-	note $c0
-	octave2
-	note $33
-	octave1
-	note $81
-	note $c1
-	octave2
-	note $33
-	octave1
-	note $82
-	octave2
-	note $10
-	note $33
-	octave1
-	note $81
-	note $c1
-	octave2
-	note $33
-	octave1
-	note $a2
-	octave2
-	note $30
-	note $73
-	octave1
-	note $a1
-	octave2
-	note $31
-	note $73
-	endchannel ; end
-; 0xf4492
+Music_CeladonCity_branch_f4474: ; f4474
+	note G_, 2
+	note B_, 0
+	octave 2
+	note D_, 3
+	octave 1
+	note G_, 1
+	note B_, 1
+	octave 2
+	note D_, 3
+	octave 1
+	note G_, 2
+	octave 2
+	note C_, 0
+	note D_, 3
+	octave 1
+	note G_, 1
+	note B_, 1
+	octave 2
+	note D_, 3
+	octave 1
+	note A_, 2
+	octave 2
+	note D_, 0
+	note F#, 3
+	octave 1
+	note A_, 1
+	octave 2
+	note D_, 1
+	note F#, 3
+	endchannel
 
-_Music_CeladonCity_Ch3: ; 0xf4492
+Music_CeladonCity_Ch3: ; f4492
 	vibrato $12, $24
-	notetype $0c, $25
-	octave3
-	note $a1
-	note $01
-	note $71
-	note $01
-	note $37
-	callchannel _Music_CeladonCity_sub_0xf44fd
-	octave2
-	note $a1
-	note $01
-	octave3
-	note $33
-	loopchannel $03, $44a1
-	octave2
-	note $80
-	note $00
-	note $c0
-	note $00
-	octave3
-	note $32
-	octave2
-	note $70
-	callchannel _Music_CeladonCity_sub_0xf44fd
-	note $a0
-	note $00
-	octave3
-	note $30
-	note $00
-	octave3
-	note $72
-	octave2
-	note $90
-	note $a0
-	note $00
-	octave3
-	note $20
-	note $00
-	note $51
-	note $21
-	note $31
-	note $05
-	octave2
-	note $a1
-	note $05
+
+Music_CeladonCity_branch_f4495: ; f4495
+	notetype $c, $25
+	octave 3
+	note A_, 1
+	note __, 1
+	note F#, 1
+	note __, 1
+	note D_, 7
+	callchannel Music_CeladonCity_branch_f44fd
+
+Music_CeladonCity_branch_f44a1: ; f44a1
+	octave 2
+	note A_, 1
+	note __, 1
+	octave 3
+	note D_, 3
+	loopchannel 3, Music_CeladonCity_branch_f44a1
+	octave 2
+	note G_, 0
+	note __, 0
+	note B_, 0
+	note __, 0
+	octave 3
+	note D_, 2
+	octave 2
+	note F#, 0
+	callchannel Music_CeladonCity_branch_f44fd
+	note A_, 0
+	note __, 0
+	octave 3
+	note D_, 0
+	note __, 0
+	octave 3
+	note F#, 2
+	octave 2
+	note G#, 0
+	note A_, 0
+	note __, 0
+	octave 3
+	note C#, 0
+	note __, 0
+	note E_, 1
+	note C#, 1
+	note D_, 1
+	note __, 5
+	octave 2
+	note A_, 1
+	note __, 5
 	intensity $10
-	callchannel _Music_CeladonCity_sub_0xf4510
-	octave5
-	note $51
-	note $01
-	note $71
-	note $01
-	note $33
-	note $03
-	note $17
-	octave4
-	note $a1
-	note $c1
-	octave5
-	note $11
-	note $31
-	note $51
-	note $01
-	note $31
-	note $51
-	note $33
-	note $03
-	callchannel _Music_CeladonCity_sub_0xf4510
-	octave5
-	note $51
-	note $01
-	note $31
-	note $51
-	note $33
-	note $03
-	note $17
-	note $a1
-	note $81
-	note $71
-	note $51
-	note $71
-	note $51
-	note $31
-	note $51
-	note $31
-	note $05
-	loopchannel $00, $4495 ; end
-; 0xf44fd
+	callchannel Music_CeladonCity_branch_f4510
+	octave 5
+	note E_, 1
+	note __, 1
+	note F#, 1
+	note __, 1
+	note D_, 3
+	note __, 3
+	note C_, 7
+	octave 4
+	note A_, 1
+	note B_, 1
+	octave 5
+	note C_, 1
+	note D_, 1
+	note E_, 1
+	note __, 1
+	note D_, 1
+	note E_, 1
+	note D_, 3
+	note __, 3
+	callchannel Music_CeladonCity_branch_f4510
+	octave 5
+	note E_, 1
+	note __, 1
+	note D_, 1
+	note E_, 1
+	note D_, 3
+	note __, 3
+	note C_, 7
+	note A_, 1
+	note G_, 1
+	note F#, 1
+	note E_, 1
+	note F#, 1
+	note E_, 1
+	note D_, 1
+	note E_, 1
+	note D_, 1
+	note __, 5
+	loopchannel 0, Music_CeladonCity_branch_f4495
+; f44fd
 
-_Music_CeladonCity_sub_0xf44fd: ; 0xf44fd
-; subroutine
-	octave2
-	note $81
-	note $01
-	octave3
-	note $33
-	loopchannel $03, $44fd
-	octave2
-	note $a0
-	note $00
-	octave3
-	note $30
-	note $00
-	note $72
-	octave2
-	note $90
-	endchannel ; end
-; 0xf4510
+Music_CeladonCity_branch_f44fd: ; f44fd
+	octave 2
+	note G_, 1
+	note __, 1
+	octave 3
+	note D_, 3
+	loopchannel 3, Music_CeladonCity_branch_f44fd
+	octave 2
+	note A_, 0
+	note __, 0
+	octave 3
+	note D_, 0
+	note __, 0
+	note F#, 2
+	octave 2
+	note G#, 0
+	endchannel
+; f4510
 
-_Music_CeladonCity_sub_0xf4510: ; 0xf4510
-; subroutine
-	octave5
-	note $37
-	note $11
-	octave4
-	note $c1
-	note $a1
-	note $c1
-	endchannel ; end
-; 0xf4518
+Music_CeladonCity_branch_f4510: ; f4510
+	octave 5
+	note D_, 7
+	note C_, 1
+	octave 4
+	note B_, 1
+	note A_, 1
+	note B_, 1
+	endchannel
+; f4518

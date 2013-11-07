@@ -1,1229 +1,1232 @@
-_Music_KantoWildPokemonBattle: ; 0xed06d
-	db $80
-	dw _Music_KantoWildPokemonBattle_Ch1
-	db $01
-	dw _Music_KantoWildPokemonBattle_Ch2
-	db $02
-	dw _Music_KantoWildPokemonBattle_Ch3
-; 0xed076
+Music_KantoWildBattle: ; ed06d
+	dbw $80, Music_KantoWildBattle_Ch1
+	dbw $01, Music_KantoWildBattle_Ch2
+	dbw $02, Music_KantoWildBattle_Ch3
+; ed076
 
-; 0xed076
-	db $03
-; 0xed077
+INCBIN "baserom.gbc", $ed076, $ed077 - $ed076
 
-_Music_KantoWildPokemonBattle_Ch1: ; 0xed077
-	tempo $7000
+Music_KantoWildBattle_Ch1: ; ed077
+	tempo 112
 	volume $77
 	vibrato $12, $23
-	dutycycle $02
-	notetype $0c, $b7
-	note $0f
-	octave4
-	note $b5
-	note $a0
-	note $90
-	note $a0
-	note $90
-	note $80
-	note $70
-	note $90
-	note $80
-	note $70
-	note $60
-	notetype $0c, $b7
-	callchannel _Music_KantoWildPokemonBattle_sub_0xed18a
-	octave4
-	note $63
-	note $23
-	octave3
-	note $c7
-	callchannel _Music_KantoWildPokemonBattle_sub_0xed18a
-	note $07
-	note $80
-	note $c0
-	octave4
-	note $20
-	octave3
-	note $c0
-	note $80
-	note $c0
-	octave4
-	note $30
-	note $40
+	dutycycle $2
+	notetype $c, $b7
+	note __, 15
+	octave 4
+	note A#, 5
+	note A_, 0
+	note G#, 0
+	note A_, 0
+	note G#, 0
+	note G_, 0
+	note F#, 0
+	note G#, 0
+	note G_, 0
+	note F#, 0
+	note F_, 0
+
+Music_KantoWildBattle_branch_ed091: ; ed091
+	notetype $c, $b7
+	callchannel Music_KantoWildBattle_branch_ed18a
+	octave 4
+	note F_, 3
+	note C#, 3
+	octave 3
+	note B_, 7
+	callchannel Music_KantoWildBattle_branch_ed18a
+	note __, 7
+	note G_, 0
+	note B_, 0
+	octave 4
+	note C#, 0
+	octave 3
+	note B_, 0
+	note G_, 0
+	note B_, 0
+	octave 4
+	note D_, 0
+	note D#, 0
 	intensity $b1
-	note $55
-	note $15
-	octave3
-	note $83
-	octave4
-	note $55
-	note $15
-	note $53
+	note E_, 5
+	note C_, 5
+	octave 3
+	note G_, 3
+	octave 4
+	note E_, 5
+	note C_, 5
+	note E_, 3
 	intensity $b7
-	note $60
-	note $20
-	octave3
-	note $90
-	octave4
-	note $10
-	note $20
-	octave3
-	note $90
-	note $60
-	note $80
-	note $93
-	note $70
-	note $80
-	note $90
-	octave4
-	note $10
-	note $23
-	octave3
-	note $60
-	note $90
-	octave4
-	note $20
-	note $50
-	note $62
-	note $80
-	note $93
+	note F_, 0
+	note C#, 0
+	octave 3
+	note G#, 0
+	octave 4
+	note C_, 0
+	note C#, 0
+	octave 3
+	note G#, 0
+	note F_, 0
+	note G_, 0
+	note G#, 3
+	note F#, 0
+	note G_, 0
+	note G#, 0
+	octave 4
+	note C_, 0
+	note C#, 3
+	octave 3
+	note F_, 0
+	note G#, 0
+	octave 4
+	note C#, 0
+	note E_, 0
+	note F_, 2
+	note G_, 0
+	note G#, 3
 	intensity $b1
-	octave3
-	note $85
-	note $65
-	note $53
-	note $95
-	note $85
-	note $63
-	octave4
-	note $15
-	octave3
-	note $b5
-	note $83
-	notetype $08, $b7
-	octave2
-	note $81
-	octave3
-	note $11
-	note $51
-	note $11
-	note $51
-	note $81
-	note $51
-	note $81
-	octave4
-	note $11
-	octave3
-	note $81
-	octave4
-	note $11
-	note $51
-	note $61
-	note $21
-	octave3
-	note $91
-	octave4
-	note $21
-	octave3
-	note $91
-	note $61
-	note $91
-	note $61
-	note $21
-	note $61
-	note $21
-	octave2
-	note $91
-	notetype $0c, $b7
-	octave3
-	note $93
-	octave4
-	note $23
+	octave 3
+	note G_, 5
+	note F_, 5
+	note E_, 3
+	note G#, 5
+	note G_, 5
+	note F_, 3
+	octave 4
+	note C_, 5
+	octave 3
+	note A#, 5
+	note G_, 3
+	notetype $8, $b7
+	octave 2
+	note G_, 1
+	octave 3
+	note C_, 1
+	note E_, 1
+	note C_, 1
+	note E_, 1
+	note G_, 1
+	note E_, 1
+	note G_, 1
+	octave 4
+	note C_, 1
+	octave 3
+	note G_, 1
+	octave 4
+	note C_, 1
+	note E_, 1
+	note F_, 1
+	note C#, 1
+	octave 3
+	note G#, 1
+	octave 4
+	note C#, 1
+	octave 3
+	note G#, 1
+	note F_, 1
+	note G#, 1
+	note F_, 1
+	note C#, 1
+	note F_, 1
+	note C#, 1
+	octave 2
+	note G#, 1
+	notetype $c, $b7
+	octave 3
+	note G#, 3
+	octave 4
+	note C#, 3
 	intensity $71
-	note $60
-	note $60
+	note F_, 0
+	note F_, 0
 	intensity $91
-	note $60
-	note $60
+	note F_, 0
+	note F_, 0
 	intensity $b1
-	note $90
-	note $90
+	note G#, 0
+	note G#, 0
 	intensity $d1
-	note $90
-	note $90
+	note G#, 0
+	note G#, 0
 	intensity $c7
-	note $50
-	note $30
-	note $20
-	note $30
-	note $5b
-	note $57
+	note E_, 0
+	note D_, 0
+	note C#, 0
+	note D_, 0
+	note E_, 11
+	note E_, 7
 	intensity $b1
-	note $50
-	note $30
-	note $10
-	octave3
-	note $b0
-	note $a0
-	note $80
-	note $60
-	note $50
+	note E_, 0
+	note D_, 0
+	note C_, 0
+	octave 3
+	note A#, 0
+	note A_, 0
+	note G_, 0
+	note F_, 0
+	note E_, 0
 	intensity $b7
-	note $37
-	note $67
-	note $b7
-	octave4
-	note $37
-	octave3
-	note $87
-	octave4
-	note $17
-	note $57
-	note $87
-	note $07
-	octave3
-	note $47
-	note $97
-	octave4
-	note $17
-	octave3
-	note $b7
-	note $07
-	octave4
-	note $37
-	octave3
-	note $91
-	note $61
-	note $31
-	note $61
-	octave4
-	note $13
-	note $05
-	note $10
-	note $04
-	note $21
-	note $10
-	note $0c
-	note $23
-	note $05
-	note $20
-	note $04
-	note $61
-	note $40
-	note $04
-	note $27
+	note D_, 7
+	note F_, 7
+	note A#, 7
+	octave 4
+	note D_, 7
+	octave 3
+	note G_, 7
+	octave 4
+	note C_, 7
+	note E_, 7
+	note G_, 7
+	note __, 7
+	octave 3
+	note D#, 7
+	note G#, 7
+	octave 4
+	note C_, 7
+	octave 3
+	note A#, 7
+	note __, 7
+	octave 4
+	note D_, 7
+	octave 3
+	note G#, 1
+	note F_, 1
+	note D_, 1
+	note F_, 1
+	octave 4
+	note C_, 3
+	note __, 5
+	note C_, 0
+	note __, 4
+	note C#, 1
+	note C_, 0
+	note __, 12
+	note C#, 3
+	note __, 5
+	note C#, 0
+	note __, 4
+	note F_, 1
+	note D#, 0
+	note __, 4
+	note C#, 7
+
+Music_KantoWildBattle_branch_ed15b: ; ed15b
 	intensity $b1
-	octave3
-	note $10
-	note $40
-	note $30
-	note $20
-	loopchannel $08, $515b
-	note $20
-	note $60
-	note $50
-	note $40
-	loopchannel $08, $5166
-	note $10
-	note $40
-	note $30
-	note $20
-	loopchannel $10, $516e
-	note $20
-	note $50
-	note $40
-	note $30
-	loopchannel $08, $5176
-	note $10
-	note $40
-	note $30
-	note $20
-	loopchannel $08, $517e
-	loopchannel $00, $5091 ; end
-; 0xed18a
+	octave 3
+	note C_, 0
+	note D#, 0
+	note D_, 0
+	note C#, 0
+	loopchannel 8, Music_KantoWildBattle_branch_ed15b
 
-_Music_KantoWildPokemonBattle_sub_0xed18a: ; 0xed18a
-; subroutine
-	octave4
-	note $10
-	note $04
-	octave3
-	note $c0
-	note $04
-	note $b0
-	note $02
-	note $09
-	octave4
-	note $11
-	note $01
-	note $41
-	note $20
-	note $04
-	note $10
-	note $04
-	octave3
-	note $c0
-	note $02
-	endchannel ; end
-; 0xed19f
+Music_KantoWildBattle_branch_ed166: ; ed166
+	note C#, 0
+	note F_, 0
+	note E_, 0
+	note D#, 0
+	loopchannel 8, Music_KantoWildBattle_branch_ed166
 
-_Music_KantoWildPokemonBattle_Ch2: ; 0xed19f
-	dutycycle $01
+Music_KantoWildBattle_branch_ed16e: ; ed16e
+	note C_, 0
+	note D#, 0
+	note D_, 0
+	note C#, 0
+	loopchannel 16, Music_KantoWildBattle_branch_ed16e
+
+Music_KantoWildBattle_branch_ed176: ; ed176
+	note C#, 0
+	note E_, 0
+	note D#, 0
+	note D_, 0
+	loopchannel 8, Music_KantoWildBattle_branch_ed176
+
+Music_KantoWildBattle_branch_ed17e: ; ed17e
+	note C_, 0
+	note D#, 0
+	note D_, 0
+	note C#, 0
+	loopchannel 8, Music_KantoWildBattle_branch_ed17e
+	loopchannel 0, Music_KantoWildBattle_branch_ed091
+; ed18a
+
+Music_KantoWildBattle_branch_ed18a: ; ed18a
+	octave 4
+	note C_, 0
+	note __, 4
+	octave 3
+	note B_, 0
+	note __, 4
+	note A#, 0
+	note __, 2
+	note __, 9
+	octave 4
+	note C_, 1
+	note __, 1
+	note D#, 1
+	note C#, 0
+	note __, 4
+	note C_, 0
+	note __, 4
+	octave 3
+	note B_, 0
+	note __, 2
+	endchannel
+
+Music_KantoWildBattle_Ch2: ; ed19f
+	dutycycle $1
 	vibrato $12, $23
-	notetype $0c, $b1
-	octave4
-	note $80
-	note $70
-	note $60
-	note $50
-	note $80
-	note $70
-	note $60
-	note $50
-	note $80
-	note $70
-	note $60
-	note $50
-	note $80
-	note $70
-	note $60
-	note $50
-	note $80
-	note $70
-	note $60
-	note $50
-	note $70
-	note $60
-	note $50
-	note $40
-	note $60
-	note $50
-	note $40
-	note $30
-	note $50
-	note $40
-	note $30
-	note $20
-	notetype $0c, $b7
-	callchannel _Music_KantoWildPokemonBattle_sub_0xed2c6
-	octave2
-	note $61
-	octave1
-	note $c0
-	note $00
-	octave2
-	note $81
-	callchannel _Music_KantoWildPokemonBattle_sub_0xed2c6
-	octave2
-	note $80
-	note $00
-	octave1
-	note $c0
-	note $00
-	octave2
-	note $60
-	note $70
-	notetype $06, $b7
-	callchannel _Music_KantoWildPokemonBattle_sub_0xed307
-	callchannel _Music_KantoWildPokemonBattle_sub_0xed307
-	forceoctave $01
-	callchannel _Music_KantoWildPokemonBattle_sub_0xed307
-	callchannel _Music_KantoWildPokemonBattle_sub_0xed307
-	forceoctave $00
-	callchannel _Music_KantoWildPokemonBattle_sub_0xed307
-	callchannel _Music_KantoWildPokemonBattle_sub_0xed307
-	callchannel _Music_KantoWildPokemonBattle_sub_0xed307
-	callchannel _Music_KantoWildPokemonBattle_sub_0xed307
-	forceoctave $01
-	callchannel _Music_KantoWildPokemonBattle_sub_0xed307
-	callchannel _Music_KantoWildPokemonBattle_sub_0xed307
-	forceoctave $00
-	callchannel _Music_KantoWildPokemonBattle_sub_0xed307
-	callchannel _Music_KantoWildPokemonBattle_sub_0xed307
-	note $0f
-	octave3
-	note $bf
-	octave4
-	note $3f
-	note $6f
-	notetype $0c, $b7
-	note $5f
-	note $87
-	octave5
-	note $17
-	note $07
-	octave3
-	note $97
-	octave4
-	note $17
-	note $47
-	note $67
-	note $60
-	octave3
-	note $b0
-	note $90
-	note $b0
-	octave4
-	note $60
-	octave3
-	note $b0
-	note $90
-	note $b0
-	octave4
-	note $97
-	note $90
-	note $60
-	note $30
-	octave3
-	note $c0
-	octave4
-	note $60
-	note $30
-	octave3
-	note $c0
-	note $90
-	notetype $06, $b7
-	callchannel _Music_KantoWildPokemonBattle_sub_0xed31b
-	forceoctave $01
-	callchannel _Music_KantoWildPokemonBattle_sub_0xed31b
-	forceoctave $00
-	callchannel _Music_KantoWildPokemonBattle_sub_0xed340
-	octave2
-	note $11
-	note $01
-	octave3
-	note $83
-	octave2
-	note $11
-	note $01
-	note $11
-	note $01
-	octave4
-	note $13
-	octave2
-	note $11
-	note $01
-	octave4
-	note $43
-	octave2
-	note $11
-	note $01
-	octave4
-	note $23
-	octave2
-	note $21
-	note $01
-	note $21
-	note $01
-	octave4
-	note $23
-	octave2
-	note $21
-	note $01
-	note $21
-	note $01
-	octave4
-	note $23
-	octave2
-	note $21
-	note $01
-	note $21
-	note $01
-	octave4
-	note $23
-	octave2
-	note $21
-	note $01
-	note $21
-	note $01
-	octave4
-	note $23
-	octave2
-	note $21
-	note $01
-	octave4
-	note $63
-	octave2
-	note $21
-	note $01
-	callchannel _Music_KantoWildPokemonBattle_sub_0xed340
-	callchannel _Music_KantoWildPokemonBattle_sub_0xed354
-	callchannel _Music_KantoWildPokemonBattle_sub_0xed340
-	callchannel _Music_KantoWildPokemonBattle_sub_0xed354
-	forceoctave $01
-	callchannel _Music_KantoWildPokemonBattle_sub_0xed340
-	forceoctave $00
-	note $21
-	note $01
-	octave3
-	note $93
-	octave2
-	note $21
-	note $01
-	note $21
-	note $01
-	octave4
-	note $23
-	octave2
-	note $21
-	note $01
-	octave3
-	note $b3
-	octave2
-	note $21
-	note $01
-	callchannel _Music_KantoWildPokemonBattle_sub_0xed340
-	note $11
-	note $01
-	octave3
-	note $83
-	octave2
-	note $11
-	note $01
-	note $11
-	note $01
-	octave4
-	note $13
-	octave2
-	note $11
-	note $01
-	octave3
-	note $b3
-	octave2
-	note $11
-	note $01
-	loopchannel $00, $51c8 ; end
-; 0xed2c6
+	notetype $c, $b1
+	octave 4
+	note G_, 0
+	note F#, 0
+	note F_, 0
+	note E_, 0
+	note G_, 0
+	note F#, 0
+	note F_, 0
+	note E_, 0
+	note G_, 0
+	note F#, 0
+	note F_, 0
+	note E_, 0
+	note G_, 0
+	note F#, 0
+	note F_, 0
+	note E_, 0
+	note G_, 0
+	note F#, 0
+	note F_, 0
+	note E_, 0
+	note F#, 0
+	note F_, 0
+	note E_, 0
+	note D#, 0
+	note F_, 0
+	note E_, 0
+	note D#, 0
+	note D_, 0
+	note E_, 0
+	note D#, 0
+	note D_, 0
+	note C#, 0
 
-_Music_KantoWildPokemonBattle_sub_0xed2c6: ; 0xed2c6
-; subroutine
-	octave2
-	note $10
-	note $01
-	note $10
-	octave1
-	note $80
-	note $00
-	octave2
-	note $10
-	note $00
-	octave3
-	note $11
-	octave2
-	note $10
-	note $00
-	octave1
-	note $80
-	note $01
-	note $80
-	octave2
-	note $12
-	note $10
-	octave1
-	note $81
-	octave2
-	note $11
-	octave1
-	note $81
-	octave2
-	note $71
-	octave1
-	note $81
-	octave2
-	note $81
-	note $20
-	note $01
-	note $20
-	octave1
-	note $90
-	note $00
-	octave2
-	note $20
-	note $00
-	octave3
-	note $20
-	note $00
-	octave2
-	note $21
-	octave1
-	note $90
-	note $01
-	note $90
-	octave2
-	note $20
-	note $01
-	note $20
-	octave1
-	note $90
-	note $00
-	octave2
-	note $20
-	note $00
-	octave1
-	note $81
-	endchannel ; end
-; 0xed307
+Music_KantoWildBattle_branch_ed1c8: ; ed1c8
+	notetype $c, $b7
+	callchannel Music_KantoWildBattle_branch_ed2c6
+	octave 2
+	note F_, 1
+	octave 1
+	note B_, 0
+	note __, 0
+	octave 2
+	note G_, 1
+	callchannel Music_KantoWildBattle_branch_ed2c6
+	octave 2
+	note G_, 0
+	note __, 0
+	octave 1
+	note B_, 0
+	note __, 0
+	octave 2
+	note F_, 0
+	note F#, 0
+	notetype $6, $b7
+	callchannel Music_KantoWildBattle_branch_ed307
+	callchannel Music_KantoWildBattle_branch_ed307
+	forceoctave $1
+	callchannel Music_KantoWildBattle_branch_ed307
+	callchannel Music_KantoWildBattle_branch_ed307
+	forceoctave $0
+	callchannel Music_KantoWildBattle_branch_ed307
+	callchannel Music_KantoWildBattle_branch_ed307
+	callchannel Music_KantoWildBattle_branch_ed307
+	callchannel Music_KantoWildBattle_branch_ed307
+	forceoctave $1
+	callchannel Music_KantoWildBattle_branch_ed307
+	callchannel Music_KantoWildBattle_branch_ed307
+	forceoctave $0
+	callchannel Music_KantoWildBattle_branch_ed307
+	callchannel Music_KantoWildBattle_branch_ed307
+	note __, 15
+	octave 3
+	note A#, 15
+	octave 4
+	note D_, 15
+	note F_, 15
+	notetype $c, $b7
+	note E_, 15
+	note G_, 7
+	octave 5
+	note C_, 7
+	note __, 7
+	octave 3
+	note G#, 7
+	octave 4
+	note C_, 7
+	note D#, 7
+	note F_, 7
+	note F_, 0
+	octave 3
+	note A#, 0
+	note G#, 0
+	note A#, 0
+	octave 4
+	note F_, 0
+	octave 3
+	note A#, 0
+	note G#, 0
+	note A#, 0
+	octave 4
+	note G#, 7
+	note G#, 0
+	note F_, 0
+	note D_, 0
+	octave 3
+	note B_, 0
+	octave 4
+	note F_, 0
+	note D_, 0
+	octave 3
+	note B_, 0
+	note G#, 0
+	notetype $6, $b7
+	callchannel Music_KantoWildBattle_branch_ed31b
+	forceoctave $1
+	callchannel Music_KantoWildBattle_branch_ed31b
+	forceoctave $0
+	callchannel Music_KantoWildBattle_branch_ed340
+	octave 2
+	note C_, 1
+	note __, 1
+	octave 3
+	note G_, 3
+	octave 2
+	note C_, 1
+	note __, 1
+	note C_, 1
+	note __, 1
+	octave 4
+	note C_, 3
+	octave 2
+	note C_, 1
+	note __, 1
+	octave 4
+	note D#, 3
+	octave 2
+	note C_, 1
+	note __, 1
+	octave 4
+	note C#, 3
+	octave 2
+	note C#, 1
+	note __, 1
+	note C#, 1
+	note __, 1
+	octave 4
+	note C#, 3
+	octave 2
+	note C#, 1
+	note __, 1
+	note C#, 1
+	note __, 1
+	octave 4
+	note C#, 3
+	octave 2
+	note C#, 1
+	note __, 1
+	note C#, 1
+	note __, 1
+	octave 4
+	note C#, 3
+	octave 2
+	note C#, 1
+	note __, 1
+	note C#, 1
+	note __, 1
+	octave 4
+	note C#, 3
+	octave 2
+	note C#, 1
+	note __, 1
+	octave 4
+	note F_, 3
+	octave 2
+	note C#, 1
+	note __, 1
+	callchannel Music_KantoWildBattle_branch_ed340
+	callchannel Music_KantoWildBattle_branch_ed354
+	callchannel Music_KantoWildBattle_branch_ed340
+	callchannel Music_KantoWildBattle_branch_ed354
+	forceoctave $1
+	callchannel Music_KantoWildBattle_branch_ed340
+	forceoctave $0
+	note C#, 1
+	note __, 1
+	octave 3
+	note G#, 3
+	octave 2
+	note C#, 1
+	note __, 1
+	note C#, 1
+	note __, 1
+	octave 4
+	note C#, 3
+	octave 2
+	note C#, 1
+	note __, 1
+	octave 3
+	note A#, 3
+	octave 2
+	note C#, 1
+	note __, 1
+	callchannel Music_KantoWildBattle_branch_ed340
+	note C_, 1
+	note __, 1
+	octave 3
+	note G_, 3
+	octave 2
+	note C_, 1
+	note __, 1
+	note C_, 1
+	note __, 1
+	octave 4
+	note C_, 3
+	octave 2
+	note C_, 1
+	note __, 1
+	octave 3
+	note A#, 3
+	octave 2
+	note C_, 1
+	note __, 1
+	loopchannel 0, Music_KantoWildBattle_branch_ed1c8
+; ed2c6
 
-_Music_KantoWildPokemonBattle_sub_0xed307: ; 0xed307
-; subroutine
-	octave2
-	note $11
-	note $03
-	note $10
-	note $00
-	note $11
-	octave3
-	note $11
-	octave2
-	note $13
-	note $01
-	note $11
-	note $01
-	note $11
-	octave3
-	note $11
-	note $01
-	octave2
-	note $13
-	endchannel ; end
-; 0xed31b
+Music_KantoWildBattle_branch_ed2c6: ; ed2c6
+	octave 2
+	note C_, 0
+	note __, 1
+	note C_, 0
+	octave 1
+	note G_, 0
+	note __, 0
+	octave 2
+	note C_, 0
+	note __, 0
+	octave 3
+	note C_, 1
+	octave 2
+	note C_, 0
+	note __, 0
+	octave 1
+	note G_, 0
+	note __, 1
+	note G_, 0
+	octave 2
+	note C_, 2
+	note C_, 0
+	octave 1
+	note G_, 1
+	octave 2
+	note C_, 1
+	octave 1
+	note G_, 1
+	octave 2
+	note F#, 1
+	octave 1
+	note G_, 1
+	octave 2
+	note G_, 1
+	note C#, 0
+	note __, 1
+	note C#, 0
+	octave 1
+	note G#, 0
+	note __, 0
+	octave 2
+	note C#, 0
+	note __, 0
+	octave 3
+	note C#, 0
+	note __, 0
+	octave 2
+	note C#, 1
+	octave 1
+	note G#, 0
+	note __, 1
+	note G#, 0
+	octave 2
+	note C#, 0
+	note __, 1
+	note C#, 0
+	octave 1
+	note G#, 0
+	note __, 0
+	octave 2
+	note C#, 0
+	note __, 0
+	octave 1
+	note G_, 1
+	endchannel
+; ed307
 
-_Music_KantoWildPokemonBattle_sub_0xed31b: ; 0xed31b
-; subroutine
-	octave2
-	note $11
-	note $03
-	note $11
-	note $03
-	octave1
-	note $80
-	note $00
-	note $80
-	note $00
-	octave2
-	note $51
-	note $01
-	note $51
-	note $01
-	note $51
-	note $15
-	note $11
-	note $03
-	note $11
-	octave1
-	note $81
-	octave2
-	note $51
-	note $11
-	octave1
-	note $81
-	octave2
-	note $11
-	note $03
-	note $11
-	note $51
-	note $81
-	note $c1
-	octave3
-	note $11
-	endchannel ; end
-; 0xed340
+Music_KantoWildBattle_branch_ed307: ; ed307
+	octave 2
+	note C_, 1
+	note __, 3
+	note C_, 0
+	note __, 0
+	note C_, 1
+	octave 3
+	note C_, 1
+	octave 2
+	note C_, 3
+	note __, 1
+	note C_, 1
+	note __, 1
+	note C_, 1
+	octave 3
+	note C_, 1
+	note __, 1
+	octave 2
+	note C_, 3
+	endchannel
+; ed31b
 
-_Music_KantoWildPokemonBattle_sub_0xed340: ; 0xed340
-; subroutine
-	octave3
-	note $83
-	octave2
-	note $11
-	note $01
-	note $11
-	note $01
-	octave3
-	note $83
-	octave2
-	note $11
-	note $01
-	note $11
-	note $01
-	octave3
-	note $83
-	octave2
-	note $11
-	note $01
-	endchannel ; end
-; 0xed354
+Music_KantoWildBattle_branch_ed31b: ; ed31b
+	octave 2
+	note C_, 1
+	note __, 3
+	note C_, 1
+	note __, 3
+	octave 1
+	note G_, 0
+	note __, 0
+	note G_, 0
+	note __, 0
+	octave 2
+	note E_, 1
+	note __, 1
+	note E_, 1
+	note __, 1
+	note E_, 1
+	note C_, 5
+	note C_, 1
+	note __, 3
+	note C_, 1
+	octave 1
+	note G_, 1
+	octave 2
+	note E_, 1
+	note C_, 1
+	octave 1
+	note G_, 1
+	octave 2
+	note C_, 1
+	note __, 3
+	note C_, 1
+	note E_, 1
+	note G_, 1
+	note B_, 1
+	octave 3
+	note C_, 1
+	endchannel
+; ed340
 
-_Music_KantoWildPokemonBattle_sub_0xed354: ; 0xed354
-; subroutine
-	note $11
-	note $01
-	octave3
-	note $83
-	octave2
-	note $11
-	note $01
-	note $11
-	note $01
-	octave3
-	note $83
-	octave2
-	note $11
-	note $01
-	octave3
-	note $83
-	octave2
-	note $11
-	note $01
-	endchannel ; end
-; 0xed368
+Music_KantoWildBattle_branch_ed340: ; ed340
+	octave 3
+	note G_, 3
+	octave 2
+	note C_, 1
+	note __, 1
+	note C_, 1
+	note __, 1
+	octave 3
+	note G_, 3
+	octave 2
+	note C_, 1
+	note __, 1
+	note C_, 1
+	note __, 1
+	octave 3
+	note G_, 3
+	octave 2
+	note C_, 1
+	note __, 1
+	endchannel
+; ed354
 
-_Music_KantoWildPokemonBattle_Ch3: ; 0xed368
+Music_KantoWildBattle_branch_ed354: ; ed354
+	note C_, 1
+	note __, 1
+	octave 3
+	note G_, 3
+	octave 2
+	note C_, 1
+	note __, 1
+	note C_, 1
+	note __, 1
+	octave 3
+	note G_, 3
+	octave 2
+	note C_, 1
+	note __, 1
+	octave 3
+	note G_, 3
+	octave 2
+	note C_, 1
+	note __, 1
+	endchannel
+
+Music_KantoWildBattle_Ch3: ; ed368
 	vibrato $14, $23
-	notetype $0c, $14
-	octave3
-	note $10
-	note $00
-	note $10
-	octave4
-	note $10
-	octave3
-	note $20
-	note $00
-	note $20
-	octave4
-	note $20
-	octave3
-	note $30
-	note $00
-	note $30
-	octave4
-	note $30
-	octave3
-	note $40
-	note $00
-	note $40
-	octave4
-	note $40
-	octave3
-	note $50
-	note $00
-	note $50
-	octave4
-	note $50
-	octave3
-	note $60
-	note $00
-	note $60
-	octave4
-	note $60
-	octave3
-	note $70
-	note $00
-	note $70
-	octave4
-	note $70
-	octave3
-	note $80
-	note $00
-	note $80
-	octave4
-	note $80
-	notetype $0c, $14
-	octave5
-	note $80
-	note $01
-	octave4
-	note $80
-	note $01
-	octave5
-	note $80
-	note $02
-	octave4
-	note $80
-	note $00
-	octave5
-	note $80
-	note $01
-	octave4
-	note $80
-	octave3
-	note $80
-	note $c0
-	octave4
-	note $10
-	note $30
-	note $45
-	octave5
-	note $41
-	note $01
-	note $81
-	note $90
-	note $01
-	octave4
-	note $90
-	note $01
-	octave5
-	note $90
-	note $02
-	octave4
-	note $90
-	note $00
-	octave5
-	note $90
-	note $01
-	octave4
-	note $90
-	octave6
-	note $25
-	octave5
-	note $90
-	note $60
-	note $c0
-	note $80
-	note $60
-	note $30
-	note $80
-	note $60
-	note $30
-	octave4
-	note $c0
-	octave5
-	note $80
-	note $01
-	octave4
-	note $80
-	note $01
-	octave5
-	note $80
-	note $02
-	octave4
-	note $80
-	note $00
-	octave5
-	note $80
-	note $01
-	octave4
-	note $80
-	note $10
-	note $30
-	note $40
-	note $60
-	note $85
-	octave5
-	note $41
-	note $01
-	note $81
-	note $90
-	note $01
-	octave4
-	note $80
-	note $01
-	octave5
-	note $90
-	note $02
-	octave4
-	note $80
-	note $00
-	octave5
-	note $90
-	note $01
-	octave4
-	note $80
-	note $23
-	note $93
-	octave5
-	note $66
-	note $70
-	note $81
+	notetype $c, $14
+	octave 3
+	note C_, 0
+	note __, 0
+	note C_, 0
+	octave 4
+	note C_, 0
+	octave 3
+	note C#, 0
+	note __, 0
+	note C#, 0
+	octave 4
+	note C#, 0
+	octave 3
+	note D_, 0
+	note __, 0
+	note D_, 0
+	octave 4
+	note D_, 0
+	octave 3
+	note D#, 0
+	note __, 0
+	note D#, 0
+	octave 4
+	note D#, 0
+	octave 3
+	note E_, 0
+	note __, 0
+	note E_, 0
+	octave 4
+	note E_, 0
+	octave 3
+	note F_, 0
+	note __, 0
+	note F_, 0
+	octave 4
+	note F_, 0
+	octave 3
+	note F#, 0
+	note __, 0
+	note F#, 0
+	octave 4
+	note F#, 0
+	octave 3
+	note G_, 0
+	note __, 0
+	note G_, 0
+	octave 4
+	note G_, 0
+
+Music_KantoWildBattle_branch_ed39e: ; ed39e
+	notetype $c, $14
+	octave 5
+	note G_, 0
+	note __, 1
+	octave 4
+	note G_, 0
+	note __, 1
+	octave 5
+	note G_, 0
+	note __, 2
+	octave 4
+	note G_, 0
+	note __, 0
+	octave 5
+	note G_, 0
+	note __, 1
+	octave 4
+	note G_, 0
+	octave 3
+	note G_, 0
+	note B_, 0
+	octave 4
+	note C_, 0
+	note D_, 0
+	note D#, 5
+	octave 5
+	note D#, 1
+	note __, 1
+	note G_, 1
+	note G#, 0
+	note __, 1
+	octave 4
+	note G#, 0
+	note __, 1
+	octave 5
+	note G#, 0
+	note __, 2
+	octave 4
+	note G#, 0
+	note __, 0
+	octave 5
+	note G#, 0
+	note __, 1
+	octave 4
+	note G#, 0
+	octave 6
+	note C#, 5
+	octave 5
+	note G#, 0
+	note F_, 0
+	note B_, 0
+	note G_, 0
+	note F_, 0
+	note D_, 0
+	note G_, 0
+	note F_, 0
+	note D_, 0
+	octave 4
+	note B_, 0
+	octave 5
+	note G_, 0
+	note __, 1
+	octave 4
+	note G_, 0
+	note __, 1
+	octave 5
+	note G_, 0
+	note __, 2
+	octave 4
+	note G_, 0
+	note __, 0
+	octave 5
+	note G_, 0
+	note __, 1
+	octave 4
+	note G_, 0
+	note C_, 0
+	note D_, 0
+	note D#, 0
+	note F_, 0
+	note G_, 5
+	octave 5
+	note D#, 1
+	note __, 1
+	note G_, 1
+	note G#, 0
+	note __, 1
+	octave 4
+	note G_, 0
+	note __, 1
+	octave 5
+	note G#, 0
+	note __, 2
+	octave 4
+	note G_, 0
+	note __, 0
+	octave 5
+	note G#, 0
+	note __, 1
+	octave 4
+	note G_, 0
+	note C#, 3
+	note G#, 3
+	octave 5
+	note F_, 6
+	note F#, 0
+	note G_, 1
 	intensity $24
-	note $10
-	octave4
-	note $80
-	octave5
-	note $10
-	octave4
-	note $80
+	note C_, 0
+	octave 4
+	note G_, 0
+	octave 5
+	note C_, 0
+	octave 4
+	note G_, 0
 	intensity $14
-	octave5
-	note $71
+	octave 5
+	note F#, 1
 	intensity $24
-	note $10
-	octave4
-	note $80
-	octave5
-	note $10
-	octave4
-	note $80
+	note C_, 0
+	octave 4
+	note G_, 0
+	octave 5
+	note C_, 0
+	octave 4
+	note G_, 0
 	intensity $14
-	octave5
-	note $51
+	octave 5
+	note E_, 1
 	intensity $24
-	note $10
-	octave4
-	note $80
+	note C_, 0
+	octave 4
+	note G_, 0
 	intensity $14
-	octave5
-	note $81
+	octave 5
+	note G_, 1
 	intensity $24
-	note $10
-	octave4
-	note $80
-	octave5
-	note $10
-	octave4
-	note $80
+	note C_, 0
+	octave 4
+	note G_, 0
+	octave 5
+	note C_, 0
+	octave 4
+	note G_, 0
 	intensity $14
-	octave5
-	note $a1
+	octave 5
+	note A_, 1
 	intensity $24
-	note $10
-	octave4
-	note $80
-	octave5
-	note $10
-	octave4
-	note $80
+	note C_, 0
+	octave 4
+	note G_, 0
+	octave 5
+	note C_, 0
+	octave 4
+	note G_, 0
 	intensity $14
-	octave5
-	note $81
+	octave 5
+	note G_, 1
 	intensity $24
-	note $10
-	octave4
-	note $90
+	note C_, 0
+	octave 4
+	note G#, 0
 	intensity $14
-	octave5
-	note $9b
-	note $81
-	note $61
-	note $91
-	note $81
-	note $20
-	note $60
-	note $90
-	octave6
-	note $10
-	note $27
-	octave5
-	note $11
+	octave 5
+	note G#, 11
+	note G_, 1
+	note F_, 1
+	note G#, 1
+	note G_, 1
+	note C#, 0
+	note F_, 0
+	note G#, 0
+	octave 6
+	note C_, 0
+	note C#, 7
+	octave 5
+	note C_, 1
 	intensity $24
-	octave4
-	note $50
-	note $80
-	note $50
-	note $80
+	octave 4
+	note E_, 0
+	note G_, 0
+	note E_, 0
+	note G_, 0
 	intensity $14
-	note $b1
+	note A#, 1
 	intensity $24
-	note $50
-	note $80
-	note $50
-	note $80
+	note E_, 0
+	note G_, 0
+	note E_, 0
+	note G_, 0
 	intensity $14
-	note $91
+	note G#, 1
 	intensity $24
-	note $50
-	note $80
+	note E_, 0
+	note G_, 0
 	intensity $14
-	octave5
-	note $21
+	octave 5
+	note C#, 1
 	intensity $24
-	octave4
-	note $50
-	note $80
-	note $50
-	note $80
+	octave 4
+	note E_, 0
+	note G_, 0
+	note E_, 0
+	note G_, 0
 	intensity $14
-	octave5
-	note $11
+	octave 5
+	note C_, 1
 	intensity $24
-	octave4
-	note $50
-	note $80
-	note $50
-	note $80
+	octave 4
+	note E_, 0
+	note G_, 0
+	note E_, 0
+	note G_, 0
 	intensity $14
-	note $b1
+	note A#, 1
 	intensity $24
-	note $50
-	note $80
+	note E_, 0
+	note G_, 0
 	intensity $14
-	octave5
-	note $61
+	octave 5
+	note F_, 1
 	intensity $24
-	octave4
-	note $80
-	octave5
-	note $10
-	octave4
-	note $80
-	octave5
-	note $10
+	octave 4
+	note G_, 0
+	octave 5
+	note C_, 0
+	octave 4
+	note G_, 0
+	octave 5
+	note C_, 0
 	intensity $14
-	note $51
+	note E_, 1
 	intensity $24
-	octave4
-	note $80
-	octave5
-	note $10
-	octave4
-	note $80
-	octave5
-	note $10
+	octave 4
+	note G_, 0
+	octave 5
+	note C_, 0
+	octave 4
+	note G_, 0
+	octave 5
+	note C_, 0
 	intensity $14
-	note $31
+	note D_, 1
 	intensity $24
-	octave4
-	note $80
-	octave5
-	note $10
+	octave 4
+	note G_, 0
+	octave 5
+	note C_, 0
 	intensity $14
-	octave4
-	note $b3
-	octave5
-	note $13
-	note $33
-	note $63
-	note $9f
-	notetype $06, $14
-	note $90
-	note $00
+	octave 4
+	note A#, 3
+	octave 5
+	note C_, 3
+	note D_, 3
+	note F_, 3
+	note G#, 15
+	notetype $6, $14
+	note G#, 0
+	note __, 0
 	intensity $24
-	note $90
-	note $00
+	note G#, 0
+	note __, 0
 	intensity $34
-	note $90
-	note $00
-	note $90
-	note $00
-	note $90
-	note $00
-	note $90
-	note $00
+	note G#, 0
+	note __, 0
+	note G#, 0
+	note __, 0
+	note G#, 0
+	note __, 0
+	note G#, 0
+	note __, 0
 	intensity $24
-	note $90
-	note $00
-	note $90
-	note $00
-	note $90
-	note $00
-	note $90
-	note $00
+	note G#, 0
+	note __, 0
+	note G#, 0
+	note __, 0
+	note G#, 0
+	note __, 0
+	note G#, 0
+	note __, 0
 	intensity $14
-	note $90
-	note $00
-	note $90
-	note $00
-	octave6
-	note $20
-	note $00
-	note $20
-	note $00
-	note $20
-	note $00
-	note $20
-	note $00
-	octave5
-	note $81
-	note $61
-	note $51
-	note $61
-	notetype $0c, $15
-	note $8b
-	note $87
-	notetype $06, $15
-	note $80
-	note $00
-	note $80
-	note $00
-	note $80
-	note $00
-	note $80
-	note $00
+	note G#, 0
+	note __, 0
+	note G#, 0
+	note __, 0
+	octave 6
+	note C#, 0
+	note __, 0
+	note C#, 0
+	note __, 0
+	note C#, 0
+	note __, 0
+	note C#, 0
+	note __, 0
+	octave 5
+	note G_, 1
+	note F_, 1
+	note E_, 1
+	note F_, 1
+	notetype $c, $15
+	note G_, 11
+	note G_, 7
+	notetype $6, $15
+	note G_, 0
+	note __, 0
+	note G_, 0
+	note __, 0
+	note G_, 0
+	note __, 0
+	note G_, 0
+	note __, 0
 	intensity $24
-	note $80
-	note $00
-	note $80
-	note $00
+	note G_, 0
+	note __, 0
+	note G_, 0
+	note __, 0
 	intensity $14
-	note $80
-	note $00
-	note $80
-	note $00
-	notetype $0c, $14
-	octave2
-	note $bf
-	note $b0
-	note $01
-	note $b0
-	note $01
-	note $b0
-	note $00
-	octave3
-	note $b0
-	note $01
-	note $b0
-	note $01
-	note $b0
-	note $00
-	note $10
-	note $01
-	notetype $06, $15
-	note $10
-	note $00
-	note $11
-	octave4
-	note $11
-	octave3
-	note $13
-	note $01
-	note $11
-	note $01
-	note $11
-	octave4
-	note $11
-	note $01
-	octave3
-	note $13
-	note $11
-	note $03
-	note $10
-	note $00
-	note $11
-	octave4
-	note $11
-	octave3
-	note $13
-	note $01
-	note $11
-	note $01
-	note $11
-	octave2
-	note $b1
-	note $01
-	note $b1
-	note $01
-	notetype $0c, $14
-	note $9f
-	note $9f
-	note $b1
-	note $01
-	note $b0
-	note $02
-	note $b0
-	note $00
-	octave3
-	note $b0
-	note $00
-	octave2
-	note $b0
-	note $00
-	octave3
-	note $b0
-	note $00
-	note $31
-	note $01
-	note $30
-	note $02
-	note $30
-	note $00
-	octave4
-	note $30
-	note $00
-	octave2
-	note $c0
-	note $00
-	octave3
-	note $c0
-	note $00
-	octave5
-	note $53
-	octave4
-	note $10
-	note $50
-	note $80
-	note $c0
-	octave5
-	note $10
-	note $00
-	note $50
-	note $04
-	note $61
-	note $50
-	note $00
-	octave4
-	note $10
-	octave3
-	note $80
-	octave4
-	note $10
-	note $50
-	note $80
-	note $50
-	note $10
-	note $50
-	note $80
-	octave5
-	note $10
-	note $50
-	note $80
-	note $63
-	octave4
-	note $20
-	note $60
-	note $90
-	octave5
-	note $10
-	note $20
-	note $00
-	note $60
-	note $04
-	note $91
-	note $80
-	note $04
-	note $67
+	note G_, 0
+	note __, 0
+	note G_, 0
+	note __, 0
+	notetype $c, $14
+	octave 2
+	note A#, 15
+	note A#, 0
+	note __, 1
+	note A#, 0
+	note __, 1
+	note A#, 0
+	note __, 0
+	octave 3
+	note A#, 0
+	note __, 1
+	note A#, 0
+	note __, 1
+	note A#, 0
+	note __, 0
+	note C_, 0
+	note __, 1
+	notetype $6, $15
+	note C_, 0
+	note __, 0
+	note C_, 1
+	octave 4
+	note C_, 1
+	octave 3
+	note C_, 3
+	note __, 1
+	note C_, 1
+	note __, 1
+	note C_, 1
+	octave 4
+	note C_, 1
+	note __, 1
+	octave 3
+	note C_, 3
+	note C_, 1
+	note __, 3
+	note C_, 0
+	note __, 0
+	note C_, 1
+	octave 4
+	note C_, 1
+	octave 3
+	note C_, 3
+	note __, 1
+	note C_, 1
+	note __, 1
+	note C_, 1
+	octave 2
+	note A#, 1
+	note __, 1
+	note A#, 1
+	note __, 1
+	notetype $c, $14
+	note G#, 15
+	note G#, 15
+	note A#, 1
+	note __, 1
+	note A#, 0
+	note __, 2
+	note A#, 0
+	note __, 0
+	octave 3
+	note A#, 0
+	note __, 0
+	octave 2
+	note A#, 0
+	note __, 0
+	octave 3
+	note A#, 0
+	note __, 0
+	note D_, 1
+	note __, 1
+	note D_, 0
+	note __, 2
+	note D_, 0
+	note __, 0
+	octave 4
+	note D_, 0
+	note __, 0
+	octave 2
+	note B_, 0
+	note __, 0
+	octave 3
+	note B_, 0
+	note __, 0
+	octave 5
+	note E_, 3
+	octave 4
+	note C_, 0
+	note E_, 0
+	note G_, 0
+	note B_, 0
+	octave 5
+	note C_, 0
+	note __, 0
+	note E_, 0
+	note __, 4
+	note F_, 1
+	note E_, 0
+	note __, 0
+	octave 4
+	note C_, 0
+	octave 3
+	note G_, 0
+	octave 4
+	note C_, 0
+	note E_, 0
+	note G_, 0
+	note E_, 0
+	note C_, 0
+	note E_, 0
+	note G_, 0
+	octave 5
+	note C_, 0
+	note E_, 0
+	note G_, 0
+	note F_, 3
+	octave 4
+	note C#, 0
+	note F_, 0
+	note G#, 0
+	octave 5
+	note C_, 0
+	note C#, 0
+	note __, 0
+	note F_, 0
+	note __, 4
+	note G#, 1
+	note G_, 0
+	note __, 4
+	note F_, 7
 	intensity $13
-	note $85
-	note $75
-	note $51
-	note $01
-	note $85
-	note $a5
-	note $81
-	note $01
-	note $9b
-	note $81
-	note $61
-	note $91
-	note $81
-	note $03
-	octave6
-	note $27
-	octave5
-	note $15
-	octave4
-	note $b5
-	note $91
-	note $01
-	octave5
-	note $25
-	note $15
-	octave4
-	note $b1
-	note $01
-	octave5
-	note $65
-	note $55
-	note $31
-	note $01
-	octave4
-	note $b3
-	octave5
-	note $13
-	note $33
-	note $63
-	note $9f
-	note $9f
-	note $8f
-	note $8f
-	loopchannel $00, $539e ; end
-; 0xed5c6
+	note G_, 5
+	note F#, 5
+	note E_, 1
+	note __, 1
+	note G_, 5
+	note A_, 5
+	note G_, 1
+	note __, 1
+	note G#, 11
+	note G_, 1
+	note F_, 1
+	note G#, 1
+	note G_, 1
+	note __, 3
+	octave 6
+	note C#, 7
+	octave 5
+	note C_, 5
+	octave 4
+	note A#, 5
+	note G#, 1
+	note __, 1
+	octave 5
+	note C#, 5
+	note C_, 5
+	octave 4
+	note A#, 1
+	note __, 1
+	octave 5
+	note F_, 5
+	note E_, 5
+	note D_, 1
+	note __, 1
+	octave 4
+	note A#, 3
+	octave 5
+	note C_, 3
+	note D_, 3
+	note F_, 3
+	note G#, 15
+	note G#, 15
+	note G_, 15
+	note G_, 15
+	loopchannel 0, Music_KantoWildBattle_branch_ed39e
+; ed5c6

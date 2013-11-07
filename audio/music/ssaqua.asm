@@ -1,1197 +1,1191 @@
-_Music_SSAqua: ; 0xead99
-	db $c0
-	dw _Music_SSAqua_Ch1
-	db $01
-	dw _Music_SSAqua_Ch2
-	db $02
-	dw _Music_SSAqua_Ch3
-	db $03
-	dw _Music_SSAqua_Ch4
-; 0xeada5
+Music_SSAqua: ; ead99
+	dbw $c0, Music_SSAqua_Ch1
+	dbw $01, Music_SSAqua_Ch2
+	dbw $02, Music_SSAqua_Ch3
+	dbw $03, Music_SSAqua_Ch4
+; eada5
 
-_Music_SSAqua_Ch1: ; 0xeada5
-	tempo $7500
+
+Music_SSAqua_Ch1: ; eada5
+	tempo 117
 	volume $77
-	stereopanning $0f
-	tone $0100
+	stereopanning $f
+	tone $0001
 	vibrato $12, $33
-	dutycycle $02
-	notetype $06, $97
-	octave2
-	note $80
-	note $00
-	note $80
-	note $00
-	octave2
-	note $8f
-	note $07
-	note $81
-	note $01
-	notetype $0c, $97
-	note $81
-	note $89
-	note $03
-	notetype $06, $97
-	note $80
-	note $00
-	note $80
-	note $00
-	note $8f
-	note $07
-	note $81
-	note $01
-	notetype $0c, $97
-	note $81
-	note $87
-	note $07
-	dutycycle $01
+	dutycycle $2
+	notetype $6, $97
+	octave 2
+	note G_, 0
+	note __, 0
+	note G_, 0
+	note __, 0
+
+Music_SSAqua_branch_eadbc: ; eadbc
+	octave 2
+	note G_, 15
+	note __, 7
+	note G_, 1
+	note __, 1
+	notetype $c, $97
+	note G_, 1
+	note G_, 9
+	note __, 3
+	notetype $6, $97
+	note G_, 0
+	note __, 0
+	note G_, 0
+	note __, 0
+	note G_, 15
+	note __, 7
+	note G_, 1
+	note __, 1
+	notetype $c, $97
+	note G_, 1
+	note G_, 7
+	note __, 7
+	dutycycle $1
 	intensity $61
-	callchannel _Music_SSAqua_sub_0xeaff5
-	octave5
-	note $80
-	octave4
-	note $c0
-	note $a0
-	note $80
-	octave5
-	note $80
-	octave4
-	note $c0
-	note $a0
-	note $80
-	octave5
-	note $80
-	octave4
-	note $c0
-	note $a0
-	note $80
-	octave5
-	note $80
-	octave4
-	note $c0
-	note $a0
-	note $80
-	callchannel _Music_SSAqua_sub_0xeaff5
-	callchannel _Music_SSAqua_sub_0xeb03e
-	note $0f
-	note $0f
-	note $0f
+	callchannel Music_SSAqua_branch_eaff5
+	octave 5
+	note G_, 0
+	octave 4
+	note B_, 0
+	note A_, 0
+	note G_, 0
+	octave 5
+	note G_, 0
+	octave 4
+	note B_, 0
+	note A_, 0
+	note G_, 0
+	octave 5
+	note G_, 0
+	octave 4
+	note B_, 0
+	note A_, 0
+	note G_, 0
+	octave 5
+	note G_, 0
+	octave 4
+	note B_, 0
+	note A_, 0
+	note G_, 0
+	callchannel Music_SSAqua_branch_eaff5
+	callchannel Music_SSAqua_branch_eb03e
+	note __, 15
+	note __, 15
+	note __, 15
 	intensity $97
-	note $0d
-	notetype $06, $97
-	note $30
-	note $00
-	octave3
-	note $b0
-	note $00
-	notetype $0c, $97
-	note $0f
-	note $0f
+	note __, 13
+	notetype $6, $97
+	note D_, 0
+	note __, 0
+	octave 3
+	note A#, 0
+	note __, 0
+	notetype $c, $97
+	note __, 15
+	note __, 15
 	intensity $95
-	note $01
-	octave4
-	note $10
-	note $50
-	note $80
-	note $00
-	note $50
-	note $10
-	octave3
-	note $50
-	note $10
-	note $50
-	note $80
-	octave4
-	note $10
-	note $50
-	note $80
-	octave5
-	note $10
-	octave4
-	note $55
-	note $31
-	note $10
-	note $30
-	note $70
-	note $a0
-	octave5
-	note $10
-	note $30
-	octave4
-	note $80
-	note $70
-	dutycycle $02
+	note __, 1
+	octave 4
+	note C_, 0
+	note E_, 0
+	note G_, 0
+	note __, 0
+	note E_, 0
+	note C_, 0
+	octave 3
+	note E_, 0
+	note C_, 0
+	note E_, 0
+	note G_, 0
+	octave 4
+	note C_, 0
+	note E_, 0
+	note G_, 0
+	octave 5
+	note C_, 0
+	octave 4
+	note E_, 5
+	note D_, 1
+	note C_, 0
+	note D_, 0
+	note F#, 0
+	note A_, 0
+	octave 5
+	note C_, 0
+	note D_, 0
+	octave 4
+	note G_, 0
+	note F#, 0
+	dutycycle $2
 	intensity $97
-	note $87
-	note $77
-	note $57
-	note $37
-	octave3
-	note $c7
-	note $b1
-	note $01
-	note $c0
-	note $00
-	octave4
-	note $71
+	note G_, 7
+	note F#, 7
+	note E_, 7
+	note D_, 7
+	octave 3
+	note B_, 7
+	note A#, 1
+	note __, 1
+	note B_, 0
+	note __, 0
+	octave 4
+	note F#, 1
 	intensity $75
-	octave5
-	note $a3
-	note $73
-	note $33
-	octave4
-	note $b1
-	notetype $06, $97
-	note $30
-	note $00
-	octave3
-	note $b0
-	note $00
+	octave 5
+	note A_, 3
+	note F#, 3
+	note D_, 3
+	octave 4
+	note A#, 1
+	notetype $6, $97
+	note D_, 0
+	note __, 0
+	octave 3
+	note A#, 0
+	note __, 0
 	intensity $97
-	note $8f
-	note $af
-	note $c3
-	note $03
-	note $c3
-	note $03
-	octave4
-	note $57
-	note $87
-	note $70
-	vibrato $00, $00
+	note G_, 15
+	note A_, 15
+	note B_, 3
+	note __, 3
+	note B_, 3
+	note __, 3
+	octave 4
+	note E_, 7
+	note G_, 7
+	note F#, 0
+	vibrato $0, $0
 	intensity $88
-	note $89
-	vibrato $02, $23
+	note G_, 9
+	vibrato $2, $23
 	intensity $87
-	note $88
-	vibrato $08, $33
-	note $13
-	note $53
-	note $13
-	note $3b
-	note $7b
-	note $07
-	octave2
-	note $c1
-	octave3
-	note $31
-	note $71
-	note $a1
-	note $31
-	note $71
-	note $a1
-	octave4
-	note $31
-	note $71
-	notetype $0c, $97
-	note $06
-	note $0f
-	note $0f
-	note $87
-	note $70
-	note $30
-	octave3
-	note $a0
-	octave4
-	note $30
-	octave3
-	note $a0
-	note $70
-	note $30
-	octave2
-	note $a0
-	note $c0
-	octave3
-	note $30
-	note $70
-	note $a0
-	note $30
-	note $70
-	note $a0
-	octave4
-	note $30
-	note $70
-	note $06
-	note $0f
-	note $01
-	note $51
-	note $80
-	note $00
-	note $50
-	notetype $06, $97
-	note $00
-	note $10
-	note $23
-	octave3
-	note $c1
-	note $01
-	note $a2
-	note $00
-	note $81
-	note $01
-	note $71
-	note $31
-	octave2
-	note $a1
-	octave3
-	note $31
-	note $a1
-	note $71
-	note $31
-	note $a1
-	octave4
-	note $31
-	octave3
-	note $a1
-	note $71
-	note $a1
-	octave4
-	note $11
-	note $31
-	note $71
-	note $a1
-	loopchannel $00, $6dbc ; end
-; 0xeaeca
+	note G_, 8
+	vibrato $8, $33
+	note C_, 3
+	note E_, 3
+	note C_, 3
+	note D_, 11
+	note F#, 11
+	note __, 7
+	octave 2
+	note B_, 1
+	octave 3
+	note D_, 1
+	note F#, 1
+	note A_, 1
+	note D_, 1
+	note F#, 1
+	note A_, 1
+	octave 4
+	note D_, 1
+	note F#, 1
+	notetype $c, $97
+	note __, 6
+	note __, 15
+	note __, 15
+	note G_, 7
+	note F#, 0
+	note D_, 0
+	octave 3
+	note A_, 0
+	octave 4
+	note D_, 0
+	octave 3
+	note A_, 0
+	note F#, 0
+	note D_, 0
+	octave 2
+	note A_, 0
+	note B_, 0
+	octave 3
+	note D_, 0
+	note F#, 0
+	note A_, 0
+	note D_, 0
+	note F#, 0
+	note A_, 0
+	octave 4
+	note D_, 0
+	note F#, 0
+	note __, 6
+	note __, 15
+	note __, 1
+	note E_, 1
+	note G_, 0
+	note __, 0
+	note E_, 0
+	notetype $6, $97
+	note __, 0
+	note C_, 0
+	note C#, 3
+	octave 3
+	note B_, 1
+	note __, 1
+	note A_, 2
+	note __, 0
+	note G_, 1
+	note __, 1
+	note F#, 1
+	note D_, 1
+	octave 2
+	note A_, 1
+	octave 3
+	note D_, 1
+	note A_, 1
+	note F#, 1
+	note D_, 1
+	note A_, 1
+	octave 4
+	note D_, 1
+	octave 3
+	note A_, 1
+	note F#, 1
+	note A_, 1
+	octave 4
+	note C_, 1
+	note D_, 1
+	note F#, 1
+	note A_, 1
+	loopchannel 0, Music_SSAqua_branch_eadbc
+; eaeca
 
-_Music_SSAqua_Ch2: ; 0xeaeca
+Music_SSAqua_Ch2: ; eaeca
 	stereopanning $f0
-	dutycycle $02
-	vibrato $08, $33
-	notetype $0c, $b7
-	note $01
-	notetype $0c, $b7
-	dutycycle $01
+	dutycycle $2
+	vibrato $8, $33
+	notetype $c, $b7
+	note __, 1
+
+Music_SSAqua_branch_eaed5: ; eaed5
+	notetype $c, $b7
+	dutycycle $1
 	intensity $61
-	callchannel _Music_SSAqua_sub_0xeaff5
-	callchannel _Music_SSAqua_sub_0xeb03e
-	dutycycle $02
+	callchannel Music_SSAqua_branch_eaff5
+	callchannel Music_SSAqua_branch_eb03e
+	dutycycle $2
 	intensity $d7
-	callchannel _Music_SSAqua_sub_0xeafe0
-	note $c0
-	note $00
-	note $80
-	note $02
-	octave3
-	note $85
-	note $80
-	note $c0
-	octave4
-	note $20
-	note $50
-	forceoctave $0c
-	callchannel _Music_SSAqua_sub_0xeafe0
-	forceoctave $00
-	octave3
-	note $c0
-	note $00
-	note $80
-	note $02
-	octave4
-	note $85
-	note $01
-	dutycycle $03
+	callchannel Music_SSAqua_branch_eafe0
+	note B_, 0
+	note __, 0
+	note G_, 0
+	note __, 2
+	octave 3
+	note G_, 5
+	note G_, 0
+	note B_, 0
+	octave 4
+	note C#, 0
+	note E_, 0
+	forceoctave $c
+	callchannel Music_SSAqua_branch_eafe0
+	forceoctave $0
+	octave 3
+	note B_, 0
+	note __, 0
+	note G_, 0
+	note __, 2
+	octave 4
+	note G_, 5
+	note __, 1
+	dutycycle $3
 	intensity $b7
-	octave3
-	note $c0
-	octave4
-	note $10
-	callchannel _Music_SSAqua_sub_0xeaf88
-	note $83
-	note $03
-	note $87
-	note $a7
-	note $c7
-	notetype $0c, $b7
-	octave5
-	note $19
-	note $31
-	note $11
-	octave4
-	note $81
-	note $c5
-	note $a5
-	note $01
-	octave3
-	note $c0
-	octave4
-	note $10
-	callchannel _Music_SSAqua_sub_0xeaf88
-	note $83
-	note $03
-	note $87
-	note $a7
-	note $c7
-	octave5
-	note $40
-	vibrato $00, $00
+	octave 3
+	note B_, 0
+	octave 4
+	note C_, 0
+	callchannel Music_SSAqua_branch_eaf88
+	note G_, 3
+	note __, 3
+	note G_, 7
+	note A_, 7
+	note B_, 7
+	notetype $c, $b7
+	octave 5
+	note C_, 9
+	note D_, 1
+	note C_, 1
+	octave 4
+	note G_, 1
+	note B_, 5
+	note A_, 5
+	note __, 1
+	octave 3
+	note B_, 0
+	octave 4
+	note C_, 0
+	callchannel Music_SSAqua_branch_eaf88
+	note G_, 3
+	note __, 3
+	note G_, 7
+	note A_, 7
+	note B_, 7
+	octave 5
+	note D#, 0
+	vibrato $0, $0
 	intensity $98
-	note $59
-	vibrato $04, $23
+	note E_, 9
+	vibrato $4, $23
 	intensity $97
-	note $58
-	vibrato $08, $23
-	note $33
-	note $13
-	octave4
-	note $83
-	note $cb
-	note $ab
-	note $03
-	dutycycle $00
-	note $c1
-	note $a1
-	callchannel _Music_SSAqua_sub_0xeafd5
-	notetype $06, $b7
-	note $90
-	note $aa
-	note $81
-	note $71
-	note $8b
-	note $03
-	note $03
-	note $51
-	note $01
-	note $51
-	note $01
-	note $81
-	note $01
-	note $a1
-	note $01
-	note $51
-	note $01
-	note $71
-	note $01
-	note $81
-	note $01
-	note $af
-	note $bb
-	note $c1
-	note $a1
-	callchannel _Music_SSAqua_sub_0xeafd5
-	notetype $06, $b7
-	note $90
-	note $aa
-	note $c3
-	note $8b
-	note $03
-	note $03
-	octave5
-	note $13
-	note $31
-	note $01
-	note $11
-	note $00
-	octave4
-	note $b0
-	note $c3
-	note $a1
-	note $01
-	note $83
-	note $51
-	note $01
-	note $77
-	note $87
-	note $a7
-	note $07
-	loopchannel $00, $6ed5 ; end
-; 0xeaf88
+	note E_, 8
+	vibrato $8, $23
+	note D_, 3
+	note C_, 3
+	octave 4
+	note G_, 3
+	note B_, 11
+	note A_, 11
+	note __, 3
+	dutycycle $0
+	note B_, 1
+	note A_, 1
+	callchannel Music_SSAqua_branch_eafd5
+	notetype $6, $b7
+	note G#, 0
+	note A_, 10
+	note G_, 1
+	note F#, 1
+	note G_, 11
+	note __, 3
+	note __, 3
+	note E_, 1
+	note __, 1
+	note E_, 1
+	note __, 1
+	note G_, 1
+	note __, 1
+	note A_, 1
+	note __, 1
+	note E_, 1
+	note __, 1
+	note F#, 1
+	note __, 1
+	note G_, 1
+	note __, 1
+	note A_, 15
+	note A#, 11
+	note B_, 1
+	note A_, 1
+	callchannel Music_SSAqua_branch_eafd5
+	notetype $6, $b7
+	note G#, 0
+	note A_, 10
+	note B_, 3
+	note G_, 11
+	note __, 3
+	note __, 3
+	octave 5
+	note C_, 3
+	note D_, 1
+	note __, 1
+	note C_, 1
+	note __, 0
+	octave 4
+	note A#, 0
+	note B_, 3
+	note A_, 1
+	note __, 1
+	note G_, 3
+	note E_, 1
+	note __, 1
+	note F#, 7
+	note G_, 7
+	note A_, 7
+	note __, 7
+	loopchannel 0, Music_SSAqua_branch_eaed5
+; eaf88
 
-_Music_SSAqua_sub_0xeaf88: ; 0xeaf88
-; subroutine
-	note $35
-	octave3
-	note $c0
-	octave4
-	note $10
-	note $31
-	octave3
-	note $c0
-	octave4
-	note $10
-	note $31
-	octave3
-	note $c0
-	octave4
-	note $10
-	note $31
-	note $01
-	note $81
-	note $01
-	note $a1
-	note $01
-	note $b1
-	note $01
-	note $c5
-	note $75
-	note $03
-	dutycycle $01
-	notetype $06, $b7
-	octave3
-	note $a0
-	note $00
-	octave4
-	note $30
-	note $00
-	note $70
-	note $00
-	note $a0
-	note $00
-	note $30
-	note $00
-	note $70
-	note $00
-	note $a0
-	note $00
-	octave5
-	note $30
-	note $00
-	note $70
-	note $00
-	note $30
-	note $00
-	octave4
-	note $b0
-	note $00
-	note $70
-	note $00
-	note $b0
-	note $00
-	note $70
-	note $00
-	dutycycle $03
-	note $51
-	note $71
-	note $8b
-	note $51
-	note $71
-	note $83
-	note $51
-	note $71
-	note $83
-	note $51
-	note $71
-	endchannel ; end
-; 0xeafd5
+Music_SSAqua_branch_eaf88: ; eaf88
+	note D_, 5
+	octave 3
+	note B_, 0
+	octave 4
+	note C_, 0
+	note D_, 1
+	octave 3
+	note B_, 0
+	octave 4
+	note C_, 0
+	note D_, 1
+	octave 3
+	note B_, 0
+	octave 4
+	note C_, 0
+	note D_, 1
+	note __, 1
+	note G_, 1
+	note __, 1
+	note A_, 1
+	note __, 1
+	note A#, 1
+	note __, 1
+	note B_, 5
+	note F#, 5
+	note __, 3
+	dutycycle $1
+	notetype $6, $b7
+	octave 3
+	note A_, 0
+	note __, 0
+	octave 4
+	note D_, 0
+	note __, 0
+	note F#, 0
+	note __, 0
+	note A_, 0
+	note __, 0
+	note D_, 0
+	note __, 0
+	note F#, 0
+	note __, 0
+	note A_, 0
+	note __, 0
+	octave 5
+	note D_, 0
+	note __, 0
+	note F#, 0
+	note __, 0
+	note D_, 0
+	note __, 0
+	octave 4
+	note A#, 0
+	note __, 0
+	note F#, 0
+	note __, 0
+	note A#, 0
+	note __, 0
+	note F#, 0
+	note __, 0
+	dutycycle $3
+	note E_, 1
+	note F#, 1
+	note G_, 11
+	note E_, 1
+	note F#, 1
+	note G_, 3
+	note E_, 1
+	note F#, 1
+	note G_, 3
+	note E_, 1
+	note F#, 1
+	endchannel
+; eafd5
 
-_Music_SSAqua_sub_0xeafd5: ; 0xeafd5
-; subroutine
-	notetype $0c, $b7
-	note $c9
-	note $70
-	note $00
-	note $c0
-	note $00
-	note $70
-	note $00
-	endchannel ; end
-; 0xeafe0
+Music_SSAqua_branch_eafd5: ; eafd5
+	notetype $c, $b7
+	note B_, 9
+	note F#, 0
+	note __, 0
+	note B_, 0
+	note __, 0
+	note F#, 0
+	note __, 0
+	endchannel
+; eafe0
 
-_Music_SSAqua_sub_0xeafe0: ; 0xeafe0
-; subroutine
-	octave3
-	note $39
-	note $50
-	note $02
-	note $30
-	note $00
-	note $2b
-	octave2
-	note $a0
-	note $00
-	note $c0
-	note $00
-	octave3
-	note $17
-	note $01
-	octave2
-	note $c0
-	note $02
-	note $a0
-	note $00
-	endchannel ; end
-; 0xeaff5
+Music_SSAqua_branch_eafe0: ; eafe0
+	octave 3
+	note D_, 9
+	note E_, 0
+	note __, 2
+	note D_, 0
+	note __, 0
+	note C#, 11
+	octave 2
+	note A_, 0
+	note __, 0
+	note B_, 0
+	note __, 0
+	octave 3
+	note C_, 7
+	note __, 1
+	octave 2
+	note B_, 0
+	note __, 2
+	note A_, 0
+	note __, 0
+	endchannel
+; eaff5
 
-_Music_SSAqua_sub_0xeaff5: ; 0xeaff5
-; subroutine
-	octave5
-	note $80
-	note $30
-	octave4
-	note $c0
-	note $80
-	octave5
-	note $80
-	note $30
-	octave4
-	note $c0
-	note $80
-	octave5
-	note $80
-	note $30
-	octave4
-	note $c0
-	note $80
-	octave5
-	note $80
-	note $30
-	octave4
-	note $c0
-	note $80
-	octave5
-	note $80
-	note $20
-	octave4
-	note $b0
-	note $80
-	octave5
-	note $80
-	note $20
-	octave4
-	note $b0
-	note $80
-	octave5
-	note $80
-	note $20
-	octave4
-	note $b0
-	note $80
-	octave5
-	note $80
-	note $20
-	octave4
-	note $b0
-	note $80
-	octave5
-	note $80
-	note $10
-	octave4
-	note $a0
-	note $80
-	octave5
-	note $80
-	note $10
-	octave4
-	note $a0
-	note $80
-	octave5
-	note $80
-	note $10
-	octave4
-	note $a0
-	note $80
-	octave5
-	note $80
-	note $10
-	octave4
-	note $a0
-	note $80
-	endchannel ; end
-; 0xeb03e
+Music_SSAqua_branch_eaff5: ; eaff5
+	octave 5
+	note G_, 0
+	note D_, 0
+	octave 4
+	note B_, 0
+	note G_, 0
+	octave 5
+	note G_, 0
+	note D_, 0
+	octave 4
+	note B_, 0
+	note G_, 0
+	octave 5
+	note G_, 0
+	note D_, 0
+	octave 4
+	note B_, 0
+	note G_, 0
+	octave 5
+	note G_, 0
+	note D_, 0
+	octave 4
+	note B_, 0
+	note G_, 0
+	octave 5
+	note G_, 0
+	note C#, 0
+	octave 4
+	note A#, 0
+	note G_, 0
+	octave 5
+	note G_, 0
+	note C#, 0
+	octave 4
+	note A#, 0
+	note G_, 0
+	octave 5
+	note G_, 0
+	note C#, 0
+	octave 4
+	note A#, 0
+	note G_, 0
+	octave 5
+	note G_, 0
+	note C#, 0
+	octave 4
+	note A#, 0
+	note G_, 0
+	octave 5
+	note G_, 0
+	note C_, 0
+	octave 4
+	note A_, 0
+	note G_, 0
+	octave 5
+	note G_, 0
+	note C_, 0
+	octave 4
+	note A_, 0
+	note G_, 0
+	octave 5
+	note G_, 0
+	note C_, 0
+	octave 4
+	note A_, 0
+	note G_, 0
+	octave 5
+	note G_, 0
+	note C_, 0
+	octave 4
+	note A_, 0
+	note G_, 0
+	endchannel
+; eb03e
 
-_Music_SSAqua_sub_0xeb03e: ; 0xeb03e
-; subroutine
-	octave5
-	note $80
-	octave4
-	note $c0
-	note $a0
-	note $80
-	octave5
-	note $80
-	octave4
-	note $c0
-	note $a0
-	note $80
-	octave5
-	note $80
-	note $30
-	octave4
-	note $c0
-	note $80
-	note $c0
-	note $80
-	note $20
-	octave3
-	note $80
-	endchannel ; end
-; 0xeb056
+Music_SSAqua_branch_eb03e: ; eb03e
+	octave 5
+	note G_, 0
+	octave 4
+	note B_, 0
+	note A_, 0
+	note G_, 0
+	octave 5
+	note G_, 0
+	octave 4
+	note B_, 0
+	note A_, 0
+	note G_, 0
+	octave 5
+	note G_, 0
+	note D_, 0
+	octave 4
+	note B_, 0
+	note G_, 0
+	note B_, 0
+	note G_, 0
+	note C#, 0
+	octave 3
+	note G_, 0
+	endchannel
 
-_Music_SSAqua_Ch3: ; 0xeb056
+Music_SSAqua_Ch3: ; eb056
 	stereopanning $ff
-	vibrato $08, $34
-	notetype $06, $15
-	octave2
-	note $80
-	note $00
-	note $80
-	note $00
-	note $8f
-	note $07
-	note $81
-	note $01
-	notetype $0c, $15
-	note $81
-	note $89
-	note $03
-	notetype $06, $15
-	note $80
-	note $00
-	note $80
-	note $00
-	note $8f
-	note $07
-	note $81
-	note $01
-	notetype $0c, $15
-	note $81
-	note $87
-	note $c0
-	octave3
-	note $20
-	note $30
-	note $80
-	note $30
-	note $80
-	note $c0
-	octave4
-	note $50
-	callchannel _Music_SSAqua_sub_0xeb14d
-	callchannel _Music_SSAqua_sub_0xeb14d
-	note $81
-	note $01
-	octave3
-	note $80
-	note $02
-	octave2
-	note $81
-	note $01
-	octave3
-	note $80
-	note $02
-	octave2
-	note $81
-	note $01
-	octave3
-	note $80
-	note $02
-	octave2
-	note $81
-	note $01
-	octave3
-	note $80
-	note $00
-	octave2
-	note $80
-	note $00
-	loopchannel $04, $708d
-	callchannel _Music_SSAqua_sub_0xeb172
-	callchannel _Music_SSAqua_sub_0xeb172
-	callchannel _Music_SSAqua_sub_0xeb230
-	octave3
-	note $51
-	note $01
-	octave4
-	note $50
-	note $02
-	octave3
-	note $41
-	note $01
-	octave4
-	note $40
-	note $02
-	octave3
-	note $31
-	note $01
-	octave4
-	note $30
-	note $02
-	octave3
-	note $41
-	note $01
-	octave4
-	note $40
-	note $02
-	octave2
-	note $a1
-	note $01
-	octave4
-	note $10
-	note $02
-	octave2
-	note $a1
-	note $01
-	octave4
-	note $10
-	note $02
-	octave2
-	note $a1
-	note $01
-	octave4
-	note $20
-	note $02
-	octave2
-	note $a1
-	note $01
-	octave4
-	note $20
-	note $02
-	octave3
-	note $31
-	note $01
-	octave4
-	note $80
-	note $02
-	octave3
-	note $31
-	note $01
-	octave4
-	note $80
-	note $02
-	octave3
-	note $31
-	note $01
-	octave4
-	note $70
-	note $02
-	octave3
-	note $31
-	note $01
-	octave4
-	note $70
-	note $02
-	callchannel _Music_SSAqua_sub_0xeb230
-	octave3
-	note $51
-	note $01
-	octave4
-	note $50
-	note $02
-	octave3
-	note $51
-	note $01
-	octave4
-	note $40
-	note $02
-	octave2
-	note $a1
-	note $01
-	octave4
-	note $20
-	note $02
-	octave2
-	note $a1
-	note $01
-	octave4
-	note $20
-	note $02
-	octave3
-	note $11
-	note $01
-	octave4
-	note $80
-	note $02
-	octave3
-	note $11
-	note $01
-	octave4
-	note $80
-	note $02
-	octave3
-	note $21
-	note $01
-	octave4
-	note $80
-	note $02
-	octave3
-	note $21
-	note $01
-	octave4
-	note $80
-	note $02
-	octave3
-	note $31
-	note $01
-	octave4
-	note $80
-	note $02
-	octave3
-	note $31
-	note $01
-	octave4
-	note $80
-	note $02
-	octave3
-	note $31
-	note $01
-	octave4
-	note $70
-	note $02
-	octave3
-	note $31
-	note $01
-	octave2
-	note $80
-	note $00
-	note $80
-	note $00
-	loopchannel $00, $7063 ; end
-; 0xeb14d
+	vibrato $8, $34
+	notetype $6, $15
+	octave 2
+	note G_, 0
+	note __, 0
+	note G_, 0
+	note __, 0
 
-_Music_SSAqua_sub_0xeb14d: ; 0xeb14d
-; subroutine
-	notetype $06, $15
-	octave2
-	note $81
-	note $05
-	note $81
-	note $05
-	note $81
-	note $01
-	octave3
-	note $81
-	note $01
-	octave2
-	note $81
-	note $03
-	note $80
-	note $00
-	note $81
-	note $05
-	note $81
-	note $01
-	octave3
-	note $80
-	note $02
-	octave2
-	note $81
-	note $01
-	octave3
-	note $80
-	note $02
-	octave2
-	note $81
-	note $03
-	note $80
-	note $00
-	endchannel ; end
-; 0xeb172
+Music_SSAqua_branch_eb063: ; eb063
+	note G_, 15
+	note __, 7
+	note G_, 1
+	note __, 1
+	notetype $c, $15
+	note G_, 1
+	note G_, 9
+	note __, 3
+	notetype $6, $15
+	note G_, 0
+	note __, 0
+	note G_, 0
+	note __, 0
+	note G_, 15
+	note __, 7
+	note G_, 1
+	note __, 1
+	notetype $c, $15
+	note G_, 1
+	note G_, 7
+	note B_, 0
+	octave 3
+	note C#, 0
+	note D_, 0
+	note G_, 0
+	note D_, 0
+	note G_, 0
+	note B_, 0
+	octave 4
+	note E_, 0
+	callchannel Music_SSAqua_branch_eb14d
+	callchannel Music_SSAqua_branch_eb14d
 
-_Music_SSAqua_sub_0xeb172: ; 0xeb172
-; subroutine
-	octave2
-	note $81
-	note $01
-	octave4
-	note $30
-	note $02
-	octave2
-	note $81
-	note $01
-	octave4
-	note $30
-	note $02
-	octave2
-	note $81
-	note $01
-	octave4
-	note $50
-	note $02
-	octave2
-	note $81
-	note $01
-	octave4
-	note $50
-	note $00
-	octave2
-	note $80
-	note $00
-	note $81
-	note $01
-	octave4
-	note $70
-	note $02
-	octave2
-	note $81
-	note $01
-	octave4
-	note $70
-	note $02
-	octave2
-	note $81
-	note $01
-	octave4
-	note $83
-	note $73
-	note $51
-	note $01
-	octave2
-	note $c1
-	note $01
-	octave4
-	note $70
-	note $02
-	octave2
-	note $c1
-	note $01
-	octave4
-	note $70
-	note $02
-	octave2
-	note $b1
-	note $01
-	octave3
-	note $b0
-	note $02
-	octave2
-	note $b1
-	note $01
-	octave3
-	note $b0
-	note $02
-	octave2
-	note $a1
-	note $01
-	octave3
-	note $a0
-	note $02
-	octave2
-	note $a1
-	note $01
-	octave3
-	note $a0
-	note $02
-	octave2
-	note $b1
-	note $01
-	octave3
-	note $b0
-	note $02
-	octave2
-	note $b1
-	note $01
-	octave3
-	note $b0
-	note $00
-	note $40
-	note $00
-	note $51
-	note $01
-	octave4
-	note $50
-	note $02
-	octave3
-	note $51
-	note $01
-	octave4
-	note $50
-	note $02
-	octave3
-	note $41
-	note $01
-	octave4
-	note $40
-	note $02
-	octave3
-	note $41
-	note $01
-	octave4
-	note $40
-	note $00
-	octave3
-	note $20
-	note $00
-	note $31
-	note $01
-	octave4
-	note $30
-	note $02
-	octave3
-	note $31
-	note $01
-	octave4
-	note $30
-	note $02
-	octave3
-	note $21
-	note $01
-	octave4
-	note $c3
-	note $83
-	note $51
-	note $01
-	octave3
-	note $11
-	note $01
-	octave4
-	note $80
-	note $02
-	octave3
-	note $11
-	note $01
-	octave4
-	note $80
-	note $02
-	octave2
-	note $a1
-	note $01
-	octave4
-	note $50
-	note $02
-	octave2
-	note $a1
-	note $01
-	octave4
-	note $50
-	note $02
-	octave3
-	note $31
-	note $01
-	octave4
-	note $80
-	note $02
-	octave3
-	note $31
-	note $01
-	octave4
-	note $80
-	note $02
-	octave3
-	note $31
-	note $01
-	octave4
-	note $70
-	note $02
-	octave3
-	note $31
-	note $01
-	octave4
-	note $70
-	note $02
-	endchannel ; end
-; 0xeb230
+Music_SSAqua_branch_eb08d: ; eb08d
+	note G_, 1
+	note __, 1
+	octave 3
+	note G_, 0
+	note __, 2
+	octave 2
+	note G_, 1
+	note __, 1
+	octave 3
+	note G_, 0
+	note __, 2
+	octave 2
+	note G_, 1
+	note __, 1
+	octave 3
+	note G_, 0
+	note __, 2
+	octave 2
+	note G_, 1
+	note __, 1
+	octave 3
+	note G_, 0
+	note __, 0
+	octave 2
+	note G_, 0
+	note __, 0
+	loopchannel 4, Music_SSAqua_branch_eb08d
+	callchannel Music_SSAqua_branch_eb172
+	callchannel Music_SSAqua_branch_eb172
+	callchannel Music_SSAqua_branch_eb230
+	octave 3
+	note E_, 1
+	note __, 1
+	octave 4
+	note E_, 0
+	note __, 2
+	octave 3
+	note D#, 1
+	note __, 1
+	octave 4
+	note D#, 0
+	note __, 2
+	octave 3
+	note D_, 1
+	note __, 1
+	octave 4
+	note D_, 0
+	note __, 2
+	octave 3
+	note D#, 1
+	note __, 1
+	octave 4
+	note D#, 0
+	note __, 2
+	octave 2
+	note A_, 1
+	note __, 1
+	octave 4
+	note C_, 0
+	note __, 2
+	octave 2
+	note A_, 1
+	note __, 1
+	octave 4
+	note C_, 0
+	note __, 2
+	octave 2
+	note A_, 1
+	note __, 1
+	octave 4
+	note C#, 0
+	note __, 2
+	octave 2
+	note A_, 1
+	note __, 1
+	octave 4
+	note C#, 0
+	note __, 2
+	octave 3
+	note D_, 1
+	note __, 1
+	octave 4
+	note G_, 0
+	note __, 2
+	octave 3
+	note D_, 1
+	note __, 1
+	octave 4
+	note G_, 0
+	note __, 2
+	octave 3
+	note D_, 1
+	note __, 1
+	octave 4
+	note F#, 0
+	note __, 2
+	octave 3
+	note D_, 1
+	note __, 1
+	octave 4
+	note F#, 0
+	note __, 2
+	callchannel Music_SSAqua_branch_eb230
+	octave 3
+	note E_, 1
+	note __, 1
+	octave 4
+	note E_, 0
+	note __, 2
+	octave 3
+	note E_, 1
+	note __, 1
+	octave 4
+	note D#, 0
+	note __, 2
+	octave 2
+	note A_, 1
+	note __, 1
+	octave 4
+	note C#, 0
+	note __, 2
+	octave 2
+	note A_, 1
+	note __, 1
+	octave 4
+	note C#, 0
+	note __, 2
+	octave 3
+	note C_, 1
+	note __, 1
+	octave 4
+	note G_, 0
+	note __, 2
+	octave 3
+	note C_, 1
+	note __, 1
+	octave 4
+	note G_, 0
+	note __, 2
+	octave 3
+	note C#, 1
+	note __, 1
+	octave 4
+	note G_, 0
+	note __, 2
+	octave 3
+	note C#, 1
+	note __, 1
+	octave 4
+	note G_, 0
+	note __, 2
+	octave 3
+	note D_, 1
+	note __, 1
+	octave 4
+	note G_, 0
+	note __, 2
+	octave 3
+	note D_, 1
+	note __, 1
+	octave 4
+	note G_, 0
+	note __, 2
+	octave 3
+	note D_, 1
+	note __, 1
+	octave 4
+	note F#, 0
+	note __, 2
+	octave 3
+	note D_, 1
+	note __, 1
+	octave 2
+	note G_, 0
+	note __, 0
+	note G_, 0
+	note __, 0
+	loopchannel 0, Music_SSAqua_branch_eb063
+; eb14d
 
-_Music_SSAqua_sub_0xeb230: ; 0xeb230
-; subroutine
-	octave2
-	note $c1
-	note $01
-	octave4
-	note $70
-	note $02
-	octave2
-	note $c1
-	note $01
-	octave4
-	note $70
-	note $02
-	octave2
-	note $c1
-	note $01
-	octave4
-	note $40
-	note $02
-	octave2
-	note $c1
-	note $01
-	octave4
-	note $40
-	note $02
-	endchannel ; end
-; 0xeb249
+Music_SSAqua_branch_eb14d: ; eb14d
+	notetype $6, $15
+	octave 2
+	note G_, 1
+	note __, 5
+	note G_, 1
+	note __, 5
+	note G_, 1
+	note __, 1
+	octave 3
+	note G_, 1
+	note __, 1
+	octave 2
+	note G_, 1
+	note __, 3
+	note G_, 0
+	note __, 0
+	note G_, 1
+	note __, 5
+	note G_, 1
+	note __, 1
+	octave 3
+	note G_, 0
+	note __, 2
+	octave 2
+	note G_, 1
+	note __, 1
+	octave 3
+	note G_, 0
+	note __, 2
+	octave 2
+	note G_, 1
+	note __, 3
+	note G_, 0
+	note __, 0
+	endchannel
+; eb172
 
-_Music_SSAqua_Ch4: ; 0xeb249
-	togglenoise $03
-	notetype $0c
-	note $01
-	note $90
-	note $80
-	note $80
-	note $80
-	note $80
-	note $80
-	note $80
-	note $80
-	note $80
-	note $80
-	note $80
-	note $80
-	note $80
-	note $80
-	note $90
-	note $80
-	loopchannel $0c, $724e
-	callchannel _Music_SSAqua_sub_0xeb2ae
-	callchannel _Music_SSAqua_sub_0xeb2ae
-	callchannel _Music_SSAqua_sub_0xeb2ae
-	callchannel _Music_SSAqua_sub_0xeb2bb
-	callchannel _Music_SSAqua_sub_0xeb2ae
-	callchannel _Music_SSAqua_sub_0xeb2ae
-	callchannel _Music_SSAqua_sub_0xeb2ae
-	callchannel _Music_SSAqua_sub_0xeb2bb
-	callchannel _Music_SSAqua_sub_0xeb2ae
-	callchannel _Music_SSAqua_sub_0xeb2ae
-	callchannel _Music_SSAqua_sub_0xeb2ae
-	callchannel _Music_SSAqua_sub_0xeb2bb
-	callchannel _Music_SSAqua_sub_0xeb2ae
-	callchannel _Music_SSAqua_sub_0xeb2ae
-	callchannel _Music_SSAqua_sub_0xeb2ae
-	callchannel _Music_SSAqua_sub_0xeb2c7
-	callchannel _Music_SSAqua_sub_0xeb2ae
-	callchannel _Music_SSAqua_sub_0xeb2ae
-	callchannel _Music_SSAqua_sub_0xeb2ae
-	callchannel _Music_SSAqua_sub_0xeb2bb
-	callchannel _Music_SSAqua_sub_0xeb2ae
-	callchannel _Music_SSAqua_sub_0xeb2ae
-	callchannel _Music_SSAqua_sub_0xeb2ae
-	callchannel _Music_SSAqua_sub_0xeb2c7
-	loopchannel $00, $724e ; end
-; 0xeb2ae
+Music_SSAqua_branch_eb172: ; eb172
+	octave 2
+	note G_, 1
+	note __, 1
+	octave 4
+	note D_, 0
+	note __, 2
+	octave 2
+	note G_, 1
+	note __, 1
+	octave 4
+	note D_, 0
+	note __, 2
+	octave 2
+	note G_, 1
+	note __, 1
+	octave 4
+	note E_, 0
+	note __, 2
+	octave 2
+	note G_, 1
+	note __, 1
+	octave 4
+	note E_, 0
+	note __, 0
+	octave 2
+	note G_, 0
+	note __, 0
+	note G_, 1
+	note __, 1
+	octave 4
+	note F#, 0
+	note __, 2
+	octave 2
+	note G_, 1
+	note __, 1
+	octave 4
+	note F#, 0
+	note __, 2
+	octave 2
+	note G_, 1
+	note __, 1
+	octave 4
+	note G_, 3
+	note F#, 3
+	note E_, 1
+	note __, 1
+	octave 2
+	note B_, 1
+	note __, 1
+	octave 4
+	note F#, 0
+	note __, 2
+	octave 2
+	note B_, 1
+	note __, 1
+	octave 4
+	note F#, 0
+	note __, 2
+	octave 2
+	note A#, 1
+	note __, 1
+	octave 3
+	note A#, 0
+	note __, 2
+	octave 2
+	note A#, 1
+	note __, 1
+	octave 3
+	note A#, 0
+	note __, 2
+	octave 2
+	note A_, 1
+	note __, 1
+	octave 3
+	note A_, 0
+	note __, 2
+	octave 2
+	note A_, 1
+	note __, 1
+	octave 3
+	note A_, 0
+	note __, 2
+	octave 2
+	note A#, 1
+	note __, 1
+	octave 3
+	note A#, 0
+	note __, 2
+	octave 2
+	note A#, 1
+	note __, 1
+	octave 3
+	note A#, 0
+	note __, 0
+	note D#, 0
+	note __, 0
+	note E_, 1
+	note __, 1
+	octave 4
+	note E_, 0
+	note __, 2
+	octave 3
+	note E_, 1
+	note __, 1
+	octave 4
+	note E_, 0
+	note __, 2
+	octave 3
+	note D#, 1
+	note __, 1
+	octave 4
+	note D#, 0
+	note __, 2
+	octave 3
+	note D#, 1
+	note __, 1
+	octave 4
+	note D#, 0
+	note __, 0
+	octave 3
+	note C#, 0
+	note __, 0
+	note D_, 1
+	note __, 1
+	octave 4
+	note D_, 0
+	note __, 2
+	octave 3
+	note D_, 1
+	note __, 1
+	octave 4
+	note D_, 0
+	note __, 2
+	octave 3
+	note C#, 1
+	note __, 1
+	octave 4
+	note B_, 3
+	note G_, 3
+	note E_, 1
+	note __, 1
+	octave 3
+	note C_, 1
+	note __, 1
+	octave 4
+	note G_, 0
+	note __, 2
+	octave 3
+	note C_, 1
+	note __, 1
+	octave 4
+	note G_, 0
+	note __, 2
+	octave 2
+	note A_, 1
+	note __, 1
+	octave 4
+	note E_, 0
+	note __, 2
+	octave 2
+	note A_, 1
+	note __, 1
+	octave 4
+	note E_, 0
+	note __, 2
+	octave 3
+	note D_, 1
+	note __, 1
+	octave 4
+	note G_, 0
+	note __, 2
+	octave 3
+	note D_, 1
+	note __, 1
+	octave 4
+	note G_, 0
+	note __, 2
+	octave 3
+	note D_, 1
+	note __, 1
+	octave 4
+	note F#, 0
+	note __, 2
+	octave 3
+	note D_, 1
+	note __, 1
+	octave 4
+	note F#, 0
+	note __, 2
+	endchannel
+; eb230
 
-_Music_SSAqua_sub_0xeb2ae: ; 0xeb2ae
-; subroutine
-	note $b1
-	note $80
-	note $80
-	note $31
-	note $80
-	note $80
-	note $b1
-	note $80
-	note $80
-	note $31
-	note $80
-	note $80
-	endchannel ; end
-; 0xeb2bb
+Music_SSAqua_branch_eb230: ; eb230
+	octave 2
+	note B_, 1
+	note __, 1
+	octave 4
+	note F#, 0
+	note __, 2
+	octave 2
+	note B_, 1
+	note __, 1
+	octave 4
+	note F#, 0
+	note __, 2
+	octave 2
+	note B_, 1
+	note __, 1
+	octave 4
+	note D#, 0
+	note __, 2
+	octave 2
+	note B_, 1
+	note __, 1
+	octave 4
+	note D#, 0
+	note __, 2
+	endchannel
 
-_Music_SSAqua_sub_0xeb2bb: ; 0xeb2bb
-; subroutine
-	note $b1
-	note $80
-	note $80
-	note $31
-	note $80
-	note $80
-	note $b1
-	note $80
-	note $80
-	note $31
-	note $71
-	endchannel ; end
-; 0xeb2c7
+Music_SSAqua_Ch4: ; eb249
+	togglenoise $3
+	notetype $c
+	note __, 1
 
-_Music_SSAqua_sub_0xeb2c7: ; 0xeb2c7
-; subroutine
-	note $b1
-	note $80
-	note $80
-	note $31
-	note $80
-	note $80
-	note $30
-	note $30
-	note $31
-	note $31
-	note $11
-	endchannel ; end
-; 0xeb2d3
+Music_SSAqua_branch_eb24e: ; eb24e
+	note G#, 0
+	note G_, 0
+	note G_, 0
+	note G_, 0
+	note G_, 0
+	note G_, 0
+	note G_, 0
+	note G_, 0
+	note G_, 0
+	note G_, 0
+	note G_, 0
+	note G_, 0
+	note G_, 0
+	note G_, 0
+	note G#, 0
+	note G_, 0
+	loopchannel 12, Music_SSAqua_branch_eb24e
+	callchannel Music_SSAqua_branch_eb2ae
+	callchannel Music_SSAqua_branch_eb2ae
+	callchannel Music_SSAqua_branch_eb2ae
+	callchannel Music_SSAqua_branch_eb2bb
+	callchannel Music_SSAqua_branch_eb2ae
+	callchannel Music_SSAqua_branch_eb2ae
+	callchannel Music_SSAqua_branch_eb2ae
+	callchannel Music_SSAqua_branch_eb2bb
+	callchannel Music_SSAqua_branch_eb2ae
+	callchannel Music_SSAqua_branch_eb2ae
+	callchannel Music_SSAqua_branch_eb2ae
+	callchannel Music_SSAqua_branch_eb2bb
+	callchannel Music_SSAqua_branch_eb2ae
+	callchannel Music_SSAqua_branch_eb2ae
+	callchannel Music_SSAqua_branch_eb2ae
+	callchannel Music_SSAqua_branch_eb2c7
+	callchannel Music_SSAqua_branch_eb2ae
+	callchannel Music_SSAqua_branch_eb2ae
+	callchannel Music_SSAqua_branch_eb2ae
+	callchannel Music_SSAqua_branch_eb2bb
+	callchannel Music_SSAqua_branch_eb2ae
+	callchannel Music_SSAqua_branch_eb2ae
+	callchannel Music_SSAqua_branch_eb2ae
+	callchannel Music_SSAqua_branch_eb2c7
+	loopchannel 0, Music_SSAqua_branch_eb24e
+; eb2ae
+
+Music_SSAqua_branch_eb2ae: ; eb2ae
+	note A#, 1
+	note G_, 0
+	note G_, 0
+	note D_, 1
+	note G_, 0
+	note G_, 0
+	note A#, 1
+	note G_, 0
+	note G_, 0
+	note D_, 1
+	note G_, 0
+	note G_, 0
+	endchannel
+; eb2bb
+
+Music_SSAqua_branch_eb2bb: ; eb2bb
+	note A#, 1
+	note G_, 0
+	note G_, 0
+	note D_, 1
+	note G_, 0
+	note G_, 0
+	note A#, 1
+	note G_, 0
+	note G_, 0
+	note D_, 1
+	note F#, 1
+	endchannel
+; eb2c7
+
+Music_SSAqua_branch_eb2c7: ; eb2c7
+	note A#, 1
+	note G_, 0
+	note G_, 0
+	note D_, 1
+	note G_, 0
+	note G_, 0
+	note D_, 0
+	note D_, 0
+	note D_, 1
+	note D_, 1
+	note C_, 1
+	endchannel
+; eb2d3
