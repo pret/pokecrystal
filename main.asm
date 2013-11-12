@@ -42614,7 +42614,7 @@ Function3c12f: ; 3c12f
 	call Function3c27c
 	call UpdateBattleMonInParty
 	callba AIChooseMove
-	call Function3d2f1
+	call CheckInMobileLinkBattle
 	jr nz, .asm_3c174
 	callba Function100da5
 	callba Function100641
@@ -44851,7 +44851,7 @@ Function3cfa4: ; 3cfa4
 	callab Function39939
 	ld hl, BattleText_0x809da
 	call StdBattleTextBox
-	call Function3d2f1
+	call CheckInMobileLinkBattle
 	jr z, .asm_3cff5
 	ld a, [InLinkBattle]
 	and a
@@ -45354,7 +45354,7 @@ Function3d2e0: ; 3d2e0
 	ret
 ; 3d2f1
 
-Function3d2f1: ; 3d2f1
+CheckInMobileLinkBattle: ; 3d2f1
 	ld a, [InLinkBattle]
 	cp $4
 	ret
@@ -45380,7 +45380,7 @@ Function3d313: ; 3d313
 ; 3d329
 
 Function3d329: ; 3d329
-	call Function3d2f1
+	call CheckInMobileLinkBattle
 	jr z, .asm_3d335
 	callba PartyMenuSelect
 	ret
@@ -45524,7 +45524,7 @@ LostBattle: ; 3d38e
 
 .asm_3d40a
 	ld hl, LostAgainstText
-	call Function3d2f1
+	call CheckInMobileLinkBattle
 	jr z, .asm_3d417
 
 .asm_3d412
@@ -47525,7 +47525,7 @@ Function3e192: ; 3e192
 ; 3e19b
 
 Function3e19b: ; 3e19b
-	call Function3d2f1
+	call CheckInMobileLinkBattle
 	jr z, .asm_3e1a8
 	callba LoadBattleMenuDataHeader
 	and a
@@ -47699,7 +47699,7 @@ Function3e299:
 ; 3e2f5
 
 Function3e2f5: ; 3e2f5
-	call Function3d2f1
+	call CheckInMobileLinkBattle
 	jr z, .asm_3e301
 	callba Function24e99
 	ret
@@ -47924,7 +47924,7 @@ Function3e4a8: ; 3e4a8
 ; 3e4bc
 
 Function3e4bc: ; 3e4bc
-	call Function3d2f1
+	call CheckInMobileLinkBattle
 	jr nz, .asm_3e4c8
 	callba Function100b9f
 	ret
