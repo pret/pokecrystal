@@ -64992,7 +64992,7 @@ Function5042d: ; 0x5042d
 INCBIN "baserom.gbc",$5044f,$50457 - $5044f
 
 PartyMenuSelect: ; 0x50457
-; sets carry if exitted menu.
+; sets carry if exited menu.
 	call Function1bc9
 	call Function1bee
 	ld a, [PartyCount]
