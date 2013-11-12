@@ -33795,29 +33795,34 @@ MenuData2_0x24edc: ; 24edc
 ; 24ef2
 
 
-Function24ef2: ; 4ef2
-	ld hl, MenuDataHeader_0x24f2c
+LoadBattleMenuDataHeader: ; 4ef2
+	ld hl, BattleMenuDataHeader
 	call LoadMenuDataHeader
+
+	; store a
 	ld a, [$d0d2]
 	ld [$cf88], a
+
 	call Function2039
+
+	; restore a
 	ld a, [$cf88]
 	ld [$d0d2], a
+
 	call Function1c07
 	ret
 ; 24f0b
 
 
-Function24f0b: ; 24f0b
+LoadSafariBattleMenuDataHeader: ; 24f0b
 ; Safari battle menu (untranslated).
-	ld hl, MenuDataHeader_0x24f4e
+	ld hl, SafariBattleMenuDataHeader
 	call LoadMenuDataHeader
 	jr Function24f19
 ; 24f13
 
-Function24f13: ; 24f13
-; Park battle menu.
-	ld hl, MenuDataHeader_0x24f89
+LoadParkBattleMenuDataHeader: ; 24f13
+	ld hl, ParkBattleMenuDataHeader
 	call LoadMenuDataHeader
 ; 24f19
 
@@ -33832,23 +33837,23 @@ Function24f19: ; 24f19
 ; 24f2c
 
 
-MenuDataHeader_0x24f2c: ; 24f2c
+BattleMenuDataHeader: ; 24f2c
 	db $40 ; flags
 	db 12, 08 ; start coords
 	db 17, 19 ; end coords
-	dw MenuData_0x24f34
+	dw BattleMenuData
 	db 1 ; default option
 ; 24f34
 
-MenuData_0x24f34: ; 0x24f34
+BattleMenuData: ; 0x24f34
 	db $81 ; flags
 	dn 2, 2 ; rows, columns
 	db 6 ; spacing
-	dbw BANK(Strings24f3d), Strings24f3d
+	dbw BANK(BattleMenuStrings), BattleMenuStrings
 	dbw $09, $0000
 ; 0x24f3d
 
-Strings24f3d: ; 0x24f3d
+BattleMenuStrings: ; 0x24f3d
 	db "FIGHT@"
 	db $4a, "@"
 	db "PACK@"
@@ -33856,23 +33861,23 @@ Strings24f3d: ; 0x24f3d
 ; 24f4e
 
 
-MenuDataHeader_0x24f4e: ; 24f4e
+SafariBattleMenuDataHeader: ; 24f4e
 	db $40 ; flags
 	db 12, 00 ; start coords
 	db 17, 19 ; end coords
-	dw MenuData_0x24f56
+	dw SafariBattleMenuData
 	db 1 ; default option
 ; 24f56
 
-MenuData_0x24f56: ; 24f56
+SafariBattleMenuData: ; 24f56
 	db $81 ; flags
 	dn 2, 2 ; rows, columns
 	db 11 ; spacing
-	dbw BANK(Strings24f5f), Strings24f5f
+	dbw BANK(SafariBattleMenuStrings), SafariBattleMenuStrings
 	dbw BANK(Function24f7c), Function24f7c
 ; 24f5f
 
-Strings24f5f: ; 24f5f
+SafariBattleMenuStrings: ; 24f5f
 	db "サファりボール×  @" ; "SAFARI BALL×  @"
 	db "エサをなげる@" ; "THROW BAIT"
 	db "いしをなげる@" ; "THROW ROCK"
@@ -33888,23 +33893,23 @@ Function24f7c: ; 24f7c
 ; 24f89
 
 
-MenuDataHeader_0x24f89: ; 24f89
+ParkBattleMenuDataHeader: ; 24f89
 	db $40 ; flags
 	db 12, 02 ; start coords
 	db 17, 19 ; end coords
-	dw MenuData_0x24f91
+	dw ParkBattleMenuData
 	db 1 ; default option
 ; 24f91
 
-MenuData_0x24f91: ; 24f91
+ParkBattleMenuData: ; 24f91
 	db $81 ; flags
 	dn 2, 2 ; rows, columns
 	db 12 ; spacing
-	dbw BANK(Strings24f9a), Strings24f9a
+	dbw BANK(ParkBattleMenuStrings), ParkBattleMenuStrings
 	dbw BANK(Function24fb2), Function24fb2
 ; 24f9a
 
-Strings24f9a: ; 24f9a
+ParkBattleMenuStrings: ; 24f9a
 	db "FIGHT@"
 	db $4a, "@"
 	db "PARKBALL×  @"
@@ -36017,7 +36022,7 @@ Function28177: ; 28177
 	ld [rIE], a
 	pop af
 	ld [rIF], a
-	ld a, $16
+	ld a, PREDEF_START_BATTLE
 	call Predef
 	ld a, [rIF]
 	ld h, a
@@ -42609,14 +42614,14 @@ Function3c12f: ; 3c12f
 	call Function3c27c
 	call UpdateBattleMonInParty
 	callba AIChooseMove
-	call Function3d2f1
-	jr nz, .asm_3c174
+	call CheckInMobileLinkBattle
+	jr nz, .notmobilelinkbattle
 	callba Function100da5
 	callba Function100641
 	callba Function100dd8
 	jp c, .asm_3c1be
 
-.asm_3c174
+.notmobilelinkbattle
 	call Function3c410
 	jr c, .asm_3c18a
 .asm_3c179
@@ -44846,8 +44851,8 @@ Function3cfa4: ; 3cfa4
 	callab Function39939
 	ld hl, BattleText_0x809da
 	call StdBattleTextBox
-	call Function3d2f1
-	jr z, .asm_3cff5
+	call CheckInMobileLinkBattle
+	jr z, .ismobilelinkbattle
 	ld a, [InLinkBattle]
 	and a
 	ret nz
@@ -44872,7 +44877,7 @@ Function3cfa4: ; 3cfa4
 .asm_3cff2
 	jp Function3d02b
 
-.asm_3cff5
+.ismobilelinkbattle
 	call Function3ebd8
 	ld c, $28
 	call DelayFrames
@@ -45349,7 +45354,7 @@ Function3d2e0: ; 3d2e0
 	ret
 ; 3d2f1
 
-Function3d2f1: ; 3d2f1
+CheckInMobileLinkBattle: ; 3d2f1
 	ld a, [InLinkBattle]
 	cp $4
 	ret
@@ -45375,12 +45380,12 @@ Function3d313: ; 3d313
 ; 3d329
 
 Function3d329: ; 3d329
-	call Function3d2f1
-	jr z, .asm_3d335
+	call CheckInMobileLinkBattle
+	jr z, .ismobilelinkbattle
 	callba PartyMenuSelect
 	ret
 
-.asm_3d335
+.ismobilelinkbattle
 	callba Function100cb5
 	ret
 ; 3d33c
@@ -45519,8 +45524,8 @@ LostBattle: ; 3d38e
 
 .asm_3d40a
 	ld hl, LostAgainstText
-	call Function3d2f1
-	jr z, .asm_3d417
+	call CheckInMobileLinkBattle
+	jr z, .ismobilelinkbattle
 
 .asm_3d412
 	call StdBattleTextBox
@@ -45529,7 +45534,7 @@ LostBattle: ; 3d38e
 	scf
 	ret
 
-.asm_3d417
+.ismobilelinkbattle
 ; Remove the enemy from the screen.
 	hlcoord 0, 0
 	ld bc, $0815
@@ -47484,7 +47489,7 @@ Function3e139: ; 3e139
 	ld a, [BattleType]
 	cp $6
 	jr nz, .asm_3e165
-	callba Function24f13
+	callba LoadParkBattleMenuDataHeader
 	jr .asm_3e175
 
 .asm_3e165
@@ -47520,13 +47525,13 @@ Function3e192: ; 3e192
 ; 3e19b
 
 Function3e19b: ; 3e19b
-	call Function3d2f1
-	jr z, .asm_3e1a8
-	callba Function24ef2
+	call CheckInMobileLinkBattle
+	jr z, .ismobilelinkbattle
+	callba LoadBattleMenuDataHeader
 	and a
 	ret
 
-.asm_3e1a8
+.ismobilelinkbattle
 	callba Function100b12
 	ld a, [$cd2b]
 	and a
@@ -47694,12 +47699,12 @@ Function3e299:
 ; 3e2f5
 
 Function3e2f5: ; 3e2f5
-	call Function3d2f1
-	jr z, .asm_3e301
+	call CheckInMobileLinkBattle
+	jr z, .ismobilelinkbattle
 	callba Function24e99
 	ret
 
-.asm_3e301
+.ismobilelinkbattle
 	callba Function100d22
 	ret
 ; 3e308
@@ -47919,12 +47924,12 @@ Function3e4a8: ; 3e4a8
 ; 3e4bc
 
 Function3e4bc: ; 3e4bc
-	call Function3d2f1
-	jr nz, .asm_3e4c8
+	call CheckInMobileLinkBattle
+	jr nz, .notmobilelinkbattle
 	callba Function100b9f
 	ret
 
-.asm_3e4c8
+.notmobilelinkbattle
 	ld hl, EnemyMonMove1
 	ld a, [$d235]
 	dec a
@@ -64987,7 +64992,7 @@ Function5042d: ; 0x5042d
 INCBIN "baserom.gbc",$5044f,$50457 - $5044f
 
 PartyMenuSelect: ; 0x50457
-; sets carry if exitted menu.
+; sets carry if exited menu.
 	call Function1bc9
 	call Function1bee
 	ld a, [PartyCount]
