@@ -42615,13 +42615,13 @@ Function3c12f: ; 3c12f
 	call UpdateBattleMonInParty
 	callba AIChooseMove
 	call CheckInMobileLinkBattle
-	jr nz, .asm_3c174
+	jr nz, .notmobilelinkbattle
 	callba Function100da5
 	callba Function100641
 	callba Function100dd8
 	jp c, .asm_3c1be
 
-.asm_3c174
+.notmobilelinkbattle
 	call Function3c410
 	jr c, .asm_3c18a
 .asm_3c179
@@ -44852,7 +44852,7 @@ Function3cfa4: ; 3cfa4
 	ld hl, BattleText_0x809da
 	call StdBattleTextBox
 	call CheckInMobileLinkBattle
-	jr z, .asm_3cff5
+	jr z, .ismobilelinkbattle
 	ld a, [InLinkBattle]
 	and a
 	ret nz
@@ -44877,7 +44877,7 @@ Function3cfa4: ; 3cfa4
 .asm_3cff2
 	jp Function3d02b
 
-.asm_3cff5
+.ismobilelinkbattle
 	call Function3ebd8
 	ld c, $28
 	call DelayFrames
@@ -45381,11 +45381,11 @@ Function3d313: ; 3d313
 
 Function3d329: ; 3d329
 	call CheckInMobileLinkBattle
-	jr z, .asm_3d335
+	jr z, .ismobilelinkbattle
 	callba PartyMenuSelect
 	ret
 
-.asm_3d335
+.ismobilelinkbattle
 	callba Function100cb5
 	ret
 ; 3d33c
@@ -45525,7 +45525,7 @@ LostBattle: ; 3d38e
 .asm_3d40a
 	ld hl, LostAgainstText
 	call CheckInMobileLinkBattle
-	jr z, .asm_3d417
+	jr z, .ismobilelinkbattle
 
 .asm_3d412
 	call StdBattleTextBox
@@ -45534,7 +45534,7 @@ LostBattle: ; 3d38e
 	scf
 	ret
 
-.asm_3d417
+.ismobilelinkbattle
 ; Remove the enemy from the screen.
 	hlcoord 0, 0
 	ld bc, $0815
@@ -47526,12 +47526,12 @@ Function3e192: ; 3e192
 
 Function3e19b: ; 3e19b
 	call CheckInMobileLinkBattle
-	jr z, .asm_3e1a8
+	jr z, .ismobilelinkbattle
 	callba LoadBattleMenuDataHeader
 	and a
 	ret
 
-.asm_3e1a8
+.ismobilelinkbattle
 	callba Function100b12
 	ld a, [$cd2b]
 	and a
@@ -47700,11 +47700,11 @@ Function3e299:
 
 Function3e2f5: ; 3e2f5
 	call CheckInMobileLinkBattle
-	jr z, .asm_3e301
+	jr z, .ismobilelinkbattle
 	callba Function24e99
 	ret
 
-.asm_3e301
+.ismobilelinkbattle
 	callba Function100d22
 	ret
 ; 3e308
@@ -47925,11 +47925,11 @@ Function3e4a8: ; 3e4a8
 
 Function3e4bc: ; 3e4bc
 	call CheckInMobileLinkBattle
-	jr nz, .asm_3e4c8
+	jr nz, .notmobilelinkbattle
 	callba Function100b9f
 	ret
 
-.asm_3e4c8
+.notmobilelinkbattle
 	ld hl, EnemyMonMove1
 	ld a, [$d235]
 	dec a
