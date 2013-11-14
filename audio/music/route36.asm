@@ -1,530 +1,531 @@
-_Music_Route36: ; 0xe94e9
-	db $c0
-	dw _Music_Route36_Ch1
-	db $01
-	dw _Music_Route36_Ch2
-	db $02
-	dw _Music_Route36_Ch3
-	db $03
-	dw _Music_Route36_Ch4
-; 0xe94f5
+Music_Route36: ; e94e9
+	dbw $c0, Music_Route36_Ch1
+	dbw $01, Music_Route36_Ch2
+	dbw $02, Music_Route36_Ch3
+	dbw $03, Music_Route36_Ch4
+; e94f5
 
-_Music_Route36_Ch1: ; 0xe94f5
-	tempo $9000
+
+Music_Route36_Ch1: ; e94f5
+	tempo 144
 	volume $77
-	dutycycle $03
-	tone $0100
+	dutycycle $3
+	tone $0001
 	vibrato $10, $15
-	stereopanning $0f
-	notetype $0c, $b3
-	octave3
-	note $13
-	note $15
-	note $60
-	note $50
+	stereopanning $f
+	notetype $c, $b3
+	octave 3
+	note C_, 3
+	note C_, 5
+	note F_, 0
+	note E_, 0
 	intensity $b5
-	note $67
+	note F_, 7
 	intensity $b3
-	note $65
-	note $b0
-	note $a0
+	note F_, 5
+	note A#, 0
+	note A_, 0
 	intensity $5d
-	note $b3
+	note A#, 3
+
+Music_Route36_branch_e9517: ; e9517
 	intensity $b5
-	note $63
-	note $a1
-	note $81
-	note $61
-	note $51
-	note $61
-	note $a1
-	note $41
-	note $b3
-	note $a3
-	note $81
-	note $b3
-	note $63
-	note $a1
-	note $81
-	note $61
-	note $51
-	note $61
-	note $a1
-	note $81
-	note $b3
-	note $a3
-	octave4
-	note $43
-	octave3
-	note $b1
+	note F_, 3
+	note A_, 1
+	note G_, 1
+	note F_, 1
+	note E_, 1
+	note F_, 1
+	note A_, 1
+	note D#, 1
+	note A#, 3
+	note A_, 3
+	note G_, 1
+	note A#, 3
+	note F_, 3
+	note A_, 1
+	note G_, 1
+	note F_, 1
+	note E_, 1
+	note F_, 1
+	note A_, 1
+	note G_, 1
+	note A#, 3
+	note A_, 3
+	octave 4
+	note D#, 3
+	octave 3
+	note A#, 1
 	intensity $b6
-	octave4
-	note $69
+	octave 4
+	note F_, 9
 	intensity $b5
-	note $11
-	note $61
-	note $11
-	octave3
-	note $b1
-	octave4
-	note $43
-	note $33
-	note $11
-	octave3
-	note $b3
+	note C_, 1
+	note F_, 1
+	note C_, 1
+	octave 3
+	note A#, 1
+	octave 4
+	note D#, 3
+	note D_, 3
+	note C_, 1
+	octave 3
+	note A#, 3
 	intensity $b4
-	note $a1
-	octave4
-	note $31
-	octave3
-	note $71
-	note $a1
-	octave4
-	note $31
-	octave3
-	note $71
-	note $a1
-	octave4
-	note $31
+	note A_, 1
+	octave 4
+	note D_, 1
+	octave 3
+	note F#, 1
+	note A_, 1
+	octave 4
+	note D_, 1
+	octave 3
+	note F#, 1
+	note A_, 1
+	octave 4
+	note D_, 1
 	intensity $a4
-	octave3
-	note $a1
-	octave4
-	note $31
-	note $71
-	octave3
-	note $a1
-	octave4
-	note $31
-	note $71
-	octave3
-	note $a1
-	octave4
-	note $31
+	octave 3
+	note A_, 1
+	octave 4
+	note D_, 1
+	note F#, 1
+	octave 3
+	note A_, 1
+	octave 4
+	note D_, 1
+	note F#, 1
+	octave 3
+	note A_, 1
+	octave 4
+	note D_, 1
 	stereopanning $f0
 	intensity $95
-	octave3
-	note $35
-	octave2
-	note $a5
-	octave3
-	note $33
-	octave2
-	note $a5
-	octave3
-	note $35
-	note $53
+	octave 3
+	note D_, 5
+	octave 2
+	note A_, 5
+	octave 3
+	note D_, 3
+	octave 2
+	note A_, 5
+	octave 3
+	note D_, 5
+	note E_, 3
 	intensity $b5
-	note $35
-	note $a5
-	note $83
+	note D_, 5
+	note A_, 5
+	note G_, 3
 	intensity $a5
-	octave2
-	note $a5
-	octave3
-	note $75
-	note $53
-	note $35
-	octave2
-	note $a5
-	octave3
-	note $33
+	octave 2
+	note A_, 5
+	octave 3
+	note F#, 5
+	note E_, 3
+	note D_, 5
+	octave 2
+	note A_, 5
+	octave 3
+	note D_, 3
 	intensity $b5
-	note $75
-	note $55
-	note $23
-	note $35
-	note $a5
-	note $83
-	octave2
-	note $a5
-	octave3
-	note $75
-	note $33
-	note $15
-	note $85
-	note $11
-	note $51
+	note F#, 5
+	note E_, 5
+	note C#, 3
+	note D_, 5
+	note A_, 5
+	note G_, 3
+	octave 2
+	note A_, 5
+	octave 3
+	note F#, 5
+	note D_, 3
+	note C_, 5
+	note G_, 5
+	note C_, 1
+	note E_, 1
 	intensity $b7
-	note $15
-	note $83
-	note $31
-	note $51
-	note $81
-	note $a1
-	note $91
-	note $a1
-	octave4
-	note $35
-	note $11
-	octave3
-	note $c1
-	note $a5
-	note $35
-	stereopanning $0f
+	note C_, 5
+	note G_, 3
+	note D_, 1
+	note E_, 1
+	note G_, 1
+	note A_, 1
+	note G#, 1
+	note A_, 1
+	octave 4
+	note D_, 5
+	note C_, 1
+	octave 3
+	note B_, 1
+	note A_, 5
+	note D_, 5
+	stereopanning $f
 	intensity $b5
-	note $41
-	note $51
-	loopchannel $00, $5517 ; end
-; 0xe95af
+	note D#, 1
+	note E_, 1
+	loopchannel 0, Music_Route36_branch_e9517
 
-_Music_Route36_Ch2: ; 0xe95af
-	dutycycle $03
+Music_Route36_Ch2: ; e95af
+	dutycycle $3
 	vibrato $10, $36
 	stereopanning $f0
-	notetype $0c, $c2
-	octave3
-	note $61
-	note $10
-	note $60
+	notetype $c, $c2
+	octave 3
+	note F_, 1
+	note C_, 0
+	note F_, 0
 	intensity $c7
-	note $a7
-	note $13
+	note A_, 7
+	note C_, 3
 	intensity $c3
-	octave4
-	note $11
-	octave3
-	note $a0
-	octave4
-	note $10
+	octave 4
+	note C_, 1
+	octave 3
+	note A_, 0
+	octave 4
+	note C_, 0
 	intensity $c7
-	note $67
-	octave3
-	note $83
+	note F_, 7
+	octave 3
+	note G_, 3
+
+Music_Route36_branch_e95ce: ; e95ce
 	intensity $c7
-	octave4
-	note $19
+	octave 4
+	note C_, 9
 	intensity $c4
-	octave3
-	note $a1
-	octave4
-	note $11
-	note $a1
-	note $82
+	octave 3
+	note A_, 1
+	octave 4
+	note C_, 1
+	note A_, 1
+	note G_, 2
 	intensity $c2
-	note $40
+	note D#, 0
 	intensity $c7
-	note $4b
-	note $19
+	note D#, 11
+	note C_, 9
 	intensity $c4
-	octave3
-	note $a1
-	octave4
-	note $11
-	note $61
+	octave 3
+	note A_, 1
+	octave 4
+	note C_, 1
+	note F_, 1
 	intensity $c2
-	note $41
-	note $40
-	note $60
+	note D#, 1
+	note D#, 0
+	note F_, 0
 	intensity $c7
-	note $8b
-	note $a9
+	note G_, 11
+	note A_, 9
 	intensity $c4
-	note $61
-	note $a1
-	octave5
-	note $11
-	octave4
-	note $b2
-	note $a0
+	note F_, 1
+	note A_, 1
+	octave 5
+	note C_, 1
+	octave 4
+	note A#, 2
+	note A_, 0
 	intensity $c7
-	note $87
-	note $b3
+	note G_, 7
+	note A#, 3
 	intensity $b0
-	note $af
+	note A_, 15
 	intensity $b7
-	note $af
-	stereopanning $0f
+	note A_, 15
+	stereopanning $f
 	intensity $a4
-	octave3
-	note $a5
-	note $85
-	note $73
-	note $55
-	note $75
-	note $83
+	octave 3
+	note A_, 5
+	note G_, 5
+	note F#, 3
+	note E_, 5
+	note F#, 5
+	note G_, 3
 	intensity $b3
-	note $a1
-	note $70
-	note $a0
+	note A_, 1
+	note F#, 0
+	note A_, 0
 	intensity $b7
-	octave4
-	note $3b
+	octave 4
+	note D_, 11
 	intensity $a4
-	octave3
-	note $71
-	note $30
-	note $70
+	octave 3
+	note F#, 1
+	note D_, 0
+	note F#, 0
 	intensity $a7
-	note $ab
+	note A_, 11
 	intensity $c7
-	note $a5
-	note $85
-	note $73
-	note $c5
-	note $a5
-	note $83
+	note A_, 5
+	note G_, 5
+	note F#, 3
+	note B_, 5
+	note A_, 5
+	note G_, 3
 	intensity $c3
-	note $a1
-	note $70
-	note $a0
+	note A_, 1
+	note F#, 0
+	note A_, 0
 	intensity $c7
-	octave4
-	note $3b
+	octave 4
+	note D_, 11
 	intensity $c3
-	octave3
-	note $71
-	note $30
-	note $70
+	octave 3
+	note F#, 1
+	note D_, 0
+	note F#, 0
 	intensity $c7
-	note $ab
+	note A_, 11
 	intensity $c2
-	note $81
-	note $50
-	note $80
+	note G_, 1
+	note E_, 0
+	note G_, 0
 	intensity $b0
-	octave4
-	note $11
+	octave 4
+	note C_, 1
 	intensity $b7
-	note $19
+	note C_, 9
 	intensity $c5
-	octave3
-	note $81
-	note $50
-	note $80
+	octave 3
+	note G_, 1
+	note E_, 0
+	note G_, 0
 	intensity $c7
-	octave4
-	note $17
-	note $23
+	octave 4
+	note C_, 7
+	note C#, 3
 	stereopanning $ff
-	note $35
-	note $a5
-	note $81
-	note $71
+	note D_, 5
+	note A_, 5
+	note G_, 1
+	note F#, 1
 	intensity $b0
-	note $33
+	note D_, 3
 	intensity $b7
-	note $37
+	note D_, 7
 	stereopanning $f0
 	intensity $c4
-	octave3
-	note $70
-	note $80
-	note $a0
-	note $c0
-	loopchannel $00, $55ce ; end
-; 0xe966b
+	octave 3
+	note F#, 0
+	note G_, 0
+	note A_, 0
+	note B_, 0
+	loopchannel 0, Music_Route36_branch_e95ce
 
-_Music_Route36_Ch3: ; 0xe966b
-	notetype $0c, $25
-	octave3
-	note $60
-	note $02
-	note $60
-	note $00
-	octave4
-	note $13
-	octave3
-	note $11
-	note $61
-	note $11
-	note $40
-	note $02
-	note $40
-	note $00
-	octave4
-	note $63
-	octave2
-	note $b1
-	octave3
-	note $41
-	note $51
-	note $63
-	note $11
-	note $63
-	note $11
-	note $61
-	note $11
-	note $83
-	note $41
-	note $83
-	note $41
-	note $81
-	note $41
-	note $63
-	note $11
-	note $63
-	note $11
-	note $61
-	note $11
-	note $83
-	note $41
-	note $83
-	note $41
-	note $81
-	note $41
-	note $a3
-	note $61
-	note $a3
-	note $61
-	note $a1
-	note $61
-	note $b3
-	note $81
-	note $b3
-	note $81
-	note $b1
-	note $81
-	note $73
-	note $31
-	note $73
-	note $31
-	note $71
-	note $31
-	note $33
-	octave2
-	note $a1
-	octave3
-	note $33
-	octave2
-	note $a1
-	octave3
-	note $31
-	octave2
-	note $a1
-	octave3
-	note $73
-	note $31
-	note $73
-	note $31
-	note $71
-	note $31
-	note $83
-	note $51
-	note $83
-	note $51
-	note $81
-	note $51
-	note $73
-	note $31
-	note $73
-	note $31
-	note $71
-	note $31
-	note $73
-	note $31
-	note $73
-	note $31
-	note $51
-	note $a1
-	note $73
-	note $31
-	note $73
-	note $31
-	note $71
-	note $31
-	note $83
-	note $51
-	note $83
-	note $51
-	note $81
-	note $51
-	note $73
-	note $31
-	note $73
-	note $31
-	note $71
-	note $31
-	note $73
-	note $31
-	note $73
-	note $31
-	note $71
-	note $31
-	note $83
-	note $11
-	note $83
-	note $11
-	note $81
-	note $11
-	note $83
-	note $11
-	note $83
-	note $11
-	note $51
-	note $81
-	note $a5
-	octave4
-	note $73
-	octave3
-	note $31
-	note $a1
-	octave4
-	note $31
-	note $12
-	note $50
-	note $75
-	octave3
-	note $31
-	note $41
-	note $51
-	loopchannel $00, $5684 ; end
-; 0xe9709
+Music_Route36_Ch3: ; e966b
+	notetype $c, $25
+	octave 3
+	note F_, 0
+	note __, 2
+	note F_, 0
+	note __, 0
+	octave 4
+	note C_, 3
+	octave 3
+	note C_, 1
+	note F_, 1
+	note C_, 1
+	note D#, 0
+	note __, 2
+	note D#, 0
+	note __, 0
+	octave 4
+	note F_, 3
+	octave 2
+	note A#, 1
+	octave 3
+	note D#, 1
+	note E_, 1
 
-_Music_Route36_Ch4: ; 0xe9709
-	togglenoise $01
-	notetype $0c
-	callchannel _Music_Route36_sub_0xe9734
-	callchannel _Music_Route36_sub_0xe9741
-	callchannel _Music_Route36_sub_0xe9734
-	callchannel _Music_Route36_sub_0xe973b
-	callchannel _Music_Route36_sub_0xe9734
-	callchannel _Music_Route36_sub_0xe9741
-	loopchannel $02, $5713
-	note $b3
-	note $a1
-	note $63
-	note $c0
-	note $c0
-	note $a3
-	loopchannel $0b, $5723
-	callchannel _Music_Route36_sub_0xe9741
-	loopchannel $00, $5713 ; end
-; 0xe9734
+Music_Route36_branch_e9684: ; e9684
+	note F_, 3
+	note C_, 1
+	note F_, 3
+	note C_, 1
+	note F_, 1
+	note C_, 1
+	note G_, 3
+	note D#, 1
+	note G_, 3
+	note D#, 1
+	note G_, 1
+	note D#, 1
+	note F_, 3
+	note C_, 1
+	note F_, 3
+	note C_, 1
+	note F_, 1
+	note C_, 1
+	note G_, 3
+	note D#, 1
+	note G_, 3
+	note D#, 1
+	note G_, 1
+	note D#, 1
+	note A_, 3
+	note F_, 1
+	note A_, 3
+	note F_, 1
+	note A_, 1
+	note F_, 1
+	note A#, 3
+	note G_, 1
+	note A#, 3
+	note G_, 1
+	note A#, 1
+	note G_, 1
+	note F#, 3
+	note D_, 1
+	note F#, 3
+	note D_, 1
+	note F#, 1
+	note D_, 1
+	note D_, 3
+	octave 2
+	note A_, 1
+	octave 3
+	note D_, 3
+	octave 2
+	note A_, 1
+	octave 3
+	note D_, 1
+	octave 2
+	note A_, 1
+	octave 3
+	note F#, 3
+	note D_, 1
+	note F#, 3
+	note D_, 1
+	note F#, 1
+	note D_, 1
+	note G_, 3
+	note E_, 1
+	note G_, 3
+	note E_, 1
+	note G_, 1
+	note E_, 1
+	note F#, 3
+	note D_, 1
+	note F#, 3
+	note D_, 1
+	note F#, 1
+	note D_, 1
+	note F#, 3
+	note D_, 1
+	note F#, 3
+	note D_, 1
+	note E_, 1
+	note A_, 1
+	note F#, 3
+	note D_, 1
+	note F#, 3
+	note D_, 1
+	note F#, 1
+	note D_, 1
+	note G_, 3
+	note E_, 1
+	note G_, 3
+	note E_, 1
+	note G_, 1
+	note E_, 1
+	note F#, 3
+	note D_, 1
+	note F#, 3
+	note D_, 1
+	note F#, 1
+	note D_, 1
+	note F#, 3
+	note D_, 1
+	note F#, 3
+	note D_, 1
+	note F#, 1
+	note D_, 1
+	note G_, 3
+	note C_, 1
+	note G_, 3
+	note C_, 1
+	note G_, 1
+	note C_, 1
+	note G_, 3
+	note C_, 1
+	note G_, 3
+	note C_, 1
+	note E_, 1
+	note G_, 1
+	note A_, 5
+	octave 4
+	note F#, 3
+	octave 3
+	note D_, 1
+	note A_, 1
+	octave 4
+	note D_, 1
+	note C_, 2
+	note E_, 0
+	note F#, 5
+	octave 3
+	note D_, 1
+	note D#, 1
+	note E_, 1
+	loopchannel 0, Music_Route36_branch_e9684
 
-_Music_Route36_sub_0xe9734: ; 0xe9734
-; subroutine
-	note $a3
-	note $a5
-	note $b0
-	note $b0
-	note $a1
-	note $b1
-	endchannel ; end
-; 0xe973b
+Music_Route36_Ch4: ; e9709
+	togglenoise $1
+	notetype $c
+	callchannel Music_Route36_branch_e9734
+	callchannel Music_Route36_branch_e9741
 
-_Music_Route36_sub_0xe973b: ; 0xe973b
-; subroutine
-	note $a3
-	note $a5
-	note $c0
-	note $b0
-	note $a3
-	endchannel ; end
-; 0xe9741
+Music_Route36_branch_e9713: ; e9713
+	callchannel Music_Route36_branch_e9734
+	callchannel Music_Route36_branch_e973b
+	callchannel Music_Route36_branch_e9734
+	callchannel Music_Route36_branch_e9741
+	loopchannel 2, Music_Route36_branch_e9713
 
-_Music_Route36_sub_0xe9741: ; 0xe9741
-; subroutine
-	note $a3
-	note $a5
-	note $b0
-	note $b0
-	note $a1
-	notetype $06
-	note $b0
-	note $b0
-	note $a0
-	note $a0
-	notetype $0c
-	endchannel ; end
-; 0xe974f
+Music_Route36_branch_e9723: ; e9723
+	note A#, 3
+	note A_, 1
+	note F_, 3
+	note B_, 0
+	note B_, 0
+	note A_, 3
+	loopchannel 11, Music_Route36_branch_e9723
+	callchannel Music_Route36_branch_e9741
+	loopchannel 0, Music_Route36_branch_e9713
+; e9734
+
+Music_Route36_branch_e9734: ; e9734
+	note A_, 3
+	note A_, 5
+	note A#, 0
+	note A#, 0
+	note A_, 1
+	note A#, 1
+	endchannel
+; e973b
+
+Music_Route36_branch_e973b: ; e973b
+	note A_, 3
+	note A_, 5
+	note B_, 0
+	note A#, 0
+	note A_, 3
+	endchannel
+; e9741
+
+Music_Route36_branch_e9741: ; e9741
+	note A_, 3
+	note A_, 5
+	note A#, 0
+	note A#, 0
+	note A_, 1
+	notetype $6
+	note A#, 0
+	note A#, 0
+	note A_, 0
+	note A_, 0
+	notetype $c
+	endchannel
+; e974f

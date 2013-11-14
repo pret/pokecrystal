@@ -1,189 +1,194 @@
-_Music_WildPokemonVictory: ; 0xf4518
-	db $80
-	dw _Music_WildPokemonVictory_Ch1
-	db $01
-	dw _Music_WildPokemonVictory_Ch2
-	db $02
-	dw _Music_WildPokemonVictory_Ch3
-; 0xf4521
+Music_WildPokemonVictory: ; f4518
+	dbw $80, Music_WildPokemonVictory_Ch1
+	dbw $01, Music_WildPokemonVictory_Ch2
+	dbw $02, Music_WildPokemonVictory_Ch3
+; f4521
 
-_Music_WildPokemonVictory_Ch1: ; 0xf4521
-	tempo $7e00
+
+Music_WildPokemonVictory_Ch1: ; f4521
+	tempo 126
 	volume $77
-	dutycycle $03
-	tone $0100
-	notetype $0c, $b1
-	octave3
-	note $c0
-	note $a0
-	note $90
-	note $70
+	dutycycle $3
+	tone $0001
+	notetype $c, $b1
+	octave 3
+	note B_, 0
+	note A_, 0
+	note G#, 0
+	note F#, 0
 	intensity $b6
-	note $5b
-	stereopanning $0f
-	callchannel _Music_WildPokemonVictory_sub_0xf455c
-	note $71
-	note $71
-	note $73
-	callchannel _Music_WildPokemonVictory_sub_0xf455c
-	note $93
-	intensity $78
-	octave3
-	note $83
-	forceoctave $01
-	callchannel _Music_WildPokemonVictory_sub_0xf455c
-	note $71
-	note $71
-	note $73
-	callchannel _Music_WildPokemonVictory_sub_0xf455c
-	note $93
-	forceoctave $00
-	intensity $78
-	octave3
-	note $73
-	loopchannel $00, $4538 ; end
-; 0xf455c
+	note E_, 11
 
-_Music_WildPokemonVictory_sub_0xf455c: ; 0xf455c
-; subroutine
+Music_SuccessfulCapture_branch_f4536: ; f4536
+	stereopanning $f
+
+Music_WildPokemonVictory_branch_f4538: ; f4538
+	callchannel Music_WildPokemonVictory_branch_f455c
+	note F#, 1
+	note F#, 1
+	note F#, 3
+	callchannel Music_WildPokemonVictory_branch_f455c
+	note G#, 3
+	intensity $78
+	octave 3
+	note G_, 3
+	forceoctave $1
+	callchannel Music_WildPokemonVictory_branch_f455c
+	note F#, 1
+	note F#, 1
+	note F#, 3
+	callchannel Music_WildPokemonVictory_branch_f455c
+	note G#, 3
+	forceoctave $0
+	intensity $78
+	octave 3
+	note F#, 3
+	loopchannel 0, Music_WildPokemonVictory_branch_f4538
+; f455c
+
+Music_WildPokemonVictory_branch_f455c: ; f455c
 	intensity $71
-	octave3
-	note $90
-	note $c0
-	octave4
-	note $51
-	octave3
-	note $c1
-	octave4
-	note $51
-	octave3
-	note $90
-	note $70
-	note $50
-	note $70
-	note $91
-	note $51
-	note $a0
-	octave4
-	note $20
-	note $51
-	note $51
-	note $a1
-	endchannel ; end
-; 0xf4575
+	octave 3
+	note G#, 0
+	note B_, 0
+	octave 4
+	note E_, 1
+	octave 3
+	note B_, 1
+	octave 4
+	note E_, 1
+	octave 3
+	note G#, 0
+	note F#, 0
+	note E_, 0
+	note F#, 0
+	note G#, 1
+	note E_, 1
+	note A_, 0
+	octave 4
+	note C#, 0
+	note E_, 1
+	note E_, 1
+	note A_, 1
+	endchannel
 
-_Music_WildPokemonVictory_Ch2: ; 0xf4575
+Music_WildPokemonVictory_Ch2: ; f4575
 	vibrato $12, $24
-	dutycycle $02
-	notetype $0c, $d1
-	octave4
-	note $50
-	note $70
-	note $90
-	note $a0
+	dutycycle $2
+	notetype $c, $d1
+	octave 4
+	note E_, 0
+	note F#, 0
+	note G#, 0
+	note A_, 0
 	intensity $d6
-	note $cb
+	note B_, 11
+
+Music_SuccessfulCapture_branch_f4585: ; f4585
 	stereopanning $f0
-	callchannel _Music_WildPokemonVictory_sub_0xf45b5
-	octave4
-	note $c1
-	note $c1
-	note $c3
-	callchannel _Music_WildPokemonVictory_sub_0xf45b5
-	octave4
-	note $c3
-	intensity $81
-	note $10
-	note $50
-	note $80
-	note $b0
-	forceoctave $01
-	callchannel _Music_WildPokemonVictory_sub_0xf45b5
-	octave4
-	note $c1
-	note $c1
-	note $c3
-	callchannel _Music_WildPokemonVictory_sub_0xf45b5
-	octave4
-	note $c3
-	forceoctave $00
-	intensity $81
-	octave3
-	note $c0
-	octave4
-	note $40
-	note $70
-	note $a0
-	loopchannel $00, $4587 ; end
-; 0xf45b5
 
-_Music_WildPokemonVictory_sub_0xf45b5: ; 0xf45b5
-; subroutine
+Music_WildPokemonVictory_branch_f4587: ; f4587
+	callchannel Music_WildPokemonVictory_branch_f45b5
+	octave 4
+	note B_, 1
+	note B_, 1
+	note B_, 3
+	callchannel Music_WildPokemonVictory_branch_f45b5
+	octave 4
+	note B_, 3
 	intensity $81
-	octave4
-	note $c1
-	note $a1
-	note $91
-	note $a1
-	note $c1
-	note $c1
-	note $c3
-	octave5
-	note $21
-	note $21
-	note $23
-	endchannel ; end
-; 0xf45c4
+	note C_, 0
+	note E_, 0
+	note G_, 0
+	note A#, 0
+	forceoctave $1
+	callchannel Music_WildPokemonVictory_branch_f45b5
+	octave 4
+	note B_, 1
+	note B_, 1
+	note B_, 3
+	callchannel Music_WildPokemonVictory_branch_f45b5
+	octave 4
+	note B_, 3
+	forceoctave $0
+	intensity $81
+	octave 3
+	note B_, 0
+	octave 4
+	note D#, 0
+	note F#, 0
+	note A_, 0
+	loopchannel 0, Music_WildPokemonVictory_branch_f4587
+; f45b5
 
-_Music_WildPokemonVictory_Ch3: ; 0xf45c4
-	notetype $0c, $20
-	note $05
-	octave6
-	note $40
-	note $00
-	note $50
-	note $02
-	note $50
-	note $02
-	callchannel _Music_WildPokemonVictory_sub_0xf45f4
-	note $41
-	note $21
-	octave2
-	note $c1
-	note $01
-	callchannel _Music_WildPokemonVictory_sub_0xf45f4
-	note $51
-	note $01
-	note $13
-	forceoctave $01
-	callchannel _Music_WildPokemonVictory_sub_0xf45f4
-	note $41
-	note $21
-	octave2
-	note $c1
-	note $01
-	callchannel _Music_WildPokemonVictory_sub_0xf45f4
-	note $51
-	note $01
-	forceoctave $00
-	octave2
-	note $c3
-	loopchannel $00, $45cf ; end
-; 0xf45f4
+Music_WildPokemonVictory_branch_f45b5: ; f45b5
+	intensity $81
+	octave 4
+	note B_, 1
+	note A_, 1
+	note G#, 1
+	note A_, 1
+	note B_, 1
+	note B_, 1
+	note B_, 3
+	octave 5
+	note C#, 1
+	note C#, 1
+	note C#, 3
+	endchannel
 
-_Music_WildPokemonVictory_sub_0xf45f4: ; 0xf45f4
-; subroutine
+Music_WildPokemonVictory_Ch3: ; f45c4
+	notetype $c, $20
+	note __, 5
+	octave 6
+	note D#, 0
+	note __, 0
+	note E_, 0
+	note __, 2
+	note E_, 0
+	note __, 2
+
+Music_SuccessfulCapture_branch_f45cf: ; f45cf
+
+Music_WildPokemonVictory_branch_f45cf: ; f45cf
+	callchannel Music_WildPokemonVictory_branch_f45f4
+	note D#, 1
+	note C#, 1
+	octave 2
+	note B_, 1
+	note __, 1
+	callchannel Music_WildPokemonVictory_branch_f45f4
+	note E_, 1
+	note __, 1
+	note C_, 3
+	forceoctave $1
+	callchannel Music_WildPokemonVictory_branch_f45f4
+	note D#, 1
+	note C#, 1
+	octave 2
+	note B_, 1
+	note __, 1
+	callchannel Music_WildPokemonVictory_branch_f45f4
+	note E_, 1
+	note __, 1
+	forceoctave $0
+	octave 2
+	note B_, 3
+	loopchannel 0, Music_WildPokemonVictory_branch_f45cf
+; f45f4
+
+Music_WildPokemonVictory_branch_f45f4: ; f45f4
 	intensity $25
-	octave3
-	note $51
-	note $03
-	note $51
-	note $01
-	note $31
-	note $01
-	note $31
-	note $21
-	note $03
-	note $21
-	endchannel ; end
-; 0xf4602
+	octave 3
+	note E_, 1
+	note __, 3
+	note E_, 1
+	note __, 1
+	note D_, 1
+	note __, 1
+	note D_, 1
+	note C#, 1
+	note __, 3
+	note C#, 1
+	endchannel
+; f4602

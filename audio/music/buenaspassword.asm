@@ -1,654 +1,648 @@
-_Music_BuenasPassword: ; 0x178153
-	db $c0
-	dw _Music_BuenasPassword_Ch1
-	db $01
-	dw _Music_BuenasPassword_Ch2
-	db $02
-	dw _Music_BuenasPassword_Ch3
-	db $03
-	dw _Music_BuenasPassword_Ch4
-; 0x17815f
+Music_BuenasPassword: ; 178153
+	dbw $c0, Music_BuenasPassword_Ch1
+	dbw $01, Music_BuenasPassword_Ch2
+	dbw $02, Music_BuenasPassword_Ch3
+	dbw $03, Music_BuenasPassword_Ch4
+; 17815f
 
-_Music_BuenasPassword_Ch1: ; 0x17815f
-	tempo $8800
+
+Music_BuenasPassword_Ch1: ; 17815f
+	tempo 136
 	volume $77
-	tone $0100
-	notetype $0c, $b3
-	note $07
-	stereopanning $ff
-	note $0f
-	note $0f
-	dutycycle $03
-	notetype $06, $97
-	stereopanning $0f
-	octave4
-	note $90
-	note $00
-	note $90
-	note $00
-	note $71
-	note $91
-	note $09
-	note $09
-	stereopanning $f0
-	note $21
-	note $61
-	note $90
-	note $00
-	note $90
-	note $00
-	note $71
-	note $91
-	note $0b
-	dutycycle $02
-	callchannel _Music_BuenasPassword_sub_0x178204
-	stereopanning $ff
-	callchannel _Music_BuenasPassword_sub_0x1782df
-	callchannel _Music_BuenasPassword_sub_0x178222
-	callchannel _Music_BuenasPassword_sub_0x178204
-	stereopanning $ff
-	callchannel _Music_BuenasPassword_sub_0x1782df
-	callchannel _Music_BuenasPassword_sub_0x178222
-	callchannel _Music_BuenasPassword_sub_0x178204
-	dutycycle $01
-	note $21
-	note $01
-	note $41
-	note $01
-	note $71
-	note $00
-	note $91
-	note $00
-	note $b1
-	note $c0
-	note $00
-	octave4
-	note $20
-	note $00
-	note $40
-	note $00
-	octave3
-	note $c1
-	note $01
-	note $c1
-	note $91
-	note $c1
-	note $b1
-	note $91
-	note $80
-	note $42
-	note $21
-	octave2
-	note $c1
-	note $b0
-	note $92
-	note $b1
-	note $81
-	note $b0
-	octave3
-	note $22
-	note $41
-	note $21
-	note $40
-	note $82
-	note $c1
-	note $01
-	note $b1
-	note $01
-	note $91
-	note $00
-	note $71
-	note $00
-	note $41
-	note $20
-	note $00
-	note $40
-	note $00
-	note $60
-	note $00
-	note $21
-	note $01
-	note $91
-	octave4
-	note $21
-	note $61
-	note $90
-	note $00
-	note $40
-	note $00
-	note $90
-	note $72
-	note $60
-	note $00
-	note $40
-	note $00
-	octave3
-	note $c0
-	note $92
-	note $70
-	note $00
-	note $40
-	note $00
-	note $90
-	note $41
-	note $70
-	note $90
-	note $00
-	note $40
-	note $00
-	note $70
-	note $00
-	note $80
-	note $00
-	loopchannel $00, $416b ; end
-; 0x178204
+	tone $0001
+	notetype $c, $b3
+	note __, 7
 
-_Music_BuenasPassword_sub_0x178204: ; 0x178204
-; subroutine
-	stereopanning $0f
-	notetype $06, $84
-	octave4
-	note $41
+Music_BuenasPassword_branch_17816b: ; 17816b
+	stereopanning $ff
+	note __, 15
+	note __, 15
+	dutycycle $3
+	notetype $6, $97
+	stereopanning $f
+	octave 4
+	note G#, 0
+	note __, 0
+	note G#, 0
+	note __, 0
+	note F#, 1
+	note G#, 1
+	note __, 9
+	note __, 9
+	stereopanning $f0
+	note C#, 1
+	note F_, 1
+	note G#, 0
+	note __, 0
+	note G#, 0
+	note __, 0
+	note F#, 1
+	note G#, 1
+	note __, 11
+	dutycycle $2
+	callchannel Music_BuenasPassword_branch_178204
+	stereopanning $ff
+	callchannel Music_BuenasPassword_branch_1782df
+	callchannel Music_BuenasPassword_branch_178222
+	callchannel Music_BuenasPassword_branch_178204
+	stereopanning $ff
+	callchannel Music_BuenasPassword_branch_1782df
+	callchannel Music_BuenasPassword_branch_178222
+	callchannel Music_BuenasPassword_branch_178204
+	dutycycle $1
+	note C#, 1
+	note __, 1
+	note D#, 1
+	note __, 1
+	note F#, 1
+	note __, 0
+	note G#, 1
+	note __, 0
+	note A#, 1
+	note B_, 0
+	note __, 0
+	octave 4
+	note C#, 0
+	note __, 0
+	note D#, 0
+	note __, 0
+	octave 3
+	note B_, 1
+	note __, 1
+	note B_, 1
+	note G#, 1
+	note B_, 1
+	note A#, 1
+	note G#, 1
+	note G_, 0
+	note D#, 2
+	note C#, 1
+	octave 2
+	note B_, 1
+	note A#, 0
+	note G#, 2
+	note A#, 1
+	note G_, 1
+	note A#, 0
+	octave 3
+	note C#, 2
+	note D#, 1
+	note C#, 1
+	note D#, 0
+	note G_, 2
+	note B_, 1
+	note __, 1
+	note A#, 1
+	note __, 1
+	note G#, 1
+	note __, 0
+	note F#, 1
+	note __, 0
+	note D#, 1
+	note C#, 0
+	note __, 0
+	note D#, 0
+	note __, 0
+	note F_, 0
+	note __, 0
+	note C#, 1
+	note __, 1
+	note G#, 1
+	octave 4
+	note C#, 1
+	note F_, 1
+	note G#, 0
+	note __, 0
+	note D#, 0
+	note __, 0
+	note G#, 0
+	note F#, 2
+	note F_, 0
+	note __, 0
+	note D#, 0
+	note __, 0
+	octave 3
+	note B_, 0
+	note G#, 2
+	note F#, 0
+	note __, 0
+	note D#, 0
+	note __, 0
+	note G#, 0
+	note D#, 1
+	note F#, 0
+	note G#, 0
+	note __, 0
+	note D#, 0
+	note __, 0
+	note F#, 0
+	note __, 0
+	note G_, 0
+	note __, 0
+	loopchannel 0, Music_BuenasPassword_branch_17816b
+; 178204
+
+Music_BuenasPassword_branch_178204: ; 178204
+	stereopanning $f
+	notetype $6, $84
+	octave 4
+	note D#, 1
 	intensity $71
-	note $20
-	note $10
+	note C#, 0
+	note C_, 0
 	intensity $51
-	octave3
-	note $b0
-	note $90
+	octave 3
+	note A#, 0
+	note G#, 0
 	intensity $31
-	note $80
-	note $60
+	note G_, 0
+	note F_, 0
 	intensity $11
-	note $40
-	note $20
-	note $10
-	note $00
-	notetype $0c, $84
-	endchannel ; end
-; 0x178222
+	note D#, 0
+	note C#, 0
+	note C_, 0
+	note __, 0
+	notetype $c, $84
+	endchannel
+; 178222
 
-_Music_BuenasPassword_sub_0x178222: ; 0x178222
-; subroutine
-	octave3
-	note $40
-	note $00
-	octave2
-	note $90
-	note $00
-	octave3
-	note $40
-	octave2
-	note $90
-	note $00
-	octave3
-	note $40
-	note $01
-	endchannel ; end
-; 0x178231
+Music_BuenasPassword_branch_178222: ; 178222
+	octave 3
+	note D#, 0
+	note __, 0
+	octave 2
+	note G#, 0
+	note __, 0
+	octave 3
+	note D#, 0
+	octave 2
+	note G#, 0
+	note __, 0
+	octave 3
+	note D#, 0
+	note __, 1
+	endchannel
+; 178231
 
-_Music_BuenasPassword_Ch2: ; 0x178231
+Music_BuenasPassword_Ch2: ; 178231
 	vibrato $12, $34
-	dutycycle $02
-	notetype $0c, $a5
-	note $06
-	octave3
-	note $70
+	dutycycle $2
+	notetype $c, $a5
+	note __, 6
+	octave 3
+	note F#, 0
+
+Music_BuenasPassword_branch_17823c: ; 17823c
 	stereopanning $ff
-	callchannel _Music_BuenasPassword_sub_0x1782df
-	callchannel _Music_BuenasPassword_sub_0x1782a4
+	callchannel Music_BuenasPassword_branch_1782df
+	callchannel Music_BuenasPassword_branch_1782a4
 	stereopanning $ff
-	callchannel _Music_BuenasPassword_sub_0x1782cc
-	octave3
-	note $c1
-	note $b1
-	note $c1
-	note $9f
-	callchannel _Music_BuenasPassword_sub_0x1782a4
+	callchannel Music_BuenasPassword_branch_1782cc
+	octave 3
+	note B_, 1
+	note A#, 1
+	note B_, 1
+	note G#, 15
+	callchannel Music_BuenasPassword_branch_1782a4
 	stereopanning $ff
-	callchannel _Music_BuenasPassword_sub_0x1782cc
-	note $c1
-	note $b1
-	note $c1
-	note $9f
-	callchannel _Music_BuenasPassword_sub_0x1782a4
-	note $71
-	note $01
-	note $91
-	note $01
-	note $b1
-	note $00
-	note $c1
-	note $00
-	octave4
-	note $21
-	note $40
-	note $00
-	note $60
-	note $00
-	note $70
-	note $00
-	note $41
-	note $01
-	note $91
-	note $71
-	note $91
-	note $4d
-	note $20
-	note $40
-	note $25
-	octave3
-	note $c0
-	octave4
-	note $20
-	note $47
-	note $71
-	note $01
-	note $61
-	note $01
-	note $41
-	note $00
-	note $21
-	note $00
-	octave3
-	note $c1
-	note $90
-	note $00
-	note $b0
-	note $00
-	note $c0
-	note $00
-	note $91
-	note $01
-	octave4
-	note $21
-	note $61
-	note $91
-	note $cd
-	note $b0
-	note $c0
-	note $99
+	callchannel Music_BuenasPassword_branch_1782cc
+	note B_, 1
+	note A#, 1
+	note B_, 1
+	note G#, 15
+	callchannel Music_BuenasPassword_branch_1782a4
+	note F#, 1
+	note __, 1
+	note G#, 1
+	note __, 1
+	note A#, 1
+	note __, 0
+	note B_, 1
+	note __, 0
+	octave 4
+	note C#, 1
+	note D#, 0
+	note __, 0
+	note F_, 0
+	note __, 0
+	note F#, 0
+	note __, 0
+	note D#, 1
+	note __, 1
+	note G#, 1
+	note F#, 1
+	note G#, 1
+	note D#, 13
+	note C#, 0
+	note D#, 0
+	note C#, 5
+	octave 3
+	note B_, 0
+	octave 4
+	note C#, 0
+	note D#, 7
+	note F#, 1
+	note __, 1
+	note F_, 1
+	note __, 1
+	note D#, 1
+	note __, 0
+	note C#, 1
+	note __, 0
+	octave 3
+	note B_, 1
+	note G#, 0
+	note __, 0
+	note A#, 0
+	note __, 0
+	note B_, 0
+	note __, 0
+	note G#, 1
+	note __, 1
+	octave 4
+	note C#, 1
+	note F_, 1
+	note G#, 1
+	note B_, 13
+	note A#, 0
+	note B_, 0
+	note G#, 9
 	intensity $84
-	octave2
-	note $40
-	note $00
-	note $70
-	note $00
-	note $80
-	note $00
+	octave 2
+	note D#, 0
+	note __, 0
+	note F#, 0
+	note __, 0
+	note G_, 0
+	note __, 0
 	intensity $a5
-	loopchannel $00, $423c ; end
-; 0x1782a4
+	loopchannel 0, Music_BuenasPassword_branch_17823c
+; 1782a4
 
-_Music_BuenasPassword_sub_0x1782a4: ; 0x1782a4
-; subroutine
-	octave3
-	note $90
-	note $00
-	note $40
-	note $00
-	note $70
-	note $40
-	note $00
-	note $70
-	note $01
+Music_BuenasPassword_branch_1782a4: ; 1782a4
+	octave 3
+	note G#, 0
+	note __, 0
+	note D#, 0
+	note __, 0
+	note F#, 0
+	note D#, 0
+	note __, 0
+	note F#, 0
+	note __, 1
 	stereopanning $f0
-	octave4
-	note $90
-	notetype $06, $81
-	note $80
-	note $60
+	octave 4
+	note G#, 0
+	notetype $6, $81
+	note G_, 0
+	note F_, 0
 	intensity $71
-	note $40
-	note $20
+	note D#, 0
+	note C#, 0
 	intensity $61
-	note $10
-	octave3
-	note $b0
+	note C_, 0
+	octave 3
+	note A#, 0
 	intensity $41
-	note $90
+	note G#, 0
 	intensity $21
-	note $80
-	note $60
-	note $00
-	notetype $0c, $a5
-	endchannel ; end
-; 0x1782cc
+	note G_, 0
+	note F_, 0
+	note __, 0
+	notetype $c, $a5
+	endchannel
+; 1782cc
 
-_Music_BuenasPassword_sub_0x1782cc: ; 0x1782cc
-; subroutine
-	octave4
-	note $91
-	note $01
-	note $71
-	note $01
-	note $61
-	note $00
-	note $41
-	note $00
-	note $21
-	note $40
-	note $00
-	note $40
-	note $00
-	note $20
-	note $00
-	note $41
-	note $01
-	endchannel ; end
-; 0x1782df
+Music_BuenasPassword_branch_1782cc: ; 1782cc
+	octave 4
+	note G#, 1
+	note __, 1
+	note F#, 1
+	note __, 1
+	note F_, 1
+	note __, 0
+	note D#, 1
+	note __, 0
+	note C#, 1
+	note D#, 0
+	note __, 0
+	note D#, 0
+	note __, 0
+	note C#, 0
+	note __, 0
+	note D#, 1
+	note __, 1
+	endchannel
+; 1782df
 
-_Music_BuenasPassword_sub_0x1782df: ; 0x1782df
-; subroutine
-	octave3
-	note $90
-	note $00
-	note $40
-	note $00
-	note $70
-	note $40
-	note $00
-	note $70
-	note $60
-	note $00
-	note $20
-	note $00
-	octave2
-	note $c0
-	note $92
-	octave3
-	note $90
-	note $00
-	note $40
-	note $00
-	note $70
-	note $40
-	note $00
-	note $70
-	note $60
-	note $00
-	note $20
-	note $00
-	octave2
-	note $c0
-	note $91
-	octave3
-	note $70
-	note $90
-	note $00
-	note $40
-	note $00
-	note $70
-	note $40
-	note $00
-	note $70
-	note $60
-	note $00
-	note $20
-	note $00
-	octave2
-	note $c0
-	note $92
-	endchannel ; end
-; 0x178311
+Music_BuenasPassword_branch_1782df: ; 1782df
+	octave 3
+	note G#, 0
+	note __, 0
+	note D#, 0
+	note __, 0
+	note F#, 0
+	note D#, 0
+	note __, 0
+	note F#, 0
+	note F_, 0
+	note __, 0
+	note C#, 0
+	note __, 0
+	octave 2
+	note B_, 0
+	note G#, 2
+	octave 3
+	note G#, 0
+	note __, 0
+	note D#, 0
+	note __, 0
+	note F#, 0
+	note D#, 0
+	note __, 0
+	note F#, 0
+	note F_, 0
+	note __, 0
+	note C#, 0
+	note __, 0
+	octave 2
+	note B_, 0
+	note G#, 1
+	octave 3
+	note F#, 0
+	note G#, 0
+	note __, 0
+	note D#, 0
+	note __, 0
+	note F#, 0
+	note D#, 0
+	note __, 0
+	note F#, 0
+	note F_, 0
+	note __, 0
+	note C#, 0
+	note __, 0
+	octave 2
+	note B_, 0
+	note G#, 2
+	endchannel
 
-_Music_BuenasPassword_Ch3: ; 0x178311
-	notetype $0c, $14
-	note $07
-	callchannel _Music_BuenasPassword_sub_0x1783a7
-	callchannel _Music_BuenasPassword_sub_0x1783a7
-	callchannel _Music_BuenasPassword_sub_0x1783a7
-	octave2
-	note $90
-	note $00
-	octave3
-	note $70
-	note $00
-	octave2
-	note $90
-	octave3
-	note $41
-	octave2
-	note $90
-	note $01
-	note $c0
-	note $00
-	note $93
-	loopchannel $03, $4315
-	note $70
-	note $00
-	note $b0
-	note $00
-	octave3
-	note $20
-	octave2
-	note $70
-	note $00
-	octave3
-	note $20
-	octave2
-	note $70
-	note $00
-	note $b1
-	octave3
-	note $20
-	note $00
-	octave2
-	note $71
-	note $90
-	note $00
-	note $90
-	note $00
-	note $c0
-	note $90
-	note $00
-	octave3
-	note $40
-	octave2
-	note $90
-	note $00
-	octave3
-	note $91
-	octave2
-	note $90
-	note $00
-	octave3
-	note $41
-	octave2
-	note $40
-	note $00
-	note $40
-	note $00
-	note $90
-	note $40
-	note $00
-	note $b0
-	note $40
-	note $00
-	note $91
-	note $b0
-	note $00
-	note $40
-	note $00
-	note $40
-	note $00
-	note $40
-	note $00
-	note $80
-	note $40
-	note $00
-	note $b0
-	note $40
-	note $00
-	octave3
-	note $41
-	octave2
-	note $40
-	note $00
-	note $81
-	callchannel _Music_BuenasPassword_sub_0x1783bc
-	octave3
-	note $20
-	note $00
-	note $20
-	note $00
-	note $60
-	note $20
-	note $00
-	note $90
-	octave2
-	note $90
-	note $00
-	octave3
-	note $61
-	octave2
-	note $90
-	note $00
-	octave3
-	note $21
-	callchannel _Music_BuenasPassword_sub_0x1783bc
-	note $90
-	note $00
-	note $90
-	note $00
-	note $c0
-	note $91
-	octave3
-	note $40
-	octave2
-	note $90
-	note $00
-	note $40
-	note $00
-	note $70
-	note $00
-	note $80
-	note $00
-	loopchannel $00, $4315 ; end
-; 0x1783a7
+Music_BuenasPassword_Ch3: ; 178311
+	notetype $c, $14
+	note __, 7
 
-_Music_BuenasPassword_sub_0x1783a7: ; 0x1783a7
-; subroutine
-	octave2
-	note $90
-	note $00
-	octave3
-	note $70
-	note $00
-	octave2
-	note $90
-	octave3
-	note $41
-	octave2
-	note $90
-	octave3
-	note $20
-	note $00
-	note $c0
-	note $00
-	note $20
-	note $61
-	note $20
-	endchannel ; end
-; 0x1783bc
+Music_BuenasPassword_branch_178315: ; 178315
+	callchannel Music_BuenasPassword_branch_1783a7
+	callchannel Music_BuenasPassword_branch_1783a7
+	callchannel Music_BuenasPassword_branch_1783a7
+	octave 2
+	note G#, 0
+	note __, 0
+	octave 3
+	note F#, 0
+	note __, 0
+	octave 2
+	note G#, 0
+	octave 3
+	note D#, 1
+	octave 2
+	note G#, 0
+	note __, 1
+	note B_, 0
+	note __, 0
+	note G#, 3
+	loopchannel 3, Music_BuenasPassword_branch_178315
+	note F#, 0
+	note __, 0
+	note A#, 0
+	note __, 0
+	octave 3
+	note C#, 0
+	octave 2
+	note F#, 0
+	note __, 0
+	octave 3
+	note C#, 0
+	octave 2
+	note F#, 0
+	note __, 0
+	note A#, 1
+	octave 3
+	note C#, 0
+	note __, 0
+	octave 2
+	note F#, 1
+	note G#, 0
+	note __, 0
+	note G#, 0
+	note __, 0
+	note B_, 0
+	note G#, 0
+	note __, 0
+	octave 3
+	note D#, 0
+	octave 2
+	note G#, 0
+	note __, 0
+	octave 3
+	note G#, 1
+	octave 2
+	note G#, 0
+	note __, 0
+	octave 3
+	note D#, 1
+	octave 2
+	note D#, 0
+	note __, 0
+	note D#, 0
+	note __, 0
+	note G#, 0
+	note D#, 0
+	note __, 0
+	note A#, 0
+	note D#, 0
+	note __, 0
+	note G#, 1
+	note A#, 0
+	note __, 0
+	note D#, 0
+	note __, 0
+	note D#, 0
+	note __, 0
+	note D#, 0
+	note __, 0
+	note G_, 0
+	note D#, 0
+	note __, 0
+	note A#, 0
+	note D#, 0
+	note __, 0
+	octave 3
+	note D#, 1
+	octave 2
+	note D#, 0
+	note __, 0
+	note G_, 1
+	callchannel Music_BuenasPassword_branch_1783bc
+	octave 3
+	note C#, 0
+	note __, 0
+	note C#, 0
+	note __, 0
+	note F_, 0
+	note C#, 0
+	note __, 0
+	note G#, 0
+	octave 2
+	note G#, 0
+	note __, 0
+	octave 3
+	note F_, 1
+	octave 2
+	note G#, 0
+	note __, 0
+	octave 3
+	note C#, 1
+	callchannel Music_BuenasPassword_branch_1783bc
+	note G#, 0
+	note __, 0
+	note G#, 0
+	note __, 0
+	note B_, 0
+	note G#, 1
+	octave 3
+	note D#, 0
+	octave 2
+	note G#, 0
+	note __, 0
+	note D#, 0
+	note __, 0
+	note F#, 0
+	note __, 0
+	note G_, 0
+	note __, 0
+	loopchannel 0, Music_BuenasPassword_branch_178315
+; 1783a7
 
-_Music_BuenasPassword_sub_0x1783bc: ; 0x1783bc
-; subroutine
-	octave2
-	note $90
-	note $00
-	note $90
-	note $00
-	note $c0
-	note $90
-	note $00
-	octave3
-	note $40
-	octave2
-	note $90
-	note $00
-	note $c1
-	octave3
-	note $40
-	note $00
-	octave2
-	note $91
-	endchannel ; end
-; 0x1783d0
+Music_BuenasPassword_branch_1783a7: ; 1783a7
+	octave 2
+	note G#, 0
+	note __, 0
+	octave 3
+	note F#, 0
+	note __, 0
+	octave 2
+	note G#, 0
+	octave 3
+	note D#, 1
+	octave 2
+	note G#, 0
+	octave 3
+	note C#, 0
+	note __, 0
+	note B_, 0
+	note __, 0
+	note C#, 0
+	note F_, 1
+	note C#, 0
+	endchannel
+; 1783bc
 
-_Music_BuenasPassword_Ch4: ; 0x1783d0
-	togglenoise $03
-	notetype $0c
-	note $41
-	note $31
-	note $31
-	note $30
-	note $30
-	callchannel _Music_BuenasPassword_sub_0x17840c
-	callchannel _Music_BuenasPassword_sub_0x17840c
-	callchannel _Music_BuenasPassword_sub_0x17840c
-	callchannel _Music_BuenasPassword_sub_0x178424
-	loopchannel $04, $43d9
-	callchannel _Music_BuenasPassword_sub_0x17840c
-	callchannel _Music_BuenasPassword_sub_0x17840c
-	callchannel _Music_BuenasPassword_sub_0x17840c
+Music_BuenasPassword_branch_1783bc: ; 1783bc
+	octave 2
+	note G#, 0
+	note __, 0
+	note G#, 0
+	note __, 0
+	note B_, 0
+	note G#, 0
+	note __, 0
+	octave 3
+	note D#, 0
+	octave 2
+	note G#, 0
+	note __, 0
+	note B_, 1
+	octave 3
+	note D#, 0
+	note __, 0
+	octave 2
+	note G#, 1
+	endchannel
+
+Music_BuenasPassword_Ch4: ; 1783d0
+	togglenoise $3
+	notetype $c
+	note D#, 1
+	note D_, 1
+	note D_, 1
+	note D_, 0
+	note D_, 0
+
+Music_BuenasPassword_branch_1783d9: ; 1783d9
+	callchannel Music_BuenasPassword_branch_17840c
+	callchannel Music_BuenasPassword_branch_17840c
+	callchannel Music_BuenasPassword_branch_17840c
+	callchannel Music_BuenasPassword_branch_178424
+	loopchannel 4, Music_BuenasPassword_branch_1783d9
+	callchannel Music_BuenasPassword_branch_17840c
+	callchannel Music_BuenasPassword_branch_17840c
+	callchannel Music_BuenasPassword_branch_17840c
 	stereopanning $ff
-	note $41
+	note D#, 1
 	stereopanning $f0
-	note $81
+	note G_, 1
 	stereopanning $ff
-	note $31
-	stereopanning $0f
-	note $80
-	note $80
+	note D_, 1
+	stereopanning $f
+	note G_, 0
+	note G_, 0
 	stereopanning $f0
-	note $81
+	note G_, 1
 	stereopanning $ff
-	note $31
-	note $31
-	note $30
-	note $30
-	loopchannel $00, $43d9 ; end
-; 0x17840c
+	note D_, 1
+	note D_, 1
+	note D_, 0
+	note D_, 0
+	loopchannel 0, Music_BuenasPassword_branch_1783d9
+; 17840c
 
-_Music_BuenasPassword_sub_0x17840c: ; 0x17840c
-; subroutine
+Music_BuenasPassword_branch_17840c: ; 17840c
 	stereopanning $ff
-	note $41
+	note D#, 1
 	stereopanning $f0
-	note $81
+	note G_, 1
 	stereopanning $ff
-	note $31
-	stereopanning $0f
-	note $80
-	note $80
+	note D_, 1
+	stereopanning $f
+	note G_, 0
+	note G_, 0
 	stereopanning $f0
-	note $81
+	note G_, 1
 	stereopanning $ff
-	note $41
-	note $31
-	stereopanning $0f
-	note $81
-	endchannel ; end
-; 0x178424
+	note D#, 1
+	note D_, 1
+	stereopanning $f
+	note G_, 1
+	endchannel
+; 178424
 
-_Music_BuenasPassword_sub_0x178424: ; 0x178424
-; subroutine
+Music_BuenasPassword_branch_178424: ; 178424
 	stereopanning $ff
-	note $41
+	note D#, 1
 	stereopanning $f0
-	note $81
+	note G_, 1
 	stereopanning $ff
-	note $31
-	stereopanning $0f
-	note $80
-	note $80
+	note D_, 1
+	stereopanning $f
+	note G_, 0
+	note G_, 0
 	stereopanning $f0
-	note $81
+	note G_, 1
 	stereopanning $ff
-	note $41
-	note $31
-	note $30
-	note $30
-	endchannel ; end
-; 0x17843b
+	note D#, 1
+	note D_, 1
+	note D_, 0
+	note D_, 0
+	endchannel
+; 17843b

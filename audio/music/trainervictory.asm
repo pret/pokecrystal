@@ -1,237 +1,240 @@
-_Music_TrainerVictory: ; 0xebeab
-	db $80
-	dw _Music_TrainerVictory_Ch1
-	db $01
-	dw _Music_TrainerVictory_Ch2
-	db $02
-	dw _Music_TrainerVictory_Ch3
-; 0xebeb4
+Music_TrainerVictory: ; ebeab
+	dbw $80, Music_TrainerVictory_Ch1
+	dbw $01, Music_TrainerVictory_Ch2
+	dbw $02, Music_TrainerVictory_Ch3
+; ebeb4
 
-_Music_TrainerVictory_Ch1: ; 0xebeb4
-	tempo $7800
+
+Music_TrainerVictory_Ch1: ; ebeb4
+	tempo 120
 	volume $77
-	dutycycle $02
-	tone $0100
-	notetype $08, $b1
-	octave4
-	note $51
-	note $51
-	note $51
-	note $51
-	note $71
-	note $81
+	dutycycle $2
+	tone $0001
+	notetype $8, $b1
+	octave 4
+	note E_, 1
+	note E_, 1
+	note E_, 1
+	note E_, 1
+	note F#, 1
+	note G_, 1
 	intensity $b6
-	note $ab
-	stereopanning $0f
+	note A_, 11
+	stereopanning $f
+
+Music_TrainerVictory_branch_ebecd: ; ebecd
 	intensity $72
-	callchannel _Music_TrainerVictory_sub_0xebf11
+	callchannel Music_TrainerVictory_branch_ebf11
 	intensity $51
-	note $21
-	note $51
-	note $71
-	note $a1
-	note $c1
-	octave4
-	note $21
+	note C#, 1
+	note E_, 1
+	note F#, 1
+	note A_, 1
+	note B_, 1
+	octave 4
+	note C#, 1
 	intensity $72
-	octave3
-	note $a1
-	note $01
-	octave4
-	note $21
-	note $55
-	loopchannel $02, $7ecd
-	callchannel _Music_TrainerVictory_sub_0xebf11
-	note $a1
-	note $01
-	note $61
-	note $a5
-	note $b1
-	note $01
-	note $81
-	note $b5
+	octave 3
+	note A_, 1
+	note __, 1
+	octave 4
+	note C#, 1
+	note E_, 5
+	loopchannel 2, Music_TrainerVictory_branch_ebecd
+	callchannel Music_TrainerVictory_branch_ebf11
+	note A_, 1
+	note __, 1
+	note F_, 1
+	note A_, 5
+	note A#, 1
+	note __, 1
+	note G_, 1
+	note A#, 5
+
+Music_TrainerVictory_branch_ebef2: ; ebef2
 	intensity $72
-	octave4
-	note $31
-	note $21
-	octave3
-	note $a1
-	loopchannel $03, $7ef2
-	note $71
-	note $a1
-	octave4
-	note $31
-	octave4
-	note $21
-	octave3
-	note $c1
-	note $a1
-	loopchannel $03, $7f01
-	note $51
-	note $71
-	note $81
-	loopchannel $00, $7ecd ; end
-; 0xebf11
+	octave 4
+	note D_, 1
+	note C#, 1
+	octave 3
+	note A_, 1
+	loopchannel 3, Music_TrainerVictory_branch_ebef2
+	note F#, 1
+	note A_, 1
+	octave 4
+	note D_, 1
 
-_Music_TrainerVictory_sub_0xebf11: ; 0xebf11
-; subroutine
-	octave3
-	note $71
-	note $01
-	note $31
-	note $75
-	note $81
-	note $01
-	note $51
-	note $85
-	endchannel ; end
-; 0xebf1b
+Music_TrainerVictory_branch_ebf01: ; ebf01
+	octave 4
+	note C#, 1
+	octave 3
+	note B_, 1
+	note A_, 1
+	loopchannel 3, Music_TrainerVictory_branch_ebf01
+	note E_, 1
+	note F#, 1
+	note G_, 1
+	loopchannel 0, Music_TrainerVictory_branch_ebecd
+; ebf11
 
-_Music_TrainerVictory_Ch2: ; 0xebf1b
+Music_TrainerVictory_branch_ebf11: ; ebf11
+	octave 3
+	note F#, 1
+	note __, 1
+	note D_, 1
+	note F#, 5
+	note G_, 1
+	note __, 1
+	note E_, 1
+	note G_, 5
+	endchannel
+
+Music_TrainerVictory_Ch2: ; ebf1b
 	vibrato $12, $34
-	dutycycle $03
-	notetype $08, $d1
-	octave4
-	note $a1
-	note $a1
-	note $a1
-	note $a1
-	note $c1
-	octave5
-	note $21
+	dutycycle $3
+	notetype $8, $d1
+	octave 4
+	note A_, 1
+	note A_, 1
+	note A_, 1
+	note A_, 1
+	note B_, 1
+	octave 5
+	note C#, 1
 	intensity $d6
-	note $3b
+	note D_, 11
 	stereopanning $f0
-	notetype $08, $82
-	callchannel _Music_TrainerVictory_sub_0xebf56
-	note $71
-	note $01
-	note $81
-	note $a5
-	note $51
-	note $01
-	note $71
-	note $85
-	loopchannel $02, $7f30
-	callchannel _Music_TrainerVictory_sub_0xebf56
-	note $61
-	note $01
-	note $11
-	note $65
-	note $81
-	note $01
-	note $31
-	note $85
-	notetype $0c, $88
-	note $7f
-	note $5f
-	loopchannel $00, $7f30 ; end
-; 0xebf56
 
-_Music_TrainerVictory_sub_0xebf56: ; 0xebf56
-; subroutine
-	octave4
-	note $31
-	note $01
-	octave3
-	note $a1
-	octave4
-	note $35
-	note $51
-	note $01
-	octave3
-	note $c1
-	octave4
-	note $55
-	endchannel ; end
-; 0xebf64
+Music_TrainerVictory_branch_ebf30: ; ebf30
+	notetype $8, $82
+	callchannel Music_TrainerVictory_branch_ebf56
+	note F#, 1
+	note __, 1
+	note G_, 1
+	note A_, 5
+	note E_, 1
+	note __, 1
+	note F#, 1
+	note G_, 5
+	loopchannel 2, Music_TrainerVictory_branch_ebf30
+	callchannel Music_TrainerVictory_branch_ebf56
+	note F_, 1
+	note __, 1
+	note C_, 1
+	note F_, 5
+	note G_, 1
+	note __, 1
+	note D_, 1
+	note G_, 5
+	notetype $c, $88
+	note F#, 15
+	note E_, 15
+	loopchannel 0, Music_TrainerVictory_branch_ebf30
+; ebf56
 
-_Music_TrainerVictory_Ch3: ; 0xebf64
-	notetype $08, $25
-	octave3
-	note $85
-	note $80
-	note $00
-	note $80
-	note $00
-	note $80
-	note $00
-	note $75
-	note $31
-	note $21
-	octave2
-	note $c1
-	callchannel _Music_TrainerVictory_sub_0xebfb1
-	octave3
-	note $21
-	note $01
-	note $21
-	note $a1
-	note $71
-	note $21
-	octave2
-	note $a1
-	note $01
-	octave3
-	note $a0
-	note $00
-	note $a5
-	loopchannel $02, $7f74
-	callchannel _Music_TrainerVictory_sub_0xebfb1
-	octave3
-	note $11
-	note $01
-	note $11
-	note $a1
-	note $61
-	note $11
-	note $31
-	note $01
-	note $31
-	octave4
-	note $31
-	octave3
-	note $b1
-	note $81
-	note $31
-	note $71
-	note $a1
-	octave4
-	note $3b
-	octave3
-	note $a1
-	note $71
-	note $31
-	octave2
-	note $a1
-	octave3
-	note $31
-	note $51
-	note $ab
-	note $81
-	note $51
-	note $21
-	loopchannel $00, $7f74 ; end
-; 0xebfb1
+Music_TrainerVictory_branch_ebf56: ; ebf56
+	octave 4
+	note D_, 1
+	note __, 1
+	octave 3
+	note A_, 1
+	octave 4
+	note D_, 5
+	note E_, 1
+	note __, 1
+	octave 3
+	note B_, 1
+	octave 4
+	note E_, 5
+	endchannel
 
-_Music_TrainerVictory_sub_0xebfb1: ; 0xebfb1
-; subroutine
-	octave2
-	note $a1
-	note $01
-	note $a1
-	octave3
-	note $71
-	note $31
-	octave2
-	note $a1
-	note $c1
-	note $01
-	note $c1
-	octave3
-	note $81
-	note $51
-	octave2
-	note $c1
-	endchannel ; end
-; 0xebfc3
+Music_TrainerVictory_Ch3: ; ebf64
+	notetype $8, $25
+	octave 3
+	note G_, 5
+	note G_, 0
+	note __, 0
+	note G_, 0
+	note __, 0
+	note G_, 0
+	note __, 0
+	note F#, 5
+	note D_, 1
+	note C#, 1
+	octave 2
+	note B_, 1
+
+Music_TrainerVictory_branch_ebf74: ; ebf74
+	callchannel Music_TrainerVictory_branch_ebfb1
+	octave 3
+	note C#, 1
+	note __, 1
+	note C#, 1
+	note A_, 1
+	note F#, 1
+	note C#, 1
+	octave 2
+	note A_, 1
+	note __, 1
+	octave 3
+	note A_, 0
+	note __, 0
+	note A_, 5
+	loopchannel 2, Music_TrainerVictory_branch_ebf74
+	callchannel Music_TrainerVictory_branch_ebfb1
+	octave 3
+	note C_, 1
+	note __, 1
+	note C_, 1
+	note A_, 1
+	note F_, 1
+	note C_, 1
+	note D_, 1
+	note __, 1
+	note D_, 1
+	octave 4
+	note D_, 1
+	octave 3
+	note A#, 1
+	note G_, 1
+	note D_, 1
+	note F#, 1
+	note A_, 1
+	octave 4
+	note D_, 11
+	octave 3
+	note A_, 1
+	note F#, 1
+	note D_, 1
+	octave 2
+	note A_, 1
+	octave 3
+	note D_, 1
+	note E_, 1
+	note A_, 11
+	note G_, 1
+	note E_, 1
+	note C#, 1
+	loopchannel 0, Music_TrainerVictory_branch_ebf74
+; ebfb1
+
+Music_TrainerVictory_branch_ebfb1: ; ebfb1
+	octave 2
+	note A_, 1
+	note __, 1
+	note A_, 1
+	octave 3
+	note F#, 1
+	note D_, 1
+	octave 2
+	note A_, 1
+	note B_, 1
+	note __, 1
+	note B_, 1
+	octave 3
+	note G_, 1
+	note E_, 1
+	octave 2
+	note B_, 1
+	endchannel
+; ebfc3

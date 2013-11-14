@@ -1,604 +1,632 @@
-_Music_KantoGymLeaderBattle: ; 0xec720
-	db $80
-	dw _Music_KantoGymLeaderBattle_Ch1
-	db $01
-	dw _Music_KantoGymLeaderBattle_Ch2
-	db $02
-	dw _Music_KantoGymLeaderBattle_Ch3
-; 0xec729
+Music_KantoGymBattle: ; ec720
+	dbw $80, Music_KantoGymBattle_Ch1
+	dbw $01, Music_KantoGymBattle_Ch2
+	dbw $02, Music_KantoGymBattle_Ch3
+; ec729
 
-_Music_KantoGymLeaderBattle_Ch1: ; 0xec729
-	tempo $6500
+
+Music_KantoGymBattle_Ch1: ; ec729
+	tempo 101
 	volume $77
-	dutycycle $03
-	tone $0200
+	dutycycle $3
+	tone $0002
 	vibrato $12, $15
-	notetype $0c, $b2
-	octave3
-	note $b0
-	note $a0
-	note $90
-	note $80
-	note $90
-	note $80
-	note $70
-	note $80
-	note $70
-	note $60
-	note $70
-	note $60
-	note $50
-	note $60
-	note $50
-	note $40
-	note $50
-	note $40
-	note $30
-	note $40
-	note $30
-	note $20
-	note $30
-	note $20
-	note $10
-	note $20
-	note $10
-	octave2
-	note $c0
-	octave3
-	note $10
-	octave2
-	note $c0
-	note $b0
-	note $c0
-	note $b1
-	note $b5
-	note $b1
-	note $b5
-	note $b1
-	note $b7
+	notetype $c, $b2
+	octave 3
+	note A#, 0
+	note A_, 0
+	note G#, 0
+	note G_, 0
+	note G#, 0
+	note G_, 0
+	note F#, 0
+	note G_, 0
+	note F#, 0
+	note F_, 0
+	note F#, 0
+	note F_, 0
+	note E_, 0
+	note F_, 0
+	note E_, 0
+	note D#, 0
+	note E_, 0
+	note D#, 0
+	note D_, 0
+	note D#, 0
+	note D_, 0
+	note C#, 0
+	note D_, 0
+	note C#, 0
+	note C_, 0
+	note C#, 0
+	note C_, 0
+	octave 2
+	note B_, 0
+	octave 3
+	note C_, 0
+	octave 2
+	note B_, 0
+	note A#, 0
+	note B_, 0
+	note A#, 1
+	note A#, 5
+	note A#, 1
+	note A#, 5
+	note A#, 1
+	note A#, 7
 	intensity $b7
-	note $c1
+	note B_, 1
 	intensity $b2
-	note $b1
-	note $b5
-	note $b1
-	note $b5
-	note $b1
-	note $b7
+	note A#, 1
+	note A#, 5
+	note A#, 1
+	note A#, 5
+	note A#, 1
+	note A#, 7
 	intensity $b7
-	octave3
-	note $51
+	octave 3
+	note E_, 1
 	intensity $b2
-	octave2
-	note $b1
-	note $b5
-	note $b1
-	note $b5
-	note $b1
-	note $b7
+	octave 2
+	note A#, 1
+	note A#, 5
+	note A#, 1
+	note A#, 5
+	note A#, 1
+	note A#, 7
 	intensity $b7
-	note $c1
+	note B_, 1
 	intensity $b2
-	note $b1
-	note $b5
-	note $b1
-	note $b5
-	note $b1
+	note A#, 1
+	note A#, 5
+	note A#, 1
+	note A#, 5
+	note A#, 1
 	intensity $b4
-	octave3
-	note $53
-	note $53
-	note $51
-	callchannel _Music_KantoGymLeaderBattle_sub_0xec832
-	octave2
-	note $b1
+	octave 3
+	note E_, 3
+	note E_, 3
+	note E_, 1
+
+Music_KantoGymBattle_branch_ec78b: ; ec78b
+	callchannel Music_KantoGymBattle_branch_ec832
+	octave 2
+	note A#, 1
 	intensity $b7
-	note $97
-	note $c7
-	octave3
-	note $49
-	note $55
-	callchannel _Music_KantoGymLeaderBattle_sub_0xec832
-	note $41
+	note G#, 7
+	note B_, 7
+	octave 3
+	note D#, 9
+	note E_, 5
+	callchannel Music_KantoGymBattle_branch_ec832
+	note D#, 1
 	intensity $b7
-	note $27
-	octave2
-	note $c7
-	note $99
-	octave3
-	note $55
+	note C#, 7
+	octave 2
+	note B_, 7
+	note G#, 9
+	octave 3
+	note E_, 5
 	intensity $b2
-	note $41
-	note $41
-	note $80
-	note $50
-	note $40
-	note $80
-	note $41
-	note $41
-	note $b0
-	note $90
-	note $50
-	note $b0
-	note $41
-	note $41
-	note $c0
-	note $b0
-	note $90
-	note $c0
-	note $41
+	note D#, 1
+	note D#, 1
+	note G_, 0
+	note E_, 0
+	note D#, 0
+	note G_, 0
+	note D#, 1
+	note D#, 1
+	note A#, 0
+	note G#, 0
+	note E_, 0
+	note A#, 0
+	note D#, 1
+	note D#, 1
+	note B_, 0
+	note A#, 0
+	note G#, 0
+	note B_, 0
+	note D#, 1
 	intensity $b7
-	note $51
+	note E_, 1
 	intensity $b2
-	note $41
-	note $41
-	note $80
-	note $50
-	note $40
-	note $80
-	note $41
-	note $41
-	note $b0
-	note $90
-	note $50
-	note $b0
-	note $41
-	note $41
-	note $c0
-	note $b0
-	note $90
-	note $c0
-	note $91
+	note D#, 1
+	note D#, 1
+	note G_, 0
+	note E_, 0
+	note D#, 0
+	note G_, 0
+	note D#, 1
+	note D#, 1
+	note A#, 0
+	note G#, 0
+	note E_, 0
+	note A#, 0
+	note D#, 1
+	note D#, 1
+	note B_, 0
+	note A#, 0
+	note G#, 0
+	note B_, 0
+	note G#, 1
 	intensity $b5
-	note $c1
-	note $41
-	note $21
-	octave2
-	note $b3
-	note $41
-	note $91
-	note $c1
-	octave3
-	note $51
-	note $43
-	note $21
-	octave2
-	note $b1
-	note $b1
-	note $41
-	note $b1
-	octave3
-	note $21
+	note B_, 1
+	note D#, 1
+	note C#, 1
+	octave 2
+	note A#, 3
+	note D#, 1
+	note G#, 1
+	note B_, 1
+	octave 3
+	note E_, 1
+	note D#, 3
+	note C#, 1
+	octave 2
+	note A#, 1
+	note A#, 1
+	note D#, 1
+	note A#, 1
+	octave 3
+	note C#, 1
 	intensity $b7
-	octave2
-	note $c7
-	note $b7
-	note $99
-	note $c5
+	octave 2
+	note B_, 7
+	note A#, 7
+	note G#, 9
+	note B_, 5
 	intensity $b5
-	octave3
-	note $41
-	note $21
-	octave2
-	note $b3
-	note $41
-	note $91
-	note $c1
-	octave3
-	note $51
-	note $43
-	note $21
-	octave2
-	note $b1
-	note $b1
-	note $91
-	note $b1
-	octave3
-	note $21
+	octave 3
+	note D#, 1
+	note C#, 1
+	octave 2
+	note A#, 3
+	note D#, 1
+	note G#, 1
+	note B_, 1
+	octave 3
+	note E_, 1
+	note D#, 3
+	note C#, 1
+	octave 2
+	note A#, 1
+	note A#, 1
+	note G#, 1
+	note A#, 1
+	octave 3
+	note C#, 1
 	intensity $b7
-	note $57
-	note $77
-	note $8f
+	note E_, 7
+	note F#, 7
+	note G_, 15
 	intensity $b2
-	octave2
-	note $91
-	note $91
+	octave 2
+	note G#, 1
+	note G#, 1
 	intensity $b7
-	octave3
-	note $2b
+	octave 3
+	note C#, 11
 	intensity $b2
-	note $91
-	note $63
+	note G#, 1
+	note F_, 3
 	intensity $b5
-	octave2
-	note $63
-	note $81
-	note $91
-	note $b1
+	octave 2
+	note F_, 3
+	note G_, 1
+	note G#, 1
+	note A#, 1
 	intensity $b2
-	note $b1
-	note $b1
+	note A#, 1
+	note A#, 1
 	intensity $b7
-	octave3
-	note $4b
+	octave 3
+	note D#, 11
 	intensity $b2
-	note $b1
-	note $83
+	note A#, 1
+	note G_, 3
 	intensity $b7
-	octave4
-	note $45
+	octave 4
+	note D#, 5
 	intensity $4c
-	octave3
-	note $33
-	loopchannel $00, $478b ; end
-; 0xec832
+	octave 3
+	note D_, 3
+	loopchannel 0, Music_KantoGymBattle_branch_ec78b
+; ec832
 
-_Music_KantoGymLeaderBattle_sub_0xec832: ; 0xec832
-; subroutine
+Music_KantoGymBattle_branch_ec832: ; ec832
 	intensity $b5
-	note $41
-	octave2
-	note $b1
-	octave3
-	note $41
-	note $53
-	note $41
-	note $21
-	octave2
-	note $b1
-	note $41
-	note $91
-	note $b1
-	octave3
-	note $41
-	note $51
-	note $41
-	note $21
-	endchannel ; end
-; 0xec847
+	note D#, 1
+	octave 2
+	note A#, 1
+	octave 3
+	note D#, 1
+	note E_, 3
+	note D#, 1
+	note C#, 1
+	octave 2
+	note A#, 1
+	note D#, 1
+	note G#, 1
+	note A#, 1
+	octave 3
+	note D#, 1
+	note E_, 1
+	note D#, 1
+	note C#, 1
+	endchannel
 
-_Music_KantoGymLeaderBattle_Ch2: ; 0xec847
-	dutycycle $03
-	vibrato $08, $36
-	tone $0100
-	notetype $0c, $c2
-	octave4
-	note $b0
-	note $90
-	note $b0
-	octave5
-	note $40
-	loopchannel $08, $4852
-	octave3
+Music_KantoGymBattle_Ch2: ; ec847
+	dutycycle $3
+	vibrato $8, $36
+	tone $0001
+	notetype $c, $c2
+
+Music_KantoGymBattle_branch_ec852: ; ec852
+	octave 4
+	note A#, 0
+	note G#, 0
+	note A#, 0
+	octave 5
+	note D#, 0
+	loopchannel 8, Music_KantoGymBattle_branch_ec852
+	octave 3
+
+Music_KantoGymBattle_branch_ec85d: ; ec85d
 	intensity $c2
-	note $41
-	note $41
-	note $70
-	note $50
-	note $40
-	note $70
-	note $41
-	note $41
-	note $b0
-	note $90
-	note $70
-	note $b0
-	note $41
-	note $41
-	note $c0
-	note $b0
-	note $90
-	note $c0
-	note $31
+	note D#, 1
+	note D#, 1
+	note F#, 0
+	note E_, 0
+	note D#, 0
+	note F#, 0
+	note D#, 1
+	note D#, 1
+	note A#, 0
+	note G#, 0
+	note F#, 0
+	note A#, 0
+	note D#, 1
+	note D#, 1
+	note B_, 0
+	note A#, 0
+	note G#, 0
+	note B_, 0
+	note D_, 1
 	intensity $c7
-	note $51
+	note E_, 1
 	intensity $c2
-	note $41
-	note $41
-	note $70
-	note $50
-	note $40
-	note $70
-	note $41
-	note $41
-	note $b0
-	note $90
-	note $70
-	note $b0
-	note $41
-	note $41
-	note $c0
-	note $b0
-	note $90
-	note $c0
-	note $91
+	note D#, 1
+	note D#, 1
+	note F#, 0
+	note E_, 0
+	note D#, 0
+	note F#, 0
+	note D#, 1
+	note D#, 1
+	note A#, 0
+	note G#, 0
+	note F#, 0
+	note A#, 0
+	note D#, 1
+	note D#, 1
+	note B_, 0
+	note A#, 0
+	note G#, 0
+	note B_, 0
+	note G#, 1
 	intensity $c7
-	note $c1
+	note B_, 1
 	intensity $c2
-	octave4
-	loopchannel $02, $485d
-	callchannel _Music_KantoGymLeaderBattle_sub_0xec907
-	note $57
-	note $97
-	note $c9
-	note $95
-	callchannel _Music_KantoGymLeaderBattle_sub_0xec907
-	note $57
-	note $97
-	note $c9
-	octave4
-	note $55
-	note $47
+	octave 4
+	loopchannel 2, Music_KantoGymBattle_branch_ec85d
+
+Music_KantoGymBattle_branch_ec894: ; ec894
+	callchannel Music_KantoGymBattle_branch_ec907
+	note E_, 7
+	note G#, 7
+	note B_, 9
+	note G#, 5
+	callchannel Music_KantoGymBattle_branch_ec907
+	note E_, 7
+	note G#, 7
+	note B_, 9
+	octave 4
+	note E_, 5
+	note D#, 7
 	intensity $b7
-	note $47
+	note D#, 7
 	intensity $a2
-	note $05
-	octave5
-	note $53
-	note $53
-	note $51
+	note __, 5
+	octave 5
+	note E_, 3
+	note E_, 3
+	note E_, 1
 	intensity $a0
-	note $47
+	note D#, 7
 	intensity $a7
-	note $47
-	note $0b
+	note D#, 7
+	note __, 11
 	intensity $c5
-	octave3
-	note $b3
-	note $c3
-	note $93
-	note $b3
-	note $c3
-	note $93
-	note $53
+	octave 3
+	note A#, 3
+	note B_, 3
+	note G#, 3
+	note A#, 3
+	note B_, 3
+	note G#, 3
+	note E_, 3
 	intensity $b0
-	note $47
-	note $4f
+	note D#, 7
+	note D#, 15
 	intensity $b7
-	note $4b
+	note D#, 11
 	intensity $c5
-	note $b3
-	note $c3
-	note $93
-	note $b3
-	note $c3
-	note $93
-	note $c3
+	note A#, 3
+	note B_, 3
+	note G#, 3
+	note A#, 3
+	note B_, 3
+	note G#, 3
+	note B_, 3
 	intensity $b0
-	note $b7
+	note A#, 7
 	intensity $b7
-	note $b7
+	note A#, 7
 	intensity $b0
-	octave4
-	note $47
+	octave 4
+	note D#, 7
 	intensity $b7
-	note $47
+	note D#, 7
 	intensity $c2
-	octave3
-	note $21
-	note $21
+	octave 3
+	note C#, 1
+	note C#, 1
 	intensity $c7
-	note $67
+	note F_, 7
 	intensity $c2
-	octave4
-	note $23
-	note $61
-	note $23
+	octave 4
+	note C#, 3
+	note F_, 1
+	note C#, 3
 	intensity $c7
-	note $93
-	note $81
-	note $61
-	note $41
+	note G#, 3
+	note G_, 1
+	note F_, 1
+	note D#, 1
 	intensity $c2
-	octave3
-	note $41
-	note $41
+	octave 3
+	note D#, 1
+	note D#, 1
 	intensity $c7
-	note $87
+	note G_, 7
 	intensity $c2
-	octave4
-	note $43
-	note $81
-	note $43
+	octave 4
+	note D#, 3
+	note G_, 1
+	note D#, 3
 	intensity $c7
-	note $b5
-	octave3
-	note $a3
-	loopchannel $00, $4894 ; end
-; 0xec907
+	note A#, 5
+	octave 3
+	note A_, 3
+	loopchannel 0, Music_KantoGymBattle_branch_ec894
+; ec907
 
-_Music_KantoGymLeaderBattle_sub_0xec907: ; 0xec907
-; subroutine
-	dutycycle $02
+Music_KantoGymBattle_branch_ec907: ; ec907
+	dutycycle $2
 	intensity $d1
-	octave3
-	note $b1
+	octave 3
+	note A#, 1
 	intensity $a2
-	note $b1
+	note A#, 1
 	intensity $d1
-	note $91
+	note G#, 1
 	intensity $a2
-	note $91
+	note G#, 1
 	intensity $d1
-	note $b1
+	note A#, 1
 	intensity $a2
-	note $b1
+	note A#, 1
 	intensity $c5
-	note $c1
-	octave4
-	note $21
-	note $21
-	octave3
-	note $c3
-	note $b1
-	note $91
-	note $71
-	note $91
-	note $b1
-	dutycycle $03
+	note B_, 1
+	octave 4
+	note C#, 1
+	note C#, 1
+	octave 3
+	note B_, 3
+	note A#, 1
+	note G#, 1
+	note F#, 1
+	note G#, 1
+	note A#, 1
+	dutycycle $3
 	intensity $b0
-	endchannel ; end
-; 0xec92e
+	endchannel
 
-_Music_KantoGymLeaderBattle_Ch3: ; 0xec92e
-	notetype $0c, $19
-	octave2
-	note $50
-	note $00
-	note $c2
-	note $00
-	loopchannel $06, $4934
-	note $c1
-	note $91
-	note $c1
-	note $40
-	note $00
-	note $40
-	note $00
-	note $73
-	note $40
-	note $00
-	note $40
-	note $00
-	note $b3
-	note $40
-	note $00
-	note $40
-	note $00
-	note $c3
-	note $30
-	note $00
-	note $61
-	note $40
-	note $00
-	note $40
-	note $00
-	note $73
-	note $40
-	note $00
-	note $40
-	note $00
-	note $b3
-	note $40
-	note $00
-	note $40
-	note $00
-	note $c3
-	note $40
-	note $00
-	note $51
-	loopchannel $02, $493d
-	octave2
-	note $41
-	note $b1
-	loopchannel $08, $4965
-	note $51
-	note $c1
-	loopchannel $04, $496c
-	octave1
-	note $c1
-	octave2
-	note $51
-	octave1
-	note $c1
-	octave2
-	note $53
-	note $c1
-	octave3
-	note $51
-	octave2
-	note $c1
-	octave2
-	note $71
-	octave3
-	note $21
-	loopchannel $08, $497f
-	octave2
-	note $51
-	note $c1
-	loopchannel $07, $4987
-	octave3
-	note $51
-	octave2
-	note $c1
-	note $40
-	note $00
-	note $40
-	note $00
-	note $b3
-	note $40
-	note $00
-	note $40
-	note $00
-	note $c3
-	note $40
-	note $00
-	note $40
-	note $00
-	note $b3
-	note $40
-	note $00
-	note $51
-	loopchannel $02, $4992
-	note $41
-	note $b1
-	loopchannel $07, $49a8
-	octave3
-	note $21
-	octave2
-	note $b1
-	note $51
-	note $c1
-	octave3
-	note $51
-	octave2
-	note $51
-	note $c1
-	octave3
-	note $51
-	octave2
-	note $51
-	note $c1
-	loopchannel $05, $49bb
-	octave2
-	note $71
-	octave3
-	note $21
-	loopchannel $07, $49c2
-	octave2
-	note $b1
-	octave3
-	note $21
-	octave2
-	note $51
-	note $b1
-	octave3
-	note $51
-	note $71
-	note $91
-	note $71
-	note $51
-	note $21
-	octave2
-	note $41
-	note $b1
-	loopchannel $04, $49d8
-	note $21
-	note $91
-	loopchannel $08, $49df
-	note $41
-	note $b1
-	loopchannel $04, $49e5
-	octave3
-	note $41
-	octave2
-	note $b1
-	note $41
-	note $31
-	note $31
-	note $b1
-	octave3
-	note $41
-	note $61
-	loopchannel $00, $4965 ; end
-; 0xec9fa
+Music_KantoGymBattle_Ch3: ; ec92e
+	notetype $c, $19
+	octave 2
+	note E_, 0
+	note __, 0
+
+Music_KantoGymBattle_branch_ec934: ; ec934
+	note B_, 2
+	note __, 0
+	loopchannel 6, Music_KantoGymBattle_branch_ec934
+	note B_, 1
+	note G#, 1
+	note B_, 1
+
+Music_KantoGymBattle_branch_ec93d: ; ec93d
+	note D#, 0
+	note __, 0
+	note D#, 0
+	note __, 0
+	note F#, 3
+	note D#, 0
+	note __, 0
+	note D#, 0
+	note __, 0
+	note A#, 3
+	note D#, 0
+	note __, 0
+	note D#, 0
+	note __, 0
+	note B_, 3
+	note D_, 0
+	note __, 0
+	note F_, 1
+	note D#, 0
+	note __, 0
+	note D#, 0
+	note __, 0
+	note F#, 3
+	note D#, 0
+	note __, 0
+	note D#, 0
+	note __, 0
+	note A#, 3
+	note D#, 0
+	note __, 0
+	note D#, 0
+	note __, 0
+	note B_, 3
+	note D#, 0
+	note __, 0
+	note E_, 1
+	loopchannel 2, Music_KantoGymBattle_branch_ec93d
+
+Music_KantoGymBattle_branch_ec965: ; ec965
+	octave 2
+	note D#, 1
+	note A#, 1
+	loopchannel 8, Music_KantoGymBattle_branch_ec965
+
+Music_KantoGymBattle_branch_ec96c: ; ec96c
+	note E_, 1
+	note B_, 1
+	loopchannel 4, Music_KantoGymBattle_branch_ec96c
+	octave 1
+	note B_, 1
+	octave 2
+	note E_, 1
+	octave 1
+	note B_, 1
+	octave 2
+	note E_, 3
+	note B_, 1
+	octave 3
+	note E_, 1
+	octave 2
+	note B_, 1
+
+Music_KantoGymBattle_branch_ec97f: ; ec97f
+	octave 2
+	note F#, 1
+	octave 3
+	note C#, 1
+	loopchannel 8, Music_KantoGymBattle_branch_ec97f
+
+Music_KantoGymBattle_branch_ec987: ; ec987
+	octave 2
+	note E_, 1
+	note B_, 1
+	loopchannel 7, Music_KantoGymBattle_branch_ec987
+	octave 3
+	note E_, 1
+	octave 2
+	note B_, 1
+
+Music_KantoGymBattle_branch_ec992: ; ec992
+	note D#, 0
+	note __, 0
+	note D#, 0
+	note __, 0
+	note A#, 3
+	note D#, 0
+	note __, 0
+	note D#, 0
+	note __, 0
+	note B_, 3
+	note D#, 0
+	note __, 0
+	note D#, 0
+	note __, 0
+	note A#, 3
+	note D#, 0
+	note __, 0
+	note E_, 1
+	loopchannel 2, Music_KantoGymBattle_branch_ec992
+
+Music_KantoGymBattle_branch_ec9a8: ; ec9a8
+	note D#, 1
+	note A#, 1
+	loopchannel 7, Music_KantoGymBattle_branch_ec9a8
+	octave 3
+	note C#, 1
+	octave 2
+	note A#, 1
+	note E_, 1
+	note B_, 1
+	octave 3
+	note E_, 1
+	octave 2
+	note E_, 1
+	note B_, 1
+	octave 3
+	note E_, 1
+
+Music_KantoGymBattle_branch_ec9bb: ; ec9bb
+	octave 2
+	note E_, 1
+	note B_, 1
+	loopchannel 5, Music_KantoGymBattle_branch_ec9bb
+
+Music_KantoGymBattle_branch_ec9c2: ; ec9c2
+	octave 2
+	note F#, 1
+	octave 3
+	note C#, 1
+	loopchannel 7, Music_KantoGymBattle_branch_ec9c2
+	octave 2
+	note A#, 1
+	octave 3
+	note C#, 1
+	octave 2
+	note E_, 1
+	note A#, 1
+	octave 3
+	note E_, 1
+	note F#, 1
+	note G#, 1
+	note F#, 1
+	note E_, 1
+	note C#, 1
+
+Music_KantoGymBattle_branch_ec9d8: ; ec9d8
+	octave 2
+	note D#, 1
+	note A#, 1
+	loopchannel 4, Music_KantoGymBattle_branch_ec9d8
+
+Music_KantoGymBattle_branch_ec9df: ; ec9df
+	note C#, 1
+	note G#, 1
+	loopchannel 8, Music_KantoGymBattle_branch_ec9df
+
+Music_KantoGymBattle_branch_ec9e5: ; ec9e5
+	note D#, 1
+	note A#, 1
+	loopchannel 4, Music_KantoGymBattle_branch_ec9e5
+	octave 3
+	note D#, 1
+	octave 2
+	note A#, 1
+	note D#, 1
+	note D_, 1
+	note D_, 1
+	note A#, 1
+	octave 3
+	note D#, 1
+	note F_, 1
+	loopchannel 0, Music_KantoGymBattle_branch_ec965
+; ec9fa

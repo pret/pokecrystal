@@ -1,183 +1,184 @@
-_Music_LookSage: ; 0xee35e
-	db $40
-	dw _Music_LookSage_Ch1
-	db $02
-	dw _Music_LookSage_Ch3
-; 0xee364
+Music_LookSage: ; ee35e
+	dbw $40, Music_LookSage_Ch1
+	dbw $02, Music_LookSage_Ch3
+; ee364
 
-_Music_LookSage_Ch1: ; 0xee364
-	tempo $9000
-	stereopanning $0f
+
+Music_LookSage_Ch1: ; ee364
+	tempo 144
+	stereopanning $f
 	volume $77
-	dutycycle $03
-	notetype $0c, $b3
-	note $01
-	note $0f
-	callchannel _Music_LookSage_sub_0xee3fa
+	dutycycle $3
+	notetype $c, $b3
+	note __, 1
+	note __, 15
+	callchannel Music_LookSage_branch_ee3fa
 	intensity $b3
-	octave3
-	note $31
+	octave 3
+	note D_, 1
 	intensity $93
-	note $31
+	note D_, 1
 	intensity $b3
-	note $51
+	note E_, 1
 	intensity $93
-	note $51
+	note E_, 1
 	intensity $b3
-	note $a1
+	note A_, 1
 	intensity $93
-	note $a1
+	note A_, 1
 	intensity $b3
-	note $61
+	note F_, 1
 	intensity $93
-	note $61
-	intensity $b3
-	note $31
-	intensity $93
-	note $31
-	intensity $b3
-	octave2
-	note $c1
-	intensity $93
-	note $c1
-	intensity $b3
-	note $a1
-	intensity $93
-	note $a1
-	intensity $b3
-	note $c1
-	intensity $93
-	note $c1
-	intensity $b3
-	octave3
-	note $31
-	intensity $93
-	note $31
-	intensity $b3
-	octave2
-	note $c1
-	intensity $93
-	note $c1
-	intensity $b3
-	octave3
-	note $31
-	intensity $93
-	note $31
-	intensity $b3
-	note $51
-	intensity $93
-	note $51
-	intensity $b3
-	note $61
-	intensity $93
-	note $61
-	intensity $b3
-	note $31
-	intensity $93
-	note $31
-	intensity $b3
-	note $51
-	intensity $93
-	note $51
-	intensity $b3
-	note $a1
-	intensity $93
-	note $a1
-	intensity $b3
-	note $31
-	intensity $93
-	note $31
-	intensity $b3
-	octave2
-	note $c1
-	intensity $93
-	note $c1
-	intensity $b3
-	note $a1
-	intensity $93
-	note $a1
-	intensity $b3
-	note $c1
-	intensity $93
-	note $c1
-	callchannel _Music_LookSage_sub_0xee3fa
-	loopchannel $00, $638e ; end
-; 0xee3fa
+	note F_, 1
 
-_Music_LookSage_sub_0xee3fa: ; 0xee3fa
-; subroutine
+Music_LookSage_branch_ee38e: ; ee38e
 	intensity $b3
-	octave2
-	note $51
+	note D_, 1
 	intensity $93
-	note $51
+	note D_, 1
 	intensity $b3
-	note $a1
+	octave 2
+	note B_, 1
 	intensity $93
-	note $a1
+	note B_, 1
 	intensity $b3
-	note $c1
+	note A_, 1
 	intensity $93
-	note $c1
+	note A_, 1
 	intensity $b3
-	note $a1
+	note B_, 1
 	intensity $93
-	note $a1
-	endchannel ; end
-; 0xee414
+	note B_, 1
+	intensity $b3
+	octave 3
+	note D_, 1
+	intensity $93
+	note D_, 1
+	intensity $b3
+	octave 2
+	note B_, 1
+	intensity $93
+	note B_, 1
+	intensity $b3
+	octave 3
+	note D_, 1
+	intensity $93
+	note D_, 1
+	intensity $b3
+	note E_, 1
+	intensity $93
+	note E_, 1
+	intensity $b3
+	note F_, 1
+	intensity $93
+	note F_, 1
+	intensity $b3
+	note D_, 1
+	intensity $93
+	note D_, 1
+	intensity $b3
+	note E_, 1
+	intensity $93
+	note E_, 1
+	intensity $b3
+	note A_, 1
+	intensity $93
+	note A_, 1
+	intensity $b3
+	note D_, 1
+	intensity $93
+	note D_, 1
+	intensity $b3
+	octave 2
+	note B_, 1
+	intensity $93
+	note B_, 1
+	intensity $b3
+	note A_, 1
+	intensity $93
+	note A_, 1
+	intensity $b3
+	note B_, 1
+	intensity $93
+	note B_, 1
+	callchannel Music_LookSage_branch_ee3fa
+	loopchannel 0, Music_LookSage_branch_ee38e
+; ee3fa
 
-_Music_LookSage_Ch3: ; 0xee414
+Music_LookSage_branch_ee3fa: ; ee3fa
+	intensity $b3
+	octave 2
+	note E_, 1
+	intensity $93
+	note E_, 1
+	intensity $b3
+	note A_, 1
+	intensity $93
+	note A_, 1
+	intensity $b3
+	note B_, 1
+	intensity $93
+	note B_, 1
+	intensity $b3
+	note A_, 1
+	intensity $93
+	note A_, 1
+	endchannel
+
+Music_LookSage_Ch3: ; ee414
 	stereopanning $f0
 	vibrato $16, $23
-	notetype $0c, $10
-	octave5
-	note $c0
-	octave6
-	note $10
-	octave5
-	note $cf
-	vibrato $07, $23
-	note $c7
+	notetype $c, $10
+	octave 5
+	note B_, 0
+	octave 6
+	note C_, 0
+	octave 5
+	note B_, 15
+	vibrato $7, $23
+	note B_, 7
 	vibrato $14, $23
-	octave6
-	note $35
-	note $50
-	note $60
-	note $5d
-	note $80
-	note $90
-	note $ab
-	note $c3
-	note $38
-	note $50
-	note $60
-	note $30
-	vibrato $00, $00
-	note $53
-	vibrato $07, $23
-	note $57
+	octave 6
+	note D_, 5
+	note E_, 0
+	note F_, 0
+	note E_, 13
+	note G_, 0
+	note G#, 0
+
+Music_LookSage_branch_ee430: ; ee430
+	note A_, 11
+	note B_, 3
+	note D_, 8
+	note E_, 0
+	note F_, 0
+	note D_, 0
+	vibrato $0, $0
+	note E_, 3
+	vibrato $7, $23
+	note E_, 7
 	vibrato $14, $23
-	octave5
-	note $c7
-	octave6
-	note $67
-	notetype $06, $10
-	note $50
-	note $40
-	note $30
-	note $20
-	note $10
-	octave5
-	note $c0
-	note $b0
-	note $a0
-	note $03
-	octave6
-	note $51
-	note $61
-	notetype $0c, $10
-	note $5d
-	note $80
-	note $90
-	loopchannel $00, $6430 ; end
-; 0xee45f
+	octave 5
+	note B_, 7
+	octave 6
+	note F_, 7
+	notetype $6, $10
+	note E_, 0
+	note D#, 0
+	note D_, 0
+	note C#, 0
+	note C_, 0
+	octave 5
+	note B_, 0
+	note A#, 0
+	note A_, 0
+	note __, 3
+	octave 6
+	note E_, 1
+	note F_, 1
+	notetype $c, $10
+	note E_, 13
+	note G_, 0
+	note G#, 0
+	loopchannel 0, Music_LookSage_branch_ee430
+; ee45f

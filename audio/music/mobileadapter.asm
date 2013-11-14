@@ -1,676 +1,677 @@
-_Music_MobileAdapter: ; 0x1fc87
-	db $c0
-	dw _Music_MobileAdapter_Ch1
-	db $01
-	dw _Music_MobileAdapter_Ch2
-	db $02
-	dw _Music_MobileAdapter_Ch3
-	db $03
-	dw _Music_MobileAdapter_Ch4
-; 0x1fc93
+Music_MobileAdapter: ; 1fc87
+	dbw $c0, Music_MobileAdapter_Ch1
+	dbw $01, Music_MobileAdapter_Ch2
+	dbw $02, Music_MobileAdapter_Ch3
+	dbw $03, Music_MobileAdapter_Ch4
+; 1fc93
 
-_Music_MobileAdapter_Ch1: ; 0x1fc93
-	tempo $8400
+
+Music_MobileAdapter_Ch1: ; 1fc93
+	tempo 132
 	volume $77
-	tone $0100
-	stereopanning $0f
-	dutycycle $02
-	notetype $0c, $84
-	note $01
-	note $05
-	octave3
-	note $80
-	octave4
-	note $30
-	note $50
-	note $00
-	note $30
-	note $00
-	note $23
-	callchannel _Music_MobileAdapter_sub_0x1fd39
-	note $30
-	note $20
-	note $31
-	octave3
-	note $a0
-	note $80
-	note $a1
-	note $70
-	note $50
-	note $71
-	note $30
-	note $20
-	note $31
-	callchannel _Music_MobileAdapter_sub_0x1fd39
-	note $30
-	note $20
-	octave3
-	note $c0
-	octave4
-	note $30
-	note $70
-	note $50
-	note $30
-	note $20
+	tone $0001
+	stereopanning $f
+	dutycycle $2
+	notetype $c, $84
+	note __, 1
+	note __, 5
+	octave 3
+	note G_, 0
+	octave 4
+	note D_, 0
+	note E_, 0
+	note __, 0
+	note D_, 0
+	note __, 0
+	note C#, 3
+
+Music_MobileAdapter_branch_1fcad: ; 1fcad
+	callchannel Music_MobileAdapter_branch_1fd39
+	note D_, 0
+	note C#, 0
+	note D_, 1
+	octave 3
+	note A_, 0
+	note G_, 0
+	note A_, 1
+	note F#, 0
+	note E_, 0
+	note F#, 1
+	note D_, 0
+	note C#, 0
+	note D_, 1
+	callchannel Music_MobileAdapter_branch_1fd39
+	note D_, 0
+	note C#, 0
+	octave 3
+	note B_, 0
+	octave 4
+	note D_, 0
+	note F#, 0
+	note E_, 0
+	note D_, 0
+	note C#, 0
 	intensity $94
-	note $31
-	octave3
-	note $a1
-	octave4
-	note $33
-	octave5
-	note $20
-	note $00
-	note $20
-	note $00
-	note $20
-	note $00
-	octave4
-	note $27
+	note D_, 1
+	octave 3
+	note A_, 1
+	octave 4
+	note D_, 3
+	octave 5
+	note C#, 0
+	note __, 0
+	note C#, 0
+	note __, 0
+	note C#, 0
+	note __, 0
+	octave 4
+	note C#, 7
 	intensity $92
-	note $70
-	note $80
-	note $a1
-	note $91
-	note $a1
+	note F#, 0
+	note G_, 0
+	note A_, 1
+	note G#, 1
+	note A_, 1
 	intensity $94
-	note $52
-	octave3
-	note $a2
-	note $53
-	octave4
-	note $80
-	note $00
-	note $80
-	note $00
-	note $80
-	note $00
-	octave3
-	note $c7
+	note E_, 2
+	octave 3
+	note A_, 2
+	note E_, 3
+	octave 4
+	note G_, 0
+	note __, 0
+	note G_, 0
+	note __, 0
+	note G_, 0
+	note __, 0
+	octave 3
+	note B_, 7
 	intensity $92
-	octave4
-	note $c0
-	octave5
-	note $10
-	note $21
-	octave4
-	note $c1
-	note $a1
-	octave5
-	note $22
+	octave 4
+	note B_, 0
+	octave 5
+	note C_, 0
+	note C#, 1
+	octave 4
+	note B_, 1
+	note A_, 1
+	octave 5
+	note C#, 2
 	intensity $94
-	octave4
-	note $22
-	octave3
-	note $a3
-	octave4
-	note $70
-	note $00
-	note $70
-	note $00
-	note $70
-	note $00
-	octave3
-	note $79
-	octave4
-	note $30
-	note $00
-	note $30
-	note $00
-	note $30
-	note $00
-	octave3
-	note $39
-	octave4
-	note $a7
+	octave 4
+	note C#, 2
+	octave 3
+	note A_, 3
+	octave 4
+	note F#, 0
+	note __, 0
+	note F#, 0
+	note __, 0
+	note F#, 0
+	note __, 0
+	octave 3
+	note F#, 9
+	octave 4
+	note D_, 0
+	note __, 0
+	note D_, 0
+	note __, 0
+	note D_, 0
+	note __, 0
+	octave 3
+	note D_, 9
+	octave 4
+	note A_, 7
 	intensity $a1
-	octave3
-	note $20
-	note $30
-	note $50
-	note $70
-	note $80
-	note $a0
-	note $c0
-	octave4
-	note $20
-	note $30
-	note $20
-	note $31
-	octave3
-	note $a0
-	note $80
-	note $a1
+	octave 3
+	note C#, 0
+	note D_, 0
+	note E_, 0
+	note F#, 0
+	note G_, 0
+	note A_, 0
+	note B_, 0
+	octave 4
+	note C#, 0
+	note D_, 0
+	note C#, 0
+	note D_, 1
+	octave 3
+	note A_, 0
+	note G_, 0
+	note A_, 1
 	intensity $94
-	note $71
-	octave2
-	note $a1
-	octave3
-	note $33
+	note F#, 1
+	octave 2
+	note A_, 1
+	octave 3
+	note D_, 3
 	intensity $77
-	callchannel _Music_MobileAdapter_sub_0x1ff09
-	loopchannel $00, $7cad ; end
-; 0x1fd39
+	callchannel Music_MobileAdapter_branch_1ff09
+	loopchannel 0, Music_MobileAdapter_branch_1fcad
+; 1fd39
 
-_Music_MobileAdapter_sub_0x1fd39: ; 0x1fd39
-; subroutine
+Music_MobileAdapter_branch_1fd39: ; 1fd39
 	intensity $94
-	octave4
-	note $70
-	note $00
-	note $70
-	note $00
-	note $71
-	octave3
-	note $79
-	octave4
-	note $80
-	note $00
-	note $80
-	note $00
-	note $81
-	octave3
-	note $87
+	octave 4
+	note F#, 0
+	note __, 0
+	note F#, 0
+	note __, 0
+	note F#, 1
+	octave 3
+	note F#, 9
+	octave 4
+	note G_, 0
+	note __, 0
+	note G_, 0
+	note __, 0
+	note G_, 1
+	octave 3
+	note G_, 7
 	intensity $a1
-	note $c0
-	octave4
-	note $30
-	note $50
-	note $30
-	note $20
-	note $50
-	note $30
-	note $20
-	octave3
-	note $c0
-	note $a0
-	note $50
-	note $70
-	note $80
-	note $70
-	note $50
-	note $a0
-	note $c0
-	octave4
-	note $20
-	endchannel ; end
-; 0x1fd63
+	note B_, 0
+	octave 4
+	note D_, 0
+	note E_, 0
+	note D_, 0
+	note C#, 0
+	note E_, 0
+	note D_, 0
+	note C#, 0
+	octave 3
+	note B_, 0
+	note A_, 0
+	note E_, 0
+	note F#, 0
+	note G_, 0
+	note F#, 0
+	note E_, 0
+	note A_, 0
+	note B_, 0
+	octave 4
+	note C#, 0
+	endchannel
+; 1fd63
 
-_Music_MobileAdapter_Ch2: ; 0x1fd63
-	notetype $0c, $c1
+Music_MobileAdapter_Ch2: ; 1fd63
+	notetype $c, $c1
 	vibrato $10, $23
-	dutycycle $02
-	octave3
-	note $80
-	note $c0
-	octave4
-	note $30
-	note $20
-	note $31
-	octave3
-	note $c0
-	note $b0
-	note $c1
-	octave4
-	note $21
-	octave3
-	note $c1
-	note $a1
+	dutycycle $2
+	octave 3
+	note G_, 0
+	note B_, 0
+	octave 4
+	note D_, 0
+	note C#, 0
+	note D_, 1
+	octave 3
+	note B_, 0
+	note A#, 0
+	note B_, 1
+	octave 4
+	note C#, 1
+	octave 3
+	note B_, 1
+	note A_, 1
 	intensity $b4
-	octave4
-	note $30
-	note $70
-	callchannel _Music_MobileAdapter_sub_0x1fdfe
-	note $a3
-	note $83
-	note $a3
-	note $53
-	note $7b
-	note $01
-	note $30
-	note $70
-	callchannel _Music_MobileAdapter_sub_0x1fdfe
-	octave5
-	note $23
-	octave4
-	note $a3
-	octave5
-	note $73
-	note $53
-	note $3b
-	note $01
-	note $20
-	note $30
-	note $50
-	note $00
-	note $50
-	note $00
-	note $50
-	note $00
-	note $83
-	note $71
-	note $51
-	note $31
-	note $28
+	octave 4
+	note D_, 0
+	note F#, 0
+
+Music_MobileAdapter_branch_1fd80: ; 1fd80
+	callchannel Music_MobileAdapter_branch_1fdfe
+	note A_, 3
+	note G_, 3
+	note A_, 3
+	note E_, 3
+	note F#, 11
+	note __, 1
+	note D_, 0
+	note F#, 0
+	callchannel Music_MobileAdapter_branch_1fdfe
+	octave 5
+	note C#, 3
+	octave 4
+	note A_, 3
+	octave 5
+	note F#, 3
+	note E_, 3
+	note D_, 11
+	note __, 1
+	note C#, 0
+	note D_, 0
+	note E_, 0
+	note __, 0
+	note E_, 0
+	note __, 0
+	note E_, 0
+	note __, 0
+	note G_, 3
+	note F#, 1
+	note E_, 1
+	note D_, 1
+	note C#, 8
 	intensity $a2
-	octave3
-	note $52
-	note $21
+	octave 3
+	note E_, 2
+	note C#, 1
 	intensity $b4
-	octave5
-	note $30
-	note $20
-	octave4
-	note $c0
-	note $00
-	note $c0
-	note $00
-	note $c0
-	note $00
-	octave5
-	note $23
-	note $31
-	note $51
-	note $71
-	note $58
+	octave 5
+	note D_, 0
+	note C#, 0
+	octave 4
+	note B_, 0
+	note __, 0
+	note B_, 0
+	note __, 0
+	note B_, 0
+	note __, 0
+	octave 5
+	note C#, 3
+	note D_, 1
+	note E_, 1
+	note F#, 1
+	note E_, 8
 	intensity $a2
-	octave3
-	note $a2
-	note $51
+	octave 3
+	note A_, 2
+	note E_, 1
 	intensity $b4
-	octave5
-	note $70
-	note $80
-	note $a0
-	note $00
-	note $a0
-	note $00
-	note $a0
-	note $00
-	note $83
-	note $71
-	note $51
-	note $30
-	note $20
-	octave4
-	note $c0
-	note $00
-	note $c0
-	note $00
-	note $c0
-	note $00
-	octave5
-	note $83
-	note $71
-	note $31
-	octave4
-	note $b0
-	note $c0
-	octave5
-	note $2b
-	note $53
-	note $3f
-	dutycycle $01
+	octave 5
+	note F#, 0
+	note G_, 0
+	note A_, 0
+	note __, 0
+	note A_, 0
+	note __, 0
+	note A_, 0
+	note __, 0
+	note G_, 3
+	note F#, 1
+	note E_, 1
+	note D_, 0
+	note C#, 0
+	octave 4
+	note B_, 0
+	note __, 0
+	note B_, 0
+	note __, 0
+	note B_, 0
+	note __, 0
+	octave 5
+	note G_, 3
+	note F#, 1
+	note D_, 1
+	octave 4
+	note A#, 0
+	note B_, 0
+	octave 5
+	note C#, 11
+	note E_, 3
+	note D_, 15
+	dutycycle $1
 	intensity $71
-	callchannel _Music_MobileAdapter_sub_0x1fe16
-	octave4
-	note $50
-	note $a0
-	octave5
-	note $20
-	note $50
-	callchannel _Music_MobileAdapter_sub_0x1fe16
-	note $01
-	dutycycle $02
+	callchannel Music_MobileAdapter_branch_1fe16
+	octave 4
+	note E_, 0
+	note A_, 0
+	octave 5
+	note C#, 0
+	note E_, 0
+	callchannel Music_MobileAdapter_branch_1fe16
+	note __, 1
+	dutycycle $2
 	intensity $b4
-	octave4
-	note $30
-	note $70
-	loopchannel $00, $7d80 ; end
-; 0x1fdfe
+	octave 4
+	note D_, 0
+	note F#, 0
+	loopchannel 0, Music_MobileAdapter_branch_1fd80
+; 1fdfe
 
-_Music_MobileAdapter_sub_0x1fdfe: ; 0x1fdfe
-; subroutine
-	note $a0
-	note $00
-	note $a0
-	note $00
-	note $a1
-	octave5
-	note $33
-	note $21
-	octave4
-	note $c1
-	note $80
-	note $a0
-	note $c0
-	note $00
-	note $c0
-	note $00
-	note $c1
-	octave5
-	note $53
-	note $31
-	note $21
-	octave4
-	note $c1
-	endchannel ; end
-; 0x1fe16
+Music_MobileAdapter_branch_1fdfe: ; 1fdfe
+	note A_, 0
+	note __, 0
+	note A_, 0
+	note __, 0
+	note A_, 1
+	octave 5
+	note D_, 3
+	note C#, 1
+	octave 4
+	note B_, 1
+	note G_, 0
+	note A_, 0
+	note B_, 0
+	note __, 0
+	note B_, 0
+	note __, 0
+	note B_, 1
+	octave 5
+	note E_, 3
+	note D_, 1
+	note C#, 1
+	octave 4
+	note B_, 1
+	endchannel
+; 1fe16
 
-_Music_MobileAdapter_sub_0x1fe16: ; 0x1fe16
-; subroutine
-	octave5
-	note $70
-	note $30
-	octave4
-	note $a0
-	note $70
-	octave5
-	note $70
-	note $30
-	octave4
-	note $a0
-	note $70
-	octave5
-	note $70
-	note $30
-	octave4
-	note $b0
-	note $70
-	octave5
-	note $70
-	note $30
-	octave4
-	note $b0
-	note $70
-	octave5
-	note $80
-	note $30
-	octave4
-	note $c0
-	note $80
-	octave5
-	note $80
-	note $30
-	octave4
-	note $c0
-	note $80
-	octave5
-	note $23
-	endchannel ; end
-; 0x1fe3d
+Music_MobileAdapter_branch_1fe16: ; 1fe16
+	octave 5
+	note F#, 0
+	note D_, 0
+	octave 4
+	note A_, 0
+	note F#, 0
+	octave 5
+	note F#, 0
+	note D_, 0
+	octave 4
+	note A_, 0
+	note F#, 0
+	octave 5
+	note F#, 0
+	note D_, 0
+	octave 4
+	note A#, 0
+	note F#, 0
+	octave 5
+	note F#, 0
+	note D_, 0
+	octave 4
+	note A#, 0
+	note F#, 0
+	octave 5
+	note G_, 0
+	note D_, 0
+	octave 4
+	note B_, 0
+	note G_, 0
+	octave 5
+	note G_, 0
+	note D_, 0
+	octave 4
+	note B_, 0
+	note G_, 0
+	octave 5
+	note C#, 3
+	endchannel
+; 1fe3d
 
-_Music_MobileAdapter_Ch3: ; 0x1fe3d
-	notetype $0c, $14
-	note $01
-	octave3
-	note $80
-	note $00
-	note $c0
-	note $00
-	note $80
-	note $00
-	note $c0
-	note $80
-	note $a0
-	note $00
-	note $50
-	note $00
-	note $a3
-	callchannel _Music_MobileAdapter_sub_0x1fecf
-	callchannel _Music_MobileAdapter_sub_0x1fee3
-	callchannel _Music_MobileAdapter_sub_0x1feee
-	note $30
-	note $00
-	octave2
-	note $a0
-	note $00
-	note $c0
-	note $00
-	octave3
-	note $20
-	note $00
-	callchannel _Music_MobileAdapter_sub_0x1fecf
-	callchannel _Music_MobileAdapter_sub_0x1fee3
-	callchannel _Music_MobileAdapter_sub_0x1feee
-	note $31
-	octave2
-	note $a1
-	octave3
-	note $33
-	callchannel _Music_MobileAdapter_sub_0x1fee3
-	callchannel _Music_MobileAdapter_sub_0x1fef7
-	note $c0
-	note $00
-	octave3
-	note $80
-	note $00
-	octave2
-	note $c0
-	note $00
-	octave3
-	note $30
-	note $00
-	octave2
-	note $80
-	note $00
-	octave3
-	note $30
-	note $00
-	octave2
-	note $80
-	note $00
-	note $c0
-	note $00
-	callchannel _Music_MobileAdapter_sub_0x1fef7
-	octave3
-	note $30
-	note $00
-	note $a0
-	note $00
-	note $30
-	note $00
-	note $a0
-	note $00
-	note $20
-	note $00
-	note $a0
-	note $00
-	note $20
-	note $00
-	note $a0
-	note $00
-	octave2
-	note $c0
-	note $00
-	octave3
-	note $80
-	note $00
-	octave2
-	note $c0
-	note $00
-	octave3
-	note $80
-	note $00
-	octave2
-	note $b0
-	note $00
-	octave3
-	note $80
-	note $00
-	octave2
-	note $b0
-	note $00
-	octave3
-	note $80
-	note $00
-	callchannel _Music_MobileAdapter_sub_0x1fee3
-	note $30
-	note $00
-	note $a0
-	note $00
-	note $30
-	note $00
-	note $a0
-	note $00
-	note $71
-	octave2
-	note $a1
-	octave3
-	note $33
-	callchannel _Music_MobileAdapter_sub_0x1ff09
-	loopchannel $00, $7e4f ; end
-; 0x1fecf
+Music_MobileAdapter_Ch3: ; 1fe3d
+	notetype $c, $14
+	note __, 1
+	octave 3
+	note G_, 0
+	note __, 0
+	note B_, 0
+	note __, 0
+	note G_, 0
+	note __, 0
+	note B_, 0
+	note G_, 0
+	note A_, 0
+	note __, 0
+	note E_, 0
+	note __, 0
+	note A_, 3
 
-_Music_MobileAdapter_sub_0x1fecf: ; 0x1fecf
-; subroutine
-	octave3
-	note $30
-	note $00
-	note $a0
-	note $00
-	loopchannel $04, $7ecf
-	octave2
-	note $80
-	note $00
-	octave3
-	note $30
-	note $00
-	loopchannel $04, $7ed8
-	endchannel ; end
-; 0x1fee3
+Music_MobileAdapter_branch_1fe4f: ; 1fe4f
+	callchannel Music_MobileAdapter_branch_1fecf
+	callchannel Music_MobileAdapter_branch_1fee3
+	callchannel Music_MobileAdapter_branch_1feee
+	note D_, 0
+	note __, 0
+	octave 2
+	note A_, 0
+	note __, 0
+	note B_, 0
+	note __, 0
+	octave 3
+	note C#, 0
+	note __, 0
+	callchannel Music_MobileAdapter_branch_1fecf
+	callchannel Music_MobileAdapter_branch_1fee3
+	callchannel Music_MobileAdapter_branch_1feee
+	note D_, 1
+	octave 2
+	note A_, 1
+	octave 3
+	note D_, 3
+	callchannel Music_MobileAdapter_branch_1fee3
+	callchannel Music_MobileAdapter_branch_1fef7
+	note B_, 0
+	note __, 0
+	octave 3
+	note G_, 0
+	note __, 0
+	octave 2
+	note B_, 0
+	note __, 0
+	octave 3
+	note D_, 0
+	note __, 0
+	octave 2
+	note G_, 0
+	note __, 0
+	octave 3
+	note D_, 0
+	note __, 0
+	octave 2
+	note G_, 0
+	note __, 0
+	note B_, 0
+	note __, 0
+	callchannel Music_MobileAdapter_branch_1fef7
+	octave 3
+	note D_, 0
+	note __, 0
+	note A_, 0
+	note __, 0
+	note D_, 0
+	note __, 0
+	note A_, 0
+	note __, 0
+	note C#, 0
+	note __, 0
+	note A_, 0
+	note __, 0
+	note C#, 0
+	note __, 0
+	note A_, 0
+	note __, 0
+	octave 2
+	note B_, 0
+	note __, 0
+	octave 3
+	note G_, 0
+	note __, 0
+	octave 2
+	note B_, 0
+	note __, 0
+	octave 3
+	note G_, 0
+	note __, 0
+	octave 2
+	note A#, 0
+	note __, 0
+	octave 3
+	note G_, 0
+	note __, 0
+	octave 2
+	note A#, 0
+	note __, 0
+	octave 3
+	note G_, 0
+	note __, 0
+	callchannel Music_MobileAdapter_branch_1fee3
+	note D_, 0
+	note __, 0
+	note A_, 0
+	note __, 0
+	note D_, 0
+	note __, 0
+	note A_, 0
+	note __, 0
+	note F#, 1
+	octave 2
+	note A_, 1
+	octave 3
+	note D_, 3
+	callchannel Music_MobileAdapter_branch_1ff09
+	loopchannel 0, Music_MobileAdapter_branch_1fe4f
+; 1fecf
 
-_Music_MobileAdapter_sub_0x1fee3: ; 0x1fee3
-; subroutine
-	octave2
-	note $a0
-	note $00
-	octave3
-	note $50
-	note $00
-	loopchannel $04, $7ee3
-	endchannel ; end
-; 0x1feee
+Music_MobileAdapter_branch_1fecf: ; 1fecf
+	octave 3
+	note D_, 0
+	note __, 0
+	note A_, 0
+	note __, 0
+	loopchannel 4, Music_MobileAdapter_branch_1fecf
 
-_Music_MobileAdapter_sub_0x1feee: ; 0x1feee
-; subroutine
-	note $30
-	note $00
-	note $a0
-	note $00
-	note $30
-	note $00
-	note $a0
-	note $00
-	endchannel ; end
-; 0x1fef7
+Music_MobileAdapter_branch_1fed8: ; 1fed8
+	octave 2
+	note G_, 0
+	note __, 0
+	octave 3
+	note D_, 0
+	note __, 0
+	loopchannel 4, Music_MobileAdapter_branch_1fed8
+	endchannel
+; 1fee3
 
-_Music_MobileAdapter_sub_0x1fef7: ; 0x1fef7
-; subroutine
-	octave2
-	note $a0
-	note $00
-	octave3
-	note $20
-	note $00
-	note $50
-	note $00
-	note $20
-	note $00
-	octave2
-	note $a0
-	octave3
-	note $51
-	note $00
-	octave2
-	note $a3
-	endchannel ; end
-; 0x1ff09
+Music_MobileAdapter_branch_1fee3: ; 1fee3
+	octave 2
+	note A_, 0
+	note __, 0
+	octave 3
+	note E_, 0
+	note __, 0
+	loopchannel 4, Music_MobileAdapter_branch_1fee3
+	endchannel
+; 1feee
 
-_Music_MobileAdapter_sub_0x1ff09: ; 0x1ff09
-; subroutine
-	octave2
-	note $a0
-	note $00
-	octave3
-	note $31
-	octave2
-	note $a0
-	octave3
-	note $32
-	octave2
-	note $b0
-	note $00
-	octave3
-	note $31
-	octave2
-	note $b0
-	octave3
-	note $32
-	octave2
-	note $c0
-	note $00
-	octave3
-	note $31
-	octave2
-	note $c0
-	octave3
-	note $32
-	octave2
-	note $a1
-	note $05
-	loopchannel $02, $7f09
-	endchannel ; end
-; 0x1ff2c
+Music_MobileAdapter_branch_1feee: ; 1feee
+	note D_, 0
+	note __, 0
+	note A_, 0
+	note __, 0
+	note D_, 0
+	note __, 0
+	note A_, 0
+	note __, 0
+	endchannel
+; 1fef7
 
-_Music_MobileAdapter_Ch4: ; 0x1ff2c
-	togglenoise $03
+Music_MobileAdapter_branch_1fef7: ; 1fef7
+	octave 2
+	note A_, 0
+	note __, 0
+	octave 3
+	note C#, 0
+	note __, 0
+	note E_, 0
+	note __, 0
+	note C#, 0
+	note __, 0
+	octave 2
+	note A_, 0
+	octave 3
+	note E_, 1
+	note __, 0
+	octave 2
+	note A_, 3
+	endchannel
+; 1ff09
+
+Music_MobileAdapter_branch_1ff09: ; 1ff09
+	octave 2
+	note A_, 0
+	note __, 0
+	octave 3
+	note D_, 1
+	octave 2
+	note A_, 0
+	octave 3
+	note D_, 2
+	octave 2
+	note A#, 0
+	note __, 0
+	octave 3
+	note D_, 1
+	octave 2
+	note A#, 0
+	octave 3
+	note D_, 2
+	octave 2
+	note B_, 0
+	note __, 0
+	octave 3
+	note D_, 1
+	octave 2
+	note B_, 0
+	octave 3
+	note D_, 2
+	octave 2
+	note A_, 1
+	note __, 5
+	loopchannel 2, Music_MobileAdapter_branch_1ff09
+	endchannel
+
+Music_MobileAdapter_Ch4: ; 1ff2c
+	togglenoise $3
 	stereopanning $f0
-	notetype $0c
-	note $01
-	note $09
-	note $31
-	note $31
-	note $30
-	note $30
-	callchannel _Music_MobileAdapter_sub_0x1ff60
-	callchannel _Music_MobileAdapter_sub_0x1ff60
-	note $03
-	note $37
-	note $37
-	note $33
-	note $30
-	note $32
-	note $33
-	loopchannel $02, $7f3e
-	note $03
-	note $33
-	loopchannel $0b, $7f49
-	note $01
-	note $31
-	note $31
-	note $30
-	note $30
-	note $03
-	note $37
-	note $37
-	note $35
-	note $31
-	note $31
-	note $30
-	note $30
-	loopchannel $00, $7f38 ; end
-; 0x1ff60
+	notetype $c
+	note __, 1
+	note __, 9
+	note D_, 1
+	note D_, 1
+	note D_, 0
+	note D_, 0
 
-_Music_MobileAdapter_sub_0x1ff60: ; 0x1ff60
-; subroutine
-	note $03
-	note $33
-	loopchannel $07, $7f60
-	note $01
-	note $31
-	note $31
-	note $30
-	note $30
-	endchannel ; end
-; 0x1ff6c
+Music_MobileAdapter_branch_1ff38: ; 1ff38
+	callchannel Music_MobileAdapter_branch_1ff60
+	callchannel Music_MobileAdapter_branch_1ff60
+
+Music_MobileAdapter_branch_1ff3e: ; 1ff3e
+	note __, 3
+	note D_, 7
+	note D_, 7
+	note D_, 3
+	note D_, 0
+	note D_, 2
+	note D_, 3
+	loopchannel 2, Music_MobileAdapter_branch_1ff3e
+
+Music_MobileAdapter_branch_1ff49: ; 1ff49
+	note __, 3
+	note D_, 3
+	loopchannel 11, Music_MobileAdapter_branch_1ff49
+	note __, 1
+	note D_, 1
+	note D_, 1
+	note D_, 0
+	note D_, 0
+	note __, 3
+	note D_, 7
+	note D_, 7
+	note D_, 5
+	note D_, 1
+	note D_, 1
+	note D_, 0
+	note D_, 0
+	loopchannel 0, Music_MobileAdapter_branch_1ff38
+; 1ff60
+
+Music_MobileAdapter_branch_1ff60: ; 1ff60
+	note __, 3
+	note D_, 3
+	loopchannel 7, Music_MobileAdapter_branch_1ff60
+	note __, 1
+	note D_, 1
+	note D_, 1
+	note D_, 0
+	note D_, 0
+	endchannel
+; 1ff6c

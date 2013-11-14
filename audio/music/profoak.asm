@@ -1,328 +1,328 @@
-_Music_ProfOak: ; 0xf4dea
-	db $80
-	dw _Music_ProfOak_Ch1
-	db $01
-	dw _Music_ProfOak_Ch2
-	db $02
-	dw _Music_ProfOak_Ch3
-; 0xf4df3
+Music_ProfOak: ; f4dea
+	dbw $80, Music_ProfOak_Ch1
+	dbw $01, Music_ProfOak_Ch2
+	dbw $02, Music_ProfOak_Ch3
+; f4df3
 
-_Music_ProfOak_Ch1: ; 0xf4df3
-	tempo $7600
+
+Music_ProfOak_Ch1: ; f4df3
+	tempo 118
 	volume $77
 	vibrato $12, $34
-	tone $0100
+	tone $0001
 	stereopanning $f0
-	dutycycle $03
-	notetype $0c, $98
-	octave2
-	note $70
-	note $c0
-	octave3
-	note $40
-	note $70
-	note $af
-	note $97
+	dutycycle $3
+	notetype $c, $98
+	octave 2
+	note F#, 0
+	note B_, 0
+	octave 3
+	note D#, 0
+	note F#, 0
+	note A_, 15
+	note G#, 7
 	intensity $97
-	note $97
+	note G#, 7
+
+Music_ProfOak_branch_f4e10: ; f4e10
 	intensity $91
-	callchannel _Music_ProfOak_sub_0xf4e42
-	callchannel _Music_ProfOak_sub_0xf4e42
-	callchannel _Music_ProfOak_sub_0xf4e4d
-	callchannel _Music_ProfOak_sub_0xf4e4d
-	loopchannel $02, $4e10
-	callchannel _Music_ProfOak_sub_0xf4e58
-	callchannel _Music_ProfOak_sub_0xf4e58
-	callchannel _Music_ProfOak_sub_0xf4e6c
-	callchannel _Music_ProfOak_sub_0xf4e6c
-	forceoctave $02
-	callchannel _Music_ProfOak_sub_0xf4e58
-	callchannel _Music_ProfOak_sub_0xf4e58
-	forceoctave $00
-	callchannel _Music_ProfOak_sub_0xf4e6c
-	callchannel _Music_ProfOak_sub_0xf4e6c
-	loopchannel $00, $4e22 ; end
-; 0xf4e42
+	callchannel Music_ProfOak_branch_f4e42
+	callchannel Music_ProfOak_branch_f4e42
+	callchannel Music_ProfOak_branch_f4e4d
+	callchannel Music_ProfOak_branch_f4e4d
+	loopchannel 2, Music_ProfOak_branch_f4e10
 
-_Music_ProfOak_sub_0xf4e42: ; 0xf4e42
-; subroutine
-	octave2
-	note $c1
-	octave3
-	note $51
-	note $91
-	note $51
-	note $c1
-	note $51
-	note $91
-	note $51
-	endchannel ; end
-; 0xf4e4d
+Music_ProfOak_branch_f4e22: ; f4e22
+	callchannel Music_ProfOak_branch_f4e58
+	callchannel Music_ProfOak_branch_f4e58
+	callchannel Music_ProfOak_branch_f4e6c
+	callchannel Music_ProfOak_branch_f4e6c
+	forceoctave $2
+	callchannel Music_ProfOak_branch_f4e58
+	callchannel Music_ProfOak_branch_f4e58
+	forceoctave $0
+	callchannel Music_ProfOak_branch_f4e6c
+	callchannel Music_ProfOak_branch_f4e6c
+	loopchannel 0, Music_ProfOak_branch_f4e22
+; f4e42
 
-_Music_ProfOak_sub_0xf4e4d: ; 0xf4e4d
-; subroutine
-	octave2
-	note $c1
-	octave3
-	note $41
-	note $71
-	note $41
-	note $c1
-	note $41
-	note $71
-	note $41
-	endchannel ; end
-; 0xf4e58
+Music_ProfOak_branch_f4e42: ; f4e42
+	octave 2
+	note B_, 1
+	octave 3
+	note E_, 1
+	note G#, 1
+	note E_, 1
+	note B_, 1
+	note E_, 1
+	note G#, 1
+	note E_, 1
+	endchannel
+; f4e4d
 
-_Music_ProfOak_sub_0xf4e58: ; 0xf4e58
-; subroutine
-	octave2
-	note $a1
-	octave3
-	note $21
-	note $51
-	note $20
-	note $50
-	note $21
+Music_ProfOak_branch_f4e4d: ; f4e4d
+	octave 2
+	note B_, 1
+	octave 3
+	note D#, 1
+	note F#, 1
+	note D#, 1
+	note B_, 1
+	note D#, 1
+	note F#, 1
+	note D#, 1
+	endchannel
+; f4e58
+
+Music_ProfOak_branch_f4e58: ; f4e58
+	octave 2
+	note A_, 1
+	octave 3
+	note C#, 1
+	note E_, 1
+	note C#, 0
+	note E_, 0
+	note C#, 1
 	intensity $92
-	note $a1
+	note A_, 1
 	intensity $91
-	note $21
+	note C#, 1
 	intensity $92
-	note $51
+	note E_, 1
 	intensity $91
-	endchannel ; end
-; 0xf4e6c
+	endchannel
+; f4e6c
 
-_Music_ProfOak_sub_0xf4e6c: ; 0xf4e6c
-; subroutine
-	octave2
-	note $c0
-	octave3
-	note $50
+Music_ProfOak_branch_f4e6c: ; f4e6c
+	octave 2
+	note B_, 0
+	octave 3
+	note E_, 0
 	intensity $92
-	note $93
-	note $53
+	note G#, 3
+	note E_, 3
 	intensity $91
-	note $50
-	note $90
+	note E_, 0
+	note G#, 0
 	intensity $92
-	note $c3
+	note B_, 3
 	intensity $91
-	endchannel ; end
-; 0xf4e7e
+	endchannel
 
-_Music_ProfOak_Ch2: ; 0xf4e7e
+Music_ProfOak_Ch2: ; f4e7e
 	vibrato $12, $34
-	dutycycle $03
-	notetype $0c, $a8
-	octave3
-	note $c0
-	octave4
-	note $40
-	note $70
-	note $b0
-	note $cf
+	dutycycle $3
+	notetype $c, $a8
+	octave 3
+	note B_, 0
+	octave 4
+	note D#, 0
+	note F#, 0
+	note A#, 0
+	note B_, 15
 	intensity $a7
-	note $c9
-	dutycycle $02
+	note B_, 9
+	dutycycle $2
+
+Music_ProfOak_branch_f4e92: ; f4e92
 	intensity $b2
-	octave3
-	note $c1
-	octave4
-	note $21
-	note $41
-	note $53
-	note $41
-	note $23
+	octave 3
+	note B_, 1
+	octave 4
+	note C#, 1
+	note D#, 1
+	note E_, 3
+	note D#, 1
+	note C#, 3
 	intensity $91
-	note $c1
-	octave5
-	note $21
-	note $41
-	note $53
-	note $41
-	note $23
+	note B_, 1
+	octave 5
+	note C#, 1
+	note D#, 1
+	note E_, 3
+	note D#, 1
+	note C#, 3
 	intensity $b2
-	octave3
-	note $c1
-	note $a1
-	note $91
-	note $a3
-	note $c0
-	note $00
-	note $c3
+	octave 3
+	note B_, 1
+	note A_, 1
+	note G#, 1
+	note A_, 3
+	note B_, 0
+	note __, 0
+	note B_, 3
 	intensity $91
-	octave4
-	note $c1
-	note $a1
-	note $91
-	note $a3
-	note $c1
-	note $c3
-	loopchannel $02, $4e92
-	note $05
+	octave 4
+	note B_, 1
+	note A_, 1
+	note G#, 1
+	note A_, 3
+	note B_, 1
+	note B_, 3
+	loopchannel 2, Music_ProfOak_branch_f4e92
+	note __, 5
 	intensity $b4
-	note $25
-	octave3
-	note $a0
-	octave4
-	note $20
-	note $55
-	note $20
-	note $50
-	note $73
-	note $53
-	note $43
-	note $23
-	octave3
-	note $c5
-	note $90
-	note $c0
-	octave4
-	note $57
+
+Music_ProfOak_branch_f4ebf: ; f4ebf
+	note C#, 5
+	octave 3
+	note A_, 0
+	octave 4
+	note C#, 0
+	note E_, 5
+	note C#, 0
+	note E_, 0
+	note F#, 3
+	note E_, 3
+	note D#, 3
+	note C#, 3
+	octave 3
+	note B_, 5
+	note G#, 0
+	note B_, 0
+	octave 4
+	note E_, 7
 	intensity $82
-	note $c5
-	note $90
-	note $c0
+	note B_, 5
+	note G#, 0
+	note B_, 0
 	intensity $83
-	octave5
-	note $57
+	octave 5
+	note E_, 7
 	intensity $b4
-	octave3
-	note $a5
-	note $70
-	note $a0
-	octave4
-	note $47
-	note $53
-	note $43
-	note $23
-	note $13
-	octave3
-	note $c5
-	note $90
-	note $c0
-	octave4
-	note $55
-	octave3
-	note $c0
-	octave4
-	note $50
-	note $9f
-	loopchannel $00, $4ebf ; end
-; 0xf4ef5
+	octave 3
+	note A_, 5
+	note F#, 0
+	note A_, 0
+	octave 4
+	note D#, 7
+	note E_, 3
+	note D#, 3
+	note C#, 3
+	note C_, 3
+	octave 3
+	note B_, 5
+	note G#, 0
+	note B_, 0
+	octave 4
+	note E_, 5
+	octave 3
+	note B_, 0
+	octave 4
+	note E_, 0
+	note G#, 15
+	loopchannel 0, Music_ProfOak_branch_f4ebf
 
-_Music_ProfOak_Ch3: ; 0xf4ef5
-	stereopanning $0f
-	notetype $0c, $14
-	note $03
-	octave3
-	note $51
-	note $01
-	octave4
-	note $50
-	note $00
-	octave3
-	note $a1
-	note $01
-	octave2
-	note $c1
-	octave3
-	note $c0
-	note $00
-	note $51
-	callchannel _Music_ProfOak_sub_0xf4f3d
-	callchannel _Music_ProfOak_sub_0xf4f3d
-	callchannel _Music_ProfOak_sub_0xf4f3d
-	callchannel _Music_ProfOak_sub_0xf4f4c
-	callchannel _Music_ProfOak_sub_0xf4f4c
-	loopchannel $02, $4f0d
-	callchannel _Music_ProfOak_sub_0xf4f5a
-	callchannel _Music_ProfOak_sub_0xf4f5a
-	callchannel _Music_ProfOak_sub_0xf4f69
-	callchannel _Music_ProfOak_sub_0xf4f69
-	forceoctave $02
-	callchannel _Music_ProfOak_sub_0xf4f5a
-	callchannel _Music_ProfOak_sub_0xf4f5a
-	forceoctave $00
-	callchannel _Music_ProfOak_sub_0xf4f69
-	callchannel _Music_ProfOak_sub_0xf4f69
-	loopchannel $00, $4f1d ; end
-; 0xf4f3d
+Music_ProfOak_Ch3: ; f4ef5
+	stereopanning $f
+	notetype $c, $14
+	note __, 3
+	octave 3
+	note E_, 1
+	note __, 1
+	octave 4
+	note E_, 0
+	note __, 0
+	octave 3
+	note A_, 1
+	note __, 1
+	octave 2
+	note B_, 1
+	octave 3
+	note B_, 0
+	note __, 0
+	note E_, 1
+	callchannel Music_ProfOak_branch_f4f3d
 
-_Music_ProfOak_sub_0xf4f3d: ; 0xf4f3d
-; subroutine
-	note $51
-	note $01
-	octave4
-	note $50
-	note $00
-	octave3
-	note $91
-	note $01
-	octave2
-	note $c1
-	octave3
-	note $c0
-	note $00
-	note $51
-	endchannel ; end
-; 0xf4f4c
+Music_ProfOak_branch_f4f0d: ; f4f0d
+	callchannel Music_ProfOak_branch_f4f3d
+	callchannel Music_ProfOak_branch_f4f3d
+	callchannel Music_ProfOak_branch_f4f4c
+	callchannel Music_ProfOak_branch_f4f4c
+	loopchannel 2, Music_ProfOak_branch_f4f0d
 
-_Music_ProfOak_sub_0xf4f4c: ; 0xf4f4c
-; subroutine
-	octave2
-	note $c1
-	note $01
-	octave4
-	note $40
-	note $00
-	octave3
-	note $41
-	note $01
-	note $71
-	note $c0
-	note $00
-	note $41
-	endchannel ; end
-; 0xf4f5a
+Music_ProfOak_branch_f4f1d: ; f4f1d
+	callchannel Music_ProfOak_branch_f4f5a
+	callchannel Music_ProfOak_branch_f4f5a
+	callchannel Music_ProfOak_branch_f4f69
+	callchannel Music_ProfOak_branch_f4f69
+	forceoctave $2
+	callchannel Music_ProfOak_branch_f4f5a
+	callchannel Music_ProfOak_branch_f4f5a
+	forceoctave $0
+	callchannel Music_ProfOak_branch_f4f69
+	callchannel Music_ProfOak_branch_f4f69
+	loopchannel 0, Music_ProfOak_branch_f4f1d
+; f4f3d
 
-_Music_ProfOak_sub_0xf4f5a: ; 0xf4f5a
-; subroutine
-	octave2
-	note $a1
-	note $01
-	octave3
-	note $a0
-	note $00
-	octave2
-	note $a1
-	note $01
-	octave3
-	note $51
-	note $a0
-	note $00
-	note $21
-	endchannel ; end
-; 0xf4f69
+Music_ProfOak_branch_f4f3d: ; f4f3d
+	note E_, 1
+	note __, 1
+	octave 4
+	note E_, 0
+	note __, 0
+	octave 3
+	note G#, 1
+	note __, 1
+	octave 2
+	note B_, 1
+	octave 3
+	note B_, 0
+	note __, 0
+	note E_, 1
+	endchannel
+; f4f4c
 
-_Music_ProfOak_sub_0xf4f69: ; 0xf4f69
-; subroutine
-	octave2
-	note $91
-	note $01
-	octave3
-	note $90
-	note $00
-	octave2
-	note $91
-	note $01
-	octave3
-	note $51
-	note $90
-	note $00
-	octave2
-	note $c1
-	endchannel ; end
-; 0xf4f79
+Music_ProfOak_branch_f4f4c: ; f4f4c
+	octave 2
+	note B_, 1
+	note __, 1
+	octave 4
+	note D#, 0
+	note __, 0
+	octave 3
+	note D#, 1
+	note __, 1
+	note F#, 1
+	note B_, 0
+	note __, 0
+	note D#, 1
+	endchannel
+; f4f5a
+
+Music_ProfOak_branch_f4f5a: ; f4f5a
+	octave 2
+	note A_, 1
+	note __, 1
+	octave 3
+	note A_, 0
+	note __, 0
+	octave 2
+	note A_, 1
+	note __, 1
+	octave 3
+	note E_, 1
+	note A_, 0
+	note __, 0
+	note C#, 1
+	endchannel
+; f4f69
+
+Music_ProfOak_branch_f4f69: ; f4f69
+	octave 2
+	note G#, 1
+	note __, 1
+	octave 3
+	note G#, 0
+	note __, 0
+	octave 2
+	note G#, 1
+	note __, 1
+	octave 3
+	note E_, 1
+	note G#, 0
+	note __, 0
+	octave 2
+	note B_, 1
+	endchannel
+; f4f79

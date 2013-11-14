@@ -1,311 +1,319 @@
-_Music_Lighthouse: ; 0xee569
-	db $c0
-	dw _Music_Lighthouse_Ch1
-	db $01
-	dw _Music_Lighthouse_Ch2
-	db $02
-	dw _Music_Lighthouse_Ch3
-	db $03
-	dw _Music_Lighthouse_Ch4
-; 0xee575
+Music_Lighthouse: ; ee569
+	dbw $c0, Music_Lighthouse_Ch1
+	dbw $01, Music_Lighthouse_Ch2
+	dbw $02, Music_Lighthouse_Ch3
+	dbw $03, Music_Lighthouse_Ch4
+; ee575
 
-_Music_Lighthouse_Ch1: ; 0xee575
-	tempo $9000
+
+Music_Lighthouse_Ch1: ; ee575
+	tempo 144
 	volume $77
-	dutycycle $03
-	tone $0400
-	vibrato $08, $45
-	stereopanning $0f
-	notetype $0c, $b3
-	octave3
-	note $27
-	octave2
-	note $71
-	note $91
-	note $a1
-	note $c1
-	octave3
-	note $23
-	octave2
-	note $c3
-	note $a3
-	note $c3
-	note $90
-	note $06
-	octave3
-	note $13
-	octave2
-	note $90
-	note $00
-	note $90
-	note $00
-	note $90
-	note $00
-	note $11
-	note $40
-	note $00
-	note $70
-	note $00
-	note $90
-	note $00
-	note $a0
-	note $00
-	note $a0
-	note $00
-	note $a0
-	note $00
-	octave3
-	note $27
-	octave2
-	note $21
-	note $71
-	note $91
-	octave3
-	note $11
-	note $31
-	note $21
-	octave2
-	note $a1
-	note $91
-	note $a1
-	note $91
-	note $71
-	note $a1
-	note $90
-	note $06
-	octave3
-	note $1b
-	octave2
-	note $90
-	note $00
-	note $90
-	note $00
-	note $90
-	note $02
-	octave3
-	note $10
-	note $02
-	octave2
-	note $a3
-	octave3
-	note $a3
-	note $93
-	note $73
-	note $53
-	note $43
-	note $23
-	note $53
-	note $71
-	note $51
-	note $4b
-	octave2
-	note $c1
-	note $a1
-	note $c1
-	note $a1
-	note $97
-	note $a3
-	octave3
-	note $a3
-	note $91
-	note $71
-	note $51
-	note $71
-	note $51
-	note $41
-	note $21
-	octave2
-	note $c1
-	note $a1
-	note $c1
-	octave3
-	note $21
-	note $41
-	note $51
-	note $71
-	note $9b
-	octave2
-	note $c1
-	note $a1
-	note $c1
-	note $a1
-	note $97
-	loopchannel $00, $6584 ; end
-; 0xee5fc
+	dutycycle $3
+	tone $0004
+	vibrato $8, $45
+	stereopanning $f
 
-_Music_Lighthouse_Ch2: ; 0xee5fc
-	dutycycle $03
-	tone $0200
+Music_Lighthouse_branch_ee584: ; ee584
+	notetype $c, $b3
+	octave 3
+	note C#, 7
+	octave 2
+	note F#, 1
+	note G#, 1
+	note A_, 1
+	note B_, 1
+	octave 3
+	note C#, 3
+	octave 2
+	note B_, 3
+	note A_, 3
+	note B_, 3
+	note G#, 0
+	note __, 6
+	octave 3
+	note C_, 3
+	octave 2
+	note G#, 0
+	note __, 0
+	note G#, 0
+	note __, 0
+	note G#, 0
+	note __, 0
+	note C_, 1
+	note D#, 0
+	note __, 0
+	note F#, 0
+	note __, 0
+	note G#, 0
+	note __, 0
+	note A_, 0
+	note __, 0
+	note A_, 0
+	note __, 0
+	note A_, 0
+	note __, 0
+	octave 3
+	note C#, 7
+	octave 2
+	note C#, 1
+	note F#, 1
+	note G#, 1
+	octave 3
+	note C_, 1
+	note D_, 1
+	note C#, 1
+	octave 2
+	note A_, 1
+	note G#, 1
+	note A_, 1
+	note G#, 1
+	note F#, 1
+	note A_, 1
+	note G#, 0
+	note __, 6
+	octave 3
+	note C_, 11
+	octave 2
+	note G#, 0
+	note __, 0
+	note G#, 0
+	note __, 0
+	note G#, 0
+	note __, 2
+	octave 3
+	note C_, 0
+	note __, 2
+	octave 2
+	note A_, 3
+	octave 3
+	note A_, 3
+	note G#, 3
+	note F#, 3
+	note E_, 3
+	note D#, 3
+	note C#, 3
+	note E_, 3
+	note F#, 1
+	note E_, 1
+	note D#, 11
+	octave 2
+	note B_, 1
+	note A_, 1
+	note B_, 1
+	note A_, 1
+	note G#, 7
+	note A_, 3
+	octave 3
+	note A_, 3
+	note G#, 1
+	note F#, 1
+	note E_, 1
+	note F#, 1
+	note E_, 1
+	note D#, 1
+	note C#, 1
+	octave 2
+	note B_, 1
+	note A_, 1
+	note B_, 1
+	octave 3
+	note C#, 1
+	note D#, 1
+	note E_, 1
+	note F#, 1
+	note G#, 11
+	octave 2
+	note B_, 1
+	note A_, 1
+	note B_, 1
+	note A_, 1
+	note G#, 7
+	loopchannel 0, Music_Lighthouse_branch_ee584
+
+Music_Lighthouse_Ch2: ; ee5fc
+	dutycycle $3
+	tone $0002
 	vibrato $10, $45
-	notetype $0c, $c5
-	octave3
-	note $9b
-	note $71
-	note $91
-	note $a7
-	octave4
-	note $27
-	note $10
-	note $06
-	octave3
-	note $9f
+
+Music_Lighthouse_branch_ee604: ; ee604
+	notetype $c, $c5
+	octave 3
+	note G#, 11
+	note F#, 1
+	note G#, 1
+	note A_, 7
+	octave 4
+	note C#, 7
+	note C_, 0
+	note __, 6
+	octave 3
+	note G#, 15
 	intensity $c5
-	note $20
-	note $00
-	note $20
-	note $00
-	note $20
-	note $00
-	note $20
-	note $00
-	note $9b
-	note $71
-	note $91
-	note $a7
-	octave4
-	note $27
-	note $10
-	note $06
-	note $4b
-	octave3
-	note $40
-	note $00
-	note $40
-	note $00
-	note $40
-	note $02
-	note $40
-	note $02
-	octave4
-	note $5b
-	note $41
-	note $21
-	octave3
-	note $9b
-	note $b3
-	note $c1
-	octave4
-	note $21
-	note $4b
-	octave3
-	note $41
-	note $21
-	note $41
-	note $21
-	note $17
-	octave4
-	note $5b
-	note $41
-	note $21
-	octave3
-	note $9b
-	octave4
-	note $13
-	octave3
-	note $c1
-	octave4
-	note $11
-	note $4b
-	octave3
-	note $41
-	note $21
-	note $41
-	note $21
-	note $17
-	loopchannel $00, $6604 ; end
-; 0xee656
+	note C#, 0
+	note __, 0
+	note C#, 0
+	note __, 0
+	note C#, 0
+	note __, 0
+	note C#, 0
+	note __, 0
+	note G#, 11
+	note F#, 1
+	note G#, 1
+	note A_, 7
+	octave 4
+	note C#, 7
+	note C_, 0
+	note __, 6
+	note D#, 11
+	octave 3
+	note D#, 0
+	note __, 0
+	note D#, 0
+	note __, 0
+	note D#, 0
+	note __, 2
+	note D#, 0
+	note __, 2
+	octave 4
+	note E_, 11
+	note D#, 1
+	note C#, 1
+	octave 3
+	note G#, 11
+	note A#, 3
+	note B_, 1
+	octave 4
+	note C#, 1
+	note D#, 11
+	octave 3
+	note D#, 1
+	note C#, 1
+	note D#, 1
+	note C#, 1
+	note C_, 7
+	octave 4
+	note E_, 11
+	note D#, 1
+	note C#, 1
+	octave 3
+	note G#, 11
+	octave 4
+	note C_, 3
+	octave 3
+	note B_, 1
+	octave 4
+	note C_, 1
+	note D#, 11
+	octave 3
+	note D#, 1
+	note C#, 1
+	note D#, 1
+	note C#, 1
+	note C_, 7
+	loopchannel 0, Music_Lighthouse_branch_ee604
 
-_Music_Lighthouse_Ch3: ; 0xee656
-	notetype $0c, $19
+Music_Lighthouse_Ch3: ; ee656
+	notetype $c, $19
 	stereopanning $f0
-	octave2
-	note $91
-	note $01
-	note $41
-	note $01
-	note $71
-	note $01
-	note $81
-	note $01
-	note $91
-	note $01
-	note $41
-	note $01
-	note $71
-	note $01
-	note $a1
-	note $01
-	loopchannel $02, $6664
-	note $91
-	note $01
-	note $41
-	note $01
-	note $71
-	note $01
-	note $a1
-	octave3
-	note $11
-	note $21
-	note $01
-	octave2
-	note $91
-	note $01
-	note $a1
-	note $01
-	octave3
-	note $11
-	note $01
-	note $21
-	note $01
-	octave2
-	note $91
-	note $01
-	note $a1
-	note $01
-	octave3
-	note $31
-	note $01
-	loopchannel $02, $6683
-	note $21
-	note $01
-	octave2
-	note $91
-	note $01
-	note $a1
-	note $01
-	octave3
-	note $41
-	note $71
-	note $51
-	note $01
-	octave2
-	note $c1
-	note $01
-	octave3
-	note $11
-	note $01
-	note $61
-	note $01
-	loopchannel $08, $669b
-	loopchannel $00, $665b ; end
-; 0xee6ad
 
-_Music_Lighthouse_Ch4: ; 0xee6ad
-	togglenoise $00
-	notetype $0c
-	stereopanning $0f
-	note $93
-	note $61
-	note $93
-	note $61
-	note $a1
-	note $b1
+Music_Lighthouse_branch_ee65b: ; ee65b
+	octave 2
+	note G#, 1
+	note __, 1
+	note D#, 1
+	note __, 1
+	note F#, 1
+	note __, 1
+	note G_, 1
+	note __, 1
+
+Music_Lighthouse_branch_ee664: ; ee664
+	note G#, 1
+	note __, 1
+	note D#, 1
+	note __, 1
+	note F#, 1
+	note __, 1
+	note A_, 1
+	note __, 1
+	loopchannel 2, Music_Lighthouse_branch_ee664
+	note G#, 1
+	note __, 1
+	note D#, 1
+	note __, 1
+	note F#, 1
+	note __, 1
+	note A_, 1
+	octave 3
+	note C_, 1
+	note C#, 1
+	note __, 1
+	octave 2
+	note G#, 1
+	note __, 1
+	note A_, 1
+	note __, 1
+	octave 3
+	note C_, 1
+	note __, 1
+
+Music_Lighthouse_branch_ee683: ; ee683
+	note C#, 1
+	note __, 1
+	octave 2
+	note G#, 1
+	note __, 1
+	note A_, 1
+	note __, 1
+	octave 3
+	note D_, 1
+	note __, 1
+	loopchannel 2, Music_Lighthouse_branch_ee683
+	note C#, 1
+	note __, 1
+	octave 2
+	note G#, 1
+	note __, 1
+	note A_, 1
+	note __, 1
+	octave 3
+	note D#, 1
+	note F#, 1
+
+Music_Lighthouse_branch_ee69b: ; ee69b
+	note E_, 1
+	note __, 1
+	octave 2
+	note B_, 1
+	note __, 1
+	octave 3
+	note C_, 1
+	note __, 1
+	note F_, 1
+	note __, 1
+	loopchannel 8, Music_Lighthouse_branch_ee69b
+	loopchannel 0, Music_Lighthouse_branch_ee65b
+
+Music_Lighthouse_Ch4: ; ee6ad
+	togglenoise $0
+	notetype $c
+
+Music_Lighthouse_branch_ee6b1: ; ee6b1
+	stereopanning $f
+	note G#, 3
+	note F_, 1
+	note G#, 3
+	note F_, 1
+	note A_, 1
+	note A#, 1
 	stereopanning $ff
-	note $91
-	note $63
-	note $91
-	note $63
-	note $91
-	note $a1
-	loopchannel $00, $66b1 ; end
-; 0xee6c5
+	note G#, 1
+	note F_, 3
+	note G#, 1
+	note F_, 3
+	note G#, 1
+	note A_, 1
+	loopchannel 0, Music_Lighthouse_branch_ee6b1
+; ee6c5

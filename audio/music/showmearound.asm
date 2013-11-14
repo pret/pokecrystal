@@ -1,370 +1,365 @@
-_Music_ShowMeAround: ; 0xedbd8
-	db $c0
-	dw _Music_ShowMeAround_Ch1
-	db $01
-	dw _Music_ShowMeAround_Ch2
-	db $02
-	dw _Music_ShowMeAround_Ch3
-	db $03
-	dw _Music_ShowMeAround_Ch4
-; 0xedbe4
+Music_ShowMeAround: ; edbd8
+	dbw $c0, Music_ShowMeAround_Ch1
+	dbw $01, Music_ShowMeAround_Ch2
+	dbw $02, Music_ShowMeAround_Ch3
+	dbw $03, Music_ShowMeAround_Ch4
+; edbe4
 
-_Music_ShowMeAround_Ch1: ; 0xedbe4
-	tempo $9000
+
+Music_ShowMeAround_Ch1: ; edbe4
+	tempo 144
 	volume $77
-	stereopanning $0f
-	dutycycle $02
-	notetype $0c, $b1
-	octave4
-	note $c1
-	note $a1
-	note $91
-	note $a1
-	note $91
-	note $71
-	note $51
-	note $31
-	octave3
-	note $c3
-	note $90
-	note $c0
-	octave4
-	note $30
-	note $50
-	note $97
-	note $0f
-	note $0f
-	note $0f
-	note $0f
-	callchannel _Music_ShowMeAround_sub_0xedc98
-	callchannel _Music_ShowMeAround_sub_0xedc15
-	callchannel _Music_ShowMeAround_sub_0xedc98
-	callchannel _Music_ShowMeAround_sub_0xedc15
-	loopchannel $00, $5c01 ; end
-; 0xedc15
+	stereopanning $f
+	dutycycle $2
+	notetype $c, $b1
+	octave 4
+	note B_, 1
+	note A_, 1
+	note G#, 1
+	note A_, 1
+	note G#, 1
+	note F#, 1
+	note E_, 1
+	note D_, 1
+	octave 3
+	note B_, 3
+	note G#, 0
+	note B_, 0
+	octave 4
+	note D_, 0
+	note E_, 0
+	note G#, 7
 
-_Music_ShowMeAround_sub_0xedc15: ; 0xedc15
-; subroutine
-	note $03
-	octave3
-	note $20
-	note $04
-	note $33
-	note $10
-	note $00
-	note $03
-	octave2
-	note $50
-	note $00
-	note $90
-	note $00
-	octave4
-	note $50
-	note $00
-	note $50
-	note $00
-	note $50
-	note $02
-	endchannel ; end
-; 0xedc2a
+Music_ShowMeAround_branch_edc01: ; edc01
+	note __, 15
+	note __, 15
+	note __, 15
+	note __, 15
+	callchannel Music_ShowMeAround_branch_edc98
+	callchannel Music_ShowMeAround_branch_edc15
+	callchannel Music_ShowMeAround_branch_edc98
+	callchannel Music_ShowMeAround_branch_edc15
+	loopchannel 0, Music_ShowMeAround_branch_edc01
+; edc15
 
-_Music_ShowMeAround_Ch2: ; 0xedc2a
+Music_ShowMeAround_branch_edc15: ; edc15
+	note __, 3
+	octave 3
+	note C#, 0
+	note __, 4
+	note D_, 3
+	note C_, 0
+	note __, 0
+	note __, 3
+	octave 2
+	note E_, 0
+	note __, 0
+	note G#, 0
+	note __, 0
+	octave 4
+	note E_, 0
+	note __, 0
+	note E_, 0
+	note __, 0
+	note E_, 0
+	note __, 2
+	endchannel
+; edc2a
+
+Music_ShowMeAround_Ch2: ; edc2a
 	stereopanning $ff
-	dutycycle $02
-	notetype $0c, $b1
-	octave5
-	note $51
-	note $31
-	note $21
-	note $31
-	note $21
-	octave4
-	note $c1
-	note $a1
-	note $91
-	note $53
-	note $50
-	note $90
-	note $c0
-	octave5
-	note $30
-	note $57
-	dutycycle $01
-	callchannel _Music_ShowMeAround_sub_0xedc98
-	callchannel _Music_ShowMeAround_sub_0xedc98
-	callchannel _Music_ShowMeAround_sub_0xedc86
-	note $a3
-	octave3
-	note $a1
-	octave4
-	note $21
-	note $53
-	note $31
-	note $21
-	octave3
-	note $c3
-	callchannel _Music_ShowMeAround_sub_0xedc86
-	note $a1
-	note $a1
-	note $91
-	note $51
-	note $71
-	note $91
-	note $a1
-	note $a1
-	note $a3
-	callchannel _Music_ShowMeAround_sub_0xedc8e
-	note $a3
-	octave5
-	note $21
-	octave4
-	note $a1
-	note $a3
-	note $90
-	note $80
-	note $70
-	note $60
-	note $50
-	note $00
-	note $40
-	note $50
-	callchannel _Music_ShowMeAround_sub_0xedc8e
-	note $a1
-	octave5
-	note $51
-	note $31
-	octave4
-	note $c1
-	note $a1
-	note $91
-	note $a1
-	note $a1
-	note $a3
-	loopchannel $00, $5c44 ; end
-; 0xedc86
+	dutycycle $2
+	notetype $c, $b1
+	octave 5
+	note E_, 1
+	note D_, 1
+	note C#, 1
+	note D_, 1
+	note C#, 1
+	octave 4
+	note B_, 1
+	note A_, 1
+	note G#, 1
+	note E_, 3
+	note E_, 0
+	note G#, 0
+	note B_, 0
+	octave 5
+	note D_, 0
+	note E_, 7
+	dutycycle $1
 
-_Music_ShowMeAround_sub_0xedc86: ; 0xedc86
-; subroutine
-	octave3
-	note $a1
-	octave4
-	note $21
-	note $53
-	note $31
-	note $71
-	endchannel ; end
-; 0xedc8e
+Music_ShowMeAround_branch_edc44: ; edc44
+	callchannel Music_ShowMeAround_branch_edc98
+	callchannel Music_ShowMeAround_branch_edc98
+	callchannel Music_ShowMeAround_branch_edc86
+	note A_, 3
+	octave 3
+	note A_, 1
+	octave 4
+	note C#, 1
+	note E_, 3
+	note D_, 1
+	note C#, 1
+	octave 3
+	note B_, 3
+	callchannel Music_ShowMeAround_branch_edc86
+	note A_, 1
+	note A_, 1
+	note G#, 1
+	note E_, 1
+	note F#, 1
+	note G#, 1
+	note A_, 1
+	note A_, 1
+	note A_, 3
+	callchannel Music_ShowMeAround_branch_edc8e
+	note A_, 3
+	octave 5
+	note C#, 1
+	octave 4
+	note A_, 1
+	note A_, 3
+	note G#, 0
+	note G_, 0
+	note F#, 0
+	note F_, 0
+	note E_, 0
+	note __, 0
+	note D#, 0
+	note E_, 0
+	callchannel Music_ShowMeAround_branch_edc8e
+	note A_, 1
+	octave 5
+	note E_, 1
+	note D_, 1
+	octave 4
+	note B_, 1
+	note A_, 1
+	note G#, 1
+	note A_, 1
+	note A_, 1
+	note A_, 3
+	loopchannel 0, Music_ShowMeAround_branch_edc44
+; edc86
 
-_Music_ShowMeAround_sub_0xedc8e: ; 0xedc8e
-; subroutine
-	octave5
-	note $21
-	octave4
-	note $a1
-	note $a3
-	octave5
-	note $71
-	octave4
-	note $a1
-	endchannel ; end
-; 0xedc98
+Music_ShowMeAround_branch_edc86: ; edc86
+	octave 3
+	note A_, 1
+	octave 4
+	note C#, 1
+	note E_, 3
+	note D_, 1
+	note F#, 1
+	endchannel
+; edc8e
 
-_Music_ShowMeAround_sub_0xedc98: ; 0xedc98
-; subroutine
-	note $03
-	octave3
-	note $20
-	note $04
-	note $33
-	note $10
-	note $00
-	note $01
-	note $20
-	note $04
-	octave2
-	note $50
-	note $02
-	note $b1
-	note $c0
-	note $00
-	endchannel ; end
-; 0xedca9
+Music_ShowMeAround_branch_edc8e: ; edc8e
+	octave 5
+	note C#, 1
+	octave 4
+	note A_, 1
+	note A_, 3
+	octave 5
+	note F#, 1
+	octave 4
+	note A_, 1
+	endchannel
+; edc98
 
-_Music_ShowMeAround_Ch3: ; 0xedca9
+Music_ShowMeAround_branch_edc98: ; edc98
+	note __, 3
+	octave 3
+	note C#, 0
+	note __, 4
+	note D_, 3
+	note C_, 0
+	note __, 0
+	note __, 1
+	note C#, 0
+	note __, 4
+	octave 2
+	note E_, 0
+	note __, 2
+	note A#, 1
+	note B_, 0
+	note __, 0
+	endchannel
+
+Music_ShowMeAround_Ch3: ; edca9
 	stereopanning $f0
 	vibrato $10, $22
-	notetype $06, $25
-	octave2
-	note $c0
-	note $02
-	octave3
-	note $30
-	note $02
-	note $50
-	note $02
-	note $90
-	note $02
-	note $c0
-	note $02
-	octave4
-	note $30
-	note $02
-	note $50
-	note $02
-	note $90
-	note $02
-	note $31
-	note $05
-	note $31
-	octave3
-	note $c1
-	note $91
-	note $c1
-	note $51
-	note $05
+	notetype $6, $25
+	octave 2
+	note B_, 0
+	note __, 2
+	octave 3
+	note D_, 0
+	note __, 2
+	note E_, 0
+	note __, 2
+	note G#, 0
+	note __, 2
+	note B_, 0
+	note __, 2
+	octave 4
+	note D_, 0
+	note __, 2
+	note E_, 0
+	note __, 2
+	note G#, 0
+	note __, 2
+	note D_, 1
+	note __, 5
+	note D_, 1
+	octave 3
+	note B_, 1
+	note G#, 1
+	note B_, 1
+	note E_, 1
+	note __, 5
 	intensity $14
-	octave2
-	note $c0
-	note $b0
-	note $a0
-	note $90
-	note $80
-	note $60
-	note $51
+	octave 2
+	note B_, 0
+	note A#, 0
+	note A_, 0
+	note G#, 0
+	note G_, 0
+	note F_, 0
+	note E_, 1
 	intensity $14
-	callchannel _Music_ShowMeAround_sub_0xedcef
-	callchannel _Music_ShowMeAround_sub_0xedcef
-	callchannel _Music_ShowMeAround_sub_0xedcef
-	callchannel _Music_ShowMeAround_sub_0xedd0f
-	callchannel _Music_ShowMeAround_sub_0xedcef
-	callchannel _Music_ShowMeAround_sub_0xedd0f
-	loopchannel $00, $5cd9 ; end
-; 0xedcef
 
-_Music_ShowMeAround_sub_0xedcef: ; 0xedcef
-; subroutine
-	octave2
-	note $a1
-	note $05
-	octave4
-	note $51
-	note $01
-	octave2
-	note $a1
-	note $01
-	octave3
-	note $31
-	note $01
-	octave4
-	note $77
-	note $41
-	note $01
-	octave2
-	note $a1
-	note $01
-	octave4
-	note $51
-	note $05
-	octave2
-	note $a1
-	note $01
-	octave4
-	note $31
-	note $05
-	note $23
-	note $31
-	note $01
-	endchannel ; end
-; 0xedd0f
+Music_ShowMeAround_branch_edcd9: ; edcd9
+	callchannel Music_ShowMeAround_branch_edcef
+	callchannel Music_ShowMeAround_branch_edcef
+	callchannel Music_ShowMeAround_branch_edcef
+	callchannel Music_ShowMeAround_branch_edd0f
+	callchannel Music_ShowMeAround_branch_edcef
+	callchannel Music_ShowMeAround_branch_edd0f
+	loopchannel 0, Music_ShowMeAround_branch_edcd9
+; edcef
 
-_Music_ShowMeAround_sub_0xedd0f: ; 0xedd0f
-; subroutine
-	octave2
-	note $a1
-	note $05
-	octave4
-	note $51
-	note $01
-	octave2
-	note $a1
-	note $01
-	octave3
-	note $31
-	note $01
-	octave4
-	note $77
-	note $41
-	note $01
-	octave2
-	note $91
-	note $05
-	octave4
-	note $31
-	note $01
-	octave3
-	note $c1
-	note $01
-	note $21
-	note $01
-	note $51
-	note $01
-	octave2
-	note $a1
-	note $05
-	endchannel ; end
-; 0xedd30
+Music_ShowMeAround_branch_edcef: ; edcef
+	octave 2
+	note A_, 1
+	note __, 5
+	octave 4
+	note E_, 1
+	note __, 1
+	octave 2
+	note A_, 1
+	note __, 1
+	octave 3
+	note D_, 1
+	note __, 1
+	octave 4
+	note F#, 7
+	note D#, 1
+	note __, 1
+	octave 2
+	note A_, 1
+	note __, 1
+	octave 4
+	note E_, 1
+	note __, 5
+	octave 2
+	note A_, 1
+	note __, 1
+	octave 4
+	note D_, 1
+	note __, 5
+	note C#, 3
+	note D_, 1
+	note __, 1
+	endchannel
+; edd0f
 
-_Music_ShowMeAround_Ch4: ; 0xedd30
-	togglenoise $03
-	notetype $0c
-	note $0f
-	note $07
-	note $31
-	note $41
-	note $73
-	callchannel _Music_ShowMeAround_sub_0xedd4f
-	callchannel _Music_ShowMeAround_sub_0xedd4f
-	callchannel _Music_ShowMeAround_sub_0xedd4f
-	callchannel _Music_ShowMeAround_sub_0xedd5e
-	callchannel _Music_ShowMeAround_sub_0xedd4f
-	callchannel _Music_ShowMeAround_sub_0xedd5e
-	loopchannel $00, $5d39 ; end
-; 0xedd4f
+Music_ShowMeAround_branch_edd0f: ; edd0f
+	octave 2
+	note A_, 1
+	note __, 5
+	octave 4
+	note E_, 1
+	note __, 1
+	octave 2
+	note A_, 1
+	note __, 1
+	octave 3
+	note D_, 1
+	note __, 1
+	octave 4
+	note F#, 7
+	note D#, 1
+	note __, 1
+	octave 2
+	note G#, 1
+	note __, 5
+	octave 4
+	note D_, 1
+	note __, 1
+	octave 3
+	note B_, 1
+	note __, 1
+	note C#, 1
+	note __, 1
+	note E_, 1
+	note __, 1
+	octave 2
+	note A_, 1
+	note __, 5
+	endchannel
 
-_Music_ShowMeAround_sub_0xedd4f: ; 0xedd4f
-; subroutine
-	note $41
-	note $71
-	note $31
-	note $81
-	note $81
-	note $73
-	note $31
-	note $41
-	note $73
-	note $31
-	note $81
-	note $81
-	note $31
-	note $41
-	endchannel ; end
-; 0xedd5e
+Music_ShowMeAround_Ch4: ; edd30
+	togglenoise $3
+	notetype $c
+	note __, 15
+	note __, 7
+	note D_, 1
+	note D#, 1
+	note F#, 3
 
-_Music_ShowMeAround_sub_0xedd5e: ; 0xedd5e
-; subroutine
-	note $41
-	note $71
-	note $31
-	note $81
-	note $81
-	note $73
-	note $31
-	note $41
-	note $73
-	note $31
-	note $31
-	note $31
-	note $31
-	note $71
-	endchannel ; end
-; 0xedd6d
+Music_ShowMeAround_branch_edd39: ; edd39
+	callchannel Music_ShowMeAround_branch_edd4f
+	callchannel Music_ShowMeAround_branch_edd4f
+	callchannel Music_ShowMeAround_branch_edd4f
+	callchannel Music_ShowMeAround_branch_edd5e
+	callchannel Music_ShowMeAround_branch_edd4f
+	callchannel Music_ShowMeAround_branch_edd5e
+	loopchannel 0, Music_ShowMeAround_branch_edd39
+; edd4f
+
+Music_ShowMeAround_branch_edd4f: ; edd4f
+	note D#, 1
+	note F#, 1
+	note D_, 1
+	note G_, 1
+	note G_, 1
+	note F#, 3
+	note D_, 1
+	note D#, 1
+	note F#, 3
+	note D_, 1
+	note G_, 1
+	note G_, 1
+	note D_, 1
+	note D#, 1
+	endchannel
+; edd5e
+
+Music_ShowMeAround_branch_edd5e: ; edd5e
+	note D#, 1
+	note F#, 1
+	note D_, 1
+	note G_, 1
+	note G_, 1
+	note F#, 3
+	note D_, 1
+	note D#, 1
+	note F#, 3
+	note D_, 1
+	note D_, 1
+	note D_, 1
+	note D_, 1
+	note F#, 1
+	endchannel
+; edd6d

@@ -1,673 +1,671 @@
-_Music_NationalPark: ; 0xf54e8
-	db $c0
-	dw _Music_NationalPark_Ch1
-	db $01
-	dw _Music_NationalPark_Ch2
-	db $02
-	dw _Music_NationalPark_Ch3
-	db $03
-	dw _Music_NationalPark_Ch4
-; 0xf54f4
+Music_NationalPark: ; f54e8
+	dbw $c0, Music_NationalPark_Ch1
+	dbw $01, Music_NationalPark_Ch2
+	dbw $02, Music_NationalPark_Ch3
+	dbw $03, Music_NationalPark_Ch4
+; f54f4
 
-_Music_NationalPark_Ch1: ; 0xf54f4
-	tempo $c000
+
+Music_NationalPark_Ch1: ; f54f4
+	tempo 192
 	volume $77
-	stereopanning $0f
+	stereopanning $f
 	vibrato $18, $24
-	dutycycle $01
-	notetype $0c, $77
-	note $01
-	callchannel _Music_NationalPark_sub_0xf554a
-	callchannel _Music_NationalPark_sub_0xf554a
-	notetype $06, $67
-	callchannel _Music_NationalPark_sub_0xf563a
-	notetype $0c, $77
-	note $0f
-	octave2
-	note $b0
-	octave3
-	note $30
-	note $60
-	note $90
-	note $30
-	note $60
-	note $b0
-	notetype $06, $67
-	octave4
-	note $30
-	note $20
-	note $30
-	note $00
-	note $30
-	note $00
-	note $20
-	note $00
-	note $30
-	note $02
-	note $30
-	note $02
-	note $30
-	note $00
-	callchannel _Music_NationalPark_sub_0xf563a
+	dutycycle $1
+	notetype $c, $77
+	note __, 1
+
+Music_NationalPark_branch_f5504: ; f5504
+	callchannel Music_NationalPark_branch_f554a
+	callchannel Music_NationalPark_branch_f554a
+	notetype $6, $67
+	callchannel Music_NationalPark_branch_f563a
+	notetype $c, $77
+	note __, 15
+	octave 2
+	note A#, 0
+	octave 3
+	note D_, 0
+	note F_, 0
+	note G#, 0
+	note D_, 0
+	note F_, 0
+	note A#, 0
+	notetype $6, $67
+	octave 4
+	note D_, 0
+	note C#, 0
+	note D_, 0
+	note __, 0
+	note D_, 0
+	note __, 0
+	note C#, 0
+	note __, 0
+	note D_, 0
+	note __, 2
+	note D_, 0
+	note __, 2
+	note D_, 0
+	note __, 0
+	callchannel Music_NationalPark_branch_f563a
 	intensity $77
-	octave3
-	note $50
-	note $64
-	note $43
-	note $01
-	note $1b
-	note $67
-	note $20
+	octave 3
+	note E_, 0
+	note F_, 4
+	note D#, 3
+	note __, 1
+	note C_, 11
+	note F_, 7
+	note C#, 0
 	intensity $98
-	note $3f
+	note D_, 15
 	intensity $77
-	note $36
-	notetype $0c, $77
-	note $03
-	loopchannel $00, $5504 ; end
-; 0xf554a
+	note D_, 6
+	notetype $c, $77
+	note __, 3
+	loopchannel 0, Music_NationalPark_branch_f5504
+; f554a
 
-_Music_NationalPark_sub_0xf554a: ; 0xf554a
-; subroutine
-	octave2
-	note $95
-	octave3
-	note $61
+Music_NationalPark_branch_f554a: ; f554a
+	octave 2
+	note G#, 5
+	octave 3
+	note F_, 1
 	intensity $47
-	note $60
-	note $90
+	note F_, 0
+	note G#, 0
 	intensity $57
-	note $60
-	note $90
+	note F_, 0
+	note G#, 0
 	intensity $77
-	note $60
-	note $90
+	note F_, 0
+	note G#, 0
 	intensity $97
-	note $60
-	note $90
+	note F_, 0
+	note G#, 0
 	intensity $77
-	octave2
-	note $a5
-	octave3
-	note $71
+	octave 2
+	note A_, 5
+	octave 3
+	note F#, 1
 	intensity $47
-	note $70
-	note $a0
+	note F#, 0
+	note A_, 0
 	intensity $57
-	note $70
-	note $a0
+	note F#, 0
+	note A_, 0
 	intensity $77
-	note $70
-	note $a0
+	note F#, 0
+	note A_, 0
 	intensity $97
-	note $70
-	note $a0
+	note F#, 0
+	note A_, 0
 	intensity $77
-	octave2
-	note $95
-	octave3
-	note $61
+	octave 2
+	note G#, 5
+	octave 3
+	note F_, 1
 	intensity $47
-	octave4
-	note $10
-	note $20
+	octave 4
+	note C_, 0
+	note C#, 0
 	intensity $57
-	note $10
-	note $20
+	note C_, 0
+	note C#, 0
 	intensity $77
-	note $10
-	note $20
+	note C_, 0
+	note C#, 0
 	intensity $97
-	note $10
-	note $20
+	note C_, 0
+	note C#, 0
 	intensity $77
-	octave2
-	note $a5
-	octave3
-	note $21
+	octave 2
+	note A_, 5
+	octave 3
+	note C#, 1
 	intensity $47
-	octave4
-	note $20
-	note $40
+	octave 4
+	note C#, 0
+	note D#, 0
 	intensity $57
-	note $20
-	note $40
+	note C#, 0
+	note D#, 0
 	intensity $77
-	note $20
-	note $40
+	note C#, 0
+	note D#, 0
 	intensity $97
-	note $20
-	note $40
+	note C#, 0
+	note D#, 0
 	intensity $77
-	note $21
-	octave3
-	note $b1
-	octave4
-	note $21
-	octave3
-	note $b1
-	octave4
-	note $21
-	octave3
-	note $b1
-	octave4
-	note $21
-	octave3
-	note $b1
-	octave4
-	note $21
-	octave3
-	note $a1
-	octave4
-	note $21
-	octave3
-	note $a1
+	note C#, 1
+	octave 3
+	note A#, 1
+	octave 4
+	note C#, 1
+	octave 3
+	note A#, 1
+	octave 4
+	note C#, 1
+	octave 3
+	note A#, 1
+	octave 4
+	note C#, 1
+	octave 3
+	note A#, 1
+	octave 4
+	note C#, 1
+	octave 3
+	note A_, 1
+	octave 4
+	note C#, 1
+	octave 3
+	note A_, 1
 	intensity $47
-	octave4
-	note $20
-	note $40
+	octave 4
+	note C#, 0
+	note D#, 0
 	intensity $57
-	note $20
-	note $40
+	note C#, 0
+	note D#, 0
 	intensity $77
-	note $20
-	note $40
+	note C#, 0
+	note D#, 0
 	intensity $97
-	note $20
-	note $40
+	note C#, 0
+	note D#, 0
 	intensity $77
-	note $11
-	octave3
-	note $91
-	octave4
-	note $11
-	octave3
-	note $91
-	octave4
-	note $41
-	note $11
-	note $41
-	note $11
-	note $31
-	octave3
-	note $b1
-	octave4
-	note $31
-	octave3
-	note $b1
+	note C_, 1
+	octave 3
+	note G#, 1
+	octave 4
+	note C_, 1
+	octave 3
+	note G#, 1
+	octave 4
+	note D#, 1
+	note C_, 1
+	note D#, 1
+	note C_, 1
+	note D_, 1
+	octave 3
+	note A#, 1
+	octave 4
+	note D_, 1
+	octave 3
+	note A#, 1
 	intensity $57
-	octave4
-	note $60
-	note $40
+	octave 4
+	note F_, 0
+	note D#, 0
 	intensity $67
-	note $30
-	note $40
+	note D_, 0
+	note D#, 0
 	intensity $77
-	note $60
-	note $70
+	note F_, 0
+	note F#, 0
 	intensity $97
-	note $90
-	note $b0
+	note G#, 0
+	note A#, 0
 	intensity $77
-	note $21
-	octave3
-	note $b1
-	octave4
-	note $21
-	octave3
-	note $b1
-	octave4
-	note $21
-	octave3
-	note $b1
-	octave4
-	note $21
-	octave3
-	note $b1
-	octave4
-	note $21
-	octave3
-	note $a1
-	octave4
-	note $21
-	octave3
-	note $a1
+	note C#, 1
+	octave 3
+	note A#, 1
+	octave 4
+	note C#, 1
+	octave 3
+	note A#, 1
+	octave 4
+	note C#, 1
+	octave 3
+	note A#, 1
+	octave 4
+	note C#, 1
+	octave 3
+	note A#, 1
+	octave 4
+	note C#, 1
+	octave 3
+	note A_, 1
+	octave 4
+	note C#, 1
+	octave 3
+	note A_, 1
 	intensity $47
-	octave4
-	note $20
-	note $40
+	octave 4
+	note C#, 0
+	note D#, 0
 	intensity $57
-	note $20
-	note $40
+	note C#, 0
+	note D#, 0
 	intensity $77
-	note $20
-	note $40
+	note C#, 0
+	note D#, 0
 	intensity $97
-	note $20
-	note $40
+	note C#, 0
+	note D#, 0
 	intensity $77
-	note $11
-	octave3
-	note $91
-	octave4
-	note $11
-	octave3
-	note $91
-	octave4
-	note $41
-	note $11
-	note $41
-	note $11
-	note $31
-	octave3
-	note $b1
-	octave4
-	note $31
-	octave3
-	note $b1
-	octave4
-	note $31
-	octave3
-	note $b1
-	octave4
-	note $31
-	octave3
-	note $b1
-	endchannel ; end
-; 0xf563a
+	note C_, 1
+	octave 3
+	note G#, 1
+	octave 4
+	note C_, 1
+	octave 3
+	note G#, 1
+	octave 4
+	note D#, 1
+	note C_, 1
+	note D#, 1
+	note C_, 1
+	note D_, 1
+	octave 3
+	note A#, 1
+	octave 4
+	note D_, 1
+	octave 3
+	note A#, 1
+	octave 4
+	note D_, 1
+	octave 3
+	note A#, 1
+	octave 4
+	note D_, 1
+	octave 3
+	note A#, 1
+	endchannel
+; f563a
 
-_Music_NationalPark_sub_0xf563a: ; 0xf563a
-; subroutine
-	note $0f
-	note $02
-	octave4
-	note $b0
-	note $b0
-	note $00
-	note $b0
-	note $00
-	note $b0
-	note $00
-	note $b1
-	note $03
-	note $0f
-	note $02
-	note $a0
-	note $a0
-	note $00
-	note $a0
-	note $00
-	note $a0
-	note $00
-	note $a1
-	note $03
-	endchannel ; end
-; 0xf5652
+Music_NationalPark_branch_f563a: ; f563a
+	note __, 15
+	note __, 2
+	octave 4
+	note A#, 0
+	note A#, 0
+	note __, 0
+	note A#, 0
+	note __, 0
+	note A#, 0
+	note __, 0
+	note A#, 1
+	note __, 3
+	note __, 15
+	note __, 2
+	note A_, 0
+	note A_, 0
+	note __, 0
+	note A_, 0
+	note __, 0
+	note A_, 0
+	note __, 0
+	note A_, 1
+	note __, 3
+	endchannel
 
-_Music_NationalPark_Ch2: ; 0xf5652
+Music_NationalPark_Ch2: ; f5652
 	vibrato $14, $24
-	dutycycle $01
-	notetype $0c, $a7
-	note $01
+	dutycycle $1
+	notetype $c, $a7
+	note __, 1
 	stereopanning $f0
-	notetype $0c, $a7
-	callchannel _Music_NationalPark_sub_0xf56b8
-	octave3
-	note $37
-	callchannel _Music_NationalPark_sub_0xf56b8
-	note $01
+
+Music_NationalPark_branch_f565d: ; f565d
+	notetype $c, $a7
+	callchannel Music_NationalPark_branch_f56b8
+	octave 3
+	note D_, 7
+	callchannel Music_NationalPark_branch_f56b8
+	note __, 1
 	intensity $a7
-	octave4
-	note $91
-	note $71
-	note $61
-	notetype $06, $a7
-	callchannel _Music_NationalPark_sub_0xf56f5
-	octave3
-	note $c0
-	octave4
-	note $14
-	octave3
-	note $93
-	note $01
-	octave4
-	note $b7
-	note $91
-	note $01
-	note $71
-	note $01
-	note $93
-	note $50
-	note $6d
+	octave 4
+	note G#, 1
+	note F#, 1
+	note F_, 1
+	notetype $6, $a7
+	callchannel Music_NationalPark_branch_f56f5
+	octave 3
+	note B_, 0
+	octave 4
+	note C_, 4
+	octave 3
+	note G#, 3
+	note __, 1
+	octave 4
+	note A#, 7
+	note G#, 1
+	note __, 1
+	note F#, 1
+	note __, 1
+	note G#, 3
+	note E_, 0
+	note F_, 13
 	intensity $87
-	note $80
-	note $90
-	note $00
-	note $90
-	note $00
-	note $80
-	note $00
-	note $90
-	note $02
-	note $90
-	note $02
-	note $90
-	note $00
+	note G_, 0
+	note G#, 0
+	note __, 0
+	note G#, 0
+	note __, 0
+	note G_, 0
+	note __, 0
+	note G#, 0
+	note __, 2
+	note G#, 0
+	note __, 2
+	note G#, 0
+	note __, 0
 	intensity $a7
-	callchannel _Music_NationalPark_sub_0xf56f5
-	octave3
-	note $c0
-	octave4
-	note $14
-	octave3
-	note $93
-	note $01
-	note $bb
-	octave4
-	note $17
-	octave3
-	note $a0
-	vibrato $00, $00
+	callchannel Music_NationalPark_branch_f56f5
+	octave 3
+	note B_, 0
+	octave 4
+	note C_, 4
+	octave 3
+	note G#, 3
+	note __, 1
+	note A#, 11
+	octave 4
+	note C_, 7
+	octave 3
+	note A_, 0
+	vibrato $0, $0
 	intensity $b8
-	note $bf
+	note A#, 15
 	vibrato $14, $24
 	intensity $b7
-	note $ba
-	octave2
-	note $41
-	note $31
-	loopchannel $00, $565d ; end
-; 0xf56b8
+	note A#, 10
+	octave 2
+	note D#, 1
+	note D_, 1
+	loopchannel 0, Music_NationalPark_branch_f565d
+; f56b8
 
-_Music_NationalPark_sub_0xf56b8: ; 0xf56b8
-; subroutine
-	octave2
-	note $25
-	note $91
-	octave3
-	note $27
-	octave2
-	note $25
-	note $a1
-	octave3
-	note $27
-	octave2
-	note $25
-	note $91
-	octave3
-	note $27
-	octave2
-	note $25
-	note $a1
-	octave3
-	note $77
-	octave1
-	note $75
-	octave2
-	note $21
-	note $b7
-	octave1
-	note $75
-	octave2
-	note $21
-	note $a7
-	octave1
-	note $65
-	octave2
-	note $11
-	note $97
-	octave1
-	note $b5
-	octave2
-	note $61
-	octave3
-	note $37
-	octave1
-	note $75
-	octave2
-	note $21
-	note $b7
-	octave1
-	note $75
-	octave2
-	note $21
-	note $a7
-	octave1
-	note $65
-	octave2
-	note $11
-	note $97
-	octave1
-	note $b5
-	octave2
-	note $61
-	endchannel ; end
-; 0xf56f5
+Music_NationalPark_branch_f56b8: ; f56b8
+	octave 2
+	note C#, 5
+	note G#, 1
+	octave 3
+	note C#, 7
+	octave 2
+	note C#, 5
+	note A_, 1
+	octave 3
+	note C#, 7
+	octave 2
+	note C#, 5
+	note G#, 1
+	octave 3
+	note C#, 7
+	octave 2
+	note C#, 5
+	note A_, 1
+	octave 3
+	note F#, 7
+	octave 1
+	note F#, 5
+	octave 2
+	note C#, 1
+	note A#, 7
+	octave 1
+	note F#, 5
+	octave 2
+	note C#, 1
+	note A_, 7
+	octave 1
+	note F_, 5
+	octave 2
+	note C_, 1
+	note G#, 7
+	octave 1
+	note A#, 5
+	octave 2
+	note F_, 1
+	octave 3
+	note D_, 7
+	octave 1
+	note F#, 5
+	octave 2
+	note C#, 1
+	note A#, 7
+	octave 1
+	note F#, 5
+	octave 2
+	note C#, 1
+	note A_, 7
+	octave 1
+	note F_, 5
+	octave 2
+	note C_, 1
+	note G#, 7
+	octave 1
+	note A#, 5
+	octave 2
+	note F_, 1
+	endchannel
+; f56f5
 
-_Music_NationalPark_sub_0xf56f5: ; 0xf56f5
-; subroutine
-	octave4
-	note $50
-	note $64
-	note $73
-	note $01
-	note $26
+Music_NationalPark_branch_f56f5: ; f56f5
+	octave 4
+	note E_, 0
+	note F_, 4
+	note F#, 3
+	note __, 1
+	note C#, 6
 	intensity $87
-	octave5
-	note $50
-	note $60
-	note $00
-	note $60
-	note $00
-	note $50
-	note $00
-	note $61
+	octave 5
+	note E_, 0
+	note F_, 0
+	note __, 0
+	note F_, 0
+	note __, 0
+	note E_, 0
+	note __, 0
+	note F_, 1
 	intensity $a7
-	octave3
-	note $b1
-	octave4
-	note $21
-	octave4
-	note $50
-	note $64
-	note $73
-	note $01
-	note $46
+	octave 3
+	note A#, 1
+	octave 4
+	note C#, 1
+	octave 4
+	note E_, 0
+	note F_, 4
+	note F#, 3
+	note __, 1
+	note D#, 6
 	intensity $87
-	octave5
-	note $30
-	note $40
-	note $00
-	note $40
-	note $00
-	note $30
-	note $00
-	note $41
+	octave 5
+	note D_, 0
+	note D#, 0
+	note __, 0
+	note D#, 0
+	note __, 0
+	note D_, 0
+	note __, 0
+	note D#, 1
 	intensity $a7
-	octave4
-	note $31
-	note $21
-	endchannel ; end
-; 0xf5723
+	octave 4
+	note D_, 1
+	note C#, 1
+	endchannel
 
-_Music_NationalPark_Ch3: ; 0xf5723
+Music_NationalPark_Ch3: ; f5723
 	vibrato $16, $24
-	notetype $0c, $11
-	octave4
-	note $90
-	note $b0
+	notetype $c, $11
+	octave 4
+	note G#, 0
+	note A#, 0
 	stereopanning $ff
-	callchannel _Music_NationalPark_sub_0xf5756
-	octave5
-	note $bd
-	octave4
-	note $90
-	note $b0
-	callchannel _Music_NationalPark_sub_0xf5756
-	octave5
-	note $b7
-	octave4
-	note $37
+
+Music_NationalPark_branch_f572e: ; f572e
+	callchannel Music_NationalPark_branch_f5756
+	octave 5
+	note A#, 13
+	octave 4
+	note G#, 0
+	note A#, 0
+	callchannel Music_NationalPark_branch_f5756
+	octave 5
+	note A#, 7
+	octave 4
+	note D_, 7
 	intensity $15
-	callchannel _Music_NationalPark_sub_0xf578f
-	octave4
-	note $30
-	octave3
-	note $62
-	callchannel _Music_NationalPark_sub_0xf578f
-	octave4
-	note $30
-	octave3
-	note $60
+	callchannel Music_NationalPark_branch_f578f
+	octave 4
+	note D_, 0
+	octave 3
+	note F_, 2
+	callchannel Music_NationalPark_branch_f578f
+	octave 4
+	note D_, 0
+	octave 3
+	note F_, 0
 	intensity $11
-	octave4
-	note $90
-	note $b0
-	loopchannel $00, $572e ; end
-; 0xf5756
+	octave 4
+	note G#, 0
+	note A#, 0
+	loopchannel 0, Music_NationalPark_branch_f572e
+; f5756
 
-_Music_NationalPark_sub_0xf5756: ; 0xf5756
-; subroutine
-	octave5
-	note $1f
-	note $2d
-	note $90
-	note $b0
-	octave6
-	note $1f
-	note $29
-	note $11
-	note $21
-	note $41
-	note $61
-	note $41
-	note $21
-	octave5
-	note $b9
-	octave6
-	note $61
-	note $41
-	note $21
-	octave5
-	note $a8
-	octave6
-	note $30
-	octave6
-	note $41
-	note $21
-	note $11
-	octave5
-	note $93
-	octave6
-	note $93
-	note $41
-	note $6d
-	note $30
-	note $40
-	note $61
-	note $41
-	note $21
-	octave5
-	note $b9
-	octave6
-	note $61
-	note $41
-	note $21
-	octave5
-	note $a9
-	octave6
-	note $41
-	note $21
-	note $11
-	octave5
-	note $93
-	note $b3
-	octave6
-	note $11
-	endchannel ; end
-; 0xf578f
+Music_NationalPark_branch_f5756: ; f5756
+	octave 5
+	note C_, 15
+	note C#, 13
+	note G#, 0
+	note A#, 0
+	octave 6
+	note C_, 15
+	note C#, 9
+	note C_, 1
+	note C#, 1
+	note D#, 1
+	note F_, 1
+	note D#, 1
+	note C#, 1
+	octave 5
+	note A#, 9
+	octave 6
+	note F_, 1
+	note D#, 1
+	note C#, 1
+	octave 5
+	note A_, 8
+	octave 6
+	note D_, 0
+	octave 6
+	note D#, 1
+	note C#, 1
+	note C_, 1
+	octave 5
+	note G#, 3
+	octave 6
+	note G#, 3
+	note D#, 1
+	note F_, 13
+	note D_, 0
+	note D#, 0
+	note F_, 1
+	note D#, 1
+	note C#, 1
+	octave 5
+	note A#, 9
+	octave 6
+	note F_, 1
+	note D#, 1
+	note C#, 1
+	octave 5
+	note A_, 9
+	octave 6
+	note D#, 1
+	note C#, 1
+	note C_, 1
+	octave 5
+	note G#, 3
+	note A#, 3
+	octave 6
+	note C_, 1
+	endchannel
+; f578f
 
-_Music_NationalPark_sub_0xf578f: ; 0xf578f
-; subroutine
-	octave2
-	note $72
-	octave3
-	note $21
-	note $00
-	note $b3
-	note $20
-	note $00
-	note $b0
-	note $22
-	octave2
-	note $72
-	octave3
-	note $21
-	note $00
-	note $a3
-	note $20
-	note $00
-	note $a0
-	note $22
-	octave2
-	note $62
-	octave3
-	note $11
-	note $00
-	note $93
-	note $10
-	note $00
-	note $90
-	note $12
-	octave2
-	note $b2
-	octave3
-	note $61
-	note $00
-	octave4
-	note $33
-	octave3
-	note $60
-	note $00
-	endchannel ; end
-; 0xf57b8
+Music_NationalPark_branch_f578f: ; f578f
+	octave 2
+	note F#, 2
+	octave 3
+	note C#, 1
+	note __, 0
+	note A#, 3
+	note C#, 0
+	note __, 0
+	note A#, 0
+	note C#, 2
+	octave 2
+	note F#, 2
+	octave 3
+	note C#, 1
+	note __, 0
+	note A_, 3
+	note C#, 0
+	note __, 0
+	note A_, 0
+	note C#, 2
+	octave 2
+	note F_, 2
+	octave 3
+	note C_, 1
+	note __, 0
+	note G#, 3
+	note C_, 0
+	note __, 0
+	note G#, 0
+	note C_, 2
+	octave 2
+	note A#, 2
+	octave 3
+	note F_, 1
+	note __, 0
+	octave 4
+	note D_, 3
+	octave 3
+	note F_, 0
+	note __, 0
+	endchannel
 
-_Music_NationalPark_Ch4: ; 0xf57b8
-	togglenoise $03
-	notetype $0c
-	note $01
-	note $0f
-	loopchannel $17, $57bd
-	note $07
-	note $b1
-	note $31
-	note $b0
-	note $30
-	note $c1
-	note $b1
-	note $80
-	note $80
-	note $31
-	note $80
-	note $80
-	note $b1
-	note $80
-	note $80
-	note $31
-	note $c1
-	loopchannel $07, $57c8
-	note $b1
-	note $80
-	note $80
-	note $31
-	note $80
-	note $80
-	note $b1
-	note $40
-	note $40
-	note $30
-	note $30
-	note $b0
-	note $40
-	loopchannel $00, $57bd ; end
-; 0xf57e8
+Music_NationalPark_Ch4: ; f57b8
+	togglenoise $3
+	notetype $c
+	note __, 1
+
+Music_NationalPark_branch_f57bd: ; f57bd
+	note __, 15
+	loopchannel 23, Music_NationalPark_branch_f57bd
+	note __, 7
+	note A#, 1
+	note D_, 1
+	note A#, 0
+	note D_, 0
+	note B_, 1
+
+Music_NationalPark_branch_f57c8: ; f57c8
+	note A#, 1
+	note G_, 0
+	note G_, 0
+	note D_, 1
+	note G_, 0
+	note G_, 0
+	note A#, 1
+	note G_, 0
+	note G_, 0
+	note D_, 1
+	note B_, 1
+	loopchannel 7, Music_NationalPark_branch_f57c8
+	note A#, 1
+	note G_, 0
+	note G_, 0
+	note D_, 1
+	note G_, 0
+	note G_, 0
+	note A#, 1
+	note D#, 0
+	note D#, 0
+	note D_, 0
+	note D_, 0
+	note A#, 0
+	note D#, 0
+	loopchannel 0, Music_NationalPark_branch_f57bd
+; f57e8

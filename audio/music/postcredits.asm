@@ -1,269 +1,268 @@
-_Music_PostCredits: ; 0xcfd9e
-	db $40
-	dw _Music_PostCredits_Ch1
-	db $01
-	dw _Music_PostCredits_Ch2
-; 0xcfda4
+Music_PostCredits: ; cfd9e
+	dbw $40, Music_PostCredits_Ch1
+	dbw $01, Music_PostCredits_Ch2
+; cfda4
 
-; 0xcfda4
-	db $02
-; 0xcfda5
+INCBIN "baserom.gbc", $cfda4, $cfda5 - $cfda4
 
-_Music_PostCredits_Ch1: ; 0xcfda5
-	tempo $0f01
+Music_PostCredits_Ch1: ; cfda5
+	tempo 271
 	volume $77
-	forceoctave $03
-	dutycycle $02
-	notetype $0c, $93
-	note $07
-	octave3
-	note $11
-	note $51
-	note $81
-	octave4
-	note $11
-	note $51
-	intensity $73
-	note $51
-	intensity $53
-	note $51
-	intensity $43
-	note $51
-	intensity $93
-	octave2
-	note $c1
-	octave3
-	note $31
-	note $81
-	note $c1
-	octave4
-	note $31
-	intensity $73
-	note $31
-	intensity $53
-	note $31
-	intensity $43
-	note $31
-	intensity $93
-	octave2
-	note $b1
-	octave3
-	note $31
-	note $81
-	note $b1
-	octave4
-	note $31
-	intensity $73
-	note $31
-	intensity $53
-	note $31
-	intensity $43
-	note $31
-	intensity $93
-	octave2
-	note $a1
-	octave3
-	note $11
-	note $61
-	note $a1
-	octave4
-	note $11
-	intensity $73
-	note $11
-	intensity $53
-	note $11
-	intensity $43
-	note $11
-	intensity $93
-	octave2
-	note $91
-	octave3
-	note $11
-	note $61
-	note $91
-	octave4
-	note $11
-	intensity $73
-	note $11
-	intensity $53
-	note $11
-	intensity $43
-	note $11
-	intensity $93
-	octave2
-	note $81
-	octave3
-	note $11
-	note $51
-	note $81
-	octave4
-	note $11
-	intensity $73
-	note $11
-	intensity $63
-	note $11
-	intensity $43
-	note $11
-	intensity $93
-	octave2
-	note $71
-	note $a1
-	octave3
-	note $31
-	note $71
-	note $a1
-	intensity $73
-	note $a1
-	intensity $63
-	note $a1
-	intensity $43
-	note $a1
-	intensity $93
-	octave2
-	note $81
-	octave3
-	note $11
-	note $31
-	note $81
-	note $81
-	intensity $73
-	note $81
-	intensity $93
-	note $31
-	octave2
-	note $81
-	loopchannel $00, $7db2 ; end
-; 0xcfe48
+	forceoctave $3
+	dutycycle $2
+	notetype $c, $93
+	note __, 7
 
-_Music_PostCredits_Ch2: ; 0xcfe48
-	forceoctave $03
-	dutycycle $02
-	notetype $0c, $a3
-	octave5
-	note $51
+Music_PostCredits_branch_cfdb2: ; cfdb2
+	octave 3
+	note C_, 1
+	note E_, 1
+	note G_, 1
+	octave 4
+	note C_, 1
+	note E_, 1
 	intensity $73
-	note $51
-	intensity $a3
-	note $61
-	intensity $73
-	note $61
-	intensity $a3
-	note $81
-	intensity $73
-	note $81
+	note E_, 1
 	intensity $53
-	note $81
+	note E_, 1
 	intensity $43
-	note $81
+	note E_, 1
 	intensity $93
-	octave6
-	note $31
-	note $11
-	octave5
-	note $c1
-	octave6
-	note $11
-	octave5
-	note $81
+	octave 2
+	note B_, 1
+	octave 3
+	note D_, 1
+	note G_, 1
+	note B_, 1
+	octave 4
+	note D_, 1
 	intensity $73
-	note $81
+	note D_, 1
 	intensity $53
-	note $81
+	note D_, 1
 	intensity $43
-	note $81
-	intensity $33
-	note $81
-	intensity $a3
-	note $51
+	note D_, 1
+	intensity $93
+	octave 2
+	note A#, 1
+	octave 3
+	note D_, 1
+	note G_, 1
+	note A#, 1
+	octave 4
+	note D_, 1
 	intensity $73
-	note $51
-	intensity $a3
-	note $61
-	note $81
-	intensity $73
-	note $81
+	note D_, 1
 	intensity $53
-	note $81
+	note D_, 1
 	intensity $43
-	note $81
-	intensity $33
-	note $81
-	intensity $a3
-	note $a1
+	note D_, 1
+	intensity $93
+	octave 2
+	note A_, 1
+	octave 3
+	note C_, 1
+	note F_, 1
+	note A_, 1
+	octave 4
+	note C_, 1
 	intensity $73
-	note $a1
-	intensity $a3
-	note $51
-	note $81
-	intensity $73
-	note $81
+	note C_, 1
 	intensity $53
-	note $81
-	intensity $a3
-	note $61
-	intensity $73
-	note $61
-	intensity $53
-	note $61
-	intensity $a3
-	note $31
-	note $51
-	note $61
-	intensity $73
-	note $61
-	intensity $53
-	note $61
+	note C_, 1
 	intensity $43
-	note $61
-	intensity $33
-	note $61
-	intensity $a3
-	note $81
+	note C_, 1
+	intensity $93
+	octave 2
+	note G#, 1
+	octave 3
+	note C_, 1
+	note F_, 1
+	note G#, 1
+	octave 4
+	note C_, 1
 	intensity $73
-	note $81
-	intensity $a3
-	note $61
-	note $51
-	note $41
-	note $51
-	note $c1
-	intensity $73
-	note $c1
+	note C_, 1
 	intensity $53
-	note $c1
-	intensity $a3
-	note $a1
-	intensity $73
-	note $a1
-	intensity $a3
-	note $31
-	intensity $73
-	note $31
-	intensity $53
-	note $31
+	note C_, 1
 	intensity $43
-	note $31
+	note C_, 1
+	intensity $93
+	octave 2
+	note G_, 1
+	octave 3
+	note C_, 1
+	note E_, 1
+	note G_, 1
+	octave 4
+	note C_, 1
+	intensity $73
+	note C_, 1
+	intensity $63
+	note C_, 1
+	intensity $43
+	note C_, 1
+	intensity $93
+	octave 2
+	note F#, 1
+	note A_, 1
+	octave 3
+	note D_, 1
+	note F#, 1
+	note A_, 1
+	intensity $73
+	note A_, 1
+	intensity $63
+	note A_, 1
+	intensity $43
+	note A_, 1
+	intensity $93
+	octave 2
+	note G_, 1
+	octave 3
+	note C_, 1
+	note D_, 1
+	note G_, 1
+	note G_, 1
+	intensity $73
+	note G_, 1
+	intensity $93
+	note D_, 1
+	octave 2
+	note G_, 1
+	loopchannel 0, Music_PostCredits_branch_cfdb2
+
+Music_PostCredits_Ch2: ; cfe48
+	forceoctave $3
+	dutycycle $2
+	notetype $c, $a3
+	octave 5
+	note E_, 1
+	intensity $73
+	note E_, 1
+	intensity $a3
+	note F_, 1
+	intensity $73
+	note F_, 1
+
+Music_PostCredits_branch_cfe5a: ; cfe5a
+	intensity $a3
+	note G_, 1
+	intensity $73
+	note G_, 1
+	intensity $53
+	note G_, 1
+	intensity $43
+	note G_, 1
+	intensity $93
+	octave 6
+	note D_, 1
+	note C_, 1
+	octave 5
+	note B_, 1
+	octave 6
+	note C_, 1
+	octave 5
+	note G_, 1
+	intensity $73
+	note G_, 1
+	intensity $53
+	note G_, 1
+	intensity $43
+	note G_, 1
 	intensity $33
-	note $31
-	note $31
+	note G_, 1
+	intensity $a3
+	note E_, 1
+	intensity $73
+	note E_, 1
+	intensity $a3
+	note F_, 1
+	note G_, 1
+	intensity $73
+	note G_, 1
+	intensity $53
+	note G_, 1
+	intensity $43
+	note G_, 1
+	intensity $33
+	note G_, 1
+	intensity $a3
+	note A_, 1
+	intensity $73
+	note A_, 1
+	intensity $a3
+	note E_, 1
+	note G_, 1
+	intensity $73
+	note G_, 1
+	intensity $53
+	note G_, 1
+	intensity $a3
+	note F_, 1
+	intensity $73
+	note F_, 1
+	intensity $53
+	note F_, 1
+	intensity $a3
+	note D_, 1
+	note E_, 1
+	note F_, 1
+	intensity $73
+	note F_, 1
+	intensity $53
+	note F_, 1
+	intensity $43
+	note F_, 1
+	intensity $33
+	note F_, 1
+	intensity $a3
+	note G_, 1
+	intensity $73
+	note G_, 1
+	intensity $a3
+	note F_, 1
+	note E_, 1
+	note D#, 1
+	note E_, 1
+	note B_, 1
+	intensity $73
+	note B_, 1
+	intensity $53
+	note B_, 1
+	intensity $a3
+	note A_, 1
+	intensity $73
+	note A_, 1
+	intensity $a3
+	note D_, 1
+	intensity $73
+	note D_, 1
+	intensity $53
+	note D_, 1
+	intensity $43
+	note D_, 1
+	intensity $33
+	note D_, 1
+	note D_, 1
 	intensity $23
-	note $31
-	note $31
+	note D_, 1
+	note D_, 1
 	intensity $a3
-	note $81
+	note G_, 1
 	intensity $73
-	octave4
-	note $81
+	octave 4
+	note G_, 1
 	intensity $a3
-	octave5
-	note $31
-	note $81
+	octave 5
+	note D_, 1
+	note G_, 1
 	intensity $73
-	note $81
+	note G_, 1
 	intensity $53
-	note $81
+	note G_, 1
 	intensity $a3
-	note $51
-	note $61
-	loopchannel $00, $7e5a ; end
-; 0xcff04
+	note E_, 1
+	note F_, 1
+	loopchannel 0, Music_PostCredits_branch_cfe5a
+; cff04

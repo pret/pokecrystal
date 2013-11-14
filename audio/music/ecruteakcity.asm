@@ -1,675 +1,678 @@
-_Music_EcruteakCity: ; 0xef2d0
-	db $80
-	dw _Music_EcruteakCity_Ch1
-	db $01
-	dw _Music_EcruteakCity_Ch2
-	db $02
-	dw _Music_EcruteakCity_Ch3
-; 0xef2d9
+Music_EcruteakCity: ; ef2d0
+	dbw $80, Music_EcruteakCity_Ch1
+	dbw $01, Music_EcruteakCity_Ch2
+	dbw $02, Music_EcruteakCity_Ch3
+; ef2d9
 
-_Music_EcruteakCity_Ch1: ; 0xef2d9
-	tempo $c500
+
+Music_EcruteakCity_Ch1: ; ef2d9
+	tempo 197
 	volume $77
-	stereopanning $0f
+	stereopanning $f
 	vibrato $12, $25
-	dutycycle $02
-	notetype $0c, $57
-	note $09
-	octave4
-	note $15
-	note $09
-	note $15
-	note $0f
-	octave3
-	note $c3
-	octave4
-	note $13
-	note $33
+	dutycycle $2
+
+Music_EcruteakCity_branch_ef2e5: ; ef2e5
+	notetype $c, $57
+	note __, 9
+	octave 4
+	note C_, 5
+	note __, 9
+	note C_, 5
+	note __, 15
+	octave 3
+	note B_, 3
+	octave 4
+	note C_, 3
+	note D_, 3
 	intensity $60
-	note $03
-	note $0f
-	note $09
-	note $81
-	note $a1
-	note $b1
-	note $07
-	note $91
-	note $81
-	note $61
-	octave5
-	note $15
-	notetype $06, $67
-	note $23
-	note $39
-	note $01
+	note __, 3
+	note __, 15
+	note __, 9
+	note G_, 1
+	note A_, 1
+	note A#, 1
+	note __, 7
+	note G#, 1
+	note G_, 1
+	note F_, 1
+	octave 5
+	note C_, 5
+	notetype $6, $67
+	note C#, 3
+	note D_, 9
+	note __, 1
 	stereopanning $ff
-	octave4
-	note $c7
-	stereopanning $0f
-	octave3
-	note $b0
-	note $ca
-	octave4
-	note $13
-	note $53
-	note $8b
-	note $bb
-	note $83
-	note $03
-	note $b3
-	octave5
-	note $23
-	note $51
-	note $01
-	octave3
-	note $a7
-	octave4
-	note $17
-	note $63
-	note $0b
-	note $50
-	note $6a
-	note $81
-	note $01
-	note $a3
-	note $83
-	note $07
+	octave 4
+	note B_, 7
+	stereopanning $f
+	octave 3
+	note A#, 0
+	note B_, 10
+	octave 4
+	note C_, 3
+	note E_, 3
+	note G_, 11
+	note A#, 11
+	note G_, 3
+	note __, 3
+	note A#, 3
+	octave 5
+	note C#, 3
+	note E_, 1
+	note __, 1
+	octave 3
+	note A_, 7
+	octave 4
+	note C_, 7
+	note F_, 3
+	note __, 11
+	note E_, 0
+	note F_, 10
+	note G_, 1
+	note __, 1
+	note A_, 3
+	note G_, 3
+	note __, 7
 	intensity $52
-	callchannel _Music_EcruteakCity_sub_0xef37f
-	note $31
-	octave4
-	note $c1
-	note $a1
-	note $c1
-	note $a1
-	note $c1
-	octave5
-	note $31
-	octave4
-	note $c1
-	octave5
-	note $31
-	octave4
-	note $c1
-	note $a1
-	note $c1
-	note $a1
-	note $c1
-	note $a1
-	note $c1
-	callchannel _Music_EcruteakCity_sub_0xef391
+	callchannel Music_EcruteakCity_branch_ef37f
+	note D_, 1
+	octave 4
+	note B_, 1
+	note A_, 1
+	note B_, 1
+	note A_, 1
+	note B_, 1
+	octave 5
+	note D_, 1
+	octave 4
+	note B_, 1
+	octave 5
+	note D_, 1
+	octave 4
+	note B_, 1
+	note A_, 1
+	note B_, 1
+	note A_, 1
+	note B_, 1
+	note A_, 1
+	note B_, 1
+	callchannel Music_EcruteakCity_branch_ef391
 	intensity $52
-	note $b1
-	note $81
-	note $51
-	note $21
-	note $81
-	note $51
-	note $21
-	octave4
-	note $b1
-	octave5
-	note $51
-	note $21
-	octave4
-	note $b1
-	note $81
-	note $b1
-	note $81
-	note $51
-	note $21
-	callchannel _Music_EcruteakCity_sub_0xef37f
-	note $31
-	note $11
-	octave4
-	note $91
-	octave5
-	note $11
-	octave4
-	note $91
-	octave5
-	note $11
-	note $31
-	note $11
-	note $31
-	note $11
-	octave4
-	note $91
-	octave5
-	note $11
-	octave4
-	note $91
-	octave5
-	note $11
-	octave4
-	note $91
-	octave5
-	note $11
-	callchannel _Music_EcruteakCity_sub_0xef391
-	loopchannel $00, $72e5 ; end
-; 0xef37f
+	note A#, 1
+	note G_, 1
+	note E_, 1
+	note C#, 1
+	note G_, 1
+	note E_, 1
+	note C#, 1
+	octave 4
+	note A#, 1
+	octave 5
+	note E_, 1
+	note C#, 1
+	octave 4
+	note A#, 1
+	note G_, 1
+	note A#, 1
+	note G_, 1
+	note E_, 1
+	note C#, 1
+	callchannel Music_EcruteakCity_branch_ef37f
+	note D_, 1
+	note C_, 1
+	octave 4
+	note G#, 1
+	octave 5
+	note C_, 1
+	octave 4
+	note G#, 1
+	octave 5
+	note C_, 1
+	note D_, 1
+	note C_, 1
+	note D_, 1
+	note C_, 1
+	octave 4
+	note G#, 1
+	octave 5
+	note C_, 1
+	octave 4
+	note G#, 1
+	octave 5
+	note C_, 1
+	octave 4
+	note G#, 1
+	octave 5
+	note C_, 1
+	callchannel Music_EcruteakCity_branch_ef391
+	loopchannel 0, Music_EcruteakCity_branch_ef2e5
+; ef37f
 
-_Music_EcruteakCity_sub_0xef37f: ; 0xef37f
-; subroutine
-	octave5
-	note $51
-	note $11
-	octave4
-	note $a1
-	octave5
-	note $11
-	octave4
-	note $a1
-	octave5
-	note $11
-	note $51
-	note $11
-	loopchannel $02, $737f
-	endchannel ; end
-; 0xef391
+Music_EcruteakCity_branch_ef37f: ; ef37f
+	octave 5
+	note E_, 1
+	note C_, 1
+	octave 4
+	note A_, 1
+	octave 5
+	note C_, 1
+	octave 4
+	note A_, 1
+	octave 5
+	note C_, 1
+	note E_, 1
+	note C_, 1
+	loopchannel 2, Music_EcruteakCity_branch_ef37f
+	endchannel
+; ef391
 
-_Music_EcruteakCity_sub_0xef391: ; 0xef391
-; subroutine
-	octave5
-	note $31
-	octave4
-	note $c1
-	note $81
-	note $c1
-	note $81
-	note $c1
-	octave5
-	note $31
-	octave4
-	note $c1
-	octave5
-	note $31
-	octave4
-	note $c1
-	note $81
-	note $c1
-	note $81
-	note $c1
-	octave5
-	note $31
-	note $61
-	note $a1
-	note $51
-	note $11
-	octave4
-	note $a1
-	octave5
-	note $51
-	note $11
-	octave4
-	note $a1
-	note $51
-	octave5
-	note $11
-	octave4
-	note $a1
-	note $51
-	note $11
-	note $a1
-	note $51
-	note $11
-	octave3
-	note $a1
-	octave4
-	note $61
-	note $a1
-	octave5
-	note $11
-	octave4
-	note $a1
-	octave5
-	note $11
-	octave4
-	note $a1
-	octave5
-	note $11
-	note $61
-	loopchannel $02, $73be
-	octave4
-	note $81
-	note $c1
-	octave5
-	note $31
-	octave4
-	note $c1
-	octave5
-	note $31
-	octave4
-	note $c1
-	octave5
-	note $31
-	note $81
-	loopchannel $02, $73d0
+Music_EcruteakCity_branch_ef391: ; ef391
+	octave 5
+	note D_, 1
+	octave 4
+	note B_, 1
+	note G_, 1
+	note B_, 1
+	note G_, 1
+	note B_, 1
+	octave 5
+	note D_, 1
+	octave 4
+	note B_, 1
+	octave 5
+	note D_, 1
+	octave 4
+	note B_, 1
+	note G_, 1
+	note B_, 1
+	note G_, 1
+	note B_, 1
+	octave 5
+	note D_, 1
+	note F_, 1
+	note A_, 1
+	note E_, 1
+	note C_, 1
+	octave 4
+	note A_, 1
+	octave 5
+	note E_, 1
+	note C_, 1
+	octave 4
+	note A_, 1
+	note E_, 1
+	octave 5
+	note C_, 1
+	octave 4
+	note A_, 1
+	note E_, 1
+	note C_, 1
+	note A_, 1
+	note E_, 1
+	note C_, 1
+	octave 3
+	note A_, 1
+
+Music_EcruteakCity_branch_ef3be: ; ef3be
+	octave 4
+	note F_, 1
+	note A_, 1
+	octave 5
+	note C_, 1
+	octave 4
+	note A_, 1
+	octave 5
+	note C_, 1
+	octave 4
+	note A_, 1
+	octave 5
+	note C_, 1
+	note F_, 1
+	loopchannel 2, Music_EcruteakCity_branch_ef3be
+
+Music_EcruteakCity_branch_ef3d0: ; ef3d0
+	octave 4
+	note G_, 1
+	note B_, 1
+	octave 5
+	note D_, 1
+	octave 4
+	note B_, 1
+	octave 5
+	note D_, 1
+	octave 4
+	note B_, 1
+	octave 5
+	note D_, 1
+	note G_, 1
+	loopchannel 2, Music_EcruteakCity_branch_ef3d0
 	intensity $50
-	dutycycle $00
-	note $5f
-	note $8f
-	dutycycle $02
-	endchannel ; end
-; 0xef3eb
+	dutycycle $0
+	note E_, 15
+	note G_, 15
+	dutycycle $2
+	endchannel
 
-_Music_EcruteakCity_Ch2: ; 0xef3eb
+Music_EcruteakCity_Ch2: ; ef3eb
 	vibrato $12, $25
-	dutycycle $03
+	dutycycle $3
 	stereopanning $f0
-	notetype $06, $67
-	note $0f
-	note $04
-	octave4
-	note $80
-	octave5
-	note $30
-	note $58
-	note $0f
-	note $04
-	octave4
-	note $a0
-	octave5
-	note $50
-	note $68
-	notetype $0c, $77
-	note $09
-	note $31
-	note $11
-	octave4
-	note $91
-	note $83
-	note $a3
-	note $c3
-	notetype $06, $93
+
+Music_EcruteakCity_branch_ef3f2: ; ef3f2
+	notetype $6, $67
+	note __, 15
+	note __, 4
+	octave 4
+	note G_, 0
+	octave 5
+	note D_, 0
+	note E_, 8
+	note __, 15
+	note __, 4
+	octave 4
+	note A_, 0
+	octave 5
+	note E_, 0
+	note F_, 8
+	notetype $c, $77
+	note __, 9
+	note D_, 1
+	note C_, 1
+	octave 4
+	note G#, 1
+	note G_, 3
+	note A_, 3
+	note B_, 3
+	notetype $6, $93
 	intensity $97
-	dutycycle $02
-	octave3
-	note $86
-	octave4
-	note $20
-	note $3a
-	note $00
-	note $11
-	note $01
-	note $1f
-	note $67
-	note $03
-	note $53
-	note $03
-	note $53
-	note $63
-	note $83
-	note $53
-	note $11
-	note $01
-	note $13
-	octave3
-	note $a1
-	note $60
-	note $a0
-	octave4
-	note $1f
-	note $53
-	note $81
-	note $01
-	note $53
-	note $39
-	note $00
+	dutycycle $2
+	octave 3
+	note G_, 6
+	octave 4
+	note C#, 0
+	note D_, 10
+	note __, 0
+	note C_, 1
+	note __, 1
+	note C_, 15
+	note F_, 7
+	note __, 3
+	note E_, 3
+	note __, 3
+	note E_, 3
+	note F_, 3
+	note G_, 3
+	note E_, 3
+	note C_, 1
+	note __, 1
+	note C_, 3
+	octave 3
+	note A_, 1
+	note F_, 0
+	note A_, 0
+	octave 4
+	note C_, 15
+	note E_, 3
+	note G_, 1
+	note __, 1
+	note E_, 3
+	note D_, 9
+	note __, 0
 	stereopanning $ff
-	note $48
+	note D#, 8
 	stereopanning $f0
-	dutycycle $00
-	octave5
-	note $20
-	note $3a
-	note $11
-	note $01
-	note $1f
-	note $6b
-	note $53
-	note $03
-	note $53
-	note $63
-	note $81
-	octave4
-	note $a0
-	octave5
-	note $10
-	note $50
-	note $a2
-	note $51
-	note $01
-	note $53
-	note $11
-	note $01
-	note $13
-	octave4
-	note $a1
-	note $01
-	note $c3
-	octave5
-	note $11
-	octave4
-	note $80
-	note $c0
-	octave5
-	note $40
-	note $5a
-	note $31
-	note $01
-	note $37
-	dutycycle $01
-	octave4
-	note $53
-	note $82
-	note $90
-	note $af
-	octave3
-	note $a3
-	octave4
-	note $11
-	note $01
-	note $53
-	note $3b
-	note $13
-	note $03
-	octave3
-	note $c3
-	note $03
-	octave4
-	note $67
-	note $8b
-	note $67
-	note $03
-	note $57
-	note $33
-	note $11
-	note $01
-	octave3
-	note $c3
-	octave4
-	note $11
-	note $05
-	octave3
-	note $c3
-	note $03
-	octave4
-	note $13
-	octave3
-	note $af
-	note $03
-	octave4
-	note $63
-	note $53
-	note $33
-	note $1b
-	octave3
-	note $c3
-	note $03
-	octave4
-	note $13
-	note $33
-	note $43
-	notetype $0c, $83
-	note $5f
+	dutycycle $0
+	octave 5
+	note C#, 0
+	note D_, 10
+	note C_, 1
+	note __, 1
+	note C_, 15
+	note F_, 11
+	note E_, 3
+	note __, 3
+	note E_, 3
+	note F_, 3
+	note G_, 1
+	octave 4
+	note A_, 0
+	octave 5
+	note C_, 0
+	note E_, 0
+	note A_, 2
+	note E_, 1
+	note __, 1
+	note E_, 3
+	note C_, 1
+	note __, 1
+	note C_, 3
+	octave 4
+	note A_, 1
+	note __, 1
+	note B_, 3
+	octave 5
+	note C_, 1
+	octave 4
+	note G_, 0
+	note B_, 0
+	octave 5
+	note D#, 0
+	note E_, 10
+	note D_, 1
+	note __, 1
+	note D_, 7
+	dutycycle $1
+	octave 4
+	note E_, 3
+	note G_, 2
+	note G#, 0
+	note A_, 15
+	octave 3
+	note A_, 3
+	octave 4
+	note C_, 1
+	note __, 1
+	note E_, 3
+	note D_, 11
+	note C_, 3
+	note __, 3
+	octave 3
+	note B_, 3
+	note __, 3
+	octave 4
+	note F_, 7
+	note G_, 11
+	note F_, 7
+	note __, 3
+	note E_, 7
+	note D_, 3
+	note C_, 1
+	note __, 1
+	octave 3
+	note B_, 3
+	octave 4
+	note C_, 1
+	note __, 5
+	octave 3
+	note B_, 3
+	note __, 3
+	octave 4
+	note C_, 3
+	octave 3
+	note A_, 15
+	note __, 3
+	octave 4
+	note F_, 3
+	note E_, 3
+	note D_, 3
+	note C_, 11
+	octave 3
+	note B_, 3
+	note __, 3
+	octave 4
+	note C_, 3
+	note D_, 3
+	note D#, 3
+	notetype $c, $83
+	note E_, 15
 	intensity $80
-	note $33
-	note $23
-	note $63
-	notetype $06, $80
-	note $86
-	note $90
+	note D_, 3
+	note C#, 3
+	note F_, 3
+	notetype $6, $80
+	note G_, 6
+	note G#, 0
 	intensity $87
-	note $ab
-	note $51
-	note $01
-	note $51
-	note $01
-	note $52
-	note $90
-	note $a3
-	note $51
-	note $01
-	note $53
-	note $31
-	note $01
-	note $23
-	note $3b
-	octave3
-	note $c3
-	octave4
-	note $63
-	note $8b
-	note $31
-	note $01
-	note $31
-	note $01
-	note $33
-	note $83
-	note $31
-	note $00
-	note $b0
-	note $cb
-	octave5
-	note $13
-	octave4
-	note $a7
-	octave3
-	note $a3
-	octave4
-	note $13
-	notetype $0c, $87
-	note $69
-	note $81
-	note $61
-	note $51
-	note $37
-	note $01
-	octave3
-	note $c1
-	octave4
-	note $11
-	note $31
-	note $5f
-	loopchannel $00, $73f2 ; end
-; 0xef4e1
+	note A_, 11
+	note E_, 1
+	note __, 1
+	note E_, 1
+	note __, 1
+	note E_, 2
+	note G#, 0
+	note A_, 3
+	note E_, 1
+	note __, 1
+	note E_, 3
+	note D_, 1
+	note __, 1
+	note C#, 3
+	note D_, 11
+	octave 3
+	note B_, 3
+	octave 4
+	note F_, 3
+	note G_, 11
+	note D_, 1
+	note __, 1
+	note D_, 1
+	note __, 1
+	note D_, 3
+	note G_, 3
+	note D_, 1
+	note __, 0
+	note A#, 0
+	note B_, 11
+	octave 5
+	note C_, 3
+	octave 4
+	note A_, 7
+	octave 3
+	note A_, 3
+	octave 4
+	note C_, 3
+	notetype $c, $87
+	note F_, 9
+	note G_, 1
+	note F_, 1
+	note E_, 1
+	note D_, 7
+	note __, 1
+	octave 3
+	note B_, 1
+	octave 4
+	note C_, 1
+	note D_, 1
+	note E_, 15
+	loopchannel 0, Music_EcruteakCity_branch_ef3f2
 
-_Music_EcruteakCity_Ch3: ; 0xef4e1
+Music_EcruteakCity_Ch3: ; ef4e1
 	stereopanning $ff
-	vibrato $12, $25
-	notetype $0c, $25
-	octave3
-	note $11
-	note $81
-	octave4
-	note $31
-	note $59
-	octave3
-	note $11
-	note $a1
-	octave4
-	note $51
-	note $69
-	octave3
-	note $11
-	note $81
-	octave4
-	note $31
-	note $59
-	note $83
-	note $73
-	note $63
-	octave3
-	note $c1
-	note $81
-	note $11
-	note $81
-	octave4
-	note $31
-	note $59
-	octave3
-	note $21
-	note $81
-	note $b1
-	octave4
-	note $31
-	note $01
-	note $21
-	note $31
-	note $51
-	octave3
-	note $31
-	note $a0
-	note $00
-	octave4
-	note $51
-	note $60
-	note $00
-	note $97
-	octave3
-	note $81
-	octave4
-	note $31
-	note $61
-	note $91
-	note $c1
-	note $80
-	note $94
-	octave3
-	note $11
-	note $81
-	octave4
-	note $31
-	note $51
-	note $81
-	octave5
-	note $11
-	note $31
-	note $51
-	octave3
-	note $21
-	note $b1
-	octave4
-	note $31
-	note $21
-	note $51
-	note $31
-	note $61
-	note $80
-	note $00
-	octave3
-	note $67
-	octave4
-	note $a1
-	octave5
-	note $10
-	note $00
-	note $31
-	note $50
-	note $00
-	octave2
-	note $81
-	octave3
-	note $31
-	note $81
-	note $71
-	note $a1
-	note $81
-	note $c1
-	octave4
-	note $31
-	callchannel _Music_EcruteakCity_sub_0xef569
-	octave4
-	note $17
-	note $57
-	note $87
-	note $c7
-	note $b7
-	note $87
-	note $57
-	note $27
-	notetype $0c, $25
-	callchannel _Music_EcruteakCity_sub_0xef569
-	octave4
-	note $17
-	octave3
-	note $87
-	note $57
-	note $37
-	loopchannel $00, $74e3 ; end
-; 0xef569
 
-_Music_EcruteakCity_sub_0xef569: ; 0xef569
-; subroutine
-	octave3
-	note $63
-	note $01
-	note $60
-	note $00
-	note $63
-	note $01
-	note $10
-	note $00
-	note $63
-	note $01
-	note $60
-	note $00
-	note $60
-	note $00
-	note $61
-	note $01
-	note $60
-	note $00
-	note $53
-	note $01
-	note $c0
-	note $00
-	note $50
-	note $00
-	note $51
-	note $01
-	note $c0
-	note $00
-	note $a3
-	note $01
-	note $a0
-	note $00
-	note $90
-	note $00
-	note $90
-	note $00
-	note $80
-	note $00
-	note $70
-	note $00
-	note $33
-	note $01
-	note $a0
-	note $00
-	note $30
-	note $00
-	note $30
-	note $00
-	note $50
-	note $00
-	note $60
-	note $00
-	note $83
-	note $01
-	octave4
-	note $30
-	note $00
-	octave3
-	note $80
-	note $00
-	note $80
-	note $00
-	note $a0
-	note $00
-	note $b0
-	notetype $06, $25
-	note $00
-	note $c0
-	endchannel ; end
-; 0xef5b1
+Music_EcruteakCity_branch_ef4e3: ; ef4e3
+	vibrato $12, $25
+	notetype $c, $25
+	octave 3
+	note C_, 1
+	note G_, 1
+	octave 4
+	note D_, 1
+	note E_, 9
+	octave 3
+	note C_, 1
+	note A_, 1
+	octave 4
+	note E_, 1
+	note F_, 9
+	octave 3
+	note C_, 1
+	note G_, 1
+	octave 4
+	note D_, 1
+	note E_, 9
+	note G_, 3
+	note F#, 3
+	note F_, 3
+	octave 3
+	note B_, 1
+	note G_, 1
+	note C_, 1
+	note G_, 1
+	octave 4
+	note D_, 1
+	note E_, 9
+	octave 3
+	note C#, 1
+	note G_, 1
+	note A#, 1
+	octave 4
+	note D_, 1
+	note __, 1
+	note C#, 1
+	note D_, 1
+	note E_, 1
+	octave 3
+	note D_, 1
+	note A_, 0
+	note __, 0
+	octave 4
+	note E_, 1
+	note F_, 0
+	note __, 0
+	note G#, 7
+	octave 3
+	note G_, 1
+	octave 4
+	note D_, 1
+	note F_, 1
+	note G#, 1
+	note B_, 1
+	note G_, 0
+	note G#, 4
+	octave 3
+	note C_, 1
+	note G_, 1
+	octave 4
+	note D_, 1
+	note E_, 1
+	note G_, 1
+	octave 5
+	note C_, 1
+	note D_, 1
+	note E_, 1
+	octave 3
+	note C#, 1
+	note A#, 1
+	octave 4
+	note D_, 1
+	note C#, 1
+	note E_, 1
+	note D_, 1
+	note F_, 1
+	note G_, 0
+	note __, 0
+	octave 3
+	note F_, 7
+	octave 4
+	note A_, 1
+	octave 5
+	note C_, 0
+	note __, 0
+	note D_, 1
+	note E_, 0
+	note __, 0
+	octave 2
+	note G_, 1
+	octave 3
+	note D_, 1
+	note G_, 1
+	note F#, 1
+	note A_, 1
+	note G_, 1
+	note B_, 1
+	octave 4
+	note D_, 1
+	callchannel Music_EcruteakCity_branch_ef569
+	octave 4
+	note C_, 7
+	note E_, 7
+	note G_, 7
+	note B_, 7
+	note A#, 7
+	note G_, 7
+	note E_, 7
+	note C#, 7
+	notetype $c, $25
+	callchannel Music_EcruteakCity_branch_ef569
+	octave 4
+	note C_, 7
+	octave 3
+	note G_, 7
+	note E_, 7
+	note D_, 7
+	loopchannel 0, Music_EcruteakCity_branch_ef4e3
+; ef569
+
+Music_EcruteakCity_branch_ef569: ; ef569
+	octave 3
+	note F_, 3
+	note __, 1
+	note F_, 0
+	note __, 0
+	note F_, 3
+	note __, 1
+	note C_, 0
+	note __, 0
+	note F_, 3
+	note __, 1
+	note F_, 0
+	note __, 0
+	note F_, 0
+	note __, 0
+	note F_, 1
+	note __, 1
+	note F_, 0
+	note __, 0
+	note E_, 3
+	note __, 1
+	note B_, 0
+	note __, 0
+	note E_, 0
+	note __, 0
+	note E_, 1
+	note __, 1
+	note B_, 0
+	note __, 0
+	note A_, 3
+	note __, 1
+	note A_, 0
+	note __, 0
+	note G#, 0
+	note __, 0
+	note G#, 0
+	note __, 0
+	note G_, 0
+	note __, 0
+	note F#, 0
+	note __, 0
+	note D_, 3
+	note __, 1
+	note A_, 0
+	note __, 0
+	note D_, 0
+	note __, 0
+	note D_, 0
+	note __, 0
+	note E_, 0
+	note __, 0
+	note F_, 0
+	note __, 0
+	note G_, 3
+	note __, 1
+	octave 4
+	note D_, 0
+	note __, 0
+	octave 3
+	note G_, 0
+	note __, 0
+	note G_, 0
+	note __, 0
+	note A_, 0
+	note __, 0
+	note A#, 0
+	notetype $6, $25
+	note __, 0
+	note B_, 0
+	endchannel
+; ef5b1

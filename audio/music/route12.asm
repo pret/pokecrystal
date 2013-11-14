@@ -1,461 +1,466 @@
-_Music_Route12: ; 0xec506
-	db $c0
-	dw _Music_Route12_Ch1
-	db $01
-	dw _Music_Route12_Ch2
-	db $02
-	dw _Music_Route12_Ch3
-	db $03
-	dw _Music_Route12_Ch4
-; 0xec512
+Music_Route12: ; ec506
+	dbw $c0, Music_Route12_Ch1
+	dbw $01, Music_Route12_Ch2
+	dbw $02, Music_Route12_Ch3
+	dbw $03, Music_Route12_Ch4
+; ec512
 
-_Music_Route12_Ch1: ; 0xec512
-	tempo $9400
+
+Music_Route12_Ch1: ; ec512
+	tempo 148
 	volume $77
 	vibrato $12, $34
-	tone $0100
-	stereopanning $0f
-	dutycycle $03
-	notetype $0c, $98
-	octave3
-	note $90
-	note $01
-	note $a0
-	note $97
-	octave2
-	note $c0
-	octave3
-	note $50
-	note $70
-	note $90
-	note $70
-	note $01
-	note $50
+	tone $0001
+	stereopanning $f
+	dutycycle $3
+	notetype $c, $98
+	octave 3
+	note G#, 0
+	note __, 1
+	note A_, 0
+	note G#, 7
+	octave 2
+	note B_, 0
+	octave 3
+	note E_, 0
+	note F#, 0
+	note G#, 0
+	note F#, 0
+	note __, 1
+	note E_, 0
 	intensity $97
-	note $4b
-	dutycycle $02
+	note D#, 11
+
+Music_Route12_branch_ec535: ; ec535
+	dutycycle $2
 	intensity $96
-	callchannel _Music_Route12_sub_0xec5b1
-	callchannel _Music_Route12_sub_0xec5bf
-	callchannel _Music_Route12_sub_0xec5b1
-	note $50
-	note $01
-	note $70
-	note $53
-	note $c3
-	octave4
-	note $43
-	callchannel _Music_Route12_sub_0xec5b1
-	callchannel _Music_Route12_sub_0xec5bf
-	callchannel _Music_Route12_sub_0xec5b1
+	callchannel Music_Route12_branch_ec5b1
+	callchannel Music_Route12_branch_ec5bf
+	callchannel Music_Route12_branch_ec5b1
+	note E_, 0
+	note __, 1
+	note F#, 0
+	note E_, 3
+	note B_, 3
+	octave 4
+	note D#, 3
+	callchannel Music_Route12_branch_ec5b1
+	callchannel Music_Route12_branch_ec5bf
+	callchannel Music_Route12_branch_ec5b1
 	intensity $92
-	octave4
-	note $50
-	octave3
-	note $c0
-	note $90
-	note $50
-	octave4
-	note $40
-	octave3
-	note $c0
-	note $90
-	note $40
-	octave4
-	note $30
-	octave3
-	note $c0
-	note $90
-	note $30
-	note $20
-	note $60
-	note $90
-	note $c0
-	dutycycle $03
+	octave 4
+	note E_, 0
+	octave 3
+	note B_, 0
+	note G#, 0
+	note E_, 0
+	octave 4
+	note D#, 0
+	octave 3
+	note B_, 0
+	note G#, 0
+	note D#, 0
+	octave 4
+	note D_, 0
+	octave 3
+	note B_, 0
+	note G#, 0
+	note D_, 0
+	note C#, 0
+	note F_, 0
+	note G#, 0
+	note B_, 0
+	dutycycle $3
 	intensity $7f
-	octave4
-	note $22
-	octave3
-	note $c2
-	note $a0
-	note $00
-	note $a3
-	octave4
-	note $21
-	octave3
-	note $c1
-	octave4
-	note $20
-	octave3
-	note $c0
-	note $a3
-	note $91
-	note $71
-	note $91
-	note $a1
-	octave4
-	note $11
-	octave3
-	note $c2
-	note $a2
-	note $90
-	note $00
-	note $93
-	note $c1
-	note $a1
-	note $c0
-	note $a0
-	note $93
-	note $71
-	note $51
-	note $71
-	note $81
-	note $51
-	note $42
-	note $72
-	note $41
-	note $57
-	note $77
-	note $43
-	note $73
+	octave 4
+	note C#, 2
+	octave 3
+	note B_, 2
+	note A_, 0
+	note __, 0
+	note A_, 3
+	octave 4
+	note C#, 1
+	octave 3
+	note B_, 1
+	octave 4
+	note C#, 0
+	octave 3
+	note B_, 0
+	note A_, 3
+	note G#, 1
+	note F#, 1
+	note G#, 1
+	note A_, 1
+	octave 4
+	note C_, 1
+	octave 3
+	note B_, 2
+	note A_, 2
+	note G#, 0
+	note __, 0
+	note G#, 3
+	note B_, 1
+	note A_, 1
+	note B_, 0
+	note A_, 0
+	note G#, 3
+	note F#, 1
+	note E_, 1
+	note F#, 1
+	note G_, 1
+	note E_, 1
+	note D#, 2
+	note F#, 2
+	note D#, 1
+	note E_, 7
+	note F#, 7
+	note D#, 3
+	note F#, 3
+
+Music_Route12_branch_ec59b: ; ec59b
 	intensity $97
-	note $90
-	note $a0
-	note $c3
-	octave2
-	note $c0
-	octave3
-	note $40
-	note $50
-	note $00
-	note $50
-	note $70
-	note $93
-	loopchannel $02, $459b
-	loopchannel $00, $4535 ; end
-; 0xec5b1
+	note G#, 0
+	note A_, 0
+	note B_, 3
+	octave 2
+	note B_, 0
+	octave 3
+	note D#, 0
+	note E_, 0
+	note __, 0
+	note E_, 0
+	note F#, 0
+	note G#, 3
+	loopchannel 2, Music_Route12_branch_ec59b
+	loopchannel 0, Music_Route12_branch_ec535
+; ec5b1
 
-_Music_Route12_sub_0xec5b1: ; 0xec5b1
-; subroutine
-	octave3
-	note $90
-	note $00
-	note $50
-	note $00
-	octave2
-	note $c0
-	note $00
-	note $c0
-	octave3
-	note $40
-	note $53
-	note $93
-	endchannel ; end
-; 0xec5bf
+Music_Route12_branch_ec5b1: ; ec5b1
+	octave 3
+	note G#, 0
+	note __, 0
+	note E_, 0
+	note __, 0
+	octave 2
+	note B_, 0
+	note __, 0
+	note B_, 0
+	octave 3
+	note D#, 0
+	note E_, 3
+	note G#, 3
+	endchannel
+; ec5bf
 
-_Music_Route12_sub_0xec5bf: ; 0xec5bf
-; subroutine
-	note $a0
-	note $00
-	note $70
-	note $00
-	note $30
-	note $00
-	note $70
-	note $90
-	note $a3
-	note $73
-	endchannel ; end
-; 0xec5ca
+Music_Route12_branch_ec5bf: ; ec5bf
+	note A_, 0
+	note __, 0
+	note F#, 0
+	note __, 0
+	note D_, 0
+	note __, 0
+	note F#, 0
+	note G#, 0
+	note A_, 3
+	note F#, 3
+	endchannel
 
-_Music_Route12_Ch2: ; 0xec5ca
-	dutycycle $03
+Music_Route12_Ch2: ; ec5ca
+	dutycycle $3
 	vibrato $12, $34
-	notetype $0c, $b8
-	octave4
-	note $50
-	note $01
-	note $70
-	note $5b
-	octave3
-	note $c0
-	note $01
-	octave4
-	note $10
+	notetype $c, $b8
+	octave 4
+	note E_, 0
+	note __, 1
+	note F#, 0
+	note E_, 11
+	octave 3
+	note B_, 0
+	note __, 1
+	octave 4
+	note C_, 0
 	intensity $b7
-	octave3
-	note $c7
-	note $40
-	note $70
-	note $c0
-	octave4
-	note $40
-	dutycycle $03
+	octave 3
+	note B_, 7
+	note D#, 0
+	note F#, 0
+	note B_, 0
+	octave 4
+	note D#, 0
+
+Music_Route12_branch_ec5e5: ; ec5e5
+	dutycycle $3
 	intensity $b7
-	callchannel _Music_Route12_sub_0xec647
-	note $70
-	note $a0
-	note $90
-	note $70
-	note $91
-	note $00
-	note $50
-	octave3
-	note $cb
-	dutycycle $02
-	octave2
-	note $c0
-	note $01
-	octave3
-	note $10
-	octave2
-	note $c3
-	octave3
-	note $43
-	note $73
-	dutycycle $03
-	callchannel _Music_Route12_sub_0xec647
-	note $a0
-	octave5
-	note $20
-	octave4
-	note $c0
-	note $a0
-	note $c1
-	note $00
-	note $a0
+	callchannel Music_Route12_branch_ec647
+	note F#, 0
+	note A_, 0
+	note G#, 0
+	note F#, 0
+	note G#, 1
+	note __, 0
+	note E_, 0
+	octave 3
+	note B_, 11
+	dutycycle $2
+	octave 2
+	note B_, 0
+	note __, 1
+	octave 3
+	note C_, 0
+	octave 2
+	note B_, 3
+	octave 3
+	note D#, 3
+	note F#, 3
+	dutycycle $3
+	callchannel Music_Route12_branch_ec647
+	note A_, 0
+	octave 5
+	note C#, 0
+	octave 4
+	note B_, 0
+	note A_, 0
+	note B_, 1
+	note __, 0
+	note A_, 0
 	intensity $b8
-	note $95
+	note G#, 5
 	intensity $b7
-	note $95
+	note G#, 5
 	intensity $6f
-	note $9f
-	dutycycle $02
+	note G#, 15
+	dutycycle $2
 	intensity $a8
-	note $a2
-	note $92
-	note $70
-	note $00
-	note $77
+	note A_, 2
+	note G#, 2
+	note F#, 0
+	note __, 0
+	note F#, 7
 	intensity $a7
-	note $79
-	note $01
-	note $73
+	note F#, 9
+	note __, 1
+	note F#, 3
 	intensity $a8
-	note $92
-	note $72
-	note $50
-	note $00
-	note $57
+	note G#, 2
+	note F#, 2
+	note E_, 0
+	note __, 0
+	note E_, 7
 	intensity $a7
-	note $59
-	note $01
-	note $53
-	note $72
-	note $42
-	octave3
-	note $c1
+	note E_, 9
+	note __, 1
+	note E_, 3
+	note F#, 2
+	note D#, 2
+	octave 3
+	note B_, 1
 	intensity $a8
-	octave4
-	note $c7
-	note $c7
-	note $a7
-	note $90
-	note $70
-	note $5d
-	note $59
+	octave 4
+	note B_, 7
+	note B_, 7
+	note A_, 7
+	note G#, 0
+	note F#, 0
+	note E_, 13
+	note E_, 9
 	intensity $a4
-	note $55
-	loopchannel $00, $45e5 ; end
-; 0xec647
+	note E_, 5
+	loopchannel 0, Music_Route12_branch_ec5e5
+; ec647
 
-_Music_Route12_sub_0xec647: ; 0xec647
-; subroutine
-	octave4
-	note $55
+Music_Route12_branch_ec647: ; ec647
+	octave 4
+	note E_, 5
 	intensity $b1
-	octave3
-	note $c0
-	note $c0
+	octave 3
+	note B_, 0
+	note B_, 0
 	intensity $b7
-	note $c3
-	octave4
-	note $c3
-	note $a3
-	note $93
-	note $73
-	endchannel ; end
-; 0xec657
+	note B_, 3
+	octave 4
+	note B_, 3
+	note A_, 3
+	note G#, 3
+	note F#, 3
+	endchannel
 
-_Music_Route12_Ch3: ; 0xec657
+Music_Route12_Ch3: ; ec657
 	vibrato $12, $54
-	notetype $0c, $16
-	octave3
-	note $91
-	note $03
-	note $90
-	note $a0
-	note $c1
-	note $01
-	note $53
-	note $41
-	note $03
-	note $40
-	note $50
-	note $71
-	note $01
-	note $43
-	callchannel _Music_Route12_sub_0xec6b4
-	note $70
-	note $00
-	note $50
-	note $02
-	note $40
-	note $50
-	note $73
-	octave2
-	note $c3
-	callchannel _Music_Route12_sub_0xec6b4
-	note $50
-	note $00
-	note $c0
-	note $02
-	octave2
-	note $c0
-	octave3
-	note $20
-	note $33
-	note $63
-	note $7c
-	note $00
-	note $70
-	note $90
-	note $a4
-	note $00
-	note $a0
-	note $c0
-	octave4
-	note $13
-	octave3
-	note $73
-	note $5d
-	note $90
-	note $a0
-	note $c5
-	note $50
-	note $70
-	note $83
-	note $53
-	octave2
-	note $c4
-	note $00
-	note $c0
-	octave3
-	note $40
-	note $77
-	note $57
-	note $73
-	note $43
-	note $50
-	note $00
-	note $50
-	note $02
-	note $50
-	note $70
-	note $93
-	note $52
-	note $00
-	loopchannel $02, $46a3
-	loopchannel $00, $466c ; end
-; 0xec6b4
+	notetype $c, $16
+	octave 3
+	note G#, 1
+	note __, 3
+	note G#, 0
+	note A_, 0
+	note B_, 1
+	note __, 1
+	note E_, 3
+	note D#, 1
+	note __, 3
+	note D#, 0
+	note E_, 0
+	note F#, 1
+	note __, 1
+	note D#, 3
 
-_Music_Route12_sub_0xec6b4: ; 0xec6b4
-; subroutine
-	octave3
-	note $50
-	note $00
-	note $50
-	note $02
-	note $50
-	note $70
-	note $93
-	note $53
-	note $30
-	note $00
-	note $30
-	note $02
-	note $30
-	note $50
-	note $73
-	note $33
-	note $50
-	note $00
-	note $50
-	note $02
-	note $50
-	note $70
-	note $93
-	note $53
-	endchannel ; end
-; 0xec6ce
+Music_Route12_branch_ec66c: ; ec66c
+	callchannel Music_Route12_branch_ec6b4
+	note F#, 0
+	note __, 0
+	note E_, 0
+	note __, 2
+	note D#, 0
+	note E_, 0
+	note F#, 3
+	octave 2
+	note B_, 3
+	callchannel Music_Route12_branch_ec6b4
+	note E_, 0
+	note __, 0
+	note B_, 0
+	note __, 2
+	octave 2
+	note B_, 0
+	octave 3
+	note C#, 0
+	note D_, 3
+	note F_, 3
+	note F#, 12
+	note __, 0
+	note F#, 0
+	note G#, 0
+	note A_, 4
+	note __, 0
+	note A_, 0
+	note B_, 0
+	octave 4
+	note C_, 3
+	octave 3
+	note F#, 3
+	note E_, 13
+	note G#, 0
+	note A_, 0
+	note B_, 5
+	note E_, 0
+	note F#, 0
+	note G_, 3
+	note E_, 3
+	octave 2
+	note B_, 4
+	note __, 0
+	note B_, 0
+	octave 3
+	note D#, 0
+	note F#, 7
+	note E_, 7
+	note F#, 3
+	note D#, 3
 
-_Music_Route12_Ch4: ; 0xec6ce
-	togglenoise $04
+Music_Route12_branch_ec6a3: ; ec6a3
+	note E_, 0
+	note __, 0
+	note E_, 0
+	note __, 2
+	note E_, 0
+	note F#, 0
+	note G#, 3
+	note E_, 2
+	note __, 0
+	loopchannel 2, Music_Route12_branch_ec6a3
+	loopchannel 0, Music_Route12_branch_ec66c
+; ec6b4
+
+Music_Route12_branch_ec6b4: ; ec6b4
+	octave 3
+	note E_, 0
+	note __, 0
+	note E_, 0
+	note __, 2
+	note E_, 0
+	note F#, 0
+	note G#, 3
+	note E_, 3
+	note D_, 0
+	note __, 0
+	note D_, 0
+	note __, 2
+	note D_, 0
+	note E_, 0
+	note F#, 3
+	note D_, 3
+	note E_, 0
+	note __, 0
+	note E_, 0
+	note __, 2
+	note E_, 0
+	note F#, 0
+	note G#, 3
+	note E_, 3
+	endchannel
+
+Music_Route12_Ch4: ; ec6ce
+	togglenoise $4
 	stereopanning $f0
-	notetype $0c
-	note $c9
-	note $20
-	note $20
-	note $33
-	note $c5
-	note $20
-	note $20
-	note $33
-	notetype $06
-	callchannel _Music_Route12_sub_0xec717
-	note $33
-	note $37
-	note $21
-	note $21
-	note $37
-	callchannel _Music_Route12_sub_0xec717
-	loopchannel $08, $46e1
-	notetype $0c
-	note $c9
-	note $30
-	note $30
-	note $35
-	note $20
-	note $20
-	note $35
-	note $20
-	note $20
-	note $33
-	loopchannel $02, $46ed
-	note $cf
-	notetype $06
-	callchannel _Music_Route12_sub_0xec717
-	callchannel _Music_Route12_sub_0xec717
-	note $cf
-	note $33
-	note $37
-	note $21
-	note $21
-	note $37
-	callchannel _Music_Route12_sub_0xec717
-	loopchannel $02, $4707
-	loopchannel $00, $46e1 ; end
-; 0xec717
+	notetype $c
+	note B_, 9
+	note C#, 0
+	note C#, 0
+	note D_, 3
+	note B_, 5
+	note C#, 0
+	note C#, 0
+	note D_, 3
+	notetype $6
+	callchannel Music_Route12_branch_ec717
 
-_Music_Route12_sub_0xec717: ; 0xec717
-; subroutine
-	note $20
-	note $20
-	note $20
-	note $20
-	note $20
-	note $20
-	note $20
-	note $20
-	endchannel ; end
-; 0xec720
+Music_Route12_branch_ec6e1: ; ec6e1
+	note D_, 3
+	note D_, 7
+	note C#, 1
+	note C#, 1
+	note D_, 7
+	callchannel Music_Route12_branch_ec717
+	loopchannel 8, Music_Route12_branch_ec6e1
+
+Music_Route12_branch_ec6ed: ; ec6ed
+	notetype $c
+	note B_, 9
+	note D_, 0
+	note D_, 0
+	note D_, 5
+	note C#, 0
+	note C#, 0
+	note D_, 5
+	note C#, 0
+	note C#, 0
+	note D_, 3
+	loopchannel 2, Music_Route12_branch_ec6ed
+	note B_, 15
+	notetype $6
+	callchannel Music_Route12_branch_ec717
+	callchannel Music_Route12_branch_ec717
+	note B_, 15
+
+Music_Route12_branch_ec707: ; ec707
+	note D_, 3
+	note D_, 7
+	note C#, 1
+	note C#, 1
+	note D_, 7
+	callchannel Music_Route12_branch_ec717
+	loopchannel 2, Music_Route12_branch_ec707
+	loopchannel 0, Music_Route12_branch_ec6e1
+; ec717
+
+Music_Route12_branch_ec717: ; ec717
+	note C#, 0
+	note C#, 0
+	note C#, 0
+	note C#, 0
+	note C#, 0
+	note C#, 0
+	note C#, 0
+	note C#, 0
+	endchannel
+; ec720

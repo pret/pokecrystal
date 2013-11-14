@@ -1,1539 +1,1542 @@
-_Music_KantoTrainerBattle: ; 0xec9fa
-	db $80
-	dw _Music_KantoTrainerBattle_Ch1
-	db $01
-	dw _Music_KantoTrainerBattle_Ch2
-	db $02
-	dw _Music_KantoTrainerBattle_Ch3
-; 0xeca03
+Music_KantoTrainerBattle: ; ec9fa
+	dbw $80, Music_KantoTrainerBattle_Ch1
+	dbw $01, Music_KantoTrainerBattle_Ch2
+	dbw $02, Music_KantoTrainerBattle_Ch3
+; eca03
 
-	db $03
+INCBIN "baserom.gbc", $eca03, $eca04 - $eca03
 
-_Music_KantoTrainerBattle_Ch1: ; 0xeca04
-	tempo $7200
+Music_KantoTrainerBattle_Ch1: ; eca04
+	tempo 114
 	volume $77
 	forceoctave $1b
-	notetype $0c, $b3
+	notetype $c, $b3
 	vibrato $12, $24
-	dutycycle $01
-	note $00
-	octave4
-	note $a0
-	note $90
-	note $80
-	note $90
-	note $80
-	note $70
-	note $60
-	note $70
-	note $60
-	note $50
-	note $40
-	note $50
-	note $40
-	note $30
-	note $20
-	note $30
-	note $20
-	note $10
-	octave3
-	note $c0
-	octave4
-	note $10
-	octave3
-	note $c0
-	note $b0
-	note $a0
-	note $b0
-	note $a0
-	note $90
-	note $80
-	note $90
-	note $80
-	note $70
-	note $80
-	dutycycle $02
+	dutycycle $1
+	note __, 0
+	octave 4
+	note A_, 0
+	note G#, 0
+	note G_, 0
+	note G#, 0
+	note G_, 0
+	note F#, 0
+	note F_, 0
+	note F#, 0
+	note F_, 0
+	note E_, 0
+	note D#, 0
+	note E_, 0
+	note D#, 0
+	note D_, 0
+	note C#, 0
+	note D_, 0
+	note C#, 0
+	note C_, 0
+	octave 3
+	note B_, 0
+	octave 4
+	note C_, 0
+	octave 3
+	note B_, 0
+	note A#, 0
+	note A_, 0
+	note A#, 0
+	note A_, 0
+	note G#, 0
+	note G_, 0
+	note G#, 0
+	note G_, 0
+	note F#, 0
+	note G_, 0
+	dutycycle $2
 	intensity $b1
-	octave4
-	note $41
-	octave2
-	note $10
-	note $00
-	note $10
-	note $00
-	octave4
-	note $11
-	octave2
-	note $10
-	note $00
-	note $10
-	note $00
-	octave4
-	note $41
-	note $01
-	octave3
-	note $b1
-	octave4
-	note $11
-	note $01
-	note $41
-	note $01
-	octave3
-	note $40
-	note $00
-	note $60
-	note $00
-	note $70
-	note $00
-	octave4
-	note $11
-	octave2
-	note $10
-	note $00
-	note $10
-	note $00
-	octave4
-	note $11
-	octave2
-	note $10
-	note $00
-	note $10
-	note $00
-	octave4
-	note $41
-	note $01
-	octave3
-	note $b1
-	octave4
-	note $11
-	note $01
-	note $41
-	note $01
-	note $40
-	note $00
-	note $60
-	note $00
-	note $80
-	note $00
+	octave 4
+	note D#, 1
+	octave 2
+	note C_, 0
+	note __, 0
+	note C_, 0
+	note __, 0
+	octave 4
+	note C_, 1
+	octave 2
+	note C_, 0
+	note __, 0
+	note C_, 0
+	note __, 0
+	octave 4
+	note D#, 1
+	note __, 1
+	octave 3
+	note A#, 1
+	octave 4
+	note C_, 1
+	note __, 1
+	note D#, 1
+	note __, 1
+	octave 3
+	note D#, 0
+	note __, 0
+	note F_, 0
+	note __, 0
+	note F#, 0
+	note __, 0
+	octave 4
+	note C_, 1
+	octave 2
+	note C_, 0
+	note __, 0
+	note C_, 0
+	note __, 0
+	octave 4
+	note C_, 1
+	octave 2
+	note C_, 0
+	note __, 0
+	note C_, 0
+	note __, 0
+	octave 4
+	note D#, 1
+	note __, 1
+	octave 3
+	note A#, 1
+	octave 4
+	note C_, 1
+	note __, 1
+	note D#, 1
+	note __, 1
+	note D#, 0
+	note __, 0
+	note F_, 0
+	note __, 0
+	note G_, 0
+	note __, 0
 	intensity $b3
-	note $41
-	note $03
-	note $61
-	note $03
-	note $71
-	note $01
-	note $41
-	note $61
-	note $01
-	note $71
-	note $01
-	note $41
-	note $61
-	note $71
-	notetype $0c, $b7
-	note $43
-	note $01
-	note $19
-	note $03
-	note $41
-	note $11
-	octave3
-	note $80
-	octave4
-	note $10
-	note $40
-	note $00
-	note $10
-	note $00
-	note $40
-	note $00
-	note $27
-	note $67
-	note $97
-	octave5
-	note $23
-	note $20
-	octave4
-	note $90
-	note $60
-	note $20
-	note $43
-	note $01
-	note $19
-	note $03
-	note $41
-	note $11
-	octave3
-	note $80
-	octave4
-	note $10
-	note $40
-	note $00
-	note $30
-	note $00
-	note $60
-	note $00
-	note $45
-	note $35
-	note $11
-	note $01
-	note $01
-	note $31
-	note $03
-	note $61
-	note $01
-	note $91
-	note $80
-	note $70
-	octave3
-	note $90
-	note $60
-	note $10
-	note $90
-	octave4
-	note $10
-	note $00
-	note $60
-	note $00
-	note $10
-	octave3
-	note $90
-	note $60
-	note $04
-	octave4
-	note $47
-	note $33
-	octave3
-	note $60
-	note $a0
-	octave4
-	note $10
-	note $40
-	note $33
-	octave3
-	note $33
-	octave4
-	note $63
-	octave3
-	note $33
-	note $03
-	note $33
-	note $03
-	note $33
-	note $90
-	note $60
-	note $10
-	note $90
-	octave4
-	note $10
-	note $00
-	note $60
-	note $00
-	note $10
-	octave3
-	note $90
-	note $60
-	note $04
-	octave4
-	note $47
-	note $33
-	octave3
-	note $60
-	note $a0
-	octave4
-	note $10
-	note $40
-	note $33
-	octave3
-	note $33
-	note $03
-	note $33
-	note $b0
-	octave4
-	note $30
-	note $60
-	note $00
-	octave3
-	note $31
-	octave4
-	note $61
-	note $31
-	octave3
-	note $b1
-	note $31
-	octave4
-	note $31
+	note D#, 1
+	note __, 3
+	note F_, 1
+	note __, 3
+	note F#, 1
+	note __, 1
+	note D#, 1
+	note F_, 1
+	note __, 1
+	note F#, 1
+	note __, 1
+	note D#, 1
+	note F_, 1
+	note F#, 1
+
+Music_KantoTrainerBattle_branch_eca88: ; eca88
+	notetype $c, $b7
+	note D#, 3
+	note __, 1
+	note C_, 9
+	note __, 3
+	note D#, 1
+	note C_, 1
+	octave 3
+	note G_, 0
+	octave 4
+	note C_, 0
+	note D#, 0
+	note __, 0
+	note C_, 0
+	note __, 0
+	note D#, 0
+	note __, 0
+	note C#, 7
+	note F_, 7
+	note G#, 7
+	octave 5
+	note C#, 3
+	note C#, 0
+	octave 4
+	note G#, 0
+	note F_, 0
+	note C#, 0
+	note D#, 3
+	note __, 1
+	note C_, 9
+	note __, 3
+	note D#, 1
+	note C_, 1
+	octave 3
+	note G_, 0
+	octave 4
+	note C_, 0
+	note D#, 0
+	note __, 0
+	note D_, 0
+	note __, 0
+	note F_, 0
+	note __, 0
+	note D#, 5
+	note D_, 5
+	note C_, 1
+	note __, 1
+	note __, 1
+	note D_, 1
+	note __, 3
+	note F_, 1
+	note __, 1
+	note G#, 1
+	note G_, 0
+	note F#, 0
+	octave 3
+	note G#, 0
+	note F_, 0
+	note C_, 0
+	note G#, 0
+	octave 4
+	note C_, 0
+	note __, 0
+	note F_, 0
+	note __, 0
+	note C_, 0
+	octave 3
+	note G#, 0
+	note F_, 0
+	note __, 4
+	octave 4
+	note D#, 7
+	note D_, 3
+	octave 3
+	note F_, 0
+	note A_, 0
+	octave 4
+	note C_, 0
+	note D#, 0
+	note D_, 3
+	octave 3
+	note D_, 3
+	octave 4
+	note F_, 3
+	octave 3
+	note D_, 3
+	note __, 3
+	note D_, 3
+	note __, 3
+	note D_, 3
+	note G#, 0
+	note F_, 0
+	note C_, 0
+	note G#, 0
+	octave 4
+	note C_, 0
+	note __, 0
+	note F_, 0
+	note __, 0
+	note C_, 0
+	octave 3
+	note G#, 0
+	note F_, 0
+	note __, 4
+	octave 4
+	note D#, 7
+	note D_, 3
+	octave 3
+	note F_, 0
+	note A_, 0
+	octave 4
+	note C_, 0
+	note D#, 0
+	note D_, 3
+	octave 3
+	note D_, 3
+	note __, 3
+	note D_, 3
+	note A#, 0
+	octave 4
+	note D_, 0
+	note F_, 0
+	note __, 0
+	octave 3
+	note D_, 1
+	octave 4
+	note F_, 1
+	note D_, 1
+	octave 3
+	note A#, 1
+	note D_, 1
+	octave 4
+	note D_, 1
 	intensity $67
-	note $10
-	note $20
-	note $30
-	note $40
-	note $50
-	note $40
-	note $30
-	note $20
-	note $10
-	note $02
-	note $43
-	notetype $06, $67
-	note $40
-	note $00
-	note $40
-	note $00
-	note $40
-	note $06
-	note $40
-	note $00
-	note $40
-	note $00
-	octave3
-	note $80
-	note $02
-	note $80
-	note $02
-	octave4
-	note $17
+	note C_, 0
+	note C#, 0
+	note D_, 0
+	note D#, 0
+	note E_, 0
+	note D#, 0
+	note D_, 0
+	note C#, 0
+	note C_, 0
+	note __, 2
+	note D#, 3
+	notetype $6, $67
+	note D#, 0
+	note __, 0
+	note D#, 0
+	note __, 0
+	note D#, 0
+	note __, 6
+	note D#, 0
+	note __, 0
+	note D#, 0
+	note __, 0
+	octave 3
+	note G_, 0
+	note __, 2
+	note G_, 0
+	note __, 2
+	octave 4
+	note C_, 7
 	intensity $77
-	note $21
-	note $31
-	note $41
-	note $51
-	note $61
-	note $51
-	note $41
-	note $31
-	note $21
-	note $05
-	note $57
-	note $50
-	note $00
-	note $50
-	note $00
-	note $50
-	note $06
-	note $50
-	note $00
-	note $50
-	note $00
-	octave3
-	note $90
-	note $02
-	note $90
-	note $02
-	octave4
-	note $27
+	note C#, 1
+	note D_, 1
+	note D#, 1
+	note E_, 1
+	note F_, 1
+	note E_, 1
+	note D#, 1
+	note D_, 1
+	note C#, 1
+	note __, 5
+	note E_, 7
+	note E_, 0
+	note __, 0
+	note E_, 0
+	note __, 0
+	note E_, 0
+	note __, 6
+	note E_, 0
+	note __, 0
+	note E_, 0
+	note __, 0
+	octave 3
+	note G#, 0
+	note __, 2
+	note G#, 0
+	note __, 2
+	octave 4
+	note C#, 7
 	intensity $87
-	note $31
-	note $41
-	note $51
-	note $61
-	note $71
-	note $61
-	note $51
-	note $41
-	note $31
-	note $05
-	note $67
-	note $60
-	note $00
-	note $60
-	note $00
-	note $60
-	note $06
-	note $60
-	note $00
-	note $60
-	note $00
-	octave3
-	note $a0
-	note $02
-	note $a0
-	note $02
-	octave4
-	note $37
+	note D_, 1
+	note D#, 1
+	note E_, 1
+	note F_, 1
+	note F#, 1
+	note F_, 1
+	note E_, 1
+	note D#, 1
+	note D_, 1
+	note __, 5
+	note F_, 7
+	note F_, 0
+	note __, 0
+	note F_, 0
+	note __, 0
+	note F_, 0
+	note __, 6
+	note F_, 0
+	note __, 0
+	note F_, 0
+	note __, 0
+	octave 3
+	note A_, 0
+	note __, 2
+	note A_, 0
+	note __, 2
+	octave 4
+	note D_, 7
 	intensity $97
-	note $41
-	note $51
-	note $61
-	note $71
-	note $81
-	note $71
-	note $61
-	note $51
-	note $41
-	note $05
-	note $77
+	note D#, 1
+	note E_, 1
+	note F_, 1
+	note F#, 1
+	note G_, 1
+	note F#, 1
+	note F_, 1
+	note E_, 1
+	note D#, 1
+	note __, 5
+	note F#, 7
 	intensity $a7
-	note $97
-	note $b7
+	note G#, 7
+	note A#, 7
 	intensity $b7
-	octave5
-	note $37
-	note $31
-	note $05
-	octave4
-	note $b1
-	note $71
-	note $41
-	octave3
-	note $b1
-	octave4
-	note $71
-	note $41
-	octave3
-	note $b1
-	note $71
-	octave4
-	note $91
-	note $01
-	note $4b
+	octave 5
+	note D_, 7
+	note D_, 1
+	note __, 5
+	octave 4
+	note A#, 1
+	note F#, 1
+	note D#, 1
+	octave 3
+	note A#, 1
+	octave 4
+	note F#, 1
+	note D#, 1
+	octave 3
+	note A#, 1
+	note F#, 1
+	octave 4
+	note G#, 1
+	note __, 1
+	note D#, 11
 	intensity $b1
-	octave6
-	note $11
-	note $11
-	note $17
-	note $11
-	note $11
-	note $13
-	note $13
-	note $13
-	note $13
+	octave 6
+	note C_, 1
+	note C_, 1
+	note C_, 7
+	note C_, 1
+	note C_, 1
+	note C_, 3
+	note C_, 3
+	note C_, 3
+	note C_, 3
 	intensity $b7
-	octave4
-	note $b1
-	note $71
-	note $41
-	octave3
-	note $b1
-	octave4
-	note $71
-	note $41
-	octave3
-	note $b1
-	note $71
-	octave4
-	note $71
-	note $01
-	note $c3
-	note $b3
-	note $93
-	note $73
-	note $63
-	note $43
-	note $33
-	note $47
-	note $77
-	octave5
-	note $17
-	note $47
-	octave4
-	note $2f
-	note $21
-	note $01
-	note $41
-	note $01
-	note $61
-	note $01
-	octave3
-	note $91
-	note $01
-	octave4
-	note $61
-	note $71
-	note $61
-	note $41
-	note $61
+	octave 4
+	note A#, 1
+	note F#, 1
+	note D#, 1
+	octave 3
+	note A#, 1
+	octave 4
+	note F#, 1
+	note D#, 1
+	octave 3
+	note A#, 1
+	note F#, 1
+	octave 4
+	note F#, 1
+	note __, 1
+	note B_, 3
+	note A#, 3
+	note G#, 3
+	note F#, 3
+	note F_, 3
+	note D#, 3
+	note D_, 3
+	note D#, 7
+	note F#, 7
+	octave 5
+	note C_, 7
+	note D#, 7
+	octave 4
+	note C#, 15
+	note C#, 1
+	note __, 1
+	note D#, 1
+	note __, 1
+	note F_, 1
+	note __, 1
+	octave 3
+	note G#, 1
+	note __, 1
+	octave 4
+	note F_, 1
+	note F#, 1
+	note F_, 1
+	note D#, 1
+	note F_, 1
 	intensity $67
-	note $50
-	note $30
-	note $10
-	octave3
-	note $c0
-	note $a0
-	note $80
+	note E_, 0
+	note D_, 0
+	note C_, 0
+	octave 3
+	note B_, 0
+	note A_, 0
+	note G_, 0
 	intensity $a1
-	octave4
-	note $21
-	octave2
-	note $81
-	note $81
-	octave4
-	note $21
-	octave2
-	note $81
-	note $81
+	octave 4
+	note C#, 1
+	octave 2
+	note G_, 1
+	note G_, 1
+	octave 4
+	note C#, 1
+	octave 2
+	note G_, 1
+	note G_, 1
 	intensity $b7
-	octave4
-	note $33
-	loopchannel $00, $4a88 ; end
-; 0xecbea
+	octave 4
+	note D_, 3
+	loopchannel 0, Music_KantoTrainerBattle_branch_eca88
 
-_Music_KantoTrainerBattle_Ch2: ; 0xecbea
+Music_KantoTrainerBattle_Ch2: ; ecbea
 	forceoctave $1b
-	vibrato $06, $36
-	dutycycle $01
-	notetype $0c, $d1
-	octave4
-	note $b3
-	note $b3
-	note $b3
-	note $b3
-	note $b3
-	note $b3
-	note $b3
-	note $80
-	note $90
-	note $80
-	note $70
-	dutycycle $03
+	vibrato $6, $36
+	dutycycle $1
+	notetype $c, $d1
+	octave 4
+	note A#, 3
+	note A#, 3
+	note A#, 3
+	note A#, 3
+	note A#, 3
+	note A#, 3
+	note A#, 3
+	note G_, 0
+	note G#, 0
+	note G_, 0
+	note F#, 0
+	dutycycle $3
 	intensity $62
-	octave3
-	note $80
-	note $90
-	note $80
-	note $70
-	loopchannel $0e, $4c04
-	note $80
-	note $90
-	note $80
-	note $60
-	note $40
-	note $30
-	note $10
-	octave2
-	note $c0
-	intensity $d7
-	dutycycle $02
-	note $11
-	octave3
-	note $10
-	note $00
-	octave2
-	note $10
-	note $00
-	octave1
-	note $b1
-	octave2
-	note $b0
-	note $00
-	octave1
-	note $b0
-	note $00
-	note $a1
-	octave2
-	note $a0
-	note $00
-	octave1
-	note $a0
-	note $00
-	note $91
-	octave2
-	note $90
-	note $00
-	octave1
-	note $90
-	note $00
-	note $80
-	note $c0
-	octave2
-	note $30
-	note $60
-	note $80
-	note $c0
-	octave3
-	note $30
-	note $60
-	notetype $0c, $d7
-	octave2
-	note $10
-	note $10
-	octave3
-	note $10
-	note $00
-	octave2
-	note $80
-	note $00
-	octave3
-	note $10
-	note $00
-	octave2
-	note $11
-	note $c0
-	note $00
-	note $80
-	note $00
-	note $c0
-	note $00
-	note $11
-	note $b0
-	note $00
-	note $80
-	note $00
-	note $b0
-	note $00
-	note $11
-	note $a0
-	note $00
-	note $90
-	note $00
-	octave3
-	note $10
-	note $00
-	octave2
-	note $20
-	note $20
-	note $90
-	note $00
-	octave3
-	note $21
-	octave2
-	note $21
-	note $90
-	note $00
-	octave3
-	note $11
-	octave2
-	note $21
-	note $90
-	note $00
-	note $b1
-	note $20
-	note $20
-	note $60
-	note $00
-	note $91
-	octave3
-	note $20
-	note $00
-	note $61
-	note $90
-	note $00
-	note $b1
-	octave2
-	note $10
-	note $10
-	octave3
-	note $10
-	note $00
-	octave2
-	note $80
-	note $00
-	octave3
-	note $10
-	note $00
-	octave2
-	note $11
-	note $c0
-	note $00
-	note $80
-	note $00
-	note $c0
-	note $00
-	note $11
-	note $b0
-	note $00
-	note $80
-	note $00
-	note $b0
-	note $00
-	note $11
-	note $a0
-	note $00
-	note $60
-	note $00
-	note $a0
-	note $00
-	octave1
-	note $b0
-	note $b0
-	octave2
-	note $60
-	note $00
-	note $b1
-	octave1
-	note $b1
-	octave2
-	note $60
-	note $00
-	note $a1
-	octave1
-	note $b1
-	octave2
-	note $60
-	note $00
-	note $91
-	octave1
-	note $b0
-	note $b0
-	octave2
-	note $60
-	note $00
-	note $81
-	note $b0
-	note $00
-	octave3
-	note $31
-	note $60
-	note $00
-	note $b1
-	octave1
-	note $61
-	octave2
-	note $60
-	note $00
-	note $10
-	note $00
-	note $60
-	note $00
-	octave1
-	note $61
-	octave2
-	note $50
-	note $00
-	note $10
-	note $00
-	note $50
-	note $00
-	octave1
-	note $61
-	octave2
-	note $40
-	note $00
-	note $10
-	note $00
-	note $40
-	note $00
-	octave1
-	note $61
-	octave2
-	note $30
-	note $00
-	note $40
-	note $10
-	octave1
-	note $b0
-	note $a0
-	note $b0
-	note $00
-	note $b0
-	note $00
-	octave3
-	note $63
-	octave1
-	note $b0
-	note $00
-	note $b0
-	note $00
-	octave3
-	note $73
-	octave1
-	note $b0
-	note $00
-	note $b0
-	note $00
-	octave3
-	note $83
-	octave1
-	note $b0
-	note $00
-	note $b0
-	note $00
-	octave3
-	note $93
-	octave1
-	note $61
-	octave2
-	note $60
-	note $00
-	note $10
-	note $00
-	note $60
-	note $00
-	octave1
-	note $61
-	octave2
-	note $50
-	note $00
-	note $10
-	note $00
-	note $50
-	note $00
-	octave1
-	note $61
-	octave2
-	note $40
-	note $00
-	note $10
-	note $00
-	note $40
-	note $00
-	octave1
-	note $61
-	octave2
-	note $30
-	note $00
-	note $40
-	note $10
-	octave1
-	note $b0
-	note $a0
-	note $b0
-	note $00
-	note $b0
-	note $00
-	octave3
-	note $63
-	octave1
-	note $b0
-	note $00
-	note $b0
-	note $00
-	octave3
-	note $73
-	octave1
-	note $b0
-	note $00
-	note $b0
-	note $00
-	octave3
-	note $83
-	octave1
-	note $b0
-	note $00
-	note $b0
-	note $00
-	octave3
-	note $93
-	vibrato $12, $24
-	notetype $0c, $78
-	octave4
-	note $8f
-	intensity $77
-	note $8f
-	notetype $06, $88
-	note $9f
-	intensity $87
-	note $9e
-	note $80
-	note $96
-	note $a0
-	note $b2
-	note $a0
-	note $97
-	note $83
-	note $65
-	note $01
-	notetype $0c, $98
-	note $af
-	intensity $97
-	note $af
-	intensity $a7
-	note $bf
-	intensity $d7
-	octave5
-	note $37
-	note $67
-	vibrato $04, $36
-	octave2
-	note $b3
-	note $43
-	note $10
-	note $00
-	intensity $d8
-	note $95
-	intensity $d7
-	note $9f
-	note $b3
-	note $43
-	note $40
-	note $00
-	octave3
-	note $4d
-	octave2
-	note $10
-	note $00
-	octave3
-	note $41
-	note $01
-	notetype $06, $d7
-	octave2
-	note $10
-	note $00
-	note $10
-	note $00
-	note $11
-	note $01
-	note $11
-	note $01
-	octave3
-	note $97
-	octave4
-	note $61
-	note $71
-	note $61
-	note $41
-	note $61
-	note $01
-	note $41
-	note $01
-	octave3
-	note $61
-	note $01
-	note $71
-	note $01
-	note $91
-	note $01
-	note $21
-	note $01
-	note $91
-	note $b1
-	note $91
-	note $71
-	note $91
-	intensity $72
-	note $80
-	note $60
-	note $50
-	note $30
-	note $10
-	octave2
-	note $c0
-	intensity $c1
-	octave3
-	note $c1
-	octave1
-	note $70
-	note $00
-	note $70
-	note $00
-	octave3
-	note $c1
-	octave1
-	note $70
-	note $00
-	note $70
-	note $00
-	intensity $d7
-	octave3
-	note $c3
-	loopchannel $00, $4c41 ; end
-; 0xecdd2
 
-_Music_KantoTrainerBattle_Ch3: ; 0xecdd2
+Music_KantoTrainerBattle_branch_ecc04: ; ecc04
+	octave 3
+	note G_, 0
+	note G#, 0
+	note G_, 0
+	note F#, 0
+	loopchannel 14, Music_KantoTrainerBattle_branch_ecc04
+	note G_, 0
+	note G#, 0
+	note G_, 0
+	note F_, 0
+	note D#, 0
+	note D_, 0
+	note C_, 0
+	octave 2
+	note B_, 0
+	intensity $d7
+	dutycycle $2
+	note C_, 1
+	octave 3
+	note C_, 0
+	note __, 0
+	octave 2
+	note C_, 0
+	note __, 0
+	octave 1
+	note A#, 1
+	octave 2
+	note A#, 0
+	note __, 0
+	octave 1
+	note A#, 0
+	note __, 0
+	note A_, 1
+	octave 2
+	note A_, 0
+	note __, 0
+	octave 1
+	note A_, 0
+	note __, 0
+	note G#, 1
+	octave 2
+	note G#, 0
+	note __, 0
+	octave 1
+	note G#, 0
+	note __, 0
+	note G_, 0
+	note B_, 0
+	octave 2
+	note D_, 0
+	note F_, 0
+	note G_, 0
+	note B_, 0
+	octave 3
+	note D_, 0
+	note F_, 0
+
+Music_KantoTrainerBattle_branch_ecc41: ; ecc41
+	notetype $c, $d7
+	octave 2
+	note C_, 0
+	note C_, 0
+	octave 3
+	note C_, 0
+	note __, 0
+	octave 2
+	note G_, 0
+	note __, 0
+	octave 3
+	note C_, 0
+	note __, 0
+	octave 2
+	note C_, 1
+	note B_, 0
+	note __, 0
+	note G_, 0
+	note __, 0
+	note B_, 0
+	note __, 0
+	note C_, 1
+	note A#, 0
+	note __, 0
+	note G_, 0
+	note __, 0
+	note A#, 0
+	note __, 0
+	note C_, 1
+	note A_, 0
+	note __, 0
+	note G#, 0
+	note __, 0
+	octave 3
+	note C_, 0
+	note __, 0
+	octave 2
+	note C#, 0
+	note C#, 0
+	note G#, 0
+	note __, 0
+	octave 3
+	note C#, 1
+	octave 2
+	note C#, 1
+	note G#, 0
+	note __, 0
+	octave 3
+	note C_, 1
+	octave 2
+	note C#, 1
+	note G#, 0
+	note __, 0
+	note A#, 1
+	note C#, 0
+	note C#, 0
+	note F_, 0
+	note __, 0
+	note G#, 1
+	octave 3
+	note C#, 0
+	note __, 0
+	note F_, 1
+	note G#, 0
+	note __, 0
+	note A#, 1
+	octave 2
+	note C_, 0
+	note C_, 0
+	octave 3
+	note C_, 0
+	note __, 0
+	octave 2
+	note G_, 0
+	note __, 0
+	octave 3
+	note C_, 0
+	note __, 0
+	octave 2
+	note C_, 1
+	note B_, 0
+	note __, 0
+	note G_, 0
+	note __, 0
+	note B_, 0
+	note __, 0
+	note C_, 1
+	note A#, 0
+	note __, 0
+	note G_, 0
+	note __, 0
+	note A#, 0
+	note __, 0
+	note C_, 1
+	note A_, 0
+	note __, 0
+	note F_, 0
+	note __, 0
+	note A_, 0
+	note __, 0
+	octave 1
+	note A#, 0
+	note A#, 0
+	octave 2
+	note F_, 0
+	note __, 0
+	note A#, 1
+	octave 1
+	note A#, 1
+	octave 2
+	note F_, 0
+	note __, 0
+	note A_, 1
+	octave 1
+	note A#, 1
+	octave 2
+	note F_, 0
+	note __, 0
+	note G#, 1
+	octave 1
+	note A#, 0
+	note A#, 0
+	octave 2
+	note F_, 0
+	note __, 0
+	note G_, 1
+	note A#, 0
+	note __, 0
+	octave 3
+	note D_, 1
+	note F_, 0
+	note __, 0
+	note A#, 1
+	octave 1
+	note F_, 1
+	octave 2
+	note F_, 0
+	note __, 0
+	note C_, 0
+	note __, 0
+	note F_, 0
+	note __, 0
+	octave 1
+	note F_, 1
+	octave 2
+	note E_, 0
+	note __, 0
+	note C_, 0
+	note __, 0
+	note E_, 0
+	note __, 0
+	octave 1
+	note F_, 1
+	octave 2
+	note D#, 0
+	note __, 0
+	note C_, 0
+	note __, 0
+	note D#, 0
+	note __, 0
+	octave 1
+	note F_, 1
+	octave 2
+	note D_, 0
+	note __, 0
+	note D#, 0
+	note C_, 0
+	octave 1
+	note A#, 0
+	note A_, 0
+	note A#, 0
+	note __, 0
+	note A#, 0
+	note __, 0
+	octave 3
+	note F_, 3
+	octave 1
+	note A#, 0
+	note __, 0
+	note A#, 0
+	note __, 0
+	octave 3
+	note F#, 3
+	octave 1
+	note A#, 0
+	note __, 0
+	note A#, 0
+	note __, 0
+	octave 3
+	note G_, 3
+	octave 1
+	note A#, 0
+	note __, 0
+	note A#, 0
+	note __, 0
+	octave 3
+	note G#, 3
+	octave 1
+	note F_, 1
+	octave 2
+	note F_, 0
+	note __, 0
+	note C_, 0
+	note __, 0
+	note F_, 0
+	note __, 0
+	octave 1
+	note F_, 1
+	octave 2
+	note E_, 0
+	note __, 0
+	note C_, 0
+	note __, 0
+	note E_, 0
+	note __, 0
+	octave 1
+	note F_, 1
+	octave 2
+	note D#, 0
+	note __, 0
+	note C_, 0
+	note __, 0
+	note D#, 0
+	note __, 0
+	octave 1
+	note F_, 1
+	octave 2
+	note D_, 0
+	note __, 0
+	note D#, 0
+	note C_, 0
+	octave 1
+	note A#, 0
+	note A_, 0
+	note A#, 0
+	note __, 0
+	note A#, 0
+	note __, 0
+	octave 3
+	note F_, 3
+	octave 1
+	note A#, 0
+	note __, 0
+	note A#, 0
+	note __, 0
+	octave 3
+	note F#, 3
+	octave 1
+	note A#, 0
+	note __, 0
+	note A#, 0
+	note __, 0
+	octave 3
+	note G_, 3
+	octave 1
+	note A#, 0
+	note __, 0
+	note A#, 0
+	note __, 0
+	octave 3
+	note G#, 3
+	vibrato $12, $24
+	notetype $c, $78
+	octave 4
+	note G_, 15
+	intensity $77
+	note G_, 15
+	notetype $6, $88
+	note G#, 15
+	intensity $87
+	note G#, 14
+	note G_, 0
+	note G#, 6
+	note A_, 0
+	note A#, 2
+	note A_, 0
+	note G#, 7
+	note G_, 3
+	note F_, 5
+	note __, 1
+	notetype $c, $98
+	note A_, 15
+	intensity $97
+	note A_, 15
+	intensity $a7
+	note A#, 15
+	intensity $d7
+	octave 5
+	note D_, 7
+	note F_, 7
+	vibrato $4, $36
+	octave 2
+	note A#, 3
+	note D#, 3
+	note C_, 0
+	note __, 0
+	intensity $d8
+	note G#, 5
+	intensity $d7
+	note G#, 15
+	note A#, 3
+	note D#, 3
+	note D#, 0
+	note __, 0
+	octave 3
+	note D#, 13
+	octave 2
+	note C_, 0
+	note __, 0
+	octave 3
+	note D#, 1
+	note __, 1
+	notetype $6, $d7
+	octave 2
+	note C_, 0
+	note __, 0
+	note C_, 0
+	note __, 0
+	note C_, 1
+	note __, 1
+	note C_, 1
+	note __, 1
+	octave 3
+	note G#, 7
+	octave 4
+	note F_, 1
+	note F#, 1
+	note F_, 1
+	note D#, 1
+	note F_, 1
+	note __, 1
+	note D#, 1
+	note __, 1
+	octave 3
+	note F_, 1
+	note __, 1
+	note F#, 1
+	note __, 1
+	note G#, 1
+	note __, 1
+	note C#, 1
+	note __, 1
+	note G#, 1
+	note A#, 1
+	note G#, 1
+	note F#, 1
+	note G#, 1
+	intensity $72
+	note G_, 0
+	note F_, 0
+	note E_, 0
+	note D_, 0
+	note C_, 0
+	octave 2
+	note B_, 0
+	intensity $c1
+	octave 3
+	note B_, 1
+	octave 1
+	note F#, 0
+	note __, 0
+	note F#, 0
+	note __, 0
+	octave 3
+	note B_, 1
+	octave 1
+	note F#, 0
+	note __, 0
+	note F#, 0
+	note __, 0
+	intensity $d7
+	octave 3
+	note B_, 3
+	loopchannel 0, Music_KantoTrainerBattle_branch_ecc41
+
+Music_KantoTrainerBattle_Ch3: ; ecdd2
 	forceoctave $1b
 	vibrato $12, $23
-	notetype $0c, $15
-	octave2
-	note $b0
-	octave4
-	note $b0
-	octave3
-	note $b1
-	octave2
-	note $a0
-	octave4
-	note $a0
-	octave3
-	note $a1
-	octave2
-	note $90
-	octave4
-	note $90
-	octave3
-	note $91
-	octave2
-	note $80
-	octave4
-	note $80
-	octave3
-	note $81
-	octave2
-	note $70
-	octave4
-	note $70
-	octave3
-	note $71
-	octave2
-	note $60
-	octave4
-	note $60
-	octave3
-	note $61
-	octave2
-	note $50
-	octave4
-	note $50
-	octave3
-	note $51
-	note $30
-	note $60
-	note $c0
-	octave4
-	note $30
+	notetype $c, $15
+	octave 2
+	note A#, 0
+	octave 4
+	note A#, 0
+	octave 3
+	note A#, 1
+	octave 2
+	note A_, 0
+	octave 4
+	note A_, 0
+	octave 3
+	note A_, 1
+	octave 2
+	note G#, 0
+	octave 4
+	note G#, 0
+	octave 3
+	note G#, 1
+	octave 2
+	note G_, 0
+	octave 4
+	note G_, 0
+	octave 3
+	note G_, 1
+	octave 2
+	note F#, 0
+	octave 4
+	note F#, 0
+	octave 3
+	note F#, 1
+	octave 2
+	note F_, 0
+	octave 4
+	note F_, 0
+	octave 3
+	note F_, 1
+	octave 2
+	note E_, 0
+	octave 4
+	note E_, 0
+	octave 3
+	note E_, 1
+	note D_, 0
+	note F_, 0
+	note B_, 0
+	octave 4
+	note D_, 0
 	intensity $18
-	octave6
-	note $11
-	octave3
-	note $10
-	note $00
-	note $10
-	note $00
-	octave5
-	note $61
-	octave3
-	note $10
-	note $00
-	note $10
-	note $00
-	octave5
-	note $71
-	octave4
-	note $10
-	note $40
-	octave5
-	note $41
-	note $61
-	note $01
-	note $71
-	note $01
-	octave4
-	note $80
-	note $00
-	note $b0
-	note $00
-	note $c0
-	note $00
-	octave5
-	note $41
-	octave3
-	note $10
-	note $00
-	note $10
-	note $00
-	octave5
-	note $61
-	octave3
-	note $10
-	note $00
-	note $10
-	note $00
-	octave5
-	note $71
-	octave4
-	note $10
-	note $40
-	octave5
-	note $41
-	note $61
-	note $01
-	note $71
-	note $01
-	note $80
-	note $00
-	note $b0
-	note $00
-	note $c0
-	note $00
-	octave6
-	note $11
-	note $03
-	note $31
-	note $03
-	note $41
-	note $01
-	note $11
-	note $31
-	note $01
-	note $41
-	note $01
-	octave5
-	note $81
-	note $b1
-	note $c1
-	notetype $0c, $14
-	octave6
-	note $13
-	notetype $06, $14
-	octave5
-	note $c0
-	note $b0
-	note $a0
-	note $90
-	notetype $0c, $14
-	note $89
-	note $01
-	notetype $06, $14
-	note $80
-	note $90
-	note $a0
-	note $b0
-	octave6
-	note $15
-	octave5
-	note $a0
-	note $90
-	note $87
-	octave6
-	note $16
-	octave5
-	note $c0
-	notetype $0c, $14
-	octave6
-	note $2f
-	note $27
-	note $63
-	note $90
-	note $60
-	note $20
-	octave5
-	note $90
-	octave6
-	note $13
-	notetype $06, $14
-	octave5
-	note $c0
-	note $b0
-	note $a0
-	note $90
-	notetype $0c, $14
-	note $89
-	note $01
-	notetype $06, $14
-	note $80
-	note $90
-	note $a0
-	note $b0
-	octave6
-	note $15
-	octave5
-	note $a0
-	note $90
-	note $87
-	octave6
-	note $16
-	octave5
-	note $c0
-	note $bf
-	note $bf
-	note $bc
-	note $c0
-	octave6
-	note $10
-	note $20
-	note $37
-	note $61
-	note $31
-	octave5
-	note $b1
-	note $a1
-	notetype $0c, $10
-	note $9a
+	octave 6
+	note C_, 1
+	octave 3
+	note C_, 0
+	note __, 0
+	note C_, 0
+	note __, 0
+	octave 5
+	note F_, 1
+	octave 3
+	note C_, 0
+	note __, 0
+	note C_, 0
+	note __, 0
+	octave 5
+	note F#, 1
+	octave 4
+	note C_, 0
+	note D#, 0
+	octave 5
+	note D#, 1
+	note F_, 1
+	note __, 1
+	note F#, 1
+	note __, 1
+	octave 4
+	note G_, 0
+	note __, 0
+	note A#, 0
+	note __, 0
+	note B_, 0
+	note __, 0
+	octave 5
+	note D#, 1
+	octave 3
+	note C_, 0
+	note __, 0
+	note C_, 0
+	note __, 0
+	octave 5
+	note F_, 1
+	octave 3
+	note C_, 0
+	note __, 0
+	note C_, 0
+	note __, 0
+	octave 5
+	note F#, 1
+	octave 4
+	note C_, 0
+	note D#, 0
+	octave 5
+	note D#, 1
+	note F_, 1
+	note __, 1
+	note F#, 1
+	note __, 1
+	note G_, 0
+	note __, 0
+	note A#, 0
+	note __, 0
+	note B_, 0
+	note __, 0
+	octave 6
+	note C_, 1
+	note __, 3
+	note D_, 1
+	note __, 3
+	note D#, 1
+	note __, 1
+	note C_, 1
+	note D_, 1
+	note __, 1
+	note D#, 1
+	note __, 1
+	octave 5
+	note G_, 1
+	note A#, 1
+	note B_, 1
+
+Music_KantoTrainerBattle_branch_ece5a: ; ece5a
+	notetype $c, $14
+	octave 6
+	note C_, 3
+	notetype $6, $14
+	octave 5
+	note B_, 0
+	note A#, 0
+	note A_, 0
+	note G#, 0
+	notetype $c, $14
+	note G_, 9
+	note __, 1
+	notetype $6, $14
+	note G_, 0
+	note G#, 0
+	note A_, 0
+	note A#, 0
+	octave 6
+	note C_, 5
+	octave 5
+	note A_, 0
+	note G#, 0
+	note G_, 7
+	octave 6
+	note C_, 6
+	octave 5
+	note B_, 0
+	notetype $c, $14
+	octave 6
+	note C#, 15
+	note C#, 7
+	note F_, 3
+	note G#, 0
+	note F_, 0
+	note C#, 0
+	octave 5
+	note G#, 0
+	octave 6
+	note C_, 3
+	notetype $6, $14
+	octave 5
+	note B_, 0
+	note A#, 0
+	note A_, 0
+	note G#, 0
+	notetype $c, $14
+	note G_, 9
+	note __, 1
+	notetype $6, $14
+	note G_, 0
+	note G#, 0
+	note A_, 0
+	note A#, 0
+	octave 6
+	note C_, 5
+	octave 5
+	note A_, 0
+	note G#, 0
+	note G_, 7
+	octave 6
+	note C_, 6
+	octave 5
+	note B_, 0
+	note A#, 15
+	note A#, 15
+	note A#, 12
+	note B_, 0
+	octave 6
+	note C_, 0
+	note C#, 0
+	note D_, 7
+	note F_, 1
+	note D_, 1
+	octave 5
+	note A#, 1
+	note A_, 1
+	notetype $c, $10
+	note G#, 10
 	intensity $14
-	note $10
-	note $60
-	note $00
-	note $90
-	note $00
+	note C_, 0
+	note F_, 0
+	note __, 0
+	note G#, 0
+	note __, 0
 	intensity $10
-	octave6
-	note $15
-	notetype $06, $10
-	octave5
-	note $c0
-	note $b0
-	note $a0
-	note $90
-	note $9f
-	notetype $0c, $10
-	note $bf
+	octave 6
+	note C_, 5
+	notetype $6, $10
+	octave 5
+	note B_, 0
+	note A#, 0
+	note A_, 0
+	note G#, 0
+	note G#, 15
+	notetype $c, $10
+	note A#, 15
 	intensity $25
-	note $30
-	octave4
-	note $b0
-	note $60
-	note $b0
-	octave5
-	note $60
-	note $30
-	octave4
-	note $b0
-	octave5
-	note $30
-	note $b0
-	note $60
-	note $30
-	note $60
-	octave6
-	note $31
-	note $20
-	note $10
+	note D_, 0
+	octave 4
+	note A#, 0
+	note F_, 0
+	note A#, 0
+	octave 5
+	note F_, 0
+	note D_, 0
+	octave 4
+	note A#, 0
+	octave 5
+	note D_, 0
+	note A#, 0
+	note F_, 0
+	note D_, 0
+	note F_, 0
+	octave 6
+	note D_, 1
+	note C#, 0
+	note C_, 0
 	intensity $10
-	octave5
-	note $9a
+	octave 5
+	note G#, 10
 	intensity $14
-	note $10
-	note $60
-	note $00
-	note $90
-	note $00
+	note C_, 0
+	note F_, 0
+	note __, 0
+	note G#, 0
+	note __, 0
 	intensity $10
-	octave6
-	note $16
-	notetype $06, $10
-	note $20
-	note $30
-	notetype $0c, $10
-	note $47
-	note $3b
-	note $90
-	note $60
+	octave 6
+	note C_, 6
+	notetype $6, $10
+	note C#, 0
+	note D_, 0
+	notetype $c, $10
+	note D#, 7
+	note D_, 11
+	note G#, 0
+	note F_, 0
 	intensity $25
-	octave5
-	note $b0
-	note $60
-	note $90
-	note $90
-	note $90
-	note $00
-	note $b0
-	note $00
-	note $91
-	note $81
-	note $61
-	note $41
-	note $61
+	octave 5
+	note A#, 0
+	note F_, 0
+	note G#, 0
+	note G#, 0
+	note G#, 0
+	note __, 0
+	note A#, 0
+	note __, 0
+	note G#, 1
+	note G_, 1
+	note F_, 1
+	note D#, 1
+	note F_, 1
 	intensity $24
-	octave3
-	note $80
-	octave4
-	note $10
-	octave3
-	note $40
-	octave4
-	note $10
-	octave3
-	note $80
-	octave4
-	note $10
-	octave3
-	note $40
-	octave4
-	note $10
-	octave3
-	note $80
-	octave4
-	note $10
-	octave3
-	note $40
-	octave4
-	note $10
-	octave3
-	note $80
-	octave4
-	note $10
-	octave3
-	note $40
-	octave4
-	note $10
-	octave3
-	note $80
-	octave4
-	note $10
-	octave3
-	note $40
-	octave4
-	note $10
-	octave3
-	note $80
-	octave4
-	note $10
-	octave3
-	note $40
-	octave4
-	note $10
-	octave3
-	note $80
-	octave4
-	note $10
-	octave3
-	note $40
-	octave4
-	note $10
-	octave3
-	note $80
-	octave4
-	note $10
-	octave3
-	note $40
-	octave4
-	note $10
-	octave3
-	note $90
-	octave4
-	note $20
-	octave3
-	note $50
-	octave4
-	note $20
-	octave3
-	note $90
-	octave4
-	note $20
-	octave3
-	note $50
-	octave4
-	note $20
-	octave3
-	note $90
-	octave4
-	note $20
-	octave3
-	note $50
-	octave4
-	note $20
-	octave3
-	note $90
-	octave4
-	note $20
-	octave3
-	note $50
-	octave4
-	note $20
-	octave3
-	note $90
-	octave4
-	note $20
-	octave3
-	note $50
-	octave4
-	note $20
-	octave3
-	note $90
-	octave4
-	note $20
-	octave3
-	note $50
-	octave4
-	note $20
-	octave3
-	note $90
-	octave4
-	note $20
-	octave3
-	note $50
-	octave4
-	note $20
-	octave3
-	note $90
-	octave4
-	note $20
-	octave3
-	note $50
-	octave4
-	note $20
+	octave 3
+	note G_, 0
+	octave 4
+	note C_, 0
+	octave 3
+	note D#, 0
+	octave 4
+	note C_, 0
+	octave 3
+	note G_, 0
+	octave 4
+	note C_, 0
+	octave 3
+	note D#, 0
+	octave 4
+	note C_, 0
+	octave 3
+	note G_, 0
+	octave 4
+	note C_, 0
+	octave 3
+	note D#, 0
+	octave 4
+	note C_, 0
+	octave 3
+	note G_, 0
+	octave 4
+	note C_, 0
+	octave 3
+	note D#, 0
+	octave 4
+	note C_, 0
+	octave 3
+	note G_, 0
+	octave 4
+	note C_, 0
+	octave 3
+	note D#, 0
+	octave 4
+	note C_, 0
+	octave 3
+	note G_, 0
+	octave 4
+	note C_, 0
+	octave 3
+	note D#, 0
+	octave 4
+	note C_, 0
+	octave 3
+	note G_, 0
+	octave 4
+	note C_, 0
+	octave 3
+	note D#, 0
+	octave 4
+	note C_, 0
+	octave 3
+	note G_, 0
+	octave 4
+	note C_, 0
+	octave 3
+	note D#, 0
+	octave 4
+	note C_, 0
+	octave 3
+	note G#, 0
+	octave 4
+	note C#, 0
+	octave 3
+	note E_, 0
+	octave 4
+	note C#, 0
+	octave 3
+	note G#, 0
+	octave 4
+	note C#, 0
+	octave 3
+	note E_, 0
+	octave 4
+	note C#, 0
+	octave 3
+	note G#, 0
+	octave 4
+	note C#, 0
+	octave 3
+	note E_, 0
+	octave 4
+	note C#, 0
+	octave 3
+	note G#, 0
+	octave 4
+	note C#, 0
+	octave 3
+	note E_, 0
+	octave 4
+	note C#, 0
+	octave 3
+	note G#, 0
+	octave 4
+	note C#, 0
+	octave 3
+	note E_, 0
+	octave 4
+	note C#, 0
+	octave 3
+	note G#, 0
+	octave 4
+	note C#, 0
+	octave 3
+	note E_, 0
+	octave 4
+	note C#, 0
+	octave 3
+	note G#, 0
+	octave 4
+	note C#, 0
+	octave 3
+	note E_, 0
+	octave 4
+	note C#, 0
+	octave 3
+	note G#, 0
+	octave 4
+	note C#, 0
+	octave 3
+	note E_, 0
+	octave 4
+	note C#, 0
 	intensity $14
-	octave3
-	note $a0
-	octave4
-	note $30
-	octave3
-	note $60
-	octave4
-	note $30
-	octave3
-	note $a0
-	octave4
-	note $30
-	octave3
-	note $60
-	octave4
-	note $30
-	octave3
-	note $a0
-	octave4
-	note $30
-	octave3
-	note $60
-	octave4
-	note $30
-	octave3
-	note $a0
-	octave4
-	note $30
-	octave3
-	note $60
-	octave4
-	note $30
+	octave 3
+	note A_, 0
+	octave 4
+	note D_, 0
+	octave 3
+	note F_, 0
+	octave 4
+	note D_, 0
+	octave 3
+	note A_, 0
+	octave 4
+	note D_, 0
+	octave 3
+	note F_, 0
+	octave 4
+	note D_, 0
+	octave 3
+	note A_, 0
+	octave 4
+	note D_, 0
+	octave 3
+	note F_, 0
+	octave 4
+	note D_, 0
+	octave 3
+	note A_, 0
+	octave 4
+	note D_, 0
+	octave 3
+	note F_, 0
+	octave 4
+	note D_, 0
 	intensity $15
-	octave3
-	note $a0
-	octave4
-	note $30
-	octave3
-	note $60
-	octave4
-	note $30
-	octave3
-	note $a0
-	octave4
-	note $30
-	octave3
-	note $60
-	octave4
-	note $30
-	octave3
-	note $a0
-	octave4
-	note $30
-	octave3
-	note $60
-	octave4
-	note $30
-	octave3
-	note $a0
-	octave4
-	note $30
-	octave3
-	note $60
-	octave4
-	note $30
+	octave 3
+	note A_, 0
+	octave 4
+	note D_, 0
+	octave 3
+	note F_, 0
+	octave 4
+	note D_, 0
+	octave 3
+	note A_, 0
+	octave 4
+	note D_, 0
+	octave 3
+	note F_, 0
+	octave 4
+	note D_, 0
+	octave 3
+	note A_, 0
+	octave 4
+	note D_, 0
+	octave 3
+	note F_, 0
+	octave 4
+	note D_, 0
+	octave 3
+	note A_, 0
+	octave 4
+	note D_, 0
+	octave 3
+	note F_, 0
+	octave 4
+	note D_, 0
 	intensity $15
-	octave3
-	note $b0
-	octave4
-	note $40
-	octave3
-	note $70
-	octave4
-	note $40
-	octave3
-	note $b0
-	octave4
-	note $40
-	octave3
-	note $70
-	octave4
-	note $40
-	octave3
-	note $b0
-	octave4
-	note $40
-	octave3
-	note $70
-	octave4
-	note $40
-	octave3
-	note $b0
-	octave4
-	note $40
-	octave3
-	note $70
-	octave4
-	note $40
+	octave 3
+	note A#, 0
+	octave 4
+	note D#, 0
+	octave 3
+	note F#, 0
+	octave 4
+	note D#, 0
+	octave 3
+	note A#, 0
+	octave 4
+	note D#, 0
+	octave 3
+	note F#, 0
+	octave 4
+	note D#, 0
+	octave 3
+	note A#, 0
+	octave 4
+	note D#, 0
+	octave 3
+	note F#, 0
+	octave 4
+	note D#, 0
+	octave 3
+	note A#, 0
+	octave 4
+	note D#, 0
+	octave 3
+	note F#, 0
+	octave 4
+	note D#, 0
 	intensity $14
-	octave3
-	note $60
-	note $90
-	note $c0
-	octave4
-	note $30
-	octave3
-	note $90
-	note $c0
-	octave4
-	note $30
-	note $60
-	octave3
-	note $c0
-	octave4
-	note $30
-	note $60
-	note $90
-	note $30
-	note $60
-	note $90
-	octave5
-	note $30
-	octave6
-	note $43
-	octave5
-	note $b3
-	octave6
-	note $20
-	note $00
-	note $15
-	octave4
-	note $10
-	note $40
-	note $90
-	octave5
-	note $10
-	note $40
-	note $90
-	octave6
-	note $10
-	note $40
-	note $90
-	note $40
-	note $10
-	octave5
-	note $90
-	note $40
-	note $10
-	octave4
-	note $90
-	note $40
-	octave6
-	note $43
-	octave5
-	note $b3
-	note $c0
-	note $00
-	octave6
-	note $7b
-	note $60
-	note $70
-	note $9f
-	note $67
-	note $20
-	note $00
-	note $40
-	note $00
-	note $60
-	note $00
-	octave5
-	note $90
-	note $00
-	octave6
-	note $60
-	note $70
-	note $60
-	note $40
-	note $60
-	notetype $06, $24
-	note $50
-	note $30
-	note $10
-	octave5
-	note $c0
-	note $a0
-	note $80
+	octave 3
+	note F_, 0
+	note G#, 0
+	note B_, 0
+	octave 4
+	note D_, 0
+	octave 3
+	note G#, 0
+	note B_, 0
+	octave 4
+	note D_, 0
+	note F_, 0
+	octave 3
+	note B_, 0
+	octave 4
+	note D_, 0
+	note F_, 0
+	note G#, 0
+	note D_, 0
+	note F_, 0
+	note G#, 0
+	octave 5
+	note D_, 0
+	octave 6
+	note D#, 3
+	octave 5
+	note A#, 3
+	octave 6
+	note C#, 0
+	note __, 0
+	note C_, 5
+	octave 4
+	note C_, 0
+	note D#, 0
+	note G#, 0
+	octave 5
+	note C_, 0
+	note D#, 0
+	note G#, 0
+	octave 6
+	note C_, 0
+	note D#, 0
+	note G#, 0
+	note D#, 0
+	note C_, 0
+	octave 5
+	note G#, 0
+	note D#, 0
+	note C_, 0
+	octave 4
+	note G#, 0
+	note D#, 0
+	octave 6
+	note D#, 3
+	octave 5
+	note A#, 3
+	note B_, 0
+	note __, 0
+	octave 6
+	note F#, 11
+	note F_, 0
+	note F#, 0
+	note G#, 15
+	note F_, 7
+	note C#, 0
+	note __, 0
+	note D#, 0
+	note __, 0
+	note F_, 0
+	note __, 0
+	octave 5
+	note G#, 0
+	note __, 0
+	octave 6
+	note F_, 0
+	note F#, 0
+	note F_, 0
+	note D#, 0
+	note F_, 0
+	notetype $6, $24
+	note E_, 0
+	note D_, 0
+	note C_, 0
+	octave 5
+	note B_, 0
+	note A_, 0
+	note G_, 0
 	intensity $14
-	note $81
-	octave3
-	note $80
-	note $00
-	note $80
-	note $00
-	octave5
-	note $81
-	octave3
-	note $80
-	note $00
-	note $80
-	note $00
+	note G_, 1
+	octave 3
+	note G_, 0
+	note __, 0
+	note G_, 0
+	note __, 0
+	octave 5
+	note G_, 1
+	octave 3
+	note G_, 0
+	note __, 0
+	note G_, 0
+	note __, 0
 	intensity $14
-	octave5
-	note $83
-	loopchannel $00, $4e5a ; end
-; 0xed06d
+	octave 5
+	note G_, 3
+	loopchannel 0, Music_KantoTrainerBattle_branch_ece5a
+; ed06d

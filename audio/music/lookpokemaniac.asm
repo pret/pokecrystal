@@ -1,164 +1,167 @@
-_Music_LookPokemaniac: ; 0xebde1
-	db $80
-	dw _Music_LookPokemaniac_Ch1
-	db $01
-	dw _Music_LookPokemaniac_Ch2
-	db $02
-	dw _Music_LookPokemaniac_Ch3
-; 0xebdea
+Music_LookPokemaniac: ; ebde1
+	dbw $80, Music_LookPokemaniac_Ch1
+	dbw $01, Music_LookPokemaniac_Ch2
+	dbw $02, Music_LookPokemaniac_Ch3
+; ebdea
 
-_Music_LookPokemaniac_Ch1: ; 0xebdea
-	stereopanning $0f
-	tempo $9000
+
+Music_LookPokemaniac_Ch1: ; ebdea
+	stereopanning $f
+	tempo 144
 	volume $77
-	vibrato $02, $33
-	tone $0200
-	notetype $0c, $b3
-	note $07
-	note $03
-	octave3
-	note $b0
-	note $02
-	note $b0
-	note $02
-	loopchannel $04, $7dfb
-	note $03
-	note $80
-	note $02
-	note $80
-	note $02
-	loopchannel $04, $7dfb
-	loopchannel $00, $7dfb ; end
-; 0xebe12
+	vibrato $2, $33
+	tone $0002
+	notetype $c, $b3
+	note __, 7
 
-_Music_LookPokemaniac_Ch2: ; 0xebe12
+Music_LookPokemaniac_branch_ebdfb: ; ebdfb
+	note __, 3
+	octave 3
+	note A#, 0
+	note __, 2
+	note A#, 0
+	note __, 2
+	loopchannel 4, Music_LookPokemaniac_branch_ebdfb
+	note __, 3
+	note G_, 0
+	note __, 2
+	note G_, 0
+	note __, 2
+	loopchannel 4, Music_LookPokemaniac_branch_ebdfb
+	loopchannel 0, Music_LookPokemaniac_branch_ebdfb
+
+Music_LookPokemaniac_Ch2: ; ebe12
 	stereopanning $ff
-	vibrato $02, $33
-	tone $0100
-	notetype $0c, $b3
-	octave2
-	note $a0
-	note $70
-	note $40
-	note $10
-	octave1
-	note $a3
-	octave2
-	note $11
-	note $01
-	octave3
-	note $70
-	note $02
-	note $a0
-	note $02
-	octave1
-	note $81
-	note $01
-	octave3
-	note $10
-	note $02
-	note $40
-	note $02
-	loopchannel $02, $7e24
-	octave1
-	note $a1
-	note $01
-	octave3
-	note $40
-	note $02
-	note $70
-	note $02
-	octave1
-	note $51
-	note $01
-	octave2
-	note $a0
-	note $02
-	octave3
-	note $10
-	note $02
-	loopchannel $02, $7e38
-	loopchannel $00, $7e24 ; end
-; 0xebe51
+	vibrato $2, $33
+	tone $0001
+	notetype $c, $b3
+	octave 2
+	note A_, 0
+	note F#, 0
+	note D#, 0
+	note C_, 0
+	octave 1
+	note A_, 3
 
-_Music_LookPokemaniac_Ch3: ; 0xebe51
+Music_LookPokemaniac_branch_ebe24: ; ebe24
+	octave 2
+	note C_, 1
+	note __, 1
+	octave 3
+	note F#, 0
+	note __, 2
+	note A_, 0
+	note __, 2
+	octave 1
+	note G_, 1
+	note __, 1
+	octave 3
+	note C_, 0
+	note __, 2
+	note D#, 0
+	note __, 2
+	loopchannel 2, Music_LookPokemaniac_branch_ebe24
+
+Music_LookPokemaniac_branch_ebe38: ; ebe38
+	octave 1
+	note A_, 1
+	note __, 1
+	octave 3
+	note D#, 0
+	note __, 2
+	note F#, 0
+	note __, 2
+	octave 1
+	note E_, 1
+	note __, 1
+	octave 2
+	note A_, 0
+	note __, 2
+	octave 3
+	note C_, 0
+	note __, 2
+	loopchannel 2, Music_LookPokemaniac_branch_ebe38
+	loopchannel 0, Music_LookPokemaniac_branch_ebe24
+
+Music_LookPokemaniac_Ch3: ; ebe51
 	stereopanning $f0
-	vibrato $06, $33
-	notetype $0c, $15
-	octave4
-	note $10
-	note $40
-	note $70
-	note $a0
-	octave5
-	note $13
+	vibrato $6, $33
+	notetype $c, $15
+	octave 4
+	note C_, 0
+	note D#, 0
+	note F#, 0
+	note A_, 0
+	octave 5
+	note C_, 3
 	intensity $10
-	callchannel _Music_LookPokemaniac_sub_0xebe70
-	intensity $14
-	callchannel _Music_LookPokemaniac_sub_0xebe70
-	intensity $10
-	loopchannel $00, $7e62 ; end
-; 0xebe70
 
-_Music_LookPokemaniac_sub_0xebe70: ; 0xebe70
-; subroutine
-	note $b5
-	note $a1
-	note $91
-	note $81
-	note $75
-	note $61
-	note $71
-	note $a1
-	octave4
-	note $43
-	note $10
-	note $00
-	note $40
-	note $00
-	note $10
-	note $00
-	note $40
-	note $00
-	octave5
-	note $73
-	note $10
-	note $00
-	note $70
-	note $00
-	note $10
-	note $00
-	note $70
-	note $00
-	note $85
-	note $71
-	note $61
-	note $51
-	note $45
-	note $31
-	note $41
-	note $71
-	note $13
-	octave4
-	note $a0
-	note $00
-	octave5
-	note $10
-	note $00
-	note $40
-	note $00
-	note $10
-	note $00
-	note $43
-	octave4
-	note $a0
-	note $00
-	octave5
-	note $40
-	note $00
-	note $70
-	note $00
-	note $10
-	note $00
-	endchannel ; end
-; 0xebeab
+Music_LookPokemaniac_branch_ebe62: ; ebe62
+	callchannel Music_LookPokemaniac_branch_ebe70
+	intensity $14
+	callchannel Music_LookPokemaniac_branch_ebe70
+	intensity $10
+	loopchannel 0, Music_LookPokemaniac_branch_ebe62
+; ebe70
+
+Music_LookPokemaniac_branch_ebe70: ; ebe70
+	note A#, 5
+	note A_, 1
+	note G#, 1
+	note G_, 1
+	note F#, 5
+	note F_, 1
+	note F#, 1
+	note A_, 1
+	octave 4
+	note D#, 3
+	note C_, 0
+	note __, 0
+	note D#, 0
+	note __, 0
+	note C_, 0
+	note __, 0
+	note D#, 0
+	note __, 0
+	octave 5
+	note F#, 3
+	note C_, 0
+	note __, 0
+	note F#, 0
+	note __, 0
+	note C_, 0
+	note __, 0
+	note F#, 0
+	note __, 0
+	note G_, 5
+	note F#, 1
+	note F_, 1
+	note E_, 1
+	note D#, 5
+	note D_, 1
+	note D#, 1
+	note F#, 1
+	note C_, 3
+	octave 4
+	note A_, 0
+	note __, 0
+	octave 5
+	note C_, 0
+	note __, 0
+	note D#, 0
+	note __, 0
+	note C_, 0
+	note __, 0
+	note D#, 3
+	octave 4
+	note A_, 0
+	note __, 0
+	octave 5
+	note D#, 0
+	note __, 0
+	note F#, 0
+	note __, 0
+	note C_, 0
+	note __, 0
+	endchannel
+; ebeab

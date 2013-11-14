@@ -1,435 +1,433 @@
-_Music_GymLeaderVictory: ; 0xf462c
-	db $c0
-	dw _Music_GymLeaderVictory_Ch1
-	db $01
-	dw _Music_GymLeaderVictory_Ch2
-	db $02
-	dw _Music_GymLeaderVictory_Ch3
-	db $03
-	dw _Music_GymLeaderVictory_Ch4
-; 0xf4638
+Music_GymLeaderVictory: ; f462c
+	dbw $c0, Music_GymLeaderVictory_Ch1
+	dbw $01, Music_GymLeaderVictory_Ch2
+	dbw $02, Music_GymLeaderVictory_Ch3
+	dbw $03, Music_GymLeaderVictory_Ch4
+; f4638
 
-_Music_GymLeaderVictory_Ch1: ; 0xf4638
-	tempo $7400
+
+Music_GymLeaderVictory_Ch1: ; f4638
+	tempo 116
 	volume $77
 	vibrato $12, $34
-	dutycycle $03
-	tone $0100
-	notetype $0c, $b7
-	octave4
-	note $35
-	octave3
-	note $a0
-	octave4
-	note $30
-	note $75
-	note $30
-	note $70
-	note $a5
-	note $70
-	note $a0
-	octave5
-	note $37
-	stereopanning $0f
-	dutycycle $01
-	callchannel _Music_GymLeaderVictory_sub_0xf4689
-	octave4
-	note $23
-	note $53
-	callchannel _Music_GymLeaderVictory_sub_0xf4689
-	note $77
-	loopchannel $02, $4658
-	dutycycle $02
-	callchannel _Music_GymLeaderVictory_sub_0xf46a0
-	note $a3
-	note $83
-	note $75
-	note $30
-	note $50
-	note $75
-	note $51
-	note $37
-	note $27
-	dutycycle $03
-	callchannel _Music_GymLeaderVictory_sub_0xf46a0
-	note $23
-	note $53
-	note $85
-	note $a0
-	note $80
-	note $a5
-	note $81
-	intensity $87
-	note $7f
-	loopchannel $00, $4658 ; end
-; 0xf4689
+	dutycycle $3
+	tone $0001
+	notetype $c, $b7
+	octave 4
+	note D_, 5
+	octave 3
+	note A_, 0
+	octave 4
+	note D_, 0
+	note F#, 5
+	note D_, 0
+	note F#, 0
+	note A_, 5
+	note F#, 0
+	note A_, 0
+	octave 5
+	note D_, 7
+	stereopanning $f
 
-_Music_GymLeaderVictory_sub_0xf4689: ; 0xf4689
-; subroutine
+Music_GymLeaderVictory_branch_f4658: ; f4658
+	dutycycle $1
+	callchannel Music_GymLeaderVictory_branch_f4689
+	octave 4
+	note C#, 3
+	note E_, 3
+	callchannel Music_GymLeaderVictory_branch_f4689
+	note F#, 7
+	loopchannel 2, Music_GymLeaderVictory_branch_f4658
+	dutycycle $2
+	callchannel Music_GymLeaderVictory_branch_f46a0
+	note A_, 3
+	note G_, 3
+	note F#, 5
+	note D_, 0
+	note E_, 0
+	note F#, 5
+	note E_, 1
+	note D_, 7
+	note C#, 7
+	dutycycle $3
+	callchannel Music_GymLeaderVictory_branch_f46a0
+	note C#, 3
+	note E_, 3
+	note G_, 5
+	note A_, 0
+	note G_, 0
+	note A_, 5
+	note G_, 1
+	intensity $87
+	note F#, 15
+	loopchannel 0, Music_GymLeaderVictory_branch_f4658
+; f4689
+
+Music_GymLeaderVictory_branch_f4689: ; f4689
 	intensity $91
-	octave3
-	note $71
-	note $a1
-	octave4
-	note $31
-	octave3
-	note $a0
-	note $70
-	note $51
-	note $a1
-	octave4
-	note $21
-	octave3
-	note $a0
-	note $50
-	note $31
-	note $81
-	note $c1
-	note $80
-	note $30
-	endchannel ; end
-; 0xf46a0
+	octave 3
+	note F#, 1
+	note A_, 1
+	octave 4
+	note D_, 1
+	octave 3
+	note A_, 0
+	note F#, 0
+	note E_, 1
+	note A_, 1
+	octave 4
+	note C#, 1
+	octave 3
+	note A_, 0
+	note E_, 0
+	note D_, 1
+	note G_, 1
+	note B_, 1
+	note G_, 0
+	note D_, 0
+	endchannel
+; f46a0
 
-_Music_GymLeaderVictory_sub_0xf46a0: ; 0xf46a0
-; subroutine
+Music_GymLeaderVictory_branch_f46a0: ; f46a0
 	intensity $87
-	octave3
-	note $7d
-	note $30
-	note $70
-	note $a7
-	note $73
-	note $a0
-	note $90
-	note $70
-	note $a0
-	note $9d
-	note $50
-	note $90
-	note $c7
-	octave4
-	note $33
-	note $50
-	note $30
-	note $50
-	note $30
-	note $2d
-	octave3
-	note $a0
-	octave4
-	note $20
-	note $57
-	endchannel ; end
-; 0xf46bd
+	octave 3
+	note F#, 13
+	note D_, 0
+	note F#, 0
+	note A_, 7
+	note F#, 3
+	note A_, 0
+	note G#, 0
+	note F#, 0
+	note A_, 0
+	note G#, 13
+	note E_, 0
+	note G#, 0
+	note B_, 7
+	octave 4
+	note D_, 3
+	note E_, 0
+	note D_, 0
+	note E_, 0
+	note D_, 0
+	note C#, 13
+	octave 3
+	note A_, 0
+	octave 4
+	note C#, 0
+	note E_, 7
+	endchannel
 
-_Music_GymLeaderVictory_Ch2: ; 0xf46bd
+Music_GymLeaderVictory_Ch2: ; f46bd
 	vibrato $12, $34
-	dutycycle $03
-	notetype $0c, $d7
-	octave4
-	note $a5
-	note $70
-	note $a0
-	octave5
-	note $35
-	octave4
-	note $a0
-	octave5
-	note $30
-	note $7f
-	dutycycle $03
+	dutycycle $3
+	notetype $c, $d7
+	octave 4
+	note A_, 5
+	note F#, 0
+	note A_, 0
+	octave 5
+	note D_, 5
+	octave 4
+	note A_, 0
+	octave 5
+	note D_, 0
+	note F#, 15
+
+Music_GymLeaderVictory_branch_f46d0: ; f46d0
+	dutycycle $3
 	intensity $a1
-	callchannel _Music_GymLeaderVictory_sub_0xf4711
-	note $a3
-	note $a3
-	callchannel _Music_GymLeaderVictory_sub_0xf4711
-	note $35
-	dutycycle $02
-	note $c0
-	octave5
-	note $20
-	callchannel _Music_GymLeaderVictory_sub_0xf4711
-	note $a3
-	note $a3
-	callchannel _Music_GymLeaderVictory_sub_0xf4711
-	note $37
-	dutycycle $03
-	callchannel _Music_GymLeaderVictory_sub_0xf4720
-	note $73
-	note $53
-	note $3d
-	octave4
-	note $c1
+	callchannel Music_GymLeaderVictory_branch_f4711
+	note A_, 3
+	note A_, 3
+	callchannel Music_GymLeaderVictory_branch_f4711
+	note D_, 5
+	dutycycle $2
+	note B_, 0
+	octave 5
+	note C#, 0
+	callchannel Music_GymLeaderVictory_branch_f4711
+	note A_, 3
+	note A_, 3
+	callchannel Music_GymLeaderVictory_branch_f4711
+	note D_, 7
+	dutycycle $3
+	callchannel Music_GymLeaderVictory_branch_f4720
+	note F#, 3
+	note E_, 3
+	note D_, 13
+	octave 4
+	note B_, 1
 	intensity $a7
-	note $af
-	dutycycle $02
-	callchannel _Music_GymLeaderVictory_sub_0xf4720
-	octave4
-	note $a3
-	octave5
-	note $23
-	note $3d
-	note $51
+	note A_, 15
+	dutycycle $2
+	callchannel Music_GymLeaderVictory_branch_f4720
+	octave 4
+	note A_, 3
+	octave 5
+	note C#, 3
+	note D_, 13
+	note E_, 1
 	intensity $a6
-	note $3b
-	note $01
-	dutycycle $03
-	octave4
-	note $c0
-	octave5
-	note $20
-	loopchannel $00, $46d0 ; end
-; 0xf4711
+	note D_, 11
+	note __, 1
+	dutycycle $3
+	octave 4
+	note B_, 0
+	octave 5
+	note C#, 0
+	loopchannel 0, Music_GymLeaderVictory_branch_f46d0
+; f4711
 
-_Music_GymLeaderVictory_sub_0xf4711: ; 0xf4711
-; subroutine
-	octave5
-	note $31
-	note $21
-	octave4
-	note $c3
-	octave5
-	note $21
-	octave4
-	note $c1
-	note $a3
-	note $c1
-	note $a1
-	note $81
-	note $71
-	endchannel ; end
-; 0xf4720
+Music_GymLeaderVictory_branch_f4711: ; f4711
+	octave 5
+	note D_, 1
+	note C#, 1
+	octave 4
+	note B_, 3
+	octave 5
+	note C#, 1
+	octave 4
+	note B_, 1
+	note A_, 3
+	note B_, 1
+	note A_, 1
+	note G_, 1
+	note F#, 1
+	endchannel
+; f4720
 
-_Music_GymLeaderVictory_sub_0xf4720: ; 0xf4720
-; subroutine
+Music_GymLeaderVictory_branch_f4720: ; f4720
 	intensity $98
-	note $a5
-	note $70
-	note $a0
-	octave5
-	note $37
-	note $3f
-	octave4
-	note $c5
-	note $90
-	note $c0
-	octave5
-	note $57
-	note $5f
-	octave4
-	note $85
-	note $50
-	note $80
-	octave5
-	note $27
-	note $27
-	endchannel ; end
-; 0xf4737
+	note A_, 5
+	note F#, 0
+	note A_, 0
+	octave 5
+	note D_, 7
+	note D_, 15
+	octave 4
+	note B_, 5
+	note G#, 0
+	note B_, 0
+	octave 5
+	note E_, 7
+	note E_, 15
+	octave 4
+	note G_, 5
+	note E_, 0
+	note G_, 0
+	octave 5
+	note C#, 7
+	note C#, 7
+	endchannel
 
-_Music_GymLeaderVictory_Ch3: ; 0xf4737
-	notetype $0c, $25
-	octave3
-	note $7f
-	note $39
-	octave2
-	note $a1
-	note $c1
-	octave3
-	note $21
+Music_GymLeaderVictory_Ch3: ; f4737
+	notetype $c, $25
+	octave 3
+	note F#, 15
+	note D_, 9
+	octave 2
+	note A_, 1
+	note B_, 1
+	octave 3
+	note C#, 1
 	stereopanning $f0
-	note $31
-	note $03
-	octave2
-	note $a1
-	octave3
-	note $21
-	note $03
-	octave2
-	note $a1
-	note $c1
-	note $03
-	note $81
-	note $a1
-	note $01
-	octave3
-	note $23
-	note $31
-	note $03
-	octave2
-	note $a1
-	octave3
-	note $21
-	note $03
-	octave2
-	note $a1
-	note $c1
-	note $03
-	note $81
-	octave3
-	note $31
-	note $05
-	loopchannel $02, $4744
-	callchannel _Music_GymLeaderVictory_sub_0xf479e
-	octave3
-	note $31
-	note $01
-	note $31
-	octave4
-	note $31
-	note $01
-	octave3
-	note $31
-	note $71
-	note $31
-	note $a1
-	note $01
-	octave2
-	note $a1
-	octave3
-	note $51
-	note $01
-	octave2
-	note $a1
-	octave3
-	note $21
-	octave2
-	note $a1
-	callchannel _Music_GymLeaderVictory_sub_0xf479e
-	octave3
-	note $31
-	note $01
-	note $81
-	octave4
-	note $31
-	note $01
-	octave3
-	note $31
-	note $81
-	note $51
-	note $31
-	note $01
-	note $31
-	note $a1
-	note $01
-	octave2
-	note $a1
-	note $c1
-	octave3
-	note $21
-	loopchannel $00, $4744 ; end
-; 0xf479e
 
-_Music_GymLeaderVictory_sub_0xf479e: ; 0xf479e
-; subroutine
-	octave3
-	note $31
-	note $01
-	note $31
-	octave4
-	note $31
-	note $01
-	octave3
-	note $31
-	note $71
-	note $31
-	note $a1
-	note $01
-	note $31
-	note $71
-	note $01
-	octave2
-	note $a1
-	octave3
-	note $31
-	octave2
-	note $a1
-	octave3
-	note $51
-	note $01
-	note $51
-	octave4
-	note $51
-	note $01
-	octave3
-	note $51
-	note $91
-	note $51
-	note $c1
-	note $01
-	note $51
-	note $91
-	note $01
-	octave2
-	note $c1
-	octave3
-	note $51
-	octave2
-	note $c1
-	note $a1
-	note $01
-	note $a1
-	octave3
-	note $a1
-	note $01
-	octave2
-	note $a1
-	octave3
-	note $21
-	octave2
-	note $a1
-	octave3
-	note $a1
-	note $01
-	octave2
-	note $a1
-	octave3
-	note $51
-	note $01
-	octave2
-	note $a1
-	octave3
-	note $21
-	octave2
-	note $a1
-	endchannel ; end
-; 0xf47e5
+Music_GymLeaderVictory_branch_f4744: ; f4744
+	note D_, 1
+	note __, 3
+	octave 2
+	note A_, 1
+	octave 3
+	note C#, 1
+	note __, 3
+	octave 2
+	note A_, 1
+	note B_, 1
+	note __, 3
+	note G_, 1
+	note A_, 1
+	note __, 1
+	octave 3
+	note C#, 3
+	note D_, 1
+	note __, 3
+	octave 2
+	note A_, 1
+	octave 3
+	note C#, 1
+	note __, 3
+	octave 2
+	note A_, 1
+	note B_, 1
+	note __, 3
+	note G_, 1
+	octave 3
+	note D_, 1
+	note __, 5
+	loopchannel 2, Music_GymLeaderVictory_branch_f4744
+	callchannel Music_GymLeaderVictory_branch_f479e
+	octave 3
+	note D_, 1
+	note __, 1
+	note D_, 1
+	octave 4
+	note D_, 1
+	note __, 1
+	octave 3
+	note D_, 1
+	note F#, 1
+	note D_, 1
+	note A_, 1
+	note __, 1
+	octave 2
+	note A_, 1
+	octave 3
+	note E_, 1
+	note __, 1
+	octave 2
+	note A_, 1
+	octave 3
+	note C#, 1
+	octave 2
+	note A_, 1
+	callchannel Music_GymLeaderVictory_branch_f479e
+	octave 3
+	note D_, 1
+	note __, 1
+	note G_, 1
+	octave 4
+	note D_, 1
+	note __, 1
+	octave 3
+	note D_, 1
+	note G_, 1
+	note E_, 1
+	note D_, 1
+	note __, 1
+	note D_, 1
+	note A_, 1
+	note __, 1
+	octave 2
+	note A_, 1
+	note B_, 1
+	octave 3
+	note C#, 1
+	loopchannel 0, Music_GymLeaderVictory_branch_f4744
+; f479e
 
-_Music_GymLeaderVictory_Ch4: ; 0xf47e5
-	togglenoise $04
-	notetype $0c
-	note $cf
-	note $cf
-	callchannel _Music_GymLeaderVictory_sub_0xf480b
-	note $45
-	note $41
-	note $47
-	callchannel _Music_GymLeaderVictory_sub_0xf480b
-	note $45
-	note $41
-	note $43
-	note $20
-	note $20
-	note $20
-	note $20
-	note $41
-	note $81
-	note $31
-	note $41
-	note $81
-	note $41
-	note $31
-	note $81
-	loopchannel $10, $47fb
-	loopchannel $00, $47eb ; end
-; 0xf480b
+Music_GymLeaderVictory_branch_f479e: ; f479e
+	octave 3
+	note D_, 1
+	note __, 1
+	note D_, 1
+	octave 4
+	note D_, 1
+	note __, 1
+	octave 3
+	note D_, 1
+	note F#, 1
+	note D_, 1
+	note A_, 1
+	note __, 1
+	note D_, 1
+	note F#, 1
+	note __, 1
+	octave 2
+	note A_, 1
+	octave 3
+	note D_, 1
+	octave 2
+	note A_, 1
+	octave 3
+	note E_, 1
+	note __, 1
+	note E_, 1
+	octave 4
+	note E_, 1
+	note __, 1
+	octave 3
+	note E_, 1
+	note G#, 1
+	note E_, 1
+	note B_, 1
+	note __, 1
+	note E_, 1
+	note G#, 1
+	note __, 1
+	octave 2
+	note B_, 1
+	octave 3
+	note E_, 1
+	octave 2
+	note B_, 1
+	note A_, 1
+	note __, 1
+	note A_, 1
+	octave 3
+	note A_, 1
+	note __, 1
+	octave 2
+	note A_, 1
+	octave 3
+	note C#, 1
+	octave 2
+	note A_, 1
+	octave 3
+	note A_, 1
+	note __, 1
+	octave 2
+	note A_, 1
+	octave 3
+	note E_, 1
+	note __, 1
+	octave 2
+	note A_, 1
+	octave 3
+	note C#, 1
+	octave 2
+	note A_, 1
+	endchannel
 
-_Music_GymLeaderVictory_sub_0xf480b: ; 0xf480b
-; subroutine
-	note $45
-	note $41
-	note $43
-	note $31
-	note $41
-	loopchannel $03, $480b
-	endchannel ; end
-; 0xf4815
+Music_GymLeaderVictory_Ch4: ; f47e5
+	togglenoise $4
+	notetype $c
+	note B_, 15
+	note B_, 15
+
+Music_GymLeaderVictory_branch_f47eb: ; f47eb
+	callchannel Music_GymLeaderVictory_branch_f480b
+	note D#, 5
+	note D#, 1
+	note D#, 7
+	callchannel Music_GymLeaderVictory_branch_f480b
+	note D#, 5
+	note D#, 1
+	note D#, 3
+	note C#, 0
+	note C#, 0
+	note C#, 0
+	note C#, 0
+
+Music_GymLeaderVictory_branch_f47fb: ; f47fb
+	note D#, 1
+	note G_, 1
+	note D_, 1
+	note D#, 1
+	note G_, 1
+	note D#, 1
+	note D_, 1
+	note G_, 1
+	loopchannel 16, Music_GymLeaderVictory_branch_f47fb
+	loopchannel 0, Music_GymLeaderVictory_branch_f47eb
+; f480b
+
+Music_GymLeaderVictory_branch_f480b: ; f480b
+	note D#, 5
+	note D#, 1
+	note D#, 3
+	note D_, 1
+	note D#, 1
+	loopchannel 3, Music_GymLeaderVictory_branch_f480b
+	endchannel
+; f4815

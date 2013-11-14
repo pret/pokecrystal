@@ -1,667 +1,666 @@
-_Music_AzaleaTown: ; 0xf57e8
-	db $c0
-	dw _Music_AzaleaTown_Ch1
-	db $01
-	dw _Music_AzaleaTown_Ch2
-	db $02
-	dw _Music_AzaleaTown_Ch3
-	db $03
-	dw _Music_AzaleaTown_Ch4
-; 0xf57f4
+Music_AzaleaTown: ; f57e8
+	dbw $c0, Music_AzaleaTown_Ch1
+	dbw $01, Music_AzaleaTown_Ch2
+	dbw $02, Music_AzaleaTown_Ch3
+	dbw $03, Music_AzaleaTown_Ch4
+; f57f4
 
-_Music_AzaleaTown_Ch1: ; 0xf57f4
-	tempo $a000
+
+Music_AzaleaTown_Ch1: ; f57f4
+	tempo 160
 	volume $77
-	dutycycle $02
-	stereopanning $0f
-	notetype $0c, $a1
-	note $01
+	dutycycle $2
+	stereopanning $f
+	notetype $c, $a1
+	note __, 1
+
+Music_AzaleaTown_branch_f5801: ; f5801
 	intensity $a1
-	octave3
-	note $61
+	octave 3
+	note F_, 1
 	intensity $61
-	note $61
-	note $61
+	note F_, 1
+	note F_, 1
 	intensity $a1
-	note $61
+	note F_, 1
 	intensity $61
-	note $61
-	note $61
-	note $61
-	note $61
-	loopchannel $02, $5801
-	callchannel _Music_AzaleaTown_sub_0xf588c
+	note F_, 1
+	note F_, 1
+	note F_, 1
+	note F_, 1
+	loopchannel 2, Music_AzaleaTown_branch_f5801
+
+Music_AzaleaTown_branch_f5816: ; f5816
+	callchannel Music_AzaleaTown_branch_f588c
 	stereopanning $f0
 	intensity $a4
-	note $91
-	note $b0
-	note $02
-	octave4
-	note $13
-	notetype $06, $a4
-	note $80
-	note $92
-	note $73
-	note $41
-	note $01
-	stereopanning $0f
-	callchannel _Music_AzaleaTown_sub_0xf588c
+	note G#, 1
+	note A#, 0
+	note __, 2
+	octave 4
+	note C_, 3
+	notetype $6, $a4
+	note G_, 0
+	note G#, 2
+	note F#, 3
+	note D#, 1
+	note __, 1
+	stereopanning $f
+	callchannel Music_AzaleaTown_branch_f588c
 	stereopanning $f0
-	notetype $06, $a4
-	note $43
-	note $13
-	note $02
-	note $c0
-	octave4
-	note $1b
-	octave3
-	note $b3
-	note $73
-	stereopanning $0f
-	callchannel _Music_AzaleaTown_sub_0xf5912
+	notetype $6, $a4
+	note D#, 3
+	note C_, 3
+	note __, 2
+	note B_, 0
+	octave 4
+	note C_, 11
+	octave 3
+	note A#, 3
+	note F#, 3
+	stereopanning $f
+	callchannel Music_AzaleaTown_branch_f5912
 	intensity $a3
-	note $b3
-	octave4
-	note $21
-	note $01
-	note $11
-	note $01
+	note A#, 3
+	octave 4
+	note C#, 1
+	note __, 1
+	note C_, 1
+	note __, 1
 	intensity $a1
-	octave3
-	note $23
-	note $a1
-	note $0d
-	callchannel _Music_AzaleaTown_sub_0xf5912
+	octave 3
+	note C#, 3
+	note A_, 1
+	note __, 13
+	callchannel Music_AzaleaTown_branch_f5912
 	intensity $a3
-	octave4
-	note $10
-	note $22
-	note $61
-	note $01
-	note $21
-	note $01
+	octave 4
+	note C_, 0
+	note C#, 2
+	note F_, 1
+	note __, 1
+	note C#, 1
+	note __, 1
 	intensity $a1
-	octave3
-	note $83
-	note $b3
-	note $87
+	octave 3
+	note G_, 3
+	note A#, 3
+	note G_, 7
 	intensity $a2
-	note $b3
-	octave4
-	note $23
-	octave3
-	note $b3
-	note $73
-	note $27
-	note $73
-	note $03
-	note $b3
-	octave4
-	note $23
-	octave3
-	note $b3
-	note $83
-	note $23
-	note $03
-	note $83
-	note $03
-	octave4
-	note $23
-	note $43
-	note $23
-	octave3
-	note $93
-	note $43
-	note $23
-	octave2
-	note $93
-	note $07
-	notetype $0c, $2f
-	octave3
-	note $9d
-	note $01
-	loopchannel $00, $5816 ; end
-; 0xf588c
+	note A#, 3
+	octave 4
+	note C#, 3
+	octave 3
+	note A#, 3
+	note F#, 3
+	note C#, 7
+	note F#, 3
+	note __, 3
+	note A#, 3
+	octave 4
+	note C#, 3
+	octave 3
+	note A#, 3
+	note G_, 3
+	note C#, 3
+	note __, 3
+	note G_, 3
+	note __, 3
+	octave 4
+	note C#, 3
+	note D#, 3
+	note C#, 3
+	octave 3
+	note G#, 3
+	note D#, 3
+	note C#, 3
+	octave 2
+	note G#, 3
+	note __, 7
+	notetype $c, $2f
+	octave 3
+	note G#, 13
+	note __, 1
+	loopchannel 0, Music_AzaleaTown_branch_f5816
+; f588c
 
-_Music_AzaleaTown_sub_0xf588c: ; 0xf588c
-; subroutine
-	notetype $0c, $a1
-	octave4
-	note $61
+Music_AzaleaTown_branch_f588c: ; f588c
+	notetype $c, $a1
+	octave 4
+	note F_, 1
 	intensity $61
-	note $61
-	note $61
+	note F_, 1
+	note F_, 1
 	intensity $a1
-	note $41
+	note D#, 1
 	intensity $61
-	note $41
-	note $41
+	note D#, 1
+	note D#, 1
 	intensity $a1
-	note $61
+	note F_, 1
 	intensity $61
-	note $61
+	note F_, 1
 	intensity $a1
-	note $b1
+	note A#, 1
 	intensity $61
-	note $b1
-	note $b1
+	note A#, 1
+	note A#, 1
 	intensity $a1
-	note $91
+	note G#, 1
 	intensity $61
-	note $91
-	note $91
+	note G#, 1
+	note G#, 1
 	intensity $a1
-	note $a1
+	note A_, 1
 	intensity $61
-	note $a1
+	note A_, 1
 	intensity $a1
-	note $11
+	note C_, 1
 	intensity $61
-	note $11
-	note $11
+	note C_, 1
+	note C_, 1
 	intensity $a1
-	note $21
+	note C#, 1
 	intensity $61
-	note $21
-	note $21
-	note $21
-	note $21
+	note C#, 1
+	note C#, 1
+	note C#, 1
+	note C#, 1
 	intensity $a1
-	note $41
+	note D#, 1
 	intensity $61
-	note $41
-	note $41
+	note D#, 1
+	note D#, 1
 	intensity $a1
-	note $21
+	note C#, 1
 	intensity $61
-	note $21
-	note $21
-	note $21
-	note $01
+	note C#, 1
+	note C#, 1
+	note C#, 1
+	note __, 1
 	intensity $a1
-	octave3
-	note $61
+	octave 3
+	note F_, 1
 	intensity $61
-	note $61
-	note $61
+	note F_, 1
+	note F_, 1
 	intensity $a1
-	note $71
+	note F#, 1
 	intensity $61
-	note $71
-	note $71
-	note $71
-	note $71
+	note F#, 1
+	note F#, 1
+	note F#, 1
+	note F#, 1
 	intensity $a1
-	note $61
+	note F_, 1
 	intensity $61
-	note $61
-	note $61
+	note F_, 1
+	note F_, 1
 	intensity $a1
-	note $41
+	note D#, 1
 	intensity $61
-	note $41
-	note $41
+	note D#, 1
+	note D#, 1
 	intensity $a1
-	note $21
+	note C#, 1
 	intensity $61
-	note $21
+	note C#, 1
 	intensity $a1
-	note $11
+	note C_, 1
 	intensity $61
-	note $11
-	note $11
+	note C_, 1
+	note C_, 1
 	intensity $a1
-	octave2
-	note $b1
+	octave 2
+	note A#, 1
 	intensity $61
-	note $b1
-	note $b1
+	note A#, 1
+	note A#, 1
 	intensity $a1
-	octave3
-	note $21
+	octave 3
+	note C#, 1
 	intensity $61
-	note $21
-	endchannel ; end
-; 0xf5912
+	note C#, 1
+	endchannel
+; f5912
 
-_Music_AzaleaTown_sub_0xf5912: ; 0xf5912
-; subroutine
+Music_AzaleaTown_branch_f5912: ; f5912
 	intensity $61
-	note $97
-	note $97
+	note G#, 7
+	note G#, 7
 	intensity $81
-	note $a7
+	note A_, 7
 	intensity $a1
-	note $a7
-	endchannel ; end
-; 0xf591d
+	note A_, 7
+	endchannel
 
-_Music_AzaleaTown_Ch2: ; 0xf591d
+Music_AzaleaTown_Ch2: ; f591d
 	vibrato $12, $23
-	dutycycle $02
+	dutycycle $2
 	stereopanning $f0
-	notetype $0c, $62
-	note $00
-	octave4
-	note $30
+	notetype $c, $62
+	note __, 0
+	octave 4
+	note D_, 0
 	intensity $b1
-	note $41
+	note D#, 1
 	intensity $71
-	note $41
-	note $41
+	note D#, 1
+	note D#, 1
 	intensity $b1
-	note $21
+	note C#, 1
 	intensity $71
-	note $21
-	note $21
+	note C#, 1
+	note C#, 1
 	intensity $51
-	note $21
-	note $21
+	note C#, 1
+	note C#, 1
 	intensity $b1
-	note $11
+	note C_, 1
 	intensity $71
-	note $11
-	note $11
+	note C_, 1
+	note C_, 1
 	intensity $b1
-	note $21
+	note C#, 1
 	intensity $71
-	note $21
-	note $21
-	notetype $06, $b4
-	note $66
-	dutycycle $01
-	octave5
-	note $10
-	callchannel _Music_AzaleaTown_sub_0xf59c7
-	note $23
-	note $11
-	note $20
-	note $02
-	notetype $06, $b4
-	note $4a
-	note $07
-	dutycycle $01
-	octave5
-	note $10
-	callchannel _Music_AzaleaTown_sub_0xf59c7
-	note $01
-	note $21
-	note $11
-	octave3
-	note $91
-	notetype $06, $b4
-	note $02
-	octave4
-	note $80
-	note $9b
-	note $73
-	note $63
-	dutycycle $00
-	note $30
-	note $42
-	note $23
-	note $11
-	note $01
-	note $93
-	note $03
-	note $73
-	note $03
-	note $63
-	note $43
-	note $61
-	note $01
-	note $41
-	note $01
-	note $27
-	note $0b
-	note $30
-	note $42
-	note $23
-	note $11
-	note $01
-	note $93
-	note $03
-	note $a3
-	note $03
-	octave5
-	note $13
-	octave4
-	note $c0
-	octave5
-	note $12
-	note $21
-	note $01
-	note $11
-	note $01
-	octave4
-	note $63
-	note $03
-	note $43
-	note $03
-	note $23
-	dutycycle $02
-	note $63
-	note $43
-	note $23
-	note $63
-	note $03
-	note $43
-	note $03
-	note $23
-	note $63
-	note $43
-	note $23
-	note $63
-	note $03
-	note $b3
-	note $03
-	octave5
-	note $13
-	notetype $0c, $b7
-	octave4
-	note $9b
-	note $43
-	intensity $1f
-	note $1d
-	notetype $06, $b4
-	dutycycle $01
-	note $91
-	octave5
-	note $11
-	loopchannel $00, $5952 ; end
-; 0xf59c7
+	note C#, 1
+	note C#, 1
+	notetype $6, $b4
+	note F_, 6
+	dutycycle $1
+	octave 5
+	note C_, 0
 
-_Music_AzaleaTown_sub_0xf59c7: ; 0xf59c7
-; subroutine
-	note $23
-	octave4
-	note $91
-	note $01
-	octave5
-	note $11
-	note $01
-	note $27
-	note $47
-	note $61
-	note $00
-	note $80
-	note $9b
-	note $61
-	note $05
-	note $47
-	note $61
-	note $00
-	note $10
-	notetype $0c, $a8
-	vibrato $00, $00
-	note $27
+Music_AzaleaTown_branch_f5952: ; f5952
+	callchannel Music_AzaleaTown_branch_f59c7
+	note C#, 3
+	note C_, 1
+	note C#, 0
+	note __, 2
+	notetype $6, $b4
+	note D#, 10
+	note __, 7
+	dutycycle $1
+	octave 5
+	note C_, 0
+	callchannel Music_AzaleaTown_branch_f59c7
+	note __, 1
+	note C#, 1
+	note C_, 1
+	octave 3
+	note G#, 1
+	notetype $6, $b4
+	note __, 2
+	octave 4
+	note G_, 0
+	note G#, 11
+	note F#, 3
+	note F_, 3
+	dutycycle $0
+	note D_, 0
+	note D#, 2
+	note C#, 3
+	note C_, 1
+	note __, 1
+	note G#, 3
+	note __, 3
+	note F#, 3
+	note __, 3
+	note F_, 3
+	note D#, 3
+	note F_, 1
+	note __, 1
+	note D#, 1
+	note __, 1
+	note C#, 7
+	note __, 11
+	note D_, 0
+	note D#, 2
+	note C#, 3
+	note C_, 1
+	note __, 1
+	note G#, 3
+	note __, 3
+	note A_, 3
+	note __, 3
+	octave 5
+	note C_, 3
+	octave 4
+	note B_, 0
+	octave 5
+	note C_, 2
+	note C#, 1
+	note __, 1
+	note C_, 1
+	note __, 1
+	octave 4
+	note F_, 3
+	note __, 3
+	note D#, 3
+	note __, 3
+	note C#, 3
+	dutycycle $2
+	note F_, 3
+	note D#, 3
+	note C#, 3
+	note F_, 3
+	note __, 3
+	note D#, 3
+	note __, 3
+	note C#, 3
+	note F_, 3
+	note D#, 3
+	note C#, 3
+	note F_, 3
+	note __, 3
+	note A#, 3
+	note __, 3
+	octave 5
+	note C_, 3
+	notetype $c, $b7
+	octave 4
+	note G#, 11
+	note D#, 3
+	intensity $1f
+	note C_, 13
+	notetype $6, $b4
+	dutycycle $1
+	note G#, 1
+	octave 5
+	note C_, 1
+	loopchannel 0, Music_AzaleaTown_branch_f5952
+; f59c7
+
+Music_AzaleaTown_branch_f59c7: ; f59c7
+	note C#, 3
+	octave 4
+	note G#, 1
+	note __, 1
+	octave 5
+	note C_, 1
+	note __, 1
+	note C#, 7
+	note D#, 7
+	note F_, 1
+	note __, 0
+	note G_, 0
+	note G#, 11
+	note F_, 1
+	note __, 5
+	note D#, 7
+	note F_, 1
+	note __, 0
+	note C_, 0
+	notetype $c, $a8
+	vibrato $0, $0
+	note C#, 7
 	intensity $a7
 	vibrato $12, $23
-	note $2f
-	note $03
+	note C#, 15
+	note __, 3
 	intensity $b4
-	dutycycle $02
-	octave3
-	note $b1
-	octave4
-	note $20
-	note $00
-	note $77
-	note $01
-	note $71
-	note $61
-	note $40
-	note $00
-	note $25
-	note $11
-	note $01
-	note $13
-	note $20
-	notetype $06, $b4
-	note $00
-	note $30
-	notetype $0c, $b7
-	note $4b
+	dutycycle $2
+	octave 3
+	note A#, 1
+	octave 4
+	note C#, 0
+	note __, 0
+	note F#, 7
+	note __, 1
+	note F#, 1
+	note F_, 1
+	note D#, 0
+	note __, 0
+	note C#, 5
+	note C_, 1
+	note __, 1
+	note C_, 3
+	note C#, 0
+	notetype $6, $b4
+	note __, 0
+	note D_, 0
+	notetype $c, $b7
+	note D#, 11
 	intensity $b4
-	endchannel ; end
-; 0xf5a08
+	endchannel
 
-_Music_AzaleaTown_Ch3: ; 0xf5a08
+Music_AzaleaTown_Ch3: ; f5a08
 	stereopanning $ff
-	vibrato $06, $26
-	notetype $0c, $25
-	octave2
-	note $90
-	octave3
-	note $10
-	note $20
-	note $04
-	note $20
-	note $02
-	note $20
-	note $00
-	octave2
-	note $93
-	octave3
-	note $20
-	note $04
-	note $20
-	note $02
-	note $20
-	note $00
-	note $93
-	callchannel _Music_AzaleaTown_sub_0xf5a86
-	note $93
-	note $41
-	callchannel _Music_AzaleaTown_sub_0xf5a86
-	note $91
-	note $01
-	note $71
-	callchannel _Music_AzaleaTown_sub_0xf5acf
-	note $b0
-	note $00
-	octave4
-	note $20
-	note $00
-	note $61
-	octave3
-	note $a3
-	octave4
-	note $20
-	note $02
-	note $60
-	note $00
-	callchannel _Music_AzaleaTown_sub_0xf5acf
-	octave2
-	note $b1
-	octave3
-	note $60
-	note $00
-	note $b0
-	note $00
-	note $41
-	octave2
-	note $b1
-	octave3
-	note $40
-	note $02
-	note $81
-	octave2
-	note $70
-	note $04
-	note $70
-	note $70
-	note $70
-	note $00
-	octave3
-	note $21
-	note $01
-	octave2
-	note $60
-	note $70
-	note $80
-	note $04
-	note $80
-	note $80
-	note $80
-	note $00
-	octave3
-	note $21
-	note $01
-	octave2
-	note $70
-	note $80
-	note $90
-	note $04
-	note $90
-	note $90
-	note $90
-	note $00
-	octave3
-	note $41
-	note $01
-	octave2
-	note $70
-	note $80
-	note $90
-	note $04
-	note $90
-	note $90
-	note $90
-	note $00
-	octave3
-	note $41
-	note $01
-	octave2
-	note $c0
-	octave3
-	note $10
-	loopchannel $00, $5a24 ; end
-; 0xf5a86
+	vibrato $6, $26
+	notetype $c, $25
+	octave 2
+	note G#, 0
+	octave 3
+	note C_, 0
+	note C#, 0
+	note __, 4
+	note C#, 0
+	note __, 2
+	note C#, 0
+	note __, 0
+	octave 2
+	note G#, 3
+	octave 3
+	note C#, 0
+	note __, 4
+	note C#, 0
+	note __, 2
+	note C#, 0
+	note __, 0
+	note G#, 3
 
-_Music_AzaleaTown_sub_0xf5a86: ; 0xf5a86
-; subroutine
-	note $20
-	note $04
-	note $20
-	note $02
-	note $20
-	note $00
-	octave2
-	note $93
-	octave3
-	note $60
-	note $04
-	note $60
-	note $00
-	note $10
-	note $00
-	note $63
-	note $a1
+Music_AzaleaTown_branch_f5a24: ; f5a24
+	callchannel Music_AzaleaTown_branch_f5a86
+	note G#, 3
+	note D#, 1
+	callchannel Music_AzaleaTown_branch_f5a86
+	note G#, 1
+	note __, 1
+	note F#, 1
+	callchannel Music_AzaleaTown_branch_f5acf
+	note A#, 0
+	note __, 0
+	octave 4
+	note C#, 0
+	note __, 0
+	note F_, 1
+	octave 3
+	note A_, 3
+	octave 4
+	note C#, 0
+	note __, 2
+	note F_, 0
+	note __, 0
+	callchannel Music_AzaleaTown_branch_f5acf
+	octave 2
+	note A#, 1
+	octave 3
+	note F_, 0
+	note __, 0
+	note A#, 0
+	note __, 0
+	note D#, 1
+	octave 2
+	note A#, 1
+	octave 3
+	note D#, 0
+	note __, 2
+	note G_, 1
+	octave 2
+	note F#, 0
+	note __, 4
+	note F#, 0
+	note F#, 0
+	note F#, 0
+	note __, 0
+	octave 3
+	note C#, 1
+	note __, 1
+	octave 2
+	note F_, 0
+	note F#, 0
+	note G_, 0
+	note __, 4
+	note G_, 0
+	note G_, 0
+	note G_, 0
+	note __, 0
+	octave 3
+	note C#, 1
+	note __, 1
+	octave 2
+	note F#, 0
+	note G_, 0
+	note G#, 0
+	note __, 4
+	note G#, 0
+	note G#, 0
+	note G#, 0
+	note __, 0
+	octave 3
+	note D#, 1
+	note __, 1
+	octave 2
+	note F#, 0
+	note G_, 0
+	note G#, 0
+	note __, 4
+	note G#, 0
+	note G#, 0
+	note G#, 0
+	note __, 0
+	octave 3
+	note D#, 1
+	note __, 1
+	octave 2
+	note B_, 0
+	octave 3
+	note C_, 0
+	loopchannel 0, Music_AzaleaTown_branch_f5a24
+; f5a86
+
+Music_AzaleaTown_branch_f5a86: ; f5a86
+	note C#, 0
+	note __, 4
+	note C#, 0
+	note __, 2
+	note C#, 0
+	note __, 0
+	octave 2
+	note G#, 3
+	octave 3
+	note F_, 0
+	note __, 4
+	note F_, 0
+	note __, 0
+	note C_, 0
+	note __, 0
+	note F_, 3
+	note A_, 1
 	intensity $15
-	note $b0
-	note $00
+	note A#, 0
+	note __, 0
 	intensity $25
-	octave4
-	note $20
-	note $00
-	note $60
-	note $00
-	octave3
-	note $a3
-	octave4
-	note $20
-	note $00
-	note $60
-	note $00
-	octave3
-	note $93
-	note $b0
-	note $00
-	note $90
-	note $00
-	note $85
-	note $03
-	note $70
-	note $04
-	note $70
-	note $02
-	note $70
-	note $00
-	note $23
-	note $80
-	note $04
-	note $80
-	note $02
-	note $23
-	note $80
-	note $00
-	note $90
-	note $04
-	note $90
-	note $00
-	note $40
-	note $00
-	note $23
-	note $90
-	note $00
-	note $90
-	note $04
-	note $90
-	note $00
-	note $10
-	note $00
-	endchannel ; end
-; 0xf5acf
+	octave 4
+	note C#, 0
+	note __, 0
+	note F_, 0
+	note __, 0
+	octave 3
+	note A_, 3
+	octave 4
+	note C#, 0
+	note __, 0
+	note F_, 0
+	note __, 0
+	octave 3
+	note G#, 3
+	note A#, 0
+	note __, 0
+	note G#, 0
+	note __, 0
+	note G_, 5
+	note __, 3
+	note F#, 0
+	note __, 4
+	note F#, 0
+	note __, 2
+	note F#, 0
+	note __, 0
+	note C#, 3
+	note G_, 0
+	note __, 4
+	note G_, 0
+	note __, 2
+	note C#, 3
+	note G_, 0
+	note __, 0
+	note G#, 0
+	note __, 4
+	note G#, 0
+	note __, 0
+	note D#, 0
+	note __, 0
+	note C#, 3
+	note G#, 0
+	note __, 0
+	note G#, 0
+	note __, 4
+	note G#, 0
+	note __, 0
+	note C_, 0
+	note __, 0
+	endchannel
+; f5acf
 
-_Music_AzaleaTown_sub_0xf5acf: ; 0xf5acf
-; subroutine
+Music_AzaleaTown_branch_f5acf: ; f5acf
 	intensity $35
-	octave3
-	note $60
-	note $00
-	note $60
-	note $00
-	note $60
-	note $00
-	note $60
-	note $00
+	octave 3
+	note F_, 0
+	note __, 0
+	note F_, 0
+	note __, 0
+	note F_, 0
+	note __, 0
+	note F_, 0
+	note __, 0
 	intensity $25
-	note $60
-	note $00
-	note $60
-	note $00
-	note $60
-	note $00
-	note $60
-	note $00
-	endchannel ; end
-; 0xf5ae5
+	note F_, 0
+	note __, 0
+	note F_, 0
+	note __, 0
+	note F_, 0
+	note __, 0
+	note F_, 0
+	note __, 0
+	endchannel
 
-_Music_AzaleaTown_Ch4: ; 0xf5ae5
-	togglenoise $03
-	notetype $0c
-	note $61
-	note $41
-	note $71
-	note $31
-	note $40
-	note $80
-	note $80
-	note $80
-	note $41
-	note $31
-	note $80
-	note $80
-	note $41
-	note $71
-	note $31
-	note $40
-	note $80
-	note $80
-	note $80
-	note $41
-	note $31
-	note $71
-	loopchannel $00, $5aea ; end
-; 0xf5b03
+Music_AzaleaTown_Ch4: ; f5ae5
+	togglenoise $3
+	notetype $c
+	note F_, 1
+
+Music_AzaleaTown_branch_f5aea: ; f5aea
+	note D#, 1
+	note F#, 1
+	note D_, 1
+	note D#, 0
+	note G_, 0
+	note G_, 0
+	note G_, 0
+	note D#, 1
+	note D_, 1
+	note G_, 0
+	note G_, 0
+	note D#, 1
+	note F#, 1
+	note D_, 1
+	note D#, 0
+	note G_, 0
+	note G_, 0
+	note G_, 0
+	note D#, 1
+	note D_, 1
+	note F#, 1
+	loopchannel 0, Music_AzaleaTown_branch_f5aea
+; f5b03

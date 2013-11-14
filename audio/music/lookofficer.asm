@@ -1,143 +1,144 @@
-_Music_LookOfficer: ; 0xed82d
-	db $80
-	dw _Music_LookOfficer_Ch1
-	db $01
-	dw _Music_LookOfficer_Ch2
-	db $02
-	dw _Music_LookOfficer_Ch3
-; 0xed836
+Music_LookOfficer: ; ed82d
+	dbw $80, Music_LookOfficer_Ch1
+	dbw $01, Music_LookOfficer_Ch2
+	dbw $02, Music_LookOfficer_Ch3
+; ed836
 
-_Music_LookOfficer_Ch1: ; 0xed836
-	tempo $7400
+
+Music_LookOfficer_Ch1: ; ed836
+	tempo 116
 	volume $77
-	tone $0100
+	tone $0001
 	vibrato $12, $34
-	stereopanning $0f
-	dutycycle $03
-	notetype $0c, $a7
-	octave4
-	note $20
-	note $30
-	note $40
-	note $50
-	note $6b
+	stereopanning $f
+	dutycycle $3
+	notetype $c, $a7
+	octave 4
+	note C#, 0
+	note D_, 0
+	note D#, 0
+	note E_, 0
+	note F_, 11
 	intensity $2f
-	octave3
-	note $cf
+	octave 3
+	note B_, 15
+
+Music_LookOfficer_branch_ed852: ; ed852
 	intensity $82
-	note $03
-	note $c5
-	note $93
-	note $c5
-	note $c5
-	note $93
-	note $c1
+	note __, 3
+	note B_, 5
+	note G#, 3
+	note B_, 5
+	note B_, 5
+	note G#, 3
+	note B_, 1
 	intensity $2f
-	note $bf
-	note $af
-	loopchannel $00, $5852 ; end
-; 0xed863
+	note A#, 15
+	note A_, 15
+	loopchannel 0, Music_LookOfficer_branch_ed852
 
-_Music_LookOfficer_Ch2: ; 0xed863
+Music_LookOfficer_Ch2: ; ed863
 	vibrato $12, $34
-	dutycycle $03
-	notetype $0c, $b7
-	octave5
-	note $40
-	note $30
-	note $20
-	note $10
-	octave4
-	note $cb
-	dutycycle $03
+	dutycycle $3
+	notetype $c, $b7
+	octave 5
+	note D#, 0
+	note D_, 0
+	note C#, 0
+	note C_, 0
+	octave 4
+	note B_, 11
+	dutycycle $3
 	intensity $a2
-	octave1
-	note $c3
-	octave2
-	note $a1
-	octave1
-	note $c3
-	octave2
-	note $61
-	octave1
-	note $c1
-	octave2
-	note $41
-	note $51
-	note $91
-	octave3
-	note $51
-	octave2
-	note $51
-	note $91
-	note $c1
-	note $51
-	note $91
-	loopchannel $02, $5882
-	forceoctave $01
-	callchannel _Music_LookOfficer_sub_0xed89e
-	forceoctave $00
-	callchannel _Music_LookOfficer_sub_0xed89e
-	loopchannel $00, $5882 ; end
-; 0xed89e
+	octave 1
+	note B_, 3
+	octave 2
+	note A_, 1
+	octave 1
+	note B_, 3
+	octave 2
+	note F_, 1
+	octave 1
+	note B_, 1
+	octave 2
+	note D#, 1
 
-_Music_LookOfficer_sub_0xed89e: ; 0xed89e
-; subroutine
-	octave1
-	note $a1
-	octave2
-	note $21
-	note $a1
-	octave1
-	note $a1
-	octave2
-	note $21
-	note $51
-	octave1
-	note $a1
-	octave2
-	note $21
-	endchannel ; end
-; 0xed8ad
+Music_LookOfficer_branch_ed882: ; ed882
+	note E_, 1
+	note G#, 1
+	octave 3
+	note E_, 1
+	octave 2
+	note E_, 1
+	note G#, 1
+	note B_, 1
+	note E_, 1
+	note G#, 1
+	loopchannel 2, Music_LookOfficer_branch_ed882
+	forceoctave $1
+	callchannel Music_LookOfficer_branch_ed89e
+	forceoctave $0
+	callchannel Music_LookOfficer_branch_ed89e
+	loopchannel 0, Music_LookOfficer_branch_ed882
+; ed89e
 
-_Music_LookOfficer_Ch3: ; 0xed8ad
+Music_LookOfficer_branch_ed89e: ; ed89e
+	octave 1
+	note A_, 1
+	octave 2
+	note C#, 1
+	note A_, 1
+	octave 1
+	note A_, 1
+	octave 2
+	note C#, 1
+	note E_, 1
+	octave 1
+	note A_, 1
+	octave 2
+	note C#, 1
+	endchannel
+
+Music_LookOfficer_Ch3: ; ed8ad
 	vibrato $14, $14
 	stereopanning $f0
-	notetype $0c, $14
-	note $09
-	octave3
-	note $c1
-	note $01
-	note $c1
+	notetype $c, $14
+	note __, 9
+	octave 3
+	note B_, 1
+	note __, 1
+	note B_, 1
 	intensity $12
-	octave5
-	note $41
-	note $00
-	note $61
-	note $00
-	note $a1
-	note $c1
-	note $00
-	octave6
-	note $21
-	note $00
-	note $41
-	note $55
-	note $45
-	note $23
-	octave5
-	note $c1
-	note $a1
-	note $91
-	note $71
-	note $91
-	note $a1
-	note $c1
-	octave6
-	note $21
-	note $67
-	note $37
-	note $57
-	note $27
-	loopchannel $00, $58c8 ; end
-; 0xed8dd
+	octave 5
+	note D#, 1
+	note __, 0
+	note F_, 1
+	note __, 0
+	note A_, 1
+	note B_, 1
+	note __, 0
+	octave 6
+	note C#, 1
+	note __, 0
+	note D#, 1
+
+Music_LookOfficer_branch_ed8c8: ; ed8c8
+	note E_, 5
+	note D#, 5
+	note C#, 3
+	octave 5
+	note B_, 1
+	note A_, 1
+	note G#, 1
+	note F#, 1
+	note G#, 1
+	note A_, 1
+	note B_, 1
+	octave 6
+	note C#, 1
+	note F_, 7
+	note D_, 7
+	note E_, 7
+	note C#, 7
+	loopchannel 0, Music_LookOfficer_branch_ed8c8
+; ed8dd

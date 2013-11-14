@@ -17,6 +17,12 @@ from extras.pokemontools.crystal import (
     movement_command_classes,
     music_classes,
     effect_classes,
+    ChannelCommand,
+    OctaveCommand,
+)
+
+from extras.pokemontools.audio import (
+    Note,
 )
 
 def load_pokecrystal_macros():
@@ -31,6 +37,9 @@ def load_pokecrystal_macros():
         Signpost,
         PeopleEvent,
         DataByteWordMacro,
+        ChannelCommand,
+        OctaveCommand,
+        Note,
     ]
 
     ourmacros += command_classes

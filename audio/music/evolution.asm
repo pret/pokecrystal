@@ -1,216 +1,212 @@
-_Music_Evolution: ; 0xf06e1
-	db $c0
-	dw _Music_Evolution_Ch1
-	db $01
-	dw _Music_Evolution_Ch2
-	db $02
-	dw _Music_Evolution_Ch3
-	db $03
-	dw _Music_Evolution_Ch4
-; 0xf06ed
+Music_Evolution: ; f06e1
+	dbw $c0, Music_Evolution_Ch1
+	dbw $01, Music_Evolution_Ch2
+	dbw $02, Music_Evolution_Ch3
+	dbw $03, Music_Evolution_Ch4
+; f06ed
 
-_Music_Evolution_Ch1: ; 0xf06ed
-	tempo $8400
+
+Music_Evolution_Ch1: ; f06ed
+	tempo 132
 	volume $77
-	vibrato $06, $34
-	tone $0100
-	dutycycle $02
-	notetype $0c, $92
-	octave3
-	unknownmusic0xe0 $00, $4a
-	note $10
-	unknownmusic0xe0 $00, $4a
-	note $80
-	unknownmusic0xe0 $00, $4a
-	note $10
-	unknownmusic0xe0 $00, $4a
-	note $80
-	note $03
-	dutycycle $03
-	stereopanning $0f
-	callchannel _Music_Evolution_sub_0xf0737
-	notetype $0c, $a4
-	note $73
-	callchannel _Music_Evolution_sub_0xf0737
-	notetype $0c, $a4
-	note $73
-	loopchannel $02, $4713
-	callchannel _Music_Evolution_sub_0xf0743
-	notetype $0c, $a4
-	note $93
-	callchannel _Music_Evolution_sub_0xf0743
-	notetype $0c, $a4
-	note $93
-	loopchannel $00, $4713 ; end
-; 0xf0737
+	vibrato $6, $34
+	tone $0001
+	dutycycle $2
+	notetype $c, $92
+	octave 3
+	unknownmusic0xe0 $0, $4a
+	note C_, 0
+	unknownmusic0xe0 $0, $4a
+	note G_, 0
+	unknownmusic0xe0 $0, $4a
+	note C_, 0
+	unknownmusic0xe0 $0, $4a
+	note G_, 0
+	note __, 3
+	dutycycle $3
+	stereopanning $f
 
-_Music_Evolution_sub_0xf0737: ; 0xf0737
-; subroutine
-	notetype $0c, $a2
-	octave3
-	note $13
-	note $83
-	note $13
-	note $83
-	note $13
-	note $83
-	note $13
-	endchannel ; end
-; 0xf0743
+Music_Evolution_branch_f0713: ; f0713
+	callchannel Music_Evolution_branch_f0737
+	notetype $c, $a4
+	note F#, 3
+	callchannel Music_Evolution_branch_f0737
+	notetype $c, $a4
+	note F#, 3
+	loopchannel 2, Music_Evolution_branch_f0713
+	callchannel Music_Evolution_branch_f0743
+	notetype $c, $a4
+	note G#, 3
+	callchannel Music_Evolution_branch_f0743
+	notetype $c, $a4
+	note G#, 3
+	loopchannel 0, Music_Evolution_branch_f0713
+; f0737
 
-_Music_Evolution_sub_0xf0743: ; 0xf0743
-; subroutine
-	notetype $0c, $a2
-	octave3
-	note $33
-	note $a3
-	note $33
-	note $a3
-	note $33
-	note $a3
-	note $33
-	endchannel ; end
-; 0xf074f
+Music_Evolution_branch_f0737: ; f0737
+	notetype $c, $a2
+	octave 3
+	note C_, 3
+	note G_, 3
+	note C_, 3
+	note G_, 3
+	note C_, 3
+	note G_, 3
+	note C_, 3
+	endchannel
+; f0743
 
-_Music_Evolution_Ch2: ; 0xf074f
-	dutycycle $02
-	vibrato $08, $25
-	notetype $0c, $a2
-	octave4
-	note $80
-	note $30
-	note $80
-	note $30
-	note $03
-	dutycycle $03
+Music_Evolution_branch_f0743: ; f0743
+	notetype $c, $a2
+	octave 3
+	note D_, 3
+	note A_, 3
+	note D_, 3
+	note A_, 3
+	note D_, 3
+	note A_, 3
+	note D_, 3
+	endchannel
+
+Music_Evolution_Ch2: ; f074f
+	dutycycle $2
+	vibrato $8, $25
+	notetype $c, $a2
+	octave 4
+	note G_, 0
+	note D_, 0
+	note G_, 0
+	note D_, 0
+	note __, 3
+	dutycycle $3
 	stereopanning $f0
-	callchannel _Music_Evolution_sub_0xf0787
-	notetype $0c, $b5
-	note $a3
-	callchannel _Music_Evolution_sub_0xf0787
-	notetype $0c, $b5
-	note $c3
-	loopchannel $02, $4761
-	callchannel _Music_Evolution_sub_0xf0793
-	notetype $0c, $b5
-	note $c3
-	callchannel _Music_Evolution_sub_0xf0793
-	notetype $0c, $b5
-	octave4
-	note $23
-	octave3
-	loopchannel $00, $4761 ; end
-; 0xf0787
 
-_Music_Evolution_sub_0xf0787: ; 0xf0787
-; subroutine
-	notetype $0c, $b2
-	octave3
-	note $83
-	note $33
-	note $83
-	note $33
-	note $83
-	note $33
-	note $83
-	endchannel ; end
-; 0xf0793
+Music_Evolution_branch_f0761: ; f0761
+	callchannel Music_Evolution_branch_f0787
+	notetype $c, $b5
+	note A_, 3
+	callchannel Music_Evolution_branch_f0787
+	notetype $c, $b5
+	note B_, 3
+	loopchannel 2, Music_Evolution_branch_f0761
+	callchannel Music_Evolution_branch_f0793
+	notetype $c, $b5
+	note B_, 3
+	callchannel Music_Evolution_branch_f0793
+	notetype $c, $b5
+	octave 4
+	note C#, 3
+	octave 3
+	loopchannel 0, Music_Evolution_branch_f0761
+; f0787
 
-_Music_Evolution_sub_0xf0793: ; 0xf0793
-; subroutine
-	notetype $0c, $b2
-	octave3
-	note $a3
-	note $53
-	note $a3
-	note $53
-	note $a3
-	note $53
-	note $a3
-	endchannel ; end
-; 0xf079f
+Music_Evolution_branch_f0787: ; f0787
+	notetype $c, $b2
+	octave 3
+	note G_, 3
+	note D_, 3
+	note G_, 3
+	note D_, 3
+	note G_, 3
+	note D_, 3
+	note G_, 3
+	endchannel
+; f0793
 
-_Music_Evolution_Ch3: ; 0xf079f
-	notetype $0c, $16
-	note $07
-	callchannel _Music_Evolution_sub_0xf07bf
-	octave3
-	note $a3
-	callchannel _Music_Evolution_sub_0xf07bf
-	octave3
-	note $c3
-	loopchannel $02, $47a3
-	callchannel _Music_Evolution_sub_0xf07d5
-	octave3
-	note $c3
-	callchannel _Music_Evolution_sub_0xf07d5
-	octave4
-	note $23
-	loopchannel $00, $47a3 ; end
-; 0xf07bf
+Music_Evolution_branch_f0793: ; f0793
+	notetype $c, $b2
+	octave 3
+	note A_, 3
+	note E_, 3
+	note A_, 3
+	note E_, 3
+	note A_, 3
+	note E_, 3
+	note A_, 3
+	endchannel
 
-_Music_Evolution_sub_0xf07bf: ; 0xf07bf
-; subroutine
-	octave2
-	note $a1
-	note $01
-	octave3
-	note $31
-	note $01
-	octave2
-	note $a1
-	note $01
-	octave3
-	note $31
-	note $01
-	octave2
-	note $a1
-	note $01
-	octave3
-	note $31
-	note $01
-	octave2
-	note $a1
-	note $01
-	endchannel ; end
-; 0xf07d5
+Music_Evolution_Ch3: ; f079f
+	notetype $c, $16
+	note __, 7
 
-_Music_Evolution_sub_0xf07d5: ; 0xf07d5
-; subroutine
-	octave2
-	note $c1
-	note $01
-	octave3
-	note $51
-	note $01
-	octave2
-	note $c1
-	note $01
-	octave3
-	note $51
-	note $01
-	octave2
-	note $c1
-	note $01
-	octave3
-	note $51
-	note $01
-	octave2
-	note $a1
-	note $01
-	endchannel ; end
-; 0xf07eb
+Music_Evolution_branch_f07a3: ; f07a3
+	callchannel Music_Evolution_branch_f07bf
+	octave 3
+	note A_, 3
+	callchannel Music_Evolution_branch_f07bf
+	octave 3
+	note B_, 3
+	loopchannel 2, Music_Evolution_branch_f07a3
+	callchannel Music_Evolution_branch_f07d5
+	octave 3
+	note B_, 3
+	callchannel Music_Evolution_branch_f07d5
+	octave 4
+	note C#, 3
+	loopchannel 0, Music_Evolution_branch_f07a3
+; f07bf
 
-_Music_Evolution_Ch4: ; 0xf07eb
-	togglenoise $05
-	notetype $0c
-	note $07
+Music_Evolution_branch_f07bf: ; f07bf
+	octave 2
+	note A_, 1
+	note __, 1
+	octave 3
+	note D_, 1
+	note __, 1
+	octave 2
+	note A_, 1
+	note __, 1
+	octave 3
+	note D_, 1
+	note __, 1
+	octave 2
+	note A_, 1
+	note __, 1
+	octave 3
+	note D_, 1
+	note __, 1
+	octave 2
+	note A_, 1
+	note __, 1
+	endchannel
+; f07d5
+
+Music_Evolution_branch_f07d5: ; f07d5
+	octave 2
+	note B_, 1
+	note __, 1
+	octave 3
+	note E_, 1
+	note __, 1
+	octave 2
+	note B_, 1
+	note __, 1
+	octave 3
+	note E_, 1
+	note __, 1
+	octave 2
+	note B_, 1
+	note __, 1
+	octave 3
+	note E_, 1
+	note __, 1
+	octave 2
+	note A_, 1
+	note __, 1
+	endchannel
+
+Music_Evolution_Ch4: ; f07eb
+	togglenoise $5
+	notetype $c
+	note __, 7
+
+Music_Evolution_branch_f07f0: ; f07f0
 	stereopanning $f0
-	note $b5
-	note $b3
-	stereopanning $0f
-	note $51
-	note $51
-	note $51
-	loopchannel $00, $47f0 ; end
-; 0xf07fd
+	note A#, 5
+	note A#, 3
+	stereopanning $f
+	note E_, 1
+	note E_, 1
+	note E_, 1
+	loopchannel 0, Music_Evolution_branch_f07f0
+; f07fd

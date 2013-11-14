@@ -1,310 +1,312 @@
-_Music_CherrygroveCity: ; 0xf5b03
-	db $c0
-	dw _Music_CherrygroveCity_Ch1
-	db $01
-	dw _Music_CherrygroveCity_Ch2
-	db $02
-	dw _Music_CherrygroveCity_Ch3
-	db $03
-	dw _Music_CherrygroveCity_Ch4
-; 0xf5b0f
+Music_CherrygroveCity: ; f5b03
+	dbw $c0, Music_CherrygroveCity_Ch1
+	dbw $01, Music_CherrygroveCity_Ch2
+	dbw $02, Music_CherrygroveCity_Ch3
+	dbw $03, Music_CherrygroveCity_Ch4
+; f5b0f
 
-_Music_CherrygroveCity_Ch1: ; 0xf5b0f
-	tempo $9800
+
+Music_CherrygroveCity_Ch1: ; f5b0f
+	tempo 152
 	volume $77
-	dutycycle $03
-	tone $0100
-	vibrato $08, $15
+	dutycycle $3
+	tone $0001
+	vibrato $8, $15
 	stereopanning $f0
-	notetype $0c, $b5
-	note $09
-	octave3
-	note $11
-	note $31
-	note $51
-	note $a3
-	note $91
-	note $a1
-	note $b1
-	note $a1
-	note $81
-	note $61
-	note $a5
-	note $61
-	note $11
-	octave2
-	note $b1
-	octave3
-	note $11
-	note $51
-	note $83
-	note $71
-	note $81
-	note $a1
-	note $81
-	note $61
-	note $51
-	note $85
-	note $51
-	note $11
-	octave2
-	note $b1
-	note $a1
-	octave3
-	note $11
+	notetype $c, $b5
+	note __, 9
+	octave 3
+	note C_, 1
+	note D_, 1
+	note E_, 1
+
+Music_CherrygroveCity_branch_f5b26: ; f5b26
+	note A_, 3
+	note G#, 1
+	note A_, 1
+	note A#, 1
+	note A_, 1
+	note G_, 1
+	note F_, 1
+	note A_, 5
+	note F_, 1
+	note C_, 1
+	octave 2
+	note A#, 1
+	octave 3
+	note C_, 1
+	note E_, 1
+	note G_, 3
+	note F#, 1
+	note G_, 1
+	note A_, 1
+	note G_, 1
+	note F_, 1
+	note E_, 1
+	note G_, 5
+	note E_, 1
+	note C_, 1
+	octave 2
+	note A#, 1
+	note A_, 1
+	octave 3
+	note C_, 1
 	intensity $b7
-	octave2
-	note $b5
-	octave3
-	note $35
-	note $b3
-	note $a5
-	note $61
-	note $17
-	octave2
-	note $b5
-	octave3
-	note $35
+	octave 2
+	note A#, 5
+	octave 3
+	note D_, 5
+	note A#, 3
+	note A_, 5
+	note F_, 1
+	note C_, 7
+	octave 2
+	note A#, 5
+	octave 3
+	note D_, 5
 	intensity $b5
-	note $a3
-	note $83
-	note $53
-	note $33
-	note $53
-	octave2
-	note $b5
-	octave3
-	note $35
-	note $b3
-	note $a5
-	note $61
-	note $13
-	octave2
-	note $c3
-	note $b5
-	octave3
-	note $21
-	octave2
-	note $b3
-	note $83
-	note $a3
-	octave3
-	note $13
-	octave2
-	note $a3
-	octave3
-	note $13
-	loopchannel $00, $5b26 ; end
-; 0xf5b74
+	note A_, 3
+	note G_, 3
+	note E_, 3
+	note D_, 3
+	note E_, 3
+	octave 2
+	note A#, 5
+	octave 3
+	note D_, 5
+	note A#, 3
+	note A_, 5
+	note F_, 1
+	note C_, 3
+	octave 2
+	note B_, 3
+	note A#, 5
+	octave 3
+	note C#, 1
+	octave 2
+	note A#, 3
+	note G_, 3
+	note A_, 3
+	octave 3
+	note C_, 3
+	octave 2
+	note A_, 3
+	octave 3
+	note C_, 3
+	loopchannel 0, Music_CherrygroveCity_branch_f5b26
 
-_Music_CherrygroveCity_Ch2: ; 0xf5b74
-	dutycycle $03
+Music_CherrygroveCity_Ch2: ; f5b74
+	dutycycle $3
 	vibrato $10, $36
-	stereopanning $0f
-	notetype $0c, $c3
-	octave3
-	note $11
-	note $31
-	note $51
-	note $31
-	note $51
-	note $81
-	note $a1
-	note $b1
+	stereopanning $f
+	notetype $c, $c3
+	octave 3
+	note C_, 1
+	note D_, 1
+	note E_, 1
+	note D_, 1
+	note E_, 1
+	note G_, 1
+	note A_, 1
+	note A#, 1
+
+Music_CherrygroveCity_branch_f5b87: ; f5b87
 	intensity $c6
-	octave4
-	note $15
-	note $33
+	octave 4
+	note C_, 5
+	note D_, 3
 	intensity $b3
-	note $31
-	note $11
-	octave3
-	note $b1
+	note D_, 1
+	note C_, 1
+	octave 3
+	note A#, 1
 	intensity $c7
-	octave4
-	note $15
-	octave3
-	note $a1
-	note $67
+	octave 4
+	note C_, 5
+	octave 3
+	note A_, 1
+	note F_, 7
 	intensity $c6
-	note $b5
-	octave4
-	note $13
+	note A#, 5
+	octave 4
+	note C_, 3
 	intensity $b3
-	note $11
-	octave3
-	note $b1
-	note $a1
+	note C_, 1
+	octave 3
+	note A#, 1
+	note A_, 1
 	intensity $c7
-	note $b5
-	note $81
-	note $57
+	note A#, 5
+	note G_, 1
+	note E_, 7
 	intensity $a0
-	note $35
-	note $65
-	octave4
-	note $33
-	note $15
+	note D_, 5
+	note F_, 5
+	octave 4
+	note D_, 3
+	note C_, 5
 	intensity $a5
-	octave3
-	note $a1
+	octave 3
+	note A_, 1
 	intensity $c7
-	note $67
+	note F_, 7
 	intensity $a0
-	note $35
-	note $65
-	octave4
-	note $33
+	note D_, 5
+	note F_, 5
+	octave 4
+	note D_, 3
 	intensity $c7
-	note $1f
+	note C_, 15
 	intensity $b5
-	octave3
-	note $35
-	note $65
-	octave4
-	note $33
-	note $15
-	octave3
-	note $a1
-	note $67
-	note $25
-	note $65
-	note $83
+	octave 3
+	note D_, 5
+	note F_, 5
+	octave 4
+	note D_, 3
+	note C_, 5
+	octave 3
+	note A_, 1
+	note F_, 7
+	note C#, 5
+	note F_, 5
+	note G_, 3
 	intensity $a0
-	note $67
+	note F_, 7
 	intensity $a7
-	note $67
-	loopchannel $00, $5b87 ; end
-; 0xf5bd8
+	note F_, 7
+	loopchannel 0, Music_CherrygroveCity_branch_f5b87
 
-_Music_CherrygroveCity_Ch3: ; 0xf5bd8
-	notetype $0c, $16
-	note $03
-	octave4
-	note $11
-	octave3
-	note $b1
-	note $a1
-	note $81
-	note $61
-	note $51
-	note $a1
-	note $61
-	note $a1
-	octave4
-	note $13
-	octave3
-	note $61
-	note $81
-	note $a1
-	note $a1
-	note $61
-	note $a1
-	octave4
-	note $13
-	octave3
-	note $61
-	note $81
-	note $a1
-	note $b1
-	note $81
-	note $b1
-	octave4
-	note $13
-	octave3
-	note $61
-	note $81
-	note $a1
-	note $b3
-	octave4
-	note $11
-	octave3
-	note $b1
-	note $a1
-	note $81
-	note $61
-	note $51
-	note $31
-	note $63
-	note $b1
-	note $61
-	note $b1
-	note $a1
-	note $81
-	note $61
-	note $a3
-	note $61
-	note $a1
-	note $61
-	note $51
-	note $41
-	note $31
-	note $63
-	note $b1
-	note $61
-	note $b1
-	note $a1
-	note $81
-	note $51
-	note $81
-	note $b1
-	octave4
-	note $11
-	octave3
-	note $b1
-	note $a1
-	note $81
-	note $61
-	note $31
-	note $63
-	note $b1
-	note $61
-	note $b1
-	note $a1
-	note $81
-	note $61
-	note $a3
-	note $61
-	note $a1
-	note $61
-	note $51
-	note $41
-	note $21
-	note $63
-	note $b1
-	note $61
-	note $b1
-	note $a1
-	note $81
-	note $61
-	note $a1
-	note $61
-	note $a1
-	note $61
-	note $a1
-	note $61
-	note $a1
-	loopchannel $00, $5be4 ; end
-; 0xf5c48
+Music_CherrygroveCity_Ch3: ; f5bd8
+	notetype $c, $16
+	note __, 3
+	octave 4
+	note C_, 1
+	octave 3
+	note A#, 1
+	note A_, 1
+	note G_, 1
+	note F_, 1
+	note E_, 1
 
-_Music_CherrygroveCity_Ch4: ; 0xf5c48
-	togglenoise $03
-	notetype $0c
-	note $0f
-	note $21
-	note $01
-	note $81
-	note $21
-	note $21
-	note $71
-	note $23
-	note $21
-	note $01
-	note $81
-	note $20
-	note $20
-	note $73
-	note $21
-	note $81
-	loopchannel $00, $5c4d ; end
-; 0xf5c60
+Music_CherrygroveCity_branch_f5be4: ; f5be4
+	note A_, 1
+	note F_, 1
+	note A_, 1
+	octave 4
+	note C_, 3
+	octave 3
+	note F_, 1
+	note G_, 1
+	note A_, 1
+	note A_, 1
+	note F_, 1
+	note A_, 1
+	octave 4
+	note C_, 3
+	octave 3
+	note F_, 1
+	note G_, 1
+	note A_, 1
+	note A#, 1
+	note G_, 1
+	note A#, 1
+	octave 4
+	note C_, 3
+	octave 3
+	note F_, 1
+	note G_, 1
+	note A_, 1
+	note A#, 3
+	octave 4
+	note C_, 1
+	octave 3
+	note A#, 1
+	note A_, 1
+	note G_, 1
+	note F_, 1
+	note E_, 1
+	note D_, 1
+	note F_, 3
+	note A#, 1
+	note F_, 1
+	note A#, 1
+	note A_, 1
+	note G_, 1
+	note F_, 1
+	note A_, 3
+	note F_, 1
+	note A_, 1
+	note F_, 1
+	note E_, 1
+	note D#, 1
+	note D_, 1
+	note F_, 3
+	note A#, 1
+	note F_, 1
+	note A#, 1
+	note A_, 1
+	note G_, 1
+	note E_, 1
+	note G_, 1
+	note A#, 1
+	octave 4
+	note C_, 1
+	octave 3
+	note A#, 1
+	note A_, 1
+	note G_, 1
+	note F_, 1
+	note D_, 1
+	note F_, 3
+	note A#, 1
+	note F_, 1
+	note A#, 1
+	note A_, 1
+	note G_, 1
+	note F_, 1
+	note A_, 3
+	note F_, 1
+	note A_, 1
+	note F_, 1
+	note E_, 1
+	note D#, 1
+	note C#, 1
+	note F_, 3
+	note A#, 1
+	note F_, 1
+	note A#, 1
+	note A_, 1
+	note G_, 1
+	note F_, 1
+	note A_, 1
+	note F_, 1
+	note A_, 1
+	note F_, 1
+	note A_, 1
+	note F_, 1
+	note A_, 1
+	loopchannel 0, Music_CherrygroveCity_branch_f5be4
+
+Music_CherrygroveCity_Ch4: ; f5c48
+	togglenoise $3
+	notetype $c
+	note __, 15
+
+Music_CherrygroveCity_branch_f5c4d: ; f5c4d
+	note C#, 1
+	note __, 1
+	note G_, 1
+	note C#, 1
+	note C#, 1
+	note F#, 1
+	note C#, 3
+	note C#, 1
+	note __, 1
+	note G_, 1
+	note C#, 0
+	note C#, 0
+	note F#, 3
+	note C#, 1
+	note G_, 1
+	loopchannel 0, Music_CherrygroveCity_branch_f5c4d
+; f5c60

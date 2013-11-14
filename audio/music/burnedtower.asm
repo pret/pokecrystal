@@ -1,262 +1,271 @@
-_Music_BurnedTower: ; 0xf6a99
-	db $c0
-	dw _Music_BurnedTower_Ch1
-	db $01
-	dw _Music_BurnedTower_Ch2
-	db $02
-	dw _Music_BurnedTower_Ch3
-	db $03
-	dw _Music_BurnedTower_Ch4
-; 0xf6aa5
+Music_BurnedTower: ; f6a99
+	dbw $c0, Music_BurnedTower_Ch1
+	dbw $01, Music_BurnedTower_Ch2
+	dbw $02, Music_BurnedTower_Ch3
+	dbw $03, Music_BurnedTower_Ch4
+; f6aa5
 
-_Music_BurnedTower_Ch1: ; 0xf6aa5
-	tempo $a800
+
+Music_BurnedTower_Ch1: ; f6aa5
+	tempo 168
 	volume $77
-	dutycycle $01
-	tone $0400
-	vibrato $08, $45
+	dutycycle $1
+	tone $0004
+	vibrato $8, $45
 	stereopanning $f0
-	notetype $0c, $91
-	note $01
-	octave2
-	note $a3
-	note $a3
-	note $a1
+	notetype $c, $91
+	note __, 1
+	octave 2
+	note A_, 3
+	note A_, 3
+	note A_, 1
 	intensity $80
-	octave3
-	note $45
+	octave 3
+	note D#, 5
 	intensity $91
-	note $33
-	note $33
-	note $31
+	note D_, 3
+	note D_, 3
+	note D_, 1
 	intensity $80
-	note $25
-	intensity $91
-	octave2
-	note $a3
-	note $a3
-	note $a1
-	intensity $80
-	note $b5
-	loopchannel $02, $6ac8
-	tempo $9600
-	intensity $b1
-	octave2
-	note $a3
-	note $a3
-	note $a1
-	intensity $a0
-	octave3
-	note $45
-	intensity $b1
-	note $33
-	note $33
-	note $31
-	intensity $a0
-	note $25
-	intensity $b1
-	octave2
-	note $a3
-	note $a3
-	note $a1
-	intensity $a0
-	note $b5
-	intensity $b1
-	note $a3
-	note $a3
-	note $a1
-	intensity $b3
-	note $bf
-	note $bf
-	note $bf
-	note $95
-	intensity $b1
-	note $a3
-	note $a3
-	note $a1
-	intensity $a0
-	note $b5
-	intensity $b1
-	note $c3
-	note $c3
-	note $c1
-	intensity $a0
-	octave3
-	note $65
-	intensity $b1
-	note $53
-	note $53
-	note $51
-	intensity $a0
-	note $45
-	intensity $b1
-	octave2
-	note $c3
-	note $c3
-	note $c1
-	intensity $a0
-	octave3
-	note $15
-	loopchannel $02, $6b17
-	loopchannel $00, $6ad8 ; end
-; 0xf6b29
+	note C#, 5
 
-_Music_BurnedTower_Ch2: ; 0xf6b29
-	dutycycle $02
+Music_BurnedTower_branch_f6ac8: ; f6ac8
+	intensity $91
+	octave 2
+	note A_, 3
+	note A_, 3
+	note A_, 1
+	intensity $80
+	note A#, 5
+	loopchannel 2, Music_BurnedTower_branch_f6ac8
+	tempo 150
+
+Music_BurnedTower_branch_f6ad8: ; f6ad8
+	intensity $b1
+	octave 2
+	note A_, 3
+	note A_, 3
+	note A_, 1
+	intensity $a0
+	octave 3
+	note D#, 5
+	intensity $b1
+	note D_, 3
+	note D_, 3
+	note D_, 1
+	intensity $a0
+	note C#, 5
+	intensity $b1
+	octave 2
+	note A_, 3
+	note A_, 3
+	note A_, 1
+	intensity $a0
+	note A#, 5
+	intensity $b1
+	note A_, 3
+	note A_, 3
+	note A_, 1
+	intensity $b3
+	note A#, 15
+	note A#, 15
+	note A#, 15
+	note G#, 5
+	intensity $b1
+	note A_, 3
+	note A_, 3
+	note A_, 1
+	intensity $a0
+	note A#, 5
+	intensity $b1
+	note B_, 3
+	note B_, 3
+	note B_, 1
+	intensity $a0
+	octave 3
+	note F_, 5
+	intensity $b1
+	note E_, 3
+	note E_, 3
+	note E_, 1
+	intensity $a0
+	note D#, 5
+
+Music_BurnedTower_branch_f6b17: ; f6b17
+	intensity $b1
+	octave 2
+	note B_, 3
+	note B_, 3
+	note B_, 1
+	intensity $a0
+	octave 3
+	note C_, 5
+	loopchannel 2, Music_BurnedTower_branch_f6b17
+	loopchannel 0, Music_BurnedTower_branch_f6ad8
+
+Music_BurnedTower_Ch2: ; f6b29
+	dutycycle $2
 	vibrato $20, $82
-	tone $0200
-	notetype $0c, $70
-	callchannel _Music_BurnedTower_sub_0xf6b8e
+	tone $0002
+	notetype $c, $70
+	callchannel Music_BurnedTower_branch_f6b8e
 	intensity $c5
-	callchannel _Music_BurnedTower_sub_0xf6b8e
+
+Music_BurnedTower_branch_f6b39: ; f6b39
+	callchannel Music_BurnedTower_branch_f6b8e
 	intensity $c1
-	dutycycle $03
-	note $01
-	octave2
-	note $a3
-	note $a3
-	note $a1
+	dutycycle $3
+	note __, 1
+	octave 2
+	note A_, 3
+	note A_, 3
+	note A_, 1
 	intensity $b0
-	octave3
-	note $45
+	octave 3
+	note D#, 5
 	intensity $c1
-	note $33
-	note $33
-	note $31
+	note D_, 3
+	note D_, 3
+	note D_, 1
 	intensity $b0
-	note $25
+	note C#, 5
 	intensity $c1
-	octave2
-	note $a3
-	note $a3
-	note $a1
+	octave 2
+	note A_, 3
+	note A_, 3
+	note A_, 1
 	intensity $b0
-	note $b3
+	note A#, 3
 	intensity $c1
 	intensity $c2
-	octave3
-	note $a0
-	note $80
-	note $a0
-	octave4
-	note $10
-	vibrato $00, $00
+	octave 3
+	note A_, 0
+	note G_, 0
+	note A_, 0
+	octave 4
+	note C_, 0
+	vibrato $0, $0
 	intensity $3d
-	note $57
+	note E_, 7
 	vibrato $20, $83
 	intensity $b0
-	octave2
-	note $83
-	dutycycle $02
+	octave 2
+	note G_, 3
+	dutycycle $2
 	intensity $b0
-	octave3
-	note $73
-	note $51
-	note $71
-	note $83
-	note $c3
-	octave4
-	note $23
-	note $31
-	note $21
-	octave3
-	note $c3
-	note $83
-	note $73
-	note $51
-	note $71
-	note $83
-	note $53
+	octave 3
+	note F#, 3
+	note E_, 1
+	note F#, 1
+	note G_, 3
+	note B_, 3
+	octave 4
+	note C#, 3
+	note D_, 1
+	note C#, 1
+	octave 3
+	note B_, 3
+	note G_, 3
+	note F#, 3
+	note E_, 1
+	note F#, 1
+	note G_, 3
+	note E_, 3
 	intensity $b7
-	note $7f
-	loopchannel $00, $6b39 ; end
-; 0xf6b8e
+	note F#, 15
+	loopchannel 0, Music_BurnedTower_branch_f6b39
+; f6b8e
 
-_Music_BurnedTower_sub_0xf6b8e: ; 0xf6b8e
-; subroutine
-	octave3
-	note $53
-	note $31
-	note $51
-	note $63
-	note $a3
-	note $c3
-	octave4
-	note $11
-	octave3
-	note $c1
-	note $a3
-	note $63
-	note $53
-	note $31
-	note $51
-	note $63
-	note $33
-	note $5f
-	endchannel ; end
-; 0xf6ba2
+Music_BurnedTower_branch_f6b8e: ; f6b8e
+	octave 3
+	note E_, 3
+	note D_, 1
+	note E_, 1
+	note F_, 3
+	note A_, 3
+	note B_, 3
+	octave 4
+	note C_, 1
+	octave 3
+	note B_, 1
+	note A_, 3
+	note F_, 3
+	note E_, 3
+	note D_, 1
+	note E_, 1
+	note F_, 3
+	note D_, 3
+	note E_, 15
+	endchannel
 
-_Music_BurnedTower_Ch3: ; 0xf6ba2
-	stereopanning $0f
-	notetype $0c, $14
-	note $0f
-	note $0f
-	note $0f
-	note $0b
-	octave3
-	note $43
-	octave2
-	note $a1
-	octave3
-	note $51
-	note $01
-	note $51
-	note $01
-	note $51
-	note $63
-	octave2
-	note $a1
-	octave3
-	note $51
-	note $01
-	note $51
-	note $01
-	note $51
-	note $43
-	loopchannel $04, $6bad
-	octave2
-	note $c1
-	octave3
-	note $71
-	note $01
-	note $71
-	note $01
-	note $71
-	note $83
-	octave2
-	note $c1
-	octave3
-	note $71
-	note $01
-	note $71
-	note $01
-	note $71
-	note $63
-	loopchannel $02, $6bc3
-	loopchannel $00, $6bad ; end
-; 0xf6bdd
+Music_BurnedTower_Ch3: ; f6ba2
+	stereopanning $f
+	notetype $c, $14
+	note __, 15
+	note __, 15
+	note __, 15
+	note __, 11
+	octave 3
+	note D#, 3
 
-_Music_BurnedTower_Ch4: ; 0xf6bdd
-	togglenoise $00
-	notetype $0c
-	note $0f
-	loopchannel $04, $6be1
-	note $01
+Music_BurnedTower_branch_f6bad: ; f6bad
+	octave 2
+	note A_, 1
+	octave 3
+	note E_, 1
+	note __, 1
+	note E_, 1
+	note __, 1
+	note E_, 1
+	note F_, 3
+	octave 2
+	note A_, 1
+	octave 3
+	note E_, 1
+	note __, 1
+	note E_, 1
+	note __, 1
+	note E_, 1
+	note D#, 3
+	loopchannel 4, Music_BurnedTower_branch_f6bad
+
+Music_BurnedTower_branch_f6bc3: ; f6bc3
+	octave 2
+	note B_, 1
+	octave 3
+	note F#, 1
+	note __, 1
+	note F#, 1
+	note __, 1
+	note F#, 1
+	note G_, 3
+	octave 2
+	note B_, 1
+	octave 3
+	note F#, 1
+	note __, 1
+	note F#, 1
+	note __, 1
+	note F#, 1
+	note F_, 3
+	loopchannel 2, Music_BurnedTower_branch_f6bc3
+	loopchannel 0, Music_BurnedTower_branch_f6bad
+
+Music_BurnedTower_Ch4: ; f6bdd
+	togglenoise $0
+	notetype $c
+
+Music_BurnedTower_branch_f6be1: ; f6be1
+	note __, 15
+	loopchannel 4, Music_BurnedTower_branch_f6be1
+	note __, 1
+
+Music_BurnedTower_branch_f6be7: ; f6be7
 	stereopanning $f0
-	note $81
-	note $91
-	note $83
-	note $91
-	note $83
-	loopchannel $00, $6be7 ; end
-; 0xf6bf2
+	note G_, 1
+	note G#, 1
+	note G_, 3
+	note G#, 1
+	note G_, 3
+	loopchannel 0, Music_BurnedTower_branch_f6be7
+; f6bf2

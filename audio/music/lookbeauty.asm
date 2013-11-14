@@ -1,332 +1,333 @@
-_Music_LookBeauty: ; 0xeee3e
-	db $c0
-	dw _Music_LookBeauty_Ch1
-	db $01
-	dw _Music_LookBeauty_Ch2
-	db $02
-	dw _Music_LookBeauty_Ch3
-	db $03
-	dw _Music_LookBeauty_Ch4
-; 0xeee4a
+Music_LookBeauty: ; eee3e
+	dbw $c0, Music_LookBeauty_Ch1
+	dbw $01, Music_LookBeauty_Ch2
+	dbw $02, Music_LookBeauty_Ch3
+	dbw $03, Music_LookBeauty_Ch4
+; eee4a
 
-_Music_LookBeauty_Ch1: ; 0xeee4a
-	stereopanning $0f
+
+Music_LookBeauty_Ch1: ; eee4a
+	stereopanning $f
 	vibrato $12, $25
-	dutycycle $02
-	tempo $8000
+	dutycycle $2
+	tempo 128
 	volume $77
-	notetype $0c, $a3
-	note $0f
-	note $07
-	octave4
-	note $17
-	dutycycle $03
-	note $03
-	octave3
-	note $30
-	note $04
-	note $30
-	note $04
-	note $01
-	note $30
-	note $02
-	note $30
-	note $04
-	note $33
-	note $03
-	note $30
-	note $04
-	note $30
-	note $04
-	note $01
-	note $30
-	note $02
-	note $30
-	note $02
-	note $31
-	note $01
-	note $31
-	note $03
-	note $50
-	note $04
-	note $50
-	note $04
-	note $01
-	note $50
-	note $02
-	note $50
-	note $00
-	note $50
-	note $02
-	note $53
-	note $03
-	note $70
-	note $04
-	note $70
-	note $02
-	note $31
-	note $30
-	note $06
-	octave2
-	note $a0
-	octave3
-	note $10
-	note $40
-	note $70
-	note $40
-	note $70
-	note $a0
-	octave4
-	note $10
-	loopchannel $00, $6e5f ; end
-; 0xeee9c
+	notetype $c, $a3
+	note __, 15
+	note __, 7
+	octave 4
+	note C_, 7
+	dutycycle $3
 
-_Music_LookBeauty_Ch2: ; 0xeee9c
+Music_LookBeauty_branch_eee5f: ; eee5f
+	note __, 3
+	octave 3
+	note D_, 0
+	note __, 4
+	note D_, 0
+	note __, 4
+	note __, 1
+	note D_, 0
+	note __, 2
+	note D_, 0
+	note __, 4
+	note D_, 3
+	note __, 3
+	note D_, 0
+	note __, 4
+	note D_, 0
+	note __, 4
+	note __, 1
+	note D_, 0
+	note __, 2
+	note D_, 0
+	note __, 2
+	note D_, 1
+	note __, 1
+	note D_, 1
+	note __, 3
+	note E_, 0
+	note __, 4
+	note E_, 0
+	note __, 4
+	note __, 1
+	note E_, 0
+	note __, 2
+	note E_, 0
+	note __, 0
+	note E_, 0
+	note __, 2
+	note E_, 3
+	note __, 3
+	note F#, 0
+	note __, 4
+	note F#, 0
+	note __, 2
+	note D_, 1
+	note D_, 0
+	note __, 6
+	octave 2
+	note A_, 0
+	octave 3
+	note C_, 0
+	note D#, 0
+	note F#, 0
+	note D#, 0
+	note F#, 0
+	note A_, 0
+	octave 4
+	note C_, 0
+	loopchannel 0, Music_LookBeauty_branch_eee5f
+
+Music_LookBeauty_Ch2: ; eee9c
 	stereopanning $f0
 	vibrato $10, $23
-	dutycycle $02
-	notetype $0c, $c7
-	octave3
-	note $30
-	note $00
-	octave5
-	note $35
-	note $10
-	note $00
-	octave4
-	note $c0
-	note $00
-	note $b0
-	note $00
-	note $a0
-	note $00
-	note $90
-	note $00
-	note $80
-	note $00
-	note $70
-	note $00
-	note $60
-	note $00
-	note $51
-	note $30
-	note $00
-	note $50
-	note $00
-	note $70
-	note $00
-	dutycycle $03
-	notetype $0c, $c7
-	note $8f
-	note $a7
-	note $c7
-	note $a9
-	note $90
-	note $00
-	note $a0
-	note $00
-	note $91
-	note $97
-	note $01
-	note $61
-	note $01
-	note $51
+	dutycycle $2
+	notetype $c, $c7
+	octave 3
+	note D_, 0
+	note __, 0
+	octave 5
+	note D_, 5
+	note C_, 0
+	note __, 0
+	octave 4
+	note B_, 0
+	note __, 0
+	note A#, 0
+	note __, 0
+	note A_, 0
+	note __, 0
+	note G#, 0
+	note __, 0
+	note G_, 0
+	note __, 0
+	note F#, 0
+	note __, 0
+	note F_, 0
+	note __, 0
+	note E_, 1
+	note D_, 0
+	note __, 0
+	note E_, 0
+	note __, 0
+	note F#, 0
+	note __, 0
+	dutycycle $3
+
+Music_LookBeauty_branch_eeec5: ; eeec5
+	notetype $c, $c7
+	note G_, 15
+	note A_, 7
+	note B_, 7
+	note A_, 9
+	note G#, 0
+	note __, 0
+	note A_, 0
+	note __, 0
+	note G#, 1
+	note G#, 7
+	note __, 1
+	note F_, 1
+	note __, 1
+	note E_, 1
 	intensity $b7
 	vibrato $10, $24
-	octave5
-	note $1e
-	notetype $06, $c7
+	octave 5
+	note C_, 14
+	notetype $6, $c7
 	intensity $c5
 	vibrato $10, $23
-	note $00
-	note $20
-	note $3f
-	note $1f
-	octave4
-	note $cf
-	note $03
-	octave5
-	note $31
-	note $01
-	octave4
-	note $c1
-	note $01
-	note $a5
-	note $0d
-	note $77
-	note $a7
-	loopchannel $00, $6ec5 ; end
-; 0xeeefa
+	note __, 0
+	note C#, 0
+	note D_, 15
+	note C_, 15
+	octave 4
+	note B_, 15
+	note __, 3
+	octave 5
+	note D_, 1
+	note __, 1
+	octave 4
+	note B_, 1
+	note __, 1
+	note A_, 5
+	note __, 13
+	note F#, 7
+	note A_, 7
+	loopchannel 0, Music_LookBeauty_branch_eeec5
 
-_Music_LookBeauty_Ch3: ; 0xeeefa
+Music_LookBeauty_Ch3: ; eeefa
 	stereopanning $ff
-	vibrato $08, $12
-	notetype $0c, $15
-	note $0f
-	octave5
-	note $50
-	note $00
-	note $40
-	note $00
-	note $30
-	note $00
-	note $20
-	note $00
-	octave3
-	note $36
-	note $70
-	note $83
-	octave4
-	note $c0
-	note $00
-	octave3
-	note $80
-	note $00
-	note $30
-	note $00
-	octave4
-	note $c0
-	note $00
-	octave3
-	note $30
-	note $00
-	note $81
-	note $80
-	octave4
-	note $b0
-	note $c0
-	note $00
-	octave3
-	note $80
-	note $00
-	octave4
-	note $c0
-	note $00
-	octave3
-	note $30
-	note $02
-	octave4
-	note $c3
-	octave3
-	note $53
-	octave4
-	note $c0
-	note $00
-	octave3
-	note $50
-	note $00
-	octave2
-	note $c0
-	note $00
-	octave4
-	note $a0
-	note $00
-	octave2
-	note $c0
-	note $00
-	octave3
-	note $51
-	note $50
-	octave4
-	note $80
-	note $90
-	note $00
-	octave3
-	note $50
-	note $00
-	octave4
-	note $70
-	note $02
-	note $91
-	note $01
-	note $c1
-	octave3
-	note $a3
-	octave5
-	note $10
-	note $00
-	octave3
-	note $a0
-	note $00
-	note $50
-	note $00
-	octave5
-	note $10
-	note $00
-	octave3
-	note $50
-	note $00
-	note $a1
-	note $a0
-	octave4
-	note $c0
-	octave5
-	note $10
-	note $00
-	octave3
-	note $a0
-	note $00
-	octave5
-	note $10
-	note $00
-	note $30
-	note $02
-	note $13
-	octave3
-	note $33
-	octave4
-	note $c0
-	note $00
-	octave3
-	note $30
-	note $00
-	octave2
-	note $a0
-	note $00
-	octave4
-	note $a0
-	note $00
-	octave2
-	note $a0
-	note $00
-	octave4
-	note $a1
-	note $a0
-	note $06
-	octave3
-	note $37
-	loopchannel $00, $6f0f ; end
-; 0xeef8b
+	vibrato $8, $12
+	notetype $c, $15
+	note __, 15
+	octave 5
+	note E_, 0
+	note __, 0
+	note D#, 0
+	note __, 0
+	note D_, 0
+	note __, 0
+	note C#, 0
+	note __, 0
+	octave 3
+	note D_, 6
+	note F#, 0
 
-_Music_LookBeauty_Ch4: ; 0xeef8b
-	togglenoise $03
-	notetype $0c
-	note $0f
-	note $0f
-	callchannel _Music_LookBeauty_sub_0xeefa1
-	callchannel _Music_LookBeauty_sub_0xeefa1
-	callchannel _Music_LookBeauty_sub_0xeefa1
-	callchannel _Music_LookBeauty_sub_0xeefa1
-	loopchannel $00, $6f91 ; end
-; 0xeefa1
+Music_LookBeauty_branch_eef0f: ; eef0f
+	note G_, 3
+	octave 4
+	note B_, 0
+	note __, 0
+	octave 3
+	note G_, 0
+	note __, 0
+	note D_, 0
+	note __, 0
+	octave 4
+	note B_, 0
+	note __, 0
+	octave 3
+	note D_, 0
+	note __, 0
+	note G_, 1
+	note G_, 0
+	octave 4
+	note A#, 0
+	note B_, 0
+	note __, 0
+	octave 3
+	note G_, 0
+	note __, 0
+	octave 4
+	note B_, 0
+	note __, 0
+	octave 3
+	note D_, 0
+	note __, 2
+	octave 4
+	note B_, 3
+	octave 3
+	note E_, 3
+	octave 4
+	note B_, 0
+	note __, 0
+	octave 3
+	note E_, 0
+	note __, 0
+	octave 2
+	note B_, 0
+	note __, 0
+	octave 4
+	note A_, 0
+	note __, 0
+	octave 2
+	note B_, 0
+	note __, 0
+	octave 3
+	note E_, 1
+	note E_, 0
+	octave 4
+	note G_, 0
+	note G#, 0
+	note __, 0
+	octave 3
+	note E_, 0
+	note __, 0
+	octave 4
+	note F#, 0
+	note __, 2
+	note G#, 1
+	note __, 1
+	note B_, 1
+	octave 3
+	note A_, 3
+	octave 5
+	note C_, 0
+	note __, 0
+	octave 3
+	note A_, 0
+	note __, 0
+	note E_, 0
+	note __, 0
+	octave 5
+	note C_, 0
+	note __, 0
+	octave 3
+	note E_, 0
+	note __, 0
+	note A_, 1
+	note A_, 0
+	octave 4
+	note B_, 0
+	octave 5
+	note C_, 0
+	note __, 0
+	octave 3
+	note A_, 0
+	note __, 0
+	octave 5
+	note C_, 0
+	note __, 0
+	note D_, 0
+	note __, 2
+	note C_, 3
+	octave 3
+	note D_, 3
+	octave 4
+	note B_, 0
+	note __, 0
+	octave 3
+	note D_, 0
+	note __, 0
+	octave 2
+	note A_, 0
+	note __, 0
+	octave 4
+	note A_, 0
+	note __, 0
+	octave 2
+	note A_, 0
+	note __, 0
+	octave 4
+	note A_, 1
+	note A_, 0
+	note __, 6
+	octave 3
+	note D_, 7
+	loopchannel 0, Music_LookBeauty_branch_eef0f
 
-_Music_LookBeauty_sub_0xeefa1: ; 0xeefa1
-; subroutine
-	note $71
-	note $81
-	note $31
-	note $81
-	note $81
-	note $31
-	note $81
-	note $81
-	note $71
-	note $31
-	note $81
-	note $31
-	note $81
-	note $81
-	note $31
-	note $81
-	endchannel ; end
-; 0xeefb2
+Music_LookBeauty_Ch4: ; eef8b
+	togglenoise $3
+	notetype $c
+	note __, 15
+	note __, 15
+
+Music_LookBeauty_branch_eef91: ; eef91
+	callchannel Music_LookBeauty_branch_eefa1
+	callchannel Music_LookBeauty_branch_eefa1
+	callchannel Music_LookBeauty_branch_eefa1
+	callchannel Music_LookBeauty_branch_eefa1
+	loopchannel 0, Music_LookBeauty_branch_eef91
+; eefa1
+
+Music_LookBeauty_branch_eefa1: ; eefa1
+	note F#, 1
+	note G_, 1
+	note D_, 1
+	note G_, 1
+	note G_, 1
+	note D_, 1
+	note G_, 1
+	note G_, 1
+	note F#, 1
+	note D_, 1
+	note G_, 1
+	note D_, 1
+	note G_, 1
+	note G_, 1
+	note D_, 1
+	note G_, 1
+	endchannel
+; eefb2

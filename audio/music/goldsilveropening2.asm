@@ -1,224 +1,222 @@
-_Music_GoldSilverOpening2: ; 0xf7308
-	db $c0
-	dw _Music_GoldSilverOpening2_Ch1
-	db $01
-	dw _Music_GoldSilverOpening2_Ch2
-	db $02
-	dw _Music_GoldSilverOpening2_Ch3
-	db $03
-	dw _Music_GoldSilverOpening2_Ch4
-; 0xf7314
+Music_GoldSilverOpening2: ; f7308
+	dbw $c0, Music_GoldSilverOpening2_Ch1
+	dbw $01, Music_GoldSilverOpening2_Ch2
+	dbw $02, Music_GoldSilverOpening2_Ch3
+	dbw $03, Music_GoldSilverOpening2_Ch4
+; f7314
 
-_Music_GoldSilverOpening2_Ch1: ; 0xf7314
-	tempo $5c00
+
+Music_GoldSilverOpening2_Ch1: ; f7314
+	tempo 92
 	volume $77
-	dutycycle $03
-	tone $0200
-	stereopanning $0f
-	notetype $0c, $3d
-	octave3
-	note $47
-	notetype $0c, $c1
-	octave3
-	note $31
-	note $31
-	note $31
-	intensity $b7
-	note $49
-	intensity $c1
-	note $31
-	note $31
-	note $31
-	intensity $b7
-	note $63
-	note $43
-	note $11
-	loopchannel $02, $7325
-	intensity $c1
-	note $31
-	note $31
-	note $31
-	intensity $b7
-	note $49
-	intensity $c1
-	note $31
-	note $31
-	note $31
-	intensity $b7
-	note $63
-	note $83
-	note $b1
-	intensity $b0
-	note $af
-	note $af
-	intensity $b2
-	octave4
-	note $3f
-	endchannel ; end
-; 0xf7358
+	dutycycle $3
+	tone $0002
+	stereopanning $f
+	notetype $c, $3d
+	octave 3
+	note D#, 7
 
-_Music_GoldSilverOpening2_Ch2: ; 0xf7358
-	dutycycle $03
+Music_GoldSilverOpening2_branch_f7325: ; f7325
+	notetype $c, $c1
+	octave 3
+	note D_, 1
+	note D_, 1
+	note D_, 1
+	intensity $b7
+	note D#, 9
+	intensity $c1
+	note D_, 1
+	note D_, 1
+	note D_, 1
+	intensity $b7
+	note F_, 3
+	note D#, 3
+	note C_, 1
+	loopchannel 2, Music_GoldSilverOpening2_branch_f7325
+	intensity $c1
+	note D_, 1
+	note D_, 1
+	note D_, 1
+	intensity $b7
+	note D#, 9
+	intensity $c1
+	note D_, 1
+	note D_, 1
+	note D_, 1
+	intensity $b7
+	note F_, 3
+	note G_, 3
+	note A#, 1
+	intensity $b0
+	note A_, 15
+	note A_, 15
+	intensity $b2
+	octave 4
+	note D_, 15
+	endchannel
+
+Music_GoldSilverOpening2_Ch2: ; f7358
+	dutycycle $3
 	vibrato $14, $14
 	stereopanning $f0
-	notetype $0c, $3f
-	octave3
-	note $b7
-	notetype $0c, $d1
-	octave3
-	note $a1
-	note $a1
-	note $a1
+	notetype $c, $3f
+	octave 3
+	note A#, 7
+	notetype $c, $d1
+	octave 3
+	note A_, 1
+	note A_, 1
+	note A_, 1
 	intensity $c7
-	note $b9
+	note A#, 9
 	intensity $d1
-	note $a1
-	note $a1
-	note $a1
+	note A_, 1
+	note A_, 1
+	note A_, 1
 	intensity $c7
-	octave4
-	note $13
-	octave3
-	note $b3
-	note $81
+	octave 4
+	note C_, 3
+	octave 3
+	note A#, 3
+	note G_, 1
 	intensity $d1
-	note $a1
-	note $a1
-	note $a1
+	note A_, 1
+	note A_, 1
+	note A_, 1
 	intensity $c7
-	note $b9
+	note A#, 9
 	intensity $d1
-	note $a1
-	note $a1
-	note $a1
+	note A_, 1
+	note A_, 1
+	note A_, 1
 	intensity $c7
-	octave4
-	note $13
-	note $23
-	note $41
+	octave 4
+	note C_, 3
+	note C#, 3
+	note D#, 1
 	intensity $c7
-	note $37
-	note $47
-	note $67
-	note $b7
+	note D_, 7
+	note D#, 7
+	note F_, 7
+	note A#, 7
 	intensity $b0
-	octave5
-	note $3f
-	note $3f
+	octave 5
+	note D_, 15
+	note D_, 15
 	intensity $c2
-	note $3f
-	endchannel ; end
-; 0xf739c
+	note D_, 15
+	endchannel
 
-_Music_GoldSilverOpening2_Ch3: ; 0xf739c
-	notetype $0c, $17
-	note $07
-	octave2
-	note $a0
-	note $00
-	note $a0
-	note $00
-	note $a0
-	note $00
-	note $b7
-	note $01
-	note $a0
-	note $00
-	note $a0
-	note $00
-	note $a0
-	note $00
-	note $33
-	note $63
-	note $a1
-	note $31
-	note $a1
-	note $31
-	note $a1
-	note $91
-	note $51
-	note $81
-	note $61
-	note $31
-	note $a1
-	note $91
-	note $51
-	note $81
-	note $61
-	note $11
-	note $41
-	note $31
-	note $a1
-	note $31
-	note $a1
-	note $91
-	note $51
-	note $81
-	note $61
-	note $31
-	note $a1
-	note $91
-	note $51
-	note $81
-	note $61
-	note $11
-	note $41
-	note $31
-	note $71
-	note $b1
-	octave3
-	note $31
-	octave2
-	note $b1
-	note $a1
-	note $71
-	note $41
-	note $31
-	note $71
-	note $b1
-	octave3
-	note $31
-	octave2
-	note $b1
-	note $71
-	note $b1
-	octave3
-	note $21
-	note $31
-	note $0d
-	endchannel ; end
-; 0xf73ea
+Music_GoldSilverOpening2_Ch3: ; f739c
+	notetype $c, $17
+	note __, 7
+	octave 2
+	note A_, 0
+	note __, 0
+	note A_, 0
+	note __, 0
+	note A_, 0
+	note __, 0
+	note A#, 7
+	note __, 1
+	note A_, 0
+	note __, 0
+	note A_, 0
+	note __, 0
+	note A_, 0
+	note __, 0
+	note D_, 3
+	note F_, 3
+	note A_, 1
+	note D_, 1
+	note A_, 1
+	note D_, 1
+	note A_, 1
+	note G#, 1
+	note E_, 1
+	note G_, 1
+	note F_, 1
+	note D_, 1
+	note A_, 1
+	note G#, 1
+	note E_, 1
+	note G_, 1
+	note F_, 1
+	note C_, 1
+	note D#, 1
+	note D_, 1
+	note A_, 1
+	note D_, 1
+	note A_, 1
+	note G#, 1
+	note E_, 1
+	note G_, 1
+	note F_, 1
+	note D_, 1
+	note A_, 1
+	note G#, 1
+	note E_, 1
+	note G_, 1
+	note F_, 1
+	note C_, 1
+	note D#, 1
+	note D_, 1
+	note F#, 1
+	note A#, 1
+	octave 3
+	note D_, 1
+	octave 2
+	note A#, 1
+	note A_, 1
+	note F#, 1
+	note D#, 1
+	note D_, 1
+	note F#, 1
+	note A#, 1
+	octave 3
+	note D_, 1
+	octave 2
+	note A#, 1
+	note F#, 1
+	note A#, 1
+	octave 3
+	note C#, 1
+	note D_, 1
+	note __, 13
+	endchannel
 
-_Music_GoldSilverOpening2_Ch4: ; 0xf73ea
-	togglenoise $00
-	notetype $06
-	note $41
-	note $41
-	note $41
-	note $41
-	note $41
-	note $31
-	note $31
-	note $31
-	notetype $0c
-	note $31
-	note $31
-	note $31
-	note $23
-	note $41
-	note $41
-	note $41
-	note $31
-	note $31
-	note $31
-	note $25
-	notetype $06
-	note $41
-	note $41
-	note $41
-	note $41
-	notetype $0c
-	loopchannel $04, $73f8
-	note $1f
-	endchannel ; end
-; 0xf7411
+Music_GoldSilverOpening2_Ch4: ; f73ea
+	togglenoise $0
+	notetype $6
+	note D#, 1
+	note D#, 1
+	note D#, 1
+	note D#, 1
+	note D#, 1
+	note D_, 1
+	note D_, 1
+	note D_, 1
+	notetype $c
+
+Music_GoldSilverOpening2_branch_f73f8: ; f73f8
+	note D_, 1
+	note D_, 1
+	note D_, 1
+	note C#, 3
+	note D#, 1
+	note D#, 1
+	note D#, 1
+	note D_, 1
+	note D_, 1
+	note D_, 1
+	note C#, 5
+	notetype $6
+	note D#, 1
+	note D#, 1
+	note D#, 1
+	note D#, 1
+	notetype $c
+	loopchannel 4, Music_GoldSilverOpening2_branch_f73f8
+	note C_, 15
+	endchannel
+; f7411

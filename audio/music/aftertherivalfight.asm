@@ -1,73 +1,67 @@
-_Music_AfterTheRivalFight: ; 0xf5127
-	db $c0
-	dw _Music_AfterTheRivalFight_Ch1
-	db $01
-	dw _Music_AfterTheRivalFight_Ch2
-	db $02
-	dw _Music_AfterTheRivalFight_Ch3
-	db $03
-	dw _Music_AfterTheRivalFight_Ch4
-; 0xf5133
+Music_AfterTheRivalFight: ; f5127
+	dbw $c0, Music_AfterTheRivalFight_Ch1
+	dbw $01, Music_AfterTheRivalFight_Ch2
+	dbw $02, Music_AfterTheRivalFight_Ch3
+	dbw $03, Music_AfterTheRivalFight_Ch4
+; f5133
 
-_Music_AfterTheRivalFight_Ch1: ; 0xf5133
-	tempo $7000
+
+Music_AfterTheRivalFight_Ch1: ; f5133
+	tempo 112
 	volume $77
-	dutycycle $00
-	tone $0100
-	vibrato $08, $14
+	dutycycle $0
+	tone $0001
+	vibrato $8, $14
 	stereopanning $f0
-	notetype $0c, $b2
-	octave2
-	note $93
-	note $93
+	notetype $c, $b2
+	octave 2
+	note G#, 3
+	note G#, 3
 	intensity $82
-	octave3
-	note $91
-	note $91
-	note $91
-	note $91
-	loopchannel $00, $4fb1 ; end
-; 0xf5153
+	octave 3
+	note G#, 1
+	note G#, 1
+	note G#, 1
+	note G#, 1
+	loopchannel 0, Music_AfterTheRivalFight_branch_f4fb1
 
-_Music_AfterTheRivalFight_Ch2: ; 0xf5153
-	dutycycle $01
-	vibrato $06, $35
-	stereopanning $0f
-	notetype $0c, $c2
-	octave4
-	note $93
-	note $93
+Music_AfterTheRivalFight_Ch2: ; f5153
+	dutycycle $1
+	vibrato $6, $35
+	stereopanning $f
+	notetype $c, $c2
+	octave 4
+	note G#, 3
+	note G#, 3
 	intensity $a2
-	note $91
-	note $91
-	note $91
-	note $91
-	loopchannel $00, $502e ; end
-; 0xf516a
+	note G#, 1
+	note G#, 1
+	note G#, 1
+	note G#, 1
+	loopchannel 0, Music_AfterTheRivalFight_branch_f502e
 
-_Music_AfterTheRivalFight_Ch3: ; 0xf516a
-	notetype $0c, $28
-	octave3
-	note $41
-	note $01
-	note $41
-	note $01
-	note $91
-	note $71
-	note $61
-	note $41
-	loopchannel $00, $509d ; end
-; 0xf517a
+Music_AfterTheRivalFight_Ch3: ; f516a
+	notetype $c, $28
+	octave 3
+	note D#, 1
+	note __, 1
+	note D#, 1
+	note __, 1
+	note G#, 1
+	note F#, 1
+	note F_, 1
+	note D#, 1
+	loopchannel 0, Music_AfterTheRivalFight_branch_f509d
 
-_Music_AfterTheRivalFight_Ch4: ; 0xf517a
-	togglenoise $03
-	stereopanning $0f
-	notetype $0c
-	note $33
-	note $33
-	note $41
-	note $31
-	note $31
-	note $31
-	loopchannel $00, $5118 ; end
-; 0xf518a
+Music_AfterTheRivalFight_Ch4: ; f517a
+	togglenoise $3
+	stereopanning $f
+	notetype $c
+	note D_, 3
+	note D_, 3
+	note D#, 1
+	note D_, 1
+	note D_, 1
+	note D_, 1
+	loopchannel 0, Music_AfterTheRivalFight_branch_f5118
+; f518a
