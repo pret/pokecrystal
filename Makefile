@@ -67,9 +67,9 @@ gfx/trainers/%.lz: gfx/trainers/%.png
 .png.lz:
 	$(PYTHON) extras/pokemontools/gfx.py png-to-lz $<
 .png.2bpp:
-	$(PYTHON) extras/pokemontools/gfx.py png-to-lz $<
+	$(PYTHON) extras/pokemontools/gfx.py png-to-2bpp $<
 .png.1bpp:
-	$(PYTHON) extras/pokemontools/gfx.py png-to-lz $<
+	$(PYTHON) extras/pokemontools/gfx.py png-to-1bpp $<
 %.2bpp:
 	@:
 %.1bpp:
