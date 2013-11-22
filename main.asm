@@ -85542,35 +85542,6 @@ INCBIN "baserom.gbc",$93327,$93a31 - $93327
 
 SECTION "bank25",ROMX,BANK[$25]
 
-MapGroupPointers: ; 0x94000
-; pointers to the first map header of each map group
-	dw MapGroup1
-	dw MapGroup2
-	dw MapGroup3
-	dw MapGroup4
-	dw MapGroup5
-	dw MapGroup6
-	dw MapGroup7
-	dw MapGroup8
-	dw MapGroup9
-	dw MapGroup10
-	dw MapGroup11
-	dw MapGroup12
-	dw MapGroup13
-	dw MapGroup14
-	dw MapGroup15
-	dw MapGroup16
-	dw MapGroup17
-	dw MapGroup18
-	dw MapGroup19
-	dw MapGroup20
-	dw MapGroup21
-	dw MapGroup22
-	dw MapGroup23
-	dw MapGroup24
-	dw MapGroup25
-	dw MapGroup26
-
 
 INCLUDE "maps/map_headers.asm"
 
