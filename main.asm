@@ -86252,7 +86252,9 @@ INCLUDE "maps/BattleTowerOutside.asm"
 
 SECTION "bank28",ROMX,BANK[$28]
 
-INCBIN "baserom.gbc",$a0000,$a1eca - $a0000
+INCBIN "baserom.gbc",$a0000,$a0c28 - $a0000
+
+INCLUDE "text/buena.asm"
 
 
 SECTION "bank29",ROMX,BANK[$29]
