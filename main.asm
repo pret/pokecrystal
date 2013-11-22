@@ -86686,86 +86686,8 @@ UnknownScript_0x96c4f: ; 96c4f
 ; 96c56
 
 
-Function96c56: ; 96c56
-	push af
-	ld a, 1
-	ld [ScriptMode], a
-	pop af
-	ret
-; 96c5e
-
-
-ScriptEvents: ; 96c5e
-	call StartScript
-.loop
-	ld a, [ScriptMode]
-	ld hl, .modes
-	rst JumpTable
-	call CheckScript
-	jr nz, .loop
-	ret
-; 96c6e
-
-.modes ; 96c6e
-	dw EndScript
-	dw RunScriptCommand
-	dw WaitScriptMovement
-	dw WaitScript
-
-EndScript: ; 96c76
-	call StopScript
-	ret
-; 96c7a
-
-WaitScript: ; 96c7a
-	call StopScript
-
-	ld hl, ScriptDelay
-	dec [hl]
-	ret nz
-
-	callba Function58b9
-
-	ld a, SCRIPT_READ
-	ld [ScriptMode], a
-	call StartScript
-	ret
-; 96c91
-
-WaitScriptMovement: ; 96c91
-	call StopScript
-
-	ld hl, VramState
-	bit 7, [hl]
-	ret nz
-
-	callba Function58b9
-
-	ld a, SCRIPT_READ
-	ld [ScriptMode], a
-	call StartScript
-	ret
-; 96ca9
-
-RunScriptCommand: ; 96ca9
-	call GetScriptByte
-	ld hl, ScriptCommandTable
-	rst JumpTable
-	ret
-; 96cb1
-
-
 INCLUDE "engine/scripting.asm"
 
-
-Function97c20: ; 97c20
-	ld a, [.byte]
-	ld [ScriptVar], a
-	ret
-
-.byte
-	db 0
-; 97c28
 
 Function97c28: ; 97c28
 	ld hl, StatusFlags2

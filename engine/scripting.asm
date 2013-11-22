@@ -1,3 +1,75 @@
+; Event scripting commands.
+
+
+Function96c56: ; 96c56
+	push af
+	ld a, 1
+	ld [ScriptMode], a
+	pop af
+	ret
+; 96c5e
+
+
+ScriptEvents: ; 96c5e
+	call StartScript
+.loop
+	ld a, [ScriptMode]
+	ld hl, .modes
+	rst JumpTable
+	call CheckScript
+	jr nz, .loop
+	ret
+; 96c6e
+
+.modes ; 96c6e
+	dw EndScript
+	dw RunScriptCommand
+	dw WaitScriptMovement
+	dw WaitScript
+
+EndScript: ; 96c76
+	call StopScript
+	ret
+; 96c7a
+
+WaitScript: ; 96c7a
+	call StopScript
+
+	ld hl, ScriptDelay
+	dec [hl]
+	ret nz
+
+	callba Function58b9
+
+	ld a, SCRIPT_READ
+	ld [ScriptMode], a
+	call StartScript
+	ret
+; 96c91
+
+WaitScriptMovement: ; 96c91
+	call StopScript
+
+	ld hl, VramState
+	bit 7, [hl]
+	ret nz
+
+	callba Function58b9
+
+	ld a, SCRIPT_READ
+	ld [ScriptMode], a
+	call StartScript
+	ret
+; 96ca9
+
+RunScriptCommand: ; 96ca9
+	call GetScriptByte
+	ld hl, ScriptCommandTable
+	rst JumpTable
+	ret
+; 96cb1
+
+
 ScriptCommandTable: ; 0x96cb1
 	dw Script_2call
 	dw Script_3call
@@ -81,7 +153,9 @@ ScriptCommandTable: ; 0x96cb1
 	dw Script_loadmenudata
 	dw Script_writebackup
 	dw Script_jumptextfaceplayer
+IF _CRYSTAL
 	dw Script_3jumptext
+ENDC
 	dw Script_jumptext
 	dw Script_closetext
 	dw Script_keeptextopen
@@ -279,6 +353,9 @@ JumpTextScript: ; 0x96e7a
 	end
 ; 0x96e81
 
+
+IF _CRYSTAL
+
 Script_3jumptext: ; 0x96e81
 ; script command 0x52
 ; parameters:
@@ -294,6 +371,9 @@ Script_3jumptext: ; 0x96e81
 	ld hl, JumpTextScript
 	jp ScriptJump
 ; 0x96e9b
+
+ENDC
+
 
 Script_2writetext: ; 0x96e9b
 ; script command 0x4c
@@ -2018,7 +2098,7 @@ Script_checkver: ; 0x976a6
 ; 0x976ad
 
 Version: ; 976ad
-	db 0 ; VERSION
+	db VERSION
 ; 976ae
 
 Script_pokenamemem: ; 0x976ae
@@ -3117,7 +3197,7 @@ DisplayCredits:
 	call Function261b
 	call StopScript
 	ret
-; 0x97c05
+; 0x97c051
 
 Script_wait: ; 0x97c05
 ; script command 0xa8
@@ -3145,4 +3225,14 @@ Script_unknown0xa9: ; 0x97c15
 	ld [$c2dd], a
 	ret
 ; 0x97c20
+
+
+Function97c20: ; 97c20
+	ld a, [.byte]
+	ld [ScriptVar], a
+	ret
+
+.byte
+	db 0
+; 97c28
 
