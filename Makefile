@@ -6,7 +6,7 @@ PYTHON := python
 TEXTFILES := $(shell find ./ -type f -name '*.asm' | grep -v globals.asm)
 TEXTQUEUE :=
 
-CRYSTAL_OBJS := wram.o main.o
+CRYSTAL_OBJS := wram.o main.o stats/egg_moves_crystal.o stats/evos_attacks_crystal.o
 OBJS := $(CRYSTAL_OBJS)
 
 ROMS := pokecrystal.gbc

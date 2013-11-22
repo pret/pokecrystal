@@ -31423,10 +31423,7 @@ INCBIN "baserom.gbc",$2017c,$20181 - $2017c
 
 INCLUDE "tilesets/data_3.asm"
 
-EggMovePointers: ; 0x23b11
-INCLUDE "stats/egg_move_pointers.asm"
 
-INCLUDE "stats/egg_moves.asm"
 
 
 SECTION "bank9",ROMX,BANK[$9]
@@ -54674,10 +54671,7 @@ GetPreEvolution: ; 42581
 ; 425b1
 
 
-EvosAttacksPointers: ; 0x425b1
-INCLUDE "stats/evos_attacks_pointers.asm"
 
-INCLUDE "stats/evos_attacks.asm"
 
 
 SECTION "bank11",ROMX,BANK[$11]

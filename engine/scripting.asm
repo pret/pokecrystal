@@ -2018,7 +2018,7 @@ Script_checkver: ; 0x976a6
 ; 0x976ad
 
 Version: ; 976ad
-	db VERSION
+	db 0 ; VERSION
 ; 976ae
 
 Script_pokenamemem: ; 0x976ae

@@ -2,6 +2,7 @@
 
 ; These are grouped together since they're both checked at level-up.
 
+EvosAttacksPointers: ; 0x425b1
 	dw BulbasaurEvosAttacks
 	dw IvysaurEvosAttacks
 	dw VenusaurEvosAttacks
