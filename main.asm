@@ -85545,10 +85545,6 @@ SECTION "bank25",ROMX,BANK[$25]
 INCLUDE "maps/map_headers.asm"
 INCLUDE "maps/second_map_headers.asm"
 
-INCLUDE "engine/events.asm"
-INCLUDE "engine/scripting.asm"
-INCLUDE "engine/events_2.asm"
-
 
 
 SECTION "bank26",ROMX,BANK[$26]
