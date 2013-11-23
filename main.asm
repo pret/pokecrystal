@@ -54261,7 +54261,7 @@ asm_421f5
 	ld a, $1
 	ld [hBGMapMode], a
 	call ClearSprites
-	callba Function4e5e1
+	callba EvolutionAnimation
 	push af
 	call ClearSprites
 	pop af
@@ -63233,7 +63233,7 @@ Function4e5b7: ; 4e5b7 (13:65b7)
 INCBIN "baserom.gbc",$4e5da,$4e5e1 - $4e5da
 
 
-Function4e5e1: ; 4e5e1
+EvolutionAnimation: ; 4e5e1
 	push hl
 	push de
 	push bc
@@ -63243,7 +63243,9 @@ Function4e5e1: ; 4e5e1
 	push af
 	ld a, [BaseDexNo]
 	push af
-	call Function4e607
+
+	call _EvolutionAnimation
+
 	pop af
 	ld [BaseDexNo], a
 	pop af
@@ -63253,40 +63255,49 @@ Function4e5e1: ; 4e5e1
 	pop bc
 	pop de
 	pop hl
+
 	ld a, [$d1ed]
 	and a
 	ret z
+
 	scf
 	ret
 ; 4e607
 
-Function4e607: ; 4e607
+_EvolutionAnimation: ; 4e607
 	ld a, $e4
 	ld [rOBP0], a
-	ld de, $0000
+
+	ld de, MUSIC_NONE
 	call PlayMusic
+
 	callba Function8cf53
-	ld de, $6831
+
+	ld de, EvolutionGFX
 	ld hl, VTiles0
-	ld bc, $1308
+	ld bc, BANK(EvolutionGFX) << 8 + 8
 	call Request2bpp
+
 	xor a
 	ld [Danger], a
 	call WaitBGMap
 	xor a
 	ld [hBGMapMode], a
-	ld a, [MagikarpLength]
+	ld a, [Buffer1]
 	ld [PlayerHPPal], a
+
 	ld c, $0
 	call Function4e703
-	ld a, [MagikarpLength]
+	ld a, [Buffer1]
 	ld [CurPartySpecies], a
 	ld [CurSpecies], a
 	call Function4e708
+
 	ld de, VTiles2
 	ld hl, $9310
 	ld bc, $0031
 	call Request2bpp
+
 	ld a, $31
 	ld [$d1ec], a
 	call Function4e755
@@ -63294,44 +63305,54 @@ Function4e607: ; 4e607
 	ld [CurPartySpecies], a
 	ld [CurSpecies], a
 	call Function4e711
-	ld a, [MagikarpLength]
+	ld a, [Buffer1]
 	ld [CurPartySpecies], a
 	ld [CurSpecies], a
+
 	ld a, $1
 	ld [hBGMapMode], a
 	call Function4e794
 	jr c, .asm_4e67c
-	ld a, [MagikarpLength]
+
+	ld a, [Buffer1]
 	call Function37ce
 
 .asm_4e67c
-	ld de, $0022
+	ld de, MUSIC_EVOLUTION
 	call PlayMusic
-	ld c, $50
+
+	ld c, 80
 	call DelayFrames
+
 	ld c, $1
 	call Function4e703
 	call Function4e726
 	jr c, .asm_4e6df
+
 	ld a, $cf
 	ld [$d1ec], a
+
 	call Function4e755
 	xor a
 	ld [$d1ed], a
+
 	ld a, [Buffer2]
 	ld [PlayerHPPal], a
+
 	ld c, $0
 	call Function4e703
 	call Function4e7a6
 	callba Function8cf53
 	call Function4e794
 	jr c, .asm_4e6de
+
 	ld a, [$c2c6]
 	push af
 	ld a, $1
 	ld [$c2c6], a
 	ld a, [CurPartySpecies]
 	push af
+
 	ld a, [PlayerHPPal]
 	ld [CurPartySpecies], a
 	ld hl, $c4cf
@@ -63339,6 +63360,7 @@ Function4e607: ; 4e607
 	ld e, $4
 	ld a, $47
 	call Predef
+
 	pop af
 	ld [CurPartySpecies], a
 	pop af
@@ -63351,14 +63373,17 @@ Function4e607: ; 4e607
 .asm_4e6df
 	ld a, $1
 	ld [$d1ed], a
-	ld a, [MagikarpLength]
+
+	ld a, [Buffer1]
 	ld [PlayerHPPal], a
+
 	ld c, $0
 	call Function4e703
 	call Function4e7a6
 	callba Function8cf53
 	call Function4e794
 	ret c
+
 	ld a, [PlayerHPPal]
 	call Function37ce
 	ret
