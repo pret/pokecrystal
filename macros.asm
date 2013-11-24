@@ -36,6 +36,12 @@ callba: MACRO ; bank, address
 	rst FarCall
 	ENDM
 
+
+lb: MACRO ; r, hi, lo
+	ld \1, \2 << 8 + \3
+	ENDM
+
+
 TX_RAM: MACRO
 	db 1
 	dw \1
