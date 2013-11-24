@@ -90955,7 +90955,9 @@ Functioncbce5: ; cbce5
 	ret
 ; cbd2e
 
-INCBIN "baserom.gbc",$cbd2e,$cbe2b - $cbd2e
+TheEndGFX: ; cbd2e
+INCBIN "gfx/credits/theend.2bpp"
+; cbe2e
 
 
 SECTION "bank33",ROMX,BANK[$33]
@@ -113337,19 +113339,22 @@ Function109847: ; 109847
 	ld a, $0
 	jr z, .asm_10984f
 	ld a, $40
-
 .asm_10984f
 	ld [$cf63], a
+
 	ld a, [rSVBK]
 	push af
 	ld a, $5
 	ld [rSVBK], a
+
 	call WhiteBGMap
 	call ClearTileMap
 	call ClearSprites
+
 	ld hl, $ca00
 	ld c, $80
-	ld de, rJOYP
+	ld de, $ff00
+
 .asm_10986a
 	ld a, e
 	ld [hli], a
@@ -113357,37 +113362,46 @@ Function109847: ; 109847
 	ld [hli], a
 	dec c
 	jr nz, .asm_10986a
-	ld de, $5c24
+
+	ld de, CreditsBorderGFX
 	ld hl, $9200
-	ld bc, $4209
+	lb bc, BANK(CreditsBorderGFX), $09
 	call Request2bpp
-	ld de, $4000
+
+	ld de, CopyrightGFX
 	ld hl, $9600
-	ld bc, $391d
+	lb bc, BANK(CopyrightGFX), $1d
 	call Request2bpp
-	ld de, $7d2e
+
+	ld de, TheEndGFX
 	ld hl, $9400
-	ld bc, $3210
+	lb bc, BANK(TheEndGFX), $10
 	call Request2bpp
+
 	ld a, $ff
 	ld [$cf64], a
 	xor a
 	ld [$cf65], a
+
 	call Function109bca
 	ld e, l
 	ld d, h
 	ld hl, VTiles2
-	ld bc, $4210
+	lb bc, BANK(CreditsMonsGFX), $10
 	call Request2bpp
+
 	call Function109a95
 	xor a
 	ld [$cf66], a
+
 	ld hl, LYOverrides
-	ld bc, Start
+	ld bc, $100
 	xor a
 	call ByteFill
-	ld a, $43
+
+	ld a, rSCX & $ff
 	ld [hLCDStatCustom], a
+
 	call GetCreditsPalette
 	call Function32f9
 	ld a, [$ff9e]
@@ -113401,10 +113415,12 @@ Function109847: ; 109847
 	ld [CreditsPos], a
 	ld [$cd21], a
 	ld [CreditsTimer], a
+
 .asm_1098de
 	call Function109908
 	call Function1098fd
 	jr nz, .asm_1098ee
+
 	call Function109926
 	call DelayFrame
 	jr .asm_1098de
