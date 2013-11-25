@@ -98801,7 +98801,7 @@ Functione01b0: ; e01b0
 ; e01b5
 
 Functione01b5: ; e01b5
-	ld hl, $41cd
+	ld hl, UnknownText_0xe01cd
 	call Functione0489
 	call Function1dcf
 	jr c, .asm_e01c7
@@ -98815,7 +98815,11 @@ Functione01b5: ; e01b5
 	ret
 ; e01cd
 
-INCBIN "baserom.gbc", $e01cd, $e01d2 - $e01cd
+UnknownText_0xe01cd: ; 0xe01cd
+	; Play with three coins?
+	text_jump UnknownText_0x1c5793, BANK(UnknownText_0x1c5793)
+	db "@"
+; 0xe01d2
 
 Functione01d2: ; e01d2
 	ld a, [Coins]
@@ -98828,7 +98832,7 @@ Functione01d2: ; e01d2
 	ld a, l
 	cp 3
 	jr nc, .asm_e01ef
-	ld hl, $4212
+	ld hl, UnknownText_0xe0212
 	call Functione0489
 	ld a, $7
 	ld [$cf63], a
@@ -98853,7 +98857,11 @@ Functione01d2: ; e01d2
 	ret
 ; e0212
 
-INCBIN "baserom.gbc", $e0212, $e0217 - $e0212
+UnknownText_0xe0212: ; 0xe0212
+	; Not enough coins…
+	text_jump UnknownText_0x1c57ab, BANK(UnknownText_0x1c57ab)
+	db "@"
+; 0xe0217
 
 Functione0217: ; e0217
 	xor a
@@ -98879,7 +98887,7 @@ Functione0217: ; e0217
 	ld hl, $c51a
 	call Functione03c1
 	call WaitBGMap
-	ld hl, $42b2
+	ld hl, UnknownText_0xe02b2
 	call Functione0489
 	xor a
 	ld [$cf66], a
@@ -98928,10 +98936,14 @@ Functione0217: ; e0217
 	ret
 ; e02b2
 
-INCBIN "baserom.gbc", $e02b2, $e02b7 - $e02b2
+UnknownText_0xe02b2: ; 0xe02b2
+	; Choose a card.
+	text_jump UnknownText_0x1c57be, BANK(UnknownText_0x1c57be)
+	db "@"
+; 0xe02b7
 
 Functione02b7: ; e02b7
-	ld hl, $42d5
+	ld hl, UnknownText_0xe02d5
 	call Functione0489
 .asm_e02bd
 	call Functiona57
@@ -98948,7 +98960,11 @@ Functione02b7: ; e02b7
 	ret
 ; e02d5
 
-INCBIN "baserom.gbc", $e02d5, $e02da - $e02d5
+UnknownText_0xe02d5: ; 0xe02d5
+	; Place your bet.
+	text_jump UnknownText_0x1c57ce, BANK(UnknownText_0x1c57ce)
+	db "@"
+; 0xe02da
 
 Functione02da: ; e02da
 	xor a
@@ -98989,7 +99005,7 @@ Functione0314: ; e0314
 
 Functione031e: ; e031e
 	call ClearSprites
-	ld hl, $4356
+	ld hl, UnknownText_0xe0356
 	call Functione0489
 	call Function1dcf
 	jr nc, .asm_e0330
@@ -99019,7 +99035,13 @@ Functione031e: ; e031e
 	ret
 ; e0356
 
-INCBIN "baserom.gbc", $e0356, $e0360 - $e0356
+UnknownText_0xe0356: ; 0xe0356
+	; Want to play again?
+	text_jump UnknownText_0x1c57df, BANK(UnknownText_0x1c57df)
+	db "@"
+; 0xe035b
+
+INCBIN "baserom.gbc", $e035b, $e0360 - $e035b
 
 Functione0360: ; e0360
 	ld hl, $cf63
