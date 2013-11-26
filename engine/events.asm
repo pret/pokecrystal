@@ -1,6 +1,7 @@
 INCLUDE "includes.asm"
 
-SECTION "events", ROMX, BANK[$25]
+
+SECTION "Events", ROMX, BANK[EVENTS]
 
 Function966b0: ; 966b0
 	xor a
