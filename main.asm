@@ -32,447 +32,8 @@ INCLUDE "home/text.asm"
 INCLUDE "home/video.asm"
 INCLUDE "home/map_objects.asm"
 INCLUDE "home/sine.asm"
-
-Function1b1e: ; 1b1e
-	ld [$d003], a
-	xor a
-	ld [DefaultFlypoint], a
-	ld a, $0
-	ld [$d004], a
-	ld a, $7
-	ld [StartFlypoint], a
-	ld a, $d0
-	ld [EndFlypoint], a
-	ret
-; 1b35
-
-Function1b35: ; 1b35
-	ld a, [DefaultFlypoint]
-	and a
-	ret z
-	dec a
-	ld [DefaultFlypoint], a
-	ret
-; 1b3f
-
-Function1b3f: ; 1b3f
-	push hl
-	push de
-	ld hl, DefaultFlypoint
-	ld e, [hl]
-	inc [hl]
-	ld d, 0
-	ld hl, MovementBuffer
-	add hl, de
-	ld [hl], a
-	pop de
-	pop hl
-	ret
-; 1b50
-
-Function1b50: ; 1b50
-	push af
-	ld a, c
-	and a
-	jr nz, .asm_1b57
-	pop af
-	ret
-
-.asm_1b57
-	pop af
-.asm_1b58
-	call Function1b3f
-	dec c
-	jr nz, .asm_1b58
-	ret
-; 1b5f
-
-Function1b5f: ; 1b5f
-	push af
-	ld a, b
-	sub d
-	ld h, $2
-	jr nc, .asm_1b6a
-	dec a
-	cpl
-	ld h, $3
-
-.asm_1b6a
-	ld d, a
-	ld a, c
-	sub e
-	ld l, $1
-	jr nc, .asm_1b75
-	dec a
-	cpl
-	ld l, $0
-
-.asm_1b75
-	ld e, a
-	cp d
-	jr nc, .asm_1b7f
-	ld a, h
-	ld h, l
-	ld l, a
-	ld a, d
-	ld d, e
-	ld e, a
-
-.asm_1b7f
-	pop af
-	ld b, a
-	ld a, h
-	call Function1b92
-	ld c, d
-	call Function1b50
-	ld a, l
-	call Function1b92
-	ld c, e
-	call Function1b50
-	ret
-; 1b92
-
-Function1b92: ; 1b92
-	push de
-	push hl
-	ld l, b
-	ld h, 0
-	add hl, hl
-	add hl, hl
-	ld e, a
-	ld d, 0
-	add hl, de
-	ld de, .data_1ba5
-	add hl, de
-	ld a, [hl]
-	pop hl
-	pop de
-	ret
-; 1ba5
-
-.data_1ba5
-	db 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19
-; 1bb1
-
-Function1bb1: ; 1bb1
-	push hl
-	push bc
-	ld hl, $cfa1
-	ld b, $8
-.asm_1bb8
-	ld a, [de]
-	inc de
-	ld [hli], a
-	dec b
-	jr nz, .asm_1bb8
-	ld a, $1
-	ld [hli], a
-	ld [hli], a
-	xor a
-	ld [hli], a
-	ld [hli], a
-	ld [hli], a
-	pop bc
-	pop hl
-	ret
-; 1bc9
-
-Function1bc9: ; 1bc9
-	callab Function241a8
-	call Function1bdd
-	ret
-; 1bd3
-
-Function1bd3: ; 1bd3
-	callab Function241ab
-	call Function1bdd
-	ret
-; 1bdd
-
-Function1bdd: ; 1bdd
-	push bc
-	push af
-	ld a, [$ffa9]
-	and $f0
-	ld b, a
-	ld a, [hJoyPressed]
-	and $f
-	or b
-	ld b, a
-	pop af
-	ld a, b
-	pop bc
-	ret
-; 1bee
-
-Function1bee: ; 1bee
-	ld hl, $cfac
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	ld [hl], $ec
-	ret
-; 1bf7
-
-Function1bf7: ; 1bf7
-	ld hl, $cfac
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	ld [hl], $7f
-	ret
-; 1c00
-
-Function1c00: ; 1c00
-	callab Function24374
-	ret
-; 1c07
-
-Function1c07: ; 0x1c07
-	push af
-	callab Function243e8
-	pop af
-	ret
-
-Function1c10: ; 0x1c10
-	callab Function2446d
-	ret
-
-Function1c17: ; 0x1c17
-	push af
-	call Function1c07
-	call Function321c
-	call Function1ad2
-	pop af
-	ret
-
-Function1c23: ; 0x1c23
-	call Function1cfd
-	call Function1c30
-	call Function1d19
-	call Function1c30
-	ret
-
-Function1c30: ; 0x1c30
-	call Function1c53
-	inc b
-	inc c
-.asm_1c35
-	push bc
-	push hl
-.asm_1c37
-	ld a, [de]
-	ld [hli], a
-	dec de
-	dec c
-	jr nz, .asm_1c37 ; 0x1c3b $fa
-	pop hl
-	ld bc, $0014
-	add hl, bc
-	pop bc
-	dec b
-	jr nz, .asm_1c35 ; 0x1c44 $ef
-	ret
-
-Function1c47: ; 0x1c47
-	ld b, $10
-	ld de, $cf81
-.asm_1c4c
-	ld a, [hld]
-	ld [de], a
-	inc de
-	dec b
-	jr nz, .asm_1c4c ; 0x1c50 $fa
-	ret
-
-Function1c53: ; 0x1c53
-	ld a, [$cf82]
-	ld b, a
-	ld a, [$cf84]
-	sub b
-	ld b, a
-	ld a, [$cf83]
-	ld c, a
-	ld a, [$cf85]
-	sub c
-	ld c, a
-	ret
-; 0x1c66
-
-Function1c66: ; 1c66
-	push hl
-	push de
-	push bc
-	push af
-	ld hl, $cf86
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	ld de, $cf91
-	ld bc, $0010
-	call CopyBytes
-	pop af
-	pop bc
-	pop de
-	pop hl
-	ret
-; 1c7e
-
-Function1c7e: ; 1c7e
-	ld hl, $cf71
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	inc hl
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	ret
-; 1c89
-
-Function1c89: ; 1c89
-	call Function1c66
-	ld hl, $cf86
-	ld e, [hl]
-	inc hl
-	ld d, [hl]
-	call Function1cc6
-	call GetTileCoord
-	inc de
-	ld a, [de]
-	inc de
-	ld b, a
-.asm_1c9c
-	push bc
-	call PlaceString
-	inc de
-	ld bc, $0028
-	add hl, bc
-	pop bc
-	dec b
-	jr nz, .asm_1c9c
-	ld a, [$cf91]
-	bit 4, a
-	ret z
-	call Function1cfd
-	ld a, [de]
-	ld c, a
-	inc de
-	ld b, $0
-	add hl, bc
-	jp PlaceString
-; 1cbb
-
-Function1cbb: ; 1cbb
-	call Function1cfd
-	call Function1c53
-	dec b
-	dec c
-	jp TextBox
-; 1cc6
-
-Function1cc6: ; 1cc6
-	ld a, [$cf82]
-	ld b, a
-	inc b
-	ld a, [$cf83]
-	ld c, a
-	inc c
-	ld a, [$cf91]
-	bit 6, a
-	jr nz, .asm_1cd8
-	inc b
-
-.asm_1cd8
-	ld a, [$cf91]
-	bit 7, a
-	jr z, .asm_1ce0
-	inc c
-
-.asm_1ce0
-	ret
-; 1ce1
-
-Function1ce1: ; 1ce1
-	call Function1cfd
-	ld bc, $0015
-	add hl, bc
-	call Function1c53
-	dec b
-	dec c
-	call ClearBox
-	ret
-; 1cf1
-
-Function1cf1: ; 1cf1
-	call Function1cfd
-	call Function1c53
-	inc c
-	inc b
-	call ClearBox
-	ret
-; 1cfd
-
-
-Function1cfd: ; 1cfd
-	ld a, [$cf83]
-	ld c, a
-	ld a, [$cf82]
-	ld b, a
-; 1d05
-
-
-GetTileCoord: ; 1d05
-; Return the address of TileMap(c, b) in hl.
-	xor a
-	ld h, a
-	ld l, b
-	ld a, c
-	ld b, h
-	ld c, l
-	add hl, hl
-	add hl, hl
-	add hl, bc
-	add hl, hl
-	add hl, hl
-	ld c, a
-	xor a
-	ld b, a
-	add hl, bc
-	ld bc, TileMap
-	add hl, bc
-	ret
-; 1d19
-
-Function1d19: ; 1d19
-	ld a, [$cf83]
-	ld c, a
-	ld a, [$cf82]
-	ld b, a
-
-GetAttrCoord: ; 1d21
-; Return the address of AttrMap(c, b) in hl.
-	xor a
-	ld h, a
-	ld l, b
-	ld a, c
-	ld b, h
-	ld c, l
-	add hl, hl
-	add hl, hl
-	add hl, bc
-	add hl, hl
-	add hl, hl
-	ld c, a
-	xor a
-	ld b, a
-	add hl, bc
-	ld bc, AttrMap
-	add hl, bc
-	ret
-; 1d35
-
-
+INCLUDE "home/movement.asm"
+INCLUDE "home/tilemap.asm"
 INCLUDE "home/menu.asm"
 INCLUDE "home/handshake.asm"
 INCLUDE "home/game_time.asm"
@@ -482,22 +43,9 @@ INCLUDE "home/map.asm"
 Function2d43: ; 2d43
 ; Inexplicably empty.
 ; Seen in PredefPointers.
+	rept 16
 	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
+	endr
 	ret
 ; 2d54
 
@@ -634,8 +182,9 @@ INCLUDE "home/double_speed.asm"
 
 
 ClearSprites: ; 300b
+; Erase OAM data
 	ld hl, Sprites
-	ld b, TileMap - Sprites
+	ld b, SpritesEnd - Sprites
 	xor a
 .loop
 	ld [hli], a
@@ -645,11 +194,11 @@ ClearSprites: ; 300b
 ; 3016
 
 HideSprites: ; 3016
-; Set all OBJ y-positions to 160 to hide them offscreen
+; Set all OAM y-positions to 160 to hide them offscreen
 	ld hl, Sprites
-	ld de, $0004 ; length of an OBJ struct
-	ld b, $28 ; number of OBJ structs
-	ld a, 160 ; y-position
+	ld de, 4 ; length of an OAM struct
+	ld b, (SpritesEnd - Sprites) / 4 ; number of OAM structs
+	ld a, 160 ; y
 .loop
 	ld [hl], a
 	add hl, de
@@ -665,11 +214,11 @@ INCLUDE "home/copy2.asm"
 Function309d: ; 309d
 	ld a, [rSVBK]
 	push af
-	ld a, $2
+	ld a, 2
 	ld [rSVBK], a
 	ld hl, TileMap
 	ld de, $d000
-	ld bc, $0168
+	ld bc, 360
 	call CopyBytes
 	pop af
 	ld [rSVBK], a
@@ -680,7 +229,7 @@ Function30b4: ; 30b4
 	xor a
 	ld [hBGMapMode], a
 	call Function30bf
-	ld a, $1
+	ld a, 1
 	ld [hBGMapMode], a
 	ret
 ; 30bf
@@ -688,11 +237,11 @@ Function30b4: ; 30b4
 Function30bf: ; 30bf
 	ld a, [rSVBK]
 	push af
-	ld a, $2
+	ld a, 2
 	ld [rSVBK], a
 	ld hl, $d000
 	ld de, TileMap
-	ld bc, $0168
+	ld bc, 360
 	call CopyBytes
 	pop af
 	ld [rSVBK], a
@@ -702,7 +251,7 @@ Function30bf: ; 30bf
 
 CopyName1: ; 30d6
 	ld hl, StringBuffer2
-; 30d9
+
 CopyName2: ; 30d9
 .loop
 	ld a, [de]
@@ -766,83 +315,81 @@ INCLUDE "home/math.asm"
 
 
 PrintLetterDelay: ; 313d
-; wait some frames before printing the next letter
-; the text speed setting in Options is actually a frame count
+; Wait before printing the next letter.
+
+; The text speed setting in Options is actually a frame count:
 ; 	fast: 1 frame
 ; 	mid:  3 frames
 ; 	slow: 5 frames
-; $cfcf[!0] and A or B override text speed with a one-frame delay
-; Options[4] and $cfcf[!1] disable the delay
+
+; $cfcf[!0] and A or B override text speed with a one-frame delay.
+; Options[4] and $cfcf[!1] disable the delay.
 
 ; delay off?
 	ld a, [Options]
-	bit 4, a ; delay off
+	bit 4, a
 	ret nz
-	
+
 ; non-scrolling text?
 	ld a, [$cfcf]
 	bit 1, a
 	ret z
-	
+
 	push hl
 	push de
 	push bc
-	
-; save oam update status
+
 	ld hl, hOAMUpdate
 	ld a, [hl]
 	push af
-; orginally turned oam update off, commented out
+
+; orginally turned oam update off...
 ;	ld a, 1
 	ld [hl], a
-	
+
 ; force fast scroll?
 	ld a, [$cfcf]
 	bit 0, a
 	jr z, .fast
-	
+
 ; text speed
 	ld a, [Options]
-	and a, %111 ; # frames to delay
+	and %111
 	jr .updatedelay
-	
+
 .fast
 	ld a, 1
+
 .updatedelay
 	ld [TextDelayFrames], a
-	
+
 .checkjoypad
 	call GetJoypadPublic
-	
+
 ; input override
 	ld a, [$c2d7]
 	and a
 	jr nz, .wait
-	
-; wait one frame if holding a
-	ld a, [hJoyDown] ; joypad
-	bit 0, a ; A
+
+; Wait one frame if holding A or B.
+	ld a, [hJoyDown]
+	bit 0, a ; A_BUTTON
 	jr z, .checkb
 	jr .delay
-	
 .checkb
-; wait one frame if holding b
-	bit 1, a ; B
+	bit 1, a ; B_BUTTON
 	jr z, .wait
-	
+
 .delay
 	call DelayFrame
 	jr .end
-	
+
 .wait
-; wait until frame counter hits 0 or the loop is broken
-; this is a bad way to do this
 	ld a, [TextDelayFrames]
 	and a
 	jr nz, .checkjoypad
-	
+
 .end
-; restore oam update flag (not touched in this fn anymore)
 	pop af
 	ld [hOAMUpdate], a
 	pop bc
@@ -853,9 +400,12 @@ PrintLetterDelay: ; 313d
 
 
 CopyDataUntil: ; 318c
-; Copies [hl, bc) to [de, bc - hl).
-; In other words, the source data is from hl up to but not including bc,
+; Copy [hl .. bc) to [de .. de + bc - hl).
+
+; In other words, the source data is
+; from hl up to but not including bc,
 ; and the destination is de.
+
 	ld a, [hli]
 	ld [de], a
 	inc de
@@ -947,8 +497,8 @@ Function31cf: ; 31cf
 
 
 StringCmp: ; 31db
-; Compare strings, c bytes in length, at de and hl.
-; Often used to compare big endian numbers in battle calculations.
+; Compare c bytes at de and hl.
+; Return z if they all match.
 	ld a, [de]
 	cp [hl]
 	ret nz
@@ -961,7 +511,8 @@ StringCmp: ; 31db
 
 
 CompareLong: ; 31e4
-; Compare bc bytes at de and hl. Return carry if they all match.
+; Compare bc bytes at de and hl.
+; Return carry if they all match.
 
 	ld a, [de]
 	cp [hl]
@@ -1165,12 +716,12 @@ Function32f9: ; 32f9
 ClearPalettes: ; 3317
 ; Make all palettes white
 
-; For CGB we make all the palette colors white
+; CGB: make all the palette colors white
 	ld a, [hCGB]
 	and a
 	jr nz, .cgb
 	
-; In DMG mode, we can just change palettes to 0 (white)
+; DMG: just change palettes to 0 (white)
 	xor a
 	ld [rBGP], a
 	ld [rOBP0], a
@@ -1202,15 +753,14 @@ ClearPalettes: ; 3317
 
 ClearSGB: ; 333e
 	ld b, $ff
+
 GetSGBLayout: ; 3340
 ; load sgb packets unless dmg
 
-; check cgb
 	ld a, [hCGB]
 	and a
 	jr nz, .dosgb
 	
-; check sgb
 	ld a, [hSGB]
 	and a
 	ret z
@@ -1245,26 +795,26 @@ GetHPPal: ; 3353
 
 
 CountSetBits: ; 0x335f
-; function to count how many bits are set in a string of bytes
-; INPUT:
-; hl = address of string of bytes
-; b = length of string of bytes
-; OUTPUT:
-; [$d265] = number of set bits
-	ld c, $0
-.loop
+; Count the number of set bits in b bytes starting from hl.
+; Return in a, c and [$d265].
+
+	ld c, 0
+.next
 	ld a, [hli]
 	ld e, a
-	ld d, $8
-.innerLoop ; count how many bits are set in the current byte
+	ld d, 8
+
+.count
 	srl e
-	ld a, $0
+	ld a, 0
 	adc c
 	ld c, a
 	dec d
-	jr nz, .innerLoop
+	jr nz, .count
+
 	dec b
-	jr nz, .loop
+	jr nz, .next
+
 	ld a, c
 	ld [$d265], a
 	ret
@@ -1284,25 +834,27 @@ GetWeekday: ; 3376
 INCLUDE "home/pokedex_flags.asm"
 
 
-NamesPointerTable: ; 33ab
+NamesPointers: ; 33ab
 	dbw BANK(PokemonNames), PokemonNames
 	dbw BANK(MoveNames), MoveNames
-	dbw $00, $0000
+	dbw 0, 0
 	dbw BANK(ItemNames), ItemNames
-	dbw $00, PartyMonOT
-	dbw $00, OTPartyMonOT
+	dbw 0, PartyMonOT
+	dbw 0, OTPartyMonOT
 	dbw BANK(TrainerClassNames), TrainerClassNames
-	dbw $04, $4b52
+	dbw $04, $4b52 ; ????
 ; 33c3
 
 
 GetName: ; 33c3
 ; Return name CurSpecies from name list $cf61 in StringBuffer1.
+
 	ld a, [hROMBank]
 	push af
 	push hl
 	push bc
 	push de
+
 	ld a, [$cf61]
 	cp 1 ; Pokemon names
 	jr nz, .NotPokeName
@@ -1310,7 +862,7 @@ GetName: ; 33c3
 	ld a, [CurSpecies]
 	ld [$d265], a
 	call GetPokemonName
-	ld hl, $000b
+	ld hl, 11
 	add hl, de
 	ld e, l
 	ld d, h
@@ -1321,7 +873,7 @@ GetName: ; 33c3
 	dec a
 	ld e, a
 	ld d, 0
-	ld hl, NamesPointerTable
+	ld hl, NamesPointers
 	add hl, de
 	add hl, de
 	add hl, de
@@ -1344,6 +896,7 @@ GetName: ; 33c3
 	ld [$d102], a
 	ld a, d
 	ld [$d103], a
+
 	pop de
 	pop bc
 	pop hl
@@ -1354,9 +907,12 @@ GetName: ; 33c3
 
 
 GetNthString: ; 3411
-; Starting at hl, this function returns the start address of the ath string.
+; Return the address of the
+; ath string starting from hl.
+
 	and a
 	ret z
+
 	push bc
 	ld b, a
 	ld c, "@"
@@ -1373,6 +929,7 @@ GetNthString: ; 3411
 
 GetBasePokemonName: ; 3420
 ; Discards gender (Nidoran).
+
 	push hl
 	call GetPokemonName
 
