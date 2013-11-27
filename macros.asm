@@ -42,6 +42,18 @@ lb: MACRO ; r, hi, lo
 	ENDM
 
 
+; Constant enumeration
+
+const_def: MACRO
+const_value SET 0
+ENDM
+
+const: MACRO
+\1 EQU const_value
+const_value SET const_value + 1
+ENDM
+
+
 TX_RAM: MACRO
 	db 1
 	dw \1
