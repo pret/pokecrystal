@@ -1,4 +1,12 @@
 
+; macros require rst vectors to be defined
+FarCall    EQU $08
+Bankswitch EQU $10
+JumpTable  EQU $28
+
+INCLUDE "macros.asm"
+
+
 ; wram constants
 ; MonType: ; cf5f
 PARTYMON   EQU 0
@@ -81,13 +89,6 @@ INCLUDE "constants/engine_flags.asm"
 INCLUDE "constants/music_constants.asm"
 INCLUDE "constants/sfx_constants.asm"
 
-
-; macros require rst vectors to be defined
-FarCall    EQU $08
-Bankswitch EQU $10
-JumpTable  EQU $28
-
-INCLUDE "macros.asm"
 
 
 NONE       EQU 0
