@@ -2226,18 +2226,17 @@ _GetBattleVar: ; 39e7
 ; There are 21 variable pairs.
 
 	push bc
-	
-; get var pair
+
 	ld hl, .battlevarpairs
 	ld c, a
 	ld b, 0
 	add hl, bc
 	add hl, bc
-	
+
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	
+
 ; Enemy turn uses the second byte instead.
 ; This lets battle variable calls be side-neutral.
 	ld a, [hBattleTurn]
@@ -2246,17 +2245,15 @@ _GetBattleVar: ; 39e7
 	inc hl
 	
 .getvar
-; get var id
+; var id
 	ld a, [hl]
 	ld c, a
 	ld b, 0
-	
-; seek
+
 	ld hl, .vars
 	add hl, bc
 	add hl, bc
-	
-; get var address
+
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -2268,111 +2265,76 @@ _GetBattleVar: ; 39e7
 
 
 .battlevarpairs
-	dw .substatus1         ; 0
-	dw .substatus2         ; 1
-	dw .substatus3         ; 2
-	dw .substatus4         ; 3
-	dw .substatus5         ; 4
-	dw .substatus1opp      ; 5
-	dw .substatus2opp      ; 6
-	dw .substatus3opp      ; 7
-	dw .substatus4opp      ; 8
-	dw .substatus5opp      ; 9
-	dw .status             ; a
-	dw .statusopp          ; b
-	dw .animation          ; c
-	dw .effect             ; d
-	dw .power              ; e
-	dw .type               ; f
-	dw .curmove            ; 10
-	dw .lastcountermove    ; 11
-	dw .lastcountermoveopp ; 12
-	dw .lastmove           ; 13
-	dw .lastmoveopp        ; 14
+	dw .substatus1, .substatus2, .substatus3, .substatus4, .substatus5
+	dw .substatus1opp, .substatus2opp, .substatus3opp, .substatus4opp, .substatus5opp
+	dw .status, .statusopp, .animation, .effect, .power, .type
+	dw .curmove, .lastcounter, .lastcounteropp, .lastmove, .lastmoveopp
 
-	;                  player             enemy
-.substatus1
-	db $00, $01 ; PLAYER_SUBSTATUS1, ENEMY_SUBSTATUS1
-.substatus1opp
-	db $01, $00 ; ENEMY_SUBSTATUS1, PLAYER_SUBSTATUS1
-.substatus2
-	db $02, $03 ; PLAYER_SUBSTATUS2, ENEMY_SUBSTATUS2
-.substatus2opp
-	db $03, $02 ; ENEMY_SUBSTATUS2, PLAYER_SUBSTATUS2
-.substatus3
-	db $04, $05 ; PLAYER_SUBSTATUS3, ENEMY_SUBSTATUS3
-.substatus3opp
-	db $05, $04 ; ENEMY_SUBSTATUS3, PLAYER_SUBSTATUS3
-.substatus4
-	db $06, $07 ; PLAYER_SUBSTATUS4, ENEMY_SUBSTATUS4
-.substatus4opp
-	db $07, $06 ; ENEMY_SUBSTATUS4, PLAYER_SUBSTATUS4
-.substatus5
-	db $08, $09 ; PLAYER_SUBSTATUS5, ENEMY_SUBSTATUS5
-.substatus5opp
-	db $09, $08 ; ENEMY_SUBSTATUS5, PLAYER_SUBSTATUS5
-.status
-	db $0a, $0b ; PLAYER_STATUS, ENEMY_STATUS
-.statusopp
-	db $0b, $0a ; ENEMY_STATUS, PLAYER_STATUS
-.animation
-	db $0c, $0d ; PLAYER_MOVE_ANIMATION, ENEMY_MOVE_ANIMATION
-.effect
-	db $0e, $0f ; PLAYER_MOVE_EFFECT, ENEMY_MOVE_EFFECT
-.power
-	db $10, $11 ; PLAYER_MOVE_POWER, ENEMY_MOVE_POWER
-.type
-	db $12, $13 ; PLAYER_MOVE_TYPE, ENEMY_MOVE_TYPE
-.curmove
-	db $14, $15 ; PLAYER_CUR_MOVE, ENEMY_CUR_MOVE
-.lastcountermove
-	db $16, $17 ; ENEMY_LAST_COUNTER_MOVE, PLAYER_LAST_COUNTER_MOVE
-.lastcountermoveopp
-	db $17, $16 ; PLAYER_LAST_COUNTER_MOVE, ENEMY_LAST_COUNTER_MOVE
-.lastmove
-	db $18, $19 ; PLAYER_LAST_MOVE, ENEMY_LAST_MOVE
-.lastmoveopp
-	db $19, $18 ; ENEMY_LAST_MOVE, PLAYER_LAST_MOVE
+
+PLAYER_SUBSTATUS_1    EQU 0
+ENEMY_SUBSTATUS_1     EQU 1
+PLAYER_SUBSTATUS_2    EQU 2
+ENEMY_SUBSTATUS_2     EQU 3
+PLAYER_SUBSTATUS_3    EQU 4
+ENEMY_SUBSTATUS_3     EQU 5
+PLAYER_SUBSTATUS_4    EQU 6
+ENEMY_SUBSTATUS_4     EQU 7
+PLAYER_SUBSTATUS_5    EQU 8
+ENEMY_SUBSTATUS_5     EQU 9
+PLAYER_STATUS         EQU 10
+ENEMY_STATUS          EQU 11
+PLAYER_MOVE_ANIMATION EQU 12
+ENEMY_MOVE_ANIMATION  EQU 13
+PLAYER_MOVE_EFFECT    EQU 14
+ENEMY_MOVE_EFFECT     EQU 15
+PLAYER_MOVE_POWER     EQU 16
+ENEMY_MOVE_POWER      EQU 17
+PLAYER_MOVE_TYPE      EQU 18
+ENEMY_MOVE_TYPE       EQU 19
+PLAYER_CUR_MOVE       EQU 20
+ENEMY_CUR_MOVE        EQU 21
+PLAYER_COUNTER_MOVE   EQU 22
+ENEMY_COUNTER_MOVE    EQU 23
+PLAYER_LAST_MOVE      EQU 24
+ENEMY_LAST_MOVE       EQU 25
+
+;                       player                     enemy
+.substatus1     db PLAYER_SUBSTATUS_1,    ENEMY_SUBSTATUS_1
+.substatus1opp  db ENEMY_SUBSTATUS_1,     PLAYER_SUBSTATUS_1
+.substatus2     db PLAYER_SUBSTATUS_2,    ENEMY_SUBSTATUS_2
+.substatus2opp  db ENEMY_SUBSTATUS_2,     PLAYER_SUBSTATUS_2
+.substatus3     db PLAYER_SUBSTATUS_3,    ENEMY_SUBSTATUS_3
+.substatus3opp  db ENEMY_SUBSTATUS_3,     PLAYER_SUBSTATUS_3
+.substatus4     db PLAYER_SUBSTATUS_4,    ENEMY_SUBSTATUS_4
+.substatus4opp  db ENEMY_SUBSTATUS_4,     PLAYER_SUBSTATUS_4
+.substatus5     db PLAYER_SUBSTATUS_5,    ENEMY_SUBSTATUS_5
+.substatus5opp  db ENEMY_SUBSTATUS_5,     PLAYER_SUBSTATUS_5
+.status         db PLAYER_STATUS,         ENEMY_STATUS
+.statusopp      db ENEMY_STATUS,          PLAYER_STATUS
+.animation      db PLAYER_MOVE_ANIMATION, ENEMY_MOVE_ANIMATION
+.effect         db PLAYER_MOVE_EFFECT,    ENEMY_MOVE_EFFECT
+.power          db PLAYER_MOVE_POWER,     ENEMY_MOVE_POWER
+.type           db PLAYER_MOVE_TYPE,      ENEMY_MOVE_TYPE
+.curmove        db PLAYER_CUR_MOVE,       ENEMY_CUR_MOVE
+.lastcounter    db PLAYER_COUNTER_MOVE,   ENEMY_COUNTER_MOVE
+.lastcounteropp db ENEMY_COUNTER_MOVE,    PLAYER_COUNTER_MOVE
+.lastmove       db PLAYER_LAST_MOVE,      ENEMY_LAST_MOVE
+.lastmoveopp    db ENEMY_LAST_MOVE,       PLAYER_LAST_MOVE
 
 .vars
-	dw PlayerSubStatus1
-	dw EnemySubStatus1
-	
-	dw PlayerSubStatus2
-	dw EnemySubStatus2
-	
-	dw PlayerSubStatus3
-	dw EnemySubStatus3
-	
-	dw PlayerSubStatus4
-	dw EnemySubStatus4
-	
-	dw PlayerSubStatus5
-	dw EnemySubStatus5
-	
-	dw BattleMonStatus
-	dw EnemyMonStatus
-	
-	dw PlayerMoveAnimation
-	dw EnemyMoveAnimation
-	
-	dw PlayerMoveEffect
-	dw EnemyMoveEffect
-	
-	dw PlayerMovePower
-	dw EnemyMovePower
-	
-	dw PlayerMoveType
-	dw EnemyMoveType
-	
-	dw CurPlayerMove
-	dw CurEnemyMove
-	
-	dw LastEnemyCounterMove
-	dw LastPlayerCounterMove
-	
-	dw LastPlayerMove
-	dw LastEnemyMove
+	dw PlayerSubStatus1,     EnemySubStatus1
+	dw PlayerSubStatus2,     EnemySubStatus2
+	dw PlayerSubStatus3,     EnemySubStatus3
+	dw PlayerSubStatus4,     EnemySubStatus4
+	dw PlayerSubStatus5,     EnemySubStatus5
+	dw BattleMonStatus,      EnemyMonStatus
+	dw PlayerMoveAnimation,  EnemyMoveAnimation
+	dw PlayerMoveEffect,     EnemyMoveEffect
+	dw PlayerMovePower,      EnemyMovePower
+	dw PlayerMoveType,       EnemyMoveType
+	dw CurPlayerMove,        CurEnemyMove
+	dw LastEnemyCounterMove, LastPlayerCounterMove
+	dw LastPlayerMove,       LastEnemyMove
 ; 3a90
 
 
