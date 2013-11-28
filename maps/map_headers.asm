@@ -38,7 +38,7 @@ OlivinePokeCenter1F_MapHeader: ; 0x94034
 	dw OlivinePokeCenter1F_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $1b, MUSIC_POKEMON_CENTER, 1, 1
+	db OLIVINE_CITY, MUSIC_POKEMON_CENTER, 1, 1
 ; had to increase the final size by 1
 ; had to convert 0x->$ (duh..)
 ; 0x9403d
@@ -51,7 +51,7 @@ OlivineGym_MapHeader: ; 0x9403d
 	dw OlivineGym_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $1b, MUSIC_GYM, 17, 1
+	db OLIVINE_CITY, MUSIC_GYM, 17, 1
 ; 0x94046
 
 OlivineVoltorbHouse_MapHeader: ; 0x94046
@@ -62,7 +62,7 @@ OlivineVoltorbHouse_MapHeader: ; 0x94046
 	dw OlivineVoltorbHouse_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $1b, MUSIC_VIOLET_CITY, 1, 1
+	db OLIVINE_CITY, MUSIC_VIOLET_CITY, 1, 1
 ; 0x9404f
 
 OlivineHouseBeta_MapHeader: ; 0x9404f
@@ -73,7 +73,7 @@ OlivineHouseBeta_MapHeader: ; 0x9404f
 	dw OlivineHouseBeta_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $1b, MUSIC_VIOLET_CITY, 1, 1
+	db OLIVINE_CITY, MUSIC_VIOLET_CITY, 1, 1
 ; 0x94058
 
 OlivinePunishmentSpeechHouse_MapHeader: ; 0x94058
@@ -84,7 +84,7 @@ OlivinePunishmentSpeechHouse_MapHeader: ; 0x94058
 	dw OlivinePunishmentSpeechHouse_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $1b, MUSIC_VIOLET_CITY, 1, 1
+	db OLIVINE_CITY, MUSIC_VIOLET_CITY, 1, 1
 ; 0x94061
 
 OlivineGoodRodHouse_MapHeader: ; 0x94061
@@ -95,7 +95,7 @@ OlivineGoodRodHouse_MapHeader: ; 0x94061
 	dw OlivineGoodRodHouse_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $1b, MUSIC_VIOLET_CITY, 1, 1
+	db OLIVINE_CITY, MUSIC_VIOLET_CITY, 1, 1
 ; 0x9406a
 
 OlivineCafe_MapHeader: ; 0x9406a
@@ -106,7 +106,7 @@ OlivineCafe_MapHeader: ; 0x9406a
 	dw OlivineCafe_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $1b, MUSIC_VIOLET_CITY, 1, 1
+	db OLIVINE_CITY, MUSIC_VIOLET_CITY, 1, 1
 ; 0x94073
 
 OlivineMart_MapHeader: ; 0x94073
@@ -117,7 +117,7 @@ OlivineMart_MapHeader: ; 0x94073
 	dw OlivineMart_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $1b, MUSIC_VIOLET_CITY, 1, 1
+	db OLIVINE_CITY, MUSIC_VIOLET_CITY, 1, 1
 ; 0x9407c
 
 Route38EcruteakGate_MapHeader: ; 0x9407c
@@ -128,7 +128,7 @@ Route38EcruteakGate_MapHeader: ; 0x9407c
 	dw Route38EcruteakGate_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $19, MUSIC_ROUTE_37, 1, 1
+	db ROUTE_38, MUSIC_ROUTE_37, 1, 1
 ; 0x94085
 
 Route39Barn_MapHeader: ; 0x94085
@@ -139,7 +139,7 @@ Route39Barn_MapHeader: ; 0x94085
 	dw Route39Barn_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $1a, MUSIC_ECRUTEAK_CITY, 1, 1
+	db ROUTE_39, MUSIC_ECRUTEAK_CITY, 1, 1
 ; 0x9408e
 
 Route39Farmhouse_MapHeader: ; 0x9408e
@@ -150,7 +150,7 @@ Route39Farmhouse_MapHeader: ; 0x9408e
 	dw Route39Farmhouse_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $1a, MUSIC_ECRUTEAK_CITY, 1, 1
+	db ROUTE_39, MUSIC_ECRUTEAK_CITY, 1, 1
 ; 0x94097
 
 Route38_MapHeader: ; 0x94097
@@ -161,7 +161,7 @@ Route38_MapHeader: ; 0x94097
 	dw Route38_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $19, MUSIC_ROUTE_37, 0, 1
+	db ROUTE_38, MUSIC_ROUTE_37, 0, 1
 ; 0x940a0
 
 Route39_MapHeader: ; 0x940a0
@@ -172,7 +172,7 @@ Route39_MapHeader: ; 0x940a0
 	dw Route39_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $1a, MUSIC_ROUTE_37, 0, 1
+	db ROUTE_39, MUSIC_ROUTE_37, 0, 1
 ; 0x940a9
 
 OlivineCity_MapHeader: ; 0x940a9
@@ -183,7 +183,7 @@ OlivineCity_MapHeader: ; 0x940a9
 	dw OlivineCity_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $1b, MUSIC_VIOLET_CITY, 0, 1
+	db OLIVINE_CITY, MUSIC_VIOLET_CITY, 0, 1
 ; 0x940b2
 
 
@@ -197,7 +197,7 @@ MahoganyRedGyaradosSpeechHouse_MapHeader: ; 0x940b2
 	dw MahoganyRedGyaradosSpeechHouse_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $24, MUSIC_CHERRYGROVE_CITY, 1, 1
+	db MAHOGANY_TOWN, MUSIC_CHERRYGROVE_CITY, 1, 1
 ; 0x940bb
 
 MahoganyGym_MapHeader: ; 0x940bb
@@ -208,7 +208,7 @@ MahoganyGym_MapHeader: ; 0x940bb
 	dw MahoganyGym_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $24, MUSIC_GYM, 17, 1
+	db MAHOGANY_TOWN, MUSIC_GYM, 17, 1
 ; 0x940c4
 
 MahoganyPokeCenter1F_MapHeader: ; 0x940c4
@@ -219,7 +219,7 @@ MahoganyPokeCenter1F_MapHeader: ; 0x940c4
 	dw MahoganyPokeCenter1F_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $24, MUSIC_POKEMON_CENTER, 1, 1
+	db MAHOGANY_TOWN, MUSIC_POKEMON_CENTER, 1, 1
 ; 0x940cd
 
 Route42EcruteakGate_MapHeader: ; 0x940cd
@@ -230,7 +230,7 @@ Route42EcruteakGate_MapHeader: ; 0x940cd
 	dw Route42EcruteakGate_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $22, MUSIC_LAKE_OF_RAGE, 1, 1
+	db ROUTE_42, MUSIC_LAKE_OF_RAGE, 1, 1
 ; 0x940d6
 
 Route42_MapHeader: ; 0x940d6
@@ -241,7 +241,7 @@ Route42_MapHeader: ; 0x940d6
 	dw Route42_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $22, MUSIC_LAKE_OF_RAGE, 0, 3
+	db ROUTE_42, MUSIC_LAKE_OF_RAGE, 0, 3
 ; 0x940df
 
 Route44_MapHeader: ; 0x940df
@@ -252,7 +252,7 @@ Route44_MapHeader: ; 0x940df
 	dw Route44_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $27, MUSIC_LAKE_OF_RAGE, 0, 4
+	db ROUTE_44, MUSIC_LAKE_OF_RAGE, 0, 4
 ; 0x940e8
 
 MahoganyTown_MapHeader: ; 0x940e8
@@ -263,7 +263,7 @@ MahoganyTown_MapHeader: ; 0x940e8
 	dw MahoganyTown_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $24, MUSIC_CHERRYGROVE_CITY, 0, 1
+	db MAHOGANY_TOWN, MUSIC_CHERRYGROVE_CITY, 0, 1
 ; 0x940f1
 
 
@@ -277,7 +277,7 @@ SproutTower1F_MapHeader: ; 0x940f1
 	dw SproutTower1F_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $7, MUSIC_SPROUT_TOWER, 1, 1
+	db SPROUT_TOWER, MUSIC_SPROUT_TOWER, 1, 1
 ; 0x940fa
 
 SproutTower2F_MapHeader: ; 0x940fa
@@ -288,7 +288,7 @@ SproutTower2F_MapHeader: ; 0x940fa
 	dw SproutTower2F_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $7, MUSIC_SPROUT_TOWER, 1, 1
+	db SPROUT_TOWER, MUSIC_SPROUT_TOWER, 1, 1
 ; 0x94103
 
 SproutTower3F_MapHeader: ; 0x94103
@@ -299,7 +299,7 @@ SproutTower3F_MapHeader: ; 0x94103
 	dw SproutTower3F_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $7, MUSIC_SPROUT_TOWER, 1, 1
+	db SPROUT_TOWER, MUSIC_SPROUT_TOWER, 1, 1
 ; 0x9410c
 
 TinTower1F_MapHeader: ; 0x9410c
@@ -310,7 +310,7 @@ TinTower1F_MapHeader: ; 0x9410c
 	dw TinTower1F_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $17, MUSIC_TIN_TOWER, 1, 1
+	db TIN_TOWER, MUSIC_TIN_TOWER, 1, 1
 ; 0x94115
 
 TinTower2F_MapHeader: ; 0x94115
@@ -321,7 +321,7 @@ TinTower2F_MapHeader: ; 0x94115
 	dw TinTower2F_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $17, MUSIC_TIN_TOWER, 1, 1
+	db TIN_TOWER, MUSIC_TIN_TOWER, 1, 1
 ; 0x9411e
 
 TinTower3F_MapHeader: ; 0x9411e
@@ -332,7 +332,7 @@ TinTower3F_MapHeader: ; 0x9411e
 	dw TinTower3F_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $17, MUSIC_TIN_TOWER, 1, 1
+	db TIN_TOWER, MUSIC_TIN_TOWER, 1, 1
 ; 0x94127
 
 TinTower4F_MapHeader: ; 0x94127
@@ -343,7 +343,7 @@ TinTower4F_MapHeader: ; 0x94127
 	dw TinTower4F_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $17, MUSIC_TIN_TOWER, 1, 1
+	db TIN_TOWER, MUSIC_TIN_TOWER, 1, 1
 ; 0x94130
 
 TinTower5F_MapHeader: ; 0x94130
@@ -354,7 +354,7 @@ TinTower5F_MapHeader: ; 0x94130
 	dw TinTower5F_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $17, MUSIC_TIN_TOWER, 1, 1
+	db TIN_TOWER, MUSIC_TIN_TOWER, 1, 1
 ; 0x94139
 
 TinTower6F_MapHeader: ; 0x94139
@@ -365,7 +365,7 @@ TinTower6F_MapHeader: ; 0x94139
 	dw TinTower6F_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $17, MUSIC_TIN_TOWER, 1, 1
+	db TIN_TOWER, MUSIC_TIN_TOWER, 1, 1
 ; 0x94142
 
 TinTower7F_MapHeader: ; 0x94142
@@ -376,7 +376,7 @@ TinTower7F_MapHeader: ; 0x94142
 	dw TinTower7F_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $17, MUSIC_TIN_TOWER, 1, 1
+	db TIN_TOWER, MUSIC_TIN_TOWER, 1, 1
 ; 0x9414b
 
 TinTower8F_MapHeader: ; 0x9414b
@@ -387,7 +387,7 @@ TinTower8F_MapHeader: ; 0x9414b
 	dw TinTower8F_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $17, MUSIC_TIN_TOWER, 1, 1
+	db TIN_TOWER, MUSIC_TIN_TOWER, 1, 1
 ; 0x94154
 
 TinTower9F_MapHeader: ; 0x94154
@@ -398,7 +398,7 @@ TinTower9F_MapHeader: ; 0x94154
 	dw TinTower9F_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $17, MUSIC_TIN_TOWER, 1, 1
+	db TIN_TOWER, MUSIC_TIN_TOWER, 1, 1
 ; 0x9415d
 
 BurnedTower1F_MapHeader: ; 0x9415d
@@ -409,7 +409,7 @@ BurnedTower1F_MapHeader: ; 0x9415d
 	dw BurnedTower1F_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $18, MUSIC_BURNED_TOWER, 18, 1
+	db BURNED_TOWER, MUSIC_BURNED_TOWER, 18, 1
 ; 0x94166
 
 BurnedTowerB1F_MapHeader: ; 0x94166
@@ -420,7 +420,7 @@ BurnedTowerB1F_MapHeader: ; 0x94166
 	dw BurnedTowerB1F_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $18, MUSIC_BURNED_TOWER, 18, 1
+	db BURNED_TOWER, MUSIC_BURNED_TOWER, 18, 1
 ; 0x9416f
 
 NationalPark_MapHeader: ; 0x9416f
@@ -431,7 +431,7 @@ NationalPark_MapHeader: ; 0x9416f
 	dw NationalPark_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $13, MUSIC_NATIONAL_PARK, 0, 1
+	db NATIONAL_PARK, MUSIC_NATIONAL_PARK, 0, 1
 ; 0x94178
 
 NationalParkBugContest_MapHeader: ; 0x94178
@@ -442,7 +442,7 @@ NationalParkBugContest_MapHeader: ; 0x94178
 	dw NationalParkBugContest_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $13, MUSIC_BUG_CATCHING_CONTEST, 0, 1
+	db NATIONAL_PARK, MUSIC_BUG_CATCHING_CONTEST, 0, 1
 ; 0x94181
 
 RadioTower1F_MapHeader: ; 0x94181
@@ -453,7 +453,7 @@ RadioTower1F_MapHeader: ; 0x94181
 	dw RadioTower1F_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $11, 1<<7 | MUSIC_GOLDENROD_CITY, 17, 1
+	db RADIO_TOWER, 1<<7 | MUSIC_GOLDENROD_CITY, 17, 1
 ; 0x9418a
 
 RadioTower2F_MapHeader: ; 0x9418a
@@ -464,7 +464,7 @@ RadioTower2F_MapHeader: ; 0x9418a
 	dw RadioTower2F_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $11, 1<<7 | MUSIC_GOLDENROD_CITY, 17, 1
+	db RADIO_TOWER, 1<<7 | MUSIC_GOLDENROD_CITY, 17, 1
 ; 0x94193
 
 RadioTower3F_MapHeader: ; 0x94193
@@ -475,7 +475,7 @@ RadioTower3F_MapHeader: ; 0x94193
 	dw RadioTower3F_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $11, 1<<7 | MUSIC_GOLDENROD_CITY, 17, 1
+	db RADIO_TOWER, 1<<7 | MUSIC_GOLDENROD_CITY, 17, 1
 ; 0x9419c
 
 RadioTower4F_MapHeader: ; 0x9419c
@@ -486,7 +486,7 @@ RadioTower4F_MapHeader: ; 0x9419c
 	dw RadioTower4F_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $11, 1<<7 | MUSIC_GOLDENROD_CITY, 17, 1
+	db RADIO_TOWER, 1<<7 | MUSIC_GOLDENROD_CITY, 17, 1
 ; 0x941a5
 
 RadioTower5F_MapHeader: ; 0x941a5
@@ -497,7 +497,7 @@ RadioTower5F_MapHeader: ; 0x941a5
 	dw RadioTower5F_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $11, 1<<7 | MUSIC_GOLDENROD_CITY, 17, 1
+	db RADIO_TOWER, 1<<7 | MUSIC_GOLDENROD_CITY, 17, 1
 ; 0x941ae
 
 RuinsofAlphOutside_MapHeader: ; 0x941ae
@@ -508,7 +508,7 @@ RuinsofAlphOutside_MapHeader: ; 0x941ae
 	dw RuinsofAlphOutside_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $9, MUSIC_UNION_CAVE, 0, 4
+	db RUINS_OF_ALPH, MUSIC_UNION_CAVE, 0, 4
 ; 0x941b7
 
 RuinsofAlphHoOhChamber_MapHeader: ; 0x941b7
@@ -519,7 +519,7 @@ RuinsofAlphHoOhChamber_MapHeader: ; 0x941b7
 	dw RuinsofAlphHoOhChamber_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $9, MUSIC_UNION_CAVE, 17, 1
+	db RUINS_OF_ALPH, MUSIC_UNION_CAVE, 17, 1
 ; 0x941c0
 
 RuinsofAlphKabutoChamber_MapHeader: ; 0x941c0
@@ -530,7 +530,7 @@ RuinsofAlphKabutoChamber_MapHeader: ; 0x941c0
 	dw RuinsofAlphKabutoChamber_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $9, MUSIC_UNION_CAVE, 17, 1
+	db RUINS_OF_ALPH, MUSIC_UNION_CAVE, 17, 1
 ; 0x941c9
 
 RuinsofAlphOmanyteChamber_MapHeader: ; 0x941c9
@@ -541,7 +541,7 @@ RuinsofAlphOmanyteChamber_MapHeader: ; 0x941c9
 	dw RuinsofAlphOmanyteChamber_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $9, MUSIC_UNION_CAVE, 17, 1
+	db RUINS_OF_ALPH, MUSIC_UNION_CAVE, 17, 1
 ; 0x941d2
 
 RuinsofAlphAerodactylChamber_MapHeader: ; 0x941d2
@@ -552,7 +552,7 @@ RuinsofAlphAerodactylChamber_MapHeader: ; 0x941d2
 	dw RuinsofAlphAerodactylChamber_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $9, MUSIC_UNION_CAVE, 17, 1
+	db RUINS_OF_ALPH, MUSIC_UNION_CAVE, 17, 1
 ; 0x941db
 
 RuinsofAlphInnerChamber_MapHeader: ; 0x941db
@@ -563,7 +563,7 @@ RuinsofAlphInnerChamber_MapHeader: ; 0x941db
 	dw RuinsofAlphInnerChamber_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $9, MUSIC_RUINS_OF_ALPH_INTERIOR, 17, 1
+	db RUINS_OF_ALPH, MUSIC_RUINS_OF_ALPH_INTERIOR, 17, 1
 ; 0x941e4
 
 RuinsofAlphResearchCenter_MapHeader: ; 0x941e4
@@ -574,7 +574,7 @@ RuinsofAlphResearchCenter_MapHeader: ; 0x941e4
 	dw RuinsofAlphResearchCenter_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $9, MUSIC_UNION_CAVE, 1, 1
+	db RUINS_OF_ALPH, MUSIC_UNION_CAVE, 1, 1
 ; 0x941ed
 
 RuinsofAlphHoOhItemRoom_MapHeader: ; 0x941ed
@@ -585,7 +585,7 @@ RuinsofAlphHoOhItemRoom_MapHeader: ; 0x941ed
 	dw RuinsofAlphHoOhItemRoom_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $9, MUSIC_UNION_CAVE, 17, 1
+	db RUINS_OF_ALPH, MUSIC_UNION_CAVE, 17, 1
 ; 0x941f6
 
 RuinsofAlphKabutoItemRoom_MapHeader: ; 0x941f6
@@ -596,7 +596,7 @@ RuinsofAlphKabutoItemRoom_MapHeader: ; 0x941f6
 	dw RuinsofAlphKabutoItemRoom_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $9, MUSIC_UNION_CAVE, 17, 1
+	db RUINS_OF_ALPH, MUSIC_UNION_CAVE, 17, 1
 ; 0x941ff
 
 RuinsofAlphOmanyteItemRoom_MapHeader: ; 0x941ff
@@ -607,7 +607,7 @@ RuinsofAlphOmanyteItemRoom_MapHeader: ; 0x941ff
 	dw RuinsofAlphOmanyteItemRoom_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $9, MUSIC_UNION_CAVE, 17, 1
+	db RUINS_OF_ALPH, MUSIC_UNION_CAVE, 17, 1
 ; 0x94208
 
 RuinsofAlphAerodactylItemRoom_MapHeader: ; 0x94208
@@ -618,7 +618,7 @@ RuinsofAlphAerodactylItemRoom_MapHeader: ; 0x94208
 	dw RuinsofAlphAerodactylItemRoom_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $9, MUSIC_UNION_CAVE, 17, 1
+	db RUINS_OF_ALPH, MUSIC_UNION_CAVE, 17, 1
 ; 0x94211
 
 RuinsofAlphHoOhWordRoom_MapHeader: ; 0x94211
@@ -629,7 +629,7 @@ RuinsofAlphHoOhWordRoom_MapHeader: ; 0x94211
 	dw RuinsofAlphHoOhWordRoom_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $9, MUSIC_UNION_CAVE, 17, 1
+	db RUINS_OF_ALPH, MUSIC_UNION_CAVE, 17, 1
 ; 0x9421a
 
 RuinsofAlphKabutoWordRoom_MapHeader: ; 0x9421a
@@ -640,7 +640,7 @@ RuinsofAlphKabutoWordRoom_MapHeader: ; 0x9421a
 	dw RuinsofAlphKabutoWordRoom_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $9, MUSIC_UNION_CAVE, 17, 1
+	db RUINS_OF_ALPH, MUSIC_UNION_CAVE, 17, 1
 ; 0x94223
 
 RuinsofAlphOmanyteWordRoom_MapHeader: ; 0x94223
@@ -651,7 +651,7 @@ RuinsofAlphOmanyteWordRoom_MapHeader: ; 0x94223
 	dw RuinsofAlphOmanyteWordRoom_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $9, MUSIC_UNION_CAVE, 17, 1
+	db RUINS_OF_ALPH, MUSIC_UNION_CAVE, 17, 1
 ; 0x9422c
 
 RuinsofAlphAerodactylWordRoom_MapHeader: ; 0x9422c
@@ -662,7 +662,7 @@ RuinsofAlphAerodactylWordRoom_MapHeader: ; 0x9422c
 	dw RuinsofAlphAerodactylWordRoom_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $9, MUSIC_UNION_CAVE, 17, 1
+	db RUINS_OF_ALPH, MUSIC_UNION_CAVE, 17, 1
 ; 0x94235
 
 UnionCave1F_MapHeader: ; 0x94235
@@ -673,7 +673,7 @@ UnionCave1F_MapHeader: ; 0x94235
 	dw UnionCave1F_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $a, MUSIC_UNION_CAVE, 18, 3
+	db UNION_CAVE, MUSIC_UNION_CAVE, 18, 3
 ; 0x9423e
 
 UnionCaveB1F_MapHeader: ; 0x9423e
@@ -684,7 +684,7 @@ UnionCaveB1F_MapHeader: ; 0x9423e
 	dw UnionCaveB1F_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $a, MUSIC_UNION_CAVE, 18, 3
+	db UNION_CAVE, MUSIC_UNION_CAVE, 18, 3
 ; 0x94247
 
 UnionCaveB2F_MapHeader: ; 0x94247
@@ -695,7 +695,7 @@ UnionCaveB2F_MapHeader: ; 0x94247
 	dw UnionCaveB2F_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $a, MUSIC_UNION_CAVE, 18, 1
+	db UNION_CAVE, MUSIC_UNION_CAVE, 18, 1
 ; 0x94250
 
 SlowpokeWellB1F_MapHeader: ; 0x94250
@@ -706,7 +706,7 @@ SlowpokeWellB1F_MapHeader: ; 0x94250
 	dw SlowpokeWellB1F_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $d, MUSIC_DARK_CAVE, 18, 3
+	db SLOWPOKE_WELL, MUSIC_DARK_CAVE, 18, 3
 ; 0x94259
 
 SlowpokeWellB2F_MapHeader: ; 0x94259
@@ -717,7 +717,7 @@ SlowpokeWellB2F_MapHeader: ; 0x94259
 	dw SlowpokeWellB2F_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $d, MUSIC_DARK_CAVE, 18, 3
+	db SLOWPOKE_WELL, MUSIC_DARK_CAVE, 18, 3
 ; 0x94262
 
 OlivineLighthouse1F_MapHeader: ; 0x94262
@@ -728,7 +728,7 @@ OlivineLighthouse1F_MapHeader: ; 0x94262
 	dw OlivineLighthouse1F_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $1c, MUSIC_LIGHTHOUSE, 1, 1
+	db LIGHTHOUSE, MUSIC_LIGHTHOUSE, 1, 1
 ; 0x9426b
 
 OlivineLighthouse2F_MapHeader: ; 0x9426b
@@ -739,7 +739,7 @@ OlivineLighthouse2F_MapHeader: ; 0x9426b
 	dw OlivineLighthouse2F_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $1c, MUSIC_LIGHTHOUSE, 1, 1
+	db LIGHTHOUSE, MUSIC_LIGHTHOUSE, 1, 1
 ; 0x94274
 
 OlivineLighthouse3F_MapHeader: ; 0x94274
@@ -750,7 +750,7 @@ OlivineLighthouse3F_MapHeader: ; 0x94274
 	dw OlivineLighthouse3F_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $1c, MUSIC_LIGHTHOUSE, 1, 1
+	db LIGHTHOUSE, MUSIC_LIGHTHOUSE, 1, 1
 ; 0x9427d
 
 OlivineLighthouse4F_MapHeader: ; 0x9427d
@@ -761,7 +761,7 @@ OlivineLighthouse4F_MapHeader: ; 0x9427d
 	dw OlivineLighthouse4F_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $1c, MUSIC_LIGHTHOUSE, 1, 1
+	db LIGHTHOUSE, MUSIC_LIGHTHOUSE, 1, 1
 ; 0x94286
 
 OlivineLighthouse5F_MapHeader: ; 0x94286
@@ -772,7 +772,7 @@ OlivineLighthouse5F_MapHeader: ; 0x94286
 	dw OlivineLighthouse5F_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $1c, MUSIC_LIGHTHOUSE, 1, 1
+	db LIGHTHOUSE, MUSIC_LIGHTHOUSE, 1, 1
 ; 0x9428f
 
 OlivineLighthouse6F_MapHeader: ; 0x9428f
@@ -783,7 +783,7 @@ OlivineLighthouse6F_MapHeader: ; 0x9428f
 	dw OlivineLighthouse6F_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $1c, MUSIC_VIOLET_CITY, 1, 1
+	db LIGHTHOUSE, MUSIC_VIOLET_CITY, 1, 1
 ; 0x94298
 
 MahoganyMart1F_MapHeader: ; 0x94298
@@ -794,7 +794,7 @@ MahoganyMart1F_MapHeader: ; 0x94298
 	dw MahoganyMart1F_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $24, MUSIC_MAHOGANY_MART, 17, 1
+	db MAHOGANY_TOWN, MUSIC_MAHOGANY_MART, 17, 1
 ; 0x942a1
 
 TeamRocketBaseB1F_MapHeader: ; 0x942a1
@@ -805,7 +805,7 @@ TeamRocketBaseB1F_MapHeader: ; 0x942a1
 	dw TeamRocketBaseB1F_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $24, MUSIC_ROCKET_HIDEOUT, 17, 1
+	db MAHOGANY_TOWN, MUSIC_ROCKET_HIDEOUT, 17, 1
 ; 0x942aa
 
 TeamRocketBaseB2F_MapHeader: ; 0x942aa
@@ -816,7 +816,7 @@ TeamRocketBaseB2F_MapHeader: ; 0x942aa
 	dw TeamRocketBaseB2F_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $24, MUSIC_ROCKET_HIDEOUT, 17, 1
+	db MAHOGANY_TOWN, MUSIC_ROCKET_HIDEOUT, 17, 1
 ; 0x942b3
 
 TeamRocketBaseB3F_MapHeader: ; 0x942b3
@@ -827,7 +827,7 @@ TeamRocketBaseB3F_MapHeader: ; 0x942b3
 	dw TeamRocketBaseB3F_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $24, MUSIC_ROCKET_HIDEOUT, 17, 1
+	db MAHOGANY_TOWN, MUSIC_ROCKET_HIDEOUT, 17, 1
 ; 0x942bc
 
 IlexForest_MapHeader: ; 0x942bc
@@ -838,7 +838,7 @@ IlexForest_MapHeader: ; 0x942bc
 	dw IlexForest_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $e, MUSIC_UNION_CAVE, 2, 4
+	db ILEX_FOREST, MUSIC_UNION_CAVE, 2, 4
 ; 0x942c5
 
 WarehouseEntrance_MapHeader: ; 0x942c5
@@ -849,7 +849,7 @@ WarehouseEntrance_MapHeader: ; 0x942c5
 	dw WarehouseEntrance_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $10, MUSIC_UNION_CAVE, 17, 1
+	db GOLDENROD_CITY, MUSIC_UNION_CAVE, 17, 1
 ; 0x942ce
 
 UndergroundPathSwitchRoomEntrances_MapHeader: ; 0x942ce
@@ -860,7 +860,7 @@ UndergroundPathSwitchRoomEntrances_MapHeader: ; 0x942ce
 	dw UndergroundPathSwitchRoomEntrances_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $10, MUSIC_UNION_CAVE, 17, 1
+	db GOLDENROD_CITY, MUSIC_UNION_CAVE, 17, 1
 ; 0x942d7
 
 GoldenrodDeptStoreB1F_MapHeader: ; 0x942d7
@@ -871,7 +871,7 @@ GoldenrodDeptStoreB1F_MapHeader: ; 0x942d7
 	dw GoldenrodDeptStoreB1F_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $10, MUSIC_GOLDENROD_CITY, 17, 1
+	db GOLDENROD_CITY, MUSIC_GOLDENROD_CITY, 17, 1
 ; 0x942e0
 
 UndergroundWarehouse_MapHeader: ; 0x942e0
@@ -882,7 +882,7 @@ UndergroundWarehouse_MapHeader: ; 0x942e0
 	dw UndergroundWarehouse_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $10, MUSIC_UNION_CAVE, 17, 1
+	db GOLDENROD_CITY, MUSIC_UNION_CAVE, 17, 1
 ; 0x942e9
 
 MountMortar1FOutside_MapHeader: ; 0x942e9
@@ -893,7 +893,7 @@ MountMortar1FOutside_MapHeader: ; 0x942e9
 	dw MountMortar1FOutside_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $23, MUSIC_UNION_CAVE, 18, 3
+	db MT_MORTAR, MUSIC_UNION_CAVE, 18, 3
 ; 0x942f2
 
 MountMortar1FInside_MapHeader: ; 0x942f2
@@ -904,7 +904,7 @@ MountMortar1FInside_MapHeader: ; 0x942f2
 	dw MountMortar1FInside_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $23, MUSIC_UNION_CAVE, 18, 3
+	db MT_MORTAR, MUSIC_UNION_CAVE, 18, 3
 ; 0x942fb
 
 MountMortar2FInside_MapHeader: ; 0x942fb
@@ -915,7 +915,7 @@ MountMortar2FInside_MapHeader: ; 0x942fb
 	dw MountMortar2FInside_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $23, MUSIC_UNION_CAVE, 18, 3
+	db MT_MORTAR, MUSIC_UNION_CAVE, 18, 3
 ; 0x94304
 
 MountMortarB1F_MapHeader: ; 0x94304
@@ -926,7 +926,7 @@ MountMortarB1F_MapHeader: ; 0x94304
 	dw MountMortarB1F_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $23, MUSIC_UNION_CAVE, 18, 3
+	db MT_MORTAR, MUSIC_UNION_CAVE, 18, 3
 ; 0x9430d
 
 IcePath1F_MapHeader: ; 0x9430d
@@ -937,7 +937,7 @@ IcePath1F_MapHeader: ; 0x9430d
 	dw IcePath1F_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $28, MUSIC_DARK_CAVE, 18, 5
+	db ICE_PATH, MUSIC_DARK_CAVE, 18, 5
 ; 0x94316
 
 IcePathB1F_MapHeader: ; 0x94316
@@ -948,7 +948,7 @@ IcePathB1F_MapHeader: ; 0x94316
 	dw IcePathB1F_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $28, MUSIC_DARK_CAVE, 18, 5
+	db ICE_PATH, MUSIC_DARK_CAVE, 18, 5
 ; 0x9431f
 
 IcePathB2FMahoganySide_MapHeader: ; 0x9431f
@@ -959,7 +959,7 @@ IcePathB2FMahoganySide_MapHeader: ; 0x9431f
 	dw IcePathB2FMahoganySide_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $28, MUSIC_DARK_CAVE, 18, 5
+	db ICE_PATH, MUSIC_DARK_CAVE, 18, 5
 ; 0x94328
 
 IcePathB2FBlackthornSide_MapHeader: ; 0x94328
@@ -970,7 +970,7 @@ IcePathB2FBlackthornSide_MapHeader: ; 0x94328
 	dw IcePathB2FBlackthornSide_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $28, MUSIC_DARK_CAVE, 18, 5
+	db ICE_PATH, MUSIC_DARK_CAVE, 18, 5
 ; 0x94331
 
 IcePathB3F_MapHeader: ; 0x94331
@@ -981,7 +981,7 @@ IcePathB3F_MapHeader: ; 0x94331
 	dw IcePathB3F_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $28, MUSIC_DARK_CAVE, 18, 5
+	db ICE_PATH, MUSIC_DARK_CAVE, 18, 5
 ; 0x9433a
 
 WhirlIslandNW_MapHeader: ; 0x9433a
@@ -992,7 +992,7 @@ WhirlIslandNW_MapHeader: ; 0x9433a
 	dw WhirlIslandNW_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $1f, MUSIC_UNION_CAVE, 20, 10
+	db WHIRL_ISLANDS, MUSIC_UNION_CAVE, 20, 10
 ; 0x94343
 
 WhirlIslandNE_MapHeader: ; 0x94343
@@ -1003,7 +1003,7 @@ WhirlIslandNE_MapHeader: ; 0x94343
 	dw WhirlIslandNE_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $1f, MUSIC_UNION_CAVE, 20, 10
+	db WHIRL_ISLANDS, MUSIC_UNION_CAVE, 20, 10
 ; 0x9434c
 
 WhirlIslandSW_MapHeader: ; 0x9434c
@@ -1014,7 +1014,7 @@ WhirlIslandSW_MapHeader: ; 0x9434c
 	dw WhirlIslandSW_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $1f, MUSIC_UNION_CAVE, 20, 10
+	db WHIRL_ISLANDS, MUSIC_UNION_CAVE, 20, 10
 ; 0x94355
 
 WhirlIslandCave_MapHeader: ; 0x94355
@@ -1025,7 +1025,7 @@ WhirlIslandCave_MapHeader: ; 0x94355
 	dw WhirlIslandCave_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $1f, MUSIC_UNION_CAVE, 20, 10
+	db WHIRL_ISLANDS, MUSIC_UNION_CAVE, 20, 10
 ; 0x9435e
 
 WhirlIslandSE_MapHeader: ; 0x9435e
@@ -1036,7 +1036,7 @@ WhirlIslandSE_MapHeader: ; 0x9435e
 	dw WhirlIslandSE_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $1f, MUSIC_UNION_CAVE, 20, 10
+	db WHIRL_ISLANDS, MUSIC_UNION_CAVE, 20, 10
 ; 0x94367
 
 WhirlIslandB1F_MapHeader: ; 0x94367
@@ -1047,7 +1047,7 @@ WhirlIslandB1F_MapHeader: ; 0x94367
 	dw WhirlIslandB1F_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $1f, MUSIC_UNION_CAVE, 20, 10
+	db WHIRL_ISLANDS, MUSIC_UNION_CAVE, 20, 10
 ; 0x94370
 
 WhirlIslandB2F_MapHeader: ; 0x94370
@@ -1058,7 +1058,7 @@ WhirlIslandB2F_MapHeader: ; 0x94370
 	dw WhirlIslandB2F_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $1f, MUSIC_UNION_CAVE, 20, 10
+	db WHIRL_ISLANDS, MUSIC_UNION_CAVE, 20, 10
 ; 0x94379
 
 WhirlIslandLugiaChamber_MapHeader: ; 0x94379
@@ -1069,7 +1069,7 @@ WhirlIslandLugiaChamber_MapHeader: ; 0x94379
 	dw WhirlIslandLugiaChamber_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $1f, MUSIC_UNION_CAVE, 20, 10
+	db WHIRL_ISLANDS, MUSIC_UNION_CAVE, 20, 10
 ; 0x94382
 
 SilverCaveRoom1_MapHeader: ; 0x94382
@@ -1080,7 +1080,7 @@ SilverCaveRoom1_MapHeader: ; 0x94382
 	dw SilverCaveRoom1_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $2e, MUSIC_LIGHTHOUSE, 20, 3
+	db SILVER_CAVE, MUSIC_LIGHTHOUSE, 20, 3
 ; 0x9438b
 
 SilverCaveRoom2_MapHeader: ; 0x9438b
@@ -1091,7 +1091,7 @@ SilverCaveRoom2_MapHeader: ; 0x9438b
 	dw SilverCaveRoom2_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $2e, MUSIC_LIGHTHOUSE, 18, 3
+	db SILVER_CAVE, MUSIC_LIGHTHOUSE, 18, 3
 ; 0x94394
 
 SilverCaveRoom3_MapHeader: ; 0x94394
@@ -1102,7 +1102,7 @@ SilverCaveRoom3_MapHeader: ; 0x94394
 	dw SilverCaveRoom3_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $2e, MUSIC_LIGHTHOUSE, 17, 3
+	db SILVER_CAVE, MUSIC_LIGHTHOUSE, 17, 3
 ; 0x9439d
 
 SilverCaveItemRooms_MapHeader: ; 0x9439d
@@ -1113,7 +1113,7 @@ SilverCaveItemRooms_MapHeader: ; 0x9439d
 	dw SilverCaveItemRooms_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $2e, MUSIC_LIGHTHOUSE, 18, 3
+	db SILVER_CAVE, MUSIC_LIGHTHOUSE, 18, 3
 ; 0x943a6
 
 DarkCaveVioletEntrance_MapHeader: ; 0x943a6
@@ -1124,7 +1124,7 @@ DarkCaveVioletEntrance_MapHeader: ; 0x943a6
 	dw DarkCaveVioletEntrance_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $2c, MUSIC_DARK_CAVE, 20, 3
+	db DARK_CAVE, MUSIC_DARK_CAVE, 20, 3
 ; 0x943af
 
 DarkCaveBlackthornEntrance_MapHeader: ; 0x943af
@@ -1135,7 +1135,7 @@ DarkCaveBlackthornEntrance_MapHeader: ; 0x943af
 	dw DarkCaveBlackthornEntrance_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $2c, MUSIC_DARK_CAVE, 20, 3
+	db DARK_CAVE, MUSIC_DARK_CAVE, 20, 3
 ; 0x943b8
 
 DragonsDen1F_MapHeader: ; 0x943b8
@@ -1146,7 +1146,7 @@ DragonsDen1F_MapHeader: ; 0x943b8
 	dw DragonsDen1F_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $2a, MUSIC_DRAGONS_DEN, 18, 5
+	db DRAGONS_DEN, MUSIC_DRAGONS_DEN, 18, 5
 ; 0x943c1
 
 DragonsDenB1F_MapHeader: ; 0x943c1
@@ -1157,7 +1157,7 @@ DragonsDenB1F_MapHeader: ; 0x943c1
 	dw DragonsDenB1F_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $2a, MUSIC_DRAGONS_DEN, 18, 5
+	db DRAGONS_DEN, MUSIC_DRAGONS_DEN, 18, 5
 ; 0x943ca
 
 DragonShrine_MapHeader: ; 0x943ca
@@ -1168,7 +1168,7 @@ DragonShrine_MapHeader: ; 0x943ca
 	dw DragonShrine_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $2a, MUSIC_DRAGONS_DEN, 18, 1
+	db DRAGONS_DEN, MUSIC_DRAGONS_DEN, 18, 1
 ; 0x943d3
 
 TohjoFalls_MapHeader: ; 0x943d3
@@ -1179,7 +1179,7 @@ TohjoFalls_MapHeader: ; 0x943d3
 	dw TohjoFalls_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $5d, MUSIC_UNION_CAVE, 18, 3
+	db TOHJO_FALLS, MUSIC_UNION_CAVE, 18, 3
 ; 0x943dc
 
 DiglettsCave_MapHeader: ; 0x943dc
@@ -1190,7 +1190,7 @@ DiglettsCave_MapHeader: ; 0x943dc
 	dw DiglettsCave_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $3e, MUSIC_MT_MOON, 18, 1
+	db DIGLETTS_CAVE, MUSIC_MT_MOON, 18, 1
 ; 0x943e5
 
 MountMoon_MapHeader: ; 0x943e5
@@ -1201,7 +1201,7 @@ MountMoon_MapHeader: ; 0x943e5
 	dw MountMoon_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $35, MUSIC_MT_MOON, 18, 1
+	db MT_MOON, MUSIC_MT_MOON, 18, 1
 ; 0x943ee
 
 Underground_MapHeader: ; 0x943ee
@@ -1212,7 +1212,7 @@ Underground_MapHeader: ; 0x943ee
 	dw Underground_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $3b, MUSIC_MT_MOON, 2, 1
+	db UNDERGROUND, MUSIC_MT_MOON, 2, 1
 ; 0x943f7
 
 RockTunnel1F_MapHeader: ; 0x943f7
@@ -1223,7 +1223,7 @@ RockTunnel1F_MapHeader: ; 0x943f7
 	dw RockTunnel1F_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $42, MUSIC_MT_MOON, 20, 1
+	db ROCK_TUNNEL, MUSIC_MT_MOON, 20, 1
 ; 0x94400
 
 RockTunnelB1F_MapHeader: ; 0x94400
@@ -1234,7 +1234,7 @@ RockTunnelB1F_MapHeader: ; 0x94400
 	dw RockTunnelB1F_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $42, MUSIC_MT_MOON, 20, 1
+	db ROCK_TUNNEL, MUSIC_MT_MOON, 20, 1
 ; 0x94409
 
 SafariZoneFuchsiaGateBeta_MapHeader: ; 0x94409
@@ -1245,7 +1245,7 @@ SafariZoneFuchsiaGateBeta_MapHeader: ; 0x94409
 	dw SafariZoneFuchsiaGateBeta_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $51, MUSIC_VIRIDIAN_CITY, 1, 1
+	db FUCHSIA_CITY, MUSIC_VIRIDIAN_CITY, 1, 1
 ; 0x94412
 
 SafariZoneBeta_MapHeader: ; 0x94412
@@ -1256,7 +1256,7 @@ SafariZoneBeta_MapHeader: ; 0x94412
 	dw SafariZoneBeta_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $51, MUSIC_EVOLUTION, 0, 1
+	db FUCHSIA_CITY, MUSIC_EVOLUTION, 0, 1
 ; 0x9441b
 
 VictoryRoad_MapHeader: ; 0x9441b
@@ -1267,7 +1267,7 @@ VictoryRoad_MapHeader: ; 0x9441b
 	dw VictoryRoad_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $58, MUSIC_VICTORY_ROAD, 18, 1
+	db VICTORY_ROAD, MUSIC_VICTORY_ROAD, 18, 1
 ; 0x94424
 
 
@@ -1281,7 +1281,7 @@ EcruteakHouse_MapHeader: ; 0x94424
 	dw EcruteakHouse_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $16, MUSIC_ECRUTEAK_CITY, 1, 1
+	db ECRUTEAK_CITY, MUSIC_ECRUTEAK_CITY, 1, 1
 ; 0x9442d
 
 WiseTriosRoom_MapHeader: ; 0x9442d
@@ -1292,7 +1292,7 @@ WiseTriosRoom_MapHeader: ; 0x9442d
 	dw WiseTriosRoom_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $16, MUSIC_ECRUTEAK_CITY, 17, 1
+	db ECRUTEAK_CITY, MUSIC_ECRUTEAK_CITY, 17, 1
 ; 0x94436
 
 EcruteakPokeCenter1F_MapHeader: ; 0x94436
@@ -1303,7 +1303,7 @@ EcruteakPokeCenter1F_MapHeader: ; 0x94436
 	dw EcruteakPokeCenter1F_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $16, MUSIC_POKEMON_CENTER, 1, 1
+	db ECRUTEAK_CITY, MUSIC_POKEMON_CENTER, 1, 1
 ; 0x9443f
 
 EcruteakLugiaSpeechHouse_MapHeader: ; 0x9443f
@@ -1314,7 +1314,7 @@ EcruteakLugiaSpeechHouse_MapHeader: ; 0x9443f
 	dw EcruteakLugiaSpeechHouse_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $16, MUSIC_ECRUTEAK_CITY, 1, 1
+	db ECRUTEAK_CITY, MUSIC_ECRUTEAK_CITY, 1, 1
 ; 0x94448
 
 DanceTheatre_MapHeader: ; 0x94448
@@ -1325,7 +1325,7 @@ DanceTheatre_MapHeader: ; 0x94448
 	dw DanceTheatre_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $16, MUSIC_DANCING_HALL, 1, 1
+	db ECRUTEAK_CITY, MUSIC_DANCING_HALL, 1, 1
 ; 0x94451
 
 EcruteakMart_MapHeader: ; 0x94451
@@ -1336,7 +1336,7 @@ EcruteakMart_MapHeader: ; 0x94451
 	dw EcruteakMart_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $16, MUSIC_ECRUTEAK_CITY, 1, 1
+	db ECRUTEAK_CITY, MUSIC_ECRUTEAK_CITY, 1, 1
 ; 0x9445a
 
 EcruteakGym_MapHeader: ; 0x9445a
@@ -1347,7 +1347,7 @@ EcruteakGym_MapHeader: ; 0x9445a
 	dw EcruteakGym_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $16, MUSIC_GYM, 17, 1
+	db ECRUTEAK_CITY, MUSIC_GYM, 17, 1
 ; 0x94463
 
 EcruteakItemfinderHouse_MapHeader: ; 0x94463
@@ -1358,7 +1358,7 @@ EcruteakItemfinderHouse_MapHeader: ; 0x94463
 	dw EcruteakItemfinderHouse_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $16, MUSIC_ECRUTEAK_CITY, 1, 1
+	db ECRUTEAK_CITY, MUSIC_ECRUTEAK_CITY, 1, 1
 ; 0x9446c
 
 EcruteakCity_MapHeader: ; 0x9446c
@@ -1369,7 +1369,7 @@ EcruteakCity_MapHeader: ; 0x9446c
 	dw EcruteakCity_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $16, MUSIC_ECRUTEAK_CITY, 0, 4
+	db ECRUTEAK_CITY, MUSIC_ECRUTEAK_CITY, 0, 4
 ; 0x94475
 
 
@@ -1383,7 +1383,7 @@ BlackthornGym1F_MapHeader: ; 0x94475
 	dw BlackthornGym1F_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $29, MUSIC_GYM, 17, 1
+	db BLACKTHORN_CITY, MUSIC_GYM, 17, 1
 ; 0x9447e
 
 BlackthornGym2F_MapHeader: ; 0x9447e
@@ -1394,7 +1394,7 @@ BlackthornGym2F_MapHeader: ; 0x9447e
 	dw BlackthornGym2F_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $29, MUSIC_GYM, 17, 1
+	db BLACKTHORN_CITY, MUSIC_GYM, 17, 1
 ; 0x94487
 
 BlackthornDragonSpeechHouse_MapHeader: ; 0x94487
@@ -1405,7 +1405,7 @@ BlackthornDragonSpeechHouse_MapHeader: ; 0x94487
 	dw BlackthornDragonSpeechHouse_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $29, MUSIC_AZALEA_TOWN, 1, 1
+	db BLACKTHORN_CITY, MUSIC_AZALEA_TOWN, 1, 1
 ; 0x94490
 
 BlackthornDodrioTradeHouse_MapHeader: ; 0x94490
@@ -1416,7 +1416,7 @@ BlackthornDodrioTradeHouse_MapHeader: ; 0x94490
 	dw BlackthornDodrioTradeHouse_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $29, MUSIC_AZALEA_TOWN, 1, 1
+	db BLACKTHORN_CITY, MUSIC_AZALEA_TOWN, 1, 1
 ; 0x94499
 
 BlackthornMart_MapHeader: ; 0x94499
@@ -1427,7 +1427,7 @@ BlackthornMart_MapHeader: ; 0x94499
 	dw BlackthornMart_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $29, MUSIC_AZALEA_TOWN, 1, 1
+	db BLACKTHORN_CITY, MUSIC_AZALEA_TOWN, 1, 1
 ; 0x944a2
 
 BlackthornPokeCenter1F_MapHeader: ; 0x944a2
@@ -1438,7 +1438,7 @@ BlackthornPokeCenter1F_MapHeader: ; 0x944a2
 	dw BlackthornPokeCenter1F_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $29, MUSIC_POKEMON_CENTER, 1, 1
+	db BLACKTHORN_CITY, MUSIC_POKEMON_CENTER, 1, 1
 ; 0x944ab
 
 MoveDeletersHouse_MapHeader: ; 0x944ab
@@ -1449,7 +1449,7 @@ MoveDeletersHouse_MapHeader: ; 0x944ab
 	dw MoveDeletersHouse_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $29, MUSIC_AZALEA_TOWN, 1, 1
+	db BLACKTHORN_CITY, MUSIC_AZALEA_TOWN, 1, 1
 ; 0x944b4
 
 Route45_MapHeader: ; 0x944b4
@@ -1460,7 +1460,7 @@ Route45_MapHeader: ; 0x944b4
 	dw Route45_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $2b, MUSIC_ROUTE_36, 0, 9
+	db ROUTE_45, MUSIC_ROUTE_36, 0, 9
 ; 0x944bd
 
 Route46_MapHeader: ; 0x944bd
@@ -1471,7 +1471,7 @@ Route46_MapHeader: ; 0x944bd
 	dw Route46_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $2d, MUSIC_ROUTE_36, 0, 1
+	db ROUTE_46, MUSIC_ROUTE_36, 0, 1
 ; 0x944c6
 
 BlackthornCity_MapHeader: ; 0x944c6
@@ -1482,7 +1482,7 @@ BlackthornCity_MapHeader: ; 0x944c6
 	dw BlackthornCity_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $29, MUSIC_AZALEA_TOWN, 0, 4
+	db BLACKTHORN_CITY, MUSIC_AZALEA_TOWN, 0, 4
 ; 0x944cf
 
 
@@ -1496,7 +1496,7 @@ CinnabarPokeCenter1F_MapHeader: ; 0x944cf
 	dw CinnabarPokeCenter1F_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $55, MUSIC_POKEMON_CENTER, 1, 1
+	db CINNABAR_ISLAND, MUSIC_POKEMON_CENTER, 1, 1
 ; 0x944d8
 
 CinnabarPokeCenter2FBeta_MapHeader: ; 0x944d8
@@ -1507,7 +1507,7 @@ CinnabarPokeCenter2FBeta_MapHeader: ; 0x944d8
 	dw CinnabarPokeCenter2FBeta_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $55, MUSIC_POKEMON_CENTER, 1, 1
+	db CINNABAR_ISLAND, MUSIC_POKEMON_CENTER, 1, 1
 ; 0x944e1
 
 Route19FuchsiaGate_MapHeader: ; 0x944e1
@@ -1518,7 +1518,7 @@ Route19FuchsiaGate_MapHeader: ; 0x944e1
 	dw Route19FuchsiaGate_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $52, MUSIC_ROUTE_3, 1, 1
+	db ROUTE_19, MUSIC_ROUTE_3, 1, 1
 ; 0x944ea
 
 SeafoamGym_MapHeader: ; 0x944ea
@@ -1529,7 +1529,7 @@ SeafoamGym_MapHeader: ; 0x944ea
 	dw SeafoamGym_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $54, MUSIC_GYM, 17, 1
+	db SEAFOAM_ISLANDS, MUSIC_GYM, 17, 1
 ; 0x944f3
 
 Route19_MapHeader: ; 0x944f3
@@ -1540,7 +1540,7 @@ Route19_MapHeader: ; 0x944f3
 	dw Route19_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $52, MUSIC_ROUTE_3, 0, 1
+	db ROUTE_19, MUSIC_ROUTE_3, 0, 1
 ; 0x944fc
 
 Route20_MapHeader: ; 0x944fc
@@ -1551,7 +1551,7 @@ Route20_MapHeader: ; 0x944fc
 	dw Route20_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $53, MUSIC_ROUTE_3, 0, 2
+	db ROUTE_20, MUSIC_ROUTE_3, 0, 2
 ; 0x94505
 
 Route21_MapHeader: ; 0x94505
@@ -1562,7 +1562,7 @@ Route21_MapHeader: ; 0x94505
 	dw Route21_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $56, MUSIC_ROUTE_3, 0, 2
+	db ROUTE_21, MUSIC_ROUTE_3, 0, 2
 ; 0x9450e
 
 CinnabarIsland_MapHeader: ; 0x9450e
@@ -1573,7 +1573,7 @@ CinnabarIsland_MapHeader: ; 0x9450e
 	dw CinnabarIsland_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $55, MUSIC_VIRIDIAN_CITY, 0, 2
+	db CINNABAR_ISLAND, MUSIC_VIRIDIAN_CITY, 0, 2
 ; 0x94517
 
 
@@ -1587,7 +1587,7 @@ CeruleanGymBadgeSpeechHouse_MapHeader: ; 0x94517
 	dw CeruleanGymBadgeSpeechHouse_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $37, MUSIC_VIRIDIAN_CITY, 1, 1
+	db CERULEAN_CITY, MUSIC_VIRIDIAN_CITY, 1, 1
 ; 0x94520
 
 CeruleanPoliceStation_MapHeader: ; 0x94520
@@ -1598,7 +1598,7 @@ CeruleanPoliceStation_MapHeader: ; 0x94520
 	dw CeruleanPoliceStation_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $37, MUSIC_VIRIDIAN_CITY, 1, 1
+	db CERULEAN_CITY, MUSIC_VIRIDIAN_CITY, 1, 1
 ; 0x94529
 
 CeruleanTradeSpeechHouse_MapHeader: ; 0x94529
@@ -1609,7 +1609,7 @@ CeruleanTradeSpeechHouse_MapHeader: ; 0x94529
 	dw CeruleanTradeSpeechHouse_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $37, MUSIC_VIRIDIAN_CITY, 1, 1
+	db CERULEAN_CITY, MUSIC_VIRIDIAN_CITY, 1, 1
 ; 0x94532
 
 CeruleanPokeCenter1F_MapHeader: ; 0x94532
@@ -1620,7 +1620,7 @@ CeruleanPokeCenter1F_MapHeader: ; 0x94532
 	dw CeruleanPokeCenter1F_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $37, MUSIC_POKEMON_CENTER, 1, 1
+	db CERULEAN_CITY, MUSIC_POKEMON_CENTER, 1, 1
 ; 0x9453b
 
 CeruleanPokeCenter2FBeta_MapHeader: ; 0x9453b
@@ -1631,7 +1631,7 @@ CeruleanPokeCenter2FBeta_MapHeader: ; 0x9453b
 	dw CeruleanPokeCenter2FBeta_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $37, MUSIC_POKEMON_CENTER, 1, 1
+	db CERULEAN_CITY, MUSIC_POKEMON_CENTER, 1, 1
 ; 0x94544
 
 CeruleanGym_MapHeader: ; 0x94544
@@ -1642,7 +1642,7 @@ CeruleanGym_MapHeader: ; 0x94544
 	dw CeruleanGym_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $37, MUSIC_GYM, 17, 0
+	db CERULEAN_CITY, MUSIC_GYM, 17, 0
 ; 0x9454d
 
 CeruleanMart_MapHeader: ; 0x9454d
@@ -1653,7 +1653,7 @@ CeruleanMart_MapHeader: ; 0x9454d
 	dw CeruleanMart_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $37, MUSIC_VIRIDIAN_CITY, 1, 1
+	db CERULEAN_CITY, MUSIC_VIRIDIAN_CITY, 1, 1
 ; 0x94556
 
 Route10PokeCenter1F_MapHeader: ; 0x94556
@@ -1664,7 +1664,7 @@ Route10PokeCenter1F_MapHeader: ; 0x94556
 	dw Route10PokeCenter1F_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $43, MUSIC_POKEMON_CENTER, 1, 1
+	db ROUTE_10, MUSIC_POKEMON_CENTER, 1, 1
 ; 0x9455f
 
 Route10PokeCenter2FBeta_MapHeader: ; 0x9455f
@@ -1675,7 +1675,7 @@ Route10PokeCenter2FBeta_MapHeader: ; 0x9455f
 	dw Route10PokeCenter2FBeta_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $43, MUSIC_POKEMON_CENTER, 1, 1
+	db ROUTE_10, MUSIC_POKEMON_CENTER, 1, 1
 ; 0x94568
 
 PowerPlant_MapHeader: ; 0x94568
@@ -1686,7 +1686,7 @@ PowerPlant_MapHeader: ; 0x94568
 	dw PowerPlant_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $44, MUSIC_VIRIDIAN_CITY, 1, 1
+	db POWER_PLANT, MUSIC_VIRIDIAN_CITY, 1, 1
 ; 0x94571
 
 BillsHouse_MapHeader: ; 0x94571
@@ -1697,7 +1697,7 @@ BillsHouse_MapHeader: ; 0x94571
 	dw BillsHouse_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $39, MUSIC_VIRIDIAN_CITY, 1, 1
+	db ROUTE_25, MUSIC_VIRIDIAN_CITY, 1, 1
 ; 0x9457a
 
 Route4_MapHeader: ; 0x9457a
@@ -1708,7 +1708,7 @@ Route4_MapHeader: ; 0x9457a
 	dw Route4_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $36, MUSIC_ROUTE_3, 0, 0
+	db ROUTE_4, MUSIC_ROUTE_3, 0, 0
 ; 0x94583
 
 Route9_MapHeader: ; 0x94583
@@ -1719,7 +1719,7 @@ Route9_MapHeader: ; 0x94583
 	dw Route9_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $41, MUSIC_ROUTE_3, 0, 3
+	db ROUTE_9, MUSIC_ROUTE_3, 0, 3
 ; 0x9458c
 
 Route10North_MapHeader: ; 0x9458c
@@ -1730,7 +1730,7 @@ Route10North_MapHeader: ; 0x9458c
 	dw Route10North_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $43, MUSIC_ROUTE_3, 0, 3
+	db ROUTE_10, MUSIC_ROUTE_3, 0, 3
 ; 0x94595
 
 Route24_MapHeader: ; 0x94595
@@ -1741,7 +1741,7 @@ Route24_MapHeader: ; 0x94595
 	dw Route24_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $38, MUSIC_ROUTE_3, 0, 3
+	db ROUTE_24, MUSIC_ROUTE_3, 0, 3
 ; 0x9459e
 
 Route25_MapHeader: ; 0x9459e
@@ -1752,7 +1752,7 @@ Route25_MapHeader: ; 0x9459e
 	dw Route25_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $39, MUSIC_ROUTE_3, 0, 3
+	db ROUTE_25, MUSIC_ROUTE_3, 0, 3
 ; 0x945a7
 
 CeruleanCity_MapHeader: ; 0x945a7
@@ -1763,7 +1763,7 @@ CeruleanCity_MapHeader: ; 0x945a7
 	dw CeruleanCity_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $37, MUSIC_VIRIDIAN_CITY, 0, 0
+	db CERULEAN_CITY, MUSIC_VIRIDIAN_CITY, 0, 0
 ; 0x945b0
 
 
@@ -1777,7 +1777,7 @@ AzaleaPokeCenter1F_MapHeader: ; 0x945b0
 	dw AzaleaPokeCenter1F_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $c, MUSIC_POKEMON_CENTER, 1, 1
+	db AZALEA_TOWN, MUSIC_POKEMON_CENTER, 1, 1
 ; 0x945b9
 
 CharcoalKiln_MapHeader: ; 0x945b9
@@ -1788,7 +1788,7 @@ CharcoalKiln_MapHeader: ; 0x945b9
 	dw CharcoalKiln_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $c, MUSIC_AZALEA_TOWN, 1, 1
+	db AZALEA_TOWN, MUSIC_AZALEA_TOWN, 1, 1
 ; 0x945c2
 
 AzaleaMart_MapHeader: ; 0x945c2
@@ -1799,7 +1799,7 @@ AzaleaMart_MapHeader: ; 0x945c2
 	dw AzaleaMart_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $c, MUSIC_AZALEA_TOWN, 1, 1
+	db AZALEA_TOWN, MUSIC_AZALEA_TOWN, 1, 1
 ; 0x945cb
 
 KurtsHouse_MapHeader: ; 0x945cb
@@ -1810,7 +1810,7 @@ KurtsHouse_MapHeader: ; 0x945cb
 	dw KurtsHouse_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $c, MUSIC_AZALEA_TOWN, 1, 1
+	db AZALEA_TOWN, MUSIC_AZALEA_TOWN, 1, 1
 ; 0x945d4
 
 AzaleaGym_MapHeader: ; 0x945d4
@@ -1821,7 +1821,7 @@ AzaleaGym_MapHeader: ; 0x945d4
 	dw AzaleaGym_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $c, MUSIC_GYM, 17, 1
+	db AZALEA_TOWN, MUSIC_GYM, 17, 1
 ; 0x945dd
 
 Route33_MapHeader: ; 0x945dd
@@ -1832,7 +1832,7 @@ Route33_MapHeader: ; 0x945dd
 	dw Route33_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $b, MUSIC_ROUTE_30, 0, 1
+	db ROUTE_33, MUSIC_ROUTE_30, 0, 1
 ; 0x945e6
 
 AzaleaTown_MapHeader: ; 0x945e6
@@ -1843,7 +1843,7 @@ AzaleaTown_MapHeader: ; 0x945e6
 	dw AzaleaTown_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $c, MUSIC_AZALEA_TOWN, 0, 1
+	db AZALEA_TOWN, MUSIC_AZALEA_TOWN, 0, 1
 ; 0x945ef
 
 
@@ -1857,7 +1857,7 @@ LakeofRageHiddenPowerHouse_MapHeader: ; 0x945ef
 	dw LakeofRageHiddenPowerHouse_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $26, MUSIC_LAKE_OF_RAGE, 1, 1
+	db LAKE_OF_RAGE, MUSIC_LAKE_OF_RAGE, 1, 1
 ; 0x945f8
 
 LakeofRageMagikarpHouse_MapHeader: ; 0x945f8
@@ -1868,7 +1868,7 @@ LakeofRageMagikarpHouse_MapHeader: ; 0x945f8
 	dw LakeofRageMagikarpHouse_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $26, MUSIC_LAKE_OF_RAGE, 1, 1
+	db LAKE_OF_RAGE, MUSIC_LAKE_OF_RAGE, 1, 1
 ; 0x94601
 
 Route43MahoganyGate_MapHeader: ; 0x94601
@@ -1879,7 +1879,7 @@ Route43MahoganyGate_MapHeader: ; 0x94601
 	dw Route43MahoganyGate_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $25, MUSIC_LAKE_OF_RAGE, 1, 1
+	db ROUTE_43, MUSIC_LAKE_OF_RAGE, 1, 1
 ; 0x9460a
 
 Route43Gate_MapHeader: ; 0x9460a
@@ -1890,7 +1890,7 @@ Route43Gate_MapHeader: ; 0x9460a
 	dw Route43Gate_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $25, MUSIC_LAKE_OF_RAGE, 1, 1
+	db ROUTE_43, MUSIC_LAKE_OF_RAGE, 1, 1
 ; 0x94613
 
 Route43_MapHeader: ; 0x94613
@@ -1901,7 +1901,7 @@ Route43_MapHeader: ; 0x94613
 	dw Route43_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $25, MUSIC_LAKE_OF_RAGE, 0, 4
+	db ROUTE_43, MUSIC_LAKE_OF_RAGE, 0, 4
 ; 0x9461c
 
 LakeofRage_MapHeader: ; 0x9461c
@@ -1912,7 +1912,7 @@ LakeofRage_MapHeader: ; 0x9461c
 	dw LakeofRage_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $26, MUSIC_LAKE_OF_RAGE, 0, 8
+	db LAKE_OF_RAGE, MUSIC_LAKE_OF_RAGE, 0, 8
 ; 0x94625
 
 
@@ -1926,7 +1926,7 @@ Route32_MapHeader: ; 0x94625
 	dw Route32_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $8, MUSIC_ROUTE_30, 0, 11
+	db ROUTE_32, MUSIC_ROUTE_30, 0, 11
 ; 0x9462e
 
 Route35_MapHeader: ; 0x9462e
@@ -1937,7 +1937,7 @@ Route35_MapHeader: ; 0x9462e
 	dw Route35_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $12, MUSIC_ROUTE_36, 0, 4
+	db ROUTE_35, MUSIC_ROUTE_36, 0, 4
 ; 0x94637
 
 Route36_MapHeader: ; 0x94637
@@ -1948,7 +1948,7 @@ Route36_MapHeader: ; 0x94637
 	dw Route36_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $14, MUSIC_ROUTE_36, 0, 1
+	db ROUTE_36, MUSIC_ROUTE_36, 0, 1
 ; 0x94640
 
 Route37_MapHeader: ; 0x94640
@@ -1959,7 +1959,7 @@ Route37_MapHeader: ; 0x94640
 	dw Route37_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $15, MUSIC_ROUTE_36, 0, 1
+	db ROUTE_37, MUSIC_ROUTE_36, 0, 1
 ; 0x94649
 
 VioletCity_MapHeader: ; 0x94649
@@ -1970,7 +1970,7 @@ VioletCity_MapHeader: ; 0x94649
 	dw VioletCity_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $6, MUSIC_VIOLET_CITY, 0, 4
+	db VIOLET_CITY, MUSIC_VIOLET_CITY, 0, 4
 ; 0x94652
 
 VioletMart_MapHeader: ; 0x94652
@@ -1981,7 +1981,7 @@ VioletMart_MapHeader: ; 0x94652
 	dw VioletMart_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $6, MUSIC_VIOLET_CITY, 1, 1
+	db VIOLET_CITY, MUSIC_VIOLET_CITY, 1, 1
 ; 0x9465b
 
 VioletGym_MapHeader: ; 0x9465b
@@ -1992,7 +1992,7 @@ VioletGym_MapHeader: ; 0x9465b
 	dw VioletGym_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $6, MUSIC_GYM, 17, 1
+	db VIOLET_CITY, MUSIC_GYM, 17, 1
 ; 0x94664
 
 EarlsPokemonAcademy_MapHeader: ; 0x94664
@@ -2003,7 +2003,7 @@ EarlsPokemonAcademy_MapHeader: ; 0x94664
 	dw EarlsPokemonAcademy_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $6, MUSIC_VIOLET_CITY, 1, 1
+	db VIOLET_CITY, MUSIC_VIOLET_CITY, 1, 1
 ; 0x9466d
 
 VioletNicknameSpeechHouse_MapHeader: ; 0x9466d
@@ -2014,7 +2014,7 @@ VioletNicknameSpeechHouse_MapHeader: ; 0x9466d
 	dw VioletNicknameSpeechHouse_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $6, MUSIC_VIOLET_CITY, 1, 1
+	db VIOLET_CITY, MUSIC_VIOLET_CITY, 1, 1
 ; 0x94676
 
 VioletPokeCenter1F_MapHeader: ; 0x94676
@@ -2025,7 +2025,7 @@ VioletPokeCenter1F_MapHeader: ; 0x94676
 	dw VioletPokeCenter1F_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $6, MUSIC_POKEMON_CENTER, 1, 1
+	db VIOLET_CITY, MUSIC_POKEMON_CENTER, 1, 1
 ; 0x9467f
 
 VioletOnixTradeHouse_MapHeader: ; 0x9467f
@@ -2036,7 +2036,7 @@ VioletOnixTradeHouse_MapHeader: ; 0x9467f
 	dw VioletOnixTradeHouse_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $6, MUSIC_VIOLET_CITY, 1, 1
+	db VIOLET_CITY, MUSIC_VIOLET_CITY, 1, 1
 ; 0x94688
 
 Route32RuinsofAlphGate_MapHeader: ; 0x94688
@@ -2047,7 +2047,7 @@ Route32RuinsofAlphGate_MapHeader: ; 0x94688
 	dw Route32RuinsofAlphGate_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $8, MUSIC_ROUTE_30, 1, 1
+	db ROUTE_32, MUSIC_ROUTE_30, 1, 1
 ; 0x94691
 
 Route32PokeCenter1F_MapHeader: ; 0x94691
@@ -2058,7 +2058,7 @@ Route32PokeCenter1F_MapHeader: ; 0x94691
 	dw Route32PokeCenter1F_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $8, MUSIC_POKEMON_CENTER, 1, 1
+	db ROUTE_32, MUSIC_POKEMON_CENTER, 1, 1
 ; 0x9469a
 
 Route35Goldenrodgate_MapHeader: ; 0x9469a
@@ -2069,7 +2069,7 @@ Route35Goldenrodgate_MapHeader: ; 0x9469a
 	dw Route35Goldenrodgate_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $12, MUSIC_ROUTE_36, 1, 1
+	db ROUTE_35, MUSIC_ROUTE_36, 1, 1
 ; 0x946a3
 
 Route35NationalParkgate_MapHeader: ; 0x946a3
@@ -2080,7 +2080,7 @@ Route35NationalParkgate_MapHeader: ; 0x946a3
 	dw Route35NationalParkgate_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $12, MUSIC_GOLDENROD_CITY, 1, 1
+	db ROUTE_35, MUSIC_GOLDENROD_CITY, 1, 1
 ; 0x946ac
 
 Route36RuinsofAlphgate_MapHeader: ; 0x946ac
@@ -2091,7 +2091,7 @@ Route36RuinsofAlphgate_MapHeader: ; 0x946ac
 	dw Route36RuinsofAlphgate_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $14, MUSIC_ROUTE_36, 1, 1
+	db ROUTE_36, MUSIC_ROUTE_36, 1, 1
 ; 0x946b5
 
 Route36NationalParkgate_MapHeader: ; 0x946b5
@@ -2102,7 +2102,7 @@ Route36NationalParkgate_MapHeader: ; 0x946b5
 	dw Route36NationalParkgate_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $14, MUSIC_GOLDENROD_CITY, 1, 1
+	db ROUTE_36, MUSIC_GOLDENROD_CITY, 1, 1
 ; 0x946be
 
 
@@ -2116,7 +2116,7 @@ Route34_MapHeader: ; 0x946be
 	dw Route34_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $f, MUSIC_ROUTE_36, 0, 1
+	db ROUTE_34, MUSIC_ROUTE_36, 0, 1
 ; 0x946c7
 
 GoldenrodCity_MapHeader: ; 0x946c7
@@ -2127,7 +2127,7 @@ GoldenrodCity_MapHeader: ; 0x946c7
 	dw GoldenrodCity_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $10, MUSIC_GOLDENROD_CITY, 0, 1
+	db GOLDENROD_CITY, MUSIC_GOLDENROD_CITY, 0, 1
 ; 0x946d0
 
 GoldenrodGym_MapHeader: ; 0x946d0
@@ -2138,7 +2138,7 @@ GoldenrodGym_MapHeader: ; 0x946d0
 	dw GoldenrodGym_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $10, MUSIC_GYM, 17, 1
+	db GOLDENROD_CITY, MUSIC_GYM, 17, 1
 ; 0x946d9
 
 GoldenrodBikeShop_MapHeader: ; 0x946d9
@@ -2149,7 +2149,7 @@ GoldenrodBikeShop_MapHeader: ; 0x946d9
 	dw GoldenrodBikeShop_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $10, MUSIC_GOLDENROD_CITY, 1, 1
+	db GOLDENROD_CITY, MUSIC_GOLDENROD_CITY, 1, 1
 ; 0x946e2
 
 GoldenrodHappinessRater_MapHeader: ; 0x946e2
@@ -2160,7 +2160,7 @@ GoldenrodHappinessRater_MapHeader: ; 0x946e2
 	dw GoldenrodHappinessRater_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $10, MUSIC_GOLDENROD_CITY, 1, 1
+	db GOLDENROD_CITY, MUSIC_GOLDENROD_CITY, 1, 1
 ; 0x946eb
 
 GoldenrodBillsHouse_MapHeader: ; 0x946eb
@@ -2171,7 +2171,7 @@ GoldenrodBillsHouse_MapHeader: ; 0x946eb
 	dw GoldenrodBillsHouse_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $10, MUSIC_GOLDENROD_CITY, 1, 1
+	db GOLDENROD_CITY, MUSIC_GOLDENROD_CITY, 1, 1
 ; 0x946f4
 
 GoldenrodMagnetTrainStation_MapHeader: ; 0x946f4
@@ -2182,7 +2182,7 @@ GoldenrodMagnetTrainStation_MapHeader: ; 0x946f4
 	dw GoldenrodMagnetTrainStation_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $10, MUSIC_GOLDENROD_CITY, 1, 1
+	db GOLDENROD_CITY, MUSIC_GOLDENROD_CITY, 1, 1
 ; 0x946fd
 
 GoldenrodFlowerShop_MapHeader: ; 0x946fd
@@ -2193,7 +2193,7 @@ GoldenrodFlowerShop_MapHeader: ; 0x946fd
 	dw GoldenrodFlowerShop_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $10, MUSIC_GOLDENROD_CITY, 1, 1
+	db GOLDENROD_CITY, MUSIC_GOLDENROD_CITY, 1, 1
 ; 0x94706
 
 GoldenrodPPSpeechHouse_MapHeader: ; 0x94706
@@ -2204,7 +2204,7 @@ GoldenrodPPSpeechHouse_MapHeader: ; 0x94706
 	dw GoldenrodPPSpeechHouse_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $10, MUSIC_GOLDENROD_CITY, 1, 1
+	db GOLDENROD_CITY, MUSIC_GOLDENROD_CITY, 1, 1
 ; 0x9470f
 
 GoldenrodNameRatersHouse_MapHeader: ; 0x9470f
@@ -2215,7 +2215,7 @@ GoldenrodNameRatersHouse_MapHeader: ; 0x9470f
 	dw GoldenrodNameRatersHouse_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $10, MUSIC_GOLDENROD_CITY, 1, 1
+	db GOLDENROD_CITY, MUSIC_GOLDENROD_CITY, 1, 1
 ; 0x94718
 
 GoldenrodDeptStore1F_MapHeader: ; 0x94718
@@ -2226,7 +2226,7 @@ GoldenrodDeptStore1F_MapHeader: ; 0x94718
 	dw GoldenrodDeptStore1F_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $10, MUSIC_GOLDENROD_CITY, 1, 1
+	db GOLDENROD_CITY, MUSIC_GOLDENROD_CITY, 1, 1
 ; 0x94721
 
 GoldenrodDeptStore2F_MapHeader: ; 0x94721
@@ -2237,7 +2237,7 @@ GoldenrodDeptStore2F_MapHeader: ; 0x94721
 	dw GoldenrodDeptStore2F_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $10, MUSIC_GOLDENROD_CITY, 1, 1
+	db GOLDENROD_CITY, MUSIC_GOLDENROD_CITY, 1, 1
 ; 0x9472a
 
 GoldenrodDeptStore3F_MapHeader: ; 0x9472a
@@ -2248,7 +2248,7 @@ GoldenrodDeptStore3F_MapHeader: ; 0x9472a
 	dw GoldenrodDeptStore3F_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $10, MUSIC_GOLDENROD_CITY, 1, 1
+	db GOLDENROD_CITY, MUSIC_GOLDENROD_CITY, 1, 1
 ; 0x94733
 
 GoldenrodDeptStore4F_MapHeader: ; 0x94733
@@ -2259,7 +2259,7 @@ GoldenrodDeptStore4F_MapHeader: ; 0x94733
 	dw GoldenrodDeptStore4F_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $10, MUSIC_GOLDENROD_CITY, 1, 1
+	db GOLDENROD_CITY, MUSIC_GOLDENROD_CITY, 1, 1
 ; 0x9473c
 
 GoldenrodDeptStore5F_MapHeader: ; 0x9473c
@@ -2270,7 +2270,7 @@ GoldenrodDeptStore5F_MapHeader: ; 0x9473c
 	dw GoldenrodDeptStore5F_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $10, MUSIC_GOLDENROD_CITY, 1, 1
+	db GOLDENROD_CITY, MUSIC_GOLDENROD_CITY, 1, 1
 ; 0x94745
 
 GoldenrodDeptStore6F_MapHeader: ; 0x94745
@@ -2281,7 +2281,7 @@ GoldenrodDeptStore6F_MapHeader: ; 0x94745
 	dw GoldenrodDeptStore6F_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $10, MUSIC_GOLDENROD_CITY, 1, 1
+	db GOLDENROD_CITY, MUSIC_GOLDENROD_CITY, 1, 1
 ; 0x9474e
 
 GoldenrodDeptStoreElevator_MapHeader: ; 0x9474e
@@ -2292,7 +2292,7 @@ GoldenrodDeptStoreElevator_MapHeader: ; 0x9474e
 	dw GoldenrodDeptStoreElevator_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $10, MUSIC_GOLDENROD_CITY, 1, 1
+	db GOLDENROD_CITY, MUSIC_GOLDENROD_CITY, 1, 1
 ; 0x94757
 
 GoldenrodDeptStoreRoof_MapHeader: ; 0x94757
@@ -2303,7 +2303,7 @@ GoldenrodDeptStoreRoof_MapHeader: ; 0x94757
 	dw GoldenrodDeptStoreRoof_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $10, MUSIC_GOLDENROD_CITY, 1, 1
+	db GOLDENROD_CITY, MUSIC_GOLDENROD_CITY, 1, 1
 ; 0x94760
 
 GoldenrodGameCorner_MapHeader: ; 0x94760
@@ -2314,7 +2314,7 @@ GoldenrodGameCorner_MapHeader: ; 0x94760
 	dw GoldenrodGameCorner_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $10, MUSIC_GAME_CORNER, 1, 1
+	db GOLDENROD_CITY, MUSIC_GAME_CORNER, 1, 1
 ; 0x94769
 
 GoldenrodPokeCenter1F_MapHeader: ; 0x94769
@@ -2325,7 +2325,7 @@ GoldenrodPokeCenter1F_MapHeader: ; 0x94769
 	dw GoldenrodPokeCenter1F_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $10, MUSIC_POKEMON_CENTER, 1, 1
+	db GOLDENROD_CITY, MUSIC_POKEMON_CENTER, 1, 1
 ; 0x94772
 
 GoldenrodPokeComCenter2FMobile_MapHeader: ; 0x94772
@@ -2336,7 +2336,7 @@ GoldenrodPokeComCenter2FMobile_MapHeader: ; 0x94772
 	dw GoldenrodPokeComCenter2FMobile_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $10, MUSIC_POKEMON_CENTER, 1, 1
+	db GOLDENROD_CITY, MUSIC_POKEMON_CENTER, 1, 1
 ; 0x9477b
 
 IlexForestAzaleaGate_MapHeader: ; 0x9477b
@@ -2347,7 +2347,7 @@ IlexForestAzaleaGate_MapHeader: ; 0x9477b
 	dw IlexForestAzaleaGate_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $f, MUSIC_ROUTE_36, 1, 1
+	db ROUTE_34, MUSIC_ROUTE_36, 1, 1
 ; 0x94784
 
 Route34IlexForestGate_MapHeader: ; 0x94784
@@ -2358,7 +2358,7 @@ Route34IlexForestGate_MapHeader: ; 0x94784
 	dw Route34IlexForestGate_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $f, MUSIC_ROUTE_36, 1, 1
+	db ROUTE_34, MUSIC_ROUTE_36, 1, 1
 ; 0x9478d
 
 DayCare_MapHeader: ; 0x9478d
@@ -2369,7 +2369,7 @@ DayCare_MapHeader: ; 0x9478d
 	dw DayCare_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $f, MUSIC_AZALEA_TOWN, 1, 1
+	db ROUTE_34, MUSIC_AZALEA_TOWN, 1, 1
 ; 0x94796
 
 
@@ -2383,7 +2383,7 @@ Route6_MapHeader: ; 0x94796
 	dw Route6_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $3c, MUSIC_ROUTE_3, 0, 4
+	db ROUTE_6, MUSIC_ROUTE_3, 0, 4
 ; 0x9479f
 
 Route11_MapHeader: ; 0x9479f
@@ -2394,7 +2394,7 @@ Route11_MapHeader: ; 0x9479f
 	dw Route11_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $49, MUSIC_ROUTE_12, 0, 1
+	db ROUTE_11, MUSIC_ROUTE_12, 0, 1
 ; 0x947a8
 
 VermilionCity_MapHeader: ; 0x947a8
@@ -2405,7 +2405,7 @@ VermilionCity_MapHeader: ; 0x947a8
 	dw VermilionCity_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $3d, MUSIC_VERMILION_CITY, 0, 2
+	db VERMILION_CITY, MUSIC_VERMILION_CITY, 0, 2
 ; 0x947b1
 
 VermilionHouseFishingSpeechHouse_MapHeader: ; 0x947b1
@@ -2416,7 +2416,7 @@ VermilionHouseFishingSpeechHouse_MapHeader: ; 0x947b1
 	dw VermilionHouseFishingSpeechHouse_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $3d, MUSIC_VERMILION_CITY, 1, 1
+	db VERMILION_CITY, MUSIC_VERMILION_CITY, 1, 1
 ; 0x947ba
 
 VermilionPokeCenter1F_MapHeader: ; 0x947ba
@@ -2427,7 +2427,7 @@ VermilionPokeCenter1F_MapHeader: ; 0x947ba
 	dw VermilionPokeCenter1F_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $3d, MUSIC_POKEMON_CENTER, 1, 1
+	db VERMILION_CITY, MUSIC_POKEMON_CENTER, 1, 1
 ; 0x947c3
 
 VermilionPokeCenter2FBeta_MapHeader: ; 0x947c3
@@ -2438,7 +2438,7 @@ VermilionPokeCenter2FBeta_MapHeader: ; 0x947c3
 	dw VermilionPokeCenter2FBeta_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $3d, MUSIC_VERMILION_CITY, 1, 1
+	db VERMILION_CITY, MUSIC_VERMILION_CITY, 1, 1
 ; 0x947cc
 
 PokemonFanClub_MapHeader: ; 0x947cc
@@ -2449,7 +2449,7 @@ PokemonFanClub_MapHeader: ; 0x947cc
 	dw PokemonFanClub_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $3d, MUSIC_VERMILION_CITY, 1, 1
+	db VERMILION_CITY, MUSIC_VERMILION_CITY, 1, 1
 ; 0x947d5
 
 VermilionMagnetTrainSpeechHouse_MapHeader: ; 0x947d5
@@ -2460,7 +2460,7 @@ VermilionMagnetTrainSpeechHouse_MapHeader: ; 0x947d5
 	dw VermilionMagnetTrainSpeechHouse_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $3d, MUSIC_VERMILION_CITY, 1, 1
+	db VERMILION_CITY, MUSIC_VERMILION_CITY, 1, 1
 ; 0x947de
 
 VermilionMart_MapHeader: ; 0x947de
@@ -2471,7 +2471,7 @@ VermilionMart_MapHeader: ; 0x947de
 	dw VermilionMart_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $3d, MUSIC_VERMILION_CITY, 1, 1
+	db VERMILION_CITY, MUSIC_VERMILION_CITY, 1, 1
 ; 0x947e7
 
 VermilionHouseDiglettsCaveSpeechHouse_MapHeader: ; 0x947e7
@@ -2482,7 +2482,7 @@ VermilionHouseDiglettsCaveSpeechHouse_MapHeader: ; 0x947e7
 	dw VermilionHouseDiglettsCaveSpeechHouse_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $3d, MUSIC_VERMILION_CITY, 1, 1
+	db VERMILION_CITY, MUSIC_VERMILION_CITY, 1, 1
 ; 0x947f0
 
 VermilionGym_MapHeader: ; 0x947f0
@@ -2493,7 +2493,7 @@ VermilionGym_MapHeader: ; 0x947f0
 	dw VermilionGym_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $3d, MUSIC_GYM, 17, 1
+	db VERMILION_CITY, MUSIC_GYM, 17, 1
 ; 0x947f9
 
 Route6SaffronGate_MapHeader: ; 0x947f9
@@ -2504,7 +2504,7 @@ Route6SaffronGate_MapHeader: ; 0x947f9
 	dw Route6SaffronGate_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $3c, MUSIC_ROUTE_3, 1, 1
+	db ROUTE_6, MUSIC_ROUTE_3, 1, 1
 ; 0x94802
 
 Route6UndergroundEntrance_MapHeader: ; 0x94802
@@ -2515,7 +2515,7 @@ Route6UndergroundEntrance_MapHeader: ; 0x94802
 	dw Route6UndergroundEntrance_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $3c, MUSIC_ROUTE_3, 1, 1
+	db ROUTE_6, MUSIC_ROUTE_3, 1, 1
 ; 0x9480b
 
 
@@ -2529,7 +2529,7 @@ Route1_MapHeader: ; 0x9480b
 	dw Route1_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $30, MUSIC_ROUTE_1, 0, 1
+	db ROUTE_1, MUSIC_ROUTE_1, 0, 1
 ; 0x94814
 
 PalletTown_MapHeader: ; 0x94814
@@ -2540,7 +2540,7 @@ PalletTown_MapHeader: ; 0x94814
 	dw PalletTown_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $2f, MUSIC_PALLET_TOWN, 0, 2
+	db PALLET_TOWN, MUSIC_PALLET_TOWN, 0, 2
 ; 0x9481d
 
 RedsHouse1F_MapHeader: ; 0x9481d
@@ -2551,7 +2551,7 @@ RedsHouse1F_MapHeader: ; 0x9481d
 	dw RedsHouse1F_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $2f, MUSIC_PALLET_TOWN, 1, 1
+	db PALLET_TOWN, MUSIC_PALLET_TOWN, 1, 1
 ; 0x94826
 
 RedsHouse2F_MapHeader: ; 0x94826
@@ -2562,7 +2562,7 @@ RedsHouse2F_MapHeader: ; 0x94826
 	dw RedsHouse2F_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $2f, MUSIC_PALLET_TOWN, 1, 1
+	db PALLET_TOWN, MUSIC_PALLET_TOWN, 1, 1
 ; 0x9482f
 
 BluesHouse_MapHeader: ; 0x9482f
@@ -2573,7 +2573,7 @@ BluesHouse_MapHeader: ; 0x9482f
 	dw BluesHouse_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $2f, MUSIC_PALLET_TOWN, 1, 1
+	db PALLET_TOWN, MUSIC_PALLET_TOWN, 1, 1
 ; 0x94838
 
 OaksLab_MapHeader: ; 0x94838
@@ -2584,7 +2584,7 @@ OaksLab_MapHeader: ; 0x94838
 	dw OaksLab_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $2f, MUSIC_POKEMON_TALK, 1, 1
+	db PALLET_TOWN, MUSIC_POKEMON_TALK, 1, 1
 ; 0x94841
 
 
@@ -2598,7 +2598,7 @@ Route3_MapHeader: ; 0x94841
 	dw Route3_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $34, MUSIC_ROUTE_3, 0, 1
+	db ROUTE_3, MUSIC_ROUTE_3, 0, 1
 ; 0x9484a
 
 PewterCity_MapHeader: ; 0x9484a
@@ -2609,7 +2609,7 @@ PewterCity_MapHeader: ; 0x9484a
 	dw PewterCity_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $33, MUSIC_VIRIDIAN_CITY, 0, 1
+	db PEWTER_CITY, MUSIC_VIRIDIAN_CITY, 0, 1
 ; 0x94853
 
 PewterNidoranSpeechHouse_MapHeader: ; 0x94853
@@ -2620,7 +2620,7 @@ PewterNidoranSpeechHouse_MapHeader: ; 0x94853
 	dw PewterNidoranSpeechHouse_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $33, MUSIC_VIRIDIAN_CITY, 1, 1
+	db PEWTER_CITY, MUSIC_VIRIDIAN_CITY, 1, 1
 ; 0x9485c
 
 PewterGym_MapHeader: ; 0x9485c
@@ -2631,7 +2631,7 @@ PewterGym_MapHeader: ; 0x9485c
 	dw PewterGym_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $33, MUSIC_GYM, 17, 1
+	db PEWTER_CITY, MUSIC_GYM, 17, 1
 ; 0x94865
 
 PewterMart_MapHeader: ; 0x94865
@@ -2642,7 +2642,7 @@ PewterMart_MapHeader: ; 0x94865
 	dw PewterMart_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $33, MUSIC_VIRIDIAN_CITY, 1, 1
+	db PEWTER_CITY, MUSIC_VIRIDIAN_CITY, 1, 1
 ; 0x9486e
 
 PewterPokeCenter1F_MapHeader: ; 0x9486e
@@ -2653,7 +2653,7 @@ PewterPokeCenter1F_MapHeader: ; 0x9486e
 	dw PewterPokeCenter1F_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $33, MUSIC_POKEMON_CENTER, 1, 1
+	db PEWTER_CITY, MUSIC_POKEMON_CENTER, 1, 1
 ; 0x94877
 
 PewterPokeCEnter2FBeta_MapHeader: ; 0x94877
@@ -2664,7 +2664,7 @@ PewterPokeCEnter2FBeta_MapHeader: ; 0x94877
 	dw PewterPokeCEnter2FBeta_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $33, MUSIC_VIRIDIAN_CITY, 1, 1
+	db PEWTER_CITY, MUSIC_VIRIDIAN_CITY, 1, 1
 ; 0x94880
 
 PewterSnoozeSpeechHouse_MapHeader: ; 0x94880
@@ -2675,7 +2675,7 @@ PewterSnoozeSpeechHouse_MapHeader: ; 0x94880
 	dw PewterSnoozeSpeechHouse_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $33, MUSIC_VIRIDIAN_CITY, 1, 1
+	db PEWTER_CITY, MUSIC_VIRIDIAN_CITY, 1, 1
 ; 0x94889
 
 
@@ -2689,7 +2689,7 @@ OlivinePort_MapHeader: ; 0x94889
 	dw OlivinePort_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $1b, MUSIC_VIOLET_CITY, 0, 2
+	db OLIVINE_CITY, MUSIC_VIOLET_CITY, 0, 2
 ; 0x94892
 
 VermilionPort_MapHeader: ; 0x94892
@@ -2700,7 +2700,7 @@ VermilionPort_MapHeader: ; 0x94892
 	dw VermilionPort_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $3d, MUSIC_VERMILION_CITY, 0, 2
+	db VERMILION_CITY, MUSIC_VERMILION_CITY, 0, 2
 ; 0x9489b
 
 FastShip1F_MapHeader: ; 0x9489b
@@ -2711,7 +2711,7 @@ FastShip1F_MapHeader: ; 0x9489b
 	dw FastShip1F_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $5f, MUSIC_SS_AQUA, 1, 1
+	db FAST_SHIP, MUSIC_SS_AQUA, 1, 1
 ; 0x948a4
 
 FastShipCabins_NNW_NNE_NE_MapHeader: ; 0x948a4
@@ -2722,7 +2722,7 @@ FastShipCabins_NNW_NNE_NE_MapHeader: ; 0x948a4
 	dw FastShipCabins_NNW_NNE_NE_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $5f, MUSIC_SS_AQUA, 1, 1
+	db FAST_SHIP, MUSIC_SS_AQUA, 1, 1
 ; 0x948ad
 
 FastShipCabins_SW_SSW_NW_MapHeader: ; 0x948ad
@@ -2733,7 +2733,7 @@ FastShipCabins_SW_SSW_NW_MapHeader: ; 0x948ad
 	dw FastShipCabins_SW_SSW_NW_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $5f, MUSIC_SS_AQUA, 1, 1
+	db FAST_SHIP, MUSIC_SS_AQUA, 1, 1
 ; 0x948b6
 
 FastShipCabins_SE_SSE_CaptainsCabin_MapHeader: ; 0x948b6
@@ -2744,7 +2744,7 @@ FastShipCabins_SE_SSE_CaptainsCabin_MapHeader: ; 0x948b6
 	dw FastShipCabins_SE_SSE_CaptainsCabin_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $5f, MUSIC_SS_AQUA, 1, 1
+	db FAST_SHIP, MUSIC_SS_AQUA, 1, 1
 ; 0x948bf
 
 FastShipB1F_MapHeader: ; 0x948bf
@@ -2755,7 +2755,7 @@ FastShipB1F_MapHeader: ; 0x948bf
 	dw FastShipB1F_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $5f, MUSIC_SS_AQUA, 1, 1
+	db FAST_SHIP, MUSIC_SS_AQUA, 1, 1
 ; 0x948c8
 
 OlivinePortPassage_MapHeader: ; 0x948c8
@@ -2766,7 +2766,7 @@ OlivinePortPassage_MapHeader: ; 0x948c8
 	dw OlivinePortPassage_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $1b, MUSIC_VIOLET_CITY, 1, 1
+	db OLIVINE_CITY, MUSIC_VIOLET_CITY, 1, 1
 ; 0x948d1
 
 VermilionPortPassage_MapHeader: ; 0x948d1
@@ -2777,7 +2777,7 @@ VermilionPortPassage_MapHeader: ; 0x948d1
 	dw VermilionPortPassage_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $3d, MUSIC_VERMILION_CITY, 1, 1
+	db VERMILION_CITY, MUSIC_VERMILION_CITY, 1, 1
 ; 0x948da
 
 MountMoonSquare_MapHeader: ; 0x948da
@@ -2788,7 +2788,7 @@ MountMoonSquare_MapHeader: ; 0x948da
 	dw MountMoonSquare_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $35, MUSIC_MT_MOON_SQUARE, 0, 1
+	db MT_MOON, MUSIC_MT_MOON_SQUARE, 0, 1
 ; 0x948e3
 
 MountMoonGiftShop_MapHeader: ; 0x948e3
@@ -2799,7 +2799,7 @@ MountMoonGiftShop_MapHeader: ; 0x948e3
 	dw MountMoonGiftShop_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $35, MUSIC_VIRIDIAN_CITY, 1, 1
+	db MT_MOON, MUSIC_VIRIDIAN_CITY, 1, 1
 ; 0x948ec
 
 TinTowerRoof_MapHeader: ; 0x948ec
@@ -2810,7 +2810,7 @@ TinTowerRoof_MapHeader: ; 0x948ec
 	dw TinTowerRoof_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $17, MUSIC_TIN_TOWER, 0, 1
+	db TIN_TOWER, MUSIC_TIN_TOWER, 0, 1
 ; 0x948f5
 
 
@@ -2824,7 +2824,7 @@ Route23_MapHeader: ; 0x948f5
 	dw Route23_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $59, MUSIC_INDIGO_PLATEAU, 0, 1
+	db ROUTE_23, MUSIC_INDIGO_PLATEAU, 0, 1
 ; 0x948fe
 
 IndigoPlateauPokeCenter1F_MapHeader: ; 0x948fe
@@ -2835,7 +2835,7 @@ IndigoPlateauPokeCenter1F_MapHeader: ; 0x948fe
 	dw IndigoPlateauPokeCenter1F_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $5a, MUSIC_INDIGO_PLATEAU, 1, 1
+	db INDIGO_PLATEAU, MUSIC_INDIGO_PLATEAU, 1, 1
 ; 0x94907
 
 WillsRoom_MapHeader: ; 0x94907
@@ -2846,7 +2846,7 @@ WillsRoom_MapHeader: ; 0x94907
 	dw WillsRoom_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $5a, MUSIC_INDIGO_PLATEAU, 17, 1
+	db INDIGO_PLATEAU, MUSIC_INDIGO_PLATEAU, 17, 1
 ; 0x94910
 
 KogasRoom_MapHeader: ; 0x94910
@@ -2857,7 +2857,7 @@ KogasRoom_MapHeader: ; 0x94910
 	dw KogasRoom_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $5a, MUSIC_INDIGO_PLATEAU, 17, 1
+	db INDIGO_PLATEAU, MUSIC_INDIGO_PLATEAU, 17, 1
 ; 0x94919
 
 BrunosRoom_MapHeader: ; 0x94919
@@ -2868,7 +2868,7 @@ BrunosRoom_MapHeader: ; 0x94919
 	dw BrunosRoom_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $5a, MUSIC_INDIGO_PLATEAU, 17, 1
+	db INDIGO_PLATEAU, MUSIC_INDIGO_PLATEAU, 17, 1
 ; 0x94922
 
 KarensRoom_MapHeader: ; 0x94922
@@ -2879,7 +2879,7 @@ KarensRoom_MapHeader: ; 0x94922
 	dw KarensRoom_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $5a, MUSIC_INDIGO_PLATEAU, 17, 1
+	db INDIGO_PLATEAU, MUSIC_INDIGO_PLATEAU, 17, 1
 ; 0x9492b
 
 LancesRoom_MapHeader: ; 0x9492b
@@ -2890,7 +2890,7 @@ LancesRoom_MapHeader: ; 0x9492b
 	dw LancesRoom_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $5a, MUSIC_INDIGO_PLATEAU, 17, 1
+	db INDIGO_PLATEAU, MUSIC_INDIGO_PLATEAU, 17, 1
 ; 0x94934
 
 HallOfFame_MapHeader: ; 0x94934
@@ -2901,7 +2901,7 @@ HallOfFame_MapHeader: ; 0x94934
 	dw HallOfFame_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $5a, MUSIC_NEW_BARK_TOWN, 17, 1
+	db INDIGO_PLATEAU, MUSIC_NEW_BARK_TOWN, 17, 1
 ; 0x9493d
 
 
@@ -2915,7 +2915,7 @@ Route13_MapHeader: ; 0x9493d
 	dw Route13_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $4b, MUSIC_ROUTE_12, 0, 13
+	db ROUTE_13, MUSIC_ROUTE_12, 0, 13
 ; 0x94946
 
 Route14_MapHeader: ; 0x94946
@@ -2926,7 +2926,7 @@ Route14_MapHeader: ; 0x94946
 	dw Route14_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $4c, MUSIC_ROUTE_12, 0, 1
+	db ROUTE_14, MUSIC_ROUTE_12, 0, 1
 ; 0x9494f
 
 Route15_MapHeader: ; 0x9494f
@@ -2937,7 +2937,7 @@ Route15_MapHeader: ; 0x9494f
 	dw Route15_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $4d, MUSIC_ROUTE_12, 0, 1
+	db ROUTE_15, MUSIC_ROUTE_12, 0, 1
 ; 0x94958
 
 Route18_MapHeader: ; 0x94958
@@ -2948,7 +2948,7 @@ Route18_MapHeader: ; 0x94958
 	dw Route18_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $50, MUSIC_ROUTE_3, 0, 1
+	db ROUTE_18, MUSIC_ROUTE_3, 0, 1
 ; 0x94961
 
 FuchsiaCity_MapHeader: ; 0x94961
@@ -2959,7 +2959,7 @@ FuchsiaCity_MapHeader: ; 0x94961
 	dw FuchsiaCity_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $51, MUSIC_CELADON_CITY, 0, 8
+	db FUCHSIA_CITY, MUSIC_CELADON_CITY, 0, 8
 ; 0x9496a
 
 FuchsiaMart_MapHeader: ; 0x9496a
@@ -2970,7 +2970,7 @@ FuchsiaMart_MapHeader: ; 0x9496a
 	dw FuchsiaMart_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $51, MUSIC_CELADON_CITY, 1, 1
+	db FUCHSIA_CITY, MUSIC_CELADON_CITY, 1, 1
 ; 0x94973
 
 SafariZoneMainOffice_MapHeader: ; 0x94973
@@ -2981,7 +2981,7 @@ SafariZoneMainOffice_MapHeader: ; 0x94973
 	dw SafariZoneMainOffice_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $51, MUSIC_CELADON_CITY, 1, 1
+	db FUCHSIA_CITY, MUSIC_CELADON_CITY, 1, 1
 ; 0x9497c
 
 FuchsiaGym_MapHeader: ; 0x9497c
@@ -2992,7 +2992,7 @@ FuchsiaGym_MapHeader: ; 0x9497c
 	dw FuchsiaGym_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $51, MUSIC_GYM, 17, 1
+	db FUCHSIA_CITY, MUSIC_GYM, 17, 1
 ; 0x94985
 
 FuchsiaBillSpeechHouse_MapHeader: ; 0x94985
@@ -3003,7 +3003,7 @@ FuchsiaBillSpeechHouse_MapHeader: ; 0x94985
 	dw FuchsiaBillSpeechHouse_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $51, MUSIC_CELADON_CITY, 1, 1
+	db FUCHSIA_CITY, MUSIC_CELADON_CITY, 1, 1
 ; 0x9498e
 
 FuchsiaPokeCenter1F_MapHeader: ; 0x9498e
@@ -3014,7 +3014,7 @@ FuchsiaPokeCenter1F_MapHeader: ; 0x9498e
 	dw FuchsiaPokeCenter1F_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $51, MUSIC_POKEMON_CENTER, 1, 1
+	db FUCHSIA_CITY, MUSIC_POKEMON_CENTER, 1, 1
 ; 0x94997
 
 FuchsiaPokeCenter2FBeta_MapHeader: ; 0x94997
@@ -3025,7 +3025,7 @@ FuchsiaPokeCenter2FBeta_MapHeader: ; 0x94997
 	dw FuchsiaPokeCenter2FBeta_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $51, MUSIC_CELADON_CITY, 1, 1
+	db FUCHSIA_CITY, MUSIC_CELADON_CITY, 1, 1
 ; 0x949a0
 
 SafariZoneWardensHome_MapHeader: ; 0x949a0
@@ -3036,7 +3036,7 @@ SafariZoneWardensHome_MapHeader: ; 0x949a0
 	dw SafariZoneWardensHome_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $51, MUSIC_CELADON_CITY, 1, 1
+	db FUCHSIA_CITY, MUSIC_CELADON_CITY, 1, 1
 ; 0x949a9
 
 Route15FuchsiaGate_MapHeader: ; 0x949a9
@@ -3047,7 +3047,7 @@ Route15FuchsiaGate_MapHeader: ; 0x949a9
 	dw Route15FuchsiaGate_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $4d, MUSIC_ROUTE_12, 1, 1
+	db ROUTE_15, MUSIC_ROUTE_12, 1, 1
 ; 0x949b2
 
 
@@ -3061,7 +3061,7 @@ Route8_MapHeader: ; 0x949b2
 	dw Route8_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $40, MUSIC_ROUTE_3, 0, 1
+	db ROUTE_8, MUSIC_ROUTE_3, 0, 1
 ; 0x949bb
 
 Route12_MapHeader: ; 0x949bb
@@ -3072,7 +3072,7 @@ Route12_MapHeader: ; 0x949bb
 	dw Route12_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $4a, MUSIC_ROUTE_12, 0, 13
+	db ROUTE_12, MUSIC_ROUTE_12, 0, 13
 ; 0x949c4
 
 Route10South_MapHeader: ; 0x949c4
@@ -3083,7 +3083,7 @@ Route10South_MapHeader: ; 0x949c4
 	dw Route10South_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $43, MUSIC_ROUTE_3, 0, 3
+	db ROUTE_10, MUSIC_ROUTE_3, 0, 3
 ; 0x949cd
 
 LavenderTown_MapHeader: ; 0x949cd
@@ -3094,7 +3094,7 @@ LavenderTown_MapHeader: ; 0x949cd
 	dw LavenderTown_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $45, MUSIC_LAVENDER_TOWN, 0, 1
+	db LAVENDER_TOWN, MUSIC_LAVENDER_TOWN, 0, 1
 ; 0x949d6
 
 LavenderPokeCenter1F_MapHeader: ; 0x949d6
@@ -3105,7 +3105,7 @@ LavenderPokeCenter1F_MapHeader: ; 0x949d6
 	dw LavenderPokeCenter1F_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $45, MUSIC_POKEMON_CENTER, 1, 1
+	db LAVENDER_TOWN, MUSIC_POKEMON_CENTER, 1, 1
 ; 0x949df
 
 LavenderPokeCenter2FBeta_MapHeader: ; 0x949df
@@ -3116,7 +3116,7 @@ LavenderPokeCenter2FBeta_MapHeader: ; 0x949df
 	dw LavenderPokeCenter2FBeta_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $45, MUSIC_POKEMON_CENTER, 1, 1
+	db LAVENDER_TOWN, MUSIC_POKEMON_CENTER, 1, 1
 ; 0x949e8
 
 MrFujisHouse_MapHeader: ; 0x949e8
@@ -3127,7 +3127,7 @@ MrFujisHouse_MapHeader: ; 0x949e8
 	dw MrFujisHouse_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $45, MUSIC_LAVENDER_TOWN, 1, 1
+	db LAVENDER_TOWN, MUSIC_LAVENDER_TOWN, 1, 1
 ; 0x949f1
 
 LavenderTownSpeechHouse_MapHeader: ; 0x949f1
@@ -3138,7 +3138,7 @@ LavenderTownSpeechHouse_MapHeader: ; 0x949f1
 	dw LavenderTownSpeechHouse_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $45, MUSIC_LAVENDER_TOWN, 1, 1
+	db LAVENDER_TOWN, MUSIC_LAVENDER_TOWN, 1, 1
 ; 0x949fa
 
 LavenderNameRater_MapHeader: ; 0x949fa
@@ -3149,7 +3149,7 @@ LavenderNameRater_MapHeader: ; 0x949fa
 	dw LavenderNameRater_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $45, MUSIC_LAVENDER_TOWN, 1, 1
+	db LAVENDER_TOWN, MUSIC_LAVENDER_TOWN, 1, 1
 ; 0x94a03
 
 LavenderMart_MapHeader: ; 0x94a03
@@ -3160,7 +3160,7 @@ LavenderMart_MapHeader: ; 0x94a03
 	dw LavenderMart_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $45, MUSIC_LAVENDER_TOWN, 1, 1
+	db LAVENDER_TOWN, MUSIC_LAVENDER_TOWN, 1, 1
 ; 0x94a0c
 
 SoulHouse_MapHeader: ; 0x94a0c
@@ -3171,7 +3171,7 @@ SoulHouse_MapHeader: ; 0x94a0c
 	dw SoulHouse_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $45, MUSIC_LAVENDER_TOWN, 1, 1
+	db LAVENDER_TOWN, MUSIC_LAVENDER_TOWN, 1, 1
 ; 0x94a15
 
 LavRadioTower1F_MapHeader: ; 0x94a15
@@ -3182,7 +3182,7 @@ LavRadioTower1F_MapHeader: ; 0x94a15
 	dw LavRadioTower1F_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $46, MUSIC_LAVENDER_TOWN, 1, 1
+	db LAV_RADIO_TOWER, MUSIC_LAVENDER_TOWN, 1, 1
 ; 0x94a1e
 
 Route8SaffronGate_MapHeader: ; 0x94a1e
@@ -3193,7 +3193,7 @@ Route8SaffronGate_MapHeader: ; 0x94a1e
 	dw Route8SaffronGate_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $40, MUSIC_ROUTE_3, 1, 1
+	db ROUTE_8, MUSIC_ROUTE_3, 1, 1
 ; 0x94a27
 
 Route12SuperRodHouse_MapHeader: ; 0x94a27
@@ -3204,7 +3204,7 @@ Route12SuperRodHouse_MapHeader: ; 0x94a27
 	dw Route12SuperRodHouse_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $4a, MUSIC_VIRIDIAN_CITY, 1, 1
+	db ROUTE_12, MUSIC_VIRIDIAN_CITY, 1, 1
 ; 0x94a30
 
 
@@ -3218,7 +3218,7 @@ Route28_MapHeader: ; 0x94a30
 	dw Route28_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $5e, MUSIC_INDIGO_PLATEAU, 0, 4
+	db ROUTE_28, MUSIC_INDIGO_PLATEAU, 0, 4
 ; 0x94a39
 
 SilverCaveOutside_MapHeader: ; 0x94a39
@@ -3229,7 +3229,7 @@ SilverCaveOutside_MapHeader: ; 0x94a39
 	dw SilverCaveOutside_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $2e, MUSIC_INDIGO_PLATEAU, 0, 4
+	db SILVER_CAVE, MUSIC_INDIGO_PLATEAU, 0, 4
 ; 0x94a42
 
 SilverCavePokeCenter1F_MapHeader: ; 0x94a42
@@ -3240,7 +3240,7 @@ SilverCavePokeCenter1F_MapHeader: ; 0x94a42
 	dw SilverCavePokeCenter1F_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $2e, MUSIC_POKEMON_CENTER, 1, 1
+	db SILVER_CAVE, MUSIC_POKEMON_CENTER, 1, 1
 ; 0x94a4b
 
 Route28FamousSpeechHouse_MapHeader: ; 0x94a4b
@@ -3251,7 +3251,7 @@ Route28FamousSpeechHouse_MapHeader: ; 0x94a4b
 	dw Route28FamousSpeechHouse_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $5e, MUSIC_AZALEA_TOWN, 1, 1
+	db ROUTE_28, MUSIC_AZALEA_TOWN, 1, 1
 ; 0x94a54
 
 
@@ -3265,7 +3265,7 @@ PokeCenter2F_MapHeader: ; 0x94a54
 	dw PokeCenter2F_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $0, MUSIC_POKEMON_CENTER, 17, 1
+	db SPECIAL_MAP, MUSIC_POKEMON_CENTER, 17, 1
 ; 0x94a5d
 
 TradeCenter_MapHeader: ; 0x94a5d
@@ -3276,7 +3276,7 @@ TradeCenter_MapHeader: ; 0x94a5d
 	dw TradeCenter_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $0, MUSIC_CHERRYGROVE_CITY, 17, 1
+	db SPECIAL_MAP, MUSIC_CHERRYGROVE_CITY, 17, 1
 ; 0x94a66
 
 Colosseum_MapHeader: ; 0x94a66
@@ -3287,7 +3287,7 @@ Colosseum_MapHeader: ; 0x94a66
 	dw Colosseum_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $0, MUSIC_CHERRYGROVE_CITY, 17, 1
+	db SPECIAL_MAP, MUSIC_CHERRYGROVE_CITY, 17, 1
 ; 0x94a6f
 
 TimeCapsule_MapHeader: ; 0x94a6f
@@ -3298,7 +3298,7 @@ TimeCapsule_MapHeader: ; 0x94a6f
 	dw TimeCapsule_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $0, MUSIC_CHERRYGROVE_CITY, 17, 1
+	db SPECIAL_MAP, MUSIC_CHERRYGROVE_CITY, 17, 1
 ; 0x94a78
 
 MobileTradeRoomMobile_MapHeader: ; 0x94a78
@@ -3309,7 +3309,7 @@ MobileTradeRoomMobile_MapHeader: ; 0x94a78
 	dw MobileTradeRoomMobile_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $0, MUSIC_CHERRYGROVE_CITY, 17, 1
+	db SPECIAL_MAP, MUSIC_CHERRYGROVE_CITY, 17, 1
 ; 0x94a81
 
 MobileBattleRoom_MapHeader: ; 0x94a81
@@ -3320,7 +3320,7 @@ MobileBattleRoom_MapHeader: ; 0x94a81
 	dw MobileBattleRoom_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $0, MUSIC_CHERRYGROVE_CITY, 17, 1
+	db SPECIAL_MAP, MUSIC_CHERRYGROVE_CITY, 17, 1
 ; 0x94a8a
 
 
@@ -3334,7 +3334,7 @@ Route7_MapHeader: ; 0x94a8a
 	dw Route7_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $3f, MUSIC_ROUTE_3, 0, 1
+	db ROUTE_7, MUSIC_ROUTE_3, 0, 1
 ; 0x94a93
 
 Route16_MapHeader: ; 0x94a93
@@ -3345,7 +3345,7 @@ Route16_MapHeader: ; 0x94a93
 	dw Route16_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $4e, MUSIC_ROUTE_3, 0, 1
+	db ROUTE_16, MUSIC_ROUTE_3, 0, 1
 ; 0x94a9c
 
 Route17_MapHeader: ; 0x94a9c
@@ -3356,7 +3356,7 @@ Route17_MapHeader: ; 0x94a9c
 	dw Route17_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $4f, MUSIC_ROUTE_3, 0, 0
+	db ROUTE_17, MUSIC_ROUTE_3, 0, 0
 ; 0x94aa5
 
 CeladonCity_MapHeader: ; 0x94aa5
@@ -3367,7 +3367,7 @@ CeladonCity_MapHeader: ; 0x94aa5
 	dw CeladonCity_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $47, MUSIC_CELADON_CITY, 0, 0
+	db CELADON_CITY, MUSIC_CELADON_CITY, 0, 0
 ; 0x94aae
 
 CeladonDeptStore1F_MapHeader: ; 0x94aae
@@ -3378,7 +3378,7 @@ CeladonDeptStore1F_MapHeader: ; 0x94aae
 	dw CeladonDeptStore1F_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $47, MUSIC_CELADON_CITY, 1, 1
+	db CELADON_CITY, MUSIC_CELADON_CITY, 1, 1
 ; 0x94ab7
 
 CeladonDeptStore2F_MapHeader: ; 0x94ab7
@@ -3389,7 +3389,7 @@ CeladonDeptStore2F_MapHeader: ; 0x94ab7
 	dw CeladonDeptStore2F_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $47, MUSIC_CELADON_CITY, 1, 1
+	db CELADON_CITY, MUSIC_CELADON_CITY, 1, 1
 ; 0x94ac0
 
 CeladonDeptStore3F_MapHeader: ; 0x94ac0
@@ -3400,7 +3400,7 @@ CeladonDeptStore3F_MapHeader: ; 0x94ac0
 	dw CeladonDeptStore3F_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $47, MUSIC_CELADON_CITY, 1, 1
+	db CELADON_CITY, MUSIC_CELADON_CITY, 1, 1
 ; 0x94ac9
 
 CeladonDeptStore4F_MapHeader: ; 0x94ac9
@@ -3411,7 +3411,7 @@ CeladonDeptStore4F_MapHeader: ; 0x94ac9
 	dw CeladonDeptStore4F_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $47, MUSIC_CELADON_CITY, 1, 1
+	db CELADON_CITY, MUSIC_CELADON_CITY, 1, 1
 ; 0x94ad2
 
 CeladonDeptStore5F_MapHeader: ; 0x94ad2
@@ -3422,7 +3422,7 @@ CeladonDeptStore5F_MapHeader: ; 0x94ad2
 	dw CeladonDeptStore5F_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $47, MUSIC_CELADON_CITY, 1, 1
+	db CELADON_CITY, MUSIC_CELADON_CITY, 1, 1
 ; 0x94adb
 
 CeladonDeptStore6F_MapHeader: ; 0x94adb
@@ -3433,7 +3433,7 @@ CeladonDeptStore6F_MapHeader: ; 0x94adb
 	dw CeladonDeptStore6F_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $47, MUSIC_CELADON_CITY, 1, 1
+	db CELADON_CITY, MUSIC_CELADON_CITY, 1, 1
 ; 0x94ae4
 
 CeladonDeptStoreElevator_MapHeader: ; 0x94ae4
@@ -3444,7 +3444,7 @@ CeladonDeptStoreElevator_MapHeader: ; 0x94ae4
 	dw CeladonDeptStoreElevator_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $47, MUSIC_CELADON_CITY, 1, 1
+	db CELADON_CITY, MUSIC_CELADON_CITY, 1, 1
 ; 0x94aed
 
 CeladonMansion1F_MapHeader: ; 0x94aed
@@ -3455,7 +3455,7 @@ CeladonMansion1F_MapHeader: ; 0x94aed
 	dw CeladonMansion1F_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $47, MUSIC_CELADON_CITY, 1, 1
+	db CELADON_CITY, MUSIC_CELADON_CITY, 1, 1
 ; 0x94af6
 
 CeladonMansion2F_MapHeader: ; 0x94af6
@@ -3466,7 +3466,7 @@ CeladonMansion2F_MapHeader: ; 0x94af6
 	dw CeladonMansion2F_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $47, MUSIC_CELADON_CITY, 1, 1
+	db CELADON_CITY, MUSIC_CELADON_CITY, 1, 1
 ; 0x94aff
 
 CeladonMansion3F_MapHeader: ; 0x94aff
@@ -3477,7 +3477,7 @@ CeladonMansion3F_MapHeader: ; 0x94aff
 	dw CeladonMansion3F_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $47, MUSIC_CELADON_CITY, 1, 1
+	db CELADON_CITY, MUSIC_CELADON_CITY, 1, 1
 ; 0x94b08
 
 CeladonMansionRoof_MapHeader: ; 0x94b08
@@ -3488,7 +3488,7 @@ CeladonMansionRoof_MapHeader: ; 0x94b08
 	dw CeladonMansionRoof_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $47, MUSIC_CELADON_CITY, 1, 1
+	db CELADON_CITY, MUSIC_CELADON_CITY, 1, 1
 ; 0x94b11
 
 CeladonMansionRoofHouse_MapHeader: ; 0x94b11
@@ -3499,7 +3499,7 @@ CeladonMansionRoofHouse_MapHeader: ; 0x94b11
 	dw CeladonMansionRoofHouse_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $47, MUSIC_CELADON_CITY, 1, 1
+	db CELADON_CITY, MUSIC_CELADON_CITY, 1, 1
 ; 0x94b1a
 
 CeladonPokeCenter1F_MapHeader: ; 0x94b1a
@@ -3510,7 +3510,7 @@ CeladonPokeCenter1F_MapHeader: ; 0x94b1a
 	dw CeladonPokeCenter1F_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $47, MUSIC_POKEMON_CENTER, 1, 1
+	db CELADON_CITY, MUSIC_POKEMON_CENTER, 1, 1
 ; 0x94b23
 
 CeladonPokeCenter2FBeta_MapHeader: ; 0x94b23
@@ -3521,7 +3521,7 @@ CeladonPokeCenter2FBeta_MapHeader: ; 0x94b23
 	dw CeladonPokeCenter2FBeta_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $47, MUSIC_CELADON_CITY, 1, 1
+	db CELADON_CITY, MUSIC_CELADON_CITY, 1, 1
 ; 0x94b2c
 
 CeladonGameCorner_MapHeader: ; 0x94b2c
@@ -3532,7 +3532,7 @@ CeladonGameCorner_MapHeader: ; 0x94b2c
 	dw CeladonGameCorner_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $47, MUSIC_GAME_CORNER, 1, 1
+	db CELADON_CITY, MUSIC_GAME_CORNER, 1, 1
 ; 0x94b35
 
 CeladonGameCornerPrizeRoom_MapHeader: ; 0x94b35
@@ -3543,7 +3543,7 @@ CeladonGameCornerPrizeRoom_MapHeader: ; 0x94b35
 	dw CeladonGameCornerPrizeRoom_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $47, MUSIC_CELADON_CITY, 1, 1
+	db CELADON_CITY, MUSIC_CELADON_CITY, 1, 1
 ; 0x94b3e
 
 CeladonGym_MapHeader: ; 0x94b3e
@@ -3554,7 +3554,7 @@ CeladonGym_MapHeader: ; 0x94b3e
 	dw CeladonGym_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $47, MUSIC_GYM, 17, 1
+	db CELADON_CITY, MUSIC_GYM, 17, 1
 ; 0x94b47
 
 CeladonCafe_MapHeader: ; 0x94b47
@@ -3565,7 +3565,7 @@ CeladonCafe_MapHeader: ; 0x94b47
 	dw CeladonCafe_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $47, MUSIC_CELADON_CITY, 1, 1
+	db CELADON_CITY, MUSIC_CELADON_CITY, 1, 1
 ; 0x94b50
 
 Route16FuchsiaSpeechHouse_MapHeader: ; 0x94b50
@@ -3576,7 +3576,7 @@ Route16FuchsiaSpeechHouse_MapHeader: ; 0x94b50
 	dw Route16FuchsiaSpeechHouse_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $4e, MUSIC_CELADON_CITY, 1, 1
+	db ROUTE_16, MUSIC_CELADON_CITY, 1, 1
 ; 0x94b59
 
 Route16Gate_MapHeader: ; 0x94b59
@@ -3587,7 +3587,7 @@ Route16Gate_MapHeader: ; 0x94b59
 	dw Route16Gate_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $4e, MUSIC_ROUTE_3, 1, 1
+	db ROUTE_16, MUSIC_ROUTE_3, 1, 1
 ; 0x94b62
 
 Route7SaffronGate_MapHeader: ; 0x94b62
@@ -3598,7 +3598,7 @@ Route7SaffronGate_MapHeader: ; 0x94b62
 	dw Route7SaffronGate_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $3f, MUSIC_ROUTE_3, 1, 1
+	db ROUTE_7, MUSIC_ROUTE_3, 1, 1
 ; 0x94b6b
 
 Route1718Gate_MapHeader: ; 0x94b6b
@@ -3609,7 +3609,7 @@ Route1718Gate_MapHeader: ; 0x94b6b
 	dw Route1718Gate_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $4f, MUSIC_ROUTE_3, 1, 1
+	db ROUTE_17, MUSIC_ROUTE_3, 1, 1
 ; 0x94b74
 
 
@@ -3623,7 +3623,7 @@ Route40_MapHeader: ; 0x94b74
 	dw Route40_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $1e, MUSIC_ROUTE_36, 0, 1
+	db ROUTE_40, MUSIC_ROUTE_36, 0, 1
 ; 0x94b7d
 
 Route41_MapHeader: ; 0x94b7d
@@ -3634,7 +3634,7 @@ Route41_MapHeader: ; 0x94b7d
 	dw Route41_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $20, MUSIC_ROUTE_36, 0, 2
+	db ROUTE_41, MUSIC_ROUTE_36, 0, 2
 ; 0x94b86
 
 CianwoodCity_MapHeader: ; 0x94b86
@@ -3645,7 +3645,7 @@ CianwoodCity_MapHeader: ; 0x94b86
 	dw CianwoodCity_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $21, MUSIC_ECRUTEAK_CITY, 0, 1
+	db CIANWOOD_CITY, MUSIC_ECRUTEAK_CITY, 0, 1
 ; 0x94b8f
 
 ManiasHouse_MapHeader: ; 0x94b8f
@@ -3656,7 +3656,7 @@ ManiasHouse_MapHeader: ; 0x94b8f
 	dw ManiasHouse_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $21, MUSIC_ECRUTEAK_CITY, 1, 1
+	db CIANWOOD_CITY, MUSIC_ECRUTEAK_CITY, 1, 1
 ; 0x94b98
 
 CianwoodGym_MapHeader: ; 0x94b98
@@ -3667,7 +3667,7 @@ CianwoodGym_MapHeader: ; 0x94b98
 	dw CianwoodGym_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $21, MUSIC_GYM, 17, 1
+	db CIANWOOD_CITY, MUSIC_GYM, 17, 1
 ; 0x94ba1
 
 CianwoodPokeCenter1F_MapHeader: ; 0x94ba1
@@ -3678,7 +3678,7 @@ CianwoodPokeCenter1F_MapHeader: ; 0x94ba1
 	dw CianwoodPokeCenter1F_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $21, MUSIC_POKEMON_CENTER, 1, 1
+	db CIANWOOD_CITY, MUSIC_POKEMON_CENTER, 1, 1
 ; 0x94baa
 
 CianwoodPharmacy_MapHeader: ; 0x94baa
@@ -3689,7 +3689,7 @@ CianwoodPharmacy_MapHeader: ; 0x94baa
 	dw CianwoodPharmacy_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $21, MUSIC_ECRUTEAK_CITY, 1, 1
+	db CIANWOOD_CITY, MUSIC_ECRUTEAK_CITY, 1, 1
 ; 0x94bb3
 
 CianwoodCityPhotoStudio_MapHeader: ; 0x94bb3
@@ -3700,7 +3700,7 @@ CianwoodCityPhotoStudio_MapHeader: ; 0x94bb3
 	dw CianwoodCityPhotoStudio_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $21, MUSIC_ECRUTEAK_CITY, 1, 1
+	db CIANWOOD_CITY, MUSIC_ECRUTEAK_CITY, 1, 1
 ; 0x94bbc
 
 CianwoodLugiaSpeechHouse_MapHeader: ; 0x94bbc
@@ -3711,7 +3711,7 @@ CianwoodLugiaSpeechHouse_MapHeader: ; 0x94bbc
 	dw CianwoodLugiaSpeechHouse_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $21, MUSIC_ECRUTEAK_CITY, 1, 1
+	db CIANWOOD_CITY, MUSIC_ECRUTEAK_CITY, 1, 1
 ; 0x94bc5
 
 PokeSeersHouse_MapHeader: ; 0x94bc5
@@ -3722,7 +3722,7 @@ PokeSeersHouse_MapHeader: ; 0x94bc5
 	dw PokeSeersHouse_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $21, MUSIC_ECRUTEAK_CITY, 1, 1
+	db CIANWOOD_CITY, MUSIC_ECRUTEAK_CITY, 1, 1
 ; 0x94bce
 
 BattleTower1F_MapHeader: ; 0x94bce
@@ -3733,7 +3733,7 @@ BattleTower1F_MapHeader: ; 0x94bce
 	dw BattleTower1F_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $1d, MUSIC_BATTLE_TOWER_LOBBY, 17, 1
+	db BATTLE_TOWER, MUSIC_BATTLE_TOWER_LOBBY, 17, 1
 ; 0x94bd7
 
 BattleTowerBattleRoom_MapHeader: ; 0x94bd7
@@ -3744,7 +3744,7 @@ BattleTowerBattleRoom_MapHeader: ; 0x94bd7
 	dw BattleTowerBattleRoom_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $1d, MUSIC_BATTLE_TOWER_THEME, 17, 1
+	db BATTLE_TOWER, MUSIC_BATTLE_TOWER_THEME, 17, 1
 ; 0x94be0
 
 BattleTowerElevator_MapHeader: ; 0x94be0
@@ -3755,7 +3755,7 @@ BattleTowerElevator_MapHeader: ; 0x94be0
 	dw BattleTowerElevator_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $1d, MUSIC_NONE, 17, 1
+	db BATTLE_TOWER, MUSIC_NONE, 17, 1
 ; 0x94be9
 
 BattleTowerHallway_MapHeader: ; 0x94be9
@@ -3766,7 +3766,7 @@ BattleTowerHallway_MapHeader: ; 0x94be9
 	dw BattleTowerHallway_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $1d, MUSIC_BATTLE_TOWER_THEME, 17, 1
+	db BATTLE_TOWER, MUSIC_BATTLE_TOWER_THEME, 17, 1
 ; 0x94bf2
 
 Route40BattleTowerGate_MapHeader: ; 0x94bf2
@@ -3777,7 +3777,7 @@ Route40BattleTowerGate_MapHeader: ; 0x94bf2
 	dw Route40BattleTowerGate_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $1d, MUSIC_ROUTE_36, 1, 1
+	db BATTLE_TOWER, MUSIC_ROUTE_36, 1, 1
 ; 0x94bfb
 
 BattleTowerOutside_MapHeader: ; 0x94bfb
@@ -3788,7 +3788,7 @@ BattleTowerOutside_MapHeader: ; 0x94bfb
 	dw BattleTowerOutside_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $1d, MUSIC_BATTLE_TOWER_THEME, 0, 1
+	db BATTLE_TOWER, MUSIC_BATTLE_TOWER_THEME, 0, 1
 ; 0x94c04
 
 
@@ -3802,7 +3802,7 @@ Route2_MapHeader: ; 0x94c04
 	dw Route2_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $32, MUSIC_ROUTE_2, 0, 1
+	db ROUTE_2, MUSIC_ROUTE_2, 0, 1
 ; 0x94c0d
 
 Route22_MapHeader: ; 0x94c0d
@@ -3813,7 +3813,7 @@ Route22_MapHeader: ; 0x94c0d
 	dw Route22_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $57, MUSIC_ROUTE_3, 0, 4
+	db ROUTE_22, MUSIC_ROUTE_3, 0, 4
 ; 0x94c16
 
 ViridianCity_MapHeader: ; 0x94c16
@@ -3824,7 +3824,7 @@ ViridianCity_MapHeader: ; 0x94c16
 	dw ViridianCity_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $31, MUSIC_VIRIDIAN_CITY, 0, 4
+	db VIRIDIAN_CITY, MUSIC_VIRIDIAN_CITY, 0, 4
 ; 0x94c1f
 
 ViridianGym_MapHeader: ; 0x94c1f
@@ -3835,7 +3835,7 @@ ViridianGym_MapHeader: ; 0x94c1f
 	dw ViridianGym_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $31, MUSIC_GYM, 17, 1
+	db VIRIDIAN_CITY, MUSIC_GYM, 17, 1
 ; 0x94c28
 
 ViridianNicknameSpeechHouse_MapHeader: ; 0x94c28
@@ -3846,7 +3846,7 @@ ViridianNicknameSpeechHouse_MapHeader: ; 0x94c28
 	dw ViridianNicknameSpeechHouse_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $31, MUSIC_VIRIDIAN_CITY, 1, 1
+	db VIRIDIAN_CITY, MUSIC_VIRIDIAN_CITY, 1, 1
 ; 0x94c31
 
 TrainerHouse1F_MapHeader: ; 0x94c31
@@ -3857,7 +3857,7 @@ TrainerHouse1F_MapHeader: ; 0x94c31
 	dw TrainerHouse1F_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $31, MUSIC_VIRIDIAN_CITY, 1, 1
+	db VIRIDIAN_CITY, MUSIC_VIRIDIAN_CITY, 1, 1
 ; 0x94c3a
 
 TrainerHouseB1F_MapHeader: ; 0x94c3a
@@ -3868,7 +3868,7 @@ TrainerHouseB1F_MapHeader: ; 0x94c3a
 	dw TrainerHouseB1F_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $31, MUSIC_VIRIDIAN_CITY, 1, 1
+	db VIRIDIAN_CITY, MUSIC_VIRIDIAN_CITY, 1, 1
 ; 0x94c43
 
 ViridianMart_MapHeader: ; 0x94c43
@@ -3879,7 +3879,7 @@ ViridianMart_MapHeader: ; 0x94c43
 	dw ViridianMart_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $31, MUSIC_VIRIDIAN_CITY, 1, 1
+	db VIRIDIAN_CITY, MUSIC_VIRIDIAN_CITY, 1, 1
 ; 0x94c4c
 
 ViridianPokeCenter1F_MapHeader: ; 0x94c4c
@@ -3890,7 +3890,7 @@ ViridianPokeCenter1F_MapHeader: ; 0x94c4c
 	dw ViridianPokeCenter1F_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $31, MUSIC_POKEMON_CENTER, 1, 1
+	db VIRIDIAN_CITY, MUSIC_POKEMON_CENTER, 1, 1
 ; 0x94c55
 
 ViridianPokeCenter2FBeta_MapHeader: ; 0x94c55
@@ -3901,7 +3901,7 @@ ViridianPokeCenter2FBeta_MapHeader: ; 0x94c55
 	dw ViridianPokeCenter2FBeta_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $31, MUSIC_VIRIDIAN_CITY, 1, 1
+	db VIRIDIAN_CITY, MUSIC_VIRIDIAN_CITY, 1, 1
 ; 0x94c5e
 
 Route2NuggetSpeechHouse_MapHeader: ; 0x94c5e
@@ -3912,7 +3912,7 @@ Route2NuggetSpeechHouse_MapHeader: ; 0x94c5e
 	dw Route2NuggetSpeechHouse_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $32, MUSIC_VIRIDIAN_CITY, 1, 1
+	db ROUTE_2, MUSIC_VIRIDIAN_CITY, 1, 1
 ; 0x94c67
 
 Route2Gate_MapHeader: ; 0x94c67
@@ -3923,7 +3923,7 @@ Route2Gate_MapHeader: ; 0x94c67
 	dw Route2Gate_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $32, MUSIC_ROUTE_2, 1, 1
+	db ROUTE_2, MUSIC_ROUTE_2, 1, 1
 ; 0x94c70
 
 VictoryRoadGate_MapHeader: ; 0x94c70
@@ -3934,7 +3934,7 @@ VictoryRoadGate_MapHeader: ; 0x94c70
 	dw VictoryRoadGate_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $5b, MUSIC_INDIGO_PLATEAU, 1, 1
+	db ROUTE_26, MUSIC_INDIGO_PLATEAU, 1, 1
 ; 0x94c79
 
 
@@ -3948,7 +3948,7 @@ Route26_MapHeader: ; 0x94c79
 	dw Route26_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $5b, MUSIC_ROUTE_26, 0, 2
+	db ROUTE_26, MUSIC_ROUTE_26, 0, 2
 ; 0x94c82
 
 Route27_MapHeader: ; 0x94c82
@@ -3959,7 +3959,7 @@ Route27_MapHeader: ; 0x94c82
 	dw Route27_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $5c, MUSIC_ROUTE_26, 0, 2
+	db ROUTE_27, MUSIC_ROUTE_26, 0, 2
 ; 0x94c8b
 
 Route29_MapHeader: ; 0x94c8b
@@ -3970,7 +3970,7 @@ Route29_MapHeader: ; 0x94c8b
 	dw Route29_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $2, MUSIC_ROUTE_29, 0, 1
+	db ROUTE_29, MUSIC_ROUTE_29, 0, 1
 ; 0x94c94
 
 NewBarkTown_MapHeader: ; 0x94c94
@@ -3981,7 +3981,7 @@ NewBarkTown_MapHeader: ; 0x94c94
 	dw NewBarkTown_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $1, MUSIC_NEW_BARK_TOWN, 0, 2
+	db NEW_BARK_TOWN, MUSIC_NEW_BARK_TOWN, 0, 2
 ; 0x94c9d
 
 ElmsLab_MapHeader: ; 0x94c9d
@@ -3992,7 +3992,7 @@ ElmsLab_MapHeader: ; 0x94c9d
 	dw ElmsLab_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $1, MUSIC_PROF_ELM, 1, 1
+	db NEW_BARK_TOWN, MUSIC_PROF_ELM, 1, 1
 ; 0x94ca6
 
 KrissHouse1F_MapHeader: ; 0x94ca6
@@ -4003,7 +4003,7 @@ KrissHouse1F_MapHeader: ; 0x94ca6
 	dw KrissHouse1F_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $1, MUSIC_NEW_BARK_TOWN, 1, 1
+	db NEW_BARK_TOWN, MUSIC_NEW_BARK_TOWN, 1, 1
 ; 0x94caf
 
 KrissHouse2F_MapHeader: ; 0x94caf
@@ -4014,7 +4014,7 @@ KrissHouse2F_MapHeader: ; 0x94caf
 	dw KrissHouse2F_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $1, MUSIC_NEW_BARK_TOWN, 1, 1
+	db NEW_BARK_TOWN, MUSIC_NEW_BARK_TOWN, 1, 1
 ; 0x94cb8
 
 KrissNeighborsHouse_MapHeader: ; 0x94cb8
@@ -4025,7 +4025,7 @@ KrissNeighborsHouse_MapHeader: ; 0x94cb8
 	dw KrissNeighborsHouse_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $1, MUSIC_NEW_BARK_TOWN, 1, 1
+	db NEW_BARK_TOWN, MUSIC_NEW_BARK_TOWN, 1, 1
 ; 0x94cc1
 
 ElmsHouse_MapHeader: ; 0x94cc1
@@ -4036,7 +4036,7 @@ ElmsHouse_MapHeader: ; 0x94cc1
 	dw ElmsHouse_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $1, MUSIC_NEW_BARK_TOWN, 1, 1
+	db NEW_BARK_TOWN, MUSIC_NEW_BARK_TOWN, 1, 1
 ; 0x94cca
 
 Route26HealSpeechHouse_MapHeader: ; 0x94cca
@@ -4047,7 +4047,7 @@ Route26HealSpeechHouse_MapHeader: ; 0x94cca
 	dw Route26HealSpeechHouse_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $5b, MUSIC_AZALEA_TOWN, 1, 1
+	db ROUTE_26, MUSIC_AZALEA_TOWN, 1, 1
 ; 0x94cd3
 
 Route26DayofWeekSiblingsHouse_MapHeader: ; 0x94cd3
@@ -4058,7 +4058,7 @@ Route26DayofWeekSiblingsHouse_MapHeader: ; 0x94cd3
 	dw Route26DayofWeekSiblingsHouse_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $5b, MUSIC_AZALEA_TOWN, 1, 1
+	db ROUTE_26, MUSIC_AZALEA_TOWN, 1, 1
 ; 0x94cdc
 
 Route27SandstormHouse_MapHeader: ; 0x94cdc
@@ -4069,7 +4069,7 @@ Route27SandstormHouse_MapHeader: ; 0x94cdc
 	dw Route27SandstormHouse_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $5c, MUSIC_AZALEA_TOWN, 1, 1
+	db ROUTE_27, MUSIC_AZALEA_TOWN, 1, 1
 ; 0x94ce5
 
 Route2946Gate_MapHeader: ; 0x94ce5
@@ -4080,7 +4080,7 @@ Route2946Gate_MapHeader: ; 0x94ce5
 	dw Route2946Gate_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $2, MUSIC_ROUTE_29, 1, 1
+	db ROUTE_29, MUSIC_ROUTE_29, 1, 1
 ; 0x94cee
 
 
@@ -4094,7 +4094,7 @@ Route5_MapHeader: ; 0x94cee
 	dw Route5_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $3a, MUSIC_ROUTE_3, 0, 1
+	db ROUTE_5, MUSIC_ROUTE_3, 0, 1
 ; 0x94cf7
 
 SaffronCity_MapHeader: ; 0x94cf7
@@ -4105,7 +4105,7 @@ SaffronCity_MapHeader: ; 0x94cf7
 	dw SaffronCity_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $48, MUSIC_VIRIDIAN_CITY, 0, 1
+	db SAFFRON_CITY, MUSIC_VIRIDIAN_CITY, 0, 1
 ; 0x94d00
 
 FightingDojo_MapHeader: ; 0x94d00
@@ -4116,7 +4116,7 @@ FightingDojo_MapHeader: ; 0x94d00
 	dw FightingDojo_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $48, MUSIC_VIRIDIAN_CITY, 1, 1
+	db SAFFRON_CITY, MUSIC_VIRIDIAN_CITY, 1, 1
 ; 0x94d09
 
 SaffronGym_MapHeader: ; 0x94d09
@@ -4127,7 +4127,7 @@ SaffronGym_MapHeader: ; 0x94d09
 	dw SaffronGym_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $48, MUSIC_GYM, 17, 1
+	db SAFFRON_CITY, MUSIC_GYM, 17, 1
 ; 0x94d12
 
 SaffronMart_MapHeader: ; 0x94d12
@@ -4138,7 +4138,7 @@ SaffronMart_MapHeader: ; 0x94d12
 	dw SaffronMart_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $48, MUSIC_VIRIDIAN_CITY, 1, 1
+	db SAFFRON_CITY, MUSIC_VIRIDIAN_CITY, 1, 1
 ; 0x94d1b
 
 SaffronPokeCenter1F_MapHeader: ; 0x94d1b
@@ -4149,7 +4149,7 @@ SaffronPokeCenter1F_MapHeader: ; 0x94d1b
 	dw SaffronPokeCenter1F_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $48, MUSIC_POKEMON_CENTER, 1, 1
+	db SAFFRON_CITY, MUSIC_POKEMON_CENTER, 1, 1
 ; 0x94d24
 
 SaffronPokeCenter2FBeta_MapHeader: ; 0x94d24
@@ -4160,7 +4160,7 @@ SaffronPokeCenter2FBeta_MapHeader: ; 0x94d24
 	dw SaffronPokeCenter2FBeta_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $48, MUSIC_VIRIDIAN_CITY, 1, 1
+	db SAFFRON_CITY, MUSIC_VIRIDIAN_CITY, 1, 1
 ; 0x94d2d
 
 MrPsychicsHouse_MapHeader: ; 0x94d2d
@@ -4171,7 +4171,7 @@ MrPsychicsHouse_MapHeader: ; 0x94d2d
 	dw MrPsychicsHouse_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $48, MUSIC_VIRIDIAN_CITY, 1, 1
+	db SAFFRON_CITY, MUSIC_VIRIDIAN_CITY, 1, 1
 ; 0x94d36
 
 SaffronTrainStation_MapHeader: ; 0x94d36
@@ -4182,7 +4182,7 @@ SaffronTrainStation_MapHeader: ; 0x94d36
 	dw SaffronTrainStation_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $48, MUSIC_VIRIDIAN_CITY, 1, 1
+	db SAFFRON_CITY, MUSIC_VIRIDIAN_CITY, 1, 1
 ; 0x94d3f
 
 SilphCo1F_MapHeader: ; 0x94d3f
@@ -4193,7 +4193,7 @@ SilphCo1F_MapHeader: ; 0x94d3f
 	dw SilphCo1F_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $48, MUSIC_VIRIDIAN_CITY, 1, 1
+	db SAFFRON_CITY, MUSIC_VIRIDIAN_CITY, 1, 1
 ; 0x94d48
 
 CopycatsHouse1F_MapHeader: ; 0x94d48
@@ -4204,7 +4204,7 @@ CopycatsHouse1F_MapHeader: ; 0x94d48
 	dw CopycatsHouse1F_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $48, MUSIC_VIRIDIAN_CITY, 1, 1
+	db SAFFRON_CITY, MUSIC_VIRIDIAN_CITY, 1, 1
 ; 0x94d51
 
 CopycatsHouse2F_MapHeader: ; 0x94d51
@@ -4215,7 +4215,7 @@ CopycatsHouse2F_MapHeader: ; 0x94d51
 	dw CopycatsHouse2F_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $48, MUSIC_VIRIDIAN_CITY, 1, 1
+	db SAFFRON_CITY, MUSIC_VIRIDIAN_CITY, 1, 1
 ; 0x94d5a
 
 Route5UndergroundEntrance_MapHeader: ; 0x94d5a
@@ -4226,7 +4226,7 @@ Route5UndergroundEntrance_MapHeader: ; 0x94d5a
 	dw Route5UndergroundEntrance_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $3a, MUSIC_ROUTE_3, 1, 1
+	db ROUTE_5, MUSIC_ROUTE_3, 1, 1
 ; 0x94d63
 
 Route5SaffronCityGate_MapHeader: ; 0x94d63
@@ -4237,7 +4237,7 @@ Route5SaffronCityGate_MapHeader: ; 0x94d63
 	dw Route5SaffronCityGate_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $3a, MUSIC_VIRIDIAN_CITY, 1, 1
+	db ROUTE_5, MUSIC_VIRIDIAN_CITY, 1, 1
 ; 0x94d6c
 
 Route5CleanseTagSpeechHouse_MapHeader: ; 0x94d6c
@@ -4248,7 +4248,7 @@ Route5CleanseTagSpeechHouse_MapHeader: ; 0x94d6c
 	dw Route5CleanseTagSpeechHouse_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $3a, MUSIC_VIRIDIAN_CITY, 1, 1
+	db ROUTE_5, MUSIC_VIRIDIAN_CITY, 1, 1
 ; 0x94d75
 
 
@@ -4262,7 +4262,7 @@ Route30_MapHeader: ; 0x94d75
 	dw Route30_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $4, MUSIC_ROUTE_30, 0, 4
+	db ROUTE_30, MUSIC_ROUTE_30, 0, 4
 ; 0x94d7e
 
 Route31_MapHeader: ; 0x94d7e
@@ -4273,7 +4273,7 @@ Route31_MapHeader: ; 0x94d7e
 	dw Route31_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $5, MUSIC_ROUTE_30, 0, 4
+	db ROUTE_31, MUSIC_ROUTE_30, 0, 4
 ; 0x94d87
 
 CherrygroveCity_MapHeader: ; 0x94d87
@@ -4284,7 +4284,7 @@ CherrygroveCity_MapHeader: ; 0x94d87
 	dw CherrygroveCity_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $3, MUSIC_CHERRYGROVE_CITY, 0, 1
+	db CHERRYGROVE_CITY, MUSIC_CHERRYGROVE_CITY, 0, 1
 ; 0x94d90
 
 CherrygroveMart_MapHeader: ; 0x94d90
@@ -4295,7 +4295,7 @@ CherrygroveMart_MapHeader: ; 0x94d90
 	dw CherrygroveMart_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $3, MUSIC_CHERRYGROVE_CITY, 1, 1
+	db CHERRYGROVE_CITY, MUSIC_CHERRYGROVE_CITY, 1, 1
 ; 0x94d99
 
 CherrygrovePokeCenter1F_MapHeader: ; 0x94d99
@@ -4306,7 +4306,7 @@ CherrygrovePokeCenter1F_MapHeader: ; 0x94d99
 	dw CherrygrovePokeCenter1F_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $3, MUSIC_POKEMON_CENTER, 1, 1
+	db CHERRYGROVE_CITY, MUSIC_POKEMON_CENTER, 1, 1
 ; 0x94da2
 
 CherrygroveGymSpeechHouse_MapHeader: ; 0x94da2
@@ -4317,7 +4317,7 @@ CherrygroveGymSpeechHouse_MapHeader: ; 0x94da2
 	dw CherrygroveGymSpeechHouse_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $3, MUSIC_CHERRYGROVE_CITY, 1, 1
+	db CHERRYGROVE_CITY, MUSIC_CHERRYGROVE_CITY, 1, 1
 ; 0x94dab
 
 GuideGentsHouse_MapHeader: ; 0x94dab
@@ -4328,7 +4328,7 @@ GuideGentsHouse_MapHeader: ; 0x94dab
 	dw GuideGentsHouse_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $3, MUSIC_CHERRYGROVE_CITY, 1, 1
+	db CHERRYGROVE_CITY, MUSIC_CHERRYGROVE_CITY, 1, 1
 ; 0x94db4
 
 CherrygroveEvolutionSpeechHouse_MapHeader: ; 0x94db4
@@ -4339,7 +4339,7 @@ CherrygroveEvolutionSpeechHouse_MapHeader: ; 0x94db4
 	dw CherrygroveEvolutionSpeechHouse_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $3, MUSIC_CHERRYGROVE_CITY, 1, 1
+	db CHERRYGROVE_CITY, MUSIC_CHERRYGROVE_CITY, 1, 1
 ; 0x94dbd
 
 Route30BerrySpeechHouse_MapHeader: ; 0x94dbd
@@ -4350,7 +4350,7 @@ Route30BerrySpeechHouse_MapHeader: ; 0x94dbd
 	dw Route30BerrySpeechHouse_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $4, MUSIC_CHERRYGROVE_CITY, 1, 1
+	db ROUTE_30, MUSIC_CHERRYGROVE_CITY, 1, 1
 ; 0x94dc6
 
 MrPokemonsHouse_MapHeader: ; 0x94dc6
@@ -4361,7 +4361,7 @@ MrPokemonsHouse_MapHeader: ; 0x94dc6
 	dw MrPokemonsHouse_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $4, MUSIC_CHERRYGROVE_CITY, 1, 1
+	db ROUTE_30, MUSIC_CHERRYGROVE_CITY, 1, 1
 ; 0x94dcf
 
 Route31VioletGate_MapHeader: ; 0x94dcf
@@ -4372,7 +4372,7 @@ Route31VioletGate_MapHeader: ; 0x94dcf
 	dw Route31VioletGate_SecondMapHeader
 
 	; location on world map, music, time of day, fishing group
-	db $5, MUSIC_ROUTE_30, 1, 1
+	db ROUTE_31, MUSIC_ROUTE_30, 1, 1
 ; 0x94dd8
 
 
