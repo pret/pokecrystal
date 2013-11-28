@@ -3455,253 +3455,275 @@ PushOAMEnd
 ; 4049
 
 
-DataPointers4049: ; 4049
-	dw Data408b
-	dw Data409c
-	dw Data408b
-	dw Data40ad
-	dw Data40be
-	dw Data40cf
-	dw Data40be
-	dw Data40e0
-	dw Data40f1
-	dw Data4113
-	dw Data40f1
-	dw Data4113
-	dw Data4102
-	dw Data4124
-	dw Data4102
-	dw Data4124
-	dw Data4135
-	dw Data414a
-	dw Data415f
-	dw Data4174
-	dw Data4189
-	dw Data419a
-	dw Data4206
-	dw Data41a3
-	dw Data408b
-	dw Data41e4
-	dw Data408b
-	dw Data41f5
-	dw Data423f
-	dw Data4250
-	dw Data4261
-	dw Data426a
-	dw $0000
-; 408b
+Facings: ; 4049
+	dw Facing00
+	dw Facing01
+	dw Facing02
+	dw Facing03
+	dw Facing04
+	dw Facing05
+	dw Facing06
+	dw Facing07
+	dw Facing08
+	dw Facing09
+	dw Facing10
+	dw Facing11
+	dw Facing12
+	dw Facing13
+	dw Facing14
+	dw Facing15
+	dw Facing16
+	dw Facing17
+	dw Facing18
+	dw Facing19
+	dw Facing20
+	dw Facing21
+	dw Facing22
+	dw Facing23
+	dw Facing24
+	dw Facing25
+	dw Facing26
+	dw Facing27
+	dw Facing28
+	dw Facing29
+	dw Facing30
+	dw Facing31
+FacingsEnd: dw 0
 
-Data408b: ; 408b
+NUM_FACINGS EQU (FacingsEnd - Facings) / 2
+
+
+; Tables used as a reference to transform OAM data.
+
+; Format:
+;	db y, x, attributes, tile index
+
+; Attributes:
+X_FLIP    EQU 1 << 5
+Y_FLIP    EQU 1 << 6
+BEHIND_BG EQU 1 << 7
+
+
+Facing00:
+Facing02:
+Facing24:
+Facing26: ; 408b
 	db 4 ; #
-	db $00, $00, $00, $00
-	db $00, $08, $00, $01
-	db $08, $00, $02, $02
-	db $08, $08, $02, $03
+	db  0,  0, 0, $00
+	db  0,  8, 0, $01
+	db  8,  0, 2, $02
+	db  8,  8, 2, $03
 ; 409c
 
-Data409c: ; 409c
+Facing01: ; 409c
 	db 4 ; #
-	db $00, $00, $00, $80
-	db $00, $08, $00, $81
-	db $08, $00, $02, $82
-	db $08, $08, $02, $83
+	db  0,  0, 0, $80
+	db  0,  8, 0, $81
+	db  8,  0, 2, $82
+	db  8,  8, 2, $83
 ; 40ad
 
-Data40ad: ; 40ad
+Facing03: ; 40ad
 	db 4 ; #
-	db $00, $08, $20, $80
-	db $00, $00, $20, $81
-	db $08, $08, $22, $82
-	db $08, $00, $22, $83
+	db  0,  8, X_FLIP, $80
+	db  0,  0, X_FLIP, $81
+	db  8,  8, 2 | X_FLIP, $82
+	db  8,  0, 2 | X_FLIP, $83
 ; 40be
 
-Data40be: ; 40be
+Facing04:
+Facing06: ; 40be
 	db 4 ; #
-	db $00, $00, $00, $04
-	db $00, $08, $00, $05
-	db $08, $00, $02, $06
-	db $08, $08, $02, $07
+	db  0,  0, 0, $04
+	db  0,  8, 0, $05
+	db  8,  0, 2, $06
+	db  8,  8, 2, $07
 ; 40cf
 
-Data40cf: ; 40cf
+Facing05: ; 40cf
 	db 4 ; #
-	db $00, $00, $00, $84
-	db $00, $08, $00, $85
-	db $08, $00, $02, $86
-	db $08, $08, $02, $87
+	db  0,  0, 0, $84
+	db  0,  8, 0, $85
+	db  8,  0, 2, $86
+	db  8,  8, 2, $87
 ; 40e0
 
-Data40e0: ; 40e0
+Facing07: ; 40e0
 	db 4 ; #
-	db $00, $08, $20, $84
-	db $00, $00, $20, $85
-	db $08, $08, $22, $86
-	db $08, $00, $22, $87
+	db  0,  8, X_FLIP, $84
+	db  0,  0, X_FLIP, $85
+	db  8,  8, 2 | X_FLIP, $86
+	db  8,  0, 2 | X_FLIP, $87
 ; 40f1
 
-Data40f1: ; 40f1
+Facing08:
+Facing10: ; 40f1
 	db 4 ; #
-	db $00, $00, $00, $08
-	db $00, $08, $00, $09
-	db $08, $00, $02, $0a
-	db $08, $08, $02, $0b
+	db  0,  0, 0, $08
+	db  0,  8, 0, $09
+	db  8,  0, 2, $0a
+	db  8,  8, 2, $0b
 ; 4102
 
-Data4102: ; 4102
+Facing12:
+Facing14: ; 4102
 	db 4 ; #
-	db $00, $08, $20, $08
-	db $00, $00, $20, $09
-	db $08, $08, $22, $0a
-	db $08, $00, $22, $0b
+	db  0,  8, X_FLIP, $08
+	db  0,  0, X_FLIP, $09
+	db  8,  8, 2 | X_FLIP, $0a
+	db  8,  0, 2 | X_FLIP, $0b
 ; 4113
 
-Data4113: ; 4113
+Facing09:
+Facing11: ; 4113
 	db 4 ; #
-	db $00, $00, $00, $88
-	db $00, $08, $00, $89
-	db $08, $00, $02, $8a
-	db $08, $08, $02, $8b
+	db  0,  0, 0, $88
+	db  0,  8, 0, $89
+	db  8,  0, 2, $8a
+	db  8,  8, 2, $8b
 ; 4124
 
-Data4124: ; 4124
+Facing13:
+Facing15: ; 4124
 	db 4 ; #
-	db $00, $08, $20, $88
-	db $00, $00, $20, $89
-	db $08, $08, $22, $8a
-	db $08, $00, $22, $8b
+	db  0,  8, X_FLIP, $88
+	db  0,  0, X_FLIP, $89
+	db  8,  8, 2 | X_FLIP, $8a
+	db  8,  0, 2 | X_FLIP, $8b
 ; 4135
 
-Data4135: ; 4135
+Facing16: ; 4135
 	db 5 ; #
-	db $00, $00, $00, $00
-	db $00, $08, $00, $01
-	db $08, $00, $02, $02
-	db $08, $08, $02, $03
-	db $10, $00, $04, $fc
+	db  0,  0, 0, $00
+	db  0,  8, 0, $01
+	db  8,  0, 2, $02
+	db  8,  8, 2, $03
+	db 16,  0, 4, $fc
 ; 414a
 
-Data414a: ; 414a
+Facing17: ; 414a
 	db 5 ; #
-	db $00, $00, $00, $04
-	db $00, $08, $00, $05
-	db $08, $00, $02, $06
-	db $08, $08, $02, $07
-	db $f8, $00, $04, $fc
+	db  0,  0, 0, $04
+	db  0,  8, 0, $05
+	db  8,  0, 2, $06
+	db  8,  8, 2, $07
+	db -8,  0, 4, $fc
 ; 415f
 
-Data415f: ; 415f
+Facing18: ; 415f
 	db 5 ; #
-	db $00, $00, $00, $08
-	db $00, $08, $00, $09
-	db $08, $00, $02, $0a
-	db $08, $08, $02, $0b
-	db $05, $f8, $24, $fd
+	db  0,  0, 0, $08
+	db  0,  8, 0, $09
+	db  8,  0, 2, $0a
+	db  8,  8, 2, $0b
+	db  5, -8, 4 | X_FLIP, $fd
 ; 4174
 
-Data4174: ; 4174
+Facing19: ; 4174
 	db 5 ; #
-	db $00, $08, $20, $08
-	db $00, $00, $20, $09
-	db $08, $08, $22, $0a
-	db $08, $00, $22, $0b
-	db $05, $10, $04, $fd
+	db  0,  8, X_FLIP, $08
+	db  0,  0, X_FLIP, $09
+	db  8,  8, 2 | X_FLIP, $0a
+	db  8,  0, 2 | X_FLIP, $0b
+	db  5, 16, 4, $fd
 ; 4189
 
-Data4189: ; 4189
+Facing20: ; 4189
 	db 4 ; #
-	db $00, $00, $04, $f8
-	db $00, $08, $04, $f9
-	db $08, $00, $04, $fa
-	db $08, $08, $04, $fb
+	db  0,  0, 4, $f8
+	db  0,  8, 4, $f9
+	db  8,  0, 4, $fa
+	db  8,  8, 4, $fb
 ; 419a
 
-Data419a: ; 419a
+Facing21: ; 419a
 	db 2 ; #
-	db $00, $00, $04, $fc
-	db $00, $08, $24, $fc
+	db  0,  0, 4, $fc
+	db  0,  8, 4 | X_FLIP, $fc
 ; 41a3
 
-Data41a3: ; 41a3
+Facing23: ; 41a3
 	db 16 ; #
-	db $00, $00, $00, $00
-	db $00, $08, $00, $01
-	db $08, $00, $00, $02
-	db $08, $08, $00, $03
-	db $10, $00, $00, $04
-	db $10, $08, $00, $05
-	db $18, $00, $00, $06
-	db $18, $08, $00, $07
-	db $00, $18, $20, $00
-	db $00, $10, $20, $01
-	db $08, $18, $20, $02
-	db $08, $10, $20, $03
-	db $10, $18, $20, $04
-	db $10, $10, $20, $05
-	db $18, $18, $20, $06
-	db $18, $10, $20, $07
+	db  0,  0, 0, $00
+	db  0,  8, 0, $01
+	db  8,  0, 0, $02
+	db  8,  8, 0, $03
+	db 16,  0, 0, $04
+	db 16,  8, 0, $05
+	db 24,  0, 0, $06
+	db 24,  8, 0, $07
+	db  0, 24, X_FLIP, $00
+	db  0, 16, X_FLIP, $01
+	db  8, 24, X_FLIP, $02
+	db  8, 16, X_FLIP, $03
+	db 16, 24, X_FLIP, $04
+	db 16, 16, X_FLIP, $05
+	db 24, 24, X_FLIP, $06
+	db 24, 16, X_FLIP, $07
 ; 41e4
 
-Data41e4: ; 41e4
+Facing25: ; 41e4
 	db 4 ; #
-	db $00, $00, $00, $04
-	db $00, $08, $00, $05
-	db $08, $00, $00, $06
-	db $08, $08, $00, $07
+	db  0,  0, 0, $04
+	db  0,  8, 0, $05
+	db  8,  0, 0, $06
+	db  8,  8, 0, $07
 ; 41f5
 
-Data41f5: ; 41f5
+Facing27: ; 41f5
 	db 4 ; #
-	db $00, $08, $20, $04
-	db $00, $00, $20, $05
-	db $08, $08, $20, $06
-	db $08, $00, $20, $07
+	db  0,  8, X_FLIP, $04
+	db  0,  0, X_FLIP, $05
+	db  8,  8, X_FLIP, $06
+	db  8,  0, X_FLIP, $07
 ; 4206
 
-Data4206: ; 4206
+Facing22: ; 4206
 	db 14 ; #
-	db $00, $00, $00, $00
-	db $00, $08, $00, $01
-	db $08, $00, $00, $04
-	db $08, $08, $00, $05
-	db $10, $08, $00, $07
-	db $18, $08, $00, $0a
-	db $00, $18, $00, $03
-	db $00, $10, $00, $02
-	db $08, $18, $20, $02
-	db $08, $10, $00, $06
-	db $10, $18, $00, $09
-	db $10, $10, $00, $08
-	db $18, $18, $20, $04
-	db $18, $10, $00, $0b
+	db  0,  0, 0, $00
+	db  0,  8, 0, $01
+	db  8,  0, 0, $04
+	db  8,  8, 0, $05
+	db 16,  8, 0, $07
+	db 24,  8, 0, $0a
+	db  0, 24, 0, $03
+	db  0, 16, 0, $02
+	db  8, 24, X_FLIP, $02
+	db  8, 16, 0, $06
+	db 16, 24, 0, $09
+	db 16, 16, 0, $08
+	db 24, 24, X_FLIP, $04
+	db 24, 16, 0, $0b
 ; 423f
 
-Data423f: ; 423f
+Facing28: ; 423f
 	db 4 ; #
-	db $00, $00, $04, $fe
-	db $00, $08, $04, $fe
-	db $08, $00, $04, $fe
-	db $08, $08, $04, $fe
+	db  0,  0, 4, $fe
+	db  0,  8, 4, $fe
+	db  8,  0, 4, $fe
+	db  8,  8, 4, $fe
 ; 4250
 
-Data4250: ; 4250
+Facing29: ; 4250
 	db 4 ; #
-	db $00, $00, $04, $ff
-	db $00, $08, $04, $ff
-	db $08, $00, $04, $ff
-	db $08, $08, $04, $ff
+	db  0,  0, 4, $ff
+	db  0,  8, 4, $ff
+	db  8,  0, 4, $ff
+	db  8,  8, 4, $ff
 ; 4261
 
-Data4261: ; 4261
+Facing30: ; 4261
 	db 2 ; #
-	db $08, $00, $04, $fe
-	db $08, $08, $24, $fe
+	db  8,  0, 4, $fe
+	db  8,  8, 4 | X_FLIP, $fe
 ; 426a
 
-Data426a: ; 426a
+Facing31: ; 426a
 	db 2 ; #
-	db $09, $ff, $04, $fe
-	db $09, $09, $24, $fe
+	db  9, -1, 4, $fe
+	db  9,  9, 4 | X_FLIP, $fe
 ; 4273
+
 
 
 Data4273: ; 4273
@@ -4399,7 +4421,7 @@ Function46e9: ; 46e9
 	add a
 	ld l, a
 	ld h, 0
-	ld de, .Steps
+	ld de, StepVectors
 	add hl, de
 	ld d, [hl]
 	inc hl
@@ -4410,7 +4432,7 @@ Function46e9: ; 46e9
 	ret
 ; 4700
 
-.Steps ; 4700
+StepVectors: ; 4700
 	;   x,  y, duration, speed
 	; slow
 	db  0,  1, $10, $01
@@ -7142,56 +7164,62 @@ Function5a0d: ; 5a0d
 	ld a, [hl]
 	and $7f
 	ld [$ffc1], a
+
 	xor a
 	bit 7, [hl]
 	jr nz, .asm_5a1d
-	or $8
-
+	or 8
 .asm_5a1d
+
 	ld hl, $0005
 	add hl, bc
 	ld e, [hl]
 	bit 7, e
 	jr z, .asm_5a28
 	or $80
-
 .asm_5a28
+
 	bit 4, e
 	jr z, .asm_5a2e
 	or $10
-
 .asm_5a2e
+
 	ld hl, $0006
 	add hl, bc
 	ld d, a
 	ld a, [hl]
-	and $7
+	and 7
 	or d
 	ld d, a
+
 	xor a
 	bit 3, e
 	jr z, .asm_5a3f
 	or $80
-
 .asm_5a3f
 	ld [$ffc2], a
+
 	ld hl, $0017
 	add hl, bc
 	ld a, [hl]
+
 	ld hl, $0019
 	add hl, bc
 	add [hl]
-	add $8
+	add 8
 	ld e, a
 	ld a, [$d14c]
 	add e
 	ld [$ffbf], a
+
 	ld hl, $0018
 	add hl, bc
 	ld a, [hl]
+
 	ld hl, $001a
 	add hl, bc
 	add [hl]
+
 	add $c
 	ld e, a
 	ld a, [$d14d]
@@ -7201,15 +7229,15 @@ Function5a0d: ; 5a0d
 	ld hl, $000d
 	add hl, bc
 	ld a, [hl]
-	cp $ff
-	jp z, .asm_5abe
-	cp $20
-	jp nc, .asm_5abe
+	cp -1
+	jp z, .done
+	cp NUM_FACINGS
+	jp nc, .done
 
 	ld l, a
 	ld h, 0
 	add hl, hl
-	ld bc, DataPointers4049
+	ld bc, Facings
 	add hl, bc
 	ld a, [hli]
 	ld h, [hl]
@@ -7224,19 +7252,24 @@ Function5a0d: ; 5a0d
 	cp SpritesEnd % $100
 	jr nc, .full
 
-.loop
+.addsprite
 	ld a, [$ffc0]
 	add [hl]
 	inc hl
+
 	ld [bc], a
 	inc c
+
 	ld a, [$ffbf]
 	add [hl]
 	inc hl
+
 	ld [bc], a
 	inc c
+
 	ld e, [hl]
 	inc hl
+
 	ld a, [$ffc1]
 	bit 2, e
 	jr z, .asm_5aa3
@@ -7244,8 +7277,10 @@ Function5a0d: ; 5a0d
 .asm_5aa3
 	add [hl]
 	inc hl
+
 	ld [bc], a
 	inc c
+
 	ld a, e
 	bit 1, a
 	jr z, .asm_5aaf
@@ -7256,15 +7291,16 @@ Function5a0d: ; 5a0d
 	or d
 	ld [bc], a
 	inc c
+
 	ld a, [$ffbe]
 	dec a
 	ld [$ffbe], a
-	jr nz, .loop
+	jr nz, .addsprite
 
 	ld a, c
 	ld [$ffbd], a
 
-.asm_5abe
+.done
 	xor a
 	ret
 
@@ -7286,20 +7322,21 @@ Function5ac2: ; 5ac2
 ; 5ace
 
 .Addresses ; 5ace
-	dw $d4d6
-	dw $d4fe
-	dw $d526
-	dw $d54e
-	dw $d576
-	dw $d59e
-	dw $d5c6
-	dw $d5ee
-	dw $d616
-	dw $d63e
-	dw $d666
-	dw $d68e
-	dw $d6b6
+	dw PlayerStruct
+	dw ObjectStruct1
+	dw ObjectStruct2
+	dw ObjectStruct3
+	dw ObjectStruct4
+	dw ObjectStruct5
+	dw ObjectStruct6
+	dw ObjectStruct7
+	dw ObjectStruct8
+	dw ObjectStruct9
+	dw ObjectStruct10
+	dw ObjectStruct11
+	dw ObjectStruct12
 ; 5ae8
+
 
 Function5ae8: ; 5ae8
 	ld de, MUSIC_NONE
