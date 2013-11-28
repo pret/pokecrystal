@@ -113274,10 +113274,6 @@ INCBIN "gfx/intro/logo.lz"
 ; 109847
 
 
-; Credits
-INCLUDE "engine/credits.asm"
-
-
 SECTION "bank43", ROMX, BANK[$43]
 
 INCBIN "baserom.gbc",$10c000,$10ed67 - $10c000

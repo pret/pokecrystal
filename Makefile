@@ -13,6 +13,7 @@ maps_crystal.o \
 engine/events.o \
 engine/scripting_crystal.o \
 engine/events_2.o \
+engine/credits_crystal.o \
 stats/egg_moves_crystal.o \
 stats/evos_attacks_crystal.o \
 stats/pokedex/entries_crystal.o

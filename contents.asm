@@ -26,6 +26,11 @@ POKEDEX_ENTRIES_4         EQU $74
 EVENTS                    EQU $25
 
 
+; engine/credits.o
+
+CREDITS                   EQU $42
+
+
 ; maps.o
 
 MAP_HEADERS               EQU $25
