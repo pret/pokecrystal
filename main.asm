@@ -27124,7 +27124,38 @@ Function15273: ; 15273
 INCBIN "baserom.gbc",$15283,$152ab - $15283
 
 
-BlackoutPoints: ; 0x152ab
+SpawnPoints: ; 0x152ab
+
+	const_def
+	const SPAWN_HOME
+	const SPAWN_VIRIDIAN_POKECENTER
+	const SPAWN_PALLET
+	const SPAWN_VIRIDIAN
+	const SPAWN_PEWTER
+	const SPAWN_CERULEAN
+	const SPAWN_ROCK_TUNNEL
+	const SPAWN_VERMILION
+	const SPAWN_LAVENDER
+	const SPAWN_SAFFRON
+	const SPAWN_CELADON
+	const SPAWN_FUCHSIA
+	const SPAWN_CINNABAR
+	const SPAWN_INDIGO_PLATEAU
+	const SPAWN_NEW_BARK
+	const SPAWN_CHERRYGROVE
+	const SPAWN_VIOLET
+	const SPAWN_UNION_CAVE
+	const SPAWN_AZALEA
+	const SPAWN_CIANWOOD
+	const SPAWN_GOLDENROD
+	const SPAWN_OLIVINE
+	const SPAWN_ECRUTEAK
+	const SPAWN_MAHOGANY
+	const SPAWN_LAKE
+	const SPAWN_BLACKTHORN
+	const SPAWN_MT_SILVER
+	const SPAWN_FAST_SHIP
+
 	db GROUP_KRISS_HOUSE_2F, MAP_KRISS_HOUSE_2F, 3, 3
 	db GROUP_VIRIDIAN_POKECENTER_1F, MAP_VIRIDIAN_POKECENTER_1F, 5, 3 ; unused
 	db GROUP_PALLET_TOWN, MAP_PALLET_TOWN, 5, 6
@@ -27153,38 +27184,42 @@ BlackoutPoints: ; 0x152ab
 	db GROUP_BLACKTHORN_CITY, MAP_BLACKTHORN_CITY, 21, 30
 	db GROUP_SILVER_CAVE_OUTSIDE, MAP_SILVER_CAVE_OUTSIDE, 23, 20
 	db GROUP_FAST_SHIP_CABINS_SW_SSW_NW, MAP_FAST_SHIP_CABINS_SW_SSW_NW, 6, 2
-	db $ff, $ff, $ff, $ff
+	db -1, -1, -1, -1
 
+
+Function1531f: ; 1531f
 	push hl
 	push de
 	ld a, [$d001]
-	cp $ff
+	cp -1
 	jr z, .asm_15341
 	ld l, a
-	ld h, $0
+	ld h, 0
 	add hl, hl
 	add hl, hl
-	ld de, $52ab
+	ld de, SpawnPoints
 	add hl, de
 	ld a, [hli]
-	ld [MapGroup], a ; $dcb5
+	ld [MapGroup], a
 	ld a, [hli]
-	ld [MapNumber], a ; $dcb6
+	ld [MapNumber], a
 	ld a, [hli]
-	ld [XCoord], a ; $dcb8
+	ld [XCoord], a
 	ld a, [hli]
-	ld [YCoord], a ; $dcb7
+	ld [YCoord], a
 .asm_15341
 	pop de
 	pop hl
 	ret
+; 15344
+
 
 Function15344: ; 15344
-	ld hl, BlackoutPoints
-	ld c, $0
+	ld hl, SpawnPoints
+	ld c, 0
 .asm_15349
 	ld a, [hl]
-	cp $ff
+	cp -1
 	jr z, .asm_1535f
 	cp d
 	jr nz, .asm_15356
@@ -27195,7 +27230,7 @@ Function15344: ; 15344
 
 .asm_15356
 	push bc
-	ld bc, $0004
+	ld bc, 4
 	add hl, bc
 	pop bc
 	inc c
@@ -83045,12 +83080,12 @@ Function91c3c: ; 91c3c
 	push de
 	push hl
 	ld l, [hl]
-	ld h, $0
+	ld h, 0
 	add hl, hl
-	ld de, $5c5f
+	ld de, Flypoints + 1
 	add hl, de
 	ld c, [hl]
-	call GetFlyPermission
+	call GetSpawnPermission
 	pop hl
 	pop de
 	pop bc
@@ -83058,8 +83093,8 @@ Function91c3c: ; 91c3c
 	ret
 ; 91c50
 
-GetFlyPermission: ; 91c50
-; Return flypoint c permission flag in a
+GetSpawnPermission: ; 91c50
+; Return spawn point c permission flag in a
 	ld hl, FlypointPerms
 	ld b, $2
 	ld d, $0
@@ -83070,39 +83105,66 @@ GetFlyPermission: ; 91c50
 ; 91c5e
 
 Flypoints: ; 91c5e
-; landmark, blackout point
+; landmark, spawn point
+
+	const_def
 
 ; Johto
-	db NEW_BARK_TOWN,    14
-	db CHERRYGROVE_CITY, 15
-	db VIOLET_CITY,      16
-	db AZALEA_TOWN,      18
-	db GOLDENROD_CITY,   20
-	db ECRUTEAK_CITY,    22
-	db OLIVINE_CITY,     21
-	db CIANWOOD_CITY,    19
-	db MAHOGANY_TOWN,    23
-	db LAKE_OF_RAGE,     24
-	db BLACKTHORN_CITY,  25
-	db SILVER_CAVE,      26
+	const FLY_NEW_BARK
+	const FLY_CHERRYGROVE
+	const FLY_VIOLET
+	const FLY_AZALEA
+	const FLY_GOLDENROD
+	const FLY_ECRUTEAK
+	const FLY_OLIVINE
+	const FLY_CIANWOOD
+	const FLY_MAHOGANY
+	const FLY_LAKE
+	const FLY_BLACKTHORN
+	const FLY_MT_SILVER
+
+	db NEW_BARK_TOWN,    SPAWN_NEW_BARK
+	db CHERRYGROVE_CITY, SPAWN_CHERRYGROVE
+	db VIOLET_CITY,      SPAWN_VIOLET
+	db AZALEA_TOWN,      SPAWN_AZALEA
+	db GOLDENROD_CITY,   SPAWN_GOLDENROD
+	db ECRUTEAK_CITY,    SPAWN_ECRUTEAK
+	db OLIVINE_CITY,     SPAWN_OLIVINE
+	db CIANWOOD_CITY,    SPAWN_CIANWOOD
+	db MAHOGANY_TOWN,    SPAWN_MAHOGANY
+	db LAKE_OF_RAGE,     SPAWN_LAKE
+	db BLACKTHORN_CITY,  SPAWN_BLACKTHORN
+	db SILVER_CAVE,      SPAWN_MT_SILVER
 
 ; Kanto
-	db PALLET_TOWN,      02
-	db VIRIDIAN_CITY,    03
-	db PEWTER_CITY,      04
-	db CERULEAN_CITY,    05
-	db VERMILION_CITY,   07
-	db ROCK_TUNNEL,      06
-	db LAVENDER_TOWN,    08
-	db CELADON_CITY,     10
-	db SAFFRON_CITY,     09
-	db FUCHSIA_CITY,     11
-	db CINNABAR_ISLAND,  12
-	db INDIGO_PLATEAU,   13
+	const FLY_PALLET
+	const FLY_VIRIDIAN
+	const FLY_PEWTER
+	const FLY_CERULEAN
+	const FLY_VERMILION
+	const FLY_ROCK_TUNNEL
+	const FLY_LAVENDER
+	const FLY_CELADON
+	const FLY_SAFFRON
+	const FLY_FUCHSIA
+	const FLY_CINNABAR
+	const FLY_INDIGO_PLATEAU
 
-; 91c8e
+	db PALLET_TOWN,      SPAWN_PALLET
+	db VIRIDIAN_CITY,    SPAWN_VIRIDIAN
+	db PEWTER_CITY,      SPAWN_PEWTER
+	db CERULEAN_CITY,    SPAWN_CERULEAN
+	db VERMILION_CITY,   SPAWN_VERMILION
+	db ROCK_TUNNEL,      SPAWN_ROCK_TUNNEL
+	db LAVENDER_TOWN,    SPAWN_LAVENDER
+	db CELADON_CITY,     SPAWN_CELADON
+	db SAFFRON_CITY,     SPAWN_SAFFRON
+	db FUCHSIA_CITY,     SPAWN_FUCHSIA
+	db CINNABAR_ISLAND,  SPAWN_CINNABAR
+	db INDIGO_PLATEAU,   SPAWN_INDIGO_PLATEAU
 
-INCBIN "baserom.gbc",$91c8e,$91c8f - $91c8e
+	db -1
+; 91c8f
 
 Function91c8f: ; 91c8f
 	ret
@@ -83119,7 +83181,7 @@ FlyMap: ; 91c90
 ; If we're not in a valid location, i.e. Pokecenter floor 2F,
 ; the backup map information is used
 	
-	cp 0
+	cp SPECIAL_MAP
 	jr nz, .CheckRegion
 	
 	ld a, [BackupMapGroup]
@@ -83130,7 +83192,7 @@ FlyMap: ; 91c90
 	
 .CheckRegion
 ; The first 46 locations are part of Johto. The rest are in Kanto
-	cp 47
+	cp KANTO_LANDMARK
 	jr nc, .KantoFlyMap
 	
 .JohtoFlyMap
@@ -83139,13 +83201,13 @@ FlyMap: ; 91c90
 	push af
 	
 ; Start from New Bark Town
-	ld a, 0
+	ld a, FLY_NEW_BARK
 	ld [DefaultFlypoint], a
 	
 ; Flypoints begin at New Bark Town...
 	ld [StartFlypoint], a
 ; ..and end at Silver Cave
-	ld a, $b
+	ld a, FLY_MT_SILVER
 	ld [EndFlypoint], a
 	
 ; Fill out the map
@@ -83168,18 +83230,18 @@ FlyMap: ; 91c90
 ; visited and its flypoint enabled
 	
 	push af
-	ld c, $d ; Indigo Plateau
-	call GetFlyPermission
+	ld c, SPAWN_INDIGO_PLATEAU
+	call GetSpawnPermission
 	and a
 	jr z, .NoKanto
 	
 ; Kanto's map is only loaded if we've visited Indigo Plateau
 	
 ; Flypoints begin at Pallet Town...
-	ld a, $c
+	ld a, FLY_PALLET
 	ld [StartFlypoint], a
 ; ...and end at Indigo Plateau
-	ld a, $17
+	ld a, FLY_INDIGO_PLATEAU
 	ld [EndFlypoint], a
 	
 ; Because Indigo Plateau is the first flypoint the player
@@ -83197,13 +83259,13 @@ FlyMap: ; 91c90
 ; If Indigo Plateau hasn't been visited, we use Johto's map instead
 	
 ; Start from New Bark Town
-	ld a, 0
+	ld a, FLY_NEW_BARK
 	ld [DefaultFlypoint], a
 	
 ; Flypoints begin at New Bark Town...
 	ld [StartFlypoint], a
 ; ..and end at Silver Cave
-	ld a, $b
+	ld a, FLY_MT_SILVER
 	ld [EndFlypoint], a
 	
 	call FillJohtoMap

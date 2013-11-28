@@ -48,6 +48,9 @@
 	const DARK_CAVE
 	const ROUTE_46
 	const SILVER_CAVE
+
+KANTO_LANDMARK EQU const_value
+
 	const PALLET_TOWN
 	const ROUTE_1
 	const VIRIDIAN_CITY
