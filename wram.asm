@@ -1636,18 +1636,15 @@ CurDay: ; d4cb
 
 	ds 10
 
-	ds 2
 
+PlayerStruct: ; d4d6
+	ds 2
 PlayerSprite: ; d4d8
 	ds 1
-
 	ds 3
-
 PlayerPalette: ; d4dc
 	ds 1
-
 	ds 1
-
 PlayerDirection: ; d4de
 ; uses bits 2 and 3 / $0c / %00001100
 ; %00 down
@@ -1655,23 +1652,18 @@ PlayerDirection: ; d4de
 ; %10 left
 ; $11 right
 	ds 1
-
 	ds 2
-
 PlayerAction: ; d4e1
 ; 1 standing
 ; 2 walking
 ; 4 spinning
 ; 6 fishing
 	ds 1
-
 	ds 2
-
 StandingTile: ; d4e4
 	ds 1
 StandingTile2: ; d4e5
 	ds 1
-
 ; relative to the map struct including borders
 MapX: ; d4e6
 	ds 1
@@ -1681,15 +1673,39 @@ MapX2: ; d4e8
 	ds 1
 MapY2: ; d4e9
 	ds 1
-
 	ds 3
-
 ; relative to the bg map, in px
 PlayerSpriteX: ; d4ed
 	ds 1
 PlayerSpriteY: ; d4ee
 	ds 1
+	ds 15
 
+ObjectStruct1: ; d4fe
+	ds 40
+ObjectStruct2: ; d526
+	ds 40
+ObjectStruct3: ; d54e
+	ds 40
+ObjectStruct4: ; d576
+	ds 40
+ObjectStruct5: ; d59e
+	ds 40
+ObjectStruct6: ; d5c6
+	ds 40
+ObjectStruct7: ; d5ee
+	ds 40
+ObjectStruct8: ; d616
+	ds 40
+ObjectStruct9: ; d63e
+	ds 40
+ObjectStruct10: ; d666
+	ds 40
+ObjectStruct11: ; d68e
+	ds 40
+ObjectStruct12: ; d6b6
+	ds 40
+; d6de
 
 SECTION "Objects",WRAMX[$d71e],BANK[1]
 MapObjects: ; d71e
