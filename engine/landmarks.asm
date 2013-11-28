@@ -1,8 +1,8 @@
 GetLandmarkCoords: ; 0x1ca896
-; given a landmark id in e, return the y coord in d, and the x coord in e.
+; Return coordinates (d, e) of landmark e.
 	push hl
 	ld l, e
-	ld h, $0
+	ld h, 0
 	add hl, hl
 	add hl, hl
 	ld de, Landmarks
@@ -12,528 +12,246 @@ GetLandmarkCoords: ; 0x1ca896
 	ld d, [hl]
 	pop hl
 	ret
+; 0x1ca8a5
 
 
 GetLandmarkName: ; 0x1ca8a5
-; given a landmark id in e, copy its name to $d073.
+; Copy the name of landmark e to StringBuffer1.
 	push hl
 	push de
 	push bc
+
 	ld l, e
-	ld h, $0
+	ld h, 0
 	add hl, hl
 	add hl, hl
-	ld de, Landmarks + 2 ; skip the coordinates, we only want the string
+	ld de, Landmarks + 2
 	add hl, de
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	ld de, $d073
+
+	ld de, StringBuffer1
 	ld c, 18
-.loop
+.copy
 	ld a, [hli]
 	ld [de], a
 	inc de
 	dec c
-	jr nz, .loop
+	jr nz, .copy
+
 	pop bc
 	pop de
 	pop hl
 	ret
+; 0x1ca8c3
+
 
 Landmarks: ; 0x1ca8c3
-;db x coord, y coord
-;dw pointer to name 
-	db 0,0
-	dw SpecialMapString
 
-	db 148,116
-	dw NewBarkString
-
-	db 136,116
-	dw Route29String
-
-	db 108,116
-	dw CherrygroveString
-
-	db 108,96
-	dw Route30String
-
-	db 104,76
-	dw Route31String
-
-	db 92,76
-	dw VioletString
-
-	db 93,74
-	dw SproutString
-
-	db 92,108
-	dw Route32String
-
-	db 84,92
-	dw RuinsString
-
-	db 92,140
-	dw UnionString
-
-	db 90,140
-	dw Route33String
-
-	db 76,140
-	dw AzaleaString
-
-	db 78,138
-	dw WellString
-
-	db 60,136
-	dw IlexString
-
-	db 60,128
-	dw Route34String
-
-	db 60,108
-	dw GoldenrodString
-
-	db 58,108
-	dw RadioTowerString
-
-	db 60,92
-	dw Route35String
-
-	db 60,76
-	dw ParkString
-
-	db 72,76
-	dw Route36String
-
-	db 76,68
-	dw Route37String
-
-	db 76,60
-	dw EcruteakString
-
-	db 78,58
-	dw TinString
-
-	db 74,58
-	dw BurnedTowerString
-
-	db 60,60
-	dw Route38String
-
-	db 44,64
-	dw Route39String
-
-	db 44,76
-	dw OlivineString
-
-	db 46,78
-	dw LighthouseString
-
-	db 36,72
-	dw BattleTowerString
-
-	db 36,80
-	dw Route40String
-
-	db 36,108
-	dw WhirlString
-
-	db 36,116
-	dw Route41String
-
-	db 28,116
-	dw CianwoodString
-
-	db 100,60
-	dw Route42String
-
-	db 92,60
-	dw MortarString
-
-	db 116,60
-	dw MahoganyString
-
-	db 116,52
-	dw Route43String
-
-	db 116,44
-	dw LakeString
-
-	db 128,60
-	dw Route44String
-
-	db 138,54
-	dw PathString
-
-	db 140,60
-	dw BlackthornString
-
-	db 140,52
-	dw DenString
-
-	db 140,80
-	dw Route45String
-
-	db 120,88
-	dw DarkString
-
-	db 132,104
-	dw Route46String
-
-	db 156,84
-	dw SilverCaveString
-
-	db 60,124
-	dw PalletString
-
-	db 60,108
-	dw Route1String
-
-	db 60,92
-	dw ViridianString
-
-	db 60,80
-	dw Route2String
-
-	db 60,68
-	dw PewterString
-
-	db 72,68
-	dw Route3String
-
-	db 84,68
-	dw MoonString
-
-	db 96,68
-	dw Route4String
-
-	db 108,68
-	dw CeruleanString
-
-	db 108,60
-	dw Route24String
-
-	db 116,52
-	dw Route25String
-
-	db 108,76
-	dw Route5String
-
-	db 116,92
-	dw UndergroundString
-
-	db 108,92
-	dw Route6String
-
-	db 108,100
-	dw VermilionString
-
-	db 96,76
-	dw DiglettsCaveString
-
-	db 96,84
-	dw Route7String
-
-	db 124,84
-	dw Route8String
-
-	db 124,68
-	dw Route9String
-
-	db 140,68
-	dw TunnelString
-
-	db 140,72
-	dw Route10String
-
-	db 140,76
-	dw PlantString
-
-	db 140,84
-	dw LavenderString
-
-	db 148,84
-	dw LavTowerString
-
-	db 84,84
-	dw CeladonString
-
-	db 108,84
-	dw SaffronString
-
-	db 124,100
-	dw Route11String
-
-	db 140,96
-	dw Route12String
-
-	db 132,116
-	dw Route13String
-
-	db 124,128
-	dw Route14String
-
-	db 112,132
-	dw Route15String
-
-	db 76,84
-	dw Route16String
-
-	db 76,108
-	dw Route17String
-
-	db 88,132
-	dw Route18String
-
-	db 100,132
-	dw FuchsiaString
-
-	db 100,144
-	dw Route19String
-
-	db 84,148
-	dw Route20String
-
-	db 76,148
-	dw SeafoamString
-
-	db 60,148
-	dw CinnabarString
-
-	db 60,136
-	dw Route21String
-
-	db 44,84
-	dw Route22String
-
-	db 36,68
-	dw RoadString
-
-	db 36,60
-	dw Route23String
-
-	db 36,52
-	dw IndigoString
-
-	db 36,108
-	dw Route26String
-
-	db 28,116
-	dw Route27String
-
-	db 20,116
-	dw FallsString
-
-	db 28,84
-	dw Route28String
-
-	db 148,132
-	dw AquaString
-
-NewBarkString:
-	db "NEW BARK",$1F,"TOWN@"
-CherrygroveString:
-	db "CHERRYGROVE",$1F,"CITY@"
-VioletString:
-	db "VIOLET CITY@"
-AzaleaString:
-	db "AZALEA TOWN@"
-GoldenrodString:
-	db "GOLDENROD",$1F,"CITY@"
-EcruteakString:
-	db "ECRUTEAK",$1F,"CITY@"
-OlivineString:
-	db "OLIVINE",$1F,"CITY@"
-CianwoodString:
-	db "CIANWOOD",$1F,"CITY@"
-MahoganyString:
-	db "MAHOGANY",$1F,"TOWN@"
-BlackthornString:
-	db "BLACKTHORN",$1F,"CITY@"
-LakeString:
-	db "LAKE OF",$1F,"RAGE@"
-SilverCaveString:
-	db "SILVER CAVE@"
-SproutString:
-	db "SPROUT",$1F,"TOWER@"
-RuinsString:
-	db "RUINS",$1F,"OF ALPH@"
-UnionString:
-	db "UNION CAVE@"
-WellString:
-	db "SLOWPOKE",$1F,"WELL@"
-RadioTowerString:
-	db "RADIO TOWER@"
-PlantString:
-	db "POWER PLANT@"
-ParkString:
-	db "NATIONAL",$1F,"PARK@"
-TinString:
-	db "TIN TOWER@"
-LighthouseString:
-	db "LIGHTHOUSE@"
-WhirlString:
-	db "WHIRL",$1F,"ISLANDS@"
-MortarString:
-	db "MT.MORTAR@"
-DenString:
-	db "DRAGON'S",$1F,"DEN@"
-PathString:
-	db "ICE PATH@"
-NotApplicableString:
-	db "N/A@"
-PalletString:
-	db "PALLET TOWN@"
-ViridianString:
-	db "VIRIDIAN",$1F,"CITY@"
-PewterString:
-	db "PEWTER CITY@"
-CeruleanString:
-	db "CERULEAN",$1F,"CITY@"
-LavenderString:
-	db "LAVENDER",$1F,"TOWN@"
-VermilionString:
-	db "VERMILION",$1F,"CITY@"
-CeladonString:
-	db "CELADON",$1F,"CITY@"
-SaffronString:
-	db "SAFFRON",$1F,"CITY@"
-FuchsiaString:
-	db "FUCHSIA",$1F,"CITY@"
-CinnabarString:
-	db "CINNABAR",$1F,"ISLAND@"
-IndigoString:
-	db "INDIGO",$1F,"PLATEAU@"
-RoadString:
-	db "VICTORY",$1F,"ROAD@"
-MoonString:
-	db "MT.MOON@"
-TunnelString:
-	db "ROCK TUNNEL@"
-LavTowerString:
-	db "LAV",$1F,"RADIO TOWER@"
-SilphString:
-	db "SILPH CO.@"
-ZoneString:
-	db "SAFARI ZONE@"
-SeafoamString:
-	db "SEAFOAM",$1F,"ISLANDS@"
-MansionString:
-	db "#MON",$1F,"MANSION@"
-DungeonString:
-	db "CERULEAN",$1F,"CAVE@"
-Route1String:
-	db "ROUTE 1@"
-Route2String:
-	db "ROUTE 2@"
-Route3String:
-	db "ROUTE 3@"
-Route4String:
-	db "ROUTE 4@"
-Route5String:
-	db "ROUTE 5@"
-Route6String:
-	db "ROUTE 6@"
-Route7String:
-	db "ROUTE 7@"
-Route8String:
-	db "ROUTE 8@"
-Route9String:
-	db "ROUTE 9@"
-Route10String:
-	db "ROUTE 10@"
-Route11String:
-	db "ROUTE 11@"
-Route12String:
-	db "ROUTE 12@"
-Route13String:
-	db "ROUTE 13@"
-Route14String:
-	db "ROUTE 14@"
-Route15String:
-	db "ROUTE 15@"
-Route16String:
-	db "ROUTE 16@"
-Route17String:
-	db "ROUTE 17@"
-Route18String:
-	db "ROUTE 18@"
-Route19String:
-	db "ROUTE 19@"
-Route20String:
-	db "ROUTE 20@"
-Route21String:
-	db "ROUTE 21@"
-Route22String:
-	db "ROUTE 22@"
-Route23String:
-	db "ROUTE 23@"
-Route24String:
-	db "ROUTE 24@"
-Route25String:
-	db "ROUTE 25@"
-Route26String:
-	db "ROUTE 26@"
-Route27String:
-	db "ROUTE 27@"
-Route28String:
-	db "ROUTE 28@"
-Route29String:
-	db "ROUTE 29@"
-Route30String:
-	db "ROUTE 30@"
-Route31String:
-	db "ROUTE 31@"
-Route32String:
-	db "ROUTE 32@"
-Route33String:
-	db "ROUTE 33@"
-Route34String:
-	db "ROUTE 34@"
-Route35String:
-	db "ROUTE 35@"
-Route36String:
-	db "ROUTE 36@"
-Route37String:
-	db "ROUTE 37@"
-Route38String:
-	db "ROUTE 38@"
-Route39String:
-	db "ROUTE 39@"
-Route40String:
-	db "ROUTE 40@"
-Route41String:
-	db "ROUTE 41@"
-Route42String:
-	db "ROUTE 42@"
-Route43String:
-	db "ROUTE 43@"
-Route44String:
-	db "ROUTE 44@"
-Route45String:
-	db "ROUTE 45@"
-Route46String:
-	db "ROUTE 46@"
-DarkString:
-	db "DARK CAVE@"
-IlexString:
-	db "ILEX",$1F,"FOREST@"
-BurnedTowerString:
-	db "BURNED",$1F,"TOWER@"
-AquaString:
-	db "FAST SHIP@"
-ViridianForestString:
-	db "VIRIDIAN",$1F,"FOREST@"
-DiglettsCaveString:
-	db "DIGLETT'S",$1F,"CAVE@"
-FallsString:
-	db "TOHJO FALLS@"
-UndergroundString:
-	db "UNDERGROUND@"
-BattleTowerString:
-	db "BATTLE",$1F,"TOWER@"
-SpecialMapString:
-	db "SPECIAL@"
+landmark: MACRO
+	db \1, \2
+	dw \3
+ENDM
+
+	landmark   0,   0, SpecialMapName
+	landmark 148, 116, NewBarkTownName
+	landmark 136, 116, Route29Name
+	landmark 108, 116, CherrygroveCityName
+	landmark 108,  96, Route30Name
+	landmark 104,  76, Route31Name
+	landmark  92,  76, VioletCityName
+	landmark  93,  74, SproutTowerName
+	landmark  92, 108, Route32Name
+	landmark  84,  92, RuinsOfAlphName
+	landmark  92, 140, UnionCaveName
+	landmark  90, 140, Route33Name
+	landmark  76, 140, AzaleaTownName
+	landmark  78, 138, SlowpokeWellName
+	landmark  60, 136, IlexForestName
+	landmark  60, 128, Route34Name
+	landmark  60, 108, GoldenrodCityName
+	landmark  58, 108, RadioTowerName
+	landmark  60,  92, Route35Name
+	landmark  60,  76, NationalParkName
+	landmark  72,  76, Route36Name
+	landmark  76,  68, Route37Name
+	landmark  76,  60, EcruteakCityName
+	landmark  78,  58, TinTowerName
+	landmark  74,  58, BurnedTowerName
+	landmark  60,  60, Route38Name
+	landmark  44,  64, Route39Name
+	landmark  44,  76, OlivineCityName
+	landmark  46,  78, LighthouseName
+	landmark  36,  72, BattleTowerName
+	landmark  36,  80, Route40Name
+	landmark  36, 108, WhirlIslandsName
+	landmark  36, 116, Route41Name
+	landmark  28, 116, CianwoodCityName
+	landmark 100,  60, Route42Name
+	landmark  92,  60, MtMortarName
+	landmark 116,  60, MahoganyTownName
+	landmark 116,  52, Route43Name
+	landmark 116,  44, LakeOfRageName
+	landmark 128,  60, Route44Name
+	landmark 138,  54, IcePathName
+	landmark 140,  60, BlackthornCityName
+	landmark 140,  52, DragonsDenName
+	landmark 140,  80, Route45Name
+	landmark 120,  88, DarkCaveName
+	landmark 132, 104, Route46Name
+	landmark 156,  84, SilverCaveName
+	landmark  60, 124, PalletTownName
+	landmark  60, 108, Route1Name
+	landmark  60,  92, ViridianCityName
+	landmark  60,  80, Route2Name
+	landmark  60,  68, PewterCityName
+	landmark  72,  68, Route3Name
+	landmark  84,  68, MtMoonName
+	landmark  96,  68, Route4Name
+	landmark 108,  68, CeruleanCityName
+	landmark 108,  60, Route24Name
+	landmark 116,  52, Route25Name
+	landmark 108,  76, Route5Name
+	landmark 116,  92, UndergroundName
+	landmark 108,  92, Route6Name
+	landmark 108, 100, VermilionCityName
+	landmark  96,  76, DiglettsCaveName
+	landmark  96,  84, Route7Name
+	landmark 124,  84, Route8Name
+	landmark 124,  68, Route9Name
+	landmark 140,  68, RockTunnelName
+	landmark 140,  72, Route10Name
+	landmark 140,  76, PowerPlantName
+	landmark 140,  84, LavenderTownName
+	landmark 148,  84, LavRadioTowerName
+	landmark  84,  84, CeladonCityName
+	landmark 108,  84, SaffronCityName
+	landmark 124, 100, Route11Name
+	landmark 140,  96, Route12Name
+	landmark 132, 116, Route13Name
+	landmark 124, 128, Route14Name
+	landmark 112, 132, Route15Name
+	landmark  76,  84, Route16Name
+	landmark  76, 108, Route17Name
+	landmark  88, 132, Route18Name
+	landmark 100, 132, FuchsiaCityName
+	landmark 100, 144, Route19Name
+	landmark  84, 148, Route20Name
+	landmark  76, 148, SeafoamIslandsName
+	landmark  60, 148, CinnabarIslandName
+	landmark  60, 136, Route21Name
+	landmark  44,  84, Route22Name
+	landmark  36,  68, VictoryRoadName
+	landmark  36,  60, Route23Name
+	landmark  36,  52, IndigoPlateauName
+	landmark  36, 108, Route26Name
+	landmark  28, 116, Route27Name
+	landmark  20, 116, TohjoFallsName
+	landmark  28,  84, Route28Name
+	landmark 148, 132, FastShipName
+
+
+NewBarkTownName:     db "NEW BARK", $1f, "TOWN@"
+CherrygroveCityName: db "CHERRYGROVE", $1f, "CITY@"
+VioletCityName:      db "VIOLET CITY@"
+AzaleaTownName:      db "AZALEA TOWN@"
+GoldenrodCityName:   db "GOLDENROD", $1f, "CITY@"
+EcruteakCityName:    db "ECRUTEAK", $1f, "CITY@"
+OlivineCityName:     db "OLIVINE", $1f, "CITY@"
+CianwoodCityName:    db "CIANWOOD", $1f, "CITY@"
+MahoganyTownName:    db "MAHOGANY", $1f, "TOWN@"
+BlackthornCityName:  db "BLACKTHORN", $1f, "CITY@"
+LakeOfRageName:      db "LAKE OF", $1f, "RAGE@"
+SilverCaveName:      db "SILVER CAVE@"
+SproutTowerName:     db "SPROUT", $1f, "TOWER@"
+RuinsOfAlphName:     db "RUINS", $1f, "OF ALPH@"
+UnionCaveName:       db "UNION CAVE@"
+SlowpokeWellName:    db "SLOWPOKE", $1f, "WELL@"
+RadioTowerName:      db "RADIO TOWER@"
+PowerPlantName:      db "POWER PLANT@"
+NationalParkName:    db "NATIONAL", $1f, "PARK@"
+TinTowerName:        db "TIN TOWER@"
+LighthouseName:      db "LIGHTHOUSE@"
+WhirlIslandsName:    db "WHIRL", $1f, "ISLANDS@"
+MtMortarName:        db "MT.MORTAR@"
+DragonsDenName:      db "DRAGON'S", $1f, "DEN@"
+IcePathName:         db "ICE PATH@"
+NotApplicableName:   db "N/A@"
+PalletTownName:      db "PALLET TOWN@"
+ViridianCityName:    db "VIRIDIAN", $1f, "CITY@"
+PewterCityName:      db "PEWTER CITY@"
+CeruleanCityName:    db "CERULEAN", $1f, "CITY@"
+LavenderTownName:    db "LAVENDER", $1f, "TOWN@"
+VermilionCityName:   db "VERMILION", $1f, "CITY@"
+CeladonCityName:     db "CELADON", $1f, "CITY@"
+SaffronCityName:     db "SAFFRON", $1f, "CITY@"
+FuchsiaCityName:     db "FUCHSIA", $1f, "CITY@"
+CinnabarIslandName:  db "CINNABAR", $1f, "ISLAND@"
+IndigoPlateauName:   db "INDIGO", $1f, "PLATEAU@"
+VictoryRoadName:     db "VICTORY", $1f, "ROAD@"
+MtMoonName:          db "MT.MOON@"
+RockTunnelName:      db "ROCK TUNNEL@"
+LavRadioTowerName:   db "LAV", $1f, "RADIO TOWER@"
+SilphCoName:         db "SILPH CO.@"
+SafariZoneName:      db "SAFARI ZONE@"
+SeafoamIslandsName:  db "SEAFOAM", $1f, "ISLANDS@"
+PokemonMansionName:  db "#MON", $1f, "MANSION@"
+CeruleanCaveNane:    db "CERULEAN", $1f, "CAVE@"
+Route1Name:          db "ROUTE 1@"
+Route2Name:          db "ROUTE 2@"
+Route3Name:          db "ROUTE 3@"
+Route4Name:          db "ROUTE 4@"
+Route5Name:          db "ROUTE 5@"
+Route6Name:          db "ROUTE 6@"
+Route7Name:          db "ROUTE 7@"
+Route8Name:          db "ROUTE 8@"
+Route9Name:          db "ROUTE 9@"
+Route10Name:         db "ROUTE 10@"
+Route11Name:         db "ROUTE 11@"
+Route12Name:         db "ROUTE 12@"
+Route13Name:         db "ROUTE 13@"
+Route14Name:         db "ROUTE 14@"
+Route15Name:         db "ROUTE 15@"
+Route16Name:         db "ROUTE 16@"
+Route17Name:         db "ROUTE 17@"
+Route18Name:         db "ROUTE 18@"
+Route19Name:         db "ROUTE 19@"
+Route20Name:         db "ROUTE 20@"
+Route21Name:         db "ROUTE 21@"
+Route22Name:         db "ROUTE 22@"
+Route23Name:         db "ROUTE 23@"
+Route24Name:         db "ROUTE 24@"
+Route25Name:         db "ROUTE 25@"
+Route26Name:         db "ROUTE 26@"
+Route27Name:         db "ROUTE 27@"
+Route28Name:         db "ROUTE 28@"
+Route29Name:         db "ROUTE 29@"
+Route30Name:         db "ROUTE 30@"
+Route31Name:         db "ROUTE 31@"
+Route32Name:         db "ROUTE 32@"
+Route33Name:         db "ROUTE 33@"
+Route34Name:         db "ROUTE 34@"
+Route35Name:         db "ROUTE 35@"
+Route36Name:         db "ROUTE 36@"
+Route37Name:         db "ROUTE 37@"
+Route38Name:         db "ROUTE 38@"
+Route39Name:         db "ROUTE 39@"
+Route40Name:         db "ROUTE 40@"
+Route41Name:         db "ROUTE 41@"
+Route42Name:         db "ROUTE 42@"
+Route43Name:         db "ROUTE 43@"
+Route44Name:         db "ROUTE 44@"
+Route45Name:         db "ROUTE 45@"
+Route46Name:         db "ROUTE 46@"
+DarkCaveName:        db "DARK CAVE@"
+IlexForestName:      db "ILEX", $1f, "FOREST@"
+BurnedTowerName:     db "BURNED", $1f, "TOWER@"
+FastShipName:        db "FAST SHIP@"
+ViridianForestName:  db "VIRIDIAN", $1f, "FOREST@"
+DiglettsCaveName:    db "DIGLETT'S", $1f, "CAVE@"
+TohjoFallsName:      db "TOHJO FALLS@"
+UndergroundName:     db "UNDERGROUND@"
+BattleTowerName:     db "BATTLE", $1f, "TOWER@"
+SpecialMapName:      db "SPECIAL@"
 

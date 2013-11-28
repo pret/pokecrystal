@@ -83070,36 +83070,36 @@ GetFlyPermission: ; 91c50
 ; 91c5e
 
 Flypoints: ; 91c5e
-; location id, blackout id
+; landmark, blackout point
 
 ; Johto
-	db 01, 14 ; New Bark Town
-	db 03, 15 ; Cherrygrove City
-	db 06, 16 ; Violet City
-	db 12, 18 ; Azalea Town
-	db 16, 20 ; Goldenrod City
-	db 22, 22 ; Ecruteak City
-	db 27, 21 ; Olivine City
-	db 33, 19 ; Cianwood City
-	db 36, 23 ; Mahogany Town
-	db 38, 24 ; Lake of Rage
-	db 41, 25 ; Blackthorn City
-	db 46, 26 ; Silver Cave
-	
+	db NEW_BARK_TOWN,    14
+	db CHERRYGROVE_CITY, 15
+	db VIOLET_CITY,      16
+	db AZALEA_TOWN,      18
+	db GOLDENROD_CITY,   20
+	db ECRUTEAK_CITY,    22
+	db OLIVINE_CITY,     21
+	db CIANWOOD_CITY,    19
+	db MAHOGANY_TOWN,    23
+	db LAKE_OF_RAGE,     24
+	db BLACKTHORN_CITY,  25
+	db SILVER_CAVE,      26
+
 ; Kanto
-	db 47, 02 ; Pallet Town
-	db 49, 03 ; Viridian City
-	db 51, 04 ; Pewter City
-	db 55, 05 ; Cerulean City
-	db 61, 07 ; Vermilion City
-	db 66, 06 ; Rock Tunnel
-	db 69, 08 ; Lavender Town
-	db 71, 10 ; Celadon City
-	db 72, 09 ; Saffron City
-	db 81, 11 ; Fuchsia City
-	db 85, 12 ; Cinnabar Island
-	db 90, 13 ; Indigo Plateau
-	
+	db PALLET_TOWN,      02
+	db VIRIDIAN_CITY,    03
+	db PEWTER_CITY,      04
+	db CERULEAN_CITY,    05
+	db VERMILION_CITY,   07
+	db ROCK_TUNNEL,      06
+	db LAVENDER_TOWN,    08
+	db CELADON_CITY,     10
+	db SAFFRON_CITY,     09
+	db FUCHSIA_CITY,     11
+	db CINNABAR_ISLAND,  12
+	db INDIGO_PLATEAU,   13
+
 ; 91c8e
 
 INCBIN "baserom.gbc",$91c8e,$91c8f - $91c8e
