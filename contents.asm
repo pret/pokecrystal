@@ -61,3 +61,28 @@ MAP_SCRIPTS_23            EQU $6A
 MAP_SCRIPTS_24            EQU $6B
 MAP_SCRIPTS_25            EQU $6C
 
+
+; audio.o
+
+AUDIO                     EQU $3A
+
+SONGS_1                   EQU $3A
+SONGS_2                   EQU $3B
+SONGS_3                   EQU $3C
+SONGS_4                   EQU $3D
+SONGS_5                   EQU $5E
+
+EXTRA_SONGS_1             EQU $7
+EXTRA_SONGS_2             EQU $33
+
+SOUND_EFFECTS             EQU $3C
+CRYSTAL_SOUND_EFFECTS     EQU $5E
+
+CRIES                     EQU $3C
+
+
+; misc.o
+
+MISC_CRYSTAL              EQU $5E
+
+
