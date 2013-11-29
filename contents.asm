@@ -31,6 +31,33 @@ EVENTS                    EQU $25
 CREDITS                   EQU $42
 
 
+; gfx/pics.o
+
+PIC_POINTERS              EQU $48
+UNOWN_PIC_POINTERS        EQU $49
+TRAINER_PIC_POINTERS      EQU $4A
+
+PICS_1                    EQU $48
+PICS_2                    EQU $49
+PICS_3                    EQU $4A
+PICS_4                    EQU $4B
+PICS_5                    EQU $4C
+PICS_6                    EQU $4D
+PICS_7                    EQU $4E
+PICS_8                    EQU $4F
+PICS_9                    EQU $50
+PICS_10                   EQU $51
+PICS_11                   EQU $52
+PICS_12                   EQU $53
+PICS_13                   EQU $54
+PICS_14                   EQU $55
+PICS_15                   EQU $56
+PICS_16                   EQU $57
+PICS_17                   EQU $58
+PICS_18                   EQU $59
+PICS_19                   EQU $5A
+
+
 ; maps.o
 
 MAP_HEADERS               EQU $25
