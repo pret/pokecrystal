@@ -130,10 +130,10 @@ IsInJohto: ; 2f17
 	ld c, a
 	call GetWorldMapLocation
 
-	cp $5f ; SS Aqua
+	cp FAST_SHIP
 	jr z, .Johto
 
-	cp $0 ; Poke Center 2F
+	cp SPECIAL_MAP
 	jr nz, .CheckRegion
 
 	ld a, [BackupMapGroup]
@@ -143,7 +143,7 @@ IsInJohto: ; 2f17
 	call GetWorldMapLocation
 
 .CheckRegion
-	cp $2f ; Pallet Town
+	cp KANTO_LANDMARK
 	jr nc, .Kanto
 
 .Johto
@@ -26533,7 +26533,7 @@ Function14dd7: ; 14dd7
 	ld de, $a009
 	ld bc, $082a
 	call CopyBytes
-	ld hl, FlypointPerms
+	ld hl, VisitedSpawns
 	ld de, $a833
 	ld bc, $0032
 	call CopyBytes
@@ -26600,7 +26600,7 @@ Function14e55: ; 14e55
 	ld de, $b209
 	ld bc, $082a
 	call CopyBytes
-	ld hl, FlypointPerms
+	ld hl, VisitedSpawns
 	ld de, $ba33
 	ld bc, $0032
 	call CopyBytes
@@ -26783,7 +26783,7 @@ Function14fd7: ; 14fd7 (5:4fd7)
 	ld bc, $82a
 	call CopyBytes
 	ld hl, $a833
-	ld de, FlypointPerms ; $dca5
+	ld de, VisitedSpawns ; $dca5
 	ld bc, $32
 	call CopyBytes
 	call CloseSRAM
@@ -26843,7 +26843,7 @@ Function15046: ; 15046 (5:5046)
 	ld bc, $82a
 	call CopyBytes
 	ld hl, $ba33
-	ld de, FlypointPerms ; $dca5
+	ld de, VisitedSpawns ; $dca5
 	ld bc, $32
 	call CopyBytes
 	call CloseSRAM
@@ -83085,7 +83085,7 @@ Function91c3c: ; 91c3c
 	ld de, Flypoints + 1
 	add hl, de
 	ld c, [hl]
-	call GetSpawnPermission
+	call HasVisitedSpawn
 	pop hl
 	pop de
 	pop bc
@@ -83093,12 +83093,12 @@ Function91c3c: ; 91c3c
 	ret
 ; 91c50
 
-GetSpawnPermission: ; 91c50
-; Return spawn point c permission flag in a
-	ld hl, FlypointPerms
-	ld b, $2
-	ld d, $0
-	ld a, 3 ; PREDEF_GET_FLAG_NO
+HasVisitedSpawn: ; 91c50
+; Check if spawn point c has been visited.
+	ld hl, VisitedSpawns
+	ld b, CHECK_FLAG
+	ld d, 0
+	ld a, PREDEF_FLAG
 	call Predef
 	ld a, c
 	ret
@@ -83231,7 +83231,7 @@ FlyMap: ; 91c90
 	
 	push af
 	ld c, SPAWN_INDIGO_PLATEAU
-	call GetSpawnPermission
+	call HasVisitedSpawn
 	and a
 	jr z, .NoKanto
 	

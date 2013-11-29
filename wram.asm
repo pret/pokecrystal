@@ -1870,8 +1870,8 @@ StepCount: ; dc73
 PoisonStepCount: ; dc74
 	ds 1
 
-SECTION "FlypointPermissions", WRAMX[$dca5],BANK[1]
-FlypointPerms: ; dca5
+SECTION "Visited Spawn Points", WRAMX[$dca5],BANK[1]
+VisitedSpawns: ; dca5
 	ds 4
 
 SECTION "BackupMapInfo", WRAMX[$dcad],BANK[1]
