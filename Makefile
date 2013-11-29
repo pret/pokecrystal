@@ -9,6 +9,7 @@ TEXTQUEUE :=
 CRYSTAL_OBJS := \
 wram.o \
 main.o \
+home.o \
 audio.o \
 maps_crystal.o \
 engine/events.o \
