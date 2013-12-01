@@ -1941,17 +1941,17 @@ Item38: ; f50c
 
 
 UnknownText_0xf56c: ; 0xf56c
-	text_jump UnknownText_0x1c5bf9, BANK(UnknownText_0x1c5bf9)
+	text_jump UnknownText_0x1c5bf9
 	db "@"
 ; 0xf571
 
 UnknownText_0xf571: ; 0xf571
-	text_jump UnknownText_0x1c5c28, BANK(UnknownText_0x1c5c28)
+	text_jump UnknownText_0x1c5c28
 	db "@"
 ; 0xf576
 
 UnknownText_0xf576: ; 0xf576
-	text_jump UnknownText_0x1c5c44, BANK(UnknownText_0x1c5c44)
+	text_jump UnknownText_0x1c5c44
 	start_asm
 ; 0xf57b
 
@@ -1977,7 +1977,7 @@ BlueCard: ; f58f
 	jp $2012
 
 .bluecardtext
-	text_jump UnknownText_0x1c5c5e, BANK(UnknownText_0x1c5c5e)
+	text_jump UnknownText_0x1c5c5e
 	db "@"
 ; f59a
 
@@ -1987,7 +1987,7 @@ CoinCase: ; f59a
 	jp $2012
 
 .coincasetext
-	text_jump UnknownText_0x1c5c7b, BANK(UnknownText_0x1c5c7b)
+	text_jump UnknownText_0x1c5c7b
 	db "@"
 ; f5a5
 
@@ -2160,7 +2160,7 @@ Function_0xf769: ; f769
 ; f778
 
 UnknownText_0xf778: ; 0xf778
-	text_jump UnknownText_0x1c5d03, BANK(UnknownText_0x1c5d03)
+	text_jump UnknownText_0x1c5d03
 	db "@"
 ; 0xf77d
 

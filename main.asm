@@ -5606,32 +5606,32 @@ Function65d3: ; 65d3
 ; 666b
 
 UnknownText_0x666b: ; 666b
-	text_jump UnknownText_0x1c5660, BANK(UnknownText_0x1c5660)
+	text_jump UnknownText_0x1c5660
 	db "@"
 ; 6670
 
 UnknownText_0x6670: ; 6670
-	text_jump UnknownText_0x1c5678, BANK(UnknownText_0x1c5678)
+	text_jump UnknownText_0x1c5678
 	db "@"
 ; 6675
 
 UnknownText_0x6675: ; 6675
-	text_jump UnknownText_0x1c5699, BANK(UnknownText_0x1c5699)
+	text_jump UnknownText_0x1c5699
 	db "@"
 ; 667a
 
 UnknownText_0x667a: ; 667a
-	text_jump UnknownText_0x1c56af, BANK(UnknownText_0x1c56af)
+	text_jump UnknownText_0x1c56af
 	db "@"
 ; 667f
 
 UnknownText_0x667f: ; 667f
-	text_jump UnknownText_0x1c56c9, BANK(UnknownText_0x1c56c9)
+	text_jump UnknownText_0x1c56c9
 	db "@"
 ; 6684
 
 UnknownText_0x6684: ; 6684
-	text_jump UnknownText_0x1c5740, BANK(UnknownText_0x1c5740)
+	text_jump UnknownText_0x1c5740
 	start_asm
 ; 6689
 
@@ -5645,12 +5645,12 @@ UnknownText_0x6684: ; 6684
 ; 6695
 
 UnknownText_0x6695: ; 6695
-	text_jump UnknownText_0x1c574e, BANK(UnknownText_0x1c574e)
+	text_jump UnknownText_0x1c574e
 	db "@"
 ; 669a
 
 UnknownText_0x669a: ; 669a
-	text_jump UnknownText_0x1c5772, BANK(UnknownText_0x1c5772)
+	text_jump UnknownText_0x1c5772
 	db "@"
 ; 669f
 
@@ -8389,7 +8389,7 @@ Functionc309: ; c309
 
 UnknownText_0xc345: ; 0xc345
 	; received item
-	text_jump UnknownText_0x1bd3be, BANK(UnknownText_0x1bd3be)
+	text_jump UnknownText_0x1bd3be
 	db "@"
 ; 0xc34a
 
@@ -8486,13 +8486,13 @@ Functionc3ae: ; c3ae
 
 UnknownText_0xc3d1: ; 0xc3d1
 	; You have no coins.
-	text_jump UnknownText_0x1bd3d7, BANK(UnknownText_0x1bd3d7)
+	text_jump UnknownText_0x1bd3d7
 	db "@"
 ; 0xc3d6
 
 UnknownText_0xc3d6: ; 0xc3d6
 	; You don't have a COIN CASE.
-	text_jump UnknownText_0x1bd3eb, BANK(UnknownText_0x1bd3eb)
+	text_jump UnknownText_0x1bd3eb
 	db "@"
 ; 0xc3db
 
@@ -9199,7 +9199,7 @@ Functionc779: ; c779
 ; c780
 
 UnknownText_0xc780: ; 0xc780
-	text_jump UnknownText_0x1c05c8, BANK(UnknownText_0x1c05c8)
+	text_jump UnknownText_0x1c05c8
 	db "@"
 ; 0xc785
 
@@ -9253,7 +9253,7 @@ Functionc7bb: ; c7bb (3:47bb)
 	ret
 
 UnknownText_0xc7c4: ; 0xc7c4
-	text_jump UnknownText_0x1c05dd, BANK(UnknownText_0x1c05dd)
+	text_jump UnknownText_0x1c05dd
 	db $50
 ; 0xc7c9
 
@@ -9404,7 +9404,7 @@ UnknownScript_0xc8e6: ; 0xc8e6
 ; 0xc8f3
 
 UnknownText_0xc8f3: ; 0xc8f3
-	text_jump UnknownText_0x1c0609, BANK(UnknownText_0x1c0609)
+	text_jump UnknownText_0x1c0609
 	start_asm
 ; 0xc8f8
 
@@ -9831,7 +9831,7 @@ WaterfallStep: ; cb4f
 ; cb51
 
 UnknownText_0xcb51: ; 0xcb51
-	text_jump UnknownText_0x1c068e, BANK(UnknownText_0x1c068e)
+	text_jump UnknownText_0x1c068e
 	db "@"
 ; 0xcb56
 
@@ -9863,7 +9863,7 @@ UnknownScript_0xcb7e: ; 0xcb7e
 ; 0xcb81
 
 UnknownText_0xcb81: ; 0xcb81
-	text_jump UnknownText_0x1c06a3, BANK(UnknownText_0x1c06a3)
+	text_jump UnknownText_0x1c06a3
 	db "@"
 ; 0xcb86
 
@@ -9877,7 +9877,7 @@ UnknownScript_0xcb86: ; 0xcb86
 ; 0xcb90
 
 UnknownText_0xcb90: ; 0xcb90
-	text_jump UnknownText_0x1c06bf, BANK(UnknownText_0x1c06bf)
+	text_jump UnknownText_0x1c06bf
 	db "@"
 ; 0xcb95
 
@@ -9971,19 +9971,19 @@ Functioncc06: ; cc06
 
 UnknownText_0xcc1c: ; 0xcc1c
 	; used DIG!
-	text_jump UnknownText_0x1c06de, BANK(UnknownText_0x1c06de)
+	text_jump UnknownText_0x1c06de
 	db "@"
 ; 0xcc21
 
 UnknownText_0xcc21: ; 0xcc21
 	; used an ESCAPE ROPE.
-	text_jump UnknownText_0x1c06ed, BANK(UnknownText_0x1c06ed)
+	text_jump UnknownText_0x1c06ed
 	db "@"
 ; 0xcc26
 
 UnknownText_0xcc26: ; 0xcc26
 	; Can't use that here.
-	text_jump UnknownText_0x1c0705, BANK(UnknownText_0x1c0705)
+	text_jump UnknownText_0x1c0705
 	db "@"
 ; 0xcc2b
 
@@ -10106,7 +10106,7 @@ Functionccf8: ; ccf8
 ; cd01
 
 UnknownText_0xcd01: ; 0xcd01
-	text_jump UnknownText_0x1c0751, BANK(UnknownText_0x1c0751)
+	text_jump UnknownText_0x1c0751
 	db "@"
 ; 0xcd06
 
@@ -10156,12 +10156,12 @@ UnknownScript_0xcd2d: ; 0xcd2d
 ; 0xcd41
 
 UnknownText_0xcd41: ; 0xcd41
-	text_jump UnknownText_0x1c0774, BANK(UnknownText_0x1c0774)
+	text_jump UnknownText_0x1c0774
 	db $50
 ; 0xcd46
 
 UnknownText_0xcd46: ; 0xcd46
-	text_jump UnknownText_0x1c0788, BANK(UnknownText_0x1c0788)
+	text_jump UnknownText_0x1c0788
 	db $50
 ; 0xcd4b
 
@@ -10191,19 +10191,19 @@ UnknownScript_0xcd5f: ; 0xcd5f
 
 UnknownText_0xcd69: ; 0xcd69
 	; A #MON may be able to move this. Want to use STRENGTH?
-	text_jump UnknownText_0x1c07a0, BANK(UnknownText_0x1c07a0)
+	text_jump UnknownText_0x1c07a0
 	db "@"
 ; 0xcd6e
 
 UnknownText_0xcd6e: ; 0xcd6e
 	; Boulders may now be moved!
-	text_jump UnknownText_0x1c07d8, BANK(UnknownText_0x1c07d8)
+	text_jump UnknownText_0x1c07d8
 	db "@"
 ; 0xcd73
 
 UnknownText_0xcd73: ; 0xcd73
 	; A #MON may be able to move this.
-	text_jump UnknownText_0x1c07f4, BANK(UnknownText_0x1c07f4)
+	text_jump UnknownText_0x1c07f4
 	db "@"
 ; 0xcd78
 
@@ -10242,7 +10242,7 @@ Functioncd9d: ; cd9d
 INCBIN "baserom.gbc",$cdae,$cdd9 - $cdae
 
 UnknownText_0xcdd9: ; 0xcdd9
-	text_jump UnknownText_0x1c0816, BANK(UnknownText_0x1c0816)
+	text_jump UnknownText_0x1c0816
 	db "@"
 ; 0xcdde
 
@@ -10333,7 +10333,7 @@ UnknownScript_0xce66: ; 0xce66
 ; 0xce69
 
 UnknownText_0xce69: ; 0xce69
-	text_jump UnknownText_0x1c082b, BANK(UnknownText_0x1c082b)
+	text_jump UnknownText_0x1c082b
 	db "@"
 ; 0xce6e
 
@@ -10347,7 +10347,7 @@ UnknownScript_0xce6e: ; 0xce6e
 ; 0xce78
 
 UnknownText_0xce78: ; 0xce78
-	text_jump UnknownText_0x1c0864, BANK(UnknownText_0x1c0864)
+	text_jump UnknownText_0x1c0864
 	db "@"
 ; 0xce7d
 
@@ -10374,12 +10374,12 @@ Functionce86: ; ce86
 ; ce9d
 
 UnknownText_0xce9d: ; 0xce9d
-	text_jump UnknownText_0x1c0897, BANK(UnknownText_0x1c0897)
+	text_jump UnknownText_0x1c0897
 	db $50
 ; 0xcea2
 
 UnknownText_0xcea2: ; 0xcea2
-	text_jump UnknownText_0x1c08ac, BANK(UnknownText_0x1c08ac)
+	text_jump UnknownText_0x1c08ac
 	db $50
 ; 0xcea7
 
@@ -10497,7 +10497,7 @@ MovementData_0xcf55: ; 0xcf55
 	step_end
 
 UnknownText_0xcf58: ; 0xcf58
-	text_jump UnknownText_0x1c08f0, BANK(UnknownText_0x1c08f0)
+	text_jump UnknownText_0x1c08f0
 	db $50
 ; 0xcf5d
 
@@ -10518,13 +10518,13 @@ UnknownScript_0xcf6f: ; 0xcf6f
 
 UnknownText_0xcf72: ; 0xcf72
 	; Maybe a #MON can break this.
-	text_jump UnknownText_0x1c0906, BANK(UnknownText_0x1c0906)
+	text_jump UnknownText_0x1c0906
 	db "@"
 ; 0xcf77
 
 UnknownText_0xcf77: ; 0xcf77
 	; This rock looks breakable. Want to use ROCK SMASH?
-	text_jump UnknownText_0x1c0924, BANK(UnknownText_0x1c0924)
+	text_jump UnknownText_0x1c0924
 	db "@"
 ; 0xcf7c
 
@@ -10696,7 +10696,7 @@ Functiond1ba: ; d1ba
 ; d1c8
 
 UnknownText_0xd1c8: ; 0xd1c8
-	text_jump UnknownText_0x1c09dd, BANK(UnknownText_0x1c09dd)
+	text_jump UnknownText_0x1c09dd
 	db "@"
 ; 0xd1cd
 
@@ -10705,7 +10705,7 @@ UnknownScript_0xd1cd: ; 0xd1cd
 ; 0xd1d0
 
 UnknownText_0xd1d0: ; 0xd1d0
-	text_jump UnknownText_0x1c0a05, BANK(UnknownText_0x1c0a05)
+	text_jump UnknownText_0x1c0a05
 	db "@"
 ; 0xd1d5
 
@@ -17753,13 +17753,13 @@ UnknownScript_0x122e3: ; 0x122e3
 
 UnknownText_0x122ee: ; 0x122ee
 	; found @ !
-	text_jump UnknownText_0x1c0a1c, BANK(UnknownText_0x1c0a1c)
+	text_jump UnknownText_0x1c0a1c
 	db "@"
 ; 0x122f3
 
 UnknownText_0x122f3: ; 0x122f3
 	; But   can't carry any more items.
-	text_jump UnknownText_0x1c0a2c, BANK(UnknownText_0x1c0a2c)
+	text_jump UnknownText_0x1c0a2c
 	db "@"
 ; 0x122f8
 
@@ -18027,7 +18027,7 @@ UnknownScript_0x124c8: ; 0x124c8
 ; 0x124f5
 
 UnknownText_0x124f5: ; 0x124f5
-	text_jump UnknownText_0x1c0a4e, BANK(UnknownText_0x1c0a4e)
+	text_jump UnknownText_0x1c0a4e
 	db $50
 ; 0x124fa
 
@@ -18524,7 +18524,7 @@ StartMenu_Quit: ; 128f0
 	ret
 
 .EndTheContestText
-	text_jump UnknownText_0x1c1a6c, BANK(UnknownText_0x1c1a6c)
+	text_jump UnknownText_0x1c1a6c
 	db "@"
 ; 1290b
 
@@ -18738,7 +18738,7 @@ CantUseItem: ; 12a60
 ; 12a67
 
 CantUseItemText: ; 12a67
-	text_jump UnknownText_0x1c1b03, BANK(UnknownText_0x1c1b03)
+	text_jump UnknownText_0x1c1b03
 	db "@"
 ; 12a6c
 
@@ -19066,42 +19066,42 @@ GiveTakeItemMenuData: ; 12c9b
 
 
 TookAndMadeHoldText: ; 12caf
-	text_jump UnknownText_0x1c1b2c, BANK(UnknownText_0x1c1b2c)
+	text_jump UnknownText_0x1c1b2c
 	db "@"
 ; 12cb4
 
 MadeHoldText: ; 12cb4
-	text_jump UnknownText_0x1c1b57, BANK(UnknownText_0x1c1b57)
+	text_jump UnknownText_0x1c1b57
 	db "@"
 ; 12cb9
 
 PleaseRemoveMailText: ; 12cb9
-	text_jump UnknownText_0x1c1b6f, BANK(UnknownText_0x1c1b6f)
+	text_jump UnknownText_0x1c1b6f
 	db "@"
 ; 12cbe
 
 IsntHoldingAnythingText: ; 12cbe
-	text_jump UnknownText_0x1c1b8e, BANK(UnknownText_0x1c1b8e)
+	text_jump UnknownText_0x1c1b8e
 	db "@"
 ; 12cc3
 
 ItemStorageIsFullText: ; 12cc3
-	text_jump UnknownText_0x1c1baa, BANK(UnknownText_0x1c1baa)
+	text_jump UnknownText_0x1c1baa
 	db "@"
 ; 12cc8
 
 TookFromText: ; 12cc8
-	text_jump UnknownText_0x1c1bc4, BANK(UnknownText_0x1c1bc4)
+	text_jump UnknownText_0x1c1bc4
 	db "@"
 ; 12ccd
 
 SwitchAlreadyHoldingText: ; 12ccd
-	text_jump UnknownText_0x1c1bdc, BANK(UnknownText_0x1c1bdc)
+	text_jump UnknownText_0x1c1bdc
 	db "@"
 ; 12cd2
 
 CantBeHeldText: ; 12cd2
-	text_jump UnknownText_0x1c1c09, BANK(UnknownText_0x1c1c09)
+	text_jump UnknownText_0x1c1c09
 	db "@"
 ; 12cd7
 
@@ -19238,32 +19238,32 @@ INCBIN "baserom.gbc",$12dc9,$12de2 - $12dc9
 
 
 UnknownText_0x12de2: ; 0x12de2
-	text_jump UnknownText_0x1c1c22, BANK(UnknownText_0x1c1c22)
+	text_jump UnknownText_0x1c1c22
 	db "@"
 ; 0x12de7
 
 UnknownText_0x12de7: ; 0x12de7
-	text_jump UnknownText_0x1c1c47, BANK(UnknownText_0x1c1c47)
+	text_jump UnknownText_0x1c1c47
 	db "@"
 ; 0x12dec
 
 UnknownText_0x12dec: ; 0x12dec
-	text_jump UnknownText_0x1c1c62, BANK(UnknownText_0x1c1c62)
+	text_jump UnknownText_0x1c1c62
 	db "@"
 ; 0x12df1
 
 UnknownText_0x12df1: ; 0x12df1
-	text_jump UnknownText_0x1c1c86, BANK(UnknownText_0x1c1c86)
+	text_jump UnknownText_0x1c1c86
 	db "@"
 ; 0x12df6
 
 UnknownText_0x12df6: ; 0x12df6
-	text_jump UnknownText_0x1c1ca9, BANK(UnknownText_0x1c1ca9)
+	text_jump UnknownText_0x1c1ca9
 	db "@"
 ; 0x12dfb
 
 UnknownText_0x12dfb: ; 0x12dfb
-	text_jump UnknownText_0x1c1cc4, BANK(UnknownText_0x1c1cc4)
+	text_jump UnknownText_0x1c1cc4
 	db "@"
 ; 0x12e00
 
@@ -20011,7 +20011,7 @@ SelectMenu: ; 13327
 
 
 ItemMayBeRegisteredText: ; 13340
-	text_jump UnknownText_0x1c1cf3, BANK(UnknownText_0x1c1cf3)
+	text_jump UnknownText_0x1c1cf3
 	db "@"
 ; 13345
 
@@ -20482,7 +20482,7 @@ UnknownScript_0x13603: ; 0x13603
 INCBIN "baserom.gbc",$1360f,$13614 - $1360f
 
 UnknownText_0x13614: ; 0x13614
-	text_jump UnknownText_0x1bd2e7, BANK(UnknownText_0x1bd2e7)
+	text_jump UnknownText_0x1bd2e7
 	db $50
 ; 0x13619
 
@@ -25269,31 +25269,31 @@ Function15efd: ; 15efd
 ; 15f73
 
 UnknownText_0x15f73: ; 0x15f73
-	text_jump UnknownText_0x1c4f33, BANK(UnknownText_0x1c4f33)
+	text_jump UnknownText_0x1c4f33
 	db "@"
 ; 0x15f78
 
 UnknownText_0x15f78: ; 0x15f78
-	text_jump UnknownText_0x1c4f3e, BANK(UnknownText_0x1c4f3e)
+	text_jump UnknownText_0x1c4f3e
 	db "@"
 ; 0x15f7d
 
 INCBIN "baserom.gbc",$15f7d,$15f83 - $15f7d
 
 UnknownText_0x15f83: ; 0x15f83
-	text_jump UnknownText_0x1c4f62, BANK(UnknownText_0x1c4f62)
+	text_jump UnknownText_0x1c4f62
 	db "@"
 ; 0x15f88
 
 INCBIN "baserom.gbc",$15f88,$15fb9 - $15f88
 
 UnknownText_0x15fb9: ; 0x15fb9
-	text_jump UnknownText_0x1c500d, BANK(UnknownText_0x1c500d)
+	text_jump UnknownText_0x1c500d
 	db "@"
 ; 0x15fbe
 
 UnknownText_0x15fbe: ; 0x15fbe
-	text_jump UnknownText_0x1c502e, BANK(UnknownText_0x1c502e)
+	text_jump UnknownText_0x1c502e
 	db "@"
 ; 0x15fc3
 
@@ -28343,7 +28343,7 @@ Function2445d: ; 2445d
 ; 24468
 
 UnknownText_0x24468: ; 24468
-	text_jump UnknownText_0x1c46b7, BANK(UnknownText_0x1c46b7)
+	text_jump UnknownText_0x1c46b7
 	db "@"
 ; 2446d
 
@@ -38132,7 +38132,7 @@ Function3846c: ; 3846c
 ; 384d0
 
 UnknownText_0x384d0: ; 384d0
-	text_jump UnknownText_0x1bcf9c, BANK(UnknownText_0x1bcf9c)
+	text_jump UnknownText_0x1bcf9c
 	db "@"
 ; 384d5
 
@@ -38257,7 +38257,7 @@ Function38571: ; 38571
 ; 3858c
 
 UnknownText_0x3858c: ; 3858c
-	text_jump UnknownText_0x1bcfaf, BANK(UnknownText_0x1bcfaf)
+	text_jump UnknownText_0x1bcfaf
 	db "@"
 ; 38591
 
@@ -46305,7 +46305,7 @@ Function3f106: ; 3f106
 ; 3f11b
 
 UnknownText_0x3f11b: ; 3f11b
-	text_jump UnknownText_0x1c029c, BANK(UnknownText_0x1c029c)
+	text_jump UnknownText_0x1c029c
 	start_asm
 	ld hl, UnknownText_0x3f131
 	ld a, [$d088] ; IsTradedMon
@@ -46316,12 +46316,12 @@ UnknownText_0x3f11b: ; 3f11b
 ; 3f12c
 
 UnknownText_0x3f12c: ; 3f12c
-	text_jump UnknownText_0x1c02a9, BANK(UnknownText_0x1c02a9)
+	text_jump UnknownText_0x1c02a9
 	db "@"
 ; 3f131
 
 UnknownText_0x3f131: ; 3f131
-	text_jump UnknownText_0x1c02c9, BANK(UnknownText_0x1c02c9)
+	text_jump UnknownText_0x1c02c9
 	db "@"
 ; 3f136
 
@@ -46579,25 +46579,25 @@ Function3f26d: ; 3f26d
 
 
 UnknownText_0x3f2d1: ; 3f2d1
-	text_jump UnknownText_0x1c02df, BANK(UnknownText_0x1c02df)
+	text_jump UnknownText_0x1c02df
 	start_asm
 	jr Function3f2eb
 ; 3f2d6
 
 UnknownText_0x3f2d8: ; 3f2d8
-	text_jump UnknownText_0x1c02e6, BANK(UnknownText_0x1c02e6)
+	text_jump UnknownText_0x1c02e6
 	start_asm
 	jr Function3f2eb
 ; 3f2dd
 
 UnknownText_0x3f2df: ; 3f2df
-	text_jump UnknownText_0x1c02f0, BANK(UnknownText_0x1c02f0)
+	text_jump UnknownText_0x1c02f0
 	start_asm
 	jr Function3f2eb
 ; 3f2e4
 
 UnknownText_0x3f2e6: ; 3f2e6
-	text_jump UnknownText_0x1c02fe, BANK(UnknownText_0x1c02fe)
+	text_jump UnknownText_0x1c02fe
 	start_asm
 ; 3f2eb
 
@@ -46607,7 +46607,7 @@ Function3f2eb: ; 3f2eb
 ; 3f2ef
 
 UnknownText_0x3f2ef: ; 3f2ef
-	text_jump UnknownText_0x1c0317, BANK(UnknownText_0x1c0317)
+	text_jump UnknownText_0x1c0317
 	db "@"
 ; 3f2f4
 
@@ -46618,7 +46618,7 @@ Function3f2f4: ; 3f2f4
 ; 3f2fa
 
 UnknownText_0x3f2fa: ; 3f2fa
-	text_jump UnknownText_0x1c031d, BANK(UnknownText_0x1c031d)
+	text_jump UnknownText_0x1c031d
 	start_asm
 ; 3f2ff
 
@@ -46668,17 +46668,17 @@ Function3f2ff: ; 3f2ff
 ; 3f348
 
 UnknownText_0x3f348: ; 3f348
-	text_jump UnknownText_0x1c0324, BANK(UnknownText_0x1c0324)
+	text_jump UnknownText_0x1c0324
 	db "@"
 ; 3f34d
 
 UnknownText_0x3f34d: ; 3f34d
-	text_jump UnknownText_0x1c0340, BANK(UnknownText_0x1c0340)
+	text_jump UnknownText_0x1c0340
 	db "@"
 ; 3f352
 
 UnknownText_0x3f352: ; 3f352
-	text_jump UnknownText_0x1c0352, BANK(UnknownText_0x1c0352)
+	text_jump UnknownText_0x1c0352
 	db "@"
 ; 3f357
 
@@ -46688,7 +46688,7 @@ Function3f357: ; 3f357
 ; 3f35b
 
 UnknownText_0x3f35b: ; 3f35b
-	text_jump UnknownText_0x1c0366, BANK(UnknownText_0x1c0366)
+	text_jump UnknownText_0x1c0366
 	db "@"
 ; 3f360
 
@@ -54680,7 +54680,7 @@ Function49e75: ; 49e75
 ; 49e8c
 
 UnknownText_0x49e8c: ; 49e8c
-	text_jump UnknownText_0x1c5182, BANK(UnknownText_0x1c5182)
+	text_jump UnknownText_0x1c5182
 	db "@"
 ; 49e91
 
@@ -56441,7 +56441,7 @@ Function4ad17: ; 4ad17
 
 UnknownText_0x4ad51: ; 0x4ad51
 	; Only three #MON may enter.
-	text_jump UnknownText_0x1c521c, BANK(UnknownText_0x1c521c)
+	text_jump UnknownText_0x1c521c
 	db "@"
 ; 0x4ad56
 
@@ -61474,12 +61474,12 @@ Function5067b: ; 5067b
 ; 506b2
 
 PoisonFaintText: ; 506b2
-	text_jump UnknownText_0x1c0acc, BANK(UnknownText_0x1c0acc)
+	text_jump UnknownText_0x1c0acc
 	db "@"
 ; 506b7
 
 PoisonWhiteOutText: ; 506b7
-	text_jump UnknownText_0x1c0ada, BANK(UnknownText_0x1c0ada)
+	text_jump UnknownText_0x1c0ada
 	db "@"
 ; 506bc
 
@@ -61549,12 +61549,12 @@ Function506ef: ; 506ef
 ; 50726
 
 UnknownText_0x50726: ; 0x50726
-	text_jump UnknownText_0x1c0b03, BANK(UnknownText_0x1c0b03)
+	text_jump UnknownText_0x1c0b03
 	db $50
 ; 0x5072b
 
 UnknownText_0x5072b: ; 0x5072b
-	text_jump UnknownText_0x1c0b1a, BANK(UnknownText_0x1c0b1a)
+	text_jump UnknownText_0x1c0b1a
 	db $50
 ; 0x50730
 
@@ -61580,7 +61580,7 @@ UnknownScript_0x5074b: ; 0x5074b
 ; 0x5074e
 
 UnknownText_0x5074e: ; 0x5074e
-	text_jump UnknownText_0x1c0b3b, BANK(UnknownText_0x1c0b3b)
+	text_jump UnknownText_0x1c0b3b
 	db $50
 ; 0x50753
 
@@ -61755,7 +61755,7 @@ UnknownScript_0x50821: ; 0x50821
 ; 0x50845
 
 UnknownText_0x50845: ; 0x50845
-	text_jump UnknownText_0x1c0b65, BANK(UnknownText_0x1c0b65)
+	text_jump UnknownText_0x1c0b65
 	db $50
 ; 0x5084a
 
@@ -76893,7 +76893,7 @@ Function9031d: ; 9031d
 ; 9032a
 
 UnknownText_0x9032a: ; 9032a
-	text_jump UnknownText_0x1c5580, BANK(UnknownText_0x1c5580)
+	text_jump UnknownText_0x1c5580
 	db "@"
 ; 9032f
 
@@ -76905,7 +76905,7 @@ Function9032f: ; 9032f
 ; 90336
 
 UnknownText_0x90336: ; 0x90336
-	text_jump UnknownText_0x1c5588, BANK(UnknownText_0x1c5588)
+	text_jump UnknownText_0x1c5588
 	db "@"
 ; 0x9033b
 
@@ -94760,7 +94760,7 @@ Functione01b5: ; e01b5
 
 UnknownText_0xe01cd: ; 0xe01cd
 	; Play with three coins?
-	text_jump UnknownText_0x1c5793, BANK(UnknownText_0x1c5793)
+	text_jump UnknownText_0x1c5793
 	db "@"
 ; 0xe01d2
 
@@ -94802,7 +94802,7 @@ Functione01d2: ; e01d2
 
 UnknownText_0xe0212: ; 0xe0212
 	; Not enough coins…
-	text_jump UnknownText_0x1c57ab, BANK(UnknownText_0x1c57ab)
+	text_jump UnknownText_0x1c57ab
 	db "@"
 ; 0xe0217
 
@@ -94881,7 +94881,7 @@ Functione0217: ; e0217
 
 UnknownText_0xe02b2: ; 0xe02b2
 	; Choose a card.
-	text_jump UnknownText_0x1c57be, BANK(UnknownText_0x1c57be)
+	text_jump UnknownText_0x1c57be
 	db "@"
 ; 0xe02b7
 
@@ -94905,7 +94905,7 @@ Functione02b7: ; e02b7
 
 UnknownText_0xe02d5: ; 0xe02d5
 	; Place your bet.
-	text_jump UnknownText_0x1c57ce, BANK(UnknownText_0x1c57ce)
+	text_jump UnknownText_0x1c57ce
 	db "@"
 ; 0xe02da
 
@@ -94980,7 +94980,7 @@ Functione031e: ; e031e
 
 UnknownText_0xe0356: ; 0xe0356
 	; Want to play again?
-	text_jump UnknownText_0x1c57df, BANK(UnknownText_0x1c57df)
+	text_jump UnknownText_0x1c57df
 	db "@"
 ; 0xe035b
 
@@ -108316,7 +108316,7 @@ UsedMoveText: ; 105db9
 ; this is a stream of text and asm from 105db9 to 105ef6
 
 ; print actor name
-	text_jump _ActorNameText, BANK(_ActorNameText)
+	text_jump _ActorNameText
 	start_asm
 
 ; ????
@@ -108378,13 +108378,13 @@ UsedMoveText: ; 105db9
 ; 105e04
 
 UsedMove1Text: ; 105e04
-	text_jump _UsedMove1Text, BANK(_UsedMove1Text)
+	text_jump _UsedMove1Text
 	start_asm
 	jr Function105e10
 ; 105e0b
 
 UsedMove2Text: ; 105e0b
-	text_jump _UsedMove2Text, BANK(_UsedMove2Text)
+	text_jump _UsedMove2Text
 	start_asm
 ; 105e10
 
@@ -108399,7 +108399,7 @@ Function105e10: ; 105e10
 ; 105e1a
 
 UsedInsteadText: ; 105e1a
-	text_jump _UsedInsteadText, BANK(_UsedInsteadText)
+	text_jump _UsedInsteadText
 	start_asm
 ; 105e1f
 
@@ -108409,7 +108409,7 @@ GetMoveNameText: ; 105e1f
 ; 105e23
 
 MoveNameText: ; 105e23
-	text_jump _MoveNameText, BANK(_MoveNameText)
+	text_jump _MoveNameText
 	start_asm
 ; 105e28
 
@@ -108446,23 +108446,23 @@ GetUsedMoveTextEnder: ; 105e28
 ; 105e43
 
 EndUsedMove1Text: ; 105e43
-	text_jump _EndUsedMove1Text, BANK(_EndUsedMove1Text)
+	text_jump _EndUsedMove1Text
 	db "@"
 ; 105e48
 EndUsedMove2Text: ; 105e48
-	text_jump _EndUsedMove2Text, BANK(_EndUsedMove2Text)
+	text_jump _EndUsedMove2Text
 	db "@"
 ; 105e4d
 EndUsedMove3Text: ; 105e4d
-	text_jump _EndUsedMove3Text, BANK(_EndUsedMove3Text)
+	text_jump _EndUsedMove3Text
 	db "@"
 ; 105e52
 EndUsedMove4Text: ; 105e52
-	text_jump _EndUsedMove4Text, BANK(_EndUsedMove4Text)
+	text_jump _EndUsedMove4Text
 	db "@"
 ; 105e57
 EndUsedMove5Text: ; 105e57
-	text_jump _EndUsedMove5Text, BANK(_EndUsedMove5Text)
+	text_jump _EndUsedMove5Text
 	db "@"
 ; 105e5c
 

@@ -1154,7 +1154,7 @@ BGEvent: ; 26f7
 ; 26fa
 
 BGEventText: ; 26fa
-	text_jump UnknownText_0x1c46fc, BANK(UnknownText_0x1c46fc)
+	text_jump UnknownText_0x1c46fc
 	db "@"
 ; 26ff
 
@@ -1164,7 +1164,7 @@ CoordinatesEvent: ; 26ff
 ; 2702
 
 CoordinatesEventText: ; 2702
-	text_jump UnknownText_0x1c4706, BANK(UnknownText_0x1c4706)
+	text_jump UnknownText_0x1c4706
 	db "@"
 ; 2707
 

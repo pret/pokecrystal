@@ -589,7 +589,7 @@ GiveItemScript: ; 96f77
 ; 96f89
 
 ReceivedItemText: ; 96f89
-	text_jump UnknownText_0x1c4719, BANK(UnknownText_0x1c4719)
+	text_jump UnknownText_0x1c4719
 	db "@"
 ; 96f8e
 
@@ -706,12 +706,12 @@ CurItemName: ; 97051
 
 
 PutItemInPocketText: ; 9705b
-	text_jump UnknownText_0x1c472c, BANK(UnknownText_0x1c472c)
+	text_jump UnknownText_0x1c472c
 	db "@"
 ; 97060
 
 PocketIsFullText: ; 97060
-	text_jump UnknownText_0x1c474b, BANK(UnknownText_0x1c474b)
+	text_jump UnknownText_0x1c474b
 	db "@"
 ; 97065
 

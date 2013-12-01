@@ -136,27 +136,27 @@ FruitTreeItems: ; 44097
 ; 440b5
 
 FruitBearingTreeText: ; 440b5
-	text_jump _FruitBearingTreeText, BANK(_FruitBearingTreeText)
+	text_jump _FruitBearingTreeText
 	db "@"
 ; 440ba
 
 HeyItsFruitText: ; 440ba
-	text_jump _HeyItsFruitText, BANK(_HeyItsFruitText)
+	text_jump _HeyItsFruitText
 	db "@"
 ; 440bf
 
 ObtainedFruitText: ; 440bf
-	text_jump _ObtainedFruitText, BANK(_ObtainedFruitText)
+	text_jump _ObtainedFruitText
 	db "@"
 ; 440c4
 
 FruitPackIsFullText: ; 440c4
-	text_jump _FruitPackIsFullText, BANK(_FruitPackIsFullText)
+	text_jump _FruitPackIsFullText
 	db "@"
 ; 440c9
 
 NothingHereText: ; 440c9
-	text_jump _NothingHereText, BANK(_NothingHereText)
+	text_jump _NothingHereText
 	db "@"
 ; 440ce
 
