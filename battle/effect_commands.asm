@@ -6634,12 +6634,12 @@ GetStatName: ; 3648f
 
 
 Table0x364e6: ; 364e6
-	dw $6419
-	dw $641c
-	dw $6421
-	dw $6428
-	dw $6432
-	dw $6442
+	db 25, 100
+	db 28, 100
+	db 33, 100
+	db 40, 100
+	db 50, 100
+	db 66, 100
 ; 364f2
 
 
@@ -6806,7 +6806,7 @@ BattleCommanda6: ; 365af
 	xor a
 	ld [$ffd4], a
 	call CallBankF
-	jp $31f6
+	jp WaitBGMap
 ; 365c3
 
 
@@ -6820,7 +6820,7 @@ BattleCommanda7: ; 365c3
 	xor a
 	ld [$ffd4], a
 	call CallBankF
-	jp $31f6
+	jp WaitBGMap
 ; 365d7
 
 
@@ -6873,50 +6873,54 @@ Function0x3661d: ; 3661d
 	ld a, [hli]
 	push hl
 	push bc
+
 	ld c, a
 	dec c
 	ld b, 0
 	ld hl, Table0x364e6
 	add hl, bc
 	add hl, bc
+
 	xor a
-	ld [$ffb4], a
+	ld [hMultiplicand], a
 	ld a, [de]
-	ld [$ffb5], a
+	ld [hMultiplicand + 1], a
 	inc de
 	ld a, [de]
-	ld [$ffb6], a
+	ld [hMultiplicand + 2], a
 	inc de
+
 	ld a, [hli]
-	ld [$ffb7], a
+	ld [hMultiplier], a
 	call Multiply
 
 	ld a, [hl]
-	ld [$ffb7], a
-	ld b, $4
+	ld [hDivisor], a
+	ld b, 4
 	call Divide
 
-	ld a, [$ffb5]
+	ld a, [hQuotient + 1]
 	ld b, a
-	ld a, [$ffb6]
+	ld a, [hQuotient + 2]
 	or b
 	jr nz, .asm_36651
 
-	ld a, $1
-	ld [$ffb6], a
+	ld a, 1
+	ld [hQuotient + 2], a
 	jr .asm_36662
 
 .asm_36651
-	ld a, [$ffb6]
-	cp $e7
+	ld a, [hQuotient + 2]
+	cp 999 % $100
 	ld a, b
-	sbc $3
+	sbc 999 / $100
 	jr c, .asm_36662
 
-	ld a, $e7
+	ld a, 999 % $100
 	ld [$ffb6], a
-	ld a, $3
+	ld a, 999 / $100
 	ld [$ffb5], a
+
 .asm_36662
 	pop bc
 	ld a, [$ffb5]
@@ -9139,116 +9143,14 @@ BattleCommand1a: ; 37380
 	ret nc
 	callba DrawPlayerHUD
 	callba Function3e043
-	call $31f6
+	call WaitBGMap
 	jp RefreshBattleHuds
 ; 373c9
 
 
-BattleCommand1b: ; 373c9
-; mirrormove
+INCLUDE "battle/effects/mirror_move.asm"
 
-	call Function0x372d8
-	ld a, BATTLE_VARS_MOVE
-	call _GetBattleVar
-	ld a, BATTLE_VARS_LAST_COUNTER_MOVE_OPP
-	call GetBattleVar
-	and a
-	jr z, .asm_373de ; 373d7 $5
-	call CheckUserMove
-	jr nz, .asm_373ea ; 373dc $c
-.asm_373de
-	call Function0x37e77
-	ld hl, MirrorMoveFailedText
-	call StdBattleTextBox
-	jp EndMoveEffect
-.asm_373ea
-	ld a, b
-	ld [hl], a
-	ld [$d265], a
-	push af
-	ld a, BATTLE_VARS_MOVE_ANIM
-	call _GetBattleVar
-	ld d, h
-	ld e, l
-	pop af
-	dec a
-	call GetMoveData
-	call GetMoveName
-	call $30d6
-	call Function0x34548
-	jr nz, .asm_37412 ; 37405 $b
-	ld a, [$c689]
-	push af
-	call BattleCommand0a
-	pop af
-	ld [$c689], a
-.asm_37412
-	call BattleCommandaa
-	jp ResetTurn
-; 37418
-
-
-BattleCommand34: ; 37418
-; metronome
-
-	call Function0x372d8
-	call Function0x34548
-	jr nz, .asm_3742b
-
-	ld a, [$c689]
-	push af
-	call BattleCommand0a
-	pop af
-	ld [$c689], a
-
-.asm_3742b
-	call Function0x37e36
-
-.GetMove
-	call BattleRandom
-
-; No invalid moves.
-	cp BEAT_UP + 1
-	jr nc, .GetMove
-
-; None of the moves in MetronomeExcepts.
-	push af
-	ld de, 1
-	ld hl, MetronomeExcepts
-	call IsInArray
-	pop bc
-	jr c, .GetMove
-
-; No moves the user already has.
-	ld a, b
-	call CheckUserMove
-	jr z, .GetMove
-
-
-	ld a, BATTLE_VARS_MOVE
-	call _GetBattleVar
-	ld [hl], b
-	call UpdateMoveData
-	jp ResetTurn
-; 37454
-
-
-MetronomeExcepts: ; 37454
-	db $00
-	db METRONOME
-	db STRUGGLE
-	db SKETCH
-	db MIMIC
-	db COUNTER
-	db MIRROR_COAT
-	db PROTECT
-	db DETECT
-	db ENDURE
-	db DESTINY_BOND
-	db SLEEP_TALK
-	db THIEF
-	db $ff
-; 37462
+INCLUDE "battle/effects/metronome.asm"
 
 
 CheckUserMove: ; 37462
@@ -9293,122 +9195,7 @@ ResetTurn: ; 3747b
 ; 37492
 
 
-BattleCommand50: ; 37492
-; thief
-
-	ld a, [hBattleTurn]
-	and a
-	jr nz, .enemy
-
-; The player needs to be able to steal an item.
-
-	call .playeritem
-	ld a, [hl]
-	and a
-	ret nz
-
-; The enemy needs to have an item to steal.
-
-	call .enemyitem
-	ld a, [hl]
-	and a
-	ret z
-
-; Can't steal mail.
-
-	ld [$d265], a
-	ld d, a
-	callba ItemIsMail
-	ret c
-
-	ld a, [EffectFailed]
-	and a
-	ret nz
-
-	ld a, [InLinkBattle]
-	and a
-	jr z, .stealenemyitem
-
-	ld a, [IsInBattle]
-	dec a
-	ret z
-
-.stealenemyitem
-	call .enemyitem
-	xor a
-	ld [hl], a
-	ld [de], a
-
-	call .playeritem
-	ld a, [$d265]
-	ld [hl], a
-	ld [de], a
-	jr .stole
-
-
-.enemy
-
-; The enemy can't already have an item.
-
-	call .enemyitem
-	ld a, [hl]
-	and a
-	ret nz
-
-; The player must have an item to steal.
-
-	call .playeritem
-	ld a, [hl]
-	and a
-	ret z
-
-; Can't steal mail!
-
-	ld [$d265], a
-	ld d, a
-	callba ItemIsMail
-	ret c
-
-	ld a, [EffectFailed]
-	and a
-	ret nz
-
-; If the enemy steals your item,
-; it's gone for good if you don't get it back.
-
-	call .playeritem
-	xor a
-	ld [hl], a
-	ld [de], a
-
-	call .enemyitem
-	ld a, [$d265]
-	ld [hl], a
-	ld [de], a
-
-
-.stole
-	call GetItemName
-	ld hl, StoleText
-	jp StdBattleTextBox
-
-
-.playeritem
-	ld a, 1
-	call BattlePartyAttr
-	ld d, h
-	ld e, l
-	ld hl, BattleMonItem
-	ret
-
-.enemyitem
-	ld a, 1
-	call OTPartyAttr
-	ld d, h
-	ld e, l
-	ld hl, EnemyMonItem
-	ret
-; 37517
+INCLUDE "battle/effects/thief.asm"
 
 
 BattleCommand51: ; 37517
@@ -9439,44 +9226,7 @@ BattleCommand51: ; 37517
 ; 37536
 
 
-BattleCommand52: ; 37536
-; nightmare
-
-; Can't hit an absent opponent.
-
-	call CheckHiddenOpponent
-	jr nz, .failed
-
-; Can't hit a substitute.
-
-	call CheckSubstituteOpp
-	jr nz, .failed
-
-; Only works on a sleeping opponent.
-
-	ld a, BATTLE_VARS_STATUS_OPP
-	call _GetBattleVar
-	and SLP
-	jr z, .failed
-
-; Bail if the opponent is already having a nightmare.
-
-	ld a, BATTLE_VARS_SUBSTATUS1_OPP
-	call _GetBattleVar
-	bit SUBSTATUS_NIGHTMARE, [hl]
-	jr nz, .failed
-
-; Otherwise give the opponent a nightmare.
-
-	set SUBSTATUS_NIGHTMARE, [hl]
-	call Function0x37e01
-	ld hl, StartedNightmareText
-	jp StdBattleTextBox
-
-.failed
-	call Function0x37e77
-	jp PrintButItFailed
-; 37563
+INCLUDE "battle/effects/nightmare.asm"
 
 
 BattleCommand53: ; 37563
@@ -9520,172 +9270,13 @@ INCLUDE "battle/effects/endure.asm"
 
 INCLUDE "battle/effects/spikes.asm"
 
+INCLUDE "battle/effects/foresight.asm"
 
-BattleCommand57: ; 376a0
-; foresight
+INCLUDE "battle/effects/perish_song.asm"
 
-	ld a, [AttackMissed]
-	and a
-	jr nz, .asm_376bf
-	call CheckHiddenOpponent
-	jr nz, .asm_376bf
-	ld a, BATTLE_VARS_SUBSTATUS1_OPP
-	call _GetBattleVar
-	bit SUBSTATUS_IDENTIFIED, [hl]
-	jr nz, .asm_376bf
-	set SUBSTATUS_IDENTIFIED, [hl]
-	call Function0x37e01
-	ld hl, IdentifiedText
-	jp StdBattleTextBox
-.asm_376bf
-	jp Function0x37354
-; 376c2
+INCLUDE "battle/effects/sandstorm.asm"
 
-
-BattleCommand58: ; 376c2
-; perishsong
-
-	ld hl, PlayerSubStatus1
-	ld de, EnemySubStatus1
-	bit SUBSTATUS_PERISH, [hl]
-	jr z, .asm_376d1
-	ld a, [de]
-	bit SUBSTATUS_PERISH, a
-	jr nz, .asm_376f2
-.asm_376d1
-	bit SUBSTATUS_PERISH, [hl]
-	jr nz, .asm_376dc
-	set SUBSTATUS_PERISH, [hl]
-	ld a, 4
-	ld [PlayerPerishCount], a
-.asm_376dc
-	ld a, [de]
-	bit SUBSTATUS_PERISH, a
-	jr nz, .asm_376e9
-	set SUBSTATUS_PERISH, a
-	ld [de], a
-	ld a, 4
-	ld [EnemyPerishCount], a
-.asm_376e9
-	call Function0x37e01
-	ld hl, StartPerishText
-	jp StdBattleTextBox
-.asm_376f2
-	call Function0x37e77
-	jp PrintButItFailed
-; 376f8
-
-
-BattleCommand59: ; 376f8
-; startsandstorm
-
-	ld a, [Weather]
-	cp WEATHER_SANDSTORM
-	jr z, .asm_37712
-	ld a, WEATHER_SANDSTORM
-	ld [Weather], a
-	ld a, 5
-	ld [WeatherCount], a
-	call Function0x37e01
-	ld hl, SandstormBrewedText
-	jp StdBattleTextBox
-.asm_37712
-	call Function0x37e77
-	jp PrintButItFailed
-; 37718
-
-
-BattleCommand5b: ; 37718
-; checkcurl
-
-	ld de, PlayerRolloutCount
-	ld a, [hBattleTurn]
-	and a
-	jr z, .asm_37723
-	ld de, EnemyRolloutCount
-.asm_37723
-	ld a, BATTLE_VARS_SUBSTATUS1
-	call GetBattleVar
-	bit SUBSTATUS_ENCORED, a
-	jr z, .asm_37731
-
-	ld b, $4 ; doturn
-	jp SkipToBattleCommand
-
-.asm_37731
-	xor a
-	ld [de], a
-	ret
-; 37734
-
-
-BattleCommand5c: ; 37734
-; rolloutpower
-
-	ld a, BATTLE_VARS_STATUS
-	call GetBattleVar
-	and 7
-	ret nz
-
-	ld hl, PlayerRolloutCount
-	ld a, [hBattleTurn]
-	and a
-	jr z, .asm_37747
-	ld hl, EnemyRolloutCount
-
-.asm_37747
-	ld a, [hl]
-	and a
-	jr nz, .asm_37750
-	ld a, 1
-	ld [$c73e], a
-
-.asm_37750
-	ld a, [AttackMissed]
-	and a
-	jr z, .hit
-
-	ld a, BATTLE_VARS_SUBSTATUS1
-	call _GetBattleVar
-	res 6, [hl]
-	ret
-
-.hit
-	inc [hl]
-	ld a, [hl]
-	ld b, a
-	cp $5
-	jr c, .asm_3776e ; 37763 $9
-	ld a, BATTLE_VARS_SUBSTATUS1
-	call _GetBattleVar
-	res 6, [hl]
-	jr .asm_37775 ; 3776c $7
-
-.asm_3776e
-	ld a, BATTLE_VARS_SUBSTATUS1
-	call _GetBattleVar
-	set 6, [hl]
-
-.asm_37775
-	ld a, BATTLE_VARS_SUBSTATUS2
-	call GetBattleVar
-	bit 0, a
-	jr z, .asm_3777f ; 3777c $1
-	inc b
-.asm_3777f
-	dec b
-	jr z, .asm_37790 ; 37780 $e
-	ld hl, CurDamage + 1
-	sla [hl]
-	dec hl
-	rl [hl]
-	jr nc, .asm_3777f ; 3778a $f3
-	ld a, $ff
-	ld [hli], a
-	ld [hl], a
-.asm_37790
-	ret
-; 37791
+INCLUDE "battle/effects/rollout.asm"
 
 
 BattleCommand5d: ; 37791
