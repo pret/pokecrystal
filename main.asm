@@ -101,9 +101,9 @@ NUM_FACINGS EQU (FacingsEnd - Facings) / 2
 ;	db y, x, attributes, tile index
 
 ; Attributes:
-X_FLIP    EQU 1 << 5
-Y_FLIP    EQU 1 << 6
-BEHIND_BG EQU 1 << 7
+X_FLIP    EQU 1 << OAM_X_FLIP
+Y_FLIP    EQU 1 << OAM_Y_FLIP
+BEHIND_BG EQU 1 << OAM_PRIORITY
 
 
 Facing00:
