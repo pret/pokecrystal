@@ -1072,7 +1072,7 @@ UnknownScript_0x96c2e: ; 96c2e
 ; 96c2f
 
 UnknownScript_0x96c2f: ; 96c2f
-	3callasm $05, $6f5e
+	3callasm BANK(Function16f5e), Function16f5e
 	end
 ; 96c34
 

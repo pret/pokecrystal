@@ -9398,7 +9398,7 @@ UnknownScript_0xc8e6: ; 0xc8e6
 	reloadmappart
 	special $0035
 	2writetext UnknownText_0xc8f3
-	3callasm $23, $47e1
+	3callasm BANK(Function8c7e1), Function8c7e1
 	loadmovesprites
 	end
 ; 0xc8f3
@@ -9734,13 +9734,13 @@ UnknownScript_0xcaa3: ; 0xcaa3
 	reloadmappart
 	3callasm BANK(HideSprites), HideSprites
 	special $0035
-	3callasm $23, $4aed
+	3callasm BANK(Function8caed), Function8caed
 	3call BANK(UnknownScript_0x122c1), UnknownScript_0x122c1
 	special $0000
-	3callasm $05, $54f1
+	3callasm BANK(Function154f1), Function154f1
 	writecode $8, $0
 	newloadmap $fc
-	3callasm $23, $4b33
+	3callasm BANK(Function8cb33), Function8cb33
 	special $003b
 	3callasm BANK(Functioncacb), Functioncacb
 	end
@@ -10166,7 +10166,7 @@ UnknownText_0xcd46: ; 0xcd46
 ; 0xcd4b
 
 UnknownScript_0xcd4b: ; 0xcd4b
-	3callasm $03, $4d78
+	3callasm BANK(Functioncd78), Functioncd78
 	iffalse UnknownScript_0xcd5f
 	if_equal $1, UnknownScript_0xcd59
 	2jump UnknownScript_0xcd5c
@@ -10207,6 +10207,7 @@ UnknownText_0xcd73: ; 0xcd73
 	db "@"
 ; 0xcd78
 
+Functioncd78: ; cd78
 	ld d, $46
 	call CheckPartyMove
 	jr c, .asm_cd92
@@ -10389,8 +10390,8 @@ UnknownScript_0xcea7: ; 0xcea7
 	3callasm BANK(GetPartyNick), GetPartyNick
 	2writetext UnknownText_0xce9d
 	reloadmappart
-	3callasm $23, $480a
-	3callasm $2e, $41ea
+	3callasm BANK(Function8c80a), Function8c80a
+	3callasm BANK(Functionb81ea), Functionb81ea
 	iffalse UnknownScript_0xcec3
 	loadmovesprites
 	battlecheck
@@ -10482,7 +10483,7 @@ UnknownScript_0xcf32: ; cf32
 	earthquake 84
 	applymovement2 MovementData_0xcf55
 	disappear $fe
-	3callasm $2e, $4219
+	3callasm BANK(Functionb8219), Functionb8219
 	copybytetovar $d22e
 	iffalse .done
 	battlecheck
@@ -10502,7 +10503,7 @@ UnknownText_0xcf58: ; 0xcf58
 ; 0xcf5d
 
 UnknownScript_0xcf5d: ; 0xcf5d
-	3callasm $03, $4f7c
+	3callasm BANK(Functioncf7c), Functioncf7c
 	if_equal $1, UnknownScript_0xcf6f
 	loadfont
 	2writetext UnknownText_0xcf77
@@ -10528,6 +10529,7 @@ UnknownText_0xcf77: ; 0xcf77
 	db "@"
 ; 0xcf7c
 
+Functioncf7c: ; cf7c
 	ld d, $f9
 	call CheckPartyMove
 	jr nc, .asm_cf87
@@ -23901,12 +23903,20 @@ Function1541d: ; 1541d
 ; 15440
 
 INCBIN "baserom.gbc",$15440,$154cf - $15440
+
+Function154cf: ; 154cf
 	ld a, $1
 	ld [$FF00+$de], a
 	ret
+; 154d3
+
+Function154d3: ; 154d3
 	xor a
 	ld [$FF00+$de], a
 	ret
+; 154d7
+
+Function154d7: ; 154d7
 	ld a, $2
 	call Function263b
 	callba Function2454f
@@ -23914,10 +23924,17 @@ INCBIN "baserom.gbc",$15440,$154cf - $15440
 	ret
 ; 154ea (5:54ea)
 
-INCBIN "baserom.gbc",$154ea,$154eb - $154ea
+Function154ea: ; 154ea
+	ret
+; 154eb
+
+Function154eb: ; 154eb
 	ld hl, $d45b
 	set 7, [hl]
 	ret
+; 154f1
+
+Function154f1: ; 154f1
 	ld hl, $d45b
 	set 6, [hl]
 	ret
@@ -26617,12 +26634,14 @@ Function16f3e: ; 16f3e
 	jr .loop
 ; 16f5e
 
+Function16f5e: ; 16f5e
 	call ResetWindow
 	call Function1d6e
 	call Function16f70
 	call Function2b4d
 	call Function3d47
 	jp Function2dcf
+; 16f70
 
 ; known jump sources: 16f64 (5:6f64)
 Function16f70: ; 16f70 (5:6f70)
@@ -74003,7 +74022,103 @@ Function8c7d4: ; 8c7d4
 	ret
 ; 8c7e1
 
-INCBIN "baserom.gbc",$8c7e1,$8c940 - $8c7e1
+Function8c7e1: ; 8c7e1
+	callba Function8c084
+	ld hl, StatusFlags
+	set 2, [hl]
+	callba Function8c0e5
+	callba Function8c001
+	ld b, $9
+	call Function3340
+	callba Function49409
+	callba Function8c079
+	ret
+; 8c80a
+
+Function8c80a: ; 8c80a
+	callba Function8cf53
+	ld de, $49cc
+	ld hl, VTiles1
+	ld bc, $2304
+	call Request2bpp
+	ld de, $4893
+	ld hl, $8840
+	ld bc, $2308
+	call Request2bpp
+	call Function8cad3
+	ld a, $1b
+	call Function3b2a
+	ld hl, $0003
+	add hl, bc
+	ld [hl], $84
+	ld a, $90
+	ld [$c3b5], a
+	callba Function8cf7a
+	call Function8c913
+	ld a, $20
+	ld [$cf64], a
+	call Function3c55
+	ld de, $006d
+	call Function3c23
+.asm_8c852
+	ld hl, $cf64
+	ld a, [hl]
+	and a
+	jr z, .asm_8c86a
+	dec [hl]
+	ld a, $90
+	ld [$c3b5], a
+	callba Function8cf7a
+	call DelayFrame
+	jr .asm_8c852
+
+.asm_8c86a
+	call Function2173
+	call Function31f6
+	xor a
+	ld [hBGMapMode], a
+	callba Function8cf53
+	ld hl, $c490
+	ld bc, $0010
+	xor a
+	call Function3041
+	ld de, $4200
+	ld hl, VTiles1
+	ld bc, $3e0c
+	call Get1bpp
+	call Functione4a
+	ret
+; 8c893
+
+INCBIN "baserom.gbc", $8c893, $8c913 - $8c893
+
+Function8c913: ; 8c913
+	xor a
+	ld [hBGMapMode], a
+	ld a, [PlayerDirection]
+	and $c
+	srl a
+	ld e, a
+	ld d, $0
+	ld hl, $4938
+	add hl, de
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	ld a, $5
+	ld [hli], a
+	ld [hld], a
+	ld bc, $0014
+	add hl, bc
+	ld [hli], a
+	ld [hld], a
+	call Function31f6
+	xor a
+	ld [hBGMapMode], a
+	ret
+; 8c938
+
+INCBIN "baserom.gbc", $8c938, $8c940 - $8c938
 
 Function8c940: ; 8c940
 	ld a, e
@@ -74180,6 +74295,8 @@ Function8cad3: ; 8cad3 (23:4ad3)
 ; 8cae5 (23:4ae5)
 
 INCBIN "baserom.gbc",$8cae5,$8caed - $8cae5
+
+Function8caed: ; 8caed
 	call DelayFrame
 	ld a, [VramState] ; $d0ed
 	push af
@@ -74211,6 +74328,9 @@ INCBIN "baserom.gbc",$8cae5,$8caed - $8cae5
 	pop af
 	ld [VramState], a ; $d0ed
 	ret
+; 8cb33
+
+Function8cb33: ; 8cb33
 	call DelayFrame
 	ld a, [VramState] ; $d0ed
 	push af
@@ -81911,7 +82031,29 @@ Functionb81e2: ; b81e2
 	ret
 ; b81ea
 
-INCBIN "baserom.gbc",$b81ea,$b8219 - $b81ea
+Functionb81ea: ; b81ea
+	callba Function1060ef
+	xor a
+	ld [$d22e], a
+	ld [CurPartyLevel], a
+	ld hl, $425e
+	call Functionb823f
+	jr nc, .asm_b8214
+	call Functionb82d2
+	jr nc, .asm_b8214
+	call Functionb83e5
+	jr nc, .asm_b8214
+	ld a, $8
+	ld [BattleType], a
+	ld a, $1
+	ld [ScriptVar], a
+	ret
+
+.asm_b8214
+	xor a
+	ld [ScriptVar], a
+	ret
+; b8219
 
 Functionb8219: ; b8219
 ; get a RockMon encounter
@@ -109087,7 +109229,13 @@ Function1060e5: ; 1060e5
 	ret
 ; 1060e6 (41:60e6)
 
-INCBIN "baserom.gbc",$1060e6,$1060fb - $1060e6
+INCBIN "baserom.gbc", $1060e6, $1060ef - $1060e6
+
+Function1060ef: ; 1060ef
+	ret
+; 1060f0
+
+INCBIN "baserom.gbc", $1060f0, $1060fb - $1060f0
 
 
 Function1060fb: ; 1060fb
