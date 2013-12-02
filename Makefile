@@ -95,3 +95,7 @@ gfx/trainers/%.lz: gfx/trainers/%.png
 	@:
 %.1bpp:
 	@:
+%.pal: ;
+
+%.bin: ;
+
