@@ -35,7 +35,7 @@ clean:
 	@echo 'Removing preprocessed .tx files...'
 	@rm -f $(TEXTFILES:.asm=.tx)
 
-baserom.gbc:
+baserom.gbc: ;
 	@echo "Wait! Need baserom.gbc first. Check README and INSTALL for details." && false
 
 PNGS   := $(shell find gfx/ -type f -name '*.png')
@@ -54,6 +54,8 @@ $(shell \
 .asm.tx:
 	$(eval TEXTQUEUE := $(TEXTQUEUE) $<)
 	@rm -f $@
+
+%.asm: ;
 
 globals.asm: $(TEXTFILES:.asm=.tx)
 	@echo "Creating globals.asm..."
