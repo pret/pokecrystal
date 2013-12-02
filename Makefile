@@ -26,6 +26,18 @@ OBJS := $(CRYSTAL_OBJS)
 
 ROMS := pokecrystal.gbc
 
+all: baserom.gbc globals.asm $(ROMS)
+	cmp baserom.gbc pokecrystal.gbc
+clean:
+	rm -f $(ROMS)
+	rm -f $(OBJS)
+	rm -f globals.asm globals.tx
+	@echo 'Removing preprocessed .tx files...'
+	@rm -f $(TEXTFILES:.asm=.tx)
+
+baserom.gbc:
+	@echo "Wait! Need baserom.gbc first. Check README and INSTALL for details." && false
+
 PNGS   := $(shell find gfx/ -type f -name '*.png')
 LZS    := $(shell find gfx/ -type f -name '*.lz')
 _2BPPS := $(shell find gfx/ -type f -name '*.2bpp')
@@ -38,18 +50,6 @@ $(shell \
 		$(shell $(PYTHON) scan_includes.py $(obj:.o=.asm) | sed s/globals.asm//g)) \
 	) \
 )
-
-all: baserom.gbc globals.asm $(ROMS)
-	cmp baserom.gbc pokecrystal.gbc
-clean:
-	rm -f $(ROMS)
-	rm -f $(OBJS)
-	rm -f globals.asm globals.tx
-	@echo 'Removing preprocessed .tx files...'
-	@rm -f $(TEXTFILES:.asm=.tx)
-
-baserom.gbc:
-	@echo "Wait! Need baserom.gbc first. Check README and INSTALL for details." && false
 
 .asm.tx:
 	$(eval TEXTQUEUE := $(TEXTQUEUE) $<)
