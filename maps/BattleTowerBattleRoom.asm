@@ -30,9 +30,12 @@ UnknownScript_0x9f425: ; 0x9f425
 	waitbutton
 	applymovement $2, MovementData_0x9e592
 	loadfont
-	storetext 1, UnknownText_0x9f930 + 37 - $3000, $f
-	follownotexact $0, $f
-	giveegg 0, 123
+	storetext 1
+	keeptextopen
+	loadmovesprites
+	special $0077
+	special $002e
+	reloadmap
 	if_not_equal $0, UnknownScript_0x9f4c2
 	copybytetovar $cf64
 	if_equal $7, UnknownScript_0x9f4d9

@@ -9687,33 +9687,33 @@ BattleCommand67: ; 379c9
 	ld c, 50
 	call DelayFrames
 
-	call $1d6e
+	call Function1d6e
 
 	callba Function3d2f7
 
 	callba Function3d380
 
-	call $3317
+	call ClearPalettes
 
 	callba Function3ed9f
 
-	call $1c17
-	call $300b
+	call Function1c17
+	call ClearSprites
 
 	ld hl, $c4a1
 	ld bc, $040a
 	call ClearBox
 
 	ld b, 1
-	call $3340
-	call $32f9
+	call GetSGBLayout
+	call Function32f9
 	call Function0x37a67
 
 	callba Function3d2e0
 
 	jp c, EndMoveEffect
 
-	ld hl, $6459
+	ld hl, Function3e459
 	call CallBankF
 	call Function0x37ab1
 

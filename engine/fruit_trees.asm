@@ -1,12 +1,12 @@
 FruitTreeScript: ; 44000
-	3callasm BANK(GetCurTreeFruit), GetCurTreeFruit
+	3callasm GetCurTreeFruit
 	loadfont
 	copybytetovar CurFruit
 	itemtotext $0, $0
 	2writetext FruitBearingTreeText
 	keeptextopen
-	3callasm BANK(TryResetFruitTrees), TryResetFruitTrees
-	3callasm BANK(CheckFruitTree), CheckFruitTree
+	3callasm TryResetFruitTrees
+	3callasm CheckFruitTree
 	iffalse .fruit
 	2writetext NothingHereText
 	closetext
@@ -19,7 +19,7 @@ FruitTreeScript: ; 44000
 	iffalse .packisfull
 	keeptextopen
 	2writetext ObtainedFruitText
-	3callasm BANK(PickedFruitTree), PickedFruitTree
+	3callasm PickedFruitTree
 	specialsound
 	itemnotify
 	2jump .end

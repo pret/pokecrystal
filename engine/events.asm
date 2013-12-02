@@ -920,12 +920,12 @@ CheckMenuOW: ; 96b30
 
 
 StartMenuScript: ; 96b58
-	3callasm BANK(StartMenu), StartMenu
+	3callasm StartMenu
 	2jump StartMenuCallback
 ; 96b5f
 
 SelectMenuScript: ; 96b5f
-	3callasm BANK(SelectMenu), SelectMenu
+	3callasm SelectMenu
 	2jump SelectMenuCallback
 ; 96b66
 
@@ -1072,7 +1072,7 @@ UnknownScript_0x96c2e: ; 96c2e
 ; 96c2f
 
 UnknownScript_0x96c2f: ; 96c2f
-	3callasm BANK(Function16f5e), Function16f5e
+	3callasm Function16f5e
 	end
 ; 96c34
 
@@ -1107,7 +1107,7 @@ UnknownScript_0x96c4d: ; 96c4d
 
 UnknownScript_0x96c4f: ; 96c4f
 	deactivatefacing $3
-	3callasm BANK(Function96706), Function96706
+	3callasm Function96706
 	end
 ; 96c56
 

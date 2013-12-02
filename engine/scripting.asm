@@ -573,7 +573,7 @@ Function96f76: ; 96f76
 ; 96f77
 
 GiveItemScript: ; 96f77
-	3callasm BANK(Function96f76), Function96f76
+	3callasm Function96f76
 	2writetext ReceivedItemText
 	iffalse .Full
 	waitbutton

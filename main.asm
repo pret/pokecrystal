@@ -9294,10 +9294,10 @@ Unknown_c7fe: ; c7fe
 INCBIN "baserom.gbc",$c7fe,$c802 - $c7fe
 
 UnknownScript_0xc802: ; 0xc802
-	3callasm BANK(GetPartyNick), GetPartyNick
+	3callasm GetPartyNick
 	2writetext UnknownText_0xc7c4
 	reloadmappart
-	3callasm BANK(Functionc810), Functionc810
+	3callasm Functionc810
 	loadmovesprites
 	end
 ; 0xc810
@@ -9398,7 +9398,7 @@ UnknownScript_0xc8e6: ; 0xc8e6
 	reloadmappart
 	special $0035
 	2writetext UnknownText_0xc8f3
-	3callasm BANK(Function8c7e1), Function8c7e1
+	3callasm Function8c7e1
 	loadmovesprites
 	end
 ; 0xc8f3
@@ -9507,7 +9507,7 @@ UsedSurfScript: ; c986
 	closetext
 	loadmovesprites
 
-	3callasm BANK(Functionc9a2), Functionc9a2 ; empty function
+	3callasm Functionc9a2 ; empty function
 
 	copybytetovar Buffer2
 	writevarcode VAR_MOVEMENT
@@ -9732,17 +9732,17 @@ Functionca9d: ; ca9d
 
 UnknownScript_0xcaa3: ; 0xcaa3
 	reloadmappart
-	3callasm BANK(HideSprites), HideSprites
+	3callasm HideSprites
 	special $0035
-	3callasm BANK(Function8caed), Function8caed
-	3call BANK(UnknownScript_0x122c1), UnknownScript_0x122c1
+	3callasm Function8caed
+	3call UnknownScript_0x122c1
 	special $0000
-	3callasm BANK(Function154f1), Function154f1
+	3callasm Function154f1
 	writecode $8, $0
 	newloadmap $fc
-	3callasm BANK(Function8cb33), Function8cb33
+	3callasm Function8cb33
 	special $003b
-	3callasm BANK(Functioncacb), Functioncacb
+	3callasm Functioncacb
 	end
 ; 0xcacb
 
@@ -9801,14 +9801,14 @@ UnknownScript_0xcb1c: ; 0xcb1c
 	special $0035
 
 UnknownScript_0xcb20: ; 0xcb20
-	3callasm BANK(GetPartyNick), GetPartyNick
+	3callasm GetPartyNick
 	2writetext UnknownText_0xcb51
 	closetext
 	loadmovesprites
 	playsound SFX_BUBBLEBEAM
 .loop
 	applymovement $0, WaterfallStep
-	3callasm BANK(Functioncb38), Functioncb38
+	3callasm Functioncb38
 	iffalse .loop
 	end
 ; 0xcb38
@@ -10004,7 +10004,7 @@ UnknownScript_0xcc3c: ; 0xcc3c
 	loadmovesprites
 	playsound SFX_WARP_TO
 	applymovement $0, MovementData_0xcc59
-	3call BANK(UnknownScript_0x122c1), UnknownScript_0x122c1
+	3call UnknownScript_0x122c1
 	special $0000
 	writecode $8, $0
 	newloadmap $f5
@@ -10145,7 +10145,7 @@ UnknownScript_0xcd29: ; 0xcd29
 	special $0035
 
 UnknownScript_0xcd2d: ; 0xcd2d
-	3callasm BANK(Functioncd12), Functioncd12
+	3callasm Functioncd12
 	2writetext UnknownText_0xcd41
 	copybytetovar $d1ef
 	cry $0000
@@ -10166,7 +10166,7 @@ UnknownText_0xcd46: ; 0xcd46
 ; 0xcd4b
 
 UnknownScript_0xcd4b: ; 0xcd4b
-	3callasm BANK(Functioncd78), Functioncd78
+	3callasm Functioncd78
 	iffalse UnknownScript_0xcd5f
 	if_equal $1, UnknownScript_0xcd59
 	2jump UnknownScript_0xcd5c
@@ -10280,10 +10280,10 @@ Functioncdde: ; cdde
 INCBIN "baserom.gbc",$ce0b,$ce0f - $ce0b
 
 UnknownScript_0xce0f: ; 0xce0f
-	3callasm BANK(GetPartyNick), GetPartyNick
+	3callasm GetPartyNick
 	2writetext UnknownText_0xcdd9
 	reloadmappart
-	3callasm BANK(Functionce1d), Functionce1d
+	3callasm Functionce1d
 	loadmovesprites
 	end
 ; 0xce1d
@@ -10387,11 +10387,11 @@ UnknownText_0xcea2: ; 0xcea2
 UnknownScript_0xcea7: ; 0xcea7
 	reloadmappart
 	special $0035
-	3callasm BANK(GetPartyNick), GetPartyNick
+	3callasm GetPartyNick
 	2writetext UnknownText_0xce9d
 	reloadmappart
-	3callasm BANK(Function8c80a), Function8c80a
-	3callasm BANK(Functionb81ea), Functionb81ea
+	3callasm Function8c80a
+	3callasm Functionb81ea
 	iffalse UnknownScript_0xcec3
 	loadmovesprites
 	battlecheck
@@ -10475,7 +10475,7 @@ UnknownScript_0xcf2e: ; 0xcf2e
 	special $0035
 
 UnknownScript_0xcf32: ; cf32
-	3callasm BANK(GetPartyNick), GetPartyNick
+	3callasm GetPartyNick
 	2writetext UnknownText_0xcf58
 	loadmovesprites
 	special $003b
@@ -10483,7 +10483,7 @@ UnknownScript_0xcf32: ; cf32
 	earthquake 84
 	applymovement2 MovementData_0xcf55
 	disappear $fe
-	3callasm BANK(Functionb8219), Functionb8219
+	3callasm Functionb8219
 	copybytetovar $d22e
 	iffalse .done
 	battlecheck
@@ -10503,7 +10503,7 @@ UnknownText_0xcf58: ; 0xcf58
 ; 0xcf5d
 
 UnknownScript_0xcf5d: ; 0xcf5d
-	3callasm BANK(Functioncf7c), Functioncf7c
+	3callasm Functioncf7c
 	if_equal $1, UnknownScript_0xcf6f
 	loadfont
 	2writetext UnknownText_0xcf77
@@ -10680,7 +10680,7 @@ UnknownScript_0xd1a9: ; 0xd1a9
 	2writetext UnknownText_0xd1c8
 	yesorno
 	iffalse .script_d1b8
-	3callasm BANK(Functiond1ba), Functiond1ba
+	3callasm Functiond1ba
 	iftrue UnknownScript_0xc802
 .script_d1b8
 	loadmovesprites
@@ -17731,7 +17731,7 @@ UnknownScript_0x122c1: ; 0x122c1
 ; 0x122ce
 
 UnknownScript_0x122ce: ; 0x122ce
-	3callasm BANK(Function122f8), Function122f8
+	3callasm Function122f8
 	iffalse UnknownScript_0x122e3
 	disappear $fe
 	loadfont
@@ -18009,7 +18009,7 @@ INCBIN "baserom.gbc",$124c1,$124c8 - $124c1
 
 UnknownScript_0x124c8: ; 0x124c8
 	refreshscreen $0
-	3callasm BANK(Function124fa), Function124fa
+	3callasm Function124fa
 	2writetext UnknownText_0x124f5
 	closetext
 	special $002e
@@ -18017,9 +18017,9 @@ UnknownScript_0x124c8: ; 0x124c8
 	special $001b
 	checkflag $0011
 	iftrue .script_64f2
-	3callasm BANK(HalveMoney), HalveMoney
-	3callasm BANK(Function12527), Function12527
-	3call BANK(UnknownScript_0x122c1), UnknownScript_0x122c1
+	3callasm HalveMoney
+	3callasm Function12527
+	3call UnknownScript_0x122c1
 	special $0000
 	newloadmap $f1
 	resetfuncs
@@ -61450,16 +61450,16 @@ Function50658: ; 50658
 ; 50669
 
 UnknownScript_0x50669: ; 50669
-	3callasm BANK(Function50658), Function50658
+	3callasm Function50658
 	loadfont
-	3callasm BANK(Function5067b), Function5067b
+	3callasm Function5067b
 	iffalse UnknownScript_0x50677
 	loadmovesprites
 	end
 ; 50677
 
 UnknownScript_0x50677: ; 50677
-	3jump BANK(UnknownScript_0x124c8), UnknownScript_0x124c8
+	3jump UnknownScript_0x124c8
 ; 5067b
 
 Function5067b: ; 5067b
@@ -61514,10 +61514,10 @@ Function506bc: ; 506bc
 UnknownScript_0x506c8: ; 0x506c8
 	reloadmappart
 	special $0035
-	3callasm BANK(GetPartyNick), GetPartyNick
+	3callasm GetPartyNick
 	2writetext UnknownText_0x50726
 	closetext
-	3callasm BANK(Function506ef), Function506ef
+	3callasm Function506ef
 	iffalse UnknownScript_0x506e9
 	checkflag $0011
 	iftrue UnknownScript_0x506e5
@@ -61528,7 +61528,7 @@ UnknownScript_0x506c8: ; 0x506c8
 ; 0x506e5
 
 UnknownScript_0x506e5: ; 0x506e5
-	3jump BANK(UnknownScript_0x135eb), UnknownScript_0x135eb
+	3jump UnknownScript_0x135eb
 ; 0x506e9
 
 UnknownScript_0x506e9: ; 0x506e9
@@ -61589,9 +61589,9 @@ _Squirtbottle: ; 50730
 UnknownScript_0x5073c: ; 0x5073c
 	reloadmappart
 	special $0035
-	3callasm BANK(Function50753), Function50753
+	3callasm Function50753
 	iffalse UnknownScript_0x5074b
-	3jump BANK(WateredWeirdTreeScript), WateredWeirdTreeScript
+	3jump WateredWeirdTreeScript
 ; 0x5074b
 
 UnknownScript_0x5074b: ; 0x5074b
@@ -61666,7 +61666,7 @@ _CardKey: ; 50779
 
 UnknownScript_0x507af: ; 0x507af
 	loadmovesprites
-	3jump BANK(MapRadioTower3FSignpost2Script), MapRadioTower3FSignpost2Script
+	3jump MapRadioTower3FSignpost2Script
 ; 0x507b4
 
 
@@ -61701,7 +61701,7 @@ _BasementKey: ; 507b4
 
 UnknownScript_0x507e1: ; 0x507e1
 	loadmovesprites
-	3jump BANK(MapWarehouseEntranceSignpost0Script), MapWarehouseEntranceSignpost0Script
+	3jump MapWarehouseEntranceSignpost0Script
 ; 0x507e6
 
 
@@ -74029,7 +74029,7 @@ Function8c7e1: ; 8c7e1
 	callba Function8c0e5
 	callba Function8c001
 	ld b, $9
-	call Function3340
+	call GetSGBLayout
 	callba Function49409
 	callba Function8c079
 	ret
@@ -74057,9 +74057,9 @@ Function8c80a: ; 8c80a
 	call Function8c913
 	ld a, $20
 	ld [$cf64], a
-	call Function3c55
+	call WaitSFX
 	ld de, $006d
-	call Function3c23
+	call PlaySFX
 .asm_8c852
 	ld hl, $cf64
 	ld a, [hl]
@@ -74074,14 +74074,14 @@ Function8c80a: ; 8c80a
 
 .asm_8c86a
 	call Function2173
-	call Function31f6
+	call WaitBGMap
 	xor a
 	ld [hBGMapMode], a
 	callba Function8cf53
 	ld hl, $c490
 	ld bc, $0010
 	xor a
-	call Function3041
+	call ByteFill
 	ld de, $4200
 	ld hl, VTiles1
 	ld bc, $3e0c
@@ -74112,7 +74112,7 @@ Function8c913: ; 8c913
 	add hl, bc
 	ld [hli], a
 	ld [hld], a
-	call Function31f6
+	call WaitBGMap
 	xor a
 	ld [hBGMapMode], a
 	ret
@@ -82037,9 +82037,9 @@ Functionb81ea: ; b81ea
 	ld [$d22e], a
 	ld [CurPartyLevel], a
 	ld hl, $425e
-	call Functionb823f
+	call GetTreeMonEncounterTable
 	jr nc, .asm_b8214
-	call Functionb82d2
+	call LoadTreeMonData
 	jr nc, .asm_b8214
 	call Functionb83e5
 	jr nc, .asm_b8214
@@ -84035,7 +84035,7 @@ UnknownScript_0xbe675: ; 0xbe675
 	loadtrainerdata
 	playrammusic
 	showemote $0, $fe, 30
-	3callasm BANK(Function831e), Function831e
+	3callasm Function831e
 	applymovement2 $d007
 	writepersonxy $fe
 	faceperson $0, $fe
