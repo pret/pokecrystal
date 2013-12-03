@@ -2,30 +2,29 @@
 
 """
 Recursively scan an asm file for rgbasm INCLUDEs and INCBINs.
-This is used to generate dependencies for each rgbasm object file.
+Used to generate dependencies for each rgbasm object.
 """
 
 import os
 import sys
 
-def scan_for_includes(filename):
-	filenames = []
-	if os.path.exists(filename):
-		for line in open(filename, 'r').readlines():
-			if 'INCLUDE' in line or 'INCBIN' in line:
-				line = line.split(';')[0]
-				if 'INCLUDE' in line or 'INCBIN' in line:
-					filenames += [line.split('"')[1]]
-	return filenames
+def recursive_scan(filename, includes = []):
+	if (filename[-4:] == '.asm' or filename[-3] == '.tx') and os.path.exists(filename):
+		lines = open(filename).readlines()
+		for line in lines:
+			for directive in ('INCLUDE', 'INCBIN'):
+				if directive in line:
+					line = line[:line.find(';')]
+					if directive in line:
+						include = line.split('"')[1]
+						if include not in includes:
+							includes += [include]
+							includes = recursive_scan(include, includes)
+						break
+	return includes
 
-def recursive_scan_for_includes(filename):
-	filenames = []
-	if '.asm' in filename or '.tx' in filename:
-		for include in scan_for_includes(filename):
-			filenames += [include] + recursive_scan_for_includes(include)
-	return filenames
-
-if len(sys.argv) > 1:
-	for arg in sys.argv[1:]:
-		sys.stdout.write(' '.join(recursive_scan_for_includes(arg)))
+if __name__ == '__main__':
+	filenames = sys.argv[1:]
+	for filename in filenames:
+		sys.stdout.write(' '.join(recursive_scan(filename)))
 
