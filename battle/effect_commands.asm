@@ -5318,7 +5318,7 @@ PlayFXAnimID: ; 35d08
 	ld c, 3
 	call DelayFrames
 
-	callab Functioncc0d6
+	callab PlayBattleAnim
 
 	ret
 ; 35d1c
@@ -10502,7 +10502,7 @@ Function0x37e47: ; 37e47
 	push hl
 	push de
 	push bc
-	callab Functioncc0d6
+	callab PlayBattleAnim
 	pop bc
 	pop de
 	pop hl
@@ -10523,7 +10523,7 @@ Function0x37e54: ; 37e54
 	push bc
 	call SwitchTurn
 
-	callab Functioncc0d6
+	callab PlayBattleAnim
 
 	call SwitchTurn
 	pop bc

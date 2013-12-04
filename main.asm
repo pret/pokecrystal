@@ -7976,7 +7976,7 @@ PredefPointers: ; 856b
 	dwb PrintMonTypes, BANK(PrintMonTypes)
 	dwb GetUnownLetter, BANK(GetUnownLetter)
 	dwb Functioncbcdd, BANK(Functioncbcdd)
-	dwb Functioncc0d5, BANK(Functioncc0d5)
+	dwb Predef2F, BANK(Predef2F)
 	dwb Function9853, BANK(Function9853) ; $30
 	dwb Function864c, BANK(Function864c)
 	dwb Function91d11, BANK(Function91d11)
@@ -7984,9 +7984,9 @@ PredefPointers: ; 856b
 	dwb Function8c20f, BANK(Function8c20f)
 	dwb Function8c000, BANK(Function8c000)
 	dwb Function8c000, BANK(Function8c000)
-	dwb Functioncc0d6, BANK(Functioncc0d6)
-	dwb Functioncc0d5, BANK(Functioncc0d5) ; $38
-	dwb Functioncc0d5, BANK(Functioncc0d5)
+	dwb PlayBattleAnim, BANK(PlayBattleAnim)
+	dwb Predef38, BANK(Predef38) ; $38
+	dwb Predef39, BANK(Predef39)
 	dwb Functionfd1d0, BANK(Functionfd1d0)
 	dwb PartyMonItemName, BANK(PartyMonItemName)
 	dwb Function51077, BANK(Function51077)
@@ -14030,7 +14030,7 @@ Functione6ce: ; e6ce
 	ld a, [TempEnemyMonSpecies]
 	ld [$d265], a
 	call GetPokemonName
-	ld hl, $671d
+	ld hl, UnknownText_0xe71d
 	call PrintText
 	ret
 ; e6fd
@@ -14050,7 +14050,11 @@ Functione6fd: ; e6fd
 	jp Functiond906
 ; e71d
 
-INCBIN "baserom.gbc",$e71d,$e722 - $e71d
+UnknownText_0xe71d: ; 0xe71d
+	; Caught @ !
+	text_jump UnknownText_0x1c10c0
+	db "@"
+; 0xe722
 
 
 _DoItemEffect: ; e722
@@ -87052,64 +87056,81 @@ INCBIN "gfx/credits/theend.2bpp"
 SECTION "bank33", ROMX, BANK[$33]
 
 Functioncc000: ; cc000
+
 	call WhiteBGMap
 	call ClearTileMap
 	call ClearSprites
 	call Functione58
+
 	ld hl, Options
 	ld a, [hl]
 	push af
 	set 4, [hl]
-	ld hl, TileMap
-	ld b, $4
-	ld c, $d
+
+	hlcoord 0, 0
+	ld b, 4
+	ld c, 13
 	call TextBox
-	ld hl, $c518
-	ld b, $4
-	ld c, $d
+
+	hlcoord 0, 6
+	ld b, 4
+	ld c, 13
 	call TextBox
-	ld hl, $c4a2
-	ld de, $40ae
+
+	hlcoord 2, 0
+	ld de, .Stock
 	call PlaceString
-	ld hl, $c51a
-	ld de, $40b8
+
+	hlcoord 2, 6
+	ld de, .This
 	call PlaceString
-	ld hl, $c4f5
-	ld de, $40a7
+
+	hlcoord 5, 4
+	ld de, .Health
 	call PlaceString
-	ld hl, $c56d
-	ld de, $40a7
+
+	hlcoord 5, 10
+	ld de, .Health
 	call PlaceString
+
 	ld a, [$df9c]
 	ld [$d265], a
 	call GetPokemonName
 	ld de, StringBuffer1
-	ld hl, $c4c9
+	hlcoord 1, 2
 	call PlaceString
+
 	ld h, b
 	ld l, c
 	ld a, [$dfbb]
 	ld [TempMonLevel], a
 	call PrintLevel
+
 	ld de, EnemyMonNick
-	ld hl, $c541
+	hlcoord 1, 8
 	call PlaceString
+
 	ld h, b
 	ld l, c
 	ld a, [EnemyMonLevel]
 	ld [TempMonLevel], a
 	call PrintLevel
-	ld hl, $c4fb
+
+	hlcoord 11, 4
 	ld de, $dfc0
 	ld bc, $0203
 	call PrintNum
-	ld hl, $c573
+
+	hlcoord 11, 10
 	ld de, EnemyMonMaxHPHi
 	call PrintNum
-	ld hl, $40c2
+
+	ld hl, SwitchMonText
 	call PrintText
+
 	pop af
 	ld [Options], a
+
 	call WaitBGMap
 	ld b, $8
 	call GetSGBLayout
@@ -87117,58 +87138,85 @@ Functioncc000: ; cc000
 	ret
 ; cc0a7
 
-INCBIN "baserom.gbc",$cc0a7,$cc0c7 - $cc0a7
+.Health
+	db "HEALTH@"
+.Stock
+	db " STOCK ", $4a, " @"
+.This
+	db " THIS ", $4a, "  @"
 
+SwitchMonText: ; cc0c2
+	; Switch #MON?
+	text_jump UnknownText_0x1c10cf
+	db "@"
+; cc0c7
 
 Functioncc0c7: ; cc0c7
 	call GetPokemonName
-	ld hl, $40d0
+	ld hl, AlreadyCaughtText
 	jp PrintText
 ; cc0d0
 
-INCBIN "baserom.gbc",$cc0d0,$cc0d5 - $cc0d0
+AlreadyCaughtText: ; 0xcc0d0
+	; You already caught a @ .
+	text_jump UnknownText_0x1c10dd
+	db "@"
+; 0xcc0d5
 
-Functioncc0d5: ; cc0d5
+Predef2F:
+Predef38:
+Predef39: ; cc0d5
 	ret
 ; cc0d6
 
 
-Functioncc0d6: ; cc0d6
+PlayBattleAnim: ; cc0d6
+
 	ld a, [rSVBK]
 	push af
-	ld a, $5
+
+	ld a, 5
 	ld [rSVBK], a
-	call Functioncc0e4
+
+	call _PlayBattleAnim
+
 	pop af
 	ld [rSVBK], a
 	ret
 ; cc0e4
 
-Functioncc0e4: ; cc0e4
-	ld c, $6
-.asm_cc0e6
+_PlayBattleAnim: ; cc0e4
+
+	ld c, 6
+.wait
 	call Functioncc1fb
 	dec c
-	jr nz, .asm_cc0e6
+	jr nz, .wait
+
 	call Functioncc8a4
 	call Functioncc1e2
 	call Functioncc1fb
-	ld c, $1
+
+	ld c, 1
 	ld a, [rKEY1]
 	bit 7, a
 	jr nz, .asm_cc0ff
-	ld c, $3
+	ld c, 3
 
 .asm_cc0ff
 	ld hl, $ff9e
 	ld a, [hl]
 	push af
+
 	ld [hl], c
 	call Functioncc11c
+
 	pop af
 	ld [$ff9e], a
+
 	ld a, $1
 	ld [hBGMapMode], a
+
 	call Functioncc1fb
 	call Functioncc1fb
 	call Functioncc1fb
@@ -87177,15 +87225,20 @@ Functioncc0e4: ; cc0e4
 ; cc11c
 
 Functioncc11c: ; cc11c
+
 	ld a, [FXAnimIDHi]
 	and a
 	jr nz, .asm_cc156
+
 	callba Function4ea44
 	jr c, .asm_cc141
+
 	call Functioncc1a1
 	call Functioncc163
+
 	call Functioncc8a4
 	call Functioncc1e2
+
 	xor a
 	ld [hSCX], a
 	ld [hSCY], a
@@ -87196,8 +87249,9 @@ Functioncc11c: ; cc11c
 	ld a, [$cfca]
 	and a
 	jr z, .asm_cc15f
+
 	ld l, a
-	ld h, $0
+	ld h, 0
 	ld de, $010e
 	add hl, de
 	ld a, l
@@ -87216,22 +87270,28 @@ Functioncc11c: ; cc11c
 ; cc163
 
 Functioncc163: ; cc163
+
 	call Functioncc8d3
+
 .asm_cc166
 	call Functioncc25f
 	call Functionccb48
 	call Functioncc96e
 	call Function3b0c
 	call Functioncc1e2
+
+; Speed up Rollout's animation on consecutive turns.
 	ld a, [FXAnimIDHi]
 	or a
 	jr nz, .asm_cc193
+
 	ld a, [FXAnimIDLo]
-	cp $cd
+	cp ROLLOUT
 	jr nz, .asm_cc193
+
 	ld a, $2e
-	ld b, $5
-	ld de, $0004
+	ld b, 5
+	ld de, 4
 	ld hl, $d3fa
 .asm_cc18c
 	cp [hl]
@@ -87247,6 +87307,7 @@ Functioncc163: ; cc163
 	ld a, [$d40f]
 	bit 0, a
 	jr z, .asm_cc166
+
 	call Functioncc23d
 	ret
 ; cc1a1
@@ -87254,7 +87315,7 @@ Functioncc163: ; cc163
 Functioncc1a1: ; cc1a1
 	call Functioncc1fb
 	call WaitTop
-	call Functioncc207
+	call ClearActorHud
 	ld a, $1
 	ld [hBGMapMode], a
 	call Functioncc1fb
@@ -87265,17 +87326,22 @@ Functioncc1a1: ; cc1a1
 ; cc1bb
 
 Functioncc1bb: ; cc1bb
+
 	call Functioncc1fb
 	call WaitTop
+
 	ld a, [rSVBK]
 	push af
 	ld a, $1
 	ld [rSVBK], a
+
 	ld hl, UpdateBattleHuds
 	ld a, $f
 	rst FarCall
+
 	pop af
 	ld [rSVBK], a
+
 	ld a, $1
 	ld [hBGMapMode], a
 	call Functioncc1fb
@@ -87286,14 +87352,17 @@ Functioncc1bb: ; cc1bb
 ; cc1e2
 
 Functioncc1e2: ; cc1e2
+
 	ld a, [hCGB]
 	and a
 	ret z
+
 	ld a, [rBGP]
 	ld b, a
 	ld a, [$cfc7]
 	cp b
 	call nz, Functioncc91a
+
 	ld a, [rOBP0]
 	ld b, a
 	ld a, [$cfc8]
@@ -87303,27 +87372,31 @@ Functioncc1e2: ; cc1e2
 ; cc1fb
 
 Functioncc1fb: ; cc1fb
-	ld a, $1
+; Like DelayFrame but wastes battery life.
+
+	ld a, 1
 	ld [VBlankOccurred], a
-.asm_cc200
+.wait
 	ld a, [VBlankOccurred]
 	and a
-	jr nz, .asm_cc200
+	jr nz, .wait
 	ret
 ; cc207
 
-Functioncc207: ; cc207
+ClearActorHud: ; cc207
+
 	ld a, [hBattleTurn]
 	and a
-	jr z, .asm_cc216
-	ld hl, $c4a1
-	ld bc, $040a
+	jr z, .player
+
+	hlcoord 1, 0
+	lb bc, 4, 10
 	call ClearBox
 	ret
 
-.asm_cc216
-	ld hl, $c535
-	ld bc, $050b
+.player
+	hlcoord 9, 7
+	lb bc, 5, 11
 	call ClearBox
 	ret
 ; cc220
@@ -87332,11 +87405,13 @@ INCBIN "baserom.gbc",$cc220,$cc23d - $cc220
 
 
 Functioncc23d: ; cc23d
+
 	ld a, [$d40f]
 	bit 3, a
 	jr z, .asm_cc254
-	ld hl, $c403
-	ld c, $28
+
+	ld hl, Sprites + 3
+	ld c, (SpritesEnd - Sprites) / 4
 .asm_cc249
 	ld a, [hl]
 	and $f0
@@ -87350,7 +87425,7 @@ Functioncc23d: ; cc23d
 
 .asm_cc254
 	ld hl, Sprites
-	ld c, $a0
+	ld c, SpritesEnd - Sprites
 	xor a
 .asm_cc25a
 	ld [hli], a
@@ -87370,6 +87445,7 @@ Functioncc267: ; cc267
 	ld a, [$d412]
 	and a
 	jr z, .asm_cc273
+
 	dec a
 	ld [$d412], a
 	and a
@@ -87381,35 +87457,44 @@ Functioncc267: ; cc267
 ; cc275
 
 Functioncc275: ; cc275
-.asm_cc275
+
 	call Function3af0
+
 	cp $ff
 	jr nz, .asm_cc286
+
+; Return from a subroutine.
 	ld hl, $d40f
 	bit 1, [hl]
 	jr nz, .asm_cc28e
+
 	set 0, [hl]
 	ret
 
 .asm_cc286
 	cp $d0
 	jr nc, .asm_cc28e
+
 	ld [$d412], a
 	ret
 
 .asm_cc28e
 	call Functioncc293
-	jr .asm_cc275
+
+	jr Functioncc275
 ; cc293
 
 Functioncc293: ; cc293
+; Execute battle animation command in [$d417].
 	ld a, [$d417]
 	sub $d0
+
 	ld e, a
-	ld d, $0
-	ld hl, $42a4
+	ld d, 0
+	ld hl, BattleAnimCommands
 	add hl, de
 	add hl, de
+
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -87418,7 +87503,7 @@ Functioncc293: ; cc293
 
 
 ; no known jump sources
-Jumptable_cc2a4: ; cc2a4 (33:42a4)
+BattleAnimCommands: ; cc2a4 (33:42a4)
 	dw Functioncc41f
 	dw Functioncc485
 	dw Functioncc485
