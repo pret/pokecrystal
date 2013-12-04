@@ -124,19 +124,20 @@ Function1db8: ; 0x1db8
 ; 0x1dcf
 
 
-Function1dcf: ; 1dcf
-	ld bc, $0e07
+YesNoBox: ; 1dcf
+	lb bc, 14, 7
 
-Function1dd2: ; 1dd2
-	jr Function1dd9
+PlaceYesNoBox: ; 1dd2
+	jr _YesNoBox
 
 Function1dd4: ; 1dd4
 	call LoadMenuDataHeader
 	jr Function1dfe
 
-Function1dd9: ; 1dd9
+_YesNoBox: ; 1dd9
+; Return nc (yes) or c (no).
 	push bc
-	ld hl, MenuDataHeader_0x1e1d
+	ld hl, YesNoMenuDataHeader
 	call Function1d3c
 	pop bc
 	ld a, b
@@ -165,7 +166,7 @@ Function1dfe: ; 1dfe
 	pop af
 	jr c, .asm_1e16
 	ld a, [$cfa9]
-	cp $2
+	cp 2 ; no
 	jr z, .asm_1e16
 	and a
 	ret
@@ -177,15 +178,15 @@ Function1dfe: ; 1dfe
 	ret
 ; 1e1d
 
-MenuDataHeader_0x1e1d: ; 1e1d
+YesNoMenuDataHeader: ; 1e1d
 	db $40 ; tile backup
 	db 5, 10 ; start coords
 	db 9, 15 ; end coords
-	dw MenuData2_0x1e25
+	dw YesNoMenuData2
 	db 1 ; default option
 ; 1e25
 
-MenuData2_0x1e25: ; 1e25
+YesNoMenuData2: ; 1e25
 	db $c0 ; flags
 	db 2
 	db "YES@"

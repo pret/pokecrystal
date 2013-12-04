@@ -367,7 +367,7 @@ ParkBall: ; e8a2
 	ld [$d265], a
 	call $343b
 
-	call $1dcf
+	call YesNoBox
 
 	jp c, $6be2
 
@@ -430,7 +430,7 @@ ParkBall: ; e8a2
 	ld [$d265], a
 	call $343b
 
-	call $1dcf
+	call YesNoBox
 
 	jr c, .asm_ebaf
 

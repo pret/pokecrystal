@@ -455,7 +455,7 @@ Script_keeptextopen: ; 0x96edc
 Script_yesorno: ; 0x96eed
 ; script command 0x4e
 
-	call Function1dcf
+	call YesNoBox
 	ld a, $0
 	jr c, .asm_96ef6 ; 0x96ef2 $2
 	ld a, $1
@@ -792,7 +792,7 @@ Script_askforphonenumber: ; 0x970be
 ; parameters:
 ;     number (SingleByteParam)
 
-	call Function1dcf
+	call YesNoBox
 	jr c, .asm_970d6 ; 0x970c1 $13
 	call GetScriptByte
 	ld c, a

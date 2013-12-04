@@ -5507,7 +5507,7 @@ Function6520: ; 6520
 Function65b5: ; 65b5
 	ld hl, UnknownText_0x6675
 	call PrintText
-	call Function1dcf
+	call YesNoBox
 	jp c, Function6520
 	ld hl, UnknownText_0x667a
 	call PrintText
@@ -5526,7 +5526,7 @@ Function65d3: ; 65d3
 	push hl
 	ld hl, UnknownText_0x667f
 	call PrintText
-	call Function1dcf
+	call YesNoBox
 	pop hl
 	ret c
 	ld bc, $fffc
@@ -14021,8 +14021,8 @@ Functione6ce: ; e6ce
 	ld [$d265], a
 	callba Functioncc0c7
 	callba Functioncc000
-	ld bc, $0e07
-	call Function1dd2
+	lb bc, 14, 7
+	call PlaceYesNoBox
 	ret c
 
 .asm_e6ea
@@ -18704,7 +18704,7 @@ Function129f4: ; 129f4
 	jr c, .asm_12a42
 	ld hl, $6a4a
 	call Function1d4f
-	call Function1dcf
+	call YesNoBox
 	push af
 	call Function1c07
 	pop af
@@ -19138,7 +19138,7 @@ Function12cea: ; 12cea (4:6cea)
 
 Function12cf5: ; 12cf5
 	call Function1d4f
-	call Function1dcf
+	call YesNoBox
 	jp Function1c07
 ; 12cfe
 
@@ -22788,7 +22788,7 @@ Function14a83: ; 14a83 (5:4a83)
 	push de
 	ld hl, $52a1
 	call Function1d4f
-	call Function1dcf
+	call YesNoBox
 	call Function1c07
 	jr c, .asm_14ab0
 	call Function14b89
@@ -22895,8 +22895,8 @@ Function14baf: ; 14baf
 	ld b, $5
 	call Function269a
 	call Function1d58
-	ld bc, $0007
-	call Function1dd2
+	lb bc, 0, 7
+	call PlaceYesNoBox
 	ld a, [$cfa9]
 	dec a
 	call Function1c17
@@ -25101,7 +25101,7 @@ Function15d97: ; 15d97
 	call Predef
 	ld a, $1
 	call Function15c7d
-	call Function1dcf
+	call YesNoBox
 	ret
 ; 15da5
 
@@ -25264,7 +25264,7 @@ Function15efd: ; 15efd
 	call ClearBox
 	ld hl, UnknownText_0x15f78
 	call PrintTextBoxText
-	call Function1dcf
+	call YesNoBox
 	jr c, .asm_15f6e
 	ld de, Money
 	ld bc, $ffc3
@@ -25664,14 +25664,14 @@ Function16781: ; 16781
 
 .asm_16788
 	call Function1689b
-	call Function1dcf
+	call YesNoBox
 	ret
 ; 1678f
 
 Function1678f: ; 1678f
 	set 7, [hl]
 	call Function1689b
-	call Function1dcf
+	call YesNoBox
 	ret
 ; 16798
 
@@ -25746,18 +25746,18 @@ Function16807: ; 16807
 	jr nz, .asm_16819
 	ld a, $f
 	call Function1689b
-	call Function1dcf
+	call YesNoBox
 	jr c, .asm_16844
 	jr .asm_1682d
 
 .asm_16819
 	ld a, $b
 	call Function1689b
-	call Function1dcf
+	call YesNoBox
 	jr c, .asm_16844
 	ld a, $c
 	call Function1689b
-	call Function1dcf
+	call YesNoBox
 	jr c, .asm_16844
 
 .asm_1682d
@@ -25856,7 +25856,7 @@ Function16936: ; 16936
 .asm_16949
 	ld hl, $6993
 	call PrintText
-	call Function1dcf
+	call YesNoBox
 	jr c, .asm_1697c
 	ld a, [PartyCount]
 	cp $6
@@ -26762,7 +26762,7 @@ Function16f7a: ; 16f7a (5:6f7a)
 	push de
 	ld hl, $70ba
 	call PrintText
-	call Function1dcf
+	call YesNoBox
 	pop de
 	jr c, .asm_17074
 	ld a, $1
@@ -27494,7 +27494,7 @@ Function20051: ; 20051 (8:4051)
 	call Function2011f
 	ld hl, $40b0
 	call PrintText
-	call Function1dcf
+	call YesNoBox
 	jr c, .asm_200ad
 	ld a, [$d1ed]
 	ld [StringBuffer2], a ; $d086
@@ -30871,7 +30871,7 @@ INCBIN "baserom.gbc",$254a7,$265d3 - $254a7
 ProfOaksPC: ; 0x265d3
 	ld hl, OakPCText1
 	call Function1d4f
-	call Function1dcf
+	call YesNoBox
 	jr c, .shutdown
 	call ProfOaksPCBoot ; player chose "yes"?
 .shutdown
@@ -36330,7 +36330,7 @@ Function2c545: ; 2c545 (b:4545)
 Function2c547: ; 2c547
 	ld hl, $45ef
 	call PrintText
-	call Function1dcf
+	call YesNoBox
 	jr c, .asm_2c5c3
 	ld hl, $45f4
 	call PrintText
@@ -36361,7 +36361,7 @@ Function2c547: ; 2c547
 	call GetMoveName
 	ld hl, $45d6
 	call PrintText
-	call Function1dcf
+	call YesNoBox
 	pop bc
 	jr c, .asm_2c5c3
 	call Function2c5f9
@@ -36671,7 +36671,7 @@ Function2c7bf: ; 2c7bf (b:47bf)
 	call PrintText
 	ld hl, $48c9
 	call PrintText
-	call Function1dcf
+	call YesNoBox
 .asm_2c7f5
 	pop bc
 	ld a, b
@@ -41446,8 +41446,8 @@ Function3d1f8: ; 3d1f8
 	ld hl, BattleText_0x80a83
 	call StdBattleTextBox
 .asm_3d20a
-	ld bc, $0107
-	call Function1dd2
+	lb bc, 1, 7
+	call PlaceYesNoBox
 	ld a, [$cfa9]
 	jr c, .asm_3d217
 	and a
@@ -42253,8 +42253,8 @@ Function3d74b: ; 3d74b
 	callab Function39939
 	ld hl, BattleText_0x80aca
 	call StdBattleTextBox
-	ld bc, $0107
-	call Function1dd2
+	lb bc, 1, 7
+	call PlaceYesNoBox
 	ld a, [$cfa9]
 	dec a
 	jr nz, .asm_3d79a
@@ -51746,7 +51746,7 @@ Function4484a: ; 0x4484a
 .PutInPack ; 0x44877
 	ld hl, .MessageLostText
 	call Function1d4f
-	call Function1dcf
+	call YesNoBox
 	call Function1c07
 	ret c
 	ld a, [MenuSelection]
@@ -55963,7 +55963,7 @@ Function4a9d7: ; 4a9d7
 	call CopyBytes
 	ld hl, $6a1d
 	call PrintText
-	call Function1dcf
+	call YesNoBox
 	ret
 ; 4aa1d
 
@@ -56576,7 +56576,7 @@ Function4ae12: ; 4ae12
 Function4ae1f: ; 4ae1f
 	ld bc, $0e07
 	push bc
-	ld hl, MenuDataHeader_0x1e1d
+	ld hl, YesNoMenuDataHeader
 	call Function1d3c
 	pop bc
 	ld a, b
@@ -58012,7 +58012,7 @@ Function4db35: ; 4db35
 Function4db3b: ; 4db3b
 	ld hl, $5b44
 	call PrintText
-	jp Function1dcf
+	jp YesNoBox
 ; 4db44
 
 INCBIN "baserom.gbc",$4db44,$4db49 - $4db44
@@ -71541,7 +71541,7 @@ Function8afd4: ; 8afd4
 	call GetItemName
 	ld hl, $7077
 	call Function105a
-	call Function1dcf
+	call YesNoBox
 	jr c, .asm_8afeb
 	ld a, [$cf75]
 	call Function8b154
@@ -77268,7 +77268,7 @@ Function90672: ; 90672 (24:4672)
 	call Function90783
 	ld hl, $4886
 	call PrintText
-	call Function1dcf
+	call YesNoBox
 	jr nc, .asm_9072e
 	call Function90783
 	jr .asm_906e8
@@ -77295,7 +77295,7 @@ Function90672: ; 90672 (24:4672)
 	call Function90783
 	ld hl, $48a4
 	call PrintText
-	call Function1dcf
+	call YesNoBox
 	jr nc, .asm_90773
 	call Function90783
 	jr .asm_9072e
@@ -77543,7 +77543,7 @@ Function90913: ; 90913
 	call Function1ad2
 	ld hl, $4a44
 	call PrintText
-	call Function1dcf
+	call YesNoBox
 	jr c, .asm_90936
 	ld a, [DefaultFlypoint]
 	ld [StringBuffer2], a
@@ -81382,8 +81382,8 @@ Function930e9: ; 930e9 (24:70e9)
 	ld hl, UnknownText_9311f
 	call PrintText
 	call Function1d58
-	ld bc, $e0c
-	call Function1dd2
+	lb bc, 14, 12
+	call PlaceYesNoBox
 	ld a, [$cfa9]
 	dec a
 	call Function1c17
@@ -94973,7 +94973,7 @@ Functione01b0: ; e01b0
 Functione01b5: ; e01b5
 	ld hl, UnknownText_0xe01cd
 	call Functione0489
-	call Function1dcf
+	call YesNoBox
 	jr c, .asm_e01c7
 	call Functione0366
 	call Functione01b0
@@ -95177,7 +95177,7 @@ Functione031e: ; e031e
 	call ClearSprites
 	ld hl, UnknownText_0xe0356
 	call Functione0489
-	call Function1dcf
+	call YesNoBox
 	jr nc, .asm_e0330
 	call Functione01b0
 	ret
@@ -96629,8 +96629,8 @@ Functione24e0: ; e24e0 (38:64e0)
 	ld de, $74f4
 	call Functione2a6e
 	call Function1d6e
-	ld bc, $e0b
-	call Function1dd2
+	lb bc, 14, 11
+	call PlaceYesNoBox
 	ld a, [$cfa9]
 	dec a
 	call Function1c07
@@ -96867,8 +96867,8 @@ Functione26d8: ; e26d8 (38:66d8)
 	ld de, $74f4
 	call Functione2a6e
 	call Function1d6e
-	ld bc, $e0b
-	call Function1dd2
+	lb bc, 14, 11
+	call PlaceYesNoBox
 	ld a, [$cfa9]
 	dec a
 	call Function1c07
@@ -102762,7 +102762,7 @@ Functionfcba8: ; fcba8
 	jr nz, .asm_fcc03
 	ld a, $0
 	call Functionfcf38
-	call Function1dcf
+	call YesNoBox
 	ld a, $1
 	jr c, .asm_fcc03
 	ld b, $6
@@ -105583,7 +105583,7 @@ Function102142: ; 102142
 	call Function10219f
 	ld hl, $61d6
 	call Function1d4f
-	call Function1dcf
+	call YesNoBox
 	call Function1c07
 	jr c, .asm_10217c
 	call Function1021b8
@@ -105686,7 +105686,7 @@ Function10366e: ; 10366e
 	jr z, .asm_10369b
 	ld hl, $775d
 	call PrintText
-	call Function1dcf
+	call YesNoBox
 	jr c, .asm_103696
 	callba Function8b1e1
 	jr nc, .asm_103690
@@ -105710,7 +105710,7 @@ Function10366e: ; 10366e
 	jr nz, .asm_1036b5
 	ld hl, $7762
 	call PrintText
-	call Function1dcf
+	call YesNoBox
 	jr c, .asm_1036b5
 	call Function1036f9
 	call Functiona36
@@ -105857,7 +105857,7 @@ Function1037c2: ; 1037c2
 	jr z, .asm_1037de
 	ld hl, $77e6
 	call PrintText
-	call Function1dcf
+	call YesNoBox
 	jr c, .asm_1037de
 	ld a, $1
 	ld [ScriptVar], a

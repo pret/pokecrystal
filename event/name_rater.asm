@@ -1,7 +1,7 @@
 NameRater: ; fb6ed
 	ld hl, UnknownText_0xfb80f
 	call PrintText
-	call Function1dcf
+	call YesNoBox
 	jp c, .asm_fb77e
 	ld hl, UnknownText_0xfb814
 	call PrintText
@@ -15,7 +15,7 @@ NameRater: ; fb6ed
 	jr c, .asm_fb779
 	ld hl, UnknownText_0xfb819
 	call PrintText
-	call Function1dcf
+	call YesNoBox
 	jr c, .asm_fb77e
 	ld hl, UnknownText_0xfb81e
 	call PrintText
