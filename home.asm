@@ -2423,7 +2423,7 @@ Function3ae1: ; 3ae1
 	ret
 ; 3af0
 
-Function3af0: ; 3af0
+GetBattleAnimByte: ; 3af0
 	push hl
 	push de
 	ld hl, $d410

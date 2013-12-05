@@ -87458,7 +87458,7 @@ Functioncc267: ; cc267
 
 Functioncc275: ; cc275
 
-	call Function3af0
+	call GetBattleAnimByte
 
 	cp $ff
 	jr nz, .asm_cc286
@@ -87577,9 +87577,9 @@ BattleAnimCmd_FF: ; cc305 (33:4305)
 
 ; no known jump sources
 BattleAnimCmd_FE: ; cc317 (33:4317)
-	call Function3af0
+	call GetBattleAnimByte
 	ld e, a
-	call Function3af0
+	call GetBattleAnimByte
 	ld d, a
 	push de
 	ld hl, $d410
@@ -87601,9 +87601,9 @@ BattleAnimCmd_FE: ; cc317 (33:4317)
 
 ; no known jump sources
 BattleAnimCmd_FC: ; cc339 (33:4339)
-	call Function3af0
+	call GetBattleAnimByte
 	ld e, a
-	call Function3af0
+	call GetBattleAnimByte
 	ld d, a
 	ld hl, $d410
 	ld [hl], e
@@ -87613,7 +87613,7 @@ BattleAnimCmd_FC: ; cc339 (33:4339)
 
 ; no known jump sources
 BattleAnimCmd_FD: ; cc348 (33:4348)
-	call Function3af0
+	call GetBattleAnimByte
 	ld hl, $d40f
 	bit 2, [hl]
 	jr nz, .asm_cc35b
@@ -87629,9 +87629,9 @@ BattleAnimCmd_FD: ; cc348 (33:4348)
 	jr z, .asm_cc372
 	dec [hl]
 .asm_cc363
-	call Function3af0
+	call GetBattleAnimByte
 	ld e, a
-	call Function3af0
+	call GetBattleAnimByte
 	ld d, a
 	ld hl, $d410
 	ld [hl], e
@@ -87659,9 +87659,9 @@ BattleAnimCmd_EF: ; cc383 (33:4383)
 	and a
 	jr z, .asm_cc39a
 	dec [hl]
-	call Function3af0
+	call GetBattleAnimByte
 	ld e, a
-	call Function3af0
+	call GetBattleAnimByte
 	ld d, a
 	ld hl, $d410
 	ld [hl], e
@@ -87682,7 +87682,7 @@ BattleAnimCmd_EF: ; cc383 (33:4383)
 
 ; no known jump sources
 BattleAnimCmd_F9: ; cc3a6 (33:43a6)
-	call Function3af0
+	call GetBattleAnimByte
 	ld [$d416], a
 	ret
 
@@ -87694,7 +87694,7 @@ BattleAnimCmd_FA: ; cc3ad (33:43ad)
 
 ; no known jump sources
 BattleAnimCmd_FB: ; cc3b2 (33:43b2)
-	call Function3af0
+	call GetBattleAnimByte
 	ld hl, $d416
 	cp [hl]
 	jr z, .asm_cc3c7
@@ -87709,9 +87709,9 @@ BattleAnimCmd_FB: ; cc3b2 (33:43b2)
 	ld [hl], e
 	ret
 .asm_cc3c7
-	call Function3af0
+	call GetBattleAnimByte
 	ld e, a
-	call Function3af0
+	call GetBattleAnimByte
 	ld d, a
 	ld hl, $d410
 	ld [hl], e
@@ -87721,7 +87721,7 @@ BattleAnimCmd_FB: ; cc3b2 (33:43b2)
 
 ; no known jump sources
 BattleAnimCmd_F8: ; cc3d6 (33:43d6)
-	call Function3af0
+	call GetBattleAnimByte
 	ld hl, $c689
 	cp [hl]
 	jr z, .asm_cc3eb
@@ -87736,9 +87736,9 @@ BattleAnimCmd_F8: ; cc3d6 (33:43d6)
 	ld [hl], e
 	ret
 .asm_cc3eb
-	call Function3af0
+	call GetBattleAnimByte
 	ld e, a
-	call Function3af0
+	call GetBattleAnimByte
 	ld d, a
 	ld hl, $d410
 	ld [hl], e
@@ -87748,7 +87748,7 @@ BattleAnimCmd_F8: ; cc3d6 (33:43d6)
 
 ; no known jump sources
 BattleAnimCmd_EE: ; cc3fa (33:43fa)
-	call Function3af0
+	call GetBattleAnimByte
 	ld e, a
 	ld a, [$c689]
 	and e
@@ -87764,9 +87764,9 @@ BattleAnimCmd_EE: ; cc3fa (33:43fa)
 	ld [hl], e
 	ret
 .asm_cc410
-	call Function3af0
+	call GetBattleAnimByte
 	ld e, a
-	call Function3af0
+	call GetBattleAnimByte
 	ld d, a
 	ld hl, $d410
 	ld [hl], e
@@ -87776,45 +87776,45 @@ BattleAnimCmd_EE: ; cc3fa (33:43fa)
 
 ; no known jump sources
 BattleAnimCmd_D0: ; cc41f (33:441f)
-	call Function3af0
+	call GetBattleAnimByte
 	ld [$d419], a
-	call Function3af0
+	call GetBattleAnimByte
 	ld [$d41a], a
-	call Function3af0
+	call GetBattleAnimByte
 	ld [$d41b], a
-	call Function3af0
+	call GetBattleAnimByte
 	ld [$d41c], a
 	call Functioncc9a1
 	ret
 
 ; no known jump sources
 BattleAnimCmd_F0: ; cc43b (33:443b)
-	call Function3af0
+	call GetBattleAnimByte
 	ld [$d419], a
-	call Function3af0
+	call GetBattleAnimByte
 	ld [$d41a], a
-	call Function3af0
+	call GetBattleAnimByte
 	ld [$d41b], a
-	call Function3af0
+	call GetBattleAnimByte
 	ld [$d41c], a
 	call Functionccb4f
 	ret
 
 ; no known jump sources
 BattleAnimCmd_F1: ; cc457 (33:4457)
-	call Function3af0
+	call GetBattleAnimByte
 	ld [$cfc7], a
 	ret
 
 ; no known jump sources
 BattleAnimCmd_F2: ; cc45e (33:445e)
-	call Function3af0
+	call GetBattleAnimByte
 	ld [$cfc8], a
 	ret
 
 ; no known jump sources
 BattleAnimCmd_F3: ; cc465 (33:4465)
-	call Function3af0
+	call GetBattleAnimByte
 	ld [$cfc9], a
 	ret
 
@@ -87856,7 +87856,7 @@ BattleAnimCmd_D5: ; cc485 (33:4485)
 	ld a, [$d419]
 	cp $4f
 	ret nc
-	call Function3af0
+	call GetBattleAnimByte
 	ld [hli], a
 	ld a, [$d419]
 	ld [hli], a
@@ -87883,7 +87883,7 @@ BattleAnimCmd_D5: ; cc485 (33:4485)
 
 ; no known jump sources
 BattleAnimCmd_D6: ; cc4c0 (33:44c0)
-	call Function3af0
+	call GetBattleAnimByte
 	ld e, $a
 	ld bc, $d30a
 .asm_cc4c8
@@ -87908,7 +87908,7 @@ BattleAnimCmd_D6: ; cc4c0 (33:44c0)
 
 ; no known jump sources
 BattleAnimCmd_D8: ; cc4e3 (33:44e3)
-	call Function3af0
+	call GetBattleAnimByte
 	ld e, $5
 	ld bc, $d3fa
 .asm_cc4eb
@@ -87933,7 +87933,7 @@ BattleAnimCmd_D8: ; cc4e3 (33:44e3)
 
 ; no known jump sources
 BattleAnimCmd_D7: ; cc506 (33:4506)
-	call Function3af0
+	call GetBattleAnimByte
 	ld e, $a
 	ld bc, $d30a
 .asm_cc50e
@@ -87951,7 +87951,7 @@ BattleAnimCmd_D7: ; cc506 (33:4506)
 	jr nz, .asm_cc50e
 	ret
 .asm_cc523
-	call Function3af0
+	call GetBattleAnimByte
 	ld hl, $e
 	add hl, bc
 	ld [hl], a
@@ -88357,7 +88357,7 @@ BattleAnimCmd_F7: ; cc7cc (33:47cc)
 
 ; no known jump sources
 BattleAnimCmd_E0: ; cc7cd (33:47cd)
-	call Function3af0
+	call GetBattleAnimByte
 	ld e, a
 	srl a
 	srl a
@@ -88373,7 +88373,7 @@ BattleAnimCmd_E0: ; cc7cd (33:47cd)
 	ld a, [hl]
 	ld [$c2bc], a
 
-	call Function3af0
+	call GetBattleAnimByte
 	ld e, a
 	ld d, 0
 	callab PlayStereoSFX
@@ -88401,7 +88401,7 @@ Functioncc7fc: ; cc7fc (33:47fc)
 
 ; no known jump sources
 BattleAnimCmd_E1: ; cc807 (33:4807)
-	call Function3af0
+	call GetBattleAnimByte
 	and 3
 	ld e, a
 	ld d, 0
