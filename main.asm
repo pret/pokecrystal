@@ -46885,12 +46885,12 @@ Function3f41c: ; 3f41c
 Function3f43d: ; 3f43d
 	ld a, [PlayerSubStatus4]
 	bit 4, a
-	ld hl, Functioncc640
+	ld hl, BattleAnimCmd_DD
 	jr nz, asm_3f46f
 Function3f447: ; 3f447
 	ld a, [$c6fe]
 	and a
-	ld hl, Functioncc6cf
+	ld hl, BattleAnimCmd_E2
 	jr nz, asm_3f46f
 	ld a, [CurPartySpecies]
 	push af
@@ -46911,7 +46911,7 @@ asm_3f46f
 	push af
 	xor a
 	ld [hBattleTurn], a
-	ld a, BANK(Functioncc640)
+	ld a, BANK(BattleAnimCommands)
 	rst FarCall
 	pop af
 	ld [hBattleTurn], a
@@ -46921,12 +46921,12 @@ asm_3f46f
 Function3f47c: ; 3f47c
 	ld a, [EnemySubStatus4]
 	bit 4, a
-	ld hl, Functioncc640
+	ld hl, BattleAnimCmd_DD
 	jr nz, asm_3f4b4
 Function3f486: ; 3f486
 	ld a, [$c6fa]
 	and a
-	ld hl, Functioncc6cf
+	ld hl, BattleAnimCmd_E2
 	jr nz, asm_3f4b4
 	ld a, [CurPartySpecies]
 	push af
@@ -46948,7 +46948,7 @@ asm_3f4b4
 	ld a, [hBattleTurn]
 	push af
 	call SetEnemyTurn
-	ld a, BANK(Functioncc640)
+	ld a, BANK(BattleAnimCommands)
 	rst FarCall
 	pop af
 	ld [hBattleTurn], a
@@ -84126,7 +84126,7 @@ Functionc801a: ; c801a (32:401a)
 Functionc8043: ; c8043 (32:4043)
 	ld hl, $0
 	add hl, bc
-	ld [hl], $0
+	ld [hl], 0
 	ret
 
 ; known jump sources: c800d (32:400d)
@@ -84134,8 +84134,8 @@ Functionc804a: ; c804a (32:404a)
 	ld hl, $0
 	add hl, bc
 	ld e, [hl]
-	ld d, $0
-	ld hl, $405a
+	ld d, 0
+	ld hl, BattleBGEffects
 	add hl, de
 	add hl, de
 	ld a, [hli]
@@ -84144,7 +84144,7 @@ Functionc804a: ; c804a (32:404a)
 	jp [hl]
 
 ; no known jump sources
-Jumptable_c805a: ; c805a (32:405a)
+BattleBGEffects: ; c805a (32:405a)
 	dw Functionc80c6
 	dw Functionc80eb
 	dw Functionc80f3
@@ -87504,62 +87504,65 @@ Functioncc293: ; cc293
 
 ; no known jump sources
 BattleAnimCommands: ; cc2a4 (33:42a4)
-	dw Functioncc41f
-	dw Functioncc485
-	dw Functioncc485
-	dw Functioncc485
-	dw Functioncc485
-	dw Functioncc485
-	dw Functioncc4c0
-	dw Functioncc506
-	dw Functioncc4e3
-	dw Functioncc52c
-	dw Functioncc57e
-	dw Functioncc5d0
-	dw Functioncc5dc
-	dw Functioncc640
-	dw Functioncc750
-	dw Functioncc46c
-	dw Functioncc7cd
-	dw Functioncc807
-	dw Functioncc6cf
-	dw Functioncc7bb
-	dw Functioncc7bf
-	dw Functioncc479
-	dw Functioncc776
-	dw Functioncc5db
-	dw Functioncc622
-	dw Functioncc735
-	dw Functioncc304
-	dw Functioncc304
-	dw Functioncc304
-	dw Functioncc304
-	dw Functioncc3fa
-	dw Functioncc383
-	dw Functioncc43b
-	dw Functioncc457
-	dw Functioncc45e
-	dw Functioncc465
-	dw Functioncc7c4
-	dw Functioncc7ca
-	dw Functioncc7cb
-	dw Functioncc7cc
-	dw Functioncc3d6
-	dw Functioncc3a6
-	dw Functioncc3ad
-	dw Functioncc3b2
-	dw Functioncc339
-	dw Functioncc348
-	dw Functioncc317
-	dw Functioncc305
+	dw BattleAnimCmd_D0
+	dw BattleAnimCmd_D1
+	dw BattleAnimCmd_D2
+	dw BattleAnimCmd_D3
+	dw BattleAnimCmd_D4
+	dw BattleAnimCmd_D5
+	dw BattleAnimCmd_D6
+	dw BattleAnimCmd_D7
+	dw BattleAnimCmd_D8
+	dw BattleAnimCmd_D9
+	dw BattleAnimCmd_DA
+	dw BattleAnimCmd_DB
+	dw BattleAnimCmd_DC
+	dw BattleAnimCmd_DD
+	dw BattleAnimCmd_DE
+	dw BattleAnimCmd_DF
+	dw BattleAnimCmd_E0
+	dw BattleAnimCmd_E1
+	dw BattleAnimCmd_E2
+	dw BattleAnimCmd_E3
+	dw BattleAnimCmd_E4
+	dw BattleAnimCmd_E5
+	dw BattleAnimCmd_E6
+	dw BattleAnimCmd_E7
+	dw BattleAnimCmd_E8
+	dw BattleAnimCmd_E9
+	dw BattleAnimCmd_EA
+	dw BattleAnimCmd_EB
+	dw BattleAnimCmd_EC
+	dw BattleAnimCmd_ED
+	dw BattleAnimCmd_EE
+	dw BattleAnimCmd_EF
+	dw BattleAnimCmd_F0
+	dw BattleAnimCmd_F1
+	dw BattleAnimCmd_F2
+	dw BattleAnimCmd_F3
+	dw BattleAnimCmd_F4
+	dw BattleAnimCmd_F5
+	dw BattleAnimCmd_F6
+	dw BattleAnimCmd_F7
+	dw BattleAnimCmd_F8
+	dw BattleAnimCmd_F9
+	dw BattleAnimCmd_FA
+	dw BattleAnimCmd_FB
+	dw BattleAnimCmd_FC
+	dw BattleAnimCmd_FD
+	dw BattleAnimCmd_FE
+	dw BattleAnimCmd_FF
 
 
 ; no known jump sources
-Functioncc304: ; cc304 (33:4304)
+BattleAnimCmd_EA:
+BattleAnimCmd_EB:
+BattleAnimCmd_EC:
+BattleAnimCmd_ED: ; cc304 (33:4304)
 	ret
 
 ; no known jump sources
-Functioncc305: ; cc305 (33:4305)
+BattleAnimCmd_FF: ; cc305 (33:4305)
 	ld hl, $d40f
 	res 1, [hl]
 	ld hl, $d413
@@ -87573,7 +87576,7 @@ Functioncc305: ; cc305 (33:4305)
 	ret
 
 ; no known jump sources
-Functioncc317: ; cc317 (33:4317)
+BattleAnimCmd_FE: ; cc317 (33:4317)
 	call Function3af0
 	ld e, a
 	call Function3af0
@@ -87597,7 +87600,7 @@ Functioncc317: ; cc317 (33:4317)
 	ret
 
 ; no known jump sources
-Functioncc339: ; cc339 (33:4339)
+BattleAnimCmd_FC: ; cc339 (33:4339)
 	call Function3af0
 	ld e, a
 	call Function3af0
@@ -87609,7 +87612,7 @@ Functioncc339: ; cc339 (33:4339)
 	ret
 
 ; no known jump sources
-Functioncc348: ; cc348 (33:4348)
+BattleAnimCmd_FD: ; cc348 (33:4348)
 	call Function3af0
 	ld hl, $d40f
 	bit 2, [hl]
@@ -87650,7 +87653,7 @@ Functioncc348: ; cc348 (33:4348)
 	ret
 
 ; no known jump sources
-Functioncc383: ; cc383 (33:4383)
+BattleAnimCmd_EF: ; cc383 (33:4383)
 	ld hl, $c689
 	ld a, [hl]
 	and a
@@ -87678,19 +87681,19 @@ Functioncc383: ; cc383 (33:4383)
 	ret
 
 ; no known jump sources
-Functioncc3a6: ; cc3a6 (33:43a6)
+BattleAnimCmd_F9: ; cc3a6 (33:43a6)
 	call Function3af0
 	ld [$d416], a
 	ret
 
 ; no known jump sources
-Functioncc3ad: ; cc3ad (33:43ad)
+BattleAnimCmd_FA: ; cc3ad (33:43ad)
 	ld hl, $d416
 	inc [hl]
 	ret
 
 ; no known jump sources
-Functioncc3b2: ; cc3b2 (33:43b2)
+BattleAnimCmd_FB: ; cc3b2 (33:43b2)
 	call Function3af0
 	ld hl, $d416
 	cp [hl]
@@ -87717,7 +87720,7 @@ Functioncc3b2: ; cc3b2 (33:43b2)
 	ret
 
 ; no known jump sources
-Functioncc3d6: ; cc3d6 (33:43d6)
+BattleAnimCmd_F8: ; cc3d6 (33:43d6)
 	call Function3af0
 	ld hl, $c689
 	cp [hl]
@@ -87744,7 +87747,7 @@ Functioncc3d6: ; cc3d6 (33:43d6)
 	ret
 
 ; no known jump sources
-Functioncc3fa: ; cc3fa (33:43fa)
+BattleAnimCmd_EE: ; cc3fa (33:43fa)
 	call Function3af0
 	ld e, a
 	ld a, [$c689]
@@ -87772,7 +87775,7 @@ Functioncc3fa: ; cc3fa (33:43fa)
 	ret
 
 ; no known jump sources
-Functioncc41f: ; cc41f (33:441f)
+BattleAnimCmd_D0: ; cc41f (33:441f)
 	call Function3af0
 	ld [$d419], a
 	call Function3af0
@@ -87785,7 +87788,7 @@ Functioncc41f: ; cc41f (33:441f)
 	ret
 
 ; no known jump sources
-Functioncc43b: ; cc43b (33:443b)
+BattleAnimCmd_F0: ; cc43b (33:443b)
 	call Function3af0
 	ld [$d419], a
 	call Function3af0
@@ -87798,25 +87801,25 @@ Functioncc43b: ; cc43b (33:443b)
 	ret
 
 ; no known jump sources
-Functioncc457: ; cc457 (33:4457)
+BattleAnimCmd_F1: ; cc457 (33:4457)
 	call Function3af0
 	ld [$cfc7], a
 	ret
 
 ; no known jump sources
-Functioncc45e: ; cc45e (33:445e)
+BattleAnimCmd_F2: ; cc45e (33:445e)
 	call Function3af0
 	ld [$cfc8], a
 	ret
 
 ; no known jump sources
-Functioncc465: ; cc465 (33:4465)
+BattleAnimCmd_F3: ; cc465 (33:4465)
 	call Function3af0
 	ld [$cfc9], a
 	ret
 
 ; no known jump sources
-Functioncc46c: ; cc46c (33:446c)
+BattleAnimCmd_DF: ; cc46c (33:446c)
 	ld a, [hSGB] ; $ff00+$e7
 	and a
 	ld a, $e0
@@ -87827,7 +87830,7 @@ Functioncc46c: ; cc46c (33:446c)
 	ret
 
 ; no known jump sources
-Functioncc479: ; cc479 (33:4479)
+BattleAnimCmd_E5: ; cc479 (33:4479)
 	ld hl, $d30a
 	ld a, $a0
 .asm_cc47e
@@ -87838,7 +87841,11 @@ Functioncc479: ; cc479 (33:4479)
 	ret
 
 ; no known jump sources
-Functioncc485: ; cc485 (33:4485)
+BattleAnimCmd_D1:
+BattleAnimCmd_D2:
+BattleAnimCmd_D3:
+BattleAnimCmd_D4:
+BattleAnimCmd_D5: ; cc485 (33:4485)
 	ld a, [$d417]
 	and $f
 	ld c, a
@@ -87875,7 +87882,7 @@ Functioncc485: ; cc485 (33:4485)
 	ret
 
 ; no known jump sources
-Functioncc4c0: ; cc4c0 (33:44c0)
+BattleAnimCmd_D6: ; cc4c0 (33:44c0)
 	call Function3af0
 	ld e, $a
 	ld bc, $d30a
@@ -87900,7 +87907,7 @@ Functioncc4c0: ; cc4c0 (33:44c0)
 	ret
 
 ; no known jump sources
-Functioncc4e3: ; cc4e3 (33:44e3)
+BattleAnimCmd_D8: ; cc4e3 (33:44e3)
 	call Function3af0
 	ld e, $5
 	ld bc, $d3fa
@@ -87925,7 +87932,7 @@ Functioncc4e3: ; cc4e3 (33:44e3)
 	ret
 
 ; no known jump sources
-Functioncc506: ; cc506 (33:4506)
+BattleAnimCmd_D7: ; cc506 (33:4506)
 	call Function3af0
 	ld e, $a
 	ld bc, $d30a
@@ -87951,7 +87958,7 @@ Functioncc506: ; cc506 (33:4506)
 	ret
 
 ; no known jump sources
-Functioncc52c: ; cc52c (33:452c)
+BattleAnimCmd_D9: ; cc52c (33:452c)
 	ld hl, $d300
 .asm_cc52f
 	ld a, [hl]
@@ -88005,7 +88012,7 @@ Functioncc561: ; cc561 (33:4561)
 	ret
 
 ; no known jump sources
-Functioncc57e: ; cc57e (33:457e)
+BattleAnimCmd_DA: ; cc57e (33:457e)
 	ld hl, $d300
 .asm_cc581
 	ld a, [hl]
@@ -88059,18 +88066,18 @@ Functioncc5b3: ; cc5b3 (33:45b3)
 	ret
 
 ; no known jump sources
-Functioncc5d0: ; cc5d0 (33:45d0)
+BattleAnimCmd_DB: ; cc5d0 (33:45d0)
 	callab Functionf971
 	ld a, c
 	ld [$d416], a
 	ret
 
 ; no known jump sources
-Functioncc5db: ; cc5db (33:45db)
+BattleAnimCmd_E7: ; cc5db (33:45db)
 	ret
 
 ; no known jump sources
-Functioncc5dc: ; cc5dc (33:45dc)
+BattleAnimCmd_DC: ; cc5dc (33:45dc)
 	ld a, [rSVBK] ; $ff00+$70
 	push af
 	ld a, $1
@@ -88106,7 +88113,7 @@ Functioncc5dc: ; cc5dc (33:45dc)
 	ret
 
 ; no known jump sources
-Functioncc622: ; cc622 (33:4622)
+BattleAnimCmd_E8: ; cc622 (33:4622)
 	ld de, $8000
 	ld a, [hBattleTurn] ; $ff00+$e4
 	and a
@@ -88124,7 +88131,7 @@ Functioncc622: ; cc622 (33:4622)
 	ret
 
 ; no known jump sources
-Functioncc640: ; cc640 (33:4640)
+BattleAnimCmd_DD: ; cc640 (33:4640)
 	ld a, [rSVBK] ; $ff00+$70
 	push af
 	ld a, $1
@@ -88191,7 +88198,7 @@ Functioncc6c6: ; cc6c6 (33:46c6)
 	ret
 
 ; no known jump sources
-Functioncc6cf: ; cc6cf (33:46cf)
+BattleAnimCmd_E2: ; cc6cf (33:46cf)
 	ld a, [rSVBK] ; $ff00+$70
 	push af
 	ld a, $1
@@ -88245,7 +88252,7 @@ Functioncc719: ; cc719 (33:4719)
 INCBIN "baserom.gbc",$cc725,$cc735 - $cc725
 
 ; no known jump sources
-Functioncc735: ; cc735 (33:4735)
+BattleAnimCmd_E9: ; cc735 (33:4735)
 	ld a, [rSVBK] ; $ff00+$70
 	push af
 	ld a, $1
@@ -88261,7 +88268,7 @@ Functioncc735: ; cc735 (33:4735)
 	ret
 
 ; no known jump sources
-Functioncc750: ; cc750 (33:4750)
+BattleAnimCmd_DE: ; cc750 (33:4750)
 	ld a, [rSVBK] ; $ff00+$70
 	push af
 	ld a, $1
@@ -88283,7 +88290,7 @@ Functioncc750: ; cc750 (33:4750)
 	ret
 
 ; no known jump sources
-Functioncc776: ; cc776 (33:4776)
+BattleAnimCmd_E6: ; cc776 (33:4776)
 	ld a, [rSVBK] ; $ff00+$70
 	push af
 	ld a, $1
@@ -88319,107 +88326,121 @@ Functioncc776: ; cc776 (33:4776)
 	ret
 
 ; no known jump sources
-Functioncc7bb: ; cc7bb (33:47bb)
+BattleAnimCmd_E3: ; cc7bb (33:47bb)
 	xor a
 	ld [hOAMUpdate], a ; $ff00+$d8
 	ret
 
 ; no known jump sources
-Functioncc7bf: ; cc7bf (33:47bf)
+BattleAnimCmd_E4: ; cc7bf (33:47bf)
 	ld a, $1
 	ld [hOAMUpdate], a ; $ff00+$d8
 	ret
 
 ; no known jump sources
-Functioncc7c4: ; cc7c4 (33:47c4)
+BattleAnimCmd_F4: ; cc7c4 (33:47c4)
 	ld hl, $d40f
 	set 3, [hl]
 	ret
 
 ; no known jump sources
-Functioncc7ca: ; cc7ca (33:47ca)
+BattleAnimCmd_F5: ; cc7ca (33:47ca)
 	ret
 
 ; no known jump sources
-Functioncc7cb: ; cc7cb (33:47cb)
+BattleAnimCmd_F6: ; cc7cb (33:47cb)
 	ret
 
 ; no known jump sources
-Functioncc7cc: ; cc7cc (33:47cc)
+BattleAnimCmd_F7: ; cc7cc (33:47cc)
 	ret
 
 ; no known jump sources
-Functioncc7cd: ; cc7cd (33:47cd)
+BattleAnimCmd_E0: ; cc7cd (33:47cd)
 	call Function3af0
 	ld e, a
 	srl a
 	srl a
 	ld [$c2be], a
 	call Functioncc7fc
-	and $3
+	and 3
 	ld [CryTracks], a ; $c2bd
+
 	ld e, a
-	ld d, $0
-	ld hl, $47f8
+	ld d, 0
+	ld hl, Datacc7f8
 	add hl, de
 	ld a, [hl]
 	ld [$c2bc], a
+
 	call Function3af0
 	ld e, a
-	ld d, $0
+	ld d, 0
 	callab PlayStereoSFX
+
 	ret
 ; cc7f8 (33:47f8)
 
-INCBIN "baserom.gbc",$cc7f8,$cc7fc - $cc7f8
+Datacc7f8: ; cc7f8
+	db $f0, $0f, $f0, $0f
+; cc7fc
 
 ; known jump sources: cc7d8 (33:47d8)
 Functioncc7fc: ; cc7fc (33:47fc)
 	ld a, [hBattleTurn] ; $ff00+$e4
 	and a
-	jr nz, .asm_cc803
+	jr nz, .enemy
+
 	ld a, e
 	ret
-.asm_cc803
+
+.enemy
 	ld a, e
-	xor $1
+	xor 1
 	ret
 
 ; no known jump sources
-Functioncc807: ; cc807 (33:4807)
+BattleAnimCmd_E1: ; cc807 (33:4807)
 	call Function3af0
-	and $3
+	and 3
 	ld e, a
-	ld d, $0
-	ld hl, $4871
+	ld d, 0
+	ld hl, Datacc871
 	add hl, de
 	add hl, de
 	add hl, de
 	add hl, de
+
 	ld a, [rSVBK] ; $ff00+$70
 	push af
-	ld a, $1
+	ld a, 1
 	ld [rSVBK], a ; $ff00+$70
+
 	ld a, [hBattleTurn] ; $ff00+$e4
 	and a
-	jr nz, .asm_cc82c
+	jr nz, .enemy
+
 	ld a, $f0
 	ld [CryTracks], a ; $c2bd
 	ld a, [BattleMonSpecies] ; $c62c
 	jr .asm_cc834
-.asm_cc82c
-	ld a, $f
+
+.enemy
+	ld a, $0f
 	ld [CryTracks], a ; $c2bd
-	ld a, [EnemyMon] ; $d206 (aliases: EnemyMonSpecies)
+	ld a, [EnemyMonSpecies] ; $d206 (aliases: EnemyMonSpecies)
+
 .asm_cc834
 	push hl
 	call Function37f3
 	pop hl
-	jr c, .asm_cc86d
+	jr c, .done
+
 	ld a, [hli]
 	ld c, a
 	ld a, [hli]
 	ld b, a
+
 	push hl
 	ld hl, CryPitch ; $c2b0
 	ld a, [hli]
@@ -88431,6 +88452,7 @@ Functioncc807: ; cc807 (33:4807)
 	ld a, h
 	ld [CryEcho], a ; $c2b1
 	pop hl
+
 	ld a, [hli]
 	ld c, a
 	ld b, [hl]
@@ -88439,20 +88461,28 @@ Functioncc807: ; cc807 (33:4807)
 	ld h, [hl]
 	ld l, a
 	add hl, bc
+
 	ld a, l
 	ld [CryLength], a ; $c2b2
 	ld a, h
 	ld [$c2b3], a
-	ld a, $1
+	ld a, 1
 	ld [$c2bc], a
+
 	callab PlayCry
-.asm_cc86d
+
+.done
 	pop af
 	ld [rSVBK], a ; $ff00+$70
 	ret
 ; cc871 (33:4871)
 
-INCBIN "baserom.gbc",$cc871,$cc881 - $cc871
+Datacc871: ; cc871
+	db $00, $00, $c0, $00
+	db $00, $00, $40, $00
+	db $00, $00, $00, $00
+	db $00, $00, $00, $00
+; cc881
 
 
 Functioncc881: ; cc881
@@ -88466,14 +88496,17 @@ Functioncc881: ; cc881
 	ld a, [TypeModifier]
 	and $7f
 	ret z
-	cp $a
-	ld de, $00ac
-	jr z, .asm_cc8a0
-	ld de, $00ad
-	jr nc, .asm_cc8a0
-	ld de, $00ab
 
-.asm_cc8a0
+	cp 10
+	ld de, SFX_DAMAGE
+	jr z, .play
+
+	ld de, SFX_SUPER_EFFECTIVE
+	jr nc, .play
+
+	ld de, SFX_NOT_VERY_EFFECTIVE
+
+.play
 	call PlaySFX
 	ret
 ; cc8a4
