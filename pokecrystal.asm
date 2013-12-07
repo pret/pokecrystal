@@ -1,5 +1,2 @@
-INCLUDE "globals.asm"
-
-INCLUDE "constants.asm"
-INCLUDE "wram.asm"
-INCLUDE "main.asm"
+_CRYSTAL EQU 1
+VERSION  EQU 0

@@ -6,7 +6,18 @@ PYTHON := python
 TEXTFILES := $(shell find ./ -type f -name '*.asm' | grep -v globals.asm)
 TEXTQUEUE :=
 
-OBJS := pokecrystal.o
+CRYSTAL_OBJS := \
+wram.o \
+main.o \
+engine/events.o \
+engine/scripting_crystal.o \
+engine/events_2.o \
+stats/egg_moves_crystal.o \
+stats/evos_attacks_crystal.o
+
+OBJS := $(CRYSTAL_OBJS)
+
+ROMS := pokecrystal.gbc
 
 PNGS   := $(shell find gfx/ -type f -name '*.png')
 LZS    := $(shell find gfx/ -type f -name '*.lz')
@@ -21,10 +32,11 @@ $(shell \
 	) \
 )
 
-all: baserom.gbc globals.asm pokecrystal.gbc
+all: baserom.gbc globals.asm $(ROMS)
 	cmp baserom.gbc pokecrystal.gbc
 clean:
-	rm -f pokecrystal.o pokecrystal.gbc
+	rm -f $(ROMS)
+	rm -f $(OBJS)
 	rm -f globals.asm globals.tx
 	@echo 'Removing preprocessed .tx files...'
 	@rm -f $(TEXTFILES:.asm=.tx)
@@ -45,7 +57,7 @@ globals.asm: $(TEXTFILES:.asm=.tx)
 $(OBJS): $$(patsubst %.o,%.tx,$$@) $$(patsubst %.asm,%.tx,$$(OBJ_$$(patsubst %.o,%,$$@)))
 	rgbasm -o $@ $(@:.o=.tx)
 
-pokecrystal.gbc: $(OBJS)
+pokecrystal.gbc: $(CRYSTAL_OBJS)
 	rgblink -n pokecrystal.sym -m pokecrystal.map -o pokecrystal.gbc $^
 	rgbfix -Cjv -i BYTE -k 01 -l 0x33 -m 0x10 -p 0 -r 3 -t PM_CRYSTAL $@
 

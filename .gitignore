@@ -17,6 +17,10 @@ globals.asm
 *.gbc
 *.gb
 
+# rgbds extras
+*.map
+*.sym
+
 # generated
 *.tx
 

@@ -1,10 +1,3 @@
-_CRYSTAL EQU 1
-
-if _CRYSTAL
-VERSION EQU 0
-else
-VERSION EQU 1
-endc
 
 ; wram constants
 ; MonType: ; cf5f

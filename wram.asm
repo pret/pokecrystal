@@ -1,3 +1,6 @@
+INCLUDE "includes.asm"
+
+
 SECTION "tiles0",VRAM[$8000],BANK[0]
 VTiles0:
 SECTION "tiles1",VRAM[$8800],BANK[0]
