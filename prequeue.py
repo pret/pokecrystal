@@ -8,24 +8,33 @@ a single process.
 import os
 import sys
 
-import extras.pokemontools.configuration as configuration
-
 import preprocessor
 
-def main():
-    config = configuration.Config()
-    macros = preprocessor.load_pokecrystal_macros()
+def preprocess_queue(filenames=sys.argv[1:]):
 
+    stdin = sys.stdin
     stdout = sys.stdout
 
-    for source in sys.argv[1:]:
+    processor = preprocessor.setup_processor()
+
+    for source in filenames:
         dest = os.path.splitext(source)[0] + '.tx'
         sys.stdin  = open(source, 'r')
         sys.stdout = open(dest, 'w')
-        preprocessor.preprocess(config, macros)
+        processor.preprocess()
 
-    # reset stdout
+    processor.update_globals()
+
+    sys.stdin = stdin
     sys.stdout = stdout
+
+def main():
+    filenames = list(set(sys.argv[1:]))
+    if filenames:
+        num_files = len(filenames)
+        s = '' if num_files == 1 else 's'
+        sys.stdout.write('Preprocessing {0} file{1}...\n'.format(num_files, s))
+        preprocess_queue(filenames)
 
 if __name__ == '__main__':
     main()
