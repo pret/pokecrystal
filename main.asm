@@ -86996,6 +86996,7 @@ Functionc9066: ; c9066 (32:5066)
 	ret
 ; c906f (32:506f)
 
+BattleAnimations: ; c906f
 INCBIN "baserom.gbc",$c906f,$cbcdd - $c906f
 
 Functioncbcdd: ; cbcdd

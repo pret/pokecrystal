@@ -2410,41 +2410,49 @@ StdBattleTextBox: ; 3ad5
 
 
 Function3ae1: ; 3ae1
-	ld a, $32
+
+	ld a, BANK(BattleAnimations)
 	rst Bankswitch
 
 	ld a, [hli]
-	ld [$d410], a
+	ld [BattleAnimAddress], a
 	ld a, [hl]
-	ld [$d411], a
-	ld a, $33
+	ld [BattleAnimAddress + 1], a
+
+	ld a, BANK(BattleAnimCommands)
 	rst Bankswitch
 
 	ret
 ; 3af0
 
 GetBattleAnimByte: ; 3af0
+
 	push hl
 	push de
-	ld hl, $d410
+
+	ld hl, BattleAnimAddress
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
-	ld a, $32
+
+	ld a, BANK(BattleAnimations)
 	rst Bankswitch
 
 	ld a, [de]
-	ld [$d417], a
+	ld [BattleAnimByte], a
 	inc de
-	ld a, $33
+
+	ld a, BANK(BattleAnimCommands)
 	rst Bankswitch
 
 	ld [hl], d
 	dec hl
 	ld [hl], e
+
 	pop de
 	pop hl
-	ld a, [$d417]
+
+	ld a, [BattleAnimByte]
 	ret
 ; 3b0c
 
@@ -2453,17 +2461,17 @@ Function3b0c: ; 3b0c
 	and a
 	ret z
 
-	ld a, $00
+	ld a, LYOverridesBackup % $100
 	ld [Requested2bppSource], a
-	ld a, $d2
+	ld a, LYOverridesBackup / $100
 	ld [Requested2bppSource + 1], a
 
-	ld a, $00
+	ld a, LYOverrides % $100
 	ld [Requested2bppDest], a
-	ld a, $d1
+	ld a, LYOverrides / $100
 	ld [Requested2bppDest + 1], a
 
-	ld a, $9
+	ld a, (LYOverridesEnd - LYOverrides) / 16
 	ld [Requested2bpp], a
 	ret
 ; 3b2a

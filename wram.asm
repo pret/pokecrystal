@@ -2137,6 +2137,27 @@ LYOverrides: ; d100
 	ds 144
 LYOverridesEnd:
 
+	ds 112
+
+LYOverridesBackup: ; d200
+	ds 144
+LYOverridesBackupEnd:
+
+
+SECTION "Battle Animations", WRAMX[$d410], BANK[5]
+
+BattleAnimAddress: ; d410
+	ds 2
+BattleAnimDuration: ; d412
+	ds 1
+BattleAnimParent: ; d413
+	ds 2
+	ds 2
+BattleAnimByte: ; d417
+	ds 1
+	ds 1
+BattleAnimTile: ; d419
+	ds 1
 
 SECTION "SRAMBank1",SRAM,BANK[1]
 
