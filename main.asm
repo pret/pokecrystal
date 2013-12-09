@@ -42334,7 +42334,7 @@ Function3d7c7: ; 3d7c7
 	ld bc, TempMonSpecies
 	callba Function4e53f
 	jr c, .asm_3d82c
-	callba Function4ea44
+	callba CheckBattleScene
 	jr c, .asm_3d821
 	ld hl, $c4ac
 	ld d, $0
@@ -48075,7 +48075,7 @@ BattleStartMessage: ; 3fc8b
 	callba CheckSleepingTreeMon
 	jr c, .asm_3fceb
 
-	callba Function4ea44
+	callba CheckBattleScene
 	jr c, .asm_3fce0
 
 	hlcoord 12, 0
@@ -60076,30 +60076,37 @@ Function4ea0a: ; 4ea0a
 
 
 
-Function4ea44: ; 4ea44
-	ld a, $0
+CheckBattleScene: ; 4ea44
+; Return carry if battle scene is turned off.
+
+	ld a, 0
 	ld hl, InLinkBattle
 	call GetFarWRAMByte
-	cp $4
-	jr z, .asm_4ea59
+	cp 4
+	jr z, .mobile
+
 	ld a, [Options]
-	bit 7, a
-	jr nz, .asm_4ea80
+	bit BATTLE_SCENE, a
+	jr nz, .off
+
 	and a
 	ret
 
-.asm_4ea59
+.mobile
 	ld a, [$cd2f]
 	and a
 	jr nz, .asm_4ea72
+
 	ld a, $4
 	call GetSRAMBank
 	ld a, [$a60c]
 	ld c, a
 	call CloseSRAM
+
 	ld a, c
 	bit 0, c
-	jr z, .asm_4ea80
+	jr z, .off
+
 	and a
 	ret
 
@@ -60108,11 +60115,12 @@ Function4ea44: ; 4ea44
 	ld hl, $dc00
 	call GetFarWRAMByte
 	bit 0, a
-	jr z, .asm_4ea80
+	jr z, .off
+
 	and a
 	ret
 
-.asm_4ea80
+.off
 	scf
 	ret
 ; 4ea82
@@ -87190,13 +87198,13 @@ _PlayBattleAnim: ; cc0e4
 
 	ld c, 6
 .wait
-	call Functioncc1fb
+	call BattleAnimDelayFrame
 	dec c
 	jr nz, .wait
 
-	call Functioncc8a4
-	call Functioncc1e2
-	call Functioncc1fb
+	call BattleAnimAssignPals
+	call BattleAnimRequestPals
+	call BattleAnimDelayFrame
 
 	ld c, 1
 	ld a, [rKEY1]
@@ -87218,9 +87226,9 @@ _PlayBattleAnim: ; cc0e4
 	ld a, $1
 	ld [hBGMapMode], a
 
-	call Functioncc1fb
-	call Functioncc1fb
-	call Functioncc1fb
+	call BattleAnimDelayFrame
+	call BattleAnimDelayFrame
+	call BattleAnimDelayFrame
 	call WaitSFX
 	ret
 ; cc11c
@@ -87231,20 +87239,20 @@ Functioncc11c: ; cc11c
 	and a
 	jr nz, .asm_cc156
 
-	callba Function4ea44
+	callba CheckBattleScene
 	jr c, .asm_cc141
 
-	call Functioncc1a1
+	call BattleAnimClearHud
 	call Functioncc163
 
-	call Functioncc8a4
-	call Functioncc1e2
+	call BattleAnimAssignPals
+	call BattleAnimRequestPals
 
 	xor a
 	ld [hSCX], a
 	ld [hSCY], a
-	call Functioncc1fb
-	call Functioncc1bb
+	call BattleAnimDelayFrame
+	call BattleAnimRestoreHuds
 
 .asm_cc141
 	ld a, [$cfca]
@@ -87253,7 +87261,7 @@ Functioncc11c: ; cc11c
 
 	ld l, a
 	ld h, 0
-	ld de, $010e
+	ld de, $10e
 	add hl, de
 	ld a, l
 	ld [FXAnimIDLo], a
@@ -87274,12 +87282,12 @@ Functioncc163: ; cc163
 
 	call Functioncc8d3
 
-.asm_cc166
+.playframe
 	call Functioncc25f
 	call Functionccb48
 	call Functioncc96e
 	call Function3b0c
-	call Functioncc1e2
+	call BattleAnimRequestPals
 
 ; Speed up Rollout's animation on consecutive turns.
 	ld a, [FXAnimIDHi]
@@ -87293,7 +87301,7 @@ Functioncc163: ; cc163
 	ld a, $2e
 	ld b, 5
 	ld de, 4
-	ld hl, $d3fa
+	ld hl, ActiveBGEffects
 .asm_cc18c
 	cp [hl]
 	jr z, .asm_cc196
@@ -87302,33 +87310,34 @@ Functioncc163: ; cc163
 	jr nz, .asm_cc18c
 
 .asm_cc193
-	call Functioncc1fb
+	call BattleAnimDelayFrame
 
 .asm_cc196
 	ld a, [$d40f]
 	bit 0, a
-	jr z, .asm_cc166
+	jr z, .playframe
 
 	call Functioncc23d
 	ret
 ; cc1a1
 
-Functioncc1a1: ; cc1a1
-	call Functioncc1fb
+BattleAnimClearHud: ; cc1a1
+
+	call BattleAnimDelayFrame
 	call WaitTop
 	call ClearActorHud
 	ld a, $1
 	ld [hBGMapMode], a
-	call Functioncc1fb
-	call Functioncc1fb
-	call Functioncc1fb
+	call BattleAnimDelayFrame
+	call BattleAnimDelayFrame
+	call BattleAnimDelayFrame
 	call WaitTop
 	ret
 ; cc1bb
 
-Functioncc1bb: ; cc1bb
+BattleAnimRestoreHuds: ; cc1bb
 
-	call Functioncc1fb
+	call BattleAnimDelayFrame
 	call WaitTop
 
 	ld a, [rSVBK]
@@ -87345,14 +87354,14 @@ Functioncc1bb: ; cc1bb
 
 	ld a, $1
 	ld [hBGMapMode], a
-	call Functioncc1fb
-	call Functioncc1fb
-	call Functioncc1fb
+	call BattleAnimDelayFrame
+	call BattleAnimDelayFrame
+	call BattleAnimDelayFrame
 	call WaitTop
 	ret
 ; cc1e2
 
-Functioncc1e2: ; cc1e2
+BattleAnimRequestPals: ; cc1e2
 
 	ld a, [hCGB]
 	and a
@@ -87372,7 +87381,7 @@ Functioncc1e2: ; cc1e2
 	ret
 ; cc1fb
 
-Functioncc1fb: ; cc1fb
+BattleAnimDelayFrame: ; cc1fb
 ; Like DelayFrame but wastes battery life.
 
 	ld a, 1
@@ -88512,7 +88521,7 @@ Functioncc881: ; cc881
 	ret
 ; cc8a4
 
-Functioncc8a4: ; cc8a4
+BattleAnimAssignPals: ; cc8a4
 	ld a, [hCGB]
 	and a
 	jr nz, .asm_cc8be
@@ -88558,8 +88567,8 @@ Functioncc8d3: ; cc8d3
 	add hl, de
 	add hl, de
 	call Function3ae1
-	call Functioncc8a4
-	call Functioncc1fb
+	call BattleAnimAssignPals
+	call BattleAnimDelayFrame
 	ret
 ; cc8f6
 
@@ -88575,7 +88584,7 @@ Functioncc8f6: ; cc8f6
 	xor a
 	ld [hSCX], a
 	ld [hSCY], a
-	call Functioncc1fb
+	call BattleAnimDelayFrame
 	ld a, $1
 	ld [hBGMapMode], a
 	ret

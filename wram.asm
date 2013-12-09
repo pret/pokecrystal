@@ -2144,7 +2144,12 @@ LYOverridesBackup: ; d200
 LYOverridesBackupEnd:
 
 
-SECTION "Battle Animations", WRAMX[$d410], BANK[5]
+SECTION "Battle Animations", WRAMX[$d3fa], BANK[5]
+
+ActiveBGEffects: ; d3fa
+	ds 4 * 5
+
+	ds 2
 
 BattleAnimAddress: ; d410
 	ds 2

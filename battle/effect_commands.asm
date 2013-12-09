@@ -10635,7 +10635,7 @@ Function0x37ed5: ; 37ed5
 	push hl
 	push de
 	push bc
-	callba Function4ea44
+	callba CheckBattleScene
 	pop bc
 	pop de
 	pop hl

@@ -5,6 +5,10 @@ OTPARTYMON EQU 1
 BOXMON     EQU 2
 WILDMON    EQU 4
 
+; Options: ; cfcc
+BATTLE_SHIFT EQU 6
+BATTLE_SCENE EQU 7
+
 ; WalkingDirection: ; d043
 STANDING EQU -1
 DOWN     EQU 0
