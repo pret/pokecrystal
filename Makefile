@@ -1,9 +1,8 @@
 PYTHON := python
-.SUFFIXES: .asm .tx .o .gbc .png .2bpp .lz
-.PHONY: all clean pngs gfx
+.SUFFIXES: .asm .tx .o .gbc .png .2bpp .1bpp .lz .pal .bin
+.PHONY: all clean crystal pngs
 .SECONDEXPANSION:
 
-TEXTFILES := $(shell find ./ -type f -name '*.asm' | grep -v globals.asm)
 TEXTQUEUE :=
 
 CRYSTAL_OBJS := \
@@ -26,56 +25,54 @@ OBJS := $(CRYSTAL_OBJS)
 
 ROMS := pokecrystal.gbc
 
-all: baserom.gbc globals.asm $(ROMS)
-	cmp baserom.gbc pokecrystal.gbc
+
+ALL_DEPENDENCIES :=
+# generate a list of dependencies for each object file
+$(shell $(foreach obj, $(OBJS), \
+	$(eval $(obj:.o=)_DEPENDENCIES := $(shell $(PYTHON) scan_includes.py $(obj:.o=.asm) | sed s/globals.asm//g)) \
+))
+$(shell $(foreach obj, $(OBJS), \
+	$(eval ALL_DEPENDENCIES += $($(obj:.o=)_DEPENDENCIES)) \
+))
+
+
+all: $(ROMS)
+
+crystal: pokecrystal.gbc
+
 clean:
 	rm -f $(ROMS)
 	rm -f $(OBJS)
-	rm -f globals.asm globals.tx
-	@echo 'Removing preprocessed .tx files...'
-	@rm -f $(TEXTFILES:.asm=.tx)
+	rm -f globals.asm
+	find -iname '*.tx' -exec rm {} +
 
 baserom.gbc: ;
 	@echo "Wait! Need baserom.gbc first. Check README and INSTALL for details." && false
 
-PNGS   := $(shell find gfx/ -type f -name '*.png')
-LZS    := $(shell find gfx/ -type f -name '*.lz')
-_2BPPS := $(shell find gfx/ -type f -name '*.2bpp')
-_1BPPS := $(shell find gfx/ -type f -name '*.1bpp')
 
-# generate a list of dependencies for each object file
-$(shell \
-	$(foreach obj, $(OBJS), \
-		$(eval OBJ_$(obj:.o=) := \
-		$(shell $(PYTHON) scan_includes.py $(obj:.o=.asm) | sed s/globals.asm//g)) \
-	) \
-)
-
+%.asm: ;
 .asm.tx:
 	$(eval TEXTQUEUE := $(TEXTQUEUE) $<)
 	@rm -f $@
 
-%.asm: ;
+globals.asm: $(ALL_DEPENDENCIES:.asm=.tx) $(OBJS:.o=.tx)
+	@touch $@
+	@$(PYTHON) prequeue.py $(TEXTQUEUE)
+globals.tx: globals.asm
+	@cp $< $@
 
-globals.asm: $(TEXTFILES:.asm=.tx)
-	@echo "Creating globals.asm..."
-	@touch globals.asm
-	@echo "Preprocessing .asm to .tx..."
-	@$(PYTHON) prequeue.py $(TEXTQUEUE) globals.asm
+$(OBJS): $$*.tx $$(patsubst %.asm, %.tx, $$($$*_DEPENDENCIES))
+	rgbasm -o $@ $*.tx
 
-$(OBJS): $$(patsubst %.o,%.tx,$$@) $$(patsubst %.asm,%.tx,$$(OBJ_$$(patsubst %.o,%,$$@)))
-	rgbasm -o $@ $(@:.o=.tx)
-
-pokecrystal.gbc: $(CRYSTAL_OBJS)
-	rgblink -n pokecrystal.sym -m pokecrystal.map -o pokecrystal.gbc $^
+pokecrystal.gbc: globals.tx $(CRYSTAL_OBJS)
+	rgblink -n $*.sym -m $*.map -o $@ $(CRYSTAL_OBJS)
 	rgbfix -Cjv -i BYTE -k 01 -l 0x33 -m 0x10 -p 0 -r 3 -t PM_CRYSTAL $@
+	cmp baserom.gbc $@
+
 
 pngs:
 	$(PYTHON) extras/pokemontools/gfx.py mass-decompress
 	$(PYTHON) extras/pokemontools/gfx.py dump-pngs
-
-gfx: $(LZS) $(_2BPPS) $(_1BPPS)
-	@:
 
 gfx/pics/%/front.lz: gfx/pics/%/tiles.2bpp gfx/pics/%/front.png
 	$(PYTHON) extras/pokemontools/gfx.py png-to-lz --front $^
@@ -91,11 +88,6 @@ gfx/trainers/%.lz: gfx/trainers/%.png
 	$(PYTHON) extras/pokemontools/gfx.py png-to-2bpp $<
 .png.1bpp:
 	$(PYTHON) extras/pokemontools/gfx.py png-to-1bpp $<
-%.2bpp:
-	@:
-%.1bpp:
-	@:
 %.pal: ;
-
 %.bin: ;
 
