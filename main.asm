@@ -106732,7 +106732,7 @@ Function1047b4: ; 1047b4 (41:47b4)
 	ld a, $0
 	ld [rVBK], a ; $ff00+$4f
 	ret
-	call Function2d27
+	call LoadTilesetHeader
 	call Function2821
 	xor a
 	ld [$FF00+$de], a

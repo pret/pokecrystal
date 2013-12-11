@@ -2335,17 +2335,21 @@ Function2d19: ; 2d19
 	ret
 ; 2d27
 
-Function2d27: ; 2d27
+LoadTilesetHeader: ; 2d27
 	push hl
 	push bc
-	ld hl, $5596
-	ld bc, $000f
+
+	ld hl, Tilesets
+	ld bc, Tileset01 - Tileset00
 	ld a, [$d199]
 	call AddNTimes
+
 	ld de, TilesetBank
-	ld bc, $000f
-	ld a, $13
+	ld bc, Tileset01 - Tileset00
+
+	ld a, BANK(Tilesets)
 	call FarCopyBytes
+
 	pop bc
 	pop hl
 	ret
