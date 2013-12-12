@@ -106615,7 +106615,7 @@ Function1046df: ; 1046df (41:46df)
 	ld b, a
 	ld a, [$d148]
 	ld c, a
-	call Function2c99
+	call GetAnyMapPermission
 	call CheckIndoorMap
 	ret nz
 	ld a, [$d14a]
@@ -106644,14 +106644,14 @@ Function104718: ; 104718 (41:4718)
 	ld b, a
 	ld a, [$d148]
 	ld c, a
-	call Function2c99
+	call GetAnyMapPermission
 	call CheckIndoorMap
 	ret nz
 	ld a, [$d147]
 	ld b, a
 	ld a, [$d148]
 	ld c, a
-	call Function2ca7
+	call GetAnyMapTileset
 	ld a, c
 	cp $7
 	jr z, .asm_104743

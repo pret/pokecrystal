@@ -377,7 +377,7 @@ SpritesEnd:
 TileMap: ; c4a0
 ; 20x18 grid of 8x8 tiles
 	ds 360
-
+TileMapEnd:
 
 SECTION "BattleMons",WRAM0[$c608]
 

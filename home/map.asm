@@ -96,21 +96,22 @@ Function2173: ; 2173
 Function217a: ; 217a
 	ld a, [hROMBank]
 	push af
+
 	ld a, [TilesetBlocksBank]
 	rst Bankswitch
 
 	call Function2198
 	ld a, $60
 	ld hl, TileMap
-	ld bc, $0168
+	ld bc, TileMapEnd - TileMap
 	call ByteFill
+
 	ld a, $13
 	rst Bankswitch
-
 	call $515b
+
 	pop af
 	rst Bankswitch
-
 	ret
 ; 2198
 
@@ -412,7 +413,7 @@ Function2317: ; 2317
 
 Function2326: ; 2326
 	call Function2c3d
-	call Function2c1c
+	call SwitchToMapBank
 	call GetSecondaryMapHeaderPointer
 	call Function235c
 	call Function2368
@@ -473,26 +474,26 @@ Function2368: ; 2368
 	jr z, .asm_2384
 	ld de, NorthMapConnection
 	call GetMapConnection
-
 .asm_2384
+
 	bit 2, b
 	jr z, .asm_238e
 	ld de, SouthMapConnection
 	call GetMapConnection
-
 .asm_238e
+
 	bit 1, b
 	jr z, .asm_2398
 	ld de, WestMapConnection
 	call GetMapConnection
-
 .asm_2398
+
 	bit 0, b
 	jr z, .asm_23a2
 	ld de, EastMapConnection
 	call GetMapConnection
-
 .asm_23a2
+
 	ret
 ; 23a3
 
@@ -712,8 +713,8 @@ Function24ba: ; 24ba
 
 Function24cd: ; 24cd
 	ld hl, OverworldMap
-	ld bc, $0514
-	ld a, $0
+	ld bc, OverworldMapEnd - OverworldMap
+	ld a, 0
 	call ByteFill
 	call Function24e4
 	call FillMapConnections
@@ -727,17 +728,18 @@ Function24cd: ; 24cd
 Function24e4: ; 24e4
 	ld a, [hROMBank]
 	push af
+
 	ld hl, OverworldMap
 	ld a, [MapWidth]
 	ld [hConnectedMapWidth], a
 	add $6
 	ld [hConnectionStripLength], a
 	ld c, a
-	ld b, $0
+	ld b, 0
 	add hl, bc
 	add hl, bc
 	add hl, bc
-	ld c, $3
+	ld c, 3
 	add hl, bc
 	ld a, [MapBlockDataBank]
 	rst Bankswitch
@@ -764,13 +766,12 @@ Function24e4: ; 24e4
 	ld l, a
 	jr nc, .asm_251e
 	inc h
-
 .asm_251e
 	dec b
 	jr nz, .asm_250c
+
 	pop af
 	rst Bankswitch
-
 	ret
 ; 2524
 
@@ -1052,6 +1053,7 @@ Function2674: ; 2674
 Function269a: ; 269a
 	ld a, [hROMBank]
 	push af
+
 	ld a, b
 	rst Bankswitch
 
@@ -1065,9 +1067,9 @@ Function269a: ; 269a
 	call PrintTextBoxText
 	xor a
 	ld [hOAMUpdate], a
+
 	pop af
 	rst Bankswitch
-
 	ret
 ; 26b7
 
@@ -2012,7 +2014,7 @@ Function2bae: ; 2bae
 	ld b, a
 	ld a, [MapNumber]
 	ld c, a
-	call Function2c24
+	call SwitchToAnyMapBank
 	callba Function8c001
 	call Function2173
 	call Function2821
@@ -2102,28 +2104,28 @@ GetAnyMapHeaderMember: ; 0x2c0c
 ; 0x2c1c
 
 
-Function2c1c: ; 2c1c
+SwitchToMapBank: ; 2c1c
 	ld a, [MapGroup]
 	ld b, a
 	ld a, [MapNumber]
 	ld c, a
 ; 2c24
 
-Function2c24: ; 2c24
-	call Function2c31
+SwitchToAnyMapBank: ; 2c24
+	call GetAnyMapBank
 	rst Bankswitch
 	ret
 ; 2c29
 
 
-Function2c29: ; 2c29
+GetMapBank: ; 2c29
 	ld a, [MapGroup]
 	ld b, a
 	ld a, [MapNumber]
 	ld c, a
 ; 2c31
 
-Function2c31: ; 2c31
+GetAnyMapBank: ; 2c31
 	push hl
 	push de
 	ld de, $0000
@@ -2220,7 +2222,7 @@ Function2c98: ; 2c98
 	ret
 ; 2c99
 
-Function2c99: ; 2c99
+GetAnyMapPermission: ; 2c99
 	push hl
 	push de
 	push bc
@@ -2233,7 +2235,7 @@ Function2c99: ; 2c99
 	ret
 ; 2ca7
 
-Function2ca7: ; 2ca7
+GetAnyMapTileset: ; 2ca7
 	ld de, $0001
 	call GetAnyMapHeaderMember
 	ld a, c
