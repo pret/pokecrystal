@@ -77625,52 +77625,62 @@ Function90bea: ; 90bea (24:4bea)
 
 Function90c4e: ; 90c4e
 	call Functiond79
-	ld hl, $4ba0
+	ld hl, TownMapGFX
 	ld de, VTiles2
-	ld a, $3e
+	ld a, BANK(TownMapGFX)
 	call FarDecompress
-	ld hl, $62e4
+
+	ld hl, PokegearGFX
 	ld de, $9300
-	ld a, $77
+	ld a, BANK(PokegearGFX)
 	call FarDecompress
+
 	ld hl, PokegearSpritesGFX
 	ld de, VTiles0
-	ld a, $24
+	ld a, BANK(PokegearSpritesGFX)
 	call Decompress
+
 	ld a, [MapGroup]
 	ld b, a
 	ld a, [MapNumber]
 	ld c, a
 	call GetWorldMapLocation
-	cp $5f
-	jr z, .asm_90ca5
+	cp FAST_SHIP
+	jr z, .ssaqua
+
 	callba GetPlayerIcon
+
 	push de
 	ld h, d
 	ld l, e
 	ld a, b
+
 	push af
 	ld de, $8100
-	ld bc, $0040
+	ld bc, $40
 	call FarCopyBytes
 	pop af
+
 	pop hl
-	ld de, $00c0
+
+	ld de, $c0
 	add hl, de
 	ld de, $8140
-	ld bc, $0040
+	ld bc, $40
 	call FarCopyBytes
 	ret
 
-.asm_90ca5
-	ld hl, $4cb2
+.ssaqua
+	ld hl, FastShipGFX
 	ld de, $8100
-	ld bc, $0080
+	ld bc, $80
 	call CopyBytes
 	ret
 ; 90cb2
 
-INCBIN "baserom.gbc",$90cb2,$90d32 - $90cb2
+FastShipGFX: ; 90cb2
+INCBIN "gfx/misc/fast_ship.2bpp"
+; 90d32
 
 ; known jump sources: 90c08 (24:4c08)
 Function90d32: ; 90d32 (24:4d32)
@@ -77704,7 +77714,7 @@ Function90d56: ; 90d56
 	ld a, [MapNumber]
 	ld c, a
 	call GetWorldMapLocation
-	cp $0
+	cp SPECIAL_MAP
 	ret nz
 	ld a, [BackupMapGroup]
 	ld b, a
@@ -77722,23 +77732,28 @@ Function90d70: ; 90d70 (24:4d70)
 	ld a, [MapNumber] ; $dcb6
 	ld c, a
 	call GetWorldMapLocation
-	cp $5f
+
+	cp FAST_SHIP
 	jr z, .asm_90d95
-	cp $0
+
+	cp SPECIAL_MAP
 	jr nz, .asm_90d8e
+
 	ld a, [BackupMapGroup] ; $dcad
 	ld b, a
 	ld a, [BackupMapNumber] ; $dcae
 	ld c, a
 	call GetWorldMapLocation
+
 .asm_90d8e
-	ld [EnemySDefLevel], a ; $c6d8
-	ld [EnemySAtkLevel], a ; $c6d7
+	ld [$c6d8], a
+	ld [$c6d7], a
 	ret
+
 .asm_90d95
-	ld [EnemySDefLevel], a ; $c6d8
-	ld a, $1
-	ld [EnemySAtkLevel], a ; $c6d7
+	ld [$c6d8], a
+	ld a, 1
+	ld [$c6d7], a
 	ret
 
 ; known jump sources: 90c36 (24:4c36)
@@ -77753,23 +77768,25 @@ Function90d9e: ; 90d9e (24:4d9e)
 Function90da8: ; 90da8 (24:4da8)
 	xor a
 	ld [hBGMapMode], a ; $ff00+$d4
-	ld hl, TileMap ; $c4a0 (aliases: SpritesEnd)
-	ld bc, $168
+	ld hl, TileMap
+	ld bc, TileMapEnd - TileMap
 	ld a, $4f
 	call ByteFill
 	ld a, [$cf64]
 	and $3
 	add a
 	ld e, a
-	ld d, $0
+	ld d, 0
 	ld hl, $4e12
 	add hl, de
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	ld de, $4dcb
+	ld de, .asm_90dcb
 	push de
 	jp [hl]
+
+.asm_90dcb
 	call Function90eb0
 	callba TownMapPals
 	ld a, [$cf65]
@@ -77792,8 +77809,8 @@ Function90da8: ; 90da8 (24:4da8)
 .asm_90df3
 	ld [hWY], a ; $ff00+$d2
 	ld a, [$cf65]
-	and $1
-	xor $1
+	and 1
+	xor 1
 	ld [$cf65], a
 	ret
 
@@ -77811,30 +77828,42 @@ Function90e00: ; 90e00 (24:4e00)
 	ret
 ; 90e12 (24:4e12)
 
-INCBIN "baserom.gbc",$90e12,$90e1a - $90e12
+JumpTable90e12: ; 90e12
+	dw Function90e1a
+	dw Function90e3f
+	dw Function90e82
+	dw Function90e72
+; 90e1a
+
+Function90e1a: ; 90e1a
 	ld de, $55db
 	call Function914bb
 	ld hl, $c4c0
-	ld de, $4e36
+	ld de, .switch
 	call PlaceString
 	ld hl, $c590
-	ld bc, $412
+	lb bc, 4, 18
 	call TextBox
 	call Function90f86
 	ret
 ; 90e36 (24:4e36)
 
-INCBIN "baserom.gbc",$90e36,$90e3f - $90e36
-	ld a, [EnemySDefLevel] ; $c6d8
-	cp $5f
-	jr z, .asm_90e4a
-	cp $2f
-	jr nc, .asm_90e4e
-.asm_90e4a
-	ld e, $0
+.switch
+	db " SWITCH▶@"
+; 90e3f
+
+Function90e3f: ; 90e3f
+
+	ld a, [$c6d8]
+	cp FAST_SHIP
+	jr z, .johto
+	cp KANTO_LANDMARK
+	jr nc, .kanto
+.johto
+	ld e, 0
 	jr .asm_90e50
-.asm_90e4e
-	ld e, $1
+.kanto
+	ld e, 1
 .asm_90e50
 	callba Function91ae1
 	ld a, $7
@@ -77845,15 +77874,21 @@ INCBIN "baserom.gbc",$90e36,$90e3f - $90e36
 	ld [hl], $6
 	ld hl, $c4db
 	ld [hl], $17
-	ld a, [EnemySAtkLevel] ; $c6d7
+	ld a, [$c6d7]
 	call Function910b4
 	ret
+; 90e72
+
+Function90e72: ; 90e72
 	ld de, $550d
 	call Function914bb
 	ld hl, $c590
 	ld bc, $412
 	call TextBox
 	ret
+; 90e82
+
+Function90e82: ; 90e82
 	ld de, $558a
 	call Function914bb
 	ld hl, $c590
@@ -77862,6 +77897,7 @@ INCBIN "baserom.gbc",$90e36,$90e3f - $90e36
 	call Function90e98
 	call Function912d8
 	ret
+; 90e98
 
 ; known jump sources: 90e91 (24:4e91)
 Function90e98: ; 90e98 (24:4e98)
