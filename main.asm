@@ -14283,56 +14283,95 @@ Function7969: ; 7969
 
 
 ; no known jump sources
-Functionf971: ; f971 (3:7971)
+GetPokeBallWobble: ; f971 (3:7971)
+; Returns whether a Poke Ball will wobble in the catch animation.
+; Whether a Pokemon is caught is determined beforehand.
+
 	push de
-	ld a, [rSVBK] ; $ff00+$70
+
+	ld a, [rSVBK]
 	ld d, a
 	push de
-	ld a, $1
-	ld [rSVBK], a ; $ff00+$70
-	ld a, [Buffer2] ; $d1eb (aliases: MovementType)
+
+	ld a, 1 ; BANK(Buffer2)
+	ld [rSVBK], a
+
+	ld a, [Buffer2]
 	inc a
-	ld [Buffer2], a ; $d1eb (aliases: MovementType)
-	cp $4
-	jr z, .asm_f9a8
+	ld [Buffer2], a
+
+; Wobble up to 3 times.
+	cp 3 + 1
+	jr z, .finished
+
 	ld a, [$c64e]
 	and a
-	ld c, $0
-	jr nz, .asm_f9b2
-	ld hl, $79ba
-	ld a, [Buffer1] ; $d1ea (aliases: MagikarpLength)
+	ld c, 0 ; next
+	jr nz, .done
+
+	ld hl, WobbleChances
+	ld a, [Buffer1]
 	ld b, a
-.asm_f994
+.loop
 	ld a, [hli]
 	cp b
-	jr nc, .asm_f99b
+	jr nc, .checkwobble
 	inc hl
-	jr .asm_f994
-.asm_f99b
+	jr .loop
+
+.checkwobble
 	ld b, [hl]
 	call Random
 	cp b
-	ld c, $0
-	jr c, .asm_f9b2
-	ld c, $2
-	jr .asm_f9b2
-.asm_f9a8
+	ld c, 0 ; next
+	jr c, .done
+	ld c, 2 ; escaped
+	jr .done
+
+.finished
 	ld a, [$c64e]
 	and a
-	ld c, $1
-	jr nz, .asm_f9b2
-	ld c, $2
-.asm_f9b2
+	ld c, 1 ; caught
+	jr nz, .done
+	ld c, 2 ; escaped
+
+.done
 	pop de
 	ld e, a
 	ld a, d
-	ld [rSVBK], a ; $ff00+$70
+	ld [rSVBK], a
 	ld a, e
 	pop de
 	ret
 ; f9ba (3:79ba)
 
-INCBIN "baserom.gbc",$f9ba,$f9ea - $f9ba
+WobbleChances: ; f9ba
+; catch rate, chance of wobbling / 255
+	db   1,  63
+	db   2,  75
+	db   3,  84
+	db   4,  90
+	db   5,  95
+	db   7, 103
+	db  10, 113
+	db  15, 126
+	db  20, 134
+	db  30, 149
+	db  40, 160
+	db  50, 169
+	db  60, 177
+	db  80, 191
+	db 100, 201
+	db 120, 211
+	db 140, 220
+	db 160, 227
+	db 180, 234
+	db 200, 240
+	db 220, 246
+	db 240, 251
+	db 254, 253
+	db 255, 255
+; f9ea
 
 
 Functionf9ea: ; f9ea
@@ -14351,13 +14390,17 @@ Functionf9ea: ; f9ea
 	ret
 
 .asm_f9fe
-	ld hl, $7a06
+	ld hl, UnknownText_0xfa06
 	call PrintText
 	scf
 	ret
 ; fa06
 
-INCBIN "baserom.gbc",$fa06,$fa0b - $fa06
+UnknownText_0xfa06: ; 0xfa06
+	; knows @ .
+	text_jump UnknownText_0x1c5ea8
+	db "@"
+; 0xfa0b
 
 
 SECTION "bank4", ROMX, BANK[$4]
@@ -87809,7 +87852,7 @@ Functioncc5b3: ; cc5b3 (33:45b3)
 
 ; no known jump sources
 BattleAnimCmd_DB: ; cc5d0 (33:45d0)
-	callab Functionf971
+	callab GetPokeBallWobble
 	ld a, c
 	ld [$d416], a
 	ret
