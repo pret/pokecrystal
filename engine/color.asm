@@ -950,7 +950,7 @@ Function992c: ; 992c
 ; 9938
 
 Function9938: ; 9938
-	ld hl, $651e
+	ld hl, SGBBorder
 	ld de, $606e
 	ret
 ; 993f
