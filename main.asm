@@ -117614,22 +117614,28 @@ Function178000:
 SECTION "bank5F", ROMX, BANK[$5F]
 
 Function17c000: ; 17c000
+
 	call DisableLCD
+
 	ld hl, VTiles2
-	ld bc, $0310
+	ld bc, $310
 	xor a
 	call ByteFill
+
 	call Functione51
 	call Functione5f
-	ld hl, $4b83
+
+	ld hl, HaveWantMap
 	ld de, TileMap
 	ld bc, AttrMap
-	ld a, $12
-.asm_17c01e
+
+	ld a, SCREEN_HEIGHT
+.y
 	push af
-	ld a, $14
+	ld a, SCREEN_WIDTH
+
 	push hl
-.asm_17c022
+.x
 	push af
 	ld a, [hli]
 	ld [de], a
@@ -117639,47 +117645,118 @@ Function17c000: ; 17c000
 	inc bc
 	pop af
 	dec a
-	jr nz, .asm_17c022
+	jr nz, .x
 	pop hl
+
 	push bc
-	ld bc, $0040
+	ld bc, BG_MAP_WIDTH * 2
 	add hl, bc
 	pop bc
+
 	pop af
 	dec a
-	jr nz, .asm_17c01e
+	jr nz, .y
+
 	ld a, [rSVBK]
 	push af
-	ld a, $5
+
+	ld a, 5 ; BANK(Unkn1Pals)
 	ld [rSVBK], a
-	ld hl, $4ff3
-	ld de, $d000
-	ld bc, $0080
+
+	ld hl, HaveWantPals
+	ld de, Unkn1Pals
+	ld bc, $80
 	call CopyBytes
+
 	pop af
 	ld [rSVBK], a
-	ld hl, $4983
+
+	ld hl, MobileSelectGFX
 	ld de, $8300
-	ld bc, $0200
+	ld bc, $200
 	call CopyBytes
-	ld a, $1
+
+	ld a, 1
 	ld [rVBK], a
-	ld hl, $4083
+
+	ld hl, HaveWantGFX
 	ld de, VTiles2
-	ld bc, $0800
+	ld bc, $800
 	call CopyBytes
-	ld hl, $4883
+
+	ld hl, HaveWantGFX + $800
 	ld de, VTiles1
-	ld bc, Start
+	ld bc, $100
 	call CopyBytes
+
 	xor a
 	ld [rVBK], a
+
 	call EnableLCD
 	callba Function104061
 	ret
 ; 17c083
 
-INCBIN "baserom.gbc",$17c083,$17d0b3 - $17c083
+HaveWantGFX: ; 17c083
+INCBIN "gfx/mobile/havewant.2bpp"
+
+MobileSelectGFX: ; 17c983
+INCBIN "gfx/mobile/select.2bpp"
+
+HaveWantMap: ; 17cb83
+; Interleaved tile/palette map.
+INCBIN "baserom.gbc", $17cb83, $17cff3 - $17cb83
+
+HaveWantPals: ; 17cff3
+; BG and OBJ palettes.
+INCBIN "baserom.gbc", $17cff3, $17d073 - $17cff3
+
+
+Function17d073: ; 17d073
+.asm_17d073
+	ld a, [de]
+	inc de
+	and a
+	jr z, .asm_17d0ae
+	cp $60
+	jr nc, .asm_17d0ae
+	cp $4e
+	jr z, .asm_17d0ae
+	cp $50
+	jr z, .asm_17d0b1
+	cp $5
+	jr c, .asm_17d0ac
+	cp $14
+	jr c, .asm_17d0ae
+	cp $19
+	jr c, .asm_17d0ac
+	cp $1d
+	jr c, .asm_17d0ae
+	cp $26
+	jr c, .asm_17d0ac
+	cp $35
+	jr c, .asm_17d0ae
+	cp $3a
+	jr c, .asm_17d0ac
+	cp $3f
+	jr c, .asm_17d0ae
+	cp $40
+	jr c, .asm_17d0ac
+	cp $49
+	jr c, .asm_17d0ae
+
+.asm_17d0ac
+	scf
+	ret
+
+.asm_17d0ae
+	dec c
+	jr nz, .asm_17d073
+
+.asm_17d0b1
+	and a
+	ret
+; 17d0b3
 
 Function17d0b3: ; 17d0b3
 .asm_17d0b3
@@ -117751,13 +117828,15 @@ Function17d1f1: ; 17d1f1
 	ld a, [CurPartySpecies]
 	dec a
 	call SetSeenAndCaughtMon
+
 	ld a, [CurPartySpecies]
-	cp $c9
+	cp UNOWN
 	jr nz, .asm_17d223
+
 	ld hl, PartyMon1DVs
 	ld a, [PartyCount]
 	dec a
-	ld bc, $0030
+	ld bc, PartyMon2 - PartyMon1
 	call AddNTimes
 	ld a, $2d
 	call Predef
@@ -117765,6 +117844,7 @@ Function17d1f1: ; 17d1f1
 	ld a, [$def4]
 	and a
 	jr nz, .asm_17d223
+
 	ld a, [UnownLetter]
 	ld [$def4], a
 
@@ -117860,7 +117940,7 @@ Function17d2ce: ; 17d2ce
 	call Function17d45a
 	pop af
 	ld [rSVBK], a
-	ld de, $0066
+	ld de, MUSIC_MOBILE_CENTER
 	ld a, e
 	ld [CurMusic], a
 	ld [MusicFadeIDLo], a
@@ -117943,7 +118023,7 @@ Function17d370: ; 17d370
 	call CopyBytes
 	ld a, $1
 	ld [rVBK], a
-	ld hl, $66fe
+	ld hl, PokemonNewsGFX
 	ld de, VTiles1
 	ld bc, $0480
 	call CopyBytes
@@ -118099,7 +118179,15 @@ Function17d60b: ; 17d60b
 	ret
 ; 17d6a1
 
-INCBIN "baserom.gbc",$17d6a1,$17f036 - $17d6a1
+
+INCBIN "baserom.gbc", $17d6a1, $17e6fe - $17d6a1
+
+
+PokemonNewsGFX: ; 17e6fe
+INCBIN "gfx/mobile/pokemon_news.2bpp"
+
+
+INCBIN "baserom.gbc", $17eb7e, $17f036 - $17eb7e
 
 
 Function17f036: ; 17f036
