@@ -87100,7 +87100,7 @@ Functioncc163: ; cc163
 	call Function3b0c
 	call BattleAnimRequestPals
 
-; Speed up Rollout's animation on consecutive turns.
+; Speed up Rollout's animation.
 	ld a, [FXAnimIDHi]
 	or a
 	jr nz, .asm_cc193
@@ -87479,6 +87479,7 @@ BattleAnimCmd_EF: ; cc383 (33:4383)
 	ld a, [hl]
 	and a
 	jr z, .asm_cc39a
+
 	dec [hl]
 	call GetBattleAnimByte
 	ld e, a
@@ -87489,6 +87490,7 @@ BattleAnimCmd_EF: ; cc383 (33:4383)
 	inc hl
 	ld [hl], d
 	ret
+
 .asm_cc39a
 	ld hl, $d410
 	ld e, [hl]
@@ -87518,7 +87520,8 @@ BattleAnimCmd_FB: ; cc3b2 (33:43b2)
 	call GetBattleAnimByte
 	ld hl, $d416
 	cp [hl]
-	jr z, .asm_cc3c7
+	jr z, .jump
+
 	ld hl, $d410
 	ld e, [hl]
 	inc hl
@@ -87529,7 +87532,8 @@ BattleAnimCmd_FB: ; cc3b2 (33:43b2)
 	dec hl
 	ld [hl], e
 	ret
-.asm_cc3c7
+
+.jump
 	call GetBattleAnimByte
 	ld e, a
 	call GetBattleAnimByte
@@ -87545,7 +87549,8 @@ BattleAnimCmd_F8: ; cc3d6 (33:43d6)
 	call GetBattleAnimByte
 	ld hl, $c689
 	cp [hl]
-	jr z, .asm_cc3eb
+	jr z, .jump
+
 	ld hl, $d410
 	ld e, [hl]
 	inc hl
@@ -87556,7 +87561,8 @@ BattleAnimCmd_F8: ; cc3d6 (33:43d6)
 	dec hl
 	ld [hl], e
 	ret
-.asm_cc3eb
+
+.jump
 	call GetBattleAnimByte
 	ld e, a
 	call GetBattleAnimByte
@@ -87573,7 +87579,8 @@ BattleAnimCmd_EE: ; cc3fa (33:43fa)
 	ld e, a
 	ld a, [$c689]
 	and e
-	jr nz, .asm_cc410
+	jr nz, .jump
+
 	ld hl, $d410
 	ld e, [hl]
 	inc hl
@@ -87584,7 +87591,7 @@ BattleAnimCmd_EE: ; cc3fa (33:43fa)
 	dec hl
 	ld [hl], e
 	ret
-.asm_cc410
+.jump
 	call GetBattleAnimByte
 	ld e, a
 	call GetBattleAnimByte
@@ -87780,6 +87787,7 @@ BattleAnimCmd_D7: ; cc506 (33:4506)
 
 ; no known jump sources
 BattleAnimCmd_D9: ; cc52c (33:452c)
+
 	ld hl, $d300
 .asm_cc52f
 	ld a, [hl]
@@ -87788,6 +87796,7 @@ BattleAnimCmd_D9: ; cc52c (33:452c)
 	inc hl
 	inc hl
 	jr .asm_cc52f
+
 .asm_cc537
 	ld a, $28
 	ld [hli], a
@@ -87797,6 +87806,7 @@ BattleAnimCmd_D9: ; cc52c (33:452c)
 	ld [hli], a
 	ld a, $49
 	ld [hl], a
+
 	ld hl, $8730
 	ld de, $9060
 	ld a, $70
@@ -87834,6 +87844,7 @@ Functioncc561: ; cc561 (33:4561)
 
 ; no known jump sources
 BattleAnimCmd_DA: ; cc57e (33:457e)
+
 	ld hl, $d300
 .asm_cc581
 	ld a, [hl]
@@ -87842,6 +87853,7 @@ BattleAnimCmd_DA: ; cc57e (33:457e)
 	inc hl
 	inc hl
 	jr .asm_cc581
+
 .asm_cc589
 	ld a, $28
 	ld [hli], a
@@ -87851,6 +87863,7 @@ BattleAnimCmd_DA: ; cc57e (33:457e)
 	ld [hli], a
 	ld a, $43
 	ld [hl], a
+
 	ld hl, $8660
 	ld de, $9050
 	ld a, $70
@@ -87901,32 +87914,36 @@ BattleAnimCmd_E7: ; cc5db (33:45db)
 BattleAnimCmd_DC: ; cc5dc (33:45dc)
 	ld a, [rSVBK] ; $ff00+$70
 	push af
-	ld a, $1
+	ld a, 1
 	ld [rSVBK], a ; $ff00+$70
 	ld a, [CurPartySpecies] ; $d108
 	push af
+
 	ld a, [hBattleTurn] ; $ff00+$e4
 	and a
-	jr z, .asm_cc604
+	jr z, .player
+
 	ld a, [TempBattleMonSpecies] ; $d205
 	ld [CurPartySpecies], a ; $d108
-	ld hl, BattleMonDVs ; $c632 (aliases: BattleMonAtkDefDV)
-	ld a, $2d
+	ld hl, BattleMonDVs ; $c632
+	ld a, PREDEF_GET_UNOWN_LETTER
 	call Predef
 	ld de, $8000
 	ld a, $3c
 	call Predef
-	jr .asm_cc61a
-.asm_cc604
+	jr .done
+
+.player
 	ld a, [TempEnemyMonSpecies] ; $d204
 	ld [CurPartySpecies], a ; $d108
-	ld hl, EnemyMonAtkDefDV ; $d20c (aliases: EnemyMonDVs, EnemyMonMovesEnd)
-	ld a, $2d
+	ld hl, EnemyMonDVs ; $d20c
+	ld a, PREDEF_GET_UNOWN_LETTER
 	call Predef
 	ld de, $8000
 	ld a, $3d
 	call Predef
-.asm_cc61a
+
+.done
 	pop af
 	ld [CurPartySpecies], a ; $d108
 	pop af
@@ -87935,86 +87952,99 @@ BattleAnimCmd_DC: ; cc5dc (33:45dc)
 
 ; no known jump sources
 BattleAnimCmd_E8: ; cc622 (33:4622)
+
 	ld de, $8000
 	ld a, [hBattleTurn] ; $ff00+$e4
 	and a
-	jr z, .asm_cc635
+	jr z, .player
+
 	ld hl, $9000
-	ld b, $0
+	ld b, 0
 	ld c, $31
 	call Request2bpp
 	ret
-.asm_cc635
+
+.player
 	ld hl, $9310
-	ld b, $0
+	ld b, 0
 	ld c, $24
 	call Request2bpp
 	ret
 
 ; no known jump sources
 BattleAnimCmd_DD: ; cc640 (33:4640)
+
 	ld a, [rSVBK] ; $ff00+$70
 	push af
-	ld a, $1
+	ld a, 1
 	ld [rSVBK], a ; $ff00+$70
 	xor a
 	call GetSRAMBank
+
+GetSubstitutePic: ; cc64c
+
 	ld hl, $a000
 	ld bc, $310
-.asm_cc651
+.loop
 	xor a
 	ld [hli], a
 	dec bc
 	ld a, c
 	or b
-	jr nz, .asm_cc651
+	jr nz, .loop
+
 	ld a, [hBattleTurn] ; $ff00+$e4
 	and a
-	jr z, .asm_cc68f
-	ld hl, $6a80
-	ld de, $a130
-	call Functioncc6c6
-	ld hl, $6a90
-	ld de, $a1a0
-	call Functioncc6c6
-	ld hl, $6aa0
-	ld de, $a140
-	call Functioncc6c6
-	ld hl, $6ab0
-	ld de, $a1b0
-	call Functioncc6c6
+	jr z, .player
+
+	ld hl, MonsterSpriteGFX
+	ld de, $a000 + $130
+	call CopyMonsterSpriteTile
+	ld hl, MonsterSpriteGFX + $10
+	ld de, $a000 + $1a0
+	call CopyMonsterSpriteTile
+	ld hl, MonsterSpriteGFX + $20
+	ld de, $a000 + $140
+	call CopyMonsterSpriteTile
+	ld hl, MonsterSpriteGFX + $30
+	ld de, $a000 + $1b0
+	call CopyMonsterSpriteTile
+
 	ld hl, $9000
 	ld de, $a000
-	ld bc, $3331
+	lb bc, BANK(GetSubstitutePic), 7 * 7
 	call Request2bpp
-	jr .asm_cc6bf
-.asm_cc68f
-	ld hl, $6ac0
-	ld de, $a100
-	call Functioncc6c6
-	ld hl, $6ad0
-	ld de, $a160
-	call Functioncc6c6
-	ld hl, $6ae0
-	ld de, $a110
-	call Functioncc6c6
-	ld hl, $6af0
-	ld de, $a170
-	call Functioncc6c6
+	jr .done
+
+.player
+	ld hl, MonsterSpriteGFX + $40
+	ld de, $a000 + $100
+	call CopyMonsterSpriteTile
+	ld hl, MonsterSpriteGFX + $50
+	ld de, $a000 + $160
+	call CopyMonsterSpriteTile
+	ld hl, MonsterSpriteGFX + $60
+	ld de, $a000 + $110
+	call CopyMonsterSpriteTile
+	ld hl, MonsterSpriteGFX + $70
+	ld de, $a000 + $170
+	call CopyMonsterSpriteTile
+
 	ld hl, $9310
 	ld de, $a000
-	ld bc, $3324
+	lb bc, BANK(GetSubstitutePic), 6 * 6
 	call Request2bpp
-.asm_cc6bf
+
+.done
 	call CloseSRAM
 	pop af
 	ld [rSVBK], a ; $ff00+$70
 	ret
 
 ; known jump sources: cc663 (33:4663), cc66c (33:466c), cc675 (33:4675), cc67e (33:467e), cc695 (33:4695), cc69e (33:469e), cc6a7 (33:46a7), cc6b0 (33:46b0)
-Functioncc6c6: ; cc6c6 (33:46c6)
+CopyMonsterSpriteTile: ; cc6c6 (33:46c6)
 	ld bc, $10
-	ld a, $31
+	ld a, BANK(MonsterSpriteGFX)
 	call FarCopyBytes
 	ret
 
@@ -88026,7 +88056,7 @@ BattleAnimCmd_E2: ; cc6cf (33:46cf)
 	ld [rSVBK], a ; $ff00+$70
 	xor a
 	call GetSRAMBank
-	call Functioncc6e7
+	call GetMinimizePic
 	call Request2bpp
 	call CloseSRAM
 	pop af
@@ -88034,43 +88064,48 @@ BattleAnimCmd_E2: ; cc6cf (33:46cf)
 	ret
 
 ; known jump sources: cc6da (33:46da), cc740 (33:4740)
-Functioncc6e7: ; cc6e7 (33:46e7)
+GetMinimizePic: ; cc6e7 (33:46e7)
 	ld hl, $a000
 	ld bc, $310
-.asm_cc6ed
+.loop
 	xor a
 	ld [hli], a
 	dec bc
 	ld a, c
 	or b
-	jr nz, .asm_cc6ed
+	jr nz, .loop
+
 	ld a, [hBattleTurn] ; $ff00+$e4
 	and a
-	jr z, .asm_cc709
+	jr z, .player
+
 	ld de, $a1a0
-	call Functioncc719
+	call CopyMinimizePic
 	ld hl, $9000
 	ld de, $a000
-	ld bc, $3331
+	lb bc, BANK(GetMinimizePic), $31
 	ret
-.asm_cc709
+
+.player
 	ld de, $a160
-	call Functioncc719
+	call CopyMinimizePic
 	ld hl, $9310
 	ld de, $a000
-	ld bc, $3324
+	lb bc, BANK(GetMinimizePic), $24
 	ret
 
 ; known jump sources: cc6fc (33:46fc), cc70c (33:470c)
-Functioncc719: ; cc719 (33:4719)
-	ld hl, $4725
+CopyMinimizePic: ; cc719 (33:4719)
+	ld hl, MinimizePic
 	ld bc, $10
-	ld a, $33
+	ld a, BANK(MinimizePic)
 	call FarCopyBytes
 	ret
 ; cc725 (33:4725)
 
-INCBIN "baserom.gbc",$cc725,$cc735 - $cc725
+MinimizePic: ; cc725
+INCBIN "gfx/battle/minimize.2bpp"
+; cc735
 
 ; no known jump sources
 BattleAnimCmd_E9: ; cc735 (33:4735)
@@ -88080,7 +88115,7 @@ BattleAnimCmd_E9: ; cc735 (33:4735)
 	ld [rSVBK], a ; $ff00+$70
 	xor a
 	call GetSRAMBank
-	call Functioncc6e7
+	call GetMinimizePic
 	ld hl, $8000
 	call Request2bpp
 	call CloseSRAM
@@ -88094,16 +88129,20 @@ BattleAnimCmd_DE: ; cc750 (33:4750)
 	push af
 	ld a, $1
 	ld [rSVBK], a ; $ff00+$70
+
 	ld a, [CurPartySpecies] ; $d108
 	push af
 	ld a, [hBattleTurn] ; $ff00+$e4
 	and a
-	jr z, .asm_cc768
+	jr z, .player
+
 	callab Function3f486
-	jr .asm_cc76e
-.asm_cc768
+	jr .done
+
+.player
 	callab Function3f447
-.asm_cc76e
+
+.done
 	pop af
 	ld [CurPartySpecies], a ; $d108
 	pop af
@@ -88118,26 +88157,31 @@ BattleAnimCmd_E6: ; cc776 (33:4776)
 	ld [rSVBK], a ; $ff00+$70
 	ld a, [CurPartySpecies] ; $d108
 	push af
+
 	ld a, [$c689]
 	ld [CurPartySpecies], a ; $d108
+
 	ld a, [hBattleTurn] ; $ff00+$e4
 	and a
-	jr z, .asm_cc79e
-	ld hl, BattleMonDVs ; $c632 (aliases: BattleMonAtkDefDV)
-	ld a, $2d
+	jr z, .player
+
+	ld hl, BattleMonDVs ; $c632
+	ld a, PREDEF_GET_UNOWN_LETTER
 	call Predef
 	ld de, $9000
 	ld a, $3c
 	call Predef
-	jr .asm_cc7ae
-.asm_cc79e
-	ld hl, EnemyMonAtkDefDV ; $d20c (aliases: EnemyMonDVs, EnemyMonMovesEnd)
-	ld a, $2d
+	jr .done
+
+.player
+	ld hl, EnemyMonDVs ; $d20c
+	ld a, PREDEF_GET_UNOWN_LETTER
 	call Predef
 	ld de, $9310
 	ld a, $3d
 	call Predef
-.asm_cc7ae
+
+.done
 	pop af
 	ld [CurPartySpecies], a ; $d108
 	ld b, $1
