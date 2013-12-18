@@ -38416,7 +38416,6 @@ Function39990: ; 39990
 	ret
 ; 39999
 
-TrainerGroups: ; 0x39999
 INCLUDE "trainers/trainer_pointers.asm"
 
 INCLUDE "trainers/trainers.asm"
@@ -38426,11 +38425,7 @@ SECTION "bankF", ROMX, BANK[$F]
 
 INCLUDE "battle/core.asm"
 
-	dw $0000 ; padding
-
-BattleCommandPointers: ; 3fd28
 INCLUDE "battle/effect_command_pointers.asm"
-
 
 
 SECTION "bank10", ROMX, BANK[$10]
