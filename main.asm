@@ -93976,33 +93976,44 @@ Function11c52c: ; 11c52c (47:452c)
 Function11c53d: ; 11c53d (47:453d)
 	ld hl, $cd21
 	ld de, hJoypadPressed ; $ffa3
+
 	ld a, [de]
-	and $8
-	jr nz, .asm_11c57f
+	and START
+	jr nz, .start
+
 	ld a, [de]
-	and $4
-	jr nz, .asm_11c58d
+	and SELECT
+	jr nz, .select
+
 	ld a, [de]
-	and $2
-	jr nz, .asm_11c589
+	and B_BUTTON
+	jr nz, .b
+
 	ld a, [de]
-	and $1
-	jr nz, .asm_11c56f
+	and A_BUTTON
+	jr nz, .a
+
 	ld de, $ffa9
+
 	ld a, [de]
-	and $40
-	jr nz, .asm_11c5b5
+	and D_UP
+	jr nz, .up
+
 	ld a, [de]
-	and $80
-	jr nz, .asm_11c5bd
+	and D_DOWN
+	jr nz, .down
+
 	ld a, [de]
-	and $20
-	jr nz, .asm_11c5c5
+	and D_LEFT
+	jr nz, .left
+
 	ld a, [de]
-	and $10
-	jr nz, .asm_11c5da
+	and D_RIGHT
+	jr nz, .right
+
 	ret
-.asm_11c56f
+
+.a
 	ld a, [$cd21]
 	cp $f
 	jr c, .asm_11c59d
@@ -94010,50 +94021,60 @@ Function11c53d: ; 11c53d (47:453d)
 	jr z, .asm_11c5ab
 	dec a
 	jr z, .asm_11c599
-	jr .asm_11c589
-.asm_11c57f
+	jr .b
+
+.start
 	ld hl, $cd24
 	set 0, [hl]
 	ld a, $8
 	ld [BGMapBuffer], a ; $cd20 (aliases: CreditsPos)
-.asm_11c589
+
+.b
 	ld a, $4
 	jr .asm_11c59f
-.asm_11c58d
+
+.select
 	ld a, [$cd2b]
 	xor $1
 	ld [$cd2b], a
 	ld a, $15
 	jr .asm_11c59f
+
 .asm_11c599
 	ld a, $13
 	jr .asm_11c59f
+
 .asm_11c59d
 	ld a, $8
+
 .asm_11c59f
 	ld hl, $cd24
 	set 1, [hl]
 	ld [$cf63], a
 	call PlayClickSFX
 	ret
+
 .asm_11c5ab
 	ld a, [BGMapBuffer] ; $cd20 (aliases: CreditsPos)
 	call Function11ca6a
 	call PlayClickSFX
 	ret
-.asm_11c5b5
+
+.up
 	ld a, [hl]
 	cp $3
 	ret c
 	sub $3
 	jr .asm_11c5ee
-.asm_11c5bd
+
+.down
 	ld a, [hl]
 	cp $f
 	ret nc
 	add $3
 	jr .asm_11c5ee
-.asm_11c5c5
+
+.left
 	ld a, [hl]
 	and a
 	ret z
@@ -94069,7 +94090,8 @@ Function11c53d: ; 11c53d (47:453d)
 	ret z
 	dec a
 	jr .asm_11c5ee
-.asm_11c5da
+
+.right
 	ld a, [hl]
 	cp $2
 	ret z
@@ -94084,6 +94106,7 @@ Function11c53d: ; 11c53d (47:453d)
 	cp $11
 	ret z
 	inc a
+
 .asm_11c5ee
 	ld [hl], a
 	ret
