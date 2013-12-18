@@ -56218,47 +56218,7 @@ String84a25: ; 84a25
 ; 84a2e
 
 
-AnimObj00GFX:
-AnimObj01GFX: INCBIN "gfx/fx/001.lz"
-AnimObj02GFX: INCBIN "gfx/fx/002.lz"
-AnimObj03GFX: INCBIN "gfx/fx/003.lz"
-AnimObj04GFX: INCBIN "gfx/fx/004.lz"
-AnimObj05GFX: INCBIN "gfx/fx/005.lz"
-AnimObj07GFX: INCBIN "gfx/fx/007.lz"
-AnimObj08GFX: INCBIN "gfx/fx/008.lz"
-AnimObj10GFX: INCBIN "gfx/fx/010.lz"
-AnimObj09GFX: INCBIN "gfx/fx/009.lz"
-AnimObj12GFX: INCBIN "gfx/fx/012.lz"
-AnimObj06GFX: INCBIN "gfx/fx/006.lz"
-AnimObj11GFX: INCBIN "gfx/fx/011.lz"
-AnimObj13GFX: INCBIN "gfx/fx/013.lz"
-AnimObj14GFX: INCBIN "gfx/fx/014.lz"
-AnimObj24GFX: INCBIN "gfx/fx/024.lz"
-AnimObj15GFX: INCBIN "gfx/fx/015.lz"
-AnimObj16GFX: INCBIN "gfx/fx/016.lz"
-AnimObj17GFX: INCBIN "gfx/fx/017.lz"
-AnimObj18GFX: INCBIN "gfx/fx/018.lz"
-AnimObj19GFX: INCBIN "gfx/fx/019.lz"
-AnimObj20GFX: INCBIN "gfx/fx/020.lz"
-AnimObj22GFX: INCBIN "gfx/fx/022.lz"
-AnimObj21GFX: INCBIN "gfx/fx/021.lz"
-AnimObj23GFX: INCBIN "gfx/fx/023.lz"
-AnimObj26GFX: INCBIN "gfx/fx/026.lz"
-AnimObj27GFX: INCBIN "gfx/fx/027.lz"
-AnimObj28GFX: INCBIN "gfx/fx/028.lz"
-AnimObj29GFX: INCBIN "gfx/fx/029.lz"
-AnimObj30GFX: INCBIN "gfx/fx/030.lz"
-AnimObj31GFX: INCBIN "gfx/fx/031.lz"
-AnimObj32GFX: INCBIN "gfx/fx/032.lz"
-AnimObj33GFX: INCBIN "gfx/fx/033.lz"
-AnimObj34GFX: INCBIN "gfx/fx/034.lz"
-AnimObj25GFX: INCBIN "gfx/fx/025.lz"
-AnimObj35GFX: INCBIN "gfx/fx/035.lz"
-AnimObj36GFX: INCBIN "gfx/fx/036.lz"
-AnimObj37GFX: INCBIN "gfx/fx/037.lz"
-AnimObj38GFX: INCBIN "gfx/fx/038.lz"
-AnimObj39GFX: INCBIN "gfx/fx/039.lz"
-; 8640e
+INCLUDE "battle/anim_gfx.asm"
 
 
 HallOfFame: ; 0x8640e
