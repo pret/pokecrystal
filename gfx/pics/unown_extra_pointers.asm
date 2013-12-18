@@ -1,3 +1,4 @@
+UnownAnimationExtraPointers:
 	dw UnownAAnimationExtra
 	dw UnownBAnimationExtra
 	dw UnownCAnimationExtra

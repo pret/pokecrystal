@@ -1,3 +1,4 @@
+AnimationPointers:
 	dw BulbasaurAnimation
 	dw IvysaurAnimation
 	dw VenusaurAnimation
