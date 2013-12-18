@@ -1,3 +1,4 @@
+FramesPointers:
 	dw BulbasaurFrames
 	dw IvysaurFrames
 	dw VenusaurFrames

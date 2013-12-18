@@ -84071,11 +84071,10 @@ INCLUDE "battle/anim_commands.asm"
 INCLUDE "battle/anim_objects.asm"
 
 
-;                       Pic animations I
-
-SECTION "bank34", ROMX, BANK[$34]
+SECTION "Pic Animations 1", ROMX, BANK[$34]
 
 ; Pic animations asm
+
 Functiond0000: ; d0000
 	ld hl, $c4ac
 	ld a, [IsInBattle]
@@ -85138,27 +85137,21 @@ UnownBitmasksPointers: INCLUDE "gfx/pics/unown_bitmask_pointers.asm"
 INCLUDE "gfx/pics/unown_bitmasks.asm"
 
 
-;                       Pic animations II
+SECTION "Pic Animations 2", ROMX, BANK[$35]
 
-SECTION "bank35", ROMX, BANK[$35]
-
-; Frame definitions
-FramesPointers: INCLUDE "gfx/pics/frame_pointers.asm"
-; Inexplicably, Kanto frames are split off from Johto
+INCLUDE "gfx/pics/frame_pointers.asm"
 INCLUDE "gfx/pics/kanto_frames.asm"
 
-
-;                       Pic animations III
 
 SECTION "bank36", ROMX, BANK[$36]
 
 FontInversed: INCBIN "gfx/misc/font_inversed.1bpp"
 
-; Johto frame definitions
-INCLUDE "gfx/pics/johto_frames.asm"
 
-; Unown frame definitions
-UnownFramesPointers: INCLUDE "gfx/pics/unown_frame_pointers.asm"
+SECTION "Pic Animations 3", ROMX, BANK[$36]
+
+INCLUDE "gfx/pics/johto_frames.asm"
+INCLUDE "gfx/pics/unown_frame_pointers.asm"
 INCLUDE "gfx/pics/unown_frames.asm"
 
 
