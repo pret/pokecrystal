@@ -325,9 +325,8 @@ PrintLetterDelay: ; 313d
 ; $cfcf[!0] and A or B override text speed with a one-frame delay.
 ; Options[4] and $cfcf[!1] disable the delay.
 
-; delay off?
 	ld a, [Options]
-	bit 4, a
+	bit NO_TEXT_SCROLL, a
 	ret nz
 
 ; non-scrolling text?
