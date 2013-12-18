@@ -2144,25 +2144,36 @@ LYOverridesBackup: ; d200
 LYOverridesBackupEnd:
 
 
-SECTION "Battle Animations", WRAMX[$d3fa], BANK[5]
+SECTION "Battle Animations", WRAMX[$d30a], BANK[5]
+
+ActiveAnimObjects: ; d30a
+	ds 4 * 40
+
+	ds 80
 
 ActiveBGEffects: ; d3fa
 	ds 4 * 5
 
-	ds 2
+	ds 1
 
+BattleAnimFlags: ; d40f
+	ds 1
 BattleAnimAddress: ; d410
 	ds 2
 BattleAnimDuration: ; d412
 	ds 1
 BattleAnimParent: ; d413
 	ds 2
-	ds 2
+BattleAnimLoops: ; d415
+	ds 1
+BattleAnimVar: ; d416
+	ds 1
 BattleAnimByte: ; d417
 	ds 1
 	ds 1
-BattleAnimTile: ; d419
-	ds 1
+BattleAnimTemps: ; d419
+	ds 8
+
 
 SECTION "SRAMBank1",SRAM,BANK[1]
 

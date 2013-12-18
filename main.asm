@@ -83887,8 +83887,8 @@ SECTION "bank31", ROMX, BANK[$31]
 
 INCLUDE "gfx/overworld/sprites_2.asm"
 
-SECTION "bank32", ROMX, BANK[$32]
 
+SECTION "bank32", ROMX, BANK[$32]
 
 ; no known jump sources
 Functionc8000: ; c8000 (32:4000)
@@ -83942,15 +83942,15 @@ Functionc801a: ; c801a (32:401a)
 	ret
 
 ; known jump sources: c80c6 (32:40c6), c811c (32:411c), c8139 (32:4139), c814d (32:414d), c8164 (32:4164), c81e6 (32:41e6), c81ef (32:41ef), c822c (32:422c), c827d (32:427d), c8299 (32:4299), c82ea (32:42ea), c8377 (32:4377), c8437 (32:4437), c85ca (32:45ca), c85ff (32:45ff), c8d13 (32:4d13), c8dd0 (32:4dd0), c8e26 (32:4e26), c8e4e (32:4e4e), c8f15 (32:4f15)
-Functionc8043: ; c8043 (32:4043)
-	ld hl, $0
+EndBattleBGEffect: ; c8043 (32:4043)
+	ld hl, 0
 	add hl, bc
 	ld [hl], 0
 	ret
 
 ; known jump sources: c800d (32:400d)
 Functionc804a: ; c804a (32:404a)
-	ld hl, $0
+	ld hl, 0
 	add hl, bc
 	ld e, [hl]
 	ld d, 0
@@ -83964,7 +83964,7 @@ Functionc804a: ; c804a (32:404a)
 
 ; no known jump sources
 BattleBGEffects: ; c805a (32:405a)
-	dw Functionc80c6
+	dw BattleBGEffect_0
 	dw Functionc80eb
 	dw Functionc80f3
 	dw Functionc812d
@@ -84021,8 +84021,8 @@ BattleBGEffects: ; c805a (32:405a)
 
 
 ; no known jump sources
-Functionc80c6: ; c80c6 (32:40c6)
-	call Functionc8043
+BattleBGEffect_0: ; c80c6 (32:40c6)
+	call EndBattleBGEffect
 	ret
 
 ; known jump sources: c8b7d (32:4b7d), c8d80 (32:4d80), c8dd8 (32:4dd8)
@@ -84061,19 +84061,25 @@ Functionc80e5: ; c80e5 (32:40e5)
 
 ; no known jump sources
 Functionc80eb: ; c80eb (32:40eb)
-	ld de, $40f1
+	ld de, .inverted
 	jp Functionc80fb
 ; c80f1 (32:40f1)
 
-INCBIN "baserom.gbc",$c80f1,$c80f3 - $c80f1
+.inverted
+	db %11100100 ; 3210
+	db %00011011 ; 0123
+; c80f3
 
 ; no known jump sources
 Functionc80f3: ; c80f3 (32:40f3)
-	ld de, $40f9
+	ld de, .white
 	jp Functionc80fb
 ; c80f9 (32:40f9)
 
-INCBIN "baserom.gbc",$c80f9,$c80fb - $c80f9
+.white
+	db %11100100 ; 3210
+	db %00000000 ; 0000
+; c80fb
 
 ; known jump sources: c80ee (32:40ee), c80f6 (32:40f6)
 Functionc80fb: ; c80fb (32:40fb)
@@ -84086,6 +84092,7 @@ Functionc80fb: ; c80fb (32:40fb)
 	jr z, .asm_c810a
 	dec [hl]
 	ret
+
 .asm_c810a
 	ld hl, $2
 	add hl, bc
@@ -84098,14 +84105,15 @@ Functionc80fb: ; c80fb (32:40fb)
 	ld a, [hl]
 	and a
 	jr nz, .asm_c8120
-	call Functionc8043
+	call EndBattleBGEffect
 	ret
+
 .asm_c8120
 	dec a
 	ld [hl], a
-	and $1
+	and 1
 	ld l, a
-	ld h, $0
+	ld h, 0
 	add hl, de
 	ld a, [hl]
 	ld [$cfc7], a
@@ -84119,7 +84127,7 @@ Functionc812d: ; c812d (32:412d)
 	ld [$cfc7], a
 	ret
 .asm_c8139
-	call Functionc8043
+	call EndBattleBGEffect
 	ret
 ; c813d (32:413d)
 
@@ -84133,7 +84141,7 @@ Functionc8141: ; c8141 (32:4141)
 	ld [$cfc7], a
 	ret
 .asm_c814d
-	call Functionc8043
+	call EndBattleBGEffect
 	ret
 ; c8151 (32:4151)
 
@@ -84148,7 +84156,7 @@ Functionc8155: ; c8155 (32:4155)
 	ld [$cfc9], a
 	ret
 .asm_c8164
-	call Functionc8043
+	call EndBattleBGEffect
 	ret
 ; c8168 (32:4168)
 
@@ -84234,14 +84242,14 @@ Functionc81c0: ; c81c0 (32:41c0)
 Functionc81e3: ; c81e3 (32:41e3)
 	xor a
 	ld [hBGMapMode], a ; $ff00+$d4
-	call Functionc8043
+	call EndBattleBGEffect
 	ret
 
 ; no known jump sources
 Functionc81ea: ; c81ea (32:41ea)
 	call Functionc9042
 	jr z, .asm_c81f3
-	call Functionc8043
+	call EndBattleBGEffect
 	ret
 .asm_c81f3
 	call Functionc9038
@@ -84281,7 +84289,7 @@ Functionc8223: ; c8223 (32:4223)
 	jr z, .asm_c8230
 	ld hl, $d40e
 	inc [hl]
-	call Functionc8043
+	call EndBattleBGEffect
 	ret
 .asm_c8230
 	call Functionc80e5
@@ -84329,7 +84337,7 @@ Functionc825a: ; c825a (32:425a)
 Functionc827a: ; c827a (32:427a)
 	xor a
 	ld [hBGMapMode], a ; $ff00+$d4
-	call Functionc8043
+	call EndBattleBGEffect
 	ret
 
 ; no known jump sources
@@ -84352,7 +84360,7 @@ Functionc8290: ; c8290 (32:4290)
 	jr z, .asm_c829d
 	ld hl, $d40e
 	inc [hl]
-	call Functionc8043
+	call EndBattleBGEffect
 	ret
 .asm_c829d
 	call Functionc80e5
@@ -84400,7 +84408,7 @@ Functionc82c7: ; c82c7 (32:42c7)
 Functionc82e7: ; c82e7 (32:42e7)
 	xor a
 	ld [hBGMapMode], a ; $ff00+$d4
-	call Functionc8043
+	call EndBattleBGEffect
 	ret
 
 ; known jump sources: c8255 (32:4255), c82c2 (32:42c2)
@@ -84509,7 +84517,7 @@ Functionc8365: ; c8365 (32:4365)
 	ld [hl], $1
 	ret
 .asm_c8377
-	call Functionc8043
+	call EndBattleBGEffect
 	ret
 
 ; no known jump sources
@@ -84607,7 +84615,7 @@ Functionc842a: ; c842a (32:442a)
 Functionc8434: ; c8434 (32:4434)
 	xor a
 	ld [hBGMapMode], a ; $ff00+$d4
-	call Functionc8043
+	call EndBattleBGEffect
 	ret
 
 ; known jump sources: c8425 (32:4425)
@@ -84806,7 +84814,7 @@ Functionc85c2: ; c85c2 (32:45c2)
 	call Functionc8eca
 	ld a, $42
 	call Functionc8ede
-	call Functionc8043
+	call EndBattleBGEffect
 	ret
 
 ; no known jump sources
@@ -84840,7 +84848,7 @@ Functionc85ce: ; c85ce (32:45ce)
 	ret
 .asm_c85fc
 	call Functionc8eca
-	call Functionc8043
+	call EndBattleBGEffect
 	ret
 
 ; no known jump sources
@@ -86177,7 +86185,7 @@ Functionc8d0b: ; c8d0b (32:4d0b)
 	ld a, [hl]
 	and a
 	jr nz, .asm_c8d18
-	call Functionc8043
+	call EndBattleBGEffect
 	scf
 	ret
 .asm_c8d18
@@ -86235,12 +86243,14 @@ Functionc8d57: ; c8d57 (32:4d57)
 	ld a, [hl]
 	and a
 	jr z, .asm_c8d69
+
 	dec [hl]
 	ld hl, $3
 	add hl, bc
 	ld a, [hl]
 	call Functionc8eb2
 	ret
+
 .asm_c8d69
 	ld hl, $2
 	add hl, bc
@@ -86257,7 +86267,7 @@ Functionc8d77: ; c8d77 (32:4d77)
 	and a
 	jr nz, asm_c8dd4
 	push de
-	ld de, $4d85
+	ld de, Jumptable_c8d85
 	call Functionc80ca
 	pop de
 	jp [hl]
@@ -86317,11 +86327,11 @@ Functionc8dc9: ; c8dc9 (32:4dc9)
 	call Functionc8f19
 	ld a, $e4
 	ld [rBGP], a ; $ff00+$47
-	call Functionc8043
+	call EndBattleBGEffect
 	ret
 asm_c8dd4: ; c8dd4 (32:4dd4)
 	push de
-	ld de, $4ddd
+	ld de, Jumptable_c8ddd
 	call Functionc80ca
 	pop de
 	jp [hl]
@@ -86380,7 +86390,7 @@ Functionc8e02: ; c8e02 (32:4e02)
 Functionc8e21: ; c8e21 (32:4e21)
 	ld a, $e4
 	call Functionc8e52
-	call Functionc8043
+	call EndBattleBGEffect
 	ret
 
 ; no known jump sources
@@ -86411,7 +86421,7 @@ Functionc8e2a: ; c8e2a (32:4e2a)
 Functionc8e49: ; c8e49 (32:4e49)
 	ld a, $e4
 	call Functionc8e7f
-	call Functionc8043
+	call EndBattleBGEffect
 	ret
 
 ; known jump sources: c8e17 (32:4e17), c8e23 (32:4e23)
@@ -86558,7 +86568,7 @@ Functionc8f0a: ; c8f0a (32:4f0a)
 	call Functionc8eca
 	xor a
 	ld [hLCDStatCustom], a ; $ff00+$c6
-	call Functionc8043
+	call EndBattleBGEffect
 	ret
 
 ; known jump sources: c8aac (32:4aac), c8b60 (32:4b60), c8dc9 (32:4dc9)
@@ -88293,7 +88303,7 @@ BattleAnimCmd_E1: ; cc807 (33:4807)
 .enemy
 	ld a, $0f
 	ld [CryTracks], a ; $c2bd
-	ld a, [EnemyMonSpecies] ; $d206 (aliases: EnemyMonSpecies)
+	ld a, [EnemyMonSpecies] ; $d206
 
 .asm_cc834
 	push hl
@@ -88330,7 +88340,7 @@ BattleAnimCmd_E1: ; cc807 (33:4807)
 	ld a, l
 	ld [CryLength], a ; $c2b2
 	ld a, h
-	ld [$c2b3], a
+	ld [CryLength + 1], a
 	ld a, 1
 	ld [$c2bc], a
 
@@ -88343,6 +88353,7 @@ BattleAnimCmd_E1: ; cc807 (33:4807)
 ; cc871 (33:4871)
 
 Datacc871: ; cc871
+; +pitch, +echo, +length
 	db $00, $00, $c0, $00
 	db $00, $00, $40, $00
 	db $00, $00, $00, $00
