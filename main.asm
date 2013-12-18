@@ -100020,11 +100020,13 @@ Function1de294: ; 1de294
 ; 1de299
 
 Function1de299: ; 1de299
-	ld a, $77
+	ld a, BANK(DudeAutoInputs)
 	call StartAutoInput
 	ret
 ; 1de29f
 
+
+DudeAutoInputs:
 
 DudeAutoInput_A: ; 1de29f
 	db NO_INPUT, $50
