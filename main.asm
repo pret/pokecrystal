@@ -56202,7 +56202,7 @@ Function84a0e: ; 84a0e (21:4a0e)
 .asm_84a13
 	push bc
 	push hl
-	ld de, $4a25
+	ld de, String84a25
 	call PlaceString
 	pop hl
 	ld bc, $3c
@@ -56213,164 +56213,53 @@ Function84a0e: ; 84a0e (21:4a0e)
 	ret
 ; 84a25 (21:4a25)
 
-INCBIN "baserom.gbc",$84a25,$84a2e - $84a25
+String84a25: ; 84a25
+	db "  ------@"
+; 84a2e
 
-FX00GFX:
-FX01GFX: ; 84a2e
-INCBIN "gfx/fx/001.lz"
-; 84b1e
 
-FX02GFX: ; 84b1e
-INCBIN "gfx/fx/002.lz"
-; 84b7e
-
-FX03GFX: ; 84b7e
-INCBIN "gfx/fx/003.lz"
-; 84bde
-
-FX04GFX: ; 84bde
-INCBIN "gfx/fx/004.lz"
-; 84cae
-
-FX05GFX: ; 84cae
-INCBIN "gfx/fx/005.lz"
-; 84dee
-
-FX07GFX: ; 84dee
-INCBIN "gfx/fx/007.lz"
-; 84e7e
-
-FX08GFX: ; 84e7e
-INCBIN "gfx/fx/008.lz"
-; 84ede
-
-FX10GFX: ; 84ede
-INCBIN "gfx/fx/010.lz"
-; 84f1e
-
-FX09GFX: ; 84f1e
-INCBIN "gfx/fx/009.lz"
-; 8500e
-
-FX12GFX: ; 8500e
-INCBIN "gfx/fx/012.lz"
-; 8507e
-
-FX06GFX: ; 8507e
-INCBIN "gfx/fx/006.lz"
-; 8515e
-
-FX11GFX: ; 8515e
-INCBIN "gfx/fx/011.lz"
-; 851ae
-
-FX13GFX: ; 851ae
-INCBIN "gfx/fx/013.lz"
-; 8524e
-
-FX14GFX: ; 8524e
-INCBIN "gfx/fx/014.lz"
-; 8520e
-
-FX24GFX: ; 8530e
-INCBIN "gfx/fx/024.lz"
-; 8537e
-
-FX15GFX: ; 8537e
-INCBIN "gfx/fx/015.lz"
-; 8539e
-
-FX16GFX: ; 8539e
-INCBIN "gfx/fx/016.lz"
-; 8542e
-
-FX17GFX: ; 8542e
-INCBIN "gfx/fx/017.lz"
-; 8547e
-
-FX18GFX: ; 8547e
-INCBIN "gfx/fx/018.lz"
-; 854ee
-
-FX19GFX: ; 854ee
-INCBIN "gfx/fx/019.lz"
-; 855ae
-
-FX20GFX: ; 855ae
-INCBIN "gfx/fx/020.lz"
-; 8562e
-
-FX22GFX: ; 8562e
-INCBIN "gfx/fx/022.lz"
-; 856ee
-
-FX21GFX: ; 856ee
-INCBIN "gfx/fx/021.lz"
-; 8576e
-
-FX23GFX: ; 8576e
-INCBIN "gfx/fx/023.lz"
-; 857de
-
-FX26GFX: ; 857de
-INCBIN "gfx/fx/026.lz"
-; 8583e
-
-FX27GFX: ; 8583e
-INCBIN "gfx/fx/027.lz"
-; 858be
-
-FX28GFX: ; 858be
-INCBIN "gfx/fx/028.lz"
-; 8594e
-
-FX29GFX: ; 8594e
-INCBIN "gfx/fx/029.lz"
-; 859ae
-
-FX30GFX: ; 859ae
-INCBIN "gfx/fx/030.lz"
-; 8590e
-
-FX31GFX: ; 85a0e
-INCBIN "gfx/fx/031.lz"
-; 85bae
-
-FX32GFX: ; 85bae
-INCBIN "gfx/fx/032.lz"
-; 85d0e
-
-FX33GFX: ; 85d0e
-INCBIN "gfx/fx/033.lz"
-; 85dfe
-
-FX34GFX: ; 85dfe
-INCBIN "gfx/fx/034.lz"
-; 85e9e
-
-FX25GFX: ; 85e9e
-INCBIN "gfx/fx/025.lz"
-; 85fbe
-
-FX35GFX: ; 85fbe
-INCBIN "gfx/fx/035.lz"
-; 8609e
-
-FX36GFX: ; 8609e
-INCBIN "gfx/fx/036.lz"
-; 8617e
-
-FX37GFX: ; 8617e
-INCBIN "gfx/fx/037.lz"
-; 862ee
-
-FX38GFX: ; 862ee
-INCBIN "gfx/fx/038.lz"
-; 8638e
-
-FX39GFX: ; 8638e
-INCBIN "gfx/fx/039.lz"
+AnimObj00GFX:
+AnimObj01GFX: INCBIN "gfx/fx/001.lz"
+AnimObj02GFX: INCBIN "gfx/fx/002.lz"
+AnimObj03GFX: INCBIN "gfx/fx/003.lz"
+AnimObj04GFX: INCBIN "gfx/fx/004.lz"
+AnimObj05GFX: INCBIN "gfx/fx/005.lz"
+AnimObj07GFX: INCBIN "gfx/fx/007.lz"
+AnimObj08GFX: INCBIN "gfx/fx/008.lz"
+AnimObj10GFX: INCBIN "gfx/fx/010.lz"
+AnimObj09GFX: INCBIN "gfx/fx/009.lz"
+AnimObj12GFX: INCBIN "gfx/fx/012.lz"
+AnimObj06GFX: INCBIN "gfx/fx/006.lz"
+AnimObj11GFX: INCBIN "gfx/fx/011.lz"
+AnimObj13GFX: INCBIN "gfx/fx/013.lz"
+AnimObj14GFX: INCBIN "gfx/fx/014.lz"
+AnimObj24GFX: INCBIN "gfx/fx/024.lz"
+AnimObj15GFX: INCBIN "gfx/fx/015.lz"
+AnimObj16GFX: INCBIN "gfx/fx/016.lz"
+AnimObj17GFX: INCBIN "gfx/fx/017.lz"
+AnimObj18GFX: INCBIN "gfx/fx/018.lz"
+AnimObj19GFX: INCBIN "gfx/fx/019.lz"
+AnimObj20GFX: INCBIN "gfx/fx/020.lz"
+AnimObj22GFX: INCBIN "gfx/fx/022.lz"
+AnimObj21GFX: INCBIN "gfx/fx/021.lz"
+AnimObj23GFX: INCBIN "gfx/fx/023.lz"
+AnimObj26GFX: INCBIN "gfx/fx/026.lz"
+AnimObj27GFX: INCBIN "gfx/fx/027.lz"
+AnimObj28GFX: INCBIN "gfx/fx/028.lz"
+AnimObj29GFX: INCBIN "gfx/fx/029.lz"
+AnimObj30GFX: INCBIN "gfx/fx/030.lz"
+AnimObj31GFX: INCBIN "gfx/fx/031.lz"
+AnimObj32GFX: INCBIN "gfx/fx/032.lz"
+AnimObj33GFX: INCBIN "gfx/fx/033.lz"
+AnimObj34GFX: INCBIN "gfx/fx/034.lz"
+AnimObj25GFX: INCBIN "gfx/fx/025.lz"
+AnimObj35GFX: INCBIN "gfx/fx/035.lz"
+AnimObj36GFX: INCBIN "gfx/fx/036.lz"
+AnimObj37GFX: INCBIN "gfx/fx/037.lz"
+AnimObj38GFX: INCBIN "gfx/fx/038.lz"
+AnimObj39GFX: INCBIN "gfx/fx/039.lz"
 ; 8640e
+
 
 HallOfFame: ; 0x8640e
 	call Function8648e
