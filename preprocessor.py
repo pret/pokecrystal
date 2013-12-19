@@ -25,6 +25,11 @@ from extras.pokemontools.audio import (
     Note,
 )
 
+from extras.pokemontools.battle_animations import (
+    Wait,
+    battle_animation_classes,
+)
+
 def load_pokecrystal_macros():
     """
     Construct a list of macros that are needed for pokecrystal preprocessing.
@@ -40,6 +45,7 @@ def load_pokecrystal_macros():
         ChannelCommand,
         OctaveCommand,
         Note,
+        Wait,
     ]
 
     ourmacros += command_classes
@@ -48,6 +54,7 @@ def load_pokecrystal_macros():
     ourmacros += movement_command_classes
     ourmacros += music_classes
     ourmacros += effect_classes
+    ourmacros += battle_animation_classes
 
     return ourmacros
 
