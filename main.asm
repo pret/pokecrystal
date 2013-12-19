@@ -18352,7 +18352,7 @@ StartMenu_Pokedex: ; 12937
 	jr z, .asm_12949
 
 	call FadeToMenu
-	callba Function40000
+	callba Pokedex
 	call Function2b3c
 
 .asm_12949
@@ -38430,7 +38430,8 @@ INCLUDE "battle/effect_command_pointers.asm"
 
 SECTION "bank10", ROMX, BANK[$10]
 
-Function40000: ; 40000
+Pokedex: ; 40000
+
 	ld a, [hWX]
 	ld l, a
 	ld a, [hWY]
@@ -38441,7 +38442,7 @@ Function40000: ; 40000
 	ld hl, Options
 	ld a, [hl]
 	push af
-	set 4, [hl]
+	set NO_TEXT_SCROLL, [hl]
 	ld a, [VramState]
 	push af
 	xor a
@@ -38450,26 +38451,29 @@ Function40000: ; 40000
 	push af
 	ld a, $1
 	ld [$ffaa], a
+
 	xor a
 	ld [$ffde], a
-	call Function40063
+	call InitPokedex
 	call DelayFrame
-.asm_40029
+
+.main
 	call Functiona57
 	ld a, [$cf63]
 	bit 7, a
-	jr nz, .asm_4003b
+	jr nz, .exit
 	call Function4010b
 	call DelayFrame
-	jr .asm_40029
+	jr .main
 
-.asm_4003b
+.exit
 	ld de, SFX_READ_TEXT_2
 	call PlaySFX
 	call WaitSFX
 	call ClearSprites
 	ld a, [$c7d4]
 	ld [$d959], a
+
 	pop af
 	ld [$ffaa], a
 	pop af
@@ -38486,23 +38490,28 @@ Function40000: ; 40000
 	ret
 ; 40063
 
-Function40063: ; 40063
+InitPokedex: ; 40063
 	call WhiteBGMap
 	call ClearSprites
 	call ClearTileMap
 	call Function414b7
-	ld hl, PlayerSDefLevel
+
+	ld hl, $c6d0
 	ld bc, $0115
 	xor a
 	call ByteFill
+
 	xor a
 	ld [$cf63], a
 	ld [$cf64], a
 	ld [$cf65], a
 	ld [$cf66], a
+
 	call Function400a2
+
 	ld a, [$d959]
 	ld [$c7d4], a
+
 	call Function40bdc
 	call Function400b4
 	call Function400ed
@@ -38515,27 +38524,30 @@ Function400a2: ; 400a2
 	ld a, [StatusFlags]
 	bit 1, a
 	jr nz, .asm_400ae
+
 	xor a
 	ld [$c7dc], a
 	ret
 
 .asm_400ae
-	ld a, $1
+	ld a, 1
 	ld [$c7dc], a
 	ret
 ; 400b4
 
 Function400b4: ; 400b4
-	ld hl, PlayerSDefLevel
+	ld hl, $c6d0
 	ld a, [$c2d6]
 	and a
 	jr z, .asm_400ec
 	cp $fc
 	jr nc, .asm_400ec
+
 	ld b, a
 	ld a, [$c7d2]
 	cp $8
 	jr c, .asm_400db
+
 	sub $7
 	ld c, a
 .asm_400cc
@@ -38572,8 +38584,10 @@ Function400ed: ; 400ed
 	ld a, [MapNumber]
 	ld c, a
 	call GetWorldMapLocation
-	cp $0
+
+	cp SPECIAL_MAP
 	jr nz, .asm_40107
+
 	ld a, [BackupMapGroup]
 	ld b, a
 	ld a, [BackupMapNumber]
@@ -38587,7 +38601,7 @@ Function400ed: ; 400ed
 
 Function4010b: ; 4010b
 	ld a, [$cf63]
-	ld hl, $4115
+	ld hl, Jumptable_40115
 	call Function41432
 	jp [hl]
 ; 40115
@@ -38649,6 +38663,7 @@ Function4013c: ; 4013c (10:413c)
 	ld a, $4a
 	jr z, .asm_4017b
 	ld a, $47
+
 .asm_4017b
 	ld [hWX], a ; $ff00+$d1
 	xor a
@@ -38694,6 +38709,7 @@ Function401ae: ; 401ae (10:41ae)
 	call Function41ad7
 	call Function41af7
 	ret
+
 .asm_401d9
 	call Function40bb1
 	call Function40bd0
@@ -38703,6 +38719,7 @@ Function401ae: ; 401ae (10:41ae)
 	ld a, $0
 	ld [$cf64], a
 	ret
+
 .asm_401eb
 	call Function41401
 	ld a, $7
@@ -38713,6 +38730,7 @@ Function401ae: ; 401ae (10:41ae)
 	ld [hWX], a ; $ff00+$d1
 	call DelayFrame
 	ret
+
 .asm_401fe
 	call Function41401
 	ld a, $5
@@ -38723,6 +38741,7 @@ Function401ae: ; 401ae (10:41ae)
 	ld [hWX], a ; $ff00+$d1
 	call DelayFrame
 	ret
+
 .asm_40211
 	ld a, $d
 	ld [$cf63], a
@@ -38770,17 +38789,20 @@ Function40258: ; 40258 (10:4258)
 	ret nc
 	call Function40131
 	ret
+
 .asm_40273
 	ld a, [$c7d8]
 	ld hl, $42f2
 	call Function41432
 	jp [hl]
+
 .asm_4027d
 	ld a, [LastVolume] ; $c2b4
 	and a
 	jr z, .asm_40288
 	ld a, $77
 	ld [LastVolume], a ; $c2b4
+
 .asm_40288
 	call MaxVolume
 	ld a, [$cf64]
@@ -38842,6 +38864,7 @@ Function403be: ; 403be (10:43be)
 	jr nz, .asm_403c9
 	ld de, $43f3
 	jr .asm_403cc
+
 .asm_403c9
 	ld de, $43fb
 .asm_403cc
@@ -38855,11 +38878,13 @@ Function403be: ; 403be (10:43be)
 	and $1
 	jr nz, .asm_403e0
 	ret
+
 .asm_403e0
 	ld a, [$c7d8]
-	ld hl, $4405
+	ld hl, Jumptable_40405
 	call Function41432
 	jp [hl]
+
 .asm_403ea
 	call Function41401
 	ld a, $0
@@ -38880,17 +38905,17 @@ Jumptable_40405: ; 40405 (10:4405)
 ; no known jump sources
 Function4040d: ; 4040d (10:440d)
 	ld b, $0
-	jr asm_40417
+	jr Function40417
 
 ; no known jump sources
 Function40411: ; 40411 (10:4411)
 	ld b, $1
-	jr asm_40417
+	jr Function40417
 
 ; no known jump sources
 Function40415: ; 40415 (10:4415)
 	ld b, $2
-asm_40417: ; 40417 (10:4417)
+Function40417: ; 40417 (10:4417)
 	ld a, [$c7d4]
 	cp b
 	jr z, .asm_40431
@@ -38902,6 +38927,7 @@ asm_40417: ; 40417 (10:4417)
 	ld [$c7d0], a
 	ld [$c7d1], a
 	call Function400b4
+
 .asm_40431
 	call Function41401
 	ld a, $0
@@ -38950,11 +38976,13 @@ Function40471: ; 40471 (10:4471)
 	and $1
 	jr nz, .asm_4048b
 	ret
+
 .asm_4048b
 	ld a, [$c7d8]
 	ld hl, $44a8
 	call Function41432
 	jp [hl]
+
 .asm_40495
 	call Function41401
 	ld a, $0
@@ -39018,6 +39046,7 @@ Function40562: ; 40562 (10:4562)
 	call Function41ad7
 	call Function41af7
 	ret
+
 .asm_40583
 	call Function40bb1
 	call Function40bd0
@@ -39027,6 +39056,7 @@ Function40562: ; 40562 (10:4562)
 	ld a, $9
 	ld [$cf64], a
 	ret
+
 .asm_40595
 	ld a, [$c7e0]
 	ld [$c7d0], a
@@ -39064,10 +39094,11 @@ Function405bd: ; 405bd (10:45bd)
 Function405df: ; 405df (10:45df)
 	ld hl, hJoyPressed ; $ffa7
 	ld a, [hl]
-	and $3
+	and A_BUTTON | B_BUTTON
 	jr nz, .asm_405eb
 	call Function40610
 	ret
+
 .asm_405eb
 	call Function41401
 	ld a, $7
@@ -39077,11 +39108,13 @@ Function405df: ; 405df (10:45df)
 	jr nz, .asm_40603
 	callba Function1ddf26
 	jr .asm_4060f
+
 .asm_40603
 	ld hl, $550e
 	ld de, $9310
 	ld bc, $103a
 	call Functione73
+
 .asm_4060f
 	ret
 
@@ -39095,6 +39128,7 @@ Function40610: ; 40610 (10:4610)
 	and $20
 	jr nz, .asm_4062d
 	ret
+
 .asm_4061e
 	ld a, [$c7de]
 	ld e, a
@@ -39106,6 +39140,7 @@ Function40610: ; 40610 (10:4610)
 	ld a, [hl]
 	inc [hl]
 	jr .asm_40635
+
 .asm_4062d
 	ld hl, $c7dd
 	ld a, [hl]
@@ -39113,6 +39148,7 @@ Function40610: ; 40610 (10:4610)
 	ret z
 	ld a, [hl]
 	dec [hl]
+
 .asm_40635
 	push af
 	xor a
@@ -40462,7 +40498,7 @@ Function41a24: ; 41a24
 Function41a2c: ; 41a2c
 	ld a, $0
 	call GetSRAMBank
-	ld hl, Function40000
+	ld hl, Pokedex
 	ld de, $a188
 	ld bc, Function270
 	ld a, $77
