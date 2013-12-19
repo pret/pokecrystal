@@ -23,6 +23,8 @@ INCLUDE "constants/event_flags.asm"
 INCLUDE "constants/engine_flags.asm"
 INCLUDE "constants/music_constants.asm"
 INCLUDE "constants/sfx_constants.asm"
+INCLUDE "constants/animation_constants.asm"
+INCLUDE "constants/gfx_constants.asm"
 
 
 

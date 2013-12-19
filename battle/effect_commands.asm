@@ -171,7 +171,7 @@ CheckPlayerTurn:
 	jr z, .WokeUp
 	xor a
 	ld [$cfca], a
-	ld de, ANIM_SLEEP
+	ld de, ANIM_SLP
 	call FarPlayBattleAnimation
 	jr .FastAsleep
 
@@ -315,7 +315,7 @@ CheckPlayerTurn:
 	xor a
 	ld [$cfca], a
 
-	ld de, ANIM_INLOVE
+	ld de, ANIM_IN_LOVE
 	call FarPlayBattleAnimation
 
 ; 50% chance of infatuation
@@ -432,7 +432,7 @@ CheckEnemyTurn: ; 3421f
 	call StdBattleTextBox
 	xor a
 	ld [$cfca], a
-	ld de, ANIM_SLEEP
+	ld de, ANIM_SLP
 	call FarPlayBattleAnimation
 	jr .FastAsleep
 
@@ -594,7 +594,7 @@ CheckEnemyTurn: ; 3421f
 	xor a
 	ld [$cfca], a
 
-	ld de, ANIM_INLOVE
+	ld de, ANIM_IN_LOVE
 	call FarPlayBattleAnimation
 
 ; 50% chance of infatuation
