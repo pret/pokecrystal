@@ -1,7 +1,8 @@
 INCLUDE "includes.asm"
 
+SECTION "NULL", ROM0[0]
+NULL:
 
-SECTION "Hardware", ROM0
 
 INCLUDE "rst.asm"
 INCLUDE "interrupts.asm"
