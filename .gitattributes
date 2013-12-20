@@ -6,7 +6,6 @@
 *.lz   diff=hex
 *.2bpp diff=hex
 *.1bpp diff=hex
-*.pal  diff=hex
 *.bin  diff=hex
 *.blk  diff=hex
 
