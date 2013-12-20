@@ -1270,19 +1270,19 @@ Functionb1de: ; b1de
 INCBIN "baserom.gbc", $b279, $b319 - $b279
 
 MornPal: ; 0xb319
-INCBIN "tilesets/morn.pal"
+INCLUDE "tilesets/morn.pal"
 ; 0xb359
 
 DayPal: ; 0xb359
-INCBIN "tilesets/day.pal"
+INCLUDE "tilesets/day.pal"
 ; 0xb399
 
 NitePal: ; 0xb399
-INCBIN "tilesets/nite.pal"
+INCLUDE "tilesets/nite.pal"
 ; 0xb3d9
 
 DarkPal: ; 0xb3d9
-INCBIN "tilesets/dark.pal"
+INCLUDE "tilesets/dark.pal"
 ; 0xb419
 
 INCBIN "baserom.gbc", $b419, $b7a9 - $b419
