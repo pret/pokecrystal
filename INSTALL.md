@@ -26,7 +26,7 @@ Now you should be able to build **pokecrystal.gbc** for the first time.
 
 	make
 
-Your first build may take about a minute. Subsequent builds are much faster (5-20 seconds).
+Your first build may take about 30 seconds. Subsequent builds are much faster (2-10 seconds).
 
 
 # OSX
