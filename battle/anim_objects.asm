@@ -5040,6 +5040,7 @@ INCBIN "baserom.gbc", $ce85e, $cfcf6 - $ce85e
 AnimObjGFX: ; cfcf6
 
 object_gfx: MACRO
+; label, # tiles
 	db \2
 	db BANK(\1)
 	dw \1
@@ -5082,7 +5083,14 @@ ENDM
 	object_gfx AnimObj34GFX, 48
 	object_gfx AnimObj35GFX, 18
 	object_gfx AnimObj36GFX, 38
-	object_gfx 0000, 1
-	object_gfx 0000, 1
+	object_gfx AnimObj37GFX, 35
+	object_gfx AnimObj38GFX, 18
+	object_gfx AnimObj39GFX, 24
+
+	; null pointers
+	db 1
+	dbw 0, 0
+	db 1
+	dbw 0, 0
 ; cfd9e
 
