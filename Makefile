@@ -29,7 +29,7 @@ ROMS := pokecrystal.gbc
 ALL_DEPENDENCIES :=
 # generate a list of dependencies for each object file
 $(shell $(foreach obj, $(OBJS), \
-	$(eval $(obj:.o=)_DEPENDENCIES := $(shell $(PYTHON) scan_includes.py $(obj:.o=.asm) | sed s/globals.asm//g)) \
+	$(eval $(obj:.o=)_DEPENDENCIES := $(shell $(PYTHON) extras/pokemontools/scan_includes.py $(obj:.o=.asm) | sed s/globals.asm//g)) \
 ))
 $(shell $(foreach obj, $(OBJS), \
 	$(eval ALL_DEPENDENCIES += $($(obj:.o=)_DEPENDENCIES)) \
