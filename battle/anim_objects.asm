@@ -5086,11 +5086,7 @@ ENDM
 	object_gfx AnimObj37GFX, 35
 	object_gfx AnimObj38GFX, 18
 	object_gfx AnimObj39GFX, 24
-
-	; null pointers
-	db 1
-	dbw 0, 0
-	db 1
-	dbw 0, 0
+	object_gfx NULL, 1
+	object_gfx NULL, 1
 ; cfd9e
 
