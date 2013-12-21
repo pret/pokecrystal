@@ -46994,8 +46994,6 @@ Function4c03f: ; 4c03f
 INCLUDE "tilesets/palette_maps.asm"
 
 
-INCBIN "baserom.gbc",$4ce05,$4ce1f - $4ce05
-
 TileCollisionTable: ; 4ce1f
 ; 00 land
 ; 01 water
