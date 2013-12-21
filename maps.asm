@@ -5,6 +5,23 @@ INCLUDE "maps/map_headers.asm"
 INCLUDE "maps/second_map_headers.asm"
 
 
+
+SECTION "Map Blockdata 1", ROMX, BANK[MAPS_1]
+
+INCLUDE "maps/blockdata_1.asm"
+
+
+SECTION "Map Blockdata 2", ROMX, BANK[MAPS_2]
+
+INCLUDE "maps/blockdata_2.asm"
+
+
+SECTION "Map Blockdata 3", ROMX, BANK[MAPS_3]
+
+INCLUDE "maps/blockdata_3.asm"
+
+
+
 SECTION "Map Scripts 1", ROMX, BANK[MAP_SCRIPTS_1]
 
 INCLUDE "maps/GoldenrodGym.asm"

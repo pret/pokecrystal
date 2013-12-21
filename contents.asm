@@ -74,6 +74,10 @@ PICS_19                   EQU $5A
 
 MAP_HEADERS               EQU $25
 
+MAPS_1                    EQU $2A
+MAPS_2                    EQU $2B
+MAPS_3                    EQU $2C
+
 MAP_SCRIPTS_1             EQU $15
 MAP_SCRIPTS_2             EQU $16
 MAP_SCRIPTS_3             EQU $17

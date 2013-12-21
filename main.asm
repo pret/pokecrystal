@@ -71853,20 +71853,6 @@ SECTION "bank29", ROMX, BANK[$29]
 INCLUDE "text/phone/extra2.asm"
 
 
-SECTION "bank2A", ROMX, BANK[$2A]
-
-INCLUDE "maps/blockdata_1.asm"
-
-
-SECTION "bank2B", ROMX, BANK[$2B]
-
-INCLUDE "maps/blockdata_2.asm"
-
-
-SECTION "bank2C", ROMX, BANK[$2C]
-
-INCLUDE "maps/blockdata_3.asm"
-
 
 SECTION "Tileset Data 5", ROMX, BANK[TILESETS_5]
 
