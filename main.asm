@@ -80578,13 +80578,18 @@ INCBIN "gfx/frames/8.1bpp"
 INCBIN "gfx/frames/9.1bpp"
 ; f89b0
 
-INCBIN "baserom.gbc",$f89b0,$f8ba0 - $f89b0
+INCBIN "baserom.gbc", $f89b0, $f8a90 - $f89b0
+
+ShinyIcon: ; f8a90
+INCBIN "gfx/stats/shiny.2bpp"
+
+INCBIN "baserom.gbc", $f8aa0, $f8ba0 - $f8aa0
 
 TownMapGFX: ; f8ba0
 INCBIN "gfx/misc/town_map.lz"
 ; f8ea3
 
-INCBIN "baserom.gbc",$f8ea3,$fb449 - $f8ea3
+INCBIN "baserom.gbc", $f8ea3, $fb449 - $f8ea3
 
 
 Functionfb449: ; fb449
@@ -99360,18 +99365,22 @@ Function1dc381: ; 1dc381
 	xor a
 	ld [hBGMapMode], a
 	call Functione58
-	ld de, $4591
+
+	ld de, MobileHPIcon
 	ld hl, $9710
-	ld bc, $7701
+	lb bc, BANK(MobileHPIcon), 1
 	call Request1bpp
-	ld de, $4599
+
+	ld de, MobileLvIcon
 	ld hl, $96e0
-	ld bc, $7701
+	lb bc, BANK(MobileLvIcon), 1
 	call Request1bpp
-	ld de, $4a90
+
+	ld de, ShinyIcon
 	ld hl, $93f0
-	ld bc, $3e01
+	lb bc, BANK(ShinyIcon), 1
 	call Get2bpp
+
 	xor a
 	ld [MonType], a
 	callba Function5084a
@@ -99409,21 +99418,21 @@ Function1dc381: ; 1dc381
 	ld bc, $8103
 	call PrintNum
 	ld hl, $c555
-	ld de, $4550
+	ld de, String1dc550
 	call PlaceString
 	ld hl, PartyMon1OT
 	call Function1dc50e
 	ld hl, $c558
 	call PlaceString
 	ld hl, $c57d
-	ld de, $4559
+	ld de, String1dc559
 	call PlaceString
 	ld hl, $c580
 	ld de, TempMonID
 	ld bc, $8205
 	call PrintNum
 	ld hl, $c5b9
-	ld de, $4554
+	ld de, String1dc554
 	call PlaceString
 	ld hl, $c5bf
 	ld a, [TempMonMove1]
@@ -99461,10 +99470,10 @@ Function1dc47b: ; 1dc47b
 	ld [MonType], a
 	callba Function5084a
 	ld hl, TileMap
-	ld b, $f
-	ld c, $12
+	ld b, 15
+	ld c, 18
 	call TextBox
-	ld bc, $0014
+	ld bc, SCREEN_WIDTH
 	ld de, TileMap
 	ld hl, $c4b4
 	call CopyBytes
@@ -99478,7 +99487,7 @@ Function1dc47b: ; 1dc47b
 	ld a, [TempMonMove4]
 	call Function1dc51a
 	ld hl, $c533
-	ld de, $455d
+	ld de, String1dc55d
 	call PlaceString
 	ld hl, $c53c
 	ld de, TempMonAtk
@@ -99520,12 +99529,13 @@ Function1dc50e: ; 1dc50e
 Function1dc51a: ; 1dc51a
 	and a
 	jr z, .asm_1dc525
+
 	ld [$d265], a
 	call GetMoveName
 	jr .asm_1dc528
 
 .asm_1dc525
-	ld de, $4584
+	ld de, String1dc584
 
 .asm_1dc528
 	call PlaceString
@@ -99551,9 +99561,35 @@ Function1dc52c: ; 1dc52c
 	ret
 ; 1dc550
 
-INCBIN "baserom.gbc",$1dc550,$1dc5a1 - $1dc550
+String1dc550: ; 1dc550
+	db "OT/@"
+
+String1dc554: ; 1dc554
+	db "MOVE@"
+
+String1dc559: ; 1dc559
+	db $73, "№.@"
+
+String1dc55d: ; 1dc55d
+	db "ATTACK", $4e
+	db "DEFENSE", $4e
+	db "SPCL.ATK", $4e
+	db "SPCL.DEF", $4e
+	db "SPEED@"
+
+String1dc584: ; 1dc584
+	db "------------@"
+; 1dc591
+
+MobileHPIcon: ; 1dc591
+INCBIN "gfx/mobile/hp.1bpp"
+
+MobileLvIcon: ; 1dc599
+INCBIN "gfx/mobile/lv.1bpp"
+
 
 INCLUDE "tilesets/data_7.asm"
+
 
 INCBIN "baserom.gbc",$1dd6a9,$1dd6bb - $1dd6a9
 
