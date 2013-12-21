@@ -1,5 +1,17 @@
 ; Doubles as bank constants.
 
+; main.o
+
+ROOFS                     EQU $7
+TILESETS_1                EQU $6
+TILESETS_2                EQU $7
+TILESETS_3                EQU $8
+TILESETS_4                EQU $C
+TILESETS_5                EQU $2D
+TILESETS_6                EQU $37
+TILESETS_7                EQU $77
+TILESETS_8                EQU $78
+
 
 ; stats/egg_moves.o
 

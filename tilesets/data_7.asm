@@ -4,7 +4,7 @@ Tileset33GFX: ; 0x1dc5a1
 Tileset34GFX: ; 0x1dc5a1
 Tileset35GFX: ; 0x1dc5a1
 Tileset36GFX: ; 0x1dc5a1
-INCBIN "gfx/tilesets/36.lz"
+INCBIN "gfx/tilesets/26.lz"
 ; 0x1dd1a9
 
 Tileset26Meta: ; 0x1dd1a9
