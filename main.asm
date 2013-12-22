@@ -50436,116 +50436,156 @@ CheckBattleScene: ; 4ea44
 
 
 
-Function4ea82: ; 4ea82
+GBCOnlyScreen: ; 4ea82
+
 	ld a, [hCGB]
 	and a
 	ret nz
-	ld de, $0000
+
+	ld de, MUSIC_NONE
 	call PlayMusic
+
 	call ClearTileMap
-	ld hl, $6b76
+
+	ld hl, GBCOnlyGFX
 	ld de, $d000
 	ld a, [rSVBK]
 	push af
-	ld a, $0
+	ld a, 0
 	ld [rSVBK], a
 	call Decompress
 	pop af
 	ld [rSVBK], a
+
 	ld de, $d000
 	ld hl, VTiles2
-	ld bc, Text_1354
+	lb bc, BANK(GBCOnlyGFX), $54
 	call Get2bpp
-	ld de, $4200
+
+	ld de, Font
 	ld hl, VTiles1
-	ld bc, Function3e80
+	lb bc, BANK(Font), $80
 	call Get1bpp
-	call Function4eac5
+
+	call DrawGBCOnlyScreen
+
 	call WaitBGMap
-.asm_4eac0
+
+; better luck next time
+.loop
 	call DelayFrame
-	jr .asm_4eac0
+	jr .loop
 ; 4eac5
 
-Function4eac5: ; 4eac5
-	call Function4eaea
-	ld hl, $c4cb
-	ld b, $e
-	ld c, $4
+
+DrawGBCOnlyScreen: ; 4eac5
+
+	call DrawGBCOnlyBorder
+
+	; Pokemon
+	hlcoord 3, 2
+	ld b, 14
+	ld c, 4
 	ld a, $8
-	call Function4eb27
-	ld hl, $c51d
-	ld b, $a
-	ld c, $2
+	call DrawGBCOnlyGraphic
+
+	; Crystal
+	hlcoord 5, 6
+	ld b, 10
+	ld c, 2
 	ld a, $40
-	call Function4eb27
-	ld de, $6b38
-	ld hl, $c569
+	call DrawGBCOnlyGraphic
+
+	ld de, GBCOnlyString
+	hlcoord 1, 10
 	call PlaceString
+
 	ret
 ; 4eaea
 
-Function4eaea: ; 4eaea
-	ld hl, TileMap
-	ld [hl], $0
+
+DrawGBCOnlyBorder: ; 4eaea
+
+	hlcoord 0, 0
+	ld [hl], 0 ; top-left
+
 	inc hl
-	ld a, $1
-	call Function4eb15
-	ld [hl], $2
-	ld hl, $c4b4
-	ld a, $3
-	call Function4eb1c
-	ld hl, $c4c7
-	ld a, $4
-	call Function4eb1c
-	ld hl, $c5f4
-	ld [hl], $5
+	ld a, 1 ; top
+	call .FillRow
+
+	ld [hl], 2 ; top-right
+
+	hlcoord 0, 1
+	ld a, 3 ; left
+	call .FillColumn
+
+	hlcoord 19, 1
+	ld a, 4 ; right
+	call .FillColumn
+
+	hlcoord 0, 17
+	ld [hl], 5 ; bottom-left
+
 	inc hl
-	ld a, $6
-	call Function4eb15
-	ld [hl], $7
+	ld a, 6 ; bottom
+	call .FillRow
+
+	ld [hl], 7 ; bottom-right
 	ret
 ; 4eb15
 
-Function4eb15: ; 4eb15
-	ld c, $12
-.asm_4eb17
+.FillRow ; 4eb15
+	ld c, SCREEN_WIDTH - 2
+.next_column
 	ld [hli], a
 	dec c
-	jr nz, .asm_4eb17
+	jr nz, .next_column
 	ret
 ; 4eb1c
 
-Function4eb1c: ; 4eb1c
-	ld de, $0014
-	ld c, $10
-.asm_4eb21
+.FillColumn ; 4eb1c
+	ld de, SCREEN_WIDTH
+	ld c, SCREEN_HEIGHT - 2
+.next_row
 	ld [hl], a
 	add hl, de
 	dec c
-	jr nz, .asm_4eb21
+	jr nz, .next_row
 	ret
 ; 4eb27
 
-Function4eb27: ; 4eb27
-	ld de, $0014
-.asm_4eb2a
+
+DrawGBCOnlyGraphic: ; 4eb27
+	ld de, SCREEN_WIDTH
+.y
 	push bc
 	push hl
-.asm_4eb2c
+.x
 	ld [hli], a
 	inc a
 	dec b
-	jr nz, .asm_4eb2c
+	jr nz, .x
 	pop hl
 	add hl, de
 	pop bc
 	dec c
-	jr nz, .asm_4eb2a
+	jr nz, .y
 	ret
 ; 4eb38
 
-INCBIN "baserom.gbc",$4eb38,$4f0bc - $4eb38
+
+GBCOnlyString: ; 4eb38
+	db "This Game Pak is", $4e
+	db "designed only for", $4e
+	db "use on the", $4e
+	db "Game Boy Color.@"
+; 4eb76
+
+
+GBCOnlyGFX: ; 4eb76
+INCBIN "gfx/misc/gbc_only.lz"
+; 4f0bc
+
 
 Function4f0bc: ; 4f0bc
 	ld a, $0
@@ -78571,7 +78611,7 @@ Functione4579: ; e4579
 	ld c, $64
 	call DelayFrames
 	call ClearTileMap
-	callba Function4ea82
+	callba GBCOnlyScreen
 	call Functione45e8
 .asm_e45c0
 	call Functiona57
