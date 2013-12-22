@@ -7963,7 +7963,7 @@ SpecialsPointers: ; c029
 	dbw BANK(Function102142), Function102142
 	dbw BANK(Function4989a), Function4989a
 	dbw BANK(Function49bf9), Function49bf9
-	dbw BANK(Function4f0bc), Function4f0bc
+	dbw BANK(SpecialPokeSeer), SpecialPokeSeer
 	dbw BANK(Function8af6b), Function8af6b
 	dbw BANK(Function8afd4), Function8afd4
 	dbw BANK(SpecialDratini),SpecialDratini
@@ -33303,7 +33303,7 @@ Function28b87: ; 28b87
 	call GetPartyLocation
 	ld b, h
 	ld c, l
-	callba Function4f301
+	callba GetCaughtGender
 	ld a, c
 	ld [$c701], a
 	ld hl, $d26b
@@ -33342,7 +33342,7 @@ Function28b87: ; 28b87
 	call GetPartyLocation
 	ld b, h
 	ld c, l
-	callba Function4f301
+	callba GetCaughtGender
 	ld a, c
 	ld [$c733], a
 	ld a, [DefaultFlypoint]
@@ -50438,91 +50438,105 @@ CheckBattleScene: ; 4ea44
 INCLUDE "misc/gbc_only.asm"
 
 
-Function4f0bc: ; 4f0bc
-	ld a, $0
-	call Function4f26d
+SEER_INTRO      EQU 0
+SEER_CANT_TELL  EQU 1
+SEER_MET_AT     EQU 2
+SEER_TIME_LEVEL EQU 3
+SEER_TRADED     EQU 4
+SEER_CANCEL     EQU 5
+SEER_EGG        EQU 6
+SEER_LEVEL_ONLY EQU 7
+
+SpecialPokeSeer: ; 4f0bc
+	ld a, SEER_INTRO
+	call PrintSeerText
 	call Functiona36
+
 	ld b, $6
 	callba Function50000
-	jr c, .asm_4f0e1
+	jr c, .cancel
+
 	ld a, [CurPartySpecies]
-	cp $fd
-	jr z, .asm_4f0e8
+	cp EGG
+	jr z, .egg
+
 	call IsAPokemon
-	jr c, .asm_4f0e7
-	call Function4f134
-	call Function4f0ee
+	jr c, .no_mon
+
+	call ReadCaughtData
+	call SeerAction
 	ret
 
-.asm_4f0e1
-	ld a, $5
-	call Function4f26d
+.cancel
+	ld a, SEER_CANCEL
+	call PrintSeerText
 	ret
 
-.asm_4f0e7
+.no_mon
 	ret
 
-.asm_4f0e8
-	ld a, $6
-	call Function4f26d
+.egg
+	ld a, SEER_EGG
+	call PrintSeerText
 	ret
 ; 4f0ee
 
-Function4f0ee: ; 4f0ee
-	ld a, [DefaultFlypoint]
-	ld hl, $70f6
+
+SeerAction: ; 4f0ee
+	ld a, [$d002]
+	ld hl, SeerActions
 	rst JumpTable
 	ret
 ; 4f0f6
 
-Table4f0f6: ; 4f0f6
-	dw Function4f100
-	dw Function4f10e
-	dw Function4f11f
-	dw Function4f125
-	dw Function4f12b
+SeerActions: ; 4f0f6
+	dw SeerAction0
+	dw SeerAction1
+	dw SeerAction2
+	dw SeerAction3
+	dw SeerAction4
 ; 4f100
 
-Function4f100: ; 4f100
-	ld a, $2
-	call Function4f26d
-	ld a, $3
-	call Function4f26d
-	call Function4f2b4
+SeerAction0: ; 4f100
+	ld a, SEER_MET_AT
+	call PrintSeerText
+	ld a, SEER_TIME_LEVEL
+	call PrintSeerText
+	call SeerAdvice
 	ret
 ; 4f10e
 
-Function4f10e: ; 4f10e
-	call Function4f242
-	ld a, $4
-	call Function4f26d
-	ld a, $3
-	call Function4f26d
-	call Function4f2b4
+SeerAction1: ; 4f10e
+	call GetCaughtOT
+	ld a, SEER_TRADED
+	call PrintSeerText
+	ld a, SEER_TIME_LEVEL
+	call PrintSeerText
+	call SeerAdvice
 	ret
 ; 4f11f
 
-Function4f11f: ; 4f11f
-	ld a, $1
-	call Function4f26d
+SeerAction2: ; 4f11f
+	ld a, SEER_CANT_TELL
+	call PrintSeerText
 	ret
 ; 4f125
 
-Function4f125: ; 4f125
-	ld a, $1
-	call Function4f26d
+SeerAction3: ; 4f125
+	ld a, SEER_CANT_TELL
+	call PrintSeerText
 	ret
 ; 4f12b
 
-Function4f12b: ; 4f12b
-	ld a, $7
-	call Function4f26d
-	call Function4f2b4
+SeerAction4: ; 4f12b
+	ld a, SEER_LEVEL_ONLY
+	call PrintSeerText
+	call SeerAdvice
 	ret
 ; 4f134
 
-Function4f134: ; 4f134
-	ld a, $1d
+ReadCaughtData: ; 4f134
+	ld a, PartyMon1CaughtData - PartyMon1
 	call GetPartyParamLocation
 	ld a, [hli]
 	ld [$d03b], a
@@ -50530,58 +50544,64 @@ Function4f134: ; 4f134
 	ld [$d03c], a
 	or [hl]
 	jr z, .asm_4f170
-	ld a, $1
-	ld [DefaultFlypoint], a
-	ld a, $6
+
+	ld a, 1
+	ld [$d002], a
+
+	ld a, PartyMon1ID - PartyMon1
 	call GetPartyParamLocation
 	ld a, [PlayerID]
 	cp [hl]
 	jr nz, .asm_4f15f
+
 	inc hl
 	ld a, [$d47c]
 	jr nz, .asm_4f15f
-	ld a, $0
-	ld [DefaultFlypoint], a
+
+	ld a, 0
+	ld [$d002], a
 
 .asm_4f15f
-	call Function4f18c
-	call Function4f242
-	call Function4f176
-	call Function4f1c5
-	call Function4f20a
+	call GetCaughtLevel
+	call GetCaughtOT
+	call GetCaughtName
+	call GetCaughtTime
+	call GetCaughtLocation
 	and a
 	ret
 
 .asm_4f170
-	ld a, $2
-	ld [DefaultFlypoint], a
+	ld a, 2
+	ld [$d002], a
 	ret
 ; 4f176
 
-Function4f176: ; 4f176
+GetCaughtName: ; 4f176
 	ld a, [CurPartyMon]
 	ld hl, PartyMon1Nickname
-	ld bc, $000b
+	ld bc, PKMN_NAME_LENGTH
 	call AddNTimes
 	ld de, $d003
-	ld bc, $000b
+	ld bc, PKMN_NAME_LENGTH
 	call CopyBytes
 	ret
 ; 4f18c
 
-Function4f18c: ; 4f18c
-	ld a, $50
+GetCaughtLevel: ; 4f18c
+	ld a, "@"
 	ld hl, $d036
-	ld bc, $0004
+	ld bc, 4
 	call ByteFill
+
+	; caught level
 	ld a, [$d03b]
 	and $3f
-	jr z, .asm_4f1b4
-	cp $1
-	jr nz, .asm_4f1a4
-	ld a, $5
+	jr z, .unknown
+	cp 1 ; hatched from an egg
+	jr nz, .print
+	ld a, 5 ; egg hatch level
 
-.asm_4f1a4
+.print
 	ld [$d03a], a
 	ld hl, $d036
 	ld de, $d03a
@@ -50589,24 +50609,27 @@ Function4f18c: ; 4f18c
 	call PrintNum
 	ret
 
-.asm_4f1b4
+.unknown
 	ld de, $d036
-	ld hl, $71c1
-	ld bc, $0004
+	ld hl, .unknown_level
+	ld bc, 4
 	call CopyBytes
 	ret
 ; 4f1c1
 
-INCBIN "baserom.gbc",$4f1c1,$4f1c5 - $4f1c1
+.unknown_level ; 4f1c1
+	db "???@"
+; 4f1c5
 
-Function4f1c5: ; 4f1c5
+GetCaughtTime: ; 4f1c5
 	ld a, [$d03b]
 	and $c0
-	jr z, .asm_4f1df
+	jr z, .none
+
 	rlca
 	rlca
 	dec a
-	ld hl, $71e6
+	ld hl, .times
 	call GetNthString
 	ld d, h
 	ld e, l
@@ -50615,24 +50638,30 @@ Function4f1c5: ; 4f1c5
 	and a
 	ret
 
-.asm_4f1df
+.none
 	ld de, $d01f
-	call Function4f1f8
+	call UnknownCaughtData
 	ret
 ; 4f1e6
 
-INCBIN "baserom.gbc",$4f1e6,$4f1f8 - $4f1e6
+.times ; 4f1e6
+	db "Morning@"
+	db "Day@"
+	db "Night@"
+; 4f1f8
 
-Function4f1f8: ; 4f1f8
-	ld hl, $7202
+UnknownCaughtData: ; 4f1f8
+	ld hl, .unknown
 	ld bc, $000b
 	call CopyBytes
 	ret
 ; 4f202
 
-INCBIN "baserom.gbc",$4f202,$4f20a - $4f202
+.unknown ; 4f202
+	db "Unknown@"
+; 4f20a
 
-Function4f20a: ; 4f20a
+GetCaughtLocation: ; 4f20a
 	ld a, [$d03c]
 	and $7f
 	jr z, .asm_4f22e
@@ -50651,22 +50680,22 @@ Function4f20a: ; 4f20a
 
 .asm_4f22e
 	ld de, $d00e
-	jp Function4f1f8
+	jp UnknownCaughtData
 
 .asm_4f234
 	ld a, $4
-	ld [DefaultFlypoint], a
+	ld [$d002], a
 	scf
 	ret
 
 .asm_4f23b
 	ld a, $3
-	ld [DefaultFlypoint], a
+	ld [$d002], a
 	scf
 	ret
 ; 4f242
 
-Function4f242: ; 4f242
+GetCaughtOT: ; 4f242
 	ld a, [CurPartyMon]
 	ld hl, PartyMon1OT
 	ld bc, $000b
@@ -50674,25 +50703,29 @@ Function4f242: ; 4f242
 	ld de, $d02a
 	ld bc, $000b
 	call CopyBytes
-	ld hl, $726b
+	ld hl, .male
 	ld a, [$d03c]
 	bit 7, a
 	jr z, .asm_4f264
-	ld hl, $726c
+	ld hl, .female
 
 .asm_4f264
 	ld de, $d035
-	ld a, $50
+	ld a, "@"
 	ld [de], a
 	ret
 ; 4f26b
 
-INCBIN "baserom.gbc",$4f26b,$4f26d - $4f26b
+.male ; 4f26b
+	db "@"
+.female ; 4f26c
+	db "@"
+; 4f26d
 
-Function4f26d: ; 4f26d
+PrintSeerText: ; 4f26d
 	ld e, a
-	ld d, $0
-	ld hl, $727c
+	ld d, 0
+	ld hl, SeerTexts
 	add hl, de
 	add hl, de
 	ld a, [hli]
@@ -50702,26 +50735,85 @@ Function4f26d: ; 4f26d
 	ret
 ; 4f27c
 
-INCBIN "baserom.gbc",$4f27c,$4f2b4 - $4f27c
+SeerTexts: ; 4f27c
+	dw SeerIntroText
+	dw SeerCantTellText
+	dw SeerMetAtText
+	dw SeerTimeLevelText
+	dw SeerTradedText
+	dw SeerCancelText
+	dw SeerEggText
+	dw SeerLevelOnlyText
+; 4f28c
 
-Function4f2b4: ; 4f2b4
-	ld a, $1f
+SeerIntroText: ; 0x4f28c
+	; I see all. I know all… Certainly, I know of your #MON!
+	text_jump UnknownText_0x1c475f
+	db "@"
+; 0x4f291
+
+SeerCantTellText: ; 0x4f291
+	; Whaaaat? I can't tell a thing! How could I not know of this?
+	text_jump UnknownText_0x1c4797
+	db "@"
+; 0x4f296
+
+SeerMetAtText: ; 0x4f296
+	; Hm… I see you met @  here: @ !
+	text_jump UnknownText_0x1c47d4
+	db "@"
+; 0x4f29b
+
+SeerTimeLevelText: ; 0x4f29b
+	; The time was @ ! Its level was @ ! Am I good or what?
+	text_jump UnknownText_0x1c47fa
+	db "@"
+; 0x4f2a0
+
+SeerTradedText: ; 0x4f2a0
+	; Hm… @ came from @ in a trade? @ was where @ met @ !
+	text_jump UnknownText_0x1c4837
+	db "@"
+; 0x4f2a5
+
+SeerLevelOnlyText: ; 0x4f2a5
+	; What!? Incredible! I don't understand how, but it is incredible! You are special. I can't tell where you met it, but it was at level @ . Am I good or what?
+	text_jump UnknownText_0x1c487f
+	db "@"
+; 0x4f2aa
+
+SeerEggText: ; 0x4f2aa
+	; Hey! That's an EGG! You can't say that you've met it yet…
+	text_jump UnknownText_0x1c491d
+	db "@"
+; 0x4f2af
+
+SeerCancelText: ; 0x4f2af
+	; Fufufu! I saw that you'd do nothing!
+	text_jump UnknownText_0x1c4955
+	db "@"
+; 0x4f2b4
+
+
+SeerAdvice: ; 4f2b4
+	ld a, PartyMon1Level - PartyMon1
 	call GetPartyParamLocation
 	ld a, [$d03a]
 	ld c, a
 	ld a, [hl]
 	sub c
 	ld c, a
-	ld hl, $72d6
-	ld de, $0003
-.asm_4f2c6
-	cp [hl]
-	jr c, .asm_4f2ce
-	jr z, .asm_4f2ce
-	add hl, de
-	jr .asm_4f2c6
 
-.asm_4f2ce
+	ld hl, SeerAdviceTexts
+	ld de, 3
+.next
+	cp [hl]
+	jr c, .print
+	jr z, .print
+	add hl, de
+	jr .next
+
+.print
 	inc hl
 	ld a, [hli]
 	ld h, [hl]
@@ -50730,29 +50822,69 @@ Function4f2b4: ; 4f2b4
 	ret
 ; 4f2d6
 
-INCBIN "baserom.gbc",$4f2d6,$4f301 - $4f2d6
+SeerAdviceTexts: ; 4f2d6
+; level, text
+	dbw 9,   SeerAdvice1
+	dbw 29,  SeerAdvice2
+	dbw 59,  SeerAdvice3
+	dbw 89,  SeerAdvice4
+	dbw 100, SeerAdvice5
+	dbw 255, SeerAdvice1
+; 4f2e8
+
+SeerAdvice1: ; 0x4f2e8
+	; Incidentally… It would be wise to raise your #MON with a little more care.
+	text_jump UnknownText_0x1c497a
+	db "@"
+; 0x4f2ed
+
+SeerAdvice2: ; 0x4f2ed
+	; Incidentally… It seems to have grown a little. @  seems to be becoming more confident.
+	text_jump UnknownText_0x1c49c6
+	db "@"
+; 0x4f2f2
+
+SeerAdvice3: ; 0x4f2f2
+	; Incidentally… @  has grown. It's gained much strength.
+	text_jump UnknownText_0x1c4a21
+	db "@"
+; 0x4f2f7
+
+SeerAdvice4: ; 0x4f2f7
+	; Incidentally… It certainly has grown mighty! This @ must have come through numerous #MON battles. It looks brimming with confidence.
+	text_jump UnknownText_0x1c4a5b
+	db "@"
+; 0x4f2fc
+
+SeerAdvice5: ; 0x4f2fc
+	; Incidentally… I'm impressed by your dedication. It's been a long time since I've seen a #MON as mighty as this @ . I'm sure that seeing @ in battle would excite anyone.
+	text_jump UnknownText_0x1c4ae5
+	db "@"
+; 0x4f301
 
 
-Function4f301: ; 4f301
-	ld hl, $001e
+GetCaughtGender: ; 4f301
+	ld hl, PartyMon1CaughtGender - PartyMon1
 	add hl, bc
+
 	ld a, [hl]
 	and $7f
-	jr z, .asm_4f319
+	jr z, .genderless
 	cp $7f
-	jr z, .asm_4f319
+	jr z, .genderless
+
 	ld a, [hl]
 	and $80
-	jr nz, .asm_4f316
-	ld c, $1
+	jr nz, .male
+	ld c, 1
 	ret
 
-.asm_4f316
-	ld c, $2
+.male
+	ld c, 2
 	ret
 
-.asm_4f319
-	ld c, $0
+.genderless
+	ld c, 0
 	ret
 ; 4f31c
 
@@ -82528,7 +82660,7 @@ Functionfcc63: ; fcc63
 	call Functionfcdd7
 	ld b, h
 	ld c, l
-	callba Function4f301
+	callba GetCaughtGender
 	ld a, c
 	ld [$c701], a
 	ld e, $0
@@ -92647,7 +92779,7 @@ Function11b7e5: ; 11b7e5
 	ld a, [hl]
 	ld [$c730], a
 	ld bc, EnemyMovePP
-	callba Function4f301
+	callba GetCaughtGender
 	ld a, c
 	ld [$c733], a
 	call SpeechTextBox
