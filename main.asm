@@ -4747,7 +4747,7 @@ Function627b: ; 627b
 	ld a, [$cf63]
 	bit 7, a
 	jr nz, .asm_6290
-	call Function62a3
+	call TitleScreenScene
 	callba Function10eea7
 	call DelayFrame
 	and a
@@ -4770,10 +4770,10 @@ Function6292: ; 6292
 	ret
 ; 62a3
 
-Function62a3: ; 62a3
+TitleScreenScene: ; 62a3
 	ld e, a
 	ld d, 0
-	ld hl, .data_62af
+	ld hl, .scenes
 	add hl, de
 	add hl, de
 	ld a, [hli]
@@ -4782,11 +4782,11 @@ Function62a3: ; 62a3
 	jp [hl]
 ; 62af
 
-.data_62af
+.scenes
 	dw TitleScreenEntrance
-	dw Function62f6
-	dw Function6304
-	dw Function6375
+	dw TitleScreenTimer
+	dw TitleScreenMain
+	dw TitleScreenEnd
 ; 62b7
 
 Function62b7: ; 62b7
@@ -4812,14 +4812,14 @@ TitleScreenEntrance: ; 62bc
 	ld bc, 8 * 10 ; logo height
 	call ByteFill
 
-; Alternate signage for each line's position vector.
+; Reversed signage for every other line's position.
 ; This is responsible for the interlaced effect.
 	ld a, e
 	xor $ff
 	inc a
 
 	ld b, 8 * 10 / 2 ; logo height / 2
-	ld hl, $d101
+	ld hl, LYOverrides + 1
 .loop
 	ld [hli], a
 	inc hl
@@ -4846,103 +4846,138 @@ TitleScreenEntrance: ; 62bc
 ; 62f6
 
 
-Function62f6: ; 62f6
+TitleScreenTimer: ; 62f6
+
+; Next scene
 	ld hl, $cf63
 	inc [hl]
+
+; Start a timer
 	ld hl, $cf65
-	ld de, $1140
+	ld de, $1140 ; 73.6 seconds
 	ld [hl], e
 	inc hl
 	ld [hl], d
 	ret
 ; 6304
 
-Function6304: ; 6304
+TitleScreenMain: ; 6304
+
+; Run the timer down.
 	ld hl, $cf65
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
 	ld a, e
 	or d
-	jr z, .asm_6355
+	jr z, .end
+
 	dec de
 	ld [hl], d
 	dec hl
 	ld [hl], e
+
+; Save data can be deleted by pressing Up + B + Select.
 	call GetJoypadPublic
 	ld hl, hJoyDown
 	ld a, [hl]
-	and $46
-	cp $46
-	jr z, .asm_634a
+	and D_UP + B_BUTTON + SELECT
+	cp  D_UP + B_BUTTON + SELECT
+	jr z, .delete_save_data
+
+; To bring up the clock reset dialog:
+
+; Hold Down + B + Select to initiate the sequence.
 	ld a, [$ffeb]
 	cp $34
-	jr z, .asm_6332
+	jr z, .check_clock_reset
+
 	ld a, [hl]
-	and $86
-	cp $86
-	jr nz, .asm_6340
+	and D_DOWN + B_BUTTON + SELECT
+	cp  D_DOWN + B_BUTTON + SELECT
+	jr nz, .check_start
+
 	ld a, $34
 	ld [$ffeb], a
-	jr .asm_6340
+	jr .check_start
 
-.asm_6332
-	bit 2, [hl]
-	jr nz, .asm_6340
+; Keep Select pressed, and hold Left + Up.
+; Then let go of Select.
+.check_clock_reset
+	bit 2, [hl] ; SELECT
+	jr nz, .check_start
+
 	xor a
 	ld [$ffeb], a
-	ld a, [hl]
-	and $60
-	cp $60
-	jr z, .asm_636a
 
-.asm_6340
 	ld a, [hl]
-	and $9
-	jr nz, .asm_6346
+	and D_LEFT + D_UP
+	cp  D_LEFT + D_UP
+	jr z, .clock_reset
+
+; Press Start or A to start the game.
+.check_start
+	ld a, [hl]
+	and START | A_BUTTON
+	jr nz, .continue
 	ret
 
-.asm_6346
-	ld a, $0
-	jr .asm_634c
+.continue
+	ld a, 0
+	jr .done
 
-.asm_634a
-	ld a, $1
+.delete_save_data
+	ld a, 1
 
-.asm_634c
+.done
 	ld [$cf64], a
+
+; Return to the intro sequence.
 	ld hl, $cf63
 	set 7, [hl]
 	ret
 
-.asm_6355
+.end
+; Next scene
 	ld hl, $cf63
 	inc [hl]
+
+; Fade out the title screen music
 	xor a
 	ld [MusicFadeIDLo], a
 	ld [MusicFadeIDHi], a
 	ld hl, MusicFade
-	ld [hl], $8
+	ld [hl], 8 ; 1 second
+
 	ld hl, $cf65
 	inc [hl]
 	ret
 
-.asm_636a
-	ld a, $4
+.clock_reset
+	ld a, 4
 	ld [$cf64], a
+
+; Return to the intro sequence.
 	ld hl, $cf63
 	set 7, [hl]
 	ret
 ; 6375
 
-Function6375: ; 6375
+TitleScreenEnd: ; 6375
+
+; Wait until the music is done fading.
+
 	ld hl, $cf65
 	inc [hl]
+
 	ld a, [MusicFade]
 	and a
 	ret nz
-	ld a, $2
+
+	ld a, 2
 	ld [$cf64], a
+
+; Back to the intro.
 	ld hl, $cf63
 	set 7, [hl]
 	ret
