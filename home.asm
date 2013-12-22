@@ -364,7 +364,7 @@ PrintLetterDelay: ; 313d
 	ld [TextDelayFrames], a
 
 .checkjoypad
-	call GetJoypadPublic
+	call GetJoypad
 
 ; input override
 	ld a, [$c2d7]

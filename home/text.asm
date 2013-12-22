@@ -1048,7 +1048,7 @@ Text_09: ; 14d2
 Text_0A: ; 14ed
 	push hl
 	push bc
-	call GetJoypadPublic
+	call GetJoypad
 	ld a, [hJoyDown]
 	and A_BUTTON | B_BUTTON
 	jr nz, .asm_14fd
@@ -1130,7 +1130,7 @@ Text_0C: ; 1543
 	push de
 	ld a, "…"
 	ld [hli], a
-	call GetJoypadPublic
+	call GetJoypad
 	ld a, [hJoyDown]
 	and A_BUTTON | B_BUTTON
 	jr nz, .asm_155a

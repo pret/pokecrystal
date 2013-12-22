@@ -124,7 +124,7 @@ Function96724: ; 96724
 	ld bc, $3e
 	call ByteFill
 	callba Function113e5
-	call ClearJoypadPublic
+	call ClearJoypad
 	; fallthrough
 ; 9673e
 
@@ -226,7 +226,7 @@ Function967c1: ; 967c1
 	cp 1
 	ret z
 	call UpdateTime
-	call GetJoypadPublic
+	call GetJoypad
 	call TimeOfDayPals
 	ret
 ; 967d1

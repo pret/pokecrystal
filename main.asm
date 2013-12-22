@@ -4118,7 +4118,7 @@ Function5df0: ; 5df0
 Function5e34: ; 5e34
 .asm_5e34
 	call DelayFrame
-	call GetJoypadPublic
+	call GetJoypad
 	ld hl, hJoyPressed
 	bit 0, [hl]
 	jr nz, .asm_5e47
@@ -4878,7 +4878,7 @@ TitleScreenMain: ; 6304
 	ld [hl], e
 
 ; Save data can be deleted by pressing Up + B + Select.
-	call GetJoypadPublic
+	call GetJoypad
 	ld hl, hJoyDown
 	ld a, [hl]
 	and D_UP + B_BUTTON + SELECT
@@ -16237,7 +16237,7 @@ Function116c1: ; 116c1
 	ld [$ffde], a
 	pop af
 	ld [Options], a
-	call ClearJoypadPublic
+	call ClearJoypad
 	ret
 ; 116f8
 
@@ -48780,7 +48780,7 @@ Function4ddf2: ; 4ddf2 (13:5df2)
 
 ; known jump sources: 4ddac (13:5dac), 4ddd6 (13:5dd6)
 Function4de2c: ; 4de2c (13:5e2c)
-	call GetJoypadPublic
+	call GetJoypad
 	ld a, [MonType] ; $cf5f
 	cp $3
 	jr nz, .asm_4de4e
@@ -49926,7 +49926,7 @@ Function4e711: ; 4e711
 ; 4e726
 
 Function4e726: ; 4e726
-	call ClearJoypadPublic
+	call ClearJoypad
 	ld bc, $010e
 .asm_4e72c
 	push bc
@@ -73694,7 +73694,7 @@ Functionb9237: ; b9237
 
 Functionb929a: ; b929a
 .asm_b929a
-	call GetJoypadPublic
+	call GetJoypad
 	ld a, [hJoyPressed]
 	and $b
 	jr z, .asm_b929a
@@ -84017,7 +84017,7 @@ Function100a87: ; 100a87
 	ld [$cd27], a
 .asm_100a92
 	call DelayFrame
-	call GetJoypadPublic
+	call GetJoypad
 	callba Function100382
 	ld c, $1
 	ld b, $3
