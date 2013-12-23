@@ -5086,7 +5086,7 @@ Function3e192: ; 3e192
 Function3e19b: ; 3e19b
 	call Function3d2f1
 	jr z, .asm_3e1a8
-	callba Function24ef2
+	callba LoadBattleMenuDataHeader
 	and a
 	ret
 

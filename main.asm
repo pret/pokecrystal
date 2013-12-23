@@ -29799,8 +29799,8 @@ MenuData2_0x24edc: ; 24edc
 ; 24ef2
 
 
-Function24ef2: ; 4ef2
-	ld hl, MenuDataHeader_0x24f2c
+LoadBattleMenuDataHeader: ; 24ef2
+	ld hl, BattleMenuDataHeader
 	call LoadMenuDataHeader
 	ld a, [$d0d2]
 	ld [$cf88], a
@@ -29836,7 +29836,7 @@ Function24f19: ; 24f19
 ; 24f2c
 
 
-MenuDataHeader_0x24f2c: ; 24f2c
+BattleMenuDataHeader: ; 24f2c
 	db $40 ; flags
 	db 12, 08 ; start coords
 	db 17, 19 ; end coords
