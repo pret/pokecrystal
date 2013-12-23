@@ -1637,6 +1637,8 @@ CurDay: ; d4cb
 	ds 10
 
 
+ObjectStructs:
+
 PlayerStruct: ; d4d6
 	ds 2
 PlayerSprite: ; d4d8
@@ -1659,7 +1661,9 @@ PlayerAction: ; d4e1
 ; 4 spinning
 ; 6 fishing
 	ds 1
-	ds 2
+	ds 1
+PlayerFacing: ; d4e3
+	ds 1
 StandingTile: ; d4e4
 	ds 1
 StandingTile2: ; d4e5

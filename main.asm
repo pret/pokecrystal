@@ -3421,20 +3421,23 @@ Function5991: ; 5991
 Function59a4: ; 59a4
 	xor a
 	ld hl, $c2eb
-	ld bc, $000d
+	ld bc, 13
 	call ByteFill
 	ld d, 0
-	ld bc, $d4d6
+	ld bc, ObjectStructs
 	ld hl, $c2eb
 .asm_59b6
 	push hl
 	call Function1af1
 	jr z, .asm_59d9
-	ld hl, $000d
+
+	ld hl, OBJECT_FACING
 	add hl, bc
 	ld a, [hl]
-	cp $ff
+	cp -1
 	jr z, .asm_59d9
+
+; Define the sprite priority.
 	ld e, $10
 	ld hl, $0005
 	add hl, bc
@@ -3447,7 +3450,7 @@ Function59a4: ; 59a4
 	jr .asm_59e2
 
 .asm_59d9
-	ld hl, $0028
+	ld hl, ObjectStruct2 - ObjectStruct1
 	add hl, bc
 	ld b, h
 	ld c, l
@@ -3455,7 +3458,7 @@ Function59a4: ; 59a4
 	jr .asm_59ec
 
 .asm_59e2
-	ld hl, $0028
+	ld hl, ObjectStruct2 - ObjectStruct1
 	add hl, bc
 	ld b, h
 	ld c, l
@@ -3474,13 +3477,14 @@ Function59a4: ; 59a4
 
 Function59f3: ; 59f3
 	ld hl, $c2eb
-.asm_59f6
+.next
 	ld a, [hli]
 	ld d, a
 	and $f0
 	ret z
 	cp c
-	jr nz, .asm_59f6
+	jr nz, .next
+
 	push bc
 	push hl
 	ld a, d
@@ -3489,11 +3493,11 @@ Function59f3: ; 59f3
 	call Function5a0d
 	pop hl
 	pop bc
-	jr .asm_59f6
+	jr .next
 ; 5a0d
 
 Function5a0d: ; 5a0d
-	ld hl, $0002
+	ld hl, OBJECT_SPRITE
 	add hl, bc
 	ld a, [hl]
 	and $7f
@@ -3518,7 +3522,7 @@ Function5a0d: ; 5a0d
 	or $10
 .asm_5a2e
 
-	ld hl, $0006
+	ld hl, OBJECT_PALETTE
 	add hl, bc
 	ld d, a
 	ld a, [hl]
@@ -3533,34 +3537,37 @@ Function5a0d: ; 5a0d
 .asm_5a3f
 	ld [$ffc2], a
 
-	ld hl, $0017
+	ld hl, OBJECT_SPRITE_X
 	add hl, bc
 	ld a, [hl]
 
-	ld hl, $0019
+	ld hl, OBJECT_SPRITE_X_OFFSET
 	add hl, bc
 	add [hl]
+
 	add 8
+
 	ld e, a
 	ld a, [$d14c]
 	add e
 	ld [$ffbf], a
 
-	ld hl, $0018
+	ld hl, OBJECT_SPRITE_Y
 	add hl, bc
 	ld a, [hl]
 
-	ld hl, $001a
+	ld hl, OBJECT_SPRITE_Y_OFFSET
 	add hl, bc
 	add [hl]
 
-	add $c
+	add 12
+
 	ld e, a
 	ld a, [$d14d]
 	add e
 	ld [$ffc0], a
 
-	ld hl, $000d
+	ld hl, OBJECT_FACING
 	add hl, bc
 	ld a, [hl]
 	cp -1
