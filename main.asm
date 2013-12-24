@@ -14065,7 +14065,7 @@ Functionf780: ; f780
 ; f789
 
 Functionf789: ; f789
-	ld hl, $783d
+	ld hl, UnknownText_0xf83d
 	call PrintText
 	call Functionf780
 	call Functiona80
@@ -14092,15 +14092,15 @@ Functionf7a0: ; f7a0
 	ld [$cfca], a
 	ld a, $37
 	call Predef
-	ld hl, $7824
+	ld hl, UnknownText_0xf824
 	call PrintText
-	ld hl, $7829
+	ld hl, UnknownText_0xf829
 	call PrintText
 	jr Functionf795
 ; f7ca
 
 Functionf7ca: ; f7ca
-	ld hl, $781f
+	ld hl, UnknownText_0xf81f
 	call PrintText
 	ld a, $2
 	ld [$d0ec], a
@@ -14108,12 +14108,12 @@ Functionf7ca: ; f7ca
 ; f7d6
 
 Functionf7d6: ; f7d6
-	ld hl, $780b
+	ld hl, UnknownText_0xf80b
 	jp PrintText
 ; f7dc
 
 Functionf7dc: ; f7dc
-	ld hl, $7838
+	ld hl, UnknownText_0xf838
 	call PrintText
 	ld a, $2
 	ld [$d0ec], a
@@ -14121,31 +14121,111 @@ Functionf7dc: ; f7dc
 ; f7e8
 
 Functionf7e8: ; f7e8
-	ld hl, $7810
-	jr asm_f804
+	ld hl, UnknownText_0xf810
+	jr Functionf804
 
-	ld hl, $7815
-	jr asm_f804
+Functionf7ed: ; f7ed
+	ld hl, UnknownText_0xf815
+	jr Functionf804
 
 Functionf7f2: ; f7f2
-	ld hl, $781f
-	jr asm_f804
+	ld hl, UnknownText_0xf81f
+	jr Functionf804
 
-	ld hl, $781a
-	jr asm_f804
+Functionf7f7: ; f7f7
+	ld hl, UnknownText_0xf81a
+	jr Functionf804
 
-	ld hl, $782e
-	jr asm_f804
+Functionf7fc: ; f7fc
+	ld hl, UnknownText_0xf82e
+	jr Functionf804
 
-	ld hl, $7833
+Functionf801: ; f801
+	ld hl, UnknownText_0xf833
 
-asm_f804
+Functionf804: ; f804
 	xor a
 	ld [$d0ec], a
 	jp PrintText
 ; f80b
 
-INCBIN "baserom.gbc",$f80b,$f84c - $f80b
+UnknownText_0xf80b: ; 0xf80b
+	; It looks bitter…
+	text_jump UnknownText_0x1c5d3e
+	db "@"
+; 0xf810
+
+UnknownText_0xf810: ; 0xf810
+	; That can't be used on an EGG.
+	text_jump UnknownText_0x1c5d50
+	db "@"
+; 0xf815
+
+UnknownText_0xf815: ; 0xf815
+	; OAK:  ! This isn't the time to use that!
+	text_jump UnknownText_0x1c5d6e
+	db "@"
+; 0xf81a
+
+UnknownText_0xf81a: ; 0xf81a
+	; That belongs to someone else!
+	text_jump UnknownText_0x1c5d97
+	db "@"
+; 0xf81f
+
+UnknownText_0xf81f: ; 0xf81f
+	; It won't have any effect.
+	text_jump UnknownText_0x1c5db6
+	db "@"
+; 0xf824
+
+UnknownText_0xf824: ; 0xf824
+	; The trainer blocked the BALL!
+	text_jump UnknownText_0x1c5dd0
+	db "@"
+; 0xf829
+
+UnknownText_0xf829: ; 0xf829
+	; Don't be a thief!
+	text_jump UnknownText_0x1c5def
+	db "@"
+; 0xf82e
+
+UnknownText_0xf82e: ; 0xf82e
+	; Cycling isn't allowed here.
+	text_jump UnknownText_0x1c5e01
+	db "@"
+; 0xf833
+
+UnknownText_0xf833: ; 0xf833
+	; Can't get on your @  now.
+	text_jump UnknownText_0x1c5e1d
+	db "@"
+; 0xf838
+
+UnknownText_0xf838: ; 0xf838
+	; The #MON BOX is full. That can't be used now.
+	text_jump UnknownText_0x1c5e3a
+	db "@"
+; 0xf83d
+
+UnknownText_0xf83d: ; 0xf83d
+	; used the@ .
+	text_jump UnknownText_0x1c5e68
+	db "@"
+; 0xf842
+
+UnknownText_0xf842: ; 0xf842
+	; got on the@ .
+	text_jump UnknownText_0x1c5e7b
+	db "@"
+; 0xf847
+
+UnknownText_0xf847: ; 0xf847
+	; got off@ the @ .
+	text_jump UnknownText_0x1c5e90
+	db "@"
+; 0xf84c
 
 
 Functionf84c: ; f84c

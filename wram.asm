@@ -1931,6 +1931,7 @@ PartyMon1ID: ; dce5
 PartyMon1Exp: ; dce7
 	ds 3
 
+PartyMon1StatExp:
 PartyMon1HPExp: ; dcea
 	ds 2
 PartyMon1AtkExp: ; dcec

@@ -471,7 +471,8 @@ INCBIN "baserom.gbc", $95f0, $9610 - $95f0
 Function9610: ; 9610
 	ld de, $d000
 	ld c, $4
-.asm_9615
+
+Function9615: ; 9615
 	push bc
 	ld a, [hli]
 	push hl
@@ -481,7 +482,7 @@ Function9610: ; 9610
 	inc hl
 	pop bc
 	dec c
-	jr nz, .asm_9615
+	jr nz, Function9615
 	ret
 ; 9625
 
