@@ -474,7 +474,7 @@ ParkBall: ; e8a2
 
 	call CloseSRAM
 
-	ld hl, $6deb
+	ld hl, UnknownText_0xedeb
 	call PrintText
 
 	call Function4b6
@@ -486,7 +486,7 @@ ParkBall: ; e8a2
 	jr .asm_ebe2
 
 .asm_ebd9
-	ld hl, $6dc9
+	ld hl, UnknownText_0xedc9
 
 .asm_ebdc
 	call PrintText
@@ -701,41 +701,39 @@ Function_0xecdd: ; ecdd
 	ld a, [TempEnemyMonSpecies]
 	dec a
 	ld c, a
-	ld b, $0
-	ld hl, $65b1
+	ld b, 0
+	ld hl, EvosAttacksPointers
 	add hl, bc
 	add hl, bc
-	ld a, $10
+	ld a, BANK(EvosAttacksPointers)
 	call GetFarHalfword
-
 	pop bc
-	push bc
-	ld a, $10
-	call GetFarByte
 
-	cp $2
+	push bc
+	ld a, BANK(EvosAttacks)
+	call GetFarByte
+	cp EVOLVE_ITEM
 	pop bc
 	ret nz
-	inc hl
-	inc hl
-	inc hl
-	push bc
-	ld a, $10
-	call GetFarByte
 
-	cp $a
+	inc hl
+	inc hl
+	inc hl
+
+	push bc
+	ld a, BANK(EvosAttacks)
+	call GetFarByte
+	cp MOON_STONE + 2 ; BURN_HEAL
 	pop bc
 	ret nz
-	sla b
-	jr c, .asm_ed0f
 
 	sla b
-	jr nc, .asm_ed11
-
-.asm_ed0f
+	jr c, .max
+	sla b
+	jr nc, .done
+.max
 	ld b, $ff
-
-.asm_ed11
+.done
 	ret
 ; ed12
 
@@ -1200,16 +1198,16 @@ RareCandy: ; ef14
 	call Predef
 
 	ld hl, $c4a9
-	ld b, $a
-	ld c, $9
-	call $0fe8
+	ld b, 10
+	ld c, 9
+	call TextBox
 
 	ld hl, $c4bf
 	ld bc, $0004
 	ld a, $28
 	call Predef
 
-	call $0a80
+	call Functiona80
 
 	xor a
 	ld [MonType], a
@@ -2019,7 +2017,7 @@ Functionf419: ; f419 (3:7419)
 	ret
 .asm_f440
 	push bc
-	ld hl, $744a
+	ld hl, UnknownText_0xf44a
 	call Function1d67
 	pop bc
 	jr Functionf419

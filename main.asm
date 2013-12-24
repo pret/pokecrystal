@@ -40721,28 +40721,35 @@ Function421e6: ; 421e6
 	push bc
 	push de
 	ld hl, PartyCount
+
 	push hl
-asm_421f5
+
+Function421f5: ; 421f5
 	ld hl, CurPartyMon
 	inc [hl]
+
 	pop hl
+
 	inc hl
 	ld a, [hl]
 	cp $ff
 	jp z, Function423ff
+
 	ld [MagikarpLength], a
+
 	push hl
 	ld a, [CurPartyMon]
 	ld c, a
 	ld hl, EvolvableFlags
-	ld b, $2
+	ld b, 2
 	call Function42577
 	ld a, c
 	and a
-	jp z, asm_421f5
+	jp z, Function421f5
+
 	ld a, [MagikarpLength]
 	dec a
-	ld b, $0
+	ld b, 0
 	ld c, a
 	ld hl, EvosAttacksPointers
 	add hl, bc
@@ -40750,100 +40757,127 @@ asm_421f5
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
+
 	push hl
 	xor a
 	ld [MonType], a
 	ld a, $1f
 	call Predef
 	pop hl
+
 .asm_42230
 	ld a, [hli]
 	and a
-	jr z, asm_421f5
+	jr z, Function421f5
+
 	ld b, a
-	cp $3
-	jr z, .asm_422ae
+
+	cp EVOLVE_TRADE
+	jr z, .trade
+
 	ld a, [InLinkBattle]
 	and a
 	jp nz, .asm_423f9
+
 	ld a, b
-	cp $2
-	jp z, .asm_422d5
+	cp EVOLVE_ITEM
+	jp z, .item
+
 	ld a, [$d1e9]
 	and a
 	jp nz, .asm_423f9
+
 	ld a, b
-	cp $1
-	jp z, .asm_422ee
-	cp $4
-	jr z, .asm_42283
+	cp EVOLVE_LEVEL
+	jp z, .level
+
+	cp EVOLVE_HAPPINESS
+	jr z, .happiness
+
+
+; EVOLVE_STAT
 	ld a, [TempMonLevel]
 	cp [hl]
 	jp c, .asm_423f8
+
 	call Function42461
 	jp z, .asm_423f8
+
 	push hl
 	ld de, TempMonAtk
 	ld hl, TempMonDef
-	ld c, $2
+	ld c, 2
 	call StringCmp
-	ld a, $3
+	ld a, ATK_EQ_DEF
 	jr z, .asm_4227a
-	ld a, $2
+	ld a, ATK_LT_DEF
 	jr c, .asm_4227a
-	ld a, $1
-
+	ld a, ATK_GT_DEF
 .asm_4227a
 	pop hl
+
 	inc hl
 	cp [hl]
 	jp nz, .asm_423f9
+
 	inc hl
 	jr .asm_422fd
 
-.asm_42283
+
+.happiness
 	ld a, [TempMonHappiness]
-	cp $dc
+	cp 220
 	jp c, .asm_423f9
+
 	call Function42461
 	jp z, .asm_423f9
+
 	ld a, [hli]
-	cp $1
+	cp TR_ANYTIME
 	jr z, .asm_422fd
-	cp $2
+	cp TR_MORNDAY
 	jr z, .asm_422a4
+
+; TR_NITE
 	ld a, [TimeOfDay]
-	cp $2
+	cp NITE
 	jp nz, .asm_423fa
 	jr .asm_422fd
 
 .asm_422a4
 	ld a, [TimeOfDay]
-	cp $2
+	cp NITE
 	jp z, .asm_423fa
 	jr .asm_422fd
 
-.asm_422ae
+
+.trade
 	ld a, [InLinkBattle]
 	and a
 	jp z, .asm_423f9
+
 	call Function42461
 	jp z, .asm_423f9
+
 	ld a, [hli]
 	ld b, a
 	inc a
 	jr z, .asm_422fd
+
 	ld a, [InLinkBattle]
 	cp $1
 	jp z, .asm_423fa
+
 	ld a, [TempMonItem]
 	cp b
 	jp nz, .asm_423fa
+
 	xor a
 	ld [TempMonItem], a
 	jr .asm_422fd
 
-.asm_422d5
+
+.item
 	ld a, [hli]
 	ld b, a
 	ld a, [CurItem]
@@ -40858,7 +40892,8 @@ asm_421f5
 	jp nz, .asm_423fa
 	jr .asm_422fd
 
-.asm_422ee
+
+.level
 	ld a, [hli]
 	ld b, a
 	ld a, [TempMonLevel]
@@ -40872,61 +40907,77 @@ asm_421f5
 	ld [CurPartyLevel], a
 	ld a, $1
 	ld [$d268], a
+
 	push hl
+
 	ld a, [hl]
 	ld [Buffer2], a
 	ld a, [CurPartyMon]
 	ld hl, PartyMon1Nickname
 	call GetNick
 	call CopyName1
-	ld hl, $6482
+	ld hl, UnknownText_0x42482
 	call PrintText
-	ld c, $32
+
+	ld c, 50
 	call DelayFrames
+
 	xor a
 	ld [hBGMapMode], a
 	ld hl, TileMap
-	ld bc, $0c14
+	lb bc, 12, 20
 	call ClearBox
+
 	ld a, $1
 	ld [hBGMapMode], a
 	call ClearSprites
+
 	callba EvolutionAnimation
+
 	push af
 	call ClearSprites
 	pop af
 	jp c, Function42454
-	ld hl, $6473
+
+	ld hl, UnknownText_0x42473
 	call PrintText
+
 	pop hl
+
 	ld a, [hl]
 	ld [CurSpecies], a
 	ld [TempMonSpecies], a
 	ld [Buffer2], a
 	ld [$d265], a
 	call GetPokemonName
+
 	push hl
-	ld hl, $6478
+	ld hl, UnknownText_0x42478
 	call PrintTextBoxText
 	callba Function106094
+
 	ld de, MUSIC_NONE
 	call PlayMusic
 	ld de, SFX_CAUGHT_MON
 	call PlaySFX
 	call WaitSFX
-	ld c, $28
+
+	ld c, 40
 	call DelayFrames
+
 	call ClearTileMap
 	call Function42414
 	call GetBaseData
+
 	ld hl, $d118
 	ld de, TempMonMaxHP
 	ld b, $1
-	ld a, $c
+	ld a, PREDEF_FILLSTATS
 	call Predef
+
 	ld a, [CurPartyMon]
-	ld hl, PartyMon1Species
-	ld bc, $0030
+	ld hl, PartyMons
+	ld bc, PartyMon2 - PartyMon1
 	call AddNTimes
 	ld e, l
 	ld d, h
@@ -40949,9 +41000,11 @@ asm_421f5
 	ld a, [hl]
 	adc b
 	ld [hl], a
+
 	ld hl, TempMonSpecies
 	ld bc, $0030
 	call CopyBytes
+
 	ld a, [CurSpecies]
 	ld [$d265], a
 	xor a
@@ -40960,11 +41013,13 @@ asm_421f5
 	ld a, [$d265]
 	dec a
 	call SetSeenAndCaughtMon
+
 	ld a, [$d265]
-	cp $c9
+	cp UNOWN
 	jr nz, .asm_423ec
+
 	ld hl, TempMonDVs
-	ld a, $2d
+	ld a, PREDEF_GET_UNOWN_LETTER
 	call Predef
 	callab Functionfba18
 
@@ -40976,7 +41031,7 @@ asm_421f5
 	push hl
 	ld l, e
 	ld h, d
-	jp asm_421f5
+	jp Function421f5
 ; 423f8
 
 .asm_423f8
@@ -40988,7 +41043,7 @@ asm_421f5
 	jp .asm_42230
 ; 423fe
 
-INCBIN "baserom.gbc",$423fe,$423ff - $423fe
+INCBIN "baserom.gbc", $423fe, $423ff - $423fe
 
 
 Function423ff: ; 423ff
@@ -41023,7 +41078,7 @@ Function42414: ; 42414
 	cp [hl]
 	inc hl
 	ret nz
-	cp $50
+	cp "@"
 	jr nz, .asm_4242b
 	ld a, [CurPartyMon]
 	ld bc, $000b
@@ -41040,26 +41095,48 @@ Function42414: ; 42414
 ; 42454
 
 Function42454: ; 42454
-	ld hl, $647d
+	ld hl, UnknownText_0x4247d
 	call PrintText
 	call ClearTileMap
 	pop hl
-	jp asm_421f5
+	jp Function421f5
 ; 42461
 
 Function42461: ; 42461
 	push hl
 	ld a, [CurPartyMon]
 	ld hl, PartyMon1Item
-	ld bc, $0030
+	ld bc, PartyMon2 - PartyMon1
 	call AddNTimes
 	ld a, [hl]
-	cp $70
+	cp EVERSTONE
 	pop hl
 	ret
 ; 42473
 
-INCBIN "baserom.gbc",$42473,$42487 - $42473
+UnknownText_0x42473: ; 0x42473
+	; Congratulations! Your @ @
+	text_jump UnknownText_0x1c4b92
+	db "@"
+; 0x42478
+
+UnknownText_0x42478: ; 0x42478
+	; evolved into @ !
+	text_jump UnknownText_0x1c4baf
+	db "@"
+; 0x4247d
+
+UnknownText_0x4247d: ; 0x4247d
+	; Huh? @ stopped evolving!
+	text_jump UnknownText_0x1c4bc5
+	db "@"
+; 0x42482
+
+UnknownText_0x42482: ; 0x42482
+	; What? @ is evolving!
+	text_jump UnknownText_0x1c4be3
+	db "@"
+; 0x42487
 
 
 Function42487: ; 42487
