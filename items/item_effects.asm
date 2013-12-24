@@ -803,31 +803,31 @@ Function_0xed12: ; ed12
 Function_0xed68: ; ed68
 	ld a, [TempEnemyMonSpecies]
 	ld c, a
-	ld hl, $459a
-	ld d, $3
+	ld hl, FleeMons
+	ld d, 3
 
-.asm_ed71
-	ld a, $f
+.loop
+	ld a, BANK(FleeMons)
 	call GetFarByte
 
 	inc hl
-	cp $ff
-	jr z, .asm_ed88
+	cp -1
+	jr z, .next
 	cp c
-	jr nz, .asm_ed88
+	jr nz, .next
 	sla b
-	jr c, .asm_ed85
+	jr c, .max
 
 	sla b
 	ret nc
 
-.asm_ed85
+.max
 	ld b, $ff
 	ret
 
-.asm_ed88
+.next
 	dec d
-	jr nz, .asm_ed71
+	jr nz, .loop
 	ret
 ; ed8c
 

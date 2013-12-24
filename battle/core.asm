@@ -775,7 +775,7 @@ Function3c543: ; 3c543
 
 	ld a, [TempEnemyMonSpecies]
 	ld de, 1
-	ld hl, .Always
+	ld hl, AlwaysFleeMons
 	call IsInArray
 	jr c, .Flee
 
@@ -787,7 +787,7 @@ Function3c543: ; 3c543
 	push bc
 	ld a, [TempEnemyMonSpecies]
 	ld de, 1
-	ld hl, .Often
+	ld hl, OftenFleeMons
 	call IsInArray
 	pop bc
 	jr c, .Flee
@@ -798,7 +798,7 @@ Function3c543: ; 3c543
 
 	ld a, [TempEnemyMonSpecies]
 	ld de, 1
-	ld hl, .Sometimes
+	ld hl, SometimesFleeMons
 	call IsInArray
 	jr c, .Flee
 
@@ -811,7 +811,9 @@ Function3c543: ; 3c543
 	ret
 ; 3c59a
 
-.Sometimes
+FleeMons:
+
+SometimesFleeMons: ; 3c59a
 	db MAGNEMITE
 	db GRIMER
 	db TANGELA
@@ -825,9 +827,9 @@ Function3c543: ; 3c543
 	db UNOWN
 	db SNUBBULL
 	db HERACROSS
-	db $ff
+	db -1
 
-.Often
+OftenFleeMons: ; 3c5a8
 	db CUBONE
 	db ARTICUNO
 	db ZAPDOS
@@ -836,13 +838,13 @@ Function3c543: ; 3c543
 	db DELIBIRD
 	db PHANPY
 	db TEDDIURSA
-	db $ff
+	db -1
 
-.Always
+AlwaysFleeMons: ; 3c5b1
 	db RAIKOU
 	db ENTEI
 ;	db SUICUNE
-	db $ff
+	db -1
 ; 3c5b4
 
 
