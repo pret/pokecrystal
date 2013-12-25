@@ -14368,7 +14368,7 @@ Functionf8ec: ; f8ec
 	ld hl, BattleMonMoves
 
 .asm_f915
-	call Function7969
+	call Functionf969
 	jr .asm_f91d
 
 .asm_f91a
@@ -14420,7 +14420,7 @@ Functionf963: ; f963
 	ld a, [CurPartyMon]
 	call AddNTimes
 
-Function7969: ; 7969
+Functionf969: ; f969
 	ld a, [$cfa9]
 	ld c, a
 	ld b, $0
