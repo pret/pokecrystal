@@ -26,7 +26,7 @@ from extras.pokemontools.audio import (
 )
 
 from extras.pokemontools.battle_animations import (
-    Wait,
+    BattleAnimWait,
     battle_animation_classes,
 )
 
@@ -45,7 +45,6 @@ def load_pokecrystal_macros():
         ChannelCommand,
         OctaveCommand,
         Note,
-        Wait,
     ]
 
     ourmacros += command_classes
@@ -54,7 +53,7 @@ def load_pokecrystal_macros():
     ourmacros += movement_command_classes
     ourmacros += music_classes
     ourmacros += effect_classes
-    ourmacros += battle_animation_classes
+    ourmacros += battle_animation_classes + [BattleAnimWait]
 
     return ourmacros
 
