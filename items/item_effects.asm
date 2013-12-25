@@ -720,6 +720,9 @@ Function_0xecdd: ; ecdd
 	inc hl
 	inc hl
 
+; It appears that Moon Stone's constant from Pokémon Red is used.
+; No Pokémon evolve with Burn Heal, so
+; Moon Balls always have a catch rate of 1x.
 	push bc
 	ld a, BANK(EvosAttacks)
 	call GetFarByte
