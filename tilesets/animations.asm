@@ -466,16 +466,11 @@ AnimateFountain: ; fc387
 	dw .frame5
 	dw .frame1
 
-.frame1
-	INCBIN "gfx/tilesets/fountain/1.2bpp"
-.frame2
-	INCBIN "gfx/tilesets/fountain/2.2bpp"
-.frame3
-	INCBIN "gfx/tilesets/fountain/3.2bpp"
-.frame4
-	INCBIN "gfx/tilesets/fountain/4.2bpp"
-.frame5
-	INCBIN "gfx/tilesets/fountain/5.2bpp"
+.frame1 INCBIN "gfx/tilesets/fountain/1.2bpp"
+.frame2 INCBIN "gfx/tilesets/fountain/2.2bpp"
+.frame3 INCBIN "gfx/tilesets/fountain/3.2bpp"
+.frame4 INCBIN "gfx/tilesets/fountain/4.2bpp"
+.frame5 INCBIN "gfx/tilesets/fountain/5.2bpp"
 ; fc402
 
 
@@ -1046,68 +1041,39 @@ Functionfc71e: ; fc71e
 ; fc750
 
 
-SproutPillarTilePointers: ; fc750
-SproutPillarTilePointer1:
-	dw $92d0, SproutPillarTile1
-SproutPillarTilePointer2:
-	dw $92f0, SproutPillarTile2
-SproutPillarTilePointer3:
-	dw $93d0, SproutPillarTile3
-SproutPillarTilePointer4:
-	dw $93f0, SproutPillarTile4
-SproutPillarTilePointer5:
-	dw $93c0, SproutPillarTile5
-SproutPillarTilePointer6:
-	dw $92c0, SproutPillarTile6
-SproutPillarTilePointer7:
-	dw $94d0, SproutPillarTile7
-SproutPillarTilePointer8:
-	dw $94f0, SproutPillarTile8
-SproutPillarTilePointer9:
-	dw $95d0, SproutPillarTile9
-SproutPillarTilePointer10:
-	dw $95f0, SproutPillarTile10
+SproutPillarTilePointer1:  dw $92d0, SproutPillarTile1
+SproutPillarTilePointer2:  dw $92f0, SproutPillarTile2
+SproutPillarTilePointer3:  dw $93d0, SproutPillarTile3
+SproutPillarTilePointer4:  dw $93f0, SproutPillarTile4
+SproutPillarTilePointer5:  dw $93c0, SproutPillarTile5
+SproutPillarTilePointer6:  dw $92c0, SproutPillarTile6
+SproutPillarTilePointer7:  dw $94d0, SproutPillarTile7
+SproutPillarTilePointer8:  dw $94f0, SproutPillarTile8
+SproutPillarTilePointer9:  dw $95d0, SproutPillarTile9
+SproutPillarTilePointer10: dw $95f0, SproutPillarTile10
 
-SproutPillarTile1:
-	INCBIN "gfx/tilesets/sprout-pillar/1.2bpp"
-SproutPillarTile2:
-	INCBIN "gfx/tilesets/sprout-pillar/2.2bpp"
-SproutPillarTile3:
-	INCBIN "gfx/tilesets/sprout-pillar/3.2bpp"
-SproutPillarTile4:
-	INCBIN "gfx/tilesets/sprout-pillar/4.2bpp"
-SproutPillarTile5:
-	INCBIN "gfx/tilesets/sprout-pillar/5.2bpp"
-SproutPillarTile6:
-	INCBIN "gfx/tilesets/sprout-pillar/6.2bpp"
-SproutPillarTile7:
-	INCBIN "gfx/tilesets/sprout-pillar/7.2bpp"
-SproutPillarTile8:
-	INCBIN "gfx/tilesets/sprout-pillar/8.2bpp"
-SproutPillarTile9:
-	INCBIN "gfx/tilesets/sprout-pillar/9.2bpp"
-SproutPillarTile10:
-	INCBIN "gfx/tilesets/sprout-pillar/10.2bpp"
+SproutPillarTile1:  INCBIN "gfx/tilesets/sprout-pillar/1.2bpp"
+SproutPillarTile2:  INCBIN "gfx/tilesets/sprout-pillar/2.2bpp"
+SproutPillarTile3:  INCBIN "gfx/tilesets/sprout-pillar/3.2bpp"
+SproutPillarTile4:  INCBIN "gfx/tilesets/sprout-pillar/4.2bpp"
+SproutPillarTile5:  INCBIN "gfx/tilesets/sprout-pillar/5.2bpp"
+SproutPillarTile6:  INCBIN "gfx/tilesets/sprout-pillar/6.2bpp"
+SproutPillarTile7:  INCBIN "gfx/tilesets/sprout-pillar/7.2bpp"
+SproutPillarTile8:  INCBIN "gfx/tilesets/sprout-pillar/8.2bpp"
+SproutPillarTile9:  INCBIN "gfx/tilesets/sprout-pillar/9.2bpp"
+SproutPillarTile10: INCBIN "gfx/tilesets/sprout-pillar/10.2bpp"
 ; fca98
 
 
-WhirlpoolFrames1: ; fca98
-	dw $9320, WhirlpoolTiles1
-WhirlpoolFrames2: ; fca9c
-	dw $9330, WhirlpoolTiles2
-WhirlpoolFrames3: ; fcaa0
-	dw $9420, WhirlpoolTiles3
-WhirlpoolFrames4: ; fcaa4
-	dw $9430, WhirlpoolTiles4
+WhirlpoolFrames1: dw $9320, WhirlpoolTiles1
+WhirlpoolFrames2: dw $9330, WhirlpoolTiles2
+WhirlpoolFrames3: dw $9420, WhirlpoolTiles3
+WhirlpoolFrames4: dw $9430, WhirlpoolTiles4
 ; fcaa8
 
-WhirlpoolTiles1: ; fcaa8
-	INCBIN "gfx/tilesets/whirlpool/1.2bpp"
-WhirlpoolTiles2: ; fcae8
-	INCBIN "gfx/tilesets/whirlpool/2.2bpp"
-WhirlpoolTiles3: ; fcb28
-	INCBIN "gfx/tilesets/whirlpool/3.2bpp"
-WhirlpoolTiles4: ; fcb68
-	INCBIN "gfx/tilesets/whirlpool/4.2bpp"
+WhirlpoolTiles1: INCBIN "gfx/tilesets/whirlpool/1.2bpp"
+WhirlpoolTiles2: INCBIN "gfx/tilesets/whirlpool/2.2bpp"
+WhirlpoolTiles3: INCBIN "gfx/tilesets/whirlpool/3.2bpp"
+WhirlpoolTiles4: INCBIN "gfx/tilesets/whirlpool/4.2bpp"
 ; fcba8
 
