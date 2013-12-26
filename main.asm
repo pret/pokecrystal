@@ -80658,46 +80658,78 @@ SECTION "bank3F", ROMX, BANK[$3F]
 
 INCLUDE "tilesets/animations.asm"
 
+
+; Trade struct
+TRADE_DIALOG  EQU 0
+TRADE_GIVEMON EQU 1
+TRADE_GETMON  EQU 2
+TRADE_NICK    EQU 3
+TRADE_DVS     EQU 14
+TRADE_ITEM    EQU 16
+TRADE_OT_ID   EQU 17
+TRADE_OT_NAME EQU 19
+TRADE_GENDER  EQU 30
+TRADE_PADDING EQU 31
+
+; Trade dialogs
+TRADE_INTRO    EQU 0
+TRADE_CANCEL   EQU 1
+TRADE_WRONG    EQU 2
+TRADE_COMPLETE EQU 3
+TRADE_AFTER    EQU 4
+
 Functionfcba8: ; fcba8
 	ld a, e
 	ld [$cf63], a
 	call Functionfcc59
-	ld b, $2
-	call Functionfcc4a
-	ld a, $4
-	jr nz, .asm_fcc03
-	ld a, $0
-	call Functionfcf38
+	ld b, CHECK_FLAG
+	call TradeFlagAction
+	ld a, TRADE_AFTER
+	jr nz, .done
+
+	ld a, TRADE_INTRO
+	call PrintTradeText
+
 	call YesNoBox
-	ld a, $1
-	jr c, .asm_fcc03
+	ld a, TRADE_CANCEL
+	jr c, .done
+
+; Select givemon from party
 	ld b, $6
 	callba Function5001d
-	ld a, $1
-	jr c, .asm_fcc03
-	ld e, $1
-	call LoadTradesPointer
+	ld a, TRADE_CANCEL
+	jr c, .done
+
+	ld e, TRADE_GIVEMON
+	call GetTradeAttribute
 	ld a, [CurPartySpecies]
 	cp [hl]
-	ld a, $2
-	jr nz, .asm_fcc03
-	call Functionfcc23
-	ld a, $2
-	jr c, .asm_fcc03
-	ld b, $1
-	call Functionfcc4a
-	ld hl, $4f7b
+	ld a, TRADE_WRONG
+	jr nz, .done
+
+	call CheckTradeGender
+	ld a, TRADE_WRONG
+	jr c, .done
+
+	ld b, SET_FLAG
+	call TradeFlagAction
+
+	ld hl, UnknownText_0xfcf7b
 	call PrintText
+
 	call Functionfcc63
 	call Functionfcc07
 	call Functionfce1b
-	ld hl, $4f80
-	call PrintText
-	call Function3d47
-	ld a, $3
 
-.asm_fcc03
-	call Functionfcf38
+	ld hl, UnknownText_0xfcf80
+	call PrintText
+
+	call Function3d47
+
+	ld a, TRADE_COMPLETE
+
+.done
+	call PrintTradeText
 	ret
 ; fcc07
 
@@ -80717,16 +80749,18 @@ Functionfcc07: ; fcc07
 	ret
 ; fcc23
 
-Functionfcc23: ; fcc23
+CheckTradeGender: ; fcc23
 	xor a
 	ld [MonType], a
-	ld e, $1e
-	call LoadTradesPointer
+
+	ld e, TRADE_GENDER
+	call GetTradeAttribute
 	ld a, [hl]
 	and a
 	jr z, .asm_fcc46
-	cp $1
+	cp 1
 	jr z, .asm_fcc3e
+
 	callba GetGender
 	jr nz, .asm_fcc48
 	jr .asm_fcc46
@@ -80744,11 +80778,11 @@ Functionfcc23: ; fcc23
 	ret
 ; fcc4a
 
-Functionfcc4a: ; fcc4a
+TradeFlagAction: ; fcc4a
 	ld hl, $d960
 	ld a, [$cf63]
 	ld c, a
-	ld a, $3
+	ld a, PREDEF_FLAG
 	call Predef
 	ld a, c
 	and a
@@ -80756,48 +80790,56 @@ Functionfcc4a: ; fcc4a
 ; fcc59
 
 Functionfcc59: ; fcc59
-	ld e, $0
-	call LoadTradesPointer
+	ld e, TRADE_DIALOG
+	call GetTradeAttribute
 	ld a, [hl]
 	ld [$cf64], a
 	ret
 ; fcc63
 
 Functionfcc63: ; fcc63
-	ld e, $1
-	call LoadTradesPointer
+	ld e, TRADE_GIVEMON
+	call GetTradeAttribute
 	ld a, [hl]
 	ld [PlayerSDefLevel], a
-	ld e, $2
-	call LoadTradesPointer
+
+	ld e, TRADE_GETMON
+	call GetTradeAttribute
 	ld a, [hl]
 	ld [PlayerLightScreenCount], a
+
 	ld a, [PlayerSDefLevel]
 	ld de, PlayerAccLevel
 	call Functionfcde8
 	call Functionfcdf4
+
 	ld a, [PlayerLightScreenCount]
 	ld de, PlayerReflectCount
 	call Functionfcde8
 	call Functionfcdf4
+
 	ld hl, PartyMon1OT
 	ld bc, $000b
 	call Functionfcdd7
 	ld de, $c6f2
 	call Functionfcdf4
+
 	ld hl, PlayerName
 	ld de, $c6e7
 	call Functionfcdf4
+
 	ld hl, PartyMon1ID
 	ld bc, $0030
 	call Functionfcdd7
 	ld de, PlayerScreens
 	call Functionfce0f
+
 	ld hl, PartyMon1DVs
 	ld bc, $0030
 	call Functionfcdd7
 	ld de, $c6fd
 	call Functionfce0f
+
 	ld hl, PartyMon1Species
 	ld bc, $0030
 	call Functionfcdd7
@@ -80806,16 +80848,17 @@ Functionfcc63: ; fcc63
 	callba GetCaughtGender
 	ld a, c
 	ld [$c701], a
-	ld e, $0
-	call LoadTradesPointer
-	ld a, [hl]
-	cp $3
-	ld a, $1
-	jr c, .asm_fcce6
-	ld a, $2
 
+	ld e, TRADE_DIALOG
+	call GetTradeAttribute
+	ld a, [hl]
+	cp TRADE_COMPLETE
+	ld a, 1
+	jr c, .asm_fcce6
+	ld a, 2
 .asm_fcce6
 	ld [$c733], a
+
 	ld hl, PartyMon1Level
 	ld bc, $0030
 	call Functionfcdd7
@@ -80829,58 +80872,67 @@ Functionfcc63: ; fcc63
 	callab Functione039
 	ld a, $6
 	call Predef
-	ld e, $0
-	call LoadTradesPointer
-	ld a, [hl]
-	cp $3
-	ld b, $0
-	jr c, .asm_fcd1c
-	ld b, $1
 
+	ld e, TRADE_DIALOG
+	call GetTradeAttribute
+	ld a, [hl]
+	cp TRADE_COMPLETE
+	ld b, 0
+	jr c, .asm_fcd1c
+	ld b, 1
 .asm_fcd1c
 	callba Function4dba3
-	ld e, $3
-	call LoadTradesPointer
+
+	ld e, TRADE_NICK
+	call GetTradeAttribute
 	ld de, FailedMessage
 	call Functionfcdf4
+
 	ld hl, PartyMon1Nickname
-	ld bc, $000b
+	ld bc, PKMN_NAME_LENGTH
 	call Functionfcdde
 	ld hl, FailedMessage
 	call Functionfcdf4
-	ld e, $13
-	call LoadTradesPointer
+
+	ld e, TRADE_OT_NAME
+	call GetTradeAttribute
 	push hl
 	ld de, $c724
 	call Functionfcdf4
 	pop hl
 	ld de, $c719
 	call Functionfcdf4
+
 	ld hl, PartyMon1OT
 	ld bc, $000b
 	call Functionfcdde
 	ld hl, $c724
 	call Functionfcdf4
-	ld e, $e
-	call LoadTradesPointer
+
+	ld e, TRADE_DVS
+	call GetTradeAttribute
 	ld de, $c72f
 	call Functionfce0f
+
 	ld hl, PartyMon1DVs
 	ld bc, $0030
 	call Functionfcdde
 	ld hl, $c72f
 	call Functionfce0f
-	ld e, $11
-	call LoadTradesPointer
+
+	ld e, TRADE_OT_ID
+	call GetTradeAttribute
 	ld de, $c732
 	call Functionfce15
+
 	ld hl, PartyMon1ID
 	ld bc, $0030
 	call Functionfcdde
 	ld hl, $c731
 	call Functionfce0f
-	ld e, $10
-	call LoadTradesPointer
+
+	ld e, TRADE_ITEM
+	call GetTradeAttribute
 	push hl
 	ld hl, PartyMon1Item
 	ld bc, $0030
@@ -80888,6 +80940,7 @@ Functionfcc63: ; fcc63
 	pop hl
 	ld a, [hl]
 	ld [de], a
+
 	push af
 	push bc
 	push de
@@ -80908,15 +80961,14 @@ Functionfcc63: ; fcc63
 ; fcdc2
 
 
-
-LoadTradesPointer: ; 0xfcdc2
+GetTradeAttribute: ; 0xfcdc2
 	ld d, 0
 	push de
 	ld a, [$cf63]
 	and $f
 	swap a
 	ld e, a
-	ld d, $0
+	ld d, 0
 	ld hl, Trades
 	add hl, de
 	add hl, de
@@ -80977,69 +81029,65 @@ Functionfce15: ; fce15
 ; fce1b
 
 Functionfce1b: ; fce1b
-	ld e, $2
-	call LoadTradesPointer
+	ld e, TRADE_GETMON
+	call GetTradeAttribute
 	ld a, [hl]
 	call Functionfcde8
+
 	ld de, StringBuffer2
 	call Functionfcdf4
-	ld e, $1
-	call LoadTradesPointer
+
+	ld e, TRADE_GIVEMON
+	call GetTradeAttribute
 	ld a, [hl]
 	call Functionfcde8
+
 	ld de, $d050
 	call Functionfcdf4
+
 	ld hl, StringBuffer1
-.asm_fce3c
+.next
 	ld a, [hli]
-	cp $50
-	jr nz, .asm_fce3c
+	cp "@"
+	jr nz, .next
+
 	dec hl
 	push hl
-	ld e, $1e
-	call LoadTradesPointer
+	ld e, TRADE_GENDER
+	call GetTradeAttribute
 	ld a, [hl]
 	pop hl
 	and a
 	ret z
-	cp $1
-	ld a, $ef
-	jr z, .asm_fce54
-	ld a, $f5
 
-.asm_fce54
+	cp 1
+	ld a, "♂"
+	jr z, .done
+	ld a, "♀"
+.done
 	ld [hli], a
-	ld [hl], $50
+	ld [hl], "@"
 	ret
 ; fce58
 
 
-Trades: ; 0xfce58
-; byte 1: dialog
-; byte 2: givemon
-; byte 3: getmon
-; bytes 4-14 nickname
-; bytes 15-16 DVs
-; byte 17 held item
-; bytes 18-19 ID
-; bytes 20-30 OT name
-; byte 31 gender
-; byte 32 XXX always zero?
+Trades: ; fce58
+	db 0, ABRA,       MACHOP,     "MUSCLE@@@@@", $37, $66, GOLD_BERRY,   $54, $92, "MIKE@@@@@@@", 0, 0
+	db 0, BELLSPROUT, ONIX,       "ROCKY@@@@@@", $96, $66, BITTER_BERRY, $1e, $bf, "KYLE@@@@@@@", 0, 0
+	db 1, KRABBY,     VOLTORB,    "VOLTY@@@@@@", $98, $88, PRZCUREBERRY, $05, $72, "TIM@@@@@@@@", 0, 0
+	db 3, DRAGONAIR,  DODRIO,     "DORIS@@@@@@", $77, $66, SMOKE_BALL,   $1b, $01, "EMY@@@@@@@@", 2, 0
+	db 2, HAUNTER,    XATU,       "PAUL@@@@@@@", $96, $86, MYSTERYBERRY, $00, $3d, "CHRIS@@@@@@", 0, 0
+	db 3, CHANSEY,    AERODACTYL, "AEROY@@@@@@", $96, $66, GOLD_BERRY,   $7b, $67, "KIM@@@@@@@@", 0, 0
+	db 0, DUGTRIO,    MAGNETON,   "MAGGIE@@@@@", $96, $66, METAL_COAT,   $a2, $c3, "FOREST@@@@@", 0, 0
+; fcf38
 
-	db 0,ABRA,MACHOP,"MUSCLE@@@@@", $37, $66,GOLD_BERRY, $54, $92,"MIKE@@@@@@@",0,0
-	db 0,BELLSPROUT,ONIX,"ROCKY@@@@@@", $96, $66,BITTER_BERRY, $1e, $bf,"KYLE@@@@@@@",0,0
-	db 1,KRABBY,VOLTORB,"VOLTY@@@@@@", $98, $88,PRZCUREBERRY, $05, $72,"TIM@@@@@@@@",0,0
-	db 3,DRAGONAIR,DODRIO,"DORIS@@@@@@", $77, $66,SMOKE_BALL, $1b, $01,"EMY@@@@@@@@",2,0
-	db 2,HAUNTER,XATU,"PAUL@@@@@@@", $96, $86,MYSTERYBERRY, $00, $3d,"CHRIS@@@@@@",0,0
-	db 3,CHANSEY,AERODACTYL,"AEROY@@@@@@", $96, $66,GOLD_BERRY, $7b, $67,"KIM@@@@@@@@",0,0
-	db 0,DUGTRIO,MAGNETON,"MAGGIE@@@@@", $96, $66,METAL_COAT, $a2, $c3,"FOREST@@@@@",0,0
 
-Functionfcf38: ; fcf38
+PrintTradeText: ; fcf38
 	push af
 	call Functionfce1b
 	pop af
-	ld bc, $0008
-	ld hl, $4f53
+	ld bc, 2 * 4
+	ld hl, TradeTexts
 	call AddNTimes
 	ld a, [$cf64]
 	ld c, a
@@ -81052,7 +81100,174 @@ Functionfcf38: ; fcf38
 	ret
 ; fcf53
 
-INCBIN "baserom.gbc",$fcf53,$fcfec - $fcf53
+TradeTexts: ; fcf53
+; intro
+	dw TradeIntroText1
+	dw TradeIntroText2
+	dw TradeIntroText3
+	dw TradeIntroText4
+
+; cancel
+	dw TradeCancelText1
+	dw TradeCancelText2
+	dw TradeCancelText3
+	dw TradeCancelText4
+
+; wrong mon
+	dw TradeWrongText1
+	dw TradeWrongText2
+	dw TradeWrongText3
+	dw TradeWrongText4
+
+; completed
+	dw TradeCompleteText1
+	dw TradeCompleteText2
+	dw TradeCompleteText3
+	dw TradeCompleteText4
+
+; after
+	dw TradeAfterText1
+	dw TradeAfterText2
+	dw TradeAfterText3
+	dw TradeAfterText4
+; fcf7b
+
+
+UnknownText_0xfcf7b: ; 0xfcf7b
+	; OK, connect the Game Link Cable.
+	text_jump UnknownText_0x1bd407
+	db "@"
+; 0xfcf80
+
+UnknownText_0xfcf80: ; 0xfcf80
+	; traded givemon for getmon
+	text_jump UnknownText_0x1bd429
+	start_asm
+; 0xfcf85
+
+Functionfcf85: ; fcf85
+	ld de, MUSIC_NONE
+	call PlayMusic
+	call DelayFrame
+	ld hl, UnknownText_0xfcf92
+	ret
+; fcf92
+
+UnknownText_0xfcf92: ; 0xfcf92
+	; sound0x0A
+	; interpret_data
+	text_jump UnknownText_0x1bd445
+	db "@"
+; 0xfcf97
+
+
+TradeIntroText1: ; 0xfcf97
+	; I collect #MON. Do you have @ ? Want to trade it for my @ ?
+	text_jump UnknownText_0x1bd449
+	db "@"
+; 0xfcf9c
+
+TradeCancelText1: ; 0xfcf9c
+	; You don't want to trade? Aww…
+	text_jump UnknownText_0x1bd48c
+	db "@"
+; 0xfcfa1
+
+TradeWrongText1: ; 0xfcfa1
+	; Huh? That's not @ .  What a letdown…
+	text_jump UnknownText_0x1bd4aa
+	db "@"
+; 0xfcfa6
+
+TradeCompleteText1: ; 0xfcfa6
+	; Yay! I got myself @ ! Thanks!
+	text_jump UnknownText_0x1bd4d2
+	db "@"
+; 0xfcfab
+
+TradeAfterText1: ; 0xfcfab
+	; Hi, how's my old @  doing?
+	text_jump UnknownText_0x1bd4f4
+	db "@"
+; 0xfcfb0
+
+
+TradeIntroText2:
+TradeIntroText3: ; 0xfcfb0
+	; Hi, I'm looking for this #MON. If you have @ , would you trade it for my @ ?
+	text_jump UnknownText_0x1bd512
+	db "@"
+; 0xfcfb5
+
+TradeCancelText2:
+TradeCancelText3: ; 0xfcfb5
+	; You don't have one either? Gee, that's really disappointing…
+	text_jump UnknownText_0x1bd565
+	db "@"
+; 0xfcfba
+
+TradeWrongText2:
+TradeWrongText3: ; 0xfcfba
+	; You don't have @ ? That's too bad, then.
+	text_jump UnknownText_0x1bd5a1
+	db "@"
+; 0xfcfbf
+
+TradeCompleteText2: ; 0xfcfbf
+	; Great! Thank you! I finally got @ .
+	text_jump UnknownText_0x1bd5cc
+	db "@"
+; 0xfcfc4
+
+TradeAfterText2: ; 0xfcfc4
+	; Hi! The @ you traded me is doing great!
+	text_jump UnknownText_0x1bd5f4
+	db "@"
+; 0xfcfc9
+
+
+TradeIntroText4: ; 0xfcfc9
+	; 's cute, but I don't have it. Do you have @ ? Want to trade it for my @ ?
+	text_jump UnknownText_0x1bd621
+	db "@"
+; 0xfcfce
+
+TradeCancelText4: ; 0xfcfce
+	; You don't want to trade? Oh, darn…
+	text_jump UnknownText_0x1bd673
+	db "@"
+; 0xfcfd3
+
+TradeWrongText4: ; 0xfcfd3
+	; That's not @ . Please trade with me if you get one.
+	text_jump UnknownText_0x1bd696
+	db "@"
+; 0xfcfd8
+
+TradeCompleteText4: ; 0xfcfd8
+	; Wow! Thank you! I always wanted @ !
+	text_jump UnknownText_0x1bd6cd
+	db "@"
+; 0xfcfdd
+
+TradeAfterText4: ; 0xfcfdd
+	; How is that @  I traded you doing? Your @ 's so cute!
+	text_jump UnknownText_0x1bd6f5
+	db "@"
+; 0xfcfe2
+
+
+TradeCompleteText3: ; 0xfcfe2
+	; Uh? What happened?
+	text_jump UnknownText_0x1bd731
+	db "@"
+; 0xfcfe7
+
+TradeAfterText3: ; 0xfcfe7
+	; Trading is so odd… I still have a lot to learn about it.
+	text_jump UnknownText_0x1bd745
+	db "@"
+; 0xfcfec
 
 
 Functionfcfec: ; fcfec
