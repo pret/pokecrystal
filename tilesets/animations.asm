@@ -442,9 +442,7 @@ AnimateWaterTile: ; fc402
 ; fc41c
 
 WaterTileFrames: ; fc41c
-; Frames 0-3
-; INCBIN "gfx/tilesets/water.2bpp"
-INCBIN "baserom.gbc",$fc41c,$fc45c - $fc41c
+	INCBIN "gfx/tilesets/water.2bpp"
 ; fc45c
 
 
