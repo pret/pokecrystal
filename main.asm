@@ -80698,64 +80698,64 @@ Tileset02Anim: ; 0xfc01b
 Tileset03Anim: ; 0xfc01b
 ;	   param, function
 	dw $9140, AnimateWaterTile
-	dw $0000, WaitTileAnimation
-	dw $0000, WaitTileAnimation
-	dw $0000, WaitTileAnimation
-	dw $0000, TileAnimationPalette
-	dw $0000, WaitTileAnimation
-	dw $0000, AnimateFlowerTile
-	dw $0000, WaitTileAnimation
-	dw $0000, WaitTileAnimation
-	dw $0000, NextTileFrame8
-	dw $0000, DoneTileAnimation
+	dw NULL,  WaitTileAnimation
+	dw NULL,  WaitTileAnimation
+	dw NULL,  WaitTileAnimation
+	dw NULL,  TileAnimationPalette
+	dw NULL,  WaitTileAnimation
+	dw NULL,  AnimateFlowerTile
+	dw NULL,  WaitTileAnimation
+	dw NULL,  WaitTileAnimation
+	dw NULL,  NextTileFrame8
+	dw NULL,  DoneTileAnimation
 ; 0xfc047
 
 Tileset25Anim: ; 0xfc047
 ;	   param, function
 	dw $9140, AnimateWaterTile
-	dw $0000, WaitTileAnimation
+	dw NULL,  WaitTileAnimation
 	dw $95f0, AnimateFountain
-	dw $0000, WaitTileAnimation
-	dw $0000, TileAnimationPalette
-	dw $0000, WaitTileAnimation
-	dw $0000, AnimateFlowerTile
-	dw $0000, WaitTileAnimation
-	dw $0000, WaitTileAnimation
-	dw $0000, NextTileFrame8
-	dw $0000, DoneTileAnimation
+	dw NULL,  WaitTileAnimation
+	dw NULL,  TileAnimationPalette
+	dw NULL,  WaitTileAnimation
+	dw NULL,  AnimateFlowerTile
+	dw NULL,  WaitTileAnimation
+	dw NULL,  WaitTileAnimation
+	dw NULL,  NextTileFrame8
+	dw NULL,  DoneTileAnimation
 ; 0xfc073
 
 Tileset31Anim: ; 0xfc073
 ;	   param, function
-	dw $0000, ForestTreeLeftAnimation
-	dw $0000, ForestTreeRightAnimation
-	dw $0000, WaitTileAnimation
-	dw $0000, WaitTileAnimation
-	dw $0000, WaitTileAnimation
-	dw $0000, ForestTreeLeftAnimation2
-	dw $0000, ForestTreeRightAnimation2
-	dw $0000, AnimateFlowerTile
+	dw NULL,  ForestTreeLeftAnimation
+	dw NULL,  ForestTreeRightAnimation
+	dw NULL,  WaitTileAnimation
+	dw NULL,  WaitTileAnimation
+	dw NULL,  WaitTileAnimation
+	dw NULL,  ForestTreeLeftAnimation2
+	dw NULL,  ForestTreeRightAnimation2
+	dw NULL,  AnimateFlowerTile
 	dw $9140, AnimateWaterTile
-	dw $0000, TileAnimationPalette
-	dw $0000, NextTileFrame8
-	dw $0000, DoneTileAnimation
+	dw NULL,  TileAnimationPalette
+	dw NULL,  NextTileFrame8
+	dw NULL,  DoneTileAnimation
 ; 0xfc0a3
 
 Tileset01Anim: ; 0xfc0a3
 ;	   param, function
 	dw $9140, AnimateWaterTile
-	dw $0000, WaitTileAnimation
-	dw $0000, WaitTileAnimation
-	dw $0000, TileAnimationPalette
-	dw $0000, WaitTileAnimation
-	dw $0000, AnimateFlowerTile
+	dw NULL,  WaitTileAnimation
+	dw NULL,  WaitTileAnimation
+	dw NULL,  TileAnimationPalette
+	dw NULL,  WaitTileAnimation
+	dw NULL,  AnimateFlowerTile
 	dw $4a98, AnimateWhirlpoolTile
 	dw $4a9c, AnimateWhirlpoolTile
 	dw $4aa0, AnimateWhirlpoolTile
 	dw $4aa4, AnimateWhirlpoolTile
-	dw $0000, WaitTileAnimation
-	dw $0000, NextTileFrame8
-	dw $0000, DoneTileAnimation
+	dw NULL,  WaitTileAnimation
+	dw NULL,  NextTileFrame8
+	dw NULL,  DoneTileAnimation
 ; 0xfc0d7
 
 INCBIN "baserom.gbc",$fc0d7,$fc12f - $fc0d7
@@ -80763,29 +80763,29 @@ INCBIN "baserom.gbc",$fc0d7,$fc12f - $fc0d7
 Tileset09Anim: ; 0xfc12f
 ;	   param, function
 	dw $9140, AnimateWaterTile
-	dw $0000, WaitTileAnimation
-	dw $0000, WaitTileAnimation
-	dw $0000, WaitTileAnimation
-	dw $0000, WaitTileAnimation
-	dw $0000, TileAnimationPalette
-	dw $0000, WaitTileAnimation
-	dw $0000, WaitTileAnimation
-	dw $0000, WaitTileAnimation
-	dw $0000, WaitTileAnimation
-	dw $0000, NextTileFrame8
-	dw $0000, DoneTileAnimation
+	dw NULL,  WaitTileAnimation
+	dw NULL,  WaitTileAnimation
+	dw NULL,  WaitTileAnimation
+	dw NULL,  WaitTileAnimation
+	dw NULL,  TileAnimationPalette
+	dw NULL,  WaitTileAnimation
+	dw NULL,  WaitTileAnimation
+	dw NULL,  WaitTileAnimation
+	dw NULL,  WaitTileAnimation
+	dw NULL,  NextTileFrame8
+	dw NULL,  DoneTileAnimation
 ; 0xfc15f
 
 Tileset15Anim: ; 0xfc15f
 ;	   param, function
-	dw $0000, SafariFountainAnim2
-	dw $0000, WaitTileAnimation
-	dw $0000, WaitTileAnimation
-	dw $0000, WaitTileAnimation
-	dw $0000, SafariFountainAnim1
-	dw $0000, WaitTileAnimation
-	dw $0000, NextTileFrame8
-	dw $0000, DoneTileAnimation
+	dw NULL,  SafariFountainAnim2
+	dw NULL,  WaitTileAnimation
+	dw NULL,  WaitTileAnimation
+	dw NULL,  WaitTileAnimation
+	dw NULL,  SafariFountainAnim1
+	dw NULL,  WaitTileAnimation
+	dw NULL,  NextTileFrame8
+	dw NULL,  DoneTileAnimation
 ; 0xfc17f
 
 INCBIN "baserom.gbc",$fc17f,$fc1e7 - $fc17f
@@ -80794,47 +80794,47 @@ Tileset24Anim: ; 0xfc1e7
 Tileset30Anim: ; 0xfc1e7
 ;	   param, function
 	dw $9140, WriteTileToBuffer
-	dw $0000, Functionfc71e
+	dw NULL,  Functionfc71e
 	dw $cf41, ScrollTileRightLeft
-	dw $0000, Functionfc71e
+	dw NULL,  Functionfc71e
 	dw $9140, WriteTileFromBuffer
-	dw $0000, Functionfc71e
-	dw $0000, TileAnimationPalette
-	dw $0000, Functionfc71e
+	dw NULL,  Functionfc71e
+	dw NULL,  TileAnimationPalette
+	dw NULL,  Functionfc71e
 	dw $9400, WriteTileToBuffer
-	dw $0000, Functionfc71e
+	dw NULL,  Functionfc71e
 	dw $cf41, ScrollTileDown
-	dw $0000, Functionfc71e
+	dw NULL,  Functionfc71e
 	dw $cf41, ScrollTileDown
-	dw $0000, Functionfc71e
+	dw NULL,  Functionfc71e
 	dw $cf41, ScrollTileDown
-	dw $0000, Functionfc71e
+	dw NULL,  Functionfc71e
 	dw $9400, WriteTileFromBuffer
-	dw $0000, Functionfc71e
-	dw $0000, DoneTileAnimation
+	dw NULL,  Functionfc71e
+	dw NULL,  DoneTileAnimation
 ; 0xfc233
 
 Tileset29Anim: ; 0xfc233
 ;	   param, function
 	dw $9350, WriteTileToBuffer
-	dw $0000, Functionfc71e
+	dw NULL,  Functionfc71e
 	dw $cf41, ScrollTileRightLeft
-	dw $0000, Functionfc71e
+	dw NULL,  Functionfc71e
 	dw $9350, WriteTileFromBuffer
-	dw $0000, Functionfc71e
-	dw $0000, TileAnimationPalette
-	dw $0000, Functionfc71e
+	dw NULL,  Functionfc71e
+	dw NULL,  TileAnimationPalette
+	dw NULL,  Functionfc71e
 	dw $9310, WriteTileToBuffer
-	dw $0000, Functionfc71e
+	dw NULL,  Functionfc71e
 	dw $cf41, ScrollTileDown
-	dw $0000, Functionfc71e
+	dw NULL,  Functionfc71e
 	dw $cf41, ScrollTileDown
-	dw $0000, Functionfc71e
+	dw NULL,  Functionfc71e
 	dw $cf41, ScrollTileDown
-	dw $0000, Functionfc71e
+	dw NULL,  Functionfc71e
 	dw $9310, WriteTileFromBuffer
-	dw $0000, Functionfc71e
-	dw $0000, DoneTileAnimation
+	dw NULL,  Functionfc71e
+	dw NULL,  DoneTileAnimation
 ; 0xfc27f
 
 Tileset23Anim: ; 0xfc27f
@@ -80849,12 +80849,12 @@ Tileset23Anim: ; 0xfc27f
 	dw SproutPillarTilePointer4,  AnimateSproutPillarTile
 	dw SproutPillarTilePointer1,  AnimateSproutPillarTile
 	dw SproutPillarTilePointer2,  AnimateSproutPillarTile
-	dw $0000, NextTileFrame
-	dw $0000, WaitTileAnimation
-	dw $0000, WaitTileAnimation
-	dw $0000, WaitTileAnimation
-	dw $0000, WaitTileAnimation
-	dw $0000, DoneTileAnimation
+	dw NULL,  NextTileFrame
+	dw NULL,  WaitTileAnimation
+	dw NULL,  WaitTileAnimation
+	dw NULL,  WaitTileAnimation
+	dw NULL,  WaitTileAnimation
+	dw NULL,  DoneTileAnimation
 ; 0xfc2bf
 
 INCBIN "baserom.gbc",$fc2bf,$fc2e7 - $fc2bf
@@ -80885,11 +80885,11 @@ Tileset34Anim: ; 0xfc2e7
 Tileset35Anim: ; 0xfc2e7
 Tileset36Anim: ; 0xfc2e7
 ;	   param, function
-	dw $0000, WaitTileAnimation
-	dw $0000, WaitTileAnimation
-	dw $0000, WaitTileAnimation
-	dw $0000, WaitTileAnimation
-	dw $0000, DoneTileAnimation
+	dw NULL,  WaitTileAnimation
+	dw NULL,  WaitTileAnimation
+	dw NULL,  WaitTileAnimation
+	dw NULL,  WaitTileAnimation
+	dw NULL,  DoneTileAnimation
 ; 0xfc2fb
 
 DoneTileAnimation: ; fc2fb
