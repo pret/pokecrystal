@@ -92,10 +92,10 @@ Tileset01Anim: ; 0xfc0a3
 	dw NULL,  TileAnimationPalette
 	dw NULL,  WaitTileAnimation
 	dw NULL,  AnimateFlowerTile
-	dw WhirlpoolFrames, AnimateWhirlpoolTile
-	dw $4a9c, AnimateWhirlpoolTile
-	dw $4aa0, AnimateWhirlpoolTile
-	dw $4aa4, AnimateWhirlpoolTile
+	dw WhirlpoolFrames1, AnimateWhirlpoolTile
+	dw WhirlpoolFrames2, AnimateWhirlpoolTile
+	dw WhirlpoolFrames3, AnimateWhirlpoolTile
+	dw WhirlpoolFrames4, AnimateWhirlpoolTile
 	dw NULL,  WaitTileAnimation
 	dw NULL,  NextTileFrame8
 	dw NULL,  DoneTileAnimation
@@ -1091,20 +1091,23 @@ SproutPillarTile10:
 ; fca98
 
 
-WhirlpoolFrames: ; fca98
-	dw $9320, WhirlpoolFrames1
-	dw $9330, WhirlpoolFrames2
-	dw $9420, WhirlpoolFrames3
-	dw $9430, WhirlpoolFrames4
+WhirlpoolFrames1: ; fca98
+	dw $9320, WhirlpoolTiles1
+WhirlpoolFrames2: ; fca9c
+	dw $9330, WhirlpoolTiles2
+WhirlpoolFrames3: ; fcaa0
+	dw $9420, WhirlpoolTiles3
+WhirlpoolFrames4: ; fcaa4
+	dw $9430, WhirlpoolTiles4
 ; fcaa8
 
-WhirlpoolFrames1: ; fcaa8
+WhirlpoolTiles1: ; fcaa8
 	INCBIN "gfx/tilesets/whirlpool/1.2bpp"
-WhirlpoolFrames2: ; fcae8
+WhirlpoolTiles2: ; fcae8
 	INCBIN "gfx/tilesets/whirlpool/2.2bpp"
-WhirlpoolFrames3: ; fcb28
+WhirlpoolTiles3: ; fcb28
 	INCBIN "gfx/tilesets/whirlpool/3.2bpp"
-WhirlpoolFrames4: ; fcb68
+WhirlpoolTiles4: ; fcb68
 	INCBIN "gfx/tilesets/whirlpool/4.2bpp"
 ; fcba8
 
