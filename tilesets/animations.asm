@@ -625,7 +625,7 @@ AnimateFlowerTile: ; fc56d
 	ld b, h
 	ld c, l
 	
-; Alternate tile graphc every other frame
+; Alternate tile graphic every other frame
 	ld a, [TileAnimationTimer]
 	and 1 << 1
 	ld e, a
@@ -648,12 +648,10 @@ AnimateFlowerTile: ; fc56d
 ; fc58c
 
 FlowerTileFrames: ; fc58c
-; frame 0 dmg
-; frame 0 cgb
-; frame 1 dmg
-; frame 1 sgb
-; INCBIN "gfx/tilesets/flower.2bpp"
-INCBIN "baserom.gbc",$fc58c,$fc5cc - $fc58c
+	INCBIN "gfx/tilesets/flower/dmg_1.2bpp"
+	INCBIN "gfx/tilesets/flower/cgb_1.2bpp"
+	INCBIN "gfx/tilesets/flower/dmg_2.2bpp"
+	INCBIN "gfx/tilesets/flower/cgb_2.2bpp"
 ; fc5cc
 
 
