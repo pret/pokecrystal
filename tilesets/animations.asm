@@ -101,7 +101,35 @@ Tileset01Anim: ; 0xfc0a3
 	dw NULL,  DoneTileAnimation
 ; 0xfc0d7
 
-INCBIN "baserom.gbc",$fc0d7,$fc12f - $fc0d7
+TilesetAnimfc0d7: ; 0xfc0d7
+;	   param, function
+	dw $9030, WriteTileToBuffer
+	dw $cf41, ScrollTileRightLeft
+	dw $9030, WriteTileFromBuffer
+	dw NULL,  WaitTileAnimation
+	dw NULL,  WaitTileAnimation
+	dw NULL,  WaitTileAnimation
+	dw NULL,  AnimateFlowerTile
+	dw NULL,  WaitTileAnimation
+	dw NULL,  WaitTileAnimation
+	dw NULL,  WaitTileAnimation
+	dw NULL,  DoneTileAnimation
+; 0xfc103
+
+TilesetAnimfc103: ; 0xfc103
+;	   param, function
+	dw $9140, WriteTileToBuffer
+	dw $cf41, ScrollTileRightLeft
+	dw $9140, WriteTileFromBuffer
+	dw NULL,  WaitTileAnimation
+	dw NULL,  WaitTileAnimation
+	dw NULL,  WaitTileAnimation
+	dw NULL,  WaitTileAnimation
+	dw NULL,  WaitTileAnimation
+	dw NULL,  WaitTileAnimation
+	dw NULL,  WaitTileAnimation
+	dw NULL,  DoneTileAnimation
+; 0xfc12f
 
 Tileset09Anim: ; 0xfc12f
 ;	   param, function
@@ -131,7 +159,39 @@ Tileset15Anim: ; 0xfc15f
 	dw NULL,  DoneTileAnimation
 ; 0xfc17f
 
-INCBIN "baserom.gbc",$fc17f,$fc1e7 - $fc17f
+TilesetAnimfc17f: ; 0xfc17f
+;	   param, function
+	dw $9530, WriteTileToBuffer
+	dw $cf41, ScrollTileDown
+	dw $cf41, ScrollTileDown
+	dw $9530, WriteTileFromBuffer
+	dw $9030, WriteTileToBuffer
+	dw $cf41, ScrollTileRightLeft
+	dw $9030, WriteTileFromBuffer
+	dw $9530, WriteTileToBuffer
+	dw $cf41, ScrollTileDown
+	dw $cf41, ScrollTileDown
+	dw $9530, WriteTileFromBuffer
+	dw NULL,  DoneTileAnimation
+; 0xfc1af
+
+TilesetAnimfc1af: ; 0xfc1af
+;	   param, function
+	dw $9540, WriteTileToBuffer
+	dw $cf41, ScrollTileDown
+	dw $cf41, ScrollTileDown
+	dw $9540, WriteTileFromBuffer
+	dw NULL,  WaitTileAnimation
+	dw $9030, WriteTileToBuffer
+	dw $cf41, ScrollTileRightLeft
+	dw $9030, WriteTileFromBuffer
+	dw NULL,  WaitTileAnimation
+	dw $9540, WriteTileToBuffer
+	dw $cf41, ScrollTileDown
+	dw $cf41, ScrollTileDown
+	dw $9540, WriteTileFromBuffer
+	dw NULL,  DoneTileAnimation
+; 0xfc1e7
 
 Tileset24Anim: ; 0xfc1e7
 Tileset30Anim: ; 0xfc1e7
@@ -200,7 +260,18 @@ Tileset23Anim: ; 0xfc27f
 	dw NULL,  DoneTileAnimation
 ; 0xfc2bf
 
-INCBIN "baserom.gbc",$fc2bf,$fc2e7 - $fc2bf
+TilesetAnimfc2bf: ; 0xfc2bf
+	dw $94f0, WriteTileToBuffer
+	dw $cf41, ScrollTileRightLeft
+	dw $94f0, WriteTileFromBuffer
+	dw NULL,  WaitTileAnimation
+	dw NULL,  WaitTileAnimation
+	dw NULL,  WaitTileAnimation
+	dw NULL,  WaitTileAnimation
+	dw NULL,  WaitTileAnimation
+	dw NULL,  WaitTileAnimation
+	dw NULL,  DoneTileAnimation
+; 0xfc2e7
 
 Tileset04Anim: ; 0xfc2e7
 Tileset05Anim: ; 0xfc2e7
