@@ -1561,7 +1561,12 @@ OTPartyMon5Nickname: ; d416
 OTPartyMon6Nickname: ; d421
 	ds 11
 
-SECTION "Scripting",WRAMX[$d434],BANK[1]
+SECTION "Map Events", WRAMX[$d432], BANK[1]
+MapStatus: ; d432
+	ds 1
+MapEventStatus: ; d433
+	ds 1
+
 ScriptFlags: ; d434
 	ds 1
 ScriptFlags2: ; d435

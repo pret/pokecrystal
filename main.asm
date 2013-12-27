@@ -4189,7 +4189,7 @@ Function5e5d: ; 5e5d
 	res 7, [hl]
 	ld hl, $d83e
 	set 1, [hl]
-	callba Function966b0
+	callba OverworldLoop
 	ld a, [$d4b5]
 	cp $2
 	jr z, .asm_5e80
