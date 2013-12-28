@@ -34,12 +34,13 @@ globals.asm
 extras/*.json
 
 # for any of the poor souls with save game files in their working directory
-baserom.sgm
-baserom.sav
-baserom.rtc
-pokecrystal.sgm
-pokecrystal.sav
-pokecrystal.rtc
+*.sgm
+*.sav
+*.rtc
+
+# compare.sh
+baserom.txt
+pokecrystal.txt
 
 # for vim configuration
 # url: http://www.vim.org/scripts/script.php?script_id=441
