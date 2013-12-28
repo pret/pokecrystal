@@ -30,9 +30,6 @@ globals.asm
 # swap files for gedit
 *~
 
-# no data from extras/
-extras/*.json
-
 # for any of the poor souls with save game files in their working directory
 *.sgm
 *.sav
@@ -46,5 +43,3 @@ pokecrystal.txt
 # url: http://www.vim.org/scripts/script.php?script_id=441
 .lvimrc
 
-# some users are dumping png.py into extras/
-extras/png.py
