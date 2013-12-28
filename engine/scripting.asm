@@ -761,7 +761,7 @@ Script_trade: ; 0x97099
 
 	call GetScriptByte
 	ld e, a
-	callba Functionfcba8
+	callba NPCTrade
 	ret
 ; 0x970a4
 

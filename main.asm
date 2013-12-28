@@ -80678,7 +80678,7 @@ TRADE_WRONG    EQU 2
 TRADE_COMPLETE EQU 3
 TRADE_AFTER    EQU 4
 
-Functionfcba8: ; fcba8
+NPCTrade: ; fcba8
 	ld a, e
 	ld [$cf63], a
 	call Functionfcc59
@@ -80714,14 +80714,14 @@ Functionfcba8: ; fcba8
 	ld b, SET_FLAG
 	call TradeFlagAction
 
-	ld hl, UnknownText_0xfcf7b
+	ld hl, ConnectLinkCableText
 	call PrintText
 
 	call Functionfcc63
 	call Functionfcc07
-	call Functionfce1b
+	call GetTradeMonNames
 
-	ld hl, UnknownText_0xfcf80
+	ld hl, TradedForText
 	call PrintText
 
 	call Function3d47
@@ -80801,20 +80801,20 @@ Functionfcc63: ; fcc63
 	ld e, TRADE_GIVEMON
 	call GetTradeAttribute
 	ld a, [hl]
-	ld [PlayerSDefLevel], a
+	ld [$c6d0], a
 
 	ld e, TRADE_GETMON
 	call GetTradeAttribute
 	ld a, [hl]
-	ld [PlayerLightScreenCount], a
+	ld [$c702], a
 
-	ld a, [PlayerSDefLevel]
-	ld de, PlayerAccLevel
+	ld a, [$c6d0]
+	ld de, $c6d1
 	call Functionfcde8
 	call Functionfcdf4
 
-	ld a, [PlayerLightScreenCount]
-	ld de, PlayerReflectCount
+	ld a, [$c702]
+	ld de, $c703
 	call Functionfcde8
 	call Functionfcdf4
 
@@ -80829,19 +80829,19 @@ Functionfcc63: ; fcc63
 	call Functionfcdf4
 
 	ld hl, PartyMon1ID
-	ld bc, $0030
+	ld bc, PartyMon2 - PartyMon1
 	call Functionfcdd7
-	ld de, PlayerScreens
+	ld de, $c6ff
 	call Functionfce0f
 
 	ld hl, PartyMon1DVs
-	ld bc, $0030
+	ld bc, PartyMon2 - PartyMon1
 	call Functionfcdd7
 	ld de, $c6fd
 	call Functionfce0f
 
 	ld hl, PartyMon1Species
-	ld bc, $0030
+	ld bc, PartyMon2 - PartyMon1
 	call Functionfcdd7
 	ld b, h
 	ld c, l
@@ -80860,17 +80860,17 @@ Functionfcc63: ; fcc63
 	ld [$c733], a
 
 	ld hl, PartyMon1Level
-	ld bc, $0030
+	ld bc, PartyMon2 - PartyMon1
 	call Functionfcdd7
 	ld a, [hl]
 	ld [CurPartyLevel], a
-	ld a, [PlayerLightScreenCount]
+	ld a, [$c702]
 	ld [CurPartySpecies], a
 	xor a
 	ld [MonType], a
 	ld [$d10b], a
 	callab Functione039
-	ld a, $6
+	ld a, PREDEF_ADDPARTYMON
 	call Predef
 
 	ld e, TRADE_DIALOG
@@ -80885,13 +80885,13 @@ Functionfcc63: ; fcc63
 
 	ld e, TRADE_NICK
 	call GetTradeAttribute
-	ld de, FailedMessage
+	ld de, $c70e
 	call Functionfcdf4
 
 	ld hl, PartyMon1Nickname
 	ld bc, PKMN_NAME_LENGTH
 	call Functionfcdde
-	ld hl, FailedMessage
+	ld hl, $c70e
 	call Functionfcdf4
 
 	ld e, TRADE_OT_NAME
@@ -80915,7 +80915,7 @@ Functionfcc63: ; fcc63
 	call Functionfce0f
 
 	ld hl, PartyMon1DVs
-	ld bc, $0030
+	ld bc, PartyMon2 - PartyMon1
 	call Functionfcdde
 	ld hl, $c72f
 	call Functionfce0f
@@ -80926,7 +80926,7 @@ Functionfcc63: ; fcc63
 	call Functionfce15
 
 	ld hl, PartyMon1ID
-	ld bc, $0030
+	ld bc, PartyMon2 - PartyMon1
 	call Functionfcdde
 	ld hl, $c731
 	call Functionfce0f
@@ -80935,7 +80935,7 @@ Functionfcc63: ; fcc63
 	call GetTradeAttribute
 	push hl
 	ld hl, PartyMon1Item
-	ld bc, $0030
+	ld bc, PartyMon2 - PartyMon1
 	call Functionfcdde
 	pop hl
 	ld a, [hl]
@@ -80969,7 +80969,7 @@ GetTradeAttribute: ; 0xfcdc2
 	swap a
 	ld e, a
 	ld d, 0
-	ld hl, Trades
+	ld hl, NPCTrades
 	add hl, de
 	add hl, de
 	pop de
@@ -81007,8 +81007,21 @@ Functionfcdf4: ; fcdf4
 	ret
 ; fcdfb
 
-INCBIN "baserom.gbc",$fcdfb,$fce0f - $fcdfb
+Functionfcdfb: ; fcdfb
+	ld bc, $0004
+	call CopyBytes
+	ld a, $50
+	ld [de], a
+	ret
+; fce05
 
+Functionfce05: ; fce05
+	ld bc, $0003
+	call CopyBytes
+	ld a, $50
+	ld [de], a
+	ret
+; fce0f
 
 Functionfce0f: ; fce0f
 	ld a, [hli]
@@ -81028,7 +81041,7 @@ Functionfce15: ; fce15
 	ret
 ; fce1b
 
-Functionfce1b: ; fce1b
+GetTradeMonNames: ; fce1b
 	ld e, TRADE_GETMON
 	call GetTradeAttribute
 	ld a, [hl]
@@ -81071,7 +81084,7 @@ Functionfce1b: ; fce1b
 ; fce58
 
 
-Trades: ; fce58
+NPCTrades: ; fce58
 	db 0, ABRA,       MACHOP,     "MUSCLE@@@@@", $37, $66, GOLD_BERRY,   $54, $92, "MIKE@@@@@@@", 0, 0
 	db 0, BELLSPROUT, ONIX,       "ROCKY@@@@@@", $96, $66, BITTER_BERRY, $1e, $bf, "KYLE@@@@@@@", 0, 0
 	db 1, KRABBY,     VOLTORB,    "VOLTY@@@@@@", $98, $88, PRZCUREBERRY, $05, $72, "TIM@@@@@@@@", 0, 0
@@ -81084,7 +81097,7 @@ Trades: ; fce58
 
 PrintTradeText: ; fcf38
 	push af
-	call Functionfce1b
+	call GetTradeMonNames
 	pop af
 	ld bc, 2 * 4
 	ld hl, TradeTexts
@@ -81133,27 +81146,25 @@ TradeTexts: ; fcf53
 ; fcf7b
 
 
-UnknownText_0xfcf7b: ; 0xfcf7b
+ConnectLinkCableText: ; 0xfcf7b
 	; OK, connect the Game Link Cable.
 	text_jump UnknownText_0x1bd407
 	db "@"
 ; 0xfcf80
 
-UnknownText_0xfcf80: ; 0xfcf80
+
+TradedForText: ; 0xfcf80
 	; traded givemon for getmon
 	text_jump UnknownText_0x1bd429
 	start_asm
-; 0xfcf85
 
-Functionfcf85: ; fcf85
 	ld de, MUSIC_NONE
 	call PlayMusic
 	call DelayFrame
-	ld hl, UnknownText_0xfcf92
+	ld hl, .done
 	ret
-; fcf92
 
-UnknownText_0xfcf92: ; 0xfcf92
+.done
 	; sound0x0A
 	; interpret_data
 	text_jump UnknownText_0x1bd445
