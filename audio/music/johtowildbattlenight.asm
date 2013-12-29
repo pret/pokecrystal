@@ -20,7 +20,7 @@ Music_JohtoWildBattleNight_Ch2: ; f6076
 	callchannel Music_JohtoWildBattleNight_branch_f5f5d
 	notetype $c, $c2
 	octave 4
-	note G_, 5
+	note G_, 6
 	tone $0001
 	dutycycle $2
 	loopchannel 0, Music_JohtoWildBattleNight_branch_f5eb2

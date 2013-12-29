@@ -14,46 +14,46 @@ Music_PokemonLullaby_Ch1: ; f6d82
 Music_PokemonLullaby_branch_f6d8c: ; f6d8c
 	notetype $c, $a7
 	octave 3
-	note G_, 15
+	note G_, 16
 	octave 4
-	note C_, 15
+	note C_, 16
 	stereopanning $f0
 	octave 3
-	note G_, 15
+	note G_, 16
 	stereopanning $f
 	octave 4
-	note C_, 7
+	note C_, 8
 	stereopanning $f0
 	octave 3
-	note B_, 7
+	note B_, 8
 	stereopanning $f
-	note G_, 15
+	note G_, 16
 	stereopanning $f0
 	octave 4
-	note C_, 7
+	note C_, 8
 	stereopanning $f
 	octave 3
-	note B_, 7
+	note B_, 8
 	stereopanning $f0
-	note G_, 7
+	note G_, 8
 	stereopanning $ff
-	note __, 1
-	note G_, 1
-	note G_, 1
-	note B_, 1
+	note __, 2
+	note G_, 2
+	note G_, 2
+	note B_, 2
 	octave 4
-	note C_, 3
+	note C_, 4
 	octave 3
-	note B_, 3
+	note B_, 4
 	octave 4
-	note C_, 3
+	note C_, 4
 	octave 3
-	note B_, 3
-	note G_, 15
+	note B_, 4
+	note G_, 16
 	octave 4
-	note C_, 7
+	note C_, 8
 	octave 3
-	note B_, 7
+	note B_, 8
 	loopchannel 0, Music_PokemonLullaby_branch_f6d8c
 
 Music_PokemonLullaby_Ch2: ; f6dc4
@@ -62,49 +62,49 @@ Music_PokemonLullaby_Ch2: ; f6dc4
 	notetype $c, $b4
 
 Music_PokemonLullaby_branch_f6dcc: ; f6dcc
-	note __, 15
-	note __, 9
+	note __, 16
+	note __, 10
 	octave 4
-	note G_, 1
-	note F#, 1
-	note G_, 1
+	note G_, 2
+	note F#, 2
+	note G_, 2
 	intensity $b7
-	note E_, 11
-	note D_, 1
-	note E_, 1
-	note F_, 3
-	note G_, 3
-	note F_, 1
-	note E_, 1
-	note D_, 1
-	note F_, 1
-	note E_, 9
+	note E_, 12
+	note D_, 2
+	note E_, 2
+	note F_, 4
+	note G_, 4
+	note F_, 2
+	note E_, 2
+	note D_, 2
+	note F_, 2
+	note E_, 10
 	intensity $b5
-	note D_, 1
-	note D_, 1
+	note D_, 2
+	note D_, 2
 	intensity $c7
-	note E_, 1
-	note F_, 3
-	note E_, 3
-	note F_, 3
+	note E_, 2
+	note F_, 4
+	note E_, 4
+	note F_, 4
 	intensity $b5
-	note G_, 1
-	note G_, 1
-	note D#, 1
+	note G_, 2
+	note G_, 2
+	note D#, 2
 	intensity $b7
-	note E_, 13
+	note E_, 14
 	intensity $87
 	octave 3
-	note F_, 7
-	note G_, 3
+	note F_, 8
+	note G_, 4
 	intensity $b5
 	octave 4
-	note G_, 1
-	note G_, 1
+	note G_, 2
+	note G_, 2
 	intensity $b7
-	note D#, 1
-	note E_, 15
-	note __, 13
+	note D#, 2
+	note E_, 16
+	note __, 14
 	loopchannel 0, Music_PokemonLullaby_branch_f6dcc
 
 Music_PokemonLullaby_Ch3: ; f6e03
@@ -113,26 +113,26 @@ Music_PokemonLullaby_Ch3: ; f6e03
 Music_PokemonLullaby_branch_f6e06: ; f6e06
 	stereopanning $f0
 	octave 4
-	note C_, 1
-	note E_, 1
-	note G_, 1
-	note B_, 1
+	note C_, 2
+	note E_, 2
+	note G_, 2
+	note B_, 2
 	octave 5
-	note C_, 1
+	note C_, 2
 	octave 4
-	note B_, 1
-	note A_, 1
-	note G_, 1
+	note B_, 2
+	note A_, 2
+	note G_, 2
 	stereopanning $f
-	note D_, 1
-	note F_, 1
-	note A_, 1
+	note D_, 2
+	note F_, 2
+	note A_, 2
 	octave 5
-	note C_, 1
-	note D_, 1
-	note C_, 1
+	note C_, 2
+	note D_, 2
+	note C_, 2
 	octave 4
-	note B_, 1
-	note A_, 1
+	note B_, 2
+	note A_, 2
 	loopchannel 0, Music_PokemonLullaby_branch_f6e06
 ; f6e23

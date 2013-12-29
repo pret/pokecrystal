@@ -6,7 +6,7 @@ JoypadInt: ; 92e
 	reti
 ; 92f
 
-ClearJoypadPublic: ; 92f
+ClearJoypad: ; 92f
 	xor a
 ; Pressed this frame (delta)
 	ld [hJoyPressed], a
@@ -109,7 +109,7 @@ Joypad: ; 935
 ; 984
 
 
-GetJoypadPublic: ; 984
+GetJoypad: ; 984
 ; Update mirror joypad input from hJoypadDown (real input)
 
 ; hJoyReleased: released this frame (delta)
@@ -304,7 +304,7 @@ Functiona1b: ; a1b
 
 Functiona36: ; a36
 	call DelayFrame
-	call GetJoypadPublic
+	call GetJoypad
 	ld a, [hJoyPressed]
 	and A_BUTTON | B_BUTTON
 	ret nz
@@ -325,7 +325,7 @@ Functiona46: ; a46
 ; a57
 
 Functiona57: ; a57
-	call GetJoypadPublic
+	call GetJoypad
 	ld a, [$ffaa]
 	and a
 	ld a, [hJoyPressed]

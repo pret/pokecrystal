@@ -1,3 +1,201 @@
+_DoItemEffect: ; e722
+	ld a, [CurItem]
+	ld [$d265], a
+	call GetItemName
+	call CopyName1
+	ld a, 1
+	ld [$d0ec], a
+	ld a, [CurItem]
+	dec a
+	ld hl, ItemEffects
+	rst JumpTable
+	ret
+; e73c
+
+
+ItemEffects: ; e73c
+	dw MasterBall
+	dw UltraBall
+	dw Brightpowder
+	dw GreatBall
+	dw PokeBall
+	dw Item06
+	dw Bicycle
+	dw MoonStone
+	dw Antidote
+	dw BurnHeal
+	dw IceHeal
+	dw Awakening
+	dw ParlyzHeal
+	dw FullRestore
+	dw MaxPotion
+	dw HyperPotion
+	dw SuperPotion
+	dw Potion
+	dw EscapeRope
+	dw Repel
+	dw MaxElixer
+	dw FireStone
+	dw Thunderstone
+	dw WaterStone
+	dw Item19
+	dw HpUp
+	dw Protein
+	dw Iron
+	dw Carbos
+	dw LuckyPunch
+	dw Calcium
+	dw RareCandy
+	dw XAccuracy
+	dw LeafStone
+	dw MetalPowder
+	dw Nugget
+	dw PokeDoll
+	dw FullHeal
+	dw Revive
+	dw MaxRevive
+	dw GuardSpec
+	dw SuperRepel
+	dw MaxRepel
+	dw DireHit
+	dw Item2D
+	dw FreshWater
+	dw SodaPop
+	dw Lemonade
+	dw XAttack
+	dw Item32
+	dw XDefend
+	dw XSpeed
+	dw XSpecial
+	dw CoinCase
+	dw Itemfinder
+	dw Item38
+	dw ExpShare
+	dw OldRod
+	dw GoodRod
+	dw SilverLeaf
+	dw SuperRod
+	dw PpUp
+	dw Ether
+	dw MaxEther
+	dw Elixer
+	dw RedScale
+	dw Secretpotion
+	dw SSTicket
+	dw MysteryEgg
+	dw ClearBell
+	dw SilverWing
+	dw MoomooMilk
+	dw QuickClaw
+	dw Psncureberry
+	dw GoldLeaf
+	dw SoftSand
+	dw SharpBeak
+	dw Przcureberry
+	dw BurntBerry
+	dw IceBerry
+	dw PoisonBarb
+	dw KingsRock
+	dw BitterBerry
+	dw MintBerry
+	dw RedApricorn
+	dw Tinymushroom
+	dw BigMushroom
+	dw Silverpowder
+	dw BluApricorn
+	dw Item5A
+	dw AmuletCoin
+	dw YlwApricorn
+	dw GrnApricorn
+	dw CleanseTag
+	dw MysticWater
+	dw Twistedspoon
+	dw WhtApricorn
+	dw Blackbelt
+	dw BlkApricorn
+	dw Item64
+	dw PnkApricorn
+	dw Blackglasses
+	dw Slowpoketail
+	dw PinkBow
+	dw Stick
+	dw SmokeBall
+	dw Nevermeltice
+	dw Magnet
+	dw Miracleberry
+	dw Pearl
+	dw BigPearl
+	dw Everstone
+	dw SpellTag
+	dw Ragecandybar
+	dw GsBall
+	dw BlueCard
+	dw MiracleSeed
+	dw ThickClub
+	dw FocusBand
+	dw Item78
+	dw Energypowder
+	dw EnergyRoot
+	dw HealPowder
+	dw RevivalHerb
+	dw HardStone
+	dw LuckyEgg
+	dw CardKey
+	dw MachinePart
+	dw EggTicket
+	dw LostItem
+	dw Stardust
+	dw StarPiece
+	dw BasementKey
+	dw Pass
+	dw Item87
+	dw Item88
+	dw Item89
+	dw Charcoal
+	dw BerryJuice
+	dw ScopeLens
+	dw Item8D
+	dw Item8E
+	dw MetalCoat
+	dw DragonFang
+	dw Item91
+	dw Leftovers
+	dw Item93
+	dw Item94
+	dw Item95
+	dw Mysteryberry
+	dw DragonScale
+	dw BerserkGene
+	dw Item99
+	dw Item9A
+	dw Item9B
+	dw SacredAsh
+	dw HeavyBall
+	dw FlowerMail
+	dw LevelBall
+	dw LureBall
+	dw FastBall
+	dw ItemA2
+	dw LightBall
+	dw FriendBall
+	dw MoonBall
+	dw LoveBall
+	dw NormalBox
+	dw GorgeousBox
+	dw SunStone
+	dw PolkadotBow
+	dw ItemAB
+	dw UpGrade
+	dw Berry
+	dw GoldBerry
+	dw Squirtbottle
+	dw ItemB0
+	dw ParkBall
+	dw RainbowWing
+	dw ItemB3
+; e8a2
+
+
 MasterBall:
 UltraBall:
 GreatBall:
@@ -12,30 +210,30 @@ LoveBall:
 ParkBall: ; e8a2
 	ld a, [IsInBattle]
 	dec a
-	jp nz, $77a0
+	jp nz, Functionf7a0
+
 	ld a, [PartyCount]
-	cp $6
+	cp 6
 	jr nz, .asm_e8c0
+
 	ld a, $1
 	call GetSRAMBank
-
 	ld a, [$ad10]
-	cp $14
+	cp 20
 	call CloseSRAM
-
-	jp z, $77dc
+	jp z, Ball_BoxIsFullMessage
 
 .asm_e8c0
 	xor a
 	ld [$c64e], a
 	ld a, [CurItem]
-	cp $b1
-	call nz, $6dfa
+	cp PARK_BALL
+	call nz, Functionedfa
 
 	ld hl, Options
 	res 4, [hl]
-	ld hl, $783d
-	call $1057
+	ld hl, UsedItemText
+	call PrintText
 
 	ld a, [EnemyMonCatchRate]
 	ld b, a
@@ -63,17 +261,19 @@ ParkBall: ; e8a2
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	ld de, $6906
+	ld de, .asm_e906
 	push de
 	jp [hl]
 
 .asm_e906
 	ld a, [CurItem]
-	cp $9f
+	cp LEVEL_BALL
 	ld a, b
-	jp z, $698e
+	jp z, .asm_e98e
+
 	ld a, b
 	ld [$ffb6], a
+
 	ld hl, EnemyMonHPHi
 	ld b, [hl]
 	inc hl
@@ -84,6 +284,7 @@ ParkBall: ; e8a2
 	ld e, [hl]
 	sla c
 	rl b
+
 	ld h, d
 	ld l, e
 	add hl, de
@@ -93,6 +294,7 @@ ParkBall: ; e8a2
 	ld a, d
 	and a
 	jr z, .asm_e940
+
 	srl d
 	rr e
 	srl d
@@ -101,13 +303,14 @@ ParkBall: ; e8a2
 	rr c
 	srl b
 	rr c
+
 	ld a, c
 	and a
 	jr nz, .asm_e940
 	ld c, $1
-
 .asm_e940
 	ld b, e
+
 	push bc
 	ld a, b
 	sub c
@@ -117,8 +320,8 @@ ParkBall: ; e8a2
 	ld [hMultiplicand], a
 	ld [$ffb5], a
 	call Multiply
-
 	pop bc
+
 	ld a, b
 	ld [hMultiplier], a
 	ld b, $4
@@ -132,13 +335,13 @@ ParkBall: ; e8a2
 .asm_e960
 	ld b, a
 	ld a, [EnemyMonStatus]
-	and $27
-	ld c, $a
+	and 1 << FRZ | SLP
+	ld c, 10
 	jr nz, .asm_e971
 	and a
-	ld c, $5
+	ld c, 5
 	jr nz, .asm_e971
-	ld c, $0
+	ld c, 0
 
 .asm_e971
 	ld a, b
@@ -167,7 +370,7 @@ ParkBall: ; e8a2
 	call Random
 
 	cp b
-	ld a, $0
+	ld a, 0
 	jr z, .asm_e99c
 	jr nc, .asm_e99f
 
@@ -176,18 +379,18 @@ ParkBall: ; e8a2
 
 .asm_e99f
 	ld [$c64e], a
-	ld c, $14
+	ld c, 20
 	call DelayFrames
 
 	ld a, [CurItem]
 	cp $6
 	jr c, .asm_e9b0
 
-	ld a, $5
+	ld a, POKE_BALL
 
 .asm_e9b0
 	ld [$c689], a
-	ld de, $0100
+	ld de, ANIM_THROW_POKE_BALL
 	ld a, e
 	ld [FXAnimIDLo], a
 	ld a, d
@@ -204,17 +407,17 @@ ParkBall: ; e8a2
 	jr nz, .asm_e9f5
 	ld a, [Buffer2]
 	cp $1
-	ld hl, $6db5
-	jp z, $6bdc
+	ld hl, UnknownText_0xedb5
+	jp z, .asm_ebdc
 	cp $2
-	ld hl, $6dba
-	jp z, $6bdc
+	ld hl, UnknownText_0xedba
+	jp z, .asm_ebdc
 	cp $3
-	ld hl, $6dbf
-	jp z, $6bdc
+	ld hl, UnknownText_0xedbf
+	jp z, .asm_ebdc
 	cp $4
-	ld hl, $6dc4
-	jp z, $6bdc
+	ld hl, UnknownText_0xedc4
+	jp z, .asm_ebdc
 
 .asm_e9f5
 	ld hl, EnemyMonStatus
@@ -239,7 +442,7 @@ ParkBall: ; e8a2
 	jr .asm_ea1a
 
 .asm_ea13
-	ld a, $84
+	ld a, DITTO
 	ld [TempEnemyMonSpecies], a
 	jr .asm_ea27
 
@@ -291,32 +494,32 @@ ParkBall: ; e8a2
 	ld [$d265], a
 	ld a, [BattleType]
 	cp $3
-	jp z, $6bd9
+	jp z, .asm_ebd9
 	callba Function10607f
 
-	ld hl, $6dc9
-	call $1057
+	ld hl, UnknownText_0xedc9
+	call PrintText
 
 	call ClearSprites
 
 	ld a, [$d265]
 	dec a
-	call $3393
+	call CheckCaughtMon
 
 	ld a, c
 	push af
 	ld a, [$d265]
 	dec a
-	call $3380
+	call SetSeenAndCaughtMon
 
 	pop af
 	and a
 	jr nz, .asm_eab7
-	call $2ead
+	call Function2ead
 
 	jr z, .asm_eab7
-	ld hl, $6df0
-	call $1057
+	ld hl, UnknownText_0xedf0
+	call PrintText
 
 	call ClearSprites
 
@@ -328,7 +531,7 @@ ParkBall: ; e8a2
 .asm_eab7
 	ld a, [BattleType]
 	cp $6
-	jp z, $6bd1
+	jp z, .asm_ebd1
 	cp $b
 	jr nz, .asm_eac8
 	ld hl, $d0ee
@@ -336,8 +539,9 @@ ParkBall: ; e8a2
 
 .asm_eac8
 	ld a, [PartyCount]
-	cp $6
+	cp 6
 	jr z, .asm_eb3c
+
 	xor a
 	ld [MonType], a
 	call ClearSprites
@@ -348,34 +552,35 @@ ParkBall: ; e8a2
 	callba Function4db49
 
 	ld a, [CurItem]
-	cp $a4
+	cp FRIEND_BALL
 	jr nz, .asm_eaf8
+
 	ld a, [PartyCount]
 	dec a
 	ld hl, PartyMon1Happiness
-	ld bc, $0030
+	ld bc, PartyMon2 - PartyMon1
 	call AddNTimes
 
-	ld a, $c8
+	ld a, 200
 	ld [hl], a
 
 .asm_eaf8
-	ld hl, $6df5
-	call $1057
+	ld hl, UnknownText_0xedf5
+	call PrintText
 
 	ld a, [CurPartySpecies]
 	ld [$d265], a
-	call $343b
+	call GetPokemonName
 
-	call $1dcf
+	call YesNoBox
 
-	jp c, $6be2
+	jp c, .asm_ebe2
 
 	ld a, [PartyCount]
 	dec a
 	ld [CurPartyMon], a
 	ld hl, PartyMon1Nickname
-	ld bc, $000b
+	ld bc, PKMN_NAME_LENGTH
 	call AddNTimes
 
 	ld d, h
@@ -383,18 +588,18 @@ ParkBall: ; e8a2
 	push de
 	xor a
 	ld [MonType], a
-	ld b, $0
+	ld b, 0
 	callba Function116c1
 
-	call $04b6
+	call Function4b6
 
-	call $0e51
+	call Functione51
 
 	pop hl
 	ld de, StringBuffer1
 	call InitName
 
-	jp $6be2
+	jp .asm_ebe2
 
 .asm_eb3c
 	call ClearSprites
@@ -415,22 +620,22 @@ ParkBall: ; e8a2
 
 .asm_eb5b
 	ld a, [CurItem]
-	cp $a4
+	cp FRIEND_BALL
 	jr nz, .asm_eb67
-	ld a, $c8
+	ld a, 200
 	ld [$ad41], a
 
 .asm_eb67
 	call CloseSRAM
 
-	ld hl, $6df5
-	call $1057
+	ld hl, UnknownText_0xedf5
+	call PrintText
 
 	ld a, [CurPartySpecies]
 	ld [$d265], a
-	call $343b
+	call GetPokemonName
 
-	call $1dcf
+	call YesNoBox
 
 	jr c, .asm_ebaf
 
@@ -467,44 +672,45 @@ ParkBall: ; e8a2
 
 	call CloseSRAM
 
-	ld hl, $6deb
-	call $1057
+	ld hl, UnknownText_0xedeb
+	call PrintText
 
-	call $04b6
-
-	call $0e51
-
+	call Function4b6
+	call Functione51
 	jr .asm_ebe2
 
+.asm_ebd1
 	callba Functione6ce
-
 	jr .asm_ebe2
 
-	ld hl, $6dc9
-	call $1057
+.asm_ebd9
+	ld hl, UnknownText_0xedc9
 
+.asm_ebdc
+	call PrintText
 	call ClearSprites
 
 .asm_ebe2
 	ld a, [BattleType]
-	cp $3
+	cp BATTLETYPE_TUTORIAL
 	ret z
-	cp $2
+	cp 2
 	ret z
-	cp $6
+	cp 6
 	jr z, .asm_ec05
+
 	ld a, [$c64e]
 	and a
 	jr z, .asm_ebfb
-	call WhiteBGMap
 
+	call WhiteBGMap
 	call ClearTileMap
 
 .asm_ebfb
 	ld hl, NumItems
 	inc a
 	ld [$d10c], a
-	jp $2f53
+	jp TossItem
 
 .asm_ec05
 	ld hl, $dc79
@@ -693,41 +899,42 @@ Function_0xecdd: ; ecdd
 	ld a, [TempEnemyMonSpecies]
 	dec a
 	ld c, a
-	ld b, $0
-	ld hl, $65b1
+	ld b, 0
+	ld hl, EvosAttacksPointers
 	add hl, bc
 	add hl, bc
-	ld a, $10
+	ld a, BANK(EvosAttacksPointers)
 	call GetFarHalfword
-
 	pop bc
-	push bc
-	ld a, $10
-	call GetFarByte
 
-	cp $2
+	push bc
+	ld a, BANK(EvosAttacks)
+	call GetFarByte
+	cp EVOLVE_ITEM
 	pop bc
 	ret nz
-	inc hl
-	inc hl
-	inc hl
-	push bc
-	ld a, $10
-	call GetFarByte
 
-	cp $a
+	inc hl
+	inc hl
+	inc hl
+
+; It appears that Moon Stone's constant from Pokémon Red is used.
+; No Pokémon evolve with Burn Heal, so
+; Moon Balls always have a catch rate of 1x.
+	push bc
+	ld a, BANK(EvosAttacks)
+	call GetFarByte
+	cp MOON_STONE + 2 ; BURN_HEAL
 	pop bc
 	ret nz
-	sla b
-	jr c, .asm_ed0f
 
 	sla b
-	jr nc, .asm_ed11
-
-.asm_ed0f
+	jr c, .max
+	sla b
+	jr nc, .done
+.max
 	ld b, $ff
-
-.asm_ed11
+.done
 	ret
 ; ed12
 
@@ -795,31 +1002,31 @@ Function_0xed12: ; ed12
 Function_0xed68: ; ed68
 	ld a, [TempEnemyMonSpecies]
 	ld c, a
-	ld hl, $459a
-	ld d, $3
+	ld hl, FleeMons
+	ld d, 3
 
-.asm_ed71
-	ld a, $f
+.loop
+	ld a, BANK(FleeMons)
 	call GetFarByte
 
 	inc hl
-	cp $ff
-	jr z, .asm_ed88
+	cp -1
+	jr z, .next
 	cp c
-	jr nz, .asm_ed88
+	jr nz, .next
 	sla b
-	jr c, .asm_ed85
+	jr c, .max
 
 	sla b
 	ret nc
 
-.asm_ed85
+.max
 	ld b, $ff
 	ret
 
-.asm_ed88
+.next
 	dec d
-	jr nz, .asm_ed71
+	jr nz, .loop
 	ret
 ; ed8c
 
@@ -851,7 +1058,84 @@ Function_0xed8c: ; ed8c
 ; edab
 
 
-INCBIN "baserom.gbc", $edab, $edfa - $edab
+UnknownText_0xedab: ; 0xedab
+	; It dodged the thrown BALL! This #MON can't be caught!
+	text_jump UnknownText_0x1c5a5a
+	db "@"
+; 0xedb0
+
+UnknownText_0xedb0: ; 0xedb0
+	; You missed the #MON!
+	text_jump UnknownText_0x1c5a90
+	db "@"
+; 0xedb5
+
+UnknownText_0xedb5: ; 0xedb5
+	; Oh no! The #MON broke free!
+	text_jump UnknownText_0x1c5aa6
+	db "@"
+; 0xedba
+
+UnknownText_0xedba: ; 0xedba
+	; Aww! It appeared to be caught!
+	text_jump UnknownText_0x1c5ac3
+	db "@"
+; 0xedbf
+
+UnknownText_0xedbf: ; 0xedbf
+	; Aargh! Almost had it!
+	text_jump UnknownText_0x1c5ae3
+	db "@"
+; 0xedc4
+
+UnknownText_0xedc4: ; 0xedc4
+	; Shoot! It was so close too!
+	text_jump UnknownText_0x1c5afa
+	db "@"
+; 0xedc9
+
+UnknownText_0xedc9: ; 0xedc9
+	; Gotcha! @ was caught!@ @
+	text_jump UnknownText_0x1c5b17
+	start_asm
+; 0xedce
+
+Functionedce: ; edce
+	call WaitSFX
+	push bc
+	ld de, MUSIC_NONE
+	call PlayMusic
+	call DelayFrame
+	ld de, MUSIC_CAPTURE
+	call PlayMusic
+	pop bc
+	ld hl, UnknownText_0xede6
+	ret
+; ede6
+
+UnknownText_0xede6: ; 0xede6
+	; @
+	text_jump UnknownText_0x1c5b35
+	db "@"
+; 0xedeb
+
+UnknownText_0xedeb: ; 0xedeb
+	; was sent to BILL's PC.
+	text_jump UnknownText_0x1c5b38
+	db "@"
+; 0xedf0
+
+UnknownText_0xedf0: ; 0xedf0
+	; 's data was newly added to the #DEX.@ @
+	text_jump UnknownText_0x1c5b53
+	db "@"
+; 0xedf5
+
+UnknownText_0xedf5: ; 0xedf5
+	; Give a nickname to @ ?
+	text_jump UnknownText_0x1c5b7f
+	db "@"
+; 0xedfa
 
 ; known jump sources: e8c9 (3:68c9), f7a0 (3:77a0)
 Functionedfa: ; edfa (3:6dfa)
@@ -877,16 +1161,17 @@ WaterStone:
 LeafStone:
 SunStone: ; ee0f
 	ld b, $5
-	call $71f9
+	call Functionf1f9
 
-	jp c, $6e38
+	jp c, .asm_ee38
 
-	ld a, $1
+	ld a, PartyMon1Item - PartyMon1
 	call GetPartyParamLocation
 
 	ld a, [hl]
-	cp $70
+	cp EVERSTONE
 	jr z, .asm_ee35
+
 	ld a, $1
 	ld [$d1e9], a
 	callba Function421d8
@@ -894,11 +1179,13 @@ SunStone: ; ee0f
 	ld a, [$d268]
 	and a
 	jr z, .asm_ee35
-	jp $7795
+
+	jp Functionf795
 
 .asm_ee35
-	call $77f2
+	call WontHaveAnyEffectMessage
 
+.asm_ee38
 	xor a
 	ld [$d0ec], a
 	ret
@@ -911,28 +1198,29 @@ Iron:
 Carbos:
 Calcium: ; ee3d
 	ld b, $1
-	call $71f9
+	call Functionf1f9
 
-	jp c, $6e9f
+	jp c, Functionee9f
 
-	call $6ef5
+	call Functioneef5
 
-	call $6ed9
+	call Functioneed9
 
-	ld a, $b
+	ld a, PartyMon1StatExp - PartyMon1
 	call GetPartyParamLocation
 
 	add hl, bc
 	ld a, [hl]
-	cp $64
-	jr nc, .asm_ee83
-	add $a
+	cp 100
+	jr nc, Functionee83
+
+	add 10
 	ld [hl], a
-	call $6e8c
+	call Functionee8c
 
-	call $6ed9
+	call Functioneed9
 
-	ld hl, $6eab
+	ld hl, Strings_eeab
 	add hl, bc
 	ld a, [hli]
 	ld h, [hl]
@@ -941,41 +1229,122 @@ Calcium: ; ee3d
 	ld bc, $000d
 	call CopyBytes
 
-	call $7780
+	call Functionf780
 
-	ld hl, $6ea6
-	call $1057
+	ld hl, UnknownText_0xeea6
+	call PrintText
 
 	ld c, $2
 	callba ChangeHappiness
 
-	jp $7795
+	jp Functionf795
 
-.asm_ee83
-	ld hl, $781f
-	call $1057
 
+Functionee83: ; ee83
+	ld hl, WontHaveAnyEffectText
+	call PrintText
 	jp ClearPalettes
 ; ee8c
 
 
-INCBIN "baserom.gbc", $ee8c, $ef14 - $ee8c
+Functionee8c: ; ee8c
+	ld a, PartyMon1MaxHP - PartyMon1
+	call GetPartyParamLocation
+	ld d, h
+	ld e, l
+	ld a, PartyMon1HPExp - 1 - PartyMon1
+	call GetPartyParamLocation
+	ld b, $1
+	ld a, $c
+	jp Predef
+; ee9f
+
+Functionee9f: ; ee9f
+	xor a
+	ld [$d0ec], a
+	jp ClearPalettes
+; eea6
+
+
+UnknownText_0xeea6: ; 0xeea6
+	; 's @  rose.
+	text_jump UnknownText_0x1c5b9a
+	db "@"
+; 0xeeab
+
+
+Strings_eeab: ; eeab
+	dw .health
+	dw .attack
+	dw .defense
+	dw .speed
+	dw .special
+
+.health  db "HEALTH@"
+.attack  db "ATTACK@"
+.defense db "DEFENSE@"
+.speed   db "SPEED@"
+.special db "SPECIAL@"
+; eed9
+
+
+Functioneed9: ; eed9
+	ld a, [CurItem]
+	ld hl, Table_eeeb
+.next
+	cp [hl]
+	inc hl
+	jr z, .asm_eee6
+	inc hl
+	jr .next
+
+.asm_eee6
+	ld a, [hl]
+	ld c, a
+	ld b, 0
+	ret
+; eeeb
+
+Table_eeeb: ; eeeb
+	db HP_UP,   PartyMon1HPExp   - PartyMon1StatExp
+	db PROTEIN, PartyMon1AtkExp  - PartyMon1StatExp
+	db IRON,    PartyMon1DefExp  - PartyMon1StatExp
+	db CARBOS,  PartyMon1SpdExp  - PartyMon1StatExp
+	db CALCIUM, PartyMon1SpclExp - PartyMon1StatExp
+; eef5
+
+
+Functioneef5: ; eef5
+	ld a, [CurPartySpecies]
+	ld [CurSpecies], a
+	ld [$d265], a
+	ld a, PartyMon1Level - PartyMon1
+	call GetPartyParamLocation
+	ld a, [hl]
+	ld [CurPartyLevel], a
+	call GetBaseData
+	ld a, [CurPartyMon]
+	ld hl, PartyMon1Nickname
+	call GetNick
+	ret
+; 0xef14
 
 
 RareCandy: ; ef14
 	ld b, $1
-	call $71f9
+	call Functionf1f9
 
-	jp c, $6e9f
+	jp c, Functionee9f
 
-	call $6ef5
+	call Functioneef5
 
-	ld a, $1f
+	ld a, PartyMon1Level - PartyMon1
 	call GetPartyParamLocation
 
 	ld a, [hl]
-	cp $64
-	jp nc, $6e83
+	cp 100
+	jp nc, Functionee83
+
 	inc a
 	ld [hl], a
 	ld [CurPartyLevel], a
@@ -993,14 +1362,14 @@ RareCandy: ; ef14
 	ld [hli], a
 	ld a, [$ffb6]
 	ld [hl], a
+
 	ld a, $24
 	call GetPartyParamLocation
-
 	ld a, [hli]
 	ld b, a
 	ld c, [hl]
 	push bc
-	call $6e8c
+	call Functionee8c
 
 	ld a, $25
 	call GetPartyParamLocation
@@ -1022,7 +1391,7 @@ RareCandy: ; ef14
 	callba Function2709e
 
 	ld a, $f8
-	call $724a
+	call Functionf24a
 
 	xor a
 	ld [MonType], a
@@ -1030,16 +1399,16 @@ RareCandy: ; ef14
 	call Predef
 
 	ld hl, $c4a9
-	ld b, $a
-	ld c, $9
-	call $0fe8
+	ld b, 10
+	ld c, 9
+	call TextBox
 
 	ld hl, $c4bf
 	ld bc, $0004
 	ld a, $28
 	call Predef
 
-	call $0a80
+	call Functiona80
 
 	xor a
 	ld [MonType], a
@@ -1052,29 +1421,29 @@ RareCandy: ; ef14
 	ld [$d1e9], a
 	callba Function421d8
 
-	jp $7795
+	jp Functionf795
 ; efad
 
 
 HealPowder: ; efad
 	ld b, $1
-	call $71f9
+	call Functionf1f9
 
-	jp c, $729e
+	jp c, Functionf29e
 
-	call $6fda
+	call Functionefda
 
 	cp $0
 	jr nz, .asm_efc9
 	ld c, $f
 	callba ChangeHappiness
 
-	call $77d6
+	call LooksBitterMessage
 
 	ld a, $0
 
 .asm_efc9
-	jp $709e
+	jp Functionf09e
 ; efcc
 
 
@@ -1091,13 +1460,12 @@ IceBerry:
 MintBerry:
 Miracleberry: ; efcc
 	ld b, $1
-	call $71f9
+	call Functionf1f9
+	jp c, Functionf29e
 
-	jp c, $729e
-
-	call $6fda
-
-	jp $709e
+Functionefd4: ; efd4
+	call Functionefda
+	jp Functionf09e
 ; efda
 
 
@@ -1182,30 +1550,48 @@ Functionf030: ; f030 (3:7030)
 Functionf058: ; f058 (3:7058)
 	push hl
 	ld a, [CurItem] ; $d106
-	ld hl, $7071
-	ld bc, $3
-.asm_f062
+	ld hl, Table_f071
+	ld bc, 3
+.next
 	cp [hl]
 	jr z, .asm_f068
 	add hl, bc
-	jr .asm_f062
+	jr .next
+
 .asm_f068
 	inc hl
 	ld b, [hl]
 	inc hl
 	ld a, [hl]
 	ld c, a
-	cp $ff
+	cp %11111111
 	pop hl
 	ret
 ; f071 (3:7071)
 
-INCBIN "baserom.gbc",$f071,$f09e - $f071
+Table_f071: ; f071
+; item, party menu action text, status
+	db ANTIDOTE,     $f0, 1 << PSN
+	db BURN_HEAL,    $f1, 1 << BRN
+	db ICE_HEAL,     $f2, 1 << FRZ
+	db AWAKENING,    $f3, SLP
+	db PARLYZ_HEAL,  $f4, 1 << PAR
+	db FULL_HEAL,    $f6, %11111111
+	db FULL_RESTORE, $f6, %11111111
+	db HEAL_POWDER,  $f6, %11111111
+	db PSNCUREBERRY, $f0, 1 << PSN
+	db PRZCUREBERRY, $f4, 1 << PAR
+	db BURNT_BERRY,  $f2, 1 << FRZ
+	db ICE_BERRY,    $f1, 1 << BRN
+	db MINT_BERRY,   $f3, SLP
+	db MIRACLEBERRY, $f6, %11111111
+	db -1, 0, 0
+; f09e
 
 ; known jump sources: efc9 (3:6fc9), efd7 (3:6fd7), f0c5 (3:70c5), f0d3 (3:70d3), f141 (3:7141), f183 (3:7183), f189 (3:7189), f1a6 (3:71a6)
 Functionf09e: ; f09e (3:709e)
-	ld hl, $70a3
-	rst $28
+	ld hl, Jumptable_f0a3
+	rst JumpTable
 	ret
 
 ; no known jump sources
@@ -1217,84 +1603,142 @@ Jumptable_f0a3: ; f0a3 (3:70a3)
 
 RevivalHerb: ; f0a9
 	ld b, $1
-	call $71f9
+	call Functionf1f9
+	jp c, Functionf29e
 
-	jp c, $729e
-
-	call $70d6
-
-	cp $0
+	call Functionf0d6
+	cp 0
 	jr nz, .asm_f0c5
+
 	ld c, $11
 	callba ChangeHappiness
-
-	call $77d6
-
-	ld a, $0
+	call LooksBitterMessage
+	ld a, 0
 
 .asm_f0c5
-	jp $709e
+	jp Functionf09e
 ; f0c8
 
 
 Revive:
 MaxRevive: ; f0c8
 	ld b, $1
-	call $71f9
+	call Functionf1f9
+	jp c, Functionf29e
 
-	jp c, $729e
-
-	call $70d6
-
-	jp $709e
+	call Functionf0d6
+	jp Functionf09e
 ; f0d6
 
 
-INCBIN "baserom.gbc", $f0d6, $f128 - $f0d6
+Functionf0d6: ; f0d6
+	call Functionf30d
+	ld a, 1
+	ret nz
+	ld a, [IsInBattle]
+	and a
+	jr z, .asm_f104
+
+	ld a, [CurPartyMon]
+	ld c, a
+	ld d, 0
+	ld hl, $c6fc
+	ld b, CHECK_FLAG
+	ld a, PREDEF_FLAG
+	call Predef
+	ld a, c
+	and a
+	jr z, .asm_f104
+
+	ld a, [CurPartyMon]
+	ld c, a
+	ld hl, $c664
+	ld b, SET_FLAG
+	ld a, PREDEF_FLAG
+	call Predef
+
+.asm_f104
+	xor a
+	ld [Danger], a
+	ld a, [CurItem]
+	cp REVIVE
+	jr z, .asm_f114
+
+	call Functionf2c3
+	jr .asm_f117
+
+.asm_f114
+	call Functionf2ba
+
+.asm_f117
+	call Functionf1db
+	ld a, $f7
+	ld [PartyMenuActionText], a
+	call Functionf279
+	call Functionf795
+	ld a, 0
+	ret
+; f128
 
 
 FullRestore: ; f128
-	ld b, $1
-	call $71f9
+	ld b, 1
+	call Functionf1f9
+	jp c, Functionf29e
 
-	jp c, $729e
+	call Functionf30d
+	jp z, Functionf299
 
-	call $730d
-
-	jp z, $7299
-	call $731b
-
+	call Functionf31b
 	jr c, .asm_f13e
 
-	jp $6fd4
+	jp Functionefd4
 
 .asm_f13e
-	call $7144
-
-	jp $709e
+	call Functionf144
+	jp Functionf09e
 ; f144
 
 
-INCBIN "baserom.gbc", $f144, $f16a - $f144
+Functionf144: ; f144
+	xor a
+	ld [Danger], a
+	call Functionf2c3
+	ld a, PartyMon1Status - PartyMon1
+	call GetPartyParamLocation
+	xor a
+	ld [hli], a
+	ld [hl], a
+	call Functionf030
+	call Functionf01e
+	call Functionf1db
+	ld a, $f5
+	ld [PartyMenuActionText], a
+	call Functionf279
+	call Functionf795
+	ld a, 0
+	ret
+; f16a
 
 
 BitterBerry: ; f16a
 	ld hl, PlayerSubStatus3
-	bit 7, [hl]
-	ld a, $1
-	jr z, .asm_f183
-	res 7, [hl]
+	bit SUBSTATUS_CONFUSED, [hl]
+	ld a, 1
+	jr z, .done
+
+	res SUBSTATUS_CONFUSED, [hl]
 	xor a
 	ld [hBattleTurn], a
-	call $7789
+	call Functionf789
 
-	ld hl, $4d81
+	ld hl, ConfusedNoMoreText
 	call StdBattleTextBox
 
-	ld a, $0
+	ld a, 0
 
-.asm_f183
-	jp $709e
+.done
+	jp Functionf09e
 ; f186
 
 
@@ -1310,50 +1754,51 @@ Ragecandybar:
 BerryJuice:
 Berry:
 GoldBerry: ; f186
-	call $71a9
-	jp $709e
+	call Functionf1a9
+	jp Functionf09e
 ; f18c
 
 
 Energypowder: ; f18c
 	ld c, $f
-	jr Function_0xf192
+	jr Functionf192
 ; f190
 
 EnergyRoot: ; f190
 	ld c, $10
 ; f192
 
-Function_0xf192: ; f192
+Functionf192: ; f192
 	push bc
-	call $71a9
-
+	call Functionf1a9
 	pop bc
-	cp $0
+	cp 0
 	jr nz, .asm_f1a6
+
 	callba ChangeHappiness
-
-	call $77d6
-
-	ld a, $0
+	call LooksBitterMessage
+	ld a, 0
 
 .asm_f1a6
-	jp $709e
+	jp Functionf09e
 ; f1a9
 
 
 ; known jump sources: f186 (3:7186), f193 (3:7193)
 Functionf1a9: ; f1a9 (3:71a9)
-	ld b, $1
+	ld b, 1
 	call Functionf1f9
-	ld a, $2
+	ld a, 2
 	ret c
+
 	call Functionf30d
-	ld a, $1
+	ld a, 1
 	ret z
+
 	call Functionf31b
-	ld a, $1
+	ld a, 1
 	ret nc
+
 	xor a
 	ld [Danger], a ; $c2a6
 	call Functionf395
@@ -1364,13 +1809,13 @@ Functionf1a9: ; f1a9 (3:71a9)
 	ld [PartyMenuActionText], a ; $d141
 	call Functionf279
 	call Functionf795
-	ld a, $0
+	ld a, 0
 	ret
 
 ; known jump sources: f117 (3:7117), f159 (3:7159), f1ca (3:71ca), f3f7 (3:73f7), f408 (3:7408)
 Functionf1db: ; f1db (3:71db)
 	push de
-	ld de, $4
+	ld de, SFX_POTION
 	call WaitPlaySFX
 	pop de
 	ld a, [CurPartyMon] ; $d109
@@ -1386,12 +1831,15 @@ Functionf1db: ; f1db (3:71db)
 Functionf1f9: ; f1f9 (3:71f9)
 	call Functionf20b
 	ret c
+
 	ld a, [CurPartySpecies] ; $d108
-	cp $fd
+	cp EGG
 	jr nz, .asm_f209
-	call Functionf7e8
+
+	call CantUseOnEggMessage
 	scf
 	ret
+
 .asm_f209
 	and a
 	ret
@@ -1452,8 +1900,8 @@ Functionf279: ; f279 (3:7279)
 	xor a
 	ld [hBGMapMode], a ; $ff00+$d4
 	ld hl, TileMap ; $c4a0 (aliases: SpritesEnd)
-	ld bc, $168
-	ld a, $7f
+	ld bc, TileMapEnd - TileMap
+	ld a, " "
 	call ByteFill
 	ld a, [PartyMenuActionText] ; $d141
 	call Functionf24a
@@ -1465,7 +1913,7 @@ Functionf279: ; f279 (3:7279)
 
 ; known jump sources: f133 (3:7133)
 Functionf299: ; f299 (3:7299)
-	call Functionf7f2
+	call WontHaveAnyEffectMessage
 	jr Functionf2a2
 
 ; known jump sources: efb2 (3:6fb2), efd1 (3:6fd1), f0ae (3:70ae), f0cd (3:70cd), f12d (3:712d)
@@ -1595,7 +2043,21 @@ Functionf328: ; f328 (3:7328)
 	ret
 ; f336 (3:7336)
 
-INCBIN "baserom.gbc",$f336,$f348 - $f336
+Functionf336: ; f336
+	ld a, d
+	ld [$d1ef], a
+	ld a, e
+	ld [$d1ee], a
+	ret
+; f33f
+
+Functionf33f: ; f33f
+	ld a, [$d1ef]
+	ld d, a
+	ld a, [$d1ee]
+	ld e, a
+	ret
+; f348
 
 ; known jump sources: f311 (3:7311)
 Functionf348: ; f348 (3:7348)
@@ -1659,20 +2121,21 @@ Functionf378: ; f378 (3:7378)
 Functionf395: ; f395 (3:7395)
 	push hl
 	ld a, [CurItem] ; $d106
-	ld hl, $73af
+	ld hl, Tablef3af
 	ld d, a
-.asm_f39d
+.next
 	ld a, [hli]
-	cp $ff
+	cp -1
 	jr z, .asm_f3a9
 	cp d
-	jr z, .asm_f3aa
+	jr z, .done
 	inc hl
 	inc hl
-	jr .asm_f39d
+	jr .next
+
 .asm_f3a9
 	scf
-.asm_f3aa
+.done
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
@@ -1680,7 +2143,24 @@ Functionf395: ; f395 (3:7395)
 	ret
 ; f3af (3:73af)
 
-INCBIN "baserom.gbc",$f3af,$f3df - $f3af
+Tablef3af: ; f3af
+	dbw FRESH_WATER,   50
+	dbw SODA_POP,      60
+	dbw LEMONADE,      80
+	dbw HYPER_POTION, 200
+	dbw SUPER_POTION,  50
+	dbw POTION,        20
+	dbw MAX_POTION,   999
+	dbw FULL_RESTORE, 999
+	dbw MOOMOO_MILK,  100
+	dbw BERRY,         10
+	dbw GOLD_BERRY,    30
+	dbw ENERGYPOWDER,  50
+	dbw ENERGY_ROOT,  200
+	dbw RAGECANDYBAR,  20
+	dbw BERRY_JUICE,   20
+	dbw -1,             0
+; f3df
 
 Functionf3df: ; f3df (3:73df)
 	ld a, [$d0d8]
@@ -1738,13 +2218,18 @@ Functionf419: ; f419 (3:7419)
 	ret
 .asm_f440
 	push bc
-	ld hl, $744a
+	ld hl, UnknownText_0xf44a
 	call Function1d67
 	pop bc
 	jr Functionf419
 ; f44a (3:744a)
 
-INCBIN "baserom.gbc",$f44a,$f44f - $f44a
+UnknownText_0xf44a: ; 0xf44a
+	; That can't be used on this #MON.
+	text_jump UnknownText_0x1c5bac
+	db "@"
+; 0xf44f
+
 
 EscapeRope: ; f44f
 	xor a
@@ -1752,46 +2237,49 @@ EscapeRope: ; f44f
 	callba Functioncb95
 
 	ld a, [$d0ec]
-	cp $1
-	call z, $7795
+	cp 1
+	call z, Functionf795
 	ret
 ; f462
 
 
 SuperRepel: ; f462
-	ld b, $c8
+	ld b, 200
 	jr Function_0xf46c
 ; f466
 
 MaxRepel: ; f466
-	ld b, $fa
+	ld b, 250
 	jr Function_0xf46c
 ; f466
 
 Repel: ; f46a
-	ld b, $64
+	ld b, 100
 ; f46c
 
 Function_0xf46c: ; f46c
 	ld a, [$dca1]
 	and a
-	ld hl, $747d
-	jp nz, $1057
+	ld hl, UnknownText_0xf47d
+	jp nz, PrintText
 	ld a, b
 	ld [$dca1], a
-	jp $7789
+	jp Functionf789
 ; f47d
 
-
-INCBIN "baserom.gbc", $f47d, $f482 - $f47d
+UnknownText_0xf47d: ; 0xf47d
+	; The REPEL used earlier is still in effect.
+	text_jump UnknownText_0x1c5bcd
+	db "@"
+; 0xf482
 
 
 XAccuracy: ; f482
 	ld hl, PlayerSubStatus4
 	bit 0, [hl]
-	jp nz, $77ca
+	jp nz, WontHaveAnyEffect_NotUsedMessage
 	set 0, [hl]
-	jp $7789
+	jp Functionf789
 ; f48f
 
 
@@ -1805,7 +2293,7 @@ PokeDoll: ; f48f
 	and $c0
 	or $2
 	ld [$d0ee], a
-	jp $7789
+	jp Functionf789
 
 .asm_f4a6
 	xor a
@@ -1817,18 +2305,18 @@ PokeDoll: ; f48f
 GuardSpec: ; f4ab
 	ld hl, PlayerSubStatus4
 	bit 1, [hl]
-	jp nz, $77ca
+	jp nz, WontHaveAnyEffect_NotUsedMessage
 	set 1, [hl]
-	jp $7789
+	jp Functionf789
 ; f4b8
 
 
 DireHit: ; f4b8
 	ld hl, PlayerSubStatus4
 	bit 2, [hl]
-	jp nz, $77ca
+	jp nz, WontHaveAnyEffect_NotUsedMessage
 	set 2, [hl]
-	jp $7789
+	jp Functionf789
 ; f4c5
 
 
@@ -1836,10 +2324,10 @@ XAttack:
 XDefend:
 XSpeed:
 XSpecial: ; f4c5
-	call $7789
+	call Functionf789
 
 	ld a, [CurItem]
-	ld hl, $7504
+	ld hl, Tablef504
 
 .asm_f4ce
 	cp [hl]
@@ -1856,11 +2344,9 @@ XSpecial: ; f4c5
 	ld [AttackMissed], a
 	ld [$c70d], a
 	callba Function0x361ef
-
 	call WaitSFX
 
 	callba BattleCommand8c
-
 	callba BattleCommand8e
 
 	ld a, [CurBattleMon]
@@ -1870,8 +2356,12 @@ XSpecial: ; f4c5
 	ret
 ; f504
 
-
-INCBIN "baserom.gbc", $f504, $f50c - $f504
+Tablef504: ; f504
+	db X_ATTACK,  0
+	db X_DEFEND,  1
+	db X_SPEED,   2
+	db X_SPECIAL, 3
+; f50c
 
 
 Item38: ; f50c
@@ -1881,7 +2371,7 @@ Item38: ; f50c
 
 .asm_f512
 	xor a
-	ld [DefaultFlypoint], a
+	ld [$d002], a
 	ld b, $f8
 	ld hl, PartyMon1Status
 	call .asm_f554
@@ -1901,12 +2391,12 @@ Item38: ; f50c
 	ld a, [hl]
 	and b
 	ld [hl], a
-	ld a, [DefaultFlypoint]
+	ld a, [$d002]
 	and a
 	ld hl, UnknownText_0xf56c
-	jp z, $1057
+	jp z, PrintText
 	ld hl, UnknownText_0xf576
-	call $1057
+	call PrintText
 
 	ld a, [Danger]
 	and $80
@@ -1914,7 +2404,7 @@ Item38: ; f50c
 
 .asm_f54e
 	ld hl, UnknownText_0xf571
-	jp $1057
+	jp PrintText
 
 
 .asm_f554
@@ -1927,7 +2417,7 @@ Item38: ; f50c
 	and $7
 	jr z, .asm_f564
 	ld a, $1
-	ld [DefaultFlypoint], a
+	ld [$d002], a
 
 .asm_f564
 	pop af
@@ -1941,17 +2431,20 @@ Item38: ; f50c
 
 
 UnknownText_0xf56c: ; 0xf56c
-	text_jump UnknownText_0x1c5bf9, BANK(UnknownText_0x1c5bf9)
+	; Played the # FLUTE. Now, that's a catchy tune!
+	text_jump UnknownText_0x1c5bf9
 	db "@"
 ; 0xf571
 
 UnknownText_0xf571: ; 0xf571
-	text_jump UnknownText_0x1c5c28, BANK(UnknownText_0x1c5c28)
+	; All sleeping #MON woke up.
+	text_jump UnknownText_0x1c5c28
 	db "@"
 ; 0xf576
 
 UnknownText_0xf576: ; 0xf576
-	text_jump UnknownText_0x1c5c44, BANK(UnknownText_0x1c5c44)
+	; played the # FLUTE.@ @
+	text_jump UnknownText_0x1c5c44
 	start_asm
 ; 0xf57b
 
@@ -1968,26 +2461,26 @@ Function_0xf57b: ; f57b
 	pop de
 
 .asm_f58c
-	jp $13e0
+	jp Function13e0
 ; f58f
 
 
 BlueCard: ; f58f
 	ld hl, .bluecardtext
-	jp $2012
+	jp Function2012
 
 .bluecardtext
-	text_jump UnknownText_0x1c5c5e, BANK(UnknownText_0x1c5c5e)
+	text_jump UnknownText_0x1c5c5e
 	db "@"
 ; f59a
 
 
 CoinCase: ; f59a
 	ld hl, .coincasetext
-	jp $2012
+	jp Function2012
 
 .coincasetext
-	text_jump UnknownText_0x1c5c7b, BANK(UnknownText_0x1c5c7b)
+	text_jump UnknownText_0x1c5c7b
 	db "@"
 ; f5a5
 
@@ -2026,28 +2519,28 @@ MaxEther:
 Elixer:
 Mysteryberry: ; f5bf
 	ld a, [CurItem]
-	ld [DefaultFlypoint], a
+	ld [$d002], a
 
 .asm_f5c5
 	ld b, $1
-	call $71f9
-
-	jp c, $76e0
+	call Functionf1f9
+	jp c, Functionf6e0
 
 .asm_f5cd
-	ld a, [DefaultFlypoint]
-	cp $15
-	jp z, $76af
-	cp $41
-	jp z, $76af
-	ld hl, $7725
-	ld a, [DefaultFlypoint]
-	cp $3e
+	ld a, [$d002]
+	cp MAX_ELIXER
+	jp z, Functionf6af
+	cp ELIXER
+	jp z, Functionf6af
+
+	ld hl, UnknownText_0xf725
+	ld a, [$d002]
+	cp PP_UP
 	jr z, .asm_f5e7
-	ld hl, $772a
+	ld hl, UnknownText_0xf72a
 
 .asm_f5e7
-	call $1057
+	call PrintText
 
 	ld a, [CurMoveNum]
 	push af
@@ -2061,24 +2554,25 @@ Mysteryberry: ; f5bf
 	ld a, b
 	ld [CurMoveNum], a
 	jr nz, .asm_f5c5
-	ld hl, PartyMon1Move1
-	ld bc, $0030
-	call $7963
+	ld hl, PartyMon1Moves
+	ld bc, PartyMon2 - PartyMon1
+	call Functionf963
 
 	push hl
 	ld a, [hl]
 	ld [$d265], a
-	call $34f8
-
+	call GetMoveName
 	call CopyName1
 
 	pop hl
-	ld a, [DefaultFlypoint]
-	cp $3e
-	jp nz, $76a7
+	ld a, [$d002]
+	cp PP_UP
+	jp nz, Functionf6a7
+
 	ld a, [hl]
 	cp $a6
 	jr z, .asm_f62f
+
 	ld bc, $0015
 	add hl, bc
 	ld a, [hl]
@@ -2086,9 +2580,8 @@ Mysteryberry: ; f5bf
 	jr c, .asm_f637
 
 .asm_f62f
-	ld hl, $772f
-	call $1057
-
+	ld hl, UnknownText_0xf72f
+	call PrintText
 	jr .asm_f5cd
 
 .asm_f637
@@ -2097,20 +2590,196 @@ Mysteryberry: ; f5bf
 	ld [hl], a
 	ld a, $1
 	ld [$d265], a
-	call $784c
+	call Functionf84c
+	call Functionf780
 
-	call $7780
+	ld hl, UnknownText_0xf734
+	call PrintText
 
-	ld hl, $7734
-	call $1057
-
+Functionf64c: ; f64c
 	call ClearPalettes
-
-	jp $7795
+	jp Functionf795
 ; f652
 
+Functionf652: ; f652
+	ld a, [IsInBattle]
+	and a
+	jr z, .asm_f66c
+	ld a, [CurPartyMon]
+	ld b, a
+	ld a, [CurBattleMon]
+	cp b
+	jr nz, .asm_f66c
+	ld a, [PlayerSubStatus5]
+	bit 3, a
+	jr nz, .asm_f66c
+	call .asm_f677
 
-INCBIN "baserom.gbc", $f652, $f73e - $f652
+.asm_f66c
+	call Functionf780
+	ld hl, UnknownText_0xf739
+	call PrintText
+	jr Functionf64c
+
+.asm_f677
+	ld a, [CurPartyMon]
+	ld hl, PartyMon1Move1
+	ld bc, $0030
+	call AddNTimes
+	ld de, BattleMonMove1
+	ld b, $4
+.asm_f688
+	ld a, [de]
+	and a
+	jr z, .asm_f6a6
+	cp [hl]
+	jr nz, .asm_f6a1
+	push hl
+	push de
+	push bc
+	inc de
+	inc de
+	inc de
+	inc de
+	inc de
+	inc de
+	ld bc, $0015
+	add hl, bc
+	ld a, [hl]
+	ld [de], a
+	pop bc
+	pop de
+	pop hl
+
+.asm_f6a1
+	inc hl
+	inc de
+	dec b
+	jr nz, .asm_f688
+
+.asm_f6a6
+	ret
+; f6a7
+
+Functionf6a7: ; f6a7
+	call Functionf6e8
+	jr nz, Functionf652
+	jp Functionf6dd
+; f6af
+
+Functionf6af: ; f6af
+	xor a
+	ld hl, $cfa9
+	ld [hli], a
+	ld [hl], a
+	ld b, $4
+.asm_f6b7
+	push bc
+	ld hl, PartyMon1Move1
+	ld bc, $0030
+	call Functionf963
+	ld a, [hl]
+	and a
+	jr z, .asm_f6ce
+	call Functionf6e8
+	jr z, .asm_f6ce
+	ld hl, $cfaa
+	inc [hl]
+
+.asm_f6ce
+	ld hl, $cfa9
+	inc [hl]
+	pop bc
+	dec b
+	jr nz, .asm_f6b7
+	ld a, [$cfaa]
+	and a
+	jp nz, Functionf652
+
+Functionf6dd: ; f6dd
+	call WontHaveAnyEffectMessage
+
+Functionf6e0: ; f6e0
+	call ClearPalettes
+	xor a
+	ld [$d0ec], a
+	ret
+; f6e8
+
+Functionf6e8: ; f6e8
+	xor a
+	ld [MonType], a
+	call Functionf8ec
+	ld hl, PartyMon1PP
+	ld bc, $0030
+	call Functionf963
+	ld a, [$d265]
+	ld b, a
+	ld a, [hl]
+	and $3f
+	cp b
+	jr nc, .asm_f723
+
+	ld a, [$d002]
+	cp MAX_ELIXER
+	jr z, .asm_f71d
+	cp MAX_ETHER
+	jr z, .asm_f71d
+
+	ld c, 5
+	cp MYSTERYBERRY
+	jr z, .asm_f715
+	ld c, 10
+
+.asm_f715
+	ld a, [hl]
+	and $3f
+	add c
+	cp b
+	jr nc, .asm_f71d
+	ld b, a
+
+.asm_f71d
+	ld a, [hl]
+	and $c0
+	or b
+	ld [hl], a
+	ret
+
+.asm_f723
+	xor a
+	ret
+; f725
+
+UnknownText_0xf725: ; 0xf725
+	; Raise the PP of which move?
+	text_jump UnknownText_0x1c5c8a
+	db "@"
+; 0xf72a
+
+UnknownText_0xf72a: ; 0xf72a
+	; Restore the PP of which move?
+	text_jump UnknownText_0x1c5ca7
+	db "@"
+; 0xf72f
+
+UnknownText_0xf72f: ; 0xf72f
+	; 's PP is maxed out.
+	text_jump UnknownText_0x1c5cc6
+	db "@"
+; 0xf734
+
+UnknownText_0xf734: ; 0xf734
+	; 's PP increased.
+	text_jump UnknownText_0x1c5cdd
+	db "@"
+; 0xf739
+
+UnknownText_0xf739: ; 0xf739
+	; PP was restored.
+	text_jump UnknownText_0x1c5cf1
+	db "@"
+; 0xf73e
 
 
 Squirtbottle: ; f73e
@@ -2136,7 +2805,7 @@ SacredAsh: ; f753
 	ld a, [$d0ec]
 	cp $1
 	ret nz
-	call $7795
+	call Functionf795
 	ret
 ; f763
 
@@ -2154,16 +2823,15 @@ Function_0xf769: ; f769
 	callba Function26f02
 
 	ld hl, UnknownText_0xf778
-	call $1057
+	call PrintText
 
-	jp $7795
+	jp Functionf795
 ; f778
 
 UnknownText_0xf778: ; 0xf778
-	text_jump UnknownText_0x1c5d03, BANK(UnknownText_0x1c5d03)
+	text_jump UnknownText_0x1c5d03
 	db "@"
 ; 0xf77d
-
 
 
 Brightpowder:
@@ -2256,9 +2924,384 @@ UpGrade:
 ItemB0:
 RainbowWing:
 ItemB3: ; f77d
-	jp $77ed
+	jp IsntTheTimeMessage
 ; f780
 
 
+Functionf780: ; f780
+	push de
+	ld de, SFX_FULL_HEAL
+	call WaitPlaySFX
+	pop de
+	ret
+; f789
 
+Functionf789: ; f789
+	ld hl, UsedItemText
+	call PrintText
+	call Functionf780
+	call Functiona80
+	; fallthrough
+; f795
+
+Functionf795: ; f795
+	ld hl, NumItems
+	ld a, 1
+	ld [$d10c], a
+	jp TossItem
+; f7a0
+
+Functionf7a0: ; f7a0
+	call Functionedfa
+	ld de, ANIM_THROW_POKE_BALL
+	ld a, e
+	ld [FXAnimIDLo], a
+	ld a, d
+	ld [FXAnimIDHi], a
+	xor a
+	ld [$c689], a
+	ld [hBattleTurn], a
+	ld [$cfca], a
+	ld a, $37
+	call Predef
+	ld hl, BlockedTheBallText
+	call PrintText
+	ld hl, DontBeAThiefText
+	call PrintText
+	jr Functionf795
+; f7ca
+
+WontHaveAnyEffect_NotUsedMessage: ; f7ca
+	ld hl, WontHaveAnyEffectText
+	call PrintText
+
+; Item wasn't used.
+	ld a, $2
+	ld [$d0ec], a
+	ret
+; f7d6
+
+LooksBitterMessage: ; f7d6
+	ld hl, LooksBitterText
+	jp PrintText
+; f7dc
+
+Ball_BoxIsFullMessage: ; f7dc
+	ld hl, Ball_BoxIsFullText
+	call PrintText
+
+; Item wasn't used.
+	ld a, $2
+	ld [$d0ec], a
+	ret
+; f7e8
+
+CantUseOnEggMessage: ; f7e8
+	ld hl, CantUseOnEggText
+	jr CantUseItemMessage
+
+IsntTheTimeMessage: ; f7ed
+	ld hl, IsntTheTimeText
+	jr CantUseItemMessage
+
+WontHaveAnyEffectMessage: ; f7f2
+	ld hl, WontHaveAnyEffectText
+	jr CantUseItemMessage
+
+BelongsToSomeoneElseMessage: ; f7f7
+	ld hl, BelongsToSomeoneElseText
+	jr CantUseItemMessage
+
+CyclingIsntAllowedMessage: ; f7fc
+	ld hl, CyclingIsntAllowedText
+	jr CantUseItemMessage
+
+CantGetOnYourBikeMessage: ; f801
+	ld hl, CantGetOnYourBikeText
+
+CantUseItemMessage: ; f804
+; Item couldn't be used.
+	xor a
+	ld [$d0ec], a
+	jp PrintText
+; f80b
+
+LooksBitterText: ; 0xf80b
+	; It looks bitter…
+	text_jump UnknownText_0x1c5d3e
+	db "@"
+; 0xf810
+
+CantUseOnEggText: ; 0xf810
+	; That can't be used on an EGG.
+	text_jump UnknownText_0x1c5d50
+	db "@"
+; 0xf815
+
+IsntTheTimeText: ; 0xf815
+	; OAK:  ! This isn't the time to use that!
+	text_jump UnknownText_0x1c5d6e
+	db "@"
+; 0xf81a
+
+BelongsToSomeoneElseText: ; 0xf81a
+	; That belongs to someone else!
+	text_jump UnknownText_0x1c5d97
+	db "@"
+; 0xf81f
+
+WontHaveAnyEffectText: ; 0xf81f
+	; It won't have any effect.
+	text_jump UnknownText_0x1c5db6
+	db "@"
+; 0xf824
+
+BlockedTheBallText: ; 0xf824
+	; The trainer blocked the BALL!
+	text_jump UnknownText_0x1c5dd0
+	db "@"
+; 0xf829
+
+DontBeAThiefText: ; 0xf829
+	; Don't be a thief!
+	text_jump UnknownText_0x1c5def
+	db "@"
+; 0xf82e
+
+CyclingIsntAllowedText: ; 0xf82e
+	; Cycling isn't allowed here.
+	text_jump UnknownText_0x1c5e01
+	db "@"
+; 0xf833
+
+CantGetOnYourBikeText: ; 0xf833
+	; Can't get on your @  now.
+	text_jump UnknownText_0x1c5e1d
+	db "@"
+; 0xf838
+
+Ball_BoxIsFullText: ; 0xf838
+	; The #MON BOX is full. That can't be used now.
+	text_jump UnknownText_0x1c5e3a
+	db "@"
+; 0xf83d
+
+UsedItemText: ; 0xf83d
+	; used the@ .
+	text_jump UnknownText_0x1c5e68
+	db "@"
+; 0xf842
+
+GotOnTheItemText: ; 0xf842
+	; got on the@ .
+	text_jump UnknownText_0x1c5e7b
+	db "@"
+; 0xf847
+
+GotOffTheItemText: ; 0xf847
+	; got off@ the @ .
+	text_jump UnknownText_0x1c5e90
+	db "@"
+; 0xf84c
+
+
+Functionf84c: ; f84c
+	ld a, $2
+	call GetPartyParamLocation
+	push hl
+	ld de, MagikarpLength
+	ld a, $5
+	call Predef
+	pop hl
+	ld bc, $0015
+	add hl, bc
+	ld de, MagikarpLength
+	ld b, $0
+.asm_f864
+	inc b
+	ld a, b
+	cp $5
+	ret z
+	ld a, [$d265]
+	dec a
+	jr nz, .asm_f876
+	ld a, [$cfa9]
+	inc a
+	cp b
+	jr nz, .asm_f87d
+
+.asm_f876
+	ld a, [hl]
+	and $c0
+	ld a, [de]
+	call nz, Functionf881
+
+.asm_f87d
+	inc hl
+	inc de
+	jr .asm_f864
+; f881
+
+
+
+Functionf881: ; f881
+	push bc
+	ld a, [de]
+	ld [$ffb6], a
+	xor a
+	ld [hProduct], a
+	ld [hMultiplicand], a
+	ld [$ffb5], a
+	ld a, $5
+	ld [hMultiplier], a
+	ld b, $4
+	call Divide
+	ld a, [hl]
+	ld b, a
+	swap a
+	and $f
+	srl a
+	srl a
+	ld c, a
+	and a
+	jr z, .asm_f8b6
+.asm_f8a3
+	ld a, [$ffb6]
+	cp $8
+	jr c, .asm_f8ab
+	ld a, $7
+
+.asm_f8ab
+	add b
+	ld b, a
+	ld a, [$d265]
+	dec a
+	jr z, .asm_f8b6
+	dec c
+	jr nz, .asm_f8a3
+
+.asm_f8b6
+	ld [hl], b
+	pop bc
+	ret
+; f8b9
+
+Functionf8b9: ; f8b9
+	ld a, $17
+	call GetPartyParamLocation
+	push hl
+	ld a, $2
+	call GetPartyParamLocation
+	pop de
+	xor a
+	ld [$cfa9], a
+	ld [MonType], a
+	ld c, $4
+.asm_f8ce
+	ld a, [hli]
+	and a
+	ret z
+	push hl
+	push de
+	push bc
+	call Functionf8ec
+	pop bc
+	pop de
+	ld a, [de]
+	and $c0
+	ld b, a
+	ld a, [$d265]
+	add b
+	ld [de], a
+	inc de
+	ld hl, $cfa9
+	inc [hl]
+	pop hl
+	dec c
+	jr nz, .asm_f8ce
+	ret
+; f8ec
+
+
+Functionf8ec: ; f8ec
+	ld a, [StringBuffer1]
+	push af
+	ld a, [$d074]
+	push af
+	ld a, [MonType]
+	and a
+	ld hl, PartyMon1Moves
+	ld bc, PartyMon2 - PartyMon1
+	jr z, .asm_f91a
+	ld hl, OTPartyMon1Moves
+	dec a
+	jr z, .asm_f91a
+	ld hl, TempMonMoves
+	dec a
+	jr z, .asm_f915
+	ld hl, TempMonMoves
+	dec a
+	jr z, .asm_f915
+	ld hl, BattleMonMoves
+
+.asm_f915
+	call Functionf969
+	jr .asm_f91d
+
+.asm_f91a
+	call Functionf963
+
+.asm_f91d
+	ld a, [hl]
+	dec a
+	push hl
+	ld hl, $5b00
+	ld bc, $0007
+	call AddNTimes
+	ld a, $10
+	call GetFarByte
+	ld b, a
+	ld de, StringBuffer1
+	ld [de], a
+	pop hl
+	push bc
+	ld bc, $0015
+	ld a, [MonType]
+	cp WILDMON
+	jr nz, .asm_f942
+	ld bc, $0006
+
+.asm_f942
+	add hl, bc
+	ld a, [hl]
+	and $c0
+	pop bc
+	or b
+	ld hl, $d074
+	ld [hl], a
+	xor a
+	ld [$d265], a
+	ld a, b
+	call Functionf881
+	ld a, [hl]
+	and $3f
+	ld [$d265], a
+	pop af
+	ld [$d074], a
+	pop af
+	ld [StringBuffer1], a
+	ret
+; f963
+
+Functionf963: ; f963
+	ld a, [CurPartyMon]
+	call AddNTimes
+
+Functionf969: ; f969
+	ld a, [$cfa9]
+	ld c, a
+	ld b, $0
+	add hl, bc
+	ret
+; f971
 

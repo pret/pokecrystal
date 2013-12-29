@@ -1,14 +1,11 @@
-# global label defs are generated
+# generated
 globals.asm
+*.tx
+*.o
 
 # precompiled python
 *.pyc
-
-# precompiled jython
 *$py.class
-
-# compiled object file
-*.o
 
 # no binaries
 *.exe
@@ -17,33 +14,24 @@ globals.asm
 *.gbc
 *.gb
 
+# for any of the poor souls with save game files in their working directory
+*.sgm
+*.sav
+*.rtc
+
 # rgbds extras
 *.map
 *.sym
 
-# generated
-*.tx
-
-# swap files for vim
-.*.swp
-
-# swap files for gedit
-*~
-
-# no data from extras/
-extras/*.json
-
-# for any of the poor souls with save game files in their working directory
-baserom.sgm
-baserom.sav
-baserom.rtc
-pokecrystal.sgm
-pokecrystal.sav
-pokecrystal.rtc
+# compare.sh
+baserom.txt
+pokecrystal.txt
 
 # for vim configuration
 # url: http://www.vim.org/scripts/script.php?script_id=441
 .lvimrc
+# swap files for vim
+.*.swp
+# swap files for gedit
+*~
 
-# some users are dumping png.py into extras/
-extras/png.py

@@ -204,7 +204,7 @@ Function663: ; 663
 	ld [$d089], a
 	jr Function677
 
-Function677
+Function677: ; 677
 	callba Function140ed
 	ret
 ; 67e

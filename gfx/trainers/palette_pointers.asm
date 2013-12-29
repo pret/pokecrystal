@@ -1,67 +1,67 @@
-FalknerPalette:      INCBIN "gfx/trainers/000.pal", 2, 4
-WhitneyPalette:      INCBIN "gfx/trainers/001.pal", 2, 4
-BugsyPalette:        INCBIN "gfx/trainers/002.pal", 2, 4
-MortyPalette:        INCBIN "gfx/trainers/003.pal", 2, 4
-PrycePalette:        INCBIN "gfx/trainers/004.pal", 2, 4
-JasminePalette:      INCBIN "gfx/trainers/005.pal", 2, 4
-ChuckPalette:        INCBIN "gfx/trainers/006.pal", 2, 4
-ClairPalette:        INCBIN "gfx/trainers/007.pal", 2, 4
-Rival1Palette:       INCBIN "gfx/trainers/008.pal", 2, 4
-PokemonProfPalette:  INCBIN "gfx/trainers/009.pal", 2, 4
-WillPalette:         INCBIN "gfx/trainers/010.pal", 2, 4
-CalPalette:          INCBIN "gfx/trainers/011.pal", 2, 4
-BrunoPalette:        INCBIN "gfx/trainers/012.pal", 2, 4
-KarenPalette:        INCBIN "gfx/trainers/013.pal", 2, 4
-KogaPalette:         INCBIN "gfx/trainers/014.pal", 2, 4
-ChampionPalette:     INCBIN "gfx/trainers/015.pal", 2, 4
-BrockPalette:        INCBIN "gfx/trainers/016.pal", 2, 4
-MistyPalette:        INCBIN "gfx/trainers/017.pal", 2, 4
-LtSurgePalette:      INCBIN "gfx/trainers/018.pal", 2, 4
-ScientistPalette:    INCBIN "gfx/trainers/019.pal", 2, 4
-ErikaPalette:        INCBIN "gfx/trainers/020.pal", 2, 4
-YoungsterPalette:    INCBIN "gfx/trainers/021.pal", 2, 4
-SchoolboyPalette:    INCBIN "gfx/trainers/022.pal", 2, 4
-BirdKeeperPalette:   INCBIN "gfx/trainers/023.pal", 2, 4
-LassPalette:         INCBIN "gfx/trainers/024.pal", 2, 4
-JaninePalette:       INCBIN "gfx/trainers/025.pal", 2, 4
-CooltrainermPalette: INCBIN "gfx/trainers/026.pal", 2, 4
-CooltrainerfPalette: INCBIN "gfx/trainers/027.pal", 2, 4
-BeautyPalette:       INCBIN "gfx/trainers/028.pal", 2, 4
-PokemaniacPalette:   INCBIN "gfx/trainers/029.pal", 2, 4
-GruntmPalette:       INCBIN "gfx/trainers/030.pal", 2, 4
-GentlemanPalette:    INCBIN "gfx/trainers/031.pal", 2, 4
-SkierPalette:        INCBIN "gfx/trainers/032.pal", 2, 4
-TeacherPalette:      INCBIN "gfx/trainers/033.pal", 2, 4
-SabrinaPalette:      INCBIN "gfx/trainers/034.pal", 2, 4
-BugCatcherPalette:   INCBIN "gfx/trainers/035.pal", 2, 4
-FisherPalette:       INCBIN "gfx/trainers/036.pal", 2, 4
-SwimmermPalette:     INCBIN "gfx/trainers/037.pal", 2, 4
-SwimmerfPalette:     INCBIN "gfx/trainers/038.pal", 2, 4
-SailorPalette:       INCBIN "gfx/trainers/039.pal", 2, 4
-SuperNerdPalette:    INCBIN "gfx/trainers/040.pal", 2, 4
-Rival2Palette:       INCBIN "gfx/trainers/041.pal", 2, 4
-GuitaristPalette:    INCBIN "gfx/trainers/042.pal", 2, 4
-HikerPalette:        INCBIN "gfx/trainers/043.pal", 2, 4
-BikerPalette:        INCBIN "gfx/trainers/044.pal", 2, 4
-BlainePalette:       INCBIN "gfx/trainers/045.pal", 2, 4
-BurglarPalette:      INCBIN "gfx/trainers/046.pal", 2, 4
-FirebreatherPalette: INCBIN "gfx/trainers/047.pal", 2, 4
-JugglerPalette:      INCBIN "gfx/trainers/048.pal", 2, 4
-BlackbeltTPalette:   INCBIN "gfx/trainers/049.pal", 2, 4
-ExecutivemPalette:   INCBIN "gfx/trainers/050.pal", 2, 4
-PsychicTPalette:     INCBIN "gfx/trainers/051.pal", 2, 4
-PicnickerPalette:    INCBIN "gfx/trainers/052.pal", 2, 4
-CamperPalette:       INCBIN "gfx/trainers/053.pal", 2, 4
-ExecutivefPalette:   INCBIN "gfx/trainers/054.pal", 2, 4
-SagePalette:         INCBIN "gfx/trainers/055.pal", 2, 4
-MediumPalette:       INCBIN "gfx/trainers/056.pal", 2, 4
-BoarderPalette:      INCBIN "gfx/trainers/057.pal", 2, 4
-PokefanmPalette:     INCBIN "gfx/trainers/058.pal", 2, 4
-KimonoGirlPalette:   INCBIN "gfx/trainers/059.pal", 2, 4
-TwinsPalette:        INCBIN "gfx/trainers/060.pal", 2, 4
-PokefanfPalette:     INCBIN "gfx/trainers/061.pal", 2, 4
-RedPalette:          INCBIN "gfx/trainers/062.pal", 2, 4
-BluePalette:         INCBIN "gfx/trainers/063.pal", 2, 4
-OfficerPalette:      INCBIN "gfx/trainers/064.pal", 2, 4
-GruntfPalette:       INCBIN "gfx/trainers/065.pal", 2, 4
-MysticalmanPalette:  INCBIN "gfx/trainers/066.pal", 2, 4
+FalknerPalette:      INCLUDE "gfx/trainers/000.pal"
+WhitneyPalette:      INCLUDE "gfx/trainers/001.pal"
+BugsyPalette:        INCLUDE "gfx/trainers/002.pal"
+MortyPalette:        INCLUDE "gfx/trainers/003.pal"
+PrycePalette:        INCLUDE "gfx/trainers/004.pal"
+JasminePalette:      INCLUDE "gfx/trainers/005.pal"
+ChuckPalette:        INCLUDE "gfx/trainers/006.pal"
+ClairPalette:        INCLUDE "gfx/trainers/007.pal"
+Rival1Palette:       INCLUDE "gfx/trainers/008.pal"
+PokemonProfPalette:  INCLUDE "gfx/trainers/009.pal"
+WillPalette:         INCLUDE "gfx/trainers/010.pal"
+CalPalette:          INCLUDE "gfx/trainers/011.pal"
+BrunoPalette:        INCLUDE "gfx/trainers/012.pal"
+KarenPalette:        INCLUDE "gfx/trainers/013.pal"
+KogaPalette:         INCLUDE "gfx/trainers/014.pal"
+ChampionPalette:     INCLUDE "gfx/trainers/015.pal"
+BrockPalette:        INCLUDE "gfx/trainers/016.pal"
+MistyPalette:        INCLUDE "gfx/trainers/017.pal"
+LtSurgePalette:      INCLUDE "gfx/trainers/018.pal"
+ScientistPalette:    INCLUDE "gfx/trainers/019.pal"
+ErikaPalette:        INCLUDE "gfx/trainers/020.pal"
+YoungsterPalette:    INCLUDE "gfx/trainers/021.pal"
+SchoolboyPalette:    INCLUDE "gfx/trainers/022.pal"
+BirdKeeperPalette:   INCLUDE "gfx/trainers/023.pal"
+LassPalette:         INCLUDE "gfx/trainers/024.pal"
+JaninePalette:       INCLUDE "gfx/trainers/025.pal"
+CooltrainermPalette: INCLUDE "gfx/trainers/026.pal"
+CooltrainerfPalette: INCLUDE "gfx/trainers/027.pal"
+BeautyPalette:       INCLUDE "gfx/trainers/028.pal"
+PokemaniacPalette:   INCLUDE "gfx/trainers/029.pal"
+GruntmPalette:       INCLUDE "gfx/trainers/030.pal"
+GentlemanPalette:    INCLUDE "gfx/trainers/031.pal"
+SkierPalette:        INCLUDE "gfx/trainers/032.pal"
+TeacherPalette:      INCLUDE "gfx/trainers/033.pal"
+SabrinaPalette:      INCLUDE "gfx/trainers/034.pal"
+BugCatcherPalette:   INCLUDE "gfx/trainers/035.pal"
+FisherPalette:       INCLUDE "gfx/trainers/036.pal"
+SwimmermPalette:     INCLUDE "gfx/trainers/037.pal"
+SwimmerfPalette:     INCLUDE "gfx/trainers/038.pal"
+SailorPalette:       INCLUDE "gfx/trainers/039.pal"
+SuperNerdPalette:    INCLUDE "gfx/trainers/040.pal"
+Rival2Palette:       INCLUDE "gfx/trainers/041.pal"
+GuitaristPalette:    INCLUDE "gfx/trainers/042.pal"
+HikerPalette:        INCLUDE "gfx/trainers/043.pal"
+BikerPalette:        INCLUDE "gfx/trainers/044.pal"
+BlainePalette:       INCLUDE "gfx/trainers/045.pal"
+BurglarPalette:      INCLUDE "gfx/trainers/046.pal"
+FirebreatherPalette: INCLUDE "gfx/trainers/047.pal"
+JugglerPalette:      INCLUDE "gfx/trainers/048.pal"
+BlackbeltTPalette:   INCLUDE "gfx/trainers/049.pal"
+ExecutivemPalette:   INCLUDE "gfx/trainers/050.pal"
+PsychicTPalette:     INCLUDE "gfx/trainers/051.pal"
+PicnickerPalette:    INCLUDE "gfx/trainers/052.pal"
+CamperPalette:       INCLUDE "gfx/trainers/053.pal"
+ExecutivefPalette:   INCLUDE "gfx/trainers/054.pal"
+SagePalette:         INCLUDE "gfx/trainers/055.pal"
+MediumPalette:       INCLUDE "gfx/trainers/056.pal"
+BoarderPalette:      INCLUDE "gfx/trainers/057.pal"
+PokefanmPalette:     INCLUDE "gfx/trainers/058.pal"
+KimonoGirlPalette:   INCLUDE "gfx/trainers/059.pal"
+TwinsPalette:        INCLUDE "gfx/trainers/060.pal"
+PokefanfPalette:     INCLUDE "gfx/trainers/061.pal"
+RedPalette:          INCLUDE "gfx/trainers/062.pal"
+BluePalette:         INCLUDE "gfx/trainers/063.pal"
+OfficerPalette:      INCLUDE "gfx/trainers/064.pal"
+GruntfPalette:       INCLUDE "gfx/trainers/065.pal"
+MysticalmanPalette:  INCLUDE "gfx/trainers/066.pal"

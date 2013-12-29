@@ -14,27 +14,27 @@ Music_LookOfficer_Ch1: ; ed836
 	dutycycle $3
 	notetype $c, $a7
 	octave 4
-	note C#, 0
-	note D_, 0
-	note D#, 0
-	note E_, 0
-	note F_, 11
+	note C#, 1
+	note D_, 1
+	note D#, 1
+	note E_, 1
+	note F_, 12
 	intensity $2f
 	octave 3
-	note B_, 15
+	note B_, 16
 
 Music_LookOfficer_branch_ed852: ; ed852
 	intensity $82
-	note __, 3
-	note B_, 5
-	note G#, 3
-	note B_, 5
-	note B_, 5
-	note G#, 3
-	note B_, 1
+	note __, 4
+	note B_, 6
+	note G#, 4
+	note B_, 6
+	note B_, 6
+	note G#, 4
+	note B_, 2
 	intensity $2f
-	note A#, 15
-	note A_, 15
+	note A#, 16
+	note A_, 16
 	loopchannel 0, Music_LookOfficer_branch_ed852
 
 Music_LookOfficer_Ch2: ; ed863
@@ -42,38 +42,38 @@ Music_LookOfficer_Ch2: ; ed863
 	dutycycle $3
 	notetype $c, $b7
 	octave 5
-	note D#, 0
-	note D_, 0
-	note C#, 0
-	note C_, 0
+	note D#, 1
+	note D_, 1
+	note C#, 1
+	note C_, 1
 	octave 4
-	note B_, 11
+	note B_, 12
 	dutycycle $3
 	intensity $a2
 	octave 1
-	note B_, 3
+	note B_, 4
 	octave 2
-	note A_, 1
+	note A_, 2
 	octave 1
-	note B_, 3
+	note B_, 4
 	octave 2
-	note F_, 1
+	note F_, 2
 	octave 1
-	note B_, 1
+	note B_, 2
 	octave 2
-	note D#, 1
+	note D#, 2
 
 Music_LookOfficer_branch_ed882: ; ed882
-	note E_, 1
-	note G#, 1
+	note E_, 2
+	note G#, 2
 	octave 3
-	note E_, 1
+	note E_, 2
 	octave 2
-	note E_, 1
-	note G#, 1
-	note B_, 1
-	note E_, 1
-	note G#, 1
+	note E_, 2
+	note G#, 2
+	note B_, 2
+	note E_, 2
+	note G#, 2
 	loopchannel 2, Music_LookOfficer_branch_ed882
 	forceoctave $1
 	callchannel Music_LookOfficer_branch_ed89e
@@ -84,61 +84,61 @@ Music_LookOfficer_branch_ed882: ; ed882
 
 Music_LookOfficer_branch_ed89e: ; ed89e
 	octave 1
-	note A_, 1
+	note A_, 2
 	octave 2
-	note C#, 1
-	note A_, 1
+	note C#, 2
+	note A_, 2
 	octave 1
-	note A_, 1
+	note A_, 2
 	octave 2
-	note C#, 1
-	note E_, 1
+	note C#, 2
+	note E_, 2
 	octave 1
-	note A_, 1
+	note A_, 2
 	octave 2
-	note C#, 1
+	note C#, 2
 	endchannel
 
 Music_LookOfficer_Ch3: ; ed8ad
 	vibrato $14, $14
 	stereopanning $f0
 	notetype $c, $14
-	note __, 9
+	note __, 10
 	octave 3
-	note B_, 1
-	note __, 1
-	note B_, 1
+	note B_, 2
+	note __, 2
+	note B_, 2
 	intensity $12
 	octave 5
-	note D#, 1
-	note __, 0
-	note F_, 1
-	note __, 0
-	note A_, 1
-	note B_, 1
-	note __, 0
+	note D#, 2
+	note __, 1
+	note F_, 2
+	note __, 1
+	note A_, 2
+	note B_, 2
+	note __, 1
 	octave 6
-	note C#, 1
-	note __, 0
-	note D#, 1
+	note C#, 2
+	note __, 1
+	note D#, 2
 
 Music_LookOfficer_branch_ed8c8: ; ed8c8
-	note E_, 5
-	note D#, 5
-	note C#, 3
+	note E_, 6
+	note D#, 6
+	note C#, 4
 	octave 5
-	note B_, 1
-	note A_, 1
-	note G#, 1
-	note F#, 1
-	note G#, 1
-	note A_, 1
-	note B_, 1
+	note B_, 2
+	note A_, 2
+	note G#, 2
+	note F#, 2
+	note G#, 2
+	note A_, 2
+	note B_, 2
 	octave 6
-	note C#, 1
-	note F_, 7
-	note D_, 7
-	note E_, 7
-	note C#, 7
+	note C#, 2
+	note F_, 8
+	note D_, 8
+	note E_, 8
+	note C#, 8
 	loopchannel 0, Music_LookOfficer_branch_ed8c8
 ; ed8dd

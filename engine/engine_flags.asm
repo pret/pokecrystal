@@ -69,33 +69,33 @@
 	dwb UnlockedUnowns, %10000000 ; 8
 	
 	; fly
-	dwb FlypointPerms, %00000001 ; your house
-	dwb FlypointPerms, %00000010 ; viridian pokecenter
-	dwb FlypointPerms, %00000100 ; pallet
-	dwb FlypointPerms, %00001000 ; viridian
-	dwb FlypointPerms, %00010000 ; pewter
-	dwb FlypointPerms, %00100000 ; cerulean ; $38
-	dwb FlypointPerms, %01000000 ; rock tunnel
-	dwb FlypointPerms, %10000000 ; vermilion
-	dwb FlypointPerms + 1, %00000001 ; lavender
-	dwb FlypointPerms + 1, %00000010 ; saffron
-	dwb FlypointPerms + 1, %00000100 ; celadon
-	dwb FlypointPerms + 1, %00001000 ; fuchsia
-	dwb FlypointPerms + 1, %00010000 ; cinnabar
-	dwb FlypointPerms + 1, %00100000 ; indigo plateau ; $40
-	dwb FlypointPerms + 1, %01000000 ; new bark
-	dwb FlypointPerms + 1, %10000000 ; cherrygrove
-	dwb FlypointPerms + 2, %00000001 ; violet
-	dwb FlypointPerms + 2, %00000100 ; azalea
-	dwb FlypointPerms + 2, %00001000 ; cianwood
-	dwb FlypointPerms + 2, %00010000 ; goldenrod
-	dwb FlypointPerms + 2, %00100000 ; olivine
-	dwb FlypointPerms + 2, %01000000 ; ecruteak  ; $48
-	dwb FlypointPerms + 2, %10000000 ; mahogany
-	dwb FlypointPerms + 3, %00000001 ; lake of rage
-	dwb FlypointPerms + 3, %00000010 ; blackthorn
-	dwb FlypointPerms + 3, %00000100 ; silver cave
-	dwb FlypointPerms + 3, %00010000 ; unused
+	dwb VisitedSpawns, %00000001 ; your house
+	dwb VisitedSpawns, %00000010 ; viridian pokecenter
+	dwb VisitedSpawns, %00000100 ; pallet
+	dwb VisitedSpawns, %00001000 ; viridian
+	dwb VisitedSpawns, %00010000 ; pewter
+	dwb VisitedSpawns, %00100000 ; cerulean ; $38
+	dwb VisitedSpawns, %01000000 ; rock tunnel
+	dwb VisitedSpawns, %10000000 ; vermilion
+	dwb VisitedSpawns + 1, %00000001 ; lavender
+	dwb VisitedSpawns + 1, %00000010 ; saffron
+	dwb VisitedSpawns + 1, %00000100 ; celadon
+	dwb VisitedSpawns + 1, %00001000 ; fuchsia
+	dwb VisitedSpawns + 1, %00010000 ; cinnabar
+	dwb VisitedSpawns + 1, %00100000 ; indigo plateau ; $40
+	dwb VisitedSpawns + 1, %01000000 ; new bark
+	dwb VisitedSpawns + 1, %10000000 ; cherrygrove
+	dwb VisitedSpawns + 2, %00000001 ; violet
+	dwb VisitedSpawns + 2, %00000100 ; azalea
+	dwb VisitedSpawns + 2, %00001000 ; cianwood
+	dwb VisitedSpawns + 2, %00010000 ; goldenrod
+	dwb VisitedSpawns + 2, %00100000 ; olivine
+	dwb VisitedSpawns + 2, %01000000 ; ecruteak  ; $48
+	dwb VisitedSpawns + 2, %10000000 ; mahogany
+	dwb VisitedSpawns + 3, %00000001 ; lake of rage
+	dwb VisitedSpawns + 3, %00000010 ; blackthorn
+	dwb VisitedSpawns + 3, %00000100 ; silver cave
+	dwb VisitedSpawns + 3, %00010000 ; unused
 	
 	dwb $dc9d, %00000001 ; lucky number show
 	dwb $d84d, %00001000

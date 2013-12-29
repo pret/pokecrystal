@@ -377,7 +377,7 @@ SpritesEnd:
 TileMap: ; c4a0
 ; 20x18 grid of 8x8 tiles
 	ds 360
-
+TileMapEnd:
 
 SECTION "BattleMons",WRAM0[$c608]
 
@@ -1561,7 +1561,12 @@ OTPartyMon5Nickname: ; d416
 OTPartyMon6Nickname: ; d421
 	ds 11
 
-SECTION "Scripting",WRAMX[$d434],BANK[1]
+SECTION "Map Events", WRAMX[$d432], BANK[1]
+MapStatus: ; d432
+	ds 1
+MapEventStatus: ; d433
+	ds 1
+
 ScriptFlags: ; d434
 	ds 1
 ScriptFlags2: ; d435
@@ -1636,18 +1641,17 @@ CurDay: ; d4cb
 
 	ds 10
 
-	ds 2
 
+ObjectStructs:
+
+PlayerStruct: ; d4d6
+	ds 2
 PlayerSprite: ; d4d8
 	ds 1
-
 	ds 3
-
 PlayerPalette: ; d4dc
 	ds 1
-
 	ds 1
-
 PlayerDirection: ; d4de
 ; uses bits 2 and 3 / $0c / %00001100
 ; %00 down
@@ -1655,23 +1659,20 @@ PlayerDirection: ; d4de
 ; %10 left
 ; $11 right
 	ds 1
-
 	ds 2
-
 PlayerAction: ; d4e1
 ; 1 standing
 ; 2 walking
 ; 4 spinning
 ; 6 fishing
 	ds 1
-
-	ds 2
-
+	ds 1
+PlayerFacing: ; d4e3
+	ds 1
 StandingTile: ; d4e4
 	ds 1
 StandingTile2: ; d4e5
 	ds 1
-
 ; relative to the map struct including borders
 MapX: ; d4e6
 	ds 1
@@ -1681,15 +1682,39 @@ MapX2: ; d4e8
 	ds 1
 MapY2: ; d4e9
 	ds 1
-
 	ds 3
-
 ; relative to the bg map, in px
 PlayerSpriteX: ; d4ed
 	ds 1
 PlayerSpriteY: ; d4ee
 	ds 1
+	ds 15
 
+ObjectStruct1: ; d4fe
+	ds 40
+ObjectStruct2: ; d526
+	ds 40
+ObjectStruct3: ; d54e
+	ds 40
+ObjectStruct4: ; d576
+	ds 40
+ObjectStruct5: ; d59e
+	ds 40
+ObjectStruct6: ; d5c6
+	ds 40
+ObjectStruct7: ; d5ee
+	ds 40
+ObjectStruct8: ; d616
+	ds 40
+ObjectStruct9: ; d63e
+	ds 40
+ObjectStruct10: ; d666
+	ds 40
+ObjectStruct11: ; d68e
+	ds 40
+ObjectStruct12: ; d6b6
+	ds 40
+; d6de
 
 SECTION "Objects",WRAMX[$d71e],BANK[1]
 MapObjects: ; d71e
@@ -1854,8 +1879,8 @@ StepCount: ; dc73
 PoisonStepCount: ; dc74
 	ds 1
 
-SECTION "FlypointPermissions", WRAMX[$dca5],BANK[1]
-FlypointPerms: ; dca5
+SECTION "Visited Spawn Points", WRAMX[$dca5],BANK[1]
+VisitedSpawns: ; dca5
 	ds 4
 
 SECTION "BackupMapInfo", WRAMX[$dcad],BANK[1]
@@ -1911,6 +1936,7 @@ PartyMon1ID: ; dce5
 PartyMon1Exp: ; dce7
 	ds 3
 
+PartyMon1StatExp:
 PartyMon1HPExp: ; dcea
 	ds 2
 PartyMon1AtkExp: ; dcec
@@ -2120,6 +2146,43 @@ OBPals: ; d0c0
 LYOverrides: ; d100
 	ds 144
 LYOverridesEnd:
+
+	ds 112
+
+LYOverridesBackup: ; d200
+	ds 144
+LYOverridesBackupEnd:
+
+
+SECTION "Battle Animations", WRAMX[$d30a], BANK[5]
+
+ActiveAnimObjects: ; d30a
+	ds 4 * 40
+
+	ds 80
+
+ActiveBGEffects: ; d3fa
+	ds 4 * 5
+
+	ds 1
+
+BattleAnimFlags: ; d40f
+	ds 1
+BattleAnimAddress: ; d410
+	ds 2
+BattleAnimDuration: ; d412
+	ds 1
+BattleAnimParent: ; d413
+	ds 2
+BattleAnimLoops: ; d415
+	ds 1
+BattleAnimVar: ; d416
+	ds 1
+BattleAnimByte: ; d417
+	ds 1
+	ds 1
+BattleAnimTemps: ; d419
+	ds 8
 
 
 SECTION "SRAMBank1",SRAM,BANK[1]

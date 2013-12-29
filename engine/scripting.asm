@@ -455,7 +455,7 @@ Script_keeptextopen: ; 0x96edc
 Script_yesorno: ; 0x96eed
 ; script command 0x4e
 
-	call Function1dcf
+	call YesNoBox
 	ld a, $0
 	jr c, .asm_96ef6 ; 0x96ef2 $2
 	ld a, $1
@@ -573,7 +573,7 @@ Function96f76: ; 96f76
 ; 96f77
 
 GiveItemScript: ; 96f77
-	3callasm BANK(Function96f76), Function96f76
+	3callasm Function96f76
 	2writetext ReceivedItemText
 	iffalse .Full
 	waitbutton
@@ -589,7 +589,7 @@ GiveItemScript: ; 96f77
 ; 96f89
 
 ReceivedItemText: ; 96f89
-	text_jump UnknownText_0x1c4719, BANK(UnknownText_0x1c4719)
+	text_jump UnknownText_0x1c4719
 	db "@"
 ; 96f8e
 
@@ -706,12 +706,12 @@ CurItemName: ; 97051
 
 
 PutItemInPocketText: ; 9705b
-	text_jump UnknownText_0x1c472c, BANK(UnknownText_0x1c472c)
+	text_jump UnknownText_0x1c472c
 	db "@"
 ; 97060
 
 PocketIsFullText: ; 97060
-	text_jump UnknownText_0x1c474b, BANK(UnknownText_0x1c474b)
+	text_jump UnknownText_0x1c474b
 	db "@"
 ; 97065
 
@@ -761,7 +761,7 @@ Script_trade: ; 0x97099
 
 	call GetScriptByte
 	ld e, a
-	callba Functionfcba8
+	callba NPCTrade
 	ret
 ; 0x970a4
 
@@ -792,7 +792,7 @@ Script_askforphonenumber: ; 0x970be
 ; parameters:
 ;     number (SingleByteParam)
 
-	call Function1dcf
+	call YesNoBox
 	jr c, .asm_970d6 ; 0x970c1 $13
 	call GetScriptByte
 	ld c, a

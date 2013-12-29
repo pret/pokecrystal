@@ -1,7 +1,7 @@
 NameRater: ; fb6ed
 	ld hl, UnknownText_0xfb80f
 	call PrintText
-	call Function1dcf
+	call YesNoBox
 	jp c, .asm_fb77e
 	ld hl, UnknownText_0xfb814
 	call PrintText
@@ -15,7 +15,7 @@ NameRater: ; fb6ed
 	jr c, .asm_fb779
 	ld hl, UnknownText_0xfb819
 	call PrintText
-	call Function1dcf
+	call YesNoBox
 	jr c, .asm_fb77e
 	ld hl, UnknownText_0xfb81e
 	call PrintText
@@ -172,13 +172,13 @@ UnknownText_0xfb80f: ; 0xfb80f
 	; Hello, hello! I'm the NAME RATER.
 	; I rate the names of #MON.
 	; Would you like me to rate names?
-	text_jump UnknownText_0x1c0043, BANK(UnknownText_0x1c0043)
+	text_jump UnknownText_0x1c0043
 	db "@"
 ; 0xfb814
 
 UnknownText_0xfb814: ; 0xfb814
 	; Which #MON's nickname should I rate for you?
-	text_jump UnknownText_0x1c00a0, BANK(UnknownText_0x1c00a0)
+	text_jump UnknownText_0x1c00a0
 	db "@"
 ; 0xfb819
 
@@ -186,51 +186,51 @@ UnknownText_0xfb819: ; 0xfb819
 	; Hm… @ … That's a fairly decent name.
 	; But, how about a slightly better nickname?
 	; Want me to give it a better name?
-	text_jump UnknownText_0x1c00cd, BANK(UnknownText_0x1c00cd)
+	text_jump UnknownText_0x1c00cd
 	db "@"
 ; 0xfb81e
 
 UnknownText_0xfb81e: ; 0xfb81e
 	; All right. What name should we give it, then?
-	text_jump UnknownText_0x1c0142, BANK(UnknownText_0x1c0142)
+	text_jump UnknownText_0x1c0142
 	db "@"
 ; 0xfb823
 
 UnknownText_0xfb823: ; 0xfb823
 	; That's a better name than before! Well done!
-	text_jump UnknownText_0x1c0171, BANK(UnknownText_0x1c0171)
+	text_jump UnknownText_0x1c0171
 	db "@"
 ; 0xfb828
 
 UnknownText_0xfb828: ; 0xfb828
 	; OK, then. Come again sometime.
-	text_jump UnknownText_0x1c019e, BANK(UnknownText_0x1c019e)
+	text_jump UnknownText_0x1c019e
 	db "@"
 ; 0xfb82d
 
 UnknownText_0xfb82d: ; 0xfb82d
 	; Hm… @ ? What a great name! It's perfect.
 	; Treat @ with loving care.
-	text_jump UnknownText_0x1c01be, BANK(UnknownText_0x1c01be)
+	text_jump UnknownText_0x1c01be
 	db "@"
 ; 0xfb832
 
 UnknownText_0xfb832: ; 0xfb832
 	; Whoa… That's just an EGG.
-	text_jump UnknownText_0x1c0208, BANK(UnknownText_0x1c0208)
+	text_jump UnknownText_0x1c0208
 	db "@"
 ; 0xfb837
 
 UnknownText_0xfb837: ; 0xfb837
 	; It might look the same as before,
 	; but this new name is much better! Well done!
-	text_jump UnknownText_0x1c0222, BANK(UnknownText_0x1c0222)
+	text_jump UnknownText_0x1c0222
 	db "@"
 ; 0xfb83c
 
 UnknownText_0xfb83c: ; 0xfb83c
 	; All right. This #MON is now named @ .
-	text_jump UnknownText_0x1c0272, BANK(UnknownText_0x1c0272)
+	text_jump UnknownText_0x1c0272
 	db "@"
 ; 0xfb841
 

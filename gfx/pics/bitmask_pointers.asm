@@ -1,3 +1,4 @@
+BitmasksPointers:
 	dw BulbasaurBitmasks
 	dw IvysaurBitmasks
 	dw VenusaurBitmasks

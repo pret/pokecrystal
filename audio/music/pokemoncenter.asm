@@ -17,139 +17,139 @@ Music_PokemonCenter_branch_ed5df: ; ed5df
 	stereopanning $f
 	notetype $c, $83
 	octave 3
-	note F#, 1
-	note F_, 1
-	note F#, 1
+	note F#, 2
+	note F_, 2
+	note F#, 2
 	octave 4
-	note D_, 3
-	note C#, 1
+	note D_, 4
+	note C#, 2
 	octave 3
-	note B_, 1
-	note A_, 1
-	note B_, 1
-	note A_, 1
-	note G_, 1
-	note F#, 1
-	note E_, 1
-	note F#, 1
-	note G_, 1
-	note A_, 1
-	note A_, 1
-	note E_, 1
-	note A_, 1
+	note B_, 2
+	note A_, 2
+	note B_, 2
+	note A_, 2
+	note G_, 2
+	note F#, 2
+	note E_, 2
+	note F#, 2
+	note G_, 2
+	note A_, 2
+	note A_, 2
+	note E_, 2
+	note A_, 2
 	octave 4
-	note C#, 3
+	note C#, 4
 	octave 3
-	note B_, 1
-	note A_, 1
-	note G_, 1
-	note F#, 1
-	note A_, 1
-	note B_, 1
+	note B_, 2
+	note A_, 2
+	note G_, 2
+	note F#, 2
+	note A_, 2
+	note B_, 2
 	octave 4
-	note C#, 1
-	note D_, 1
-	note C#, 1
+	note C#, 2
+	note D_, 2
+	note C#, 2
 	octave 3
-	note B_, 1
-	note A_, 1
-	note F#, 1
-	note F_, 1
-	note F#, 1
+	note B_, 2
+	note A_, 2
+	note F#, 2
+	note F_, 2
+	note F#, 2
 	octave 4
-	note D_, 3
-	note C#, 1
+	note D_, 4
+	note C#, 2
 	octave 3
-	note B_, 1
-	note A_, 1
-	note B_, 1
-	note A_, 1
-	note G_, 1
-	note F#, 1
-	note E_, 1
-	note F#, 1
-	note G_, 1
-	note A_, 1
-	note A_, 1
-	note E_, 1
-	note A_, 1
+	note B_, 2
+	note A_, 2
+	note B_, 2
+	note A_, 2
+	note G_, 2
+	note F#, 2
+	note E_, 2
+	note F#, 2
+	note G_, 2
+	note A_, 2
+	note A_, 2
+	note E_, 2
+	note A_, 2
 	octave 4
-	note C#, 3
+	note C#, 4
 	octave 3
-	note B_, 1
-	note A_, 1
-	note G_, 1
+	note B_, 2
+	note A_, 2
+	note G_, 2
 	notetype $c, $b4
-	note F#, 1
-	note E_, 1
-	note D_, 1
-	note E_, 1
-	note F#, 1
-	note G_, 1
-	note A_, 1
-	note B_, 1
+	note F#, 2
+	note E_, 2
+	note D_, 2
+	note E_, 2
+	note F#, 2
+	note G_, 2
+	note A_, 2
+	note B_, 2
 	stereopanning $f0
-	note F#, 1
-	note E_, 1
-	note D_, 3
-	note E_, 1
-	note F#, 1
-	note G_, 1
-	note A_, 1
-	note B_, 1
-	note A_, 1
-	note G_, 3
-	note E_, 1
-	note F#, 1
-	note G_, 1
-	note A_, 1
-	note G_, 1
-	note F#, 1
-	note E_, 3
-	note C#, 1
-	note D_, 1
-	note E_, 1
-	note G_, 1
-	note F#, 1
-	note G_, 1
-	note A_, 1
-	note B_, 1
-	note A_, 7
+	note F#, 2
+	note E_, 2
+	note D_, 4
+	note E_, 2
+	note F#, 2
+	note G_, 2
+	note A_, 2
+	note B_, 2
+	note A_, 2
+	note G_, 4
+	note E_, 2
+	note F#, 2
+	note G_, 2
+	note A_, 2
+	note G_, 2
+	note F#, 2
+	note E_, 4
+	note C#, 2
+	note D_, 2
+	note E_, 2
+	note G_, 2
+	note F#, 2
+	note G_, 2
+	note A_, 2
+	note B_, 2
+	note A_, 8
 	octave 4
-	note D_, 1
-	note C#, 1
+	note D_, 2
+	note C#, 2
 	octave 3
-	note B_, 3
-	note A_, 1
-	note B_, 1
+	note B_, 4
+	note A_, 2
+	note B_, 2
 	octave 4
-	note C#, 1
-	note D_, 1
-	note E_, 1
-	note D_, 1
-	note C#, 3
+	note C#, 2
+	note D_, 2
+	note E_, 2
+	note D_, 2
+	note C#, 4
 	octave 3
-	note B_, 1
+	note B_, 2
 	octave 4
-	note C#, 1
-	note D_, 1
-	note E_, 1
-	note C#, 1
+	note C#, 2
+	note D_, 2
+	note E_, 2
+	note C#, 2
 	octave 3
-	note B_, 1
-	note A_, 3
-	note G_, 1
-	note A_, 1
-	note B_, 1
-	note G_, 1
-	note A_, 1
-	note G_, 1
-	note F#, 1
-	note E_, 1
-	note D_, 1
-	note E_, 1
-	note F#, 1
-	note G_, 1
+	note B_, 2
+	note A_, 4
+	note G_, 2
+	note A_, 2
+	note B_, 2
+	note G_, 2
+	note A_, 2
+	note G_, 2
+	note F#, 2
+	note E_, 2
+	note D_, 2
+	note E_, 2
+	note F#, 2
+	note G_, 2
 	loopchannel 0, Music_PokemonCenter_branch_ed5df
 
 Music_PokemonCenter_Ch2: ; ed671
@@ -161,64 +161,64 @@ Music_PokemonCenter_branch_ed674: ; ed674
 	stereopanning $f
 	notetype $c, $a5
 	octave 3
-	note A_, 3
-	note E_, 3
+	note A_, 4
+	note E_, 4
 	stereopanning $ff
 	callchannel Music_PokemonCenter_branch_ed6e4
-	note D_, 1
-	note F#, 5
+	note D_, 2
+	note F#, 6
 	stereopanning $f
 	notetype $c, $a5
 	octave 3
-	note A_, 3
-	note E_, 3
+	note A_, 4
+	note E_, 4
 	stereopanning $ff
 	callchannel Music_PokemonCenter_branch_ed6d1
 	stereopanning $f
 	notetype $c, $a5
 	octave 3
-	note A_, 3
-	note E_, 3
+	note A_, 4
+	note E_, 4
 	stereopanning $ff
 	callchannel Music_PokemonCenter_branch_ed6e4
-	note D_, 7
+	note D_, 8
 	stereopanning $f
 	notetype $c, $a5
 	octave 3
-	note D_, 3
-	note E_, 3
+	note D_, 4
+	note E_, 4
 	notetype $c, $c6
 	octave 4
-	note F#, 7
-	note A_, 7
-	note G_, 1
-	note A_, 1
-	note G_, 1
-	note F#, 1
-	note E_, 7
-	note C#, 7
-	note E_, 7
-	note F#, 1
-	note G_, 1
-	note F#, 1
-	note E_, 1
-	note D_, 7
-	note F#, 7
-	note A_, 7
-	note G_, 1
-	note F#, 1
-	note G_, 1
-	note A_, 1
-	note B_, 7
-	note A_, 3
-	note G_, 1
-	note F#, 1
-	note G_, 7
-	note F#, 1
-	note G_, 1
-	note F#, 1
-	note E_, 1
-	note D_, 7
+	note F#, 8
+	note A_, 8
+	note G_, 2
+	note A_, 2
+	note G_, 2
+	note F#, 2
+	note E_, 8
+	note C#, 8
+	note E_, 8
+	note F#, 2
+	note G_, 2
+	note F#, 2
+	note E_, 2
+	note D_, 8
+	note F#, 8
+	note A_, 8
+	note G_, 2
+	note F#, 2
+	note G_, 2
+	note A_, 2
+	note B_, 8
+	note A_, 4
+	note G_, 2
+	note F#, 2
+	note G_, 8
+	note F#, 2
+	note G_, 2
+	note F#, 2
+	note E_, 2
+	note D_, 8
 	loopchannel 0, Music_PokemonCenter_branch_ed674
 ; ed6d1
 
@@ -226,32 +226,32 @@ Music_PokemonCenter_branch_ed6d1: ; ed6d1
 	dutycycle $2
 	notetype $c, $c2
 	octave 4
-	note D_, 1
+	note D_, 2
 	octave 3
-	note A_, 1
+	note A_, 2
 	octave 4
-	note D_, 1
+	note D_, 2
 	intensity $c3
-	note A_, 3
-	note G_, 3
-	note F#, 1
-	note E_, 1
-	note C#, 5
+	note A_, 4
+	note G_, 4
+	note F#, 2
+	note E_, 2
+	note C#, 6
 	endchannel
 ; ed6e4
 
 Music_PokemonCenter_branch_ed6e4: ; ed6e4
 	notetype $c, $c2
 	octave 4
-	note C#, 1
+	note C#, 2
 	octave 3
-	note A_, 1
+	note A_, 2
 	octave 4
-	note C#, 1
+	note C#, 2
 	intensity $c3
-	note F#, 3
-	note E_, 3
-	note C#, 1
+	note F#, 4
+	note E_, 4
+	note C#, 2
 	endchannel
 
 Music_PokemonCenter_Ch3: ; ed6f3
@@ -260,145 +260,145 @@ Music_PokemonCenter_Ch3: ; ed6f3
 Music_PokemonCenter_branch_ed6f6: ; ed6f6
 	stereopanning $f0
 	octave 3
-	note D_, 0
-	note __, 4
-	note F#, 0
-	note __, 2
-	note F#, 0
-	note __, 0
-	note G_, 0
-	note __, 0
-	note F#, 0
-	note __, 0
+	note D_, 1
+	note __, 5
+	note F#, 1
+	note __, 3
+	note F#, 1
+	note __, 1
+	note G_, 1
+	note __, 1
+	note F#, 1
+	note __, 1
 	callchannel Music_PokemonCenter_branch_ed76f
 	callchannel Music_PokemonCenter_branch_ed778
-	note F#, 0
-	note __, 4
-	note A_, 0
-	note __, 2
-	note A_, 0
-	note __, 0
-	note G_, 0
-	note __, 0
-	note A_, 0
-	note __, 0
-	note D_, 0
-	note __, 4
-	note F#, 0
-	note __, 2
-	note F#, 0
-	note __, 0
-	note G_, 0
-	note __, 0
-	note F#, 0
-	note __, 0
+	note F#, 1
+	note __, 5
+	note A_, 1
+	note __, 3
+	note A_, 1
+	note __, 1
+	note G_, 1
+	note __, 1
+	note A_, 1
+	note __, 1
+	note D_, 1
+	note __, 5
+	note F#, 1
+	note __, 3
+	note F#, 1
+	note __, 1
+	note G_, 1
+	note __, 1
+	note F#, 1
+	note __, 1
 	callchannel Music_PokemonCenter_branch_ed76f
 	callchannel Music_PokemonCenter_branch_ed778
-	note D_, 0
-	note __, 4
-	note F#, 0
-	note __, 2
-	note F#, 0
-	note __, 0
-	note D_, 0
-	note __, 0
-	note G_, 0
-	note __, 0
+	note D_, 1
+	note __, 5
+	note F#, 1
+	note __, 3
+	note F#, 1
+	note __, 1
+	note D_, 1
+	note __, 1
+	note G_, 1
+	note __, 1
 	stereopanning $ff
 	callchannel Music_PokemonCenter_branch_ed783
-	note G_, 0
-	note __, 4
-	note B_, 0
-	note __, 2
-	note B_, 0
-	note __, 0
-	note G_, 0
-	note __, 0
-	note B_, 0
-	note __, 0
-	note E_, 0
-	note __, 4
-	note G_, 0
-	note __, 2
-	note G_, 0
-	note __, 2
-	note G_, 0
-	note __, 0
-	note F#, 0
-	note __, 4
-	note A_, 0
-	note __, 2
-	note A_, 0
-	note __, 0
-	note G#, 0
-	note __, 0
-	note A_, 0
-	note __, 0
+	note G_, 1
+	note __, 5
+	note B_, 1
+	note __, 3
+	note B_, 1
+	note __, 1
+	note G_, 1
+	note __, 1
+	note B_, 1
+	note __, 1
+	note E_, 1
+	note __, 5
+	note G_, 1
+	note __, 3
+	note G_, 1
+	note __, 3
+	note G_, 1
+	note __, 1
+	note F#, 1
+	note __, 5
+	note A_, 1
+	note __, 3
+	note A_, 1
+	note __, 1
+	note G#, 1
+	note __, 1
+	note A_, 1
+	note __, 1
 	callchannel Music_PokemonCenter_branch_ed783
-	note G_, 0
-	note __, 4
-	note B_, 0
-	note __, 2
-	note B_, 0
-	note __, 2
-	note B_, 0
-	note __, 0
-	note E_, 0
-	note __, 4
-	note G_, 0
-	note __, 2
-	note G_, 0
-	note __, 2
-	note G_, 0
-	note __, 0
-	note F#, 0
-	note __, 4
-	note A_, 0
-	note __, 2
-	note A_, 0
-	note __, 0
-	note G_, 0
-	note __, 0
-	note E_, 0
-	note __, 0
+	note G_, 1
+	note __, 5
+	note B_, 1
+	note __, 3
+	note B_, 1
+	note __, 3
+	note B_, 1
+	note __, 1
+	note E_, 1
+	note __, 5
+	note G_, 1
+	note __, 3
+	note G_, 1
+	note __, 3
+	note G_, 1
+	note __, 1
+	note F#, 1
+	note __, 5
+	note A_, 1
+	note __, 3
+	note A_, 1
+	note __, 1
+	note G_, 1
+	note __, 1
+	note E_, 1
+	note __, 1
 	loopchannel 0, Music_PokemonCenter_branch_ed6f6
 ; ed76f
 
 Music_PokemonCenter_branch_ed76f: ; ed76f
-	note E_, 0
-	note __, 4
-	note A_, 0
-	note __, 2
-	note A_, 0
-	note __, 2
-	note A_, 0
-	note __, 0
+	note E_, 1
+	note __, 5
+	note A_, 1
+	note __, 3
+	note A_, 1
+	note __, 3
+	note A_, 1
+	note __, 1
 	endchannel
 ; ed778
 
 Music_PokemonCenter_branch_ed778: ; ed778
-	note E_, 0
-	note __, 4
-	note A_, 0
-	note __, 2
-	note A_, 0
-	note __, 0
-	note G_, 0
-	note __, 0
-	note A_, 0
-	note __, 0
+	note E_, 1
+	note __, 5
+	note A_, 1
+	note __, 3
+	note A_, 1
+	note __, 1
+	note G_, 1
+	note __, 1
+	note A_, 1
+	note __, 1
 	endchannel
 ; ed783
 
 Music_PokemonCenter_branch_ed783: ; ed783
-	note F#, 0
-	note __, 4
-	note A_, 0
-	note __, 2
-	note A_, 0
-	note __, 2
-	note A_, 0
-	note __, 0
+	note F#, 1
+	note __, 5
+	note A_, 1
+	note __, 3
+	note A_, 1
+	note __, 3
+	note A_, 1
+	note __, 1
 	endchannel
 
 Music_PokemonCenter_Ch4: ; ed78c
@@ -407,10 +407,10 @@ Music_PokemonCenter_Ch4: ; ed78c
 	stereopanning $ff
 
 Music_PokemonCenter_branch_ed792: ; ed792
-	note G_, 5
-	note G_, 3
-	note G_, 1
-	note G_, 1
-	note G_, 1
+	note G_, 6
+	note G_, 4
+	note G_, 2
+	note G_, 2
+	note G_, 2
 	loopchannel 0, Music_PokemonCenter_branch_ed792
 ; ed79b

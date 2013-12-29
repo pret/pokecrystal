@@ -1,3 +1,4 @@
+UnownBitmasksPointers:
 	dw UnownABitmasks
 	dw UnownBBitmasks
 	dw UnownCBitmasks

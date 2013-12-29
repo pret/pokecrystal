@@ -15,14 +15,14 @@ Music_AfterTheRivalFight_Ch1: ; f5133
 	stereopanning $f0
 	notetype $c, $b2
 	octave 2
-	note G#, 3
-	note G#, 3
+	note G#, 4
+	note G#, 4
 	intensity $82
 	octave 3
-	note G#, 1
-	note G#, 1
-	note G#, 1
-	note G#, 1
+	note G#, 2
+	note G#, 2
+	note G#, 2
+	note G#, 2
 	loopchannel 0, Music_AfterTheRivalFight_branch_f4fb1
 
 Music_AfterTheRivalFight_Ch2: ; f5153
@@ -31,37 +31,37 @@ Music_AfterTheRivalFight_Ch2: ; f5153
 	stereopanning $f
 	notetype $c, $c2
 	octave 4
-	note G#, 3
-	note G#, 3
+	note G#, 4
+	note G#, 4
 	intensity $a2
-	note G#, 1
-	note G#, 1
-	note G#, 1
-	note G#, 1
+	note G#, 2
+	note G#, 2
+	note G#, 2
+	note G#, 2
 	loopchannel 0, Music_AfterTheRivalFight_branch_f502e
 
 Music_AfterTheRivalFight_Ch3: ; f516a
 	notetype $c, $28
 	octave 3
-	note D#, 1
-	note __, 1
-	note D#, 1
-	note __, 1
-	note G#, 1
-	note F#, 1
-	note F_, 1
-	note D#, 1
+	note D#, 2
+	note __, 2
+	note D#, 2
+	note __, 2
+	note G#, 2
+	note F#, 2
+	note F_, 2
+	note D#, 2
 	loopchannel 0, Music_AfterTheRivalFight_branch_f509d
 
 Music_AfterTheRivalFight_Ch4: ; f517a
 	togglenoise $3
 	stereopanning $f
 	notetype $c
-	note D_, 3
-	note D_, 3
-	note D#, 1
-	note D_, 1
-	note D_, 1
-	note D_, 1
+	note D_, 4
+	note D_, 4
+	note D#, 2
+	note D_, 2
+	note D_, 2
+	note D_, 2
 	loopchannel 0, Music_AfterTheRivalFight_branch_f5118
 ; f518a

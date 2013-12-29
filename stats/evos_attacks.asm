@@ -1,3 +1,5 @@
+EvosAttacks:
+
 BulbasaurEvosAttacks:
 	db EVOLVE_LEVEL,16,IVYSAUR
 	db 0 ; no more evolutions

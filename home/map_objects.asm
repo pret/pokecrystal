@@ -326,7 +326,7 @@ Function18f5: ; 18f5
 Function194d: ; 194d
 	ld [hConnectionStripLength], a
 	call GetMapObject
-	call $40e7
+	call Function80e7
 	ret
 ; 1956
 

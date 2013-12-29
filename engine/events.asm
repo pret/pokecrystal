@@ -1,24 +1,25 @@
 INCLUDE "includes.asm"
 
-SECTION "events", ROMX, BANK[$25]
 
-Function966b0: ; 966b0
+SECTION "Events", ROMX, BANK[EVENTS]
+
+OverworldLoop: ; 966b0
 	xor a
-	ld [$d432], a
-.asm_966b4
-	ld a, [$d432]
-	ld hl, .pointers
+	ld [MapStatus], a
+.loop
+	ld a, [MapStatus]
+	ld hl, .jumps
 	rst JumpTable
-	ld a, [$d432]
+	ld a, [MapStatus]
 	cp 3 ; done
-	jr nz, .asm_966b4
+	jr nz, .loop
 .done
 	ret
 
-.pointers
-	dw Function96724
-	dw Function9673e
-	dw Function96773
+.jumps
+	dw StartMap
+	dw EnterMap
+	dw HandleMap
 	dw .done
 ; 966cb
 
@@ -114,42 +115,45 @@ Function9671e: ; 9671e
 ; 96724
 
 
-Function96724: ; 96724
+StartMap: ; 96724
 	xor a
 	ld [ScriptVar], a
 	xor a
 	ld [ScriptRunning], a
-	ld hl, $d432
+	ld hl, MapStatus
 	ld bc, $3e
 	call ByteFill
 	callba Function113e5
-	call ClearJoypadPublic
+	call ClearJoypad
 	; fallthrough
 ; 9673e
 
 
-Function9673e: ; 9673e
+EnterMap: ; 9673e
 	xor a
 	ld [$d453], a
 	ld [$d454], a
 	call Function968d1
 	callba Function15363
 	call Function966cb
+
 	ld a, [$ff9f]
 	cp $f7
 	jr nz, .asm_9675a
 	call Function966d0
 .asm_9675a
+
 	ld a, [$ff9f]
 	cp $f3
 	jr nz, .asm_96764
 	xor a
 	ld [PoisonStepCount], a
 .asm_96764
+
 	xor a
 	ld [$ff9f], a
-	ld a, $2
-	ld [$d432], a
+	ld a, 2 ; HandleMap
+	ld [MapStatus], a
 	ret
 ; 9676d
 
@@ -161,14 +165,17 @@ Function9676d: ; 9676d
 ; 96773
 
 
-Function96773: ; 96773
+HandleMap: ; 96773
 	call ResetOverworldDelay
 	call Function967c1
 	callba Function97e08
-	call DoEvents
-	ld a, [$d432]
-	cp 2
+	call MapEvents
+
+; Not immediately entering a connected map will cause problems.
+	ld a, [MapStatus]
+	cp 2 ; HandleMap
 	ret nz
+
 	call Function967d1
 	call NextOverworldFrame
 	call Function967e1
@@ -177,25 +184,25 @@ Function96773: ; 96773
 ; 96795
 
 
-DoEvents: ; 96795
-	ld a, [$d433]
-	ld hl, .pointers
+MapEvents: ; 96795
+	ld a, [MapEventStatus]
+	ld hl, .jumps
 	rst JumpTable
 	ret
 
-.pointers
-	dw Function967a1
-	dw Function967ae
+.jumps
+	dw .events
+	dw .no_events
 ; 967a1
 
-Function967a1: ; 967a1
+.events ; 967a1
 	call PlayerEvents
 	call Function966cb
 	callba ScriptEvents
 	ret
 ; 967ae
 
-Function967ae: ; 967ae
+.no_events ; 967ae
 	ret
 ; 967af
 
@@ -219,13 +226,13 @@ NextOverworldFrame: ; 967b7
 	ret
 ; 967c1
 
-
 Function967c1: ; 967c1
-	ld a, [$d433]
-	cp 1
+	ld a, [MapEventStatus]
+	cp 1 ; no events
 	ret z
+
 	call UpdateTime
-	call GetJoypadPublic
+	call GetJoypad
 	call TimeOfDayPals
 	ret
 ; 967d1
@@ -255,13 +262,13 @@ Function967f4: ; 967f4
 	call Function966d0
 
 .asm_96806
-	ld a, $0
-	ld [$d433], a
+	ld a, 0 ; events
+	ld [MapEventStatus], a
 	ret
 
 .asm_9680c
-	ld a, $1
-	ld [$d433], a
+	ld a, 1 ; no events
+	ld [MapEventStatus], a
 	ret
 ; 96812
 
@@ -269,8 +276,8 @@ Function96812: ; 96812
 	ld hl, $d150
 	bit 6, [hl]
 	ret z
-	callba Function81ca
 
+	callba Function81ca
 	ret
 ; 9681f
 
@@ -334,6 +341,7 @@ CheckTrainerBattle3: ; 96867
 	nop
 	call CheckTrainerBattle2
 	jr nc, .asm_96872
+
 	ld a, 1
 	scf
 	ret
@@ -919,12 +927,12 @@ CheckMenuOW: ; 96b30
 
 
 StartMenuScript: ; 96b58
-	3callasm BANK(StartMenu), StartMenu
+	3callasm StartMenu
 	2jump StartMenuCallback
 ; 96b5f
 
 SelectMenuScript: ; 96b5f
-	3callasm BANK(SelectMenu), SelectMenu
+	3callasm SelectMenu
 	2jump SelectMenuCallback
 ; 96b66
 
@@ -1071,7 +1079,7 @@ UnknownScript_0x96c2e: ; 96c2e
 ; 96c2f
 
 UnknownScript_0x96c2f: ; 96c2f
-	3callasm $05, $6f5e
+	3callasm Function16f5e
 	end
 ; 96c34
 
@@ -1106,7 +1114,7 @@ UnknownScript_0x96c4d: ; 96c4d
 
 UnknownScript_0x96c4f: ; 96c4f
 	deactivatefacing $3
-	3callasm BANK(Function96706), Function96706
+	3callasm Function96706
 	end
 ; 96c56
 

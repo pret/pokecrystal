@@ -21,7 +21,7 @@ UnknownScript_0x9f5c0: ; 0x9f5c0
 
 UnknownScript_0x9f5c1: ; 0x9f5c1
 	follow $2, $0
-	3callasm BANK(Function_0x9f5cb), Function_0x9f5cb
+	3callasm Function_0x9f5cb
 	2jump UnknownScript_0x9f5dc
 ; 0x9f5cb
 

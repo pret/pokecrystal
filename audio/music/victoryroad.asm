@@ -21,24 +21,24 @@ Music_VictoryRoad_branch_f6c8d: ; f6c8d
 Music_VictoryRoad_branch_f6c94: ; f6c94
 	intensity $b2
 	octave 2
-	note A_, 0
+	note A_, 1
 	octave 3
-	note C#, 0
-	note D_, 0
-	note __, 0
+	note C#, 1
+	note D_, 1
+	note __, 1
 	octave 2
-	note A_, 0
+	note A_, 1
 	intensity $b7
 	octave 3
-	note C#, 2
+	note C#, 3
 	octave 2
-	note A_, 0
+	note A_, 1
 	octave 3
-	note D_, 2
+	note D_, 3
 	octave 2
-	note A_, 0
+	note A_, 1
 	octave 3
-	note G#, 2
+	note G#, 3
 	loopchannel 2, Music_VictoryRoad_branch_f6c94
 
 Music_VictoryRoad_branch_f6cae: ; f6cae
@@ -50,22 +50,22 @@ Music_VictoryRoad_branch_f6cae: ; f6cae
 Music_VictoryRoad_branch_f6cb9: ; f6cb9
 	intensity $b2
 	octave 2
-	note G_, 0
-	note B_, 0
+	note G_, 1
+	note B_, 1
 	octave 3
-	note C_, 0
-	note __, 0
+	note C_, 1
+	note __, 1
 	octave 2
-	note G_, 0
+	note G_, 1
 	intensity $b7
-	note B_, 2
-	note G_, 0
+	note B_, 3
+	note G_, 1
 	octave 3
-	note C_, 2
+	note C_, 3
 	octave 2
-	note G_, 0
+	note G_, 1
 	octave 3
-	note F#, 2
+	note F#, 3
 	endchannel
 
 Music_VictoryRoad_Ch2: ; f6cce
@@ -75,70 +75,70 @@ Music_VictoryRoad_Ch2: ; f6cce
 Music_VictoryRoad_branch_f6cd3: ; f6cd3
 	notetype $c, $c2
 	callchannel Music_VictoryRoad_branch_f6d1e
-	note __, 1
+	note __, 2
 	callchannel Music_VictoryRoad_branch_f6d1e
-	note __, 0
+	note __, 1
 	octave 4
-	note C_, 0
+	note C_, 1
 	notetype $c, $b0
-	note E_, 7
+	note E_, 8
 	octave 5
-	note C_, 3
+	note C_, 4
 	octave 4
-	note B_, 3
-	note E_, 14
-	note D#, 0
+	note B_, 4
+	note E_, 15
+	note D#, 1
 	notetype $c, $b0
-	note E_, 7
+	note E_, 8
 	octave 5
-	note C_, 3
+	note C_, 4
 	octave 4
-	note B_, 3
+	note B_, 4
 	notetype $c, $b0
 	octave 5
-	note E_, 7
+	note E_, 8
 	notetype $c, $b7
-	note E_, 7
+	note E_, 8
 	notetype $c, $c7
-	note D_, 7
+	note D_, 8
 	stereopanning $f0
-	note C#, 3
+	note C#, 4
 	stereopanning $f
 	octave 4
-	note A_, 3
+	note A_, 4
 	stereopanning $ff
 	octave 5
-	note C_, 7
+	note C_, 8
 	stereopanning $f
 	octave 4
-	note A#, 3
+	note A#, 4
 	stereopanning $f0
-	note F_, 3
+	note F_, 4
 	stereopanning $ff
-	note A_, 11
-	note D_, 0
-	note F#, 0
-	note A_, 0
+	note A_, 12
+	note D_, 1
+	note F#, 1
+	note A_, 1
 	octave 5
-	note C#, 0
-	note D_, 15
+	note C#, 1
+	note D_, 16
 	loopchannel 0, Music_VictoryRoad_branch_f6cd3
 ; f6d1e
 
 Music_VictoryRoad_branch_f6d1e: ; f6d1e
 	octave 3
-	note E_, 0
-	note __, 0
-	note E_, 0
-	note __, 0
-	note F#, 0
-	note F#, 0
+	note E_, 1
 	note __, 1
-	note G#, 0
-	note G#, 0
+	note E_, 1
 	note __, 1
-	note A_, 0
-	note A_, 0
+	note F#, 1
+	note F#, 1
+	note __, 2
+	note G#, 1
+	note G#, 1
+	note __, 2
+	note A_, 1
+	note A_, 1
 	endchannel
 
 Music_VictoryRoad_Ch3: ; f6d2c
@@ -150,17 +150,17 @@ Music_VictoryRoad_branch_f6d31: ; f6d31
 	loopchannel 6, Music_VictoryRoad_branch_f6d31
 
 Music_VictoryRoad_branch_f6d38: ; f6d38
-	note D_, 0
-	note __, 0
-	note B_, 0
-	note __, 0
-	note F_, 0
-	note A_, 2
-	note D_, 0
-	note B_, 0
+	note D_, 1
 	note __, 1
-	note D_, 0
-	note B_, 2
+	note B_, 1
+	note __, 1
+	note F_, 1
+	note A_, 3
+	note D_, 1
+	note B_, 1
+	note __, 2
+	note D_, 1
+	note B_, 3
 	loopchannel 2, Music_VictoryRoad_branch_f6d38
 
 Music_VictoryRoad_branch_f6d47: ; f6d47
@@ -171,17 +171,17 @@ Music_VictoryRoad_branch_f6d47: ; f6d47
 
 Music_VictoryRoad_branch_f6d52: ; f6d52
 	octave 3
-	note C_, 0
-	note __, 0
-	note A_, 0
-	note __, 0
-	note D#, 0
-	note G_, 2
-	note C_, 0
-	note A_, 0
+	note C_, 1
 	note __, 1
-	note C_, 0
-	note A_, 2
+	note A_, 1
+	note __, 1
+	note D#, 1
+	note G_, 3
+	note C_, 1
+	note A_, 1
+	note __, 2
+	note C_, 1
+	note A_, 3
 	endchannel
 
 Music_VictoryRoad_Ch4: ; f6d5f
@@ -189,23 +189,23 @@ Music_VictoryRoad_Ch4: ; f6d5f
 	notetype $c
 
 Music_VictoryRoad_branch_f6d63: ; f6d63
-	note D_, 1
-	note D_, 1
-	note D#, 0
 	note D_, 2
-	note D#, 0
 	note D_, 2
-	note D#, 0
+	note D#, 1
+	note D_, 3
+	note D#, 1
+	note D_, 3
+	note D#, 1
+	note D_, 3
 	note D_, 2
-	note D_, 1
-	note D_, 1
-	note D#, 0
 	note D_, 2
-	note D#, 0
-	note D#, 0
-	note D_, 1
-	note D#, 0
-	note D_, 1
-	note D#, 0
+	note D#, 1
+	note D_, 3
+	note D#, 1
+	note D#, 1
+	note D_, 2
+	note D#, 1
+	note D_, 2
+	note D#, 1
 	loopchannel 0, Music_VictoryRoad_branch_f6d63
 ; f6d79

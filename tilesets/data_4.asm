@@ -50,3 +50,11 @@ Tileset30GFX: ; 0x326b0
 INCBIN "gfx/tilesets/30.lz"
 ; 0x329f0
 
+UnusedTileset30Meta: ; 0x329f0
+INCBIN "tilesets/unused_30_metatiles.bin"
+; 0x331f0
+
+UnusedTileset30Coll: ; 0x331f0
+INCBIN "tilesets/unused_30_collision.bin"
+; 0x333f0
+

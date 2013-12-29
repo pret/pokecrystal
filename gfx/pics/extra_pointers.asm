@@ -1,3 +1,4 @@
+AnimationExtraPointers:
 	dw BulbasaurAnimationExtra
 	dw IvysaurAnimationExtra
 	dw VenusaurAnimationExtra

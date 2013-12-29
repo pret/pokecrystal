@@ -1,5 +1,7 @@
 INCLUDE "pokecrystal.asm"
 INCLUDE "includes.asm"
 
-SECTION "scripting", ROMX, BANK[$25]
+
+SECTION "Event Scripting", ROMX, BANK[EVENTS]
+
 INCLUDE "engine/scripting.asm"

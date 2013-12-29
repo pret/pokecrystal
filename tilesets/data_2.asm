@@ -52,11 +52,11 @@ INCBIN "gfx/tilesets/24.lz"
 
 Tileset24Meta: ; 0x1ee1c
 Tileset30Meta: ; 0x1ee1c
-INCBIN "tilesets/30_metatiles.bin"
+INCBIN "tilesets/24_metatiles.bin"
 ; 0x1f21c
 
 Tileset24Coll: ; 0x1f21c
 Tileset30Coll: ; 0x1f21c
-INCBIN "tilesets/30_collision.bin"
+INCBIN "tilesets/24_collision.bin"
 ; 0x1f31c
 

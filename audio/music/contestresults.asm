@@ -12,43 +12,43 @@ Music_ContestResults_Ch1: ; efb4a
 	notetype $c, $51
 
 Music_ContestResults_branch_efb52: ; efb52
-	note __, 1
+	note __, 2
 	octave 2
-	note G_, 0
-	note __, 2
-	note G_, 0
-	note __, 2
-	note G_, 0
-	note __, 2
-	note G_, 0
-	note __, 0
+	note G_, 1
+	note __, 3
+	note G_, 1
+	note __, 3
+	note G_, 1
+	note __, 3
+	note G_, 1
 	note __, 1
-	note A_, 0
 	note __, 2
-	note A_, 0
-	note __, 2
-	note A_, 0
-	note __, 2
-	note A_, 0
-	note __, 0
+	note A_, 1
+	note __, 3
+	note A_, 1
+	note __, 3
+	note A_, 1
+	note __, 3
+	note A_, 1
 	note __, 1
-	note A_, 0
 	note __, 2
-	note A_, 0
-	note __, 2
-	note A_, 0
-	note __, 2
-	note A_, 0
-	note __, 0
+	note A_, 1
+	note __, 3
+	note A_, 1
+	note __, 3
+	note A_, 1
+	note __, 3
+	note A_, 1
 	note __, 1
-	note B_, 0
 	note __, 2
-	note A#, 0
-	note __, 2
-	note A_, 0
-	note __, 2
-	note G_, 0
-	note __, 0
+	note B_, 1
+	note __, 3
+	note A#, 1
+	note __, 3
+	note A_, 1
+	note __, 3
+	note G_, 1
+	note __, 1
 	loopchannel 0, Music_ContestResults_branch_efb52
 
 Music_ContestResults_Ch2: ; efb7b
@@ -56,78 +56,78 @@ Music_ContestResults_Ch2: ; efb7b
 
 Music_ContestResults_branch_efb7e: ; efb7e
 	octave 2
-	note C_, 1
+	note C_, 2
 	octave 3
-	note E_, 0
-	note __, 0
+	note E_, 1
+	note __, 1
 	octave 1
-	note G_, 1
+	note G_, 2
 	octave 3
-	note E_, 0
-	note __, 0
+	note E_, 1
+	note __, 1
 	octave 1
-	note A_, 1
+	note A_, 2
 	octave 3
-	note E_, 0
-	note __, 0
+	note E_, 1
+	note __, 1
 	octave 1
-	note B_, 1
+	note B_, 2
 	octave 3
-	note E_, 0
-	note __, 0
+	note E_, 1
+	note __, 1
 	octave 2
-	note D_, 1
+	note D_, 2
 	octave 3
-	note F_, 0
-	note __, 0
+	note F_, 1
+	note __, 1
 	octave 1
-	note A_, 1
+	note A_, 2
 	octave 3
-	note F_, 0
-	note __, 0
+	note F_, 1
+	note __, 1
 	octave 1
-	note B_, 1
+	note B_, 2
 	octave 3
-	note F_, 0
-	note __, 0
+	note F_, 1
+	note __, 1
 	octave 2
-	note C#, 1
+	note C#, 2
 	octave 3
-	note F_, 0
-	note __, 0
+	note F_, 1
+	note __, 1
 
 Music_ContestResults_branch_efba6: ; efba6
 	octave 2
-	note D_, 1
+	note D_, 2
 	octave 3
-	note F_, 0
-	note __, 0
+	note F_, 1
+	note __, 1
 	octave 1
-	note A_, 1
+	note A_, 2
 	octave 3
-	note F_, 0
-	note __, 0
+	note F_, 1
+	note __, 1
 	loopchannel 2, Music_ContestResults_branch_efba6
 	octave 2
+	note G_, 2
+	octave 3
 	note G_, 1
-	octave 3
-	note G_, 0
-	note __, 0
+	note __, 1
 	octave 2
+	note D_, 2
+	octave 3
+	note F#, 1
+	note __, 1
+	octave 2
+	note G_, 2
+	octave 3
+	note F_, 1
+	note __, 1
+	octave 2
+	note D_, 2
+	octave 3
 	note D_, 1
-	octave 3
-	note F#, 0
-	note __, 0
-	octave 2
-	note G_, 1
-	octave 3
-	note F_, 0
-	note __, 0
-	octave 2
-	note D_, 1
-	octave 3
-	note D_, 0
-	note __, 0
+	note __, 1
 	loopchannel 0, Music_ContestResults_branch_efb7e
 
 Music_ContestResults_Ch3: ; efbcc
@@ -136,24 +136,24 @@ Music_ContestResults_Ch3: ; efbcc
 
 Music_ContestResults_branch_efbd2: ; efbd2
 	octave 4
-	note E_, 4
-	note __, 0
-	note E_, 0
-	note F_, 0
-	note G_, 3
+	note E_, 5
+	note __, 1
+	note E_, 1
+	note F_, 1
+	note G_, 4
 	octave 5
-	note C_, 3
+	note C_, 4
 	octave 4
-	note B_, 7
-	note A_, 7
-	note D_, 4
-	note __, 0
-	note D_, 0
-	note E_, 0
-	note F_, 3
-	note B_, 3
-	note A_, 7
-	note G_, 7
+	note B_, 8
+	note A_, 8
+	note D_, 5
+	note __, 1
+	note D_, 1
+	note E_, 1
+	note F_, 4
+	note B_, 4
+	note A_, 8
+	note G_, 8
 	loopchannel 0, Music_ContestResults_branch_efbd2
 
 Music_ContestResults_Ch4: ; efbe9
@@ -161,21 +161,21 @@ Music_ContestResults_Ch4: ; efbe9
 	notetype $6
 
 Music_ContestResults_branch_efbed: ; efbed
-	note C#, 3
-	note C#, 3
-	note C#, 1
-	note C#, 1
-	note C#, 1
-	note C#, 1
-	note C#, 3
-	note C#, 3
-	note G_, 0
-	note G_, 0
-	note G_, 0
-	note G_, 0
-	note G_, 0
-	note G_, 0
-	note G_, 0
-	note G_, 0
+	note C#, 4
+	note C#, 4
+	note C#, 2
+	note C#, 2
+	note C#, 2
+	note C#, 2
+	note C#, 4
+	note C#, 4
+	note G_, 1
+	note G_, 1
+	note G_, 1
+	note G_, 1
+	note G_, 1
+	note G_, 1
+	note G_, 1
+	note G_, 1
 	loopchannel 0, Music_ContestResults_branch_efbed
 ; efc01

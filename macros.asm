@@ -36,6 +36,24 @@ callba: MACRO ; bank, address
 	rst FarCall
 	ENDM
 
+
+lb: MACRO ; r, hi, lo
+	ld \1, \2 << 8 + \3
+	ENDM
+
+
+; Constant enumeration
+
+const_def: MACRO
+const_value SET 0
+ENDM
+
+const: MACRO
+\1 EQU const_value
+const_value SET const_value + 1
+ENDM
+
+
 TX_RAM: MACRO
 	db 1
 	dw \1
@@ -53,7 +71,7 @@ RGB: MACRO
 
 
 note: MACRO
-	db \1 << 4 + \2
+	db \1 << 4 + (\2 - 1)
 	ENDM
 
 ; pitch

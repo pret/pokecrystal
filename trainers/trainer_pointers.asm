@@ -1,5 +1,6 @@
 ; Each trainer class has its own group. See trainers.asm.
 
+TrainerGroups: ; 0x39999
 	dw FalknerGroup
 	dw WhitneyGroup
 	dw BugsyGroup

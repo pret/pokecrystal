@@ -1,78 +1,21 @@
 
-; wram constants
-; MonType: ; cf5f
-PARTYMON   EQU 0
-OTPARTYMON EQU 1
-BOXMON     EQU 2
-WILDMON    EQU 4
+; macros require rst vectors to be defined
+FarCall    EQU $08
+Bankswitch EQU $10
+JumpTable  EQU $28
 
-; WalkingDirection: ; d043
-STANDING EQU -1
-DOWN     EQU 0
-UP       EQU 1
-LEFT     EQU 2
-RIGHT    EQU 3
-
-; FacingDirection: ; d044
-FACE_CURRENT EQU 0
-FACE_DOWN  EQU 8
-FACE_UP    EQU 4
-FACE_LEFT  EQU 2
-FACE_RIGHT EQU 1
-
-; TimeOfDay: ; d269
-MORN     EQU 0
-DAY      EQU 1
-NITE     EQU 2
-DARKNESS EQU 3
-
-; ScriptFlags: ; d434
-SCRIPT_RUNNING EQU 2
-
-; ScriptMode: ; d437
-SCRIPT_OFF EQU 0
-SCRIPT_READ EQU 1
-SCRIPT_WAIT_MOVEMENT EQU 2
-SCRIPT_WAIT EQU 3
-
-; CurDay: ; d4cb
-SUNDAY    EQU 0
-MONDAY    EQU 1
-TUESDAY   EQU 2
-WEDNESDAY EQU 3
-THURSDAY  EQU 4
-FRIDAY    EQU 5
-SATURDAY  EQU 6
-
-; MapObjects: ; d71e
-
-PLAYER_OBJECT EQU 0
-
-NUM_OBJECTS   EQU $10
-OBJECT_LENGTH EQU $10
-
-; InputType: ; c2c7
-AUTO_INPUT EQU $ff
-
-; WhichRegisteredItem: ; d95b
-REGISTERED_POCKET EQU %11000000
-REGISTERED_NUMBER EQU %00111111
-
-; PlayerState: ; d95d
-PLAYER_NORMAL    EQU 0
-PLAYER_BIKE      EQU 1
-PLAYER_SLIP      EQU 2
-PLAYER_SURF      EQU 4
-PLAYER_SURF_PIKA EQU 8
-
+INCLUDE "macros.asm"
 
 INCLUDE "gbhw.asm"
 INCLUDE "hram.asm"
+
+INCLUDE "constants/wram_constants.asm"
 
 INCLUDE "constants/pokemon_constants.asm"
 INCLUDE "constants/move_constants.asm"
 INCLUDE "constants/battle_constants.asm"
 INCLUDE "constants/map_constants.asm"
+INCLUDE "constants/landmark_constants.asm"
 INCLUDE "constants/item_constants.asm"
 INCLUDE "constants/trainer_constants.asm"
 INCLUDE "constants/script_constants.asm"
@@ -80,14 +23,9 @@ INCLUDE "constants/event_flags.asm"
 INCLUDE "constants/engine_flags.asm"
 INCLUDE "constants/music_constants.asm"
 INCLUDE "constants/sfx_constants.asm"
+INCLUDE "constants/animation_constants.asm"
+INCLUDE "constants/gfx_constants.asm"
 
-
-; macros require rst vectors to be defined
-FarCall    EQU $08
-Bankswitch EQU $10
-JumpTable  EQU $28
-
-INCLUDE "macros.asm"
 
 
 NONE       EQU 0

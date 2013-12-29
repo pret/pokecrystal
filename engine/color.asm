@@ -471,7 +471,8 @@ INCBIN "baserom.gbc", $95f0, $9610 - $95f0
 Function9610: ; 9610
 	ld de, $d000
 	ld c, $4
-.asm_9615
+
+Function9615: ; 9615
 	push bc
 	ld a, [hli]
 	push hl
@@ -481,7 +482,7 @@ Function9610: ; 9610
 	inc hl
 	pop bc
 	dec c
-	jr nz, .asm_9615
+	jr nz, Function9615
 	ret
 ; 9625
 
@@ -950,7 +951,7 @@ Function992c: ; 992c
 ; 9938
 
 Function9938: ; 9938
-	ld hl, $651e
+	ld hl, SGBBorder
 	ld de, $606e
 	ret
 ; 993f
@@ -1270,19 +1271,19 @@ Functionb1de: ; b1de
 INCBIN "baserom.gbc", $b279, $b319 - $b279
 
 MornPal: ; 0xb319
-INCBIN "tilesets/morn.pal"
+INCLUDE "tilesets/morn.pal"
 ; 0xb359
 
 DayPal: ; 0xb359
-INCBIN "tilesets/day.pal"
+INCLUDE "tilesets/day.pal"
 ; 0xb399
 
 NitePal: ; 0xb399
-INCBIN "tilesets/nite.pal"
+INCLUDE "tilesets/nite.pal"
 ; 0xb3d9
 
 DarkPal: ; 0xb3d9
-INCBIN "tilesets/dark.pal"
+INCLUDE "tilesets/dark.pal"
 ; 0xb419
 
 INCBIN "baserom.gbc", $b419, $b7a9 - $b419

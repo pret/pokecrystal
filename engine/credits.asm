@@ -1,113 +1,352 @@
-SATOSHI_TAJIRI       EQU 00
-JUNICHI_MASUDA       EQU 01
-TETSUYA_WATANABE     EQU 02
-SHIGEKI_MORIMOTO     EQU 03
-SOUSUKE_TAMADA       EQU 04
-TAKENORI_OOTA        EQU 05
-KEN_SUGIMORI         EQU 06
-MOTOFUMI_FUJIWARA    EQU 07
-ATSUKO_NISHIDA       EQU 08
-MUNEO_SAITO          EQU 09
-SATOSHI_OOTA         EQU 10
-RENA_YOSHIKAWA       EQU 11
-JUN_OKUTANI          EQU 12
-HIRONOBU_YOSHIDA     EQU 13
-ASUKA_IWASHITA       EQU 14
-GO_ICHINOSE          EQU 15
-MORIKAZU_AOKI        EQU 16
-KOHJI_NISHINO        EQU 17
-KENJI_MATSUSHIMA     EQU 18
-TOSHINOBU_MATSUMIYA  EQU 19
-SATORU_IWATA         EQU 20
-NOBUHIRO_SEYA        EQU 21
-KAZUHITO_SEKINE      EQU 22
-TETSUJI_OOTA         EQU 23
-NCL_SUPER_MARIO_CLUB EQU 24
-SARUGAKUCHO          EQU 25
-AKITO_MORI           EQU 26
-TAKAHIRO_HARADA      EQU 27
-TOHRU_HASHIMOTO      EQU 28
-NOBORU_MATSUMOTO     EQU 29
-TAKEHIRO_IZUSHI      EQU 30
-TAKASHI_KAWAGUCHI    EQU 31
-TSUNEKAZU_ISHIHARA   EQU 32
-HIROSHI_YAMAUCHI     EQU 33
-KENJI_SAIKI          EQU 34
-ATSUSHI_TADA         EQU 35
-NAOKO_KAWAKAMI       EQU 36
-HIROYUKI_ZINNAI      EQU 37
-KUNIMI_KAWAMURA      EQU 38
-HISASHI_SOGABE       EQU 39
-KEITA_KAGAYA         EQU 40
-YOSHINORI_MATSUDA    EQU 41
-HITOMI_SATO          EQU 42
-TORU_OSAWA           EQU 43
-TAKAO_OHARA          EQU 44
-YUICHIRO_ITO         EQU 45
-TAKAO_SHIMIZU        EQU 46
-PLANNING             EQU 47
-KEITA_NAKAMURA       EQU 48
-HIROTAKA_UEMURA      EQU 49
-HIROAKI_TAMURA       EQU 50
-NORIAKI_SAKAGUCHI    EQU 51
-MIYUKI_SATO          EQU 52
-GAKUZI_NOMOTO        EQU 53
-AI_MASHIMA           EQU 54
-MIKIHIRO_ISHIKAWA    EQU 55
-HIDEYUKI_HASHIMOTO   EQU 56
-SATOSHI_YAMATO       EQU 57
-SHIGERU_MIYAMOTO     EQU 58
-GAIL_TILDEN          EQU 59
-NOB_OGASAWARA        EQU 60
-SETH_MCMAHILL        EQU 61
-HIROTO_ALEXANDER     EQU 62
-TERESA_LILLYGREN     EQU 63
-THOMAS_HERTZOG       EQU 64
-ERIK_JOHNSON         EQU 65
-HIRO_NAKAMURA        EQU 66
-TERUKI_MURAKAWA      EQU 67
-KAZUYOSHI_OSAWA      EQU 68
-KIMIKO_NAKAMICHI     EQU 69
-END                  EQU 70
-CREDITS_UNKNOWN      EQU 71
-STAFF                EQU 72
-DIRECTOR             EQU 73
-CODIRECTOR           EQU 74
-PROGRAMMERS          EQU 75
-GRAPHICS_DIRECTOR    EQU 76
-MONSTER_DESIGN       EQU 77
-GRAPHICS_DESIGN      EQU 78
-MUSIC                EQU 79
-SOUND_EFFECTS        EQU 80
-GAME_DESIGN          EQU 81
-GAME_SCENARIO        EQU 82
-TOOL_PROGRAMMING     EQU 83
-PARAMETRIC_DESIGN    EQU 84
-SCRIPT_DESIGN        EQU 85
-MAP_DATA_DESIGN      EQU 86
-MAP_DESIGN           EQU 87
-PRODUCT_TESTING      EQU 88
-SPECIAL_THANKS       EQU 89
-PRODUCERS            EQU 90
-EXECUTIVE_PRODUCER   EQU 91
-POKEMON_ANIMATION    EQU 92
-POKEDEX_TEXT         EQU 93
-MOBILE_PRJ_LEADER    EQU 94
-MOBILE_SYSTEM_AD     EQU 95
-MOBILE_STADIUM_DIR   EQU 96
-COORDINATION         EQU 97
-COPYRIGHT            EQU 98
-US_VERSION_STAFF     EQU 99
-US_COORDINATION      EQU 100
-TEXT_TRANSLATION     EQU 101
-PAAD_TESTING         EQU 102
 
-CREDITS_THEEND       EQU $f9
-CREDITS_WAIT2        EQU $fa
-CREDITS_MUSIC        EQU $fb
-CREDITS_CLEAR        EQU $fc
-CREDITS_SCENE        EQU $fd
-CREDITS_WAIT         EQU $fe
+	const_def
+	const SATOSHI_TAJIRI
+	const JUNICHI_MASUDA
+	const TETSUYA_WATANABE
+	const SHIGEKI_MORIMOTO
+	const SOUSUKE_TAMADA
+	const TAKENORI_OOTA
+	const KEN_SUGIMORI
+	const MOTOFUMI_FUJIWARA
+	const ATSUKO_NISHIDA
+	const MUNEO_SAITO
+	const SATOSHI_OOTA
+	const RENA_YOSHIKAWA
+	const JUN_OKUTANI
+	const HIRONOBU_YOSHIDA
+	const ASUKA_IWASHITA
+	const GO_ICHINOSE
+	const MORIKAZU_AOKI
+	const KOHJI_NISHINO
+	const KENJI_MATSUSHIMA
+	const TOSHINOBU_MATSUMIYA
+	const SATORU_IWATA
+	const NOBUHIRO_SEYA
+	const KAZUHITO_SEKINE
+	const TETSUJI_OOTA
+	const NCL_SUPER_MARIO_CLUB
+	const SARUGAKUCHO
+	const AKITO_MORI
+	const TAKAHIRO_HARADA
+	const TOHRU_HASHIMOTO
+	const NOBORU_MATSUMOTO
+	const TAKEHIRO_IZUSHI
+	const TAKASHI_KAWAGUCHI
+	const TSUNEKAZU_ISHIHARA
+	const HIROSHI_YAMAUCHI
+	const KENJI_SAIKI
+	const ATSUSHI_TADA
+	const NAOKO_KAWAKAMI
+	const HIROYUKI_ZINNAI
+	const KUNIMI_KAWAMURA
+	const HISASHI_SOGABE
+	const KEITA_KAGAYA
+	const YOSHINORI_MATSUDA
+	const HITOMI_SATO
+	const TORU_OSAWA
+	const TAKAO_OHARA
+	const YUICHIRO_ITO
+	const TAKAO_SHIMIZU
+	const PLANNING
+	const KEITA_NAKAMURA
+	const HIROTAKA_UEMURA
+	const HIROAKI_TAMURA
+	const NORIAKI_SAKAGUCHI
+	const MIYUKI_SATO
+	const GAKUZI_NOMOTO
+	const AI_MASHIMA
+	const MIKIHIRO_ISHIKAWA
+	const HIDEYUKI_HASHIMOTO
+	const SATOSHI_YAMATO
+	const SHIGERU_MIYAMOTO
+	const GAIL_TILDEN
+	const NOB_OGASAWARA
+	const SETH_MCMAHILL
+	const HIROTO_ALEXANDER
+	const TERESA_LILLYGREN
+	const THOMAS_HERTZOG
+	const ERIK_JOHNSON
+	const HIRO_NAKAMURA
+	const TERUKI_MURAKAWA
+	const KAZUYOSHI_OSAWA
+	const KIMIKO_NAKAMICHI
+	const CREDIT_END
+	const CREDIT_UNKNOWN
+	const STAFF
+	const DIRECTOR
+	const CODIRECTOR
+	const PROGRAMMERS
+	const GRAPHICS_DIRECTOR
+	const MONSTER_DESIGN
+	const GRAPHICS_DESIGN
+	const CREDIT_MUSIC
+	const CREDIT_SOUND_EFFECTS
+	const GAME_DESIGN
+	const GAME_SCENARIO
+	const TOOL_PROGRAMMING
+	const PARAMETRIC_DESIGN
+	const SCRIPT_DESIGN
+	const MAP_DATA_DESIGN
+	const MAP_DESIGN
+	const PRODUCT_TESTING
+	const SPECIAL_THANKS
+	const PRODUCERS
+	const EXECUTIVE_PRODUCER
+	const POKEMON_ANIMATION
+	const POKEDEX_TEXT
+	const MOBILE_PRJ_LEADER
+	const MOBILE_SYSTEM_AD
+	const MOBILE_STADIUM_DIR
+	const COORDINATION
+	const COPYRIGHT
+	const US_VERSION_STAFF
+	const US_COORDINATION
+	const TEXT_TRANSLATION
+	const PAAD_TESTING
+
+const_value SET -7
+	const CREDITS_THEEND
+	const CREDITS_WAIT2
+	const CREDITS_MUSIC
+	const CREDITS_CLEAR
+	const CREDITS_SCENE
+	const CREDITS_WAIT
+	const CREDITS_END
+
+
+Function109847: ; 109847
+	bit 6, b
+	ld a, $0
+	jr z, .asm_10984f
+	ld a, $40
+.asm_10984f
+	ld [$cf63], a
+
+	ld a, [rSVBK]
+	push af
+	ld a, $5
+	ld [rSVBK], a
+
+	call WhiteBGMap
+	call ClearTileMap
+	call ClearSprites
+
+	ld hl, $ca00
+	ld c, $80
+	ld de, $ff00
+
+.asm_10986a
+	ld a, e
+	ld [hli], a
+	ld a, d
+	ld [hli], a
+	dec c
+	jr nz, .asm_10986a
+
+	ld de, CreditsBorderGFX
+	ld hl, $9200
+	lb bc, BANK(CreditsBorderGFX), $09
+	call Request2bpp
+
+	ld de, CopyrightGFX
+	ld hl, $9600
+	lb bc, BANK(CopyrightGFX), $1d
+	call Request2bpp
+
+	ld de, TheEndGFX
+	ld hl, $9400
+	lb bc, BANK(TheEndGFX), $10
+	call Request2bpp
+
+	ld a, $ff
+	ld [$cf64], a
+	xor a
+	ld [$cf65], a
+
+	call Function109bca
+	ld e, l
+	ld d, h
+	ld hl, VTiles2
+	lb bc, BANK(CreditsMonsGFX), $10
+	call Request2bpp
+
+	call Function109a95
+	xor a
+	ld [$cf66], a
+
+	ld hl, LYOverrides
+	ld bc, $100
+	xor a
+	call ByteFill
+
+	ld a, rSCX & $ff
+	ld [hLCDStatCustom], a
+
+	call GetCreditsPalette
+	call Function32f9
+	ld a, [$ff9e]
+	push af
+	ld a, $5
+	ld [$ff9e], a
+	ld a, $1
+	ld [$ffaa], a
+	xor a
+	ld [hBGMapMode], a
+	ld [CreditsPos], a
+	ld [$cd21], a
+	ld [CreditsTimer], a
+
+.asm_1098de
+	call Function109908
+	call Function1098fd
+	jr nz, .asm_1098ee
+
+	call Function109926
+	call DelayFrame
+	jr .asm_1098de
+
+.asm_1098ee
+	call WhiteBGMap
+	xor a
+	ld [hLCDStatCustom], a
+	ld [hBGMapAddress], a
+	pop af
+	ld [$ff9e], a
+	pop af
+	ld [rSVBK], a
+	ret
+; 1098fd
+
+Function1098fd: ; 1098fd
+	ld a, [hJoypadDown]
+	and $1
+	ret z
+	ld a, [$cf63]
+	bit 7, a
+	ret
+; 109908
+
+Function109908: ; 109908
+	ld a, [hJoypadDown]
+	and $2
+	ret z
+	ld a, [$cf63]
+	bit 6, a
+	ret z
+	ld hl, CreditsPos
+	ld a, [hli]
+	cp $d
+	jr nc, .asm_10991e
+	ld a, [hli]
+	and a
+	ret z
+
+.asm_10991e
+	ld hl, CreditsTimer
+	ld a, [hl]
+	and a
+	ret z
+	dec [hl]
+	ret
+; 109926
+
+Function109926: ; 109926
+	ld a, [$cf63]
+	and $f
+	ld e, a
+	ld d, $0
+	ld hl, $5937
+	add hl, de
+	add hl, de
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	jp [hl]
+; 109937
+
+
+; no known jump sources
+Jumptable_109937: ; 109937 (42:5937)
+	dw ParseCredits
+	dw Function109951
+	dw Function109951
+	dw Function10995e
+	dw Function109964
+	dw Function10997b
+	dw Function109986
+	dw Function109951
+	dw Function109951
+	dw Function109951
+	dw Function109964
+	dw Function10997b
+	dw Function109956
+
+
+; known jump sources: 109961 (42:5961), 109983 (42:5983), 1099a0 (42:59a0), 109a62 (42:5a62)
+Function109951: ; 109951 (42:5951)
+	ld hl, $cf63
+	inc [hl]
+	ret
+
+; no known jump sources
+Function109956: ; 109956 (42:5956)
+	ld hl, $cf63
+	ld a, [hl]
+	and $f0
+	ld [hl], a
+	ret
+
+; no known jump sources
+Function10995e: ; 10995e (42:595e)
+	xor a
+	ld [hBGMapMode], a ; $ff00+$d4
+	jp Function109951
+
+; no known jump sources
+Function109964: ; 109964 (42:5964)
+	call Function109bca
+	ld a, l
+	ld [$cf68], a
+	ld a, h
+	ld [$cf69], a
+	ld a, $0
+	ld [$cf6a], a
+	ld a, $90
+	ld [$cf6b], a
+	jr Function10997b
+
+; known jump sources: 109979 (42:5979)
+Function10997b: ; 10997b (42:597b)
+	xor a
+	ld [hBGMapMode], a ; $ff00+$d4
+	ld a, $8
+	ld [$cf67], a
+	jp Function109951
+
+; known jump sources: 10998a (42:598a)
+Function109986: ; 109986 (42:5986)
+	ld a, [rLY] ; $ff00+$44
+	cp $30
+	jr c, Function109986
+	ld a, [$cf66]
+	dec a
+	dec a
+	ld [$cf66], a
+	ld hl, $d11f
+	call Function1099a3
+	ld hl, $d187
+	call Function1099a3
+	jp Function109951
+
+; known jump sources: 109997 (42:5997), 10999d (42:599d)
+Function1099a3: ; 1099a3 (42:59a3)
+	ld c, $8
+.asm_1099a5
+	ld [hli], a
+	dec c
+	jr nz, .asm_1099a5
+	ret
+; 1099aa
 
 
 ParseCredits: ; 1099aa
@@ -141,7 +380,7 @@ ParseCredits: ; 1099aa
 	call .get
 	
 ; Commands:
-	cp $ff
+	cp CREDITS_END
 	jp z, .end
 	cp CREDITS_WAIT
 	jr z, .wait
@@ -199,7 +438,7 @@ ParseCredits: ; 1099aa
 	
 .theend
 ; Display "The End" graphic.
-	call $5c11
+	call Function109c11
 	jr .loop
 	
 .scene
@@ -392,7 +631,7 @@ GetCreditsPalette: ; 109b2c
 	add a
 	ld e, a
 	ld d, 0
-	ld hl, .CreditsPalettes
+	ld hl, CreditsPalettes
 	add hl, de
 	add hl, de ; * 3
 	add hl, de
@@ -403,31 +642,91 @@ GetCreditsPalette: ; 109b2c
 	
 	push af
 	push hl
-	add $00 ; lo($d000)
+	add $d000 % $100
 	ld e, a
 	ld a, 0
-	adc $d0 ; hi($d000)
+	adc $d000 / $100
 	ld d, a
 	ld bc, 24
 	call CopyBytes
 	
 	pop hl
 	pop af
-	add $80 ; lo($d080)
+	add $d080 % $100
 	ld e, a
 	ld a, 0
-	adc $d0 ; hi($d080)
+	adc $d080 / $100
 	ld d, a
 	ld bc, 24
 	call CopyBytes
 	ret
 
 
-.CreditsPalettes
-INCBIN "baserom.gbc",$109b6a,$18 ; pichu.pal
-INCBIN "baserom.gbc",$109b82,$18 ; smoochum.pal
-INCBIN "baserom.gbc",$109b9a,$18 ; ditto.pal
-INCBIN "baserom.gbc",$109bb2,$18 ; igglybuff.pal
+CreditsPalettes:
+
+; Pichu
+	RGB 31, 00, 31
+	RGB 31, 25, 00
+	RGB 11, 14, 31
+	RGB 07, 07, 07
+
+	RGB 31, 05, 05
+	RGB 11, 14, 31
+	RGB 11, 14, 31
+	RGB 31, 31, 31
+
+	RGB 31, 05, 05
+	RGB 00, 00, 00
+	RGB 31, 31, 31
+	RGB 31, 31, 31
+
+; Smoochum
+	RGB 31, 31, 31
+	RGB 31, 27, 00
+	RGB 26, 06, 31
+	RGB 07, 07, 07
+
+	RGB 03, 13, 31
+	RGB 20, 00, 24
+	RGB 26, 06, 31
+	RGB 31, 31, 31
+
+	RGB 03, 13, 31
+	RGB 00, 00, 00
+	RGB 31, 31, 31
+	RGB 31, 31, 31
+
+; Ditto
+	RGB 31, 31, 31
+	RGB 23, 12, 28
+	RGB 31, 22, 00
+	RGB 07, 07, 07
+
+	RGB 03, 20, 00
+	RGB 31, 22, 00
+	RGB 31, 22, 00
+	RGB 31, 31, 31
+
+	RGB 03, 20, 00
+	RGB 00, 00, 00
+	RGB 31, 31, 31
+	RGB 31, 31, 31
+
+; Igglybuff
+	RGB 31, 31, 31
+	RGB 31, 10, 31
+	RGB 31, 00, 09
+	RGB 07, 07, 07
+
+	RGB 31, 14, 00
+	RGB 31, 00, 09
+	RGB 31, 00, 09
+	RGB 31, 31, 31
+
+	RGB 31, 14, 00
+	RGB 31, 31, 31
+	RGB 31, 31, 31
+	RGB 31, 31, 31
 ; 109bca
 
 ; known jump sources: 10989e (42:589e), 109964 (42:5964)
@@ -436,31 +735,50 @@ Function109bca: ; 109bca (42:5bca)
 	ld a, [hl]
 	cp $ff
 	jr z, .asm_109bed
-	and $3
+
+	and 3
 	ld e, a
 	inc a
-	and $3
+	and 3
 	ld [hl], a
 	ld a, [$cf65]
-	and $3
+	and 3
 	add a
 	add a
 	add e
 	add a
 	ld e, a
-	ld d, $0
-	ld hl, $5bf1
+	ld d, 0
+	ld hl, CreditsMonsFrames
 	add hl, de
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
 	ret
+
 .asm_109bed
 	ld hl, $ca00
 	ret
 ; 109bf1 (42:5bf1)
 
-INCBIN "baserom.gbc",$109bf1,$109c11 - $109bf1
+CreditsMonsFrames: ; 109bf1
+	dw CreditsPichuGFX
+	dw CreditsPichuGFX     + $100
+	dw CreditsPichuGFX     + $200
+	dw CreditsPichuGFX     + $300
+	dw CreditsSmoochumGFX
+	dw CreditsSmoochumGFX  + $100
+	dw CreditsSmoochumGFX  + $200
+	dw CreditsSmoochumGFX  + $300
+	dw CreditsDittoGFX
+	dw CreditsDittoGFX     + $100
+	dw CreditsDittoGFX     + $200
+	dw CreditsDittoGFX     + $300
+	dw CreditsIgglybuffGFX
+	dw CreditsIgglybuffGFX + $100
+	dw CreditsIgglybuffGFX + $200
+	dw CreditsIgglybuffGFX + $300
+; 109c11
 
 ; known jump sources: 109a1b (42:5a1b)
 Function109c11: ; 109c11 (42:5c11)
@@ -481,12 +799,13 @@ Function109c1c: ; 109c1c (42:5c1c)
 ; 109c24 (42:5c24)
 
 
-CreditsGFX:
-INCBIN "gfx/credits/border.2bpp"
-INCBIN "gfx/credits/pichu.2bpp"
-INCBIN "gfx/credits/smoochum.2bpp"
-INCBIN "gfx/credits/ditto.2bpp"
-INCBIN "gfx/credits/igglybuff.2bpp"
+CreditsBorderGFX:    INCBIN "gfx/credits/border.2bpp"
+
+CreditsMonsGFX:
+CreditsPichuGFX:     INCBIN "gfx/credits/pichu.2bpp"
+CreditsSmoochumGFX:  INCBIN "gfx/credits/smoochum.2bpp"
+CreditsDittoGFX:     INCBIN "gfx/credits/ditto.2bpp"
+CreditsIgglybuffGFX: INCBIN "gfx/credits/igglybuff.2bpp"
 
 
 CreditsScript: ; 10acb4
@@ -495,247 +814,286 @@ CreditsScript: ; 10acb4
 	db CREDITS_CLEAR
 
 ; Pokemon Crystal Version Staff
-	db                STAFF, 01
-	db CREDITS_WAIT, 08
+	db                STAFF, 1
+
+	db CREDITS_WAIT, 8
 
 ; Play the credits music.
 	db CREDITS_MUSIC
 
 	db CREDITS_WAIT2, 10
 
-	db CREDITS_WAIT, 01
+	db CREDITS_WAIT, 1
 
 ; Update the banner.
-	db CREDITS_SCENE, 00 ; Pichu
+	db CREDITS_SCENE, 0 ; Pichu
 
-	db             DIRECTOR, 01
-	db       SATOSHI_TAJIRI, 02
+	db             DIRECTOR, 1
+	db       SATOSHI_TAJIRI, 2
+
 	db CREDITS_WAIT, 12
 
-	db           CODIRECTOR, 01
-	db       JUNICHI_MASUDA, 02
+	db           CODIRECTOR, 1
+	db       JUNICHI_MASUDA, 2
+
 	db CREDITS_WAIT, 12
 
-	db          PROGRAMMERS, 00
-	db       SOUSUKE_TAMADA, 01
-	db       HISASHI_SOGABE, 02
-	db         KEITA_KAGAYA, 03
-	db    YOSHINORI_MATSUDA, 04
+	db          PROGRAMMERS, 0
+	db       SOUSUKE_TAMADA, 1
+	db       HISASHI_SOGABE, 2
+	db         KEITA_KAGAYA, 3
+	db    YOSHINORI_MATSUDA, 4
+
 	db CREDITS_WAIT, 12
 
-	db          PROGRAMMERS, 00
-	db     SHIGEKI_MORIMOTO, 01
-	db     TETSUYA_WATANABE, 02
-	db        TAKENORI_OOTA, 03
+	db          PROGRAMMERS, 0
+	db     SHIGEKI_MORIMOTO, 1
+	db     TETSUYA_WATANABE, 2
+	db        TAKENORI_OOTA, 3
+
 	db CREDITS_WAIT, 12
 
-	db    GRAPHICS_DIRECTOR, 01
-	db         KEN_SUGIMORI, 02
+	db    GRAPHICS_DIRECTOR, 1
+	db         KEN_SUGIMORI, 2
+
 	db CREDITS_WAIT, 12
 
-	db       MONSTER_DESIGN, 00
-	db         KEN_SUGIMORI, 01
-	db    MOTOFUMI_FUJIWARA, 02
-	db     SHIGEKI_MORIMOTO, 03
-	db     HIRONOBU_YOSHIDA, 04
-	db         SATOSHI_OOTA, 05
+	db       MONSTER_DESIGN, 0
+	db         KEN_SUGIMORI, 1
+	db    MOTOFUMI_FUJIWARA, 2
+	db     SHIGEKI_MORIMOTO, 3
+	db     HIRONOBU_YOSHIDA, 4
+	db         SATOSHI_OOTA, 5
+
 	db CREDITS_WAIT, 12
 
-	db       MONSTER_DESIGN, 00
-	db       ATSUKO_NISHIDA, 01
-	db          MUNEO_SAITO, 02
-	db       RENA_YOSHIKAWA, 03
+	db       MONSTER_DESIGN, 0
+	db       ATSUKO_NISHIDA, 1
+	db          MUNEO_SAITO, 2
+	db       RENA_YOSHIKAWA, 3
+
 	db CREDITS_WAIT, 12
 
-	db    POKEMON_ANIMATION, 01
-	db     HIRONOBU_YOSHIDA, 02
-	db          JUN_OKUTANI, 03
+	db    POKEMON_ANIMATION, 1
+	db     HIRONOBU_YOSHIDA, 2
+	db          JUN_OKUTANI, 3
+
 	db CREDITS_WAIT, 12
 
 ; Clear the banner.
 	db CREDITS_CLEAR
 
-	db CREDITS_WAIT, 01
+	db CREDITS_WAIT, 1
 
 ; Update the banner.
-	db CREDITS_SCENE, 01 ; Smoochum
+	db CREDITS_SCENE, 1 ; Smoochum
 
-	db      GRAPHICS_DESIGN, 00
-	db     HIRONOBU_YOSHIDA, 01
-	db          JUN_OKUTANI, 02
-	db       ASUKA_IWASHITA, 03
-	db     TETSUYA_WATANABE, 04
+	db      GRAPHICS_DESIGN, 0
+	db     HIRONOBU_YOSHIDA, 1
+	db          JUN_OKUTANI, 2
+	db       ASUKA_IWASHITA, 3
+	db     TETSUYA_WATANABE, 4
+
 	db CREDITS_WAIT, 12
 
-	db                MUSIC, 00
-	db       JUNICHI_MASUDA, 01
-	db        MORIKAZU_AOKI, 02
-	db          GO_ICHINOSE, 03
+	db         CREDIT_MUSIC, 0
+	db       JUNICHI_MASUDA, 1
+	db        MORIKAZU_AOKI, 2
+	db          GO_ICHINOSE, 3
+
 	db CREDITS_WAIT, 12
 
-	db        SOUND_EFFECTS, 00
-	db        MORIKAZU_AOKI, 01
-	db       JUNICHI_MASUDA, 02
-	db     TETSUYA_WATANABE, 03
+	db CREDIT_SOUND_EFFECTS, 0
+	db        MORIKAZU_AOKI, 1
+	db       JUNICHI_MASUDA, 2
+	db     TETSUYA_WATANABE, 3
+
 	db CREDITS_WAIT, 12
 
-	db          GAME_DESIGN, 00
-	db       JUNICHI_MASUDA, 01
-	db     SHIGEKI_MORIMOTO, 02
-	db        KOHJI_NISHINO, 03
+	db          GAME_DESIGN, 0
+	db       JUNICHI_MASUDA, 1
+	db     SHIGEKI_MORIMOTO, 2
+	db        KOHJI_NISHINO, 3
+
 	db CREDITS_WAIT, 12
 
-	db          GAME_DESIGN, 00
-	db         TETSUJI_OOTA, 01
-	db          HITOMI_SATO, 02
-	db     KENJI_MATSUSHIMA, 03
+	db          GAME_DESIGN, 0
+	db         TETSUJI_OOTA, 1
+	db          HITOMI_SATO, 2
+	db     KENJI_MATSUSHIMA, 3
+
 	db CREDITS_WAIT, 12
 
-	db        GAME_SCENARIO, 00
-	db       JUNICHI_MASUDA, 01
-	db        KOHJI_NISHINO, 02
-	db  TOSHINOBU_MATSUMIYA, 03
-	db     KENJI_MATSUSHIMA, 04
+	db        GAME_SCENARIO, 0
+	db       JUNICHI_MASUDA, 1
+	db        KOHJI_NISHINO, 2
+	db  TOSHINOBU_MATSUMIYA, 3
+	db     KENJI_MATSUSHIMA, 4
+
 	db CREDITS_WAIT, 12
 
-	db         POKEDEX_TEXT, 01
-	db  TOSHINOBU_MATSUMIYA, 02
+	db         POKEDEX_TEXT, 1
+	db  TOSHINOBU_MATSUMIYA, 2
+
 	db CREDITS_WAIT, 12
 
-	db     TOOL_PROGRAMMING, 01
-	db       SOUSUKE_TAMADA, 02
-	db        TAKENORI_OOTA, 03
+	db     TOOL_PROGRAMMING, 1
+	db       SOUSUKE_TAMADA, 2
+	db        TAKENORI_OOTA, 3
+
 	db CREDITS_WAIT, 12
 
-	db    PARAMETRIC_DESIGN, 01
-	db        KOHJI_NISHINO, 02
+	db    PARAMETRIC_DESIGN, 1
+	db        KOHJI_NISHINO, 2
+
 	db CREDITS_WAIT, 12
 
 ; Clear the banner.
 	db CREDITS_CLEAR
 
-	db CREDITS_WAIT, 01
+	db CREDITS_WAIT, 1
 
 ; Update the banner.
-	db CREDITS_SCENE, 02 ; Ditto
+	db CREDITS_SCENE, 2 ; Ditto
 
-	db        SCRIPT_DESIGN, 01
-	db         TETSUJI_OOTA, 02
-	db        NOBUHIRO_SEYA, 03
+	db        SCRIPT_DESIGN, 1
+	db         TETSUJI_OOTA, 2
+	db        NOBUHIRO_SEYA, 3
+
 	db CREDITS_WAIT, 12
 
-	db      MAP_DATA_DESIGN, 01
-	db         TETSUJI_OOTA, 02
-	db      KAZUHITO_SEKINE, 03
+	db      MAP_DATA_DESIGN, 1
+	db         TETSUJI_OOTA, 2
+	db      KAZUHITO_SEKINE, 3
+
 	db CREDITS_WAIT, 12
 
-	db           MAP_DESIGN, 00
-	db         TETSUJI_OOTA, 01
-	db        KOHJI_NISHINO, 02
-	db        NOBUHIRO_SEYA, 03
+	db           MAP_DESIGN, 0
+	db         TETSUJI_OOTA, 1
+	db        KOHJI_NISHINO, 2
+	db        NOBUHIRO_SEYA, 3
+
 	db CREDITS_WAIT, 12
 
-	db         COORDINATION, 01
-	db      HIROYUKI_ZINNAI, 02
+	db         COORDINATION, 1
+	db      HIROYUKI_ZINNAI, 2
+
 	db CREDITS_WAIT, 12
 
-	db            PRODUCERS, 00
-	db         SATORU_IWATA, 01
-	db       SATOSHI_YAMATO, 02
-	db     SHIGERU_MIYAMOTO, 03
+	db            PRODUCERS, 0
+	db         SATORU_IWATA, 1
+	db       SATOSHI_YAMATO, 2
+	db     SHIGERU_MIYAMOTO, 3
+
 	db CREDITS_WAIT, 12
 
-	db            PRODUCERS, 01
-	db   TSUNEKAZU_ISHIHARA, 02
+	db            PRODUCERS, 1
+	db   TSUNEKAZU_ISHIHARA, 2
+
 	db CREDITS_WAIT, 12
 
 ; Clear the banner.
 	db CREDITS_CLEAR
 
-	db CREDITS_WAIT, 01
+	db CREDITS_WAIT, 1
 
 ; Update the banner.
-	db CREDITS_SCENE, 03 ; Igglybuff
+	db CREDITS_SCENE, 3 ; Igglybuff
 
-	db     US_VERSION_STAFF, 02
-	db CREDITS_WAIT, 09
+	db     US_VERSION_STAFF, 2
 
-	db      US_COORDINATION, 01
-	db          GAIL_TILDEN, 02
-	db        HIRO_NAKAMURA, 03
+	db CREDITS_WAIT, 9
+
+	db      US_COORDINATION, 1
+	db          GAIL_TILDEN, 2
+	db        HIRO_NAKAMURA, 3
+
 	db CREDITS_WAIT, 12
 
-	db      US_COORDINATION, 01
-	db       JUNICHI_MASUDA, 02
-	db        SETH_MCMAHILL, 03
+	db      US_COORDINATION, 1
+	db       JUNICHI_MASUDA, 2
+	db        SETH_MCMAHILL, 3
+
 	db CREDITS_WAIT, 12
 
-	db      US_COORDINATION, 01
-	db     HIROTO_ALEXANDER, 02
-	db     TERESA_LILLYGREN, 03
+	db      US_COORDINATION, 1
+	db     HIROTO_ALEXANDER, 2
+	db     TERESA_LILLYGREN, 3
+
 	db CREDITS_WAIT, 12
 
-	db     TEXT_TRANSLATION, 01
-	db        NOB_OGASAWARA, 02
+	db     TEXT_TRANSLATION, 1
+	db        NOB_OGASAWARA, 2
+
 	db CREDITS_WAIT, 12
 
-	db          PROGRAMMERS, 01
-	db      TERUKI_MURAKAWA, 02
-	db      KAZUYOSHI_OSAWA, 03
+	db          PROGRAMMERS, 1
+	db      TERUKI_MURAKAWA, 2
+	db      KAZUYOSHI_OSAWA, 3
+
 	db CREDITS_WAIT, 12
 
-	db         PAAD_TESTING, 01
-	db       THOMAS_HERTZOG, 02
-	db         ERIK_JOHNSON, 03
+	db         PAAD_TESTING, 1
+	db       THOMAS_HERTZOG, 2
+	db         ERIK_JOHNSON, 3
+
 	db CREDITS_WAIT, 12
 
-	db      PRODUCT_TESTING, 00
-	db             PLANNING, 01
+	db      PRODUCT_TESTING, 0
+	db             PLANNING, 1
+
 	db CREDITS_WAIT, 12
 
-	db      PRODUCT_TESTING, 00
-	db       KEITA_NAKAMURA, 01
-	db      HIROTAKA_UEMURA, 02
-	db       HIROAKI_TAMURA, 03
-	db    NORIAKI_SAKAGUCHI, 04
+	db      PRODUCT_TESTING, 0
+	db       KEITA_NAKAMURA, 1
+	db      HIROTAKA_UEMURA, 2
+	db       HIROAKI_TAMURA, 3
+	db    NORIAKI_SAKAGUCHI, 4
+
 	db CREDITS_WAIT, 12
 
-	db      PRODUCT_TESTING, 00
-	db NCL_SUPER_MARIO_CLUB, 01
-	db          KENJI_SAIKI, 02
-	db         ATSUSHI_TADA, 03
-	db          MIYUKI_SATO, 04
+	db      PRODUCT_TESTING, 0
+	db NCL_SUPER_MARIO_CLUB, 1
+	db          KENJI_SAIKI, 2
+	db         ATSUSHI_TADA, 3
+	db          MIYUKI_SATO, 4
+
 	db CREDITS_WAIT, 12
 
-	db       SPECIAL_THANKS, 00
-	db     KIMIKO_NAKAMICHI, 01
-	db           AKITO_MORI, 02
+	db       SPECIAL_THANKS, 0
+	db     KIMIKO_NAKAMICHI, 1
+	db           AKITO_MORI, 2
+
 	db CREDITS_WAIT, 12
 
-	db       SPECIAL_THANKS, 00
-	db        GAKUZI_NOMOTO, 01
-	db           AI_MASHIMA, 02
-	db      KUNIMI_KAWAMURA, 03
+	db       SPECIAL_THANKS, 0
+	db        GAKUZI_NOMOTO, 1
+	db           AI_MASHIMA, 2
+	db      KUNIMI_KAWAMURA, 3
+
 	db CREDITS_WAIT, 12
 
-	db       SPECIAL_THANKS, 00
-	db    MIKIHIRO_ISHIKAWA, 01
-	db   HIDEYUKI_HASHIMOTO, 02
+	db       SPECIAL_THANKS, 0
+	db    MIKIHIRO_ISHIKAWA, 1
+	db   HIDEYUKI_HASHIMOTO, 2
+
 	db CREDITS_WAIT, 12
 
-	db   EXECUTIVE_PRODUCER, 01
-	db     HIROSHI_YAMAUCHI, 02
+	db   EXECUTIVE_PRODUCER, 1
+	db     HIROSHI_YAMAUCHI, 2
+
 	db CREDITS_WAIT, 12
 
-	db            COPYRIGHT, 01
-	db CREDITS_WAIT, 09
+	db            COPYRIGHT, 1
+
+	db CREDITS_WAIT, 9
 
 ; Display "The End" graphic.
 	db CREDITS_THEEND
 
 	db CREDITS_WAIT, 20
 
-	db $ff ; end
+	db CREDITS_END
 ; 10ae13
 
 

@@ -16,67 +16,67 @@ Music_DarkCave_Ch1: ; ea2ca
 	notetype $c, $a7
 
 Music_DarkCave_branch_ea2dc: ; ea2dc
-	note __, 15
+	note __, 16
 	loopchannel 4, Music_DarkCave_branch_ea2dc
 	octave 3
-	note D#, 15
-	note D_, 15
-	note C#, 15
-	note C_, 15
+	note D#, 16
+	note D_, 16
+	note C#, 16
+	note C_, 16
 	intensity $a3
 
 Music_DarkCave_branch_ea2e8: ; ea2e8
 	callchannel Music_DarkCave_branch_ea333
 	loopchannel 3, Music_DarkCave_branch_ea2e8
 	intensity $b7
-	note G#, 7
-	note D#, 7
-	note G_, 7
-	note D_, 7
-	note F_, 7
-	note C#, 7
-	note D#, 7
-	note G_, 7
-	note G#, 7
-	note D#, 7
-	note G_, 7
-	note D_, 7
-	note F_, 7
-	note C#, 7
-	note D#, 7
-	note C_, 7
+	note G#, 8
+	note D#, 8
+	note G_, 8
+	note D_, 8
+	note F_, 8
+	note C#, 8
+	note D#, 8
+	note G_, 8
+	note G#, 8
+	note D#, 8
+	note G_, 8
+	note D_, 8
+	note F_, 8
+	note C#, 8
+	note D#, 8
+	note C_, 8
 	intensity $a3
 
 Music_DarkCave_branch_ea303: ; ea303
 	callchannel Music_DarkCave_branch_ea333
 	loopchannel 2, Music_DarkCave_branch_ea303
-	note __, 15
-	note __, 7
+	note __, 16
+	note __, 8
 	intensity $b7
 	octave 2
-	note F_, 1
-	note G_, 1
-	note G#, 3
+	note F_, 2
+	note G_, 2
+	note G#, 4
 	octave 3
-	note D#, 15
-	note __, 7
+	note D#, 16
+	note __, 8
 	octave 2
-	note G#, 1
-	note G_, 1
-	note G#, 3
+	note G#, 2
+	note G_, 2
+	note G#, 4
 	octave 3
-	note D#, 15
-	note G_, 1
-	note __, 5
-	note F_, 1
-	note G_, 1
-	note G#, 3
-	note G_, 15
-	note F_, 1
-	note __, 5
-	note G#, 1
-	note G_, 1
-	note G#, 3
+	note D#, 16
+	note G_, 2
+	note __, 6
+	note F_, 2
+	note G_, 2
+	note G#, 4
+	note G_, 16
+	note F_, 2
+	note __, 6
+	note G#, 2
+	note G_, 2
+	note G#, 4
 	intensity $a3
 
 Music_DarkCave_branch_ea328: ; ea328
@@ -87,59 +87,59 @@ Music_DarkCave_branch_ea328: ; ea328
 
 Music_DarkCave_branch_ea333: ; ea333
 	octave 4
-	note D#, 1
+	note D#, 2
 	octave 3
-	note G#, 1
+	note G#, 2
 	octave 4
-	note C_, 1
-	note D#, 1
+	note C_, 2
+	note D#, 2
 	octave 3
-	note G#, 1
+	note G#, 2
 	octave 4
-	note C_, 1
-	note D#, 1
-	note C_, 1
-	note D_, 1
+	note C_, 2
+	note D#, 2
+	note C_, 2
+	note D_, 2
 	octave 3
-	note G_, 1
-	note A#, 1
+	note G_, 2
+	note A#, 2
 	octave 4
-	note D_, 1
+	note D_, 2
 	octave 3
-	note G_, 1
-	note A#, 1
+	note G_, 2
+	note A#, 2
 	octave 4
-	note D_, 1
+	note D_, 2
 	octave 3
-	note A#, 1
+	note A#, 2
 	octave 4
-	note C#, 1
+	note C#, 2
 	octave 3
-	note F_, 1
-	note A#, 1
+	note F_, 2
+	note A#, 2
 	octave 4
-	note C#, 1
+	note C#, 2
 	octave 3
-	note F_, 1
-	note A#, 1
+	note F_, 2
+	note A#, 2
 	octave 4
-	note C#, 1
+	note C#, 2
 	octave 3
-	note A#, 1
+	note A#, 2
 	octave 4
-	note C_, 1
+	note C_, 2
 	octave 3
-	note G_, 1
-	note A#, 1
+	note G_, 2
+	note A#, 2
 	octave 4
-	note C_, 1
+	note C_, 2
 	octave 3
-	note G_, 1
-	note A#, 1
+	note G_, 2
+	note A#, 2
 	octave 4
-	note C_, 1
+	note C_, 2
 	octave 3
-	note A#, 1
+	note A#, 2
 	endchannel
 
 Music_DarkCave_Ch2: ; ea36a
@@ -149,209 +149,209 @@ Music_DarkCave_Ch2: ; ea36a
 	notetype $c, $a7
 
 Music_DarkCave_branch_ea374: ; ea374
-	note __, 15
+	note __, 16
 	loopchannel 4, Music_DarkCave_branch_ea374
 	octave 3
-	note G_, 15
-	note A#, 15
-	note F_, 15
-	note G_, 15
+	note G_, 16
+	note A#, 16
+	note F_, 16
+	note G_, 16
 
 Music_DarkCave_branch_ea37e: ; ea37e
-	note __, 15
+	note __, 16
 	loopchannel 4, Music_DarkCave_branch_ea37e
-	note __, 7
+	note __, 8
 	stereopanning $ff
 	intensity $c7
 	octave 5
-	note C_, 7
+	note C_, 8
 	intensity $c4
-	note D_, 1
-	note C_, 1
+	note D_, 2
+	note C_, 2
 	octave 4
-	note A#, 1
-	note G_, 3
-	note A#, 1
+	note A#, 2
+	note G_, 4
+	note A#, 2
 	octave 5
-	note D_, 3
+	note D_, 4
 	intensity $b0
-	note C#, 3
+	note C#, 4
 	intensity $b7
-	note C#, 11
+	note C#, 12
 	intensity $59
-	note C_, 7
+	note C_, 8
 	intensity $c7
-	note C_, 7
-	note __, 7
+	note C_, 8
+	note __, 8
 	intensity $c7
-	note C_, 7
+	note C_, 8
 	intensity $c4
-	note D_, 1
-	note C_, 1
+	note D_, 2
+	note C_, 2
 	octave 4
-	note A#, 1
-	note G_, 1
-	note G_, 1
-	note A#, 1
+	note A#, 2
+	note G_, 2
+	note G_, 2
+	note A#, 2
 	octave 5
-	note D_, 3
+	note D_, 4
 	intensity $c7
-	note C#, 11
+	note C#, 12
 	intensity $c3
-	note C_, 1
-	note C#, 1
+	note C_, 2
+	note C#, 2
 	intensity $b0
-	note D#, 9
+	note D#, 10
 	intensity $b7
-	note D#, 5
+	note D#, 6
 	stereopanning $f
 	intensity $c4
 	octave 4
-	note F_, 3
-	note D#, 1
-	note D_, 1
-	note D#, 3
-	note D_, 1
-	note C_, 1
-	note D_, 1
-	note C_, 1
+	note F_, 4
+	note D#, 2
+	note D_, 2
+	note D#, 4
+	note D_, 2
+	note C_, 2
+	note D_, 2
+	note C_, 2
 	octave 3
-	note A#, 1
+	note A#, 2
 	octave 4
-	note C_, 1
-	note D_, 3
-	note C_, 1
+	note C_, 2
+	note D_, 4
+	note C_, 2
 	octave 3
-	note A#, 1
+	note A#, 2
 	octave 4
-	note C#, 7
+	note C#, 8
 	octave 3
-	note A#, 7
+	note A#, 8
 	intensity $b0
 	octave 4
-	note D#, 1
-	note D_, 1
-	note C_, 1
+	note D#, 2
+	note D_, 2
+	note C_, 2
 	octave 3
-	note A#, 1
+	note A#, 2
 	octave 4
-	note C_, 7
-	note F_, 3
-	note D#, 1
-	note D_, 1
-	note D#, 3
-	note D_, 1
-	note C_, 1
-	note D_, 1
-	note C_, 1
+	note C_, 8
+	note F_, 4
+	note D#, 2
+	note D_, 2
+	note D#, 4
+	note D_, 2
+	note C_, 2
+	note D_, 2
+	note C_, 2
 	octave 3
-	note A#, 1
+	note A#, 2
 	octave 4
-	note C_, 1
-	note D_, 3
-	note C_, 1
+	note C_, 2
+	note D_, 4
+	note C_, 2
 	octave 3
-	note A#, 1
+	note A#, 2
 	octave 4
-	note C#, 3
-	note C_, 1
-	note C#, 1
-	note C_, 1
-	note C#, 1
+	note C#, 4
+	note C_, 2
+	note C#, 2
+	note C_, 2
+	note C#, 2
 	octave 3
-	note A#, 1
+	note A#, 2
 	octave 4
-	note C#, 1
+	note C#, 2
 	intensity $b0
-	note C_, 7
+	note C_, 8
 	intensity $b7
-	note C_, 7
+	note C_, 8
 	intensity $c7
 	stereopanning $ff
-	note __, 7
+	note __, 8
 	octave 5
-	note C_, 7
+	note C_, 8
 	intensity $c4
-	note D_, 1
-	note C_, 1
+	note D_, 2
+	note C_, 2
 	octave 4
-	note A#, 1
-	note G_, 3
-	note A#, 1
+	note A#, 2
+	note G_, 4
+	note A#, 2
 	octave 5
-	note D_, 3
+	note D_, 4
 	intensity $49
-	note C#, 7
+	note C#, 8
 	intensity $c7
-	note C#, 7
+	note C#, 8
 	intensity $b0
-	note C_, 7
+	note C_, 8
 	intensity $b7
-	note C_, 7
-	note __, 7
+	note C_, 8
+	note __, 8
 	intensity $c7
-	note C_, 7
+	note C_, 8
 	intensity $c4
-	note D_, 1
-	note C_, 1
+	note D_, 2
+	note C_, 2
 	octave 4
-	note A#, 1
-	note G_, 1
-	note G_, 1
-	note A#, 1
+	note A#, 2
+	note G_, 2
+	note G_, 2
+	note A#, 2
 	octave 5
-	note D_, 3
+	note D_, 4
 	intensity $b0
-	note C#, 7
+	note C#, 8
 	intensity $b7
-	note C#, 7
+	note C#, 8
 	intensity $b0
-	note C_, 7
+	note C_, 8
 	intensity $b7
-	note C_, 7
+	note C_, 8
 	intensity $c7
-	note __, 15
+	note __, 16
 	stereopanning $f
-	note __, 7
+	note __, 8
 	octave 3
-	note A#, 1
+	note A#, 2
 	octave 4
-	note C_, 1
-	note C#, 3
-	note C_, 15
-	note __, 7
-	note C#, 1
-	note C_, 1
-	note C#, 3
-	note C_, 15
+	note C_, 2
+	note C#, 4
+	note C_, 16
+	note __, 8
+	note C#, 2
+	note C_, 2
+	note C#, 4
+	note C_, 16
 	intensity $c2
-	note D#, 7
+	note D#, 8
 	intensity $c7
 	octave 3
-	note A#, 1
+	note A#, 2
 	octave 4
-	note C_, 1
-	note C#, 3
-	note C_, 15
+	note C_, 2
+	note C#, 4
+	note C_, 16
 	intensity $c2
 	octave 3
-	note A#, 7
+	note A#, 8
 	intensity $c7
 	octave 4
-	note C#, 1
-	note C_, 1
+	note C#, 2
+	note C_, 2
 	intensity $c4
-	note C#, 15
-	note __, 3
-	note __, 15
-	note __, 15
-	note __, 15
+	note C#, 16
+	note __, 4
+	note __, 16
+	note __, 16
+	note __, 16
 	intensity $b7
 	octave 5
-	note D#, 15
-	note D_, 15
-	note F_, 15
-	note D#, 15
+	note D#, 16
+	note D_, 16
+	note F_, 16
+	note D#, 16
 	loopchannel 0, Music_DarkCave_branch_ea37e
 
 Music_DarkCave_Ch3: ; ea46e
@@ -366,30 +366,30 @@ Music_DarkCave_branch_ea478: ; ea478
 	loopchannel 7, Music_DarkCave_branch_ea478
 	callchannel Music_DarkCave_branch_ea4c3
 	octave 3
-	note C_, 3
-	note G_, 1
-	note D#, 3
-	note G_, 1
-	note D#, 3
-	note F_, 1
-	note __, 1
+	note C_, 4
+	note G_, 2
+	note D#, 4
+	note G_, 2
+	note D#, 4
+	note F_, 2
+	note __, 2
 	octave 2
-	note A#, 11
+	note A#, 12
 	callchannel Music_DarkCave_branch_ea4c3
 	octave 3
-	note C_, 3
-	note G_, 1
-	note D#, 3
-	note G_, 1
-	note D#, 3
-	note F_, 1
-	note __, 1
+	note C_, 4
+	note G_, 2
+	note D#, 4
+	note G_, 2
+	note D#, 4
+	note F_, 2
+	note __, 2
 	octave 2
-	note A#, 3
+	note A#, 4
 	octave 3
-	note C#, 1
-	note C_, 1
-	note C#, 3
+	note C#, 2
+	note C_, 2
+	note C#, 4
 	callchannel Music_DarkCave_branch_ea4a7
 	callchannel Music_DarkCave_branch_ea4a7
 	loopchannel 0, Music_DarkCave_branch_ea478
@@ -397,77 +397,77 @@ Music_DarkCave_branch_ea478: ; ea478
 
 Music_DarkCave_branch_ea4a7: ; ea4a7
 	octave 3
-	note C_, 3
-	note G_, 1
-	note D#, 3
-	note G_, 1
-	note F_, 3
-	note D#, 1
-	note __, 1
+	note C_, 4
+	note G_, 2
+	note D#, 4
+	note G_, 2
+	note F_, 4
+	note D#, 2
+	note __, 2
 	octave 2
-	note A#, 3
-	note A#, 1
+	note A#, 4
+	note A#, 2
 	octave 3
-	note C_, 1
-	note C#, 3
-	note C_, 3
-	note G_, 1
-	note D#, 3
-	note G_, 1
-	note D#, 3
-	note F_, 1
-	note __, 1
+	note C_, 2
+	note C#, 4
+	note C_, 4
+	note G_, 2
+	note D#, 4
+	note G_, 2
+	note D#, 4
+	note F_, 2
+	note __, 2
 	octave 2
-	note A#, 3
+	note A#, 4
 	octave 3
-	note C#, 1
-	note C_, 1
-	note C#, 3
+	note C#, 2
+	note C_, 2
+	note C#, 4
 	endchannel
 ; ea4c3
 
 Music_DarkCave_branch_ea4c3: ; ea4c3
 	octave 3
-	note C_, 3
-	note G_, 1
-	note D#, 3
-	note G_, 1
-	note F_, 3
-	note D#, 1
-	note __, 1
+	note C_, 4
+	note G_, 2
+	note D#, 4
+	note G_, 2
+	note F_, 4
+	note D#, 2
+	note __, 2
 	octave 2
-	note A#, 11
+	note A#, 12
 	endchannel
 ; ea4ce
 
 Music_DarkCave_branch_ea4ce: ; ea4ce
 	octave 2
-	note C_, 3
-	note G_, 1
-	note D#, 3
-	note G_, 1
-	note F_, 3
-	note D#, 1
-	note __, 1
+	note C_, 4
+	note G_, 2
+	note D#, 4
+	note G_, 2
+	note F_, 4
+	note D#, 2
+	note __, 2
 	octave 1
-	note A#, 3
-	note A#, 1
+	note A#, 4
+	note A#, 2
 	octave 2
-	note C_, 1
-	note C#, 3
-	note C_, 3
-	note G_, 1
-	note D#, 3
-	note G_, 1
-	note D#, 3
-	note F_, 1
-	note __, 1
+	note C_, 2
+	note C#, 4
+	note C_, 4
+	note G_, 2
+	note D#, 4
+	note G_, 2
+	note D#, 4
+	note F_, 2
+	note __, 2
 	octave 1
-	note A#, 3
+	note A#, 4
 	octave 2
-	note C#, 1
-	note C_, 1
-	note C#, 3
+	note C#, 2
+	note C_, 2
+	note C#, 4
 	endchannel
 
 Music_DarkCave_Ch4: ; ea4ea
@@ -476,24 +476,24 @@ Music_DarkCave_Ch4: ; ea4ea
 
 Music_DarkCave_branch_ea4ee: ; ea4ee
 	stereopanning $ff
-	note D#, 7
-	note D#, 7
-	note D#, 3
+	note D#, 8
+	note D#, 8
+	note D#, 4
 	stereopanning $f0
-	note C#, 3
+	note C#, 4
 	stereopanning $f
-	note C#, 1
-	note C#, 1
+	note C#, 2
+	note C#, 2
 	stereopanning $f0
-	note C#, 3
+	note C#, 4
 	stereopanning $ff
-	note D#, 7
-	note D#, 7
-	note D#, 3
+	note D#, 8
+	note D#, 8
+	note D#, 4
 	stereopanning $f
-	note C#, 7
+	note C#, 8
 	stereopanning $f0
-	note C#, 1
-	note C#, 1
+	note C#, 2
+	note C#, 2
 	loopchannel 0, Music_DarkCave_branch_ea4ee
 ; ea50d

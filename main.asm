@@ -1,3885 +1,7 @@
 INCLUDE "includes.asm"
 
 
-SECTION "bank0",ROM0
-
-INCLUDE "rst.asm"
-
-INCLUDE "interrupts.asm"
-
-
-SECTION "header",ROM0[$100]
-
-Start:
-	nop
-	jp _Start
-
-
-SECTION "start",ROM0[$150]
-
-INCLUDE "home/init.asm"
-INCLUDE "home/vblank.asm"
-INCLUDE "home/delay.asm"
-INCLUDE "home/rtc.asm"
-INCLUDE "home/fade.asm"
-INCLUDE "home/lcd.asm"
-INCLUDE "home/time.asm"
-INCLUDE "home/serial.asm"
-INCLUDE "home/joypad.asm"
-INCLUDE "home/decompress.asm"
-INCLUDE "home/palettes.asm"
-INCLUDE "home/copy.asm"
-INCLUDE "home/text.asm"
-INCLUDE "home/video.asm"
-INCLUDE "home/map_objects.asm"
-INCLUDE "home/sine.asm"
-
-Function1b1e: ; 1b1e
-	ld [$d003], a
-	xor a
-	ld [DefaultFlypoint], a
-	ld a, $0
-	ld [$d004], a
-	ld a, $7
-	ld [StartFlypoint], a
-	ld a, $d0
-	ld [EndFlypoint], a
-	ret
-; 1b35
-
-Function1b35: ; 1b35
-	ld a, [DefaultFlypoint]
-	and a
-	ret z
-	dec a
-	ld [DefaultFlypoint], a
-	ret
-; 1b3f
-
-Function1b3f: ; 1b3f
-	push hl
-	push de
-	ld hl, DefaultFlypoint
-	ld e, [hl]
-	inc [hl]
-	ld d, 0
-	ld hl, MovementBuffer
-	add hl, de
-	ld [hl], a
-	pop de
-	pop hl
-	ret
-; 1b50
-
-Function1b50: ; 1b50
-	push af
-	ld a, c
-	and a
-	jr nz, .asm_1b57
-	pop af
-	ret
-
-.asm_1b57
-	pop af
-.asm_1b58
-	call Function1b3f
-	dec c
-	jr nz, .asm_1b58
-	ret
-; 1b5f
-
-Function1b5f: ; 1b5f
-	push af
-	ld a, b
-	sub d
-	ld h, $2
-	jr nc, .asm_1b6a
-	dec a
-	cpl
-	ld h, $3
-
-.asm_1b6a
-	ld d, a
-	ld a, c
-	sub e
-	ld l, $1
-	jr nc, .asm_1b75
-	dec a
-	cpl
-	ld l, $0
-
-.asm_1b75
-	ld e, a
-	cp d
-	jr nc, .asm_1b7f
-	ld a, h
-	ld h, l
-	ld l, a
-	ld a, d
-	ld d, e
-	ld e, a
-
-.asm_1b7f
-	pop af
-	ld b, a
-	ld a, h
-	call Function1b92
-	ld c, d
-	call Function1b50
-	ld a, l
-	call Function1b92
-	ld c, e
-	call Function1b50
-	ret
-; 1b92
-
-Function1b92: ; 1b92
-	push de
-	push hl
-	ld l, b
-	ld h, 0
-	add hl, hl
-	add hl, hl
-	ld e, a
-	ld d, 0
-	add hl, de
-	ld de, .data_1ba5
-	add hl, de
-	ld a, [hl]
-	pop hl
-	pop de
-	ret
-; 1ba5
-
-.data_1ba5
-	db 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19
-; 1bb1
-
-Function1bb1: ; 1bb1
-	push hl
-	push bc
-	ld hl, $cfa1
-	ld b, $8
-.asm_1bb8
-	ld a, [de]
-	inc de
-	ld [hli], a
-	dec b
-	jr nz, .asm_1bb8
-	ld a, $1
-	ld [hli], a
-	ld [hli], a
-	xor a
-	ld [hli], a
-	ld [hli], a
-	ld [hli], a
-	pop bc
-	pop hl
-	ret
-; 1bc9
-
-Function1bc9: ; 1bc9
-	callab Function241a8
-	call Function1bdd
-	ret
-; 1bd3
-
-Function1bd3: ; 1bd3
-	callab Function241ab
-	call Function1bdd
-	ret
-; 1bdd
-
-Function1bdd: ; 1bdd
-	push bc
-	push af
-	ld a, [$ffa9]
-	and $f0
-	ld b, a
-	ld a, [hJoyPressed]
-	and $f
-	or b
-	ld b, a
-	pop af
-	ld a, b
-	pop bc
-	ret
-; 1bee
-
-Function1bee: ; 1bee
-	ld hl, $cfac
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	ld [hl], $ec
-	ret
-; 1bf7
-
-Function1bf7: ; 1bf7
-	ld hl, $cfac
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	ld [hl], $7f
-	ret
-; 1c00
-
-Function1c00: ; 1c00
-	callab Function24374
-	ret
-; 1c07
-
-Function1c07: ; 0x1c07
-	push af
-	callab Function243e8
-	pop af
-	ret
-
-Function1c10: ; 0x1c10
-	callab Function2446d
-	ret
-
-Function1c17: ; 0x1c17
-	push af
-	call Function1c07
-	call Function321c
-	call Function1ad2
-	pop af
-	ret
-
-Function1c23: ; 0x1c23
-	call Function1cfd
-	call Function1c30
-	call Function1d19
-	call Function1c30
-	ret
-
-Function1c30: ; 0x1c30
-	call Function1c53
-	inc b
-	inc c
-.asm_1c35
-	push bc
-	push hl
-.asm_1c37
-	ld a, [de]
-	ld [hli], a
-	dec de
-	dec c
-	jr nz, .asm_1c37 ; 0x1c3b $fa
-	pop hl
-	ld bc, $0014
-	add hl, bc
-	pop bc
-	dec b
-	jr nz, .asm_1c35 ; 0x1c44 $ef
-	ret
-
-Function1c47: ; 0x1c47
-	ld b, $10
-	ld de, $cf81
-.asm_1c4c
-	ld a, [hld]
-	ld [de], a
-	inc de
-	dec b
-	jr nz, .asm_1c4c ; 0x1c50 $fa
-	ret
-
-Function1c53: ; 0x1c53
-	ld a, [$cf82]
-	ld b, a
-	ld a, [$cf84]
-	sub b
-	ld b, a
-	ld a, [$cf83]
-	ld c, a
-	ld a, [$cf85]
-	sub c
-	ld c, a
-	ret
-; 0x1c66
-
-Function1c66: ; 1c66
-	push hl
-	push de
-	push bc
-	push af
-	ld hl, $cf86
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	ld de, $cf91
-	ld bc, $0010
-	call CopyBytes
-	pop af
-	pop bc
-	pop de
-	pop hl
-	ret
-; 1c7e
-
-Function1c7e: ; 1c7e
-	ld hl, $cf71
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	inc hl
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	ret
-; 1c89
-
-Function1c89: ; 1c89
-	call Function1c66
-	ld hl, $cf86
-	ld e, [hl]
-	inc hl
-	ld d, [hl]
-	call Function1cc6
-	call GetTileCoord
-	inc de
-	ld a, [de]
-	inc de
-	ld b, a
-.asm_1c9c
-	push bc
-	call PlaceString
-	inc de
-	ld bc, $0028
-	add hl, bc
-	pop bc
-	dec b
-	jr nz, .asm_1c9c
-	ld a, [$cf91]
-	bit 4, a
-	ret z
-	call Function1cfd
-	ld a, [de]
-	ld c, a
-	inc de
-	ld b, $0
-	add hl, bc
-	jp PlaceString
-; 1cbb
-
-Function1cbb: ; 1cbb
-	call Function1cfd
-	call Function1c53
-	dec b
-	dec c
-	jp TextBox
-; 1cc6
-
-Function1cc6: ; 1cc6
-	ld a, [$cf82]
-	ld b, a
-	inc b
-	ld a, [$cf83]
-	ld c, a
-	inc c
-	ld a, [$cf91]
-	bit 6, a
-	jr nz, .asm_1cd8
-	inc b
-
-.asm_1cd8
-	ld a, [$cf91]
-	bit 7, a
-	jr z, .asm_1ce0
-	inc c
-
-.asm_1ce0
-	ret
-; 1ce1
-
-Function1ce1: ; 1ce1
-	call Function1cfd
-	ld bc, $0015
-	add hl, bc
-	call Function1c53
-	dec b
-	dec c
-	call ClearBox
-	ret
-; 1cf1
-
-Function1cf1: ; 1cf1
-	call Function1cfd
-	call Function1c53
-	inc c
-	inc b
-	call ClearBox
-	ret
-; 1cfd
-
-
-Function1cfd: ; 1cfd
-	ld a, [$cf83]
-	ld c, a
-	ld a, [$cf82]
-	ld b, a
-; 1d05
-
-
-GetTileCoord: ; 1d05
-; Return the address of TileMap(c, b) in hl.
-	xor a
-	ld h, a
-	ld l, b
-	ld a, c
-	ld b, h
-	ld c, l
-	add hl, hl
-	add hl, hl
-	add hl, bc
-	add hl, hl
-	add hl, hl
-	ld c, a
-	xor a
-	ld b, a
-	add hl, bc
-	ld bc, TileMap
-	add hl, bc
-	ret
-; 1d19
-
-Function1d19: ; 1d19
-	ld a, [$cf83]
-	ld c, a
-	ld a, [$cf82]
-	ld b, a
-
-GetAttrCoord: ; 1d21
-; Return the address of AttrMap(c, b) in hl.
-	xor a
-	ld h, a
-	ld l, b
-	ld a, c
-	ld b, h
-	ld c, l
-	add hl, hl
-	add hl, hl
-	add hl, bc
-	add hl, hl
-	add hl, hl
-	ld c, a
-	xor a
-	ld b, a
-	add hl, bc
-	ld bc, AttrMap
-	add hl, bc
-	ret
-; 1d35
-
-
-INCLUDE "home/menu.asm"
-INCLUDE "home/handshake.asm"
-INCLUDE "home/game_time.asm"
-INCLUDE "home/map.asm"
-
-
-Function2d43: ; 2d43
-; Inexplicably empty.
-; Seen in PredefPointers.
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	ret
-; 2d54
-
-
-INCLUDE "home/farcall.asm"
-INCLUDE "home/predef.asm"
-INCLUDE "home/window.asm"
-
-
-Function2e4e: ; 2e4e
-	scf
-	ret
-; 2e50
-
-
-INCLUDE "home/flag.asm"
-
-
-Function2ebb: ; 2ebb
-	ld a, [$c2cc]
-	bit 1, a
-	ret z
-	ld a, [hJoyDown]
-	bit A_BUTTON, a
-	ret
-; 2ec6
-
-
-Function2ec6: ; 2ec6
-	xor a
-	ret
-; 2ec8
-
-Function2ec8: ; 2ec8
-	xor a
-	dec a
-	ret
-; 2ecb
-
-Function2ecb: ; 2ecb
-	push hl
-	ld hl, $c2cc
-	bit 1, [hl]
-	pop hl
-	ret
-; 2ed3
-
-
-Function2ed3: ; 0x2ed3
-; disables overworld sprite updating?
-	xor a
-	ld [$ffde], a
-	ld a, [VramState]
-	res 0, a
-	ld [VramState], a
-	ld a, $0
-	ld [$c2ce], a
-	ret
-; 0x2ee4
-
-Function2ee4: ; 2ee4
-	ld a, $1
-	ld [$c2ce], a
-	ld a, [VramState]
-	set 0, a
-	ld [VramState], a
-	ld a, $1
-	ld [$ffde], a
-	ret
-; 2ef6
-
-
-INCLUDE "home/string.asm"
-
-
-IsInJohto: ; 2f17
-; Return 0 if the player is in Johto, and 1 in Kanto.
-
-	ld a, [MapGroup]
-	ld b, a
-	ld a, [MapNumber]
-	ld c, a
-	call GetWorldMapLocation
-
-	cp $5f ; SS Aqua
-	jr z, .Johto
-
-	cp $0 ; Poke Center 2F
-	jr nz, .CheckRegion
-
-	ld a, [BackupMapGroup]
-	ld b, a
-	ld a, [BackupMapNumber]
-	ld c, a
-	call GetWorldMapLocation
-
-.CheckRegion
-	cp $2f ; Pallet Town
-	jr nc, .Kanto
-
-.Johto
-	xor a
-	ret
-
-.Kanto
-	ld a, 1
-	ret
-; 2f3e
-
-
-Function2f3e: ; 2f3e
-	ret
-; 2f3f
-
-
-INCLUDE "home/item.asm"
-INCLUDE "home/random.asm"
-INCLUDE "home/sram.asm"
-
-
-; Register aliases
-
-_hl_: ; 2fec
-	jp [hl]
-; 2fed
-
-_de_: ; 2fed
-	push de
-	ret
-; 2fef
-
-
-INCLUDE "home/double_speed.asm"
-
-
-ClearSprites: ; 300b
-	ld hl, Sprites
-	ld b, TileMap - Sprites
-	xor a
-.loop
-	ld [hli], a
-	dec b
-	jr nz, .loop
-	ret
-; 3016
-
-HideSprites: ; 3016
-; Set all OBJ y-positions to 160 to hide them offscreen
-	ld hl, Sprites
-	ld de, $0004 ; length of an OBJ struct
-	ld b, $28 ; number of OBJ structs
-	ld a, 160 ; y-position
-.loop
-	ld [hl], a
-	add hl, de
-	dec b
-	jr nz, .loop
-	ret
-; 3026
-
-
-INCLUDE "home/copy2.asm"
-
-
-Function309d: ; 309d
-	ld a, [rSVBK]
-	push af
-	ld a, $2
-	ld [rSVBK], a
-	ld hl, TileMap
-	ld de, $d000
-	ld bc, $0168
-	call CopyBytes
-	pop af
-	ld [rSVBK], a
-	ret
-; 30b4
-
-Function30b4: ; 30b4
-	xor a
-	ld [hBGMapMode], a
-	call Function30bf
-	ld a, $1
-	ld [hBGMapMode], a
-	ret
-; 30bf
-
-Function30bf: ; 30bf
-	ld a, [rSVBK]
-	push af
-	ld a, $2
-	ld [rSVBK], a
-	ld hl, $d000
-	ld de, TileMap
-	ld bc, $0168
-	call CopyBytes
-	pop af
-	ld [rSVBK], a
-	ret
-; 30d6
-
-
-CopyName1: ; 30d6
-	ld hl, StringBuffer2
-; 30d9
-CopyName2: ; 30d9
-.loop
-	ld a, [de]
-	inc de
-	ld [hli], a
-	cp "@"
-	jr nz, .loop
-	ret
-; 30e1
-
-IsInArray: ; 30e1
-; Find value a for every de bytes in array hl.
-; Return index in b and carry if found.
-
-	ld b, 0
-	ld c, a
-.loop
-	ld a, [hl]
-	cp $ff
-	jr z, .NotInArray
-	cp c
-	jr z, .InArray
-	inc b
-	add hl, de
-	jr .loop
-
-.NotInArray
-	and a
-	ret
-
-.InArray
-	scf
-	ret
-; 30f4
-
-SkipNames: ; 0x30f4
-; skips n names where n = a
-	ld bc, $000b ; name length
-	and a
-	ret z
-.loop
-	add hl, bc
-	dec a
-	jr nz, .loop
-	ret
-; 0x30fe
-
-AddNTimes: ; 0x30fe
-; adds bc n times where n = a
-	and a
-	ret z
-.loop
-	add hl, bc
-	dec a
-	jr nz, .loop
-	ret
-; 0x3105
-
-
-INCLUDE "home/math.asm"
-
-
-PrintLetterDelay: ; 313d
-; wait some frames before printing the next letter
-; the text speed setting in Options is actually a frame count
-; 	fast: 1 frame
-; 	mid:  3 frames
-; 	slow: 5 frames
-; $cfcf[!0] and A or B override text speed with a one-frame delay
-; Options[4] and $cfcf[!1] disable the delay
-
-; delay off?
-	ld a, [Options]
-	bit 4, a ; delay off
-	ret nz
-	
-; non-scrolling text?
-	ld a, [$cfcf]
-	bit 1, a
-	ret z
-	
-	push hl
-	push de
-	push bc
-	
-; save oam update status
-	ld hl, hOAMUpdate
-	ld a, [hl]
-	push af
-; orginally turned oam update off, commented out
-;	ld a, 1
-	ld [hl], a
-	
-; force fast scroll?
-	ld a, [$cfcf]
-	bit 0, a
-	jr z, .fast
-	
-; text speed
-	ld a, [Options]
-	and a, %111 ; # frames to delay
-	jr .updatedelay
-	
-.fast
-	ld a, 1
-.updatedelay
-	ld [TextDelayFrames], a
-	
-.checkjoypad
-	call GetJoypadPublic
-	
-; input override
-	ld a, [$c2d7]
-	and a
-	jr nz, .wait
-	
-; wait one frame if holding a
-	ld a, [hJoyDown] ; joypad
-	bit 0, a ; A
-	jr z, .checkb
-	jr .delay
-	
-.checkb
-; wait one frame if holding b
-	bit 1, a ; B
-	jr z, .wait
-	
-.delay
-	call DelayFrame
-	jr .end
-	
-.wait
-; wait until frame counter hits 0 or the loop is broken
-; this is a bad way to do this
-	ld a, [TextDelayFrames]
-	and a
-	jr nz, .checkjoypad
-	
-.end
-; restore oam update flag (not touched in this fn anymore)
-	pop af
-	ld [hOAMUpdate], a
-	pop bc
-	pop de
-	pop hl
-	ret
-; 318c
-
-
-CopyDataUntil: ; 318c
-; Copies [hl, bc) to [de, bc - hl).
-; In other words, the source data is from hl up to but not including bc,
-; and the destination is de.
-	ld a, [hli]
-	ld [de], a
-	inc de
-	ld a, h
-	cp b
-	jr nz, CopyDataUntil
-	ld a, l
-	cp c
-	jr nz, CopyDataUntil
-	ret
-; 0x3198
-
-
-PrintNum: ; 3198
-	ld a, [hROMBank]
-	push af
-	ld a, BANK(_PrintNum)
-	rst Bankswitch
-
-	call _PrintNum
-
-	pop af
-	rst Bankswitch
-	ret
-; 31a4
-
-
-Function31a4: ; 31a4
-	ld a, [hROMBank]
-	push af
-	ld a, BANK(Function1061ef)
-	rst Bankswitch
-
-	call Function1061ef
-
-	pop af
-	rst Bankswitch
-	ret
-; 31b0
-
-
-FarPrintText: ; 31b0
-	ld [hBuffer], a
-	ld a, [hROMBank]
-	push af
-	ld a, [hBuffer]
-	rst Bankswitch
-
-	call PrintText
-
-	pop af
-	rst Bankswitch
-	ret
-; 31be
-
-
-CallPointerAt: ; 31be
-	ld a, [hROMBank]
-	push af
-	ld a, [hli]
-	rst Bankswitch
-
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-
-	call _hl_
-
-	pop hl
-	ld a, h
-	rst Bankswitch
-	ret
-; 31cd
-
-
-Function31cd: ; 31cd
-; Push pointer hl in the current bank to $d0e8.
-	ld a, [hROMBank]
-
-Function31cf: ; 31cf
-; Push pointer a:hl to $d0e8.
-	ld [$d0e8], a
-	ld a, l
-	ld [$d0e9], a
-	ld a, h
-	ld [$d0ea], a
-	ret
-; 31db
-
-
-StringCmp: ; 31db
-; Compare strings, c bytes in length, at de and hl.
-; Often used to compare big endian numbers in battle calculations.
-	ld a, [de]
-	cp [hl]
-	ret nz
-	inc de
-	inc hl
-	dec c
-	jr nz, StringCmp
-	ret
-; 0x31e4
-
-
-CompareLong: ; 31e4
-; Compare bc bytes at de and hl. Return carry if they all match.
-
-	ld a, [de]
-	cp [hl]
-	jr nz, .Diff
-
-	inc de
-	inc hl
-	dec bc
-
-	ld a, b
-	or c
-	jr nz, CompareLong
-
-	scf
-	ret
-
-.Diff
-	and a
-	ret
-; 31f3
-
-
-WhiteBGMap: ; 31f3
-	call ClearPalettes
-WaitBGMap: ; 31f6
-; Tell VBlank to update BG Map
-	ld a, 1 ; BG Map 0 tiles
-	ld [hBGMapMode], a
-; Wait for it to do its magic
-	ld c, 4
-	call DelayFrames
-	ret
-; 3200
-
-Function3200: ; 0x3200
-	ld a, [hCGB]
-	and a
-	jr z, .asm_320e
-	ld a, 2
-	ld [hBGMapMode], a
-	ld c, 4
-	call DelayFrames
-
-.asm_320e
-	ld a, 1
-	ld [hBGMapMode], a
-	ld c, 4
-	call DelayFrames
-	ret
-; 0x3218
-
-
-Function3218: ; 3218
-	ld a, [hCGB]
-	and a
-	ret
-; 321c
-
-
-Function321c: ; 321c
-	ld a, [hCGB]
-	and a
-	jr z, .asm_322e
-
-	ld a, [$c2ce]
-	cp 0
-	jr z, .asm_322e
-
-	ld a, 1
-	ld [hBGMapMode], a
-	jr Function323d
-
-.asm_322e
-	ld a, 1
-	ld [hBGMapMode], a
-	ld c, 4
-	call DelayFrames
-	ret
-; 3238
-
-Function3238: ; 3238
-	ld a, [hCGB]
-	and a
-	jr z, WaitBGMap
-
-Function323d: ; 323d
-	jr Function3246
-; 323f
-
-Function323f: ; 323f
-	callba Function104000
-	ret
-; 3246
-
-Function3246: ; 3246
-	ld a, [hBGMapMode]
-	push af
-	xor a
-	ld [hBGMapMode], a
-	ld a, [$ffde]
-	push af
-	xor a
-	ld [$ffde], a
-.asm_3252
-	ld a, [rLY]
-	cp $7f
-	jr c, .asm_3252 ; 3256 $fa
-	di
-	ld a, $1
-	ld [rVBK], a
-	ld hl, AttrMap
-	call Function327b
-	ld a, $0
-	ld [rVBK], a
-	ld hl, TileMap
-	call Function327b
-.asm_326d
-	ld a, [rLY]
-	cp $7f
-	jr c, .asm_326d ; 3271 $fa
-	ei
-	pop af
-	ld [$ffde], a
-	pop af
-	ld [hBGMapMode], a
-	ret
-; 327b
-
-Function327b: ; 327b
-	ld [hSPBuffer], sp
-	ld sp, hl
-	ld a, [$ffd7]
-	ld h, a
-	ld l, $0
-	ld a, $12
-	ld [$ffd3], a
-	ld b, $2
-	ld c, $41
-.asm_328c
-	pop de
-
-rept 9
-.loop\@
-	ld a, [$ff00+c]
-	and b
-	jr nz, .loop\@
-	ld [hl], e
-	inc l
-	ld [hl], d
-	inc l
-	pop de
-endr
-
-.asm_32de
-	ld a, [$ff00+c]
-	and b
-	jr nz, .asm_32de
-	ld [hl], e
-	inc l
-	ld [hl], d
-	inc l
-
-	ld de, $000c
-	add hl, de
-	ld a, [$ffd3]
-	dec a
-	ld [$ffd3], a
-	jr nz, .asm_328c
-	ld a, [hSPBuffer]
-	ld l, a
-	ld a, [$ffda]
-	ld h, a
-	ld sp, hl
-	ret
-; 32f9
-
-
-
-Function32f9: ; 32f9
-	ld a, [hCGB]
-	and a
-	jr nz, .asm_3309
-	ld a, $e4
-	ld [rBGP], a
-	ld a, $d0
-	ld [rOBP0], a
-	ld [rOBP1], a
-	ret
-
-.asm_3309
-	push de
-	ld a, $e4
-	call DmgToCgbBGPals
-	ld de, $e4e4
-	call DmgToCgbObjPals
-	pop de
-	ret
-; 3317
-
-
-ClearPalettes: ; 3317
-; Make all palettes white
-
-; For CGB we make all the palette colors white
-	ld a, [hCGB]
-	and a
-	jr nz, .cgb
-	
-; In DMG mode, we can just change palettes to 0 (white)
-	xor a
-	ld [rBGP], a
-	ld [rOBP0], a
-	ld [rOBP1], a
-	ret
-	
-.cgb
-	ld a, [rSVBK]
-	push af
-
-	ld a, 5
-	ld [rSVBK], a
-
-; Fill BGPals and OBPals with $ffff (white)
-	ld hl, BGPals
-	ld bc, $80
-	ld a, $ff
-	call ByteFill
-
-	pop af
-	ld [rSVBK], a
-
-; Request palette update
-	ld a, 1
-	ld [hCGBPalUpdate], a
-	ret
-; 333e
-
-
-ClearSGB: ; 333e
-	ld b, $ff
-GetSGBLayout: ; 3340
-; load sgb packets unless dmg
-
-; check cgb
-	ld a, [hCGB]
-	and a
-	jr nz, .dosgb
-	
-; check sgb
-	ld a, [hSGB]
-	and a
-	ret z
-	
-.dosgb
-	ld a, $31 ; LoadSGBLayout
-	jp Predef
-; 334e
-
-
-SetHPPal: ; 334e
-; Set palette for hp bar pixel length e at hl.
-	call GetHPPal
-	ld [hl], d
-	ret
-; 3353
-
-
-GetHPPal: ; 3353
-; Get palette for hp bar pixel length e in d.
-
-	ld d, 0 ; green
-	ld a, e
-	cp 24
-	ret nc
-	inc d ; yellow
-	cp 10
-	ret nc
-	inc d ; red
-	ret
-; 335f
-
-
-CountSetBits: ; 0x335f
-; function to count how many bits are set in a string of bytes
-; INPUT:
-; hl = address of string of bytes
-; b = length of string of bytes
-; OUTPUT:
-; [$d265] = number of set bits
-	ld c, $0
-.loop
-	ld a, [hli]
-	ld e, a
-	ld d, $8
-.innerLoop ; count how many bits are set in the current byte
-	srl e
-	ld a, $0
-	adc c
-	ld c, a
-	dec d
-	jr nz, .innerLoop
-	dec b
-	jr nz, .loop
-	ld a, c
-	ld [$d265], a
-	ret
-; 0x3376
-
-
-GetWeekday: ; 3376
-	ld a, [CurDay]
-.mod
-	sub 7
-	jr nc, .mod
-	add 7
-	ret
-; 3380
-
-
-INCLUDE "home/pokedex_flags.asm"
-
-
-NamesPointerTable: ; 33ab
-	dbw BANK(PokemonNames), PokemonNames
-	dbw BANK(MoveNames), MoveNames
-	dbw $00, $0000
-	dbw BANK(ItemNames), ItemNames
-	dbw $00, PartyMonOT
-	dbw $00, OTPartyMonOT
-	dbw BANK(TrainerClassNames), TrainerClassNames
-	dbw $04, $4b52
-; 33c3
-
-
-GetName: ; 33c3
-; Return name CurSpecies from name list $cf61 in StringBuffer1.
-	ld a, [hROMBank]
-	push af
-	push hl
-	push bc
-	push de
-	ld a, [$cf61]
-	cp 1 ; Pokemon names
-	jr nz, .NotPokeName
-
-	ld a, [CurSpecies]
-	ld [$d265], a
-	call GetPokemonName
-	ld hl, $000b
-	add hl, de
-	ld e, l
-	ld d, h
-	jr .done
-
-.NotPokeName
-	ld a, [$cf61]
-	dec a
-	ld e, a
-	ld d, 0
-	ld hl, NamesPointerTable
-	add hl, de
-	add hl, de
-	add hl, de
-	ld a, [hli]
-	rst Bankswitch
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-
-	ld a, [CurSpecies]
-	dec a
-	call GetNthString
-
-	ld de, StringBuffer1
-	ld bc, $000d
-	call CopyBytes
-
-.done
-	ld a, e
-	ld [$d102], a
-	ld a, d
-	ld [$d103], a
-	pop de
-	pop bc
-	pop hl
-	pop af
-	rst Bankswitch
-	ret
-; 3411
-
-
-GetNthString: ; 3411
-; Starting at hl, this function returns the start address of the ath string.
-	and a
-	ret z
-	push bc
-	ld b, a
-	ld c, "@"
-.readChar
-	ld a, [hli]
-	cp c
-	jr nz, .readChar
-	dec b
-	jr nz, .readChar
-	pop bc
-	ret
-; 3420
-
-
-GetBasePokemonName: ; 3420
-; Discards gender (Nidoran).
-	push hl
-	call GetPokemonName
-
-	ld hl, StringBuffer1
-.loop
-	ld a, [hl]
-	cp "@"
-	jr z, .quit
-	cp "♂"
-	jr z, .end
-	cp "♀"
-	jr z, .end
-	inc hl
-	jr .loop
-.end
-	ld [hl], "@"
-.quit
-	pop hl
-	ret
-
-; 343b
-
-
-GetPokemonName: ; 343b
-; Get Pokemon name $d265.
-
-	ld a, [hROMBank]
-	push af
-	push hl
-	ld a, BANK(PokemonNames)
-	rst Bankswitch
-
-; Each name is ten characters
-	ld a, [$d265]
-	dec a
-	ld d, 0
-	ld e, a
-	ld h, 0
-	ld l, a
-	add hl, hl
-	add hl, hl
-	add hl, de
-	add hl, hl
-	ld de, PokemonNames
-	add hl, de
-
-; Terminator
-	ld de, StringBuffer1
-	push de
-	ld bc, PKMN_NAME_LENGTH - 1
-	call CopyBytes
-	ld hl, StringBuffer1 + PKMN_NAME_LENGTH - 1
-	ld [hl], "@"
-	pop de
-
-	pop hl
-	pop af
-	rst Bankswitch
-	ret
-; 3468
-
-
-GetItemName: ; 3468
-; Get item name $d265.
-
-	push hl
-	push bc
-	ld a, [$d265]
-
-	cp TM_01
-	jr nc, .TM
-
-	ld [CurSpecies], a
-	ld a, 4 ; Item names
-	ld [$cf61], a
-	call GetName
-	jr .Copied
-.TM
-	call GetTMHMName
-.Copied
-	ld de, StringBuffer1
-	pop bc
-	pop hl
-	ret
-; 3487
-
-
-GetTMHMName: ; 3487
-; Get TM/HM name by item id $d265.
-
-	push hl
-	push de
-	push bc
-	ld a, [$d265]
-	push af
-
-; TM/HM prefix
-	cp HM_01
-	push af
-	jr c, .TM
-
-	ld hl, .HMText
-	ld bc, .HMTextEnd - .HMText
-	jr .asm_34a1
-
-.TM
-	ld hl, .TMText
-	ld bc, .TMTextEnd - .TMText
-
-.asm_34a1
-	ld de, StringBuffer1
-	call CopyBytes
-
-; TM/HM number
-	push de
-	ld a, [$d265]
-	ld c, a
-	callab GetTMHMNumber
-	pop de
-
-; HM numbers start from 51, not 1
-	pop af
-	ld a, c
-	jr c, .asm_34b9
-	sub NUM_TMS
-
-; Divide and mod by 10 to get the top and bottom digits respectively
-.asm_34b9
-	ld b, "0"
-.mod10
-	sub 10
-	jr c, .asm_34c2
-	inc b
-	jr .mod10
-.asm_34c2
-	add 10
-
-	push af
-	ld a, b
-	ld [de], a
-	inc de
-	pop af
-
-	ld b, "0"
-	add b
-	ld [de], a
-
-; End the string
-	inc de
-	ld a, "@"
-	ld [de], a
-
-	pop af
-	ld [$d265], a
-	pop bc
-	pop de
-	pop hl
-	ret
-
-.TMText
-	db "TM"
-.TMTextEnd
-	db "@"
-
-.HMText
-	db "HM"
-.HMTextEnd
-	db "@"
-; 34df
-
-
-IsHM: ; 34df
-	cp HM_01
-	jr c, .NotHM
-	scf
-	ret
-.NotHM
-	and a
-	ret
-; 34e7
-
-
-IsHMMove: ; 34e7
-	ld hl, .HMMoves
-	ld de, 1
-	jp IsInArray
-
-.HMMoves
-	db CUT
-	db FLY
-	db SURF
-	db STRENGTH
-	db FLASH
-	db WATERFALL
-	db WHIRLPOOL
-	db $ff
-; 34f8
-
-
-GetMoveName: ; 34f8
-	push hl
-; move name
-	ld a, $2 ; move names
-	ld [$cf61], a
-; move id
-	ld a, [$d265]
-	ld [CurSpecies], a
-
-	call GetName
-	ld de, StringBuffer1
-	pop hl
-	ret
-; 350c
-
-
-Function350c: ; 350c
-	call Function1c66
-	ld a, [hROMBank]
-	push af
-	ld a, $9
-	rst Bankswitch
-
-	call Function245af
-	call Function3524
-	call Function245cb
-	pop af
-	rst Bankswitch
-
-	ld a, [$cf73]
-	ret
-; 3524
-
-Function3524: ; 3524
-	ld hl, VramState
-	bit 0, [hl]
-	jp nz, UpdateTimePals
-	jp Function32f9
-; 352f
-
-Function352f: ; 352f
-	ld a, [$cf82]
-	dec a
-	ld b, a
-	ld a, [$cf84]
-	sub b
-	ld d, a
-	ld a, [$cf83]
-	dec a
-	ld c, a
-	ld a, [$cf85]
-	sub c
-	ld e, a
-	push de
-	call GetTileCoord
-	pop bc
-	jp TextBox
-; 354b
-
-Function354b: ; 354b
-	call DelayFrame
-	ld a, [$ffaa]
-	push af
-	ld a, $1
-	ld [$ffaa], a
-	call Functiona57
-	pop af
-	ld [$ffaa], a
-	ld a, [$ffa9]
-	and $f0
-	ld c, a
-	ld a, [hJoyPressed]
-	and $f
-	or c
-	ld c, a
-	ret
-; 3567
-
-
-Function3567: ; 3567
-	ld a, [hROMBank]
-	push af
-	call Function2c52
-	call Function3574
-	pop bc
-	ld a, b
-	rst Bankswitch
-
-	ret
-; 3574
-
-Function3574: ; 3574
-	ld hl, $0001
-	add hl, de
-	ld a, [hl]
-	cp $ff
-	jr z, .asm_3597
-	ld l, a
-	push hl
-	call Function3599
-	pop hl
-	jr nc, .asm_3597
-	ld d, a
-	ld e, l
-	call Function35de
-	jr nc, .asm_3597
-	call Function2631
-	callba Function96c56
-	scf
-	ret
-
-.asm_3597
-	and a
-	ret
-; 3599
-
-Function3599: ; 3599
-	push de
-	ld hl, $0010
-	add hl, de
-	ld a, [hl]
-	ld hl, $0011
-	add hl, de
-	ld e, [hl]
-	sub $4
-	ld d, a
-	ld a, e
-	sub $4
-	ld e, a
-	call Function35b0
-	pop de
-	ret
-; 35b0
-
-Function35b0: ; 35b0
-	ld hl, $dbfc
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	ld a, [$dbfb]
-	and a
-	jr z, .asm_35d3
-.asm_35bc
-	push af
-	ld a, [hl]
-	cp e
-	jr nz, .asm_35c8
-	inc hl
-	ld a, [hld]
-	cp d
-	jr nz, .asm_35c8
-	jr .asm_35d5
-
-.asm_35c8
-	ld a, $5
-	add l
-	ld l, a
-	jr nc, .asm_35cf
-	inc h
-
-.asm_35cf
-	pop af
-	dec a
-	jr nz, .asm_35bc
-
-.asm_35d3
-	and a
-	ret
-
-.asm_35d5
-	pop af
-	ld d, a
-	ld a, [$dbfb]
-	sub d
-	inc a
-	scf
-	ret
-; 35de
-
-Function35de: ; 35de
-	inc e
-	ld hl, $0001
-	add hl, bc
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-.asm_35e6
-	ld a, [hli]
-	cp $ff
-	jr z, .asm_35fc
-	cp d
-	jr nz, .asm_35f7
-	ld a, [hli]
-	cp e
-	jr nz, .asm_35f8
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	jr .asm_35fe
-
-.asm_35f7
-	inc hl
-
-.asm_35f8
-	inc hl
-	inc hl
-	jr .asm_35e6
-
-.asm_35fc
-	and a
-	ret
-
-.asm_35fe
-	scf
-	ret
-; 3600
-
-
-CheckTrainerBattle2: ; 3600
-
-	ld a, [hROMBank]
-	push af
-	call Function2c52
-
-	call CheckTrainerBattle
-
-	pop bc
-	ld a, b
-	rst Bankswitch
-	ret
-; 360d
-
-
-CheckTrainerBattle: ; 360d
-; Check if any trainer on the map sees the player and wants to battle.
-
-; Skip the player object.
-	ld a, 1
-	ld de, MapObjects + OBJECT_LENGTH
-
-.loop
-
-; Start a battle if the object:
-
-	push af
-	push de
-
-; Has a sprite
-	ld hl, $0001
-	add hl, de
-	ld a, [hl]
-	and a
-	jr z, .next
-
-; Is a trainer
-	ld hl, $0008
-	add hl, de
-	ld a, [hl]
-	and $f
-	cp $2
-	jr nz, .next
-
-; Is visible on the map
-	ld hl, $0000
-	add hl, de
-	ld a, [hl]
-	cp $ff
-	jr z, .next
-
-; Is facing the player...
-	call Function1ae5
-	call FacingPlayerDistance_bc
-	jr nc, .next
-
-; ...within their sight range
-	ld hl, $0009
-	add hl, de
-	ld a, [hl]
-	cp b
-	jr c, .next
-
-; And hasn't already been beaten
-	push bc
-	push de
-	ld hl, $000a
-	add hl, de
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	ld e, [hl]
-	inc hl
-	ld d, [hl]
-	ld b, CHECK_FLAG
-	call EventFlagAction
-	ld a, c
-	pop de
-	pop bc
-	and a
-	jr z, .asm_3666
-
-.next
-	pop de
-	ld hl, OBJECT_LENGTH
-	add hl, de
-	ld d, h
-	ld e, l
-
-	pop af
-	inc a
-	cp NUM_OBJECTS
-	jr nz, .loop
-	xor a
-	ret
-
-.asm_3666
-	pop de
-	pop af
-	ld [$ffe0], a
-	ld a, b
-	ld [$d03f], a
-	ld a, c
-	ld [MartPointer], a
-	jr Function367e
-; 3674
-
-Function3674: ; 3674
-	ld a, $1
-	ld [$d03f], a
-	ld a, $ff
-	ld [MartPointer], a
-
-Function367e: ; 367e
-	call GetMapScriptHeaderBank
-	ld [EngineBuffer1], a
-	ld a, [$ffe0]
-	call GetMapObject
-	ld hl, $000a
-	add hl, bc
-	ld a, [EngineBuffer1]
-	call GetFarHalfword
-	ld de, $d041
-	ld bc, $000d
-	ld a, [EngineBuffer1]
-	call FarCopyBytes
-	xor a
-	ld [$d04d], a
-	scf
-	ret
-; 36a5
-
-
-FacingPlayerDistance_bc: ; 36a5
-
-	push de
-	call FacingPlayerDistance
-	ld b, d
-	ld c, e
-	pop de
-	ret
-; 36ad
-
-
-FacingPlayerDistance: ; 36ad
-; Return carry if the sprite at bc is facing the player,
-; and its distance in d.
-
-	ld hl, $0010 ; x
-	add hl, bc
-	ld d, [hl]
-
-	ld hl, $0011 ; y
-	add hl, bc
-	ld e, [hl]
-
-	ld a, [MapX]
-	cp d
-	jr z, .CheckY
-
-	ld a, [MapY]
-	cp e
-	jr z, .CheckX
-
-	and a
-	ret
-
-.CheckY
-	ld a, [MapY]
-	sub e
-	jr z, .NotFacing
-	jr nc, .Above
-
-; Below
-	cpl
-	inc a
-	ld d, a
-	ld e, UP << 2
-	jr .CheckFacing
-
-.Above
-	ld d, a
-	ld e, DOWN << 2
-	jr .CheckFacing
-
-.CheckX
-	ld a, [MapX]
-	sub d
-	jr z, .NotFacing
-	jr nc, .Left
-
-; Right
-	cpl
-	inc a
-	ld d, a
-	ld e, LEFT << 2
-	jr .CheckFacing
-
-.Left
-	ld d, a
-	ld e, RIGHT << 2
-
-.CheckFacing
-	call GetSpriteDirection
-	cp e
-	jr nz, .NotFacing
-	scf
-	ret
-
-.NotFacing
-	and a
-	ret
-; 36f5
-
-
-Function36f5: ; 36f5
-	push bc
-	ld hl, $0001
-	add hl, bc
-	ld a, [hl]
-	call GetMapObject
-	ld hl, $000a
-	add hl, bc
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	call GetMapScriptHeaderBank
-	call GetFarHalfword
-	ld d, h
-	ld e, l
-	push de
-	ld b, $2
-	call EventFlagAction
-	pop de
-	ld a, c
-	and a
-	pop bc
-	ret
-; 3718
-
-
-Function3718: ; 3718
-	ld a, [BattleType]
-	cp $1
-	jr .asm_3724
-
-	ld hl, WalkingTile
-	jr .asm_3731
-
-.asm_3724
-	ld a, [$d0ee]
-	ld hl, WalkingTile
-	and $f
-	jr z, .asm_3731
-	ld hl, $d049
-
-.asm_3731
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	call GetMapScriptHeaderBank
-	call FarPrintText
-	call WaitBGMap
-	call Functiona80
-	ret
-; 3741
-
-
-
-IsAPokemon: ; 3741
-; Return carry if species a is not a Pokemon.
-	and a
-	jr z, .NotAPokemon
-	cp EGG
-	jr z, .Pokemon
-	cp NUM_POKEMON + 1
-	jr c, .Pokemon
-
-.NotAPokemon
-	scf
-	ret
-
-.Pokemon
-	and a
-	ret
-; 3750
-
-
-DrawHPBar: ; 3750
-; Draw an HP bar d tiles long at hl
-; Fill it up to e pixels
-
-	push hl
-	push de
-	push bc
-
-; Place 'HP:'
-	ld a, $60
-	ld [hli], a
-	ld a, $61
-	ld [hli], a
-
-; Draw a template
-	push hl
-	ld a, $62 ; empty bar
-.template
-	ld [hli], a
-	dec d
-	jr nz, .template
-	ld a, $6b ; bar end
-	add b
-	ld [hl], a
-	pop hl
-
-; Safety check # pixels
-	ld a, e
-	and a
-	jr nz, .fill
-	ld a, c
-	and a
-	jr z, .done
-	ld e, 1
-
-.fill
-; Keep drawing tiles until pixel length is reached
-	ld a, e
-	sub TILE_WIDTH
-	jr c, .lastbar
-
-	ld e, a
-	ld a, $6a ; full bar
-	ld [hli], a
-	ld a, e
-	and a
-	jr z, .done
-	jr .fill
-
-.lastbar
-	ld a, $62  ; empty bar
-	add e      ; + e
-	ld [hl], a
-
-.done
-	pop bc
-	pop de
-	pop hl
-	ret
-; 3786
-
-
-Function3786: ; 3786
-	ld a, $1
-	ld [$c2c6], a
-
-Function378b: ; 378b
-	ld a, [CurPartySpecies]
-	call IsAPokemon
-	jr c, .asm_37ad
-	push hl
-	ld de, VTiles2
-	ld a, $3c
-	call Predef
-	pop hl
-	xor a
-	ld [$ffad], a
-	ld bc, $0707
-	ld a, $13
-	call Predef
-	xor a
-	ld [$c2c6], a
-	ret
-
-.asm_37ad
-	xor a
-	ld [$c2c6], a
-	inc a
-	ld [CurPartySpecies], a
-	ret
-; 37b6
-
-Function37b6: ; 37b6
-	push af
-	ld a, $1
-	ld [$c2bc], a
-	pop af
-	call Function37e2
-	call WaitSFX
-	ret
-; 37c4
-
-Function37c4: ; 37c4
-	push af
-	ld a, $1
-	ld [$c2bc], a
-	pop af
-	jp Function37e2
-; 37ce
-
-Function37ce: ; 37ce
-	call Function37d5
-	call WaitSFX
-	ret
-; 37d5
-
-Function37d5: ; 37d5
-	push af
-	xor a
-	ld [$c2bc], a
-	ld [CryTracks], a
-	pop af
-	call Function37e2
-	ret
-; 37e2
-
-Function37e2: ; 37e2
-	push hl
-	push de
-	push bc
-	call Function381e
-	jr c, .asm_37ef
-	ld e, c
-	ld d, b
-	call PlayCryHeader
-
-.asm_37ef
-	pop bc
-	pop de
-	pop hl
-	ret
-; 37f3
-
-Function37f3: ; 37f3
-	call Function381e
-	ret c
-	ld a, [hROMBank]
-	push af
-	ld a, $3c
-	rst Bankswitch
-
-	ld hl, $6787
-	add hl, bc
-	add hl, bc
-	add hl, bc
-	add hl, bc
-	add hl, bc
-	add hl, bc
-	ld e, [hl]
-	inc hl
-	ld d, [hl]
-	inc hl
-	ld a, [hli]
-	ld [CryPitch], a
-	ld a, [hli]
-	ld [CryEcho], a
-	ld a, [hli]
-	ld [CryLength], a
-	ld a, [hl]
-	ld [$c2b3], a
-	pop af
-	rst Bankswitch
-
-	and a
-	ret
-; 381e
-
-Function381e: ; 381e
-	and a
-	jr z, .asm_382b
-	cp $fc
-	jr nc, .asm_382b
-	dec a
-	ld c, a
-	ld b, $0
-	and a
-	ret
-
-.asm_382b
-	scf
-	ret
-; 382d
-
-
-PrintLevel: ; 382d
-; Print TempMonLevel at hl
-
-	ld a, [TempMonLevel]
-	ld [hl], $6e ; ":L"
-	inc hl
-
-; How many digits?
-	ld c, 2
-	cp 100
-	jr c, Function3842
-
-; 3-digit numbers overwrite the :L.
-	dec hl
-	inc c
-	jr Function3842
-; 383d
-
-Function383d: ; 383d
-; Print :L and all 3 digits
-	ld [hl], $6e
-	inc hl
-	ld c, 3
-; 3842
-
-Function3842: ; 3842
-	ld [$d265], a
-	ld de, $d265
-	ld b,  %01000001 ; flags
-	jp PrintNum
-; 384d
-
-
-Function384d: ; 384d
-	ld hl, $d25e
-	ld c, a
-	ld b, $0
-	add hl, bc
-	ld a, [hl]
-	ret
-; 3856
-
-
-GetBaseData: ; 3856
-	push bc
-	push de
-	push hl
-	ld a, [hROMBank]
-	push af
-	ld a, BANK(BaseData)
-	rst Bankswitch
-	
-; Egg doesn't have BaseData
-	ld a, [CurSpecies]
-	cp EGG
-	jr z, .egg
-
-; Get BaseData
-	dec a
-	ld bc, BaseData1 - BaseData0
-	ld hl, BaseData
-	call AddNTimes
-	ld de, CurBaseData
-	ld bc, BaseData1 - BaseData0
-	call CopyBytes
-	jr .end
-	
-.egg
-; ????
-	ld de, $7d9c
-	
-; Sprite dimensions
-	ld b, $55 ; 5x5
-	ld hl, BasePicSize
-	ld [hl], b
-	
-; ????
-	ld hl, BasePadding
-	ld [hl], e
-	inc hl
-	ld [hl], d
-	inc hl
-	ld [hl], e
-	inc hl
-	ld [hl], d
-	jr .end
-	
-.end
-; Replace Pokedex # with species
-	ld a, [CurSpecies]
-	ld [BaseDexNo], a
-	
-	pop af
-	rst Bankswitch
-	pop hl
-	pop de
-	pop bc
-	ret
-; 389c
-
-
-GetCurNick: ; 389c
-	ld a, [CurPartyMon]
-	ld hl, PartyMonNicknames
-
-GetNick: ; 38a2
-; Get nickname a from list hl.
-
-	push hl
-	push bc
-
-	call SkipNames
-	ld de, StringBuffer1
-
-	push de
-	ld bc, PKMN_NAME_LENGTH
-	call CopyBytes
-	pop de
-
-	callab CheckNickErrors
-
-	pop bc
-	pop hl
-	ret
-; 38bb
-
-
-PrintBCDNumber: ; 38bb
-; function to print a BCD (Binary-coded decimal) number
-; de = address of BCD number
-; hl = destination address
-; c = flags and length
-; bit 7: if set, do not print leading zeroes
-;        if unset, print leading zeroes
-; bit 6: if set, left-align the string (do not pad empty digits with spaces)
-;        if unset, right-align the string
-; bit 5: if set, print currency symbol at the beginning of the string
-;        if unset, do not print the currency symbol
-; bits 0-4: length of BCD number in bytes
-; Note that bits 5 and 7 are modified during execution. The above reflects
-; their meaning at the beginning of the functions's execution.
-	ld b, c ; save flags in b
-	res 7, c
-	res 6, c
-	res 5, c ; c now holds the length
-	bit 5, b
-	jr z, .loop
-	bit 7, b
-	jr nz, .loop
-	ld [hl], "¥"
-	inc hl
-.loop
-	ld a, [de]
-	swap a
-	call PrintBCDDigit ; print upper digit
-	ld a, [de]
-	call PrintBCDDigit ; print lower digit
-	inc de
-	dec c
-	jr nz, .loop
-	bit 7, b ; were any non-zero digits printed?
-	jr z, .done ; if so, we are done
-.numberEqualsZero ; if every digit of the BCD number is zero
-	bit 6, b ; left or right alignment?
-	jr nz, .skipRightAlignmentAdjustment
-	dec hl ; if the string is right-aligned, it needs to be moved back one space
-.skipRightAlignmentAdjustment
-	bit 5, b
-	jr z, .skipCurrencySymbol
-	ld [hl], "¥" ; currency symbol
-	inc hl
-.skipCurrencySymbol
-	ld [hl], "0"
-	call PrintLetterDelay
-	inc hl
-.done
-	ret
-; 0x38f2
-
-PrintBCDDigit: ; 38f2
-	and a, %00001111
-	and a
-	jr z, .zeroDigit
-.nonzeroDigit
-	bit 7, b ; have any non-space characters been printed?
-	jr z, .outputDigit
-; if bit 7 is set, then no numbers have been printed yet
-	bit 5, b ; print the currency symbol?
-	jr z, .skipCurrencySymbol
-	ld [hl], "¥"
-	inc hl
-	res 5, b
-.skipCurrencySymbol
-	res 7, b ; unset 7 to indicate that a nonzero digit has been reached
-.outputDigit
-	add a, "0"
-	ld [hli], a
-	jp PrintLetterDelay
-.zeroDigit
-	bit 7, b ; either printing leading zeroes or already reached a nonzero digit?
-	jr z, .outputDigit ; if so, print a zero digit
-	bit 6, b ; left or right alignment?
-	ret nz
-	ld a, " "
-	ld [hli], a ; if right-aligned, "print" a space by advancing the pointer
-	ret
-; 0x3917
-
-GetPartyParamLocation: ; 3917
-; Get the location of parameter a from CurPartyMon in hl
-	push bc
-	ld hl, PartyMons
-	ld c, a
-	ld b, $00
-	add hl, bc
-	ld a, [CurPartyMon]
-	call GetPartyLocation
-	pop bc
-	ret
-; 3927
-
-GetPartyLocation: ; 3927
-; Add the length of a PartyMon struct to hl a times.
-	ld bc, PartyMon2 - PartyMon1
-	jp AddNTimes
-; 392d
-
-
-Function392d: ; 392d
-	push hl
-	ld a, b
-	dec a
-	ld b, $0
-	add hl, bc
-	ld hl, $5424
-	ld bc, $0020
-	call AddNTimes
-	ld a, $14
-	call GetFarHalfword
-	ld b, l
-	ld c, h
-	pop hl
-	ret
-; 3945
-
-
-UserPartyAttr: ; 3945
-	push af
-	ld a, [hBattleTurn]
-	and a
-	jr nz, .asm_394e
-	pop af
-	jr BattlePartyAttr
-.asm_394e
-	pop af
-	jr OTPartyAttr
-; 3951
-
-
-OpponentPartyAttr: ; 3951
-	push af
-	ld a, [hBattleTurn]
-	and a
-	jr z, .asm_395a
-	pop af
-	jr BattlePartyAttr
-.asm_395a
-	pop af
-	jr OTPartyAttr
-; 395d
-
-
-BattlePartyAttr: ; 395d
-; Get attribute a from the active BattleMon's party struct.
-	push bc
-	ld c, a
-	ld b, 0
-	ld hl, PartyMons
-	add hl, bc
-	ld a, [CurBattleMon]
-	call GetPartyLocation
-	pop bc
-	ret
-; 396d
-
-
-OTPartyAttr: ; 396d
-; Get attribute a from the active EnemyMon's party struct.
-	push bc
-	ld c, a
-	ld b, 0
-	ld hl, OTPartyMon1Species
-	add hl, bc
-	ld a, [CurOTMon]
-	call GetPartyLocation
-	pop bc
-	ret
-; 397d
-
-
-ResetDamage: ; 397d
-	xor a
-	ld [CurDamage], a
-	ld [CurDamage + 1], a
-	ret
-; 3985
-
-SetPlayerTurn: ; 3985
-	xor a
-	ld [hBattleTurn], a
-	ret
-; 3989
-
-SetEnemyTurn: ; 3989
-	ld a, 1
-	ld [hBattleTurn], a
-	ret
-; 398e
-
-
-UpdateOpponentInParty: ; 398e
-	ld a, [hBattleTurn]
-	and a
-	jr z, UpdateEnemyMonInParty
-	jr UpdateBattleMonInParty
-; 3995
-
-UpdateUserInParty: ; 3995
-	ld a, [hBattleTurn]
-	and a
-	jr z, UpdateBattleMonInParty
-	jr UpdateEnemyMonInParty
-; 399c
-
-UpdateBattleMonInParty: ; 399c
-; Update level, status, current HP
-
-	ld a, [CurBattleMon]
-
-Function399f: ; 399f
-	ld hl, PartyMon1Level
-	call GetPartyLocation
-
-	ld d, h
-	ld e, l
-	ld hl, BattleMonLevel
-	ld bc, BattleMonMaxHP - BattleMonLevel
-	jp CopyBytes
-; 39b0
-
-UpdateEnemyMonInParty: ; 39b0
-; Update level, status, current HP
-
-; No wildmons.
-	ld a, [IsInBattle]
-	dec a
-	ret z
-
-	ld a, [CurOTMon]
-	ld hl, OTPartyMon1Level
-	call GetPartyLocation
-
-	ld d, h
-	ld e, l
-	ld hl, EnemyMonLevel
-	ld bc, EnemyMonMaxHP - EnemyMonLevel
-	jp CopyBytes
-; 39c9
-
-
-RefreshBattleHuds: ; 39c9
-	call UpdateBattleHuds
-	ld c, 3
-	call DelayFrames
-	jp WaitBGMap
-; 39d4
-
-UpdateBattleHuds: ; 39d4
-	callba Function3df48
-	callba Function3e036
-	ret
-; 39e1
-
-
-GetBattleVar: ; 39e1
-; Preserves hl.
-	push hl
-	call _GetBattleVar
-	pop hl
-	ret
-; 39e7
-
-_GetBattleVar: ; 39e7
-; Get variable from pair a, depending on whose turn it is.
-; There are 21 variable pairs.
-
-	push bc
-	
-; get var pair
-	ld hl, .battlevarpairs
-	ld c, a
-	ld b, 0
-	add hl, bc
-	add hl, bc
-	
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	
-; Enemy turn uses the second byte instead.
-; This lets battle variable calls be side-neutral.
-	ld a, [hBattleTurn]
-	and a
-	jr z, .getvar
-	inc hl
-	
-.getvar
-; get var id
-	ld a, [hl]
-	ld c, a
-	ld b, 0
-	
-; seek
-	ld hl, .vars
-	add hl, bc
-	add hl, bc
-	
-; get var address
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	
-	ld a, [hl]
-	
-	pop bc
-	ret
-
-
-.battlevarpairs
-	dw .substatus1         ; 0
-	dw .substatus2         ; 1
-	dw .substatus3         ; 2
-	dw .substatus4         ; 3
-	dw .substatus5         ; 4
-	dw .substatus1opp      ; 5
-	dw .substatus2opp      ; 6
-	dw .substatus3opp      ; 7
-	dw .substatus4opp      ; 8
-	dw .substatus5opp      ; 9
-	dw .status             ; a
-	dw .statusopp          ; b
-	dw .animation          ; c
-	dw .effect             ; d
-	dw .power              ; e
-	dw .type               ; f
-	dw .curmove            ; 10
-	dw .lastcountermove    ; 11
-	dw .lastcountermoveopp ; 12
-	dw .lastmove           ; 13
-	dw .lastmoveopp        ; 14
-
-	;                  player             enemy
-.substatus1
-	db $00, $01 ; PLAYER_SUBSTATUS1, ENEMY_SUBSTATUS1
-.substatus1opp
-	db $01, $00 ; ENEMY_SUBSTATUS1, PLAYER_SUBSTATUS1
-.substatus2
-	db $02, $03 ; PLAYER_SUBSTATUS2, ENEMY_SUBSTATUS2
-.substatus2opp
-	db $03, $02 ; ENEMY_SUBSTATUS2, PLAYER_SUBSTATUS2
-.substatus3
-	db $04, $05 ; PLAYER_SUBSTATUS3, ENEMY_SUBSTATUS3
-.substatus3opp
-	db $05, $04 ; ENEMY_SUBSTATUS3, PLAYER_SUBSTATUS3
-.substatus4
-	db $06, $07 ; PLAYER_SUBSTATUS4, ENEMY_SUBSTATUS4
-.substatus4opp
-	db $07, $06 ; ENEMY_SUBSTATUS4, PLAYER_SUBSTATUS4
-.substatus5
-	db $08, $09 ; PLAYER_SUBSTATUS5, ENEMY_SUBSTATUS5
-.substatus5opp
-	db $09, $08 ; ENEMY_SUBSTATUS5, PLAYER_SUBSTATUS5
-.status
-	db $0a, $0b ; PLAYER_STATUS, ENEMY_STATUS
-.statusopp
-	db $0b, $0a ; ENEMY_STATUS, PLAYER_STATUS
-.animation
-	db $0c, $0d ; PLAYER_MOVE_ANIMATION, ENEMY_MOVE_ANIMATION
-.effect
-	db $0e, $0f ; PLAYER_MOVE_EFFECT, ENEMY_MOVE_EFFECT
-.power
-	db $10, $11 ; PLAYER_MOVE_POWER, ENEMY_MOVE_POWER
-.type
-	db $12, $13 ; PLAYER_MOVE_TYPE, ENEMY_MOVE_TYPE
-.curmove
-	db $14, $15 ; PLAYER_CUR_MOVE, ENEMY_CUR_MOVE
-.lastcountermove
-	db $16, $17 ; ENEMY_LAST_COUNTER_MOVE, PLAYER_LAST_COUNTER_MOVE
-.lastcountermoveopp
-	db $17, $16 ; PLAYER_LAST_COUNTER_MOVE, ENEMY_LAST_COUNTER_MOVE
-.lastmove
-	db $18, $19 ; PLAYER_LAST_MOVE, ENEMY_LAST_MOVE
-.lastmoveopp
-	db $19, $18 ; ENEMY_LAST_MOVE, PLAYER_LAST_MOVE
-
-.vars
-	dw PlayerSubStatus1
-	dw EnemySubStatus1
-	
-	dw PlayerSubStatus2
-	dw EnemySubStatus2
-	
-	dw PlayerSubStatus3
-	dw EnemySubStatus3
-	
-	dw PlayerSubStatus4
-	dw EnemySubStatus4
-	
-	dw PlayerSubStatus5
-	dw EnemySubStatus5
-	
-	dw BattleMonStatus
-	dw EnemyMonStatus
-	
-	dw PlayerMoveAnimation
-	dw EnemyMoveAnimation
-	
-	dw PlayerMoveEffect
-	dw EnemyMoveEffect
-	
-	dw PlayerMovePower
-	dw EnemyMovePower
-	
-	dw PlayerMoveType
-	dw EnemyMoveType
-	
-	dw CurPlayerMove
-	dw CurEnemyMove
-	
-	dw LastEnemyCounterMove
-	dw LastPlayerCounterMove
-	
-	dw LastPlayerMove
-	dw LastEnemyMove
-; 3a90
-
-
-Function3a90: ; 3a90
-	inc hl
-	ld a, [hROMBank]
-	push af
-	ld a, [hli]
-	ld e, a
-	ld a, [hli]
-	ld d, a
-	ld a, [hli]
-	ld [hROMBank], a
-	ld [MBC3RomBank], a
-	ld a, e
-	ld l, a
-	ld a, d
-	ld h, a
-	ld de, $d00c
-	ld bc, $0028
-	call CopyBytes
-	pop af
-	ld [hROMBank], a
-	ld [MBC3RomBank], a
-	ret
-; 3ab2
-
-
-MobileTextBorder: ; 3ab2
-; For mobile link battles only.
-	ld a, [InLinkBattle]
-	cp 4
-	ret c
-; Draw a cell phone icon at the top right corner of the border.
-	ld hl, $c5a3 ; TileMap(19,12)
-	ld [hl], $5e ; cell phone top
-	ld hl, $c5b7 ; TileMap(19,13)
-	ld [hl], $5f ; cell phone bottom
-	ret
-; 3ac3
-
-
-BattleTextBox: ; 3ac3
-; Open a textbox and print text at hl.
-	push hl
-	call SpeechTextBox
-	call MobileTextBorder
-	call Function1ad2
-	call Function321c
-	pop hl
-	call PrintTextBoxText
-	ret
-; 3ad5
-
-
-StdBattleTextBox: ; 3ad5
-; Open a textbox and print battle text at 20:hl.
-
-	ld a, [hROMBank]
-	push af
-
-	ld a, BANK(BattleText)
-	rst Bankswitch
-
-	call BattleTextBox
-
-	pop af
-	rst Bankswitch
-	ret
-; 3ae1
-
-
-Function3ae1: ; 3ae1
-	ld a, $32
-	rst Bankswitch
-
-	ld a, [hli]
-	ld [$d410], a
-	ld a, [hl]
-	ld [$d411], a
-	ld a, $33
-	rst Bankswitch
-
-	ret
-; 3af0
-
-Function3af0: ; 3af0
-	push hl
-	push de
-	ld hl, $d410
-	ld e, [hl]
-	inc hl
-	ld d, [hl]
-	ld a, $32
-	rst Bankswitch
-
-	ld a, [de]
-	ld [$d417], a
-	inc de
-	ld a, $33
-	rst Bankswitch
-
-	ld [hl], d
-	dec hl
-	ld [hl], e
-	pop de
-	pop hl
-	ld a, [$d417]
-	ret
-; 3b0c
-
-Function3b0c: ; 3b0c
-	ld a, [hLCDStatCustom]
-	and a
-	ret z
-
-	ld a, $00
-	ld [Requested2bppSource], a
-	ld a, $d2
-	ld [Requested2bppSource + 1], a
-
-	ld a, $00
-	ld [Requested2bppDest], a
-	ld a, $d1
-	ld [Requested2bppDest + 1], a
-
-	ld a, $9
-	ld [Requested2bpp], a
-	ret
-; 3b2a
-
-
-
-Function3b2a: ; 3b2a
-	ld [$c3b8], a
-	ld a, [hROMBank]
-	push af
-	ld a, BANK(Function8cfd6)
-	rst Bankswitch
-
-	ld a, [$c3b8]
-	call Function8cfd6
-	pop af
-	rst Bankswitch
-
-	ret
-; 3b3c
-
-
-Function3b3c: ; 3b3c
-	ld [$c3b8], a
-	ld a, [hROMBank]
-	push af
-	ld a, BANK(Function8d120)
-	rst Bankswitch
-
-	ld a, [$c3b8]
-	call Function8d120
-	pop af
-	rst Bankswitch
-
-	ret
-; 3b4e
-
-
-SoundRestart: ; 3b4e
-
-	push hl
-	push de
-	push bc
-	push af
-
-	ld a, [hROMBank]
-	push af
-	ld a, BANK(_SoundRestart)
-	ld [hROMBank], a
-	ld [MBC3RomBank], a
-
-	call _SoundRestart
-
-	pop af
-	ld [hROMBank], a
-	ld [MBC3RomBank], a
-
-	pop af
-	pop bc
-	pop de
-	pop hl
-	ret
-; 3b6a
-
-
-UpdateSound: ; 3b6a
-
-	push hl
-	push de
-	push bc
-	push af
-
-	ld a, [hROMBank]
-	push af
-	ld a, BANK(_UpdateSound)
-	ld [hROMBank], a
-	ld [MBC3RomBank], a
-
-	call _UpdateSound
-
-	pop af
-	ld [hROMBank], a
-	ld [MBC3RomBank], a
-
-	pop af
-	pop bc
-	pop de
-	pop hl
-	ret
-; 3b86
-
-
-_LoadMusicByte: ; 3b86
-; CurMusicByte = [a:de]
-
-	ld [hROMBank], a
-	ld [MBC3RomBank], a
-
-	ld a, [de]
-	ld [CurMusicByte], a
-	ld a, BANK(LoadMusicByte)
-
-	ld [hROMBank], a
-	ld [MBC3RomBank], a
-	ret
-; 3b97
-
-
-PlayMusic: ; 3b97
-; Play music de.
-
-	push hl
-	push de
-	push bc
-	push af
-
-	ld a, [hROMBank]
-	push af
-	ld a, BANK(_PlayMusic) ; and BANK(_SoundRestart)
-	ld [hROMBank], a
-	ld [MBC3RomBank], a
-
-	ld a, e
-	and a
-	jr z, .nomusic
-
-	call _PlayMusic
-	jr .end
-
-.nomusic
-	call _SoundRestart
-
-.end
-	pop af
-	ld [hROMBank], a
-	ld [MBC3RomBank], a
-	pop af
-	pop bc
-	pop de
-	pop hl
-	ret
-; 3bbc
-
-
-PlayMusic2: ; 3bbc
-; Stop playing music, then play music de.
-
-	push hl
-	push de
-	push bc
-	push af
-
-	ld a, [hROMBank]
-	push af
-	ld a, BANK(_PlayMusic)
-	ld [hROMBank], a
-	ld [MBC3RomBank], a
-
-	push de
-	ld de, MUSIC_NONE
-	call _PlayMusic
-	call DelayFrame
-	pop de
-	call _PlayMusic
-
-	pop af
-	ld [hROMBank], a
-	ld [MBC3RomBank], a
-
-	pop af
-	pop bc
-	pop de
-	pop hl
-	ret
-
-; 3be3
-
-
-PlayCryHeader: ; 3be3
-; Play a cry given parameters in header de
-
-	push hl
-	push de
-	push bc
-	push af
-
-; Save current bank
-	ld a, [hROMBank]
-	push af
-
-; Cry headers are stuck in one bank.
-	ld a, BANK(CryHeaders)
-	ld [hROMBank], a
-	ld [MBC3RomBank], a
-
-; Each header is 6 bytes long:
-	ld hl, CryHeaders
-	add hl, de
-	add hl, de
-	add hl, de
-	add hl, de
-	add hl, de
-	add hl, de
-
-	ld e, [hl]
-	inc hl
-	ld d, [hl]
-	inc hl
-
-	ld a, [hli]
-	ld [CryPitch], a
-	ld a, [hli]
-	ld [CryEcho], a
-	ld a, [hli]
-	ld [CryLength], a
-	ld a, [hl]
-	ld [CryLength+1], a
-
-	ld a, BANK(PlayCry)
-	ld [hROMBank], a
-	ld [MBC3RomBank], a
-
-	call PlayCry
-
-	pop af
-	ld [hROMBank], a
-	ld [MBC3RomBank], a
-	
-	pop af
-	pop bc
-	pop de
-	pop hl
-	ret
-; 3c23
-
-
-PlaySFX: ; 3c23
-; Play sound effect de.
-; Sound effects are ordered by priority (lowest to highest)
-
-	push hl
-	push de
-	push bc
-	push af
-
-; Is something already playing?
-	call CheckSFX
-	jr nc, .play
-; Does it have priority?
-	ld a, [CurSFX]
-	cp e
-	jr c, .quit
-
-.play
-	ld a, [hROMBank]
-	push af
-	ld a, BANK(_PlaySFX)
-	ld [hROMBank], a
-	ld [MBC3RomBank], a ; bankswitch
-
-	ld a, e
-	ld [CurSFX], a
-	call _PlaySFX
-
-	pop af
-	ld [hROMBank], a
-	ld [MBC3RomBank], a ; bankswitch
-.quit
-	pop af
-	pop bc
-	pop de
-	pop hl
-	ret
-; 3c4e
-
-
-WaitPlaySFX: ; 3c4e
-	call WaitSFX
-	call PlaySFX
-	ret
-; 3c55
-
-
-WaitSFX: ; 3c55
-; infinite loop until sfx is done playing
-
-	push hl
-	
-.loop
-	; ch5 on?
-	ld hl, Channel5 + Channel1Flags - Channel1
-	bit 0, [hl]
-	jr nz, .loop
-	; ch6 on?
-	ld hl, Channel6 + Channel1Flags - Channel1
-	bit 0, [hl]
-	jr nz, .loop
-	; ch7 on?
-	ld hl, Channel7 + Channel1Flags - Channel1
-	bit 0, [hl]
-	jr nz, .loop
-	; ch8 on?
-	ld hl, Channel8 + Channel1Flags - Channel1
-	bit 0, [hl]
-	jr nz, .loop
-	
-	pop hl
-	ret
-; 3c74
-
-Function3c74: ; 3c74
-	push hl
-	ld hl, $c1cc
-	bit 0, [hl]
-	jr nz, .asm_3c94
-	ld hl, $c1fe
-	bit 0, [hl]
-	jr nz, .asm_3c94
-	ld hl, $c230
-	bit 0, [hl]
-	jr nz, .asm_3c94
-	ld hl, $c262
-	bit 0, [hl]
-	jr nz, .asm_3c94
-	pop hl
-	scf
-	ret
-
-.asm_3c94
-	pop hl
-	and a
-	ret
-; 3c97
-
-MaxVolume: ; 3c97
-	ld a, $77 ; max
-	ld [Volume], a
-	ret
-; 3c9d
-
-LowVolume: ; 3c9d
-	ld a, $33 ; 40%
-	ld [Volume], a
-	ret
-; 3ca3
-
-VolumeOff: ; 3ca3
-	xor a
-	ld [Volume], a
-	ret
-; 3ca8
-
-Function3ca8: ; 3ca8
-	ld a, $4
-	ld [MusicFade], a
-	ret
-; 3cae
-
-Function3cae: ; 3cae
-	ld a, $84
-	ld [MusicFade], a
-	ret
-; 3cb4
-
-Function3cb4: ; 3cb4
-.asm_3cb4
-	and a
-	ret z
-	dec a
-	call UpdateSound
-	jr .asm_3cb4
-; 3cbc
-
-Function3cbc: ; 3cbc
-	push hl
-	push de
-	push bc
-	push af
-	call Function3d97
-	ld a, [CurMusic]
-	cp e
-	jr z, .asm_3cda
-	ld a, $8
-	ld [MusicFade], a
-	ld a, e
-	ld [MusicFadeIDLo], a
-	ld a, d
-	ld [MusicFadeIDHi], a
-	ld a, e
-	ld [CurMusic], a
-
-.asm_3cda
-	pop af
-	pop bc
-	pop de
-	pop hl
-	ret
-; 3cdf
-
-Function3cdf: ; 3cdf
-	push hl
-	push de
-	push bc
-	push af
-	call Function3d97
-	ld a, [CurMusic]
-	cp e
-	jr z, .asm_3cfe
-	push de
-	ld de, MUSIC_NONE
-	call PlayMusic
-	call DelayFrame
-	pop de
-	ld a, e
-	ld [CurMusic], a
-	call PlayMusic
-
-.asm_3cfe
-	pop af
-	pop bc
-	pop de
-	pop hl
-	ret
-; 3d03
-
-Function3d03: ; 3d03
-	push hl
-	push de
-	push bc
-	push af
-	xor a
-	ld [$c2c1], a
-	ld de, MUSIC_BICYCLE
-	ld a, [PlayerState]
-	cp $1
-	jr z, .asm_3d18
-	call Function3d97
-.asm_3d18
-	push de
-	ld de, MUSIC_NONE
-	call PlayMusic
-	call DelayFrame
-	pop de
-	ld a, e
-	ld [CurMusic], a
-	call PlayMusic
-	pop af
-	pop bc
-	pop de
-	pop hl
-	ret
-; 3d2f
-
-Function3d2f: ; 3d2f
-	ld a, [$c2c1]
-	and a
-	jr z, Function3d47
-	xor a
-	ld [CurMusic], a
-	ld de, MUSIC_NONE
-	call PlayMusic
-	call DelayFrame
-	xor a
-	ld [$c2c1], a
-	ret
-; 3d47
-
-Function3d47: ; 3d47
-	push hl
-	push de
-	push bc
-	push af
-	ld de, MUSIC_NONE
-	call PlayMusic
-	call DelayFrame
-	ld a, [CurMusic]
-	ld e, a
-	ld d, 0
-	call PlayMusic
-	pop af
-	pop bc
-	pop de
-	pop hl
-	ret
-; 3d62
-
-Function3d62: ; 3d62
-	ld a, [PlayerState]
-	cp $4
-	jr z, .asm_3d7b
-	cp $8
-	jr z, .asm_3d7b
-	ld a, [StatusFlags2]
-	bit 2, a
-	jr nz, .asm_3d80
-.asm_3d74
-	and a
-	ret
-
-	ld de, $0013
-	scf
-	ret
-
-.asm_3d7b
-	ld de, $0021
-	scf
-	ret
-
-.asm_3d80
-	ld a, [MapGroup]
-	cp $a
-	jr nz, .asm_3d74
-	ld a, [MapNumber]
-	cp $f
-	jr z, .asm_3d92
-	cp $11
-	jr nz, .asm_3d74
-
-.asm_3d92
-	ld de, $0058
-	scf
-	ret
-; 3d97
-
-Function3d97: ; 3d97
-	call Function3d62
-	ret c
-	call Function2cbd
-	ret
-; 3d9f
-
-Function3d9f: ; 3d9f
-	ld a, $20
-	ld [$c498], a
-	ld [$c49c], a
-	ld a, $50
-	ld [$c499], a
-	ld a, $58
-	ld [$c49d], a
-	xor a
-	ld [$c49b], a
-	ld [$c49f], a
-	ld a, [$c296]
-	cp $64
-	jr nc, .asm_3dd5
-	add $1
-	daa
-	ld b, a
-	swap a
-	and $f
-	add $f6
-	ld [$c49a], a
-	ld a, b
-	and $f
-	add $f6
-	ld [$c49e], a
-	ret
-
-.asm_3dd5
-	ld a, $ff
-	ld [$c49a], a
-	ld [$c49e], a
-	ret
-; 3dde
-
-CheckSFX: ; 3dde
-; returns carry if sfx channels are active
-	ld a, [$c1cc] ; 1
-	bit 0, a
-	jr nz, .quit
-	ld a, [$c1fe] ; 2
-	bit 0, a
-	jr nz, .quit
-	ld a, [$c230] ; 3
-	bit 0, a
-	jr nz, .quit
-	ld a, [$c262] ; 4
-	bit 0, a
-	jr nz, .quit
-	and a
-	ret
-.quit
-	scf
-	ret
-; 3dfe
-
-Function3dfe: ; 3dfe
-	xor a
-	ld [$c1cc], a
-	ld [SoundInput], a
-	ld [rNR10], a
-	ld [rNR11], a
-	ld [rNR12], a
-	ld [rNR13], a
-	ld [rNR14], a
-	ret
-; 3e10
-
-
-ChannelsOff: ; 3e10
-; Quickly turn off music channels
-	xor a
-	ld [Channel1Flags], a
-	ld [$c136], a
-	ld [$c168], a
-	ld [$c19a], a
-	ld [SoundInput], a
-	ret
-; 3e21
-
-SFXChannelsOff: ; 3e21
-; Quickly turn off sound effect channels
-	xor a
-	ld [$c1cc], a
-	ld [$c1fe], a
-	ld [$c230], a
-	ld [$c262], a
-	ld [SoundInput], a
-	ret
-; 3e32
-
-Function3e32: ; 3e32
-	cp $2
-	ld [$c988], a
-	ld a, l
-	ld [$c986], a
-	ld a, h
-	ld [$c987], a
-	jr nz, .asm_3e4f
-	ld [$c982], a
-	ld a, l
-	ld [$c981], a
-	ld hl, $c983
-	ld a, c
-	ld [hli], a
-	ld a, b
-	ld [hl], a
-
-.asm_3e4f
-	ld hl, $c822
-	set 6, [hl]
-	ld a, [hROMBank]
-	push af
-	ld a, BANK(Function110030)
-	ld [$c981], a
-	rst Bankswitch
-
-	jp Function110030
-; 3e60
-
-
-Function3e60: ; 3e60
-	ld [$c986], a
-	ld a, l
-	ld [$c987], a
-	ld a, h
-	ld [$c988], a
-	pop bc
-	ld a, b
-	ld [$c981], a
-	rst Bankswitch
-
-	ld hl, $c822
-	res 6, [hl]
-	ld hl, $c987
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	ld a, [$c986]
-	ret
-; 3e80
-
-
-Function3e80: ; 3e80
-	ld a, [hROMBank]
-	push af
-	ld a, BANK(Function1116c5)
-	ld [$c981], a
-	rst Bankswitch
-
-	call Function1116c5
-	pop bc
-	ld a, b
-	ld [$c981], a
-	rst Bankswitch
-
-	ret
-; 3e93
-
-
-Timer: ; 3e93
-	push af
-	push bc
-	push de
-	push hl
-
-	ld a, [$ffe9]
-	and a
-	jr z, .asm_3ed2
-
-	xor a
-	ld [rTAC], a
-
-; Turn off timer interrupt
-	ld a, [rIF]
-	and 1 << VBLANK | 1 << LCD_STAT | 1 << SERIAL | 1 << JOYPAD
-	ld [rIF], a
-
-	ld a, [$c86a]
-	or a
-	jr z, .asm_3ed2
-
-	ld a, [$c822]
-	bit 1, a
-	jr nz, .asm_3eca
-
-	ld a, [rSC]
-	and 1 << rSC_ON
-	jr nz, .asm_3eca
-
-	ld a, [hROMBank]
-	push af
-	ld a, BANK(Function1118de)
-	ld [$c981], a
-	rst Bankswitch
-
-	call Function1118de
-
-	pop bc
-	ld a, b
-	ld [$c981], a
-	rst Bankswitch
-
-.asm_3eca
-	ld a, [rTMA]
-	ld [rTIMA], a
-
-	ld a, 1 << rTAC_ON | rTAC_65536_HZ
-	ld [rTAC], a
-
-.asm_3ed2
-	pop hl
-	pop de
-	pop bc
-	pop af
-	reti
-; 3ed7
-
-Function3ed7: ; 3ed7
-	ld [$dc02], a
-	ld a, [hROMBank]
-	push af
-	ld a, BANK(Function114243)
-	rst Bankswitch
-
-	call Function114243
-	pop bc
-	ld a, b
-	rst Bankswitch
-
-	ld a, [$dc02]
-	ret
-; 3eea
-
-Function3eea: ; 3eea
-	push hl
-	push bc
-	ld de, $0939
-	add hl, de
-	inc b
-	inc b
-	inc c
-	inc c
-	call Function3f35
-	pop bc
-	pop hl
-	call Function3f47
-	ret
-; 3efd
-
-Function3efd: ; 3efd
-	push hl
-	ld hl, $c590
-	ld b, $4
-	ld c, $12
-	call Function3f0d
-	pop hl
-	call PrintTextBoxText
-	ret
-; 3f0d
-
-Function3f0d: ; 3f0d
-	push hl
-	push bc
-	ld de, $0939
-	add hl, de
-	inc b
-	inc b
-	inc c
-	inc c
-	call Function3f35
-	pop bc
-	pop hl
-	call TextBoxBorder
-	ret
-; 3f20
-
-Function3f20: ; 3f20
-	ld hl, AttrMap
-	ld b, $6
-	ld c, $14
-	call Function3f35
-	ld hl, TileMap
-	ld b, $4
-	ld c, $12
-	call Function3f47
-	ret
-; 3f35
-
-Function3f35: ; 3f35
-	ld a, $6
-	ld de, $0014
-.asm_3f3a
-	push bc
-	push hl
-.asm_3f3c
-	ld [hli], a
-	dec c
-	jr nz, .asm_3f3c
-	pop hl
-	add hl, de
-	pop bc
-	dec b
-	jr nz, .asm_3f3a
-	ret
-; 3f47
-
-Function3f47: ; 3f47
-	push bc
-	call Function3f58
-	pop bc
-.asm_3f4c
-	push bc
-	call Function3f68
-	pop bc
-	dec b
-	jr nz, .asm_3f4c
-	call Function3f60
-	ret
-; 3f58
-
-Function3f58: ; 3f58
-	ld a, $63
-	ld d, $62
-	ld e, $64
-	jr Function3f6e
-
-Function3f60: ; 3f60
-	ld a, $68
-	ld d, $67
-	ld e, $69
-	jr Function3f6e
-
-Function3f68: ; 3f68
-	ld a, $7f
-	ld d, $65
-	ld e, $66
-
-Function3f6e: ; 3f6e
-	push hl
-	ld [hl], d
-	inc hl
-.asm_3f71
-	ld [hli], a
-	dec c
-	jr nz, .asm_3f71
-	ld [hl], e
-	pop hl
-	ld de, $0014
-	add hl, de
-	ret
-; 3f7c
-
-Function3f7c: ; 3f7c
-	call Function1cfd
-	call Function1c53
-	dec b
-	dec c
-	call Function3eea
-	ret
-; 3f88
-
-Function3f88: ; 3f88
-	ld hl, $d000
-	ld b, $0
-.asm_3f8d
-	push bc
-	ld c, $8
-.asm_3f90
-	ld a, [de]
-	inc de
-	cpl
-	ld [hl], $0
-	inc hl
-	ld [hli], a
-	dec c
-	jr nz, .asm_3f90
-	pop bc
-	dec c
-	jr nz, .asm_3f8d
-	ret
-; 3f9f
-
-Function3f9f: ; 3f9f
-	ld hl, $d000
-.asm_3fa2
-	push bc
-	ld c, $8
-.asm_3fa5
-	ld a, [de]
-	inc de
-	inc de
-	cpl
-	ld [hl], $0
-	inc hl
-	ld [hli], a
-	dec c
-	jr nz, .asm_3fa5
-	pop bc
-	dec c
-	jr nz, .asm_3fa2
-	ret
-; 3fb5
-
-
-SECTION "bank1",ROMX,BANK[$1]
+SECTION "bank1", ROMX, BANK[$1]
 
 
 Function4000: ; 4000
@@ -3935,253 +57,7 @@ PushOAMEnd
 ; 4049
 
 
-DataPointers4049: ; 4049
-	dw Data408b
-	dw Data409c
-	dw Data408b
-	dw Data40ad
-	dw Data40be
-	dw Data40cf
-	dw Data40be
-	dw Data40e0
-	dw Data40f1
-	dw Data4113
-	dw Data40f1
-	dw Data4113
-	dw Data4102
-	dw Data4124
-	dw Data4102
-	dw Data4124
-	dw Data4135
-	dw Data414a
-	dw Data415f
-	dw Data4174
-	dw Data4189
-	dw Data419a
-	dw Data4206
-	dw Data41a3
-	dw Data408b
-	dw Data41e4
-	dw Data408b
-	dw Data41f5
-	dw Data423f
-	dw Data4250
-	dw Data4261
-	dw Data426a
-	dw $0000
-; 408b
-
-Data408b: ; 408b
-	db 4 ; #
-	db $00, $00, $00, $00
-	db $00, $08, $00, $01
-	db $08, $00, $02, $02
-	db $08, $08, $02, $03
-; 409c
-
-Data409c: ; 409c
-	db 4 ; #
-	db $00, $00, $00, $80
-	db $00, $08, $00, $81
-	db $08, $00, $02, $82
-	db $08, $08, $02, $83
-; 40ad
-
-Data40ad: ; 40ad
-	db 4 ; #
-	db $00, $08, $20, $80
-	db $00, $00, $20, $81
-	db $08, $08, $22, $82
-	db $08, $00, $22, $83
-; 40be
-
-Data40be: ; 40be
-	db 4 ; #
-	db $00, $00, $00, $04
-	db $00, $08, $00, $05
-	db $08, $00, $02, $06
-	db $08, $08, $02, $07
-; 40cf
-
-Data40cf: ; 40cf
-	db 4 ; #
-	db $00, $00, $00, $84
-	db $00, $08, $00, $85
-	db $08, $00, $02, $86
-	db $08, $08, $02, $87
-; 40e0
-
-Data40e0: ; 40e0
-	db 4 ; #
-	db $00, $08, $20, $84
-	db $00, $00, $20, $85
-	db $08, $08, $22, $86
-	db $08, $00, $22, $87
-; 40f1
-
-Data40f1: ; 40f1
-	db 4 ; #
-	db $00, $00, $00, $08
-	db $00, $08, $00, $09
-	db $08, $00, $02, $0a
-	db $08, $08, $02, $0b
-; 4102
-
-Data4102: ; 4102
-	db 4 ; #
-	db $00, $08, $20, $08
-	db $00, $00, $20, $09
-	db $08, $08, $22, $0a
-	db $08, $00, $22, $0b
-; 4113
-
-Data4113: ; 4113
-	db 4 ; #
-	db $00, $00, $00, $88
-	db $00, $08, $00, $89
-	db $08, $00, $02, $8a
-	db $08, $08, $02, $8b
-; 4124
-
-Data4124: ; 4124
-	db 4 ; #
-	db $00, $08, $20, $88
-	db $00, $00, $20, $89
-	db $08, $08, $22, $8a
-	db $08, $00, $22, $8b
-; 4135
-
-Data4135: ; 4135
-	db 5 ; #
-	db $00, $00, $00, $00
-	db $00, $08, $00, $01
-	db $08, $00, $02, $02
-	db $08, $08, $02, $03
-	db $10, $00, $04, $fc
-; 414a
-
-Data414a: ; 414a
-	db 5 ; #
-	db $00, $00, $00, $04
-	db $00, $08, $00, $05
-	db $08, $00, $02, $06
-	db $08, $08, $02, $07
-	db $f8, $00, $04, $fc
-; 415f
-
-Data415f: ; 415f
-	db 5 ; #
-	db $00, $00, $00, $08
-	db $00, $08, $00, $09
-	db $08, $00, $02, $0a
-	db $08, $08, $02, $0b
-	db $05, $f8, $24, $fd
-; 4174
-
-Data4174: ; 4174
-	db 5 ; #
-	db $00, $08, $20, $08
-	db $00, $00, $20, $09
-	db $08, $08, $22, $0a
-	db $08, $00, $22, $0b
-	db $05, $10, $04, $fd
-; 4189
-
-Data4189: ; 4189
-	db 4 ; #
-	db $00, $00, $04, $f8
-	db $00, $08, $04, $f9
-	db $08, $00, $04, $fa
-	db $08, $08, $04, $fb
-; 419a
-
-Data419a: ; 419a
-	db 2 ; #
-	db $00, $00, $04, $fc
-	db $00, $08, $24, $fc
-; 41a3
-
-Data41a3: ; 41a3
-	db 16 ; #
-	db $00, $00, $00, $00
-	db $00, $08, $00, $01
-	db $08, $00, $00, $02
-	db $08, $08, $00, $03
-	db $10, $00, $00, $04
-	db $10, $08, $00, $05
-	db $18, $00, $00, $06
-	db $18, $08, $00, $07
-	db $00, $18, $20, $00
-	db $00, $10, $20, $01
-	db $08, $18, $20, $02
-	db $08, $10, $20, $03
-	db $10, $18, $20, $04
-	db $10, $10, $20, $05
-	db $18, $18, $20, $06
-	db $18, $10, $20, $07
-; 41e4
-
-Data41e4: ; 41e4
-	db 4 ; #
-	db $00, $00, $00, $04
-	db $00, $08, $00, $05
-	db $08, $00, $00, $06
-	db $08, $08, $00, $07
-; 41f5
-
-Data41f5: ; 41f5
-	db 4 ; #
-	db $00, $08, $20, $04
-	db $00, $00, $20, $05
-	db $08, $08, $20, $06
-	db $08, $00, $20, $07
-; 4206
-
-Data4206: ; 4206
-	db 14 ; #
-	db $00, $00, $00, $00
-	db $00, $08, $00, $01
-	db $08, $00, $00, $04
-	db $08, $08, $00, $05
-	db $10, $08, $00, $07
-	db $18, $08, $00, $0a
-	db $00, $18, $00, $03
-	db $00, $10, $00, $02
-	db $08, $18, $20, $02
-	db $08, $10, $00, $06
-	db $10, $18, $00, $09
-	db $10, $10, $00, $08
-	db $18, $18, $20, $04
-	db $18, $10, $00, $0b
-; 423f
-
-Data423f: ; 423f
-	db 4 ; #
-	db $00, $00, $04, $fe
-	db $00, $08, $04, $fe
-	db $08, $00, $04, $fe
-	db $08, $08, $04, $fe
-; 4250
-
-Data4250: ; 4250
-	db 4 ; #
-	db $00, $00, $04, $ff
-	db $00, $08, $04, $ff
-	db $08, $00, $04, $ff
-	db $08, $08, $04, $ff
-; 4261
-
-Data4261: ; 4261
-	db 2 ; #
-	db $08, $00, $04, $fe
-	db $08, $08, $24, $fe
-; 426a
-
-Data426a: ; 426a
-	db 2 ; #
-	db $09, $ff, $04, $fe
-	db $09, $09, $24, $fe
-; 4273
+INCLUDE "engine/facings.asm"
 
 
 Data4273: ; 4273
@@ -4420,7 +296,7 @@ Pointers445f: ; 445f
 ; 44a3
 
 Function44a3: ; 44a3
-	ld hl, $000d
+	ld hl, OBJECT_FACING
 	add hl, bc
 	ld [hl], $ff
 	ret
@@ -4429,14 +305,14 @@ Function44a3: ; 44a3
 Function44aa: ; 44aa
 	call GetSpriteDirection
 	or $0
-	ld hl, $000d
+	ld hl, OBJECT_FACING
 	add hl, bc
 	ld [hl], a
 	ret
 ; 44b5
 
 Function44b5: ; 44b5
-	ld hl, $000d
+	ld hl, OBJECT_FACING
 	add hl, bc
 	ld a, [hl]
 	and $1
@@ -4462,7 +338,7 @@ Function44c1: ; 44c1
 	call GetSpriteDirection
 	or $0
 	or d
-	ld hl, $000d
+	ld hl, OBJECT_FACING
 	add hl, bc
 	ld [hl], a
 	ret
@@ -4486,7 +362,7 @@ Function44e4: ; 44e4
 	call GetSpriteDirection
 	or $0
 	or d
-	ld hl, $000d
+	ld hl, OBJECT_FACING
 	add hl, bc
 	ld [hl], a
 	ret
@@ -4509,7 +385,7 @@ Function4508: ; 4508
 	call GetSpriteDirection
 	or $0
 	or d
-	ld hl, $000d
+	ld hl, OBJECT_FACING
 	add hl, bc
 	ld [hl], a
 	ret
@@ -4521,7 +397,7 @@ Function4529: ; 4529
 	add hl, bc
 	ld a, [hl]
 	or $0
-	ld hl, $000d
+	ld hl, OBJECT_FACING
 	add hl, bc
 	ld [hl], a
 	ret
@@ -4574,28 +450,28 @@ Function456e: ; 456e
 	rrca
 	rrca
 	add $10
-	ld hl, $000d
+	ld hl, OBJECT_FACING
 	add hl, bc
 	ld [hl], a
 	ret
 ; 457b
 
 Function457b: ; 457b
-	ld hl, $000d
+	ld hl, OBJECT_FACING
 	add hl, bc
 	ld [hl], $15
 	ret
 ; 4582
 
 Function4582: ; 4582
-	ld hl, $000d
+	ld hl, OBJECT_FACING
 	add hl, bc
 	ld [hl], $14
 	ret
 ; 4589
 
 Function4589: ; 4589
-	ld hl, $000d
+	ld hl, OBJECT_FACING
 	add hl, bc
 	ld [hl], $17
 	ret
@@ -4610,14 +486,14 @@ Function4590: ; 4590
 	ld [hl], a
 	and $8
 	jr z, Function45a4
-	ld hl, $000d
+	ld hl, OBJECT_FACING
 	add hl, bc
 	ld [hl], $4
 	ret
 ; 45a4
 
 Function45a4: ; 45a4
-	ld hl, $000d
+	ld hl, OBJECT_FACING
 	add hl, bc
 	ld [hl], $0
 	ret
@@ -4633,14 +509,14 @@ Function45ab: ; 45ab
 	rrca
 	rrca
 	add $18
-	ld hl, $000d
+	ld hl, OBJECT_FACING
 	add hl, bc
 	ld [hl], a
 	ret
 ; 45be
 
 Function45be: ; 45be
-	ld hl, $000d
+	ld hl, OBJECT_FACING
 	add hl, bc
 	ld [hl], $16
 	ret
@@ -4656,7 +532,7 @@ Function45c5: ; 45c5
 	ld d, $16
 
 .asm_45d4
-	ld hl, $000d
+	ld hl, OBJECT_FACING
 	add hl, bc
 	ld [hl], d
 	ret
@@ -4667,13 +543,13 @@ Function45da: ; 45da
 	add hl, bc
 	inc [hl]
 	ld a, [hl]
-	ld hl, $000d
+
+	ld hl, OBJECT_FACING
 	add hl, bc
-	and $2
+	and 2
 	ld a, $1c
 	jr z, .asm_45eb
 	inc a
-
 .asm_45eb
 	ld [hl], a
 	ret
@@ -4684,9 +560,9 @@ Function45ed: ; 45ed
 	add hl, bc
 	inc [hl]
 	ld a, [hl]
-	ld hl, $000d
+	ld hl, OBJECT_FACING
 	add hl, bc
-	and $4
+	and 4
 	ld a, $1e
 	jr z, .asm_45fe
 	inc a
@@ -4697,50 +573,58 @@ Function45ed: ; 45ed
 ; 4600
 
 Function4600: ; 4600
-	ld hl, $0010
+
+	ld hl, OBJECT_MAP_X
 	add hl, bc
 	ld a, [hl]
-	ld hl, $0012
+	ld hl, OBJECT_NEXT_MAP_X
 	add hl, bc
 	ld [hl], a
-	ld hl, $0011
+
+	ld hl, OBJECT_MAP_Y
 	add hl, bc
 	ld a, [hl]
-	ld hl, $0013
+	ld hl, OBJECT_NEXT_MAP_Y
 	add hl, bc
 	ld [hl], a
-	ld hl, $000e
+
+	ld hl, OBJECT_STANDING_TILE
 	add hl, bc
 	ld a, [hl]
-	ld hl, $000f
+	ld hl, OBJECT_NEXT_TILE
 	add hl, bc
 	ld [hl], a
+
 	call Function4661
-	ld hl, $000e
+	ld hl, OBJECT_STANDING_TILE
 	add hl, bc
 	ld a, [hl]
+
 	call Function4679
 	ret
 ; 462a
 
 Function462a: ; 462a
-	ld hl, $0012
+
+	ld hl, OBJECT_NEXT_MAP_X
 	add hl, bc
 	ld a, [hl]
-	ld hl, $0010
+	ld hl, OBJECT_MAP_X
 	add hl, bc
 	ld [hl], a
-	ld hl, $0013
+
+	ld hl, OBJECT_NEXT_MAP_Y
 	add hl, bc
 	ld a, [hl]
-	ld hl, $0011
+	ld hl, OBJECT_MAP_Y
 	add hl, bc
 	ld [hl], a
+
 	ret
 ; 463f
 
 Function463f: ; 463f
-	ld hl, $0005
+	ld hl, OBJECT_FLAGS
 	add hl, bc
 	bit 3, [hl]
 	jr z, .asm_464f
@@ -4824,53 +708,65 @@ Function4690: ; 4690
 ; 46a6
 
 Function46a6: ; 46a6
-	call Function46e9
-	ld hl, $000a
+
+	call GetStepVector
+
+	ld hl, OBJECT_STEP_DURATION
 	add hl, bc
 	ld [hl], a
+
 	ld a, d
 	call Function4730
-	ld hl, $0012
+	ld hl, OBJECT_NEXT_MAP_X
 	add hl, bc
 	add [hl]
-	ld hl, $0010
+	ld hl, OBJECT_MAP_X
 	add hl, bc
 	ld [hl], a
 	ld d, a
+
 	ld a, e
 	call Function4730
-	ld hl, $0013
+	ld hl, OBJECT_NEXT_MAP_Y
 	add hl, bc
 	add [hl]
-	ld hl, $0011
+	ld hl, OBJECT_MAP_Y
 	add hl, bc
 	ld [hl], a
 	ld e, a
+
 	push bc
 	call Function2a3c
 	pop bc
+
 	ld hl, $000e
 	add hl, bc
 	ld [hl], a
+
 	ret
 ; 46d7
 
 Function46d7: ; 46d7
-	call Function46e9
-	ld hl, $0017
+
+	call GetStepVector
+
+	ld hl, OBJECT_SPRITE_X
 	add hl, bc
 	ld a, [hl]
 	add d
 	ld [hl], a
-	ld hl, $0018
+
+	ld hl, OBJECT_SPRITE_Y
 	add hl, bc
 	ld a, [hl]
 	add e
 	ld [hl], a
+
 	ret
 ; 46e9
 
-Function46e9: ; 46e9
+GetStepVector: ; 46e9
+; Return (x, y, duration, speed) in (d, e, a, h).
 	ld hl, $0007
 	add hl, bc
 	ld a, [hl]
@@ -4879,7 +775,7 @@ Function46e9: ; 46e9
 	add a
 	ld l, a
 	ld h, 0
-	ld de, .Steps
+	ld de, StepVectors
 	add hl, de
 	ld d, [hl]
 	inc hl
@@ -4890,23 +786,23 @@ Function46e9: ; 46e9
 	ret
 ; 4700
 
-.Steps ; 4700
-	;   x,  y, duration, speed
+StepVectors: ; 4700
+; x,  y, duration, speed
 	; slow
-	db  0,  1, $10, $01
-	db  0, -1, $10, $01
-	db -1,  0, $10, $01
-	db  1,  0, $10, $01
+	db  0,  1, 16, 1
+	db  0, -1, 16, 1
+	db -1,  0, 16, 1
+	db  1,  0, 16, 1
 	; normal
-	db  0,  2, $08, $02
-	db  0, -2, $08, $02
-	db -2,  0, $08, $02
-	db  2,  0, $08, $02
+	db  0,  2,  8, 2
+	db  0, -2,  8, 2
+	db -2,  0,  8, 2
+	db  2,  0,  8, 2
 	; fast
-	db  0,  4, $04, $04
-	db  0, -4, $04, $04
-	db -4,  0, $04, $04
-	db  4,  0, $04, $04
+	db  0,  4,  4, 4
+	db  0, -4,  4, 4
+	db -4,  0,  4, 4
+	db  4,  0,  4, 4
 ; 4730
 
 Function4730: ; 4730
@@ -5384,7 +1280,7 @@ Function499c: ; 499c
 	add hl, bc
 	ld a, [hl]
 	ld a, $10
-	ld hl, $000a
+	ld hl, OBJECT_STEP_DURATION
 	add hl, bc
 	ld [hl], a
 	ld hl, $0009
@@ -5437,13 +1333,13 @@ Function49e5: ; 49e5
 	ld hl, $000b
 	add hl, bc
 	ld [hl], $7
-	ld hl, $000a
+	ld hl, OBJECT_STEP_DURATION
 	add hl, de
 	ld a, [hl]
 	inc a
 	add a
 	add $0
-	ld hl, $000a
+	ld hl, OBJECT_STEP_DURATION
 	add hl, bc
 	ld [hl], a
 	ld hl, $0007
@@ -5458,10 +1354,10 @@ Function49e5: ; 49e5
 	ld d, $c
 
 .asm_4a0f
-	ld hl, $001a
+	ld hl, OBJECT_SPRITE_Y_OFFSET
 	add hl, bc
 	ld [hl], d
-	ld hl, $0019
+	ld hl, OBJECT_SPRITE_X_OFFSET
 	add hl, bc
 	ld [hl], $0
 	ld hl, $0009
@@ -5476,13 +1372,13 @@ Function4a21: ; 4a21
 	ld hl, $000b
 	add hl, bc
 	ld [hl], $8
-	ld hl, $000a
+	ld hl, OBJECT_STEP_DURATION
 	add hl, bc
 	ld [hl], $0
-	ld hl, $001a
+	ld hl, OBJECT_SPRITE_Y_OFFSET
 	add hl, bc
 	ld [hl], $f0
-	ld hl, $0019
+	ld hl, OBJECT_SPRITE_X_OFFSET
 	add hl, bc
 	ld [hl], $0
 	ld hl, $0009
@@ -5497,12 +1393,12 @@ Function4a46: ; 4a46
 	ld hl, $000b
 	add hl, bc
 	ld [hl], $e
-	ld hl, $000a
+	ld hl, OBJECT_STEP_DURATION
 	add hl, de
 	ld a, [hl]
 	inc a
 	add a
-	ld hl, $000a
+	ld hl, OBJECT_STEP_DURATION
 	add hl, bc
 	ld [hl], a
 	ld hl, $0007
@@ -5517,10 +1413,10 @@ Function4a46: ; 4a46
 	ld d, [hl]
 	inc hl
 	ld e, [hl]
-	ld hl, $0019
+	ld hl, OBJECT_SPRITE_X_OFFSET
 	add hl, bc
 	ld [hl], d
-	ld hl, $001a
+	ld hl, OBJECT_SPRITE_Y_OFFSET
 	add hl, bc
 	ld [hl], e
 	ld hl, $0009
@@ -5543,11 +1439,11 @@ Function4a89: ; 4a89
 	ld hl, $000b
 	add hl, bc
 	ld [hl], $f
-	ld hl, $000a
+	ld hl, OBJECT_STEP_DURATION
 	add hl, de
 	ld a, [hl]
 	add $ff
-	ld hl, $000a
+	ld hl, OBJECT_STEP_DURATION
 	add hl, bc
 	ld [hl], a
 	ld hl, $0009
@@ -5582,7 +1478,7 @@ Function4abc: ; 4abc
 	add hl, bc
 	ld a, [hl]
 	call Function4ade
-	ld hl, $000a
+	ld hl, OBJECT_STEP_DURATION
 	add hl, bc
 	ld [hl], e
 	ld hl, $001e
@@ -5656,7 +1552,7 @@ Function4b26: ; 4b26
 ; 4b2d
 
 Function4b2d: ; 4b2d
-	ld hl, $000a
+	ld hl, OBJECT_STEP_DURATION
 	add hl, bc
 	ld [hl], a
 	ld hl, $0007
@@ -5701,7 +1597,7 @@ Pointers4b45: ; 4b45
 ; 4b79
 
 Function4b79: ; 4b79
-	ld hl, $000a
+	ld hl, OBJECT_STEP_DURATION
 	add hl, bc
 	dec [hl]
 	ret nz
@@ -5720,7 +1616,7 @@ Function4b86: ; 4b86
 Function4b8d: ; 4b8d
 	call Function46d7
 	call UpdateJumpPosition
-	ld hl, $000a
+	ld hl, OBJECT_STEP_DURATION
 	add hl, bc
 	dec [hl]
 	ret nz
@@ -5736,7 +1632,7 @@ Function4b8d: ; 4b8d
 Function4ba9: ; 4ba9
 	call Function46d7
 	call UpdateJumpPosition
-	ld hl, $000a
+	ld hl, OBJECT_STEP_DURATION
 	add hl, bc
 	dec [hl]
 	ret nz
@@ -5765,7 +1661,7 @@ Function4bca: ; 4bca
 Function4bd2: ; 4bd2
 	call UpdateJumpPosition
 	call Function4738
-	ld hl, $000a
+	ld hl, OBJECT_STEP_DURATION
 	add hl, bc
 	dec [hl]
 	ret nz
@@ -5791,7 +1687,7 @@ Function4bf2: ; 4bf2
 Function4bfd: ; 4bfd
 	call UpdateJumpPosition
 	call Function4738
-	ld hl, $000a
+	ld hl, OBJECT_STEP_DURATION
 	add hl, bc
 	dec [hl]
 	ret nz
@@ -5816,7 +1712,7 @@ Function4c23: ; 4c23
 	ld hl, $000c
 	add hl, bc
 	ld [hl], $0
-	ld hl, $000a
+	ld hl, OBJECT_STEP_DURATION
 	add hl, bc
 	ld [hl], $10
 	call Function47a2
@@ -5827,7 +1723,7 @@ Function4c32: ; 4c32
 	ld hl, $000b
 	add hl, bc
 	ld [hl], $4
-	ld hl, $000a
+	ld hl, OBJECT_STEP_DURATION
 	add hl, bc
 	dec [hl]
 	ret nz
@@ -5842,7 +1738,7 @@ Function4c42: ; 4c42
 	ld hl, $001f
 	add hl, bc
 	ld [hl], $10
-	ld hl, $000a
+	ld hl, OBJECT_STEP_DURATION
 	add hl, bc
 	ld [hl], $10
 	ld hl, $0005
@@ -5864,10 +1760,10 @@ Function4c5d: ; 4c5d
 	call Sine
 	ld a, h
 	sub $60
-	ld hl, $001a
+	ld hl, OBJECT_SPRITE_Y_OFFSET
 	add hl, bc
 	ld [hl], a
-	ld hl, $000a
+	ld hl, OBJECT_STEP_DURATION
 	add hl, bc
 	dec [hl]
 	ret nz
@@ -5895,7 +1791,7 @@ Function4c9a: ; 4c9a
 	ld hl, $000b
 	add hl, bc
 	ld [hl], $0
-	ld hl, $000a
+	ld hl, OBJECT_STEP_DURATION
 	add hl, bc
 	ld [hl], $10
 	call Function47a2
@@ -5903,7 +1799,7 @@ Function4c9a: ; 4c9a
 ; 4caa
 
 Function4caa: ; 4caa
-	ld hl, $000a
+	ld hl, OBJECT_STEP_DURATION
 	add hl, bc
 	dec [hl]
 	ret nz
@@ -5918,7 +1814,7 @@ Function4cb3: ; 4cb3
 	ld hl, $001f
 	add hl, bc
 	ld [hl], $0
-	ld hl, $000a
+	ld hl, OBJECT_STEP_DURATION
 	add hl, bc
 	ld [hl], $10
 	call Function47a2
@@ -5937,10 +1833,10 @@ Function4cc9: ; 4cc9
 	call Sine
 	ld a, h
 	sub $60
-	ld hl, $001a
+	ld hl, OBJECT_SPRITE_Y_OFFSET
 	add hl, bc
 	ld [hl], a
-	ld hl, $000a
+	ld hl, OBJECT_STEP_DURATION
 	add hl, bc
 	dec [hl]
 	ret nz
@@ -5949,7 +1845,7 @@ Function4cc9: ; 4cc9
 ; 4ceb
 
 Function4ceb: ; 4ceb
-	ld hl, $000a
+	ld hl, OBJECT_STEP_DURATION
 	add hl, bc
 	ld [hl], $10
 	call Function47a2
@@ -5960,7 +1856,7 @@ Function4cf5: ; 4cf5
 	ld hl, $000b
 	add hl, bc
 	ld [hl], $4
-	ld hl, $000a
+	ld hl, OBJECT_STEP_DURATION
 	add hl, bc
 	dec [hl]
 	ret nz
@@ -5970,7 +1866,7 @@ Function4d01: ; 4d01
 	ld hl, $000c
 	add hl, bc
 	ld [hl], $0
-	ld hl, $001a
+	ld hl, OBJECT_SPRITE_Y_OFFSET
 	add hl, bc
 	ld [hl], $0
 	ld hl, $0009
@@ -5991,7 +1887,7 @@ Function4d1f: ; 4d1f
 	ld hl, $000b
 	add hl, bc
 	ld [hl], $0
-	ld hl, $000a
+	ld hl, OBJECT_STEP_DURATION
 	add hl, bc
 	ld [hl], $10
 	call Function47a2
@@ -5999,7 +1895,7 @@ Function4d1f: ; 4d1f
 ; 4d2e
 
 Function4d2e: ; 4d2e
-	ld hl, $000a
+	ld hl, OBJECT_STEP_DURATION
 	add hl, bc
 	dec [hl]
 	ret nz
@@ -6012,7 +1908,7 @@ Function4d2e: ; 4d2e
 	ld hl, $001f
 	add hl, bc
 	ld [hl], $0
-	ld hl, $000a
+	ld hl, OBJECT_STEP_DURATION
 	add hl, bc
 	ld [hl], $10
 	call Function47a2
@@ -6028,10 +1924,10 @@ Function4d4f: ; 4d4f
 	call Sine
 	ld a, h
 	sub $60
-	ld hl, $001a
+	ld hl, OBJECT_SPRITE_Y_OFFSET
 	add hl, bc
 	ld [hl], a
-	ld hl, $000a
+	ld hl, OBJECT_STEP_DURATION
 	add hl, bc
 	dec [hl]
 	ret nz
@@ -6043,7 +1939,7 @@ Function4d6b: ; 4d6b
 	ld hl, $000c
 	add hl, bc
 	ld [hl], $0
-	ld hl, $001a
+	ld hl, OBJECT_SPRITE_Y_OFFSET
 	add hl, bc
 	ld [hl], $0
 	ld hl, $0009
@@ -6059,10 +1955,10 @@ Function4d7e: ; 4d7e
 ; 4d85
 
 Function4d85: ; 4d85
-	ld hl, $000a
+	ld hl, OBJECT_STEP_DURATION
 	add hl, bc
 	ld [hl], $8
-	ld hl, $001a
+	ld hl, OBJECT_SPRITE_Y_OFFSET
 	add hl, bc
 	ld [hl], $0
 	call Function47a2
@@ -6070,16 +1966,16 @@ Function4d85: ; 4d85
 ; 4d94
 
 Function4d94: ; 4d94
-	ld hl, $001a
+	ld hl, OBJECT_SPRITE_Y_OFFSET
 	add hl, bc
 	ld a, [hl]
 	xor 1
 	ld [hl], a
-	ld hl, $000a
+	ld hl, OBJECT_STEP_DURATION
 	add hl, bc
 	dec [hl]
 	ret nz
-	ld hl, $001a
+	ld hl, OBJECT_SPRITE_Y_OFFSET
 	add hl, bc
 	ld [hl], $0
 	ld hl, $0009
@@ -6094,7 +1990,7 @@ Function4daf: ; 4daf
 ; 4db5
 
 Function4db5: ; 4db5
-	ld hl, $000a
+	ld hl, OBJECT_STEP_DURATION
 	add hl, bc
 	ld a, [hl]
 	and $1
@@ -6110,7 +2006,7 @@ Function4db5: ; 4db5
 ; 4dc8
 
 Function4dc8: ; 4dc8
-	ld hl, $000a
+	ld hl, OBJECT_STEP_DURATION
 	add hl, bc
 	ld a, [hl]
 	and $1
@@ -6129,7 +2025,7 @@ Function4ddd: ; 4ddd
 	ld hl, $0007
 	add hl, bc
 	ld [hl], $ff
-	ld hl, $000a
+	ld hl, OBJECT_STEP_DURATION
 	add hl, bc
 	dec [hl]
 	ret nz
@@ -6143,7 +2039,7 @@ Function4df0: ; 4df0
 	ld hl, $0007
 	add hl, bc
 	ld [hl], $ff
-	ld hl, $000a
+	ld hl, OBJECT_STEP_DURATION
 	add hl, bc
 	dec [hl]
 	ret nz
@@ -6151,7 +2047,7 @@ Function4df0: ; 4df0
 ; 4dff
 
 Function4dff: ; 4dff
-	ld hl, $000a
+	ld hl, OBJECT_STEP_DURATION
 	add hl, bc
 	dec [hl]
 	ret nz
@@ -6188,7 +2084,7 @@ Function4e21: ; 4e21
 Function4e2b: ; 4e2b
 	call Function4fb2
 	call Function46d7
-	ld hl, $000a
+	ld hl, OBJECT_STEP_DURATION
 	add hl, bc
 	dec [hl]
 	ret nz
@@ -6204,7 +2100,7 @@ Function4e2b: ; 4e2b
 
 Function4e47: ; 4e47
 	call Function46d7
-	ld hl, $000a
+	ld hl, OBJECT_STEP_DURATION
 	add hl, bc
 	dec [hl]
 	ret nz
@@ -6228,7 +2124,7 @@ Function4e5d: ; 4e5d
 
 Function4e65: ; 4e65
 	call Function4738
-	ld hl, $000a
+	ld hl, OBJECT_STEP_DURATION
 	add hl, bc
 	dec [hl]
 	ret nz
@@ -6260,7 +2156,7 @@ Function4e8e: ; 4e8e
 	add hl, bc
 	ld a, [hl]
 	ld [hl], $2
-	ld hl, $000a
+	ld hl, OBJECT_STEP_DURATION
 	add hl, bc
 	ld [hl], $2
 	call Function47a2
@@ -6268,7 +2164,7 @@ Function4e8e: ; 4e8e
 ; 4ea4
 
 Function4ea4: ; 4ea4
-	ld hl, $000a
+	ld hl, OBJECT_STEP_DURATION
 	add hl, bc
 	dec [hl]
 	ret nz
@@ -6283,7 +2179,7 @@ Function4ead: ; 4ead
 	ld hl, $0008
 	add hl, bc
 	ld [hl], a
-	ld hl, $000a
+	ld hl, OBJECT_STEP_DURATION
 	add hl, bc
 	ld [hl], $2
 	call Function47a2
@@ -6291,7 +2187,7 @@ Function4ead: ; 4ead
 ; 4ec0
 
 Function4ec0: ; 4ec0
-	ld hl, $000a
+	ld hl, OBJECT_STEP_DURATION
 	add hl, bc
 	dec [hl]
 	ret nz
@@ -6303,7 +2199,7 @@ Function4ec0: ; 4ec0
 
 Function4ecd: ; 4ecd
 	call Function46d7
-	ld hl, $000a
+	ld hl, OBJECT_STEP_DURATION
 	add hl, bc
 	dec [hl]
 	ret nz
@@ -6344,19 +2240,19 @@ Function4f04: ; 4f04
 	ld a, [hl]
 	and a
 	jr z, .asm_4f30
-	ld hl, $0017
+	ld hl, OBJECT_SPRITE_X
 	add hl, de
 	ld a, [hl]
-	ld hl, $0017
+	ld hl, OBJECT_SPRITE_X
 	add hl, bc
 	ld [hl], a
-	ld hl, $0018
+	ld hl, OBJECT_SPRITE_Y
 	add hl, de
 	ld a, [hl]
-	ld hl, $0018
+	ld hl, OBJECT_SPRITE_Y
 	add hl, bc
 	ld [hl], a
-	ld hl, $000a
+	ld hl, OBJECT_STEP_DURATION
 	add hl, bc
 	ld a, [hl]
 	and a
@@ -6390,7 +2286,7 @@ Function4f43: ; 4f43
 	ld a, [$d14f]
 	sub d
 	ld [$d14f], a
-	ld hl, $000a
+	ld hl, OBJECT_STEP_DURATION
 	add hl, bc
 	dec [hl]
 	jr z, .asm_4f68
@@ -6442,18 +2338,18 @@ Function4f8a: ; 4f8a
 	ld hl, $000b
 	add hl, bc
 	ld [hl], $10
-	ld hl, $000a
+	ld hl, OBJECT_STEP_DURATION
 	add hl, bc
 	ld [hl], $10
 	call Function47a2
 ; 4f99
 
 Function4f99: ; 4f99
-	ld hl, $000a
+	ld hl, OBJECT_STEP_DURATION
 	add hl, bc
 	dec [hl]
 	ret nz
-	ld hl, $001a
+	ld hl, OBJECT_SPRITE_Y_OFFSET
 	add hl, bc
 	ld [hl], $60
 	ld hl, $000c
@@ -6482,7 +2378,7 @@ Function4fb3: ; 4fb3
 	ld de, .y
 	add hl, de
 	ld a, [hl]
-	ld hl, $001a
+	ld hl, OBJECT_SPRITE_Y_OFFSET
 	add hl, bc
 	ld [hl], a
 	ret
@@ -6493,7 +2389,7 @@ Function4fb3: ; 4fb3
 ; 4fd5
 
 UpdateJumpPosition: ; 4fd5
-	call Function46e9
+	call GetStepVector
 	ld a, h
 	ld hl, $001f
 	add hl, bc
@@ -6506,7 +2402,7 @@ UpdateJumpPosition: ; 4fd5
 	ld hl, .y
 	add hl, de
 	ld a, [hl]
-	ld hl, $001a
+	ld hl, OBJECT_SPRITE_Y_OFFSET
 	add hl, bc
 	ld [hl], a
 	ret
@@ -6958,7 +2854,7 @@ Function5673: ; 5673
 ; 5680
 
 Function5680: ; 5680
-	ld hl, $000d
+	ld hl, OBJECT_FACING
 	add hl, bc
 	ld [hl], $ff
 	scf
@@ -7020,10 +2916,10 @@ Function56a3: ; 56a3
 Function56cd: ; 56cd
 	ld a, [$d14c]
 	ld d, a
-	ld hl, $0019
+	ld hl, OBJECT_SPRITE_X_OFFSET
 	add hl, bc
 	ld a, [hl]
-	ld hl, $0017
+	ld hl, OBJECT_SPRITE_X
 	add hl, bc
 	add [hl]
 	add d
@@ -7052,10 +2948,10 @@ Function56cd: ; 56cd
 	ld [$ffbd], a
 	ld a, [$d14d]
 	ld e, a
-	ld hl, $001a
+	ld hl, OBJECT_SPRITE_Y_OFFSET
 	add hl, bc
 	ld a, [hl]
-	ld hl, $0018
+	ld hl, OBJECT_SPRITE_Y
 	add hl, bc
 	add [hl]
 	add e
@@ -7499,16 +3395,19 @@ Function5958: ; 5958
 	ld e, a
 	ld bc, $d4d6
 	ld a, $d
+
 .asm_5968
 	push af
 	call Function1af1
 	jr z, .asm_597c
-	ld hl, $0017
+
+	ld hl, OBJECT_SPRITE_X
 	add hl, bc
 	ld a, [hl]
 	add d
 	ld [hl], a
-	ld hl, $0018
+
+	ld hl, OBJECT_SPRITE_Y
 	add hl, bc
 	ld a, [hl]
 	add e
@@ -7522,6 +3421,7 @@ Function5958: ; 5958
 	pop af
 	dec a
 	jr nz, .asm_5968
+
 	xor a
 	ld [$d14c], a
 	ld [$d14d], a
@@ -7545,41 +3445,45 @@ Function5991: ; 5991
 Function59a4: ; 59a4
 	xor a
 	ld hl, $c2eb
-	ld bc, $000d
+	ld bc, 13
 	call ByteFill
+
 	ld d, 0
-	ld bc, $d4d6
+	ld bc, ObjectStructs
 	ld hl, $c2eb
-.asm_59b6
+.loop
 	push hl
 	call Function1af1
-	jr z, .asm_59d9
-	ld hl, $000d
+	jr z, .skip
+
+	ld hl, OBJECT_FACING
 	add hl, bc
 	ld a, [hl]
-	cp $ff
-	jr z, .asm_59d9
+	cp -1
+	jr z, .skip
+
+; Define the sprite priority.
 	ld e, $10
-	ld hl, $0005
+	ld hl, OBJECT_FLAGS
 	add hl, bc
 	bit 0, [hl]
-	jr nz, .asm_59e2
+	jr nz, .add
 	ld e, $20
 	bit 1, [hl]
-	jr z, .asm_59e2
+	jr z, .add
 	ld e, $30
-	jr .asm_59e2
+	jr .add
 
-.asm_59d9
-	ld hl, $0028
+.skip
+	ld hl, ObjectStruct2 - ObjectStruct1
 	add hl, bc
 	ld b, h
 	ld c, l
 	pop hl
-	jr .asm_59ec
+	jr .next
 
-.asm_59e2
-	ld hl, $0028
+.add
+	ld hl, ObjectStruct2 - ObjectStruct1
 	add hl, bc
 	ld b, h
 	ld c, l
@@ -7588,23 +3492,24 @@ Function59a4: ; 59a4
 	or e
 	ld [hli], a
 
-.asm_59ec
+.next
 	inc d
 	ld a, d
 	cp $d
-	jr nz, .asm_59b6
+	jr nz, .loop
 	ret
 ; 59f3
 
 Function59f3: ; 59f3
 	ld hl, $c2eb
-.asm_59f6
+.next
 	ld a, [hli]
 	ld d, a
 	and $f0
 	ret z
 	cp c
-	jr nz, .asm_59f6
+	jr nz, .next
+
 	push bc
 	push hl
 	ld a, d
@@ -7613,83 +3518,92 @@ Function59f3: ; 59f3
 	call Function5a0d
 	pop hl
 	pop bc
-	jr .asm_59f6
+	jr .next
 ; 5a0d
 
 Function5a0d: ; 5a0d
-	ld hl, $0002
+	ld hl, OBJECT_SPRITE
 	add hl, bc
 	ld a, [hl]
 	and $7f
 	ld [$ffc1], a
+
 	xor a
 	bit 7, [hl]
 	jr nz, .asm_5a1d
-	or $8
-
+	or 8
 .asm_5a1d
-	ld hl, $0005
+
+	ld hl, OBJECT_FLAGS
 	add hl, bc
 	ld e, [hl]
 	bit 7, e
 	jr z, .asm_5a28
 	or $80
-
 .asm_5a28
+
 	bit 4, e
 	jr z, .asm_5a2e
 	or $10
-
 .asm_5a2e
-	ld hl, $0006
+
+	ld hl, OBJECT_PALETTE
 	add hl, bc
 	ld d, a
 	ld a, [hl]
-	and $7
+	and 7
 	or d
 	ld d, a
+
 	xor a
 	bit 3, e
 	jr z, .asm_5a3f
 	or $80
-
 .asm_5a3f
 	ld [$ffc2], a
-	ld hl, $0017
+
+	ld hl, OBJECT_SPRITE_X
 	add hl, bc
 	ld a, [hl]
-	ld hl, $0019
+
+	ld hl, OBJECT_SPRITE_X_OFFSET
 	add hl, bc
 	add [hl]
-	add $8
+
+	add 8
+
 	ld e, a
 	ld a, [$d14c]
 	add e
 	ld [$ffbf], a
-	ld hl, $0018
+
+	ld hl, OBJECT_SPRITE_Y
 	add hl, bc
 	ld a, [hl]
-	ld hl, $001a
+
+	ld hl, OBJECT_SPRITE_Y_OFFSET
 	add hl, bc
 	add [hl]
-	add $c
+
+	add 12
+
 	ld e, a
 	ld a, [$d14d]
 	add e
 	ld [$ffc0], a
 
-	ld hl, $000d
+	ld hl, OBJECT_FACING
 	add hl, bc
 	ld a, [hl]
-	cp $ff
-	jp z, .asm_5abe
-	cp $20
-	jp nc, .asm_5abe
+	cp -1
+	jp z, .done
+	cp NUM_FACINGS
+	jp nc, .done
 
 	ld l, a
 	ld h, 0
 	add hl, hl
-	ld bc, DataPointers4049
+	ld bc, Facings
 	add hl, bc
 	ld a, [hli]
 	ld h, [hl]
@@ -7704,19 +3618,24 @@ Function5a0d: ; 5a0d
 	cp SpritesEnd % $100
 	jr nc, .full
 
-.loop
+.addsprite
 	ld a, [$ffc0]
 	add [hl]
 	inc hl
+
 	ld [bc], a
 	inc c
+
 	ld a, [$ffbf]
 	add [hl]
 	inc hl
+
 	ld [bc], a
 	inc c
+
 	ld e, [hl]
 	inc hl
+
 	ld a, [$ffc1]
 	bit 2, e
 	jr z, .asm_5aa3
@@ -7724,8 +3643,10 @@ Function5a0d: ; 5a0d
 .asm_5aa3
 	add [hl]
 	inc hl
+
 	ld [bc], a
 	inc c
+
 	ld a, e
 	bit 1, a
 	jr z, .asm_5aaf
@@ -7736,15 +3657,16 @@ Function5a0d: ; 5a0d
 	or d
 	ld [bc], a
 	inc c
+
 	ld a, [$ffbe]
 	dec a
 	ld [$ffbe], a
-	jr nz, .loop
+	jr nz, .addsprite
 
 	ld a, c
 	ld [$ffbd], a
 
-.asm_5abe
+.done
 	xor a
 	ret
 
@@ -7766,20 +3688,21 @@ Function5ac2: ; 5ac2
 ; 5ace
 
 .Addresses ; 5ace
-	dw $d4d6
-	dw $d4fe
-	dw $d526
-	dw $d54e
-	dw $d576
-	dw $d59e
-	dw $d5c6
-	dw $d5ee
-	dw $d616
-	dw $d63e
-	dw $d666
-	dw $d68e
-	dw $d6b6
+	dw PlayerStruct
+	dw ObjectStruct1
+	dw ObjectStruct2
+	dw ObjectStruct3
+	dw ObjectStruct4
+	dw ObjectStruct5
+	dw ObjectStruct6
+	dw ObjectStruct7
+	dw ObjectStruct8
+	dw ObjectStruct9
+	dw ObjectStruct10
+	dw ObjectStruct11
+	dw ObjectStruct12
 ; 5ae8
+
 
 Function5ae8: ; 5ae8
 	ld de, MUSIC_NONE
@@ -8227,7 +4150,7 @@ Function5df0: ; 5df0
 Function5e34: ; 5e34
 .asm_5e34
 	call DelayFrame
-	call GetJoypadPublic
+	call GetJoypad
 	ld hl, hJoyPressed
 	bit 0, [hl]
 	jr nz, .asm_5e47
@@ -8266,7 +4189,7 @@ Function5e5d: ; 5e5d
 	res 7, [hl]
 	ld hl, $d83e
 	set 1, [hl]
-	callba Function966b0
+	callba OverworldLoop
 	ld a, [$d4b5]
 	cp $2
 	jr z, .asm_5e80
@@ -8856,7 +4779,7 @@ Function627b: ; 627b
 	ld a, [$cf63]
 	bit 7, a
 	jr nz, .asm_6290
-	call Function62a3
+	call TitleScreenScene
 	callba Function10eea7
 	call DelayFrame
 	and a
@@ -8879,10 +4802,10 @@ Function6292: ; 6292
 	ret
 ; 62a3
 
-Function62a3: ; 62a3
+TitleScreenScene: ; 62a3
 	ld e, a
 	ld d, 0
-	ld hl, .data_62af
+	ld hl, .scenes
 	add hl, de
 	add hl, de
 	ld a, [hli]
@@ -8891,11 +4814,11 @@ Function62a3: ; 62a3
 	jp [hl]
 ; 62af
 
-.data_62af
+.scenes
 	dw TitleScreenEntrance
-	dw Function62f6
-	dw Function6304
-	dw Function6375
+	dw TitleScreenTimer
+	dw TitleScreenMain
+	dw TitleScreenEnd
 ; 62b7
 
 Function62b7: ; 62b7
@@ -8921,14 +4844,14 @@ TitleScreenEntrance: ; 62bc
 	ld bc, 8 * 10 ; logo height
 	call ByteFill
 
-; Alternate signage for each line's position vector.
+; Reversed signage for every other line's position.
 ; This is responsible for the interlaced effect.
 	ld a, e
 	xor $ff
 	inc a
 
 	ld b, 8 * 10 / 2 ; logo height / 2
-	ld hl, $d101
+	ld hl, LYOverrides + 1
 .loop
 	ld [hli], a
 	inc hl
@@ -8955,103 +4878,138 @@ TitleScreenEntrance: ; 62bc
 ; 62f6
 
 
-Function62f6: ; 62f6
+TitleScreenTimer: ; 62f6
+
+; Next scene
 	ld hl, $cf63
 	inc [hl]
+
+; Start a timer
 	ld hl, $cf65
-	ld de, $1140
+	ld de, $1140 ; 73.6 seconds
 	ld [hl], e
 	inc hl
 	ld [hl], d
 	ret
 ; 6304
 
-Function6304: ; 6304
+TitleScreenMain: ; 6304
+
+; Run the timer down.
 	ld hl, $cf65
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
 	ld a, e
 	or d
-	jr z, .asm_6355
+	jr z, .end
+
 	dec de
 	ld [hl], d
 	dec hl
 	ld [hl], e
-	call GetJoypadPublic
+
+; Save data can be deleted by pressing Up + B + Select.
+	call GetJoypad
 	ld hl, hJoyDown
 	ld a, [hl]
-	and $46
-	cp $46
-	jr z, .asm_634a
+	and D_UP + B_BUTTON + SELECT
+	cp  D_UP + B_BUTTON + SELECT
+	jr z, .delete_save_data
+
+; To bring up the clock reset dialog:
+
+; Hold Down + B + Select to initiate the sequence.
 	ld a, [$ffeb]
 	cp $34
-	jr z, .asm_6332
+	jr z, .check_clock_reset
+
 	ld a, [hl]
-	and $86
-	cp $86
-	jr nz, .asm_6340
+	and D_DOWN + B_BUTTON + SELECT
+	cp  D_DOWN + B_BUTTON + SELECT
+	jr nz, .check_start
+
 	ld a, $34
 	ld [$ffeb], a
-	jr .asm_6340
+	jr .check_start
 
-.asm_6332
-	bit 2, [hl]
-	jr nz, .asm_6340
+; Keep Select pressed, and hold Left + Up.
+; Then let go of Select.
+.check_clock_reset
+	bit 2, [hl] ; SELECT
+	jr nz, .check_start
+
 	xor a
 	ld [$ffeb], a
-	ld a, [hl]
-	and $60
-	cp $60
-	jr z, .asm_636a
 
-.asm_6340
 	ld a, [hl]
-	and $9
-	jr nz, .asm_6346
+	and D_LEFT + D_UP
+	cp  D_LEFT + D_UP
+	jr z, .clock_reset
+
+; Press Start or A to start the game.
+.check_start
+	ld a, [hl]
+	and START | A_BUTTON
+	jr nz, .continue
 	ret
 
-.asm_6346
-	ld a, $0
-	jr .asm_634c
+.continue
+	ld a, 0
+	jr .done
 
-.asm_634a
-	ld a, $1
+.delete_save_data
+	ld a, 1
 
-.asm_634c
+.done
 	ld [$cf64], a
+
+; Return to the intro sequence.
 	ld hl, $cf63
 	set 7, [hl]
 	ret
 
-.asm_6355
+.end
+; Next scene
 	ld hl, $cf63
 	inc [hl]
+
+; Fade out the title screen music
 	xor a
 	ld [MusicFadeIDLo], a
 	ld [MusicFadeIDHi], a
 	ld hl, MusicFade
-	ld [hl], $8
+	ld [hl], 8 ; 1 second
+
 	ld hl, $cf65
 	inc [hl]
 	ret
 
-.asm_636a
-	ld a, $4
+.clock_reset
+	ld a, 4
 	ld [$cf64], a
+
+; Return to the intro sequence.
 	ld hl, $cf63
 	set 7, [hl]
 	ret
 ; 6375
 
-Function6375: ; 6375
+TitleScreenEnd: ; 6375
+
+; Wait until the music is done fading.
+
 	ld hl, $cf65
 	inc [hl]
+
 	ld a, [MusicFade]
 	and a
 	ret nz
-	ld a, $2
+
+	ld a, 2
 	ld [$cf64], a
+
+; Back to the intro.
 	ld hl, $cf63
 	set 7, [hl]
 	ret
@@ -9348,7 +5306,7 @@ Function6520: ; 6520
 Function65b5: ; 65b5
 	ld hl, UnknownText_0x6675
 	call PrintText
-	call Function1dcf
+	call YesNoBox
 	jp c, Function6520
 	ld hl, UnknownText_0x667a
 	call PrintText
@@ -9367,7 +5325,7 @@ Function65d3: ; 65d3
 	push hl
 	ld hl, UnknownText_0x667f
 	call PrintText
-	call Function1dcf
+	call YesNoBox
 	pop hl
 	ret c
 	ld bc, $fffc
@@ -9447,32 +5405,32 @@ Function65d3: ; 65d3
 ; 666b
 
 UnknownText_0x666b: ; 666b
-	text_jump UnknownText_0x1c5660, BANK(UnknownText_0x1c5660)
+	text_jump UnknownText_0x1c5660
 	db "@"
 ; 6670
 
 UnknownText_0x6670: ; 6670
-	text_jump UnknownText_0x1c5678, BANK(UnknownText_0x1c5678)
+	text_jump UnknownText_0x1c5678
 	db "@"
 ; 6675
 
 UnknownText_0x6675: ; 6675
-	text_jump UnknownText_0x1c5699, BANK(UnknownText_0x1c5699)
+	text_jump UnknownText_0x1c5699
 	db "@"
 ; 667a
 
 UnknownText_0x667a: ; 667a
-	text_jump UnknownText_0x1c56af, BANK(UnknownText_0x1c56af)
+	text_jump UnknownText_0x1c56af
 	db "@"
 ; 667f
 
 UnknownText_0x667f: ; 667f
-	text_jump UnknownText_0x1c56c9, BANK(UnknownText_0x1c56c9)
+	text_jump UnknownText_0x1c56c9
 	db "@"
 ; 6684
 
 UnknownText_0x6684: ; 6684
-	text_jump UnknownText_0x1c5740, BANK(UnknownText_0x1c5740)
+	text_jump UnknownText_0x1c5740
 	start_asm
 ; 6689
 
@@ -9486,12 +5444,12 @@ UnknownText_0x6684: ; 6684
 ; 6695
 
 UnknownText_0x6695: ; 6695
-	text_jump UnknownText_0x1c574e, BANK(UnknownText_0x1c574e)
+	text_jump UnknownText_0x1c574e
 	db "@"
 ; 669a
 
 UnknownText_0x669a: ; 669a
-	text_jump UnknownText_0x1c5772, BANK(UnknownText_0x1c5772)
+	text_jump UnknownText_0x1c5772
 	db "@"
 ; 669f
 
@@ -10844,7 +6802,7 @@ Function747a: ; 747a
 ; 747b
 
 
-SECTION "bank2",ROMX,BANK[$2]
+SECTION "bank2", ROMX, BANK[$2]
 
 Function8000: ; 8000
 	call Function2ed3
@@ -11817,7 +7775,7 @@ PredefPointers: ; 856b
 	dwb PrintMonTypes, BANK(PrintMonTypes)
 	dwb GetUnownLetter, BANK(GetUnownLetter)
 	dwb Functioncbcdd, BANK(Functioncbcdd)
-	dwb Functioncc0d5, BANK(Functioncc0d5)
+	dwb Predef2F, BANK(Predef2F)
 	dwb Function9853, BANK(Function9853) ; $30
 	dwb Function864c, BANK(Function864c)
 	dwb Function91d11, BANK(Function91d11)
@@ -11825,9 +7783,9 @@ PredefPointers: ; 856b
 	dwb Function8c20f, BANK(Function8c20f)
 	dwb Function8c000, BANK(Function8c000)
 	dwb Function8c000, BANK(Function8c000)
-	dwb Functioncc0d6, BANK(Functioncc0d6)
-	dwb Functioncc0d5, BANK(Functioncc0d5) ; $38
-	dwb Functioncc0d5, BANK(Functioncc0d5)
+	dwb PlayBattleAnim, BANK(PlayBattleAnim)
+	dwb Predef38, BANK(Predef38) ; $38
+	dwb Predef39, BANK(Predef39)
 	dwb Functionfd1d0, BANK(Functionfd1d0)
 	dwb PartyMonItemName, BANK(PartyMonItemName)
 	dwb Function51077, BANK(Function51077)
@@ -11851,7 +7809,7 @@ PredefPointers: ; 856b
 INCLUDE "engine/color.asm"
 
 
-SECTION "bank3",ROMX,BANK[$3]
+SECTION "bank3", ROMX, BANK[$3]
 
 Functionc000: ; c000
 	ld a, [TimeOfDay]
@@ -12037,7 +7995,7 @@ SpecialsPointers: ; c029
 	dbw BANK(Function102142), Function102142
 	dbw BANK(Function4989a), Function4989a
 	dbw BANK(Function49bf9), Function49bf9
-	dbw BANK(Function4f0bc), Function4f0bc
+	dbw BANK(SpecialPokeSeer), SpecialPokeSeer
 	dbw BANK(Function8af6b), Function8af6b
 	dbw BANK(Function8afd4), Function8afd4
 	dbw BANK(SpecialDratini),SpecialDratini
@@ -12230,7 +8188,7 @@ Functionc309: ; c309
 
 UnknownText_0xc345: ; 0xc345
 	; received item
-	text_jump UnknownText_0x1bd3be, BANK(UnknownText_0x1bd3be)
+	text_jump UnknownText_0x1bd3be
 	db "@"
 ; 0xc34a
 
@@ -12327,13 +8285,13 @@ Functionc3ae: ; c3ae
 
 UnknownText_0xc3d1: ; 0xc3d1
 	; You have no coins.
-	text_jump UnknownText_0x1bd3d7, BANK(UnknownText_0x1bd3d7)
+	text_jump UnknownText_0x1bd3d7
 	db "@"
 ; 0xc3d6
 
 UnknownText_0xc3d6: ; 0xc3d6
 	; You don't have a COIN CASE.
-	text_jump UnknownText_0x1bd3eb, BANK(UnknownText_0x1bd3eb)
+	text_jump UnknownText_0x1bd3eb
 	db "@"
 ; 0xc3db
 
@@ -13040,7 +8998,7 @@ Functionc779: ; c779
 ; c780
 
 UnknownText_0xc780: ; 0xc780
-	text_jump UnknownText_0x1c05c8, BANK(UnknownText_0x1c05c8)
+	text_jump UnknownText_0x1c05c8
 	db "@"
 ; 0xc785
 
@@ -13094,7 +9052,7 @@ Functionc7bb: ; c7bb (3:47bb)
 	ret
 
 UnknownText_0xc7c4: ; 0xc7c4
-	text_jump UnknownText_0x1c05dd, BANK(UnknownText_0x1c05dd)
+	text_jump UnknownText_0x1c05dd
 	db $50
 ; 0xc7c9
 
@@ -13135,10 +9093,10 @@ Unknown_c7fe: ; c7fe
 INCBIN "baserom.gbc",$c7fe,$c802 - $c7fe
 
 UnknownScript_0xc802: ; 0xc802
-	3callasm BANK(GetPartyNick), GetPartyNick
+	3callasm GetPartyNick
 	2writetext UnknownText_0xc7c4
 	reloadmappart
-	3callasm BANK(Functionc810), Functionc810
+	3callasm Functionc810
 	loadmovesprites
 	end
 ; 0xc810
@@ -13239,13 +9197,13 @@ UnknownScript_0xc8e6: ; 0xc8e6
 	reloadmappart
 	special $0035
 	2writetext UnknownText_0xc8f3
-	3callasm $23, $47e1
+	3callasm Function8c7e1
 	loadmovesprites
 	end
 ; 0xc8f3
 
 UnknownText_0xc8f3: ; 0xc8f3
-	text_jump UnknownText_0x1c0609, BANK(UnknownText_0x1c0609)
+	text_jump UnknownText_0x1c0609
 	start_asm
 ; 0xc8f8
 
@@ -13348,7 +9306,7 @@ UsedSurfScript: ; c986
 	closetext
 	loadmovesprites
 
-	3callasm BANK(Functionc9a2), Functionc9a2 ; empty function
+	3callasm Functionc9a2 ; empty function
 
 	copybytetovar Buffer2
 	writevarcode VAR_MOVEMENT
@@ -13573,17 +9531,17 @@ Functionca9d: ; ca9d
 
 UnknownScript_0xcaa3: ; 0xcaa3
 	reloadmappart
-	3callasm BANK(HideSprites), HideSprites
+	3callasm HideSprites
 	special $0035
-	3callasm $23, $4aed
-	3call BANK(UnknownScript_0x122c1), UnknownScript_0x122c1
+	3callasm Function8caed
+	3call UnknownScript_0x122c1
 	special $0000
-	3callasm $05, $54f1
+	3callasm Function154f1
 	writecode $8, $0
 	newloadmap $fc
-	3callasm $23, $4b33
+	3callasm Function8cb33
 	special $003b
-	3callasm BANK(Functioncacb), Functioncacb
+	3callasm Functioncacb
 	end
 ; 0xcacb
 
@@ -13642,14 +9600,14 @@ UnknownScript_0xcb1c: ; 0xcb1c
 	special $0035
 
 UnknownScript_0xcb20: ; 0xcb20
-	3callasm BANK(GetPartyNick), GetPartyNick
+	3callasm GetPartyNick
 	2writetext UnknownText_0xcb51
 	closetext
 	loadmovesprites
 	playsound SFX_BUBBLEBEAM
 .loop
 	applymovement $0, WaterfallStep
-	3callasm BANK(Functioncb38), Functioncb38
+	3callasm Functioncb38
 	iffalse .loop
 	end
 ; 0xcb38
@@ -13672,7 +9630,7 @@ WaterfallStep: ; cb4f
 ; cb51
 
 UnknownText_0xcb51: ; 0xcb51
-	text_jump UnknownText_0x1c068e, BANK(UnknownText_0x1c068e)
+	text_jump UnknownText_0x1c068e
 	db "@"
 ; 0xcb56
 
@@ -13704,7 +9662,7 @@ UnknownScript_0xcb7e: ; 0xcb7e
 ; 0xcb81
 
 UnknownText_0xcb81: ; 0xcb81
-	text_jump UnknownText_0x1c06a3, BANK(UnknownText_0x1c06a3)
+	text_jump UnknownText_0x1c06a3
 	db "@"
 ; 0xcb86
 
@@ -13718,7 +9676,7 @@ UnknownScript_0xcb86: ; 0xcb86
 ; 0xcb90
 
 UnknownText_0xcb90: ; 0xcb90
-	text_jump UnknownText_0x1c06bf, BANK(UnknownText_0x1c06bf)
+	text_jump UnknownText_0x1c06bf
 	db "@"
 ; 0xcb95
 
@@ -13812,19 +9770,19 @@ Functioncc06: ; cc06
 
 UnknownText_0xcc1c: ; 0xcc1c
 	; used DIG!
-	text_jump UnknownText_0x1c06de, BANK(UnknownText_0x1c06de)
+	text_jump UnknownText_0x1c06de
 	db "@"
 ; 0xcc21
 
 UnknownText_0xcc21: ; 0xcc21
 	; used an ESCAPE ROPE.
-	text_jump UnknownText_0x1c06ed, BANK(UnknownText_0x1c06ed)
+	text_jump UnknownText_0x1c06ed
 	db "@"
 ; 0xcc26
 
 UnknownText_0xcc26: ; 0xcc26
 	; Can't use that here.
-	text_jump UnknownText_0x1c0705, BANK(UnknownText_0x1c0705)
+	text_jump UnknownText_0x1c0705
 	db "@"
 ; 0xcc2b
 
@@ -13845,7 +9803,7 @@ UnknownScript_0xcc3c: ; 0xcc3c
 	loadmovesprites
 	playsound SFX_WARP_TO
 	applymovement $0, MovementData_0xcc59
-	3call BANK(UnknownScript_0x122c1), UnknownScript_0x122c1
+	3call UnknownScript_0x122c1
 	special $0000
 	writecode $8, $0
 	newloadmap $f5
@@ -13947,7 +9905,7 @@ Functionccf8: ; ccf8
 ; cd01
 
 UnknownText_0xcd01: ; 0xcd01
-	text_jump UnknownText_0x1c0751, BANK(UnknownText_0x1c0751)
+	text_jump UnknownText_0x1c0751
 	db "@"
 ; 0xcd06
 
@@ -13986,7 +9944,7 @@ UnknownScript_0xcd29: ; 0xcd29
 	special $0035
 
 UnknownScript_0xcd2d: ; 0xcd2d
-	3callasm BANK(Functioncd12), Functioncd12
+	3callasm Functioncd12
 	2writetext UnknownText_0xcd41
 	copybytetovar $d1ef
 	cry $0000
@@ -13997,17 +9955,17 @@ UnknownScript_0xcd2d: ; 0xcd2d
 ; 0xcd41
 
 UnknownText_0xcd41: ; 0xcd41
-	text_jump UnknownText_0x1c0774, BANK(UnknownText_0x1c0774)
+	text_jump UnknownText_0x1c0774
 	db $50
 ; 0xcd46
 
 UnknownText_0xcd46: ; 0xcd46
-	text_jump UnknownText_0x1c0788, BANK(UnknownText_0x1c0788)
+	text_jump UnknownText_0x1c0788
 	db $50
 ; 0xcd4b
 
 UnknownScript_0xcd4b: ; 0xcd4b
-	3callasm $03, $4d78
+	3callasm Functioncd78
 	iffalse UnknownScript_0xcd5f
 	if_equal $1, UnknownScript_0xcd59
 	2jump UnknownScript_0xcd5c
@@ -14032,22 +9990,23 @@ UnknownScript_0xcd5f: ; 0xcd5f
 
 UnknownText_0xcd69: ; 0xcd69
 	; A #MON may be able to move this. Want to use STRENGTH?
-	text_jump UnknownText_0x1c07a0, BANK(UnknownText_0x1c07a0)
+	text_jump UnknownText_0x1c07a0
 	db "@"
 ; 0xcd6e
 
 UnknownText_0xcd6e: ; 0xcd6e
 	; Boulders may now be moved!
-	text_jump UnknownText_0x1c07d8, BANK(UnknownText_0x1c07d8)
+	text_jump UnknownText_0x1c07d8
 	db "@"
 ; 0xcd73
 
 UnknownText_0xcd73: ; 0xcd73
 	; A #MON may be able to move this.
-	text_jump UnknownText_0x1c07f4, BANK(UnknownText_0x1c07f4)
+	text_jump UnknownText_0x1c07f4
 	db "@"
 ; 0xcd78
 
+Functioncd78: ; cd78
 	ld d, $46
 	call CheckPartyMove
 	jr c, .asm_cd92
@@ -14083,7 +10042,7 @@ Functioncd9d: ; cd9d
 INCBIN "baserom.gbc",$cdae,$cdd9 - $cdae
 
 UnknownText_0xcdd9: ; 0xcdd9
-	text_jump UnknownText_0x1c0816, BANK(UnknownText_0x1c0816)
+	text_jump UnknownText_0x1c0816
 	db "@"
 ; 0xcdde
 
@@ -14120,10 +10079,10 @@ Functioncdde: ; cdde
 INCBIN "baserom.gbc",$ce0b,$ce0f - $ce0b
 
 UnknownScript_0xce0f: ; 0xce0f
-	3callasm BANK(GetPartyNick), GetPartyNick
+	3callasm GetPartyNick
 	2writetext UnknownText_0xcdd9
 	reloadmappart
-	3callasm BANK(Functionce1d), Functionce1d
+	3callasm Functionce1d
 	loadmovesprites
 	end
 ; 0xce1d
@@ -14174,7 +10133,7 @@ UnknownScript_0xce66: ; 0xce66
 ; 0xce69
 
 UnknownText_0xce69: ; 0xce69
-	text_jump UnknownText_0x1c082b, BANK(UnknownText_0x1c082b)
+	text_jump UnknownText_0x1c082b
 	db "@"
 ; 0xce6e
 
@@ -14188,7 +10147,7 @@ UnknownScript_0xce6e: ; 0xce6e
 ; 0xce78
 
 UnknownText_0xce78: ; 0xce78
-	text_jump UnknownText_0x1c0864, BANK(UnknownText_0x1c0864)
+	text_jump UnknownText_0x1c0864
 	db "@"
 ; 0xce7d
 
@@ -14215,23 +10174,23 @@ Functionce86: ; ce86
 ; ce9d
 
 UnknownText_0xce9d: ; 0xce9d
-	text_jump UnknownText_0x1c0897, BANK(UnknownText_0x1c0897)
+	text_jump UnknownText_0x1c0897
 	db $50
 ; 0xcea2
 
 UnknownText_0xcea2: ; 0xcea2
-	text_jump UnknownText_0x1c08ac, BANK(UnknownText_0x1c08ac)
+	text_jump UnknownText_0x1c08ac
 	db $50
 ; 0xcea7
 
 UnknownScript_0xcea7: ; 0xcea7
 	reloadmappart
 	special $0035
-	3callasm BANK(GetPartyNick), GetPartyNick
+	3callasm GetPartyNick
 	2writetext UnknownText_0xce9d
 	reloadmappart
-	3callasm $23, $480a
-	3callasm $2e, $41ea
+	3callasm Function8c80a
+	3callasm Functionb81ea
 	iffalse UnknownScript_0xcec3
 	loadmovesprites
 	battlecheck
@@ -14315,7 +10274,7 @@ UnknownScript_0xcf2e: ; 0xcf2e
 	special $0035
 
 UnknownScript_0xcf32: ; cf32
-	3callasm BANK(GetPartyNick), GetPartyNick
+	3callasm GetPartyNick
 	2writetext UnknownText_0xcf58
 	loadmovesprites
 	special $003b
@@ -14323,7 +10282,7 @@ UnknownScript_0xcf32: ; cf32
 	earthquake 84
 	applymovement2 MovementData_0xcf55
 	disappear $fe
-	3callasm $2e, $4219
+	3callasm Functionb8219
 	copybytetovar $d22e
 	iffalse .done
 	battlecheck
@@ -14338,12 +10297,12 @@ MovementData_0xcf55: ; 0xcf55
 	step_end
 
 UnknownText_0xcf58: ; 0xcf58
-	text_jump UnknownText_0x1c08f0, BANK(UnknownText_0x1c08f0)
+	text_jump UnknownText_0x1c08f0
 	db $50
 ; 0xcf5d
 
 UnknownScript_0xcf5d: ; 0xcf5d
-	3callasm $03, $4f7c
+	3callasm Functioncf7c
 	if_equal $1, UnknownScript_0xcf6f
 	loadfont
 	2writetext UnknownText_0xcf77
@@ -14359,16 +10318,17 @@ UnknownScript_0xcf6f: ; 0xcf6f
 
 UnknownText_0xcf72: ; 0xcf72
 	; Maybe a #MON can break this.
-	text_jump UnknownText_0x1c0906, BANK(UnknownText_0x1c0906)
+	text_jump UnknownText_0x1c0906
 	db "@"
 ; 0xcf77
 
 UnknownText_0xcf77: ; 0xcf77
 	; This rock looks breakable. Want to use ROCK SMASH?
-	text_jump UnknownText_0x1c0924, BANK(UnknownText_0x1c0924)
+	text_jump UnknownText_0x1c0924
 	db "@"
 ; 0xcf7c
 
+Functioncf7c: ; cf7c
 	ld d, $f9
 	call CheckPartyMove
 	jr nc, .asm_cf87
@@ -14519,7 +10479,7 @@ UnknownScript_0xd1a9: ; 0xd1a9
 	2writetext UnknownText_0xd1c8
 	yesorno
 	iffalse .script_d1b8
-	3callasm BANK(Functiond1ba), Functiond1ba
+	3callasm Functiond1ba
 	iftrue UnknownScript_0xc802
 .script_d1b8
 	loadmovesprites
@@ -14537,7 +10497,7 @@ Functiond1ba: ; d1ba
 ; d1c8
 
 UnknownText_0xd1c8: ; 0xd1c8
-	text_jump UnknownText_0x1c09dd, BANK(UnknownText_0x1c09dd)
+	text_jump UnknownText_0x1c09dd
 	db "@"
 ; 0xd1cd
 
@@ -14546,7 +10506,7 @@ UnknownScript_0xd1cd: ; 0xd1cd
 ; 0xd1d0
 
 UnknownText_0xd1d0: ; 0xd1d0
-	text_jump UnknownText_0x1c0a05, BANK(UnknownText_0x1c0a05)
+	text_jump UnknownText_0x1c0a05
 	db "@"
 ; 0xd1d5
 
@@ -17860,8 +13820,8 @@ Functione6ce: ; e6ce
 	ld [$d265], a
 	callba Functioncc0c7
 	callba Functioncc000
-	ld bc, $0e07
-	call Function1dd2
+	lb bc, 14, 7
+	call PlaceYesNoBox
 	ret c
 
 .asm_e6ea
@@ -17869,7 +13829,7 @@ Functione6ce: ; e6ce
 	ld a, [TempEnemyMonSpecies]
 	ld [$d265], a
 	call GetPokemonName
-	ld hl, $671d
+	ld hl, UnknownText_0xe71d
 	call PrintText
 	ret
 ; e6fd
@@ -17889,553 +13849,106 @@ Functione6fd: ; e6fd
 	jp Functiond906
 ; e71d
 
-INCBIN "baserom.gbc",$e71d,$e722 - $e71d
+UnknownText_0xe71d: ; 0xe71d
+	; Caught @ !
+	text_jump UnknownText_0x1c10c0
+	db "@"
+; 0xe722
 
-
-_DoItemEffect: ; e722
-	ld a, [CurItem]
-	ld [$d265], a
-	call GetItemName
-	call CopyName1
-	ld a, 1
-	ld [$d0ec], a
-	ld a, [CurItem]
-	dec a
-	ld hl, ItemEffects
-	rst JumpTable
-	ret
-; e73c
-
-
-ItemEffects: ; e73c
-	dw MasterBall
-	dw UltraBall
-	dw Brightpowder
-	dw GreatBall
-	dw PokeBall
-	dw Item06
-	dw Bicycle
-	dw MoonStone
-	dw Antidote
-	dw BurnHeal
-	dw IceHeal
-	dw Awakening
-	dw ParlyzHeal
-	dw FullRestore
-	dw MaxPotion
-	dw HyperPotion
-	dw SuperPotion
-	dw Potion
-	dw EscapeRope
-	dw Repel
-	dw MaxElixer
-	dw FireStone
-	dw Thunderstone
-	dw WaterStone
-	dw Item19
-	dw HpUp
-	dw Protein
-	dw Iron
-	dw Carbos
-	dw LuckyPunch
-	dw Calcium
-	dw RareCandy
-	dw XAccuracy
-	dw LeafStone
-	dw MetalPowder
-	dw Nugget
-	dw PokeDoll
-	dw FullHeal
-	dw Revive
-	dw MaxRevive
-	dw GuardSpec
-	dw SuperRepel
-	dw MaxRepel
-	dw DireHit
-	dw Item2D
-	dw FreshWater
-	dw SodaPop
-	dw Lemonade
-	dw XAttack
-	dw Item32
-	dw XDefend
-	dw XSpeed
-	dw XSpecial
-	dw CoinCase
-	dw Itemfinder
-	dw Item38
-	dw ExpShare
-	dw OldRod
-	dw GoodRod
-	dw SilverLeaf
-	dw SuperRod
-	dw PpUp
-	dw Ether
-	dw MaxEther
-	dw Elixer
-	dw RedScale
-	dw Secretpotion
-	dw SSTicket
-	dw MysteryEgg
-	dw ClearBell
-	dw SilverWing
-	dw MoomooMilk
-	dw QuickClaw
-	dw Psncureberry
-	dw GoldLeaf
-	dw SoftSand
-	dw SharpBeak
-	dw Przcureberry
-	dw BurntBerry
-	dw IceBerry
-	dw PoisonBarb
-	dw KingsRock
-	dw BitterBerry
-	dw MintBerry
-	dw RedApricorn
-	dw Tinymushroom
-	dw BigMushroom
-	dw Silverpowder
-	dw BluApricorn
-	dw Item5A
-	dw AmuletCoin
-	dw YlwApricorn
-	dw GrnApricorn
-	dw CleanseTag
-	dw MysticWater
-	dw Twistedspoon
-	dw WhtApricorn
-	dw Blackbelt
-	dw BlkApricorn
-	dw Item64
-	dw PnkApricorn
-	dw Blackglasses
-	dw Slowpoketail
-	dw PinkBow
-	dw Stick
-	dw SmokeBall
-	dw Nevermeltice
-	dw Magnet
-	dw Miracleberry
-	dw Pearl
-	dw BigPearl
-	dw Everstone
-	dw SpellTag
-	dw Ragecandybar
-	dw GsBall
-	dw BlueCard
-	dw MiracleSeed
-	dw ThickClub
-	dw FocusBand
-	dw Item78
-	dw Energypowder
-	dw EnergyRoot
-	dw HealPowder
-	dw RevivalHerb
-	dw HardStone
-	dw LuckyEgg
-	dw CardKey
-	dw MachinePart
-	dw EggTicket
-	dw LostItem
-	dw Stardust
-	dw StarPiece
-	dw BasementKey
-	dw Pass
-	dw Item87
-	dw Item88
-	dw Item89
-	dw Charcoal
-	dw BerryJuice
-	dw ScopeLens
-	dw Item8D
-	dw Item8E
-	dw MetalCoat
-	dw DragonFang
-	dw Item91
-	dw Leftovers
-	dw Item93
-	dw Item94
-	dw Item95
-	dw Mysteryberry
-	dw DragonScale
-	dw BerserkGene
-	dw Item99
-	dw Item9A
-	dw Item9B
-	dw SacredAsh
-	dw HeavyBall
-	dw FlowerMail
-	dw LevelBall
-	dw LureBall
-	dw FastBall
-	dw ItemA2
-	dw LightBall
-	dw FriendBall
-	dw MoonBall
-	dw LoveBall
-	dw NormalBox
-	dw GorgeousBox
-	dw SunStone
-	dw PolkadotBow
-	dw ItemAB
-	dw UpGrade
-	dw Berry
-	dw GoldBerry
-	dw Squirtbottle
-	dw ItemB0
-	dw ParkBall
-	dw RainbowWing
-	dw ItemB3
-; e8a2
 
 INCLUDE "items/item_effects.asm"
 
 
-Functionf780: ; f780
-	push de
-	ld de, SFX_FULL_HEAL
-	call WaitPlaySFX
-	pop de
-	ret
-; f789
-
-Functionf789: ; f789
-	ld hl, $783d
-	call PrintText
-	call Functionf780
-	call Functiona80
-	; fallthrough
-; f795
-
-Functionf795: ; f795
-	ld hl, NumItems
-	ld a, $1
-	ld [$d10c], a
-	jp TossItem
-; f7a0
-
-Functionf7a0: ; f7a0
-	call Functionedfa
-	ld de, Start
-	ld a, e
-	ld [FXAnimIDLo], a
-	ld a, d
-	ld [FXAnimIDHi], a
-	xor a
-	ld [$c689], a
-	ld [hBattleTurn], a
-	ld [$cfca], a
-	ld a, $37
-	call Predef
-	ld hl, $7824
-	call PrintText
-	ld hl, $7829
-	call PrintText
-	jr Functionf795
-; f7ca
-
-Functionf7ca: ; f7ca
-	ld hl, $781f
-	call PrintText
-	ld a, $2
-	ld [$d0ec], a
-	ret
-; f7d6
-
-Functionf7d6: ; f7d6
-	ld hl, $780b
-	jp PrintText
-; f7dc
-
-Functionf7dc: ; f7dc
-	ld hl, $7838
-	call PrintText
-	ld a, $2
-	ld [$d0ec], a
-	ret
-; f7e8
-
-Functionf7e8: ; f7e8
-	ld hl, $7810
-	jr asm_f804
-
-	ld hl, $7815
-	jr asm_f804
-
-Functionf7f2: ; f7f2
-	ld hl, $781f
-	jr asm_f804
-
-	ld hl, $781a
-	jr asm_f804
-
-	ld hl, $782e
-	jr asm_f804
-
-	ld hl, $7833
-
-asm_f804
-	xor a
-	ld [$d0ec], a
-	jp PrintText
-; f80b
-
-INCBIN "baserom.gbc",$f80b,$f84c - $f80b
-
-
-Functionf84c: ; f84c
-	ld a, $2
-	call GetPartyParamLocation
-	push hl
-	ld de, MagikarpLength
-	ld a, $5
-	call Predef
-	pop hl
-	ld bc, $0015
-	add hl, bc
-	ld de, MagikarpLength
-	ld b, $0
-.asm_f864
-	inc b
-	ld a, b
-	cp $5
-	ret z
-	ld a, [$d265]
-	dec a
-	jr nz, .asm_f876
-	ld a, [$cfa9]
-	inc a
-	cp b
-	jr nz, .asm_f87d
-
-.asm_f876
-	ld a, [hl]
-	and $c0
-	ld a, [de]
-	call nz, Functionf881
-
-.asm_f87d
-	inc hl
-	inc de
-	jr .asm_f864
-; f881
-
-
-
-Functionf881: ; f881
-	push bc
-	ld a, [de]
-	ld [$ffb6], a
-	xor a
-	ld [hProduct], a
-	ld [hMultiplicand], a
-	ld [$ffb5], a
-	ld a, $5
-	ld [hMultiplier], a
-	ld b, $4
-	call Divide
-	ld a, [hl]
-	ld b, a
-	swap a
-	and $f
-	srl a
-	srl a
-	ld c, a
-	and a
-	jr z, .asm_f8b6
-.asm_f8a3
-	ld a, [$ffb6]
-	cp $8
-	jr c, .asm_f8ab
-	ld a, $7
-
-.asm_f8ab
-	add b
-	ld b, a
-	ld a, [$d265]
-	dec a
-	jr z, .asm_f8b6
-	dec c
-	jr nz, .asm_f8a3
-
-.asm_f8b6
-	ld [hl], b
-	pop bc
-	ret
-; f8b9
-
-Functionf8b9: ; f8b9
-	ld a, $17
-	call GetPartyParamLocation
-	push hl
-	ld a, $2
-	call GetPartyParamLocation
-	pop de
-	xor a
-	ld [$cfa9], a
-	ld [MonType], a
-	ld c, $4
-.asm_f8ce
-	ld a, [hli]
-	and a
-	ret z
-	push hl
-	push de
-	push bc
-	call Functionf8ec
-	pop bc
-	pop de
-	ld a, [de]
-	and $c0
-	ld b, a
-	ld a, [$d265]
-	add b
-	ld [de], a
-	inc de
-	ld hl, $cfa9
-	inc [hl]
-	pop hl
-	dec c
-	jr nz, .asm_f8ce
-	ret
-; f8ec
-
-
-Functionf8ec: ; f8ec
-	ld a, [StringBuffer1]
-	push af
-	ld a, [$d074]
-	push af
-	ld a, [MonType]
-	and a
-	ld hl, PartyMon1Moves
-	ld bc, PartyMon2 - PartyMon1
-	jr z, .asm_f91a
-	ld hl, OTPartyMon1Moves
-	dec a
-	jr z, .asm_f91a
-	ld hl, TempMonMoves
-	dec a
-	jr z, .asm_f915
-	ld hl, TempMonMoves
-	dec a
-	jr z, .asm_f915
-	ld hl, BattleMonMoves
-
-.asm_f915
-	call Function7969
-	jr .asm_f91d
-
-.asm_f91a
-	call Functionf963
-
-.asm_f91d
-	ld a, [hl]
-	dec a
-	push hl
-	ld hl, $5b00
-	ld bc, $0007
-	call AddNTimes
-	ld a, $10
-	call GetFarByte
-	ld b, a
-	ld de, StringBuffer1
-	ld [de], a
-	pop hl
-	push bc
-	ld bc, $0015
-	ld a, [MonType]
-	cp WILDMON
-	jr nz, .asm_f942
-	ld bc, $0006
-
-.asm_f942
-	add hl, bc
-	ld a, [hl]
-	and $c0
-	pop bc
-	or b
-	ld hl, $d074
-	ld [hl], a
-	xor a
-	ld [$d265], a
-	ld a, b
-	call Functionf881
-	ld a, [hl]
-	and $3f
-	ld [$d265], a
-	pop af
-	ld [$d074], a
-	pop af
-	ld [StringBuffer1], a
-	ret
-; f963
-
-Functionf963: ; f963
-	ld a, [CurPartyMon]
-	call AddNTimes
-
-Function7969: ; 7969
-	ld a, [$cfa9]
-	ld c, a
-	ld b, $0
-	add hl, bc
-	ret
-; f971
-
-
 ; no known jump sources
-Functionf971: ; f971 (3:7971)
+GetPokeBallWobble: ; f971 (3:7971)
+; Returns whether a Poke Ball will wobble in the catch animation.
+; Whether a Pokemon is caught is determined beforehand.
+
 	push de
-	ld a, [rSVBK] ; $ff00+$70
+
+	ld a, [rSVBK]
 	ld d, a
 	push de
-	ld a, $1
-	ld [rSVBK], a ; $ff00+$70
-	ld a, [Buffer2] ; $d1eb (aliases: MovementType)
+
+	ld a, 1 ; BANK(Buffer2)
+	ld [rSVBK], a
+
+	ld a, [Buffer2]
 	inc a
-	ld [Buffer2], a ; $d1eb (aliases: MovementType)
-	cp $4
-	jr z, .asm_f9a8
+	ld [Buffer2], a
+
+; Wobble up to 3 times.
+	cp 3 + 1
+	jr z, .finished
+
 	ld a, [$c64e]
 	and a
-	ld c, $0
-	jr nz, .asm_f9b2
-	ld hl, $79ba
-	ld a, [Buffer1] ; $d1ea (aliases: MagikarpLength)
+	ld c, 0 ; next
+	jr nz, .done
+
+	ld hl, WobbleChances
+	ld a, [Buffer1]
 	ld b, a
-.asm_f994
+.loop
 	ld a, [hli]
 	cp b
-	jr nc, .asm_f99b
+	jr nc, .checkwobble
 	inc hl
-	jr .asm_f994
-.asm_f99b
+	jr .loop
+
+.checkwobble
 	ld b, [hl]
 	call Random
 	cp b
-	ld c, $0
-	jr c, .asm_f9b2
-	ld c, $2
-	jr .asm_f9b2
-.asm_f9a8
+	ld c, 0 ; next
+	jr c, .done
+	ld c, 2 ; escaped
+	jr .done
+
+.finished
 	ld a, [$c64e]
 	and a
-	ld c, $1
-	jr nz, .asm_f9b2
-	ld c, $2
-.asm_f9b2
+	ld c, 1 ; caught
+	jr nz, .done
+	ld c, 2 ; escaped
+
+.done
 	pop de
 	ld e, a
 	ld a, d
-	ld [rSVBK], a ; $ff00+$70
+	ld [rSVBK], a
 	ld a, e
 	pop de
 	ret
 ; f9ba (3:79ba)
 
-INCBIN "baserom.gbc",$f9ba,$f9ea - $f9ba
+WobbleChances: ; f9ba
+; catch rate, chance of wobbling / 255
+	db   1,  63
+	db   2,  75
+	db   3,  84
+	db   4,  90
+	db   5,  95
+	db   7, 103
+	db  10, 113
+	db  15, 126
+	db  20, 134
+	db  30, 149
+	db  40, 160
+	db  50, 169
+	db  60, 177
+	db  80, 191
+	db 100, 201
+	db 120, 211
+	db 140, 220
+	db 160, 227
+	db 180, 234
+	db 200, 240
+	db 220, 246
+	db 240, 251
+	db 254, 253
+	db 255, 255
+; f9ea
 
 
 Functionf9ea: ; f9ea
@@ -18454,16 +13967,20 @@ Functionf9ea: ; f9ea
 	ret
 
 .asm_f9fe
-	ld hl, $7a06
+	ld hl, UnknownText_0xfa06
 	call PrintText
 	scf
 	ret
 ; fa06
 
-INCBIN "baserom.gbc",$fa06,$fa0b - $fa06
+UnknownText_0xfa06: ; 0xfa06
+	; knows @ .
+	text_jump UnknownText_0x1c5ea8
+	db "@"
+; 0xfa0b
 
 
-SECTION "bank4",ROMX,BANK[$4]
+SECTION "bank4", ROMX, BANK[$4]
 
 Function10000: ; 10000
 	ld hl, Options
@@ -20262,7 +15779,7 @@ Function116c1: ; 116c1
 	ld [$ffde], a
 	pop af
 	ld [Options], a
-	call ClearJoypadPublic
+	call ClearJoypad
 	ret
 ; 116f8
 
@@ -21570,7 +17087,7 @@ UnknownScript_0x122c1: ; 0x122c1
 ; 0x122ce
 
 UnknownScript_0x122ce: ; 0x122ce
-	3callasm BANK(Function122f8), Function122f8
+	3callasm Function122f8
 	iffalse UnknownScript_0x122e3
 	disappear $fe
 	loadfont
@@ -21594,13 +17111,13 @@ UnknownScript_0x122e3: ; 0x122e3
 
 UnknownText_0x122ee: ; 0x122ee
 	; found @ !
-	text_jump UnknownText_0x1c0a1c, BANK(UnknownText_0x1c0a1c)
+	text_jump UnknownText_0x1c0a1c
 	db "@"
 ; 0x122f3
 
 UnknownText_0x122f3: ; 0x122f3
 	; But   can't carry any more items.
-	text_jump UnknownText_0x1c0a2c, BANK(UnknownText_0x1c0a2c)
+	text_jump UnknownText_0x1c0a2c
 	db "@"
 ; 0x122f8
 
@@ -21848,7 +17365,7 @@ INCBIN "baserom.gbc",$124c1,$124c8 - $124c1
 
 UnknownScript_0x124c8: ; 0x124c8
 	refreshscreen $0
-	3callasm BANK(Function124fa), Function124fa
+	3callasm Function124fa
 	2writetext UnknownText_0x124f5
 	closetext
 	special $002e
@@ -21856,9 +17373,9 @@ UnknownScript_0x124c8: ; 0x124c8
 	special $001b
 	checkflag $0011
 	iftrue .script_64f2
-	3callasm BANK(HalveMoney), HalveMoney
-	3callasm BANK(Function12527), Function12527
-	3call BANK(UnknownScript_0x122c1), UnknownScript_0x122c1
+	3callasm HalveMoney
+	3callasm Function12527
+	3call UnknownScript_0x122c1
 	special $0000
 	newloadmap $f1
 	resetfuncs
@@ -21868,7 +17385,7 @@ UnknownScript_0x124c8: ; 0x124c8
 ; 0x124f5
 
 UnknownText_0x124f5: ; 0x124f5
-	text_jump UnknownText_0x1c0a4e, BANK(UnknownText_0x1c0a4e)
+	text_jump UnknownText_0x1c0a4e
 	db $50
 ; 0x124fa
 
@@ -22365,7 +17882,7 @@ StartMenu_Quit: ; 128f0
 	ret
 
 .EndTheContestText
-	text_jump UnknownText_0x1c1a6c, BANK(UnknownText_0x1c1a6c)
+	text_jump UnknownText_0x1c1a6c
 	db "@"
 ; 1290b
 
@@ -22412,7 +17929,7 @@ StartMenu_Pokedex: ; 12937
 	jr z, .asm_12949
 
 	call FadeToMenu
-	callba Function40000
+	callba Pokedex
 	call Function2b3c
 
 .asm_12949
@@ -22539,7 +18056,7 @@ Function129f4: ; 129f4
 	jr c, .asm_12a42
 	ld hl, $6a4a
 	call Function1d4f
-	call Function1dcf
+	call YesNoBox
 	push af
 	call Function1c07
 	pop af
@@ -22579,7 +18096,7 @@ CantUseItem: ; 12a60
 ; 12a67
 
 CantUseItemText: ; 12a67
-	text_jump UnknownText_0x1c1b03, BANK(UnknownText_0x1c1b03)
+	text_jump UnknownText_0x1c1b03
 	db "@"
 ; 12a6c
 
@@ -22907,42 +18424,42 @@ GiveTakeItemMenuData: ; 12c9b
 
 
 TookAndMadeHoldText: ; 12caf
-	text_jump UnknownText_0x1c1b2c, BANK(UnknownText_0x1c1b2c)
+	text_jump UnknownText_0x1c1b2c
 	db "@"
 ; 12cb4
 
 MadeHoldText: ; 12cb4
-	text_jump UnknownText_0x1c1b57, BANK(UnknownText_0x1c1b57)
+	text_jump UnknownText_0x1c1b57
 	db "@"
 ; 12cb9
 
 PleaseRemoveMailText: ; 12cb9
-	text_jump UnknownText_0x1c1b6f, BANK(UnknownText_0x1c1b6f)
+	text_jump UnknownText_0x1c1b6f
 	db "@"
 ; 12cbe
 
 IsntHoldingAnythingText: ; 12cbe
-	text_jump UnknownText_0x1c1b8e, BANK(UnknownText_0x1c1b8e)
+	text_jump UnknownText_0x1c1b8e
 	db "@"
 ; 12cc3
 
 ItemStorageIsFullText: ; 12cc3
-	text_jump UnknownText_0x1c1baa, BANK(UnknownText_0x1c1baa)
+	text_jump UnknownText_0x1c1baa
 	db "@"
 ; 12cc8
 
 TookFromText: ; 12cc8
-	text_jump UnknownText_0x1c1bc4, BANK(UnknownText_0x1c1bc4)
+	text_jump UnknownText_0x1c1bc4
 	db "@"
 ; 12ccd
 
 SwitchAlreadyHoldingText: ; 12ccd
-	text_jump UnknownText_0x1c1bdc, BANK(UnknownText_0x1c1bdc)
+	text_jump UnknownText_0x1c1bdc
 	db "@"
 ; 12cd2
 
 CantBeHeldText: ; 12cd2
-	text_jump UnknownText_0x1c1c09, BANK(UnknownText_0x1c1c09)
+	text_jump UnknownText_0x1c1c09
 	db "@"
 ; 12cd7
 
@@ -22973,7 +18490,7 @@ Function12cea: ; 12cea (4:6cea)
 
 Function12cf5: ; 12cf5
 	call Function1d4f
-	call Function1dcf
+	call YesNoBox
 	jp Function1c07
 ; 12cfe
 
@@ -23079,32 +18596,32 @@ INCBIN "baserom.gbc",$12dc9,$12de2 - $12dc9
 
 
 UnknownText_0x12de2: ; 0x12de2
-	text_jump UnknownText_0x1c1c22, BANK(UnknownText_0x1c1c22)
+	text_jump UnknownText_0x1c1c22
 	db "@"
 ; 0x12de7
 
 UnknownText_0x12de7: ; 0x12de7
-	text_jump UnknownText_0x1c1c47, BANK(UnknownText_0x1c1c47)
+	text_jump UnknownText_0x1c1c47
 	db "@"
 ; 0x12dec
 
 UnknownText_0x12dec: ; 0x12dec
-	text_jump UnknownText_0x1c1c62, BANK(UnknownText_0x1c1c62)
+	text_jump UnknownText_0x1c1c62
 	db "@"
 ; 0x12df1
 
 UnknownText_0x12df1: ; 0x12df1
-	text_jump UnknownText_0x1c1c86, BANK(UnknownText_0x1c1c86)
+	text_jump UnknownText_0x1c1c86
 	db "@"
 ; 0x12df6
 
 UnknownText_0x12df6: ; 0x12df6
-	text_jump UnknownText_0x1c1ca9, BANK(UnknownText_0x1c1ca9)
+	text_jump UnknownText_0x1c1ca9
 	db "@"
 ; 0x12dfb
 
 UnknownText_0x12dfb: ; 0x12dfb
-	text_jump UnknownText_0x1c1cc4, BANK(UnknownText_0x1c1cc4)
+	text_jump UnknownText_0x1c1cc4
 	db "@"
 ; 0x12e00
 
@@ -23852,7 +19369,7 @@ SelectMenu: ; 13327
 
 
 ItemMayBeRegisteredText: ; 13340
-	text_jump UnknownText_0x1c1cf3, BANK(UnknownText_0x1c1cf3)
+	text_jump UnknownText_0x1c1cf3
 	db "@"
 ; 13345
 
@@ -24323,7 +19840,7 @@ UnknownScript_0x13603: ; 0x13603
 INCBIN "baserom.gbc",$1360f,$13614 - $1360f
 
 UnknownText_0x13614: ; 0x13614
-	text_jump UnknownText_0x1bd2e7, BANK(UnknownText_0x1bd2e7)
+	text_jump UnknownText_0x1bd2e7
 	db $50
 ; 0x13619
 
@@ -24869,7 +20386,7 @@ root	set root+1
 ; 13d96
 
 
-SECTION "bank5",ROMX,BANK[$5]
+SECTION "bank5", ROMX, BANK[$5]
 
 
 Function14000: ; 14000
@@ -26623,7 +22140,7 @@ Function14a83: ; 14a83 (5:4a83)
 	push de
 	ld hl, $52a1
 	call Function1d4f
-	call Function1dcf
+	call YesNoBox
 	call Function1c07
 	jr c, .asm_14ab0
 	call Function14b89
@@ -26730,8 +22247,8 @@ Function14baf: ; 14baf
 	ld b, $5
 	call Function269a
 	call Function1d58
-	ld bc, $0007
-	call Function1dd2
+	lb bc, 0, 7
+	call PlaceYesNoBox
 	ld a, [$cfa9]
 	dec a
 	call Function1c17
@@ -26976,7 +22493,7 @@ Function14dd7: ; 14dd7
 	ld de, $a009
 	ld bc, $082a
 	call CopyBytes
-	ld hl, FlypointPerms
+	ld hl, VisitedSpawns
 	ld de, $a833
 	ld bc, $0032
 	call CopyBytes
@@ -27043,7 +22560,7 @@ Function14e55: ; 14e55
 	ld de, $b209
 	ld bc, $082a
 	call CopyBytes
-	ld hl, FlypointPerms
+	ld hl, VisitedSpawns
 	ld de, $ba33
 	ld bc, $0032
 	call CopyBytes
@@ -27226,7 +22743,7 @@ Function14fd7: ; 14fd7 (5:4fd7)
 	ld bc, $82a
 	call CopyBytes
 	ld hl, $a833
-	ld de, FlypointPerms ; $dca5
+	ld de, VisitedSpawns ; $dca5
 	ld bc, $32
 	call CopyBytes
 	call CloseSRAM
@@ -27286,7 +22803,7 @@ Function15046: ; 15046 (5:5046)
 	ld bc, $82a
 	call CopyBytes
 	ld hl, $ba33
-	ld de, FlypointPerms ; $dca5
+	ld de, VisitedSpawns ; $dca5
 	ld bc, $32
 	call CopyBytes
 	call CloseSRAM
@@ -27567,7 +23084,38 @@ Function15273: ; 15273
 INCBIN "baserom.gbc",$15283,$152ab - $15283
 
 
-BlackoutPoints: ; 0x152ab
+SpawnPoints: ; 0x152ab
+
+	const_def
+	const SPAWN_HOME
+	const SPAWN_VIRIDIAN_POKECENTER
+	const SPAWN_PALLET
+	const SPAWN_VIRIDIAN
+	const SPAWN_PEWTER
+	const SPAWN_CERULEAN
+	const SPAWN_ROCK_TUNNEL
+	const SPAWN_VERMILION
+	const SPAWN_LAVENDER
+	const SPAWN_SAFFRON
+	const SPAWN_CELADON
+	const SPAWN_FUCHSIA
+	const SPAWN_CINNABAR
+	const SPAWN_INDIGO_PLATEAU
+	const SPAWN_NEW_BARK
+	const SPAWN_CHERRYGROVE
+	const SPAWN_VIOLET
+	const SPAWN_UNION_CAVE
+	const SPAWN_AZALEA
+	const SPAWN_CIANWOOD
+	const SPAWN_GOLDENROD
+	const SPAWN_OLIVINE
+	const SPAWN_ECRUTEAK
+	const SPAWN_MAHOGANY
+	const SPAWN_LAKE
+	const SPAWN_BLACKTHORN
+	const SPAWN_MT_SILVER
+	const SPAWN_FAST_SHIP
+
 	db GROUP_KRISS_HOUSE_2F, MAP_KRISS_HOUSE_2F, 3, 3
 	db GROUP_VIRIDIAN_POKECENTER_1F, MAP_VIRIDIAN_POKECENTER_1F, 5, 3 ; unused
 	db GROUP_PALLET_TOWN, MAP_PALLET_TOWN, 5, 6
@@ -27596,38 +23144,42 @@ BlackoutPoints: ; 0x152ab
 	db GROUP_BLACKTHORN_CITY, MAP_BLACKTHORN_CITY, 21, 30
 	db GROUP_SILVER_CAVE_OUTSIDE, MAP_SILVER_CAVE_OUTSIDE, 23, 20
 	db GROUP_FAST_SHIP_CABINS_SW_SSW_NW, MAP_FAST_SHIP_CABINS_SW_SSW_NW, 6, 2
-	db $ff, $ff, $ff, $ff
+	db -1, -1, -1, -1
 
+
+Function1531f: ; 1531f
 	push hl
 	push de
 	ld a, [$d001]
-	cp $ff
+	cp -1
 	jr z, .asm_15341
 	ld l, a
-	ld h, $0
+	ld h, 0
 	add hl, hl
 	add hl, hl
-	ld de, $52ab
+	ld de, SpawnPoints
 	add hl, de
 	ld a, [hli]
-	ld [MapGroup], a ; $dcb5
+	ld [MapGroup], a
 	ld a, [hli]
-	ld [MapNumber], a ; $dcb6
+	ld [MapNumber], a
 	ld a, [hli]
-	ld [XCoord], a ; $dcb8
+	ld [XCoord], a
 	ld a, [hli]
-	ld [YCoord], a ; $dcb7
+	ld [YCoord], a
 .asm_15341
 	pop de
 	pop hl
 	ret
+; 15344
+
 
 Function15344: ; 15344
-	ld hl, BlackoutPoints
-	ld c, $0
+	ld hl, SpawnPoints
+	ld c, 0
 .asm_15349
 	ld a, [hl]
-	cp $ff
+	cp -1
 	jr z, .asm_1535f
 	cp d
 	jr nz, .asm_15356
@@ -27638,7 +23190,7 @@ Function15344: ; 15344
 
 .asm_15356
 	push bc
-	ld bc, $0004
+	ld bc, 4
 	add hl, bc
 	pop bc
 	inc c
@@ -27707,12 +23259,20 @@ Function1541d: ; 1541d
 ; 15440
 
 INCBIN "baserom.gbc",$15440,$154cf - $15440
+
+Function154cf: ; 154cf
 	ld a, $1
 	ld [$FF00+$de], a
 	ret
+; 154d3
+
+Function154d3: ; 154d3
 	xor a
 	ld [$FF00+$de], a
 	ret
+; 154d7
+
+Function154d7: ; 154d7
 	ld a, $2
 	call Function263b
 	callba Function2454f
@@ -27720,10 +23280,17 @@ INCBIN "baserom.gbc",$15440,$154cf - $15440
 	ret
 ; 154ea (5:54ea)
 
-INCBIN "baserom.gbc",$154ea,$154eb - $154ea
+Function154ea: ; 154ea
+	ret
+; 154eb
+
+Function154eb: ; 154eb
 	ld hl, $d45b
 	set 7, [hl]
 	ret
+; 154f1
+
+Function154f1: ; 154f1
 	ld hl, $d45b
 	set 6, [hl]
 	ret
@@ -28886,7 +24453,7 @@ Function15d97: ; 15d97
 	call Predef
 	ld a, $1
 	call Function15c7d
-	call Function1dcf
+	call YesNoBox
 	ret
 ; 15da5
 
@@ -29049,7 +24616,7 @@ Function15efd: ; 15efd
 	call ClearBox
 	ld hl, UnknownText_0x15f78
 	call PrintTextBoxText
-	call Function1dcf
+	call YesNoBox
 	jr c, .asm_15f6e
 	ld de, Money
 	ld bc, $ffc3
@@ -29075,31 +24642,31 @@ Function15efd: ; 15efd
 ; 15f73
 
 UnknownText_0x15f73: ; 0x15f73
-	text_jump UnknownText_0x1c4f33, BANK(UnknownText_0x1c4f33)
+	text_jump UnknownText_0x1c4f33
 	db "@"
 ; 0x15f78
 
 UnknownText_0x15f78: ; 0x15f78
-	text_jump UnknownText_0x1c4f3e, BANK(UnknownText_0x1c4f3e)
+	text_jump UnknownText_0x1c4f3e
 	db "@"
 ; 0x15f7d
 
 INCBIN "baserom.gbc",$15f7d,$15f83 - $15f7d
 
 UnknownText_0x15f83: ; 0x15f83
-	text_jump UnknownText_0x1c4f62, BANK(UnknownText_0x1c4f62)
+	text_jump UnknownText_0x1c4f62
 	db "@"
 ; 0x15f88
 
 INCBIN "baserom.gbc",$15f88,$15fb9 - $15f88
 
 UnknownText_0x15fb9: ; 0x15fb9
-	text_jump UnknownText_0x1c500d, BANK(UnknownText_0x1c500d)
+	text_jump UnknownText_0x1c500d
 	db "@"
 ; 0x15fbe
 
 UnknownText_0x15fbe: ; 0x15fbe
-	text_jump UnknownText_0x1c502e, BANK(UnknownText_0x1c502e)
+	text_jump UnknownText_0x1c502e
 	db "@"
 ; 0x15fc3
 
@@ -29449,14 +25016,14 @@ Function16781: ; 16781
 
 .asm_16788
 	call Function1689b
-	call Function1dcf
+	call YesNoBox
 	ret
 ; 1678f
 
 Function1678f: ; 1678f
 	set 7, [hl]
 	call Function1689b
-	call Function1dcf
+	call YesNoBox
 	ret
 ; 16798
 
@@ -29531,18 +25098,18 @@ Function16807: ; 16807
 	jr nz, .asm_16819
 	ld a, $f
 	call Function1689b
-	call Function1dcf
+	call YesNoBox
 	jr c, .asm_16844
 	jr .asm_1682d
 
 .asm_16819
 	ld a, $b
 	call Function1689b
-	call Function1dcf
+	call YesNoBox
 	jr c, .asm_16844
 	ld a, $c
 	call Function1689b
-	call Function1dcf
+	call YesNoBox
 	jr c, .asm_16844
 
 .asm_1682d
@@ -29641,7 +25208,7 @@ Function16936: ; 16936
 .asm_16949
 	ld hl, $6993
 	call PrintText
-	call Function1dcf
+	call YesNoBox
 	jr c, .asm_1697c
 	ld a, [PartyCount]
 	cp $6
@@ -30423,12 +25990,14 @@ Function16f3e: ; 16f3e
 	jr .loop
 ; 16f5e
 
+Function16f5e: ; 16f5e
 	call ResetWindow
 	call Function1d6e
 	call Function16f70
 	call Function2b4d
 	call Function3d47
 	jp Function2dcf
+; 16f70
 
 ; known jump sources: 16f64 (5:6f64)
 Function16f70: ; 16f70 (5:6f70)
@@ -30545,7 +26114,7 @@ Function16f7a: ; 16f7a (5:6f7a)
 	push de
 	ld hl, $70ba
 	call PrintText
-	call Function1dcf
+	call YesNoBox
 	pop de
 	jr c, .asm_17074
 	ld a, $1
@@ -31138,79 +26707,23 @@ Function1746c: ; 1746c
 INCBIN "baserom.gbc",$1749c,$174ba - $1749c
 
 
-SECTION "bank6",ROMX,BANK[$6]
+SECTION "Tileset Data 1", ROMX, BANK[TILESETS_1]
 
 INCLUDE "tilesets/data_1.asm"
 
 
-SECTION "bank7",ROMX,BANK[$7]
+SECTION "Roofs", ROMX, BANK[ROOFS]
 
-LoadMapGroupRoof: ; 1c000
-	ld a, [MapGroup]
-	ld e, a
-	ld d, 0
-	ld hl, MapGroupRoofs
-	add hl, de
-	ld a, [hl]
-	cp $ff
-	ret z
-	ld hl, Roofs
-	ld bc, $90
-	call AddNTimes
-	ld de, $90a0
-	ld bc, $90
-	call CopyBytes
-	ret
-; 1c021
+INCLUDE "tilesets/roofs.asm"
 
-MapGroupRoofs: ; 1c021i
-	db -1 ; group 1
-	db  3 ; group 2
-	db  2 ; group 3
-	db -1 ; group 4
-	db  1 ; group 5
-	db  2 ; group 6
-	db -1 ; group 7
-	db -1 ; group 8
-	db  2 ; group 9
-	db  2 ; group 10
-	db  1 ; group 11
-	db  4 ; group 12
-	db -1 ; group 13
-	db -1 ; group 14
-	db -1 ; group 15
-	db -1 ; group 16
-	db -1 ; group 17
-	db -1 ; group 18
-	db -1 ; group 19
-	db  0 ; group 20
-	db -1 ; group 21
-	db -1 ; group 22
-	db  3 ; group 23
-	db -1 ; group 24
-	db  0 ; group 25
-	db -1 ; group 26
-	db  0 ; group 27
-; 1c03c
 
-Roofs: ; 1c03c
-INCBIN "gfx/tilesets/roofs/0.2bpp"
-INCBIN "gfx/tilesets/roofs/1.2bpp"
-INCBIN "gfx/tilesets/roofs/2.2bpp"
-INCBIN "gfx/tilesets/roofs/3.2bpp"
-INCBIN "gfx/tilesets/roofs/4.2bpp"
-; 1c30c
+SECTION "Tileset Data 2", ROMX, BANK[TILESETS_2]
 
 INCLUDE "tilesets/data_2.asm"
 
-;                           Songs i
-
-INCLUDE "audio/music/credits.asm"
-INCLUDE "audio/music/clair.asm"
-INCLUDE "audio/music/mobileadapter.asm"
 
 
-SECTION "bank8",ROMX,BANK[$8]
+SECTION "bank8", ROMX, BANK[$8]
 
 
 ; known jump sources: 200e8 (8:40e8), 200f9 (8:40f9), 20169 (8:4169)
@@ -31282,7 +26795,7 @@ Function20051: ; 20051 (8:4051)
 	call Function2011f
 	ld hl, $40b0
 	call PrintText
-	call Function1dcf
+	call YesNoBox
 	jr c, .asm_200ad
 	ld a, [$d1ed]
 	ld [StringBuffer2], a ; $d086
@@ -31421,12 +26934,13 @@ Function20168: ; 20168 (8:4168)
 
 INCBIN "baserom.gbc",$2017c,$20181 - $2017c
 
+
+SECTION "Tileset Data 3", ROMX, BANK[TILESETS_3]
+
 INCLUDE "tilesets/data_3.asm"
 
 
-
-
-SECTION "bank9",ROMX,BANK[$9]
+SECTION "bank9", ROMX, BANK[$9]
 
 INCBIN "baserom.gbc",$24000,$2400e - $24000
 
@@ -32154,7 +27668,7 @@ Function2445d: ; 2445d
 ; 24468
 
 UnknownText_0x24468: ; 24468
-	text_jump UnknownText_0x1c46b7, BANK(UnknownText_0x1c46b7)
+	text_jump UnknownText_0x1c46b7
 	db "@"
 ; 2446d
 
@@ -33795,34 +29309,29 @@ MenuData2_0x24edc: ; 24edc
 ; 24ef2
 
 
-LoadBattleMenuDataHeader: ; 4ef2
+LoadBattleMenuDataHeader: ; 24ef2
 	ld hl, BattleMenuDataHeader
 	call LoadMenuDataHeader
-
-	; store a
 	ld a, [$d0d2]
 	ld [$cf88], a
-
 	call Function2039
-
-	; restore a
 	ld a, [$cf88]
 	ld [$d0d2], a
-
 	call Function1c07
 	ret
 ; 24f0b
 
 
-LoadSafariBattleMenuDataHeader: ; 24f0b
+Function24f0b: ; 24f0b
 ; Safari battle menu (untranslated).
-	ld hl, SafariBattleMenuDataHeader
+	ld hl, MenuDataHeader_0x24f4e
 	call LoadMenuDataHeader
 	jr Function24f19
 ; 24f13
 
-LoadParkBattleMenuDataHeader: ; 24f13
-	ld hl, ParkBattleMenuDataHeader
+Function24f13: ; 24f13
+; Park battle menu.
+	ld hl, MenuDataHeader_0x24f89
 	call LoadMenuDataHeader
 ; 24f19
 
@@ -33841,19 +29350,19 @@ BattleMenuDataHeader: ; 24f2c
 	db $40 ; flags
 	db 12, 08 ; start coords
 	db 17, 19 ; end coords
-	dw BattleMenuData
+	dw MenuData_0x24f34
 	db 1 ; default option
 ; 24f34
 
-BattleMenuData: ; 0x24f34
+MenuData_0x24f34: ; 0x24f34
 	db $81 ; flags
 	dn 2, 2 ; rows, columns
 	db 6 ; spacing
-	dbw BANK(BattleMenuStrings), BattleMenuStrings
+	dbw BANK(Strings24f3d), Strings24f3d
 	dbw $09, $0000
 ; 0x24f3d
 
-BattleMenuStrings: ; 0x24f3d
+Strings24f3d: ; 0x24f3d
 	db "FIGHT@"
 	db $4a, "@"
 	db "PACK@"
@@ -33861,23 +29370,23 @@ BattleMenuStrings: ; 0x24f3d
 ; 24f4e
 
 
-SafariBattleMenuDataHeader: ; 24f4e
+MenuDataHeader_0x24f4e: ; 24f4e
 	db $40 ; flags
 	db 12, 00 ; start coords
 	db 17, 19 ; end coords
-	dw SafariBattleMenuData
+	dw MenuData_0x24f56
 	db 1 ; default option
 ; 24f56
 
-SafariBattleMenuData: ; 24f56
+MenuData_0x24f56: ; 24f56
 	db $81 ; flags
 	dn 2, 2 ; rows, columns
 	db 11 ; spacing
-	dbw BANK(SafariBattleMenuStrings), SafariBattleMenuStrings
+	dbw BANK(Strings24f5f), Strings24f5f
 	dbw BANK(Function24f7c), Function24f7c
 ; 24f5f
 
-SafariBattleMenuStrings: ; 24f5f
+Strings24f5f: ; 24f5f
 	db "サファりボール×  @" ; "SAFARI BALL×  @"
 	db "エサをなげる@" ; "THROW BAIT"
 	db "いしをなげる@" ; "THROW ROCK"
@@ -33893,23 +29402,23 @@ Function24f7c: ; 24f7c
 ; 24f89
 
 
-ParkBattleMenuDataHeader: ; 24f89
+MenuDataHeader_0x24f89: ; 24f89
 	db $40 ; flags
 	db 12, 02 ; start coords
 	db 17, 19 ; end coords
-	dw ParkBattleMenuData
+	dw MenuData_0x24f91
 	db 1 ; default option
 ; 24f91
 
-ParkBattleMenuData: ; 24f91
+MenuData_0x24f91: ; 24f91
 	db $81 ; flags
 	dn 2, 2 ; rows, columns
 	db 12 ; spacing
-	dbw BANK(ParkBattleMenuStrings), ParkBattleMenuStrings
+	dbw BANK(Strings24f9a), Strings24f9a
 	dbw BANK(Function24fb2), Function24fb2
 ; 24f9a
 
-ParkBattleMenuStrings: ; 24f9a
+Strings24f9a: ; 24f9a
 	db "FIGHT@"
 	db $4a, "@"
 	db "PARKBALL×  @"
@@ -34664,7 +30173,7 @@ INCBIN "baserom.gbc",$254a7,$265d3 - $254a7
 ProfOaksPC: ; 0x265d3
 	ld hl, OakPCText1
 	call Function1d4f
-	call Function1dcf
+	call YesNoBox
 	jr c, .shutdown
 	call ProfOaksPCBoot ; player chose "yes"?
 .shutdown
@@ -35571,7 +31080,7 @@ Function27a28: ; 27a28
 ; 27a2d
 
 
-SECTION "bankA",ROMX,BANK[$A]
+SECTION "bankA", ROMX, BANK[$A]
 
 Function28000: ; 28000
 	call WhiteBGMap
@@ -36022,7 +31531,7 @@ Function28177: ; 28177
 	ld [rIE], a
 	pop af
 	ld [rIF], a
-	ld a, PREDEF_START_BATTLE
+	ld a, $16
 	call Predef
 	ld a, [rIF]
 	ld h, a
@@ -36318,7 +31827,7 @@ Function284f6: ; 284f6
 	push bc
 	ld hl, $0001
 	add hl, bc
-	ld bc, $001a
+	ld bc, OBJECT_SPRITE_Y_OFFSET
 	call CopyBytes
 	pop bc
 	ld hl, $001f
@@ -37336,7 +32845,7 @@ Function28b87: ; 28b87
 	call GetPartyLocation
 	ld b, h
 	ld c, l
-	callba Function4f301
+	callba GetCaughtGender
 	ld a, c
 	ld [$c701], a
 	ld hl, $d26b
@@ -37375,7 +32884,7 @@ Function28b87: ; 28b87
 	call GetPartyLocation
 	ld b, h
 	ld c, l
-	callba Function4f301
+	callba GetCaughtGender
 	ld a, c
 	ld [$c733], a
 	ld a, [DefaultFlypoint]
@@ -39668,7 +35177,7 @@ INCBIN "gfx/misc/dude.lz"
 ; 2bce1
 
 
-SECTION "bankB",ROMX,BANK[$B]
+SECTION "bankB", ROMX, BANK[$B]
 
 Function2c000: ; 2c000
 	ld a, $e4
@@ -40123,7 +35632,7 @@ Function2c545: ; 2c545 (b:4545)
 Function2c547: ; 2c547
 	ld hl, $45ef
 	call PrintText
-	call Function1dcf
+	call YesNoBox
 	jr c, .asm_2c5c3
 	ld hl, $45f4
 	call PrintText
@@ -40154,7 +35663,7 @@ Function2c547: ; 2c547
 	call GetMoveName
 	ld hl, $45d6
 	call PrintText
-	call Function1dcf
+	call YesNoBox
 	pop bc
 	jr c, .asm_2c5c3
 	call Function2c5f9
@@ -40464,7 +35973,7 @@ Function2c7bf: ; 2c7bf (b:47bf)
 	call PrintText
 	ld hl, $48c9
 	call PrintText
-	call Function1dcf
+	call YesNoBox
 .asm_2c7f5
 	pop bc
 	ld a, b
@@ -41351,20 +36860,17 @@ FillBox: ; 2ef6e
 ; 2ef9f
 
 
-
-SECTION "bankC",ROMX,BANK[$C]
+SECTION "Tileset Data 4", ROMX, BANK[TILESETS_4]
 
 INCLUDE "tilesets/data_4.asm"
 
-INCBIN "baserom.gbc",$329f0,$333f0 - $329f0
 
-
-SECTION "bankD",ROMX,BANK[$D]
+SECTION "bankD", ROMX, BANK[$D]
 
 INCLUDE "battle/effect_commands.asm"
 
 
-SECTION "bankE",ROMX,BANK[$E]
+SECTION "bankE", ROMX, BANK[$E]
 
 Function38000: ; 38000
 	and a
@@ -41948,7 +37454,7 @@ Function3846c: ; 3846c
 ; 384d0
 
 UnknownText_0x384d0: ; 384d0
-	text_jump UnknownText_0x1bcf9c, BANK(UnknownText_0x1bcf9c)
+	text_jump UnknownText_0x1bcf9c
 	db "@"
 ; 384d5
 
@@ -42073,7 +37579,7 @@ Function38571: ; 38571
 ; 3858c
 
 UnknownText_0x3858c: ; 3858c
-	text_jump UnknownText_0x1bcfaf, BANK(UnknownText_0x1bcfaf)
+	text_jump UnknownText_0x1bcfaf
 	db "@"
 ; 38591
 
@@ -42434,9503 +37940,22 @@ Function39990: ; 39990
 	ret
 ; 39999
 
-TrainerGroups: ; 0x39999
 INCLUDE "trainers/trainer_pointers.asm"
 
 INCLUDE "trainers/trainers.asm"
 
 
-SECTION "bankF",ROMX,BANK[$F]
+SECTION "bankF", ROMX, BANK[$F]
 
-Function3c000: ; 3c000
-	xor a
-	ld [$c664], a
-	ld [$c6fc], a
-	ld [$d0ec], a
-	ld [BattleEnded], a
-	inc a
-	ld [$d264], a
-	ld hl, OTPartyMon1CurHP
-	ld bc, $002f
-	ld d, $3
-.asm_3c019
-	inc d
-	ld a, [hli]
-	or [hl]
-	jr nz, .asm_3c021
-	add hl, bc
-	jr .asm_3c019
-
-.asm_3c021
-	ld a, d
-	ld [$d430], a
-	ld a, [InLinkBattle]
-	and a
-	jr z, .asm_3c031
-	ld a, [$ffcb]
-	cp $2
-.data_3c02f
-	db $28
-	db $1b
-
-.asm_3c031
-	ld a, [IsInBattle]
-	dec a
-	jr z, .asm_3c047
-	xor a
-	ld [$c718], a
-	call Function3d834
-	call Function3d867
-	call Function3dc18
-	call Function3d4e1
-
-.asm_3c047
-	ld c, $28
-	call DelayFrames
-	call Function309d
-	call Function3d873
-	ld a, d
-	and a
-	jp z, LostBattle
-	call Function30b4
-	ld a, [BattleType]
-	cp $2
-	jp z, Function3c0e2
-	cp $3
-	jp z, Function3c0e2
-	xor a
-	ld [CurPartyMon], a
-.asm_3c06b
-	call Function3d887
-	jr nz, .asm_3c076
-	ld hl, CurPartyMon
-	inc [hl]
-	jr .asm_3c06b
-
-.asm_3c076
-	ld a, [CurBattleMon]
-	ld [$c71a], a
-	ld a, [CurPartyMon]
-	ld [CurBattleMon], a
-	inc a
-	ld hl, PartyCount
-	ld c, a
-	ld b, $0
-	add hl, bc
-	ld a, [hl]
-	ld [CurPartySpecies], a
-	ld [TempBattleMonSpecies], a
-	ld hl, $c505
-	ld a, $9
-	call Function3d490
-	call Function309d
-	call Function3d57a
-	call Function3da0d
-	call Function3dab1
-	call Function3f26d
-	call Function3dbde
-	call Function3dc18
-	call Function3db5f
-	call EmptyBattleTextBox
-	call Function309d
-	call SetPlayerTurn
-	call Function3dc23
-	ld a, [InLinkBattle]
-	and a
-	jr z, .asm_3c0df
-	ld a, [$ffcb]
-	cp $2
-	jr nz, .asm_3c0df
-	xor a
-	ld [$c718], a
-	call Function3d834
-	call Function3d867
-	call Function3dc18
-	call Function3d4e1
-	call SetEnemyTurn
-	call Function3dc23
-
-.asm_3c0df
-	jp Function3c12f
-; 3c0e2
-
-Function3c0e2: ; 3c0e2
-	jp Function3e139
-; 3c0e5
-
-
-
-Function3c0e5: ; 3c0e5
-	call Function30b4
-	ld a, [$d0ee]
-	and $c0
-	add $2
-	ld [$d0ee], a
-	ld a, [InLinkBattle]
-	and a
-	ld hl, $47bd
-	jr z, .asm_3c115
-	ld a, [$d0ee]
-	and $c0
-	ld [$d0ee], a
-	ld hl, $47cf
-	call Function3d2e0
-	jr nc, .asm_3c115
-	ld hl, $cd2a
-	bit 4, [hl]
-	jr nz, .asm_3c118
-	ld hl, $5863
-
-.asm_3c115
-	call StdBattleTextBox
-
-.asm_3c118
-	call Function3ceec
-	call Function3d2e0
-	jr c, .asm_3c126
-
-	ld de, SFX_RUN
-	call PlaySFX
-
-.asm_3c126
-	call SetPlayerTurn
-	ld a, 1
-	ld [BattleEnded], a
-	ret
-; 3c12f
-
-Function3c12f: ; 3c12f
-	call Function3c1bf
-	call Function3c3f5
-	jp c, .asm_3c1be
-	xor a
-	ld [$c710], a
-	ld [$c711], a
-	ld [$d264], a
-	ld [$c73f], a
-	ld [$c740], a
-	ld [CurDamage], a
-	ld [$d257], a
-	call Function3c27c
-	call UpdateBattleMonInParty
-	callba AIChooseMove
-	call CheckInMobileLinkBattle
-	jr nz, .notmobilelinkbattle
-	callba Function100da5
-	callba Function100641
-	callba Function100dd8
-	jp c, .asm_3c1be
-
-.notmobilelinkbattle
-	call Function3c410
-	jr c, .asm_3c18a
-.asm_3c179
-	call Function3e139
-	jr c, .asm_3c1be
-	ld a, [BattleEnded]
-	and a
-	jr nz, .asm_3c1be
-	ld a, [$d232]
-	and a
-	jr nz, .asm_3c1be
-
-.asm_3c18a
-	call Function3c434
-	jr nz, .asm_3c179
-	call Function3c300
-	jr c, .asm_3c1be
-	call Function3c314
-	jr c, .asm_3c19e
-	call Function3c5fe
-	jr .asm_3c1a1
-
-.asm_3c19e
-	call Function3c664
-
-.asm_3c1a1
-	call Function3d2e0
-	jr c, .asm_3c1be
-	ld a, [$d232]
-	and a
-	jr nz, .asm_3c1be
-	ld a, [BattleEnded]
-	and a
-	jr nz, .asm_3c1be
-	call Function3c1d6
-	ld a, [BattleEnded]
-	and a
-	jr nz, .asm_3c1be
-	jp Function3c12f
-
-.asm_3c1be
-	ret
-; 3c1bf
-
-Function3c1bf: ; 3c1bf
-	ret
-; 3c1c0
-
-
-Function3c1c0: ; 3c1c0
-	ld a, $5
-	call GetSRAMBank
-	ld hl, $a89b
-	inc [hl]
-	jr nz, .asm_3c1d2
-	dec hl
-	inc [hl]
-	jr nz, .asm_3c1d2
-	dec [hl]
-	inc hl
-	dec [hl]
-
-.asm_3c1d2
-	call CloseSRAM
-	ret
-; 3c1d6
-
-
-Function3c1d6: ; 3c1d6
-	ld a, [$ffcb]
-	cp $1
-	jr z, .asm_3c1fe
-	call Function3c23c
-	ret c
-	call Function3ca26
-	call Function3c23c
-	ret c
-	call HandleWeather
-	call Function3c23c
-	ret c
-	call Function3c874
-	call Function3c23c
-	ret c
-	call Function3c801
-	call Function3c23c
-	ret c
-	jr .asm_3c21e
-
-.asm_3c1fe
-	call Function3c25c
-	ret c
-	call Function3ca26
-	call Function3c25c
-	ret c
-	call HandleWeather
-	call Function3c25c
-	ret c
-	call Function3c874
-	call Function3c25c
-	ret c
-	call Function3c801
-	call Function3c25c
-	ret c
-
-.asm_3c21e
-	call Function3c8eb
-	call Function3c93c
-	call Function3ca8f
-	call Function3cafb
-	call Function3cb36
-	call Function3de97
-	call Function3dcf9
-	call UpdateBattleMonInParty
-	call Function309d
-	jp Function3c4df
-; 3c23c
-
-Function3c23c: ; 3c23c
-	call Function3c710
-	jr nz, .asm_3c24a
-	call Function3d14e
-	ld a, [BattleEnded]
-	and a
-	jr nz, .asm_3c25a
-
-.asm_3c24a
-	call Function3c70b
-	jr nz, .asm_3c258
-	call Function3cd55
-	ld a, [BattleEnded]
-	and a
-	jr nz, .asm_3c25a
-
-.asm_3c258
-	and a
-	ret
-
-.asm_3c25a
-	scf
-	ret
-; 3c25c
-
-Function3c25c: ; 3c25c
-	call Function3c70b
-	jr nz, .asm_3c26a
-	call Function3cd55
-	ld a, [BattleEnded]
-	and a
-	jr nz, .asm_3c27a
-
-.asm_3c26a
-	call Function3c710
-	jr nz, .asm_3c278
-	call Function3d14e
-	ld a, [BattleEnded]
-	and a
-	jr nz, .asm_3c27a
-
-.asm_3c278
-	and a
-	ret
-
-.asm_3c27a
-	scf
-	ret
-; 3c27c
-
-Function3c27c: ; 3c27c
-	ld a, [$ffcb]
-	cp $1
-	jr z, .asm_3c287
-	call .asm_3c28a
-	jr .asm_3c296
-
-.asm_3c287
-	call .asm_3c296
-.asm_3c28a
-	call SetPlayerTurn
-	ld de, PartyMon1Item
-	ld a, [CurBattleMon]
-	ld b, a
-	jr .asm_3c2a0
-
-.asm_3c296
-	call SetEnemyTurn
-	ld de, OTPartyMon1Item
-	ld a, [CurOTMon]
-	ld b, a
-
-.asm_3c2a0
-	push de
-	push bc
-	callab GetUserItem
-	ld a, [hl]
-	ld [$d265], a
-	sub $98
-	pop bc
-	pop de
-	ret nz
-	ld [hl], a
-	ld h, d
-	ld l, e
-	ld a, b
-	call GetPartyLocation
-	xor a
-	ld [hl], a
-	ld a, $2
-	call _GetBattleVar
-	push af
-	set 7, [hl]
-	ld a, $c
-	call _GetBattleVar
-	push hl
-	push af
-	xor a
-	ld [hl], a
-	ld [AttackMissed], a
-	ld [EffectFailed], a
-	callba BattleCommand77
-	pop af
-	pop hl
-	ld [hl], a
-	call GetItemName
-	ld hl, $4bde
-	call StdBattleTextBox
-	callab BattleCommand8c
-	pop af
-	bit 7, a
-	ret nz
-	xor a
-	ld [$cfca], a
-	ld de, $0103
-	call Function3ee0f
-	call Function3c8e4
-	ld hl, $4d97
-	jp StdBattleTextBox
-; 3c300
-
-Function3c300: ; 3c300
-	ld a, [InLinkBattle]
-	and a
-	jr z, .asm_3c30d
-	ld a, [$d430]
-	cp $f
-	jr z, .asm_3c30f
-
-.asm_3c30d
-	and a
-	ret
-
-.asm_3c30f
-	call Function3c0e5
-	scf
-	ret
-; 3c314
-
-Function3c314: ; 3c314
-	ld a, [InLinkBattle]
-	and a
-	jr z, .asm_3c35b
-	ld a, [$d430]
-	cp $e
-	jr z, .asm_3c35b
-	cp $d
-	jr z, .asm_3c35b
-	sub $4
-	jr c, .asm_3c35b
-	ld a, [$d0ec]
-	cp $2
-	jr nz, .asm_3c34c
-	ld a, [$ffcb]
-	cp $2
-	jr z, .asm_3c341
-	call BattleRandom
-	cp $80
-	jp c, .asm_3c3f1
-	jp Function3c3f3
-
-.asm_3c341
-	call BattleRandom
-	cp $80
-	jp c, Function3c3f3
-	jp .asm_3c3f1
-
-.asm_3c34c
-	callab Function3846c
-	call SetEnemyTurn
-	call Function3dc23
-	jp Function3c3f3
-
-.asm_3c35b
-	ld a, [$d0ec]
-	and a
-	jp nz, .asm_3c3f1
-	call Function3c5b4
-	jr z, .asm_3c36d
-	jp c, .asm_3c3f1
-	jp Function3c3f3
-
-.asm_3c36d
-	call SetPlayerTurn
-	callab GetUserItem
-	push bc
-	callab GetOpponentItem
-	pop de
-	ld a, d
-	cp $4a
-	jr nz, .asm_3c391
-	ld a, b
-	cp $4a
-	jr z, .asm_3c39f
-	call BattleRandom
-	cp e
-	jr nc, .asm_3c3c5
-	jp .asm_3c3f1
-
-.asm_3c391
-	ld a, b
-	cp $4a
-	jr nz, .asm_3c3c5
-	call BattleRandom
-	cp c
-	jr nc, .asm_3c3c5
-	jp Function3c3f3
-
-.asm_3c39f
-	ld a, [$ffcb]
-	cp $2
-	jr z, .asm_3c3b5
-	call BattleRandom
-	cp c
-	jp c, Function3c3f3
-	call BattleRandom
-	cp e
-	jp c, .asm_3c3f1
-	jr .asm_3c3c5
-
-.asm_3c3b5
-	call BattleRandom
-	cp e
-	jp c, .asm_3c3f1
-	call BattleRandom
-	cp c
-	jp c, Function3c3f3
-	jr .asm_3c3c5
-
-.asm_3c3c5
-	ld de, BattleMonSpd
-	ld hl, EnemyMonSpd
-	ld c, $2
-	call StringCmp
-	jr z, .asm_3c3d8
-	jp nc, .asm_3c3f1
-	jp Function3c3f3
-
-.asm_3c3d8
-	ld a, [$ffcb]
-	cp $2
-	jr z, .asm_3c3e9
-	call BattleRandom
-	cp $80
-	jp c, .asm_3c3f1
-	jp Function3c3f3
-
-.asm_3c3e9
-	call BattleRandom
-	cp $80
-	jp c, Function3c3f3
-.asm_3c3f1
-	scf
-	ret
-; 3c3f3
-
-Function3c3f3: ; 3c3f3
-	and a
-	ret
-; 3c3f5
-
-Function3c3f5: ; 3c3f5
-	ld a, [BattleType]
-	cp $6
-	jr nz, .asm_3c40e
-	ld a, [$dc79]
-	and a
-	jr nz, .asm_3c40e
-	ld a, [$d0ee]
-	and $c0
-	add $2
-	ld [$d0ee], a
-	scf
-	ret
-
-.asm_3c40e
-	and a
-	ret
-; 3c410
-
-Function3c410: ; 3c410
-	ld a, [PlayerSubStatus4]
-	and $20
-	jp nz, Function3c432
-	ld hl, EnemySubStatus3
-	res 3, [hl]
-	ld hl, PlayerSubStatus3
-	res 3, [hl]
-	ld a, [hl]
-	and $12
-	jp nz, Function3c432
-	ld hl, PlayerSubStatus1
-	bit 6, [hl]
-	jp nz, Function3c432
-	and a
-	ret
-; 3c432
-
-Function3c432: ; 3c432
-	scf
-	ret
-; 3c434
-
-Function3c434: ; 3c434
-	call Function3c410
-	jp c, .asm_3c4ba
-	ld hl, PlayerSubStatus5
-	bit 4, [hl]
-	jr z, .asm_3c449
-	ld a, [LastPlayerMove]
-	ld [CurPlayerMove], a
-	jr .asm_3c47c
-
-.asm_3c449
-	ld a, [$d0ec]
-	cp $2
-	jr z, .asm_3c4ce
-	and a
-	jr nz, .asm_3c4b5
-	ld a, [PlayerSubStatus3]
-	and $1
-	jr nz, .asm_3c4ba
-	xor a
-	ld [$d235], a
-	inc a
-	ld [FXAnimIDLo], a
-	call Function3e4bc
-	push af
-	call Function30b4
-	call UpdateBattleHuds
-	ld a, [CurPlayerMove]
-	cp $a5
-	jr z, .asm_3c476
-	call PlayClickSFX
-
-.asm_3c476
-	ld a, $1
-	ld [hBGMapMode], a
-	pop af
-	ret nz
-
-.asm_3c47c
-	call SetPlayerTurn
-	callab UpdateMoveData
-	xor a
-	ld [$c732], a
-	ld a, [PlayerMoveEffect]
-	cp $77
-	jr z, .asm_3c494
-	xor a
-	ld [PlayerFuryCutterCount], a
-
-.asm_3c494
-	ld a, [PlayerMoveEffect]
-	cp $51
-	jr z, .asm_3c4a4
-	ld hl, PlayerSubStatus4
-	res 6, [hl]
-	xor a
-	ld [$c72b], a
-
-.asm_3c4a4
-	ld a, [PlayerMoveEffect]
-	cp $6f
-	jr z, .asm_3c4c9
-	cp $74
-	jr z, .asm_3c4c9
-	xor a
-	ld [$c679], a
-	jr .asm_3c4c9
-
-.asm_3c4b5
-	ld hl, PlayerSubStatus3
-	res 0, [hl]
-
-.asm_3c4ba
-	xor a
-	ld [PlayerFuryCutterCount], a
-	ld [$c679], a
-	ld [$c72b], a
-	ld hl, PlayerSubStatus4
-	res 6, [hl]
-
-.asm_3c4c9
-	call Function3e7c1
-	xor a
-	ret
-
-.asm_3c4ce
-	xor a
-	ld [PlayerFuryCutterCount], a
-	ld [$c679], a
-	ld [$c72b], a
-	ld hl, PlayerSubStatus4
-	res 6, [hl]
-	xor a
-	ret
-; 3c4df
-
-Function3c4df: ; 3c4df
-	ld a, [$ffcb]
-	cp $1
-	jr z, .asm_3c4ea
-	call .asm_3c4ed
-	jr .asm_3c518
-
-.asm_3c4ea
-	call .asm_3c518
-.asm_3c4ed
-	ld hl, PlayerSubStatus5
-	bit 4, [hl]
-	ret z
-	ld a, [PlayerEncoreCount]
-	dec a
-	ld [PlayerEncoreCount], a
-	jr z, .asm_3c50a
-	ld hl, BattleMonPPMove1
-	ld a, [CurMoveNum]
-	ld c, a
-	ld b, $0
-	add hl, bc
-	ld a, [hl]
-	and $3f
-	ret nz
-
-.asm_3c50a
-	ld hl, PlayerSubStatus5
-	res 4, [hl]
-	call SetEnemyTurn
-	ld hl, $4c8a
-	jp StdBattleTextBox
-
-.asm_3c518
-	ld hl, EnemySubStatus5
-	bit 4, [hl]
-	ret z
-	ld a, [EnemyEncoreCount]
-	dec a
-	ld [EnemyEncoreCount], a
-	jr z, .asm_3c535
-	ld hl, EnemyMonPPMove1
-	ld a, [CurEnemyMoveNum]
-	ld c, a
-	ld b, $0
-	add hl, bc
-	ld a, [hl]
-	and $3f
-	ret nz
-
-.asm_3c535
-	ld hl, EnemySubStatus5
-	res 4, [hl]
-	call SetPlayerTurn
-	ld hl, $4c8a
-	jp StdBattleTextBox
-; 3c543
-
-
-Function3c543: ; 3c543
-	ld a, [IsInBattle]
-	dec a
-	jr nz, .Stay
-
-	ld a, [PlayerSubStatus5]
-	bit 7, a
-	jr nz, .Stay
-
-	ld a, [$c731]
-	and a
-	jr nz, .Stay
-
-	ld a, [EnemyMonStatus]
-	and 1 << FRZ | SLP
-	jr nz, .Stay
-
-	ld a, [TempEnemyMonSpecies]
-	ld de, 1
-	ld hl, .Always
-	call IsInArray
-	jr c, .Flee
-
-	call BattleRandom
-	ld b, a
-	cp $80
-	jr nc, .Stay
-
-	push bc
-	ld a, [TempEnemyMonSpecies]
-	ld de, 1
-	ld hl, .Often
-	call IsInArray
-	pop bc
-	jr c, .Flee
-
-	ld a, b
-	cp $1a
-	jr nc, .Stay
-
-	ld a, [TempEnemyMonSpecies]
-	ld de, 1
-	ld hl, .Sometimes
-	call IsInArray
-	jr c, .Flee
-
-.Stay
-	and a
-	ret
-
-.Flee
-	scf
-	ret
-; 3c59a
-
-.Sometimes
-	db MAGNEMITE
-	db GRIMER
-	db TANGELA
-	db MR__MIME
-	db EEVEE
-	db PORYGON
-	db DRATINI
-	db DRAGONAIR
-	db TOGETIC
-	db UMBREON
-	db UNOWN
-	db SNUBBULL
-	db HERACROSS
-	db $ff
-
-.Often
-	db CUBONE
-	db ARTICUNO
-	db ZAPDOS
-	db MOLTRES
-	db QUAGSIRE
-	db DELIBIRD
-	db PHANPY
-	db TEDDIURSA
-	db $ff
-
-.Always
-	db RAIKOU
-	db ENTEI
-;	db SUICUNE
-	db $ff
-; 3c5b4
-
-
-Function3c5b4: ; 3c5b4
-	ld a, [CurPlayerMove]
-	call GetMovePriority
-	ld b, a
-	push bc
-	ld a, [CurEnemyMove]
-	call GetMovePriority
-	pop bc
-	cp b
-	ret
-; 3c5c5
-
-GetMovePriority: ; 3c5c5
-	ld b, a
-	cp VITAL_THROW
-	ld a, 0
-	ret z
-	call Function3c5ec
-	ld hl, .data_3c5df
-.loop
-	ld a, [hli]
-	cp b
-	jr z, .asm_3c5dd
-	inc hl
-	cp $ff
-	jr nz, .loop
-	ld a, 1
-	ret
-
-.asm_3c5dd
-	ld a, [hl]
-	ret
-; 3c5df
-
-.data_3c5df
-	db EFFECT_PROTECT,      3
-	db EFFECT_ENDURE,       3
-	db EFFECT_PRIORITY_HIT, 2
-	db EFFECT_WHIRLWIND,    0
-	db EFFECT_COUNTER,      0
-	db EFFECT_MIRROR_COAT,  0
-	db $ff
-; 3c5ec
-
-
-Function3c5ec: ; 3c5ec
-	ld a, b
-	dec a
-	ld hl, $5afc
-	ld bc, $0007
-	call AddNTimes
-	ld a, $10
-	call GetFarByte
-	ld b, a
-	ret
-; 3c5fe
-
-Function3c5fe: ; 3c5fe
-	call Function309d
-	call Function3c543
-	jp c, Function3c0e5
-	call SetEnemyTurn
-	ld a, $1
-	ld [$c70f], a
-	callab Function38000
-	jr c, .asm_3c62f
-	call Function3c6de
-	call Function3d2e0
-	ret c
-	ld a, [$d232]
-	and a
-	ret nz
-	call Function3c710
-	jp z, Function3d14e
-	call Function3c70b
-	jp z, Function3cd55
-
-.asm_3c62f
-	call SetEnemyTurn
-	call Function3c716
-	jp z, Function3cd55
-	call RefreshBattleHuds
-	call Function3c6cf
-	call Function3d2e0
-	ret c
-	ld a, [$d232]
-	and a
-	ret nz
-	call Function3c70b
-	jp z, Function3cd55
-	call Function3c710
-	jp z, Function3d14e
-	call SetPlayerTurn
-	call Function3c716
-	jp z, Function3d14e
-	call RefreshBattleHuds
-	xor a
-	ld [$d0ec], a
-	ret
-; 3c664
-
-Function3c664: ; 3c664
-	xor a
-	ld [$c70f], a
-	call SetEnemyTurn
-	callab Function38000
-	push af
-	call Function3c6cf
-	pop bc
-	ld a, [$d232]
-	and a
-	ret nz
-	call Function3d2e0
-	ret c
-	call Function3c70b
-	jp z, Function3cd55
-	call Function3c710
-	jp z, Function3d14e
-	push bc
-	call SetPlayerTurn
-	call Function3c716
-	pop bc
-	jp z, Function3d14e
-	push bc
-	call RefreshBattleHuds
-	pop af
-	jr c, .asm_3c6be
-	call Function309d
-	call Function3c543
-	jp c, Function3c0e5
-	call Function3c6de
-	call Function3d2e0
-	ret c
-	ld a, [$d232]
-	and a
-	ret nz
-	call Function3c710
-	jp z, Function3d14e
-	call Function3c70b
-	jp z, Function3cd55
-
-.asm_3c6be
-	call SetEnemyTurn
-	call Function3c716
-	jp z, Function3cd55
-	call RefreshBattleHuds
-	xor a
-	ld [$d0ec], a
-	ret
-; 3c6cf
-
-Function3c6cf: ; 3c6cf
-	call SetPlayerTurn
-	call Function3c6fe
-	callab DoPlayerTurn
-	jp Function3c6ed
-; 3c6de
-
-Function3c6de: ; 3c6de
-	call SetEnemyTurn
-	call Function3c6fe
-	callab DoEnemyTurn
-	jp Function3c6ed
-; 3c6ed
-
-Function3c6ed: ; 3c6ed
-	ld a, $5
-	call _GetBattleVar
-	res 2, [hl]
-	res 5, [hl]
-	ld a, $9
-	call _GetBattleVar
-	res 6, [hl]
-	ret
-; 3c6fe
-
-Function3c6fe: ; 3c6fe
-	ld a, $4
-	call _GetBattleVar
-	res 6, [hl]
-	ret
-; 3c706
-
-Function3c706: ; 3c706
-	ld a, [hBattleTurn]
-	and a
-	jr z, Function3c710
-Function3c70b: ; 3c70b
-	ld hl, EnemyMonHPHi
-	jr asm_3c713
-
-Function3c710: ; 3c710
-	ld hl, BattleMonHP
-
-asm_3c713
-	ld a, [hli]
-	or [hl]
-	ret
-; 3c716
-
-Function3c716: ; 3c716
-	call Function3c706
-	ret z
-	ld a, $a
-	call GetBattleVar
-	and $18
-	jr z, .asm_3c768
-	ld hl, $47e2
-	ld de, $0106
-	and $10
-	jr z, .asm_3c733
-	ld hl, $47f8
-	ld de, $0105
-
-.asm_3c733
-	push de
-	call StdBattleTextBox
-	pop de
-	xor a
-	ld [$cfca], a
-	call Function3ee0f
-	call GetEighthMaxHP
-	ld de, $c674
-	ld a, [hBattleTurn]
-	and a
-	jr z, .asm_3c74d
-	ld de, $c67c
-
-.asm_3c74d
-	ld a, $4
-	call GetBattleVar
-	bit 0, a
-	jr z, .asm_3c765
-	call Function3cc76
-	ld a, [de]
-	inc a
-	ld [de], a
-	ld hl, $0000
-.asm_3c75f
-	add hl, bc
-	dec a
-	jr nz, .asm_3c75f
-	ld b, h
-	ld c, l
-
-.asm_3c765
-	call Function3cc3f
-
-.asm_3c768
-	call Function3c706
-	jp z, .asm_3c7f7
-	ld a, $3
-	call _GetBattleVar
-	bit 7, [hl]
-	jr z, .asm_3c7a1
-	call Function3c8e4
-	xor a
-	ld [$cfca], a
-	ld de, $0107
-	ld a, $7
-	call GetBattleVar
-	and $60
-	call z, Function3ee0f
-	call Function3c8e4
-	call GetEighthMaxHP
-	call Function3cc3f
-	ld a, $1
-	ld [hBGMapMode], a
-	call Function3ccef
-	ld hl, $480e
-	call StdBattleTextBox
-
-.asm_3c7a1
-	call Function3c706
-	jr z, .asm_3c7f7
-	ld a, $0
-	call _GetBattleVar
-	bit 0, [hl]
-	jr z, .asm_3c7c5
-	xor a
-	ld [$cfca], a
-	ld de, $010c
-	call Function3ee0f
-	call GetQuarterMaxHP
-	call Function3cc3f
-	ld hl, $4822
-	call StdBattleTextBox
-
-.asm_3c7c5
-	call Function3c706
-	jr z, .asm_3c7f7
-	ld a, $0
-	call _GetBattleVar
-	bit 1, [hl]
-	jr z, .asm_3c7e9
-	xor a
-	ld [$cfca], a
-	ld de, $010c
-	call Function3ee0f
-	call GetQuarterMaxHP
-	call Function3cc3f
-	ld hl, $4836
-	call StdBattleTextBox
-
-.asm_3c7e9
-	ld hl, BattleMonHP
-	ld a, [hBattleTurn]
-	and a
-	jr z, .asm_3c7f4
-	ld hl, EnemyMonHPHi
-
-.asm_3c7f4
-	ld a, [hli]
-	or [hl]
-	ret nz
-
-.asm_3c7f7
-	call RefreshBattleHuds
-	ld c, $14
-	call DelayFrames
-	xor a
-	ret
-; 3c801
-
-Function3c801: ; 3c801
-	ld a, [$ffcb]
-	cp $1
-	jr z, .asm_3c813
-	call SetPlayerTurn
-	call .asm_3c81c
-	call SetEnemyTurn
-	jp .asm_3c81c
-
-.asm_3c813
-	call SetEnemyTurn
-	call .asm_3c81c
-	call SetPlayerTurn
-.asm_3c81c
-	ld hl, PlayerPerishCount
-	ld a, [hBattleTurn]
-	and a
-	jr z, .asm_3c827
-	ld hl, EnemyPerishCount
-
-.asm_3c827
-	ld a, $0
-	call GetBattleVar
-	bit 4, a
-	ret z
-	dec [hl]
-	ld a, [hl]
-	ld [$d265], a
-	push af
-	ld hl, $4864
-	call StdBattleTextBox
-	pop af
-	ret nz
-	ld a, $0
-	call _GetBattleVar
-	res 4, [hl]
-	ld a, [hBattleTurn]
-	and a
-	jr nz, .asm_3c85c
-	ld hl, BattleMonHP
-	xor a
-	ld [hli], a
-	ld [hl], a
-	ld hl, PartyMon1CurHP
-	ld a, [CurBattleMon]
-	call GetPartyLocation
-	xor a
-	ld [hli], a
-	ld [hl], a
-	ret
-
-.asm_3c85c
-	ld hl, EnemyMonHPHi
-	xor a
-	ld [hli], a
-	ld [hl], a
-	ld a, [IsInBattle]
-	dec a
-	ret z
-	ld hl, OTPartyMon1CurHP
-	ld a, [CurOTMon]
-	call GetPartyLocation
-	xor a
-	ld [hli], a
-	ld [hl], a
-	ret
-; 3c874
-
-Function3c874: ; 3c874
-	ld a, [$ffcb]
-	cp $1
-	jr z, .asm_3c886
-	call SetPlayerTurn
-	call .asm_3c88f
-	call SetEnemyTurn
-	jp .asm_3c88f
-
-.asm_3c886
-	call SetEnemyTurn
-	call .asm_3c88f
-	call SetPlayerTurn
-.asm_3c88f
-	ld hl, $c730
-	ld de, $c72e
-	ld a, [hBattleTurn]
-	and a
-	jr z, .asm_3c8a0
-	ld hl, $c731
-	ld de, $c72f
-
-.asm_3c8a0
-	ld a, [hl]
-	and a
-	ret z
-	ld a, $3
-	call GetBattleVar
-	bit 4, a
-	ret nz
-	ld a, [de]
-	ld [$d265], a
-	ld [FXAnimIDLo], a
-	call GetMoveName
-	dec [hl]
-	jr z, .asm_3c8de
-	ld a, $2
-	call GetBattleVar
-	and $60
-	jr nz, .asm_3c8d3
-	call Function3c8e4
-	xor a
-	ld [$cfca], a
-	ld [FXAnimIDHi], a
-	ld a, $37
-	call Predef
-	call Function3c8e4
-
-.asm_3c8d3
-	call Function3cc76
-	call Function3cc3f
-	ld hl, $4de2
-	jr .asm_3c8e1
-
-.asm_3c8de
-	ld hl, $4df5
-
-.asm_3c8e1
-	jp StdBattleTextBox
-; 3c8e4
-
-Function3c8e4: ; 3c8e4
-	ld a, [hBattleTurn]
-	xor $1
-	ld [hBattleTurn], a
-	ret
-; 3c8eb
-
-Function3c8eb: ; 3c8eb
-	ld a, [$ffcb]
-	cp $1
-	jr z, .asm_3c8fd
-	call SetPlayerTurn
-	call .asm_3c906
-	call SetEnemyTurn
-	jp .asm_3c906
-
-.asm_3c8fd
-	call SetEnemyTurn
-	call .asm_3c906
-	call SetPlayerTurn
-.asm_3c906
-	callab GetUserItem
-	ld a, [hl]
-	ld [$d265], a
-	call GetItemName
-	ld a, b
-	cp $3
-	ret nz
-	ld hl, BattleMonHP
-	ld a, [hBattleTurn]
-	and a
-	jr z, .asm_3c922
-	ld hl, EnemyMonHPHi
-
-.asm_3c922
-	ld a, [hli]
-	ld b, a
-	ld a, [hli]
-	ld c, a
-	ld a, [hli]
-	cp b
-	jr nz, .asm_3c92d
-	ld a, [hl]
-	cp c
-	ret z
-
-.asm_3c92d
-	call Function3cc76
-	call Function3c8e4
-	call Function3ccef
-	ld hl, $4880
-	jp StdBattleTextBox
-; 3c93c
-
-Function3c93c: ; 3c93c
-	ld a, [$ffcb]
-	cp $1
-	jr z, .asm_3c94e
-	call SetPlayerTurn
-	call .asm_3c957
-	call SetEnemyTurn
-	jp .asm_3c957
-
-.asm_3c94e
-	call SetEnemyTurn
-	call .asm_3c957
-	call SetPlayerTurn
-.asm_3c957
-	callab GetUserItem
-	ld a, b
-	cp $6
-	jr nz, .asm_3c9ae
-	ld hl, PartyMon1PP
-	ld a, [CurBattleMon]
-	call GetPartyLocation
-	ld d, h
-	ld e, l
-	ld hl, PartyMon1Move1
-	ld a, [CurBattleMon]
-	call GetPartyLocation
-	ld a, [hBattleTurn]
-	and a
-	jr z, .asm_3c99b
-	ld de, $c739
-	ld hl, $c735
-	ld a, [IsInBattle]
-	dec a
-	jr z, .asm_3c99b
-	ld hl, OTPartyMon1PPMove1
-	ld a, [CurOTMon]
-	call GetPartyLocation
-	ld d, h
-	ld e, l
-	ld hl, OTPartyMon1Move1
-	ld a, [CurOTMon]
-	call GetPartyLocation
-
-.asm_3c99b
-	ld c, $0
-.asm_3c99d
-	ld a, [hl]
-	and a
-	jr z, .asm_3c9ae
-	ld a, [de]
-	and $3f
-	jr z, .asm_3c9af
-	inc hl
-	inc de
-	inc c
-	ld a, c
-	cp $4
-	jr nz, .asm_3c99d
-
-.asm_3c9ae
-	ret
-
-.asm_3c9af
-	ld a, [hl]
-	cp $a6
-	ld b, $1
-	jr z, .asm_3c9b8
-	ld b, $5
-
-.asm_3c9b8
-	ld a, [de]
-	add b
-	ld [de], a
-	push bc
-	push bc
-	ld a, [hl]
-	ld [$d265], a
-	ld de, BattleMonItem
-	ld hl, BattleMonPPMove1
-	ld a, [hBattleTurn]
-	and a
-	jr z, .asm_3c9d2
-	ld de, EnemyMonItem
-	ld hl, EnemyMonPPMove1
-
-.asm_3c9d2
-	inc de
-	pop bc
-	ld b, $0
-	add hl, bc
-	push hl
-	ld h, d
-	ld l, e
-	add hl, bc
-	pop de
-	pop bc
-	ld a, [$d265]
-	cp [hl]
-	jr nz, .asm_3c9f5
-	ld a, [hBattleTurn]
-	and a
-	ld a, [PlayerSubStatus5]
-	jr z, .asm_3c9ee
-	ld a, [EnemySubStatus5]
-
-.asm_3c9ee
-	bit 3, a
-	jr nz, .asm_3c9f5
-	ld a, [de]
-	add b
-	ld [de], a
-
-.asm_3c9f5
-	callab GetUserItem
-	ld a, [hl]
-	ld [$d265], a
-	xor a
-	ld [hl], a
-	call Function3df12
-	ld a, [hBattleTurn]
-	and a
-	jr z, .asm_3ca12
-	ld a, [IsInBattle]
-	dec a
-	jr z, .asm_3ca14
-	call Function3df1f
-
-.asm_3ca12
-	xor a
-	ld [hl], a
-
-.asm_3ca14
-	call GetItemName
-	call Function3c8e4
-	call Function3ddc8
-	call Function3c8e4
-	ld hl, $4899
-	jp StdBattleTextBox
-; 3ca26
-
-Function3ca26: ; 3ca26
-	ld a, [$ffcb]
-	cp $1
-	jr z, .asm_3ca38
-	call SetPlayerTurn
-	call .asm_3ca41
-	call SetEnemyTurn
-	jp .asm_3ca41
-
-.asm_3ca38
-	call SetEnemyTurn
-	call .asm_3ca41
-	call SetPlayerTurn
-.asm_3ca41
-	ld hl, $c71d
-	ld a, [hBattleTurn]
-	and a
-	jr z, .asm_3ca4c
-	ld hl, $c71e
-
-.asm_3ca4c
-	ld a, [hl]
-	and a
-	ret z
-	dec a
-	ld [hl], a
-	cp $1
-	ret nz
-	ld hl, $48b6
-	call StdBattleTextBox
-	ld a, $10
-	call _GetBattleVar
-	push af
-	ld a, $f8
-	ld [hl], a
-	callab UpdateMoveData
-	xor a
-	ld [AttackMissed], a
-	ld [AlreadyDisobeyed], a
-	ld a, $a
-	ld [TypeModifier], a
-	callab DoMove
-	xor a
-	ld [CurDamage], a
-	ld [$d257], a
-	ld a, $10
-	call _GetBattleVar
-	pop af
-	ld [hl], a
-	call UpdateBattleMonInParty
-	jp UpdateEnemyMonInParty
-; 3ca8f
-
-Function3ca8f: ; 3ca8f
-	ld a, [$ffcb]
-	cp $1
-	jr z, .asm_3ca9a
-	call .asm_3ca9d
-	jr .asm_3cac9
-
-.asm_3ca9a
-	call .asm_3cac9
-.asm_3ca9d
-	ld a, [BattleMonStatus]
-	bit 5, a
-	ret z
-	ld a, [$c73f]
-	and a
-	ret nz
-	call BattleRandom
-	cp $19
-	ret nc
-	xor a
-	ld [BattleMonStatus], a
-	ld a, [CurBattleMon]
-	ld hl, PartyMon1Status
-	call GetPartyLocation
-	ld [hl], $0
-	call UpdateBattleHuds
-	call SetEnemyTurn
-	ld hl, $524b
-	jp StdBattleTextBox
-
-.asm_3cac9
-	ld a, [EnemyMonStatus]
-	bit 5, a
-	ret z
-	ld a, [$c740]
-	and a
-	ret nz
-	call BattleRandom
-	cp $19
-	ret nc
-	xor a
-	ld [EnemyMonStatus], a
-	ld a, [IsInBattle]
-	dec a
-	jr z, .asm_3caef
-	ld a, [CurOTMon]
-	ld hl, OTPartyMon1Status
-	call GetPartyLocation
-	ld [hl], $0
-
-.asm_3caef
-	call UpdateBattleHuds
-	call SetPlayerTurn
-	ld hl, $524b
-	jp StdBattleTextBox
-; 3cafb
-
-Function3cafb: ; 3cafb
-	ld a, [$ffcb]
-	cp $1
-	jr z, .asm_3cb06
-	call .asm_3cb09
-	jr .asm_3cb1c
-
-.asm_3cb06
-	call .asm_3cb1c
-.asm_3cb09
-	ld a, [PlayerScreens]
-	bit 2, a
-	ret z
-	ld hl, $c701
-	dec [hl]
-	ret nz
-	res 2, a
-	ld [PlayerScreens], a
-	xor a
-	jr .asm_3cb2e
-
-.asm_3cb1c
-	ld a, [EnemyScreens]
-	bit 2, a
-	ret z
-	ld hl, $c705
-	dec [hl]
-	ret nz
-	res 2, a
-	ld [EnemyScreens], a
-	ld a, $1
-
-.asm_3cb2e
-	ld [hBattleTurn], a
-	ld hl, $48d2
-	jp StdBattleTextBox
-; 3cb36
-
-
-Function3cb36: ; 3cb36
-	ld a, [$ffcb]
-	cp 1
-	jr z, .Both
-	call .CheckPlayer
-	jr .CheckEnemy
-
-.Both
-	call .CheckEnemy
-
-.CheckPlayer
-	call SetPlayerTurn
-	ld de, .Your
-	call .asm_3cb6f
-	ld hl, PlayerScreens
-	ld de, PlayerLightScreenCount
-	jr .FadeScreens
-
-.CheckEnemy
-	call SetEnemyTurn
-	ld de, .Enemy
-	call .asm_3cb6f
-	ld hl, EnemyScreens
-	ld de, EnemyLightScreenCount
-
-.FadeScreens
-	bit SCREENS_LIGHT_SCREEN, [hl]
-	call nz, FadeLightScreen
-	bit SCREENS_REFLECT, [hl]
-	call nz, FadeReflect
-	ret
-
-.asm_3cb6f
-	ld hl, StringBuffer1
-	jp CopyName2
-; 3cb75
-
-.Your
-	db "Your@"
-.Enemy
-	db "Enemy@"
-; 3cb80
-
-
-FadeLightScreen: ; 3cb80
-	ld a, [de]
-	dec a
-	ld [de], a
-	ret nz
-	res SCREENS_LIGHT_SCREEN, [hl]
-	push hl
-	push de
-	ld hl, BattleText_0x808e7
-	call StdBattleTextBox
-	pop de
-	pop hl
-	ret
-; 3cb91
-
-FadeReflect: ; 3cb91
-	inc de
-	ld a, [de]
-	dec a
-	ld [de], a
-	ret nz
-	res SCREENS_REFLECT, [hl]
-	ld hl, BattleText_0x80905
-	jp StdBattleTextBox
-; 3cb9e
-
-HandleWeather: ; 3cb9e
-
-	ld a, [Weather]
-	cp 0
-	ret z
-
-	ld hl, WeatherCount
-	dec [hl]
-	jr z, .asm_3cc13
-
-	ld hl, .WeatherMessages
-	call .asm_3cc1e
-	ld a, [Weather]
-	cp WEATHER_SANDSTORM
-	ret nz
-	ld a, [$ffcb]
-	cp 1
-	jr z, .asm_3cbc7
-
-; Player first
-	call SetPlayerTurn
-	call .asm_3cbd0
-	call SetEnemyTurn
-	jr .asm_3cbd0
-
-.asm_3cbc7
-; Enemy first
-	call SetEnemyTurn
-	call .asm_3cbd0
-	call SetPlayerTurn
-
-.asm_3cbd0
-	ld a, BATTLE_VARS_SUBSTATUS3
-	call GetBattleVar
-	bit SUBSTATUS_UNDERGROUND, a
-	ret nz
-
-	ld hl, BattleMonType1
-	ld a, [hBattleTurn]
-	and a
-	jr z, .asm_3cbe3
-	ld hl, EnemyMonType1
-
-.asm_3cbe3
-	ld a, [hli]
-	cp ROCK
-	ret z
-	cp GROUND
-	ret z
-	cp STEEL
-	ret z
-
-	ld a, [hl]
-	cp ROCK
-	ret z
-	cp GROUND
-	ret z
-	cp STEEL
-	ret z
-
-	call Function3c8e4
-	xor a
-	ld [$cfca], a
-	ld de, $010b
-	call Function3ee17
-	call Function3c8e4
-	call GetEighthMaxHP
-	call Function3cc3f
-
-	ld hl, BattleText_0x8084d
-	jp StdBattleTextBox
-
-.asm_3cc13
-	ld hl, .WeatherEndedMessages
-	call .asm_3cc1e
-	xor a
-	ld [Weather], a
-	ret
-
-.asm_3cc1e
-	ld a, [Weather]
-	dec a
-	ld c, a
-	ld b, 0
-	add hl, bc
-	add hl, bc
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	jp StdBattleTextBox
-; 3cc2d
-
-.WeatherMessages
-	dw BattleText_0x8091f
-	dw BattleText_0x80938
-	dw BattleText_0x80951
-.WeatherEndedMessages
-	dw BattleText_0x80967
-	dw BattleText_0x8097a
-	dw BattleText_0x8098f
-; 3cc39
-
-Function3cc39: ; 3cc39
-	call Function3cc45
-	jp Function3cd3c
-; 3cc3f
-
-Function3cc3f: ; 3cc3f
-	call Function3cc45
-	jp Function3cd36
-; 3cc45
-
-
-
-Function3cc45: ; 3cc45
-	ld hl, BattleMonHP
-	ld a, [hBattleTurn]
-	and a
-	jr z, .asm_3cc50
-	ld hl, EnemyMonHPHi
-
-.asm_3cc50
-	inc hl
-	ld a, [hl]
-	ld [$d1ec], a
-	sub c
-	ld [hld], a
-	ld [$d1ee], a
-	ld a, [hl]
-	ld [$d1ed], a
-	sbc b
-	ld [hl], a
-	ld [$d1ef], a
-	ret nc
-	ld a, [$d1ec]
-	ld c, a
-	ld a, [$d1ed]
-	ld b, a
-	xor a
-	ld [hli], a
-	ld [hl], a
-	ld [$d1ee], a
-	ld [$d1ef], a
-	ret
-; 3cc76
-
-Function3cc76: ; 3cc76
-	call GetQuarterMaxHP
-	srl c
-	srl c
-	ld a, c
-	and a
-	jr nz, .asm_3cc82
-	inc c
-
-.asm_3cc82
-	ret
-; 3cc83
-
-
-GetEighthMaxHP: ; 3cc83
-; output: bc
-	call GetQuarterMaxHP
-; assumes nothing can have 1024 or more hp
-; halve result
-	srl c
-; round up
-	ld a, c
-	and a
-	jr nz, .end
-	inc c
-.end
-	ret
-; 3cc8e
-
-
-GetQuarterMaxHP: ; 3cc8e
-; output: bc
-	call GetMaxHP
-
-; quarter result
-	srl b
-	rr c
-	srl b
-	rr c
-
-; assumes nothing can have 1024 or more hp
-; round up
-	ld a, c
-	and a
-	jr nz, .end
-	inc c
-.end
-	ret
-; 3cc9f
-
-
-GetHalfMaxHP: ; 3cc9f
-; output: bc
-	call GetMaxHP
-
-; halve reslut
-	srl b
-	rr c
-
-; floor = 1
-	ld a, c
-	or b
-	jr nz, .end
-	inc c
-.end
-	ret
-; 3ccac
-
-
-GetMaxHP: ; 3ccac
-; output: bc, Buffer1-2
-
-; player
-	ld hl, BattleMonMaxHP
-
-; whose turn?
-	ld a, [hBattleTurn]
-	and a
-	jr z, .gethp
-
-; enemy
-	ld hl, EnemyMonMaxHP
-
-.gethp
-	ld a, [hli]
-	ld [Buffer2], a
-	ld b, a
-
-	ld a, [hl]
-	ld [Buffer1], a
-	ld c, a
-	ret
-; 3ccc2
-
-Function3ccc2: ; 3ccc2
-	ld hl, BattleMonHP
-	ld a, [hBattleTurn]
-	and a
-	jr z, .asm_3cccd
-	ld hl, EnemyMonHP
-
-.asm_3cccd
-	ld a, [hli]
-	ld b, a
-	ld a, [hli]
-	ld c, a
-	srl b
-	rr c
-	ld a, [hli]
-	ld [Buffer2], a
-	ld a, [hl]
-	ld [Buffer1], a
-	ret
-; 3ccde
-
-Function3ccde: ; 3ccde
-	ld hl, BattleMonHP + 1
-	ld a, [hBattleTurn]
-	and a
-	jr z, .asm_3cce9
-	ld hl, EnemyMonHP + 1
-
-.asm_3cce9
-	ld a, c
-	sub [hl]
-	dec hl
-	ld a, b
-	sbc [hl]
-	ret
-; 3ccef
-
-
-Function3ccef: ; 3ccef
-	ld hl, EnemyMonMaxHP
-	ld a, [hBattleTurn]
-	and a
-	jr z, .asm_3ccfa
-	ld hl, BattleMonMaxHP
-
-.asm_3ccfa
-	ld a, [hli]
-	ld [Buffer2], a
-	ld a, [hld]
-	ld [Buffer1], a
-	dec hl
-	ld a, [hl]
-	ld [$d1ec], a
-	add c
-	ld [hld], a
-	ld [$d1ee], a
-	ld a, [hl]
-	ld [$d1ed], a
-	adc b
-	ld [hli], a
-	ld [$d1ef], a
-	ld a, [Buffer1]
-	ld c, a
-	ld a, [hld]
-	sub c
-	ld a, [Buffer2]
-	ld b, a
-	ld a, [hl]
-	sbc b
-	jr c, .asm_3cd2d
-	ld a, b
-	ld [hli], a
-	ld [$d1ef], a
-	ld a, c
-	ld [hl], a
-	ld [$d1ee], a
-
-.asm_3cd2d
-	call Function3c8e4
-	call Function3cd36
-	jp Function3c8e4
-; 3cd36
-
-Function3cd36: ; 3cd36
-	call Function3cd3c
-	jp UpdateBattleHuds
-; 3cd3c
-
-
-Function3cd3c: ; 3cd3c
-	ld hl, $c55e
-	ld a, [hBattleTurn]
-	and a
-	ld a, $1
-	jr z, .asm_3cd4a
-	ld hl, $c4ca
-	xor a
-
-.asm_3cd4a
-	push bc
-	ld [$d10a], a
-	ld a, $b
-	call Predef
-	pop bc
-	ret
-; 3cd55
-
-Function3cd55: ; 3cd55
-	call Function3cf14
-	ld hl, BattleMonHP
-	ld a, [hli]
-	or [hl]
-	call z, Function3cef1
-	xor a
-	ld [$c6f7], a
-	call Function3ce01
-	call Function3d873
-	ld a, d
-	and a
-	jp z, LostBattle
-	ld hl, BattleMonHP
-	ld a, [hli]
-	or [hl]
-	call nz, Function3df48
-	ld a, $1
-	ld [hBGMapMode], a
-	ld c, $3c
-	call DelayFrames
-	ld a, [IsInBattle]
-	dec a
-	jr nz, .asm_3cd8c
-	ld a, $1
-	ld [BattleEnded], a
-	ret
-
-.asm_3cd8c
-	call Function3cf35
-	jp z, Function3cfa4
-	ld hl, BattleMonHP
-	ld a, [hli]
-	or [hl]
-	jr nz, .asm_3cdba
-	call Function3d1f8
-	jr nc, .asm_3cda4
-	ld a, $1
-	ld [BattleEnded], a
-	ret
-
-.asm_3cda4
-	call Function3d227
-	call Function3d2e0
-	jp c, Function3c0e5
-	ld a, $1
-	ld [$d0ec], a
-	call Function3cf4a
-	jp z, Function3c0e5
-	jr asm_3cdca
-
-.asm_3cdba
-	ld a, $1
-	ld [$d0ec], a
-	call Function3cf4a
-	jp z, Function3c0e5
-	xor a
-	ld [$d0ec], a
-	ret
-
-asm_3cdca
-	ld a, [$ffcb]
-	cp $1
-	jr z, .asm_3cde6
-	call ClearSprites
-	ld hl, $c4a1
-	ld bc, $040a
-	call ClearBox
-	call Function3d2b3
-	ld a, $1
-	call asm_3cf78
-	jr .asm_3cdfc
-
-.asm_3cde6
-	ld a, [CurPartyMon]
-	push af
-	ld a, $1
-	call asm_3cf78
-	call ClearSprites
-	call Function309d
-	pop af
-	ld [CurPartyMon], a
-	call Function3d2b3
-
-.asm_3cdfc
-	xor a
-	ld [$d0ec], a
-	ret
-; 3ce01
-
-Function3ce01: ; 3ce01
-	call UpdateBattleMonInParty
-	ld a, [IsInBattle]
-	dec a
-	jr z, .asm_3ce16
-	ld a, [CurOTMon]
-	ld hl, OTPartyMon1CurHP
-	call GetPartyLocation
-	xor a
-	ld [hli], a
-	ld [hl], a
-
-.asm_3ce16
-	ld hl, PlayerSubStatus3
-	res 2, [hl]
-	xor a
-	ld hl, EnemyDamageTaken
-	ld [hli], a
-	ld [hl], a
-	call Function3d834
-	call Function3dc18
-	ld a, [IsInBattle]
-	dec a
-	jr z, .asm_3ce2f
-	jr .asm_3ce37
-
-.asm_3ce2f
-	call Function3ceec
-	ld a, $1
-	ld [$c6fd], a
-
-.asm_3ce37
-	ld hl, BattleMonHP
-	ld a, [hli]
-	or [hl]
-	jr nz, .asm_3ce47
-	ld a, [$c6f7]
-	and a
-	jr nz, .asm_3ce47
-	call Function3d1aa
-
-.asm_3ce47
-	call Function3d873
-	ld a, d
-	and a
-	ret z
-	ld a, [IsInBattle]
-	dec a
-	call z, Function3d0ea
-	call EmptyBattleTextBox
-	call Function309d
-	ld a, [$d0ee]
-	and $c0
-	ld [$d0ee], a
-	call Function3ceaa
-	jr z, .asm_3ce72
-	ld hl, EnemyMonBaseStats
-	ld b, $7
-.asm_3ce6c
-	srl [hl]
-	inc hl
-	dec b
-	jr nz, .asm_3ce6c
-
-.asm_3ce72
-	ld hl, EnemyMonBaseStats
-	ld de, $c720
-	ld bc, $0007
-	call CopyBytes
-	xor a
-	ld [$c71f], a
-	call Function3ee3b
-	call Function3ceaa
-	ret z
-	ld a, [$c664]
-	push af
-	ld a, d
-	ld [$c664], a
-	ld hl, $c720
-	ld de, EnemyMonBaseStats
-	ld bc, $0007
-	call CopyBytes
-	ld a, $1
-	ld [$c71f], a
-	call Function3ee3b
-	pop af
-	ld [$c664], a
-	ret
-; 3ceaa
-
-Function3ceaa: ; 3ceaa
-	ld a, [PartyCount]
-	ld b, a
-	ld hl, PartyMon1Species
-	ld c, $1
-	ld d, $0
-.asm_3ceb5
-	push hl
-	push bc
-	ld bc, $0022
-	add hl, bc
-	ld a, [hli]
-	or [hl]
-	pop bc
-	pop hl
-	jr z, .asm_3ced1
-	push hl
-	push bc
-	ld bc, $0001
-	add hl, bc
-	pop bc
-	ld a, [hl]
-	pop hl
-	cp $39
-	jr nz, .asm_3ced1
-	ld a, d
-	or c
-	ld d, a
-
-.asm_3ced1
-	sla c
-	push de
-	ld de, $0030
-	add hl, de
-	pop de
-	dec b
-	jr nz, .asm_3ceb5
-	ld a, d
-	ld e, $0
-	ld b, $6
-.asm_3cee1
-	srl a
-	jr nc, .asm_3cee6
-	inc e
-
-.asm_3cee6
-	dec b
-	jr nz, .asm_3cee1
-	ld a, e
-	and a
-	ret
-; 3ceec
-
-
-
-Function3ceec: ; 3ceec
-	xor a
-	ld [Danger], a
-	ret
-; 3cef1
-
-Function3cef1: ; 3cef1
-	call Function3ceec
-	call WaitSFX
-	ld a, $f0
-	ld [CryTracks], a
-	ld a, [BattleMonSpecies]
-	call Function37b6
-	call Function3d43b
-	ld hl, $c535
-	ld bc, $050b
-	call ClearBox
-	ld hl, BattleText_0x80a75
-	jp StdBattleTextBox
-; 3cf14
-
-Function3cf14: ; 3cf14
-	call WaitSFX
-	ld de, SFX_KINESIS
-	call PlaySFX
-	call Function3d432
-	ld de, SFX_UNKNOWN_2A
-	call PlaySFX
-	hlcoord 1, 0
-	ld bc, $040a
-	call ClearBox
-	ld hl, BattleText_0x809a8
-	jp StdBattleTextBox
-; 3cf35
-
-Function3cf35: ; 3cf35
-	ld a, [OTPartyCount]
-	ld b, a
-	xor a
-	ld hl, OTPartyMon1CurHP
-	ld de, $0030
-.asm_3cf40
-	or [hl]
-	inc hl
-	or [hl]
-	dec hl
-	add hl, de
-	dec b
-	jr nz, .asm_3cf40
-	and a
-	ret
-; 3cf4a
-
-Function3cf4a: ; 3cf4a
-	ld hl, EnemyHPPal
-	ld e, $30
-	call Function3e12e
-	call WaitBGMap
-	callba Function2c012
-	ld a, [InLinkBattle]
-	and a
-	jr z, .asm_3cf6d
-	call Function3e8e4
-	ld a, [$d430]
-	cp $f
-	ret z
-	call Function30b4
-
-.asm_3cf6d
-	ld hl, BattleMonHP
-	ld a, [hli]
-	or [hl]
-	ld a, $0
-	jr nz, asm_3cf78
-	inc a
-	ret
-
-asm_3cf78
-	push af
-	xor a
-	ld [$c718], a
-	call Function3d834
-	call Function3d867
-	call Function3dc18
-	pop af
-	and a
-	jr nz, .asm_3cf8f
-	call Function3d4e1
-	jr .asm_3cf92
-
-.asm_3cf8f
-	call asm_3d517
-
-.asm_3cf92
-	call Function3d57a
-	call SetEnemyTurn
-	call Function3dc23
-	xor a
-	ld [EnemyMoveAnimation], a
-	ld [$d0ec], a
-	inc a
-	ret
-; 3cfa4
-
-Function3cfa4: ; 3cfa4
-	call Function3ceec
-	ld a, $1
-	ld [$c6fd], a
-	ld [BattleEnded], a
-	ld a, [InLinkBattle]
-	and a
-	ld a, b
-	call z, Function3d0ea
-	callab Function39939
-	ld hl, BattleText_0x809da
-	call StdBattleTextBox
-	call CheckInMobileLinkBattle
-	jr z, .ismobilelinkbattle
-	ld a, [InLinkBattle]
-	and a
-	ret nz
-	ld a, [$cfc0]
-	bit 0, a
-	jr nz, .asm_3d006
-	call Function3ebd8
-	ld c, $28
-	call DelayFrames
-	ld a, [BattleType]
-	cp $1
-	jr nz, .asm_3cfe8
-	ld a, $2
-	call Predef
-
-.asm_3cfe8
-	ld a, [$c2cc]
-	bit 0, a
-	jr nz, .asm_3cff2
-	call Function3718
-
-.asm_3cff2
-	jp Function3d02b
-
-.ismobilelinkbattle
-	call Function3ebd8
-	ld c, $28
-	call DelayFrames
-	ld c, $4
-	callba Function4ea0a
-	ret
-
-.asm_3d006
-	call Function3ebd8
-	ld c, $28
-	call DelayFrames
-	call EmptyBattleTextBox
-	ld c, $3
-	callba Function11c000
-	call Functiona80
-	ld hl, $c6ec
-	ld a, [hli]
-	or [hl]
-	inc hl
-	or [hl]
-	ret nz
-	call ClearTileMap
-	call WhiteBGMap
-	ret
-; 3d02b
-
-Function3d02b: ; 3d02b
-	ld a, [$c73d]
-	and a
-	call nz, Function3d099
-	call Function3d0b1
-	push af
-	ld a, $0
-	jr nc, .asm_3d044
-	ld a, [$d854]
-	and $7
-	cp $3
-	jr nz, .asm_3d044
-	inc a
-
-.asm_3d044
-	ld b, a
-	ld c, $4
-.asm_3d047
-	ld a, b
-	and a
-	jr z, .asm_3d052
-	call Function3d081
-	dec c
-	dec b
-	jr .asm_3d047
-
-.asm_3d052
-	ld a, c
-	and a
-	jr z, .asm_3d05c
-	call Function3d08d
-	dec c
-	jr .asm_3d052
-
-.asm_3d05c
-	call Function3d099
-	call Function3d099
-	pop af
-	jr nc, .asm_3d07b
-	ld a, [$d854]
-	and $7
-	jr z, .asm_3d07b
-	ld hl, SentToMomTexts
-	dec a
-	ld c, a
-	ld b, 0
-	add hl, bc
-	add hl, bc
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	jp StdBattleTextBox
-
-.asm_3d07b
-	ld hl, BattleText_0x809be
-	jp StdBattleTextBox
-; 3d081
-
-Function3d081: ; 3d081
-	push bc
-	ld hl, $c688
-	ld de, $d853
-	call Function3d0be
-	pop bc
-	ret
-; 3d08d
-
-Function3d08d: ; 3d08d
-	push bc
-	ld hl, $c688
-	ld de, $d850
-	call Function3d0be
-	pop bc
-	ret
-; 3d099
-
-Function3d099: ; 3d099
-	ld hl, $c688
-	sla [hl]
-	dec hl
-	rl [hl]
-	dec hl
-	rl [hl]
-	ret nc
-	ld a, $ff
-	ld [hli], a
-	ld [hli], a
-	ld [hl], a
-	ret
-; 3d0ab
-
-SentToMomTexts: ; 3d0ab
-	dw BattleText_0x809fc
-	dw BattleText_0x80a2a
-	dw BattleText_0x80a3d
-; 3d0b1
-
-
-Function3d0b1: ; 3d0b1
-	ld hl, $d853
-	ld a, [hld]
-	cp $3f
-	ld a, [hld]
-	sbc $42
-	ld a, [hl]
-	sbc $f
-	ret
-; 3d0be
-
-Function3d0be: ; 3d0be
-	ld c, $3
-	and a
-	push de
-	push hl
-	push bc
-	ld b, h
-	ld c, l
-	callba Function106008
-	pop bc
-	pop hl
-.asm_3d0ce
-	ld a, [de]
-	adc [hl]
-	ld [de], a
-	dec de
-	dec hl
-	dec c
-	jr nz, .asm_3d0ce
-	pop hl
-	ld a, [hld]
-	cp $3f
-	ld a, [hld]
-	sbc $42
-	ld a, [hl]
-	sbc $f
-	ret c
-	ld [hl], $f
-	inc hl
-	ld [hl], $42
-	inc hl
-	ld [hl], $3f
-	ret
-; 3d0ea
-
-Function3d0ea: ; 3d0ea
-	push de
-	ld de, MUSIC_NONE
-	call PlayMusic
-	call DelayFrame
-	ld de, MUSIC_WILD_VICTORY
-	ld a, [IsInBattle]
-	dec a
-	jr nz, .asm_3d113
-	push de
-	call Function3ceaa
-	pop de
-	jr nz, .asm_3d11e
-	ld hl, $c6ec
-	ld a, [hli]
-	or [hl]
-	jr nz, .asm_3d11e
-	ld a, [$c664]
-	and a
-	jr z, .asm_3d121
-	jr .asm_3d11e
-
-.asm_3d113
-	ld de, MUSIC_GYM_VICTORY
-	call IsJohtoGymLeader
-	jr c, .asm_3d11e
-	ld de, MUSIC_TRAINER_VICTORY
-
-.asm_3d11e
-	call PlayMusic
-
-.asm_3d121
-	pop de
-	ret
-; 3d123
-
-
-
-; These functions check if the current opponent is a gym leader or one of a
-; few other special trainers.
-
-; Note: KantoGymLeaders is a subset of JohtoGymLeaders. If you wish to
-; differentiate between the two, call IsKantoGymLeader first.
-
-; The Lance and Red entries are unused for music checks; those trainers are
-; accounted for elsewhere.
-
-IsKantoGymLeader: ; 0x3d123
-	ld hl, KantoGymLeaders
-	jr IsGymLeaderCommon
-
-IsJohtoGymLeader: ; 0x3d128
-	ld hl, JohtoGymLeaders
-IsGymLeaderCommon:
-	push de
-	ld a, [OtherTrainerClass]
-	ld de, $0001
-	call IsInArray
-	pop de
-	ret
-; 0x3d137
-
-JohtoGymLeaders:
-	db FALKNER
-	db WHITNEY
-	db BUGSY
-	db MORTY
-	db PRYCE
-	db JASMINE
-	db CHUCK
-	db CLAIR
-	db WILL
-	db BRUNO
-	db KAREN
-	db KOGA
-; fallthrough
-; these two entries are unused
-	db CHAMPION
-	db RED
-; fallthrough
-KantoGymLeaders:
-	db BROCK
-	db MISTY
-	db LT_SURGE
-	db ERIKA
-	db JANINE
-	db SABRINA
-	db BLAINE
-	db BLUE
-	db $ff
-
-
-Function3d14e: ; 3d14e
-	call Function3cef1
-	ld hl, EnemyMonHPHi
-	ld a, [hli]
-	or [hl]
-	call z, Function3cf14
-	ld a, $1
-	ld [$c6f7], a
-	call Function3d1aa
-	call Function3d873
-	ld a, d
-	and a
-	jp z, LostBattle
-	ld hl, EnemyMonHPHi
-	ld a, [hli]
-	or [hl]
-	jr nz, .asm_3d185
-	call Function3ce01
-	ld a, [IsInBattle]
-	dec a
-	jr nz, .asm_3d17f
-	ld a, $1
-	ld [BattleEnded], a
-	ret
-
-.asm_3d17f
-	call Function3cf35
-	jp z, Function3cfa4
-
-.asm_3d185
-	call Function3d1f8
-	jr nc, .asm_3d190
-	ld a, $1
-	ld [BattleEnded], a
-	ret
-
-.asm_3d190
-	call Function3d227
-	call Function3d2e0
-	jp c, Function3c0e5
-	ld a, c
-	and a
-	ret nz
-	ld a, $1
-	ld [$d0ec], a
-	call Function3cf4a
-	jp z, Function3c0e5
-	jp asm_3cdca
-; 3d1aa
-
-Function3d1aa: ; 3d1aa
-	ld a, [CurBattleMon]
-	ld c, a
-	ld hl, $c664
-	ld b, $0
-	ld a, $3
-	call Predef
-	ld hl, EnemySubStatus3
-	res 2, [hl]
-	xor a
-	ld [Danger], a
-	ld hl, PlayerDamageTaken
-	ld [hli], a
-	ld [hl], a
-	ld [BattleMonStatus], a
-	call UpdateBattleMonInParty
-	ld c, $6
-	ld a, [BattleMonLevel]
-	add $1e
-	ld b, a
-	ld a, [EnemyMonLevel]
-	cp b
-	jr c, .asm_3d1dc
-	ld c, $8
-
-.asm_3d1dc
-	ld a, [CurBattleMon]
-	ld [CurPartyMon], a
-	callab ChangeHappiness
-	ld a, [$d0ee]
-	and $c0
-	add $1
-	ld [$d0ee], a
-	ld a, [$c6f7]
-	and a
-	ret z
-	ret
-; 3d1f8
-
-Function3d1f8: ; 3d1f8
-	call EmptyBattleTextBox
-	call Function309d
-	ld a, [IsInBattle]
-	and a
-	dec a
-	ret nz
-	ld hl, BattleText_0x80a83
-	call StdBattleTextBox
-.asm_3d20a
-	ld bc, $0107
-	call Function1dd2
-	ld a, [$cfa9]
-	jr c, .asm_3d217
-	and a
-	ret
-
-.asm_3d217
-	ld a, [$cfa9]
-	cp $1
-	jr z, .asm_3d20a
-	ld hl, PartyMon1Spd
-	ld de, EnemyMonSpd
-	jp Function3d8b3
-; 3d227
-
-Function3d227: ; 3d227
-	call EmptyBattleTextBox
-	call Function1d6e
-	call Function3d2f7
-	call Function3d362
-	ld a, [InLinkBattle]
-	and a
-	jr z, .asm_3d241
-	ld a, $1
-	ld [$d0ec], a
-	call Function3e8e4
-
-.asm_3d241
-	xor a
-	ld [$d0ec], a
-	call Function3d2e0
-	jr c, .asm_3d251
-	ld hl, EnemyMonHPHi
-	ld a, [hli]
-	or [hl]
-	jr nz, .asm_3d26c
-
-.asm_3d251
-	call ClearSprites
-	call WhiteBGMap
-	call Function3eda6
-	call Function1c07
-	call Function309d
-	call WaitBGMap
-	call ClearSGB
-	call Function32f9
-	xor a
-	ld c, a
-	ret
-
-.asm_3d26c
-	call ClearSprites
-	ld a, [CurBattleMon]
-	ld [$c71a], a
-	ld a, [CurPartyMon]
-	ld [CurBattleMon], a
-	call Function3d581
-	call Function3da0d
-	call Function3dab1
-	call ClearPalettes
-	call DelayFrame
-	call Function3eda6
-	call Function1c17
-	call ClearSGB
-	call Function32f9
-	call Function3f26d
-	call Function3dbde
-	call Function3dc18
-	call Function3db5f
-	call EmptyBattleTextBox
-	call Function309d
-	call SetPlayerTurn
-	call Function3dc23
-	ld a, $1
-	and a
-	ld c, a
-	ret
-; 3d2b3
-
-Function3d2b3: ; 3d2b3
-	ld a, [CurBattleMon]
-	ld [$c71a], a
-	ld a, [CurPartyMon]
-	ld [CurBattleMon], a
-	call Function3d581
-	call Function3da0d
-	call Function3dab1
-	call Function3f26d
-	call Function3dbde
-	call Function3dc18
-	call Function3db5f
-	call EmptyBattleTextBox
-	call Function309d
-	call SetPlayerTurn
-	jp Function3dc23
-; 3d2e0
-
-
-
-Function3d2e0: ; 3d2e0
-	ld a, [InLinkBattle]
-	cp $4
-	jr nz, .asm_3d2ef
-	ld a, [$cd2b]
-	and a
-	jr z, .asm_3d2ef
-	scf
-	ret
-
-.asm_3d2ef
-	xor a
-	ret
-; 3d2f1
-
-CheckInMobileLinkBattle: ; 3d2f1
-	ld a, [InLinkBattle]
-	cp $4
-	ret
-; 3d2f7
-
-Function3d2f7: ; 3d2f7
-	call WhiteBGMap
-Function3d2fa: ; 3d2fa
-	callba Function5004f
-	callba Function50405
-	callba Function8e85
-	callba Function503e0
-	ret
-; 3d313
-
-Function3d313: ; 3d313
-	callba WritePartyMenuTilemap
-	callba PrintPartyMenuText
-	call WaitBGMap
-	call Function32f9
-	call DelayFrame
-	ret
-; 3d329
-
-Function3d329: ; 3d329
-	call CheckInMobileLinkBattle
-	jr z, .ismobilelinkbattle
-	callba PartyMenuSelect
-	ret
-
-.ismobilelinkbattle
-	callba Function100cb5
-	ret
-; 3d33c
-
-Function3d33c: ; 3d33c
-.asm_3d33c
-	ld a, $2
-	ld [PartyMenuActionText], a
-	call Function3d313
-	call Function3d329
-	ret c
-	call Function3d887
-	jr z, .asm_3d33c
-	xor a
-	ret
-; 3d34f
-
-Function3d34f: ; 3d34f
-	ld hl, CurBattleMon
-	ld a, [CurPartyMon]
-	cp [hl]
-	jr nz, .asm_3d360
-	ld hl, BattleText_0x80c0d
-	call StdBattleTextBox
-	scf
-	ret
-
-.asm_3d360
-	xor a
-	ret
-; 3d362
-
-Function3d362: ; 3d362
-.asm_3d362
-	call Function3d33c
-	ret nc
-	call Function3d2e0
-	ret c
-	ld de, SFX_WRONG
-	call PlaySFX
-	call WaitSFX
-	jr .asm_3d362
-; 3d375
-
-
-
-Function3d375: ; 3d375
-.asm_3d375
-	call Function3d33c
-	ret c
-	call Function3d34f
-	jr c, .asm_3d375
-	xor a
-	ret
-; 3d380
-
-Function3d380: ; 3d380
-.asm_3d380
-	call Function3d362
-	call Function3d2e0
-	ret c
-	call Function3d34f
-	jr c, .asm_3d380
-	xor a
-	ret
-; 3d38e
-
-
-LostBattle: ; 3d38e
-	ld a, 1
-	ld [BattleEnded], a
-
-	ld a, [$cfc0]
-	bit 0, a
-	jr nz, .asm_3d3bd
-
-	ld a, [BattleType]
-	cp BATTLETYPE_CANLOSE
-	jr nz, .asm_3d3e3
-
-; Remove the enemy from the screen.
-	hlcoord 0, 0
-	ld bc, $0815
-	call ClearBox
-	call Function3ebd8
-
-	ld c, 40
-	call DelayFrames
-
-	ld a, [$c2cc]
-	bit 0, a
-	jr nz, .asm_3d3bc
-	call Function3718
-.asm_3d3bc
-	ret
-
-.asm_3d3bd
-; Remove the enemy from the screen.
-	hlcoord 0, 0
-	ld bc, $0815
-	call ClearBox
-	call Function3ebd8
-
-	ld c, 40
-	call DelayFrames
-
-	call EmptyBattleTextBox
-	ld c, 2
-	callba Function11c000
-	call Functiona80
-	call ClearTileMap
-	call WhiteBGMap
-	ret
-
-.asm_3d3e3
-	ld a, [InLinkBattle]
-	and a
-	jr nz, .LostLinkBattle
-
-; Greyscale
-	ld b, 0
-	call GetSGBLayout
-	call Function32f9
-	jr .end
-
-.LostLinkBattle
-	call UpdateEnemyMonInParty
-	call Function3cf35
-	jr nz, .asm_3d40a
-	ld hl, TiedAgainstText
-	ld a, [$d0ee]
-	and $c0
-	add 2
-	ld [$d0ee], a
-	jr .asm_3d412
-
-.asm_3d40a
-	ld hl, LostAgainstText
-	call CheckInMobileLinkBattle
-	jr z, .ismobilelinkbattle
-
-.asm_3d412
-	call StdBattleTextBox
-
-.end
-	scf
-	ret
-
-.ismobilelinkbattle
-; Remove the enemy from the screen.
-	hlcoord 0, 0
-	ld bc, $0815
-	call ClearBox
-	call Function3ebd8
-
-	ld c, 40
-	call DelayFrames
-
-	ld c, $3
-	callba Function4ea0a
-	scf
-	ret
-; 3d432
-
-
-Function3d432: ; 3d432
-	ld hl, $c510
-	ld de, $c524
-	jp Function3d444
-; 3d43b
-
-Function3d43b: ; 3d43b
-	ld hl, $c569
-	ld de, $c57d
-	jp Function3d444
-; 3d444
-
-Function3d444: ; 3d444
-	ld a, [$cfbe]
-	push af
-	set 6, a
-	ld [$cfbe], a
-	ld b, $7
-.asm_3d44f
-	push bc
-	push de
-	push hl
-	ld b, $6
-.asm_3d454
-	push bc
-	push hl
-	push de
-	ld bc, $0007
-	call CopyBytes
-	pop de
-	pop hl
-	ld bc, -20
-	add hl, bc
-	push hl
-	ld h, d
-	ld l, e
-	add hl, bc
-	ld d, h
-	ld e, l
-	pop hl
-	pop bc
-	dec b
-	jr nz, .asm_3d454
-	ld bc, 20
-	add hl, bc
-	ld de, .Spaces
-	call PlaceString
-	ld c, 2
-	call DelayFrames
-	pop hl
-	pop de
-	pop bc
-	dec b
-	jr nz, .asm_3d44f
-	pop af
-	ld [$cfbe], a
-	ret
-; 3d488
-
-.Spaces
-	db "       @"
-; 3d490
-
-
-Function3d490: ; 3d490
-	ld [hConnectionStripLength], a
-	ld c, a
-.asm_3d493
-	push bc
-	push hl
-	ld b, $7
-.asm_3d497
-	push hl
-	call Function3d4ae
-	pop hl
-	ld de, 20
-	add hl, de
-	dec b
-	jr nz, .asm_3d497
-	ld c, 2
-	call DelayFrames
-	pop hl
-	pop bc
-	dec c
-	jr nz, .asm_3d493
-	ret
-; 3d4ae
-
-Function3d4ae: ; 3d4ae
-	ld a, [hConnectionStripLength]
-	ld c, a
-	cp $8
-	jr nz, .asm_3d4bc
-.asm_3d4b5
-	ld a, [hli]
-	ld [hld], a
-	dec hl
-	dec c
-	jr nz, .asm_3d4b5
-	ret
-
-.asm_3d4bc
-	ld a, [hld]
-	ld [hli], a
-	inc hl
-	dec c
-	jr nz, .asm_3d4bc
-	ret
-; 3d4c3
-
-
-Function3d4c3: ; 3d4c3
-	call Function3d557
-	ld a, [$c718]
-	dec a
-	ld b, a
-	call Function3d6ca
-	call Function3d7a0
-	call Function3d834
-	call Function3d867
-	call Function3d7c7
-	call Function3dc18
-	call Function3d57a
-	ret
-; 3d4e1
-
-
-Function3d4e1: ; 3d4e1
-	call Function3d714
-	jr nc, asm_3d517
-	call Function3d557
-	call Function3d533
-	jr c, .asm_3d4f1
-	call Function3d599
-
-.asm_3d4f1
-	call Function3d6ca
-	call Function3d74b
-	push af
-	call Function3d7a0
-	call Function3d7b8
-	call Function3d7c7
-	pop af
-	ret c
-	xor a
-	ld [$c664], a
-	ld [$c6fc], a
-	ld [$d0ec], a
-	inc a
-	ld [$c711], a
-	call Function309d
-	jp Function3e3ad
-
-asm_3d517
-	call Function3d557
-	call Function3d533
-	jr c, .asm_3d522
-	call Function3d599
-
-.asm_3d522
-	call Function3d6ca
-	ld a, $1
-	ld [$c711], a
-	call Function3d7a0
-	call Function3d7b8
-	jp Function3d7c7
-; 3d533
-
-Function3d533: ; 3d533
-	ld a, [InLinkBattle]
-	and a
-	jr z, .asm_3d541
-	ld a, [$d430]
-	sub $4
-	ld b, a
-	jr .asm_3d555
-
-.asm_3d541
-	ld a, [$c718]
-	and a
-	jr z, .asm_3d54b
-	dec a
-	ld b, a
-	jr .asm_3d555
-
-.asm_3d54b
-	ld a, [$d264]
-	and a
-	ld b, $0
-	jr nz, .asm_3d555
-	and a
-	ret
-
-.asm_3d555
-	scf
-	ret
-; 3d557
-
-Function3d557: ; 3d557
-	xor a
-	ld [LastEnemyCounterMove], a
-	ld [LastPlayerCounterMove], a
-	ld [LastEnemyMove], a
-	ld [CurEnemyMove], a
-	dec a
-	ld [$c6e6], a
-	xor a
-	ld [$c730], a
-	ld hl, $c4b2
-	ld a, $8
-	call Function3d490
-	call EmptyBattleTextBox
-	jp Function1d6e
-; 3d57a
-
-Function3d57a: ; 3d57a
-	xor a
-	ld [$c664], a
-	ld [$c6fc], a
-Function3d581: ; 3d581
-	ld a, [CurBattleMon]
-	ld c, a
-	ld hl, $c664
-	ld b, $1
-	push bc
-	ld a, $3
-	call Predef
-	pop bc
-	ld hl, $c6fc
-	ld a, $3
-	jp Predef
-; 3d599
-
-Function3d599: ; 3d599
-	ld b, $ff
-	ld a, $1
-	ld [Buffer1], a
-	ld [Buffer2], a
-.asm_3d5a3
-	ld hl, Buffer1
-	sla [hl]
-	inc hl
-	sla [hl]
-	inc b
-	ld a, [OTPartyCount]
-	cp b
-	jp z, Function3d672
-	ld a, [CurOTMon]
-	cp b
-	jr z, .asm_3d5d0
-	ld hl, OTPartyMon1CurHP
-	push bc
-	ld a, b
-	call GetPartyLocation
-	ld a, [hli]
-	ld c, a
-	ld a, [hl]
-	or c
-	pop bc
-	jr z, .asm_3d5d0
-	call Function3d5d7
-	call Function3d618
-	jr .asm_3d5a3
-
-.asm_3d5d0
-	ld hl, Buffer2
-	set 0, [hl]
-	jr .asm_3d5a3
-; 3d5d7
-
-Function3d5d7: ; 3d5d7
-	push bc
-	ld hl, OTPartyMon1Move1
-	ld a, b
-	call GetPartyLocation
-	pop bc
-	ld e, $5
-.asm_3d5e2
-	dec e
-	jr z, .asm_3d617
-	ld a, [hli]
-	and a
-	jr z, .asm_3d617
-	push hl
-	push de
-	push bc
-	dec a
-	ld hl, $5afb
-	ld bc, $0007
-	call AddNTimes
-	ld de, EnemyMoveAnimation
-	ld a, $10
-	call FarCopyBytes
-	call SetEnemyTurn
-	callab Function0x347c8
-	pop bc
-	pop de
-	pop hl
-	ld a, [$d265]
-	cp $b
-	jr c, .asm_3d5e2
-	ld hl, Buffer1
-	set 0, [hl]
-	ret
-
-.asm_3d617
-	ret
-; 3d618
-
-Function3d618: ; 3d618
-	push bc
-	ld hl, OTPartyCount
-	ld a, b
-	inc a
-	ld c, a
-	ld b, $0
-	add hl, bc
-	ld a, [hl]
-	dec a
-	ld hl, $542b
-	ld bc, $0020
-	call AddNTimes
-	ld de, EnemyMonType1
-	ld bc, $0002
-	ld a, $14
-	call FarCopyBytes
-	ld a, [BattleMonType1]
-	ld [PlayerMoveType], a
-	call SetPlayerTurn
-	callab Function0x347c8
-	ld a, [$d265]
-	cp $b
-	jr nc, .asm_3d663
-	ld a, [BattleMonType2]
-	ld [PlayerMoveType], a
-	callab Function0x347c8
-	ld a, [$d265]
-	cp $b
-	jr nc, .asm_3d663
-	pop bc
-	ret
-
-.asm_3d663
-	pop bc
-	ld hl, Buffer1
-	bit 0, [hl]
-	jr nz, .asm_3d66f
-	inc hl
-	set 0, [hl]
-	ret
-
-.asm_3d66f
-	res 0, [hl]
-	ret
-; 3d672
-
-Function3d672: ; 3d672
-.asm_3d672
-	ld hl, Buffer1
-	sla [hl]
-	inc hl
-	sla [hl]
-	jr nc, .asm_3d672
-	ld a, [OTPartyCount]
-	ld b, a
-	ld c, [hl]
-.asm_3d681
-	sla c
-	jr nc, .asm_3d68a
-	dec b
-	jr z, .asm_3d6a7
-	jr .asm_3d681
-
-.asm_3d68a
-	ld a, [Buffer1]
-	and a
-	jr z, .asm_3d69a
-	ld b, $ff
-	ld c, a
-.asm_3d693
-	inc b
-	sla c
-	jr nc, .asm_3d693
-	jr .asm_3d6c9
-
-.asm_3d69a
-	ld b, $ff
-	ld a, [Buffer2]
-	ld c, a
-.asm_3d6a0
-	inc b
-	sla c
-	jr c, .asm_3d6a0
-	jr .asm_3d6c9
-
-.asm_3d6a7
-	ld a, [OTPartyCount]
-	ld b, a
-	call BattleRandom
-	and $7
-	cp b
-	jr nc, .asm_3d6a7
-	ld b, a
-	ld a, [CurOTMon]
-	cp b
-	jr z, .asm_3d6a7
-	ld hl, OTPartyMon1CurHP
-	push bc
-	ld a, b
-	call GetPartyLocation
-	pop bc
-	ld a, [hli]
-	ld c, a
-	ld a, [hl]
-	or c
-	jr z, .asm_3d6a7
-
-.asm_3d6c9
-	ret
-; 3d6ca
-
-Function3d6ca: ; 3d6ca
-	ld a, b
-	ld [CurPartyMon], a
-	ld hl, OTPartyMon1Level
-	call GetPartyLocation
-	ld a, [hl]
-	ld [CurPartyLevel], a
-	ld a, [CurPartyMon]
-	inc a
-	ld hl, OTPartyCount
-	ld c, a
-	ld b, $0
-	add hl, bc
-	ld a, [hl]
-	ld [TempEnemyMonSpecies], a
-	ld [CurPartySpecies], a
-	call LoadEnemyMon
-	ld a, [CurPartySpecies]
-	cp $c9
-	jr nz, .asm_3d708
-	ld a, [$def4]
-	and a
-	jr nz, .asm_3d708
-	ld hl, EnemyMonAtkDefDV
-	ld a, $2d
-	call Predef
-	ld a, [UnownLetter]
-	ld [$def4], a
-
-.asm_3d708
-	ld hl, EnemyMonHPHi
-	ld a, [hli]
-	ld [$c6ea], a
-	ld a, [hl]
-	ld [$c6eb], a
-	ret
-; 3d714
-
-Function3d714: ; 3d714
-	ld a, [$d264]
-	dec a
-	jp z, .asm_3d749
-	ld a, [PartyCount]
-	dec a
-	jp z, .asm_3d749
-	ld a, [InLinkBattle]
-	and a
-	jp nz, .asm_3d749
-	ld a, [Options]
-	bit 6, a
-	jr nz, .asm_3d749
-	ld a, [CurPartyMon]
-	push af
-	ld a, [CurBattleMon]
-	ld [CurPartyMon], a
-	callba Functione538
-	pop bc
-	ld a, b
-	ld [CurPartyMon], a
-	jr c, .asm_3d749
-	scf
-	ret
-
-.asm_3d749
-	and a
-	ret
-; 3d74b
-
-Function3d74b: ; 3d74b
-	ld a, [CurPartyMon]
-	push af
-	callab Function39939
-	ld hl, BattleText_0x80aca
-	call StdBattleTextBox
-	ld bc, $0107
-	call Function1dd2
-	ld a, [$cfa9]
-	dec a
-	jr nz, .asm_3d79a
-	call Function3d2f7
-	call Function3d375
-	jr c, .asm_3d791
-	ld a, [CurBattleMon]
-	ld [$c71a], a
-	ld a, [CurPartyMon]
-	ld [CurBattleMon], a
-	call ClearPalettes
-	call DelayFrame
-	call Function3eda6
-	pop af
-	ld [CurPartyMon], a
-	xor a
-	ld [CurEnemyMove], a
-	ld [CurPlayerMove], a
-	and a
-	ret
-
-.asm_3d791
-	call ClearPalettes
-	call DelayFrame
-	call Function3eda6
-
-.asm_3d79a
-	pop af
-	ld [CurPartyMon], a
-	scf
-	ret
-; 3d7a0
-
-Function3d7a0: ; 3d7a0
-	xor a
-	ld [hBGMapMode], a
-	call Function1c07
-	call ClearSprites
-	ld hl, $c4a1
-	ld bc, $040a
-	call ClearBox
-	call WaitBGMap
-	jp Function3ee27
-; 3d7b8
-
-Function3d7b8: ; 3d7b8
-	callab Function39939
-	ld hl, BattleText_0x80af8
-	call StdBattleTextBox
-	jp WaitBGMap
-; 3d7c7
-
-Function3d7c7: ; 3d7c7
-	ld a, [TempEnemyMonSpecies]
-	ld [CurPartySpecies], a
-	ld [CurSpecies], a
-	call GetBaseData
-	ld a, $1
-	ld [MonType], a
-	ld a, $1f
-	call Predef
-	call Function3f47c
-	xor a
-	ld [$cfca], a
-	ld [$c689], a
-	call SetEnemyTurn
-	ld de, $0101
-	call Function3ee17
-	call Function3da79
-	jr nc, .asm_3d800
-	ld a, $1
-	ld [$c689], a
-	ld de, $0101
-	call Function3ee17
-
-.asm_3d800
-	ld bc, TempMonSpecies
-	callba Function4e53f
-	jr c, .asm_3d82c
-	callba Function4ea44
-	jr c, .asm_3d821
-	ld hl, $c4ac
-	ld d, $0
-	ld e, $0
-	ld a, $47
-	call Predef
-	jr .asm_3d82c
-
-.asm_3d821
-	ld a, $f
-	ld [CryTracks], a
-	ld a, [TempEnemyMonSpecies]
-	call Function37b6
-
-.asm_3d82c
-	call Function3e036
-	ld a, $1
-	ld [hBGMapMode], a
-	ret
-; 3d834
-
-Function3d834: ; 3d834
-	xor a
-	ld [LastEnemyCounterMove], a
-	ld [LastPlayerCounterMove], a
-	ld [LastEnemyMove], a
-	ld hl, EnemySubStatus1
-	ld [hli], a
-	ld [hli], a
-	ld [hli], a
-	ld [hli], a
-	ld [hl], a
-	ld [EnemyDisableCount], a
-	ld [EnemyFuryCutterCount], a
-	ld [$c681], a
-	ld [$c72c], a
-	ld [EnemyDisabledMove], a
-	ld [$c6fa], a
-	ld [$c730], a
-	ld [$c731], a
-	ld [EnemyTurnsTaken], a
-	ld hl, PlayerSubStatus5
-	res 7, [hl]
-	ret
-; 3d867
-
-Function3d867: ; 3d867
-	ld a, $7
-	ld b, $8
-	ld hl, EnemyAtkLevel
-.asm_3d86e
-	ld [hli], a
-	dec b
-	jr nz, .asm_3d86e
-	ret
-; 3d873
-
-Function3d873: ; 3d873
-	ld a, [PartyCount]
-	ld e, a
-	xor a
-	ld hl, PartyMon1CurHP
-	ld bc, $002f
-.asm_3d87e
-	or [hl]
-	inc hl
-	or [hl]
-	add hl, bc
-	dec e
-	jr nz, .asm_3d87e
-	ld d, a
-	ret
-; 3d887
-
-
-Function3d887: ; 3d887
-	ld a, [CurPartyMon]
-	ld hl, PartyMon1CurHP
-	call GetPartyLocation
-	ld a, [hli]
-	or [hl]
-	ret nz
-	ld a, [$d264]
-	and a
-	jr nz, .asm_3d8b1
-	ld hl, PartySpecies
-	ld a, [CurPartyMon]
-	ld c, a
-	ld b, 0
-	add hl, bc
-	ld a, [hl]
-	cp EGG
-	ld hl, BattleText_0x80b26
-	jr z, .asm_3d8ae
-	ld hl, BattleText_0x80b0b
-
-.asm_3d8ae
-	call StdBattleTextBox
-
-.asm_3d8b1
-	xor a
-	ret
-; 3d8b3
-
-
-Function3d8b3: ; 3d8b3
-	ld a, [BattleType]
-	cp $2
-	jp z, .asm_3d9a2
-	cp $6
-	jp z, .asm_3d9a2
-	cp $9
-	jp z, .asm_3d98d
-	cp $b
-	jp z, .asm_3d98d
-	cp $7
-	jp z, .asm_3d98d
-	cp $c
-	jp z, .asm_3d98d
-
-	ld a, [InLinkBattle]
-	and a
-	jp nz, .asm_3d9a2
-
-	ld a, [IsInBattle]
-	dec a
-	jp nz, .asm_3d992
-
-	ld a, [EnemySubStatus5]
-	bit 7, a
-	jp nz, .asm_3d98d
-
-	ld a, [$c730]
-	and a
-	jp nz, .asm_3d98d
-
-	push hl
-	push de
-	ld a, [BattleMonItem]
-	ld [$d265], a
-	ld b, a
-	callab GetItem
-	ld a, b
-	cp $48
-	pop de
-	pop hl
-	jr nz, .asm_3d916
-
-	call SetPlayerTurn
-	call GetItemName
-	ld hl, BattleText_0x80b89
-	call StdBattleTextBox
-	jp .asm_3d9a2
-
-.asm_3d916
-	ld a, [$d267]
-	inc a
-	ld [$d267], a
-	ld a, [hli]
-	ld [$ffb5], a
-	ld a, [hl]
-	ld [$ffb6], a
-	ld a, [de]
-	inc de
-	ld [$ffb1], a
-	ld a, [de]
-	ld [$ffb2], a
-	call Function30b4
-	ld de, $ffb5
-	ld hl, $ffb1
-	ld c, $2
-	call StringCmp
-	jr nc, .asm_3d9a2
-	xor a
-	ld [hMultiplicand], a
-	ld a, $20
-	ld [hMultiplier], a
-	call Multiply
-	ld a, [$ffb5]
-	ld [hProduct], a
-	ld a, [$ffb6]
-	ld [hMultiplicand], a
-	ld a, [$ffb1]
-	ld b, a
-	ld a, [$ffb2]
-	srl b
-	rr a
-	srl b
-	rr a
-	and a
-	jr z, .asm_3d9a2
-	ld [hMultiplier], a
-	ld b, $2
-	call Divide
-	ld a, [$ffb5]
-	and a
-	jr nz, .asm_3d9a2
-	ld a, [$d267]
-	ld c, a
-.asm_3d96c
-	dec c
-	jr z, .asm_3d97a
-	ld b, $1e
-	ld a, [$ffb6]
-	add b
-	ld [$ffb6], a
-	jr c, .asm_3d9a2
-	jr .asm_3d96c
-
-.asm_3d97a
-	call BattleRandom
-	ld b, a
-	ld a, [$ffb6]
-	cp b
-	jr nc, .asm_3d9a2
-	ld a, $1
-	ld [$d0ec], a
-	ld hl, BattleText_0x80b3b
-	jr .asm_3d995
-
-.asm_3d98d
-	ld hl, BattleText_0x80ba0
-	jr .asm_3d995
-
-.asm_3d992
-	ld hl, BattleText_0x80b49
-
-.asm_3d995
-	call StdBattleTextBox
-	ld a, $1
-	ld [$d266], a
-	call Function309d
-	and a
-	ret
-
-.asm_3d9a2
-	ld a, [InLinkBattle]
-	and a
-	ld a, $2
-	jr z, .asm_3d9cf
-	call Function309d
-	xor a
-	ld [$d0ec], a
-	ld a, $f
-	ld [CurMoveNum], a
-	xor a
-	ld [CurPlayerMove], a
-	call Function3e8e4
-	call Function30b4
-	call Function3d2e0
-	jr c, .asm_3d9f5
-
-; Got away safely
-	ld a, [$d430]
-	cp $f
-	ld a, $2
-	jr z, .asm_3d9cf
-	dec a
-.asm_3d9cf
-	ld b, a
-	ld a, [$d0ee]
-	and $c0
-	add b
-	ld [$d0ee], a
-	call Function3ceec
-	push de
-	ld de, SFX_RUN
-	call WaitPlaySFX
-	pop de
-	call WaitSFX
-	ld hl, BattleText_0x80b77
-	call StdBattleTextBox
-	call WaitSFX
-	call Function309d
-	scf
-	ret
-
-.asm_3d9f5
-	call Function3ceec
-	ld hl, $cd2a
-	bit 4, [hl]
-	jr nz, .asm_3da05
-	ld hl, BattleText_0x81863
-	call StdBattleTextBox
-
-.asm_3da05
-	call WaitSFX
-	call Function309d
-	scf
-	ret
-; 3da0d
-
-
-Function3da0d: ; 3da0d
-	ld a, $0
-	call GetPartyParamLocation
-	ld de, BattleMonSpecies
-	ld bc, $0006
-	call CopyBytes
-	ld bc, $000f
-	add hl, bc
-	ld de, BattleMonAtkDefDV
-	ld bc, $0007
-	call CopyBytes
-	inc hl
-	inc hl
-	inc hl
-	ld de, BattleMonLevel
-	ld bc, $0011
-	call CopyBytes
-	ld a, [BattleMonSpecies]
-	ld [TempBattleMonSpecies], a
-	ld [CurPartySpecies], a
-	ld [CurSpecies], a
-	call GetBaseData
-	ld a, [BaseType1]
-	ld [BattleMonType1], a
-	ld a, [BaseType2]
-	ld [BattleMonType2], a
-	ld hl, PartyMon1Nickname
-	ld a, [CurBattleMon]
-	call SkipNames
-	ld de, BattleMonNick
-	ld bc, $000b
-	call CopyBytes
-	ld hl, BattleMonAtk
-	ld de, PlayerStats
-	ld bc, $000a
-	call CopyBytes
-	call Function3ec2c
-	call BadgeStatBoosts
-	ret
-; 3da74
-
-Function3da74: ; 3da74
-	call Function3da85
-	jr asm_3da7c
-
-Function3da79: ; 3da79
-	call Function3da97
-
-asm_3da7c
-	ld b, h
-	ld c, l
-	callab CheckShininess
-	ret
-; 3da85
-
-Function3da85: ; 3da85
-	ld hl, BattleMonAtkDefDV
-	ld a, [PlayerSubStatus5]
-	bit 3, a
-	ret z
-	ld hl, PartyMon1DVs
-	ld a, [CurBattleMon]
-	jp GetPartyLocation
-; 3da97
-
-Function3da97: ; 3da97
-	ld hl, EnemyMonAtkDefDV
-	ld a, [EnemySubStatus5]
-	bit 3, a
-	ret z
-	ld hl, $c6f2
-	ld a, [IsInBattle]
-	dec a
-	ret z
-	ld hl, OTPartyMon1AtkDefDV
-	ld a, [CurOTMon]
-	jp GetPartyLocation
-; 3dab1
-
-Function3dab1: ; 3dab1
-	ld a, $7
-	ld b, $8
-	ld hl, PlayerAtkLevel
-.asm_3dab8
-	ld [hli], a
-	dec b
-	jr nz, .asm_3dab8
-	ret
-; 3dabd
-
-
-Function3dabd: ; 3dabd
-	ld a, [CurPartyMon]
-	ld hl, OTPartyMon1Species
-	call GetPartyLocation
-	ld de, EnemyMonSpecies
-	ld bc, $0006
-	call CopyBytes
-	ld bc, $000f
-	add hl, bc
-	ld de, EnemyMonAtkDefDV
-	ld bc, $0007
-	call CopyBytes
-	inc hl
-	inc hl
-	inc hl
-	ld de, EnemyMonLevel
-	ld bc, $0011
-	call CopyBytes
-	ld a, [EnemyMonSpecies]
-	ld [CurSpecies], a
-	call GetBaseData
-	ld hl, OTPartyMon1Nickname
-	ld a, [CurPartyMon]
-	call SkipNames
-	ld de, EnemyMonNick
-	ld bc, $000b
-	call CopyBytes
-	ld hl, EnemyMonAtk
-	ld de, EnemyStats
-	ld bc, $000a
-	call CopyBytes
-	call Function3ec30
-	ld hl, BaseType1
-	ld de, EnemyMonType1
-	ld a, [hli]
-	ld [de], a
-	inc de
-	ld a, [hl]
-	ld [de], a
-	ld hl, BaseHP
-	ld de, EnemyMonBaseStats
-	ld b, $5
-.asm_3db25
-	ld a, [hli]
-	ld [de], a
-	inc de
-	dec b
-	jr nz, .asm_3db25
-	ld a, [CurPartyMon]
-	ld [CurOTMon], a
-	ret
-; 3db32
-
-
-Function3db32: ; 3db32
-	call ClearSprites
-	ld a, [CurBattleMon]
-	ld [$c71a], a
-	ld a, [CurPartyMon]
-	ld [CurBattleMon], a
-	call Function3d581
-	call Function3da0d
-	call Function3dab1
-	call Function3dbde
-	call Function3dc18
-	call Function3db5f
-	call EmptyBattleTextBox
-	call Function309d
-	ld hl, EnemyMonHPHi
-	ld a, [hli]
-	or [hl]
-	ret
-; 3db5f
-
-
-Function3db5f: ; 3db5f
-	ld hl, BattleMonAtkDefDV
-	ld a, $2d
-	call Predef
-	ld hl, $c505
-	ld b, $7
-	ld c, $8
-	call ClearBox
-	call WaitBGMap
-	xor a
-	ld [hBGMapMode], a
-	call Function3f43d
-	xor a
-	ld [$ffad], a
-	ld [$d0d2], a
-	ld [CurMoveNum], a
-	ld [TypeModifier], a
-	ld [PlayerMoveAnimation], a
-	ld [LastEnemyCounterMove], a
-	ld [LastPlayerCounterMove], a
-	ld [LastPlayerMove], a
-	call Function3e4a8
-	call Function3ee27
-	xor a
-	ld [$c731], a
-	call SetPlayerTurn
-	xor a
-	ld [$cfca], a
-	ld [$c689], a
-	ld de, $0101
-	call Function3ee17
-	call Function3da74
-	jr nc, .asm_3dbbc
-	ld a, $1
-	ld [$c689], a
-	ld de, $0101
-	call Function3ee17
-
-.asm_3dbbc
-	ld a, $0
-	call GetPartyParamLocation
-	ld b, h
-	ld c, l
-	callba Function4e53f
-	jr c, .asm_3dbd6
-	ld a, $f0
-	ld [CryTracks], a
-	ld a, [CurPartySpecies]
-	call Function37b6
-
-.asm_3dbd6
-	call Function3df48
-	ld a, $1
-	ld [hBGMapMode], a
-	ret
-; 3dbde
-
-Function3dbde: ; 3dbde
-	xor a
-	ld [LastEnemyCounterMove], a
-	ld [LastPlayerCounterMove], a
-	ld [LastPlayerMove], a
-	ld hl, PlayerSubStatus1
-	ld [hli], a
-	ld [hli], a
-	ld [hli], a
-	ld [hli], a
-	ld [hl], a
-	ld hl, PlayerUsedMoves
-	ld [hli], a
-	ld [hli], a
-	ld [hli], a
-	ld [hl], a
-	ld [PlayerDisableCount], a
-	ld [PlayerFuryCutterCount], a
-	ld [$c679], a
-	ld [$c72b], a
-	ld [DisabledMove], a
-	ld [$c6fe], a
-	ld [$c731], a
-	ld [$c730], a
-	ld [PlayerTurnsTaken], a
-	ld hl, EnemySubStatus5
-	res 7, [hl]
-	ret
-; 3dc18
-
-Function3dc18: ; 3dc18
-	ld hl, PlayerSubStatus1
-	res 7, [hl]
-	ld hl, EnemySubStatus1
-	res 7, [hl]
-	ret
-; 3dc23
-
-Function3dc23: ; 3dc23
-	ld hl, PlayerScreens
-	ld de, BattleMonType1
-	ld bc, Function3df48
-	ld a, [hBattleTurn]
-	and a
-	jr z, .asm_3dc3a
-	ld hl, EnemyScreens
-	ld de, EnemyMonType1
-	ld bc, Function3e036
-
-.asm_3dc3a
-	bit 0, [hl]
-	ret z
-	ld a, [de]
-	cp $2
-	ret z
-	inc de
-	ld a, [de]
-	cp $2
-	ret z
-	push bc
-	ld hl, BattleText_0x80bae
-	call StdBattleTextBox
-	call GetEighthMaxHP
-	call Function3cc39
-	pop hl
-	call Function3dc5a
-	jp WaitBGMap
-; 3dc5a
-
-Function3dc5a: ; 3dc5a
-	jp [hl]
-; 3dc5b
-
-Function3dc5b: ; 3dc5b
-	ld a, $10
-	call GetBattleVar
-	ld b, a
-	call Function3c5ec
-	ld a, b
-	cp $80
-	jr nz, .asm_3dce4
-	ld a, [CurBattleMon]
-	push af
-	ld hl, DoPlayerTurn
-	ld a, [hBattleTurn]
-	and a
-	jr z, .asm_3dc7e
-	ld hl, DoEnemyTurn
-	ld a, [$c71a]
-	ld [CurBattleMon], a
-
-.asm_3dc7e
-	ld a, BANK(DoPlayerTurn)
-	rst FarCall
-	ld a, $10
-	call _GetBattleVar
-	ld a, $ff
-	ld [hl], a
-	pop af
-	ld [CurBattleMon], a
-	ld a, [hBattleTurn]
-	and a
-	jr z, .asm_3dcc0
-	ld a, [$c71a]
-	call Function399f
-	ld hl, BattleMonHP
-	ld a, [hli]
-	or [hl]
-	jr nz, .asm_3dce4
-	ld a, $f0
-	ld [CryTracks], a
-	ld a, [BattleMonSpecies]
-	call Function37b6
-	ld a, [$c71a]
-	ld c, a
-	ld hl, $c664
-	ld b, $0
-	ld a, $3
-	call Predef
-	call Function3d43b
-	ld hl, BattleText_0x80a75
-	jr .asm_3dcdf
-
-.asm_3dcc0
-	ld hl, EnemyMonHPHi
-	ld a, [hli]
-	or [hl]
-	jr nz, .asm_3dce4
-	ld de, SFX_KINESIS
-	call PlaySFX
-	call WaitSFX
-	ld de, SFX_UNKNOWN_2A
-	call PlaySFX
-	call WaitSFX
-	call Function3d432
-	ld hl, BattleText_0x809a8
-
-.asm_3dcdf
-	call StdBattleTextBox
-	scf
-	ret
-
-.asm_3dce4
-	and a
-	ret
-; 3dce6
-
-Function3dce6: ; 3dce6
-	ld a, [hBattleTurn]
-	push af
-	xor a
-	ld [hBattleTurn], a
-	ld [$cfca], a
-	ld de, $0102
-	call Function3ee17
-	pop af
-	ld [hBattleTurn], a
-	ret
-; 3dcf9
-
-Function3dcf9: ; 3dcf9
-	ld a, [$ffcb]
-	cp $1
-	jr z, .asm_3dd17
-	call SetPlayerTurn
-	call Function3dd2f
-	call Function3dde9
-	call Function3de51
-	call SetEnemyTurn
-	call Function3dd2f
-	call Function3dde9
-	jp Function3de51
-
-.asm_3dd17
-	call SetEnemyTurn
-	call Function3dd2f
-	call Function3dde9
-	call Function3de51
-	call SetPlayerTurn
-	call Function3dd2f
-	call Function3dde9
-	jp Function3de51
-; 3dd2f
-
-Function3dd2f: ; 3dd2f
-	callab GetOpponentItem
-	ld a, b
-	cp $1
-	ret nz
-	ld de, EnemyMonHPLo
-	ld hl, EnemyMonMaxHPHi
-	ld a, [hBattleTurn]
-	and a
-	jr z, .asm_3dd4a
-	ld de, $c63d
-	ld hl, BattleMonMaxHP
-
-.asm_3dd4a
-	push bc
-	ld a, [de]
-	ld [$d1ec], a
-	add a
-	ld c, a
-	dec de
-	ld a, [de]
-	inc de
-	ld [$d1ed], a
-	adc a
-	ld b, a
-	ld a, b
-	cp [hl]
-	ld a, c
-	pop bc
-	jr z, .asm_3dd62
-	jr c, .asm_3dd66
-	ret
-
-.asm_3dd62
-	inc hl
-	cp [hl]
-	dec hl
-	ret nc
-
-.asm_3dd66
-	call Function3ddc8
-	ld a, [hli]
-	ld [Buffer2], a
-	ld a, [hl]
-	ld [Buffer1], a
-	ld a, [de]
-	add c
-	ld [$d1ee], a
-	ld c, a
-	dec de
-	ld a, [de]
-	adc $0
-	ld [$d1ef], a
-	ld b, a
-	ld a, [hld]
-	cp c
-	ld a, [hl]
-	sbc b
-	jr nc, .asm_3dd8d
-	ld a, [hli]
-	ld [$d1ef], a
-	ld a, [hl]
-	ld [$d1ee], a
-
-.asm_3dd8d
-	ld a, [$d1ef]
-	ld [de], a
-	inc de
-	ld a, [$d1ee]
-	ld [de], a
-	ld a, [hBattleTurn]
-	ld [$d10a], a
-	and a
-	ld hl, $c4ca
-	jr z, .asm_3dda4
-	ld hl, $c55e
-
-.asm_3dda4
-	ld [$d10a], a
-	ld a, $b
-	call Predef
-Function3ddac:
-	call RefreshBattleHuds
-	callab GetOpponentItem
-	ld a, [hl]
-	ld [$d265], a
-	call GetItemName
-	callab Function27192
-	ld hl, RecoveredUsingText
-	jp StdBattleTextBox
-; 3ddc8
-
-
-Function3ddc8: ; 3ddc8
-	push hl
-	push de
-	push bc
-	call EmptyBattleTextBox
-	ld a, $69
-	ld [FXAnimIDLo], a
-	call Function3c8e4
-	xor a
-	ld [$cfca], a
-	ld [FXAnimIDHi], a
-	ld a, $37
-	call Predef
-	call Function3c8e4
-	pop bc
-	pop de
-	pop hl
-	ret
-; 3dde9
-
-Function3dde9: ; 3dde9
-	callab GetOpponentItem
-	ld hl, .Statuses
-.asm_3ddf2
-	ld a, [hli]
-	cp $ff
-	ret z
-	inc hl
-	cp b
-	jr nz, .asm_3ddf2
-	dec hl
-	ld b, [hl]
-	ld a, $b
-	call _GetBattleVar
-	and b
-	ret z
-	xor a
-	ld [hl], a
-	push bc
-	call UpdateOpponentInParty
-	pop bc
-	ld a, $9
-	call _GetBattleVar
-	and [hl]
-	res 0, [hl]
-	ld a, $5
-	call _GetBattleVar
-	and [hl]
-	res 0, [hl]
-	ld a, b
-	cp $7f
-	jr nz, .asm_3de26
-	ld a, $7
-	call _GetBattleVar
-	res 7, [hl]
-
-.asm_3de26
-	ld hl, Function0x365fd
-	ld a, [hBattleTurn]
-	and a
-	jr z, .asm_3de31
-	ld hl, Function0x365d7
-
-.asm_3de31
-	call Function3c8e4
-	ld a, BANK(Function0x365fd)
-	rst FarCall
-	call Function3c8e4
-	call Function3ddc8
-	call Function3ddac
-	ld a, $1
-	and a
-	ret
-; 3de44
-
-.Statuses ; 3de44
-	db HELD_HEAL_POISON, 1 << PSN
-	db HELD_HEAL_FREEZE, 1 << FRZ
-	db HELD_HEAL_BURN, 1 << BRN
-	db HELD_HEAL_SLEEP, SLP
-	db HELD_HEAL_PARALYZE, 1 << PAR
-	db HELD_HEAL_STATUS, 1 << PSN | 1 << FRZ | 1 << BRN | SLP | 1 << PAR
-	db $ff
-; 3de51
-
-
-Function3de51: ; 3de51
-	ld a, $7
-	call GetBattleVar
-	bit 7, a
-	ret z
-	callab GetOpponentItem
-	ld a, b
-	cp $10
-	jr z, .asm_3de67
-	cp $f
-	ret nz
-
-.asm_3de67
-	ld a, [hl]
-	ld [$d265], a
-	ld a, $7
-	call _GetBattleVar
-	res 7, [hl]
-	call GetItemName
-	call Function3ddc8
-	ld hl, BattleText_0x80dab
-	call StdBattleTextBox
-	ld a, [hBattleTurn]
-	and a
-	jr nz, .asm_3de90
-	call Function3df1f
-	xor a
-	ld [bc], a
-	ld a, [IsInBattle]
-	dec a
-	ret z
-	ld [hl], $0
-	ret
-
-.asm_3de90
-	call Function3df12
-	xor a
-	ld [bc], a
-	ld [hl], a
-	ret
-; 3de97
-
-Function3de97: ; 3de97
-	ld a, [$ffcb]
-	cp $1
-	jr z, .asm_3dea3
-	call Function3dea9
-	jp Function3deb1
-
-.asm_3dea3
-	call Function3deb1
-	jp Function3dea9
-; 3dea9
-
-Function3dea9: ; 3dea9
-	call Function3df12
-	ld a, $0
-	jp Function3deb6
-; 3deb1
-
-Function3deb1: ; 3deb1
-	call Function3df1f
-	ld a, $1
-Function3deb6: ; 3deb6
-	ld [hBattleTurn], a
-	ld d, h
-	ld e, l
-	push de
-	push bc
-	ld a, [bc]
-	ld b, a
-	callab GetItem
-	ld hl, .data_3defc
-.asm_3dec7
-	ld a, [hli]
-	cp $ff
-	jr z, .asm_3def9
-	inc hl
-	inc hl
-	cp b
-	jr nz, .asm_3dec7
-	pop bc
-	ld a, [bc]
-	ld [$d265], a
-	push bc
-	dec hl
-	dec hl
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	ld a, BANK(BattleCommand70)
-	rst FarCall
-	pop bc
-	pop de
-	ld a, [FailedMessage]
-	and a
-	ret nz
-	xor a
-	ld [bc], a
-	ld [de], a
-	call GetItemName
-	ld hl, BattleText_0x80bde
-	call StdBattleTextBox
-	callab BattleCommand8c
-	ret
-
-.asm_3def9
-	pop bc
-	pop de
-	ret
-; 3defc
-
-.data_3defc
-	dbw $1f, BattleCommand70
-	dbw $20, BattleCommand71
-	dbw $21, BattleCommand72
-	dbw $22, BattleCommand73
-	dbw $23, BattleCommand74
-	dbw $24, BattleCommand75
-	dbw $25, BattleCommand76
-	db $ff
-; 3df12
-
-
-Function3df12: ; 3df12
-	ld hl, PartyMon1Item
-	ld a, [CurBattleMon]
-	call GetPartyLocation
-	ld bc, BattleMonItem
-	ret
-; 3df1f
-
-Function3df1f: ; 3df1f
-	ld hl, OTPartyMon1Item
-	ld a, [CurOTMon]
-	call GetPartyLocation
-	ld bc, EnemyMonItem
-	ret
-; 3df2c
-
-Function3df2c: ; 3df2c
-	push hl
-	push de
-	push bc
-	call DrawPlayerHUD
-	ld hl, PlayerHPPal
-	call SetHPPal
-	call CheckDanger
-	call Function3e043
-	ld hl, EnemyHPPal
-	call SetHPPal
-	pop bc
-	pop de
-	pop hl
-	ret
-; 3df48
-
-
-
-Function3df48: ; 3df48
-	push hl
-	push de
-	push bc
-	call DrawPlayerHUD
-	call UpdatePlayerHPPal
-	call CheckDanger
-	pop bc
-	pop de
-	pop hl
-	ret
-; 3df58
-
-DrawPlayerHUD: ; 3df58
-	xor a
-	ld [hBGMapMode], a
-
-; Clear the area
-	hlcoord 9, 7
-	ld bc, $050b
-	call ClearBox
-
-	callba DrawPlayerExpBar
-
-	hlcoord 18, 9
-	ld [hl], $73 ; vertical bar
-	call PrintPlayerHUD
-
-; HP bar
-	hlcoord 10, 9
-	ld b, OTPARTYMON
-	xor a
-	ld [MonType], a
-	ld a, PREDEF_DRAW_PLAYER_HP
-	call Predef
-
-; Exp bar
-	push de
-	ld a, [CurBattleMon]
-	ld hl, PartyMon1Exp + 2
-	call GetPartyLocation
-	ld d, h
-	ld e, l
-
-	hlcoord 10, 11
-	ld a, [TempMonLevel]
-	ld b, a
-	call FillInExpBar
-	pop de
-	ret
-; 3df98
-
-UpdatePlayerHPPal: ; 3df98
-	ld hl, PlayerHPPal
-	jp Function3e12e
-; 3df9e
-
-CheckDanger: ; 3df9e
-	ld hl, BattleMonHP
-	ld a, [hli]
-	or [hl]
-	jr z, .asm_3dfb2
-	ld a, [$c6fd]
-	and a
-	jr nz, .asm_3dfbe
-	ld a, [PlayerHPPal]
-	cp $2
-	jr z, .asm_3dfb9
-
-.asm_3dfb2
-	ld hl, Danger
-	res 7, [hl]
-	jr .asm_3dfbe
-
-.asm_3dfb9
-	ld hl, Danger
-	set 7, [hl]
-
-.asm_3dfbe
-	ret
-; 3dfbf
-
-PrintPlayerHUD: ; 3dfbf
-	ld de, BattleMonNick
-	hlcoord 10, 7
-	call Function3e138
-	call PlaceString
-
-	push bc
-
-	ld a, [CurBattleMon]
-	ld hl, PartyMon1DVs
-	call GetPartyLocation
-	ld de, TempMonDVs
-	ld a, [hli]
-	ld [de], a
-	inc de
-	ld a, [hl]
-	ld [de], a
-	ld hl, BattleMonLevel
-	ld de, TempMonLevel
-	ld bc, $0011
-	call CopyBytes
-	ld a, [CurBattleMon]
-	ld hl, PartyMon1Species
-	call GetPartyLocation
-	ld a, [hl]
-	ld [CurPartySpecies], a
-	ld [CurSpecies], a
-	call GetBaseData
-
-	pop hl
-	dec hl
-
-	ld a, $3
-	ld [MonType], a
-	callab GetGender
-	ld a, $7f
-	jr c, .asm_3e013
-	ld a, $ef
-	jr nz, .asm_3e013
-	ld a, $f5
-
-.asm_3e013
-	ld hl, $c551
-	ld [hl], a
-	ld hl, $c54e
-	push af
-	push hl
-	ld de, BattleMonStatus
-	ld a, $21
-	call Predef
-	pop hl
-	pop bc
-	ret nz
-	ld a, b
-	cp $7f
-	jr nz, .asm_3e02d
-	dec hl
-
-.asm_3e02d
-	ld a, [BattleMonLevel]
-	ld [TempMonLevel], a
-	jp PrintLevel
-; 3e036
-
-Function3e036: ; 3e036
-	push hl
-	push de
-	push bc
-	call Function3e043
-	call Function3e127
-	pop bc
-	pop de
-	pop hl
-	ret
-; 3e043
-
-Function3e043: ; 3e043
-	xor a
-	ld [hBGMapMode], a
-	ld hl, $c4a1
-	ld bc, $040b
-	call ClearBox
-	callba Function2c0c5
-	ld a, [TempEnemyMonSpecies]
-	ld [CurSpecies], a
-	ld [CurPartySpecies], a
-	call GetBaseData
-	ld de, EnemyMonNick
-	ld hl, $c4a1
-	call Function3e138
-	call PlaceString
-	ld h, b
-	ld l, c
-	dec hl
-	ld hl, EnemyMonAtkDefDV
-	ld de, TempMonDVs
-	ld a, [EnemySubStatus5]
-	bit 3, a
-	jr z, .asm_3e080
-	ld hl, $c6f2
-
-.asm_3e080
-	ld a, [hli]
-	ld [de], a
-	inc de
-	ld a, [hl]
-	ld [de], a
-	ld a, $3
-	ld [MonType], a
-	callab GetGender
-	ld a, $7f
-	jr c, .asm_3e09a
-	ld a, $ef
-	jr nz, .asm_3e09a
-	ld a, $f5
-
-.asm_3e09a
-	ld hl, $c4bd
-	ld [hl], a
-	ld hl, $c4ba
-	push af
-	push hl
-	ld de, EnemyMonStatus
-	ld a, $21
-	call Predef
-	pop hl
-	pop bc
-	jr nz, .asm_3e0be
-	ld a, b
-	cp $7f
-	jr nz, .asm_3e0b5
-	dec hl
-
-.asm_3e0b5
-	ld a, [EnemyMonLevel]
-	ld [TempMonLevel], a
-	call PrintLevel
-
-.asm_3e0be
-	ld hl, EnemyMonHPHi
-	ld a, [hli]
-	ld [$ffb5], a
-	ld a, [hld]
-	ld [$ffb6], a
-	or [hl]
-	jr nz, .asm_3e0d1
-	ld c, a
-	ld e, a
-	ld d, $6
-	jp .asm_3e11a
-
-.asm_3e0d1
-	xor a
-	ld [hMultiplicand], a
-	ld a, $30
-	ld [hMultiplier], a
-	call Multiply
-	ld hl, EnemyMonMaxHPHi
-	ld a, [hli]
-	ld b, a
-	ld a, [hl]
-	ld [hMultiplier], a
-	ld a, b
-	and a
-	jr z, .asm_3e105
-	ld a, [hMultiplier]
-	srl b
-	rr a
-	srl b
-	rr a
-	ld [hMultiplier], a
-	ld a, [$ffb5]
-	ld b, a
-	srl b
-	ld a, [$ffb6]
-	rr a
-	srl b
-	rr a
-	ld [$ffb6], a
-	ld a, b
-	ld [$ffb5], a
-
-.asm_3e105
-	ld a, [$ffb5]
-	ld [hProduct], a
-	ld a, [$ffb6]
-	ld [hMultiplicand], a
-	ld a, $2
-	ld b, a
-	call Divide
-	ld a, [$ffb6]
-	ld e, a
-	ld a, $6
-	ld d, a
-	ld c, a
-.asm_3e11a
-	xor a
-	ld [$d10a], a
-	ld hl, $c4ca
-	ld b, $0
-	call DrawHPBar
-	ret
-; 3e127
-
-Function3e127: ; 3e127
-	ld hl, EnemyHPPal
-	call Function3e12e
-	ret
-; 3e12e
-
-Function3e12e: ; 3e12e
-	ld b, [hl]
-	call SetHPPal
-	ld a, [hl]
-	cp b
-	ret z
-	jp Function3ee27
-; 3e138
-
-Function3e138: ; 3e138
-	ret
-; 3e139
-
-Function3e139: ; 3e139
-	xor a
-	ld [hBGMapMode], a
-	call Function30bf
-	ld a, [BattleType]
-	cp $2
-	jr z, .asm_3e156
-	cp $3
-	jr z, .asm_3e156
-	call EmptyBattleTextBox
-	call UpdateBattleHuds
-	call EmptyBattleTextBox
-	call Function309d
-
-.asm_3e156
-	ld a, [BattleType]
-	cp $6
-	jr nz, .asm_3e165
-	callba LoadParkBattleMenuDataHeader
-	jr .asm_3e175
-
-.asm_3e165
-	ld a, [InputType]
-	or a
-	jr z, .asm_3e171
-	callba Function1de294
-.asm_3e171
-	call Function3e19b
-	ret c
-
-.asm_3e175
-	ld a, $1
-	ld [hBGMapMode], a
-	ld a, [$d0d2]
-	cp $1
-	jp z, Function3e192
-	cp $3
-	jp z, Function3e1c7
-	cp $2
-	jp z, Function3e28d
-	cp $4
-	jp z, Function3e489
-	jr .asm_3e156
-; 3e192
-
-Function3e192: ; 3e192
-	xor a
-	ld [$d267], a
-	call Function30b4
-	and a
-	ret
-; 3e19b
-
-Function3e19b: ; 3e19b
-	call CheckInMobileLinkBattle
-	jr z, .ismobilelinkbattle
-	callba LoadBattleMenuDataHeader
-	and a
-	ret
-
-.ismobilelinkbattle
-	callba Function100b12
-	ld a, [$cd2b]
-	and a
-	ret z
-	ld hl, $cd2a
-	bit 4, [hl]
-	jr nz, .asm_3e1c5
-	ld hl, $5863
-	call StdBattleTextBox
-	ld c, $3c
-	call DelayFrames
-
-.asm_3e1c5
-	scf
-	ret
-; 3e1c7
-
-Function3e1c7: ; 3e1c7
-	ld a, [InLinkBattle]
-	and a
-	jp nz, Function3e22b
-	ld a, [$cfc0]
-	and a
-	jp nz, Function3e22b
-	call Function1d6e
-	ld a, [BattleType]
-	cp $3
-	jr z, .asm_3e1f1
-	cp $6
-	jr z, .asm_3e201
-	callba Function10493
-	ld a, [$d0ec]
-	and a
-	jr z, .asm_3e20d
-	jr .asm_3e209
-
-.asm_3e1f1
-	callba Function107bb
-	ld a, $5
-	ld [CurItem], a
-	call DoItemEffect
-	jr .asm_3e209
-
-.asm_3e201
-	ld a, $b1
-	ld [CurItem], a
-	call DoItemEffect
-
-.asm_3e209
-	call Function3e234
-	ret
-
-.asm_3e20d
-	call ClearPalettes
-	call DelayFrame
-	call Function3ed9f
-	call Function3f43d
-	call Function3f47c
-	call Function1c07
-	call WaitBGMap
-	call Function3ee27
-	call Function309d
-	jp Function3e139
-; 3e22b
-
-Function3e22b: ; 3e22b
-	ld hl, BattleText_0x80bf3
-	call StdBattleTextBox
-	jp Function3e139
-; 3e234
-
-Function3e234: ; 3e234
-	ld a, [$c64e]
-	and a
-	jr nz, .asm_3e279
-	callab CheckItemPocket
-	ld a, [$d142]
-	cp $3
-	jr z, .asm_3e24a
-	call WhiteBGMap
-
-.asm_3e24a
-	xor a
-	ld [hBGMapMode], a
-	call Function3ed9f
-	call ClearSprites
-	ld a, [BattleType]
-	cp $3
-	jr z, .asm_3e25d
-	call Function3f43d
-
-.asm_3e25d
-	call Function3f47c
-	ld a, $1
-	ld [$cfa9], a
-	call Function1c07
-	call Function3df2c
-	call WaitBGMap
-	call Function309d
-	call Function1fbf
-	call Function3ee27
-	and a
-	ret
-
-.asm_3e279
-	xor a
-	ld [$c64e], a
-	ld a, [$d0ee]
-	and $c0
-	ld [$d0ee], a
-	call Function1fbf
-	call Function32f9
-	scf
-	ret
-; 3e28d
-
-Function3e28d: ; 3e28d
-	call Function1d6e
-Function3e290:
-	call Function1c07
-	call Function1d6e
-	call WhiteBGMap
-Function3e299:
-	call Function3d2fa
-	xor a
-	ld [PartyMenuActionText], a
-	call Function3d313
-	call Function3d329
-	jr c, .asm_3e2da
-.asm_3e2a8
-	callba Function8ea4a
-	call Function3e2f5
-	jr c, .asm_3e2c8
-	call Function1bee
-	ld a, [$cfa9]
-	cp $1
-	jp z, Function3e358
-	cp $2
-	jr z, .asm_3e2cf
-	cp $3
-	jr z, .asm_3e2da
-	jr .asm_3e2a8
-
-.asm_3e2c8
-	call Function3d2e0
-	jr c, .asm_3e2da
-	jr Function3e299
-
-.asm_3e2cf
-	call Function3e308
-	call Function3d2e0
-	jr c, .asm_3e2da
-	jp Function3e290
-
-.asm_3e2da
-	call ClearSprites
-	call ClearPalettes
-	call DelayFrame
-	call Function3eda6
-	call Function1c17
-	call Function309d
-	call ClearSGB
-	call Function32f9
-	jp Function3e139
-; 3e2f5
-
-Function3e2f5: ; 3e2f5
-	call CheckInMobileLinkBattle
-	jr z, .ismobilelinkbattle
-	callba Function24e99
-	ret
-
-.ismobilelinkbattle
-	callba Function100d22
-	ret
-; 3e308
-
-Function3e308: ; 3e308
-	call DisableLCD
-	ld hl, $9310
-	ld de, VTiles0
-	ld bc, $0110
-	call CopyBytes
-	ld hl, VTiles2
-	ld de, $8110
-	ld bc, $0310
-	call CopyBytes
-	call EnableLCD
-	call ClearSprites
-	call LowVolume
-	xor a
-	ld [MonType], a
-	callba Function4dc7b
-	call MaxVolume
-	call DisableLCD
-	ld hl, VTiles0
-	ld de, $9310
-	ld bc, $0110
-	call CopyBytes
-	ld hl, $8110
-	ld de, VTiles2
-	ld bc, $0310
-	call CopyBytes
-	call EnableLCD
-	ret
-; 3e358
-
-
-Function3e358: ; 3e358
-	ld a, [CurBattleMon]
-	ld d, a
-	ld a, [CurPartyMon]
-	cp d
-	jr nz, .asm_3e36b
-	ld hl, BattleText_0x80c0d
-	call StdBattleTextBox
-	jp Function3e299
-
-.asm_3e36b
-	ld a, [$c730]
-	and a
-	jr nz, .asm_3e378
-	ld a, [EnemySubStatus5]
-	bit 7, a
-	jr z, .asm_3e381
-
-.asm_3e378
-	ld hl, BattleText_0x80c22
-	call StdBattleTextBox
-	jp Function3e299
-
-.asm_3e381
-	call Function3d887
-	jp z, Function3e299
-	ld a, [CurBattleMon]
-	ld [$c71a], a
-	ld a, $2
-	ld [$d0ec], a
-	call ClearPalettes
-	call DelayFrame
-	call ClearSprites
-	call Function3eda6
-	call Function1c17
-	call ClearSGB
-	call Function32f9
-	ld a, [CurPartyMon]
-	ld [CurBattleMon], a
-	; fallthrough
-; 3e3ad
-
-Function3e3ad: ; 3e3ad
-	ld a, $1
-	ld [$c710], a
-	ld a, [InLinkBattle]
-	and a
-	jr z, .asm_3e3c1
-	call Function1d6e
-	call Function3e8e4
-	call Function1c17
-
-.asm_3e3c1
-	call Function3e7c1
-	ld a, [InLinkBattle]
-	and a
-	jr nz, .asm_3e3cf
-
-.asm_3e3ca
-	call Function3e40b
-	and a
-	ret
-
-.asm_3e3cf
-	ld a, [$d430]
-	cp $e
-	jp z, .asm_3e3ca
-	cp $d
-	jp z, .asm_3e3ca
-	cp $4
-	jp c, .asm_3e3ca
-	cp $f
-	jr nz, .asm_3e3e9
-	call Function3c0e5
-	ret
-
-.asm_3e3e9
-	ld a, [$ffcb]
-	cp $1
-	jr z, .asm_3e3f7
-	call Function3e40b
-	call Function3e3ff
-	and a
-	ret
-
-.asm_3e3f7
-	call Function3e3ff
-	call Function3e40b
-	and a
-	ret
-; 3e3ff
-
-Function3e3ff: ; 3e3ff
-	callab Function3846c
-	call SetEnemyTurn
-	jp Function3dc23
-; 3e40b
-
-Function3e40b: ; 3e40b
-	call Function3f2f4
-	ld c, $32
-	call DelayFrames
-	ld hl, PlayerSubStatus4
-	res 6, [hl]
-	call SetEnemyTurn
-	call Function3dc5b
-	jr c, .asm_3e423
-	call Function3dce6
-
-.asm_3e423
-	ld hl, $c535
-	ld bc, $050b
-	call ClearBox
-	ld a, [CurBattleMon]
-	ld [CurPartyMon], a
-	call Function3d581
-	call Function3da0d
-	call Function3dab1
-	call Function3f26d
-	call Function3dbde
-	call Function3dc18
-	call Function3db5f
-	call EmptyBattleTextBox
-	call Function309d
-	call SetPlayerTurn
-	call Function3dc23
-	ld a, $2
-	ld [$cfa9], a
-	ret
-; 3e459
-
-Function3e459: ; 3e459
-	ld c, $32
-	call DelayFrames
-	ld hl, $c535
-	ld bc, $050b
-	call ClearBox
-	ld a, [CurPartyMon]
-	ld [CurBattleMon], a
-	call Function3d581
-	call Function3da0d
-	xor a
-	ld [$d265], a
-	call Function3ecab
-	call Function3db5f
-	call EmptyBattleTextBox
-	call Function309d
-	call SetPlayerTurn
-	jp Function3dc23
-; 3e489
-
-
-
-Function3e489: ; 3e489
-	call Function30b4
-	ld a, $3
-	ld [$cfa9], a
-	ld hl, BattleMonSpd
-	ld de, EnemyMonSpd
-	call Function3d8b3
-	ld a, $0
-	ld [$d266], a
-	ret c
-	ld a, [$d0ec]
-	and a
-	ret nz
-	jp Function3e139
-; 3e4a8
-
-
-
-Function3e4a8: ; 3e4a8
-	ld a, [BattleMonItem]
-	ld b, a
-	callab GetItem
-	ld a, b
-	cp $4c
-	ret nz
-	ld a, $1
-	ld [$c73d], a
-	ret
-; 3e4bc
-
-Function3e4bc: ; 3e4bc
-	call CheckInMobileLinkBattle
-	jr nz, .notmobilelinkbattle
-	callba Function100b9f
-	ret
-
-.notmobilelinkbattle
-	ld hl, EnemyMonMove1
-	ld a, [$d235]
-	dec a
-	jr z, .asm_3e4e2
-	dec a
-	jr z, .asm_3e4dd
-	call Function3e786
-	ret z
-	ld hl, BattleMonMove1
-	jr .asm_3e4e2
-
-.asm_3e4dd
-	ld a, $2
-	call GetPartyParamLocation
-
-.asm_3e4e2
-	ld de, $d25e
-	ld bc, $0004
-	call CopyBytes
-	xor a
-	ld [hBGMapMode], a
-	ld hl, $c594
-	ld b, $4
-	ld c, $e
-	ld a, [$d235]
-	cp $2
-	jr nz, .asm_3e503
-	ld hl, $c544
-	ld b, $4
-	ld c, $e
-
-.asm_3e503
-	call TextBox
-	ld hl, $c5aa
-	ld a, [$d235]
-	cp $2
-	jr nz, .asm_3e513
-	ld hl, $c55a
-
-.asm_3e513
-	ld a, $14
-	ld [Buffer1], a
-	ld a, $20
-	call Predef
-	ld b, $5
-	ld a, [$d235]
-	cp $2
-	ld a, $d
-	jr nz, .asm_3e52c
-	ld b, $5
-	ld a, $9
-
-.asm_3e52c
-	ld [$cfa1], a
-	ld a, b
-	ld [$cfa2], a
-	ld a, [$d235]
-	cp $1
-	jr z, .asm_3e53e
-	ld a, [CurMoveNum]
-	inc a
-
-.asm_3e53e
-	ld [$cfa9], a
-	ld a, $1
-	ld [$cfaa], a
-	ld a, [$d0eb]
-	inc a
-	ld [$cfa3], a
-	ld a, $1
-	ld [$cfa4], a
-	ld c, $2c
-	ld a, [$d235]
-	dec a
-	ld b, $c1
-	jr z, .asm_3e569
-	dec a
-	ld b, $c3
-	jr z, .asm_3e569
-	ld a, [InLinkBattle]
-	and a
-	jr nz, .asm_3e569
-	ld b, $c7
-
-.asm_3e569
-	ld a, b
-	ld [$cfa8], a
-	ld a, c
-	ld [$cfa5], a
-	xor a
-	ld [$cfa6], a
-	ld a, $10
-	ld [$cfa7], a
-.asm_3e57a
-	ld a, [$d235]
-	and a
-	jr z, .asm_3e58e
-	dec a
-	jr nz, .asm_3e5a3
-	ld hl, $c5c3
-	ld de, .string_3e61c
-	call PlaceString
-	jr .asm_3e5a3
-
-.asm_3e58e
-	call MoveInfoBox
-	ld a, [$d0e3]
-	and a
-	jr z, .asm_3e5a3
-	ld hl, $c5a9
-	ld bc, $0014
-	dec a
-	call AddNTimes
-	ld [hl], $ec
-
-.asm_3e5a3
-	ld a, $1
-	ld [hBGMapMode], a
-	call Function1bd3
-	bit 6, a
-	jp nz, .asm_3e61d
-	bit 7, a
-	jp nz, .asm_3e62e
-	bit 2, a
-	jp nz, Function3e643
-	bit 1, a
-	push af
-	xor a
-	ld [$d0e3], a
-	ld a, [$cfa9]
-	dec a
-	ld [$cfa9], a
-	ld b, a
-	ld a, [$d235]
-	dec a
-	jr nz, .asm_3e5d0
-	pop af
-	ret
-
-.asm_3e5d0
-	dec a
-	ld a, b
-	ld [CurMoveNum], a
-	jr nz, .asm_3e5d9
-	pop af
-	ret
-
-.asm_3e5d9
-	pop af
-	ret nz
-	ld hl, BattleMonPPMove1
-	ld a, [$cfa9]
-	ld c, a
-	ld b, $0
-	add hl, bc
-	ld a, [hl]
-	and $3f
-	jr z, .asm_3e610
-	ld a, [PlayerDisableCount]
-	swap a
-	and $f
-	dec a
-	cp c
-	jr z, .asm_3e60b
-	ld a, [$c6e1]
-	and a
-	jr nz, .asm_3e606
-	ld a, [$cfa9]
-	ld hl, BattleMonMove1
-	ld c, a
-	ld b, $0
-	add hl, bc
-	ld a, [hl]
-
-.asm_3e606
-	ld [CurPlayerMove], a
-	xor a
-	ret
-
-.asm_3e60b
-	ld hl, BattleText_0x80c5b
-	jr .asm_3e613
-
-.asm_3e610
-	ld hl, Function3cc39
-
-.asm_3e613
-	call StdBattleTextBox
-	call Function30b4
-	jp Function3e4bc
-; 3e61c
-
-.string_3e61c ; 3e61c
-	db "@"
-; 3e61d
-
-.asm_3e61d
-	ld a, [$cfa9]
-	and a
-	jp nz, .asm_3e57a
-	ld a, [$d0eb]
-	inc a
-	ld [$cfa9], a
-	jp .asm_3e57a
-; 3e62e
-
-.asm_3e62e: ; 3e62e
-	ld a, [$cfa9]
-	ld b, a
-	ld a, [$d0eb]
-	inc a
-	inc a
-	cp b
-	jp nz, .asm_3e57a
-	ld a, $1
-	ld [$cfa9], a
-	jp .asm_3e57a
-; 3e643
-
-Function3e643: ; 3e643
-	ld a, [$d0e3]
-	and a
-	jr z, .asm_3e6bf
-	ld hl, BattleMonMoves
-	call .asm_3e6a5
-	ld hl, BattleMonPP
-	call .asm_3e6a5
-	ld hl, PlayerDisableCount
-	ld a, [hl]
-	swap a
-	and $f
-	ld b, a
-	ld a, [$cfa9]
-	cp b
-	jr nz, .asm_3e671
-	ld a, [hl]
-	and $f
-	ld b, a
-	ld a, [$d0e3]
-	swap a
-	add b
-	ld [hl], a
-	jr .asm_3e682
-
-.asm_3e671
-	ld a, [$d0e3]
-	cp b
-	jr nz, .asm_3e682
-	ld a, [hl]
-	and $f
-	ld b, a
-	ld a, [$cfa9]
-	swap a
-	add b
-	ld [hl], a
-
-.asm_3e682
-	ld a, [PlayerSubStatus5]
-	bit 3, a
-	jr nz, .asm_3e69e
-	ld hl, PartyMon1Moves
-	ld a, [CurBattleMon]
-	call GetPartyLocation
-	push hl
-	call .asm_3e6a5
-	pop hl
-	ld bc, $0015
-	add hl, bc
-	call .asm_3e6a5
-
-.asm_3e69e
-	xor a
-	ld [$d0e3], a
-	jp Function3e4bc
-
-.asm_3e6a5
-	push hl
-	ld a, [$d0e3]
-	dec a
-	ld c, a
-	ld b, 0
-	add hl, bc
-	ld d, h
-	ld e, l
-	pop hl
-	ld a, [$cfa9]
-	dec a
-	ld c, a
-	ld b, 0
-	add hl, bc
-	ld a, [de]
-	ld b, [hl]
-	ld [hl], a
-	ld a, b
-	ld [de], a
-	ret
-
-.asm_3e6bf
-	ld a, [$cfa9]
-	ld [$d0e3], a
-	jp Function3e4bc
-; 3e6c8
-
-MoveInfoBox: ; 3e6c8
-	xor a
-	ld [hBGMapMode], a
-
-	hlcoord 0, 8
-	ld b, 3
-	ld c, 9
-	call TextBox
-	call MobileTextBorder
-
-	ld a, [PlayerDisableCount]
-	and a
-	jr z, .asm_3e6f4
-
-	swap a
-	and $f
-	ld b, a
-	ld a, [$cfa9]
-	cp b
-	jr nz, .asm_3e6f4
-
-	hlcoord 1, 10
-	ld de, .Disabled
-	call PlaceString
-	jr .done
-
-.asm_3e6f4
-	ld hl, $cfa9
-	dec [hl]
-	call SetPlayerTurn
-	ld hl, BattleMonMoves
-	ld a, [$cfa9]
-	ld c, a
-	ld b, 0
-	add hl, bc
-	ld a, [hl]
-	ld [CurPlayerMove], a
-
-	ld a, [CurBattleMon]
-	ld [CurPartyMon], a
-	ld a, WILDMON
-	ld [MonType], a
-	callab Functionf8ec
-
-	ld hl, $cfa9
-	ld c, [hl]
-	inc [hl]
-	ld b, 0
-	ld hl, BattleMonPP
-	add hl, bc
-	ld a, [hl]
-	and $3f
-	ld [StringBuffer1], a
-	call Function3e75f
-
-	hlcoord 1, 9
-	ld de, .Type
-	call PlaceString
-
-	hlcoord 7, 11
-	ld [hl], "/"
-
-	callab UpdateMoveData
-	ld a, [PlayerMoveAnimation]
-	ld b, a
-	hlcoord 2, 10
-	ld a, PREDEF_PRINT_MOVE_TYPE
-	call Predef
-
-.done
-	ret
-; 3e74f
-
-.Disabled
-	db "Disabled!@"
-.Type
-	db "TYPE/@"
-; 3e75f
-
-
-Function3e75f: ; 3e75f
-	hlcoord 5, 11
-	ld a, [InLinkBattle]
-	cp $4
-	jr c, .asm_3e76c
-	hlcoord 5, 11
-
-.asm_3e76c
-	push hl
-	ld de, StringBuffer1
-	ld bc, $0102
-	call PrintNum
-	pop hl
-	inc hl
-	inc hl
-	ld [hl], "/"
-	inc hl
-	ld de, $d265
-	ld bc, $0102
-	call PrintNum
-	ret
-; 3e786
-
-Function3e786: ; 3e786
-	ld a, STRUGGLE
-	ld [CurPlayerMove], a
-	ld a, [PlayerDisableCount]
-	and a
-	ld hl, BattleMonPP
-	jr nz, .asm_3e79f
-
-	ld a, [hli]
-	or [hl]
-	inc hl
-	or [hl]
-	inc hl
-	or [hl]
-	and $3f
-	ret nz
-	jr .asm_3e7b4
-
-.asm_3e79f
-	swap a
-	and $f
-	ld b, a
-	ld d, $5
-	xor a
-.asm_3e7a7
-	dec d
-	jr z, .asm_3e7b2
-	ld c, [hl]
-	inc hl
-	dec b
-	jr z, .asm_3e7a7
-	or c
-	jr .asm_3e7a7
-
-.asm_3e7b2
-	and a
-	ret nz
-
-.asm_3e7b4
-	ld hl, BattleText_0x80c72
-	call StdBattleTextBox
-	ld c, 60
-	call DelayFrames
-	xor a
-	ret
-; 3e7c1
-
-
-
-Function3e7c1: ; 3e7c1
-	ld a, [$c711]
-	and a
-	ret nz
-	ld a, [InLinkBattle]
-	and a
-	jr z, .asm_3e817
-	call EmptyBattleTextBox
-	call Function309d
-	ld a, [$d0ec]
-	and a
-	call z, Function3e8e4
-	call Function30b4
-	ld a, [$d430]
-	cp $e
-	jp z, .asm_3e8bd
-	cp $d
-	jp z, .asm_3e82c
-	cp $4
-	jp nc, Function3e8c1
-	ld [CurEnemyMoveNum], a
-	ld c, a
-	ld a, [EnemySubStatus1]
-	bit 6, a
-	jp nz, .asm_3e882
-	ld a, [EnemySubStatus3]
-	and $13
-	jp nz, .asm_3e882
-	ld hl, EnemySubStatus5
-	bit 4, [hl]
-	ld a, [LastEnemyMove]
-	jp nz, .asm_3e87f
-	ld hl, EnemyMonMove1
-	ld b, $0
-	add hl, bc
-	ld a, [hl]
-	jp .asm_3e87f
-
-.asm_3e817
-	ld hl, EnemySubStatus5
-	bit 4, [hl]
-	jr z, .asm_3e824
-	ld a, [LastEnemyMove]
-	jp .asm_3e87f
-
-.asm_3e824
-	call Function3e8d1
-	jp nz, Function3e8c1
-	jr .asm_3e830
-
-.asm_3e82c
-	ld a, $ff
-	jr .asm_3e87f
-
-.asm_3e830
-	ld hl, EnemyMonMove1
-	ld de, EnemyMonPPMove1
-	ld b, $4
-.asm_3e838
-	ld a, [hl]
-	and a
-	jp z, .asm_3e8bd
-	ld a, [EnemyDisabledMove]
-	cp [hl]
-	jr z, .asm_3e848
-	ld a, [de]
-	and $3f
-	jr nz, .asm_3e84f
-
-.asm_3e848
-	inc hl
-	inc de
-	dec b
-	jr nz, .asm_3e838
-	jr .asm_3e8bd
-
-.asm_3e84f
-	ld a, [IsInBattle]
-	dec a
-	jr nz, .asm_3e882
-.asm_3e855
-	ld hl, EnemyMonMove1
-	call BattleRandom
-	and $3
-	ld c, a
-	ld b, $0
-	add hl, bc
-	ld a, [EnemyDisableCount]
-	swap a
-	and $f
-	dec a
-	cp c
-	jr z, .asm_3e855
-	ld a, [hl]
-	and a
-	jr z, .asm_3e855
-	ld hl, EnemyMonPPMove1
-	add hl, bc
-	ld b, a
-	ld a, [hl]
-	and $3f
-	jr z, .asm_3e855
-	ld a, c
-	ld [CurEnemyMoveNum], a
-	ld a, b
-
-.asm_3e87f
-	ld [CurEnemyMove], a
-
-.asm_3e882
-	call SetEnemyTurn
-	callab UpdateMoveData
-	call Function3e8d1
-	jr nz, .asm_3e894
-	xor a
-	ld [$c733], a
-
-.asm_3e894
-	ld a, [EnemyMoveEffect]
-	cp $77
-	jr z, .asm_3e89f
-	xor a
-	ld [EnemyFuryCutterCount], a
-
-.asm_3e89f
-	ld a, [EnemyMoveEffect]
-	cp $51
-	jr z, .asm_3e8af
-	ld hl, EnemySubStatus4
-	res 6, [hl]
-	xor a
-	ld [$c72c], a
-
-.asm_3e8af
-	ld a, [EnemyMoveEffect]
-	cp $6f
-	ret z
-	cp $74
-	ret z
-	xor a
-	ld [$c681], a
-	ret
-
-.asm_3e8bd
-	ld a, $a5
-	jr .asm_3e87f
-; 3e8c1
-
-Function3e8c1: ; 3e8c1
-	xor a
-	ld [EnemyFuryCutterCount], a
-	ld [$c681], a
-	ld [$c72c], a
-	ld hl, EnemySubStatus4
-	res 6, [hl]
-	ret
-; 3e8d1
-
-Function3e8d1: ; 3e8d1
-	ld a, [EnemySubStatus4]
-	and $20
-	ret nz
-	ld hl, EnemySubStatus3
-	ld a, [hl]
-	and $13
-	ret nz
-	ld hl, EnemySubStatus1
-	bit 6, [hl]
-	ret
-; 3e8e4
-
-Function3e8e4: ; 3e8e4
-	callba Function100a09
-	ret
-; 3e8eb
-
-
-LoadEnemyMon: ; 3e8eb
-; Initialize enemy monster parameters
-; To do this we pull the species from TempEnemyMonSpecies
-
-; Notes:
-;   BattleRandom is used to ensure sync between Game Boys
-
-; Clear the whole EnemyMon struct
-	xor a
-	ld hl, EnemyMonSpecies
-	ld bc, EnemyMonEnd - EnemyMon
-	call ByteFill
-	
-; We don't need to be here if we're in a link battle
-	ld a, [InLinkBattle]
-	and a
-	jp nz, Function3dabd
-	
-	ld a, [$cfc0] ; ????
-	bit 0, a
-	jp nz, Function3dabd
-	
-; Make sure everything knows what species we're working with
-	ld a, [TempEnemyMonSpecies]
-	ld [EnemyMonSpecies], a
-	ld [CurSpecies], a
-	ld [CurPartySpecies], a
-	
-; Grab the BaseData for this species
-	call GetBaseData
-	
-
-; Let's get the item:
-
-; Is the item predetermined?
-	ld a, [IsInBattle]
-	dec a
-	jr z, .WildItem
-	
-; If we're in a trainer battle, the item is in the party struct
-	ld a, [CurPartyMon]
-	ld hl, OTPartyMon1Item
-	call GetPartyLocation ; bc = PartyMon[CurPartyMon] - PartyMons
-	ld a, [hl]
-	jr .UpdateItem
-	
-	
-.WildItem
-; In a wild battle, we pull from the item slots in BaseData
-
-; Force Item1
-; Used for Ho-Oh, Lugia and Snorlax encounters
-	ld a, [BattleType]
-	cp BATTLETYPE_FORCEITEM
-	ld a, [BaseItems]
-	jr z, .UpdateItem
-	
-; Failing that, it's all up to chance
-;  Effective chances:
-;    75% None
-;    23% Item1
-;     2% Item2
-
-; 25% chance of getting an item
-	call BattleRandom
-	cp a, $c0
-	ld a, NO_ITEM
-	jr c, .UpdateItem
-	
-; From there, an 8% chance for Item2
-	call BattleRandom
-	cp a, $14 ; 8% of 25% = 2% Item2
-	ld a, [BaseItems]
-	jr nc, .UpdateItem
-	ld a, [BaseItems+1]
-	
-	
-.UpdateItem
-	ld [EnemyMonItem], a
-	
-	
-; Initialize DVs
-	
-; If we're in a trainer battle, DVs are predetermined
-	ld a, [IsInBattle]
-	and a
-	jr z, .InitDVs
-	
-; ????
-	ld a, [EnemySubStatus5]
-	bit 3, a
-	jr z, .InitDVs
-	
-; Unknown
-	ld hl, $c6f2
-	ld de, EnemyMonDVs
-	ld a, [hli]
-	ld [de], a
-	inc de
-	ld a, [hl]
-	ld [de], a
-	jp .Happiness
-	
-	
-.InitDVs
-	
-; Trainer DVs
-	
-; All trainers have preset DVs, determined by class
-; See GetTrainerDVs for more on that
-	callba GetTrainerDVs
-; These are the DVs we'll use if we're actually in a trainer battle
-	ld a, [IsInBattle]
-	dec a
-	jr nz, .UpdateDVs
-	
-	
-; Wild DVs
-; Here's where the fun starts
-
-; Roaming monsters (Entei, Raikou) work differently
-; They have their own structs, which are shorter than normal
-	ld a, [BattleType]
-	cp a, BATTLETYPE_ROAMING
-	jr nz, .NotRoaming
-	
-; Grab HP
-	call GetRoamMonHP
-	ld a, [hl]
-; Check if the HP has been initialized
-	and a
-; We'll do something with the result in a minute
-	push af
-	
-; Grab DVs
-	call GetRoamMonDVs
-	inc hl
-	ld a, [hld]
-	ld c, a
-	ld b, [hl]
-
-; Get back the result of our check
-	pop af
-; If the RoamMon struct has already been initialized, we're done
-	jr nz, .UpdateDVs
-	
-; If it hasn't, we need to initialize the DVs
-; (HP is initialized at the end of the battle)
-	call GetRoamMonDVs
-	inc hl
-	call BattleRandom
-	ld [hld], a
-	ld c, a
-	call BattleRandom
-	ld [hl], a
-	ld b, a
-; We're done with DVs
-	jr .UpdateDVs
-
-	
-.NotRoaming
-; Register a contains BattleType
-
-; Forced shiny battle type
-; Used by Red Gyarados at Lake of Rage
-	cp a, BATTLETYPE_SHINY
-	jr nz, .GenerateDVs
-
-	ld b, ATKDEFDV_SHINY ; $ea
-	ld c, SPDSPCDV_SHINY ; $aa
-	jr .UpdateDVs
-	
-.GenerateDVs
-; Generate new random DVs
-	call BattleRandom
-	ld b, a
-	call BattleRandom
-	ld c, a
-	
-.UpdateDVs
-; Input DVs in register bc
-	ld hl, EnemyMonDVs
-	ld a, b
-	ld [hli], a
-	ld [hl], c
-	
-	
-; We've still got more to do if we're dealing with a wild monster
-	ld a, [IsInBattle]
-	dec a
-	jr nz, .Happiness
-	
-	
-; Species-specfic:
-	
-	
-; Unown
-	ld a, [TempEnemyMonSpecies]
-	cp a, UNOWN
-	jr nz, .Magikarp
-	
-; Get letter based on DVs
-	ld hl, EnemyMonDVs
-	ld a, PREDEF_GET_UNOWN_LETTER
-	call Predef
-; Can't use any letters that haven't been unlocked
-; If combined with forced shiny battletype, causes an infinite loop
-	call CheckUnownLetter
-	jr c, .GenerateDVs ; try again
-	
-	
-.Magikarp
-; Skimming this part recommended
-	
-	ld a, [TempEnemyMonSpecies]
-	cp a, MAGIKARP
-	jr nz, .Happiness
-	
-; Get Magikarp's length
-	ld de, EnemyMonDVs
-	ld bc, PlayerID
-	callab CalcMagikarpLength
-	
-; We're clear if the length is < 1536
-	ld a, [MagikarpLength]
-	cp a, $06 ; $600 = 1536
-	jr nz, .CheckMagikarpArea
-	
-; 5% chance of skipping size checks
-	call Random
-	cp a, $0c ; / $100
-	jr c, .CheckMagikarpArea
-; Try again if > 1614
-	ld a, [MagikarpLength + 1]
-	cp a, $50
-	jr nc, .GenerateDVs
-	
-; 20% chance of skipping this check
-	call Random
-	cp a, $32 ; / $100
-	jr c, .CheckMagikarpArea
-; Try again if > 1598
-	ld a, [MagikarpLength + 1]
-	cp a, $40
-	jr nc, .GenerateDVs
-	
-.CheckMagikarpArea
-; The z checks are supposed to be nz
-; Instead, all maps in GROUP_LAKE_OF_RAGE (mahogany area)
-; and routes 20 and 44 are treated as Lake of Rage
-	
-; This also means Lake of Rage Magikarp can be smaller than ones
-; caught elsewhere rather than the other way around
-	
-; Intended behavior enforces a minimum size at Lake of Rage
-; The real behavior prevents size flooring in the Lake of Rage area
-	ld a, [MapGroup]
-	cp a, GROUP_LAKE_OF_RAGE
-	jr z, .Happiness
-	ld a, [MapNumber]
-	cp a, MAP_LAKE_OF_RAGE
-	jr z, .Happiness
-; 40% chance of not flooring
-	call Random
-	cp a, $64 ; / $100
-	jr c, .Happiness
-; Floor at length 1024
-	ld a, [MagikarpLength]
-	cp a, 1024 >> 8
-	jr c, .GenerateDVs ; try again
-	
-	
-; Finally done with DVs
-	
-.Happiness
-; Set happiness
-	ld a, BASE_HAPPINESS
-	ld [EnemyMonHappiness], a
-; Set level
-	ld a, [CurPartyLevel]
-	ld [EnemyMonLevel], a
-; Fill stats
-	ld de, EnemyMonMaxHP
-	ld b, $00
-	ld hl, $d201 ; ?
-	ld a, PREDEF_FILLSTATS
-	call Predef
-	
-; If we're in a trainer battle,
-; get the rest of the parameters from the party struct
-	ld a, [IsInBattle]
-	cp a, TRAINER_BATTLE
-	jr z, .OpponentParty
-	
-; If we're in a wild battle, check wild-specific stuff
-	and a
-	jr z, .TreeMon
-	
-; ????
-	ld a, [EnemySubStatus5]
-	bit 3, a
-	jp nz, .Moves
-	
-.TreeMon
-; If we're headbutting trees, some monsters enter battle asleep
-	call CheckSleepingTreeMon
-	ld a, 7 ; Asleep for 7 turns
-	jr c, .UpdateStatus
-; Otherwise, no status
-	xor a
-	
-.UpdateStatus
-	ld hl, EnemyMonStatus
-	ld [hli], a
-	
-; Unused byte
-	xor a
-	ld [hli], a
-	
-; Full HP...
-	ld a, [EnemyMonMaxHPHi]
-	ld [hli], a
-	ld a, [EnemyMonMaxHPLo]
-	ld [hl], a
-	
-; ...unless it's a RoamMon
-	ld a, [BattleType]
-	cp a, BATTLETYPE_ROAMING
-	jr nz, .Moves
-	
-; Grab HP
-	call GetRoamMonHP
-	ld a, [hl]
-; Check if it's been initialized again
-	and a
-	jr z, .InitRoamHP
-; Update from the struct if it has
-	ld a, [hl]
-	ld [EnemyMonHPLo], a
-	jr .Moves
-	
-.InitRoamHP
-; HP only uses the lo byte in the RoamMon struct since
-; Raikou/Entei/Suicune will have < 256 hp at level 40
-	ld a, [EnemyMonHPLo]
-	ld [hl], a
-	jr .Moves
-	
-	
-.OpponentParty
-; Get HP from the party struct
-	ld hl, (PartyMon1CurHP + 1) - PartyMon1 + OTPartyMon1
-	ld a, [CurPartyMon]
-	call GetPartyLocation
-	ld a, [hld]
-	ld [EnemyMonHPLo], a
-	ld a, [hld]
-	ld [EnemyMonHPHi], a
-	
-; Make sure everything knows which monster the opponent is using
-	ld a, [CurPartyMon]
-	ld [CurOTMon], a
-	
-; Get status from the party struct
-	dec hl
-	ld a, [hl] ; OTPartyMonStatus
-	ld [EnemyMonStatus], a
-	
-	
-.Moves
-; ????
-	ld hl, BaseType1
-	ld de, EnemyMonType1
-	ld a, [hli]
-	ld [de], a
-	inc de
-	ld a, [hl]
-	ld [de], a
-	
-; Get moves
-	ld de, EnemyMonMoves
-; Are we in a trainer battle?
-	ld a, [IsInBattle]
-	cp a, TRAINER_BATTLE
-	jr nz, .WildMoves
-; Then copy moves from the party struct
-	ld hl, OTPartyMon1Moves
-	ld a, [CurPartyMon]
-	call GetPartyLocation
-	ld bc, NUM_MOVES
-	call CopyBytes
-	jr .PP
-	
-.WildMoves
-; Clear EnemyMonMoves
-	xor a
-	ld h, d
-	ld l, e
-	ld [hli], a
-	ld [hli], a
-	ld [hli], a
-	ld [hl], a
-; Make sure the predef knows this isn't a partymon
-	ld [MagikarpLength], a
-; Fill moves based on level
-	ld a, PREDEF_FILLMOVES
-	call Predef
-	
-.PP
-; Trainer battle?
-	ld a, [IsInBattle]
-	cp a, TRAINER_BATTLE
-	jr z, .TrainerPP
-	
-; Fill wild PP
-	ld hl, EnemyMonMoves
-	ld de, EnemyMonPP
-	ld a, PREDEF_FILLPP
-	call Predef
-	jr .Finish
-	
-.TrainerPP
-; Copy PP from the party struct
-	ld hl, OTPartyMon1PP
-	ld a, [CurPartyMon]
-	call GetPartyLocation
-	ld de, EnemyMonPP
-	ld bc, NUM_MOVES
-	call CopyBytes
-	
-.Finish
-; Only the first five base stats are copied...
-	ld hl, BaseStats
-	ld de, EnemyMonBaseStats
-	ld b, BaseSpecialDefense - BaseStats
-.loop
-	ld a, [hli]
-	ld [de], a
-	inc de
-	dec b
-	jr nz, .loop
-
-	ld a, [BaseCatchRate]
-	ld [de], a
-	inc de
-
-	ld a, [BaseExp]
-	ld [de], a
-
-	ld a, [TempEnemyMonSpecies]
-	ld [$d265], a
-
-	call GetPokemonName
-
-; Did we catch it?
-	ld a, [IsInBattle]
-	and a
-	ret z
-
-; Update enemy nick
-	ld hl, StringBuffer1
-	ld de, EnemyMonNick
-	ld bc, PKMN_NAME_LENGTH
-	call CopyBytes
-
-; Caught this mon
-	ld a, [TempEnemyMonSpecies]
-	dec a
-	ld c, a
-	ld b, 1 ; set
-	ld hl, PokedexSeen
-	ld a, PREDEF_FLAG
-	call Predef
-
-	ld hl, EnemyMonStats
-	ld de, EnemyStats
-	ld bc, EnemyMonStatsEnd - EnemyMonStats
-	call CopyBytes
-
-	ret
-; 3eb38
-
-
-CheckSleepingTreeMon: ; 3eb38
-; Return carry if species is in the list
-; for the current time of day
-
-; Don't do anything if this isn't a tree encounter
-	ld a, [BattleType]
-	cp a, BATTLETYPE_TREE
-	jr nz, .NotSleeping
-	
-; Get list for the time of day
-	ld hl, .Morn
-	ld a, [TimeOfDay]
-	cp a, DAY
-	jr c, .Check
-	ld hl, .Day
-	jr z, .Check
-	ld hl, .Nite
-	
-.Check
-	ld a, [TempEnemyMonSpecies]
-	ld de, 1 ; length of species id
-	call IsInArray
-; If it's a match, the opponent is asleep
-	ret c
-	
-.NotSleeping
-	and a
-	ret
-
-.Nite
-	db CATERPIE
-	db METAPOD
-	db BUTTERFREE
-	db WEEDLE
-	db KAKUNA
-	db BEEDRILL
-	db SPEAROW
-	db EKANS
-	db EXEGGCUTE
-	db LEDYBA
-	db AIPOM
-	db $ff ; end
-
-.Day
-	db VENONAT
-	db HOOTHOOT
-	db NOCTOWL
-	db SPINARAK
-	db HERACROSS
-	db $ff ; end
-
-.Morn
-	db VENONAT
-	db HOOTHOOT
-	db NOCTOWL
-	db SPINARAK
-	db HERACROSS
-	db $ff ; end
-; 3eb75
-
-
-CheckUnownLetter: ; 3eb75
-; Return carry if the Unown letter hasn't been unlocked yet
-	
-	ld a, [UnlockedUnowns]
-	ld c, a
-	ld de, 0
-	
-.loop
-	
-; Don't check this set unless it's been unlocked
-	srl c
-	jr nc, .next
-	
-; Is our letter in the set?
-	ld hl, .LetterSets
-	add hl, de
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	
-	push de
-	ld a, [UnownLetter]
-	ld de, 1
-	push bc
-	call IsInArray
-	pop bc
-	pop de
-	
-	jr c, .match
-	
-.next
-; Make sure we haven't gone past the end of the table
-	inc e
-	inc e
-	ld a, e
-	cp a, .Set1 - .LetterSets
-	jr c, .loop
-	
-; Hasn't been unlocked, or the letter is invalid
-	scf
-	ret
-	
-.match
-; Valid letter
-	and a
-	ret
-	
-.LetterSets
-	dw .Set1
-	dw .Set2
-	dw .Set3
-	dw .Set4
-	
-.Set1
-	;  A   B   C   D   E   F   G   H   I   J   K
-	db 01, 02, 03, 04, 05, 06, 07, 08, 09, 10, 11, $ff
-.Set2
-	;  L   M   N   O   P   Q   R
-	db 12, 13, 14, 15, 16, 17, 18, $ff
-.Set3
-	;  S   T   U   V   W
-	db 19, 20, 21, 22, 23, $ff
-.Set4
-	;  X   Y   Z
-	db 24, 25, 26, $ff
-	
-; 3ebc7
-
-
-Function3ebc7: ; 3ebc7
-	push bc
-	ld a, [BattleMonLevel]
-	ld b, a
-	ld a, [EnemyMonLevel]
-	ld [BattleMonLevel], a
-	ld a, b
-	ld [EnemyMonLevel], a
-	pop bc
-	ret
-; 3ebd8
-
-Function3ebd8: ; 3ebd8
-	xor a
-	ld [TempEnemyMonSpecies], a
-	call Function3ee27
-	ld a, [OtherTrainerClass]
-	ld [TrainerClass], a
-	ld de, VTiles2
-	callab Function5120d
-	ld hl, $c4b3
-	ld c, $0
-.asm_3ebf3
-	inc c
-	ld a, c
-	cp $7
-	ret z
-	xor a
-	ld [hBGMapMode], a
-	ld [hBGMapThird], a
-	ld d, $0
-	push bc
-	push hl
-.asm_3ec01
-	call Function3ec1a
-	inc hl
-	ld a, $7
-	add d
-	ld d, a
-	dec c
-	jr nz, .asm_3ec01
-	ld a, $1
-	ld [hBGMapMode], a
-	ld c, $4
-	call DelayFrames
-	pop hl
-	pop bc
-	dec hl
-	jr .asm_3ebf3
-; 3ec1a
-
-Function3ec1a: ; 3ec1a
-	push hl
-	push de
-	push bc
-	ld e, $7
-.asm_3ec1f
-	ld [hl], d
-	ld bc, $0014
-	add hl, bc
-	inc d
-	dec e
-	jr nz, .asm_3ec1f
-	pop bc
-	pop de
-	pop hl
-	ret
-; 3ec2c
-
-
-Function3ec2c: ; 3ec2c
-	ld a, 1
-	jr Function3ec31
-; 3ec30
-
-Function3ec30: ; 3ec30
-	xor a
-; 3ec31
-
-Function3ec31: ; 3ec31
-	ld [hBattleTurn], a
-	call Function3ec39
-	jp Function3ec76
-; 3ec39
-
-Function3ec39: ; 3ec39
-	ld a, [hBattleTurn]
-	and a
-	jr z, .asm_3ec5a
-	ld a, [BattleMonStatus]
-	and $40
-	ret z
-	ld hl, $c645
-	ld a, [hld]
-	ld b, a
-	ld a, [hl]
-	srl a
-	rr b
-	srl a
-	rr b
-	ld [hli], a
-	or b
-	jr nz, .asm_3ec58
-	ld b, $1
-
-.asm_3ec58
-	ld [hl], b
-	ret
-
-.asm_3ec5a
-	ld a, [EnemyMonStatus]
-	and $40
-	ret z
-	ld hl, $d21f
-	ld a, [hld]
-	ld b, a
-	ld a, [hl]
-	srl a
-	rr b
-	srl a
-	rr b
-	ld [hli], a
-	or b
-	jr nz, .asm_3ec74
-	ld b, $1
-
-.asm_3ec74
-	ld [hl], b
-	ret
-; 3ec76
-
-Function3ec76: ; 3ec76
-	ld a, [hBattleTurn]
-	and a
-	jr z, .asm_3ec93
-	ld a, [BattleMonStatus]
-	and $10
-	ret z
-	ld hl, $c641
-	ld a, [hld]
-	ld b, a
-	ld a, [hl]
-	srl a
-	rr b
-	ld [hli], a
-	or b
-	jr nz, .asm_3ec91
-	ld b, $1
-
-.asm_3ec91
-	ld [hl], b
-	ret
-
-.asm_3ec93
-	ld a, [EnemyMonStatus]
-	and $10
-	ret z
-	ld hl, $d21b
-	ld a, [hld]
-	ld b, a
-	ld a, [hl]
-	srl a
-	rr b
-	ld [hli], a
-	or b
-	jr nz, .asm_3eca9
-	ld b, $1
-
-.asm_3eca9
-	ld [hl], b
-	ret
-; 3ecab
-
-Function3ecab: ; 3ecab
-	ld c, 0
-.asm_3ecad
-	call Function3ecb7
-	inc c
-	ld a, c
-	cp 5
-	jr nz, .asm_3ecad
-	ret
-; 3ecb7
-
-Function3ecb7: ; 3ecb7
-	push bc
-	push bc
-	ld a, [$d265]
-	and a
-	ld a, c
-	ld hl, BattleMonAtk
-	ld de, PlayerStats
-	ld bc, PlayerAtkLevel
-	jr z, .asm_3ecd2
-	ld hl, EnemyMonAtk
-	ld de, EnemyStats
-	ld bc, EnemyAtkLevel
-
-.asm_3ecd2
-	add c
-	ld c, a
-	jr nc, .asm_3ecd7
-	inc b
-.asm_3ecd7
-	ld a, [bc]
-	pop bc
-	ld b, a
-	push bc
-	sla c
-	ld b, 0
-	add hl, bc
-	ld a, c
-	add e
-	ld e, a
-	jr nc, .asm_3ece6
-	inc d
-.asm_3ece6
-	pop bc
-	push hl
-	ld hl, .StatLevelMultipliers
-	dec b
-	sla b
-	ld c, b
-	ld b, 0
-	add hl, bc
-	xor a
-	ld [hMultiplicand], a
-	ld a, [de]
-	ld [$ffb5], a
-	inc de
-	ld a, [de]
-	ld [$ffb6], a
-	ld a, [hli]
-	ld [hMultiplier], a
-	call Multiply
-	ld a, [hl]
-	ld [hMultiplier], a
-	ld b, $4
-	call Divide
-	pop hl
-
-; Cap at 999.
-	ld a, [$ffb6]
-	sub 999 % $100
-	ld a, [$ffb5]
-	sbc 999 / $100
-	jp c, .asm_3ed1e
-
-	ld a, 999 / $100
-	ld [$ffb5], a
-	ld a, 999 % $100
-	ld [$ffb6], a
-
-.asm_3ed1e
-	ld a, [$ffb5]
-	ld [hli], a
-	ld b, a
-	ld a, [$ffb6]
-	ld [hl], a
-	or b
-	jr nz, .asm_3ed29
-	inc [hl]
-
-.asm_3ed29
-	pop bc
-	ret
-; 3ed2b
-
-.StatLevelMultipliers
-;	      /
-	db 25, 100 ; 25%
-	db 28, 100 ; 28%
-	db 33, 100 ; 33%
-	db 40, 100 ; 40%
-	db 50, 100 ; 50%
-	db 66, 100 ; 66%
-
-	db  1,  1 ; 100%
-
-	db 15, 10 ; 150%
-	db  2,  1 ; 200%
-	db 25, 10 ; 250%
-	db  3,  1 ; 300%
-	db 35, 10 ; 350%
-	db  4,  1 ; 400%
-; 3ed45
-
-
-BadgeStatBoosts: ; 3ed45
-; Raise BattleMon stats depending on which badges have been obtained.
-
-; Every other badge boosts a stat, starting from the first.
-
-; 	ZephyrBadge:  Attack
-; 	PlainBadge:   Speed
-; 	MineralBadge: Defense
-; 	GlacierBadge: Special Attack
-; 	RisingBadge:  Special Defense
-
-; The boosted stats are in order, except PlainBadge and MineralBadge's boosts are swapped.
-
-	ld a, [InLinkBattle]
-	and a
-	ret nz
-
-	ld a, [$cfc0]
-	and a
-	ret nz
-
-	ld a, [JohtoBadges]
-
-; Swap badges 3 (PlainBadge) and 5 (MineralBadge).
-	ld d, a
-	and %00000100
-	add a
-	add a
-	ld b, a
-	ld a, d
-	and %00010000
-	rrca
-	rrca
-	ld c, a
-	ld a, d
-	and %11101011
-	or b
-	or c
-	ld b, a
-
-	ld hl, BattleMonAtk
-	ld c, 4
-.CheckBadge
-	ld a, b
-	srl b
-	call c, BoostStat
-	inc hl
-	inc hl
-; Check every other badge.
-	srl b
-	dec c
-	jr nz, .CheckBadge
-; And the last one (RisingBadge) too.
-	srl a
-	call c, BoostStat
-	ret
-; 3ed7c
-
-
-BoostStat: ; 3ed7c
-; Raise stat at hl by 1/8.
-
-	ld a, [hli]
-	ld d, a
-	ld e, [hl]
-	srl d
-	rr e
-	srl d
-	rr e
-	srl d
-	rr e
-	ld a, [hl]
-	add e
-	ld [hld], a
-	ld a, [hl]
-	adc d
-	ld [hli], a
-
-; Cap at 999.
-	ld a, [hld]
-	sub 999 % $100
-	ld a, [hl]
-	sbc 999 / $100
-	ret c
-	ld a, 999 / $100
-	ld [hli], a
-	ld a, 999 % $100
-	ld [hld], a
-	ret
-; 3ed9f
-
-
-Function3ed9f: ; 3ed9f
-	callab Functionfb4f2
-	ret
-; 3eda6
-
-Function3eda6: ; 3eda6
-	callab Functionfb50d
-	ret
-; 3edad
-
-
-Function3edad: ; 3edad
-	ld de, $4ac0
-	ld hl, $96c0
-	ld bc, $3e04
-	call Get1bpp
-	ld de, $4ae0
-	ld hl, $9730
-	ld bc, $3e06
-	call Get1bpp
-	ld de, $4b10
-	ld hl, $9550
-	ld bc, $3e08
-	jp Get2bpp
-; 3edd1
-
-
-EmptyBattleTextBox: ; 3edd1
-	ld hl, .empty
-	jp BattleTextBox
-.empty
-	db "@"
-; 3edd8
-
-
-_BattleRandom: ; 3edd8
-; If the normal RNG is used in a link battle it'll desync.
-; To circumvent this a shared PRNG is used instead.
-
-; But if we're in a non-link battle we're safe to use it
-	ld a, [InLinkBattle]
-	and a
-	jp z, Random
-
-; The PRNG operates in streams of 10 values.
-
-; Which value are we trying to pull?
-	push hl
-	push bc
-	ld a, [LinkBattleRNCount]
-	ld c, a
-	ld b, 0
-	ld hl, LinkBattleRNs
-	add hl, bc
-	inc a
-	ld [LinkBattleRNCount], a
-
-; If we haven't hit the end yet, we're good
-	cp 10 - 1 ; Exclude last value. See the closing comment
-	ld a, [hl]
-	pop bc
-	pop hl
-	ret c
-
-; If we have, we have to generate new pseudorandom data
-; Instead of having multiple PRNGs, ten seeds are used
-	push hl
-	push bc
-	push af
-
-; Reset count to 0
-	xor a
-	ld [LinkBattleRNCount], a
-	ld hl, LinkBattleRNs
-	ld b, 10 ; number of seeds
-
-; Generate next number in the sequence for each seed
-; The algorithm takes the form *5 + 1 % 256
-.loop
-	; get last #
-	ld a, [hl]
-
-	; a * 5 + 1
-	ld c, a
-	add a
-	add a
-	add c
-	inc a
-
-	; update #
-	ld [hli], a
-	dec b
-	jr nz, .loop
-
-; This has the side effect of pulling the last value first,
-; then wrapping around. As a result, when we check to see if
-; we've reached the end, we check the one before it.
-
-	pop af
-	pop bc
-	pop hl
-	ret
-; 3ee0f
-
-
-Function3ee0f: ; 3ee0f
-	ld a, BATTLE_VARS_SUBSTATUS3
-	call GetBattleVar
-	and 1 << SUBSTATUS_FLYING | 1 << SUBSTATUS_UNDERGROUND
-	ret nz
-; 3ee17
-
-Function3ee17: ; 3ee17
-	ld a, e
-	ld [FXAnimIDLo], a
-	ld a, d
-	ld [FXAnimIDHi], a
-	call WaitBGMap
-	ld a, $37
-	jp Predef
-; 3ee27
-
-Function3ee27: ; 3ee27
-	push af
-	push bc
-	push de
-	push hl
-	ld b, $1
-	call GetSGBLayout
-	call Function32f9
-	call DelayFrame
-	pop hl
-	pop de
-	pop bc
-	pop af
-	ret
-; 3ee3b
-
-
-Function3ee3b: ; 3ee3b
-	ld a, [InLinkBattle]
-	and a
-	ret nz
-	ld a, [$cfc0]
-	bit 0, a
-	ret nz
-	call Function3f0d4
-	xor a
-	ld [CurPartyMon], a
-	ld bc, PartyMon1Species
-
-.asm_3ee50
-	ld hl, $0022
-	add hl, bc
-	ld a, [hli]
-	or [hl]
-	jp z, .asm_3f0b9
-	push bc
-	ld hl, $c664
-	ld a, [CurPartyMon]
-	ld c, a
-	ld b, $2
-	ld d, $0
-	ld a, $3
-	call Predef
-	ld a, c
-	and a
-	pop bc
-	jp z, .asm_3f0b9
-	ld hl, $000c
-	add hl, bc
-	ld d, h
-	ld e, l
-	ld hl, EnemyMonType2
-	push bc
-	ld c, $5
-.asm_3ee7c
-	inc hl
-	ld a, [de]
-	add [hl]
-	ld [de], a
-	jr nc, .asm_3ee89
-	dec de
-	ld a, [de]
-	inc a
-	jr z, .asm_3eea4
-	ld [de], a
-	inc de
-
-.asm_3ee89
-	push hl
-	push bc
-	ld a, $1c
-	call GetPartyParamLocation
-	ld a, [hl]
-	and a
-	pop bc
-	pop hl
-	jr z, .asm_3eea9
-	ld a, [de]
-	add [hl]
-	ld [de], a
-	jr nc, .asm_3eea9
-	dec de
-	ld a, [de]
-	inc a
-	jr z, .asm_3eea4
-	ld [de], a
-	inc de
-	jr .asm_3eea9
-
-.asm_3eea4
-	ld a, $ff
-	ld [de], a
-	inc de
-	ld [de], a
-
-.asm_3eea9
-	inc de
-	inc de
-	dec c
-	jr nz, .asm_3ee7c
-	xor a
-	ld [hMultiplicand], a
-	ld [$ffb5], a
-	ld a, [EnemyMonBaseExp]
-	ld [$ffb6], a
-	ld a, [EnemyMonLevel]
-	ld [hMultiplier], a
-	call Multiply
-	ld a, $7
-	ld [hMultiplier], a
-	ld b, $4
-	call Divide
-	pop bc
-	ld hl, $0006
-	add hl, bc
-	ld a, [PlayerID]
-	cp [hl]
-	jr nz, .asm_3eedd
-	inc hl
-	ld a, [$d47c]
-	cp [hl]
-	ld a, $0
-	jr z, .asm_3eee2
-
-.asm_3eedd
-	call Function3f106
-	ld a, $1
-
-.asm_3eee2
-	ld [$d088], a
-	ld a, [IsInBattle]
-	dec a
-	call nz, Function3f106
-	push bc
-	ld a, $1
-	call GetPartyParamLocation
-	ld a, [hl]
-	cp $7e
-	call z, Function3f106
-	ld a, [$ffb6]
-	ld [$d087], a
-	ld a, [$ffb5]
-	ld [StringBuffer2], a
-	ld a, [CurPartyMon]
-	ld hl, PartyMon1Nickname
-	call GetNick
-	ld hl, UnknownText_0x3f11b
-	call BattleTextBox
-	ld a, [$d087]
-	ld [$ffb6], a
-	ld a, [StringBuffer2]
-	ld [$ffb5], a
-	pop bc
-	call Function3f136
-	push bc
-	call Function309d
-	pop bc
-	ld hl, $000a
-	add hl, bc
-	ld d, [hl]
-	ld a, [$ffb6]
-	add d
-	ld [hld], a
-	ld d, [hl]
-	ld a, [$ffb5]
-	adc d
-	ld [hl], a
-	jr nc, .asm_3ef3d
-	dec hl
-	inc [hl]
-	jr nz, .asm_3ef3d
-	ld a, $ff
-	ld [hli], a
-	ld [hli], a
-	ld [hl], a
-
-.asm_3ef3d
-	ld a, [CurPartyMon]
-	ld e, a
-	ld d, $0
-	ld hl, PartySpecies
-	add hl, de
-	ld a, [hl]
-	ld [CurSpecies], a
-	call GetBaseData
-	push bc
-	ld d, $64
-	callab Function50e47
-	pop bc
-	ld hl, $000a
-	add hl, bc
-	push bc
-	ld a, [hMultiplicand]
-	ld b, a
-	ld a, [$ffb5]
-	ld c, a
-	ld a, [$ffb6]
-	ld d, a
-	ld a, [hld]
-	sub d
-	ld a, [hld]
-	sbc c
-	ld a, [hl]
-	sbc b
-	jr c, .asm_3ef74
-	ld a, b
-	ld [hli], a
-	ld a, c
-	ld [hli], a
-	ld a, d
-	ld [hld], a
-
-.asm_3ef74
-	xor a
-	ld [MonType], a
-	ld a, $1f
-	call Predef
-	callab Function50e1b
-	pop bc
-	ld hl, $001f
-	add hl, bc
-	ld a, [hl]
-	cp $64
-	jp nc, .asm_3f0b9
-	cp d
-	jp z, .asm_3f0b9
-	ld [$c719], a
-	ld a, [CurPartyLevel]
-	push af
-	ld a, d
-	ld [CurPartyLevel], a
-	ld [hl], a
-	ld hl, $0000
-	add hl, bc
-	ld a, [hl]
-	ld [CurSpecies], a
-	ld [$d265], a
-	call GetBaseData
-	ld hl, $0025
-	add hl, bc
-	ld a, [hld]
-	ld e, a
-	ld d, [hl]
-	push de
-	ld hl, $0024
-	add hl, bc
-	ld d, h
-	ld e, l
-	ld hl, $000a
-	add hl, bc
-	push bc
-	ld b, $1
-	ld a, $c
-	call Predef
-	pop bc
-	pop de
-	ld hl, $0025
-	add hl, bc
-	ld a, [hld]
-	sub e
-	ld e, a
-	ld a, [hl]
-	sbc d
-	ld d, a
-	dec hl
-	ld a, [hl]
-	add e
-	ld [hld], a
-	ld a, [hl]
-	adc d
-	ld [hl], a
-	ld a, [CurBattleMon]
-	ld d, a
-	ld a, [CurPartyMon]
-	cp d
-	jr nz, .asm_3f035
-	ld de, BattleMonHP
-	ld a, [hli]
-	ld [de], a
-	inc de
-	ld a, [hli]
-	ld [de], a
-	ld de, BattleMonMaxHP
-	push bc
-	ld bc, $000c
-	call CopyBytes
-	pop bc
-	ld hl, $001f
-	add hl, bc
-	ld a, [hl]
-	ld [BattleMonLevel], a
-	ld a, [PlayerSubStatus5]
-	bit 3, a
-	jr nz, .asm_3f012
-	ld hl, $0026
-	add hl, bc
-	ld de, PlayerStats
-	ld bc, $000a
-	call CopyBytes
-
-.asm_3f012
-	xor a
-	ld [$d265], a
-	call Function3ecab
-	callab Function3ec2c
-	callab BadgeStatBoosts
-	callab Function3df48
-	call EmptyBattleTextBox
-	call Function309d
-	ld a, $1
-	ld [hBGMapMode], a
-
-.asm_3f035
-	callba Function2709e
-	ld a, [CurBattleMon]
-	ld b, a
-	ld a, [CurPartyMon]
-	cp b
-	jr z, .asm_3f057
-	ld de, SFX_HIT_END_OF_EXP_BAR
-	call PlaySFX
-	call WaitSFX
-	ld hl, BattleText_0x80c9c
-	call StdBattleTextBox
-	call Function309d
-
-.asm_3f057
-	xor a
-	ld [MonType], a
-	ld a, $1f
-	call Predef
-	ld hl, $c4a9
-	ld b, $a
-	ld c, $9
-	call TextBox
-	ld hl, $c4bf
-	ld bc, $0004
-	ld a, $28
-	call Predef
-	ld c, $1e
-	call DelayFrames
-	call Functiona80
-	call Function30b4
-	xor a
-	ld [MonType], a
-	ld a, [CurSpecies]
-	ld [$d265], a
-	ld a, [CurPartyLevel]
-	push af
-	ld c, a
-	ld a, [$c719]
-	ld b, a
-
-.asm_3f093
-	inc b
-	ld a, b
-	ld [CurPartyLevel], a
-	push bc
-	ld a, $1a
-	call Predef
-	pop bc
-	ld a, b
-	cp c
-	jr nz, .asm_3f093
-	pop af
-	ld [CurPartyLevel], a
-	ld hl, EvolvableFlags
-	ld a, [CurPartyMon]
-	ld c, a
-	ld b, $1
-	ld a, $3
-	call Predef
-	pop af
-	ld [CurPartyLevel], a
-
-.asm_3f0b9
-	ld a, [PartyCount]
-	ld b, a
-	ld a, [CurPartyMon]
-	inc a
-	cp b
-	jr z, .asm_3f0d1
-	ld [CurPartyMon], a
-	ld a, $0
-	call GetPartyParamLocation
-	ld b, h
-	ld c, l
-	jp .asm_3ee50
-
-.asm_3f0d1
-	jp Function3d57a
-; 3f0d4
-
-Function3f0d4: ; 3f0d4
-	ld a, [$c664]
-	ld b, a
-	ld c, $6
-	ld d, $0
-.asm_3f0dc
-	xor a
-	srl b
-	adc d
-	ld d, a
-	dec c
-	jr nz, .asm_3f0dc
-	cp $2
-	ret c
-	ld [$d265], a
-	ld hl, EnemyMonBaseStats
-	ld c, $7
-.asm_3f0ef
-	xor a
-	ld [hProduct], a
-	ld a, [hl]
-	ld [hMultiplicand], a
-	ld a, [$d265]
-	ld [hMultiplier], a
-	ld b, $2
-	call Divide
-	ld a, [$ffb6]
-	ld [hli], a
-	dec c
-	jr nz, .asm_3f0ef
-	ret
-; 3f106
-
-Function3f106: ; 3f106
-	push bc
-	ld a, [$ffb5]
-	ld b, a
-	ld a, [$ffb6]
-	ld c, a
-	srl b
-	rr c
-	add c
-	ld [$ffb6], a
-	ld a, [$ffb5]
-	adc b
-	ld [$ffb5], a
-	pop bc
-	ret
-; 3f11b
-
-UnknownText_0x3f11b: ; 3f11b
-	text_jump UnknownText_0x1c029c, BANK(UnknownText_0x1c029c)
-	start_asm
-	ld hl, UnknownText_0x3f131
-	ld a, [$d088] ; IsTradedMon
-	and a
-	ret z
-	ld hl, UnknownText_0x3f12c
-	ret
-; 3f12c
-
-UnknownText_0x3f12c: ; 3f12c
-	text_jump UnknownText_0x1c02a9, BANK(UnknownText_0x1c02a9)
-	db "@"
-; 3f131
-
-UnknownText_0x3f131: ; 3f131
-	text_jump UnknownText_0x1c02c9, BANK(UnknownText_0x1c02c9)
-	db "@"
-; 3f136
-
-
-Function3f136: ; 3f136
-
-	push bc
-
-	ld hl, CurPartyMon
-	ld a, [CurBattleMon]
-	cp [hl]
-	jp nz, .asm_3f219
-
-	ld a, [BattleMonLevel]
-	cp MAX_LEVEL
-	jp nc, .asm_3f219
-
-	ld a, [$ffb6]
-	ld [$d004], a
-	push af
-	ld a, [$ffb5]
-	ld [$d003], a
-	push af
-	xor a
-	ld [DefaultFlypoint], a
-	xor a
-	ld [MonType], a
-	ld a, $1f
-	call Predef
-	ld a, [TempMonLevel]
-	ld b, a
-	ld e, a
-	push de
-	ld de, $d118
-	call Function3f39c
-	push bc
-	ld hl, $d118
-	ld a, [$d004]
-	add [hl]
-	ld [hld], a
-	ld a, [$d003]
-	adc [hl]
-	ld [hld], a
-	jr nc, .asm_3f186
-	inc [hl]
-	jr nz, .asm_3f186
-	ld a, $ff
-	ld [hli], a
-	ld [hli], a
-	ld [hl], a
-
-.asm_3f186
-	ld d, $64
-	callab Function50e47
-	ld a, [hMultiplicand]
-	ld b, a
-	ld a, [$ffb5]
-	ld c, a
-	ld a, [$ffb6]
-	ld d, a
-	ld hl, $d118
-	ld a, [hld]
-	sub d
-	ld a, [hld]
-	sbc c
-	ld a, [hl]
-	sbc b
-	jr c, .asm_3f1a8
-	ld a, b
-	ld [hli], a
-	ld a, c
-	ld [hli], a
-	ld a, d
-	ld [hld], a
-
-.asm_3f1a8
-	callab Function50e1b
-	ld a, d
-	pop bc
-	pop de
-	ld d, a
-	cp e
-	jr nc, .asm_3f1b7
-	ld a, e
-	ld d, a
-
-.asm_3f1b7
-	ld a, e
-	cp $64
-	jr nc, .asm_3f1ff
-	cp d
-	jr z, .asm_3f1ff
-	inc a
-	ld [TempMonLevel], a
-	ld [CurPartyLevel], a
-	ld [BattleMonLevel], a
-	push de
-	call Function3f21b
-	ld c, $40
-	call Function3f22c
-	call PrintPlayerHUD
-	ld hl, BattleMonNick
-	ld de, StringBuffer1
-	ld bc, $000b
-	call CopyBytes
-	call Function3dfe
-	ld de, SFX_HIT_END_OF_EXP_BAR
-	call PlaySFX
-	callba Function8e79d
-	call WaitSFX
-	ld hl, BattleText_0x80c9c
-	call StdBattleTextBox
-	pop de
-	inc e
-	ld b, $0
-	jr .asm_3f1b7
-
-.asm_3f1ff
-	push bc
-	ld b, d
-	ld de, $d118
-	call Function3f39c
-	ld a, b
-	pop bc
-	ld c, a
-	call Function3f21b
-	call Function3f22c
-	call Function3dfe
-	pop af
-	ld [$ffb5], a
-	pop af
-	ld [$ffb6], a
-
-.asm_3f219
-	pop bc
-	ret
-; 3f21b
-
-Function3f21b: ; 3f21b
-	push bc
-	call WaitSFX
-	ld de, SFX_EXP_BAR
-	call PlaySFX
-	ld c, 10
-	call DelayFrames
-	pop bc
-	ret
-; 3f22c
-
-Function3f22c: ; 3f22c
-	ld d, $3
-	dec b
-.asm_3f22f
-	inc b
-	push bc
-	push de
-	ld hl, $c58d
-	call Function3f41c
-	pop de
-	ld a, $1
-	ld [hBGMapMode], a
-	ld c, d
-	call DelayFrames
-	xor a
-	ld [hBGMapMode], a
-	pop bc
-	ld a, c
-	cp b
-	jr z, .asm_3f268
-	inc b
-	push bc
-	push de
-	ld hl, $c58d
-	call Function3f41c
-	pop de
-	ld a, $1
-	ld [hBGMapMode], a
-	ld c, d
-	call DelayFrames
-	xor a
-	ld [hBGMapMode], a
-	dec d
-	jr nz, .asm_3f263
-	ld d, $1
-
-.asm_3f263
-	pop bc
-	ld a, c
-	cp b
-	jr nz, .asm_3f22f
-
-.asm_3f268
-	ld a, $1
-	ld [hBGMapMode], a
-	ret
-; 3f26d
-
-
-
-Function3f26d: ; 3f26d
-; SendOutMonText?
-
-	ld a, [InLinkBattle]
-	and a
-	jr z, .asm_3f27c
-	ld hl, UnknownText_0x3f2d1
-	ld a, [$d264]
-	and a
-	jr nz, .asm_3f2ce
-
-.asm_3f27c
-	ld hl, EnemyMonHPHi
-	ld a, [hli]
-	or [hl]
-	ld hl, UnknownText_0x3f2d1
-	jr z, .asm_3f2ce
-	xor a
-	ld [hMultiplicand], a
-	ld hl, EnemyMonHPHi
-	ld a, [hli]
-	ld [$c6ea], a
-	ld [$ffb5], a
-	ld a, [hl]
-	ld [$c6eb], a
-	ld [$ffb6], a
-	ld a, $19
-	ld [hMultiplier], a
-	call Multiply
-	ld hl, EnemyMonMaxHPHi
-	ld a, [hli]
-	ld b, [hl]
-	srl a
-	rr b
-	srl a
-	rr b
-	ld a, b
-	ld b, $4
-	ld [hMultiplier], a
-	call Divide
-	ld a, [$ffb6]
-	ld hl, UnknownText_0x3f2d1
-	cp $46
-	jr nc, .asm_3f2ce
-	ld hl, UnknownText_0x3f2d8
-	cp $28
-	jr nc, .asm_3f2ce
-	ld hl, UnknownText_0x3f2df
-	cp $a
-	jr nc, .asm_3f2ce
-	ld hl, UnknownText_0x3f2e6
-
-.asm_3f2ce
-	jp BattleTextBox
-; 3f2d1
-
-
-UnknownText_0x3f2d1: ; 3f2d1
-	text_jump UnknownText_0x1c02df, BANK(UnknownText_0x1c02df)
-	start_asm
-	jr Function3f2eb
-; 3f2d6
-
-UnknownText_0x3f2d8: ; 3f2d8
-	text_jump UnknownText_0x1c02e6, BANK(UnknownText_0x1c02e6)
-	start_asm
-	jr Function3f2eb
-; 3f2dd
-
-UnknownText_0x3f2df: ; 3f2df
-	text_jump UnknownText_0x1c02f0, BANK(UnknownText_0x1c02f0)
-	start_asm
-	jr Function3f2eb
-; 3f2e4
-
-UnknownText_0x3f2e6: ; 3f2e6
-	text_jump UnknownText_0x1c02fe, BANK(UnknownText_0x1c02fe)
-	start_asm
-; 3f2eb
-
-Function3f2eb: ; 3f2eb
-	ld hl, UnknownText_0x3f2ef
-	ret
-; 3f2ef
-
-UnknownText_0x3f2ef: ; 3f2ef
-	text_jump UnknownText_0x1c0317, BANK(UnknownText_0x1c0317)
-	db "@"
-; 3f2f4
-
-
-Function3f2f4: ; 3f2f4
-	ld hl, UnknownText_0x3f2fa
-	jp BattleTextBox
-; 3f2fa
-
-UnknownText_0x3f2fa: ; 3f2fa
-	text_jump UnknownText_0x1c031d, BANK(UnknownText_0x1c031d)
-	start_asm
-; 3f2ff
-
-Function3f2ff: ; 3f2ff
-	push de
-	push bc
-	ld hl, EnemyMonHPLo
-	ld de, $c6eb
-	ld b, [hl]
-	dec hl
-	ld a, [de]
-	sub b
-	ld [$ffb6], a
-	dec de
-	ld b, [hl]
-	ld a, [de]
-	sbc b
-	ld [$ffb5], a
-	ld a, $19
-	ld [hMultiplier], a
-	call Multiply
-	ld hl, EnemyMonMaxHPHi
-	ld a, [hli]
-	ld b, [hl]
-	srl a
-	rr b
-	srl a
-	rr b
-	ld a, b
-	ld b, $4
-	ld [hMultiplier], a
-	call Divide
-	pop bc
-	pop de
-	ld a, [$ffb6]
-	ld hl, UnknownText_0x3f348
-	and a
-	ret z
-	ld hl, UnknownText_0x3f35b
-	cp $1e
-	ret c
-	ld hl, UnknownText_0x3f34d
-	cp $46
-	ret c
-	ld hl, UnknownText_0x3f352
-	ret
-; 3f348
-
-UnknownText_0x3f348: ; 3f348
-	text_jump UnknownText_0x1c0324, BANK(UnknownText_0x1c0324)
-	db "@"
-; 3f34d
-
-UnknownText_0x3f34d: ; 3f34d
-	text_jump UnknownText_0x1c0340, BANK(UnknownText_0x1c0340)
-	db "@"
-; 3f352
-
-UnknownText_0x3f352: ; 3f352
-	text_jump UnknownText_0x1c0352, BANK(UnknownText_0x1c0352)
-	db "@"
-; 3f357
-
-Function3f357: ; 3f357
-	ld hl, UnknownText_0x3f35b
-	ret
-; 3f35b
-
-UnknownText_0x3f35b: ; 3f35b
-	text_jump UnknownText_0x1c0366, BANK(UnknownText_0x1c0366)
-	db "@"
-; 3f360
-
-
-Function3f360: ; 3f360
-	ld hl, $c6f0
-	ld a, [hl]
-	and a
-	jr z, .asm_3f36d
-	dec [hl]
-	ld hl, BattleText_0x80cba
-	jr .asm_3f388
-
-.asm_3f36d
-	dec hl
-	ld a, [hl]
-	and a
-	ret z
-	dec [hl]
-	ld hl, BattleText_0x80cd1
-	jr nz, .asm_3f388
-	push hl
-	ld a, [EnemyMonSpecies]
-	ld [CurSpecies], a
-	call GetBaseData
-	ld a, [BaseCatchRate]
-	ld [EnemyMonCatchRate], a
-	pop hl
-
-.asm_3f388
-	push hl
-	call Function30b4
-	pop hl
-	jp StdBattleTextBox
-; 3f390
-
-
-FillInExpBar: ; 3f390
-	push hl
-	call Function3f39c
-	pop hl
-	ld de, $0007
-	add hl, de
-	jp Function3f41c
-; 3f39c
-
-Function3f39c: ; 3f39c
-	push de
-	ld d, b
-	push de
-	callab Function50e47
-	pop de
-	ld hl, hMultiplicand
-	ld a, [hli]
-	push af
-	ld a, [hli]
-	push af
-	ld a, [hl]
-	push af
-	inc d
-	callab Function50e47
-	ld hl, $ffb6
-	ld a, [hl]
-	ld [$ffba], a
-	pop bc
-	sub b
-	ld [hld], a
-	ld a, [hl]
-	ld [$ffb9], a
-	pop bc
-	sbc b
-	ld [hld], a
-	ld a, [hl]
-	ld [hMathBuffer], a
-	pop bc
-	sbc b
-	ld [hl], a
-	pop de
-	ld hl, $ffb5
-	ld a, [hli]
-	push af
-	ld a, [hl]
-	push af
-	ld a, [de]
-	dec de
-	ld c, a
-	ld a, [$ffba]
-	sub c
-	ld [hld], a
-	ld a, [de]
-	dec de
-	ld b, a
-	ld a, [$ffb9]
-	sbc b
-	ld [hld], a
-	ld a, [de]
-	ld c, a
-	ld a, [hMathBuffer]
-	sbc c
-	ld [hld], a
-	xor a
-	ld [hl], a
-	ld a, $40
-	ld [hMultiplier], a
-	call Multiply
-	pop af
-	ld c, a
-	pop af
-	ld b, a
-.asm_3f3f4
-	ld a, b
-	and a
-	jr z, .asm_3f40c
-	srl b
-	rr c
-	ld hl, hProduct
-	srl [hl]
-	inc hl
-	rr [hl]
-	inc hl
-	rr [hl]
-	inc hl
-	rr [hl]
-	jr .asm_3f3f4
-
-.asm_3f40c
-	ld a, c
-	ld [hMultiplier], a
-	ld b, $4
-	call Divide
-	ld a, [$ffb6]
-	ld b, a
-	ld a, $40
-	sub b
-	ld b, a
-	ret
-; 3f41c
-
-Function3f41c: ; 3f41c
-	ld c, $8
-.asm_3f41e
-	ld a, b
-	sub $8
-	jr c, .asm_3f42c
-	ld b, a
-	ld a, $6a
-	ld [hld], a
-	dec c
-	jr z, .asm_3f43c
-	jr .asm_3f41e
-
-.asm_3f42c
-	add $8
-	jr z, .asm_3f434
-	add $54
-	jr .asm_3f436
-
-.asm_3f434
-	ld a, $62
-
-.asm_3f436
-	ld [hld], a
-	ld a, $62
-	dec c
-	jr nz, .asm_3f434
-
-.asm_3f43c
-	ret
-; 3f43d
-
-Function3f43d: ; 3f43d
-	ld a, [PlayerSubStatus4]
-	bit 4, a
-	ld hl, Functioncc640
-	jr nz, asm_3f46f
-Function3f447: ; 3f447
-	ld a, [$c6fe]
-	and a
-	ld hl, Functioncc6cf
-	jr nz, asm_3f46f
-	ld a, [CurPartySpecies]
-	push af
-	ld a, [BattleMonSpecies]
-	ld [CurPartySpecies], a
-	ld hl, BattleMonAtkDefDV
-	ld a, $2d
-	call Predef
-	ld de, $9310
-	ld a, $3d
-	call Predef
-	pop af
-	ld [CurPartySpecies], a
-	ret
-
-asm_3f46f
-	ld a, [hBattleTurn]
-	push af
-	xor a
-	ld [hBattleTurn], a
-	ld a, BANK(Functioncc640)
-	rst FarCall
-	pop af
-	ld [hBattleTurn], a
-	ret
-; 3f47c
-
-Function3f47c: ; 3f47c
-	ld a, [EnemySubStatus4]
-	bit 4, a
-	ld hl, Functioncc640
-	jr nz, asm_3f4b4
-Function3f486: ; 3f486
-	ld a, [$c6fa]
-	and a
-	ld hl, Functioncc6cf
-	jr nz, asm_3f4b4
-	ld a, [CurPartySpecies]
-	push af
-	ld a, [EnemyMonSpecies]
-	ld [CurSpecies], a
-	ld [CurPartySpecies], a
-	call GetBaseData
-	ld hl, EnemyMonAtkDefDV
-	ld a, $2d
-	call Predef
-	ld de, VTiles2
-	ld a, $3e
-	call Predef
-	pop af
-	ld [CurPartySpecies], a
-	ret
-
-asm_3f4b4
-	ld a, [hBattleTurn]
-	push af
-	call SetEnemyTurn
-	ld a, BANK(Functioncc640)
-	rst FarCall
-	pop af
-	ld [hBattleTurn], a
-	ret
-; 3f4c1
-
-
-StartBattle: ; 3f4c1
-	ld a, [PartyCount]
-	and a
-	ret z
-	ld a, [TimeOfDayPal]
-	push af
-	call Function3f4dd
-	call Function3c000
-	call Function3f69e
-	pop af
-	ld [TimeOfDayPal], a
-	scf
-	ret
-; 3f4d9
-
-
-Function3f4d9: ; 3f4d9
-	call Function3c000
-	ret
-; 3f4dd
-
-
-Function3f4dd: ; 3f4dd
-	callba Function106050
-	call Function3f54e
-	xor a
-	ld [TempBattleMonSpecies], a
-	ld [$d0d2], a
-	xor a
-	ld [$ffde], a
-	callba PlayBattleMusic
-	callba Function2ee18
-	callba Function2ee2f
-	call Function2ed3
-	callba ClearBattleRAM
-	call Function3f55e
-	call Function3f568
-	ld b, $0
-	call GetSGBLayout
-	ld hl, rLCDC
-	res 6, [hl]
-	call Function3fb6c
-	call BattleStartMessage
-	ld hl, rLCDC
-	set 6, [hl]
-	xor a
-	ld [hBGMapMode], a
-	call EmptyBattleTextBox
-	hlcoord 9, 7
-	ld bc, 5 << 8 + 11
-	call ClearBox
-	hlcoord 1, 0
-	ld bc, 4 << 8 + 10
-	call ClearBox
-	call ClearSprites
-	ld a, [IsInBattle]
-	cp $1
-	call z, Function3e036
-	ld a, $1
-	ld [hBGMapMode], a
-	ret
-; 3f54e
-
-Function3f54e: ; 3f54e
-	ld a, [OtherTrainerClass]
-	and a
-	jr nz, .asm_3f55a
-	ld a, [$d22e]
-	ld [CurPartySpecies], a
-
-.asm_3f55a
-	ld [TempEnemyMonSpecies], a
-	ret
-; 3f55e
-
-Function3f55e: ; 3f55e
-	ld a, [OtherTrainerClass]
-	and a
-	jp nz, Function3f594
-	jp Function3f607
-; 3f568
-
-Function3f568: ; 3f568
-	ld a, [rSVBK]
-	push af
-	ld a, $6
-	ld [rSVBK], a
-	ld hl, $d000
-	ld bc, VBlank5
-	ld a, $2
-	call ByteFill
-	ld a, [rVBK]
-	push af
-	ld a, $1
-	ld [rVBK], a
-	ld de, $d000
-	ld hl, VBGMap0
-	ld bc, $0f40
-	call Request2bpp
-	pop af
-	ld [rVBK], a
-	pop af
-	ld [rSVBK], a
-	ret
-; 3f594
-
-Function3f594: ; 3f594
-	ld [TrainerClass], a
-	callba Function10606a
-	xor a
-	ld [TempEnemyMonSpecies], a
-	callab Function3957b
-	callab Function39771
-	ld a, [TrainerClass]
-	cp $9
-	jr nz, .asm_3f5b8
-	xor a
-	ld [OTPartyMon1Item], a
-
-.asm_3f5b8
-	ld de, VTiles2
-	callab Function5120d
-	xor a
-	ld [$ffad], a
-	dec a
-	ld [$c6e6], a
-	ld hl, $c4ac
-	ld bc, $0707
-	ld a, $13
-	call Predef
-	ld a, $ff
-	ld [CurOTMon], a
-	ld a, $2
-	ld [IsInBattle], a
-	call IsJohtoGymLeader
-	jr nc, .asm_3f606
-	xor a
-	ld [CurPartyMon], a
-	ld a, [PartyCount]
-	ld b, a
-.asm_3f5ea
-	push bc
-	ld a, $22
-	call GetPartyParamLocation
-	ld a, [hli]
-	or [hl]
-	jr z, .asm_3f5fc
-	ld c, $4
-	callab ChangeHappiness
-
-.asm_3f5fc
-	pop bc
-	dec b
-	jr z, .asm_3f606
-	ld hl, CurPartyMon
-	inc [hl]
-	jr .asm_3f5ea
-
-.asm_3f606
-	ret
-; 3f607
-
-Function3f607: ; 3f607
-	ld a, $1
-	ld [IsInBattle], a
-	callba Function10605d
-	call LoadEnemyMon
-	ld hl, EnemyMonMove1
-	ld de, $c735
-	ld bc, $0004
-	call CopyBytes
-	ld hl, EnemyMonPPMove1
-	ld de, $c739
-	ld bc, $0004
-	call CopyBytes
-	ld hl, EnemyMonAtkDefDV
-	ld a, $2d
-	call Predef
-	ld a, [CurPartySpecies]
-	cp $c9
-	jr nz, .asm_3f648
-	ld a, [$def4]
-	and a
-	jr nz, .asm_3f648
-	ld a, [UnownLetter]
-	ld [$def4], a
-
-.asm_3f648
-	ld de, VTiles2
-	ld a, $3e
-	call Predef
-	xor a
-	ld [TrainerClass], a
-	ld [$ffad], a
-	ld hl, $c4ac
-	ld bc, $0707
-	ld a, $13
-	call Predef
-	ret
-; 3f662
-
-Function3f662: ; 3f662
-	ld hl, EnemyMonMove1
-	ld de, $d25e
-	ld b, $4
-.asm_3f66a
-	ld a, [de]
-	inc de
-	ld [hli], a
-	and a
-	jr z, .asm_3f690
-	push bc
-	push hl
-	push hl
-	dec a
-	ld hl, $5b00
-	ld bc, $0007
-	call AddNTimes
-	ld a, $10
-	call GetFarByte
-	pop hl
-	ld bc, $0005
-	add hl, bc
-	ld [hl], a
-	pop hl
-	pop bc
-	dec b
-	jr nz, .asm_3f66a
-	ret
-
-.asm_3f68e
-	xor a
-	ld [hli], a
-
-.asm_3f690
-	push bc
-	push hl
-	ld bc, $0005
-	add hl, bc
-	xor a
-	ld [hl], a
-	pop hl
-	pop bc
-	dec b
-	jr nz, .asm_3f68e
-	ret
-; 3f69e
-
-
-Function3f69e: ; 3f69e
-	call Function3f6a5
-	call Function3f6d0
-	ret
-; 3f6a5
-
-Function3f6a5: ; 3f6a5
-	ld a, [InLinkBattle]
-	and a
-	jr z, .asm_3f6b7
-	call Function3f759
-	ld c, $96
-	call DelayFrames
-	call Function3f77c
-	ret
-
-.asm_3f6b7
-	ld a, [$d0ee]
-	and $f
-	ret nz
-	call Function3f71d
-	xor a
-	ld [$d1e9], a
-	ld a, $1c
-	call Predef
-	callba Function2ed44
-	ret
-; 3f6d0
-
-Function3f6d0: ; 3f6d0
-	call Function3f998
-	xor a
-	ld [Danger], a
-	ld [IsInBattle], a
-	ld [BattleType], a
-	ld [AttackMissed], a
-	ld [$d22e], a
-	ld [OtherTrainerClass], a
-	ld [$d266], a
-	ld [$d267], a
-	ld [$d232], a
-	ld [$d0d8], a
-	ld [$d0da], a
-	ld [$d0d9], a
-	ld [$d0d2], a
-	ld [CurMoveNum], a
-	ld [$d0db], a
-	ld [$d0d6], a
-	ld [$d0e4], a
-	ld [$d0e0], a
-	ld [$d0df], a
-	ld [$d0e1], a
-	ld hl, PlayerSubStatus1
-	ld b, $18
-.asm_3f715
-	ld [hli], a
-	dec b
-	jr nz, .asm_3f715
-	call WaitSFX
-	ret
-; 3f71d
-
-Function3f71d: ; 3f71d
-	ld hl, $c6ec
-	ld a, [hli]
-	or [hl]
-	inc hl
-	or [hl]
-	ret z
-	ld a, [$c73d]
-	and a
-	jr z, .asm_3f73d
-	ld hl, $c6ee
-	sla [hl]
-	dec hl
-	rl [hl]
-	dec hl
-	rl [hl]
-	jr nc, .asm_3f73d
-	ld a, $ff
-	ld [hli], a
-	ld [hli], a
-	ld [hl], a
-
-.asm_3f73d
-	ld hl, $c6ee
-	ld de, $d850
-	call Function3d0be
-	ld hl, BattleText_0x80730
-	call StdBattleTextBox
-	ld a, [$cfc0]
-	bit 0, a
-	ret z
-	call ClearTileMap
-	call WhiteBGMap
-	ret
-; 3f759
-
-Function3f759: ; 3f759
-	callba Function1060df
-	callba Function106187
-	ld a, [CurOTMon]
-	ld hl, OTPartyMon1Status
-	call GetPartyLocation
-	ld a, [EnemyMonStatus]
-	ld [hl], a
-	call ClearTileMap
-	callba Function2c1b2
-	ret
-; 3f77c
-
-Function3f77c: ; 3f77c
-	callba Function3d2e0
-	jp c, Function3f80f
-	call Function3f830
-	jr nz, .asm_3f797
-	ld hl, $cd2a
-	bit 4, [hl]
-	jr z, .asm_3f797
-	callba Function2b930
-
-.asm_3f797
-	ld a, [$d0ee]
-	and $f
-	cp $1
-	jr c, .asm_3f7ad
-	jr z, .asm_3f7b8
-	callba Function106107
-	ld de, .Draw
-	jr .asm_3f7c3
-
-.asm_3f7ad
-	callba Function1060fb
-	ld de, .Win
-	jr .asm_3f7c3
-
-.asm_3f7b8
-	callba Function106101
-	ld de, .Lose
-	jr .asm_3f7c3
-
-.asm_3f7c3
-	ld hl, $c546
-	call PlaceString
-	callba Function106187
-	ld c, $c8
-	call DelayFrames
-	ld a, $1
-	call GetSRAMBank
-	call Function3fa42
-	call Function3f85f
-	call CloseSRAM
-	call Function3f830
-	jr z, .asm_3f7ee
-	call Functiona80
-	call ClearTileMap
-	ret
-
-.asm_3f7ee
-	ld c, $c8
-	call DelayFrames
-	call ClearTileMap
-	ret
-; 3f7f7
-
-.Win
-	db "YOU WIN@"
-.Lose
-	db "YOU LOSE@"
-.Draw
-	db "  DRAW@"
-; 3f80f
-
-
-Function3f80f: ; 3f80f
-	ld hl, $c546
-	ld de, .Invalid
-	call PlaceString
-	ld c, $c8
-	call DelayFrames
-	call ClearTileMap
-	ret
-; 3f821
-
-.Invalid
-	db "INVALID BATTLE@"
-; 3f830
-
-
-Function3f830: ; 3f830
-	ld a, [InLinkBattle]
-	cp $4
-	ret
-; 3f836
-
-
-Function3f836: ; 3f836
-	ld a, $1
-	call GetSRAMBank
-	call Function3f85f
-	call CloseSRAM
-	ld hl, AttrMap
-	xor a
-	ld bc, $0168
-	call ByteFill
-	call Function3200
-	ld b, $8
-	call GetSGBLayout
-	call Function32f9
-	ld c, $8
-	call DelayFrames
-	call Functiona80
-	ret
-; 3f85f
-
-
-Function3f85f: ; 3f85f
-	call ClearTileMap
-	call ClearSprites
-	call .asm_3f8e0
-	ld hl, $c540
-	ld b, $5
-	ld de, $b268
-.asm_3f870
-	push bc
-	push hl
-	push de
-	ld a, [de]
-	and a
-	jr z, .asm_3f8c9
-	ld a, [$d4b4]
-	and a
-	jr z, .asm_3f8c9
-	push hl
-	push hl
-	ld h, d
-	ld l, e
-	ld de, DefaultFlypoint
-	ld bc, $000a
-	call CopyBytes
-	ld a, $50
-	ld [de], a
-	inc de
-	ld bc, $0006
-	call CopyBytes
-	ld de, DefaultFlypoint
-	pop hl
-	call PlaceString
-	pop hl
-	ld de, $001a
-	add hl, de
-	push hl
-	ld de, $d00d
-	ld bc, $0204
-	call PrintNum
-	pop hl
-	ld de, $0005
-	add hl, de
-	push hl
-	ld de, $d00f
-	ld bc, $0204
-	call PrintNum
-	pop hl
-	ld de, $0005
-	add hl, de
-	ld de, $d011
-	ld bc, $0204
-	call PrintNum
-	jr .asm_3f8cf
-
-.asm_3f8c9
-	ld de, .Format
-	call PlaceString
-
-.asm_3f8cf
-	pop hl
-	ld bc, $0012
-	add hl, bc
-	ld d, h
-	ld e, l
-	pop hl
-	ld bc, $0028
-	add hl, bc
-	pop bc
-	dec b
-	jr nz, .asm_3f870
-	ret
-
-.asm_3f8e0
-	ld hl, $c4a1
-	ld de, .Record
-	call PlaceString
-
-	ld hl, $c518
-	ld de, .Result
-	call PlaceString
-
-	ld hl, $c4c8
-	ld de, .Total
-	call PlaceString
-
-	ld hl, $c4f6
-	ld de, $b260
-	call .asm_3f92b
-	jr c, .asm_3f92a
-
-	ld bc, $0204
-	call PrintNum
-
-	ld hl, $c4fb
-	ld de, $b262
-	call .asm_3f92b
-
-	ld bc, $0204
-	call PrintNum
-
-	ld hl, $c500
-	ld de, $b264
-	call .asm_3f92b
-
-	ld bc, $0204
-	call PrintNum
-
-.asm_3f92a
-	ret
-
-.asm_3f92b
-	ld a, [$d4b4]
-	and a
-	ret nz
-	ld de, .Scores
-	call PlaceString
-	scf
-	ret
-; 3f938
-
-.Scores
-	db "   0    0    0@"
-; 3f947
-
-.Format ; 3f947
-	db "  ---  ", $22, "         -    -    -@"
-.Record ; 3f964
-	db $52, "'s RECORD@"
-.Result ; 3f96e
-	db "RESULT WIN LOSE DRAW@"
-.Total ; 3f983
-	db "TOTAL  WIN LOSE DRAW@"
-; 3f998
-
-
-Function3f998: ; 3f998
-	ld a, [BattleType]
-	cp BATTLETYPE_ROAMING
-	jr nz, .asm_3f9c4
-	ld a, [$d0ee]
-	and $f
-	jr z, .asm_3f9af
-	call GetRoamMonHP
-	ld a, [EnemyMonHPLo]
-	ld [hl], a
-	jr .asm_3f9ca
-
-.asm_3f9af
-	call GetRoamMonHP
-	ld [hl], $0
-	call GetRoamMonMapGroup
-	ld [hl], $ff
-	call GetRoamMonMapNumber
-	ld [hl], $ff
-	call GetRoamMonSpecies
-	ld [hl], $0
-	ret
-
-.asm_3f9c4
-	call BattleRandom
-	and $f
-	ret nz
-
-.asm_3f9ca
-	callab Function2a30d
-	ret
-; 3f9d1
-
-GetRoamMonMapGroup: ; 3f9d1
-	ld a, [TempEnemyMonSpecies]
-	ld b, a
-	ld a, [RoamMon1Species]
-	cp b
-	ld hl, RoamMon1MapGroup
-	ret z
-	ld a, [RoamMon2Species]
-	cp b
-	ld hl, RoamMon2MapGroup
-	ret z
-	ld hl, RoamMon3MapGroup
-	ret
-; 3f9e9
-
-GetRoamMonMapNumber: ; 3f9e9
-	ld a, [TempEnemyMonSpecies]
-	ld b, a
-	ld a, [RoamMon1Species]
-	cp b
-	ld hl, RoamMon1MapNumber
-	ret z
-	ld a, [RoamMon2Species]
-	cp b
-	ld hl, RoamMon2MapNumber
-	ret z
-	ld hl, RoamMon3MapNumber
-	ret
-; 3fa01
-
-GetRoamMonHP: ; 3fa01
-; output: hl = RoamMonCurHP
-	ld a, [TempEnemyMonSpecies]
-	ld b, a
-	ld a, [RoamMon1Species]
-	cp b
-	ld hl, RoamMon1CurHP
-	ret z
-	ld a, [RoamMon2Species]
-	cp b
-	ld hl, RoamMon2CurHP
-	ret z
-	ld hl, RoamMon3CurHP
-	ret
-; 3fa19
-
-GetRoamMonDVs: ; 3fa19
-; output: hl = RoamMonDVs
-	ld a, [TempEnemyMonSpecies]
-	ld b, a
-	ld a, [RoamMon1Species]
-	cp b
-	ld hl, RoamMon1DVs
-	ret z
-	ld a, [RoamMon2Species]
-	cp b
-	ld hl, RoamMon2DVs
-	ret z
-	ld hl, RoamMon3DVs
-	ret
-; 3fa31
-
-GetRoamMonSpecies: ; 3fa31
-	ld a, [TempEnemyMonSpecies]
-	ld hl, RoamMon1Species
-	cp [hl]
-	ret z
-	ld hl, RoamMon2Species
-	cp [hl]
-	ret z
-	ld hl, RoamMon3Species
-	ret
-; 3fa42
-
-
-Function3fa42: ; 3fa42
-	ld hl, $d276
-	ld de, StringBuffer1
-	ld bc, $0002
-	call CopyBytes
-	ld hl, $d26b
-	ld bc, $000a
-	call CopyBytes
-	ld hl, $b254
-	call Function3faa0
-	ld hl, $b266
-	ld d, $5
-.asm_3fa62
-	push hl
-	inc hl
-	inc hl
-	ld a, [hl]
-	dec hl
-	dec hl
-	and a
-	jr z, .asm_3fa85
-	push de
-	ld bc, $000c
-	ld de, StringBuffer1
-	call CompareLong
-	pop de
-	pop hl
-	jr c, .asm_3fa99
-	ld bc, $0012
-	add hl, bc
-	dec d
-	jr nz, .asm_3fa62
-	ld bc, $ffee
-	add hl, bc
-	push hl
-
-.asm_3fa85
-	ld d, h
-	ld e, l
-	ld hl, StringBuffer1
-	ld bc, $000c
-	call CopyBytes
-	ld b, $6
-	xor a
-.asm_3fa93
-	ld [de], a
-	inc de
-	dec b
-	jr nz, .asm_3fa93
-	pop hl
-
-.asm_3fa99
-	call Function3faa0
-	call Function3fac8
-	ret
-; 3faa0
-
-Function3faa0: ; 3faa0
-	ld a, [$d0ee]
-	and $f
-	cp $1
-	ld bc, $000d
-	jr c, .asm_3fab4
-	ld bc, $000f
-	jr z, .asm_3fab4
-	ld bc, $0011
-
-.asm_3fab4
-	add hl, bc
-	call Function3fabe
-	ret nc
-	inc [hl]
-	ret nz
-	dec hl
-	inc [hl]
-	ret
-; 3fabe
-
-Function3fabe: ; 3fabe
-	dec hl
-	ld a, [hl]
-	inc hl
-	cp $27
-	ret c
-	ld a, [hl]
-	cp $f
-	ret
-; 3fac8
-
-Function3fac8: ; 3fac8
-	ld b, $5
-	ld hl, $b277
-	ld de, DefaultFlypoint
-.asm_3fad0
-	push bc
-	push de
-	push hl
-	call Function3fb54
-	pop hl
-	ld a, e
-	pop de
-	ld [de], a
-	inc de
-	ld a, b
-	ld [de], a
-	inc de
-	ld a, c
-	ld [de], a
-	inc de
-	ld bc, $0012
-	add hl, bc
-	pop bc
-	dec b
-	jr nz, .asm_3fad0
-	ld b, $0
-	ld c, $1
-.asm_3faed
-	ld a, b
-	add b
-	add b
-	ld e, a
-	ld d, $0
-	ld hl, DefaultFlypoint
-	add hl, de
-	push hl
-	ld a, c
-	add c
-	add c
-	ld e, a
-	ld d, $0
-	ld hl, DefaultFlypoint
-	add hl, de
-	ld d, h
-	ld e, l
-	pop hl
-	push bc
-	ld c, $3
-	call StringCmp
-	pop bc
-	jr z, .asm_3fb10
-	jr nc, .asm_3fb1f
-
-.asm_3fb10
-	inc c
-	ld a, c
-	cp $5
-	jr nz, .asm_3faed
-	inc b
-	ld c, b
-	inc c
-	ld a, b
-	cp $4
-	jr nz, .asm_3faed
-	ret
-
-.asm_3fb1f
-	push bc
-	ld a, b
-	ld bc, $0012
-	ld hl, $b266
-	call AddNTimes
-	push hl
-	ld de, DefaultFlypoint
-	ld bc, $0012
-	call CopyBytes
-	pop hl
-	pop bc
-	push hl
-	ld a, c
-	ld bc, $0012
-	ld hl, $b266
-	call AddNTimes
-	pop de
-	push hl
-	ld bc, $0012
-	call CopyBytes
-	ld hl, DefaultFlypoint
-	ld bc, $0012
-	pop de
-	call CopyBytes
-	ret
-; 3fb54
-
-Function3fb54: ; 3fb54
-	ld e, $0
-	ld a, [hld]
-	ld c, a
-	ld a, [hld]
-	ld b, a
-	ld a, [hld]
-	add c
-	ld c, a
-	ld a, [hld]
-	adc b
-	ld b, a
-	jr nc, .asm_3fb63
-	inc e
-
-.asm_3fb63
-	ld a, [hld]
-	add c
-	ld c, a
-	ld a, [hl]
-	adc b
-	ld b, a
-	ret nc
-	inc e
-	ret
-; 3fb6c
-
-Function3fb6c: ; 3fb6c
-	call Function3fbf8
-	ld hl, $c590
-	ld b, $4
-	ld c, $12
-	call TextBox
-	callba MobileTextBorder
-	ld hl, $c505
-	ld bc, $0307
-	call ClearBox
-	call Functione51
-	call Function3ed9f
-	call Function3fbd6
-	xor a
-	ld [$ffde], a
-	ld [hSCY], a
-	ld a, $90
-	ld [hWY], a
-	ld [rWY], a
-	call WaitBGMap
-	xor a
-	ld [hBGMapMode], a
-	callba Function4e980
-	ld a, $1
-	ld [hBGMapMode], a
-	ld a, $31
-	ld [$ffad], a
-	ld hl, $c51a
-	ld bc, $0606
-	ld a, $13
-	call Predef
-	xor a
-	ld [hWY], a
-	ld [rWY], a
-	call WaitBGMap
-	call HideSprites
-	ld b, $1
-	call GetSGBLayout
-	call Function32f9
-	ld a, $90
-	ld [hWY], a
-	xor a
-	ld [hSCX], a
-	ret
-; 3fbd6
-
-Function3fbd6: ; 3fbd6
-	ld a, [rSVBK]
-	push af
-	ld a, $6
-	ld [rSVBK], a
-	ld hl, $d000
-	ld bc, VBlank5
-	ld a, $7f
-	call ByteFill
-	ld de, $d000
-	ld hl, VBGMap0
-	ld bc, $0f40
-	call Request2bpp
-	pop af
-	ld [rSVBK], a
-	ret
-; 3fbf8
-
-Function3fbf8: ; 3fbf8
-	call GetBattleBackpic
-	call Function3fc30
-	ret
-; 3fbff
-
-
-GetBattleBackpic: ; 3fbff
-; Load the player character's backpic (6x6) into VRAM starting from $9310.
-
-; Special exception for Dude.
-	ld b, BANK(DudeBackpic)
-	ld hl, DudeBackpic
-	ld a, [BattleType]
-	cp BATTLETYPE_TUTORIAL
-	jr z, .Decompress
-
-; What gender are we?
-	ld a, [$d45b]
-	bit 2, a
-	jr nz, .Chris
-	ld a, [PlayerGender]
-	bit 0, a
-	jr z, .Chris
-
-; It's a girl.
-	callba GetKrisBackpic
-	ret
-
-.Chris
-; It's a boy.
-	ld b, BANK(ChrisBackpic)
-	ld hl, ChrisBackpic
-
-.Decompress
-	ld de, $9310
-	ld c, $31
-	ld a, PREDEF_DECOMPRESS
-	call Predef
-	ret
-; 3fc30
-
-
-Function3fc30: ; 3fc30
-	ld a, [rSVBK]
-	push af
-	ld a, $6
-	ld [rSVBK], a
-	ld hl, VTiles0
-	ld de, $9310
-	ld a, [hROMBank]
-	ld b, a
-	ld c, $31
-	call Get2bpp
-	pop af
-	ld [rSVBK], a
-	call Function3fc5b
-	ld a, $31
-	ld [$ffad], a
-	ld hl, $c51a
-	ld bc, $0606
-	ld a, $13
-	call Predef
-	ret
-; 3fc5b
-
-Function3fc5b: ; 3fc5b
-	ld hl, Sprites
-	xor a
-	ld [hConnectionStripLength], a
-	ld b, $6
-	ld e, $a8
-.asm_3fc65
-	ld c, $3
-	ld d, $40
-.asm_3fc69
-	ld [hl], d
-	inc hl
-	ld [hl], e
-	inc hl
-	ld a, [hConnectionStripLength]
-	ld [hli], a
-	inc a
-	ld [hConnectionStripLength], a
-	ld a, $1
-	ld [hli], a
-	ld a, d
-	add $8
-	ld d, a
-	dec c
-	jr nz, .asm_3fc69
-	ld a, [hConnectionStripLength]
-	add $3
-	ld [hConnectionStripLength], a
-	ld a, e
-	add $8
-	ld e, a
-	dec b
-	jr nz, .asm_3fc65
-	ret
-; 3fc8b
-
-
-BattleStartMessage: ; 3fc8b
-	ld a, [IsInBattle]
-	dec a
-	jr z, .asm_3fcaa
-
-	ld de, SFX_SHINE
-	call PlaySFX
-	call WaitSFX
-
-	ld c, 20
-	call DelayFrames
-
-	callba Function39939
-
-	ld hl, WantsToBattleText
-	jr .asm_3fd0e
-
-.asm_3fcaa
-	call Function3da79
-	jr nc, .asm_3fcc2
-
-	xor a
-	ld [$cfca], a
-	ld a, 1
-	ld [hBattleTurn], a
-	ld a, 1
-	ld [$c689], a
-	ld de, $0101
-	call Function3ee17
-
-.asm_3fcc2
-	callba CheckSleepingTreeMon
-	jr c, .asm_3fceb
-
-	callba Function4ea44
-	jr c, .asm_3fce0
-
-	hlcoord 12, 0
-	ld d, $0
-	ld e, $1
-	ld a, $47
-	call Predef
-	jr .asm_3fceb
-
-.asm_3fce0
-	ld a, $0f
-	ld [CryTracks], a
-	ld a, [TempEnemyMonSpecies]
-	call Function37b6
-
-.asm_3fceb
-	ld a, [BattleType]
-	cp BATTLETYPE_FISH
-	jr nz, .asm_3fcfd
-
-	callba Function106086
-
-	ld hl, HookedPokemonAttackedText
-	jr .asm_3fd0e
-
-.asm_3fcfd
-	ld hl, PokemonFellFromTreeText
-	cp BATTLETYPE_TREE
-	jr z, .asm_3fd0e
-	ld hl, WildPokemonAppearedText2
-	cp $b
-	jr z, .asm_3fd0e
-	ld hl, WildPokemonAppearedText
-
-.asm_3fd0e
-	push hl
-	callba Function2c000
-	pop hl
-	call StdBattleTextBox
-
-	call Function3f830
-	ret nz
-
-	ld c, $2
-	callba Function4ea0a
-
-	ret
-; 3fd26
-
-
-	dw $0000 ; padding
-
-
-BattleCommandPointers: ; 3fd28
+INCLUDE "battle/core.asm"
 
 INCLUDE "battle/effect_command_pointers.asm"
 
 
+SECTION "bank10", ROMX, BANK[$10]
 
-SECTION "bank10",ROMX,BANK[$10]
+Pokedex: ; 40000
 
-Function40000: ; 40000
 	ld a, [hWX]
 	ld l, a
 	ld a, [hWY]
@@ -51941,7 +37966,7 @@ Function40000: ; 40000
 	ld hl, Options
 	ld a, [hl]
 	push af
-	set 4, [hl]
+	set NO_TEXT_SCROLL, [hl]
 	ld a, [VramState]
 	push af
 	xor a
@@ -51950,26 +37975,29 @@ Function40000: ; 40000
 	push af
 	ld a, $1
 	ld [$ffaa], a
+
 	xor a
 	ld [$ffde], a
-	call Function40063
+	call InitPokedex
 	call DelayFrame
-.asm_40029
+
+.main
 	call Functiona57
 	ld a, [$cf63]
 	bit 7, a
-	jr nz, .asm_4003b
+	jr nz, .exit
 	call Function4010b
 	call DelayFrame
-	jr .asm_40029
+	jr .main
 
-.asm_4003b
+.exit
 	ld de, SFX_READ_TEXT_2
 	call PlaySFX
 	call WaitSFX
 	call ClearSprites
 	ld a, [$c7d4]
 	ld [$d959], a
+
 	pop af
 	ld [$ffaa], a
 	pop af
@@ -51986,23 +38014,28 @@ Function40000: ; 40000
 	ret
 ; 40063
 
-Function40063: ; 40063
+InitPokedex: ; 40063
 	call WhiteBGMap
 	call ClearSprites
 	call ClearTileMap
 	call Function414b7
-	ld hl, PlayerSDefLevel
+
+	ld hl, $c6d0
 	ld bc, $0115
 	xor a
 	call ByteFill
+
 	xor a
 	ld [$cf63], a
 	ld [$cf64], a
 	ld [$cf65], a
 	ld [$cf66], a
+
 	call Function400a2
+
 	ld a, [$d959]
 	ld [$c7d4], a
+
 	call Function40bdc
 	call Function400b4
 	call Function400ed
@@ -52015,27 +38048,30 @@ Function400a2: ; 400a2
 	ld a, [StatusFlags]
 	bit 1, a
 	jr nz, .asm_400ae
+
 	xor a
 	ld [$c7dc], a
 	ret
 
 .asm_400ae
-	ld a, $1
+	ld a, 1
 	ld [$c7dc], a
 	ret
 ; 400b4
 
 Function400b4: ; 400b4
-	ld hl, PlayerSDefLevel
+	ld hl, $c6d0
 	ld a, [$c2d6]
 	and a
 	jr z, .asm_400ec
 	cp $fc
 	jr nc, .asm_400ec
+
 	ld b, a
 	ld a, [$c7d2]
 	cp $8
 	jr c, .asm_400db
+
 	sub $7
 	ld c, a
 .asm_400cc
@@ -52072,8 +38108,10 @@ Function400ed: ; 400ed
 	ld a, [MapNumber]
 	ld c, a
 	call GetWorldMapLocation
-	cp $0
+
+	cp SPECIAL_MAP
 	jr nz, .asm_40107
+
 	ld a, [BackupMapGroup]
 	ld b, a
 	ld a, [BackupMapNumber]
@@ -52087,7 +38125,7 @@ Function400ed: ; 400ed
 
 Function4010b: ; 4010b
 	ld a, [$cf63]
-	ld hl, $4115
+	ld hl, Jumptable_40115
 	call Function41432
 	jp [hl]
 ; 40115
@@ -52149,6 +38187,7 @@ Function4013c: ; 4013c (10:413c)
 	ld a, $4a
 	jr z, .asm_4017b
 	ld a, $47
+
 .asm_4017b
 	ld [hWX], a ; $ff00+$d1
 	xor a
@@ -52194,6 +38233,7 @@ Function401ae: ; 401ae (10:41ae)
 	call Function41ad7
 	call Function41af7
 	ret
+
 .asm_401d9
 	call Function40bb1
 	call Function40bd0
@@ -52203,6 +38243,7 @@ Function401ae: ; 401ae (10:41ae)
 	ld a, $0
 	ld [$cf64], a
 	ret
+
 .asm_401eb
 	call Function41401
 	ld a, $7
@@ -52213,6 +38254,7 @@ Function401ae: ; 401ae (10:41ae)
 	ld [hWX], a ; $ff00+$d1
 	call DelayFrame
 	ret
+
 .asm_401fe
 	call Function41401
 	ld a, $5
@@ -52223,6 +38265,7 @@ Function401ae: ; 401ae (10:41ae)
 	ld [hWX], a ; $ff00+$d1
 	call DelayFrame
 	ret
+
 .asm_40211
 	ld a, $d
 	ld [$cf63], a
@@ -52270,17 +38313,20 @@ Function40258: ; 40258 (10:4258)
 	ret nc
 	call Function40131
 	ret
+
 .asm_40273
 	ld a, [$c7d8]
 	ld hl, $42f2
 	call Function41432
 	jp [hl]
+
 .asm_4027d
 	ld a, [LastVolume] ; $c2b4
 	and a
 	jr z, .asm_40288
 	ld a, $77
 	ld [LastVolume], a ; $c2b4
+
 .asm_40288
 	call MaxVolume
 	ld a, [$cf64]
@@ -52342,6 +38388,7 @@ Function403be: ; 403be (10:43be)
 	jr nz, .asm_403c9
 	ld de, $43f3
 	jr .asm_403cc
+
 .asm_403c9
 	ld de, $43fb
 .asm_403cc
@@ -52355,11 +38402,13 @@ Function403be: ; 403be (10:43be)
 	and $1
 	jr nz, .asm_403e0
 	ret
+
 .asm_403e0
 	ld a, [$c7d8]
-	ld hl, $4405
+	ld hl, Jumptable_40405
 	call Function41432
 	jp [hl]
+
 .asm_403ea
 	call Function41401
 	ld a, $0
@@ -52380,17 +38429,17 @@ Jumptable_40405: ; 40405 (10:4405)
 ; no known jump sources
 Function4040d: ; 4040d (10:440d)
 	ld b, $0
-	jr asm_40417
+	jr Function40417
 
 ; no known jump sources
 Function40411: ; 40411 (10:4411)
 	ld b, $1
-	jr asm_40417
+	jr Function40417
 
 ; no known jump sources
 Function40415: ; 40415 (10:4415)
 	ld b, $2
-asm_40417: ; 40417 (10:4417)
+Function40417: ; 40417 (10:4417)
 	ld a, [$c7d4]
 	cp b
 	jr z, .asm_40431
@@ -52402,6 +38451,7 @@ asm_40417: ; 40417 (10:4417)
 	ld [$c7d0], a
 	ld [$c7d1], a
 	call Function400b4
+
 .asm_40431
 	call Function41401
 	ld a, $0
@@ -52450,11 +38500,13 @@ Function40471: ; 40471 (10:4471)
 	and $1
 	jr nz, .asm_4048b
 	ret
+
 .asm_4048b
 	ld a, [$c7d8]
 	ld hl, $44a8
 	call Function41432
 	jp [hl]
+
 .asm_40495
 	call Function41401
 	ld a, $0
@@ -52518,6 +38570,7 @@ Function40562: ; 40562 (10:4562)
 	call Function41ad7
 	call Function41af7
 	ret
+
 .asm_40583
 	call Function40bb1
 	call Function40bd0
@@ -52527,6 +38580,7 @@ Function40562: ; 40562 (10:4562)
 	ld a, $9
 	ld [$cf64], a
 	ret
+
 .asm_40595
 	ld a, [$c7e0]
 	ld [$c7d0], a
@@ -52564,10 +38618,11 @@ Function405bd: ; 405bd (10:45bd)
 Function405df: ; 405df (10:45df)
 	ld hl, hJoyPressed ; $ffa7
 	ld a, [hl]
-	and $3
+	and A_BUTTON | B_BUTTON
 	jr nz, .asm_405eb
 	call Function40610
 	ret
+
 .asm_405eb
 	call Function41401
 	ld a, $7
@@ -52577,11 +38632,13 @@ Function405df: ; 405df (10:45df)
 	jr nz, .asm_40603
 	callba Function1ddf26
 	jr .asm_4060f
+
 .asm_40603
 	ld hl, $550e
 	ld de, $9310
 	ld bc, $103a
 	call Functione73
+
 .asm_4060f
 	ret
 
@@ -52595,6 +38652,7 @@ Function40610: ; 40610 (10:4610)
 	and $20
 	jr nz, .asm_4062d
 	ret
+
 .asm_4061e
 	ld a, [$c7de]
 	ld e, a
@@ -52606,6 +38664,7 @@ Function40610: ; 40610 (10:4610)
 	ld a, [hl]
 	inc [hl]
 	jr .asm_40635
+
 .asm_4062d
 	ld hl, $c7dd
 	ld a, [hl]
@@ -52613,6 +38672,7 @@ Function40610: ; 40610 (10:4610)
 	ret z
 	ld a, [hl]
 	dec [hl]
+
 .asm_40635
 	push af
 	xor a
@@ -53962,7 +40022,7 @@ Function41a24: ; 41a24
 Function41a2c: ; 41a2c
 	ld a, $0
 	call GetSRAMBank
-	ld hl, Function40000
+	ld hl, Pokedex
 	ld de, $a188
 	ld bc, Function270
 	ld a, $77
@@ -54091,28 +40151,35 @@ Function421e6: ; 421e6
 	push bc
 	push de
 	ld hl, PartyCount
+
 	push hl
-asm_421f5
+
+Function421f5: ; 421f5
 	ld hl, CurPartyMon
 	inc [hl]
+
 	pop hl
+
 	inc hl
 	ld a, [hl]
 	cp $ff
 	jp z, Function423ff
+
 	ld [MagikarpLength], a
+
 	push hl
 	ld a, [CurPartyMon]
 	ld c, a
 	ld hl, EvolvableFlags
-	ld b, $2
+	ld b, 2
 	call Function42577
 	ld a, c
 	and a
-	jp z, asm_421f5
+	jp z, Function421f5
+
 	ld a, [MagikarpLength]
 	dec a
-	ld b, $0
+	ld b, 0
 	ld c, a
 	ld hl, EvosAttacksPointers
 	add hl, bc
@@ -54120,100 +40187,127 @@ asm_421f5
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
+
 	push hl
 	xor a
 	ld [MonType], a
 	ld a, $1f
 	call Predef
 	pop hl
+
 .asm_42230
 	ld a, [hli]
 	and a
-	jr z, asm_421f5
+	jr z, Function421f5
+
 	ld b, a
-	cp $3
-	jr z, .asm_422ae
+
+	cp EVOLVE_TRADE
+	jr z, .trade
+
 	ld a, [InLinkBattle]
 	and a
 	jp nz, .asm_423f9
+
 	ld a, b
-	cp $2
-	jp z, .asm_422d5
+	cp EVOLVE_ITEM
+	jp z, .item
+
 	ld a, [$d1e9]
 	and a
 	jp nz, .asm_423f9
+
 	ld a, b
-	cp $1
-	jp z, .asm_422ee
-	cp $4
-	jr z, .asm_42283
+	cp EVOLVE_LEVEL
+	jp z, .level
+
+	cp EVOLVE_HAPPINESS
+	jr z, .happiness
+
+
+; EVOLVE_STAT
 	ld a, [TempMonLevel]
 	cp [hl]
 	jp c, .asm_423f8
+
 	call Function42461
 	jp z, .asm_423f8
+
 	push hl
 	ld de, TempMonAtk
 	ld hl, TempMonDef
-	ld c, $2
+	ld c, 2
 	call StringCmp
-	ld a, $3
+	ld a, ATK_EQ_DEF
 	jr z, .asm_4227a
-	ld a, $2
+	ld a, ATK_LT_DEF
 	jr c, .asm_4227a
-	ld a, $1
-
+	ld a, ATK_GT_DEF
 .asm_4227a
 	pop hl
+
 	inc hl
 	cp [hl]
 	jp nz, .asm_423f9
+
 	inc hl
 	jr .asm_422fd
 
-.asm_42283
+
+.happiness
 	ld a, [TempMonHappiness]
-	cp $dc
+	cp 220
 	jp c, .asm_423f9
+
 	call Function42461
 	jp z, .asm_423f9
+
 	ld a, [hli]
-	cp $1
+	cp TR_ANYTIME
 	jr z, .asm_422fd
-	cp $2
+	cp TR_MORNDAY
 	jr z, .asm_422a4
+
+; TR_NITE
 	ld a, [TimeOfDay]
-	cp $2
+	cp NITE
 	jp nz, .asm_423fa
 	jr .asm_422fd
 
 .asm_422a4
 	ld a, [TimeOfDay]
-	cp $2
+	cp NITE
 	jp z, .asm_423fa
 	jr .asm_422fd
 
-.asm_422ae
+
+.trade
 	ld a, [InLinkBattle]
 	and a
 	jp z, .asm_423f9
+
 	call Function42461
 	jp z, .asm_423f9
+
 	ld a, [hli]
 	ld b, a
 	inc a
 	jr z, .asm_422fd
+
 	ld a, [InLinkBattle]
 	cp $1
 	jp z, .asm_423fa
+
 	ld a, [TempMonItem]
 	cp b
 	jp nz, .asm_423fa
+
 	xor a
 	ld [TempMonItem], a
 	jr .asm_422fd
 
-.asm_422d5
+
+.item
 	ld a, [hli]
 	ld b, a
 	ld a, [CurItem]
@@ -54228,7 +40322,8 @@ asm_421f5
 	jp nz, .asm_423fa
 	jr .asm_422fd
 
-.asm_422ee
+
+.level
 	ld a, [hli]
 	ld b, a
 	ld a, [TempMonLevel]
@@ -54242,61 +40337,77 @@ asm_421f5
 	ld [CurPartyLevel], a
 	ld a, $1
 	ld [$d268], a
+
 	push hl
+
 	ld a, [hl]
 	ld [Buffer2], a
 	ld a, [CurPartyMon]
 	ld hl, PartyMon1Nickname
 	call GetNick
 	call CopyName1
-	ld hl, $6482
+	ld hl, UnknownText_0x42482
 	call PrintText
-	ld c, $32
+
+	ld c, 50
 	call DelayFrames
+
 	xor a
 	ld [hBGMapMode], a
 	ld hl, TileMap
-	ld bc, $0c14
+	lb bc, 12, 20
 	call ClearBox
+
 	ld a, $1
 	ld [hBGMapMode], a
 	call ClearSprites
+
 	callba EvolutionAnimation
+
 	push af
 	call ClearSprites
 	pop af
 	jp c, Function42454
-	ld hl, $6473
+
+	ld hl, UnknownText_0x42473
 	call PrintText
+
 	pop hl
+
 	ld a, [hl]
 	ld [CurSpecies], a
 	ld [TempMonSpecies], a
 	ld [Buffer2], a
 	ld [$d265], a
 	call GetPokemonName
+
 	push hl
-	ld hl, $6478
+	ld hl, UnknownText_0x42478
 	call PrintTextBoxText
 	callba Function106094
+
 	ld de, MUSIC_NONE
 	call PlayMusic
 	ld de, SFX_CAUGHT_MON
 	call PlaySFX
 	call WaitSFX
-	ld c, $28
+
+	ld c, 40
 	call DelayFrames
+
 	call ClearTileMap
 	call Function42414
 	call GetBaseData
+
 	ld hl, $d118
 	ld de, TempMonMaxHP
 	ld b, $1
-	ld a, $c
+	ld a, PREDEF_FILLSTATS
 	call Predef
+
 	ld a, [CurPartyMon]
-	ld hl, PartyMon1Species
-	ld bc, $0030
+	ld hl, PartyMons
+	ld bc, PartyMon2 - PartyMon1
 	call AddNTimes
 	ld e, l
 	ld d, h
@@ -54319,9 +40430,11 @@ asm_421f5
 	ld a, [hl]
 	adc b
 	ld [hl], a
+
 	ld hl, TempMonSpecies
 	ld bc, $0030
 	call CopyBytes
+
 	ld a, [CurSpecies]
 	ld [$d265], a
 	xor a
@@ -54330,11 +40443,13 @@ asm_421f5
 	ld a, [$d265]
 	dec a
 	call SetSeenAndCaughtMon
+
 	ld a, [$d265]
-	cp $c9
+	cp UNOWN
 	jr nz, .asm_423ec
+
 	ld hl, TempMonDVs
-	ld a, $2d
+	ld a, PREDEF_GET_UNOWN_LETTER
 	call Predef
 	callab Functionfba18
 
@@ -54346,7 +40461,7 @@ asm_421f5
 	push hl
 	ld l, e
 	ld h, d
-	jp asm_421f5
+	jp Function421f5
 ; 423f8
 
 .asm_423f8
@@ -54358,7 +40473,7 @@ asm_421f5
 	jp .asm_42230
 ; 423fe
 
-INCBIN "baserom.gbc",$423fe,$423ff - $423fe
+INCBIN "baserom.gbc", $423fe, $423ff - $423fe
 
 
 Function423ff: ; 423ff
@@ -54393,7 +40508,7 @@ Function42414: ; 42414
 	cp [hl]
 	inc hl
 	ret nz
-	cp $50
+	cp "@"
 	jr nz, .asm_4242b
 	ld a, [CurPartyMon]
 	ld bc, $000b
@@ -54410,26 +40525,48 @@ Function42414: ; 42414
 ; 42454
 
 Function42454: ; 42454
-	ld hl, $647d
+	ld hl, UnknownText_0x4247d
 	call PrintText
 	call ClearTileMap
 	pop hl
-	jp asm_421f5
+	jp Function421f5
 ; 42461
 
 Function42461: ; 42461
 	push hl
 	ld a, [CurPartyMon]
 	ld hl, PartyMon1Item
-	ld bc, $0030
+	ld bc, PartyMon2 - PartyMon1
 	call AddNTimes
 	ld a, [hl]
-	cp $70
+	cp EVERSTONE
 	pop hl
 	ret
 ; 42473
 
-INCBIN "baserom.gbc",$42473,$42487 - $42473
+UnknownText_0x42473: ; 0x42473
+	; Congratulations! Your @ @
+	text_jump UnknownText_0x1c4b92
+	db "@"
+; 0x42478
+
+UnknownText_0x42478: ; 0x42478
+	; evolved into @ !
+	text_jump UnknownText_0x1c4baf
+	db "@"
+; 0x4247d
+
+UnknownText_0x4247d: ; 0x4247d
+	; Huh? @ stopped evolving!
+	text_jump UnknownText_0x1c4bc5
+	db "@"
+; 0x42482
+
+UnknownText_0x42482: ; 0x42482
+	; What? @ is evolving!
+	text_jump UnknownText_0x1c4be3
+	db "@"
+; 0x42487
 
 
 Function42487: ; 42487
@@ -54679,7 +40816,7 @@ GetPreEvolution: ; 42581
 
 
 
-SECTION "bank11",ROMX,BANK[$11]
+SECTION "bank11", ROMX, BANK[$11]
 
 INCLUDE "engine/fruit_trees.asm"
 
@@ -55539,7 +41676,7 @@ Function4484a: ; 0x4484a
 .PutInPack ; 0x44877
 	ld hl, .MessageLostText
 	call Function1d4f
-	call Function1dcf
+	call YesNoBox
 	call Function1c07
 	ret c
 	ld a, [MenuSelection]
@@ -55678,7 +41815,7 @@ MenuData44964: ; 0x44964
 	db "ATTACH MAIL@"
 	db "CANCEL@"
 
-SECTION "bank12",ROMX,BANK[$12]
+SECTION "bank12", ROMX, BANK[$12]
 
 Function48000: ; 48000
 	ld a, $1
@@ -58496,7 +44633,7 @@ Function49e75: ; 49e75
 ; 49e8c
 
 UnknownText_0x49e8c: ; 49e8c
-	text_jump UnknownText_0x1c5182, BANK(UnknownText_0x1c5182)
+	text_jump UnknownText_0x1c5182
 	db "@"
 ; 49e91
 
@@ -59756,7 +45893,7 @@ Function4a9d7: ; 4a9d7
 	call CopyBytes
 	ld hl, $6a1d
 	call PrintText
-	call Function1dcf
+	call YesNoBox
 	ret
 ; 4aa1d
 
@@ -60257,7 +46394,7 @@ Function4ad17: ; 4ad17
 
 UnknownText_0x4ad51: ; 0x4ad51
 	; Only three #MON may enter.
-	text_jump UnknownText_0x1c521c, BANK(UnknownText_0x1c521c)
+	text_jump UnknownText_0x1c521c
 	db "@"
 ; 0x4ad56
 
@@ -60369,7 +46506,7 @@ Function4ae12: ; 4ae12
 Function4ae1f: ; 4ae1f
 	ld bc, $0e07
 	push bc
-	ld hl, MenuDataHeader_0x1e1d
+	ld hl, YesNoMenuDataHeader
 	call Function1d3c
 	pop bc
 	ld a, b
@@ -60418,7 +46555,7 @@ Function4ae5e: ; 4ae5e
 ; 4ae78
 
 
-SECTION "bank13",ROMX,BANK[$13]
+SECTION "bank13", ROMX, BANK[$13]
 
 Function4c000: ; 4c000
 	ld hl, TileMap
@@ -60510,8 +46647,6 @@ Function4c03f: ; 4c03f
 
 INCLUDE "tilesets/palette_maps.asm"
 
-
-INCBIN "baserom.gbc",$4ce05,$4ce1f - $4ce05
 
 TileCollisionTable: ; 4ce1f
 ; 00 land
@@ -61805,7 +47940,7 @@ Function4db35: ; 4db35
 Function4db3b: ; 4db3b
 	ld hl, $5b44
 	call PrintText
-	jp Function1dcf
+	jp YesNoBox
 ; 4db44
 
 INCBIN "baserom.gbc",$4db44,$4db49 - $4db44
@@ -62264,7 +48399,7 @@ Function4ddf2: ; 4ddf2 (13:5df2)
 
 ; known jump sources: 4ddac (13:5dac), 4ddd6 (13:5dd6)
 Function4de2c: ; 4de2c (13:5e2c)
-	call GetJoypadPublic
+	call GetJoypad
 	ld a, [MonType] ; $cf5f
 	cp $3
 	jr nz, .asm_4de4e
@@ -63410,7 +49545,7 @@ Function4e711: ; 4e711
 ; 4e726
 
 Function4e726: ; 4e726
-	call ClearJoypadPublic
+	call ClearJoypad
 	ld bc, $010e
 .asm_4e72c
 	push bc
@@ -63869,30 +50004,37 @@ Function4ea0a: ; 4ea0a
 
 
 
-Function4ea44: ; 4ea44
-	ld a, $0
+CheckBattleScene: ; 4ea44
+; Return carry if battle scene is turned off.
+
+	ld a, 0
 	ld hl, InLinkBattle
 	call GetFarWRAMByte
-	cp $4
-	jr z, .asm_4ea59
+	cp 4
+	jr z, .mobile
+
 	ld a, [Options]
-	bit 7, a
-	jr nz, .asm_4ea80
+	bit BATTLE_SCENE, a
+	jr nz, .off
+
 	and a
 	ret
 
-.asm_4ea59
+.mobile
 	ld a, [$cd2f]
 	and a
 	jr nz, .asm_4ea72
+
 	ld a, $4
 	call GetSRAMBank
 	ld a, [$a60c]
 	ld c, a
 	call CloseSRAM
+
 	ld a, c
 	bit 0, c
-	jr z, .asm_4ea80
+	jr z, .off
+
 	and a
 	ret
 
@@ -63901,449 +50043,23 @@ Function4ea44: ; 4ea44
 	ld hl, $dc00
 	call GetFarWRAMByte
 	bit 0, a
-	jr z, .asm_4ea80
+	jr z, .off
+
 	and a
 	ret
 
-.asm_4ea80
+.off
 	scf
 	ret
 ; 4ea82
 
 
+INCLUDE "misc/gbc_only.asm"
 
-Function4ea82: ; 4ea82
-	ld a, [hCGB]
-	and a
-	ret nz
-	ld de, $0000
-	call PlayMusic
-	call ClearTileMap
-	ld hl, $6b76
-	ld de, $d000
-	ld a, [rSVBK]
-	push af
-	ld a, $0
-	ld [rSVBK], a
-	call Decompress
-	pop af
-	ld [rSVBK], a
-	ld de, $d000
-	ld hl, VTiles2
-	ld bc, Text_1354
-	call Get2bpp
-	ld de, $4200
-	ld hl, VTiles1
-	ld bc, Function3e80
-	call Get1bpp
-	call Function4eac5
-	call WaitBGMap
-.asm_4eac0
-	call DelayFrame
-	jr .asm_4eac0
-; 4eac5
-
-Function4eac5: ; 4eac5
-	call Function4eaea
-	ld hl, $c4cb
-	ld b, $e
-	ld c, $4
-	ld a, $8
-	call Function4eb27
-	ld hl, $c51d
-	ld b, $a
-	ld c, $2
-	ld a, $40
-	call Function4eb27
-	ld de, $6b38
-	ld hl, $c569
-	call PlaceString
-	ret
-; 4eaea
-
-Function4eaea: ; 4eaea
-	ld hl, TileMap
-	ld [hl], $0
-	inc hl
-	ld a, $1
-	call Function4eb15
-	ld [hl], $2
-	ld hl, $c4b4
-	ld a, $3
-	call Function4eb1c
-	ld hl, $c4c7
-	ld a, $4
-	call Function4eb1c
-	ld hl, $c5f4
-	ld [hl], $5
-	inc hl
-	ld a, $6
-	call Function4eb15
-	ld [hl], $7
-	ret
-; 4eb15
-
-Function4eb15: ; 4eb15
-	ld c, $12
-.asm_4eb17
-	ld [hli], a
-	dec c
-	jr nz, .asm_4eb17
-	ret
-; 4eb1c
-
-Function4eb1c: ; 4eb1c
-	ld de, $0014
-	ld c, $10
-.asm_4eb21
-	ld [hl], a
-	add hl, de
-	dec c
-	jr nz, .asm_4eb21
-	ret
-; 4eb27
-
-Function4eb27: ; 4eb27
-	ld de, $0014
-.asm_4eb2a
-	push bc
-	push hl
-.asm_4eb2c
-	ld [hli], a
-	inc a
-	dec b
-	jr nz, .asm_4eb2c
-	pop hl
-	add hl, de
-	pop bc
-	dec c
-	jr nz, .asm_4eb2a
-	ret
-; 4eb38
-
-INCBIN "baserom.gbc",$4eb38,$4f0bc - $4eb38
-
-Function4f0bc: ; 4f0bc
-	ld a, $0
-	call Function4f26d
-	call Functiona36
-	ld b, $6
-	callba Function50000
-	jr c, .asm_4f0e1
-	ld a, [CurPartySpecies]
-	cp $fd
-	jr z, .asm_4f0e8
-	call IsAPokemon
-	jr c, .asm_4f0e7
-	call Function4f134
-	call Function4f0ee
-	ret
-
-.asm_4f0e1
-	ld a, $5
-	call Function4f26d
-	ret
-
-.asm_4f0e7
-	ret
-
-.asm_4f0e8
-	ld a, $6
-	call Function4f26d
-	ret
-; 4f0ee
-
-Function4f0ee: ; 4f0ee
-	ld a, [DefaultFlypoint]
-	ld hl, $70f6
-	rst JumpTable
-	ret
-; 4f0f6
-
-Table4f0f6: ; 4f0f6
-	dw Function4f100
-	dw Function4f10e
-	dw Function4f11f
-	dw Function4f125
-	dw Function4f12b
-; 4f100
-
-Function4f100: ; 4f100
-	ld a, $2
-	call Function4f26d
-	ld a, $3
-	call Function4f26d
-	call Function4f2b4
-	ret
-; 4f10e
-
-Function4f10e: ; 4f10e
-	call Function4f242
-	ld a, $4
-	call Function4f26d
-	ld a, $3
-	call Function4f26d
-	call Function4f2b4
-	ret
-; 4f11f
-
-Function4f11f: ; 4f11f
-	ld a, $1
-	call Function4f26d
-	ret
-; 4f125
-
-Function4f125: ; 4f125
-	ld a, $1
-	call Function4f26d
-	ret
-; 4f12b
-
-Function4f12b: ; 4f12b
-	ld a, $7
-	call Function4f26d
-	call Function4f2b4
-	ret
-; 4f134
-
-Function4f134: ; 4f134
-	ld a, $1d
-	call GetPartyParamLocation
-	ld a, [hli]
-	ld [$d03b], a
-	ld a, [hld]
-	ld [$d03c], a
-	or [hl]
-	jr z, .asm_4f170
-	ld a, $1
-	ld [DefaultFlypoint], a
-	ld a, $6
-	call GetPartyParamLocation
-	ld a, [PlayerID]
-	cp [hl]
-	jr nz, .asm_4f15f
-	inc hl
-	ld a, [$d47c]
-	jr nz, .asm_4f15f
-	ld a, $0
-	ld [DefaultFlypoint], a
-
-.asm_4f15f
-	call Function4f18c
-	call Function4f242
-	call Function4f176
-	call Function4f1c5
-	call Function4f20a
-	and a
-	ret
-
-.asm_4f170
-	ld a, $2
-	ld [DefaultFlypoint], a
-	ret
-; 4f176
-
-Function4f176: ; 4f176
-	ld a, [CurPartyMon]
-	ld hl, PartyMon1Nickname
-	ld bc, $000b
-	call AddNTimes
-	ld de, $d003
-	ld bc, $000b
-	call CopyBytes
-	ret
-; 4f18c
-
-Function4f18c: ; 4f18c
-	ld a, $50
-	ld hl, $d036
-	ld bc, $0004
-	call ByteFill
-	ld a, [$d03b]
-	and $3f
-	jr z, .asm_4f1b4
-	cp $1
-	jr nz, .asm_4f1a4
-	ld a, $5
-
-.asm_4f1a4
-	ld [$d03a], a
-	ld hl, $d036
-	ld de, $d03a
-	ld bc, $4103
-	call PrintNum
-	ret
-
-.asm_4f1b4
-	ld de, $d036
-	ld hl, $71c1
-	ld bc, $0004
-	call CopyBytes
-	ret
-; 4f1c1
-
-INCBIN "baserom.gbc",$4f1c1,$4f1c5 - $4f1c1
-
-Function4f1c5: ; 4f1c5
-	ld a, [$d03b]
-	and $c0
-	jr z, .asm_4f1df
-	rlca
-	rlca
-	dec a
-	ld hl, $71e6
-	call GetNthString
-	ld d, h
-	ld e, l
-	ld hl, $d01f
-	call CopyName2
-	and a
-	ret
-
-.asm_4f1df
-	ld de, $d01f
-	call Function4f1f8
-	ret
-; 4f1e6
-
-INCBIN "baserom.gbc",$4f1e6,$4f1f8 - $4f1e6
-
-Function4f1f8: ; 4f1f8
-	ld hl, $7202
-	ld bc, $000b
-	call CopyBytes
-	ret
-; 4f202
-
-INCBIN "baserom.gbc",$4f202,$4f20a - $4f202
-
-Function4f20a: ; 4f20a
-	ld a, [$d03c]
-	and $7f
-	jr z, .asm_4f22e
-	cp $7f
-	jr z, .asm_4f234
-	cp $7e
-	jr z, .asm_4f23b
-	ld e, a
-	callba GetLandmarkName
-	ld hl, StringBuffer1
-	ld de, $d00e
-	ld bc, $0011
-	call CopyBytes
-	and a
-	ret
-
-.asm_4f22e
-	ld de, $d00e
-	jp Function4f1f8
-
-.asm_4f234
-	ld a, $4
-	ld [DefaultFlypoint], a
-	scf
-	ret
-
-.asm_4f23b
-	ld a, $3
-	ld [DefaultFlypoint], a
-	scf
-	ret
-; 4f242
-
-Function4f242: ; 4f242
-	ld a, [CurPartyMon]
-	ld hl, PartyMon1OT
-	ld bc, $000b
-	call AddNTimes
-	ld de, $d02a
-	ld bc, $000b
-	call CopyBytes
-	ld hl, $726b
-	ld a, [$d03c]
-	bit 7, a
-	jr z, .asm_4f264
-	ld hl, $726c
-
-.asm_4f264
-	ld de, $d035
-	ld a, $50
-	ld [de], a
-	ret
-; 4f26b
-
-INCBIN "baserom.gbc",$4f26b,$4f26d - $4f26b
-
-Function4f26d: ; 4f26d
-	ld e, a
-	ld d, $0
-	ld hl, $727c
-	add hl, de
-	add hl, de
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	call PrintText
-	ret
-; 4f27c
-
-INCBIN "baserom.gbc",$4f27c,$4f2b4 - $4f27c
-
-Function4f2b4: ; 4f2b4
-	ld a, $1f
-	call GetPartyParamLocation
-	ld a, [$d03a]
-	ld c, a
-	ld a, [hl]
-	sub c
-	ld c, a
-	ld hl, $72d6
-	ld de, $0003
-.asm_4f2c6
-	cp [hl]
-	jr c, .asm_4f2ce
-	jr z, .asm_4f2ce
-	add hl, de
-	jr .asm_4f2c6
-
-.asm_4f2ce
-	inc hl
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	call PrintText
-	ret
-; 4f2d6
-
-INCBIN "baserom.gbc",$4f2d6,$4f301 - $4f2d6
+INCLUDE "event/poke_seer.asm"
 
 
-Function4f301: ; 4f301
-	ld hl, $001e
-	add hl, bc
-	ld a, [hl]
-	and $7f
-	jr z, .asm_4f319
-	cp $7f
-	jr z, .asm_4f319
-	ld a, [hl]
-	and $80
-	jr nz, .asm_4f316
-	ld c, $1
-	ret
-
-.asm_4f316
-	ld c, $2
-	ret
-
-.asm_4f319
-	ld c, $0
-	ret
-; 4f31c
-
-
-
-SECTION "bank14",ROMX,BANK[$14]
+SECTION "bank14", ROMX, BANK[$14]
 
 Function50000: ; 50000
 	call Function2ed3
@@ -65014,7 +50730,7 @@ Function5042d: ; 0x5042d
 INCBIN "baserom.gbc",$5044f,$50457 - $5044f
 
 PartyMenuSelect: ; 0x50457
-; sets carry if exited menu.
+; sets carry if exitted menu.
 	call Function1bc9
 	call Function1bee
 	ld a, [PartyCount]
@@ -65247,16 +50963,16 @@ Function50658: ; 50658
 ; 50669
 
 UnknownScript_0x50669: ; 50669
-	3callasm BANK(Function50658), Function50658
+	3callasm Function50658
 	loadfont
-	3callasm BANK(Function5067b), Function5067b
+	3callasm Function5067b
 	iffalse UnknownScript_0x50677
 	loadmovesprites
 	end
 ; 50677
 
 UnknownScript_0x50677: ; 50677
-	3jump BANK(UnknownScript_0x124c8), UnknownScript_0x124c8
+	3jump UnknownScript_0x124c8
 ; 5067b
 
 Function5067b: ; 5067b
@@ -65290,12 +51006,12 @@ Function5067b: ; 5067b
 ; 506b2
 
 PoisonFaintText: ; 506b2
-	text_jump UnknownText_0x1c0acc, BANK(UnknownText_0x1c0acc)
+	text_jump UnknownText_0x1c0acc
 	db "@"
 ; 506b7
 
 PoisonWhiteOutText: ; 506b7
-	text_jump UnknownText_0x1c0ada, BANK(UnknownText_0x1c0ada)
+	text_jump UnknownText_0x1c0ada
 	db "@"
 ; 506bc
 
@@ -65311,10 +51027,10 @@ Function506bc: ; 506bc
 UnknownScript_0x506c8: ; 0x506c8
 	reloadmappart
 	special $0035
-	3callasm BANK(GetPartyNick), GetPartyNick
+	3callasm GetPartyNick
 	2writetext UnknownText_0x50726
 	closetext
-	3callasm BANK(Function506ef), Function506ef
+	3callasm Function506ef
 	iffalse UnknownScript_0x506e9
 	checkflag $0011
 	iftrue UnknownScript_0x506e5
@@ -65325,7 +51041,7 @@ UnknownScript_0x506c8: ; 0x506c8
 ; 0x506e5
 
 UnknownScript_0x506e5: ; 0x506e5
-	3jump BANK(UnknownScript_0x135eb), UnknownScript_0x135eb
+	3jump UnknownScript_0x135eb
 ; 0x506e9
 
 UnknownScript_0x506e9: ; 0x506e9
@@ -65365,12 +51081,12 @@ Function506ef: ; 506ef
 ; 50726
 
 UnknownText_0x50726: ; 0x50726
-	text_jump UnknownText_0x1c0b03, BANK(UnknownText_0x1c0b03)
+	text_jump UnknownText_0x1c0b03
 	db $50
 ; 0x5072b
 
 UnknownText_0x5072b: ; 0x5072b
-	text_jump UnknownText_0x1c0b1a, BANK(UnknownText_0x1c0b1a)
+	text_jump UnknownText_0x1c0b1a
 	db $50
 ; 0x50730
 
@@ -65386,9 +51102,9 @@ _Squirtbottle: ; 50730
 UnknownScript_0x5073c: ; 0x5073c
 	reloadmappart
 	special $0035
-	3callasm BANK(Function50753), Function50753
+	3callasm Function50753
 	iffalse UnknownScript_0x5074b
-	3jump BANK(WateredWeirdTreeScript), WateredWeirdTreeScript
+	3jump WateredWeirdTreeScript
 ; 0x5074b
 
 UnknownScript_0x5074b: ; 0x5074b
@@ -65396,7 +51112,7 @@ UnknownScript_0x5074b: ; 0x5074b
 ; 0x5074e
 
 UnknownText_0x5074e: ; 0x5074e
-	text_jump UnknownText_0x1c0b3b, BANK(UnknownText_0x1c0b3b)
+	text_jump UnknownText_0x1c0b3b
 	db $50
 ; 0x50753
 
@@ -65463,7 +51179,7 @@ _CardKey: ; 50779
 
 UnknownScript_0x507af: ; 0x507af
 	loadmovesprites
-	3jump BANK(MapRadioTower3FSignpost2Script), MapRadioTower3FSignpost2Script
+	3jump MapRadioTower3FSignpost2Script
 ; 0x507b4
 
 
@@ -65498,7 +51214,7 @@ _BasementKey: ; 507b4
 
 UnknownScript_0x507e1: ; 0x507e1
 	loadmovesprites
-	3jump BANK(MapWarehouseEntranceSignpost0Script), MapWarehouseEntranceSignpost0Script
+	3jump MapWarehouseEntranceSignpost0Script
 ; 0x507e6
 
 
@@ -65571,7 +51287,7 @@ UnknownScript_0x50821: ; 0x50821
 ; 0x50845
 
 UnknownText_0x50845: ; 0x50845
-	text_jump UnknownText_0x1c0b65, BANK(UnknownText_0x1c0b65)
+	text_jump UnknownText_0x1c0b65
 	db $50
 ; 0x5084a
 
@@ -67267,223 +52983,14 @@ INCLUDE "stats/pokemon_names.asm"
 INCBIN "baserom.gbc",$53d84,$53e2e - $53d84
 
 
-SECTION "bank15",ROMX,BANK[$15]
 
-;                          Map Scripts I
-
-INCLUDE "maps/GoldenrodGym.asm"
-INCLUDE "maps/GoldenrodBikeShop.asm"
-INCLUDE "maps/GoldenrodHappinessRater.asm"
-INCLUDE "maps/GoldenrodBillsHouse.asm"
-INCLUDE "maps/GoldenrodMagnetTrainStation.asm"
-INCLUDE "maps/GoldenrodFlowerShop.asm"
-INCLUDE "maps/GoldenrodPPSpeechHouse.asm"
-INCLUDE "maps/GoldenrodNameRatersHouse.asm"
-INCLUDE "maps/GoldenrodDeptStore1F.asm"
-INCLUDE "maps/GoldenrodDeptStore2F.asm"
-INCLUDE "maps/GoldenrodDeptStore3F.asm"
-INCLUDE "maps/GoldenrodDeptStore4F.asm"
-INCLUDE "maps/GoldenrodDeptStore5F.asm"
-INCLUDE "maps/GoldenrodDeptStore6F.asm"
-INCLUDE "maps/GoldenrodDeptStoreElevator.asm"
-INCLUDE "maps/GoldenrodDeptStoreRoof.asm"
-INCLUDE "maps/GoldenrodGameCorner.asm"
-
-
-SECTION "bank16",ROMX,BANK[$16]
-
-;                          Map Scripts II
-
-INCLUDE "maps/RuinsofAlphOutside.asm"
-INCLUDE "maps/RuinsofAlphHoOhChamber.asm"
-INCLUDE "maps/RuinsofAlphKabutoChamber.asm"
-INCLUDE "maps/RuinsofAlphOmanyteChamber.asm"
-INCLUDE "maps/RuinsofAlphAerodactylChamber.asm"
-INCLUDE "maps/RuinsofAlphInnerChamber.asm"
-INCLUDE "maps/RuinsofAlphResearchCenter.asm"
-INCLUDE "maps/RuinsofAlphHoOhItemRoom.asm"
-INCLUDE "maps/RuinsofAlphKabutoItemRoom.asm"
-INCLUDE "maps/RuinsofAlphOmanyteItemRoom.asm"
-INCLUDE "maps/RuinsofAlphAerodactylItemRoom.asm"
-INCLUDE "maps/RuinsofAlphHoOhWordRoom.asm"
-INCLUDE "maps/RuinsofAlphKabutoWordRoom.asm"
-INCLUDE "maps/RuinsofAlphOmanyteWordRoom.asm"
-INCLUDE "maps/RuinsofAlphAerodactylWordRoom.asm"
-INCLUDE "maps/UnionCave1F.asm"
-INCLUDE "maps/UnionCaveB1F.asm"
-INCLUDE "maps/UnionCaveB2F.asm"
-INCLUDE "maps/SlowpokeWellB1F.asm"
-INCLUDE "maps/SlowpokeWellB2F.asm"
-INCLUDE "maps/OlivineLighthouse1F.asm"
-INCLUDE "maps/OlivineLighthouse2F.asm"
-INCLUDE "maps/OlivineLighthouse3F.asm"
-INCLUDE "maps/OlivineLighthouse4F.asm"
-
-
-SECTION "bank17",ROMX,BANK[$17]
-
-;                         Map Scripts III
-
-INCLUDE "maps/NationalPark.asm"
-INCLUDE "maps/NationalParkBugContest.asm"
-INCLUDE "maps/RadioTower1F.asm"
-INCLUDE "maps/RadioTower2F.asm"
-INCLUDE "maps/RadioTower3F.asm"
-INCLUDE "maps/RadioTower4F.asm"
-
-
-SECTION "bank18",ROMX,BANK[$18]
-
-;                          Map Scripts IV
-
-INCLUDE "maps/RadioTower5F.asm"
-INCLUDE "maps/OlivineLighthouse5F.asm"
-INCLUDE "maps/OlivineLighthouse6F.asm"
-INCLUDE "maps/GoldenrodPokeCenter1F.asm"
-INCLUDE "maps/GoldenrodPokeComCenter2FMobile.asm"
-INCLUDE "maps/IlexForestAzaleaGate.asm"
-INCLUDE "maps/Route34IlexForestGate.asm"
-INCLUDE "maps/DayCare.asm"
-
-
-SECTION "bank19",ROMX,BANK[$19]
+SECTION "bank19", ROMX, BANK[$19]
 
 INCLUDE "text/phone/extra.asm"
 
 
-SECTION "bank1A",ROMX,BANK[$1A]
 
-;                          Map Scripts V
-
-INCLUDE "maps/Route11.asm"
-INCLUDE "maps/VioletMart.asm"
-INCLUDE "maps/VioletGym.asm"
-INCLUDE "maps/EarlsPokemonAcademy.asm"
-INCLUDE "maps/VioletNicknameSpeechHouse.asm"
-INCLUDE "maps/VioletPokeCenter1F.asm"
-INCLUDE "maps/VioletOnixTradeHouse.asm"
-INCLUDE "maps/Route32RuinsofAlphGate.asm"
-INCLUDE "maps/Route32PokeCenter1F.asm"
-INCLUDE "maps/Route35Goldenrodgate.asm"
-INCLUDE "maps/Route35NationalParkgate.asm"
-INCLUDE "maps/Route36RuinsofAlphgate.asm"
-INCLUDE "maps/Route36NationalParkgate.asm"
-
-
-SECTION "bank1B",ROMX,BANK[$1B]
-
-;                          Map Scripts VI
-
-INCLUDE "maps/Route8.asm"
-INCLUDE "maps/MahoganyMart1F.asm"
-INCLUDE "maps/TeamRocketBaseB1F.asm"
-INCLUDE "maps/TeamRocketBaseB2F.asm"
-INCLUDE "maps/TeamRocketBaseB3F.asm"
-INCLUDE "maps/IlexForest.asm"
-
-
-SECTION "bank1C",ROMX,BANK[$1C]
-
-;                         Map Scripts VII
-
-INCLUDE "maps/LakeofRage.asm"
-INCLUDE "maps/CeladonDeptStore1F.asm"
-INCLUDE "maps/CeladonDeptStore2F.asm"
-INCLUDE "maps/CeladonDeptStore3F.asm"
-INCLUDE "maps/CeladonDeptStore4F.asm"
-INCLUDE "maps/CeladonDeptStore5F.asm"
-INCLUDE "maps/CeladonDeptStore6F.asm"
-INCLUDE "maps/CeladonDeptStoreElevator.asm"
-INCLUDE "maps/CeladonMansion1F.asm"
-INCLUDE "maps/CeladonMansion2F.asm"
-INCLUDE "maps/CeladonMansion3F.asm"
-INCLUDE "maps/CeladonMansionRoof.asm"
-INCLUDE "maps/CeladonMansionRoofHouse.asm"
-INCLUDE "maps/CeladonPokeCenter1F.asm"
-INCLUDE "maps/CeladonPokeCenter2FBeta.asm"
-INCLUDE "maps/CeladonGameCorner.asm"
-INCLUDE "maps/CeladonGameCornerPrizeRoom.asm"
-INCLUDE "maps/CeladonGym.asm"
-INCLUDE "maps/CeladonCafe.asm"
-INCLUDE "maps/Route16FuchsiaSpeechHouse.asm"
-INCLUDE "maps/Route16Gate.asm"
-INCLUDE "maps/Route7SaffronGate.asm"
-INCLUDE "maps/Route1718Gate.asm"
-
-
-SECTION "bank1D",ROMX,BANK[$1D]
-
-;                         Map Scripts VIII
-
-INCLUDE "maps/DiglettsCave.asm"
-INCLUDE "maps/MountMoon.asm"
-INCLUDE "maps/Underground.asm"
-INCLUDE "maps/RockTunnel1F.asm"
-INCLUDE "maps/RockTunnelB1F.asm"
-INCLUDE "maps/SafariZoneFuchsiaGateBeta.asm"
-INCLUDE "maps/SafariZoneBeta.asm"
-INCLUDE "maps/VictoryRoad.asm"
-INCLUDE "maps/OlivinePort.asm"
-INCLUDE "maps/VermilionPort.asm"
-INCLUDE "maps/FastShip1F.asm"
-INCLUDE "maps/FastShipCabins_NNW_NNE_NE.asm"
-INCLUDE "maps/FastShipCabins_SW_SSW_NW.asm"
-INCLUDE "maps/FastShipCabins_SE_SSE_CaptainsCabin.asm"
-INCLUDE "maps/FastShipB1F.asm"
-INCLUDE "maps/OlivinePortPassage.asm"
-INCLUDE "maps/VermilionPortPassage.asm"
-INCLUDE "maps/MountMoonSquare.asm"
-INCLUDE "maps/MountMoonGiftShop.asm"
-INCLUDE "maps/TinTowerRoof.asm"
-
-
-SECTION "bank1E",ROMX,BANK[$1E]
-
-;                          Map Scripts IX
-
-INCLUDE "maps/Route34.asm"
-INCLUDE "maps/ElmsLab.asm"
-INCLUDE "maps/KrissHouse1F.asm"
-INCLUDE "maps/KrissHouse2F.asm"
-INCLUDE "maps/KrissNeighborsHouse.asm"
-INCLUDE "maps/ElmsHouse.asm"
-INCLUDE "maps/Route26HealSpeechHouse.asm"
-INCLUDE "maps/Route26DayofWeekSiblingsHouse.asm"
-INCLUDE "maps/Route27SandstormHouse.asm"
-INCLUDE "maps/Route2946Gate.asm"
-
-
-SECTION "bank1F",ROMX,BANK[$1F]
-
-;                          Map Scripts X
-
-INCLUDE "maps/Route22.asm"
-INCLUDE "maps/WarehouseEntrance.asm"
-INCLUDE "maps/UndergroundPathSwitchRoomEntrances.asm"
-INCLUDE "maps/GoldenrodDeptStoreB1F.asm"
-INCLUDE "maps/UndergroundWarehouse.asm"
-INCLUDE "maps/MountMortar1FOutside.asm"
-INCLUDE "maps/MountMortar1FInside.asm"
-INCLUDE "maps/MountMortar2FInside.asm"
-INCLUDE "maps/MountMortarB1F.asm"
-INCLUDE "maps/IcePath1F.asm"
-INCLUDE "maps/IcePathB1F.asm"
-INCLUDE "maps/IcePathB2FMahoganySide.asm"
-INCLUDE "maps/IcePathB2FBlackthornSide.asm"
-INCLUDE "maps/IcePathB3F.asm"
-INCLUDE "maps/LavenderPokeCenter1F.asm"
-INCLUDE "maps/LavenderPokeCenter2FBeta.asm"
-INCLUDE "maps/MrFujisHouse.asm"
-INCLUDE "maps/LavenderTownSpeechHouse.asm"
-INCLUDE "maps/LavenderNameRater.asm"
-INCLUDE "maps/LavenderMart.asm"
-INCLUDE "maps/SoulHouse.asm"
-INCLUDE "maps/LavRadioTower1F.asm"
-INCLUDE "maps/Route8SaffronGate.asm"
-INCLUDE "maps/Route12SuperRodHouse.asm"
-
-
-SECTION "bank20",ROMX,BANK[$20]
+SECTION "bank20", ROMX, BANK[$20]
 
 
 DoPlayerMovement: ; 80000
@@ -68486,7 +53993,7 @@ INCBIN "gfx/debug/color_test.2bpp"
 INCBIN "baserom.gbc",$82153,$823c8 - $82153
 
 
-SECTION "bank21",ROMX,BANK[$21]
+SECTION "bank21", ROMX, BANK[$21]
 
 Function84000: ; 84000
 	ld hl, OverworldMap
@@ -69903,7 +55410,7 @@ Function84a0e: ; 84a0e (21:4a0e)
 .asm_84a13
 	push bc
 	push hl
-	ld de, $4a25
+	ld de, String84a25
 	call PlaceString
 	pop hl
 	ld bc, $3c
@@ -69914,164 +55421,13 @@ Function84a0e: ; 84a0e (21:4a0e)
 	ret
 ; 84a25 (21:4a25)
 
-INCBIN "baserom.gbc",$84a25,$84a2e - $84a25
+String84a25: ; 84a25
+	db "  ------@"
+; 84a2e
 
-FX00GFX:
-FX01GFX: ; 84a2e
-INCBIN "gfx/fx/001.lz"
-; 84b1e
 
-FX02GFX: ; 84b1e
-INCBIN "gfx/fx/002.lz"
-; 84b7e
+INCLUDE "battle/anim_gfx.asm"
 
-FX03GFX: ; 84b7e
-INCBIN "gfx/fx/003.lz"
-; 84bde
-
-FX04GFX: ; 84bde
-INCBIN "gfx/fx/004.lz"
-; 84cae
-
-FX05GFX: ; 84cae
-INCBIN "gfx/fx/005.lz"
-; 84dee
-
-FX07GFX: ; 84dee
-INCBIN "gfx/fx/007.lz"
-; 84e7e
-
-FX08GFX: ; 84e7e
-INCBIN "gfx/fx/008.lz"
-; 84ede
-
-FX10GFX: ; 84ede
-INCBIN "gfx/fx/010.lz"
-; 84f1e
-
-FX09GFX: ; 84f1e
-INCBIN "gfx/fx/009.lz"
-; 8500e
-
-FX12GFX: ; 8500e
-INCBIN "gfx/fx/012.lz"
-; 8507e
-
-FX06GFX: ; 8507e
-INCBIN "gfx/fx/006.lz"
-; 8515e
-
-FX11GFX: ; 8515e
-INCBIN "gfx/fx/011.lz"
-; 851ae
-
-FX13GFX: ; 851ae
-INCBIN "gfx/fx/013.lz"
-; 8524e
-
-FX14GFX: ; 8524e
-INCBIN "gfx/fx/014.lz"
-; 8520e
-
-FX24GFX: ; 8530e
-INCBIN "gfx/fx/024.lz"
-; 8537e
-
-FX15GFX: ; 8537e
-INCBIN "gfx/fx/015.lz"
-; 8539e
-
-FX16GFX: ; 8539e
-INCBIN "gfx/fx/016.lz"
-; 8542e
-
-FX17GFX: ; 8542e
-INCBIN "gfx/fx/017.lz"
-; 8547e
-
-FX18GFX: ; 8547e
-INCBIN "gfx/fx/018.lz"
-; 854ee
-
-FX19GFX: ; 854ee
-INCBIN "gfx/fx/019.lz"
-; 855ae
-
-FX20GFX: ; 855ae
-INCBIN "gfx/fx/020.lz"
-; 8562e
-
-FX22GFX: ; 8562e
-INCBIN "gfx/fx/022.lz"
-; 856ee
-
-FX21GFX: ; 856ee
-INCBIN "gfx/fx/021.lz"
-; 8576e
-
-FX23GFX: ; 8576e
-INCBIN "gfx/fx/023.lz"
-; 857de
-
-FX26GFX: ; 857de
-INCBIN "gfx/fx/026.lz"
-; 8583e
-
-FX27GFX: ; 8583e
-INCBIN "gfx/fx/027.lz"
-; 858be
-
-FX28GFX: ; 858be
-INCBIN "gfx/fx/028.lz"
-; 8594e
-
-FX29GFX: ; 8594e
-INCBIN "gfx/fx/029.lz"
-; 859ae
-
-FX30GFX: ; 859ae
-INCBIN "gfx/fx/030.lz"
-; 8590e
-
-FX31GFX: ; 85a0e
-INCBIN "gfx/fx/031.lz"
-; 85bae
-
-FX32GFX: ; 85bae
-INCBIN "gfx/fx/032.lz"
-; 85d0e
-
-FX33GFX: ; 85d0e
-INCBIN "gfx/fx/033.lz"
-; 85dfe
-
-FX34GFX: ; 85dfe
-INCBIN "gfx/fx/034.lz"
-; 85e9e
-
-FX25GFX: ; 85e9e
-INCBIN "gfx/fx/025.lz"
-; 85fbe
-
-FX35GFX: ; 85fbe
-INCBIN "gfx/fx/035.lz"
-; 8609e
-
-FX36GFX: ; 8609e
-INCBIN "gfx/fx/036.lz"
-; 8617e
-
-FX37GFX: ; 8617e
-INCBIN "gfx/fx/037.lz"
-; 862ee
-
-FX38GFX: ; 862ee
-INCBIN "gfx/fx/038.lz"
-; 8638e
-
-FX39GFX: ; 8638e
-INCBIN "gfx/fx/039.lz"
-; 8640e
 
 HallOfFame: ; 0x8640e
 	call Function8648e
@@ -70582,7 +55938,7 @@ Function86810: ; 86810
 ; 868f7
 
 
-SECTION "bank22",ROMX,BANK[$22]
+SECTION "bank22", ROMX, BANK[$22]
 
 Function88000: ; 88000
 	ld hl, $4007
@@ -75543,7 +60899,7 @@ Function8afd4: ; 8afd4
 	call GetItemName
 	ld hl, $7077
 	call Function105a
-	call Function1dcf
+	call YesNoBox
 	jr c, .asm_8afeb
 	ld a, [$cf75]
 	call Function8b154
@@ -76751,7 +62107,7 @@ Function8b9e9: ; 8b9e9 (22:79e9)
 INCBIN "baserom.gbc",$8ba1c,$8ba24 - $8ba1c
 
 
-SECTION "bank23",ROMX,BANK[$23]
+SECTION "bank23", ROMX, BANK[$23]
 
 Function8c000: ; 8c000
 	ret
@@ -78028,7 +63384,103 @@ Function8c7d4: ; 8c7d4
 	ret
 ; 8c7e1
 
-INCBIN "baserom.gbc",$8c7e1,$8c940 - $8c7e1
+Function8c7e1: ; 8c7e1
+	callba Function8c084
+	ld hl, StatusFlags
+	set 2, [hl]
+	callba Function8c0e5
+	callba Function8c001
+	ld b, $9
+	call GetSGBLayout
+	callba Function49409
+	callba Function8c079
+	ret
+; 8c80a
+
+Function8c80a: ; 8c80a
+	callba Function8cf53
+	ld de, $49cc
+	ld hl, VTiles1
+	ld bc, $2304
+	call Request2bpp
+	ld de, $4893
+	ld hl, $8840
+	ld bc, $2308
+	call Request2bpp
+	call Function8cad3
+	ld a, $1b
+	call Function3b2a
+	ld hl, $0003
+	add hl, bc
+	ld [hl], $84
+	ld a, $90
+	ld [$c3b5], a
+	callba Function8cf7a
+	call Function8c913
+	ld a, $20
+	ld [$cf64], a
+	call WaitSFX
+	ld de, $006d
+	call PlaySFX
+.asm_8c852
+	ld hl, $cf64
+	ld a, [hl]
+	and a
+	jr z, .asm_8c86a
+	dec [hl]
+	ld a, $90
+	ld [$c3b5], a
+	callba Function8cf7a
+	call DelayFrame
+	jr .asm_8c852
+
+.asm_8c86a
+	call Function2173
+	call WaitBGMap
+	xor a
+	ld [hBGMapMode], a
+	callba Function8cf53
+	ld hl, $c490
+	ld bc, $0010
+	xor a
+	call ByteFill
+	ld de, $4200
+	ld hl, VTiles1
+	ld bc, $3e0c
+	call Get1bpp
+	call Functione4a
+	ret
+; 8c893
+
+INCBIN "baserom.gbc", $8c893, $8c913 - $8c893
+
+Function8c913: ; 8c913
+	xor a
+	ld [hBGMapMode], a
+	ld a, [PlayerDirection]
+	and $c
+	srl a
+	ld e, a
+	ld d, $0
+	ld hl, $4938
+	add hl, de
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	ld a, $5
+	ld [hli], a
+	ld [hld], a
+	ld bc, $0014
+	add hl, bc
+	ld [hli], a
+	ld [hld], a
+	call WaitBGMap
+	xor a
+	ld [hBGMapMode], a
+	ret
+; 8c938
+
+INCBIN "baserom.gbc", $8c938, $8c940 - $8c938
 
 Function8c940: ; 8c940
 	ld a, e
@@ -78205,6 +63657,8 @@ Function8cad3: ; 8cad3 (23:4ad3)
 ; 8cae5 (23:4ae5)
 
 INCBIN "baserom.gbc",$8cae5,$8caed - $8cae5
+
+Function8caed: ; 8caed
 	call DelayFrame
 	ld a, [VramState] ; $d0ed
 	push af
@@ -78236,6 +63690,9 @@ INCBIN "baserom.gbc",$8cae5,$8caed - $8cae5
 	pop af
 	ld [VramState], a ; $d0ed
 	ret
+; 8cb33
+
+Function8cb33: ; 8cb33
 	call DelayFrame
 	ld a, [VramState] ; $d0ed
 	push af
@@ -80421,7 +65878,7 @@ Function8ea8c: ; 8ea8c
 INCLUDE "menu/mon_icons.asm"
 
 
-SECTION "bank24",ROMX,BANK[$24]
+SECTION "bank24", ROMX, BANK[$24]
 
 Function90000: ; 90000
 	call Function9001c
@@ -80918,7 +66375,7 @@ Function9031d: ; 9031d
 ; 9032a
 
 UnknownText_0x9032a: ; 9032a
-	text_jump UnknownText_0x1c5580, BANK(UnknownText_0x1c5580)
+	text_jump UnknownText_0x1c5580
 	db "@"
 ; 9032f
 
@@ -80930,7 +66387,7 @@ Function9032f: ; 9032f
 ; 90336
 
 UnknownText_0x90336: ; 0x90336
-	text_jump UnknownText_0x1c5588, BANK(UnknownText_0x1c5588)
+	text_jump UnknownText_0x1c5588
 	db "@"
 ; 0x9033b
 
@@ -81169,7 +66626,7 @@ Function90672: ; 90672 (24:4672)
 	call Function90783
 	ld hl, $4886
 	call PrintText
-	call Function1dcf
+	call YesNoBox
 	jr nc, .asm_9072e
 	call Function90783
 	jr .asm_906e8
@@ -81196,7 +66653,7 @@ Function90672: ; 90672 (24:4672)
 	call Function90783
 	ld hl, $48a4
 	call PrintText
-	call Function1dcf
+	call YesNoBox
 	jr nc, .asm_90773
 	call Function90783
 	jr .asm_9072e
@@ -81444,7 +66901,7 @@ Function90913: ; 90913
 	call Function1ad2
 	ld hl, $4a44
 	call PrintText
-	call Function1dcf
+	call YesNoBox
 	jr c, .asm_90936
 	ld a, [DefaultFlypoint]
 	ld [StringBuffer2], a
@@ -81743,52 +67200,62 @@ Function90bea: ; 90bea (24:4bea)
 
 Function90c4e: ; 90c4e
 	call Functiond79
-	ld hl, $4ba0
+	ld hl, TownMapGFX
 	ld de, VTiles2
-	ld a, $3e
+	ld a, BANK(TownMapGFX)
 	call FarDecompress
-	ld hl, $62e4
+
+	ld hl, PokegearGFX
 	ld de, $9300
-	ld a, $77
+	ld a, BANK(PokegearGFX)
 	call FarDecompress
+
 	ld hl, PokegearSpritesGFX
 	ld de, VTiles0
-	ld a, $24
+	ld a, BANK(PokegearSpritesGFX)
 	call Decompress
+
 	ld a, [MapGroup]
 	ld b, a
 	ld a, [MapNumber]
 	ld c, a
 	call GetWorldMapLocation
-	cp $5f
-	jr z, .asm_90ca5
+	cp FAST_SHIP
+	jr z, .ssaqua
+
 	callba GetPlayerIcon
+
 	push de
 	ld h, d
 	ld l, e
 	ld a, b
+
 	push af
 	ld de, $8100
-	ld bc, $0040
+	ld bc, $40
 	call FarCopyBytes
 	pop af
+
 	pop hl
-	ld de, $00c0
+
+	ld de, $c0
 	add hl, de
 	ld de, $8140
-	ld bc, $0040
+	ld bc, $40
 	call FarCopyBytes
 	ret
 
-.asm_90ca5
-	ld hl, $4cb2
+.ssaqua
+	ld hl, FastShipGFX
 	ld de, $8100
-	ld bc, $0080
+	ld bc, $80
 	call CopyBytes
 	ret
 ; 90cb2
 
-INCBIN "baserom.gbc",$90cb2,$90d32 - $90cb2
+FastShipGFX: ; 90cb2
+INCBIN "gfx/misc/fast_ship.2bpp"
+; 90d32
 
 ; known jump sources: 90c08 (24:4c08)
 Function90d32: ; 90d32 (24:4d32)
@@ -81822,7 +67289,7 @@ Function90d56: ; 90d56
 	ld a, [MapNumber]
 	ld c, a
 	call GetWorldMapLocation
-	cp $0
+	cp SPECIAL_MAP
 	ret nz
 	ld a, [BackupMapGroup]
 	ld b, a
@@ -81840,23 +67307,28 @@ Function90d70: ; 90d70 (24:4d70)
 	ld a, [MapNumber] ; $dcb6
 	ld c, a
 	call GetWorldMapLocation
-	cp $5f
+
+	cp FAST_SHIP
 	jr z, .asm_90d95
-	cp $0
+
+	cp SPECIAL_MAP
 	jr nz, .asm_90d8e
+
 	ld a, [BackupMapGroup] ; $dcad
 	ld b, a
 	ld a, [BackupMapNumber] ; $dcae
 	ld c, a
 	call GetWorldMapLocation
+
 .asm_90d8e
-	ld [EnemySDefLevel], a ; $c6d8
-	ld [EnemySAtkLevel], a ; $c6d7
+	ld [$c6d8], a
+	ld [$c6d7], a
 	ret
+
 .asm_90d95
-	ld [EnemySDefLevel], a ; $c6d8
-	ld a, $1
-	ld [EnemySAtkLevel], a ; $c6d7
+	ld [$c6d8], a
+	ld a, 1
+	ld [$c6d7], a
 	ret
 
 ; known jump sources: 90c36 (24:4c36)
@@ -81871,23 +67343,25 @@ Function90d9e: ; 90d9e (24:4d9e)
 Function90da8: ; 90da8 (24:4da8)
 	xor a
 	ld [hBGMapMode], a ; $ff00+$d4
-	ld hl, TileMap ; $c4a0 (aliases: SpritesEnd)
-	ld bc, $168
+	ld hl, TileMap
+	ld bc, TileMapEnd - TileMap
 	ld a, $4f
 	call ByteFill
 	ld a, [$cf64]
 	and $3
 	add a
 	ld e, a
-	ld d, $0
+	ld d, 0
 	ld hl, $4e12
 	add hl, de
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	ld de, $4dcb
+	ld de, .asm_90dcb
 	push de
 	jp [hl]
+
+.asm_90dcb
 	call Function90eb0
 	callba TownMapPals
 	ld a, [$cf65]
@@ -81910,8 +67384,8 @@ Function90da8: ; 90da8 (24:4da8)
 .asm_90df3
 	ld [hWY], a ; $ff00+$d2
 	ld a, [$cf65]
-	and $1
-	xor $1
+	and 1
+	xor 1
 	ld [$cf65], a
 	ret
 
@@ -81929,30 +67403,42 @@ Function90e00: ; 90e00 (24:4e00)
 	ret
 ; 90e12 (24:4e12)
 
-INCBIN "baserom.gbc",$90e12,$90e1a - $90e12
+JumpTable90e12: ; 90e12
+	dw Function90e1a
+	dw Function90e3f
+	dw Function90e82
+	dw Function90e72
+; 90e1a
+
+Function90e1a: ; 90e1a
 	ld de, $55db
 	call Function914bb
 	ld hl, $c4c0
-	ld de, $4e36
+	ld de, .switch
 	call PlaceString
 	ld hl, $c590
-	ld bc, $412
+	lb bc, 4, 18
 	call TextBox
 	call Function90f86
 	ret
 ; 90e36 (24:4e36)
 
-INCBIN "baserom.gbc",$90e36,$90e3f - $90e36
-	ld a, [EnemySDefLevel] ; $c6d8
-	cp $5f
-	jr z, .asm_90e4a
-	cp $2f
-	jr nc, .asm_90e4e
-.asm_90e4a
-	ld e, $0
+.switch
+	db " SWITCH▶@"
+; 90e3f
+
+Function90e3f: ; 90e3f
+
+	ld a, [$c6d8]
+	cp FAST_SHIP
+	jr z, .johto
+	cp KANTO_LANDMARK
+	jr nc, .kanto
+.johto
+	ld e, 0
 	jr .asm_90e50
-.asm_90e4e
-	ld e, $1
+.kanto
+	ld e, 1
 .asm_90e50
 	callba Function91ae1
 	ld a, $7
@@ -81963,15 +67449,21 @@ INCBIN "baserom.gbc",$90e36,$90e3f - $90e36
 	ld [hl], $6
 	ld hl, $c4db
 	ld [hl], $17
-	ld a, [EnemySAtkLevel] ; $c6d7
+	ld a, [$c6d7]
 	call Function910b4
 	ret
+; 90e72
+
+Function90e72: ; 90e72
 	ld de, $550d
 	call Function914bb
 	ld hl, $c590
 	ld bc, $412
 	call TextBox
 	ret
+; 90e82
+
+Function90e82: ; 90e82
 	ld de, $558a
 	call Function914bb
 	ld hl, $c590
@@ -81980,6 +67472,7 @@ INCBIN "baserom.gbc",$90e36,$90e3f - $90e36
 	call Function90e98
 	call Function912d8
 	ret
+; 90e98
 
 ; known jump sources: 90e91 (24:4e91)
 Function90e98: ; 90e98 (24:4e98)
@@ -83702,12 +69195,12 @@ Function91c3c: ; 91c3c
 	push de
 	push hl
 	ld l, [hl]
-	ld h, $0
+	ld h, 0
 	add hl, hl
-	ld de, $5c5f
+	ld de, Flypoints + 1
 	add hl, de
 	ld c, [hl]
-	call GetFlyPermission
+	call HasVisitedSpawn
 	pop hl
 	pop de
 	pop bc
@@ -83715,51 +69208,78 @@ Function91c3c: ; 91c3c
 	ret
 ; 91c50
 
-GetFlyPermission: ; 91c50
-; Return flypoint c permission flag in a
-	ld hl, FlypointPerms
-	ld b, $2
-	ld d, $0
-	ld a, 3 ; PREDEF_GET_FLAG_NO
+HasVisitedSpawn: ; 91c50
+; Check if spawn point c has been visited.
+	ld hl, VisitedSpawns
+	ld b, CHECK_FLAG
+	ld d, 0
+	ld a, PREDEF_FLAG
 	call Predef
 	ld a, c
 	ret
 ; 91c5e
 
 Flypoints: ; 91c5e
-; location id, blackout id
+; landmark, spawn point
+
+	const_def
 
 ; Johto
-	db 01, 14 ; New Bark Town
-	db 03, 15 ; Cherrygrove City
-	db 06, 16 ; Violet City
-	db 12, 18 ; Azalea Town
-	db 16, 20 ; Goldenrod City
-	db 22, 22 ; Ecruteak City
-	db 27, 21 ; Olivine City
-	db 33, 19 ; Cianwood City
-	db 36, 23 ; Mahogany Town
-	db 38, 24 ; Lake of Rage
-	db 41, 25 ; Blackthorn City
-	db 46, 26 ; Silver Cave
-	
-; Kanto
-	db 47, 02 ; Pallet Town
-	db 49, 03 ; Viridian City
-	db 51, 04 ; Pewter City
-	db 55, 05 ; Cerulean City
-	db 61, 07 ; Vermilion City
-	db 66, 06 ; Rock Tunnel
-	db 69, 08 ; Lavender Town
-	db 71, 10 ; Celadon City
-	db 72, 09 ; Saffron City
-	db 81, 11 ; Fuchsia City
-	db 85, 12 ; Cinnabar Island
-	db 90, 13 ; Indigo Plateau
-	
-; 91c8e
+	const FLY_NEW_BARK
+	const FLY_CHERRYGROVE
+	const FLY_VIOLET
+	const FLY_AZALEA
+	const FLY_GOLDENROD
+	const FLY_ECRUTEAK
+	const FLY_OLIVINE
+	const FLY_CIANWOOD
+	const FLY_MAHOGANY
+	const FLY_LAKE
+	const FLY_BLACKTHORN
+	const FLY_MT_SILVER
 
-INCBIN "baserom.gbc",$91c8e,$91c8f - $91c8e
+	db NEW_BARK_TOWN,    SPAWN_NEW_BARK
+	db CHERRYGROVE_CITY, SPAWN_CHERRYGROVE
+	db VIOLET_CITY,      SPAWN_VIOLET
+	db AZALEA_TOWN,      SPAWN_AZALEA
+	db GOLDENROD_CITY,   SPAWN_GOLDENROD
+	db ECRUTEAK_CITY,    SPAWN_ECRUTEAK
+	db OLIVINE_CITY,     SPAWN_OLIVINE
+	db CIANWOOD_CITY,    SPAWN_CIANWOOD
+	db MAHOGANY_TOWN,    SPAWN_MAHOGANY
+	db LAKE_OF_RAGE,     SPAWN_LAKE
+	db BLACKTHORN_CITY,  SPAWN_BLACKTHORN
+	db SILVER_CAVE,      SPAWN_MT_SILVER
+
+; Kanto
+	const FLY_PALLET
+	const FLY_VIRIDIAN
+	const FLY_PEWTER
+	const FLY_CERULEAN
+	const FLY_VERMILION
+	const FLY_ROCK_TUNNEL
+	const FLY_LAVENDER
+	const FLY_CELADON
+	const FLY_SAFFRON
+	const FLY_FUCHSIA
+	const FLY_CINNABAR
+	const FLY_INDIGO_PLATEAU
+
+	db PALLET_TOWN,      SPAWN_PALLET
+	db VIRIDIAN_CITY,    SPAWN_VIRIDIAN
+	db PEWTER_CITY,      SPAWN_PEWTER
+	db CERULEAN_CITY,    SPAWN_CERULEAN
+	db VERMILION_CITY,   SPAWN_VERMILION
+	db ROCK_TUNNEL,      SPAWN_ROCK_TUNNEL
+	db LAVENDER_TOWN,    SPAWN_LAVENDER
+	db CELADON_CITY,     SPAWN_CELADON
+	db SAFFRON_CITY,     SPAWN_SAFFRON
+	db FUCHSIA_CITY,     SPAWN_FUCHSIA
+	db CINNABAR_ISLAND,  SPAWN_CINNABAR
+	db INDIGO_PLATEAU,   SPAWN_INDIGO_PLATEAU
+
+	db -1
+; 91c8f
 
 Function91c8f: ; 91c8f
 	ret
@@ -83776,7 +69296,7 @@ FlyMap: ; 91c90
 ; If we're not in a valid location, i.e. Pokecenter floor 2F,
 ; the backup map information is used
 	
-	cp 0
+	cp SPECIAL_MAP
 	jr nz, .CheckRegion
 	
 	ld a, [BackupMapGroup]
@@ -83787,7 +69307,7 @@ FlyMap: ; 91c90
 	
 .CheckRegion
 ; The first 46 locations are part of Johto. The rest are in Kanto
-	cp 47
+	cp KANTO_LANDMARK
 	jr nc, .KantoFlyMap
 	
 .JohtoFlyMap
@@ -83796,13 +69316,13 @@ FlyMap: ; 91c90
 	push af
 	
 ; Start from New Bark Town
-	ld a, 0
+	ld a, FLY_NEW_BARK
 	ld [DefaultFlypoint], a
 	
 ; Flypoints begin at New Bark Town...
 	ld [StartFlypoint], a
 ; ..and end at Silver Cave
-	ld a, $b
+	ld a, FLY_MT_SILVER
 	ld [EndFlypoint], a
 	
 ; Fill out the map
@@ -83825,18 +69345,18 @@ FlyMap: ; 91c90
 ; visited and its flypoint enabled
 	
 	push af
-	ld c, $d ; Indigo Plateau
-	call GetFlyPermission
+	ld c, SPAWN_INDIGO_PLATEAU
+	call HasVisitedSpawn
 	and a
 	jr z, .NoKanto
 	
 ; Kanto's map is only loaded if we've visited Indigo Plateau
 	
 ; Flypoints begin at Pallet Town...
-	ld a, $c
+	ld a, FLY_PALLET
 	ld [StartFlypoint], a
 ; ...and end at Indigo Plateau
-	ld a, $17
+	ld a, FLY_INDIGO_PLATEAU
 	ld [EndFlypoint], a
 	
 ; Because Indigo Plateau is the first flypoint the player
@@ -83854,13 +69374,13 @@ FlyMap: ; 91c90
 ; If Indigo Plateau hasn't been visited, we use Johto's map instead
 	
 ; Start from New Bark Town
-	ld a, 0
+	ld a, FLY_NEW_BARK
 	ld [DefaultFlypoint], a
 	
 ; Flypoints begin at New Bark Town...
 	ld [StartFlypoint], a
 ; ..and end at Silver Cave
-	ld a, $b
+	ld a, FLY_MT_SILVER
 	ld [EndFlypoint], a
 	
 	call FillJohtoMap
@@ -85256,8 +70776,8 @@ Function930e9: ; 930e9 (24:70e9)
 	ld hl, UnknownText_9311f
 	call PrintText
 	call Function1d58
-	ld bc, $e0c
-	call Function1dd2
+	lb bc, 14, 12
+	call PlaceYesNoBox
 	ld a, [$cfa9]
 	dec a
 	call Function1c17
@@ -85545,100 +71065,26 @@ Function9331e: ; 9331e (24:731e)
 INCBIN "baserom.gbc",$93327,$93a31 - $93327
 
 
-SECTION "bank25",ROMX,BANK[$25]
 
-INCLUDE "maps/map_headers.asm"
-INCLUDE "maps/second_map_headers.asm"
-
-
-
-SECTION "bank26",ROMX,BANK[$26]
-
-;                          Map Scripts XI
-
-INCLUDE "maps/EcruteakHouse.asm"
-INCLUDE "maps/WiseTriosRoom.asm"
-INCLUDE "maps/EcruteakPokeCenter1F.asm"
-INCLUDE "maps/EcruteakLugiaSpeechHouse.asm"
-INCLUDE "maps/DanceTheatre.asm"
-INCLUDE "maps/EcruteakMart.asm"
-INCLUDE "maps/EcruteakGym.asm"
-INCLUDE "maps/EcruteakItemfinderHouse.asm"
-INCLUDE "maps/ViridianGym.asm"
-INCLUDE "maps/ViridianNicknameSpeechHouse.asm"
-INCLUDE "maps/TrainerHouse1F.asm"
-INCLUDE "maps/TrainerHouseB1F.asm"
-INCLUDE "maps/ViridianMart.asm"
-INCLUDE "maps/ViridianPokeCenter1F.asm"
-INCLUDE "maps/ViridianPokeCenter2FBeta.asm"
-INCLUDE "maps/Route2NuggetSpeechHouse.asm"
-INCLUDE "maps/Route2Gate.asm"
-INCLUDE "maps/VictoryRoadGate.asm"
-
-
-SECTION "bank27",ROMX,BANK[$27]
-
-;                         Map Scripts XII
-
-INCLUDE "maps/OlivinePokeCenter1F.asm"
-INCLUDE "maps/OlivineGym.asm"
-INCLUDE "maps/OlivineVoltorbHouse.asm"
-INCLUDE "maps/OlivineHouseBeta.asm"
-INCLUDE "maps/OlivinePunishmentSpeechHouse.asm"
-INCLUDE "maps/OlivineGoodRodHouse.asm"
-INCLUDE "maps/OlivineCafe.asm"
-INCLUDE "maps/OlivineMart.asm"
-INCLUDE "maps/Route38EcruteakGate.asm"
-INCLUDE "maps/Route39Barn.asm"
-INCLUDE "maps/Route39Farmhouse.asm"
-INCLUDE "maps/ManiasHouse.asm"
-INCLUDE "maps/CianwoodGym.asm"
-INCLUDE "maps/CianwoodPokeCenter1F.asm"
-INCLUDE "maps/CianwoodPharmacy.asm"
-INCLUDE "maps/CianwoodCityPhotoStudio.asm"
-INCLUDE "maps/CianwoodLugiaSpeechHouse.asm"
-INCLUDE "maps/PokeSeersHouse.asm"
-INCLUDE "maps/BattleTower1F.asm"
-INCLUDE "maps/BattleTowerBattleRoom.asm"
-INCLUDE "maps/BattleTowerElevator.asm"
-INCLUDE "maps/BattleTowerHallway.asm"
-INCLUDE "maps/Route40BattleTowerGate.asm"
-INCLUDE "maps/BattleTowerOutside.asm"
-
-
-SECTION "bank28",ROMX,BANK[$28]
+SECTION "bank28", ROMX, BANK[$28]
 
 INCBIN "baserom.gbc",$a0000,$a0c28 - $a0000
 
 INCLUDE "text/buena.asm"
 
 
-SECTION "bank29",ROMX,BANK[$29]
+SECTION "bank29", ROMX, BANK[$29]
 
 INCLUDE "text/phone/extra2.asm"
 
 
-SECTION "bank2A",ROMX,BANK[$2A]
 
-INCLUDE "maps/blockdata_1.asm"
-
-
-SECTION "bank2B",ROMX,BANK[$2B]
-
-INCLUDE "maps/blockdata_2.asm"
-
-
-SECTION "bank2C",ROMX,BANK[$2C]
-
-INCLUDE "maps/blockdata_3.asm"
-
-
-SECTION "bank2D",ROMX,BANK[$2D]
+SECTION "Tileset Data 5", ROMX, BANK[TILESETS_5]
 
 INCLUDE "tilesets/data_5.asm"
 
 
-SECTION "bank2E",ROMX,BANK[$2E]
+SECTION "bank2E", ROMX, BANK[$2E]
 
 Functionb8000: ; b8000
 	xor a
@@ -85969,7 +71415,29 @@ Functionb81e2: ; b81e2
 	ret
 ; b81ea
 
-INCBIN "baserom.gbc",$b81ea,$b8219 - $b81ea
+Functionb81ea: ; b81ea
+	callba Function1060ef
+	xor a
+	ld [$d22e], a
+	ld [CurPartyLevel], a
+	ld hl, $425e
+	call GetTreeMonEncounterTable
+	jr nc, .asm_b8214
+	call LoadTreeMonData
+	jr nc, .asm_b8214
+	call Functionb83e5
+	jr nc, .asm_b8214
+	ld a, $8
+	ld [BattleType], a
+	ld a, $1
+	ld [ScriptVar], a
+	ret
+
+.asm_b8214
+	xor a
+	ld [ScriptVar], a
+	ret
+; b8219
 
 Functionb8219: ; b8219
 ; get a RockMon encounter
@@ -87845,7 +73313,7 @@ Functionb9237: ; b9237
 
 Functionb929a: ; b929a
 .asm_b929a
-	call GetJoypadPublic
+	call GetJoypad
 	ld a, [hJoyPressed]
 	and $b
 	jr z, .asm_b929a
@@ -87932,7 +73400,7 @@ ItemIsMail: ; b9e76
 ; b9e8b
 
 
-SECTION "bank2F",ROMX,BANK[$2F]
+SECTION "bank2F", ROMX, BANK[$2F]
 
 INCLUDE "engine/std_scripts.asm"
 
@@ -87951,7 +73419,7 @@ UnknownScript_0xbe675: ; 0xbe675
 	loadtrainerdata
 	playrammusic
 	showemote $0, $fe, 30
-	3callasm BANK(Function831e), Function831e
+	3callasm Function831e
 	applymovement2 $d007
 	writepersonxy $fe
 	faceperson $0, $fe
@@ -87972,2943 +73440,20 @@ UnknownScript_0xbe68a: ; 0xbe68a
 ; 0xbe699
 
 
-SECTION "bank30",ROMX,BANK[$30]
+SECTION "bank30", ROMX, BANK[$30]
 
 INCLUDE "gfx/overworld/sprites_1.asm"
 
-SECTION "bank31",ROMX,BANK[$31]
+SECTION "bank31", ROMX, BANK[$31]
 
 INCLUDE "gfx/overworld/sprites_2.asm"
 
-SECTION "bank32",ROMX,BANK[$32]
 
+SECTION "bank32", ROMX, BANK[$32]
 
-; no known jump sources
-Functionc8000: ; c8000 (32:4000)
-	ld hl, $d3fa
-	ld e, $5
-.asm_c8005
-	ld a, [hl]
-	and a
-	jr z, .asm_c8012
-	ld c, l
-	ld b, h
-	push hl
-	push de
-	call Functionc804a
-	pop de
-	pop hl
-.asm_c8012
-	ld bc, $4
-	add hl, bc
-	dec e
-	jr nz, .asm_c8005
-	ret
+INCLUDE "battle/bg_effects.asm"
 
-; no known jump sources
-Functionc801a: ; c801a (32:401a)
-	ld hl, $d3fa
-	ld e, $5
-.asm_c801f
-	ld a, [hl]
-	and a
-	jr z, .asm_c802c
-	ld bc, $4
-	add hl, bc
-	dec e
-	jr nz, .asm_c801f
-	scf
-	ret
-.asm_c802c
-	ld c, l
-	ld b, h
-	ld hl, $0
-	add hl, bc
-	ld a, [$d419]
-	ld [hli], a
-	ld a, [$d41a]
-	ld [hli], a
-	ld a, [$d41b]
-	ld [hli], a
-	ld a, [$d41c]
-	ld [hl], a
-	ret
-
-; known jump sources: c80c6 (32:40c6), c811c (32:411c), c8139 (32:4139), c814d (32:414d), c8164 (32:4164), c81e6 (32:41e6), c81ef (32:41ef), c822c (32:422c), c827d (32:427d), c8299 (32:4299), c82ea (32:42ea), c8377 (32:4377), c8437 (32:4437), c85ca (32:45ca), c85ff (32:45ff), c8d13 (32:4d13), c8dd0 (32:4dd0), c8e26 (32:4e26), c8e4e (32:4e4e), c8f15 (32:4f15)
-Functionc8043: ; c8043 (32:4043)
-	ld hl, $0
-	add hl, bc
-	ld [hl], $0
-	ret
-
-; known jump sources: c800d (32:400d)
-Functionc804a: ; c804a (32:404a)
-	ld hl, $0
-	add hl, bc
-	ld e, [hl]
-	ld d, $0
-	ld hl, $405a
-	add hl, de
-	add hl, de
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	jp [hl]
-
-; no known jump sources
-Jumptable_c805a: ; c805a (32:405a)
-	dw Functionc80c6
-	dw Functionc80eb
-	dw Functionc80f3
-	dw Functionc812d
-	dw Functionc8141
-	dw Functionc8155
-	dw Functionc8171
-	dw Functionc818b
-	dw Functionc81a5
-	dw Functionc81b3
-	dw Functionc81ea
-	dw Functionc837b
-	dw Functionc83a8
-	dw Functionc8545
-	dw Functionc8599
-	dw Functionc863f
-	dw Functionc8662
-	dw Functionc8214
-	dw Functionc8281
-	dw Functionc8689
-	dw Functionc8709
-	dw Functionc8be8
-	dw Functionc8bf2
-	dw Functionc8bfd
-	dw Functionc8c08
-	dw Functionc8c14
-	dw Functionc8c20
-	dw Functionc8c30
-	dw Functionc8b00
-	dw Functionc8c3c
-	dw Functionc8c55
-	dw Functionc8cf9
-	dw Functionc8d02
-	dw Functionc8761
-	dw Functionc89ee
-	dw Functionc87a7
-	dw Functionc8805
-	dw Functionc8837
-	dw Functionc892a
-	dw Functionc82f5
-	dw Functionc89b5
-	dw Functionc8607
-	dw Functionc8a3a
-	dw Functionc8acc
-	dw Functionc8964
-	dw Functionc88e7
-	dw Functionc8ce1
-	dw Functionc8919
-	dw Functionc85c2
-	dw Functionc85ce
-	dw Functionc8603
-	dw Functionc8c61
-	dw Functionc8ca2
-	dw Functionc8d3a
-
-
-; no known jump sources
-Functionc80c6: ; c80c6 (32:40c6)
-	call Functionc8043
-	ret
-
-; known jump sources: c8b7d (32:4b7d), c8d80 (32:4d80), c8dd8 (32:4dd8)
-Functionc80ca: ; c80ca (32:40ca)
-	ld hl, $1
-	add hl, bc
-	ld l, [hl]
-	ld h, $0
-	add hl, hl
-	add hl, de
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	ret
-
-; known jump sources: c81b3 (32:41b3), c8214 (32:4214), c8281 (32:4281), c82f5 (32:42f5), c83ed (32:43ed), c8545 (32:4545), c8599 (32:4599), c8607 (32:4607), c863f (32:463f), c8662 (32:4662), c8689 (32:4689), c8709 (32:4709), c8761 (32:4761), c87a7 (32:47a7), c8805 (32:4805), c8837 (32:4837), c88e7 (32:48e7), c8919 (32:4919), c892a (32:492a), c8964 (32:4964), c89b5 (32:49b5), c89ee (32:49ee), c8a3a (32:4a3a), c8acc (32:4acc), c8b05 (32:4b05), c8c61 (32:4c61), c8ca2 (32:4ca2)
-Functionc80d7: ; c80d7 (32:40d7)
-	pop de
-	ld hl, $1
-	add hl, bc
-	ld l, [hl]
-	ld h, $0
-	add hl, hl
-	add hl, de
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	jp [hl]
-
-; known jump sources: c81c0 (32:41c0), c8230 (32:4230), c825a (32:425a), c829d (32:429d), c82c7 (32:42c7), c8302 (32:4302), c835c (32:435c), c841d (32:441d), c854e (32:454e), c85a2 (32:45a2), c8610 (32:4610), c8648 (32:4648), c866b (32:466b), c8698 (32:4698), c86cb (32:46cb), c8712 (32:4712), c876a (32:476a), c87b2 (32:47b2), c87db (32:47db), c8810 (32:4810), c8842 (32:4842), c8876 (32:4876), c8890 (32:4890), c88f6 (32:48f6), c8933 (32:4933), c896d (32:496d), c89be (32:49be), c89f7 (32:49f7), c8a49 (32:4a49), c8a84 (32:4a84), c8a96 (32:4a96), c8ad3 (32:4ad3), c8b0e (32:4b0e), c8c68 (32:4c68), c8cab (32:4cab), c8d8b (32:4d8b), c8dec (32:4dec), c8def (32:4def), c8df2 (32:4df2)
-Functionc80e5: ; c80e5 (32:40e5)
-	ld hl, $1
-	add hl, bc
-	inc [hl]
-	ret
-
-; no known jump sources
-Functionc80eb: ; c80eb (32:40eb)
-	ld de, $40f1
-	jp Functionc80fb
-; c80f1 (32:40f1)
-
-INCBIN "baserom.gbc",$c80f1,$c80f3 - $c80f1
-
-; no known jump sources
-Functionc80f3: ; c80f3 (32:40f3)
-	ld de, $40f9
-	jp Functionc80fb
-; c80f9 (32:40f9)
-
-INCBIN "baserom.gbc",$c80f9,$c80fb - $c80f9
-
-; known jump sources: c80ee (32:40ee), c80f6 (32:40f6)
-Functionc80fb: ; c80fb (32:40fb)
-	ld a, $1
-	ld [$d419], a
-	ld hl, $1
-	add hl, bc
-	ld a, [hl]
-	and a
-	jr z, .asm_c810a
-	dec [hl]
-	ret
-.asm_c810a
-	ld hl, $2
-	add hl, bc
-	ld a, [hl]
-	ld hl, $1
-	add hl, bc
-	ld [hl], a
-	ld hl, $3
-	add hl, bc
-	ld a, [hl]
-	and a
-	jr nz, .asm_c8120
-	call Functionc8043
-	ret
-.asm_c8120
-	dec a
-	ld [hl], a
-	and $1
-	ld l, a
-	ld h, $0
-	add hl, de
-	ld a, [hl]
-	ld [$cfc7], a
-	ret
-
-; no known jump sources
-Functionc812d: ; c812d (32:412d)
-	ld de, $413d
-	call Functionc8d57
-	jr c, .asm_c8139
-	ld [$cfc7], a
-	ret
-.asm_c8139
-	call Functionc8043
-	ret
-; c813d (32:413d)
-
-INCBIN "baserom.gbc",$c813d,$c8141 - $c813d
-
-; no known jump sources
-Functionc8141: ; c8141 (32:4141)
-	ld de, $4151
-	call Functionc8d57
-	jr c, .asm_c814d
-	ld [$cfc7], a
-	ret
-.asm_c814d
-	call Functionc8043
-	ret
-; c8151 (32:4151)
-
-INCBIN "baserom.gbc",$c8151,$c8155 - $c8151
-
-; no known jump sources
-Functionc8155: ; c8155 (32:4155)
-	ld de, $4168
-	call Functionc8d57
-	jr c, .asm_c8164
-	ld [$cfc7], a
-	ld [$cfc9], a
-	ret
-.asm_c8164
-	call Functionc8043
-	ret
-; c8168 (32:4168)
-
-INCBIN "baserom.gbc",$c8168,$c8171 - $c8168
-
-; no known jump sources
-Functionc8171: ; c8171 (32:4171)
-	call Functionc9059
-	jr nz, .asm_c817b
-	ld de, $4185
-	jr .asm_c817e
-.asm_c817b
-	ld de, $4188
-.asm_c817e
-	call Functionc8d57
-	ld [$cfc8], a
-	ret
-; c8185 (32:4185)
-
-INCBIN "baserom.gbc",$c8185,$c818b - $c8185
-
-; no known jump sources
-Functionc818b: ; c818b (32:418b)
-	call Functionc9059
-	jr nz, .asm_c8195
-	ld de, $419f
-	jr .asm_c8198
-.asm_c8195
-	ld de, $41a2
-.asm_c8198
-	call Functionc8d57
-	ld [$cfc8], a
-	ret
-; c819f (32:419f)
-
-INCBIN "baserom.gbc",$c819f,$c81a5 - $c819f
-
-; no known jump sources
-Functionc81a5: ; c81a5 (32:41a5)
-	ld de, $41af
-	call Functionc8d57
-	ld [$cfc7], a
-	ret
-; c81af (32:41af)
-
-INCBIN "baserom.gbc",$c81af,$c81b3 - $c81af
-
-; no known jump sources
-Functionc81b3: ; c81b3 (32:41b3)
-	call Functionc80d7 ;  ;  ; call does not return
-
-; no known jump sources
-Jumptable_c81b6: ; c81b6 (32:41b6)
-	dw Functionc81c0
-	dw Functionc80e5
-	dw Functionc80e5
-	dw Functionc80e5
-	dw Functionc81e3
-
-
-; no known jump sources
-Functionc81c0: ; c81c0 (32:41c0)
-	call Functionc80e5
-	push bc
-	call Functionc9038
-	jr nz, .asm_c81d1
-	ld hl, $c4ac
-	ld bc, $707
-	jr .asm_c81d7
-.asm_c81d1
-	ld hl, $c51a
-	ld bc, $606
-.asm_c81d7
-	call ClearBox
-	pop bc
-	xor a
-	ld [hBGMapThird], a ; $ff00+$d5
-	ld a, $1
-	ld [hBGMapMode], a ; $ff00+$d4
-	ret
-
-; no known jump sources
-Functionc81e3: ; c81e3 (32:41e3)
-	xor a
-	ld [hBGMapMode], a ; $ff00+$d4
-	call Functionc8043
-	ret
-
-; no known jump sources
-Functionc81ea: ; c81ea (32:41ea)
-	call Functionc9042
-	jr z, .asm_c81f3
-	call Functionc8043
-	ret
-.asm_c81f3
-	call Functionc9038
-	jr nz, .asm_c81fd
-	ld de, $4210
-	jr .asm_c8200
-.asm_c81fd
-	ld de, $420c
-.asm_c8200
-	ld a, e
-	ld [$d41a], a
-	ld a, d
-	ld [$d41b], a
-	call Functionc83ed
-	ret
-; c820c (32:420c)
-
-INCBIN "baserom.gbc",$c820c,$c8214 - $c820c
-
-; no known jump sources
-Functionc8214: ; c8214 (32:4214)
-	call Functionc80d7 ;  ;  ; call does not return
-
-; no known jump sources
-Jumptable_c8217: ; c8217 (32:4217)
-	dw Functionc8223
-	dw Functionc825a
-	dw Functionc80e5
-	dw Functionc80e5
-	dw Functionc80e5
-	dw Functionc827a
-
-
-; no known jump sources
-Functionc8223: ; c8223 (32:4223)
-	call Functionc9042
-	jr z, .asm_c8230
-	ld hl, $d40e
-	inc [hl]
-	call Functionc8043
-	ret
-.asm_c8230
-	call Functionc80e5
-	push bc
-	call Functionc9038
-	jr nz, .asm_c8242
-	ld a, $b8
-	ld [$d419], a
-	ld a, $84
-	jr .asm_c8249
-.asm_c8242
-	ld a, $b9
-	ld [$d419], a
-	ld a, $30
-.asm_c8249
-	ld [$d41a], a
-	ld a, $40
-	ld [$d41b], a
-	xor a
-	ld [$d41c], a
-	call Functionc82ee
-	pop bc
-	ret
-
-; no known jump sources
-Functionc825a: ; c825a (32:425a)
-	call Functionc80e5
-	push bc
-	call Functionc9038
-	jr nz, .asm_c826b
-	ld hl, $c524
-	ld bc, $107
-	jr .asm_c8271
-.asm_c826b
-	ld hl, $c51a
-	ld bc, $106
-.asm_c8271
-	call ClearBox
-	ld a, $1
-	ld [hBGMapMode], a ; $ff00+$d4
-	pop bc
-	ret
-
-; no known jump sources
-Functionc827a: ; c827a (32:427a)
-	xor a
-	ld [hBGMapMode], a ; $ff00+$d4
-	call Functionc8043
-	ret
-
-; no known jump sources
-Functionc8281: ; c8281 (32:4281)
-	call Functionc80d7 ;  ;  ; call does not return
-
-; no known jump sources
-Jumptable_c8284: ; c8284 (32:4284)
-	dw Functionc8290
-	dw Functionc82c7
-	dw Functionc80e5
-	dw Functionc80e5
-	dw Functionc80e5
-	dw Functionc82e7
-
-
-; no known jump sources
-Functionc8290: ; c8290 (32:4290)
-	call Functionc9042
-	jr z, .asm_c829d
-	ld hl, $d40e
-	inc [hl]
-	call Functionc8043
-	ret
-.asm_c829d
-	call Functionc80e5
-	push bc
-	call Functionc9038
-	jr nz, .asm_c82af
-	ld a, $ba
-	ld [$d419], a
-	ld a, $84
-	jr .asm_c82b6
-.asm_c82af
-	ld a, $bb
-	ld [$d419], a
-	ld a, $30
-.asm_c82b6
-	ld [$d41a], a
-	ld a, $40
-	ld [$d41b], a
-	xor a
-	ld [$d41c], a
-	call Functionc82ee
-	pop bc
-	ret
-
-; no known jump sources
-Functionc82c7: ; c82c7 (32:42c7)
-	call Functionc80e5
-	push bc
-	call Functionc9038
-	jr nz, .asm_c82d8
-	ld hl, $c510
-	ld bc, $207
-	jr .asm_c82de
-.asm_c82d8
-	ld hl, $c51a
-	ld bc, $206
-.asm_c82de
-	call ClearBox
-	ld a, $1
-	ld [hBGMapMode], a ; $ff00+$d4
-	pop bc
-	ret
-
-; no known jump sources
-Functionc82e7: ; c82e7 (32:42e7)
-	xor a
-	ld [hBGMapMode], a ; $ff00+$d4
-	call Functionc8043
-	ret
-
-; known jump sources: c8255 (32:4255), c82c2 (32:42c2)
-Functionc82ee: ; c82ee (32:42ee)
-	callab Functioncc9a1
-	ret
-
-; no known jump sources
-Functionc82f5: ; c82f5 (32:42f5)
-	call Functionc80d7 ;  ;  ; call does not return
-
-; no known jump sources
-Jumptable_c82f8: ; c82f8 (32:42f8)
-	dw Functionc8302
-	dw Functionc831d
-	dw Functionc80e5
-	dw Functionc80e5
-	dw Functionc8365
-
-
-; no known jump sources
-Functionc8302: ; c8302 (32:4302)
-	call Functionc80e5
-	call Functionc9038
-	ld [hl], a
-	ld hl, $2
-	add hl, bc
-	ld a, [hl]
-	and a
-	jr z, .asm_c8315
-	ld a, $9
-	jr .asm_c8317
-.asm_c8315
-	ld a, $8
-.asm_c8317
-	ld hl, $3
-	add hl, bc
-	ld [hl], a
-	ret
-
-; no known jump sources
-Functionc831d: ; c831d (32:431d)
-	ld hl, $2
-	add hl, bc
-	ld a, [hl]
-	and a
-	jr z, .asm_c833e
-	ld hl, $c518
-	ld de, $806
-.asm_c832b
-	push de
-	push hl
-.asm_c832d
-	inc hl
-	ld a, [hld]
-	ld [hli], a
-	dec d
-	jr nz, .asm_c832d
-	pop hl
-	ld de, $14
-	add hl, de
-	pop de
-	dec e
-	jr nz, .asm_c832b
-	jr .asm_c8355
-.asm_c833e
-	ld hl, $c4b3
-	ld de, $807
-.asm_c8344
-	push de
-	push hl
-.asm_c8346
-	dec hl
-	ld a, [hli]
-	ld [hld], a
-	dec d
-	jr nz, .asm_c8346
-	pop hl
-	ld de, $14
-	add hl, de
-	pop de
-	dec e
-	jr nz, .asm_c8344
-.asm_c8355
-	xor a
-	ld [hBGMapThird], a ; $ff00+$d5
-	ld a, $1
-	ld [hBGMapMode], a ; $ff00+$d4
-	call Functionc80e5
-	ld hl, $3
-	add hl, bc
-	dec [hl]
-	ret
-
-; no known jump sources
-Functionc8365: ; c8365 (32:4365)
-	xor a
-	ld [hBGMapMode], a ; $ff00+$d4
-	ld hl, $3
-	add hl, bc
-	ld a, [hl]
-	and a
-	jr z, .asm_c8377
-	ld hl, $1
-	add hl, bc
-	ld [hl], $1
-	ret
-.asm_c8377
-	call Functionc8043
-	ret
-
-; no known jump sources
-Functionc837b: ; c837b (32:437b)
-	call Functionc9038
-	jr nz, .asm_c8385
-	ld de, $439e
-	jr .asm_c8388
-.asm_c8385
-	ld de, $4394
-.asm_c8388
-	ld a, e
-	ld [$d41a], a
-	ld a, d
-	ld [$d41b], a
-	call Functionc83ed
-	ret
-; c8394 (32:4394)
-
-INCBIN "baserom.gbc",$c8394,$c83a8 - $c8394
-
-; no known jump sources
-Functionc83a8: ; c83a8 (32:43a8)
-	call Functionc9038
-	jr nz, .asm_c83b2
-	ld de, $43d7
-	jr .asm_c83b5
-.asm_c83b2
-	ld de, $43c1
-.asm_c83b5
-	ld a, e
-	ld [$d41a], a
-	ld a, d
-	ld [$d41b], a
-	call Functionc83ed
-	ret
-; c83c1 (32:43c1)
-
-INCBIN "baserom.gbc",$c83c1,$c83ed - $c83c1
-
-; known jump sources: c8208 (32:4208), c8390 (32:4390), c83bd (32:43bd)
-Functionc83ed: ; c83ed (32:43ed)
-	call Functionc80d7 ;  ;  ; call does not return
-
-; no known jump sources
-Jumptable_c83f0: ; c83f0 (32:43f0)
-	dw Functionc83fa
-	dw Functionc80e5
-	dw Functionc80e5
-	dw Functionc842a
-	dw Functionc8434
-
-
-; known jump sources: c8428 (32:4428)
-Functionc83fa: ; c83fa (32:43fa)
-	ld hl, $3
-	add hl, bc
-	ld e, [hl]
-	ld d, $0
-	inc [hl]
-	ld a, [$d41a]
-	ld l, a
-	ld a, [$d41b]
-	ld h, a
-	add hl, de
-	add hl, de
-	add hl, de
-	ld a, [hl]
-	cp $ff
-	jr z, Functionc8434
-	cp $fe
-	jr z, .asm_c8425
-	cp $fd
-	jr z, .asm_c841d
-	call Functionc8458
-.asm_c841d
-	call Functionc80e5
-	ld a, $1
-	ld [hBGMapMode], a ; $ff00+$d4
-	ret
-.asm_c8425
-	call Functionc843b
-	jr Functionc83fa
-
-; no known jump sources
-Functionc842a: ; c842a (32:442a)
-	xor a
-	ld [hBGMapMode], a ; $ff00+$d4
-	ld hl, $1
-	add hl, bc
-	ld [hl], $0
-	ret
-
-; known jump sources: c8410 (32:4410)
-Functionc8434: ; c8434 (32:4434)
-	xor a
-	ld [hBGMapMode], a ; $ff00+$d4
-	call Functionc8043
-	ret
-
-; known jump sources: c8425 (32:4425)
-Functionc843b: ; c843b (32:443b)
-	push bc
-	inc hl
-	ld a, [hli]
-	ld b, a
-	and $f
-	ld c, a
-	ld a, b
-	swap a
-	and $f
-	ld b, a
-	ld e, [hl]
-	ld d, $0
-	ld hl, $449c
-	add hl, de
-	add hl, de
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	call ClearBox
-	pop bc
-	ret
-
-; known jump sources: c841a (32:441a)
-Functionc8458: ; c8458 (32:4458)
-	push bc
-	push hl
-	ld e, [hl]
-	ld d, $0
-	ld hl, $44a8
-	add hl, de
-	add hl, de
-	add hl, de
-	ld a, [hli]
-	ld b, a
-	and $f
-	ld c, a
-	ld a, b
-	swap a
-	and $f
-	ld b, a
-	ld e, [hl]
-	inc hl
-	ld d, [hl]
-	pop hl
-	inc hl
-	ld a, [hli]
-	ld [$d419], a
-	push de
-	ld e, [hl]
-	ld d, $0
-	ld hl, $449c
-	add hl, de
-	add hl, de
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	pop de
-.asm_c8484
-	push bc
-	push hl
-	ld a, [$d419]
-	ld b, a
-.asm_c848a
-	ld a, [de]
-	add b
-	ld [hli], a
-	inc de
-	dec c
-	jr nz, .asm_c848a
-	pop hl
-	ld bc, $14
-	add hl, bc
-	pop bc
-	dec b
-	jr nz, .asm_c8484
-	pop bc
-	ret
-; c849c (32:449c)
-
-INCBIN "baserom.gbc",$c849c,$c8545 - $c849c
-
-; no known jump sources
-Functionc8545: ; c8545 (32:4545)
-	call Functionc80d7 ;  ;  ; call does not return
-
-; no known jump sources
-Jumptable_c8548: ; c8548 (32:4548)
-	dw Functionc854e
-	dw Functionc8557
-	dw Functionc8561
-
-
-; no known jump sources
-Functionc854e: ; c854e (32:454e)
-	call Functionc80e5
-	ld de, $202
-	call Functionc8f69
-
-; no known jump sources
-Functionc8557: ; c8557 (32:4557)
-	ld a, [hLCDStatCustom] ; $ff00+$c6
-	and a
-	ret z
-	push bc
-	call Functionc8565
-	pop bc
-	ret
-
-; no known jump sources
-Functionc8561: ; c8561 (32:4561)
-	call Functionc8f0a
-	ret
-
-; known jump sources: c855c (32:455c)
-Functionc8565: ; c8565 (32:4565)
-	ld hl, $d422
-	ld de, $d423
-	ld c, $3f
-	ld a, [hl]
-	push af
-.asm_c856f
-	ld a, [de]
-	inc de
-	ld [hli], a
-	dec c
-	jr nz, .asm_c856f
-	pop af
-	ld [hl], a
-	ld de, $d200
-	ld hl, $d422
-	ld bc, $0
-.asm_c8580
-	ld a, [$FF00+$c7]
-	cp e
-	jr nc, .asm_c858b
-	push hl
-	add hl, bc
-	ld a, [hl]
-	pop hl
-	jr .asm_c858c
-.asm_c858b
-	xor a
-.asm_c858c
-	ld [de], a
-	ld a, c
-	inc a
-	and $3f
-	ld c, a
-	inc de
-	ld a, e
-	cp $5f
-	jr c, .asm_c8580
-	ret
-
-; no known jump sources
-Functionc8599: ; c8599 (32:4599)
-	call Functionc80d7 ;  ;  ; call does not return
-
-; no known jump sources
-Jumptable_c859c: ; c859c (32:459c)
-	dw Functionc85a2
-	dw Functionc85ba
-	dw Functionc85be
-
-
-; no known jump sources
-Functionc85a2: ; c85a2 (32:45a2)
-	call Functionc80e5
-	call Functionc8eca
-	ld a, $42
-	ld [hLCDStatCustom], a ; $ff00+$c6
-	xor a
-	ld [$FF00+$c7], a
-	ld a, $5e
-	ld [$FF00+$c8], a
-	ld de, $202
-	call Functionc8f2e
-	ret
-
-; no known jump sources
-Functionc85ba: ; c85ba (32:45ba)
-	call Functionc8fef
-	ret
-
-; no known jump sources
-Functionc85be: ; c85be (32:45be)
-	call Functionc8f0a
-	ret
-
-; no known jump sources
-Functionc85c2: ; c85c2 (32:45c2)
-	call Functionc8eca
-	ld a, $42
-	call Functionc8ede
-	call Functionc8043
-	ret
-
-; no known jump sources
-Functionc85ce: ; c85ce (32:45ce)
-	ld hl, $3
-	add hl, bc
-	ld a, [hl]
-	ld e, a
-	add $4
-	ld [hl], a
-	ld hl, $2
-	add hl, bc
-	ld a, [hl]
-	and $f0
-	swap a
-	xor $ff
-	add $4
-	ld d, a
-	ld hl, $1
-	add hl, bc
-	ld a, [hl]
-	ld [$d419], a
-	ld hl, $2
-	add hl, bc
-	ld a, [hl]
-	cp $20
-	jr nc, .asm_c85fc
-	inc [hl]
-	inc [hl]
-	call Functionc8f9a
-	ret
-.asm_c85fc
-	call Functionc8eca
-	call Functionc8043
-	ret
-
-; no known jump sources
-Functionc8603: ; c8603 (32:4603)
-	call Functionc8f0a
-	ret
-
-; no known jump sources
-Functionc8607: ; c8607 (32:4607)
-	call Functionc80d7 ;  ;  ; call does not return
-
-; no known jump sources
-Jumptable_c860a: ; c860a (32:460a)
-	dw Functionc8610
-	dw Functionc862e
-	dw Functionc863b
-
-
-; no known jump sources
-Functionc8610: ; c8610 (32:4610)
-	call Functionc80e5
-	call Functionc8eca
-	ld a, $43
-	ld [hLCDStatCustom], a ; $ff00+$c6
-	xor a
-	ld [$FF00+$c7], a
-	ld a, $5f
-	ld [$FF00+$c8], a
-	ld de, $605
-	call Functionc8f2e
-	ld hl, $3
-	add hl, bc
-	ld [hl], $0
-	ret
-
-; no known jump sources
-Functionc862e: ; c862e (32:462e)
-	ld hl, $3
-	add hl, bc
-	ld a, [hl]
-	inc [hl]
-	and $3
-	ret nz
-	call Functionc8fef
-	ret
-
-; no known jump sources
-Functionc863b: ; c863b (32:463b)
-	call Functionc8f0a
-	ret
-
-; no known jump sources
-Functionc863f: ; c863f (32:463f)
-	call Functionc80d7 ;  ;  ; call does not return
-
-; no known jump sources
-Jumptable_c8642: ; c8642 (32:4642)
-	dw Functionc8648
-	dw Functionc865a
-	dw Functionc865e
-
-
-; no known jump sources
-Functionc8648: ; c8648 (32:4648)
-	call Functionc80e5
-	call Functionc8eca
-	ld a, $43
-	call Functionc8ede
-	ld de, $605
-	call Functionc8f2e
-	ret
-
-; no known jump sources
-Functionc865a: ; c865a (32:465a)
-	call Functionc8fef
-	ret
-
-; no known jump sources
-Functionc865e: ; c865e (32:465e)
-	call Functionc8f0a
-	ret
-
-; no known jump sources
-Functionc8662: ; c8662 (32:4662)
-	call Functionc80d7 ;  ;  ; call does not return
-
-; no known jump sources
-Jumptable_c8665: ; c8665 (32:4665)
-	dw Functionc866b
-	dw Functionc8681
-	dw Functionc8685
-
-
-; no known jump sources
-Functionc866b: ; c866b (32:466b)
-	call Functionc80e5
-	call Functionc8eca
-	ld a, $42
-	call Functionc8ede
-	ld hl, $3
-	add hl, bc
-	ld e, [hl]
-	ld d, $2
-	call Functionc8f2e
-	ret
-
-; no known jump sources
-Functionc8681: ; c8681 (32:4681)
-	call Functionc8fef
-	ret
-
-; no known jump sources
-Functionc8685: ; c8685 (32:4685)
-	call Functionc8f0a
-	ret
-
-; no known jump sources
-Functionc8689: ; c8689 (32:4689)
-	call Functionc80d7 ;  ;  ; call does not return
-
-; no known jump sources
-Jumptable_c868c: ; c868c (32:468c)
-	dw Functionc8698
-	dw Functionc86af
-	dw Functionc86cf
-	dw Functionc86bd
-	dw Functionc86e9
-	dw Functionc8705
-
-
-; no known jump sources
-Functionc8698: ; c8698 (32:4698)
-	call Functionc80e5
-	call Functionc8eca
-	ld a, $43
-	call Functionc8ede
-	ld a, [$FF00+$c8]
-	inc a
-	ld [$FF00+$c8], a
-	ld hl, $2
-	add hl, bc
-	ld [hl], $0
-	ret
-
-; no known jump sources
-Functionc86af: ; c86af (32:46af)
-	ld hl, $3
-	add hl, bc
-	ld a, [hl]
-	cp $10
-	jr nc, asm_c86cb
-	inc [hl]
-	call Functionc86ea
-	ret
-
-; no known jump sources
-Functionc86bd: ; c86bd (32:46bd)
-	ld hl, $3
-	add hl, bc
-	ld a, [hl]
-	cp $ff
-	jr z, asm_c86cb
-	dec [hl]
-	call Functionc86ea
-	ret
-asm_c86cb: ; c86cb (32:46cb)
-	call Functionc80e5
-	ret
-
-; no known jump sources
-Functionc86cf: ; c86cf (32:46cf)
-	ld hl, $2
-	add hl, bc
-	ld a, [hl]
-	ld d, $2
-	call Functionc905d
-	ld hl, $3
-	add hl, bc
-	add [hl]
-	call Functionc86ea
-	ld hl, $2
-	add hl, bc
-	ld a, [hl]
-	add $4
-	ld [hl], a
-
-; no known jump sources
-Functionc86e9: ; c86e9 (32:46e9)
-	ret
-
-; known jump sources: c86b9 (32:46b9), c86c7 (32:46c7), c86de (32:46de)
-Functionc86ea: ; c86ea (32:46ea)
-	ld e, a
-	xor $ff
-	inc a
-	ld d, a
-	ld h, $d2
-	ld a, [$FF00+$c7]
-	ld l, a
-	ld a, [$FF00+$c8]
-	sub l
-	srl a
-	push af
-.asm_c86fa
-	ld [hl], e
-	inc hl
-	ld [hl], d
-	inc hl
-	dec a
-	jr nz, .asm_c86fa
-	pop af
-	ret nc
-	ld [hl], e
-	ret
-
-; no known jump sources
-Functionc8705: ; c8705 (32:4705)
-	call Functionc8f0a
-	ret
-
-; no known jump sources
-Functionc8709: ; c8709 (32:4709)
-	call Functionc80d7 ;  ;  ; call does not return
-
-; no known jump sources
-Jumptable_c870c: ; c870c (32:470c)
-	dw Functionc8712
-	dw Functionc8732
-	dw Functionc875d
-
-
-; no known jump sources
-Functionc8712: ; c8712 (32:4712)
-	call Functionc80e5
-	call Functionc8eca
-	ld a, $42
-	call Functionc8ede
-	ld hl, $3
-	add hl, bc
-	ld e, [hl]
-	ld d, $2
-	call Functionc8f2e
-	ld h, $d2
-	ld a, [$FF00+$c8]
-	ld l, a
-	ld [hl], $0
-	dec l
-	ld [hl], $0
-	ret
-
-; no known jump sources
-Functionc8732: ; c8732 (32:4732)
-	ld a, [$FF00+$c8]
-	ld l, a
-	ld h, $d2
-	ld e, l
-	ld d, h
-	dec de
-.asm_c873a
-	ld a, [de]
-	dec de
-	ld [hld], a
-	ld a, [$FF00+$c7]
-	cp l
-	jr nz, .asm_c873a
-	ld [hl], $90
-	ld a, [$FF00+$c8]
-	ld l, a
-	ld a, [hl]
-	cp $1
-	jr c, .asm_c8752
-	cp $90
-	jr z, .asm_c8752
-	ld [hl], $0
-.asm_c8752
-	dec l
-	ld a, [hl]
-	cp $2
-	ret c
-	cp $90
-	ret z
-	ld [hl], $0
-	ret
-
-; no known jump sources
-Functionc875d: ; c875d (32:475d)
-	call Functionc8f0a
-	ret
-
-; no known jump sources
-Functionc8761: ; c8761 (32:4761)
-	call Functionc80d7 ;  ;  ; call does not return
-
-; no known jump sources
-Jumptable_c8764: ; c8764 (32:4764)
-	dw Functionc876a
-	dw Functionc8781
-	dw Functionc87a3
-
-
-; no known jump sources
-Functionc876a: ; c876a (32:476a)
-	call Functionc80e5
-	call Functionc8eca
-	ld a, $42
-	call Functionc8ede
-	ld a, [$FF00+$c8]
-	inc a
-	ld [$FF00+$c8], a
-	ld hl, $2
-	add hl, bc
-	ld [hl], $1
-	ret
-
-; no known jump sources
-Functionc8781: ; c8781 (32:4781)
-	ld hl, $3
-	add hl, bc
-	ld a, [hl]
-	and $3f
-	ld d, a
-	ld hl, $2
-	add hl, bc
-	ld a, [hl]
-	cp d
-	ret nc
-	call Functionc901b
-	ld hl, $3
-	add hl, bc
-	ld a, [hl]
-	rlca
-	rlca
-	and $3
-	ld hl, $2
-	add hl, bc
-	add [hl]
-	ld [hl], a
-	ret
-
-; no known jump sources
-Functionc87a3: ; c87a3 (32:47a3)
-	call Functionc8f0a
-	ret
-
-; no known jump sources
-Functionc87a7: ; c87a7 (32:47a7)
-	call Functionc80d7 ;  ;  ; call does not return
-
-; no known jump sources
-Jumptable_c87aa: ; c87aa (32:47aa)
-	dw Functionc87b2
-	dw Functionc87cf
-	dw Functionc87de
-	dw Functionc8801
-
-
-; no known jump sources
-Functionc87b2: ; c87b2 (32:47b2)
-	call Functionc80e5
-	call Functionc8eca
-	ld a, $42
-	call Functionc8ede
-	ld a, [$FF00+$c8]
-	inc a
-	ld [$FF00+$c8], a
-	ld hl, $2
-	add hl, bc
-	ld [hl], $2
-	ld hl, $3
-	add hl, bc
-	ld [hl], $0
-	ret
-
-; no known jump sources
-Functionc87cf: ; c87cf (32:47cf)
-	ld hl, $3
-	add hl, bc
-	ld a, [hl]
-	and a
-	jr z, .asm_c87d9
-	dec [hl]
-	ret
-.asm_c87d9
-	ld [hl], $10
-	call Functionc80e5
-
-; no known jump sources
-Functionc87de: ; c87de (32:47de)
-	ld a, [$FF00+$c7]
-	ld l, a
-	ld a, [$FF00+$c8]
-	sub l
-	dec a
-	ld hl, $2
-	add hl, bc
-	cp [hl]
-	ret c
-	ld a, [hl]
-	push af
-	and $7
-	jr nz, .asm_c87f6
-	ld hl, $1
-	add hl, bc
-	dec [hl]
-.asm_c87f6
-	pop af
-	call Functionc901b
-	ld hl, $2
-	add hl, bc
-	inc [hl]
-	inc [hl]
-	ret
-
-; no known jump sources
-Functionc8801: ; c8801 (32:4801)
-	call Functionc8f0a
-	ret
-
-; no known jump sources
-Functionc8805: ; c8805 (32:4805)
-	call Functionc80d7 ;  ;  ; call does not return
-
-; no known jump sources
-Jumptable_c8808: ; c8808 (32:4808)
-	dw Functionc8810
-	dw Functionc8869
-	dw Functionc8888
-	dw Functionc8833
-
-
-; no known jump sources
-Functionc8810: ; c8810 (32:4810)
-	call Functionc80e5
-	call Functionc8eca
-	ld a, $43
-	call Functionc8ede
-	ld a, [$FF00+$c8]
-	inc a
-	ld [$FF00+$c8], a
-	ld hl, $3
-	add hl, bc
-	ld [hl], $0
-	call Functionc9038
-	jr nz, .asm_c882f
-	ld a, $2
-	jr .asm_c8831
-.asm_c882f
-	ld a, $fe
-.asm_c8831
-	ld [hl], a
-	ret
-
-; no known jump sources
-Functionc8833: ; c8833 (32:4833)
-	call Functionc8f0a
-	ret
-
-; no known jump sources
-Functionc8837: ; c8837 (32:4837)
-	call Functionc80d7 ;  ;  ; call does not return
-
-; no known jump sources
-Jumptable_c883a: ; c883a (32:483a)
-	dw Functionc8842
-	dw Functionc8869
-	dw Functionc8888
-	dw Functionc8865
-
-
-; no known jump sources
-Functionc8842: ; c8842 (32:4842)
-	call Functionc80e5
-	call Functionc8eca
-	ld a, $43
-	call Functionc8ef4
-	ld a, [$FF00+$c8]
-	inc a
-	ld [$FF00+$c8], a
-	ld hl, $3
-	add hl, bc
-	ld [hl], $0
-	call Functionc9038
-	jr nz, .asm_c8861
-	ld a, $2
-	jr .asm_c8863
-.asm_c8861
-	ld a, $fe
-.asm_c8863
-	ld [hl], a
-	ret
-
-; no known jump sources
-Functionc8865: ; c8865 (32:4865)
-	call Functionc8f0a
-	ret
-
-; no known jump sources
-Functionc8869: ; c8869 (32:4869)
-	ld hl, $3
-	add hl, bc
-	ld a, [hl]
-	cp $f8
-	jr z, .asm_c8876
-	cp $8
-	jr nz, .asm_c8879
-.asm_c8876
-	call Functionc80e5
-.asm_c8879
-	call Functionc88a5
-	ld hl, $2
-	add hl, bc
-	ld a, [hl]
-	ld hl, $3
-	add hl, bc
-	add [hl]
-	ld [hl], a
-	ret
-
-; no known jump sources
-Functionc8888: ; c8888 (32:4888)
-	ld hl, $3
-	add hl, bc
-	ld a, [hl]
-	and a
-	jr nz, .asm_c8893
-	call Functionc80e5
-.asm_c8893
-	call Functionc88a5
-	ld hl, $2
-	add hl, bc
-	ld a, [hl]
-	xor $ff
-	inc a
-	ld hl, $3
-	add hl, bc
-	add [hl]
-	ld [hl], a
-	ret
-
-; known jump sources: c8879 (32:4879), c8893 (32:4893)
-Functionc88a5: ; c88a5 (32:48a5)
-	push af
-	ld a, [FXAnimIDHi] ; $cfc3
-	or a
-	jr nz, .asm_c88b3
-	ld a, [FXAnimIDLo] ; $cfc2
-	cp $cd
-	jr z, .asm_c88b7
-.asm_c88b3
-	pop af
-	jp Functionc900b
-.asm_c88b7
-	ld a, [$FF00+$c7]
-	ld d, a
-	ld a, [$FF00+$c8]
-	sub d
-	ld d, a
-	ld h, $d2
-	ld a, [hSCY] ; $ff00+$d0
-	or a
-	jr nz, .asm_c88d0
-	ld a, [$FF00+$c7]
-	or a
-	jr z, .asm_c88d6
-	dec a
-	ld l, a
-	ld [hl], $0
-	jr .asm_c88d6
-.asm_c88d0
-	ld a, [$FF00+$c8]
-	dec a
-	ld l, a
-	ld [hl], $0
-.asm_c88d6
-	ld a, [hSCY] ; $ff00+$d0
-	ld l, a
-	ld a, [$FF00+$c7]
-	sub l
-	jr nc, .asm_c88e0
-	xor a
-	dec d
-.asm_c88e0
-	ld l, a
-	pop af
-.asm_c88e2
-	ld [hli], a
-	dec d
-	jr nz, .asm_c88e2
-	ret
-
-; no known jump sources
-Functionc88e7: ; c88e7 (32:48e7)
-	call Functionc80d7 ;  ;  ; call does not return
-
-; no known jump sources
-Jumptable_c88ea: ; c88ea (32:48ea)
-	dw Functionc88f6
-	dw Functionc8869
-	dw Functionc8888
-	dw Functionc88f2
-
-
-; no known jump sources
-Functionc88f2: ; c88f2 (32:48f2)
-	call Functionc8f0a
-	ret
-
-; no known jump sources
-Functionc88f6: ; c88f6 (32:48f6)
-	call Functionc80e5
-	call Functionc8eca
-	ld a, $43
-	call Functionc8ede
-	ld a, [$FF00+$c8]
-	inc a
-	ld [$FF00+$c8], a
-	ld hl, $3
-	add hl, bc
-	ld [hl], $0
-	call Functionc9038
-	jr nz, .asm_c8915
-	ld a, $fe
-	jr .asm_c8917
-.asm_c8915
-	ld a, $2
-.asm_c8917
-	ld [hl], a
-	ret
-
-; no known jump sources
-Functionc8919: ; c8919 (32:4919)
-	call Functionc80d7 ;  ;  ; call does not return
-
-; no known jump sources
-Jumptable_c891c: ; c891c (32:491c)
-	dw Functionc88f6
-	dw Functionc8869
-	dw Functionc8929
-	dw Functionc8888
-	dw Functionc8926
-
-
-; no known jump sources
-Functionc8926: ; c8926 (32:4926)
-	call Functionc8f0a
-
-; no known jump sources
-Functionc8929: ; c8929 (32:4929)
-	ret
-
-; no known jump sources
-Functionc892a: ; c892a (32:492a)
-	call Functionc80d7 ;  ;  ; call does not return
-
-; no known jump sources
-Jumptable_c892d: ; c892d (32:492d)
-	dw Functionc8933
-	dw Functionc894a
-	dw Functionc8960
-
-
-; no known jump sources
-Functionc8933: ; c8933 (32:4933)
-	call Functionc80e5
-	call Functionc8eca
-	ld a, $43
-	call Functionc8ede
-	ld a, [$FF00+$c8]
-	inc a
-	ld [$FF00+$c8], a
-	ld hl, $3
-	add hl, bc
-	ld [hl], $0
-	ret
-
-; no known jump sources
-Functionc894a: ; c894a (32:494a)
-	ld hl, $3
-	add hl, bc
-	ld a, [hl]
-	ld d, $8
-	call Functionc905d
-	call Functionc900b
-	ld hl, $3
-	add hl, bc
-	ld a, [hl]
-	add $4
-	ld [hl], a
-	ret
-
-; no known jump sources
-Functionc8960: ; c8960 (32:4960)
-	call Functionc8f0a
-	ret
-
-; no known jump sources
-Functionc8964: ; c8964 (32:4964)
-	call Functionc80d7 ;  ;  ; call does not return
-
-; no known jump sources
-Jumptable_c8967: ; c8967 (32:4967)
-	dw Functionc896d
-	dw Functionc8985
-	dw Functionc89b1
-
-
-; no known jump sources
-Functionc896d: ; c896d (32:496d)
-	call Functionc80e5
-	call Functionc8eca
-	ld a, $43
-	call Functionc8ede
-	ld a, [$FF00+$c8]
-	inc a
-	ld [$FF00+$c8], a
-	xor a
-	ld hl, $2
-	add hl, bc
-	ld [hli], a
-	ld [hl], a
-	ret
-
-; no known jump sources
-Functionc8985: ; c8985 (32:4985)
-	ld hl, $3
-	add hl, bc
-	ld a, [hl]
-	ld d, $6
-	call Functionc905d
-	push af
-	ld hl, $2
-	add hl, bc
-	ld a, [hl]
-	ld d, $2
-	call Functionc905d
-	ld e, a
-	pop af
-	add e
-	call Functionc900b
-	ld hl, $2
-	add hl, bc
-	ld a, [hl]
-	add $8
-	ld [hl], a
-	ld hl, $3
-	add hl, bc
-	ld a, [hl]
-	add $2
-	ld [hl], a
-	ret
-
-; no known jump sources
-Functionc89b1: ; c89b1 (32:49b1)
-	call Functionc8f0a
-	ret
-
-; no known jump sources
-Functionc89b5: ; c89b5 (32:49b5)
-	call Functionc80d7 ;  ;  ; call does not return
-
-; no known jump sources
-Jumptable_c89b8: ; c89b8 (32:49b8)
-	dw Functionc89be
-	dw Functionc89ca
-	dw Functionc89da
-
-
-; no known jump sources
-Functionc89be: ; c89be (32:49be)
-	call Functionc80e5
-	call Functionc8eca
-	ld a, $43
-	call Functionc8ede
-	ret
-
-; no known jump sources
-Functionc89ca: ; c89ca (32:49ca)
-	ld hl, $3
-	add hl, bc
-	ld a, [hl]
-	cp $20
-	ret nc
-	inc [hl]
-	ld d, a
-	ld e, $4
-	call Functionc8f2e
-	ret
-
-; no known jump sources
-Functionc89da: ; c89da (32:49da)
-	ld hl, $3
-	add hl, bc
-	ld a, [hl]
-	and a
-	jr z, .asm_c89ea
-	dec [hl]
-	ld d, a
-	ld e, $4
-	call Functionc8f2e
-	ret
-.asm_c89ea
-	call Functionc8f0a
-	ret
-
-; no known jump sources
-Functionc89ee: ; c89ee (32:49ee)
-	call Functionc80d7 ;  ;  ; call does not return
-
-; no known jump sources
-Jumptable_c89f1: ; c89f1 (32:49f1)
-	dw Functionc89f7
-	dw Functionc8a14
-	dw Functionc8a36
-
-
-; no known jump sources
-Functionc89f7: ; c89f7 (32:49f7)
-	call Functionc80e5
-	call Functionc8eca
-	ld a, $42
-	call Functionc8ef4
-	ld a, [$FF00+$c8]
-	inc a
-	ld [$FF00+$c8], a
-	ld hl, $2
-	add hl, bc
-	ld [hl], $1
-	ld hl, $3
-	add hl, bc
-	ld [hl], $20
-	ret
-
-; no known jump sources
-Functionc8a14: ; c8a14 (32:4a14)
-	ld hl, $2
-	add hl, bc
-	ld a, [hl]
-	cp $38
-	ret nc
-	push af
-	ld hl, $3
-	add hl, bc
-	ld a, [hl]
-	ld d, $10
-	call Functionc9066
-	add $10
-	ld d, a
-	pop af
-	add d
-	call Functionc901b
-	ld hl, $3
-	add hl, bc
-	inc [hl]
-	inc [hl]
-	ret
-
-; no known jump sources
-Functionc8a36: ; c8a36 (32:4a36)
-	call Functionc8f0a
-	ret
-
-; no known jump sources
-Functionc8a3a: ; c8a3a (32:4a3a)
-	call Functionc80d7 ;  ;  ; call does not return
-
-; no known jump sources
-Jumptable_c8a3d: ; c8a3d (32:4a3d)
-	dw Functionc8a49
-	dw Functionc8a6f
-	dw Functionc8a70
-	dw Functionc8a88
-	dw Functionc8a6f
-	dw Functionc8aac
-
-
-; no known jump sources
-Functionc8a49: ; c8a49 (32:4a49)
-	call Functionc80e5
-	ld a, $e4
-	call Functionc8ecb
-	ld a, $47
-	call Functionc8ede
-	ld a, [$FF00+$c8]
-	inc a
-	ld [$FF00+$c8], a
-	ld a, [$FF00+$c7]
-	ld l, a
-	ld h, $d2
-.asm_c8a60
-	ld a, [$FF00+$c8]
-	cp l
-	jr z, .asm_c8a69
-	xor a
-	ld [hli], a
-	jr .asm_c8a60
-.asm_c8a69
-	ld hl, $3
-	add hl, bc
-	ld [hl], $0
-
-; no known jump sources
-Functionc8a6f: ; c8a6f (32:4a6f)
-	ret
-
-; no known jump sources
-Functionc8a70: ; c8a70 (32:4a70)
-	call Functionc8ab0
-	jr nc, .asm_c8a79
-	call Functionc8a9a
-	ret
-.asm_c8a79
-	ld hl, $3
-	add hl, bc
-	ld [hl], $0
-	ld a, [$FF00+$c7]
-	inc a
-	ld [$FF00+$c7], a
-	call Functionc80e5
-	ret
-
-; no known jump sources
-Functionc8a88: ; c8a88 (32:4a88)
-	call Functionc8ab0
-	jr nc, .asm_c8a96
-	call Functionc8a9a
-	ld a, [$FF00+$c8]
-	dec a
-	ld l, a
-	ld [hl], e
-	ret
-.asm_c8a96
-	call Functionc80e5
-	ret
-
-; known jump sources: c8a75 (32:4a75), c8a8d (32:4a8d)
-Functionc8a9a: ; c8a9a (32:4a9a)
-	ld e, a
-	ld a, [$FF00+$c7]
-	ld l, a
-	ld a, [$FF00+$c8]
-	sub l
-	srl a
-	ld h, $d2
-.asm_c8aa5
-	ld [hl], e
-	inc hl
-	inc hl
-	dec a
-	jr nz, .asm_c8aa5
-	ret
-
-; no known jump sources
-Functionc8aac: ; c8aac (32:4aac)
-	call Functionc8f19
-	ret
-
-; known jump sources: c8a70 (32:4a70), c8a88 (32:4a88)
-Functionc8ab0: ; c8ab0 (32:4ab0)
-	ld hl, $3
-	add hl, bc
-	ld a, [hl]
-	inc [hl]
-	srl a
-	srl a
-	srl a
-	ld e, a
-	ld d, $0
-	ld hl, $4ac7
-	add hl, de
-	ld a, [hl]
-	cp $ff
-	ret
-; c8ac7 (32:4ac7)
-
-INCBIN "baserom.gbc",$c8ac7,$c8acc - $c8ac7
-
-; no known jump sources
-Functionc8acc: ; c8acc (32:4acc)
-	call Functionc80d7 ;  ;  ; call does not return
-
-; no known jump sources
-Jumptable_c8acf: ; c8acf (32:4acf)
-	dw Functionc8ad3
-	dw Functionc8ae5
-
-
-; no known jump sources
-Functionc8ad3: ; c8ad3 (32:4ad3)
-	call Functionc80e5
-	call Functionc8eca
-	ld a, $43
-	call Functionc8ede
-	ld hl, $2
-	add hl, bc
-	ld [hl], $40
-	ret
-
-; no known jump sources
-Functionc8ae5: ; c8ae5 (32:4ae5)
-	ld hl, $2
-	add hl, bc
-	ld a, [hl]
-	and a
-	jr z, .asm_c8afc
-	dec [hl]
-	srl a
-	srl a
-	srl a
-	and $f
-	ld d, a
-	ld e, a
-	call Functionc8f2e
-	ret
-.asm_c8afc
-	call Functionc8f0a
-	ret
-
-; no known jump sources
-Functionc8b00: ; c8b00 (32:4b00)
-	ld a, [hCGB] ; $ff00+$e6
-	and a
-	jr nz, asm_c8b7a
-	call Functionc80d7 ;  ;  ; call does not return
-
-; no known jump sources
-Jumptable_c8b08: ; c8b08 (32:4b08)
-	dw Functionc8b0e
-	dw Functionc8b22
-	dw Functionc8b60
-
-
-; no known jump sources
-Functionc8b0e: ; c8b0e (32:4b0e)
-	call Functionc80e5
-	ld a, $e4
-	call Functionc8ecb
-	ld a, $47
-	ld [hLCDStatCustom], a ; $ff00+$c6
-	xor a
-	ld [$FF00+$c7], a
-	ld a, $60
-	ld [$FF00+$c8], a
-	ret
-
-; no known jump sources
-Functionc8b22: ; c8b22 (32:4b22)
-	ld hl, $3
-	add hl, bc
-	ld a, [hl]
-	inc [hl]
-	ld e, a
-	and $7
-	ret nz
-	ld a, e
-	and $18
-	sla a
-	swap a
-	sla a
-	ld e, a
-	ld d, $0
-	push bc
-	call Functionc9038
-	jr nz, .asm_c8b4d
-	ld hl, $4bd8
-	add hl, de
-	ld a, [hli]
-	ld [$cfc9], a
-	ld d, a
-	ld e, [hl]
-	ld bc, $2f30
-	jr .asm_c8b5b
-.asm_c8b4d
-	ld hl, $4be0
-	add hl, de
-	ld d, [hl]
-	inc hl
-	ld a, [hl]
-	ld [$cfc9], a
-	ld e, a
-	ld bc, $3728
-.asm_c8b5b
-	call Functionc8b6c
-	pop bc
-	ret
-
-; no known jump sources
-Functionc8b60: ; c8b60 (32:4b60)
-	call Functionc8f19
-	ld a, $e4
-	ld [$cfc7], a
-	ld [$cfc9], a
-	ret
-
-; known jump sources: c8b5b (32:4b5b)
-Functionc8b6c: ; c8b6c (32:4b6c)
-	ld hl, $d200
-.asm_c8b6f
-	ld [hl], d
-	inc hl
-	dec b
-	jr nz, .asm_c8b6f
-.asm_c8b74
-	ld [hl], e
-	inc hl
-	dec c
-	jr nz, .asm_c8b74
-	ret
-asm_c8b7a: ; c8b7a (32:4b7a)
-	ld de, $4b81
-	call Functionc80ca
-	jp [hl]
-; c8b81 (32:4b81)
-
-INCBIN "baserom.gbc",$c8b81,$c8be8 - $c8b81
-
-; no known jump sources
-Functionc8be8: ; c8be8 (32:4be8)
-	ld de, $4bef
-	call Functionc8d77
-	ret
-; c8bef (32:4bef)
-
-INCBIN "baserom.gbc",$c8bef,$c8bf2 - $c8bef
-
-; no known jump sources
-Functionc8bf2: ; c8bf2 (32:4bf2)
-	ld de, $4bf9
-	call Functionc8d77
-	ret
-; c8bf9 (32:4bf9)
-
-INCBIN "baserom.gbc",$c8bf9,$c8bfd - $c8bf9
-
-; no known jump sources
-Functionc8bfd: ; c8bfd (32:4bfd)
-	ld de, $4c04
-	call Functionc8d77
-	ret
-; c8c04 (32:4c04)
-
-INCBIN "baserom.gbc",$c8c04,$c8c08 - $c8c04
-
-; no known jump sources
-Functionc8c08: ; c8c08 (32:4c08)
-	ld de, $4c0f
-	call Functionc8d77
-	ret
-; c8c0f (32:4c0f)
-
-INCBIN "baserom.gbc",$c8c0f,$c8c14 - $c8c0f
-
-; no known jump sources
-Functionc8c14: ; c8c14 (32:4c14)
-	ld de, $4c1b
-	call Functionc8d77
-	ret
-; c8c1b (32:4c1b)
-
-INCBIN "baserom.gbc",$c8c1b,$c8c20 - $c8c1b
-
-; no known jump sources
-Functionc8c20: ; c8c20 (32:4c20)
-	ld de, $4c27
-	call Functionc8d77
-	ret
-; c8c27 (32:4c27)
-
-INCBIN "baserom.gbc",$c8c27,$c8c30 - $c8c27
-
-; no known jump sources
-Functionc8c30: ; c8c30 (32:4c30)
-	ld de, $4c37
-	call Functionc8d77
-	ret
-; c8c37 (32:4c37)
-
-INCBIN "baserom.gbc",$c8c37,$c8c3c - $c8c37
-
-; no known jump sources
-Functionc8c3c: ; c8c3c (32:4c3c)
-	ld de, $4c43
-	call Functionc8d77
-	ret
-; c8c43 (32:4c43)
-
-INCBIN "baserom.gbc",$c8c43,$c8c55 - $c8c43
-
-; no known jump sources
-Functionc8c55: ; c8c55 (32:4c55)
-	ld de, $4c5c
-	call Functionc8d77
-	ret
-; c8c5c (32:4c5c)
-
-INCBIN "baserom.gbc",$c8c5c,$c8c61 - $c8c5c
-
-; no known jump sources
-Functionc8c61: ; c8c61 (32:4c61)
-	call Functionc80d7 ;  ;  ; call does not return
-
-; no known jump sources
-Jumptable_c8c64: ; c8c64 (32:4c64)
-	dw Functionc8c68
-	dw Functionc8c85
-
-
-; no known jump sources
-Functionc8c68: ; c8c68 (32:4c68)
-	call Functionc80e5
-	call Functionc8eca
-	ld a, $43
-	call Functionc8ede
-	ld a, [$FF00+$c8]
-	inc a
-	ld [$FF00+$c8], a
-	ld hl, $2
-	add hl, bc
-	ld [hl], $1
-	ld hl, $3
-	add hl, bc
-	ld [hl], $20
-	ret
-
-; no known jump sources
-Functionc8c85: ; c8c85 (32:4c85)
-	ld hl, $3
-	add hl, bc
-	ld a, [hl]
-	and a
-	jr z, .asm_c8c9e
-	dec [hl]
-	and $1
-	ret nz
-	ld hl, $2
-	add hl, bc
-	ld a, [hl]
-	xor $ff
-	inc a
-	ld [hl], a
-	call Functionc900b
-	ret
-.asm_c8c9e
-	call Functionc8f0a
-	ret
-
-; no known jump sources
-Functionc8ca2: ; c8ca2 (32:4ca2)
-	call Functionc80d7 ;  ;  ; call does not return
-
-; no known jump sources
-Jumptable_c8ca5: ; c8ca5 (32:4ca5)
-	dw Functionc8cab
-	dw Functionc8cc3
-	dw Functionc8cdd
-
-
-; no known jump sources
-Functionc8cab: ; c8cab (32:4cab)
-	call Functionc80e5
-	call Functionc8eca
-	ld a, $43
-	ld [hLCDStatCustom], a ; $ff00+$c6
-	xor a
-	ld [$FF00+$c7], a
-	ld a, $37
-	ld [$FF00+$c8], a
-	ld hl, $3
-	add hl, bc
-	ld [hl], $0
-	ret
-
-; no known jump sources
-Functionc8cc3: ; c8cc3 (32:4cc3)
-	ld hl, $3
-	add hl, bc
-	ld a, [hl]
-	cp $40
-	jr nc, Functionc8cdd
-	ld d, $6
-	call Functionc905d
-	call Functionc900b
-	ld hl, $3
-	add hl, bc
-	ld a, [hl]
-	add $2
-	ld [hl], a
-	ret
-
-; known jump sources: c8cca (32:4cca)
-Functionc8cdd: ; c8cdd (32:4cdd)
-	call Functionc8f0a
-	ret
-
-; no known jump sources
-Functionc8ce1: ; c8ce1 (32:4ce1)
-	call Functionc8d0b
-	jr c, .asm_c8cea
-	bit 7, a
-	jr z, .asm_c8ceb
-.asm_c8cea
-	xor a
-.asm_c8ceb
-	push af
-	call DelayFrame
-	pop af
-	ld [hSCY], a ; $ff00+$d0
-	xor $ff
-	inc a
-	ld [$d314], a
-	ret
-
-; no known jump sources
-Functionc8cf9: ; c8cf9 (32:4cf9)
-	call Functionc8d0b
-	jr nc, .asm_c8cff
-	xor a
-.asm_c8cff
-	ld [hSCX], a ; $ff00+$cf
-	ret
-
-; no known jump sources
-Functionc8d02: ; c8d02 (32:4d02)
-	call Functionc8d0b
-	jr nc, .asm_c8d08
-	xor a
-.asm_c8d08
-	ld [hSCY], a ; $ff00+$d0
-	ret
-
-; known jump sources: c8ce1 (32:4ce1), c8cf9 (32:4cf9), c8d02 (32:4d02)
-Functionc8d0b: ; c8d0b (32:4d0b)
-	ld hl, $1
-	add hl, bc
-	ld a, [hl]
-	and a
-	jr nz, .asm_c8d18
-	call Functionc8043
-	scf
-	ret
-.asm_c8d18
-	dec [hl]
-	ld hl, $3
-	add hl, bc
-	ld a, [hl]
-	and $f
-	jr z, .asm_c8d2a
-	dec [hl]
-	ld hl, $2
-	add hl, bc
-	ld a, [hl]
-	and a
-	ret
-.asm_c8d2a
-	ld a, [hl]
-	swap a
-	or [hl]
-	ld [hl], a
-	ld hl, $2
-	add hl, bc
-	ld a, [hl]
-	xor $ff
-	inc a
-	ld [hl], a
-	and a
-	ret
-
-; no known jump sources
-Functionc8d3a: ; c8d3a (32:4d3a)
-	ld hl, $3
-	add hl, bc
-	ld a, [hl]
-	cp $40
-	jr nc, .asm_c8d53
-	ld d, $6
-	call Functionc905d
-	ld [hSCX], a ; $ff00+$cf
-	ld hl, $3
-	add hl, bc
-	ld a, [hl]
-	add $2
-	ld [hl], a
-	ret
-.asm_c8d53
-	xor a
-	ld [hSCX], a ; $ff00+$cf
-	ret
-
-; known jump sources: c8130 (32:4130), c8144 (32:4144), c8158 (32:4158), c817e (32:417e), c8198 (32:4198), c81a8 (32:41a8)
-Functionc8d57: ; c8d57 (32:4d57)
-	ld hl, $1
-	add hl, bc
-	ld a, [hl]
-	and a
-	jr z, .asm_c8d69
-	dec [hl]
-	ld hl, $3
-	add hl, bc
-	ld a, [hl]
-	call Functionc8eb2
-	ret
-.asm_c8d69
-	ld hl, $2
-	add hl, bc
-	ld a, [hl]
-	ld hl, $1
-	add hl, bc
-	ld [hl], a
-	call Functionc8eac
-	ret
-
-; known jump sources: c8beb (32:4beb), c8bf5 (32:4bf5), c8c00 (32:4c00), c8c0b (32:4c0b), c8c17 (32:4c17), c8c23 (32:4c23), c8c33 (32:4c33), c8c3f (32:4c3f), c8c58 (32:4c58)
-Functionc8d77: ; c8d77 (32:4d77)
-	ld a, [hCGB] ; $ff00+$e6
-	and a
-	jr nz, asm_c8dd4
-	push de
-	ld de, $4d85
-	call Functionc80ca
-	pop de
-	jp [hl]
-
-; no known jump sources
-Jumptable_c8d85: ; c8d85 (32:4d85)
-	dw Functionc8d8b
-	dw Functionc8daa
-	dw Functionc8dc9
-
-
-; no known jump sources
-Functionc8d8b: ; c8d8b (32:4d8b)
-	call Functionc80e5
-	ld a, $e4
-	call Functionc8ecb
-	ld a, $47
-	call Functionc8ede
-	ld a, [$FF00+$c8]
-	inc a
-	ld [$FF00+$c8], a
-	ld hl, $3
-	add hl, bc
-	ld a, [hl]
-	ld [hl], $0
-	ld hl, $2
-	add hl, bc
-	ld [hl], a
-	ret
-
-; no known jump sources
-Functionc8daa: ; c8daa (32:4daa)
-	ld hl, $2
-	add hl, bc
-	ld a, [hl]
-	and $f
-	jr z, .asm_c8db5
-	dec [hl]
-	ret
-.asm_c8db5
-	ld a, [hl]
-	swap a
-	or [hl]
-	ld [hl], a
-	call Functionc8eac
-	jr c, .asm_c8dc3
-	call Functionc900b
-	ret
-.asm_c8dc3
-	ld hl, $3
-	add hl, bc
-	dec [hl]
-	ret
-
-; no known jump sources
-Functionc8dc9: ; c8dc9 (32:4dc9)
-	call Functionc8f19
-	ld a, $e4
-	ld [rBGP], a ; $ff00+$47
-	call Functionc8043
-	ret
-asm_c8dd4: ; c8dd4 (32:4dd4)
-	push de
-	ld de, $4ddd
-	call Functionc80ca
-	pop de
-	jp [hl]
-
-; no known jump sources
-Jumptable_c8ddd: ; c8ddd (32:4ddd)
-	dw Functionc8de7
-	dw Functionc8e02
-	dw Functionc8e21
-	dw Functionc8e2a
-	dw Functionc8e49
-
-
-; no known jump sources
-Functionc8de7: ; c8de7 (32:4de7)
-	call Functionc9038
-	jr nz, .asm_c8df2
-	call Functionc80e5
-	call Functionc80e5
-.asm_c8df2
-	call Functionc80e5
-	ld hl, $3
-	add hl, bc
-	ld a, [hl]
-	ld [hl], $0
-	ld hl, $2
-	add hl, bc
-	ld [hl], a
-	ret
-
-; no known jump sources
-Functionc8e02: ; c8e02 (32:4e02)
-	ld hl, $2
-	add hl, bc
-	ld a, [hl]
-	and $f
-	jr z, .asm_c8e0d
-	dec [hl]
-	ret
-.asm_c8e0d
-	ld a, [hl]
-	swap a
-	or [hl]
-	ld [hl], a
-	call Functionc8eac
-	jr c, .asm_c8e1b
-	call Functionc8e52
-	ret
-.asm_c8e1b
-	ld hl, $3
-	add hl, bc
-	dec [hl]
-	ret
-
-; no known jump sources
-Functionc8e21: ; c8e21 (32:4e21)
-	ld a, $e4
-	call Functionc8e52
-	call Functionc8043
-	ret
-
-; no known jump sources
-Functionc8e2a: ; c8e2a (32:4e2a)
-	ld hl, $2
-	add hl, bc
-	ld a, [hl]
-	and $f
-	jr z, .asm_c8e35
-	dec [hl]
-	ret
-.asm_c8e35
-	ld a, [hl]
-	swap a
-	or [hl]
-	ld [hl], a
-	call Functionc8eac
-	jr c, .asm_c8e43
-	call Functionc8e7f
-	ret
-.asm_c8e43
-	ld hl, $3
-	add hl, bc
-	dec [hl]
-	ret
-
-; no known jump sources
-Functionc8e49: ; c8e49 (32:4e49)
-	ld a, $e4
-	call Functionc8e7f
-	call Functionc8043
-	ret
-
-; known jump sources: c8e17 (32:4e17), c8e23 (32:4e23)
-Functionc8e52: ; c8e52 (32:4e52)
-	ld h, a
-	ld a, [rSVBK] ; $ff00+$70
-	push af
-	ld a, $5
-	ld [rSVBK], a ; $ff00+$70
-	ld a, h
-	push bc
-	push af
-	ld hl, BGPals ; $d080
-	ld de, Unkn1Pals ; $d000
-	ld b, a
-	ld c, $1
-	call CopyPals
-	ld hl, $d0c8
-	ld de, $d048
-	pop af
-	ld b, a
-	ld c, $1
-	call CopyPals
-	pop bc
-	pop af
-	ld [rSVBK], a ; $ff00+$70
-	ld a, $1
-	ld [hCGBPalUpdate], a ; $ff00+$e5
-	ret
-
-; known jump sources: c8e3f (32:4e3f), c8e4b (32:4e4b)
-Functionc8e7f: ; c8e7f (32:4e7f)
-	ld h, a
-	ld a, [rSVBK] ; $ff00+$70
-	push af
-	ld a, $5
-	ld [rSVBK], a ; $ff00+$70
-	ld a, h
-	push bc
-	push af
-	ld hl, $d088
-	ld de, $d008
-	ld b, a
-	ld c, $1
-	call CopyPals
-	ld hl, OBPals ; $d0c0
-	ld de, MartPointer ; $d040 (aliases: Unkn2Pals)
-	pop af
-	ld b, a
-	ld c, $1
-	call CopyPals
-	pop bc
-	pop af
-	ld [rSVBK], a ; $ff00+$70
-	ld a, $1
-	ld [hCGBPalUpdate], a ; $ff00+$e5
-	ret
-
-; known jump sources: c8d73 (32:4d73), c8dba (32:4dba), c8e12 (32:4e12), c8e3a (32:4e3a)
-Functionc8eac: ; c8eac (32:4eac)
-	ld hl, $3
-	add hl, bc
-	ld a, [hl]
-	inc [hl]
-
-; known jump sources: c8d65 (32:4d65)
-Functionc8eb2: ; c8eb2 (32:4eb2)
-	ld l, a
-	ld h, $0
-	add hl, de
-	ld a, [hl]
-	cp $ff
-	jr z, .asm_c8ec8
-	cp $fe
-	jr nz, .asm_c8ec6
-	ld a, [de]
-	ld hl, $3
-	add hl, bc
-	ld [hl], $0
-.asm_c8ec6
-	and a
-	ret
-.asm_c8ec8
-	scf
-	ret
-
-; known jump sources: c85a5 (32:45a5), c85c2 (32:45c2), c85fc (32:45fc), c8613 (32:4613), c864b (32:464b), c866e (32:466e), c869b (32:469b), c8715 (32:4715), c876d (32:476d), c87b5 (32:47b5), c8813 (32:4813), c8845 (32:4845), c88f9 (32:48f9), c8936 (32:4936), c8970 (32:4970), c89c1 (32:49c1), c89fa (32:49fa), c8ad6 (32:4ad6), c8c6b (32:4c6b), c8cae (32:4cae), c8f0f (32:4f0f), c8f2a (32:4f2a)
-Functionc8eca: ; c8eca (32:4eca)
-	xor a
-
-; known jump sources: c8a4e (32:4a4e), c8b13 (32:4b13), c8d90 (32:4d90)
-Functionc8ecb: ; c8ecb (32:4ecb)
-	ld hl, CurMartEnd ; $d100 (aliases: LYOverrides)
-	ld e, $99
-.asm_c8ed0
-	ld [hli], a
-	dec e
-	jr nz, .asm_c8ed0
-	ld hl, $d200
-	ld e, $91
-.asm_c8ed9
-	ld [hli], a
-	dec e
-	jr nz, .asm_c8ed9
-	ret
-
-; known jump sources: c85c7 (32:45c7), c8650 (32:4650), c8673 (32:4673), c86a0 (32:46a0), c871a (32:471a), c8772 (32:4772), c87ba (32:47ba), c8818 (32:4818), c88fe (32:48fe), c893b (32:493b), c8975 (32:4975), c89c6 (32:49c6), c8a53 (32:4a53), c8adb (32:4adb), c8c70 (32:4c70), c8d95 (32:4d95)
-Functionc8ede: ; c8ede (32:4ede)
-	ld [hLCDStatCustom], a ; $ff00+$c6
-	call Functionc9038
-	jr nz, .asm_c8eea
-	ld de, $36
-	jr .asm_c8eed
-.asm_c8eea
-	ld de, $2f5e
-.asm_c8eed
-	ld a, d
-	ld [$FF00+$c7], a
-	ld a, e
-	ld [$FF00+$c8], a
-	ret
-
-; known jump sources: c884a (32:484a), c89ff (32:49ff)
-Functionc8ef4: ; c8ef4 (32:4ef4)
-	ld [hLCDStatCustom], a ; $ff00+$c6
-	call Functionc9038
-	jr nz, .asm_c8f00
-	ld de, $36
-	jr .asm_c8f03
-.asm_c8f00
-	ld de, $2d5e
-.asm_c8f03
-	ld a, d
-	ld [$FF00+$c7], a
-	ld a, e
-	ld [$FF00+$c8], a
-	ret
-
-; known jump sources: c8561 (32:4561), c85be (32:45be), c8603 (32:4603), c863b (32:463b), c865e (32:465e), c8685 (32:4685), c8705 (32:4705), c875d (32:475d), c87a3 (32:47a3), c8801 (32:4801), c8833 (32:4833), c8865 (32:4865), c88f2 (32:48f2), c8926 (32:4926), c8960 (32:4960), c89b1 (32:49b1), c89ea (32:49ea), c8a36 (32:4a36), c8afc (32:4afc), c8c9e (32:4c9e), c8cdd (32:4cdd)
-Functionc8f0a: ; c8f0a (32:4f0a)
-	xor a
-	ld [$FF00+$c7], a
-	ld [$FF00+$c8], a
-	call Functionc8eca
-	xor a
-	ld [hLCDStatCustom], a ; $ff00+$c6
-	call Functionc8043
-	ret
-
-; known jump sources: c8aac (32:4aac), c8b60 (32:4b60), c8dc9 (32:4dc9)
-Functionc8f19: ; c8f19 (32:4f19)
-	xor a
-	ld [hLCDStatCustom], a ; $ff00+$c6
-	ld a, $e4
-	ld [rBGP], a ; $ff00+$47
-	ld [$cfc7], a
-	ld [$cfc9], a
-	ld [$FF00+$c7], a
-	ld [$FF00+$c8], a
-	call Functionc8eca
-	ret
-
-; known jump sources: c85b6 (32:45b6), c8624 (32:4624), c8656 (32:4656), c867d (32:467d), c8724 (32:4724), c89d6 (32:49d6), c89e6 (32:49e6), c8af8 (32:4af8)
-Functionc8f2e: ; c8f2e (32:4f2e)
-	push bc
-	xor a
-	ld [$d419], a
-	ld a, e
-	ld [$d41a], a
-	ld a, d
-	ld [$d41b], a
-	ld a, $80
-	ld [$d41c], a
-	ld bc, $d200
-.asm_c8f43
-	ld a, [$FF00+$c7]
-	cp c
-	jr nc, .asm_c8f58
-	ld a, [$FF00+$c8]
-	cp c
-	jr c, .asm_c8f58
-	ld a, [$d41b]
-	ld d, a
-	ld a, [$d419]
-	call Functionc905d
-	ld [bc], a
-.asm_c8f58
-	inc bc
-	ld a, [$d41a]
-	ld hl, $d419
-	add [hl]
-	ld [hl], a
-	ld hl, $d41c
-	dec [hl]
-	jr nz, .asm_c8f43
-	pop bc
-	ret
-
-; known jump sources: c8554 (32:4554)
-Functionc8f69: ; c8f69 (32:4f69)
-	push bc
-	xor a
-	ld [$d419], a
-	ld a, e
-	ld [$d41a], a
-	ld a, d
-	ld [$d41b], a
-	ld a, $40
-	ld [$d41c], a
-	ld bc, $d422
-.asm_c8f7e
-	ld a, [$d41b]
-	ld d, a
-	ld a, [$d419]
-	call Functionc905d
-	ld [bc], a
-	inc bc
-	ld a, [$d41a]
-	ld hl, $d419
-	add [hl]
-	ld [hl], a
-	ld hl, $d41c
-	dec [hl]
-	jr nz, .asm_c8f7e
-	pop bc
-	ret
-
-; known jump sources: c85f8 (32:45f8)
-Functionc8f9a: ; c8f9a (32:4f9a)
-	push bc
-	ld [$d41c], a
-	ld a, e
-	ld [$d41a], a
-	ld a, d
-	ld [$d41b], a
-	call Functionc8fe4
-	ld hl, $d200
-	add hl, de
-	ld c, l
-	ld b, h
-.asm_c8faf
-	ld a, [$d41c]
-	and a
-	jr z, .asm_c8fe1
-	dec a
-	ld [$d41c], a
-	push af
-	ld a, [$d41b]
-	ld d, a
-	ld a, [$d41a]
-	push hl
-	call Functionc905d
-	ld e, a
-	pop hl
-	ld a, [$FF00+$c8]
-	cp c
-	jr c, .asm_c8fcf
-	ld a, e
-	ld [bc], a
-	inc bc
-.asm_c8fcf
-	ld a, [$FF00+$c7]
-	cp l
-	jr nc, .asm_c8fd6
-	ld [hl], e
-	dec hl
-.asm_c8fd6
-	ld a, [$d41a]
-	add $4
-	ld [$d41a], a
-	pop af
-	jr .asm_c8faf
-.asm_c8fe1
-	pop bc
-	and a
-	ret
-
-; known jump sources: c8fa6 (32:4fa6)
-Functionc8fe4: ; c8fe4 (32:4fe4)
-	ld a, [$FF00+$c7]
-	ld e, a
-	ld a, [$d419]
-	add e
-	ld e, a
-	ld d, $0
-	ret
-
-; known jump sources: c85ba (32:45ba), c8637 (32:4637), c865a (32:465a), c8681 (32:4681)
-Functionc8fef: ; c8fef (32:4fef)
-	push bc
-	ld a, [$FF00+$c7]
-	ld l, a
-	inc a
-	ld e, a
-	ld h, $d2
-	ld d, h
-	ld a, [$FF00+$c8]
-	sub l
-	and a
-	jr z, .asm_c9009
-	ld c, a
-	ld a, [hl]
-	push af
-.asm_c9001
-	ld a, [de]
-	inc de
-	ld [hli], a
-	dec c
-	jr nz, .asm_c9001
-	pop af
-	ld [hl], a
-.asm_c9009
-	pop bc
-	ret
-
-; known jump sources: c88b4 (32:48b4), c8954 (32:4954), c899d (32:499d), c8c9a (32:4c9a), c8cd1 (32:4cd1), c8dbf (32:4dbf)
-Functionc900b: ; c900b (32:500b)
-	push af
-	ld h, $d2
-	ld a, [$FF00+$c7]
-	ld l, a
-	ld a, [$FF00+$c8]
-	sub l
-	ld d, a
-	pop af
-.asm_c9016
-	ld [hli], a
-	dec d
-	jr nz, .asm_c9016
-	ret
-
-; known jump sources: c8790 (32:4790), c87f7 (32:47f7), c8a2c (32:4a2c)
-Functionc901b: ; c901b (32:501b)
-	push af
-	ld e, a
-	ld a, [$FF00+$c7]
-	ld l, a
-	ld a, [$FF00+$c8]
-	sub l
-	sub e
-	ld d, a
-	ld h, $d2
-	ld a, [$FF00+$c7]
-	ld l, a
-	ld a, $90
-.asm_c902c
-	ld [hli], a
-	dec e
-	jr nz, .asm_c902c
-	pop af
-	xor $ff
-.asm_c9033
-	ld [hli], a
-	dec d
-	jr nz, .asm_c9033
-	ret
-
-; known jump sources: c81c4 (32:41c4), c81f3 (32:41f3), c8234 (32:4234), c825e (32:425e), c82a1 (32:42a1), c82cb (32:42cb), c8305 (32:4305), c837b (32:437b), c83a8 (32:43a8), c8826 (32:4826), c8858 (32:4858), c890c (32:490c), c8b39 (32:4b39), c8de7 (32:4de7), c8ee0 (32:4ee0), c8ef6 (32:4ef6)
-Functionc9038: ; c9038 (32:5038)
-	ld hl, $2
-	add hl, bc
-	ld a, [hBattleTurn] ; $ff00+$e4
-	and $1
-	xor [hl]
-	ret
-
-; known jump sources: c81ea (32:41ea), c8223 (32:4223), c8290 (32:4290)
-Functionc9042: ; c9042 (32:5042)
-	ld hl, $2
-	add hl, bc
-	ld a, [hBattleTurn] ; $ff00+$e4
-	and $1
-	xor [hl]
-	jr nz, .asm_c9053
-	ld a, [EnemySubStatus3] ; $c66f
-	and $60
-	ret
-.asm_c9053
-	ld a, [PlayerSubStatus3] ; $c66a
-	and $60
-	ret
-
-; known jump sources: c8171 (32:4171), c818b (32:418b)
-Functionc9059: ; c9059 (32:5059)
-	ld a, [hSGB] ; $ff00+$e7
-	and a
-	ret
-
-; known jump sources: c86d6 (32:46d6), c8951 (32:4951), c898c (32:498c), c8997 (32:4997), c8cce (32:4cce), c8d45 (32:4d45), c8f54 (32:4f54), c8f85 (32:4f85), c8fc2 (32:4fc2)
-Functionc905d: ; c905d (32:505d)
-	ld e, a
-	callab Functionce765
-	ld a, e
-	ret
-
-; known jump sources: c8a24 (32:4a24)
-Functionc9066: ; c9066 (32:5066)
-	ld e, a
-	callab Functionce76b
-	ld a, e
-	ret
-; c906f (32:506f)
-
-INCBIN "baserom.gbc",$c906f,$cbcdd - $c906f
+INCLUDE "battle/anims.asm"
 
 Functioncbcdd: ; cbcdd
 	call Functioncbce5
@@ -90960,70 +73505,89 @@ Functioncbce5: ; cbce5
 	ret
 ; cbd2e
 
-INCBIN "baserom.gbc",$cbd2e,$cbe2b - $cbd2e
+TheEndGFX: ; cbd2e
+INCBIN "gfx/credits/theend.2bpp"
+; cbe2e
 
 
-SECTION "bank33",ROMX,BANK[$33]
+SECTION "bank33", ROMX, BANK[$33]
 
 Functioncc000: ; cc000
+
 	call WhiteBGMap
 	call ClearTileMap
 	call ClearSprites
 	call Functione58
+
 	ld hl, Options
 	ld a, [hl]
 	push af
 	set 4, [hl]
-	ld hl, TileMap
-	ld b, $4
-	ld c, $d
+
+	hlcoord 0, 0
+	ld b, 4
+	ld c, 13
 	call TextBox
-	ld hl, $c518
-	ld b, $4
-	ld c, $d
+
+	hlcoord 0, 6
+	ld b, 4
+	ld c, 13
 	call TextBox
-	ld hl, $c4a2
-	ld de, $40ae
+
+	hlcoord 2, 0
+	ld de, .Stock
 	call PlaceString
-	ld hl, $c51a
-	ld de, $40b8
+
+	hlcoord 2, 6
+	ld de, .This
 	call PlaceString
-	ld hl, $c4f5
-	ld de, $40a7
+
+	hlcoord 5, 4
+	ld de, .Health
 	call PlaceString
-	ld hl, $c56d
-	ld de, $40a7
+
+	hlcoord 5, 10
+	ld de, .Health
 	call PlaceString
+
 	ld a, [$df9c]
 	ld [$d265], a
 	call GetPokemonName
 	ld de, StringBuffer1
-	ld hl, $c4c9
+	hlcoord 1, 2
 	call PlaceString
+
 	ld h, b
 	ld l, c
 	ld a, [$dfbb]
 	ld [TempMonLevel], a
 	call PrintLevel
+
 	ld de, EnemyMonNick
-	ld hl, $c541
+	hlcoord 1, 8
 	call PlaceString
+
 	ld h, b
 	ld l, c
 	ld a, [EnemyMonLevel]
 	ld [TempMonLevel], a
 	call PrintLevel
-	ld hl, $c4fb
+
+	hlcoord 11, 4
 	ld de, $dfc0
 	ld bc, $0203
 	call PrintNum
-	ld hl, $c573
+
+	hlcoord 11, 10
 	ld de, EnemyMonMaxHPHi
 	call PrintNum
-	ld hl, $40c2
+
+	ld hl, SwitchMonText
 	call PrintText
+
 	pop af
 	ld [Options], a
+
 	call WaitBGMap
 	ld b, $8
 	call GetSGBLayout
@@ -91031,7510 +73595,46 @@ Functioncc000: ; cc000
 	ret
 ; cc0a7
 
-INCBIN "baserom.gbc",$cc0a7,$cc0c7 - $cc0a7
+.Health
+	db "HEALTH@"
+.Stock
+	db " STOCK ", $4a, " @"
+.This
+	db " THIS ", $4a, "  @"
 
+SwitchMonText: ; cc0c2
+	; Switch #MON?
+	text_jump UnknownText_0x1c10cf
+	db "@"
+; cc0c7
 
 Functioncc0c7: ; cc0c7
 	call GetPokemonName
-	ld hl, $40d0
+	ld hl, AlreadyCaughtText
 	jp PrintText
 ; cc0d0
 
-INCBIN "baserom.gbc",$cc0d0,$cc0d5 - $cc0d0
+AlreadyCaughtText: ; 0xcc0d0
+	; You already caught a @ .
+	text_jump UnknownText_0x1c10dd
+	db "@"
+; 0xcc0d5
 
-Functioncc0d5: ; cc0d5
+Predef2F:
+Predef38:
+Predef39: ; cc0d5
 	ret
 ; cc0d6
 
 
-Functioncc0d6: ; cc0d6
-	ld a, [rSVBK]
-	push af
-	ld a, $5
-	ld [rSVBK], a
-	call Functioncc0e4
-	pop af
-	ld [rSVBK], a
-	ret
-; cc0e4
+INCLUDE "battle/anim_commands.asm"
 
-Functioncc0e4: ; cc0e4
-	ld c, $6
-.asm_cc0e6
-	call Functioncc1fb
-	dec c
-	jr nz, .asm_cc0e6
-	call Functioncc8a4
-	call Functioncc1e2
-	call Functioncc1fb
-	ld c, $1
-	ld a, [rKEY1]
-	bit 7, a
-	jr nz, .asm_cc0ff
-	ld c, $3
+INCLUDE "battle/anim_objects.asm"
 
-.asm_cc0ff
-	ld hl, $ff9e
-	ld a, [hl]
-	push af
-	ld [hl], c
-	call Functioncc11c
-	pop af
-	ld [$ff9e], a
-	ld a, $1
-	ld [hBGMapMode], a
-	call Functioncc1fb
-	call Functioncc1fb
-	call Functioncc1fb
-	call WaitSFX
-	ret
-; cc11c
 
-Functioncc11c: ; cc11c
-	ld a, [FXAnimIDHi]
-	and a
-	jr nz, .asm_cc156
-	callba Function4ea44
-	jr c, .asm_cc141
-	call Functioncc1a1
-	call Functioncc163
-	call Functioncc8a4
-	call Functioncc1e2
-	xor a
-	ld [hSCX], a
-	ld [hSCY], a
-	call Functioncc1fb
-	call Functioncc1bb
+SECTION "Pic Animations 1", ROMX, BANK[$34]
 
-.asm_cc141
-	ld a, [$cfca]
-	and a
-	jr z, .asm_cc15f
-	ld l, a
-	ld h, $0
-	ld de, $010e
-	add hl, de
-	ld a, l
-	ld [FXAnimIDLo], a
-	ld a, h
-	ld [FXAnimIDHi], a
-
-.asm_cc156
-	call WaitSFX
-	call Functioncc881
-	call Functioncc163
-
-.asm_cc15f
-	call Functioncc8f6
-	ret
-; cc163
-
-Functioncc163: ; cc163
-	call Functioncc8d3
-.asm_cc166
-	call Functioncc25f
-	call Functionccb48
-	call Functioncc96e
-	call Function3b0c
-	call Functioncc1e2
-	ld a, [FXAnimIDHi]
-	or a
-	jr nz, .asm_cc193
-	ld a, [FXAnimIDLo]
-	cp $cd
-	jr nz, .asm_cc193
-	ld a, $2e
-	ld b, $5
-	ld de, $0004
-	ld hl, $d3fa
-.asm_cc18c
-	cp [hl]
-	jr z, .asm_cc196
-	add hl, de
-	dec b
-	jr nz, .asm_cc18c
-
-.asm_cc193
-	call Functioncc1fb
-
-.asm_cc196
-	ld a, [$d40f]
-	bit 0, a
-	jr z, .asm_cc166
-	call Functioncc23d
-	ret
-; cc1a1
-
-Functioncc1a1: ; cc1a1
-	call Functioncc1fb
-	call WaitTop
-	call Functioncc207
-	ld a, $1
-	ld [hBGMapMode], a
-	call Functioncc1fb
-	call Functioncc1fb
-	call Functioncc1fb
-	call WaitTop
-	ret
-; cc1bb
-
-Functioncc1bb: ; cc1bb
-	call Functioncc1fb
-	call WaitTop
-	ld a, [rSVBK]
-	push af
-	ld a, $1
-	ld [rSVBK], a
-	ld hl, UpdateBattleHuds
-	ld a, $f
-	rst FarCall
-	pop af
-	ld [rSVBK], a
-	ld a, $1
-	ld [hBGMapMode], a
-	call Functioncc1fb
-	call Functioncc1fb
-	call Functioncc1fb
-	call WaitTop
-	ret
-; cc1e2
-
-Functioncc1e2: ; cc1e2
-	ld a, [hCGB]
-	and a
-	ret z
-	ld a, [rBGP]
-	ld b, a
-	ld a, [$cfc7]
-	cp b
-	call nz, Functioncc91a
-	ld a, [rOBP0]
-	ld b, a
-	ld a, [$cfc8]
-	cp b
-	call nz, Functioncc94b
-	ret
-; cc1fb
-
-Functioncc1fb: ; cc1fb
-	ld a, $1
-	ld [VBlankOccurred], a
-.asm_cc200
-	ld a, [VBlankOccurred]
-	and a
-	jr nz, .asm_cc200
-	ret
-; cc207
-
-Functioncc207: ; cc207
-	ld a, [hBattleTurn]
-	and a
-	jr z, .asm_cc216
-	ld hl, $c4a1
-	ld bc, $040a
-	call ClearBox
-	ret
-
-.asm_cc216
-	ld hl, $c535
-	ld bc, $050b
-	call ClearBox
-	ret
-; cc220
-
-INCBIN "baserom.gbc",$cc220,$cc23d - $cc220
-
-
-Functioncc23d: ; cc23d
-	ld a, [$d40f]
-	bit 3, a
-	jr z, .asm_cc254
-	ld hl, $c403
-	ld c, $28
-.asm_cc249
-	ld a, [hl]
-	and $f0
-	ld [hli], a
-	inc hl
-	inc hl
-	inc hl
-	dec c
-	jr nz, .asm_cc249
-	ret
-
-.asm_cc254
-	ld hl, Sprites
-	ld c, $a0
-	xor a
-.asm_cc25a
-	ld [hli], a
-	dec c
-	jr nz, .asm_cc25a
-	ret
-; cc25f
-
-Functioncc25f: ; cc25f
-	call Functioncc267
-	ret nc
-	call Functioncc275
-	ret
-; cc267
-
-Functioncc267: ; cc267
-	ld a, [$d412]
-	and a
-	jr z, .asm_cc273
-	dec a
-	ld [$d412], a
-	and a
-	ret
-
-.asm_cc273
-	scf
-	ret
-; cc275
-
-Functioncc275: ; cc275
-.asm_cc275
-	call Function3af0
-	cp $ff
-	jr nz, .asm_cc286
-	ld hl, $d40f
-	bit 1, [hl]
-	jr nz, .asm_cc28e
-	set 0, [hl]
-	ret
-
-.asm_cc286
-	cp $d0
-	jr nc, .asm_cc28e
-	ld [$d412], a
-	ret
-
-.asm_cc28e
-	call Functioncc293
-	jr .asm_cc275
-; cc293
-
-Functioncc293: ; cc293
-	ld a, [$d417]
-	sub $d0
-	ld e, a
-	ld d, $0
-	ld hl, $42a4
-	add hl, de
-	add hl, de
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	jp [hl]
-; cc2a4
-
-
-; no known jump sources
-Jumptable_cc2a4: ; cc2a4 (33:42a4)
-	dw Functioncc41f
-	dw Functioncc485
-	dw Functioncc485
-	dw Functioncc485
-	dw Functioncc485
-	dw Functioncc485
-	dw Functioncc4c0
-	dw Functioncc506
-	dw Functioncc4e3
-	dw Functioncc52c
-	dw Functioncc57e
-	dw Functioncc5d0
-	dw Functioncc5dc
-	dw Functioncc640
-	dw Functioncc750
-	dw Functioncc46c
-	dw Functioncc7cd
-	dw Functioncc807
-	dw Functioncc6cf
-	dw Functioncc7bb
-	dw Functioncc7bf
-	dw Functioncc479
-	dw Functioncc776
-	dw Functioncc5db
-	dw Functioncc622
-	dw Functioncc735
-	dw Functioncc304
-	dw Functioncc304
-	dw Functioncc304
-	dw Functioncc304
-	dw Functioncc3fa
-	dw Functioncc383
-	dw Functioncc43b
-	dw Functioncc457
-	dw Functioncc45e
-	dw Functioncc465
-	dw Functioncc7c4
-	dw Functioncc7ca
-	dw Functioncc7cb
-	dw Functioncc7cc
-	dw Functioncc3d6
-	dw Functioncc3a6
-	dw Functioncc3ad
-	dw Functioncc3b2
-	dw Functioncc339
-	dw Functioncc348
-	dw Functioncc317
-	dw Functioncc305
-
-
-; no known jump sources
-Functioncc304: ; cc304 (33:4304)
-	ret
-
-; no known jump sources
-Functioncc305: ; cc305 (33:4305)
-	ld hl, $d40f
-	res 1, [hl]
-	ld hl, $d413
-	ld e, [hl]
-	inc hl
-	ld d, [hl]
-	ld hl, $d410
-	ld [hl], e
-	inc hl
-	ld [hl], d
-	ret
-
-; no known jump sources
-Functioncc317: ; cc317 (33:4317)
-	call Function3af0
-	ld e, a
-	call Function3af0
-	ld d, a
-	push de
-	ld hl, $d410
-	ld e, [hl]
-	inc hl
-	ld d, [hl]
-	ld hl, $d413
-	ld [hl], e
-	inc hl
-	ld [hl], d
-	pop de
-	ld hl, $d410
-	ld [hl], e
-	inc hl
-	ld [hl], d
-	ld hl, $d40f
-	set 1, [hl]
-	ret
-
-; no known jump sources
-Functioncc339: ; cc339 (33:4339)
-	call Function3af0
-	ld e, a
-	call Function3af0
-	ld d, a
-	ld hl, $d410
-	ld [hl], e
-	inc hl
-	ld [hl], d
-	ret
-
-; no known jump sources
-Functioncc348: ; cc348 (33:4348)
-	call Function3af0
-	ld hl, $d40f
-	bit 2, [hl]
-	jr nz, .asm_cc35b
-	and a
-	jr z, .asm_cc363
-	dec a
-	set 2, [hl]
-	ld [$d415], a
-.asm_cc35b
-	ld hl, $d415
-	ld a, [hl]
-	and a
-	jr z, .asm_cc372
-	dec [hl]
-.asm_cc363
-	call Function3af0
-	ld e, a
-	call Function3af0
-	ld d, a
-	ld hl, $d410
-	ld [hl], e
-	inc hl
-	ld [hl], d
-	ret
-.asm_cc372
-	ld hl, $d40f
-	res 2, [hl]
-	ld hl, $d410
-	ld e, [hl]
-	inc hl
-	ld d, [hl]
-	inc de
-	inc de
-	ld [hl], d
-	dec hl
-	ld [hl], e
-	ret
-
-; no known jump sources
-Functioncc383: ; cc383 (33:4383)
-	ld hl, $c689
-	ld a, [hl]
-	and a
-	jr z, .asm_cc39a
-	dec [hl]
-	call Function3af0
-	ld e, a
-	call Function3af0
-	ld d, a
-	ld hl, $d410
-	ld [hl], e
-	inc hl
-	ld [hl], d
-	ret
-.asm_cc39a
-	ld hl, $d410
-	ld e, [hl]
-	inc hl
-	ld d, [hl]
-	inc de
-	inc de
-	ld [hl], d
-	dec hl
-	ld [hl], e
-	ret
-
-; no known jump sources
-Functioncc3a6: ; cc3a6 (33:43a6)
-	call Function3af0
-	ld [$d416], a
-	ret
-
-; no known jump sources
-Functioncc3ad: ; cc3ad (33:43ad)
-	ld hl, $d416
-	inc [hl]
-	ret
-
-; no known jump sources
-Functioncc3b2: ; cc3b2 (33:43b2)
-	call Function3af0
-	ld hl, $d416
-	cp [hl]
-	jr z, .asm_cc3c7
-	ld hl, $d410
-	ld e, [hl]
-	inc hl
-	ld d, [hl]
-	inc de
-	inc de
-	ld [hl], d
-	dec hl
-	ld [hl], e
-	ret
-.asm_cc3c7
-	call Function3af0
-	ld e, a
-	call Function3af0
-	ld d, a
-	ld hl, $d410
-	ld [hl], e
-	inc hl
-	ld [hl], d
-	ret
-
-; no known jump sources
-Functioncc3d6: ; cc3d6 (33:43d6)
-	call Function3af0
-	ld hl, $c689
-	cp [hl]
-	jr z, .asm_cc3eb
-	ld hl, $d410
-	ld e, [hl]
-	inc hl
-	ld d, [hl]
-	inc de
-	inc de
-	ld [hl], d
-	dec hl
-	ld [hl], e
-	ret
-.asm_cc3eb
-	call Function3af0
-	ld e, a
-	call Function3af0
-	ld d, a
-	ld hl, $d410
-	ld [hl], e
-	inc hl
-	ld [hl], d
-	ret
-
-; no known jump sources
-Functioncc3fa: ; cc3fa (33:43fa)
-	call Function3af0
-	ld e, a
-	ld a, [$c689]
-	and e
-	jr nz, .asm_cc410
-	ld hl, $d410
-	ld e, [hl]
-	inc hl
-	ld d, [hl]
-	inc de
-	inc de
-	ld [hl], d
-	dec hl
-	ld [hl], e
-	ret
-.asm_cc410
-	call Function3af0
-	ld e, a
-	call Function3af0
-	ld d, a
-	ld hl, $d410
-	ld [hl], e
-	inc hl
-	ld [hl], d
-	ret
-
-; no known jump sources
-Functioncc41f: ; cc41f (33:441f)
-	call Function3af0
-	ld [$d419], a
-	call Function3af0
-	ld [$d41a], a
-	call Function3af0
-	ld [$d41b], a
-	call Function3af0
-	ld [$d41c], a
-	call Functioncc9a1
-	ret
-
-; no known jump sources
-Functioncc43b: ; cc43b (33:443b)
-	call Function3af0
-	ld [$d419], a
-	call Function3af0
-	ld [$d41a], a
-	call Function3af0
-	ld [$d41b], a
-	call Function3af0
-	ld [$d41c], a
-	call Functionccb4f
-	ret
-
-; no known jump sources
-Functioncc457: ; cc457 (33:4457)
-	call Function3af0
-	ld [$cfc7], a
-	ret
-
-; no known jump sources
-Functioncc45e: ; cc45e (33:445e)
-	call Function3af0
-	ld [$cfc8], a
-	ret
-
-; no known jump sources
-Functioncc465: ; cc465 (33:4465)
-	call Function3af0
-	ld [$cfc9], a
-	ret
-
-; no known jump sources
-Functioncc46c: ; cc46c (33:446c)
-	ld a, [hSGB] ; $ff00+$e7
-	and a
-	ld a, $e0
-	jr z, .asm_cc475
-	ld a, $f0
-.asm_cc475
-	ld [$cfc8], a
-	ret
-
-; no known jump sources
-Functioncc479: ; cc479 (33:4479)
-	ld hl, $d30a
-	ld a, $a0
-.asm_cc47e
-	ld [hl], $0
-	inc hl
-	dec a
-	jr nz, .asm_cc47e
-	ret
-
-; no known jump sources
-Functioncc485: ; cc485 (33:4485)
-	ld a, [$d417]
-	and $f
-	ld c, a
-	ld hl, $d300
-	xor a
-	ld [$d419], a
-.asm_cc492
-	ld a, [$d419]
-	cp $4f
-	ret nc
-	call Function3af0
-	ld [hli], a
-	ld a, [$d419]
-	ld [hli], a
-	push bc
-	push hl
-	ld l, a
-	ld h, $0
-	add hl, hl
-	add hl, hl
-	add hl, hl
-	add hl, hl
-	ld de, $8310
-	add hl, de
-	ld a, [$d417]
-	call Functionce846
-	ld a, [$d419]
-	add c
-	ld [$d419], a
-	pop hl
-	pop bc
-	dec c
-	jr nz, .asm_cc492
-	ret
-
-; no known jump sources
-Functioncc4c0: ; cc4c0 (33:44c0)
-	call Function3af0
-	ld e, $a
-	ld bc, $d30a
-.asm_cc4c8
-	ld hl, $0
-	add hl, bc
-	ld d, [hl]
-	ld a, [$d417]
-	cp d
-	jr z, .asm_cc4dd
-	ld hl, $18
-	add hl, bc
-	ld c, l
-	ld b, h
-	dec e
-	jr nz, .asm_cc4c8
-	ret
-.asm_cc4dd
-	ld hl, $e
-	add hl, bc
-	inc [hl]
-	ret
-
-; no known jump sources
-Functioncc4e3: ; cc4e3 (33:44e3)
-	call Function3af0
-	ld e, $5
-	ld bc, $d3fa
-.asm_cc4eb
-	ld hl, $0
-	add hl, bc
-	ld d, [hl]
-	ld a, [$d417]
-	cp d
-	jr z, .asm_cc500
-	ld hl, $4
-	add hl, bc
-	ld c, l
-	ld b, h
-	dec e
-	jr nz, .asm_cc4eb
-	ret
-.asm_cc500
-	ld hl, $1
-	add hl, bc
-	inc [hl]
-	ret
-
-; no known jump sources
-Functioncc506: ; cc506 (33:4506)
-	call Function3af0
-	ld e, $a
-	ld bc, $d30a
-.asm_cc50e
-	ld hl, $0
-	add hl, bc
-	ld d, [hl]
-	ld a, [$d417]
-	cp d
-	jr z, .asm_cc523
-	ld hl, $18
-	add hl, bc
-	ld c, l
-	ld b, h
-	dec e
-	jr nz, .asm_cc50e
-	ret
-.asm_cc523
-	call Function3af0
-	ld hl, $e
-	add hl, bc
-	ld [hl], a
-	ret
-
-; no known jump sources
-Functioncc52c: ; cc52c (33:452c)
-	ld hl, $d300
-.asm_cc52f
-	ld a, [hl]
-	and a
-	jr z, .asm_cc537
-	inc hl
-	inc hl
-	jr .asm_cc52f
-.asm_cc537
-	ld a, $28
-	ld [hli], a
-	ld a, $42
-	ld [hli], a
-	ld a, $29
-	ld [hli], a
-	ld a, $49
-	ld [hl], a
-	ld hl, $8730
-	ld de, $9060
-	ld a, $70
-	ld [$d419], a
-	ld a, $7
-	call Functioncc561
-	ld de, $9310
-	ld a, $60
-	ld [$d419], a
-	ld a, $6
-	call Functioncc561
-	ret
-
-; known jump sources: cc550 (33:4550), cc55d (33:455d), cc57b (33:457b)
-Functioncc561: ; cc561 (33:4561)
-	push af
-	push hl
-	push de
-	ld bc, $3301
-	call Request2bpp
-	pop de
-	ld a, [$d419]
-	ld l, a
-	ld h, $0
-	add hl, de
-	ld e, l
-	ld d, h
-	pop hl
-	ld bc, $10
-	add hl, bc
-	pop af
-	dec a
-	jr nz, Functioncc561
-	ret
-
-; no known jump sources
-Functioncc57e: ; cc57e (33:457e)
-	ld hl, $d300
-.asm_cc581
-	ld a, [hl]
-	and a
-	jr z, .asm_cc589
-	inc hl
-	inc hl
-	jr .asm_cc581
-.asm_cc589
-	ld a, $28
-	ld [hli], a
-	ld a, $35
-	ld [hli], a
-	ld a, $29
-	ld [hli], a
-	ld a, $43
-	ld [hl], a
-	ld hl, $8660
-	ld de, $9050
-	ld a, $70
-	ld [$d419], a
-	ld a, $7
-	call Functioncc5b3
-	ld de, $9310
-	ld a, $60
-	ld [$d419], a
-	ld a, $6
-	call Functioncc5b3
-	ret
-
-; known jump sources: cc5a2 (33:45a2), cc5af (33:45af), cc5cd (33:45cd)
-Functioncc5b3: ; cc5b3 (33:45b3)
-	push af
-	push hl
-	push de
-	ld bc, $3302
-	call Request2bpp
-	pop de
-	ld a, [$d419]
-	ld l, a
-	ld h, $0
-	add hl, de
-	ld e, l
-	ld d, h
-	pop hl
-	ld bc, $20
-	add hl, bc
-	pop af
-	dec a
-	jr nz, Functioncc5b3
-	ret
-
-; no known jump sources
-Functioncc5d0: ; cc5d0 (33:45d0)
-	callab Functionf971
-	ld a, c
-	ld [$d416], a
-	ret
-
-; no known jump sources
-Functioncc5db: ; cc5db (33:45db)
-	ret
-
-; no known jump sources
-Functioncc5dc: ; cc5dc (33:45dc)
-	ld a, [rSVBK] ; $ff00+$70
-	push af
-	ld a, $1
-	ld [rSVBK], a ; $ff00+$70
-	ld a, [CurPartySpecies] ; $d108
-	push af
-	ld a, [hBattleTurn] ; $ff00+$e4
-	and a
-	jr z, .asm_cc604
-	ld a, [TempBattleMonSpecies] ; $d205
-	ld [CurPartySpecies], a ; $d108
-	ld hl, BattleMonDVs ; $c632 (aliases: BattleMonAtkDefDV)
-	ld a, $2d
-	call Predef
-	ld de, $8000
-	ld a, $3c
-	call Predef
-	jr .asm_cc61a
-.asm_cc604
-	ld a, [TempEnemyMonSpecies] ; $d204
-	ld [CurPartySpecies], a ; $d108
-	ld hl, EnemyMonAtkDefDV ; $d20c (aliases: EnemyMonDVs, EnemyMonMovesEnd)
-	ld a, $2d
-	call Predef
-	ld de, $8000
-	ld a, $3d
-	call Predef
-.asm_cc61a
-	pop af
-	ld [CurPartySpecies], a ; $d108
-	pop af
-	ld [rSVBK], a ; $ff00+$70
-	ret
-
-; no known jump sources
-Functioncc622: ; cc622 (33:4622)
-	ld de, $8000
-	ld a, [hBattleTurn] ; $ff00+$e4
-	and a
-	jr z, .asm_cc635
-	ld hl, $9000
-	ld b, $0
-	ld c, $31
-	call Request2bpp
-	ret
-.asm_cc635
-	ld hl, $9310
-	ld b, $0
-	ld c, $24
-	call Request2bpp
-	ret
-
-; no known jump sources
-Functioncc640: ; cc640 (33:4640)
-	ld a, [rSVBK] ; $ff00+$70
-	push af
-	ld a, $1
-	ld [rSVBK], a ; $ff00+$70
-	xor a
-	call GetSRAMBank
-	ld hl, $a000
-	ld bc, $310
-.asm_cc651
-	xor a
-	ld [hli], a
-	dec bc
-	ld a, c
-	or b
-	jr nz, .asm_cc651
-	ld a, [hBattleTurn] ; $ff00+$e4
-	and a
-	jr z, .asm_cc68f
-	ld hl, $6a80
-	ld de, $a130
-	call Functioncc6c6
-	ld hl, $6a90
-	ld de, $a1a0
-	call Functioncc6c6
-	ld hl, $6aa0
-	ld de, $a140
-	call Functioncc6c6
-	ld hl, $6ab0
-	ld de, $a1b0
-	call Functioncc6c6
-	ld hl, $9000
-	ld de, $a000
-	ld bc, $3331
-	call Request2bpp
-	jr .asm_cc6bf
-.asm_cc68f
-	ld hl, $6ac0
-	ld de, $a100
-	call Functioncc6c6
-	ld hl, $6ad0
-	ld de, $a160
-	call Functioncc6c6
-	ld hl, $6ae0
-	ld de, $a110
-	call Functioncc6c6
-	ld hl, $6af0
-	ld de, $a170
-	call Functioncc6c6
-	ld hl, $9310
-	ld de, $a000
-	ld bc, $3324
-	call Request2bpp
-.asm_cc6bf
-	call CloseSRAM
-	pop af
-	ld [rSVBK], a ; $ff00+$70
-	ret
-
-; known jump sources: cc663 (33:4663), cc66c (33:466c), cc675 (33:4675), cc67e (33:467e), cc695 (33:4695), cc69e (33:469e), cc6a7 (33:46a7), cc6b0 (33:46b0)
-Functioncc6c6: ; cc6c6 (33:46c6)
-	ld bc, $10
-	ld a, $31
-	call FarCopyBytes
-	ret
-
-; no known jump sources
-Functioncc6cf: ; cc6cf (33:46cf)
-	ld a, [rSVBK] ; $ff00+$70
-	push af
-	ld a, $1
-	ld [rSVBK], a ; $ff00+$70
-	xor a
-	call GetSRAMBank
-	call Functioncc6e7
-	call Request2bpp
-	call CloseSRAM
-	pop af
-	ld [rSVBK], a ; $ff00+$70
-	ret
-
-; known jump sources: cc6da (33:46da), cc740 (33:4740)
-Functioncc6e7: ; cc6e7 (33:46e7)
-	ld hl, $a000
-	ld bc, $310
-.asm_cc6ed
-	xor a
-	ld [hli], a
-	dec bc
-	ld a, c
-	or b
-	jr nz, .asm_cc6ed
-	ld a, [hBattleTurn] ; $ff00+$e4
-	and a
-	jr z, .asm_cc709
-	ld de, $a1a0
-	call Functioncc719
-	ld hl, $9000
-	ld de, $a000
-	ld bc, $3331
-	ret
-.asm_cc709
-	ld de, $a160
-	call Functioncc719
-	ld hl, $9310
-	ld de, $a000
-	ld bc, $3324
-	ret
-
-; known jump sources: cc6fc (33:46fc), cc70c (33:470c)
-Functioncc719: ; cc719 (33:4719)
-	ld hl, $4725
-	ld bc, $10
-	ld a, $33
-	call FarCopyBytes
-	ret
-; cc725 (33:4725)
-
-INCBIN "baserom.gbc",$cc725,$cc735 - $cc725
-
-; no known jump sources
-Functioncc735: ; cc735 (33:4735)
-	ld a, [rSVBK] ; $ff00+$70
-	push af
-	ld a, $1
-	ld [rSVBK], a ; $ff00+$70
-	xor a
-	call GetSRAMBank
-	call Functioncc6e7
-	ld hl, $8000
-	call Request2bpp
-	call CloseSRAM
-	pop af
-	ld [rSVBK], a ; $ff00+$70
-	ret
-
-; no known jump sources
-Functioncc750: ; cc750 (33:4750)
-	ld a, [rSVBK] ; $ff00+$70
-	push af
-	ld a, $1
-	ld [rSVBK], a ; $ff00+$70
-	ld a, [CurPartySpecies] ; $d108
-	push af
-	ld a, [hBattleTurn] ; $ff00+$e4
-	and a
-	jr z, .asm_cc768
-	callab Function3f486
-	jr .asm_cc76e
-.asm_cc768
-	callab Function3f447
-.asm_cc76e
-	pop af
-	ld [CurPartySpecies], a ; $d108
-	pop af
-	ld [rSVBK], a ; $ff00+$70
-	ret
-
-; no known jump sources
-Functioncc776: ; cc776 (33:4776)
-	ld a, [rSVBK] ; $ff00+$70
-	push af
-	ld a, $1
-	ld [rSVBK], a ; $ff00+$70
-	ld a, [CurPartySpecies] ; $d108
-	push af
-	ld a, [$c689]
-	ld [CurPartySpecies], a ; $d108
-	ld a, [hBattleTurn] ; $ff00+$e4
-	and a
-	jr z, .asm_cc79e
-	ld hl, BattleMonDVs ; $c632 (aliases: BattleMonAtkDefDV)
-	ld a, $2d
-	call Predef
-	ld de, $9000
-	ld a, $3c
-	call Predef
-	jr .asm_cc7ae
-.asm_cc79e
-	ld hl, EnemyMonAtkDefDV ; $d20c (aliases: EnemyMonDVs, EnemyMonMovesEnd)
-	ld a, $2d
-	call Predef
-	ld de, $9310
-	ld a, $3d
-	call Predef
-.asm_cc7ae
-	pop af
-	ld [CurPartySpecies], a ; $d108
-	ld b, $1
-	call GetSGBLayout
-	pop af
-	ld [rSVBK], a ; $ff00+$70
-	ret
-
-; no known jump sources
-Functioncc7bb: ; cc7bb (33:47bb)
-	xor a
-	ld [hOAMUpdate], a ; $ff00+$d8
-	ret
-
-; no known jump sources
-Functioncc7bf: ; cc7bf (33:47bf)
-	ld a, $1
-	ld [hOAMUpdate], a ; $ff00+$d8
-	ret
-
-; no known jump sources
-Functioncc7c4: ; cc7c4 (33:47c4)
-	ld hl, $d40f
-	set 3, [hl]
-	ret
-
-; no known jump sources
-Functioncc7ca: ; cc7ca (33:47ca)
-	ret
-
-; no known jump sources
-Functioncc7cb: ; cc7cb (33:47cb)
-	ret
-
-; no known jump sources
-Functioncc7cc: ; cc7cc (33:47cc)
-	ret
-
-; no known jump sources
-Functioncc7cd: ; cc7cd (33:47cd)
-	call Function3af0
-	ld e, a
-	srl a
-	srl a
-	ld [$c2be], a
-	call Functioncc7fc
-	and $3
-	ld [CryTracks], a ; $c2bd
-	ld e, a
-	ld d, $0
-	ld hl, $47f8
-	add hl, de
-	ld a, [hl]
-	ld [$c2bc], a
-	call Function3af0
-	ld e, a
-	ld d, $0
-	callab PlayStereoSFX
-	ret
-; cc7f8 (33:47f8)
-
-INCBIN "baserom.gbc",$cc7f8,$cc7fc - $cc7f8
-
-; known jump sources: cc7d8 (33:47d8)
-Functioncc7fc: ; cc7fc (33:47fc)
-	ld a, [hBattleTurn] ; $ff00+$e4
-	and a
-	jr nz, .asm_cc803
-	ld a, e
-	ret
-.asm_cc803
-	ld a, e
-	xor $1
-	ret
-
-; no known jump sources
-Functioncc807: ; cc807 (33:4807)
-	call Function3af0
-	and $3
-	ld e, a
-	ld d, $0
-	ld hl, $4871
-	add hl, de
-	add hl, de
-	add hl, de
-	add hl, de
-	ld a, [rSVBK] ; $ff00+$70
-	push af
-	ld a, $1
-	ld [rSVBK], a ; $ff00+$70
-	ld a, [hBattleTurn] ; $ff00+$e4
-	and a
-	jr nz, .asm_cc82c
-	ld a, $f0
-	ld [CryTracks], a ; $c2bd
-	ld a, [BattleMonSpecies] ; $c62c
-	jr .asm_cc834
-.asm_cc82c
-	ld a, $f
-	ld [CryTracks], a ; $c2bd
-	ld a, [EnemyMon] ; $d206 (aliases: EnemyMonSpecies)
-.asm_cc834
-	push hl
-	call Function37f3
-	pop hl
-	jr c, .asm_cc86d
-	ld a, [hli]
-	ld c, a
-	ld a, [hli]
-	ld b, a
-	push hl
-	ld hl, CryPitch ; $c2b0
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	add hl, bc
-	ld a, l
-	ld [CryPitch], a ; $c2b0
-	ld a, h
-	ld [CryEcho], a ; $c2b1
-	pop hl
-	ld a, [hli]
-	ld c, a
-	ld b, [hl]
-	ld hl, CryLength ; $c2b2
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	add hl, bc
-	ld a, l
-	ld [CryLength], a ; $c2b2
-	ld a, h
-	ld [$c2b3], a
-	ld a, $1
-	ld [$c2bc], a
-	callab PlayCry
-.asm_cc86d
-	pop af
-	ld [rSVBK], a ; $ff00+$70
-	ret
-; cc871 (33:4871)
-
-INCBIN "baserom.gbc",$cc871,$cc881 - $cc871
-
-
-Functioncc881: ; cc881
-	ld a, [$cfca]
-	cp $1
-	jr z, .asm_cc88b
-	cp $4
-	ret nz
-
-.asm_cc88b
-	ld a, [TypeModifier]
-	and $7f
-	ret z
-	cp $a
-	ld de, $00ac
-	jr z, .asm_cc8a0
-	ld de, $00ad
-	jr nc, .asm_cc8a0
-	ld de, $00ab
-
-.asm_cc8a0
-	call PlaySFX
-	ret
-; cc8a4
-
-Functioncc8a4: ; cc8a4
-	ld a, [hCGB]
-	and a
-	jr nz, .asm_cc8be
-	ld a, [hSGB]
-	and a
-	ld a, $e0
-	jr z, .asm_cc8b2
-	ld a, $f0
-
-.asm_cc8b2
-	ld [$cfc8], a
-	ld a, $e4
-	ld [$cfc7], a
-	ld [$cfc9], a
-	ret
-
-.asm_cc8be
-	ld a, $e4
-	ld [$cfc7], a
-	ld [$cfc8], a
-	ld [$cfc9], a
-	call DmgToCgbBGPals
-	ld de, $e4e4
-	call DmgToCgbObjPals
-	ret
-; cc8d3
-
-Functioncc8d3: ; cc8d3
-	ld hl, LYOverrides
-	ld bc, $0354
-.asm_cc8d9
-	ld [hl], $0
-	inc hl
-	dec bc
-	ld a, c
-	or b
-	jr nz, .asm_cc8d9
-	ld hl, FXAnimIDLo
-	ld e, [hl]
-	inc hl
-	ld d, [hl]
-	ld hl, $506f
-	add hl, de
-	add hl, de
-	call Function3ae1
-	call Functioncc8a4
-	call Functioncc1fb
-	ret
-; cc8f6
-
-Functioncc8f6: ; cc8f6
-	call WaitTop
-	ld a, $e4
-	ld [$cfc7], a
-	ld [$cfc8], a
-	ld [$cfc9], a
-	call DmgToCgbBGPals
-	ld de, $e4e4
-	call DmgToCgbObjPals
-	xor a
-	ld [hSCX], a
-	ld [hSCY], a
-	call Functioncc1fb
-	ld a, $1
-	ld [hBGMapMode], a
-	ret
-; cc91a
-
-Functioncc91a: ; cc91a
-	ld [rBGP], a
-	ld a, [hCGB]
-	and a
-	ret z
-	ld a, [rSVBK]
-	push af
-	ld a, $5
-	ld [rSVBK], a
-	ld hl, $d080
-	ld de, $d000
-	ld a, [rBGP]
-	ld b, a
-	ld c, $7
-	call CopyPals
-	ld hl, $d0c0
-	ld de, MartPointer
-	ld a, [rBGP]
-	ld b, a
-	ld c, $2
-	call CopyPals
-	pop af
-	ld [rSVBK], a
-	ld a, $1
-	ld [hCGBPalUpdate], a
-	ret
-; cc94b
-
-Functioncc94b: ; cc94b
-	ld [rOBP0], a
-	ld a, [hCGB]
-	and a
-	ret z
-	ld a, [rSVBK]
-	push af
-	ld a, $5
-	ld [rSVBK], a
-	ld hl, $d0d0
-	ld de, $d050
-	ld a, [rOBP0]
-	ld b, a
-	ld c, $2
-	call CopyPals
-	pop af
-	ld [rSVBK], a
-	ld a, $1
-	ld [hCGBPalUpdate], a
-	ret
-; cc96e
-
-Functioncc96e: ; cc96e
-	ld a, $0
-	ld [$d418], a
-	ld hl, $d30a
-	ld e, $a
-.asm_cc978
-	ld a, [hl]
-	and a
-	jr z, .asm_cc98a
-	ld c, l
-	ld b, h
-	push hl
-	push de
-	call Functionccfbe
-	call Functioncca09
-	pop de
-	pop hl
-	jr c, .asm_cc9a0
-
-.asm_cc98a
-	ld bc, $0018
-	add hl, bc
-	dec e
-	jr nz, .asm_cc978
-	ld a, [$d418]
-	ld l, a
-	ld h, $c4
-.asm_cc997
-	ld a, l
-	cp $a0
-	jr nc, .asm_cc9a0
-	xor a
-	ld [hli], a
-	jr .asm_cc997
-
-.asm_cc9a0
-	ret
-; cc9a1
-
-
-; known jump sources: cc437 (33:4437)
-Functioncc9a1: ; cc9a1 (33:49a1)
-	ld hl, $d30a
-	ld e, $a
-.asm_cc9a6
-	ld a, [hl]
-	and a
-	jr z, .asm_cc9b3
-	ld bc, $18
-	add hl, bc
-	dec e
-	jr nz, .asm_cc9a6
-	scf
-	ret
-.asm_cc9b3
-	ld c, l
-	ld b, h
-	ld hl, $d40e
-	inc [hl]
-	call Functioncc9c4
-	ret
-
-
-Functioncc9bd: ; cc9bd
-	ld hl, $0000
-	add hl, bc
-	ld [hl], $0
-	ret
-; cc9c4
-
-
-; known jump sources: cc9b9 (33:49b9)
-Functioncc9c4: ; cc9c4 (33:49c4)
-	ld a, [$d419]
-	ld e, a
-	ld d, $0
-	ld hl, $4b56
-	add hl, de
-	add hl, de
-	add hl, de
-	add hl, de
-	add hl, de
-	add hl, de
-	ld e, l
-	ld d, h
-	ld hl, $0
-	add hl, bc
-	ld a, [$d40e]
-	ld [hli], a
-	ld a, [de]
-	inc de
-	ld [hli], a
-	ld a, [de]
-	inc de
-	ld [hli], a
-	ld a, [de]
-	inc de
-	ld [hli], a
-	ld a, [de]
-	inc de
-	ld [hli], a
-	ld a, [de]
-	inc de
-	ld [hli], a
-	ld a, [de]
-	call Functionccb31
-	ld [hli], a
-	ld a, [$d41a]
-	ld [hli], a
-	ld a, [$d41b]
-	ld [hli], a
-	xor a
-	ld [hli], a
-	ld [hli], a
-	ld a, [$d41c]
-	ld [hli], a
-	xor a
-	ld [hli], a
-	dec a
-	ld [hli], a
-	xor a
-	ld [hli], a
-	ld [hli], a
-	ld [hl], a
-	ret
-
-
-Functioncca09: ; cca09
-	call Functionccaaa
-	call Functionce7d1
-	cp EGG
-	jp z, .asm_ccaa5
-	cp NUM_POKEMON + 1
-	jp z, .asm_ccaa2
-	push af
-	ld hl, $d419
-	ld a, [$d420]
-	xor [hl]
-	and $e0
-	ld [hl], a
-	pop af
-	push bc
-	call Functionce83c
-	ld a, [$d41b]
-	add [hl]
-	ld [$d41b], a
-	inc hl
-	ld a, [hli]
-	ld c, a
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	ld a, [$d418]
-	ld e, a
-	ld d, $c4
-.asm_cca3c
-	ld a, [$d41d]
-	ld b, a
-	ld a, [$d41f]
-	add b
-	ld b, a
-	push hl
-	ld a, [hl]
-	ld hl, $d419
-	bit 6, [hl]
-	jr z, .asm_cca53
-	add $8
-	xor $ff
-	inc a
-
-.asm_cca53
-	pop hl
-	add b
-	ld [de], a
-	inc hl
-	inc de
-	ld a, [$d41c]
-	ld b, a
-	ld a, [$d41e]
-	add b
-	ld b, a
-	push hl
-	ld a, [hl]
-	ld hl, $d419
-	bit 5, [hl]
-	jr z, .asm_cca6f
-	add $8
-	xor $ff
-	inc a
-
-.asm_cca6f
-	pop hl
-	add b
-	ld [de], a
-	inc hl
-	inc de
-	ld a, [$d41b]
-	add $31
-	add [hl]
-	ld [de], a
-	inc hl
-	inc de
-	ld a, [$d419]
-	ld b, a
-	ld a, [hl]
-	xor b
-	and $e0
-	ld b, a
-	ld a, [hl]
-	and $10
-	or b
-	ld b, a
-	ld a, [OTPartyMon6Nickname]
-	and $f
-	or b
-	ld [de], a
-	inc hl
-	inc de
-	ld a, e
-	ld [$d418], a
-	cp $a0
-	jr nc, .asm_ccaa7
-	dec c
-	jr nz, .asm_cca3c
-	pop bc
-	jr .asm_ccaa5
-
-.asm_ccaa2
-	call Functioncc9bd
-
-.asm_ccaa5
-	and a
-	ret
-
-.asm_ccaa7
-	pop bc
-	scf
-	ret
-; ccaaa
-
-Functionccaaa: ; ccaaa
-	ld hl, $0001
-	add hl, bc
-	ld a, [hl]
-	and $80
-	ld [$d419], a
-	xor a
-	ld [$d420], a
-	ld hl, $0005
-	add hl, bc
-	ld a, [hl]
-	ld [OTPartyMon6Nickname], a
-	ld hl, $0002
-	add hl, bc
-	ld a, [hl]
-	ld [$d41a], a
-	ld hl, $0006
-	add hl, bc
-	ld a, [hli]
-	ld [$d41b], a
-	ld a, [hli]
-	ld [$d41c], a
-	ld a, [hli]
-	ld [$d41d], a
-	ld a, [hli]
-	ld [$d41e], a
-	ld a, [hli]
-	ld [$d41f], a
-	ld a, [hBattleTurn]
-	and a
-	ret z
-	ld hl, $0001
-	add hl, bc
-	ld a, [hl]
-	ld [$d419], a
-	bit 0, [hl]
-	ret z
-	ld hl, $0007
-	add hl, bc
-	ld a, [hli]
-	ld d, a
-	ld a, $b4
-	sub d
-	ld [$d41c], a
-	ld a, [hli]
-	ld d, a
-	ld a, [$d41a]
-	cp $ff
-	jr nz, .asm_ccb09
-	ld a, $28
-	add d
-	jr .asm_ccb26
-
-.asm_ccb09
-	sub d
-	push af
-	ld a, [FXAnimIDHi]
-	or a
-	jr nz, .asm_ccb25
-	ld a, [FXAnimIDLo]
-	cp $86
-	jr z, .asm_ccb20
-	cp $87
-	jr z, .asm_ccb20
-	cp $d0
-	jr nz, .asm_ccb25
-
-.asm_ccb20
-	pop af
-	sub $8
-	jr .asm_ccb26
-
-.asm_ccb25
-	pop af
-
-.asm_ccb26
-	ld [$d41d], a
-	ld a, [hli]
-	xor $ff
-	inc a
-	ld [$d41e], a
-	ret
-; ccb31
-
-
-; known jump sources: cc9ed (33:49ed)
-Functionccb31: ; ccb31 (33:4b31)
-	push hl
-	push bc
-	ld hl, $d300
-	ld b, a
-	ld c, $5
-.asm_ccb39
-	ld a, [hli]
-	cp b
-	jr z, .asm_ccb44
-	inc hl
-	dec c
-	jr nz, .asm_ccb39
-	xor a
-	jr .asm_ccb45
-.asm_ccb44
-	ld a, [hl]
-.asm_ccb45
-	pop bc
-	pop hl
-	ret
-
-
-Functionccb48: ; ccb48
-	callab Functionc8000
-	ret
-; ccb4f
-
-
-; known jump sources: cc453 (33:4453)
-Functionccb4f: ; ccb4f (33:4b4f)
-	callab Functionc801a
-	ret
-; ccb56 (33:4b56)
-
-INCBIN "baserom.gbc",$ccb56,$ccfbe - $ccb56
-
-
-Functionccfbe: ; ccfbe
-	ld hl, $0004
-	add hl, bc
-	ld e, [hl]
-	ld d, $0
-	ld hl, $4fce
-	add hl, de
-	add hl, de
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	jp [hl]
-; ccfce
-
-
-; no known jump sources
-Jumptable_ccfce: ; ccfce (33:4fce)
-	dw Functioncd06e
-	dw Functioncd12a
-	dw Functioncd146
-	dw Functioncd0e3
-	dw Functioncd0a6
-	dw Functioncd081
-	dw Functioncd079
-	dw Functioncd2be
-	dw Functioncd306
-	dw Functioncd3ae
-	dw Functioncd3f2
-	dw Functioncd478
-	dw Functioncd5e9
-	dw Functioncd66a
-	dw Functioncd6e3
-	dw Functioncd71a
-	dw Functioncd284
-	dw Functioncd777
-	dw Functioncd15c
-	dw Functioncd212
-	dw Functioncd7a4
-	dw Functioncd80c
-	dw Functioncd824
-	dw Functioncd89a
-	dw Functioncd900
-	dw Functioncd954
-	dw Functioncdafa
-	dw Functioncdb06
-	dw Functioncda0a
-	dw Functioncdb80
-	dw Functioncdca6
-	dw Functioncda31
-	dw Functioncda4d
-	dw Functioncdcc3
-	dw Functioncdd2a
-	dw Functioncdd90
-	dw Functioncddf9
-	dw Functioncde28
-	dw Functioncde54
-	dw Functioncde6b
-	dw Functioncde89
-	dw Functioncdedd
-	dw Functioncdf59
-	dw Functionce063
-	dw Functionce0c5
-	dw Functioncdf1b
-	dw Functionce10e
-	dw Functionce15c
-	dw Functionce1e7
-	dw Functionce226
-	dw Functionce255
-	dw Functionce2cc
-	dw Functioncdf8c
-	dw Functionce00b
-	dw Functionce2fd
-	dw Functionce35f
-	dw Functionce389
-	dw Functionce3b4
-	dw Functionce3d2
-	dw Functionce3ff
-	dw Functioncdfcb
-	dw Functionce416
-	dw Functionce43a
-	dw Functioncdad6
-	dw Functionce49c
-	dw Functionce4dc
-	dw Functionce1b0
-	dw Functionce508
-	dw Functionce532
-	dw Functionce55b
-	dw Functionce593
-	dw Functionce5b4
-	dw Functionce5dc
-	dw Functionce5ee
-	dw Functionce62f
-	dw Functionce688
-	dw Functionce6b3
-	dw Functionce6d2
-	dw Functioncd58a
-	dw Functionce6bf
-
-
-; no known jump sources
-Functioncd06e: ; cd06e (33:506e)
-	call Functionce71e ;  ;  ; call does not return
-
-; no known jump sources
-Jumptable_cd071: ; cd071 (33:5071)
-	dw Functioncd078
-	dw Functioncd075
-
-
-; no known jump sources
-Functioncd075: ; cd075 (33:5075)
-	call Functioncc9bd
-
-; no known jump sources
-Functioncd078: ; cd078 (33:5078)
-	ret
-
-; no known jump sources
-Functioncd079: ; cd079 (33:5079)
-	call Functioncd081
-	ret c
-	call Functioncc9bd
-	ret
-
-; known jump sources: cd079 (33:5079), cd17e (33:517e), cd22b (33:522b)
-Functioncd081: ; cd081 (33:5081)
-	ld hl, $7
-	add hl, bc
-	ld a, [hl]
-	cp $88
-	ret nc
-	add $2
-	ld [hl], a
-	ld hl, $8
-	add hl, bc
-	dec [hl]
-	ld hl, $f
-	add hl, bc
-	ld a, [hl]
-	dec [hl]
-	ld hl, $b
-	add hl, bc
-	ld d, [hl]
-	call Functionce734
-	ld hl, $a
-	add hl, bc
-	ld [hl], a
-	scf
-	ret
-
-; no known jump sources
-Functioncd0a6: ; cd0a6 (33:50a6)
-	ld hl, $7
-	add hl, bc
-	ld a, [hl]
-	cp $88
-	jr c, .asm_cd0b3
-	call Functioncc9bd
-	ret
-.asm_cd0b3
-	add $2
-	ld [hl], a
-	ld hl, $8
-	add hl, bc
-	dec [hl]
-	ld hl, $f
-	add hl, bc
-	ld a, [hl]
-	inc [hl]
-	inc [hl]
-	inc [hl]
-	inc [hl]
-	ld d, $10
-	push af
-	push de
-	call Functionce734
-	ld hl, $a
-	add hl, bc
-	ld [hl], a
-	pop de
-	pop af
-	call Functionce732
-	ld hl, $9
-	add hl, bc
-	sra a
-	sra a
-	sra a
-	sra a
-	ld [hl], a
-	ret
-
-; known jump sources: cdafa (33:5afa)
-Functioncd0e3: ; cd0e3 (33:50e3)
-	call Functionce71e ;  ;  ; call does not return
-
-; no known jump sources
-Jumptable_cd0e6: ; cd0e6 (33:50e6)
-	dw Functioncd0ea
-	dw Functioncd106
-
-
-; no known jump sources
-Functioncd0ea: ; cd0ea (33:50ea)
-	call Functionce72c
-	ld hl, $b
-	add hl, bc
-	bit 7, [hl]
-	ld a, $0
-	jr z, .asm_cd0f9
-	ld a, $20
-.asm_cd0f9
-	ld hl, $f
-	add hl, bc
-	ld [hl], a
-	ld hl, $b
-	add hl, bc
-	ld a, [hl]
-	and $7f
-	ld [hl], a
-
-; no known jump sources
-Functioncd106: ; cd106 (33:5106)
-	ld hl, $f
-	add hl, bc
-	ld a, [hl]
-	ld hl, $b
-	add hl, bc
-	ld d, [hl]
-	push af
-	push de
-	call Functionce734
-	ld hl, $a
-	add hl, bc
-	ld [hl], a
-	pop de
-	pop af
-	call Functionce732
-	ld hl, $9
-	add hl, bc
-	ld [hl], a
-	ld hl, $f
-	add hl, bc
-	inc [hl]
-	ret
-
-; no known jump sources
-Functioncd12a: ; cd12a (33:512a)
-	call Functionce71e ;  ;  ; call does not return
-
-; no known jump sources
-Jumptable_cd12d: ; cd12d (33:512d)
-	dw Functioncd135
-	dw Functioncd131
-
-
-; no known jump sources
-Functioncd131: ; cd131 (33:5131)
-	call Functioncc9bd
-	ret
-
-; no known jump sources
-Functioncd135: ; cd135 (33:5135)
-	ld hl, $7
-	add hl, bc
-	ld a, [hl]
-	cp $84
-	ret nc
-	ld hl, $b
-	add hl, bc
-	ld a, [hl]
-	call Functionce70a
-	ret
-
-; no known jump sources
-Functioncd146: ; cd146 (33:5146)
-	ld hl, $7
-	add hl, bc
-	ld a, [hl]
-	cp $84
-	jr nc, .asm_cd158
-	ld hl, $b
-	add hl, bc
-	ld a, [hl]
-	call Functionce70a
-	ret
-.asm_cd158
-	call Functioncc9bd
-	ret
-
-; no known jump sources
-Functioncd15c: ; cd15c (33:515c)
-	call Functionce71e ;  ;  ; call does not return
-
-; no known jump sources
-Jumptable_cd15f: ; cd15f (33:515f)
-	dw Functioncd177
-	dw Functioncd17e
-	dw Functioncd1dc
-	dw Functioncd196
-	dw Functioncd1a7
-	dw Functioncd1dc
-	dw Functioncd1d2
-	dw Functioncd1dd
-	dw Functioncd1ee
-	dw Functioncd1dc
-	dw Functioncd1ee
-	dw Functioncd20e
-
-
-; no known jump sources
-Functioncd177: ; cd177 (33:5177)
-	call Functioncd249
-	call Functionce72c
-	ret
-
-; no known jump sources
-Functioncd17e: ; cd17e (33:517e)
-	call Functioncd081
-	ret c
-	ld hl, $a
-	add hl, bc
-	ld a, [hl]
-	ld hl, $8
-	add hl, bc
-	add [hl]
-	ld [hl], a
-	ld a, $b
-	call Functionce7bf
-	call Functionce72c
-	ret
-
-; no known jump sources
-Functioncd196: ; cd196 (33:5196)
-	call Functionce72c
-	ld a, $9
-	call Functionce7bf
-	ld hl, $f
-	add hl, bc
-	ld [hl], $0
-	inc hl
-	ld [hl], $10
-
-; no known jump sources
-Functioncd1a7: ; cd1a7 (33:51a7)
-	ld hl, $f
-	add hl, bc
-	ld a, [hli]
-	ld d, [hl]
-	call Functionce734
-	ld hl, $a
-	add hl, bc
-	ld [hl], a
-	ld hl, $f
-	add hl, bc
-	ld a, [hl]
-	dec a
-	ld [hl], a
-	and $1f
-	ret nz
-	ld [hl], a
-	ld hl, $10
-	add hl, bc
-	ld a, [hl]
-	sub $4
-	ld [hl], a
-	ret nz
-	ld a, $c
-	call Functionce7bf
-	call Functionce72c
-	ret
-
-; no known jump sources
-Functioncd1d2: ; cd1d2 (33:51d2)
-	ld a, $d
-	call Functionce7bf
-	ld hl, $e
-	add hl, bc
-	dec [hl]
-
-; no known jump sources
-Functioncd1dc: ; cd1dc (33:51dc)
-	ret
-
-; no known jump sources
-Functioncd1dd: ; cd1dd (33:51dd)
-	call Functioncd249
-	ld a, $a
-	call Functionce7bf
-	call Functionce72c
-	ld hl, $10
-	add hl, bc
-	ld [hl], $20
-
-; no known jump sources
-Functioncd1ee: ; cd1ee (33:51ee)
-	ld hl, $f
-	add hl, bc
-	ld a, [hli]
-	ld d, [hl]
-	call Functionce734
-	ld hl, $a
-	add hl, bc
-	ld [hl], a
-	ld hl, $f
-	add hl, bc
-	ld a, [hl]
-	dec a
-	ld [hl], a
-	and $1f
-	jr z, Functioncd20e
-	and $f
-	ret nz
-	call Functionce72c
-	ret
-
-; known jump sources: cd205 (33:5205)
-Functioncd20e: ; cd20e (33:520e)
-	call Functioncc9bd
-	ret
-
-; no known jump sources
-Functioncd212: ; cd212 (33:5212)
-	call Functionce71e ;  ;  ; call does not return
-
-; no known jump sources
-Jumptable_cd215: ; cd215 (33:5215)
-	dw Functioncd21b
-	dw Functioncd222
-	dw Functioncd232
-
-
-; no known jump sources
-Functioncd21b: ; cd21b (33:521b)
-	call Functioncd249
-	call Functionce72c
-	ret
-
-; no known jump sources
-Functioncd222: ; cd222 (33:5222)
-	ld hl, $7
-	add hl, bc
-	ld a, [hl]
-	cp $70
-	jr nc, .asm_cd22f
-	call Functioncd081
-	ret
-.asm_cd22f
-	call Functionce72c
-
-; no known jump sources
-Functioncd232: ; cd232 (33:5232)
-	ld hl, $8
-	add hl, bc
-	ld a, [hl]
-	cp $80
-	jr nc, .asm_cd245
-	add $4
-	ld [hl], a
-	ld hl, $7
-	add hl, bc
-	dec [hl]
-	dec [hl]
-	ret
-.asm_cd245
-	call Functioncc9bd
-	ret
-
-; known jump sources: cd177 (33:5177), cd1dd (33:51dd), cd21b (33:521b)
-Functioncd249: ; cd249 (33:5249)
-	ld hl, $526c
-	ld a, [rSVBK] ; $ff00+$70
-	push af
-	ld a, $1
-	ld [rSVBK], a ; $ff00+$70
-	ld a, [CurItem] ; $d106
-	ld e, a
-	pop af
-	ld [rSVBK], a ; $ff00+$70
-.asm_cd25a
-	ld a, [hli]
-	cp $ff
-	jr z, .asm_cd265
-	cp e
-	jr z, .asm_cd265
-	inc hl
-	jr .asm_cd25a
-.asm_cd265
-	ld a, [hl]
-	ld hl, $5
-	add hl, bc
-	ld [hl], a
-	ret
-; cd26c (33:526c)
-
-INCBIN "baserom.gbc",$cd26c,$cd284 - $cd26c
-
-; no known jump sources
-Functioncd284: ; cd284 (33:5284)
-	call Functionce71e ;  ;  ; call does not return
-
-; no known jump sources
-Jumptable_cd287: ; cd287 (33:5287)
-	dw Functioncd291
-	dw Functioncd2a0
-	dw Functioncd2b1
-	dw Functioncd2b5
-	dw Functioncd2bd
-
-
-; no known jump sources
-Functioncd291: ; cd291 (33:5291)
-	ld hl, $b
-	add hl, bc
-	ld a, [hl]
-	swap a
-	and $f
-	ld hl, $e
-	add hl, bc
-	ld [hl], a
-	ret
-
-; no known jump sources
-Functioncd2a0: ; cd2a0 (33:52a0)
-	ld hl, $7
-	add hl, bc
-	ld a, [hl]
-	cp $88
-	ret nc
-	ld hl, $b
-	add hl, bc
-	ld a, [hl]
-	call Functionce70a
-	ret
-
-; no known jump sources
-Functioncd2b1: ; cd2b1 (33:52b1)
-	call Functioncc9bd
-	ret
-
-; no known jump sources
-Functioncd2b5: ; cd2b5 (33:52b5)
-	call Functionce72c
-	ld a, $f
-	call Functionce7bf
-
-; no known jump sources
-Functioncd2bd: ; cd2bd (33:52bd)
-	ret
-
-; no known jump sources
-Functioncd2be: ; cd2be (33:52be)
-	call Functionce71e ;  ;  ; call does not return
-
-; no known jump sources
-Jumptable_cd2c1: ; cd2c1 (33:52c1)
-	dw Functioncd2c5
-	dw Functioncd2d1
-
-
-; no known jump sources
-Functioncd2c5: ; cd2c5 (33:52c5)
-	call Functionce72c
-	ld hl, $f
-	add hl, bc
-	ld [hl], $30
-	inc hl
-	ld [hl], $48
-
-; no known jump sources
-Functioncd2d1: ; cd2d1 (33:52d1)
-	ld hl, $f
-	add hl, bc
-	ld a, [hli]
-	ld d, [hl]
-	call Functionce734
-	ld hl, $a
-	add hl, bc
-	ld [hl], a
-	ld hl, $f
-	add hl, bc
-	inc [hl]
-	ld a, [hl]
-	and $3f
-	ret nz
-	ld hl, $f
-	add hl, bc
-	ld [hl], $20
-	ld hl, $10
-	add hl, bc
-	ld a, [hl]
-	ld hl, $b
-	add hl, bc
-	sub [hl]
-	jr z, .asm_cd302
-	jr c, .asm_cd302
-	ld hl, $10
-	add hl, bc
-	ld [hl], a
-	ret
-.asm_cd302
-	call Functioncc9bd
-	ret
-
-; no known jump sources
-Functioncd306: ; cd306 (33:5306)
-	call Functionce71e ;  ;  ; call does not return
-
-; no known jump sources
-Jumptable_cd309: ; cd309 (33:5309)
-	dw Functioncd311
-	dw Functioncd321
-	dw Functioncd32a
-	dw Functioncd37d
-
-
-; no known jump sources
-Functioncd311: ; cd311 (33:5311)
-	ld hl, $7
-	add hl, bc
-	ld a, [hl]
-	cp $80
-	jr nc, .asm_cd31e
-	call Functioncd38e
-	ret
-.asm_cd31e
-	call Functionce72c
-
-; no known jump sources
-Functioncd321: ; cd321 (33:5321)
-	call Functionce72c
-	ld hl, $f
-	add hl, bc
-	ld [hl], $0
-
-; no known jump sources
-Functioncd32a: ; cd32a (33:532a)
-	ld hl, $f
-	add hl, bc
-	ld a, [hl]
-	cp $40
-	jr nc, .asm_cd363
-	ld hl, $f
-	add hl, bc
-	ld a, [hl]
-	ld d, $18
-	call Functionce732
-	sub $18
-	sra a
-	ld hl, $a
-	add hl, bc
-	ld [hl], a
-	ld hl, $f
-	add hl, bc
-	ld a, [hl]
-	ld d, $18
-	call Functionce734
-	ld hl, $9
-	add hl, bc
-	ld [hl], a
-	ld hl, $b
-	add hl, bc
-	ld a, [hl]
-	and $f
-	ld hl, $f
-	add hl, bc
-	add [hl]
-	ld [hl], a
-	ret
-.asm_cd363
-	ld hl, $b
-	add hl, bc
-	ld a, [hl]
-	and $f0
-	jr z, .asm_cd37a
-	sub $10
-	ld d, a
-	ld a, [hl]
-	and $f
-	or d
-	ld [hl], a
-	ld hl, $e
-	add hl, bc
-	dec [hl]
-	ret
-.asm_cd37a
-	call Functionce72c
-
-; no known jump sources
-Functioncd37d: ; cd37d (33:537d)
-	ld hl, $7
-	add hl, bc
-	ld a, [hl]
-	cp $b0
-	jr c, .asm_cd38a
-	call Functioncc9bd
-	ret
-.asm_cd38a
-	call Functioncd38e
-	ret
-
-; known jump sources: cd31a (33:531a), cd38a (33:538a)
-Functioncd38e: ; cd38e (33:538e)
-	ld hl, $b
-	add hl, bc
-	ld a, [hl]
-	and $f
-	ld hl, $7
-	add hl, bc
-	add [hl]
-	ld [hl], a
-	ld hl, $b
-	add hl, bc
-	ld a, [hl]
-	and $f
-	ld e, a
-	srl e
-	ld hl, $8
-	add hl, bc
-.asm_cd3a9
-	dec [hl]
-	dec e
-	jr nz, .asm_cd3a9
-	ret
-
-; no known jump sources
-Functioncd3ae: ; cd3ae (33:53ae)
-	call Functionce71e ;  ;  ; call does not return
-
-; no known jump sources
-Jumptable_cd3b1: ; cd3b1 (33:53b1)
-	dw Functioncd3b7
-	dw Functioncd3cc
-	dw Functioncd3ee
-
-
-; no known jump sources
-Functioncd3b7: ; cd3b7 (33:53b7)
-	call Functionce72c
-	ld hl, $f
-	add hl, bc
-	ld [hl], $0
-	ld hl, $b
-	add hl, bc
-	ld a, [hl]
-	and $f
-	ld hl, $9
-	add hl, bc
-	ld [hl], a
-
-; no known jump sources
-Functioncd3cc: ; cd3cc (33:53cc)
-	ld hl, $f
-	add hl, bc
-	ld a, [hl]
-	and a
-	jr z, .asm_cd3d6
-	dec [hl]
-	ret
-.asm_cd3d6
-	ld hl, $b
-	add hl, bc
-	ld a, [hl]
-	swap a
-	and $f
-	ld hl, $f
-	add hl, bc
-	ld [hl], a
-	ld hl, $9
-	add hl, bc
-	ld a, [hl]
-	xor $ff
-	inc a
-	ld [hl], a
-	ret
-
-; no known jump sources
-Functioncd3ee: ; cd3ee (33:53ee)
-	call Functioncc9bd
-	ret
-
-; no known jump sources
-Functioncd3f2: ; cd3f2 (33:53f2)
-	call Functionce71e ;  ;  ; call does not return
-
-; no known jump sources
-Jumptable_cd3f5: ; cd3f5 (33:53f5)
-	dw Functioncd409
-	dw Functioncd45c
-	dw Functioncd467
-	dw Functioncd472
-	dw Functioncd462
-	dw Functioncd46d
-	dw Functioncd477
-	dw Functioncd41d
-	dw Functioncd437
-	dw Functioncd458
-
-
-; no known jump sources
-Functioncd409: ; cd409 (33:5409)
-	ld hl, $b
-	add hl, bc
-	ld a, [hl]
-	ld hl, $e
-	add hl, bc
-	ld [hl], a
-	cp $7
-	jr z, Functioncd41d
-	ld a, $11
-	call Functionce7bf
-	ret
-
-; known jump sources: cd415 (33:5415)
-Functioncd41d: ; cd41d (33:541d)
-	ld hl, $7
-	add hl, bc
-	ld a, [hl]
-	cp $88
-	jr nc, .asm_cd42f
-	add $2
-	ld [hl], a
-	ld hl, $8
-	add hl, bc
-	dec [hl]
-	ret
-.asm_cd42f
-	call Functionce72c
-	ld a, $10
-	call Functionce7bf
-
-; no known jump sources
-Functioncd437: ; cd437 (33:5437)
-	ld hl, $f
-	add hl, bc
-	ld a, [hl]
-	ld d, $10
-	push af
-	push de
-	call Functionce734
-	ld hl, $a
-	add hl, bc
-	ld [hl], a
-	pop de
-	pop af
-	call Functionce732
-	ld hl, $9
-	add hl, bc
-	ld [hl], a
-	ld hl, $f
-	add hl, bc
-	inc [hl]
-	ret
-
-; no known jump sources
-Functioncd458: ; cd458 (33:5458)
-	call Functioncc9bd
-	ret
-
-; no known jump sources
-Functioncd45c: ; cd45c (33:545c)
-	ld hl, $a
-	add hl, bc
-	dec [hl]
-	ret
-
-; no known jump sources
-Functioncd462: ; cd462 (33:5462)
-	ld hl, $a
-	add hl, bc
-	inc [hl]
-
-; no known jump sources
-Functioncd467: ; cd467 (33:5467)
-	ld hl, $9
-	add hl, bc
-	dec [hl]
-	ret
-
-; no known jump sources
-Functioncd46d: ; cd46d (33:546d)
-	ld hl, $a
-	add hl, bc
-	inc [hl]
-
-; no known jump sources
-Functioncd472: ; cd472 (33:5472)
-	ld hl, $9
-	add hl, bc
-	inc [hl]
-
-; no known jump sources
-Functioncd477: ; cd477 (33:5477)
-	ret
-
-; no known jump sources
-Functioncd478: ; cd478 (33:5478)
-	call Functionce71e ;  ;  ; call does not return
-
-; no known jump sources
-Jumptable_cd47b: ; cd47b (33:547b)
-	dw Functioncd48d
-	dw Functioncd496
-	dw Functioncd4ee
-	dw Functioncd53a
-	dw Functioncd545
-	dw Functioncd545
-	dw Functioncd545
-	dw Functioncd545
-	dw Functioncd549
-
-
-; no known jump sources
-Functioncd48d: ; cd48d (33:548d)
-	call Functionce72c
-	ld hl, $f
-	add hl, bc
-	ld [hl], $40
-
-; no known jump sources
-Functioncd496: ; cd496 (33:5496)
-	ld hl, $f
-	add hl, bc
-	ld a, [hl]
-	cp $30
-	jr nc, .asm_cd4bc
-	call Functionce72c
-	xor a
-	ld hl, $f
-	add hl, bc
-	ld [hli], a
-	ld [hl], a
-	ld a, $17
-	call Functionce7bf
-	ld hl, $b
-	add hl, bc
-	bit 6, [hl]
-	ret z
-	ld hl, $d
-	add hl, bc
-	ld [hl], $5
-	ret
-.asm_cd4bc
-	ld hl, $b
-	add hl, bc
-	ld a, [hl]
-	and $3f
-	ld d, a
-	ld hl, $f
-	add hl, bc
-	ld a, [hl]
-	dec [hl]
-	call Functionce734
-	ld hl, $a
-	add hl, bc
-	ld [hl], a
-	call Functioncd557
-	ld hl, $10
-	add hl, bc
-	ld a, [hl]
-	ld hl, $7
-	add hl, bc
-	ld h, [hl]
-	ld l, a
-	add hl, de
-	ld e, l
-	ld d, h
-	ld hl, $7
-	add hl, bc
-	ld [hl], d
-	ld hl, $10
-	add hl, bc
-	ld [hl], e
-	ret
-
-; no known jump sources
-Functioncd4ee: ; cd4ee (33:54ee)
-	ld hl, $a
-	add hl, bc
-	ld a, [hl]
-	cp $20
-	jr nz, .asm_cd4fb
-	call Functioncc9bd
-	ret
-.asm_cd4fb
-	ld hl, $f
-	add hl, bc
-	ld a, [hl]
-	ld d, $10
-	call Functionce734
-	ld hl, $9
-	add hl, bc
-	ld [hl], a
-	ld hl, $b
-	add hl, bc
-	bit 6, [hl]
-	jr nz, .asm_cd519
-	ld hl, $f
-	add hl, bc
-	inc [hl]
-	jr .asm_cd51e
-.asm_cd519
-	ld hl, $f
-	add hl, bc
-	dec [hl]
-.asm_cd51e
-	ld de, $80
-	ld hl, $10
-	add hl, bc
-	ld a, [hl]
-	ld hl, $a
-	add hl, bc
-	ld h, [hl]
-	ld l, a
-	add hl, de
-	ld e, l
-	ld d, h
-	ld hl, $a
-	add hl, bc
-	ld [hl], d
-	ld hl, $10
-	add hl, bc
-	ld [hl], e
-	ret
-
-; no known jump sources
-Functioncd53a: ; cd53a (33:553a)
-	ld a, $16
-	call Functionce7bf
-	ld hl, $1
-	add hl, bc
-	res 5, [hl]
-
-; no known jump sources
-Functioncd545: ; cd545 (33:5545)
-	call Functionce72c
-	ret
-
-; no known jump sources
-Functioncd549: ; cd549 (33:5549)
-	ld hl, $7
-	add hl, bc
-	ld a, [hl]
-	cp $c0
-	ret nc
-	ld a, $8
-	call Functionce70a
-	ret
-
-; known jump sources: cd4d2 (33:54d2), cd5cd (33:55cd)
-Functioncd557: ; cd557 (33:5557)
-	ld hl, $b
-	add hl, bc
-	ld a, [hl]
-	bit 7, a
-	jr nz, .asm_cd574
-	cp $20
-	jr nc, .asm_cd570
-	cp $18
-	jr nc, .asm_cd56c
-	ld de, $200
-	ret
-.asm_cd56c
-	ld de, $180
-	ret
-.asm_cd570
-	ld de, $100
-	ret
-.asm_cd574
-	and $3f
-	cp $20
-	jr nc, .asm_cd586
-	cp $18
-	jr nc, .asm_cd582
-	ld de, $fe00
-	ret
-.asm_cd582
-	ld de, $fe80
-	ret
-.asm_cd586
-	ld de, rJOYP ; $ff00
-	ret
-
-; no known jump sources
-Functioncd58a: ; cd58a (33:558a)
-	call Functionce71e ;  ;  ; call does not return
-
-; no known jump sources
-Jumptable_cd58d: ; cd58d (33:558d)
-	dw Functioncd591
-	dw Functioncd5aa
-
-
-; no known jump sources
-Functioncd591: ; cd591 (33:5591)
-	ld hl, $b
-	add hl, bc
-	ld a, [hl]
-	and $40
-	rlca
-	rlca
-	add $19
-	ld hl, $3
-	add hl, bc
-	ld [hl], a
-	call Functionce72c
-	ld hl, $f
-	add hl, bc
-	ld [hl], $40
-
-; no known jump sources
-Functioncd5aa: ; cd5aa (33:55aa)
-	ld hl, $f
-	add hl, bc
-	ld a, [hl]
-	cp $30
-	jr nc, .asm_cd5b7
-	call Functioncc9bd
-	ret
-.asm_cd5b7
-	ld hl, $b
-	add hl, bc
-	ld a, [hl]
-	and $3f
-	ld d, a
-	ld hl, $f
-	add hl, bc
-	ld a, [hl]
-	dec [hl]
-	call Functionce734
-	ld hl, $a
-	add hl, bc
-	ld [hl], a
-	call Functioncd557
-	ld hl, $10
-	add hl, bc
-	ld a, [hl]
-	ld hl, $7
-	add hl, bc
-	ld h, [hl]
-	ld l, a
-	add hl, de
-	ld e, l
-	ld d, h
-	ld hl, $7
-	add hl, bc
-	ld [hl], d
-	ld hl, $10
-	add hl, bc
-	ld [hl], e
-	ret
-
-; no known jump sources
-Functioncd5e9: ; cd5e9 (33:55e9)
-	call Functionce71e ;  ;  ; call does not return
-
-; no known jump sources
-Jumptable_cd5ec: ; cd5ec (33:55ec)
-	dw Functioncd5f2
-	dw Functioncd5fb
-	dw Functioncd61b
-
-
-; no known jump sources
-Functioncd5f2: ; cd5f2 (33:55f2)
-	call Functionce72c
-	ld hl, $f
-	add hl, bc
-	ld [hl], $c
-
-; no known jump sources
-Functioncd5fb: ; cd5fb (33:55fb)
-	ld hl, $f
-	add hl, bc
-	ld a, [hl]
-	and a
-	jr z, .asm_cd60d
-	dec [hl]
-	ld hl, $b
-	add hl, bc
-	ld a, [hl]
-	call Functionce70a
-	ret
-.asm_cd60d
-	call Functionce72c
-	ld hl, $f
-	add hl, bc
-	ld [hl], $0
-	ld a, $22
-	call Functionce7bf
-
-; no known jump sources
-Functioncd61b: ; cd61b (33:561b)
-	ld hl, $7
-	add hl, bc
-	ld a, [hl]
-	cp $98
-	jr nc, .asm_cd63f
-	ld hl, $f
-	add hl, bc
-	ld a, [hl]
-	ld hl, $7
-	add hl, bc
-	ld h, [hl]
-	ld l, a
-	ld de, $60
-	add hl, de
-	ld e, l
-	ld d, h
-	ld hl, $f
-	add hl, bc
-	ld [hl], e
-	ld hl, $7
-	add hl, bc
-	ld [hl], d
-.asm_cd63f
-	ld hl, $8
-	add hl, bc
-	ld a, [hl]
-	cp $20
-	ret c
-	ld hl, $b
-	add hl, bc
-	ld a, [hl]
-	and $f0
-	ld e, a
-	ld d, $ff
-	ld hl, $10
-	add hl, bc
-	ld a, [hl]
-	ld hl, $8
-	add hl, bc
-	ld h, [hl]
-	ld l, a
-	add hl, de
-	ld e, l
-	ld d, h
-	ld hl, $10
-	add hl, bc
-	ld [hl], e
-	ld hl, $8
-	add hl, bc
-	ld [hl], d
-	ret
-
-; no known jump sources
-Functioncd66a: ; cd66a (33:566a)
-	call Functionce71e ;  ;  ; call does not return
-
-; no known jump sources
-Jumptable_cd66d: ; cd66d (33:566d)
-	dw Functioncd677
-	dw Functioncd687
-	dw Functioncd6c5
-	dw Functioncd6c6
-	dw Functioncd6d6
-
-
-; no known jump sources
-Functioncd677: ; cd677 (33:5677)
-	call Functionce72c
-	ld a, $42
-	ld [hLCDStatCustom], a ; $ff00+$c6
-	ld a, $58
-	ld [$FF00+$c7], a
-	ld a, $5e
-	ld [$FF00+$c8], a
-	ret
-
-; no known jump sources
-Functioncd687: ; cd687 (33:5687)
-	ld hl, $b
-	add hl, bc
-	ld e, [hl]
-	ld hl, $8
-	add hl, bc
-	ld a, [hl]
-	cp e
-	jr nc, .asm_cd69b
-	call Functionce72c
-	xor a
-	ld [$FF00+$c7], a
-	ret
-.asm_cd69b
-	dec a
-	ld [hl], a
-	ld hl, $f
-	add hl, bc
-	ld a, [hl]
-	ld d, $10
-	call Functionce734
-	ld hl, $a
-	add hl, bc
-	ld [hl], a
-	ld hl, $8
-	add hl, bc
-	add [hl]
-	sub $10
-	ret c
-	ld [$FF00+$c7], a
-	ld hl, $9
-	add hl, bc
-	ld a, [hl]
-	inc a
-	and $7
-	ld [hl], a
-	ld hl, $f
-	add hl, bc
-	inc [hl]
-	inc [hl]
-
-; no known jump sources
-Functioncd6c5: ; cd6c5 (33:56c5)
-	ret
-
-; no known jump sources
-Functioncd6c6: ; cd6c6 (33:56c6)
-	ld hl, $8
-	add hl, bc
-	ld a, [hl]
-	cp $70
-	jr c, asm_cd6da
-	xor a
-	ld [hLCDStatCustom], a ; $ff00+$c6
-	ld [$FF00+$c7], a
-	ld [$FF00+$c8], a
-
-; no known jump sources
-Functioncd6d6: ; cd6d6 (33:56d6)
-	call Functioncc9bd
-	ret
-asm_cd6da: ; cd6da (33:56da)
-	inc a
-	inc a
-	ld [hl], a
-	sub $10
-	ret c
-	ld [$FF00+$c7], a
-	ret
-
-; no known jump sources
-Functioncd6e3: ; cd6e3 (33:56e3)
-	call Functionce71e ;  ;  ; call does not return
-
-; no known jump sources
-Jumptable_cd6e6: ; cd6e6 (33:56e6)
-	dw Functioncd6ea
-	dw Functioncd6f7
-
-
-; no known jump sources
-Functioncd6ea: ; cd6ea (33:56ea)
-	call Functionce72c
-	ld hl, $b
-	add hl, bc
-	ld a, $24
-	add [hl]
-	call Functionce7bf
-
-; no known jump sources
-Functioncd6f7: ; cd6f7 (33:56f7)
-	ld hl, $7
-	add hl, bc
-	ld a, [hl]
-	cp $b8
-	jr c, .asm_cd704
-	call Functioncc9bd
-	ret
-.asm_cd704
-	ld a, $2
-	call Functionce70a
-	ld hl, $f
-	add hl, bc
-	ld a, [hl]
-	dec [hl]
-	ld d, $8
-	call Functionce734
-	ld hl, $a
-	add hl, bc
-	ld [hl], a
-	ret
-
-; no known jump sources
-Functioncd71a: ; cd71a (33:571a)
-	call Functionce71e ;  ;  ; call does not return
-
-; no known jump sources
-Jumptable_cd71d: ; cd71d (33:571d)
-	dw Functioncd725
-	dw Functioncd728
-	dw Functioncd763
-	dw Functioncd776
-
-
-; no known jump sources
-Functioncd725: ; cd725 (33:5725)
-	call Functionce72c
-
-; no known jump sources
-Functioncd728: ; cd728 (33:5728)
-	ld hl, $8
-	add hl, bc
-	ld a, [hl]
-	cp $30
-	jr c, .asm_cd747
-	ld a, $2
-	call Functionce70a
-	ld hl, $f
-	add hl, bc
-	ld a, [hl]
-	dec [hl]
-	ld d, $8
-	call Functionce734
-	ld hl, $a
-	add hl, bc
-	ld [hl], a
-	ret
-.asm_cd747
-	call Functionce72c
-	ld a, $28
-	call Functionce7bf
-	ld hl, $a
-	add hl, bc
-	ld [hl], $0
-	ld hl, $8
-	add hl, bc
-	ld [hl], $30
-	ld hl, $1
-	add hl, bc
-	ld a, [hl]
-	and $1
-	ld [hl], a
-
-; no known jump sources
-Functioncd763: ; cd763 (33:5763)
-	ld hl, $a
-	add hl, bc
-	ld a, [hl]
-	cp $18
-	jr nc, .asm_cd76e
-	inc [hl]
-	ret
-.asm_cd76e
-	call Functionce72c
-	ld a, $29
-	call Functionce7bf
-
-; no known jump sources
-Functioncd776: ; cd776 (33:5776)
-	ret
-
-; no known jump sources
-Functioncd777: ; cd777 (33:5777)
-	ld hl, $a
-	add hl, bc
-	ld a, [hl]
-	cp $38
-	jr c, .asm_cd784
-	call Functioncc9bd
-	ret
-.asm_cd784
-	ld a, [hl]
-	ld hl, $f
-	add hl, bc
-	ld l, [hl]
-	ld h, a
-	ld de, $80
-	add hl, de
-	ld e, l
-	ld d, h
-	ld hl, $f
-	add hl, bc
-	ld [hl], e
-	ld hl, $a
-	add hl, bc
-	ld [hl], d
-	ld hl, $9
-	add hl, bc
-	ld a, [hl]
-	xor $10
-	ld [hl], a
-	ret
-
-; no known jump sources
-Functioncd7a4: ; cd7a4 (33:57a4)
-	call Functionce71e ;  ;  ; call does not return
-
-; no known jump sources
-Jumptable_cd7a7: ; cd7a7 (33:57a7)
-	dw Functioncd7ab
-	dw Functioncd7d2
-
-
-; no known jump sources
-Functioncd7ab: ; cd7ab (33:57ab)
-	call Functionce72c
-	ld hl, $b
-	add hl, bc
-	ld a, [hl]
-	and $f0
-	ld hl, $10
-	add hl, bc
-	ld [hl], a
-	ld hl, $b
-	add hl, bc
-	ld a, [hl]
-	and $f
-	sla a
-	sla a
-	sla a
-	ld hl, $f
-	add hl, bc
-	ld [hl], a
-	ld hl, $b
-	add hl, bc
-	ld [hl], $1
-
-; no known jump sources
-Functioncd7d2: ; cd7d2 (33:57d2)
-	ld hl, $10
-	add hl, bc
-	ld a, [hl]
-	and a
-	jr nz, .asm_cd7de
-	call Functioncc9bd
-	ret
-.asm_cd7de
-	ld hl, $f
-	add hl, bc
-	ld a, [hl]
-	inc [hl]
-	ld hl, $10
-	add hl, bc
-	ld d, [hl]
-	push af
-	push de
-	call Functionce734
-	ld hl, $a
-	add hl, bc
-	ld [hl], a
-	pop de
-	pop af
-	call Functionce732
-	ld hl, $9
-	add hl, bc
-	ld [hl], a
-	ld hl, $b
-	add hl, bc
-	ld a, [hl]
-	xor $1
-	ld [hl], a
-	ret z
-	ld hl, $10
-	add hl, bc
-	dec [hl]
-	ret
-
-; no known jump sources
-Functioncd80c: ; cd80c (33:580c)
-	call Functionce71e ;  ;  ; call does not return
-
-; no known jump sources
-Jumptable_cd80f: ; cd80f (33:580f)
-	dw Functioncd81f
-	dw Functioncd817
-	dw Functioncd81f
-	dw Functioncd820
-
-
-; no known jump sources
-Functioncd817: ; cd817 (33:5817)
-	call Functionce72c
-	ld a, $35
-	call Functionce7bf
-
-; no known jump sources
-Functioncd81f: ; cd81f (33:581f)
-	ret
-
-; no known jump sources
-Functioncd820: ; cd820 (33:5820)
-	call Functioncc9bd
-	ret
-
-; no known jump sources
-Functioncd824: ; cd824 (33:5824)
-	call Functionce71e ;  ;  ; call does not return
-
-; no known jump sources
-Jumptable_cd827: ; cd827 (33:5827)
-	dw Functioncd835
-	dw Functioncd860
-	dw Functioncd88f
-	dw Functioncd88f
-	dw Functioncd88f
-	dw Functioncd88f
-	dw Functioncd893
-
-
-; no known jump sources
-Functioncd835: ; cd835 (33:5835)
-	call Functionce72c
-	ld hl, $3
-	add hl, bc
-	ld a, [hl]
-	ld hl, $10
-	add hl, bc
-	ld [hl], a
-	ld hl, $b
-	add hl, bc
-	bit 7, [hl]
-	jr nz, .asm_cd852
-	ld hl, $f
-	add hl, bc
-	ld [hl], $10
-	jr .asm_cd858
-.asm_cd852
-	ld hl, $f
-	add hl, bc
-	ld [hl], $30
-.asm_cd858
-	ld hl, $b
-	add hl, bc
-	ld a, [hl]
-	and $7f
-	ld [hl], a
-
-; no known jump sources
-Functioncd860: ; cd860 (33:5860)
-	ld hl, $f
-	add hl, bc
-	ld a, [hl]
-	ld hl, $b
-	add hl, bc
-	ld d, [hl]
-	call Functionce734
-	ld hl, $9
-	add hl, bc
-	ld [hl], a
-	bit 7, a
-	jr nz, .asm_cd87e
-	ld hl, $10
-	add hl, bc
-	ld a, [hl]
-	inc a
-	jr .asm_cd883
-.asm_cd87e
-	ld hl, $10
-	add hl, bc
-	ld a, [hl]
-.asm_cd883
-	call Functionce7bf
-	ld hl, $f
-	add hl, bc
-	inc [hl]
-	ld a, [hl]
-	and $1f
-	ret nz
-
-; no known jump sources
-Functioncd88f: ; cd88f (33:588f)
-	call Functionce72c
-	ret
-
-; no known jump sources
-Functioncd893: ; cd893 (33:5893)
-	ld hl, $e
-	add hl, bc
-	ld [hl], $1
-	ret
-
-; no known jump sources
-Functioncd89a: ; cd89a (33:589a)
-	call Functionce71e ;  ;  ; call does not return
-
-; no known jump sources
-Jumptable_cd89d: ; cd89d (33:589d)
-	dw Functioncd8ab
-	dw Functioncd8cc
-	dw Functioncd8f5
-	dw Functioncd8f5
-	dw Functioncd8f5
-	dw Functioncd8f5
-	dw Functioncd8f9
-
-
-; no known jump sources
-Functioncd8ab: ; cd8ab (33:58ab)
-	call Functionce72c
-	ld hl, $b
-	add hl, bc
-	bit 7, [hl]
-	jr nz, .asm_cd8be
-	ld hl, $f
-	add hl, bc
-	ld [hl], $10
-	jr .asm_cd8c4
-.asm_cd8be
-	ld hl, $f
-	add hl, bc
-	ld [hl], $30
-.asm_cd8c4
-	ld hl, $b
-	add hl, bc
-	ld a, [hl]
-	and $7f
-	ld [hl], a
-
-; no known jump sources
-Functioncd8cc: ; cd8cc (33:58cc)
-	ld hl, $f
-	add hl, bc
-	ld a, [hl]
-	ld hl, $b
-	add hl, bc
-	ld d, [hl]
-	call Functionce734
-	ld hl, $a
-	add hl, bc
-	ld [hl], a
-	bit 7, a
-	jr nz, .asm_cd8e6
-	ld a, $3d
-	jr .asm_cd8e8
-.asm_cd8e6
-	ld a, $3c
-.asm_cd8e8
-	call Functionce7bf
-	ld hl, $f
-	add hl, bc
-	inc [hl]
-	inc [hl]
-	ld a, [hl]
-	and $1f
-	ret nz
-
-; no known jump sources
-Functioncd8f5: ; cd8f5 (33:58f5)
-	call Functionce72c
-	ret
-
-; no known jump sources
-Functioncd8f9: ; cd8f9 (33:58f9)
-	ld hl, $e
-	add hl, bc
-	ld [hl], $1
-	ret
-
-; no known jump sources
-Functioncd900: ; cd900 (33:5900)
-	call Functionce71e ;  ;  ; call does not return
-
-; no known jump sources
-Jumptable_cd903: ; cd903 (33:5903)
-	dw Functioncd907
-	dw Functioncd913
-
-
-; no known jump sources
-Functioncd907: ; cd907 (33:5907)
-	call Functionce72c
-	ld hl, $f
-	add hl, bc
-	ld [hl], $28
-	inc hl
-	ld [hl], $0
-
-; no known jump sources
-Functioncd913: ; cd913 (33:5913)
-	ld hl, $b
-	add hl, bc
-	ld a, [hl]
-	ld hl, $f
-	add hl, bc
-	ld d, [hl]
-	push af
-	push de
-	call Functionce734
-	ld hl, $a
-	add hl, bc
-	ld [hl], a
-	pop de
-	pop af
-	call Functionce732
-	ld hl, $9
-	add hl, bc
-	ld [hl], a
-	ld hl, $f
-	add hl, bc
-	ld a, [hl]
-	and a
-	jr z, .asm_cd950
-	ld d, a
-	ld hl, $10
-	add hl, bc
-	ld e, [hl]
-	ld hl, hPushOAM ; $ff80
-	add hl, de
-	ld e, l
-	ld d, h
-	ld hl, $10
-	add hl, bc
-	ld [hl], e
-	ld hl, $f
-	add hl, bc
-	ld [hl], d
-	ret
-.asm_cd950
-	call Functioncc9bd
-	ret
-
-; no known jump sources
-Functioncd954: ; cd954 (33:5954)
-	call Functionce71e ;  ;  ; call does not return
-
-; no known jump sources
-Jumptable_cd957: ; cd957 (33:5957)
-	dw Functioncd961
-	dw Functioncd96a
-	dw Functioncd96e
-	dw Functioncd96a
-	dw Functioncd97b
-
-
-; no known jump sources
-Functioncd961: ; cd961 (33:5961)
-	call Functionce72c
-	ld hl, $b
-	add hl, bc
-	ld [hl], $0
-
-; no known jump sources
-Functioncd96a: ; cd96a (33:596a)
-	call Functioncd99a
-	ret
-
-; no known jump sources
-Functioncd96e: ; cd96e (33:596e)
-	ld hl, $7
-	add hl, bc
-	ld a, [hl]
-	cp $88
-	jr c, asm_cd988
-	call Functionce72c
-	ret
-
-; no known jump sources
-Functioncd97b: ; cd97b (33:597b)
-	ld hl, $7
-	add hl, bc
-	ld a, [hl]
-	cp $b8
-	jr c, asm_cd988
-	call Functioncc9bd
-	ret
-
-; known jump sources: cd975 (33:5975), cd982 (33:5982)
-asm_cd988: ; cd988 (33:5988)
-	call Functioncd99a
-	ld hl, $7
-	add hl, bc
-	inc [hl]
-	ld a, [hl]
-	and $1
-	ret nz
-	ld hl, $8
-	add hl, bc
-	dec [hl]
-	ret
-
-; known jump sources: cd96a (33:596a), cd988 (33:5988)
-Functioncd99a: ; cd99a (33:599a)
-	call Functioncd9f4
-	ld hl, $f
-	add hl, bc
-	ld a, [hl]
-	push af
-	push de
-	call Functionce734
-	sra a
-	sra a
-	sra a
-	sra a
-	ld hl, $b
-	add hl, bc
-	add [hl]
-	ld hl, $a
-	add hl, bc
-	ld [hl], a
-	pop de
-	pop af
-	call Functionce732
-	ld hl, $9
-	add hl, bc
-	ld [hl], a
-	ld hl, $f
-	add hl, bc
-	ld a, [hl]
-	sub $8
-	ld [hl], a
-	ld hl, $b
-	add hl, bc
-	ld a, [hl]
-	and a
-	jr z, .asm_cd9d7
-	cp $c2
-	jr c, .asm_cd9e2
-.asm_cd9d7
-	dec a
-	ld [hl], a
-	and $7
-	ret nz
-	ld hl, $10
-	add hl, bc
-	inc [hl]
-	ret
-.asm_cd9e2
-	xor a
-	ld hl, $10
-	add hl, bc
-	ld [hl], a
-	ld hl, $b
-	add hl, bc
-	ld [hl], a
-	ld hl, $9
-	add hl, bc
-	ld [hli], a
-	ld [hl], a
-	ret
-
-; known jump sources: cd99a (33:599a)
-Functioncd9f4: ; cd9f4 (33:59f4)
-	ld hl, $10
-	add hl, bc
-	ld e, [hl]
-	ld d, $0
-	ld hl, $5a01
-	add hl, de
-	ld d, [hl]
-	ret
-; cda01 (33:5a01)
-
-INCBIN "baserom.gbc",$cda01,$cda0a - $cda01
-
-; no known jump sources
-Functioncda0a: ; cda0a (33:5a0a)
-	ld hl, $7
-	add hl, bc
-	ld a, [hl]
-	cp $30
-	jr nc, .asm_cda17
-	call Functioncc9bd
-	ret
-.asm_cda17
-	ld hl, $b
-	add hl, bc
-	ld a, [hl]
-	and $f
-	ld e, a
-	ld hl, $7
-	add hl, bc
-	ld a, [hl]
-	sub e
-	ld [hl], a
-	srl e
-	ld hl, $8
-	add hl, bc
-.asm_cda2c
-	inc [hl]
-	dec e
-	jr nz, .asm_cda2c
-	ret
-
-; no known jump sources
-Functioncda31: ; cda31 (33:5a31)
-	call Functionce71e ;  ;  ; call does not return
-
-; no known jump sources
-Jumptable_cda34: ; cda34 (33:5a34)
-	dw Functioncda4c
-	dw Functioncda3a
-	dw Functioncda4c
-
-
-; no known jump sources
-Functioncda3a: ; cda3a (33:5a3a)
-	ld hl, $3
-	add hl, bc
-	ld a, [hl]
-	inc a
-	call Functionce7bf
-	call Functionce72c
-	ld hl, $f
-	add hl, bc
-	ld [hl], $8
-
-; no known jump sources
-Functioncda4c: ; cda4c (33:5a4c)
-	ret
-
-; no known jump sources
-Functioncda4d: ; cda4d (33:5a4d)
-	call Functionce71e ;  ;  ; call does not return
-
-; no known jump sources
-Jumptable_cda50: ; cda50 (33:5a50)
-	dw Functioncda58
-	dw Functioncda62
-	dw Functioncda7a
-	dw Functioncda8c
-
-
-; no known jump sources
-Functioncda58: ; cda58 (33:5a58)
-	call Functionce72c
-	ld hl, $10
-	add hl, bc
-	ld [hl], $40
-	ret
-
-; no known jump sources
-Functioncda62: ; cda62 (33:5a62)
-	ld hl, $10
-	add hl, bc
-	ld a, [hl]
-	cp $20
-	jr c, .asm_cda6f
-	call Functioncda8d
-	ret
-.asm_cda6f
-	ld [hl], $40
-	ld a, $57
-	call Functionce7bf
-	call Functionce72c
-	ret
-
-; no known jump sources
-Functioncda7a: ; cda7a (33:5a7a)
-	ld hl, $10
-	add hl, bc
-	ld a, [hl]
-	and a
-	jr z, .asm_cda84
-	dec [hl]
-	ret
-.asm_cda84
-	call Functionce72c
-	ld a, $58
-	call Functionce7bf
-
-; no known jump sources
-Functioncda8c: ; cda8c (33:5a8c)
-	ret
-
-; known jump sources: cda6b (33:5a6b), cdaf2 (33:5af2)
-Functioncda8d: ; cda8d (33:5a8d)
-	dec [hl]
-	ld d, $20
-	call Functionce734
-	ld hl, $a
-	add hl, bc
-	ld [hl], a
-	ld hl, $2
-	add hl, bc
-	ld a, [hl]
-	add $2
-	ld [hl], a
-	ld hl, $f
-	add hl, bc
-	ld e, [hl]
-	ld hl, $7
-	add hl, bc
-	ld d, [hl]
-	ld hl, $b
-	add hl, bc
-	ld h, [hl]
-	ld a, h
-	and $f
-	swap a
-	ld l, a
-	ld a, h
-	and $f0
-	swap a
-	ld h, a
-	add hl, de
-	ld e, l
-	ld d, h
-	ld hl, $f
-	add hl, bc
-	ld [hl], e
-	ld hl, $7
-	add hl, bc
-	ld [hl], d
-	ld hl, $10
-	add hl, bc
-	ld a, [hl]
-	and $1
-	ret nz
-	ld hl, $8
-	add hl, bc
-	dec [hl]
-	ret
-
-; no known jump sources
-Functioncdad6: ; cdad6 (33:5ad6)
-	call Functionce71e ;  ;  ; call does not return
-
-; no known jump sources
-Jumptable_cdad9: ; cdad9 (33:5ad9)
-	dw Functioncdadf
-	dw Functioncdae9
-	dw Functioncdaf9
-
-
-; no known jump sources
-Functioncdadf: ; cdadf (33:5adf)
-	call Functionce72c
-	ld hl, $10
-	add hl, bc
-	ld [hl], $40
-	ret
-
-; no known jump sources
-Functioncdae9: ; cdae9 (33:5ae9)
-	ld hl, $10
-	add hl, bc
-	ld a, [hl]
-	cp $20
-	jr c, .asm_cdaf6
-	call Functioncda8d
-	ret
-.asm_cdaf6
-	call Functionce72c
-
-; no known jump sources
-Functioncdaf9: ; cdaf9 (33:5af9)
-	ret
-
-; no known jump sources
-Functioncdafa: ; cdafa (33:5afa)
-	call Functioncd0e3
-	ld hl, $f
-	add hl, bc
-	ld a, [hl]
-	add $f
-	ld [hl], a
-	ret
-
-; no known jump sources
-Functioncdb06: ; cdb06 (33:5b06)
-	call Functionce71e ;  ;  ; call does not return
-
-; no known jump sources
-Jumptable_cdb09: ; cdb09 (33:5b09)
-	dw Functioncdb13
-	dw Functioncdb14
-	dw Functioncdb28
-	dw Functioncdb50
-	dw Functioncdb65
-
-
-; no known jump sources
-Functioncdb13: ; cdb13 (33:5b13)
-	ret
-
-; no known jump sources
-Functioncdb14: ; cdb14 (33:5b14)
-	ld hl, $8
-	add hl, bc
-	ld a, [hl]
-	cp $30
-	jr c, .asm_cdb24
-	ld hl, $e
-	add hl, bc
-	ld [hl], $0
-	ret
-.asm_cdb24
-	add $4
-	ld [hl], a
-	ret
-
-; no known jump sources
-Functioncdb28: ; cdb28 (33:5b28)
-	ld hl, $7
-	add hl, bc
-	ld a, [hl]
-	cp $98
-	ret nc
-	inc [hl]
-	inc [hl]
-	ld hl, $1
-	add hl, bc
-	set 0, [hl]
-	ld hl, $2
-	add hl, bc
-	ld [hl], $90
-	ld hl, $d
-	add hl, bc
-	ld [hl], $0
-	ld hl, $c
-	add hl, bc
-	ld [hl], $2
-	ld hl, $8
-	add hl, bc
-	dec [hl]
-	ret
-
-; no known jump sources
-Functioncdb50: ; cdb50 (33:5b50)
-	call Functionce72c
-	ld hl, $f
-	add hl, bc
-	ld [hl], $2c
-	ld hl, $d
-	add hl, bc
-	ld [hl], $0
-	ld hl, $c
-	add hl, bc
-	ld [hl], $80
-
-; no known jump sources
-Functioncdb65: ; cdb65 (33:5b65)
-	ld hl, $7
-	add hl, bc
-	ld a, [hl]
-	cp $98
-	ret nc
-	inc [hl]
-	inc [hl]
-	ld hl, $f
-	add hl, bc
-	ld a, [hl]
-	inc [hl]
-	ld d, $8
-	call Functionce734
-	ld hl, $a
-	add hl, bc
-	ld [hl], a
-	ret
-
-; no known jump sources
-Functioncdb80: ; cdb80 (33:5b80)
-	call Functionce71e ;  ;  ; call does not return
-
-; no known jump sources
-Jumptable_cdb83: ; cdb83 (33:5b83)
-	dw Functioncdb9f
-	dw Functioncdbb3
-	dw Functioncdbcf
-	dw Functioncdbeb
-	dw Functioncdc74
-	dw Functioncdc1a
-	dw Functioncdbc1
-	dw Functioncdc1e
-	dw Functioncdc27
-	dw Functioncdc39
-	dw Functioncdc74
-	dw Functioncdc48
-	dw Functioncdc57
-	dw Functioncdc74
-
-
-; no known jump sources
-Functioncdb9f: ; cdb9f (33:5b9f)
-	ld hl, $f
-	add hl, bc
-	ld [hl], $28
-	inc hl
-	ld [hl], $10
-	ld hl, $b
-	add hl, bc
-	ld a, [hl]
-	ld hl, $e
-	add hl, bc
-	ld [hl], a
-	ret
-
-; no known jump sources
-Functioncdbb3: ; cdbb3 (33:5bb3)
-	ld hl, $7
-	add hl, bc
-	ld a, [hl]
-	cp $40
-	jr nc, .asm_cdbbd
-	inc [hl]
-.asm_cdbbd
-	call Functioncdc75
-	ret
-
-; no known jump sources
-Functioncdbc1: ; cdbc1 (33:5bc1)
-	ld hl, $7
-	add hl, bc
-	ld a, [hl]
-	cp $4b
-	jr nc, .asm_cdbcb
-	inc [hl]
-.asm_cdbcb
-	call Functioncdc75
-	ret
-
-; no known jump sources
-Functioncdbcf: ; cdbcf (33:5bcf)
-	ld hl, $7
-	add hl, bc
-	ld a, [hl]
-	cp $88
-	jr nc, .asm_cdbe6
-	and $f
-	jr nz, asm_cdbfa
-	ld hl, $10
-	add hl, bc
-	ld [hl], $10
-	call Functionce72c
-	ret
-.asm_cdbe6
-	call Functionce72c
-	inc [hl]
-	ret
-
-; no known jump sources
-Functioncdbeb: ; cdbeb (33:5beb)
-	ld hl, $10
-	add hl, bc
-	ld a, [hl]
-	and a
-	jr z, .asm_cdbf5
-	dec [hl]
-	ret
-.asm_cdbf5
-	ld hl, $e
-	add hl, bc
-	dec [hl]
-asm_cdbfa: ; cdbfa (33:5bfa)
-	ld hl, $7
-	add hl, bc
-	inc [hl]
-	ld hl, $8
-	add hl, bc
-	ld d, [hl]
-	ld hl, $f
-	add hl, bc
-	ld e, [hl]
-	ld hl, hPushOAM ; $ff80
-	add hl, de
-	ld e, l
-	ld d, h
-	ld hl, $8
-	add hl, bc
-	ld [hl], d
-	ld hl, $f
-	add hl, bc
-	ld [hl], e
-	ret
-
-; no known jump sources
-Functioncdc1a: ; cdc1a (33:5c1a)
-	call Functioncc9bd
-	ret
-
-; no known jump sources
-Functioncdc1e: ; cdc1e (33:5c1e)
-	ld a, $4e
-	call Functionce7bf
-	call Functionce72c
-	ret
-
-; no known jump sources
-Functioncdc27: ; cdc27 (33:5c27)
-	ld hl, $f
-	add hl, bc
-	ld a, [hl]
-	inc [hl]
-	inc [hl]
-	ld d, $2
-	call Functionce734
-	ld hl, $9
-	add hl, bc
-	ld [hl], a
-	ret
-
-; no known jump sources
-Functioncdc39: ; cdc39 (33:5c39)
-	ld a, $50
-	call Functionce7bf
-	ld hl, $a
-	add hl, bc
-	ld [hl], $4
-	call Functionce72c
-	ret
-
-; no known jump sources
-Functioncdc48: ; cdc48 (33:5c48)
-	ld a, $4f
-	call Functionce7bf
-	call Functionce72c
-	ld hl, $f
-	add hl, bc
-	ld [hl], $40
-	ret
-
-; no known jump sources
-Functioncdc57: ; cdc57 (33:5c57)
-	ld hl, $f
-	add hl, bc
-	ld a, [hl]
-	ld d, $20
-	call Functionce734
-	ld hl, $a
-	add hl, bc
-	ld [hl], a
-	ld hl, $f
-	add hl, bc
-	ld a, [hl]
-	cp $30
-	jr c, .asm_cdc71
-	dec [hl]
-	ret
-.asm_cdc71
-	call Functionce72c
-
-; no known jump sources
-Functioncdc74: ; cdc74 (33:5c74)
-	ret
-
-; known jump sources: cdbbd (33:5bbd), cdbcb (33:5bcb)
-Functioncdc75: ; cdc75 (33:5c75)
-	ld hl, $f
-	add hl, bc
-	ld a, [hli]
-	ld d, [hl]
-	call Functionce734
-	ld hl, $a
-	add hl, bc
-	ld [hl], a
-	ld hl, $f
-	add hl, bc
-	inc [hl]
-	ld a, [hl]
-	and $3f
-	ret nz
-	ld hl, $f
-	add hl, bc
-	ld [hl], $20
-	ld hl, $10
-	add hl, bc
-	ld a, [hl]
-	sub $8
-	ld [hl], a
-	ret nz
-	xor a
-	ld hl, $f
-	add hl, bc
-	ld [hli], a
-	ld [hl], a
-	call Functionce72c
-	ret
-
-; no known jump sources
-Functioncdca6: ; cdca6 (33:5ca6)
-	ld hl, $a
-	add hl, bc
-	ld a, [hl]
-	and a
-	jr z, .asm_cdcb6
-	cp $d8
-	jr nc, .asm_cdcb6
-	call Functioncc9bd
-	ret
-.asm_cdcb6
-	ld hl, $b
-	add hl, bc
-	ld d, [hl]
-	ld hl, $a
-	add hl, bc
-	ld a, [hl]
-	sub d
-	ld [hl], a
-	ret
-
-; no known jump sources
-Functioncdcc3: ; cdcc3 (33:5cc3)
-	call Functionce71e ;  ;  ; call does not return
-
-; no known jump sources
-Jumptable_cdcc6: ; cdcc6 (33:5cc6)
-	dw Functioncdcca
-	dw Functioncdced
-
-
-; no known jump sources
-Functioncdcca: ; cdcca (33:5cca)
-	ld a, [hBattleTurn] ; $ff00+$e4
-	and a
-	jr z, .asm_cdcd9
-	ld hl, $b
-	add hl, bc
-	ld a, [hl]
-	xor $ff
-	add $3
-	ld [hl], a
-.asm_cdcd9
-	call Functionce72c
-	ld hl, $f
-	add hl, bc
-	ld [hl], $8
-	ld hl, $b
-	add hl, bc
-	ld a, $59
-	add [hl]
-	call Functionce7bf
-	ret
-
-; no known jump sources
-Functioncdced: ; cdced (33:5ced)
-	ld hl, $f
-	add hl, bc
-	ld a, [hl]
-	and a
-	jr z, .asm_cdcfa
-	dec [hl]
-	call Functioncdcfe
-	ret
-.asm_cdcfa
-	call Functioncc9bd
-	ret
-
-; known jump sources: cdcf6 (33:5cf6)
-Functioncdcfe: ; cdcfe (33:5cfe)
-	ld hl, $10
-	add hl, bc
-	ld a, [hl]
-	inc [hl]
-	inc [hl]
-	ld d, $10
-	call Functionce734
-	ld d, a
-	ld hl, $9
-	add hl, bc
-	ld [hl], a
-	ld hl, $b
-	add hl, bc
-	ld a, [hl]
-	and a
-	jr z, .asm_cdd20
-	dec a
-	ret z
-	ld hl, $a
-	add hl, bc
-	ld [hl], d
-	ret
-.asm_cdd20
-	ld hl, $a
-	add hl, bc
-	ld a, d
-	xor $ff
-	inc a
-	ld [hl], a
-	ret
-
-; no known jump sources
-Functioncdd2a: ; cdd2a (33:5d2a)
-	call Functionce71e ;  ;  ; call does not return
-
-; no known jump sources
-Jumptable_cdd2d: ; cdd2d (33:5d2d)
-	dw Functioncdd31
-	dw Functioncdd4f
-
-
-; no known jump sources
-Functioncdd31: ; cdd31 (33:5d31)
-	call Functionce72c
-	ld hl, $b
-	add hl, bc
-	ld a, [hl]
-	and $3f
-	ld hl, $10
-	add hl, bc
-	ld [hl], a
-	ld hl, $b
-	add hl, bc
-	ld a, [hl]
-	and $80
-	rlca
-	ld [hl], a
-	add $5d
-	call Functionce7bf
-	ret
-
-; no known jump sources
-Functioncdd4f: ; cdd4f (33:5d4f)
-	ld hl, $b
-	add hl, bc
-	ld a, [hl]
-	swap a
-	ld d, a
-	ld hl, $10
-	add hl, bc
-	ld a, [hl]
-	inc [hl]
-	push af
-	push de
-	call Functionce734
-	ld hl, $a
-	add hl, bc
-	ld [hl], a
-	pop de
-	pop af
-	call Functionce732
-	ld hl, $9
-	add hl, bc
-	ld [hl], a
-	ld hl, $7
-	add hl, bc
-	ld a, [hl]
-	cp $80
-	ret nc
-	ld hl, $10
-	add hl, bc
-	ld a, [hl]
-	and $3
-	jr nz, .asm_cdd87
-	ld hl, $8
-	add hl, bc
-	dec [hl]
-.asm_cdd87
-	and $1
-	ret nz
-	ld hl, $7
-	add hl, bc
-	inc [hl]
-	ret
-
-; no known jump sources
-Functioncdd90: ; cdd90 (33:5d90)
-	call Functionce71e ;  ;  ; call does not return
-
-; no known jump sources
-Jumptable_cdd93: ; cdd93 (33:5d93)
-	dw Functioncdd97
-	dw Functioncddbc
-
-
-; no known jump sources
-Functioncdd97: ; cdd97 (33:5d97)
-	call Functionce72c
-	ld hl, $3
-	add hl, bc
-	ld a, [hl]
-	ld hl, $f
-	add hl, bc
-	ld [hl], a
-	ld hl, $b
-	add hl, bc
-	ld a, [hl]
-	and $80
-	rlca
-	ld hl, $f
-	add hl, bc
-	add [hl]
-	call Functionce7bf
-	ld hl, $b
-	add hl, bc
-	ld a, [hl]
-	and $7f
-	ld [hl], a
-
-; no known jump sources
-Functioncddbc: ; cddbc (33:5dbc)
-	ld hl, $b
-	add hl, bc
-	ld a, [hl]
-	ld d, $10
-	push af
-	push de
-	call Functionce734
-	sra a
-	sra a
-	ld hl, $a
-	add hl, bc
-	ld [hl], a
-	pop de
-	pop af
-	call Functionce732
-	ld hl, $9
-	add hl, bc
-	ld [hl], a
-	ld hl, $b
-	add hl, bc
-	ld a, [hl]
-	inc [hl]
-	and $3f
-	jr z, .asm_cddf0
-	and $1f
-	ret nz
-	ld hl, $f
-	add hl, bc
-	ld a, [hl]
-	inc a
-	jr .asm_cddf5
-.asm_cddf0
-	ld hl, $f
-	add hl, bc
-	ld a, [hl]
-.asm_cddf5
-	call Functionce7bf
-	ret
-
-; no known jump sources
-Functioncddf9: ; cddf9 (33:5df9)
-	call Functionce71e ;  ;  ; call does not return
-
-; no known jump sources
-Jumptable_cddfc: ; cddfc (33:5dfc)
-	dw Functioncde02
-	dw Functioncde20
-	dw Functioncde21
-
-
-; no known jump sources
-Functioncde02: ; cde02 (33:5e02)
-	call Functionce72c
-	ld hl, $b
-	add hl, bc
-	ld a, [hl]
-	add $63
-	call Functionce7bf
-	ld hl, $b
-	add hl, bc
-	ld e, [hl]
-	ld d, $0
-	ld hl, $5e25
-	add hl, de
-	ld a, [hl]
-	ld hl, $a
-	add hl, bc
-	ld [hl], a
-
-; no known jump sources
-Functioncde20: ; cde20 (33:5e20)
-	ret
-
-; no known jump sources
-Functioncde21: ; cde21 (33:5e21)
-	call Functioncc9bd
-	ret
-; cde25 (33:5e25)
-
-INCBIN "baserom.gbc",$cde25,$cde28 - $cde25
-
-; no known jump sources
-Functioncde28: ; cde28 (33:5e28)
-	ld hl, $f
-	add hl, bc
-	ld a, [hl]
-	inc [hl]
-	inc [hl]
-	ld d, $4
-	call Functionce734
-	ld hl, $9
-	add hl, bc
-	ld [hl], a
-	ld hl, $a
-	add hl, bc
-	ld d, [hl]
-	ld hl, $10
-	add hl, bc
-	ld e, [hl]
-	ld hl, $ffa0
-	add hl, de
-	ld e, l
-	ld d, h
-	ld hl, $a
-	add hl, bc
-	ld [hl], d
-	ld hl, $10
-	add hl, bc
-	ld [hl], e
-	ret
-
-; no known jump sources
-Functioncde54: ; cde54 (33:5e54)
-	ld hl, $f
-	add hl, bc
-	ld a, [hl]
-	dec [hl]
-	dec [hl]
-	ld d, $10
-	call Functionce734
-	ld hl, $a
-	add hl, bc
-	ld [hl], a
-	ld hl, $7
-	add hl, bc
-	inc [hl]
-	ret
-
-; no known jump sources
-Functioncde6b: ; cde6b (33:5e6b)
-	call Functionce71e ;  ;  ; call does not return
-
-; no known jump sources
-Jumptable_cde6e: ; cde6e (33:5e6e)
-	dw Functioncde72
-	dw Functioncde88
-
-
-; no known jump sources
-Functioncde72: ; cde72 (33:5e72)
-	call Functionce72c
-	ld hl, $b
-	add hl, bc
-	ld a, [hl]
-	and a
-	jr nz, .asm_cde83
-	ld hl, $1
-	add hl, bc
-	set 6, [hl]
-.asm_cde83
-	add $6a
-	call Functionce7bf
-
-; no known jump sources
-Functioncde88: ; cde88 (33:5e88)
-	ret
-
-; no known jump sources
-Functioncde89: ; cde89 (33:5e89)
-	call Functionce71e ;  ;  ; call does not return
-
-; no known jump sources
-Jumptable_cde8c: ; cde8c (33:5e8c)
-	dw Functioncde90
-	dw Functioncdebf
-
-
-; no known jump sources
-Functioncde90: ; cde90 (33:5e90)
-	call Functionce72c
-	ld hl, $f
-	add hl, bc
-	ld [hl], $0
-	ld hl, $b
-	add hl, bc
-	ld e, [hl]
-	ld a, e
-	and $70
-	swap a
-	ld [hl], a
-	ld hl, $9
-	add hl, bc
-	ld a, e
-	and $80
-	jr nz, .asm_cdeb2
-	ld a, e
-	and $f
-	ld [hl], a
-	ret
-.asm_cdeb2
-	ld a, e
-	and $f
-	xor $ff
-	inc a
-	ld [hl], a
-	ld a, $6e
-	call Functionce7bf
-	ret
-
-; no known jump sources
-Functioncdebf: ; cdebf (33:5ebf)
-	ld hl, $f
-	add hl, bc
-	ld a, [hl]
-	and a
-	jr z, .asm_cdec9
-	dec [hl]
-	ret
-.asm_cdec9
-	ld hl, $b
-	add hl, bc
-	ld a, [hl]
-	ld hl, $f
-	add hl, bc
-	ld [hl], a
-	ld hl, $9
-	add hl, bc
-	ld a, [hl]
-	xor $ff
-	inc a
-	ld [hl], a
-	ret
-
-; no known jump sources
-Functioncdedd: ; cdedd (33:5edd)
-	ld hl, $f
-	add hl, bc
-	ld a, [hl]
-	ld d, $18
-	push af
-	push de
-	call Functionce734
-	sra a
-	sra a
-	sra a
-	ld hl, $10
-	add hl, bc
-	add [hl]
-	ld hl, $a
-	add hl, bc
-	ld [hl], a
-	pop de
-	pop af
-	call Functionce732
-	ld hl, $9
-	add hl, bc
-	ld [hl], a
-	ld hl, $f
-	add hl, bc
-	inc [hl]
-	ld a, [hl]
-	and $7
-	ret nz
-	ld hl, $10
-	add hl, bc
-	ld a, [hl]
-	cp $28
-	jr nc, .asm_cdf17
-	inc [hl]
-	ret
-.asm_cdf17
-	call Functioncc9bd
-	ret
-
-; no known jump sources
-Functioncdf1b: ; cdf1b (33:5f1b)
-	ld hl, $f
-	add hl, bc
-	ld a, [hl]
-	ld d, $18
-	push af
-	push de
-	call Functionce734
-	sra a
-	sra a
-	sra a
-	ld hl, $10
-	add hl, bc
-	add [hl]
-	ld hl, $a
-	add hl, bc
-	ld [hl], a
-	pop de
-	pop af
-	call Functionce732
-	ld hl, $9
-	add hl, bc
-	ld [hl], a
-	ld hl, $f
-	add hl, bc
-	inc [hl]
-	ld a, [hl]
-	and $3
-	ret nz
-	ld hl, $10
-	add hl, bc
-	ld a, [hl]
-	cp $28
-	jr nc, .asm_cdf55
-	inc [hl]
-	ret
-.asm_cdf55
-	call Functioncc9bd
-	ret
-
-; no known jump sources
-Functioncdf59: ; cdf59 (33:5f59)
-	call Functionce71e ;  ;  ; call does not return
-
-; no known jump sources
-Jumptable_cdf5c: ; cdf5c (33:5f5c)
-	dw Functioncdf60
-	dw Functioncdedd
-
-
-; no known jump sources
-Functioncdf60: ; cdf60 (33:5f60)
-	ld hl, $7
-	add hl, bc
-	ld a, [hl]
-	cp $84
-	jr nc, .asm_cdf88
-	inc [hl]
-	ld hl, $f
-	add hl, bc
-	ld a, [hl]
-	inc [hl]
-	ld d, $18
-	call Functionce732
-	ld hl, $9
-	add hl, bc
-	ld [hl], a
-	ld hl, $7
-	add hl, bc
-	ld a, [hl]
-	and $1
-	ret nz
-	ld hl, $8
-	add hl, bc
-	dec [hl]
-	ret
-.asm_cdf88
-	call Functionce72c
-	ret
-
-; no known jump sources
-Functioncdf8c: ; cdf8c (33:5f8c)
-	ld hl, $b
-	add hl, bc
-	ld a, [hl]
-	ld d, $18
-	push af
-	push de
-	call Functionce734
-	sra a
-	sra a
-	sra a
-	ld hl, $10
-	add hl, bc
-	add [hl]
-	ld hl, $a
-	add hl, bc
-	ld [hl], a
-	pop de
-	pop af
-	call Functionce732
-	ld hl, $9
-	add hl, bc
-	ld [hl], a
-	ld hl, $b
-	add hl, bc
-	inc [hl]
-	inc [hl]
-	ld a, [hl]
-	and $7
-	ret nz
-	ld hl, $10
-	add hl, bc
-	ld a, [hl]
-	cp $e8
-	jr z, .asm_cdfc7
-	dec [hl]
-	ret
-.asm_cdfc7
-	call Functioncc9bd
-	ret
-
-; no known jump sources
-Functioncdfcb: ; cdfcb (33:5fcb)
-	ld hl, $b
-	add hl, bc
-	ld a, [hl]
-	ld d, $18
-	push af
-	push de
-	call Functionce734
-	sra a
-	sra a
-	sra a
-	ld hl, $10
-	add hl, bc
-	add [hl]
-	ld hl, $a
-	add hl, bc
-	ld [hl], a
-	pop de
-	pop af
-	call Functionce732
-	ld hl, $9
-	add hl, bc
-	ld [hl], a
-	ld hl, $b
-	add hl, bc
-	inc [hl]
-	inc [hl]
-	ld a, [hl]
-	and $3
-	ret nz
-	ld hl, $10
-	add hl, bc
-	ld a, [hl]
-	cp $d0
-	jr z, .asm_ce007
-	dec [hl]
-	dec [hl]
-	ret
-.asm_ce007
-	call Functioncc9bd
-	ret
-
-; no known jump sources
-Functionce00b: ; ce00b (33:600b)
-	call Functionce71e ;  ;  ; call does not return
-
-; no known jump sources
-Jumptable_ce00e: ; ce00e (33:600e)
-	dw Functionce014
-	dw Functionce023
-	dw Functionce05f
-
-
-; no known jump sources
-Functionce014: ; ce014 (33:6014)
-	call Functionce72c
-	ld hl, $f
-	add hl, bc
-	ld [hl], $34
-	ld hl, $10
-	add hl, bc
-	ld [hl], $10
-
-; no known jump sources
-Functionce023: ; ce023 (33:6023)
-	ld hl, $7
-	add hl, bc
-	ld a, [hl]
-	cp $6c
-	jr c, .asm_ce02d
-	ret
-.asm_ce02d
-	ld a, $2
-	call Functionce70a
-	ld hl, $f
-	add hl, bc
-	ld a, [hl]
-	ld hl, $10
-	add hl, bc
-	ld d, [hl]
-	call Functionce734
-	bit 7, a
-	jr nz, .asm_ce046
-	xor $ff
-	inc a
-.asm_ce046
-	ld hl, $a
-	add hl, bc
-	ld [hl], a
-	ld hl, $f
-	add hl, bc
-	ld a, [hl]
-	sub $4
-	ld [hl], a
-	and $1f
-	cp $20
-	ret nz
-	ld hl, $10
-	add hl, bc
-	srl [hl]
-	ret
-
-; no known jump sources
-Functionce05f: ; ce05f (33:605f)
-	call Functioncc9bd
-	ret
-
-; no known jump sources
-Functionce063: ; ce063 (33:6063)
-	call Functionce71e ;  ;  ; call does not return
-
-; no known jump sources
-Jumptable_ce066: ; ce066 (33:6066)
-	dw Functionce06e
-	dw Functionce083
-	dw Functionce091
-	dw Functionce09e
-
-
-; no known jump sources
-Functionce06e: ; ce06e (33:606e)
-	ld hl, $b
-	add hl, bc
-	ld a, [hl]
-	ld hl, $e
-	add hl, bc
-	ld [hl], a
-	ld hl, $8
-	add hl, bc
-	ld a, [hl]
-	ld hl, $f
-	add hl, bc
-	ld [hl], a
-	ret
-
-; no known jump sources
-Functionce083: ; ce083 (33:6083)
-	ld hl, $7
-	add hl, bc
-	ld a, [hl]
-	cp $58
-	ret nc
-	ld a, $2
-	call Functionce70a
-	ret
-
-; no known jump sources
-Functionce091: ; ce091 (33:6091)
-	ld hl, $10
-	add hl, bc
-	ld a, [hl]
-	cp $20
-	jr c, Functionce09e
-	call Functioncc9bd
-	ret
-
-; known jump sources: ce098 (33:6098)
-Functionce09e: ; ce09e (33:609e)
-	ld hl, $10
-	add hl, bc
-	ld a, [hl]
-	ld d, $8
-	call Functionce734
-	ld hl, $9
-	add hl, bc
-	ld [hl], a
-	sra a
-	xor $ff
-	inc a
-	ld hl, $f
-	add hl, bc
-	add [hl]
-	ld hl, $8
-	add hl, bc
-	ld [hl], a
-	ld hl, $10
-	add hl, bc
-	ld a, [hl]
-	add $8
-	ld [hl], a
-	ret
-
-; no known jump sources
-Functionce0c5: ; ce0c5 (33:60c5)
-	call Functionce71e ;  ;  ; call does not return
-
-; no known jump sources
-Jumptable_ce0c8: ; ce0c8 (33:60c8)
-	dw Functionce0ce
-	dw Functionce0f8
-	dw Functionce0dd
-
-
-; no known jump sources
-Functionce0ce: ; ce0ce (33:60ce)
-	ld hl, $b
-	add hl, bc
-	ld a, [hl]
-	and $f0
-	swap a
-	ld hl, $e
-	add hl, bc
-	ld [hl], a
-	ret
-
-; no known jump sources
-Functionce0dd: ; ce0dd (33:60dd)
-	ld hl, $f
-	add hl, bc
-	ld a, [hl]
-	ld d, $10
-	call Functionce734
-	ld hl, $a
-	add hl, bc
-	bit 7, a
-	jr z, .asm_ce0f0
-	ld [hl], a
-.asm_ce0f0
-	ld hl, $f
-	add hl, bc
-	ld a, [hl]
-	sub $4
-	ld [hl], a
-
-; no known jump sources
-Functionce0f8: ; ce0f8 (33:60f8)
-	ld hl, $7
-	add hl, bc
-	ld a, [hl]
-	cp $84
-	jr c, .asm_ce105
-	call Functioncc9bd
-	ret
-.asm_ce105
-	ld hl, $b
-	add hl, bc
-	ld a, [hl]
-	call Functionce70a
-	ret
-
-; no known jump sources
-Functionce10e: ; ce10e (33:610e)
-	call Functionce71e ;  ;  ; call does not return
-
-; no known jump sources
-Jumptable_ce111: ; ce111 (33:6111)
-	dw Functionce115
-	dw Functionce12a
-
-
-; no known jump sources
-Functionce115: ; ce115 (33:6115)
-	call Functionce72c
-	ld hl, $f
-	add hl, bc
-	ld [hl], $28
-	ld hl, $8
-	add hl, bc
-	ld a, [hl]
-	sub $28
-	ld hl, $10
-	add hl, bc
-	ld [hl], a
-
-; no known jump sources
-Functionce12a: ; ce12a (33:612a)
-	ld hl, $f
-	add hl, bc
-	ld a, [hli]
-	ld d, [hl]
-	call Functionce734
-	ld hl, $a
-	add hl, bc
-	ld [hl], a
-	ld hl, $f
-	add hl, bc
-	ld a, [hl]
-	ld hl, $b
-	add hl, bc
-	and [hl]
-	jr nz, .asm_ce149
-	ld hl, $7
-	add hl, bc
-	dec [hl]
-.asm_ce149
-	ld hl, $f
-	add hl, bc
-	inc [hl]
-	ld a, [hl]
-	and $3f
-	ret nz
-	ld hl, $f
-	add hl, bc
-	ld [hl], $20
-	inc hl
-	srl [hl]
-	ret
-
-; no known jump sources
-Functionce15c: ; ce15c (33:615c)
-	ld hl, $b
-	add hl, bc
-	ld a, [hl]
-	ld hl, $f
-	add hl, bc
-	ld d, [hl]
-	push af
-	push de
-	call Functionce734
-	ld hl, $a
-	add hl, bc
-	ld [hl], a
-	pop de
-	pop af
-	call Functionce732
-	ld hl, $9
-	add hl, bc
-	ld [hl], a
-	ld hl, $b
-	add hl, bc
-	inc [hl]
-	ld a, [hl]
-	and $1
-	jr nz, .asm_ce189
-	ld hl, $7
-	add hl, bc
-	dec [hl]
-.asm_ce189
-	ld hl, $b
-	add hl, bc
-	ld a, [hl]
-	and $3
-	jr nz, .asm_ce197
-	ld hl, $8
-	add hl, bc
-	inc [hl]
-.asm_ce197
-	ld hl, $7
-	add hl, bc
-	ld a, [hl]
-	ld hl, $f
-	add hl, bc
-	cp $5a
-	jr nc, .asm_ce1aa
-	ld a, [hl]
-	and a
-	jr z, .asm_ce1ac
-	dec [hl]
-	ret
-.asm_ce1aa
-	inc [hl]
-	ret
-.asm_ce1ac
-	call Functioncc9bd
-	ret
-
-; no known jump sources
-Functionce1b0: ; ce1b0 (33:61b0)
-	ld hl, $b
-	add hl, bc
-	ld a, [hl]
-	inc [hl]
-	ld hl, $f
-	add hl, bc
-	ld d, [hl]
-	push af
-	push de
-	call Functionce734
-	ld hl, $a
-	add hl, bc
-	ld [hl], a
-	pop de
-	pop af
-	call Functionce732
-	ld hl, $9
-	add hl, bc
-	ld [hl], a
-	ld hl, $10
-	add hl, bc
-	ld a, [hl]
-	inc [hl]
-	ld hl, $f
-	add hl, bc
-	cp $40
-	jr nc, .asm_ce1df
-	inc [hl]
-	ret
-.asm_ce1df
-	ld a, [hl]
-	dec [hl]
-	and a
-	ret nz
-	call Functioncc9bd
-	ret
-
-; no known jump sources
-Functionce1e7: ; ce1e7 (33:61e7)
-	call Functionce71e ;  ;  ; call does not return
-
-; no known jump sources
-Jumptable_ce1ea: ; ce1ea (33:61ea)
-	dw Functionce1ee
-	dw Functionce1fb
-
-
-; no known jump sources
-Functionce1ee: ; ce1ee (33:61ee)
-	call Functionce72c
-	ld hl, $8
-	add hl, bc
-	ld a, [hl]
-	ld hl, $10
-	add hl, bc
-	ld [hl], a
-
-; no known jump sources
-Functionce1fb: ; ce1fb (33:61fb)
-	ld hl, $b
-	add hl, bc
-	ld a, [hl]
-	ld d, $30
-	call Functionce734
-	ld hl, $10
-	add hl, bc
-	add [hl]
-	ld hl, $8
-	add hl, bc
-	ld [hl], a
-	ld hl, $b
-	add hl, bc
-	ld a, [hl]
-	add $8
-	ld d, $30
-	call Functionce732
-	ld hl, $9
-	add hl, bc
-	ld [hl], a
-	ld hl, $b
-	add hl, bc
-	inc [hl]
-	ret
-
-; no known jump sources
-Functionce226: ; ce226 (33:6226)
-	call Functionce71e ;  ;  ; call does not return
-
-; no known jump sources
-Jumptable_ce229: ; ce229 (33:6229)
-	dw Functionce22d
-	dw Functionce254
-
-
-; no known jump sources
-Functionce22d: ; ce22d (33:622d)
-	call Functionce72c
-	ld hl, $b
-	add hl, bc
-	ld a, [hl]
-	ld d, $10
-	call Functionce734
-	ld hl, $a
-	add hl, bc
-	ld [hl], a
-	ld hl, $b
-	add hl, bc
-	ld a, [hl]
-	ld d, $10
-	call Functionce732
-	ld hl, $9
-	add hl, bc
-	ld [hl], a
-	ld hl, $10
-	add hl, bc
-	ld [hl], $f
-
-; no known jump sources
-Functionce254: ; ce254 (33:6254)
-	ret
-
-; no known jump sources
-Functionce255: ; ce255 (33:6255)
-	call Functionce71e ;  ;  ; call does not return
-
-; no known jump sources
-Jumptable_ce258: ; ce258 (33:6258)
-	dw Functionce260
-	dw Functionce274
-	dw Functionce278
-	dw Functionce289
-
-
-; no known jump sources
-Functionce260: ; ce260 (33:6260)
-	call Functionce72c
-	ld a, [hBattleTurn] ; $ff00+$e4
-	and a
-	jr nz, .asm_ce26c
-	ld a, $f0
-	jr .asm_ce26e
-.asm_ce26c
-	ld a, $cc
-.asm_ce26e
-	ld hl, $f
-	add hl, bc
-	ld [hl], a
-	ret
-
-; no known jump sources
-Functionce274: ; ce274 (33:6274)
-	call Functionce29f
-	ret
-
-; no known jump sources
-Functionce278: ; ce278 (33:6278)
-	call Functionce29f
-	ld hl, $7
-	add hl, bc
-	ld a, [hl]
-	cp $84
-	ret nc
-	ld a, $4
-	call Functionce70a
-	ret
-
-; no known jump sources
-Functionce289: ; ce289 (33:6289)
-	call Functionce29f
-	ld hl, $7
-	add hl, bc
-	ld a, [hl]
-	cp $d0
-	jr nc, .asm_ce29b
-	ld a, $4
-	call Functionce70a
-	ret
-.asm_ce29b
-	call Functioncc9bd
-	ret
-
-; known jump sources: ce274 (33:6274), ce278 (33:6278), ce289 (33:6289)
-Functionce29f: ; ce29f (33:629f)
-	ld hl, $10
-	add hl, bc
-	ld a, [hl]
-	and $7
-	inc [hl]
-	srl a
-	ld e, a
-	ld d, $0
-	ld a, [hSGB] ; $ff00+$e7
-	and a
-	jr nz, .asm_ce2b6
-	ld hl, $62c4
-	jr .asm_ce2b9
-.asm_ce2b6
-	ld hl, $62c8
-.asm_ce2b9
-	add hl, de
-	ld a, [hl]
-	ld hl, $f
-	add hl, bc
-	and [hl]
-	ld [$cfc8], a
-	ret
-; ce2c4 (33:62c4)
-
-INCBIN "baserom.gbc",$ce2c4,$ce2cc - $ce2c4
-
-; no known jump sources
-Functionce2cc: ; ce2cc (33:62cc)
-	ld hl, $b
-	add hl, bc
-	ld a, [hl]
-	ld d, $18
-	call Functionce734
-	sra a
-	sra a
-	sra a
-	ld hl, $10
-	add hl, bc
-	add [hl]
-	ld hl, $a
-	add hl, bc
-	ld [hl], a
-	ld hl, $b
-	add hl, bc
-	ld a, [hl]
-	inc [hl]
-	ld d, $18
-	call Functionce732
-	ld hl, $9
-	add hl, bc
-	ld [hl], a
-	ld hl, $10
-	add hl, bc
-	dec [hl]
-	dec [hl]
-	ret
-
-; no known jump sources
-Functionce2fd: ; ce2fd (33:62fd)
-	call Functionce71e ;  ;  ; call does not return
-
-; no known jump sources
-Jumptable_ce300: ; ce300 (33:6300)
-	dw Functionce306
-	dw Functionce330
-	dw Functionce34c
-
-
-; no known jump sources
-Functionce306: ; ce306 (33:6306)
-	ld hl, $a
-	add hl, bc
-	ld a, [hl]
-	cp $e0
-	jr nz, .asm_ce319
-	call Functionce72c
-	ld hl, $f
-	add hl, bc
-	ld [hl], $2
-	ret
-.asm_ce319
-	ld d, a
-	ld hl, $f
-	add hl, bc
-	ld e, [hl]
-	ld hl, hPushOAM ; $ff80
-	add hl, de
-	ld e, l
-	ld d, h
-	ld hl, $a
-	add hl, bc
-	ld [hl], d
-	ld hl, $f
-	add hl, bc
-	ld [hl], e
-	ret
-
-; no known jump sources
-Functionce330: ; ce330 (33:6330)
-	ld hl, $10
-	add hl, bc
-	ld a, [hl]
-	and a
-	jr z, .asm_ce33a
-	dec [hl]
-	ret
-.asm_ce33a
-	ld [hl], $4
-	ld hl, $f
-	add hl, bc
-	ld a, [hl]
-	xor $ff
-	inc a
-	ld [hl], a
-	ld hl, $a
-	add hl, bc
-	add [hl]
-	ld [hl], a
-	ret
-
-; no known jump sources
-Functionce34c: ; ce34c (33:634c)
-	ld hl, $7
-	add hl, bc
-	ld a, [hl]
-	cp $84
-	jr nc, .asm_ce35b
-	ld a, $4
-	call Functionce70a
-	ret
-.asm_ce35b
-	call Functioncc9bd
-	ret
-
-; no known jump sources
-Functionce35f: ; ce35f (33:635f)
-	call Functionce71e ;  ;  ; call does not return
-
-; no known jump sources
-Jumptable_ce362: ; ce362 (33:6362)
-	dw Functionce366
-	dw Functionce375
-
-
-; no known jump sources
-Functionce366: ; ce366 (33:6366)
-	call Functionce72c
-	ld hl, $b
-	add hl, bc
-	ld a, [hl]
-	and $7f
-	add $81
-	call Functionce7bf
-
-; no known jump sources
-Functionce375: ; ce375 (33:6375)
-	ld hl, $b
-	add hl, bc
-	bit 7, [hl]
-	jr nz, .asm_ce383
-	ld hl, $9
-	add hl, bc
-	inc [hl]
-	ret
-.asm_ce383
-	ld hl, $9
-	add hl, bc
-	dec [hl]
-	ret
-
-; no known jump sources
-Functionce389: ; ce389 (33:6389)
-	call Functionce71e ;  ;  ; call does not return
-
-; no known jump sources
-Jumptable_ce38c: ; ce38c (33:638c)
-	dw Functionce392
-	dw Functionce39c
-	dw Functionce3ae
-
-
-; no known jump sources
-Functionce392: ; ce392 (33:6392)
-	call Functionce72c
-	ld hl, $f
-	add hl, bc
-	ld [hl], $c
-	ret
-
-; no known jump sources
-Functionce39c: ; ce39c (33:639c)
-	ld hl, $f
-	add hl, bc
-	ld a, [hl]
-	and a
-	jr z, .asm_ce3a6
-	dec [hl]
-	ret
-.asm_ce3a6
-	call Functionce72c
-	ld a, $20
-	call Functionce7bf
-
-; no known jump sources
-Functionce3ae: ; ce3ae (33:63ae)
-	ld hl, $a
-	add hl, bc
-	dec [hl]
-	ret
-
-; no known jump sources
-Functionce3b4: ; ce3b4 (33:63b4)
-	ld hl, $f
-	add hl, bc
-	ld a, [hl]
-	inc [hl]
-	inc [hl]
-	push af
-	ld d, $2
-	call Functionce734
-	ld hl, $a
-	add hl, bc
-	ld [hl], a
-	pop af
-	ld d, $8
-	call Functionce732
-	ld hl, $9
-	add hl, bc
-	ld [hl], a
-	ret
-
-; no known jump sources
-Functionce3d2: ; ce3d2 (33:63d2)
-	ld hl, $a
-	add hl, bc
-	ld a, [hl]
-	cp $20
-	jr c, .asm_ce3df
-	call Functioncc9bd
-	ret
-.asm_ce3df
-	ld hl, $b
-	add hl, bc
-	ld a, [hl]
-	ld d, $8
-	call Functionce732
-	ld hl, $9
-	add hl, bc
-	ld [hl], a
-	ld hl, $b
-	add hl, bc
-	ld a, [hl]
-	add $2
-	ld [hl], a
-	and $7
-	ret nz
-	ld hl, $a
-	add hl, bc
-	inc [hl]
-	ret
-
-; no known jump sources
-Functionce3ff: ; ce3ff (33:63ff)
-	call Functionce71e ;  ;  ; call does not return
-
-; no known jump sources
-Jumptable_ce402: ; ce402 (33:6402)
-	dw Functionce406
-	dw Functionce412
-
-
-; no known jump sources
-Functionce406: ; ce406 (33:6406)
-	ld hl, $b
-	add hl, bc
-	ld a, [hl]
-	ld hl, $7
-	add hl, bc
-	add [hl]
-	ld [hl], a
-	ret
-
-; no known jump sources
-Functionce412: ; ce412 (33:6412)
-	call Functioncc9bd
-	ret
-
-; no known jump sources
-Functionce416: ; ce416 (33:6416)
-	ld hl, $b
-	add hl, bc
-	ld a, [hl]
-	ld d, $18
-	push af
-	push de
-	call Functionce734
-	ld hl, $a
-	add hl, bc
-	ld [hl], a
-	pop de
-	pop af
-	call Functionce732
-	ld hl, $9
-	add hl, bc
-	sra a
-	ld [hl], a
-	ld hl, $b
-	add hl, bc
-	ld a, [hl]
-	inc [hl]
-	ret
-
-; no known jump sources
-Functionce43a: ; ce43a (33:643a)
-	call Functionce71e ;  ;  ; call does not return
-
-; no known jump sources
-Jumptable_ce43d: ; ce43d (33:643d)
-	dw Functionce443
-	dw Functionce465
-	dw Functionce490
-
-
-; no known jump sources
-Functionce443: ; ce443 (33:6443)
-	call Functionce72c
-	ld hl, $f
-	add hl, bc
-	ld [hl], $28
-	ld hl, $b
-	add hl, bc
-	ld a, [hl]
-	and $f
-	ld hl, $3
-	add hl, bc
-	add [hl]
-	call Functionce7bf
-	ld hl, $b
-	add hl, bc
-	ld a, [hl]
-	and $f0
-	or $8
-	ld [hl], a
-
-; no known jump sources
-Functionce465: ; ce465 (33:6465)
-	ld hl, $f
-	add hl, bc
-	ld a, [hl]
-	and a
-	jr z, .asm_ce48b
-	dec [hl]
-	add $8
-	ld d, a
-	ld hl, $b
-	add hl, bc
-	ld a, [hl]
-	push af
-	push de
-	call Functionce734
-	ld hl, $a
-	add hl, bc
-	ld [hl], a
-	pop de
-	pop af
-	call Functionce732
-	ld hl, $9
-	add hl, bc
-	ld [hl], a
-	ret
-.asm_ce48b
-	ld [hl], $10
-	call Functionce72c
-
-; no known jump sources
-Functionce490: ; ce490 (33:6490)
-	ld hl, $f
-	add hl, bc
-	ld a, [hl]
-	dec [hl]
-	and a
-	ret nz
-	call Functioncc9bd
-	ret
-
-; no known jump sources
-Functionce49c: ; ce49c (33:649c)
-	call Functionce71e ;  ;  ; call does not return
-
-; no known jump sources
-Jumptable_ce49f: ; ce49f (33:649f)
-	dw Functionce4a3
-	dw Functionce4b0
-
-
-; no known jump sources
-Functionce4a3: ; ce4a3 (33:64a3)
-	call Functionce72c
-	ld hl, $b
-	add hl, bc
-	ld a, $24
-	add [hl]
-	call Functionce7bf
-
-; no known jump sources
-Functionce4b0: ; ce4b0 (33:64b0)
-	ld hl, $a
-	add hl, bc
-	ld a, [hl]
-	cp $38
-	jr nc, .asm_ce4d8
-	inc [hl]
-	ld hl, $f
-	add hl, bc
-	ld a, [hl]
-	inc [hl]
-	ld d, $18
-	call Functionce732
-	ld hl, $9
-	add hl, bc
-	ld [hl], a
-	ld hl, $8
-	add hl, bc
-	ld a, [hl]
-	and $1
-	ret nz
-	ld hl, $7
-	add hl, bc
-	dec [hl]
-	ret
-.asm_ce4d8
-	call Functioncc9bd
-	ret
-
-; no known jump sources
-Functionce4dc: ; ce4dc (33:64dc)
-	ld hl, $b
-	add hl, bc
-	ld a, [hl]
-	and a
-	ret z
-	ld d, a
-	ld hl, $f
-	add hl, bc
-	ld a, [hl]
-	inc [hl]
-	call Functionce734
-	bit 7, a
-	jr nz, .asm_ce4f4
-	xor $ff
-	inc a
-.asm_ce4f4
-	ld hl, $a
-	add hl, bc
-	ld [hl], a
-	ld hl, $f
-	add hl, bc
-	ld a, [hl]
-	and $1f
-	ret nz
-	ld hl, $b
-	add hl, bc
-	srl [hl]
-	ret
-
-; no known jump sources
-Functionce508: ; ce508 (33:6508)
-	ld hl, $f
-	add hl, bc
-	ld a, [hl]
-	cp $10
-	jr nc, .asm_ce52e
-	inc [hl]
-	inc [hl]
-	ld d, a
-	ld hl, $b
-	add hl, bc
-	ld a, [hl]
-	push af
-	push de
-	call Functionce734
-	ld hl, $a
-	add hl, bc
-	ld [hl], a
-	pop de
-	pop af
-	call Functionce732
-	ld hl, $9
-	add hl, bc
-	ld [hl], a
-	ret
-.asm_ce52e
-	call Functioncc9bd
-	ret
-
-; no known jump sources
-Functionce532: ; ce532 (33:6532)
-	ld hl, $b
-	add hl, bc
-	ld e, [hl]
-	ld hl, $f
-	add hl, bc
-	ld d, [hl]
-	ld a, e
-	and $c0
-	rlca
-	rlca
-	add [hl]
-	ld [hl], a
-	ld a, e
-	and $3f
-	push af
-	push de
-	call Functionce734
-	ld hl, $a
-	add hl, bc
-	ld [hl], a
-	pop de
-	pop af
-	call Functionce732
-	ld hl, $9
-	add hl, bc
-	ld [hl], a
-	ret
-
-; no known jump sources
-Functionce55b: ; ce55b (33:655b)
-	call Functionce71e ;  ;  ; call does not return
-
-; no known jump sources
-Jumptable_ce55e: ; ce55e (33:655e)
-	dw Functionce564
-	dw Functionce56e
-	dw Functionce577
-
-
-; no known jump sources
-Functionce564: ; ce564 (33:6564)
-	ld d, $18
-	ld hl, $b
-	add hl, bc
-	ld a, [hl]
-	inc [hl]
-	jr asm_ce58f
-
-; no known jump sources
-Functionce56e: ; ce56e (33:656e)
-	call Functionce72c
-	ld hl, $f
-	add hl, bc
-	ld [hl], $18
-
-; no known jump sources
-Functionce577: ; ce577 (33:6577)
-	ld hl, $f
-	add hl, bc
-	ld a, [hl]
-	cp $80
-	jr nc, .asm_ce58b
-	ld d, a
-	add $8
-	ld [hl], a
-	ld hl, $b
-	add hl, bc
-	ld a, [hl]
-	jr asm_ce58f
-.asm_ce58b
-	call Functioncc9bd
-	ret
-asm_ce58f: ; ce58f (33:658f)
-	call Functionce6f1
-	ret
-
-; no known jump sources
-Functionce593: ; ce593 (33:6593)
-	call Functionce71e ;  ;  ; call does not return
-
-; no known jump sources
-Jumptable_ce596: ; ce596 (33:6596)
-	dw Functionce5b3
-	dw Functionce59a
-
-
-; no known jump sources
-Functionce59a: ; ce59a (33:659a)
-	ld hl, $7
-	add hl, bc
-	ld a, [hl]
-	cp $30
-	jr c, .asm_ce5b0
-	ld hl, $7
-	add hl, bc
-	dec [hl]
-	dec [hl]
-	ld hl, $8
-	add hl, bc
-	inc [hl]
-	inc [hl]
-	ret
-.asm_ce5b0
-	call Functioncc9bd
-
-; no known jump sources
-Functionce5b3: ; ce5b3 (33:65b3)
-	ret
-
-; no known jump sources
-Functionce5b4: ; ce5b4 (33:65b4)
-	ld d, $50
-	ld hl, $b
-	add hl, bc
-	ld a, [hl]
-	inc [hl]
-	inc [hl]
-	push af
-	push de
-	call Functionce734
-	sra a
-	sra a
-	ld hl, $f
-	add hl, bc
-	add [hl]
-	inc [hl]
-	ld hl, $a
-	add hl, bc
-	ld [hl], a
-	pop de
-	pop af
-	call Functionce732
-	ld hl, $9
-	add hl, bc
-	ld [hl], a
-	ret
-
-; no known jump sources
-Functionce5dc: ; ce5dc (33:65dc)
-	ld hl, $a
-	add hl, bc
-	ld a, [hl]
-	cp $d0
-	jr z, .asm_ce5ea
-	dec [hl]
-	dec [hl]
-	dec [hl]
-	dec [hl]
-	ret
-.asm_ce5ea
-	call Functioncc9bd
-	ret
-
-; no known jump sources
-Functionce5ee: ; ce5ee (33:65ee)
-	call Functionce71e ;  ;  ; call does not return
-
-; no known jump sources
-Jumptable_ce5f1: ; ce5f1 (33:65f1)
-	dw Functionce5f9
-	dw Functionce60a
-	dw Functionce622
-	dw Functionce618
-
-
-; no known jump sources
-Functionce5f9: ; ce5f9 (33:65f9)
-	ld hl, $b
-	add hl, bc
-	ld a, [hl]
-	and a
-	jr nz, asm_ce61c
-	call Functionce72c
-	ld hl, $a
-	add hl, bc
-	ld [hl], $ec
-
-; no known jump sources
-Functionce60a: ; ce60a (33:660a)
-	ld hl, $a
-	add hl, bc
-	ld a, [hl]
-	cp $4
-	jr z, Functionce618
-	inc [hl]
-	inc [hl]
-	inc [hl]
-	inc [hl]
-	ret
-
-; known jump sources: ce611 (33:6611)
-Functionce618: ; ce618 (33:6618)
-	call Functioncc9bd
-	ret
-asm_ce61c: ; ce61c (33:661c)
-	call Functionce72c
-	call Functionce72c
-
-; no known jump sources
-Functionce622: ; ce622 (33:6622)
-	ld hl, $a
-	add hl, bc
-	ld a, [hl]
-	cp $d8
-	ret z
-	dec [hl]
-	dec [hl]
-	dec [hl]
-	dec [hl]
-	ret
-
-; no known jump sources
-Functionce62f: ; ce62f (33:662f)
-	call Functionce71e ;  ;  ; call does not return
-
-; no known jump sources
-Jumptable_ce632: ; ce632 (33:6632)
-	dw Functionce63a
-	dw Functionce648
-	dw Functionce65c
-	dw Functionce672
-
-
-; no known jump sources
-Functionce63a: ; ce63a (33:663a)
-	ld hl, $b
-	add hl, bc
-	ld a, [hl]
-	ld hl, $e
-	add hl, bc
-	ld [hl], a
-	call Functionce72c
-	ret
-
-; no known jump sources
-Functionce648: ; ce648 (33:6648)
-	ld hl, $a
-	add hl, bc
-	ld a, [hl]
-	add $4
-	cp $70
-	jr c, .asm_ce654
-	xor a
-.asm_ce654
-	ld [hl], a
-	ld hl, $9
-	add hl, bc
-	inc [hl]
-	inc [hl]
-	ret
-
-; no known jump sources
-Functionce65c: ; ce65c (33:665c)
-	ld hl, $a
-	add hl, bc
-	ld a, [hl]
-	add $4
-	cp $70
-	jr c, .asm_ce668
-	xor a
-.asm_ce668
-	ld [hl], a
-	ld hl, $9
-	add hl, bc
-	ld a, [hl]
-	add $8
-	ld [hl], a
-	ret
-
-; no known jump sources
-Functionce672: ; ce672 (33:6672)
-	ld hl, $a
-	add hl, bc
-	ld a, [hl]
-	add $4
-	cp $70
-	jr c, .asm_ce67e
-	xor a
-.asm_ce67e
-	ld [hl], a
-	ld hl, $9
-	add hl, bc
-	ld a, [hl]
-	add $4
-	ld [hl], a
-	ret
-
-; no known jump sources
-Functionce688: ; ce688 (33:6688)
-	ld hl, $7
-	add hl, bc
-	ld d, [hl]
-	ld hl, $f
-	add hl, bc
-	ld e, [hl]
-	ld hl, $b
-	add hl, bc
-	ld a, [hl]
-	ld l, a
-	and $f0
-	ld h, a
-	swap a
-	or h
-	ld h, a
-	ld a, l
-	and $f
-	swap a
-	ld l, a
-	add hl, de
-	ld e, l
-	ld d, h
-	ld hl, $7
-	add hl, bc
-	ld [hl], d
-	ld hl, $f
-	add hl, bc
-	ld [hl], e
-	ret
-
-; no known jump sources
-Functionce6b3: ; ce6b3 (33:66b3)
-	ld d, $18
-	ld hl, $b
-	add hl, bc
-	ld a, [hl]
-	inc [hl]
-	call Functionce6f1
-	ret
-
-; no known jump sources
-Functionce6bf: ; ce6bf (33:66bf)
-	ld d, $18
-	ld hl, $10
-	add hl, bc
-	ld a, [hl]
-	inc [hl]
-	srl a
-	ld hl, $b
-	add hl, bc
-	add [hl]
-	call Functionce6f1
-	ret
-
-; no known jump sources
-Functionce6d2: ; ce6d2 (33:66d2)
-	ld hl, $f
-	add hl, bc
-	ld a, [hl]
-	cp $20
-	jr nc, .asm_ce6ed
-	inc [hl]
-	ld hl, $b
-	add hl, bc
-	ld d, [hl]
-	call Functionce734
-	xor $ff
-	inc a
-	ld hl, $a
-	add hl, bc
-	ld [hl], a
-	ret
-.asm_ce6ed
-	call Functioncc9bd
-	ret
-
-; known jump sources: ce58f (33:658f), ce6bb (33:66bb), ce6ce (33:66ce)
-Functionce6f1: ; ce6f1 (33:66f1)
-	push af
-	push de
-	call Functionce734
-	sra a
-	sra a
-	ld hl, $a
-	add hl, bc
-	ld [hl], a
-	pop de
-	pop af
-	call Functionce732
-	ld hl, $9
-	add hl, bc
-	ld [hl], a
-	ret
-
-; known jump sources: cd142 (33:5142), cd154 (33:5154), cd2ad (33:52ad), cd553 (33:5553), cd609 (33:5609), cd706 (33:5706), cd733 (33:5733), ce02f (33:602f), ce08d (33:608d), ce10a (33:610a), ce285 (33:6285), ce297 (33:6297), ce357 (33:6357)
-Functionce70a: ; ce70a (33:670a)
-	and $f
-	ld e, a
-	ld hl, $7
-	add hl, bc
-	add [hl]
-	ld [hl], a
-	srl e
-	ld hl, $8
-	add hl, bc
-.asm_ce719
-	dec [hl]
-	dec e
-	jr nz, .asm_ce719
-	ret
-
-; known jump sources: cd06e (33:506e), cd0e3 (33:50e3), cd12a (33:512a), cd15c (33:515c), cd212 (33:5212), cd284 (33:5284), cd2be (33:52be), cd306 (33:5306), cd3ae (33:53ae), cd3f2 (33:53f2), cd478 (33:5478), cd58a (33:558a), cd5e9 (33:55e9), cd66a (33:566a), cd6e3 (33:56e3), cd71a (33:571a), cd7a4 (33:57a4), cd80c (33:580c), cd824 (33:5824), cd89a (33:589a), cd900 (33:5900), cd954 (33:5954), cda31 (33:5a31), cda4d (33:5a4d), cdad6 (33:5ad6), cdb06 (33:5b06), cdb80 (33:5b80), cdcc3 (33:5cc3), cdd2a (33:5d2a), cdd90 (33:5d90), cddf9 (33:5df9), cde6b (33:5e6b), cde89 (33:5e89), cdf59 (33:5f59), ce00b (33:600b), ce063 (33:6063), ce0c5 (33:60c5), ce10e (33:610e), ce1e7 (33:61e7), ce226 (33:6226), ce255 (33:6255), ce2fd (33:62fd), ce35f (33:635f), ce389 (33:6389), ce3ff (33:63ff), ce43a (33:643a), ce49c (33:649c), ce55b (33:655b), ce593 (33:6593), ce5ee (33:65ee), ce62f (33:662f)
-Functionce71e: ; ce71e (33:671e)
-	pop de
-	ld hl, $e
-	add hl, bc
-	ld l, [hl]
-	ld h, $0
-	add hl, hl
-	add hl, de
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	jp [hl]
-
-; known jump sources: cd0ea (33:50ea), cd17a (33:517a), cd192 (33:5192), cd196 (33:5196), cd1ce (33:51ce), cd1e5 (33:51e5), cd20a (33:520a), cd21e (33:521e), cd22f (33:522f), cd2b5 (33:52b5), cd2c5 (33:52c5), cd31e (33:531e), cd321 (33:5321), cd37a (33:537a), cd3b7 (33:53b7), cd42f (33:542f), cd48d (33:548d), cd49f (33:549f), cd545 (33:5545), cd5a1 (33:55a1), cd5f2 (33:55f2), cd60d (33:560d), cd677 (33:5677), cd694 (33:5694), cd6ea (33:56ea), cd725 (33:5725), cd747 (33:5747), cd76e (33:576e), cd7ab (33:57ab), cd817 (33:5817), cd835 (33:5835), cd88f (33:588f), cd8ab (33:58ab), cd8f5 (33:58f5), cd907 (33:5907), cd961 (33:5961), cd977 (33:5977), cda43 (33:5a43), cda58 (33:5a58), cda76 (33:5a76), cda84 (33:5a84), cdadf (33:5adf), cdaf6 (33:5af6), cdb50 (33:5b50), cdbe2 (33:5be2), cdbe6 (33:5be6), cdc23 (33:5c23), cdc44 (33:5c44), cdc4d (33:5c4d), cdc71 (33:5c71), cdca2 (33:5ca2), cdcd9 (33:5cd9), cdd31 (33:5d31), cdd97 (33:5d97), cde02 (33:5e02), cde72 (33:5e72), cde90 (33:5e90), cdf88 (33:5f88), ce014 (33:6014), ce115 (33:6115), ce1ee (33:61ee), ce22d (33:622d), ce260 (33:6260), ce30f (33:630f), ce366 (33:6366), ce392 (33:6392), ce3a6 (33:63a6), ce443 (33:6443), ce48d (33:648d), ce4a3 (33:64a3), ce56e (33:656e), ce601 (33:6601), ce61c (33:661c), ce61f (33:661f), ce644 (33:6644)
-Functionce72c: ; ce72c (33:672c)
-	ld hl, $e
-	add hl, bc
-	inc [hl]
-	ret
-
-; known jump sources: cd0d2 (33:50d2), cd11c (33:511c), cd33a (33:533a), cd44a (33:544a), cd7f5 (33:57f5), cd929 (33:5929), cd9bb (33:59bb), cdd69 (33:5d69), cddd3 (33:5dd3), cdefb (33:5efb), cdf39 (33:5f39), cdf72 (33:5f72), cdfaa (33:5faa), cdfe9 (33:5fe9), ce172 (33:6172), ce1c7 (33:61c7), ce218 (33:6218), ce246 (33:6246), ce2ee (33:62ee), ce3c9 (33:63c9), ce3e6 (33:63e6), ce429 (33:6429), ce482 (33:6482), ce4c2 (33:64c2), ce525 (33:6525), ce552 (33:6552), ce5d3 (33:65d3), ce701 (33:6701), ce76c (33:676c)
-Functionce732: ; ce732 (33:6732)
-	add $10
-
-; known jump sources: cd09c (33:509c), cd0c8 (33:50c8), cd112 (33:5112), cd1ad (33:51ad), cd1f4 (33:51f4), cd2d7 (33:52d7), cd34d (33:534d), cd440 (33:5440), cd4ca (33:54ca), cd502 (33:5502), cd5c5 (33:55c5), cd6a4 (33:56a4), cd711 (33:5711), cd73e (33:573e), cd7eb (33:57eb), cd86a (33:586a), cd8d6 (33:58d6), cd91f (33:591f), cd9a4 (33:59a4), cda90 (33:5a90), cdb77 (33:5b77), cdc30 (33:5c30), cdc5e (33:5c5e), cdc7b (33:5c7b), cdd07 (33:5d07), cdd5f (33:5d5f), cddc5 (33:5dc5), cde31 (33:5e31), cde5d (33:5e5d), cdee6 (33:5ee6), cdf24 (33:5f24), cdf95 (33:5f95), cdfd4 (33:5fd4), ce03c (33:603c), ce0a5 (33:60a5), ce0e4 (33:60e4), ce130 (33:6130), ce168 (33:6168), ce1bd (33:61bd), ce202 (33:6202), ce237 (33:6237), ce2d3 (33:62d3), ce3be (33:63be), ce41f (33:641f), ce478 (33:6478), ce4ea (33:64ea), ce51b (33:651b), ce548 (33:6548), ce5bf (33:65bf), ce6e1 (33:66e1), ce6f3 (33:66f3), ce766 (33:6766)
-Functionce734: ; ce734 (33:6734)
-	and $3f
-	cp $20
-	jr nc, .asm_ce73f
-	call Functionce749
-	ld a, h
-	ret
-.asm_ce73f
-	and $1f
-	call Functionce749
-	ld a, h
-	xor $ff
-	inc a
-	ret
-
-; known jump sources: ce73a (33:673a), ce741 (33:6741)
-Functionce749: ; ce749 (33:6749)
-	ld e, a
-	ld a, d
-	ld d, $0
-	ld hl, $677f
-	add hl, de
-	add hl, de
-	ld e, [hl]
-	inc hl
-	ld d, [hl]
-	ld hl, $0
-.asm_ce758
-	srl a
-	jr nc, .asm_ce75d
-	add hl, de
-.asm_ce75d
-	sla e
-	rl d
-	and a
-	jr nz, .asm_ce758
-	ret
-
-; no known jump sources
-Functionce765: ; ce765 (33:6765)
-	ld a, e
-	call Functionce734
-	ld e, a
-	ret
-
-; no known jump sources
-Functionce76b: ; ce76b (33:676b)
-	ld a, e
-	call Functionce732
-	ld e, a
-	ret
-; ce771 (33:6771)
-
-INCBIN "baserom.gbc",$ce771,$ce7bf - $ce771
-
-; known jump sources: cd18f (33:518f), cd19b (33:519b), cd1cb (33:51cb), cd1d4 (33:51d4), cd1e2 (33:51e2), cd2ba (33:52ba), cd419 (33:5419), cd434 (33:5434), cd4ab (33:54ab), cd53c (33:553c), cd618 (33:5618), cd6f4 (33:56f4), cd74c (33:574c), cd773 (33:5773), cd81c (33:581c), cd883 (33:5883), cd8e8 (33:58e8), cda40 (33:5a40), cda73 (33:5a73), cda89 (33:5a89), cdc20 (33:5c20), cdc3b (33:5c3b), cdc4a (33:5c4a), cdce9 (33:5ce9), cdd4b (33:5d4b), cddb1 (33:5db1), cddf5 (33:5df5), cde0c (33:5e0c), cde85 (33:5e85), cdebb (33:5ebb), ce372 (33:6372), ce3ab (33:63ab), ce458 (33:6458), ce4ad (33:64ad)
-Functionce7bf: ; ce7bf (33:67bf)
-	ld hl, $3
-	add hl, bc
-	ld [hl], a
-	ld hl, $c
-	add hl, bc
-	ld [hl], $0
-	ld hl, $d
-	add hl, bc
-	ld [hl], $ff
-	ret
-
-
-Functionce7d1: ; ce7d1
-.asm_ce7d1
-	ld hl, $000c
-	add hl, bc
-	ld a, [hl]
-	and a
-	jr z, .asm_ce7e1
-	dec [hl]
-	call Functionce823
-	ld a, [hli]
-	push af
-	jr .asm_ce7fd
-
-.asm_ce7e1
-	ld hl, $000d
-	add hl, bc
-	inc [hl]
-	call Functionce823
-	ld a, [hli]
-	cp $fe
-	jr z, .asm_ce815
-	cp $ff
-	jr z, .asm_ce807
-	push af
-	ld a, [hl]
-	push hl
-	and $3f
-	ld hl, $000c
-	add hl, bc
-	ld [hl], a
-	pop hl
-
-.asm_ce7fd
-	ld a, [hl]
-	and $c0
-	srl a
-	ld [$d420], a
-	pop af
-	ret
-
-.asm_ce807
-	xor a
-	ld hl, $000c
-	add hl, bc
-	ld [hl], a
-	ld hl, $000d
-	add hl, bc
-	dec [hl]
-	dec [hl]
-	jr .asm_ce7d1
-
-.asm_ce815
-	xor a
-	ld hl, $000c
-	add hl, bc
-	ld [hl], a
-	dec a
-	ld hl, $000d
-	add hl, bc
-	ld [hl], a
-	jr .asm_ce7d1
-; ce823
-
-Functionce823: ; ce823
-	ld hl, $0003
-	add hl, bc
-	ld e, [hl]
-	ld d, $0
-	ld hl, $685e
-	add hl, de
-	add hl, de
-	ld e, [hl]
-	inc hl
-	ld d, [hl]
-	ld hl, $000d
-	add hl, bc
-	ld l, [hl]
-	ld h, $0
-	add hl, hl
-	add hl, de
-	ret
-; ce83c
-
-Functionce83c: ; ce83c
-	ld l, a
-	ld h, $0
-	ld de, $6eae
-	add hl, hl
-	add hl, hl
-	add hl, de
-	ret
-; ce846
-
-
-; known jump sources: cc4b0 (33:44b0)
-Functionce846: ; ce846 (33:6846)
-	push hl
-	ld l, a
-	ld h, $0
-	add hl, hl
-	add hl, hl
-	ld de, $7cf6
-	add hl, de
-	ld c, [hl]
-	inc hl
-	ld b, [hl]
-	inc hl
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	pop de
-	push bc
-	call Functione73
-	pop bc
-	ret
-; ce85e (33:685e)
-
-INCBIN "baserom.gbc",$ce85e,$cfd9e - $ce85e
-
-;                          Songs iii
-
-INCLUDE "audio/music/postcredits.asm"
-
-
-
-;                       Pic animations I
-
-SECTION "bank34",ROMX,BANK[$34]
-
-; Pic animations asm
-Functiond0000: ; d0000
-	ld hl, $c4ac
-	ld a, [IsInBattle]
-	cp $1
-	jr z, .asm_d0012
-	ld e, $0
-	ld d, $0
-	call Functiond008e
-	ret
-
-.asm_d0012
-	ld e, $1
-	ld d, $0
-	call Functiond008e
-	ret
-; d001a
-
-INCBIN "baserom.gbc",$d001a,$d008e - $d001a
-
-Functiond008e: ; d008e
-	call Functiond01c6
-	ret c
-	call Functiond00a3
-.asm_d0095
-	call Functiond00b4
-	push af
-	callba Function10402d
-	pop af
-	jr nc, .asm_d0095
-	ret
-; d00a3
-
-Functiond00a3: ; d00a3
-	push hl
-	ld c, e
-	ld b, $0
-	ld hl, $4042
-	add hl, bc
-	add hl, bc
-	ld a, [hli]
-	ld b, [hl]
-	ld c, a
-	pop hl
-	call Functiond01d6
-	ret
-; d00b4
-
-Functiond00b4: ; d00b4
-	ld a, [rSVBK]
-	push af
-	ld a, $2
-	ld [rSVBK], a
-	ld a, [$d168]
-	ld c, a
-	ld b, $0
-	ld hl, $d169
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	add hl, bc
-	ld a, [hl]
-	ld hl, $40da
-	rst JumpTable
-	ld a, [$d168]
-	ld c, a
-	pop af
-	ld [rSVBK], a
-	ld a, c
-	and $80
-	ret z
-	scf
-	ret
-; d00da
-
-Tabled00da: ; d00da
-	dw Functiond0171
-	dw Functiond0166
-	dw Functiond00f2
-	dw Functiond00fe
-	dw Functiond010b
-	dw Functiond011d
-	dw Functiond012f
-	dw Functiond0141
-	dw Functiond0155
-	dw Functiond017a
-	dw Functiond0188
-	dw Functiond0196
-; d00f2
-
-Functiond00f2: ; d00f2
-	ld a, $12
-	ld [$d181], a
-	ld a, [$d168]
-	inc a
-	ld [$d168], a
-
-Functiond00fe: ; d00fe
-	ld hl, $d181
-	dec [hl]
-	ret nz
-	ld a, [$d168]
-	inc a
-	ld [$d168], a
-	ret
-; d010b
-
-Functiond010b: ; d010b
-	ld c, $0
-	ld b, $0
-	call Functiond0228
-	call Functiond0504
-	ld a, [$d168]
-	inc a
-	ld [$d168], a
-	ret
-; d011d
-
-Functiond011d: ; d011d
-	ld c, $0
-	ld b, $4
-	call Functiond0228
-	call Functiond0504
-	ld a, [$d168]
-	inc a
-	ld [$d168], a
-	ret
-; d012f
-
-Functiond012f: ; d012f
-	ld c, $1
-	ld b, $0
-	call Functiond0228
-	call Functiond0504
-	ld a, [$d168]
-	inc a
-	ld [$d168], a
-	ret
-; d0141
-
-Functiond0141: ; d0141
-	call Functiond0250
-	ld a, [$d17e]
-	bit 7, a
-	ret z
-	call Functiond04bd
-	ld a, [$d168]
-	inc a
-	ld [$d168], a
-	ret
-; d0155
-
-Functiond0155: ; d0155
-	call Functiond0250
-	ld a, [$d17e]
-	bit 7, a
-	ret z
-	ld a, [$d168]
-	inc a
-	ld [$d168], a
-	ret
-; d0166
-
-Functiond0166: ; d0166
-	call Functiond01a9
-	ld a, [$d168]
-	inc a
-	ld [$d168], a
-	ret
-; d0171
-
-Functiond0171: ; d0171
-	call Functiond01a9
-	ld hl, $d168
-	set 7, [hl]
-	ret
-; d017a
-
-Functiond017a: ; d017a
-	ld a, [$d16b]
-	call Function37e2
-	ld a, [$d168]
-	inc a
-	ld [$d168], a
-	ret
-; d0188
-
-Functiond0188: ; d0188
-	ld a, [$d16b]
-	call Function37d5
-	ld a, [$d168]
-	inc a
-	ld [$d168], a
-	ret
-; d0196
-
-Functiond0196: ; d0196
-	ld a, $f
-	ld [CryTracks], a
-	ld a, [$d16b]
-	call Function37c4
-	ld a, [$d168]
-	inc a
-	ld [$d168], a
-	ret
-; d01a9
-
-Functiond01a9: ; d01a9
-	ld a, [rSVBK]
-	push af
-	ld a, $2
-	ld [rSVBK], a
-	call Functiond04bd
-	callba Function10402d
-	call Functiond0536
-	callba Function104047
-	pop af
-	ld [rSVBK], a
-	ret
-; d01c6
-
-Functiond01c6: ; d01c6
-	ld a, [CurPartySpecies]
-	cp $fd
-	jr z, .asm_d01d4
-	call IsAPokemon
-	jr c, .asm_d01d4
-	and a
-	ret
-
-.asm_d01d4
-	scf
-	ret
-; d01d6
-
-Functiond01d6: ; d01d6
-	ld a, [rSVBK]
-	push af
-	ld a, $2
-	ld [rSVBK], a
-	push bc
-	push de
-	push hl
-	ld hl, $d168
-	ld bc, $0029
-	xor a
-	call ByteFill
-	pop hl
-	pop de
-	pop bc
-	ld a, c
-	ld [$d169], a
-	ld a, b
-	ld [$d16a], a
-	ld a, l
-	ld [$d16f], a
-	ld a, h
-	ld [$d170], a
-	ld a, d
-	ld [$d16e], a
-	ld a, $1
-	ld hl, CurPartySpecies
-	call GetFarWRAMByte
-	ld [$d16b], a
-	ld a, $1
-	ld hl, UnownLetter
-	call GetFarWRAMByte
-	ld [$d16c], a
-	call Functiond065c
-	ld [$d16d], a
-	call Functiond05b4
-	ld a, c
-	ld [$d171], a
-	pop af
-	ld [rSVBK], a
-	ret
-; d0228
-
-Functiond0228: ; d0228
-	ld a, [rSVBK]
-	push af
-	ld a, $2
-	ld [rSVBK], a
-	push bc
-	ld hl, $d172
-	ld bc, $001f
-	xor a
-	call ByteFill
-	pop bc
-	ld a, b
-	ld [$d173], a
-	ld a, c
-	ld [$d172], a
-	call Functiond055c
-	call Functiond05ce
-	call Functiond061b
-	pop af
-	ld [rSVBK], a
-	ret
-; d0250
-
-Functiond0250: ; d0250
-	xor a
-	ld [hBGMapMode], a
-
-Functiond0253: ; d0253
-	ld a, [$d17e]
-	and $7f
-	ld hl, Tabled025d
-	rst JumpTable
-	ret
-; d025d
-
-Tabled025d: ; d025d
-	dw Functiond0261
-	dw Functiond0282
-; d0261
-
-Functiond0261: ; d0261
-	call Functiond02f8
-	ld a, [$d182]
-	cp $ff
-	jr z, Functiond02a8
-	cp $fe
-	jr z, Functiond028e
-	cp $fd
-	jr z, Functiond0296
-	call Functiond02c8
-	ld a, [$d183]
-	call Functiond02ae
-	ld [$d181], a
-	call Functiond02dc
-
-Functiond0282: ; d0282
-	ld a, [$d181]
-	dec a
-	ld [$d181], a
-	ret nz
-	call Functiond02e4
-	ret
-; d028e
-
-Functiond028e: ; d028e
-	ld a, [$d183]
-	ld [$d17f], a
-	jr Functiond0253
-; d0296
-
-Functiond0296: ; d0296
-	ld a, [$d17f]
-	and a
-	ret z
-	dec a
-	ld [$d17f], a
-	ret z
-	ld a, [$d183]
-	ld [$d17d], a
-	jr Functiond0253
-; d02a8
-
-Functiond02a8: ; d02a8
-	ld hl, $d17e
-	set 7, [hl]
-	ret
-; d02ae
-
-Functiond02ae: ; d02ae
-	ld c, a
-	ld b, $0
-	ld hl, $0000
-	ld a, [$d173]
-	call AddNTimes
-	ld a, h
-	swap a
-	and $f0
-	ld h, a
-	ld a, l
-	swap a
-	and $f
-	or h
-	add c
-	ret
-; d02c8
-
-Functiond02c8: ; d02c8
-	call Functiond04bd
-	ld a, [$d182]
-	and a
-	ret z
-	call Functiond031b
-	push hl
-	call Functiond033b
-	pop hl
-	call Functiond036b
-	ret
-; d02dc
-
-Functiond02dc: ; d02dc
-	ld a, [$d17e]
-	inc a
-	ld [$d17e], a
-	ret
-; d02e4
-
-Functiond02e4: ; d02e4
-	ld a, [$d17e]
-	dec a
-	ld [$d17e], a
-	ret
-; d02ec
-
-Functiond02ec: ; d02ec
-	ld a, [$d16b]
-	cp $c9
-	ret
-; d02f2
-
-Functiond02f2: ; d02f2
-	ld a, [$d16b]
-	cp $fd
-	ret
-; d02f8
-
-Functiond02f8: ; d02f8
-	push hl
-	ld a, [$d17d]
-	ld e, a
-	ld d, $0
-	ld hl, $d175
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	add hl, de
-	add hl, de
-	ld a, [$d174]
-	call GetFarHalfword
-	ld a, l
-	ld [$d182], a
-	ld a, h
-	ld [$d183], a
-	ld hl, $d17d
-	inc [hl]
-	pop hl
-	ret
-; d031b
-
-Functiond031b: ; d031b
-	ld a, [$d182]
-	dec a
-	ld c, a
-	ld b, $0
-	ld hl, $d178
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	add hl, bc
-	add hl, bc
-	ld a, [$d177]
-	call GetFarHalfword
-	ld a, [$d177]
-	call GetFarByte
-	ld [$d180], a
-	inc hl
-	ret
-; d033b
-
-Functiond033b: ; d033b
-	call Functiond0356
-	push bc
-	ld hl, $d17b
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	ld a, [$d180]
-	call AddNTimes
-	pop bc
-	ld de, $d188
-	ld a, [$d17a]
-	call FarCopyBytes
-	ret
-; d0356
-
-Functiond0356: ; d0356
-	push hl
-	ld a, [$d171]
-	sub $5
-	ld c, a
-	ld b, $0
-	ld hl, $4368
-	add hl, bc
-	ld c, [hl]
-	ld b, $0
-	pop hl
-	ret
-; d0368
-
-INCBIN "baserom.gbc",$d0368,$d036b - $d0368
-
-Functiond036b: ; d036b
-	xor a
-	ld [$d187], a
-	ld [$d186], a
-	ld [$d185], a
-.asm_d0375
-	push hl
-	call Functiond0392
-	pop hl
-	ld a, b
-	and a
-	jr z, .asm_d038a
-	ld a, [$d177]
-	call GetFarByte
-	inc hl
-	push hl
-	call Functiond03bd
-	pop hl
-
-.asm_d038a
-	push hl
-	call Functiond0499
-	pop hl
-	jr nc, .asm_d0375
-	ret
-; d0392
-
-Functiond0392: ; d0392
-	ld a, [$d187]
-	and $f8
-	rrca
-	rrca
-	rrca
-	ld e, a
-	ld d, $0
-	ld hl, $d188
-	add hl, de
-	ld b, [hl]
-	ld a, [$d187]
-	and $7
-	jr z, .asm_d03b0
-	ld c, a
-	ld a, b
-.asm_d03ab
-	rrca
-	dec c
-	jr nz, .asm_d03ab
-	ld b, a
-
-.asm_d03b0
-	xor a
-	bit 0, b
-	jr z, .asm_d03b7
-	ld a, $1
-
-.asm_d03b7
-	ld b, a
-	ld hl, $d187
-	inc [hl]
-	ret
-; d03bd
-
-Functiond03bd: ; d03bd
-	push af
-	call Functiond03cd
-	pop af
-	push hl
-	call Functiond03f7
-	ld hl, $d16e
-	add [hl]
-	pop hl
-	ld [hl], a
-	ret
-; d03cd
-
-Functiond03cd: ; d03cd
-	call Functiond046c
-	ld a, [$d186]
-	ld bc, $0014
-	call AddNTimes
-	ld a, [$c2c6]
-	and a
-	jr nz, .asm_d03e8
-	ld a, [$d185]
-	ld e, a
-	ld d, $0
-	add hl, de
-	jr .asm_d03f3
-
-.asm_d03e8
-	ld a, [$d185]
-	ld e, a
-	ld a, l
-	sub e
-	ld l, a
-	ld a, h
-	sbc $0
-	ld h, a
-
-.asm_d03f3
-	ret
-; d03f4
-
-INCBIN "baserom.gbc",$d03f4,$d03f7 - $d03f4
-
-Functiond03f7: ; d03f7
-	push af
-	ld a, [$d171]
-	cp $5
-	jr z, .asm_d0405
-	cp $6
-	jr z, .asm_d041a
-	pop af
-	ret
-
-.asm_d0405
-	pop af
-	cp $19
-	jr nc, .asm_d0417
-	push hl
-	push de
-	ld hl, $442f
-	ld e, a
-	ld d, $0
-	add hl, de
-	ld a, [hl]
-	pop de
-	pop hl
-	ret
-
-.asm_d0417
-	add $18
-	ret
-
-.asm_d041a
-	pop af
-	cp $24
-	jr nc, .asm_d042c
-	push hl
-	push de
-	ld hl, $4448
-	ld e, a
-	ld d, $0
-	add hl, de
-	ld a, [hl]
-	pop de
-	pop hl
-	ret
-
-.asm_d042c
-	add $d
-	ret
-; d042f
-
-INCBIN "baserom.gbc",$d042f,$d046c - $d042f
-
-Functiond046c: ; d046c
-	ld hl, $d16f
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	ld a, [$d171]
-	ld de, $0000
-	ld bc, $0006
-	cp $7
-	jr z, .asm_d048f
-	ld de, $0015
-	ld bc, $0019
-	cp $6
-	jr z, .asm_d048f
-	ld de, $0029
-	ld bc, $002d
-
-.asm_d048f
-	ld a, [$c2c6]
-	and a
-	jr nz, .asm_d0497
-	add hl, de
-	ret
-
-.asm_d0497
-	add hl, bc
-	ret
-; d0499
-
-Functiond0499: ; d0499
-	ld a, [$d186]
-	inc a
-	ld [$d186], a
-	ld c, a
-	ld a, [$d171]
-	cp c
-	jr nz, .asm_d04bb
-	xor a
-	ld [$d186], a
-	ld a, [$d185]
-	inc a
-	ld [$d185], a
-	ld c, a
-	ld a, [$d171]
-	cp c
-	jr nz, .asm_d04bb
-	scf
-	ret
-
-.asm_d04bb
-	xor a
-	ret
-; d04bd
-
-Functiond04bd: ; d04bd
-	call Functiond04f6
-	ld a, [$c2c6]
-	and a
-	jr nz, .asm_d04ce
-	ld de, $0001
-	ld bc, $0000
-	jr .asm_d04d4
-
-.asm_d04ce
-	ld de, rIE
-	ld bc, $0006
-
-.asm_d04d4
-	ld hl, $d16f
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	add hl, bc
-	ld c, $7
-	ld b, $7
-	ld a, [$d16e]
-.asm_d04e2
-	push bc
-	push hl
-	push de
-	ld de, $0014
-.asm_d04e8
-	ld [hl], a
-	inc a
-	add hl, de
-	dec b
-	jr nz, .asm_d04e8
-	pop de
-	pop hl
-	add hl, de
-	pop bc
-	dec c
-	jr nz, .asm_d04e2
-	ret
-; d04f6
-
-Functiond04f6: ; d04f6
-	ld hl, $d16f
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	ld b, $7
-	ld c, $7
-	call ClearBox
-	ret
-; d0504
-
-Functiond0504: ; d0504
-	ld a, [rSVBK]
-	push af
-	ld a, $2
-	ld [rSVBK], a
-	xor a
-	ld [hBGMapMode], a
-	call Functiond051b
-	callba Function104047
-	pop af
-	ld [rSVBK], a
-	ret
-; d051b
-
-Functiond051b: ; d051b
-	call Functiond0551
-	ld b, $7
-	ld c, $7
-	ld de, $0014
-.asm_d0525
-	push bc
-	push hl
-.asm_d0527
-	ld a, [hl]
-	or $8
-	ld [hl], a
-	add hl, de
-	dec c
-	jr nz, .asm_d0527
-	pop hl
-	inc hl
-	pop bc
-	dec b
-	jr nz, .asm_d0525
-	ret
-; d0536
-
-Functiond0536: ; d0536
-	call Functiond0551
-	ld b, $7
-	ld c, $7
-	ld de, $0014
-.asm_d0540
-	push bc
-	push hl
-.asm_d0542
-	ld a, [hl]
-	and $f7
-	ld [hl], a
-	add hl, de
-	dec c
-	jr nz, .asm_d0542
-	pop hl
-	inc hl
-	pop bc
-	dec b
-	jr nz, .asm_d0540
-	ret
-; d0551
-
-Functiond0551: ; d0551
-	ld hl, $d16f
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	ld de, $0939
-	add hl, de
-	ret
-; d055c
-
-Functiond055c: ; d055c
-	call Functiond02f2
-	jr z, .asm_d0597
-	ld c, $34
-	ld hl, UnownAnimationPointers
-	ld de, UnownAnimationExtraPointers
-	call Functiond02ec
-	jr z, .asm_d0576
-	ld c, $34
-	ld hl, AnimationPointers
-	ld de, AnimationExtraPointers
-
-.asm_d0576
-	ld a, [$d172]
-	and a
-	jr z, .asm_d057e
-	ld h, d
-	ld l, e
-
-.asm_d057e
-	ld a, [$d16d]
-	dec a
-	ld e, a
-	ld d, $0
-	add hl, de
-	add hl, de
-	ld a, c
-	ld [$d174], a
-	call GetFarHalfword
-	ld a, l
-	ld [$d175], a
-	ld a, h
-	ld [$d176], a
-	ret
-
-.asm_d0597
-	ld hl, EggAnimation
-	ld c, $34
-	ld a, [$d172]
-	and a
-	jr z, .asm_d05a7
-	ld hl, EggAnimationExtra
-	ld c, $34
-
-.asm_d05a7
-	ld a, c
-	ld [$d174], a
-	ld a, l
-	ld [$d175], a
-	ld a, h
-	ld [$d176], a
-	ret
-; d05b4
-
-Functiond05b4: ; d05b4
-	ld a, [rSVBK]
-	push af
-	ld a, $1
-	ld [rSVBK], a
-	ld a, [CurPartySpecies]
-	ld [CurSpecies], a
-	call GetBaseData
-	ld a, [BasePicSize]
-	and $f
-	ld c, a
-	pop af
-	ld [rSVBK], a
-	ret
-; d05ce
-
-Functiond05ce: ; d05ce
-	call Functiond02f2
-	jr z, .asm_d0609
-	call Functiond02ec
-	ld b, $36
-	ld c, $36
-	ld hl, PikachuAnimationExtra
-	jr z, .asm_d05ef
-	ld a, [$d16b]
-	cp $98
-	ld b, $35
-	ld c, $35
-	ld hl, $4000
-	jr c, .asm_d05ef
-	ld c, $36
-
-.asm_d05ef
-	ld a, c
-	ld [$d177], a
-	ld a, [$d16d]
-	dec a
-	ld e, a
-	ld d, $0
-	add hl, de
-	add hl, de
-	ld a, b
-	call GetFarHalfword
-	ld a, l
-	ld [$d178], a
-	ld a, h
-	ld [$d179], a
-	ret
-
-.asm_d0609
-	ld hl, $598b
-	ld c, $36
-	ld a, c
-	ld [$d177], a
-	ld a, l
-	ld [$d178], a
-	ld a, h
-	ld [$d179], a
-	ret
-; d061b
-
-Functiond061b: ; d061b
-	call Functiond02f2
-	jr z, .asm_d064a
-	call Functiond02ec
-	ld a, $34
-	ld hl, UnownBitmasksPointers
-	jr z, .asm_d062f
-	ld a, $34
-	ld hl, BitmasksPointers
-
-.asm_d062f
-	ld [$d17a], a
-	ld a, [$d16d]
-	dec a
-	ld e, a
-	ld d, $0
-	add hl, de
-	add hl, de
-	ld a, [$d17a]
-	call GetFarHalfword
-	ld a, l
-	ld [$d17b], a
-	ld a, h
-	ld [$d17c], a
-	ret
-
-.asm_d064a
-	ld c, $34
-	ld hl, EggBitmasks
-	ld a, c
-	ld [$d17a], a
-	ld a, l
-	ld [$d17b], a
-	ld a, h
-	ld [$d17c], a
-	ret
-; d065c
-
-Functiond065c: ; d065c
-	call Functiond02ec
-	jr z, .asm_d0665
-	ld a, [$d16b]
-	ret
-
-.asm_d0665
-	ld a, [$d16c]
-	ret
-; d0669
-
-Functiond0669: ; d0669
-	ld a, $1
-	ld [$c2c6], a
-
-Functiond066e: ; d066e
-	call Functiond01c6
-	jr c, .asm_d068c
-	ld h, d
-	ld l, e
-	push bc
-	push hl
-	ld de, VTiles2
-	ld a, $3e
-	call Predef
-	pop hl
-	pop bc
-	ld d, $0
-	ld e, c
-	call Functiond008e
-	xor a
-	ld [$c2c6], a
-	ret
-
-.asm_d068c
-	xor a
-	ld [$c2c6], a
-	inc a
-	ld [CurPartySpecies], a
-	ret
-; d0695
+INCLUDE "gfx/pics/animation.asm"
 
 ; Pic animations are assembled in 3 parts:
 
@@ -98552,57 +73652,51 @@ Functiond066e: ; d066e
 ;	following bytes are tile ids mapped to each bit in the mask
 
 ; Main animations (played everywhere)
-AnimationPointers: INCLUDE "gfx/pics/anim_pointers.asm"
+INCLUDE "gfx/pics/anim_pointers.asm"
 INCLUDE "gfx/pics/anims.asm"
 
 ; Extra animations, appended to the main animation
 ; Used in the status screen (blinking, tail wags etc.)
-AnimationExtraPointers: INCLUDE "gfx/pics/extra_pointers.asm"
+INCLUDE "gfx/pics/extra_pointers.asm"
 INCLUDE "gfx/pics/extras.asm"
 
 ; Unown has its own animation data despite having an entry in the main tables
-UnownAnimationPointers: INCLUDE "gfx/pics/unown_anim_pointers.asm"
+INCLUDE "gfx/pics/unown_anim_pointers.asm"
 INCLUDE "gfx/pics/unown_anims.asm"
-UnownAnimationExtraPointers: INCLUDE "gfx/pics/unown_extra_pointers.asm"
+INCLUDE "gfx/pics/unown_extra_pointers.asm"
 INCLUDE "gfx/pics/unown_extras.asm"
 
 ; Bitmasks
-BitmasksPointers: INCLUDE "gfx/pics/bitmask_pointers.asm"
+INCLUDE "gfx/pics/bitmask_pointers.asm"
 INCLUDE "gfx/pics/bitmasks.asm"
-UnownBitmasksPointers: INCLUDE "gfx/pics/unown_bitmask_pointers.asm"
+INCLUDE "gfx/pics/unown_bitmask_pointers.asm"
 INCLUDE "gfx/pics/unown_bitmasks.asm"
 
 
-;                       Pic animations II
+SECTION "Pic Animations 2", ROMX, BANK[$35]
 
-SECTION "bank35",ROMX,BANK[$35]
-
-; Frame definitions
-FramesPointers: INCLUDE "gfx/pics/frame_pointers.asm"
-; Inexplicably, Kanto frames are split off from Johto
+INCLUDE "gfx/pics/frame_pointers.asm"
 INCLUDE "gfx/pics/kanto_frames.asm"
 
 
-;                       Pic animations III
-
-SECTION "bank36",ROMX,BANK[$36]
+SECTION "bank36", ROMX, BANK[$36]
 
 FontInversed: INCBIN "gfx/misc/font_inversed.1bpp"
 
-; Johto frame definitions
-INCLUDE "gfx/pics/johto_frames.asm"
 
-; Unown frame definitions
-UnownFramesPointers: INCLUDE "gfx/pics/unown_frame_pointers.asm"
+SECTION "Pic Animations 3", ROMX, BANK[$36]
+
+INCLUDE "gfx/pics/johto_frames.asm"
+INCLUDE "gfx/pics/unown_frame_pointers.asm"
 INCLUDE "gfx/pics/unown_frames.asm"
 
 
-SECTION "bank37",ROMX,BANK[$37]
+SECTION "Tileset Data 6", ROMX, BANK[TILESETS_6]
 
 INCLUDE "tilesets/data_6.asm"
 
 
-SECTION "bank38",ROMX,BANK[$38]
+SECTION "bank38", ROMX, BANK[$38]
 
 Functione0000: ; e0000
 	push de
@@ -98786,7 +73880,422 @@ Functione0191: ; e0191 (38:4191)
 	jp [hl]
 ; e01a0 (38:41a0)
 
-INCBIN "baserom.gbc",$e01a0,$e04c1 - $e01a0
+Tablee01a0: ; e01a0
+	dw Functione01b5
+	dw Functione01d2
+	dw Functione0217
+	dw Functione02b7
+	dw Functione02da
+	dw Functione0314
+	dw Functione031e
+	dw Functione0360
+; e01b0
+
+Functione01b0: ; e01b0
+	ld hl, $cf63
+	inc [hl]
+	ret
+; e01b5
+
+Functione01b5: ; e01b5
+	ld hl, UnknownText_0xe01cd
+	call Functione0489
+	call YesNoBox
+	jr c, .asm_e01c7
+	call Functione0366
+	call Functione01b0
+	ret
+
+.asm_e01c7
+	ld a, $7
+	ld [$cf63], a
+	ret
+; e01cd
+
+UnknownText_0xe01cd: ; 0xe01cd
+	; Play with three coins?
+	text_jump UnknownText_0x1c5793
+	db "@"
+; 0xe01d2
+
+Functione01d2: ; e01d2
+	ld a, [Coins]
+	ld h, a
+	ld a, [Coins + 1]
+	ld l, a
+	ld a, h
+	and a
+	jr nz, .asm_e01ef
+	ld a, l
+	cp 3
+	jr nc, .asm_e01ef
+	ld hl, UnknownText_0xe0212
+	call Functione0489
+	ld a, $7
+	ld [$cf63], a
+	ret
+
+.asm_e01ef
+	ld de, -3
+	add hl, de
+	ld a, h
+	ld [Coins], a
+	ld a, l
+	ld [$d856], a
+	ld de, SFX_TRANSACTION
+	call PlaySFX
+	xor a
+	ld [hBGMapMode], a
+	call Functione049c
+	ld a, $1
+	ld [hBGMapMode], a
+	call WaitSFX
+	call Functione01b0
+	ret
+; e0212
+
+UnknownText_0xe0212: ; 0xe0212
+	; Not enough coins…
+	text_jump UnknownText_0x1c57ab
+	db "@"
+; 0xe0217
+
+Functione0217: ; e0217
+	xor a
+	ld [hBGMapMode], a
+	ld hl, TileMap
+	ld bc, $0c09
+	call Functione04e5
+	ld hl, $c4a9
+	ld bc, $0014
+	ld a, [$c6e8]
+	call AddNTimes
+	ld [hl], $f5
+	ld a, $1
+	ld [hBGMapMode], a
+	ld c, $14
+	call DelayFrames
+	ld hl, $c4a2
+	call Functione03c1
+	ld a, $1
+	ld [hBGMapMode], a
+	ld c, $14
+	call DelayFrames
+	ld hl, $c51a
+	call Functione03c1
+	call WaitBGMap
+	ld hl, UnknownText_0xe02b2
+	call Functione0489
+	xor a
+	ld [$cf66], a
+.asm_e025c
+	call Functiona57
+	ld a, [$ffa9]
+	and $1
+	jr nz, .asm_e027c
+	ld de, $002f
+	call PlaySFX
+	call Functione0849
+	ld c, $4
+	call DelayFrames
+	ld hl, $cf66
+	ld a, [hl]
+	xor $1
+	ld [hl], a
+	jr .asm_e025c
+
+.asm_e027c
+	ld de, $002c
+	call PlaySFX
+	ld a, $3
+.asm_e0284
+	push af
+	call Functione0849
+	ld c, $4
+	call DelayFrames
+	call ClearSprites
+	ld c, $4
+	call DelayFrames
+	pop af
+	dec a
+	jr nz, .asm_e0284
+	ld hl, $cf66
+	ld a, [hl]
+	push af
+	xor $1
+	ld [hl], a
+	call Functione03ac
+	ld bc, $0605
+	call Functione04e5
+	pop af
+	ld [$cf66], a
+	call Functione01b0
+	ret
+; e02b2
+
+UnknownText_0xe02b2: ; 0xe02b2
+	; Choose a card.
+	text_jump UnknownText_0x1c57be
+	db "@"
+; 0xe02b7
+
+Functione02b7: ; e02b7
+	ld hl, UnknownText_0xe02d5
+	call Functione0489
+.asm_e02bd
+	call Functiona57
+	ld a, [$ffa9]
+	and $1
+	jr nz, .asm_e02d1
+	call Functione089c
+	call Functione0960
+	call DelayFrame
+	jr .asm_e02bd
+
+.asm_e02d1
+	call Functione01b0
+	ret
+; e02d5
+
+UnknownText_0xe02d5: ; 0xe02d5
+	; Place your bet.
+	text_jump UnknownText_0x1c57ce
+	db "@"
+; 0xe02da
+
+Functione02da: ; e02da
+	xor a
+	ld [$ff9b], a
+	call Functione0960
+	call WaitSFX
+	ld de, $009a
+	call PlaySFX
+	call WaitSFX
+	ld a, [$c6e8]
+	ld e, a
+	ld d, $0
+	ld hl, PlayerSDefLevel
+	add hl, de
+	add hl, de
+	ld a, [$cf66]
+	ld e, a
+	add hl, de
+	ld a, [hl]
+	ld [CurEnemyMoveNum], a
+	ld e, a
+	ld hl, $c6ea
+	add hl, de
+	ld [hl], $1
+	call Functione03ac
+	call Functione03ec
+	call Function3200
+	call Functione01b0
+	ret
+; e0314
+
+Functione0314: ; e0314
+	call Functione0637
+	call Functiona80
+	call Functione01b0
+	ret
+; e031e
+
+Functione031e: ; e031e
+	call ClearSprites
+	ld hl, UnknownText_0xe0356
+	call Functione0489
+	call YesNoBox
+	jr nc, .asm_e0330
+	call Functione01b0
+	ret
+
+.asm_e0330
+	ld a, [$c6e8]
+	inc a
+	ld [$c6e8], a
+	cp $c
+	jr c, .asm_e034d
+	call Functione04c1
+	ld a, $1
+	ld [hBGMapMode], a
+	call Functione0366
+	ld hl, $435b
+	call PrintText
+	jr .asm_e0350
+
+.asm_e034d
+	call Functione0534
+
+.asm_e0350
+	ld a, $1
+	ld [$cf63], a
+	ret
+; e0356
+
+UnknownText_0xe0356: ; 0xe0356
+	; Want to play again?
+	text_jump UnknownText_0x1c57df
+	db "@"
+; 0xe035b
+
+INCBIN "baserom.gbc", $e035b, $e0360 - $e035b
+
+Functione0360: ; e0360
+	ld hl, $cf63
+	set 7, [hl]
+	ret
+; e0366
+
+Functione0366: ; e0366
+	ld hl, PlayerSDefLevel
+	ld bc, $0018
+	xor a
+	call ByteFill
+	ld de, PlayerSDefLevel
+	ld c, $17
+.asm_e0375
+	call Random
+	and $1f
+	cp $18
+	jr nc, .asm_e0375
+	ld l, a
+	ld h, $0
+	add hl, de
+	ld a, [hl]
+	and a
+	jr nz, .asm_e0375
+	ld [hl], c
+	dec c
+	jr nz, .asm_e0375
+	xor a
+	ld [$c6e8], a
+	ld hl, $c6ea
+	ld bc, $0018
+	call ByteFill
+	ret
+; e0398
+
+Functione0398: ; e0398
+	ld hl, $0000
+	ld bc, $0006
+	ld a, [$cf64]
+	call AddNTimes
+	ld b, $0
+	ld a, [$cf65]
+	ld c, a
+	add hl, bc
+	ret
+; e03ac
+
+Functione03ac: ; e03ac
+	ld a, [$cf66]
+	and a
+	jr nz, .asm_e03ba
+	ld hl, $c4a2
+	ld bc, $1018
+	jr .asm_e03c0
+
+.asm_e03ba
+	ld hl, $c51a
+	ld bc, $4018
+
+.asm_e03c0
+	ret
+; e03c1
+
+Functione03c1: ; e03c1
+	xor a
+	ld [hBGMapMode], a
+	ld de, $43ce
+	ld bc, $0605
+	call Functione04f7
+	ret
+; e03ce
+
+INCBIN "baserom.gbc", $e03ce, $e03ec - $e03ce
+
+Functione03ec: ; e03ec
+	xor a
+	ld [hBGMapMode], a
+	push hl
+	push hl
+	ld de, $443b
+	ld bc, $0605
+	call Functione04f7
+	ld a, [CurEnemyMoveNum]
+	ld e, a
+	ld d, $0
+	ld hl, $4459
+	add hl, de
+	add hl, de
+	ld a, [hli]
+	ld e, a
+	ld d, [hl]
+	pop hl
+	ld bc, $0017
+	add hl, bc
+	ld [hl], e
+	ld bc, $0012
+	add hl, bc
+	ld a, d
+	ld de, $0014
+	ld b, $3
+.asm_e0418
+	push hl
+	ld c, $3
+.asm_e041b
+	ld [hli], a
+	inc a
+	dec c
+	jr nz, .asm_e041b
+	pop hl
+	add hl, de
+	dec b
+	jr nz, .asm_e0418
+	pop hl
+	ld a, [hCGB]
+	and a
+	ret z
+	ld de, $0939
+	add hl, de
+	ld a, [CurEnemyMoveNum]
+	and $3
+	inc a
+	ld bc, $0605
+	call Functione04e7
+	ret
+; e043b
+
+INCBIN "baserom.gbc", $e043b, $e0489 - $e043b
+
+Functione0489: ; e0489
+	push hl
+	ld hl, $c590
+	ld b, $4
+	ld c, $12
+	call TextBox
+	pop hl
+	call PrintTextBoxText
+	call Functione049c
+	ret
+; e049c
+
+Functione049c: ; e049c
+	ld hl, $c5d5
+	ld b, $1
+	ld c, $9
+	call TextBox
+	ld hl, $c5ea
+	ld de, $44bc
+	call PlaceString
+	ld hl, $c5ef
+	ld de, Coins
+	ld bc, $8204
+	call PrintNum
+	ret
+; e04bc
+
+INCBIN "baserom.gbc", $e04bc, $e04c1 - $e04bc
 
 ; known jump sources: e0144 (38:4144)
 Functione04c1: ; e04c1 (38:44c1)
@@ -98806,7 +74315,8 @@ Functione04c1: ; e04c1 (38:44c1)
 	ret
 ; e04e5 (38:44e5)
 
-INCBIN "baserom.gbc",$e04e5,$e04e7 - $e04e5
+Functione04e5: ; e04e5
+	ld a, $29
 
 ; known jump sources: e04f4 (38:44f4), e0c4d (38:4c4d), e0c58 (38:4c58), e0c63 (38:4c63), e0c6e (38:4c6e), e0c79 (38:4c79)
 Functione04e7: ; e04e7 (38:44e7)
@@ -98843,7 +74353,30 @@ Functione04f7: ; e04f7 (38:44f7)
 	ret
 ; e0509 (38:4509)
 
-INCBIN "baserom.gbc",$e0509,$e0521 - $e0509
+Functione0509: ; e0509
+	ld de, Sprites
+	ld a, [hli]
+.asm_e050d
+	push af
+	ld a, [hli]
+	add b
+	ld [de], a
+	inc de
+	ld a, [hli]
+	add c
+	ld [de], a
+	inc de
+	ld a, [hli]
+	ld [de], a
+	inc de
+	ld a, [hli]
+	ld [de], a
+	inc de
+	pop af
+	dec a
+	jr nz, .asm_e050d
+	ret
+; e0521
 
 ; known jump sources: e0141 (38:4141)
 Functione0521: ; e0521 (38:4521)
@@ -98858,7 +74391,220 @@ Functione0521: ; e0521 (38:4521)
 	ret
 ; e0534 (38:4534)
 
-INCBIN "baserom.gbc",$e0534,$e0c37 - $e0534
+Functione0534: ; e0534
+	xor a
+	ld [hBGMapMode], a
+	ld a, [CurEnemyMoveNum]
+	ld e, a
+	ld d, $0
+	and $3
+	ld c, a
+	ld b, $0
+	ld a, e
+	and $1c
+	srl a
+	add $53
+	ld l, a
+	ld a, $0
+	adc $45
+	ld h, a
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	jp [hl]
+; e0553
+
+INCBIN "baserom.gbc", $e0553, $e0637 - $e0553
+
+Functione0637: ; e0637
+	call Functione0398
+	add hl, hl
+	ld de, $4643
+	add hl, de
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	jp [hl]
+; e0643
+
+INCBIN "baserom.gbc", $e0643, $e0849 - $e0643
+
+Functione0849: ; e0849
+	call Functione03ac
+	ld hl, $4853
+	call Functione0509
+	ret
+; e0853
+
+INCBIN "baserom.gbc", $e0853, $e089c - $e0853
+
+Functione089c: ; e089c
+	ld hl, $ffa9
+	ld a, [hl]
+	and $20
+	jp nz, Functione08b8
+	ld a, [hl]
+	and $10
+	jp nz, Functione08ef
+	ld a, [hl]
+	and $40
+	jp nz, Functione090a
+	ld a, [hl]
+	and $80
+	jp nz, Functione093d
+	ret
+; e08b8
+
+Functione08b8: ; e08b8
+	ld hl, $cf65
+	ld a, [$cf64]
+	and a
+	jr z, .asm_e08d5
+	cp $1
+	jr z, .asm_e08cc
+	ld a, [hl]
+	and a
+	ret z
+	dec [hl]
+	jp Functione0959
+
+.asm_e08cc
+	ld a, [hl]
+	cp $3
+	jr c, .asm_e08e2
+	dec [hl]
+	jp Functione0959
+
+.asm_e08d5
+	ld a, [hl]
+	and $e
+	ld [hl], a
+	cp $3
+	jr c, .asm_e08e2
+	dec [hl]
+	dec [hl]
+	jp Functione0959
+
+.asm_e08e2
+	ld a, $2
+	ld [$cf64], a
+	ld a, $1
+	ld [$cf65], a
+	jp Functione0959
+; e08ef
+
+Functione08ef: ; e08ef
+	ld hl, $cf65
+	ld a, [$cf64]
+	and a
+	jr z, .asm_e08ff
+	ld a, [hl]
+	cp $5
+	ret nc
+	inc [hl]
+	jr Functione0959
+
+.asm_e08ff
+	ld a, [hl]
+	and $e
+	ld [hl], a
+	cp $4
+	ret nc
+	inc [hl]
+	inc [hl]
+	jr Functione0959
+
+Functione090a: ; e090a
+	ld hl, $cf64
+	ld a, [$cf65]
+	and a
+	jr z, .asm_e0925
+	cp $1
+	jr z, .asm_e091d
+	ld a, [hl]
+	and a
+	ret z
+	dec [hl]
+	jr Functione0959
+
+.asm_e091d
+	ld a, [hl]
+	cp $3
+	jr c, .asm_e0931
+	dec [hl]
+	jr Functione0959
+
+.asm_e0925
+	ld a, [hl]
+	and $e
+	ld [hl], a
+	cp $3
+	jr c, .asm_e0931
+	dec [hl]
+	dec [hl]
+	jr Functione0959
+
+.asm_e0931
+	ld a, $1
+	ld [$cf64], a
+	ld a, $2
+	ld [$cf65], a
+	jr Functione0959
+
+Functione093d: ; e093d
+	ld hl, $cf64
+	ld a, [$cf65]
+	and a
+	jr z, .asm_e0950
+	ld hl, $cf64
+	ld a, [hl]
+	cp $7
+	ret nc
+	inc [hl]
+	jr Functione0959
+
+.asm_e0950
+	ld a, [hl]
+	and $e
+	ld [hl], a
+	cp $6
+	ret nc
+	inc [hl]
+	inc [hl]
+
+Functione0959: ; e0959
+	ld de, $0003
+	call PlaySFX
+	ret
+; e0960
+
+Functione0960: ; e0960
+	call ClearSprites
+	ld a, [hCGB]
+	and a
+	jr nz, .asm_e096d
+	ld a, [$ff9b]
+	and $4
+	ret nz
+
+.asm_e096d
+	call Functione0398
+	add hl, hl
+	add hl, hl
+	ld de, $4981
+	add hl, de
+	ld a, [hli]
+	ld c, a
+	ld a, [hli]
+	ld b, a
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	call Functione0509
+	ret
+; e0981
+
+INCBIN "baserom.gbc", $e0981, $e0c37 - $e0981
 
 ; known jump sources: e0147 (38:4147)
 Functione0c37: ; e0c37 (38:4c37)
@@ -99810,8 +75556,8 @@ Functione24e0: ; e24e0 (38:64e0)
 	ld de, $74f4
 	call Functione2a6e
 	call Function1d6e
-	ld bc, $e0b
-	call Function1dd2
+	lb bc, 14, 11
+	call PlaceYesNoBox
 	ld a, [$cfa9]
 	dec a
 	call Function1c07
@@ -100048,8 +75794,8 @@ Functione26d8: ; e26d8 (38:66d8)
 	ld de, $74f4
 	call Functione2a6e
 	call Function1d6e
-	ld bc, $e0b
-	call Function1dd2
+	lb bc, 14, 11
+	call PlaceYesNoBox
 	ld a, [$cfa9]
 	dec a
 	call Function1c07
@@ -101405,7 +77151,7 @@ Functione37e3: ; e37e3 (38:77e3)
 	ret
 
 
-SECTION "bank39",ROMX,BANK[$39]
+SECTION "bank39", ROMX, BANK[$39]
 
 CopyrightGFX: ; e4000
 INCBIN "gfx/misc/copyright.2bpp"
@@ -102017,7 +77763,7 @@ Functione4579: ; e4579
 	ld c, $64
 	call DelayFrames
 	call ClearTileMap
-	callba Function4ea82
+	callba GBCOnlyScreen
 	call Functione45e8
 .asm_e45c0
 	call Functiona57
@@ -104035,148 +79781,8 @@ INCBIN "gfx/intro/unown_back.lz"
 INCBIN "baserom.gbc", $e799d, $e7a70 - $e799d
 
 
-; ================================================================
-;           Sound engine and music/sound effect pointers
-SECTION "bank3A",ROMX,BANK[$3A]
 
-
-; The sound engine. Interfaces are in bank 0
-INCLUDE "audio/engine.asm"
-
-; What music plays when a trainer notices you
-INCLUDE "audio/trainer_encounters.asm"
-
-; Pointer table for all 103 songs
-Music: INCLUDE "audio/music_pointers.asm"
-
-; Empty song
-INCLUDE "audio/music/nothing.asm"
-
-; Pointer table for all 68 base cries
-Cries: INCLUDE "audio/cry_pointers.asm"
-
-; Pointer table for all 207 sfx
-SFX: INCLUDE "audio/sfx_pointers.asm"
-
-
-;                            Songs I
-
-INCLUDE "audio/music/route36.asm"
-INCLUDE "audio/music/rivalbattle.asm"
-INCLUDE "audio/music/rocketbattle.asm"
-INCLUDE "audio/music/elmslab.asm"
-INCLUDE "audio/music/darkcave.asm"
-INCLUDE "audio/music/johtogymbattle.asm"
-INCLUDE "audio/music/championbattle.asm"
-INCLUDE "audio/music/ssaqua.asm"
-INCLUDE "audio/music/newbarktown.asm"
-INCLUDE "audio/music/goldenrodcity.asm"
-INCLUDE "audio/music/vermilioncity.asm"
-INCLUDE "audio/music/titlescreen.asm"
-INCLUDE "audio/music/ruinsofalphinterior.asm"
-INCLUDE "audio/music/lookpokemaniac.asm"
-INCLUDE "audio/music/trainervictory.asm"
-
-
-SECTION "bank3B",ROMX,BANK[$3B]
-
-;                           Songs II
-
-INCLUDE "audio/music/route1.asm"
-INCLUDE "audio/music/route3.asm"
-INCLUDE "audio/music/route12.asm"
-INCLUDE "audio/music/kantogymbattle.asm"
-INCLUDE "audio/music/kantotrainerbattle.asm"
-INCLUDE "audio/music/kantowildbattle.asm"
-INCLUDE "audio/music/pokemoncenter.asm"
-INCLUDE "audio/music/looklass.asm"
-INCLUDE "audio/music/lookofficer.asm"
-INCLUDE "audio/music/route2.asm"
-INCLUDE "audio/music/mtmoon.asm"
-INCLUDE "audio/music/showmearound.asm"
-INCLUDE "audio/music/gamecorner.asm"
-INCLUDE "audio/music/bicycle.asm"
-INCLUDE "audio/music/looksage.asm"
-INCLUDE "audio/music/pokemonchannel.asm"
-INCLUDE "audio/music/lighthouse.asm"
-INCLUDE "audio/music/lakeofrage.asm"
-INCLUDE "audio/music/indigoplateau.asm"
-INCLUDE "audio/music/route37.asm"
-INCLUDE "audio/music/rockethideout.asm"
-INCLUDE "audio/music/dragonsden.asm"
-INCLUDE "audio/music/ruinsofalphradio.asm"
-INCLUDE "audio/music/lookbeauty.asm"
-INCLUDE "audio/music/route26.asm"
-INCLUDE "audio/music/ecruteakcity.asm"
-INCLUDE "audio/music/lakeofragerocketradio.asm"
-INCLUDE "audio/music/magnettrain.asm"
-INCLUDE "audio/music/lavendertown.asm"
-INCLUDE "audio/music/dancinghall.asm"
-INCLUDE "audio/music/contestresults.asm"
-INCLUDE "audio/music/route30.asm"
-
-SECTION "bank3C",ROMX,BANK[$3C]
-
-;                          Songs III
-
-INCLUDE "audio/music/violetcity.asm"
-INCLUDE "audio/music/route29.asm"
-INCLUDE "audio/music/halloffame.asm"
-INCLUDE "audio/music/healpokemon.asm"
-INCLUDE "audio/music/evolution.asm"
-INCLUDE "audio/music/printer.asm"
-
-INCBIN "baserom.gbc",$f0941,$f2787 - $f0941
-
-CryHeaders:
-INCLUDE "audio/cry_headers.asm"
-
-INCBIN "baserom.gbc",$f2d69,$f3fb6 - $f2d69
-
-
-SECTION "bank3D",ROMX,BANK[$3D]
-
-;                           Songs IV
-
-INCLUDE "audio/music/viridiancity.asm"
-INCLUDE "audio/music/celadoncity.asm"
-INCLUDE "audio/music/wildpokemonvictory.asm"
-INCLUDE "audio/music/successfulcapture.asm"
-INCLUDE "audio/music/gymleadervictory.asm"
-INCLUDE "audio/music/mtmoonsquare.asm"
-INCLUDE "audio/music/gym.asm"
-INCLUDE "audio/music/pallettown.asm"
-INCLUDE "audio/music/profoakspokemontalk.asm"
-INCLUDE "audio/music/profoak.asm"
-INCLUDE "audio/music/lookrival.asm"
-INCLUDE "audio/music/aftertherivalfight.asm"
-INCLUDE "audio/music/surf.asm"
-INCLUDE "audio/music/nationalpark.asm"
-INCLUDE "audio/music/azaleatown.asm"
-INCLUDE "audio/music/cherrygrovecity.asm"
-INCLUDE "audio/music/unioncave.asm"
-INCLUDE "audio/music/johtowildbattle.asm"
-INCLUDE "audio/music/johtowildbattlenight.asm"
-INCLUDE "audio/music/johtotrainerbattle.asm"
-INCLUDE "audio/music/lookyoungster.asm"
-INCLUDE "audio/music/tintower.asm"
-INCLUDE "audio/music/sprouttower.asm"
-INCLUDE "audio/music/burnedtower.asm"
-INCLUDE "audio/music/mom.asm"
-INCLUDE "audio/music/victoryroad.asm"
-INCLUDE "audio/music/pokemonlullaby.asm"
-INCLUDE "audio/music/pokemonmarch.asm"
-INCLUDE "audio/music/goldsilveropening.asm"
-INCLUDE "audio/music/goldsilveropening2.asm"
-INCLUDE "audio/music/lookhiker.asm"
-INCLUDE "audio/music/lookrocket.asm"
-INCLUDE "audio/music/rockettheme.asm"
-INCLUDE "audio/music/mainmenu.asm"
-INCLUDE "audio/music/lookkimonogirl.asm"
-INCLUDE "audio/music/pokeflutechannel.asm"
-INCLUDE "audio/music/bugcatchingcontest.asm"
-
-SECTION "bank3E",ROMX,BANK[$3E]
+SECTION "bank3E", ROMX, BANK[$3E]
 
 FontExtra:
 INCBIN "gfx/misc/font_extra.2bpp"
@@ -104199,13 +79805,18 @@ INCBIN "gfx/frames/8.1bpp"
 INCBIN "gfx/frames/9.1bpp"
 ; f89b0
 
-INCBIN "baserom.gbc",$f89b0,$f8ba0 - $f89b0
+INCBIN "baserom.gbc", $f89b0, $f8a90 - $f89b0
+
+ShinyIcon: ; f8a90
+INCBIN "gfx/stats/shiny.2bpp"
+
+INCBIN "baserom.gbc", $f8aa0, $f8ba0 - $f8aa0
 
 TownMapGFX: ; f8ba0
 INCBIN "gfx/misc/town_map.lz"
 ; f8ea3
 
-INCBIN "baserom.gbc",$f8ea3,$fb449 - $f8ea3
+INCBIN "baserom.gbc", $f8ea3, $fb449 - $f8ea3
 
 
 Functionfb449: ; fb449
@@ -105043,1076 +80654,82 @@ DoBadgeTypeBoosts: ; fbe24
 ; fbe91
 
 
-SECTION "bank3F",ROMX,BANK[$3F]
-
-_AnimateTileset: ; fc000
-; Iterate over a given pointer array of
-; animation functions (one per frame).
-
-; Typically in wra1, vra0
-
-	ld a, [TilesetAnim]
-	ld e, a
-	ld a, [TilesetAnim + 1]
-	ld d, a
-
-	ld a, [hTileAnimFrame]
-	ld l, a
-	inc a
-	ld [hTileAnimFrame], a
-
-	ld h, 0
-	add hl, hl
-	add hl, hl
-	add hl, de
-
-; 2-byte parameter
-; All functions take input de.
-	ld e, [hl]
-	inc hl
-	ld d, [hl]
-	inc hl
-
-; Function address
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-
-	jp [hl]
-; fc01b
-
-
-Tileset00Anim: ; 0xfc01b
-Tileset02Anim: ; 0xfc01b
-Tileset03Anim: ; 0xfc01b
-;	   param, function
-	dw $9140, AnimateWaterTile
-	dw $0000, WaitTileAnimation
-	dw $0000, WaitTileAnimation
-	dw $0000, WaitTileAnimation
-	dw $0000, TileAnimationPalette
-	dw $0000, WaitTileAnimation
-	dw $0000, AnimateFlowerTile
-	dw $0000, WaitTileAnimation
-	dw $0000, WaitTileAnimation
-	dw $0000, NextTileFrame8
-	dw $0000, DoneTileAnimation
-; 0xfc047
-
-Tileset25Anim: ; 0xfc047
-;	   param, function
-	dw $9140, AnimateWaterTile
-	dw $0000, WaitTileAnimation
-	dw $95f0, AnimateFountain
-	dw $0000, WaitTileAnimation
-	dw $0000, TileAnimationPalette
-	dw $0000, WaitTileAnimation
-	dw $0000, AnimateFlowerTile
-	dw $0000, WaitTileAnimation
-	dw $0000, WaitTileAnimation
-	dw $0000, NextTileFrame8
-	dw $0000, DoneTileAnimation
-; 0xfc073
-
-Tileset31Anim: ; 0xfc073
-;	   param, function
-	dw $0000, ForestTreeLeftAnimation
-	dw $0000, ForestTreeRightAnimation
-	dw $0000, WaitTileAnimation
-	dw $0000, WaitTileAnimation
-	dw $0000, WaitTileAnimation
-	dw $0000, ForestTreeLeftAnimation2
-	dw $0000, ForestTreeRightAnimation2
-	dw $0000, AnimateFlowerTile
-	dw $9140, AnimateWaterTile
-	dw $0000, TileAnimationPalette
-	dw $0000, NextTileFrame8
-	dw $0000, DoneTileAnimation
-; 0xfc0a3
-
-Tileset01Anim: ; 0xfc0a3
-;	   param, function
-	dw $9140, AnimateWaterTile
-	dw $0000, WaitTileAnimation
-	dw $0000, WaitTileAnimation
-	dw $0000, TileAnimationPalette
-	dw $0000, WaitTileAnimation
-	dw $0000, AnimateFlowerTile
-	dw $4a98, AnimateWhirlpoolTile
-	dw $4a9c, AnimateWhirlpoolTile
-	dw $4aa0, AnimateWhirlpoolTile
-	dw $4aa4, AnimateWhirlpoolTile
-	dw $0000, WaitTileAnimation
-	dw $0000, NextTileFrame8
-	dw $0000, DoneTileAnimation
-; 0xfc0d7
-
-INCBIN "baserom.gbc",$fc0d7,$fc12f - $fc0d7
-
-Tileset09Anim: ; 0xfc12f
-;	   param, function
-	dw $9140, AnimateWaterTile
-	dw $0000, WaitTileAnimation
-	dw $0000, WaitTileAnimation
-	dw $0000, WaitTileAnimation
-	dw $0000, WaitTileAnimation
-	dw $0000, TileAnimationPalette
-	dw $0000, WaitTileAnimation
-	dw $0000, WaitTileAnimation
-	dw $0000, WaitTileAnimation
-	dw $0000, WaitTileAnimation
-	dw $0000, NextTileFrame8
-	dw $0000, DoneTileAnimation
-; 0xfc15f
-
-Tileset15Anim: ; 0xfc15f
-;	   param, function
-	dw $0000, SafariFountainAnim2
-	dw $0000, WaitTileAnimation
-	dw $0000, WaitTileAnimation
-	dw $0000, WaitTileAnimation
-	dw $0000, SafariFountainAnim1
-	dw $0000, WaitTileAnimation
-	dw $0000, NextTileFrame8
-	dw $0000, DoneTileAnimation
-; 0xfc17f
-
-INCBIN "baserom.gbc",$fc17f,$fc1e7 - $fc17f
-
-Tileset24Anim: ; 0xfc1e7
-Tileset30Anim: ; 0xfc1e7
-;	   param, function
-	dw $9140, WriteTileToBuffer
-	dw $0000, Functionfc71e
-	dw $cf41, ScrollTileRightLeft
-	dw $0000, Functionfc71e
-	dw $9140, WriteTileFromBuffer
-	dw $0000, Functionfc71e
-	dw $0000, TileAnimationPalette
-	dw $0000, Functionfc71e
-	dw $9400, WriteTileToBuffer
-	dw $0000, Functionfc71e
-	dw $cf41, ScrollTileDown
-	dw $0000, Functionfc71e
-	dw $cf41, ScrollTileDown
-	dw $0000, Functionfc71e
-	dw $cf41, ScrollTileDown
-	dw $0000, Functionfc71e
-	dw $9400, WriteTileFromBuffer
-	dw $0000, Functionfc71e
-	dw $0000, DoneTileAnimation
-; 0xfc233
-
-Tileset29Anim: ; 0xfc233
-;	   param, function
-	dw $9350, WriteTileToBuffer
-	dw $0000, Functionfc71e
-	dw $cf41, ScrollTileRightLeft
-	dw $0000, Functionfc71e
-	dw $9350, WriteTileFromBuffer
-	dw $0000, Functionfc71e
-	dw $0000, TileAnimationPalette
-	dw $0000, Functionfc71e
-	dw $9310, WriteTileToBuffer
-	dw $0000, Functionfc71e
-	dw $cf41, ScrollTileDown
-	dw $0000, Functionfc71e
-	dw $cf41, ScrollTileDown
-	dw $0000, Functionfc71e
-	dw $cf41, ScrollTileDown
-	dw $0000, Functionfc71e
-	dw $9310, WriteTileFromBuffer
-	dw $0000, Functionfc71e
-	dw $0000, DoneTileAnimation
-; 0xfc27f
-
-Tileset23Anim: ; 0xfc27f
-;	   param, function
-	dw SproutPillarTilePointer9,  AnimateSproutPillarTile
-	dw SproutPillarTilePointer10, AnimateSproutPillarTile
-	dw SproutPillarTilePointer7,  AnimateSproutPillarTile
-	dw SproutPillarTilePointer8,  AnimateSproutPillarTile
-	dw SproutPillarTilePointer5,  AnimateSproutPillarTile
-	dw SproutPillarTilePointer6,  AnimateSproutPillarTile
-	dw SproutPillarTilePointer3,  AnimateSproutPillarTile
-	dw SproutPillarTilePointer4,  AnimateSproutPillarTile
-	dw SproutPillarTilePointer1,  AnimateSproutPillarTile
-	dw SproutPillarTilePointer2,  AnimateSproutPillarTile
-	dw $0000, NextTileFrame
-	dw $0000, WaitTileAnimation
-	dw $0000, WaitTileAnimation
-	dw $0000, WaitTileAnimation
-	dw $0000, WaitTileAnimation
-	dw $0000, DoneTileAnimation
-; 0xfc2bf
-
-INCBIN "baserom.gbc",$fc2bf,$fc2e7 - $fc2bf
-
-Tileset04Anim: ; 0xfc2e7
-Tileset05Anim: ; 0xfc2e7
-Tileset06Anim: ; 0xfc2e7
-Tileset07Anim: ; 0xfc2e7
-Tileset08Anim: ; 0xfc2e7
-Tileset10Anim: ; 0xfc2e7
-Tileset11Anim: ; 0xfc2e7
-Tileset12Anim: ; 0xfc2e7
-Tileset13Anim: ; 0xfc2e7
-Tileset14Anim: ; 0xfc2e7
-Tileset16Anim: ; 0xfc2e7
-Tileset17Anim: ; 0xfc2e7
-Tileset18Anim: ; 0xfc2e7
-Tileset19Anim: ; 0xfc2e7
-Tileset20Anim: ; 0xfc2e7
-Tileset21Anim: ; 0xfc2e7
-Tileset22Anim: ; 0xfc2e7
-Tileset26Anim: ; 0xfc2e7
-Tileset27Anim: ; 0xfc2e7
-Tileset28Anim: ; 0xfc2e7
-Tileset32Anim: ; 0xfc2e7
-Tileset33Anim: ; 0xfc2e7
-Tileset34Anim: ; 0xfc2e7
-Tileset35Anim: ; 0xfc2e7
-Tileset36Anim: ; 0xfc2e7
-;	   param, function
-	dw $0000, WaitTileAnimation
-	dw $0000, WaitTileAnimation
-	dw $0000, WaitTileAnimation
-	dw $0000, WaitTileAnimation
-	dw $0000, DoneTileAnimation
-; 0xfc2fb
-
-DoneTileAnimation: ; fc2fb
-; Reset the animation command loop.
-	xor a
-	ld [hTileAnimFrame], a
-	
-WaitTileAnimation: ; fc2fe
-; Do nothing this frame.
-	ret
-; fc2ff
-
-NextTileFrame8: ; fc2ff
-	ld a, [TileAnimationTimer]
-	inc a
-	and a, 7
-	ld [TileAnimationTimer], a
-	ret
-; fc309
-
-
-ScrollTileRightLeft: ; fc309
-; Scroll right for 4 ticks, then left for 4 ticks.
-	ld a, [TileAnimationTimer]
-	inc a
-	and 7
-	ld [TileAnimationTimer], a
-	and 4
-	jr nz, ScrollTileLeft
-	jr ScrollTileRight
-; fc318
-
-ScrollTileUpDown: ; fc318
-; Scroll up for 4 ticks, then down for 4 ticks.
-	ld a, [TileAnimationTimer]
-	inc a
-	and 7
-	ld [TileAnimationTimer], a
-	and 4
-	jr nz, ScrollTileDown
-	jr ScrollTileUp
-; fc327
-
-ScrollTileLeft: ; fc327
-	ld h, d
-	ld l, e
-	ld c, 4
-.loop
-	rept 4
-	ld a, [hl]
-	rlca
-	ld [hli], a
-	endr
-	dec c
-	jr nz, .loop
-	ret
-; fc33b
-
-ScrollTileRight: ; fc33b
-	ld h, d
-	ld l, e
-	ld c, 4
-.loop
-	rept 4
-	ld a, [hl]
-	rrca
-	ld [hli], a
-	endr
-	dec c
-	jr nz, .loop
-	ret
-; fc34f
-
-ScrollTileUp: ; fc34f
-	ld h, d
-	ld l, e
-	ld d, [hl]
-	inc hl
-	ld e, [hl]
-	ld bc, $e
-	add hl, bc
-	ld a, 4
-.loop
-	ld c, [hl]
-	ld [hl], e
-	dec hl
-	ld b, [hl]
-	ld [hl], d
-	dec hl
-	ld e, [hl]
-	ld [hl], c
-	dec hl
-	ld d, [hl]
-	ld [hl], b
-	dec hl
-	dec a
-	jr nz, .loop
-	ret
-; fc36a
-
-ScrollTileDown: ; fc36a
-	ld h, d
-	ld l, e
-	ld de, $e
-	push hl
-	add hl, de
-	ld d, [hl]
-	inc hl
-	ld e, [hl]
-	pop hl
-	ld a, 4
-.loop
-	ld b, [hl]
-	ld [hl], d
-	inc hl
-	ld c, [hl]
-	ld [hl], e
-	inc hl
-	ld d, [hl]
-	ld [hl], b
-	inc hl
-	ld e, [hl]
-	ld [hl], c
-	inc hl
-	dec a
-	jr nz, .loop
-	ret
-; fc387
-
-
-AnimateFountain: ; fc387
-	ld hl, [sp+0]
-	ld b, h
-	ld c, l
-	ld hl, .frames
-	ld a, [TileAnimationTimer]
-	and 7
-	add a
-	add l
-	ld l, a
-	jr nc, .asm_fc399
-	inc h
-
-.asm_fc399
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	ld sp, hl
-	ld l, e
-	ld h, d
-	jp WriteTile
-
-.frames
-	dw .frame1
-	dw .frame2
-	dw .frame3
-	dw .frame4
-	dw .frame3
-	dw .frame4
-	dw .frame5
-	dw .frame1
-
-.frame1
-	INCBIN "gfx/tilesets/fountain/1.2bpp"
-.frame2
-	INCBIN "gfx/tilesets/fountain/2.2bpp"
-.frame3
-	INCBIN "gfx/tilesets/fountain/3.2bpp"
-.frame4
-	INCBIN "gfx/tilesets/fountain/4.2bpp"
-.frame5
-	INCBIN "gfx/tilesets/fountain/5.2bpp"
-; fc402
-
-
-AnimateWaterTile: ; fc402
-; Draw a water tile for the current frame in VRAM tile at de.
-
-; Save sp in bc (see WriteTile).
-	ld hl, [sp+0]
-	ld b, h
-	ld c, l
-	
-	ld a, [TileAnimationTimer]
-	
-; 4 tile graphics, updated every other frame.
-	and 3 << 1
-	
-; 2 x 8 = 16 bytes per tile
-	add a
-	add a
-	add a
-	
-	add WaterTileFrames % $100
-	ld l, a
-	ld a, 0
-	adc WaterTileFrames / $100
-	ld h, a
-	
-; Stack now points to the start of the tile for this frame.
-	ld sp, hl
-	
-	ld l, e
-	ld h, d
-	
-	jp WriteTile
-; fc41c
-
-WaterTileFrames: ; fc41c
-; Frames 0-3
-; INCBIN "gfx/tilesets/water.2bpp"
-INCBIN "baserom.gbc",$fc41c,$fc45c - $fc41c
-; fc45c
-
-
-ForestTreeLeftAnimation: ; fc45c
-	ld hl, [sp+0]
-	ld b, h
-	ld c, l
-
-; Only during the Celebi event.
-	ld a, [$dbf3]
-	bit 2, a
-	jr nz, .asm_fc46c
-	ld hl, ForestTreeLeftFrames
-	jr .asm_fc47d
-
-.asm_fc46c
-	ld a, [TileAnimationTimer]
-	call GetForestTreeFrame
-	add a
-	add a
-	add a
-	add ForestTreeLeftFrames % $100
-	ld l, a
-	ld a, 0
-	adc ForestTreeLeftFrames / $100
-	ld h, a
-
-.asm_fc47d
-	ld sp, hl
-	ld hl, $90c0
-	jp WriteTile
-; fc484
-
-
-ForestTreeLeftFrames: ; fc484
-	INCBIN "gfx/tilesets/forest-tree/1.2bpp"
-	INCBIN "gfx/tilesets/forest-tree/2.2bpp"
-; fc4a4
-
-ForestTreeRightFrames: ; fc4a4
-	INCBIN "gfx/tilesets/forest-tree/3.2bpp"
-	INCBIN "gfx/tilesets/forest-tree/4.2bpp"
-; fc4c4
-
-
-ForestTreeRightAnimation: ; fc4c4
-	ld hl, [sp+0]
-	ld b, h
-	ld c, l
-
-; Only during the Celebi event.
-	ld a, [$dbf3]
-	bit 2, a
-	jr nz, .asm_fc4d4
-	ld hl, ForestTreeRightFrames
-	jr .asm_fc4eb
-
-.asm_fc4d4
-	ld a, [TileAnimationTimer]
-	call GetForestTreeFrame
-	add a
-	add a
-	add a
-	add ForestTreeLeftFrames % $100
-	ld l, a
-	ld a, 0
-	adc ForestTreeLeftFrames / $100
-	ld h, a
-	push bc
-	ld bc, ForestTreeRightFrames - ForestTreeLeftFrames
-	add hl, bc
-	pop bc
-
-.asm_fc4eb
-	ld sp, hl
-	ld hl, $90f0
-	jp WriteTile
-; fc4f2
-
-
-ForestTreeLeftAnimation2: ; fc4f2
-	ld hl, [sp+0]
-	ld b, h
-	ld c, l
-
-; Only during the Celebi event.
-	ld a, [$dbf3]
-	bit 2, a
-	jr nz, .asm_fc502
-	ld hl, ForestTreeLeftFrames
-	jr .asm_fc515
-
-.asm_fc502
-	ld a, [TileAnimationTimer]
-	call GetForestTreeFrame
-	xor 2
-	add a
-	add a
-	add a
-	add ForestTreeLeftFrames % $100
-	ld l, a
-	ld a, 0
-	adc ForestTreeLeftFrames / $100
-	ld h, a
-
-.asm_fc515
-	ld sp, hl
-	ld hl, $90c0
-	jp WriteTile
-; fc51c
-
-
-ForestTreeRightAnimation2: ; fc51c
-	ld hl, [sp+0]
-	ld b, h
-	ld c, l
-
-; Only during the Celebi event.
-	ld a, [$dbf3]
-	bit 2, a
-	jr nz, .asm_fc52c
-	ld hl, ForestTreeRightFrames
-	jr .asm_fc545
-
-.asm_fc52c
-	ld a, [TileAnimationTimer]
-	call GetForestTreeFrame
-	xor 2
-	add a
-	add a
-	add a
-	add ForestTreeLeftFrames % $100
-	ld l, a
-	ld a, 0
-	adc ForestTreeLeftFrames / $100
-	ld h, a
-	push bc
-	ld bc, ForestTreeRightFrames - ForestTreeLeftFrames
-	add hl, bc
-	pop bc
-
-.asm_fc545
-	ld sp, hl
-	ld hl, $90f0
-	jp WriteTile
-; fc54c
-
-
-GetForestTreeFrame: ; fc54c
-; Return 0 if a is even, or 2 if odd.
-	and a
-	jr z, .even
-	cp 1
-	jr z, .odd
-	cp 2
-	jr z, .even
-	cp 3
-	jr z, .odd
-	cp 4
-	jr z, .even
-	cp 5
-	jr z, .odd
-	cp 6
-	jr z, .even
-.odd
-	ld a, 2
-	scf
-	ret
-.even
-	xor a
-	ret
-; fc56d
-
-
-AnimateFlowerTile: ; fc56d
-; No parameters.
-
-; Save sp in bc (see WriteTile).
-	ld hl, [sp+0]
-	ld b, h
-	ld c, l
-	
-; Alternate tile graphc every other frame
-	ld a, [TileAnimationTimer]
-	and 1 << 1
-	ld e, a
-	
-; CGB has different color mappings for flowers.
-	ld a, [hCGB]
-	and 1
-	
-	add e
-	swap a ; << 4 (16 bytes)
-	ld e, a
-	ld d, 0
-	ld hl, FlowerTileFrames
-	add hl, de
-	ld sp, hl
-	
-	ld hl, VTiles2 + $30 ; tile 4
-	
-	jp WriteTile
-; fc58c
-
-FlowerTileFrames: ; fc58c
-; frame 0 dmg
-; frame 0 cgb
-; frame 1 dmg
-; frame 1 sgb
-; INCBIN "gfx/tilesets/flower.2bpp"
-INCBIN "baserom.gbc",$fc58c,$fc5cc - $fc58c
-; fc5cc
-
-
-SafariFountainAnim1: ; fc5cc
-; Splash in the bottom-right corner of the fountain.
-	ld hl, [sp+0]
-	ld b, h
-	ld c, l
-	ld a, [TileAnimationTimer]
-	and 6
-	srl a
-	inc a
-	inc a
-	and 3
-	swap a
-	ld e, a
-	ld d, 0
-	ld hl, SafariFountainFrames
-	add hl, de
-	ld sp, hl
-	ld hl, $95b0
-	jp WriteTile
-; fc5eb
-
-
-SafariFountainAnim2: ; fc5eb
-; Splash in the top-left corner of the fountain.
-	ld hl, [sp+0]
-	ld b, h
-	ld c, l
-	ld a, [TileAnimationTimer]
-	and 6
-	add a
-	add a
-	add a
-	ld e, a
-	ld d, 0
-	ld hl, SafariFountainFrames
-	add hl, de
-	ld sp, hl
-	ld hl, $9380
-	jp WriteTile
-; fc605
-
-
-SafariFountainFrames: ; fc605
-	INCBIN "gfx/tilesets/safari/1.2bpp"
-	INCBIN "gfx/tilesets/safari/2.2bpp"
-	INCBIN "gfx/tilesets/safari/3.2bpp"
-	INCBIN "gfx/tilesets/safari/4.2bpp"
-; fc645
-
-
-AnimateSproutPillarTile: ; fc645
-; Read from struct at de:
-; 	Destination (VRAM)
-;	Address of the first tile in the frame array
-
-	ld hl, [sp+0]
-	ld b, h
-	ld c, l
-
-	ld a, [TileAnimationTimer]
-	and 7
-
-; Get frame index a
-	ld hl, .frames
-	add l
-	ld l, a
-	ld a, 0
-	adc h
-	ld h, a
-	ld a, [hl]
-
-; Destination
-	ld l, e
-	ld h, d
-	ld e, [hl]
-	inc hl
-	ld d, [hl]
-	inc hl
-
-; Add the frame index to the starting address
-	add [hl]
-	inc hl
-	ld h, [hl]
-	ld l, a
-	ld a, 0
-	adc h
-	ld h, a
-
-	ld sp, hl
-	ld l, e
-	ld h, d
-	jr WriteTile
-
-.frames
-	db $00, $10, $20, $30, $40, $30, $20, $10
-; fc673
-
-
-NextTileFrame: ; fc673
-	ld hl, TileAnimationTimer
-	inc [hl]
-	ret
-; fc678
-
-
-AnimateWhirlpoolTile: ; fc678
-; Update whirlpool tile using struct at de.
-
-; Struct:
-; 	VRAM address
-;	Address of the first tile
-
-; Only does one of 4 tiles at a time.
-
-; Save sp in bc (see WriteTile).
-	ld hl, [sp+0]
-	ld b, h
-	ld c, l
-	
-; de = VRAM address
-	ld l, e
-	ld h, d
-	ld e, [hl]
-	inc hl
-	ld d, [hl]
-	inc hl
-; Tile address is now at hl.
-	
-; Get the tile for this frame.
-	ld a, [TileAnimationTimer]
-	and %11 ; 4 frames x2
-	swap a  ; * 16 bytes per tile
-	
-	add [hl]
-	inc hl
-	ld h, [hl]
-	ld l, a
-	ld a, 0
-	adc h
-	ld h, a
-	
-; Stack now points to the desired frame.
-	ld sp, hl
-	
-	ld l, e
-	ld h, d
-	
-	jr WriteTile
-; fc696
-	
-	
-WriteTileFromBuffer: ; fc696
-; Write tiledata at $cf41 to de.
-; $cf41 is loaded to sp for WriteTile.
-
-	ld hl, [sp+0]
-	ld b, h
-	ld c, l
-	
-	ld hl, $cf41
-	ld sp, hl
-	
-	ld h, d
-	ld l, e
-	jr WriteTile
-; fc6a2
-	
-	
-WriteTileToBuffer: ; fc6a2
-; Write tiledata de to $cf41.
-; de is loaded to sp for WriteTile.
-
-	ld hl, [sp+0]
-	ld b, h
-	ld c, l
-	
-	ld h, d
-	ld l, e
-	ld sp, hl
-	
-	ld hl, $cf41
-	
-	; fallthrough
-
-WriteTile: ; fc6ac
-; Write one 8x8 tile ($10 bytes) from sp to hl.
-
-; Warning: sp is saved in bc so we can abuse pop.
-; sp is restored to address bc. Save sp in bc before calling.
-
-	pop de
-	ld [hl], e
-	inc hl
-	ld [hl], d
-	
-rept 7
-	pop de
-	inc hl
-	ld [hl], e
-	inc hl
-	ld [hl], d
-endr
-	
-; restore sp
-	ld h, b
-	ld l, c
-	ld sp, hl
-	ret
-; fc6d7
-
-
-TileAnimationPalette: ; fc6d7
-; Transition between color values 0-2 for color 0 in palette 3.
-
-; No palette changes on DMG.
-	ld a, [hCGB]
-	and a
-	ret z
-	
-; We don't want to mess with non-standard palettes.
-	ld a, [rBGP] ; BGP
-	cp %11100100
-	ret nz
-	
-; Only update on even frames.
-	ld a, [TileAnimationTimer]
-	ld l, a
-	and 1 ; odd
-	ret nz
-	
-; Ready for BGPD input...
-	ld a, %10011000 ; auto increment, index $18 (pal 3 color 0)
-	ld [rBGPI], a
-	
-	ld a, [rSVBK]
-	push af
-	ld a, 5 ; wra5: gfx
-	ld [rSVBK], a
-	
-; Update color 0 in order 0 1 2 1
-	
-	ld a, l
-	and %110 ; frames 0 2 4 6
-	
-	jr z, .color0
-	
-	cp 4
-	jr z, .color2
-	
-.color1
-	ld hl, $d01a ; pal 3 color 1
-	ld a, [hli]
-	ld [rBGPD], a
-	ld a, [hli]
-	ld [rBGPD], a
-	jr .end
-	
-.color0
-	ld hl, $d018 ; pal 3 color 0
-	ld a, [hli]
-	ld [rBGPD], a
-	ld a, [hli]
-	ld [rBGPD], a
-	jr .end
-	
-.color2
-	ld hl, $d01c ; pal 3 color 2
-	ld a, [hli]
-	ld [rBGPD], a
-	ld a, [hli]
-	ld [rBGPD], a
-	
-.end
-	pop af
-	ld [rSVBK], a
-	ret
-; fc71e
-
-
-Functionfc71e: ; fc71e
-	ld a, [hCGB]
-	and a
-	ret z
-
-	ld a, [rBGP]
-	cp $e4
-	ret nz
-
-	ld a, [$d847]
-	cp $ff
-	ret nz
-
-	ld a, [rSVBK]
-	push af
-
-	ld a, 5
-	ld [rSVBK], a
-	ld a, $a0
-	ld [rBGPI], a
-	ld a, [$ff9b]
-	and 2
-	jr nz, .asm_fc743
-	ld hl, $d020
-	jr .asm_fc746
-
-.asm_fc743
-	ld hl, $d022
-
-.asm_fc746
-	ld a, [hli]
-	ld [rBGPD], a
-	ld a, [hli]
-	ld [rBGPD], a
-
-	pop af
-	ld [rSVBK], a
-	ret
-; fc750
-
-
-SproutPillarTilePointers: ; fc750
-SproutPillarTilePointer1:
-	dw $92d0, SproutPillarTile1
-SproutPillarTilePointer2:
-	dw $92f0, SproutPillarTile2
-SproutPillarTilePointer3:
-	dw $93d0, SproutPillarTile3
-SproutPillarTilePointer4:
-	dw $93f0, SproutPillarTile4
-SproutPillarTilePointer5:
-	dw $93c0, SproutPillarTile5
-SproutPillarTilePointer6:
-	dw $92c0, SproutPillarTile6
-SproutPillarTilePointer7:
-	dw $94d0, SproutPillarTile7
-SproutPillarTilePointer8:
-	dw $94f0, SproutPillarTile8
-SproutPillarTilePointer9:
-	dw $95d0, SproutPillarTile9
-SproutPillarTilePointer10:
-	dw $95f0, SproutPillarTile10
-
-SproutPillarTile1:
-	INCBIN "gfx/tilesets/sprout-pillar/1.2bpp"
-SproutPillarTile2:
-	INCBIN "gfx/tilesets/sprout-pillar/2.2bpp"
-SproutPillarTile3:
-	INCBIN "gfx/tilesets/sprout-pillar/3.2bpp"
-SproutPillarTile4:
-	INCBIN "gfx/tilesets/sprout-pillar/4.2bpp"
-SproutPillarTile5:
-	INCBIN "gfx/tilesets/sprout-pillar/5.2bpp"
-SproutPillarTile6:
-	INCBIN "gfx/tilesets/sprout-pillar/6.2bpp"
-SproutPillarTile7:
-	INCBIN "gfx/tilesets/sprout-pillar/7.2bpp"
-SproutPillarTile8:
-	INCBIN "gfx/tilesets/sprout-pillar/8.2bpp"
-SproutPillarTile9:
-	INCBIN "gfx/tilesets/sprout-pillar/9.2bpp"
-SproutPillarTile10:
-	INCBIN "gfx/tilesets/sprout-pillar/10.2bpp"
-; fca98
-
-
-INCBIN "baserom.gbc",$fca98,$fcba8 - $fca98
-
-
-Functionfcba8: ; fcba8
+SECTION "bank3F", ROMX, BANK[$3F]
+
+INCLUDE "tilesets/animations.asm"
+
+
+; Trade struct
+TRADE_DIALOG  EQU 0
+TRADE_GIVEMON EQU 1
+TRADE_GETMON  EQU 2
+TRADE_NICK    EQU 3
+TRADE_DVS     EQU 14
+TRADE_ITEM    EQU 16
+TRADE_OT_ID   EQU 17
+TRADE_OT_NAME EQU 19
+TRADE_GENDER  EQU 30
+TRADE_PADDING EQU 31
+
+; Trade dialogs
+TRADE_INTRO    EQU 0
+TRADE_CANCEL   EQU 1
+TRADE_WRONG    EQU 2
+TRADE_COMPLETE EQU 3
+TRADE_AFTER    EQU 4
+
+NPCTrade: ; fcba8
 	ld a, e
 	ld [$cf63], a
 	call Functionfcc59
-	ld b, $2
-	call Functionfcc4a
-	ld a, $4
-	jr nz, .asm_fcc03
-	ld a, $0
-	call Functionfcf38
-	call Function1dcf
-	ld a, $1
-	jr c, .asm_fcc03
+	ld b, CHECK_FLAG
+	call TradeFlagAction
+	ld a, TRADE_AFTER
+	jr nz, .done
+
+	ld a, TRADE_INTRO
+	call PrintTradeText
+
+	call YesNoBox
+	ld a, TRADE_CANCEL
+	jr c, .done
+
+; Select givemon from party
 	ld b, $6
 	callba Function5001d
-	ld a, $1
-	jr c, .asm_fcc03
-	ld e, $1
-	call LoadTradesPointer
+	ld a, TRADE_CANCEL
+	jr c, .done
+
+	ld e, TRADE_GIVEMON
+	call GetTradeAttribute
 	ld a, [CurPartySpecies]
 	cp [hl]
-	ld a, $2
-	jr nz, .asm_fcc03
-	call Functionfcc23
-	ld a, $2
-	jr c, .asm_fcc03
-	ld b, $1
-	call Functionfcc4a
-	ld hl, $4f7b
+	ld a, TRADE_WRONG
+	jr nz, .done
+
+	call CheckTradeGender
+	ld a, TRADE_WRONG
+	jr c, .done
+
+	ld b, SET_FLAG
+	call TradeFlagAction
+
+	ld hl, ConnectLinkCableText
 	call PrintText
+
 	call Functionfcc63
 	call Functionfcc07
-	call Functionfce1b
-	ld hl, $4f80
-	call PrintText
-	call Function3d47
-	ld a, $3
+	call GetTradeMonNames
 
-.asm_fcc03
-	call Functionfcf38
+	ld hl, TradedForText
+	call PrintText
+
+	call Function3d47
+
+	ld a, TRADE_COMPLETE
+
+.done
+	call PrintTradeText
 	ret
 ; fcc07
 
@@ -106132,16 +80749,18 @@ Functionfcc07: ; fcc07
 	ret
 ; fcc23
 
-Functionfcc23: ; fcc23
+CheckTradeGender: ; fcc23
 	xor a
 	ld [MonType], a
-	ld e, $1e
-	call LoadTradesPointer
+
+	ld e, TRADE_GENDER
+	call GetTradeAttribute
 	ld a, [hl]
 	and a
 	jr z, .asm_fcc46
-	cp $1
+	cp 1
 	jr z, .asm_fcc3e
+
 	callba GetGender
 	jr nz, .asm_fcc48
 	jr .asm_fcc46
@@ -106159,11 +80778,11 @@ Functionfcc23: ; fcc23
 	ret
 ; fcc4a
 
-Functionfcc4a: ; fcc4a
+TradeFlagAction: ; fcc4a
 	ld hl, $d960
 	ld a, [$cf63]
 	ld c, a
-	ld a, $3
+	ld a, PREDEF_FLAG
 	call Predef
 	ld a, c
 	and a
@@ -106171,138 +80790,157 @@ Functionfcc4a: ; fcc4a
 ; fcc59
 
 Functionfcc59: ; fcc59
-	ld e, $0
-	call LoadTradesPointer
+	ld e, TRADE_DIALOG
+	call GetTradeAttribute
 	ld a, [hl]
 	ld [$cf64], a
 	ret
 ; fcc63
 
 Functionfcc63: ; fcc63
-	ld e, $1
-	call LoadTradesPointer
+	ld e, TRADE_GIVEMON
+	call GetTradeAttribute
 	ld a, [hl]
-	ld [PlayerSDefLevel], a
-	ld e, $2
-	call LoadTradesPointer
+	ld [$c6d0], a
+
+	ld e, TRADE_GETMON
+	call GetTradeAttribute
 	ld a, [hl]
-	ld [PlayerLightScreenCount], a
-	ld a, [PlayerSDefLevel]
-	ld de, PlayerAccLevel
+	ld [$c702], a
+
+	ld a, [$c6d0]
+	ld de, $c6d1
 	call Functionfcde8
 	call Functionfcdf4
-	ld a, [PlayerLightScreenCount]
-	ld de, PlayerReflectCount
+
+	ld a, [$c702]
+	ld de, $c703
 	call Functionfcde8
 	call Functionfcdf4
+
 	ld hl, PartyMon1OT
 	ld bc, $000b
 	call Functionfcdd7
 	ld de, $c6f2
 	call Functionfcdf4
+
 	ld hl, PlayerName
 	ld de, $c6e7
 	call Functionfcdf4
+
 	ld hl, PartyMon1ID
-	ld bc, $0030
+	ld bc, PartyMon2 - PartyMon1
 	call Functionfcdd7
-	ld de, PlayerScreens
+	ld de, $c6ff
 	call Functionfce0f
+
 	ld hl, PartyMon1DVs
-	ld bc, $0030
+	ld bc, PartyMon2 - PartyMon1
 	call Functionfcdd7
 	ld de, $c6fd
 	call Functionfce0f
+
 	ld hl, PartyMon1Species
-	ld bc, $0030
+	ld bc, PartyMon2 - PartyMon1
 	call Functionfcdd7
 	ld b, h
 	ld c, l
-	callba Function4f301
+	callba GetCaughtGender
 	ld a, c
 	ld [$c701], a
-	ld e, $0
-	call LoadTradesPointer
-	ld a, [hl]
-	cp $3
-	ld a, $1
-	jr c, .asm_fcce6
-	ld a, $2
 
+	ld e, TRADE_DIALOG
+	call GetTradeAttribute
+	ld a, [hl]
+	cp TRADE_COMPLETE
+	ld a, 1
+	jr c, .asm_fcce6
+	ld a, 2
 .asm_fcce6
 	ld [$c733], a
+
 	ld hl, PartyMon1Level
-	ld bc, $0030
+	ld bc, PartyMon2 - PartyMon1
 	call Functionfcdd7
 	ld a, [hl]
 	ld [CurPartyLevel], a
-	ld a, [PlayerLightScreenCount]
+	ld a, [$c702]
 	ld [CurPartySpecies], a
 	xor a
 	ld [MonType], a
 	ld [$d10b], a
 	callab Functione039
-	ld a, $6
+	ld a, PREDEF_ADDPARTYMON
 	call Predef
-	ld e, $0
-	call LoadTradesPointer
-	ld a, [hl]
-	cp $3
-	ld b, $0
-	jr c, .asm_fcd1c
-	ld b, $1
 
+	ld e, TRADE_DIALOG
+	call GetTradeAttribute
+	ld a, [hl]
+	cp TRADE_COMPLETE
+	ld b, 0
+	jr c, .asm_fcd1c
+	ld b, 1
 .asm_fcd1c
 	callba Function4dba3
-	ld e, $3
-	call LoadTradesPointer
-	ld de, FailedMessage
+
+	ld e, TRADE_NICK
+	call GetTradeAttribute
+	ld de, $c70e
 	call Functionfcdf4
+
 	ld hl, PartyMon1Nickname
-	ld bc, $000b
+	ld bc, PKMN_NAME_LENGTH
 	call Functionfcdde
-	ld hl, FailedMessage
+	ld hl, $c70e
 	call Functionfcdf4
-	ld e, $13
-	call LoadTradesPointer
+
+	ld e, TRADE_OT_NAME
+	call GetTradeAttribute
 	push hl
 	ld de, $c724
 	call Functionfcdf4
 	pop hl
 	ld de, $c719
 	call Functionfcdf4
+
 	ld hl, PartyMon1OT
 	ld bc, $000b
 	call Functionfcdde
 	ld hl, $c724
 	call Functionfcdf4
-	ld e, $e
-	call LoadTradesPointer
+
+	ld e, TRADE_DVS
+	call GetTradeAttribute
 	ld de, $c72f
 	call Functionfce0f
+
 	ld hl, PartyMon1DVs
-	ld bc, $0030
+	ld bc, PartyMon2 - PartyMon1
 	call Functionfcdde
 	ld hl, $c72f
 	call Functionfce0f
-	ld e, $11
-	call LoadTradesPointer
+
+	ld e, TRADE_OT_ID
+	call GetTradeAttribute
 	ld de, $c732
 	call Functionfce15
+
 	ld hl, PartyMon1ID
-	ld bc, $0030
+	ld bc, PartyMon2 - PartyMon1
 	call Functionfcdde
 	ld hl, $c731
 	call Functionfce0f
-	ld e, $10
-	call LoadTradesPointer
+
+	ld e, TRADE_ITEM
+	call GetTradeAttribute
 	push hl
 	ld hl, PartyMon1Item
-	ld bc, $0030
+	ld bc, PartyMon2 - PartyMon1
 	call Functionfcdde
 	pop hl
 	ld a, [hl]
 	ld [de], a
+
 	push af
 	push bc
 	push de
@@ -106323,16 +80961,15 @@ Functionfcc63: ; fcc63
 ; fcdc2
 
 
-
-LoadTradesPointer: ; 0xfcdc2
+GetTradeAttribute: ; 0xfcdc2
 	ld d, 0
 	push de
 	ld a, [$cf63]
 	and $f
 	swap a
 	ld e, a
-	ld d, $0
-	ld hl, Trades
+	ld d, 0
+	ld hl, NPCTrades
 	add hl, de
 	add hl, de
 	pop de
@@ -106370,8 +81007,21 @@ Functionfcdf4: ; fcdf4
 	ret
 ; fcdfb
 
-INCBIN "baserom.gbc",$fcdfb,$fce0f - $fcdfb
+Functionfcdfb: ; fcdfb
+	ld bc, $0004
+	call CopyBytes
+	ld a, $50
+	ld [de], a
+	ret
+; fce05
 
+Functionfce05: ; fce05
+	ld bc, $0003
+	call CopyBytes
+	ld a, $50
+	ld [de], a
+	ret
+; fce0f
 
 Functionfce0f: ; fce0f
 	ld a, [hli]
@@ -106391,70 +81041,66 @@ Functionfce15: ; fce15
 	ret
 ; fce1b
 
-Functionfce1b: ; fce1b
-	ld e, $2
-	call LoadTradesPointer
+GetTradeMonNames: ; fce1b
+	ld e, TRADE_GETMON
+	call GetTradeAttribute
 	ld a, [hl]
 	call Functionfcde8
+
 	ld de, StringBuffer2
 	call Functionfcdf4
-	ld e, $1
-	call LoadTradesPointer
+
+	ld e, TRADE_GIVEMON
+	call GetTradeAttribute
 	ld a, [hl]
 	call Functionfcde8
+
 	ld de, $d050
 	call Functionfcdf4
+
 	ld hl, StringBuffer1
-.asm_fce3c
+.next
 	ld a, [hli]
-	cp $50
-	jr nz, .asm_fce3c
+	cp "@"
+	jr nz, .next
+
 	dec hl
 	push hl
-	ld e, $1e
-	call LoadTradesPointer
+	ld e, TRADE_GENDER
+	call GetTradeAttribute
 	ld a, [hl]
 	pop hl
 	and a
 	ret z
-	cp $1
-	ld a, $ef
-	jr z, .asm_fce54
-	ld a, $f5
 
-.asm_fce54
+	cp 1
+	ld a, "♂"
+	jr z, .done
+	ld a, "♀"
+.done
 	ld [hli], a
-	ld [hl], $50
+	ld [hl], "@"
 	ret
 ; fce58
 
 
-Trades: ; 0xfce58
-; byte 1: dialog
-; byte 2: givemon
-; byte 3: getmon
-; bytes 4-14 nickname
-; bytes 15-16 DVs
-; byte 17 held item
-; bytes 18-19 ID
-; bytes 20-30 OT name
-; byte 31 gender
-; byte 32 XXX always zero?
+NPCTrades: ; fce58
+	db 0, ABRA,       MACHOP,     "MUSCLE@@@@@", $37, $66, GOLD_BERRY,   $54, $92, "MIKE@@@@@@@", 0, 0
+	db 0, BELLSPROUT, ONIX,       "ROCKY@@@@@@", $96, $66, BITTER_BERRY, $1e, $bf, "KYLE@@@@@@@", 0, 0
+	db 1, KRABBY,     VOLTORB,    "VOLTY@@@@@@", $98, $88, PRZCUREBERRY, $05, $72, "TIM@@@@@@@@", 0, 0
+	db 3, DRAGONAIR,  DODRIO,     "DORIS@@@@@@", $77, $66, SMOKE_BALL,   $1b, $01, "EMY@@@@@@@@", 2, 0
+	db 2, HAUNTER,    XATU,       "PAUL@@@@@@@", $96, $86, MYSTERYBERRY, $00, $3d, "CHRIS@@@@@@", 0, 0
+	db 3, CHANSEY,    AERODACTYL, "AEROY@@@@@@", $96, $66, GOLD_BERRY,   $7b, $67, "KIM@@@@@@@@", 0, 0
+	db 0, DUGTRIO,    MAGNETON,   "MAGGIE@@@@@", $96, $66, METAL_COAT,   $a2, $c3, "FOREST@@@@@", 0, 0
+; fcf38
 
-	db 0,ABRA,MACHOP,"MUSCLE@@@@@", $37, $66,GOLD_BERRY, $54, $92,"MIKE@@@@@@@",0,0
-	db 0,BELLSPROUT,ONIX,"ROCKY@@@@@@", $96, $66,BITTER_BERRY, $1e, $bf,"KYLE@@@@@@@",0,0
-	db 1,KRABBY,VOLTORB,"VOLTY@@@@@@", $98, $88,PRZCUREBERRY, $05, $72,"TIM@@@@@@@@",0,0
-	db 3,DRAGONAIR,DODRIO,"DORIS@@@@@@", $77, $66,SMOKE_BALL, $1b, $01,"EMY@@@@@@@@",2,0
-	db 2,HAUNTER,XATU,"PAUL@@@@@@@", $96, $86,MYSTERYBERRY, $00, $3d,"CHRIS@@@@@@",0,0
-	db 3,CHANSEY,AERODACTYL,"AEROY@@@@@@", $96, $66,GOLD_BERRY, $7b, $67,"KIM@@@@@@@@",0,0
-	db 0,DUGTRIO,MAGNETON,"MAGGIE@@@@@", $96, $66,METAL_COAT, $a2, $c3,"FOREST@@@@@",0,0
 
-Functionfcf38: ; fcf38
+PrintTradeText: ; fcf38
 	push af
-	call Functionfce1b
+	call GetTradeMonNames
 	pop af
-	ld bc, $0008
-	ld hl, $4f53
+	ld bc, 2 * 4
+	ld hl, TradeTexts
 	call AddNTimes
 	ld a, [$cf64]
 	ld c, a
@@ -106467,7 +81113,172 @@ Functionfcf38: ; fcf38
 	ret
 ; fcf53
 
-INCBIN "baserom.gbc",$fcf53,$fcfec - $fcf53
+TradeTexts: ; fcf53
+; intro
+	dw TradeIntroText1
+	dw TradeIntroText2
+	dw TradeIntroText3
+	dw TradeIntroText4
+
+; cancel
+	dw TradeCancelText1
+	dw TradeCancelText2
+	dw TradeCancelText3
+	dw TradeCancelText4
+
+; wrong mon
+	dw TradeWrongText1
+	dw TradeWrongText2
+	dw TradeWrongText3
+	dw TradeWrongText4
+
+; completed
+	dw TradeCompleteText1
+	dw TradeCompleteText2
+	dw TradeCompleteText3
+	dw TradeCompleteText4
+
+; after
+	dw TradeAfterText1
+	dw TradeAfterText2
+	dw TradeAfterText3
+	dw TradeAfterText4
+; fcf7b
+
+
+ConnectLinkCableText: ; 0xfcf7b
+	; OK, connect the Game Link Cable.
+	text_jump UnknownText_0x1bd407
+	db "@"
+; 0xfcf80
+
+
+TradedForText: ; 0xfcf80
+	; traded givemon for getmon
+	text_jump UnknownText_0x1bd429
+	start_asm
+
+	ld de, MUSIC_NONE
+	call PlayMusic
+	call DelayFrame
+	ld hl, .done
+	ret
+
+.done
+	; sound0x0A
+	; interpret_data
+	text_jump UnknownText_0x1bd445
+	db "@"
+; 0xfcf97
+
+
+TradeIntroText1: ; 0xfcf97
+	; I collect #MON. Do you have @ ? Want to trade it for my @ ?
+	text_jump UnknownText_0x1bd449
+	db "@"
+; 0xfcf9c
+
+TradeCancelText1: ; 0xfcf9c
+	; You don't want to trade? Aww…
+	text_jump UnknownText_0x1bd48c
+	db "@"
+; 0xfcfa1
+
+TradeWrongText1: ; 0xfcfa1
+	; Huh? That's not @ .  What a letdown…
+	text_jump UnknownText_0x1bd4aa
+	db "@"
+; 0xfcfa6
+
+TradeCompleteText1: ; 0xfcfa6
+	; Yay! I got myself @ ! Thanks!
+	text_jump UnknownText_0x1bd4d2
+	db "@"
+; 0xfcfab
+
+TradeAfterText1: ; 0xfcfab
+	; Hi, how's my old @  doing?
+	text_jump UnknownText_0x1bd4f4
+	db "@"
+; 0xfcfb0
+
+
+TradeIntroText2:
+TradeIntroText3: ; 0xfcfb0
+	; Hi, I'm looking for this #MON. If you have @ , would you trade it for my @ ?
+	text_jump UnknownText_0x1bd512
+	db "@"
+; 0xfcfb5
+
+TradeCancelText2:
+TradeCancelText3: ; 0xfcfb5
+	; You don't have one either? Gee, that's really disappointing…
+	text_jump UnknownText_0x1bd565
+	db "@"
+; 0xfcfba
+
+TradeWrongText2:
+TradeWrongText3: ; 0xfcfba
+	; You don't have @ ? That's too bad, then.
+	text_jump UnknownText_0x1bd5a1
+	db "@"
+; 0xfcfbf
+
+TradeCompleteText2: ; 0xfcfbf
+	; Great! Thank you! I finally got @ .
+	text_jump UnknownText_0x1bd5cc
+	db "@"
+; 0xfcfc4
+
+TradeAfterText2: ; 0xfcfc4
+	; Hi! The @ you traded me is doing great!
+	text_jump UnknownText_0x1bd5f4
+	db "@"
+; 0xfcfc9
+
+
+TradeIntroText4: ; 0xfcfc9
+	; 's cute, but I don't have it. Do you have @ ? Want to trade it for my @ ?
+	text_jump UnknownText_0x1bd621
+	db "@"
+; 0xfcfce
+
+TradeCancelText4: ; 0xfcfce
+	; You don't want to trade? Oh, darn…
+	text_jump UnknownText_0x1bd673
+	db "@"
+; 0xfcfd3
+
+TradeWrongText4: ; 0xfcfd3
+	; That's not @ . Please trade with me if you get one.
+	text_jump UnknownText_0x1bd696
+	db "@"
+; 0xfcfd8
+
+TradeCompleteText4: ; 0xfcfd8
+	; Wow! Thank you! I always wanted @ !
+	text_jump UnknownText_0x1bd6cd
+	db "@"
+; 0xfcfdd
+
+TradeAfterText4: ; 0xfcfdd
+	; How is that @  I traded you doing? Your @ 's so cute!
+	text_jump UnknownText_0x1bd6f5
+	db "@"
+; 0xfcfe2
+
+
+TradeCompleteText3: ; 0xfcfe2
+	; Uh? What happened?
+	text_jump UnknownText_0x1bd731
+	db "@"
+; 0xfcfe7
+
+TradeAfterText3: ; 0xfcfe7
+	; Trading is so odd… I still have a lot to learn about it.
+	text_jump UnknownText_0x1bd745
+	db "@"
+; 0xfcfec
 
 
 Functionfcfec: ; fcfec
@@ -106673,7 +81484,7 @@ Functionfd1d0: ; fd1d0
 INCBIN "baserom.gbc",$fd1d1,$fd1d2 - $fd1d1
 
 
-SECTION "bank40",ROMX,BANK[$40]
+SECTION "bank40", ROMX, BANK[$40]
 
 Function100000: ; 100000
 	ld a, [rSVBK]
@@ -108025,7 +82836,7 @@ Function100a87: ; 100a87
 	ld [$cd27], a
 .asm_100a92
 	call DelayFrame
-	call GetJoypadPublic
+	call GetJoypad
 	callba Function100382
 	ld c, $1
 	ld b, $3
@@ -108904,7 +83715,7 @@ Function102142: ; 102142
 	call Function10219f
 	ld hl, $61d6
 	call Function1d4f
-	call Function1dcf
+	call YesNoBox
 	call Function1c07
 	jr c, .asm_10217c
 	call Function1021b8
@@ -109007,7 +83818,7 @@ Function10366e: ; 10366e
 	jr z, .asm_10369b
 	ld hl, $775d
 	call PrintText
-	call Function1dcf
+	call YesNoBox
 	jr c, .asm_103696
 	callba Function8b1e1
 	jr nc, .asm_103690
@@ -109031,7 +83842,7 @@ Function10366e: ; 10366e
 	jr nz, .asm_1036b5
 	ld hl, $7762
 	call PrintText
-	call Function1dcf
+	call YesNoBox
 	jr c, .asm_1036b5
 	call Function1036f9
 	call Functiona36
@@ -109178,7 +83989,7 @@ Function1037c2: ; 1037c2
 	jr z, .asm_1037de
 	ld hl, $77e6
 	call PrintText
-	call Function1dcf
+	call YesNoBox
 	jr c, .asm_1037de
 	ld a, $1
 	ld [ScriptVar], a
@@ -109286,7 +84097,7 @@ Function10387b: ; 10387b
 INCBIN "baserom.gbc",$103898,$10389d - $103898
 
 
-SECTION "bank41",ROMX,BANK[$41]
+SECTION "bank41", ROMX, BANK[$41]
 
 Function104000: ; 104000
 	ld hl, $4006
@@ -109893,7 +84704,7 @@ Function1046df: ; 1046df (41:46df)
 	ld b, a
 	ld a, [$d148]
 	ld c, a
-	call Function2c99
+	call GetAnyMapPermission
 	call CheckIndoorMap
 	ret nz
 	ld a, [$d14a]
@@ -109922,14 +84733,14 @@ Function104718: ; 104718 (41:4718)
 	ld b, a
 	ld a, [$d148]
 	ld c, a
-	call Function2c99
+	call GetAnyMapPermission
 	call CheckIndoorMap
 	ret nz
 	ld a, [$d147]
 	ld b, a
 	ld a, [$d148]
 	ld c, a
-	call Function2ca7
+	call GetAnyMapTileset
 	ld a, c
 	cp $7
 	jr z, .asm_104743
@@ -110010,7 +84821,7 @@ Function1047b4: ; 1047b4 (41:47b4)
 	ld a, $0
 	ld [rVBK], a ; $ff00+$4f
 	ret
-	call Function2d27
+	call LoadTilesetHeader
 	call Function2821
 	xor a
 	ld [$FF00+$de], a
@@ -111864,7 +86675,7 @@ UsedMoveText: ; 105db9
 ; this is a stream of text and asm from 105db9 to 105ef6
 
 ; print actor name
-	text_jump _ActorNameText, BANK(_ActorNameText)
+	text_jump _ActorNameText
 	start_asm
 
 ; ????
@@ -111926,13 +86737,13 @@ UsedMoveText: ; 105db9
 ; 105e04
 
 UsedMove1Text: ; 105e04
-	text_jump _UsedMove1Text, BANK(_UsedMove1Text)
+	text_jump _UsedMove1Text
 	start_asm
 	jr Function105e10
 ; 105e0b
 
 UsedMove2Text: ; 105e0b
-	text_jump _UsedMove2Text, BANK(_UsedMove2Text)
+	text_jump _UsedMove2Text
 	start_asm
 ; 105e10
 
@@ -111947,7 +86758,7 @@ Function105e10: ; 105e10
 ; 105e1a
 
 UsedInsteadText: ; 105e1a
-	text_jump _UsedInsteadText, BANK(_UsedInsteadText)
+	text_jump _UsedInsteadText
 	start_asm
 ; 105e1f
 
@@ -111957,7 +86768,7 @@ GetMoveNameText: ; 105e1f
 ; 105e23
 
 MoveNameText: ; 105e23
-	text_jump _MoveNameText, BANK(_MoveNameText)
+	text_jump _MoveNameText
 	start_asm
 ; 105e28
 
@@ -111994,23 +86805,23 @@ GetUsedMoveTextEnder: ; 105e28
 ; 105e43
 
 EndUsedMove1Text: ; 105e43
-	text_jump _EndUsedMove1Text, BANK(_EndUsedMove1Text)
+	text_jump _EndUsedMove1Text
 	db "@"
 ; 105e48
 EndUsedMove2Text: ; 105e48
-	text_jump _EndUsedMove2Text, BANK(_EndUsedMove2Text)
+	text_jump _EndUsedMove2Text
 	db "@"
 ; 105e4d
 EndUsedMove3Text: ; 105e4d
-	text_jump _EndUsedMove3Text, BANK(_EndUsedMove3Text)
+	text_jump _EndUsedMove3Text
 	db "@"
 ; 105e52
 EndUsedMove4Text: ; 105e52
-	text_jump _EndUsedMove4Text, BANK(_EndUsedMove4Text)
+	text_jump _EndUsedMove4Text
 	db "@"
 ; 105e57
 EndUsedMove5Text: ; 105e57
-	text_jump _EndUsedMove5Text, BANK(_EndUsedMove5Text)
+	text_jump _EndUsedMove5Text
 	db "@"
 ; 105e5c
 
@@ -112635,7 +87446,13 @@ Function1060e5: ; 1060e5
 	ret
 ; 1060e6 (41:60e6)
 
-INCBIN "baserom.gbc",$1060e6,$1060fb - $1060e6
+INCBIN "baserom.gbc", $1060e6, $1060ef - $1060e6
+
+Function1060ef: ; 1060ef
+	ret
+; 1060f0
+
+INCBIN "baserom.gbc", $1060f0, $1060fb - $1060f0
 
 
 Function1060fb: ; 1060fb
@@ -113066,7 +87883,7 @@ Function106594: ; 106594
 INCBIN "baserom.gbc",$1065ad,$106dbc - $1065ad
 
 
-SECTION "bank42",ROMX,BANK[$42]
+SECTION "bank42", ROMX, BANK[$42]
 
 INCBIN "baserom.gbc",$108000,$108016 - $108000
 
@@ -113337,242 +88154,19 @@ INCBIN "gfx/intro/logo.lz"
 ; 109847
 
 
-Function109847: ; 109847
-	bit 6, b
-	ld a, $0
-	jr z, .asm_10984f
-	ld a, $40
-
-.asm_10984f
-	ld [$cf63], a
-	ld a, [rSVBK]
-	push af
-	ld a, $5
-	ld [rSVBK], a
-	call WhiteBGMap
-	call ClearTileMap
-	call ClearSprites
-	ld hl, $ca00
-	ld c, $80
-	ld de, rJOYP
-.asm_10986a
-	ld a, e
-	ld [hli], a
-	ld a, d
-	ld [hli], a
-	dec c
-	jr nz, .asm_10986a
-	ld de, $5c24
-	ld hl, $9200
-	ld bc, $4209
-	call Request2bpp
-	ld de, $4000
-	ld hl, $9600
-	ld bc, $391d
-	call Request2bpp
-	ld de, $7d2e
-	ld hl, $9400
-	ld bc, $3210
-	call Request2bpp
-	ld a, $ff
-	ld [$cf64], a
-	xor a
-	ld [$cf65], a
-	call Function109bca
-	ld e, l
-	ld d, h
-	ld hl, VTiles2
-	ld bc, $4210
-	call Request2bpp
-	call Function109a95
-	xor a
-	ld [$cf66], a
-	ld hl, LYOverrides
-	ld bc, Start
-	xor a
-	call ByteFill
-	ld a, $43
-	ld [hLCDStatCustom], a
-	call GetCreditsPalette
-	call Function32f9
-	ld a, [$ff9e]
-	push af
-	ld a, $5
-	ld [$ff9e], a
-	ld a, $1
-	ld [$ffaa], a
-	xor a
-	ld [hBGMapMode], a
-	ld [CreditsPos], a
-	ld [$cd21], a
-	ld [CreditsTimer], a
-.asm_1098de
-	call Function109908
-	call Function1098fd
-	jr nz, .asm_1098ee
-	call Function109926
-	call DelayFrame
-	jr .asm_1098de
-
-.asm_1098ee
-	call WhiteBGMap
-	xor a
-	ld [hLCDStatCustom], a
-	ld [hBGMapAddress], a
-	pop af
-	ld [$ff9e], a
-	pop af
-	ld [rSVBK], a
-	ret
-; 1098fd
-
-Function1098fd: ; 1098fd
-	ld a, [hJoypadDown]
-	and $1
-	ret z
-	ld a, [$cf63]
-	bit 7, a
-	ret
-; 109908
-
-Function109908: ; 109908
-	ld a, [hJoypadDown]
-	and $2
-	ret z
-	ld a, [$cf63]
-	bit 6, a
-	ret z
-	ld hl, CreditsPos
-	ld a, [hli]
-	cp $d
-	jr nc, .asm_10991e
-	ld a, [hli]
-	and a
-	ret z
-
-.asm_10991e
-	ld hl, CreditsTimer
-	ld a, [hl]
-	and a
-	ret z
-	dec [hl]
-	ret
-; 109926
-
-Function109926: ; 109926
-	ld a, [$cf63]
-	and $f
-	ld e, a
-	ld d, $0
-	ld hl, $5937
-	add hl, de
-	add hl, de
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	jp [hl]
-; 109937
-
-
-; no known jump sources
-Jumptable_109937: ; 109937 (42:5937)
-	dw ParseCredits
-	dw Function109951
-	dw Function109951
-	dw Function10995e
-	dw Function109964
-	dw Function10997b
-	dw Function109986
-	dw Function109951
-	dw Function109951
-	dw Function109951
-	dw Function109964
-	dw Function10997b
-	dw Function109956
-
-
-; known jump sources: 109961 (42:5961), 109983 (42:5983), 1099a0 (42:59a0), 109a62 (42:5a62)
-Function109951: ; 109951 (42:5951)
-	ld hl, $cf63
-	inc [hl]
-	ret
-
-; no known jump sources
-Function109956: ; 109956 (42:5956)
-	ld hl, $cf63
-	ld a, [hl]
-	and $f0
-	ld [hl], a
-	ret
-
-; no known jump sources
-Function10995e: ; 10995e (42:595e)
-	xor a
-	ld [hBGMapMode], a ; $ff00+$d4
-	jp Function109951
-
-; no known jump sources
-Function109964: ; 109964 (42:5964)
-	call Function109bca
-	ld a, l
-	ld [$cf68], a
-	ld a, h
-	ld [$cf69], a
-	ld a, $0
-	ld [$cf6a], a
-	ld a, $90
-	ld [$cf6b], a
-	jr Function10997b
-
-; known jump sources: 109979 (42:5979)
-Function10997b: ; 10997b (42:597b)
-	xor a
-	ld [hBGMapMode], a ; $ff00+$d4
-	ld a, $8
-	ld [$cf67], a
-	jp Function109951
-
-; known jump sources: 10998a (42:598a)
-Function109986: ; 109986 (42:5986)
-	ld a, [rLY] ; $ff00+$44
-	cp $30
-	jr c, Function109986
-	ld a, [$cf66]
-	dec a
-	dec a
-	ld [$cf66], a
-	ld hl, $d11f
-	call Function1099a3
-	ld hl, $d187
-	call Function1099a3
-	jp Function109951
-
-; known jump sources: 109997 (42:5997), 10999d (42:599d)
-Function1099a3: ; 1099a3 (42:59a3)
-	ld c, $8
-.asm_1099a5
-	ld [hli], a
-	dec c
-	jr nz, .asm_1099a5
-	ret
-
-; Credits
-INCLUDE "engine/credits.asm"
-
-
-SECTION "bank43",ROMX,BANK[$43]
+SECTION "bank43", ROMX, BANK[$43]
 
 INCBIN "baserom.gbc",$10c000,$10ed67 - $10c000
 
 INCLUDE "engine/title.asm"
 
 
-SECTION "bank44",ROMX,BANK[$44]
+SECTION "bank44", ROMX, BANK[$44]
 
 INCLUDE "lib/mobile/main.asm"
 
 
-SECTION "bank45",ROMX,BANK[$45]
+SECTION "bank45", ROMX, BANK[$45]
 
 INCBIN "baserom.gbc",$114000,$114243 - $114000
 
@@ -114575,7 +89169,7 @@ Function117cdd: ; 0x117cdd
 	ret
 
 
-SECTION "bank46",ROMX,BANK[$46]
+SECTION "bank46", ROMX, BANK[$46]
 
 Function118000: ; 118000
 	ld a, $1
@@ -116554,7 +91148,7 @@ Function11b7e5: ; 11b7e5
 	ld a, [hl]
 	ld [$c730], a
 	ld bc, EnemyMovePP
-	callba Function4f301
+	callba GetCaughtGender
 	ld a, c
 	ld [$c733], a
 	call SpeechTextBox
@@ -116841,7 +91435,7 @@ Function11ba38: ; 11ba38
 INCBIN "baserom.gbc",$11ba44,$11bc9e - $11ba44
 
 
-SECTION "bank47",ROMX,BANK[$47]
+SECTION "bank47", ROMX, BANK[$47]
 
 Function11c000: ; 11c000
 	ld a, [rSVBK]
@@ -117630,33 +92224,44 @@ Function11c52c: ; 11c52c (47:452c)
 Function11c53d: ; 11c53d (47:453d)
 	ld hl, $cd21
 	ld de, hJoypadPressed ; $ffa3
+
 	ld a, [de]
-	and $8
-	jr nz, .asm_11c57f
+	and START
+	jr nz, .start
+
 	ld a, [de]
-	and $4
-	jr nz, .asm_11c58d
+	and SELECT
+	jr nz, .select
+
 	ld a, [de]
-	and $2
-	jr nz, .asm_11c589
+	and B_BUTTON
+	jr nz, .b
+
 	ld a, [de]
-	and $1
-	jr nz, .asm_11c56f
+	and A_BUTTON
+	jr nz, .a
+
 	ld de, $ffa9
+
 	ld a, [de]
-	and $40
-	jr nz, .asm_11c5b5
+	and D_UP
+	jr nz, .up
+
 	ld a, [de]
-	and $80
-	jr nz, .asm_11c5bd
+	and D_DOWN
+	jr nz, .down
+
 	ld a, [de]
-	and $20
-	jr nz, .asm_11c5c5
+	and D_LEFT
+	jr nz, .left
+
 	ld a, [de]
-	and $10
-	jr nz, .asm_11c5da
+	and D_RIGHT
+	jr nz, .right
+
 	ret
-.asm_11c56f
+
+.a
 	ld a, [$cd21]
 	cp $f
 	jr c, .asm_11c59d
@@ -117664,50 +92269,60 @@ Function11c53d: ; 11c53d (47:453d)
 	jr z, .asm_11c5ab
 	dec a
 	jr z, .asm_11c599
-	jr .asm_11c589
-.asm_11c57f
+	jr .b
+
+.start
 	ld hl, $cd24
 	set 0, [hl]
 	ld a, $8
 	ld [BGMapBuffer], a ; $cd20 (aliases: CreditsPos)
-.asm_11c589
+
+.b
 	ld a, $4
 	jr .asm_11c59f
-.asm_11c58d
+
+.select
 	ld a, [$cd2b]
 	xor $1
 	ld [$cd2b], a
 	ld a, $15
 	jr .asm_11c59f
+
 .asm_11c599
 	ld a, $13
 	jr .asm_11c59f
+
 .asm_11c59d
 	ld a, $8
+
 .asm_11c59f
 	ld hl, $cd24
 	set 1, [hl]
 	ld [$cf63], a
 	call PlayClickSFX
 	ret
+
 .asm_11c5ab
 	ld a, [BGMapBuffer] ; $cd20 (aliases: CreditsPos)
 	call Function11ca6a
 	call PlayClickSFX
 	ret
-.asm_11c5b5
+
+.up
 	ld a, [hl]
 	cp $3
 	ret c
 	sub $3
 	jr .asm_11c5ee
-.asm_11c5bd
+
+.down
 	ld a, [hl]
 	cp $f
 	ret nc
 	add $3
 	jr .asm_11c5ee
-.asm_11c5c5
+
+.left
 	ld a, [hl]
 	and a
 	ret z
@@ -117723,7 +92338,8 @@ Function11c53d: ; 11c53d (47:453d)
 	ret z
 	dec a
 	jr .asm_11c5ee
-.asm_11c5da
+
+.right
 	ld a, [hl]
 	cp $2
 	ret z
@@ -117738,6 +92354,7 @@ Function11c53d: ; 11c53d (47:453d)
 	cp $11
 	ret z
 	inc a
+
 .asm_11c5ee
 	ld [hl], a
 	ret
@@ -119584,829 +94201,8 @@ Function11d4aa: ; 11d4aa
 INCBIN "baserom.gbc",$11d4fe,$11f686 - $11d4fe
 
 
-SECTION "bank48",ROMX,BANK[$48]
 
-PicPointers:
-INCLUDE "gfx/pics/pic_pointers.asm"
-
-;                             Pics I
-
-HoOhFrontpic:        INCBIN "gfx/pics/250/front.lz"
-MachampFrontpic:     INCBIN "gfx/pics/068/front.lz"
-NinetalesFrontpic:   INCBIN "gfx/pics/038/front.lz"
-FeraligatrFrontpic:  INCBIN "gfx/pics/160/front.lz"
-NidokingFrontpic:    INCBIN "gfx/pics/034/front.lz"
-RaikouFrontpic:      INCBIN "gfx/pics/243/front.lz"
-LugiaFrontpic:       INCBIN "gfx/pics/249/front.lz"
-ArticunoFrontpic:    INCBIN "gfx/pics/144/front.lz"
-TaurosFrontpic:      INCBIN "gfx/pics/128/front.lz"
-VenusaurFrontpic:    INCBIN "gfx/pics/003/front.lz"
-EnteiFrontpic:       INCBIN "gfx/pics/244/front.lz"
-SuicuneFrontpic:     INCBIN "gfx/pics/245/front.lz"
-TyphlosionFrontpic:  INCBIN "gfx/pics/157/front.lz"
-; 123ffa
-
-
-SECTION "bank49",ROMX,BANK[$49]
-
-UnownPicPointers:
-INCLUDE "gfx/pics/unown_pic_pointers.asm"
-
-;                            Pics II
-
-BlastoiseFrontpic:   INCBIN "gfx/pics/009/front.lz"
-RapidashFrontpic:    INCBIN "gfx/pics/078/front.lz"
-MeganiumFrontpic:    INCBIN "gfx/pics/154/front.lz"
-NidoqueenFrontpic:   INCBIN "gfx/pics/031/front.lz"
-HitmonleeFrontpic:   INCBIN "gfx/pics/106/front.lz"
-ScizorFrontpic:      INCBIN "gfx/pics/212/front.lz"
-BeedrillFrontpic:    INCBIN "gfx/pics/015/front.lz"
-ArcanineFrontpic:    INCBIN "gfx/pics/059/front.lz"
-TyranitarFrontpic:   INCBIN "gfx/pics/248/front.lz"
-MoltresFrontpic:     INCBIN "gfx/pics/146/front.lz"
-ZapdosFrontpic:      INCBIN "gfx/pics/145/front.lz"
-ArbokFrontpic:       INCBIN "gfx/pics/024/front.lz"
-MewtwoFrontpic:      INCBIN "gfx/pics/150/front.lz"
-FearowFrontpic:      INCBIN "gfx/pics/022/front.lz"
-CharizardFrontpic:   INCBIN "gfx/pics/006/front.lz"
-QuilavaFrontpic:     INCBIN "gfx/pics/156/front.lz"
-; 127ffe
-
-
-SECTION "bank4a",ROMX,BANK[$4a]
-
-TrainerPicPointers:
-INCLUDE "gfx/pics/trainer_pic_pointers.asm"
-
-;                           Pics III
-
-SteelixFrontpic:     INCBIN "gfx/pics/208/front.lz"
-AlakazamFrontpic:    INCBIN "gfx/pics/065/front.lz"
-GyaradosFrontpic:    INCBIN "gfx/pics/130/front.lz"
-KangaskhanFrontpic:  INCBIN "gfx/pics/115/front.lz"
-RhydonFrontpic:      INCBIN "gfx/pics/112/front.lz"
-GolduckFrontpic:     INCBIN "gfx/pics/055/front.lz"
-RhyhornFrontpic:     INCBIN "gfx/pics/111/front.lz"
-PidgeotFrontpic:     INCBIN "gfx/pics/018/front.lz"
-SlowbroFrontpic:     INCBIN "gfx/pics/080/front.lz"
-ButterfreeFrontpic:  INCBIN "gfx/pics/012/front.lz"
-WeezingFrontpic:     INCBIN "gfx/pics/110/front.lz"
-CloysterFrontpic:    INCBIN "gfx/pics/091/front.lz"
-SkarmoryFrontpic:    INCBIN "gfx/pics/227/front.lz"
-DewgongFrontpic:     INCBIN "gfx/pics/087/front.lz"
-VictreebelFrontpic:  INCBIN "gfx/pics/071/front.lz"
-RaichuFrontpic:      INCBIN "gfx/pics/026/front.lz"
-PrimeapeFrontpic:    INCBIN "gfx/pics/057/front.lz"
-OmastarBackpic:      INCBIN "gfx/pics/139/back.lz"
-; 12bffe
-
-
-SECTION "bank4b",ROMX,BANK[$4b]
-
-;                            Pics IV
-
-DodrioFrontpic:      INCBIN "gfx/pics/085/front.lz"
-SlowkingFrontpic:    INCBIN "gfx/pics/199/front.lz"
-HitmontopFrontpic:   INCBIN "gfx/pics/237/front.lz"
-OnixFrontpic:        INCBIN "gfx/pics/095/front.lz"
-BlisseyFrontpic:     INCBIN "gfx/pics/242/front.lz"
-MachokeFrontpic:     INCBIN "gfx/pics/067/front.lz"
-DragoniteFrontpic:   INCBIN "gfx/pics/149/front.lz"
-PoliwrathFrontpic:   INCBIN "gfx/pics/062/front.lz"
-ScytherFrontpic:     INCBIN "gfx/pics/123/front.lz"
-AerodactylFrontpic:  INCBIN "gfx/pics/142/front.lz"
-SeakingFrontpic:     INCBIN "gfx/pics/119/front.lz"
-MukFrontpic:         INCBIN "gfx/pics/089/front.lz"
-CroconawFrontpic:    INCBIN "gfx/pics/159/front.lz"
-HypnoFrontpic:       INCBIN "gfx/pics/097/front.lz"
-NidorinoFrontpic:    INCBIN "gfx/pics/033/front.lz"
-SandslashFrontpic:   INCBIN "gfx/pics/028/front.lz"
-JolteonFrontpic:     INCBIN "gfx/pics/135/front.lz"
-DonphanFrontpic:     INCBIN "gfx/pics/232/front.lz"
-PinsirFrontpic:      INCBIN "gfx/pics/127/front.lz"
-UnownEFrontpic:      INCBIN "gfx/pics/201e/front.lz"
-; 130000
-
-
-SECTION "bank4C",ROMX,BANK[$4C]
-
-;                             Pics V
-
-GolbatFrontpic:      INCBIN "gfx/pics/042/front.lz"
-KinglerFrontpic:     INCBIN "gfx/pics/099/front.lz"
-ExeggcuteFrontpic:   INCBIN "gfx/pics/102/front.lz"
-MagcargoFrontpic:    INCBIN "gfx/pics/219/front.lz"
-PersianFrontpic:     INCBIN "gfx/pics/053/front.lz"
-StantlerFrontpic:    INCBIN "gfx/pics/234/front.lz"
-RaticateFrontpic:    INCBIN "gfx/pics/020/front.lz"
-VenomothFrontpic:    INCBIN "gfx/pics/049/front.lz"
-PolitoedFrontpic:    INCBIN "gfx/pics/186/front.lz"
-ElectabuzzFrontpic:  INCBIN "gfx/pics/125/front.lz"
-MantineFrontpic:     INCBIN "gfx/pics/226/front.lz"
-LickitungFrontpic:   INCBIN "gfx/pics/108/front.lz"
-KingdraFrontpic:     INCBIN "gfx/pics/230/front.lz"
-CharmeleonFrontpic:  INCBIN "gfx/pics/005/front.lz"
-KadabraFrontpic:     INCBIN "gfx/pics/064/front.lz"
-ExeggutorFrontpic:   INCBIN "gfx/pics/103/front.lz"
-GastlyFrontpic:      INCBIN "gfx/pics/092/front.lz"
-AzumarillFrontpic:   INCBIN "gfx/pics/184/front.lz"
-ParasectFrontpic:    INCBIN "gfx/pics/047/front.lz"
-MrMimeFrontpic:      INCBIN "gfx/pics/122/front.lz"
-HeracrossFrontpic:   INCBIN "gfx/pics/214/front.lz"
-; 133fff
-
-
-SECTION "bank4d",ROMX,BANK[$4d]
-
-;                            Pics VI
-
-AriadosFrontpic:     INCBIN "gfx/pics/168/front.lz"
-NoctowlFrontpic:     INCBIN "gfx/pics/164/front.lz"
-WartortleFrontpic:   INCBIN "gfx/pics/008/front.lz"
-LaprasFrontpic:      INCBIN "gfx/pics/131/front.lz"
-GolemFrontpic:       INCBIN "gfx/pics/076/front.lz"
-PoliwhirlFrontpic:   INCBIN "gfx/pics/061/front.lz"
-UrsaringFrontpic:    INCBIN "gfx/pics/217/front.lz"
-HoundoomFrontpic:    INCBIN "gfx/pics/229/front.lz"
-KabutopsFrontpic:    INCBIN "gfx/pics/141/front.lz"
-AmpharosFrontpic:    INCBIN "gfx/pics/181/front.lz"
-NidorinaFrontpic:    INCBIN "gfx/pics/030/front.lz"
-FlareonFrontpic:     INCBIN "gfx/pics/136/front.lz"
-FarfetchDFrontpic:   INCBIN "gfx/pics/083/front.lz"
-VileplumeFrontpic:   INCBIN "gfx/pics/045/front.lz"
-BayleefFrontpic:     INCBIN "gfx/pics/153/front.lz"
-MagmarFrontpic:      INCBIN "gfx/pics/126/front.lz"
-TentacruelFrontpic:  INCBIN "gfx/pics/073/front.lz"
-ElekidFrontpic:      INCBIN "gfx/pics/239/front.lz"
-JumpluffFrontpic:    INCBIN "gfx/pics/189/front.lz"
-MarowakFrontpic:     INCBIN "gfx/pics/105/front.lz"
-VulpixFrontpic:      INCBIN "gfx/pics/037/front.lz"
-GligarFrontpic:      INCBIN "gfx/pics/207/front.lz"
-DunsparceFrontpic:   INCBIN "gfx/pics/206/front.lz"
-; 137fff
-
-
-SECTION "bank4E",ROMX,BANK[$4E]
-
-;                           Pics VII
-
-VaporeonFrontpic:    INCBIN "gfx/pics/134/front.lz"
-GirafarigFrontpic:   INCBIN "gfx/pics/203/front.lz"
-DrowzeeFrontpic:     INCBIN "gfx/pics/096/front.lz"
-SneaselFrontpic:     INCBIN "gfx/pics/215/front.lz"
-BellossomFrontpic:   INCBIN "gfx/pics/182/front.lz"
-SnorlaxFrontpic:     INCBIN "gfx/pics/143/front.lz"
-WigglytuffFrontpic:  INCBIN "gfx/pics/040/front.lz"
-YanmaFrontpic:       INCBIN "gfx/pics/193/front.lz"
-SmeargleFrontpic:    INCBIN "gfx/pics/235/front.lz"
-ClefableFrontpic:    INCBIN "gfx/pics/036/front.lz"
-PonytaFrontpic:      INCBIN "gfx/pics/077/front.lz"
-MurkrowFrontpic:     INCBIN "gfx/pics/198/front.lz"
-GravelerFrontpic:    INCBIN "gfx/pics/075/front.lz"
-StarmieFrontpic:     INCBIN "gfx/pics/121/front.lz"
-PidgeottoFrontpic:   INCBIN "gfx/pics/017/front.lz"
-LedybaFrontpic:      INCBIN "gfx/pics/165/front.lz"
-GengarFrontpic:      INCBIN "gfx/pics/094/front.lz"
-OmastarFrontpic:     INCBIN "gfx/pics/139/front.lz"
-PiloswineFrontpic:   INCBIN "gfx/pics/221/front.lz"
-DugtrioFrontpic:     INCBIN "gfx/pics/051/front.lz"
-MagnetonFrontpic:    INCBIN "gfx/pics/082/front.lz"
-DragonairFrontpic:   INCBIN "gfx/pics/148/front.lz"
-ForretressFrontpic:  INCBIN "gfx/pics/205/front.lz"
-TogeticFrontpic:     INCBIN "gfx/pics/176/front.lz"
-KangaskhanBackpic:   INCBIN "gfx/pics/115/back.lz"
-; 13c000
-
-
-SECTION "bank4f",ROMX,BANK[$4f]
-
-;                          Pics VIII
-
-SeelFrontpic:        INCBIN "gfx/pics/086/front.lz"
-CrobatFrontpic:      INCBIN "gfx/pics/169/front.lz"
-ChanseyFrontpic:     INCBIN "gfx/pics/113/front.lz"
-TangelaFrontpic:     INCBIN "gfx/pics/114/front.lz"
-SnubbullFrontpic:    INCBIN "gfx/pics/209/front.lz"
-GranbullFrontpic:    INCBIN "gfx/pics/210/front.lz"
-MiltankFrontpic:     INCBIN "gfx/pics/241/front.lz"
-HaunterFrontpic:     INCBIN "gfx/pics/093/front.lz"
-SunfloraFrontpic:    INCBIN "gfx/pics/192/front.lz"
-UmbreonFrontpic:     INCBIN "gfx/pics/197/front.lz"
-ChikoritaFrontpic:   INCBIN "gfx/pics/152/front.lz"
-GoldeenFrontpic:     INCBIN "gfx/pics/118/front.lz"
-EspeonFrontpic:      INCBIN "gfx/pics/196/front.lz"
-XatuFrontpic:        INCBIN "gfx/pics/178/front.lz"
-MewFrontpic:         INCBIN "gfx/pics/151/front.lz"
-OctilleryFrontpic:   INCBIN "gfx/pics/224/front.lz"
-JynxFrontpic:        INCBIN "gfx/pics/124/front.lz"
-WobbuffetFrontpic:   INCBIN "gfx/pics/202/front.lz"
-DelibirdFrontpic:    INCBIN "gfx/pics/225/front.lz"
-LedianFrontpic:      INCBIN "gfx/pics/166/front.lz"
-GloomFrontpic:       INCBIN "gfx/pics/044/front.lz"
-FlaaffyFrontpic:     INCBIN "gfx/pics/180/front.lz"
-IvysaurFrontpic:     INCBIN "gfx/pics/002/front.lz"
-FurretFrontpic:      INCBIN "gfx/pics/162/front.lz"
-CyndaquilFrontpic:   INCBIN "gfx/pics/155/front.lz"
-HitmonchanFrontpic:  INCBIN "gfx/pics/107/front.lz"
-QuagsireFrontpic:    INCBIN "gfx/pics/195/front.lz"
-; 13fff7
-
-
-SECTION "bank50",ROMX,BANK[$50]
-
-;                            Pics IX
-
-EkansFrontpic:       INCBIN "gfx/pics/023/front.lz"
-SudowoodoFrontpic:   INCBIN "gfx/pics/185/front.lz"
-PikachuFrontpic:     INCBIN "gfx/pics/025/front.lz"
-SeadraFrontpic:      INCBIN "gfx/pics/117/front.lz"
-MagbyFrontpic:       INCBIN "gfx/pics/240/front.lz"
-WeepinbellFrontpic:  INCBIN "gfx/pics/070/front.lz"
-TotodileFrontpic:    INCBIN "gfx/pics/158/front.lz"
-CorsolaFrontpic:     INCBIN "gfx/pics/222/front.lz"
-FirebreatherPic:     INCBIN "gfx/trainers/047.lz"
-MachopFrontpic:      INCBIN "gfx/pics/066/front.lz"
-ChinchouFrontpic:    INCBIN "gfx/pics/170/front.lz"
-RattataFrontpic:     INCBIN "gfx/pics/019/front.lz"
-ChampionPic:         INCBIN "gfx/trainers/015.lz"
-SpearowFrontpic:     INCBIN "gfx/pics/021/front.lz"
-MagikarpFrontpic:    INCBIN "gfx/pics/129/front.lz"
-CharmanderFrontpic:  INCBIN "gfx/pics/004/front.lz"
-CuboneFrontpic:      INCBIN "gfx/pics/104/front.lz"
-BlackbeltTPic:       INCBIN "gfx/trainers/049.lz"
-BikerPic:            INCBIN "gfx/trainers/044.lz"
-NidoranMFrontpic:    INCBIN "gfx/pics/032/front.lz"
-PorygonFrontpic:     INCBIN "gfx/pics/137/front.lz"
-BrunoPic:            INCBIN "gfx/trainers/012.lz"
-GrimerFrontpic:      INCBIN "gfx/pics/088/front.lz"
-StaryuFrontpic:      INCBIN "gfx/pics/120/front.lz"
-HikerPic:            INCBIN "gfx/trainers/043.lz"
-MeowthFrontpic:      INCBIN "gfx/pics/052/front.lz"
-Porygon2Frontpic:    INCBIN "gfx/pics/233/front.lz"
-SandshrewFrontpic:   INCBIN "gfx/pics/027/front.lz"
-NidoranFFrontpic:    INCBIN "gfx/pics/029/front.lz"
-PidgeyFrontpic:      INCBIN "gfx/pics/016/front.lz"
-ParasectBackpic:     INCBIN "gfx/pics/047/back.lz"
-; 144000
-
-
-SECTION "bank51",ROMX,BANK[$51]
-
-;                             Pics X
-
-MisdreavusFrontpic:  INCBIN "gfx/pics/200/front.lz"
-HoundourFrontpic:    INCBIN "gfx/pics/228/front.lz"
-MankeyFrontpic:      INCBIN "gfx/pics/056/front.lz"
-CelebiFrontpic:      INCBIN "gfx/pics/251/front.lz"
-MediumPic:           INCBIN "gfx/trainers/056.lz"
-PinecoFrontpic:      INCBIN "gfx/pics/204/front.lz"
-KrabbyFrontpic:      INCBIN "gfx/pics/098/front.lz"
-FisherPic:           INCBIN "gfx/trainers/036.lz"
-JigglypuffFrontpic:  INCBIN "gfx/pics/039/front.lz"
-ParasFrontpic:       INCBIN "gfx/pics/046/front.lz"
-NidokingBackpic:     INCBIN "gfx/pics/034/back.lz"
-PokefanmPic:         INCBIN "gfx/trainers/058.lz"
-BoarderPic:          INCBIN "gfx/trainers/057.lz"
-PsyduckFrontpic:     INCBIN "gfx/pics/054/front.lz"
-SquirtleFrontpic:    INCBIN "gfx/pics/007/front.lz"
-MachampBackpic:      INCBIN "gfx/pics/068/back.lz"
-KoffingFrontpic:     INCBIN "gfx/pics/109/front.lz"
-VenonatFrontpic:     INCBIN "gfx/pics/048/front.lz"
-ExeggutorBackpic:    INCBIN "gfx/pics/103/back.lz"
-LanturnFrontpic:     INCBIN "gfx/pics/171/front.lz"
-TyrogueFrontpic:     INCBIN "gfx/pics/236/front.lz"
-SkiploomFrontpic:    INCBIN "gfx/pics/188/front.lz"
-MareepFrontpic:      INCBIN "gfx/pics/179/front.lz"
-ChuckPic:            INCBIN "gfx/trainers/006.lz"
-EeveeFrontpic:       INCBIN "gfx/pics/133/front.lz"
-ButterfreeBackpic:   INCBIN "gfx/pics/012/back.lz"
-ZubatFrontpic:       INCBIN "gfx/pics/041/front.lz"
-KimonoGirlPic:       INCBIN "gfx/trainers/059.lz"
-AlakazamBackpic:     INCBIN "gfx/pics/065/back.lz"
-AipomFrontpic:       INCBIN "gfx/pics/190/front.lz"
-AbraFrontpic:        INCBIN "gfx/pics/063/front.lz"
-HitmontopBackpic:    INCBIN "gfx/pics/237/back.lz"
-CloysterBackpic:     INCBIN "gfx/pics/091/back.lz"
-HoothootFrontpic:    INCBIN "gfx/pics/163/front.lz"
-UnownFBackpic:       INCBIN "gfx/pics/201f/back.lz"
-; 148000
-
-
-SECTION "bank52",ROMX,BANK[$52]
-
-;                            Pics XI
-
-DodrioBackpic:       INCBIN "gfx/pics/085/back.lz"
-ClefairyFrontpic:    INCBIN "gfx/pics/035/front.lz"
-SlugmaFrontpic:      INCBIN "gfx/pics/218/front.lz"
-GrowlitheFrontpic:   INCBIN "gfx/pics/058/front.lz"
-SlowpokeFrontpic:    INCBIN "gfx/pics/079/front.lz"
-SmoochumFrontpic:    INCBIN "gfx/pics/238/front.lz"
-JugglerPic:          INCBIN "gfx/trainers/048.lz"
-MarillFrontpic:      INCBIN "gfx/pics/183/front.lz"
-GuitaristPic:        INCBIN "gfx/trainers/042.lz"
-PokefanfPic:         INCBIN "gfx/trainers/061.lz"
-VenomothBackpic:     INCBIN "gfx/pics/049/back.lz"
-ClairPic:            INCBIN "gfx/trainers/007.lz"
-PokemaniacPic:       INCBIN "gfx/trainers/029.lz"
-OmanyteFrontpic:     INCBIN "gfx/pics/138/front.lz"
-SkierPic:            INCBIN "gfx/trainers/032.lz"
-PupitarFrontpic:     INCBIN "gfx/pics/247/front.lz"
-BellsproutFrontpic:  INCBIN "gfx/pics/069/front.lz"
-ShellderFrontpic:    INCBIN "gfx/pics/090/front.lz"
-TentacoolFrontpic:   INCBIN "gfx/pics/072/front.lz"
-CleffaFrontpic:      INCBIN "gfx/pics/173/front.lz"
-GyaradosBackpic:     INCBIN "gfx/pics/130/back.lz"
-NinetalesBackpic:    INCBIN "gfx/pics/038/back.lz"
-YanmaBackpic:        INCBIN "gfx/pics/193/back.lz"
-PinsirBackpic:       INCBIN "gfx/pics/127/back.lz"
-LassPic:             INCBIN "gfx/trainers/024.lz"
-ClefableBackpic:     INCBIN "gfx/pics/036/back.lz"
-DoduoFrontpic:       INCBIN "gfx/pics/084/front.lz"
-FeraligatrBackpic:   INCBIN "gfx/pics/160/back.lz"
-DratiniFrontpic:     INCBIN "gfx/pics/147/front.lz"
-MagnetonBackpic:     INCBIN "gfx/pics/082/back.lz"
-QwilfishFrontpic:    INCBIN "gfx/pics/211/front.lz"
-SuicuneBackpic:      INCBIN "gfx/pics/245/back.lz"
-SlowkingBackpic:     INCBIN "gfx/pics/199/back.lz"
-ElekidBackpic:       INCBIN "gfx/pics/239/back.lz"
-CelebiBackpic:       INCBIN "gfx/pics/251/back.lz"
-KrabbyBackpic:       INCBIN "gfx/pics/098/back.lz"
-BugCatcherPic:       INCBIN "gfx/trainers/035.lz"
-SnorlaxBackpic:      INCBIN "gfx/pics/143/back.lz"
-; 14bffb
-
-
-SECTION "bank53",ROMX,BANK[$53]
-
-;                           Pics XII
-
-VenusaurBackpic:     INCBIN "gfx/pics/003/back.lz"
-MoltresBackpic:      INCBIN "gfx/pics/146/back.lz"
-SunfloraBackpic:     INCBIN "gfx/pics/192/back.lz"
-PhanpyFrontpic:      INCBIN "gfx/pics/231/front.lz"
-RhydonBackpic:       INCBIN "gfx/pics/112/back.lz"
-LarvitarFrontpic:    INCBIN "gfx/pics/246/front.lz"
-TyranitarBackpic:    INCBIN "gfx/pics/248/back.lz"
-SandslashBackpic:    INCBIN "gfx/pics/028/back.lz"
-SeadraBackpic:       INCBIN "gfx/pics/117/back.lz"
-TwinsPic:            INCBIN "gfx/trainers/060.lz"
-FarfetchDBackpic:    INCBIN "gfx/pics/083/back.lz"
-NidoranMBackpic:     INCBIN "gfx/pics/032/back.lz"
-LedybaBackpic:       INCBIN "gfx/pics/165/back.lz"
-CyndaquilBackpic:    INCBIN "gfx/pics/155/back.lz"
-BayleefBackpic:      INCBIN "gfx/pics/153/back.lz"
-OddishFrontpic:      INCBIN "gfx/pics/043/front.lz"
-RapidashBackpic:     INCBIN "gfx/pics/078/back.lz"
-DoduoBackpic:        INCBIN "gfx/pics/084/back.lz"
-HoppipFrontpic:      INCBIN "gfx/pics/187/front.lz"
-MankeyBackpic:       INCBIN "gfx/pics/056/back.lz"
-MagmarBackpic:       INCBIN "gfx/pics/126/back.lz"
-HypnoBackpic:        INCBIN "gfx/pics/097/back.lz"
-QuilavaBackpic:      INCBIN "gfx/pics/156/back.lz"
-CroconawBackpic:     INCBIN "gfx/pics/159/back.lz"
-SandshrewBackpic:    INCBIN "gfx/pics/027/back.lz"
-SailorPic:           INCBIN "gfx/trainers/039.lz"
-BeautyPic:           INCBIN "gfx/trainers/028.lz"
-ShellderBackpic:     INCBIN "gfx/pics/090/back.lz"
-ZubatBackpic:        INCBIN "gfx/pics/041/back.lz"
-TeddiursaFrontpic:   INCBIN "gfx/pics/216/front.lz"
-CuboneBackpic:       INCBIN "gfx/pics/104/back.lz"
-GruntmPic:           INCBIN "gfx/trainers/030.lz"
-GloomBackpic:        INCBIN "gfx/pics/044/back.lz"
-MagcargoBackpic:     INCBIN "gfx/pics/219/back.lz"
-KabutopsBackpic:     INCBIN "gfx/pics/141/back.lz"
-BeedrillBackpic:     INCBIN "gfx/pics/015/back.lz"
-ArcanineBackpic:     INCBIN "gfx/pics/059/back.lz"
-FlareonBackpic:      INCBIN "gfx/pics/136/back.lz"
-GoldeenBackpic:      INCBIN "gfx/pics/118/back.lz"
-BulbasaurFrontpic:   INCBIN "gfx/pics/001/front.lz"
-StarmieBackpic:      INCBIN "gfx/pics/121/back.lz"
-; 150000
-
-
-SECTION "bank54",ROMX,BANK[$54]
-
-;                           Pics XIII
-
-OmanyteBackpic:      INCBIN "gfx/pics/138/back.lz"
-PidgeyBackpic:       INCBIN "gfx/pics/016/back.lz"
-ScientistPic:        INCBIN "gfx/trainers/019.lz"
-QwilfishBackpic:     INCBIN "gfx/pics/211/back.lz"
-GligarBackpic:       INCBIN "gfx/pics/207/back.lz"
-TyphlosionBackpic:   INCBIN "gfx/pics/157/back.lz"
-CharmeleonBackpic:   INCBIN "gfx/pics/005/back.lz"
-NidoqueenBackpic:    INCBIN "gfx/pics/031/back.lz"
-PichuFrontpic:       INCBIN "gfx/pics/172/front.lz"
-ElectabuzzBackpic:   INCBIN "gfx/pics/125/back.lz"
-LedianBackpic:       INCBIN "gfx/pics/166/back.lz"
-PupitarBackpic:      INCBIN "gfx/pics/247/back.lz"
-HeracrossBackpic:    INCBIN "gfx/pics/214/back.lz"
-UnownDFrontpic:      INCBIN "gfx/pics/201d/front.lz"
-MiltankBackpic:      INCBIN "gfx/pics/241/back.lz"
-SteelixBackpic:      INCBIN "gfx/pics/208/back.lz"
-PersianBackpic:      INCBIN "gfx/pics/053/back.lz"
-LtSurgePic:          INCBIN "gfx/trainers/018.lz"
-TeacherPic:          INCBIN "gfx/trainers/033.lz"
-EggPic:              INCBIN "gfx/pics/egg/front.lz"
-EeveeBackpic:        INCBIN "gfx/pics/133/back.lz"
-ShuckleFrontpic:     INCBIN "gfx/pics/213/front.lz"
-PonytaBackpic:       INCBIN "gfx/pics/077/back.lz"
-RemoraidFrontpic:    INCBIN "gfx/pics/223/front.lz"
-PoliwagFrontpic:     INCBIN "gfx/pics/060/front.lz"
-OnixBackpic:         INCBIN "gfx/pics/095/back.lz"
-KoffingBackpic:      INCBIN "gfx/pics/109/back.lz"
-BirdKeeperPic:       INCBIN "gfx/trainers/023.lz"
-FalknerPic:          INCBIN "gfx/trainers/000.lz"
-KarenPic:            INCBIN "gfx/trainers/013.lz"
-NidorinaBackpic:     INCBIN "gfx/pics/030/back.lz"
-TentacruelBackpic:   INCBIN "gfx/pics/073/back.lz"
-GrowlitheBackpic:    INCBIN "gfx/pics/058/back.lz"
-KogaPic:             INCBIN "gfx/trainers/014.lz"
-MachokeBackpic:      INCBIN "gfx/pics/067/back.lz"
-RaichuBackpic:       INCBIN "gfx/pics/026/back.lz"
-PoliwrathBackpic:    INCBIN "gfx/pics/062/back.lz"
-SwimmermPic:         INCBIN "gfx/trainers/037.lz"
-SunkernFrontpic:     INCBIN "gfx/pics/191/front.lz"
-NidorinoBackpic:     INCBIN "gfx/pics/033/back.lz"
-MysticalmanPic:      INCBIN "gfx/trainers/066.lz"
-CooltrainerfPic:     INCBIN "gfx/trainers/027.lz"
-ElectrodeFrontpic:   INCBIN "gfx/pics/101/front.lz"
-; 153fe3
-
-
-SECTION "bank55",ROMX,BANK[$55]
-
-;                           Pics XIV
-
-SudowoodoBackpic:    INCBIN "gfx/pics/185/back.lz"
-FlaaffyBackpic:      INCBIN "gfx/pics/180/back.lz"
-SentretFrontpic:     INCBIN "gfx/pics/161/front.lz"
-TogeticBackpic:      INCBIN "gfx/pics/176/back.lz"
-BugsyPic:            INCBIN "gfx/trainers/002.lz"
-MarowakBackpic:      INCBIN "gfx/pics/105/back.lz"
-GeodudeBackpic:      INCBIN "gfx/pics/074/back.lz"
-ScytherBackpic:      INCBIN "gfx/pics/123/back.lz"
-VileplumeBackpic:    INCBIN "gfx/pics/045/back.lz"
-HitmonchanBackpic:   INCBIN "gfx/pics/107/back.lz"
-JumpluffBackpic:     INCBIN "gfx/pics/189/back.lz"
-CooltrainermPic:     INCBIN "gfx/trainers/026.lz"
-BlastoiseBackpic:    INCBIN "gfx/pics/009/back.lz"
-MisdreavusBackpic:   INCBIN "gfx/pics/200/back.lz"
-TyrogueBackpic:      INCBIN "gfx/pics/236/back.lz"
-GeodudeFrontpic:     INCBIN "gfx/pics/074/front.lz"
-ScizorBackpic:       INCBIN "gfx/pics/212/back.lz"
-GirafarigBackpic:    INCBIN "gfx/pics/203/back.lz"
-StantlerBackpic:     INCBIN "gfx/pics/234/back.lz"
-SmeargleBackpic:     INCBIN "gfx/pics/235/back.lz"
-CharizardBackpic:    INCBIN "gfx/pics/006/back.lz"
-KadabraBackpic:      INCBIN "gfx/pics/064/back.lz"
-PrimeapeBackpic:     INCBIN "gfx/pics/057/back.lz"
-FurretBackpic:       INCBIN "gfx/pics/162/back.lz"
-WartortleBackpic:    INCBIN "gfx/pics/008/back.lz"
-ExeggcuteBackpic:    INCBIN "gfx/pics/102/back.lz"
-IgglybuffFrontpic:   INCBIN "gfx/pics/174/front.lz"
-RaticateBackpic:     INCBIN "gfx/pics/020/back.lz"
-VulpixBackpic:       INCBIN "gfx/pics/037/back.lz"
-EkansBackpic:        INCBIN "gfx/pics/023/back.lz"
-SeakingBackpic:      INCBIN "gfx/pics/119/back.lz"
-BurglarPic:          INCBIN "gfx/trainers/046.lz"
-PsyduckBackpic:      INCBIN "gfx/pics/054/back.lz"
-PikachuBackpic:      INCBIN "gfx/pics/025/back.lz"
-KabutoFrontpic:      INCBIN "gfx/pics/140/front.lz"
-MareepBackpic:       INCBIN "gfx/pics/179/back.lz"
-RemoraidBackpic:     INCBIN "gfx/pics/223/back.lz"
-DittoFrontpic:       INCBIN "gfx/pics/132/front.lz"
-KingdraBackpic:      INCBIN "gfx/pics/230/back.lz"
-CamperPic:           INCBIN "gfx/trainers/053.lz"
-WooperFrontpic:      INCBIN "gfx/pics/194/front.lz"
-ClefairyBackpic:     INCBIN "gfx/pics/035/back.lz"
-VenonatBackpic:      INCBIN "gfx/pics/048/back.lz"
-BellossomBackpic:    INCBIN "gfx/pics/182/back.lz"
-Rival1Pic:           INCBIN "gfx/trainers/008.lz"
-SwinubBackpic:       INCBIN "gfx/pics/220/back.lz"
-; 158000
-
-
-SECTION "bank56",ROMX,BANK[$56]
-
-;                            Pics XV
-
-MewtwoBackpic:       INCBIN "gfx/pics/150/back.lz"
-PokemonProfPic:      INCBIN "gfx/trainers/009.lz"
-CalPic:              INCBIN "gfx/trainers/011.lz"
-SwimmerfPic:         INCBIN "gfx/trainers/038.lz"
-DiglettFrontpic:     INCBIN "gfx/pics/050/front.lz"
-OfficerPic:          INCBIN "gfx/trainers/064.lz"
-MukBackpic:          INCBIN "gfx/pics/089/back.lz"
-DelibirdBackpic:     INCBIN "gfx/pics/225/back.lz"
-SabrinaPic:          INCBIN "gfx/trainers/034.lz"
-MagikarpBackpic:     INCBIN "gfx/pics/129/back.lz"
-AriadosBackpic:      INCBIN "gfx/pics/168/back.lz"
-SneaselBackpic:      INCBIN "gfx/pics/215/back.lz"
-UmbreonBackpic:      INCBIN "gfx/pics/197/back.lz"
-MurkrowBackpic:      INCBIN "gfx/pics/198/back.lz"
-IvysaurBackpic:      INCBIN "gfx/pics/002/back.lz"
-SlowbroBackpic:      INCBIN "gfx/pics/080/back.lz"
-PsychicTPic:         INCBIN "gfx/trainers/051.lz"
-GolduckBackpic:      INCBIN "gfx/pics/055/back.lz"
-WeezingBackpic:      INCBIN "gfx/pics/110/back.lz"
-EnteiBackpic:        INCBIN "gfx/pics/244/back.lz"
-GruntfPic:           INCBIN "gfx/trainers/065.lz"
-HorseaFrontpic:      INCBIN "gfx/pics/116/front.lz"
-PidgeotBackpic:      INCBIN "gfx/pics/018/back.lz"
-HoOhBackpic:         INCBIN "gfx/pics/250/back.lz"
-PoliwhirlBackpic:    INCBIN "gfx/pics/061/back.lz"
-MewBackpic:          INCBIN "gfx/pics/151/back.lz"
-MachopBackpic:       INCBIN "gfx/pics/066/back.lz"
-AbraBackpic:         INCBIN "gfx/pics/063/back.lz"
-AerodactylBackpic:   INCBIN "gfx/pics/142/back.lz"
-KakunaFrontpic:      INCBIN "gfx/pics/014/front.lz"
-DugtrioBackpic:      INCBIN "gfx/pics/051/back.lz"
-WeepinbellBackpic:   INCBIN "gfx/pics/070/back.lz"
-NidoranFBackpic:     INCBIN "gfx/pics/029/back.lz"
-GravelerBackpic:     INCBIN "gfx/pics/075/back.lz"
-AipomBackpic:        INCBIN "gfx/pics/190/back.lz"
-EspeonBackpic:       INCBIN "gfx/pics/196/back.lz"
-WeedleFrontpic:      INCBIN "gfx/pics/013/front.lz"
-TotodileBackpic:     INCBIN "gfx/pics/158/back.lz"
-SnubbullBackpic:     INCBIN "gfx/pics/209/back.lz"
-KinglerBackpic:      INCBIN "gfx/pics/099/back.lz"
-GengarBackpic:       INCBIN "gfx/pics/094/back.lz"
-RattataBackpic:      INCBIN "gfx/pics/019/back.lz"
-YoungsterPic:        INCBIN "gfx/trainers/021.lz"
-WillPic:             INCBIN "gfx/trainers/010.lz"
-SchoolboyPic:        INCBIN "gfx/trainers/022.lz"
-MagnemiteFrontpic:   INCBIN "gfx/pics/081/front.lz"
-ErikaPic:            INCBIN "gfx/trainers/020.lz"
-JaninePic:           INCBIN "gfx/trainers/025.lz"
-MagnemiteBackpic:    INCBIN "gfx/pics/081/back.lz"
-; 15bffa
-
-
-SECTION "bank57",ROMX,BANK[$57]
-
-;                           Pics XVI
-
-HoothootBackpic:     INCBIN "gfx/pics/163/back.lz"
-NoctowlBackpic:      INCBIN "gfx/pics/164/back.lz"
-MortyPic:            INCBIN "gfx/trainers/003.lz"
-SlugmaBackpic:       INCBIN "gfx/pics/218/back.lz"
-KabutoBackpic:       INCBIN "gfx/pics/140/back.lz"
-VictreebelBackpic:   INCBIN "gfx/pics/071/back.lz"
-MeowthBackpic:       INCBIN "gfx/pics/052/back.lz"
-MeganiumBackpic:     INCBIN "gfx/pics/154/back.lz"
-PicnickerPic:        INCBIN "gfx/trainers/052.lz"
-LickitungBackpic:    INCBIN "gfx/pics/108/back.lz"
-TogepiFrontpic:      INCBIN "gfx/pics/175/front.lz"
-SuperNerdPic:        INCBIN "gfx/trainers/040.lz"
-HaunterBackpic:      INCBIN "gfx/pics/093/back.lz"
-XatuBackpic:         INCBIN "gfx/pics/178/back.lz"
-RedPic:              INCBIN "gfx/trainers/062.lz"
-Porygon2Backpic:     INCBIN "gfx/pics/233/back.lz"
-JasminePic:          INCBIN "gfx/trainers/005.lz"
-PinecoBackpic:       INCBIN "gfx/pics/204/back.lz"
-MetapodFrontpic:     INCBIN "gfx/pics/011/front.lz"
-SeelBackpic:         INCBIN "gfx/pics/086/back.lz"
-QuagsireBackpic:     INCBIN "gfx/pics/195/back.lz"
-WhitneyPic:          INCBIN "gfx/trainers/001.lz"
-JolteonBackpic:      INCBIN "gfx/pics/135/back.lz"
-CaterpieFrontpic:    INCBIN "gfx/pics/010/front.lz"
-HoppipBackpic:       INCBIN "gfx/pics/187/back.lz"
-BluePic:             INCBIN "gfx/trainers/063.lz"
-GranbullBackpic:     INCBIN "gfx/pics/210/back.lz"
-GentlemanPic:        INCBIN "gfx/trainers/031.lz"
-ExecutivemPic:       INCBIN "gfx/trainers/050.lz"
-SpearowBackpic:      INCBIN "gfx/pics/021/back.lz"
-SunkernBackpic:      INCBIN "gfx/pics/191/back.lz"
-LaprasBackpic:       INCBIN "gfx/pics/131/back.lz"
-MagbyBackpic:        INCBIN "gfx/pics/240/back.lz"
-DragonairBackpic:    INCBIN "gfx/pics/148/back.lz"
-ZapdosBackpic:       INCBIN "gfx/pics/145/back.lz"
-ChikoritaBackpic:    INCBIN "gfx/pics/152/back.lz"
-CorsolaBackpic:      INCBIN "gfx/pics/222/back.lz"
-ChinchouBackpic:     INCBIN "gfx/pics/170/back.lz"
-ChanseyBackpic:      INCBIN "gfx/pics/113/back.lz"
-SkiploomBackpic:     INCBIN "gfx/pics/188/back.lz"
-SpinarakFrontpic:    INCBIN "gfx/pics/167/front.lz"
-Rival2Pic:           INCBIN "gfx/trainers/041.lz"
-UnownWFrontpic:      INCBIN "gfx/pics/201w/front.lz"
-CharmanderBackpic:   INCBIN "gfx/pics/004/back.lz"
-RhyhornBackpic:      INCBIN "gfx/pics/111/back.lz"
-UnownCFrontpic:      INCBIN "gfx/pics/201c/front.lz"
-MistyPic:            INCBIN "gfx/trainers/017.lz"
-BlainePic:           INCBIN "gfx/trainers/045.lz"
-UnownZFrontpic:      INCBIN "gfx/pics/201z/front.lz"
-SwinubFrontpic:      INCBIN "gfx/pics/220/front.lz"
-LarvitarBackpic:     INCBIN "gfx/pics/246/back.lz"
-PorygonBackpic:      INCBIN "gfx/pics/137/back.lz"
-UnownHBackpic:       INCBIN "gfx/pics/201h/back.lz"
-; 15ffff
-
-
-SECTION "bank58",ROMX,BANK[$58]
-
-;                           Pics XVII
-
-ParasBackpic:        INCBIN "gfx/pics/046/back.lz"
-VaporeonBackpic:     INCBIN "gfx/pics/134/back.lz"
-TentacoolBackpic:    INCBIN "gfx/pics/072/back.lz"
-ExecutivefPic:       INCBIN "gfx/trainers/054.lz"
-BulbasaurBackpic:    INCBIN "gfx/pics/001/back.lz"
-SmoochumBackpic:     INCBIN "gfx/pics/238/back.lz"
-PichuBackpic:        INCBIN "gfx/pics/172/back.lz"
-HoundoomBackpic:     INCBIN "gfx/pics/229/back.lz"
-BellsproutBackpic:   INCBIN "gfx/pics/069/back.lz"
-GrimerBackpic:       INCBIN "gfx/pics/088/back.lz"
-LanturnBackpic:      INCBIN "gfx/pics/171/back.lz"
-PidgeottoBackpic:    INCBIN "gfx/pics/017/back.lz"
-StaryuBackpic:       INCBIN "gfx/pics/120/back.lz"
-MrMimeBackpic:       INCBIN "gfx/pics/122/back.lz"
-CaterpieBackpic:     INCBIN "gfx/pics/010/back.lz"
-VoltorbFrontpic:     INCBIN "gfx/pics/100/front.lz"
-LugiaBackpic:        INCBIN "gfx/pics/249/back.lz"
-PrycePic:            INCBIN "gfx/trainers/004.lz"
-BrockPic:            INCBIN "gfx/trainers/016.lz"
-UnownGFrontpic:      INCBIN "gfx/pics/201g/front.lz"
-ArbokBackpic:        INCBIN "gfx/pics/024/back.lz"
-PolitoedBackpic:     INCBIN "gfx/pics/186/back.lz"
-DragoniteBackpic:    INCBIN "gfx/pics/149/back.lz"
-HitmonleeBackpic:    INCBIN "gfx/pics/106/back.lz"
-NatuFrontpic:        INCBIN "gfx/pics/177/front.lz"
-UrsaringBackpic:     INCBIN "gfx/pics/217/back.lz"
-SagePic:             INCBIN "gfx/trainers/055.lz"
-TeddiursaBackpic:    INCBIN "gfx/pics/216/back.lz"
-PhanpyBackpic:       INCBIN "gfx/pics/231/back.lz"
-UnownVFrontpic:      INCBIN "gfx/pics/201v/front.lz"
-KakunaBackpic:       INCBIN "gfx/pics/014/back.lz"
-WobbuffetBackpic:    INCBIN "gfx/pics/202/back.lz"
-TogepiBackpic:       INCBIN "gfx/pics/175/back.lz"
-CrobatBackpic:       INCBIN "gfx/pics/169/back.lz"
-BlisseyBackpic:      INCBIN "gfx/pics/242/back.lz"
-AmpharosBackpic:     INCBIN "gfx/pics/181/back.lz"
-IgglybuffBackpic:    INCBIN "gfx/pics/174/back.lz"
-AzumarillBackpic:    INCBIN "gfx/pics/184/back.lz"
-OctilleryBackpic:    INCBIN "gfx/pics/224/back.lz"
-UnownSFrontpic:      INCBIN "gfx/pics/201s/front.lz"
-HorseaBackpic:       INCBIN "gfx/pics/116/back.lz"
-SentretBackpic:      INCBIN "gfx/pics/161/back.lz"
-UnownOFrontpic:      INCBIN "gfx/pics/201o/front.lz"
-UnownTFrontpic:      INCBIN "gfx/pics/201t/front.lz"
-WigglytuffBackpic:   INCBIN "gfx/pics/040/back.lz"
-ArticunoBackpic:     INCBIN "gfx/pics/144/back.lz"
-DittoBackpic:        INCBIN "gfx/pics/132/back.lz"
-WeedleBackpic:       INCBIN "gfx/pics/013/back.lz"
-UnownHFrontpic:      INCBIN "gfx/pics/201h/front.lz"
-CleffaBackpic:       INCBIN "gfx/pics/173/back.lz"
-DrowzeeBackpic:      INCBIN "gfx/pics/096/back.lz"
-GastlyBackpic:       INCBIN "gfx/pics/092/back.lz"
-FearowBackpic:       INCBIN "gfx/pics/022/back.lz"
-MarillBackpic:       INCBIN "gfx/pics/183/back.lz"
-DratiniBackpic:      INCBIN "gfx/pics/147/back.lz"
-ElectrodeBackpic:    INCBIN "gfx/pics/101/back.lz"
-SkarmoryBackpic:     INCBIN "gfx/pics/227/back.lz"
-MetapodBackpic:      INCBIN "gfx/pics/011/back.lz"
-JigglypuffBackpic:   INCBIN "gfx/pics/039/back.lz"
-OddishBackpic:       INCBIN "gfx/pics/043/back.lz"
-UnownDBackpic:       INCBIN "gfx/pics/201d/back.lz"
-; 163ffc
-
-
-SECTION "bank59",ROMX,BANK[$59]
-
-;                           Pics XVIII
-
-SpinarakBackpic:     INCBIN "gfx/pics/167/back.lz"
-RaikouBackpic:       INCBIN "gfx/pics/243/back.lz"
-UnownKFrontpic:      INCBIN "gfx/pics/201k/front.lz"
-HoundourBackpic:     INCBIN "gfx/pics/228/back.lz"
-PoliwagBackpic:      INCBIN "gfx/pics/060/back.lz"
-SquirtleBackpic:     INCBIN "gfx/pics/007/back.lz"
-ShuckleBackpic:      INCBIN "gfx/pics/213/back.lz"
-DewgongBackpic:      INCBIN "gfx/pics/087/back.lz"
-UnownBFrontpic:      INCBIN "gfx/pics/201b/front.lz"
-SlowpokeBackpic:     INCBIN "gfx/pics/079/back.lz"
-DunsparceBackpic:    INCBIN "gfx/pics/206/back.lz"
-DonphanBackpic:      INCBIN "gfx/pics/232/back.lz"
-WooperBackpic:       INCBIN "gfx/pics/194/back.lz"
-TaurosBackpic:       INCBIN "gfx/pics/128/back.lz"
-UnownXFrontpic:      INCBIN "gfx/pics/201x/front.lz"
-UnownNFrontpic:      INCBIN "gfx/pics/201n/front.lz"
-TangelaBackpic:      INCBIN "gfx/pics/114/back.lz"
-VoltorbBackpic:      INCBIN "gfx/pics/100/back.lz"
-UnownJFrontpic:      INCBIN "gfx/pics/201j/front.lz"
-MantineBackpic:      INCBIN "gfx/pics/226/back.lz"
-UnownLFrontpic:      INCBIN "gfx/pics/201l/front.lz"
-PiloswineBackpic:    INCBIN "gfx/pics/221/back.lz"
-UnownMFrontpic:      INCBIN "gfx/pics/201m/front.lz"
-UnownFFrontpic:      INCBIN "gfx/pics/201f/front.lz"
-NatuBackpic:         INCBIN "gfx/pics/177/back.lz"
-UnownAFrontpic:      INCBIN "gfx/pics/201a/front.lz"
-GolemBackpic:        INCBIN "gfx/pics/076/back.lz"
-UnownUFrontpic:      INCBIN "gfx/pics/201u/front.lz"
-DiglettBackpic:      INCBIN "gfx/pics/050/back.lz"
-UnownQFrontpic:      INCBIN "gfx/pics/201q/front.lz"
-UnownPFrontpic:      INCBIN "gfx/pics/201p/front.lz"
-UnownCBackpic:       INCBIN "gfx/pics/201c/back.lz"
-JynxBackpic:         INCBIN "gfx/pics/124/back.lz"
-GolbatBackpic:       INCBIN "gfx/pics/042/back.lz"
-UnownYFrontpic:      INCBIN "gfx/pics/201y/front.lz"
-UnownGBackpic:       INCBIN "gfx/pics/201g/back.lz"
-UnownIFrontpic:      INCBIN "gfx/pics/201i/front.lz"
-UnownVBackpic:       INCBIN "gfx/pics/201v/back.lz"
-ForretressBackpic:   INCBIN "gfx/pics/205/back.lz"
-UnownSBackpic:       INCBIN "gfx/pics/201s/back.lz"
-UnownRFrontpic:      INCBIN "gfx/pics/201r/front.lz"
-UnownEBackpic:       INCBIN "gfx/pics/201e/back.lz"
-UnownJBackpic:       INCBIN "gfx/pics/201j/back.lz"
-UnownBBackpic:       INCBIN "gfx/pics/201b/back.lz"
-UnownOBackpic:       INCBIN "gfx/pics/201o/back.lz"
-UnownZBackpic:       INCBIN "gfx/pics/201z/back.lz"
-UnownWBackpic:       INCBIN "gfx/pics/201w/back.lz"
-UnownNBackpic:       INCBIN "gfx/pics/201n/back.lz"
-UnownABackpic:       INCBIN "gfx/pics/201a/back.lz"
-UnownMBackpic:       INCBIN "gfx/pics/201m/back.lz"
-UnownKBackpic:       INCBIN "gfx/pics/201k/back.lz"
-UnownTBackpic:       INCBIN "gfx/pics/201t/back.lz"
-UnownXBackpic:       INCBIN "gfx/pics/201x/back.lz"
-UnownLBackpic:       INCBIN "gfx/pics/201l/back.lz"
-UnownUBackpic:       INCBIN "gfx/pics/201u/back.lz"
-UnownQBackpic:       INCBIN "gfx/pics/201q/back.lz"
-UnownYBackpic:       INCBIN "gfx/pics/201y/back.lz"
-UnownPBackpic:       INCBIN "gfx/pics/201p/back.lz"
-UnownIBackpic:       INCBIN "gfx/pics/201i/back.lz"
-UnownRBackpic:       INCBIN "gfx/pics/201r/back.lz"
-; 1669d3
-
-
-SECTION "bank5A",ROMX,BANK[$5A]
-
-; This bank is identical to bank 59!
-; It's also unreferenced, so it's a free bank
-
-INCBIN "gfx/pics/167/back.lz"
-INCBIN "gfx/pics/243/back.lz"
-INCBIN "gfx/pics/201k/front.lz"
-INCBIN "gfx/pics/228/back.lz"
-INCBIN "gfx/pics/060/back.lz"
-INCBIN "gfx/pics/007/back.lz"
-INCBIN "gfx/pics/213/back.lz"
-INCBIN "gfx/pics/087/back.lz"
-INCBIN "gfx/pics/201b/front.lz"
-INCBIN "gfx/pics/079/back.lz"
-INCBIN "gfx/pics/206/back.lz"
-INCBIN "gfx/pics/232/back.lz"
-INCBIN "gfx/pics/194/back.lz"
-INCBIN "gfx/pics/128/back.lz"
-INCBIN "gfx/pics/201x/front.lz"
-INCBIN "gfx/pics/201n/front.lz"
-INCBIN "gfx/pics/114/back.lz"
-INCBIN "gfx/pics/100/back.lz"
-INCBIN "gfx/pics/201j/front.lz"
-INCBIN "gfx/pics/226/back.lz"
-INCBIN "gfx/pics/201l/front.lz"
-INCBIN "gfx/pics/221/back.lz"
-INCBIN "gfx/pics/201m/front.lz"
-INCBIN "gfx/pics/201f/front.lz"
-INCBIN "gfx/pics/177/back.lz"
-INCBIN "gfx/pics/201a/front.lz"
-INCBIN "gfx/pics/076/back.lz"
-INCBIN "gfx/pics/201u/front.lz"
-INCBIN "gfx/pics/050/back.lz"
-INCBIN "gfx/pics/201q/front.lz"
-INCBIN "gfx/pics/201p/front.lz"
-INCBIN "gfx/pics/201c/back.lz"
-INCBIN "gfx/pics/124/back.lz"
-INCBIN "gfx/pics/042/back.lz"
-INCBIN "gfx/pics/201y/front.lz"
-INCBIN "gfx/pics/201g/back.lz"
-INCBIN "gfx/pics/201i/front.lz"
-INCBIN "gfx/pics/201v/back.lz"
-INCBIN "gfx/pics/205/back.lz"
-INCBIN "gfx/pics/201s/back.lz"
-INCBIN "gfx/pics/201r/front.lz"
-INCBIN "gfx/pics/201e/back.lz"
-INCBIN "gfx/pics/201j/back.lz"
-INCBIN "gfx/pics/201b/back.lz"
-INCBIN "gfx/pics/201o/back.lz"
-INCBIN "gfx/pics/201z/back.lz"
-INCBIN "gfx/pics/201w/back.lz"
-INCBIN "gfx/pics/201n/back.lz"
-INCBIN "gfx/pics/201a/back.lz"
-INCBIN "gfx/pics/201m/back.lz"
-INCBIN "gfx/pics/201k/back.lz"
-INCBIN "gfx/pics/201t/back.lz"
-INCBIN "gfx/pics/201x/back.lz"
-INCBIN "gfx/pics/201l/back.lz"
-INCBIN "gfx/pics/201u/back.lz"
-INCBIN "gfx/pics/201q/back.lz"
-INCBIN "gfx/pics/201y/back.lz"
-INCBIN "gfx/pics/201p/back.lz"
-INCBIN "gfx/pics/201i/back.lz"
-INCBIN "gfx/pics/201r/back.lz"
-
-
-SECTION "bank5B",ROMX,BANK[$5B]
+SECTION "bank5B", ROMX, BANK[$5B]
 
 INCBIN "baserom.gbc",$16c000,$16d421 - $16c000
 
@@ -120749,7 +94545,7 @@ Function16d7e7: ; 16d7e7
 ; 16d7fe
 
 
-SECTION "bank5C",ROMX,BANK[$5C]
+SECTION "bank5C", ROMX, BANK[$5C]
 
 INCBIN "baserom.gbc",$170000,$1700b0 - $170000
 
@@ -122097,12 +95893,12 @@ Function172eb9:
 INCBIN "baserom.gbc",$172edf,$17367f - $172edf
 
 
-SECTION "bank5D",ROMX,BANK[$5D]
+SECTION "bank5D", ROMX, BANK[$5D]
 
 INCLUDE "text/phone/extra3.asm"
 
 
-SECTION "bank5E",ROMX,BANK[$5E]
+SECTION "bank5E", ROMX, BANK[$5E]
 
 Function178000:
 	callba DrawPlayerHUD
@@ -122115,857 +95911,32 @@ Function178000:
 	ret
 ; 17801f (5e:401f)
 
-;                          Songs V
 
-INCLUDE "audio/music/mobileadaptermenu.asm"
-INCLUDE "audio/music/buenaspassword.asm"
-INCLUDE "audio/music/lookmysticalman.asm"
-INCLUDE "audio/music/crystalopening.asm"
-INCLUDE "audio/music/battletowertheme.asm"
-INCLUDE "audio/music/suicunebattle.asm"
-INCLUDE "audio/music/battletowerlobby.asm"
-INCLUDE "audio/music/mobilecenter.asm"
-
-INCBIN "baserom.gbc",$17982d,$1799ef - $17982d
-
-MobileAdapterGFX:
-INCBIN "gfx/misc/mobile_adapter.2bpp"
-
-
-; no known jump sources
-Function17a68f: ; 17a68f (5e:668f)
-	call Function17a6a8
-	call Function17a751
-	ld hl, $d088
-	bit 5, [hl]
-	jr z, .asm_17a6a6
-	ld de, StringBuffer1 ; $d073
-	push de
-	call Function17a721
-	pop de
-	xor a
-	ret
-.asm_17a6a6
-	scf
-	ret
-
-; known jump sources: 17a68f (5e:668f)
-Function17a6a8: ; 17a6a8 (5e:66a8)
-	push de
-	push bc
-	ld hl, StringBuffer2 ; $d086
-	ld bc, $a
-	xor a
-	call ByteFill
-	ld hl, Buffer1 ; $d1ea (aliases: MagikarpLength)
-	ld bc, $10
-	ld a, $ff
-	call ByteFill
-	pop bc
-	ld a, c
-	and a
-	jr z, .asm_17a6c9
-	ld hl, $d088
-	set 4, [hl]
-.asm_17a6c9
-	pop de
-	call Function17a6f5
-	call Function17aba0
-	callba Function106464
-	call Function17ac0c
-	callba Function104000
-	call Function17abcf
-	callba Function49409
-	callba Function49420
-	call Function32f9
-	call DelayFrame
-	ret
-
-; known jump sources: 17a6ca (5e:66ca)
-Function17a6f5: ; 17a6f5 (5e:66f5)
-	ld hl, Buffer1 ; $d1ea (aliases: MagikarpLength)
-	ld c, $0
-	ld b, $8
-.asm_17a6fc
-	ld a, [de]
-	call Function17a713
-	jr c, .asm_17a70e
-	ld a, [de]
-	swap a
-	call Function17a713
-	jr c, .asm_17a70e
-	inc de
-	dec b
-	jr nz, .asm_17a6fc
-.asm_17a70e
-	ld a, c
-	ld [$d08c], a
-	ret
-
-; known jump sources: 17a6fd (5e:66fd), 17a705 (5e:6705)
-Function17a713: ; 17a713 (5e:6713)
-	and $f
-	cp $a
-	jr nc, .asm_17a71d
-	ld [hli], a
-	inc c
-	and a
-	ret
-.asm_17a71d
-	ld [hl], $ff
-	scf
-	ret
-
-; known jump sources: 17a6a0 (5e:66a0)
-Function17a721: ; 17a721 (5e:6721)
-	push de
-	ld h, d
-	ld l, e
-	ld bc, $8
-	ld a, $ff
-	call ByteFill
-	pop de
-	ld hl, Buffer1 ; $d1ea (aliases: MagikarpLength)
-	ld b, $8
-.asm_17a732
-	ld c, $0
-	ld a, [hli]
-	cp $a
-	jr nc, .asm_17a748
-	ld c, a
-	ld a, [hli]
-	cp $a
-	jr nc, .asm_17a74c
-	swap a
-	or c
-	ld [de], a
-	inc de
-	dec b
-	jr nz, .asm_17a732
-	ret
-.asm_17a748
-	ld a, $ff
-	ld [de], a
-	ret
-.asm_17a74c
-	ld a, $f0
-	or c
-	ld [de], a
-	ret
-
-; known jump sources: 17a692 (5e:6692)
-Function17a751: ; 17a751 (5e:6751)
-	xor a
-	ld [$d087], a
-.asm_17a755
-	call Function17a781
-	call Function17a7ae
-	call Function17a97b
-	call Function17a770
-	call Function17a78f
-	ld hl, $d08f
-	inc [hl]
-	ld a, [$d087]
-	bit 7, a
-	jr z, .asm_17a755
-	ret
-
-; known jump sources: 17a75e (5e:675e)
-Function17a770: ; 17a770 (5e:6770)
-	ld a, [hOAMUpdate] ; $ff00+$d8
-	push af
-	ld a, $1
-	ld [hOAMUpdate], a ; $ff00+$d8
-	call HideSprites
-	call Function17a9cb
-	pop af
-	ld [hOAMUpdate], a ; $ff00+$d8
-	ret
-
-; known jump sources: 17a755 (5e:6755)
-Function17a781: ; 17a781 (5e:6781)
-	ld a, [$FF00+$aa]
-	push af
-	ld a, $1
-	ld [$FF00+$aa], a
-	call Functiona57
-	pop af
-	ld [$FF00+$aa], a
-	ret
-
-; known jump sources: 17a761 (5e:6761)
-Function17a78f: ; 17a78f (5e:678f)
-	ld hl, $d088
-	bit 7, [hl]
-	res 7, [hl]
-	jr nz, .asm_17a79f
-	callba Function10402d
-	ret
-.asm_17a79f
-	callba Function104061
-	ret
-; 17a7a6 (5e:67a6)
-
-INCBIN "baserom.gbc",$17a7a6,$17a7ae - $17a7a6
-
-; known jump sources: 17a758 (5e:6758)
-Function17a7ae: ; 17a7ae (5e:67ae)
-	ld a, [$d087]
-	ld hl, $67b6
-	rst $28
-	ret
-
-; no known jump sources
-Jumptable_17a7b6: ; 17a7b6 (5e:67b6)
-	dw Function17a7c2
-	dw Function17a7cd
-	dw Function17a7d8
-	dw Function17a7ff
-	dw Function17a81a
-	dw Function17a7f4
-
-
-; no known jump sources
-Function17a7c2: ; 17a7c2 (5e:67c2)
-	ld a, $4
-	call Function17aad3
-	ld a, $1
-	ld [$d087], a
-	ret
-
-; no known jump sources
-Function17a7cd: ; 17a7cd (5e:67cd)
-	call Function17a83c
-	call Function17a8ae
-	ret c
-	call Function17a848
-	ret
-
-; no known jump sources
-Function17a7d8: ; 17a7d8 (5e:67d8)
-	call Function17a83c
-	call Function17a848
-	ld hl, $d08b
-	dec [hl]
-	ret nz
-	call Function17ac1d
-	call Function17ac2a
-	ld hl, $d088
-	set 7, [hl]
-	ld a, $1
-	ld [$d087], a
-	ret
-
-; no known jump sources
-Function17a7f4: ; 17a7f4 (5e:67f4)
-	ld hl, $d08b
-	dec [hl]
-	ret nz
-	ld hl, $d087
-	set 7, [hl]
-	ret
-
-; no known jump sources
-Function17a7ff: ; 17a7ff (5e:67ff)
-	ld hl, $d08b
-	dec [hl]
-	ret nz
-	call Function17ac1d
-	call Function17ac2a
-	ld hl, $d088
-	set 7, [hl]
-	ld hl, $d088
-	set 5, [hl]
-	ld hl, $d087
-	set 7, [hl]
-	ret
-
-; no known jump sources
-Function17a81a: ; 17a81a (5e:681a)
-	call Function3c74
-	ret nc
-	ld a, [hJoyPressed] ; $ff00+$a7
-	and $3
-	ret z
-	call Function1c07
-	call Function17ac1d
-	call Function17ac2a
-	ld hl, $d088
-	set 7, [hl]
-	ld hl, $d088
-	res 6, [hl]
-	ld a, $1
-	ld [$d087], a
-	ret
-
-; known jump sources: 17a7cd (5e:67cd), 17a7d8 (5e:67d8)
-Function17a83c: ; 17a83c (5e:683c)
-	ld a, [$FF00+$a9]
-	and $f0
-	ld c, a
-	ld a, [hJoyPressed] ; $ff00+$a7
-	and $b
-	or c
-	ld c, a
-	ret
-
-; known jump sources: 17a7d4 (5e:67d4), 17a7db (5e:67db)
-Function17a848: ; 17a848 (5e:6848)
-	ld a, c
-	and $60
-	cp $60
-	jr z, .asm_17a876
-	ld a, c
-	and $50
-	cp $50
-	jr z, .asm_17a87d
-	ld a, c
-	and $a0
-	cp $a0
-	jr z, .asm_17a884
-	ld a, c
-	and $90
-	cp $90
-	jr z, .asm_17a88b
-	bit 6, c
-	jr nz, .asm_17a892
-	bit 7, c
-	jr nz, .asm_17a899
-	bit 5, c
-	jr nz, .asm_17a8a0
-	bit 4, c
-	jr nz, .asm_17a8a7
-	xor a
-	ret
-.asm_17a876
-	ld a, $9
-	call Function17aad0
-	scf
-	ret
-.asm_17a87d
-	ld a, $a
-	call Function17aad0
-	scf
-	ret
-.asm_17a884
-	ld a, $b
-	call Function17aad0
-	scf
-	ret
-.asm_17a88b
-	ld a, $c
-	call Function17aad0
-	scf
-	ret
-.asm_17a892
-	ld a, $5
-	call Function17aad0
-	scf
-	ret
-.asm_17a899
-	ld a, $6
-	call Function17aad0
-	scf
-	ret
-.asm_17a8a0
-	ld a, $7
-	call Function17aad0
-	scf
-	ret
-.asm_17a8a7
-	ld a, $8
-	call Function17aad0
-	scf
-	ret
-
-; known jump sources: 17a7d0 (5e:67d0)
-Function17a8ae: ; 17a8ae (5e:68ae)
-	bit 1, c
-	jr nz, .asm_17a8bc
-	bit 0, c
-	jr nz, .asm_17a8cc
-	bit 3, c
-	jr nz, .asm_17a8d7
-	xor a
-	ret
-.asm_17a8bc
-	ld a, $b
-	ld [$d08a], a
-	call Function17aa98
-	call Function17a943
-	call Function17aa88
-	scf
-	ret
-.asm_17a8cc
-	call Function17aad7
-	call Function17aa98
-	call Function17a8de
-	scf
-	ret
-.asm_17a8d7
-	ld a, $c
-	call Function17aad3
-	scf
-	ret
-
-; known jump sources: 17a8d2 (5e:68d2)
-Function17a8de: ; 17a8de (5e:68de)
-	ld a, $2
-	call Function17aae0
-	ld a, [hl]
-	cp $f1
-	jr z, .asm_17a8fd
-	cp $f0
-	jr z, .asm_17a904
-	cp $f2
-	jr z, .asm_17a911
-	ld e, a
-	call Function17a964
-	ld a, $2
-	ld [$d087], a
-	call Function17aa88
-	ret
-.asm_17a8fd
-	call Function17a943
-	call Function17aa88
-	ret
-.asm_17a904
-	call Function17aad7
-	call Function17aa98
-	call Function17a91e
-	call Function17aa88
-	ret
-.asm_17a911
-	call Function17aa98
-	ld a, $5
-	ld [$d087], a
-	xor a
-	call Function17aa88
-	ret
-
-; known jump sources: 17a90a (5e:690a)
-Function17a91e: ; 17a91e (5e:691e)
-	ld a, [$d08c]
-	cp $7
-	jr c, .asm_17a92c
-	ld a, $3
-	ld [$d087], a
-	xor a
-	ret
-.asm_17a92c
-	call Function1d6e
-	call Function17a99e
-	ld hl, $d088
-	set 7, [hl]
-	ld hl, $d088
-	set 6, [hl]
-	ld a, $4
-	ld [$d087], a
-	scf
-	ret
-
-; known jump sources: 17a8c4 (5e:68c4), 17a8fd (5e:68fd)
-Function17a943: ; 17a943 (5e:6943)
-	ld a, [$d08c]
-	and a
-	jr z, .asm_17a95d
-	dec a
-	ld [$d08c], a
-	ld c, a
-	ld b, $0
-	ld hl, Buffer1 ; $d1ea (aliases: MagikarpLength)
-	add hl, bc
-	ld [hl], $ff
-	ld a, $2
-	ld [$d087], a
-	and a
-	ret
-.asm_17a95d
-	ld a, $5
-	ld [$d087], a
-	xor a
-	ret
-
-; known jump sources: 17a8f1 (5e:68f1)
-Function17a964: ; 17a964 (5e:6964)
-	ld a, [$d08c]
-	cp $10
-	jr nc, .asm_17a979
-	ld c, a
-	ld b, $0
-	inc a
-	ld [$d08c], a
-	ld hl, Buffer1 ; $d1ea (aliases: MagikarpLength)
-	add hl, bc
-	ld [hl], e
-	and a
-	ret
-.asm_17a979
-	scf
-	ret
-
-; known jump sources: 17a75b (5e:675b)
-Function17a97b: ; 17a97b (5e:697b)
-	ld hl, $c4b5
-	ld bc, $212
-	call ClearBox
-	ld hl, $c4cb
-	ld de, Buffer1 ; $d1ea (aliases: MagikarpLength)
-	ld a, [$d08c]
-	and a
-	ret z
-	ld c, a
-.asm_17a990
-	ld a, [de]
-	inc de
-	cp $a
-	jr nc, .asm_17a99d
-	add $f6
-	ld [hli], a
-	dec c
-	jr nz, .asm_17a990
-	ret
-.asm_17a99d
-	ret
-
-; known jump sources: 17a92f (5e:692f)
-Function17a99e: ; 17a99e (5e:699e)
-	ld hl, $c590
-	ld b, $4
-	ld c, $12
-	call Function17ac46
-	ld hl, $c5ba
-	ld de, $69b2
-	call PlaceString
-	ret
-; 17a9b2 (5e:69b2)
-
-INCBIN "baserom.gbc",$17a9b2,$17a9cb - $17a9b2
-
-; known jump sources: 17a77a (5e:677a)
-Function17a9cb: ; 17a9cb (5e:69cb)
-	ld de, Sprites ; $c400
-	ld hl, $d088
-	bit 6, [hl]
-	jr nz, .asm_17a9df
-	call Function17a9e3
-	call Function17aa22
-	call Function17a9f5
-	ret
-.asm_17a9df
-	call Function17a9e3
-	ret
-
-; known jump sources: 17a9d5 (5e:69d5), 17a9df (5e:69df)
-Function17a9e3: ; 17a9e3 (5e:69e3)
-	ld a, $3
-	ld [$d08e], a
-	ld hl, $6a77
-	ld b, $8
-	ld c, $8
-	ld a, $5
-	call Function17aa4a
-	ret
-
-; known jump sources: 17a9db (5e:69db)
-Function17a9f5: ; 17a9f5 (5e:69f5)
-	ld a, [$d08c]
-	cp $10
-	ret nc
-	ld a, [$d08f]
-	swap a
-	and $1
-	add $1
-	ld [$d08e], a
-	ld a, [$d08c]
-	cp $10
-	jr c, .asm_17aa0f
-	dec a
-.asm_17aa0f
-	ld c, $8
-	call SimpleMultiply
-	add $18
-	ld b, a
-	ld c, $11
-	ld hl, $6a72
-	ld a, $4
-	call Function17aa4a
-	ret
-
-; known jump sources: 17a9d8 (5e:69d8)
-Function17aa22: ; 17aa22 (5e:6a22)
-	ld a, $0
-	ld [$d08e], a
-	push de
-	ld a, $3
-	call Function17aae0
-	add a
-	add a
-	add a
-	add $0
-	push af
-	ld a, $4
-	call Function17aae0
-	add a
-	add a
-	add a
-	add $8
-	ld c, a
-	pop af
-	ld b, a
-	pop de
-	ld a, $0
-	ld hl, $6a77
-	call Function17aa4a
-	ret
-
-; known jump sources: 17a9f1 (5e:69f1), 17aa1e (5e:6a1e), 17aa46 (5e:6a46)
-Function17aa4a: ; 17aa4a (5e:6a4a)
-	ld [$d08d], a
-	ld a, b
-	add $8
-	ld b, a
-	ld a, c
-	add $10
-	ld c, a
-	ld a, [hli]
-.asm_17aa56
-	push af
-	ld a, [hli]
-	add c
-	ld [de], a
-	inc de
-	ld a, [hli]
-	add b
-	ld [de], a
-	inc de
-	ld a, [$d08d]
-	add [hl]
-	inc hl
-	ld [de], a
-	inc de
-	ld a, [$d08e]
-	or [hl]
-	inc hl
-	ld [de], a
-	inc de
-	pop af
-	dec a
-	jr nz, .asm_17aa56
-	ret
-; 17aa72 (5e:6a72)
-
-INCBIN "baserom.gbc",$17aa72,$17aa88 - $17aa72
-
-; known jump sources: 17a8c7 (5e:68c7), 17a8f9 (5e:68f9), 17a900 (5e:6900), 17a90d (5e:690d), 17a91a (5e:691a)
-Function17aa88: ; 17aa88 (5e:6a88)
-	jr c, asm_17aa91
-	ld de, $20
-	call PlaySFX
-	ret
-
-; known jump sources: 17aa88 (5e:6a88)
-asm_17aa91: ; 17aa91 (5e:6a91)
-	ld de, $19
-	call PlaySFX
-	ret
-
-; known jump sources: 17a8c1 (5e:68c1), 17a8cf (5e:68cf), 17a907 (5e:6907), 17a911 (5e:6911)
-Function17aa98: ; 17aa98 (5e:6a98)
-	ld a, $5
-	ld [$d08b], a
-	call Function17aaa9
-	call Function17aac3
-	ld hl, $d088
-	set 7, [hl]
-	ret
-
-; known jump sources: 17aa9d (5e:6a9d)
-Function17aaa9: ; 17aaa9 (5e:6aa9)
-	ld a, $3
-	call Function17aae3
-	ld c, a
-	ld b, $0
-	ld hl, AttrMap ; $cdd9
-	add hl, bc
-	push hl
-	ld a, $4
-	call Function17aae3
-	ld bc, $14
-	pop hl
-	call AddNTimes
-	ret
-
-; known jump sources: 17aaa0 (5e:6aa0)
-Function17aac3: ; 17aac3 (5e:6ac3)
-	ld a, $b
-	push hl
-	ld [hli], a
-	ld [hli], a
-	pop hl
-	ld de, $14
-	add hl, de
-	ld [hli], a
-	ld [hli], a
-	ret
-
-; known jump sources: 17a878 (5e:6878), 17a87f (5e:687f), 17a886 (5e:6886), 17a88d (5e:688d), 17a894 (5e:6894), 17a89b (5e:689b), 17a8a2 (5e:68a2), 17a8a9 (5e:68a9)
-Function17aad0: ; 17aad0 (5e:6ad0)
-	call Function17aae0
-
-; known jump sources: 17a7c4 (5e:67c4), 17a8d9 (5e:68d9)
-Function17aad3: ; 17aad3 (5e:6ad3)
-	ld [$d089], a
-	ret
-
-; known jump sources: 17a8cc (5e:68cc), 17a904 (5e:6904), 17aae0 (5e:6ae0)
-Function17aad7: ; 17aad7 (5e:6ad7)
-	push af
-	ld a, [$d089]
-	ld [$d08a], a
-	pop af
-	ret
-
-; known jump sources: 17a8e0 (5e:68e0), 17aa2a (5e:6a2a), 17aa35 (5e:6a35), 17aad0 (5e:6ad0)
-Function17aae0: ; 17aae0 (5e:6ae0)
-	call Function17aad7
-
-; known jump sources: 17aaab (5e:6aab), 17aab8 (5e:6ab8)
-Function17aae3: ; 17aae3 (5e:6ae3)
-	push af
-	ld a, [$d08a]
-	ld bc, $d
-	ld hl, $6af7
-	call AddNTimes
-	pop af
-	ld c, a
-	ld b, $0
-	add hl, bc
-	ld a, [hl]
-	ret
-; 17aaf7 (5e:6af7)
-
-INCBIN "baserom.gbc",$17aaf7,$17aba0 - $17aaf7
-
-; known jump sources: 17a6cd (5e:66cd)
-Function17aba0: ; 17aba0 (5e:6ba0)
-	ld a, [rVBK] ; $ff00+$4f
-	push af
-	ld a, $1
-	ld [rVBK], a ; $ff00+$4f
-	ld hl, $9000
-	ld de, $6fa5
-	ld bc, $5e80
-	call Get2bpp
-	pop af
-	ld [rVBK], a ; $ff00+$4f
-	ld hl, $8000
-	ld de, $7465
-	ld bc, $5e05
-	call Get2bpp
-	ld hl, $8050
-	ld de, $601a
-	ld bc, $4504
-	call Get2bpp
-	ret
-
-; known jump sources: 17a6df (5e:66df)
-Function17abcf: ; 17abcf (5e:6bcf)
-	ld a, [rSVBK] ; $ff00+$70
-	push af
-	ld a, $5
-	ld [rSVBK], a ; $ff00+$70
-	ld hl, $6c55
-	ld de, Unkn1Pals ; $d000
-	ld bc, $30
-	call CopyBytes
-	ld hl, $6c95
-	ld de, MartPointer ; $d040 (aliases: Unkn2Pals)
-	ld bc, $40
-	call CopyBytes
-	ld hl, $74b5
-	ld de, $d048
-	ld bc, $10
-	call CopyBytes
-	ld hl, $7471
-	ld de, $d058
-	ld bc, $8
-	ld a, $2
-	call FarCopyBytes
-	pop af
-	ld [rSVBK], a ; $ff00+$70
-	ret
-
-; known jump sources: 17a6d6 (5e:66d6)
-Function17ac0c: ; 17ac0c (5e:6c0c)
-	call Function17ac1d
-	call Function17ac2a
-	ld hl, TileMap ; $c4a0 (aliases: SpritesEnd)
-	ld b, $2
-	ld c, $12
-	call Function17ac46
-	ret
-
-; known jump sources: 17a7e3 (5e:67e3), 17a804 (5e:6804), 17a826 (5e:6826), 17ac0c (5e:6c0c)
-Function17ac1d: ; 17ac1d (5e:6c1d)
-	ld hl, $6cd5
-	ld de, $c4f0
-	ld bc, $118
-	call CopyBytes
-	ret
-
-; known jump sources: 17a7e6 (5e:67e6), 17a807 (5e:6807), 17a829 (5e:6829), 17ac0f (5e:6c0f)
-Function17ac2a: ; 17ac2a (5e:6c2a)
-	ld hl, $6e3d
-	ld de, $ce29
-	ld bc, $118
-	call CopyBytes
-	ld hl, $ce29
-	ld bc, $118
-.asm_17ac3c
-	ld a, [hl]
-	or $8
-	ld [hli], a
-	dec bc
-	ld a, b
-	or c
-	jr nz, .asm_17ac3c
-	ret
-
-; known jump sources: 17a9a5 (5e:69a5), 17ac19 (5e:6c19)
-Function17ac46: ; 17ac46 (5e:6c46)
-	ld a, [$d088]
-	bit 4, a
-	jr nz, .asm_17ac51
-	call TextBox
-	ret
-.asm_17ac51
-	call Function3eea
-	ret
-; 17ac55 (5e:6c55)
-
-INCBIN "baserom.gbc",$17ac55,$17b629 - $17ac55
-
-
-SECTION "bank5F",ROMX,BANK[$5F]
+SECTION "bank5F", ROMX, BANK[$5F]
 
 Function17c000: ; 17c000
+
 	call DisableLCD
+
 	ld hl, VTiles2
-	ld bc, $0310
+	ld bc, $310
 	xor a
 	call ByteFill
+
 	call Functione51
 	call Functione5f
-	ld hl, $4b83
+
+	ld hl, HaveWantMap
 	ld de, TileMap
 	ld bc, AttrMap
-	ld a, $12
-.asm_17c01e
+
+	ld a, SCREEN_HEIGHT
+.y
 	push af
-	ld a, $14
+	ld a, SCREEN_WIDTH
+
 	push hl
-.asm_17c022
+.x
 	push af
 	ld a, [hli]
 	ld [de], a
@@ -122975,47 +95946,118 @@ Function17c000: ; 17c000
 	inc bc
 	pop af
 	dec a
-	jr nz, .asm_17c022
+	jr nz, .x
 	pop hl
+
 	push bc
-	ld bc, $0040
+	ld bc, BG_MAP_WIDTH * 2
 	add hl, bc
 	pop bc
+
 	pop af
 	dec a
-	jr nz, .asm_17c01e
+	jr nz, .y
+
 	ld a, [rSVBK]
 	push af
-	ld a, $5
+
+	ld a, 5 ; BANK(Unkn1Pals)
 	ld [rSVBK], a
-	ld hl, $4ff3
-	ld de, $d000
-	ld bc, $0080
+
+	ld hl, HaveWantPals
+	ld de, Unkn1Pals
+	ld bc, $80
 	call CopyBytes
+
 	pop af
 	ld [rSVBK], a
-	ld hl, $4983
+
+	ld hl, MobileSelectGFX
 	ld de, $8300
-	ld bc, $0200
+	ld bc, $200
 	call CopyBytes
-	ld a, $1
+
+	ld a, 1
 	ld [rVBK], a
-	ld hl, $4083
+
+	ld hl, HaveWantGFX
 	ld de, VTiles2
-	ld bc, $0800
+	ld bc, $800
 	call CopyBytes
-	ld hl, $4883
+
+	ld hl, HaveWantGFX + $800
 	ld de, VTiles1
-	ld bc, Start
+	ld bc, $100
 	call CopyBytes
+
 	xor a
 	ld [rVBK], a
+
 	call EnableLCD
 	callba Function104061
 	ret
 ; 17c083
 
-INCBIN "baserom.gbc",$17c083,$17d0b3 - $17c083
+HaveWantGFX: ; 17c083
+INCBIN "gfx/mobile/havewant.2bpp"
+
+MobileSelectGFX: ; 17c983
+INCBIN "gfx/mobile/select.2bpp"
+
+HaveWantMap: ; 17cb83
+; Interleaved tile/palette map.
+INCBIN "baserom.gbc", $17cb83, $17cff3 - $17cb83
+
+HaveWantPals: ; 17cff3
+; BG and OBJ palettes.
+INCBIN "baserom.gbc", $17cff3, $17d073 - $17cff3
+
+
+Function17d073: ; 17d073
+.asm_17d073
+	ld a, [de]
+	inc de
+	and a
+	jr z, .asm_17d0ae
+	cp $60
+	jr nc, .asm_17d0ae
+	cp $4e
+	jr z, .asm_17d0ae
+	cp $50
+	jr z, .asm_17d0b1
+	cp $5
+	jr c, .asm_17d0ac
+	cp $14
+	jr c, .asm_17d0ae
+	cp $19
+	jr c, .asm_17d0ac
+	cp $1d
+	jr c, .asm_17d0ae
+	cp $26
+	jr c, .asm_17d0ac
+	cp $35
+	jr c, .asm_17d0ae
+	cp $3a
+	jr c, .asm_17d0ac
+	cp $3f
+	jr c, .asm_17d0ae
+	cp $40
+	jr c, .asm_17d0ac
+	cp $49
+	jr c, .asm_17d0ae
+
+.asm_17d0ac
+	scf
+	ret
+
+.asm_17d0ae
+	dec c
+	jr nz, .asm_17d073
+
+.asm_17d0b1
+	and a
+	ret
+; 17d0b3
 
 Function17d0b3: ; 17d0b3
 .asm_17d0b3
@@ -123087,13 +96129,15 @@ Function17d1f1: ; 17d1f1
 	ld a, [CurPartySpecies]
 	dec a
 	call SetSeenAndCaughtMon
+
 	ld a, [CurPartySpecies]
-	cp $c9
+	cp UNOWN
 	jr nz, .asm_17d223
+
 	ld hl, PartyMon1DVs
 	ld a, [PartyCount]
 	dec a
-	ld bc, $0030
+	ld bc, PartyMon2 - PartyMon1
 	call AddNTimes
 	ld a, $2d
 	call Predef
@@ -123101,6 +96145,7 @@ Function17d1f1: ; 17d1f1
 	ld a, [$def4]
 	and a
 	jr nz, .asm_17d223
+
 	ld a, [UnownLetter]
 	ld [$def4], a
 
@@ -123196,7 +96241,7 @@ Function17d2ce: ; 17d2ce
 	call Function17d45a
 	pop af
 	ld [rSVBK], a
-	ld de, $0066
+	ld de, MUSIC_MOBILE_CENTER
 	ld a, e
 	ld [CurMusic], a
 	ld [MusicFadeIDLo], a
@@ -123279,7 +96324,7 @@ Function17d370: ; 17d370
 	call CopyBytes
 	ld a, $1
 	ld [rVBK], a
-	ld hl, $66fe
+	ld hl, PokemonNewsGFX
 	ld de, VTiles1
 	ld bc, $0480
 	call CopyBytes
@@ -123435,7 +96480,15 @@ Function17d60b: ; 17d60b
 	ret
 ; 17d6a1
 
-INCBIN "baserom.gbc",$17d6a1,$17f036 - $17d6a1
+
+INCBIN "baserom.gbc", $17d6a1, $17e6fe - $17d6a1
+
+
+PokemonNewsGFX: ; 17e6fe
+INCBIN "gfx/mobile/pokemon_news.2bpp"
+
+
+INCBIN "baserom.gbc", $17eb7e, $17f036 - $17eb7e
 
 
 Function17f036: ; 17f036
@@ -124636,290 +97689,14 @@ Function17ff3c: ; 17ff3c
 INCBIN "baserom.gbc",$17ff68,$17ff6c - $17ff68
 
 
-SECTION "bank60",ROMX,BANK[$60]
 
-;                        Map Scripts XIII
-
-INCLUDE "maps/IndigoPlateauPokeCenter1F.asm"
-INCLUDE "maps/WillsRoom.asm"
-INCLUDE "maps/KogasRoom.asm"
-INCLUDE "maps/BrunosRoom.asm"
-INCLUDE "maps/KarensRoom.asm"
-INCLUDE "maps/LancesRoom.asm"
-INCLUDE "maps/HallOfFame.asm"
-
-
-;                       Pokedex entries I
-;                            001-064
-PokedexEntries1:
-INCLUDE "stats/pokedex/entries_1.asm"
-
-
-SECTION "bank61",ROMX,BANK[$61]
-
-;                        Map Scripts XIV
-
-INCLUDE "maps/CeruleanCity.asm"
-INCLUDE "maps/SproutTower1F.asm"
-INCLUDE "maps/SproutTower2F.asm"
-INCLUDE "maps/SproutTower3F.asm"
-INCLUDE "maps/TinTower1F.asm"
-INCLUDE "maps/TinTower2F.asm"
-INCLUDE "maps/TinTower3F.asm"
-INCLUDE "maps/TinTower4F.asm"
-INCLUDE "maps/TinTower5F.asm"
-INCLUDE "maps/TinTower6F.asm"
-INCLUDE "maps/TinTower7F.asm"
-INCLUDE "maps/TinTower8F.asm"
-INCLUDE "maps/TinTower9F.asm"
-INCLUDE "maps/BurnedTower1F.asm"
-INCLUDE "maps/BurnedTowerB1F.asm"
-
-
-SECTION "bank62",ROMX,BANK[$62]
-
-;                         Map Scripts XV
-
-INCLUDE "maps/CeruleanGymBadgeSpeechHouse.asm"
-INCLUDE "maps/CeruleanPoliceStation.asm"
-INCLUDE "maps/CeruleanTradeSpeechHouse.asm"
-INCLUDE "maps/CeruleanPokeCenter1F.asm"
-INCLUDE "maps/CeruleanPokeCenter2FBeta.asm"
-INCLUDE "maps/CeruleanGym.asm"
-INCLUDE "maps/CeruleanMart.asm"
-INCLUDE "maps/Route10PokeCenter1F.asm"
-INCLUDE "maps/Route10PokeCenter2FBeta.asm"
-INCLUDE "maps/PowerPlant.asm"
-INCLUDE "maps/BillsHouse.asm"
-INCLUDE "maps/FightingDojo.asm"
-INCLUDE "maps/SaffronGym.asm"
-INCLUDE "maps/SaffronMart.asm"
-INCLUDE "maps/SaffronPokeCenter1F.asm"
-INCLUDE "maps/SaffronPokeCenter2FBeta.asm"
-INCLUDE "maps/MrPsychicsHouse.asm"
-INCLUDE "maps/SaffronTrainStation.asm"
-INCLUDE "maps/SilphCo1F.asm"
-INCLUDE "maps/CopycatsHouse1F.asm"
-INCLUDE "maps/CopycatsHouse2F.asm"
-INCLUDE "maps/Route5UndergroundEntrance.asm"
-INCLUDE "maps/Route5SaffronCityGate.asm"
-INCLUDE "maps/Route5CleanseTagSpeechHouse.asm"
-
-
-SECTION "bank63",ROMX,BANK[$63]
-
-;                        Map Scripts XVI
-
-INCLUDE "maps/PewterCity.asm"
-INCLUDE "maps/WhirlIslandNW.asm"
-INCLUDE "maps/WhirlIslandNE.asm"
-INCLUDE "maps/WhirlIslandSW.asm"
-INCLUDE "maps/WhirlIslandCave.asm"
-INCLUDE "maps/WhirlIslandSE.asm"
-INCLUDE "maps/WhirlIslandB1F.asm"
-INCLUDE "maps/WhirlIslandB2F.asm"
-INCLUDE "maps/WhirlIslandLugiaChamber.asm"
-INCLUDE "maps/SilverCaveRoom1.asm"
-INCLUDE "maps/SilverCaveRoom2.asm"
-INCLUDE "maps/SilverCaveRoom3.asm"
-INCLUDE "maps/SilverCaveItemRooms.asm"
-INCLUDE "maps/DarkCaveVioletEntrance.asm"
-INCLUDE "maps/DarkCaveBlackthornEntrance.asm"
-INCLUDE "maps/DragonsDen1F.asm"
-INCLUDE "maps/DragonsDenB1F.asm"
-INCLUDE "maps/DragonShrine.asm"
-INCLUDE "maps/TohjoFalls.asm"
-INCLUDE "maps/AzaleaPokeCenter1F.asm"
-INCLUDE "maps/CharcoalKiln.asm"
-INCLUDE "maps/AzaleaMart.asm"
-INCLUDE "maps/KurtsHouse.asm"
-INCLUDE "maps/AzaleaGym.asm"
-
-
-SECTION "bank64",ROMX,BANK[$64]
-
-;                        Map Scripts XVII
-
-INCLUDE "maps/MahoganyTown.asm"
-INCLUDE "maps/Route32.asm"
-INCLUDE "maps/VermilionHouseFishingSpeechHouse.asm"
-INCLUDE "maps/VermilionPokeCenter1F.asm"
-INCLUDE "maps/VermilionPokeCenter2FBeta.asm"
-INCLUDE "maps/PokemonFanClub.asm"
-INCLUDE "maps/VermilionMagnetTrainSpeechHouse.asm"
-INCLUDE "maps/VermilionMart.asm"
-INCLUDE "maps/VermilionHouseDiglettsCaveSpeechHouse.asm"
-INCLUDE "maps/VermilionGym.asm"
-INCLUDE "maps/Route6SaffronGate.asm"
-INCLUDE "maps/Route6UndergroundEntrance.asm"
-INCLUDE "maps/PokeCenter2F.asm"
-INCLUDE "maps/TradeCenter.asm"
-INCLUDE "maps/Colosseum.asm"
-INCLUDE "maps/TimeCapsule.asm"
-INCLUDE "maps/MobileTradeRoomMobile.asm"
-INCLUDE "maps/MobileBattleRoom.asm"
-
-
-SECTION "bank65",ROMX,BANK[$65]
-
-;                       Map Scripts XVIII
-
-INCLUDE "maps/Route36.asm"
-INCLUDE "maps/FuchsiaCity.asm"
-INCLUDE "maps/BlackthornGym1F.asm"
-INCLUDE "maps/BlackthornGym2F.asm"
-INCLUDE "maps/BlackthornDragonSpeechHouse.asm"
-INCLUDE "maps/BlackthornDodrioTradeHouse.asm"
-INCLUDE "maps/BlackthornMart.asm"
-INCLUDE "maps/BlackthornPokeCenter1F.asm"
-INCLUDE "maps/MoveDeletersHouse.asm"
-INCLUDE "maps/FuchsiaMart.asm"
-INCLUDE "maps/SafariZoneMainOffice.asm"
-INCLUDE "maps/FuchsiaGym.asm"
-INCLUDE "maps/FuchsiaBillSpeechHouse.asm"
-INCLUDE "maps/FuchsiaPokeCenter1F.asm"
-INCLUDE "maps/FuchsiaPokeCenter2FBeta.asm"
-INCLUDE "maps/SafariZoneWardensHome.asm"
-INCLUDE "maps/Route15FuchsiaGate.asm"
-INCLUDE "maps/CherrygroveMart.asm"
-INCLUDE "maps/CherrygrovePokeCenter1F.asm"
-INCLUDE "maps/CherrygroveGymSpeechHouse.asm"
-INCLUDE "maps/GuideGentsHouse.asm"
-INCLUDE "maps/CherrygroveEvolutionSpeechHouse.asm"
-INCLUDE "maps/Route30BerrySpeechHouse.asm"
-INCLUDE "maps/MrPokemonsHouse.asm"
-INCLUDE "maps/Route31VioletGate.asm"
-
-
-SECTION "bank66",ROMX,BANK[$66]
-
-;                        Map Scripts XIX
-
-INCLUDE "maps/AzaleaTown.asm"
-INCLUDE "maps/GoldenrodCity.asm"
-INCLUDE "maps/SaffronCity.asm"
-INCLUDE "maps/MahoganyRedGyaradosSpeechHouse.asm"
-INCLUDE "maps/MahoganyGym.asm"
-INCLUDE "maps/MahoganyPokeCenter1F.asm"
-INCLUDE "maps/Route42EcruteakGate.asm"
-INCLUDE "maps/LakeofRageHiddenPowerHouse.asm"
-INCLUDE "maps/LakeofRageMagikarpHouse.asm"
-INCLUDE "maps/Route43MahoganyGate.asm"
-INCLUDE "maps/Route43Gate.asm"
-INCLUDE "maps/RedsHouse1F.asm"
-INCLUDE "maps/RedsHouse2F.asm"
-INCLUDE "maps/BluesHouse.asm"
-INCLUDE "maps/OaksLab.asm"
-
-
-SECTION "bank67",ROMX,BANK[$67]
-
-;                         Map Scripts XX
-
-INCLUDE "maps/CherrygroveCity.asm"
-INCLUDE "maps/Route35.asm"
-INCLUDE "maps/Route43.asm"
-INCLUDE "maps/Route44.asm"
-INCLUDE "maps/Route45.asm"
-INCLUDE "maps/Route19.asm"
-INCLUDE "maps/Route25.asm"
-
-
-SECTION "bank68",ROMX,BANK[$68]
-
-;                        Map Scripts XXI
-
-INCLUDE "maps/CianwoodCity.asm"
-INCLUDE "maps/Route27.asm"
-INCLUDE "maps/Route29.asm"
-INCLUDE "maps/Route30.asm"
-INCLUDE "maps/Route38.asm"
-INCLUDE "maps/Route13.asm"
-INCLUDE "maps/PewterNidoranSpeechHouse.asm"
-INCLUDE "maps/PewterGym.asm"
-INCLUDE "maps/PewterMart.asm"
-INCLUDE "maps/PewterPokeCenter1F.asm"
-INCLUDE "maps/PewterPokeCEnter2FBeta.asm"
-INCLUDE "maps/PewterSnoozeSpeechHouse.asm"
-
-
-SECTION "bank69",ROMX,BANK[$69]
-
-;                        Map Scripts XXII
-
-INCLUDE "maps/EcruteakCity.asm"
-INCLUDE "maps/BlackthornCity.asm"
-INCLUDE "maps/Route26.asm"
-INCLUDE "maps/Route28.asm"
-INCLUDE "maps/Route31.asm"
-INCLUDE "maps/Route39.asm"
-INCLUDE "maps/Route40.asm"
-INCLUDE "maps/Route41.asm"
-INCLUDE "maps/Route12.asm"
-
-
-SECTION "bank6A",ROMX,BANK[$6A]
-
-;                       Map Scripts XXIII
-
-INCLUDE "maps/NewBarkTown.asm"
-INCLUDE "maps/VioletCity.asm"
-INCLUDE "maps/OlivineCity.asm"
-INCLUDE "maps/Route37.asm"
-INCLUDE "maps/Route42.asm"
-INCLUDE "maps/Route46.asm"
-INCLUDE "maps/ViridianCity.asm"
-INCLUDE "maps/CeladonCity.asm"
-INCLUDE "maps/Route15.asm"
-INCLUDE "maps/VermilionCity.asm"
-INCLUDE "maps/Route9.asm"
-INCLUDE "maps/CinnabarPokeCenter1F.asm"
-INCLUDE "maps/CinnabarPokeCenter2FBeta.asm"
-INCLUDE "maps/Route19FuchsiaGate.asm"
-INCLUDE "maps/SeafoamGym.asm"
-
-
-SECTION "bank6B",ROMX,BANK[$6B]
-
-;                        Map Scripts XXIV
-
-INCLUDE "maps/Route33.asm"
-INCLUDE "maps/Route2.asm"
-INCLUDE "maps/Route1.asm"
-INCLUDE "maps/PalletTown.asm"
-INCLUDE "maps/Route21.asm"
-INCLUDE "maps/CinnabarIsland.asm"
-INCLUDE "maps/Route20.asm"
-INCLUDE "maps/Route18.asm"
-INCLUDE "maps/Route17.asm"
-INCLUDE "maps/Route16.asm"
-INCLUDE "maps/Route7.asm"
-INCLUDE "maps/Route14.asm"
-INCLUDE "maps/LavenderTown.asm"
-INCLUDE "maps/Route6.asm"
-INCLUDE "maps/Route5.asm"
-INCLUDE "maps/Route24.asm"
-INCLUDE "maps/Route3.asm"
-INCLUDE "maps/Route4.asm"
-INCLUDE "maps/Route10South.asm"
-INCLUDE "maps/Route23.asm"
-INCLUDE "maps/SilverCavePokeCenter1F.asm"
-INCLUDE "maps/Route28FamousSpeechHouse.asm"
-
-
-SECTION "bank6C",ROMX,BANK[$6C]
-
-;                         Common text I
+SECTION "Common Text 1", ROMX, BANK[$6C]
 
 INCLUDE "text/common.asm"
 
-;                        Map Scripts XXV
-
-INCLUDE "maps/SilverCaveOutside.asm"
-INCLUDE "maps/Route10North.asm"
 
 
-SECTION "bank6D",ROMX,BANK[$6D]
+SECTION "bank6D", ROMX, BANK[$6D]
 
 INCLUDE "text/phone/mom.asm"
 INCLUDE "text/phone/bill.asm"
@@ -124927,36 +97704,23 @@ INCLUDE "text/phone/elm.asm"
 INCLUDE "text/phone/trainers1.asm"
 
 
-SECTION "bank6E",ROMX,BANK[$6E]
 
-;                       Pokedex entries II
-;                            065-128
-PokedexEntries2:
-INCLUDE "stats/pokedex/entries_2.asm"
-
-
-SECTION "bank6F",ROMX,BANK[$6F]
-
-;                        Common text II
+SECTION "Common Text 2", ROMX, BANK[$6F]
 
 INCLUDE "text/common_2.asm"
 
 
-SECTION "bank70",ROMX,BANK[$70]
-
-;                        Common text III
+SECTION "Common Text 3", ROMX, BANK[$70]
 
 INCLUDE "text/common_3.asm"
 
 
-SECTION "bank71",ROMX,BANK[$71]
-
-;                        Common text IV
+SECTION "Common Text 4", ROMX, BANK[$71]
 
 INCLUDE "text/common_4.asm"
 
 
-SECTION "bank72",ROMX,BANK[$72]
+SECTION "bank72", ROMX, BANK[$72]
 
 ;                   Item names & descriptions
 
@@ -125006,29 +97770,14 @@ RegionCheck: ; 0x1caea1
 	ret
 
 
-SECTION "bank73",ROMX,BANK[$73]
 
-;                       Pokedex entries III
-                            ; 129-192
-PokedexEntries3:
-INCLUDE "stats/pokedex/entries_3.asm"
+SECTION "bank75", ROMX, BANK[$75]
 
 
-SECTION "bank74",ROMX,BANK[$74]
-
-;                       Pokedex entries IV
-                            ; 193-251
-PokedexEntries4:
-INCLUDE "stats/pokedex/entries_4.asm"
+SECTION "bank76", ROMX, BANK[$76]
 
 
-SECTION "bank75",ROMX,BANK[$75]
-
-
-SECTION "bank76",ROMX,BANK[$76]
-
-
-SECTION "bank77",ROMX,BANK[$77]
+SECTION "bank77", ROMX, BANK[$77]
 
 UnownFont: ; 1dc000
 INCBIN "gfx/misc/unown_font.2bpp"
@@ -125043,18 +97792,22 @@ Function1dc381: ; 1dc381
 	xor a
 	ld [hBGMapMode], a
 	call Functione58
-	ld de, $4591
+
+	ld de, MobileHPIcon
 	ld hl, $9710
-	ld bc, $7701
+	lb bc, BANK(MobileHPIcon), 1
 	call Request1bpp
-	ld de, $4599
+
+	ld de, MobileLvIcon
 	ld hl, $96e0
-	ld bc, $7701
+	lb bc, BANK(MobileLvIcon), 1
 	call Request1bpp
-	ld de, $4a90
+
+	ld de, ShinyIcon
 	ld hl, $93f0
-	ld bc, $3e01
+	lb bc, BANK(ShinyIcon), 1
 	call Get2bpp
+
 	xor a
 	ld [MonType], a
 	callba Function5084a
@@ -125092,21 +97845,21 @@ Function1dc381: ; 1dc381
 	ld bc, $8103
 	call PrintNum
 	ld hl, $c555
-	ld de, $4550
+	ld de, String1dc550
 	call PlaceString
 	ld hl, PartyMon1OT
 	call Function1dc50e
 	ld hl, $c558
 	call PlaceString
 	ld hl, $c57d
-	ld de, $4559
+	ld de, String1dc559
 	call PlaceString
 	ld hl, $c580
 	ld de, TempMonID
 	ld bc, $8205
 	call PrintNum
 	ld hl, $c5b9
-	ld de, $4554
+	ld de, String1dc554
 	call PlaceString
 	ld hl, $c5bf
 	ld a, [TempMonMove1]
@@ -125144,10 +97897,10 @@ Function1dc47b: ; 1dc47b
 	ld [MonType], a
 	callba Function5084a
 	ld hl, TileMap
-	ld b, $f
-	ld c, $12
+	ld b, 15
+	ld c, 18
 	call TextBox
-	ld bc, $0014
+	ld bc, SCREEN_WIDTH
 	ld de, TileMap
 	ld hl, $c4b4
 	call CopyBytes
@@ -125161,7 +97914,7 @@ Function1dc47b: ; 1dc47b
 	ld a, [TempMonMove4]
 	call Function1dc51a
 	ld hl, $c533
-	ld de, $455d
+	ld de, String1dc55d
 	call PlaceString
 	ld hl, $c53c
 	ld de, TempMonAtk
@@ -125203,12 +97956,13 @@ Function1dc50e: ; 1dc50e
 Function1dc51a: ; 1dc51a
 	and a
 	jr z, .asm_1dc525
+
 	ld [$d265], a
 	call GetMoveName
 	jr .asm_1dc528
 
 .asm_1dc525
-	ld de, $4584
+	ld de, String1dc584
 
 .asm_1dc528
 	call PlaceString
@@ -125234,9 +97988,35 @@ Function1dc52c: ; 1dc52c
 	ret
 ; 1dc550
 
-INCBIN "baserom.gbc",$1dc550,$1dc5a1 - $1dc550
+String1dc550: ; 1dc550
+	db "OT/@"
+
+String1dc554: ; 1dc554
+	db "MOVE@"
+
+String1dc559: ; 1dc559
+	db $73, "№.@"
+
+String1dc55d: ; 1dc55d
+	db "ATTACK", $4e
+	db "DEFENSE", $4e
+	db "SPCL.ATK", $4e
+	db "SPCL.DEF", $4e
+	db "SPEED@"
+
+String1dc584: ; 1dc584
+	db "------------@"
+; 1dc591
+
+MobileHPIcon: ; 1dc591
+INCBIN "gfx/mobile/hp.1bpp"
+
+MobileLvIcon: ; 1dc599
+INCBIN "gfx/mobile/lv.1bpp"
+
 
 INCLUDE "tilesets/data_7.asm"
+
 
 INCBIN "baserom.gbc",$1dd6a9,$1dd6bb - $1dd6a9
 
@@ -125542,11 +98322,13 @@ Function1de294: ; 1de294
 ; 1de299
 
 Function1de299: ; 1de299
-	ld a, $77
+	ld a, BANK(DudeAutoInputs)
 	call StartAutoInput
 	ret
 ; 1de29f
 
+
+DudeAutoInputs:
 
 DudeAutoInput_A: ; 1de29f
 	db NO_INPUT, $50
@@ -125711,28 +98493,28 @@ Function1df220: ; 1df220
 ; 1df238
 
 
-SECTION "bank78",ROMX,BANK[$78]
+SECTION "Tileset Data 8", ROMX, BANK[TILESETS_8]
 
 INCLUDE "tilesets/data_8.asm"
 
 
-SECTION "bank79",ROMX,BANK[$79]
+SECTION "bank79", ROMX, BANK[$79]
 
 
-SECTION "bank7A",ROMX,BANK[$7A]
+SECTION "bank7A", ROMX, BANK[$7A]
 
 
-SECTION "bank7B",ROMX,BANK[$7B]
+SECTION "bank7B", ROMX, BANK[$7B]
 
 INCLUDE "text/battle_tower.asm"
 
 
-SECTION "bank7C",ROMX,BANK[$7C]
+SECTION "bank7C", ROMX, BANK[$7C]
 
 INCBIN "baserom.gbc",$1f0000,$1f09d8 - $1f0000
 
 
-SECTION "bank7D",ROMX,BANK[$7D]
+SECTION "bank7D", ROMX, BANK[$7D]
 
 INCBIN "baserom.gbc",$1f4000,$1f4003 - $1f4000
 
@@ -125750,13 +98532,13 @@ Function1f4003: ; 1f4003
 INCBIN "baserom.gbc",$1f4018,$1f636a - $1f4018
 
 
-SECTION "bank7E",ROMX,BANK[$7E]
+SECTION "bank7E", ROMX, BANK[$7E]
 
 INCLUDE "stats/battle_tower.asm"
 INCLUDE "stats/odd_eggs.asm"
 
 
-SECTION "bank7F",ROMX,BANK[$7F]
+SECTION "bank7F", ROMX, BANK[$7F]
 
 SECTION "stadium2",ROMX[$8000-$220],BANK[$7F]
 INCBIN "baserom.gbc",$1ffde0,$200000 - $1ffde0

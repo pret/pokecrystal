@@ -71,15 +71,15 @@ Function8db8: ; 8db8
 	ld hl, $5c67
 	ld de, $d000
 	ld c, $4
-	call $5615
+	call Function9615
 	ld hl, $5c67
 	ld de, $d020
 	ld c, $4
-	call $5615
+	call Function9615
 	ld hl, $5c67
 	ld de, MartPointer
 	ld c, $2
-	call $5615
+	call Function9615
 	jr Function8e23
 
 Function8ddb: ; 8ddb

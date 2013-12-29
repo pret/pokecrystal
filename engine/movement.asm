@@ -205,7 +205,7 @@ Function51b8: ; 51b8
 ; 51c1
 
 Movement_step_end: ; 51c1
-	call $4769
+	call Function4769
 	ld hl, $0003
 	add hl, bc
 	ld [hl], a
@@ -221,7 +221,7 @@ Movement_step_end: ; 51c1
 ; 51db
 
 Function51db: ; 51db
-	call $4769
+	call Function4769
 	ld hl, $0003
 	add hl, bc
 	ld [hl], a
@@ -241,7 +241,7 @@ Function51db: ; 51db
 ; 51fd
 
 Movement_remove_person: ; 51fd
-	call $4357
+	call Function4357
 	ld hl, $d4cd
 	ld a, [hConnectionStripLength]
 	cp [hl]
@@ -398,12 +398,12 @@ Movement_hide_person: ; 52c0
 ; 52c9
 
 Movement_hide_emote: ; 52c9
-	call $5579
+	call Function5579
 	jp Function5065
 ; 52cf
 
 Movement_show_emote: ; 52cf
-	call $5547
+	call Function5547
 	jp Function5065
 ; 52d5
 
@@ -412,7 +412,7 @@ Movement_step_shake: ; 52d5
 ;	displacement (DecimalParam)
 
 	call Function505e
-	call $5565
+	call Function5565
 	jp Function5065
 ; 52de
 
@@ -719,27 +719,29 @@ Function5400: ; 5400
 ; 5412
 
 Function5412: ; 5412
-	call $4690
-	call $463f
+	call Function4690
+	call Function463f
 	ld hl, $000b
 	add hl, bc
 	ld [hl], $2
-	ld hl, $000e
+	ld hl, OBJECT_STANDING_TILE
 	add hl, bc
 	ld a, [hl]
-	call $188e
+	call Function188e
 	jr z, .asm_542d
-	call $1875
+
+	call Function1875
 	jr c, .asm_5430
 
 .asm_542d
-	call $5556
+	call Function5556
 
 .asm_5430
 	ld hl, $d4cf
 	ld a, [hConnectionStripLength]
 	cp [hl]
 	jr z, .asm_543f
+
 	ld hl, $0009
 	add hl, bc
 	ld [hl], $2
@@ -753,8 +755,8 @@ Function5412: ; 5412
 ; 5446
 
 Function5446: ; 5446
-	call $4690
-	call $463f
+	call Function4690
+	call Function463f
 	ld hl, $000b
 	add hl, bc
 	ld [hl], $4
@@ -776,8 +778,8 @@ Function5446: ; 5446
 
 
 Function5468: ; 5468
-	call $4690
-	call $463f
+	call Function4690
+	call Function463f
 	ld hl, $000b
 	add hl, bc
 	ld [hl], $1
@@ -799,7 +801,7 @@ Function5468: ; 5468
 
 
 Function548a: ; 548a
-	call $4690
+	call Function4690
 	ld hl, $001f
 	add hl, bc
 	ld [hl], $0
@@ -809,7 +811,7 @@ Function548a: ; 548a
 	ld hl, $000b
 	add hl, bc
 	ld [hl], $2
-	call $5529
+	call Function5529
 	ld hl, $d4cf
 	ld a, [hConnectionStripLength]
 	cp [hl]

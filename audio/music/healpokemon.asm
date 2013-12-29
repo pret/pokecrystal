@@ -11,43 +11,43 @@ Music_HealPokemon_Ch1: ; f06a0
 	dutycycle $2
 	tone $0001
 	notetype $c, $81
-	note __, 1
+	note __, 2
 	unknownmusic0xe0 $0, $40
-	note B_, 1
+	note B_, 2
 	unknownmusic0xe0 $0, $55
-	note B_, 1
+	note B_, 2
 	unknownmusic0xe0 $0, $45
-	note E_, 1
-	note __, 3
+	note E_, 2
+	note __, 4
 	unknownmusic0xe0 $0, $30
-	note E_, 3
+	note E_, 4
 	unknownmusic0xe0 $0, $40
-	note B_, 3
+	note B_, 4
 	endchannel
 
 Music_HealPokemon_Ch2: ; f06c4
 	dutycycle $2
 	notetype $c, $c3
 	octave 4
-	note B_, 3
-	note B_, 3
-	note B_, 1
-	note G#, 1
+	note B_, 4
+	note B_, 4
+	note B_, 2
+	note G#, 2
 	notetype $c, $c4
 	octave 5
-	note E_, 7
+	note E_, 8
 	endchannel
 
 Music_HealPokemon_Ch3: ; f06d4
 	notetype $c, $10
 	octave 4
-	note E_, 1
-	note __, 1
-	note E_, 1
-	note __, 1
-	note E_, 1
-	note G#, 1
-	note E_, 5
-	note __, 1
+	note E_, 2
+	note __, 2
+	note E_, 2
+	note __, 2
+	note E_, 2
+	note G#, 2
+	note E_, 6
+	note __, 2
 	endchannel
 ; f06e1
