@@ -6,11 +6,11 @@ Music_Nothing: ; e91a3
 ; e91af
 
 
-Music_Nothing_Ch3: ; e91af
-
 Music_Nothing_Ch1: ; e91af
 
 Music_Nothing_Ch2: ; e91af
+
+Music_Nothing_Ch3: ; e91af
 
 Music_Nothing_Ch4: ; e91af
 	endchannel

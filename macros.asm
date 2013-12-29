@@ -71,7 +71,7 @@ RGB: MACRO
 
 
 note: MACRO
-	db \1 << 4 + \2
+	db \1 << 4 + (\2 - 1)
 	ENDM
 
 ; pitch

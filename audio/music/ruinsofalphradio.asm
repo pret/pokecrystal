@@ -17,38 +17,38 @@ Music_RuinsOfAlphRadio_branch_eede3: ; eede3
 	notetype $6, $71
 	callchannel Music_RuinsOfAlphRadio_branch_eee01
 	notetype $c, $a1
-	note __, 15
-	note __, 15
+	note __, 16
+	note __, 16
 	callchannel Music_RuinsOfAlphRadio_branch_eee08
 	notetype $c, $a1
-	note __, 15
-	note __, 15
+	note __, 16
+	note __, 16
 	callchannel Music_RuinsOfAlphRadio_branch_eee01
 	notetype $c, $a1
-	note __, 15
+	note __, 16
 	loopchannel 0, Music_RuinsOfAlphRadio_branch_eede3
 ; eee01
 
 Music_RuinsOfAlphRadio_branch_eee01: ; eee01
 	octave 4
-	note G_, 0
-	note F#, 0
-	note G_, 0
-	note F#, 0
-	note C_, 7
+	note G_, 1
+	note F#, 1
+	note G_, 1
+	note F#, 1
+	note C_, 8
 	endchannel
 ; eee08
 
 Music_RuinsOfAlphRadio_branch_eee08: ; eee08
 	octave 4
-	note G_, 0
-	note F#, 0
-	note G_, 0
-	note F#, 0
-	note C_, 3
-	note G_, 0
+	note G_, 1
+	note F#, 1
+	note G_, 1
+	note F#, 1
+	note C_, 4
+	note G_, 1
 	octave 5
-	note C_, 7
+	note C_, 8
 	endchannel
 
 Music_RuinsOfAlphRadio_Ch2: ; eee12
@@ -60,12 +60,12 @@ Music_RuinsOfAlphRadio_branch_eee17: ; eee17
 	notetype $6, $81
 	callchannel Music_RuinsOfAlphRadio_branch_eee01
 	notetype $c, $a1
-	note __, 15
-	note __, 15
+	note __, 16
+	note __, 16
 	notetype $6, $81
 	callchannel Music_RuinsOfAlphRadio_branch_eee08
 	notetype $c, $a1
-	note __, 15
+	note __, 16
 	loopchannel 0, Music_RuinsOfAlphRadio_branch_eee17
 
 Music_RuinsOfAlphRadio_Ch3: ; eee32
@@ -73,9 +73,9 @@ Music_RuinsOfAlphRadio_Ch3: ; eee32
 
 Music_RuinsOfAlphRadio_branch_eee35: ; eee35
 	octave 2
-	note C_, 0
-	note C#, 0
-	note C_, 0
-	note __, 15
+	note C_, 1
+	note C#, 1
+	note C_, 1
+	note __, 16
 	loopchannel 0, Music_RuinsOfAlphRadio_branch_eee35
 ; eee3e

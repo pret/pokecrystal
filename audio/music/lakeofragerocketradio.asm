@@ -16,24 +16,24 @@ Music_LakeOfRageRocketRadio_Ch1: ; ef5ba
 Music_LakeOfRageRocketRadio_branch_ef5c9: ; ef5c9
 	notetype $c, $a7
 	octave 7
-	note G_, 3
-	note F#, 3
-	note G_, 3
-	note F#, 3
-	note __, 15
+	note G_, 4
+	note F#, 4
+	note G_, 4
+	note F#, 4
+	note __, 16
 	loopchannel 0, Music_LakeOfRageRocketRadio_branch_ef5c9
 
 Music_LakeOfRageRocketRadio_Ch2: ; ef5d6
 	dutycycle $1
 	vibrato $13, $e8
 	notetype $c, $a7
-	note __, 1
+	note __, 2
 	stereopanning $f
 	loopchannel 0, Music_LakeOfRageRocketRadio_branch_ef5c9
 
 Music_LakeOfRageRocketRadio_Ch3: ; ef5e5
 	notetype $c, $26
 	vibrato $10, $44
-	note __, 3
+	note __, 4
 	loopchannel 0, Music_LakeOfRageRocketRadio_branch_ef5c9
 ; ef5f0
