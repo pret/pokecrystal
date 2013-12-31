@@ -4469,7 +4469,7 @@ BattleCommand40: ; 35813
 	ret z
 	ld b, a
 
-	callab Function3c5ec
+	callab GetMoveEffect
 
 	ld a, b
 	cp $59
@@ -5095,7 +5095,7 @@ BattleCommand48: ; 35b33
 	push bc
 
 	ld b, a
-	callab Function3c5ec
+	callab GetMoveEffect
 	ld a, b
 
 	pop bc
@@ -10181,7 +10181,7 @@ BattleCommand9a: ; 37c95
 	and a
 	ret z
 	ld b, a
-	callab Function3c5ec
+	callab GetMoveEffect
 	ld a, b
 	cp $90
 	ret z
