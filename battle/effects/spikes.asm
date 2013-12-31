@@ -17,12 +17,12 @@ BattleCommand56: ; 37683
 
 	set SCREENS_SPIKES, [hl]
 
-	call Function0x37e01
+	call Function37e01
 
 	ld hl, SpikesText
 	jp StdBattleTextBox
 
 .failed
-	jp Function0x37354
+	jp Function37354
 ; 376a0
 

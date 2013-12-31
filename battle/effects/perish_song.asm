@@ -30,12 +30,12 @@ BattleCommand58: ; 376c2
 	ld [EnemyPerishCount], a
 
 .done
-	call Function0x37e01
+	call Function37e01
 	ld hl, StartPerishText
 	jp StdBattleTextBox
 
 .failed
-	call Function0x37e77
+	call Function37e77
 	jp PrintButItFailed
 ; 376f8
 

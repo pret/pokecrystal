@@ -1,8 +1,8 @@
 BattleCommand34: ; 37418
 ; metronome
 
-	call Function0x372d8
-	call Function0x34548
+	call Function372d8
+	call Function34548
 	jr nz, .asm_3742b
 
 	ld a, [$c689]
@@ -12,7 +12,7 @@ BattleCommand34: ; 37418
 	ld [$c689], a
 
 .asm_3742b
-	call Function0x37e36
+	call Function37e36
 
 .GetMove
 	call BattleRandom

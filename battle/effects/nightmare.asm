@@ -28,12 +28,12 @@ BattleCommand52: ; 37536
 ; Otherwise give the opponent a nightmare.
 
 	set SUBSTATUS_NIGHTMARE, [hl]
-	call Function0x37e01
+	call Function37e01
 	ld hl, StartedNightmareText
 	jp StdBattleTextBox
 
 .failed
-	call Function0x37e77
+	call Function37e77
 	jp PrintButItFailed
 ; 37563
 

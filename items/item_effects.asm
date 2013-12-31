@@ -1542,7 +1542,7 @@ Functionf030: ; f030 (3:7030)
 	res 7, [hl]
 .asm_f04f
 	push bc
-	callba Function0x365d7
+	callba Function365d7
 	pop bc
 	ret
 
@@ -2343,7 +2343,7 @@ XSpecial: ; f4c5
 	ld [hBattleTurn], a
 	ld [AttackMissed], a
 	ld [$c70d], a
-	callba Function0x361ef
+	callba Function361ef
 	call WaitSFX
 
 	callba BattleCommand8c

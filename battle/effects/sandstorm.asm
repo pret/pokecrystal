@@ -9,12 +9,12 @@ BattleCommand59: ; 376f8
 	ld [Weather], a
 	ld a, 5
 	ld [WeatherCount], a
-	call Function0x37e01
+	call Function37e01
 	ld hl, SandstormBrewedText
 	jp StdBattleTextBox
 
 .failed
-	call Function0x37e77
+	call Function37e77
 	jp PrintButItFailed
 ; 37718
 

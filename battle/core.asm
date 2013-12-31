@@ -3421,7 +3421,7 @@ Function3d5d7: ; 3d5d7
 	ld a, BANK(Moves)
 	call FarCopyBytes
 	call SetEnemyTurn
-	callab Function0x347c8
+	callab Function347c8
 	pop bc
 	pop de
 	pop hl
@@ -3456,13 +3456,13 @@ Function3d618: ; 3d618
 	ld a, [BattleMonType1]
 	ld [PlayerMoveType], a
 	call SetPlayerTurn
-	callab Function0x347c8
+	callab Function347c8
 	ld a, [$d265]
 	cp $b
 	jr nc, .asm_3d663
 	ld a, [BattleMonType2]
 	ld [PlayerMoveType], a
-	callab Function0x347c8
+	callab Function347c8
 	ld a, [$d265]
 	cp $b
 	jr nc, .asm_3d663
@@ -4554,15 +4554,15 @@ Function3dde9: ; 3dde9
 	res 7, [hl]
 
 .asm_3de26
-	ld hl, Function0x365fd
+	ld hl, Function365fd
 	ld a, [hBattleTurn]
 	and a
 	jr z, .asm_3de31
-	ld hl, Function0x365d7
+	ld hl, Function365d7
 
 .asm_3de31
 	call Function3c8e4
-	ld a, BANK(Function0x365fd)
+	ld a, BANK(Function365fd)
 	rst FarCall
 	call Function3c8e4
 	call Function3ddc8

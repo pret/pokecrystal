@@ -162,7 +162,7 @@ AIScoring_RedSuperEffective: ; 38635
 	push de
 	ld a, 1
 	ld [hBattleTurn], a
-	callab Function0x347c8
+	callab Function347c8
 	pop de
 	pop bc
 	pop hl
@@ -412,7 +412,7 @@ AIScoring_LeechHit: ; 387f7
 	push hl
 	ld a, 1
 	ld [hBattleTurn], a
-	callab Function0x347c8
+	callab Function347c8
 	pop hl
 
 	ld a, [$d265]
@@ -559,7 +559,7 @@ AIScoring_LockOn: ; 3881d
 
 AIScoring_Explosion: ; 388a6
 	push hl
-	callba Function0x349f4
+	callba Function349f4
 	pop hl
 	jr nc, .asm_388b7
 
@@ -904,7 +904,7 @@ AIScoring_Bide: ; 38a1e
 
 AIScoring_Whirlwind: ; 38a2a
 	push hl
-	callab Function0x3484e
+	callab Function3484e
 	ld a, [$c716]
 	cp $a
 	pop hl
@@ -1760,7 +1760,7 @@ AIScoring_MeanLook: ; 38dfb
 	jr nz, .asm_38e26
 
 	push hl
-	callab Function0x3484e
+	callab Function3484e
 	ld a, [$c716]
 	cp $b
 	pop hl
@@ -1874,7 +1874,7 @@ AIScoring_Curse: ; 38e5c
 	jp nz, AIDiscourageMove
 
 	push hl
-	callba Function0x349f4
+	callba Function349f4
 	pop hl
 	jr nc, .asm_38eb0
 
@@ -2003,7 +2003,7 @@ AIScoring_Foresight: ; 38f1d
 
 AIScoring_PerishSong: ; 38f4a
 	push hl
-	callab Function0x349f4
+	callab Function349f4
 	pop hl
 	jr c, .asm_38f75
 
@@ -2012,7 +2012,7 @@ AIScoring_PerishSong: ; 38f4a
 	jr nz, .asm_38f6f
 
 	push hl
-	callab Function0x3484e
+	callab Function3484e
 	ld a, [$c716]
 	cp 10 ; 1.0
 	pop hl
@@ -2242,7 +2242,7 @@ AIScoring_Earthquake: ; 39044
 
 AIScoring_BatonPass: ; 39062
 	push hl
-	callab Function0x3484e
+	callab Function3484e
 	ld a, [$c716]
 	cp 10 ; 1.0
 	pop hl
@@ -2299,7 +2299,7 @@ AIScoring_HiddenPower: ; 3909e
 	ld hl, $7ced
 	ld a, $3e
 	rst FarCall
-	callab Function0x347c8
+	callab Function347c8
 	pop hl
 
 	ld a, [$d265]
@@ -3223,7 +3223,7 @@ AIScoring_StatusImmunity: ; 39453
 	push de
 	ld a, 1
 	ld [hBattleTurn], a
-	callab Function0x347c8
+	callab Function347c8
 	pop de
 	pop bc
 	pop hl
