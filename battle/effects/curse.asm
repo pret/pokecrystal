@@ -73,9 +73,9 @@ BattleCommand54: ; 37588
 	set 1, [hl]
 	call Function0x37e01
 	ld hl, GetHalfMaxHP
-	call CallBankF
+	call CallBattleCore
 	ld hl, Function3cc3f
-	call CallBankF
+	call CallBattleCore
 	call UpdateUserInParty
 	ld hl, PutACurseText
 	jp StdBattleTextBox

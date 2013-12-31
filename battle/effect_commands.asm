@@ -184,7 +184,7 @@ CheckPlayerTurn:
 	call CantMove
 	call UpdateBattleMonInParty
 	ld hl, $5f48
-	call CallBankF
+	call CallBattleCore
 	ld a, $1
 	ld [$ffd4], a
 	ld hl, PlayerSubStatus1
@@ -444,7 +444,7 @@ CheckEnemyTurn: ; 3421f
 	call CantMove
 	call UpdateEnemyMonInParty
 	ld hl, $6036
-	call CallBankF
+	call CallBattleCore
 	ld a, $1
 	ld [$ffd4], a
 	ld hl, EnemySubStatus1
@@ -698,7 +698,7 @@ HitConfusion: ; 343a5
 	call z, PlayFXAnimID
 
 	ld hl, $5f48
-	call CallBankF
+	call CallBattleCore
 
 	ld a, $1
 	ld [$ffd4], a
@@ -5918,7 +5918,7 @@ BattleCommand17: ; 3608c
 	set 4, [hl]
 	call UpdateOpponentInParty
 	ld hl, $6c76
-	call CallBankF
+	call CallBattleCore
 	ld de, $0105
 	call Function0x37e54
 	call RefreshBattleHuds
@@ -6040,13 +6040,13 @@ BattleCommand19: ; 36165
 	set 6, [hl]
 	call UpdateOpponentInParty
 	ld hl, $6c39
-	call CallBankF
+	call CallBattleCore
 	ld de, $0109
 	call Function0x37e54
 	call RefreshBattleHuds
 	call PrintParalyze
 	ld hl, $5de9
-	jp CallBankF
+	jp CallBattleCore
 ; 361ac
 
 
@@ -6238,7 +6238,7 @@ Function0x36281: ; 36281
 	ret nc
 	xor a
 	ld [$ffd4], a
-	call CallBankF
+	call CallBattleCore
 	call WaitBGMap
 	jp BattleCommandaa
 ; 362ad
@@ -6805,7 +6805,7 @@ BattleCommanda6: ; 365af
 .asm_365ba
 	xor a
 	ld [$ffd4], a
-	call CallBankF
+	call CallBattleCore
 	jp WaitBGMap
 ; 365c3
 
@@ -6819,7 +6819,7 @@ BattleCommanda7: ; 365c3
 .asm_365ce
 	xor a
 	ld [$ffd4], a
-	call CallBankF
+	call CallBattleCore
 	jp WaitBGMap
 ; 365d7
 
@@ -6833,15 +6833,15 @@ Function0x365d7: ; 365d7
 	call Function0x3661d
 
 	ld hl, BadgeStatBoosts
-	call CallBankF
+	call CallBattleCore
 
 	call SwitchTurn
 
 	ld hl, $6c39
-	call CallBankF
+	call CallBattleCore
 
 	ld hl, $6c76
-	call CallBankF
+	call CallBattleCore
 
 	jp SwitchTurn
 ; 365fd
@@ -6858,10 +6858,10 @@ Function0x365fd: ; 365fd
 	call SwitchTurn
 
 	ld hl, $6c39
-	call CallBankF
+	call CallBattleCore
 
 	ld hl, $6c76
-	call CallBankF
+	call CallBattleCore
 
 	jp SwitchTurn
 ; 3661d
@@ -7292,7 +7292,7 @@ BattleCommand23: ; 3680f
 	call StdBattleTextBox
 
 	ld hl, $5c23
-	jp CallBankF
+	jp CallBattleCore
 
 .asm_368ca
 	jp .asm_36969
@@ -7383,13 +7383,13 @@ BattleCommand23: ; 3680f
 	ld a, d
 	ld [CurPartyMon], a
 	ld hl, $5b32
-	call CallBankF
+	call CallBattleCore
 
 	ld hl, DraggedOutText
 	call StdBattleTextBox
 
 	ld hl, $5c23
-	jp CallBankF
+	jp CallBattleCore
 
 .asm_36969
 	call BattleCommand0a
@@ -8131,7 +8131,7 @@ Function0x36d70: ; 36d70
 	ret nz
 .asm_36db0
 	ld hl, $5e51
-	jp CallBankF
+	jp CallBattleCore
 ; 36db6
 
 Function0x36db6: ; 36db6
@@ -8203,11 +8203,11 @@ BattleCommand30: ; 36dc7
 	set 6, [hl]
 	call UpdateOpponentInParty
 	ld hl, $6c39
-	call CallBankF
+	call CallBattleCore
 	call UpdateBattleHuds
 	call PrintParalyze
 	ld hl, $5de9
-	jp CallBankF
+	jp CallBattleCore
 .asm_36e49
 	call Function0x37e77
 	ld hl, AlreadyParalyzedText
@@ -8782,16 +8782,16 @@ BattleCommand2c: ; 3713e
 .asm_37199
 	jr z, .asm_371a3 ; 37199 $8
 	ld hl, $4c9f
-	call CallBankF
+	call CallBattleCore
 	jr .asm_371a9 ; 371a1 $6
 .asm_371a3
 	ld hl, $4cac
-	call CallBankF
+	call CallBattleCore
 .asm_371a9
 	call Function0x37e01
 	call SwitchTurn
 	ld hl, $4cef
-	call CallBankF
+	call CallBattleCore
 	call SwitchTurn
 	call UpdateUserInParty
 	call RefreshBattleHuds
@@ -9515,10 +9515,10 @@ BattleCommand61: ; 37874
 	rst FarCall
 	jr c, .asm_378f3 ; 378d1 $20
 	ld hl, $4c8e
-	call CallBankF
+	call CallBattleCore
 	call SwitchTurn
 	ld hl, $4cef
-	call CallBankF
+	call CallBattleCore
 	call SwitchTurn
 	ld hl, RegainedHealthText
 	call StdBattleTextBox
@@ -9714,7 +9714,7 @@ BattleCommand67: ; 379c9
 	jp c, EndMoveEffect
 
 	ld hl, Function3e459
-	call CallBankF
+	call CallBattleCore
 	call Function0x37ab1
 
 	ret
@@ -9738,19 +9738,19 @@ BattleCommand67: ; 379c9
 	ld [$c718], a
 
 	ld hl, $5517
-	call CallBankF
+	call CallBattleCore
 
 	ld hl, $557a
-	call CallBankF
+	call CallBattleCore
 
 	ld a, 1
 	ld [$d265], a
 
 	ld hl, $6cab
-	call CallBankF
+	call CallBattleCore
 
 	ld hl, $5c23
-	call CallBankF
+	call CallBattleCore
 
 	jr Function0x37ab1
 ; 37a67
@@ -9767,7 +9767,7 @@ Function0x37a67: ; 37a67
 	call $1d6e
 
 	ld hl, $68e4
-	call CallBankF
+	call CallBattleCore
 
 	call $1c17
 
@@ -9785,7 +9785,7 @@ Function0x37a82; 37a82
 
 	call $1d6e
 	ld hl, $68e4
-	call CallBankF
+	call CallBattleCore
 	ld a, [OTPartyCount]
 	add $4
 	ld b, a
@@ -10533,8 +10533,8 @@ Function0x37e54: ; 37e54
 ; 37e73
 
 
-CallBankF: ; 37e73
-	ld a, $f
+CallBattleCore: ; 37e73
+	ld a, BANK(BattleCore)
 	rst FarCall
 	ret
 ; 37e77

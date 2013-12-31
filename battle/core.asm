@@ -1,3 +1,5 @@
+BattleCore:
+
 ; Core components of the battle engine.
 
 
