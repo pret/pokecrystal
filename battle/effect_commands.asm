@@ -183,7 +183,7 @@ CheckPlayerTurn:
 
 	call CantMove
 	call UpdateBattleMonInParty
-	ld hl, $5f48
+	ld hl, Function3df48
 	call CallBattleCore
 	ld a, $1
 	ld [$ffd4], a
@@ -443,7 +443,7 @@ CheckEnemyTurn: ; 3421f
 	call StdBattleTextBox
 	call CantMove
 	call UpdateEnemyMonInParty
-	ld hl, $6036
+	ld hl, Function3e036
 	call CallBattleCore
 	ld a, $1
 	ld [$ffd4], a
@@ -697,7 +697,7 @@ HitConfusion: ; 343a5
 	and $60
 	call z, PlayFXAnimID
 
-	ld hl, $5f48
+	ld hl, Function3df48
 	call CallBattleCore
 
 	ld a, $1
@@ -3801,7 +3801,7 @@ BattleCommanda1: ; 35461
 .asm_3548d
 	ld a, [DefaultFlypoint]
 	ld hl, PartyMon1Nickname
-	call $38a2
+	call GetNick
 	ld a, $22
 	call Function0x355bd
 	ld a, [hli]
@@ -3825,7 +3825,7 @@ BattleCommanda1: ; 35461
 	call StdBattleTextBox
 	ld a, [EnemyMonSpecies]
 	ld [CurSpecies], a
-	call $3856
+	call GetBaseData
 	ld a, [$d239]
 	ld c, a
 	push bc
@@ -3833,7 +3833,7 @@ BattleCommanda1: ; 35461
 	call Function0x355bd
 	ld a, [hl]
 	ld [CurSpecies], a
-	call $3856
+	call GetBaseData
 	ld a, [$d238]
 	pop bc
 	ld b, a
@@ -3884,7 +3884,7 @@ BattleCommanda1: ; 35461
 	add hl, bc
 	ld a, [hl]
 	ld [$d265], a
-	call $343b
+	call GetPokemonName
 	jr .asm_35544
 
 .asm_35532
@@ -3921,7 +3921,7 @@ BattleCommanda1: ; 35461
 .asm_3556b
 	ld a, [EnemyMonSpecies]
 	ld [$d265], a
-	call $343b
+	call GetPokemonName
 	ld hl, BeatUpAttackText
 	call StdBattleTextBox
 	jp EnemyAttackDamage
@@ -5917,7 +5917,7 @@ BattleCommand17: ; 3608c
 	call _GetBattleVar
 	set 4, [hl]
 	call UpdateOpponentInParty
-	ld hl, $6c76
+	ld hl, Function3ec76
 	call CallBattleCore
 	ld de, $0105
 	call Function0x37e54
@@ -6039,13 +6039,13 @@ BattleCommand19: ; 36165
 	call _GetBattleVar
 	set 6, [hl]
 	call UpdateOpponentInParty
-	ld hl, $6c39
+	ld hl, Function3ec39
 	call CallBattleCore
 	ld de, $0109
 	call Function0x37e54
 	call RefreshBattleHuds
 	call PrintParalyze
-	ld hl, $5de9
+	ld hl, Function3dde9
 	jp CallBattleCore
 ; 361ac
 
@@ -6837,10 +6837,10 @@ Function0x365d7: ; 365d7
 
 	call SwitchTurn
 
-	ld hl, $6c39
+	ld hl, Function3ec39
 	call CallBattleCore
 
-	ld hl, $6c76
+	ld hl, Function3ec76
 	call CallBattleCore
 
 	jp SwitchTurn
@@ -6857,10 +6857,10 @@ Function0x365fd: ; 365fd
 
 	call SwitchTurn
 
-	ld hl, $6c39
+	ld hl, Function3ec39
 	call CallBattleCore
 
-	ld hl, $6c76
+	ld hl, Function3ec76
 	call CallBattleCore
 
 	jp SwitchTurn
@@ -7291,7 +7291,7 @@ BattleCommand23: ; 3680f
 	ld hl, DraggedOutText
 	call StdBattleTextBox
 
-	ld hl, $5c23
+	ld hl, Function3dc23
 	jp CallBattleCore
 
 .asm_368ca
@@ -7354,7 +7354,7 @@ BattleCommand23: ; 3680f
 	call DelayFrames
 	ld hl, $c535
 	ld bc, $050b
-	call $0fb6
+	call ClearBox
 	ld c, $14
 	call DelayFrames
 	ld a, [PartyCount]
@@ -7382,13 +7382,13 @@ BattleCommand23: ; 3680f
 
 	ld a, d
 	ld [CurPartyMon], a
-	ld hl, $5b32
+	ld hl, Function3db32
 	call CallBattleCore
 
 	ld hl, DraggedOutText
 	call StdBattleTextBox
 
-	ld hl, $5c23
+	ld hl, Function3dc23
 	jp CallBattleCore
 
 .asm_36969
@@ -8130,7 +8130,7 @@ Function0x36d70: ; 36d70
 	cp $10
 	ret nz
 .asm_36db0
-	ld hl, $5e51
+	ld hl, Function3de51
 	jp CallBattleCore
 ; 36db6
 
@@ -8202,11 +8202,11 @@ BattleCommand30: ; 36dc7
 	call _GetBattleVar
 	set 6, [hl]
 	call UpdateOpponentInParty
-	ld hl, $6c39
+	ld hl, Function3ec39
 	call CallBattleCore
 	call UpdateBattleHuds
 	call PrintParalyze
-	ld hl, $5de9
+	ld hl, Function3dde9
 	jp CallBattleCore
 .asm_36e49
 	call Function0x37e77
@@ -8781,16 +8781,16 @@ BattleCommand2c: ; 3713e
 	pop hl
 .asm_37199
 	jr z, .asm_371a3 ; 37199 $8
-	ld hl, $4c9f
+	ld hl, GetHalfMaxHP
 	call CallBattleCore
 	jr .asm_371a9 ; 371a1 $6
 .asm_371a3
-	ld hl, $4cac
+	ld hl, GetMaxHP
 	call CallBattleCore
 .asm_371a9
 	call Function0x37e01
 	call SwitchTurn
-	ld hl, $4cef
+	ld hl, Function3ccef
 	call CallBattleCore
 	call SwitchTurn
 	call UpdateUserInParty
@@ -8851,7 +8851,7 @@ BattleCommand2d: ; 371cd
 	inc de
 	inc de
 	ld bc, $0004
-	call $3026
+	call CopyBytes
 	ld a, [hBattleTurn]
 	and a
 	jr z, .asm_3723a ; 3722e $a
@@ -8878,7 +8878,7 @@ BattleCommand2d: ; 371cd
 	ld e, l
 	pop hl
 	ld bc, $000c
-	call $3026
+	call CopyBytes
 	ld bc, $ffe2
 	add hl, bc
 	push de
@@ -8893,10 +8893,10 @@ BattleCommand2d: ; 371cd
 	inc de
 	and a
 	jr z, .asm_3726c ; 37262 $8
-	cp $a6
-	ld a, $1
+	cp SKETCH
+	ld a, 1
 	jr z, .asm_3726c ; 37268 $2
-	ld a, $5
+	ld a, 5
 .asm_3726c
 	ld [hli], a
 	dec b
@@ -8904,7 +8904,7 @@ BattleCommand2d: ; 371cd
 	pop hl
 	ld a, [hl]
 	ld [$d265], a
-	call $343b
+	call GetPokemonName
 	ld hl, EnemyStats
 	ld de, PlayerStats
 	ld bc, $000a
@@ -9514,10 +9514,10 @@ BattleCommand61: ; 37874
 	ld a, BANK(AICheckPlayerMaxHP)
 	rst FarCall
 	jr c, .asm_378f3 ; 378d1 $20
-	ld hl, $4c8e
+	ld hl, GetQuarterMaxHP
 	call CallBattleCore
 	call SwitchTurn
-	ld hl, $4cef
+	ld hl, Function3ccef
 	call CallBattleCore
 	call SwitchTurn
 	ld hl, RegainedHealthText
@@ -9688,20 +9688,15 @@ BattleCommand67: ; 379c9
 	call DelayFrames
 
 	call Function1d6e
-
 	callba Function3d2f7
-
 	callba Function3d380
-
 	call ClearPalettes
-
 	callba Function3ed9f
-
 	call Function1c17
 	call ClearSprites
 
-	ld hl, $c4a1
-	ld bc, $040a
+	hlcoord 1, 0
+	lb bc, 4, 10
 	call ClearBox
 
 	ld b, 1
@@ -9710,13 +9705,11 @@ BattleCommand67: ; 379c9
 	call Function0x37a67
 
 	callba Function3d2e0
-
 	jp c, EndMoveEffect
 
 	ld hl, Function3e459
 	call CallBattleCore
 	call Function0x37ab1
-
 	ret
 
 .Enemy
@@ -9737,19 +9730,19 @@ BattleCommand67: ; 379c9
 	xor a
 	ld [$c718], a
 
-	ld hl, $5517
+	ld hl, Function3d517
 	call CallBattleCore
 
-	ld hl, $557a
+	ld hl, Function3d57a
 	call CallBattleCore
 
 	ld a, 1
 	ld [$d265], a
 
-	ld hl, $6cab
+	ld hl, Function3ecab
 	call CallBattleCore
 
-	ld hl, $5c23
+	ld hl, Function3dc23
 	call CallBattleCore
 
 	jr Function0x37ab1
@@ -9764,12 +9757,12 @@ Function0x37a67: ; 37a67
 	ld a, 1
 	ld [$d0ec], a
 
-	call $1d6e
+	call Function1d6e
 
-	ld hl, $68e4
+	ld hl, Function3e8e4
 	call CallBattleCore
 
-	call $1c17
+	call Function1c17
 
 	xor a
 	ld [$d0ec], a
@@ -9783,8 +9776,8 @@ Function0x37a82; 37a82
 	and a
 	ret z
 
-	call $1d6e
-	ld hl, $68e4
+	call Function1d6e
+	ld hl, Function3e8e4
 	call CallBattleCore
 	ld a, [OTPartyCount]
 	add $4

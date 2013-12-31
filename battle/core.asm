@@ -1049,12 +1049,12 @@ Function3c706: ; 3c706
 	jr z, Function3c710
 Function3c70b: ; 3c70b
 	ld hl, EnemyMonHPHi
-	jr asm_3c713
+	jr Function3c713
 
 Function3c710: ; 3c710
 	ld hl, BattleMonHP
 
-asm_3c713
+Function3c713: ; 3c713
 	ld a, [hli]
 	or [hl]
 	ret
@@ -2122,7 +2122,7 @@ Function3cd55: ; 3cd55
 	ld [$d0ec], a
 	call Function3cf4a
 	jp z, Function3c0e5
-	jr asm_3cdca
+	jr Function3cdca
 
 .asm_3cdba
 	ld a, $1
@@ -2132,8 +2132,9 @@ Function3cd55: ; 3cd55
 	xor a
 	ld [$d0ec], a
 	ret
+; 3cdca
 
-asm_3cdca
+Function3cdca: ; 3cdca
 	ld a, [$ffcb]
 	cp $1
 	jr z, .asm_3cde6
@@ -2143,14 +2144,14 @@ asm_3cdca
 	call ClearBox
 	call Function3d2b3
 	ld a, $1
-	call asm_3cf78
+	call Function3cf78
 	jr .asm_3cdfc
 
 .asm_3cde6
 	ld a, [CurPartyMon]
 	push af
 	ld a, $1
-	call asm_3cf78
+	call Function3cf78
 	call ClearSprites
 	call Function309d
 	pop af
@@ -2381,11 +2382,12 @@ Function3cf4a: ; 3cf4a
 	ld a, [hli]
 	or [hl]
 	ld a, $0
-	jr nz, asm_3cf78
+	jr nz, Function3cf78
 	inc a
 	ret
+; 3cf78
 
-asm_3cf78
+Function3cf78: ; 3cf78
 	push af
 	xor a
 	ld [$c718], a
@@ -2399,7 +2401,7 @@ asm_3cf78
 	jr .asm_3cf92
 
 .asm_3cf8f
-	call asm_3d517
+	call Function3d517
 
 .asm_3cf92
 	call Function3d57a
@@ -2760,7 +2762,7 @@ Function3d14e: ; 3d14e
 	ld [$d0ec], a
 	call Function3cf4a
 	jp z, Function3c0e5
-	jp asm_3cdca
+	jp Function3cdca
 ; 3d1aa
 
 Function3d1aa: ; 3d1aa
@@ -3253,7 +3255,7 @@ Function3d4c3: ; 3d4c3
 
 Function3d4e1: ; 3d4e1
 	call Function3d714
-	jr nc, asm_3d517
+	jr nc, Function3d517
 	call Function3d557
 	call Function3d533
 	jr c, .asm_3d4f1
@@ -3276,8 +3278,9 @@ Function3d4e1: ; 3d4e1
 	ld [$c711], a
 	call Function309d
 	jp Function3e3ad
+; 3d517
 
-asm_3d517
+Function3d517: ; 3d517
 	call Function3d557
 	call Function3d533
 	jr c, .asm_3d522
@@ -4037,12 +4040,12 @@ Function3da0d: ; 3da0d
 
 Function3da74: ; 3da74
 	call Function3da85
-	jr asm_3da7c
+	jr Function3da7c
 
 Function3da79: ; 3da79
 	call Function3da97
 
-asm_3da7c
+Function3da7c: ; 3da7c
 	ld b, h
 	ld c, l
 	callab CheckShininess
@@ -8252,12 +8255,12 @@ Function3f43d: ; 3f43d
 	ld a, [PlayerSubStatus4]
 	bit 4, a
 	ld hl, BattleAnimCmd_DD
-	jr nz, asm_3f46f
+	jr nz, Function3f46f
 Function3f447: ; 3f447
 	ld a, [$c6fe]
 	and a
 	ld hl, BattleAnimCmd_E2
-	jr nz, asm_3f46f
+	jr nz, Function3f46f
 	ld a, [CurPartySpecies]
 	push af
 	ld a, [BattleMonSpecies]
@@ -8271,8 +8274,9 @@ Function3f447: ; 3f447
 	pop af
 	ld [CurPartySpecies], a
 	ret
+; 3f46f
 
-asm_3f46f
+Function3f46f: ; 3f46f
 	ld a, [hBattleTurn]
 	push af
 	xor a
@@ -8288,12 +8292,12 @@ Function3f47c: ; 3f47c
 	ld a, [EnemySubStatus4]
 	bit 4, a
 	ld hl, BattleAnimCmd_DD
-	jr nz, asm_3f4b4
+	jr nz, Function3f4b4
 Function3f486: ; 3f486
 	ld a, [$c6fa]
 	and a
 	ld hl, BattleAnimCmd_E2
-	jr nz, asm_3f4b4
+	jr nz, Function3f4b4
 	ld a, [CurPartySpecies]
 	push af
 	ld a, [EnemyMonSpecies]
@@ -8309,8 +8313,9 @@ Function3f486: ; 3f486
 	pop af
 	ld [CurPartySpecies], a
 	ret
+; 3f4b4
 
-asm_3f4b4
+Function3f4b4: ; 3f4b4
 	ld a, [hBattleTurn]
 	push af
 	call SetEnemyTurn
