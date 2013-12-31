@@ -1,3 +1,5 @@
+Moves: ; 41afb
+
 ; Characteristics of each move
 
 ; animation, effect, power, type, accuracy, PP, effect chance

@@ -40129,7 +40129,6 @@ Function41af7: ; 41af7
 ; 41afb
 
 
-Moves: ; 0x41afb
 INCLUDE "battle/moves/moves.asm"
 
 
