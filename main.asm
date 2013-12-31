@@ -12183,11 +12183,11 @@ FillPP: ; da6d
 	push hl
 	push de
 	push bc
-	ld hl, $5afb
-	ld bc, $0007
+	ld hl, Moves
+	ld bc, Move2 - Move1
 	call AddNTimes
 	ld de, StringBuffer1
-	ld a, $10
+	ld a, BANK(Moves)
 	call FarCopyBytes
 	pop bc
 	pop de
@@ -19254,10 +19254,10 @@ Function13256: ; 13256
 	call Predef
 	ld a, [CurSpecies]
 	dec a
-	ld hl, $5afd
-	ld bc, $0007
+	ld hl, Moves + MOVE_POWER
+	ld bc, Move2 - Move1
 	call AddNTimes
-	ld a, $10
+	ld a, BANK(Moves)
 	call GetFarByte
 	ld hl, $c5a0
 	cp $2

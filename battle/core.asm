@@ -896,10 +896,10 @@ GetMovePriority: ; 3c5c5
 Function3c5ec: ; 3c5ec
 	ld a, b
 	dec a
-	ld hl, $5afc
-	ld bc, $0007
+	ld hl, Moves + MOVE_EFFECT
+	ld bc, Move2 - Move1
 	call AddNTimes
-	ld a, $10
+	ld a, BANK(Moves)
 	call GetFarByte
 	ld b, a
 	ret
@@ -3399,11 +3399,11 @@ Function3d5d7: ; 3d5d7
 	push de
 	push bc
 	dec a
-	ld hl, $5afb
-	ld bc, $0007
+	ld hl, Moves + MOVE_ANIM
+	ld bc, Move2 - Move1
 	call AddNTimes
 	ld de, EnemyMoveAnimation
-	ld a, $10
+	ld a, BANK(Moves)
 	call FarCopyBytes
 	call SetEnemyTurn
 	callab Function0x347c8
