@@ -77,7 +77,7 @@ Move2:
 	db ABSORB,       EFFECT_LEECH_HIT,             20, GRASS,    $ff, 20, $00
 	db MEGA_DRAIN,   EFFECT_LEECH_HIT,             40, GRASS,    $ff, 10, $00
 	db LEECH_SEED,   EFFECT_LEECH_SEED,             0, GRASS,    $e5, 10, $00
-	db GROWTH,       EFFECT_SP_ATTACK_UP,           0, NORMAL,   $ff, 40, $00
+	db GROWTH,       EFFECT_SP_ATK_UP,              0, NORMAL,   $ff, 40, $00
 	db RAZOR_LEAF,   EFFECT_NORMAL_HIT,            55, GRASS,    $f2, 25, $00
 	db SOLARBEAM,    EFFECT_SOLARBEAM,            120, GRASS,    $ff, 10, $00
 	db POISONPOWDER, EFFECT_POISON,                 0, POISON,   $bf, 35, $00
@@ -97,7 +97,7 @@ Move2:
 	db DIG,          EFFECT_FLY,                   60, GROUND,   $ff, 10, $00
 	db TOXIC,        EFFECT_TOXIC,                  0, POISON,   $d8, 10, $00
 	db CONFUSION,    EFFECT_CONFUSE_HIT,           50, PSYCHIC,  $ff, 25, $19
-	db PSYCHIC_M,    EFFECT_SP_DEFENSE_DOWN_HIT,   90, PSYCHIC,  $ff, 10, $19
+	db PSYCHIC_M,    EFFECT_SP_DEF_DOWN_HIT,       90, PSYCHIC,  $ff, 10, $19
 	db HYPNOSIS,     EFFECT_SLEEP,                  0, PSYCHIC,  $99, 20, $00
 	db MEDITATE,     EFFECT_ATTACK_UP,              0, PSYCHIC,  $ff, 40, $00
 	db AGILITY,      EFFECT_SPEED_UP_2,             0, PSYCHIC,  $ff, 30, $00
@@ -136,7 +136,7 @@ Move2:
 	db SKULL_BASH,   EFFECT_SKULL_BASH,           100, NORMAL,   $ff, 15, $00
 	db SPIKE_CANNON, EFFECT_MULTI_HIT,             20, NORMAL,   $ff, 15, $00
 	db CONSTRICT,    EFFECT_SPEED_DOWN_HIT,        10, NORMAL,   $ff, 35, $19
-	db AMNESIA,      EFFECT_SP_DEFENSE_UP_2,        0, PSYCHIC,  $ff, 20, $00
+	db AMNESIA,      EFFECT_SP_DEF_UP_2,            0, PSYCHIC,  $ff, 20, $00
 	db KINESIS,      EFFECT_ACCURACY_DOWN,          0, PSYCHIC,  $cc, 15, $00
 	db SOFTBOILED,   EFFECT_HEAL,                   0, NORMAL,   $ff, 10, $00
 	db HI_JUMP_KICK, EFFECT_JUMP_KICK,             85, FIGHTING, $e5, 20, $00
@@ -245,12 +245,12 @@ Move2:
 	db TWISTER,      EFFECT_TWISTER,               40, DRAGON,   $ff, 20, $33
 	db RAIN_DANCE,   EFFECT_RAIN_DANCE,             0, WATER,    $e5,  5, $00
 	db SUNNY_DAY,    EFFECT_SUNNY_DAY,              0, FIRE,     $e5,  5, $00
-	db CRUNCH,       EFFECT_SP_DEFENSE_DOWN_HIT,   80, DARK,     $ff, 15, $33
+	db CRUNCH,       EFFECT_SP_DEF_DOWN_HIT,       80, DARK,     $ff, 15, $33
 	db MIRROR_COAT,  EFFECT_MIRROR_COAT,            1, PSYCHIC,  $ff, 20, $00
 	db PSYCH_UP,     EFFECT_PSYCH_UP,               0, NORMAL,   $ff, 10, $00
 	db EXTREMESPEED, EFFECT_PRIORITY_HIT,          80, NORMAL,   $ff,  5, $00
 	db ANCIENTPOWER, EFFECT_ANCIENTPOWER,          60, ROCK,     $ff,  5, $19
-	db SHADOW_BALL,  EFFECT_SP_DEFENSE_DOWN_HIT,   80, GHOST,    $ff, 15, $33
+	db SHADOW_BALL,  EFFECT_SP_DEF_DOWN_HIT,       80, GHOST,    $ff, 15, $33
 	db FUTURE_SIGHT, EFFECT_FUTURE_SIGHT,          80, PSYCHIC,  $e5, 15, $00
 	db ROCK_SMASH,   EFFECT_DEFENSE_DOWN_HIT,      20, FIGHTING, $ff, 15, $7f
 	db WHIRLPOOL,    EFFECT_BIND,                  15, WATER,    $b2, 15, $00
