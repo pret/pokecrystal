@@ -15,7 +15,7 @@ BattleCommand1b: ; 373c9
 	jr nz, .use
 
 .failed
-	call Function37e77
+	call AnimateFailedMove
 
 	ld hl, MirrorMoveFailedText
 	call StdBattleTextBox

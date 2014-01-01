@@ -36789,7 +36789,7 @@ ClearBattleRAM: ; 2ef18
 	xor a
 	call ByteFill
 
-	callab Function3d867
+	callab ResetEnemyStatLevels
 
 	call Function1fbf
 
@@ -37438,8 +37438,8 @@ Function3846c: ; 3846c
 .asm_384a3
 	ld a, $1
 	ld [$d264], a
-	callab Function3d834
-	callab Function3d867
+	callab NewEnemyMonStatus
+	callab ResetEnemyStatLevels
 	ld hl, PlayerSubStatus1
 	res 7, [hl]
 	callba Function3d4e1

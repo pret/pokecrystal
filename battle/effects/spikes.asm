@@ -17,7 +17,7 @@ BattleCommand56: ; 37683
 
 	set SCREENS_SPIKES, [hl]
 
-	call Function37e01
+	call AnimateCurrentMove
 
 	ld hl, SpikesText
 	jp StdBattleTextBox

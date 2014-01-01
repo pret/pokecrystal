@@ -7,7 +7,7 @@ BattleCommand55: ; 37618
 	call _GetBattleVar
 	set SUBSTATUS_PROTECT, [hl]
 
-	call Function37e01
+	call AnimateCurrentMove
 
 	ld hl, ProtectedItselfText
 	jp StdBattleTextBox
@@ -73,7 +73,7 @@ ProtectChance: ; 3762c
 .failed
 	xor a
 	ld [de], a
-	call Function37e77
+	call AnimateFailedMove
 	call PrintButItFailed
 	scf
 	ret

@@ -14,7 +14,7 @@ BattleCommand57: ; 376a0
 	jr nz, .failed
 
 	set SUBSTATUS_IDENTIFIED, [hl]
-	call Function37e01
+	call AnimateCurrentMove
 	ld hl, IdentifiedText
 	jp StdBattleTextBox
 

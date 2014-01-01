@@ -2715,6 +2715,7 @@ BattleCommand90: ; 34ecc
 
 
 BattleCommand0a: ; 34eee
+; lowersub
 
 	ld a, BATTLE_VARS_SUBSTATUS4
 	call GetBattleVar
@@ -2755,7 +2756,7 @@ BattleCommand0a: ; 34eee
 	ld [FXAnimIDHi], a
 	inc a
 	ld [$c689], a
-	ld a, $a4
+	ld a, SUBSTITUTE
 	jp Function37e44
 
 .asm_34f36
@@ -2908,6 +2909,8 @@ BattleCommand93: ; 34ffd
 
 
 BattleCommand0c: ; 35004
+; raisesub
+
 	ld a, BATTLE_VARS_SUBSTATUS4
 	call GetBattleVar
 	bit SUBSTATUS_SUBSTITUTE, a
@@ -2921,7 +2924,7 @@ BattleCommand0c: ; 35004
 	ld [FXAnimIDHi], a
 	ld a, $2
 	ld [$c689], a
-	ld a, $a4
+	ld a, SUBSTITUTE
 	jp Function37e44
 ; 35023
 
@@ -4621,7 +4624,7 @@ BattleCommand41: ; 35864
 	ld de, EnemyMoveStruct
 	call GetMoveData
 .asm_3591a
-	call Function37e01
+	call AnimateCurrentMove
 
 	ld hl, GotAnEncoreText
 	jp StdBattleTextBox
@@ -4641,7 +4644,7 @@ BattleCommand42: ; 35926
 	jp nz, Function359cd
 	call CheckSubstituteOpp
 	jp nz, Function359cd
-	call Function37e01
+	call AnimateCurrentMove
 	ld hl, $c63f
 	ld de, EnemyMonMaxHPLo
 	call .asm_3597d
@@ -4774,7 +4777,7 @@ BattleCommand44: ; 359e6
 	pop hl
 	cp CURSE_T
 	jr z, .asm_35a50 ; 35a0b $43
-	call Function37e01
+	call AnimateCurrentMove
 
 	call SwitchTurn
 .asm_35a13
@@ -4828,13 +4831,13 @@ BattleCommand45: ; 35a53
 	ld a, BATTLE_VARS_SUBSTATUS5_OPP
 	call _GetBattleVar
 	set SUBSTATUS_LOCK_ON, [hl]
-	call Function37e01
+	call AnimateCurrentMove
 
 	ld hl, TookAimText
 	jp StdBattleTextBox
 
 .asm_35a6e
-	call Function37e77
+	call AnimateFailedMove
 	jp PrintDidntAffect
 ; 35a74
 
@@ -4846,7 +4849,7 @@ BattleCommand46: ; 35a74
 	ld a, [InLinkBattle]
 	and a
 	jr z, .asm_35a83 ; 35a7b $6
-	call Function37e77
+	call AnimateFailedMove
 	jp PrintNothingHappened
 .asm_35a83
 	call CheckSubstituteOpp
@@ -4931,13 +4934,13 @@ BattleCommand46: ; 35a74
 	ld [hl], a
 .asm_35b04
 	call GetMoveName
-	call Function37e01
+	call AnimateCurrentMove
 
 	ld hl, SketchedText
 	jp StdBattleTextBox
 
 .asm_35b10
-	call Function37e77
+	call AnimateFailedMove
 	jp PrintDidntAffect
 ; 35b16
 
@@ -4948,7 +4951,7 @@ BattleCommand47: ; 35b16
 ; If the opponent isn't frozen, raise Attack one stage.
 ; If the opponent is frozen, thaw them and raise Accuracy two stages.
 
-	call Function37e01
+	call AnimateCurrentMove
 
 	ld a, BATTLE_VARS_STATUS_OPP
 	call _GetBattleVar
@@ -5036,7 +5039,7 @@ BattleCommand48: ; 35b33
 	call UpdateMoveData
 	jp ResetTurn
 .asm_35ba3
-	call Function37e77
+	call AnimateFailedMove
 	jp TryPrintButItFailed
 
 .asm_35ba9
@@ -5123,7 +5126,7 @@ BattleCommand49: ; 35bff
 	ld a, BATTLE_VARS_SUBSTATUS5
 	call _GetBattleVar
 	set 6, [hl]
-	call Function37e01
+	call AnimateCurrentMove
 	ld hl, DestinyBondEffectText
 	jp StdBattleTextBox
 ; 35c0f
@@ -5205,7 +5208,7 @@ BattleCommand4a: ; 35c0f
 	ld [hl], e
 .asm_35c82
 	push de
-	call Function37e01
+	call AnimateCurrentMove
 	pop de
 	ld a, d
 	ld [$d265], a
@@ -5285,7 +5288,7 @@ BattleCommand4c: ; 35cc9
 	add hl, bc
 	dec d
 	jr nz, .asm_35ce9
-	call Function37e01
+	call AnimateCurrentMove
 
 	ld hl, BellChimedText
 	call StdBattleTextBox
@@ -5560,7 +5563,7 @@ BattleCommand14: ; 35e5c
 	call CheckSubstituteOpp
 	jr nz, .asm_35ec6
 
-	call Function37e01
+	call AnimateCurrentMove
 	ld b, $7
 	ld a, [$cfc0]
 	and a
@@ -5588,7 +5591,7 @@ BattleCommand14: ; 35e5c
 
 .asm_35ec6
 	push hl
-	call Function37e77
+	call AnimateFailedMove
 	pop hl
 	jp StdBattleTextBox
 ; 35ece
@@ -5735,14 +5738,14 @@ BattleCommand2f: ; 35f2c
 
 .asm_35fb8
 	push hl
-	call Function37e77
+	call AnimateFailedMove
 	pop hl
 	jp StdBattleTextBox
 ; 35fc0
 
 
 Function35fc0: ; 35fc0
-	call Function37e01
+	call AnimateCurrentMove
 	call Function35ff5
 	jp RefreshBattleHuds
 ; 35fc9
@@ -7036,7 +7039,7 @@ BattleCommand22: ; 366e5
 	ld [bc], a
 	ld a, $1
 	ld [$c689], a
-	call Function37e01
+	call AnimateCurrentMove
 	jp EndMoveEffect
 ; 3671a
 
@@ -7147,7 +7150,7 @@ BattleCommanda0: ; 36778
 	jr nc, .asm_367df ; 367b7 $26
 
 .asm_367b9
-	call Function37e77
+	call AnimateFailedMove
 	jp PrintButItFailed
 
 .asm_367bf
@@ -7255,7 +7258,7 @@ BattleCommand23: ; 3680f
 	call UpdateEnemyMonInParty
 	ld a, $1
 	ld [$c689], a
-	call Function37e01
+	call AnimateCurrentMove
 	ld c, $14
 	call DelayFrames
 	ld hl, $c4a1
@@ -7291,7 +7294,7 @@ BattleCommand23: ; 3680f
 	ld hl, DraggedOutText
 	call StdBattleTextBox
 
-	ld hl, Function3dc23
+	ld hl, SpikesDamage
 	jp CallBattleCore
 
 .asm_368ca
@@ -7349,7 +7352,7 @@ BattleCommand23: ; 3680f
 	call UpdateBattleMonInParty
 	ld a, $1
 	ld [$c689], a
-	call Function37e01
+	call AnimateCurrentMove
 	ld c, $14
 	call DelayFrames
 	ld hl, $c535
@@ -7388,7 +7391,7 @@ BattleCommand23: ; 3680f
 	ld hl, DraggedOutText
 	call StdBattleTextBox
 
-	ld hl, Function3dc23
+	ld hl, SpikesDamage
 	jp CallBattleCore
 
 .asm_36969
@@ -7402,7 +7405,7 @@ BattleCommand23: ; 3680f
 	call Function36804
 	ld a, $1
 	ld [$c689], a
-	call Function37e01
+	call AnimateCurrentMove
 	ld c, $14
 	call DelayFrames
 	pop af
@@ -7944,11 +7947,11 @@ BattleCommand28: ; 36c7e
 	bit 1, [hl]
 	jr nz, .asm_36c92 ; 36c85 $b
 	set 1, [hl]
-	call Function37e01
+	call AnimateCurrentMove
 	ld hl, MistText
 	jp StdBattleTextBox
 .asm_36c92
-	call Function37e77
+	call AnimateFailedMove
 	jp PrintButItFailed
 ; 36c98
 
@@ -7961,11 +7964,11 @@ BattleCommand29: ; 36c98
 	bit 2, [hl]
 	jr nz, .asm_36cac ; 36c9f $b
 	set 2, [hl]
-	call Function37e01
+	call AnimateCurrentMove
 	ld hl, GettingPumpedText
 	jp StdBattleTextBox
 .asm_36cac
-	call Function37e77
+	call AnimateFailedMove
 	jp PrintButItFailed
 ; 36cb2
 
@@ -8067,7 +8070,7 @@ BattleCommand2a: ; 36d3b
 	ld a, [hl]
 	ld [$d265], a
 	call GetItemName
-	call Function37e77
+	call AnimateFailedMove
 	ld hl, ProtectedByText
 	jp StdBattleTextBox
 
@@ -8076,7 +8079,7 @@ BattleCommand2a: ; 36d3b
 	call _GetBattleVar
 	bit 7, [hl]
 	jr z, .asm_36d65
-	call Function37e77
+	call AnimateFailedMove
 	ld hl, AlreadyConfusedText
 	jp StdBattleTextBox
 
@@ -8114,7 +8117,7 @@ Function36d70: ; 36d70
 	jr z, .asm_36d99
 	cp EFFECT_SWAGGER
 	jr z, .asm_36d99
-	call Function37e01
+	call AnimateCurrentMove
 
 .asm_36d99
 	ld de, $0103
@@ -8164,7 +8167,7 @@ BattleCommand30: ; 36dc7
 	ld a, [hl]
 	ld [$d265], a
 	call GetItemName
-	call Function37e77
+	call AnimateFailedMove
 	ld hl, ProtectedByText
 	jp StdBattleTextBox
 .asm_36def
@@ -8195,7 +8198,7 @@ BattleCommand30: ; 36dc7
 	jr nz, .asm_36e52 ; 36e1f $31
 	ld c, $1e
 	call DelayFrames
-	call Function37e01
+	call AnimateCurrentMove
 	ld a, $1
 	ld [$ffd4], a
 	ld a, BATTLE_VARS_STATUS_OPP
@@ -8209,13 +8212,13 @@ BattleCommand30: ; 36dc7
 	ld hl, Function3dde9
 	jp CallBattleCore
 .asm_36e49
-	call Function37e77
+	call AnimateFailedMove
 	ld hl, AlreadyParalyzedText
 	jp StdBattleTextBox
 .asm_36e52
 	jp PrintDidntAffect2
 .asm_36e55
-	call Function37e77
+	call AnimateFailedMove
 	jp PrintDoesntAffect
 ; 36e5b
 
@@ -8445,7 +8448,7 @@ BattleCommand33: ; 36f46
 	add hl, bc
 	ld [hl], $5
 	call GetMoveName
-	call Function37e01
+	call AnimateCurrentMove
 	ld hl, LearnedMoveText
 	jp StdBattleTextBox
 .asm_36f9a
@@ -8478,21 +8481,21 @@ BattleCommand35: ; 36f9d
 	bit 7, [hl]
 	jr nz, .asm_36fd8 ; 36fc5 $11
 	set 7, [hl]
-	call Function37e01
+	call AnimateCurrentMove
 	ld hl, WasSeededText
 	jp StdBattleTextBox
 .asm_36fd2
-	call Function37e77
+	call AnimateFailedMove
 	jp PrintDoesntAffect
 .asm_36fd8
-	call Function37e77
+	call AnimateFailedMove
 	ld hl, EvadedText
 	jp StdBattleTextBox
 ; 36fe1
 
 
 BattleCommand36: ; 36fe1
-	call Function37e01
+	call AnimateCurrentMove
 	callba Function1060e5
 	jp PrintNothingHappened
 ; 36fed
@@ -8548,7 +8551,7 @@ BattleCommand37: ; 36fed
 	swap c
 	add c
 	ld [de], a
-	call Function37e01
+	call AnimateCurrentMove
 	ld hl, DisabledMove
 	ld a, [hBattleTurn]
 	and a
@@ -8656,7 +8659,7 @@ BattleCommand1f: ; 3707f
 	inc hl
 	jr .asm_370bd ; 370d1 $ea
 .asm_370d3
-	call Function37e77
+	call AnimateFailedMove
 	jp PrintButItFailed
 .asm_370d9
 	call BattleRandom
@@ -8684,7 +8687,7 @@ BattleCommand1f: ; 3707f
 	ld [de], a
 	ld [$d265], a
 	callba GetTypeName
-	call Function37e01
+	call AnimateCurrentMove
 	ld hl, TransformedTypeText
 	jp StdBattleTextBox
 ; 3710e
@@ -8710,7 +8713,7 @@ BattleCommand20: ; 3710e
 	pop af
 	ld [hBattleTurn], a
 
-	call Function37e01
+	call AnimateCurrentMove
 
 	ld hl, EliminatedStatsText
 	jp StdBattleTextBox
@@ -8788,7 +8791,7 @@ BattleCommand2c: ; 3713e
 	ld hl, GetMaxHP
 	call CallBattleCore
 .asm_371a9
-	call Function37e01
+	call AnimateCurrentMove
 	call SwitchTurn
 	ld hl, Function3ccef
 	call CallBattleCore
@@ -8799,7 +8802,7 @@ BattleCommand2c: ; 3713e
 	jp StdBattleTextBox
 
 .asm_371c4
-	call Function37e77
+	call AnimateFailedMove
 	ld hl, HPIsFullText
 	jp StdBattleTextBox
 ; 371cd
@@ -8833,7 +8836,7 @@ BattleCommand2d: ; 371cd
 	ld a, BATTLE_VARS_SUBSTATUS5
 	call _GetBattleVar
 	set 3, [hl]
-	call Function372e7
+	call ResetActorDisable
 	ld hl, BattleMonSpecies
 	ld de, EnemyMonSpecies
 	ld a, [hBattleTurn]
@@ -8960,7 +8963,7 @@ BattleSideCopy: ; 372c6
 
 
 Function372d2: ; 372d2
-	call Function37e77
+	call AnimateFailedMove
 	jp PrintButItFailed
 ; 372d8
 
@@ -8979,7 +8982,7 @@ Function372d8: ; 372d8
 ; 372e7
 
 
-Function372e7: ; 372e7
+ResetActorDisable: ; 372e7
 	ld a, [hBattleTurn]
 	and a
 	jr z, .player
@@ -9035,11 +9038,11 @@ BattleCommand2e: ; 372fc
 	ld hl, ReflectEffectText
 
 .asm_37331
-	call Function37e01
+	call AnimateCurrentMove
 	jp StdBattleTextBox
 
 .asm_37337
-	call Function37e77
+	call AnimateFailedMove
 	jp PrintButItFailed
 ; 3733d
 
@@ -9075,7 +9078,7 @@ PrintButItFailed: ; 3734e
 
 
 Function37354: ; 37354
-	call Function37e77
+	call AnimateFailedMove
 	; fallthrough
 ; 37357
 
@@ -9094,7 +9097,7 @@ PrintDidntAffect: ; 37360
 
 
 PrintDidntAffect2: ; 37366
-	call Function37e77
+	call AnimateFailedMove
 	ld hl, DidntAffect1Text ; 'it didn't affect'
 	ld de, DidntAffect2Text ; 'it didn't affect'
 	jp Function35157
@@ -9216,12 +9219,12 @@ BattleCommand51: ; 37517
 ; Otherwise trap the opponent.
 
 	set SUBSTATUS_CANT_RUN, [hl]
-	call Function37e01
+	call AnimateCurrentMove
 	ld hl, CantEscapeNowText
 	jp StdBattleTextBox
 
 .failed
-	call Function37e77
+	call AnimateFailedMove
 	jp PrintButItFailed
 ; 37536
 
@@ -9361,7 +9364,7 @@ BattleCommand5f: ; 377ce
 	jr nz, .asm_377f2
 
 	set 7, [hl]
-	call Function37e01
+	call AnimateCurrentMove
 
 ; 'fell in love!'
 	ld hl, FellInLoveText
@@ -9474,10 +9477,10 @@ BattleCommand61: ; 37874
 .asm_37889
 	ld a, [$d265]
 	and a
-	jp z, Function37e77
+	jp z, AnimateFailedMove
 	ld a, [AttackMissed]
 	and a
-	jp nz, Function37e77
+	jp nz, AnimateFailedMove
 	push bc
 	call BattleRandom
 	ld b, a
@@ -9503,7 +9506,7 @@ BattleCommand61: ; 37874
 	pop bc
 	ld a, $3
 	ld [$c689], a
-	call Function37e01
+	call AnimateCurrentMove
 	call SwitchTurn
 	ld hl, AICheckPlayerMaxHP
 	ld a, [hBattleTurn]
@@ -9529,7 +9532,7 @@ BattleCommand61: ; 37874
 	call SwitchTurn
 	call Function37ed5
 	jr nc, .asm_37904 ; 378f9 $9
-	call Function37e77
+	call AnimateFailedMove
 	ld hl, RefusedGiftText
 	call StdBattleTextBox
 .asm_37904
@@ -9589,11 +9592,11 @@ BattleCommand64: ; 37939
 	set 2, [hl]
 	ld a, $5
 	ld [de], a
-	call Function37e01
+	call AnimateCurrentMove
 	ld hl, CoveredByVeilText
 	jp StdBattleTextBox
 .asm_3795c
-	call Function37e77
+	call AnimateFailedMove
 	jp PrintButItFailed
 ; 37962
 
@@ -9678,74 +9681,81 @@ BattleCommand67: ; 379c9
 	and a
 	jp nz, .Enemy
 
-	call Function37ae9
-	jp z, Function37aab
+
+; Need something to switch to
+	call CheckAnyOtherAlivePartyMons
+	jp z, FailedBatonPass
 
 	call UpdateBattleMonInParty
-	call Function37e01
+	call AnimateCurrentMove
 
 	ld c, 50
 	call DelayFrames
 
+; Transition into switchmon menu
 	call Function1d6e
 	callba Function3d2f7
-	callba Function3d380
+
+	callba ForcePickSwitchMonInBattle
+
+; Return to battle scene
 	call ClearPalettes
 	callba Function3ed9f
 	call Function1c17
 	call ClearSprites
-
 	hlcoord 1, 0
 	lb bc, 4, 10
 	call ClearBox
-
 	ld b, 1
 	call GetSGBLayout
 	call Function32f9
 	call Function37a67
 
+; Mobile link battles handle entrances differently
 	callba Function3d2e0
 	jp c, EndMoveEffect
 
-	ld hl, Function3e459
+	ld hl, PassedBattleMonEntrance
 	call CallBattleCore
-	call Function37ab1
+
+	call ResetBatonPassStatus
 	ret
 
+
 .Enemy
+
+; Wildmons don't have anything to switch to
 	ld a, [IsInBattle]
 	dec a
-	jp z, Function37aab
+	jp z, FailedBatonPass
 
-	call Function37af6
-	jp z, Function37aab
+	call CheckAnyOtherAliveEnemyMons
+	jp z, FailedBatonPass
 
 	call UpdateEnemyMonInParty
-	call Function37e01
+	call AnimateCurrentMove
 	call Function37a82
 
+; Mobile link battles handle entrances differently
 	callba Function3d2e0
 	jp c, EndMoveEffect
 
+; Passed enemy PartyMon entrance
 	xor a
 	ld [$c718], a
-
 	ld hl, Function3d517
 	call CallBattleCore
-
 	ld hl, Function3d57a
 	call CallBattleCore
-
 	ld a, 1
 	ld [$d265], a
-
 	ld hl, Function3ecab
 	call CallBattleCore
 
-	ld hl, Function3dc23
+	ld hl, SpikesDamage
 	call CallBattleCore
 
-	jr Function37ab1
+	jr ResetBatonPassStatus
 ; 37a67
 
 
@@ -9758,20 +9768,17 @@ Function37a67: ; 37a67
 	ld [$d0ec], a
 
 	call Function1d6e
-
 	ld hl, Function3e8e4
 	call CallBattleCore
-
 	call Function1c17
 
 	xor a
 	ld [$d0ec], a
-
 	ret
 ; 37a82
 
 
-Function37a82; 37a82
+Function37a82: ; 37a82
 	ld a, [InLinkBattle]
 	and a
 	ret z
@@ -9779,54 +9786,65 @@ Function37a82; 37a82
 	call Function1d6e
 	ld hl, Function3e8e4
 	call CallBattleCore
+
 	ld a, [OTPartyCount]
-	add $4
+	add 4
 	ld b, a
 	ld a, [$d430]
-	cp $4
+	cp 4
 	jr c, .asm_37aa0
-
 	cp b
 	jr c, .asm_37aa8
 
 .asm_37aa0
 	ld a, [CurOTMon]
-	add $4
+	add 4
 	ld [$d430], a
 .asm_37aa8
-	jp $1c17
+	jp Function1c17
 ; 37aab
 
 
-Function37aab: ; 37aab
-	call Function37e77
+FailedBatonPass: ; 37aab
+	call AnimateFailedMove
 	jp PrintButItFailed
 ; 37ab1
 
 
-Function37ab1: ; 37ab1
+ResetBatonPassStatus: ; 37ab1
+; Reset status changes that aren't passed by Baton Pass.
+
+; Nightmare isn't passed.
 	ld a, BATTLE_VARS_STATUS
 	call GetBattleVar
-	and 7
-	jr nz, .asm_37ac1
+	and SLP
+	jr nz, .ok
+
 	ld a, BATTLE_VARS_SUBSTATUS1
 	call _GetBattleVar
-	res 0, [hl]
+	res SUBSTATUS_NIGHTMARE, [hl]
+.ok
 
-.asm_37ac1
-	call Function372e7
+; Disable isn't passed.
+	call ResetActorDisable
+
+; Attraction isn't passed.
 	ld hl, PlayerSubStatus1
-	res 7, [hl]
+	res SUBSTATUS_IN_LOVE, [hl]
 	ld hl, EnemySubStatus1
-	res 7, [hl]
+	res SUBSTATUS_IN_LOVE, [hl]
 	ld hl, PlayerSubStatus5
+
 	ld a, BATTLE_VARS_SUBSTATUS5
 	call _GetBattleVar
 	res 3, [hl]
 	res 4, [hl]
+
+; New mon hasn't used a move yet.
 	ld a, BATTLE_VARS_LAST_MOVE
 	call _GetBattleVar
 	ld [hl], 0
+
 	xor a
 	ld [$c730], a
 	ld [$c731], a
@@ -9834,17 +9852,17 @@ Function37ab1: ; 37ab1
 ; 37ae9
 
 
-Function37ae9: ; 37ae9
+CheckAnyOtherAlivePartyMons: ; 37ae9
 	ld hl, PartyMon1CurHP
 	ld a, [PartyCount]
 	ld d, a
 	ld a, [CurBattleMon]
 	ld e, a
-	jr Function37b01
+	jr CheckAnyOtherAliveMons
 ; 37af6
 
 
-Function37af6: ; 37af6
+CheckAnyOtherAliveEnemyMons: ; 37af6
 	ld hl, OTPartyMon1CurHP
 	ld a, [OTPartyCount]
 	ld d, a
@@ -9854,17 +9872,21 @@ Function37af6: ; 37af6
 	; fallthrough
 ; 37b01
 
-Function37b01: ; 37b01
+CheckAnyOtherAliveMons: ; 37b01
+; Check for nonzero HP starting from partymon
+; HP at hl for d partymons, besides current mon e.
+
+; Return nz if any are alive.
+
 	xor a
 	ld b, a
 	ld c, a
-.asm_37b04
+.loop
 	ld a, c
 	cp d
-	jr z, .asm_37b1a
-
+	jr z, .done
 	cp e
-	jr z, .asm_37b11
+	jr z, .next
 
 	ld a, [hli]
 	or b
@@ -9872,15 +9894,16 @@ Function37b01: ; 37b01
 	ld a, [hld]
 	or b
 	ld b, a
-.asm_37b11
+
+.next
 	push bc
-	ld bc, $30
+	ld bc, PartyMon2 - PartyMon1
 	add hl, bc
 	pop bc
 	inc c
-	jr .asm_37b04
+	jr .loop
 
-.asm_37b1a
+.done
 	ld a, b
 	and a
 	ret
@@ -10021,7 +10044,7 @@ BattleCommand6a6c: ; 37b7e
 	ld a, BANK(GetMaxHP)
 	rst FarCall
 
-	call Function37e01
+	call AnimateCurrentMove
 	call SwitchTurn
 
 	callab Function3ccef
@@ -10034,7 +10057,7 @@ BattleCommand6a6c: ; 37b7e
 	jp StdBattleTextBox
 
 .Full
-	call Function37e77
+	call AnimateFailedMove
 
 ; 'hp is full!'
 	ld hl, HPIsFullText
@@ -10065,7 +10088,7 @@ BattleCommand6e: ; 37bf4
 	ld [Weather], a
 	ld a, 5
 	ld [WeatherCount], a
-	call Function37e01
+	call AnimateCurrentMove
 	ld hl, DownpourText
 	jp StdBattleTextBox
 ; 37c07
@@ -10077,7 +10100,7 @@ BattleCommand6f: ; 37c07
 	ld [Weather], a
 	ld a, 5
 	ld [WeatherCount], a
-	call Function37e01
+	call AnimateCurrentMove
 	ld hl, SunGotBrightText
 	jp StdBattleTextBox
 ; 37c1a
@@ -10096,7 +10119,7 @@ BattleCommand95: ; 37c1a
 	jr nc, .asm_37c4f
 
 	push bc
-	call Function37e01
+	call AnimateCurrentMove
 	pop bc
 	callab Function3cc3f
 	call UpdateUserInParty
@@ -10112,7 +10135,7 @@ BattleCommand95: ; 37c1a
 	ld hl, BellyDrumText
 	jp StdBattleTextBox
 .asm_37c4f
-	call Function37e77
+	call AnimateFailedMove
 	jp PrintButItFailed
 ; 37c55
 
@@ -10139,7 +10162,7 @@ BattleCommand96: ; 37c55
 	dec b
 	jr nz, .asm_37c67 ; 37c6d $f8
 	pop hl
-	call Function37e77
+	call AnimateFailedMove
 	jp PrintButItFailed
 .asm_37c76
 	pop hl
@@ -10158,7 +10181,7 @@ BattleCommand96: ; 37c55
 .asm_37c89
 	call Function365fd
 .asm_37c8c
-	call Function37e01
+	call AnimateCurrentMove
 	ld hl, CopiedStatsText
 	jp StdBattleTextBox
 ; 37c95
@@ -10328,7 +10351,7 @@ BattleCommand9c: ; 37d34
 .asm_37d87
 	pop bc
 	call ResetDamage
-	call Function37e77
+	call AnimateFailedMove
 	call PrintButItFailed
 	jp EndMoveEffect
 ; 37d94
@@ -10427,7 +10450,7 @@ Function37de9: ; 37de9
 ; 37e01
 
 
-Function37e01: ; 37e01
+AnimateCurrentMove: ; 37e01
 	push hl
 	push de
 	push bc
@@ -10533,7 +10556,7 @@ CallBattleCore: ; 37e73
 ; 37e77
 
 
-Function37e77: ; 37e77
+AnimateFailedMove: ; 37e77
 	call BattleCommand0a
 	call BattleCommandaa
 	jp BattleCommand0c
