@@ -326,7 +326,7 @@ AIScoring_Smart: ; 386be
 	dbw EFFECT_BIND,             AIScoring_Bind
 	dbw EFFECT_UNUSED_2B,        AIScoring_Unused2B
 	dbw EFFECT_CONFUSE,          AIScoring_Confuse
-	dbw EFFECT_SP_DEFENSE_UP_2,  AIScoring_SpDefenseUp2
+	dbw EFFECT_SP_DEF_UP_2,      AIScoring_SpDefenseUp2
 	dbw EFFECT_REFLECT,          AIScoring_Reflect
 	dbw EFFECT_PARALYZE,         AIScoring_Paralyze
 	dbw EFFECT_SPEED_DOWN_HIT,   AIScoring_SpeedDownHit

@@ -475,7 +475,7 @@ Function3c314: ; 3c314
 	ld a, [$d0ec]
 	and a
 	jp nz, .asm_3c3f1
-	call Function3c5b4
+	call CompareMovePriority
 	jr z, .asm_3c36d
 	jp c, .asm_3c3f1
 	jp Function3c3f3
@@ -848,7 +848,10 @@ AlwaysFleeMons: ; 3c5b1
 ; 3c5b4
 
 
-Function3c5b4: ; 3c5b4
+CompareMovePriority: ; 3c5b4
+; Compare the priority of the player and enemy's moves.
+; Return carry if the player goes first, or z if they match.
+
 	ld a, [CurPlayerMove]
 	call GetMovePriority
 	ld b, a
@@ -861,49 +864,56 @@ Function3c5b4: ; 3c5b4
 ; 3c5c5
 
 GetMovePriority: ; 3c5c5
+; Return the priority (0-3) of move a.
+
 	ld b, a
+
+	; Vital throw goes last.
 	cp VITAL_THROW
 	ld a, 0
 	ret z
-	call Function3c5ec
-	ld hl, .data_3c5df
+
+	call GetMoveEffect
+	ld hl, MoveEffectPriorities
 .loop
 	ld a, [hli]
 	cp b
-	jr z, .asm_3c5dd
+	jr z, .done
 	inc hl
-	cp $ff
+	cp -1
 	jr nz, .loop
+
 	ld a, 1
 	ret
 
-.asm_3c5dd
+.done
 	ld a, [hl]
 	ret
 ; 3c5df
 
-.data_3c5df
+MoveEffectPriorities: ; 3c5df
 	db EFFECT_PROTECT,      3
 	db EFFECT_ENDURE,       3
 	db EFFECT_PRIORITY_HIT, 2
 	db EFFECT_WHIRLWIND,    0
 	db EFFECT_COUNTER,      0
 	db EFFECT_MIRROR_COAT,  0
-	db $ff
+	db -1
 ; 3c5ec
 
 
-Function3c5ec: ; 3c5ec
+GetMoveEffect: ; 3c5ec
 	ld a, b
 	dec a
-	ld hl, $5afc
-	ld bc, $0007
+	ld hl, Moves + MOVE_EFFECT
+	ld bc, Move2 - Move1
 	call AddNTimes
-	ld a, $10
+	ld a, BANK(Moves)
 	call GetFarByte
 	ld b, a
 	ret
 ; 3c5fe
+
 
 Function3c5fe: ; 3c5fe
 	call Function309d
@@ -3399,11 +3409,11 @@ Function3d5d7: ; 3d5d7
 	push de
 	push bc
 	dec a
-	ld hl, $5afb
-	ld bc, $0007
+	ld hl, Moves + MOVE_ANIM
+	ld bc, Move2 - Move1
 	call AddNTimes
 	ld de, EnemyMoveAnimation
-	ld a, $10
+	ld a, BANK(Moves)
 	call FarCopyBytes
 	call SetEnemyTurn
 	callab Function0x347c8
@@ -4282,7 +4292,7 @@ Function3dc5b: ; 3dc5b
 	ld a, $10
 	call GetBattleVar
 	ld b, a
-	call Function3c5ec
+	call GetMoveEffect
 	ld a, b
 	cp $80
 	jr nz, .asm_3dce4
