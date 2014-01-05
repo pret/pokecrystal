@@ -1,38 +1,39 @@
 
-PHYSICAL EQU  0
+	const_def
 
-NORMAL   EQU  0
-FIGHTING EQU  1
-FLYING   EQU  2
-POISON   EQU  3
-GROUND   EQU  4
-ROCK     EQU  5
-BIRD     EQU  6
-BUG      EQU  7
-GHOST    EQU  8
-STEEL    EQU  9
-
-
-TYPE_10  EQU 10
-TYPE_11  EQU 11
-TYPE_12  EQU 12
-TYPE_13  EQU 13
-TYPE_14  EQU 14
-TYPE_15  EQU 15
-TYPE_16  EQU 16
-TYPE_17  EQU 17
-TYPE_18  EQU 18
-CURSE_T  EQU 19
+PHYSICAL EQU const_value
+	const NORMAL
+	const FIGHTING
+	const FLYING
+	const POISON
+	const GROUND
+	const ROCK
+	const BIRD
+	const BUG
+	const GHOST
+	const STEEL
 
 
-SPECIAL  EQU 20
+UNUSED_TYPES EQU const_value
+	const TYPE_10
+	const TYPE_11
+	const TYPE_12
+	const TYPE_13
+	const TYPE_14
+	const TYPE_15
+	const TYPE_16
+	const TYPE_17
+	const TYPE_18
+	const CURSE_T
 
-FIRE     EQU 20
-WATER    EQU 21
-GRASS    EQU 22
-ELECTRIC EQU 23
-PSYCHIC  EQU 24
-ICE      EQU 25
-DRAGON   EQU 26
-DARK     EQU 27
+
+SPECIAL EQU const_value
+	const FIRE
+	const WATER
+	const GRASS
+	const ELECTRIC
+	const PSYCHIC
+	const ICE
+	const DRAGON
+	const DARK
 
