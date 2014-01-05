@@ -3444,7 +3444,7 @@ PlayerAttackDamage: ; 352e2
 	ret z
 
 	ld a, [hl]
-	cp FIRE
+	cp SPECIAL
 	jr nc, .special
 
 
@@ -3586,7 +3586,7 @@ GetDamageStats: ; 3537e
 	and a
 	jr nz, .enemy
 	ld a, [PlayerMoveType]
-	cp FIRE
+	cp SPECIAL
 ; special
 	ld a, [PlayerSAtkLevel]
 	ld b, a
@@ -3600,7 +3600,7 @@ GetDamageStats: ; 3537e
 
 .enemy
 	ld a, [EnemyMoveType]
-	cp FIRE
+	cp SPECIAL
 ; special
 	ld a, [EnemySAtkLevel]
 	ld b, a
@@ -3705,7 +3705,7 @@ EnemyAttackDamage: ; 353f6
 	ret z
 
 	ld a, [hl]
-	cp FIRE
+	cp SPECIAL
 	jr nc, .Special
 
 
@@ -4464,51 +4464,58 @@ BattleCommand3f: ; 35726
 BattleCommand40: ; 35813
 ; counter
 
-	ld a, $1
+	ld a, 1
 	ld [AttackMissed], a
 	ld a, BATTLE_VARS_LAST_COUNTER_MOVE_OPP
 	call GetBattleVar
 	and a
 	ret z
+
 	ld b, a
-
 	callab GetMoveEffect
-
 	ld a, b
-	cp $59
+	cp EFFECT_COUNTER
 	ret z
+
 	call BattleCommanda3
 	ld a, [$d265]
 	and a
 	ret z
+
 	call Function36abf
 	ret z
+
 	ld a, BATTLE_VARS_LAST_COUNTER_MOVE_OPP
 	call GetBattleVar
 	dec a
 	ld de, StringBuffer1
 	call GetMoveData
+
 	ld a, [$d075]
 	and a
 	ret z
+
 	ld a, [$d076]
-	cp $14
+	cp SPECIAL
 	ret nc
+
 	ld hl, CurDamage
 	ld a, [hli]
 	or [hl]
 	ret z
+
 	ld a, [hl]
 	add a
 	ld [hld], a
 	ld a, [hl]
 	adc a
 	ld [hl], a
-	jr nc, .asm_3585f ; 35859 $4
+	jr nc, .capped
 	ld a, $ff
 	ld [hli], a
 	ld [hl], a
-.asm_3585f
+.capped
+
 	xor a
 	ld [AttackMissed], a
 	ret
@@ -10190,49 +10197,59 @@ BattleCommand96: ; 37c55
 BattleCommand9a: ; 37c95
 ; mirrorcoat
 
-	ld a, $1
+	ld a, 1
 	ld [AttackMissed], a
+
 	ld a, BATTLE_VARS_LAST_COUNTER_MOVE_OPP
 	call GetBattleVar
 	and a
 	ret z
+
 	ld b, a
 	callab GetMoveEffect
 	ld a, b
-	cp $90
+	cp EFFECT_MIRROR_COAT
 	ret z
+
 	call BattleCommanda3
 	ld a, [$d265]
 	and a
 	ret z
+
 	call Function36abf
 	ret z
+
 	ld a, BATTLE_VARS_LAST_COUNTER_MOVE_OPP
 	call GetBattleVar
 	dec a
 	ld de, StringBuffer1
 	call GetMoveData
+
 	ld a, [$d075]
 	and a
 	ret z
+
 	ld a, [$d076]
-	cp $14
+	cp SPECIAL
 	ret c
+
 	ld hl, CurDamage
 	ld a, [hli]
 	or [hl]
 	ret z
+
 	ld a, [hl]
 	add a
 	ld [hld], a
 	ld a, [hl]
 	adc a
 	ld [hl], a
-	jr nc, .asm_37ce1 ; 37cdb $4
+	jr nc, .capped
 	ld a, $ff
 	ld [hli], a
 	ld [hl], a
-.asm_37ce1
+.capped
+
 	xor a
 	ld [AttackMissed], a
 	ret

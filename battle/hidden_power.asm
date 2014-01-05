@@ -86,10 +86,10 @@ HiddenPowerDamage: ; fbced
 	jr c, .done
 	inc a
 
-; Skip unused types between Steel and Fire
-	cp STEEL + 1
+; Skip unused types
+	cp UNUSED_TYPES
 	jr c, .done
-	add FIRE - (STEEL + 1)
+	add SPECIAL - UNUSED_TYPES
 
 .done
 
