@@ -10077,7 +10077,7 @@ BattleCommand6d: ; 37be8
 	ld a, [AttackMissed]
 	and a
 	ret nz
-	callba GetHiddenPower
+	callba HiddenPowerDamage
 	ret
 ; 37bf4
 
