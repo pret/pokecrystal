@@ -5271,10 +5271,10 @@ Function6520: ; 6520
 	push hl
 	push de
 	dec a
-	ld hl, $5b00
-	ld bc, $0007
+	ld hl, Moves + MOVE_PP
+	ld bc, Move2 - Move1
 	call AddNTimes
-	ld a, $10
+	ld a, BANK(Moves)
 	call GetFarByte
 	pop de
 	pop hl
@@ -37807,10 +37807,10 @@ Function39806: ; 39806
 	push hl
 	push bc
 	dec a
-	ld hl, $5b00
-	ld bc, $0007
+	ld hl, Moves + MOVE_PP
+	ld bc, Move2 - Move1
 	call AddNTimes
-	ld a, $10
+	ld a, BANK(Moves)
 	call GetFarByte
 	pop bc
 	pop hl
@@ -83077,11 +83077,11 @@ Function100bc2: ; 100bc2
 	ret
 
 .asm_100c63
-	ld hl, $4c5b
+	ld hl, BattleText_0x80c5b
 	jr .asm_100c6b
 
 .asm_100c68
-	ld hl, $4c39
+	ld hl, BattleText_0x80c39
 
 .asm_100c6b
 	call StdBattleTextBox

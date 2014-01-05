@@ -4813,7 +4813,7 @@ BattleCommand44: ; 359e6
 	ld [$d265], a
 	ld a, $29
 	call Predef
-	ld hl, $5452
+	ld hl, TransformedTypeText
 	jp StdBattleTextBox
 .asm_35a50
 	jp Function37354
@@ -6224,16 +6224,16 @@ Function3627b: ; 3627b
 
 Function36281: ; 36281
 	ld bc, $c6fe
-	ld hl, $7447
+	ld hl, Function3f447
 	ld a, [hBattleTurn]
 	and a
 	jr z, .asm_36292 ; 0x3628a $6
 	ld bc, $c6fa
-	ld hl, $7486
+	ld hl, Function3f486
 .asm_36292
-	ld a, $c
+	ld a, BATTLE_VARS_MOVE_ANIM
 	call GetBattleVar
-	cp $6b
+	cp MINIMIZE
 	ret nz
 	ld a, $1
 	ld [bc], a
@@ -6800,11 +6800,11 @@ BattleCommandaf: ; 365a7
 
 
 BattleCommanda6: ; 365af
-	ld hl, $743d
+	ld hl, Function3f43d
 	ld a, [hBattleTurn]
 	and a
 	jr z, .asm_365ba ; 365b5 $3
-	ld hl, $747c
+	ld hl, Function3f47c
 .asm_365ba
 	xor a
 	ld [$ffd4], a
@@ -6814,11 +6814,11 @@ BattleCommanda6: ; 365af
 
 
 BattleCommanda7: ; 365c3
-	ld hl, $7447
+	ld hl, Function3f447
 	ld a, [hBattleTurn]
 	and a
 	jr z, .asm_365ce ; 365c9 $3
-	ld hl, $7486
+	ld hl, Function3f486
 .asm_365ce
 	xor a
 	ld [$ffd4], a
@@ -9709,7 +9709,7 @@ BattleCommand67: ; 379c9
 	ld b, 1
 	call GetSGBLayout
 	call Function32f9
-	call Function37a67
+	call BatonPass_LinkPlayerSwitch
 
 ; Mobile link battles handle entrances differently
 	callba Function3d2e0
@@ -9726,7 +9726,7 @@ BattleCommand67: ; 379c9
 
 ; Wildmons don't have anything to switch to
 	ld a, [IsInBattle]
-	dec a
+	dec a ; WILDMON
 	jp z, FailedBatonPass
 
 	call CheckAnyOtherAliveEnemyMons
@@ -9734,7 +9734,7 @@ BattleCommand67: ; 379c9
 
 	call UpdateEnemyMonInParty
 	call AnimateCurrentMove
-	call Function37a82
+	call BatonPass_LinkEnemySwitch
 
 ; Mobile link battles handle entrances differently
 	callba Function3d2e0
@@ -9759,7 +9759,7 @@ BattleCommand67: ; 379c9
 ; 37a67
 
 
-Function37a67: ; 37a67
+BatonPass_LinkPlayerSwitch: ; 37a67
 	ld a, [InLinkBattle]
 	and a
 	ret z
@@ -9778,7 +9778,7 @@ Function37a67: ; 37a67
 ; 37a82
 
 
-Function37a82: ; 37a82
+BatonPass_LinkEnemySwitch: ; 37a82
 	ld a, [InLinkBattle]
 	and a
 	ret z

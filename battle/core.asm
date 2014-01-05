@@ -130,18 +130,18 @@ Function3c0e5: ; 3c0e5
 	ld [$d0ee], a
 	ld a, [InLinkBattle]
 	and a
-	ld hl, $47bd
+	ld hl, BattleText_0x807bd
 	jr z, .asm_3c115
 	ld a, [$d0ee]
 	and $c0
 	ld [$d0ee], a
-	ld hl, $47cf
+	ld hl, BattleText_0x807cf
 	call Function3d2e0
 	jr nc, .asm_3c115
 	ld hl, $cd2a
 	bit 4, [hl]
 	jr nz, .asm_3c118
-	ld hl, $5863
+	ld hl, BattleText_0x81863
 
 .asm_3c115
 	call StdBattleTextBox
@@ -407,7 +407,7 @@ Function3c27c: ; 3c27c
 	pop hl
 	ld [hl], a
 	call GetItemName
-	ld hl, $4bde
+	ld hl, BattleText_0x80bde
 	call StdBattleTextBox
 	callab BattleCommand8c
 	pop af
@@ -418,7 +418,7 @@ Function3c27c: ; 3c27c
 	ld de, $0103
 	call Function3ee0f
 	call Function3c8e4
-	ld hl, $4d97
+	ld hl, BecameConfusedText
 	jp StdBattleTextBox
 ; 3c300
 
@@ -730,7 +730,7 @@ Function3c4df: ; 3c4df
 	ld hl, PlayerSubStatus5
 	res 4, [hl]
 	call SetEnemyTurn
-	ld hl, $4c8a
+	ld hl, BattleText_0x80c8a
 	jp StdBattleTextBox
 
 .asm_3c518
@@ -754,7 +754,7 @@ Function3c4df: ; 3c4df
 	ld hl, EnemySubStatus5
 	res 4, [hl]
 	call SetPlayerTurn
-	ld hl, $4c8a
+	ld hl, BattleText_0x80c8a
 	jp StdBattleTextBox
 ; 3c543
 
@@ -1068,11 +1068,11 @@ Function3c716: ; 3c716
 	call GetBattleVar
 	and $18
 	jr z, .asm_3c768
-	ld hl, $47e2
+	ld hl, BattleText_0x807e2
 	ld de, $0106
 	and $10
 	jr z, .asm_3c733
-	ld hl, $47f8
+	ld hl, BattleText_0x807f8
 	ld de, $0105
 
 .asm_3c733
@@ -1130,7 +1130,7 @@ Function3c716: ; 3c716
 	ld a, $1
 	ld [hBGMapMode], a
 	call Function3ccef
-	ld hl, $480e
+	ld hl, BattleText_0x8080e
 	call StdBattleTextBox
 
 .asm_3c7a1
@@ -1146,7 +1146,7 @@ Function3c716: ; 3c716
 	call Function3ee0f
 	call GetQuarterMaxHP
 	call Function3cc3f
-	ld hl, $4822
+	ld hl, BattleText_0x80822
 	call StdBattleTextBox
 
 .asm_3c7c5
@@ -1162,7 +1162,7 @@ Function3c716: ; 3c716
 	call Function3ee0f
 	call GetQuarterMaxHP
 	call Function3cc3f
-	ld hl, $4836
+	ld hl, BattleText_0x80836
 	call StdBattleTextBox
 
 .asm_3c7e9
@@ -1214,7 +1214,7 @@ Function3c801: ; 3c801
 	ld a, [hl]
 	ld [$d265], a
 	push af
-	ld hl, $4864
+	ld hl, BattleText_0x80864
 	call StdBattleTextBox
 	pop af
 	ret nz
@@ -1304,11 +1304,11 @@ Function3c874: ; 3c874
 .asm_3c8d3
 	call Function3cc76
 	call Function3cc3f
-	ld hl, $4de2
+	ld hl, BattleText_0x80de2
 	jr .asm_3c8e1
 
 .asm_3c8de
-	ld hl, $4df5
+	ld hl, BattleText_0x80df5
 
 .asm_3c8e1
 	jp StdBattleTextBox
@@ -1364,7 +1364,7 @@ Function3c8eb: ; 3c8eb
 	call Function3cc76
 	call Function3c8e4
 	call Function3ccef
-	ld hl, $4880
+	ld hl, BattleText_0x80880
 	jp StdBattleTextBox
 ; 3c93c
 
@@ -1504,7 +1504,7 @@ Function3c93c: ; 3c93c
 	call Function3c8e4
 	call Function3ddc8
 	call Function3c8e4
-	ld hl, $4899
+	ld hl, BattleText_0x80899
 	jp StdBattleTextBox
 ; 3ca26
 
@@ -1536,7 +1536,7 @@ Function3ca26: ; 3ca26
 	ld [hl], a
 	cp $1
 	ret nz
-	ld hl, $48b6
+	ld hl, BattleText_0x808b6
 	call StdBattleTextBox
 	ld a, $10
 	call _GetBattleVar
@@ -1588,7 +1588,7 @@ Function3ca8f: ; 3ca8f
 	ld [hl], $0
 	call UpdateBattleHuds
 	call SetEnemyTurn
-	ld hl, $524b
+	ld hl, DefrostedOpponentText
 	jp StdBattleTextBox
 
 .asm_3cac9
@@ -1614,7 +1614,7 @@ Function3ca8f: ; 3ca8f
 .asm_3caef
 	call UpdateBattleHuds
 	call SetPlayerTurn
-	ld hl, $524b
+	ld hl, DefrostedOpponentText
 	jp StdBattleTextBox
 ; 3cafb
 
@@ -1652,7 +1652,7 @@ Function3cafb: ; 3cafb
 
 .asm_3cb2e
 	ld [hBattleTurn], a
-	ld hl, $48d2
+	ld hl, BattleText_0x808d2
 	jp StdBattleTextBox
 ; 3cb36
 
@@ -3453,12 +3453,12 @@ Function3d618: ; 3d618
 	add hl, bc
 	ld a, [hl]
 	dec a
-	ld hl, $542b
-	ld bc, $0020
+	ld hl, BaseData + 7 ; type
+	ld bc, $20
 	call AddNTimes
 	ld de, EnemyMonType1
-	ld bc, $0002
-	ld a, $14
+	ld bc, 2
+	ld a, BANK(BaseData)
 	call FarCopyBytes
 	ld a, [BattleMonType1]
 	ld [PlayerMoveType], a
@@ -5128,7 +5128,7 @@ Function3e19b: ; 3e19b
 	ld hl, $cd2a
 	bit 4, [hl]
 	jr nz, .asm_3e1c5
-	ld hl, $5863
+	ld hl, BattleText_0x81863
 	call StdBattleTextBox
 	ld c, $3c
 	call DelayFrames
@@ -8550,47 +8550,52 @@ Function3f607: ; 3f607
 Function3f662: ; 3f662
 	ld hl, EnemyMonMove1
 	ld de, $d25e
-	ld b, $4
-.asm_3f66a
+	ld b, 4
+.loop
 	ld a, [de]
 	inc de
 	ld [hli], a
 	and a
-	jr z, .asm_3f690
+	jr z, .clearpp
+
 	push bc
 	push hl
+
 	push hl
 	dec a
-	ld hl, $5b00
-	ld bc, $0007
+	ld hl, Moves + MOVE_PP
+	ld bc, Move2 - Move1
 	call AddNTimes
-	ld a, $10
+	ld a, BANK(Moves)
 	call GetFarByte
 	pop hl
-	ld bc, $0005
+
+	ld bc, EnemyMonPP - (EnemyMonMoves + 1)
 	add hl, bc
 	ld [hl], a
+
 	pop hl
 	pop bc
+
 	dec b
-	jr nz, .asm_3f66a
+	jr nz, .loop
 	ret
 
-.asm_3f68e
+.clear
 	xor a
 	ld [hli], a
 
-.asm_3f690
+.clearpp
 	push bc
 	push hl
-	ld bc, $0005
+	ld bc, EnemyMonPP - (EnemyMonMoves + 1)
 	add hl, bc
 	xor a
 	ld [hl], a
 	pop hl
 	pop bc
 	dec b
-	jr nz, .asm_3f68e
+	jr nz, .clear
 	ret
 ; 3f69e
 
