@@ -12,6 +12,7 @@ INCLUDE "hram.asm"
 INCLUDE "constants/wram_constants.asm"
 
 INCLUDE "constants/pokemon_constants.asm"
+INCLUDE "constants/type_constants.asm"
 INCLUDE "constants/move_constants.asm"
 INCLUDE "constants/battle_constants.asm"
 INCLUDE "constants/map_constants.asm"
@@ -30,40 +31,6 @@ INCLUDE "constants/gfx_constants.asm"
 
 NONE       EQU 0
 
-
-; types
-PHYSICAL EQU  0
-NORMAL   EQU  0
-FIGHTING EQU  1
-FLYING   EQU  2
-POISON   EQU  3
-GROUND   EQU  4
-ROCK     EQU  5
-BIRD     EQU  6
-BUG      EQU  7
-GHOST    EQU  8
-STEEL    EQU  9
-
-TYPE_10  EQU 10
-TYPE_11  EQU 11
-TYPE_12  EQU 12
-TYPE_13  EQU 13
-TYPE_14  EQU 14
-TYPE_15  EQU 15
-TYPE_16  EQU 16
-TYPE_17  EQU 17
-TYPE_18  EQU 18
-CURSE_T  EQU 19
-
-SPECIAL  EQU 20
-FIRE     EQU 20
-WATER    EQU 21
-GRASS    EQU 22
-ELECTRIC EQU 23
-PSYCHIC  EQU 24
-ICE      EQU 25
-DRAGON   EQU 26
-DARK     EQU 27
 
 
 ; egg group constants
