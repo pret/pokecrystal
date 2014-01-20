@@ -354,47 +354,53 @@ Function3c25c: ; 3c25c
 Function3c27c: ; 3c27c
 	ld a, [$ffcb]
 	cp $1
-	jr z, .asm_3c287
-	call .asm_3c28a
-	jr .asm_3c296
+	jr z, .reverse
 
-.asm_3c287
-	call .asm_3c296
-.asm_3c28a
+	call .player
+	jr .enemy
+
+.reverse
+	call .enemy
+;	jr .player
+
+.player
 	call SetPlayerTurn
 	ld de, PartyMon1Item
 	ld a, [CurBattleMon]
 	ld b, a
-	jr .asm_3c2a0
+	jr .go
 
-.asm_3c296
+.enemy
 	call SetEnemyTurn
 	ld de, OTPartyMon1Item
 	ld a, [CurOTMon]
 	ld b, a
+;	jr .go
 
-.asm_3c2a0
+.go
 	push de
 	push bc
 	callab GetUserItem
 	ld a, [hl]
 	ld [$d265], a
-	sub $98
+	sub BERSERK_GENE
 	pop bc
 	pop de
 	ret nz
+
 	ld [hl], a
+
 	ld h, d
 	ld l, e
 	ld a, b
 	call GetPartyLocation
 	xor a
 	ld [hl], a
-	ld a, $2
+	ld a, BATTLE_VARS_SUBSTATUS3
 	call _GetBattleVar
 	push af
-	set 7, [hl]
-	ld a, $c
+	set SUBSTATUS_CONFUSED, [hl]
+	ld a, BATTLE_VARS_MOVE_ANIM
 	call _GetBattleVar
 	push hl
 	push af
@@ -411,7 +417,7 @@ Function3c27c: ; 3c27c
 	call StdBattleTextBox
 	callab BattleCommand8c
 	pop af
-	bit 7, a
+	bit SUBSTATUS_CONFUSED, a
 	ret nz
 	xor a
 	ld [$cfca], a
@@ -1340,7 +1346,7 @@ Function3c8eb: ; 3c8eb
 	ld [$d265], a
 	call GetItemName
 	ld a, b
-	cp $3
+	cp HELD_LEFTOVERS
 	ret nz
 	ld hl, BattleMonHP
 	ld a, [hBattleTurn]

@@ -1313,7 +1313,7 @@ BattleCommand05: ; 34631
 	push bc
 	call GetUserItem
 	ld a, b
-	cp $49 ; Increased critical chance. Only Scope Lens has this.
+	cp HELD_CRITICAL_UP ; Increased critical chance. Only Scope Lens has this.
 	pop bc
 	jr nz, .Tally
 
@@ -7654,7 +7654,7 @@ BattleCommand4d: ; 36ac9
 
 	call GetUserItem
 	ld a, b
-	cp $4b ; king's rock
+	cp HELD_TRADE_EVOLVE ; king's rock
 	ret nz
 
 	call CheckSubstituteOpp
