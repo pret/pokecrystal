@@ -77690,7 +77690,7 @@ OptionsControl: ; e452a
 	scf
 	ret
 
-.CheckFive ;I have no idea why this exists...
+.CheckFive ;I have no idea why this exists..
 	cp $5
 	jr nz, .Increase
 	ld [hl], $5
