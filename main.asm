@@ -77167,7 +77167,7 @@ _OptionsMenu: ; e41d0
 	ld c, $12
 	call TextBox
 	ld hl, $c4ca
-	ld de, Stringe4241
+	ld de, StringOptions
 	call PlaceString
 	xor a
 	ld [$cf63], a
@@ -77176,7 +77176,7 @@ _OptionsMenu: ; e41d0
 	push bc
 	xor a
 	ld [$ffa9], a
-	call Functione42d6
+	call GetOptionPointer
 	pop bc
 	ld hl, $cf63
 	inc [hl]
@@ -77195,11 +77195,11 @@ _OptionsMenu: ; e41d0
 	call Functiona57
 	ld a, [hJoyPressed]
 	and $a
-	jr nz, .asm_e4234
-	call Functione452a
+	jr nz, .ExitOptions
+	call OptionsControl
 	jr c, .asm_e422a
-	call Functione42d6
-	jr c, .asm_e4234
+	call GetOptionPointer
+	jr c, .ExitOptions
 
 .asm_e422a
 	call Functione455c
@@ -77207,7 +77207,7 @@ _OptionsMenu: ; e41d0
 	call DelayFrames
 	jr .asm_e4217
 
-.asm_e4234
+.ExitOptions
 	ld de, SFX_TRANSACTION
 	call PlaySFX
 	call WaitSFX
@@ -77216,7 +77216,7 @@ _OptionsMenu: ; e41d0
 	ret
 ; e4241
 
-Stringe4241: ; e4241
+StringOptions: ; e4241
 	db "TEXT SPEED", $22
 	db "        :", $22
 	db "BATTLE SCENE", $22
@@ -77235,9 +77235,9 @@ Stringe4241: ; e4241
 ; e42d6
 
 
-Functione42d6: ; e42d6
-	ld a, [$cf63]
-	ld e, a
+GetOptionPointer: ; e42d6
+	ld a, [$cf63] ;load the cusror position to a
+	ld e, a ;copy it to de
 	ld d, 0
 	ld hl, .Pointers
 	add hl, de
@@ -77245,7 +77245,7 @@ Functione42d6: ; e42d6
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	jp [hl]
+	jp [hl] ;jump to the code of the current highlighted item
 ; e42e5
 
 .Pointers
@@ -77261,40 +77261,40 @@ Functione42d6: ; e42d6
 
 
 Options_TextSpeed: ; e42f5
-	call Functione4346
+	call GetTextSpeed
 	ld a, [hJoyPressed]
 	bit 5, a
-	jr nz, .asm_e430d
+	jr nz, .LeftPressed
 	bit 4, a
-	jr z, .asm_e431f
-	ld a, c
+	jr z, .NonePressed
+	ld a, c ;right pressed
 	cp $2
-	jr c, .asm_e4309
+	jr c, .Increase
 	ld c, $ff
 
-.asm_e4309
+.Increase
 	inc c
 	ld a, e
-	jr .asm_e4315
+	jr .Save
 
-.asm_e430d
+.LeftPressed
 	ld a, c
 	and a
-	jr nz, .asm_e4313
+	jr nz, .Decrease
 	ld c, $3
 
-.asm_e4313
+.Decrease
 	dec c
 	ld a, d
 
-.asm_e4315
+.Save
 	ld b, a
 	ld a, [Options]
 	and $f0
 	or b
 	ld [Options], a
 
-.asm_e431f
+.NonePressed
 	ld b, 0
 	ld hl, .Strings
 	add hl, bc
@@ -77322,23 +77322,23 @@ Options_TextSpeed: ; e42f5
 ; e4346
 
 
-Functione4346: ; e4346
-	ld a, [Options]
+GetTextSpeed: ; e4346
+	ld a, [Options] ;This converts the number of frames, to 0,1,2 representing speed
 	and $7
-	cp $5
-	jr z, .asm_e4359
-	cp $1
-	jr z, .asm_e435f
-	ld c, $1
+	cp $5 ;5 frames of delay is slow
+	jr z, SpeedSlow
+	cp $1 ;1 frame of delay is fast
+	jr z, SpeedFast
+	ld c, $1 ;set it to mid if not one of the above
 	ld de, $0105
 	ret
 
-.asm_e4359
+SpeedSlow
 	ld c, $2
 	ld de, $0301
 	ret
 
-.asm_e435f
+SpeedFast
 	ld c, $0
 	ld de, $0503
 	ret
@@ -77349,33 +77349,33 @@ Options_BattleScene: ; e4365
 	ld hl, Options
 	ld a, [hJoyPressed]
 	bit 5, a
-	jr nz, .asm_e4378
+	jr nz, .LeftPressed
 	bit 4, a
-	jr z, .asm_e437e
+	jr z, .NonePressed
 	bit 7, [hl]
-	jr nz, .asm_e4384
-	jr .asm_e438b
+	jr nz, .ToggleOn
+	jr .ToggleOff
 
-.asm_e4378
+.LeftPressed
 	bit 7, [hl]
-	jr z, .asm_e438b
-	jr .asm_e4384
+	jr z, .ToggleOff
+	jr .ToggleOn
 
-.asm_e437e
+.NonePressed
 	bit 7, [hl]
-	jr z, .asm_e4384
-	jr .asm_e438b
+	jr z, .ToggleOn
+	jr .ToggleOff
 
-.asm_e4384
+.ToggleOn
 	res 7, [hl]
 	ld de, .On
-	jr .asm_e4390
+	jr .Display
 
-.asm_e438b
+.ToggleOff
 	set 7, [hl]
 	ld de, .Off
 
-.asm_e4390
+.Display
 	hlcoord 11, 5
 	call PlaceString
 	and a
@@ -77393,32 +77393,32 @@ Options_BattleStyle: ; e43a0
 	ld hl, Options
 	ld a, [hJoyPressed]
 	bit 5, a
-	jr nz, .asm_e43b3
+	jr nz, .LeftPressed
 	bit 4, a
-	jr z, .asm_e43b9
+	jr z, .NonePressed
 	bit 6, [hl]
-	jr nz, .asm_e43bd
-	jr .asm_e43c4
+	jr nz, .ToggleShift
+	jr .ToggleSet
 
-.asm_e43b3
+.LeftPressed
 	bit 6, [hl]
-	jr z, .asm_e43c4
-	jr .asm_e43bd
+	jr z, .ToggleSet
+	jr .ToggleShift
 
-.asm_e43b9
+.NonePressed
 	bit 6, [hl]
-	jr nz, .asm_e43c4
+	jr nz, .ToggleSet
 
-.asm_e43bd
+.ToggleShift
 	res 6, [hl]
 	ld de, .Shift
-	jr .asm_e43c9
+	jr .Display
 
-.asm_e43c4
+.ToggleSet
 	set 6, [hl]
 	ld de, .Set
 
-.asm_e43c9
+.Display
 	hlcoord 11, 7
 	call PlaceString
 	and a
@@ -77436,39 +77436,39 @@ Options_Sound: ; e43dd
 	ld hl, Options
 	ld a, [hJoyPressed]
 	bit 5, a
-	jr nz, .asm_e43f0
+	jr nz, .LeftPressed
 	bit 4, a
-	jr z, .asm_e43f6
+	jr z, .NonePressed
 	bit 5, [hl]
-	jr nz, .asm_e43fc
-	jr .asm_e4406
+	jr nz, .SetMono
+	jr .SetStereo
 
-.asm_e43f0
+.LeftPressed
 	bit 5, [hl]
-	jr z, .asm_e4406
-	jr .asm_e43fc
+	jr z, .SetStereo
+	jr .SetMono
 
-.asm_e43f6
+.NonePressed
 	bit 5, [hl]
-	jr nz, .asm_e440b
-	jr .asm_e4401
+	jr nz, .ToggleStereo
+	jr .ToggleMono
 
-.asm_e43fc
+.SetMono
 	res 5, [hl]
-	call Function3d47
+	call Function3d47 ;reload the music
 
-.asm_e4401
+.ToggleMono
 	ld de, .Mono
-	jr .asm_e440e
+	jr .Display
 
-.asm_e4406
+.SetStereo
 	set 5, [hl]
-	call Function3d47
+	call Function3d47 ;reload the music
 
-.asm_e440b
+.ToggleStereo
 	ld de, .Stereo
 
-.asm_e440e
+.Display
 	hlcoord 11, 9
 	call PlaceString
 	and a
@@ -77483,39 +77483,39 @@ Options_Sound: ; e43dd
 
 
 Options_Print: ; e4424
-	call Functione4491
+	call GetPrinterSetting
 	ld a, [hJoyPressed]
 	bit 5, a
-	jr nz, .asm_e443c
+	jr nz, .LeftPressed
 	bit 4, a
-	jr z, .asm_e4448
+	jr z, .NonePressed
 	ld a, c
 	cp $4
-	jr c, .asm_e4438
+	jr c, .Increase
 	ld c, $ff
 
-.asm_e4438
+.Increase
 	inc c
 	ld a, e
-	jr .asm_e4444
+	jr .Save
 
-.asm_e443c
+.LeftPressed
 	ld a, c
 	and a
-	jr nz, .asm_e4442
+	jr nz, .Decrease
 	ld c, $5
 
-.asm_e4442
+.Decrease
 	dec c
 	ld a, d
 
-.asm_e4444
+.Save
 	ld b, a
 	ld [GBPrinter], a
 
-.asm_e4448
+.NonePressed
 	ld b, $0
-	ld hl, $445a
+	ld hl, .Strings
 	add hl, bc
 	add hl, bc
 	ld e, [hl]
@@ -77547,38 +77547,38 @@ Options_Print: ; e4424
 ; e4491
 
 
-Functione4491: ; e4491
-	ld a, [GBPrinter]
+GetPrinterSetting: ; e4491
+	ld a, [GBPrinter] ;converts from the stored printer setting to 0,1,2,3,4
 	and a
-	jr z, .asm_e44a9
+	jr z, .IsLightest
 	cp $20
-	jr z, .asm_e44af
+	jr z, .IsLight
 	cp $60
-	jr z, .asm_e44b5
+	jr z, .IsDark
 	cp $7f
-	jr z, .asm_e44bb
-	ld c, $2
-	ld de, $2060
+	jr z, .IsDarkest
+	ld c, $2 ;normal if none of the above
+	ld de, $2060 ;the 2 values next to this setting
 	ret
 
-.asm_e44a9
+.IsLightest
 	ld c, $0
-	ld de, $7f20
+	ld de, $7f20 ;the 2 values next to this setting
 	ret
 
-.asm_e44af
+.IsLight
 	ld c, $1
-	ld de, $0040
+	ld de, $0040 ;the 2 values next to this setting
 	ret
 
-.asm_e44b5
+.IsDark
 	ld c, $3
-	ld de, $407f
+	ld de, $407f ;the 2 values next to this setting
 	ret
 
-.asm_e44bb
+.IsDarkest
 	ld c, $4
-	ld de, $6000
+	ld de, $6000 ;the 2 values next to this setting
 	ret
 ; e44c1
 
@@ -77586,32 +77586,32 @@ Options_MenuAccount: ; e44c1
 	ld hl, Options2
 	ld a, [hJoyPressed]
 	bit 5, a
-	jr nz, .asm_e44d4
+	jr nz, .LeftPressed
 	bit 4, a
-	jr z, .asm_e44da
+	jr z, .NonePressed
 	bit 0, [hl]
-	jr nz, .asm_e44de
-	jr .asm_e44e5
+	jr nz, .ToggleOff
+	jr .ToggleOn
 
-.asm_e44d4
+.LeftPressed
 	bit 0, [hl]
-	jr z, .asm_e44e5
-	jr .asm_e44de
+	jr z, .ToggleOn
+	jr .ToggleOff
 
-.asm_e44da
+.NonePressed
 	bit 0, [hl]
-	jr nz, .asm_e44e5
+	jr nz, .ToggleOn
 
-.asm_e44de
+.ToggleOff
 	res 0, [hl]
 	ld de, .Off
-	jr .asm_e44ea
+	jr .Display
 
-.asm_e44e5
+.ToggleOn
 	set 0, [hl]
 	ld de, .On
 
-.asm_e44ea
+.Display
 	hlcoord 11, 13
 	call PlaceString
 	and a
@@ -77629,22 +77629,22 @@ Options_Frame: ; e44fa
 	ld hl, TextBoxFrame
 	ld a, [hJoyPressed]
 	bit 5, a
-	jr nz, .asm_e450d
+	jr nz, .LeftPressed
 	bit 4, a
-	jr nz, .asm_e4509
+	jr nz, .RightPressed
 	and a
 	ret
 
-.asm_e4509
+.RightPressed
 	ld a, [hl]
 	inc a
-	jr .asm_e450f
+	jr .Save
 
-.asm_e450d
+.LeftPressed
 	ld a, [hl]
 	dec a
 
-.asm_e450f
+.Save
 	and $7
 	ld [hl], a
 	; fallthrough
@@ -77652,7 +77652,7 @@ Options_Frame: ; e44fa
 
 Functione4512: ; e4512
 	ld a, [TextBoxFrame]
-	ld hl, $c5dc
+	ld hl, $c5dc ;where on the screen the number is drawn
 	add "1"
 	ld [hl], a
 	call Functione5f
@@ -77663,57 +77663,57 @@ Functione4512: ; e4512
 Options_Cancel: ; e4520
 	ld a, [hJoyPressed]
 	and A_BUTTON
-	jr nz, .asm_e4528
+	jr nz, .Exit
 	and a
 	ret
 
-.asm_e4528
+.Exit
 	scf
 	ret
 ; e452a
 
-Functione452a: ; e452a
+OptionsControl: ; e452a
 	ld hl, $cf63
 	ld a, [$ffa9]
 	cp $80
-	jr z, .asm_e4539
+	jr z, .DownPressed
 	cp $40
-	jr z, .asm_e454b
+	jr z, .UpPressed
 	and a
 	ret
 
-.asm_e4539
-	ld a, [hl]
-	cp $7
-	jr nz, .asm_e4542
+.DownPressed
+	ld a, [hl] ;load the cursor position to a
+	cp $7 ;maximum number of items in option menu
+	jr nz, .CheckFive
 	ld [hl], $0
 	scf
 	ret
 
-.asm_e4542
+.CheckFive ;I have no idea why this exists...
 	cp $5
-	jr nz, .asm_e4548
+	jr nz, .Increase
 	ld [hl], $5
 
-.asm_e4548
+.Increase
 	inc [hl]
 	scf
 	ret
 
-.asm_e454b
+.UpPressed
 	ld a, [hl]
 	cp $6
-	jr nz, .asm_e4554
-	ld [hl], $5
+	jr nz, .NotSix
+	ld [hl], $5 ;Another thing where I'm not sure why it exists
 	scf
 	ret
 
-.asm_e4554
+.NotSix
 	and a
-	jr nz, .asm_e4559
-	ld [hl], $8
+	jr nz, .Decrease
+	ld [hl], $8 ;number of option items +1
 
-.asm_e4559
+.Decrease
 	dec [hl]
 	scf
 	ret
@@ -77951,7 +77951,7 @@ Functione46ed: ; e46ed (39:46ed)
 	add hl, bc
 	ld e, [hl]
 	ld d, $0
-	ld hl, $46fd
+	ld hl, Jumptable_e46fd
 	add hl, de
 	add hl, de
 	ld a, [hli]
@@ -78053,7 +78053,7 @@ Functione4776: ; e4776 (39:4776)
 	srl a
 	ld e, a
 	ld d, $0
-	ld hl, $47ac
+	ld hl, UnknownDatae47ac
 	add hl, de
 	add hl, de
 	ld a, [rSVBK] ; $ff00+$70
@@ -78080,6 +78080,7 @@ Functione47ab: ; e47ab (39:47ab)
 	ret
 ; e47ac (39:47ac)
 
+UnknownDatae47ac: ; e47ac
 INCBIN "baserom.gbc",$e47ac,$e47cc - $e47ac
  
 GameFreakLogo: ; e47cc
@@ -78149,7 +78150,7 @@ Functione490f: ; e490f
 	ld a, [$cf63]
 	ld e, a
 	ld d, $0
-	ld hl, $491e
+	ld hl, Jumptable_e491e
 	add hl, de
 	add hl, de
 	ld a, [hli]
@@ -78206,29 +78207,29 @@ Functione495b: ; e495b (39:495b)
 	ld [hBGMapMode], a ; $ff00+$d4
 	ld a, $1
 	ld [rVBK], a ; $ff00+$4f
-	ld hl, $641d
+	ld hl, IntroTilemap001
 	ld de, $9800
 	call Functione54fa
 	ld a, $0
 	ld [rVBK], a ; $ff00+$4f
-	ld hl, $5f5d
+	ld hl, IntroUnownsGFX
 	ld de, $9000
 	call Functione54c2
-	ld hl, $634d
+	ld hl, IntroPulseGFX
 	ld de, $8000
 	call Functione54c2
-	ld hl, $63dd
+	ld hl, IntroTilemap002
 	ld de, $9800
 	call Functione54fa
 	ld a, [rSVBK] ; $ff00+$70
 	push af
 	ld a, $5
 	ld [rSVBK], a ; $ff00+$70
-	ld hl, $65ad
+	ld hl, UnknownDatae65ad
 	ld de, Unkn1Pals ; $d000
 	ld bc, $80
 	call CopyBytes
-	ld hl, $65ad
+	ld hl, UnknownDatae65ad
 	ld de, BGPals ; $d080
 	ld bc, $80
 	call CopyBytes
@@ -78282,26 +78283,26 @@ Functione49fd: ; e49fd (39:49fd)
 	ld [hBGMapMode], a ; $ff00+$d4
 	ld a, $1
 	ld [rVBK], a ; $ff00+$4f
-	ld hl, $5ecd
+	ld hl, IntroTilemap003
 	ld de, $9800
 	call Functione54fa
 	ld a, $0
 	ld [rVBK], a ; $ff00+$4f
-	ld hl, $5c7d
+	ld hl, IntroBackgroundGFX
 	ld de, $9000
 	call Functione54c2
-	ld hl, $5e6d
+	ld hl, IntroTilemap004
 	ld de, $9800
 	call Functione54fa
 	ld a, [rSVBK] ; $ff00+$70
 	push af
 	ld a, $5
 	ld [rSVBK], a ; $ff00+$70
-	ld hl, $5edd
+	ld hl, UnknownDatae5edd
 	ld de, Unkn1Pals ; $d000
 	ld bc, $80
 	call CopyBytes
-	ld hl, $5edd
+	ld hl, UnknownDatae5edd
 	ld de, BGPals ; $d080
 	ld bc, $80
 	call CopyBytes
@@ -78344,29 +78345,29 @@ Functione4a7a: ; e4a7a (39:4a7a)
 	ld [hLCDStatCustom], a ; $ff00+$c6
 	ld a, $1
 	ld [rVBK], a ; $ff00+$4f
-	ld hl, $647d
+	ld hl, IntroTilemap005
 	ld de, $9800
 	call Functione54fa
 	ld a, $0
 	ld [rVBK], a ; $ff00+$4f
-	ld hl, $5f5d
+	ld hl, IntroUnownsGFX
 	ld de, $9000
 	call Functione54c2
-	ld hl, $634d
+	ld hl, IntroPulseGFX
 	ld de, $8000
 	call Functione54c2
-	ld hl, $642d
+	ld hl, IntroTilemap006
 	ld de, $9800
 	call Functione54fa
 	ld a, [rSVBK] ; $ff00+$70
 	push af
 	ld a, $5
 	ld [rSVBK], a ; $ff00+$70
-	ld hl, $65ad
+	ld hl, UnknownDatae65ad
 	ld de, Unkn1Pals ; $d000
 	ld bc, $80
 	call CopyBytes
-	ld hl, $65ad
+	ld hl, UnknownDatae65ad
 	ld de, BGPals ; $d080
 	ld bc, $80
 	call CopyBytes
@@ -78438,32 +78439,32 @@ Functione4b3f: ; e4b3f (39:4b3f)
 	ld [hBGMapMode], a ; $ff00+$d4
 	ld a, $1
 	ld [rVBK], a ; $ff00+$4f
-	ld hl, $5ecd
+	ld hl, IntroTilemap003
 	ld de, $9800
 	call Functione54fa
-	ld hl, $592d
+	ld hl, IntroPichuWooperGFX
 	ld de, $8000
 	call Functione54c2
 	ld a, $0
 	ld [rVBK], a ; $ff00+$4f
-	ld hl, $555d
+	ld hl, IntroSuicuneRunGFX
 	ld de, $8000
 	call Functione54de
-	ld hl, $5c7d
+	ld hl, IntroBackgroundGFX
 	ld de, $9000
 	call Functione54c2
-	ld hl, $5e6d
+	ld hl, IntroTilemap004
 	ld de, $9800
 	call Functione54fa
 	ld a, [rSVBK] ; $ff00+$70
 	push af
 	ld a, $5
 	ld [rSVBK], a ; $ff00+$70
-	ld hl, $5edd
+	ld hl, UnknownDatae5edd
 	ld de, Unkn1Pals ; $d000
 	ld bc, $80
 	call CopyBytes
-	ld hl, $5edd
+	ld hl, UnknownDatae5edd
 	ld de, BGPals ; $d080
 	ld bc, $80
 	call CopyBytes
@@ -78592,26 +78593,26 @@ Functione4c86: ; e4c86 (39:4c86)
 	ld [hLCDStatCustom], a ; $ff00+$c6
 	ld a, $1
 	ld [rVBK], a ; $ff00+$4f
-	ld hl, $655d
+	ld hl, IntroTilemap007
 	ld de, $9800
 	call Functione54fa
 	ld a, $0
 	ld [rVBK], a ; $ff00+$4f
-	ld hl, $5f5d
+	ld hl, IntroUnownsGFX
 	ld de, $9000
 	call Functione54c2
-	ld hl, $649d
+	ld hl, IntroTilemap008
 	ld de, $9800
 	call Functione54fa
 	ld a, [rSVBK] ; $ff00+$70
 	push af
 	ld a, $5
 	ld [rSVBK], a ; $ff00+$70
-	ld hl, $65ad
+	ld hl, UnknownDatae65ad
 	ld de, Unkn1Pals ; $d000
 	ld bc, $80
 	call CopyBytes
-	ld hl, $65ad
+	ld hl, UnknownDatae65ad
 	ld de, BGPals ; $d080
 	ld bc, $80
 	call CopyBytes
@@ -78672,7 +78673,7 @@ Functione4cfa: ; e4cfa (39:4cfa)
 Functione4d36: ; e4d36 (39:4d36)
 	ld a, [$cf64]
 	ld c, a
-	ld hl, $4d54
+	ld hl, UnknownDatae4d54
 .asm_e4d3d
 	ld a, [hli]
 	cp $ff
@@ -78693,6 +78694,7 @@ Functione4d36: ; e4d36 (39:4d36)
 	ret
 ; e4d54 (39:4d54)
 
+UnknownDatae4d54: ; e4d54
 INCBIN "baserom.gbc",$e4d54,$e4d6d - $e4d54
 
 ; no known jump sources
@@ -78704,29 +78706,29 @@ Functione4d6d: ; e4d6d (39:4d6d)
 	ld [hBGMapMode], a ; $ff00+$d4
 	ld a, $1
 	ld [rVBK], a ; $ff00+$4f
-	ld hl, $5ecd
+	ld hl, IntroTilemap003
 	ld de, $9800
 	call Functione54fa
 	ld a, $0
 	ld [rVBK], a ; $ff00+$4f
-	ld hl, $555d
+	ld hl, IntroSuicuneRunGFX
 	ld de, $8000
 	call Functione54de
-	ld hl, $5c7d
+	ld hl, IntroBackgroundGFX
 	ld de, $9000
 	call Functione54c2
-	ld hl, $5e6d
+	ld hl, IntroTilemap004
 	ld de, $9800
 	call Functione54fa
 	ld a, [rSVBK] ; $ff00+$70
 	push af
 	ld a, $5
 	ld [rSVBK], a ; $ff00+$70
-	ld hl, $5edd
+	ld hl, UnknownDatae5edd
 	ld de, Unkn1Pals ; $d000
 	ld bc, $80
 	call CopyBytes
-	ld hl, $5edd
+	ld hl, UnknownDatae5edd
 	ld de, BGPals ; $d080
 	ld bc, $80
 	call CopyBytes
@@ -78803,22 +78805,22 @@ Functione4e40: ; e4e40 (39:4e40)
 	ld [hBGMapMode], a ; $ff00+$d4
 	ld a, $1
 	ld [rVBK], a ; $ff00+$4f
-	ld hl, $76ad
+	ld hl, IntroTilemap009
 	ld de, $9800
 	call Functione54fa
 	ld a, $0
 	ld [rVBK], a ; $ff00+$4f
-	ld hl, $6ded
+	ld hl, IntroSuicuneJumpGFX
 	ld de, $9000
 	call Functione54c2
-	ld hl, $785d
+	ld hl, IntroUnownBackGFX
 	ld de, $8000
 	call Functione54c2
-	ld de, $7a5d
+	ld de, UnknownDatae7a5d
 	ld hl, $8800
 	ld bc, $3901
 	call Request2bpp
-	ld hl, $764d
+	ld hl, IntroTilemap010
 	ld de, $9800
 	call Functione54fa
 	call Functione541b
@@ -78826,11 +78828,11 @@ Functione4e40: ; e4e40 (39:4e40)
 	push af
 	ld a, $5
 	ld [rSVBK], a ; $ff00+$70
-	ld hl, $77dd
+	ld hl, UnknownDatae77dd
 	ld de, Unkn1Pals ; $d000
 	ld bc, $80
 	call CopyBytes
-	ld hl, $77dd
+	ld hl, UnknownDatae77dd
 	ld de, BGPals ; $d080
 	ld bc, $80
 	call CopyBytes
@@ -78885,26 +78887,26 @@ Functione4ef5: ; e4ef5 (39:4ef5)
 	ld [hBGMapMode], a ; $ff00+$d4
 	ld a, $1
 	ld [rVBK], a ; $ff00+$4f
-	ld hl, $6d0d
+	ld hl, IntroTilemap011
 	ld de, $9800
 	call Functione54fa
 	ld a, $0
 	ld [rVBK], a ; $ff00+$4f
-	ld hl, $681d
+	ld hl, IntroSuicuneCloseGFX
 	ld de, $8800
 	call Functione54de
-	ld hl, $6c3d
+	ld hl, IntroTilemap012
 	ld de, $9800
 	call Functione54fa
 	ld a, [rSVBK] ; $ff00+$70
 	push af
 	ld a, $5
 	ld [rSVBK], a ; $ff00+$70
-	ld hl, $6d6d
+	ld hl, UnknownDatae6d6d
 	ld de, Unkn1Pals ; $d000
 	ld bc, $80
 	call CopyBytes
-	ld hl, $6d6d
+	ld hl, UnknownDatae6d6d
 	ld de, BGPals ; $d080
 	ld bc, $80
 	call CopyBytes
@@ -78951,22 +78953,22 @@ Functione4f7e: ; e4f7e (39:4f7e)
 	ld [hBGMapMode], a ; $ff00+$d4
 	ld a, $1
 	ld [rVBK], a ; $ff00+$4f
-	ld hl, $778d
+	ld hl, IntroTilemap013
 	ld de, $9800
 	call Functione54fa
 	ld a, $0
 	ld [rVBK], a ; $ff00+$4f
-	ld hl, $72ad
+	ld hl, IntroSuicuneBackGFX
 	ld de, $9000
 	call Functione54c2
-	ld hl, $5f5d
+	ld hl, IntroUnownsGFX
 	ld de, $8800
 	call Functione54c2
-	ld de, $7a5d
+	ld de, UnknownDatae7a5d
 	ld hl, $8ff0
 	ld bc, $3901
 	call Request2bpp
-	ld hl, $76bd
+	ld hl, IntroTilemap014
 	ld de, $9800
 	call Functione54fa
 	call Functione541b
@@ -78974,11 +78976,11 @@ Functione4f7e: ; e4f7e (39:4f7e)
 	push af
 	ld a, $5
 	ld [rSVBK], a ; $ff00+$70
-	ld hl, $77dd
+	ld hl, UnknownDatae77dd
 	ld de, Unkn1Pals ; $d000
 	ld bc, $80
 	call CopyBytes
-	ld hl, $77dd
+	ld hl, UnknownDatae77dd
 	ld de, BGPals ; $d080
 	ld bc, $80
 	call CopyBytes
@@ -79118,26 +79120,26 @@ Functione50bb: ; e50bb (39:50bb)
 	ld [hBGMapMode], a ; $ff00+$d4
 	ld a, $1
 	ld [rVBK], a ; $ff00+$4f
-	ld hl, $676d
+	ld hl, IntroTilemap015
 	ld de, $9800
 	call Functione54fa
 	ld a, $0
 	ld [rVBK], a ; $ff00+$4f
-	ld hl, $662d
+	ld hl, IntroCrystalUnownsGFX
 	ld de, $9000
 	call Functione54c2
-	ld hl, $672d
+	ld hl, IntroTilemap017
 	ld de, $9800
 	call Functione54fa
 	ld a, [rSVBK] ; $ff00+$70
 	push af
 	ld a, $5
 	ld [rSVBK], a ; $ff00+$70
-	ld hl, $679d
+	ld hl, UnknownDatae679d
 	ld de, Unkn1Pals ; $d000
 	ld bc, $80
 	call CopyBytes
-	ld hl, $679d
+	ld hl, UnknownDatae679d
 	ld de, BGPals ; $d080
 	ld bc, $80
 	call CopyBytes
@@ -79205,7 +79207,7 @@ Functione5152: ; e5152 (39:5152)
 
 ; known jump sources: e50a0 (39:50a0)
 Functione5172: ; e5172 (39:5172)
-	ld hl, $519c
+	ld hl, UnknownDatae519c
 	add l
 	ld l, a
 	ld a, $0
@@ -79236,6 +79238,7 @@ Functione5172: ; e5172 (39:5172)
 	ret
 ; e519c (39:519c)
 
+UnknownDatae519c: ; e519c
 INCBIN "baserom.gbc",$e519c,$e51dc - $e519c
 
 ; known jump sources: e49e7 (39:49e7), e4b12 (39:4b12), e4b28 (39:4b28)
@@ -79311,7 +79314,7 @@ Functione5223: ; e5223 (39:5223)
 	pop bc
 	pop hl
 	push hl
-	ld hl, $5288
+	ld hl, UnknownDatae5288
 	add hl, bc
 	add hl, bc
 	ld a, [hli]
@@ -79323,7 +79326,7 @@ Functione5223: ; e5223 (39:5223)
 	ld a, d
 	ld [hli], a
 	push hl
-	ld hl, $52c8
+	ld hl, UnknownDatae52c8
 	add hl, bc
 	add hl, bc
 	ld a, [hli]
@@ -79335,7 +79338,7 @@ Functione5223: ; e5223 (39:5223)
 	ld a, d
 	ld [hli], a
 	push hl
-	ld hl, $5308
+	ld hl, UnknownDatae5308
 	add hl, bc
 	add hl, bc
 	ld a, [hli]
@@ -79353,16 +79356,23 @@ Functione5223: ; e5223 (39:5223)
 	ret
 ; e5288 (39:5288)
 
-INCBIN "baserom.gbc",$e5288,$e5348 - $e5288
+UnknownDatae5288: ; e5288
+INCBIN "baserom.gbc",$e5288,$e52c8 - $e5288
+
+UnknownDatae52c8: ; e52c8
+INCBIN "baserom.gbc",$e52c8,$e5308 - $e52c8
+
+UnknownDatae5308: ; e5308
+INCBIN "baserom.gbc",$e5308,$e5348 - $e5308
 
 ; known jump sources: e5045 (39:5045)
 Functione5348: ; e5348 (39:5348)
 	and a
 	jr nz, .asm_e5350
-	ld hl, $538d
+	ld hl, UnknownDatae538d
 	jr .asm_e5353
 .asm_e5350
-	ld hl, $5395
+	ld hl, UnknownDatae5395
 .asm_e5353
 	ld a, [$cf65]
 	and $7
@@ -79401,7 +79411,11 @@ Functione5348: ; e5348 (39:5348)
 	ret
 ; e538d (39:538d)
 
-INCBIN "baserom.gbc",$e538d,$e539d - $e538d
+UnknownDatae538d: ; e538d
+INCBIN "baserom.gbc",$e538d,$e5395 - $e538d
+
+UnknownDatae5395: ; e5395
+INCBIN "baserom.gbc",$e5395,$e539d - $e5395
 
 ; known jump sources: e5145 (39:5145)
 Functione539d: ; e539d (39:539d)
@@ -79425,7 +79439,7 @@ Functione539d: ; e539d (39:539d)
 	ld a, $5
 	ld [rSVBK], a ; $ff00+$70
 	push hl
-	ld hl, $53db
+	ld hl, UnknownDatae53db
 	add hl, bc
 	ld a, [hli]
 	ld d, [hl]
@@ -79436,7 +79450,7 @@ Functione539d: ; e539d (39:539d)
 	ld a, d
 	ld [hli], a
 	push hl
-	ld hl, $53fb
+	ld hl, UnknownDatae53fb
 	add hl, bc
 	ld a, [hli]
 	ld d, [hl]
@@ -79453,7 +79467,11 @@ Functione539d: ; e539d (39:539d)
 	ret
 ; e53db (39:53db)
 
-INCBIN "baserom.gbc",$e53db,$e541b - $e53db
+UnknownDatae53db: ; e53db
+INCBIN "baserom.gbc",$e53db,$e53fb - $e53db
+
+UnknownDatae53fb: ; e53fb
+INCBIN "baserom.gbc",$e53fb,$e541b - $e53fb
 
 ; known jump sources: e4e84 (39:4e84), e4fc2 (39:4fc2)
 Functione541b: ; e541b (39:541b)
@@ -79528,7 +79546,7 @@ Functione546d: ; e546d (39:546d)
 	srl a
 	ld e, a
 	ld d, $0
-	ld hl, $5496
+	ld hl, UnknownDatae5496
 	add hl, de
 	ld a, [hli]
 	ld [$cf68], a
@@ -79543,6 +79561,7 @@ Functione546d: ; e546d (39:546d)
 	ret
 ; e5496 (39:5496)
 
+UnknownDatae5496: ; e5496
 INCBIN "baserom.gbc",$e5496,$e549e - $e5496
 
 ; known jump sources: e49c8 (39:49c8), e4a5e (39:4a5e), e4ae9 (39:4ae9), e4bc5 (39:4bc5), e4cec (39:4cec), e4dec (39:4dec), e4ebe (39:4ebe), e4f59 (39:4f59), e5003 (39:5003), e511f (39:511f)
@@ -79683,6 +79702,7 @@ IntroTilemap003: ; e5ecd
 INCBIN "gfx/intro/003.lz"
 ; e5edd
 
+UnknownDatae5edd: ; e5edd
 INCBIN "baserom.gbc", $e5edd, $e5f5d - $e5edd
 
 IntroUnownsGFX: ; e5f5d
@@ -79717,6 +79737,7 @@ IntroTilemap007: ; e655d
 INCBIN "gfx/intro/007.lz"
 ; e65ad
 
+UnknownDatae65ad: ; e65ad
 INCBIN "baserom.gbc", $e65ad, $e662d - $e65ad
 
 IntroCrystalUnownsGFX: ; e662d
@@ -79731,6 +79752,7 @@ IntroTilemap015: ; e676d
 INCBIN "gfx/intro/015.lz"
 ; e679d
 
+UnknownDatae679d: ; e679d
 INCBIN "baserom.gbc", $e679d, $e681d - $e679d
 
 IntroSuicuneCloseGFX: ; e681d
@@ -79745,6 +79767,7 @@ IntroTilemap011: ; e6d0d
 INCBIN "gfx/intro/011.lz"
 ; e6d6d
 
+UnknownDatae6d6d: ; e6d6d
 INCBIN "baserom.gbc", $e6d6d, $e6ded - $e6d6d
 
 IntroSuicuneJumpGFX: ; e6ded
@@ -79771,13 +79794,17 @@ IntroTilemap013: ; e778d
 INCBIN "gfx/intro/013.lz"
 ; e77dd
 
+UnknownDatae77dd: ; e77dd
 INCBIN "baserom.gbc", $e77dd, $e785d - $e77dd
 
 IntroUnownBackGFX: ; e785d
 INCBIN "gfx/intro/unown_back.lz"
 ; e799d
 
-INCBIN "baserom.gbc", $e799d, $e7a70 - $e799d
+INCBIN "baserom.gbc", $e799d, $e7a5d - $e799d
+
+UnknownDatae7a5d: ; e7a5d
+INCBIN "baserom.gbc", $e7a5d, $e7a70 - $e7a5d
 
 
 
