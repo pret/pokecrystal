@@ -41,9 +41,9 @@ BattleCommand54: ; 37588
 
 	ld a, $1
 	ld [$c689], a
-	call Function0x37e01
+	call AnimateCurrentMove
 	ld a, $2
-	call Function0x36532
+	call Function36532
 	call SwitchTurn
 	call BattleCommand8d
 	call ResetMiss
@@ -71,17 +71,17 @@ BattleCommand54: ; 37588
 	jr nz, .failed
 
 	set 1, [hl]
-	call Function0x37e01
+	call AnimateCurrentMove
 	ld hl, GetHalfMaxHP
-	call CallBankF
+	call CallBattleCore
 	ld hl, Function3cc3f
-	call CallBankF
+	call CallBattleCore
 	call UpdateUserInParty
 	ld hl, PutACurseText
 	jp StdBattleTextBox
 
 .failed
-	call Function0x37e77
+	call AnimateFailedMove
 	jp PrintButItFailed
 
 
@@ -91,7 +91,7 @@ BattleCommand54: ; 37588
 
 	ld b, $8 ; ABILITY
 	call GetStatName
-	call Function0x37e77
+	call AnimateFailedMove
 	ld hl, WontRiseAnymoreText
 	jp StdBattleTextBox
 ; 37618

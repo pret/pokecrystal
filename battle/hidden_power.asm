@@ -1,75 +1,76 @@
-GetHiddenPower: ; fbced
-; Override Hidden Power's type and power based on the actor's DVs.
+HiddenPowerDamage: ; fbced
+; Override Hidden Power's type and power based on the user's DVs.
 
 	ld hl, BattleMonDVs
 	ld a, [hBattleTurn]
 	and a
-	jr z, .GotDVs
+	jr z, .got_dvs
 	ld hl, EnemyMonDVs
-.GotDVs
+.got_dvs
 
 
 ; Power:
 
-; Take the top bit from...
+; Take the top bit from each stat
 
-; Atk
+	; Attack
 	ld a, [hl]
 	swap a
 	and 8
+
+	; Defense
 	ld b, a
-; Def
 	ld a, [hli]
 	and 8
 	srl a
 	or b
+
+	; Speed
 	ld b, a
-; Spd
 	ld a, [hl]
 	swap a
 	and 8
 	srl a
 	srl a
 	or b
+
+	; Special
 	ld b, a
-; Spc
 	ld a, [hl]
 	and 8
 	srl a
 	srl a
 	srl a
 	or b
-	ld b, a
 
-; * 5
+; Multiply by 5
+	ld b, a
 	add a
 	add a
 	add b
-	ld b, a
 
-; + (Spc & 3)
+; Add Special & 3
+	ld b, a
 	ld a, [hld]
 	and 3
 	add b
 
-; / 2
+; Divide by 2 and add 30 + 1
 	srl a
-
-; + 30
 	add 30
-; + 1
 	inc a
+
 	ld d, a
 
 
 ; Type:
 
-; Def & 3
+	; Def & 3
 	ld a, [hl]
 	and 3
 	ld b, a
 
-; + (Atk & 3) << 2
+	; + (Atk & 3) << 2
 	ld a, [hl]
 	and 3 << 4
 	swap a
@@ -80,27 +81,30 @@ GetHiddenPower: ; fbced
 ; Skip Normal
 	inc a
 
-; Skip type 6 (unused)
-	cp 6
-	jr c, .GotType
+; Skip Bird
+	cp BIRD
+	jr c, .done
 	inc a
 
-; Skip unused types between Steel and Fire
-	cp STEEL + 1
-	jr c, .GotType
-	add FIRE - (STEEL + 1)
+; Skip unused types
+	cp UNUSED_TYPES
+	jr c, .done
+	add SPECIAL - UNUSED_TYPES
 
+.done
 
-.GotType
+; Overwrite the current move type.
 	push af
 	ld a, BATTLE_VARS_MOVE_TYPE
 	call _GetBattleVar
 	pop af
 	ld [hl], a
 
+; Get the rest of the damage formula variables
+; based on the new type, but keep base power.
 	ld a, d
 	push af
-	callba BattleCommand06
+	callba BattleCommand06 ; damagestats
 	pop af
 	ld d, a
 	ret

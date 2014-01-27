@@ -10,7 +10,7 @@ BattleCommand5a: ; 3766f
 	call _GetBattleVar
 	set SUBSTATUS_ENDURE, [hl]
 
-	call Function0x37e01
+	call AnimateCurrentMove
 
 	ld hl, BracedItselfText
 	jp StdBattleTextBox

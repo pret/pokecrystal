@@ -14,11 +14,11 @@ BattleCommand57: ; 376a0
 	jr nz, .failed
 
 	set SUBSTATUS_IDENTIFIED, [hl]
-	call Function0x37e01
+	call AnimateCurrentMove
 	ld hl, IdentifiedText
 	jp StdBattleTextBox
 
 .failed
-	jp Function0x37354
+	jp Function37354
 ; 376c2
 

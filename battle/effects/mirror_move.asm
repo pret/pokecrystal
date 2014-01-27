@@ -1,7 +1,7 @@
 BattleCommand1b: ; 373c9
 ; mirrormove
 
-	call Function0x372d8
+	call Function372d8
 
 	ld a, BATTLE_VARS_MOVE
 	call _GetBattleVar
@@ -15,7 +15,7 @@ BattleCommand1b: ; 373c9
 	jr nz, .use
 
 .failed
-	call Function0x37e77
+	call AnimateFailedMove
 
 	ld hl, MirrorMoveFailedText
 	call StdBattleTextBox
@@ -37,7 +37,7 @@ BattleCommand1b: ; 373c9
 	call GetMoveData
 	call GetMoveName
 	call CopyName1
-	call Function0x34548
+	call Function34548
 	jr nz, .done
 
 	ld a, [$c689]

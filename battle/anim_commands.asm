@@ -1430,7 +1430,7 @@ Functioncc8d3: ; cc8d3
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
-	ld hl, $506f
+	ld hl, BattleAnimations
 	add hl, de
 	add hl, de
 	call Function3ae1

@@ -5271,10 +5271,10 @@ Function6520: ; 6520
 	push hl
 	push de
 	dec a
-	ld hl, $5b00
-	ld bc, $0007
+	ld hl, Moves + MOVE_PP
+	ld bc, Move2 - Move1
 	call AddNTimes
-	ld a, $10
+	ld a, BANK(Moves)
 	call GetFarByte
 	pop de
 	pop hl
@@ -7793,7 +7793,7 @@ PredefPointers: ; 856b
 	dwb Function5108b, BANK(Function5108b)
 	dwb Function5120d, BANK(Function5120d)
 	dwb DecompressPredef, BANK(DecompressPredef) ; $40
-	dwb Function0x347d3, BANK(Function0x347d3)
+	dwb Function347d3, BANK(Function347d3)
 	dwb Functionfb908, BANK(Functionfb908)
 	dwb Functionfb877, BANK(Functionfb877)
 	dwb Functiond0000, BANK(Functiond0000)
@@ -11050,7 +11050,7 @@ _CheckTossableItem: ; d427
 	ld a, 4
 	call GetItemAttr
 	bit 7, a
-	jr nz, Function0xd47f
+	jr nz, Functiond47f
 	and a
 	ret
 ; d432
@@ -11060,7 +11060,7 @@ CheckSelectableItem: ; d432
 	ld a, 4
 	call GetItemAttr
 	bit 6, a
-	jr nz, Function0xd47f
+	jr nz, Functiond47f
 	and a
 	ret
 ; d43d
@@ -11120,7 +11120,7 @@ GetItemAttr: ; d460
 	ret
 ; d47f
 
-Function0xd47f: ; d47f
+Functiond47f: ; d47f
 	ld a, 1
 	ld [$d142], a
 	scf
@@ -35591,7 +35591,7 @@ INCBIN "baserom.gbc",$2c4d7,$2c4e3 - $2c4d7
 	cp $3
 	jr z, .asm_2c541
 	jr Function2c545
-	callba Function0x377f5
+	callba Function377f5
 	jr c, .asm_2c541
 	ld a, [PlayerSubStatus1] ; $c668
 	bit 7, a
@@ -36789,7 +36789,7 @@ ClearBattleRAM: ; 2ef18
 	xor a
 	call ByteFill
 
-	callab Function3d867
+	callab ResetEnemyStatLevels
 
 	call Function1fbf
 
@@ -36913,7 +36913,7 @@ Function38041: ; 38041
 ; 38045
 
 Function38045: ; 38045
-	callab Function0x34941
+	callab Function34941
 	ld a, [$c717]
 	and $f0
 	jp z, Function38041
@@ -36946,7 +36946,7 @@ Function38045: ; 38045
 ; 38083
 
 Function38083: ; 38083
-	callab Function0x34941
+	callab Function34941
 	ld a, [$c717]
 	and $f0
 	jp z, Function38041
@@ -36979,7 +36979,7 @@ Function38083: ; 38083
 ; 380c1
 
 Function380c1: ; 380c1
-	callab Function0x34941
+	callab Function34941
 	ld a, [$c717]
 	and $f0
 	jp z, Function38041
@@ -37438,8 +37438,8 @@ Function3846c: ; 3846c
 .asm_384a3
 	ld a, $1
 	ld [$d264], a
-	callab Function3d834
-	callab Function3d867
+	callab NewEnemyMonStatus
+	callab ResetEnemyStatLevels
 	ld hl, PlayerSubStatus1
 	res 7, [hl]
 	callba Function3d4e1
@@ -37555,7 +37555,7 @@ Function38557
 	push bc
 	call Function38571
 	pop bc
-	callba Function0x361ef
+	callba Function361ef
 	jp Function38387
 ; 38568
 
@@ -37807,10 +37807,10 @@ Function39806: ; 39806
 	push hl
 	push bc
 	dec a
-	ld hl, $5b00
-	ld bc, $0007
+	ld hl, Moves + MOVE_PP
+	ld bc, Move2 - Move1
 	call AddNTimes
-	ld a, $10
+	ld a, BANK(Moves)
 	call GetFarByte
 	pop bc
 	pop hl
@@ -83077,11 +83077,11 @@ Function100bc2: ; 100bc2
 	ret
 
 .asm_100c63
-	ld hl, $4c5b
+	ld hl, BattleText_0x80c5b
 	jr .asm_100c6b
 
 .asm_100c68
-	ld hl, $4c39
+	ld hl, BattleText_0x80c39
 
 .asm_100c6b
 	call StdBattleTextBox
@@ -86704,7 +86704,7 @@ UsedMoveText: ; 105db9
 	
 ; check actor ????
 	push hl
-	callba Function0x34548
+	callba Function34548
 	pop hl
 	jr nz, .grammar
 	
