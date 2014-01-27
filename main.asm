@@ -9853,7 +9853,7 @@ Functioncc78: ; cc78
 	ld d, a
 	ld a, [$dcb3]
 	ld e, a
-	callba Function15344
+	callba IsSpawnPoint
 	jr nc, .asm_cc99
 	ld a, c
 	ld [$d001], a
@@ -17429,7 +17429,7 @@ Function12527: ; 12527
 	ld d, a
 	ld a, [$dcb3]
 	ld e, a
-	callba Function15344
+	callba IsSpawnPoint
 	ld a, c
 	jr c, .asm_12539
 	xor a
@@ -23147,7 +23147,7 @@ SpawnPoints: ; 0x152ab
 	db -1, -1, -1, -1
 
 
-Function1531f: ; 1531f
+LoadSpawnPoint: ; 1531f
 	push hl
 	push de
 	ld a, [$d001]
@@ -23174,7 +23174,7 @@ Function1531f: ; 1531f
 ; 15344
 
 
-Function15344: ; 15344
+IsSpawnPoint: ; 15344
 	ld hl, SpawnPoints
 	ld c, 0
 .asm_15349
@@ -23206,69 +23206,364 @@ Function15344: ; 15344
 ; 15363
 
 
-Function15363: ; 15363
+RunMapSetupScript: ; 15363
 	ld a, [$ff9f]
 	and $f
 	dec a
 	ld c, a
-	ld b, $0
-	ld hl, $5377
+	ld b, 0
+	ld hl, MapSetupScripts
 	add hl, bc
 	add hl, bc
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	call Function1541d
+	call ReadMapSetupScript
 	ret
 ; 15377
 
-INCBIN "baserom.gbc",$15377,$1541d - $15377
+MapSetupScripts: ; 15377
+	dw MapSetupScript1
+	dw MapSetupScript2
+	dw MapSetupScript3
+	dw MapSetupScript4
+	dw MapSetupScript5
+	dw MapSetupScript6
+	dw MapSetupScript7
+	dw MapSetupScript8
+	dw MapSetupScript9
+	dw MapSetupScript10
+	dw MapSetupScript11
+	dw MapSetupScript12
+; 1538f
 
 
-Function1541d: ; 1541d
-.asm_1541d
+; Command descriptions from Condensation water's scripting compendium.
+	const_def
+	const map_lcd_on              ; 00 = Turn LCD on
+	const map_lcd_off             ; 01 = Turn LCD off
+	const map_sound_off           ; 02 = Turn speakers off
+	const map_music               ; 03 = Music check for current map/ special check for bug catcher contest
+	const map_start_music         ; 04 = Start map music anew
+	const map_fade_music          ; 05 = Music check for current map / special check for Bug Contest/ music with FadeOut (old) and FadeIn
+	const map_fade                ; 06 = Fade out music + screen
+	const map_bike_music          ; 07 = If HIRO is on bike = bike music, else play map music
+	const map_music_force         ; 08 = Play map music
+	const map_max_volume          ; 09 = Turn music to highest volume
+	const map_load_blocks         ; 0A = Write map data to MapRAM
+	const map_connection_blocks   ; 0B = Compute map’s connection pars and write into MapRAM
+	const map_save_screen         ; 0C = Write current part of map into temporary memory
+	const map_buffer_screen       ; 0D = Write current part of map into read-from memory
+	const map_load_graphics       ; 0E = Write tileset header to ram/ load tileset/ load sprite tiles/ load special tiles
+	const map_load_tileset_header ; 0F = Write tileset header to ram
+	const map_time_of_day         ; 10 = Compute time of day/ Update screen
+	const map_palettes            ; 11 = Load map palettes
+	const map_wildmons            ; 12 = Load probabilities for wild Pokémon battles
+	const map_sprites             ; 13 = Delete sprite data and draw new sprites
+	const map_change_callback     ; 14 = Check 2nd script header for 05 and 03 callbacks
+	const map_start_callback      ; 15 = Check 2nd script header for 03 callbacks
+	const map_load_objects        ; 16 = Analyze people data anew and check 2nd script header for 02 callbacks
+	const map_load_spawn          ; 17 = Writes arrival data for arrival by flying/Blackout from table 05:5319 to ram
+	const map_load_connection     ; 18 = Writes arrival data for entering a map by connection to ram
+	const map_load_warp           ; 19 = Write warp data to ram when entering warp
+	const map_attributes          ; 1A = Load complete map data (primary, secondary, event, script headers)
+	const map_attributes_2        ; 1B = Same as 1A, but some settings aren’t loaded new from the rom, such as hide function of the people events
+	const map_clear_bg_palettes   ; 1C = Fill palette data with FFFF (=white)
+	const map_fade_out_palettes   ; 1D = All BG pallet color are converted to 0|0 (Pal0, Col0), all sprite colors to x|0 (FadeOut)
+	const map_fade_in_palettes    ; 1E = Palette FadeIn
+	const map_anchor_screen       ; 1F = Compute position of upper left-most block visible on screen
+	const map_warp_face           ; 20 = Position computation when HIRO leaves a warp
+	const map_face_down           ; 21 = Set HIRO’s facing to “down”
+	const map_spawn_coord         ; 22 = Prepare HIRO data for arrival by flight
+	const map_player_coord        ; 23 = Compute HIRO x/y data anew
+	const map_prolong_sprites     ; 24 = Prolong old sprites before removing them
+	const map_delay_sprites       ; 25 = Delay rendering new sprites
+	const map_update_roam         ; 26 = Compute chances to meet Raikou, Entei or Suicune
+	const map_keep_roam           ; 27 = Recover chances to meet Raikou, Entei or Suicune
+	const map_fade_out_music      ; 28 = Temporarily stop music playing
+	const map_animations_on       ; 29 = Activate animations
+	const map_animations_off      ; 2A = Deactivate animations
+	const map_keep_palettes       ; 2B = Recover all palettes
+	const map_text_scroll_off     ; 2C = Turn off text scroll (for town name overlays)
+	const map_stop_script         ; 2D = Deactivate code prolonging
+
+
+MapSetupScript4: ; 1538f
+	db map_prolong_sprites
+
+MapSetupScript12: ; 15390
+	db map_fade_out_palettes
+	db map_keep_roam
+
+MapSetupScript1: ; 15392
+	db map_lcd_off
+	db map_sound_off
+	db map_load_spawn
+	db map_attributes
+	db map_change_callback
+	db map_spawn_coord
+	db map_player_coord
+	db map_anchor_screen
+	db map_load_blocks
+	db map_buffer_screen
+	db map_load_graphics
+	db map_time_of_day
+	db map_load_objects
+	db map_lcd_on
+	db map_palettes
+	db map_face_down
+	db map_sprites
+	db map_bike_music
+	db map_max_volume
+	db map_fade_in_palettes
+	db map_animations_on
+	db map_wildmons
+	db -1
+
+MapSetupScript11: ; 153a9
+	db map_load_spawn
+	db map_attributes
+	db map_change_callback
+	db map_spawn_coord
+	db map_player_coord
+	db map_anchor_screen
+	db map_load_blocks
+	db map_buffer_screen
+	db map_lcd_off
+	db map_load_graphics
+	db map_time_of_day
+	db map_fade_out_music
+	db map_lcd_on
+	db map_load_objects
+	db map_palettes
+	db map_face_down
+	db map_sprites
+	db map_fade_music
+	db map_fade_in_palettes
+	db map_animations_on
+	db map_wildmons
+	db -1
+
+MapSetupScript7: ; 153bf
+	db map_animations_off
+	db map_load_connection
+	db map_attributes
+	db map_change_callback
+	db map_player_coord
+	db map_load_blocks
+	db map_load_tileset_header
+	db map_save_screen
+	db map_load_objects
+	db map_fade_music
+	db map_palettes
+	db map_stop_script
+	db map_keep_palettes
+	db map_wildmons
+	db map_update_roam
+	db map_animations_on
+	db -1
+
+MapSetupScript6: ; 153d0
+	db map_prolong_sprites
+
+MapSetupScript5: ; 153d1
+	db map_fade_out_palettes
+
+MapSetupScript9: ; 153d2
+	db map_load_warp
+	db map_attributes
+	db map_warp_face
+	db map_change_callback
+	db map_player_coord
+	db map_load_blocks
+	db map_buffer_screen
+	db map_lcd_off
+	db map_load_graphics
+	db map_time_of_day
+	db map_fade_out_music
+	db map_lcd_on
+	db map_load_objects
+	db map_palettes
+	db map_sprites
+	db map_fade_music
+	db map_fade_in_palettes
+	db map_animations_on
+	db map_wildmons
+	db map_update_roam
+	db -1
+
+MapSetupScript3: ; 153e7
+	db map_fade
+	db map_clear_bg_palettes
+	db map_lcd_off
+	db map_sound_off
+	db map_load_blocks
+	db map_connection_blocks
+	db map_load_graphics
+	db map_time_of_day
+	db map_lcd_on
+	db map_palettes
+	db map_sprites
+	db map_music_force
+	db map_fade_in_palettes
+	db map_animations_on
+	db map_wildmons
+	db -1
+
+MapSetupScript8: ; 153f7
+	db map_fade
+	db map_lcd_off
+	db map_sound_off
+	db map_change_callback
+	db map_load_blocks
+	db map_buffer_screen
+	db map_load_graphics
+	db map_time_of_day
+	db map_lcd_on
+	db map_palettes
+	db map_sprites
+	db map_bike_music
+	db map_fade_in_palettes
+	db map_animations_on
+	db map_wildmons
+	db map_text_scroll_off
+	db -1
+
+MapSetupScript2: ; 15408
+	db map_lcd_off
+	db map_sound_off
+	db map_attributes_2
+	db map_anchor_screen
+	db map_start_callback
+	db map_load_blocks
+	db map_connection_blocks
+	db map_buffer_screen
+	db map_load_graphics
+	db map_time_of_day
+	db map_lcd_on
+	db map_palettes
+	db map_sprites
+	db map_bike_music
+	db map_fade_in_palettes
+	db map_animations_on
+	db map_wildmons
+	db -1
+
+MapSetupScript10: ; 1541a
+	db map_load_blocks
+	db map_connection_blocks
+	db -1
+
+
+ReadMapSetupScript: ; 1541d
+.loop
 	ld a, [hli]
-	cp $ff
+	cp -1
 	ret z
+
 	push hl
+
 	ld c, a
-	ld b, $0
-	ld hl, $5440
+	ld b, 0
+	ld hl, MapSetupCommands
 	add hl, bc
 	add hl, bc
 	add hl, bc
+
+	; bank
 	ld b, [hl]
 	inc hl
+
+	; address
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
+
+	; Bit 7 of the bank indicates a parameter.
+	; This is left unused.
 	bit 7, b
-	jr z, .asm_15439
+	jr z, .go
+
 	pop de
 	ld a, [de]
 	ld c, a
 	inc de
 	push de
 
-.asm_15439
+.go
 	ld a, b
 	and $7f
 	rst FarCall
+
 	pop hl
-	jr .asm_1541d
+	jr .loop
 ; 15440
 
-INCBIN "baserom.gbc",$15440,$154cf - $15440
+MapSetupCommands: ; 15440
+	dbw BANK(EnableLCD), EnableLCD
+	dbw BANK(DisableLCD), DisableLCD
+	dbw BANK(SoundRestart), SoundRestart
+	dbw BANK(Function3cdf), Function3cdf
+	dbw BANK(Function3d47), Function3d47
+	dbw BANK(Function3cbc), Function3cbc
+	dbw BANK(Function15574), Function15574
+	dbw BANK(Function3d03), Function3d03
+	dbw BANK(Function15587), Function15587
+	dbw BANK(Function3cae), Function3cae
+	dbw BANK(Function24cd), Function24cd
+	dbw BANK(Function28e3), Function28e3
+	dbw BANK(Function289d), Function289d
+	dbw BANK(Function2879), Function2879
+	dbw BANK(Function1047cf), Function1047cf
+	dbw BANK(LoadTilesetHeader), LoadTilesetHeader
+	dbw BANK(Function104750), Function104750
+	dbw BANK(Function1047eb), Function1047eb
+	dbw BANK(Function29ff8), Function29ff8
+	dbw BANK(Function1047f0), Function1047f0
+	dbw BANK(Function1045b0), Function1045b0
+	dbw BANK(Function1045c4), Function1045c4
+	dbw BANK(Function154d7), Function154d7
+	dbw BANK(LoadSpawnPoint), LoadSpawnPoint
+	dbw BANK(EnterMapConnection), EnterMapConnection
+	dbw BANK(Function1046c6), Function1046c6
+	dbw BANK(Function2309), Function2309
+	dbw BANK(Function2317), Function2317
+	dbw BANK(WhiteBGMap), WhiteBGMap
+	dbw BANK(Function8c084), Function8c084
+	dbw BANK(Function8c079), Function8c079
+	dbw BANK(Function10486d), Function10486d
+	dbw BANK(Function248a), Function248a
+	dbw BANK(Function57d9), Function57d9
+	dbw BANK(Function8029), Function8029
+	dbw BANK(Function80b8), Function80b8
+	dbw BANK(Function154eb), Function154eb
+	dbw BANK(Function154f1), Function154f1
+	dbw BANK(Function2a30d), Function2a30d
+	dbw BANK(Function2a394), Function2a394
+	dbw BANK(Function15567), Function15567
+	dbw BANK(Function154cf), Function154cf
+	dbw BANK(Function154d3), Function154d3
+	dbw BANK(Function1556d), Function1556d
+	dbw BANK(Function154ca), Function154ca
+	dbw BANK(Functionb8000), Functionb8000
+; 154ca
+
+
+Function154ca: ; 154ca
+	xor a
+	ld [$c2d7], a
+	ret
+; 154cf
 
 Function154cf: ; 154cf
 	ld a, $1
-	ld [$FF00+$de], a
+	ld [$ffde], a
 	ret
 ; 154d3
 
 Function154d3: ; 154d3
 	xor a
-	ld [$FF00+$de], a
+	ld [$ffde], a
 	ret
 ; 154d7
 
@@ -23368,19 +23663,30 @@ Function1554e: ; 1554e (5:554e)
 .asm_15565
 	and a
 	ret
+; 15567
+
+Function15567: ; 15567
 	ld a, $6
 	call Function3cb4
 	ret
+; 1556d
+
+Function1556d: ; 1556d
 	callba _UpdateTimePals
 	ret
-	ld e, $0
+
+Function15574: ; 15574
+	ld e, 0
 	ld a, [MusicFadeIDLo] ; $c2a9
-	ld d, $0
+	ld d, 0
 	ld a, [MusicFadeIDHi] ; $c2aa
 	ld a, $4
 	ld [MusicFade], a ; $c2a7
 	call Function4b6
 	ret
+; 15587
+
+Function15587: ; 15587
 	ld a, [PlayerState] ; $d95d
 	cp $1
 	jr nz, .asm_15596
@@ -23390,6 +23696,8 @@ Function1554e: ; 1554e (5:554e)
 .asm_15596
 	call Function3d2f
 	ret
+; 1559a
+
 
 Function1559a: ; 1559a
 	call Function15650
@@ -34010,6 +34318,8 @@ Function29f47: ; 29f47
 ; 29f54
 
 INCBIN "baserom.gbc",$29f54,$29ff8 - $29f54
+
+Function29ff8: ; 29ff8
 	call Function2a205
 	jr c, .asm_2a006
 	ld hl, $d25a
@@ -34674,7 +34984,7 @@ Function2a355: ; 2a355
 	ld l, e
 	call Random
 	and $1f
-	jr z, asm_2a3cd
+	jr z, Function2a3cd
 	and $3
 	cp [hl]
 	jr nc, .asm_2a36e
@@ -34702,36 +35012,37 @@ Function2a394: ; 2a394
 	ld a, [RoamMon1MapGroup]
 	cp $ff
 	jr z, .asm_2a3a6
-	call asm_2a3cd
+	call Function2a3cd
 	ld a, b
 	ld [RoamMon1MapGroup], a
 	ld a, c
 	ld [RoamMon1MapNumber], a
-
 .asm_2a3a6
+
 	ld a, [RoamMon2MapGroup]
 	cp $ff
 	jr z, .asm_2a3b8
-	call asm_2a3cd
+	call Function2a3cd
 	ld a, b
 	ld [RoamMon2MapGroup], a
 	ld a, c
 	ld [RoamMon2MapNumber], a
-
 .asm_2a3b8
+
 	ld a, [RoamMon3MapGroup]
 	cp $ff
 	jr z, .asm_2a3ca
-	call asm_2a3cd
+	call Function2a3cd
 	ld a, b
 	ld [RoamMon3MapGroup], a
 	ld a, c
 	ld [RoamMon3MapNumber], a
-
 .asm_2a3ca
+
 	jp Function2a3f6
 
-asm_2a3cd
+Function2a3cd: ; 2a3cd
+.asm_2a3cd
 	ld hl, $640f
 .asm_2a3d0
 	call Random
@@ -34756,7 +35067,7 @@ asm_2a3cd
 	inc hl
 	ld a, [MapNumber]
 	cp [hl]
-	jr z, asm_2a3cd
+	jr z, .asm_2a3cd
 	dec hl
 
 .asm_2a3f2
@@ -71101,6 +71412,7 @@ Functionb800a: ; b800a
 	ld [$c2d9], a
 	call Functionb8089
 	jr z, .asm_b8024
+
 	call GetMapPermission
 	cp $6
 	jr nz, .asm_b8029
@@ -71114,12 +71426,15 @@ Functionb800a: ; b800a
 	bit 1, [hl]
 	res 1, [hl]
 	jr nz, .asm_b8054
+
 	call Functionb8064
 	jr z, .asm_b8054
+
 	ld a, [$c2d9]
 	ld [$c2d8], a
 	call Functionb8070
 	jr z, .asm_b8054
+
 	ld a, $3c
 	ld [$c2da], a
 	call Functionb80c6
@@ -71149,19 +71464,19 @@ Functionb8064: ; b8064
 ; b8070
 
 Functionb8070: ; b8070
-	cp $ff
+	cp -1
 	ret z
-	cp $0
+	cp SPECIAL_MAP
 	ret z
-	cp $11
+	cp RADIO_TOWER
 	ret z
-	cp $46
+	cp LAV_RADIO_TOWER
 	ret z
-	cp $3b
+	cp UNDERGROUND
 	ret z
-	cp $5a
+	cp INDIGO_PLATEAU
 	ret z
-	cp $44
+	cp POWER_PLANT
 	ret z
 	ld a, $1
 	and a
@@ -71170,12 +71485,12 @@ Functionb8070: ; b8070
 
 Functionb8089: ; b8089
 	ld a, [MapGroup]
-	cp $a
+	cp GROUP_ROUTE_35_NATIONAL_PARK_GATE
 	ret nz
 	ld a, [MapNumber]
-	cp $f
+	cp MAP_ROUTE_35_NATIONAL_PARK_GATE
 	ret z
-	cp $11
+	cp MAP_ROUTE_36_NATIONAL_PARK_GATE
 	ret
 ; b8098
 
@@ -81872,7 +82187,7 @@ Function1002c9: ; 1002c9
 Function1002dc: ; 1002dc
 	ld a, $f8
 	ld [$ff9f], a
-	callba Function15363
+	callba RunMapSetupScript
 	xor a
 	ld [$ff9f], a
 	call Functione51
@@ -84518,9 +84833,11 @@ Function10433a: ; 10433a (41:433a)
 	jr nz, .asm_10433c
 	ret
 
+
 INCBIN "gfx/ow/misc.2bpp"
 
 
+Function1045b0: ; 1045b0
 	call Function210f
 	call Function2e50
 	call Function2e5d
@@ -84528,6 +84845,8 @@ INCBIN "gfx/ow/misc.2bpp"
 	call Function2e56
 	ld a, $5
 	call Function263b
+
+Function1045c4: ; 1045c4
 	callba Function97df9
 	ld a, $3
 	call Function263b
@@ -84683,7 +85002,7 @@ EnteredConnection: ; 1046c4
 	ret
 ; 1046c6
 
-
+Function1046c6: ; 1046c6
 	call Function1046df
 	call Function104718
 	ld a, [$d146]
@@ -84752,6 +85071,8 @@ Function104718: ; 104718 (41:4718)
 	ld a, [$d14b]
 	ld [$dcb3], a
 	ret
+
+Function104750: ; 104750
 	ld hl, VramState ; $d0ed
 	res 6, [hl]
 	ld a, $1
@@ -84820,6 +85141,8 @@ Function1047b4: ; 1047b4 (41:47b4)
 	ld a, $0
 	ld [rVBK], a ; $ff00+$4f
 	ret
+
+Function1047cf: ; 1047cf
 	call LoadTilesetHeader
 	call Function2821
 	xor a
@@ -84836,6 +85159,7 @@ Function1047eb: ; 1047eb
 	jp GetSGBLayout
 ; 1047f0
 
+Function1047f0: ; 1047f0
 	call ClearSprites
 	callba Functionb8000
 	call Function2914

@@ -134,7 +134,7 @@ EnterMap: ; 9673e
 	ld [$d453], a
 	ld [$d454], a
 	call Function968d1
-	callba Function15363
+	callba RunMapSetupScript
 	call Function966cb
 
 	ld a, [$ff9f]
