@@ -77171,8 +77171,8 @@ _OptionsMenu: ; e41d0
 	call PlaceString
 	xor a
 	ld [$cf63], a
-	ld c, $6
-.asm_e41f3
+	ld c, $6 ;number of items on the menu minus 1 (for cancel)
+.asm_e41f3 ;this loop will display the settings of each option when the menu is opened
 	push bc
 	xor a
 	ld [$ffa9], a
