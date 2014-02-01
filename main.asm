@@ -20391,13 +20391,13 @@ SECTION "bank5", ROMX, BANK[$5]
 
 Function14000: ; 14000
 	ld a, $a
-	ld [$0000], a
+	ld [MBC3SRamEnable], a
 	call LatchClock
 	ld a, $c
-	ld [Function14000], a
-	ld a, [$a000]
+	ld [MBC3SRamBank], a
+	ld a, [MBC3RTC]
 	set 6, a
-	ld [$a000], a
+	ld [MBC3RTC], a
 	call CloseSRAM
 	ret
 ; 14019
@@ -20406,13 +20406,13 @@ Function14000: ; 14000
 
 Function14019: ; 14019
 	ld a, $a
-	ld [$0000], a
+	ld [MBC3SRamEnable], a
 	call LatchClock
 	ld a, $c
-	ld [Function14000], a
-	ld a, [$a000]
+	ld [MBC3SRamBank], a
+	ld a, [MBC3RTC]
 	res 6, a
-	ld [$a000], a
+	ld [MBC3RTC], a
 	call CloseSRAM
 	ret
 ; 14032
@@ -20472,14 +20472,14 @@ Function14056: ; 14056
 
 Function1406a: ; 1406a
 	ld a, $a
-	ld [$0000], a
+	ld [MBC3SRamEnable], a
 	call LatchClock
-	ld hl, $a000
+	ld hl, MBC3RTC
 	ld a, $c
-	ld [Function14000], a
+	ld [MBC3SRamBank], a
 	res 7, [hl]
 	ld a, $0
-	ld [Function14000], a
+	ld [MBC3SRamBank], a
 	xor a
 	ld [$ac60], a
 	call CloseSRAM
@@ -88577,7 +88577,7 @@ INCBIN "baserom.gbc",$114000,$114243 - $114000
 
 Function114243: ; 114243
 	ld a, $a
-	ld [$0000], a
+	ld [MBC3SRamEnable], a
 	ld a, [$ff8c]
 	push af
 	push de
