@@ -41627,7 +41627,7 @@ Function44333: ; 44333
 	rlca
 	rlca
 	and $3
-	ld hl, $4351
+	ld hl, PokedexEntryBanks
 	ld d, $0
 	ld e, a
 	add hl, de
@@ -41637,7 +41637,14 @@ Function44333: ; 44333
 	ret
 ; 44351
 
-INCBIN "baserom.gbc",$44351,$44378 - $44351
+PokedexEntryBanks: ; 44351
+	db BANK(PokedexEntries1)
+	db BANK(PokedexEntries2)
+	db BANK(PokedexEntries3)
+	db BANK(PokedexEntries4)
+; 44355
+	
+INCBIN "baserom.gbc", $44355, $44378 - $44355
 
 
 PokedexDataPointerTable: ; 0x44378
