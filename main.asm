@@ -24366,7 +24366,7 @@ VendingMachine: ; 15ac4
 	ld hl, UnknownText_0x15f83
 	call Function15fcd
 	call Function15c62
-	ld hl, $5fb4
+	ld hl, UnknownText_0x15fb4
 	call Function15fcd
 	ret
 ; 15aee
@@ -24439,7 +24439,7 @@ Function15b62: ; 15b62
 ; 15b6e
 
 Function15b6e: ; 15b6e
-	ld hl, $5f88
+	ld hl, MenuDataHeader_0x15f88
 	call Function1d3c
 	call Function1d81
 	jr c, .asm_15b84
@@ -24477,7 +24477,7 @@ Function15b9a: ; 15b9a
 
 Function15ba3: ; 15ba3
 	call Function1c07
-	ld hl, $5fb4
+	ld hl, UnknownText_0x15fb4
 	call Function15fcd
 	ld a, $ff
 	ret
@@ -24837,9 +24837,11 @@ Function15df9: ; 15df9
 ; 15e0e
 
 INCBIN "baserom.gbc",$15e0e,$15e30 - $15e0e
+
+Function15e30: ; 15e30
 	ld a, [$cf77]
 	ld c, a
-	ld b, $0
+	ld b, 0
 	ld hl, DefaultFlypoint ; $d002
 	add hl, bc
 	add hl, bc
@@ -24907,7 +24909,7 @@ Function15efd: ; 15efd
 	ld a, [$d142]
 	and a
 	jr z, .asm_15f11
-	ld hl, $5faf
+	ld hl, UnknownText_0x15faf
 	call PrintText
 	and a
 	ret
@@ -24959,14 +24961,59 @@ UnknownText_0x15f78: ; 0x15f78
 	db "@"
 ; 0x15f7d
 
-INCBIN "baserom.gbc",$15f7d,$15f83 - $15f7d
+String15f7d: ; 15f7d
+	db "!ダミー!@"
 
 UnknownText_0x15f83: ; 0x15f83
 	text_jump UnknownText_0x1c4f62
 	db "@"
 ; 0x15f88
 
-INCBIN "baserom.gbc",$15f88,$15fb9 - $15f88
+MenuDataHeader_0x15f88: ; 0x15f88
+	db $40 ; flags
+	db 00, 00 ; start coords
+	db 08, 07 ; end coords
+	dw MenuData2_0x15f90
+	db 1 ; default option
+; 0x15f90
+
+MenuData2_0x15f90: ; 0x15f90
+	db $80 ; flags
+	db 3 ; items
+	db "BUY@"
+	db "SELL@"
+	db "QUIT@"
+; 0x15f96
+
+UnknownText_0x15fa0: ; 0x15fa0
+	; Here you are. Thank you!
+	text_jump UnknownText_0x1c4f80
+	db "@"
+; 0x15fa5
+
+UnknownText_0x15fa5: ; 0x15fa5
+	; You don't have enough money.
+	text_jump UnknownText_0x1c4f9a
+	db "@"
+; 0x15faa
+
+UnknownText_0x15faa: ; 0x15faa
+	; You can't carry any more items.
+	text_jump UnknownText_0x1c4fb7
+	db "@"
+; 0x15faf
+
+UnknownText_0x15faf: ; 0x15faf
+	; Sorry, I can't buy that from you.
+	text_jump UnknownText_0x1c4fd7
+	db "@"
+; 0x15fb4
+
+UnknownText_0x15fb4: ; 0x15fb4
+	; Please come again!
+	text_jump UnknownText_0x1c4ff9
+	db "@"
+; 0x15fb9
 
 UnknownText_0x15fb9: ; 0x15fb9
 	text_jump UnknownText_0x1c500d
@@ -31415,7 +31462,7 @@ Function28000: ; 28000
 	ld e, l
 	callba Function4d35b
 	ld hl, $c56c
-	ld de, $4419
+	ld de, String28419
 	call PlaceString
 	call Function28eff
 	call Function3200
@@ -31863,7 +31910,7 @@ Function28177: ; 28177
 ; 283b2
 
 Function283b2: ; 283b2
-	ld de, $43ed
+	ld de, Unknown_283ed
 	ld b, $a
 .asm_283b7
 	call DelayFrame
@@ -31894,6 +31941,7 @@ Function283b2: ; 283b2
 	ret
 ; 283ed
 
+Unknown_283ed:
 INCBIN "baserom.gbc",$283ed,$283f2 - $283ed
 
 Function283f2: ; 283f2
@@ -31930,7 +31978,9 @@ Function283f2: ; 283f2
 	ret
 ; 28419
 
-INCBIN "baserom.gbc",$28419,$28426 - $28419
+String28419: ; 28419
+	db "PLEASE WAIT!@"
+; 28426
 
 Function28426: ; 28426
 	ld hl, OverworldMap
@@ -32123,11 +32173,11 @@ Function284f6: ; 284f6
 .asm_28530
 	push bc
 	dec a
-	ld hl, $542b
-	ld bc, $0020
+	ld hl, BaseData + 7 ; type
+	ld bc, BaseData1 - BaseData0
 	call AddNTimes
-	ld bc, $0002
-	ld a, $14
+	ld bc, 2
+	ld a, BANK(BaseData)
 	call FarCopyBytes
 	pop bc
 
@@ -32135,7 +32185,7 @@ Function284f6: ; 284f6
 	push bc
 	ld hl, $0001
 	add hl, bc
-	ld bc, OBJECT_SPRITE_Y_OFFSET
+	ld bc, $1a
 	call CopyBytes
 	pop bc
 	ld hl, $001f
@@ -32157,9 +32207,9 @@ Function284f6: ; 284f6
 	push bc
 	ld b, $0
 	ld c, a
-	ld hl, $7656
+	ld hl, Unknown_fb656
 	add hl, bc
-	ld a, $3e
+	ld a, BANK(Unknown_fb656)
 	call GetFarByte
 	ld [BaseSpecialAttack], a
 	pop bc
@@ -32479,7 +32529,7 @@ Function28771: ; 28771
 	and a
 	ret z
 	push hl
-	ld hl, $4785
+	ld hl, Unknown_28785
 .asm_28778
 	ld a, [hli]
 	and a
@@ -32497,6 +32547,7 @@ Function28771: ; 28771
 	ret
 ; 28785
 
+Unknown_28785: ; 28785
 INCBIN "baserom.gbc",$28785,$2879e - $28785
 
 Function2879e: ; 2879e
@@ -32730,7 +32781,7 @@ Function28926: ; 28926
 	ld c, $12
 	call Function28eef
 	ld hl, $c5e2
-	ld de, $4ab4
+	ld de, String28ab4
 	call PlaceString
 	callba Function4d354
 
@@ -32839,7 +32890,7 @@ Function28926: ; 28926
 	ld c, $12
 	call Function28eef
 	callba Function4d354
-	ld hl, $4aaf
+	ld hl, UnknownText_0x28aaf
 	ld bc, $c5b9
 	call Function13e5
 	jr .asm_28a89
@@ -32861,7 +32912,7 @@ Function28926: ; 28926
 	ld c, $12
 	call Function28eef
 	callba Function4d354
-	ld hl, $4ac4
+	ld hl, UnknownText_0x28ac4
 	ld bc, $c5b9
 	call Function13e5
 
@@ -32871,7 +32922,7 @@ Function28926: ; 28926
 	ld c, $12
 	call Function28eef
 	ld hl, $c5b9
-	ld de, $4ece
+	ld de, String28ece
 	call PlaceString
 	ld a, $1
 	ld [$cf56], a
@@ -32881,7 +32932,22 @@ Function28926: ; 28926
 	jp Function287e3
 ; 28aaf
 
-INCBIN "baserom.gbc",$28aaf,$28ac9 - $28aaf
+
+UnknownText_0x28aaf: ; 0x28aaf
+	; If you trade that #MON, you won't be able to battle.
+	text_jump UnknownText_0x1c41b1
+	db "@"
+; 0x28ab4
+
+String28ab4: ; 28ab4
+	db "STATS     TRADE@"
+
+UnknownText_0x28ac4: ; 0x28ac4
+	; Your friend's @  appears to be abnormal!
+	text_jump UnknownText_0x1c41e6
+	db "@"
+; 0x28ac9
+
 
 Function28ac9: ; 28ac9
 	ld a, [$cfa9]
@@ -33007,7 +33073,7 @@ Function28b87: ; 28b87
 	ld a, [hl]
 	ld [$d265], a
 	call GetPokemonName
-	ld hl, $4eb8
+	ld hl, UnknownText_0x28eb8
 	ld bc, $c5b9
 	call Function13e5
 	call Function1d6e
@@ -33015,7 +33081,7 @@ Function28b87: ; 28b87
 	ld b, $3
 	ld c, $7
 	call Function28eef
-	ld de, $4eab
+	ld de, String28eab
 	ld hl, $c54c
 	call PlaceString
 	ld a, $8
@@ -33056,7 +33122,7 @@ Function28b87: ; 28b87
 	ld c, $12
 	call Function28eef
 	ld hl, $c5b9
-	ld de, $4ece
+	ld de, String28ece
 	call PlaceString
 	callba Function16d6ce
 	jp Function28ea3
@@ -33073,7 +33139,7 @@ Function28b87: ; 28b87
 	ld c, $12
 	call Function28eef
 	ld hl, $c5b9
-	ld de, $4ece
+	ld de, String28ece
 	call PlaceString
 	jp Function28ea3
 
@@ -33306,7 +33372,7 @@ Function28b87: ; 28b87
 	ld c, $12
 	call Function28eef
 	ld hl, $c5b9
-	ld de, $4ebd
+	ld de, String28ebd
 	call PlaceString
 	callba Function4d354
 	ld c, $32
@@ -33318,12 +33384,26 @@ Function28b87: ; 28b87
 ; 28ea3
 
 Function28ea3: ; 28ea3
-	ld c, $64
+	ld c, 100
 	call DelayFrames
 	jp Function287e3
 ; 28eab
 
-INCBIN "baserom.gbc",$28eab,$28eef - $28eab
+String28eab: ; 28eab
+	db "TRADE", $4e, "CANCEL@"
+
+UnknownText_0x28eb8: ; 0x28eb8
+	; Trade @ for @ ?
+	text_jump UnknownText_0x1c4212
+	db "@"
+; 0x28ebd
+
+String28ebd: ; 28ebd
+	db "Trade completed!@"
+
+String28ece: ; 28ece
+	db "Too bad! The trade", $4e, "was canceled!@"
+
 
 Function28eef: ; 28eef
 	ld d, h
@@ -33567,8 +33647,8 @@ Function29082: ; 29082
 Function290a0: ; 290a0
 	ld a, [$cf63]
 	ld e, a
-	ld d, $0
-	ld hl, $50af
+	ld d, 0
+	ld hl, JumpTable290af
 	add hl, de
 	add hl, de
 	ld a, [hli]
@@ -33577,6 +33657,7 @@ Function290a0: ; 290a0
 	jp [hl]
 ; 290af
 
+JumpTable290af: ; 290af
 INCBIN "baserom.gbc",$290af,$29491 - $290af
 
 Function29491: ; 29491
@@ -41961,7 +42042,7 @@ Function4484a: ; 0x4484a
 	jr c, .asm_44860
 	ld a, [$cfa9]
 	dec a
-	ld hl, $4861
+	ld hl, .JumpTable
 	rst JumpTable
 
 .asm_44860
@@ -80411,6 +80492,7 @@ Functionfb634: ; fb634
 	jr .asm_fb636
 ; fb656
 
+Unknown_fb656: ; fb656
 INCBIN "baserom.gbc",$fb656,$fb6ed - $fb656
 
 
