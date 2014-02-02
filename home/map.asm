@@ -214,7 +214,7 @@ endr
 Function222a: ; 222a
 	ld a, $fa
 	ld [$ff9f], a
-	callba Function15363
+	callba RunMapSetupScript
 	xor a
 	ld [$ff9f], a
 	ret
@@ -1489,7 +1489,7 @@ Function289d: ; 289d
 .asm_28ce
 	ld b, $6
 	ld c, $4
-	jr .asm_28f7
+	jr Function28f7
 
 .asm_28d4
 	ld de, $dcba
@@ -1502,8 +1502,10 @@ Function289d: ; 289d
 .asm_28dd
 	ld b, $5
 	ld c, $5
-	jr .asm_28f7
+	jr Function28f7
 
+
+Function28e3: ; 28e3
 	ld hl, $d194
 	ld a, [hli]
 	ld h, [hl]
@@ -1515,6 +1517,7 @@ Function289d: ; 289d
 	ld b, $6
 	ld c, $5
 
+Function28f7: ; 28f7
 .asm_28f7
 	push bc
 	push hl
