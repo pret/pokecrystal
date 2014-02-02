@@ -27,13 +27,9 @@ OBJS := $(CRYSTAL_OBJS)
 ROMS := pokecrystal.gbc
 
 
-ALL_DEPENDENCIES :=
 # generate a list of dependencies for each object file
 $(shell $(foreach obj, $(OBJS), \
 	$(eval $(obj:.o=)_DEPENDENCIES := $(shell $(PYTHON) $(POKEMONTOOLS)/scan_includes.py $(obj:.o=.asm))) \
-))
-$(shell $(foreach obj, $(OBJS), \
-	$(eval ALL_DEPENDENCIES += $($(obj:.o=)_DEPENDENCIES)) \
 ))
 
 
@@ -52,12 +48,12 @@ baserom.gbc: ;
 
 %.asm: ;
 .asm.tx:
-	$(eval TEXTQUEUE := $(TEXTQUEUE) $<)
+	$(eval TEXTQUEUE += $<)
 	@rm -f $@
 
 $(OBJS): $$*.tx $$(patsubst %.asm, %.tx, $$($$*_DEPENDENCIES))
 	@$(PYTHON) prequeue.py $(TEXTQUEUE)
-	@$(eval TEXTQUEUE :=)
+	$(eval TEXTQUEUE :=)
 	rgbasm -o $@ $*.tx
 
 pokecrystal.gbc: $(CRYSTAL_OBJS)
