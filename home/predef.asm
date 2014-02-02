@@ -1,4 +1,4 @@
-Predef: ; 2d83
+Predef:: ; 2d83
 ; Call predefined function a.
 ; Preserves bc, de, hl and f.
 

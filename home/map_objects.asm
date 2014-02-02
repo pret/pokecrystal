@@ -1,7 +1,7 @@
 ; Functions handling map objects.
 
 
-GetSpritePalette: ; 17ff
+GetSpritePalette:: ; 17ff
 	push hl
 	push de
 	push bc
@@ -15,7 +15,7 @@ GetSpritePalette: ; 17ff
 ; 180e
 
 
-Function180e: ; 180e
+Function180e:: ; 180e
 	push hl
 	push bc
 	ld hl, $d156
@@ -51,7 +51,7 @@ Function180e: ; 180e
 	ret
 ; 1836
 
-Function1836: ; 1836
+Function1836:: ; 1836
 	push de
 	push hl
 
@@ -76,14 +76,14 @@ Function1836: ; 1836
 
 
 
-Function184a: ; 184a
+Function184a:: ; 184a
 	ld a, [StandingTile]
 	call GetTileCollision
 	ld b, a
 	ret
 ; 1852
 
-Function1852: ; 1852
+Function1852:: ; 1852
 	ld a, [StandingTile]
 	call GetTileCollision
 	sub 1
@@ -93,7 +93,7 @@ Function1852: ; 1852
 ; 185d
 
 
-GetTileCollision: ; 185d
+GetTileCollision:: ; 185d
 ; Get the collision type of tile a.
 
 	push de
@@ -121,7 +121,7 @@ GetTileCollision: ; 185d
 ; 1875
 
 
-Function1875: ; 1875
+Function1875:: ; 1875
 	ld d, a
 	and $f0
 	cp $10
@@ -146,42 +146,42 @@ Function1875: ; 1875
 	ret
 ; 188e
 
-Function188e: ; 188e
+Function188e:: ; 188e
 	cp $14
 	ret z
 	cp $1c
 	ret
 ; 1894
 
-CheckCutTreeTile: ; 1894
+CheckCutTreeTile:: ; 1894
 	cp $12
 	ret z
 	cp $1a
 	ret
 ; 189a
 
-CheckHeadbuttTreeTile: ; 189a
+CheckHeadbuttTreeTile:: ; 189a
 	cp $15
 	ret z
 	cp $1d
 	ret
 ; 18a0
 
-CheckCounterTile: ; 18a0
+CheckCounterTile:: ; 18a0
 	cp $90
 	ret z
 	cp $98
 	ret
 ; 18a6
 
-CheckPitTile: ; 18a6
+CheckPitTile:: ; 18a6
 	cp $60
 	ret z
 	cp $68
 	ret
 ; 18ac
 
-CheckIceTile: ; 18ac
+CheckIceTile:: ; 18ac
 	cp $23
 	ret z
 	cp $2b
@@ -190,7 +190,7 @@ CheckIceTile: ; 18ac
 	ret
 ; 18b4
 
-CheckWhirlpoolTile: ; 18b4
+CheckWhirlpoolTile:: ; 18b4
 	nop
 	cp $24
 	ret z
@@ -200,14 +200,14 @@ CheckWhirlpoolTile: ; 18b4
 	ret
 ; 18bd
 
-CheckWaterfallTile: ; 18bd
+CheckWaterfallTile:: ; 18bd
 	cp $33
 	ret z
 	cp $3b
 	ret
 ; 18c3
 
-CheckStandingOnEntrance: ; 18c3
+CheckStandingOnEntrance:: ; 18c3
 	ld a, [StandingTile]
 	cp $71 ; door
 	ret z
@@ -220,7 +220,7 @@ CheckStandingOnEntrance: ; 18c3
 ; 18d2
 
 
-GetMapObject: ; 18d2
+GetMapObject:: ; 18d2
 ; Return the location of map object a in bc.
 	ld hl, MapObjects
 	ld bc, $10
@@ -231,7 +231,7 @@ GetMapObject: ; 18d2
 ; 18de
 
 
-Function18de: ; 18de
+Function18de:: ; 18de
 	ld [hConnectionStripLength], a
 	call GetMapObject
 	ld hl, $0000
@@ -249,7 +249,7 @@ Function18de: ; 18de
 	ret
 ; 18f5
 
-Function18f5: ; 18f5
+Function18f5:: ; 18f5
 	ld hl, $0006
 	add hl, bc
 	ld a, [hl]
@@ -323,7 +323,7 @@ Function18f5: ; 18f5
 	ret
 ; 194d
 
-Function194d: ; 194d
+Function194d:: ; 194d
 	ld [hConnectionStripLength], a
 	call GetMapObject
 	call Function80e7
@@ -332,7 +332,7 @@ Function194d: ; 194d
 
 
 
-Function1956: ; 1956
+Function1956:: ; 1956
 	ld [hConnectionStripLength], a
 	call Function271e
 	ld a, [hConnectionStripLength]
@@ -341,7 +341,7 @@ Function1956: ; 1956
 	ret
 ; 1967
 
-Function1967: ; 1967
+Function1967:: ; 1967
 	ld [hConnectionStripLength], a
 	call GetMapObject
 	ld hl, $0000
@@ -358,7 +358,7 @@ Function1967: ; 1967
 	ret
 ; 1985
 
-Function1985: ; 1985
+Function1985:: ; 1985
 	ld hl, $d4cd
 	cp [hl]
 	jr z, .asm_1990
@@ -374,13 +374,13 @@ Function1985: ; 1985
 	ret
 ; 199f
 
-Function199f: ; 199f
+Function199f:: ; 199f
 	call Function1967
 	call Function2712
 	ret
 ; 19a6
 
-Function19a6: ; 19a6
+Function19a6:: ; 19a6
 	push hl
 	call GetMapObject
 	ld d, b
@@ -394,7 +394,7 @@ Function19a6: ; 19a6
 	ret
 ; 19b8
 
-Function19b8: ; 19b8
+Function19b8:: ; 19b8
 	call GetMapObject
 	ld hl, $0000
 	add hl, bc
@@ -426,7 +426,7 @@ Function19b8: ; 19b8
 
 
 
-Function19e9: ; 19e9
+Function19e9:: ; 19e9
 	ld [$c2e2], a
 	ld a, [hROMBank]
 	ld [$c2e3], a
@@ -451,7 +451,7 @@ Function19e9: ; 19e9
 
 
 
-Function1a13: ; 1a13
+Function1a13:: ; 1a13
 	push bc
 	push de
 	ld hl, $d4d6
@@ -480,7 +480,7 @@ Function1a13: ; 1a13
 
 
 
-Function1a2f: ; 1a2f
+Function1a2f:: ; 1a2f
 	ld hl, $0003
 	add hl, bc
 	ld a, [hl]
@@ -502,7 +502,7 @@ Function1a2f: ; 1a2f
 	ret
 ; 1a47
 
-Function1a47: ; 1a47
+Function1a47:: ; 1a47
 	push bc
 	push de
 	ld e, a
@@ -525,7 +525,7 @@ Function1a47: ; 1a47
 ; 1a61
 
 
-Function1a61: ; 1a61
+Function1a61:: ; 1a61
 	ld l, a
 	ld a, [hROMBank]
 	push af
@@ -543,7 +543,7 @@ Function1a61: ; 1a61
 	ret
 ; 1a71
 
-Function1a71: ; 1a71
+Function1a71:: ; 1a71
 	ld hl, $0003
 	add hl, de
 	ld [hl], a
@@ -591,7 +591,7 @@ Function1a71: ; 1a71
 	ret
 ; 1aae
 
-Function1aae: ; 1aae
+Function1aae:: ; 1aae
 	ld a, [hROMBank]
 	push af
 	ld a, [hli]
@@ -616,20 +616,20 @@ Function1aae: ; 1aae
 	ret
 ; 1ac6
 
-Function1ac6: ; 1ac6
+Function1ac6:: ; 1ac6
 	ld hl, VramState
 	set 0, [hl]
 	ret
 ; 1acc
 
-Function1acc: ; 1acc
+Function1acc:: ; 1acc
 	ld hl, VramState
 	res 0, [hl]
 	ret
 ; 1ad2
 
 
-Function1ad2: ; 1ad2
+Function1ad2:: ; 1ad2
 	ld a, [VramState]
 	bit 0, a
 	ret z
@@ -639,7 +639,7 @@ Function1ad2: ; 1ad2
 ; 1ae5
 
 
-Function1ae5: ; 1ae5
+Function1ae5:: ; 1ae5
 	ld bc, $0028
 	ld hl, $d4d6
 	call AddNTimes
@@ -648,7 +648,7 @@ Function1ae5: ; 1ae5
 	ret
 ; 1af1
 
-Function1af1: ; 1af1
+Function1af1:: ; 1af1
 	ld hl, $0000
 	add hl, bc
 	ld a, [hl]
@@ -656,7 +656,7 @@ Function1af1: ; 1af1
 	ret
 ; 1af8
 
-Function1af8: ; 1af8
+Function1af8:: ; 1af8
 	push af
 	ld hl, $0008
 	add hl, bc
@@ -671,7 +671,7 @@ Function1af8: ; 1af8
 ; 1b07
 
 
-GetSpriteDirection: ; 1b07
+GetSpriteDirection:: ; 1b07
 	ld hl, $0008
 	add hl, bc
 	ld a, [hl]

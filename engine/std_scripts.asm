@@ -1,4 +1,4 @@
-StdScripts: ; bc000
+StdScripts:: ; bc000
 	dbw BANK(PokeCenterNurseScript), PokeCenterNurseScript
 	dbw BANK(UnknownScript_0xbc162), UnknownScript_0xbc162
 	dbw BANK(UnknownScript_0xbc166), UnknownScript_0xbc166

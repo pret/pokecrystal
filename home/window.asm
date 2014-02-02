@@ -1,4 +1,4 @@
-ResetWindow: ; 2dba
+ResetWindow:: ; 2dba
 
 	call Function1fbf
 	ld a, [hROMBank]
@@ -16,7 +16,7 @@ ResetWindow: ; 2dba
 ; 2dcf
 
 
-Function2dcf: ; 2dcf
+Function2dcf:: ; 2dcf
 	ld a, [hOAMUpdate]
 	push af
 	ld a, $1
@@ -29,7 +29,7 @@ Function2dcf: ; 2dcf
 	ret
 ; 2de2
 
-Function2de2: ; 2de2
+Function2de2:: ; 2de2
 	call Function1fbf
 	xor a
 	ld [hBGMapMode], a
@@ -46,7 +46,7 @@ Function2de2: ; 2de2
 	ret
 ; 2e08
 
-Function2e08: ; 2e08
+Function2e08:: ; 2e08
 	call Function1fbf
 	ld a, [hROMBank]
 	push af
@@ -63,7 +63,7 @@ Function2e08: ; 2e08
 	ret
 ; 2e20
 
-Function2e20: ; 2e20
+Function2e20:: ; 2e20
 	ld a, [hOAMUpdate]
 	push af
 	ld a, $1
@@ -74,7 +74,7 @@ Function2e20: ; 2e20
 	ret
 ; 2e31
 
-Function2e31: ; 2e31
+Function2e31:: ; 2e31
 	ld a, [hOAMUpdate]
 	push af
 	ld a, [hBGMapMode]

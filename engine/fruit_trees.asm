@@ -1,4 +1,4 @@
-FruitTreeScript: ; 44000
+FruitTreeScript:: ; 44000
 	3callasm GetCurTreeFruit
 	loadfont
 	copybytetovar CurFruit

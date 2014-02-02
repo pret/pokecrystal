@@ -1,5 +1,5 @@
 
-LoadMapGroupRoof: ; 1c000
+LoadMapGroupRoof:: ; 1c000
 	ld a, [MapGroup]
 	ld e, a
 	ld d, 0

@@ -1,6 +1,6 @@
 ; Functions dealing with rendering and interacting with maps.
 
-Function210f: ; 210f
+Function210f:: ; 210f
 	ld hl, $c7e8
 	ld bc, $0018
 	ld a, $0
@@ -8,7 +8,7 @@ Function210f: ; 210f
 	ret
 ; 211b
 
-Function211b: ; 211b
+Function211b:: ; 211b
 	push hl
 	ld hl, $dbf7
 	ld a, [hli]
@@ -24,7 +24,7 @@ Function211b: ; 211b
 	ret
 ; 212a
 
-Function212a: ; 212a
+Function212a:: ; 212a
 	ld a, [MapGroup]
 	ld b, a
 	ld a, [MapNumber]
@@ -42,7 +42,7 @@ Function212a: ; 212a
 	ret
 ; 2147
 
-Function2147: ; 2147
+Function2147:: ; 2147
 	push bc
 	ld a, [hROMBank]
 	push af
@@ -87,13 +87,13 @@ Function2147: ; 2147
 	ret
 ; 2173
 
-Function2173: ; 2173
+Function2173:: ; 2173
 	call Function217a
 	call Functiondb1
 	ret
 ; 217a
 
-Function217a: ; 217a
+Function217a:: ; 217a
 	ld a, [hROMBank]
 	push af
 
@@ -115,7 +115,7 @@ Function217a: ; 217a
 	ret
 ; 2198
 
-Function2198: ; 2198
+Function2198:: ; 2198
 	ld a, [$d194]
 	ld e, a
 	ld a, [$d195]
@@ -211,7 +211,7 @@ endr
 	ret
 ; 222a
 
-Function222a: ; 222a
+Function222a:: ; 222a
 	ld a, $fa
 	ld [$ff9f], a
 	callba RunMapSetupScript
@@ -220,7 +220,7 @@ Function222a: ; 222a
 	ret
 ; 2238
 
-Function2238: ; 2238
+Function2238:: ; 2238
 	call Function2252
 	ret nc
 	push bc
@@ -234,14 +234,14 @@ Function2238: ; 2238
 
 
 
-Function224a: ; 224a
+Function224a:: ; 224a
 	call Function2252
 	ret nc
 	call Function22a7
 	ret
 ; 2252
 
-Function2252: ; 2252
+Function2252:: ; 2252
 	callba Function1499a
 	ret nc
 
@@ -257,7 +257,7 @@ Function2252: ; 2252
 	ret
 ; 2266
 
-Function2266: ; 2266
+Function2266:: ; 2266
 	ld a, [MapY]
 	sub $4
 	ld e, a
@@ -308,14 +308,14 @@ Function2266: ; 2266
 	ret
 ; 22a3
 
-Function22a3: ; 22a3
+Function22a3:: ; 22a3
 	inc hl
 	inc hl
 	scf
 	ret
 ; 22a7
 
-Function22a7: ; 22a7
+Function22a7:: ; 22a7
 	ld a, [hROMBank]
 	push af
 
@@ -328,7 +328,7 @@ Function22a7: ; 22a7
 	ret
 ; 22b4
 
-Function22b4: ; 22b4
+Function22b4:: ; 22b4
 	push bc
 	ld hl, $dbfc
 	ld a, [hli]
@@ -365,14 +365,14 @@ Function22b4: ; 22b4
 
 
 
-CheckOutdoorMap: ; 22ee
+CheckOutdoorMap:: ; 22ee
 	cp ROUTE
 	ret z
 	cp TOWN
 	ret
 ; 22f4
 
-CheckIndoorMap: ; 22f4
+CheckIndoorMap:: ; 22f4
 	cp INDOOR
 	ret z
 	cp CAVE
@@ -383,7 +383,7 @@ CheckIndoorMap: ; 22f4
 	ret
 ; 2300
 
-Function2300: ; 2300
+Function2300:: ; 2300
 	cp INDOOR
 	ret z
 	cp GATE
@@ -393,7 +393,7 @@ Function2300: ; 2300
 ; 2309
 
 
-Function2309: ; 2309
+Function2309:: ; 2309
 	call Function2326
 	call Function2c52
 	call Function234f
@@ -402,7 +402,7 @@ Function2309: ; 2309
 	ret
 ; 2317
 
-Function2317: ; 2317
+Function2317:: ; 2317
 	call Function2326
 	call Function2c52
 	call Function234f
@@ -411,7 +411,7 @@ Function2317: ; 2317
 	ret
 ; 2326
 
-Function2326: ; 2326
+Function2326:: ; 2326
 	call Function2c3d
 	call SwitchToMapBank
 	call GetSecondaryMapHeaderPointer
@@ -420,7 +420,7 @@ Function2326: ; 2326
 	ret
 ; 2336
 
-Function2336: ; 2336
+Function2336:: ; 2336
 	push af
 	ld hl, MapEventHeaderPointer
 	ld a, [hli]
@@ -438,7 +438,7 @@ Function2336: ; 2336
 	ret
 ; 234f
 
-Function234f: ; 234f
+Function234f:: ; 234f
 	ld hl, MapScriptHeaderPointer
 	ld a, [hli]
 	ld h, [hl]
@@ -448,7 +448,7 @@ Function234f: ; 234f
 	ret
 ; 235c
 
-Function235c: ; 235c
+Function235c:: ; 235c
 	ld de, $d19d
 	ld c, $c
 .asm_2361
@@ -460,7 +460,7 @@ Function235c: ; 235c
 	ret
 ; 2368
 
-Function2368: ; 2368
+Function2368:: ; 2368
 	ld a, $ff
 	ld [NorthConnectedMapGroup], a
 	ld [SouthConnectedMapGroup], a
@@ -498,7 +498,7 @@ Function2368: ; 2368
 ; 23a3
 
 
-GetMapConnection: ; 23a3
+GetMapConnection:: ; 23a3
 ; Load map connection struct at hl into de.
 	ld c, SouthMapConnection - NorthMapConnection
 .loop
@@ -511,7 +511,7 @@ GetMapConnection: ; 23a3
 ; 23ac
 
 
-Function23ac: ; 23ac
+Function23ac:: ; 23ac
 	ld a, [hli]
 	ld c, a
 	ld [$dc07], a
@@ -527,7 +527,7 @@ Function23ac: ; 23ac
 	ret
 ; 23c3
 
-Function23c3: ; 23c3
+Function23c3:: ; 23c3
 	ld a, [hli]
 	ld c, a
 	ld [$dc0a], a
@@ -543,7 +543,7 @@ Function23c3: ; 23c3
 	ret
 ; 23da
 
-Function23da: ; 23da
+Function23da:: ; 23da
 	ld a, [hli]
 	ld c, a
 	ld [$dbfb], a
@@ -559,7 +559,7 @@ Function23da: ; 23da
 	ret
 ; 23f1
 
-Function23f1: ; 23f1
+Function23f1:: ; 23f1
 	ld a, [hli]
 	ld c, a
 	ld [$dbfe], a
@@ -575,7 +575,7 @@ Function23f1: ; 23f1
 	ret
 ; 2408
 
-Function2408: ; 2408
+Function2408:: ; 2408
 	ld a, [hli]
 	ld c, a
 	ld [$dc01], a
@@ -591,7 +591,7 @@ Function2408: ; 2408
 	ret
 ; 241f
 
-Function241f: ; 241f
+Function241f:: ; 241f
 	push hl
 	call Function2471
 	pop de
@@ -628,7 +628,7 @@ Function241f: ; 241f
 	ret
 ; 2457
 
-Function2457: ; 2457
+Function2457:: ; 2457
 	and a
 	ret z
 	ld c, a
@@ -653,7 +653,7 @@ Function2457: ; 2457
 	ret
 ; 2471
 
-Function2471: ; 2471
+Function2471:: ; 2471
 	ld hl, $d4fe
 	ld bc, $01e0
 	xor a
@@ -670,7 +670,7 @@ Function2471: ; 2471
 	ret
 ; 248a
 
-Function248a: ; 248a
+Function248a:: ; 248a
 	call GetMapScriptHeaderBank
 	rst Bankswitch
 
@@ -701,7 +701,7 @@ Function248a: ; 248a
 	ret
 ; 24ba
 
-Function24ba: ; 24ba
+Function24ba:: ; 24ba
 	ld a, [$d149]
 	ld [$dcac], a
 	ld a, [$d14a]
@@ -711,7 +711,7 @@ Function24ba: ; 24ba
 	ret
 ; 24cd
 
-Function24cd: ; 24cd
+Function24cd:: ; 24cd
 	ld hl, OverworldMap
 	ld bc, OverworldMapEnd - OverworldMap
 	ld a, 0
@@ -725,7 +725,7 @@ Function24cd: ; 24cd
 
 
 
-Function24e4: ; 24e4
+Function24e4:: ; 24e4
 	ld a, [hROMBank]
 	push af
 
@@ -777,7 +777,7 @@ Function24e4: ; 24e4
 
 
 
-FillMapConnections: ; 2524
+FillMapConnections:: ; 2524
 
 ; North
 	ld a, [NorthConnectedMapGroup]
@@ -876,8 +876,8 @@ FillMapConnections: ; 2524
 ; 25d3
 
 
-FillNorthConnectionStrip:
-FillSouthConnectionStrip: ; 25d3
+FillNorthConnectionStrip::
+FillSouthConnectionStrip:: ; 25d3
 
 	ld c, 3
 .y
@@ -913,8 +913,8 @@ FillSouthConnectionStrip: ; 25d3
 ; 25f6
 
 
-FillWestConnectionStrip:
-FillEastConnectionStrip: ; 25f6
+FillWestConnectionStrip::
+FillEastConnectionStrip:: ; 25f6
 
 .asm_25f6
 	ld a, [MapWidth]
@@ -952,13 +952,13 @@ FillEastConnectionStrip: ; 25f6
 	ret
 ; 261b
 
-Function261b: ; 261b
+Function261b:: ; 261b
 	ld [$d432], a
 	ret
 ; 261f
 
 
-CallScript: ; 261f
+CallScript:: ; 261f
 ; Call a script at a:hl.
 
 	ld [ScriptBank], a
@@ -974,7 +974,7 @@ CallScript: ; 261f
 	ret
 ; 2631
 
-Function2631: ; 2631
+Function2631:: ; 2631
 	ld a, [ScriptRunning]
 	and a
 	ret nz
@@ -982,7 +982,7 @@ Function2631: ; 2631
 	jr CallScript
 ; 263b
 
-Function263b: ; 263b
+Function263b:: ; 263b
 	ld b, a
 	ld a, [hROMBank]
 	push af
@@ -1002,7 +1002,7 @@ Function263b: ; 263b
 	ret
 ; 2653
 
-Function2653: ; 2653
+Function2653:: ; 2653
 	ld a, [$dc0a]
 	ld c, a
 	and a
@@ -1033,7 +1033,7 @@ Function2653: ; 2653
 	ret
 ; 2674
 
-Function2674: ; 2674
+Function2674:: ; 2674
 	callba Unknown_0x974f3
 	ld a, [ScriptMode]
 	push af
@@ -1050,7 +1050,7 @@ Function2674: ; 2674
 	ret
 ; 269a
 
-Function269a: ; 269a
+Function269a:: ; 269a
 	ld a, [hROMBank]
 	push af
 
@@ -1073,7 +1073,7 @@ Function269a: ; 269a
 	ret
 ; 26b7
 
-Function26b7: ; 26b7
+Function26b7:: ; 26b7
 ; Call a:de.
 
 	ld [hBuffer], a
@@ -1093,7 +1093,7 @@ Function26b7: ; 26b7
 	ret
 ; 26c7
 
-Function26c7: ; 26c7
+Function26c7:: ; 26c7
 	ld a, [hROMBank]
 	push af
 	ld a, b
@@ -1109,7 +1109,7 @@ Function26c7: ; 26c7
 ; 26d4
 
 
-GetScriptByte: ; 0x26d4
+GetScriptByte:: ; 0x26d4
 ; Return byte at ScriptBank:ScriptPos in a.
 
 	push hl
@@ -1141,37 +1141,37 @@ GetScriptByte: ; 0x26d4
 ; 0x26ef
 
 
-ObjectEvent: ; 0x26ef
+ObjectEvent:: ; 0x26ef
 	jumptextfaceplayer ObjectEventText
 ; 0x26f2
 
-ObjectEventText:
+ObjectEventText::
 	TX_FAR _ObjectEventText
 	db "@"
 ; 0x26f7
 
 
-BGEvent: ; 26f7
+BGEvent:: ; 26f7
 	jumptext BGEventText
 ; 26fa
 
-BGEventText: ; 26fa
+BGEventText:: ; 26fa
 	text_jump UnknownText_0x1c46fc
 	db "@"
 ; 26ff
 
 
-CoordinatesEvent: ; 26ff
+CoordinatesEvent:: ; 26ff
 	jumptext CoordinatesEventText
 ; 2702
 
-CoordinatesEventText: ; 2702
+CoordinatesEventText:: ; 2702
 	text_jump UnknownText_0x1c4706
 	db "@"
 ; 2707
 
 
-Function2707: ; 2707
+Function2707:: ; 2707
 	ld a, [hConnectionStripLength]
 	ld e, a
 	ld d, $0
@@ -1181,7 +1181,7 @@ Function2707: ; 2707
 	ret
 ; 2712
 
-Function2712: ; 2712
+Function2712:: ; 2712
 	ld a, [hConnectionStripLength]
 	ld e, a
 	ld d, $0
@@ -1191,7 +1191,7 @@ Function2712: ; 2712
 	ret
 ; 271e
 
-Function271e: ; 271e
+Function271e:: ; 271e
 	ld a, [hConnectionStripLength]
 	ld e, a
 	ld d, $0
@@ -1202,7 +1202,7 @@ Function271e: ; 271e
 ; 272a
 
 
-Function272a: ; 272a
+Function272a:: ; 272a
 	ld hl, TileMap
 	ld de, BGMapBuffer
 	call Function27b7
@@ -1218,7 +1218,7 @@ Function272a: ; 272a
 	ret
 ; 2748
 
-Function2748: ; 2748
+Function2748:: ; 2748
 	ld hl, $c5e0
 	ld de, BGMapBuffer
 	call Function27b7
@@ -1241,7 +1241,7 @@ Function2748: ; 2748
 	ret
 ; 2771
 
-Function2771: ; 2771
+Function2771:: ; 2771
 	ld hl, TileMap
 	ld de, BGMapBuffer
 	call Function27c0
@@ -1257,7 +1257,7 @@ Function2771: ; 2771
 	ret
 ; 278f
 
-Function278f: ; 278f
+Function278f:: ; 278f
 	ld hl, $c4b2
 	ld de, BGMapBuffer
 	call Function27c0
@@ -1280,7 +1280,7 @@ Function278f: ; 278f
 	ret
 ; 27b7
 
-Function27b7: ; 27b7
+Function27b7:: ; 27b7
 	ld c, $28
 .asm_27b9
 	ld a, [hli]
@@ -1291,7 +1291,7 @@ Function27b7: ; 27b7
 	ret
 ; 27c0
 
-Function27c0: ; 27c0
+Function27c0:: ; 27c0
 	ld c, $12
 .asm_27c2
 	ld a, [hli]
@@ -1312,7 +1312,7 @@ Function27c0: ; 27c0
 	ret
 ; 27d3
 
-Function27d3: ; 27d3
+Function27d3:: ; 27d3
 	ld hl, BGMapBufferPtrs
 	push de
 	call .asm_27df
@@ -1344,7 +1344,7 @@ Function27d3: ; 27d3
 	ret
 ; 27f8
 
-Function27f8: ; 27f8
+Function27f8:: ; 27f8
 	ld hl, BGMapBufferPtrs
 	ld c, $12
 .asm_27fd
@@ -1370,7 +1370,7 @@ Function27f8: ; 27f8
 	ret
 ; 2816
 
-Function2816: ; 2816
+Function2816:: ; 2816
 	ld hl, BGMapBuffer
 	ld bc, $0078
 	xor a
@@ -1378,7 +1378,7 @@ Function2816: ; 2816
 	ret
 ; 2821
 
-Function2821: ; 2821
+Function2821:: ; 2821
 	ld hl, TilesetAddress
 	ld a, [hli]
 	ld h, [hl]
@@ -1426,7 +1426,7 @@ Function2821: ; 2821
 	ret
 ; 2879
 
-Function2879: ; 2879
+Function2879:: ; 2879
 	ld hl, $d194
 	ld a, [hli]
 	ld h, [hl]
@@ -1455,7 +1455,7 @@ Function2879: ; 2879
 	ret
 ; 289d
 
-Function289d: ; 289d
+Function289d:: ; 289d
 	ld hl, $d194
 	ld a, [hli]
 	ld h, [hl]
@@ -1505,7 +1505,7 @@ Function289d: ; 289d
 	jr Function28f7
 
 
-Function28e3: ; 28e3
+Function28e3:: ; 28e3
 	ld hl, $d194
 	ld a, [hli]
 	ld h, [hl]
@@ -1517,7 +1517,7 @@ Function28e3: ; 28e3
 	ld b, $6
 	ld c, $5
 
-Function28f7: ; 28f7
+Function28f7:: ; 28f7
 .asm_28f7
 	push bc
 	push hl
@@ -1547,7 +1547,7 @@ Function28f7: ; 28f7
 	ret
 ; 2914
 
-Function2914: ; 2914
+Function2914:: ; 2914
 	xor a
 	ld [TilePermissions], a
 	call Function296c
@@ -1579,7 +1579,7 @@ Function2914: ; 2914
 	db 1, 2, 4, 8, 9, 10, 5, 6
 ; 294d
 
-Function294d: ; 294d
+Function294d:: ; 294d
 	ld a, [MapX]
 	ld d, a
 	ld a, [MapY]
@@ -1597,7 +1597,7 @@ Function294d: ; 294d
 	ret
 ; 296c
 
-Function296c: ; 296c
+Function296c:: ; 296c
 	ld a, [MapX]
 	ld d, a
 	ld a, [MapY]
@@ -1615,7 +1615,7 @@ Function296c: ; 296c
 	ret
 ; 298b
 
-Function298b: ; 298b
+Function298b:: ; 298b
 	call Function29ff
 	ret nz
 	ld a, [TileDown]
@@ -1634,7 +1634,7 @@ Function298b: ; 298b
 	ret
 ; 29a8
 
-Function29a8: ; 29a8
+Function29a8:: ; 29a8
 	call Function29ff
 	ret nz
 	ld a, [TileUp]
@@ -1653,7 +1653,7 @@ Function29a8: ; 29a8
 	ret
 ; 29c5
 
-Function29c5: ; 29c5
+Function29c5:: ; 29c5
 	call Function29ff
 	ret nz
 	ld a, [TileRight]
@@ -1672,7 +1672,7 @@ Function29c5: ; 29c5
 	ret
 ; 29e2
 
-Function29e2: ; 29e2
+Function29e2:: ; 29e2
 	call Function29ff
 	ret nz
 	ld a, [TileLeft]
@@ -1691,7 +1691,7 @@ Function29e2: ; 29e2
 	ret
 ; 29ff
 
-Function29ff: ; 29ff
+Function29ff:: ; 29ff
 	and $f0
 	cp $b0
 	ret z
@@ -1700,7 +1700,7 @@ Function29ff: ; 29ff
 ; 2a07
 
 
-GetFacingTileCoord: ; 2a07
+GetFacingTileCoord:: ; 2a07
 ; Return map coordinates in (d, e) and tile id in a
 ; of the tile the player is facing.
 
@@ -1746,7 +1746,7 @@ GetFacingTileCoord: ; 2a07
 ; 2a3c
 
 
-Function2a3c: ; 2a3c
+Function2a3c:: ; 2a3c
 	call Function2a66
 	ld a, [hl]
 	and a
@@ -1780,7 +1780,7 @@ Function2a3c: ; 2a3c
 	ret
 ; 2a66
 
-Function2a66: ; 2a66
+Function2a66:: ; 2a66
 	ld a, [MapWidth]
 	add $6
 	ld c, a
@@ -1811,7 +1811,7 @@ Function2a66: ; 2a66
 ; 2a8b
 
 
-CheckFacingSign: ; 2a8b
+CheckFacingSign:: ; 2a8b
 	call GetFacingTileCoord
 	ld b, a
 	ld a, d
@@ -1834,7 +1834,7 @@ CheckFacingSign: ; 2a8b
 	ret
 ; 2aaa
 
-Function2aaa: ; 2aaa
+Function2aaa:: ; 2aaa
 	ld hl, $dc02
 	ld a, [hli]
 	ld h, [hl]
@@ -1872,7 +1872,7 @@ Function2aaa: ; 2aaa
 	ret
 ; 2ad4
 
-Function2ad4: ; 2ad4
+Function2ad4:: ; 2ad4
 	ld a, [$dbfe]
 	and a
 	ret z
@@ -1887,7 +1887,7 @@ Function2ad4: ; 2ad4
 	ret
 ; 2ae7
 
-Function2ae7: ; 2ae7
+Function2ae7:: ; 2ae7
 	ld hl, $dbff
 	ld a, [hli]
 	ld h, [hl]
@@ -1941,7 +1941,7 @@ Function2ae7: ; 2ae7
 ; 2b29
 
 
-FadeToMenu: ; 2b29
+FadeToMenu:: ; 2b29
 	xor a
 	ld [hBGMapMode], a
 	call Function1d6e
@@ -1952,7 +1952,7 @@ FadeToMenu: ; 2b29
 ; 2b3c
 
 
-Function2b3c: ; 2b3c
+Function2b3c:: ; 2b3c
 	call WhiteBGMap
 	call Function2bae
 	call Function1ad2
@@ -1961,7 +1961,7 @@ Function2b3c: ; 2b3c
 	jr Function2b5c
 ; 2b4d
 
-Function2b4d: ; 2b4d
+Function2b4d:: ; 2b4d
 	call WhiteBGMap
 	call Function1d7d
 	call Function2bae
@@ -1969,7 +1969,7 @@ Function2b4d: ; 2b4d
 	call Functiond90
 ; 2b5c
 
-Function2b5c: ; 2b5c
+Function2b5c:: ; 2b5c
 	ld b, $9
 	call GetSGBLayout
 	callba Function49409
@@ -1980,7 +1980,7 @@ Function2b5c: ; 2b5c
 ; 2b74
 
 
-Function2b74: ; 0x2b74
+Function2b74:: ; 0x2b74
 	push af
 	ld a, $1
 	ld [$c2ce], a
@@ -2005,7 +2005,7 @@ Function2b74: ; 0x2b74
 	ret
 ; 0x2bae
 
-Function2bae: ; 2bae
+Function2bae:: ; 2bae
 	call DisableLCD
 	call ClearSprites
 	callba Function14168
@@ -2031,14 +2031,14 @@ Function2bae: ; 2bae
 ; 2be5
 
 
-GetMapHeaderPointer: ; 2be5
+GetMapHeaderPointer:: ; 2be5
 	ld a, [MapGroup]
 	ld b, a
 	ld a, [MapNumber]
 	ld c, a
 ; 2bed
 
-GetAnyMapHeaderPointer: ; 0x2bed
+GetAnyMapHeaderPointer:: ; 0x2bed
 ; Prior to calling this function, you must have switched banks so that
 ; MapGroupPointers is visible.
 
@@ -2071,7 +2071,7 @@ GetAnyMapHeaderPointer: ; 0x2bed
 	ret
 ; 0x2c04
 
-GetMapHeaderMember: ; 0x2c04
+GetMapHeaderMember:: ; 0x2c04
 ; Extract data from the current map's header.
 
 ; inputs:
@@ -2087,7 +2087,7 @@ GetMapHeaderMember: ; 0x2c04
 	ld c, a
 	; fallthrough
 
-GetAnyMapHeaderMember: ; 0x2c0c
+GetAnyMapHeaderMember:: ; 0x2c0c
 	; bankswitch
 	ld a, [hROMBank]
 	push af
@@ -2107,28 +2107,28 @@ GetAnyMapHeaderMember: ; 0x2c0c
 ; 0x2c1c
 
 
-SwitchToMapBank: ; 2c1c
+SwitchToMapBank:: ; 2c1c
 	ld a, [MapGroup]
 	ld b, a
 	ld a, [MapNumber]
 	ld c, a
 ; 2c24
 
-SwitchToAnyMapBank: ; 2c24
+SwitchToAnyMapBank:: ; 2c24
 	call GetAnyMapBank
 	rst Bankswitch
 	ret
 ; 2c29
 
 
-GetMapBank: ; 2c29
+GetMapBank:: ; 2c29
 	ld a, [MapGroup]
 	ld b, a
 	ld a, [MapNumber]
 	ld c, a
 ; 2c31
 
-GetAnyMapBank: ; 2c31
+GetAnyMapBank:: ; 2c31
 	push hl
 	push de
 	ld de, $0000
@@ -2139,7 +2139,7 @@ GetAnyMapBank: ; 2c31
 	ret
 ; 2c3d
 
-Function2c3d: ; 2c3d
+Function2c3d:: ; 2c3d
 	ld a, [hROMBank]
 	push af
 	ld a, $25
@@ -2153,19 +2153,19 @@ Function2c3d: ; 2c3d
 	ret
 ; 2c52
 
-Function2c52: ; 2c52
+Function2c52:: ; 2c52
 	ld a, [MapScriptHeaderBank]
 	rst Bankswitch
 	ret
 ; 2c57
 
 
-GetMapScriptHeaderBank: ; 2c57
+GetMapScriptHeaderBank:: ; 2c57
 	ld a, [MapScriptHeaderBank]
 	ret
 ; 2c5b
 
-GetAnyMapBlockdataBank: ; 2c5b
+GetAnyMapBlockdataBank:: ; 2c5b
 ; Return the blockdata bank for group b map c.
 	push hl
 	push de
@@ -2195,7 +2195,7 @@ GetAnyMapBlockdataBank: ; 2c5b
 	ret
 ; 2c7d
 
-GetSecondaryMapHeaderPointer: ; 0x2c7d
+GetSecondaryMapHeaderPointer:: ; 0x2c7d
 ; returns the current map's secondary map header pointer in hl.
 	push bc
 	push de
@@ -2208,7 +2208,7 @@ GetSecondaryMapHeaderPointer: ; 0x2c7d
 	ret
 ; 2c8a
 
-GetMapPermission: ; 2c8a
+GetMapPermission:: ; 2c8a
 	push hl
 	push de
 	push bc
@@ -2221,11 +2221,11 @@ GetMapPermission: ; 2c8a
 	ret
 ; 2c98
 
-Function2c98: ; 2c98
+Function2c98:: ; 2c98
 	ret
 ; 2c99
 
-GetAnyMapPermission: ; 2c99
+GetAnyMapPermission:: ; 2c99
 	push hl
 	push de
 	push bc
@@ -2238,14 +2238,14 @@ GetAnyMapPermission: ; 2c99
 	ret
 ; 2ca7
 
-GetAnyMapTileset: ; 2ca7
+GetAnyMapTileset:: ; 2ca7
 	ld de, $0001
 	call GetAnyMapHeaderMember
 	ld a, c
 	ret
 ; 2caf
 
-GetWorldMapLocation: ; 0x2caf
+GetWorldMapLocation:: ; 0x2caf
 ; given a map group/id in bc, return its location on the Pokégear map.
 	push hl
 	push de
@@ -2259,7 +2259,7 @@ GetWorldMapLocation: ; 0x2caf
 	ret
 ; 0x2cbd
 
-Function2cbd: ; 2cbd
+Function2cbd:: ; 2cbd
 	push hl
 	push bc
 	ld de, $0006
@@ -2303,20 +2303,20 @@ Function2cbd: ; 2cbd
 	jr .asm_2cd7
 ; 2cff
 
-Function2cff: ; 2cff
+Function2cff:: ; 2cff
 	call Function2d0d
 	and $f
 	ret
 ; 2d05
 
-Function2d05: ; 2d05
+Function2d05:: ; 2d05
 	call Function2d0d
 	and $f0
 	swap a
 	ret
 ; 2d0d
 
-Function2d0d: ; 2d0d
+Function2d0d:: ; 2d0d
 	push hl
 	push bc
 	ld de, $0007
@@ -2327,7 +2327,7 @@ Function2d0d: ; 2d0d
 	ret
 ; 2d19
 
-Function2d19: ; 2d19
+Function2d19:: ; 2d19
 	push de
 	push hl
 	push bc
@@ -2340,7 +2340,7 @@ Function2d19: ; 2d19
 	ret
 ; 2d27
 
-LoadTilesetHeader: ; 2d27
+LoadTilesetHeader:: ; 2d27
 	push hl
 	push bc
 

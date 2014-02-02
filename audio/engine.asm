@@ -7,7 +7,7 @@
 ; 	PlayStereoSFX
 ; 	PlayCry
 
-_SoundRestart: ; e8000
+_SoundRestart:: ; e8000
 ; restart sound operation
 ; clear all relevant hardware registers & wram
 	push hl
@@ -84,7 +84,7 @@ MusicOff: ; e8057
 	ret
 ; e805c
 
-_UpdateSound: ; e805c
+_UpdateSound:: ; e805c
 ; called once per frame
 	; no use updating audio if it's not playing
 	ld a, [MusicPlaying]
@@ -2322,7 +2322,7 @@ SetLRTracks: ; e8b1b
 	ret
 ; e8b30
 
-_PlayMusic: ; e8b30
+_PlayMusic:: ; e8b30
 ; load music
 	call MusicOff
 	ld hl, MusicID
@@ -2365,7 +2365,7 @@ _PlayMusic: ; e8b30
 	ret
 ; e8b79
 
-PlayCry: ; e8b79
+PlayCry:: ; e8b79
 ; Play cry de using parameters:
 ;	CryPitch
 ;	CryEcho
@@ -2479,7 +2479,7 @@ PlayCry: ; e8b79
 	ret
 ; e8c04
 
-_PlaySFX: ; e8c04
+_PlaySFX:: ; e8c04
 ; clear channels if they aren't already
 	call MusicOff
 	ld hl, $c1cc ; Channel5Flags
@@ -2580,7 +2580,7 @@ _PlaySFX: ; e8c04
 ; e8ca6
 
 
-PlayStereoSFX: ; e8ca6
+PlayStereoSFX:: ; e8ca6
 ; play sfx de
 
 	call MusicOff
@@ -2759,7 +2759,7 @@ ChannelInit: ; e8d5b
 	ret
 ; e8d76
 
-LoadMusicByte: ; e8d76
+LoadMusicByte:: ; e8d76
 ; input:
 ;   de = current music address
 ; output:
@@ -3156,7 +3156,7 @@ ChannelPointers: ; e8fd9
 	dw Channel8
 ; e8fe9
 
-ClearChannels: ; e8fe9
+ClearChannels:: ; e8fe9
 ; runs ClearChannel for all 4 channels
 ; doesn't seem to be used, but functionally identical to SoundRestart
 	ld hl, rNR50

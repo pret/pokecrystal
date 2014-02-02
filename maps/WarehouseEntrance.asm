@@ -468,7 +468,7 @@ UnknownScript_0x7c2cd: ; 0x7c2cd
 	end
 ; 0x7c2d6
 
-MapWarehouseEntranceSignpost0Script: ; 0x7c2d6
+MapWarehouseEntranceSignpost0Script:: ; 0x7c2d6
 	loadfont
 	checkevent EVENT_USED_BASEMENT_KEY
 	iftrue UnknownScript_0x7c2fa

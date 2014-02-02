@@ -1,9 +1,9 @@
-DoItemEffect: ; 2f3f
+DoItemEffect:: ; 2f3f
 	callba _DoItemEffect
 	ret
 ; 2f46
 
-CheckTossableItem: ; 2f46
+CheckTossableItem:: ; 2f46
 	push hl
 	push de
 	push bc
@@ -14,7 +14,7 @@ CheckTossableItem: ; 2f46
 	ret
 ; 2f53
 
-TossItem: ; 2f53
+TossItem:: ; 2f53
 	push hl
 	push de
 	push bc
@@ -34,7 +34,7 @@ TossItem: ; 2f53
 	ret
 ; 2f66
 
-ReceiveItem: ; 2f66
+ReceiveItem:: ; 2f66
 	push bc
 	ld a, [hROMBank]
 	push af
@@ -54,7 +54,7 @@ ReceiveItem: ; 2f66
 	ret
 ; 2f79
 
-CheckItem: ; 2f79
+CheckItem:: ; 2f79
 	push hl
 	push de
 	push bc

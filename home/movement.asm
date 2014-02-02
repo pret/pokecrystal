@@ -1,4 +1,4 @@
-Function1b1e: ; 1b1e
+Function1b1e:: ; 1b1e
 	ld [$d003], a
 	xor a
 	ld [DefaultFlypoint], a
@@ -11,7 +11,7 @@ Function1b1e: ; 1b1e
 	ret
 ; 1b35
 
-Function1b35: ; 1b35
+Function1b35:: ; 1b35
 	ld a, [DefaultFlypoint]
 	and a
 	ret z
@@ -20,7 +20,7 @@ Function1b35: ; 1b35
 	ret
 ; 1b3f
 
-Function1b3f: ; 1b3f
+Function1b3f:: ; 1b3f
 	push hl
 	push de
 	ld hl, DefaultFlypoint
@@ -35,7 +35,7 @@ Function1b3f: ; 1b3f
 	ret
 ; 1b50
 
-Function1b50: ; 1b50
+Function1b50:: ; 1b50
 	push af
 	ld a, c
 	and a
@@ -52,7 +52,7 @@ Function1b50: ; 1b50
 	ret
 ; 1b5f
 
-Function1b5f: ; 1b5f
+Function1b5f:: ; 1b5f
 	push af
 	ld a, b
 	sub d
@@ -97,7 +97,7 @@ Function1b5f: ; 1b5f
 	ret
 ; 1b92
 
-Function1b92: ; 1b92
+Function1b92:: ; 1b92
 	push de
 	push hl
 	ld l, b
@@ -119,7 +119,7 @@ Function1b92: ; 1b92
 	db 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19
 ; 1bb1
 
-Function1bb1: ; 1bb1
+Function1bb1:: ; 1bb1
 	push hl
 	push bc
 	ld hl, $cfa1
@@ -142,19 +142,19 @@ Function1bb1: ; 1bb1
 	ret
 ; 1bc9
 
-Function1bc9: ; 1bc9
+Function1bc9:: ; 1bc9
 	callab Function241a8
 	call Function1bdd
 	ret
 ; 1bd3
 
-Function1bd3: ; 1bd3
+Function1bd3:: ; 1bd3
 	callab Function241ab
 	call Function1bdd
 	ret
 ; 1bdd
 
-Function1bdd: ; 1bdd
+Function1bdd:: ; 1bdd
 	push bc
 	push af
 	ld a, [$ffa9]
@@ -170,7 +170,7 @@ Function1bdd: ; 1bdd
 	ret
 ; 1bee
 
-Function1bee: ; 1bee
+Function1bee:: ; 1bee
 	ld hl, $cfac
 	ld a, [hli]
 	ld h, [hl]
@@ -179,7 +179,7 @@ Function1bee: ; 1bee
 	ret
 ; 1bf7
 
-Function1bf7: ; 1bf7
+Function1bf7:: ; 1bf7
 	ld hl, $cfac
 	ld a, [hli]
 	ld h, [hl]
@@ -188,22 +188,22 @@ Function1bf7: ; 1bf7
 	ret
 ; 1c00
 
-Function1c00: ; 1c00
+Function1c00:: ; 1c00
 	callab Function24374
 	ret
 ; 1c07
 
-Function1c07: ; 0x1c07
+Function1c07:: ; 0x1c07
 	push af
 	callab Function243e8
 	pop af
 	ret
 
-Function1c10: ; 0x1c10
+Function1c10:: ; 0x1c10
 	callab Function2446d
 	ret
 
-Function1c17: ; 0x1c17
+Function1c17:: ; 0x1c17
 	push af
 	call Function1c07
 	call Function321c
@@ -211,7 +211,7 @@ Function1c17: ; 0x1c17
 	pop af
 	ret
 
-Function1c23: ; 0x1c23
+Function1c23:: ; 0x1c23
 	call Function1cfd
 	call Function1c30
 	call Function1d19

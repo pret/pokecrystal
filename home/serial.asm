@@ -1,4 +1,4 @@
-Serial: ; 6ef
+Serial:: ; 6ef
 ; The serial interrupt.
 
 	push af
@@ -89,7 +89,7 @@ Serial: ; 6ef
 	reti
 ; 75f
 
-Function75f: ; 75f
+Function75f:: ; 75f
 	ld a, $1
 	ld [$ffcc], a
 .asm_763
@@ -125,7 +125,7 @@ Function75f: ; 75f
 	ret
 ; 78a
 
-Function78a: ; 78a
+Function78a:: ; 78a
 	xor a
 	ld [$ffca], a
 	ld a, [$ffcb]
@@ -230,7 +230,7 @@ Function78a: ; 78a
 	ret
 ; 82b
 
-Function82b: ; 82b
+Function82b:: ; 82b
 	push hl
 	ld hl, $cf5b
 	ld a, [hli]
@@ -239,14 +239,14 @@ Function82b: ; 82b
 	ret
 ; 833
 
-Function833: ; 833
+Function833:: ; 833
 	dec a
 	ld [$cf5b], a
 	ld [$cf5c], a
 	ret
 ; 83b
 
-Function83b: ; 83b
+Function83b:: ; 83b
 	ld hl, $cf56
 	ld de, $cf51
 	ld c, $2
@@ -272,7 +272,7 @@ Function83b: ; 83b
 	ret
 ; 862
 
-Function862: ; 862
+Function862:: ; 862
 	call Function309d
 	callab Function4000
 	call Function87d
@@ -280,7 +280,7 @@ Function862: ; 862
 ; 871
 
 
-Function871: ; 871
+Function871:: ; 871
 	call Function309d
 	callab Function4000
 	jp Function87d
@@ -288,7 +288,7 @@ Function871: ; 871
 
 
 
-Function87d: ; 87d
+Function87d:: ; 87d
 	ld a, $ff
 	ld [$cf52], a
 .asm_882
@@ -331,7 +331,7 @@ Function87d: ; 87d
 	ret
 ; 8c1
 
-Function8c1: ; 8c1
+Function8c1:: ; 8c1
 	push bc
 	ld b, $60
 	ld a, [InLinkBattle]
@@ -363,7 +363,7 @@ Function8c1: ; 8c1
 	ret
 ; 8f3
 
-Function8f3: ; 8f3
+Function8f3:: ; 8f3
 	ld a, [hSerialReceive]
 	ld [$cf51], a
 	and $f0
@@ -377,7 +377,7 @@ Function8f3: ; 8f3
 	ret
 ; 908
 
-Function908: ; 908
+Function908:: ; 908
 	xor a
 	ld [hSerialSend], a
 	ld a, [$ffcb]
@@ -390,7 +390,7 @@ Function908: ; 908
 	ret
 ; 919
 
-Function919: ; 919
+Function919:: ; 919
 	ld a, [InLinkBattle]
 	and a
 	ret nz

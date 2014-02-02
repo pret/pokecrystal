@@ -865,7 +865,7 @@ Function9853: ; 9853
 ; 9890
 
 
-Function9890: ; 9890
+Function9890:: ; 9890
 	call CheckCGB
 	ret z
 	ld a, $1

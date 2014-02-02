@@ -1,4 +1,4 @@
-AskSerial: ; 2063
+AskSerial:: ; 2063
 ; send out a handshake while serial int is off
 	ld a, [$c2d4]
 	bit 0, a

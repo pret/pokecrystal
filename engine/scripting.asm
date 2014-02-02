@@ -1,7 +1,7 @@
 ; Event scripting commands.
 
 
-Function96c56: ; 96c56
+Function96c56:: ; 96c56
 	push af
 	ld a, 1
 	ld [ScriptMode], a
@@ -10,7 +10,7 @@ Function96c56: ; 96c56
 ; 96c5e
 
 
-ScriptEvents: ; 96c5e
+ScriptEvents:: ; 96c5e
 	call StartScript
 .loop
 	ld a, [ScriptMode]
@@ -1658,7 +1658,7 @@ ScriptCall: ; 0x974cb
 	ret
 ; 0x974f3
 
-Unknown_0x974f3: ; 0x974f3
+Unknown_0x974f3:: ; 0x974f3
 	ld a, [ScriptBank]
 	or $80
 	ld [ScriptBank], a
@@ -2952,7 +2952,7 @@ Script_changeblock: ; 0x97acc
 	ret
 ; 0x97ae3
 
-Script_reloadmappart: ; 0x97ae3
+Script_reloadmappart:: ; 0x97ae3
 ; script command 0x7c
 
 	xor a

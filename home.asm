@@ -1,7 +1,7 @@
 INCLUDE "includes.asm"
 
 SECTION "NULL", ROM0[0]
-NULL:
+NULL::
 
 
 INCLUDE "rst.asm"
@@ -10,7 +10,7 @@ INCLUDE "interrupts.asm"
 
 SECTION "Header", ROM0[$100]
 
-Start:
+Start::
 	nop
 	jp _Start
 
@@ -41,7 +41,7 @@ INCLUDE "home/game_time.asm"
 INCLUDE "home/map.asm"
 
 
-Function2d43: ; 2d43
+Function2d43:: ; 2d43
 ; Inexplicably empty.
 ; Seen in PredefPointers.
 	rept 16
@@ -56,7 +56,7 @@ INCLUDE "home/predef.asm"
 INCLUDE "home/window.asm"
 
 
-Function2e4e: ; 2e4e
+Function2e4e:: ; 2e4e
 	scf
 	ret
 ; 2e50
@@ -65,7 +65,7 @@ Function2e4e: ; 2e4e
 INCLUDE "home/flag.asm"
 
 
-Function2ebb: ; 2ebb
+Function2ebb:: ; 2ebb
 	ld a, [$c2cc]
 	bit 1, a
 	ret z
@@ -75,18 +75,18 @@ Function2ebb: ; 2ebb
 ; 2ec6
 
 
-Function2ec6: ; 2ec6
+Function2ec6:: ; 2ec6
 	xor a
 	ret
 ; 2ec8
 
-Function2ec8: ; 2ec8
+Function2ec8:: ; 2ec8
 	xor a
 	dec a
 	ret
 ; 2ecb
 
-Function2ecb: ; 2ecb
+Function2ecb:: ; 2ecb
 	push hl
 	ld hl, $c2cc
 	bit 1, [hl]
@@ -95,7 +95,7 @@ Function2ecb: ; 2ecb
 ; 2ed3
 
 
-Function2ed3: ; 0x2ed3
+Function2ed3:: ; 0x2ed3
 ; disables overworld sprite updating?
 	xor a
 	ld [$ffde], a
@@ -107,7 +107,7 @@ Function2ed3: ; 0x2ed3
 	ret
 ; 0x2ee4
 
-Function2ee4: ; 2ee4
+Function2ee4:: ; 2ee4
 	ld a, $1
 	ld [$c2ce], a
 	ld a, [VramState]
@@ -122,7 +122,7 @@ Function2ee4: ; 2ee4
 INCLUDE "home/string.asm"
 
 
-IsInJohto: ; 2f17
+IsInJohto:: ; 2f17
 ; Return 0 if the player is in Johto, and 1 in Kanto.
 
 	ld a, [MapGroup]
@@ -157,7 +157,7 @@ IsInJohto: ; 2f17
 ; 2f3e
 
 
-Function2f3e: ; 2f3e
+Function2f3e:: ; 2f3e
 	ret
 ; 2f3f
 
@@ -169,11 +169,11 @@ INCLUDE "home/sram.asm"
 
 ; Register aliases
 
-_hl_: ; 2fec
+_hl_:: ; 2fec
 	jp [hl]
 ; 2fed
 
-_de_: ; 2fed
+_de_:: ; 2fed
 	push de
 	ret
 ; 2fef
@@ -182,7 +182,7 @@ _de_: ; 2fed
 INCLUDE "home/double_speed.asm"
 
 
-ClearSprites: ; 300b
+ClearSprites:: ; 300b
 ; Erase OAM data
 	ld hl, Sprites
 	ld b, SpritesEnd - Sprites
@@ -194,7 +194,7 @@ ClearSprites: ; 300b
 	ret
 ; 3016
 
-HideSprites: ; 3016
+HideSprites:: ; 3016
 ; Set all OAM y-positions to 160 to hide them offscreen
 	ld hl, Sprites
 	ld de, 4 ; length of an OAM struct
@@ -212,7 +212,7 @@ HideSprites: ; 3016
 INCLUDE "home/copy2.asm"
 
 
-Function309d: ; 309d
+Function309d:: ; 309d
 	ld a, [rSVBK]
 	push af
 	ld a, 2
@@ -226,7 +226,7 @@ Function309d: ; 309d
 	ret
 ; 30b4
 
-Function30b4: ; 30b4
+Function30b4:: ; 30b4
 	xor a
 	ld [hBGMapMode], a
 	call Function30bf
@@ -235,7 +235,7 @@ Function30b4: ; 30b4
 	ret
 ; 30bf
 
-Function30bf: ; 30bf
+Function30bf:: ; 30bf
 	ld a, [rSVBK]
 	push af
 	ld a, 2
@@ -250,10 +250,10 @@ Function30bf: ; 30bf
 ; 30d6
 
 
-CopyName1: ; 30d6
+CopyName1:: ; 30d6
 	ld hl, StringBuffer2
 
-CopyName2: ; 30d9
+CopyName2:: ; 30d9
 .loop
 	ld a, [de]
 	inc de
@@ -263,7 +263,7 @@ CopyName2: ; 30d9
 	ret
 ; 30e1
 
-IsInArray: ; 30e1
+IsInArray:: ; 30e1
 ; Find value a for every de bytes in array hl.
 ; Return index in b and carry if found.
 
@@ -288,7 +288,7 @@ IsInArray: ; 30e1
 	ret
 ; 30f4
 
-SkipNames: ; 0x30f4
+SkipNames:: ; 0x30f4
 ; skips n names where n = a
 	ld bc, $000b ; name length
 	and a
@@ -300,7 +300,7 @@ SkipNames: ; 0x30f4
 	ret
 ; 0x30fe
 
-AddNTimes: ; 0x30fe
+AddNTimes:: ; 0x30fe
 ; adds bc n times where n = a
 	and a
 	ret z
@@ -315,7 +315,7 @@ AddNTimes: ; 0x30fe
 INCLUDE "home/math.asm"
 
 
-PrintLetterDelay: ; 313d
+PrintLetterDelay:: ; 313d
 ; Wait before printing the next letter.
 
 ; The text speed setting in Options is actually a frame count:
@@ -399,7 +399,7 @@ PrintLetterDelay: ; 313d
 ; 318c
 
 
-CopyDataUntil: ; 318c
+CopyDataUntil:: ; 318c
 ; Copy [hl .. bc) to [de .. de + bc - hl).
 
 ; In other words, the source data is
@@ -419,7 +419,7 @@ CopyDataUntil: ; 318c
 ; 0x3198
 
 
-PrintNum: ; 3198
+PrintNum:: ; 3198
 	ld a, [hROMBank]
 	push af
 	ld a, BANK(_PrintNum)
@@ -433,7 +433,7 @@ PrintNum: ; 3198
 ; 31a4
 
 
-Function31a4: ; 31a4
+Function31a4:: ; 31a4
 	ld a, [hROMBank]
 	push af
 	ld a, BANK(Function1061ef)
@@ -447,7 +447,7 @@ Function31a4: ; 31a4
 ; 31b0
 
 
-FarPrintText: ; 31b0
+FarPrintText:: ; 31b0
 	ld [hBuffer], a
 	ld a, [hROMBank]
 	push af
@@ -462,7 +462,7 @@ FarPrintText: ; 31b0
 ; 31be
 
 
-CallPointerAt: ; 31be
+CallPointerAt:: ; 31be
 	ld a, [hROMBank]
 	push af
 	ld a, [hli]
@@ -481,11 +481,11 @@ CallPointerAt: ; 31be
 ; 31cd
 
 
-Function31cd: ; 31cd
+Function31cd:: ; 31cd
 ; Push pointer hl in the current bank to $d0e8.
 	ld a, [hROMBank]
 
-Function31cf: ; 31cf
+Function31cf:: ; 31cf
 ; Push pointer a:hl to $d0e8.
 	ld [$d0e8], a
 	ld a, l
@@ -496,7 +496,7 @@ Function31cf: ; 31cf
 ; 31db
 
 
-StringCmp: ; 31db
+StringCmp:: ; 31db
 ; Compare c bytes at de and hl.
 ; Return z if they all match.
 	ld a, [de]
@@ -510,7 +510,7 @@ StringCmp: ; 31db
 ; 0x31e4
 
 
-CompareLong: ; 31e4
+CompareLong:: ; 31e4
 ; Compare bc bytes at de and hl.
 ; Return carry if they all match.
 
@@ -535,9 +535,9 @@ CompareLong: ; 31e4
 ; 31f3
 
 
-WhiteBGMap: ; 31f3
+WhiteBGMap:: ; 31f3
 	call ClearPalettes
-WaitBGMap: ; 31f6
+WaitBGMap:: ; 31f6
 ; Tell VBlank to update BG Map
 	ld a, 1 ; BG Map 0 tiles
 	ld [hBGMapMode], a
@@ -547,7 +547,7 @@ WaitBGMap: ; 31f6
 	ret
 ; 3200
 
-Function3200: ; 0x3200
+Function3200:: ; 0x3200
 	ld a, [hCGB]
 	and a
 	jr z, .asm_320e
@@ -565,14 +565,14 @@ Function3200: ; 0x3200
 ; 0x3218
 
 
-Function3218: ; 3218
+Function3218:: ; 3218
 	ld a, [hCGB]
 	and a
 	ret
 ; 321c
 
 
-Function321c: ; 321c
+Function321c:: ; 321c
 	ld a, [hCGB]
 	and a
 	jr z, .asm_322e
@@ -593,21 +593,21 @@ Function321c: ; 321c
 	ret
 ; 3238
 
-Function3238: ; 3238
+Function3238:: ; 3238
 	ld a, [hCGB]
 	and a
 	jr z, WaitBGMap
 
-Function323d: ; 323d
+Function323d:: ; 323d
 	jr Function3246
 ; 323f
 
-Function323f: ; 323f
+Function323f:: ; 323f
 	callba Function104000
 	ret
 ; 3246
 
-Function3246: ; 3246
+Function3246:: ; 3246
 	ld a, [hBGMapMode]
 	push af
 	xor a
@@ -641,7 +641,7 @@ Function3246: ; 3246
 	ret
 ; 327b
 
-Function327b: ; 327b
+Function327b:: ; 327b
 	ld [hSPBuffer], sp
 	ld sp, hl
 	ld a, [$ffd7]
@@ -691,7 +691,7 @@ endr
 
 
 
-Function32f9: ; 32f9
+Function32f9:: ; 32f9
 	ld a, [hCGB]
 	and a
 	jr nz, .asm_3309
@@ -713,7 +713,7 @@ Function32f9: ; 32f9
 ; 3317
 
 
-ClearPalettes: ; 3317
+ClearPalettes:: ; 3317
 ; Make all palettes white
 
 ; CGB: make all the palette colors white
@@ -751,10 +751,10 @@ ClearPalettes: ; 3317
 ; 333e
 
 
-ClearSGB: ; 333e
+ClearSGB:: ; 333e
 	ld b, $ff
 
-GetSGBLayout: ; 3340
+GetSGBLayout:: ; 3340
 ; load sgb packets unless dmg
 
 	ld a, [hCGB]
@@ -771,7 +771,7 @@ GetSGBLayout: ; 3340
 ; 334e
 
 
-SetHPPal: ; 334e
+SetHPPal:: ; 334e
 ; Set palette for hp bar pixel length e at hl.
 	call GetHPPal
 	ld [hl], d
@@ -779,7 +779,7 @@ SetHPPal: ; 334e
 ; 3353
 
 
-GetHPPal: ; 3353
+GetHPPal:: ; 3353
 ; Get palette for hp bar pixel length e in d.
 
 	ld d, 0 ; green
@@ -794,7 +794,7 @@ GetHPPal: ; 3353
 ; 335f
 
 
-CountSetBits: ; 0x335f
+CountSetBits:: ; 0x335f
 ; Count the number of set bits in b bytes starting from hl.
 ; Return in a, c and [$d265].
 
@@ -821,7 +821,7 @@ CountSetBits: ; 0x335f
 ; 0x3376
 
 
-GetWeekday: ; 3376
+GetWeekday:: ; 3376
 	ld a, [CurDay]
 .mod
 	sub 7
@@ -834,7 +834,7 @@ GetWeekday: ; 3376
 INCLUDE "home/pokedex_flags.asm"
 
 
-NamesPointers: ; 33ab
+NamesPointers:: ; 33ab
 	dbw BANK(PokemonNames), PokemonNames
 	dbw BANK(MoveNames), MoveNames
 	dbw 0, 0
@@ -846,7 +846,7 @@ NamesPointers: ; 33ab
 ; 33c3
 
 
-GetName: ; 33c3
+GetName:: ; 33c3
 ; Return name CurSpecies from name list $cf61 in StringBuffer1.
 
 	ld a, [hROMBank]
@@ -906,7 +906,7 @@ GetName: ; 33c3
 ; 3411
 
 
-GetNthString: ; 3411
+GetNthString:: ; 3411
 ; Return the address of the
 ; ath string starting from hl.
 
@@ -927,7 +927,7 @@ GetNthString: ; 3411
 ; 3420
 
 
-GetBasePokemonName: ; 3420
+GetBasePokemonName:: ; 3420
 ; Discards gender (Nidoran).
 
 	push hl
@@ -953,7 +953,7 @@ GetBasePokemonName: ; 3420
 ; 343b
 
 
-GetPokemonName: ; 343b
+GetPokemonName:: ; 343b
 ; Get Pokemon name $d265.
 
 	ld a, [hROMBank]
@@ -992,7 +992,7 @@ GetPokemonName: ; 343b
 ; 3468
 
 
-GetItemName: ; 3468
+GetItemName:: ; 3468
 ; Get item name $d265.
 
 	push hl
@@ -1017,7 +1017,7 @@ GetItemName: ; 3468
 ; 3487
 
 
-GetTMHMName: ; 3487
+GetTMHMName:: ; 3487
 ; Get TM/HM name by item id $d265.
 
 	push hl
@@ -1101,7 +1101,7 @@ GetTMHMName: ; 3487
 ; 34df
 
 
-IsHM: ; 34df
+IsHM:: ; 34df
 	cp HM_01
 	jr c, .NotHM
 	scf
@@ -1112,7 +1112,7 @@ IsHM: ; 34df
 ; 34e7
 
 
-IsHMMove: ; 34e7
+IsHMMove:: ; 34e7
 	ld hl, .HMMoves
 	ld de, 1
 	jp IsInArray
@@ -1129,7 +1129,7 @@ IsHMMove: ; 34e7
 ; 34f8
 
 
-GetMoveName: ; 34f8
+GetMoveName:: ; 34f8
 	push hl
 ; move name
 	ld a, $2 ; move names
@@ -1145,7 +1145,7 @@ GetMoveName: ; 34f8
 ; 350c
 
 
-Function350c: ; 350c
+Function350c:: ; 350c
 	call Function1c66
 	ld a, [hROMBank]
 	push af
@@ -1162,14 +1162,14 @@ Function350c: ; 350c
 	ret
 ; 3524
 
-Function3524: ; 3524
+Function3524:: ; 3524
 	ld hl, VramState
 	bit 0, [hl]
 	jp nz, UpdateTimePals
 	jp Function32f9
 ; 352f
 
-Function352f: ; 352f
+Function352f:: ; 352f
 	ld a, [$cf82]
 	dec a
 	ld b, a
@@ -1188,7 +1188,7 @@ Function352f: ; 352f
 	jp TextBox
 ; 354b
 
-Function354b: ; 354b
+Function354b:: ; 354b
 	call DelayFrame
 	ld a, [$ffaa]
 	push af
@@ -1208,7 +1208,7 @@ Function354b: ; 354b
 ; 3567
 
 
-Function3567: ; 3567
+Function3567:: ; 3567
 	ld a, [hROMBank]
 	push af
 	call Function2c52
@@ -1220,7 +1220,7 @@ Function3567: ; 3567
 	ret
 ; 3574
 
-Function3574: ; 3574
+Function3574:: ; 3574
 	ld hl, $0001
 	add hl, de
 	ld a, [hl]
@@ -1245,7 +1245,7 @@ Function3574: ; 3574
 	ret
 ; 3599
 
-Function3599: ; 3599
+Function3599:: ; 3599
 	push de
 	ld hl, $0010
 	add hl, de
@@ -1263,7 +1263,7 @@ Function3599: ; 3599
 	ret
 ; 35b0
 
-Function35b0: ; 35b0
+Function35b0:: ; 35b0
 	ld hl, $dbfc
 	ld a, [hli]
 	ld h, [hl]
@@ -1308,7 +1308,7 @@ Function35b0: ; 35b0
 	ret
 ; 35de
 
-Function35de: ; 35de
+Function35de:: ; 35de
 	inc e
 	ld hl, $0001
 	add hl, bc
@@ -1347,7 +1347,7 @@ Function35de: ; 35de
 ; 3600
 
 
-CheckTrainerBattle2: ; 3600
+CheckTrainerBattle2:: ; 3600
 
 	ld a, [hROMBank]
 	push af
@@ -1362,7 +1362,7 @@ CheckTrainerBattle2: ; 3600
 ; 360d
 
 
-CheckTrainerBattle: ; 360d
+CheckTrainerBattle:: ; 360d
 ; Check if any trainer on the map sees the player and wants to battle.
 
 ; Skip the player object.
@@ -1454,13 +1454,13 @@ CheckTrainerBattle: ; 360d
 	jr Function367e
 ; 3674
 
-Function3674: ; 3674
+Function3674:: ; 3674
 	ld a, $1
 	ld [$d03f], a
 	ld a, $ff
 	ld [MartPointer], a
 
-Function367e: ; 367e
+Function367e:: ; 367e
 	call GetMapScriptHeaderBank
 	ld [EngineBuffer1], a
 	ld a, [$ffe0]
@@ -1480,7 +1480,7 @@ Function367e: ; 367e
 ; 36a5
 
 
-FacingPlayerDistance_bc: ; 36a5
+FacingPlayerDistance_bc:: ; 36a5
 
 	push de
 	call FacingPlayerDistance
@@ -1491,7 +1491,7 @@ FacingPlayerDistance_bc: ; 36a5
 ; 36ad
 
 
-FacingPlayerDistance: ; 36ad
+FacingPlayerDistance:: ; 36ad
 ; Return carry if the sprite at bc is facing the player,
 ; and its distance in d.
 
@@ -1562,7 +1562,7 @@ FacingPlayerDistance: ; 36ad
 ; 36f5
 
 
-Function36f5: ; 36f5
+Function36f5:: ; 36f5
 	push bc
 	ld hl, $0001
 	add hl, bc
@@ -1588,7 +1588,7 @@ Function36f5: ; 36f5
 ; 3718
 
 
-Function3718: ; 3718
+Function3718:: ; 3718
 	ld a, [BattleType]
 	cp $1
 	jr .asm_3724
@@ -1616,7 +1616,7 @@ Function3718: ; 3718
 
 
 
-IsAPokemon: ; 3741
+IsAPokemon:: ; 3741
 ; Return carry if species a is not a Pokemon.
 	and a
 	jr z, .NotAPokemon
@@ -1635,7 +1635,7 @@ IsAPokemon: ; 3741
 ; 3750
 
 
-DrawHPBar: ; 3750
+DrawHPBar:: ; 3750
 ; Draw an HP bar d tiles long at hl
 ; Fill it up to e pixels
 
@@ -1697,11 +1697,11 @@ DrawHPBar: ; 3750
 ; 3786
 
 
-Function3786: ; 3786
+Function3786:: ; 3786
 	ld a, $1
 	ld [$c2c6], a
 
-Function378b: ; 378b
+Function378b:: ; 378b
 	ld a, [CurPartySpecies]
 	call IsAPokemon
 	jr c, .asm_37ad
@@ -1727,7 +1727,7 @@ Function378b: ; 378b
 	ret
 ; 37b6
 
-Function37b6: ; 37b6
+Function37b6:: ; 37b6
 	push af
 	ld a, $1
 	ld [$c2bc], a
@@ -1737,7 +1737,7 @@ Function37b6: ; 37b6
 	ret
 ; 37c4
 
-Function37c4: ; 37c4
+Function37c4:: ; 37c4
 	push af
 	ld a, $1
 	ld [$c2bc], a
@@ -1745,13 +1745,13 @@ Function37c4: ; 37c4
 	jp Function37e2
 ; 37ce
 
-Function37ce: ; 37ce
+Function37ce:: ; 37ce
 	call Function37d5
 	call WaitSFX
 	ret
 ; 37d5
 
-Function37d5: ; 37d5
+Function37d5:: ; 37d5
 	push af
 	xor a
 	ld [$c2bc], a
@@ -1761,7 +1761,7 @@ Function37d5: ; 37d5
 	ret
 ; 37e2
 
-Function37e2: ; 37e2
+Function37e2:: ; 37e2
 	push hl
 	push de
 	push bc
@@ -1778,7 +1778,7 @@ Function37e2: ; 37e2
 	ret
 ; 37f3
 
-Function37f3: ; 37f3
+Function37f3:: ; 37f3
 	call Function381e
 	ret c
 	ld a, [hROMBank]
@@ -1812,7 +1812,7 @@ Function37f3: ; 37f3
 	ret
 ; 381e
 
-Function381e: ; 381e
+Function381e:: ; 381e
 	and a
 	jr z, .asm_382b
 	cp $fc
@@ -1829,7 +1829,7 @@ Function381e: ; 381e
 ; 382d
 
 
-PrintLevel: ; 382d
+PrintLevel:: ; 382d
 ; Print TempMonLevel at hl
 
 	ld a, [TempMonLevel]
@@ -1847,14 +1847,14 @@ PrintLevel: ; 382d
 	jr Function3842
 ; 383d
 
-Function383d: ; 383d
+Function383d:: ; 383d
 ; Print :L and all 3 digits
 	ld [hl], $6e
 	inc hl
 	ld c, 3
 ; 3842
 
-Function3842: ; 3842
+Function3842:: ; 3842
 	ld [$d265], a
 	ld de, $d265
 	ld b,  %01000001 ; flags
@@ -1862,7 +1862,7 @@ Function3842: ; 3842
 ; 384d
 
 
-Function384d: ; 384d
+Function384d:: ; 384d
 	ld hl, $d25e
 	ld c, a
 	ld b, $0
@@ -1872,7 +1872,7 @@ Function384d: ; 384d
 ; 3856
 
 
-GetBaseData: ; 3856
+GetBaseData:: ; 3856
 	push bc
 	push de
 	push hl
@@ -1930,11 +1930,11 @@ GetBaseData: ; 3856
 ; 389c
 
 
-GetCurNick: ; 389c
+GetCurNick:: ; 389c
 	ld a, [CurPartyMon]
 	ld hl, PartyMonNicknames
 
-GetNick: ; 38a2
+GetNick:: ; 38a2
 ; Get nickname a from list hl.
 
 	push hl
@@ -1956,7 +1956,7 @@ GetNick: ; 38a2
 ; 38bb
 
 
-PrintBCDNumber: ; 38bb
+PrintBCDNumber:: ; 38bb
 ; function to print a BCD (Binary-coded decimal) number
 ; de = address of BCD number
 ; hl = destination address
@@ -2008,7 +2008,7 @@ PrintBCDNumber: ; 38bb
 	ret
 ; 0x38f2
 
-PrintBCDDigit: ; 38f2
+PrintBCDDigit:: ; 38f2
 	and a, %00001111
 	and a
 	jr z, .zeroDigit
@@ -2037,7 +2037,7 @@ PrintBCDDigit: ; 38f2
 	ret
 ; 0x3917
 
-GetPartyParamLocation: ; 3917
+GetPartyParamLocation:: ; 3917
 ; Get the location of parameter a from CurPartyMon in hl
 	push bc
 	ld hl, PartyMons
@@ -2050,14 +2050,14 @@ GetPartyParamLocation: ; 3917
 	ret
 ; 3927
 
-GetPartyLocation: ; 3927
+GetPartyLocation:: ; 3927
 ; Add the length of a PartyMon struct to hl a times.
 	ld bc, PartyMon2 - PartyMon1
 	jp AddNTimes
 ; 392d
 
 
-Function392d: ; 392d
+Function392d:: ; 392d
 	push hl
 	ld a, b
 	dec a
@@ -2075,7 +2075,7 @@ Function392d: ; 392d
 ; 3945
 
 
-UserPartyAttr: ; 3945
+UserPartyAttr:: ; 3945
 	push af
 	ld a, [hBattleTurn]
 	and a
@@ -2088,7 +2088,7 @@ UserPartyAttr: ; 3945
 ; 3951
 
 
-OpponentPartyAttr: ; 3951
+OpponentPartyAttr:: ; 3951
 	push af
 	ld a, [hBattleTurn]
 	and a
@@ -2101,7 +2101,7 @@ OpponentPartyAttr: ; 3951
 ; 395d
 
 
-BattlePartyAttr: ; 395d
+BattlePartyAttr:: ; 395d
 ; Get attribute a from the active BattleMon's party struct.
 	push bc
 	ld c, a
@@ -2115,7 +2115,7 @@ BattlePartyAttr: ; 395d
 ; 396d
 
 
-OTPartyAttr: ; 396d
+OTPartyAttr:: ; 396d
 ; Get attribute a from the active EnemyMon's party struct.
 	push bc
 	ld c, a
@@ -2129,46 +2129,46 @@ OTPartyAttr: ; 396d
 ; 397d
 
 
-ResetDamage: ; 397d
+ResetDamage:: ; 397d
 	xor a
 	ld [CurDamage], a
 	ld [CurDamage + 1], a
 	ret
 ; 3985
 
-SetPlayerTurn: ; 3985
+SetPlayerTurn:: ; 3985
 	xor a
 	ld [hBattleTurn], a
 	ret
 ; 3989
 
-SetEnemyTurn: ; 3989
+SetEnemyTurn:: ; 3989
 	ld a, 1
 	ld [hBattleTurn], a
 	ret
 ; 398e
 
 
-UpdateOpponentInParty: ; 398e
+UpdateOpponentInParty:: ; 398e
 	ld a, [hBattleTurn]
 	and a
 	jr z, UpdateEnemyMonInParty
 	jr UpdateBattleMonInParty
 ; 3995
 
-UpdateUserInParty: ; 3995
+UpdateUserInParty:: ; 3995
 	ld a, [hBattleTurn]
 	and a
 	jr z, UpdateBattleMonInParty
 	jr UpdateEnemyMonInParty
 ; 399c
 
-UpdateBattleMonInParty: ; 399c
+UpdateBattleMonInParty:: ; 399c
 ; Update level, status, current HP
 
 	ld a, [CurBattleMon]
 
-Function399f: ; 399f
+Function399f:: ; 399f
 	ld hl, PartyMon1Level
 	call GetPartyLocation
 
@@ -2179,7 +2179,7 @@ Function399f: ; 399f
 	jp CopyBytes
 ; 39b0
 
-UpdateEnemyMonInParty: ; 39b0
+UpdateEnemyMonInParty:: ; 39b0
 ; Update level, status, current HP
 
 ; No wildmons.
@@ -2199,21 +2199,21 @@ UpdateEnemyMonInParty: ; 39b0
 ; 39c9
 
 
-RefreshBattleHuds: ; 39c9
+RefreshBattleHuds:: ; 39c9
 	call UpdateBattleHuds
 	ld c, 3
 	call DelayFrames
 	jp WaitBGMap
 ; 39d4
 
-UpdateBattleHuds: ; 39d4
+UpdateBattleHuds:: ; 39d4
 	callba Function3df48
 	callba Function3e036
 	ret
 ; 39e1
 
 
-GetBattleVar: ; 39e1
+GetBattleVar:: ; 39e1
 ; Preserves hl.
 	push hl
 	call _GetBattleVar
@@ -2221,7 +2221,7 @@ GetBattleVar: ; 39e1
 	ret
 ; 39e7
 
-_GetBattleVar: ; 39e7
+_GetBattleVar:: ; 39e7
 ; Get variable from pair a, depending on whose turn it is.
 ; There are 21 variable pairs.
 
@@ -2340,7 +2340,7 @@ _GetBattleVar: ; 39e7
 ; 3a90
 
 
-Function3a90: ; 3a90
+Function3a90:: ; 3a90
 	inc hl
 	ld a, [hROMBank]
 	push af
@@ -2365,7 +2365,7 @@ Function3a90: ; 3a90
 ; 3ab2
 
 
-MobileTextBorder: ; 3ab2
+MobileTextBorder:: ; 3ab2
 ; For mobile link battles only.
 	ld a, [InLinkBattle]
 	cp 4
@@ -2379,7 +2379,7 @@ MobileTextBorder: ; 3ab2
 ; 3ac3
 
 
-BattleTextBox: ; 3ac3
+BattleTextBox:: ; 3ac3
 ; Open a textbox and print text at hl.
 	push hl
 	call SpeechTextBox
@@ -2392,7 +2392,7 @@ BattleTextBox: ; 3ac3
 ; 3ad5
 
 
-StdBattleTextBox: ; 3ad5
+StdBattleTextBox:: ; 3ad5
 ; Open a textbox and print battle text at 20:hl.
 
 	ld a, [hROMBank]
@@ -2409,7 +2409,7 @@ StdBattleTextBox: ; 3ad5
 ; 3ae1
 
 
-Function3ae1: ; 3ae1
+Function3ae1:: ; 3ae1
 
 	ld a, BANK(BattleAnimations)
 	rst Bankswitch
@@ -2425,7 +2425,7 @@ Function3ae1: ; 3ae1
 	ret
 ; 3af0
 
-GetBattleAnimByte: ; 3af0
+GetBattleAnimByte:: ; 3af0
 
 	push hl
 	push de
@@ -2456,7 +2456,7 @@ GetBattleAnimByte: ; 3af0
 	ret
 ; 3b0c
 
-Function3b0c: ; 3b0c
+Function3b0c:: ; 3b0c
 	ld a, [hLCDStatCustom]
 	and a
 	ret z
@@ -2478,7 +2478,7 @@ Function3b0c: ; 3b0c
 
 
 
-Function3b2a: ; 3b2a
+Function3b2a:: ; 3b2a
 	ld [$c3b8], a
 	ld a, [hROMBank]
 	push af
@@ -2494,7 +2494,7 @@ Function3b2a: ; 3b2a
 ; 3b3c
 
 
-Function3b3c: ; 3b3c
+Function3b3c:: ; 3b3c
 	ld [$c3b8], a
 	ld a, [hROMBank]
 	push af
@@ -2510,7 +2510,7 @@ Function3b3c: ; 3b3c
 ; 3b4e
 
 
-SoundRestart: ; 3b4e
+SoundRestart:: ; 3b4e
 
 	push hl
 	push de
@@ -2537,7 +2537,7 @@ SoundRestart: ; 3b4e
 ; 3b6a
 
 
-UpdateSound: ; 3b6a
+UpdateSound:: ; 3b6a
 
 	push hl
 	push de
@@ -2564,7 +2564,7 @@ UpdateSound: ; 3b6a
 ; 3b86
 
 
-_LoadMusicByte: ; 3b86
+_LoadMusicByte:: ; 3b86
 ; CurMusicByte = [a:de]
 
 	ld [hROMBank], a
@@ -2580,7 +2580,7 @@ _LoadMusicByte: ; 3b86
 ; 3b97
 
 
-PlayMusic: ; 3b97
+PlayMusic:: ; 3b97
 ; Play music de.
 
 	push hl
@@ -2616,7 +2616,7 @@ PlayMusic: ; 3b97
 ; 3bbc
 
 
-PlayMusic2: ; 3bbc
+PlayMusic2:: ; 3bbc
 ; Stop playing music, then play music de.
 
 	push hl
@@ -2650,7 +2650,7 @@ PlayMusic2: ; 3bbc
 ; 3be3
 
 
-PlayCryHeader: ; 3be3
+PlayCryHeader:: ; 3be3
 ; Play a cry given parameters in header de
 
 	push hl
@@ -2708,7 +2708,7 @@ PlayCryHeader: ; 3be3
 ; 3c23
 
 
-PlaySFX: ; 3c23
+PlaySFX:: ; 3c23
 ; Play sound effect de.
 ; Sound effects are ordered by priority (lowest to highest)
 
@@ -2748,14 +2748,14 @@ PlaySFX: ; 3c23
 ; 3c4e
 
 
-WaitPlaySFX: ; 3c4e
+WaitPlaySFX:: ; 3c4e
 	call WaitSFX
 	call PlaySFX
 	ret
 ; 3c55
 
 
-WaitSFX: ; 3c55
+WaitSFX:: ; 3c55
 ; infinite loop until sfx is done playing
 
 	push hl
@@ -2782,7 +2782,7 @@ WaitSFX: ; 3c55
 	ret
 ; 3c74
 
-Function3c74: ; 3c74
+Function3c74:: ; 3c74
 	push hl
 	ld hl, $c1cc
 	bit 0, [hl]
@@ -2806,37 +2806,37 @@ Function3c74: ; 3c74
 	ret
 ; 3c97
 
-MaxVolume: ; 3c97
+MaxVolume:: ; 3c97
 	ld a, $77 ; max
 	ld [Volume], a
 	ret
 ; 3c9d
 
-LowVolume: ; 3c9d
+LowVolume:: ; 3c9d
 	ld a, $33 ; 40%
 	ld [Volume], a
 	ret
 ; 3ca3
 
-VolumeOff: ; 3ca3
+VolumeOff:: ; 3ca3
 	xor a
 	ld [Volume], a
 	ret
 ; 3ca8
 
-Function3ca8: ; 3ca8
+Function3ca8:: ; 3ca8
 	ld a, $4
 	ld [MusicFade], a
 	ret
 ; 3cae
 
-Function3cae: ; 3cae
+Function3cae:: ; 3cae
 	ld a, $84
 	ld [MusicFade], a
 	ret
 ; 3cb4
 
-Function3cb4: ; 3cb4
+Function3cb4:: ; 3cb4
 .asm_3cb4
 	and a
 	ret z
@@ -2845,7 +2845,7 @@ Function3cb4: ; 3cb4
 	jr .asm_3cb4
 ; 3cbc
 
-Function3cbc: ; 3cbc
+Function3cbc:: ; 3cbc
 	push hl
 	push de
 	push bc
@@ -2871,7 +2871,7 @@ Function3cbc: ; 3cbc
 	ret
 ; 3cdf
 
-Function3cdf: ; 3cdf
+Function3cdf:: ; 3cdf
 	push hl
 	push de
 	push bc
@@ -2897,7 +2897,7 @@ Function3cdf: ; 3cdf
 	ret
 ; 3d03
 
-Function3d03: ; 3d03
+Function3d03:: ; 3d03
 	push hl
 	push de
 	push bc
@@ -2925,7 +2925,7 @@ Function3d03: ; 3d03
 	ret
 ; 3d2f
 
-Function3d2f: ; 3d2f
+Function3d2f:: ; 3d2f
 	ld a, [$c2c1]
 	and a
 	jr z, Function3d47
@@ -2939,7 +2939,7 @@ Function3d2f: ; 3d2f
 	ret
 ; 3d47
 
-Function3d47: ; 3d47
+Function3d47:: ; 3d47
 	push hl
 	push de
 	push bc
@@ -2958,7 +2958,7 @@ Function3d47: ; 3d47
 	ret
 ; 3d62
 
-Function3d62: ; 3d62
+Function3d62:: ; 3d62
 	ld a, [PlayerState]
 	cp $4
 	jr z, .asm_3d7b
@@ -2996,14 +2996,14 @@ Function3d62: ; 3d62
 	ret
 ; 3d97
 
-Function3d97: ; 3d97
+Function3d97:: ; 3d97
 	call Function3d62
 	ret c
 	call Function2cbd
 	ret
 ; 3d9f
 
-Function3d9f: ; 3d9f
+Function3d9f:: ; 3d9f
 	ld a, $20
 	ld [$c498], a
 	ld [$c49c], a
@@ -3037,7 +3037,7 @@ Function3d9f: ; 3d9f
 	ret
 ; 3dde
 
-CheckSFX: ; 3dde
+CheckSFX:: ; 3dde
 ; returns carry if sfx channels are active
 	ld a, [$c1cc] ; 1
 	bit 0, a
@@ -3058,7 +3058,7 @@ CheckSFX: ; 3dde
 	ret
 ; 3dfe
 
-Function3dfe: ; 3dfe
+Function3dfe:: ; 3dfe
 	xor a
 	ld [$c1cc], a
 	ld [SoundInput], a
@@ -3071,7 +3071,7 @@ Function3dfe: ; 3dfe
 ; 3e10
 
 
-ChannelsOff: ; 3e10
+ChannelsOff:: ; 3e10
 ; Quickly turn off music channels
 	xor a
 	ld [Channel1Flags], a
@@ -3082,7 +3082,7 @@ ChannelsOff: ; 3e10
 	ret
 ; 3e21
 
-SFXChannelsOff: ; 3e21
+SFXChannelsOff:: ; 3e21
 ; Quickly turn off sound effect channels
 	xor a
 	ld [$c1cc], a
@@ -3093,7 +3093,7 @@ SFXChannelsOff: ; 3e21
 	ret
 ; 3e32
 
-Function3e32: ; 3e32
+Function3e32:: ; 3e32
 	cp $2
 	ld [$c988], a
 	ld a, l
@@ -3123,7 +3123,7 @@ Function3e32: ; 3e32
 ; 3e60
 
 
-Function3e60: ; 3e60
+Function3e60:: ; 3e60
 	ld [$c986], a
 	ld a, l
 	ld [$c987], a
@@ -3145,7 +3145,7 @@ Function3e60: ; 3e60
 ; 3e80
 
 
-Function3e80: ; 3e80
+Function3e80:: ; 3e80
 	ld a, [hROMBank]
 	push af
 	ld a, BANK(Function1116c5)
@@ -3162,7 +3162,7 @@ Function3e80: ; 3e80
 ; 3e93
 
 
-Timer: ; 3e93
+Timer:: ; 3e93
 	push af
 	push bc
 	push de
@@ -3220,7 +3220,7 @@ Timer: ; 3e93
 	reti
 ; 3ed7
 
-Function3ed7: ; 3ed7
+Function3ed7:: ; 3ed7
 	ld [$dc02], a
 	ld a, [hROMBank]
 	push af
@@ -3236,7 +3236,7 @@ Function3ed7: ; 3ed7
 	ret
 ; 3eea
 
-Function3eea: ; 3eea
+Function3eea:: ; 3eea
 	push hl
 	push bc
 	ld de, $0939
@@ -3252,7 +3252,7 @@ Function3eea: ; 3eea
 	ret
 ; 3efd
 
-Function3efd: ; 3efd
+Function3efd:: ; 3efd
 	push hl
 	ld hl, $c590
 	ld b, $4
@@ -3263,7 +3263,7 @@ Function3efd: ; 3efd
 	ret
 ; 3f0d
 
-Function3f0d: ; 3f0d
+Function3f0d:: ; 3f0d
 	push hl
 	push bc
 	ld de, $0939
@@ -3279,7 +3279,7 @@ Function3f0d: ; 3f0d
 	ret
 ; 3f20
 
-Function3f20: ; 3f20
+Function3f20:: ; 3f20
 	ld hl, AttrMap
 	ld b, $6
 	ld c, $14
@@ -3291,7 +3291,7 @@ Function3f20: ; 3f20
 	ret
 ; 3f35
 
-Function3f35: ; 3f35
+Function3f35:: ; 3f35
 	ld a, $6
 	ld de, $0014
 .asm_3f3a
@@ -3309,7 +3309,7 @@ Function3f35: ; 3f35
 	ret
 ; 3f47
 
-Function3f47: ; 3f47
+Function3f47:: ; 3f47
 	push bc
 	call Function3f58
 	pop bc
@@ -3323,24 +3323,24 @@ Function3f47: ; 3f47
 	ret
 ; 3f58
 
-Function3f58: ; 3f58
+Function3f58:: ; 3f58
 	ld a, $63
 	ld d, $62
 	ld e, $64
 	jr Function3f6e
 
-Function3f60: ; 3f60
+Function3f60:: ; 3f60
 	ld a, $68
 	ld d, $67
 	ld e, $69
 	jr Function3f6e
 
-Function3f68: ; 3f68
+Function3f68:: ; 3f68
 	ld a, $7f
 	ld d, $65
 	ld e, $66
 
-Function3f6e: ; 3f6e
+Function3f6e:: ; 3f6e
 	push hl
 	ld [hl], d
 	inc hl
@@ -3355,7 +3355,7 @@ Function3f6e: ; 3f6e
 	ret
 ; 3f7c
 
-Function3f7c: ; 3f7c
+Function3f7c:: ; 3f7c
 	call Function1cfd
 	call Function1c53
 	dec b
@@ -3364,7 +3364,7 @@ Function3f7c: ; 3f7c
 	ret
 ; 3f88
 
-Function3f88: ; 3f88
+Function3f88:: ; 3f88
 	ld hl, $d000
 	ld b, $0
 .asm_3f8d
@@ -3385,7 +3385,7 @@ Function3f88: ; 3f88
 	ret
 ; 3f9f
 
-Function3f9f: ; 3f9f
+Function3f9f:: ; 3f9f
 	ld hl, $d000
 .asm_3fa2
 	push bc

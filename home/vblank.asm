@@ -7,7 +7,7 @@
 ; This prevents the display and audio output from lagging.
 
 
-VBlank: ; 283
+VBlank:: ; 283
 	push af
 	push bc
 	push de
@@ -52,7 +52,7 @@ VBlank: ; 283
 ; 2b1
 
 
-VBlank0: ; 2b1
+VBlank0:: ; 2b1
 ; normal operation
 
 ; rng
@@ -181,7 +181,7 @@ VBlank0: ; 2b1
 ; 325
 
 
-VBlank2: ; 325
+VBlank2:: ; 325
 ; sound only
 
 ; save bank
@@ -204,7 +204,7 @@ VBlank2: ; 325
 ; 337
 
 
-VBlank1: ; 337
+VBlank1:: ; 337
 ; scx, scy
 ; palettes
 ; bg map
@@ -289,7 +289,7 @@ VBlank1: ; 337
 ; 37f
 
 
-UpdatePals: ; 37f
+UpdatePals:: ; 37f
 ; update pals for either dmg or cgb
 
 ; check cgb
@@ -312,7 +312,7 @@ UpdatePals: ; 37f
 ; 396
 
 
-VBlank3: ; 396
+VBlank3:: ; 396
 ; scx, scy
 ; palettes
 ; bg map
@@ -397,7 +397,7 @@ VBlank3: ; 396
 ; 3df
 
 
-VBlank4: ; 3df
+VBlank4:: ; 3df
 ; bg map
 ; tiles
 ; oam
@@ -444,7 +444,7 @@ VBlank4: ; 3df
 ; 400
 
 
-VBlank5: ; 400
+VBlank5:: ; 400
 ; scx
 ; palettes
 ; bg map
@@ -504,7 +504,7 @@ VBlank5: ; 400
 ; 436
 
 
-VBlank6: ; 436
+VBlank6:: ; 436
 ; palettes
 ; tiles
 ; dma transfer

@@ -21,7 +21,7 @@ Function110029: ; 110029 (44:4029)
 	ret
 
 ; known jump sources: 3e5d (0:3e5d)
-Function110030: ; 110030 (44:4030)
+Function110030:: ; 110030 (44:4030)
 	push de
 	ld a, [$c988]
 	cp $c
@@ -183,7 +183,7 @@ Function111686: ; 111686 (44:5686)
 INCBIN "baserom.gbc",$1116a0,$1116c5 - $1116a0
 
 ; known jump sources: 3e89 (0:3e89)
-Function1116c5: ; 1116c5 (44:56c5)
+Function1116c5:: ; 1116c5 (44:56c5)
 	ld a, [OverworldMap] ; $c800
 	rrca
 	jp nc, Function1118bc
@@ -522,7 +522,7 @@ Function1118c2: ; 1118c2 (44:58c2)
 	ret
 
 ; known jump sources: 3ec1 (0:3ec1)
-Function1118de: ; 1118de (44:58de)
+Function1118de:: ; 1118de (44:58de)
 	ld a, [$c80b]
 	cp $4
 	call z, Function111b3c

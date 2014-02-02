@@ -114,7 +114,7 @@ const_value SET -7
 	const CREDITS_END
 
 
-Function109847: ; 109847
+Function109847:: ; 109847
 	bit 6, b
 	ld a, $0
 	jr z, .asm_10984f

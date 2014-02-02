@@ -67,7 +67,7 @@ UnknownScript_0x19404a: ; 0x19404a
 	; fallthrough
 ; 0x194053
 
-WateredWeirdTreeScript: ; 0x194053
+WateredWeirdTreeScript:: ; 0x194053
 	loadfont
 	2writetext UnknownText_0x194290
 	closetext

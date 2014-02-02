@@ -1,7 +1,7 @@
 ; Functions to copy data from ROM.
 
 
-Functiondc9: ; dc9
+Functiondc9:: ; dc9
 	ld a, [rLCDC]
 	bit 7, a
 	jp z, Copy2bpp
@@ -17,7 +17,7 @@ Functiondc9: ; dc9
 	ret
 ; ddc
 
-Functionddc: ; ddc
+Functionddc:: ; ddc
 	ld a, [rLCDC]
 	bit 7, a
 	jp z, Copy1bpp
@@ -33,7 +33,7 @@ Functionddc: ; ddc
 	ret
 ; def
 
-Functiondef: ; def
+Functiondef:: ; def
 	ld [hBuffer], a
 	ld a, [hROMBank]
 	push af
@@ -45,7 +45,7 @@ Functiondef: ; def
 	ret
 ; dfd
 
-Functiondfd: ; dfd
+Functiondfd:: ; dfd
 	dec c
 	ld a, [hBGMapMode]
 	push af
@@ -105,37 +105,37 @@ Functiondfd: ; dfd
 
 
 
-Functione4a: ; e4a
+Functione4a:: ; e4a
 	callba Function14135
 	ret
 ; e51
 
 
 
-Functione51: ; e51
+Functione51:: ; e51
 	callba Functionfb449
 	ret
 ; e58
 
-Functione58: ; e58
+Functione58:: ; e58
 	callba Functionfb4be
 	ret
 ; e5f
 
 
 
-Functione5f: ; e5f
+Functione5f:: ; e5f
 	callba Functionfb48a
 	callba Functionfb4b0
 	ret
 ; e6c
 
-Functione6c: ; e6c
+Functione6c:: ; e6c
 	callba Functionfb4b0
 	ret
 ; e73
 
-Functione73: ; e73
+Functione73:: ; e73
 	push de
 	ld a, $0
 	call GetSRAMBank
@@ -153,7 +153,7 @@ Functione73: ; e73
 
 
 
-FarCopyBytes: ; e8d
+FarCopyBytes:: ; e8d
 ; copy bc bytes from a:hl to de
 
 	ld [hBuffer], a
@@ -170,7 +170,7 @@ FarCopyBytes: ; e8d
 ; 0xe9b
 
 
-FarCopyBytesDouble: ; e9b
+FarCopyBytesDouble:: ; e9b
 ; Copy bc bytes from a:hl to bc*2 bytes at de,
 ; doubling each byte in the process.
 
@@ -209,7 +209,7 @@ FarCopyBytesDouble: ; e9b
 ; 0xeba
 
 
-Request2bpp: ; eba
+Request2bpp:: ; eba
 	ld a, [hBGMapMode]
 	push af
 	xor a
@@ -283,7 +283,7 @@ Request2bpp: ; eba
 ; f1e
 
 
-Request1bpp: ; f1e
+Request1bpp:: ; f1e
 	ld a, [hBGMapMode]
 	push af
 	xor a
@@ -356,12 +356,12 @@ Request1bpp: ; f1e
 ; f82
 
 
-Get2bpp: ; f82
+Get2bpp:: ; f82
 	ld a, [rLCDC]
 	bit 7, a
 	jp nz, Request2bpp
 
-Copy2bpp: ; f89
+Copy2bpp:: ; f89
 ; copy c 2bpp tiles from b:de to hl
 
 	push hl
@@ -387,12 +387,12 @@ Copy2bpp: ; f89
 ; f9d
 
 
-Get1bpp: ; f9d
+Get1bpp:: ; f9d
 	ld a, [rLCDC]
 	bit 7, a
 	jp nz, Request1bpp
 
-Copy1bpp: ; fa4
+Copy1bpp:: ; fa4
 ; copy c 1bpp tiles from b:de to hl
 
 	push de

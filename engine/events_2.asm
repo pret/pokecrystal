@@ -5,14 +5,14 @@ INCLUDE "includes.asm"
 
 SECTION "Events 2", ROMX, BANK[EVENTS]
 
-Function97c28: ; 97c28
+Function97c28:: ; 97c28
 	ld hl, StatusFlags2
 	res 1, [hl]
 	res 2, [hl]
 	ret
 ; 97c30
 
-Function97c30: ; 97c30
+Function97c30:: ; 97c30
 	ld a, [$d45c]
 	and a
 	ret z
@@ -32,7 +32,7 @@ Function97c30: ; 97c30
 	ret
 ; 97c4f
 
-Function97c4f: ; 97c4f
+Function97c4f:: ; 97c4f
 	ld hl, $d45c
 	ld a, [hl]
 	and a
@@ -48,7 +48,7 @@ Function97c4f: ; 97c4f
 	ret
 ; 97c5f
 
-Function97c5f: ; 97c5f
+Function97c5f:: ; 97c5f
 	call GetFacingTileCoord
 	ld [EngineBuffer1], a
 	ld c, a
@@ -99,7 +99,7 @@ Function97c5f: ; 97c5f
 ; 97cc0
 
 
-Function97cc0: ; 97cc0
+Function97cc0:: ; 97cc0
 ; Rock Smash encounter
 
 	call Function968c7
@@ -146,7 +146,7 @@ RockSmashBattleScript: ; 97cf9
 	end
 ; 97cfd
 
-Function97cfd: ; 97cfd
+Function97cfd:: ; 97cfd
 	ld hl, StatusFlags
 	bit 5, [hl]
 	jr nz, .asm_97d21
@@ -178,7 +178,7 @@ Function97d23: ; 97d23
 	ret
 ; 97d31
 
-Function97d31: ; 97d31
+Function97d31:: ; 97d31
 ; Pick a random mon out of ContestMons.
 
 .asm_97d31
@@ -266,7 +266,7 @@ ContestMons: ; 97d87
 	db -1, VENOMOTH,   30, 40
 ; 97db3
 
-Function97db3: ; 97db3
+Function97db3:: ; 97db3
 	nop
 	nop
 	; fallthrough
@@ -319,7 +319,7 @@ Function97db5: ; 97db5
 	ret
 ; 97df9
 
-Function97df9: ; 97df9
+Function97df9:: ; 97df9
 	ld hl, $d6de
 	ld de, $0006
 	ld c, $4
@@ -332,7 +332,7 @@ Function97df9: ; 97df9
 	ret
 ; 97e08
 
-Function97e08: ; 97e08
+Function97e08:: ; 97e08
 	ld hl, $d6de
 	xor a
 .asm_97e0c
@@ -365,7 +365,7 @@ Function97e25: ; 97e25
 	ret
 ; 97e31
 
-Function97e31: ; 97e31
+Function97e31:: ; 97e31
 	push bc
 	push de
 	call Function97e45
@@ -403,7 +403,7 @@ Function97e45: ; 97e45
 	ret
 ; 97e5c
 
-Function97e5c: ; 97e5c
+Function97e5c:: ; 97e5c
 	ld hl, $d6de
 	ld de, $0006
 	ld c, $4

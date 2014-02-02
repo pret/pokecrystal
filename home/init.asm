@@ -1,4 +1,4 @@
-Reset: ; 150
+Reset:: ; 150
 	di
 	call SoundRestart
 	xor a
@@ -20,7 +20,7 @@ Reset: ; 150
 ; 16e
 
 
-_Start: ; 16e
+_Start:: ; 16e
 	cp $11
 	jr z, .asm_175
 	xor a
@@ -36,7 +36,7 @@ _Start: ; 16e
 ; 17d
 
 
-Init: ; 17d
+Init:: ; 17d
 
 	di
 
@@ -177,7 +177,7 @@ Init: ; 17d
 ; 245
 
 
-ClearVRAM: ; 245
+ClearVRAM:: ; 245
 ; Wipe VRAM banks 0 and 1
 
 	ld a, 1
@@ -194,7 +194,7 @@ ClearVRAM: ; 245
 	ret
 ; 25a
 
-ClearWRAM: ; 25a
+ClearWRAM:: ; 25a
 ; Wipe swappable WRAM banks (1-7)
 
 	ld a, 1
@@ -212,7 +212,7 @@ ClearWRAM: ; 25a
 	ret
 ; 270
 
-Function270: ; 270
+Function270:: ; 270
 	ld a, $0
 	call GetSRAMBank
 	ld hl, $a000

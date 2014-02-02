@@ -1,4 +1,4 @@
-_DoItemEffect: ; e722
+_DoItemEffect:: ; e722
 	ld a, [CurItem]
 	ld [$d265], a
 	call GetItemName

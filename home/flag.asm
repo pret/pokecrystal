@@ -1,11 +1,11 @@
-Function2e50: ; 2e50
+Function2e50:: ; 2e50
 	xor a
 	ld hl, EventFlags
 	ld [hli], a
 	ret
 ; 2e56
 
-Function2e56: ; 2e56
+Function2e56:: ; 2e56
 	xor a
 	ld hl, BikeFlags
 	ld [hli], a
@@ -13,7 +13,7 @@ Function2e56: ; 2e56
 	ret
 ; 2e5d
 
-Function2e5d: ; 2e5d
+Function2e5d:: ; 2e5d
 	ld a, [$d19a]
 	cp $2
 	jr z, .asm_2e69
@@ -28,12 +28,12 @@ Function2e5d: ; 2e5d
 ; 2e6f
 
 
-EventFlagAction: ; 0x2e6f
+EventFlagAction:: ; 0x2e6f
 	ld hl, EventFlags
 	call FlagAction
 	ret
 
-FlagAction: ; 0x2e76
+FlagAction:: ; 0x2e76
 ; Perform action b on bit de in flag array hl.
 
 ; inputs:
@@ -102,7 +102,7 @@ FlagAction: ; 0x2e76
 ; 0x2ead
 
 
-Function2ead: ; 2ead
+Function2ead:: ; 2ead
 	ld de, ENGINE_POKEDEX
 	ld b, CHECK_FLAG
 	callba EngineFlagAction
