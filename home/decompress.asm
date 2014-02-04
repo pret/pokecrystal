@@ -1,4 +1,4 @@
-FarDecompress: ; b40
+FarDecompress:: ; b40
 ; Decompress graphics data at a:hl to de
 
 ; put a away for a sec
@@ -20,7 +20,7 @@ FarDecompress: ; b40
 ; b50
 
 
-Decompress: ; b50
+Decompress:: ; b50
 ; Pokemon Crystal uses an lz variant for compression.
 
 ; This is mainly used for graphics, but the intro's

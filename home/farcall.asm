@@ -1,4 +1,4 @@
-FarCall_de: ; 2d54
+FarCall_de:: ; 2d54
 ; Call a:de.
 ; Preserves other registers.
 
@@ -16,7 +16,7 @@ FarCall_de: ; 2d54
 ; 2d63
 
 
-FarCall_hl: ; 2d63
+FarCall_hl:: ; 2d63
 ; Call a:hl.
 ; Preserves other registers.
 
@@ -28,7 +28,7 @@ FarCall_hl: ; 2d63
 	call Function2d82
 ; 2d6e
 
-ReturnFarCall: ; 2d6e
+ReturnFarCall:: ; 2d6e
 ; We want to retain the contents of f.
 ; To do this, we can pop to bc instead of af.
 	
@@ -49,7 +49,7 @@ ReturnFarCall: ; 2d6e
 	ret
 ; 2d82
 
-Function2d82: ; 2d82
+Function2d82:: ; 2d82
 	jp [hl]
 ; 2d83
 

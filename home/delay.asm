@@ -1,4 +1,4 @@
-DelayFrame: ; 45a
+DelayFrame:: ; 45a
 ; Wait for one frame
 	ld a, 1
 	ld [VBlankOccurred], a
@@ -13,7 +13,7 @@ DelayFrame: ; 45a
 ; 468
 
 
-DelayFrames: ; 468
+DelayFrames:: ; 468
 ; Wait c frames
 	call DelayFrame
 	dec c

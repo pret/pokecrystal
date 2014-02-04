@@ -1,4 +1,4 @@
-GetSRAMBank: ; 2fcb
+GetSRAMBank:: ; 2fcb
 ; load sram bank a
 ; if invalid bank, sram is disabled
 	cp NUM_SRAM_BANKS
@@ -6,7 +6,7 @@ GetSRAMBank: ; 2fcb
 	jr CloseSRAM
 ; 2fd1
 
-OpenSRAM: ; 2fd1
+OpenSRAM:: ; 2fd1
 ; switch to sram bank a
 	push af
 ; latch clock data
@@ -21,7 +21,7 @@ OpenSRAM: ; 2fd1
 	ret
 ; 2fe1
 
-CloseSRAM: ; 2fe1
+CloseSRAM:: ; 2fe1
 	push af
 	ld a, SRAM_DISABLE
 ; reset clock latch for next time

@@ -166,7 +166,7 @@ INCBIN "baserom.gbc",$17982d, $1799ef - $17982d
 
 SECTION "Cries", ROMX, BANK[CRIES]
 
-CryHeaders: INCLUDE "audio/cry_headers.asm"
+CryHeaders:: INCLUDE "audio/cry_headers.asm"
 
 INCBIN "baserom.gbc",$f2d69, $f3fb6 - $f2d69
 

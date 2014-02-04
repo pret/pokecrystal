@@ -1,4 +1,4 @@
-MapGroupPointers: ; 0x94000
+MapGroupPointers:: ; 0x94000
 ; pointers to the first map header of each map group
 	dw MapGroup1
 	dw MapGroup2
@@ -30,7 +30,7 @@ MapGroupPointers: ; 0x94000
 
 MapGroup1:
 
-OlivinePokeCenter1F_MapHeader: ; 0x94034
+OlivinePokeCenter1F_MapHeader:: ; 0x94034
 	; bank, tileset, permission
 	db BANK(OlivinePokeCenter1F_SecondMapHeader), $7, 3
 
@@ -43,7 +43,7 @@ OlivinePokeCenter1F_MapHeader: ; 0x94034
 ; had to convert 0x->$ (duh..)
 ; 0x9403d
 
-OlivineGym_MapHeader: ; 0x9403d
+OlivineGym_MapHeader:: ; 0x9403d
 	; bank, tileset, permission
 	db BANK(OlivineGym_SecondMapHeader), $12, 3
 

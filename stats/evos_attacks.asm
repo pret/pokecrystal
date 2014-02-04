@@ -1,4 +1,4 @@
-EvosAttacks:
+EvosAttacks::
 
 BulbasaurEvosAttacks:
 	db EVOLVE_LEVEL,16,IVYSAUR

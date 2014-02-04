@@ -1,5 +1,15 @@
 ; rgbds macros
 
+
+; macros require rst vectors to be defined
+FarCall    EQU $08
+Bankswitch EQU $10
+JumpTable  EQU $28
+
+
+NONE       EQU 0
+
+
 dwb: MACRO
 	dw \1
 	db \2

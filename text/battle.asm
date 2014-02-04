@@ -33,7 +33,7 @@ WildPokemonAppearedText2: ; 0x80793
 	db "appeared!", $58
 ; 0x807a9
 
-WantsToBattleText: ; 0x807a9
+WantsToBattleText:: ; 0x807a9
 	db $0, $3f, $4f
 	db "wants to battle!", $58
 ; 0x807bd
@@ -745,7 +745,7 @@ WontDropAnymoreText: ; 0x8128f
 	db "drop anymore!", $58
 ; 0x812ac
 
-FledFromBattleText: ; 0x812ac
+FledFromBattleText:: ; 0x812ac
 	db $0, $5a, $4f
 	db "fled from battle!", $58
 ; 0x812c1

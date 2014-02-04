@@ -222,26 +222,26 @@ UnknownText_0x1c46dc: ; 0x1c46dc
 	db $0, "Corrupted event!", $58
 ; 0x1c46ee
 
-_ObjectEventText: ; 0x1c46ee
+_ObjectEventText:: ; 0x1c46ee
 	db $0, "Object event", $57
 ; 0x1c46fc
 
-UnknownText_0x1c46fc: ; 0x1c46fc
+UnknownText_0x1c46fc:: ; 0x1c46fc
 	db $0, "BG event", $57
 ; 0x1c4706
 
-UnknownText_0x1c4706: ; 0x1c4706
+UnknownText_0x1c4706:: ; 0x1c4706
 	db $0, "Coordinates event", $57
 ; 0x1c4719
 
-UnknownText_0x1c4719: ; 0x1c4719
+UnknownText_0x1c4719:: ; 0x1c4719
 	db $0, $52, " received", $4f
 	db "@"
 	text_from_ram $d0ac
 	db $0, ".", $57
 ; 0x1c472c
 
-UnknownText_0x1c472c: ; 0x1c472c
+UnknownText_0x1c472c:: ; 0x1c472c
 	db $0, $52, " put the", $4f
 	db "@"
 	text_from_ram $d073
@@ -251,7 +251,7 @@ UnknownText_0x1c472c: ; 0x1c472c
 	db $0, ".", $58
 ; 0x1c474b
 
-UnknownText_0x1c474b: ; 0x1c474b
+UnknownText_0x1c474b:: ; 0x1c474b
 	db $0, "The @"
 	text_from_ram $d099
 	db $0, $4f

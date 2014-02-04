@@ -1,7 +1,7 @@
 ; Functions relating to the timer interrupt and the real-time-clock.
 
 
-AskTimer: ; 591
+AskTimer:: ; 591
 	push af
 	ld a, [$ffe9]
 	and a
@@ -14,7 +14,7 @@ AskTimer: ; 591
 ; 59c
 
 
-LatchClock: ; 59c
+LatchClock:: ; 59c
 ; latch clock counter data
 	ld a, 0
 	ld [MBC3LatchClock], a
@@ -24,7 +24,7 @@ LatchClock: ; 59c
 ; 5a7
 
 
-UpdateTime: ; 5a7
+UpdateTime:: ; 5a7
 	call GetClock
 	call FixDays
 	call FixTime
@@ -33,7 +33,7 @@ UpdateTime: ; 5a7
 ; 5b7
 
 
-GetClock: ; 5b7
+GetClock:: ; 5b7
 ; store clock data in hRTCDayHi-hRTCSeconds
 
 ; enable clock r/w
@@ -75,7 +75,7 @@ GetClock: ; 5b7
 ; 5e8
 
 
-FixDays: ; 5e8
+FixDays:: ; 5e8
 ; fix day count
 ; mod by 140
 
@@ -137,7 +137,7 @@ FixDays: ; 5e8
 ; 61d
 
 
-FixTime: ; 61d
+FixTime:: ; 61d
 ; add ingame time (set at newgame) to current time
 ;				  day     hr    min    sec
 ; store time in CurDay, hHours, hMinutes, hSeconds
@@ -187,14 +187,14 @@ FixTime: ; 61d
 	ret
 ; 658
 
-Function658: ; 658
+Function658:: ; 658
 	xor a
 	ld [StringBuffer2], a
 	ld a, $0
 	ld [$d089], a
 	jr Function677
 
-Function663: ; 663
+Function663:: ; 663
 	call UpdateTime
 	ld a, [hHours]
 	ld [$d087], a
@@ -204,20 +204,20 @@ Function663: ; 663
 	ld [$d089], a
 	jr Function677
 
-Function677: ; 677
+Function677:: ; 677
 	callba Function140ed
 	ret
 ; 67e
 
 
 
-Function67e: ; 67e
+Function67e:: ; 67e
 	call Function685
 	call SetClock
 	ret
 ; 685
 
-Function685: ; 685
+Function685:: ; 685
 	xor a
 	ld [hRTCSeconds], a
 	ld [hRTCMinutes], a
@@ -228,7 +228,7 @@ Function685: ; 685
 ; 691
 
 
-SetClock: ; 691
+SetClock:: ; 691
 ; set clock data from hram
 
 ; enable clock r/w
@@ -277,7 +277,7 @@ SetClock: ; 691
 ; 6c4
 
 
-Function6c4: ; 6c4
+Function6c4:: ; 6c4
 	xor a
 	push af
 	ld a, $0
@@ -288,7 +288,7 @@ Function6c4: ; 6c4
 	ret
 ; 6d3
 
-Function6d3: ; 6d3
+Function6d3:: ; 6d3
 	ld hl, $ac60
 	push af
 	ld a, $0
@@ -300,7 +300,7 @@ Function6d3: ; 6d3
 	ret
 ; 6e3
 
-Function6e3: ; 6e3
+Function6e3:: ; 6e3
 	ld a, $0
 	call GetSRAMBank
 	ld a, [$ac60]

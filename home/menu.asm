@@ -1,12 +1,12 @@
 ; Functions used in displaying and handling menus.
 
 
-LoadMenuDataHeader: ; 0x1d35
+LoadMenuDataHeader:: ; 0x1d35
 	call Function1d3c
 	call Function1c00
 	ret
 
-Function1d3c: ; 0x1d3c
+Function1d3c:: ; 0x1d3c
 	ld de, $cf81
 	ld bc, $0010
 	call CopyBytes
@@ -15,30 +15,30 @@ Function1d3c: ; 0x1d3c
 	ret
 ; 0x1d4b
 
-Function1d4b: ; 1d4b
+Function1d4b:: ; 1d4b
 	ld [$cf88], a
 	ret
 ; 1d4f
 
 
-Function1d4f: ; 1d4f
+Function1d4f:: ; 1d4f
 	push hl
 	call Function1d58
 	pop hl
 	jp PrintText
 ; 1d57
 
-Function1d57: ; 1d57
+Function1d57:: ; 1d57
 	ret
 ; 1d58
 
-Function1d58: ; 1d58
+Function1d58:: ; 1d58
 	ld hl, MenuDataHeader_0x1d5f
 	call LoadMenuDataHeader
 	ret
 ; 1d5f
 
-MenuDataHeader_0x1d5f: ; 1d5f
+MenuDataHeader_0x1d5f:: ; 1d5f
 	db $40 ; tile backup
 	db 12, 0 ; start coords
 	db 17, 19 ; end coords
@@ -46,19 +46,19 @@ MenuDataHeader_0x1d5f: ; 1d5f
 	db 0 ; default option
 ; 1d67
 
-Function1d67: ; 1d67
+Function1d67:: ; 1d67
 	call Function1d4f
 	call Function1c17
 	ret
 ; 1d6e
 
-Function1d6e: ; 1d6e
+Function1d6e:: ; 1d6e
 	ld hl, MenuDataHeader_0x1d75
 	call LoadMenuDataHeader
 	ret
 ; 1d75
 
-MenuDataHeader_0x1d75: ; 1d75
+MenuDataHeader_0x1d75:: ; 1d75
 	db $40 ; tile backup
 	db 0, 0 ; start coords
 	db 17, 19 ; end coords
@@ -66,12 +66,12 @@ MenuDataHeader_0x1d75: ; 1d75
 	db 1 ; default option
 ; 1d7d
 
-Function1d7d: ; 1d7d
+Function1d7d:: ; 1d7d
 	call Function1c07
 	ret
 ; 1d81
 
-Function1d81: ; 0x1d81
+Function1d81:: ; 0x1d81
 	xor a
 	ld [hBGMapMode], a
 	call Function1cbb
@@ -95,7 +95,7 @@ Function1d81: ; 0x1d81
 	ret
 ; 0x1dab
 
-Function1dab: ; 1dab
+Function1dab:: ; 1dab
 	call LoadMenuDataHeader
 	call Function1d81
 	call Function1c17
@@ -103,7 +103,7 @@ Function1dab: ; 1dab
 	ret
 ; 1db8
 
-Function1db8: ; 0x1db8
+Function1db8:: ; 0x1db8
 	push hl
 	push bc
 	push af
@@ -124,17 +124,17 @@ Function1db8: ; 0x1db8
 ; 0x1dcf
 
 
-YesNoBox: ; 1dcf
+YesNoBox:: ; 1dcf
 	lb bc, 14, 7
 
-PlaceYesNoBox: ; 1dd2
+PlaceYesNoBox:: ; 1dd2
 	jr _YesNoBox
 
-Function1dd4: ; 1dd4
+Function1dd4:: ; 1dd4
 	call LoadMenuDataHeader
 	jr Function1dfe
 
-_YesNoBox: ; 1dd9
+_YesNoBox:: ; 1dd9
 ; Return nc (yes) or c (no).
 	push bc
 	ld hl, YesNoMenuDataHeader
@@ -157,7 +157,7 @@ _YesNoBox: ; 1dd9
 	ld [$cf84], a
 	call Function1c00
 
-Function1dfe: ; 1dfe
+Function1dfe:: ; 1dfe
 	call Function1d81
 	push af
 	ld c, $f
@@ -178,7 +178,7 @@ Function1dfe: ; 1dfe
 	ret
 ; 1e1d
 
-YesNoMenuDataHeader: ; 1e1d
+YesNoMenuDataHeader:: ; 1e1d
 	db $40 ; tile backup
 	db 5, 10 ; start coords
 	db 9, 15 ; end coords
@@ -186,20 +186,20 @@ YesNoMenuDataHeader: ; 1e1d
 	db 1 ; default option
 ; 1e25
 
-YesNoMenuData2: ; 1e25
+YesNoMenuData2:: ; 1e25
 	db $c0 ; flags
 	db 2
 	db "YES@"
 	db "NO@"
 ; 1e2e
 
-Function1e2e: ; 1e2e
+Function1e2e:: ; 1e2e
 	call Function1e35
 	call Function1c00
 	ret
 ; 1e35
 
-Function1e35: ; 1e35
+Function1e35:: ; 1e35
 	push de
 	call Function1d3c
 	pop de
@@ -224,7 +224,7 @@ Function1e35: ; 1e35
 	ret
 ; 1e5d
 
-Function1e5d: ; 1e5d
+Function1e5d:: ; 1e5d
 	call MenuFunc_1e7f
 	call MenuWriteText
 	call Function1eff
@@ -234,7 +234,7 @@ Function1e5d: ; 1e5d
 	ret
 ; 1e70
 
-SetUpMenu: ; 1e70
+SetUpMenu:: ; 1e70
 	call MenuFunc_1e7f ; ???
 	call MenuWriteText
 	call Function1eff ; set up selection pointer
@@ -242,14 +242,14 @@ SetUpMenu: ; 1e70
 	set 7, [hl]
 	ret
 
-MenuFunc_1e7f: ; 0x1e7f
+MenuFunc_1e7f:: ; 0x1e7f
 	call Function1c66
 	call Function1ebd
 	call Function1ea6
 	call Function1cbb
 	ret
 
-MenuWriteText: ; 0x1e8c
+MenuWriteText:: ; 0x1e8c
 	xor a
 	ld [hBGMapMode], a
 	call Function1ebd ; sort out the text 
@@ -265,7 +265,7 @@ MenuWriteText: ; 0x1e8c
 	ret
 ; 0x1ea6
 
-Function1ea6: ; 1ea6
+Function1ea6:: ; 1ea6
 	ld a, [$cf83]
 	ld c, a
 	ld a, [$cf85]
@@ -281,7 +281,7 @@ Function1ea6: ; 1ea6
 	ret
 ; 1ebd
 
-Function1ebd: ; 1ebd
+Function1ebd:: ; 1ebd
 	ld hl, $cf93
 	ld a, [hli]
 	ld h, [hl]
@@ -306,7 +306,7 @@ Function1ebd: ; 1ebd
 	ret
 ; 1eda
 
-Function1eda: ; 1eda
+Function1eda:: ; 1eda
 	call Function1cfd
 	ld bc, $002a
 	add hl, bc
@@ -329,14 +329,14 @@ Function1eda: ; 1eda
 	jr .asm_1ee1
 ; 1efb
 
-Function1efb: ; 1efb
+Function1efb:: ; 1efb
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
 	jp [hl]
 ; 1eff
 
-Function1eff: ; 1eff
+Function1eff:: ; 1eff
 	call Function1c10
 	ld hl, $cfa8
 	ld a, [$cf91]
@@ -356,20 +356,20 @@ Function1eff: ; 1eff
 ; 1f1a
 
 
-Function1f1a: ; 1f1a
+Function1f1a:: ; 1f1a
 	call Function1bd3
 	ld hl, $cfa8
 	and [hl]
 	jr Function1f2a
 ; 1f23
 
-Function1f23: ; 1f23
+Function1f23:: ; 1f23
 	xor a
 	ld [$cf73], a
 	call Function1bc9
 ; 1f2a
 
-Function1f2a: ; 1f2a
+Function1f2a:: ; 1f2a
 	bit 0, a
 	jr nz, .asm_1f52
 	bit 1, a
@@ -420,7 +420,7 @@ Function1f2a: ; 1f2a
 	ret
 ; 1f79
 
-Function1f79: ; 1f79
+Function1f79:: ; 1f79
 	push de
 	ld hl, $cf97
 	ld a, [hli]
@@ -435,7 +435,7 @@ Function1f79: ; 1f79
 	ret
 ; 1f8d
 
-Function1f8d: ; 1f8d
+Function1f8d:: ; 1f8d
 	push de
 	ld a, [MenuSelection]
 	call Function1fb1
@@ -449,7 +449,7 @@ Function1f8d: ; 1f8d
 	ret
 ; 1f9e
 
-Function1f9e: ; 1f9e
+Function1f9e:: ; 1f9e
 	call Function1fb1
 	inc hl
 	inc hl
@@ -459,7 +459,7 @@ Function1f9e: ; 1f9e
 	ret
 ; 1fa7
 
-Function1fa7: ; 1fa7
+Function1fa7:: ; 1fa7
 	ld a, [MenuSelection]
 	call Function1fb1
 	ld a, [hli]
@@ -468,7 +468,7 @@ Function1fa7: ; 1fa7
 	jp [hl]
 ; 1fb1
 
-Function1fb1: ; 1fb1
+Function1fb1:: ; 1fb1
 	ld e, a
 	ld d, $0
 	ld hl, $cf97
@@ -482,7 +482,7 @@ Function1fb1: ; 1fb1
 	ret
 ; 1fbf
 
-Function1fbf: ; 1fbf
+Function1fbf:: ; 1fbf
 	ld hl, $cf71
 	call Function1ff0
 	ld hl, $cf81
@@ -508,14 +508,14 @@ Function1fbf: ; 1fbf
 	ret
 ; 1ff0
 
-Function1ff0: ; 1ff0
+Function1ff0:: ; 1ff0
 	ld bc, $0010
 	xor a
 	call ByteFill
 	ret
 ; 1ff8
 
-Function1ff8: ; 1ff8
+Function1ff8:: ; 1ff8
 	push af
 	and $3
 	jr z, .asm_2007
@@ -530,7 +530,7 @@ Function1ff8: ; 1ff8
 ; 2009
 
 
-PlayClickSFX: ; 2009 
+PlayClickSFX:: ; 2009 
 	push de
 	ld de, SFX_READ_TEXT_2
 	call PlaySFX
@@ -538,14 +538,14 @@ PlayClickSFX: ; 2009
 	ret
 ; 0x2012
 
-Function2012: ; 2012
+Function2012:: ; 2012
 	call Function1d4f
 	call Functiona46
 	call Function1c07
 	ret
 ; 201c
 
-Function201c: ; 201c
+Function201c:: ; 201c
 	ld [hBuffer], a
 	ld a, [hROMBank]
 	push af
@@ -559,7 +559,7 @@ Function201c: ; 201c
 	ret
 ; 202a
 
-Function202a: ; 202a
+Function202a:: ; 202a
 	ld a, [hROMBank]
 	ld [$cf94], a
 	callba Function2400e
@@ -567,7 +567,7 @@ Function202a: ; 202a
 	ret
 ; 2039
 
-Function2039: ; 2039
+Function2039:: ; 2039
 	ld a, [hROMBank]
 	ld [$cf94], a
 	callba Function24022
@@ -575,7 +575,7 @@ Function2039: ; 2039
 	ret
 ; 2048
 
-Function2048: ; 2048
+Function2048:: ; 2048
 	ld a, [hROMBank]
 	ld [$cf94], a
 	callba Function2403c
@@ -583,7 +583,7 @@ Function2048: ; 2048
 	ret
 ; 2057
 
-Function2057: ; 2057
+Function2057:: ; 2057
 	ld a, [hROMBank]
 	push af
 	ld a, $21

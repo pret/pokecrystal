@@ -1,4 +1,4 @@
-JoypadInt: ; 92e
+JoypadInt:: ; 92e
 ; Replaced by Joypad, called from VBlank instead of the useless
 ; joypad interrupt.
 
@@ -6,7 +6,7 @@ JoypadInt: ; 92e
 	reti
 ; 92f
 
-ClearJoypad: ; 92f
+ClearJoypad:: ; 92f
 	xor a
 ; Pressed this frame (delta)
 	ld [hJoyPressed], a
@@ -15,7 +15,7 @@ ClearJoypad: ; 92f
 	ret
 ; 935
 
-Joypad: ; 935
+Joypad:: ; 935
 ; Read the joypad register and translate it to something more
 ; workable for use in-game. There are 8 buttons, so we can use
 ; one byte to contain all player input.
@@ -109,7 +109,7 @@ Joypad: ; 935
 ; 984
 
 
-GetJoypad: ; 984
+GetJoypad:: ; 984
 ; Update mirror joypad input from hJoypadDown (real input)
 
 ; hJoyReleased: released this frame (delta)
@@ -238,7 +238,7 @@ GetJoypad: ; 984
 ; 9ee
 
 
-StartAutoInput: ; 9ee
+StartAutoInput:: ; 9ee
 ; Start reading automated input stream at a:hl.
 	
 	ld [AutoInputBank], a
@@ -261,7 +261,7 @@ StartAutoInput: ; 9ee
 ; a0a
 
 
-StopAutoInput: ; a0a
+StopAutoInput:: ; a0a
 ; Clear variables related to automated input.
 	xor a
 	ld [AutoInputBank], a
@@ -274,7 +274,7 @@ StopAutoInput: ; a0a
 ; a1b
 
 
-Functiona1b: ; a1b
+Functiona1b:: ; a1b
 
 	call DelayFrame
 
@@ -302,7 +302,7 @@ Functiona1b: ; a1b
 ; a36
 
 
-Functiona36: ; a36
+Functiona36:: ; a36
 	call DelayFrame
 	call GetJoypad
 	ld a, [hJoyPressed]
@@ -312,7 +312,7 @@ Functiona36: ; a36
 	jr Functiona36
 ; a46
 
-Functiona46: ; a46
+Functiona46:: ; a46
 	ld a, [hOAMUpdate]
 	push af
 	ld a, 1
@@ -324,7 +324,7 @@ Functiona46: ; a46
 	ret
 ; a57
 
-Functiona57: ; a57
+Functiona57:: ; a57
 	call GetJoypad
 	ld a, [$ffaa]
 	and a
@@ -354,7 +354,7 @@ Functiona57: ; a57
 	ret
 ; a80
 
-Functiona80: ; a80
+Functiona80:: ; a80
 	ld a, [$ffaf]
 	push af
 	ld a, [$ffb0]
@@ -379,7 +379,7 @@ Functiona80: ; a80
 	ret
 ; aa5
 
-Functionaa5: ; aa5
+Functionaa5:: ; aa5
 	call Functiona57
 	ld a, [$ffa9]
 	and A_BUTTON | B_BUTTON
@@ -387,7 +387,7 @@ Functionaa5: ; aa5
 	ret
 ; aaf
 
-Functionaaf: ; aaf
+Functionaaf:: ; aaf
 	ld a, [InLinkBattle]
 	and a
 	jr nz, .asm_ac1
@@ -403,7 +403,7 @@ Functionaaf: ; aaf
 	jp DelayFrames
 ; ac6
 
-Functionac6: ; ac6
+Functionac6:: ; ac6
 	ld a, [hOAMUpdate]
 	push af
 	ld a, $1
@@ -430,7 +430,7 @@ Functionac6: ; ac6
 	ret
 ; af5
 
-Functionaf5: ; af5
+Functionaf5:: ; af5
 	ld a, [$ff9b]
 	and $10
 	jr z, .asm_aff
@@ -445,7 +445,7 @@ Functionaf5: ; af5
 	ret
 ; b06
 
-Functionb06: ; b06
+Functionb06:: ; b06
 	push bc
 	ld a, [hl]
 	ld b, a

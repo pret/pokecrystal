@@ -1,7 +1,7 @@
 ; LCD handling
 
 
-Function547: ; 547
+Function547:: ; 547
 	ld a, [hLCDStatCustom]
 	cp rSCX & $ff
 	ret nz
@@ -12,7 +12,7 @@ Function547: ; 547
 ; 552
 
 
-LCD: ; 552
+LCD:: ; 552
 	push af
 	ld a, [hLCDStatCustom]
 	and a
@@ -37,7 +37,7 @@ LCD: ; 552
 ; 568
 
 
-DisableLCD: ; 568
+DisableLCD:: ; 568
 ; Turn the LCD off
 
 ; Don't need to do anything if the LCD is already off
@@ -72,7 +72,7 @@ DisableLCD: ; 568
 ; 58a
 
 
-EnableLCD: ; 58a
+EnableLCD:: ; 58a
 	ld a, [rLCDC]
 	set 7, a ; lcd enable
 	ld [rLCDC], a

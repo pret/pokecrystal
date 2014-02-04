@@ -2974,7 +2974,7 @@ RuinsofAlphHoOhChamber_SecondMapHeader: ; 0x958c4
 	db 0
 ; 0x958d0
 
-RuinsofAlphKabutoChamber_SecondMapHeader: ; 0x958d0
+RuinsofAlphKabutoChamber_SecondMapHeader:: ; 0x958d0
 	; border block
 	db $0
 
@@ -3014,7 +3014,7 @@ RuinsofAlphOmanyteChamber_SecondMapHeader: ; 0x958dc
 	db 0
 ; 0x958e8
 
-RuinsofAlphAerodactylChamber_SecondMapHeader: ; 0x958e8
+RuinsofAlphAerodactylChamber_SecondMapHeader:: ; 0x958e8
 	; border block
 	db $0
 

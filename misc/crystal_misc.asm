@@ -8,7 +8,7 @@ INCBIN "gfx/misc/mobile_adapter.2bpp"
 
 
 ; no known jump sources
-Function17a68f: ; 17a68f (5e:668f)
+Function17a68f:: ; 17a68f (5e:668f)
 	call Function17a6a8
 	call Function17a751
 	ld hl, $d088

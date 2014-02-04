@@ -66,7 +66,6 @@ def setup_processor():
 def main():
     processor = setup_processor()
     processor.preprocess()
-    processor.update_globals
 
 # only run against stdin when not included as a module
 if __name__ == "__main__":

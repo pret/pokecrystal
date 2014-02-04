@@ -4761,7 +4761,7 @@ Function3df2c: ; 3df2c
 
 
 
-Function3df48: ; 3df48
+Function3df48:: ; 3df48
 	push hl
 	push de
 	push bc
@@ -4907,7 +4907,7 @@ PrintPlayerHUD: ; 3dfbf
 	jp PrintLevel
 ; 3e036
 
-Function3e036: ; 3e036
+Function3e036:: ; 3e036
 	push hl
 	push de
 	push bc
@@ -7191,7 +7191,7 @@ EmptyBattleTextBox: ; 3edd1
 ; 3edd8
 
 
-_BattleRandom: ; 3edd8
+_BattleRandom:: ; 3edd8
 ; If the normal RNG is used in a link battle it'll desync.
 ; To circumvent this a shared PRNG is used instead.
 

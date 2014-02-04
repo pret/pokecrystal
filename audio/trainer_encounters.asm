@@ -1,6 +1,6 @@
 ; Currently, must be in the same bank as the sound engine.
 
-PlayTrainerEncounterMusic: ; e900a
+PlayTrainerEncounterMusic:: ; e900a
 ; input: e = trainer type
 	; turn fade off
 	xor a

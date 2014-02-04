@@ -27,13 +27,9 @@ OBJS := $(CRYSTAL_OBJS)
 ROMS := pokecrystal.gbc
 
 
-ALL_DEPENDENCIES :=
 # generate a list of dependencies for each object file
 $(shell $(foreach obj, $(OBJS), \
-	$(eval $(obj:.o=)_DEPENDENCIES := $(shell $(PYTHON) $(POKEMONTOOLS)/scan_includes.py $(obj:.o=.asm) | sed s/globals.asm//g)) \
-))
-$(shell $(foreach obj, $(OBJS), \
-	$(eval ALL_DEPENDENCIES += $($(obj:.o=)_DEPENDENCIES)) \
+	$(eval $(obj:.o=)_DEPENDENCIES := $(shell $(PYTHON) $(POKEMONTOOLS)/scan_includes.py $(obj:.o=.asm))) \
 ))
 
 
@@ -44,7 +40,6 @@ crystal: pokecrystal.gbc
 clean:
 	rm -f $(ROMS)
 	rm -f $(OBJS)
-	rm -f globals.asm
 	find -iname '*.tx' -exec rm {} +
 
 baserom.gbc: ;
@@ -53,20 +48,16 @@ baserom.gbc: ;
 
 %.asm: ;
 .asm.tx:
-	$(eval TEXTQUEUE := $(TEXTQUEUE) $<)
+	$(eval TEXTQUEUE += $<)
 	@rm -f $@
 
-globals.asm: $(ALL_DEPENDENCIES:.asm=.tx) $(OBJS:.o=.tx)
-	@touch $@
-	@$(PYTHON) prequeue.py $(TEXTQUEUE)
-globals.tx: globals.asm
-	@cp $< $@
-
 $(OBJS): $$*.tx $$(patsubst %.asm, %.tx, $$($$*_DEPENDENCIES))
+	@$(PYTHON) prequeue.py $(TEXTQUEUE)
+	$(eval TEXTQUEUE :=)
 	rgbasm -o $@ $*.tx
 
-pokecrystal.gbc: globals.tx $(CRYSTAL_OBJS)
-	rgblink -n $*.sym -m $*.map -o $@ $(CRYSTAL_OBJS)
+pokecrystal.gbc: $(CRYSTAL_OBJS)
+	rgblink -n $*.sym -m $*.map -o $@ $^
 	rgbfix -Cjv -i BYTE -k 01 -l 0x33 -m 0x10 -p 0 -r 3 -t PM_CRYSTAL $@
 	cmp baserom.gbc $@
 

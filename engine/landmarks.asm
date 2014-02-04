@@ -15,7 +15,7 @@ GetLandmarkCoords: ; 0x1ca896
 ; 0x1ca8a5
 
 
-GetLandmarkName: ; 0x1ca8a5
+GetLandmarkName:: ; 0x1ca8a5
 ; Copy the name of landmark e to StringBuffer1.
 	push hl
 	push de

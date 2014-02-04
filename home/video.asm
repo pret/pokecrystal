@@ -1,6 +1,6 @@
 ; Functions dealing with VRAM.
 
-DMATransfer: ; 15d8
+DMATransfer:: ; 15d8
 ; Return carry if the transfer is completed.
 
 	ld a, [hDMATransfer]
@@ -19,7 +19,7 @@ DMATransfer: ; 15d8
 ; 15e3
 
 
-UpdateBGMapBuffer: ; 15e3
+UpdateBGMapBuffer:: ; 15e3
 ; Copy [$ffdc] 16x8 tiles from BGMapBuffer
 ; to bg map addresses in BGMapBufferPtrs.
 
@@ -100,7 +100,7 @@ endr
 ; 163a
 
 
-WaitTop: ; 163a
+WaitTop:: ; 163a
 ; Wait until the top third of the BG Map is being updated.
 
 	ld a, [hBGMapMode]
@@ -121,7 +121,7 @@ WaitTop: ; 163a
 ; 164c
 
 
-UpdateBGMap: ; 164c
+UpdateBGMap:: ; 164c
 ; Update the BG Map, in thirds, from TileMap and AttrMap.
 
 	ld a, [hBGMapMode]
@@ -282,7 +282,7 @@ endr
 ; 170a
 
 
-Serve1bppRequest: ; 170a
+Serve1bppRequest:: ; 170a
 ; Only call during the first fifth of VBlank
 
 	ld a, [Requested1bpp]
@@ -363,7 +363,7 @@ endr
 ; 1769
 
 
-Serve2bppRequest: ; 1769
+Serve2bppRequest:: ; 1769
 ; Only call during the first fifth of VBlank
 
 	ld a, [Requested2bpp]
@@ -379,13 +379,13 @@ Serve2bppRequest: ; 1769
 	jr _Serve2bppRequest
 
 
-Serve2bppRequest@VBlank: ; 1778
+Serve2bppRequest@VBlank:: ; 1778
 
 	ld a, [Requested2bpp]
 	and a
 	ret z
 
-_Serve2bppRequest: ; 177d
+_Serve2bppRequest:: ; 177d
 ; Copy [Requested2bpp] 2bpp tiles from [Requested2bppSource] to [Requested2bppDest]
 
 	ld [hSPBuffer], sp
@@ -445,7 +445,7 @@ endr
 ; 17d3
 
 
-AnimateTileset: ; 17d3
+AnimateTileset:: ; 17d3
 ; Only call during the first fifth of VBlank
 
 	ld a, [$ffde]

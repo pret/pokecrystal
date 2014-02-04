@@ -1,4 +1,4 @@
-ResetGameTime: ; 208a
+ResetGameTime:: ; 208a
 	xor a
 	ld [GameTimeCap], a
 	ld [GameTimeHours], a
@@ -10,7 +10,7 @@ ResetGameTime: ; 208a
 ; 209e
 
 
-GameTimer: ; 209e
+GameTimer:: ; 209e
 
 	nop
 
@@ -27,7 +27,7 @@ GameTimer: ; 209e
 ; 20ad
 
 
-UpdateGameTimer: ; 20ad
+UpdateGameTimer:: ; 20ad
 ; Increment the game timer by one frame.
 ; The game timer is capped at 999:59:59.00.
 

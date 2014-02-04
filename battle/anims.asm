@@ -1,4 +1,4 @@
-BattleAnimations: ; c906f
+BattleAnimations:: ; c906f
 	dw BattleAnim_0
 	dw BattleAnim_Pound
 	dw BattleAnim_KarateChop

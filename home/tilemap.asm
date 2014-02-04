@@ -1,4 +1,4 @@
-Function1c30: ; 0x1c30
+Function1c30:: ; 0x1c30
 	call Function1c53
 	inc b
 	inc c
@@ -19,7 +19,7 @@ Function1c30: ; 0x1c30
 	jr nz, .asm_1c35 ; 0x1c44 $ef
 	ret
 
-Function1c47: ; 0x1c47
+Function1c47:: ; 0x1c47
 	ld b, $10
 	ld de, $cf81
 .asm_1c4c
@@ -30,7 +30,7 @@ Function1c47: ; 0x1c47
 	jr nz, .asm_1c4c ; 0x1c50 $fa
 	ret
 
-Function1c53: ; 0x1c53
+Function1c53:: ; 0x1c53
 	ld a, [$cf82]
 	ld b, a
 	ld a, [$cf84]
@@ -44,7 +44,7 @@ Function1c53: ; 0x1c53
 	ret
 ; 0x1c66
 
-Function1c66: ; 1c66
+Function1c66:: ; 1c66
 	push hl
 	push de
 	push bc
@@ -63,7 +63,7 @@ Function1c66: ; 1c66
 	ret
 ; 1c7e
 
-Function1c7e: ; 1c7e
+Function1c7e:: ; 1c7e
 	ld hl, $cf71
 	ld a, [hli]
 	ld h, [hl]
@@ -75,7 +75,7 @@ Function1c7e: ; 1c7e
 	ret
 ; 1c89
 
-Function1c89: ; 1c89
+Function1c89:: ; 1c89
 	call Function1c66
 	ld hl, $cf86
 	ld e, [hl]
@@ -108,7 +108,7 @@ Function1c89: ; 1c89
 	jp PlaceString
 ; 1cbb
 
-Function1cbb: ; 1cbb
+Function1cbb:: ; 1cbb
 	call Function1cfd
 	call Function1c53
 	dec b
@@ -116,7 +116,7 @@ Function1cbb: ; 1cbb
 	jp TextBox
 ; 1cc6
 
-Function1cc6: ; 1cc6
+Function1cc6:: ; 1cc6
 	ld a, [$cf82]
 	ld b, a
 	inc b
@@ -138,7 +138,7 @@ Function1cc6: ; 1cc6
 	ret
 ; 1ce1
 
-Function1ce1: ; 1ce1
+Function1ce1:: ; 1ce1
 	call Function1cfd
 	ld bc, $0015
 	add hl, bc
@@ -149,7 +149,7 @@ Function1ce1: ; 1ce1
 	ret
 ; 1cf1
 
-Function1cf1: ; 1cf1
+Function1cf1:: ; 1cf1
 	call Function1cfd
 	call Function1c53
 	inc c
@@ -159,7 +159,7 @@ Function1cf1: ; 1cf1
 ; 1cfd
 
 
-Function1cfd: ; 1cfd
+Function1cfd:: ; 1cfd
 	ld a, [$cf83]
 	ld c, a
 	ld a, [$cf82]
@@ -167,7 +167,7 @@ Function1cfd: ; 1cfd
 ; 1d05
 
 
-GetTileCoord: ; 1d05
+GetTileCoord:: ; 1d05
 ; Return the address of TileMap(c, b) in hl.
 	xor a
 	ld h, a
@@ -189,13 +189,13 @@ GetTileCoord: ; 1d05
 	ret
 ; 1d19
 
-Function1d19: ; 1d19
+Function1d19:: ; 1d19
 	ld a, [$cf83]
 	ld c, a
 	ld a, [$cf82]
 	ld b, a
 
-GetAttrCoord: ; 1d21
+GetAttrCoord:: ; 1d21
 ; Return the address of AttrMap(c, b) in hl.
 	xor a
 	ld h, a

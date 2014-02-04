@@ -1,8 +1,8 @@
-ClearBox: ; fb6
+ClearBox:: ; fb6
 ; Fill a c*b box at hl with blank tiles.
 
 	ld a, " "
-Functionfb8:
+Functionfb8::
 	push bc
 	push hl
 .x
@@ -19,7 +19,7 @@ Functionfb8:
 ; fc8
 
 
-ClearTileMap: ; fc8
+ClearTileMap:: ; fc8
 ; Fill TileMap with blank tiles.
 
 	ld hl, TileMap
@@ -35,7 +35,7 @@ ClearTileMap: ; fc8
 ; fdb
 
 
-Functionfdb: ; fdb
+Functionfdb:: ; fdb
 	ld a, $7
 	ld hl, AttrMap
 	ld bc, $0168
@@ -45,7 +45,7 @@ Functionfdb: ; fdb
 
 
 
-TextBox: ; fe8
+TextBox:: ; fe8
 ; Draw a text box width c height b at hl
 ; Dimensions do not include the border.
 	push bc
@@ -57,7 +57,7 @@ TextBox: ; fe8
 ; ff1
 
 
-TextBoxBorder: ; ff1
+TextBoxBorder:: ; ff1
 
 ; Top
 	push hl
@@ -96,7 +96,7 @@ TextBoxBorder: ; ff1
 ; 101e
 
 
-NPlaceChar: ; 101e
+NPlaceChar:: ; 101e
 ; Place char a c times
 	ld d,c
 .loop
@@ -107,7 +107,7 @@ NPlaceChar: ; 101e
 ; 1024
 
 
-TextBoxPalette: ; 1024
+TextBoxPalette:: ; 1024
 ; Fill text box width c height b at hl with pal 7
 	ld de, AttrMap - TileMap
 	add hl, de
@@ -133,7 +133,7 @@ TextBoxPalette: ; 1024
 ; 103e
 
 
-SpeechTextBox: ; 103e
+SpeechTextBox:: ; 103e
 ; Standard textbox.
 	hlcoord 0, 12
 	ld b, 4 ; height
@@ -141,11 +141,11 @@ SpeechTextBox: ; 103e
 	jp TextBox
 ; 1048
 
-UnknownText_0x1048: ; 1048
+UnknownText_0x1048:: ; 1048
 	db $0, "ゲームフりーク!", $57
 ; 1052
 
-Function1052: ; 1052
+Function1052:: ; 1052
 	ld hl, .text_1056
 	ret
 .text_1056
@@ -153,23 +153,23 @@ Function1052: ; 1052
 ; 1057
 
 
-PrintText: ; 1057
+PrintText:: ; 1057
 	call Function106c
-Function105a: ; 105a
+Function105a:: ; 105a
 	push hl
 	hlcoord 1, 14
 	ld bc, 18 + 3<<8
 	call ClearBox
 	pop hl
 
-PrintTextBoxText: ; 1065
+PrintTextBoxText:: ; 1065
 	bccoord 1, 14
 	call Function13e5
 	ret
 ; 106c
 
 
-Function106c: ; 106c
+Function106c:: ; 106c
 	push hl
 	call SpeechTextBox
 	call Function1ad2
@@ -180,10 +180,10 @@ Function106c: ; 106c
 
 
 
-PlaceString: ; 1078
+PlaceString:: ; 1078
 	push hl
 
-PlaceNextChar: ; 1079
+PlaceNextChar:: ; 1079
 	ld a, [de]
 	cp "@"
 	jr nz, CheckDict
@@ -193,11 +193,11 @@ PlaceNextChar: ; 1079
 	ret
 	pop de
 
-NextChar: ; 1083
+NextChar:: ; 1083
 	inc de
 	jp PlaceNextChar
 
-CheckDict: ; 1087
+CheckDict:: ; 1087
 	cp $15
 	jp z, Function117b
 	cp $4f
@@ -312,127 +312,127 @@ CheckDict: ; 1087
 ; 0x117b
 
 
-Function117b: ; 117b
+Function117b:: ; 117b
 	ld c, l
 	ld b, h
 	callba Function17f036
 	jp PlaceNextChar
 ; 1186
 
-Function1186: ; 1186
+Function1186:: ; 1186
 	push de
 	ld de, MomsName
 	jp $126a
 ; 118d
 
-Function118d: ; 118d
+Function118d:: ; 118d
 	push de
 	ld de, PlayerName
 	jp $126a
 ; 1194
 
-Function1194: ; 1194
+Function1194:: ; 1194
 	push de
 	ld de, RivalName
 	jp $126a
 ; 119b
 
-Function119b: ; 119b
+Function119b:: ; 119b
 	push de
 	ld de, RedsName
 	jp $126a
 ; 11a2
 
-Function11a2: ; 11a2
+Function11a2:: ; 11a2
 	push de
 	ld de, GreensName
 	jp $126a
 ; 11a9
 
-Function11a9: ; 11a9
+Function11a9:: ; 11a9
 	push de
 	ld de, Char5DText
 	jp $126a
 ; 11b0
 
-Function11b0: ; 11b0
+Function11b0:: ; 11b0
 	push de
 	ld de, Char5CText
 	jp $126a
 ; 11b7
 
-Function11b7: ; 11b7
+Function11b7:: ; 11b7
 	push de
 	ld de, Char5BText
 	jp $126a
 ; 11be
 
-Function11be: ; 11be
+Function11be:: ; 11be
 	push de
 	ld de, Char5EText
 	jp $126a
 ; 11c5
 
-Function11c5: ; 11c5
+Function11c5:: ; 11c5
 	push de
 	ld de, Char54Text
 	jp $126a
 ; 11cc
 
-Function11cc: ; 11cc
+Function11cc:: ; 11cc
 	push de
 	ld de, Char23Text
 	jp $126a
 ; 11d3
 
-Function11d3: ; 11d3
+Function11d3:: ; 11d3
 	push de
 	ld de, $1292
 	jp $126a
 ; 11da
 
-Function11da: ; 11da
+Function11da:: ; 11da
 	push de
 	ld de, Char4AText
 	jp $126a
 ; 11e1
 
-Function11e1: ; 11e1
+Function11e1:: ; 11e1
 	push de
 	ld de, Char24Text
 	jp $126a
 ; 11e8
 
-Function11e8: ; 11e8
+Function11e8:: ; 11e8
 	push de
 	ld de, Char37Text
 	jp $126a
 ; 11ef
 
-Function11ef: ; 11ef
+Function11ef:: ; 11ef
 	push de
 	ld de, Char37Text
 	jp $126a
 ; 11f6
 
-Function11f6: ; 11f6
+Function11f6:: ; 11f6
 	push de
 	ld de, Char37Text
 	jp $126a
 ; 11fd
 
 
-Function11fd: ; 11fd
+Function11fd:: ; 11fd
 	ld a, [hBattleTurn]
 	xor $1
 	jr Function1205
 ; 1203
 
-Char5D: ; 1203
+Char5D:: ; 1203
 	ld a, [hBattleTurn]
 ; 1205
 
-Function1205: ; 1205
+Function1205:: ; 1205
 	push de
 	and a
 	jr nz, .asm_120e ; 0x1207 $5
@@ -490,39 +490,39 @@ Function1205: ; 1205
 	jp NextChar
 ; 0x1273
 
-Char5CText: ; 1273
+Char5CText:: ; 1273
 	db "TM@"
-Char5DText: ; 1276
+Char5DText:: ; 1276
 	db "TRAINER@"
-Char5BText: ; 127e
+Char5BText:: ; 127e
 	db "PC@"
-Char5EText: ; 1281
+Char5EText:: ; 1281
 	db "ROCKET@"
-Char54Text: ; 1288
+Char54Text:: ; 1288
 	db "POKé@"
-Char23Text: ; 128d
+Char23Text:: ; 128d
 	db "こうげき@"
-Char56Text:; 1292
+Char56Text::; 1292
 	db "……@"
-Char5AText: ; 1295
+Char5AText:: ; 1295
 	db "Enemy @"
-Char4AText: ; 129c
+Char4AText:: ; 129c
 	db $e1, $e2, "@" ; PK MN
-Char24Text: ; 129f
+Char24Text:: ; 129f
 	db $70, $71, "@" ; PO KE
-String12a2: ; 12a2
+String12a2:: ; 12a2
 	db " @"
-Char35Text:
-Char36Text:
-Char37Text: ; 12a4
+Char35Text::
+Char36Text::
+Char37Text:: ; 12a4
 	db "@"
-String12a5: ; 12a5
+String12a5:: ; 12a5
 	db "@"
-String12a6: ; 12a6
+String12a6:: ; 12a6
 	db "@"
 ; 12a7
 
-Function12a7: ; 12a7
+Function12a7:: ; 12a7
 	pop hl
 	ld bc, $0028
 	add hl, bc
@@ -530,7 +530,7 @@ Function12a7: ; 12a7
 	jp NextChar
 ; 12b0
 
-Function12b0: ; 12b0
+Function12b0:: ; 12b0
 	pop hl
 	ld bc, $0014
 	add hl, bc
@@ -538,7 +538,7 @@ Function12b0: ; 12b0
 	jp NextChar
 ; 12b9
 
-Function12b9: ; 12b9
+Function12b9:: ; 12b9
 	pop hl
 	push de
 	ld bc, $3b60
@@ -581,14 +581,14 @@ Function12b9: ; 12b9
 ; 12ea
 
 
-Char4F: ; 12ea
+Char4F:: ; 12ea
 	pop hl
 	hlcoord 1, 16
 	push hl
 	jp NextChar
 ; 0x12f2
 
-Function12f2: ; 12f2
+Function12f2:: ; 12f2
 	push de
 	ld a, [InLinkBattle]
 	cp $3
@@ -612,7 +612,7 @@ Function12f2: ; 12f2
 ; 131f
 
 
-Char4B: ; 131f
+Char4B:: ; 131f
 	ld a, [InLinkBattle]
 	or a
 	jr nz, .asm_1328
@@ -638,7 +638,7 @@ Char4B: ; 131f
 ; 1345
 
 
-Char55: ; 1345
+Char55:: ; 1345
 	push de
 	ld de, Text_1354
 	ld b, h
@@ -650,19 +650,19 @@ Char55: ; 1345
 	jp NextChar
 ; 1354
 
-Text_1354: ; 1354
+Text_1354:: ; 1354
 	db $4b, "@"
 ; 1356
 
 
-Char5F: ; 1356
+Char5F:: ; 1356
 ; ends a Pokédex entry
 	ld [hl], "."
 	pop hl
 	ret
 ; 135a
 
-Function135a: ; 135a
+Function135a:: ; 135a
 	ld a, [InLinkBattle]
 	cp $3
 	jr z, .asm_1368
@@ -690,14 +690,14 @@ Function135a: ; 135a
 	db "@"
 ; 1383
 
-Function1383: ; 1383
+Function1383:: ; 1383
 	ld a, $e6
 	ld [hli], a
 	call PrintLetterDelay
 	jp NextChar
 ; 138c
 
-Function138c: ; 138c
+Function138c:: ; 138c
 	ld hl, $c5b9
 	ld de, $c5a5
 	ld a, $3
@@ -726,7 +726,7 @@ Function138c: ; 138c
 	ret
 ; 13b6
 
-Function13b6: ; 13b6
+Function13b6:: ; 13b6
 	push bc
 	ld a, [hOAMUpdate]
 	push af
@@ -739,23 +739,23 @@ Function13b6: ; 13b6
 	ret
 ; 13c6
 
-Function13c6: ; 13c6
+Function13c6:: ; 13c6
 	ret
 ; 13c7
 
-Function13c7: ; 13c7
+Function13c7:: ; 13c7
 	ld a, $ee
 	ld [$c606], a
 	ret
 ; 13cd
 
-Function13cd: ; 13cd
+Function13cd:: ; 13cd
 	ld a, [$c605]
 	ld [$c606], a
 	ret
 ; 13d4
 
-Function13d4: ; 13d4
+Function13d4:: ; 13d4
 	ld b, a
 	ld a, [hROMBank]
 	push af
@@ -769,7 +769,7 @@ Function13d4: ; 13d4
 	ret
 ; 13e0
 
-Function13e0: ; 13e0
+Function13e0:: ; 13e0
 	ld hl, $13e4
 	ret
 
@@ -778,7 +778,7 @@ Function13e0: ; 13e0
 ; 13e5
 
 
-Function13e5: ; 13e5
+Function13e5:: ; 13e5
 	ld a, [$cfcf]
 	push af
 	set 1, a
@@ -789,7 +789,7 @@ Function13e5: ; 13e5
 	ret
 ; 13f6
 
-Function13f6: ; 13f6
+Function13f6:: ; 13f6
 .asm_13f6
 	ld a, [hli]
 	cp "@"
@@ -798,7 +798,7 @@ Function13f6: ; 13f6
 	jr .asm_13f6
 ; 13ff
 
-Function13ff: ; 13ff
+Function13ff:: ; 13ff
 	push hl
 	push bc
 	ld c, a
@@ -817,7 +817,7 @@ Function13ff: ; 13ff
 	ret
 ; 1410
 
-TextCommands: ; 1410
+TextCommands:: ; 1410
 	dw Text_00
 	dw Text_01
 	dw Text_02
@@ -843,7 +843,7 @@ TextCommands: ; 1410
 	dw Text_16
 ; 143e
 
-Text_00: ; 143e
+Text_00:: ; 143e
 ; TX
 ; write text until "@"
 ; [$00]["...@"]
@@ -859,7 +859,7 @@ Text_00: ; 143e
 	ret
 ; 1449
 
-Text_01: ; 1449
+Text_01:: ; 1449
 ; TX_RAM
 ; write text from a ram address
 ; little endian
@@ -877,7 +877,7 @@ Text_01: ; 1449
 	ret
 ; 1455
 
-Text_16: ; 1455
+Text_16:: ; 1455
 ; TX_FAR
 ; write text from a different bank
 ; little endian
@@ -907,7 +907,7 @@ Text_16: ; 1455
 	ret
 ; 1470
 
-Text_02: ; 1470
+Text_02:: ; 1470
 ; TX_NUM
 ; write bcdnumber from address, typically ram
 ; little endian
@@ -930,7 +930,7 @@ Text_02: ; 1470
 	ret
 ; 1480
 
-Text_03: ; 1480
+Text_03:: ; 1480
 ; TX_MOVE
 ; move to a new tile
 ; little endian
@@ -945,7 +945,7 @@ Text_03: ; 1480
 	ret
 ; 148b
 
-Text_04: ; 148b
+Text_04:: ; 148b
 ; TX_BOX
 ; draw a box
 ; little endian
@@ -967,7 +967,7 @@ Text_04: ; 148b
 	ret
 ; 149b
 
-Text_05: ; 149b
+Text_05:: ; 149b
 ; TX_LOW
 ; write text at (1,16)
 ; [$05]
@@ -997,7 +997,7 @@ Text_06:: ; 149f
 	ret
 ; 14ba
 
-Text_07: ; 14ba
+Text_07:: ; 14ba
 	push hl
 	call Function13cd
 	call Function138c
@@ -1007,7 +1007,7 @@ Text_07: ; 14ba
 	ret
 ; 14c9
 
-Text_08: ; 14c9
+Text_08:: ; 14c9
 ; TX_ASM
 
 ; rom only?
@@ -1021,7 +1021,7 @@ Text_08: ; 14c9
 	ret
 ; 14d2
 
-Text_09: ; 14d2
+Text_09:: ; 14d2
 	ld a, [hli]
 	ld e, a
 	ld a, [hli]
@@ -1045,7 +1045,7 @@ Text_09: ; 14d2
 	ret
 ; 14ed
 
-Text_0A: ; 14ed
+Text_0A:: ; 14ed
 	push hl
 	push bc
 	call GetJoypad
@@ -1097,7 +1097,7 @@ Text_PlaySound:: ; 1500
 	ret
 ; 1522
 
-Function1522: ; 1522
+Function1522:: ; 1522
 	push de
 	ld e, [hl]
 	inc hl
@@ -1109,7 +1109,7 @@ Function1522: ; 1522
 	ret
 ; 152d
 
-TextSFX: ; 152d
+TextSFX:: ; 152d
 	dbw $0b, SFX_DEX_FANFARE_50_79
 	dbw $12, SFX_FANFARE
 	dbw $0e, SFX_DEX_FANFARE_20_49
@@ -1120,7 +1120,7 @@ TextSFX: ; 152d
 	db $ff ; end
 ; 1543
 
-Text_0C: ; 1543
+Text_0C:: ; 1543
 	ld a, [hli]
 	ld d, a
 	push hl
@@ -1146,7 +1146,7 @@ Text_0C: ; 1543
 	ret
 ; 1562
 
-Text_0D: ; 1562
+Text_0D:: ; 1562
 ; wait for key down
 ; display arrow
 	push hl
@@ -1157,7 +1157,7 @@ Text_0D: ; 1562
 	ret
 ; 156a
 
-Text_14: ; 156a
+Text_14:: ; 156a
 ; TX_PREDEF
 ; [$14][id]
 
@@ -1179,7 +1179,7 @@ Text_14: ; 156a
 	ret
 ; 1582
 
-Text_15: ; 1582
+Text_15:: ; 1582
 ; TX_DAY
 
 	call GetWeekday

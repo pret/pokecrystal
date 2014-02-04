@@ -1,4 +1,4 @@
-Tileset00: ; 0x4d596
+Tileset00:: ; 0x4d596
 	dbw BANK(Tileset00GFX), Tileset00GFX
 	dbw BANK(Tileset00Meta), Tileset00Meta
 	dbw BANK(Tileset00Coll), Tileset00Coll
@@ -6,7 +6,7 @@ Tileset00: ; 0x4d596
 	dw $0000
 	dw Tileset00PalMap
 
-Tileset01: ; 0x4d5a5
+Tileset01:: ; 0x4d5a5
 	dbw BANK(Tileset01GFX), Tileset01GFX
 	dbw BANK(Tileset01Meta), Tileset01Meta
 	dbw BANK(Tileset01Coll), Tileset01Coll

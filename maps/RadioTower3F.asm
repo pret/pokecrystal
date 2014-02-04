@@ -202,7 +202,7 @@ ScientistMarcScript: ; 0x5e5eb
 	end
 ; 0x5e5f3
 
-MapRadioTower3FSignpost2Script: ; 0x5e5f3
+MapRadioTower3FSignpost2Script:: ; 0x5e5f3
 	loadfont
 	2writetext UnknownText_0x5eaa4
 	closetext

@@ -1,7 +1,7 @@
 ; Functions dealing with palettes.
 
 
-UpdatePalsIfCGB: ; c2f
+UpdatePalsIfCGB:: ; c2f
 ; update bgp data from BGPals
 ; update obp data from OBPals
 ; return carry if successful
@@ -12,7 +12,7 @@ UpdatePalsIfCGB: ; c2f
 	ret z
 
 
-UpdateCGBPals: ; c33
+UpdateCGBPals:: ; c33
 ; return carry if successful
 ; any pals to update?
 	ld a, [hCGBPalUpdate]
@@ -20,7 +20,7 @@ UpdateCGBPals: ; c33
 	ret z
 
 
-ForceUpdateCGBPals: ; c37
+ForceUpdateCGBPals:: ; c37
 
 	ld a, [rSVBK]
 	push af
@@ -71,7 +71,7 @@ ForceUpdateCGBPals: ; c37
 ; c9f
 
 
-DmgToCgbBGPals: ; c9f
+DmgToCgbBGPals:: ; c9f
 ; exists to forego reinserting cgb-converted image data
 
 ; input: a -> bgp
@@ -116,7 +116,7 @@ DmgToCgbBGPals: ; c9f
 ; ccb
 
 
-DmgToCgbObjPals: ; ccb
+DmgToCgbObjPals:: ; ccb
 ; exists to forego reinserting cgb-converted image data
 
 ; input: d -> obp1
@@ -162,7 +162,7 @@ DmgToCgbObjPals: ; ccb
 ; cf8
 
 
-Functioncf8: ; cf8
+Functioncf8:: ; cf8
 	ld [rOBP0], a
 	push af
 	ld a, [hCGB]
@@ -194,7 +194,7 @@ Functioncf8: ; cf8
 	ret
 ; d24
 
-Functiond24: ; d24
+Functiond24:: ; d24
 	ld [rOBP1], a
 	push af
 	ld a, [hCGB]
@@ -228,7 +228,7 @@ Functiond24: ; d24
 
 
 
-CopyPals: ; d50
+CopyPals:: ; d50
 ; copy c palettes in order b from de to hl
 
 	push bc
@@ -281,7 +281,7 @@ CopyPals: ; d50
 ; d79
 
 
-Functiond79: ; d79
+Functiond79:: ; d79
 	ld a, [hCGB]
 	and a
 	ret z
@@ -297,12 +297,12 @@ Functiond79: ; d79
 ; d90
 
 
-Functiond90: ; d90
+Functiond90:: ; d90
 	ret
 ; d91
 
 
-Functiond91: ; d91
+Functiond91:: ; d91
 	ld a, [hCGB]
 	and a
 	ret z
@@ -323,7 +323,7 @@ Functiond91: ; d91
 ; db1
 
 
-Functiondb1: ; db1
+Functiondb1:: ; db1
 	ld a, [hROMBank]
 	push af
 	ld a, BANK(Function4c000)
@@ -334,7 +334,7 @@ Functiondb1: ; db1
 	ret
 ; dbd
 
-Functiondbd: ; dbd
+Functiondbd:: ; dbd
 	ld a, [hROMBank]
 	push af
 	ld a, BANK(Function4c03f)
