@@ -770,6 +770,12 @@ GetPokedexEntryBank: ; ec38
 	ret
 
 .PokedexEntryBanks
+
+GLOBAL PokedexEntries1
+GLOBAL PokedexEntries2
+GLOBAL PokedexEntries3
+GLOBAL PokedexEntries4
+
 	db BANK(PokedexEntries1)
 	db BANK(PokedexEntries2)
 	db BANK(PokedexEntries3)
@@ -895,6 +901,10 @@ Function_0xeccc: ; eccc
 
 
 Function_0xecdd: ; ecdd
+
+GLOBAL EvosAttacks
+GLOBAL EvosAttacksPointers
+
 	push bc
 	ld a, [TempEnemyMonSpecies]
 	dec a
