@@ -41638,6 +41638,12 @@ Function44333: ; 44333
 ; 44351
 
 PokedexEntryBanks: ; 44351
+
+GLOBAL PokedexEntries1
+GLOBAL PokedexEntries2
+GLOBAL PokedexEntries3
+GLOBAL PokedexEntries4
+
 	db BANK(PokedexEntries1)
 	db BANK(PokedexEntries2)
 	db BANK(PokedexEntries3)

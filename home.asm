@@ -2395,6 +2395,8 @@ BattleTextBox:: ; 3ac3
 StdBattleTextBox:: ; 3ad5
 ; Open a textbox and print battle text at 20:hl.
 
+GLOBAL BattleText
+
 	ld a, [hROMBank]
 	push af
 
@@ -2410,6 +2412,9 @@ StdBattleTextBox:: ; 3ad5
 
 
 Function3ae1:: ; 3ae1
+
+GLOBAL BattleAnimations
+GLOBAL BattleAnimCommands
 
 	ld a, BANK(BattleAnimations)
 	rst Bankswitch
@@ -2566,6 +2571,7 @@ UpdateSound:: ; 3b6a
 
 _LoadMusicByte:: ; 3b86
 ; CurMusicByte = [a:de]
+GLOBAL LoadMusicByte
 
 	ld [hROMBank], a
 	ld [MBC3RomBank], a
