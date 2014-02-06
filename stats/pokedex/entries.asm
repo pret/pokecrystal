@@ -1,3 +1,5 @@
+INCLUDE "includes.asm"
+
 
 SECTION "Pokedex Entries 001-064", ROMX, BANK[POKEDEX_ENTRIES_1]
 

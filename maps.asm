@@ -1,3 +1,5 @@
+INCLUDE "includes.asm"
+
 
 SECTION "Map Headers", ROMX, BANK[MAP_HEADERS]
 
