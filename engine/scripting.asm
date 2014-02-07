@@ -1,4 +1,9 @@
+INCLUDE "includes.asm"
+
 ; Event scripting commands.
+
+
+SECTION "Event Scripting", ROMX, BANK[EVENTS]
 
 
 Function96c56:: ; 96c56

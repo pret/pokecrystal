@@ -8,4 +8,4 @@ fi
 
 hexdump -C pokecrystal.gbc > pokecrystal.txt
 
-diff baserom.txt pokecrystal.txt | less
+diff -u baserom.txt pokecrystal.txt | less
