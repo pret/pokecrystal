@@ -5,7 +5,6 @@ Music_ShowMeAround: ; edbd8
 	dbw $03, Music_ShowMeAround_Ch4
 ; edbe4
 
-
 Music_ShowMeAround_Ch1: ; edbe4
 	tempo 144
 	volume $77
@@ -29,7 +28,6 @@ Music_ShowMeAround_Ch1: ; edbe4
 	note D_, 1
 	note E_, 1
 	note G#, 8
-
 Music_ShowMeAround_branch_edc01: ; edc01
 	note __, 16
 	note __, 16
@@ -88,7 +86,6 @@ Music_ShowMeAround_Ch2: ; edc2a
 	note D_, 1
 	note E_, 8
 	dutycycle $1
-
 Music_ShowMeAround_branch_edc44: ; edc44
 	callchannel Music_ShowMeAround_branch_edc98
 	callchannel Music_ShowMeAround_branch_edc98
@@ -185,6 +182,7 @@ Music_ShowMeAround_branch_edc98: ; edc98
 	note B_, 1
 	note __, 1
 	endchannel
+; edca9
 
 Music_ShowMeAround_Ch3: ; edca9
 	stereopanning $f0
@@ -228,7 +226,6 @@ Music_ShowMeAround_Ch3: ; edca9
 	note F_, 1
 	note E_, 2
 	intensity $14
-
 Music_ShowMeAround_branch_edcd9: ; edcd9
 	callchannel Music_ShowMeAround_branch_edcef
 	callchannel Music_ShowMeAround_branch_edcef
@@ -308,6 +305,7 @@ Music_ShowMeAround_branch_edd0f: ; edd0f
 	note A_, 2
 	note __, 6
 	endchannel
+; edd30
 
 Music_ShowMeAround_Ch4: ; edd30
 	togglenoise $3
@@ -317,7 +315,6 @@ Music_ShowMeAround_Ch4: ; edd30
 	note D_, 2
 	note D#, 2
 	note F#, 4
-
 Music_ShowMeAround_branch_edd39: ; edd39
 	callchannel Music_ShowMeAround_branch_edd4f
 	callchannel Music_ShowMeAround_branch_edd4f
@@ -363,3 +360,5 @@ Music_ShowMeAround_branch_edd5e: ; edd5e
 	note F#, 2
 	endchannel
 ; edd6d
+
+

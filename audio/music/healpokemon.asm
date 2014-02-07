@@ -4,7 +4,6 @@ Music_HealPokemon: ; f0697
 	dbw $02, Music_HealPokemon_Ch3
 ; f06a0
 
-
 Music_HealPokemon_Ch1: ; f06a0
 	tempo 144
 	volume $77
@@ -24,6 +23,7 @@ Music_HealPokemon_Ch1: ; f06a0
 	unknownmusic0xe0 $0, $40
 	note B_, 4
 	endchannel
+; f06c4
 
 Music_HealPokemon_Ch2: ; f06c4
 	dutycycle $2
@@ -37,6 +37,7 @@ Music_HealPokemon_Ch2: ; f06c4
 	octave 5
 	note E_, 8
 	endchannel
+; f06d4
 
 Music_HealPokemon_Ch3: ; f06d4
 	notetype $c, $10
@@ -51,3 +52,5 @@ Music_HealPokemon_Ch3: ; f06d4
 	note __, 2
 	endchannel
 ; f06e1
+
+

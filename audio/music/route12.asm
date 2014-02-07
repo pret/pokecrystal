@@ -5,7 +5,6 @@ Music_Route12: ; ec506
 	dbw $03, Music_Route12_Ch4
 ; ec512
 
-
 Music_Route12_Ch1: ; ec512
 	tempo 148
 	volume $77
@@ -30,7 +29,6 @@ Music_Route12_Ch1: ; ec512
 	note E_, 1
 	intensity $97
 	note D#, 12
-
 Music_Route12_branch_ec535: ; ec535
 	dutycycle $2
 	intensity $96
@@ -117,7 +115,6 @@ Music_Route12_branch_ec535: ; ec535
 	note F#, 8
 	note D#, 4
 	note F#, 4
-
 Music_Route12_branch_ec59b: ; ec59b
 	intensity $97
 	note G#, 1
@@ -165,6 +162,7 @@ Music_Route12_branch_ec5bf: ; ec5bf
 	note A_, 4
 	note F#, 4
 	endchannel
+; ec5ca
 
 Music_Route12_Ch2: ; ec5ca
 	dutycycle $3
@@ -188,7 +186,6 @@ Music_Route12_Ch2: ; ec5ca
 	note B_, 1
 	octave 4
 	note D#, 1
-
 Music_Route12_branch_ec5e5: ; ec5e5
 	dutycycle $3
 	intensity $b7
@@ -284,6 +281,7 @@ Music_Route12_branch_ec647: ; ec647
 	note G#, 4
 	note F#, 4
 	endchannel
+; ec657
 
 Music_Route12_Ch3: ; ec657
 	vibrato $12, $54
@@ -303,7 +301,6 @@ Music_Route12_Ch3: ; ec657
 	note F#, 2
 	note __, 2
 	note D#, 4
-
 Music_Route12_branch_ec66c: ; ec66c
 	callchannel Music_Route12_branch_ec6b4
 	note F#, 1
@@ -356,7 +353,6 @@ Music_Route12_branch_ec66c: ; ec66c
 	note E_, 8
 	note F#, 4
 	note D#, 4
-
 Music_Route12_branch_ec6a3: ; ec6a3
 	note E_, 1
 	note __, 1
@@ -398,6 +394,7 @@ Music_Route12_branch_ec6b4: ; ec6b4
 	note G#, 4
 	note E_, 4
 	endchannel
+; ec6ce
 
 Music_Route12_Ch4: ; ec6ce
 	togglenoise $4
@@ -413,7 +410,6 @@ Music_Route12_Ch4: ; ec6ce
 	note D_, 4
 	notetype $6
 	callchannel Music_Route12_branch_ec717
-
 Music_Route12_branch_ec6e1: ; ec6e1
 	note D_, 4
 	note D_, 8
@@ -422,7 +418,6 @@ Music_Route12_branch_ec6e1: ; ec6e1
 	note D_, 8
 	callchannel Music_Route12_branch_ec717
 	loopchannel 8, Music_Route12_branch_ec6e1
-
 Music_Route12_branch_ec6ed: ; ec6ed
 	notetype $c
 	note B_, 10
@@ -441,7 +436,6 @@ Music_Route12_branch_ec6ed: ; ec6ed
 	callchannel Music_Route12_branch_ec717
 	callchannel Music_Route12_branch_ec717
 	note B_, 16
-
 Music_Route12_branch_ec707: ; ec707
 	note D_, 4
 	note D_, 8
@@ -464,3 +458,5 @@ Music_Route12_branch_ec717: ; ec717
 	note C#, 1
 	endchannel
 ; ec720
+
+

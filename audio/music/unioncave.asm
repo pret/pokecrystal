@@ -5,7 +5,6 @@ Music_UnionCave: ; f5c60
 	dbw $03, Music_UnionCave_Ch4
 ; f5c6c
 
-
 Music_UnionCave_Ch1: ; f5c6c
 	tempo 160
 	volume $77
@@ -13,14 +12,11 @@ Music_UnionCave_Ch1: ; f5c6c
 	tone $0002
 	vibrato $18, $34
 	stereopanning $f
-
 Music_UnionCave_branch_f5c7b: ; f5c7b
 	notetype $c, $b3
-
 Music_UnionCave_branch_f5c7e: ; f5c7e
 	callchannel Music_UnionCave_branch_f5ccf
 	loopchannel 4, Music_UnionCave_branch_f5c7e
-
 Music_UnionCave_branch_f5c85: ; f5c85
 	octave 2
 	note G#, 2
@@ -31,7 +27,6 @@ Music_UnionCave_branch_f5c85: ; f5c85
 	note E_, 2
 	note F_, 4
 	loopchannel 8, Music_UnionCave_branch_f5c85
-
 Music_UnionCave_branch_f5c91: ; f5c91
 	octave 2
 	note A_, 2
@@ -78,11 +73,11 @@ Music_UnionCave_branch_f5ccf: ; f5ccf
 	note C#, 2
 	note E_, 12
 	endchannel
+; f5cd5
 
 Music_UnionCave_Ch2: ; f5cd5
 	dutycycle $3
 	vibrato $8, $24
-
 Music_UnionCave_branch_f5cda: ; f5cda
 	notetype $c, $c4
 	callchannel Music_UnionCave_branch_f5d34
@@ -182,18 +177,17 @@ Music_UnionCave_branch_f5d52: ; f5d52
 	note C#, 2
 	note E_, 12
 	endchannel
+; f5d58
 
 Music_UnionCave_Ch3: ; f5d58
 	notetype $c, $16
 	stereopanning $f0
-
 Music_UnionCave_branch_f5d5d: ; f5d5d
 	note __, 16
 	loopchannel 7, Music_UnionCave_branch_f5d5d
 	note __, 14
 	octave 4
 	note C_, 2
-
 Music_UnionCave_branch_f5d65: ; f5d65
 	note __, 2
 	octave 3
@@ -206,7 +200,6 @@ Music_UnionCave_branch_f5d65: ; f5d65
 	octave 4
 	note C_, 2
 	loopchannel 4, Music_UnionCave_branch_f5d65
-
 Music_UnionCave_branch_f5d73: ; f5d73
 	note __, 2
 	octave 3
@@ -231,7 +224,6 @@ Music_UnionCave_branch_f5d73: ; f5d73
 	octave 3
 	note B_, 8
 	note A#, 8
-
 Music_UnionCave_branch_f5d8d: ; f5d8d
 	note A_, 4
 	note G_, 4
@@ -245,16 +237,15 @@ Music_UnionCave_branch_f5d8d: ; f5d8d
 	note A_, 4
 	note G_, 4
 	note A#, 8
-
 Music_UnionCave_branch_f5d9c: ; f5d9c
 	note __, 16
 	loopchannel 4, Music_UnionCave_branch_f5d9c
 	loopchannel 0, Music_UnionCave_branch_f5d5d
+; f5da5
 
 Music_UnionCave_Ch4: ; f5da5
 	togglenoise $1
 	notetype $c
-
 Music_UnionCave_branch_f5da9: ; f5da9
 	stereopanning $f0
 	note E_, 4
@@ -273,4 +264,8 @@ Music_UnionCave_branch_f5da9: ; f5da9
 	loopchannel 0, Music_UnionCave_branch_f5da9
 ; f5dc1
 
+
 INCBIN "baserom.gbc", $f5dc1, $f5dc5 - $f5dc1
+
+
+

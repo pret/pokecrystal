@@ -4,12 +4,10 @@ Music_CeladonCity: ; f435b
 	dbw $02, Music_CeladonCity_Ch3
 ; f4364
 
-
 Music_CeladonCity_Ch1: ; f4364
 	tempo 146
 	volume $77
 	tone $0001
-
 Music_CeladonCity_branch_f436c: ; f436c
 	stereopanning $f
 	notetype $c, $a6
@@ -22,7 +20,6 @@ Music_CeladonCity_branch_f436c: ; f436c
 	note E_, 2
 	note F#, 2
 	callchannel Music_CeladonCity_branch_f43cc
-
 Music_CeladonCity_branch_f437d: ; f437d
 	note D_, 2
 	note F#, 1
@@ -145,6 +142,7 @@ Music_CeladonCity_branch_f43fe: ; f43fe
 	note A_, 1
 	loopchannel 4, Music_CeladonCity_branch_f43fe
 	endchannel
+; f4406
 
 Music_CeladonCity_Ch2: ; f4406
 	vibrato $12, $34
@@ -161,7 +159,6 @@ Music_CeladonCity_Ch2: ; f4406
 	note F#, 1
 	note G_, 1
 	note A_, 8
-
 Music_CeladonCity_branch_f441a: ; f441a
 	callchannel Music_CeladonCity_branch_f4463
 	note A_, 4
@@ -273,10 +270,10 @@ Music_CeladonCity_branch_f4474: ; f4474
 	note D_, 2
 	note F#, 4
 	endchannel
+; f4492
 
 Music_CeladonCity_Ch3: ; f4492
 	vibrato $12, $24
-
 Music_CeladonCity_branch_f4495: ; f4495
 	notetype $c, $25
 	octave 3
@@ -286,7 +283,6 @@ Music_CeladonCity_branch_f4495: ; f4495
 	note __, 2
 	note D_, 8
 	callchannel Music_CeladonCity_branch_f44fd
-
 Music_CeladonCity_branch_f44a1: ; f44a1
 	octave 2
 	note A_, 2
@@ -398,3 +394,5 @@ Music_CeladonCity_branch_f4510: ; f4510
 	note B_, 2
 	endchannel
 ; f4518
+
+

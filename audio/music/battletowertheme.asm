@@ -5,7 +5,6 @@ Music_BattleTowerTheme: ; 178889
 	dbw $03, Music_BattleTowerTheme_Ch4
 ; 178895
 
-
 Music_BattleTowerTheme_Ch1: ; 178895
 	tempo 141
 	volume $77
@@ -13,7 +12,6 @@ Music_BattleTowerTheme_Ch1: ; 178895
 	vibrato $12, $34
 	stereopanning $f
 	notetype $6, $94
-
 Music_BattleTowerTheme_branch_1788a5: ; 1788a5
 	note __, 16
 	note __, 16
@@ -204,10 +202,10 @@ Music_BattleTowerTheme_branch_17895e: ; 17895e
 	note __, 4
 	note A_, 4
 	endchannel
+; 17896d
 
 Music_BattleTowerTheme_Ch2: ; 17896d
 	vibrato $12, $34
-
 Music_BattleTowerTheme_branch_178970: ; 178970
 	dutycycle $3
 	notetype $6, $b8
@@ -361,11 +359,11 @@ Music_BattleTowerTheme_branch_178a15: ; 178a15
 	note A#, 4
 	note A_, 4
 	endchannel
+; 178a20
 
 Music_BattleTowerTheme_Ch3: ; 178a20
 	vibrato $12, $34
 	notetype $6, $16
-
 Music_BattleTowerTheme_branch_178a26: ; 178a26
 	stereopanning $ff
 	callchannel Music_BattleTowerTheme_branch_178afe
@@ -589,11 +587,11 @@ Music_BattleTowerTheme_branch_178afe: ; 178afe
 	note C_, 2
 	note __, 2
 	endchannel
+; 178b0d
 
 Music_BattleTowerTheme_Ch4: ; 178b0d
 	togglenoise $3
 	notetype $c
-
 Music_BattleTowerTheme_branch_178b11: ; 178b11
 	callchannel Music_BattleTowerTheme_branch_178b58
 	note D_, 2
@@ -605,7 +603,6 @@ Music_BattleTowerTheme_branch_178b11: ; 178b11
 	note C#, 1
 	note D_, 1
 	note C#, 1
-
 Music_BattleTowerTheme_branch_178b1d: ; 178b1d
 	callchannel Music_BattleTowerTheme_branch_178b58
 	callchannel Music_BattleTowerTheme_branch_178b61
@@ -618,7 +615,6 @@ Music_BattleTowerTheme_branch_178b1d: ; 178b1d
 	note D_, 1
 	note D_, 1
 	note D_, 8
-
 Music_BattleTowerTheme_branch_178b35: ; 178b35
 	callchannel Music_BattleTowerTheme_branch_178b76
 	note D_, 2
@@ -699,3 +695,5 @@ Music_BattleTowerTheme_branch_178b76: ; 178b76
 	note C#, 1
 	endchannel
 ; 178b81
+
+

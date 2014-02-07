@@ -5,7 +5,6 @@ Music_AzaleaTown: ; f57e8
 	dbw $03, Music_AzaleaTown_Ch4
 ; f57f4
 
-
 Music_AzaleaTown_Ch1: ; f57f4
 	tempo 160
 	volume $77
@@ -13,7 +12,6 @@ Music_AzaleaTown_Ch1: ; f57f4
 	stereopanning $f
 	notetype $c, $a1
 	note __, 2
-
 Music_AzaleaTown_branch_f5801: ; f5801
 	intensity $a1
 	octave 3
@@ -29,7 +27,6 @@ Music_AzaleaTown_branch_f5801: ; f5801
 	note F_, 2
 	note F_, 2
 	loopchannel 2, Music_AzaleaTown_branch_f5801
-
 Music_AzaleaTown_branch_f5816: ; f5816
 	callchannel Music_AzaleaTown_branch_f588c
 	stereopanning $f0
@@ -233,6 +230,7 @@ Music_AzaleaTown_branch_f5912: ; f5912
 	intensity $a1
 	note A_, 8
 	endchannel
+; f591d
 
 Music_AzaleaTown_Ch2: ; f591d
 	vibrato $12, $23
@@ -270,7 +268,6 @@ Music_AzaleaTown_Ch2: ; f591d
 	dutycycle $1
 	octave 5
 	note C_, 1
-
 Music_AzaleaTown_branch_f5952: ; f5952
 	callchannel Music_AzaleaTown_branch_f59c7
 	note C#, 4
@@ -423,6 +420,7 @@ Music_AzaleaTown_branch_f59c7: ; f59c7
 	note D#, 12
 	intensity $b4
 	endchannel
+; f5a08
 
 Music_AzaleaTown_Ch3: ; f5a08
 	stereopanning $ff
@@ -448,7 +446,6 @@ Music_AzaleaTown_Ch3: ; f5a08
 	note C#, 1
 	note __, 1
 	note G#, 4
-
 Music_AzaleaTown_branch_f5a24: ; f5a24
 	callchannel Music_AzaleaTown_branch_f5a86
 	note G#, 4
@@ -634,12 +631,12 @@ Music_AzaleaTown_branch_f5acf: ; f5acf
 	note F_, 1
 	note __, 1
 	endchannel
+; f5ae5
 
 Music_AzaleaTown_Ch4: ; f5ae5
 	togglenoise $3
 	notetype $c
 	note F_, 2
-
 Music_AzaleaTown_branch_f5aea: ; f5aea
 	note D#, 2
 	note F#, 2
@@ -664,3 +661,5 @@ Music_AzaleaTown_branch_f5aea: ; f5aea
 	note F#, 2
 	loopchannel 0, Music_AzaleaTown_branch_f5aea
 ; f5b03
+
+

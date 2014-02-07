@@ -5,7 +5,6 @@ Music_Route26: ; eefb2
 	dbw $03, Music_Route26_Ch4
 ; eefbe
 
-
 Music_Route26_Ch1: ; eefbe
 	stereopanning $f
 	vibrato $12, $23
@@ -28,7 +27,6 @@ Music_Route26_Ch1: ; eefbe
 	octave 3
 	note G#, 2
 	note F#, 2
-
 Music_Route26_branch_eefe0: ; eefe0
 	dutycycle $0
 	notetype $c, $a7
@@ -196,6 +194,7 @@ Music_Route26_branch_eefe0: ; eefe0
 	note B_, 4
 	note __, 4
 	loopchannel 0, Music_Route26_branch_eefe0
+; ef09d
 
 Music_Route26_Ch2: ; ef09d
 	stereopanning $f0
@@ -235,7 +234,6 @@ Music_Route26_Ch2: ; ef09d
 	octave 2
 	note C_, 2
 	note D#, 2
-
 Music_Route26_branch_ef0ce: ; ef0ce
 	dutycycle $2
 	notetype $c, $c2
@@ -285,7 +283,6 @@ Music_Route26_branch_ef0ce: ; ef0ce
 	note D#, 4
 	note D#, 4
 	notetype $8, $c2
-
 Music_Route26_branch_ef10e: ; ef10e
 	octave 2
 	note G#, 2
@@ -357,6 +354,7 @@ Music_Route26_branch_ef14e: ; ef14e
 	octave 1
 	note A#, 2
 	endchannel
+; ef15a
 
 Music_Route26_Ch3: ; ef15a
 	stereopanning $ff
@@ -394,7 +392,6 @@ Music_Route26_Ch3: ; ef15a
 	note F#, 2
 	note F_, 2
 	note D#, 2
-
 Music_Route26_branch_ef18a: ; ef18a
 	vibrato $18, $23
 	notetype $c, $14
@@ -553,18 +550,17 @@ Music_Route26_branch_ef22f: ; ef22f
 	note C#, 4
 	note D#, 4
 	endchannel
+; ef238
 
 Music_Route26_Ch4: ; ef238
 	togglenoise $4
 	notetype $c
-
 Music_Route26_branch_ef23c: ; ef23c
 	note B_, 6
 	note D_, 1
 	note D_, 1
 	loopchannel 3, Music_Route26_branch_ef23c
 	callchannel Music_Route26_branch_ef2b0
-
 Music_Route26_branch_ef246: ; ef246
 	notetype $6
 	callchannel Music_Route26_branch_ef29a
@@ -584,7 +580,6 @@ Music_Route26_branch_ef246: ; ef246
 	callchannel Music_Route26_branch_ef29a
 	callchannel Music_Route26_branch_ef29a
 	notetype $8
-
 Music_Route26_branch_ef266: ; ef266
 	note D_, 2
 	note D_, 2
@@ -596,7 +591,6 @@ Music_Route26_branch_ef266: ; ef266
 	callchannel Music_Route26_branch_ef2a8
 	callchannel Music_Route26_branch_ef29a
 	callchannel Music_Route26_branch_ef2a8
-
 Music_Route26_branch_ef27c: ; ef27c
 	notetype $6
 	note D_, 1
@@ -679,3 +673,5 @@ Music_Route26_branch_ef2b0: ; ef2b0
 	note E_, 2
 	endchannel
 ; ef2d0
+
+

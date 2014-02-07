@@ -4,7 +4,6 @@ Music_ProfOak: ; f4dea
 	dbw $02, Music_ProfOak_Ch3
 ; f4df3
 
-
 Music_ProfOak_Ch1: ; f4df3
 	tempo 118
 	volume $77
@@ -23,7 +22,6 @@ Music_ProfOak_Ch1: ; f4df3
 	note G#, 8
 	intensity $97
 	note G#, 8
-
 Music_ProfOak_branch_f4e10: ; f4e10
 	intensity $91
 	callchannel Music_ProfOak_branch_f4e42
@@ -31,7 +29,6 @@ Music_ProfOak_branch_f4e10: ; f4e10
 	callchannel Music_ProfOak_branch_f4e4d
 	callchannel Music_ProfOak_branch_f4e4d
 	loopchannel 2, Music_ProfOak_branch_f4e10
-
 Music_ProfOak_branch_f4e22: ; f4e22
 	callchannel Music_ProfOak_branch_f4e58
 	callchannel Music_ProfOak_branch_f4e58
@@ -108,6 +105,7 @@ Music_ProfOak_branch_f4e6c: ; f4e6c
 	note B_, 4
 	intensity $91
 	endchannel
+; f4e7e
 
 Music_ProfOak_Ch2: ; f4e7e
 	vibrato $12, $34
@@ -123,7 +121,6 @@ Music_ProfOak_Ch2: ; f4e7e
 	intensity $a7
 	note B_, 10
 	dutycycle $2
-
 Music_ProfOak_branch_f4e92: ; f4e92
 	intensity $b2
 	octave 3
@@ -162,7 +159,6 @@ Music_ProfOak_branch_f4e92: ; f4e92
 	loopchannel 2, Music_ProfOak_branch_f4e92
 	note __, 6
 	intensity $b4
-
 Music_ProfOak_branch_f4ebf: ; f4ebf
 	note C#, 6
 	octave 3
@@ -212,6 +208,7 @@ Music_ProfOak_branch_f4ebf: ; f4ebf
 	note E_, 1
 	note G#, 16
 	loopchannel 0, Music_ProfOak_branch_f4ebf
+; f4ef5
 
 Music_ProfOak_Ch3: ; f4ef5
 	stereopanning $f
@@ -233,14 +230,12 @@ Music_ProfOak_Ch3: ; f4ef5
 	note __, 1
 	note E_, 2
 	callchannel Music_ProfOak_branch_f4f3d
-
 Music_ProfOak_branch_f4f0d: ; f4f0d
 	callchannel Music_ProfOak_branch_f4f3d
 	callchannel Music_ProfOak_branch_f4f3d
 	callchannel Music_ProfOak_branch_f4f4c
 	callchannel Music_ProfOak_branch_f4f4c
 	loopchannel 2, Music_ProfOak_branch_f4f0d
-
 Music_ProfOak_branch_f4f1d: ; f4f1d
 	callchannel Music_ProfOak_branch_f4f5a
 	callchannel Music_ProfOak_branch_f4f5a
@@ -326,3 +321,5 @@ Music_ProfOak_branch_f4f69: ; f4f69
 	note B_, 2
 	endchannel
 ; f4f79
+
+

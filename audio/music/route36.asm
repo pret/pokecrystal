@@ -5,7 +5,6 @@ Music_Route36: ; e94e9
 	dbw $03, Music_Route36_Ch4
 ; e94f5
 
-
 Music_Route36_Ch1: ; e94f5
 	tempo 144
 	volume $77
@@ -27,7 +26,6 @@ Music_Route36_Ch1: ; e94f5
 	note A_, 1
 	intensity $5d
 	note A#, 4
-
 Music_Route36_branch_e9517: ; e9517
 	intensity $b5
 	note F_, 4
@@ -165,6 +163,7 @@ Music_Route36_branch_e9517: ; e9517
 	note D#, 2
 	note E_, 2
 	loopchannel 0, Music_Route36_branch_e9517
+; e95af
 
 Music_Route36_Ch2: ; e95af
 	dutycycle $3
@@ -189,7 +188,6 @@ Music_Route36_Ch2: ; e95af
 	note F_, 8
 	octave 3
 	note G_, 4
-
 Music_Route36_branch_e95ce: ; e95ce
 	intensity $c7
 	octave 4
@@ -313,6 +311,7 @@ Music_Route36_branch_e95ce: ; e95ce
 	note A_, 1
 	note B_, 1
 	loopchannel 0, Music_Route36_branch_e95ce
+; e966b
 
 Music_Route36_Ch3: ; e966b
 	notetype $c, $25
@@ -338,7 +337,6 @@ Music_Route36_Ch3: ; e966b
 	octave 3
 	note D#, 2
 	note E_, 2
-
 Music_Route36_branch_e9684: ; e9684
 	note F_, 4
 	note C_, 2
@@ -470,20 +468,19 @@ Music_Route36_branch_e9684: ; e9684
 	note D#, 2
 	note E_, 2
 	loopchannel 0, Music_Route36_branch_e9684
+; e9709
 
 Music_Route36_Ch4: ; e9709
 	togglenoise $1
 	notetype $c
 	callchannel Music_Route36_branch_e9734
 	callchannel Music_Route36_branch_e9741
-
 Music_Route36_branch_e9713: ; e9713
 	callchannel Music_Route36_branch_e9734
 	callchannel Music_Route36_branch_e973b
 	callchannel Music_Route36_branch_e9734
 	callchannel Music_Route36_branch_e9741
 	loopchannel 2, Music_Route36_branch_e9713
-
 Music_Route36_branch_e9723: ; e9723
 	note A#, 4
 	note A_, 2
@@ -529,3 +526,5 @@ Music_Route36_branch_e9741: ; e9741
 	notetype $c
 	endchannel
 ; e974f
+
+

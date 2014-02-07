@@ -4,14 +4,15 @@ Music_Surf: ; f518a
 	dbw $02, Music_Surf_Ch3
 ; f5193
 
+
 INCBIN "baserom.gbc", $f5193, $f5194 - $f5193
+
 
 Music_Surf_Ch1: ; f5194
 	tempo 108
 	volume $77
 	notetype $c, $a7
 	stereopanning $f
-
 Music_Surf_branch_f519e: ; f519e
 	dutycycle $2
 	vibrato $10, $24
@@ -342,15 +343,14 @@ Music_Surf_branch_f52d9: ; f52d9
 	octave 2
 	note B_, 8
 	endchannel
+; f5317
 
 Music_Surf_Ch2: ; f5317
-
 Music_Surf_branch_f5317: ; f5317
 	notetype $c, $c2
 	stereopanning $f0
 	dutycycle $2
 	vibrato $14, $23
-
 Music_Surf_branch_f5321: ; f5321
 	octave 1
 	note A#, 4
@@ -367,7 +367,6 @@ Music_Surf_branch_f5321: ; f5321
 	note __, 3
 	note A#, 1
 	note __, 3
-
 Music_Surf_branch_f5333: ; f5333
 	note D#, 4
 	note G_, 2
@@ -554,9 +553,9 @@ Music_Surf_branch_f5404: ; f5404
 	note G#, 8
 	note D#, 8
 	endchannel
+; f540c
 
 Music_Surf_Ch3: ; f540c
-
 Music_Surf_branch_f540c: ; f540c
 	stereopanning $ff
 	notetype $c, $15
@@ -736,3 +735,5 @@ Music_Surf_branch_f54c8: ; f54c8
 	note __, 3
 	endchannel
 ; f54e8
+
+

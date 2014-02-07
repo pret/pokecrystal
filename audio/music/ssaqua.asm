@@ -5,7 +5,6 @@ Music_SSAqua: ; ead99
 	dbw $03, Music_SSAqua_Ch4
 ; eada5
 
-
 Music_SSAqua_Ch1: ; eada5
 	tempo 117
 	volume $77
@@ -19,7 +18,6 @@ Music_SSAqua_Ch1: ; eada5
 	note __, 1
 	note G_, 1
 	note __, 1
-
 Music_SSAqua_branch_eadbc: ; eadbc
 	octave 2
 	note G_, 16
@@ -258,7 +256,6 @@ Music_SSAqua_Ch2: ; eaeca
 	vibrato $8, $33
 	notetype $c, $b7
 	note __, 2
-
 Music_SSAqua_branch_eaed5: ; eaed5
 	notetype $c, $b7
 	dutycycle $1
@@ -610,6 +607,7 @@ Music_SSAqua_branch_eb03e: ; eb03e
 	octave 3
 	note G_, 1
 	endchannel
+; eb056
 
 Music_SSAqua_Ch3: ; eb056
 	stereopanning $ff
@@ -620,7 +618,6 @@ Music_SSAqua_Ch3: ; eb056
 	note __, 1
 	note G_, 1
 	note __, 1
-
 Music_SSAqua_branch_eb063: ; eb063
 	note G_, 16
 	note __, 8
@@ -654,7 +651,6 @@ Music_SSAqua_branch_eb063: ; eb063
 	note E_, 1
 	callchannel Music_SSAqua_branch_eb14d
 	callchannel Music_SSAqua_branch_eb14d
-
 Music_SSAqua_branch_eb08d: ; eb08d
 	note G_, 2
 	note __, 2
@@ -1093,12 +1089,12 @@ Music_SSAqua_branch_eb230: ; eb230
 	note D#, 1
 	note __, 3
 	endchannel
+; eb249
 
 Music_SSAqua_Ch4: ; eb249
 	togglenoise $3
 	notetype $c
 	note __, 2
-
 Music_SSAqua_branch_eb24e: ; eb24e
 	note G#, 1
 	note G_, 1
@@ -1189,3 +1185,5 @@ Music_SSAqua_branch_eb2c7: ; eb2c7
 	note C_, 2
 	endchannel
 ; eb2d3
+
+

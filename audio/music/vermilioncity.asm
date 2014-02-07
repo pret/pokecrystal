@@ -4,7 +4,9 @@ Music_VermilionCity: ; eb676
 	dbw $02, Music_VermilionCity_Ch3
 ; eb67f
 
+
 INCBIN "baserom.gbc", $eb67f, $eb680 - $eb67f
+
 
 Music_VermilionCity_Ch1: ; eb680
 	stereopanning $f
@@ -30,7 +32,6 @@ Music_VermilionCity_Ch1: ; eb680
 	octave 5
 	note D_, 1
 	vibrato $10, $23
-
 Music_VermilionCity_branch_eb6a0: ; eb6a0
 	dutycycle $1
 	notetype $c, $85
@@ -141,6 +142,7 @@ Music_VermilionCity_branch_eb70c: ; eb70c
 	note B_, 2
 	note G#, 2
 	endchannel
+; eb721
 
 Music_VermilionCity_Ch2: ; eb721
 	stereopanning $ff
@@ -157,7 +159,6 @@ Music_VermilionCity_Ch2: ; eb721
 	note E_, 4
 	note F#, 4
 	note G#, 4
-
 Music_VermilionCity_branch_eb735: ; eb735
 	notetype $c, $97
 	callchannel Music_VermilionCity_branch_eb768
@@ -227,6 +228,7 @@ Music_VermilionCity_branch_eb77e: ; eb77e
 	note F#, 4
 	note E_, 4
 	endchannel
+; eb785
 
 Music_VermilionCity_Ch3: ; eb785
 	stereopanning $f0
@@ -249,7 +251,6 @@ Music_VermilionCity_Ch3: ; eb785
 	note D_, 1
 	octave 2
 	note B_, 1
-
 Music_VermilionCity_branch_eb79e: ; eb79e
 	notetype $c, $22
 	callchannel Music_VermilionCity_branch_eb7de
@@ -347,3 +348,5 @@ Music_VermilionCity_branch_eb7f5: ; eb7f5
 	note C#, 1
 	endchannel
 ; eb808
+
+

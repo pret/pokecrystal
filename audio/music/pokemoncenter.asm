@@ -5,14 +5,12 @@ Music_PokemonCenter: ; ed5c6
 	dbw $03, Music_PokemonCenter_Ch4
 ; ed5d2
 
-
 Music_PokemonCenter_Ch1: ; ed5d2
 	tempo 152
 	volume $77
 	dutycycle $2
 	vibrato $a, $14
 	tone $0001
-
 Music_PokemonCenter_branch_ed5df: ; ed5df
 	stereopanning $f
 	notetype $c, $83
@@ -151,10 +149,10 @@ Music_PokemonCenter_branch_ed5df: ; ed5df
 	note F#, 2
 	note G_, 2
 	loopchannel 0, Music_PokemonCenter_branch_ed5df
+; ed671
 
 Music_PokemonCenter_Ch2: ; ed671
 	vibrato $10, $25
-
 Music_PokemonCenter_branch_ed674: ; ed674
 	stereopanning $ff
 	callchannel Music_PokemonCenter_branch_ed6d1
@@ -253,10 +251,10 @@ Music_PokemonCenter_branch_ed6e4: ; ed6e4
 	note E_, 4
 	note C#, 2
 	endchannel
+; ed6f3
 
 Music_PokemonCenter_Ch3: ; ed6f3
 	notetype $c, $28
-
 Music_PokemonCenter_branch_ed6f6: ; ed6f6
 	stereopanning $f0
 	octave 3
@@ -400,12 +398,12 @@ Music_PokemonCenter_branch_ed783: ; ed783
 	note A_, 1
 	note __, 1
 	endchannel
+; ed78c
 
 Music_PokemonCenter_Ch4: ; ed78c
 	togglenoise $3
 	notetype $c
 	stereopanning $ff
-
 Music_PokemonCenter_branch_ed792: ; ed792
 	note G_, 6
 	note G_, 4
@@ -414,3 +412,5 @@ Music_PokemonCenter_branch_ed792: ; ed792
 	note G_, 2
 	loopchannel 0, Music_PokemonCenter_branch_ed792
 ; ed79b
+
+

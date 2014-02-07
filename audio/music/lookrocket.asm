@@ -5,7 +5,6 @@ Music_LookRocket: ; f74a2
 	dbw $03, Music_LookRocket_Ch4
 ; f74ae
 
-
 Music_LookRocket_Ch1: ; f74ae
 	tempo 123
 	volume $77
@@ -19,7 +18,6 @@ Music_LookRocket_Ch1: ; f74ae
 	note D_, 1
 	callchannel Music_LookRocket_branch_f74e6
 	dutycycle $1
-
 Music_LookRocket_branch_f74c7: ; f74c7
 	intensity $a8
 	callchannel Music_LookRocket_branch_f74f7
@@ -38,7 +36,6 @@ Music_LookRocket_branch_f74c7: ; f74c7
 ; f74e6
 
 Music_LookRocket_branch_f74e6: ; f74e6
-
 Music_RocketTheme_branch_f74e6: ; f74e6
 	note D#, 1
 	note __, 1
@@ -60,7 +57,6 @@ Music_RocketTheme_branch_f74e6: ; f74e6
 ; f74f7
 
 Music_LookRocket_branch_f74f7: ; f74f7
-
 Music_RocketTheme_branch_f74f7: ; f74f7
 	note __, 2
 	octave 3
@@ -86,7 +82,6 @@ Music_RocketTheme_branch_f74f7: ; f74f7
 ; f750c
 
 Music_LookRocket_branch_f750c: ; f750c
-
 Music_RocketTheme_branch_f750c: ; f750c
 	note __, 2
 	octave 2
@@ -108,7 +103,6 @@ Music_LookRocket_Ch2: ; f7514
 	note C_, 1
 	note D_, 1
 	callchannel Music_LookRocket_branch_f7547
-
 Music_LookRocket_branch_f7526: ; f7526
 	intensity $b7
 	callchannel Music_LookRocket_branch_f758a
@@ -127,7 +121,6 @@ Music_LookRocket_branch_f7526: ; f7526
 ; f7547
 
 Music_LookRocket_branch_f7547: ; f7547
-
 Music_RocketTheme_branch_f7547: ; f7547
 	note D#, 1
 	note __, 1
@@ -144,7 +137,6 @@ Music_RocketTheme_branch_f7547: ; f7547
 ; f7554
 
 Music_LookRocket_branch_f7554: ; f7554
-
 Music_RocketTheme_branch_f7554: ; f7554
 	note __, 2
 	octave 4
@@ -169,7 +161,6 @@ Music_RocketTheme_branch_f7554: ; f7554
 ; f7568
 
 Music_LookRocket_branch_f7568: ; f7568
-
 Music_RocketTheme_branch_f7568: ; f7568
 	note __, 2
 	octave 3
@@ -181,7 +172,6 @@ Music_RocketTheme_branch_f7568: ; f7568
 ; f756f
 
 Music_LookRocket_branch_f756f: ; f756f
-
 Music_RocketTheme_branch_f756f: ; f756f
 	intensity $63
 	note G#, 1
@@ -209,7 +199,6 @@ Music_RocketTheme_branch_f756f: ; f756f
 ; f758a
 
 Music_LookRocket_branch_f758a: ; f758a
-
 Music_RocketTheme_branch_f758a: ; f758a
 	octave 3
 	note __, 2
@@ -224,6 +213,7 @@ Music_RocketTheme_branch_f758a: ; f758a
 	note A_, 1
 	note __, 1
 	endchannel
+; f7597
 
 Music_LookRocket_Ch3: ; f7597
 	forceoctave $2
@@ -232,7 +222,6 @@ Music_LookRocket_Ch3: ; f7597
 	stereopanning $f0
 	note __, 2
 	callchannel Music_LookRocket_branch_f75bf
-
 Music_LookRocket_branch_f75a5: ; f75a5
 	callchannel Music_LookRocket_branch_f75fe
 	callchannel Music_LookRocket_branch_f75fe
@@ -246,7 +235,6 @@ Music_LookRocket_branch_f75a5: ; f75a5
 ; f75bf
 
 Music_LookRocket_branch_f75bf: ; f75bf
-
 Music_RocketTheme_branch_f75bf: ; f75bf
 	octave 3
 	note F_, 1
@@ -264,7 +252,6 @@ Music_RocketTheme_branch_f75bf: ; f75bf
 ; f75cc
 
 Music_LookRocket_branch_f75cc: ; f75cc
-
 Music_RocketTheme_branch_f75cc: ; f75cc
 	octave 2
 	note G#, 1
@@ -290,7 +277,6 @@ Music_RocketTheme_branch_f75cc: ; f75cc
 ; f75e1
 
 Music_LookRocket_branch_f75e1: ; f75e1
-
 Music_RocketTheme_branch_f75e1: ; f75e1
 	intensity $24
 	octave 2
@@ -322,7 +308,6 @@ Music_RocketTheme_branch_f75e1: ; f75e1
 ; f75fe
 
 Music_LookRocket_branch_f75fe: ; f75fe
-
 Music_RocketTheme_branch_f75fe: ; f75fe
 	note C_, 1
 	note __, 1
@@ -364,7 +349,6 @@ Music_RocketTheme_branch_f75fe: ; f75fe
 ; f7623
 
 Music_LookRocket_branch_f7623: ; f7623
-
 Music_RocketTheme_branch_f7623: ; f7623
 	octave 2
 	note G#, 1
@@ -387,13 +371,13 @@ Music_RocketTheme_branch_f7623: ; f7623
 	note D#, 1
 	note C_, 1
 	endchannel
+; f7638
 
 Music_LookRocket_Ch4: ; f7638
 	togglenoise $3
 	notetype $c
 	note __, 2
 	callchannel Music_LookRocket_branch_f765c
-
 Music_LookRocket_branch_f7640: ; f7640
 	callchannel Music_LookRocket_branch_f7664
 	callchannel Music_LookRocket_branch_f7664
@@ -407,7 +391,6 @@ Music_LookRocket_branch_f7640: ; f7640
 ; f765c
 
 Music_LookRocket_branch_f765c: ; f765c
-
 Music_RocketTheme_branch_f765c: ; f765c
 	note C_, 8
 	note D_, 2
@@ -420,7 +403,6 @@ Music_RocketTheme_branch_f765c: ; f765c
 ; f7664
 
 Music_LookRocket_branch_f7664: ; f7664
-
 Music_RocketTheme_branch_f7664: ; f7664
 	note D#, 2
 	note F#, 2
@@ -432,3 +414,5 @@ Music_RocketTheme_branch_f7664: ; f7664
 	note F#, 2
 	endchannel
 ; f766d
+
+

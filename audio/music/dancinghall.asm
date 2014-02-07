@@ -4,7 +4,9 @@ Music_DancingHall: ; ef9bc
 	dbw $02, Music_DancingHall_Ch3
 ; ef9c5
 
+
 INCBIN "baserom.gbc", $ef9c5, $ef9c6 - $ef9c5
+
 
 Music_DancingHall_Ch1: ; ef9c6
 	tempo 208
@@ -13,7 +15,6 @@ Music_DancingHall_Ch1: ; ef9c6
 	notetype $6, $b7
 	note __, 3
 	dutycycle $0
-
 Music_DancingHall_branch_ef9d3: ; ef9d3
 	notetype $c, $b7
 	callchannel Music_DancingHall_branch_efa17
@@ -89,6 +90,7 @@ Music_DancingHall_branch_efa17: ; efa17
 	note D_, 1
 	note __, 1
 	endchannel
+; efa2c
 
 Music_DancingHall_Ch2: ; efa2c
 	stereopanning $f0
@@ -96,7 +98,6 @@ Music_DancingHall_Ch2: ; efa2c
 	dutycycle $0
 	vibrato $10, $24
 	note __, 3
-
 Music_DancingHall_branch_efa37: ; efa37
 	notetype $6, $a2
 	callchannel Music_DancingHall_branch_efa7a
@@ -223,6 +224,7 @@ Music_DancingHall_branch_efa7a: ; efa7a
 	octave 4
 	note D_, 1
 	endchannel
+; efad6
 
 Music_DancingHall_Ch3: ; efad6
 	stereopanning $ff
@@ -233,7 +235,6 @@ Music_DancingHall_Ch3: ; efad6
 	note B_, 1
 	octave 6
 	note D_, 1
-
 Music_DancingHall_branch_efae3: ; efae3
 	note E_, 13
 	note D_, 1
@@ -310,3 +311,5 @@ Music_DancingHall_branch_efae3: ; efae3
 	note D_, 1
 	loopchannel 0, Music_DancingHall_branch_efae3
 ; efb3e
+
+

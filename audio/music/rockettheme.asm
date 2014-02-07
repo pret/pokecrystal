@@ -5,7 +5,6 @@ Music_RocketTheme: ; f766d
 	dbw $03, Music_RocketTheme_Ch4
 ; f7679
 
-
 Music_RocketTheme_Ch1: ; f7679
 	tempo 128
 	volume $77
@@ -16,7 +15,6 @@ Music_RocketTheme_Ch1: ; f7679
 	octave 4
 	note C_, 1
 	note D_, 1
-
 Music_RocketTheme_branch_f768b: ; f768b
 	dutycycle $3
 	notetype $c, $a8
@@ -89,7 +87,6 @@ Music_RocketTheme_branch_f768b: ; f768b
 	note E_, 2
 	note D#, 2
 	note D_, 2
-
 Music_RocketTheme_branch_f76ef: ; f76ef
 	note __, 4
 	note F_, 2
@@ -106,22 +103,18 @@ Music_RocketTheme_branch_f76ef: ; f76ef
 	note __, 2
 	note D#, 2
 	note C_, 2
-
 Music_RocketTheme_branch_f7701: ; f7701
 	note F#, 2
 	note A_, 2
 	loopchannel 4, Music_RocketTheme_branch_f7701
-
 Music_RocketTheme_branch_f7707: ; f7707
 	note G_, 2
 	note A#, 2
 	loopchannel 4, Music_RocketTheme_branch_f7707
-
 Music_RocketTheme_branch_f770d: ; f770d
 	note G#, 2
 	note B_, 2
 	loopchannel 4, Music_RocketTheme_branch_f770d
-
 Music_RocketTheme_branch_f7713: ; f7713
 	octave 3
 	note A_, 2
@@ -161,6 +154,7 @@ Music_RocketTheme_branch_f7727: ; f7727
 	note A#, 2
 	note __, 10
 	endchannel
+; f773e
 
 Music_RocketTheme_Ch2: ; f773e
 	stereopanning $ff
@@ -170,7 +164,6 @@ Music_RocketTheme_Ch2: ; f773e
 	octave 5
 	note C_, 1
 	note D_, 1
-
 Music_RocketTheme_branch_f774b: ; f774b
 	notetype $c, $b7
 	callchannel Music_RocketTheme_branch_f7547
@@ -340,13 +333,13 @@ Music_RocketTheme_branch_f781c: ; f781c
 	note F_, 8
 	note C_, 4
 	endchannel
+; f7826
 
 Music_RocketTheme_Ch3: ; f7826
 	stereopanning $f0
 	vibrato $4, $22
 	notetype $c, $14
 	note __, 2
-
 Music_RocketTheme_branch_f782f: ; f782f
 	notetype $c, $14
 	callchannel Music_RocketTheme_branch_f75bf
@@ -454,12 +447,12 @@ Music_RocketTheme_branch_f782f: ; f782f
 	note G#, 1
 	note __, 1
 	loopchannel 0, Music_RocketTheme_branch_f782f
+; f78be
 
 Music_RocketTheme_Ch4: ; f78be
 	togglenoise $3
 	notetype $c
 	note __, 2
-
 Music_RocketTheme_branch_f78c3: ; f78c3
 	callchannel Music_RocketTheme_branch_f765c
 	callchannel Music_RocketTheme_branch_f7664
@@ -470,7 +463,6 @@ Music_RocketTheme_branch_f78c3: ; f78c3
 	callchannel Music_RocketTheme_branch_f7664
 	callchannel Music_RocketTheme_branch_f7664
 	callchannel Music_RocketTheme_branch_f765c
-
 Music_RocketTheme_branch_f78de: ; f78de
 	note A#, 2
 	note F#, 2
@@ -488,3 +480,5 @@ Music_RocketTheme_branch_f78de: ; f78de
 	callchannel Music_RocketTheme_branch_f765c
 	loopchannel 0, Music_RocketTheme_branch_f78c3
 ; f78fd
+
+

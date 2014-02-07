@@ -5,7 +5,6 @@ Music_Bicycle: ; ee119
 	dbw $03, Music_Bicycle_Ch4
 ; ee125
 
-
 Music_Bicycle_Ch1: ; ee125
 	tempo 140
 	volume $77
@@ -24,7 +23,6 @@ Music_Bicycle_Ch1: ; ee125
 	note A_, 8
 	intensity $b2
 	note F#, 2
-
 Music_Bicycle_branch_ee144: ; ee144
 	stereopanning $f
 	intensity $b2
@@ -171,6 +169,7 @@ Music_Bicycle_branch_ee144: ; ee144
 	note G#, 2
 	note A_, 2
 	loopchannel 0, Music_Bicycle_branch_ee144
+; ee1de
 
 Music_Bicycle_Ch2: ; ee1de
 	dutycycle $2
@@ -196,7 +195,6 @@ Music_Bicycle_Ch2: ; ee1de
 	octave 3
 	note B_, 2
 	note A_, 2
-
 Music_Bicycle_branch_ee1fd: ; ee1fd
 	stereopanning $ff
 	dutycycle $2
@@ -288,6 +286,7 @@ Music_Bicycle_branch_ee263: ; ee263
 	note G_, 6
 	note E_, 4
 	endchannel
+; ee26d
 
 Music_Bicycle_Ch3: ; ee26d
 	notetype $c, $14
@@ -306,7 +305,6 @@ Music_Bicycle_Ch3: ; ee26d
 	octave 3
 	note A_, 1
 	note __, 1
-
 Music_Bicycle_branch_ee27f: ; ee27f
 	callchannel Music_Bicycle_branch_ee333
 	note E_, 1
@@ -410,7 +408,6 @@ Music_Bicycle_branch_ee27f: ; ee27f
 	note __, 1
 	note A_, 1
 	note __, 1
-
 Music_Bicycle_branch_ee2e9: ; ee2e9
 	note G_, 1
 	note __, 1
@@ -501,16 +498,15 @@ Music_Bicycle_branch_ee333: ; ee333
 	note B_, 1
 	note __, 1
 	endchannel
+; ee345
 
 Music_Bicycle_Ch4: ; ee345
 	togglenoise $0
 	notetype $c
 	note __, 16
 	note __, 16
-
 Music_Bicycle_branch_ee34b: ; ee34b
 	note __, 2
-
 Music_Bicycle_branch_ee34c: ; ee34c
 	stereopanning $f0
 	note F_, 4
@@ -523,3 +519,5 @@ Music_Bicycle_branch_ee34c: ; ee34c
 	note F_, 2
 	loopchannel 0, Music_Bicycle_branch_ee34b
 ; ee35e
+
+

@@ -5,7 +5,6 @@ Music_DragonsDen: ; eece8
 	dbw $03, Music_DragonsDen_Ch4
 ; eecf4
 
-
 Music_DragonsDen_Ch1: ; eecf4
 	tempo 144
 	volume $77
@@ -13,7 +12,6 @@ Music_DragonsDen_Ch1: ; eecf4
 	tone $0004
 	stereopanning $f0
 	notetype $c, $80
-
 Music_DragonsDen_branch_eed03: ; eed03
 	callchannel Music_DragonsDen_branch_eed1e
 	note __, 16
@@ -62,13 +60,13 @@ Music_DragonsDen_branch_eed2d: ; eed2d
 	note C#, 2
 	note C#, 2
 	endchannel
+; eed3c
 
 Music_DragonsDen_Ch2: ; eed3c
 	dutycycle $0
 	tone $0004
 	stereopanning $f
 	notetype $c, $90
-
 Music_DragonsDen_branch_eed46: ; eed46
 	callchannel Music_DragonsDen_branch_eed5e
 	note __, 16
@@ -99,7 +97,6 @@ Music_DragonsDen_branch_eed5e: ; eed5e
 
 Music_DragonsDen_branch_eed6b: ; eed6b
 	intensity $c1
-
 Music_DragonsDen_branch_eed6d: ; eed6d
 	octave 5
 	note C#, 4
@@ -109,9 +106,9 @@ Music_DragonsDen_branch_eed6d: ; eed6d
 	note G#, 4
 	loopchannel 2, Music_DragonsDen_branch_eed6d
 	endchannel
+; eed78
 
 Music_DragonsDen_Ch3: ; eed78
-
 Music_DragonsDen_branch_eed78: ; eed78
 	notetype $c, $14
 	octave 4
@@ -139,7 +136,6 @@ Music_DragonsDen_branch_eed78: ; eed78
 	loopchannel 15, Music_DragonsDen_branch_eed78
 	note __, 16
 	notetype $6, $27
-
 Music_DragonsDen_branch_eed99: ; eed99
 	octave 3
 	note C#, 4
@@ -165,13 +161,13 @@ Music_DragonsDen_branch_eed99: ; eed99
 	note C#, 2
 	loopchannel 16, Music_DragonsDen_branch_eed99
 	loopchannel 0, Music_DragonsDen_branch_eed78
+; eedb7
 
 Music_DragonsDen_Ch4: ; eedb7
 	togglenoise $0
 	notetype $c
 	note __, 16
 	note __, 16
-
 Music_DragonsDen_branch_eedbd: ; eedbd
 	stereopanning $f0
 	note F_, 4
@@ -182,3 +178,5 @@ Music_DragonsDen_branch_eedbd: ; eedbd
 	note F#, 4
 	loopchannel 0, Music_DragonsDen_branch_eedbd
 ; eedcb
+
+

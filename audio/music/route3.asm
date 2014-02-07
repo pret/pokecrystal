@@ -5,7 +5,6 @@ Music_Route3: ; ec2ca
 	dbw $03, Music_Route3_Ch4
 ; ec2d6
 
-
 Music_Route3_Ch1: ; ec2d6
 	stereopanning $f
 	tempo 160
@@ -47,7 +46,6 @@ Music_Route3_Ch1: ; ec2d6
 	note E_, 1
 	note F#, 1
 	note G#, 1
-
 Music_Route3_branch_ec307: ; ec307
 	callchannel Music_Route3_branch_ec3a4
 	note G_, 1
@@ -210,7 +208,6 @@ Music_Route3_branch_ec3a4: ; ec3a4
 	note E_, 1
 	note C#, 1
 	note E_, 1
-
 Music_Route3_branch_ec3b1: ; ec3b1
 	note A_, 1
 	note E_, 1
@@ -221,7 +218,6 @@ Music_Route3_branch_ec3b1: ; ec3b1
 	note E_, 1
 	note C#, 1
 	note E_, 1
-
 Music_Route3_branch_ec3bd: ; ec3bd
 	note G_, 1
 	note D_, 1
@@ -239,6 +235,7 @@ Music_Route3_branch_ec3bd: ; ec3bd
 	octave 3
 	note D_, 1
 	endchannel
+; ec3d0
 
 Music_Route3_Ch2: ; ec3d0
 	stereopanning $f0
@@ -269,7 +266,6 @@ Music_Route3_Ch2: ; ec3d0
 	note C#, 1
 	note E_, 1
 	note G#, 1
-
 Music_Route3_branch_ec3f5: ; ec3f5
 	intensity $7d
 	callchannel Music_Route3_branch_ec443
@@ -357,6 +353,7 @@ Music_Route3_branch_ec443: ; ec443
 	note G_, 6
 	note D_, 1
 	endchannel
+; ec45b
 
 Music_Route3_Ch3: ; ec45b
 	stereopanning $ff
@@ -387,7 +384,6 @@ Music_Route3_Ch3: ; ec45b
 	note __, 1
 	note G#, 2
 	callchannel Music_Route3_branch_ec4bd
-
 Music_Route3_branch_ec47f: ; ec47f
 	intensity $14
 	callchannel Music_Route3_branch_ec4bd
@@ -487,12 +483,12 @@ Music_Route3_branch_ec4ce: ; ec4ce
 	note G#, 2
 	note B_, 2
 	endchannel
+; ec4eb
 
 Music_Route3_Ch4: ; ec4eb
 	togglenoise $4
 	notetype $c
 	note __, 10
-
 Music_Route3_branch_ec4f0: ; ec4f0
 	notetype $c
 	note D_, 2
@@ -512,3 +508,5 @@ Music_Route3_branch_ec4f0: ; ec4f0
 	note C#, 1
 	loopchannel 0, Music_Route3_branch_ec4f0
 ; ec506
+
+

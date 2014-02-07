@@ -5,7 +5,6 @@ Music_MagnetTrain: ; ef5f0
 	dbw $03, Music_MagnetTrain_Ch4
 ; ef5fc
 
-
 Music_MagnetTrain_Ch1: ; ef5fc
 	tempo 110
 	volume $77
@@ -69,6 +68,7 @@ Music_MagnetTrain_Ch1: ; ef5fc
 	notetype $c, $b7
 	note D_, 16
 	endchannel
+; ef648
 
 Music_MagnetTrain_Ch2: ; ef648
 	vibrato $14, $23
@@ -107,6 +107,7 @@ Music_MagnetTrain_Ch2: ; ef648
 	notetype $c, $d7
 	note A_, 16
 	endchannel
+; ef67d
 
 Music_MagnetTrain_Ch3: ; ef67d
 	stereopanning $ff
@@ -223,6 +224,7 @@ Music_MagnetTrain_Ch3: ; ef67d
 	octave 2
 	note D_, 16
 	endchannel
+; ef6f4
 
 Music_MagnetTrain_Ch4: ; ef6f4
 	togglenoise $3
@@ -247,20 +249,10 @@ Music_MagnetTrain_Ch4: ; ef6f4
 	note B_, 16
 	endchannel
 ; ef711
-	note G#, 1
-	note G_, 1
-	note G_, 1
-	note G#, 1
-	note G_, 1
-	note G_, 1
-	note G#, 1
-	note G_, 1
-	note G_, 1
-	note G#, 1
-	note G_, 1
-	note G_, 1
-	endchannel
-; ef71e
+
+
+INCBIN "baserom.gbc", $ef711, $ef71e - $ef711
+
 
 Music_MagnetTrain_branch_ef71e: ; ef71e
 	note G#, 2
@@ -281,3 +273,5 @@ Music_MagnetTrain_branch_ef71e: ; ef71e
 	note G_, 2
 	endchannel
 ; ef72f
+
+
