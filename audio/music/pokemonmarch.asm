@@ -5,7 +5,6 @@ Music_PokemonMarch: ; f6e23
 	dbw $03, Music_PokemonMarch_Ch4
 ; f6e2f
 
-
 Music_PokemonMarch_Ch1: ; f6e2f
 	tempo 144
 	volume $77
@@ -22,7 +21,6 @@ Music_PokemonMarch_Ch1: ; f6e2f
 	intensity $a2
 	note D_, 4
 	notetype $8, $a2
-
 Music_PokemonMarch_branch_f6e4c: ; f6e4c
 	callchannel Music_PokemonMarch_branch_f6eae
 	note D#, 2
@@ -124,6 +122,7 @@ Music_PokemonMarch_branch_f6eb8: ; f6eb8
 	note F_, 2
 	note __, 2
 	endchannel
+; f6ec1
 
 Music_PokemonMarch_Ch2: ; f6ec1
 	dutycycle $2
@@ -134,7 +133,6 @@ Music_PokemonMarch_Ch2: ; f6ec1
 	note G_, 4
 	note G_, 4
 	note G_, 4
-
 Music_PokemonMarch_branch_f6ece: ; f6ece
 	notetype $c, $b7
 	octave 3
@@ -236,13 +234,13 @@ Music_PokemonMarch_branch_f6ece: ; f6ece
 	note G_, 1
 	note __, 5
 	loopchannel 0, Music_PokemonMarch_branch_f6ece
+; f6f4d
 
 Music_PokemonMarch_Ch3: ; f6f4d
 	stereopanning $f
 	notetype $c, $16
 	note __, 16
 	notetype $8, $16
-
 Music_PokemonMarch_branch_f6f56: ; f6f56
 	callchannel Music_PokemonMarch_branch_f6fe8
 	note __, 2
@@ -275,7 +273,6 @@ Music_PokemonMarch_branch_f6f56: ; f6f56
 	note D#, 2
 	note G_, 2
 	note G#, 2
-
 Music_PokemonMarch_branch_f6f7b: ; f6f7b
 	octave 3
 	note A#, 2
@@ -401,13 +398,13 @@ Music_PokemonMarch_branch_f6fe8: ; f6fe8
 	octave 3
 	note G_, 2
 	endchannel
+; f6ffa
 
 Music_PokemonMarch_Ch4: ; f6ffa
 	stereopanning $f0
 	togglenoise $5
 	notetype $8
 	callchannel Music_PokemonMarch_branch_f704c
-
 Music_PokemonMarch_branch_f7003: ; f7003
 	callchannel Music_PokemonMarch_branch_f7042
 	note C_, 4
@@ -470,3 +467,5 @@ Music_PokemonMarch_branch_f704c: ; f704c
 	note C#, 2
 	endchannel
 ; f7055
+
+

@@ -5,7 +5,6 @@ Music_Credits: ; 1f31c
 	dbw $03, Music_Credits_Ch4
 ; 1f328
 
-
 Music_Credits_Ch1: ; 1f328
 	tempo 139
 	volume $77
@@ -182,7 +181,6 @@ Music_Credits_Ch1: ; 1f328
 	octave 5
 	note C#, 6
 	notetype $c, $a7
-
 Music_Credits_branch_1f407: ; 1f407
 	octave 3
 	note A_, 1
@@ -563,6 +561,7 @@ Music_Credits_branch_1f582: ; 1f582
 	note F#, 6
 	note C#, 6
 	endchannel
+; 1f58d
 
 Music_Credits_Ch2: ; 1f58d
 	dutycycle $1
@@ -724,7 +723,6 @@ Music_Credits_Ch2: ; 1f58d
 	octave 2
 	note F#, 1
 	note __, 1
-
 Music_Credits_branch_1f657: ; 1f657
 	octave 1
 	note G_, 2
@@ -982,6 +980,7 @@ Music_Credits_branch_1f748: ; 1f748
 	octave 5
 	note C_, 4
 	endchannel
+; 1f772
 
 Music_Credits_Ch3: ; 1f772
 	vibrato $16, $23
@@ -1443,6 +1442,7 @@ Music_Credits_branch_1f94b: ; 1f94b
 	note G_, 2
 	note D_, 2
 	endchannel
+; 1f973
 
 Music_Credits_Ch4: ; 1f973
 	togglenoise $3
@@ -1480,7 +1480,6 @@ Music_Credits_Ch4: ; 1f973
 	callchannel Music_Credits_branch_1fa4d
 	callchannel Music_Credits_branch_1fa4d
 	callchannel Music_Credits_branch_1fa6d
-
 Music_Credits_branch_1f9a8: ; 1f9a8
 	note A#, 2
 	note G_, 1
@@ -1509,7 +1508,6 @@ Music_Credits_branch_1f9a8: ; 1f9a8
 	note C#, 1
 	note D_, 1
 	note D_, 1
-
 Music_Credits_branch_1f9c6: ; 1f9c6
 	note A#, 2
 	note G_, 1
@@ -1544,7 +1542,6 @@ Music_Credits_branch_1f9c6: ; 1f9c6
 	callchannel Music_Credits_branch_1fa4d
 	callchannel Music_Credits_branch_1fa4d
 	callchannel Music_Credits_branch_1fa6d
-
 Music_Credits_branch_1f9f2: ; 1f9f2
 	note A#, 2
 	note G_, 1
@@ -1695,3 +1692,5 @@ Music_Credits_branch_1fa6d: ; 1fa6d
 	note D_, 1
 	endchannel
 ; 1fa8d
+
+

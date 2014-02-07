@@ -5,7 +5,6 @@ Music_GoldSilverOpening2: ; f7308
 	dbw $03, Music_GoldSilverOpening2_Ch4
 ; f7314
 
-
 Music_GoldSilverOpening2_Ch1: ; f7314
 	tempo 92
 	volume $77
@@ -15,7 +14,6 @@ Music_GoldSilverOpening2_Ch1: ; f7314
 	notetype $c, $3d
 	octave 3
 	note D#, 8
-
 Music_GoldSilverOpening2_branch_f7325: ; f7325
 	notetype $c, $c1
 	octave 3
@@ -54,6 +52,7 @@ Music_GoldSilverOpening2_branch_f7325: ; f7325
 	octave 4
 	note D_, 16
 	endchannel
+; f7358
 
 Music_GoldSilverOpening2_Ch2: ; f7358
 	dutycycle $3
@@ -106,6 +105,7 @@ Music_GoldSilverOpening2_Ch2: ; f7358
 	intensity $c2
 	note D_, 16
 	endchannel
+; f739c
 
 Music_GoldSilverOpening2_Ch3: ; f739c
 	notetype $c, $17
@@ -184,6 +184,7 @@ Music_GoldSilverOpening2_Ch3: ; f739c
 	note D_, 2
 	note __, 14
 	endchannel
+; f73ea
 
 Music_GoldSilverOpening2_Ch4: ; f73ea
 	togglenoise $0
@@ -197,7 +198,6 @@ Music_GoldSilverOpening2_Ch4: ; f73ea
 	note D_, 2
 	note D_, 2
 	notetype $c
-
 Music_GoldSilverOpening2_branch_f73f8: ; f73f8
 	note D_, 2
 	note D_, 2
@@ -220,3 +220,5 @@ Music_GoldSilverOpening2_branch_f73f8: ; f73f8
 	note C_, 16
 	endchannel
 ; f7411
+
+

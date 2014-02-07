@@ -23,6 +23,8 @@ from extras.pokemontools.crystal import (
 
 from extras.pokemontools.audio import (
     Note,
+    Noise,
+    SoundCommand,
 )
 
 from extras.pokemontools.battle_animations import (
@@ -45,6 +47,8 @@ def load_pokecrystal_macros():
         ChannelCommand,
         OctaveCommand,
         Note,
+        Noise,
+        SoundCommand,
     ]
 
     ourmacros += command_classes

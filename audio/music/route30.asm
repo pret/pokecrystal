@@ -5,7 +5,6 @@ Music_Route30: ; efc01
 	dbw $03, Music_Route30_Ch4
 ; efc0d
 
-
 Music_Route30_Ch1: ; efc0d
 	tempo 144
 	volume $77
@@ -28,7 +27,6 @@ Music_Route30_Ch1: ; efc0d
 	note D_, 2
 	intensity $4e
 	note C_, 4
-
 Music_Route30_branch_efc2e: ; efc2e
 	intensity $b6
 	note D_, 6
@@ -185,6 +183,7 @@ Music_Route30_branch_efc2e: ; efc2e
 	octave 4
 	note D_, 2
 	loopchannel 0, Music_Route30_branch_efc2e
+; efcda
 
 Music_Route30_Ch2: ; efcda
 	dutycycle $3
@@ -208,7 +207,6 @@ Music_Route30_Ch2: ; efcda
 	note E_, 1
 	note F_, 1
 	note F#, 1
-
 Music_Route30_branch_efcf6: ; efcf6
 	intensity $c7
 	note G_, 10
@@ -297,6 +295,7 @@ Music_Route30_branch_efcf6: ; efcf6
 	octave 3
 	note F#, 2
 	loopchannel 0, Music_Route30_branch_efcf6
+; efd5f
 
 Music_Route30_Ch3: ; efd5f
 	notetype $c, $27
@@ -323,7 +322,6 @@ Music_Route30_Ch3: ; efd5f
 	note __, 1
 	note G_, 1
 	note __, 1
-
 Music_Route30_branch_efd79: ; efd79
 	note G_, 1
 	note __, 1
@@ -579,13 +577,13 @@ Music_Route30_branch_efd79: ; efd79
 	note G_, 1
 	note __, 1
 	loopchannel 0, Music_Route30_branch_efd79
+; efe7a
 
 Music_Route30_Ch4: ; efe7a
 	togglenoise $3
 	notetype $c
 	callchannel Music_Route30_branch_efeb8
 	callchannel Music_Route30_branch_efec1
-
 Music_Route30_branch_efe84: ; efe84
 	callchannel Music_Route30_branch_efecd
 	callchannel Music_Route30_branch_efed7
@@ -679,3 +677,4 @@ Music_Route30_branch_efee1: ; efee1
 	notetype $c
 	endchannel
 ; efef5
+

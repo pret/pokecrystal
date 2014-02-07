@@ -5,7 +5,6 @@ Music_Evolution: ; f06e1
 	dbw $03, Music_Evolution_Ch4
 ; f06ed
 
-
 Music_Evolution_Ch1: ; f06ed
 	tempo 132
 	volume $77
@@ -25,7 +24,6 @@ Music_Evolution_Ch1: ; f06ed
 	note __, 4
 	dutycycle $3
 	stereopanning $f
-
 Music_Evolution_branch_f0713: ; f0713
 	callchannel Music_Evolution_branch_f0737
 	notetype $c, $a4
@@ -67,6 +65,7 @@ Music_Evolution_branch_f0743: ; f0743
 	note A_, 4
 	note D_, 4
 	endchannel
+; f074f
 
 Music_Evolution_Ch2: ; f074f
 	dutycycle $2
@@ -80,7 +79,6 @@ Music_Evolution_Ch2: ; f074f
 	note __, 4
 	dutycycle $3
 	stereopanning $f0
-
 Music_Evolution_branch_f0761: ; f0761
 	callchannel Music_Evolution_branch_f0787
 	notetype $c, $b5
@@ -124,11 +122,11 @@ Music_Evolution_branch_f0793: ; f0793
 	note E_, 4
 	note A_, 4
 	endchannel
+; f079f
 
 Music_Evolution_Ch3: ; f079f
 	notetype $c, $16
 	note __, 8
-
 Music_Evolution_branch_f07a3: ; f07a3
 	callchannel Music_Evolution_branch_f07bf
 	octave 3
@@ -194,12 +192,12 @@ Music_Evolution_branch_f07d5: ; f07d5
 	note A_, 2
 	note __, 2
 	endchannel
+; f07eb
 
 Music_Evolution_Ch4: ; f07eb
 	togglenoise $5
 	notetype $c
 	note __, 8
-
 Music_Evolution_branch_f07f0: ; f07f0
 	stereopanning $f0
 	note A#, 6
@@ -210,3 +208,5 @@ Music_Evolution_branch_f07f0: ; f07f0
 	note E_, 2
 	loopchannel 0, Music_Evolution_branch_f07f0
 ; f07fd
+
+

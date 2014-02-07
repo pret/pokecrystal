@@ -4,7 +4,6 @@ Music_GoldSilverOpening: ; f7055
 	dbw $02, Music_GoldSilverOpening_Ch3
 ; f705e
 
-
 Music_GoldSilverOpening_Ch1: ; f705e
 	tempo 256
 	volume $77
@@ -129,6 +128,7 @@ Music_GoldSilverOpening_Ch1: ; f705e
 	note G_, 2
 	note A_, 16
 	endchannel
+; f70f8
 
 Music_GoldSilverOpening_Ch2: ; f70f8
 	tone $0001
@@ -309,6 +309,7 @@ Music_GoldSilverOpening_Ch2: ; f70f8
 	note C_, 4
 	note D#, 16
 	endchannel
+; f71c8
 
 Music_GoldSilverOpening_Ch3: ; f71c8
 	notetype $6, $10
@@ -616,3 +617,5 @@ Music_GoldSilverOpening_Ch3: ; f71c8
 	note __, 13
 	endchannel
 ; f7308
+
+

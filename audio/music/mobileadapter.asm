@@ -5,7 +5,6 @@ Music_MobileAdapter: ; 1fc87
 	dbw $03, Music_MobileAdapter_Ch4
 ; 1fc93
 
-
 Music_MobileAdapter_Ch1: ; 1fc93
 	tempo 132
 	volume $77
@@ -24,7 +23,6 @@ Music_MobileAdapter_Ch1: ; 1fc93
 	note D_, 1
 	note __, 1
 	note C#, 4
-
 Music_MobileAdapter_branch_1fcad: ; 1fcad
 	callchannel Music_MobileAdapter_branch_1fd39
 	note D_, 1
@@ -218,7 +216,6 @@ Music_MobileAdapter_Ch2: ; 1fd63
 	octave 4
 	note D_, 1
 	note F#, 1
-
 Music_MobileAdapter_branch_1fd80: ; 1fd80
 	callchannel Music_MobileAdapter_branch_1fdfe
 	note A_, 4
@@ -415,7 +412,6 @@ Music_MobileAdapter_Ch3: ; 1fe3d
 	note E_, 1
 	note __, 1
 	note A_, 4
-
 Music_MobileAdapter_branch_1fe4f: ; 1fe4f
 	callchannel Music_MobileAdapter_branch_1fecf
 	callchannel Music_MobileAdapter_branch_1fee3
@@ -529,7 +525,6 @@ Music_MobileAdapter_branch_1fecf: ; 1fecf
 	note A_, 1
 	note __, 1
 	loopchannel 4, Music_MobileAdapter_branch_1fecf
-
 Music_MobileAdapter_branch_1fed8: ; 1fed8
 	octave 2
 	note G_, 1
@@ -618,6 +613,7 @@ Music_MobileAdapter_branch_1ff09: ; 1ff09
 	note __, 6
 	loopchannel 2, Music_MobileAdapter_branch_1ff09
 	endchannel
+; 1ff2c
 
 Music_MobileAdapter_Ch4: ; 1ff2c
 	togglenoise $3
@@ -629,11 +625,9 @@ Music_MobileAdapter_Ch4: ; 1ff2c
 	note D_, 2
 	note D_, 1
 	note D_, 1
-
 Music_MobileAdapter_branch_1ff38: ; 1ff38
 	callchannel Music_MobileAdapter_branch_1ff60
 	callchannel Music_MobileAdapter_branch_1ff60
-
 Music_MobileAdapter_branch_1ff3e: ; 1ff3e
 	note __, 4
 	note D_, 8
@@ -643,7 +637,6 @@ Music_MobileAdapter_branch_1ff3e: ; 1ff3e
 	note D_, 3
 	note D_, 4
 	loopchannel 2, Music_MobileAdapter_branch_1ff3e
-
 Music_MobileAdapter_branch_1ff49: ; 1ff49
 	note __, 4
 	note D_, 4
@@ -675,3 +668,4 @@ Music_MobileAdapter_branch_1ff60: ; 1ff60
 	note D_, 1
 	endchannel
 ; 1ff6c
+

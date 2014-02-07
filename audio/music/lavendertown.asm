@@ -4,7 +4,9 @@ Music_LavenderTown: ; ef72f
 	dbw $02, Music_LavenderTown_Ch3
 ; ef738
 
+
 INCBIN "baserom.gbc", $ef738, $ef739 - $ef738
+
 
 Music_LavenderTown_Ch1: ; ef739
 	tempo 160
@@ -17,7 +19,6 @@ Music_LavenderTown_Ch1: ; ef739
 	note __, 16
 	note __, 16
 	note __, 16
-
 Music_LavenderTown_branch_ef74c: ; ef74c
 	callchannel Music_LavenderTown_branch_ef7fd
 	intensity $93
@@ -104,7 +105,6 @@ Music_LavenderTown_branch_ef74c: ; ef74c
 	octave 3
 	note A_, 2
 	note F_, 2
-
 Music_LavenderTown_branch_ef7ca: ; ef7ca
 	octave 3
 	note C_, 2
@@ -265,12 +265,12 @@ Music_LavenderTown_branch_ef87f: ; ef87f
 	intensity $43
 	note G_, 2
 	endchannel
+; ef899
 
 Music_LavenderTown_Ch2: ; ef899
 	dutycycle $1
 	vibrato $8, $24
 	stereopanning $ff
-
 Music_LavenderTown_branch_ef8a0: ; ef8a0
 	notetype $c, $a3
 	octave 5
@@ -307,7 +307,6 @@ Music_LavenderTown_branch_ef8a0: ; ef8a0
 	note D_, 2
 	intensity $63
 	note D_, 2
-
 Music_LavenderTown_branch_ef8d7: ; ef8d7
 	intensity $b5
 	callchannel Music_LavenderTown_branch_ef915
@@ -393,6 +392,7 @@ Music_LavenderTown_branch_ef915: ; ef915
 	note A_, 4
 	note C_, 4
 	endchannel
+; ef932
 
 Music_LavenderTown_Ch3: ; ef932
 	vibrato $12, $24
@@ -405,7 +405,6 @@ Music_LavenderTown_Ch3: ; ef932
 	octave 5
 	note E_, 4
 	note F_, 4
-
 Music_LavenderTown_branch_ef941: ; ef941
 	intensity $12
 	octave 5
@@ -522,3 +521,5 @@ Music_LavenderTown_branch_ef941: ; ef941
 	note F_, 2
 	loopchannel 0, Music_LavenderTown_branch_ef941
 ; ef9bc
+
+

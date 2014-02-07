@@ -4,7 +4,9 @@ Music_KantoWildBattle: ; ed06d
 	dbw $02, Music_KantoWildBattle_Ch3
 ; ed076
 
+
 INCBIN "baserom.gbc", $ed076, $ed077 - $ed076
+
 
 Music_KantoWildBattle_Ch1: ; ed077
 	tempo 112
@@ -25,7 +27,6 @@ Music_KantoWildBattle_Ch1: ; ed077
 	note G_, 1
 	note F#, 1
 	note F_, 1
-
 Music_KantoWildBattle_branch_ed091: ; ed091
 	notetype $c, $b7
 	callchannel Music_KantoWildBattle_branch_ed18a
@@ -209,7 +210,6 @@ Music_KantoWildBattle_branch_ed091: ; ed091
 	note D#, 1
 	note __, 5
 	note C#, 8
-
 Music_KantoWildBattle_branch_ed15b: ; ed15b
 	intensity $b1
 	octave 3
@@ -218,28 +218,24 @@ Music_KantoWildBattle_branch_ed15b: ; ed15b
 	note D_, 1
 	note C#, 1
 	loopchannel 8, Music_KantoWildBattle_branch_ed15b
-
 Music_KantoWildBattle_branch_ed166: ; ed166
 	note C#, 1
 	note F_, 1
 	note E_, 1
 	note D#, 1
 	loopchannel 8, Music_KantoWildBattle_branch_ed166
-
 Music_KantoWildBattle_branch_ed16e: ; ed16e
 	note C_, 1
 	note D#, 1
 	note D_, 1
 	note C#, 1
 	loopchannel 16, Music_KantoWildBattle_branch_ed16e
-
 Music_KantoWildBattle_branch_ed176: ; ed176
 	note C#, 1
 	note E_, 1
 	note D#, 1
 	note D_, 1
 	loopchannel 8, Music_KantoWildBattle_branch_ed176
-
 Music_KantoWildBattle_branch_ed17e: ; ed17e
 	note C_, 1
 	note D#, 1
@@ -271,6 +267,7 @@ Music_KantoWildBattle_branch_ed18a: ; ed18a
 	note B_, 1
 	note __, 3
 	endchannel
+; ed19f
 
 Music_KantoWildBattle_Ch2: ; ed19f
 	dutycycle $1
@@ -309,7 +306,6 @@ Music_KantoWildBattle_Ch2: ; ed19f
 	note D#, 1
 	note D_, 1
 	note C#, 1
-
 Music_KantoWildBattle_branch_ed1c8: ; ed1c8
 	notetype $c, $b7
 	callchannel Music_KantoWildBattle_branch_ed2c6
@@ -677,6 +673,7 @@ Music_KantoWildBattle_branch_ed354: ; ed354
 	note C_, 2
 	note __, 2
 	endchannel
+; ed368
 
 Music_KantoWildBattle_Ch3: ; ed368
 	vibrato $14, $23
@@ -729,7 +726,6 @@ Music_KantoWildBattle_Ch3: ; ed368
 	note G_, 1
 	octave 4
 	note G_, 1
-
 Music_KantoWildBattle_branch_ed39e: ; ed39e
 	notetype $c, $14
 	octave 5
@@ -1230,3 +1226,5 @@ Music_KantoWildBattle_branch_ed39e: ; ed39e
 	note G_, 16
 	loopchannel 0, Music_KantoWildBattle_branch_ed39e
 ; ed5c6
+
+

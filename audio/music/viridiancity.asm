@@ -5,7 +5,6 @@ Music_ViridianCity: ; f4000
 	dbw $03, Music_ViridianCity_Ch4
 ; f400c
 
-
 Music_ViridianCity_Ch1: ; f400c
 	tempo 157
 	volume $77
@@ -43,7 +42,6 @@ Music_ViridianCity_Ch1: ; f400c
 	note __, 4
 	note G_, 8
 	note __, 4
-
 Music_ViridianCity_branch_f4039: ; f4039
 	callchannel Music_ViridianCity_branch_f40c5
 	note __, 4
@@ -274,6 +272,7 @@ Music_ViridianCity_branch_f410f: ; f410f
 	note G_, 1
 	note __, 1
 	endchannel
+; f4125
 
 Music_ViridianCity_Ch2: ; f4125
 	vibrato $10, $46
@@ -309,7 +308,6 @@ Music_ViridianCity_Ch2: ; f4125
 	note __, 4
 	note E_, 8
 	note __, 4
-
 Music_ViridianCity_branch_f414c: ; f414c
 	callchannel Music_ViridianCity_branch_f41c0
 	note __, 4
@@ -514,6 +512,7 @@ Music_ViridianCity_branch_f4215: ; f4215
 	note D_, 2
 	note D#, 2
 	endchannel
+; f421e
 
 Music_ViridianCity_Ch3: ; f421e
 	vibrato $12, $24
@@ -551,7 +550,6 @@ Music_ViridianCity_Ch3: ; f421e
 	note D_, 8
 	note F#, 2
 	note G_, 2
-
 Music_ViridianCity_branch_f4246: ; f4246
 	intensity $13
 	callchannel Music_ViridianCity_branch_f42a2
@@ -698,13 +696,13 @@ Music_ViridianCity_branch_f42a2: ; f42a2
 	note __, 4
 	note D_, 8
 	endchannel
+; f42df
 
 Music_ViridianCity_Ch4: ; f42df
 	togglenoise $3
 	notetype $c
 	callchannel Music_ViridianCity_branch_f431d
 	callchannel Music_ViridianCity_branch_f432c
-
 Music_ViridianCity_branch_f42e9: ; f42e9
 	callchannel Music_ViridianCity_branch_f431d
 	callchannel Music_ViridianCity_branch_f431d
@@ -798,3 +796,5 @@ Music_ViridianCity_branch_f434b: ; f434b
 	note F#, 2
 	endchannel
 ; f435b
+
+

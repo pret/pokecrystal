@@ -5,7 +5,6 @@ Music_Clair: ; 1fa8d
 	dbw $03, Music_Clair_Ch4
 ; 1fa99
 
-
 Music_Clair_Ch1: ; 1fa99
 	tempo 136
 	volume $77
@@ -14,7 +13,6 @@ Music_Clair_Ch1: ; 1fa99
 	stereopanning $f
 	notetype $c, $93
 	dutycycle $3
-
 Music_Clair_branch_1faab: ; 1faab
 	octave 4
 	note F_, 1
@@ -39,7 +37,6 @@ Music_Clair_branch_1faab: ; 1faab
 	note D#, 4
 	note F_, 4
 	note G_, 4
-
 Music_Clair_branch_1fac9: ; 1fac9
 	intensity $93
 	callchannel Music_Clair_branch_1fb12
@@ -147,12 +144,12 @@ Music_Clair_branch_1fb2e: ; 1fb2e
 	note D#, 1
 	note F#, 1
 	endchannel
+; 1fb41
 
 Music_Clair_Ch2: ; 1fb41
 	dutycycle $3
 	vibrato $12, $34
 	notetype $6, $b7
-
 Music_Clair_branch_1fb49: ; 1fb49
 	octave 3
 	note A#, 2
@@ -192,7 +189,6 @@ Music_Clair_branch_1fb49: ; 1fb49
 	note G_, 2
 	note A#, 2
 	intensity $b7
-
 Music_Clair_branch_1fb77: ; 1fb77
 	callchannel Music_Clair_branch_1fba6
 	note F#, 2
@@ -254,6 +250,7 @@ Music_Clair_branch_1fba6: ; 1fba6
 	note D#, 16
 	note __, 4
 	endchannel
+; 1fbb9
 
 Music_Clair_Ch3: ; 1fbb9
 	notetype $c, $14
@@ -277,7 +274,6 @@ Music_Clair_Ch3: ; 1fbb9
 	note A#, 4
 	note G#, 4
 	note G_, 4
-
 Music_Clair_branch_1fbd1: ; 1fbd1
 	callchannel Music_Clair_branch_1fc3c
 	octave 2
@@ -397,6 +393,7 @@ Music_Clair_branch_1fc3c: ; 1fc3c
 	octave 1
 	note G#, 2
 	endchannel
+; 1fc4b
 
 Music_Clair_Ch4: ; 1fc4b
 	togglenoise $3
@@ -414,7 +411,6 @@ Music_Clair_Ch4: ; 1fc4b
 	note D_, 2
 	note D_, 1
 	note D_, 1
-
 Music_Clair_branch_1fc5e: ; 1fc5e
 	stereopanning $ff
 	callchannel Music_Clair_branch_1fc6e
@@ -445,3 +441,5 @@ Music_Clair_branch_1fc6e: ; 1fc6e
 	note G_, 1
 	endchannel
 ; 1fc87
+
+

@@ -5,7 +5,6 @@ Music_CherrygroveCity: ; f5b03
 	dbw $03, Music_CherrygroveCity_Ch4
 ; f5b0f
 
-
 Music_CherrygroveCity_Ch1: ; f5b0f
 	tempo 152
 	volume $77
@@ -19,7 +18,6 @@ Music_CherrygroveCity_Ch1: ; f5b0f
 	note C_, 2
 	note D_, 2
 	note E_, 2
-
 Music_CherrygroveCity_branch_f5b26: ; f5b26
 	note A_, 4
 	note G#, 2
@@ -94,6 +92,7 @@ Music_CherrygroveCity_branch_f5b26: ; f5b26
 	octave 3
 	note C_, 4
 	loopchannel 0, Music_CherrygroveCity_branch_f5b26
+; f5b74
 
 Music_CherrygroveCity_Ch2: ; f5b74
 	dutycycle $3
@@ -109,7 +108,6 @@ Music_CherrygroveCity_Ch2: ; f5b74
 	note G_, 2
 	note A_, 2
 	note A#, 2
-
 Music_CherrygroveCity_branch_f5b87: ; f5b87
 	intensity $c6
 	octave 4
@@ -175,6 +173,7 @@ Music_CherrygroveCity_branch_f5b87: ; f5b87
 	intensity $a7
 	note F_, 8
 	loopchannel 0, Music_CherrygroveCity_branch_f5b87
+; f5bd8
 
 Music_CherrygroveCity_Ch3: ; f5bd8
 	notetype $c, $16
@@ -187,7 +186,6 @@ Music_CherrygroveCity_Ch3: ; f5bd8
 	note G_, 2
 	note F_, 2
 	note E_, 2
-
 Music_CherrygroveCity_branch_f5be4: ; f5be4
 	note A_, 2
 	note F_, 2
@@ -286,12 +284,12 @@ Music_CherrygroveCity_branch_f5be4: ; f5be4
 	note F_, 2
 	note A_, 2
 	loopchannel 0, Music_CherrygroveCity_branch_f5be4
+; f5c48
 
 Music_CherrygroveCity_Ch4: ; f5c48
 	togglenoise $3
 	notetype $c
 	note __, 16
-
 Music_CherrygroveCity_branch_f5c4d: ; f5c4d
 	note C#, 2
 	note __, 2
@@ -310,3 +308,5 @@ Music_CherrygroveCity_branch_f5c4d: ; f5c4d
 	note G_, 2
 	loopchannel 0, Music_CherrygroveCity_branch_f5c4d
 ; f5c60
+
+

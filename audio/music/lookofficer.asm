@@ -4,7 +4,6 @@ Music_LookOfficer: ; ed82d
 	dbw $02, Music_LookOfficer_Ch3
 ; ed836
 
-
 Music_LookOfficer_Ch1: ; ed836
 	tempo 116
 	volume $77
@@ -22,7 +21,6 @@ Music_LookOfficer_Ch1: ; ed836
 	intensity $2f
 	octave 3
 	note B_, 16
-
 Music_LookOfficer_branch_ed852: ; ed852
 	intensity $82
 	note __, 4
@@ -36,6 +34,7 @@ Music_LookOfficer_branch_ed852: ; ed852
 	note A#, 16
 	note A_, 16
 	loopchannel 0, Music_LookOfficer_branch_ed852
+; ed863
 
 Music_LookOfficer_Ch2: ; ed863
 	vibrato $12, $34
@@ -62,7 +61,6 @@ Music_LookOfficer_Ch2: ; ed863
 	note B_, 2
 	octave 2
 	note D#, 2
-
 Music_LookOfficer_branch_ed882: ; ed882
 	note E_, 2
 	note G#, 2
@@ -98,6 +96,7 @@ Music_LookOfficer_branch_ed89e: ; ed89e
 	octave 2
 	note C#, 2
 	endchannel
+; ed8ad
 
 Music_LookOfficer_Ch3: ; ed8ad
 	vibrato $14, $14
@@ -121,7 +120,6 @@ Music_LookOfficer_Ch3: ; ed8ad
 	note C#, 2
 	note __, 1
 	note D#, 2
-
 Music_LookOfficer_branch_ed8c8: ; ed8c8
 	note E_, 6
 	note D#, 6
@@ -142,3 +140,5 @@ Music_LookOfficer_branch_ed8c8: ; ed8c8
 	note C#, 8
 	loopchannel 0, Music_LookOfficer_branch_ed8c8
 ; ed8dd
+
+

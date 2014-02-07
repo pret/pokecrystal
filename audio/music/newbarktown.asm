@@ -4,7 +4,9 @@ Music_NewBarkTown: ; eb2d3
 	dbw $02, Music_NewBarkTown_Ch3
 ; eb2dc
 
+
 INCBIN "baserom.gbc", $eb2dc, $eb2dd - $eb2dc
+
 
 Music_NewBarkTown_Ch1: ; eb2dd
 	tempo 187
@@ -13,7 +15,6 @@ Music_NewBarkTown_Ch1: ; eb2dd
 	vibrato $12, $23
 	notetype $c, $87
 	note __, 4
-
 Music_NewBarkTown_branch_eb2eb: ; eb2eb
 	dutycycle $0
 	callchannel Music_NewBarkTown_branch_eb349
@@ -160,13 +161,13 @@ Music_NewBarkTown_branch_eb37c: ; eb37c
 	note A_, 4
 	note E_, 2
 	endchannel
+; eb38d
 
 Music_NewBarkTown_Ch2: ; eb38d
 	stereopanning $ff
 	vibrato $12, $23
 	notetype $6, $a7
 	note __, 8
-
 Music_NewBarkTown_branch_eb396: ; eb396
 	dutycycle $2
 	notetype $6, $a7
@@ -257,6 +258,7 @@ Music_NewBarkTown_branch_eb3f2: ; eb3f2
 	notetype $c, $97
 	note E_, 16
 	endchannel
+; eb400
 
 Music_NewBarkTown_Ch3: ; eb400
 	stereopanning $f0
@@ -264,7 +266,6 @@ Music_NewBarkTown_Ch3: ; eb400
 	octave 5
 	note D_, 2
 	note E_, 2
-
 Music_NewBarkTown_branch_eb408: ; eb408
 	vibrato $16, $23
 	note F#, 4
@@ -331,3 +332,5 @@ Music_NewBarkTown_branch_eb408: ; eb408
 	note E_, 1
 	loopchannel 0, Music_NewBarkTown_branch_eb408
 ; eb453
+
+

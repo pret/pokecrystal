@@ -4,7 +4,6 @@ Music_LookYoungster: ; f66c3
 	dbw $02, Music_LookYoungster_Ch3
 ; f66cc
 
-
 Music_LookYoungster_Ch1: ; f66cc
 	tempo 118
 	volume $77
@@ -26,7 +25,6 @@ Music_LookYoungster_Ch1: ; f66cc
 	note __, 2
 	note C_, 6
 	intensity $b3
-
 Music_LookYoungster_branch_f66ea: ; f66ea
 	note __, 2
 	octave 3
@@ -61,7 +59,11 @@ Music_LookYoungster_branch_f66ea: ; f66ea
 	note __, 1
 	note __, 16
 	loopchannel 0, Music_LookYoungster_branch_f66ea
+; f670e
+
+
 INCBIN "baserom.gbc", $f670e, $f670f - $f670e
+
 
 Music_LookYoungster_Ch2: ; f670f
 	stereopanning $f0
@@ -84,7 +86,6 @@ Music_LookYoungster_Ch2: ; f670f
 	note F_, 4
 	note __, 2
 	note F#, 6
-
 Music_LookYoungster_branch_f672f: ; f672f
 	dutycycle $3
 	intensity $b3
@@ -159,7 +160,11 @@ Music_LookYoungster_branch_f672f: ; f672f
 	note C_, 1
 	note __, 1
 	loopchannel 0, Music_LookYoungster_branch_f672f
+; f6783
+
+
 INCBIN "baserom.gbc", $f6783, $f6784 - $f6783
+
 
 Music_LookYoungster_Ch3: ; f6784
 	stereopanning $ff
@@ -197,7 +202,6 @@ Music_LookYoungster_Ch3: ; f6784
 	note __, 2
 	note G#, 6
 	intensity $25
-
 Music_LookYoungster_branch_f67ae: ; f67ae
 	octave 2
 	note G_, 1
@@ -296,4 +300,8 @@ Music_LookYoungster_branch_f67ae: ; f67ae
 	loopchannel 0, Music_LookYoungster_branch_f67ae
 ; f6810
 
+
 INCBIN "baserom.gbc", $f6810, $f6811 - $f6810
+
+
+

@@ -5,7 +5,6 @@ Music_PokemonChannel: ; ee45f
 	dbw $03, Music_PokemonChannel_Ch4
 ; ee46b
 
-
 Music_PokemonChannel_Ch1: ; ee46b
 	tempo 128
 	volume $77
@@ -75,6 +74,7 @@ Music_PokemonChannel_Ch1: ; ee46b
 	note D_, 2
 	note __, 6
 	endchannel
+; ee4be
 
 Music_PokemonChannel_Ch2: ; ee4be
 	dutycycle $1
@@ -145,6 +145,7 @@ Music_PokemonChannel_Ch2: ; ee4be
 	note G_, 2
 	note __, 6
 	endchannel
+; ee50e
 
 Music_PokemonChannel_Ch3: ; ee50e
 	vibrato $8, $38
@@ -201,11 +202,11 @@ Music_PokemonChannel_Ch3: ; ee50e
 	note G_, 1
 	note __, 3
 	endchannel
+; ee549
 
 Music_PokemonChannel_Ch4: ; ee549
 	togglenoise $3
 	notetype $c
-
 Music_PokemonChannel_branch_ee54d: ; ee54d
 	note A#, 3
 	note A#, 1
@@ -233,3 +234,5 @@ Music_PokemonChannel_branch_ee54d: ; ee54d
 	note A#, 4
 	endchannel
 ; ee569
+
+
