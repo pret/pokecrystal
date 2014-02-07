@@ -1,213 +1,213 @@
 ; e927c
-	dbw $3c, $4b3f ; Dex Fanfare 50-79
-	dbw $3c, $4c2f ; Item
-	dbw $3c, $4c89 ; Caught Mon
-	dbw $3c, $4941 ; Pokeballs Placed On Table
-	dbw $3c, $4947 ; Potion
-	dbw $3c, $494a ; Full Heal
-	dbw $3c, $494d ; Menu
-	dbw $3c, $4950 ; Read Text
-	dbw $3c, $4950 ; Read Text 2
-	dbw $3c, $4bd5 ; Dex Fanfare 20-49
-	dbw $3c, $4cea ; Dex Fanfare 80-109
-	dbw $3c, $4953 ; Poison
-	dbw $3c, $4956 ; Got Safari Balls
-	dbw $3c, $4959 ; Boot Pc
-	dbw $3c, $495c ; Shut Down Pc
-	dbw $3c, $495f ; Choose Pc Option
-	dbw $3c, $4962 ; Escape Rope
-	dbw $3c, $4965 ; Push Button
-	dbw $3c, $4968 ; Second Part Of Itemfinder
-	dbw $3c, $496b ; Warp To
-	dbw $3c, $496e ; Warp From
-	dbw $3c, $4971 ; Change Dex Mode
-	dbw $3c, $4974 ; Jump Over Ledge
-	dbw $3c, $4977 ; Grass Rustle
-	dbw $3c, $497a ; Fly
-	dbw $3c, $497d ; Wrong
-	dbw $3c, $4983 ; Squeak
-	dbw $3c, $4986 ; Strength
-	dbw $3c, $4989 ; Boat
-	dbw $3c, $498f ; Wall Open
-	dbw $3c, $4992 ; Place Puzzle Piece Down
-	dbw $3c, $4995 ; Enter Door
-	dbw $3c, $4998 ; Switch Pokemon
-	dbw $3c, $499e ; Tally
-	dbw $3c, $49a4 ; Transaction
-	dbw $3c, $49ad ; Exit Building
-	dbw $3c, $49aa ; Bump
-	dbw $3c, $49b0 ; Save
-	dbw $3c, $49f8 ; Pokeflute
-	dbw $3c, $49fb ; Elevator End
-	dbw $3c, $49fe ; Throw Ball
-	dbw $3c, $4a04 ; Ball Poof
-	dbw $3c, $4a0a ; Unknown 3A
-	dbw $3c, $4a10 ; Run
-	dbw $3c, $4a13 ; Slot Machine Start
-	dbw $3c, $4dbe ; Fanfare
-	dbw $3c, $4a3d ; Peck
-	dbw $3c, $4a40 ; Kinesis
-	dbw $3c, $4a43 ; Lick
-	dbw $3c, $4a46 ; Pound
-	dbw $3c, $4a49 ; Move Puzzle Piece
-	dbw $3c, $4a4c ; Comet Punch
-	dbw $3c, $4a4f ; Mega Punch
-	dbw $3c, $4a52 ; Scratch
-	dbw $3c, $4a55 ; Vicegrip
-	dbw $3c, $4a58 ; Razor Wind
-	dbw $3c, $4a5b ; Cut
-	dbw $3c, $4a5e ; Wing Attack
-	dbw $3c, $4a61 ; Whirlwind
-	dbw $3c, $4a64 ; Bind
-	dbw $3c, $4a67 ; Vine Whip
-	dbw $3c, $4a6a ; Double Kick
-	dbw $3c, $4a6d ; Mega Kick
-	dbw $3c, $4a70 ; Headbutt
-	dbw $3c, $4a73 ; Horn Attack
-	dbw $3c, $4a76 ; Tackle
-	dbw $3c, $4a79 ; Poison Sting
-	dbw $3c, $4a7c ; Powder
-	dbw $3c, $4a7f ; Doubleslap
-	dbw $3c, $4a82 ; Bite
-	dbw $3c, $4a88 ; Jump Kick
-	dbw $3c, $4a8b ; Stomp
-	dbw $3c, $4a8e ; Tail Whip
-	dbw $3c, $4a91 ; Karate Chop
-	dbw $3c, $4a94 ; Submission
-	dbw $3c, $4a97 ; Water Gun
-	dbw $3c, $4a9d ; Swords Dance
-	dbw $3c, $4aa0 ; Thunder
-	dbw $3c, $4aa3 ; Supersonic
-	dbw $3c, $4aac ; Leer
-	dbw $3c, $4ab5 ; Ember
-	dbw $3c, $4abb ; Bubblebeam
-	dbw $3c, $4ac4 ; Hydro Pump
-	dbw $3c, $4aca ; Surf
-	dbw $3c, $4ad3 ; Psybeam
-	dbw $3c, $4adc ; Charge
-	dbw $3c, $4ae5 ; Thundershock
-	dbw $3c, $4aee ; Psychic
-	dbw $3c, $4af7 ; Screech
-	dbw $3c, $4afd ; Bone Club
-	dbw $3c, $4b03 ; Sharpen
-	dbw $3c, $4b09 ; Egg Bomb
-	dbw $3c, $4b12 ; Sing
-	dbw $3c, $4b18 ; Hyper Beam
-	dbw $3c, $4b21 ; Shine
-	dbw $3c, $4b24 ; Unknown 5F
-	dbw $3c, $4a1c ; Unknown 60
-	dbw $3c, $4a1f ; Unknown 61
-	dbw $3c, $4a22 ; Unknown 62
-	dbw $3c, $4a25 ; Unknown 63
-	dbw $3c, $4a28 ; Burn
-	dbw $3c, $4a2b ; Title Screen Entrance
-	dbw $3c, $4a2e ; Unknown 66
-	dbw $3c, $4a31 ; Get Coin From Slots
-	dbw $3c, $4a34 ; Pay Day
-	dbw $3c, $4a3a ; Metronome
-	dbw $3c, $4a19 ; Call
-	dbw $3c, $4b2d ; Hang Up
-	dbw $3c, $4b30 ; No Signal
-	dbw $3c, $4b2a ; Sandstorm
-	dbw $3c, $4b33 ; Elevator
-	dbw $3c, $52b4 ; Protect
-	dbw $3c, $52f6 ; Sketch
-	dbw $3c, $5314 ; Rain Dance
-	dbw $3c, $5334 ; Aeroblast
-	dbw $3c, $5352 ; Spark
-	dbw $3c, $5360 ; Curse
-	dbw $3c, $537d ; Rage
-	dbw $3c, $539c ; Thief
-	dbw $3c, $53b0 ; Thief 2
-	dbw $3c, $53ca ; Spider Web
-	dbw $3c, $53f7 ; Mind Reader
-	dbw $3c, $541d ; Nightmare
-	dbw $3c, $5453 ; Snore
-	dbw $3c, $5469 ; Sweet Kiss
-	dbw $3c, $547f ; Sweet Kiss 2
-	dbw $3c, $54a5 ; Belly Drum
-	dbw $3c, $54ba ; Unknown 7F
-	dbw $3c, $54d0 ; Sludge Bomb
-	dbw $3c, $54f5 ; Foresight
-	dbw $3c, $5515 ; Spite
-	dbw $3c, $553a ; Outrage
-	dbw $3c, $554d ; Perish Song
-	dbw $3c, $5570 ; Giga Drain
-	dbw $3c, $55b4 ; Attract
-	dbw $3c, $55cc ; Kinesis 2
-	dbw $3c, $55de ; Zap Cannon
-	dbw $3c, $55ef ; Mean Look
-	dbw $3c, $5621 ; Heal Bell
-	dbw $3c, $5637 ; Return
-	dbw $3c, $5653 ; Exp Bar
-	dbw $3c, $567f ; Milk Drink
-	dbw $3c, $569f ; Present
-	dbw $3c, $56b9 ; Morning Sun
-	dbw $3c, $4b3f ; Level Up
-	dbw $3c, $4b86 ; Key Item
-	dbw $3c, $4d56 ; Fanfare 2
-	dbw $3c, $4dc7 ; Register Phone #
-	dbw $3c, $4e26 ; 3Rd Place
-	dbw $3c, $4e66 ; Get Egg From Daycare Man
-	dbw $3c, $4e66 ; Get Egg From Daycare Lady
-	dbw $3c, $4edc ; Move Deleted
-	dbw $3c, $4f5e ; 2Nd Place
-	dbw $3c, $4fe2 ; 1St Place
-	dbw $3c, $5069 ; Choose A Card
-	dbw $3c, $5104 ; Get Tm
-	dbw $3c, $517d ; Get Badge
-	dbw $3c, $5236 ; Quit Slots
-	dbw $3c, $5775 ; Egg Crack
-	dbw $3c, $5878 ; Dex Fanfare < 20
-	dbw $3c, $58d2 ; Dex Fanfare 140-169
-	dbw $3c, $5951 ; Dex Fanfare 170-199
-	dbw $3c, $59d6 ; Dex Fanfare 200-229
-	dbw $3c, $5a66 ; Dex Fanfare 230 +
-	dbw $3c, $5784 ; Evolved
-	dbw $3c, $579b ; Master Ball
-	dbw $3c, $57c0 ; Egg Hatch
-	dbw $3c, $57d9 ; Gs Intro Charizard Fireball
-	dbw $3c, $57ff ; Gs Intro Pokemon Appears
-	dbw $3c, $5818 ; Flash
-	dbw $3c, $5846 ; Game Freak Logo Gs
-	dbw $3c, $5b33 ; Not Very Effective
-	dbw $3c, $5b40 ; Damage
-	dbw $3c, $5b50 ; Super Effective
-	dbw $3c, $5b63 ; Ball Bounce
-	dbw $3c, $56df ; Moonlight
-	dbw $3c, $56fd ; Encore
-	dbw $3c, $5721 ; Beat Up
-	dbw $3c, $574c ; Baton Pass
-	dbw $3c, $4944 ; Ball Wiggle
-	dbw $3c, $5734 ; Sweet Scent
-	dbw $3c, $5bb3 ; Sweet Scent 2
-	dbw $3c, $5bec ; Hit End Of Exp Bar
-	dbw $3c, $5c10 ; Give Trademon
-	dbw $3c, $5c3e ; Get Trademon
-	dbw $3c, $5c6c ; Train Arrived
-	dbw $3c, $675b ; Stop Slot
-	dbw $3c, $5cb4 ; 2 Boops
-	dbw $3c, $6769 ; Glass Ting
-	dbw $3c, $6773 ; Glass Ting 2
-	
+	dbw BANK(Sfx_DexFanfare5079), Sfx_DexFanfare5079
+	dbw BANK(Sfx_Item), Sfx_Item
+	dbw BANK(Sfx_CaughtMon), Sfx_CaughtMon
+	dbw BANK(Sfx_PokeballsPlacedOnTable), Sfx_PokeballsPlacedOnTable
+	dbw BANK(Sfx_Potion), Sfx_Potion
+	dbw BANK(Sfx_FullHeal), Sfx_FullHeal
+	dbw BANK(Sfx_Menu), Sfx_Menu
+	dbw BANK(Sfx_ReadText), Sfx_ReadText
+	dbw BANK(Sfx_ReadText2), Sfx_ReadText2
+	dbw BANK(Sfx_DexFanfare2049), Sfx_DexFanfare2049
+	dbw BANK(Sfx_DexFanfare80109), Sfx_DexFanfare80109
+	dbw BANK(Sfx_Poison), Sfx_Poison
+	dbw BANK(Sfx_GotSafariBalls), Sfx_GotSafariBalls
+	dbw BANK(Sfx_BootPc), Sfx_BootPc
+	dbw BANK(Sfx_ShutDownPc), Sfx_ShutDownPc
+	dbw BANK(Sfx_ChoosePcOption), Sfx_ChoosePcOption
+	dbw BANK(Sfx_EscapeRope), Sfx_EscapeRope
+	dbw BANK(Sfx_PushButton), Sfx_PushButton
+	dbw BANK(Sfx_SecondPartOfItemfinder), Sfx_SecondPartOfItemfinder
+	dbw BANK(Sfx_WarpTo), Sfx_WarpTo
+	dbw BANK(Sfx_WarpFrom), Sfx_WarpFrom
+	dbw BANK(Sfx_ChangeDexMode), Sfx_ChangeDexMode
+	dbw BANK(Sfx_JumpOverLedge), Sfx_JumpOverLedge
+	dbw BANK(Sfx_GrassRustle), Sfx_GrassRustle
+	dbw BANK(Sfx_Fly), Sfx_Fly
+	dbw BANK(Sfx_Wrong), Sfx_Wrong
+	dbw BANK(Sfx_Squeak), Sfx_Squeak
+	dbw BANK(Sfx_Strength), Sfx_Strength
+	dbw BANK(Sfx_Boat), Sfx_Boat
+	dbw BANK(Sfx_WallOpen), Sfx_WallOpen
+	dbw BANK(Sfx_PlacePuzzlePieceDown), Sfx_PlacePuzzlePieceDown
+	dbw BANK(Sfx_EnterDoor), Sfx_EnterDoor
+	dbw BANK(Sfx_SwitchPokemon), Sfx_SwitchPokemon
+	dbw BANK(Sfx_Tally), Sfx_Tally
+	dbw BANK(Sfx_Transaction), Sfx_Transaction
+	dbw BANK(Sfx_ExitBuilding), Sfx_ExitBuilding
+	dbw BANK(Sfx_Bump), Sfx_Bump
+	dbw BANK(Sfx_Save), Sfx_Save
+	dbw BANK(Sfx_Pokeflute), Sfx_Pokeflute
+	dbw BANK(Sfx_ElevatorEnd), Sfx_ElevatorEnd
+	dbw BANK(Sfx_ThrowBall), Sfx_ThrowBall
+	dbw BANK(Sfx_BallPoof), Sfx_BallPoof
+	dbw BANK(Sfx_Unknown3A), Sfx_Unknown3A
+	dbw BANK(Sfx_Run), Sfx_Run
+	dbw BANK(Sfx_SlotMachineStart), Sfx_SlotMachineStart
+	dbw BANK(Sfx_Fanfare), Sfx_Fanfare
+	dbw BANK(Sfx_Peck), Sfx_Peck
+	dbw BANK(Sfx_Kinesis), Sfx_Kinesis
+	dbw BANK(Sfx_Lick), Sfx_Lick
+	dbw BANK(Sfx_Pound), Sfx_Pound
+	dbw BANK(Sfx_MovePuzzlePiece), Sfx_MovePuzzlePiece
+	dbw BANK(Sfx_CometPunch), Sfx_CometPunch
+	dbw BANK(Sfx_MegaPunch), Sfx_MegaPunch
+	dbw BANK(Sfx_Scratch), Sfx_Scratch
+	dbw BANK(Sfx_Vicegrip), Sfx_Vicegrip
+	dbw BANK(Sfx_RazorWind), Sfx_RazorWind
+	dbw BANK(Sfx_Cut), Sfx_Cut
+	dbw BANK(Sfx_WingAttack), Sfx_WingAttack
+	dbw BANK(Sfx_Whirlwind), Sfx_Whirlwind
+	dbw BANK(Sfx_Bind), Sfx_Bind
+	dbw BANK(Sfx_VineWhip), Sfx_VineWhip
+	dbw BANK(Sfx_DoubleKick), Sfx_DoubleKick
+	dbw BANK(Sfx_MegaKick), Sfx_MegaKick
+	dbw BANK(Sfx_Headbutt), Sfx_Headbutt
+	dbw BANK(Sfx_HornAttack), Sfx_HornAttack
+	dbw BANK(Sfx_Tackle), Sfx_Tackle
+	dbw BANK(Sfx_PoisonSting), Sfx_PoisonSting
+	dbw BANK(Sfx_Powder), Sfx_Powder
+	dbw BANK(Sfx_Doubleslap), Sfx_Doubleslap
+	dbw BANK(Sfx_Bite), Sfx_Bite
+	dbw BANK(Sfx_JumpKick), Sfx_JumpKick
+	dbw BANK(Sfx_Stomp), Sfx_Stomp
+	dbw BANK(Sfx_TailWhip), Sfx_TailWhip
+	dbw BANK(Sfx_KarateChop), Sfx_KarateChop
+	dbw BANK(Sfx_Submission), Sfx_Submission
+	dbw BANK(Sfx_WaterGun), Sfx_WaterGun
+	dbw BANK(Sfx_SwordsDance), Sfx_SwordsDance
+	dbw BANK(Sfx_Thunder), Sfx_Thunder
+	dbw BANK(Sfx_Supersonic), Sfx_Supersonic
+	dbw BANK(Sfx_Leer), Sfx_Leer
+	dbw BANK(Sfx_Ember), Sfx_Ember
+	dbw BANK(Sfx_Bubblebeam), Sfx_Bubblebeam
+	dbw BANK(Sfx_HydroPump), Sfx_HydroPump
+	dbw BANK(Sfx_Surf), Sfx_Surf
+	dbw BANK(Sfx_Psybeam), Sfx_Psybeam
+	dbw BANK(Sfx_Charge), Sfx_Charge
+	dbw BANK(Sfx_Thundershock), Sfx_Thundershock
+	dbw BANK(Sfx_Psychic), Sfx_Psychic
+	dbw BANK(Sfx_Screech), Sfx_Screech
+	dbw BANK(Sfx_BoneClub), Sfx_BoneClub
+	dbw BANK(Sfx_Sharpen), Sfx_Sharpen
+	dbw BANK(Sfx_EggBomb), Sfx_EggBomb
+	dbw BANK(Sfx_Sing), Sfx_Sing
+	dbw BANK(Sfx_HyperBeam), Sfx_HyperBeam
+	dbw BANK(Sfx_Shine), Sfx_Shine
+	dbw BANK(Sfx_Unknown5F), Sfx_Unknown5F
+	dbw BANK(Sfx_Unknown60), Sfx_Unknown60
+	dbw BANK(Sfx_Unknown61), Sfx_Unknown61
+	dbw BANK(Sfx_Unknown62), Sfx_Unknown62
+	dbw BANK(Sfx_Unknown63), Sfx_Unknown63
+	dbw BANK(Sfx_Burn), Sfx_Burn
+	dbw BANK(Sfx_TitleScreenEntrance), Sfx_TitleScreenEntrance
+	dbw BANK(Sfx_Unknown66), Sfx_Unknown66
+	dbw BANK(Sfx_GetCoinFromSlots), Sfx_GetCoinFromSlots
+	dbw BANK(Sfx_PayDay), Sfx_PayDay
+	dbw BANK(Sfx_Metronome), Sfx_Metronome
+	dbw BANK(Sfx_Call), Sfx_Call
+	dbw BANK(Sfx_HangUp), Sfx_HangUp
+	dbw BANK(Sfx_NoSignal), Sfx_NoSignal
+	dbw BANK(Sfx_Sandstorm), Sfx_Sandstorm
+	dbw BANK(Sfx_Elevator), Sfx_Elevator
+	dbw BANK(Sfx_Protect), Sfx_Protect
+	dbw BANK(Sfx_Sketch), Sfx_Sketch
+	dbw BANK(Sfx_RainDance), Sfx_RainDance
+	dbw BANK(Sfx_Aeroblast), Sfx_Aeroblast
+	dbw BANK(Sfx_Spark), Sfx_Spark
+	dbw BANK(Sfx_Curse), Sfx_Curse
+	dbw BANK(Sfx_Rage), Sfx_Rage
+	dbw BANK(Sfx_Thief), Sfx_Thief
+	dbw BANK(Sfx_Thief2), Sfx_Thief2
+	dbw BANK(Sfx_SpiderWeb), Sfx_SpiderWeb
+	dbw BANK(Sfx_MindReader), Sfx_MindReader
+	dbw BANK(Sfx_Nightmare), Sfx_Nightmare
+	dbw BANK(Sfx_Snore), Sfx_Snore
+	dbw BANK(Sfx_SweetKiss), Sfx_SweetKiss
+	dbw BANK(Sfx_SweetKiss2), Sfx_SweetKiss2
+	dbw BANK(Sfx_BellyDrum), Sfx_BellyDrum
+	dbw BANK(Sfx_Unknown7F), Sfx_Unknown7F
+	dbw BANK(Sfx_SludgeBomb), Sfx_SludgeBomb
+	dbw BANK(Sfx_Foresight), Sfx_Foresight
+	dbw BANK(Sfx_Spite), Sfx_Spite
+	dbw BANK(Sfx_Outrage), Sfx_Outrage
+	dbw BANK(Sfx_PerishSong), Sfx_PerishSong
+	dbw BANK(Sfx_GigaDrain), Sfx_GigaDrain
+	dbw BANK(Sfx_Attract), Sfx_Attract
+	dbw BANK(Sfx_Kinesis2), Sfx_Kinesis2
+	dbw BANK(Sfx_ZapCannon), Sfx_ZapCannon
+	dbw BANK(Sfx_MeanLook), Sfx_MeanLook
+	dbw BANK(Sfx_HealBell), Sfx_HealBell
+	dbw BANK(Sfx_Return), Sfx_Return
+	dbw BANK(Sfx_ExpBar), Sfx_ExpBar
+	dbw BANK(Sfx_MilkDrink), Sfx_MilkDrink
+	dbw BANK(Sfx_Present), Sfx_Present
+	dbw BANK(Sfx_MorningSun), Sfx_MorningSun
+	dbw BANK(Sfx_LevelUp), Sfx_LevelUp
+	dbw BANK(Sfx_KeyItem), Sfx_KeyItem
+	dbw BANK(Sfx_Fanfare2), Sfx_Fanfare2
+	dbw BANK(Sfx_RegisterPhoneNumber), Sfx_RegisterPhoneNumber
+	dbw BANK(Sfx_3RdPlace), Sfx_3RdPlace
+	dbw BANK(Sfx_GetEggFromDaycareMan), Sfx_GetEggFromDaycareMan
+	dbw BANK(Sfx_GetEggFromDaycareLady), Sfx_GetEggFromDaycareLady
+	dbw BANK(Sfx_MoveDeleted), Sfx_MoveDeleted
+	dbw BANK(Sfx_2ndPlace), Sfx_2ndPlace
+	dbw BANK(Sfx_1stPlace), Sfx_1stPlace
+	dbw BANK(Sfx_ChooseACard), Sfx_ChooseACard
+	dbw BANK(Sfx_GetTm), Sfx_GetTm
+	dbw BANK(Sfx_GetBadge), Sfx_GetBadge
+	dbw BANK(Sfx_QuitSlots), Sfx_QuitSlots
+	dbw BANK(Sfx_EggCrack), Sfx_EggCrack
+	dbw BANK(Sfx_DexFanfareLessThan20), Sfx_DexFanfareLessThan20
+	dbw BANK(Sfx_DexFanfare140169), Sfx_DexFanfare140169
+	dbw BANK(Sfx_DexFanfare170199), Sfx_DexFanfare170199
+	dbw BANK(Sfx_DexFanfare200229), Sfx_DexFanfare200229
+	dbw BANK(Sfx_DexFanfare230Plus), Sfx_DexFanfare230Plus
+	dbw BANK(Sfx_Evolved), Sfx_Evolved
+	dbw BANK(Sfx_MasterBall), Sfx_MasterBall
+	dbw BANK(Sfx_EggHatch), Sfx_EggHatch
+	dbw BANK(Sfx_GsIntroCharizardFireball), Sfx_GsIntroCharizardFireball
+	dbw BANK(Sfx_GsIntroPokemonAppears), Sfx_GsIntroPokemonAppears
+	dbw BANK(Sfx_Flash), Sfx_Flash
+	dbw BANK(Sfx_GameFreakLogoGs), Sfx_GameFreakLogoGs
+	dbw BANK(Sfx_NotVeryEffective), Sfx_NotVeryEffective
+	dbw BANK(Sfx_Damage), Sfx_Damage
+	dbw BANK(Sfx_SuperEffective), Sfx_SuperEffective
+	dbw BANK(Sfx_BallBounce), Sfx_BallBounce
+	dbw BANK(Sfx_Moonlight), Sfx_Moonlight
+	dbw BANK(Sfx_Encore), Sfx_Encore
+	dbw BANK(Sfx_BeatUp), Sfx_BeatUp
+	dbw BANK(Sfx_BatonPass), Sfx_BatonPass
+	dbw BANK(Sfx_BallWiggle), Sfx_BallWiggle
+	dbw BANK(Sfx_SweetScent), Sfx_SweetScent
+	dbw BANK(Sfx_SweetScent2), Sfx_SweetScent2
+	dbw BANK(Sfx_HitEndOfExpBar), Sfx_HitEndOfExpBar
+	dbw BANK(Sfx_GiveTrademon), Sfx_GiveTrademon
+	dbw BANK(Sfx_GetTrademon), Sfx_GetTrademon
+	dbw BANK(Sfx_TrainArrived), Sfx_TrainArrived
+	dbw BANK(Sfx_StopSlot), Sfx_StopSlot
+	dbw BANK(Sfx_2Boops), Sfx_2Boops
+	dbw BANK(Sfx_GlassTing), Sfx_GlassTing
+	dbw BANK(Sfx_GlassTing2), Sfx_GlassTing2
+
 ; Crystal adds the following SFX:
-	
-	dbw $5e, $582d ; Intro Unown 1
-	dbw $5e, $583e ; Intro Unown 2
-	dbw $5e, $584f ; Intro Unown 3
-	dbw $5e, $586e ; Ditto Pop Up
-	dbw $5e, $5888 ; Ditto Transform
-	dbw $5e, $58a0 ; Intro Suicune 1
-	dbw $5e, $58aa ; Intro Pichu
-	dbw $5e, $58c0 ; Intro Suicune 2
-	dbw $5e, $58f4 ; Intro Suicune 3
-	dbw $5e, $5907 ; Ditto Bounce
-	dbw $5e, $591d ; Intro Suicune 4
-	dbw $5e, $5942 ; Game Freak Presents
-	dbw $5e, $5961 ; Tingle
-	dbw $3c, $5cd0 ; Unknown Cb
-	dbw $5e, $597c ; Two Pc Beeps
-	dbw $5e, $5992 ; 4 Note Ditty
-	dbw $5e, $59cb ; Twinkle
+
+	dbw BANK(Sfx_IntroUnown1), Sfx_IntroUnown1
+	dbw BANK(Sfx_IntroUnown2), Sfx_IntroUnown2
+	dbw BANK(Sfx_IntroUnown3), Sfx_IntroUnown3
+	dbw BANK(Sfx_DittoPopUp), Sfx_DittoPopUp
+	dbw BANK(Sfx_DittoTransform), Sfx_DittoTransform
+	dbw BANK(Sfx_IntroSuicune1), Sfx_IntroSuicune1
+	dbw BANK(Sfx_IntroPichu), Sfx_IntroPichu
+	dbw BANK(Sfx_IntroSuicune2), Sfx_IntroSuicune2
+	dbw BANK(Sfx_IntroSuicune3), Sfx_IntroSuicune3
+	dbw BANK(Sfx_DittoBounce), Sfx_DittoBounce
+	dbw BANK(Sfx_IntroSuicune4), Sfx_IntroSuicune4
+	dbw BANK(Sfx_GameFreakPresents), Sfx_GameFreakPresents
+	dbw BANK(Sfx_Tingle), Sfx_Tingle
+	dbw BANK(Sfx_UnknownCB), Sfx_UnknownCB
+	dbw BANK(Sfx_TwoPcBeeps), Sfx_TwoPcBeeps
+	dbw BANK(Sfx_4NoteDitty), Sfx_4NoteDitty
+	dbw BANK(Sfx_Twinkle), Sfx_Twinkle
 ; e94e9
 
