@@ -1504,4 +1504,27 @@ CelebiCryHeader: ; 0xf2d63
 	db $01  ; echo
 	dw $111 ; length
 
+CryHeader252: ; 0xf2d69
+	dw 0    ; cry id
+	db 0    ; pitch
+	db 0    ; echo
+	dw 0    ; length
+
+CryHeader253: ; 0xf2d6f
+	dw 0    ; cry id
+	db 0    ; pitch
+	db 0    ; echo
+	dw 0    ; length
+
+CryHeader254: ; 0xf2d75
+	dw 0    ; cry id
+	db 0    ; pitch
+	db 0    ; echo
+	dw 0    ; length
+
+CryHeader255: ; 0xf2d7b
+	dw 0    ; cry id
+	db 0    ; pitch
+	db 0    ; echo
+	dw 0    ; length
 
