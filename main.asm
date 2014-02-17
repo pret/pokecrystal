@@ -9023,7 +9023,7 @@ Jumptable_c796: ; c796 (3:4796)
 
 ; no known jump sources
 Functionc79c: ; c79c (3:479c)
-	ld de, $1c
+	ld de, ENGINE_HIVEBADGE
 	call CheckBadge
 	jr c, .asm_c7ac
 	call Functionc7ce
@@ -9039,25 +9039,29 @@ Functionc79c: ; c79c (3:479c)
 
 ; no known jump sources
 Functionc7b2: ; c7b2 (3:47b2)
-	ld hl, Unknown_c7fe
+	ld hl, UnknownScript_0xc7fe
 	call Function31cd
 	ld a, $81
 	ret
 
 ; no known jump sources
 Functionc7bb: ; c7bb (3:47bb)
-	ld hl, Unknown_c7c9
+	ld hl, UnknownText_0xc7c9
 	call Function1d67
 	ld a, $80
 	ret
 
 UnknownText_0xc7c4: ; 0xc7c4
+	; used CUT!
 	text_jump UnknownText_0x1c05dd
-	db $50
+	db "@"
 ; 0xc7c9
 
-Unknown_c7c9: ; c7c9
-INCBIN "baserom.gbc",$c7c9,$c7ce - $c7c9
+UnknownText_0xc7c9: ; 0xc7c9
+	; There's nothing to CUT here.
+	text_jump UnknownText_0x1c05ec
+	db "@"
+; 0xc7ce
 
 Functionc7ce: ; c7ce
 	call GetFacingTileCoord
@@ -9069,7 +9073,7 @@ Functionc7ce: ; c7ce
 	call Function2a66
 	ld c, [hl]
 	push hl
-	ld hl, $4862
+	ld hl, Unknown_c862
 	call Functionc840
 	pop hl
 	jr nc, .asm_c7fc
@@ -9089,8 +9093,9 @@ Functionc7ce: ; c7ce
 	ret
 ; c7fe
 
-Unknown_c7fe: ; c7fe
-INCBIN "baserom.gbc",$c7fe,$c802 - $c7fe
+UnknownScript_0xc7fe: ; c7fe
+	reloadmappart
+	special $0035
 
 UnknownScript_0xc802: ; 0xc802
 	3callasm GetPartyNick
@@ -9151,6 +9156,7 @@ Functionc840: ; c840
 	ret
 ; c862
 
+Unknown_c862: ; c862
 INCBIN "baserom.gbc",$c862,$c8ac - $c862
 
 Functionc8ac: ; c8ac
@@ -9223,7 +9229,7 @@ UnknownText_0xc908: ; 0xc908
 Functionc909: ; c909
 	call Functionc6ea
 .asm_c90c
-	ld hl, $491a
+	ld hl, Jumptable_c91a
 	call Functionc6f5
 	jr nc, .asm_c90c
 	and $7f
@@ -9278,28 +9284,28 @@ Functionc95f: ; c95f (3:495f)
 	call GetSurfType
 	ld [Buffer2], a ; $d1eb (aliases: MovementType)
 	call GetPartyNick
-	ld hl, $4983
+	ld hl, UnknownScript_0xc983
 	call Function31cd
 	ld a, $81
 	ret
 
 ; no known jump sources
 Functionc971: ; c971 (3:4971)
-	ld hl, $49ae
+	ld hl, CantSurfText
 	call Function1d67
 	ld a, $80
 	ret
 
 ; no known jump sources
 Functionc97a: ; c97a (3:497a)
-	ld hl, $49b3
+	ld hl, AlreadySurfingText
 	call Function1d67
 	ld a, $80
 	ret
 ; c983 (3:4983)
 
-INCBIN "baserom.gbc",$c983,$c986 - $c983
-
+UnknownScript_0xc983: ; c983
+	special $0035
 
 UsedSurfScript: ; c986
 	2writetext UsedSurfText ; "used SURF!"
@@ -9867,20 +9873,58 @@ Functioncc78: ; cc78
 
 Functioncc9c: ; cc9c
 	call GetPartyNick
-	ld hl, $4cbb
+	ld hl, UnknownScript_0xccbb
 	call Function31cd
 	ld a, $81
 	ret
 ; cca8
 
 Functioncca8: ; cca8
-	ld hl, $4cb6
+	ld hl, UnknownText_0xccb6
 	call Function1d67
 	ld a, $80
 	ret
 ; ccb1
 
-INCBIN "baserom.gbc",$ccb1,$cce5 - $ccb1
+UnknownText_0xccb1: ; 0xccb1
+	; Return to the last #MON CENTER.
+	text_jump UnknownText_0x1c071a
+	db "@"
+; 0xccb6
+
+UnknownText_0xccb6: ; 0xccb6
+	; Can't use that here.
+	text_jump UnknownText_0x1c073b
+	db "@"
+; 0xccbb
+
+UnknownScript_0xccbb: ; 0xccbb
+	reloadmappart
+	special $0035
+	2writetext UnknownText_0xccb1
+	pause 60
+	reloadmappart
+	loadmovesprites
+	playsound SFX_WARP_TO
+	applymovement $0, MovementData_0xcce1
+	3call UnknownScript_0x122c1
+	special $0000
+	writecode $8, $0
+	newloadmap $f4
+	playsound SFX_WARP_FROM
+	applymovement $0, MovementData_0xcce3
+	end
+; 0xcce1
+
+MovementData_0xcce1: ; cce1
+	teleport_from
+	step_end
+; cce3
+
+MovementData_0xcce3: ; cce3
+	teleport_to
+	step_end
+; cce5
 
 Functioncce5: ; cce5
 	call Functionccee
@@ -10027,11 +10071,12 @@ Functioncd78: ; cd78
 .asm_cd99
 	ld [ScriptVar], a ; $c2dd
 	ret
+; cd9d
 
 Functioncd9d: ; cd9d
 	call Functionc6ea
 .asm_cda0
-	ld hl, $4dae
+	ld hl, Jumptable_cdae
 	call Functionc6f5
 	jr nc, .asm_cda0
 	and $7f
@@ -10039,9 +10084,11 @@ Functioncd9d: ; cd9d
 	ret
 ; cdae
 
+Jumptable_cdae: ; cdae
 INCBIN "baserom.gbc",$cdae,$cdd9 - $cdae
 
 UnknownText_0xcdd9: ; 0xcdd9
+	; used WHIRLPOOL!
 	text_jump UnknownText_0x1c0816
 	db "@"
 ; 0xcdde
@@ -10076,7 +10123,9 @@ Functioncdde: ; cdde
 	ret
 ; ce0b
 
-INCBIN "baserom.gbc",$ce0b,$ce0f - $ce0b
+UnknownScript_0xce0b: ; 0xce0b
+	reloadmappart
+	special $0035
 
 UnknownScript_0xce0f: ; 0xce0f
 	3callasm GetPartyNick
@@ -10174,18 +10223,22 @@ Functionce86: ; ce86
 ; ce9d
 
 UnknownText_0xce9d: ; 0xce9d
+	; did a HEADBUTT!
 	text_jump UnknownText_0x1c0897
-	db $50
+	db "@"
 ; 0xcea2
 
 UnknownText_0xcea2: ; 0xcea2
+	; Nope. Nothing…
 	text_jump UnknownText_0x1c08ac
-	db $50
+	db "@"
 ; 0xcea7
 
 UnknownScript_0xcea7: ; 0xcea7
 	reloadmappart
 	special $0035
+
+UnknownScript_0xceab: ; 0xceab
 	3callasm GetPartyNick
 	2writetext UnknownText_0xce9d
 	reloadmappart
@@ -10207,11 +10260,11 @@ UnknownScript_0xcec3: ; 0xcec3
 ; 0xcec9
 
 TryHeadbuttOW:: ; cec9
-	ld d, $1d
+	ld d, HEADBUTT
 	call CheckPartyMove
 	jr c, .asm_ceda
-	ld a, $3
-	ld hl, $4edc
+	ld a, BANK(UnknownScript_0xcedc)
+	ld hl, UnknownScript_0xcedc
 	call CallScript
 	scf
 	ret
@@ -10221,7 +10274,20 @@ TryHeadbuttOW:: ; cec9
 	ret
 ; cedc
 
-INCBIN "baserom.gbc",$cedc,$ceeb - $cedc
+UnknownScript_0xcedc: ; 0xcedc
+	loadfont
+	2writetext UnknownText_0xcee6
+	yesorno
+	iftrue UnknownScript_0xceab
+	loadmovesprites
+	end
+; 0xcee6
+
+UnknownText_0xcee6: ; 0xcee6
+	; A #MON could be in this tree. Want to HEADBUTT it?
+	text_jump UnknownText_0x1c08bc
+	db "@"
+; 0xceeb
 
 Functionceeb: ; ceeb
 	call Functioncef4
@@ -10349,7 +10415,7 @@ Functioncf8e: ; cf8e
 	pop af
 	ld [Buffer2], a
 .asm_cf97
-	ld hl, $4fa5
+	ld hl, Jumptable_cfa5
 	call Functionc6f5
 	jr nc, .asm_cf97
 	and $7f
@@ -10357,7 +10423,7 @@ Functioncf8e: ; cf8e
 	ret
 ; cfa5
 
-
+Jumptable_cfa5: ; cfa5
 INCBIN "baserom.gbc",$cfa5,$d0b3 - $cfa5
 
 
