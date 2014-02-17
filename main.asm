@@ -10085,7 +10085,41 @@ Functioncd9d: ; cd9d
 ; cdae
 
 Jumptable_cdae: ; cdae
-INCBIN "baserom.gbc",$cdae,$cdd9 - $cdae
+	dw Functioncdb4
+	dw Functioncdca
+	dw Functioncdd3
+; cdb4
+
+Functioncdb4: ; cdb4
+	ld de, ENGINE_GLACIERBADGE
+	call CheckBadge
+	jr c, .asm_cdc7
+	call Functioncdde
+	jr c, .asm_cdc4
+	ld a, $1
+	ret
+
+.asm_cdc4
+	ld a, $2
+	ret
+
+.asm_cdc7
+	ld a, $80
+	ret
+; cdca
+
+Functioncdca: ; cdca
+	ld hl, UnknownScript_0xce0b
+	call Function31cd
+	ld a, $81
+	ret
+; cdd3
+
+Functioncdd3: ; cdd3
+	call Functionc779
+	ld a, $80
+	ret
+; cdd9
 
 UnknownText_0xcdd9: ; 0xcdd9
 	; used WHIRLPOOL!
@@ -10424,8 +10458,210 @@ Functioncf8e: ; cf8e
 ; cfa5
 
 Jumptable_cfa5: ; cfa5
-INCBIN "baserom.gbc",$cfa5,$d0b3 - $cfa5
+	dw Functioncfaf
+	dw Functiond002
+	dw Functioncff4
+	dw Functioncff1
+	dw Functiond010
+; cfaf
 
+Functioncfaf: ; cfaf
+	ld a, [PlayerState]
+	cp $4
+	jr z, .asm_cfc4
+	cp $8
+	jr z, .asm_cfc4
+	call GetFacingTileCoord
+	call GetTileCollision
+	cp $1
+	jr z, .asm_cfc7
+
+.asm_cfc4
+	ld a, $3
+	ret
+
+.asm_cfc7
+	call Function2d19
+	and a
+	jr nz, .asm_cfd0
+	ld a, $4
+	ret
+
+.asm_cfd0
+	ld d, a
+	ld a, [Buffer2]
+	ld e, a
+	callba FishAction
+	ld a, d
+	and a
+	jr z, .asm_cfee
+	ld [$d22e], a
+	ld a, e
+	ld [CurPartyLevel], a
+	ld a, $4
+	ld [BattleType], a
+	ld a, $2
+	ret
+
+.asm_cfee
+	ld a, $1
+	ret
+; cff1
+
+Functioncff1: ; cff1
+	ld a, $80
+	ret
+; cff4
+
+Functioncff4: ; cff4
+	ld a, $1
+	ld [$d1ef], a
+	ld hl, UnknownScript_0xd035
+	call Function31cd
+	ld a, $81
+	ret
+; d002
+
+Functiond002: ; d002
+	ld a, $2
+	ld [$d1ef], a
+	ld hl, UnknownScript_0xd01e
+	call Function31cd
+	ld a, $81
+	ret
+; d010
+
+Functiond010: ; d010
+	ld a, $0
+	ld [$d1ef], a
+	ld hl, UnknownScript_0xd027
+	call Function31cd
+	ld a, $81
+	ret
+; d01e
+
+UnknownScript_0xd01e: ; 0xd01e
+	2call UnknownScript_0xd07c
+	2writetext UnknownText_0xd0a9
+	2jump UnknownScript_0xd02d
+; 0xd027
+
+UnknownScript_0xd027: ; 0xd027
+	2call UnknownScript_0xd07c
+	2writetext UnknownText_0xd0a9
+
+UnknownScript_0xd02d: ; 0xd02d
+	loademote $8
+	3callasm Functiond095
+	loadmovesprites
+	end
+; 0xd035
+
+UnknownScript_0xd035: ; 0xd035
+	2call UnknownScript_0xd07c
+	3callasm Functiond06c
+	iffalse UnknownScript_0xd046
+	applymovement $0, MovementData_0xd062
+	2jump UnknownScript_0xd04a
+; 0xd046
+
+UnknownScript_0xd046: ; 0xd046
+	applymovement $0, MovementData_0xd05c
+
+UnknownScript_0xd04a: ; 0xd04a
+	pause 40
+	applymovement $0, MovementData_0xd069
+	2writetext UnknownText_0xd0a4
+	3callasm Functiond095
+	loadmovesprites
+	battlecheck
+	startbattle
+	returnafterbattle
+	end
+; 0xd05c
+
+MovementData_0xd05c: ; d05c
+	db $51
+	db $51
+	db $51
+	db $51
+	show_emote
+	step_end
+; d062
+
+MovementData_0xd062: ; d062
+	db $51
+	db $51
+	db $51
+	db $51
+	show_person
+	show_emote
+	step_end
+; d069
+
+MovementData_0xd069: ; d069
+	hide_emote
+	db $52
+	step_end
+; d06c
+
+Functiond06c: ; d06c
+	ld a, [PlayerDirection]
+	and $c
+	cp $4
+	ld a, $1
+	jr z, .asm_d078
+	xor a
+
+.asm_d078
+	ld [ScriptVar], a
+	ret
+; d07c
+
+UnknownScript_0xd07c: ; 0xd07c
+	reloadmappart
+	loadvar $ffd4, $0
+	special $0035
+	loademote $9
+	3callasm Functionb84b3
+	loademote $0
+	applymovement $0, MovementData_0xd093
+	pause 40
+	end
+; 0xd093
+
+MovementData_0xd093: ; d093
+	db $52
+	step_end
+; d095
+
+Functiond095: ; d095
+	xor a
+	ld [hBGMapMode], a
+	ld a, $1
+	ld [PlayerAction], a
+	call Function1ad2
+	call Functione4a
+	ret
+; d0a4
+
+UnknownText_0xd0a4: ; 0xd0a4
+	; Oh! A bite!
+	text_jump UnknownText_0x1c0958
+	db "@"
+; 0xd0a9
+
+UnknownText_0xd0a9: ; 0xd0a9
+	; Not even a nibble!
+	text_jump UnknownText_0x1c0965
+	db "@"
+; 0xd0ae
+
+UnknownText_0xd0ae: ; 0xd0ae
+	; Looks like there's nothing here.
+	text_jump UnknownText_0x1c0979
+	db "@"
+; 0xd0b3
 
 Functiond0b3: ; d0b3
 	call Functiond0bc
