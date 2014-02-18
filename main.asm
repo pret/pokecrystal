@@ -10681,17 +10681,17 @@ Functiond0bc: ; d0bc
 	jr .asm_d110
 
 .asm_d0ce
-	ld hl, $513e
-	ld de, $514e
+	ld hl, UnknownScript_0xd13e
+	ld de, UnknownScript_0xd14e
 	call Functiond119
 	call Function31cd
 	xor a
 	ld [MusicFade], a
-	ld de, $0000
+	ld de, MUSIC_NONE
 	call PlayMusic
 	call DelayFrame
 	call MaxVolume
-	ld de, $0013
+	ld de, MUSIC_BICYCLE
 	ld a, e
 	ld [CurMusic], a
 	call PlayMusic
@@ -10702,14 +10702,14 @@ Functiond0bc: ; d0bc
 	ld hl, BikeFlags
 	bit 1, [hl]
 	jr nz, .asm_d10b
-	ld hl, $5158
-	ld de, $516b
+	ld hl, UnknownScript_0xd158
+	ld de, UnknownScript_0xd16b
 	call Functiond119
 	ld a, $3
 	jr .asm_d113
 
 .asm_d10b
-	ld hl, $5171
+	ld hl, UnknownScript_0xd171
 	jr .asm_d113
 
 .asm_d110
@@ -10735,9 +10735,9 @@ Functiond121: ; d121
 	call GetMapPermission
 	call CheckOutdoorMap
 	jr z, .asm_d133
-	cp $4
+	cp CAVE
 	jr z, .asm_d133
-	cp $6
+	cp GATE
 	jr z, .asm_d133
 	jr .asm_d13c
 
@@ -10753,7 +10753,68 @@ Functiond121: ; d121
 	ret
 ; d13e
 
-INCBIN "baserom.gbc",$d13e,$d186 - $d13e
+UnknownScript_0xd13e: ; 0xd13e
+	reloadmappart
+	special $0035
+	writecode $8, $1
+	2writetext UnknownText_0xd17c
+	closetext
+	loadmovesprites
+	special $0038
+	end
+; 0xd14e
+
+UnknownScript_0xd14e: ; 0xd14e
+	writecode $8, $1
+	loadmovesprites
+	special $0038
+	end
+; 0xd156
+
+INCBIN "baserom.gbc", $d156, $d158 - $d156
+
+UnknownScript_0xd158: ; 0xd158
+	reloadmappart
+	special $0035
+	writecode $8, $0
+	2writetext UnknownText_0xd181
+	closetext
+UnknownScript_0xd163
+	loadmovesprites
+	special $0038
+	special $003c
+	end
+; 0xd16b
+
+UnknownScript_0xd16b: ; 0xd16b
+	writecode $8, $0
+	2jump UnknownScript_0xd163
+; 0xd171
+
+UnknownScript_0xd171: ; 0xd171
+	2writetext UnknownText_0xd177
+	closetext
+	loadmovesprites
+	end
+; 0xd177
+
+UnknownText_0xd177: ; 0xd177
+	; You can't get off here!
+	text_jump UnknownText_0x1c099a
+	db "@"
+; 0xd17c
+
+UnknownText_0xd17c: ; 0xd17c
+	; got on the @ .
+	text_jump UnknownText_0x1c09b2
+	db "@"
+; 0xd181
+
+UnknownText_0xd181: ; 0xd181
+	; got off the @ .
+	text_jump UnknownText_0x1c09c7
+	db "@"
+; 0xd186
 
 TryCutOW:: ; d186
 	ld d, CUT
@@ -13279,7 +13340,7 @@ Functiondf8c:: ; df8c
 	dec a
 	ld hl, PartyMon1Nickname
 	call SkipNames
-	ld de, $6035
+	ld de, Stringe035
 	call CopyName2
 	ld a, [PartyCount]
 	dec a
@@ -13306,8 +13367,9 @@ Functiondf8c:: ; df8c
 	ret
 ; e035
 
-INCBIN "baserom.gbc",$e035,$e039 - $e035
-
+Stringe035: ; e035
+	db "EGG@"
+; e039
 
 Functione039: ; e039
 
