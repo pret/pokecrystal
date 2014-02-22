@@ -81072,6 +81072,8 @@ INCBIN "gfx/frames/8.1bpp"
 INCBIN "gfx/frames/9.1bpp"
 ; f89b0
 
+; TODO: Various misc graphics here.
+
 INCBIN "baserom.gbc", $f89b0, $f8a90 - $f89b0
 
 ShinyIcon: ; f8a90
@@ -81085,8 +81087,9 @@ INCBIN "gfx/misc/town_map.lz"
 
 INCBIN "baserom.gbc", $f8ea4, $f9434 - $f8ea4
 
-Footprints:
+Footprints: ; f9434
 INCBIN "gfx/misc/footprints.1bpp"
+; fb434
 
 INCBIN "baserom.gbc", $fb434, $fb449 - $fb434
 
