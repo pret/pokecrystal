@@ -14182,7 +14182,39 @@ Functione4fe: ; e4fe (3:64fe)
 	ret
 ; e512 (3:6512)
 
-INCBIN "baserom.gbc",$e512,$e538 - $e512
+Functione512: ; e512
+	ld a, [PartyCount]
+	and a
+	jr z, .asm_e51e
+	cp $2
+	jr c, .asm_e526
+	and a
+	ret
+
+.asm_e51e
+	ld hl, UnknownText_0xe52e
+	call Function1d67
+	scf
+	ret
+
+.asm_e526
+	ld hl, UnknownText_0xe533
+	call Function1d67
+	scf
+	ret
+; e52e
+
+UnknownText_0xe52e: ; 0xe52e
+	; You don't have a single #MON!
+	text_jump UnknownText_0x1c1062
+	db "@"
+; 0xe533
+
+UnknownText_0xe533: ; 0xe533
+	; You can't deposit your last #MON!
+	text_jump UnknownText_0x1c1080
+	db "@"
+; 0xe538
 
 
 Functione538: ; e538
@@ -14227,7 +14259,25 @@ Functione559: ; e559 (3:6559)
 	ret
 ; e56d (3:656d)
 
-INCBIN "baserom.gbc",$e56d,$e583 - $e56d
+Functione56d: ; e56d
+	ld a, [PartyCount]
+	cp $6
+	jr nc, .asm_e576
+	and a
+	ret
+
+.asm_e576
+	ld hl, UnknownText_0xe57e
+	call Function1d67
+	scf
+	ret
+; e57e
+
+UnknownText_0xe57e: ; 0xe57e
+	; You can't take any more #MON.
+	text_jump UnknownText_0x1c10a2
+	db "@"
+; 0xe583
 
 ; no known jump sources
 Functione583: ; e583 (3:6583)
@@ -14270,7 +14320,124 @@ Functione5bb: ; e5bb
 	ret
 ; e5d9
 
-INCBIN "baserom.gbc",$e5d9,$e698 - $e5d9
+Functione5d9: ; e5d9
+	ld a, [$db72]
+	cp b
+	jr z, .asm_e5f1
+	ld a, b
+	ld hl, Unknown_e66e
+	ld bc, $0003
+	call AddNTimes
+	ld a, [hli]
+	push af
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	pop af
+	jr .asm_e5f6
+
+.asm_e5f1
+	ld a, $1
+	ld hl, BoxCount
+
+.asm_e5f6
+	call GetSRAMBank
+	ld a, [hl]
+	ld bc, $0016
+	add hl, bc
+	ld b, a
+	ld c, $0
+	ld de, EnemyMoveAnimation
+	ld a, b
+	and a
+	jr z, .asm_e66a
+.asm_e608
+	push hl
+	push bc
+	ld a, c
+	ld bc, $0000
+	add hl, bc
+	ld bc, $0020
+	call AddNTimes
+	ld a, [hl]
+	ld [de], a
+	inc de
+	ld [CurSpecies], a
+	call GetBaseData
+	pop bc
+	pop hl
+	push hl
+	push bc
+	ld a, c
+	ld bc, $035c
+	add hl, bc
+	call SkipNames
+	call CopyBytes
+	pop bc
+	pop hl
+	push hl
+	push bc
+	ld a, c
+	ld bc, $001f
+	add hl, bc
+	ld bc, $0020
+	call AddNTimes
+	ld a, [hl]
+	ld [de], a
+	inc de
+	pop bc
+	pop hl
+	push hl
+	push bc
+	ld a, c
+	ld bc, $0015
+	add hl, bc
+	ld bc, $0020
+	call AddNTimes
+	ld a, [hli]
+	and $f0
+	ld b, a
+	ld a, [hl]
+	and $f0
+	swap a
+	or b
+	ld b, a
+	ld a, [BaseGender]
+	cp b
+	ld a, $1
+	jr c, .asm_e662
+	xor a
+
+.asm_e662
+	ld [de], a
+	inc de
+	pop bc
+	pop hl
+	inc c
+	dec b
+	jr nz, .asm_e608
+
+.asm_e66a
+	call CloseSRAM
+	ret
+; e66e
+
+Unknown_e66e: ; e66e
+	dbw 2, $a000
+	dbw 2, $a450
+	dbw 2, $a8a0
+	dbw 2, $acf0
+	dbw 2, $b140
+	dbw 2, $b590
+	dbw 2, $b9e0
+	dbw 3, $a000
+	dbw 3, $a450
+	dbw 3, $a8a0
+	dbw 3, $acf0
+	dbw 3, $b140
+	dbw 3, $b590
+	dbw 3, $b9e0
+; e698
 
 Functione698: ; e698
 	ld hl, BreedMon1Species
