@@ -14776,12 +14776,12 @@ Function100e8: ; 100e8 (4:40e8)
 	ld a, [$d142]
 	and a
 	jr nz, .asm_1010a
-	ld hl, $413b
-	ld de, $4153
+	ld hl, MenuDataHeader_0x1013b
+	ld de, Jumptable_10153
 	jr .asm_10110
 .asm_1010a
-	ld hl, $4124
-	ld de, $4137
+	ld hl, MenuDataHeader_0x10124
+	ld de, Jumptable_10137
 .asm_10110
 	push de
 	call LoadMenuDataHeader
@@ -14795,7 +14795,49 @@ Function100e8: ; 100e8 (4:40e8)
 	jp [hl]
 ; 10124 (4:4124)
 
-INCBIN "baserom.gbc",$10124,$10159 - $10124
+MenuDataHeader_0x10124: ; 0x10124
+	db $40 ; flags
+	db 07, 13 ; start coords
+	db 11, 19 ; end coords
+	dw MenuData2_0x1012c
+	db 1 ; default option
+; 0x1012c
+
+MenuData2_0x1012c: ; 0x1012c
+	db $c0 ; flags
+	db 2 ; items
+	db "USE@"
+	db "QUIT@"
+; 0x10137
+
+Jumptable_10137: ; 10137
+	dw Function10159
+	dw Function10492
+; 1013b
+
+MenuDataHeader_0x1013b: ; 0x1013b
+	db $40 ; flags
+	db 05, 13 ; start coords
+	db 11, 19 ; end coords
+	dw MenuData2_0x10143
+	db 1 ; default option
+; 0x10143
+
+MenuData2_0x10143: ; 0x10143
+	db $c0 ; flags
+	db 3 ; items
+	db "USE@"
+	db "GIVE@"
+	db "QUIT@"
+; 0x10153
+
+Jumptable_10153: ; 10153
+	dw Function10159
+	dw Function103fd
+	dw Function10492
+; 10159
+
+Function10159: ; 10159
 	callba Function2c7bf
 	ret c
 	callba Function2c7fb
@@ -14911,8 +14953,8 @@ Function101c5: ; 101c5 (4:41c5)
 INCBIN "baserom.gbc",$10249,$10311 - $10249
 	callba CheckItemMenu
 	ld a, [$d142]
-	ld hl, $431f
-	rst $28
+	ld hl, Jumptable_1031f
+	rst JumpTable
 	ret
 
 ; no known jump sources
@@ -14966,6 +15008,8 @@ Function10355: ; 10355 (4:4355)
 ; 10364 (4:4364)
 
 INCBIN "baserom.gbc",$10364,$103fd - $10364
+
+Function103fd: ; 103fd
 	ld a, [PartyCount] ; $dcd7
 	and a
 	jp z, Function10486
@@ -15025,7 +15069,11 @@ Function10486: ; 10486 (4:4486)
 	ret
 ; 1048d (4:448d)
 
-INCBIN "baserom.gbc",$1048d,$10493 - $1048d
+INCBIN "baserom.gbc", $1048d, $10492 - $1048d
+
+Function10492: ; 10492
+	ret
+; 10493
 
 
 Function10493: ; 10493
@@ -15228,8 +15276,8 @@ Function105dc: ; 105dc (4:45dc)
 INCBIN "baserom.gbc",$10601,$10629 - $10601
 	callba CheckItemContext
 	ld a, [$d142]
-	ld hl, $4637
-	rst $28
+	ld hl, Jumptable_10637
+	rst JumpTable
 	ret
 
 ; no known jump sources
