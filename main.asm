@@ -41080,31 +41080,37 @@ Function4147b: ; 4147b
 	srl a
 	srl a
 	srl a
-	ld e, $0
+	ld e, 0
 	ld d, a
 	ld a, [$d265]
 	dec a
-	and $7
-	swap a
+	and 7
+	swap a ; * $10
 	ld l, a
-	ld h, $0
+	ld h, 0
 	add hl, de
-	ld de, $5434
+	ld de, Footprints
 	add hl, de
+
 	push hl
 	ld e, l
 	ld d, h
 	ld hl, $9620
-	ld bc, $3e02
+	lb bc, BANK(Footprints), 2
 	call Request1bpp
 	pop hl
-	ld de, $0080
+
+	; Whoever was editing footprints forgot to fix their
+	; tile editor. Now each bottom half is 8 tiles off.
+	ld de, $80
 	add hl, de
+
 	ld e, l
 	ld d, h
 	ld hl, $9640
-	ld bc, $3e02
+	lb bc, BANK(Footprints), 2
 	call Request1bpp
+
 	ret
 ; 414b7
 
@@ -81077,8 +81083,12 @@ TownMapGFX: ; f8ba0
 INCBIN "gfx/misc/town_map.lz"
 ; f8ea3
 
-INCBIN "baserom.gbc", $f8ea3, $fb449 - $f8ea3
+INCBIN "baserom.gbc", $f8ea3, $f9434 - $f8ea3
 
+Footprints:
+INCBIN "gfx/misc/footprints.1bpp"
+
+INCBIN "baserom.gbc", $fb434, $fb449 - $fb434
 
 Functionfb449:: ; fb449
 	ld de, $4200
