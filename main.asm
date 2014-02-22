@@ -9157,7 +9157,58 @@ Functionc840: ; c840
 ; c862
 
 Unknown_c862: ; c862
-INCBIN "baserom.gbc",$c862,$c8ac - $c862
+	dbw $01, Unknown_c872
+	dbw $02, Unknown_c882
+	dbw $03, Unknown_c886
+	dbw $19, Unknown_c899
+	dbw $1f, Unknown_c8a0
+	db -1
+; c872
+
+Unknown_c872: ; c872
+	db $03, $02, $01
+	db $5b, $3c, $00
+	db $5f, $3d, $00
+	db $63, $3f, $00
+	db $67, $3e, $00
+	db -1
+; c882
+
+Unknown_c882: ; c882
+	db $03, $02, $01
+	db -1
+; c886
+
+Unknown_c886: ; c886
+	db $0b, $0a, $01
+	db $32, $6d, $00
+	db $33, $6c, $00
+	db $34, $6f, $00
+	db $35, $4c, $00
+	db $60, $6e, $00
+	db -1
+; c899
+
+Unknown_c899: ; c899
+	db $13, $03, $01
+	db $03, $04, $01
+	db -1
+; c8a0
+
+Unknown_c8a0: ; c8a0
+	db $0f, $17, $00
+	db -1
+; c8a4
+
+Unknown_c8a4: ; c8a4
+	dbw $01, Unknown_c8a8
+	db -1
+; c8a8
+
+Unknown_c8a8: ; c8a8
+	db $07, $36, $00
+	db -1
+; c8ac
 
 Functionc8ac: ; c8ac
 	call Functionc8b5
@@ -10137,7 +10188,7 @@ Functioncdde: ; cdde
 	call Function2a66
 	ld c, [hl]
 	push hl
-	ld hl, $48a4
+	ld hl, Unknown_c8a4
 	call Functionc840
 	pop hl
 	jr nc, .asm_ce09
@@ -13924,7 +13975,7 @@ Functione277:: ; e277
 	ld a, b
 	and a
 	ret z
-	ld hl, $63d9
+	ld hl, UnknownText_0xe3d9
 	call PrintText
 	ld a, $1
 	call GetSRAMBank
@@ -13944,8 +13995,11 @@ Functione3d4: ; e3d4
 	ret
 ; e3d9
 
-INCBIN "baserom.gbc",$e3d9,$e3de - $e3d9
-
+UnknownText_0xe3d9: ; 0xe3d9
+	; was sent to BILL's PC.
+	text_jump UnknownText_0x1c0feb
+	db "@"
+; 0xe3de
 
 Functione3de: ; e3de
 	push de
@@ -13976,13 +14030,17 @@ Functione40a: ; e40a (3:640a)
 	ld a, [PartyCount] ; $dcd7
 	and a
 	ret nz
-	ld hl, $6417
+	ld hl, UnknownText_0xe417
 	call Function1d67
 	scf
 	ret
 ; e417 (3:6417)
 
-INCBIN "baserom.gbc",$e417,$e41c - $e417
+UnknownText_0xe417: ; 0xe417
+	; You gotta have #MON to call!
+	text_jump UnknownText_0x1c1006
+	db "@"
+; 0xe41c
 
 ; known jump sources: e401 (3:6401)
 Functione41c: ; e41c (3:641c)
@@ -13994,7 +14052,7 @@ Functione41c: ; e41c (3:641c)
 	ld a, [hl]
 	push af
 	set 4, [hl]
-	ld hl, $643a
+	ld hl, UnknownText_0xe43a
 	call PrintText
 	pop af
 	ld [Options], a ; $cfcc
@@ -14002,7 +14060,11 @@ Functione41c: ; e41c (3:641c)
 	ret
 ; e43a (3:643a)
 
-INCBIN "baserom.gbc",$e43a,$e43f - $e43a
+UnknownText_0xe43a: ; 0xe43a
+	; What?
+	text_jump UnknownText_0x1c1024
+	db "@"
+; 0xe43f
 
 ; known jump sources: e407 (3:6407)
 Functione43f: ; e43f (3:643f)
@@ -14025,8 +14087,8 @@ Functione443: ; e443 (3:6443)
 	ld a, [$cf88]
 	push af
 	ld a, [MenuSelection] ; $cf74
-	ld hl, $64ba
-	rst $28
+	ld hl, Jumptable_e4ba
+	rst JumpTable
 	pop bc
 	ld a, b
 	jr nc, .asm_e44b
@@ -14043,7 +14105,7 @@ Jumptable_e4ba: ; e4ba (3:64ba)
 	dw Functione4fe
 	dw Functione583
 
-INCBIN "baserom.gbc",$e4c0,$e4fe - $e4c0
+INCBIN "baserom.gbc", $e4c0, $e4fe - $e4c0
 
 ; no known jump sources
 Functione4fe: ; e4fe (3:64fe)
@@ -22418,43 +22480,73 @@ Function149af:: ; 149af
 ; 149c6
 
 Function149c6: ; 149c6
-	ld de, $1
-	ld hl, $49d3
+	ld de, 1
+	ld hl, Unknown_149d3
 	ld a, [StandingTile] ; $d4e4
 	call IsInArray
 	ret
-; 149d3 (5:49d3)
+; 149d3
 
-INCBIN "baserom.gbc",$149d3,$149dd - $149d3
+Unknown_149d3: ; 149d3
+	db $71 ; door
+	db $79
+	db $7a ; stairs
+	db $73
+	db $7b ; cave entrance
+	db $74
+	db $7c ; warp pad
+	db $75
+	db $7d
+	db -1
+; 149dd
 
 Function149dd:: ; 149dd
 	ld a, [StandingTile]
-	ld hl, $49ea
-	ld de, $0001
+	ld hl, Unknown_149ea
+	ld de, 1
 	call IsInArray
 	ret
 ; 149ea
 
-INCBIN "baserom.gbc",$149ea,$149f5 - $149ea
+Unknown_149ea: ; 149ea
+	db $08
+	db $18 ; tall grass
+	db $14 ; tall grass
+	db $28
+	db $29
+	db $48
+	db $49
+	db $4a
+	db $4b
+	db $4c
+	db -1
+; 149f5
 
 Function149f5: ; 149f5
 	ld a, c
-	ld hl, $4a00
-	ld de, $0001
+	ld hl, Unknown_14a00
+	ld de, 1
 	call IsInArray
 	ret
 ; 14a00
 
-INCBIN "baserom.gbc",$14a00,$14a07 - $14a00
-
+Unknown_14a00: ; 14a00
+	db $12 ; cut tree
+	db $1a ; cut tree
+	db $10 ; tall grass
+	db $18 ; tall grass
+	db $14 ; tall grass
+	db $1c ; tall grass
+	db -1
+; 14a07
 
 Function14a07:: ; 14a07
 	ld a, [StandingTile]
 	ld de, $001f
-	cp $71
+	cp $71 ; door
 	ret z
 	ld de, $0013
-	cp $7c
+	cp $7c ; warp pad
 	ret z
 	ld de, $0023
 	ret
