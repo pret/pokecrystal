@@ -14073,7 +14073,7 @@ Functione43f: ; e43f (3:643f)
 
 ; known jump sources: e404 (3:6404)
 Functione443: ; e443 (3:6443)
-	ld hl, $646f
+	ld hl, MenuDataHeader_0xe46f
 	call LoadMenuDataHeader
 	ld a, $1
 .asm_e44b
@@ -14097,15 +14097,79 @@ Functione443: ; e443 (3:6443)
 	ret
 ; e46f (3:646f)
 
-INCBIN "baserom.gbc",$e46f,$e4ba - $e46f
+MenuDataHeader_0xe46f: ; 0xe46f
+	db $40 ; flags
+	db 00, 00 ; start coords
+	db 17, 19 ; end coords
+	dw MenuData2_0xe477
+	db 1 ; default option
+; 0xe477
+
+MenuData2_0xe477: ; 0xe477
+	db $80 ; flags
+	db 0 ; items
+	dw MenuItems_e4c4
+	dw Function1f79
+	dw Strings_e47f
+; 0xe47f
+
+Strings_e47f: ; e47f
+	db "WITHDRAW ", $e1, $e2, "@"
+	db "DEPOSIT ", $e1, $e2, "@"
+	db "CHANGE BOX@"
+	db "MOVE ", $e1, $e2, " W/O MAIL@"
+	db "SEE YA!@"
 
 ; no known jump sources
 Jumptable_e4ba: ; e4ba (3:64ba)
 	dw Functione559
 	dw Functione4fe
 	dw Functione583
+	dw Functione4cd
+	dw Functione4cb
+; e4c4
 
-INCBIN "baserom.gbc", $e4c0, $e4fe - $e4c0
+MenuItems_e4c4: ; e4c4
+	db 5
+	db 0 ; WITHDRAW
+	db 1;  DEPOSIT
+	db 2 ; CHANGE BOX
+	db 3 ; MOVE PKMN
+	db 4 ; SEE YA!
+	db -1
+; e4cb
+
+Functione4cb: ; e4cb
+	scf
+	ret
+; e4cd
+
+Functione4cd: ; e4cd
+	call Function1d6e
+	callba Function44781
+	jr nc, .asm_e4e0
+	ld hl, UnknownText_0xe4f9
+	call PrintText
+	jr .asm_e4f4
+
+.asm_e4e0
+	callba Function14b34
+	jr c, .asm_e4f4
+	callba Functione2759
+	call Function222a
+	call ClearPCItemScreen
+
+.asm_e4f4
+	call Function1c17
+	and a
+	ret
+; e4f9
+
+UnknownText_0xe4f9: ; 0xe4f9
+	; There is a #MON holding MAIL. Please remove the MAIL.
+	text_jump UnknownText_0x1c102b
+	db "@"
+; 0xe4fe
 
 ; no known jump sources
 Functione4fe: ; e4fe (3:64fe)
@@ -22628,7 +22692,26 @@ Function14ab2: ; 14ab2
 	ret
 ; 14ac2
 
-INCBIN "baserom.gbc",$14ac2,$14b54 - $14ac2
+INCBIN "baserom.gbc", $14ac2, $14b34 - $14ac2
+
+Function14b34: ; 14b34
+	ld hl, $52a6
+	call Function1d4f
+	call YesNoBox
+	call Function1c07
+	jr c, .asm_14b52
+	call Function14b89
+	jr c, .asm_14b52
+	call Function14b54
+	call Function14be3
+	call Function14b5a
+	and a
+	ret
+
+.asm_14b52
+	scf
+	ret
+; 14b54
 
 Function14b54: ; 14b54
 	ld a, $1
@@ -42397,7 +42480,29 @@ Function44765: ; 44765 (11:4765)
 	jp CloseSRAM
 ; 44781 (11:4781)
 
-INCBIN "baserom.gbc",$44781,$447a0 - $44781
+Function44781: ; 44781
+	ld a, [PartyCount]
+	and a
+	jr z, .asm_4479e
+	ld e, a
+	ld hl, PartyMon1Item
+.asm_4478b
+	ld d, [hl]
+	push hl
+	push de
+	callba ItemIsMail
+	pop de
+	pop hl
+	ret c
+	ld bc, $0030
+	add hl, bc
+	dec e
+	jr nz, .asm_4478b
+
+.asm_4479e
+	and a
+	ret
+; 447a0
 
 _KrisMailBoxMenu: ; 0x447a0
 	call InitMail
@@ -76694,7 +76799,57 @@ Functione272b: ; e272b (38:672b)
 	ret
 ; e2731 (38:6731)
 
-INCBIN "baserom.gbc",$e2731,$e2963 - $e2731
+INCBIN "baserom.gbc", $e2731, $e2759 - $e2731
+
+Functione2759: ; e2759
+	ld hl, Options
+	ld a, [hl]
+	push af
+	set 4, [hl]
+	ld a, [VramState]
+	push af
+	xor a
+	ld [VramState], a
+	ld a, [$ffaa]
+	push af
+	ld a, $1
+	ld [$ffaa], a
+	xor a
+	ld [$ffde], a
+	call Functione2963
+	ld a, [$db72]
+	and $f
+	inc a
+	ld [$cb2e], a
+	call DelayFrame
+.asm_e2781
+	call Functiona57
+	ld a, [$cf63]
+	bit 7, a
+	jr nz, .asm_e2793
+	call Functione27a2
+	call DelayFrame
+	jr .asm_e2781
+
+.asm_e2793
+	call ClearSprites
+	pop af
+	ld [$ffaa], a
+	pop af
+	ld [VramState], a
+	pop af
+	ld [Options], a
+	ret
+; e27a2
+
+Functione27a2: ; e27a2
+	ld a, [$cf63]
+	ld hl, $67ac
+	call Functione33df
+	jp [hl]
+; e27ac
+
+INCBIN "baserom.gbc", $e27ac, $e2963 - $e27ac
 
 ; known jump sources: e23aa (38:63aa), e259c (38:659c)
 Functione2963: ; e2963 (38:6963)
