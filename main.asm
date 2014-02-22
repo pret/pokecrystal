@@ -81081,9 +81081,9 @@ INCBIN "baserom.gbc", $f8aa0, $f8ba0 - $f8aa0
 
 TownMapGFX: ; f8ba0
 INCBIN "gfx/misc/town_map.lz"
-; f8ea3
+; f8ea4
 
-INCBIN "baserom.gbc", $f8ea3, $f9434 - $f8ea3
+INCBIN "baserom.gbc", $f8ea4, $f9434 - $f8ea4
 
 Footprints:
 INCBIN "gfx/misc/footprints.1bpp"
