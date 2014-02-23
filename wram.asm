@@ -1,6 +1,61 @@
 INCLUDE "includes.asm"
 
 
+party_struct: MACRO
+
+\1Species::  db
+\1Item::     db
+
+\1Moves::
+\1Move1::    db
+\1Move2::    db
+\1Move3::    db
+\1Move4::    db
+
+\1ID::       dw
+\1Exp::      ds 3 ; Big endian
+\1HPExp::    dw
+\1AtkExp::   dw
+\1DefExp::   dw
+\1SpdExp::   dw
+\1SpclExp::  dw
+
+\1DVs::
+\1AtkDefDV:: db
+\1SpdSpcDV:: db
+
+\1PP::
+\1PP1::      db
+\1PP2::      db
+\1PP3::      db
+\1PP4::      db
+
+\1Happiness::     db
+\1PokerusStatus:: db
+
+\1CaughtData::
+\1CaughtTime::
+\1CaughtLevel::    db
+\1CaughtGender::
+\1CaughtLocation:: db
+
+\1Level:: db
+
+\1Status::   db
+\1Unused::   db
+
+; Stats are big endian.
+\1HP::       dw
+\1MaxHP::    dw
+\1Attack::   dw
+\1Defense::  dw
+\1Speed::    dw
+\1SpclAtk::  dw
+\1SpclDef::  dw
+
+ENDM
+
+
 SECTION "tiles0",VRAM[$8000],BANK[0]
 VTiles0::
 SECTION "tiles1",VRAM[$8800],BANK[0]
@@ -2089,7 +2144,13 @@ EggSpecies:: ; df7b
 	ds 1
 	ds 31
 
-SECTION "RoamMons",WRAMX[$dfcf],BANK[1]
+	ds 1
+
+wContestMon:: ; df9c
+	party_struct wContestMon
+
+	ds 3
+
 RoamMon1Species:: ; dfcf
 	ds 1
 RoamMon1Level:: ; dfd0
