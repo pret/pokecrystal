@@ -20603,7 +20603,7 @@ UnknownScript_0x1369a: ; 0x1369a
 
 
 Function1369d: ; 1369d
-	call Function13900
+	call ContestScore
 	callba Function105f79
 	call Function13819
 	ld a, [$d00a]
@@ -20611,26 +20611,83 @@ Function1369d: ; 1369d
 	ld a, [$d00b]
 	ld [$d265], a
 	call GetPokemonName
-	ld hl, $7719
+	ld hl, UnknownText_0x13719
 	call PrintText
 	ld a, [EndFlypoint]
 	call Function13730
 	ld a, [MovementBuffer]
 	ld [$d265], a
 	call GetPokemonName
-	ld hl, $7702
+	ld hl, UnknownText_0x13702
 	call PrintText
 	ld a, [DefaultFlypoint]
 	call Function13730
 	ld a, [$d003]
 	ld [$d265], a
 	call GetPokemonName
-	ld hl, $76eb
+	ld hl, UnknownText_0x136eb
 	call PrintText
 	jp Function13807
 ; 136eb
 
-INCBIN "baserom.gbc",$136eb,$13730 - $136eb
+UnknownText_0x136eb: ; 0x136eb
+	text_jump UnknownText_0x1c10fa
+	start_asm
+; 0x136f0
+
+Function136f0: ; 136f0
+	ld de, SFX_1ST_PLACE
+	call PlaySFX
+	call WaitSFX
+	ld hl, UnknownText_0x136fd
+	ret
+; 136fd
+
+UnknownText_0x136fd: ; 0x136fd
+	; The winning score was @  points!
+	text_jump UnknownText_0x1c113f
+	db "@"
+; 0x13702
+
+UnknownText_0x13702: ; 0x13702
+	; Placing second was @ , who caught a @ !@ @
+	text_jump UnknownText_0x1c1166
+	start_asm
+; 0x13707
+
+Function13707: ; 13707
+	ld de, SFX_2ND_PLACE
+	call PlaySFX
+	call WaitSFX
+	ld hl, UnknownText_0x13714
+	ret
+; 13714
+
+UnknownText_0x13714: ; 0x13714
+	; The score was @  points!
+	text_jump UnknownText_0x1c1196
+	db "@"
+; 0x13719
+
+UnknownText_0x13719: ; 0x13719
+	; Placing third was @ , who caught a @ !@ @
+	text_jump UnknownText_0x1c11b5
+	start_asm
+; 0x1371e
+
+Function1371e: ; 1371e
+	ld de, SFX_3RD_PLACE
+	call PlaySFX
+	call WaitSFX
+	ld hl, UnknownText_0x1372b
+	ret
+; 1372b
+
+UnknownText_0x1372b: ; 0x1372b
+	; The score was @  points!
+	text_jump UnknownText_0x1c11e4
+	db "@"
+; 0x13730
 
 Function13730: ; 13730
 	dec a
@@ -20845,72 +20902,92 @@ Function138b0: ; 138b0
 	ret
 ; 13900
 
-Function13900: ; 13900
+ContestScore: ; 13900
+; Determine the player's score in the Bug Catching Contest.
+
 	xor a
 	ld [hProduct], a
 	ld [hMultiplicand], a
-	ld a, [$df9c]
+
+	ld a, [wContestMonSpecies] ; Species
 	and a
-	jr z, .asm_1397e
-	ld a, [$dfc1]
-	call Function1397f
-	ld a, [$dfc1]
-	call Function1397f
-	ld a, [$dfc1]
-	call Function1397f
-	ld a, [$dfc1]
-	call Function1397f
-	ld a, [$dfc3]
-	call Function1397f
-	ld a, [$dfc5]
-	call Function1397f
-	ld a, [$dfc7]
-	call Function1397f
-	ld a, [$dfc9]
-	call Function1397f
-	ld a, [$dfcb]
-	call Function1397f
-	ld a, [$dfb1]
+	jr z, .done
+
+	; Tally the following:
+
+	; Max HP * 4
+	ld a, [wContestMonMaxHP + 1]
+	call .AddContestStat
+	ld a, [wContestMonMaxHP + 1]
+	call .AddContestStat
+	ld a, [wContestMonMaxHP + 1]
+	call .AddContestStat
+	ld a, [wContestMonMaxHP + 1]
+	call .AddContestStat
+
+	; Stats
+	ld a, [wContestMonAttack  + 1]
+	call .AddContestStat
+	ld a, [wContestMonDefense + 1]
+	call .AddContestStat
+	ld a, [wContestMonSpeed   + 1]
+	call .AddContestStat
+	ld a, [wContestMonSpclAtk + 1]
+	call .AddContestStat
+	ld a, [wContestMonSpclDef + 1]
+	call .AddContestStat
+
+	; DVs
+	ld a, [wContestMonAtkDefDV]
 	ld b, a
-	and $2
+	and 2
 	add a
 	add a
 	ld c, a
+
 	swap b
 	ld a, b
-	and $2
+	and 2
 	add a
 	add c
 	ld d, a
-	ld a, [$dfb2]
+
+	ld a, [wContestMonSpdSpcDV]
 	ld b, a
-	and $2
+	and 2
 	ld c, a
+
 	swap b
 	ld a, b
-	and $2
+	and 2
 	srl a
 	add c
 	add c
 	add d
 	add d
-	call Function1397f
-	ld a, [$dfbf]
-	srl a
-	srl a
-	srl a
-	call Function1397f
-	ld a, [$df9d]
-	and a
-	jr z, .asm_1397e
-	ld a, $1
-	call Function1397f
 
-.asm_1397e
+	call .AddContestStat
+
+	; Remaining HP / 8
+	ld a, [wContestMonHP + 1]
+	srl a
+	srl a
+	srl a
+	call .AddContestStat
+
+	; Whether it's holding an item
+	ld a, [wContestMonItem]
+	and a
+	jr z, .done
+
+	ld a, 1
+	call .AddContestStat
+
+.done
 	ret
 ; 1397f
 
-Function1397f: ; 1397f
+.AddContestStat: ; 1397f
 	ld hl, hMultiplicand
 	add [hl]
 	ld [hl], a
