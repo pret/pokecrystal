@@ -6514,7 +6514,7 @@ LoadEnemyMon: ; 3e8eb
 	
 .OpponentParty
 ; Get HP from the party struct
-	ld hl, (PartyMon1HP + 1) - PartyMon1 + OTPartyMon1
+	ld hl, (OTPartyMon1HP + 1)
 	ld a, [CurPartyMon]
 	call GetPartyLocation
 	ld a, [hld]
