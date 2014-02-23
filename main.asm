@@ -5094,8 +5094,13 @@ Function639b: ; 639b
 ; 63ca
 
 Data63ca: ; 63ca
-INCBIN "baserom.gbc",$63ca,$63e2 - $63ca
-
+	db $5c, $50, $00, $00
+	db $5c, $68, $5c, $58
+	db $5c, $68, $5c, $78
+	db $5c, $88, $5c, $78
+	db $00, $00, $5c, $78
+	db $00, $00, $5c, $58
+; 63e2
 
 Copyright: ; 63e2
 	call ClearTileMap
@@ -6897,7 +6902,10 @@ Function8029: ; 8029
 ; 8071
 
 Data8071: ; 8071
-INCBIN "baserom.gbc",$8071,$807e - $8071
+; A dummy map object used to initialize the player object.
+; Shorter than the actual amount copied by two bytes.
+; Said bytes seem to be unused.
+	db $01, $00, $00, $0b, $ff, $ff, $ff, $00, $00, $00, $00, $ff, $ff
 ; 807e
 
 Function807e:: ; 807e
