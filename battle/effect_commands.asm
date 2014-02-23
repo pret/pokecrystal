@@ -1951,7 +1951,7 @@ Function349f4: ; 349f4
 	ld e, 0
 	ld b, $20
 	ld c, 0
-	ld hl, OTPartyMon1CurHP
+	ld hl, OTPartyMon1HP
 
 .asm_34a05
 	ld a, [CurOTMon]
@@ -2059,7 +2059,7 @@ Function34a85: ; 34a85
 	push bc
 	ld a, [OTPartyCount]
 	ld e, a
-	ld hl, OTPartyMon1CurHP
+	ld hl, OTPartyMon1HP
 	ld b, $20
 	ld c, $0
 .asm_34a91
@@ -2254,7 +2254,7 @@ Function34b77: ; 34b77
 	ld de, OTPartySpecies
 	ld b, $20
 	ld c, 0
-	ld hl, OTPartyMon1CurHP
+	ld hl, OTPartyMon1HP
 
 .asm_34b82
 	ld a, [de]
@@ -7286,7 +7286,7 @@ BattleCommand23: ; 3680f
 	jr z, .asm_3689a ; 368a3 $f5
 	push af
 	push bc
-	ld hl, OTPartyMon1CurHP
+	ld hl, OTPartyMon1HP
 	call GetPartyLocation
 	ld a, [hli]
 	or [hl]
@@ -7382,7 +7382,7 @@ BattleCommand23: ; 3680f
 
 	push af
 	push bc
-	ld hl, PartyMon1CurHP
+	ld hl, PartyMon1HP
 	call GetPartyLocation
 	ld a, [hli]
 	or [hl]
@@ -7437,7 +7437,7 @@ Function36994: ; 36994
 	jr z, .asm_369ae
 
 	ld a, e
-	ld hl, PartyMon1CurHP
+	ld hl, PartyMon1HP
 	call AddNTimes
 	ld a, [hli]
 	or [hl]
@@ -9860,7 +9860,7 @@ ResetBatonPassStatus: ; 37ab1
 
 
 CheckAnyOtherAlivePartyMons: ; 37ae9
-	ld hl, PartyMon1CurHP
+	ld hl, PartyMon1HP
 	ld a, [PartyCount]
 	ld d, a
 	ld a, [CurBattleMon]
@@ -9870,7 +9870,7 @@ CheckAnyOtherAlivePartyMons: ; 37ae9
 
 
 CheckAnyOtherAliveEnemyMons: ; 37af6
-	ld hl, OTPartyMon1CurHP
+	ld hl, OTPartyMon1HP
 	ld a, [OTPartyCount]
 	ld d, a
 	ld a, [CurOTMon]

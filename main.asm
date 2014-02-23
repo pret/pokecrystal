@@ -13408,7 +13408,7 @@ Functiondf8c:: ; df8c
 	ld [hl], a
 	ld a, [PartyCount]
 	dec a
-	ld hl, PartyMon1CurHP
+	ld hl, PartyMon1HP
 	ld bc, $0030
 	call AddNTimes
 	xor a
@@ -14218,7 +14218,7 @@ UnknownText_0xe533: ; 0xe533
 
 
 Functione538: ; e538
-	ld hl, PartyMon1CurHP
+	ld hl, PartyMon1HP
 	ld de, $0030
 	ld b, $0
 .asm_e540
@@ -21093,7 +21093,7 @@ Function139ed: ; 139ed
 INCBIN "baserom.gbc",$139fe,$13a12 - $139fe
 
 Function13a12: ; 13a12
-	ld hl, PartyMon1CurHP
+	ld hl, PartyMon1HP
 	ld a, [hli]
 	or [hl]
 	jr z, .asm_13a2b
@@ -35592,7 +35592,7 @@ Function2a1df:: ; 2a1df
 	ld a, [$dca1]
 	and a
 	jr z, .asm_2a1fe
-	ld hl, PartyMon1CurHP
+	ld hl, PartyMon1HP
 	ld bc, PartyMon2 - PartyMon1 - 1
 .asm_2a1eb
 	ld a, [hli]
@@ -35772,9 +35772,9 @@ InitRoamMons: ; 2a2a0
 
 ; hp
 	xor a ; generate new stats
-	ld [RoamMon1CurHP], a
-	ld [RoamMon2CurHP], a
-;	ld [RoamMon3CurHP], a
+	ld [RoamMon1HP], a
+	ld [RoamMon2HP], a
+;	ld [RoamMon3HP], a
 
 	ret
 ; 2a2ce
@@ -36222,10 +36222,10 @@ INCLUDE "stats/wild/swarm_water.asm"
 
 Function2b930: ; 2b930
 	callba UpdateEnemyMonInParty
-	ld hl, PartyMon1CurHP
+	ld hl, PartyMon1HP
 	call Function2b995
 	push bc
-	ld hl, OTPartyMon1CurHP
+	ld hl, OTPartyMon1HP
 	call Function2b995
 	ld a, c
 	pop bc
@@ -36242,10 +36242,10 @@ Function2b930: ; 2b930
 	jr z, .asm_2b976
 	cp $2
 	jr z, .asm_2b97f
-	ld hl, PartyMon1CurHP
+	ld hl, PartyMon1HP
 	call Function2b9a6
 	push de
-	ld hl, OTPartyMon1CurHP
+	ld hl, OTPartyMon1HP
 	call Function2b9a6
 	pop hl
 	ld a, d
@@ -36343,16 +36343,16 @@ Function2b9a6: ; 2b9a6
 ; 2b9e1
 
 Function2b9e1: ; 2b9e1
-	ld hl, PartyMon1CurHP
+	ld hl, PartyMon1HP
 	call Function2ba01
 	jr nz, .asm_2b9f2
-	ld hl, OTPartyMon1CurHP
+	ld hl, OTPartyMon1HP
 	call Function2ba01
 	ld e, $1
 	ret
 
 .asm_2b9f2
-	ld hl, OTPartyMon1CurHP
+	ld hl, OTPartyMon1HP
 	call Function2ba01
 	ld e, $0
 	ret nz
@@ -36424,7 +36424,7 @@ Function2c012: ; 2c012
 
 Function2c01c: ; 2c01c
 	call Function2c0ad
-	ld hl, PartyMon1CurHP
+	ld hl, PartyMon1HP
 	ld de, PartyCount
 	call Function2c059
 	ld a, $60
@@ -36441,7 +36441,7 @@ Function2c01c: ; 2c01c
 
 Function2c03a: ; 2c03a
 	call Function2c0c5
-	ld hl, OTPartyMon1CurHP
+	ld hl, OTPartyMon1HP
 	ld de, OTPartyCount
 	call Function2c059
 	ld hl, $cfc4
@@ -36589,7 +36589,7 @@ Function2c0f1: ; 2c0f1
 
 Function2c10d: ; 2c10d
 	call Function2c165
-	ld hl, PartyMon1CurHP
+	ld hl, PartyMon1HP
 	ld de, PartyCount
 	call Function2c059
 	ld hl, $cfc4
@@ -36600,7 +36600,7 @@ Function2c10d: ; 2c10d
 	ld [$d003], a
 	ld hl, Sprites
 	call Function2c143
-	ld hl, OTPartyMon1CurHP
+	ld hl, OTPartyMon1HP
 	ld de, OTPartyCount
 	call Function2c059
 	ld hl, $cfc4
@@ -37838,7 +37838,7 @@ Function2ee2f: ; 2ee2f
 	ld [$ffde], a
 	call DelayFrame
 	ld b, 6
-	ld hl, PartyMon1CurHP
+	ld hl, PartyMon1HP
 	ld de, PartyMon2 - PartyMon1 - 1
 .asm_2ee3d
 	ld a, [hli]
@@ -37849,7 +37849,7 @@ Function2ee2f: ; 2ee2f
 	jr nz, .asm_2ee3d
 
 .asm_2ee45
-	ld de, PartyMon1Level - PartyMon1CurHP
+	ld de, PartyMon1Level - PartyMon1HP
 	add hl, de
 	ld a, [hl]
 	ld [BattleMonLevel], a
@@ -38610,7 +38610,7 @@ asm_38436: ; 38436 (e:4436)
 Function3844b: ; 3844b
 	ld a, [OTPartyCount]
 	ld c, a
-	ld hl, OTPartyMon1CurHP
+	ld hl, OTPartyMon1HP
 	ld d, 0
 .asm_38454
 	ld a, [hli]
@@ -47317,7 +47317,7 @@ Function4aafb: ; 4aafb
 Function4ab06: ; 4ab06
 	ld a, [CurPartyMon]
 	ld bc, $0030
-	ld hl, PartyMon1CurHP
+	ld hl, PartyMon1HP
 	call AddNTimes
 	ld a, [hli]
 	ld b, a
@@ -49821,7 +49821,7 @@ Function4deea: ; 4deea (13:5eea)
 
 ; known jump sources: 4deea (13:5eea)
 Function4df45: ; 4df45 (13:5f45)
-	ld hl, TempMonCurHP ; $d130
+	ld hl, TempMonHP ; $d130
 	ld a, [hli]
 	ld b, a
 	ld c, [hl]
@@ -51493,7 +51493,7 @@ Function500cf: ; 500cf
 Function50117: ; 50117
 	ld a, b
 	ld bc, $0030
-	ld hl, PartyMon1CurHP
+	ld hl, PartyMon1HP
 	call AddNTimes
 	ld a, [hli]
 	or [hl]
@@ -51533,7 +51533,7 @@ Function50138: ; 50138
 	push hl
 	ld a, b
 	ld bc, $0030
-	ld hl, PartyMon1CurHP
+	ld hl, PartyMon1HP
 	call AddNTimes
 	ld e, l
 	ld d, h
@@ -52497,7 +52497,7 @@ _SacredAsh: ; 507e6
 CheckAnyFaintedMon: ; 507fb
 	ld de, PartyMon2 - PartyMon1
 	ld bc, PartySpecies
-	ld hl, PartyMon1CurHP
+	ld hl, PartyMon1HP
 	ld a, [PartyCount]
 	and a
 	ret z
@@ -52613,7 +52613,7 @@ Function50893: ; 50893
 	ld a, $c
 	call Predef
 	pop bc
-	ld hl, TempMonCurHP - TempMon
+	ld hl, TempMonHP - TempMon
 	add hl, bc
 	ld d, h
 	ld e, l
@@ -52821,9 +52821,9 @@ DrawHP: ; 50b10
 	cp BOXMON
 	jr z, .asm_50b30
 
-	ld a, [TempMonCurHP]
+	ld a, [TempMonHP]
 	ld b, a
-	ld a, [TempMonCurHP + 1]
+	ld a, [TempMonHP + 1]
 	ld c, a
 
 ; Any HP?
@@ -52870,7 +52870,7 @@ DrawHP: ; 50b10
 ; Print HP 
 	ld bc, $0015 ; move (1,1)
 	add hl, bc
-	ld de, TempMonCurHP
+	ld de, TempMonHP
 	ld a, [MonType]
 	cp BOXMON
 	jr nz, .asm_50b66
@@ -81380,7 +81380,7 @@ Functionfb5dd: ; fb5dd
 	jr z, .asm_fb5f8
 	push bc
 	ld a, c
-	ld hl, PartyMon1CurHP
+	ld hl, PartyMon1HP
 	call GetPartyLocation
 	pop bc
 	ld a, [hli]
@@ -81392,7 +81392,7 @@ Functionfb5dd: ; fb5dd
 	dec b
 	jr nz, .asm_fb5e7
 	ld a, [$d003]
-	ld hl, OTPartyMon1CurHP
+	ld hl, OTPartyMon1HP
 	call GetPartyLocation
 	ld a, [hli]
 	or [hl]
