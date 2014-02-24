@@ -31023,13 +31023,13 @@ Function251f4: ; 251f4 (9:51f4)
 	ld d, $6
 	call Function253b0
 	call WaitBGMap
-	ld de, $5583
+	ld de, LeaderGFX
 	ld hl, $9290
-	ld bc, $956
+	lb bc, BANK(LeaderGFX), $56
 	call Request2bpp
-	ld de, $6043
+	ld de, BadgeGFX
 	ld hl, $8000
-	ld bc, $92c
+	lb bc, BANK(BadgeGFX), $2c
 	call Request2bpp
 	call Function2536c
 	call Function251ab
@@ -31066,13 +31066,13 @@ Function2524c: ; 2524c (9:524c)
 	ld d, $6
 	call Function253b0
 	call WaitBGMap
-	ld de, $5ae3
+	ld de, LeaderGFX2
 	ld hl, $9290
-	ld bc, $956
+	lb bc, BANK(LeaderGFX2), $56
 	call Request2bpp
-	ld de, $6303
+	ld de, BadgeGFX2
 	ld hl, $8000
-	ld bc, $92c
+	lb bc, BANK(BadgeGFX2), $2c
 	call Request2bpp
 	call Function2536c
 	call Function251ab
@@ -31398,8 +31398,14 @@ Function2547b: ; 2547b (9:547b)
 	jr .asm_2548a
 ; 254a7 (9:54a7)
 
-INCBIN "baserom.gbc",$254a7,$265d3 - $254a7
+INCBIN "baserom.gbc", $254a7, $25583 - $254a7
 
+LeaderGFX:  INCBIN "gfx/misc/leaders.2bpp"
+LeaderGFX2: INCBIN "gfx/misc/leaders.2bpp"
+BadgeGFX:   INCBIN "gfx/misc/badges.2bpp"
+BadgeGFX2:  INCBIN "gfx/misc/badges.2bpp"
+
+INCBIN "baserom.gbc", $265c3, $265d3 - $265c3
 
 ProfOaksPC: ; 0x265d3
 	ld hl, OakPCText1
