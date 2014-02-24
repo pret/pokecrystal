@@ -30921,15 +30921,15 @@ Function2513b: ; 2513b (9:513b)
 	call ClearTileMap
 	call DisableLCD
 	callba Function8833e
-	ld hl, $65c3
+	ld hl, CardRightCornerGFX
 	ld de, $91c0
 	ld bc, $10
-	ld a, $9
+	ld a, BANK(CardRightCornerGFX)
 	call FarCopyBytes
-	ld hl, $5523
+	ld hl, CardStatusGFX
 	ld de, $9290
-	ld bc, $560
-	ld a, $9
+	ld bc, $60 + $500
+	ld a, BANK(CardStatusGFX)
 	call FarCopyBytes
 	call Function25299
 	ld hl, $c540
@@ -30992,9 +30992,9 @@ Function251b6: ; 251b6 (9:51b6)
 	ld d, $6
 	call Function253b0
 	call WaitBGMap
-	ld de, $5523
+	ld de, CardStatusGFX
 	ld hl, $9290
-	ld bc, $956
+	lb bc, BANK(CardStatusGFX), $6 + $50
 	call Request2bpp
 	call Function2530a
 	call Function251ab
@@ -31398,14 +31398,17 @@ Function2547b: ; 2547b (9:547b)
 	jr .asm_2548a
 ; 254a7 (9:54a7)
 
-INCBIN "baserom.gbc", $254a7, $25583 - $254a7
+INCBIN "baserom.gbc", $254a7, $25523 - $254a7
+
+CardStatusGFX: INCBIN "gfx/misc/card_status.2bpp"
 
 LeaderGFX:  INCBIN "gfx/misc/leaders.2bpp"
 LeaderGFX2: INCBIN "gfx/misc/leaders.2bpp"
 BadgeGFX:   INCBIN "gfx/misc/badges.2bpp"
 BadgeGFX2:  INCBIN "gfx/misc/badges.2bpp"
 
-INCBIN "baserom.gbc", $265c3, $265d3 - $265c3
+CardRightCornerGFX: INCBIN "gfx/misc/card_right_corner.2bpp"
+
 
 ProfOaksPC: ; 0x265d3
 	ld hl, OakPCText1
