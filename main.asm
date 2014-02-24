@@ -34819,10 +34819,10 @@ Function29277: ; 29277
 ; 29281
 
 Function29281: ; 29281
-	and $3
+	and 3
 	ld e, a
-	ld d, $0
-	ld hl, $528f
+	ld d, 0
+	ld hl, Jumptable_2928f
 	add hl, de
 	add hl, de
 	ld a, [hli]
@@ -34831,7 +34831,68 @@ Function29281: ; 29281
 	jp [hl]
 ; 2928f
 
-INCBIN "baserom.gbc", $2928f, $292f6 - $2928f
+Jumptable_2928f: ; 2928f
+	dw Function29297
+	dw Function292af
+	dw Function292be
+	dw Function29297
+; 29297
+
+Function29297: ; 29297
+	call Function297cf
+	ld hl, $c4e5
+	ld [hl], $5b
+	inc hl
+	ld bc, $000a
+	ld a, $60
+	call ByteFill
+	ld hl, $c4cb
+	call Function292ec
+	ret
+; 292af
+
+Function292af: ; 292af
+	call Function297cf
+	ld hl, $c4dc
+	ld bc, $0014
+	ld a, $60
+	call ByteFill
+	ret
+; 292be
+
+Function292be: ; 292be
+	call Function297cf
+	ld hl, $c4dc
+	ld bc, $0011
+	ld a, $60
+	call ByteFill
+	ld hl, $c4ed
+	ld a, $5d
+	ld [hl], a
+	ld a, $61
+	ld de, $0014
+	ld c, $3
+.asm_292d9
+	add hl, de
+	ld [hl], a
+	dec c
+	jr nz, .asm_292d9
+	add hl, de
+	ld a, $5f
+	ld [hld], a
+	ld a, $5b
+	ld [hl], a
+	ld hl, $c522
+	call Function292ec
+	ret
+; 292ec
+
+Function292ec: ; 292ec
+	ld de, $58c7
+	ld bc, $0806
+	call Function297db
+	ret
+; 292f6
 
 Function292f6: ; 292f6
 	push af
@@ -35228,13 +35289,17 @@ Function295a1: ; 295a1
 	ld c, $d
 	call TextBox
 	ld hl, $c4cc
-	ld de, $55c2
+	ld de, String295c2
 	call PlaceString
 	call Function295d8
 	ret
 ; 295c2
 
-INCBIN "baserom.gbc", $295c2, $295d8 - $295c2
+String295c2: ; 295c2
+	db "EGG", $4e
+	db "OT/?????", $4e
+	db $73, "№.?????@"
+; 295d8
 
 Function295d8: ; 295d8
 	call WaitBGMap
@@ -35259,7 +35324,7 @@ Function295ef: ; 295ef
 ; 295f6
 
 Function295f6: ; 295f6
-	cp $3
+	cp 3
 	jr c, .asm_295fb
 	xor a
 
@@ -35269,8 +35334,8 @@ Function295f6: ; 295f6
 	call PlaceString
 	inc bc
 	pop af
-	ld hl, $560e
-	ld d, $0
+	ld hl, Unknown_2960e
+	ld d, 0
 	ld e, a
 	add hl, de
 	ld a, [hl]
@@ -35278,7 +35343,9 @@ Function295f6: ; 295f6
 	ret
 ; 2960e
 
-INCBIN "baserom.gbc", $2960e, $29611 - $2960e
+Unknown_2960e: ; 2960e
+	db " ", "♂", "♀"
+; 29611
 
 Function29611: ; 29611
 	ld hl, $c51f
@@ -35342,14 +35409,15 @@ Function29676: ; 29676 (a:5676)
 	ld hl, $b
 	add hl, bc
 	ld e, [hl]
-	ld d, $0
-	ld hl, $5686
+	ld d, 0
+	ld hl, Jumptable_29686
 	add hl, de
 	add hl, de
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
 	jp [hl]
+; 29686
 
 ; no known jump sources
 Jumptable_29686: ; 29686 (a:5686)
@@ -35360,7 +35428,7 @@ Jumptable_29686: ; 29686 (a:5686)
 	dw Function296cf
 	dw Function296dd
 	dw Function296f2
-
+; 2969a
 
 ; known jump sources: 2969a (a:569a), 296ac (a:56ac), 296ba (a:56ba), 296da (a:56da), 296e8 (a:56e8)
 Function29694: ; 29694 (a:5694)
@@ -35460,11 +35528,11 @@ Function29701: ; 29701
 	ld a, [InLinkBattle]
 	cp $1
 	jr z, .asm_29725
-	ld hl, $5737
+	ld hl, UnknownText_0x29737
 	call PrintText
 	ld c, $bd
 	call DelayFrames
-	ld hl, $5732
+	ld hl, UnknownText_0x29732
 	call PrintText
 	call Function297c9
 	ld c, $80
@@ -35473,27 +35541,47 @@ Function29701: ; 29701
 	ret
 
 .asm_29725
-	ld hl, $5732
+	ld hl, UnknownText_0x29732
 	call PrintText
 	call Function297c9
 	call Function29114
 	ret
 ; 29732
 
-INCBIN "baserom.gbc", $29732, $2973c - $29732
+UnknownText_0x29732: ; 0x29732
+	; was sent to @ .
+	text_jump UnknownText_0x1bc6e9
+	db "@"
+; 0x29737
+
+UnknownText_0x29737: ; 0x29737
+	; 
+	text_jump UnknownText_0x1bc701
+	db "@"
+; 0x2973c
 
 Function2973c: ; 2973c
-	ld hl, $5752
+	ld hl, UnknownText_0x29752
 	call PrintText
 	call Function297c9
-	ld hl, $5757
+	ld hl, UnknownText_0x29757
 	call PrintText
 	call Function297c9
 	call Function29114
 	ret
 ; 29752
 
-INCBIN "baserom.gbc", $29752, $2975c - $29752
+UnknownText_0x29752: ; 0x29752
+	; bids farewell to
+	text_jump UnknownText_0x1bc703
+	db "@"
+; 0x29757
+
+UnknownText_0x29757: ; 0x29757
+	; .
+	text_jump UnknownText_0x1bc719
+	db "@"
+; 0x2975c
 
 Function2975c: ; 2975c
 	call WaitTop
@@ -35502,20 +35590,24 @@ Function2975c: ; 2975c
 	ld a, $7f
 	call ByteFill
 	call WaitBGMap
-	ld hl, $577a
+	ld hl, UnknownText_0x2977a
 	call PrintText
 	call Function297c9
 	call Function29114
 	ret
 ; 2977a
 
-INCBIN "baserom.gbc", $2977a, $2977f - $2977a
+UnknownText_0x2977a: ; 0x2977a
+	; Take good care of @ .
+	text_jump UnknownText_0x1bc71f
+	db "@"
+; 0x2977f
 
 Function2977f: ; 2977f
-	ld hl, $579a
+	ld hl, UnknownText_0x2979a
 	call PrintText
 	call Function297c9
-	ld hl, $579f
+	ld hl, UnknownText_0x2979f
 	call PrintText
 	call Function297c9
 	ld c, $e
@@ -35524,13 +35616,23 @@ Function2977f: ; 2977f
 	ret
 ; 2979a
 
-INCBIN "baserom.gbc", $2979a, $297a4 - $2979a
+UnknownText_0x2979a: ; 0x2979a
+	; For @ 's @ ,
+	text_jump UnknownText_0x1bc739
+	db "@"
+; 0x2979f
+
+UnknownText_0x2979f: ; 0x2979f
+	; sends @ .
+	text_jump UnknownText_0x1bc74c
+	db "@"
+; 0x297a4
 
 Function297a4: ; 297a4
-	ld hl, $57bf
+	ld hl, UnknownText_0x297bf
 	call PrintText
 	call Function297c9
-	ld hl, $57c4
+	ld hl, UnknownText_0x297c4
 	call PrintText
 	call Function297c9
 	ld c, $e
@@ -35539,7 +35641,17 @@ Function297a4: ; 297a4
 	ret
 ; 297bf
 
-INCBIN "baserom.gbc", $297bf, $297c9 - $297bf
+UnknownText_0x297bf: ; 0x297bf
+	; will trade @ @
+	text_jump UnknownText_0x1bc75e
+	db "@"
+; 0x297c4
+
+UnknownText_0x297c4: ; 0x297c4
+	; for @ 's @ .
+	text_jump UnknownText_0x1bc774
+	db "@"
+; 0x297c9
 
 Function297c9: ; 297c9
 	ld c, $50
