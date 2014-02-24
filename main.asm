@@ -34470,18 +34470,18 @@ Function28fdb: ; 28fdb
 	ld bc, $0800
 	ld a, $7f
 	call ByteFill
-	ld hl, $599b
+	ld hl, TradeGameBoyLZ
 	ld de, $9310
 	call Decompress
-	ld hl, $591b
+	ld hl, TradeArrowGFX
 	ld de, $8ed0
 	ld bc, $0010
-	ld a, $a
+	ld a, BANK(TradeArrowGFX)
 	call FarCopyBytes
-	ld hl, $592b
+	ld hl, TradeArrowGFX + $10
 	ld de, $8ee0
 	ld bc, $0010
-	ld a, $a
+	ld a, BANK(TradeArrowGFX)
 	call FarCopyBytes
 	xor a
 	ld [hSCX], a
@@ -35732,17 +35732,17 @@ Function2981d: ; 2981d
 
 Function2982b: ; 2982b
 	call DelayFrame
-	ld de, $5adb
+	ld de, TradeBallGFX
 	ld hl, $8620
-	ld bc, $0a06
+	lb bc, BANK(TradeBallGFX), $6
 	call Request2bpp
-	ld de, $5b3b
+	ld de, TradePoofGFX
 	ld hl, $8680
-	ld bc, $0a0c
+	lb bc, BANK(TradePoofGFX), $c
 	call Request2bpp
-	ld de, $593b
+	ld de, TradeCableGFX
 	ld hl, $8740
-	ld bc, $0a04
+	lb bc, BANK(TradeCableGFX), $4
 	call Request2bpp
 	xor a
 	ld hl, $c300
@@ -35755,9 +35755,9 @@ Function2985a: ; 2985a
 	call DelayFrame
 	ld e, $3
 	callab Function8e83f
-	ld de, $595b
+	ld de, TradeBubbleGFX
 	ld hl, $8720
-	ld bc, $0a04
+	lb bc, BANK(TradeBubbleGFX), $4
 	call Request2bpp
 	xor a
 	ld hl, $c300
@@ -35792,7 +35792,14 @@ Function29886: ; 29886
 	ret
 ; 29893
 
-INCBIN "baserom.gbc", $29893, $29bfb - $29893
+INCBIN "baserom.gbc", $29893, $2991b - $29893
+
+TradeArrowGFX:  INCBIN "gfx/trade/arrow.2bpp"
+TradeCableGFX:  INCBIN "gfx/trade/cable.2bpp"
+TradeBubbleGFX: INCBIN "gfx/trade/bubble.2bpp"
+TradeGameBoyLZ: INCBIN "gfx/trade/game_boy.lz"
+TradeBallGFX:   INCBIN "gfx/trade/ball.2bpp"
+TradePoofGFX:   INCBIN "gfx/trade/poof.2bpp"
 
 Function29bfb: ; 29bfb
 	ld hl, PartySpecies
