@@ -32795,7 +32795,7 @@ Function28177: ; 28177
 ; 283b2
 
 Function283b2: ; 283b2
-	ld de, Unknown_283ed
+	ld de, UnknownText_0x283ed
 	ld b, $a
 .asm_283b7
 	call DelayFrame
@@ -32826,8 +32826,11 @@ Function283b2: ; 283b2
 	ret
 ; 283ed
 
-Unknown_283ed:
-INCBIN "baserom.gbc",$283ed,$283f2 - $283ed
+UnknownText_0x283ed: ; 0x283ed
+	; Too much time has elapsed. Please try again.
+	text_jump UnknownText_0x1c4183
+	db "@"
+; 0x283f2
 
 Function283f2: ; 283f2
 	ld a, $1
@@ -33433,7 +33436,21 @@ Function28771: ; 28771
 ; 28785
 
 Unknown_28785: ; 28785
-INCBIN "baserom.gbc",$28785,$2879e - $28785
+; Alternate mappings for unused items.
+	db $19, LEFTOVERS
+	db $2d, BITTER_BERRY
+	db $32, GOLD_BERRY
+	db $5a, BERRY
+	db $64, BERRY
+	db $78, BERRY
+	db $87, BERRY
+	db $be, BERRY
+	db $c3, BERRY
+	db $dc, BERRY
+	db $fa, BERRY
+	db $ff, BERRY
+	db $00
+; 2879e
 
 Function2879e: ; 2879e
 .asm_2879e
@@ -33901,7 +33918,23 @@ Function28b22: ; 28b22
 	ret
 ; 28b42
 
-INCBIN "baserom.gbc",$28b42,$28b68 - $28b42
+Function28b42: ; 28b42
+	ld hl, $c5e0
+	ld a, $7e
+	ld bc, $0028
+	call ByteFill
+	ld hl, $c5e1
+	ld a, $7f
+	ld bc, $0012
+	call ByteFill
+	ld hl, $c5e2
+	ld de, String_28b61
+	jp PlaceString
+; 28b61
+
+String_28b61: ; 28b61
+	db "CANCEL@"
+; 28b68
 
 Function28b68: ; 28b68
 	ld a, [$cf51]
@@ -34308,7 +34341,18 @@ Function28eff: ; 28eff
 	ret
 ; 28f09
 
-INCBIN "baserom.gbc",$28f09,$28f24 - $28f09
+Function28f09: ; 28f09
+	hlcoord 0, 0
+	ld b, 6
+	ld c, 18
+	call Function28eef
+	hlcoord 0, 8
+	ld b, 6
+	ld c, 18
+	call Function28eef
+	callba Functionfb60d
+	ret
+; 28f24
 
 Function28f24: ; 28f24
 	xor a
@@ -36386,7 +36430,22 @@ Function29f47: ; 29f47
 	ret
 ; 29f54
 
-INCBIN "baserom.gbc",$29f54,$29ff8 - $29f54
+GFX_29f54: ; 29f54
+INCBIN "baserom.gbc", $29f54, $29fe4 - $29f54
+; 29fe4
+
+Function29fe4: ; 29fe4
+	ld a, $0
+	call GetSRAMBank
+	ld d, $0
+	ld b, $2
+	ld a, $3
+	call Predef
+	call CloseSRAM
+	ld a, c
+	and a
+	ret
+; 29ff8
 
 Function29ff8: ; 29ff8
 	call Function2a205
@@ -36659,14 +36718,14 @@ Function2a14f: ; 2a14f
 	inc hl
 	inc hl
 	call Function1852
-	ld de, $61d9
+	ld de, Unknown_2a1d9
 	jr z, .asm_2a174
 	inc hl
 	inc hl
 	ld a, [TimeOfDay]
 	ld bc, $e
 	call AddNTimes
-	ld de, $61cb
+	ld de, Unknown_2a1cb
 
 .asm_2a174
 	push hl
@@ -36741,9 +36800,21 @@ Function2a14f: ; 2a14f
 	ret
 ; 2a1cb
 
+Unknown_2a1cb: ; 2a1cb
+	db 30,  $0
+	db 60,  $2
+	db 80,  $4
+	db 90,  $6
+	db 95,  $8
+	db 99,  $a
+	db 100, $c
+; 2a1d9
 
-INCBIN "baserom.gbc",$2a1cb,$2a1df - $2a1cb
-
+Unknown_2a1d9: ; 2a1d9
+	db 60,  $0
+	db 90,  $2
+	db 100, $4
+; 2a1df
 
 Function2a1df:: ; 2a1df
 	ld a, [$dca1]
@@ -37025,7 +37096,7 @@ Function2a30d: ; 2a30d
 
 
 Function2a355: ; 2a355
-	ld hl, $640f
+	ld hl, RoamMaps
 .asm_2a358
 	ld a, [hl]
 	cp $ff
@@ -37054,7 +37125,7 @@ Function2a355: ; 2a355
 	call Random
 	and $1f
 	jr z, Function2a3cd
-	and $3
+	and 3
 	cp [hl]
 	jr nc, .asm_2a36e
 	inc hl
@@ -37112,7 +37183,7 @@ Function2a394: ; 2a394
 
 Function2a3cd: ; 2a3cd
 .asm_2a3cd
-	ld hl, $640f
+	ld hl, RoamMaps
 .asm_2a3d0
 	call Random
 	and $f
@@ -37158,7 +37229,29 @@ Function2a3f6: ; 2a3f6
 	ret
 ; 2a40f
 
-INCBIN "baserom.gbc",$2a40f,$2a4a0 - $2a40f
+RoamMaps: ; 2a40f
+; Maps that roaming monsters can be on,
+; and possible maps they can jump to.
+; Notably missing are Route 40 and
+; Route 41, which are water routes.
+	roam_map ROUTE_29, 2, ROUTE_30, ROUTE_46
+	roam_map ROUTE_30, 2, ROUTE_29, ROUTE_31
+	roam_map ROUTE_31, 3, ROUTE_30, ROUTE_32, ROUTE_36
+	roam_map ROUTE_32, 3, ROUTE_36, ROUTE_31, ROUTE_33
+	roam_map ROUTE_33, 2, ROUTE_32, ROUTE_34
+	roam_map ROUTE_34, 2, ROUTE_33, ROUTE_35
+	roam_map ROUTE_35, 2, ROUTE_34, ROUTE_36
+	roam_map ROUTE_36, 4, ROUTE_35, ROUTE_31, ROUTE_32, ROUTE_37
+	roam_map ROUTE_37, 3, ROUTE_36, ROUTE_38, ROUTE_42
+	roam_map ROUTE_38, 3, ROUTE_37, ROUTE_39, ROUTE_42
+	roam_map ROUTE_39, 1, ROUTE_38
+	roam_map ROUTE_42, 4, ROUTE_43, ROUTE_44, ROUTE_37, ROUTE_38
+	roam_map ROUTE_43, 2, ROUTE_42, ROUTE_44
+	roam_map ROUTE_44, 3, ROUTE_42, ROUTE_43, ROUTE_45
+	roam_map ROUTE_45, 2, ROUTE_44, ROUTE_46
+	roam_map ROUTE_46, 2, ROUTE_45, ROUTE_29
+	db $ff
+; 2a4a0
 
 Function2a4a0: ; 2a4a0
 	and a
