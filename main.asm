@@ -34888,8 +34888,8 @@ Function292be: ; 292be
 ; 292ec
 
 Function292ec: ; 292ec
-	ld de, $58c7
-	ld bc, $0806
+	ld de, TradeGameBoyTilemap
+	lb bc, 8, 6
 	call Function297db
 	ret
 ; 292f6
@@ -34941,8 +34941,8 @@ Function29348: ; 29348
 	ld [hSCX], a
 	call DelayFrame
 	ld hl, $c4d0
-	ld de, $58f7
-	ld bc, $030c
+	ld de, Tilemap_298f7
+	lb bc, 3, 12
 	call Function297db
 	call WaitBGMap
 	ld b, $1b
@@ -35792,7 +35792,62 @@ Function29886: ; 29886
 	ret
 ; 29893
 
-INCBIN "baserom.gbc", $29893, $2991b - $29893
+
+Function29893: ; 29893
+; This function is unreferenced.
+; It was meant for use in Japanese versions, so the
+; constant used for copy length was changed by accident.
+
+	ld hl, Unknown_298b5
+
+	ld a, [hli]
+	ld [$c6d0], a
+	ld de, $c6e7
+	ld c, 13 ; jp: 8
+.asm_2989f
+	ld a, [hli]
+	ld [de], a
+	inc de
+	dec c
+	jr nz, .asm_2989f
+
+	ld a, [hli]
+	ld [$c702], a
+	ld de, $c719
+	ld c, 13 ; jp: 8
+.asm_298ae
+	ld a, [hli]
+	ld [de], a
+	inc de
+	dec c
+	jr nz, .asm_298ae
+	ret
+; 298b5
+
+Unknown_298b5: ; 298b5
+	db $03, "ゲーフり@@", $23, $01 ; GAME FREAK
+	db $06, "クりーチャ@", $56, $04 ; Creatures Inc.
+; 298c7
+
+
+TradeGameBoyTilemap: ; 298c7
+; 6x8
+	db $31, $32, $32, $32, $32, $33
+	db $34, $35, $36, $36, $37, $38
+	db $34, $39, $3a, $3a, $3b, $38
+	db $3c, $3d, $3e, $3e, $3f, $40
+	db $41, $42, $43, $43, $44, $45
+	db $46, $47, $43, $48, $49, $4a
+	db $41, $43, $4b, $4c, $4d, $4e
+	db $4f, $50, $50, $50, $51, $52
+; 297f7
+
+Tilemap_298f7: ; 297f7
+; 12x3
+	db $43, $55, $56, $53, $53, $53, $53, $53, $53, $53, $53, $53
+	db $43, $57, $58, $54, $54, $54, $54, $54, $54, $54, $54, $54
+	db $43, $59, $5a, $43, $43, $43, $43, $43, $43, $43, $43, $43
+; 2991b
 
 TradeArrowGFX:  INCBIN "gfx/trade/arrow.2bpp"
 TradeCableGFX:  INCBIN "gfx/trade/cable.2bpp"
