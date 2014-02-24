@@ -31037,7 +31037,7 @@ Function251f4: ; 251f4 (9:51f4)
 
 ; no known jump sources
 Function25221: ; 25221 (9:5221)
-	ld hl, $54c9
+	ld hl, Unknown_254c9
 	call Function25438
 	ld hl, $ffa9
 	ld a, [hl]
@@ -31080,7 +31080,7 @@ Function2524c: ; 2524c (9:524c)
 
 ; no known jump sources
 Function25279: ; 25279 (9:5279)
-	ld hl, $54c9
+	ld hl, Unknown_254c9
 	call Function25438
 	ld hl, $ffa9
 	ld a, [hl]
@@ -31194,7 +31194,7 @@ Function2536c: ; 2536c (9:536c)
 	jr nz, .asm_2538d
 	xor a
 	ld [$cf64], a
-	ld hl, $54c9
+	ld hl, Unknown_254c9
 	call Function25448
 	ret
 ; 253a2 (9:53a2)
@@ -31334,7 +31334,7 @@ Function25448: ; 25448 (9:5448)
 	ld a, [de]
 	ld c, a
 	ld de, Sprites ; $c400
-	ld b, $8
+	ld b, 8
 .asm_25453
 	srl c
 	push bc
@@ -31349,7 +31349,7 @@ Function25448: ; 25448 (9:5448)
 	ld a, [$cf64]
 	add l
 	ld l, a
-	ld a, $0
+	ld a, 0
 	adc h
 	ld h, a
 	ld a, [hl]
@@ -31369,10 +31369,10 @@ Function2547b: ; 2547b (9:547b)
 	ld a, [$cf65]
 	and $80
 	jr nz, .asm_25487
-	ld hl, $54a7
+	ld hl, Unknown_254a7
 	jr .asm_2548a
 .asm_25487
-	ld hl, $54b8
+	ld hl, Unknown_254b8
 .asm_2548a
 	ld a, [hli]
 	cp $ff
@@ -31398,7 +31398,70 @@ Function2547b: ; 2547b (9:547b)
 	jr .asm_2548a
 ; 254a7 (9:54a7)
 
-INCBIN "baserom.gbc", $254a7, $25523 - $254a7
+Unknown_254a7: ; 254a7
+	db $00, $00, $00, $00
+	db $00, $08, $01, $00
+	db $08, $00, $02, $00
+	db $08, $08, $03, $00
+	db $ff
+
+Unknown_254b8: ; 254b8
+	db $00, $00, $01, $20
+	db $00, $08, $00, $20
+	db $08, $00, $03, $20
+	db $08, $08, $02, $20
+	db $ff
+
+Unknown_254c9: ; 254c9
+; Template OAM data for each badge on the trainer card.
+; Format:
+	; y, x, palette
+	; cycle 1: face tile, in1 tile, in2 tile, in3 tile
+	; cycle 2: face tile, in1 tile, in2 tile, in3 tile
+
+	dw JohtoBadges
+
+	; Zephyrbadge
+	db $68, $18, $00
+	db $00, $20, $24, $20 | $80
+	db $00, $20, $24, $20 | $80
+
+	; Hivebadge
+	db $68, $38, $00
+	db $04, $20, $24, $20 | $80
+	db $04, $20, $24, $20 | $80
+
+	; Plainbadge
+	db $68, $58, $00
+	db $08, $20, $24, $20 | $80
+	db $08, $20, $24, $20 | $80
+
+	; Fogbadge
+	db $68, $78, $00
+	db $0c, $20, $24, $20 | $80
+	db $0c, $20, $24, $20 | $80
+
+	; Mineralbadge
+	db $80, $38, $00
+	db $10, $20, $24, $20 | $80
+	db $10, $20, $24, $20 | $80
+
+	; Stormbadge
+	db $80, $18, $00
+	db $14, $20, $24, $20 | $80
+	db $14, $20, $24, $20 | $80
+
+	; Glacierbadge
+	db $80, $58, $00
+	db $18, $20, $24, $20 | $80
+	db $18, $20, $24, $20 | $80
+
+	; Risingbadge
+	; X-flips on alternate cycles.
+	db $80, $78, $00
+	db $1c, $20, $24, $20 | $80
+	db $1c | $80, $20, $24, $20 | $80
+; 25523
 
 CardStatusGFX: INCBIN "gfx/misc/card_status.2bpp"
 
@@ -32268,7 +32331,7 @@ Function27192: ; 27192
 	ld a, [de]
 	ld b, a
 	callba GetItem
-	ld hl, $71de
+	ld hl, Unknown_271de
 .asm_271b9
 	ld a, [hli]
 	cp b
@@ -32305,7 +32368,31 @@ Function27192: ; 27192
 	ret
 ; 271de
 
-INCBIN "baserom.gbc",$271de,$271f4 - $271de
+Unknown_271de: ; 271de
+; Consumable items?
+	db HELD_BERRY
+	db $02
+	db $05
+	db HELD_HEAL_POISON
+	db HELD_HEAL_FREEZE
+	db HELD_HEAL_BURN
+	db HELD_HEAL_SLEEP
+	db HELD_HEAL_PARALYZE
+	db HELD_HEAL_STATUS
+	db $1e
+	db $1f
+	db $20
+	db $21
+	db $22
+	db $23
+	db $24
+	db $25
+	db $26
+	db $47
+	db HELD_ESCAPE
+	db HELD_CRITICAL_UP
+	db $ff
+; 271f4
 
 MoveEffectsPointers: ; 271f4
 INCLUDE "battle/moves/move_effects_pointers.asm"
