@@ -18902,7 +18902,7 @@ PokemonActionSubmenu: ; 12a88
 	dbw 10, Function12ee6 ; Softboiled
 	dbw 13, Function12ee6 ; MilkDrink
 	dbw 11, Function12f26 ; Headbutt
-	dbw  5, Function12e94 ; Flash
+	dbw  5, Function12e94 ; Waterfall
 	dbw 12, Function12f3b ; RockSmash
 	dbw 14, Function12f50 ; SweetScent
 	dbw 15, OpenPartyStats
