@@ -37319,7 +37319,7 @@ Function2a4ab: ; 2a4ab
 	ld a, c
 	ld [$d265], a
 	call GetPokemonName
-	ld hl, $651a
+	ld hl, UnknownText_0x2a51a
 	call PrintText
 	xor a
 	ld [ScriptVar], a
@@ -37331,7 +37331,11 @@ Function2a4ab: ; 2a4ab
 	ret
 ; 2a51a
 
-INCBIN "baserom.gbc",$2a51a,$2a51f - $2a51a
+UnknownText_0x2a51a: ; 0x2a51a
+	; I just saw some rare @  in @ . I'll call you if I see another rare #MON, OK?
+	text_jump UnknownText_0x1bd34b
+	db "@"
+; 0x2a51f
 
 Function2a51f: ; 2a51f
 	callba Function90439
@@ -37643,7 +37647,7 @@ ChrisBackpic: ; 2ba1a
 INCBIN "gfx/misc/player.lz"
 ; 2bba1
 
-db 0, 0, 0, 0, 0, 0, 0, 0, 0 ; filler
+	ds 9
 
 DudeBackpic: ; 2bbaa
 INCBIN "gfx/misc/dude.lz"
