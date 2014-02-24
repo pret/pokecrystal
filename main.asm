@@ -37645,13 +37645,11 @@ Function2ba01: ; 2ba01
 
 ChrisBackpic: ; 2ba1a
 INCBIN "gfx/misc/player.lz"
-; 2bba1
-
-	ds 9
+; 2bbaa
 
 DudeBackpic: ; 2bbaa
 INCBIN "gfx/misc/dude.lz"
-; 2bce1
+; 2bcea
 
 
 SECTION "bankB", ROMX, BANK[$B]
