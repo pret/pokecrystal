@@ -34543,7 +34543,526 @@ Function290a0: ; 290a0
 ; 290af
 
 JumpTable290af: ; 290af
-INCBIN "baserom.gbc",$290af,$29491 - $290af
+	dw Function29114
+	dw Function2942e
+	dw Function29461
+	dw Function29348
+	dw Function2937e
+	dw Function29391
+	dw Function29129
+	dw Function291af
+	dw Function291c4
+	dw Function291d9
+	dw Function2925d
+	dw Function29220
+	dw Function2925d
+	dw Function29229
+	dw Function2913c
+	dw Function2925d
+	dw Function291e8
+	dw Function291fd
+	dw Function29211
+	dw Function29220
+	dw Function2925d
+	dw Function29229
+	dw Function29701
+	dw Function2973c
+	dw Function2975c
+	dw Function2977f
+	dw Function297a4
+	dw Function293a6
+	dw Function293b6
+	dw Function293d2
+	dw Function293de
+	dw Function293ea
+	dw Function2940c
+	dw Function294e7
+	dw Function294f0
+	dw Function2961b
+	dw Function2962c
+	dw Function29879
+	dw Function29886
+	dw Function29649
+	dw Function29660
+	dw Function2926d
+	dw Function29277
+	dw Function29123
+	dw Function29487
+	dw Function294f9
+	dw Function29502
+	dw Function2950c
+; 2910f
+
+Function2910f: ; 2910f
+	ld hl, $cf63
+	inc [hl]
+	ret
+; 29114
+
+Function29114: ; 29114
+	ld hl, BattleEnded
+	ld e, [hl]
+	inc hl
+	ld d, [hl]
+	ld a, [de]
+	ld [$cf63], a
+	inc de
+	ld [hl], d
+	dec hl
+	ld [hl], e
+	ret
+; 29123
+
+Function29123: ; 29123
+	ld hl, $cf63
+	set 7, [hl]
+	ret
+; 29129
+
+Function29129: ; 29129
+	ld a, $ed
+	call Function292f6
+	ld a, [$c74c]
+	ld [$d265], a
+	xor a
+	ld de, $2c58
+	ld b, $0
+	jr Function2914e
+
+Function2913c: ; 2913c
+	ld a, $ee
+	call Function292f6
+	ld a, [$c74d]
+	ld [$d265], a
+	ld a, $2
+	ld de, $4c94
+	ld b, $4
+
+Function2914e: ; 2914e
+	push bc
+	push de
+	push bc
+	push de
+	push af
+	call DisableLCD
+	callab Function8cf53
+	ld hl, $9874
+	ld bc, $000c
+	ld a, $60
+	call ByteFill
+	pop af
+	call Function29281
+	xor a
+	ld [hSCX], a
+	ld a, $7
+	ld [hWX], a
+	ld a, $70
+	ld [hWY], a
+	call EnableLCD
+	call Function2985a
+	pop de
+	ld a, $11
+	call Function3b2a
+	ld hl, $000b
+	add hl, bc
+	pop bc
+	ld [hl], b
+	pop de
+	ld a, $12
+	call Function3b2a
+	ld hl, $000b
+	add hl, bc
+	pop bc
+	ld [hl], b
+	call WaitBGMap
+	ld b, $1b
+	call GetSGBLayout
+	ld a, $e4
+	call DmgToCgbBGPals
+	ld a, $d0
+	call Functioncf8
+	call Function2910f
+	ld a, $5c
+	ld [$cf64], a
+	ret
+; 291af
+
+Function291af: ; 291af
+	call Function2981d
+	ld a, [hSCX]
+	add $2
+	ld [hSCX], a
+	cp $50
+	ret nz
+	ld a, $1
+	call Function29281
+	call Function2910f
+	ret
+; 291c4
+
+Function291c4: ; 291c4
+	call Function2981d
+	ld a, [hSCX]
+	add $2
+	ld [hSCX], a
+	cp $a0
+	ret nz
+	ld a, $2
+	call Function29281
+	call Function2910f
+	ret
+; 291d9
+
+Function291d9: ; 291d9
+	call Function2981d
+	ld a, [hSCX]
+	add $2
+	ld [hSCX], a
+	and a
+	ret nz
+	call Function2910f
+	ret
+; 291e8
+
+Function291e8: ; 291e8
+	call Function2981d
+	ld a, [hSCX]
+	sub $2
+	ld [hSCX], a
+	cp $b0
+	ret nz
+	ld a, $1
+	call Function29281
+	call Function2910f
+	ret
+; 291fd
+
+Function291fd: ; 291fd
+	call Function2981d
+	ld a, [hSCX]
+	sub $2
+	ld [hSCX], a
+	cp $60
+	ret nz
+	xor a
+	call Function29281
+	call Function2910f
+	ret
+; 29211
+
+Function29211: ; 29211
+	call Function2981d
+	ld a, [hSCX]
+	sub $2
+	ld [hSCX], a
+	and a
+	ret nz
+	call Function2910f
+	ret
+; 29220
+
+Function29220: ; 29220
+	ld a, $80
+	ld [$cf64], a
+	call Function2910f
+	ret
+; 29229
+
+Function29229: ; 29229
+	call WhiteBGMap
+	call ClearTileMap
+	call ClearSprites
+	call DisableLCD
+	callab Function8cf53
+	ld hl, VBGMap0
+	ld bc, $0800
+	ld a, $7f
+	call ByteFill
+	xor a
+	ld [hSCX], a
+	ld a, $90
+	ld [hWY], a
+	call EnableLCD
+	call Function2982b
+	call WaitBGMap
+	call Function297ed
+	call Function29114
+	ret
+; 2925d
+
+Function2925d: ; 2925d
+	call Function2981d
+	ld hl, $cf64
+	ld a, [hl]
+	and a
+	jr z, .asm_29269
+	dec [hl]
+	ret
+
+.asm_29269
+	call Function2910f
+	ret
+; 2926d
+
+Function2926d: ; 2926d
+	call Function29114
+	ld de, $00b7
+	call PlaySFX
+	ret
+; 29277
+
+Function29277: ; 29277
+	call Function29114
+	ld de, $00b8
+	call PlaySFX
+	ret
+; 29281
+
+Function29281: ; 29281
+	and $3
+	ld e, a
+	ld d, $0
+	ld hl, $528f
+	add hl, de
+	add hl, de
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	jp [hl]
+; 2928f
+
+INCBIN "baserom.gbc", $2928f, $292f6 - $2928f
+
+Function292f6: ; 292f6
+	push af
+	call WhiteBGMap
+	call WaitTop
+	ld a, $9c
+	ld [$ffd7], a
+	call ClearTileMap
+	ld hl, TileMap
+	ld bc, $0014
+	ld a, $7a
+	call ByteFill
+	ld hl, $c4b4
+	ld de, $c736
+	call PlaceString
+	ld hl, $c741
+	ld de, NULL
+.asm_2931e
+	ld a, [hli]
+	cp $50
+	jr z, .asm_29326
+	dec de
+	jr .asm_2931e
+
+.asm_29326
+	ld hl, $c4f0
+	add hl, de
+	ld de, $c741
+	call PlaceString
+	ld hl, $c4cf
+	ld bc, $0006
+	pop af
+	call ByteFill
+	call WaitBGMap
+	call WaitTop
+	ld a, $98
+	ld [$ffd7], a
+	call ClearTileMap
+	ret
+; 29348
+
+Function29348: ; 29348
+	call ClearTileMap
+	call WaitTop
+	ld a, $a0
+	ld [hSCX], a
+	call DelayFrame
+	ld hl, $c4d0
+	ld de, $58f7
+	ld bc, $030c
+	call Function297db
+	call WaitBGMap
+	ld b, $1b
+	call GetSGBLayout
+	ld a, $e4
+	call DmgToCgbBGPals
+	ld de, $e4e4
+	call DmgToCgbObjPals
+	ld de, $0004
+	call PlaySFX
+	call Function2910f
+	ret
+; 2937e
+
+Function2937e: ; 2937e
+	ld a, [hSCX]
+	and a
+	jr z, .asm_29388
+	add $4
+	ld [hSCX], a
+	ret
+
+.asm_29388
+	ld c, $50
+	call DelayFrames
+	call Function29114
+	ret
+; 29391
+
+Function29391: ; 29391
+	ld a, [hSCX]
+	cp $a0
+	jr z, .asm_2939c
+	sub $4
+	ld [hSCX], a
+	ret
+
+.asm_2939c
+	call ClearTileMap
+	xor a
+	ld [hSCX], a
+	call Function29114
+	ret
+; 293a6
+
+Function293a6: ; 293a6
+	ld a, $8f
+	ld [hWX], a
+	ld a, $88
+	ld [hSCX], a
+	ld a, $50
+	ld [hWY], a
+	call Function29114
+	ret
+; 293b6
+
+Function293b6: ; 293b6
+	ld a, [hWX]
+	cp $7
+	jr z, .asm_293c7
+	sub $4
+	ld [hWX], a
+	ld a, [hSCX]
+	sub $4
+	ld [hSCX], a
+	ret
+
+.asm_293c7
+	ld a, $7
+	ld [hWX], a
+	xor a
+	ld [hSCX], a
+	call Function29114
+	ret
+; 293d2
+
+Function293d2: ; 293d2
+	ld a, $7
+	ld [hWX], a
+	ld a, $50
+	ld [hWY], a
+	call Function29114
+	ret
+; 293de
+
+Function293de: ; 293de
+	ld a, $7
+	ld [hWX], a
+	ld a, $90
+	ld [hWY], a
+	call Function29114
+	ret
+; 293ea
+
+Function293ea: ; 293ea
+	call WaitTop
+	ld a, $9c
+	ld [$ffd7], a
+	call WaitBGMap
+	ld a, $7
+	ld [hWX], a
+	xor a
+	ld [hWY], a
+	call DelayFrame
+	call WaitTop
+	ld a, $98
+	ld [$ffd7], a
+	call ClearTileMap
+	call Function2910f
+	ret
+; 2940c
+
+Function2940c: ; 2940c
+	ld a, [hWX]
+	cp $a1
+	jr nc, .asm_29417
+	add $4
+	ld [hWX], a
+	ret
+
+.asm_29417
+	ld a, $9c
+	ld [$ffd7], a
+	call WaitBGMap
+	ld a, $7
+	ld [hWX], a
+	ld a, $90
+	ld [hWY], a
+	ld a, $98
+	ld [$ffd7], a
+	call Function29114
+	ret
+; 2942e
+
+Function2942e: ; 2942e
+	call Function2951f
+	ld a, [PlayerSDefLevel]
+	ld [CurPartySpecies], a
+	ld a, [$c6fd]
+	ld [TempMonDVs], a
+	ld a, [$c6fe]
+	ld [$d124], a
+	ld b, $1a
+	call GetSGBLayout
+	ld a, $e4
+	call DmgToCgbBGPals
+	call Function294bb
+	ld a, [PlayerSDefLevel]
+	call Function381e
+	jr c, .asm_2945d
+	ld e, c
+	ld d, b
+	call PlayCryHeader
+
+.asm_2945d
+	call Function29114
+	ret
+; 29461
+
+Function29461: ; 29461
+	call Function29549
+	ld a, [PlayerLightScreenCount]
+	ld [CurPartySpecies], a
+	ld a, [$c72f]
+	ld [TempMonDVs], a
+	ld a, [$c730]
+	ld [$d124], a
+	ld b, $1a
+	call GetSGBLayout
+	ld a, $e4
+	call DmgToCgbBGPals
+	call Function294c0
+	call Function29114
+	ret
+; 29487
+
+Function29487: ; 29487
+	callba Function4d81e
+	call Function29114
+	ret
+; 29491
 
 Function29491: ; 29491
 	push de
@@ -34571,7 +35090,252 @@ Function294a9: ; 294a9
 	ret
 ; 294bb
 
-INCBIN "baserom.gbc",$294bb,$29676 - $294bb
+Function294bb: ; 294bb
+	ld de, VTiles0
+	jr Function294c3
+
+Function294c0: ; 294c0
+	ld de, $8310
+
+Function294c3: ; 294c3
+	call DelayFrame
+	ld hl, VTiles2
+	ld bc, $0a31
+	call Request2bpp
+	call WaitTop
+	call Function297cf
+	ld hl, $c4cf
+	xor a
+	ld [$ffad], a
+	ld bc, $0707
+	ld a, $13
+	call Predef
+	call WaitBGMap
+	ret
+; 294e7
+
+Function294e7: ; 294e7
+	ld c, $50
+	call DelayFrames
+	call Function29114
+	ret
+; 294f0
+
+Function294f0: ; 294f0
+	ld c, $28
+	call DelayFrames
+	call Function29114
+	ret
+; 294f9
+
+Function294f9: ; 294f9
+	ld c, $60
+	call DelayFrames
+	call Function29114
+	ret
+; 29502
+
+Function29502: ; 29502
+	call Function29516
+	ret nz
+	ld c, $50
+	call DelayFrames
+	ret
+; 2950c
+
+Function2950c: ; 2950c
+	call Function29516
+	ret nz
+	ld c, $b4
+	call DelayFrames
+	ret
+; 29516
+
+Function29516: ; 29516
+	call Function29114
+	ld a, [PlayerLightScreenCount]
+	cp $fd
+	ret
+; 2951f
+
+Function2951f: ; 2951f
+	ld de, PlayerSDefLevel
+	ld a, [de]
+	cp $fd
+	jr z, Function295a1
+	call Function29573
+	ld de, PlayerSDefLevel
+	call Function295e3
+	ld de, PlayerAccLevel
+	call Function295ef
+	ld a, [$c701]
+	ld de, $c6f2
+	call Function295f6
+	ld de, PlayerScreens
+	call Function29611
+	call Function295d8
+	ret
+; 29549
+
+Function29549: ; 29549
+	ld de, PlayerLightScreenCount
+	ld a, [de]
+	cp $fd
+	jr z, Function295a1
+	call Function29573
+	ld de, PlayerLightScreenCount
+	call Function295e3
+	ld de, PlayerReflectCount
+	call Function295ef
+	ld a, [$c733]
+	ld de, $c724
+	call Function295f6
+	ld de, $c731
+	call Function29611
+	call Function295d8
+	ret
+; 29573
+
+Function29573: ; 29573
+	call WaitTop
+	call Function297cf
+	ld a, $9c
+	ld [$ffd7], a
+	ld hl, $c4a3
+	ld b, $6
+	ld c, $d
+	call TextBox
+	ld hl, $c4a4
+	ld de, String29591
+	call PlaceString
+	ret
+; 29591
+
+String29591: ; 29591
+	db "─── №.", $4e
+	db $4e
+	db "OT/", $4e
+	db $73, "№.@"
+; 295a1
+
+Function295a1: ; 295a1
+	call WaitTop
+	call Function297cf
+	ld a, $9c
+	ld [$ffd7], a
+	ld hl, $c4a3
+	ld b, $6
+	ld c, $d
+	call TextBox
+	ld hl, $c4cc
+	ld de, $55c2
+	call PlaceString
+	call Function295d8
+	ret
+; 295c2
+
+INCBIN "baserom.gbc", $295c2, $295d8 - $295c2
+
+Function295d8: ; 295d8
+	call WaitBGMap
+	call WaitTop
+	ld a, $98
+	ld [$ffd7], a
+	ret
+; 295e3
+
+Function295e3: ; 295e3
+	ld hl, $c4aa
+	ld bc, $8103
+	call PrintNum
+	ld [hl], $7f
+	ret
+; 295ef
+
+Function295ef: ; 295ef
+	ld hl, $c4cc
+	call PlaceString
+	ret
+; 295f6
+
+Function295f6: ; 295f6
+	cp $3
+	jr c, .asm_295fb
+	xor a
+
+.asm_295fb
+	push af
+	ld hl, $c4f7
+	call PlaceString
+	inc bc
+	pop af
+	ld hl, $560e
+	ld d, $0
+	ld e, a
+	add hl, de
+	ld a, [hl]
+	ld [bc], a
+	ret
+; 2960e
+
+INCBIN "baserom.gbc", $2960e, $29611 - $2960e
+
+Function29611: ; 29611
+	ld hl, $c51f
+	ld bc, $8205
+	call PrintNum
+	ret
+; 2961b
+
+Function2961b: ; 2961b
+	ld de, $5458
+	ld a, $e
+	call Function3b2a
+	call Function29114
+	ld a, $20
+	ld [$cf64], a
+	ret
+; 2962c
+
+Function2962c: ; 2962c
+	ld de, $5458
+	ld a, $e
+	call Function3b2a
+	ld hl, $000b
+	add hl, bc
+	ld [hl], $1
+	ld hl, $0007
+	add hl, bc
+	ld [hl], $dc
+	call Function29114
+	ld a, $38
+	ld [$cf64], a
+	ret
+; 29649
+
+Function29649: ; 29649
+	ld de, $5458
+	ld a, $f
+	call Function3b2a
+	call Function29114
+	ld a, $10
+	ld [$cf64], a
+	ld de, $0029
+	call PlaySFX
+	ret
+; 29660
+
+Function29660: ; 29660
+	ld a, $e4
+	call Functioncf8
+	ld de, $2858
+	ld a, $10
+	call Function3b2a
+	call Function29114
+	ld a, $40
+	ld [$cf64], a
+	ret
+; 29676
 
 ; no known jump sources
 Function29676: ; 29676 (a:5676)
@@ -34692,7 +35456,123 @@ Function296f2: ; 296f2 (a:56f2)
 	ret
 ; 29701 (a:5701)
 
-INCBIN "baserom.gbc",$29701,$297ed - $29701
+Function29701: ; 29701
+	ld a, [InLinkBattle]
+	cp $1
+	jr z, .asm_29725
+	ld hl, $5737
+	call PrintText
+	ld c, $bd
+	call DelayFrames
+	ld hl, $5732
+	call PrintText
+	call Function297c9
+	ld c, $80
+	call DelayFrames
+	call Function29114
+	ret
+
+.asm_29725
+	ld hl, $5732
+	call PrintText
+	call Function297c9
+	call Function29114
+	ret
+; 29732
+
+INCBIN "baserom.gbc", $29732, $2973c - $29732
+
+Function2973c: ; 2973c
+	ld hl, $5752
+	call PrintText
+	call Function297c9
+	ld hl, $5757
+	call PrintText
+	call Function297c9
+	call Function29114
+	ret
+; 29752
+
+INCBIN "baserom.gbc", $29752, $2975c - $29752
+
+Function2975c: ; 2975c
+	call WaitTop
+	ld hl, $c568
+	ld bc, $00a0
+	ld a, $7f
+	call ByteFill
+	call WaitBGMap
+	ld hl, $577a
+	call PrintText
+	call Function297c9
+	call Function29114
+	ret
+; 2977a
+
+INCBIN "baserom.gbc", $2977a, $2977f - $2977a
+
+Function2977f: ; 2977f
+	ld hl, $579a
+	call PrintText
+	call Function297c9
+	ld hl, $579f
+	call PrintText
+	call Function297c9
+	ld c, $e
+	call DelayFrames
+	call Function29114
+	ret
+; 2979a
+
+INCBIN "baserom.gbc", $2979a, $297a4 - $2979a
+
+Function297a4: ; 297a4
+	ld hl, $57bf
+	call PrintText
+	call Function297c9
+	ld hl, $57c4
+	call PrintText
+	call Function297c9
+	ld c, $e
+	call DelayFrames
+	call Function29114
+	ret
+; 297bf
+
+INCBIN "baserom.gbc", $297bf, $297c9 - $297bf
+
+Function297c9: ; 297c9
+	ld c, $50
+	call DelayFrames
+	ret
+; 297cf
+
+Function297cf: ; 297cf
+	ld hl, TileMap
+	ld bc, $0168
+	ld a, $7f
+	call ByteFill
+	ret
+; 297db
+
+Function297db: ; 297db
+.asm_297db
+	push bc
+	push hl
+.asm_297dd
+	ld a, [de]
+	inc de
+	ld [hli], a
+	dec c
+	jr nz, .asm_297dd
+	pop hl
+	ld bc, $0014
+	add hl, bc
+	pop bc
+	dec b
+	jr nz, .asm_297db
+	ret
+; 297ed
 
 Function297ed: ; 297ed
 	ld a, [hSGB]
@@ -34728,7 +35608,15 @@ Function29814: ; 29814
 	ret
 ; 2981d
 
-INCBIN "baserom.gbc",$2981d,$2982b - $2981d
+Function2981d: ; 2981d
+	ld a, [$cf65]
+	and $7
+	ret nz
+	ld a, [rBGP]
+	xor $3c
+	call DmgToCgbBGPals
+	ret
+; 2982b
 
 Function2982b: ; 2982b
 	call DelayFrame
@@ -34751,7 +35639,48 @@ Function2982b: ; 2982b
 	ret
 ; 2985a
 
-INCBIN "baserom.gbc",$2985a,$29bfb - $2985a
+Function2985a: ; 2985a
+	call DelayFrame
+	ld e, $3
+	callab Function8e83f
+	ld de, $595b
+	ld hl, $8720
+	ld bc, $0a04
+	call Request2bpp
+	xor a
+	ld hl, $c300
+	ld [hli], a
+	ld [hl], $62
+	ret
+; 29879
+
+Function29879: ; 29879
+	ld hl, $cf64
+	ld a, [hl]
+	and a
+	jr z, .asm_29882
+	dec [hl]
+	ret
+
+.asm_29882
+	call Function29114
+	ret
+; 29886
+
+Function29886: ; 29886
+	ld hl, $cf64
+	ld a, [hl]
+	and a
+	jr z, .asm_2988f
+	dec [hl]
+	ret
+
+.asm_2988f
+	call Function29114
+	ret
+; 29893
+
+INCBIN "baserom.gbc", $29893, $29bfb - $29893
 
 Function29bfb: ; 29bfb
 	ld hl, PartySpecies
@@ -48864,7 +49793,31 @@ Function4d7fd: ; 4d7fd
 	ret
 ; 4d81e
 
-INCBIN "baserom.gbc",$4d81e,$4d860 - $4d81e
+Function4d81e: ; 4d81e
+	ld a, [PlayerLightScreenCount]
+	call IsAPokemon
+	ret c
+	callba Function29549
+	ld a, [PlayerLightScreenCount]
+	ld [CurPartySpecies], a
+	ld a, [$c72f]
+	ld [TempMonDVs], a
+	ld a, [$c730]
+	ld [$d124], a
+	ld b, $1a
+	call GetSGBLayout
+	ld a, $e4
+	call DmgToCgbBGPals
+	callba Function294c0
+	ld a, [PlayerLightScreenCount]
+	ld [CurPartySpecies], a
+	ld hl, $c4cf
+	ld d, $0
+	ld e, $3
+	ld a, $47
+	call Predef
+	ret
+; 4d860
 
 CheckPokerus: ; 4d860
 ; Return carry if a monster in your party has Pokerus
