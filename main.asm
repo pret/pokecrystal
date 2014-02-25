@@ -33097,21 +33097,36 @@ Function26fc8: ; 26fc8
 	ld c, a
 	ld de, StringBuffer3
 	call Function26eea
-	ld b, $9
-	ld de, $6fd5
+	ld b, BANK(Unknown_26fd5)
+	ld de, Unknown_26fd5
 	ret
 ; 26fd5
 
-INCBIN "baserom.gbc",$26fd5,$26fdd - $26fd5
+Unknown_26fd5: ; 26fd5
+	dbw $53, UnknownText_0x26fd8
+; 26fd8
 
+UnknownText_0x26fd8: ; 0x26fd8
+	; It's an adorable @ .
+	text_jump UnknownText_0x1bc5d7
+	db "@"
+; 0x26fdd
 
 Function26fdd: ; 26fdd
-	ld b, $9
-	ld de, $6fe3
+	ld b, BANK(Unknown_26fe3)
+	ld de, Unknown_26fe3
 	ret
 ; 26fe3
 
-INCBIN "baserom.gbc",$26fe3,$26feb - $26fe3
+Unknown_26fe3: ; 26fe3
+	dbw $53, UnknownText_0x26fe6
+; 26fe6
+
+UnknownText_0x26fe6: ; 0x26fe6
+	; A giant doll! It's fluffy and cuddly.
+	text_jump UnknownText_0x1bc5ef
+	db "@"
+; 0x26feb
 
 Function26feb: ; 26feb
 	ld de, $0004
