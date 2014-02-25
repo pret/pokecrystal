@@ -29526,18 +29526,12 @@ Function247f0: ; 247f0
 	ld a, [$cf91]
 	bit 0, a
 	jr nz, .asm_24866
-	ld de, .data_2485f
+	ld de, .string_2485f
 	call PlaceString
 	ret
 
-.data_2485f
-	db $82
-	db $80
-	db $8d
-	db $82
-	db $84
-	db $8b
-	db $50
+.string_2485f
+	db "CANCEL@"
 
 .asm_24866
 	ld d, h
@@ -29888,8 +29882,8 @@ Function24a80: ; 24a80 (9:4a80)
 	push hl
 	ld a, [$cf94]
 	ld c, a
-	ld b, $0
-	ld hl, $4a91
+	ld b, 0
+	ld hl, Unknown_24a91
 	add hl, bc
 	add hl, bc
 	ld c, [hl]
@@ -29899,7 +29893,9 @@ Function24a80: ; 24a80 (9:4a80)
 	ret
 ; 24a91 (9:4a91)
 
-INCBIN "baserom.gbc",$24a91,$24a97 - $24a91
+Unknown_24a91: ; 24a91
+	dw 0, 1, 2
+; 24a97
 
 ; known jump sources: 249bc (9:49bc), 249c6 (9:49c6)
 Function24a97: ; 24a97 (9:4a97)
@@ -29961,21 +29957,21 @@ Function24ac3: ; 0x24ac3
 ; 0x24ae8
 
 Function24ae8: ; 24ae8
-	ld hl, $4b15
+	ld hl, MenuDataHeader_0x24b15
 	call Function1d3c
-	jr asm_24b01
+	jr Function24b01
 
 Function24af0: ; 24af0
-	ld hl, $4b1d
+	ld hl, MenuDataHeader_0x24b1d
 	call Function1d3c
-	jr asm_24b01
+	jr Function24b01
 
 Function24af8: ; 24af8
-	ld hl, $4b15
+	ld hl, MenuDataHeader_0x24b15
 	ld de, $000b
 	call Function1e2e
 
-asm_24b01
+Function24b01: ; 24b01
 	call Function1cbb
 	call Function1cfd
 	ld de, $0015
@@ -29986,7 +29982,21 @@ asm_24b01
 	ret
 ; 24b15
 
-INCBIN "baserom.gbc",$24b15,$24b25 - $24b15
+MenuDataHeader_0x24b15: ; 0x24b15
+        db $40 ; flags
+        db 00, 11 ; start coords
+        db 02, 19 ; end coords
+        dw NULL
+        db 1 ; default option
+; 0x24b1d
+
+MenuDataHeader_0x24b1d: ; 0x24b1d
+        db $40 ; flags
+        db 11, 00 ; start coords
+        db 13, 08 ; end coords
+        dw NULL
+        db 1 ; default option
+; 0x24b25
 
 Function24b25: ; 24b25
 	ld hl, $c4ab
@@ -30666,7 +30676,7 @@ Function24fb2: ; 24fb2
 
 
 Function24fbf: ; 24fbf
-	ld hl, $50ed
+	ld hl, MenuDataHeader_0x250ed
 	call LoadMenuDataHeader
 	call Function24ff9
 	ret
@@ -30680,7 +30690,7 @@ Function24fcf: ; 24fcf
 	ld [Buffer1], a
 	ld a, e
 	ld [Buffer2], a
-	ld hl, $50f5
+	ld hl, MenuDataHeader_0x250f5
 	call LoadMenuDataHeader
 	call Function24ff9
 	ret
@@ -30692,7 +30702,7 @@ Function24fe1: ; 24fe1
 	ld [Buffer1], a
 	ld a, e
 	ld [Buffer2], a
-	ld hl, $50fd
+	ld hl, MenuDataHeader_0x250fd
 	call LoadMenuDataHeader
 	call Function24ff9
 	ret
@@ -30882,8 +30892,29 @@ Function250d1: ; 250d1
 	ret
 ; 250ed
 
+MenuDataHeader_0x250ed: ; 0x250ed
+        db $40 ; flags
+        db 09, 15 ; start coords
+        db 11, 19 ; end coords
+        dw Function25097
+        db 0 ; default option
+; 0x250f5
 
-INCBIN "baserom.gbc",$250ed,$25105 - $250ed
+MenuDataHeader_0x250f5: ; 0x250f5
+        db $40 ; flags
+        db 15, 07 ; start coords
+        db 17, 19 ; end coords
+        dw Function25098
+        db -1 ; default option
+; 0x250fd
+
+MenuDataHeader_0x250fd: ; 0x250fd
+        db $40 ; flags
+        db 15, 07 ; start coords
+        db 17, 19 ; end coords
+        dw Function2509f
+        db 0 ; default option
+; 0x25105
 
 Function25105: ; 25105
 	ld a, [VramState] ; $d0ed
@@ -30954,7 +30985,7 @@ Function2518e: ; 2518e (9:518e)
 	ld a, [$cf63]
 	ld e, a
 	ld d, $0
-	ld hl, $519d
+	ld hl, Jumptable_2519d
 	add hl, de
 	add hl, de
 	ld a, [hli]
@@ -31014,7 +31045,14 @@ Function251d7: ; 251d7 (9:51d7)
 	ret
 ; 251e9 (9:51e9)
 
-INCBIN "baserom.gbc",$251e9,$251f4 - $251e9
+Function251e9: ; 251e9
+	ld a, [KantoBadges]
+	and a
+	ret z
+	ld a, $4
+	ld [$cf63], a
+	ret
+; 251f4
 
 ; no known jump sources
 Function251f4: ; 251f4 (9:51f4)
@@ -31042,7 +31080,7 @@ Function25221: ; 25221 (9:5221)
 	ld hl, $ffa9
 	ld a, [hl]
 	and $1
-	jr nz, .asm_25246
+	jr nz, Function25246
 	ld a, [hl]
 	and $20
 	jr nz, .asm_25235
@@ -31053,8 +31091,16 @@ Function25221: ; 25221 (9:5221)
 	ret
 ; 2523b (9:523b)
 
-INCBIN "baserom.gbc",$2523b,$25246 - $2523b
-.asm_25246
+Function2523b: ; 2523b
+	ld a, [KantoBadges]
+	and a
+	ret z
+	ld a, $4
+	ld [$cf63], a
+	ret
+; 25246
+
+Function25246: ; 25246
 	ld a, $6
 	ld [$cf63], a
 	ret
@@ -31105,10 +31151,10 @@ Function25299: ; 25299 (9:5299)
 	ld d, $5
 	call Function253b0
 	ld hl, $c4ca
-	ld de, $52ec
+	ld de, String_252ec
 	call PlaceString
 	ld hl, $c4f2
-	ld de, $52f9
+	ld de, Tilemap_252f9
 	call Function253a8
 	ld hl, $c4cf
 	ld de, PlayerName ; $d47d
@@ -31122,7 +31168,7 @@ Function25299: ; 25299 (9:5299)
 	ld bc, $2306
 	call PrintNum
 	ld hl, $c4dd
-	ld de, $52fc
+	ld de, Tilemap_252fc
 	call Function253a8
 	ld hl, $c4c2
 	ld bc, $507
@@ -31133,15 +31179,25 @@ Function25299: ; 25299 (9:5299)
 	ret
 ; 252ec (9:52ec)
 
-INCBIN "baserom.gbc",$252ec,$2530a - $252ec
+String_252ec: ; 252ec
+	db "NAME/", $4e
+	db $4e
+	db "MONEY@"
+
+Tilemap_252f9: ; 252f9
+	db $27, $28, $ff ; ID NO
+
+Tilemap_252fc: ; 252fc
+	db $25, $25, $25, $25, $25, $25, $25, $25, $25, $25, $25, $25, $26, $ff ; ____________>
+; 2530a
 
 ; known jump sources: 251d0 (9:51d0)
 Function2530a: ; 2530a (9:530a)
 	ld hl, $c56a
-	ld de, $534c
+	ld de, String_2534c
 	call PlaceString
 	ld hl, $c5d6
-	ld de, $535c
+	ld de, String_2535c
 	call PlaceString
 	ld hl, PokedexCaught ; $de99
 	ld b, $20
@@ -31152,7 +31208,7 @@ Function2530a: ; 2530a (9:530a)
 	call PrintNum
 	call Function25415
 	ld hl, $c542
-	ld de, $5366
+	ld de, Tilemap_25366
 	call Function253a8
 	ld a, [StatusFlags] ; $d84c
 	bit 0, a
@@ -31163,12 +31219,24 @@ Function2530a: ; 2530a (9:530a)
 	ret
 ; 2534c (9:534c)
 
-INCBIN "baserom.gbc",$2534c,$2536c - $2534c
+String_2534c: ; 2534c
+	db "#DEX", $4e
+	db "PLAY TIME@"
+
+String_2535b: ; 2535b
+	db "@"
+
+String_2535c: ; 2535c
+	db "  BADGES▶@"
+
+Tilemap_25366: ; 25366
+	db $29, $2a, $2b, $2c, $2d, $ff
+; 2536c
 
 ; known jump sources: 2521a (9:521a), 25272 (9:5272)
 Function2536c: ; 2536c (9:536c)
 	ld hl, $c542
-	ld de, $53a2
+	ld de, Tilemap_253a2
 	call Function253a8
 	ld hl, $c56a
 	ld a, $29
@@ -31199,7 +31267,9 @@ Function2536c: ; 2536c (9:536c)
 	ret
 ; 253a2 (9:53a2)
 
-INCBIN "baserom.gbc",$253a2,$253a8 - $253a2
+Tilemap_253a2: ; 253a2
+	db $79, $7a, $7b, $7c, $7d, $ff ; "BADGES"
+; 253a8
 
 ; known jump sources: 252b0 (9:52b0), 252da (9:52da), 25339 (9:5339), 25372 (9:5372), 253ae (9:53ae)
 Function253a8: ; 253a8 (9:53a8)
