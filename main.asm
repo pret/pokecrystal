@@ -31983,14 +31983,14 @@ Function26830: ; 26830 (9:6830)
 	ld hl, StringBuffer2 ; $d086
 	inc [hl]
 	ld e, [hl]
-	ld d, $0
+	ld d, 0
 	add hl, de
 	ld [hl], a
 	ret
 
 ; known jump sources: 2680d (9:680d)
 Function2683a: ; 2683a (9:683a)
-	ld hl, $6855
+	ld hl, Jumptable_26855
 .asm_2683d
 	ld a, [hli]
 	ld e, a
@@ -32013,7 +32013,16 @@ Function2683a: ; 2683a (9:683a)
 	ret
 ; 26855 (9:6855)
 
-INCBIN "baserom.gbc", $26855, $2686c - $26855
+Jumptable_26855: ; 26855
+	dwb Function268bd, 0 ; bed
+	dwb Function268d2, 1 ; carpet
+	dwb Function268e7, 2 ; plant
+	dwb Function268fb, 3 ; poster
+	dwb Function26910, 4 ; game console
+	dwb Function26925, 5 ; ornament
+	dwb Function2694d, 6 ; big doll
+	dw 0 ; end
+; 2686c
 
 Function2686c: ; 2686c
 	xor a
@@ -32083,11 +32092,13 @@ Function268b5: ; 268b5
 
 Function268bd: ; 268bd
 	ld hl, $68c5
-	ld c, $1
+	ld c, 1
 	jp Function2689b
 ; 268c5
 
-INCBIN "baserom.gbc", $268c5, $268ca - $268c5
+Unknown_268c5: ; 268c5
+	db 2, 3, 4, 5, $ff
+; 268ca
 
 Function268ca: ; 268ca
 	call Function268d2
@@ -32097,12 +32108,14 @@ Function268ca: ; 268ca
 ; 268d2
 
 Function268d2: ; 268d2
-	ld hl, $68da
-	ld c, $6
+	ld hl, Unknown_268da
+	ld c, 6
 	jp Function2689b
 ; 268da
 
-INCBIN "baserom.gbc", $268da, $268df - $268da
+Unknown_268da: ; 268da
+	db 7, 8, 9, 10, $ff
+; 268df
 
 Function268df: ; 268df
 	call Function268e7
@@ -32112,12 +32125,14 @@ Function268df: ; 268df
 ; 268e7
 
 Function268e7: ; 268e7
-	ld hl, $68ef
-	ld c, $b
+	ld hl, Unknown_268ef
+	ld c, 11
 	jp Function2689b
 ; 268ef
 
-INCBIN "baserom.gbc", $268ef, $268f3 - $268ef
+Unknown_268ef: ; 268ef
+	db 12, 13, 14, $ff
+; 268f3
 
 Function268f3: ; 268f3
 	call Function268fb
@@ -32127,12 +32142,14 @@ Function268f3: ; 268f3
 ; 268fb
 
 Function268fb: ; 268fb
-	ld hl, $6903
-	ld c, $f
+	ld hl, Unknown_26903
+	ld c, 15
 	jp Function2689b
 ; 26903
 
-INCBIN "baserom.gbc", $26903, $26908 - $26903
+Unknown_26903: ; 26903
+	db 16, 17, 18, 19, $ff
+; 26908
 
 Function26908: ; 26908
 	call Function26910
@@ -32142,12 +32159,14 @@ Function26908: ; 26908
 ; 26910
 
 Function26910: ; 26910
-	ld hl, $6918
-	ld c, $14
+	ld hl, Unknown_26918
+	ld c, 20
 	jp Function2689b
 ; 26918
 
-INCBIN "baserom.gbc", $26918, $2691d - $26918
+Unknown_26918: ; 26918
+	db 21, 22, 23, 24, $ff
+; 2691d
 
 Function2691d: ; 2691d
 	call Function26925
@@ -32157,12 +32176,16 @@ Function2691d: ; 2691d
 ; 26925
 
 Function26925: ; 26925
-	ld hl, $692d
-	ld c, $1d
+	ld hl, Unknown_2692d
+	ld c, 29
 	jp Function2689b
 ; 2692d
 
-INCBIN "baserom.gbc", $2692d, $26945 - $2692d
+Unknown_2692d: ; 2692d
+	db 30, 31, 32, 33, 34, 35, 36, 37, 38, 39
+	db 40, 41, 42, 43, 44, 45, 46, 47, 48, 49
+	db 50, 51, 52, $ff
+; 26945
 
 Function26945: ; 26945
 	call Function2694d
@@ -32172,12 +32195,14 @@ Function26945: ; 26945
 ; 2694d
 
 Function2694d: ; 2694d
-	ld hl, $6955
-	ld c, $19
+	ld hl, Unknown_26955
+	ld c, 25
 	jp Function2689b
 ; 26955
 
-INCBIN "baserom.gbc", $26955, $26959 - $26955
+Unknown_26955: ; 26955
+	db 26, 27, 28, $ff
+; 26959
 
 Function26959: ; 26959
 	scf
@@ -32192,7 +32217,7 @@ Function2695b: ; 2695b
 	jr nc, .asm_2697b
 	xor a
 	ld [$cf76], a
-	ld hl, $69b5
+	ld hl, MenuDataHeader_0x269b5
 	call LoadMenuDataHeader
 	call Function1e5d
 	jr c, .asm_26977
@@ -32210,7 +32235,7 @@ Function2695b: ; 2695b
 	add hl, de
 	ld [hl], $ff
 	call Function1d6e
-	ld hl, $69c5
+	ld hl, MenuDataHeader_0x269c5
 	call Function1d3c
 	xor a
 	ld [hBGMapMode], a
@@ -32228,17 +32253,54 @@ Function2695b: ; 2695b
 	ret
 
 .asm_269a9
-	ld hl, $69b0
+	ld hl, UnknownText_0x269b0
 	call Function1d67
 	ret
 ; 269b0
 
-INCBIN "baserom.gbc", $269b0, $269dd - $269b0
+UnknownText_0x269b0: ; 0x269b0
+	; There's nothing to choose.
+	text_jump UnknownText_0x1bc471
+	db "@"
+; 0x269b5
 
+MenuDataHeader_0x269b5: ; 0x269b5
+	db $40 ; flags
+	db 00, 00 ; start coords
+	db 17, 19 ; end coords
+	dw MenuData2_0x269bd
+	db 1 ; default option
+; 0x269bd
+
+MenuData2_0x269bd: ; 0x269bd
+	db $a0 ; flags
+	db 0 ; items
+	dw $d002
+	dw Function269f3
+	dw DecorationAttributes
+; 0x269c5
+
+MenuDataHeader_0x269c5: ; 0x269c5
+	db $40 ; flags
+	db 01, 01 ; start coords
+	db 16, 18 ; end coords
+	dw MenuData2_0x269cd
+	db 1 ; default option
+; 0x269cd
+
+MenuData2_0x269cd: ; 0x269cd
+	db $10 ; flags
+        db 8, 0 ; rows, columns
+        db 1 ; horizontal spacing
+        dbw 0, $d002 ; text pointer
+        dbw BANK(Function269f3), Function269f3
+        dbw 0, 0
+        dbw 0, 0
+; 269dd
 
 
 Function269dd: ; 269dd
-	ld hl, $6a4f
+	ld hl, DecorationAttributes
 	ld bc, $0006
 	call AddNTimes
 	ret
@@ -32253,7 +32315,15 @@ Function269e7: ; 269e7
 	ret
 ; 269f3
 
-INCBIN "baserom.gbc", $269f3, $26a02 - $269f3
+Function269f3: ; 269f3
+	ld a, [MenuSelection]
+	push de
+	call Function269dd
+	call Function26c72
+	pop hl
+	call PlaceString
+	ret
+; 26a02
 
 Function26a02: ; 26a02
 	ld a, [MenuSelection]
@@ -32313,7 +32383,61 @@ Function26a44: ; 26a44
 	ret
 ; 26a4f
 
-INCBIN "baserom.gbc",$26a4f,$26b8d - $26a4f
+DecorationAttributes: ; 26a4f
+	db $01, $00, $00, $00, $00, $00
+	db $01, $01, $02, $00, $00, $00
+	db $02, $12, $01, $a4, $02, $1b
+	db $02, $14, $01, $a5, $02, $1c
+	db $02, $15, $01, $a6, $02, $1d
+	db $02, $13, $01, $a7, $02, $1e
+	db $01, $01, $04, $00, $00, $00
+	db $03, $16, $03, $a8, $02, $08
+	db $03, $17, $03, $a9, $02, $0b
+	db $03, $18, $03, $aa, $02, $0e
+	db $03, $19, $03, $ab, $02, $11
+	db $01, $01, $06, $00, $00, $00
+	db $01, $02, $05, $ac, $02, $20
+	db $01, $03, $05, $ad, $02, $21
+	db $01, $04, $05, $ae, $02, $22
+	db $01, $01, $08, $00, $00, $00
+	db $01, $05, $07, $af, $02, $1f
+	db $04, $19, $07, $b0, $02, $23
+	db $04, $23, $07, $b1, $02, $24
+	db $04, $27, $07, $b2, $02, $25
+	db $01, $01, $0a, $00, $00, $00
+	db $01, $06, $09, $b3, $02, $5c
+	db $01, $07, $09, $b4, $02, $5b
+	db $01, $08, $09, $b5, $02, $51
+	db $01, $09, $09, $b6, $02, $57
+	db $01, $01, $0c, $00, $00, $00
+	db $06, $8f, $0b, $cf, $02, $33
+	db $06, $5f, $0b, $d0, $02, $50
+	db $06, $83, $0b, $d1, $02, $47
+	db $01, $01, $0e, $00, $00, $00
+	db $05, $19, $0d, $b7, $02, $8e
+	db $01, $0c, $0d, $b8, $02, $34
+	db $05, $23, $0d, $b9, $02, $8f
+	db $05, $27, $0d, $ba, $02, $94
+	db $05, $01, $0d, $bb, $02, $93
+	db $05, $04, $0d, $bc, $02, $90
+	db $05, $07, $0d, $bd, $02, $89
+	db $05, $3c, $0d, $be, $02, $8d
+	db $05, $32, $0d, $bf, $02, $8c
+	db $05, $78, $0d, $c0, $02, $92
+	db $05, $81, $0d, $c1, $02, $88
+	db $05, $2b, $0d, $c2, $02, $85
+	db $05, $5e, $0d, $c3, $02, $86
+	db $05, $5a, $0d, $c4, $02, $84
+	db $05, $58, $0d, $c5, $02, $95
+	db $05, $64, $0d, $c6, $02, $9b
+	db $05, $0d, $0d, $c7, $02, $83
+	db $05, $c9, $0d, $c8, $02, $80
+	db $05, $4a, $0d, $c9, $02, $81
+	db $05, $42, $0d, $ca, $02, $9a
+	db $05, $48, $0d, $cb, $02, $98
+	db $01, $0a, $0d, $cd, $02, $5e
+	db $01, $0b, $0d, $ce, $02, $5f
+; 26b8d
 
 
 DecorationNames: ; 26b8d
