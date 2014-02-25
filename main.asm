@@ -38947,15 +38947,16 @@ Function2c143: ; 2c143
 ; 2c165
 
 Function2c165: ; 2c165
-	ld de, $4172
+	ld de, GFX_2c172
 	ld hl, $8310
-	ld bc, $0b04
+	lb bc, BANK(GFX_2c172), 4
 	call Functiondc9
 	ret
 ; 2c172
 
-INCBIN "baserom.gbc",$2c172,$2c1b2 - $2c172
-
+GFX_2c172: ; 2c172
+INCBIN "gfx/battle/balls.2bpp"
+; 2c1b2
 
 Function2c1b2: ; 2c1b2
 	call WhiteBGMap
