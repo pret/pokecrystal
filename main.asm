@@ -28477,7 +28477,45 @@ Function241ba: ; 241ba
 	ret
 ; 241d5
 
-INCBIN "baserom.gbc",$241d5,$24216 - $241d5
+
+Function241d5: ; 241d5
+	call Function24329
+.asm_241d8
+	call Function2431a
+	call $402d ; This call jumps to the middle of an instruction.
+	call Function241fa
+	jr nc, .asm_241f9
+	call Function24270
+	jr c, .asm_241f9
+	ld a, [$cfa5]
+	bit 7, a
+	jr nz, .asm_241f9
+	call Function1bdd
+	ld c, a
+	ld a, [$cfa8]
+	and c
+	jr z, .asm_241d8
+
+.asm_241f9
+	ret
+; 241fa
+
+Function241fa: ; 241fa
+.asm_241fa
+	call Function24259
+	ret c
+	ld c, $1
+	ld b, $3
+	call $462d ; So does this one.
+	ret c
+	callba Function100337
+	ret c
+	ld a, [$cfa5]
+	bit 7, a
+	jr z, .asm_241fa
+	and a
+	ret
+; 24216
 
 
 Function24216: ; 24216
@@ -31853,7 +31891,7 @@ Function26751: ; 26751 (9:6751)
 _KrisDecorationMenu: ; 0x2675c
 	ld a, [$cf76]
 	push af
-	ld hl, $679a
+	ld hl, MenuDataHeader_0x2679a
 	call LoadMenuDataHeader
 	xor a
 	ld [$d1ee], a
@@ -31868,7 +31906,7 @@ _KrisDecorationMenu: ; 0x2675c
 	ld [$d1ef], a
 	jr c, .asm_2678e
 	ld a, [MenuSelection]
-	ld hl, $67aa
+	ld hl, Unknown_267aa
 	call Function1fa7
 	jr nc, .asm_2676f
 
@@ -31881,7 +31919,41 @@ _KrisDecorationMenu: ; 0x2675c
 	ret
 ; 0x2679a
 
-INCBIN "baserom.gbc",$2679a,$26806 - $2679a
+MenuDataHeader_0x2679a: ; 0x2679a
+	db $40 ; flags
+	db 00, 05 ; start coords
+	db 17, 19 ; end coords
+	dw MenuData2_0x267a2
+	db 1 ; default option
+; 0x267a2
+
+MenuData2_0x267a2: ; 0x267a2
+	db $a0 ; flags
+	db 0 ; items
+	dw $d002
+	dw Function1f8d
+	dw Unknown_267aa
+; 0x267aa
+
+Unknown_267aa: ; 267aa
+	dw Function268b5, .bed
+	dw Function268ca, .carpet
+	dw Function268df, .plant
+	dw Function268f3, .poster
+	dw Function26908, .game
+	dw Function2691d, .ornament
+	dw Function26945, .big_doll
+	dw Function26959, .exit
+
+.bed      db "BED@"
+.carpet   db "CARPET@"
+.plant    db "PLANT@"
+.poster   db "POSTER@"
+.game     db "GAME CONSOLE@"
+.ornament db "ORNAMENT@"
+.big_doll db "BIG DOLL@"
+.exit     db "EXIT@"
+; 26806
 
 Function26806: ; 26806
 	xor a
@@ -31941,7 +32013,227 @@ Function2683a: ; 2683a (9:683a)
 	ret
 ; 26855 (9:6855)
 
-INCBIN "baserom.gbc",$26855,$269dd - $26855
+INCBIN "baserom.gbc", $26855, $2686c - $26855
+
+Function2686c: ; 2686c
+	xor a
+	ld hl, DefaultFlypoint
+	ld [hli], a
+	ld a, $ff
+	ld bc, $0010
+	call ByteFill
+	ret
+; 2687a
+
+Function2687a: ; 2687a
+.asm_2687a
+	ld a, [hli]
+	cp $ff
+	jr z, .asm_26890
+	push hl
+	push af
+	ld b, $2
+	call Function26a3b
+	ld a, c
+	and a
+	pop bc
+	ld a, b
+	call nz, Function26891
+	pop hl
+	jr .asm_2687a
+
+.asm_26890
+	ret
+; 26891
+
+Function26891: ; 26891
+	ld hl, DefaultFlypoint
+	inc [hl]
+	ld e, [hl]
+	ld d, $0
+	add hl, de
+	ld [hl], a
+	ret
+; 2689b
+
+Function2689b: ; 2689b
+	push bc
+	push hl
+	call Function2686c
+	pop hl
+	call Function2687a
+	pop bc
+	ld a, [DefaultFlypoint]
+	and a
+	ret z
+	ld a, c
+	call Function26891
+	ld a, $0
+	call Function26891
+	scf
+	ret
+; 268b5
+
+Function268b5: ; 268b5
+	call Function268bd
+	call Function2695b
+	xor a
+	ret
+; 268bd
+
+Function268bd: ; 268bd
+	ld hl, $68c5
+	ld c, $1
+	jp Function2689b
+; 268c5
+
+INCBIN "baserom.gbc", $268c5, $268ca - $268c5
+
+Function268ca: ; 268ca
+	call Function268d2
+	call Function2695b
+	xor a
+	ret
+; 268d2
+
+Function268d2: ; 268d2
+	ld hl, $68da
+	ld c, $6
+	jp Function2689b
+; 268da
+
+INCBIN "baserom.gbc", $268da, $268df - $268da
+
+Function268df: ; 268df
+	call Function268e7
+	call Function2695b
+	xor a
+	ret
+; 268e7
+
+Function268e7: ; 268e7
+	ld hl, $68ef
+	ld c, $b
+	jp Function2689b
+; 268ef
+
+INCBIN "baserom.gbc", $268ef, $268f3 - $268ef
+
+Function268f3: ; 268f3
+	call Function268fb
+	call Function2695b
+	xor a
+	ret
+; 268fb
+
+Function268fb: ; 268fb
+	ld hl, $6903
+	ld c, $f
+	jp Function2689b
+; 26903
+
+INCBIN "baserom.gbc", $26903, $26908 - $26903
+
+Function26908: ; 26908
+	call Function26910
+	call Function2695b
+	xor a
+	ret
+; 26910
+
+Function26910: ; 26910
+	ld hl, $6918
+	ld c, $14
+	jp Function2689b
+; 26918
+
+INCBIN "baserom.gbc", $26918, $2691d - $26918
+
+Function2691d: ; 2691d
+	call Function26925
+	call Function2695b
+	xor a
+	ret
+; 26925
+
+Function26925: ; 26925
+	ld hl, $692d
+	ld c, $1d
+	jp Function2689b
+; 2692d
+
+INCBIN "baserom.gbc", $2692d, $26945 - $2692d
+
+Function26945: ; 26945
+	call Function2694d
+	call Function2695b
+	xor a
+	ret
+; 2694d
+
+Function2694d: ; 2694d
+	ld hl, $6955
+	ld c, $19
+	jp Function2689b
+; 26955
+
+INCBIN "baserom.gbc", $26955, $26959 - $26955
+
+Function26959: ; 26959
+	scf
+	ret
+; 2695b
+
+Function2695b: ; 2695b
+	ld a, [DefaultFlypoint]
+	and a
+	jr z, .asm_269a9
+	cp $8
+	jr nc, .asm_2697b
+	xor a
+	ld [$cf76], a
+	ld hl, $69b5
+	call LoadMenuDataHeader
+	call Function1e5d
+	jr c, .asm_26977
+	call Function26a02
+
+.asm_26977
+	call Function1c07
+	ret
+
+.asm_2697b
+	ld hl, DefaultFlypoint
+	ld e, [hl]
+	dec [hl]
+	ld d, $0
+	add hl, de
+	ld [hl], $ff
+	call Function1d6e
+	ld hl, $69c5
+	call Function1d3c
+	xor a
+	ld [hBGMapMode], a
+	call Function352f
+	xor a
+	ld [$d0e4], a
+	call Function350c
+	ld a, [$cf73]
+	cp $2
+	jr z, .asm_269a5
+	call Function26a02
+
+.asm_269a5
+	call Function1c07
+	ret
+
+.asm_269a9
+	ld hl, $69b0
+	call Function1d67
+	ret
+; 269b0
+
+INCBIN "baserom.gbc", $269b0, $269dd - $269b0
 
 
 
@@ -31961,7 +32253,36 @@ Function269e7: ; 269e7
 	ret
 ; 269f3
 
-INCBIN "baserom.gbc",$269f3,$26a30 - $269f3
+INCBIN "baserom.gbc", $269f3, $26a02 - $269f3
+
+Function26a02: ; 26a02
+	ld a, [MenuSelection]
+	call Function269dd
+	ld de, $0002
+	add hl, de
+	ld a, [hl]
+	ld hl, $6a12
+	rst JumpTable
+	ret
+; 26a12
+
+Jumptable_26a12: ; 26a12
+	dw Function26ce3
+	dw Function26ce5
+	dw Function26ceb
+	dw Function26cf1
+	dw Function26cf7
+	dw Function26cfd
+	dw Function26d03
+	dw Function26d09
+	dw Function26d0f
+	dw Function26d15
+	dw Function26d1b
+	dw Function26d21
+	dw Function26d27
+	dw Function26db3
+	dw Function26dc9
+; 26a30
 
 
 Function26a30: ; 26a30
@@ -32121,7 +32442,302 @@ Function26cda: ; 26cda
 	ret
 ; 26ce3
 
-INCBIN "baserom.gbc",$26ce3,$26eea - $26ce3
+Function26ce3: ; 26ce3
+	scf
+	ret
+; 26ce5
+
+Function26ce5: ; 26ce5
+	ld hl, Bed
+	jp Function26d2d
+; 26ceb
+
+Function26ceb: ; 26ceb
+	ld hl, Bed
+	jp Function26d86
+; 26cf1
+
+Function26cf1: ; 26cf1
+	ld hl, Carpet
+	jp Function26d2d
+; 26cf7
+
+Function26cf7: ; 26cf7
+	ld hl, Carpet
+	jp Function26d86
+; 26cfd
+
+Function26cfd: ; 26cfd
+	ld hl, Plant
+	jp Function26d2d
+; 26d03
+
+Function26d03: ; 26d03
+	ld hl, Plant
+	jp Function26d86
+; 26d09
+
+Function26d09: ; 26d09
+	ld hl, Poster
+	jp Function26d2d
+; 26d0f
+
+Function26d0f: ; 26d0f
+	ld hl, Poster
+	jp Function26d86
+; 26d15
+
+Function26d15: ; 26d15
+	ld hl, Console
+	jp Function26d2d
+; 26d1b
+
+Function26d1b: ; 26d1b
+	ld hl, Console
+	jp Function26d86
+; 26d21
+
+Function26d21: ; 26d21
+	ld hl, BigDoll
+	jp Function26d2d
+; 26d27
+
+Function26d27: ; 26d27
+	ld hl, BigDoll
+	jp Function26d86
+; 26d2d
+
+Function26d2d: ; 26d2d
+	ld a, [hl]
+	ld [Buffer1], a
+	push hl
+	call Function26d46
+	jr c, .asm_26d43
+	ld a, $1
+	ld [$d1ee], a
+	pop hl
+	ld a, [MenuSelection]
+	ld [hl], a
+	xor a
+	ret
+
+.asm_26d43
+	pop hl
+	xor a
+	ret
+; 26d46
+
+Function26d46: ; 26d46
+	ld a, [Buffer1]
+	and a
+	jr z, .asm_26d6d
+	ld b, a
+	ld a, [MenuSelection]
+	cp b
+	jr z, .asm_26d7e
+	ld a, [MenuSelection]
+	ld hl, StringBuffer4
+	call Function269e7
+	ld a, [Buffer1]
+	ld hl, StringBuffer3
+	call Function269e7
+	ld hl, $6ee0
+	call Function1d67
+	xor a
+	ret
+
+.asm_26d6d
+	ld a, [MenuSelection]
+	ld hl, StringBuffer3
+	call Function269e7
+	ld hl, $6edb
+	call Function1d67
+	xor a
+	ret
+
+.asm_26d7e
+	ld hl, $6ee5
+	call Function1d67
+	scf
+	ret
+; 26d86
+
+Function26d86: ; 26d86
+	ld a, [hl]
+	ld [Buffer1], a
+	xor a
+	ld [hl], a
+	ld a, [Buffer1]
+	and a
+	jr z, .asm_26dab
+	ld a, $1
+	ld [$d1ee], a
+	ld a, [Buffer1]
+	ld [MenuSelection], a
+	ld hl, StringBuffer3
+	call Function269e7
+	ld hl, $6ed1
+	call Function1d67
+	xor a
+	ret
+
+.asm_26dab
+	ld hl, $6ed6
+	call Function1d67
+	xor a
+	ret
+; 26db3
+
+Function26db3: ; 26db3
+	ld hl, $6e41
+	call Function26e70
+	jr c, .asm_26dc7
+	call Function26de3
+	jr c, .asm_26dc7
+	ld a, $1
+	ld [$d1ee], a
+	jr Function26dd6
+
+.asm_26dc7
+	xor a
+	ret
+
+Function26dc9: ; 26dc9
+	ld hl, $6e6b
+	call Function26e70
+	jr nc, .asm_26dd3
+	xor a
+	ret
+
+.asm_26dd3
+	call Function26e46
+
+Function26dd6: ; 26dd6
+	call Function26e9a
+	ld a, [$d1ec]
+	ld [hl], a
+	ld a, [$d1ed]
+	ld [de], a
+	xor a
+	ret
+; 26de3
+
+Function26de3: ; 26de3
+	ld a, [$d1ec]
+	and a
+	jr z, .asm_26e11
+	ld b, a
+	ld a, [MenuSelection]
+	cp b
+	jr z, .asm_26e2b
+	ld a, b
+	ld hl, StringBuffer3
+	call Function269e7
+	ld a, [MenuSelection]
+	ld hl, StringBuffer4
+	call Function269e7
+	ld a, [MenuSelection]
+	ld [$d1ec], a
+	call Function26e33
+	ld hl, $6ee0
+	call Function1d67
+	xor a
+	ret
+
+.asm_26e11
+	ld a, [MenuSelection]
+	ld [$d1ec], a
+	call Function26e33
+	ld a, [MenuSelection]
+	ld hl, StringBuffer3
+	call Function269e7
+	ld hl, $6edb
+	call Function1d67
+	xor a
+	ret
+
+.asm_26e2b
+	ld hl, $6ee5
+	call Function1d67
+	scf
+	ret
+; 26e33
+
+Function26e33: ; 26e33
+	ld a, [MenuSelection]
+	ld b, a
+	ld a, [$d1ed]
+	cp b
+	ret nz
+	xor a
+	ld [$d1ed], a
+	ret
+; 26e41
+
+INCBIN "baserom.gbc", $26e41, $26e46 - $26e41
+
+Function26e46: ; 26e46
+	ld a, [$d1ec]
+	and a
+	jr z, .asm_26e63
+	ld hl, StringBuffer3
+	call Function269e7
+	ld a, $1
+	ld [$d1ee], a
+	xor a
+	ld [$d1ec], a
+	ld hl, $6ed1
+	call Function1d67
+	xor a
+	ret
+
+.asm_26e63
+	ld hl, $6ed6
+	call Function1d67
+	xor a
+	ret
+; 26e6b
+
+INCBIN "baserom.gbc", $26e6b, $26e70 - $26e6b
+
+Function26e70: ; 26e70
+	call Function1d4f
+	ld hl, $6eab
+	call Function1dab
+	call Function1c07
+	call Function1c66
+	jr c, .asm_26e98
+	ld a, [$cfa9]
+	cp $3
+	jr z, .asm_26e98
+	ld [Buffer2], a
+	call Function26e9a
+	ld a, [hl]
+	ld [$d1ec], a
+	ld a, [de]
+	ld [$d1ed], a
+	xor a
+	ret
+
+.asm_26e98
+	scf
+	ret
+; 26e9a
+
+Function26e9a: ; 26e9a
+	ld hl, RightOrnament
+	ld de, LeftOrnament
+	ld a, [Buffer2]
+	cp $1
+	ret z
+	push hl
+	ld h, d
+	ld l, e
+	pop de
+	ret
+; 26eab
+
+INCBIN "baserom.gbc", $26eab, $26eea - $26eab
 
 
 Function26eea: ; 26eea
