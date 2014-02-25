@@ -39057,9 +39057,10 @@ TrainerClassNames:: ; 2c1ef
 
 ; no known jump sources
 Function2c41a: ; 2c41a (b:441a)
+; More move AI.
 	ld a, c
-	ld de, $3
-	ld hl, $442c
+	ld de, 3
+	ld hl, Unknown_2c42c
 	call IsInArray
 	jp nc, Function2c545
 	inc hl
@@ -39069,92 +39070,180 @@ Function2c41a: ; 2c41a (b:441a)
 	jp [hl]
 ; 2c42c (b:442c)
 
-INCBIN "baserom.gbc",$2c42c,$2c487 - $2c42c
+Unknown_2c42c: ; 2c42c
+	dbw EFFECT_DREAM_EATER,  Function2c524
+	dbw EFFECT_HEAL,         Function2c539
+	dbw EFFECT_LIGHT_SCREEN, Function2c487
+	dbw EFFECT_MIST,         Function2c48d
+	dbw EFFECT_FOCUS_ENERGY, Function2c493
+	dbw EFFECT_CONFUSE,      Function2c499
+	dbw EFFECT_TRANSFORM,    Function2c4a5
+	dbw EFFECT_REFLECT,      Function2c4ab
+	dbw EFFECT_SUBSTITUTE,   Function2c4b1
+	dbw EFFECT_LEECH_SEED,   Function2c4b7
+	dbw EFFECT_DISABLE,      Function2c4bd
+	dbw EFFECT_ENCORE,       Function2c4c2
+	dbw EFFECT_SNORE,        Function2c4c8
+	dbw EFFECT_SLEEP_TALK,   Function2c4c8
+	dbw EFFECT_MEAN_LOOK,    Function2c4d1
+	dbw EFFECT_NIGHTMARE,    Function2c4d7
+	dbw EFFECT_SPIKES,       Function2c4e3
+	dbw EFFECT_FORESIGHT,    Function2c4e9
+	dbw EFFECT_PERISH_SONG,  Function2c4ef
+	dbw EFFECT_SANDSTORM,    Function2c4f5
+	dbw EFFECT_ATTRACT,      Function2c4fe
+	dbw EFFECT_SAFEGUARD,    Function2c50c
+	dbw EFFECT_RAIN_DANCE,   Function2c512
+	dbw EFFECT_SUNNY_DAY,    Function2c51b
+	dbw EFFECT_TELEPORT,     Function2c541
+	dbw EFFECT_MORNING_SUN,  Function2c539
+	dbw EFFECT_SYNTHESIS,    Function2c539
+	dbw EFFECT_MOONLIGHT,    Function2c539
+	dbw EFFECT_SWAGGER,      Function2c52d
+	dbw EFFECT_FUTURE_SIGHT, Function2c533
+	db $ff
+; 2c487
+
+Function2c487: ; 2c487
 	ld a, [EnemyScreens] ; $c700
 	bit 3, a
 	ret
+
+Function2c48d: ; 2c48d
 	ld a, [EnemySubStatus4] ; $c670
 	bit 1, a
 	ret
+
+Function2c493: ; 2c493
 	ld a, [EnemySubStatus4] ; $c670
 	bit 2, a
 	ret
+
+Function2c499: ; 2c499
 	ld a, [PlayerSubStatus3] ; $c66a
 	bit 7, a
 	ret nz
 	ld a, [PlayerScreens] ; $c6ff
 	bit 2, a
 	ret
+
+Function2c4a5: ; 2c4a5
 	ld a, [EnemySubStatus5] ; $c671
 	bit 3, a
 	ret
+
+Function2c4ab: ; 2c4ab
 	ld a, [EnemyScreens] ; $c700
 	bit 4, a
 	ret
 ; 2c4b1 (b:44b1)
 
-INCBIN "baserom.gbc",$2c4b1,$2c4b7 - $2c4b1
+Function2c4b1: ; 2c4b1
+	ld a, [EnemySubStatus4]
+	bit 4, a
+	ret
+
+Function2c4b7: ; 2c4b7
 	ld a, [PlayerSubStatus4] ; $c66b
 	bit 7, a
 	ret
+
+Function2c4bd: ; 2c4bd
 	ld a, [PlayerDisableCount] ; $c675
 	and a
 	ret
+
+Function2c4c2: ; 2c4c2
 	ld a, [PlayerSubStatus5] ; $c66c
 	bit 4, a
 	ret
+
+Function2c4c8: ; 2c4c8
 	ld a, [EnemyMonStatus] ; $d214
 	and $7
-	jr z, .asm_2c541
+	jr z, Function2c541
 	jr Function2c545
+
+Function2c4d1: ; 2c4d1
 	ld a, [EnemySubStatus5] ; $c671
 	bit 7, a
 	ret
 ; 2c4d7 (b:44d7)
 
-INCBIN "baserom.gbc",$2c4d7,$2c4e3 - $2c4d7
+Function2c4d7: ; 2c4d7
+	ld a, [BattleMonStatus]
+	and a
+	jr z, Function2c541
+	ld a, [PlayerSubStatus1]
+	bit 0, a
+	ret
+
+Function2c4e3: ; 2c4e3
 	ld a, [PlayerScreens] ; $c6ff
 	bit 0, a
 	ret
+
+Function2c4e9: ; 2c4e9
 	ld a, [PlayerSubStatus1] ; $c668
 	bit 3, a
 	ret
+
+Function2c4ef: ; 2c4ef
 	ld a, [PlayerSubStatus1] ; $c668
 	bit 4, a
 	ret
+
+Function2c4f5: ; 2c4f5
 	ld a, [Weather] ; $c70a
 	cp $3
-	jr z, .asm_2c541
+	jr z, Function2c541
 	jr Function2c545
+
+Function2c4fe: ; 2c4fe
 	callba Function377f5
-	jr c, .asm_2c541
+	jr c, Function2c541
 	ld a, [PlayerSubStatus1] ; $c668
 	bit 7, a
 	ret
+
+Function2c50c: ; 2c50c
 	ld a, [EnemyScreens] ; $c700
 	bit 2, a
 	ret
+
+Function2c512: ; 2c512
 	ld a, [Weather] ; $c70a
 	cp $1
-	jr z, .asm_2c541
+	jr z, Function2c541
 	jr Function2c545
+
+Function2c51b: ; 2c51b
 	ld a, [Weather] ; $c70a
 	cp $2
-	jr z, .asm_2c541
+	jr z, Function2c541
 	jr Function2c545
+
+Function2c524: ; 2c524
 	ld a, [BattleMonStatus] ; $c63a
 	and $7
-	jr z, .asm_2c541
+	jr z, Function2c541
 	jr Function2c545
+
+Function2c52d: ; 2c52d
 	ld a, [PlayerSubStatus3] ; $c66a
 	bit 7, a
 	ret
+
+Function2c533: ; 2c533
 	ld a, [EnemyScreens] ; $c700
 	bit 5, a
 	ret
+
+Function2c539: ; 2c539
 	callba AICheckEnemyMaxHP
 	jr nc, Function2c545
-.asm_2c541
+
+Function2c541: ; 2c541
 	ld a, $1
 	and a
 	ret
