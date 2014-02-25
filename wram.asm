@@ -1036,8 +1036,10 @@ StringBuffer3:: ; d099
 	ds 19
 StringBuffer4:: ; d0ac
 	ds 19
+StringBuffer5:: ; d0bf
+	ds 19
 
-	ds 21
+	ds 2
 
 CurBattleMon:: ; d0d4
 	ds 1
