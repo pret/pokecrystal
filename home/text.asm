@@ -1158,17 +1158,24 @@ Text_0D:: ; 1562
 ; 156a
 
 Text_14:: ; 156a
-; TX_PREDEF
+; Print a string from one of the following:
+; 0: StringBuffer3
+; 1: StringBuffer4
+; 2: StringBuffer5
+; 3: StringBuffer2
+; 4: StringBuffer1
+; 5: EnemyMonNick
+; 6: BattleMonNick
 ; [$14][id]
 
 	ld a, [hli]
 	push hl
 	ld e, a
 	ld d, 0
-	ld hl, $4000
+	ld hl, Unknown_24000
 	add hl, de
 	add hl, de
-	ld a, $9
+	ld a, BANK(Unknown_24000)
 	call GetFarHalfword
 	ld d, h
 	ld e, l

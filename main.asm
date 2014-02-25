@@ -28173,8 +28173,15 @@ INCLUDE "tilesets/data_3.asm"
 
 SECTION "bank9", ROMX, BANK[$9]
 
-INCBIN "baserom.gbc",$24000,$2400e - $24000
-
+Unknown_24000:: ; 24000
+	dw StringBuffer3
+	dw StringBuffer4
+	dw StringBuffer5
+	dw StringBuffer2
+	dw StringBuffer1
+	dw EnemyMonNick
+	dw BattleMonNick
+; 2400e
 
 Function2400e:: ; 2400e
 	ld hl, Function1c66
@@ -28440,7 +28447,7 @@ Function24193: ; 24193
 
 
 Function241a8:: ; 241a8
-	call asm_24329
+	call Function24329
 Function241ab:: ; 241ab
 	ld hl, $cfa6
 	res 7, [hl]
@@ -28668,11 +28675,11 @@ Function2431a: ; 2431a
 	ld l, a
 	ld a, [hl]
 	cp $ed
-	jr nz, asm_24329
+	jr nz, Function24329
 	ld a, [$cfab]
 	ld [hl], a
 
-asm_24329
+Function24329: ; 24329
 	ld a, [$cfa1]
 	ld b, a
 	ld a, [$cfa2]
@@ -28854,10 +28861,9 @@ Function243e8:: ; 243e8
 	ret
 ; 24423
 
-INCBIN "baserom.gbc",$24423,$24426 - $24423
 
-
-Function24426: ; 24426
+Function24423: ; 24423
+	ld a, [VramState]
 	bit 0, a
 	ret z
 	xor a
@@ -29018,7 +29024,7 @@ Function244e3:: ; 244e3
 ; 24528
 
 Function24528:: ; 24528
-	ld hl, $4547
+	ld hl, MenuDataHeader_0x24547
 	call Function1d3c
 	call Function1ce1
 	call WaitBGMap
@@ -29032,7 +29038,13 @@ Function24528:: ; 24528
 	ret
 ; 24547
 
-INCBIN "baserom.gbc",$24547,$2454f - $24547
+MenuDataHeader_0x24547: ; 0x24547
+        db $40 ; flags
+        db 04, 06 ; start coords
+        db 13, 14 ; end coords
+        dw NULL
+        db 1 ; default option
+; 0x2454f
 
 Function2454f: ; 2454f
 	ld hl, $d81e
@@ -29175,9 +29187,9 @@ Function24609: ; 24609
 	and $f
 	or b
 	bit 0, a
-	jp nz, .asm_24644
+	jp nz, Function24644
 	bit 1, a
-	jp nz, .asm_2466f
+	jp nz, Function2466f
 	bit 2, a
 	jp nz, Function24673
 	bit 3, a
@@ -29193,10 +29205,14 @@ Function24609: ; 24609
 	jr .asm_24609
 ; 24640
 
-INCBIN "baserom.gbc",$24640,$24644 - $24640
+Function24640: ; 24640
+	ld a, $ff
+	and a
+	ret
+; 24644
 
 
-.asm_24644: ; 24644
+Function24644: ; 24644
 	call Function1bee
 	ld a, [$cfa9]
 	dec a
@@ -29211,12 +29227,13 @@ INCBIN "baserom.gbc",$24640,$24644 - $24640
 	ld [$d107], a
 	ld a, [MenuSelection]
 	cp $ff
-	jr z, .asm_2466f
+	jr z, Function2466f
 	ld a, $1
 	scf
 	ret
+; 2466f
 
-.asm_2466f
+Function2466f: ; 2466f
 	ld a, $2
 	scf
 	ret
