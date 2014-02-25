@@ -32665,7 +32665,7 @@ Function26d46: ; 26d46
 	ld a, [Buffer1]
 	ld hl, StringBuffer3
 	call Function269e7
-	ld hl, $6ee0
+	ld hl, UnknownText_0x26ee0
 	call Function1d67
 	xor a
 	ret
@@ -32674,13 +32674,13 @@ Function26d46: ; 26d46
 	ld a, [MenuSelection]
 	ld hl, StringBuffer3
 	call Function269e7
-	ld hl, $6edb
+	ld hl, UnknownText_0x26edb
 	call Function1d67
 	xor a
 	ret
 
 .asm_26d7e
-	ld hl, $6ee5
+	ld hl, UnknownText_0x26ee5
 	call Function1d67
 	scf
 	ret
@@ -32700,20 +32700,20 @@ Function26d86: ; 26d86
 	ld [MenuSelection], a
 	ld hl, StringBuffer3
 	call Function269e7
-	ld hl, $6ed1
+	ld hl, UnknownText_0x26ed1
 	call Function1d67
 	xor a
 	ret
 
 .asm_26dab
-	ld hl, $6ed6
+	ld hl, UnknownText_0x26ed6
 	call Function1d67
 	xor a
 	ret
 ; 26db3
 
 Function26db3: ; 26db3
-	ld hl, $6e41
+	ld hl, UnknownText_0x26e41
 	call Function26e70
 	jr c, .asm_26dc7
 	call Function26de3
@@ -32727,7 +32727,7 @@ Function26db3: ; 26db3
 	ret
 
 Function26dc9: ; 26dc9
-	ld hl, $6e6b
+	ld hl, UnknownText_0x26e6b
 	call Function26e70
 	jr nc, .asm_26dd3
 	xor a
@@ -32763,7 +32763,7 @@ Function26de3: ; 26de3
 	ld a, [MenuSelection]
 	ld [$d1ec], a
 	call Function26e33
-	ld hl, $6ee0
+	ld hl, UnknownText_0x26ee0
 	call Function1d67
 	xor a
 	ret
@@ -32775,13 +32775,13 @@ Function26de3: ; 26de3
 	ld a, [MenuSelection]
 	ld hl, StringBuffer3
 	call Function269e7
-	ld hl, $6edb
+	ld hl, UnknownText_0x26edb
 	call Function1d67
 	xor a
 	ret
 
 .asm_26e2b
-	ld hl, $6ee5
+	ld hl, UnknownText_0x26ee5
 	call Function1d67
 	scf
 	ret
@@ -32798,7 +32798,11 @@ Function26e33: ; 26e33
 	ret
 ; 26e41
 
-INCBIN "baserom.gbc", $26e41, $26e46 - $26e41
+UnknownText_0x26e41: ; 0x26e41
+	; Which side do you want to put it on?
+	text_jump UnknownText_0x1bc48c
+	db "@"
+; 0x26e46
 
 Function26e46: ; 26e46
 	ld a, [$d1ec]
@@ -32810,23 +32814,27 @@ Function26e46: ; 26e46
 	ld [$d1ee], a
 	xor a
 	ld [$d1ec], a
-	ld hl, $6ed1
+	ld hl, UnknownText_0x26ed1
 	call Function1d67
 	xor a
 	ret
 
 .asm_26e63
-	ld hl, $6ed6
+	ld hl, UnknownText_0x26ed6
 	call Function1d67
 	xor a
 	ret
 ; 26e6b
 
-INCBIN "baserom.gbc", $26e6b, $26e70 - $26e6b
+UnknownText_0x26e6b: ; 0x26e6b
+	; Which side do you want to put away?
+	text_jump UnknownText_0x1bc4b2
+	db "@"
+; 0x26e70
 
 Function26e70: ; 26e70
 	call Function1d4f
-	ld hl, $6eab
+	ld hl, MenuDataHeader_0x26eab
 	call Function1dab
 	call Function1c07
 	call Function1c66
@@ -32861,8 +32869,51 @@ Function26e9a: ; 26e9a
 	ret
 ; 26eab
 
-INCBIN "baserom.gbc", $26eab, $26eea - $26eab
+MenuDataHeader_0x26eab: ; 0x26eab
+	db $40 ; flags
+	db 00, 00 ; start coords
+	db 07, 13 ; end coords
+	dw MenuData2_0x26eb3
+	db 1 ; default option
+; 0x26eb3
 
+MenuData2_0x26eb3: ; 0x26eb3
+	db $80 ; flags
+	db 3 ; items
+	db "RIGHT SIDE@"
+	db "LEFT SIDE@"
+	db "CANCEL@"
+; 0x26ed1
+
+UnknownText_0x26ed1: ; 0x26ed1
+	; Put away the @ .
+	text_jump UnknownText_0x1bc4d7
+	db "@"
+; 0x26ed6
+
+UnknownText_0x26ed6: ; 0x26ed6
+	; There's nothing to put away.
+	text_jump UnknownText_0x1bc4ec
+	db "@"
+; 0x26edb
+
+UnknownText_0x26edb: ; 0x26edb
+	; Set up the @ .
+	text_jump UnknownText_0x1bc509
+	db "@"
+; 0x26ee0
+
+UnknownText_0x26ee0: ; 0x26ee0
+	; Put away the @ and set up the @ .
+	text_jump UnknownText_0x1bc51c
+	db "@"
+; 0x26ee5
+
+UnknownText_0x26ee5: ; 0x26ee5
+	; That's already set up.
+	text_jump UnknownText_0x1bc546
+	db "@"
+; 0x26eea
 
 Function26eea: ; 26eea
 	ld a, c
@@ -32901,8 +32952,8 @@ Function26f0c: ; 26f0c
 	push hl
 	push de
 	ld e, a
-	ld d, $0
-	ld hl, $6f2b
+	ld d, 0
+	ld hl, Unknown_26f2b
 	add hl, de
 	ld a, [hl]
 	pop de
@@ -32910,8 +32961,34 @@ Function26f0c: ; 26f0c
 	ret
 ; 26f19
 
-INCBIN "baserom.gbc",$26f19,$26f59 - $26f19
+Function26f19: ; 26f19
+	ld hl, Unknown_26f2b
+.asm_26f1c
+	ld a, [hli]
+	cp $ff
+	jr z, .asm_26f2a
+	push hl
+	ld b, $1
+	call Function26a3b
+	pop hl
+	jr .asm_26f1c
 
+.asm_26f2a
+	ret
+; 26f2b
+
+Unknown_26f2b: ; 26f2b
+	db $02, $03, $04, $05, $07
+	db $08, $09, $0a, $0c, $0d
+	db $0e, $10, $11, $12, $13
+	db $15, $16, $17, $18, $1e
+	db $1f, $20, $21, $22, $23
+	db $24, $25, $26, $27, $28
+	db $29, $2a, $2b, $2c, $2d
+	db $2e, $2f, $30, $31, $32
+	db $1a, $1b, $1c, $33, $34
+	db $ff
+; 26f59
 
 Function26f59:: ; 26f59
 	ld a, b
@@ -32930,11 +33007,11 @@ Table26f5f: ; 26f5f
 
 Function26f69: ; 26f69
 	ld a, [Poster]
-	ld hl, $6f84
-	ld de, $0003
+	ld hl, Unknown_26f84
+	ld de, 3
 	call IsInArray
 	jr c, .asm_26f7d
-	ld de, $6fb8
+	ld de, UnknownScript_0x26fb8
 	ld b, $9
 	ret
 
@@ -32947,8 +33024,62 @@ Function26f69: ; 26f69
 	ret
 ; 26f84
 
-INCBIN "baserom.gbc",$26f84,$26fb9 - $26f84
+Unknown_26f84: ; 26f84
+	dbw $10, UnknownScript_0x26f91
+	dbw $11, UnknownScript_0x26fa0
+	dbw $12, UnknownScript_0x26fa8
+	dbw $13, UnknownScript_0x26fb0
+	db $ff
+; 26f91
 
+UnknownScript_0x26f91: ; 0x26f91
+	loadfont
+	2writetext UnknownText_0x26f9b
+	closetext
+	special $0026
+	loadmovesprites
+	end
+; 0x26f9b
+
+UnknownText_0x26f9b: ; 0x26f9b
+	; It's the TOWN MAP.
+	text_jump UnknownText_0x1bc55d
+	db "@"
+; 0x26fa0
+
+UnknownScript_0x26fa0: ; 0x26fa0
+	jumptext UnknownText_0x26fa3
+; 0x26fa3
+
+UnknownText_0x26fa3: ; 0x26fa3
+	; It's a poster of a cute PIKACHU.
+	text_jump UnknownText_0x1bc570
+	db "@"
+; 0x26fa8
+
+UnknownScript_0x26fa8: ; 0x26fa8
+	jumptext UnknownText_0x26fab
+; 0x26fab
+
+UnknownText_0x26fab: ; 0x26fab
+	; It's a poster of a cute CLEFAIRY.
+	text_jump UnknownText_0x1bc591
+	db "@"
+; 0x26fb0
+
+UnknownScript_0x26fb0: ; 0x26fb0
+	jumptext UnknownText_0x26fb3
+; 0x26fb3
+
+UnknownText_0x26fb3: ; 0x26fb3
+	; It's a poster of a cute JIGGLYPUFF.
+	text_jump UnknownText_0x1bc5b3
+	db "@"
+; 0x26fb8
+
+UnknownScript_0x26fb8: ; 26fb8
+	end
+; 26fb9
 
 Function26fb9: ; 26fb9
 	ld a, [LeftOrnament]
