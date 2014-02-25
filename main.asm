@@ -39255,11 +39255,11 @@ Function2c545: ; 2c545 (b:4545)
 	ret
 
 Function2c547: ; 2c547
-	ld hl, $45ef
+	ld hl, UnknownText_0x2c5ef
 	call PrintText
 	call YesNoBox
 	jr c, .asm_2c5c3
-	ld hl, $45f4
+	ld hl, UnknownText_0x2c5f4
 	call PrintText
 	callba Function50000
 	jr c, .asm_2c5c3
@@ -39273,7 +39273,7 @@ Function2c547: ; 2c547
 	ld a, [hl]
 	and a
 	jr z, .asm_2c5ca
-	ld hl, $45ea
+	ld hl, UnknownText_0x2c5ea
 	call PrintText
 	call Function1d6e
 	callba Function12f5b
@@ -39286,37 +39286,83 @@ Function2c547: ; 2c547
 	ld a, [CurSpecies]
 	ld [$d265], a
 	call GetMoveName
-	ld hl, $45d6
+	ld hl, UnknownText_0x2c5d6
 	call PrintText
 	call YesNoBox
 	pop bc
 	jr c, .asm_2c5c3
 	call Function2c5f9
 	call WaitSFX
-	ld de, $0097
+	ld de, SFX_MOVE_DELETED
 	call PlaySFX
 	call WaitSFX
-	ld hl, $45db
+	ld hl, UnknownText_0x2c5db
 	call PrintText
 	ret
 
 .asm_2c5bc
-	ld hl, $45e0
+	ld hl, UnknownText_0x2c5e0
 	call PrintText
 	ret
 
 .asm_2c5c3
-	ld hl, $45e5
+	ld hl, UnknownText_0x2c5e5
 	call PrintText
 	ret
 
 .asm_2c5ca
-	ld hl, $45d1
+	ld hl, UnknownText_0x2c5d1
 	call PrintText
 	ret
 ; 2c5d1
 
-INCBIN "baserom.gbc",$2c5d1,$2c5f9 - $2c5d1
+UnknownText_0x2c5d1: ; 0x2c5d1
+	; That #MON knows only one move.
+	text_jump UnknownText_0x1c5eba
+	db "@"
+; 0x2c5d6
+
+UnknownText_0x2c5d6: ; 0x2c5d6
+	; Oh, make it forget @ ?
+	text_jump UnknownText_0x1c5eda
+	db "@"
+; 0x2c5db
+
+UnknownText_0x2c5db: ; 0x2c5db
+	; Done! Your #MON forgot the move.
+	text_jump UnknownText_0x1c5ef5
+	db "@"
+; 0x2c5e0
+
+UnknownText_0x2c5e0: ; 0x2c5e0
+	; An EGG doesn't know any moves!
+	text_jump UnknownText_0x1c5f17
+	db "@"
+; 0x2c5e5
+
+UnknownText_0x2c5e5: ; 0x2c5e5
+	; No? Come visit me again.
+	text_jump UnknownText_0x1c5f36
+	db "@"
+; 0x2c5ea
+
+UnknownText_0x2c5ea: ; 0x2c5ea
+	; Which move should it forget, then?
+	text_jump UnknownText_0x1c5f50
+	db "@"
+; 0x2c5ef
+
+UnknownText_0x2c5ef: ; 0x2c5ef
+	; Um… Oh, yes, I'm the MOVE DELETER. I can make #MON forget moves. Shall I make a #MON forget?
+	text_jump UnknownText_0x1c5f74
+	db "@"
+; 0x2c5f4
+
+UnknownText_0x2c5f4: ; 0x2c5f4
+	; Which #MON?
+	text_jump UnknownText_0x1c5fd1
+	db "@"
+; 0x2c5f9
 
 Function2c5f9: ; 2c5f9
 	ld a, b
