@@ -39548,9 +39548,9 @@ Function2c6ac: ; 2c6ac (b:46ac)
 Function2c708: ; 2c708 (b:4708)
 	ld a, c
 	cp $25
-	jr nc, asm_2c722
-	ld hl, $4725
-	ld b, $0
+	jr nc, Function2c722
+	ld hl, Unknown_2c725
+	ld b, 0
 	add hl, bc
 	ld c, [hl]
 	ret
@@ -39559,20 +39559,42 @@ Function2c708: ; 2c708 (b:4708)
 Function2c715: ; 2c715 (b:4715)
 	ld a, c
 	cp $25
-	jr nc, asm_2c722
-	ld hl, $474a
-	ld b, $0
+	jr nc, Function2c722
+	ld hl, Unknown_2c74a
+	ld b, 0
 	add hl, bc
 	ld c, [hl]
 	ret
 
 ; known jump sources: 2c70b (b:470b), 2c718 (b:4718)
-asm_2c722: ; 2c722 (b:4722)
+Function2c722: ; 2c722 (b:4722)
 	ld c, $4
 	ret
 ; 2c725 (b:4725)
 
-INCBIN "baserom.gbc",$2c725,$2c76f - $2c725
+Unknown_2c725: ; 2c725
+; May or may not be items.
+	db $ad, $4e, $54, $50, $4f
+	db $4a, $29, $33, $31, $53
+	db $2c, $35, $21, $b9, $ba
+	db $bc, $6d, $ae, $27, $04
+	db $2a, $2b, $41, $3f, $18
+	db $16, $22, $17, $40, $15
+	db $28, $8c, $1a, $3e, $20
+	db $bb, $bd
+; 2c74a
+
+Unknown_2c74a: ; 2c74a
+; May or may not be items.
+	db $16, $1a, $1b, $1c, $1d
+	db $1e, $1f, $20, $21, $22
+	db $0d, $0e, $10, $23, $25
+	db $26, $08, $09, $0f, $11
+	db $17, $19, $01, $02, $04
+	db $05, $06, $07, $0a, $12
+	db $29, $0c, $2a, $14, $03
+	db $24, $27
+; 2c76f
 
 ; no known jump sources
 Function2c76f: ; 2c76f (b:476f)
@@ -39635,14 +39657,14 @@ Function2c7bf: ; 2c7bf (b:47bf)
 	ld [$d262], a
 	call GetMoveName
 	call CopyName1
-	ld hl, $48bf
+	ld hl, UnknownText_0x2c8bf
 	ld a, [CurItem] ; $d106
-	cp $f3
+	cp HM_01
 	jr c, .asm_2c7e9
-	ld hl, $48c4
+	ld hl, UnknownText_0x2c8c4
 .asm_2c7e9
 	call PrintText
-	ld hl, $48c9
+	ld hl, UnknownText_0x2c8c9
 	call PrintText
 	call YesNoBox
 .asm_2c7f5
@@ -39712,10 +39734,10 @@ Function2c867: ; 2c867
 	and a
 	jr nz, .asm_2c88b
 	push de
-	ld de, $19
+	ld de, SFX_WRONG
 	call PlaySFX
 	pop de
-	ld hl, $48ce
+	ld hl, UnknownText_0x2c8ce
 	call PrintText
 	jr .asm_2c8b6
 .asm_2c88b
@@ -39733,19 +39755,44 @@ Function2c867: ; 2c867
 	ld c, $5
 	callab ChangeHappiness
 	call Function2cb0c
-	jr .asm_2c8bd
+	jr Function2c8bd
 .asm_2c8b6
 	and a
 	ret
 ; 2c8b8 (b:48b8)
 
-INCBIN "baserom.gbc",$2c8b8,$2c8bd - $2c8b8
-.asm_2c8bd
+Function2c8b8: ; 2c8b8
+	ld a, $2
+	ld [$d0ec], a
+
+Function2c8bd: ; 2c8bd
 	scf
 	ret
 ; 2c8bf (b:48bf)
 
-INCBIN "baserom.gbc",$2c8bf,$2c8d3 - $2c8bf
+UnknownText_0x2c8bf: ; 0x2c8bf
+	; Booted up a TM.
+	text_jump UnknownText_0x1c0373
+	db "@"
+; 0x2c8c4
+
+UnknownText_0x2c8c4: ; 0x2c8c4
+	; Booted up an HM.
+	text_jump UnknownText_0x1c0384
+	db "@"
+; 0x2c8c9
+
+UnknownText_0x2c8c9: ; 0x2c8c9
+	; It contained @ . Teach @ to a #MON?
+	text_jump UnknownText_0x1c0396
+	db "@"
+; 0x2c8ce
+
+UnknownText_0x2c8ce: ; 0x2c8ce
+	; is not compatible with @ . It can't learn @ .
+	text_jump UnknownText_0x1c03c2
+	db "@"
+; 0x2c8d3
 
 ; known jump sources: 2c773 (b:4773)
 Function2c8d3: ; 2c8d3 (b:48d3)
@@ -39993,7 +40040,7 @@ Function2c9e2: ; 2c9e2 (b:49e2)
 	inc hl
 	inc hl
 	push de
-	ld de, $4aae
+	ld de, String_2caae
 	call PlaceString
 	pop de
 .asm_2ca85
@@ -40013,7 +40060,24 @@ Function2ca86: ; 2ca86 (b:4a86)
 	ret
 ; 2ca95 (b:4a95)
 
-INCBIN "baserom.gbc",$2ca95,$2cab5 - $2ca95
+Function2ca95: ; 2ca95
+	pop hl
+	ld bc, $0003
+	add hl, bc
+	ld a, $f
+	call Predef
+	ld a, [$d265]
+	ld [$d262], a
+	call GetMoveName
+	push hl
+	call PlaceString
+	pop hl
+	ret
+; 2caae
+
+String_2caae: ; 2caae
+	db "CANCEL@"
+; 2cab5
 
 ; known jump sources: 2c98a (b:498a), 2c9c5 (b:49c5), 2c9f5 (b:49f5)
 Function2cab5: ; 2cab5 (b:4ab5)
@@ -40037,7 +40101,7 @@ Function2cab5: ; 2cab5 (b:4ab5)
 Function2caca: ; 2caca (b:4aca)
 	ld hl, $c4e5
 	push de
-	ld de, $4aae
+	ld de, String_2caae
 	call PlaceString
 	pop de
 	ret
@@ -40045,13 +40109,49 @@ Function2caca: ; 2caca (b:4aca)
 ; known jump sources: 2c974 (b:4974), 2c9a5 (b:49a5)
 Function2cad6: ; 2cad6 (b:4ad6)
 	push de
-	ld de, $8
+	ld de, SFX_READ_TEXT_2
 	call PlaySFX
 	pop de
 	ret
 ; 2cadf (b:4adf)
 
-INCBIN "baserom.gbc",$2cadf,$2cb0c - $2cadf
+Function2cadf: ; 2cadf
+	call Function2c7a7
+	call Function2cafa
+	ld hl, UnknownText_0x2caf0
+	jr nc, .asm_2caed
+	ld hl, UnknownText_0x2caf5
+
+.asm_2caed
+	jp PrintText
+; 2caf0
+
+UnknownText_0x2caf0: ; 0x2caf0
+	; You have no room for any more @ S.
+	text_jump UnknownText_0x1c03fa
+	db "@"
+; 0x2caf5
+
+UnknownText_0x2caf5: ; 0x2caf5
+	; You received @ !
+	text_jump UnknownText_0x1c0421
+	db "@"
+; 0x2cafa
+
+Function2cafa: ; 2cafa
+	ld a, [$d265]
+	dec a
+	ld hl, TMsHMs
+	ld b, 0
+	ld c, a
+	add hl, bc
+	ld a, [hl]
+	inc a
+	cp NUM_TMS * 2
+	ret nc
+	ld [hl], a
+	ret
+; 2cb0c
 
 ; known jump sources: 2c8b1 (b:48b1)
 Function2cb0c: ; 2cb0c (b:4b0c)
@@ -40059,7 +40159,7 @@ Function2cb0c: ; 2cb0c (b:4b0c)
 	ld a, [$d265]
 	dec a
 	ld hl, TMsHMs ; $d859
-	ld b, $0
+	ld b, 0
 	ld c, a
 	add hl, bc
 	ld a, [hl]
