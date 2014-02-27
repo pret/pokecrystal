@@ -41622,7 +41622,7 @@ Function39771: ; 39771
 	ld b, $0
 	ld d, h
 	ld e, l
-	ld hl, $57e3
+	ld hl, Jumptable_397e3
 	add hl, bc
 	add hl, bc
 	ld a, [hli]
@@ -41644,7 +41644,14 @@ Function39771: ; 39771
 	jr .asm_397d0
 ; 397e3
 
-INCBIN "baserom.gbc",$397e3,$397eb - $397e3
+Jumptable_397e3: ; 397e3
+	dw Function397eb
+	dw Function39806
+	dw Function39871
+	dw Function3989d
+; 397eb
+
+Function397eb: ; 397eb
 	ld h, d
 	ld l, e
 .asm_397ed
@@ -41661,7 +41668,7 @@ INCBIN "baserom.gbc",$397e3,$397eb - $397e3
 	call Predef
 	pop hl
 	jr .asm_397ed
-
+; 39806
 
 Function39806: ; 39806
 	ld h, d
@@ -41732,6 +41739,7 @@ Function39806: ; 39806
 	jr .asm_39808
 ; 39871
 
+Function39871: ; 39871
 	ld h, d
 	ld l, e
 .asm_39873
@@ -41759,7 +41767,85 @@ Function39806: ; 39806
 	jr .asm_39873
 ; 3989d (e:589d)
 
-INCBIN "baserom.gbc",$3989d,$3991b - $3989d
+Function3989d: ; 3989d
+	ld h, d
+	ld l, e
+.asm_3989f
+	ld a, [hli]
+	cp $ff
+	ret z
+	ld [CurPartyLevel], a
+	ld a, [hli]
+	ld [CurPartySpecies], a
+	ld a, $1
+	ld [MonType], a
+	push hl
+	ld a, $6
+	call Predef
+	ld a, [OTPartyCount]
+	dec a
+	ld hl, $d289
+	ld bc, $0030
+	call AddNTimes
+	ld d, h
+	ld e, l
+	pop hl
+	ld a, [hli]
+	ld [de], a
+	push hl
+	ld a, [OTPartyCount]
+	dec a
+	ld hl, $d28a
+	ld bc, $0030
+	call AddNTimes
+	ld d, h
+	ld e, l
+	pop hl
+	ld b, $4
+.asm_398da
+	ld a, [hli]
+	ld [de], a
+	inc de
+	dec b
+	jr nz, .asm_398da
+	push hl
+	ld a, [OTPartyCount]
+	dec a
+	ld hl, OTPartyMon1
+	ld bc, $0030
+	call AddNTimes
+	ld d, h
+	ld e, l
+	ld hl, $0017
+	add hl, de
+	push hl
+	ld hl, $0002
+	add hl, de
+	pop de
+	ld b, $4
+.asm_398fc
+	ld a, [hli]
+	and a
+	jr z, .asm_39918
+	push hl
+	push bc
+	dec a
+	ld hl, Moves + MOVE_PP
+	ld bc, MOVE_LENGTH
+	call AddNTimes
+	ld a, BANK(Moves)
+	call GetFarByte
+	pop bc
+	pop hl
+	ld [de], a
+	inc de
+	dec b
+	jr nz, .asm_398fc
+
+.asm_39918
+	pop hl
+	jr .asm_3989f
+; 3991b
 
 ; known jump sources: 397d0 (e:57d0)
 Function3991b: ; 3991b (e:591b)
