@@ -21277,10 +21277,15 @@ TimesOfDay: ; 14044
 	db 10, MORN
 	db 18, DAY
 	db 24, NITE
-; 1404c
+	db -1, MORN
+; 1404e
 
-
-INCBIN "baserom.gbc",$1404c,$14056 - $1404c
+Unknown_1404e: ; 1404e
+	db 20, 2
+	db 40, 0
+	db 60, 1
+	db -1, 0
+; 14056
 
 
 Function14056: ; 14056
@@ -21442,7 +21447,29 @@ Function14135:: ; 14135
 	ret
 ; 14146
 
-INCBIN "baserom.gbc",$14146,$14168 - $14146
+Function14146: ; 14146
+	ld hl, $d13e
+	ld a, [hl]
+	push af
+	res 7, [hl]
+	set 6, [hl]
+	call Function14209
+	pop af
+	ld [$d13e], a
+	ret
+; 14157
+
+Function14157: ; 14157
+	ld hl, $d13e
+	ld a, [hl]
+	push af
+	set 7, [hl]
+	res 6, [hl]
+	call Function14209
+	pop af
+	ld [$d13e], a
+	ret
+; 14168
 
 
 Function14168:: ; 14168
@@ -22079,8 +22106,8 @@ Function14418: ; 14418
 
 Function1442f:: ; 1442f
 	ld a, c
-	ld bc, $0006
-	ld hl, $444d
+	ld bc, 6
+	ld hl, EmotesPointers
 	call AddNTimes
 	ld e, [hl]
 	inc hl
@@ -22101,7 +22128,13 @@ Function1442f:: ; 1442f
 	ret
 ; 1444d
 
+EmotesPointers: ; 144d
+; dw source address
+; db length, bank
+; dw dest address
+
 INCBIN "baserom.gbc",$1444d,$14495 - $1444d
+; 14495
 
 
 SpriteMons: ; 14495
