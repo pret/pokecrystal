@@ -40659,13 +40659,13 @@ Function38000: ; 38000
 	ld a, [$c731]
 	and a
 	jr nz, Function38041
-	ld hl, $55a1
+	ld hl, TrainerClassAttributes + 5
 	ld a, [$cfc0]
 	and a
 	jr nz, .asm_38032
 	ld a, [TrainerClass]
 	dec a
-	ld bc, $0007
+	ld bc, 7
 	call AddNTimes
 
 .asm_38032
@@ -40803,12 +40803,12 @@ Function38105: ; 38105
 	ret nc
 	ld a, [TrainerClass]
 	dec a
-	ld hl, $55a1
-	ld bc, $0007
+	ld hl, TrainerClassAttributes + 5
+	ld bc, 7
 	call AddNTimes
 	ld b, h
 	ld c, l
-	ld hl, $4196
+	ld hl, Unknown_38196
 	ld de, $c650
 .asm_3812c
 	ld a, [hl]
@@ -40832,14 +40832,14 @@ Function38105: ; 38105
 	inc hl
 	push hl
 	push de
-	ld de, $414a
+	ld de, .asm_3814a
 	push de
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
 	jp [hl]
-; 3814a
 
+.asm_3814a
 	pop de
 	pop hl
 	inc hl
@@ -40893,11 +40893,29 @@ Function38170: ; 38170
 	ret
 ; 38196
 
-INCBIN "baserom.gbc",$38196,$381be - $38196
+Unknown_38196: ; 39196
+	dbw FULL_RESTORE, Function38208
+	dbw MAX_POTION,   Function38220
+	dbw HYPER_POTION, Function38284
+	dbw SUPER_POTION, Function38292
+	dbw POTION,       Function382a0
+	dbw X_ACCURACY,   Function382f9
+	dbw FULL_HEAL,    Function381be
+	dbw GUARD_SPEC,   Function38305
+	dbw DIRE_HIT,     Function38311
+	dbw X_ATTACK,     Function3831d
+	dbw X_DEFEND,     Function38329
+	dbw X_SPEED,      Function38335
+	dbw X_SPECIAL,    Function38341
+	db $ff
+; 381be
+
+Function381be: ; 381be
 	call Function381ca
 	jp c, Function38383
 	call Function383a3
 	jp Function38385
+; 381ca
 
 ; known jump sources: 381be (e:41be), 38214 (e:4214)
 Function381ca: ; 381ca (e:41ca)
@@ -40914,6 +40932,7 @@ Function381ca: ; 381ca (e:41ca)
 	cp $32
 	jp c, Function38385
 	jp Function38383
+
 .asm_381e7
 	ld a, [EnemySubStatus5] ; $c671
 	bit 0, a
@@ -40929,6 +40948,9 @@ Function381ca: ; 381ca (e:41ca)
 	and $27
 	jp z, Function38383
 	jp Function38385
+; 38208
+
+Function38208: ; 38208
 	call Function3822c
 	jp nc, Function3821a
 	ld a, [bc]
@@ -40941,6 +40963,9 @@ Function381ca: ; 381ca (e:41ca)
 Function3821a: ; 3821a (e:421a)
 	call Function383b5
 	jp Function38385
+; 38220
+
+Function38220: ; 38220
 	call Function3822c
 	jp c, Function38383
 	call Function383ae
@@ -40950,7 +40975,7 @@ Function3821a: ; 3821a (e:421a)
 Function3822c: ; 3822c (e:422c)
 	ld a, [bc]
 	bit 6, a
-	jr nz, asm_38267
+	jr nz, Function38267
 	callab AICheckEnemyHalfHP
 	jp c, Function38383
 	ld a, [bc]
@@ -40971,7 +40996,8 @@ Function38254: ; 38254 (e:4254)
 	cp $32
 	jp c, Function38383
 	jr Function38281
-asm_38267: ; 38267 (e:4267)
+
+Function38267: ; 38267 (e:4267)
 	callab AICheckEnemyHalfHP
 	jp c, Function38383
 	callab AICheckEnemyQuarterHP
@@ -40983,21 +41009,126 @@ asm_38267: ; 38267 (e:4267)
 ; known jump sources: 38246 (e:4246), 3824e (e:424e), 38265 (e:4265), 38276 (e:4276)
 Function38281: ; 38281 (e:4281)
 	jp Function38385
+; 38284
+
+Function38284: ; 38284
 	call Function3822c
 	jp c, Function38383
-	ld b, $c8
+	ld b, 200
 	call Function383f4
 	jp Function38385
 ; 38292 (e:4292)
 
-INCBIN "baserom.gbc",$38292,$38311 - $38292
+Function38292: ; 38292
+	call Function3822c
+	jp c, Function38383
+
+Function38298: ; 38298
+	ld b, 50
+	call Function383ee
+	jp Function38385
+; 382a0
+
+Function382a0: ; 382a0
+	call Function3822c
+	jp c, Function38383
+	ld b, 20
+	call Function383e8
+	jp Function38385
+; 382ae
+
+Function382ae: ; 382ae
+	callab AICheckEnemyMaxHP
+	jr c, .asm_382e4
+	push bc
+	ld de, EnemyMonMaxHPLo
+	ld hl, EnemyMonHPLo
+	ld a, [de]
+	sub [hl]
+	jr z, .asm_382e7
+	dec hl
+	dec de
+	ld c, a
+	sbc [hl]
+	and a
+	jr nz, .asm_382e7
+	ld a, c
+	cp b
+	jp c, .asm_382d5
+	callab AICheckEnemyQuarterHP
+	jr c, .asm_382e7
+
+.asm_382d5
+	pop bc
+	ld a, [bc]
+	bit 5, a
+	jp z, Function38385
+	call Random
+	cp $80
+	jp c, Function38385
+
+.asm_382e4
+	jp Function38383
+
+.asm_382e7
+	pop bc
+	ld a, [bc]
+	bit 5, a
+	jp z, Function38383
+	call Random
+	cp $64
+	jp c, Function38385
+	jp Function38383
+; 382f9
+
+Function382f9: ; 382f9
+	call Function3834d
+	jp c, Function38383
+	call Function384f7
+	jp Function38385
+; 38305
+
+Function38305: ; 38305
+	call Function3834d
+	jp c, Function38383
+	call Function38504
+	jp Function38385
+; 38311
+
+Function38311: ; 38311
 	call Function3834d
 	jp c, Function38383
 	call Function38511
 	jp Function38385
 ; 3831d (e:431d)
 
-INCBIN "baserom.gbc",$3831d,$3834d - $3831d
+Function3831d: ; 3831d
+	call Function3834d
+	jp c, Function38383
+	call Function38541
+	jp Function38385
+; 38329
+
+Function38329: ; 38329
+	call Function3834d
+	jp c, Function38383
+	call Function38547
+	jp Function38385
+; 38335
+
+Function38335: ; 38335
+	call Function3834d
+	jp c, Function38383
+	call Function3854d
+	jp Function38385
+; 38341
+
+Function38341: ; 38341
+	call Function3834d
+	jp c, Function38383
+	call Function38553
+	jp Function38385
+; 3834d
 
 ; known jump sources: 38311 (e:4311)
 Function3834d: ; 3834d (e:434d)
@@ -41101,12 +41232,22 @@ asm_383c6: ; 383c6 (e:43c6)
 	jr asm_38436
 ; 383e8 (e:43e8)
 
-INCBIN "baserom.gbc",$383e8,$383f4 - $383e8
+Function383e8: ; 383e8
+	ld a, POTION
+	ld b, 20
+	jr Function383f8
+
+Function383ee: ; 383ee
+	ld a, SUPER_POTION
+	ld b, 50
+	jr Function383f8
 
 ; known jump sources: 3828c (e:428c)
 Function383f4: ; 383f4 (e:43f4)
-	ld a, $10
-	ld b, $c8
+	ld a, HYPER_POTION
+	ld b, 200
+
+Function383f8: ; 383f8
 	ld [$d1f1], a
 	ld hl, EnemyMonHPLo ; $d217
 	ld a, [hl]
@@ -41487,15 +41628,12 @@ Function39771: ; 39771
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	ld bc, .data_397d0
+	ld bc, .asm_397d0
 	push bc
 	jp [hl]
 
-.data_397d0
 .asm_397d0
-	db $c3
-	db $1b
-	db $59
+	jp Function3991b
 
 .asm_397d3
 	ld a, $0
