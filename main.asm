@@ -41410,8 +41410,8 @@ Function3957b: ; 3957b
 	call Function39550
 	ld a, [TrainerClass]
 	dec a
-	ld hl, $559c
-	ld bc, $0007
+	ld hl, TrainerClassAttributes
+	ld bc, 7
 	call AddNTimes
 	ld de, $c650
 	ld a, [hli]
@@ -41424,8 +41424,7 @@ Function3957b: ; 3957b
 	ret
 ; 3959c
 
-
-INCBIN "baserom.gbc",$3959c,$39771 - $3959c
+INCLUDE "trainers/attributes.asm"
 
 
 Function39771: ; 39771
@@ -44663,7 +44662,7 @@ AIChooseMove: ; 440ce
 
 ; Apply AI scoring layers depending on the trainer class.
 .ApplyLayers
-	ld hl, $559f ; TrainerAI + 3 ; e:559c-5771
+	ld hl, TrainerClassAttributes + 3
 
 	ld a, [$cfc0]
 	bit 0, a
@@ -44675,7 +44674,7 @@ AIChooseMove: ; 440ce
 	call AddNTimes
 
 .asm_4412f
-	ld bc, (CHECK_FLAG << 8) | 0
+	lb bc, CHECK_FLAG, 0
 	push bc
 	push hl
 
