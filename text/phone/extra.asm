@@ -222,7 +222,7 @@ UnknownText_0x648dc: ; 0x648dc
 UnknownText_0x649dc: ; 0x649dc
 	db $0, "I'm always with my", $4f
 	db "@"
-	text_from_ram $d0ac
+	text_from_ram StringBuffer4
 	db $0, "!", $51
 	db "It's so cute!", $4f
 	db "I just love it!", $57
@@ -232,7 +232,7 @@ UnknownText_0x64a13: ; 0x64a13
 	db $0, "Changing the topic", $4f
 	db "here, I saw this", $51
 	db "@"
-	text_from_ram $d0ac
+	text_from_ram StringBuffer4
 	db $0, " for the", $4f
 	db "first time.", $51
 	db "It was easy to", $4f
@@ -243,7 +243,7 @@ UnknownText_0x64a71: ; 0x64a71
 	db $0, "I was wondering,", $4f
 	db "do you happen to", $55
 	db "have @"
-	text_from_ram $d0ac
+	text_from_ram StringBuffer4
 	db $0, "?", $51
 	db "I can't seem to", $4f
 	db "catch one. What is", $51
@@ -260,7 +260,7 @@ UnknownText_0x64ada: ; 0x64ada
 	db "Contest!", $51
 	db "I'll be here on", $4f
 	db "@"
-	text_from_ram $d0bf
+	text_from_ram StringBuffer5
 	db $0, "!", $57
 ; 0x64b48
 
@@ -274,11 +274,11 @@ UnknownText_0x64b5f: ; 0x64b5f
 	db "caught you!", $51
 	db "A whole bunch of", $4f
 	db "@"
-	text_from_ram $d0ac
+	text_from_ram StringBuffer4
 	db $0, " have", $51
 	db "appeared around", $4f
 	db "@"
-	text_from_ram $d0bf
+	text_from_ram StringBuffer5
 	db $0, "!", $51
 	db "You have to see", $4f
 	db "this!", $57
@@ -298,7 +298,7 @@ UnknownText_0x64c13: ; 0x64c13
 	db "Let's battle. I'll", $4f
 	db "be waiting for you", $55
 	db "on @"
-	text_from_ram $d0bf
+	text_from_ram StringBuffer5
 	db $0, "!", $57
 ; 0x64c5a
 
@@ -313,7 +313,7 @@ UnknownText_0x64c5a: ; 0x64c5a
 
 UnknownText_0x64cbd: ; 0x64cbd
 	db $0, "My @"
-	text_from_ram $d0ac
+	text_from_ram StringBuffer4
 	db $0, "'s", $4f
 	db "getting stronger,", $51
 	db "exactly as I", $4f
@@ -324,7 +324,7 @@ UnknownText_0x64cf3: ; 0x64cf3
 	db $0, "By the way, we", $4f
 	db "knocked out a wild", $51
 	db "@"
-	text_from_ram $d0ac
+	text_from_ram StringBuffer4
 	db $0, " just", $4f
 	db "the other day.", $51
 	db "Studying up in", $4f
@@ -334,7 +334,7 @@ UnknownText_0x64cf3: ; 0x64cf3
 UnknownText_0x64d4f: ; 0x64d4f
 	db $0, "By the way, a wild", $4f
 	db "@"
-	text_from_ram $d0ac
+	text_from_ram StringBuffer4
 	db $0, " escaped", $55
 	db "on me yesterday.", $51
 	db "A computational", $4f
@@ -348,7 +348,7 @@ UnknownText_0x64da4: ; 0x64da4
 	db "lot better!", $51
 	db "I'm hanging out on", $4f
 	db "@"
-	text_from_ram $d0bf
+	text_from_ram StringBuffer5
 	db $0, ".", $51
 	db "Can you come down", $4f
 	db "for a battle?", $57
@@ -364,7 +364,7 @@ UnknownText_0x64e2f: ; 0x64e2f
 	db "You can have it!", $4f
 	db "Why don't you come", $51
 	db "to @"
-	text_from_ram $d0bf
+	text_from_ram StringBuffer5
 	db $0, $4f
 	db "and pick it up?", $57
 ; 0x64e90
@@ -382,7 +382,7 @@ UnknownText_0x64ed4: ; 0x64ed4
 	db "my strategy!", $51
 	db "I'm waiting on", $4f
 	db "@"
-	text_from_ram $d0bf
+	text_from_ram StringBuffer5
 	db $0, "!", $57
 ; 0x64f1a
 
@@ -393,13 +393,13 @@ UnknownText_0x64f1a: ; 0x64f1a
 	db "gift right away?", $51
 	db "I'm waiting on", $4f
 	db "@"
-	text_from_ram $d0bf
+	text_from_ram StringBuffer5
 	db $0, "!", $57
 ; 0x64f74
 
 UnknownText_0x64f74: ; 0x64f74
 	db $0, "My @"
-	text_from_ram $d0ac
+	text_from_ram StringBuffer4
 	db $0, " is", $4f
 	db "getting prettier!", $51
 	db "I've been taking", $4f
@@ -410,7 +410,7 @@ UnknownText_0x64fb2: ; 0x64fb2
 	db $0, "It took only an", $4f
 	db "instant to KO a", $55
 	db "wild @"
-	text_from_ram $d0ac
+	text_from_ram StringBuffer4
 	db $0, ".", $51
 	db "It must be because", $4f
 	db "you gave me some", $51
@@ -421,7 +421,7 @@ UnknownText_0x64fb2: ; 0x64fb2
 UnknownText_0x6501c: ; 0x6501c
 	db $0, "You know what?", $4f
 	db "A wild @"
-	text_from_ram $d0ac
+	text_from_ram StringBuffer4
 	db $0, $51
 	db "got away from me", $4f
 	db "again.", $51
@@ -434,7 +434,7 @@ UnknownText_0x6501c: ; 0x6501c
 UnknownText_0x65091: ; 0x65091
 	db $0, "Right now, I'm on", $4f
 	db "@"
-	text_from_ram $d0bf
+	text_from_ram StringBuffer5
 	db $0, ".", $51
 	db "If you're close", $4f
 	db "by, let's battle!", $51
@@ -455,7 +455,7 @@ UnknownText_0x650ec: ; 0x650ec
 	db "like it. Come get", $51
 	db "it! I'm waiting on", $4f
 	db "@"
-	text_from_ram $d0bf
+	text_from_ram StringBuffer5
 	db $0, "!", $57
 ; 0x65161
 
@@ -475,7 +475,7 @@ UnknownText_0x651bf: ; 0x651bf
 	db "battle me?", $51
 	db "I'm waiting on", $4f
 	db "@"
-	text_from_ram $d0bf
+	text_from_ram StringBuffer5
 	db $0, "!", $57
 ; 0x6520f
 
@@ -487,7 +487,7 @@ UnknownText_0x6520f: ; 0x6520f
 	db "to someone else.", $51
 	db "I'm waiting on", $4f
 	db "@"
-	text_from_ram $d0bf
+	text_from_ram StringBuffer5
 	db $0, "!", $57
 ; 0x65271
 
@@ -495,7 +495,7 @@ UnknownText_0x65271: ; 0x65271
 	db $0, "I recently began", $4f
 	db "observing wild", $55
 	db "@"
-	text_from_ram $d0ac
+	text_from_ram StringBuffer4
 	db $0, ".", $51
 	db "I've been learning", $4f
 	db "all sorts of new", $51
@@ -511,7 +511,7 @@ UnknownText_0x65318: ; 0x65318
 	db $0, "Oh yes, I managed", $4f
 	db "to knock out a", $51
 	db "wild @"
-	text_from_ram $d0ac
+	text_from_ram StringBuffer4
 	db $0, " a", $4f
 	db "while back.", $51
 	db "Well, considering", $4f
@@ -524,14 +524,14 @@ UnknownText_0x65399: ; 0x65399
 	db $0, "Oh yes, I came", $4f
 	db "close to catching", $51
 	db "a wild @"
-	text_from_ram $d0ac
+	text_from_ram StringBuffer4
 	db $0, ",", $4f
 	db "but it got away.", $51
 	db "For the longest", $4f
 	db "time, I've been", $51
 	db "wanting to observe", $4f
 	db "@"
-	text_from_ram $d0ac
+	text_from_ram StringBuffer4
 	db $0, ". Rats…", $57
 ; 0x65419
 
@@ -542,7 +542,7 @@ UnknownText_0x65419: ; 0x65419
 	db "avoid rusting out.", $51
 	db "I'll be on", $4f
 	db "@"
-	text_from_ram $d0bf
+	text_from_ram StringBuffer5
 	db $0, "!", $57
 ; 0x65471
 
@@ -684,7 +684,7 @@ UnknownText_0x65a63: ; 0x65a63
 	db "about our battle?", $51
 	db "The place is", $4f
 	db "@"
-	text_from_ram $d0bf
+	text_from_ram StringBuffer5
 	db $0, ".", $51
 	db "Hurry over--I'm", $4f
 	db "waiting.", $57
@@ -693,7 +693,7 @@ UnknownText_0x65a63: ; 0x65a63
 UnknownText_0x65ab2: ; 0x65ab2
 	db $0, "Listen to this.", $4f
 	db "My @"
-	text_from_ram $d0ac
+	text_from_ram StringBuffer4
 	db $0, $51
 	db "grins happily when", $4f
 	db "I pinch its cheek.", $51
@@ -706,10 +706,10 @@ UnknownText_0x65b29: ; 0x65b29
 	db $0, "Oh, and recently,", $4f
 	db "my PIKACHU beat a", $55
 	db "wild @"
-	text_from_ram $d0ac
+	text_from_ram StringBuffer4
 	db $0, "!", $51
 	db "A wild @"
-	text_from_ram $d0ac
+	text_from_ram StringBuffer4
 	db $0, ",", $4f
 	db "I tell you!", $51
 	db "Don't you think", $4f
@@ -723,7 +723,7 @@ UnknownText_0x65b29: ; 0x65b29
 UnknownText_0x65bc8: ; 0x65bc8
 	db $0, "Oh, and I saw a", $4f
 	db "wild @"
-	text_from_ram $d0ac
+	text_from_ram StringBuffer4
 	db $0, " a", $55
 	db "little while ago.", $51
 	db "But it wasn't very", $4f
@@ -773,7 +773,7 @@ UnknownText_0x65da6: ; 0x65da6
 	db $0, "What's wrong?", $51
 	db "I'm waiting on", $4f
 	db "@"
-	text_from_ram $d0bf
+	text_from_ram StringBuffer5
 	db $0, ".", $51
 	db "Come pick this up", $4f
 	db "anytime.", $57
@@ -781,7 +781,7 @@ UnknownText_0x65da6: ; 0x65da6
 
 UnknownText_0x65de4: ; 0x65de4
 	db $0, "My @"
-	text_from_ram $d0ac
+	text_from_ram StringBuffer4
 	db $0, " has", $4f
 	db "grown again.", $51
 	db "It was only about", $4f
@@ -793,7 +793,7 @@ UnknownText_0x65de4: ; 0x65de4
 UnknownText_0x65e42: ; 0x65e42
 	db $0, "Oh yeah, I KO'd a", $4f
 	db "wild @"
-	text_from_ram $d0ac
+	text_from_ram StringBuffer4
 	db $0, ".", $51
 	db "It was huge, like", $4f
 	db "this big even.", $51
@@ -805,7 +805,7 @@ UnknownText_0x65e42: ; 0x65e42
 UnknownText_0x65eac: ; 0x65eac
 	db $0, "Oh yeah, I lost a", $4f
 	db "wild @"
-	text_from_ram $d0ac
+	text_from_ram StringBuffer4
 	db $0, ".", $51
 	db "It was huge, like", $4f
 	db "this big even.", $51
@@ -819,7 +819,7 @@ UnknownText_0x65f17: ; 0x65f17
 	db "battle going!", $51
 	db "I'll be fishing on", $4f
 	db "@"
-	text_from_ram $d0bf
+	text_from_ram StringBuffer5
 	db $0, ".", $51
 	db "Swing by if you", $4f
 	db "have the time.", $57
@@ -838,7 +838,7 @@ UnknownText_0x65f88: ; 0x65f88
 	db "it's yours.", $51
 	db "I'll be waiting on", $4f
 	db "@"
-	text_from_ram $d0bf
+	text_from_ram StringBuffer5
 	db $0, ".", $57
 ; 0x65ff2
 
@@ -856,7 +856,7 @@ UnknownText_0x66043: ; 0x66043
 	db "You're lost?", $51
 	db "Our battle will be", $4f
 	db "on @"
-	text_from_ram $d0bf
+	text_from_ram StringBuffer5
 	db $0, ".", $57
 ; 0x66087
 
@@ -865,7 +865,7 @@ UnknownText_0x66087: ; 0x66087
 	db "good for you.", $51
 	db "Hustle over to", $4f
 	db "@"
-	text_from_ram $d0bf
+	text_from_ram StringBuffer5
 	db $0, ".", $57
 ; 0x660be
 
@@ -884,7 +884,7 @@ UnknownText_0x6613c: ; 0x6613c
 	db $0, "Oh yeah, I took", $4f
 	db "down this wild", $51
 	db "@"
-	text_from_ram $d0ac
+	text_from_ram StringBuffer4
 	db $0, ".", $4f
 	db "It wasn't rare", $51
 	db "enough to bother", $4f
@@ -914,7 +914,7 @@ UnknownText_0x66214: ; 0x66214
 	db "worth your time!", $51
 	db "You know where--", $4f
 	db "@"
-	text_from_ram $d0bf
+	text_from_ram StringBuffer5
 	db $0, ".", $57
 ; 0x662a9
 
@@ -1005,13 +1005,13 @@ UnknownText_0x66579: ; 0x66579
 	db "rare #MON.", $51
 	db "Hurry over to", $4f
 	db "@"
-	text_from_ram $d0bf
+	text_from_ram StringBuffer5
 	db $0, ".", $57
 ; 0x665ad
 
 UnknownText_0x665ad: ; 0x665ad
 	db $0, "My @"
-	text_from_ram $d0ac
+	text_from_ram StringBuffer4
 	db $0, "'s", $4f
 	db "adorable, don't", $51
 	db "you think so?", $4f
@@ -1024,7 +1024,7 @@ UnknownText_0x66605: ; 0x66605
 	db $0, "Oh, and we had to", $4f
 	db "battle a wild", $51
 	db "@"
-	text_from_ram $d0ac
+	text_from_ram StringBuffer4
 	db $0, " a while", $4f
 	db "ago…", $51
 	db "My CLEFAIRY came", $4f
@@ -1032,7 +1032,7 @@ UnknownText_0x66605: ; 0x66605
 	db "Isn't that awful?", $51
 	db "I hate those nasty", $4f
 	db "@"
-	text_from_ram $d0ac
+	text_from_ram StringBuffer4
 	db $0, "!", $57
 ; 0x66688
 
@@ -1040,7 +1040,7 @@ UnknownText_0x66688: ; 0x66688
 	db $0, "Oh, and we had to", $4f
 	db "battle a wild", $51
 	db "@"
-	text_from_ram $d0ac
+	text_from_ram StringBuffer4
 	db $0, " a while", $4f
 	db "ago…", $51
 	db "My CLEFAIRY got", $4f
@@ -1060,12 +1060,12 @@ UnknownText_0x66730: ; 0x66730
 	db "I'll be waiting", $4f
 	db "with CLEFAIRY on", $55
 	db "@"
-	text_from_ram $d0bf
+	text_from_ram StringBuffer5
 	db $0, ".", $57
 ; 0x66796
 
 UnknownText_0x66796: ; 0x66796
-	text_from_ram $d0ac
+	text_from_ram StringBuffer4
 	db $0, "!", $51
 	db "It's awful.", $4f
 	db "My CLEFAIRY…", $51
@@ -1089,7 +1089,7 @@ UnknownText_0x66801: ; 0x66801
 	db "I'll give you one!", $51
 	db "Come collect it on", $4f
 	db "@"
-	text_from_ram $d0bf
+	text_from_ram StringBuffer5
 	db $0, ".", $57
 ; 0x66882
 
@@ -1107,7 +1107,7 @@ UnknownText_0x668a3: ; 0x668a3
 	db "can wake it up…", $51
 	db "Please hurry to", $4f
 	db "@"
-	text_from_ram $d0bf
+	text_from_ram StringBuffer5
 	db $0, "!", $57
 ; 0x6691d
 
@@ -1119,13 +1119,13 @@ UnknownText_0x6691d: ; 0x6691d
 	db "CLEFAIRY.", $51
 	db "Please hurry to", $4f
 	db "@"
-	text_from_ram $d0bf
+	text_from_ram StringBuffer5
 	db $0, "!", $57
 ; 0x66980
 
 UnknownText_0x66980: ; 0x66980
 	db $0, "My @"
-	text_from_ram $d0ac
+	text_from_ram StringBuffer4
 	db $0, "'s", $4f
 	db "become tougher.", $51
 	db "We've achieved", $4f
@@ -1135,7 +1135,7 @@ UnknownText_0x66980: ; 0x66980
 UnknownText_0x669b2: ; 0x669b2
 	db $0, "We can easily beat", $4f
 	db "@"
-	text_from_ram $d0ac
+	text_from_ram StringBuffer4
 	db $0, "!", $51
 	db "…Huh? You too?", $4f
 	db "Isn't that great?", $57
@@ -1144,7 +1144,7 @@ UnknownText_0x669b2: ; 0x669b2
 UnknownText_0x669ed: ; 0x669ed
 	db $0, "But get this, a", $4f
 	db "wild @"
-	text_from_ram $d0ac
+	text_from_ram StringBuffer4
 	db $0, $51
 	db "just barely eluded", $4f
 	db "us.", $51
@@ -1155,7 +1155,7 @@ UnknownText_0x669ed: ; 0x669ed
 UnknownText_0x66a3a: ; 0x66a3a
 	db $0, "Right now, I'm on", $4f
 	db "@"
-	text_from_ram $d0bf
+	text_from_ram StringBuffer5
 	db $0, ".", $51
 	db "You know, where I", $4f
 	db "first met you?", $51
@@ -1177,14 +1177,14 @@ UnknownText_0x66ad1: ; 0x66ad1
 	db $0, "Oh, ", $14, "!", $4f
 	db "Hurry, hurry!", $51
 	db "@"
-	text_from_ram $d0bf
+	text_from_ram StringBuffer5
 	db $0, "!", $4f
 	db "FLY over now!", $57
 ; 0x66afc
 
 UnknownText_0x66afc: ; 0x66afc
 	db $0, "My @"
-	text_from_ram $d0ac
+	text_from_ram StringBuffer4
 	db $0, "'s", $4f
 	db "grown impressive!", $51
 	db "My fishing skills", $4f
@@ -1194,7 +1194,7 @@ UnknownText_0x66afc: ; 0x66afc
 UnknownText_0x66b3e: ; 0x66b3e
 	db $0, "We beat a wild", $4f
 	db "@"
-	text_from_ram $d0ac
+	text_from_ram StringBuffer4
 	db $0, "…", $51
 	db "You know, I have", $4f
 	db "more fun fishing", $51
@@ -1207,7 +1207,7 @@ UnknownText_0x66b8f: ; 0x66b8f
 	db "we came this close", $51
 	db "to landing a wild", $4f
 	db "@"
-	text_from_ram $d0ac
+	text_from_ram StringBuffer4
 	db $0, ".", $51
 	db "I tell you, it was", $4f
 	db "huge. Believe me.", $57
@@ -1216,7 +1216,7 @@ UnknownText_0x66b8f: ; 0x66b8f
 UnknownText_0x66bf3: ; 0x66bf3
 	db $0, "I'm fishing on", $4f
 	db "@"
-	text_from_ram $d0bf
+	text_from_ram StringBuffer5
 	db $0, ",", $51
 	db "but nothing's", $4f
 	db "biting today.", $51
@@ -1234,7 +1234,7 @@ UnknownText_0x66c6b: ; 0x66c6b
 	db "while fishing.", $51
 	db "Come pick it up on", $4f
 	db "@"
-	text_from_ram $d0bf
+	text_from_ram StringBuffer5
 	db $0, ".", $57
 ; 0x66ca7
 
@@ -1252,7 +1252,7 @@ UnknownText_0x66cf7: ; 0x66cf7
 	db "They're not biting", $51
 	db "like before on", $4f
 	db "@"
-	text_from_ram $d0bf
+	text_from_ram StringBuffer5
 	db $0, "…", $51
 	db "You have to come", $4f
 	db "for a battle!", $57
@@ -1264,7 +1264,7 @@ UnknownText_0x66d45: ; 0x66d45
 	db "Hah? You don't", $4f
 	db "know where?", $51
 	db "@"
-	text_from_ram $d0bf
+	text_from_ram StringBuffer5
 	db $0, "…", $4f
 	db "Just head from", $51
 	db "MAHOGANY toward", $4f
@@ -1327,14 +1327,14 @@ UnknownText_0x66f52: ; 0x66f52
 UnknownText_0x66f9f: ; 0x66f9f
 	db $0, "Nothing can match", $4f
 	db "my @"
-	text_from_ram $d0ac
+	text_from_ram StringBuffer4
 	db $0, " now.", $57
 ; 0x66fc0
 
 UnknownText_0x66fc0: ; 0x66fc0
 	db $0, "Yeah, we KO'd a", $4f
 	db "wild @"
-	text_from_ram $d0ac
+	text_from_ram StringBuffer4
 	db $0, "!", $51
 	db "That was OK, but I", $4f
 	db "wanted to get it…", $57
@@ -1344,7 +1344,7 @@ UnknownText_0x67001: ; 0x67001
 	db $0, "And yesterday, we", $4f
 	db "spotted a wild", $51
 	db "@"
-	text_from_ram $d0ac
+	text_from_ram StringBuffer4
 	db $0, ".", $4f
 	db "We were debating", $51
 	db "whether to catch", $4f
@@ -1362,7 +1362,7 @@ UnknownText_0x67096: ; 0x67096
 	db "right or what?", $51
 	db "Yep! We'll meet on", $4f
 	db "@"
-	text_from_ram $d0bf
+	text_from_ram StringBuffer5
 	db $0, "!", $57
 ; 0x670eb
 
@@ -1379,7 +1379,7 @@ UnknownText_0x67106: ; 0x67106
 UnknownText_0x6712a: ; 0x6712a
 	db $0, "Haven't you gotten", $4f
 	db "to @"
-	text_from_ram $d0bf
+	text_from_ram StringBuffer5
 	db $0, "?", $51
 	db "Waiting here isn't", $4f
 	db "bad, but I'd sure", $55
@@ -1387,9 +1387,9 @@ UnknownText_0x6712a: ; 0x6712a
 ; 0x6717a
 
 UnknownText_0x6717a: ; 0x6717a
-	text_from_ram $d099
+	text_from_ram StringBuffer3
 	db $0, "'s @"
-	text_from_ram $d0ac
+	text_from_ram StringBuffer4
 	db $0, $4f
 	db "is much stronger", $55
 	db "than before!", $57
@@ -1399,7 +1399,7 @@ UnknownText_0x671a4: ; 0x671a4
 	db $0, "And, and…", $4f
 	db "I just battled and", $55
 	db "beat @"
-	text_from_ram $d0ac
+	text_from_ram StringBuffer4
 	db $0, "!", $51
 	db "I've raised my", $4f
 	db "#MON properly!", $57
@@ -1408,7 +1408,7 @@ UnknownText_0x671a4: ; 0x671a4
 UnknownText_0x671eb: ; 0x671eb
 	db $0, "But, but…", $51
 	db "A wild @"
-	text_from_ram $d0ac
+	text_from_ram StringBuffer4
 	db $0, $4f
 	db "got away from me", $51
 	db "again. It's just", $4f
@@ -1422,7 +1422,7 @@ UnknownText_0x6722e: ; 0x6722e
 	db "time!", $51
 	db "I'll be waiting on", $4f
 	db "@"
-	text_from_ram $d0bf
+	text_from_ram StringBuffer5
 	db $0, "!", $57
 ; 0x67281
 
@@ -1443,6 +1443,6 @@ UnknownText_0x672d5: ; 0x672d5
 	db "Come battle ERIN!", $51
 	db "I'll be waiting on", $4f
 	db "@"
-	text_from_ram $d0bf
+	text_from_ram StringBuffer5
 	db $0, "!", $57
 ; 0x67308

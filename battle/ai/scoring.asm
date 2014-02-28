@@ -1565,7 +1565,7 @@ AIScoring_HealBell: ; 38d1f
 	ld a, [OTPartyCount]
 	ld b, a
 	ld c, 0
-	ld hl, OTPartyMon1CurHP
+	ld hl, OTPartyMon1HP
 	ld de, $0030
 
 .asm_38d2c
@@ -1784,7 +1784,7 @@ AICheckLastPlayerMon: ; 38e2e
 	ld a, [PartyCount]
 	ld b, a
 	ld c, 0
-	ld hl, PartyMon1CurHP
+	ld hl, PartyMon1HP
 	ld de, PartyMon2 - PartyMon1
 
 .loop

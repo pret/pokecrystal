@@ -11,7 +11,7 @@ Function3c000: ; 3c000
 	ld [BattleEnded], a
 	inc a
 	ld [$d264], a
-	ld hl, OTPartyMon1CurHP
+	ld hl, OTPartyMon1HP
 	ld bc, $002f
 	ld d, $3
 .asm_3c019
@@ -1234,7 +1234,7 @@ Function3c801: ; 3c801
 	xor a
 	ld [hli], a
 	ld [hl], a
-	ld hl, PartyMon1CurHP
+	ld hl, PartyMon1HP
 	ld a, [CurBattleMon]
 	call GetPartyLocation
 	xor a
@@ -1250,7 +1250,7 @@ Function3c801: ; 3c801
 	ld a, [IsInBattle]
 	dec a
 	ret z
-	ld hl, OTPartyMon1CurHP
+	ld hl, OTPartyMon1HP
 	ld a, [CurOTMon]
 	call GetPartyLocation
 	xor a
@@ -2177,7 +2177,7 @@ Function3ce01: ; 3ce01
 	dec a
 	jr z, .asm_3ce16
 	ld a, [CurOTMon]
-	ld hl, OTPartyMon1CurHP
+	ld hl, OTPartyMon1HP
 	call GetPartyLocation
 	xor a
 	ld [hli], a
@@ -2355,7 +2355,7 @@ Function3cf35: ; 3cf35
 	ld a, [OTPartyCount]
 	ld b, a
 	xor a
-	ld hl, OTPartyMon1CurHP
+	ld hl, OTPartyMon1HP
 	ld de, $0030
 .asm_3cf40
 	or [hl]
@@ -2832,7 +2832,7 @@ Function3d1f8: ; 3d1f8
 	ld a, [$cfa9]
 	cp $1
 	jr z, .asm_3d20a
-	ld hl, PartyMon1Spd
+	ld hl, PartyMon1Speed
 	ld de, EnemyMonSpd
 	jp Function3d8b3
 ; 3d227
@@ -3390,7 +3390,7 @@ Function3d599: ; 3d599
 	ld a, [CurOTMon]
 	cp b
 	jr z, .asm_3d5d0
-	ld hl, OTPartyMon1CurHP
+	ld hl, OTPartyMon1HP
 	push bc
 	ld a, b
 	call GetPartyLocation
@@ -3546,7 +3546,7 @@ Function3d672: ; 3d672
 	ld a, [CurOTMon]
 	cp b
 	jr z, .asm_3d6a7
-	ld hl, OTPartyMon1CurHP
+	ld hl, OTPartyMon1HP
 	push bc
 	ld a, b
 	call GetPartyLocation
@@ -3778,7 +3778,7 @@ Function3d873: ; 3d873
 	ld a, [PartyCount]
 	ld e, a
 	xor a
-	ld hl, PartyMon1CurHP
+	ld hl, PartyMon1HP
 	ld bc, $002f
 .asm_3d87e
 	or [hl]
@@ -3794,7 +3794,7 @@ Function3d873: ; 3d873
 
 Function3d887: ; 3d887
 	ld a, [CurPartyMon]
-	ld hl, PartyMon1CurHP
+	ld hl, PartyMon1HP
 	call GetPartyLocation
 	ld a, [hli]
 	or [hl]
@@ -6514,7 +6514,7 @@ LoadEnemyMon: ; 3e8eb
 	
 .OpponentParty
 ; Get HP from the party struct
-	ld hl, (PartyMon1CurHP + 1) - PartyMon1 + OTPartyMon1
+	ld hl, (OTPartyMon1HP + 1)
 	ld a, [CurPartyMon]
 	call GetPartyLocation
 	ld a, [hld]
@@ -9021,18 +9021,18 @@ GetRoamMonMapNumber: ; 3f9e9
 ; 3fa01
 
 GetRoamMonHP: ; 3fa01
-; output: hl = RoamMonCurHP
+; output: hl = RoamMonHP
 	ld a, [TempEnemyMonSpecies]
 	ld b, a
 	ld a, [RoamMon1Species]
 	cp b
-	ld hl, RoamMon1CurHP
+	ld hl, RoamMon1HP
 	ret z
 	ld a, [RoamMon2Species]
 	cp b
-	ld hl, RoamMon2CurHP
+	ld hl, RoamMon2HP
 	ret z
-	ld hl, RoamMon3CurHP
+	ld hl, RoamMon3HP
 	ret
 ; 3fa19
 

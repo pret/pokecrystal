@@ -138,3 +138,39 @@ endanim: MACRO
 	db $ff
 	ENDM
 
+
+; maps
+
+map: MACRO
+; This is a really silly hack to get around an rgbds bug.
+
+; Ideally:
+;	db GROUP_\1, MAP_\1
+
+\1\@  EQUS "GROUP_\1"
+\1\@2 EQUS "MAP_\1"
+	db \1\@, \1\@2
+ENDM
+
+roam_map: MACRO
+; A map and an arbitrary number of some more maps.
+
+	map \1
+	db \2
+
+IF \2 > 0
+	map \3
+ENDC
+IF \2 > 1
+	map \4
+ENDC
+IF \2 > 2
+	map \5
+ENDC
+IF \2 > 3
+	map \6
+ENDC
+	db 0
+ENDM
+
+

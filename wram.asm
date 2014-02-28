@@ -1,6 +1,62 @@
 INCLUDE "includes.asm"
 
 
+party_struct: MACRO
+
+\1Species::  db
+\1Item::     db
+
+\1Moves::
+\1Move1::    db
+\1Move2::    db
+\1Move3::    db
+\1Move4::    db
+
+\1ID::       dw
+\1Exp::      ds 3 ; Big endian
+\1StatExp::
+\1HPExp::    dw
+\1AtkExp::   dw
+\1DefExp::   dw
+\1SpdExp::   dw
+\1SpclExp::  dw
+
+\1DVs::
+\1AtkDefDV:: db
+\1SpdSpcDV:: db
+
+\1PP::
+\1PPMove1::  db
+\1PPMove2::  db
+\1PPMove3::  db
+\1PPMove4::  db
+
+\1Happiness::     db
+\1PokerusStatus:: db
+
+\1CaughtData::
+\1CaughtTime::
+\1CaughtLevel::    db
+\1CaughtGender::
+\1CaughtLocation:: db
+
+\1Level:: db
+
+\1Status::   db
+\1Unused::   db
+
+; Stats are big endian.
+\1HP::       dw
+\1MaxHP::    dw
+\1Attack::   dw
+\1Defense::  dw
+\1Speed::    dw
+\1SpclAtk::  dw
+\1SpclDef::  dw
+
+ENDM
+
+
 SECTION "tiles0",VRAM[$8000],BANK[0]
 VTiles0::
 SECTION "tiles1",VRAM[$8800],BANK[0]
@@ -980,8 +1036,10 @@ StringBuffer3:: ; d099
 	ds 19
 StringBuffer4:: ; d0ac
 	ds 19
+StringBuffer5:: ; d0bf
+	ds 19
 
-	ds 21
+	ds 2
 
 CurBattleMon:: ; d0d4
 	ds 1
@@ -1072,7 +1130,7 @@ TempMonStatus:: ; d12e
 	ds 1
 ; d12f
 	ds 1
-TempMonCurHP:: ; d130
+TempMonHP:: ; d130
 	ds 2
 TempMonMaxHP:: ; d132
 	ds 2
@@ -1441,96 +1499,18 @@ OTPartySpecies:: ; d281
 	ds 1 ; any empty slots including the 7th must be FF
 	     ; or the routine will keep going
 
-OTPartyMon1::
-OTPartyMon1Species:: ; d288
-	ds 1
-OTPartyMon1Item:: ; d289
-	ds 1
-
-OTPartyMon1Moves:: ; d28a
-OTPartyMon1Move1:: ; d28a
-	ds 1
-OTPartyMon1Move2:: ; d28b
-	ds 1
-OTPartyMon1Move3:: ; d28c
-	ds 1
-OTPartyMon1Move4:: ; d28d
-	ds 1
-	
-OTPartyMon1ID:: ; d28e
-	ds 2
-OTPartyMon1Exp:: ; d290
-	ds 3
-OTPartyMon1HPExp:: ; d293
-	ds 2
-OTPartyMon1AtkExp:: ; d295
-	ds 2
-OTPartyMon1DefExp:: ; d297
-	ds 2
-OTPartyMon1SpdExp:: ; d299
-	ds 2
-OTPartyMon1SpclExp:: ; d29b
-	ds 2
-
-OTPartyMon1DVs:: ; d29d
-OTPartyMon1AtkDefDV:: ; d29d
-	ds 1
-OTPartyMon1SpdSpclDV:: ; d29e
-	ds 1
-
-OTPartyMon1PP:: ; d29f
-OTPartyMon1PPMove1:: ; d29f
-	ds 1
-OTPartyMon1PPMove2:: ; d2a0
-	ds 1
-OTPartyMon1PPMove3:: ; d2a1
-	ds 1
-OTPartyMon1PPMove4:: ; d2a2
-	ds 1
-
-OTPartyMon1Happiness:: ; d2a3
-	ds 1
-OTPartyMon1PokerusStatus:: ; d2a4
-	ds 1
-
-OTPartyMon1CaughtData:: ; d2a5
-OTPartyMon1CaughtGender:: ; d2a5
-OTPartyMon1CaughtLocation:: ; d2a5
-	ds 1
-OTPartyMon1CaughtTime:: ; d2a6
-	ds 1
-OTPartyMon1Level:: ; d2a7
-	ds 1
-	
-OTPartyMon1Status:: ; d2a8
-	ds 1
-OTPartyMon1Unused:: ; d2a9
-	ds 1
-OTPartyMon1CurHP:: ; d2aa
-	ds 2
-OTPartyMon1MaxHP:: ; d2ac
-	ds 2
-OTPartyMon1Atk:: ; d2ae
-	ds 2
-OTPartyMon1Def:: ; d2b0
-	ds 2
-OTPartyMon1Spd:: ; d2b2
-	ds 2
-OTPartyMon1SpclAtk:: ; d2b4
-	ds 2
-OTPartyMon1SpclDef:: ; d2b6
-	ds 2
-
+OTPartyMon1:: ; d288
+	party_struct OTPartyMon1
 OTPartyMon2:: ; d2b8
-	ds 48
+	party_struct OTPartyMon2
 OTPartyMon3:: ; d2e8
-	ds 48
+	party_struct OTPartyMon3
 OTPartyMon4:: ; d318
-	ds 48
+	party_struct OTPartyMon4
 OTPartyMon5:: ; d348
-	ds 48
+	party_struct OTPartyMon5
 OTPartyMon6:: ; d378
-	ds 48
+	party_struct OTPartyMon6
 
 
 OTPartyMonOT::
@@ -1915,88 +1895,18 @@ PartyEnd:: ; dcde
 	ds 1 ; legacy functions don't check PartyCount
 		 
 PartyMons::
-PartyMon1::
-PartyMon1Species:: ; dcdf
-	ds 1
-PartyMon1Item:: ; dce0
-	ds 1
-
-PartyMon1Moves:: ; dce1
-PartyMon1Move1:: ; dce1
-	ds 1
-PartyMon1Move2:: ; dce2
-	ds 1
-PartyMon1Move3:: ; dce3
-	ds 1
-PartyMon1Move4:: ; dce4
-	ds 1
-
-PartyMon1ID:: ; dce5
-	ds 2
-PartyMon1Exp:: ; dce7
-	ds 3
-
-PartyMon1StatExp::
-PartyMon1HPExp:: ; dcea
-	ds 2
-PartyMon1AtkExp:: ; dcec
-	ds 2
-PartyMon1DefExp:: ; dcee
-	ds 2
-PartyMon1SpdExp:: ; dcf0
-	ds 2
-PartyMon1SpclExp:: ; dcf2
-	ds 2
-
-PartyMon1DVs:: ; dcf4
-; hp = %1000 for each dv
-	ds 1 ; atk/def
-	ds 1 ; spd/spc
-PartyMon1PP:: ; dcf6
-	ds 4
-PartyMon1Happiness:: ; dcfa
-	ds 1
-PartyMon1PokerusStatus:: ; dcfb
-	ds 1
-PartyMon1CaughtData:: ; dcfc
-PartyMon1CaughtTime:: ; dcfc
-PartyMon1CaughtLevel:: ; dcfc
-	ds 1
-PartyMon1CaughtGender:: ; dcfd
-PartyMon1CaughtLocation:: ; dcfd
-	ds 1
-PartyMon1Level:: ; dcfe
-	ds 1
-PartyMon1Status:: ; dcff
-	ds 1
-; dd00 unused
-	ds 1
-PartyMon1CurHP:: ; dd01
-	ds 2
-PartyMon1MaxHP:: ; dd03
-	ds 2
-PartyMon1Atk:: ; dd05
-	ds 2
-PartyMon1Def:: ; dd07
-	ds 2
-PartyMon1Spd:: ; dd09
-	ds 2
-PartyMon1SpclAtk:: ; dd0b
-	ds 2
-PartyMon1SpclDef:: ; dd0d
-	ds 2
-
-
+PartyMon1:: ; dcdf
+	party_struct PartyMon1
 PartyMon2:: ; dd0f
-	ds 48
+	party_struct PartyMon2
 PartyMon3:: ; dd3f
-	ds 48
+	party_struct PartyMon3
 PartyMon4:: ; dd6f
-	ds 48
+	party_struct PartyMon4
 PartyMon5:: ; dd9f
-	ds 48
+	party_struct PartyMon5
 PartyMon6:: ; ddcf
-	ds 48
+	party_struct PartyMon6
 
 PartyMonOT::
 PartyMon1OT:: ; ddff
@@ -2089,7 +1999,13 @@ EggSpecies:: ; df7b
 	ds 1
 	ds 31
 
-SECTION "RoamMons",WRAMX[$dfcf],BANK[1]
+	ds 1
+
+wContestMon:: ; df9c
+	party_struct wContestMon
+
+	ds 3
+
 RoamMon1Species:: ; dfcf
 	ds 1
 RoamMon1Level:: ; dfd0
@@ -2098,7 +2014,7 @@ RoamMon1MapGroup:: ; dfd1
 	ds 1
 RoamMon1MapNumber:: ; dfd2
 	ds 1
-RoamMon1CurHP:: ; dfd3
+RoamMon1HP:: ; dfd3
 	ds 1
 RoamMon1DVs:: ; dfd4
 	ds 2
@@ -2111,7 +2027,7 @@ RoamMon2MapGroup:: ; dfd8
 	ds 1
 RoamMon2MapNumber:: ; dfd9
 	ds 1
-RoamMon2CurHP:: ; dfda
+RoamMon2HP:: ; dfda
 	ds 1
 RoamMon2DVs:: ; dfdb
 	ds 2
@@ -2124,7 +2040,7 @@ RoamMon3MapGroup:: ; dfdf
 	ds 1
 RoamMon3MapNumber:: ; dfe0
 	ds 1
-RoamMon3CurHP:: ; dfe1
+RoamMon3HP:: ; dfe1
 	ds 1
 RoamMon3DVs:: ; dfe2
 	ds 2

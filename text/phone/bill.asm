@@ -31,7 +31,7 @@ BillPhoneNotFullText: ; 0x1b452a
 	db "waiting!", $51
 	db $14, ", your BOX", $4f
 	db "has room for @"
-	TX_RAM $d099
+	TX_RAM StringBuffer3
 	db $0, $55
 	db "more #MON.", $51
 	db "Get out there and", $4f
@@ -43,7 +43,7 @@ BillPhoneNearlyFullText: ; 0x1b4587
 	db $14, ", your BOX", $4f
 	db "has room for only", $55
 	db "@"
-	TX_RAM $d099
+	TX_RAM StringBuffer3
 	db $0, " more #MON.", $51
 	db "Maybe you should", $4f
 	db "switch your BOX.", $57

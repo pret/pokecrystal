@@ -6,11 +6,11 @@ MomPhoneGreetingText: ; 0x1b4000
 UnknownText_0x1b4021: ; 0x1b4021
 	db $0, "Oh, so you're in", $4f
 	db "@"
-	TX_RAM $d099
+	TX_RAM StringBuffer3
 	db $0, "…", $51
 	db "Isn't that where", $4f
 	db "@"
-	TX_RAM $d0ac
+	TX_RAM StringBuffer4
 	db $0, $51
 	db "is? Did you go", $4f
 	db "take a look?", $57
@@ -18,7 +18,7 @@ UnknownText_0x1b4021: ; 0x1b4021
 MomPhoneGenericAreaText: ; 0x1b406b
 	db $0, "Really, you're in", $4f
 	db "@"
-	TX_RAM $d099
+	TX_RAM StringBuffer3
 	db $0, "?", $51
 	db "I've never gone", $4f
 	db "there. That's kind", $55
@@ -27,7 +27,7 @@ MomPhoneGenericAreaText: ; 0x1b406b
 MomPhoneNewBarkText: ; 0x1b40b1
 	db $0, "What? You're in", $4f
 	db "@"
-	TX_RAM $d099
+	TX_RAM StringBuffer3
 	db $0, "?", $51
 	db "Come see your MOM", $4f
 	db "sometime!", $57
@@ -35,7 +35,7 @@ MomPhoneNewBarkText: ; 0x1b40b1
 MomPhoneCherrygroveText: ; 0x1b40e4
 	db $0, "You're visiting", $4f
 	db "@"
-	TX_RAM $d099
+	TX_RAM StringBuffer3
 	db $0, "?", $51
 	db "How about coming", $4f
 	db "home for a bit?", $57
@@ -43,7 +43,7 @@ MomPhoneCherrygroveText: ; 0x1b40e4
 UnknownText_0x1b411c: ; 0x1b411c
 	db $0, "Wow, you're in", $4f
 	db "@"
-	TX_RAM $d099
+	TX_RAM StringBuffer3
 	db $0, "?", $51
 	db "Good luck on your", $4f
 	db "#MON quest!", $57
@@ -59,7 +59,7 @@ UnknownText_0x1b4150: ; 0x1b4150
 UnknownText_0x1b41a7: ; 0x1b41a7
 	db $0, "By the way, you've", $4f
 	db "saved up ¥@"
-	TX_RAM $d099
+	TX_RAM StringBuffer3
 	db $0, ".", $51
 	db "Do you want to", $4f
 	db "keep on saving?", $57
@@ -77,7 +77,7 @@ UnknownText_0x1b420d: ; 0x1b420d
 UnknownText_0x1b4249: ; 0x1b4249
 	db $0, "By the way, you've", $4f
 	db "saved up ¥@"
-	TX_RAM $d099
+	TX_RAM StringBuffer3
 	db $0, ".", $51
 	db "Want to start", $4f
 	db "saving again?", $57
