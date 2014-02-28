@@ -22133,7 +22133,54 @@ EmotesPointers: ; 144d
 ; db length, bank
 ; dw dest address
 
-INCBIN "baserom.gbc",$1444d,$14495 - $1444d
+	dw ShockEmote
+	db $40, BANK(ShockEmote)
+	dw $8f80
+
+	dw QuestionEmote
+	db $40, BANK(QuestionEmote)
+	dw $8f80
+
+	dw HappyEmote
+	db $40, BANK(HappyEmote)
+	dw $8f80
+
+	dw SadEmote
+	db $40, BANK(SadEmote)
+	dw $8f80
+
+	dw HeartEmote
+	db $40, BANK(HeartEmote)
+	dw $8f80
+
+	dw BoltEmote
+	db $40, BANK(BoltEmote)
+	dw $8f80
+
+	dw SleepEmote
+	db $40, BANK(SleepEmote)
+	dw $8f80
+
+	dw FishEmote
+	db $40, BANK(FishEmote)
+	dw $8f80
+
+	dw FishingRodGFX + $00
+	db $10, BANK(FishingRodGFX)
+	dw $8fc0
+
+	dw FishingRodGFX + $10
+	db $20, BANK(FishingRodGFX)
+	dw $8fc0
+
+	dw FishingRodGFX + $30
+	db $20, BANK(FishingRodGFX)
+	dw $8fe0
+
+	dw FishingRodGFX + $50
+	db $10, BANK(FishingRodGFX)
+	dw $8fe0
+
 ; 14495
 
 
@@ -88698,9 +88745,17 @@ Function10433a: ; 10433a (41:433a)
 	dec b
 	jr nz, .asm_10433c
 	ret
+; 104350
 
-
-INCBIN "gfx/ow/misc.2bpp"
+ShockEmote:    INCBIN "gfx/emotes/shock.2bpp"
+QuestionEmote: INCBIN "gfx/emotes/question.2bpp"
+HappyEmote:    INCBIN "gfx/emotes/happy.2bpp"
+SadEmote:      INCBIN "gfx/emotes/sad.2bpp"
+HeartEmote:    INCBIN "gfx/emotes/heart.2bpp"
+BoltEmote:     INCBIN "gfx/emotes/bolt.2bpp"
+SleepEmote:    INCBIN "gfx/emotes/sleep.2bpp"
+FishEmote:     INCBIN "gfx/emotes/fish.2bpp"
+FishingRodGFX: INCBIN "gfx/misc/fishing.2bpp"
 
 
 Function1045b0: ; 1045b0
