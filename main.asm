@@ -14960,28 +14960,28 @@ Function101c5: ; 101c5 (4:41c5)
 	jr nz, .asm_10217
 	jr .asm_1021f
 .asm_10207
-	ld hl, $4249
-	ld de, $426a
+	ld hl, MenuDataHeader_0x10249
+	ld de, Jumptable_1026a
 	jr .asm_10235
 .asm_1020f
-	ld hl, $4274
-	ld de, $4291
+	ld hl, MenuDataHeader_0x10274
+	ld de, Jumptable_10291
 	jr .asm_10235
 .asm_10217
-	ld hl, $4299
-	ld de, $42ac
+	ld hl, MenuDataHeader_0x10299
+	ld de, Jumptable_102ac
 	jr .asm_10235
 .asm_1021f
-	ld hl, $42b0
-	ld de, $42c7
+	ld hl, MenuDataHeader_0x102b0
+	ld de, Jumptable_102c7
 	jr .asm_10235
 .asm_10227
-	ld hl, $42cd
-	ld de, $42ea
+	ld hl, MenuDataHeader_0x102cd
+	ld de, Jumptable_102ea
 	jr .asm_10235
 .asm_1022f
-	ld hl, $42f2
-	ld de, $430b
+	ld hl, MenuDataHeader_0x102f2
+	ld de, Jumptable_1030b
 .asm_10235
 	push de
 	call LoadMenuDataHeader
@@ -14995,12 +14995,151 @@ Function101c5: ; 101c5 (4:41c5)
 	jp [hl]
 ; 10249 (4:4249)
 
-INCBIN "baserom.gbc",$10249,$10311 - $10249
+MenuDataHeader_0x10249: ; 0x10249
+	db $40 ; flags
+	db 01, 13 ; start coords
+	db 11, 19 ; end coords
+	dw MenuData2_0x10251
+	db 1 ; default option
+; 0x10251
+
+MenuData2_0x10251: ; 0x10251
+	db $c0 ; flags
+	db 5 ; items
+	db "USE@"
+	db "GIVE@"
+	db "TOSS@"
+	db "SEL@"
+	db "QUIT@"
+; 0x1026a
+
+Jumptable_1026a: ; 1026a
+	dw Function10311
+	dw Function103fd
+	dw Function10364
+	dw Function103c2
+	dw Function10492
+; 10274
+
+MenuDataHeader_0x10274: ; 0x10274
+	db $40 ; flags
+	db 03, 13 ; start coords
+	db 11, 19 ; end coords
+	dw MenuData2_0x1027c
+	db 1 ; default option
+; 0x1027c
+
+MenuData2_0x1027c: ; 0x1027c
+	db $c0 ; flags
+	db 4 ; items
+	db "USE@"
+	db "GIVE@"
+	db "TOSS@"
+	db "QUIT@"
+; 0x10291
+
+Jumptable_10291: ; 10291
+	dw Function10311
+	dw Function103fd
+	dw Function10364
+	dw Function10492
+; 10299
+
+MenuDataHeader_0x10299: ; 0x10299
+	db $40 ; flags
+	db 07, 13 ; start coords
+	db 11, 19 ; end coords
+	dw MenuData2_0x102a1
+	db 1 ; default option
+; 0x102a1
+
+MenuData2_0x102a1: ; 0x102a1
+	db $c0 ; flags
+	db 2 ; items
+	db "USE@"
+	db "QUIT@"
+; 0x102ac
+
+Jumptable_102ac: ; 102ac
+	dw Function10311
+	dw Function10492
+; 102b0
+
+MenuDataHeader_0x102b0: ; 0x102b0
+	db $40 ; flags
+	db 05, 13 ; start coords
+	db 11, 19 ; end coords
+	dw MenuData2_0x102b8
+	db 1 ; default option
+; 0x102b8
+
+MenuData2_0x102b8: ; 0x102b8
+	db $c0 ; flags
+	db 3 ; items
+	db "USE@"
+	db "SEL@"
+	db "QUIT@"
+; 0x102c7
+
+Jumptable_102c7: ; 102c7
+	dw Function10311
+	dw Function103c2
+	dw Function10492
+; 102cd
+
+MenuDataHeader_0x102cd: ; 0x102cd
+	db $40 ; flags
+	db 03, 13 ; start coords
+	db 11, 19 ; end coords
+	dw MenuData2_0x102d5
+	db 1 ; default option
+; 0x102d5
+
+MenuData2_0x102d5: ; 0x102d5
+	db $c0 ; flags
+	db 4 ; items
+	db "GIVE@"
+	db "TOSS@"
+	db "SEL@"
+	db "QUIT@"
+; 0x102ea
+
+Jumptable_102ea: ; 102ea
+	dw Function103fd
+	dw Function10364
+	dw Function103c2
+	dw Function10492
+; 102f2
+
+MenuDataHeader_0x102f2: ; 0x102f2
+	db $40 ; flags
+	db 05, 13 ; start coords
+	db 11, 19 ; end coords
+	dw MenuData2_0x102fa
+	db 1 ; default option
+; 0x102fa
+
+MenuData2_0x102fa: ; 0x102fa
+	db $c0 ; flags
+	db 3 ; items
+	db "GIVE@"
+	db "TOSS@"
+	db "QUIT@"
+; 0x1030b
+
+Jumptable_1030b: ; 1030b
+	dw Function103fd
+	dw Function10364
+	dw Function10492
+; 10311
+
+Function10311: ; 10311
 	callba CheckItemMenu
 	ld a, [$d142]
 	ld hl, Jumptable_1031f
 	rst JumpTable
 	ret
+; 1031f
 
 ; no known jump sources
 Jumptable_1031f: ; 1031f (4:431f)
@@ -15011,7 +15150,7 @@ Jumptable_1031f: ; 1031f (4:431f)
 	dw Function10334
 	dw Function10338
 	dw Function10355
-
+; 1035c
 
 ; known jump sources: 1035c (4:435c)
 Function1032d: ; 1032d (4:432d)
@@ -15052,7 +15191,91 @@ Function10355: ; 10355 (4:4355)
 	ret
 ; 10364 (4:4364)
 
-INCBIN "baserom.gbc",$10364,$103fd - $10364
+Function10364: ; 10364
+	ld hl, $4ae4
+	call Function10889
+	callba Function24fbf
+	push af
+	call Function1c07
+	pop af
+	jr c, .asm_1039c
+	call Function10a1d
+	ld hl, $4ae9
+	call Function1d4f
+	call YesNoBox
+	push af
+	call Function1c07
+	pop af
+	jr c, .asm_1039c
+	ld hl, NumItems
+	ld a, [$d107]
+	call TossItem
+	call Function10a1d
+	ld hl, $4aee
+	call Function10889
+
+.asm_1039c
+	ret
+; 1039d
+
+Function1039d: ; 1039d
+	ld a, [$cf65]
+	and a
+	jr z, .asm_103b2
+	dec a
+	jr z, .asm_103aa
+	dec a
+	jr z, .asm_103ba
+	ret
+
+.asm_103aa
+	xor a
+	ld [$d0db], a
+	ld [$d0e1], a
+	ret
+
+.asm_103b2
+	xor a
+	ld [$d0d9], a
+	ld [$d0df], a
+	ret
+
+.asm_103ba
+	xor a
+	ld [$d0da], a
+	ld [$d0e0], a
+	ret
+; 103c2
+
+Function103c2: ; 103c2
+	callba CheckSelectableItem
+	ld a, [$d142]
+	and a
+	jr nz, .asm_103f6
+	ld a, [$cf65]
+	rrca
+	rrca
+	and $c0
+	ld b, a
+	ld a, [$d107]
+	inc a
+	and $3f
+	or b
+	ld [WhichRegisteredItem], a
+	ld a, [CurItem]
+	ld [RegisteredItem], a
+	call Function10a1d
+	ld de, SFX_FULL_HEAL
+	call WaitPlaySFX
+	ld hl, $4afd
+	call Function10889
+	ret
+
+.asm_103f6
+	ld hl, $4b02
+	call Function10889
+	ret
+; 103fd
 
 Function103fd: ; 103fd
 	ld a, [PartyCount] ; $dcd7
@@ -15079,7 +15302,7 @@ Function103fd: ; 103fd
 	ld a, [CurPartySpecies] ; $d108
 	cp $fd
 	jr nz, .asm_10453
-	ld hl, $448d
+	ld hl, UnknownText_0x1048d
 	call PrintText
 	jr .asm_10427
 .asm_10453
@@ -15114,7 +15337,11 @@ Function10486: ; 10486 (4:4486)
 	ret
 ; 1048d (4:448d)
 
-INCBIN "baserom.gbc", $1048d, $10492 - $1048d
+UnknownText_0x1048d: ; 0x1048d
+	; An EGG can't hold an item.
+	text_jump UnknownText_0x1c0b7f
+	db "@"
+; 0x10492
 
 Function10492: ; 10492
 	ret
@@ -15299,12 +15526,12 @@ Function105d3: ; 105d3 (4:45d3)
 Function105dc: ; 105dc (4:45dc)
 	and a
 	jr z, .asm_105e7
-	ld hl, $4601
-	ld de, $4614
+	ld hl, MenuDataHeader_0x10601
+	ld de, Jumptable_10614
 	jr .asm_105ed
 .asm_105e7
-	ld hl, $4618
-	ld de, $4627
+	ld hl, MenuDataHeader_0x10618
+	ld de, Jumptable_10627
 .asm_105ed
 	push de
 	call LoadMenuDataHeader
@@ -15318,7 +15545,45 @@ Function105dc: ; 105dc (4:45dc)
 	jp [hl]
 ; 10601 (4:4601)
 
-INCBIN "baserom.gbc",$10601,$10629 - $10601
+MenuDataHeader_0x10601: ; 0x10601
+	db $40 ; flags
+	db 07, 13 ; start coords
+	db 11, 19 ; end coords
+	dw MenuData2_0x10609
+	db 1 ; default option
+; 0x10609
+
+MenuData2_0x10609: ; 0x10609
+	db $c0 ; flags
+	db 2 ; items
+	db "USE@"
+	db "QUIT@"
+; 0x10614
+
+Jumptable_10614: ; 10614
+	dw Function10629
+	dw Function10689
+; 10618
+
+MenuDataHeader_0x10618: ; 0x10618
+	db $40 ; flags
+	db 09, 13 ; start coords
+	db 11, 19 ; end coords
+	dw MenuData2_0x10620
+	db 1 ; default option
+; 0x10620
+
+MenuData2_0x10620: ; 0x10620
+	db $c0 ; flags
+	db 1 ; items
+	db "QUIT@"
+; 0x10627
+
+Jumptable_10627: ; 10627
+	dw Function10689
+; 10629
+
+Function10629: ; 10629
 	callba CheckItemContext
 	ld a, [$d142]
 	ld hl, Jumptable_10637
@@ -15384,7 +15649,9 @@ asm_10684: ; 10684 (4:4684)
 	ret
 ; 10689 (4:4689)
 
-INCBIN "baserom.gbc",$10689,$1068a - $10689
+Function10689: ; 10689
+	ret
+; 1068a
 
 
 Function1068a: ; 1068a
@@ -15427,7 +15694,7 @@ Function106be: ; 106be
 
 Function106c7: ; 106c7
 	ld a, [$cf63]
-	ld hl, $46d1
+	ld hl, Jumptable_106d1
 	call Function1086b
 	jp [hl]
 ; 106d1
@@ -15583,7 +15850,7 @@ Function107bb: ; 107bb
 
 Function107d7: ; 107d7
 	ld a, [$cf63]
-	ld hl, $47e1
+	ld hl, Jumptable_107e1
 	call Function1086b
 	jp [hl]
 ; 107e1
@@ -15600,20 +15867,52 @@ Jumptable_107e1: ; 107e1 (4:47e1)
 ; no known jump sources
 Function107e9: ; 107e9 (4:47e9)
 	xor a
-	ld hl, $47ef
-	jr asm_1085a
+	ld hl, MenuDataHeader_0x107ef
+	jr Function1085a
 ; 107ef (4:47ef)
 
-INCBIN "baserom.gbc",$107ef,$10807 - $107ef
+MenuDataHeader_0x107ef: ; 0x107ef
+	db $40 ; flags
+	db 01, 07 ; start coords
+	db 11, 19 ; end coords
+	dw MenuData2_0x107f7
+	db 1 ; default option
+; 0x107f7
+
+MenuData2_0x107f7: ; 0x107f7
+	db $ae ; flags
+	db 5, 8 ; rows, columns
+	db 2 ; horizontal spacing
+	dbw 0, $d288
+	dbw BANK(Function24ab4), Function24ab4
+	dbw BANK(Function24ac3), Function24ac3
+	dbw BANK(Function244c3), Function244c3
+; 10807
 
 ; no known jump sources
 Function10807: ; 10807 (4:4807)
 	ld a, $2
-	ld hl, $480e
-	jr asm_1085a
+	ld hl, MenuDataHeader_0x1080e
+	jr Function1085a
 ; 1080e (4:480e)
 
-INCBIN "baserom.gbc",$1080e,$10826 - $1080e
+MenuDataHeader_0x1080e: ; 0x1080e
+	db $40 ; flags
+	db 01, 07 ; start coords
+	db 11, 19 ; end coords
+	dw MenuData2_0x10816
+	db 1 ; default option
+; 0x10816
+
+MenuData2_0x10816: ; 0x10816
+	db $ae ; flags
+	db 5, 8 ; rows, columns
+	db 1 ; horizontal spacing
+	dbw 0, $d292
+	dbw BANK(Function24ab4), Function24ab4
+	dbw BANK(Function24ac3), Function24ac3
+	dbw BANK(Function244c3), Function244c3
+; 10826
 
 ; no known jump sources
 Function10826: ; 10826 (4:4826)
@@ -15628,12 +15927,29 @@ Function10826: ; 10826 (4:4826)
 ; no known jump sources
 Function1083b: ; 1083b (4:483b)
 	ld a, $1
-	ld hl, $4842
-	jr asm_1085a
+	ld hl, MenuDataHeader_0x10842
+	jr Function1085a
 ; 10842 (4:4842)
 
-INCBIN "baserom.gbc",$10842,$1085a - $10842
-asm_1085a: ; 1085a (4:485a)
+MenuDataHeader_0x10842: ; 0x10842
+	db $40 ; flags
+	db 01, 07 ; start coords
+	db 11, 19 ; end coords
+	dw MenuData2_0x1084a
+	db 1 ; default option
+; 0x1084a
+
+MenuData2_0x1084a: ; 0x1084a
+	db $ae ; flags
+	db 5, 8 ; rows, columns
+	db 2 ; horizontal spacing
+	dbw 0, $d2a6
+	dbw BANK(Function24ab4), Function24ab4
+	dbw BANK(Function24ac3), Function24ac3
+	dbw BANK(Function244c3), Function244c3
+; 1085a
+
+Function1085a: ; 1085a (4:485a)
 	push hl
 	call Function10762
 	pop hl
@@ -15647,10 +15963,9 @@ Function10866: ; 10866 (4:4866)
 	inc [hl]
 	ret
 
-
 Function1086b: ; 1086b
 	ld e, a
-	ld d, $0
+	ld d, 0
 	add hl, de
 	add hl, de
 	ld a, [hli]
@@ -15658,7 +15973,6 @@ Function1086b: ; 1086b
 	ld l, a
 	ret
 ; 10874
-
 
 ; no known jump sources
 Function10874: ; 10874 (4:4874)
@@ -15885,7 +16199,17 @@ Function109bb: ; 109bb
 	ret
 ; 109e1
 
-INCBIN "baserom.gbc",$109e1,$10a36 - $109e1
+INCBIN "baserom.gbc", $109e1, $10a1d - $109e1
+
+Function10a1d: ; 10a1d
+	ld a, [CurItem]
+	ld [$d265], a
+	call GetItemName
+	call CopyName1
+	ret
+; 10a2a
+
+INCBIN "baserom.gbc", $10a2a, $10a36 - $10a2a
 
 ; known jump sources: 1005a (4:405a), 10099 (4:4099), 100d8 (4:40d8), 1018b (4:418b), 104ed (4:44ed), 1052c (4:452c), 1056b (4:456b), 10599 (4:4599), 10765 (4:4765)
 Function10a36: ; 10a36 (4:4a36)
