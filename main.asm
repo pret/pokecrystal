@@ -16019,14 +16019,14 @@ Function1089d: ; 1089d
 	jr nz, .asm_108c5
 
 .asm_108b3
-	ld hl, $48cc
+	ld hl, PackGFXPointers
 	add hl, de
 	add hl, de
 	ld a, [hli]
 	ld e, a
 	ld d, [hl]
 	ld hl, $9500
-	ld bc, $040f
+	lb bc, BANK(PackGFX), 15
 	call Request2bpp
 	ret
 
@@ -16035,7 +16035,12 @@ Function1089d: ; 1089d
 	ret
 ; 108cc
 
-INCBIN "baserom.gbc",$108cc,$108d4 - $108cc
+PackGFXPointers: ; 108cc
+	dw PackGFX + $f0 * 1
+	dw PackGFX + $f0 * 3
+	dw PackGFX + $f0 * 0
+	dw PackGFX + $f0 * 2
+; 108d4
 
 ; known jump sources: 1008c (4:408c), 100cb (4:40cb), 100f2 (4:40f2), 101bd (4:41bd), 1051f (4:451f), 1055e (4:455e), 1058b (4:458b), 105cb (4:45cb)
 Function108d4: ; 108d4 (4:48d4)
@@ -16229,6 +16234,9 @@ Function10a40: ; 10a40
 ; 10a4f
 
 INCBIN "baserom.gbc",$10a4f,$10b16 - $10a4f
+
+PackMenuGFX:
+INCBIN "gfx/misc/pack_menu.2bpp"
 
 PackGFX:
 INCBIN "gfx/misc/pack.2bpp"
@@ -47972,22 +47980,28 @@ INCBIN "baserom.gbc",$48e71,$48e81 - $48e71
 
 
 Function48e81: ; 48e81
-	ld hl, $4e93
+	ld hl, PackFGFXPointers
 	add hl, de
 	add hl, de
 	ld a, [hli]
 	ld e, a
 	ld d, [hl]
 	ld hl, $9500
-	ld bc, $120f
+	lb bc, BANK(PackFGFX), 15
 	call Request2bpp
 	ret
 ; 48e93
 
-INCBIN "baserom.gbc",$48e93,$48e9b - $48e93
+PackFGFXPointers: ; 48e93
+	dw PackFGFX + $f0 * 1
+	dw PackFGFX + $f0 * 3
+	dw PackFGFX + $f0 * 0
+	dw PackFGFX + $f0 * 2
+; 48e9b
 
-PackFGFX:
+PackFGFX: ; 48e9b
 INCBIN "gfx/misc/pack_f.2bpp"
+; 4925b
 
 Function4925b: ; 4925b
 	call FadeToMenu
