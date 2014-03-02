@@ -1828,7 +1828,87 @@ SGBBorderMap: ; a06e
 	db $07,$14, $07,$14, $07,$14, $07,$14, $07,$14, $07,$14, $07,$14, $07,$14, $07,$14, $07,$14, $07,$14, $07,$14, $20,$14, $21,$14, $22,$14, $23,$14, $23,$54, $22,$54, $21,$54, $20,$54, $07,$14, $07,$14, $07,$14, $07,$14, $07,$14, $07,$14, $07,$14, $07,$14, $07,$14, $07,$14, $07,$14, $07,$14
 ; a49e
 
-INCBIN "baserom.gbc", $a49e, $a51e - $a49e
+SGBBorderPalettes: ; a49e
+	RGB 24, 06, 06
+	RGB 24, 24, 26
+	RGB 14, 15, 20
+	RGB 04, 07, 10
+
+	RGB 31, 31, 25
+	RGB 31, 31, 25
+	RGB 31, 31, 25
+	RGB 31, 31, 25
+
+	RGB 31, 31, 25
+	RGB 31, 31, 25
+	RGB 31, 31, 25
+	RGB 31, 31, 25
+
+	RGB 31, 31, 25
+	RGB 31, 31, 25
+	RGB 31, 31, 25
+	RGB 31, 31, 25
+
+	RGB 18, 24, 18
+	RGB 31, 26, 15
+	RGB 26, 19, 10
+	RGB 12, 07, 05
+
+	RGB 31, 31, 25
+	RGB 31, 31, 25
+	RGB 31, 31, 25
+	RGB 31, 31, 25
+
+	RGB 31, 31, 25
+	RGB 31, 31, 25
+	RGB 31, 31, 25
+	RGB 31, 31, 25
+
+	RGB 31, 31, 25
+	RGB 31, 31, 25
+	RGB 31, 31, 25
+	RGB 31, 31, 25
+
+	RGB 18, 06, 31
+	RGB 31, 31, 29
+	RGB 31, 12, 00
+	RGB 00, 00, 00
+
+	RGB 31, 31, 25
+	RGB 31, 31, 25
+	RGB 31, 31, 25
+	RGB 31, 31, 25
+
+	RGB 31, 31, 25
+	RGB 31, 31, 25
+	RGB 31, 31, 25
+	RGB 31, 31, 25
+
+	RGB 31, 31, 25
+	RGB 31, 31, 25
+	RGB 31, 31, 25
+	RGB 31, 31, 25
+
+	RGB 12, 31, 06
+	RGB 22, 26, 30
+	RGB 16, 17, 21
+	RGB 00, 03, 00
+
+	RGB 31, 31, 25
+	RGB 31, 31, 25
+	RGB 31, 31, 25
+	RGB 31, 31, 25
+
+	RGB 31, 31, 25
+	RGB 31, 31, 25
+	RGB 31, 31, 25
+	RGB 31, 31, 25
+
+	RGB 31, 31, 25
+	RGB 31, 31, 25
+	RGB 31, 31, 25
+	RGB 31, 31, 25
+; a51e
 
 SGBBorder: ; a51e
 INCBIN "gfx/misc/sgb_border.2bpp"
@@ -1866,22 +1946,22 @@ Functionb1de: ; b1de
 	callba Function494ac
 	jr c, .asm_b230
 	ld a, [$d19a]
-	and $7
+	and 7
 	ld e, a
-	ld d, $0
-	ld hl, $7279
+	ld d, 0
+	ld hl, Unknown_b279
 	add hl, de
 	add hl, de
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
 	ld a, [TimeOfDayPal]
-	and $3
+	and 3
 	add a
 	add a
 	add a
 	ld e, a
-	ld d, $0
+	ld d, 0
 	add hl, de
 	ld e, l
 	ld d, h
@@ -1896,7 +1976,7 @@ Functionb1de: ; b1de
 	push de
 	push hl
 	ld l, a
-	ld h, $0
+	ld h, 0
 	add hl, hl
 	add hl, hl
 	add hl, hl
@@ -1921,7 +2001,7 @@ Functionb1de: ; b1de
 
 .asm_b230
 	ld a, [TimeOfDayPal]
-	and $3
+	and 3
 	ld bc, $0040
 	ld hl, $7469
 	call AddNTimes
@@ -1961,7 +2041,47 @@ Functionb1de: ; b1de
 	ret
 ; b279
 
-INCBIN "baserom.gbc", $b279, $b319 - $b279
+Unknown_b279: ; b279
+	dw Unknown_b289
+	dw Unknown_b289
+	dw Unknown_b289
+	dw Unknown_b2a9
+	dw Unknown_b2c9
+	dw Unknown_b2e9
+	dw Unknown_b2a9
+	dw Unknown_b2c9
+; b289
+
+Unknown_b289: ; b289
+	db $00, $01, $02, $28, $04, $05, $06, $07, $08, $09, $0a, $28, $0c, $0d, $0e, $0f
+	db $10, $11, $12, $29, $14, $15, $16, $17, $18, $19, $1a, $1b, $1c, $1d, $1e, $1f
+
+Unknown_b2a9: ; b289
+	db $20, $21, $22, $23, $24, $25, $26, $07, $20, $21, $22, $23, $24, $25, $26, $07
+	db $10, $11, $12, $13, $14, $15, $16, $07, $18, $19, $1a, $1b, $1c, $1d, $1e, $07
+
+Unknown_b2c9: ; b289
+	db $00, $01, $02, $03, $04, $05, $06, $07, $08, $09, $0a, $0b, $0c, $0d, $0e, $0f
+	db $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $1a, $1b, $1c, $1d, $1e, $1f
+
+Unknown_b2e9: ; b289
+	db $00, $01, $02, $03, $04, $05, $06, $07, $08, $09, $0a, $0b, $0c, $0d, $0e, $0f
+	db $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $1a, $1b, $1c, $1d, $1e, $1f
+; b309
+
+Palette_b309: ; b309
+	RGB 31, 31, 31
+	RGB 31, 19, 24
+	RGB 30, 10, 06
+	RGB 00, 00, 00
+; b311
+
+Palette_b311: ; b311
+	RGB 31, 31, 31
+	RGB 17, 19, 31
+	RGB 14, 16, 31
+	RGB 00, 00, 00
+; b319
 
 MornPal: ; 0xb319
 INCLUDE "tilesets/morn.pal"
@@ -1979,9 +2099,95 @@ DarkPal: ; 0xb3d9
 INCLUDE "tilesets/dark.pal"
 ; 0xb419
 
-INCBIN "baserom.gbc", $b419, $b7a9 - $b419
+INCBIN "baserom.gbc", $b419, $b729 - $b419
 
-Paletteb7a9: ; b7a9
+Palettes_b729: ; b729
+	RGB 28, 31, 20
+	RGB 21, 21, 21
+	RGB 13, 13, 13
+	RGB 00, 00, 00
+
+	RGB 28, 31, 20
+	RGB 00, 31, 00
+	RGB 00, 00, 31
+	RGB 00, 00, 00
+
+	RGB 28, 31, 20
+	RGB 00, 31, 00
+	RGB 15, 07, 00
+	RGB 00, 00, 00
+
+	RGB 28, 31, 20
+	RGB 31, 15, 00
+	RGB 15, 07, 00
+	RGB 00, 00, 00
+
+	RGB 28, 31, 20
+	RGB 00, 31, 00
+	RGB 00, 00, 31
+	RGB 31, 00, 00
+
+	RGB 28, 31, 20
+	RGB 00, 31, 00
+	RGB 15, 07, 00
+	RGB 31, 00, 00
+; b759
+
+Palettes_b759: ; b759
+	RGB 28, 31, 20
+	RGB 21, 21, 21
+	RGB 13, 13, 13
+	RGB 00, 00, 00
+
+	RGB 28, 31, 20
+	RGB 00, 31, 00
+	RGB 00, 00, 31
+	RGB 00, 00, 00
+
+	RGB 28, 31, 20
+	RGB 00, 31, 00
+	RGB 15, 07, 00
+	RGB 00, 00, 00
+
+	RGB 28, 31, 20
+	RGB 10, 18, 31
+	RGB 13, 06, 31
+	RGB 00, 00, 00
+
+	RGB 28, 31, 20
+	RGB 00, 31, 00
+	RGB 00, 00, 31
+	RGB 31, 00, 00
+
+	RGB 28, 31, 20
+	RGB 00, 31, 00
+	RGB 15, 07, 00
+	RGB 31, 00, 00
+; b789
+
+Palettes_b789: ; b789
+	RGB 31, 31, 31
+	RGB 30, 22, 24
+	RGB 18, 18, 18
+	RGB 00, 00, 00
+
+	RGB 31, 31, 31
+	RGB 10, 11, 31
+	RGB 18, 18, 18
+	RGB 00, 00, 00
+
+	RGB 31, 31, 31
+	RGB 12, 31, 11
+	RGB 18, 18, 18
+	RGB 00, 00, 00
+
+	RGB 31, 31, 31
+	RGB 29, 26, 05
+	RGB 18, 18, 18
+	RGB 00, 00, 00
+; b7a9
+
+Palettes_b7a9: ; b7a9
 	RGB 31, 31, 31
 	RGB 24, 25, 28
 	RGB 24, 24, 09

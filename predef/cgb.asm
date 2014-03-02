@@ -161,9 +161,9 @@ Function8e85: ; 8e85
 	callba Function100dc0
 
 Function8e8b: ; 8e8b
-	ld hl, $7311
+	ld hl, Palette_b311
 	jr nc, .asm_8e93
-	ld hl, $7309
+	ld hl, Palette_b309
 
 .asm_8e93
 	ld de, $d038
@@ -175,9 +175,9 @@ Function8e8b: ; 8e8b
 
 Function8e9f: ; 8e9f
 	callba Function100dc0
-	ld hl, $7311
+	ld hl, Palette_b311
 	jr nc, .asm_8ead
-	ld hl, $7309
+	ld hl, Palette_b309
 
 .asm_8ead
 	ld de, $d000
@@ -191,11 +191,11 @@ Function8eb9: ; 8eb9
 	ld a, [PlayerGender]
 	bit 0, a
 	jr z, .asm_8ec5
-	ld hl, $7759
+	ld hl, Palettes_b759
 	jr .asm_8ec8
 
 .asm_8ec5
-	ld hl, $7729
+	ld hl, Palettes_b729
 
 .asm_8ec8
 	ld de, $d000
@@ -386,7 +386,7 @@ Function903e: ; 903e
 ; 906e
 
 Function906e: ; 906e
-	ld hl, Paletteb7a9
+	ld hl, Palettes_b7a9
 	ld de, Unkn1Pals
 	ld bc, $0080
 	ld a, $5
@@ -472,7 +472,7 @@ Function9122: ; 9122
 INCBIN "baserom.gbc", $912d, $9195 - $912d
 
 Function9195: ; 9195
-	ld hl, $7789
+	ld hl, Palettes_b789
 	ld de, Unkn1Pals
 	ld bc, $0028
 	ld a, $5
