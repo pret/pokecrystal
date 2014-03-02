@@ -529,8 +529,8 @@ Function9693a: ; 9693a
 	ret
 
 .asm_96966
-	ld a, $4
-	ld hl, $75f8
+	ld a, BANK(UnknownScript_0x135f8)
+	ld hl, UnknownScript_0x135f8
 	call CallScript
 	scf
 	ret
@@ -765,8 +765,8 @@ TryReadSign: ; 96a38
 	ld de, EngineBuffer1
 	ld bc, 3
 	call FarCopyBytes
-	ld a, $4
-	ld hl, $7625
+	ld a, BANK(UnknownScript_0x13625)
+	ld hl, UnknownScript_0x13625
 	call CallScript
 	scf
 	ret
@@ -876,8 +876,8 @@ PlayerMovement: ; 96af0
 
 .three ; 96b20
 ; force the player to move in some direction
-	ld a, $4
-	ld hl, $653d
+	ld a, BANK(UnknownScript_0x1253d)
+	ld hl, UnknownScript_0x1253d
 	call CallScript
 ;	ld a, -1
 	ld c, a
@@ -1025,8 +1025,8 @@ Function96bd7: ; 96bd7
 	dec a
 	ld [$dca1], a
 	ret nz
-	ld a, $4
-	ld hl, $7619
+	ld a, BANK(UnknownScript_0x13619)
+	ld hl, UnknownScript_0x13619
 	call CallScript
 	scf
 	ret

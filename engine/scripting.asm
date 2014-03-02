@@ -1561,8 +1561,8 @@ Script_returnafterbattle: ; 0x97459
 	and $3f
 	cp $1
 	jr nz, .asm_97470 ; 0x97466 $8
-	ld b, $4
-	ld hl, $64c1
+	ld b, BANK(UnknownScript_0x124c1)
+	ld hl, UnknownScript_0x124c1
 	jp ScriptJump
 .asm_97470
 	bit 0, d
