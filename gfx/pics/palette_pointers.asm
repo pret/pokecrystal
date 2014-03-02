@@ -1,3 +1,5 @@
+PokemonPalettes: ; a8d6
+
 BulbasaurPalette:       INCLUDE "gfx/pics/001/normal.pal"
 BulbasaurShinyPalette:  INCLUDE "gfx/pics/001/shiny.pal"
 IvysaurPalette:         INCLUDE "gfx/pics/002/normal.pal"
@@ -500,3 +502,34 @@ HoOhPalette:            INCLUDE "gfx/pics/250/normal.pal"
 HoOhShinyPalette:       INCLUDE "gfx/pics/250/shiny.pal"
 CelebiPalette:          INCLUDE "gfx/pics/251/normal.pal"
 CelebiShinyPalette:     INCLUDE "gfx/pics/251/shiny.pal"
+
+; 252
+	RGB 30, 26, 11
+	RGB 23, 16, 00
+; 252 shiny
+	RGB 30, 26, 11
+	RGB 23, 16, 00
+
+; Egg
+	RGB 30, 26, 11
+	RGB 23, 16, 00
+; Egg shiny
+	RGB 30, 26, 11
+	RGB 23, 16, 00
+
+; 254
+	RGB 30, 26, 11
+	RGB 23, 16, 00
+; 254 shiny
+	RGB 30, 26, 11
+	RGB 23, 16, 00
+
+; 255
+	RGB 23, 23, 23
+	RGB 17, 17, 17
+; 255 shiny
+	RGB 23, 23, 23
+	RGB 17, 17, 17
+
+; b0ce
+

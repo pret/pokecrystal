@@ -59,7 +59,7 @@ Table866f: ; 866f
 ; 86ad
 
 Function86ad: ; 86ad
-	ld hl, $5c66
+	ld hl, PalPacket_9c66
 	ld de, $5aa6
 	ret
 ; 86b4
@@ -67,7 +67,7 @@ Function86ad: ; 86ad
 Function86b4: ; 86b4
 	ld hl, $5aa6
 	call Function9809
-	ld hl, $5ce6
+	ld hl, PalPacket_9ce6
 	ld de, $cda9
 	ld bc, $0010
 	call CopyBytes
@@ -101,7 +101,7 @@ Function86b4: ; 86b4
 	ld [$cdb4], a
 	ld a, [hl]
 	ld [$cdb5], a
-	ld hl, $5cf6
+	ld hl, PalPacket_9cf6
 	ld de, $cdb9
 	ld bc, $0010
 	call CopyBytes
@@ -131,7 +131,7 @@ Function86b4: ; 86b4
 ; 873c
 
 Function873c: ; 873c
-	ld hl, $5bd6
+	ld hl, PalPacket_9bd6
 	ld de, $cda9
 	ld bc, $0010
 	call CopyBytes
@@ -148,13 +148,13 @@ Function873c: ; 873c
 ; 875c
 
 Function875c: ; 875c
-	ld hl, $5c76
-	ld de, $5a86
+	ld hl, PalPacket_9c76
+	ld de, BlkPacket_9a86
 	ret
 ; 8763
 
 Function8763: ; 8763
-	ld hl, $5ce6
+	ld hl, PalPacket_9ce6
 	ld de, $cda9
 	ld bc, $0010
 	call CopyBytes
@@ -190,13 +190,13 @@ Function8763: ; 8763
 ; 87ab
 
 Function87ab: ; 87ab
-	ld hl, $5c56
+	ld hl, PalPacket_9c56
 	ld de, $cdaa
 	ret
 ; 87b2
 
 Function87b2: ; 87b2
-	ld hl, $5ce6
+	ld hl, PalPacket_9ce6
 	ld de, $cda9
 	ld bc, $0010
 	call CopyBytes
@@ -224,7 +224,7 @@ Function87b2: ; 87b2
 ; 87e9
 
 Function87e9: ; 87e9
-	ld hl, $5ce6
+	ld hl, PalPacket_9ce6
 	ld de, $cda9
 	ld bc, $0010
 	call CopyBytes
@@ -259,7 +259,7 @@ Function8823: ; 8823
 ; 882a
 
 Function882a: ; 882a
-	ld hl, $5ce6
+	ld hl, PalPacket_9ce6
 	ld de, $cda9
 	ld bc, $0010
 	call CopyBytes
@@ -272,31 +272,31 @@ Function882a: ; 882a
 	inc hl
 	ld [hl], $19
 	ld hl, $cda9
-	ld de, $5a86
+	ld de, BlkPacket_9a86
 	ret
 ; 884b
 
 Function884b: ; 884b
-	ld hl, $5c36
-	ld de, $5a86
+	ld hl, PalPacket_9c36
+	ld de, BlkPacket_9a86
 	ret
 ; 8852
 
 Function8852: ; 8852
-	ld hl, $5c96
+	ld hl, PalPacket_9c96
 	ld de, $5b06
 	ret
 ; 8859
 
 Function8859: ; 8859
-	ld hl, $5ca6
+	ld hl, PalPacket_9ca6
 	ld de, $5b76
 	ret
 ; 8860
 
 Function8860: ; 8860
-	ld hl, $5cb6
-	ld de, $5a86
+	ld hl, PalPacket_9cb6
+	ld de, BlkPacket_9a86
 	ret
 ; 8867
 
@@ -320,7 +320,7 @@ Function8867: ; 8867
 INCBIN "baserom.gbc", $8878, $8884 - $8878
 
 Function8884: ; 8884
-	ld hl, $5b96
+	ld hl, PalPacket_9b96
 	ld de, $5b56
 	ld a, $8
 	ld [SGBPredef], a
@@ -328,36 +328,36 @@ Function8884: ; 8884
 ; 8890
 
 Function8890: ; 8890
-	ld hl, $5ba6
+	ld hl, PalPacket_9ba6
 	ld de, $5b86
 	ret
 ; 8897
 
 Function8897: ; 8897
-	ld hl, $5c46
-	ld de, $5a86
+	ld hl, PalPacket_9c46
+	ld de, BlkPacket_9a86
 	ret
 ; 889e
 
 Function889e: ; 889e
-	ld hl, $5a86
+	ld hl, BlkPacket_9a86
 	ld de, PlayerLightScreenCount
 	ld bc, $0010
 	call CopyBytes
-	ld hl, $5bb6
-	ld de, $5a86
+	ld hl, PalPacket_9bb6
+	ld de, BlkPacket_9a86
 	ret
 ; 88b1
 
 Function88b1: ; 88b1
-	ld hl, $5bd6
+	ld hl, PalPacket_9bd6
 	ld de, $cda9
 	ld bc, $0010
 	call CopyBytes
 	call Function8a0c
 	ld hl, $cdaa
 	ld [hld], a
-	ld de, $5a86
+	ld de, BlkPacket_9a86
 	ld a, $9
 	ld [SGBPredef], a
 	ret
@@ -365,7 +365,7 @@ Function88b1: ; 88b1
 
 Function88cd: ; 88cd
 	push bc
-	ld hl, $5ce6
+	ld hl, PalPacket_9ce6
 	ld de, $cda9
 	ld bc, $0010
 	call CopyBytes
@@ -403,28 +403,28 @@ Function88cd: ; 88cd
 
 .asm_8913
 	ld hl, $cda9
-	ld de, $5a86
+	ld de, BlkPacket_9a86
 	ret
 ; 891a
 
 Function891a: ; 891a
-	ld hl, $5cb6
-	ld de, $5a86
+	ld hl, PalPacket_9cb6
+	ld de, BlkPacket_9a86
 	ret
 ; 8921
 
 Function8921: ; 8921
-	ld hl, $5bc6
-	ld de, $5a86
+	ld hl, PalPacket_9bc6
+	ld de, BlkPacket_9a86
 	ret
 ; 8928
 
 Function8928: ; 8928
-	ld hl, $5bd6
+	ld hl, PalPacket_9bd6
 	ld de, $cda9
 	ld bc, $0010
 	call CopyBytes
-	ld hl, $5a86
+	ld hl, BlkPacket_9a86
 	ld de, $cdb9
 	ld bc, $0010
 	call CopyBytes
@@ -450,7 +450,7 @@ Function8928: ; 8928
 ; 8969
 
 Function8969: ; 8969
-	ld hl, $5ce6
+	ld hl, PalPacket_9ce6
 	ld de, $cda9
 	ld bc, $0010
 	call CopyBytes
@@ -478,18 +478,18 @@ Function8969: ; 8969
 	ld a, [hl]
 	ld [$cdaf], a
 	ld hl, $cda9
-	ld de, $5a86
+	ld de, BlkPacket_9a86
 	ret
 ; 89a6
 
 Function89a6: ; 89a6
-	ld hl, $5cd6
-	ld de, $5a86
+	ld hl, PalPacket_9cd6
+	ld de, BlkPacket_9a86
 	ret
 ; 89ad
 
 Function89ad: ; 89ad
-	ld hl, $5ce6
+	ld hl, PalPacket_9ce6
 	ld de, $cda9
 	ld bc, $0010
 	call CopyBytes
@@ -505,18 +505,18 @@ Function89ad: ; 89ad
 	ld a, [hl]
 	ld [$cdaf], a
 	ld hl, $cda9
-	ld de, $5a86
+	ld de, BlkPacket_9a86
 	ret
 ; 89d9
 
 Function89d9: ; 89d9
-	ld hl, $5cc6
-	ld de, $5a86
+	ld hl, PalPacket_9cc6
+	ld de, BlkPacket_9a86
 	ret
 ; 89e0
 
 Function89e0: ; 89e0
-	ld hl, $5ce6
+	ld hl, PalPacket_9ce6
 	ld de, $cda9
 	ld bc, $0010
 	call CopyBytes
@@ -532,7 +532,7 @@ Function89e0: ; 89e0
 	ld a, [hl]
 	ld [$cdaf], a
 	ld hl, $cda9
-	ld de, $5a86
+	ld de, BlkPacket_9a86
 	ret
 ; 8a0c
 
