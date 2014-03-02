@@ -81,7 +81,7 @@ CheckContestMon: ; 8a88
 Function8aa4: ; 8aa4
 	push de
 	push bc
-	ld hl, $5ce6
+	ld hl, PalPacket_9ce6
 	ld de, $cda9
 	ld bc, $0010
 	call CopyBytes
@@ -104,7 +104,7 @@ Function8aa4: ; 8aa4
 
 
 Function8ad1: ; 8ad1
-	ld hl, $5c57
+	ld hl, PalPacket_9c56 + 1
 	call Function9610
 	call Function971a
 	call Function9699
@@ -224,7 +224,7 @@ Function8b81: ; 8b81
 	ret z
 	ld a, c
 	push af
-	ld hl, $5ce6
+	ld hl, PalPacket_9ce6
 	ld de, $cda9
 	ld bc, $0010
 	call CopyBytes
@@ -393,8 +393,8 @@ Function8c43: ; 8c43
 Function8c8a: ; 8c8a
 	call CheckCGB
 	ret z
-	ld hl, $4f6a
-	ld b, $0
+	ld hl, Unknown_8f6a
+	ld b, 0
 	dec c
 	add hl, bc
 	add hl, bc
@@ -417,7 +417,7 @@ Function8c8a: ; 8c8a
 
 Function8cb4: ; 8cb4
 	ld l, e
-	ld h, $0
+	ld h, 0
 	add hl, hl
 	add hl, hl
 	add hl, hl
@@ -426,7 +426,7 @@ Function8cb4: ; 8cb4
 	call CheckCGB
 	jr nz, .asm_8cf0
 	push hl
-	ld hl, $5ce6
+	ld hl, PalPacket_9ce6
 	ld de, $cda9
 	ld bc, $0010
 	call CopyBytes
@@ -557,7 +557,7 @@ Function9625: ; 9625
 	add hl, hl
 	add hl, hl
 	add hl, hl
-	ld bc, $5df6
+	ld bc, Palettes_9df6
 	add hl, bc
 	ret
 ; 9630
@@ -749,8 +749,8 @@ Function96f3: ; 96f3
 
 
 Function971a: ; 971a
-	ld hl, $7681
-	ld de, MartPointer
+	ld hl, Palettes_b681
+	ld de, Unkn2Pals
 	ld bc, $0010
 	ld a, $5
 	call FarCopyWRAM
@@ -992,7 +992,7 @@ Function9853: ; 9853
 	call Function992c
 	call Function9a7a
 	call Function993f
-	ld hl, $5d66
+	ld hl, PalPacket_9d66
 	call Function981a
 
 .asm_988a
@@ -1078,27 +1078,27 @@ Function98eb: ; 98eb
 ; 98ff
 
 Unknown_98ff: ; 98ff
-	dw $5d56
-	dw $5d76
-	dw $5d86
-	dw $5d96
-	dw $5da6
-	dw $5db6
-	dw $5dc6
-	dw $5dd6
-	dw $5de6
+	dw PalPacket_9d56
+	dw PalPacket_9d76
+	dw PalPacket_9d86
+	dw PalPacket_9d96
+	dw PalPacket_9da6
+	dw PalPacket_9db6
+	dw PalPacket_9dc6
+	dw PalPacket_9dd6
+	dw PalPacket_9de6
 ; 9911
 
 Function9911: ; 9911
 	di
 	xor a
 	ld [rJOYP], a
-	ld hl, $5d56
+	ld hl, PalPacket_9d56
 	call Function981a
 	call Function992c
 	call Function9a7a
 	call Function993f
-	ld hl, $5d66
+	ld hl, PalPacket_9d66
 	call Function981a
 	ei
 	ret
@@ -1128,7 +1128,7 @@ Function993f: ; 993f
 ; 994a
 
 Function994a: ; 994a
-	ld hl, $5d26
+	ld hl, PalPacket_9d26
 	call Function981a
 	call Function9a7a
 	ld a, [rJOYP]
@@ -1177,7 +1177,7 @@ Function994a: ; 994a
 ; 99ab
 
 Function99ab: ; 99ab
-	ld hl, $5d16
+	ld hl, PalPacket_9d16
 	call Function981a
 	jp Function9a7a
 ; 99b4
@@ -1186,14 +1186,14 @@ Function99b4: ; 99b4
 	call DisableLCD
 	ld a, $e4
 	ld [rBGP], a
-	ld hl, $5df6
+	ld hl, Palettes_9df6
 	ld de, VTiles1
 	ld bc, $1000
 	call CopyData
 	call DrawDefaultTiles
 	ld a, $e3
 	ld [rLCDC], a
-	ld hl, $5d06
+	ld hl, PalPacket_9d06
 	call Function981a
 	xor a
 	ld [rBGP], a
@@ -1228,7 +1228,7 @@ Function99d8: ; 99d8
 	call DrawDefaultTiles
 	ld a, $e3
 	ld [rLCDC], a
-	ld hl, $5d46
+	ld hl, PalPacket_9d46
 	call Function981a
 	xor a
 	ld [rBGP], a
@@ -1253,7 +1253,7 @@ Function9a24: ; 9a24
 	call DrawDefaultTiles
 	ld a, $e3
 	ld [rLCDC], a
-	ld hl, $5d36
+	ld hl, PalPacket_9d36
 	call Function981a
 	xor a
 	ld [rBGP], a
@@ -1924,9 +1924,11 @@ Palettes_a8be: ; a8be
 	RGB 30, 26, 15
 	RGB 31, 00, 00
 
+Palettes_a8ca: ; a8ca
 	RGB 30, 26, 15
 	RGB 04, 17, 31
 
+Palettes_a8ce: ; a8ce
 	RGB 30, 22, 17
 	RGB 16, 14, 19
 
@@ -1985,7 +1987,7 @@ Functionb1de: ; b1de
 	ld e, l
 	ld d, h
 	pop hl
-	ld c, $8
+	ld c, 8
 .asm_b222
 	ld a, [de]
 	inc de
@@ -2002,31 +2004,31 @@ Functionb1de: ; b1de
 .asm_b230
 	ld a, [TimeOfDayPal]
 	and 3
-	ld bc, $0040
-	ld hl, $7469
+	ld bc, $40
+	ld hl, Palettes_b469
 	call AddNTimes
 	ld de, Unkn2Pals
 	ld bc, $0040
 	ld a, $5
 	call FarCopyWRAM
 	ld a, [$d19a]
-	cp $1
+	cp 1
 	jr z, .asm_b253
-	cp $2
+	cp 2
 	ret nz
 
 .asm_b253
 	ld a, [MapGroup]
 	ld l, a
-	ld h, $0
+	ld h, 0
 	add hl, hl
 	add hl, hl
 	add hl, hl
-	ld de, $7569
+	ld de, Palettes_b569
 	add hl, de
 	ld a, [TimeOfDayPal]
-	and $3
-	cp $2
+	and 3
+	cp 2
 	jr c, .asm_b26d
 	inc hl
 	inc hl
@@ -2099,7 +2101,510 @@ DarkPal: ; 0xb3d9
 INCLUDE "tilesets/dark.pal"
 ; 0xb419
 
-INCBIN "baserom.gbc", $b419, $b729 - $b419
+; There are actually a lot more of these.
+
+; b419
+
+	RGB 30, 28, 26
+	RGB 19, 19, 19
+	RGB 13, 13, 13
+	RGB 07, 07, 07
+
+	RGB 30, 28, 26
+	RGB 31, 19, 24
+	RGB 30, 10, 06
+	RGB 07, 07, 07
+
+	RGB 18, 24, 09
+	RGB 15, 20, 01
+	RGB 09, 13, 00
+	RGB 07, 07, 07
+
+	RGB 30, 28, 26
+	RGB 15, 16, 31
+	RGB 09, 09, 31
+	RGB 07, 07, 07
+
+	RGB 30, 28, 26
+	RGB 31, 31, 07
+	RGB 31, 16, 01
+	RGB 07, 07, 07
+
+	RGB 26, 24, 17
+	RGB 21, 17, 07
+	RGB 16, 13, 03
+	RGB 07, 07, 07
+
+	RGB 30, 28, 26
+	RGB 17, 19, 31
+	RGB 14, 16, 31
+	RGB 07, 07, 07
+
+	RGB 31, 31, 16
+	RGB 31, 31, 16
+	RGB 14, 09, 00
+	RGB 00, 00, 00
+
+	RGB 23, 23, 31
+	RGB 18, 19, 31
+	RGB 13, 12, 31
+	RGB 07, 07, 07
+
+	RGB 15, 13, 27
+	RGB 10, 09, 20
+	RGB 04, 03, 18
+	RGB 00, 00, 00
+; b469
+
+Palettes_b469: ; b469
+	RGB 28, 31, 16
+	RGB 31, 19, 10
+	RGB 31, 07, 01
+	RGB 00, 00, 00
+
+	RGB 28, 31, 16
+	RGB 31, 19, 10
+	RGB 10, 09, 31
+	RGB 00, 00, 00
+
+	RGB 28, 31, 16
+	RGB 31, 19, 10
+	RGB 07, 23, 03
+	RGB 00, 00, 00
+
+	RGB 28, 31, 16
+	RGB 31, 19, 10
+	RGB 15, 10, 03
+	RGB 00, 00, 00
+
+	RGB 28, 31, 16
+	RGB 31, 19, 10
+	RGB 30, 10, 06
+	RGB 00, 00, 00
+
+	RGB 31, 31, 31
+	RGB 31, 31, 31
+	RGB 13, 13, 13
+	RGB 00, 00, 00
+
+	RGB 22, 31, 10
+	RGB 12, 25, 01
+	RGB 05, 14, 00
+	RGB 07, 07, 07
+
+	RGB 28, 31, 16
+	RGB 24, 18, 07
+	RGB 20, 15, 03
+	RGB 07, 07, 07
+
+	RGB 27, 31, 27
+	RGB 31, 19, 10
+	RGB 31, 07, 01
+	RGB 00, 00, 00
+
+	RGB 27, 31, 27
+	RGB 31, 19, 10
+	RGB 10, 09, 31
+	RGB 00, 00, 00
+
+	RGB 27, 31, 27
+	RGB 31, 19, 10
+	RGB 07, 23, 03
+	RGB 00, 00, 00
+
+	RGB 27, 31, 27
+	RGB 31, 19, 10
+	RGB 15, 10, 03
+	RGB 00, 00, 00
+
+	RGB 27, 31, 27
+	RGB 31, 19, 10
+	RGB 30, 10, 06
+	RGB 00, 00, 00
+
+	RGB 31, 31, 31
+	RGB 31, 31, 31
+	RGB 13, 13, 13
+	RGB 00, 00, 00
+
+	RGB 22, 31, 10
+	RGB 12, 25, 01
+	RGB 05, 14, 00
+	RGB 07, 07, 07
+
+	RGB 27, 31, 27
+	RGB 24, 18, 07
+	RGB 20, 15, 03
+	RGB 07, 07, 07
+
+	RGB 15, 14, 24
+	RGB 31, 19, 10
+	RGB 31, 07, 01
+	RGB 00, 00, 00
+
+	RGB 15, 14, 24
+	RGB 31, 19, 10
+	RGB 10, 09, 31
+	RGB 00, 00, 00
+
+	RGB 15, 14, 24
+	RGB 31, 19, 10
+	RGB 07, 23, 03
+	RGB 00, 00, 00
+
+	RGB 15, 14, 24
+	RGB 31, 19, 10
+	RGB 15, 10, 03
+	RGB 00, 00, 00
+
+	RGB 15, 14, 24
+	RGB 31, 19, 10
+	RGB 30, 10, 06
+	RGB 00, 00, 00
+
+	RGB 31, 31, 31
+	RGB 31, 31, 31
+	RGB 13, 13, 13
+	RGB 00, 00, 00
+
+	RGB 15, 14, 24
+	RGB 08, 13, 19
+	RGB 00, 11, 13
+	RGB 00, 00, 00
+
+	RGB 15, 14, 24
+	RGB 12, 09, 15
+	RGB 08, 04, 05
+	RGB 00, 00, 00
+
+	RGB 01, 01, 02
+	RGB 31, 19, 10
+	RGB 31, 07, 01
+	RGB 00, 00, 00
+
+	RGB 01, 01, 02
+	RGB 31, 19, 10
+	RGB 10, 09, 31
+	RGB 00, 00, 00
+
+	RGB 01, 01, 02
+	RGB 31, 19, 10
+	RGB 07, 23, 03
+	RGB 00, 00, 00
+
+	RGB 01, 01, 02
+	RGB 31, 19, 10
+	RGB 15, 10, 03
+	RGB 00, 00, 00
+
+	RGB 01, 01, 02
+	RGB 31, 19, 10
+	RGB 30, 10, 06
+	RGB 00, 00, 00
+
+	RGB 31, 31, 31
+	RGB 31, 31, 31
+	RGB 13, 13, 13
+	RGB 00, 00, 00
+
+	RGB 01, 01, 02
+	RGB 00, 00, 00
+	RGB 00, 00, 00
+	RGB 00, 00, 00
+
+	RGB 01, 01, 02
+	RGB 00, 00, 00
+	RGB 00, 00, 00
+	RGB 00, 00, 00
+; b569
+
+Palettes_b569: ; b569
+	RGB 21, 21, 21
+	RGB 11, 11, 11
+	RGB 21, 21, 21
+	RGB 11, 11, 11
+
+	RGB 14, 17, 31
+	RGB 07, 11, 15
+	RGB 09, 09, 17
+	RGB 05, 07, 13
+
+	RGB 12, 19, 00
+	RGB 06, 10, 00
+	RGB 06, 09, 07
+	RGB 04, 05, 06
+
+	RGB 21, 21, 21
+	RGB 11, 11, 11
+	RGB 21, 21, 21
+	RGB 17, 08, 07
+
+	RGB 31, 19, 00
+	RGB 27, 10, 05
+	RGB 15, 07, 02
+	RGB 11, 04, 02
+
+	RGB 11, 10, 16
+	RGB 05, 06, 07
+	RGB 03, 04, 08
+	RGB 00, 00, 00
+
+	RGB 31, 10, 00
+	RGB 18, 06, 00
+	RGB 18, 05, 09
+	RGB 17, 08, 07
+
+	RGB 17, 27, 31
+	RGB 05, 15, 31
+	RGB 07, 08, 22
+	RGB 07, 07, 16
+
+	RGB 22, 20, 10
+	RGB 17, 14, 03
+	RGB 11, 11, 05
+	RGB 10, 09, 07
+
+	RGB 31, 08, 04
+	RGB 09, 09, 08
+	RGB 18, 05, 09
+	RGB 09, 09, 08
+
+	RGB 24, 14, 31
+	RGB 13, 07, 21
+	RGB 12, 03, 18
+	RGB 09, 03, 15
+
+	RGB 25, 25, 00
+	RGB 20, 17, 08
+	RGB 12, 12, 00
+	RGB 10, 09, 05
+
+	RGB 27, 23, 01
+	RGB 23, 11, 00
+	RGB 15, 11, 01
+	RGB 11, 10, 01
+
+	RGB 27, 28, 31
+	RGB 17, 19, 22
+	RGB 14, 14, 18
+	RGB 10, 09, 13
+
+	RGB 19, 19, 16
+	RGB 10, 12, 15
+	RGB 09, 09, 11
+	RGB 04, 05, 07
+
+	RGB 14, 17, 31
+	RGB 07, 11, 15
+	RGB 09, 13, 19
+	RGB 07, 07, 16
+
+	RGB 21, 21, 21
+	RGB 13, 13, 13
+	RGB 11, 11, 19
+	RGB 07, 07, 12
+
+	RGB 31, 18, 29
+	RGB 17, 13, 20
+	RGB 14, 06, 12
+	RGB 11, 03, 10
+
+	RGB 23, 15, 31
+	RGB 16, 05, 31
+	RGB 12, 07, 17
+	RGB 08, 06, 10
+
+	RGB 21, 21, 25
+	RGB 16, 16, 16
+	RGB 13, 13, 13
+	RGB 07, 07, 07
+
+	RGB 21, 21, 21
+	RGB 11, 11, 11
+	RGB 21, 21, 21
+	RGB 11, 11, 11
+
+	RGB 19, 31, 15
+	RGB 31, 22, 02
+	RGB 12, 13, 09
+	RGB 09, 12, 03
+
+	RGB 15, 10, 31
+	RGB 07, 05, 15
+	RGB 06, 05, 17
+	RGB 02, 02, 08
+
+	RGB 21, 31, 07
+	RGB 13, 25, 04
+	RGB 09, 14, 08
+	RGB 06, 10, 04
+
+	RGB 20, 31, 14
+	RGB 11, 23, 05
+	RGB 09, 13, 08
+	RGB 06, 09, 04
+
+	RGB 31, 26, 00
+	RGB 31, 15, 00
+	RGB 13, 13, 01
+	RGB 08, 08, 01
+
+	RGB 31, 14, 28
+	RGB 31, 05, 21
+	RGB 14, 07, 17
+	RGB 13, 00, 08
+
+Palettes_b641: ; b641
+	RGB 27, 31, 27
+	RGB 21, 21, 21
+	RGB 13, 13, 13
+	RGB 00, 00, 00
+
+	RGB 27, 31, 27
+	RGB 31, 07, 06
+	RGB 20, 02, 03
+	RGB 00, 00, 00
+
+	RGB 27, 31, 27
+	RGB 10, 31, 09
+	RGB 04, 14, 01
+	RGB 00, 00, 00
+
+	RGB 27, 31, 27
+	RGB 08, 12, 31
+	RGB 01, 04, 31
+	RGB 00, 00, 00
+
+	RGB 27, 31, 27
+	RGB 31, 31, 07
+	RGB 31, 16, 01
+	RGB 00, 00, 00
+; b669
+
+	RGB 27, 31, 27
+	RGB 22, 16, 08
+	RGB 13, 07, 01
+	RGB 00, 00, 00
+
+	RGB 27, 31, 27
+	RGB 15, 31, 31
+	RGB 05, 17, 31
+	RGB 00, 00, 00
+
+	RGB 31, 31, 31
+	RGB 11, 11, 19
+	RGB 07, 07, 12
+	RGB 00, 00, 00
+; b681
+
+Palettes_b681: ; b681
+	RGB 27, 31, 27
+	RGB 31, 19, 10
+	RGB 31, 07, 04
+	RGB 00, 00, 00
+
+	RGB 27, 31, 27
+	RGB 31, 19, 10
+	RGB 10, 14, 20
+	RGB 00, 00, 00
+
+	RGB 27, 31, 27
+	RGB 31, 19, 10
+	RGB 31, 07, 04
+	RGB 00, 00, 00
+
+	RGB 27, 31, 27
+	RGB 31, 19, 10
+	RGB 31, 07, 04
+	RGB 00, 00, 00
+
+	RGB 27, 31, 27
+	RGB 31, 19, 10
+	RGB 31, 07, 04
+	RGB 00, 00, 00
+
+	RGB 27, 31, 27
+	RGB 31, 19, 10
+	RGB 31, 07, 04
+	RGB 00, 00, 00
+
+	RGB 27, 31, 27
+	RGB 31, 19, 10
+	RGB 31, 07, 04
+	RGB 00, 00, 00
+
+	RGB 27, 31, 27
+	RGB 31, 19, 10
+	RGB 31, 07, 04
+	RGB 00, 00, 00
+
+	RGB 31, 31, 31
+	RGB 21, 21, 21
+	RGB 13, 13, 13
+	RGB 07, 07, 07
+
+	RGB 31, 31, 31
+	RGB 31, 31, 07
+	RGB 31, 16, 01
+	RGB 07, 07, 07
+
+	RGB 31, 31, 31
+	RGB 31, 19, 24
+	RGB 30, 10, 06
+	RGB 07, 07, 07
+
+	RGB 31, 31, 31
+	RGB 12, 25, 01
+	RGB 05, 14, 00
+	RGB 07, 07, 07
+
+	RGB 31, 31, 31
+	RGB 08, 12, 31
+	RGB 01, 04, 31
+	RGB 07, 07, 07
+
+	RGB 31, 31, 31
+	RGB 24, 18, 07
+	RGB 20, 15, 03
+	RGB 07, 07, 07
+
+Palettes_b6f1: ; b6f1
+	RGB 31, 31, 31
+	RGB 18, 23, 31
+	RGB 15, 20, 31
+	RGB 00, 00, 00
+
+	RGB 31, 31, 31
+	RGB 22, 00, 31
+	RGB 15, 20, 31
+	RGB 00, 00, 00
+
+	RGB 31, 31, 31
+	RGB 31, 00, 00
+	RGB 15, 20, 31
+	RGB 00, 00, 00
+
+	RGB 31, 31, 31
+	RGB 25, 22, 00
+	RGB 15, 20, 31
+	RGB 00, 00, 00
+
+	RGB 31, 31, 31
+	RGB 23, 26, 31
+	RGB 18, 23, 31
+	RGB 00, 00, 00
+
+Palettes_b719: ; b719
+	RGB 31, 31, 31
+	RGB 07, 06, 03
+	RGB 07, 06, 03
+	RGB 07, 06, 03
+
+	RGB 31, 31, 31
+	RGB 31, 31, 00
+	RGB 26, 22, 00
+	RGB 00, 00, 00
+; b729
 
 Palettes_b729: ; b729
 	RGB 28, 31, 20

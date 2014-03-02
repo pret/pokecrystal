@@ -60,12 +60,12 @@ Table866f: ; 866f
 
 Function86ad: ; 86ad
 	ld hl, PalPacket_9c66
-	ld de, $5aa6
+	ld de, BlkPacket_9aa6
 	ret
 ; 86b4
 
 Function86b4: ; 86b4
-	ld hl, $5aa6
+	ld hl, BlkPacket_9aa6
 	call Function9809
 	ld hl, PalPacket_9ce6
 	ld de, $cda9
@@ -73,10 +73,10 @@ Function86b4: ; 86b4
 	call CopyBytes
 	ld a, [PlayerHPPal]
 	ld l, a
-	ld h, $0
+	ld h, 0
 	add hl, hl
 	add hl, hl
-	ld de, $68be
+	ld de, Palettes_a8be
 	add hl, de
 	ld a, [hli]
 	ld [$cdac], a
@@ -143,7 +143,7 @@ Function873c: ; 873c
 	add $2f
 	ld [hl], a
 	ld hl, $cda9
-	ld de, $5ad6
+	ld de, BlkPacket_9ad6
 	ret
 ; 875c
 
@@ -163,7 +163,7 @@ Function8763: ; 8763
 	ld h, $0
 	add hl, hl
 	add hl, hl
-	ld de, $68be
+	ld de, Palettes_a8be
 	add hl, de
 	ld a, [hli]
 	ld [$cdac], a
@@ -185,7 +185,7 @@ Function8763: ; 8763
 	ld a, [hl]
 	ld [$cdb5], a
 	ld hl, $cda9
-	ld de, $5ac6
+	ld de, BlkPacket_9ac6
 	ret
 ; 87ab
 
@@ -219,7 +219,7 @@ Function87b2: ; 87b2
 	ld a, [hl]
 	ld [$cdb5], a
 	ld hl, $cda9
-	ld de, $5ae6
+	ld de, BlkPacket_9ae6
 	ret
 ; 87e9
 
@@ -248,13 +248,13 @@ Function87e9: ; 87e9
 	ld a, [hl]
 	ld [$cdb5], a
 	ld hl, $cda9
-	ld de, $5ae6
+	ld de, BlkPacket_9ae6
 	ret
 ; 8823
 
 Function8823: ; 8823
 	call Function87b2
-	ld de, $5af6
+	ld de, BlkPacket_9af6
 	ret
 ; 882a
 
@@ -284,13 +284,13 @@ Function884b: ; 884b
 
 Function8852: ; 8852
 	ld hl, PalPacket_9c96
-	ld de, $5b06
+	ld de, BlkPacket_9b06
 	ret
 ; 8859
 
 Function8859: ; 8859
 	ld hl, PalPacket_9ca6
-	ld de, $5b76
+	ld de, BlkPacket_9b76
 	ret
 ; 8860
 
@@ -301,8 +301,8 @@ Function8860: ; 8860
 ; 8867
 
 Function8867: ; 8867
-	ld b, $0
-	ld hl, $4878
+	ld b, 0
+	ld hl, Unknown_8878
 	add hl, bc
 	add hl, bc
 	add hl, bc
@@ -317,11 +317,15 @@ Function8867: ; 8867
 	ret
 ; 8878
 
-INCBIN "baserom.gbc", $8878, $8884 - $8878
+Unknown_8878: ; 8878
+	dw BlkPacket_9a86, PalPacket_9be6
+	dw BlkPacket_9a96, PalPacket_9c06
+	dw BlkPacket_9a86, PalPacket_9c16
+; 8884
 
 Function8884: ; 8884
 	ld hl, PalPacket_9b96
-	ld de, $5b56
+	ld de, BlkPacket_9b56
 	ld a, $8
 	ld [SGBPredef], a
 	ret
@@ -329,7 +333,7 @@ Function8884: ; 8884
 
 Function8890: ; 8890
 	ld hl, PalPacket_9ba6
-	ld de, $5b86
+	ld de, BlkPacket_9b86
 	ret
 ; 8897
 
@@ -456,18 +460,18 @@ Function8969: ; 8969
 	call CopyBytes
 	ld a, [CurPartySpecies]
 	ld l, a
-	ld h, $0
+	ld h, 0
 	add hl, hl
 	add hl, hl
 	add hl, hl
-	ld de, $68ce
+	ld de, Palettes_a8ce
 	add hl, de
 	ld a, [$cf65]
-	and $3
+	and 3
 	sla a
 	sla a
 	ld c, a
-	ld b, $0
+	ld b, 0
 	add hl, bc
 	ld a, [hli]
 	ld [$cdac], a
@@ -557,8 +561,8 @@ Function8a0c: ; 8a0c
 	jr z, .asm_8a42
 	ld a, [MapGroup]
 	ld e, a
-	ld d, $0
-	ld hl, $4a45
+	ld d, 0
+	ld hl, Unknown_8a45
 	add hl, de
 	ld a, [hl]
 	ret
@@ -580,7 +584,35 @@ Function8a0c: ; 8a0c
 	ret
 ; 8a45
 
-INCBIN "baserom.gbc", $8a45, $8a60 - $8a45
+Unknown_8a45: ; 8a45
+	db $00
+	db $12
+	db $14
+	db $18
+	db $11
+	db $15
+	db $09
+	db $04
+	db $0f
+	db $16
+	db $0e
+	db $10
+	db $06
+	db $01
+	db $03
+	db $06
+	db $0b
+	db $08
+	db $05
+	db $17
+	db $08
+	db $07
+	db $13
+	db $02
+	db $0c
+	db $0a
+	db $0d
+; 8a60
 
 Function8a60: ; 8a60
 	push de

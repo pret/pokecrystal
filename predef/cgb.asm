@@ -68,15 +68,15 @@ Table8d7a: ; 8d7a
 ; 8db8
 
 Function8db8: ; 8db8
-	ld hl, $5c67
+	ld hl, PalPacket_9c66 + 1
 	ld de, $d000
 	ld c, $4
 	call Function9615
-	ld hl, $5c67
+	ld hl, PalPacket_9c66 + 1
 	ld de, $d020
 	ld c, $4
 	call Function9615
-	ld hl, $5c67
+	ld hl, PalPacket_9c66 + 1
 	ld de, MartPointer
 	ld c, $2
 	call Function9615
@@ -95,7 +95,7 @@ Function8ddb: ; 8ddb
 	ld h, $0
 	add hl, hl
 	add hl, hl
-	ld bc, $68be
+	ld bc, Palettes_a8be
 	add hl, bc
 	call Function9643
 	ld a, [PlayerHPPal]
@@ -103,10 +103,10 @@ Function8ddb: ; 8ddb
 	ld h, $0
 	add hl, hl
 	add hl, hl
-	ld bc, $68be
+	ld bc, Palettes_a8be
 	add hl, bc
 	call Function9643
-	ld hl, $68ca
+	ld hl, Palettes_a8ca
 	call Function9643
 	ld de, MartPointer
 	pop hl
@@ -147,7 +147,7 @@ Function8e23: ; 8e23
 	ld bc, $0078
 	ld a, $7
 	call ByteFill
-	ld hl, $579c
+	ld hl, Palettes_979c
 	ld de, $d050
 	ld bc, $0030
 	ld a, $5
@@ -215,14 +215,14 @@ Function8edb: ; 8edb
 	ld h, $0
 	add hl, hl
 	add hl, hl
-	ld bc, $68be
+	ld bc, Palettes_a8be
 	add hl, bc
 	call Function9643
 	ld a, [CurPartySpecies]
 	ld bc, TempMonDVs
 	call Function974b
 	call Function9643
-	ld hl, $68ca
+	ld hl, Palettes_a8ca
 	call Function9643
 	ld hl, Palette8f52
 	ld de, $d018
@@ -274,7 +274,13 @@ Palette8f52: ; 8f52
 	RGB 00, 00, 00
 ; 8f6a
 
-INCBIN "baserom.gbc", $8f6a, $8f70 - $8f6a
+Unknown_8f6a: ; 8f6a
+	RGB 31, 19, 31
+
+	RGB 21, 31, 14
+
+	RGB 17, 31, 31
+; 8f70
 
 Function8f70: ; 8f70
 	ld de, Unkn1Pals
@@ -355,7 +361,28 @@ Function8fca: ; 8fca
 	ret
 ; 9009
 
-INCBIN "baserom.gbc", $9009, $9036 - $9009
+Function9009: ; 9009
+	ld hl, Palette9036
+	call Function9630
+	jr .asm_901a
+
+	ld bc, TempMonDVs
+	call Function974b
+	call Function9643
+
+.asm_901a
+	call Function9699
+	ld hl, $cdee
+	ld bc, $0707
+	ld a, $1
+	call Function9663
+	call Function971a
+	call Function96b3
+	call Function96a4
+	ld a, $1
+	ld [hCGBPalUpdate], a
+	ret
+; 9036
 
 Palette9036: ; 9036
 	RGB 31, 15, 00
@@ -440,7 +467,7 @@ Function906e: ; 906e
 ; 90f8
 
 Function90f8: ; 90f8
-	ld hl, $5ca7
+	ld hl, PalPacket_9ca6 + 1
 	call Function9610
 	call Function9699
 	ld de, Unkn2Pals
@@ -459,8 +486,8 @@ Function90f8: ; 90f8
 ; 9122
 
 Function9122: ; 9122
-	ld b, $0
-	ld hl, $512d
+	ld b, 0
+	ld hl, Jumptable_912d
 	add hl, bc
 	add hl, bc
 	ld a, [hli]
@@ -469,7 +496,66 @@ Function9122: ; 9122
 	jp [hl]
 ; 912d
 
-INCBIN "baserom.gbc", $912d, $9195 - $912d
+Jumptable_912d: ; 912d
+	dw Function9133
+	dw Function9166
+	dw Function9180
+; 9133
+
+Function9133: ; 9133
+	ld hl, Palette_914e
+	ld de, Unkn1Pals
+	call Function9630
+	ld hl, Palette_9156
+	ld de, Unkn2Pals
+	ld bc, $0010
+	ld a, $5
+	call FarCopyWRAM
+	call Function9699
+	ret
+; 914e
+
+Palette_914e: ; 914e
+	RGB 19, 31, 19
+	RGB 18, 23, 31
+	RGB 11, 21, 28
+	RGB 04, 16, 24
+
+Palette_9156: ; 9156
+	RGB 29, 29, 29
+	RGB 20, 19, 20
+	RGB 19, 06, 04
+	RGB 03, 04, 06
+
+	RGB 31, 31, 31
+	RGB 31, 31, 31
+	RGB 31, 00, 00
+	RGB 03, 04, 06
+; 9166
+
+Function9166: ; 9166
+	ld de, Unkn1Pals
+	ld a, $38
+	call Function9625
+	call Function9630
+	ld de, Unkn2Pals
+	ld a, $39
+	call Function9625
+	call Function9630
+	call Function9699
+	ret
+; 9180
+
+Function9180: ; 9180
+	ld hl, PalPacket_9c36 + 1
+	call Function9610
+	ld de, Unkn2Pals
+	ld a, $3a
+	call Function9625
+	call Function9630
+	call Function9699
+	ret
+; 9195
 
 Function9195: ; 9195
 	ld hl, Palettes_b789
@@ -484,12 +570,12 @@ Function9195: ; 9195
 ; 91ad
 
 Function91ad: ; 91ad
-	ld hl, $7641
+	ld hl, Palettes_b641
 	ld de, Unkn1Pals
 	ld bc, $0080
 	ld a, $5
 	call FarCopyWRAM
-	ld hl, $5cb7
+	ld hl, PalPacket_9cb6 + 1
 	call Function9610
 	call Function9699
 	call Function96b3
@@ -504,7 +590,7 @@ Function91c8: ; 91c8
 ; 91d1
 
 Function91d1: ; 91d1
-	ld hl, $5c57
+	ld hl, PalPacket_9c56 + 1
 	call Function9610
 	call Function8e9f
 	call Function8e85
@@ -533,7 +619,7 @@ Function91e4: ; 91e4
 	ld a, [PlayerHPPal]
 	call Function974b
 	call Function9643
-	ld hl, $579c
+	ld hl, Palettes_979c
 	ld de, $d050
 	ld bc, $0030
 	ld a, $5
@@ -549,12 +635,12 @@ Function91e4: ; 91e4
 ; 9228
 
 Function9228: ; 9228
-	ld hl, $76f1
+	ld hl, Palettes_b6f1
 	ld de, Unkn1Pals
 	ld bc, $0028
 	ld a, $5
 	call FarCopyWRAM
-	ld hl, $7719
+	ld hl, Palettes_b719
 	ld de, Unkn2Pals
 	ld bc, $0010
 	ld a, $5
@@ -568,7 +654,7 @@ Function9228: ; 9228
 ; 9251
 
 Function9251: ; 9251
-	ld hl, $5cb7
+	ld hl, PalPacket_9cb6 + 1
 	call Function9610
 	call Function9699
 	call Function96b3
@@ -576,7 +662,7 @@ Function9251: ; 9251
 ; 925e
 
 Function925e: ; 925e
-	ld hl, $5bc7
+	ld hl, PalPacket_9bc6 + 1
 	call Function9610
 	ld de, Unkn2Pals
 	ld a, $4c
@@ -710,10 +796,10 @@ Function9373: ; 9373
 	call Function9630
 	ld a, [PlayerHPPal]
 	ld l, a
-	ld h, $0
+	ld h, 0
 	add hl, hl
 	add hl, hl
-	ld bc, $68be
+	ld bc, Palettes_a8be
 	add hl, bc
 	call Function9643
 	call Function9699
@@ -729,7 +815,7 @@ Function9373: ; 9373
 ; 93a6
 
 Function93a6: ; 93a6
-	ld hl, $5c47
+	ld hl, PalPacket_9c46 + 1
 	call Function9610
 	call Function9699
 	call Function96b3
@@ -759,11 +845,11 @@ Function93d3: ; 93d3
 	ld a, [PlayerGender]
 	bit 0, a
 	jr z, .asm_93e6
-	ld hl, $5469
+	ld hl, Palettes_9469
 	jr .asm_93e9
 
 .asm_93e6
-	ld hl, $5439
+	ld hl, Palettes_9439
 
 .asm_93e9
 	ld de, Unkn1Pals
@@ -798,7 +884,59 @@ Function93d3: ; 93d3
 	ret
 ; 9439
 
-INCBIN "baserom.gbc", $9439, $9499 - $9439
+Palettes_9439: ; 9439
+	RGB 31, 31, 31
+	RGB 15, 15, 31
+	RGB 00, 00, 31
+	RGB 00, 00, 00
+	RGB 31, 31, 31
+	RGB 15, 15, 31
+	RGB 00, 00, 31
+	RGB 00, 00, 00
+	RGB 31, 11, 31
+	RGB 15, 15, 31
+	RGB 00, 00, 31
+	RGB 00, 00, 00
+	RGB 31, 31, 31
+	RGB 15, 15, 31
+	RGB 00, 00, 31
+	RGB 31, 00, 00
+	RGB 31, 31, 31
+	RGB 15, 15, 31
+	RGB 31, 00, 00
+	RGB 00, 00, 00
+	RGB 31, 31, 31
+	RGB 07, 19, 07
+	RGB 07, 19, 07
+	RGB 00, 00, 00
+; 9469
+
+Palettes_9469: ; 9469
+	RGB 31, 31, 31
+	RGB 31, 14, 31
+	RGB 31, 07, 31
+	RGB 00, 00, 00
+	RGB 31, 31, 31
+	RGB 31, 14, 31
+	RGB 31, 07, 31
+	RGB 00, 00, 00
+	RGB 15, 15, 31
+	RGB 31, 14, 31
+	RGB 31, 07, 31
+	RGB 00, 00, 00
+	RGB 31, 31, 31
+	RGB 31, 14, 31
+	RGB 31, 07, 31
+	RGB 31, 00, 00
+	RGB 31, 31, 31
+	RGB 31, 14, 31
+	RGB 31, 00, 00
+	RGB 00, 00, 00
+	RGB 31, 31, 31
+	RGB 07, 19, 07
+	RGB 07, 19, 07
+	RGB 00, 00, 00
+; 9499
 
 Function9499: ; 9499
 	call Function91c8
@@ -836,7 +974,7 @@ Function9499: ; 9499
 ; 94d0
 
 Function94d0: ; 94d0
-	ld hl, $5ba7
+	ld hl, PalPacket_9ba6 + 1
 	call Function9610
 	call Function9699
 	ld hl, $ce29
@@ -859,10 +997,10 @@ Function94fa: ; 94fa
 	ld a, $4e
 	call Function9625
 	call Function9630
-	ld hl, $5521
+	ld hl, Palette_9521
 	ld de, Unkn2Pals
 	call Function9630
-	ld hl, $5521
+	ld hl, Palette_9521
 	ld de, $d048
 	call Function9630
 	call Function9699
@@ -871,7 +1009,12 @@ Function94fa: ; 94fa
 	ret
 ; 9521
 
-INCBIN "baserom.gbc", $9521, $9529 - $9521
+Palette_9521: ; 9521
+	RGB 31, 31, 31
+	RGB 13, 11, 00
+	RGB 23, 12, 28
+	RGB 00, 00, 00
+; 9529
 
 Function9529: ; 9529
 	ld de, Unkn1Pals
@@ -896,9 +1039,9 @@ Function9542: ; 9542
 ; 9555
 
 Function9555: ; 9555
-	ld hl, $5cc7
+	ld hl, PalPacket_9cc6 + 1
 	call Function9610
-	ld hl, $7681
+	ld hl, Palettes_b681
 	ld de, Unkn2Pals
 	ld bc, $0008
 	ld a, $5
