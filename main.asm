@@ -87535,13 +87535,13 @@ Functionfba2e: ; fba2e (3e:7a2e)
 	call ByteFill
 	ld a, [$c7dd]
 	ld e, a
-	ld d, $0
-	ld hl, EndPokedexSeen ; $ded9 (aliases: UnownDex)
+	ld d, 0
+	ld hl, UnownDex ; $ded9
 	add hl, de
 	ld a, [hl]
 	ld e, a
-	ld d, $0
-	ld hl, $7a5a
+	ld d, 0
+	ld hl, UnownWords
 	add hl, de
 	add hl, de
 	ld a, [hli]
@@ -87557,13 +87557,69 @@ Functionfba2e: ; fba2e (3e:7a2e)
 	jr .asm_fba52
 ; fba5a (3e:7a5a)
 
-INCBIN "baserom.gbc",$fba5a,$fbb32 - $fba5a
+UnownWords: ; fba5a
+	dw UnownWord1
+	dw UnownWord1
+	dw UnownWord2
+	dw UnownWord3
+	dw UnownWord4
+	dw UnownWord5
+	dw UnownWord6
+	dw UnownWord7
+	dw UnownWord8
+	dw UnownWord9
+	dw UnownWord10
+	dw UnownWord11
+	dw UnownWord12
+	dw UnownWord13
+	dw UnownWord14
+	dw UnownWord15
+	dw UnownWord16
+	dw UnownWord17
+	dw UnownWord18
+	dw UnownWord19
+	dw UnownWord20
+	dw UnownWord21
+	dw UnownWord22
+	dw UnownWord23
+	dw UnownWord24
+	dw UnownWord25
+	dw UnownWord26
+; fba90
+
+UnownWord1:	db $40, $4d, $46, $51, $58, $ff                ; ANGRY
+UnownWord2:	db $41, $44, $40, $51, $ff                     ; BEAR
+UnownWord3:	db $42, $47, $40, $52, $44, $ff                ; CHASE
+UnownWord4:	db $43, $48, $51, $44, $42, $53, $ff           ; DIRECT
+UnownWord5:	db $44, $4d, $46, $40, $46, $44, $ff           ; ENGAGE
+UnownWord6:	db $45, $48, $4d, $43, $ff                     ; FIND
+UnownWord7:	db $46, $48, $55, $44, $ff                     ; GIVE
+UnownWord8:	db $47, $44, $4b, $4f, $ff                     ; HELP
+UnownWord9:	db $48, $4d, $42, $51, $44, $40, $52, $44, $ff ; INCREASE
+UnownWord10:	db $49, $4e, $48, $4d, $ff                     ; JOIN
+UnownWord11:	db $4a, $44, $44, $4f, $ff                     ; KEEP
+UnownWord12:	db $4b, $40, $54, $46, $47, $ff                ; LAUGH
+UnownWord13:	db $4c, $40, $4a, $44, $ff                     ; MAKE
+UnownWord14:	db $4d, $54, $59, $59, $4b, $44, $ff           ; NUZZLE
+UnownWord15:	db $4e, $41, $52, $44, $51, $55, $44, $ff      ; OBSERVE
+UnownWord16:	db $4f, $44, $51, $45, $4e, $51, $4c, $ff      ; PERFORM
+UnownWord17:	db $50, $54, $48, $42, $4a, $44, $4d, $ff      ; QUICKEN
+UnownWord18:	db $51, $44, $40, $52, $52, $54, $51, $44, $ff ; REASSURE
+UnownWord19:	db $52, $44, $40, $51, $42, $47, $ff           ; SEARCH
+UnownWord20:	db $53, $44, $4b, $4b, $ff                     ; TELL
+UnownWord21:	db $54, $4d, $43, $4e, $ff                     ; UNDO
+UnownWord22:	db $55, $40, $4d, $48, $52, $47, $ff           ; VANISH
+UnownWord23:	db $56, $40, $4d, $53, $ff                     ; WANT
+UnownWord24:	db $57, $57, $57, $57, $57, $ff                ; XXXXX
+UnownWord25:	db $58, $48, $44, $4b, $43, $ff                ; YIELD
+UnownWord26:	db $59, $4e, $4e, $4c, $ff                     ; ZOOM
+; fbb32
 
 Functionfbb32: ; fbb32
 	callba Function50000
 	jr c, .asm_fbb9e
 	ld a, [CurPartySpecies]
-	cp $81
+	cp MAGIKARP
 	jr nz, .asm_fbba4
 	ld a, [CurPartyMon]
 	ld hl, PartyMon1Species
@@ -87621,17 +87677,23 @@ Functionfbb32: ; fbb32
 	ret
 ; fbba9
 
-INCBIN "baserom.gbc",$fbba9,$fbbae - $fbba9
+UnknownText_0xfbba9: ; 0xfbba9
+	; Let me measure that MAGIKARP. …Hm, it measures @ .
+	text_jump UnknownText_0x1c1203
+	db "@"
+; 0xfbbae
 
 Functionfbbae: ; fbbae
 	ld hl, $96e0
-	ld de, $7bbb
-	ld bc, $3e02
+	ld de, GFX_fbbbb
+	lb bc, BANK(GFX_fbbbb), $02
 	call Request2bpp
 	ret
 ; fbbbb
 
+GFX_fbbbb: ; fbbb
 INCBIN "baserom.gbc",$fbbbb,$fbbdb - $fbbbb
+; fbbdb
 
 Functionfbbdb: ; fbbdb
 	call Functionfbbae
