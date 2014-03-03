@@ -24350,7 +24350,7 @@ Function14a1a: ; 14a1a
 	call SpeechTextBox
 	call Function1ad2
 	callba Function4cf45
-	ld hl, $5283
+	ld hl, UnknownText_0x15283
 	call Function14baf
 	jr nz, .asm_14a4a
 	call Function14b89
@@ -24386,7 +24386,7 @@ Function14a58: ; 14a58
 ; no known jump sources
 Function14a83: ; 14a83 (5:4a83)
 	push de
-	ld hl, $52a1
+	ld hl, UnknownText_0x152a1
 	call Function1d4f
 	call YesNoBox
 	call Function1c07
@@ -24420,10 +24420,53 @@ Function14ab2: ; 14ab2
 	ret
 ; 14ac2
 
-INCBIN "baserom.gbc", $14ac2, $14b34 - $14ac2
+Function14ac2: ; 14ac2
+	call Function14b54
+	push de
+	call Function14e0c
+	pop de
+	ld a, e
+	ld [$db72], a
+	call Function15021
+	call Function14b5a
+	ret
+; 14ad5
+
+Function14ad5: ; 14ad5
+	call Function14b54
+	push de
+	call Function14e0c
+	pop de
+	ld a, e
+	ld [$db72], a
+	ld a, $1
+	ld [$cfcd], a
+	callba Function14056
+	callba Function1050d9
+	call Function14da9
+	call Function14dbb
+	call Function14dd7
+	call Function14df7
+	call Function14e13
+	call Function14e2d
+	call Function14e40
+	call Function14e55
+	call Function14e76
+	call Function14e8b
+	callba Function44725
+	callba Function106187
+	callba Function1406a
+	call Function15021
+	call Function14b5a
+	ld de, SFX_SAVE
+	call PlaySFX
+	ld c, $18
+	call DelayFrames
+	ret
+; 14b34
 
 Function14b34: ; 14b34
-	ld hl, $52a6
+	ld hl, UnknownText_0x152a6
 	call Function1d4f
 	call YesNoBox
 	call Function1c07
@@ -24487,13 +24530,13 @@ Function14b89: ; 14b89
 	jr z, .asm_14ba8
 	call Function14bcb
 	jr z, .asm_14b9e
-	ld hl, $5297
+	ld hl, UnknownText_0x15297
 	call Function14baf
 	jr nz, .asm_14bad
 	jr .asm_14ba8
 
 .asm_14b9e
-	ld hl, $5292
+	ld hl, UnknownText_0x15292
 	call Function14baf
 	jr nz, .asm_14bad
 	jr .asm_14bab
@@ -24552,7 +24595,7 @@ Function14be6: ; 14be6
 	push af
 	ld a, $3
 	ld [Options], a
-	ld hl, $528d
+	ld hl, UnknownText_0x1528d
 	call PrintText
 	pop af
 	ld [Options], a
@@ -24645,7 +24688,7 @@ Function14c99: ; 14c99
 	push af
 	ld a, $3
 	ld [Options], a
-	ld hl, $5288
+	ld hl, UnknownText_0x15288
 	call PrintText
 	pop af
 	ld [Options], a
@@ -24703,8 +24746,26 @@ Function14d06: ; 14d06
 	jp CloseSRAM
 ; 14d18
 
-INCBIN "baserom.gbc",$14d18,$14d5c - $14d18
+Function14d18: ; 14d18
+	ld a, $4
+	call GetSRAMBank
+	ld hl, Unknown_14d2c
+	ld de, $a007
+	ld bc, $0030
+	call CopyBytes
+	jp CloseSRAM
+; 14d2c
 
+Unknown_14d2c: ; 14d2c
+	db $0d, $02, $00, $05, $00, $00
+	db $22, $02, $01, $05, $00, $00
+	db $03, $04, $05, $08, $03, $05
+	db $0e, $06, $03, $02, $00, $00
+	db $39, $07, $07, $04, $00, $05
+	db $04, $07, $01, $05, $00, $00
+	db $0f, $05, $14, $07, $05, $05
+	db $11, $0c, $0c, $06, $06, $04
+; 14d5c
 
 Function14d5c: ; 14d5c
 	ld a, $1
@@ -24719,7 +24780,40 @@ Function14d68: ; 14d68
 	ret
 ; 14d6c
 
-INCBIN "baserom.gbc",$14d6c,$14da0 - $14d6c
+Function14d6c: ; 14d6c
+	ld a, $4
+	call GetSRAMBank
+	ld a, [$a60b]
+	ld b, $0
+	and a
+	jr z, .asm_14d7b
+	ld b, $2
+
+.asm_14d7b
+	ld a, b
+	ld [$a60b], a
+	call CloseSRAM
+	ret
+; 14d83
+
+Function14d83: ; 14d83
+	ld a, $4
+	call GetSRAMBank
+	xor a
+	ld [$a60c], a
+	ld [$a60d], a
+	call CloseSRAM
+	ret
+; 14d93
+
+Function14d93: ; 14d93
+	ld a, $7
+	call GetSRAMBank
+	xor a
+	ld [$a000], a
+	call CloseSRAM
+	ret
+; 14da0
 
 
 Function14da0: ; 14da0
@@ -24899,7 +24993,7 @@ Function14ea5: ; 14ea5 (5:4ea5)
 	push af
 	set 4, a
 	ld [Options], a ; $cfcc
-	ld hl, $529c
+	ld hl, UnknownText_0x1529c
 	call PrintText
 	pop af
 	ld [Options], a ; $cfcc
@@ -24946,7 +25040,7 @@ Function14f1c: ; 14f1c
 	ret
 
 .asm_14f6c
-	ld hl, $4f7c
+	ld hl, DefaultOptions
 	ld de, Options
 	ld bc, $0008
 	call CopyBytes
@@ -24954,7 +25048,16 @@ Function14f1c: ; 14f1c
 	ret
 ; 14f7c
 
-INCBIN "baserom.gbc",$14f7c,$14f84 - $14f7c
+DefaultOptions: ; 14f7c
+	db $03 ; mid text speed
+	db $00
+	db $00 ; frame 0
+	db $01
+	db $40 ; gb printer: normal brightness
+	db $01 ; menu account on
+	db $00
+	db $00
+; 14f84
 
 
 Function14f84: ; 14f84
@@ -25147,8 +25250,8 @@ Function150d8: ; 150d8
 
 .asm_150e3
 	ld e, a
-	ld d, $0
-	ld hl, $522d
+	ld d, 0
+	ld hl, Unknown_1522d
 	add hl, de
 	add hl, de
 	add hl, de
@@ -25288,7 +25391,7 @@ Function1517d: ; 1517d (5:517d)
 
 
 Function151fb: ; 151fb
-	ld hl, $522d
+	ld hl, Unknown_1522d
 	ld c, $e
 .asm_15200
 	push bc
@@ -25329,7 +25432,24 @@ Function151fb: ; 151fb
 	ret
 ; 1522d
 
-INCBIN "baserom.gbc",$1522d,$15273 - $1522d
+Unknown_1522d: ; 1522d
+; dbww bank, address, address
+	db $02, $00, $a0, $4e, $a4 ; 2, $a000, $a44e
+	db $02, $50, $a4, $9e, $a8 ; 2, $a450, $a89e
+	db $02, $a0, $a8, $ee, $ac ; 2, $a8a0, $acee
+	db $02, $f0, $ac, $3e, $b1 ; 2, $acf0, $b13e
+	db $02, $40, $b1, $8e, $b5 ; 2, $b140, $b5de
+	db $02, $90, $b5, $de, $b9 ; 2, $b590, $b9de
+	db $02, $e0, $b9, $2e, $be ; 2, $b9e0, $be2e
+
+	db $03, $00, $a0, $4e, $a4 ; 3, $a000, $a44e
+	db $03, $50, $a4, $9e, $a8 ; 3, $a450, $a89e
+	db $03, $a0, $a8, $ee, $ac ; 3, $a8a0, $acee
+	db $03, $f0, $ac, $3e, $b1 ; 3, $acf0, $b13e
+	db $03, $40, $b1, $8e, $b5 ; 3, $b140, $b58e
+	db $03, $90, $b5, $de, $b9 ; 3, $b590, $b9de
+	db $03, $e0, $b9, $2e, $be ; 3, $b9e0, $be2e
+; 15273
 
 
 Function15273: ; 15273
@@ -25348,7 +25468,54 @@ Function15273: ; 15273
 	ret
 ; 15283
 
-INCBIN "baserom.gbc",$15283,$152ab - $15283
+
+UnknownText_0x15283: ; 0x15283
+	; Would you like to save the game?
+	text_jump UnknownText_0x1c454b
+	db "@"
+; 0x15288
+
+UnknownText_0x15288: ; 0x15288
+	; SAVING… DON'T TURN OFF THE POWER.
+	text_jump UnknownText_0x1c456d
+	db "@"
+; 0x1528d
+
+UnknownText_0x1528d: ; 0x1528d
+	; saved the game.
+	text_jump UnknownText_0x1c4590
+	db "@"
+; 0x15292
+
+UnknownText_0x15292: ; 0x15292
+	; There is already a save file. Is it OK to overwrite?
+	text_jump UnknownText_0x1c45a3
+	db "@"
+; 0x15297
+
+UnknownText_0x15297: ; 0x15297
+	; There is another save file. Is it OK to overwrite?
+	text_jump UnknownText_0x1c45d9
+	db "@"
+; 0x1529c
+
+UnknownText_0x1529c: ; 0x1529c
+	; The save file is corrupted!
+	text_jump UnknownText_0x1c460d
+	db "@"
+; 0x152a1
+
+UnknownText_0x152a1: ; 0x152a1
+	; When you change a #MON BOX, data will be saved. OK?
+	text_jump UnknownText_0x1c462a
+	db "@"
+; 0x152a6
+
+UnknownText_0x152a6: ; 0x152a6
+	; Each time you move a #MON, data will be saved. OK?
+	text_jump UnknownText_0x1c465f
+	db "@"
+; 0x152ab
 
 
 SpawnPoints: ; 0x152ab
@@ -25970,11 +26137,11 @@ Function1559a: ; 1559a
 	call Function15650
 	ret c
 	call Function156b3
-	ld hl, $5a27
+	ld hl, UnknownText_0x15a27
 	call Function15a20
-	ld hl, $5a2c
+	ld hl, UnknownText_0x15a2c
 	call Function157bb
-	ld hl, $55d6
+	ld hl, MenuDataHeader_0x155d6
 	call LoadMenuDataHeader
 .asm_155b3
 	xor a
@@ -25984,7 +26151,7 @@ Function1559a: ; 1559a
 	call Function1e5d
 	jr c, .asm_155cc
 	ld a, [MenuSelection]
-	ld hl, $55e6
+	ld hl, Unknown_155e6
 	call Function1fa7
 	jr nc, .asm_155b3
 
@@ -25995,7 +26162,45 @@ Function1559a: ; 1559a
 	ret
 ; 155d6
 
-INCBIN "baserom.gbc",$155d6,$1563e - $155d6
+MenuDataHeader_0x155d6: ; 0x155d6
+	db $48 ; flags
+	db 00, 00 ; start coords
+	db 12, 15 ; end coords
+	dw MenuData2_0x155de
+	db 1 ; default option
+; 0x155de
+
+MenuData2_0x155de: ; 0x155de
+	db $a0 ; flags
+	db 0 ; items
+	dw Unknown_1562c
+	dw Function1f8d
+	dw Unknown_155e6
+; 0x155e6
+
+Unknown_155e6: ; 155e6
+	dw Function15679, String_155fa
+	dw Function15668, String_15600
+	dw Function15689, String_15609
+	dw Function1569a, String_15616
+	dw Function156ab, String_15623
+; 155fa
+
+String_155fa:	db $52, "'s PC@"
+String_15600:	db "BILL's PC@"
+String_15609:	db "PROF.OAK's PC@"
+String_15616:	db "HALL OF FAME@"
+String_15623:	db "TURN OFF@"
+; 1562c
+
+Unknown_1562c: ; 1562c
+	db 3
+	db 1, 0, 4, $ff
+	db 4
+	db 1, 0, 2, 4, $ff
+	db 5
+	db 1, 0, 2, 3, 4, $ff
+; 1563e
 
 Function1563e: ; 1563e
 	call Function2ead
@@ -26016,43 +26221,82 @@ Function15650: ; 15650
 	ld a, [PartyCount]
 	and a
 	ret nz
-	ld de, $000f
+	ld de, SFX_CHOOSE_PC_OPTION
 	call PlaySFX
-	ld hl, $5663
+	ld hl, UnknownText_0x15663
 	call Function15a20
 	scf
 	ret
 ; 15663
 
-INCBIN "baserom.gbc",$15663,$15668 - $15663
+UnknownText_0x15663: ; 0x15663
+	; Bzzzzt! You must have a #MON to use this!
+	text_jump UnknownText_0x1c1328
+	db "@"
+; 0x15668
+
+Function15668: ; 15668
 	call Function156c2
-	ld hl, $5a31
+	ld hl, UnknownText_0x15a31
 	call Function15a20
 	callba Functione3fd
 	and a
 	ret
 ; 15679 (5:5679)
 
-INCBIN "baserom.gbc",$15679,$156b3 - $15679
+Function15679: ; 15679
+	call Function156c2
+	ld hl, UnknownText_0x15a36
+	call Function15a20
+	ld b, $0
+	call Function15704
+	and a
+	ret
+; 15689
+
+Function15689: ; 15689
+	call Function156c2
+	ld hl, UnknownText_0x15a3b
+	call Function15a20
+	callba ProfOaksPC
+	and a
+	ret
+; 1569a
+
+Function1569a: ; 1569a
+	call Function156c2
+	call FadeToMenu
+	callba Function86650
+	call Function2b3c
+	and a
+	ret
+; 156ab
+
+Function156ab: ; 156ab
+	ld hl, UnknownText_0x15a40
+	call PrintText
+	scf
+	ret
+; 156b3
 
 Function156b3: ; 156b3
-	ld de, $000d
+	ld de, SFX_BOOT_PC
 	jr Function156d0
 
 Function156b8: ; 156b8
-	ld de, $000e
+	ld de, SFX_SHUT_DOWN_PC
 	call Function156d0
 	call WaitSFX
 	ret
 
 Function156c2: ; 156c2
-	ld de, $000f
+	ld de, SFX_CHOOSE_PC_OPTION
 	jr Function156d0
 
 Function156c7: ; 156c7
-	ld de, $0020
+	ld de, SFX_SWITCH_POKEMON
 	call Function156d0
-	ld de, $0020
+	ld de, SFX_SWITCH_POKEMON
 
 Function156d0: ; 156d0
 	push de
@@ -26064,7 +26308,7 @@ Function156d0: ; 156d0
 
 Function156d9: ; 156d9
 	call Function156b3
-	ld hl, $56ff
+	ld hl, UnknownText_0x156ff
 	call Function15a20
 	ld b, $1
 	call Function15704
@@ -26083,12 +26327,16 @@ Function156d9: ; 156d9
 	ret
 ; 156ff
 
-INCBIN "baserom.gbc",$156ff,$15704 - $156ff
+UnknownText_0x156ff: ; 0x156ff
+	; turned on the PC.
+	text_jump UnknownText_0x1c1353
+	db "@"
+; 0x15704
 
 Function15704: ; 15704
 	ld a, b
 	ld [$cf76], a
-	ld hl, $57cc
+	ld hl, UnknownText_0x157cc
 	call Function157bb
 	call Function15715
 	call Function1c07
@@ -26187,7 +26435,11 @@ Function157bb: ; 157bb
 	ret
 ; 157cc
 
-INCBIN "baserom.gbc",$157cc,$157d1 - $157cc
+UnknownText_0x157cc: ; 0x157cc
+	; What do you want to do?
+	text_jump UnknownText_0x1c1368
+	db "@"
+; 0x157d1
 
 KrisWithdrawItemMenu: ; 0x157d1
 	call Function1d6e
@@ -26329,15 +26581,17 @@ KrisDepositItemMenu: ; 0x1588b
 Function158b8: ; 0x158b8
 	callba Function129d5
 	ret nc
-	ld hl, Text158c7
+	ld hl, UnknownText_0x158c7
 	call Function1d67
 	scf
 	ret
 ; 0x158c7
 
-Text158c7: ; 0x15c87
-	TX_FAR UnknownText_0x1c13df
+UnknownText_0x158c7: ; 0x158c7
+	; No items here!
+	text_jump UnknownText_0x1c13df
 	db "@"
+; 0x158cc
 
 
 Function158cc: ; 0x158cc
@@ -26347,14 +26601,14 @@ Function158cc: ; 0x158cc
 	ld [$c2ce], a
 	callba CheckItemMenu
 	ld a, [$d142]
-	ld hl, JumpTable158e7
+	ld hl, Jumptable_158e7
 	rst JumpTable
 	pop af
 	ld [$c2ce], a
 	ret
 ; 0x158e7
 
-JumpTable158e7: ; 0x158e7
+Jumptable_158e7: ; 0x158e7
 	dw .jump2
 	dw .jump1
 	dw .jump1
@@ -26522,10 +26776,10 @@ Function15985: ; 0x15985
 
 MenuData15a08: ; 0x15a08
 	db %01000000
-	db 1, 4 ; top left corner coords (y, x)
-	db $a, $12 ; bottorm right corner coords (y, x)
+	db  1,  4 ; start coords
+	db 10, 18 ; end coords
 	dw .MenuData2
-	db 1 ; default selected option
+	db 1 ; default option
 
 .MenuData2
 	db %10110000
@@ -26542,7 +26796,42 @@ Function15a20: ; 15a20
 	ret
 ; 15a27
 
-INCBIN "baserom.gbc",$15a27,$15a45 - $15a27
+
+UnknownText_0x15a27: ; 0x15a27
+	; turned on the PC.
+	text_jump UnknownText_0x1c144d
+	db "@"
+; 0x15a2c
+
+UnknownText_0x15a2c: ; 0x15a2c
+	; Access whose PC?
+	text_jump UnknownText_0x1c1462
+	db "@"
+; 0x15a31
+
+UnknownText_0x15a31: ; 0x15a31
+	; BILL's PC accessed. #MON Storage System opened.
+	text_jump UnknownText_0x1c1474
+	db "@"
+; 0x15a36
+
+UnknownText_0x15a36: ; 0x15a36
+	; Accessed own PC. Item Storage System opened.
+	text_jump UnknownText_0x1c14a4
+	db "@"
+; 0x15a3b
+
+UnknownText_0x15a3b: ; 0x15a3b
+	; PROF.OAK's PC accessed. #DEX Rating System opened.
+	text_jump UnknownText_0x1c14d2
+	db "@"
+; 0x15a40
+
+UnknownText_0x15a40: ; 0x15a40
+	; … Link closed…
+	text_jump UnknownText_0x1c1505
+	db "@"
+; 0x15a45
 
 
 OpenMartDialog:: ; 15a45
@@ -26576,21 +26865,21 @@ MartDialog: ; 15a61
 HerbShop: ; 15a6e
 	call ReadMart
 	call Function1d6e
-	ld hl, $5e4a
+	ld hl, UnknownText_0x15e4a
 	call Function15fcd
 	call Function15c62
-	ld hl, $5e68
+	ld hl, UnknownText_0x15e68
 	call Function15fcd
 	ret
 ; 15a84
 
 BargainShop: ; 15a84
-	ld b, $5
-	ld de, $5c51
+	ld b, BANK(Unknown_15c51)
+	ld de, Unknown_15c51
 	call Function15b10
 	call Function15c25
 	call Function1d6e
-	ld hl, $5e6d
+	ld hl, UnknownText_0x15e6d
 	call Function15fcd
 	call Function15c62
 	ld hl, WalkingDirection
@@ -26601,7 +26890,7 @@ BargainShop: ; 15a84
 	set 6, [hl]
 
 .asm_15aa7
-	ld hl, $5e8b
+	ld hl, UnknownText_0x15e8b
 	call Function15fcd
 	ret
 ; 15aae
@@ -26609,22 +26898,22 @@ BargainShop: ; 15a84
 Pharmacist: ; 15aae
 	call ReadMart
 	call Function1d6e
-	ld hl, $5e90
+	ld hl, UnknownText_0x15e90
 	call Function15fcd
 	call Function15c62
-	ld hl, $5eae
+	ld hl, UnknownText_0x15eae
 	call Function15fcd
 	ret
 ; 15ac4
 
 VendingMachine: ; 15ac4
-	ld b, $5
-	ld de, $5aee
+	ld b, BANK(Unknown_15aee)
+	ld de, Unknown_15aee
 	ld hl, StatusFlags
 	bit 6, [hl]
 	jr z, .asm_15ad5
-	ld b, $5
-	ld de, $5aff
+	ld b, BANK(Unknown_15aff)
+	ld de, Unknown_15aff
 
 .asm_15ad5
 	call Function15b10
@@ -26638,8 +26927,11 @@ VendingMachine: ; 15ac4
 	ret
 ; 15aee
 
-INCBIN "baserom.gbc",$15aee,$15b10 - $15aee
-
+Unknown_15aee: ; 15aee
+	db $05, $05, $96, $00, $04, $f4, $01, $11, $f4, $01, $26, $f4, $01, $27, $b0, $04, $ff
+Unknown_15aff: ; 15aff
+	db $05, $10, $e8, $03, $0e, $d0, $07, $26, $f4, $01, $02, $e8, $03, $1b, $78, $1e, $ff
+; 15b10
 
 Function15b10: ; 15b10
 	ld a, b
@@ -26872,7 +27164,9 @@ Function15c25: ; 15c25
 	ret
 ; 15c51
 
-INCBIN "baserom.gbc",$15c51,$15c62 - $15c51
+Unknown_15c51: ; 15c51
+	db $05, $24, $94, $11, $6e, $8a, $02, $6f, $ac, $0d, $83, $84, $03, $84, $f8, $11, $ff
+; 15c62
 
 
 Function15c62: ; 15c62
@@ -26931,20 +27225,51 @@ Function15ca3: ; 15ca3
 ; 15cb0
 
 .data_15cb0 ; 15cb0
-	 dwb $5cbf, 0
-	 dwb $5ccb, 0
-	 dwb $5cd7, 1
-	 dwb $5ce3, 0
-	 dwb $5cbf, 2
+	 dwb Unknown_15cbf, 0
+	 dwb Unknown_15ccb, 0
+	 dwb Unknown_15cd7, 1
+	 dwb Unknown_15ce3, 0
+	 dwb Unknown_15cbf, 2
 ; 15cbf
 
-INCBIN "baserom.gbc",$15cbf,$15cef - $15cbf
+Unknown_15cbf: ; 15cbf
+	dw UnknownText_0x15e0e
+	dw UnknownText_0x15e13
+	dw UnknownText_0x15fa5
+	dw UnknownText_0x15faa
+	dw UnknownText_0x15fa0
+	dw Function15cef
+
+Unknown_15ccb: ; 15ccb
+	dw UnknownText_0x15e4f
+	dw UnknownText_0x15e54
+	dw UnknownText_0x15e63
+	dw UnknownText_0x15e5e
+	dw UnknownText_0x15e59
+	dw Function15cef
+
+Unknown_15cd7: ; 15cd7
+	dw Function15cef
+	dw UnknownText_0x15e72
+	dw UnknownText_0x15e86
+	dw UnknownText_0x15e7c
+	dw UnknownText_0x15e77
+	dw UnknownText_0x15e81
+
+Unknown_15ce3: ; 15ce3
+	dw UnknownText_0x15e95
+	dw UnknownText_0x15e9a
+	dw UnknownText_0x15ea9
+	dw UnknownText_0x15ea4
+	dw UnknownText_0x15e9f
+	dw Function15cef
+; 15cef
 
 
 Function15cef: ; 15cef
 	callba Function24ae8
 	call Function1ad2
-	ld hl, $5e18
+	ld hl, MenuDataHeader_0x15e18
 	call Function1d3c
 	ld a, [WalkingX]
 	ld [$cf88], a
@@ -27087,7 +27412,7 @@ Function15de2: ; 15de2
 Function15df9: ; 15df9
 	ld a, [$d107]
 	ld e, a
-	ld d, $0
+	ld d, 0
 	ld hl, MartPointer
 	ld a, [hli]
 	ld h, [hl]
@@ -27103,7 +27428,36 @@ Function15df9: ; 15df9
 	ret
 ; 15e0e
 
-INCBIN "baserom.gbc",$15e0e,$15e30 - $15e0e
+
+UnknownText_0x15e0e: ; 0x15e0e
+	; How many?
+	text_jump UnknownText_0x1c4bfd
+	db "@"
+; 0x15e13
+
+UnknownText_0x15e13: ; 0x15e13
+	; @ (S) will be ¥@ .
+	text_jump UnknownText_0x1c4c08
+	db "@"
+; 0x15e18
+
+MenuDataHeader_0x15e18: ; 0x15e18
+	db $40 ; flags
+	db 03, 01 ; start coords
+	db 11, 19 ; end coords
+	dw MenuData2_0x15e20
+	db 1 ; default option
+; 0x15e20
+
+MenuData2_0x15e20: ; 0x15e20
+	db $30 ; flags
+	db 4, 8 ; rows, columns
+	db 1 ; horizontal spacing
+	dbw 0, $d0f0
+	dbw BANK(Function24ab4), Function24ab4
+	dbw BANK(Function15e30), Function15e30
+	dbw BANK(Function244c3), Function244c3
+; 15e30
 
 Function15e30: ; 15e30
 	ld a, [$cf77]
@@ -27124,7 +27478,131 @@ Function15e30: ; 15e30
 	ret
 ; 15e4a (5:5e4a)
 
-INCBIN "baserom.gbc",$15e4a,$15eb3 - $15e4a
+UnknownText_0x15e4a: ; 0x15e4a
+	; Hello, dear. I sell inexpensive herbal medicine. They're good, but a trifle bitter. Your #MON may not like them. Hehehehe…
+	text_jump UnknownText_0x1c4c28
+	db "@"
+; 0x15e4f
+
+UnknownText_0x15e4f: ; 0x15e4f
+	; How many?
+	text_jump UnknownText_0x1c4ca3
+	db "@"
+; 0x15e54
+
+UnknownText_0x15e54: ; 0x15e54
+	; @ (S) will be ¥@ .
+	text_jump UnknownText_0x1c4cae
+	db "@"
+; 0x15e59
+
+UnknownText_0x15e59: ; 0x15e59
+	; Thank you, dear. Hehehehe…
+	text_jump UnknownText_0x1c4cce
+	db "@"
+; 0x15e5e
+
+UnknownText_0x15e5e: ; 0x15e5e
+	; Oh? Your PACK is full, dear.
+	text_jump UnknownText_0x1c4cea
+	db "@"
+; 0x15e63
+
+UnknownText_0x15e63: ; 0x15e63
+	; Hehehe… You don't have the money.
+	text_jump UnknownText_0x1c4d08
+	db "@"
+; 0x15e68
+
+UnknownText_0x15e68: ; 0x15e68
+	; Come again, dear. Hehehehe…
+	text_jump UnknownText_0x1c4d2a
+	db "@"
+; 0x15e6d
+
+UnknownText_0x15e6d: ; 0x15e6d
+	; Hiya! Care to see some bargains? I sell rare items that nobody else carries--but only one of each item.
+	text_jump UnknownText_0x1c4d47
+	db "@"
+; 0x15e72
+
+UnknownText_0x15e72: ; 0x15e72
+	; costs ¥@ . Want it?
+	text_jump UnknownText_0x1c4db0
+	db "@"
+; 0x15e77
+
+UnknownText_0x15e77: ; 0x15e77
+	; Thanks.
+	text_jump UnknownText_0x1c4dcd
+	db "@"
+; 0x15e7c
+
+UnknownText_0x15e7c: ; 0x15e7c
+	; Uh-oh, your PACK is chock-full.
+	text_jump UnknownText_0x1c4dd6
+	db "@"
+; 0x15e81
+
+UnknownText_0x15e81: ; 0x15e81
+	; You bought that already. I'm all sold out of it.
+	text_jump UnknownText_0x1c4df7
+	db "@"
+; 0x15e86
+
+UnknownText_0x15e86: ; 0x15e86
+	; Uh-oh, you're short on funds.
+	text_jump UnknownText_0x1c4e28
+	db "@"
+; 0x15e8b
+
+UnknownText_0x15e8b: ; 0x15e8b
+	; Come by again sometime.
+	text_jump UnknownText_0x1c4e46
+	db "@"
+; 0x15e90
+
+UnknownText_0x15e90: ; 0x15e90
+	; What's up? Need some medicine?
+	text_jump UnknownText_0x1c4e5f
+	db "@"
+; 0x15e95
+
+UnknownText_0x15e95: ; 0x15e95
+	; How many?
+	text_jump UnknownText_0x1c4e7e
+	db "@"
+; 0x15e9a
+
+UnknownText_0x15e9a: ; 0x15e9a
+	; @ (S) will cost ¥@ .
+	text_jump UnknownText_0x1c4e89
+	db "@"
+; 0x15e9f
+
+UnknownText_0x15e9f: ; 0x15e9f
+	; Thanks much!
+	text_jump UnknownText_0x1c4eab
+	db "@"
+; 0x15ea4
+
+UnknownText_0x15ea4: ; 0x15ea4
+	; You don't have any more space.
+	text_jump UnknownText_0x1c4eb9
+	db "@"
+; 0x15ea9
+
+UnknownText_0x15ea9: ; 0x15ea9
+	; Huh? That's not enough money.
+	text_jump UnknownText_0x1c4ed8
+	db "@"
+; 0x15eae
+
+UnknownText_0x15eae: ; 0x15eae
+	; All right. See you around.
+	text_jump UnknownText_0x1c4ef6
+	db "@"
+; 0x15eb3
 
 
 Function15eb3: ; 15eb3
@@ -27145,18 +27623,29 @@ Function15ece: ; 15ece
 	ret
 ; 15ed3
 
-INCBIN "baserom.gbc",$15ed3,$15ee0 - $15ed3
+Function15ed3: ; 15ed3
+	ld hl, UnknownText_0x15edb
+	call Function1d67
+	and a
+	ret
+; 15edb
+
+UnknownText_0x15edb: ; 0x15edb
+	; You don't have anything to sell.
+	text_jump UnknownText_0x1c4f12
+	db "@"
+; 0x15ee0
 
 
 Function15ee0: ; 15ee0
 	callba CheckItemMenu
 	ld a, [$d142]
-	ld hl, Table15eee
+	ld hl, Jumptable_15eee
 	rst JumpTable
 	ret
 ; 15eee
 
-Table15eee: ; 15eee
+Jumptable_15eee: ; 15eee
 	dw Function15efd
 	dw Function15efc
 	dw Function15efc
@@ -27219,11 +27708,13 @@ Function15efd: ; 15efd
 ; 15f73
 
 UnknownText_0x15f73: ; 0x15f73
+	; How many?
 	text_jump UnknownText_0x1c4f33
 	db "@"
 ; 0x15f78
 
 UnknownText_0x15f78: ; 0x15f78
+	; I can pay you ¥@ . Is that OK?
 	text_jump UnknownText_0x1c4f3e
 	db "@"
 ; 0x15f7d
@@ -27232,6 +27723,7 @@ String15f7d: ; 15f7d
 	db "!ダミー!@"
 
 UnknownText_0x15f83: ; 0x15f83
+	; Welcome! How may I help you?
 	text_jump UnknownText_0x1c4f62
 	db "@"
 ; 0x15f88
@@ -27309,12 +27801,12 @@ Function15fcd: ; 15fcd
 Function15fd7:: ; 15fd7
 	ld a, $3
 	call Function16053
-	ld bc, $5ff7
+	ld bc, Unknown_15ff7
 	ld a, $3
 	call Function1600b
 	jr z, .asm_15ff5
 	jr c, .asm_15ff5
-	ld hl, $5ff7
+	ld hl, Unknown_15ff7
 	ld a, [hli]
 	ld [de], a
 	inc de
@@ -27331,7 +27823,9 @@ Function15fd7:: ; 15fd7
 	ret
 ; 15ff7
 
-INCBIN "baserom.gbc",$15ff7,$15ffa - $15ff7
+Unknown_15ff7: ; 15ff7
+	dt 999999
+; 15ffa
 
 
 Function15ffa:: ; 15ffa
@@ -27469,10 +27963,10 @@ Function1606f:: ; 1606f
 	ld de, Coins
 	call Function16055
 	ld a, $2
-	ld bc, $608d
+	ld bc, Unknown_1608d
 	call Function1600d
 	jr c, .asm_1608b
-	ld hl, $608d
+	ld hl, Unknown_1608d
 	ld a, [hli]
 	ld [de], a
 	inc de
@@ -27486,7 +27980,9 @@ Function1606f:: ; 1606f
 	ret
 ; 1608d
 
-INCBIN "baserom.gbc",$1608d,$1608f - $1608d
+Unknown_1608d: ; 1608d
+	bigdw 9999
+; 1608f
 
 
 Function1608f:: ; 1608f
@@ -27539,8 +28035,8 @@ Function16218: ; 16218
 Function16233: ; 16233
 	ld a, [$cf63]
 	ld e, a
-	ld d, $0
-	ld hl, $6242
+	ld d, 0
+	ld hl, Jumptable_16242
 	add hl, de
 	add hl, de
 	ld a, [hli]
@@ -27549,7 +28045,717 @@ Function16233: ; 16233
 	jp [hl]
 ; 16242
 
-INCBIN "baserom.gbc",$16242,$166d6 - $16242
+Jumptable_16242: ; 16242
+	dw Function16254
+	dw Function1626a
+	dw Function16290
+	dw Function162a8
+	dw Function162e0
+	dw Function16373
+	dw Function16406
+	dw Function1642d
+	dw Function16433
+; 16254
+
+Function16254: ; 16254
+	ld a, [$d854]
+	bit 7, a
+	jr nz, .asm_16264
+	set 7, a
+	ld [$d854], a
+	ld a, $1
+	jr .asm_16266
+
+.asm_16264
+	ld a, $2
+
+.asm_16266
+	ld [$cf63], a
+	ret
+; 1626a
+
+Function1626a: ; 1626a
+	ld hl, UnknownText_0x16649
+	call PrintText
+	call YesNoBox
+	jr c, .asm_1627f
+	ld hl, UnknownText_0x1664e
+	call PrintText
+	ld a, $81
+	jr .asm_16281
+
+.asm_1627f
+	ld a, $80
+
+.asm_16281
+	ld [$d854], a
+	ld hl, UnknownText_0x16653
+	call PrintText
+	ld a, $8
+	ld [$cf63], a
+	ret
+; 16290
+
+Function16290: ; 16290
+	ld hl, UnknownText_0x16658
+	call PrintText
+	call YesNoBox
+	jr c, .asm_1629f
+	ld a, $3
+	jr .asm_162a4
+
+.asm_1629f
+	call Function16439
+	ld a, $7
+
+.asm_162a4
+	ld [$cf63], a
+	ret
+; 162a8
+
+Function162a8: ; 162a8
+	ld hl, UnknownText_0x1665d
+	call PrintText
+	call Function1d6e
+	ld hl, MenuDataHeader_0x166b5
+	call Function1d3c
+	call Function1d81
+	call Function1c17
+	jr c, .asm_162ce
+	ld a, [$cfa9]
+	cp $1
+	jr z, .asm_162d2
+	cp $2
+	jr z, .asm_162d6
+	cp $3
+	jr z, .asm_162da
+
+.asm_162ce
+	ld a, $7
+	jr .asm_162dc
+
+.asm_162d2
+	ld a, $5
+	jr .asm_162dc
+
+.asm_162d6
+	ld a, $4
+	jr .asm_162dc
+
+.asm_162da
+	ld a, $6
+
+.asm_162dc
+	ld [$cf63], a
+	ret
+; 162e0
+
+Function162e0: ; 162e0
+	ld hl, UnknownText_0x16662
+	call PrintText
+	xor a
+	ld hl, StringBuffer2
+	ld [hli], a
+	ld [hli], a
+	ld [hl], a
+	ld a, $5
+	ld [$cf64], a
+	call Function1d6e
+	call Function16517
+	call Function1656b
+	call Function16571
+	call Function1c17
+	jr c, .asm_1636d
+	ld hl, StringBuffer2
+	ld a, [hli]
+	or [hl]
+	inc hl
+	or [hl]
+	jr z, .asm_1636d
+	ld de, Money
+	ld bc, StringBuffer2
+	callba Function1600b
+	jr c, .asm_1635f
+	ld hl, StringBuffer2
+	ld de, $d089
+	ld bc, $0003
+	call CopyBytes
+	ld bc, $d851
+	ld de, StringBuffer2
+	callba Function15fd7
+	jr c, .asm_16366
+	ld bc, $d089
+	ld de, Money
+	callba Function15ffa
+	ld hl, StringBuffer2
+	ld de, $d851
+	ld bc, $0003
+	call CopyBytes
+	ld de, SFX_TRANSACTION
+	call PlaySFX
+	call WaitSFX
+	ld hl, UnknownText_0x1668a
+	call PrintText
+	ld a, $8
+	jr .asm_1636f
+
+.asm_1635f
+	ld hl, UnknownText_0x1667b
+	call PrintText
+	ret
+
+.asm_16366
+	ld hl, UnknownText_0x16680
+	call PrintText
+	ret
+
+.asm_1636d
+	ld a, $7
+
+.asm_1636f
+	ld [$cf63], a
+	ret
+; 16373
+
+Function16373: ; 16373
+	ld hl, UnknownText_0x16667
+	call PrintText
+	xor a
+	ld hl, StringBuffer2
+	ld [hli], a
+	ld [hli], a
+	ld [hl], a
+	ld a, $5
+	ld [$cf64], a
+	call Function1d6e
+	call Function16512
+	call Function1656b
+	call Function16571
+	call Function1c17
+	jr c, .asm_16400
+	ld hl, StringBuffer2
+	ld a, [hli]
+	or [hl]
+	inc hl
+	or [hl]
+	jr z, .asm_16400
+	ld hl, StringBuffer2
+	ld de, $d089
+	ld bc, $0003
+	call CopyBytes
+	ld de, $d851
+	ld bc, StringBuffer2
+	callba Function1600b
+	jr c, .asm_163f2
+	ld bc, Money
+	ld de, StringBuffer2
+	callba Function15fd7
+	jr c, .asm_163f9
+	ld bc, $d089
+	ld de, $d851
+	callba Function15ffa
+	ld hl, StringBuffer2
+	ld de, Money
+	ld bc, $0003
+	call CopyBytes
+	ld de, SFX_TRANSACTION
+	call PlaySFX
+	call WaitSFX
+	ld hl, UnknownText_0x1668f
+	call PrintText
+	ld a, $8
+	jr .asm_16402
+
+.asm_163f2
+	ld hl, UnknownText_0x16671
+	call PrintText
+	ret
+
+.asm_163f9
+	ld hl, UnknownText_0x16676
+	call PrintText
+	ret
+
+.asm_16400
+	ld a, $7
+
+.asm_16402
+	ld [$cf63], a
+	ret
+; 16406
+
+Function16406: ; 16406
+	ld hl, UnknownText_0x1666c
+	call PrintText
+	call YesNoBox
+	jr c, .asm_16422
+	ld a, $81
+	ld [$d854], a
+	ld hl, UnknownText_0x16685
+	call PrintText
+	ld a, $8
+	ld [$cf63], a
+	ret
+
+.asm_16422
+	ld a, $80
+	ld [$d854], a
+	ld a, $7
+	ld [$cf63], a
+	ret
+; 1642d
+
+Function1642d: ; 1642d
+	ld hl, UnknownText_0x16694
+	call PrintText
+
+Function16433: ; 16433
+	ld hl, $cf63
+	set 7, [hl]
+	ret
+; 16439
+
+Function16439: ; 16439
+	ld a, [$d4c2]
+	bit 7, a
+	ld a, [hHours]
+	jr z, .asm_16447
+	and a
+	jr z, .asm_1644b
+	jr .asm_16468
+
+.asm_16447
+	cp $17
+	jr nz, .asm_16468
+
+.asm_1644b
+	call Function164ea
+	ld bc, $c5b9
+	ld hl, UnknownText_0x164f4
+	call Function13e5
+	call YesNoBox
+	ret c
+	call Function164ea
+	ld bc, $c5b9
+	ld hl, UnknownText_0x164f9
+	call Function13e5
+	ret
+
+.asm_16468
+	call Function164ea
+	ld bc, $c5b9
+	ld a, [$d4c2]
+	bit 7, a
+	jr z, .asm_16497
+	ld hl, UnknownText_0x16508
+	call Function13e5
+	call YesNoBox
+	ret c
+	ld a, [$d4c2]
+	res 7, a
+	ld [$d4c2], a
+	call Function164d1
+	call Function164ea
+	ld bc, $c5b9
+	ld hl, UnknownText_0x1650d
+	call Function13e5
+	ret
+
+.asm_16497
+	ld hl, UnknownText_0x164fe
+	call Function13e5
+	call YesNoBox
+	ret c
+	ld a, [$d4c2]
+	set 7, a
+	ld [$d4c2], a
+	call Function164b9
+	call Function164ea
+	ld bc, $c5b9
+	ld hl, UnknownText_0x16503
+	call Function13e5
+	ret
+; 164b9
+
+Function164b9: ; 164b9
+	ld a, [StartHour]
+	add 1
+	sub 24
+	jr nc, .asm_164c4
+	add 24
+.asm_164c4
+	ld [StartHour], a
+	ccf
+	ld a, [StartDay]
+	adc 0
+	ld [StartDay], a
+	ret
+; 164d1
+
+Function164d1: ; 164d1
+	ld a, [StartHour]
+	sub 1
+	jr nc, .asm_164da
+	add 24
+.asm_164da
+	ld [StartHour], a
+	ld a, [StartDay]
+	sbc 0
+	jr nc, .asm_164e6
+	add 7
+.asm_164e6
+	ld [StartDay], a
+	ret
+; 164ea
+
+Function164ea: ; 164ea
+	ld hl, $c5b9
+	ld bc, $0312
+	call ClearBox
+	ret
+; 164f4
+
+UnknownText_0x164f4: ; 0x164f4
+	; Do you want to adjust your clock for Daylight Saving Time?
+	text_jump UnknownText_0x1c6095
+	db "@"
+; 0x164f9
+
+UnknownText_0x164f9: ; 0x164f9
+	; I lost the in- struction booklet for the #GEAR. Come back again in a while.
+	text_jump UnknownText_0x1c60d1
+	db "@"
+; 0x164fe
+
+UnknownText_0x164fe: ; 0x164fe
+	; Do you want to switch to Daylight Saving Time?
+	text_jump UnknownText_0x1c6000
+	db "@"
+; 0x16503
+
+UnknownText_0x16503: ; 0x16503
+	; I set the clock forward by one hour.
+	text_jump UnknownText_0x1c6030
+	db "@"
+; 0x16508
+
+UnknownText_0x16508: ; 0x16508
+	; Is Daylight Saving Time over?
+	text_jump UnknownText_0x1c6056
+	db "@"
+; 0x1650d
+
+UnknownText_0x1650d: ; 0x1650d
+	; I put the clock back one hour.
+	text_jump UnknownText_0x1c6075
+	db "@"
+; 0x16512
+
+Function16512: ; 16512
+	ld de, String_1669f
+	jr Function1651a
+
+Function16517: ; 16517
+	ld de, String_166a8
+
+Function1651a: ; 1651a
+	push de
+	xor a
+	ld [hBGMapMode], a
+	ld hl, TileMap
+	ld bc, $0612
+	call TextBox
+	ld hl, $c4c9
+	ld de, String_16699
+	call PlaceString
+	ld hl, $c4d4
+	ld de, $d851
+	ld bc, $2306
+	call PrintNum
+	ld hl, $c4f1
+	ld de, String_166b0
+	call PlaceString
+	ld hl, $c4fc
+	ld de, Money
+	ld bc, $2306
+	call PrintNum
+	ld hl, $c519
+	pop de
+	call PlaceString
+	ld hl, $c524
+	ld de, StringBuffer2
+	ld bc, $a306
+	call PrintNum
+	call Function1ad2
+	call Function3238
+	ret
+; 1656b
+
+Function1656b: ; 1656b
+	ld c, $a
+	call DelayFrames
+	ret
+; 16571
+
+Function16571: ; 16571
+.asm_16571
+	call Functiona57
+	ld hl, hJoyPressed
+	ld a, [hl]
+	and $2
+	jr nz, .asm_165b5
+	ld a, [hl]
+	and $1
+	jr nz, .asm_165b7
+	call Function165b9
+	xor a
+	ld [hBGMapMode], a
+	ld hl, $c524
+	ld bc, $0007
+	ld a, $7f
+	call ByteFill
+	ld hl, $c524
+	ld de, StringBuffer2
+	ld bc, $a306
+	call PrintNum
+	ld a, [$ff9b]
+	and $10
+	jr nz, .asm_165b0
+	ld hl, $c525
+	ld a, [$cf64]
+	ld c, a
+	ld b, $0
+	add hl, bc
+	ld [hl], $7f
+
+.asm_165b0
+	call WaitBGMap
+	jr .asm_16571
+
+.asm_165b5
+	scf
+	ret
+
+.asm_165b7
+	and a
+	ret
+; 165b9
+
+Function165b9: ; 165b9
+	ld hl, $ffa9
+	ld a, [hl]
+	and $40
+	jr nz, .asm_165e3
+	ld a, [hl]
+	and $80
+	jr nz, .asm_165f5
+	ld a, [hl]
+	and $20
+	jr nz, .asm_165d2
+	ld a, [hl]
+	and $10
+	jr nz, .asm_165da
+	and a
+	ret
+
+.asm_165d2
+	ld hl, $cf64
+	ld a, [hl]
+	and a
+	ret z
+	dec [hl]
+	ret
+
+.asm_165da
+	ld hl, $cf64
+	ld a, [hl]
+	cp $5
+	ret nc
+	inc [hl]
+	ret
+
+.asm_165e3
+	ld hl, Unknown_16613
+	call Function16607
+	ld c, l
+	ld b, h
+	ld de, StringBuffer2
+	callba Function15fd7
+	ret
+
+.asm_165f5
+	ld hl, Unknown_16613
+	call Function16607
+	ld c, l
+	ld b, h
+	ld de, StringBuffer2
+	callba Function15ffa
+	ret
+; 16607
+
+Function16607: ; 16607
+	ld a, [$cf64]
+	push de
+	ld e, a
+	ld d, 0
+	add hl, de
+	add hl, de
+	add hl, de
+	pop de
+	ret
+; 16613
+
+Unknown_16613: ; 16613
+	dt 100000
+	dt 10000
+	dt 1000
+	dt 100
+	dt 10
+	dt 1
+
+	dt 100000
+	dt 10000
+	dt 1000
+	dt 100
+	dt 10
+	dt 1
+
+	dt 900000
+	dt 90000
+	dt 9000
+	dt 900
+	dt 90
+	dt 9
+; 16649
+
+UnknownText_0x16649: ; 0x16649
+	; Wow, that's a cute #MON. Where did you get it? … So, you're leaving on an adventure… OK! I'll help too. But what can I do for you? I know! I'll save money for you. On a long journey, money's important. Do you want me to save your money?
+	text_jump UnknownText_0x1bd77f
+	db "@"
+; 0x1664e
+
+UnknownText_0x1664e: ; 0x1664e
+	; OK, I'll take care of your money.
+	text_jump UnknownText_0x1bd868
+	db "@"
+; 0x16653
+
+UnknownText_0x16653: ; 0x16653
+	; Be careful. #MON are your friends. You need to work as a team. Now, go on!
+	text_jump UnknownText_0x1bd88e
+	db "@"
+; 0x16658
+
+UnknownText_0x16658: ; 0x16658
+	; Hi! Welcome home! You're trying very hard, I see. I've kept your room tidy. Or is this about your money?
+	text_jump UnknownText_0x1bd8da
+	db "@"
+; 0x1665d
+
+UnknownText_0x1665d: ; 0x1665d
+	; What do you want to do?
+	text_jump UnknownText_0x1bd942
+	db "@"
+; 0x16662
+
+UnknownText_0x16662: ; 0x16662
+	; How much do you want to save?
+	text_jump UnknownText_0x1bd95b
+	db "@"
+; 0x16667
+
+UnknownText_0x16667: ; 0x16667
+	; How much do you want to take?
+	text_jump UnknownText_0x1bd97a
+	db "@"
+; 0x1666c
+
+UnknownText_0x1666c: ; 0x1666c
+	; Do you want to save some money?
+	text_jump UnknownText_0x1bd999
+	db "@"
+; 0x16671
+
+UnknownText_0x16671: ; 0x16671
+	; You haven't saved that much.
+	text_jump UnknownText_0x1bd9ba
+	db "@"
+; 0x16676
+
+UnknownText_0x16676: ; 0x16676
+	; You can't take that much.
+	text_jump UnknownText_0x1bd9d7
+	db "@"
+; 0x1667b
+
+UnknownText_0x1667b: ; 0x1667b
+	; You don't have that much.
+	text_jump UnknownText_0x1bd9f1
+	db "@"
+; 0x16680
+
+UnknownText_0x16680: ; 0x16680
+	; You can't save that much.
+	text_jump UnknownText_0x1bda0b
+	db "@"
+; 0x16685
+
+UnknownText_0x16685: ; 0x16685
+	; OK, I'll save your money. Trust me! , stick with it!
+	text_jump UnknownText_0x1bda25
+	db "@"
+; 0x1668a
+
+UnknownText_0x1668a: ; 0x1668a
+	; Your money's safe here! Get going!
+	text_jump UnknownText_0x1bda5b
+	db "@"
+; 0x1668f
+
+UnknownText_0x1668f: ; 0x1668f
+	; , don't give up!
+	text_jump UnknownText_0x1bda7e
+	db "@"
+; 0x16694
+
+UnknownText_0x16694: ; 0x16694
+	; Just do what you can.
+	text_jump UnknownText_0x1bda90
+	db "@"
+; 0x16699
+
+String_16699: ; 16699
+	db "SAVED@"
+; 1669f
+
+String_1669f: ; 1669f
+	db "WITHDRAW@"
+; 166a8
+
+String_166a8: ; 166a8
+	db "DEPOSIT@"
+; 166b0
+
+String_166b0: ; 166b0
+	db "HELD@"
+; 166b5
+
+MenuDataHeader_0x166b5: ; 0x166b5
+	db $40 ; flags
+	db 00, 00 ; start coords
+	db 10, 10 ; end coords
+	dw MenuData2_0x166bd
+	db 1 ; default option
+; 0x166bd
+
+MenuData2_0x166bd: ; 0x166bd
+	db $80 ; flags
+	db 4 ; items
+	db "GET@"
+	db "SAVE@"
+	db "CHANGE@"
+	db "CANCEL@"
+; 0x166d6
 
 Function166d6: ; 166d6
 	ld hl, DaycareMan
@@ -27659,7 +28865,7 @@ Function16798: ; 16798
 	callba Function5001d
 	jr c, .asm_167dd
 	ld a, [CurPartySpecies]
-	cp $fd
+	cp EGG
 	jr z, .asm_167e1
 	callba Functione538
 	jr c, .asm_167e9
@@ -27702,7 +28908,11 @@ Function16798: ; 16798
 	ret
 ; 167f1
 
-INCBIN "baserom.gbc",$167f1,$167f6 - $167f1
+UnknownText_0x167f1: ; 0x167f1
+	; 
+	text_jump UnknownText_0x1bdaa7
+	db "@"
+; 0x167f6
 
 Function167f6: ; 167f6
 	ld a, $5
@@ -27799,8 +29009,8 @@ Function1686d: ; 1686d
 
 Function1689b: ; 1689b
 	ld e, a
-	ld d, $0
-	ld hl, $68aa
+	ld d, 0
+	ld hl, TextTable_168aa
 	add hl, de
 	add hl, de
 	ld a, [hli]
@@ -27810,25 +29020,165 @@ Function1689b: ; 1689b
 	ret
 ; 168aa
 
-INCBIN "baserom.gbc",$168aa,$16936 - $168aa
+TextTable_168aa: ; 168aa
+	dw UnknownText_0x168d2
+	dw UnknownText_0x168d7
+	dw UnknownText_0x168dc
+	dw UnknownText_0x168e1
+	dw UnknownText_0x168e6
+	dw UnknownText_0x168ff
+	dw UnknownText_0x168f0
+	dw UnknownText_0x168eb
+	dw UnknownText_0x168fa
+	dw UnknownText_0x16904
+	dw UnknownText_0x168f5
+	dw UnknownText_0x16909
+	dw UnknownText_0x1690e
+	dw UnknownText_0x16913
+	dw UnknownText_0x16918
+	dw UnknownText_0x1691d
+	dw UnknownText_0x16922
+	dw UnknownText_0x16927
+	dw UnknownText_0x1692c
+	dw UnknownText_0x16931
+; 168d2
+
+UnknownText_0x168d2: ; 0x168d2
+	; I'm the DAY-CARE MAN. Want me to raise a #MON?
+	text_jump UnknownText_0x1bdaa9
+	db "@"
+; 0x168d7
+
+UnknownText_0x168d7: ; 0x168d7
+	; I'm the DAY-CARE MAN. Do you know about EGGS? I was raising #MON with my wife, you see. We were shocked to find an EGG! How incredible is that? So, want me to raise a #MON?
+	text_jump UnknownText_0x1bdad8
+	db "@"
+; 0x168dc
+
+UnknownText_0x168dc: ; 0x168dc
+	; I'm the DAY-CARE LADY. Should I raise a #MON for you?
+	text_jump UnknownText_0x1bdb85
+	db "@"
+; 0x168e1
+
+UnknownText_0x168e1: ; 0x168e1
+	; I'm the DAY-CARE LADY. Do you know about EGGS? My husband and I were raising some #MON, you see. We were shocked to find an EGG! How incredible could that be? Should I raise a #MON for you?
+	text_jump UnknownText_0x1bdbbb
+	db "@"
+; 0x168e6
+
+UnknownText_0x168e6: ; 0x168e6
+	; What should I raise for you?
+	text_jump UnknownText_0x1bdc79
+	db "@"
+; 0x168eb
+
+UnknownText_0x168eb: ; 0x168eb
+	; Oh? But you have just one #MON.
+	text_jump UnknownText_0x1bdc97
+	db "@"
+; 0x168f0
+
+UnknownText_0x168f0: ; 0x168f0
+	; Sorry, but I can't accept an EGG.
+	text_jump UnknownText_0x1bdcb8
+	db "@"
+; 0x168f5
+
+UnknownText_0x168f5: ; 0x168f5
+	; Remove MAIL before you come see me.
+	text_jump UnknownText_0x1bdcda
+	db "@"
+; 0x168fa
+
+UnknownText_0x168fa: ; 0x168fa
+	; If you give me that, what will you battle with?
+	text_jump UnknownText_0x1bdcff
+	db "@"
+; 0x168ff
+
+UnknownText_0x168ff: ; 0x168ff
+	; OK. I'll raise your @ .
+	text_jump UnknownText_0x1bdd30
+	db "@"
+; 0x16904
+
+UnknownText_0x16904: ; 0x16904
+	; Come back for it later.
+	text_jump UnknownText_0x1bdd4b
+	db "@"
+; 0x16909
+
+UnknownText_0x16909: ; 0x16909
+	; Are we geniuses or what? Want to see your @ ?
+	text_jump UnknownText_0x1bdd64
+	db "@"
+; 0x1690e
+
+UnknownText_0x1690e: ; 0x1690e
+	; Your @ has grown a lot. By level, it's grown by @ . If you want your #MON back, it will cost ¥@ .
+	text_jump UnknownText_0x1bdd96
+	db "@"
+; 0x16913
+
+UnknownText_0x16913: ; 0x16913
+	; Perfect! Here's your #MON.
+	text_jump UnknownText_0x1bde04
+	db "@"
+; 0x16918
+
+UnknownText_0x16918: ; 0x16918
+	; got back @ .
+	text_jump UnknownText_0x1bde1f
+	db "@"
+; 0x1691d
+
+UnknownText_0x1691d: ; 0x1691d
+	; Huh? Back already? Your @ needs a little more time with us. If you want your #MON back, it will cost ¥100.
+	text_jump UnknownText_0x1bde32
+	db "@"
+; 0x16922
+
+UnknownText_0x16922: ; 0x16922
+	; You have no room for it.
+	text_jump UnknownText_0x1bdea2
+	db "@"
+; 0x16927
+
+UnknownText_0x16927: ; 0x16927
+	; You don't have enough money.
+	text_jump UnknownText_0x1bdebc
+	db "@"
+; 0x1692c
+
+UnknownText_0x1692c: ; 0x1692c
+	; Oh, fine then.
+	text_jump UnknownText_0x1bded9
+	db "@"
+; 0x16931
+
+UnknownText_0x16931: ; 0x16931
+	; Come again.
+	text_jump UnknownText_0x1bdee9
+	db "@"
+; 0x16936
 
 Function16936: ; 16936
 	ld hl, DaycareMan
 	bit 6, [hl]
-	jr nz, .asm_16949
-	ld hl, .data_16944
+	jr nz, Function16949
+	ld hl, UnknownText_0x16944
 	call PrintText
 	ret
 
-.data_16944
-	db $16
-	db $f6
-	db $5e
-	db $6f
-	db $50
+UnknownText_0x16944: ; 0x16944
+	; Not yet…
+	text_jump UnknownText_0x1bdef6
+	db "@"
+; 0x16949
 
-.asm_16949
-	ld hl, $6993
+Function16949: ; 16949
+	ld hl, UnknownText_0x16993
 	call PrintText
 	call YesNoBox
 	jr c, .asm_1697c
@@ -27839,17 +29189,17 @@ Function16936: ; 16936
 	ld hl, DaycareMan
 	res 6, [hl]
 	call Function16a3b
-	ld hl, $6998
+	ld hl, UnknownText_0x16998
 	call PrintText
-	ld de, $0096
+	ld de, SFX_GET_EGG_FROM_DAYCARE_LADY
 	call PlaySFX
 	ld c, $78
 	call DelayFrames
-	ld hl, $699d
+	ld hl, UnknownText_0x1699d
 	jr .asm_1697f
 
 .asm_1697c
-	ld hl, $69a2
+	ld hl, UnknownText_0x169a2
 
 .asm_1697f
 	call PrintText
@@ -27858,14 +29208,42 @@ Function16936: ; 16936
 	ret
 
 .asm_16987
-	ld hl, $69a7
+	ld hl, UnknownText_0x169a7
 	call PrintText
 	ld a, $1
 	ld [ScriptVar], a
 	ret
 ; 16993
 
-INCBIN "baserom.gbc",$16993,$169ac - $16993
+UnknownText_0x16993: ; 0x16993
+	; Ah, it's you! We were raising your #MON, and my goodness, were we surprised! Your #MON had an EGG! We don't know how it got there, but your #MON had it. You want it?
+	text_jump UnknownText_0x1bdf00
+	db "@"
+; 0x16998
+
+UnknownText_0x16998: ; 0x16998
+	; received the EGG!
+	text_jump UnknownText_0x1bdfa5
+	db "@"
+; 0x1699d
+
+UnknownText_0x1699d: ; 0x1699d
+	; Take good care of it.
+	text_jump UnknownText_0x1bdfba
+	db "@"
+; 0x169a2
+
+UnknownText_0x169a2: ; 0x169a2
+	; Well then, I'll keep it. Thanks!
+	text_jump UnknownText_0x1bdfd1
+	db "@"
+; 0x169a7
+
+UnknownText_0x169a7: ; 0x169a7
+	; You have no room in your party. Come back later.
+	text_jump UnknownText_0x1bdff2
+	db "@"
+; 0x169ac
 
 Function169ac: ; 169ac
 	ld a, [$df9a]
@@ -27877,9 +29255,9 @@ Function169ac: ; 169ac
 	inc a
 	ld [hl], a
 	ld c, a
-	ld b, $0
+	ld b, 0
 	add hl, bc
-	ld a, $fd
+	ld a, EGG
 	ld [hli], a
 	ld a, [EggSpecies]
 	ld [CurSpecies], a
@@ -27962,7 +29340,7 @@ Function16a3b: ; 16a3b
 	set 5, [hl]
 .asm_16a59
 	call Random
-	cp $96
+	cp 150
 	jr c, .asm_16a59
 	ld [StepsToEgg], a
 	jp Function16a66
@@ -27988,11 +29366,11 @@ Function16a66: ; 16a66
 	ld a, $3
 	ld [MonType], a
 	ld a, [BreedMon1Species]
-	cp $84
+	cp DITTO
 	ld a, $1
 	jr z, .asm_16ab6
 	ld a, [BreedMon2Species]
-	cp $84
+	cp DITTO
 	ld a, $0
 	jr z, .asm_16ab6
 	callba GetGender
@@ -28028,7 +29406,7 @@ Function16a66: ; 16a66
 	ld [EggSpecies], a
 	call GetBaseData
 	ld hl, EggNick
-	ld de, $6be0
+	ld de, String_16be0
 	call CopyName2
 	ld hl, PlayerName
 	ld de, EggOT
@@ -28073,11 +29451,11 @@ Function16a66: ; 16a66
 	ld [$d124], a
 	ld de, $df21
 	ld a, [BreedMon1Species]
-	cp $84
+	cp DITTO
 	jr z, .asm_16b98
 	ld de, $df5a
 	ld a, [BreedMon2Species]
-	cp $84
+	cp DITTO
 	jr z, .asm_16b98
 	ld a, $3
 	ld [MonType], a
@@ -28144,7 +29522,9 @@ Function16a66: ; 16a66
 	ret
 ; 16be0
 
-INCBIN "baserom.gbc",$16be0,$16be4 - $16be0
+String_16be0: ; 16be0
+	db "EGG@"
+; 16be4
 
 Function16be4: ; 16be4
 	ld a, [UnownDex]
@@ -61183,7 +62563,110 @@ Function86643: ; 86643
 	jr .asm_86643
 ; 86650
 
-INCBIN "baserom.gbc",$86650,$8671c - $86650
+Function86650: ; 86650
+	call Functione58
+	xor a
+	ld [$cf63], a
+.asm_86657
+	call Function8671c
+	ret c
+	call Function86665
+	ret c
+	ld hl, $cf63
+	inc [hl]
+	jr .asm_86657
+; 86665
+
+Function86665: ; 86665
+	xor a
+	ld [$cf64], a
+.asm_86669
+	call Function86692
+	jr c, .asm_86690
+.asm_8666e
+	call Functiona57
+	ld hl, $ffa9
+	ld a, [hl]
+	and $2
+	jr nz, .asm_8668e
+	ld a, [hl]
+	and $1
+	jr nz, .asm_86688
+	ld a, [hl]
+	and $8
+	jr nz, .asm_86690
+	call DelayFrame
+	jr .asm_8666e
+
+.asm_86688
+	ld hl, $cf64
+	inc [hl]
+	jr .asm_86669
+
+.asm_8668e
+	scf
+	ret
+
+.asm_86690
+	and a
+	ret
+; 86692
+
+Function86692: ; 86692
+	ld a, [$cf64]
+	cp $6
+	jr nc, .asm_866a7
+	ld hl, EnemyMoveEffect
+	ld bc, $0010
+	call AddNTimes
+	ld a, [hl]
+	cp $ff
+	jr nz, .asm_866a9
+
+.asm_866a7
+	scf
+	ret
+
+.asm_866a9
+	push hl
+	call WhiteBGMap
+	pop hl
+	call Function86748
+	ld a, [EnemyMoveAnimation]
+	cp $c9
+	jr c, .asm_866c6
+	ld de, $66fc
+	ld hl, $c4c9
+	call PlaceString
+	ld hl, $c4d5
+	jr .asm_866de
+
+.asm_866c6
+	ld de, $670c
+	ld hl, $c4c9
+	call PlaceString
+	ld hl, $c4ca
+	ld de, EnemyMoveAnimation
+	ld bc, $0103
+	call PrintNum
+	ld hl, $c4d3
+
+.asm_866de
+	ld de, $66fb
+	call PlaceString
+	call WaitBGMap
+	ld b, $1a
+	call GetSGBLayout
+	call Function32f9
+	ld de, $c50a
+	ld c, $6
+	ld a, $49
+	call Predef
+	and a
+	ret
+; 866fb
+
+INCBIN "baserom.gbc", $866fb, $8671c - $866fb
 
 
 Function8671c: ; 8671c
@@ -85755,7 +87238,7 @@ Functionfb908: ; fb908
 	push hl
 	ld a, [$d265]
 	dec a
-	ld hl, $791c
+	ld hl, Unknown_fb91c
 	ld b, $0
 	ld c, a
 	add hl, bc
@@ -85766,13 +87249,266 @@ Functionfb908: ; fb908
 	ret
 ; fb91c
 
-INCBIN "baserom.gbc",$fb91c,$fba18 - $fb91c
+Unknown_fb91c: ; fb91c
+	db RHYDON
+	db KANGASKHAN
+	db NIDORAN_M
+	db CLEFAIRY
+	db SPEAROW
+	db VOLTORB
+	db NIDOKING
+	db SLOWBRO
+	db IVYSAUR
+	db EXEGGUTOR
+	db LICKITUNG
+	db EXEGGCUTE
+	db GRIMER
+	db GENGAR
+	db NIDORAN_F
+	db NIDOQUEEN
+	db CUBONE
+	db RHYHORN
+	db LAPRAS
+	db ARCANINE
+	db MEW
+	db GYARADOS
+	db SHELLDER
+	db TENTACOOL
+	db GASTLY
+	db SCYTHER
+	db STARYU
+	db BLASTOISE
+	db PINSIR
+	db TANGELA
+	db SCIZOR
+	db SHUCKLE
+	db GROWLITHE
+	db ONIX
+	db FEAROW
+	db PIDGEY
+	db SLOWPOKE
+	db KADABRA
+	db GRAVELER
+	db CHANSEY
+	db MACHOKE
+	db MR__MIME
+	db HITMONLEE
+	db HITMONCHAN
+	db ARBOK
+	db PARASECT
+	db PSYDUCK
+	db DROWZEE
+	db GOLEM
+	db HERACROSS
+	db MAGMAR
+	db HO_OH
+	db ELECTABUZZ
+	db MAGNETON
+	db KOFFING
+	db SNEASEL
+	db MANKEY
+	db SEEL
+	db DIGLETT
+	db TAUROS
+	db TEDDIURSA
+	db URSARING
+	db SLUGMA
+	db FARFETCH_D
+	db VENONAT
+	db DRAGONITE
+	db MAGCARGO
+	db SWINUB
+	db PILOSWINE
+	db DODUO
+	db POLIWAG
+	db JYNX
+	db MOLTRES
+	db ARTICUNO
+	db ZAPDOS
+	db DITTO
+	db MEOWTH
+	db KRABBY
+	db CORSOLA
+	db REMORAID
+	db OCTILLERY
+	db VULPIX
+	db NINETALES
+	db PIKACHU
+	db RAICHU
+	db DELIBIRD
+	db MANTINE
+	db DRATINI
+	db DRAGONAIR
+	db KABUTO
+	db KABUTOPS
+	db HORSEA
+	db SEADRA
+	db SKARMORY
+	db HOUNDOUR
+	db SANDSHREW
+	db SANDSLASH
+	db OMANYTE
+	db OMASTAR
+	db JIGGLYPUFF
+	db WIGGLYTUFF
+	db EEVEE
+	db FLAREON
+	db JOLTEON
+	db VAPOREON
+	db MACHOP
+	db ZUBAT
+	db EKANS
+	db PARAS
+	db POLIWHIRL
+	db POLIWRATH
+	db WEEDLE
+	db KAKUNA
+	db BEEDRILL
+	db HOUNDOOM
+	db DODRIO
+	db PRIMEAPE
+	db DUGTRIO
+	db VENOMOTH
+	db DEWGONG
+	db KINGDRA
+	db PHANPY
+	db CATERPIE
+	db METAPOD
+	db BUTTERFREE
+	db MACHAMP
+	db DONPHAN
+	db GOLDUCK
+	db HYPNO
+	db GOLBAT
+	db MEWTWO
+	db SNORLAX
+	db MAGIKARP
+	db PORYGON2
+	db STANTLER
+	db MUK
+	db SMEARGLE
+	db KINGLER
+	db CLOYSTER
+	db TYROGUE
+	db ELECTRODE
+	db CLEFABLE
+	db WEEZING
+	db PERSIAN
+	db MAROWAK
+	db HITMONTOP
+	db HAUNTER
+	db ABRA
+	db ALAKAZAM
+	db PIDGEOTTO
+	db PIDGEOT
+	db STARMIE
+	db BULBASAUR
+	db VENUSAUR
+	db TENTACRUEL
+	db SMOOCHUM
+	db GOLDEEN
+	db SEAKING
+	db ELEKID
+	db MAGBY
+	db MILTANK
+	db BLISSEY
+	db PONYTA
+	db RAPIDASH
+	db RATTATA
+	db RATICATE
+	db NIDORINO
+	db NIDORINA
+	db GEODUDE
+	db PORYGON
+	db AERODACTYL
+	db RAIKOU
+	db MAGNEMITE
+	db ENTEI
+	db SUICUNE
+	db CHARMANDER
+	db SQUIRTLE
+	db CHARMELEON
+	db WARTORTLE
+	db CHARIZARD
+	db LARVITAR
+	db PUPITAR
+	db TYRANITAR
+	db LUGIA
+	db ODDISH
+	db GLOOM
+	db VILEPLUME
+	db BELLSPROUT
+	db WEEPINBELL
+	db VICTREEBEL
+	db CHIKORITA
+	db BAYLEEF
+	db MEGANIUM
+	db CYNDAQUIL
+	db QUILAVA
+	db TYPHLOSION
+	db TOTODILE
+	db CROCONAW
+	db FERALIGATR
+	db SENTRET
+	db FURRET
+	db HOOTHOOT
+	db NOCTOWL
+	db LEDYBA
+	db LEDIAN
+	db SPINARAK
+	db ARIADOS
+	db CROBAT
+	db CHINCHOU
+	db LANTURN
+	db PICHU
+	db CLEFFA
+	db IGGLYBUFF
+	db TOGEPI
+	db TOGETIC
+	db NATU
+	db XATU
+	db MAREEP
+	db FLAAFFY
+	db AMPHAROS
+	db BELLOSSOM
+	db MARILL
+	db AZUMARILL
+	db SUDOWOODO
+	db POLITOED
+	db HOPPIP
+	db SKIPLOOM
+	db JUMPLUFF
+	db AIPOM
+	db SUNKERN
+	db SUNFLORA
+	db YANMA
+	db WOOPER
+	db QUAGSIRE
+	db ESPEON
+	db UMBREON
+	db MURKROW
+	db SLOWKING
+	db MISDREAVUS
+	db UNOWN
+	db WOBBUFFET
+	db GIRAFARIG
+	db PINECO
+	db FORRETRESS
+	db DUNSPARCE
+	db GLIGAR
+	db STEELIX
+	db SNUBBULL
+	db GRANBULL
+	db QWILFISH
+	db WOBBUFFET
+	db WOBBUFFET
+; fba18
 
 
 Functionfba18: ; fba18
 	ld a, [UnownLetter]
 	ld c, a
-	ld b, $1a
+	ld b, 26
 	ld hl, UnownDex
 .asm_fba21
 	ld a, [hli]
@@ -85799,13 +87535,13 @@ Functionfba2e: ; fba2e (3e:7a2e)
 	call ByteFill
 	ld a, [$c7dd]
 	ld e, a
-	ld d, $0
-	ld hl, EndPokedexSeen ; $ded9 (aliases: UnownDex)
+	ld d, 0
+	ld hl, UnownDex ; $ded9
 	add hl, de
 	ld a, [hl]
 	ld e, a
-	ld d, $0
-	ld hl, $7a5a
+	ld d, 0
+	ld hl, UnownWords
 	add hl, de
 	add hl, de
 	ld a, [hli]
@@ -85821,13 +87557,69 @@ Functionfba2e: ; fba2e (3e:7a2e)
 	jr .asm_fba52
 ; fba5a (3e:7a5a)
 
-INCBIN "baserom.gbc",$fba5a,$fbb32 - $fba5a
+UnownWords: ; fba5a
+	dw UnownWord1
+	dw UnownWord1
+	dw UnownWord2
+	dw UnownWord3
+	dw UnownWord4
+	dw UnownWord5
+	dw UnownWord6
+	dw UnownWord7
+	dw UnownWord8
+	dw UnownWord9
+	dw UnownWord10
+	dw UnownWord11
+	dw UnownWord12
+	dw UnownWord13
+	dw UnownWord14
+	dw UnownWord15
+	dw UnownWord16
+	dw UnownWord17
+	dw UnownWord18
+	dw UnownWord19
+	dw UnownWord20
+	dw UnownWord21
+	dw UnownWord22
+	dw UnownWord23
+	dw UnownWord24
+	dw UnownWord25
+	dw UnownWord26
+; fba90
+
+UnownWord1:	db $40, $4d, $46, $51, $58, $ff                ; ANGRY
+UnownWord2:	db $41, $44, $40, $51, $ff                     ; BEAR
+UnownWord3:	db $42, $47, $40, $52, $44, $ff                ; CHASE
+UnownWord4:	db $43, $48, $51, $44, $42, $53, $ff           ; DIRECT
+UnownWord5:	db $44, $4d, $46, $40, $46, $44, $ff           ; ENGAGE
+UnownWord6:	db $45, $48, $4d, $43, $ff                     ; FIND
+UnownWord7:	db $46, $48, $55, $44, $ff                     ; GIVE
+UnownWord8:	db $47, $44, $4b, $4f, $ff                     ; HELP
+UnownWord9:	db $48, $4d, $42, $51, $44, $40, $52, $44, $ff ; INCREASE
+UnownWord10:	db $49, $4e, $48, $4d, $ff                     ; JOIN
+UnownWord11:	db $4a, $44, $44, $4f, $ff                     ; KEEP
+UnownWord12:	db $4b, $40, $54, $46, $47, $ff                ; LAUGH
+UnownWord13:	db $4c, $40, $4a, $44, $ff                     ; MAKE
+UnownWord14:	db $4d, $54, $59, $59, $4b, $44, $ff           ; NUZZLE
+UnownWord15:	db $4e, $41, $52, $44, $51, $55, $44, $ff      ; OBSERVE
+UnownWord16:	db $4f, $44, $51, $45, $4e, $51, $4c, $ff      ; PERFORM
+UnownWord17:	db $50, $54, $48, $42, $4a, $44, $4d, $ff      ; QUICKEN
+UnownWord18:	db $51, $44, $40, $52, $52, $54, $51, $44, $ff ; REASSURE
+UnownWord19:	db $52, $44, $40, $51, $42, $47, $ff           ; SEARCH
+UnownWord20:	db $53, $44, $4b, $4b, $ff                     ; TELL
+UnownWord21:	db $54, $4d, $43, $4e, $ff                     ; UNDO
+UnownWord22:	db $55, $40, $4d, $48, $52, $47, $ff           ; VANISH
+UnownWord23:	db $56, $40, $4d, $53, $ff                     ; WANT
+UnownWord24:	db $57, $57, $57, $57, $57, $ff                ; XXXXX
+UnownWord25:	db $58, $48, $44, $4b, $43, $ff                ; YIELD
+UnownWord26:	db $59, $4e, $4e, $4c, $ff                     ; ZOOM
+; fbb32
 
 Functionfbb32: ; fbb32
 	callba Function50000
 	jr c, .asm_fbb9e
 	ld a, [CurPartySpecies]
-	cp $81
+	cp MAGIKARP
 	jr nz, .asm_fbba4
 	ld a, [CurPartyMon]
 	ld hl, PartyMon1Species
@@ -85885,17 +87677,23 @@ Functionfbb32: ; fbb32
 	ret
 ; fbba9
 
-INCBIN "baserom.gbc",$fbba9,$fbbae - $fbba9
+UnknownText_0xfbba9: ; 0xfbba9
+	; Let me measure that MAGIKARP. …Hm, it measures @ .
+	text_jump UnknownText_0x1c1203
+	db "@"
+; 0xfbbae
 
 Functionfbbae: ; fbbae
 	ld hl, $96e0
-	ld de, $7bbb
-	ld bc, $3e02
+	ld de, GFX_fbbbb
+	lb bc, BANK(GFX_fbbbb), $02
 	call Request2bpp
 	ret
 ; fbbbb
 
+GFX_fbbbb: ; fbbb
 INCBIN "baserom.gbc",$fbbbb,$fbbdb - $fbbbb
+; fbbdb
 
 Functionfbbdb: ; fbbdb
 	call Functionfbbae
