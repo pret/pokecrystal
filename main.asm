@@ -27801,12 +27801,12 @@ Function15fcd: ; 15fcd
 Function15fd7:: ; 15fd7
 	ld a, $3
 	call Function16053
-	ld bc, $5ff7
+	ld bc, Unknown_15ff7
 	ld a, $3
 	call Function1600b
 	jr z, .asm_15ff5
 	jr c, .asm_15ff5
-	ld hl, $5ff7
+	ld hl, Unknown_15ff7
 	ld a, [hli]
 	ld [de], a
 	inc de
@@ -27823,7 +27823,9 @@ Function15fd7:: ; 15fd7
 	ret
 ; 15ff7
 
-INCBIN "baserom.gbc",$15ff7,$15ffa - $15ff7
+Unknown_15ff7: ; 15ff7
+	dt 999999
+; 15ffa
 
 
 Function15ffa:: ; 15ffa
@@ -27961,10 +27963,10 @@ Function1606f:: ; 1606f
 	ld de, Coins
 	call Function16055
 	ld a, $2
-	ld bc, $608d
+	ld bc, Unknown_1608d
 	call Function1600d
 	jr c, .asm_1608b
-	ld hl, $608d
+	ld hl, Unknown_1608d
 	ld a, [hli]
 	ld [de], a
 	inc de
@@ -27978,7 +27980,9 @@ Function1606f:: ; 1606f
 	ret
 ; 1608d
 
-INCBIN "baserom.gbc",$1608d,$1608f - $1608d
+Unknown_1608d: ; 1608d
+	bigdw 9999
+; 1608f
 
 
 Function1608f:: ; 1608f
