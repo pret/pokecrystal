@@ -82436,7 +82436,7 @@ Functione247d: ; e247d (38:647d)
 	ld a, [$cfa9]
 	call Function1d4b
 	call Function1d81
-	jp c, Functione2537
+	jp c, BillsPCDepositFuncCancel
 	ld a, [$cfa9]
 	dec a
 	and $3
@@ -82451,17 +82451,17 @@ Functione247d: ; e247d (38:647d)
 	jp [hl]
 
 ; no known jump sources
-Jumptable_e24a1: ; e24a1 (38:64a1)
-	dw Functione24a9
-	dw Functione24c8
-	dw Functione24e0
-	dw Functione2537
+BillsPCDepositJumptable: ; e24a1 (38:64a1)
+	dw BillsPCDepositFuncDeposit ; Deposit Pokemon
+	dw BillsPCDepositFuncStats ; Pokemon Stats
+	dw BillsPCDepositFuncRelease ; Release Pokemon
+	dw BillsPCDepositFuncCancel ; Cancel
 
 
 ; no known jump sources
-Functione24a9: ; e24a9 (38:64a9)
+BillsPCDepositFuncDeposit: ; e24a9 (38:64a9)
 	call Functione2f18
-	jp c, Functione2537
+	jp c, BillsPCDepositFuncCancel
 	call Functione307c
 	jr c, .asm_e24c1
 	ld a, $0
@@ -82476,7 +82476,7 @@ Functione24a9: ; e24a9 (38:64a9)
 	ret
 
 ; no known jump sources
-Functione24c8: ; e24c8 (38:64c8)
+BillsPCDepositFuncStats: ; e24c8 (38:64c8)
 	call Function1d6e
 	call Functione2f7e
 	call Function1c07
@@ -82488,11 +82488,11 @@ Functione24c8: ; e24c8 (38:64c8)
 	ret
 
 ; no known jump sources
-Functione24e0: ; e24e0 (38:64e0)
+BillsPCDepositFuncRelease: ; e24e0 (38:64e0)
 	call Functione2f18
-	jr c, Functione2537
+	jr c, BillsPCDepositFuncCancel
 	call Functione2f5f
-	jr c, Functione2537
+	jr c, BillsPCDepositFuncCancel
 	ld a, [$cfa9]
 	push af
 	ld de, $74f4
@@ -82528,13 +82528,30 @@ Functione24e0: ; e24e0 (38:64e0)
 	ret
 
 ; known jump sources: e248c (38:648c), e24ac (38:64ac), e24e3 (38:64e3), e24e8 (38:64e8)
-Functione2537: ; e2537 (38:6537)
+BillsPCDepositFuncCancel: ; e2537 (38:6537)
 	ld a, $0
 	ld [$cf63], a
 	ret
 ; e253d (38:653d)
 
-INCBIN "baserom.gbc",$e253d,$e2583 - $e253d
+BillsPCDepositMenuDataHeader: ; 0xe253d (38:653d)
+	db $40 ; flags
+	db 04, 09 ; start coords
+	db 13, 19 ; end coords
+	dw BillsPCDepositMenuData
+	db 1 ; default option
+; 0xe2545
+
+BillsPCDepositMenuData: ; 0xe2545 (38:6545)
+	db $80 ; flags
+	db 4 ; items
+  db "DEPOSIT@"
+  db "STATS@"
+  db "RELEASE@"
+  db "CANCEL@"
+; 0xe2564 (38:6564)
+
+INCBIN "baserom.gbc",$e2564,$e2583 - $e2564
 
 ; no known jump sources
 Functione2583: ; e2583 (38:6583)
@@ -82676,7 +82693,7 @@ Functione2675: ; e2675 (38:6675)
 	ld a, [$cfa9]
 	call Function1d4b
 	call Function1d81
-	jp c, Functione272b
+	jp c, BillsPCWithdrawFuncCancel
 	ld a, [$cfa9]
 	dec a
 	and $3
@@ -82691,17 +82708,17 @@ Functione2675: ; e2675 (38:6675)
 	jp [hl]
 
 ; no known jump sources
-Jumptable_e2699: ; e2699 (38:6699)
-	dw Functione26a1
-	dw Functione26c0
-	dw Functione26d8
-	dw Functione272b
+BillsPCWithdrawJumptable: ; e2699 (38:6699) #mark
+	dw BillsPCWithdrawFuncWithdraw ; Withdraw
+	dw BillsPCWithdrawFuncStats ; Stats
+	dw BillsPCWithdrawFuncRelease ; Release
+	dw BillsPCWithdrawFuncCancel ; Cancel
 
 
 ; no known jump sources
-Functione26a1: ; e26a1 (38:66a1)
+BillsPCWithdrawFuncWithdraw: ; e26a1 (38:66a1)
 	call Functione2f18
-	jp c, Functione272b
+	jp c, BillsPCWithdrawFuncCancel
 	call Functione30fa
 	jr c, .asm_e26b9
 	ld a, $0
@@ -82716,7 +82733,7 @@ Functione26a1: ; e26a1 (38:66a1)
 	ret
 
 ; no known jump sources
-Functione26c0: ; e26c0 (38:66c0)
+BillsPCWithdrawFuncStats: ; e26c0 (38:66c0)
 	call Function1d6e
 	call Functione2f7e
 	call Function1c07
@@ -82728,7 +82745,7 @@ Functione26c0: ; e26c0 (38:66c0)
 	ret
 
 ; no known jump sources
-Functione26d8: ; e26d8 (38:66d8)
+BillsPCWithdrawFuncRelease: ; e26d8 (38:66d8)
 	ld a, [$cfa9]
 	push af
 	call Functione2f5f
@@ -82766,7 +82783,7 @@ Functione26d8: ; e26d8 (38:66d8)
 	ret
 
 ; known jump sources: e2684 (38:6684), e26a4 (38:66a4)
-Functione272b: ; e272b (38:672b)
+BillsPCWithdrawFuncCancel: ; e272b (38:672b)
 	ld a, $0
 	ld [$cf63], a
 	ret
