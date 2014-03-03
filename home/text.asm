@@ -209,7 +209,7 @@ CheckDict:: ; 1087
 	and a
 	jp z, Function1383
 	cp $4c
-	jp z, $1337
+	jp z, Function1337
 	cp $4b
 	jp z, Char4B
 	cp $51 ; Player name
@@ -249,7 +249,7 @@ CheckDict:: ; 1087
 	cp $56
 	jp z, Function11d3
 	cp $57
-	jp z, $137c
+	jp z, Function137c
 	cp $58
 	jp z, Function135a
 	cp $4a
@@ -269,9 +269,9 @@ CheckDict:: ; 1087
 	cp $5a
 	jp z, Char5D
 	cp $3f
-	jp z, $121b
+	jp z, Function121b
 	cp $14
-	jp z, $1252
+	jp z, Function1252
 	cp $e4
 	jr z, .asm_1174 ; 0x113d $35
 	cp $e5
@@ -322,103 +322,103 @@ Function117b:: ; 117b
 Function1186:: ; 1186
 	push de
 	ld de, MomsName
-	jp $126a
+	jp Function126a
 ; 118d
 
 Function118d:: ; 118d
 	push de
 	ld de, PlayerName
-	jp $126a
+	jp Function126a
 ; 1194
 
 Function1194:: ; 1194
 	push de
 	ld de, RivalName
-	jp $126a
+	jp Function126a
 ; 119b
 
 Function119b:: ; 119b
 	push de
 	ld de, RedsName
-	jp $126a
+	jp Function126a
 ; 11a2
 
 Function11a2:: ; 11a2
 	push de
 	ld de, GreensName
-	jp $126a
+	jp Function126a
 ; 11a9
 
 Function11a9:: ; 11a9
 	push de
 	ld de, Char5DText
-	jp $126a
+	jp Function126a
 ; 11b0
 
 Function11b0:: ; 11b0
 	push de
 	ld de, Char5CText
-	jp $126a
+	jp Function126a
 ; 11b7
 
 Function11b7:: ; 11b7
 	push de
 	ld de, Char5BText
-	jp $126a
+	jp Function126a
 ; 11be
 
 Function11be:: ; 11be
 	push de
 	ld de, Char5EText
-	jp $126a
+	jp Function126a
 ; 11c5
 
 Function11c5:: ; 11c5
 	push de
 	ld de, Char54Text
-	jp $126a
+	jp Function126a
 ; 11cc
 
 Function11cc:: ; 11cc
 	push de
 	ld de, Char23Text
-	jp $126a
+	jp Function126a
 ; 11d3
 
 Function11d3:: ; 11d3
 	push de
-	ld de, $1292
-	jp $126a
+	ld de, Char56Text
+	jp Function126a
 ; 11da
 
 Function11da:: ; 11da
 	push de
 	ld de, Char4AText
-	jp $126a
+	jp Function126a
 ; 11e1
 
 Function11e1:: ; 11e1
 	push de
 	ld de, Char24Text
-	jp $126a
+	jp Function126a
 ; 11e8
 
 Function11e8:: ; 11e8
 	push de
 	ld de, Char37Text
-	jp $126a
+	jp Function126a
 ; 11ef
 
 Function11ef:: ; 11ef
 	push de
 	ld de, Char37Text
-	jp $126a
+	jp Function126a
 ; 11f6
 
 Function11f6:: ; 11f6
 	push de
 	ld de, Char37Text
-	jp $126a
+	jp Function126a
 ; 11fd
 
 
@@ -437,22 +437,24 @@ Function1205:: ; 1205
 	and a
 	jr nz, .asm_120e ; 0x1207 $5
 	ld de, BattleMonNick
-	jr .asm_126a ; 0x120c $5c
+	jr Function126a ; 0x120c $5c
 .asm_120e
 	ld de, Char5AText ; Enemy
 	call PlaceString
 	ld h, b
 	ld l, c
 	ld de, EnemyMonNick
-	jr .asm_126a ; 0x1219 $4f
+	jr Function126a ; 0x1219 $4f
+
+Function121b:: ; 121b
 	push de
 	ld a, [InLinkBattle]
 	and a
 	jr nz, .linkbattle
 	ld a, [TrainerClass]
-	cp $9
+	cp RIVAL1
 	jr z, .asm_1248 ; 0x1227 $1f
-	cp $2a
+	cp RIVAL2
 	jr z, .asm_1248 ; 0x122b $1b
 	ld de, $c656
 	call PlaceString
@@ -464,13 +466,15 @@ Function1205:: ; 1205
 	callab Function39939
 	pop hl
 	ld de, StringBuffer1
-	jr .asm_126a ; 0x1246 $22
+	jr Function126a ; 0x1246 $22
 .asm_1248
 	ld de, RivalName
-	jr .asm_126a ; 0x124b $1d
+	jr Function126a ; 0x124b $1d
 .linkbattle
 	ld de, $c656
-	jr .asm_126a ; 0x1250 $18
+	jr Function126a ; 0x1250 $18
+
+Function1252:: ; 1252
 	push de
 	ld de, PlayerName
 	call PlaceString
@@ -479,10 +483,11 @@ Function1205:: ; 1205
 	ld a, [PlayerGender]
 	bit 0, a
 	ld de, String12a5
-	jr z, .asm_126a ; 0x1263 $5
+	jr z, Function126a ; 0x1263 $5
 	ld de, String12a6
-	jr .asm_126a ; 0x1268 $0
-.asm_126a
+	jr Function126a ; 0x1268 $0
+
+Function126a:: ; 126a
 	call PlaceString
 	ld h, b
 	ld l, c
@@ -629,6 +634,7 @@ Char4B:: ; 131f
 	or a
 	call z, Function13cd
 
+Function1337:: ; 1337
 	push de
 	call Function138c
 	call Function138c
@@ -675,12 +681,12 @@ Function135a:: ; 135a
 	call Functionaaf
 	ld a, [InLinkBattle]
 	cp $3
-	jr z, .asm_137c
+	jr z, Function137c
 	cp $4
-	jr z, .asm_137c
+	jr z, Function137c
 	call Function13cd
 
-.asm_137c
+Function137c:: ; 137c
 	pop hl
 	ld de, .string_1382
 	dec de
@@ -770,10 +776,10 @@ Function13d4:: ; 13d4
 ; 13e0
 
 Function13e0:: ; 13e0
-	ld hl, $13e4
+	ld hl, String_13e4
 	ret
 
-.string_13e4
+String_13e4: ; 13e4
 	db "@"
 ; 13e5
 
