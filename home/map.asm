@@ -46,10 +46,10 @@ Function2147:: ; 2147
 	push bc
 	ld a, [hROMBank]
 	push af
-	ld a, $13
+	ld a, BANK(Unknown_4d01e)
 	rst Bankswitch
 
-	ld hl, $501e
+	ld hl, Unknown_4d01e
 .asm_2151
 	push hl
 	ld a, [hli]
@@ -106,9 +106,9 @@ Function217a:: ; 217a
 	ld bc, TileMapEnd - TileMap
 	call ByteFill
 
-	ld a, $13
+	ld a, BANK(Function4d15b)
 	rst Bankswitch
-	call $515b
+	call Function4d15b
 
 	pop af
 	rst Bankswitch

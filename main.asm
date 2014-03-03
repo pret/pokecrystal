@@ -53701,10 +53701,93 @@ Function4cffe:: ; 4cffe
 	ret
 ; 4d01e
 
-INCBIN "baserom.gbc",$4d01e,$4d15b - $4d01e
+Unknown_4d01e:: ; 4d01e
+; Map triggers
+; dbbw group, map, address
+	dbbw GROUP_POKECENTER_2F, MAP_POKECENTER_2F,                                                   $d972
+	dbbw GROUP_TRADE_CENTER, MAP_TRADE_CENTER,                                                     $d973
+	dbbw GROUP_COLOSSEUM, MAP_COLOSSEUM,                                                           $d974
+	dbbw GROUP_TIME_CAPSULE, MAP_TIME_CAPSULE,                                                     $d975
+	dbbw GROUP_POWER_PLANT, MAP_POWER_PLANT,                                                       $d976
+	dbbw GROUP_CERULEAN_GYM, MAP_CERULEAN_GYM,                                                     $d977
+	dbbw GROUP_ROUTE_25, MAP_ROUTE_25,                                                             $d978
+	dbbw GROUP_TRAINER_HOUSE_B1F, MAP_TRAINER_HOUSE_B1F,                                           $d979
+	dbbw GROUP_VICTORY_ROAD_GATE, MAP_VICTORY_ROAD_GATE,                                           $d97a
+	dbbw GROUP_SAFFRON_TRAIN_STATION, MAP_SAFFRON_TRAIN_STATION,                                   $d97b
+	dbbw GROUP_ROUTE_16_GATE, MAP_ROUTE_16_GATE,                                                   $d97c
+	dbbw GROUP_ROUTE_17_18_GATE, MAP_ROUTE_17_18_GATE,                                             $d97d
+	dbbw GROUP_INDIGO_PLATEAU_POKECENTER_1F, MAP_INDIGO_PLATEAU_POKECENTER_1F,                     $d97e
+	dbbw GROUP_WILLS_ROOM, MAP_WILLS_ROOM,                                                         $d97f
+	dbbw GROUP_KOGAS_ROOM, MAP_KOGAS_ROOM,                                                         $d980
+	dbbw GROUP_BRUNOS_ROOM, MAP_BRUNOS_ROOM,                                                       $d981
+	dbbw GROUP_KARENS_ROOM, MAP_KARENS_ROOM,                                                       $d982
+	dbbw GROUP_LANCES_ROOM, MAP_LANCES_ROOM,                                                       $d983
+	dbbw GROUP_HALL_OF_FAME, MAP_HALL_OF_FAME,                                                     $d984
+	dbbw GROUP_ROUTE_27, MAP_ROUTE_27,                                                             $d985
+	dbbw GROUP_NEW_BARK_TOWN, MAP_NEW_BARK_TOWN,                                                   $d986
+	dbbw GROUP_ELMS_LAB, MAP_ELMS_LAB,                                                             $d987
+	dbbw GROUP_KRISS_HOUSE_1F, MAP_KRISS_HOUSE_1F,                                                 $d988
+	dbbw GROUP_ROUTE_29, MAP_ROUTE_29,                                                             $d989
+	dbbw GROUP_CHERRYGROVE_CITY, MAP_CHERRYGROVE_CITY,                                             $d98a
+	dbbw GROUP_MR_POKEMONS_HOUSE, MAP_MR_POKEMONS_HOUSE,                                           $d98b
+	dbbw GROUP_ROUTE_32, MAP_ROUTE_32,                                                             $d98c
+	dbbw GROUP_ROUTE_35_NATIONAL_PARK_GATE, MAP_ROUTE_35_NATIONAL_PARK_GATE,                       $d98d
+	dbbw GROUP_ROUTE_36, MAP_ROUTE_36,                                                             $d98e
+	dbbw GROUP_ROUTE_36_NATIONAL_PARK_GATE, MAP_ROUTE_36_NATIONAL_PARK_GATE,                       $d98f
+	dbbw GROUP_AZALEA_TOWN, MAP_AZALEA_TOWN,                                                       $d990
+	dbbw GROUP_GOLDENROD_GYM, MAP_GOLDENROD_GYM,                                                   $d991
+	dbbw GROUP_GOLDENROD_MAGNET_TRAIN_STATION, MAP_GOLDENROD_MAGNET_TRAIN_STATION,                 $d992
+	dbbw GROUP_GOLDENROD_POKECENTER_1F, MAP_GOLDENROD_POKECENTER_1F,                               $d993
+	dbbw GROUP_OLIVINE_CITY, MAP_OLIVINE_CITY,                                                     $d994
+	dbbw GROUP_ROUTE_34, MAP_ROUTE_34,                                                             $d995
+	dbbw GROUP_ROUTE_34_ILEX_FOREST_GATE, MAP_ROUTE_34_ILEX_FOREST_GATE,                           $d996
+	dbbw GROUP_ECRUTEAK_HOUSE, MAP_ECRUTEAK_HOUSE,                                                 $d997
+	dbbw GROUP_WISE_TRIOS_ROOM, MAP_WISE_TRIOS_ROOM,                                               $d998
+	dbbw GROUP_ECRUTEAK_POKECENTER_1F, MAP_ECRUTEAK_POKECENTER_1F,                                 $d999
+	dbbw GROUP_ECRUTEAK_GYM, MAP_ECRUTEAK_GYM,                                                     $d99a
+	dbbw GROUP_MAHOGANY_TOWN, MAP_MAHOGANY_TOWN,                                                   $d99b
+	dbbw GROUP_ROUTE_42, MAP_ROUTE_42,                                                             $d99c
+	dbbw GROUP_CIANWOOD_CITY, MAP_CIANWOOD_CITY,                                                   $d99d
+	dbbw GROUP_BATTLE_TOWER_1F, MAP_BATTLE_TOWER_1F,                                               $d99e
+	dbbw GROUP_BATTLE_TOWER_BATTLE_ROOM, MAP_BATTLE_TOWER_BATTLE_ROOM,                             $d99f
+	dbbw GROUP_BATTLE_TOWER_ELEVATOR, MAP_BATTLE_TOWER_ELEVATOR,                                   $d9a0
+	dbbw GROUP_BATTLE_TOWER_HALLWAY, MAP_BATTLE_TOWER_HALLWAY,                                     $d9a1
+	dbbw GROUP_BATTLE_TOWER_OUTSIDE, MAP_BATTLE_TOWER_OUTSIDE,                                     $d9a2
+	dbbw GROUP_ROUTE_43_GATE, MAP_ROUTE_43_GATE,                                                   $d9a3
+	dbbw GROUP_MOUNT_MOON, MAP_MOUNT_MOON,                                                         $d9a4
+	dbbw GROUP_SPROUT_TOWER_3F, MAP_SPROUT_TOWER_3F,                                               $d9a5
+	dbbw GROUP_TIN_TOWER_1F, MAP_TIN_TOWER_1F,                                                     $d9a6
+	dbbw GROUP_BURNED_TOWER_1F, MAP_BURNED_TOWER_1F,                                               $d9a7
+	dbbw GROUP_BURNED_TOWER_B1F, MAP_BURNED_TOWER_B1F,                                             $d9a8
+	dbbw GROUP_RADIO_TOWER_5F, MAP_RADIO_TOWER_5F,                                                 $d9a9
+	dbbw GROUP_RUINS_OF_ALPH_OUTSIDE, MAP_RUINS_OF_ALPH_OUTSIDE,                                   $d9aa
+	dbbw GROUP_RUINS_OF_ALPH_RESEARCH_CENTER, MAP_RUINS_OF_ALPH_RESEARCH_CENTER,                   $d9ab
+	dbbw GROUP_RUINS_OF_ALPH_HO_OH_CHAMBER, MAP_RUINS_OF_ALPH_HO_OH_CHAMBER,                       $d9ac
+	dbbw GROUP_RUINS_OF_ALPH_KABUTO_CHAMBER, MAP_RUINS_OF_ALPH_KABUTO_CHAMBER,                     $d9ad
+	dbbw GROUP_RUINS_OF_ALPH_OMANYTE_CHAMBER, MAP_RUINS_OF_ALPH_OMANYTE_CHAMBER,                   $d9ae
+	dbbw GROUP_RUINS_OF_ALPH_AERODACTYL_CHAMBER, MAP_RUINS_OF_ALPH_AERODACTYL_CHAMBER,             $d9af
+	dbbw GROUP_RUINS_OF_ALPH_INNER_CHAMBER, MAP_RUINS_OF_ALPH_INNER_CHAMBER,                       $d9b0
+	dbbw GROUP_MAHOGANY_MART_1F, MAP_MAHOGANY_MART_1F,                                             $d9b1
+	dbbw GROUP_TEAM_ROCKET_BASE_B1F, MAP_TEAM_ROCKET_BASE_B1F,                                     $d9b2
+	dbbw GROUP_TEAM_ROCKET_BASE_B2F, MAP_TEAM_ROCKET_BASE_B2F,                                     $d9b3
+	dbbw GROUP_TEAM_ROCKET_BASE_B3F, MAP_TEAM_ROCKET_BASE_B3F,                                     $d9b4
+	dbbw GROUP_UNDERGROUND_PATH_SWITCH_ROOM_ENTRANCES, MAP_UNDERGROUND_PATH_SWITCH_ROOM_ENTRANCES, $d9b5
+	dbbw GROUP_SILVER_CAVE_ROOM_3, MAP_SILVER_CAVE_ROOM_3,                                         $d9b6
+	dbbw GROUP_VICTORY_ROAD, MAP_VICTORY_ROAD,                                                     $d9b7
+	dbbw GROUP_DRAGONS_DEN_B1F, MAP_DRAGONS_DEN_B1F,                                               $d9b8
+	dbbw GROUP_DRAGON_SHRINE, MAP_DRAGON_SHRINE,                                                   $d9b9
+	dbbw GROUP_OLIVINE_PORT, MAP_OLIVINE_PORT,                                                     $d9ba
+	dbbw GROUP_VERMILION_PORT, MAP_VERMILION_PORT,                                                 $d9bb
+	dbbw GROUP_FAST_SHIP_1F, MAP_FAST_SHIP_1F,                                                     $d9bc
+	dbbw GROUP_FAST_SHIP_B1F, MAP_FAST_SHIP_B1F,                                                   $d9bd
+	dbbw GROUP_MOUNT_MOON_SQUARE, MAP_MOUNT_MOON_SQUARE,                                           $d9be
+	dbbw GROUP_MOBILE_TRADE_ROOM_MOBILE, MAP_MOBILE_TRADE_ROOM_MOBILE,                             $d9bf
+	dbbw GROUP_MOBILE_BATTLE_ROOM, MAP_MOBILE_BATTLE_ROOM,                                         $d9c0
+	db $ff
+; 4d15b
 
 
-Function4d15b: ; 4d15b
+Function4d15b:: ; 4d15b
 	ld hl, EnemyMoveAnimation
 	ld a, [$d196]
 	and a
@@ -61275,12 +61358,12 @@ Function842ab: ; 842ab
 INCBIN "baserom.gbc",$842b7,$842db - $842b7
 
 
-Function842db: ; 842db
+Function842db:: ; 842db
 	ld a, [$c2d5]
 	add a
 	ld e, a
-	ld d, $0
-	ld hl, $42ea
+	ld d, 0
+	ld hl, Jumptable_842ea
 	add hl, de
 	ld a, [hli]
 	ld h, [hl]

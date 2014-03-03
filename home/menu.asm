@@ -586,10 +586,10 @@ Function2048:: ; 2048
 Function2057:: ; 2057
 	ld a, [hROMBank]
 	push af
-	ld a, $21
+	ld a, BANK(Function842db)
 	rst Bankswitch
 
-	call $42db
+	call Function842db
 	pop af
 	rst Bankswitch
 
