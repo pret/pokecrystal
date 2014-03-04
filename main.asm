@@ -29765,14 +29765,14 @@ Function16dac: ; 16dac
 ; 16dc7
 
 Function16dc7: ; 16dc7
-	ld hl, $6e04
+	ld hl, UnknownText_0x16e04
 	call PrintText
 	callba Function50000
 	jr c, .asm_16df8
 	ld a, [CurPartySpecies]
-	cp $fd
+	cp EGG
 	jr z, .asm_16dfd
-	ld hl, $6e09
+	ld hl, UnknownText_0x16e09
 	call PrintText
 	call Function2ed3
 	callba Function8461a
@@ -29780,22 +29780,50 @@ Function16dc7: ; 16dc7
 	ld a, [$ffac]
 	and a
 	jr nz, .asm_16df8
-	ld hl, $6e0e
+	ld hl, UnknownText_0x16e0e
 	jr .asm_16e00
 
 .asm_16df8
-	ld hl, $6e13
+	ld hl, UnknownText_0x16e13
 	jr .asm_16e00
 
 .asm_16dfd
-	ld hl, $6e18
+	ld hl, UnknownText_0x16e18
 
 .asm_16e00
 	call PrintText
 	ret
 ; 16e04
 
-INCBIN "baserom.gbc",$16e04,$16e1d - $16e04
+UnknownText_0x16e04: ; 0x16e04
+	; Which #MON should I photo- graph?
+	text_jump UnknownText_0x1be024
+	db "@"
+; 0x16e09
+
+UnknownText_0x16e09: ; 0x16e09
+	; All righty. Hold still for a bit.
+	text_jump UnknownText_0x1be047
+	db "@"
+; 0x16e0e
+
+UnknownText_0x16e0e: ; 0x16e0e
+	; Presto! All done. Come again, OK?
+	text_jump UnknownText_0x1be06a
+	db "@"
+; 0x16e13
+
+UnknownText_0x16e13: ; 0x16e13
+	; Oh, no picture? Come again, OK?
+	text_jump UnknownText_0x1c0000
+	db "@"
+; 0x16e18
+
+UnknownText_0x16e18: ; 0x16e18
+	; An EGG? My talent is worth more…
+	text_jump UnknownText_0x1c0021
+	db "@"
+; 0x16e1d
 
 
 Function16e1d: ; 16e1d
@@ -29842,16 +29870,16 @@ Function16e1d: ; 16e1d
 .asm_16e70
 	ld c, $0
 	ld a, [BreedMon1Species]
-	cp $84
+	cp DITTO
 	jr z, .asm_16e82
 	ld a, [BreedMon2Species]
-	cp $84
+	cp DITTO
 	jr nz, .asm_16eb7
 	jr .asm_16e89
 
 .asm_16e82
 	ld a, [BreedMon2Species]
-	cp $84
+	cp DITTO
 	jr z, .asm_16eb7
 
 .asm_16e89
@@ -29920,7 +29948,7 @@ Function16ed6: ; 16ed6
 	cp $ff
 	jr z, .asm_16f3a
 	ld a, [BreedMon2Species]
-	cp $84
+	cp DITTO
 	jr z, .asm_16f3c
 	ld [CurSpecies], a
 	call GetBaseData
@@ -29933,7 +29961,7 @@ Function16ed6: ; 16ed6
 	swap a
 	ld c, a
 	ld a, [BreedMon1Species]
-	cp $84
+	cp DITTO
 	jr z, .asm_16f3c
 	ld [CurSpecies], a
 	push bc
@@ -30016,7 +30044,7 @@ Function16f7a: ; 16f7a (5:6f7a)
 	jp z, Function1708a
 	push de
 	push hl
-	cp $fd
+	cp EGG
 	jp nz, Function1707d
 	ld a, [hl]
 	and a
@@ -30105,7 +30133,7 @@ Function16f7a: ; 16f7a (5:6f7a)
 	ld e, l
 	ld hl, PlayerName ; $d47d
 	call CopyBytes
-	ld hl, $708b
+	ld hl, UnknownText_0x1708b
 	call PrintText
 	ld a, [CurPartyMon] ; $d109
 	ld hl, PartyMonNicknames ; $de41 (aliases: PartyMon1Nickname)
@@ -30114,7 +30142,7 @@ Function16f7a: ; 16f7a (5:6f7a)
 	ld d, h
 	ld e, l
 	push de
-	ld hl, $70ba
+	ld hl, UnknownText_0x170ba
 	call PrintText
 	call YesNoBox
 	pop de
@@ -30150,7 +30178,13 @@ Function1708a: ; 1708a (5:708a)
 	ret
 ; 1708b (5:708b)
 
-INCBIN "baserom.gbc",$1708b,$17090 - $1708b
+UnknownText_0x1708b: ; 0x1708b
+	; Huh? @ @
+	text_jump UnknownText_0x1c0db0
+	start_asm
+; 0x17090
+
+Function17090: ; 17090
 	ld hl, VramState ; $d0ed
 	res 0, [hl]
 	push hl
@@ -30159,18 +30193,34 @@ INCBIN "baserom.gbc",$1708b,$17090 - $1708b
 	ld a, [CurPartySpecies] ; $d108
 	push af
 	call Function1728f
-	ld hl, $70b0
+	ld hl, UnknownText_0x170b0
 	call PrintText
 	pop af
 	ld [CurPartySpecies], a ; $d108
 	pop bc
 	pop de
 	pop hl
-	ld hl, $70b5
+	ld hl, UnknownText_0x170b5
 	ret
 ; 170b0 (5:70b0)
 
-INCBIN "baserom.gbc",$170b0,$170bf - $170b0
+UnknownText_0x170b0: ; 0x170b0
+	; 
+	text_jump UnknownText_0x1c0db8
+	db "@"
+; 0x170b5
+
+UnknownText_0x170b5: ; 0x170b5
+	; came out of its EGG!@ @
+	text_jump UnknownText_0x1c0dba
+	db "@"
+; 0x170ba
+
+UnknownText_0x170ba: ; 0x170ba
+	; Give a nickname to @ ?
+	text_jump UnknownText_0x1c0dd8
+	db "@"
+; 0x170bf
 
 Function170bf: ; 170bf
 	call Function17197
@@ -30204,18 +30254,20 @@ Function170bf: ; 170bf
 ; 170e4
 
 Function170e4: ; 170e4
+GLOBAL EggMoves
+
 	push bc
 	ld a, [EggSpecies]
 	dec a
 	ld c, a
-	ld b, $0
-	ld hl, $7b11
+	ld b, 0
+	ld hl, EggMovePointers
 	add hl, bc
 	add hl, bc
-	ld a, $8
+	ld a, BANK(EggMovePointers)
 	call GetFarHalfword
 .asm_170f6
-	ld a, $8
+	ld a, BANK(EggMoves)
 	call GetFarByte
 	cp $ff
 	jr z, .asm_17107
@@ -30228,7 +30280,7 @@ Function170e4: ; 170e4
 
 .asm_17107
 	call Function1720b
-	ld b, $4
+	ld b, NUM_MOVES
 .asm_1710c
 	ld a, [de]
 	cp [hl]
@@ -30242,25 +30294,25 @@ Function170e4: ; 170e4
 	ld a, [EggSpecies]
 	dec a
 	ld c, a
-	ld b, $0
-	ld hl, $65b1
+	ld b, 0
+	ld hl, EvosAttacksPointers
 	add hl, bc
 	add hl, bc
-	ld a, $10
+	ld a, BANK(EvosAttacksPointers)
 	call GetFarHalfword
 .asm_17127
-	ld a, $10
+	ld a, BANK(EvosAttacks)
 	call GetFarByte
 	inc hl
 	and a
 	jr nz, .asm_17127
 .asm_17130
-	ld a, $10
+	ld a, BANK(EvosAttacks)
 	call GetFarByte
 	and a
 	jr z, .asm_17146
 	inc hl
-	ld a, $10
+	ld a, BANK(EvosAttacks)
 	call GetFarByte
 	ld b, a
 	ld a, [de]
@@ -30270,9 +30322,9 @@ Function170e4: ; 170e4
 	jr .asm_17130
 
 .asm_17146
-	ld hl, $567a
+	ld hl, TMHMMoves
 .asm_17149
-	ld a, $4
+	ld a, BANK(TMHMMoves)
 	call GetFarByte
 	inc hl
 	and a
@@ -30305,7 +30357,7 @@ Function17169: ; 17169
 	ld a, [de]
 	ld b, a
 	ld hl, $df7d
-	ld c, $4
+	ld c, NUM_MOVES
 .asm_17172
 	ld a, [hli]
 	and a
@@ -30338,10 +30390,10 @@ Function17169: ; 17169
 Function17197: ; 17197
 	ld hl, $df47
 	ld a, [BreedMon1Species]
-	cp $84
+	cp DITTO
 	jr z, .asm_171b1
 	ld a, [BreedMon2Species]
-	cp $84
+	cp DITTO
 	jr z, .asm_171d7
 	ld a, [DittoInDaycare]
 	and a
@@ -30398,10 +30450,10 @@ Function17197: ; 17197
 Function1720b: ; 1720b
 	ld hl, $df0e
 	ld a, [BreedMon1Species]
-	cp $84
+	cp DITTO
 	ret z
 	ld a, [BreedMon2Species]
-	cp $84
+	cp DITTO
 	jr z, .asm_17220
 	ld a, [DittoInDaycare]
 	and a
@@ -30452,9 +30504,9 @@ Function17254: ; 17254 (5:7254)
 	pop bc
 	pop hl
 	ld a, b
-	ld [$FF00+$d7], a
+	ld [$ffd7], a
 	ld a, c
-	ld [$FF00+$ad], a
+	ld [$ffad], a
 	ld bc, $707
 	ld a, $13
 	call Predef
@@ -30481,29 +30533,29 @@ Function1728f: ; 1728f (5:728f)
 	ld [$cf63], a
 	ld a, [CurSpecies] ; $cf60
 	push af
-	ld de, $0
+	ld de, MUSIC_NONE
 	call PlayMusic
 	callba Function8000
 	call DisableLCD
-	ld hl, $7393
+	ld hl, EggHatchGFX
 	ld de, $8000
 	ld bc, $20
-	ld a, $5
+	ld a, BANK(EggHatchGFX)
 	call FarCopyBytes
 	callba Function8cf53
 	ld de, $9000
 	ld a, [$cf63]
 	call Function1723c
 	ld de, $9310
-	ld a, $fd
+	ld a, EGG
 	call Function17224
-	ld de, $22
+	ld de, MUSIC_EVOLUTION
 	call PlayMusic
 	call EnableLCD
 	ld hl, $c4f7
 	ld b, $98
 	ld c, $31
-	ld a, $fd
+	ld a, EGG
 	call Function17254
 	ld c, $50
 	call DelayFrames
@@ -30540,7 +30592,7 @@ Function1728f: ; 1728f (5:728f)
 	call Function1736d
 	jr .asm_172ee
 .asm_17327
-	ld de, $a6
+	ld de, SFX_EGG_HATCH
 	call PlaySFX
 	xor a
 	ld [hSCX], a ; $ff00+$cf
@@ -30591,16 +30643,18 @@ Function1736d: ; 1736d (5:736d)
 	ld hl, $3
 	add hl, bc
 	ld [hl], $0
-	ld de, $9e
+	ld de, SFX_EGG_CRACK
 	jp PlaySFX
 ; 17393 (5:7393)
 
+EggHatchGFX: ; 17393
 INCBIN "baserom.gbc",$17393,$173b3 - $17393
+; 173b3
 
 ; known jump sources: 17336 (5:7336)
 Function173b3: ; 173b3 (5:73b3)
 	callba Function8cf53
-	ld hl, $73ef
+	ld hl, Unknown_173ef
 .asm_173bc
 	ld a, [hli]
 	cp $ff
@@ -30631,13 +30685,26 @@ Function173b3: ; 173b3 (5:73b3)
 	pop hl
 	jr .asm_173bc
 .asm_173e5
-	ld de, $a6
+	ld de, SFX_EGG_HATCH
 	call PlaySFX
 	call Function1727f
 	ret
 ; 173ef (5:73ef)
 
-INCBIN "baserom.gbc",$173ef,$17418 - $173ef
+Unknown_173ef: ; 173ef
+; Probably OAM.
+	db $54, $48, $00, $3c
+	db $5c, $48, $01, $04
+	db $54, $50, $00, $30
+	db $5c, $50, $01, $10
+	db $54, $58, $02, $24
+	db $5c, $58, $03, $1c
+	db $50, $4c, $00, $36
+	db $60, $4c, $01, $0a
+	db $50, $54, $02, $2a
+	db $60, $54, $03, $16
+	db $ff
+; 17418
 
 ; known jump sources: 17346 (5:7346)
 Function17418: ; 17418 (5:7418)
@@ -30649,7 +30716,7 @@ Function17418: ; 17418 (5:7418)
 	ret
 
 Function17421: ; 17421
-	ld hl, $7467
+	ld hl, UnknownText_0x17467
 	call PrintText
 	ld a, [BreedMon1Species]
 	call Function37ce
@@ -30662,7 +30729,7 @@ Function17421: ; 17421
 	jp PrintText
 
 Function17440: ; 17440
-	ld hl, $7462
+	ld hl, UnknownText_0x17462
 	call PrintText
 	ld a, [BreedMon2Species]
 	call Function37ce
@@ -30678,7 +30745,17 @@ Function1745f: ; 1745f
 	jp Functiona80
 ; 17462
 
-INCBIN "baserom.gbc",$17462,$1746c - $17462
+UnknownText_0x17462: ; 0x17462
+	; It's @ that was left with the DAY-CARE LADY.
+	text_jump UnknownText_0x1c0df3
+	db "@"
+; 0x17467
+
+UnknownText_0x17467: ; 0x17467
+	; It's @ that was left with the DAY-CARE MAN.
+	text_jump UnknownText_0x1c0e24
+	db "@"
+; 0x1746c
 
 Function1746c: ; 1746c
 	push bc
@@ -30688,25 +30765,62 @@ Function1746c: ; 1746c
 	call Function16e1d
 	pop bc
 	ld a, [$d265]
-	ld hl, $749c
+	ld hl, UnknownText_0x1749c
 	cp $ff
 	jr z, .asm_1749b
-	ld hl, $74a1
+	ld hl, UnknownText_0x174a1
 	and a
 	jr z, .asm_1749b
-	ld hl, $74a6
-	cp $e6
+	ld hl, UnknownText_0x174a6
+	cp 230
 	jr nc, .asm_1749b
-	cp $46
-	ld hl, $74ab
+	cp 70
+	ld hl, UnknownText_0x174ab
 	jr nc, .asm_1749b
-	ld hl, $74b0
+	ld hl, UnknownText_0x174b0
 
 .asm_1749b
 	ret
 ; 1749c
 
-INCBIN "baserom.gbc",$1749c,$174ba - $1749c
+UnknownText_0x1749c: ; 0x1749c
+	; It's brimming with energy.
+	text_jump UnknownText_0x1c0e54
+	db "@"
+; 0x174a1
+
+UnknownText_0x174a1: ; 0x174a1
+	; It has no interest in @ .
+	text_jump UnknownText_0x1c0e6f
+	db "@"
+; 0x174a6
+
+UnknownText_0x174a6: ; 0x174a6
+	; It appears to care for @ .
+	text_jump UnknownText_0x1c0e8d
+	db "@"
+; 0x174ab
+
+UnknownText_0x174ab: ; 0x174ab
+	; It's friendly with @ .
+	text_jump UnknownText_0x1c0eac
+	db "@"
+; 0x174b0
+
+UnknownText_0x174b0: ; 0x174b0
+	; It shows interest in @ .
+	text_jump UnknownText_0x1c0ec6
+	db "@"
+; 0x174b5
+
+Function_174b5: ; 174b5
+	ld hl, String_174b9
+	ret
+; 174b9
+
+String_174b9: ; 174b9
+	db "@"
+; 174ba
 
 
 SECTION "Tileset Data 1", ROMX, BANK[TILESETS_1]
@@ -53701,10 +53815,100 @@ Function4cffe:: ; 4cffe
 	ret
 ; 4d01e
 
-INCBIN "baserom.gbc",$4d01e,$4d15b - $4d01e
+MapTriggers:: ; 4d01e
+; Map triggers
+
+trigger_def: MACRO
+; db group, map
+; dw address
+	map \1
+	dw \2
+ENDM
+
+	trigger_def POKECENTER_2F,                          wPokecenter2FTrigger
+	trigger_def TRADE_CENTER,                           wTradeCenterTrigger
+	trigger_def COLOSSEUM,                              wColosseumTrigger
+	trigger_def TIME_CAPSULE,                           wTimeCapsuleTrigger
+	trigger_def POWER_PLANT,                            wPowerPlantTrigger
+	trigger_def CERULEAN_GYM,                           wCeruleanGymTrigger
+	trigger_def ROUTE_25,                               wRoute25Trigger
+	trigger_def TRAINER_HOUSE_B1F,                      wTrainerHouseB1FTrigger
+	trigger_def VICTORY_ROAD_GATE,                      wVictoryRoadGateTrigger
+	trigger_def SAFFRON_TRAIN_STATION,                  wSaffronTrainStationTrigger
+	trigger_def ROUTE_16_GATE,                          wRoute16GateTrigger
+	trigger_def ROUTE_17_18_GATE,                       wRoute1718GateTrigger
+	trigger_def INDIGO_PLATEAU_POKECENTER_1F,           wIndigoPlateauPokecenter1FTrigger
+	trigger_def WILLS_ROOM,                             wWillsRoomTrigger
+	trigger_def KOGAS_ROOM,                             wKogasRoomTrigger
+	trigger_def BRUNOS_ROOM,                            wBrunosRoomTrigger
+	trigger_def KARENS_ROOM,                            wKarensRoomTrigger
+	trigger_def LANCES_ROOM,                            wLancesRoomTrigger
+	trigger_def HALL_OF_FAME,                           wHallOfFameTrigger
+	trigger_def ROUTE_27,                               wRoute27Trigger
+	trigger_def NEW_BARK_TOWN,                          wNewBarkTownTrigger
+	trigger_def ELMS_LAB,                               wElmsLabTrigger
+	trigger_def KRISS_HOUSE_1F,                         wKrissHouse1FTrigger
+	trigger_def ROUTE_29,                               wRoute29Trigger
+	trigger_def CHERRYGROVE_CITY,                       wCherrygroveCityTrigger
+	trigger_def MR_POKEMONS_HOUSE,                      wMrPokemonsHouseTrigger
+	trigger_def ROUTE_32,                               wRoute32Trigger
+	trigger_def ROUTE_35_NATIONAL_PARK_GATE,            wRoute35NationalParkGateTrigger
+	trigger_def ROUTE_36,                               wRoute36Trigger
+	trigger_def ROUTE_36_NATIONAL_PARK_GATE,            wRoute36NationalParkGateTrigger
+	trigger_def AZALEA_TOWN,                            wAzaleaTownTrigger
+	trigger_def GOLDENROD_GYM,                          wGoldenrodGymTrigger
+	trigger_def GOLDENROD_MAGNET_TRAIN_STATION,         wGoldenrodMagnetTrainStationTrigger
+	trigger_def GOLDENROD_POKECENTER_1F,                wGoldenrodPokecenter1FTrigger
+	trigger_def OLIVINE_CITY,                           wOlivineCityTrigger
+	trigger_def ROUTE_34,                               wRoute34Trigger
+	trigger_def ROUTE_34_ILEX_FOREST_GATE,              wRoute34IlexForestGateTrigger
+	trigger_def ECRUTEAK_HOUSE,                         wEcruteakHouseTrigger
+	trigger_def WISE_TRIOS_ROOM,                        wWiseTriosRoomTrigger
+	trigger_def ECRUTEAK_POKECENTER_1F,                 wEcruteakPokecenter1FTrigger
+	trigger_def ECRUTEAK_GYM,                           wEcruteakGymTrigger
+	trigger_def MAHOGANY_TOWN,                          wMahoganyTownTrigger
+	trigger_def ROUTE_42,                               wRoute42Trigger
+	trigger_def CIANWOOD_CITY,                          wCianwoodCityTrigger
+	trigger_def BATTLE_TOWER_1F,                        wBattleTower1FTrigger
+	trigger_def BATTLE_TOWER_BATTLE_ROOM,               wBattleTowerBattleRoomTrigger
+	trigger_def BATTLE_TOWER_ELEVATOR,                  wBattleTowerElevatorTrigger
+	trigger_def BATTLE_TOWER_HALLWAY,                   wBattleTowerHallwayTrigger
+	trigger_def BATTLE_TOWER_OUTSIDE,                   wBattleTowerOutsideTrigger
+	trigger_def ROUTE_43_GATE,                          wRoute43GateTrigger
+	trigger_def MOUNT_MOON,                             wMountMoonTrigger
+	trigger_def SPROUT_TOWER_3F,                        wSproutTower3FTrigger
+	trigger_def TIN_TOWER_1F,                           wTinTower1FTrigger
+	trigger_def BURNED_TOWER_1F,                        wBurnedTower1FTrigger
+	trigger_def BURNED_TOWER_B1F,                       wBurnedTowerB1FTrigger
+	trigger_def RADIO_TOWER_5F,                         wRadioTower5FTrigger
+	trigger_def RUINS_OF_ALPH_OUTSIDE,                  wRuinsOfAlphOutsideTrigger
+	trigger_def RUINS_OF_ALPH_RESEARCH_CENTER,          wRuinsOfAlphResearchCenterTrigger
+	trigger_def RUINS_OF_ALPH_HO_OH_CHAMBER,            wRuinsOfAlphHoOhChamberTrigger
+	trigger_def RUINS_OF_ALPH_KABUTO_CHAMBER,           wRuinsOfAlphKabutoChamberTrigger
+	trigger_def RUINS_OF_ALPH_OMANYTE_CHAMBER,          wRuinsOfAlphOmanyteChamberTrigger
+	trigger_def RUINS_OF_ALPH_AERODACTYL_CHAMBER,       wRuinsOfAlphAerodactylChamberTrigger
+	trigger_def RUINS_OF_ALPH_INNER_CHAMBER,            wRuinsOfAlphInnerChamberTrigger
+	trigger_def MAHOGANY_MART_1F,                       wMahoganyMart1FTrigger
+	trigger_def TEAM_ROCKET_BASE_B1F,                   wTeamRocketBaseB1FTrigger
+	trigger_def TEAM_ROCKET_BASE_B2F,                   wTeamRocketBaseB2FTrigger
+	trigger_def TEAM_ROCKET_BASE_B3F,                   wTeamRocketBaseB3FTrigger
+	trigger_def UNDERGROUND_PATH_SWITCH_ROOM_ENTRANCES, wUndergroundPathSwitchRoomEntrancesTrigger
+	trigger_def SILVER_CAVE_ROOM_3,                     wSilverCaveRoom3Trigger
+	trigger_def VICTORY_ROAD,                           wVictoryRoadTrigger
+	trigger_def DRAGONS_DEN_B1F,                        wDragonsDenB1FTrigger
+	trigger_def DRAGON_SHRINE,                          wDragonShrineTrigger
+	trigger_def OLIVINE_PORT,                           wOlivinePortTrigger
+	trigger_def VERMILION_PORT,                         wVermilionPortTrigger
+	trigger_def FAST_SHIP_1F,                           wFastShip1FTrigger
+	trigger_def FAST_SHIP_B1F,                          wFastShipB1FTrigger
+	trigger_def MOUNT_MOON_SQUARE,                      wMountMoonSquareTrigger
+	trigger_def MOBILE_TRADE_ROOM_MOBILE,               wMobileTradeRoomMobileTrigger
+	trigger_def MOBILE_BATTLE_ROOM,                     wMobileBattleRoomTrigger
+	db $ff
+; 4d15b
 
 
-Function4d15b: ; 4d15b
+Function4d15b:: ; 4d15b
 	ld hl, EnemyMoveAnimation
 	ld a, [$d196]
 	and a
@@ -61275,12 +61479,12 @@ Function842ab: ; 842ab
 INCBIN "baserom.gbc",$842b7,$842db - $842b7
 
 
-Function842db: ; 842db
+Function842db:: ; 842db
 	ld a, [$c2d5]
 	add a
 	ld e, a
-	ld d, $0
-	ld hl, $42ea
+	ld d, 0
+	ld hl, Jumptable_842ea
 	add hl, de
 	ld a, [hli]
 	ld h, [hl]
@@ -91894,7 +92098,7 @@ Function1045b0: ; 1045b0
 	call Function210f
 	call Function2e50
 	call Function2e5d
-	call Function212a
+	call GetCurrentMapTrigger
 	call Function2e56
 	ld a, $5
 	call Function263b
@@ -98548,7 +98752,7 @@ Function11b7e5: ; 11b7e5
 	ld b, a
 	ld a, [MapNumber]
 	ld c, a
-	call Function2147
+	call GetMapTrigger
 	ld a, d
 	or e
 	jr z, .asm_11b872

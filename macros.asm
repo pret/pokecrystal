@@ -20,6 +20,11 @@ dbw: MACRO
 	dw \2
 	ENDM
 
+dbbw: MACRO
+	db \1, \2
+	dw \3
+	ENDM
+
 dn: MACRO
 	db \1 << 4 + \2
 	ENDM

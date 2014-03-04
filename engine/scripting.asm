@@ -1884,7 +1884,7 @@ Script_checkmaptriggers: ; 0x975d1
 	ld b, a
 	call GetScriptByte
 	ld c, a
-	call Function2147
+	call GetMapTrigger
 	ld a, d
 	or e
 	jr z, .asm_975e5 ; 0x975de $5
@@ -1923,7 +1923,7 @@ Script_domaptrigger: ; 0x975f5
 	; fallthrough
 
 Unknown_975fd: ; 0x975fd
-	call Function2147
+	call GetMapTrigger
 	ld a, d
 	or e
 	jr z, .asm_97608 ; 0x97602 $4

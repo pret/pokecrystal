@@ -1765,13 +1765,14 @@ Function37e2:: ; 37e2
 	push hl
 	push de
 	push bc
+
 	call Function381e
 	jr c, .asm_37ef
 	ld e, c
 	ld d, b
 	call PlayCryHeader
-
 .asm_37ef
+
 	pop bc
 	pop de
 	pop hl
@@ -1783,16 +1784,17 @@ Function37f3:: ; 37f3
 	ret c
 	ld a, [hROMBank]
 	push af
-	ld a, $3c
+	ld a, BANK(CryHeaders)
 	rst Bankswitch
 
-	ld hl, $6787
+	ld hl, CryHeaders
 	add hl, bc
 	add hl, bc
 	add hl, bc
 	add hl, bc
 	add hl, bc
 	add hl, bc
+
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
@@ -1804,10 +1806,10 @@ Function37f3:: ; 37f3
 	ld a, [hli]
 	ld [CryLength], a
 	ld a, [hl]
-	ld [$c2b3], a
+	ld [CryLength + 1], a
+
 	pop af
 	rst Bankswitch
-
 	and a
 	ret
 ; 381e
@@ -1815,11 +1817,12 @@ Function37f3:: ; 37f3
 Function381e:: ; 381e
 	and a
 	jr z, .asm_382b
-	cp $fc
+	cp NUM_POKEMON + 1
 	jr nc, .asm_382b
+
 	dec a
 	ld c, a
-	ld b, $0
+	ld b, 0
 	and a
 	ret
 
@@ -2042,7 +2045,7 @@ GetPartyParamLocation:: ; 3917
 	push bc
 	ld hl, PartyMons
 	ld c, a
-	ld b, $00
+	ld b, 0
 	add hl, bc
 	ld a, [CurPartyMon]
 	call GetPartyLocation
@@ -2061,12 +2064,12 @@ Function392d:: ; 392d
 	push hl
 	ld a, b
 	dec a
-	ld b, $0
+	ld b, 0
 	add hl, bc
-	ld hl, $5424
+	ld hl, BaseData + 0
 	ld bc, $0020
 	call AddNTimes
-	ld a, $14
+	ld a, BANK(BaseData)
 	call GetFarHalfword
 	ld b, l
 	ld c, h
