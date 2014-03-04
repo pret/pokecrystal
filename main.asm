@@ -49402,11 +49402,11 @@ Function4802f: ; 4802f (12:402f)
 	call Functione5f
 	ld de, $48c3
 	ld hl, $9100
-	ld bc, $1201
+	lb bc, $12, $01
 	call Request1bpp
 	ld de, $48cb
 	ld hl, $9110
-	ld bc, $1201
+	lb bc, $12, $01
 	call Request1bpp
 	call Function4a3a7
 	call WhiteBGMap
@@ -49418,9 +49418,9 @@ Function4802f: ; 4802f (12:402f)
 .asm_4808a
 	ld a, $5
 	ld [MusicFade], a ; $c2a7
-	ld a, $5e
+	ld a, MUSIC_MOBILE_ADAPTER_MENU % $100
 	ld [MusicFadeIDLo], a ; $c2a9
-	ld a, $0
+	ld a, MUSIC_MOBILE_ADAPTER_MENU / $100
 	ld [MusicFadeIDHi], a ; $c2aa
 	ld c, $14
 	call DelayFrames
@@ -49488,7 +49488,7 @@ Function4802f: ; 4802f (12:402f)
 	ld c, $12
 	call TextBox
 	ld hl, $c5e1
-	ld de, $4275
+	ld de, String_48275
 	call PlaceString
 	call Function48187
 	call Function3200
@@ -49585,13 +49585,15 @@ Function48187: ; 48187 (12:4187)
 	jr nz, .asm_48201
 .asm_481f8
 	ld hl, $c573
-	ld de, $4202
+	ld de, String_48202
 	call PlaceString
 .asm_48201
 	ret
 ; 48202 (12:4202)
 
-INCBIN "baserom.gbc",$48202,$4820d - $48202
+String_48202: ; 48202
+	db "Tell Later@"
+; 4820d
 
 ; known jump sources: 48161 (12:4161)
 Function4820d: ; 4820d (12:420d)
@@ -49623,7 +49625,17 @@ Function4820d: ; 4820d (12:420d)
 	jr .asm_4825c
 ; 48241 (12:4241)
 
-INCBIN "baserom.gbc",$48241,$4825c - $48241
+	ld hl, $c5cd
+	ld b, $2
+	ld c, $12
+	call ClearBox
+	ld de, $44a1
+	ld hl, $c5e1
+	call PlaceString
+	call WaitBGMap
+	ld c, $30
+	call DelayFrames
+
 .asm_4825c
 	call WhiteBGMap
 	call Function48d30
@@ -49641,7 +49653,9 @@ Function48272: ; 48272 (12:4272)
 	jp Function4840c
 ; 48275 (12:4275)
 
-INCBIN "baserom.gbc",$48275,$48283 - $48275
+String_48275: ; 48275
+	db "Personal Info@"
+; 48283
 
 ; known jump sources: 4828d (12:428d), 48304 (12:4304), 4840f (12:440f), 4876f (12:476f), 488d3 (12:48d3)
 Function48283: ; 48283 (12:4283)
@@ -49838,7 +49852,7 @@ Function4840c: ; 4840c (12:440c)
 	call Function48187
 	call Function48283
 	ld hl, $c5e1
-	ld de, $4275
+	ld de, String_48275
 	call PlaceString
 	call Function486bf
 	pop bc
@@ -49865,7 +49879,7 @@ Function48444: ; 48444 (12:4444)
 	push af
 	push de
 	push hl
-	ld hl, $445d
+	ld hl, Unknown_4845d
 .asm_4844b
 	and a
 	jr z, .asm_48453
@@ -49884,7 +49898,84 @@ Function48444: ; 48444 (12:4444)
 	ret
 ; 4845d (12:445d)
 
-INCBIN "baserom.gbc",$4845d,$48689 - $4845d
+Unknown_4845d: ; 4845d
+; 4845d
+	db "0@"
+	db "1@"
+	db "2@"
+	db "3@"
+	db "4@"
+	db "5@"
+	db "6@"
+	db "7@"
+	db "8@"
+	db "9@"
+	db "  Mobile Profile@"
+	db "Gender@"
+	db "Age@"
+	db "Address@"
+	db "Zip Code@"
+	db "OK@"
+	db "Profile Changed@"
+	db "Boy or girl?@"
+	db "How old are you?@"
+	db "Where do you live?@"
+	db "Your zip code?@"
+; 484f1
+
+INCBIN "baserom.gbc",$484f1,$48552 - $484f1
+
+; 48552
+	db "がぎぐげござじず", $ff
+
+Aichi:               db "あいちけん@"   ; Aichi
+AomoriPrefecture:    db "あおもりけん@" ; Aomori Prefecture
+AkitaKen:            db "あきたけん@"   ; Akita-ken
+IshikawaKen:         db "いしかわけん@" ; Ishikawa-ken
+Ibaraki:             db "いばらきけん@" ; Ibaraki
+Iwate:               db "いわてけん@"   ; Iwate
+EhimePrefecture:     db "えひめけん@"   ; Ehime Prefecture
+OitaPrefecture:      db "おおいたけん@" ; Oita Prefecture
+Osakafu:             db "おおさかふ@"   ; Osakafu
+OkayamaPrefecture:   db "おかやまけん@" ; Okayama Prefecture
+Okinawa:             db "おきなわけん@" ; Okinawa
+Kagawa:              db "かがわけん@"   ; Kagawa
+KagoshimaPrefecture: db "かごしまけん@" ; Kagoshima Prefecture
+Kanagawa:            db "かながわけん@" ; Kanagawa
+GifuKen:             db "ぎふけん@"     ; Gifu-ken
+Kyotofu:             db "きょうとふ@"   ; Kyotofu
+KumamotoPrefecture:  db "くまもとけん@" ; Kumamoto Prefecture
+GunmaPrefecture:     db "ぐんまけん@"   ; Gunma Prefecture
+Kochi:               db "こうちけん@"   ; Kochi
+Saitama:             db "さいたまけん@" ; Saitama
+SagaKen:             db "さがけん@"     ; Saga-ken
+ShigaKen:            db "しがけん@"     ; Shiga-ken
+ShizuokaPrefecture:  db "しずおかけん@" ; Shizuoka Prefecture
+ShimanePrefecture:   db "しまねけん@"   ; Shimane Prefecture
+ChibaKen:            db "ちばけん@"     ; Chiba-ken
+Tokyo:               db "とうきょうと@" ; Tokyo
+Tokushima:           db "とくしまけん@" ; Tokushima
+Tochigi:             db "とちぎけん@"   ; Tochigi
+TottoriPrefecture:   db "とっとりけん@" ; Tottori Prefecture
+Toyama:              db "とやまけん@"   ; Toyama
+Nagasaki:            db "ながさきけん@" ; Nagasaki
+NaganoKen:           db "ながのけん@"   ; Nagano-ken
+Naraken:             db "ならけん@"     ; Naraken
+NiigataPrefecture:   db "にいがたけん@" ; Niigata Prefecture
+HyogoKen:            db "ひょうごけん@" ; Hyogo-ken
+HiroshimaPrefecture: db "ひろしまけん@" ; Hiroshima Prefecture
+FukuiKen:            db "ふくいけん@"   ; Fukui-ken
+FukuokaKen:          db "ふくおかけん@" ; Fukuoka-ken
+Fukushima:           db "ふくしまけん@" ; Fukushima
+Hokkaido:            db "ほっかいどう@" ; Hokkaido
+MieKen:              db "みえけん@"     ; Mie-ken
+Miyagi:              db "みやぎけん@"   ; Miyagi
+MiyazakiKen:         db "みやざきけん@" ; Miyazaki-ken
+Yamagata:            db "やまがたけん@" ; Yamagata
+KenYamaguchi:        db "やまぐちけん@" ; Ken Yamaguchi
+YamanashiPrefecture: db "やまなしけん@" ; Yamanashi Prefecture
+WakayamaPrefecture:  db "わかやまけん@" ; Wakayama Prefecture
+; 48689
 
 ; known jump sources: 48085 (12:4085)
 Function48689: ; 48689 (12:4689)
