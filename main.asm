@@ -47619,7 +47619,7 @@ Function421f5: ; 421f5
 	cp $ff
 	jp z, Function423ff
 
-	ld [MagikarpLength], a
+	ld [Buffer1], a
 
 	push hl
 	ld a, [CurPartyMon]
@@ -47631,7 +47631,7 @@ Function421f5: ; 421f5
 	and a
 	jp z, Function421f5
 
-	ld a, [MagikarpLength]
+	ld a, [Buffer1]
 	dec a
 	ld b, 0
 	ld c, a
@@ -47927,8 +47927,8 @@ Function421f5: ; 421f5
 	jp .asm_42230
 ; 423fe
 
-INCBIN "baserom.gbc", $423fe, $423ff - $423fe
-
+Function423fe: ; 423fe
+	pop hl
 
 Function423ff: ; 423ff
 	pop de
@@ -48027,7 +48027,7 @@ Function42487: ; 42487
 	ld a, [$d265]
 	ld [CurPartySpecies], a
 	dec a
-	ld b, $0
+	ld b, 0
 	ld c, a
 	ld hl, EvosAttacksPointers
 	add hl, bc
@@ -48223,7 +48223,7 @@ GetPreEvolution: ; 42581
 ; Return carry and the new species in CurPartySpecies
 ; if a pre-evolution is found.
 
-	ld c, BULBASAUR - 1
+	ld c, 0
 .asm_42583
 	ld hl, EvosAttacksPointers
 	ld b, 0
@@ -48265,8 +48265,6 @@ GetPreEvolution: ; 42581
 	scf
 	ret
 ; 425b1
-
-
 
 
 
