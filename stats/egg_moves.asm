@@ -13,6 +13,8 @@ SECTION "Egg Moves", ROMX, BANK[EGG_MOVES]
 INCLUDE "stats/egg_move_pointers.asm"
 
 
+EggMoves::
+
 BulbasaurEggMoves:
 	db LIGHT_SCREEN
 	db SKULL_BASH
