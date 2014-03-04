@@ -243,7 +243,7 @@ Function10eea7: ; 10eea7
 	swap a
 	ld e, a
 	ld d, $0
-	ld hl, $6ece
+	ld hl, Unknown_10eece
 	add hl, de
 	ld d, [hl]
 	xor a
@@ -256,7 +256,9 @@ Function10eea7: ; 10eea7
 	ret
 ; 10eece
 
-INCBIN "baserom.gbc", $10eece, $10eed2 - $10eece
+Unknown_10eece: ; 10eece
+	db $80, $88, $00, $08
+; 10eed2
 
 
 Function10eed2: ; 10eed2
@@ -374,21 +376,15 @@ AnimateTitleCrystal: ; 10ef32
 
 TitleSuicuneGFX: ; 10ef46
 INCBIN "gfx/title/suicune.lz"
-; 10f31b
-
-INCBIN "baserom.gbc", $10f31b, $10f326 - $10f31b
+; 10f326
 
 TitleLogoGFX: ; 10f326
 INCBIN "gfx/title/logo.lz"
-; 10fced
-
-INCBIN "baserom.gbc", $10fced, $10fcee - $10fced
+; 10fcee
 
 TitleCrystalGFX: ; 10fcee
 INCBIN "gfx/title/crystal.lz"
-; 10fed7
-
-INCBIN "baserom.gbc", $10fed7, $10fede - $10fed7
+; 10fede
 
 TitleScreenPalettes:
 ; BG
