@@ -1782,6 +1782,89 @@ UndergroundSwitchPositions:: ; d963
 FarfetchdPosition:: ; d964
 	ds 1 ; which position the ilex farfetch'd is in
 
+SECTION "Map Triggers", WRAMX[$d972], BANK[1]
+
+wPokecenter2FTrigger::                       ds 1 ; d972
+wTradeCenterTrigger::                        ds 1 ; d973
+wColosseumTrigger::                          ds 1 ; d974
+wTimeCapsuleTrigger::                        ds 1 ; d975
+wPowerPlantTrigger::                         ds 1 ; d976
+wCeruleanGymTrigger::                        ds 1 ; d977
+wRoute25Trigger::                            ds 1 ; d978
+wTrainerHouseB1FTrigger::                    ds 1 ; d979
+wVictoryRoadGateTrigger::                    ds 1 ; d97a
+wSaffronTrainStationTrigger::                ds 1 ; d97b
+wRoute16GateTrigger::                        ds 1 ; d97c
+wRoute1718GateTrigger::                      ds 1 ; d97d
+wIndigoPlateauPokecenter1FTrigger::          ds 1 ; d97e
+wWillsRoomTrigger::                          ds 1 ; d97f
+wKogasRoomTrigger::                          ds 1 ; d980
+wBrunosRoomTrigger::                         ds 1 ; d981
+wKarensRoomTrigger::                         ds 1 ; d982
+wLancesRoomTrigger::                         ds 1 ; d983
+wHallOfFameTrigger::                         ds 1 ; d984
+wRoute27Trigger::                            ds 1 ; d985
+wNewBarkTownTrigger::                        ds 1 ; d986
+wElmsLabTrigger::                            ds 1 ; d987
+wKrissHouse1FTrigger::                       ds 1 ; d988
+wRoute29Trigger::                            ds 1 ; d989
+wCherrygroveCityTrigger::                    ds 1 ; d98a
+wMrPokemonsHouseTrigger::                    ds 1 ; d98b
+wRoute32Trigger::                            ds 1 ; d98c
+wRoute35NationalParkGateTrigger::            ds 1 ; d98d
+wRoute36Trigger::                            ds 1 ; d98e
+wRoute36NationalParkGateTrigger::            ds 1 ; d98f
+wAzaleaTownTrigger::                         ds 1 ; d990
+wGoldenrodGymTrigger::                       ds 1 ; d991
+wGoldenrodMagnetTrainStationTrigger::        ds 1 ; d992
+wGoldenrodPokecenter1FTrigger::              ds 1 ; d993
+wOlivineCityTrigger::                        ds 1 ; d994
+wRoute34Trigger::                            ds 1 ; d995
+wRoute34IlexForestGateTrigger::              ds 1 ; d996
+wEcruteakHouseTrigger::                      ds 1 ; d997
+wWiseTriosRoomTrigger::                      ds 1 ; d998
+wEcruteakPokecenter1FTrigger::               ds 1 ; d999
+wEcruteakGymTrigger::                        ds 1 ; d99a
+wMahoganyTownTrigger::                       ds 1 ; d99b
+wRoute42Trigger::                            ds 1 ; d99c
+wCianwoodCityTrigger::                       ds 1 ; d99d
+wBattleTower1FTrigger::                      ds 1 ; d99e
+wBattleTowerBattleRoomTrigger::              ds 1 ; d99f
+wBattleTowerElevatorTrigger::                ds 1 ; d9a0
+wBattleTowerHallwayTrigger::                 ds 1 ; d9a1
+wBattleTowerOutsideTrigger::                 ds 1 ; d9a2
+wRoute43GateTrigger::                        ds 1 ; d9a3
+wMountMoonTrigger::                          ds 1 ; d9a4
+wSproutTower3FTrigger::                      ds 1 ; d9a5
+wTinTower1FTrigger::                         ds 1 ; d9a6
+wBurnedTower1FTrigger::                      ds 1 ; d9a7
+wBurnedTowerB1FTrigger::                     ds 1 ; d9a8
+wRadioTower5FTrigger::                       ds 1 ; d9a9
+wRuinsOfAlphOutsideTrigger::                 ds 1 ; d9aa
+wRuinsOfAlphResearchCenterTrigger::          ds 1 ; d9ab
+wRuinsOfAlphHoOhChamberTrigger::             ds 1 ; d9ac
+wRuinsOfAlphKabutoChamberTrigger::           ds 1 ; d9ad
+wRuinsOfAlphOmanyteChamberTrigger::          ds 1 ; d9ae
+wRuinsOfAlphAerodactylChamberTrigger::       ds 1 ; d9af
+wRuinsOfAlphInnerChamberTrigger::            ds 1 ; d9b0
+wMahoganyMart1FTrigger::                     ds 1 ; d9b1
+wTeamRocketBaseB1FTrigger::                  ds 1 ; d9b2
+wTeamRocketBaseB2FTrigger::                  ds 1 ; d9b3
+wTeamRocketBaseB3FTrigger::                  ds 1 ; d9b4
+wUndergroundPathSwitchRoomEntrancesTrigger:: ds 1 ; d9b5
+wSilverCaveRoom3Trigger::                    ds 1 ; d9b6
+wVictoryRoadTrigger::                        ds 1 ; d9b7
+wDragonsDenB1FTrigger::                      ds 1 ; d9b8
+wDragonShrineTrigger::                       ds 1 ; d9b9
+wOlivinePortTrigger::                        ds 1 ; d9ba
+wVermilionPortTrigger::                      ds 1 ; d9bb
+wFastShip1FTrigger::                         ds 1 ; d9bc
+wFastShipB1FTrigger::                        ds 1 ; d9bd
+wMountMoonSquareTrigger::                    ds 1 ; d9be
+wMobileTradeRoomMobileTrigger::              ds 1 ; d9bf
+wMobileBattleRoomTrigger::                   ds 1 ; d9c0
+
+
 SECTION "Events",WRAMX[$da72],BANK[1]
 
 EventFlags:: ; da72
