@@ -48481,13 +48481,13 @@ AIScoringPointers: ; 441af
 
 
 Function441cf: ; 441cf
-	ld hl, $41fc
-	ld b, $19
+	ld hl, Unknown_441fc
+	ld b, 25
 .asm_441d4
 	ld a, [hli]
 	cp $fe
 	jr nz, .asm_441dd
-	ld hl, $41fc
+	ld hl, Unknown_441fc
 	ld a, [hli]
 
 .asm_441dd
@@ -48510,12 +48510,19 @@ Function441cf: ; 441cf
 	ret
 ; 441fc
 
-INCBIN "baserom.gbc",$441fc,$44207 - $441fc
+Unknown_441fc: ; 441fc
+	db $00, $07
+	db $01, $07
+	db $02, $07
+	db $03, $07
+	db $04, $07
+	db $fe
+; 44207
 
 
 Function44207: ; 44207
 	ld a, [$c7db]
-	ld hl, $4228
+	ld hl, Unknown_44228
 	ld de, Sprites
 .asm_44210
 	ld a, [hli]
@@ -48540,7 +48547,18 @@ Function44207: ; 44207
 	jr .asm_44210
 ; 44228
 
-INCBIN "baserom.gbc",$44228,$4424d - $44228
+Unknown_44228: ; 44228
+	db $58, $48, $00, $00
+	db $58, $50, $01, $00
+	db $58, $58, $02, $00
+	db $60, $48, $10, $00
+	db $60, $50, $11, $00
+	db $60, $58, $12, $00
+	db $68, $48, $20, $00
+	db $68, $50, $21, $00
+	db $68, $58, $22, $00
+	db $ff
+; 4424d
 
 Function4424d: ; 4424d
 	call GetPokemonName
@@ -48670,14 +48688,16 @@ Function4424d: ; 4424d
 	ret
 ; 44331
 
-INCBIN "baserom.gbc",$44331,$44333 - $44331
+String_44331: ; 44331
+	db "#@"
+; 44333
 
 Function44333: ; 44333
 	push hl
 	ld hl, PokedexDataPointerTable
 	ld a, b
 	dec a
-	ld d, $0
+	ld d, 0
 	ld e, a
 	add hl, de
 	add hl, de
@@ -48689,7 +48709,7 @@ Function44333: ; 44333
 	rlca
 	and $3
 	ld hl, PokedexEntryBanks
-	ld d, $0
+	ld d, 0
 	ld e, a
 	add hl, de
 	ld b, [hl]
@@ -48956,7 +48976,7 @@ Function446cc:: ; 446cc
 	call AddNTimes
 	ld d, h
 	ld e, l
-	ld hl, DefaultFlypoint
+	ld hl, $d002
 	ld bc, $0021
 	ld a, $0
 	call GetSRAMBank
@@ -49330,6 +49350,7 @@ MenuData44964: ; 0x44964
 	db "PUT IN PACK@"
 	db "ATTACH MAIL@"
 	db "CANCEL@"
+
 
 SECTION "bank12", ROMX, BANK[$12]
 
