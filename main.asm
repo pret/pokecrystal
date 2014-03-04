@@ -53815,7 +53815,7 @@ Function4cffe:: ; 4cffe
 	ret
 ; 4d01e
 
-Unknown_4d01e:: ; 4d01e
+MapTriggers:: ; 4d01e
 ; Map triggers
 
 trigger_def: MACRO
@@ -92098,7 +92098,7 @@ Function1045b0: ; 1045b0
 	call Function210f
 	call Function2e50
 	call Function2e5d
-	call Function212a
+	call GetCurrentMapTrigger
 	call Function2e56
 	ld a, $5
 	call Function263b
@@ -98752,7 +98752,7 @@ Function11b7e5: ; 11b7e5
 	ld b, a
 	ld a, [MapNumber]
 	ld c, a
-	call Function2147
+	call GetMapTrigger
 	ld a, d
 	or e
 	jr z, .asm_11b872

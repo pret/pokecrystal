@@ -24,7 +24,7 @@ Function211b:: ; 211b
 	ret
 ; 212a
 
-Function212a:: ; 212a
+GetCurrentMapTrigger:: ; 212a
 	ld a, [MapGroup]
 	ld b, a
 	ld a, [MapNumber]
@@ -32,7 +32,7 @@ Function212a:: ; 212a
 	xor a
 	ld [$dbf7], a
 	ld [$dbf8], a
-	call Function2147
+	call GetMapTrigger
 	ret c
 	ld a, e
 	ld [$dbf7], a
@@ -42,14 +42,14 @@ Function212a:: ; 212a
 	ret
 ; 2147
 
-Function2147:: ; 2147
+GetMapTrigger:: ; 2147
 	push bc
 	ld a, [hROMBank]
 	push af
-	ld a, BANK(Unknown_4d01e)
+	ld a, BANK(MapTriggers)
 	rst Bankswitch
 
-	ld hl, Unknown_4d01e
+	ld hl, MapTriggers
 .asm_2151
 	push hl
 	ld a, [hli]
