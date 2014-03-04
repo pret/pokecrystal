@@ -55995,15 +55995,14 @@ StatsScreenMain: ; 0x4dcd2
 INCBIN "baserom.gbc",$4dcf7,$4dd2a - $4dcf7
 
 StatsScreenPointerTable: ; 4dd2a
-	dw $5d72 ; regular pokémon
+	dw Function4dd72 ; regular pokémon
 	dw EggStatsInit ; egg
-	dw $5de6
-	dw $5dac
-	dw $5dc6
-	dw $5de6
-	dw $5dd6
-	dw $5d6c
-
+	dw Function4dde6
+	dw Function4ddac
+	dw Function4ddc6
+	dw Function4dde6
+	dw Function4ddd6
+	dw Function4dd6c
 ; 4dd3a
 
 
