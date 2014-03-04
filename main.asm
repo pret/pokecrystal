@@ -30847,8 +30847,8 @@ Function20000: ; 20000 (8:4000)
 	push hl
 	dec a
 	ld e, a
-	ld d, $0
-	ld hl, $4015
+	ld d, 0
+	ld hl, Unknown_20015
 	add hl, de
 	add hl, de
 	add hl, de
@@ -30864,11 +30864,20 @@ Function20000: ; 20000 (8:4000)
 	ret
 ; 20015 (8:4015)
 
-INCBIN "baserom.gbc",$20015,$20021 - $20015
+Unknown_20015: ; 20015
+	dw $d1ed
+	db $07, $04
+
+	dw $d1ee
+	db $18, $0c
+
+	dw $d1ef
+	db $3c, $0f
+; 20021
 
 ; no known jump sources
 Function20021: ; 20021 (8:4021)
-	ld hl, $4047
+	ld hl, UnknownText_0x20047
 	call PrintText
 	ld hl, Options ; $cfcc
 	ld a, [hl]
@@ -30876,7 +30885,7 @@ Function20021: ; 20021 (8:4021)
 	set 4, [hl]
 	call Function1d6e
 	call ClearTileMap
-	ld hl, $404c
+	ld hl, UnknownText_0x2004c
 	call PrintText
 	call Function20051
 	call Function1c07
@@ -30887,7 +30896,17 @@ Function20021: ; 20021 (8:4021)
 	ret
 ; 20047 (8:4047)
 
-INCBIN "baserom.gbc",$20047,$20051 - $20047
+UnknownText_0x20047: ; 0x20047
+	; The clock's time may be wrong. Please reset the time.
+	text_jump UnknownText_0x1c40e6
+	db "@"
+; 0x2004c
+
+UnknownText_0x2004c: ; 0x2004c
+	; Set with the Control Pad. Confirm: A Button Cancel:  B Button
+	text_jump UnknownText_0x1c411c
+	db "@"
+; 0x20051
 
 ; known jump sources: 2003a (8:403a)
 Function20051: ; 20051 (8:4051)
@@ -30909,7 +30928,7 @@ Function20051: ; 20051 (8:4051)
 	and a
 	ret nz
 	call Function2011f
-	ld hl, $40b0
+	ld hl, UnknownText_0x200b0
 	call PrintText
 	call YesNoBox
 	jr c, .asm_200ad
@@ -30923,7 +30942,7 @@ Function20051: ; 20051 (8:4051)
 	ld [$d089], a
 	call Function677
 	call Function2011f
-	ld hl, $40b5
+	ld hl, UnknownText_0x200b5
 	call PrintText
 	call Functiona80
 	xor a
@@ -30933,7 +30952,17 @@ Function20051: ; 20051 (8:4051)
 	ret
 ; 200b0 (8:40b0)
 
-INCBIN "baserom.gbc",$200b0,$200ba - $200b0
+UnknownText_0x200b0: ; 0x200b0
+	; Is this OK?
+	text_jump UnknownText_0x1c415b
+	db "@"
+; 0x200b5
+
+UnknownText_0x200b5: ; 0x200b5
+	; The clock has been reset.
+	text_jump UnknownText_0x1c4168
+	db "@"
+; 0x200ba
 
 ; known jump sources: 20071 (8:4071), 200db (8:40db)
 Function200ba: ; 200ba (8:40ba)
@@ -31020,17 +31049,22 @@ Function2011f: ; 2011f (8:411f)
 	ld de, $c54b
 	callba Function1dd6bb
 	ld a, [Buffer2] ; $d1eb (aliases: MovementType)
-	ld de, $7f7f
+	lb de, $7f, $7f
 	call Function20168
 	ld a, [Buffer1] ; $d1ea (aliases: MagikarpLength)
-	ld de, $61ee
+	lb de, $61, $ee
 	call Function20168
 	ld a, [Buffer1] ; $d1ea (aliases: MagikarpLength)
 	ld [Buffer2], a ; $d1eb (aliases: MovementType)
 	ret
 ; 20160 (8:4160)
 
-INCBIN "baserom.gbc",$20160,$20168 - $20160
+Function20160: ; 20160
+	ld a, [$d1ec]
+	ld b, a
+	call GetTileCoord
+	ret
+; 20168
 
 ; known jump sources: 2014d (8:414d), 20156 (8:4156)
 Function20168: ; 20168 (8:4168)
@@ -31048,7 +31082,13 @@ Function20168: ; 20168 (8:4168)
 	ret
 ; 2017c (8:417c)
 
-INCBIN "baserom.gbc",$2017c,$20181 - $2017c
+String_2017c: ; 2017c
+	db "じ@" ; HR
+; 2017e
+
+String_2017e: ; 2017e
+	db "ふん@" ; MIN
+; 20181
 
 
 SECTION "Tileset Data 3", ROMX, BANK[TILESETS_3]
