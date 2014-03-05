@@ -88029,12 +88029,12 @@ Functionfb57e: ; fb57e
 	ld a, [$d003]
 	inc a
 	ld c, a
-	ld b, $0
+	ld b, 0
 	ld hl, OTPartyCount
 	add hl, bc
 	ld a, [hl]
 	pop hl
-	cp $fd
+	cp EGG
 	jr z, .asm_fb59c
 	cp [hl]
 	jr nz, .asm_fb5db
@@ -88042,10 +88042,10 @@ Functionfb57e: ; fb57e
 .asm_fb59c
 	ld b, h
 	ld c, l
-	ld hl, $001f
+	ld hl, OTPartyMon1Level - OTPartyMon1
 	add hl, bc
 	ld a, [hl]
-	cp $65
+	cp 101
 	jr nc, .asm_fb5db
 	ld a, [InLinkBattle]
 	cp $1
@@ -88053,13 +88053,17 @@ Functionfb57e: ; fb57e
 	ld hl, OTPartySpecies
 	ld a, [$d003]
 	ld c, a
-	ld b, $0
+	ld b, 0
 	add hl, bc
 	ld a, [hl]
-	cp $51
+
+	; Magnemite and Magneton's types changed
+	; from Electric to Electric/Steel.
+	cp MAGNEMITE
 	jr z, .asm_fb5d9
-	cp $52
+	cp MAGNETON
 	jr z, .asm_fb5d9
+
 	ld [CurSpecies], a
 	call GetBaseData
 	ld hl, $cbea
