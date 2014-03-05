@@ -59869,38 +59869,44 @@ Function50e1b: ; 50e1b
 
 
 Function50e47: ; 50e47
+
 	ld a, [BaseGrowthRate]
 	add a
 	add a
 	ld c, a
-	ld b, $0
-	ld hl, $4efa
+	ld b, 0
+	ld hl, GrowthRates
 	add hl, bc
 	call Function50eed
 	ld a, d
 	ld [hMultiplier], a
 	call Multiply
+
 	ld a, [hl]
 	and $f0
 	swap a
 	ld [hMultiplier], a
 	call Multiply
+
 	ld a, [hli]
 	and $f
 	ld [hMultiplier], a
 	ld b, $4
 	call Divide
+
 	ld a, [hMultiplicand]
 	push af
 	ld a, [$ffb5]
 	push af
 	ld a, [$ffb6]
 	push af
+
 	call Function50eed
 	ld a, [hl]
 	and $7f
 	ld [hMultiplier], a
 	call Multiply
+
 	ld a, [hMultiplicand]
 	push af
 	ld a, [$ffb5]
@@ -59909,6 +59915,7 @@ Function50e47: ; 50e47
 	push af
 	ld a, [hli]
 	push af
+
 	xor a
 	ld [hMultiplicand], a
 	ld [$ffb5], a
@@ -59917,6 +59924,7 @@ Function50e47: ; 50e47
 	ld a, [hli]
 	ld [hMultiplier], a
 	call Multiply
+
 	ld b, [hl]
 	ld a, [$ffb6]
 	sub b
@@ -59928,9 +59936,11 @@ Function50e47: ; 50e47
 	ld a, [hMultiplicand]
 	sbc b
 	ld [hMultiplicand], a
+
 	pop af
 	and $80
 	jr nz, .asm_50ec8
+
 	pop bc
 	ld a, [$ffb6]
 	add b
@@ -59985,7 +59995,26 @@ Function50eed: ; 50eed
 	jp Multiply
 ; 50efa
 
-INCBIN "baserom.gbc",$50efa,$50f12 - $50efa
+GrowthRates: ; 50efa
+
+growth_rate: MACRO
+; [1]/[2]*n^3 + [3]*n^2 + [4]*n - [5]
+	dn \1, \2
+	IF \3 & $80 ; signed
+		db ((\3 ^ $ff) + 1) | $80
+	ELSE
+		db \3
+	ENDC
+	db \4, \5
+ENDM
+
+	growth_rate 1, 1,   0,   0,   0 ; Medium Fast
+	growth_rate 3, 4,  10,   0,  30
+	growth_rate 3, 4,  20,   0,  70
+	growth_rate 6, 5, -15, 100, 140 ; Medium Slow
+	growth_rate 4, 5,   0,   0,   0 ; Fast
+	growth_rate 5, 4,   0,   0,   0 ; Slow
+; 50f12
 
 Function50f12:
 	ld a, [$d0e3]
@@ -60025,7 +60054,7 @@ Function50f34: ; 50f34 (14:4f34)
 	add hl, de
 	dec c
 	jr nz, .asm_50f55
-	ld de, $20
+	ld de, SFX_SWITCH_POKEMON
 	call WaitPlaySFX
 	ret
 

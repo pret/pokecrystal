@@ -3579,7 +3579,7 @@ Function3d6ca: ; 3d6ca
 	ld [CurPartySpecies], a
 	call LoadEnemyMon
 	ld a, [CurPartySpecies]
-	cp $c9
+	cp UNOWN
 	jr nz, .asm_3d708
 	ld a, [$def4]
 	and a
@@ -7827,7 +7827,7 @@ Function3f136: ; 3f136
 
 .asm_3f1b7
 	ld a, e
-	cp $64
+	cp MAX_LEVEL
 	jr nc, .asm_3f1ff
 	cp d
 	jr z, .asm_3f1ff
