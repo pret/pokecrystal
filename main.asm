@@ -56049,7 +56049,7 @@ Function4dd72: ; 4dd72 (13:5d72)
 	callba Function10402d
 	call Function4ddf2
 	ld a, [CurPartySpecies] ; $d108
-	cp $fd
+	cp EGG
 	jr z, .asm_4dd9b
 	call Function4deea
 	ld hl, $cf64
@@ -56819,8 +56819,8 @@ Function4e307: ; 4e307 (13:6307)
 	push af
 	ld a, $1
 	ld [rVBK], a ; $ff00+$4f
-	ld de, $5204
-	ld bc, $3e01
+	ld de, GFX_f9204
+	lb bc, BANK(GFX_f9204), 1
 	ld hl, $97f0
 	call Get2bpp
 	pop af
@@ -56832,7 +56832,10 @@ Function4e307: ; 4e307 (13:6307)
 	ret
 ; 4e32a (13:632a)
 
-INCBIN "baserom.gbc",$4e32a,$4e33a - $4e32a
+Unknown_4e32a: ; 4e32a
+; A blank tile?
+	ds 16
+; 4e33a
 
 EggStatsScreen: ; 4e33a
 	xor a
@@ -79130,9 +79133,9 @@ Functionb8098:: ; b8098 (2e:4098)
 
 
 Functionb80c6: ; b80c6
-	ld de, $5344
+	ld de, GFX_f9344
 	ld hl, $9600
-	ld bc, $3e0e
+	lb bc, BANK(GFX_f9344), $e
 	call Get2bpp
 	ret
 ; b80d3
@@ -87820,18 +87823,60 @@ INCBIN "gfx/frames/9.1bpp"
 
 ; TODO: Various misc graphics here.
 
+GFX_f89b0: ; f89b0
 INCBIN "baserom.gbc", $f89b0, $f8a90 - $f89b0
+; f8a90
 
 ShinyIcon: ; f8a90
 INCBIN "gfx/stats/shiny.2bpp"
 
-INCBIN "baserom.gbc", $f8aa0, $f8ba0 - $f8aa0
+GFX_f8aa0: ; f8aa0
+INCBIN "baserom.gbc", $f8aa0, $f8ac0 - $f8aa0
+; f8ac0
+
+GFX_f8ac0: ; f8ac0
+INCBIN "baserom.gbc", $f8ac0, $f8ae0 - $f8ac0
+; f8ae0
+
+GFX_f8ae0: ; f8ae0
+INCBIN "baserom.gbc", $f8ae0, $f8b10 - $f8ae0
+; f8b10
+
+GFX_f8b10: ; f8b10
+INCBIN "baserom.gbc", $f8b10, $f8ba0 - $f8b10
+; f8ba0
 
 TownMapGFX: ; f8ba0
 INCBIN "gfx/misc/town_map.lz"
 ; f8ea4
 
-INCBIN "baserom.gbc", $f8ea4, $f9434 - $f8ea4
+GFX_f8ea4: ; f8ea4
+INCBIN "baserom.gbc", $f8ea4, $f8f24 - $f8ea4
+; f8f24
+
+GFX_f8f24: ; f8f24
+INCBIN "baserom.gbc", $f8f24, $f8f34 - $f8f24
+; f8f34
+
+GFX_f8f34: ; f8f34
+INCBIN "baserom.gbc", $f8f34, $f9204 - $f8f34
+; f9204
+
+GFX_f9204: ; f9204
+INCBIN "baserom.gbc", $f9204, $f9214 - $f9204
+; f9214
+
+GFX_f9214: ; f9214
+INCBIN "baserom.gbc", $f9214, $f9344 - $f9214
+; f9344
+
+GFX_f9344: ; f9344
+INCBIN "baserom.gbc", $f9344, $f9424 - $f9344
+; f9424
+
+GFX_f9424: ; f9424
+INCBIN "baserom.gbc", $f9424, $f9434 - $f9424
+; f9434
 
 Footprints: ; f9434
 INCBIN "gfx/misc/footprints.1bpp"
@@ -87868,34 +87913,34 @@ Functionfb449:: ; fb449
 
 
 Functionfb48a:: ; fb48a
-	ld de, $5214
+	ld de, GFX_f9214
 	ld hl, $9600
-	ld bc, $3e01
+	lb bc, BANK(GFX_f9214), 1
 	call Functionddc
-	ld de, $4f24
+	ld de, GFX_f8f24
 	ld hl, $9620
-	ld bc, $3e01
+	lb bc, BANK(GFX_f8f24), 1
 	call Functiondc9
-	ld de, $4030
+	ld de, FontExtra + $30
 	ld hl, $9630
-	ld bc, $3e16
+	lb bc, BANK(FontExtra), $16
 	call Functiondc9
 	jr Functionfb4cc
 ; fb4b0
 
 Functionfb4b0:: ; fb4b0
-	ld de, $5424
+	ld de, GFX_f9424
 	ld hl, $9610
-	ld b, $3e
-	ld c, $1
+	ld b, BANK(GFX_f9424)
+	ld c, 1
 	call Functiondc9
 	ret
 ; fb4be
 
 Functionfb4be:: ; fb4be
-	ld de, $4600
+	ld de, FontBattleExtra
 	ld hl, $9600
-	ld bc, $3e19
+	lb bc, BANK(FontBattleExtra), $19
 	call Functiondc9
 	jr Functionfb4cc
 ; fb4cc
@@ -87909,69 +87954,69 @@ Functionfb4cc: ; fb4cc
 	ld d, h
 	ld e, l
 	ld hl, $9790
-	ld bc, $3e06
+	lb bc, BANK(Frames), 6
 	call Functionddc
 	ld hl, $97f0
-	ld de, $5204
-	ld bc, $3e01
+	ld de, GFX_f9204
+	lb bc, BANK(GFX_f9204), 1
 	call Functionddc
 	ret
 ; fb4f2
 
 Functionfb4f2: ; fb4f2
-	ld de, $4600
+	ld de, FontBattleExtra
 	ld hl, $9600
-	ld bc, $3e0c
+	lb bc, BANK(FontBattleExtra), $c
 	call Functiondc9
 	ld hl, $9700
-	ld de, $4700
-	ld bc, $3e03
+	ld de, FontBattleExtra + $100
+	lb bc, BANK(FontBattleExtra), 3
 	call Functiondc9
 	call Functionfb4cc
 
 Functionfb50d: ; fb50d
-	ld de, $4ac0
+	ld de, GFX_f8ac0
 	ld hl, $96c0
-	ld bc, $3e04
+	lb bc, BANK(GFX_f8ac0), 4
 	call Functionddc
-	ld de, $4ae0
+	ld de, GFX_f8ae0
 	ld hl, $9730
-	ld bc, $3e06
+	lb bc, BANK(GFX_f8ae0), 6
 	call Functionddc
-	ld de, $4b10
+	ld de, GFX_f8b10
 	ld hl, $9550
-	ld bc, $3e09
+	lb bc, BANK(GFX_f8b10), 9
 	call Functiondc9
-	ld de, $52a4
+	ld de, GFX_f9214 + $90
 	ld hl, $95e0
-	ld bc, $3e02
+	lb bc, BANK(GFX_f9214), 2
 	call Functiondc9
 	ret
 ; fb53e
 
 Functionfb53e: ; fb53e
 	call Functionfb4be
-	ld de, $4ac0
+	ld de, GFX_f8ac0
 	ld hl, $96c0
-	ld bc, $3e04
+	lb bc, BANK(GFX_f8ac0), 4
 	call Functionddc
-	ld de, $4ae0
+	ld de, GFX_f8ae0
 	ld hl, $9780
-	ld bc, $3e01
+	lb bc, BANK(GFX_f8ae0), 1
 	call Functionddc
-	ld de, $4af8
+	ld de, GFX_f8ae0 + $18
 	ld hl, $9760
-	ld bc, $3e02
+	lb bc, BANK(GFX_f8ae0), 2
 	call Functionddc
-	ld de, $4b10
+	ld de, GFX_f8b10
 	ld hl, $9550
-	ld bc, $3e08
+	lb bc, BANK(GFX_f8b10), 8
 	call Functiondc9
 
 Functionfb571: ; fb571
-	ld de, $49b0
+	ld de, GFX_f89b0
 	ld hl, $9310
-	ld bc, $3e11
+	lb bc, BANK(GFX_f89b0), $11
 	call Functiondc9
 	ret
 ; fb57e

@@ -7168,17 +7168,17 @@ Function3eda6: ; 3eda6
 
 
 Function3edad: ; 3edad
-	ld de, $4ac0
+	ld de, GFX_f8ac0
 	ld hl, $96c0
-	ld bc, $3e04
+	lb bc, BANK(GFX_f8ac0), 4
 	call Get1bpp
-	ld de, $4ae0
+	ld de, GFX_f8ae0
 	ld hl, $9730
-	ld bc, $3e06
+	lb bc, BANK(GFX_f8ae0), 6
 	call Get1bpp
-	ld de, $4b10
+	ld de, GFX_f8b10
 	ld hl, $9550
-	ld bc, $3e08
+	lb bc, BANK(GFX_f8b10), 8
 	jp Get2bpp
 ; 3edd1
 
