@@ -34,26 +34,32 @@ UnknownText_0x199996: ; 0x199996
 	db $0, "ズ", $03, $00
 
 UnknownText_0x19999c: ; 0x19999c
-	db $0, "I heard that a red", $4f
-	db "GYARADOS appeared", $55
-	db "at the LAKE.", $51
-	db "That's odd, since", $4f
-	db "even ordinary", $51
-	db "GYARADOS are rare", $4f
-	db "in that lake…", $57
+	text "I heard that a red"
+	line "GYARADOS appeared"
+	cont "at the LAKE."
+
+	para "That's odd, since"
+	line "even ordinary"
+
+	para "GYARADOS are rare"
+	line "in that lake…"
+	done
 ; 0x199a0e
 
 UnknownText_0x199a0e: ; 0x199a0e
-	db $0, "My favorite radio", $4f
-	db "program? I'd say", $55
-	db "#MON MUSIC.", $57
+	text "My favorite radio"
+	line "program? I'd say"
+	cont "#MON MUSIC."
+	done
 ; 0x199a3d
 
 UnknownText_0x199a3d: ; 0x199a3d
-	db $0, "I've been hearing", $4f
-	db "laughter on the", $51
-	db "radio…", $4f
-	db "It's creepy.", $57
+	text "I've been hearing"
+	line "laughter on the"
+
+	para "radio…"
+	line "It's creepy."
+	done
 ; 0x199a72
 
 MahoganyRedGyaradosSpeechHouse_MapEventHeader: ; 0x199a72

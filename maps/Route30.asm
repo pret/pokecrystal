@@ -338,133 +338,166 @@ MovementData_0x1a1802: ; 0x1a1802
 ; 0x1a1806
 
 UnknownText_0x1a1806: ; 0x1a1806
-	db $0, "Go, RATTATA!", $51
-	db "TACKLE!", $57
+	text "Go, RATTATA!"
+
+	para "TACKLE!"
+	done
 ; 0x1a181c
 
 UnknownText_0x1a181c: ; 0x1a181c
-	db $0, "What? This is a", $4f
-	db "big battle!", $55
-	db "Leave me alone!", $57
+	text "What? This is a"
+	line "big battle!"
+	cont "Leave me alone!"
+	done
 ; 0x1a1849
 
 YoungsterJoey1SeenText: ; 0x1a1849
-	db $0, "I just lost, so", $4f
-	db "I'm trying to find", $55
-	db "more #MON.", $51
-	db "Wait! You look", $4f
-	db "weak! Come on,", $55
-	db "let's battle!", $57
+	text "I just lost, so"
+	line "I'm trying to find"
+	cont "more #MON."
+
+	para "Wait! You look"
+	line "weak! Come on,"
+	cont "let's battle!"
+	done
 ; 0x1a18a2
 
 YoungsterJoey1BeatenText: ; 0x1a18a2
-	db $0, "Ack! I lost again!", $4f
-	db "Doggone it!", $57
+	text "Ack! I lost again!"
+	line "Doggone it!"
+	done
 ; 0x1a18c2
 
 UnknownText_0x1a18c2: ; 0x1a18c2
-	db $0, "Do I have to have", $4f
-	db "more #MON in", $51
-	db "order to battle", $4f
-	db "better?", $51
-	db "No! I'm sticking", $4f
-	db "with this one no", $55
-	db "matter what!", $57
+	text "Do I have to have"
+	line "more #MON in"
+
+	para "order to battle"
+	line "better?"
+
+	para "No! I'm sticking"
+	line "with this one no"
+	cont "matter what!"
+	done
 ; 0x1a1928
 
 YoungsterMikeySeenText: ; 0x1a1928
-	db $0, "You're a #MON", $4f
-	db "trainer, right?", $51
-	db "Then you have to", $4f
-	db "battle!", $57
+	text "You're a #MON"
+	line "trainer, right?"
+
+	para "Then you have to"
+	line "battle!"
+	done
 ; 0x1a195f
 
 YoungsterMikeyBeatenText: ; 0x1a195f
-	db $0, "That's strange.", $4f
-	db "I won before.", $57
+	text "That's strange."
+	line "I won before."
+	done
 ; 0x1a197d
 
 UnknownText_0x1a197d: ; 0x1a197d
-	db $0, "Becoming a good", $4f
-	db "trainer is really", $55
-	db "tough.", $51
-	db "I'm going to bat-", $4f
-	db "tle other people", $55
-	db "to get better.", $57
+	text "Becoming a good"
+	line "trainer is really"
+	cont "tough."
+
+	para "I'm going to bat-"
+	line "tle other people"
+	cont "to get better."
+	done
 ; 0x1a19d8
 
 Bug_catcherDonSeenText: ; 0x1a19d8
-	db $0, "Instead of a bug", $4f
-	db "#MON, I found", $55
-	db "a trainer!", $57
+	text "Instead of a bug"
+	line "#MON, I found"
+	cont "a trainer!"
+	done
 ; 0x1a1a03
 
 Bug_catcherDonBeatenText: ; 0x1a1a03
-	db $0, "Argh! You're too", $4f
-	db "strong!", $57
+	text "Argh! You're too"
+	line "strong!"
+	done
 ; 0x1a1a1c
 
 UnknownText_0x1a1a1c: ; 0x1a1a1c
-	db $0, "I ran out of #", $4f
-	db "BALLS while I was", $55
-	db "catching #MON.", $51
-	db "I should've bought", $4f
-	db "some more…", $57
+	text "I ran out of #"
+	line "BALLS while I was"
+	cont "catching #MON."
+
+	para "I should've bought"
+	line "some more…"
+	done
 ; 0x1a1a6a
 
 UnknownText_0x1a1a6a: ; 0x1a1a6a
-	db $0, "MR.#MON's", $4f
-	db "house? It's a bit", $55
-	db "farther ahead.", $57
+	text "MR.#MON's"
+	line "house? It's a bit"
+	cont "farther ahead."
+	done
 ; 0x1a1a94
 
 UnknownText_0x1a1a94: ; 0x1a1a94
-	db $0, "Everyone's having", $4f
-	db "fun battling!", $55
-	db "You should too!", $57
+	text "Everyone's having"
+	line "fun battling!"
+	cont "You should too!"
+	done
 ; 0x1a1ac4
 
 UnknownText_0x1a1ac4: ; 0x1a1ac4
-	db $0, "I'm not a trainer.", $51
-	db "But if you look", $4f
-	db "one in the eyes,", $55
-	db "prepare to battle.", $57
+	text "I'm not a trainer."
+
+	para "But if you look"
+	line "one in the eyes,"
+	cont "prepare to battle."
+	done
 ; 0x1a1b0b
 
 UnknownText_0x1a1b0b: ; 0x1a1b0b
-	db $0, "ROUTE 30", $51
-	db "VIOLET CITY -", $4f
-	db "CHERRYGROVE CITY", $57
+	text "ROUTE 30"
+
+	para "VIOLET CITY -"
+	line "CHERRYGROVE CITY"
+	done
 ; 0x1a1b34
 
 UnknownText_0x1a1b34: ; 0x1a1b34
-	db $0, "MR.#MON'S HOUSE", $4f
-	db "STRAIGHT AHEAD!", $57
+	text "MR.#MON'S HOUSE"
+	line "STRAIGHT AHEAD!"
+	done
 ; 0x1a1b55
 
 UnknownText_0x1a1b55: ; 0x1a1b55
-	db $0, "MR.#MON'S HOUSE", $57
+	text "MR.#MON'S HOUSE"
+	done
 ; 0x1a1b66
 
 UnknownText_0x1a1b66: ; 0x1a1b66
-	db $0, "TRAINER TIPS", $51
-	db "No stealing other", $4f
-	db "people's #MON!", $51
-	db "# BALLS are to", $4f
-	db "be thrown only at", $55
-	db "wild #MON!", $57
+	text "TRAINER TIPS"
+
+	para "No stealing other"
+	line "people's #MON!"
+
+	para "# BALLS are to"
+	line "be thrown only at"
+	cont "wild #MON!"
+	done
 ; 0x1a1bc0
 
 UnknownText_0x1a1bc0: ; 0x1a1bc0
-	db $0, "I lost again…", $4f
-	db "Gee, you're tough!", $51
-	db "Oh yeah, I almost", $4f
-	db "forgot that I had", $55
-	db "to give you this.", $51
-	db "Use it to get even", $4f
-	db "tougher, OK?", $51
-	db "I'm going to get", $4f
-	db "tougher too.", $57
+	text "I lost again…"
+	line "Gee, you're tough!"
+
+	para "Oh yeah, I almost"
+	line "forgot that I had"
+	cont "to give you this."
+
+	para "Use it to get even"
+	line "tougher, OK?"
+
+	para "I'm going to get"
+	line "tougher too."
+	done
 ; 0x1a1c54
 
 Route30_MapEventHeader: ; 0x1a1c54

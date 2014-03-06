@@ -44,28 +44,35 @@ YoungsterScript_0x196831: ; 0x196831
 ; 0x196834
 
 UnknownText_0x196834: ; 0x196834
-	db $0, "They're fresh out", $4f
-	db "of # BALLS!", $51
-	db "When will they get", $4f
-	db "more of them?", $57
+	text "They're fresh out"
+	line "of # BALLS!"
+
+	para "When will they get"
+	line "more of them?"
+	done
 ; 0x196873
 
 UnknownText_0x196873: ; 0x196873
-	db $0, "# BALLS are in", $4f
-	db "stock! Now I can", $55
-	db "catch #MON!", $57
+	text "# BALLS are in"
+	line "stock! Now I can"
+	cont "catch #MON!"
+	done
 ; 0x1968a0
 
 UnknownText_0x1968a0: ; 0x1968a0
-	db $0, "When I was walking", $4f
-	db "in the grass, a", $51
-	db "bug #MON poi-", $4f
-	db "soned my #MON!", $51
-	db "I just kept going,", $4f
-	db "but then my", $55
-	db "#MON fainted.", $51
-	db "You should keep an", $4f
-	db "ANTIDOTE with you.", $57
+	text "When I was walking"
+	line "in the grass, a"
+
+	para "bug #MON poi-"
+	line "soned my #MON!"
+
+	para "I just kept going,"
+	line "but then my"
+	cont "#MON fainted."
+
+	para "You should keep an"
+	line "ANTIDOTE with you."
+	done
 ; 0x196934
 
 CherrygroveMart_MapEventHeader: ; 0x196934

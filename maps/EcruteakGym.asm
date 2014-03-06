@@ -261,177 +261,231 @@ MovementData_0x99e63: ; 0x99e63
 ; 0x99e65
 
 UnknownText_0x99e65: ; 0x99e65
-	db $0, "Good of you to", $4f
-	db "have come.", $51
-	db "Here in ECRUTEAK,", $4f
-	db "#MON have been", $55
-	db "revered.", $51
-	db "It's said that a", $4f
-	db "rainbow-colored", $51
-	db "#MON will come", $4f
-	db "down to appear", $51
-	db "before a truly", $4f
-	db "powerful trainer.", $51
-	db "I believed that", $4f
-	db "tale, so I have", $51
-	db "secretly trained", $4f
-	db "here all my life.", $51
-	db "As a result, I can", $4f
-	db "now see what", $55
-	db "others cannot.", $51
-	db "Just a bit more…", $51
-	db "With a little", $4f
-	db "more, I could see", $51
-	db "a future in which", $4f
-	db "I meet the #MON", $55
-	db "of rainbow colors.", $51
-	db "You're going to", $4f
-	db "help me reach that", $55
-	db "level!", $57
+	text "Good of you to"
+	line "have come."
+
+	para "Here in ECRUTEAK,"
+	line "#MON have been"
+	cont "revered."
+
+	para "It's said that a"
+	line "rainbow-colored"
+
+	para "#MON will come"
+	line "down to appear"
+
+	para "before a truly"
+	line "powerful trainer."
+
+	para "I believed that"
+	line "tale, so I have"
+
+	para "secretly trained"
+	line "here all my life."
+
+	para "As a result, I can"
+	line "now see what"
+	cont "others cannot."
+
+	para "Just a bit more…"
+
+	para "With a little"
+	line "more, I could see"
+
+	para "a future in which"
+	line "I meet the #MON"
+	cont "of rainbow colors."
+
+	para "You're going to"
+	line "help me reach that"
+	cont "level!"
+	done
 ; 0x9a00a
 
 UnknownText_0x9a00a: ; 0x9a00a
-	db $0, "I'm not good", $4f
-	db "enough yet…", $51
-	db "All right. This", $4f
-	db "BADGE is yours.", $57
+	text "I'm not good"
+	line "enough yet…"
+
+	para "All right. This"
+	line "BADGE is yours."
+	done
 ; 0x9a043
 
 UnknownText_0x9a043: ; 0x9a043
-	db $0, $52, " received", $4f
-	db "FOGBADGE.", $57
+	text $52, " received"
+	line "FOGBADGE."
+	done
 ; 0x9a059
 
 UnknownText_0x9a059: ; 0x9a059
-	db $0, "By having FOG-", $4f
-	db "BADGE, #MON up", $51
-	db "to L50 will obey", $4f
-	db "you.", $51
-	db "Also, #MON that", $4f
-	db "know SURF will be", $51
-	db "able to use that", $4f
-	db "move anytime.", $51
-	db "I want you to have", $4f
-	db "this too.", $57
+	text "By having FOG-"
+	line "BADGE, #MON up"
+
+	para "to L50 will obey"
+	line "you."
+
+	para "Also, #MON that"
+	line "know SURF will be"
+
+	para "able to use that"
+	line "move anytime."
+
+	para "I want you to have"
+	line "this too."
+	done
 ; 0x9a0ec
 
 UnknownText_0x9a0ec: ; 0x9a0ec
-	db $0, "It's SHADOW BALL.", $4f
-	db "It causes damage", $51
-	db "and may reduce", $4f
-	db "SPCL.DEF.", $51
-	db "Use it if it", $4f
-	db "appeals to you.", $57
+	text "It's SHADOW BALL."
+	line "It causes damage"
+
+	para "and may reduce"
+	line "SPCL.DEF."
+
+	para "Use it if it"
+	line "appeals to you."
+	done
 ; 0x9a145
 
 UnknownText_0x9a145: ; 0x9a145
-	db $0, "I see…", $51
-	db "Your journey has", $4f
-	db "taken you to far-", $55
-	db "away places.", $51
-	db "And you have wit-", $4f
-	db "nessed much more", $55
-	db "than I.", $51
-	db "I envy you for", $4f
-	db "that…", $57
+	text "I see…"
+
+	para "Your journey has"
+	line "taken you to far-"
+	cont "away places."
+
+	para "And you have wit-"
+	line "nessed much more"
+	cont "than I."
+
+	para "I envy you for"
+	line "that…"
+	done
 ; 0x9a1bd
 
 SageJeffreySeenText: ; 0x9a1bd
-	db $0, "I spent the spring", $4f
-	db "with my #MON.", $51
-	db "Then summer, fall", $4f
-	db "and winter…", $51
-	db "Then spring came", $4f
-	db "again. We have", $51
-	db "lived together", $4f
-	db "for a long time.", $57
+	text "I spent the spring"
+	line "with my #MON."
+
+	para "Then summer, fall"
+	line "and winter…"
+
+	para "Then spring came"
+	line "again. We have"
+
+	para "lived together"
+	line "for a long time."
+	done
 ; 0x9a23d
 
 SageJeffreyBeatenText: ; 0x9a23d
-	db $0, "Wins and losses, I", $4f
-	db "experienced both.", $57
+	text "Wins and losses, I"
+	line "experienced both."
+	done
 ; 0x9a263
 
 UnknownText_0x9a263: ; 0x9a263
-	db $0, "Where did #MON", $4f
-	db "come from?", $57
+	text "Where did #MON"
+	line "come from?"
+	done
 ; 0x9a27e
 
 SagePingSeenText: ; 0x9a27e
-	db $0, "Can you inflict", $4f
-	db "any damage on our", $55
-	db "#MON?", $57
+	text "Can you inflict"
+	line "any damage on our"
+	cont "#MON?"
+	done
 ; 0x9a2a7
 
 SagePingBeatenText: ; 0x9a2a7
-	db $0, "Ah! Well done!", $57
+	text "Ah! Well done!"
+	done
 ; 0x9a2b7
 
 UnknownText_0x9a2b7: ; 0x9a2b7
-	db $0, "We use only ghost-", $4f
-	db "type #MON.", $51
-	db "No normal-type", $4f
-	db "attack can harm", $55
-	db "them!", $57
+	text "We use only ghost-"
+	line "type #MON."
+
+	para "No normal-type"
+	line "attack can harm"
+	cont "them!"
+	done
 ; 0x9a2fb
 
 MediumMarthaSeenText: ; 0x9a2fb
-	db $0, "I shall win!", $57
+	text "I shall win!"
+	done
 ; 0x9a309
 
 MediumMarthaBeatenText: ; 0x9a309
-	db $0, "I, I, I lost!", $57
+	text "I, I, I lost!"
+	done
 ; 0x9a318
 
 UnknownText_0x9a318: ; 0x9a318
-	db $0, "The one who wants", $4f
-	db "to win most--will!", $57
+	text "The one who wants"
+	line "to win most--will!"
+	done
 ; 0x9a33e
 
 MediumGraceSeenText: ; 0x9a33e
-	db $0, "Stumped by our in-", $4f
-	db "visible floor?", $51
-	db "Defeat me if you", $4f
-	db "want a hint!", $57
+	text "Stumped by our in-"
+	line "visible floor?"
+
+	para "Defeat me if you"
+	line "want a hint!"
+	done
 ; 0x9a37f
 
 MediumGraceBeatenText: ; 0x9a37f
-	db $0, "Wha-what?", $57
+	text "Wha-what?"
+	done
 ; 0x9a38a
 
 UnknownText_0x9a38a: ; 0x9a38a
-	db $0, "Fine. I shall tell", $4f
-	db "you the secret of", $51
-	db "the invisible", $4f
-	db "floor.", $51
-	db "The path is right", $4f
-	db "before our eyes!", $57
+	text "Fine. I shall tell"
+	line "you the secret of"
+
+	para "the invisible"
+	line "floor."
+
+	para "The path is right"
+	line "before our eyes!"
+	done
 ; 0x9a3e8
 
 EcruteakGymGuyText: ; 0x9a3e8
-	db $0, "The trainers here", $4f
-	db "have secret mo-", $55
-	db "tives.", $51
-	db "If you win, they", $4f
-	db "may tell you some", $51
-	db "deep secrets about", $4f
-	db "ECRUTEAK.", $57
+	text "The trainers here"
+	line "have secret mo-"
+	cont "tives."
+
+	para "If you win, they"
+	line "may tell you some"
+
+	para "deep secrets about"
+	line "ECRUTEAK."
+	done
 ; 0x9a452
 
 EcruteakGymGuyWinText: ; 0x9a452
-	db $0, "Whew, ", $52, ".", $4f
-	db "You did great!", $51
-	db "I was cowering in", $4f
-	db "the corner out of", $55
-	db "pure terror!", $57
+	text "Whew, ", $52, "."
+	line "You did great!"
+
+	para "I was cowering in"
+	line "the corner out of"
+	cont "pure terror!"
+	done
 ; 0x9a49c
 
 UnknownText_0x9a49c: ; 0x9a49c
-	db $0, "MORTY, the GYM", $4f
-	db "LEADER, is absent.", $51
-	db "Sorry, but you'll", $4f
-	db "have to leave.", $51
-	db "Hohohoho.", $57
+	text "MORTY, the GYM"
+	line "LEADER, is absent."
+
+	para "Sorry, but you'll"
+	line "have to leave."
+
+	para "Hohohoho."
+	done
 ; 0x9a4e9
 
 EcruteakGym_MapEventHeader: ; 0x9a4e9

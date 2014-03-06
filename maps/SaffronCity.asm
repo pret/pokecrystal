@@ -122,139 +122,178 @@ MapSaffronCitySignpost7Script: ; 0x19938a
 ; 0x19938d
 
 UnknownText_0x19938d: ; 0x19938d
-	db $0, "A little girl who", $4f
-	db "is an expert at", $51
-	db "mimicking people", $4f
-	db "lives here.", $51
-	db "She even mimics", $4f
-	db "the people she's", $51
-	db "conversing with.", $4f
-	db "It's confusing.", $57
+	text "A little girl who"
+	line "is an expert at"
+
+	para "mimicking people"
+	line "lives here."
+
+	para "She even mimics"
+	line "the people she's"
+
+	para "conversing with."
+	line "It's confusing."
+	done
 ; 0x19940d
 
 UnknownText_0x19940d: ; 0x19940d
-	db $0, "The COPYCAT girl", $4f
-	db "looked unhappy.", $51
-	db "She said she lost", $4f
-	db "her favorite #", $55
-	db "DOLL--CLEFAIRY.", $57
+	text "The COPYCAT girl"
+	line "looked unhappy."
+
+	para "She said she lost"
+	line "her favorite #"
+	cont "DOLL--CLEFAIRY."
+	done
 ; 0x199460
 
 UnknownText_0x199460: ; 0x199460
-	db $0, "You came out from", $4f
-	db "JOHTO?", $51
-	db "You can zip back", $4f
-	db "home if the MAGNET", $55
-	db "TRAIN's running.", $57
+	text "You came out from"
+	line "JOHTO?"
+
+	para "You can zip back"
+	line "home if the MAGNET"
+	cont "TRAIN's running."
+	done
 ; 0x1994ae
 
 UnknownText_0x1994ae: ; 0x1994ae
-	db $0, "You came out from", $4f
-	db "JOHTO?", $51
-	db "You can zip back", $4f
-	db "home by hopping on", $55
-	db "the MAGNET TRAIN.", $57
+	text "You came out from"
+	line "JOHTO?"
+
+	para "You can zip back"
+	line "home by hopping on"
+	cont "the MAGNET TRAIN."
+	done
 ; 0x1994fe
 
 UnknownText_0x1994fe: ; 0x1994fe
-	db $0, "I went to the GYM,", $4f
-	db "raring for battles", $55
-	db "against trainers…", $51
-	db "It turns out, I", $4f
-	db "stumbled into the", $51
-	db "unused GYM next", $4f
-	db "door.", $51
-	db "Boy, I was pretty", $4f
-	db "embarrassed.", $57
+	text "I went to the GYM,"
+	line "raring for battles"
+	cont "against trainers…"
+
+	para "It turns out, I"
+	line "stumbled into the"
+
+	para "unused GYM next"
+	line "door."
+
+	para "Boy, I was pretty"
+	line "embarrassed."
+	done
 ; 0x19958e
 
 UnknownText_0x19958e: ; 0x19958e
-	db $0, "This is SILPH CO.,", $4f
-	db "famous for #MON", $55
-	db "merchandise.", $51
-	db "In the past, TEAM", $4f
-	db "ROCKET wanted the", $51
-	db "company because of", $4f
-	db "that.", $57
+	text "This is SILPH CO.,"
+	line "famous for #MON"
+	cont "merchandise."
+
+	para "In the past, TEAM"
+	line "ROCKET wanted the"
+
+	para "company because of"
+	line "that."
+	done
 ; 0x1995fc
 
 UnknownText_0x1995fc: ; 0x1995fc
-	db $0, "Chew… Chew…", $51
-	db "I hear there's big", $4f
-	db "trouble brewing at", $55
-	db "the POWER PLANT.", $51
-	db "Chew… Chew…", $57
+	text "Chew… Chew…"
+
+	para "I hear there's big"
+	line "trouble brewing at"
+	cont "the POWER PLANT."
+
+	para "Chew… Chew…"
+	done
 ; 0x19964b
 
 UnknownText_0x19964b: ; 0x19964b
-	db $0, "Chew… Chew…", $51
-	db "I hear there was", $4f
-	db "big trouble at the", $55
-	db "POWER PLANT.", $51
-	db "Chew… Chew…", $4f
-	db "Haaah, I'm full!", $57
+	text "Chew… Chew…"
+
+	para "I hear there was"
+	line "big trouble at the"
+	cont "POWER PLANT."
+
+	para "Chew… Chew…"
+	line "Haaah, I'm full!"
+	done
 ; 0x1996a5
 
 UnknownText_0x1996a5: ; 0x1996a5
-	db $0, "Going into an", $4f
-	db "alley for the", $51
-	db "first time makes", $4f
-	db "me sorta anxious.", $57
+	text "Going into an"
+	line "alley for the"
+
+	para "first time makes"
+	line "me sorta anxious."
+	done
 ; 0x1996e5
 
 UnknownText_0x1996e5: ; 0x1996e5
-	db $0, "There's a place", $4f
-	db "called TRAINER", $51
-	db "HOUSE in VIRIDIAN", $4f
-	db "where trainers", $51
-	db "gather from all", $4f
-	db "over the place.", $57
+	text "There's a place"
+	line "called TRAINER"
+
+	para "HOUSE in VIRIDIAN"
+	line "where trainers"
+
+	para "gather from all"
+	line "over the place."
+	done
 ; 0x199745
 
 UnknownText_0x199745: ; 0x199745
-	db $0, "Our city was", $4f
-	db "featured on a", $55
-	db "radio program.", $51
-	db "It's nice to hear", $4f
-	db "praise for your", $51
-	db "city, but it's a", $4f
-	db "bit embarrassing", $55
-	db "too.", $57
+	text "Our city was"
+	line "featured on a"
+	cont "radio program."
+
+	para "It's nice to hear"
+	line "praise for your"
+
+	para "city, but it's a"
+	line "bit embarrassing"
+	cont "too."
+	done
 ; 0x1997b7
 
 UnknownText_0x1997b7: ; 0x1997b7
-	db $0, "SAFFRON CITY", $51
-	db "Shining, Golden", $4f
-	db "Land of Commerce", $57
+	text "SAFFRON CITY"
+
+	para "Shining, Golden"
+	line "Land of Commerce"
+	done
 ; 0x1997e6
 
 UnknownText_0x1997e6: ; 0x1997e6
-	db $0, "SAFFRON CITY", $4f
-	db "#MON GYM", $55
-	db "LEADER: SABRINA", $51
-	db "The Master of", $4f
-	db "Psychic #MON!", $57
+	text "SAFFRON CITY"
+	line "#MON GYM"
+	cont "LEADER: SABRINA"
+
+	para "The Master of"
+	line "Psychic #MON!"
+	done
 ; 0x199829
 
 UnknownText_0x199829: ; 0x199829
-	db $0, "Everyone Welcome!", $4f
-	db "FIGHTING DOJO", $57
+	text "Everyone Welcome!"
+	line "FIGHTING DOJO"
+	done
 ; 0x19984a
 
 UnknownText_0x19984a: ; 0x19984a
-	db $0, "SILPH CO.", $4f
-	db "OFFICE BUILDING", $57
+	text "SILPH CO."
+	line "OFFICE BUILDING"
+	done
 ; 0x199865
 
 UnknownText_0x199865: ; 0x199865
-	db $0, "MR.PSYCHIC'S", $4f
-	db "HOUSE", $57
+	text "MR.PSYCHIC'S"
+	line "HOUSE"
+	done
 ; 0x199879
 
 UnknownText_0x199879: ; 0x199879
-	db $0, "SAFFRON CITY", $4f
-	db "MAGNET TRAIN", $55
-	db "STATION", $57
+	text "SAFFRON CITY"
+	line "MAGNET TRAIN"
+	cont "STATION"
+	done
 ; 0x19989c
 
 SaffronCity_MapEventHeader: ; 0x19989c

@@ -106,102 +106,132 @@ MapGoldenrodDeptStoreRoofSignpost3Script: ; 0x5677c
 ; 0x5677f
 
 UnknownText_0x5677f: ; 0x5677f
-	db $0, "Whew, I'm tired.", $51
-	db "I sometimes come", $4f
-	db "up to the rooftop", $51
-	db "to take a break", $4f
-	db "from shopping.", $57
+	text "Whew, I'm tired."
+
+	para "I sometimes come"
+	line "up to the rooftop"
+
+	para "to take a break"
+	line "from shopping."
+	done
 ; 0x567d2
 
 UnknownText_0x567d2: ; 0x567d2
-	db $0, "Pardon? Who says", $4f
-	db "an adult can't get", $55
-	db "into this?", $51
-	db "I'm going to be", $4f
-	db "back every day to", $51
-	db "collect all the", $4f
-	db "dolls!", $57
+	text "Pardon? Who says"
+	line "an adult can't get"
+	cont "into this?"
+
+	para "I'm going to be"
+	line "back every day to"
+
+	para "collect all the"
+	line "dolls!"
+	done
 ; 0x56839
 
 UnknownText_0x56839: ; 0x56839
-	db $0, "They have bargain", $4f
-	db "sales here every", $55
-	db "so often.", $57
+	text "They have bargain"
+	line "sales here every"
+	cont "so often."
+	done
 ; 0x56867
 
 UnknownText_0x56867: ; 0x56867
-	db $0, "Oh, wow!", $57
+	text "Oh, wow!"
+	done
 ; 0x56871
 
 UnknownText_0x56871: ; 0x56871
-	db $0, "Will you quit", $4f
-	db "bothering me?", $57
+	text "Will you quit"
+	line "bothering me?"
+	done
 ; 0x5688e
 
 UnknownText_0x5688e: ; 0x5688e
-	db $0, "There's something", $4f
-	db "I really want, but", $51
-	db "I don't have the", $4f
-	db "necessary cash…", $51
-	db "Maybe I'll sell", $4f
-	db "off the BERRIES", $55
-	db "I've collected…", $57
+	text "There's something"
+	line "I really want, but"
+
+	para "I don't have the"
+	line "necessary cash…"
+
+	para "Maybe I'll sell"
+	line "off the BERRIES"
+	cont "I've collected…"
+	done
 ; 0x56901
 
 UnknownText_0x56901: ; 0x56901
-	db $0, "Oh, everything is", $4f
-	db "so cheap!", $51
-	db "I bought so much,", $4f
-	db "my PACK's crammed!", $57
+	text "Oh, everything is"
+	line "so cheap!"
+
+	para "I bought so much,"
+	line "my PACK's crammed!"
+	done
 ; 0x56942
 
 UnknownText_0x56942: ; 0x56942
-	db $0, "My #MON always", $4f
-	db "get paralyzed or", $51
-	db "poisoned when the", $4f
-	db "chips are down…", $51
-	db "So I came to buy", $4f
-	db "some FULL HEAL.", $51
-	db "I wonder if", $4f
-	db "there's any left?", $57
+	text "My #MON always"
+	line "get paralyzed or"
+
+	para "poisoned when the"
+	line "chips are down…"
+
+	para "So I came to buy"
+	line "some FULL HEAL."
+
+	para "I wonder if"
+	line "there's any left?"
+	done
 ; 0x569c3
 
 UnknownText_0x569c3: ; 0x569c3
-	db $0, "These binoculars", $4f
-	db "let me see far", $51
-	db "away. Maybe I can", $4f
-	db "see my own house.", $51
-	db "Is it the one with", $4f
-	db "the green roof?", $57
+	text "These binoculars"
+	line "let me see far"
+
+	para "away. Maybe I can"
+	line "see my own house."
+
+	para "Is it the one with"
+	line "the green roof?"
+	done
 ; 0x56a2b
 
 UnknownText_0x56a2b: ; 0x56a2b
-	db $0, "Hey! Some trainers", $4f
-	db "are battling on", $55
-	db "the road!", $51
-	db "A #MON fired a", $4f
-	db "flurry of leaves!", $51
-	db "That makes me feel", $4f
-	db "like battling", $55
-	db "right now!", $57
+	text "Hey! Some trainers"
+	line "are battling on"
+	cont "the road!"
+
+	para "A #MON fired a"
+	line "flurry of leaves!"
+
+	para "That makes me feel"
+	line "like battling"
+	cont "right now!"
+	done
 ; 0x56aa6
 
 UnknownText_0x56aa6: ; 0x56aa6
-	db $0, "A FISHER caught a", $4f
-	db "lot of MAGIKARP…", $51
-	db "They're SPLASHing", $4f
-	db "at the same time!", $51
-	db "Look at the water", $4f
-	db "going everywhere!", $57
+	text "A FISHER caught a"
+	line "lot of MAGIKARP…"
+
+	para "They're SPLASHing"
+	line "at the same time!"
+
+	para "Look at the water"
+	line "going everywhere!"
+	done
 ; 0x56b11
 
 UnknownText_0x56b11: ; 0x56b11
-	db $0, "A vending machine", $4f
-	db "for #MON dolls?", $51
-	db "Insert money, then", $4f
-	db "turn the crank…", $51
-	db "But it's almost", $4f
-	db "empty…", $57
+	text "A vending machine"
+	line "for #MON dolls?"
+
+	para "Insert money, then"
+	line "turn the crank…"
+
+	para "But it's almost"
+	line "empty…"
+	done
 ; 0x56b6d
 
 GoldenrodDeptStoreRoof_MapEventHeader: ; 0x56b6d

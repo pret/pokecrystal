@@ -89,145 +89,193 @@ MapOaksLabSignpost15Script: ; 0x19b424
 ; 0x19b427
 
 UnknownText_0x19b427: ; 0x19b427
-	db $0, "OAK: Ah, ", $14, "!", $4f
-	db "It's good of you", $51
-	db "to come all this", $4f
-	db "way to KANTO.", $51
-	db "What do you think", $4f
-	db "of the trainers", $51
-	db "out here?", $4f
-	db "Pretty tough, huh?", $57
+	text "OAK: Ah, ", $14, "!"
+	line "It's good of you"
+
+	para "to come all this"
+	line "way to KANTO."
+
+	para "What do you think"
+	line "of the trainers"
+
+	para "out here?"
+	line "Pretty tough, huh?"
+	done
 ; 0x19b4a2
 
 UnknownText_0x19b4a2: ; 0x19b4a2
-	db $0, "How is your #-", $4f
-	db "DEX coming?", $51
-	db "Let's see…", $57
+	text "How is your #-"
+	line "DEX coming?"
+
+	para "Let's see…"
+	done
 ; 0x19b4c8
 
 UnknownText_0x19b4c8: ; 0x19b4c8
-	db $0, "If you're in the", $4f
-	db "area, I hope you", $55
-	db "come visit again.", $57
+	text "If you're in the"
+	line "area, I hope you"
+	cont "come visit again."
+	done
 ; 0x19b4fc
 
 UnknownText_0x19b4fc: ; 0x19b4fc
-	db $0, "OAK: Wow! That's", $4f
-	db "excellent!", $51
-	db "You collected the", $4f
-	db "BADGES of GYMS in", $55
-	db "KANTO. Well done!", $51
-	db "I was right in my", $4f
-	db "assessment of you.", $51
-	db "Tell you what,", $4f
-	db $14, ". I'll make", $51
-	db "arrangements so", $4f
-	db "that you can go to", $55
-	db "MT.SILVER.", $51
-	db "MT.SILVER is a big", $4f
-	db "mountain that is", $51
-	db "home to many wild", $4f
-	db "#MON.", $51
-	db "It's too dangerous", $4f
-	db "for your average", $51
-	db "trainer, so it's", $4f
-	db "off limits. But", $51
-	db "we can make an", $4f
-	db "exception in your", $55
-	db "case, ", $14, ".", $51
-	db "Go up to INDIGO", $4f
-	db "PLATEAU. You can", $51
-	db "reach MT.SILVER", $4f
-	db "from there.", $57
+	text "OAK: Wow! That's"
+	line "excellent!"
+
+	para "You collected the"
+	line "BADGES of GYMS in"
+	cont "KANTO. Well done!"
+
+	para "I was right in my"
+	line "assessment of you."
+
+	para "Tell you what,"
+	line $14, ". I'll make"
+
+	para "arrangements so"
+	line "that you can go to"
+	cont "MT.SILVER."
+
+	para "MT.SILVER is a big"
+	line "mountain that is"
+
+	para "home to many wild"
+	line "#MON."
+
+	para "It's too dangerous"
+	line "for your average"
+
+	para "trainer, so it's"
+	line "off limits. But"
+
+	para "we can make an"
+	line "exception in your"
+	cont "case, ", $14, "."
+
+	para "Go up to INDIGO"
+	line "PLATEAU. You can"
+
+	para "reach MT.SILVER"
+	line "from there."
+	done
 ; 0x19b6a2
 
 UnknownText_0x19b6a2: ; 0x19b6a2
-	db $0, "OAK: Hmm? You're", $4f
-	db "not collecting", $55
-	db "KANTO GYM BADGES?", $51
-	db "The GYM LEADERS in", $4f
-	db "KANTO are as tough", $51
-	db "as any you battled", $4f
-	db "in JOHTO.", $51
-	db "I recommend that", $4f
-	db "you challenge", $55
-	db "them.", $57
+	text "OAK: Hmm? You're"
+	line "not collecting"
+	cont "KANTO GYM BADGES?"
+
+	para "The GYM LEADERS in"
+	line "KANTO are as tough"
+
+	para "as any you battled"
+	line "in JOHTO."
+
+	para "I recommend that"
+	line "you challenge"
+	cont "them."
+	done
 ; 0x19b73c
 
 UnknownText_0x19b73c: ; 0x19b73c
-	db $0, "OAK: Ah, you're", $4f
-	db "collecting KANTO", $55
-	db "GYM BADGES.", $51
-	db "I imagine that", $4f
-	db "it's hard, but the", $51
-	db "experience is sure", $4f
-	db "to help you.", $51
-	db "Come see me when", $4f
-	db "you get them all.", $51
-	db "I'll have a gift", $4f
-	db "for you.", $51
-	db "Keep trying hard,", $4f
-	db $14, "!", $57
+	text "OAK: Ah, you're"
+	line "collecting KANTO"
+	cont "GYM BADGES."
+
+	para "I imagine that"
+	line "it's hard, but the"
+
+	para "experience is sure"
+	line "to help you."
+
+	para "Come see me when"
+	line "you get them all."
+
+	para "I'll have a gift"
+	line "for you."
+
+	para "Keep trying hard,"
+	line $14, "!"
+	done
 ; 0x19b7fb
 
 UnknownText_0x19b7fb: ; 0x19b7fb
-	db $0, "The PROF's #MON", $4f
-	db "TALK radio program", $51
-	db "isn't aired here", $4f
-	db "in KANTO.", $51
-	db "It's a shame--I'd", $4f
-	db "like to hear it.", $57
+	text "The PROF's #MON"
+	line "TALK radio program"
+
+	para "isn't aired here"
+	line "in KANTO."
+
+	para "It's a shame--I'd"
+	line "like to hear it."
+	done
 ; 0x19b859
 
 UnknownText_0x19b859: ; 0x19b859
-	db $0, "Thanks to your", $4f
-	db "work on the #-", $55
-	db "DEX, the PROF's", $51
-	db "research is coming", $4f
-	db "along great.", $57
+	text "Thanks to your"
+	line "work on the #-"
+	cont "DEX, the PROF's"
+
+	para "research is coming"
+	line "along great."
+	done
 ; 0x19b8a7
 
 UnknownText_0x19b8a7: ; 0x19b8a7
-	db $0, "Don't tell anyone,", $4f
-	db "but PROF.OAK'S", $51
-	db "#MON TALK isn't", $4f
-	db "a live broadcast.", $57
+	text "Don't tell anyone,"
+	line "but PROF.OAK'S"
+
+	para "#MON TALK isn't"
+	line "a live broadcast."
+	done
 ; 0x19b8ea
 
 UnknownText_0x19b8ea: ; 0x19b8ea
-	db $0, "Press START to", $4f
-	db "open the MENU.", $57
+	text "Press START to"
+	line "open the MENU."
+	done
 ; 0x19b909
 
 UnknownText_0x19b909: ; 0x19b909
-	db $0, "The SAVE option is", $4f
-	db "on the MENU.", $51
-	db "Use it in a timely", $4f
-	db "manner.", $57
+	text "The SAVE option is"
+	line "on the MENU."
+
+	para "Use it in a timely"
+	line "manner."
+	done
 ; 0x19b945
 
 UnknownText_0x19b945: ; 0x19b945
-	db $0, "There's nothing in", $4f
-	db "here…", $57
+	text "There's nothing in"
+	line "here…"
+	done
 ; 0x19b95e
 
 UnknownText_0x19b95e: ; 0x19b95e
-	db $0, "There's an e-mail", $4f
-	db "message on the PC.", $51
-	db "…", $51
-	db "PROF.OAK, how is", $4f
-	db "your research", $55
-	db "coming along?", $51
-	db "I'm still plugging", $4f
-	db "away.", $51
-	db "I heard rumors", $4f
-	db "that ", $14, " is", $51
-	db "getting quite a", $4f
-	db "reputation.", $51
-	db "I'm delighted to", $4f
-	db "hear that.", $51
-	db "ELM in NEW BARK", $4f
-	db "TOWN 8-)", $57
+	text "There's an e-mail"
+	line "message on the PC."
+
+	para "…"
+
+	para "PROF.OAK, how is"
+	line "your research"
+	cont "coming along?"
+
+	para "I'm still plugging"
+	line "away."
+
+	para "I heard rumors"
+	line "that ", $14, " is"
+
+	para "getting quite a"
+	line "reputation."
+
+	para "I'm delighted to"
+	line "hear that."
+
+	para "ELM in NEW BARK"
+	line "TOWN 8-)"
+	done
 ; 0x19ba33
 
 OaksLab_MapEventHeader: ; 0x19ba33

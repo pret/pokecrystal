@@ -146,64 +146,79 @@ MapRoute2SignpostItem5: ; 0x1ac311
 ; 0x1ac314
 
 Bug_catcherRobSeenText: ; 0x1ac314
-	db $0, "My bug #MON are", $4f
-	db "tough. Prepare to", $55
-	db "lose!", $57
+	text "My bug #MON are"
+	line "tough. Prepare to"
+	cont "lose!"
+	done
 ; 0x1ac33d
 
 Bug_catcherRobBeatenText: ; 0x1ac33d
-	db $0, "I was whipped…", $57
+	text "I was whipped…"
+	done
 ; 0x1ac34d
 
 UnknownText_0x1ac34d: ; 0x1ac34d
-	db $0, "I'm going to look", $4f
-	db "for stronger bug", $55
-	db "#MON.", $57
+	text "I'm going to look"
+	line "for stronger bug"
+	cont "#MON."
+	done
 ; 0x1ac376
 
 Bug_catcherEdSeenText: ; 0x1ac376
-	db $0, "If you walk in", $4f
-	db "tall grass wearing", $51
-	db "shorts, do you get", $4f
-	db "nicks and cuts?", $57
+	text "If you walk in"
+	line "tall grass wearing"
+
+	para "shorts, do you get"
+	line "nicks and cuts?"
+	done
 ; 0x1ac3bc
 
 Bug_catcherEdBeatenText: ; 0x1ac3bc
-	db $0, "Ouch, ouch, ouch!", $57
+	text "Ouch, ouch, ouch!"
+	done
 ; 0x1ac3cf
 
 UnknownText_0x1ac3cf: ; 0x1ac3cf
-	db $0, "They'll really", $4f
-	db "sting when you", $55
-	db "take a bath.", $57
+	text "They'll really"
+	line "sting when you"
+	cont "take a bath."
+	done
 ; 0x1ac3fa
 
 Bug_catcherDougSeenText: ; 0x1ac3fa
-	db $0, "Why don't girls", $4f
-	db "like bug #MON?", $57
+	text "Why don't girls"
+	line "like bug #MON?"
+	done
 ; 0x1ac419
 
 Bug_catcherDougBeatenText: ; 0x1ac419
-	db $0, "No good!", $57
+	text "No good!"
+	done
 ; 0x1ac423
 
 UnknownText_0x1ac423: ; 0x1ac423
-	db $0, "Bug #MON squish", $4f
-	db "like plush toys", $51
-	db "when you squeeze", $4f
-	db "their bellies.", $51
-	db "I love how they", $4f
-	db "feel!", $57
+	text "Bug #MON squish"
+	line "like plush toys"
+
+	para "when you squeeze"
+	line "their bellies."
+
+	para "I love how they"
+	line "feel!"
+	done
 ; 0x1ac47a
 
 UnknownText_0x1ac47a: ; 0x1ac47a
-	db $0, "ROUTE 2", $51
-	db "VIRIDIAN CITY -", $4f
-	db "PEWTER CITY", $57
+	text "ROUTE 2"
+
+	para "VIRIDIAN CITY -"
+	line "PEWTER CITY"
+	done
 ; 0x1ac49f
 
 UnknownText_0x1ac49f: ; 0x1ac49f
-	db $0, "DIGLETT'S CAVE", $57
+	text "DIGLETT'S CAVE"
+	done
 ; 0x1ac4af
 
 Route2_MapEventHeader: ; 0x1ac4af

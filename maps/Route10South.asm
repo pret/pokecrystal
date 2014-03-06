@@ -69,41 +69,51 @@ MapRoute10SouthSignpost0Script: ; 0x1ae41e
 ; 0x1ae421
 
 HikerJimSeenText: ; 0x1ae421
-	db $0, "Hahahah!", $57
+	text "Hahahah!"
+	done
 ; 0x1ae42b
 
 HikerJimBeatenText: ; 0x1ae42b
-	db $0, "Hahaha-hachoo!", $57
+	text "Hahaha-hachoo!"
+	done
 ; 0x1ae43b
 
 UnknownText_0x1ae43b: ; 0x1ae43b
-	db $0, "Hay fever is", $4f
-	db "making me sneeze!", $55
-	db "Ahahah-CHOO!", $57
+	text "Hay fever is"
+	line "making me sneeze!"
+	cont "Ahahah-CHOO!"
+	done
 ; 0x1ae468
 
 PokefanmRobertSeenText: ; 0x1ae468
-	db $0, "You like #MON,", $4f
-	db "don't you?", $51
-	db "Me too!", $57
+	text "You like #MON,"
+	line "don't you?"
+
+	para "Me too!"
+	done
 ; 0x1ae48a
 
 PokefanmRobertBeatenText: ; 0x1ae48a
-	db $0, "I'd have to say", $4f
-	db "that's my loss.", $57
+	text "I'd have to say"
+	line "that's my loss."
+	done
 ; 0x1ae4a9
 
 UnknownText_0x1ae4a9: ; 0x1ae4a9
-	db $0, "Look what you did", $4f
-	db "to my #MON…", $51
-	db "I won't forget", $4f
-	db "this…", $57
+	text "Look what you did"
+	line "to my #MON…"
+
+	para "I won't forget"
+	line "this…"
+	done
 ; 0x1ae4dc
 
 UnknownText_0x1ae4dc: ; 0x1ae4dc
-	db $0, "ROUTE 10", $51
-	db "CERULEAN CITY -", $4f
-	db "LAVENDER TOWN", $57
+	text "ROUTE 10"
+
+	para "CERULEAN CITY -"
+	line "LAVENDER TOWN"
+	done
 ; 0x1ae504
 
 Route10South_MapEventHeader: ; 0x1ae504

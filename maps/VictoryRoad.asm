@@ -182,60 +182,82 @@ MovementData_0x74555: ; 0x74555
 ; 0x7455f
 
 UnknownText_0x7455f: ; 0x7455f
-	db $0, "Hold it.", $51
-	db "…Are you going to", $4f
-	db "take the #MON", $55
-	db "LEAGUE challenge?", $51
-	db "…Don't make me", $4f
-	db "laugh.", $51
-	db "You're so much", $4f
-	db "weaker than I am.", $51
-	db "I'm not like I was", $4f
-	db "before.", $51
-	db "I now have the", $4f
-	db "best and strongest", $51
-	db "#MON with me.", $4f
-	db "I'm invincible!", $51
-	db $52, "!", $4f
-	db "I challenge you!", $57
+	text "Hold it."
+
+	para "…Are you going to"
+	line "take the #MON"
+	cont "LEAGUE challenge?"
+
+	para "…Don't make me"
+	line "laugh."
+
+	para "You're so much"
+	line "weaker than I am."
+
+	para "I'm not like I was"
+	line "before."
+
+	para "I now have the"
+	line "best and strongest"
+
+	para "#MON with me."
+	line "I'm invincible!"
+
+	para $52, "!"
+	line "I challenge you!"
+	done
 ; 0x7463d
 
 UnknownText_0x7463d: ; 0x7463d
-	db $0, "…I couldn't win…", $51
-	db "I gave it every-", $4f
-	db "thing I had…", $51
-	db "What you possess,", $4f
-	db "and what I lack…", $51
-	db "I'm beginning to", $4f
-	db "understand what", $51
-	db "that dragon master", $4f
-	db "said to me…", $57
+	text "…I couldn't win…"
+
+	para "I gave it every-"
+	line "thing I had…"
+
+	para "What you possess,"
+	line "and what I lack…"
+
+	para "I'm beginning to"
+	line "understand what"
+
+	para "that dragon master"
+	line "said to me…"
+	done
 ; 0x746ce
 
 UnknownText_0x746ce: ; 0x746ce
-	db $0, "…I haven't given up", $4f
-	db "on becoming the", $55
-	db "greatest trainer…", $51
-	db "I'm going to find", $4f
-	db "out why I can't", $51
-	db "win and become", $4f
-	db "stronger…", $51
-	db "When I do, I will", $4f
-	db "challenge you.", $51
-	db "And I'll beat you", $4f
-	db "down with all my", $55
-	db "power.", $51
-	db "…Humph! You keep", $4f
-	db "at it until then.", $57
+	text "…I haven't given up"
+	line "on becoming the"
+	cont "greatest trainer…"
+
+	para "I'm going to find"
+	line "out why I can't"
+
+	para "win and become"
+	line "stronger…"
+
+	para "When I do, I will"
+	line "challenge you."
+
+	para "And I'll beat you"
+	line "down with all my"
+	cont "power."
+
+	para "…Humph! You keep"
+	line "at it until then."
+	done
 ; 0x747aa
 
 UnknownText_0x747aa: ; 0x747aa
-	db $0, "…Humph!", $51
-	db "When it comes down", $4f
-	db "to it, nothing can", $55
-	db "beat power.", $51
-	db "I don't need any-", $4f
-	db "thing else.", $57
+	text "…Humph!"
+
+	para "When it comes down"
+	line "to it, nothing can"
+	cont "beat power."
+
+	para "I don't need any-"
+	line "thing else."
+	done
 ; 0x74802
 
 VictoryRoad_MapEventHeader: ; 0x74802

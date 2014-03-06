@@ -41,17 +41,21 @@ MovementData_0x73629: ; 0x73629
 ; 0x7362c
 
 UnknownText_0x7362c: ; 0x7362c
-	db $0, "CYCLING ROAD", $4f
-	db "Uphill Starts Here", $57
+	text "CYCLING ROAD"
+	line "Uphill Starts Here"
+	done
 ; 0x7364d
 
 UnknownText_0x7364d: ; 0x7364d
-	db $0, "Hang on! Don't you", $4f
-	db "have a BICYCLE?", $51
-	db "The CYCLING ROAD", $4f
-	db "is beyond here.", $51
-	db "You have to have a", $4f
-	db "BICYCLE to go on.", $57
+	text "Hang on! Don't you"
+	line "have a BICYCLE?"
+
+	para "The CYCLING ROAD"
+	line "is beyond here."
+
+	para "You have to have a"
+	line "BICYCLE to go on."
+	done
 ; 0x736b6
 
 Route1718Gate_MapEventHeader: ; 0x736b6

@@ -157,72 +157,90 @@ MapGoldenrodDeptStore5FSignpost1Script: ; 0x56140
 ; 0x56143
 
 UnknownText_0x56143: ; 0x56143
-	db $0, "Hello. Oh, your", $4f
-	db "#MON…", $57
+	text "Hello. Oh, your"
+	line "#MON…"
+	done
 ; 0x5615a
 
 UnknownText_0x5615a: ; 0x5615a
-	db $0, "It's very attached", $4f
-	db "to you.", $51
-	db "This move should", $4f
-	db "be perfect for a", $55
-	db "pair like you.", $57
+	text "It's very attached"
+	line "to you."
+
+	para "This move should"
+	line "be perfect for a"
+	cont "pair like you."
+	done
 ; 0x561a6
 
 UnknownText_0x561a6: ; 0x561a6
-	db $0, "It's adorable!", $51
-	db "You should teach", $4f
-	db "it good TM moves.", $57
+	text "It's adorable!"
+
+	para "You should teach"
+	line "it good TM moves."
+	done
 ; 0x561d8
 
 UnknownText_0x561d8: ; 0x561d8
-	db $0, "It looks evil. How", $4f
-	db "about this TM for", $55
-	db "it?", $57
+	text "It looks evil. How"
+	line "about this TM for"
+	cont "it?"
+	done
 ; 0x56202
 
 UnknownText_0x56202: ; 0x56202
-	db $0, "There are sure to", $4f
-	db "be TMs that are", $51
-	db "just perfect for", $4f
-	db "your #MON.", $57
+	text "There are sure to"
+	line "be TMs that are"
+
+	para "just perfect for"
+	line "your #MON."
+	done
 ; 0x56241
 
 UnknownText_0x56241: ; 0x56241
-	db $0, "MYSTERY GIFT.", $51
-	db "With just a", $4f
-	db "little beep, you", $55
-	db "get a gift.", $57
+	text "MYSTERY GIFT."
+
+	para "With just a"
+	line "little beep, you"
+	cont "get a gift."
+	done
 ; 0x56279
 
 UnknownText_0x56279: ; 0x56279
-	db $0, "The MYSTERY GIFT", $4f
-	db "option requires a", $55
-	db "Game Boy Color.", $57
+	text "The MYSTERY GIFT"
+	line "option requires a"
+	cont "Game Boy Color."
+	done
 ; 0x562ad
 
 UnknownText_0x562ad: ; 0x562ad
-	db $0, "On Sundays, a lady", $4f
-	db "comes to check out", $55
-	db "#MON.", $51
-	db "She even gives", $4f
-	db "away TMs!", $57
+	text "On Sundays, a lady"
+	line "comes to check out"
+	cont "#MON."
+
+	para "She even gives"
+	line "away TMs!"
+	done
 ; 0x562f3
 
 UnknownText_0x562f3: ; 0x562f3
-	db $0, "You can't rename a", $4f
-	db "#MON you get in", $55
-	db "a trade.", $51
-	db "The name is a re-", $4f
-	db "flection of the", $51
-	db "original trainer's", $4f
-	db "feelings for it.", $57
+	text "You can't rename a"
+	line "#MON you get in"
+	cont "a trade."
+
+	para "The name is a re-"
+	line "flection of the"
+
+	para "original trainer's"
+	line "feelings for it."
+	done
 ; 0x56364
 
 UnknownText_0x56364: ; 0x56364
-	db $0, "Customize Your", $4f
-	db "#MON", $51
-	db "5F TM CORNER", $57
+	text "Customize Your"
+	line "#MON"
+
+	para "5F TM CORNER"
+	done
 ; 0x56386
 
 GoldenrodDeptStore5F_MapEventHeader: ; 0x56386

@@ -229,126 +229,160 @@ UnknownScript_0x1896cc: ; 0x1896cc
 ; 0x1896ce
 
 UnknownText_0x1896ce: ; 0x1896ce
-	db $0, "Hm? You know BILL?", $4f
-	db "He's my grandson.", $51
-	db "He's in JOHTO. He", $4f
-	db "does something", $51
-	db "with PCs, so I'm", $4f
-	db "house-sitting.", $57
+	text "Hm? You know BILL?"
+	line "He's my grandson."
+
+	para "He's in JOHTO. He"
+	line "does something"
+
+	para "with PCs, so I'm"
+	line "house-sitting."
+	done
 ; 0x189732
 
 UnknownText_0x189732: ; 0x189732
-	db $0, "If you have that", $4f
-	db "#MON, may I see", $55
-	db "it, please?", $57
+	text "If you have that"
+	line "#MON, may I see"
+	cont "it, please?"
+	done
 ; 0x189760
 
 UnknownText_0x189760: ; 0x189760
-	db $0, "You will show me?", $4f
-	db "How good of you!", $57
+	text "You will show me?"
+	line "How good of you!"
+	done
 ; 0x189784
 
 UnknownText_0x189784: ; 0x189784
-	db $0, "You don't have it?", $4f
-	db "That's too bad…", $57
+	text "You don't have it?"
+	line "That's too bad…"
+	done
 ; 0x1897a6
 
 UnknownText_0x1897a6: ; 0x1897a6
-	db $0, "Ah, so that is", $4f
-	db "@"
+	text "Ah, so that is"
+	line "@"
 	text_from_ram $d099
-	db $0, "?", $51
-	db "Isn't it cute!", $4f
-	db "That's so kind of", $55
-	db "you.", $57
+	text "?"
+
+	para "Isn't it cute!"
+	line "That's so kind of"
+	cont "you."
+	done
 ; 0x1897e1
 
 UnknownText_0x1897e1: ; 0x1897e1
-	db $0, "Thanks!", $51
-	db "This is a token of", $4f
-	db "my appreciation.", $57
+	text "Thanks!"
+
+	para "This is a token of"
+	line "my appreciation."
+	done
 ; 0x18980e
 
 UnknownText_0x18980e: ; 0x18980e
-	db $0, "Come visit again", $4f
-	db "sometime.", $57
+	text "Come visit again"
+	line "sometime."
+	done
 ; 0x18982a
 
 UnknownText_0x18982a: ; 0x18982a
-	db $0, "Thanks for showing", $4f
-	db "me so many cute", $55
-	db "#MON.", $51
-	db "I really enjoyed", $4f
-	db "myself. I'm glad", $51
-	db "I've lived such a", $4f
-	db "long life.", $57
+	text "Thanks for showing"
+	line "me so many cute"
+	cont "#MON."
+
+	para "I really enjoyed"
+	line "myself. I'm glad"
+
+	para "I've lived such a"
+	line "long life."
+	done
 ; 0x189891
 
 UnknownText_0x189891: ; 0x189891
-	db $0, "Hm?", $51
-	db "That's not the", $4f
-	db "#MON that I was", $55
-	db "told about.", $57
+	text "Hm?"
+
+	para "That's not the"
+	line "#MON that I was"
+	cont "told about."
+	done
 ; 0x1898c0
 
 UnknownText_0x1898c0: ; 0x1898c0
-	db $0, "My grandson BILL", $4f
-	db "told me about a", $51
-	db "#MON that has a", $4f
-	db "long tongue.", $57
+	text "My grandson BILL"
+	line "told me about a"
+
+	para "#MON that has a"
+	line "long tongue."
+	done
 ; 0x1898ff
 
 UnknownText_0x1898ff: ; 0x1898ff
-	db $0, "Ah, my grandson", $4f
-	db "mentioned a round,", $51
-	db "green #MON that", $4f
-	db "has leaves growing", $55
-	db "on its head.", $57
+	text "Ah, my grandson"
+	line "mentioned a round,"
+
+	para "green #MON that"
+	line "has leaves growing"
+	cont "on its head."
+	done
 ; 0x189953
 
 UnknownText_0x189953: ; 0x189953
-	db $0, "Do you know of a", $4f
-	db "sea #MON that", $51
-	db "has a red sphere", $4f
-	db "in its body?", $51
-	db "You know, the one", $4f
-	db "that's shaped like", $55
-	db "a star?", $51
-	db "I heard that it", $4f
-	db "appears at night.", $51
-	db "I would surely", $4f
-	db "like to see it.", $57
+	text "Do you know of a"
+	line "sea #MON that"
+
+	para "has a red sphere"
+	line "in its body?"
+
+	para "You know, the one"
+	line "that's shaped like"
+	cont "a star?"
+
+	para "I heard that it"
+	line "appears at night."
+
+	para "I would surely"
+	line "like to see it."
+	done
 ; 0x1899fe
 
 UnknownText_0x1899fe: ; 0x1899fe
-	db $0, "BILL told me about", $4f
-	db "a #MON that is", $51
-	db "very loyal to its", $4f
-	db "trainer.", $51
-	db "It's supposed to", $4f
-	db "ROAR well.", $57
+	text "BILL told me about"
+	line "a #MON that is"
+
+	para "very loyal to its"
+	line "trainer."
+
+	para "It's supposed to"
+	line "ROAR well."
+	done
 ; 0x189a57
 
 UnknownText_0x189a57: ; 0x189a57
-	db $0, "I heard about a", $4f
-	db "cute #MON that", $55
-	db "has six tails.", $51
-	db "I would love to", $4f
-	db "hug a cute #MON", $55
-	db "like that.", $57
+	text "I heard about a"
+	line "cute #MON that"
+	cont "has six tails."
+
+	para "I would love to"
+	line "hug a cute #MON"
+	cont "like that."
+	done
 ; 0x189ab1
 
 UnknownText_0x189ab1: ; 0x189ab1
-	db $0, "Do you know that", $4f
-	db "hugely popular", $55
-	db "#MON?", $51
-	db "The #MON that", $4f
-	db "has a yellow body", $55
-	db "and red cheeks.", $51
-	db "I would love to", $4f
-	db "see what it looks", $51
-	db "like before it", $4f
-	db "evolves.", $57
+	text "Do you know that"
+	line "hugely popular"
+	cont "#MON?"
+
+	para "The #MON that"
+	line "has a yellow body"
+	cont "and red cheeks."
+
+	para "I would love to"
+	line "see what it looks"
+
+	para "like before it"
+	line "evolves."
+	done
 ; 0x189b42
 
 BillsHouse_MapEventHeader: ; 0x189b42

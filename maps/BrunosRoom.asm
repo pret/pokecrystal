@@ -91,38 +91,50 @@ MovementData_0x1809f9: ; 0x1809f9
 ; 0x1809fe
 
 UnknownText_0x1809fe: ; 0x1809fe
-	db $0, "I am BRUNO of the", $4f
-	db "ELITE FOUR.", $51
-	db "I always train to", $4f
-	db "the extreme be-", $55
-	db "cause I believe in", $55
-	db "our potential.", $51
-	db "That is how we", $4f
-	db "became strong.", $51
-	db "Can you withstand", $4f
-	db "our power?", $51
-	db "Hm? I see no fear", $4f
-	db "in you. You look", $51
-	db "determined. Per-", $4f
-	db "fect for battle!", $51
-	db "Ready, ", $52, "?", $4f
-	db "You will bow down", $51
-	db "to our overwhelm-", $4f
-	db "ing power!", $51
-	db "Hoo hah!", $57
+	text "I am BRUNO of the"
+	line "ELITE FOUR."
+
+	para "I always train to"
+	line "the extreme be-"
+	cont "cause I believe in"
+	cont "our potential."
+
+	para "That is how we"
+	line "became strong."
+
+	para "Can you withstand"
+	line "our power?"
+
+	para "Hm? I see no fear"
+	line "in you. You look"
+
+	para "determined. Per-"
+	line "fect for battle!"
+
+	para "Ready, ", $52, "?"
+	line "You will bow down"
+
+	para "to our overwhelm-"
+	line "ing power!"
+
+	para "Hoo hah!"
+	done
 ; 0x180b23
 
 UnknownText_0x180b23: ; 0x180b23
-	db $0, "Why? How could we", $4f
-	db "lose?", $57
+	text "Why? How could we"
+	line "lose?"
+	done
 ; 0x180b3c
 
 UnknownText_0x180b3c: ; 0x180b3c
-	db $0, "Having lost, I", $4f
-	db "have no right to", $55
-	db "say anything…", $51
-	db "Go face your next", $4f
-	db "challenge!", $57
+	text "Having lost, I"
+	line "have no right to"
+	cont "say anything…"
+
+	para "Go face your next"
+	line "challenge!"
+	done
 ; 0x180b88
 
 BrunosRoom_MapEventHeader: ; 0x180b88

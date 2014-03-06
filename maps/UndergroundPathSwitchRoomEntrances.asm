@@ -797,230 +797,297 @@ MovementData_0x7ce97: ; 0x7ce97
 ; 0x7ce9d
 
 UnknownText_0x7ce9d: ; 0x7ce9d
-	db $0, "Hold it!", $51
-	db "I saw you, so I", $4f
-	db "tailed you.", $51
-	db "I don't need you", $4f
-	db "underfoot while I", $51
-	db "take care of TEAM", $4f
-	db "ROCKET.", $51
-	db "…Wait a second.", $4f
-	db "You beat me be-", $55
-	db "fore, didn't you?", $51
-	db "That was just a", $4f
-	db "fluke.", $51
-	db "But I repay my", $4f
-	db "debts!", $57
+	text "Hold it!"
+
+	para "I saw you, so I"
+	line "tailed you."
+
+	para "I don't need you"
+	line "underfoot while I"
+
+	para "take care of TEAM"
+	line "ROCKET."
+
+	para "…Wait a second."
+	line "You beat me be-"
+	cont "fore, didn't you?"
+
+	para "That was just a"
+	line "fluke."
+
+	para "But I repay my"
+	line "debts!"
+	done
 ; 0x7cf5d
 
 UnknownText_0x7cf5d: ; 0x7cf5d
-	db $0, "…Why…", $4f
-	db "Why do I lose?", $51
-	db "I've assembled the", $4f
-	db "toughest #MON.", $51
-	db "I didn't ease up", $4f
-	db "on the gas.", $51
-	db "So why do I lose?", $57
+	text "…Why…"
+	line "Why do I lose?"
+
+	para "I've assembled the"
+	line "toughest #MON."
+
+	para "I didn't ease up"
+	line "on the gas."
+
+	para "So why do I lose?"
+	done
 ; 0x7cfc2
 
 UnknownText_0x7cfc2: ; 0x7cfc2
-	db $0, "…I don't under-", $4f
-	db "stand…", $51
-	db "Is what that LANCE", $4f
-	db "guy said true?", $51
-	db "That I don't treat", $4f
-	db "#MON properly?", $51
-	db "Love…", $51
-	db "Trust…", $51
-	db "Are they really", $4f
-	db "what I lack?", $51
-	db "Are they keeping", $4f
-	db "me from winning?", $51
-	db "I… I just don't", $4f
-	db "understand.", $51
-	db "But it's not going", $4f
-	db "to end here.", $51
-	db "Not now. Not", $4f
-	db "because of this.", $51
-	db "I won't give up my", $4f
-	db "dream of becoming", $51
-	db "the world's best", $4f
-	db "#MON trainer!", $57
+	text "…I don't under-"
+	line "stand…"
+
+	para "Is what that LANCE"
+	line "guy said true?"
+
+	para "That I don't treat"
+	line "#MON properly?"
+
+	para "Love…"
+
+	para "Trust…"
+
+	para "Are they really"
+	line "what I lack?"
+
+	para "Are they keeping"
+	line "me from winning?"
+
+	para "I… I just don't"
+	line "understand."
+
+	para "But it's not going"
+	line "to end here."
+
+	para "Not now. Not"
+	line "because of this."
+
+	para "I won't give up my"
+	line "dream of becoming"
+
+	para "the world's best"
+	line "#MON trainer!"
+	done
 ; 0x7d102
 
 UnknownText_0x7d102: ; 0x7d102
-	db $0, "Humph. This is my", $4f
-	db "real power, wimp.", $51
-	db "I'll make TEAM", $4f
-	db "ROCKET history.", $51
-	db "And I'm going to", $4f
-	db "grind that LANCE", $55
-	db "under my heels.", $57
+	text "Humph. This is my"
+	line "real power, wimp."
+
+	para "I'll make TEAM"
+	line "ROCKET history."
+
+	para "And I'm going to"
+	line "grind that LANCE"
+	cont "under my heels."
+	done
 ; 0x7d176
 
 UnknownText_0x7d176: ; 0x7d176
-	db $0, "I was challenged", $4f
-	db "to a battle down-", $55
-	db "stairs.", $51
-	db "It's rough down", $4f
-	db "there. You'd", $55
-	db "better be careful.", $57
+	text "I was challenged"
+	line "to a battle down-"
+	cont "stairs."
+
+	para "It's rough down"
+	line "there. You'd"
+	cont "better be careful."
+	done
 ; 0x7d1d0
 
 UnknownText_0x7d1d0: ; 0x7d1d0
-	db $0, "There are some", $4f
-	db "shops downstairs…", $51
-	db "But there are", $4f
-	db "also trainers.", $51
-	db "I'm scared to go", $4f
-	db "down there.", $57
+	text "There are some"
+	line "shops downstairs…"
+
+	para "But there are"
+	line "also trainers."
+
+	para "I'm scared to go"
+	line "down there."
+	done
 ; 0x7d22b
 
 GruntM11SeenText: ; 0x7d22b
-	db $0, "Open one shutter,", $4f
-	db "another closes.", $51
-	db "Bet you can't get", $4f
-	db "where you want!", $57
+	text "Open one shutter,"
+	line "another closes."
+
+	para "Bet you can't get"
+	line "where you want!"
+	done
 ; 0x7d26f
 
 GruntM11BeatenText: ; 0x7d26f
-	db $0, "Drat! I was sunk", $4f
-	db "by indecision!", $57
+	text "Drat! I was sunk"
+	line "by indecision!"
+	done
 ; 0x7d290
 
 UnknownText_0x7d290: ; 0x7d290
-	db $0, "I'm confused too…", $4f
-	db "The switch on the", $51
-	db "end is the one to", $4f
-	db "press first, but…", $57
+	text "I'm confused too…"
+	line "The switch on the"
+
+	para "end is the one to"
+	line "press first, but…"
+	done
 ; 0x7d2d8
 
 GruntM25SeenText: ; 0x7d2d8
-	db $0, "Kwahaha!", $51
-	db "Confounded by the", $4f
-	db "shutters, are we?", $51
-	db "I'll let you in on", $4f
-	db "a secret if you", $55
-	db "can beat me!", $57
+	text "Kwahaha!"
+
+	para "Confounded by the"
+	line "shutters, are we?"
+
+	para "I'll let you in on"
+	line "a secret if you"
+	cont "can beat me!"
+	done
 ; 0x7d335
 
 GruntM25BeatenText: ; 0x7d335
-	db $0, "Uwww…", $4f
-	db "I blew it.", $57
+	text "Uwww…"
+	line "I blew it."
+	done
 ; 0x7d347
 
 UnknownText_0x7d347: ; 0x7d347
-	db $0, "All right. A hint!", $51
-	db "Change the order", $4f
-	db "of switching.", $51
-	db "That'll change the", $4f
-	db "ways the shutters", $55
-	db "open and close.", $57
+	text "All right. A hint!"
+
+	para "Change the order"
+	line "of switching."
+
+	para "That'll change the"
+	line "ways the shutters"
+	cont "open and close."
+	done
 ; 0x7d3ae
 
 BurglarDuncanSeenText: ; 0x7d3ae
-	db $0, "Fork over your", $4f
-	db "goodies!", $57
+	text "Fork over your"
+	line "goodies!"
+	done
 ; 0x7d3c7
 
 BurglarDuncanBeatenText: ; 0x7d3c7
-	db $0, "Mercy!", $57
+	text "Mercy!"
+	done
 ; 0x7d3cf
 
 UnknownText_0x7d3cf: ; 0x7d3cf
-	db $0, "Steal and sell!", $4f
-	db "That's basic in", $55
-	db "crime, kid!", $57
+	text "Steal and sell!"
+	line "That's basic in"
+	cont "crime, kid!"
+	done
 ; 0x7d3fb
 
 BurglarEddieSeenText: ; 0x7d3fb
-	db $0, "They ditched this", $4f
-	db "project before", $55
-	db "they finished.", $51
-	db "I'm searching for", $4f
-	db "leftover loot.", $57
+	text "They ditched this"
+	line "project before"
+	cont "they finished."
+
+	para "I'm searching for"
+	line "leftover loot."
+	done
 ; 0x7d44c
 
 BurglarEddieBeatenText: ; 0x7d44c
-	db $0, "Over the top!", $57
+	text "Over the top!"
+	done
 ; 0x7d45b
 
 UnknownText_0x7d45b: ; 0x7d45b
-	db $0, "UNDERGROUND WARE-", $4f
-	db "HOUSE?", $51
-	db "What do you want", $4f
-	db "to go there for?", $51
-	db "There's nothing", $4f
-	db "down there.", $57
+	text "UNDERGROUND WARE-"
+	line "HOUSE?"
+
+	para "What do you want"
+	line "to go there for?"
+
+	para "There's nothing"
+	line "down there."
+	done
 ; 0x7d4b2
 
 GruntM13SeenText: ; 0x7d4b2
-	db $0, "I don't care if", $4f
-	db "you're lost.", $51
-	db "You show up here,", $4f
-	db "you're nothing but", $55
-	db "a victim!", $57
+	text "I don't care if"
+	line "you're lost."
+
+	para "You show up here,"
+	line "you're nothing but"
+	cont "a victim!"
+	done
 ; 0x7d4fc
 
 GruntM13BeatenText: ; 0x7d4fc
-	db $0, "Urk! Yeah, think", $4f
-	db "you're cool, huh?", $57
+	text "Urk! Yeah, think"
+	line "you're cool, huh?"
+	done
 ; 0x7d51f
 
 UnknownText_0x7d51f: ; 0x7d51f
-	db $0, "You must have ice", $4f
-	db "in your veins to", $55
-	db "dis TEAM ROCKET.", $57
+	text "You must have ice"
+	line "in your veins to"
+	cont "dis TEAM ROCKET."
+	done
 ; 0x7d554
 
 UnknownText_0x7d554: ; 0x7d554
-	db $0, "It's labeled", $4f
-	db "SWITCH 1.", $57
+	text "It's labeled"
+	line "SWITCH 1."
+	done
 ; 0x7d56b
 
 GruntF3SeenText: ; 0x7d56b
-	db $0, "Are you lost? No,", $4f
-	db "you can't be.", $51
-	db "You don't have", $4f
-	db "that scared look.", $51
-	db "I'll give you", $4f
-	db "something to be", $55
-	db "scared about!", $57
+	text "Are you lost? No,"
+	line "you can't be."
+
+	para "You don't have"
+	line "that scared look."
+
+	para "I'll give you"
+	line "something to be"
+	cont "scared about!"
+	done
 ; 0x7d5d6
 
 GruntF3BeatenText: ; 0x7d5d6
-	db $0, "How could you?", $57
+	text "How could you?"
+	done
 ; 0x7d5e6
 
 UnknownText_0x7d5e6: ; 0x7d5e6
-	db $0, "Go wherever you'd", $4f
-	db "like! Get lost!", $55
-	db "See if I care!", $57
+	text "Go wherever you'd"
+	line "like! Get lost!"
+	cont "See if I care!"
+	done
 ; 0x7d617
 
 UnknownText_0x7d617: ; 0x7d617
-	db $0, "It's OFF.", $4f
-	db "Turn it ON?", $57
+	text "It's OFF."
+	line "Turn it ON?"
+	done
 ; 0x7d62d
 
 UnknownText_0x7d62d: ; 0x7d62d
-	db $0, "It's ON.", $4f
-	db "Turn it OFF?", $57
+	text "It's ON."
+	line "Turn it OFF?"
+	done
 ; 0x7d643
 
 UnknownText_0x7d643: ; 0x7d643
-	db $0, "It's labeled", $4f
-	db "SWITCH 2.", $57
+	text "It's labeled"
+	line "SWITCH 2."
+	done
 ; 0x7d65a
 
 UnknownText_0x7d65a: ; 0x7d65a
-	db $0, "It's labeled", $4f
-	db "SWITCH 3.", $57
+	text "It's labeled"
+	line "SWITCH 3."
+	done
 ; 0x7d671
 
 UnknownText_0x7d671: ; 0x7d671
-	db $0, "It's labeled", $4f
-	db "EMERGENCY.", $57
+	text "It's labeled"
+	line "EMERGENCY."
+	done
 ; 0x7d689
 
 UndergroundPathSwitchRoomEntrances_MapEventHeader: ; 0x7d689

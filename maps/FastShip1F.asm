@@ -233,71 +233,89 @@ MovementData_0x75238: ; 0x75238
 ; 0x7523b
 
 UnknownText_0x7523b: ; 0x7523b
-	db $0, "FAST SHIP S.S.AQUA", $4f
-	db "is en route to", $55
-	db "VERMILION CITY.", $51
-	db "We will make an", $4f
-	db "announcement when", $55
-	db "we arrive.", $57
+	text "FAST SHIP S.S.AQUA"
+	line "is en route to"
+	cont "VERMILION CITY."
+
+	para "We will make an"
+	line "announcement when"
+	cont "we arrive."
+	done
 ; 0x7529b
 
 UnknownText_0x7529b: ; 0x7529b
-	db $0, "FAST SHIP S.S.AQUA", $4f
-	db "is en route to", $55
-	db "OLIVINE CITY.", $51
-	db "We will make an", $4f
-	db "announcement when", $55
-	db "we arrive.", $57
+	text "FAST SHIP S.S.AQUA"
+	line "is en route to"
+	cont "OLIVINE CITY."
+
+	para "We will make an"
+	line "announcement when"
+	cont "we arrive."
+	done
 ; 0x752f9
 
 UnknownText_0x752f9: ; 0x752f9
-	db $0, "Here's your cabin.", $51
-	db "If your #MON", $4f
-	db "are hurt, take a", $55
-	db "nap in the bed.", $51
-	db "That will heal", $4f
-	db "them.", $57
+	text "Here's your cabin."
+
+	para "If your #MON"
+	line "are hurt, take a"
+	cont "nap in the bed."
+
+	para "That will heal"
+	line "them."
+	done
 ; 0x7534f
 
 UnknownText_0x7534f: ; 0x7534f
-	db $0, "Here's your cabin.", $51
-	db "You can heal your", $4f
-	db "#MON by taking", $55
-	db "a nap in the bed.", $51
-	db "The ship will", $4f
-	db "arrive while", $55
-	db "you're sleeping.", $57
+	text "Here's your cabin."
+
+	para "You can heal your"
+	line "#MON by taking"
+	cont "a nap in the bed."
+
+	para "The ship will"
+	line "arrive while"
+	cont "you're sleeping."
+	done
 ; 0x753c0
 
 UnknownText_0x753c0: ; 0x753c0
-	db $0, "The passengers are", $4f
-	db "all trainers.", $51
-	db "They're all itch-", $4f
-	db "ing to battle in", $55
-	db "their cabins.", $57
+	text "The passengers are"
+	line "all trainers."
+
+	para "They're all itch-"
+	line "ing to battle in"
+	cont "their cabins."
+	done
 ; 0x75412
 
 UnknownText_0x75412: ; 0x75412
-	db $0, "Whoa! Excuse me.", $4f
-	db "I was in a hurry!", $51
-	db "My granddaughter", $4f
-	db "is missing!", $51
-	db "She's just a wee", $4f
-	db "girl. If you see", $51
-	db "her, please let me", $4f
-	db "know!", $57
+	text "Whoa! Excuse me."
+	line "I was in a hurry!"
+
+	para "My granddaughter"
+	line "is missing!"
+
+	para "She's just a wee"
+	line "girl. If you see"
+
+	para "her, please let me"
+	line "know!"
+	done
 ; 0x7548d
 
 UnknownText_0x7548d: ; 0x7548d
-	db $0, "FAST SHIP S.S.AQUA", $4f
-	db "has arrived in", $55
-	db "OLIVINE CITY.", $57
+	text "FAST SHIP S.S.AQUA"
+	line "has arrived in"
+	cont "OLIVINE CITY."
+	done
 ; 0x754be
 
 UnknownText_0x754be: ; 0x754be
-	db $0, "FAST SHIP S.S.AQUA", $4f
-	db "has arrived in", $55
-	db "VERMILION CITY.", $57
+	text "FAST SHIP S.S.AQUA"
+	line "has arrived in"
+	cont "VERMILION CITY."
+	done
 ; 0x754f1
 
 FastShip1F_MapEventHeader: ; 0x754f1

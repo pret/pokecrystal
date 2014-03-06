@@ -239,128 +239,157 @@ MovementData_0x7563c: ; 0x7563c
 ; 0x75643
 
 CooltrainermSeanSeenText: ; 0x75643
-	db $0, "I'm going to KANTO", $4f
-	db "to test my skills.", $57
+	text "I'm going to KANTO"
+	line "to test my skills."
+	done
 ; 0x75669
 
 CooltrainermSeanBeatenText: ; 0x75669
-	db $0, "I wanted to win!", $57
+	text "I wanted to win!"
+	done
 ; 0x7567b
 
 UnknownText_0x7567b: ; 0x7567b
-	db $0, "Trainers from", $4f
-	db "JOHTO can battle", $51
-	db "with KANTO GYM", $4f
-	db "LEADERS.", $57
+	text "Trainers from"
+	line "JOHTO can battle"
+
+	para "with KANTO GYM"
+	line "LEADERS."
+	done
 ; 0x756b3
 
 CooltrainerfCarolSeenText: ; 0x756b3
-	db $0, "I'm training to", $4f
-	db "become the CHAMP!", $57
+	text "I'm training to"
+	line "become the CHAMP!"
+	done
 ; 0x756d5
 
 CooltrainerfCarolBeatenText: ; 0x756d5
-	db $0, "What's so differ-", $4f
-	db "ent between us?", $57
+	text "What's so differ-"
+	line "ent between us?"
+	done
 ; 0x756f7
 
 UnknownText_0x756f7: ; 0x756f7
-	db $0, "I'm going to beat", $4f
-	db "you someday!", $57
+	text "I'm going to beat"
+	line "you someday!"
+	done
 ; 0x75716
 
 PokemaniacEthanSeenText: ; 0x75716
-	db $0, "Do you know LILY?", $4f
-	db "She's a hot DJ in", $55
-	db "KANTO.", $57
+	text "Do you know LILY?"
+	line "She's a hot DJ in"
+	cont "KANTO."
+	done
 ; 0x75741
 
 PokemaniacEthanBeatenText: ; 0x75741
-	db $0, "Gyaaaah!", $57
+	text "Gyaaaah!"
+	done
 ; 0x7574b
 
 UnknownText_0x7574b: ; 0x7574b
-	db $0, "LILY's nice, but", $4f
-	db "MARY's the best!", $51
-	db "I want to check", $4f
-	db "out JOHTO's radio", $55
-	db "programs!", $57
+	text "LILY's nice, but"
+	line "MARY's the best!"
+
+	para "I want to check"
+	line "out JOHTO's radio"
+	cont "programs!"
+	done
 ; 0x75797
 
 HikerNolandSeenText: ; 0x75797
-	db $0, "Are you alone?", $4f
-	db "Then let's battle!", $57
+	text "Are you alone?"
+	line "Then let's battle!"
+	done
 ; 0x757b9
 
 HikerNolandBeatenText: ; 0x757b9
-	db $0, "That's too much to", $4f
-	db "handle!", $57
+	text "That's too much to"
+	line "handle!"
+	done
 ; 0x757d4
 
 UnknownText_0x757d4: ; 0x757d4
-	db $0, "I wonder if there", $4f
-	db "are any mountains", $51
-	db "worth climbing in", $4f
-	db "KANTO?", $57
+	text "I wonder if there"
+	line "are any mountains"
+
+	para "worth climbing in"
+	line "KANTO?"
+	done
 ; 0x75812
 
 UnknownText_0x75812: ; 0x75812
-	db $0, "Yeah, I'm a sail-", $4f
-	db "or, all right.", $51
-	db "I wasn't goofing", $4f
-	db "off!", $51
-	db "This cabin was", $4f
-	db "vacant, so I just", $55
-	db "took a quick nap!", $51
-	db "Ah, forget it!", $4f
-	db "Let's battle!", $57
+	text "Yeah, I'm a sail-"
+	line "or, all right."
+
+	para "I wasn't goofing"
+	line "off!"
+
+	para "This cabin was"
+	line "vacant, so I just"
+	cont "took a quick nap!"
+
+	para "Ah, forget it!"
+	line "Let's battle!"
+	done
 ; 0x75897
 
 UnknownText_0x75897: ; 0x75897
-	db $0, "Sorry! It's all my", $4f
-	db "fault!", $57
+	text "Sorry! It's all my"
+	line "fault!"
+	done
 ; 0x758b1
 
 UnknownText_0x758b1: ; 0x758b1
-	db $0, "Being a sailor, I", $4f
-	db "have to do phys-", $55
-	db "ical labor. It's", $55
-	db "exhausting!", $57
+	text "Being a sailor, I"
+	line "have to do phys-"
+	cont "ical labor. It's"
+	cont "exhausting!"
+	done
 ; 0x758f1
 
 GentlemanEdwardSeenText: ; 0x758f1
-	db $0, "Oh, no. I've lost", $4f
-	db "something that's", $55
-	db "very important.", $57
+	text "Oh, no. I've lost"
+	line "something that's"
+	cont "very important."
+	done
 ; 0x75923
 
 GentlemanEdwardBeatenText: ; 0x75923
-	db $0, "I… I can't find", $4f
-	db "it…", $57
+	text "I… I can't find"
+	line "it…"
+	done
 ; 0x75937
 
 UnknownText_0x75937: ; 0x75937
-	db $0, "I give up.", $4f
-	db "You don't have to", $51
-	db "look. Just forget", $4f
-	db "about it!", $57
+	text "I give up."
+	line "You don't have to"
+
+	para "look. Just forget"
+	line "about it!"
+	done
 ; 0x75970
 
 BurglarCoreySeenText: ; 0x75970
-	db $0, "Yeehaw!", $4f
-	db "Lucky!", $57
+	text "Yeehaw!"
+	line "Lucky!"
+	done
 ; 0x75980
 
 BurglarCoreyBeatenText: ; 0x75980
-	db $0, "How unlucky!", $4f
-	db "I lost!", $57
+	text "How unlucky!"
+	line "I lost!"
+	done
 ; 0x75996
 
 UnknownText_0x75996: ; 0x75996
-	db $0, "I found a pretty", $4f
-	db "coin here.", $51
-	db "Someone must have", $4f
-	db "lost it…", $57
+	text "I found a pretty"
+	line "coin here."
+
+	para "Someone must have"
+	line "lost it…"
+	done
 ; 0x759ce
 
 FastShipCabins_NNW_NNE_NE_MapEventHeader: ; 0x759ce

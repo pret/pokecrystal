@@ -271,146 +271,188 @@ MovementData_0x1a10a1: ; 0x1a10a1
 ; 0x1a10a7
 
 UnknownText_0x1a10a7: ; 0x1a10a7
-	db $0, "#MON hide in", $4f
-	db "the grass. Who", $51
-	db "knows when they'll", $4f
-	db "pop out…", $57
+	text "#MON hide in"
+	line "the grass. Who"
+
+	para "knows when they'll"
+	line "pop out…"
+	done
 ; 0x1a10df
 
 UnknownText_0x1a10df: ; 0x1a10df
-	db $0, "I've seen you a", $4f
-	db "couple times. How", $51
-	db "many #MON have", $4f
-	db "you caught?", $51
-	db "Would you like me", $4f
-	db "to show you how to", $55
-	db "catch #MON?", $57
+	text "I've seen you a"
+	line "couple times. How"
+
+	para "many #MON have"
+	line "you caught?"
+
+	para "Would you like me"
+	line "to show you how to"
+	cont "catch #MON?"
+	done
 ; 0x1a114d
 
 UnknownText_0x1a114d: ; 0x1a114d
-	db $0, "That's how you do", $4f
-	db "it.", $51
-	db "If you weaken them", $4f
-	db "first, #MON are", $55
-	db "easier to catch.", $57
+	text "That's how you do"
+	line "it."
+
+	para "If you weaken them"
+	line "first, #MON are"
+	cont "easier to catch."
+	done
 ; 0x1a1197
 
 UnknownText_0x1a1197: ; 0x1a1197
-	db $0, "Oh. Fine, then.", $51
-	db "Anyway, if you", $4f
-	db "want to catch", $51
-	db "#MON, you have", $4f
-	db "to walk a lot.", $57
+	text "Oh. Fine, then."
+
+	para "Anyway, if you"
+	line "want to catch"
+
+	para "#MON, you have"
+	line "to walk a lot."
+	done
 ; 0x1a11e3
 
 UnknownText_0x1a11e3: ; 0x1a11e3
-	db $0, "Huh? You want me", $4f
-	db "to show you how to", $55
-	db "catch #MON?", $57
+	text "Huh? You want me"
+	line "to show you how to"
+	cont "catch #MON?"
+	done
 ; 0x1a1214
 
 UnknownText_0x1a1214: ; 0x1a1214
-	db $0, "Yo. How are your", $4f
-	db "#MON?", $51
-	db "If they're weak", $4f
-	db "and not ready for", $51
-	db "battle, keep out", $4f
-	db "of the grass.", $57
+	text "Yo. How are your"
+	line "#MON?"
+
+	para "If they're weak"
+	line "and not ready for"
+
+	para "battle, keep out"
+	line "of the grass."
+	done
 ; 0x1a126c
 
 UnknownText_0x1a126c: ; 0x1a126c
-	db $0, "See those ledges?", $4f
-	db "It's scary to jump", $55
-	db "off them.", $51
-	db "But you can go to", $4f
-	db "NEW BARK without", $51
-	db "walking through", $4f
-	db "the grass.", $57
+	text "See those ledges?"
+	line "It's scary to jump"
+	cont "off them."
+
+	para "But you can go to"
+	line "NEW BARK without"
+
+	para "walking through"
+	line "the grass."
+	done
 ; 0x1a12d9
 
 UnknownText_0x1a12d9: ; 0x1a12d9
-	db $0, "I wanted to take a", $4f
-	db "break, so I saved", $51
-	db "to record my", $4f
-	db "progress.", $57
+	text "I wanted to take a"
+	line "break, so I saved"
+
+	para "to record my"
+	line "progress."
+	done
 ; 0x1a1316
 
 ; possibly unused
 UnknownText_0x1a1316: ; 0x1a1316
-	db $0, "I'm waiting for", $4f
-	db "#MON that", $51
-	db "appear only in the", $4f
-	db "daytime.", $57
+	text "I'm waiting for"
+	line "#MON that"
+
+	para "appear only in the"
+	line "daytime."
+	done
 ; 0x1a134c
 
 UnknownText_0x1a134c: ; 0x1a134c
-	db $0, "I'm waiting for", $4f
-	db "#MON that", $51
-	db "appear only at", $4f
-	db "night.", $57
+	text "I'm waiting for"
+	line "#MON that"
+
+	para "appear only at"
+	line "night."
+	done
 ; 0x1a137c
 
 UnknownText_0x1a137c: ; 0x1a137c
-	db $0, "I'm waiting for", $4f
-	db "#MON that", $51
-	db "appear only in the", $4f
-	db "morning.", $57
+	text "I'm waiting for"
+	line "#MON that"
+
+	para "appear only in the"
+	line "morning."
+	done
 ; 0x1a13b2
 
 UnknownText_0x1a13b2: ; 0x1a13b2
-	db $0, "TUSCANY: I do be-", $4f
-	db "lieve that this is", $51
-	db "the first time", $4f
-	db "we've met?", $51
-	db "Please allow me to", $4f
-	db "introduce myself.", $51
-	db "I am TUSCANY of", $4f
-	db "Tuesday.", $57
+	text "TUSCANY: I do be-"
+	line "lieve that this is"
+
+	para "the first time"
+	line "we've met?"
+
+	para "Please allow me to"
+	line "introduce myself."
+
+	para "I am TUSCANY of"
+	line "Tuesday."
+	done
 ; 0x1a142f
 
 UnknownText_0x1a142f: ; 0x1a142f
-	db $0, "By way of intro-", $4f
-	db "duction, please", $51
-	db "accept this gift,", $4f
-	db "a PINK BOW.", $57
+	text "By way of intro-"
+	line "duction, please"
+
+	para "accept this gift,"
+	line "a PINK BOW."
+	done
 ; 0x1a146f
 
 UnknownText_0x1a146f: ; 0x1a146f
-	db $0, "TUSCANY: Wouldn't", $4f
-	db "you agree that it", $55
-	db "is most adorable?", $51
-	db "It strengthens", $4f
-	db "normal-type moves.", $51
-	db "I am certain it", $4f
-	db "will be of use.", $57
+	text "TUSCANY: Wouldn't"
+	line "you agree that it"
+	cont "is most adorable?"
+
+	para "It strengthens"
+	line "normal-type moves."
+
+	para "I am certain it"
+	line "will be of use."
+	done
 ; 0x1a14e7
 
 UnknownText_0x1a14e7: ; 0x1a14e7
-	db $0, "TUSCANY: Have you", $4f
-	db "met MONICA, my", $55
-	db "older sister?", $51
-	db "Or my younger", $4f
-	db "brother, WESLEY?", $51
-	db "I am the second of", $4f
-	db "seven children.", $57
+	text "TUSCANY: Have you"
+	line "met MONICA, my"
+	cont "older sister?"
+
+	para "Or my younger"
+	line "brother, WESLEY?"
+
+	para "I am the second of"
+	line "seven children."
+	done
 ; 0x1a1559
 
 UnknownText_0x1a1559: ; 0x1a1559
-	db $0, "TUSCANY: Today is", $4f
-	db "not Tuesday. That", $55
-	db "is unfortunate…", $57
+	text "TUSCANY: Today is"
+	line "not Tuesday. That"
+	cont "is unfortunate…"
+	done
 ; 0x1a158e
 
 UnknownText_0x1a158e: ; 0x1a158e
-	db $0, "ROUTE 29", $51
-	db "CHERRYGROVE CITY -", $4f
-	db "NEW BARK TOWN", $57
+	text "ROUTE 29"
+
+	para "CHERRYGROVE CITY -"
+	line "NEW BARK TOWN"
+	done
 ; 0x1a15b9
 
 UnknownText_0x1a15b9: ; 0x1a15b9
-	db $0, "ROUTE 29", $51
-	db "CHERRYGROVE CITY -", $4f
-	db "NEW BARK TOWN", $57
+	text "ROUTE 29"
+
+	para "CHERRYGROVE CITY -"
+	line "NEW BARK TOWN"
+	done
 ; 0x1a15e4
 
 Route29_MapEventHeader: ; 0x1a15e4

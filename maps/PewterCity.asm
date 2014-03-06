@@ -80,76 +80,96 @@ FruitTreeScript_0x18c040: ; 0x18c040
 ; 0x18c042
 
 UnknownText_0x18c042: ; 0x18c042
-	db $0, "Have you visited", $4f
-	db "PEWTER GYM?", $51
-	db "The LEADER uses", $4f
-	db "rock-type #MON.", $57
+	text "Have you visited"
+	line "PEWTER GYM?"
+
+	para "The LEADER uses"
+	line "rock-type #MON."
+	done
 ; 0x18c080
 
 UnknownText_0x18c080: ; 0x18c080
-	db $0, "At night, CLEFAIRY", $4f
-	db "come out to play", $55
-	db "at MT.MOON.", $51
-	db "But not every", $4f
-	db "night.", $57
+	text "At night, CLEFAIRY"
+	line "come out to play"
+	cont "at MT.MOON."
+
+	para "But not every"
+	line "night."
+	done
 ; 0x18c0c6
 
 UnknownText_0x18c0c6: ; 0x18c0c6
-	db $0, "Ah, you came all", $4f
-	db "the way out here", $55
-	db "from JOHTO?", $51
-	db "That brings back", $4f
-	db "memories. When I", $51
-	db "was young, I went", $4f
-	db "to JOHTO to train.", $51
-	db "You remind me so", $4f
-	db "much of what I was", $51
-	db "like as a young", $4f
-	db "man.", $51
-	db "Here. I want you", $4f
-	db "to have this item", $55
-	db "I found in JOHTO.", $57
+	text "Ah, you came all"
+	line "the way out here"
+	cont "from JOHTO?"
+
+	para "That brings back"
+	line "memories. When I"
+
+	para "was young, I went"
+	line "to JOHTO to train."
+
+	para "You remind me so"
+	line "much of what I was"
+
+	para "like as a young"
+	line "man."
+
+	para "Here. I want you"
+	line "to have this item"
+	cont "I found in JOHTO."
+	done
 ; 0x18c1aa
 
 UnknownText_0x18c1aa: ; 0x18c1aa
-	db $0, "Going to new, un-", $4f
-	db "known places and", $55
-	db "seeing new people…", $51
-	db "Those are the joys", $4f
-	db "of travel.", $57
+	text "Going to new, un-"
+	line "known places and"
+	cont "seeing new people…"
+
+	para "Those are the joys"
+	line "of travel."
+	done
 ; 0x18c1ff
 
 UnknownText_0x18c1ff: ; 0x18c1ff
-	db $0, "PEWTER CITY", $4f
-	db "A Stone Gray City", $57
+	text "PEWTER CITY"
+	line "A Stone Gray City"
+	done
 ; 0x18c21e
 
 UnknownText_0x18c21e: ; 0x18c21e
-	db $0, "PEWTER CITY", $4f
-	db "#MON GYM", $55
-	db "LEADER: BROCK", $51
-	db "The Rock Solid", $4f
-	db "#MON Trainer", $57
+	text "PEWTER CITY"
+	line "#MON GYM"
+	cont "LEADER: BROCK"
+
+	para "The Rock Solid"
+	line "#MON Trainer"
+	done
 ; 0x18c25e
 
 UnknownText_0x18c25e: ; 0x18c25e
-	db $0, "There's a notice", $4f
-	db "here…", $51
-	db "PEWTER MUSEUM OF", $4f
-	db "SCIENCE is closed", $55
-	db "for renovations…", $57
+	text "There's a notice"
+	line "here…"
+
+	para "PEWTER MUSEUM OF"
+	line "SCIENCE is closed"
+	cont "for renovations…"
+	done
 ; 0x18c2a9
 
 UnknownText_0x18c2a9: ; 0x18c2a9
-	db $0, "There's a notice", $4f
-	db "here…", $51
-	db "MT.MOON GIFT SHOP", $4f
-	db "NOW OPEN!", $57
+	text "There's a notice"
+	line "here…"
+
+	para "MT.MOON GIFT SHOP"
+	line "NOW OPEN!"
+	done
 ; 0x18c2dc
 
 UnknownText_0x18c2dc: ; 0x18c2dc
-	db $0, "WELCOME TO", $4f
-	db "PEWTER CITY!", $57
+	text "WELCOME TO"
+	line "PEWTER CITY!"
+	done
 ; 0x18c2f5
 
 PewterCity_MapEventHeader: ; 0x18c2f5

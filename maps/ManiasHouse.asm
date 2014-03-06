@@ -109,90 +109,114 @@ UnknownScript_0x9d300: ; 0x9d300
 ; 0x9d303
 
 UnknownText_0x9d303: ; 0x9d303
-	db $0, "I, I'm in shock!", $51
-	db "A guy about your", $4f
-	db "age with piercing", $51
-	db "eyes and long hair", $4f
-	db "came in.", $51
-	db "He scared me into", $4f
-	db "giving him my", $55
-	db "prized #MON!", $51
-	db "I still have one", $4f
-	db "left, but what if", $55
-	db "he comes back?", $51
-	db "You look strong.", $4f
-	db "Could you look", $51
-	db "after my #MON", $4f
-	db "for a while?", $57
+	text "I, I'm in shock!"
+
+	para "A guy about your"
+	line "age with piercing"
+
+	para "eyes and long hair"
+	line "came in."
+
+	para "He scared me into"
+	line "giving him my"
+	cont "prized #MON!"
+
+	para "I still have one"
+	line "left, but what if"
+	cont "he comes back?"
+
+	para "You look strong."
+	line "Could you look"
+
+	para "after my #MON"
+	line "for a while?"
+	done
 ; 0x9d3ed
 
 UnknownText_0x9d3ed: ; 0x9d3ed
-	db $0, "Oh, thank you!", $51
-	db "Take good care of", $4f
-	db "it, please!", $57
+	text "Oh, thank you!"
+
+	para "Take good care of"
+	line "it, please!"
+	done
 ; 0x9d41b
 
 UnknownText_0x9d41b: ; 0x9d41b
-	db $0, $52, " received a", $4f
-	db "#MON.", $57
+	text $52, " received a"
+	line "#MON."
+	done
 ; 0x9d42f
 
 UnknownText_0x9d42f: ; 0x9d42f
-	db $0, "Your #MON party", $4f
-	db "is full.", $57
+	text "Your #MON party"
+	line "is full."
+	done
 ; 0x9d449
 
 UnknownText_0x9d449: ; 0x9d449
-	db $0, "Oh, no… What'll", $4f
-	db "I do if he comes", $55
-	db "back?", $57
+	text "Oh, no… What'll"
+	line "I do if he comes"
+	cont "back?"
+	done
 ; 0x9d470
 
 UnknownText_0x9d470: ; 0x9d470
-	db $0, "Hi! How's my #-", $4f
-	db "MON?", $51
-	db "I think I'm safe", $4f
-	db "now, so may I have", $55
-	db "it back?", $57
+	text "Hi! How's my #-"
+	line "MON?"
+
+	para "I think I'm safe"
+	line "now, so may I have"
+	cont "it back?"
+	done
 ; 0x9d4b1
 
 UnknownText_0x9d4b1: ; 0x9d4b1
-	db $0, "Thank you!", $57
+	text "Thank you!"
+	done
 ; 0x9d4bd
 
 UnknownText_0x9d4bd: ; 0x9d4bd
-	db $0, "Hey, you don't", $4f
-	db "have my #MON", $55
-	db "with you.", $57
+	text "Hey, you don't"
+	line "have my #MON"
+	cont "with you."
+	done
 ; 0x9d4e3
 
 UnknownText_0x9d4e3: ; 0x9d4e3
-	db $0, "My #MON has", $4f
-	db "come to like you.", $51
-	db "All right, you", $4f
-	db "should keep it.", $51
-	db "But promise to", $4f
-	db "be good to it!", $57
+	text "My #MON has"
+	line "come to like you."
+
+	para "All right, you"
+	line "should keep it."
+
+	para "But promise to"
+	line "be good to it!"
+	done
 ; 0x9d53f
 
 UnknownText_0x9d53f: ; 0x9d53f
-	db $0, "Oh, no, no… That's", $4f
-	db "the same as being", $55
-	db "robbed.", $57
+	text "Oh, no, no… That's"
+	line "the same as being"
+	cont "robbed."
+	done
 ; 0x9d56c
 
 UnknownText_0x9d56c: ; 0x9d56c
-	db $0, "For #MON, hap-", $4f
-	db "piness is being", $51
-	db "with a person who", $4f
-	db "treats them well.", $57
+	text "For #MON, hap-"
+	line "piness is being"
+
+	para "with a person who"
+	line "treats them well."
+	done
 ; 0x9d5b0
 
 UnknownText_0x9d5b0: ; 0x9d5b0
-	db $0, "If I take my #-", $4f
-	db "MON back, what are", $51
-	db "you going to use", $4f
-	db "in battle?", $57
+	text "If I take my #-"
+	line "MON back, what are"
+
+	para "you going to use"
+	line "in battle?"
+	done
 ; 0x9d5f0
 
 ManiasHouse_MapEventHeader: ; 0x9d5f0

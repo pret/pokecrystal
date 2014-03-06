@@ -11,11 +11,13 @@ GentlemanScript_0x192031: ; 0x192031
 ; 0x192034
 
 UnknownText_0x192034: ; 0x192034
-	db $0, "Over many years,", $4f
-	db "DIGLETT dug a", $55
-	db "large tunnel.", $51
-	db "That tunnel goes", $4f
-	db "to a distant town.", $57
+	text "Over many years,"
+	line "DIGLETT dug a"
+	cont "large tunnel."
+
+	para "That tunnel goes"
+	line "to a distant town."
+	done
 ; 0x192086
 
 VermilionHouseDiglettsCaveSpeechHouse_MapEventHeader: ; 0x192086

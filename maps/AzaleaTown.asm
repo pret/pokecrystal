@@ -273,181 +273,234 @@ MovementData_0x198148: ; 0x198148
 ; 0x19814d
 
 UnknownText_0x19814d: ; 0x19814d
-	db $0, "…Tell me some-", $4f
-	db "thing.", $51
-	db "Is it true that", $4f
-	db "TEAM ROCKET has", $55
-	db "returned?", $51
-	db "What? You beat", $4f
-	db "them? Hah! Quit", $55
-	db "lying.", $51
-	db "You're not joking?", $4f
-	db "Then let's see how", $55
-	db "good you are.", $57
+	text "…Tell me some-"
+	line "thing."
+
+	para "Is it true that"
+	line "TEAM ROCKET has"
+	cont "returned?"
+
+	para "What? You beat"
+	line "them? Hah! Quit"
+	cont "lying."
+
+	para "You're not joking?"
+	line "Then let's see how"
+	cont "good you are."
+	done
 ; 0x1981e6
 
 UnknownText_0x1981e6: ; 0x1981e6
-	db $0, "… Humph! Useless", $4f
-	db "#MON!", $51
-	db "Listen, you. You", $4f
-	db "only won because", $51
-	db "my #MON were", $4f
-	db "weak.", $57
+	text "… Humph! Useless"
+	line "#MON!"
+
+	para "Listen, you. You"
+	line "only won because"
+
+	para "my #MON were"
+	line "weak."
+	done
 ; 0x198233
 
 UnknownText_0x198233: ; 0x198233
-	db $0, "I hate the weak.", $51
-	db "#MON, trainers.", $4f
-	db "It doesn't matter", $55
-	db "who or what.", $51
-	db "I'm going to be", $4f
-	db "strong and wipe", $55
-	db "out the weak.", $51
-	db "That goes for TEAM", $4f
-	db "ROCKET too.", $51
-	db "They act big and", $4f
-	db "tough in a group.", $51
-	db "But get them", $4f
-	db "alone, and they're", $55
-	db "weak.", $51
-	db "I hate them all.", $51
-	db "You stay out of my", $4f
-	db "way. A weakling", $51
-	db "like you is only a", $4f
-	db "distraction.", $57
+	text "I hate the weak."
+
+	para "#MON, trainers."
+	line "It doesn't matter"
+	cont "who or what."
+
+	para "I'm going to be"
+	line "strong and wipe"
+	cont "out the weak."
+
+	para "That goes for TEAM"
+	line "ROCKET too."
+
+	para "They act big and"
+	line "tough in a group."
+
+	para "But get them"
+	line "alone, and they're"
+	cont "weak."
+
+	para "I hate them all."
+
+	para "You stay out of my"
+	line "way. A weakling"
+
+	para "like you is only a"
+	line "distraction."
+	done
 ; 0x19835b
 
 UnknownText_0x19835b: ; 0x19835b
-	db $0, "…Humph! I knew", $4f
-	db "you were lying.", $57
+	text "…Humph! I knew"
+	line "you were lying."
+	done
 ; 0x19837b
 
 UnknownText_0x19837b: ; 0x19837b
-	db $0, "It's unsafe to go", $4f
-	db "in there, so I'm", $55
-	db "standing guard.", $51
-	db "Aren't I a good", $4f
-	db "Samaritan?", $57
+	text "It's unsafe to go"
+	line "in there, so I'm"
+	cont "standing guard."
+
+	para "Aren't I a good"
+	line "Samaritan?"
+	done
 ; 0x1983c7
 
 UnknownText_0x1983c7: ; 0x1983c7
-	db $0, "Do you know about", $4f
-	db "SLOWPOKETAIL? I", $55
-	db "heard it's tasty!", $51
-	db "Aren't you glad I", $4f
-	db "told you that?", $57
+	text "Do you know about"
+	line "SLOWPOKETAIL? I"
+	cont "heard it's tasty!"
+
+	para "Aren't you glad I"
+	line "told you that?"
+	done
 ; 0x19841b
 
 UnknownText_0x19841b: ; 0x19841b
-	db $0, "The SLOWPOKE have", $4f
-	db "disappeared from", $55
-	db "town…", $51
-	db "I heard their", $4f
-	db "TAILS are being", $55
-	db "sold somewhere.", $57
+	text "The SLOWPOKE have"
+	line "disappeared from"
+	cont "town…"
+
+	para "I heard their"
+	line "TAILS are being"
+	cont "sold somewhere."
+	done
 ; 0x198473
 
 UnknownText_0x198473: ; 0x198473
-	db $0, "The SLOWPOKE have", $4f
-	db "returned.", $51
-	db "Knowing them, they", $4f
-	db "could've just been", $51
-	db "goofing off some-", $4f
-	db "where.", $57
+	text "The SLOWPOKE have"
+	line "returned."
+
+	para "Knowing them, they"
+	line "could've just been"
+
+	para "goofing off some-"
+	line "where."
+	done
 ; 0x1984ce
 
 UnknownText_0x1984ce: ; 0x1984ce
-	db $0, "Did you come to", $4f
-	db "get KURT to make", $55
-	db "some BALLS?", $51
-	db "A lot of people do", $4f
-	db "just that.", $57
+	text "Did you come to"
+	line "get KURT to make"
+	cont "some BALLS?"
+
+	para "A lot of people do"
+	line "just that."
+	done
 ; 0x19851a
 
 UnknownText_0x19851a: ; 0x19851a
-	db $0, "Cut through AZALEA", $4f
-	db "and you'll be in", $55
-	db "ILEX FOREST.", $51
-	db "But these skinny", $4f
-	db "trees make it", $51
-	db "impossible to get", $4f
-	db "through.", $51
-	db "The CHARCOAL MAN's", $4f
-	db "#MON can CUT", $55
-	db "down trees.", $57
+	text "Cut through AZALEA"
+	line "and you'll be in"
+	cont "ILEX FOREST."
+
+	para "But these skinny"
+	line "trees make it"
+
+	para "impossible to get"
+	line "through."
+
+	para "The CHARCOAL MAN's"
+	line "#MON can CUT"
+	cont "down trees."
+	done
 ; 0x1985b0
 
 UnknownText_0x1985b0: ; 0x1985b0
-	db $0, "SLOWPOKE: …", $51
-	db $56, " ", $56, " ", $56, $57
+	text "SLOWPOKE: …"
+
+	para $56, " ", $56, " ", $56
+	done
 ; 0x1985c3
 
 UnknownText_0x1985c3: ; 0x1985c3
-	db $0, $56, " ", $56, "Yawn?", $57
+	text $56, " ", $56, "Yawn?"
+	done
 ; 0x1985cd
 
 UnknownText_0x1985cd: ; 0x1985cd
-	db $0, "WOOSTER: Gugyoo…", $57
+	text "WOOSTER: Gugyoo…"
+	done
 ; 0x1985df
 
 UnknownText_0x1985df: ; 0x1985df
-	db $0, "ILEX FOREST is", $4f
-	db "restless!", $51
-	db "What is going on?", $57
+	text "ILEX FOREST is"
+	line "restless!"
+
+	para "What is going on?"
+	done
 ; 0x19860b
 
 UnknownText_0x19860b: ; 0x19860b
-	db $0, $52, ", here's", $4f
-	db "your GS BALL back!", $57
+	text $52, ", here's"
+	line "your GS BALL back!"
+	done
 ; 0x198628
 
 UnknownText_0x198628: ; 0x198628
-	db $0, "Could you go see", $4f
-	db "why ILEX FOREST is", $55
-	db "so restless?", $57
+	text "Could you go see"
+	line "why ILEX FOREST is"
+	cont "so restless?"
+	done
 ; 0x19865a
 
 UnknownText_0x19865a: ; 0x19865a
-	db $0, "AZALEA TOWN", $4f
-	db "Where People and", $51
-	db "#MON Live in", $4f
-	db "Happy Harmony", $57
+	text "AZALEA TOWN"
+	line "Where People and"
+
+	para "#MON Live in"
+	line "Happy Harmony"
+	done
 ; 0x198693
 
 UnknownText_0x198693: ; 0x198693
-	db $0, "KURT'S HOUSE", $57
+	text "KURT'S HOUSE"
+	done
 ; 0x1986a1
 
 UnknownText_0x1986a1: ; 0x1986a1
-	db $0, "AZALEA TOWN", $4f
-	db "#MON GYM", $55
-	db "LEADER: BUGSY", $51
-	db "The Walking", $4f
-	db "Bug #MON", $55
-	db "Encyclopedia", $57
+	text "AZALEA TOWN"
+	line "#MON GYM"
+	cont "LEADER: BUGSY"
+
+	para "The Walking"
+	line "Bug #MON"
+	cont "Encyclopedia"
+	done
 ; 0x1986e7
 
 UnknownText_0x1986e7: ; 0x1986e7
-	db $0, "SLOWPOKE WELL", $51
-	db "Also known as the", $4f
-	db "RAINMAKER WELL.", $51
-	db "Locals believe", $4f
-	db "that a SLOWPOKE's", $55
-	db "yawn summons rain.", $51
-	db "Records show that", $4f
-	db "a SLOWPOKE's yawn", $51
-	db "ended a drought", $4f
-	db "400 years ago.", $57
+	text "SLOWPOKE WELL"
+
+	para "Also known as the"
+	line "RAINMAKER WELL."
+
+	para "Locals believe"
+	line "that a SLOWPOKE's"
+	cont "yawn summons rain."
+
+	para "Records show that"
+	line "a SLOWPOKE's yawn"
+
+	para "ended a drought"
+	line "400 years ago."
+	done
 ; 0x19878d
 
 UnknownText_0x19878d: ; 0x19878d
-	db $0, "CHARCOAL KILN", $57
+	text "CHARCOAL KILN"
+	done
 ; 0x19879c
 
 UnknownText_0x19879c: ; 0x19879c
-	db $0, "ILEX FOREST", $51
-	db "Enter through the", $4f
-	db "gate.", $57
+	text "ILEX FOREST"
+
+	para "Enter through the"
+	line "gate."
+	done
 ; 0x1987c1
 
 AzaleaTown_MapEventHeader: ; 0x1987c1

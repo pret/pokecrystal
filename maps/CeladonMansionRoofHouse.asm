@@ -36,63 +36,88 @@ UnknownScript_0x71b25: ; 0x71b25
 ; 0x71b27
 
 UnknownText_0x71b27: ; 0x71b27
-	db $0, "Let me recount a", $4f
-	db "terrifying tale…", $57
+	text "Let me recount a"
+	line "terrifying tale…"
+	done
 ; 0x71b4a
 
 UnknownText_0x71b4a: ; 0x71b4a
-	db $0, "Then again, it's", $4f
-	db "not as scary while", $51
-	db "it's still light", $4f
-	db "outside.", $51
-	db "Come back after", $4f
-	db "sunset, OK?", $57
+	text "Then again, it's"
+	line "not as scary while"
+
+	para "it's still light"
+	line "outside."
+
+	para "Come back after"
+	line "sunset, OK?"
+	done
 ; 0x71ba3
 
 UnknownText_0x71ba3: ; 0x71ba3
-	db $0, "Once upon a time,", $4f
-	db "there was a little", $51
-	db "boy who was given", $4f
-	db "a new BICYCLE…", $51
-	db "He wanted to try", $4f
-	db "it right away…", $51
-	db "He was having so", $4f
-	db "much fun that he", $51
-	db "didn't notice the", $4f
-	db "sun had set…", $51
-	db "While riding home", $4f
-	db "in the pitch-black", $51
-	db "night, the bike", $4f
-	db "suddenly slowed!", $51
-	db "The pedals became", $4f
-	db "heavy!", $51
-	db "When he stopped", $4f
-	db "pedaling, the bike", $51
-	db "began slipping", $4f
-	db "backwards!", $51
-	db "It was as if the", $4f
-	db "bike were cursed", $51
-	db "and trying to drag", $4f
-	db "him into oblivion!", $51
-	db "…", $51
-	db "…", $51
-	db "SHRIEEEEK!", $51
-	db "The boy had been", $4f
-	db "riding uphill on", $55
-	db "CYCLING ROAD!", $51
-	db "…", $4f
-	db "Ba-dum ba-dum!", $51
-	db "For listening so", $4f
-	db "patiently, you may", $55
-	db "take this--TM03!", $57
+	text "Once upon a time,"
+	line "there was a little"
+
+	para "boy who was given"
+	line "a new BICYCLE…"
+
+	para "He wanted to try"
+	line "it right away…"
+
+	para "He was having so"
+	line "much fun that he"
+
+	para "didn't notice the"
+	line "sun had set…"
+
+	para "While riding home"
+	line "in the pitch-black"
+
+	para "night, the bike"
+	line "suddenly slowed!"
+
+	para "The pedals became"
+	line "heavy!"
+
+	para "When he stopped"
+	line "pedaling, the bike"
+
+	para "began slipping"
+	line "backwards!"
+
+	para "It was as if the"
+	line "bike were cursed"
+
+	para "and trying to drag"
+	line "him into oblivion!"
+
+	para "…"
+
+	para "…"
+
+	para "SHRIEEEEK!"
+
+	para "The boy had been"
+	line "riding uphill on"
+	cont "CYCLING ROAD!"
+
+	para "…"
+	line "Ba-dum ba-dum!"
+
+	para "For listening so"
+	line "patiently, you may"
+	cont "take this--TM03!"
+	done
 ; 0x71db3
 
 UnknownText_0x71db3: ; 0x71db3
-	db $0, "TM03 is CURSE.", $51
-	db "It's a terrifying", $4f
-	db "move that slowly", $51
-	db "whittles down the", $4f
-	db "victim's HP.", $57
+	text "TM03 is CURSE."
+
+	para "It's a terrifying"
+	line "move that slowly"
+
+	para "whittles down the"
+	line "victim's HP."
+	done
 ; 0x71e03
 
 CeladonMansionRoofHouse_MapEventHeader: ; 0x71e03

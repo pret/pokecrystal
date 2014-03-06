@@ -197,90 +197,114 @@ MovementData_0x1a8465: ; 0x1a8465
 ; 0x1a8473
 
 UnknownText_0x1a8473: ; 0x1a8473
-	db $0, "Hello!", $4f
-	db "You are trainer?", $51
-	db "Battle GYM LEADER,", $4f
-	db "win you did?", $57
+	text "Hello!"
+	line "You are trainer?"
+
+	para "Battle GYM LEADER,"
+	line "win you did?"
+	done
 ; 0x1a84ac
 
 UnknownText_0x1a84ac: ; 0x1a84ac
-	db $0, "Ooh, la la!", $4f
-	db "Very indeed nice!", $57
+	text "Ooh, la la!"
+	line "Very indeed nice!"
+	done
 ; 0x1a84cb
 
 UnknownText_0x1a84cb: ; 0x1a84cb
-	db $0, "Is that so? Then", $4f
-	db "study shall you!", $55
-	db "Follow me!", $57
+	text "Is that so? Then"
+	line "study shall you!"
+	cont "Follow me!"
+	done
 ; 0x1a84f9
 
 UnknownText_0x1a84f9: ; 0x1a84f9
-	db $0, "Here, teacher I", $4f
-	db "am. Good it is", $55
-	db "you study here!", $57
+	text "Here, teacher I"
+	line "am. Good it is"
+	cont "you study here!"
+	done
 ; 0x1a8529
 
 UnknownText_0x1a8529: ; 0x1a8529
-	db $0, "Ghosts are rumored", $4f
-	db "to appear in", $55
-	db "SPROUT TOWER.", $51
-	db "They said normal-", $4f
-	db "type #MON moves", $51
-	db "had no effect on", $4f
-	db "ghosts.", $57
+	text "Ghosts are rumored"
+	line "to appear in"
+	cont "SPROUT TOWER."
+
+	para "They said normal-"
+	line "type #MON moves"
+
+	para "had no effect on"
+	line "ghosts."
+	done
 ; 0x1a8593
 
 UnknownText_0x1a8593: ; 0x1a8593
-	db $0, "Hey, you're a", $4f
-	db "#MON trainer?", $51
-	db "If you beat the", $4f
-	db "GYM LEADER here,", $51
-	db "you'll be ready", $4f
-	db "for prime time!", $57
+	text "Hey, you're a"
+	line "#MON trainer?"
+
+	para "If you beat the"
+	line "GYM LEADER here,"
+
+	para "you'll be ready"
+	line "for prime time!"
+	done
 ; 0x1a85ef
 
 UnknownText_0x1a85ef: ; 0x1a85ef
-	db $0, "FALKNER, from the", $4f
-	db "VIOLET #MON", $51
-	db "GYM, is a fine", $4f
-	db "trainer!", $51
-	db "He inherited his", $4f
-	db "father's gym and", $51
-	db "has done a great", $4f
-	db "job with it.", $57
+	text "FALKNER, from the"
+	line "VIOLET #MON"
+
+	para "GYM, is a fine"
+	line "trainer!"
+
+	para "He inherited his"
+	line "father's gym and"
+
+	para "has done a great"
+	line "job with it."
+	done
 ; 0x1a8665
 
 UnknownText_0x1a8665: ; 0x1a8665
-	db $0, "I saw a wiggly", $4f
-	db "tree up ahead!", $51
-	db "If you touch it,", $4f
-	db "it squirms and", $55
-	db "dances! Cool!", $57
+	text "I saw a wiggly"
+	line "tree up ahead!"
+
+	para "If you touch it,"
+	line "it squirms and"
+	cont "dances! Cool!"
+	done
 ; 0x1a86b2
 
 UnknownText_0x1a86b2: ; 0x1a86b2
-	db $0, "VIOLET CITY", $51
-	db "The City of", $4f
-	db "Nostalgic Scents", $57
+	text "VIOLET CITY"
+
+	para "The City of"
+	line "Nostalgic Scents"
+	done
 ; 0x1a86dc
 
 UnknownText_0x1a86dc: ; 0x1a86dc
-	db $0, "VIOLET CITY", $4f
-	db "#MON GYM", $55
-	db "LEADER: FALKNER", $51
-	db "The Elegant Master", $4f
-	db "of Flying #MON", $57
+	text "VIOLET CITY"
+	line "#MON GYM"
+	cont "LEADER: FALKNER"
+
+	para "The Elegant Master"
+	line "of Flying #MON"
+	done
 ; 0x1a8724
 
 UnknownText_0x1a8724: ; 0x1a8724
-	db $0, "SPROUT TOWER", $51
-	db "Experience the", $4f
-	db "Way of #MON", $57
+	text "SPROUT TOWER"
+
+	para "Experience the"
+	line "Way of #MON"
+	done
 ; 0x1a874d
 
 UnknownText_0x1a874d: ; 0x1a874d
-	db $0, "EARL'S #MON", $4f
-	db "ACADEMY", $57
+	text "EARL'S #MON"
+	line "ACADEMY"
+	done
 ; 0x1a8762
 
 VioletCity_MapEventHeader: ; 0x1a8762

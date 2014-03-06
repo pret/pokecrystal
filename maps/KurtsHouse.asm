@@ -498,196 +498,253 @@ MovementData_0x18e46c: ; 0x18e46c
 ; 0x18e473
 
 UnknownText_0x18e473: ; 0x18e473
-	db $0, "Hm? Who are you?", $51
-	db $52, ", eh? You", $4f
-	db "want me to make", $55
-	db "some BALLS?", $51
-	db "Sorry, but that'll", $4f
-	db "have to wait.", $51
-	db "Do you know TEAM", $4f
-	db "ROCKET? Ah, don't", $51
-	db "worry. I'll tell", $4f
-	db "you anyhow.", $51
-	db "TEAM ROCKET's an", $4f
-	db "evil gang that", $51
-	db "uses #MON for", $4f
-	db "their dirty work.", $51
-	db "They're supposed", $4f
-	db "to have disbanded", $55
-	db "three years ago.", $51
-	db "Anyway, they're at", $4f
-	db "the WELL, cutting", $51
-	db "off SLOWPOKETAILS", $4f
-	db "for sale!", $51
-	db "So I'm going to", $4f
-	db "go give them a", $55
-	db "lesson in pain!", $51
-	db "Hang on, SLOWPOKE!", $4f
-	db "Old KURT is on his", $55
-	db "way!", $57
+	text "Hm? Who are you?"
+
+	para $52, ", eh? You"
+	line "want me to make"
+	cont "some BALLS?"
+
+	para "Sorry, but that'll"
+	line "have to wait."
+
+	para "Do you know TEAM"
+	line "ROCKET? Ah, don't"
+
+	para "worry. I'll tell"
+	line "you anyhow."
+
+	para "TEAM ROCKET's an"
+	line "evil gang that"
+
+	para "uses #MON for"
+	line "their dirty work."
+
+	para "They're supposed"
+	line "to have disbanded"
+	cont "three years ago."
+
+	para "Anyway, they're at"
+	line "the WELL, cutting"
+
+	para "off SLOWPOKETAILS"
+	line "for sale!"
+
+	para "So I'm going to"
+	line "go give them a"
+	cont "lesson in pain!"
+
+	para "Hang on, SLOWPOKE!"
+	line "Old KURT is on his"
+	cont "way!"
+	done
 ; 0x18e615
 
 UnknownText_0x18e615: ; 0x18e615
-	db $0, "KURT: Hi, ", $52, "!", $51
-	db "You handled your-", $4f
-	db "self like a real", $55
-	db "hero at the WELL.", $51
-	db "I like your style!", $51
-	db "I would be honored", $4f
-	db "to make BALLS for", $51
-	db "a trainer like", $4f
-	db "you.", $51
-	db "This is all I have", $4f
-	db "now, but take it.", $57
+	text "KURT: Hi, ", $52, "!"
+
+	para "You handled your-"
+	line "self like a real"
+	cont "hero at the WELL."
+
+	para "I like your style!"
+
+	para "I would be honored"
+	line "to make BALLS for"
+
+	para "a trainer like"
+	line "you."
+
+	para "This is all I have"
+	line "now, but take it."
+	done
 ; 0x18e6c9
 
 UnknownText_0x18e6c9: ; 0x18e6c9
-	db $0, "KURT: I make BALLS", $4f
-	db "from APRICORNS.", $51
-	db "Collect them from", $4f
-	db "trees and bring", $55
-	db "'em to me.", $51
-	db "I'll make BALLS", $4f
-	db "out of them.", $57
+	text "KURT: I make BALLS"
+	line "from APRICORNS."
+
+	para "Collect them from"
+	line "trees and bring"
+	cont "'em to me."
+
+	para "I'll make BALLS"
+	line "out of them."
+	done
 ; 0x18e736
 
 UnknownText_0x18e736: ; 0x18e736
-	db $0, "KURT: You have an", $4f
-	db "APRICORN for me?", $51
-	db "Fine! I'll turn it", $4f
-	db "into a BALL.", $57
+	text "KURT: You have an"
+	line "APRICORN for me?"
+
+	para "Fine! I'll turn it"
+	line "into a BALL."
+	done
 ; 0x18e779
 
 UnknownText_0x18e779: ; 0x18e779
-	db $0, "KURT: It'll take a", $4f
-	db "day to make you a", $51
-	db "BALL. Come back", $4f
-	db "for it later.", $57
+	text "KURT: It'll take a"
+	line "day to make you a"
+
+	para "BALL. Come back"
+	line "for it later."
+	done
 ; 0x18e7bc
 
 UnknownText_0x18e7bc: ; 0x18e7bc
-	db $0, "KURT: Oh…", $4f
-	db "That's a letdown.", $57
+	text "KURT: Oh…"
+	line "That's a letdown."
+	done
 ; 0x18e7d8
 
 UnknownText_0x18e7d8: ; 0x18e7d8
-	db $0, "KURT: I'm working!", $4f
-	db "Don't bother me!", $57
+	text "KURT: I'm working!"
+	line "Don't bother me!"
+	done
 ; 0x18e7fb
 
 UnknownText_0x18e7fb: ; 0x18e7fb
-	db $0, "KURT: Ah, ", $52, "!", $4f
-	db "I just finished", $55
-	db "your BALL. Here!", $57
+	text "KURT: Ah, ", $52, "!"
+	line "I just finished"
+	cont "your BALL. Here!"
+	done
 ; 0x18e82a
 
 UnknownText_0x18e82a: ; 0x18e82a
-	db $0, "KURT: That turned", $4f
-	db "out great.", $51
-	db "Try catching", $4f
-	db "#MON with it.", $57
+	text "KURT: That turned"
+	line "out great."
+
+	para "Try catching"
+	line "#MON with it."
+	done
 ; 0x18e863
 
 UnknownText_0x18e863: ; 0x18e863
-	db $0, "KURT: Now that my", $4f
-	db "granddaughter is", $51
-	db "helping me, I can", $4f
-	db "work much faster.", $57
+	text "KURT: Now that my"
+	line "granddaughter is"
+
+	para "helping me, I can"
+	line "work much faster."
+	done
 ; 0x18e8ab
 
 UnknownText_0x18e8ab: ; 0x18e8ab
-	db $0, "Wh-what is that?", $51
-	db "I've never seen", $4f
-	db "one before.", $51
-	db "It looks a lot", $4f
-	db "like a # BALL,", $51
-	db "but it appears to", $4f
-	db "be something else.", $51
-	db "Let me check it", $4f
-	db "for you.", $57
+	text "Wh-what is that?"
+
+	para "I've never seen"
+	line "one before."
+
+	para "It looks a lot"
+	line "like a # BALL,"
+
+	para "but it appears to"
+	line "be something else."
+
+	para "Let me check it"
+	line "for you."
+	done
 ; 0x18e934
 
 UnknownText_0x18e934: ; 0x18e934
-	db $0, "I'm checking it", $4f
-	db "now.", $57
+	text "I'm checking it"
+	line "now."
+	done
 ; 0x18e949
 
 UnknownText_0x18e949: ; 0x18e949
-	db $0, "Ah-ha! I see!", $4f
-	db "So…", $57
+	text "Ah-ha! I see!"
+	line "So…"
+	done
 ; 0x18e95c
 
 UnknownText_0x18e95c: ; 0x18e95c
-	db $0, $52, "!", $51
-	db "This BALL started", $4f
-	db "to shake while I", $55
-	db "was checking it.", $51
-	db "There must be", $4f
-	db "something to this!", $57
+	text $52, "!"
+
+	para "This BALL started"
+	line "to shake while I"
+	cont "was checking it."
+
+	para "There must be"
+	line "something to this!"
+	done
 ; 0x18e9b5
 
 UnknownText_0x18e9b5: ; 0x18e9b5
-	db $0, "The SLOWPOKE are", $4f
-	db "gone… Were they", $51
-	db "taken away by bad", $4f
-	db "people?", $57
+	text "The SLOWPOKE are"
+	line "gone… Were they"
+
+	para "taken away by bad"
+	line "people?"
+	done
 ; 0x18e9f1
 
 UnknownText_0x18e9f1: ; 0x18e9f1
-	db $0, "Grandpa's gone…", $4f
-	db "I'm so lonely…", $57
+	text "Grandpa's gone…"
+	line "I'm so lonely…"
+	done
 ; 0x18ea0f
 
 UnknownText_0x18ea0f: ; 0x18ea0f
-	db $0, "The SLOWPOKE my", $4f
-	db "dad gave me came", $51
-	db "back! Its TAIL is", $4f
-	db "growing back too!", $57
+	text "The SLOWPOKE my"
+	line "dad gave me came"
+
+	para "back! Its TAIL is"
+	line "growing back too!"
+	done
 ; 0x18ea55
 
 UnknownText_0x18ea55: ; 0x18ea55
-	db $0, "Dad works at SILPH", $4f
-	db "where he studies", $55
-	db "# BALLS.", $51
-	db "I have to stay", $4f
-	db "home with Grandpa", $55
-	db "and SLOWPOKE.", $57
+	text "Dad works at SILPH"
+	line "where he studies"
+	cont "# BALLS."
+
+	para "I have to stay"
+	line "home with Grandpa"
+	cont "and SLOWPOKE."
+	done
 ; 0x18eab2
 
 UnknownText_0x18eab2: ; 0x18eab2
-	db $0, "I get to help", $4f
-	db "Grandpa now!", $51
-	db "We'll make good", $4f
-	db "BALLS for you, so", $55
-	db "please wait!", $57
+	text "I get to help"
+	line "Grandpa now!"
+
+	para "We'll make good"
+	line "BALLS for you, so"
+	cont "please wait!"
+	done
 ; 0x18eafc
 
 UnknownText_0x18eafc: ; 0x18eafc
-	db $0, "It's fun to make", $4f
-	db "BALLS!", $57
+	text "It's fun to make"
+	line "BALLS!"
+	done
 ; 0x18eb14
 
 UnknownText_0x18eb14: ; 0x18eb14
-	db $0, "Grandpa's checking", $4f
-	db "a BALL right now.", $51
-	db "So I'm waiting", $4f
-	db "till he's done.", $57
+	text "Grandpa's checking"
+	line "a BALL right now."
+
+	para "So I'm waiting"
+	line "till he's done."
+	done
 ; 0x18eb56
 
 UnknownText_0x18eb56: ; 0x18eb56
-	db $0, "SLOWPOKE: …", $4f
-	db "Yawn?", $57
+	text "SLOWPOKE: …"
+	line "Yawn?"
+	done
 ; 0x18eb69
 
 UnknownText_0x18eb69: ; 0x18eb69
-	db $0, "…A young PROF.", $4f
-	db "OAK?", $57
+	text "…A young PROF."
+	line "OAK?"
+	done
 ; 0x18eb7e
 
 UnknownText_0x18eb7e: ; 0x18eb7e
-	db $0, "It's a statue of", $4f
-	db "the forest's pro-", $55
-	db "tector.", $57
+	text "It's a statue of"
+	line "the forest's pro-"
+	cont "tector."
+	done
 ; 0x18eba8
 
 KurtsHouse_MapEventHeader: ; 0x18eba8

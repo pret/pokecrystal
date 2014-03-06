@@ -11,13 +11,17 @@ OfficerScript_0x9cbd7: ; 0x9cbd7
 ; 0x9cbda
 
 UnknownText_0x9cbda: ; 0x9cbda
-	db $0, "Where did you say", $4f
-	db "you're from?", $51
-	db "NEW BARK TOWN?", $51
-	db "PROF.ELM lives", $4f
-	db "over there, right?", $51
-	db "You've come a long", $4f
-	db "way to get here.", $57
+	text "Where did you say"
+	line "you're from?"
+
+	para "NEW BARK TOWN?"
+
+	para "PROF.ELM lives"
+	line "over there, right?"
+
+	para "You've come a long"
+	line "way to get here."
+	done
 ; 0x9cc4d
 
 Route38EcruteakGate_MapEventHeader: ; 0x9cc4d

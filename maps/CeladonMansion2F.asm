@@ -19,29 +19,40 @@ MapCeladonMansion2FSignpost2Script: ; 0x71536
 ; 0x71539
 
 UnknownText_0x71539: ; 0x71539
-	db $0, $52, " turned on", $4f
-	db "the PC.", $51
-	db "…", $51
-	db "Someone was in the", $4f
-	db "middle of compos-", $55
-	db "ing an e-mail.", $51
-	db "…I hope you'll", $4f
-	db "come visit KANTO.", $51
-	db "I think you'll be", $4f
-	db "surprised at how", $51
-	db "much things have", $4f
-	db "changed here.", $51
-	db "You'll also see", $4f
-	db "many #MON that", $51
-	db "aren't native to", $4f
-	db "JOHTO.", $51
-	db "To the PRODUCER", $51
-	db "…", $57
+	text $52, " turned on"
+	line "the PC."
+
+	para "…"
+
+	para "Someone was in the"
+	line "middle of compos-"
+	cont "ing an e-mail."
+
+	para "…I hope you'll"
+	line "come visit KANTO."
+
+	para "I think you'll be"
+	line "surprised at how"
+
+	para "much things have"
+	line "changed here."
+
+	para "You'll also see"
+	line "many #MON that"
+
+	para "aren't native to"
+	line "JOHTO."
+
+	para "To the PRODUCER"
+
+	para "…"
+	done
 ; 0x7162c
 
 UnknownText_0x7162c: ; 0x7162c
-	db $0, "GAME FREAK", $4f
-	db "MEETING ROOM", $57
+	text "GAME FREAK"
+	line "MEETING ROOM"
+	done
 ; 0x71645
 
 CeladonMansion2F_MapEventHeader: ; 0x71645

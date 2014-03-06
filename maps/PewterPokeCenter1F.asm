@@ -37,28 +37,36 @@ PokefanMScript_0x1a2efa: ; 0x1a2efa
 ; 0x1a2f01
 
 UnknownText_0x1a2f01: ; 0x1a2f01
-	db $0, "…Yeah, and the", $4f
-	db "GYM in CINNABAR's", $51
-	db "gone. I was really", $4f
-	db "amazed.", $51
-	db "…Yes? I'm on the", $4f
-	db "phone. Go away!", $57
+	text "…Yeah, and the"
+	line "GYM in CINNABAR's"
+
+	para "gone. I was really"
+	line "amazed."
+
+	para "…Yes? I'm on the"
+	line "phone. Go away!"
+	done
 ; 0x1a2f5d
 
 UnknownText_0x1a2f5d: ; 0x1a2f5d
-	db $0, "JIGGLYPUFF: Puu", $4f
-	db "pupuu.", $57
+	text "JIGGLYPUFF: Puu"
+	line "pupuu."
+	done
 ; 0x1a2f75
 
 UnknownText_0x1a2f75: ; 0x1a2f75
-	db $0, "Most #MON get", $4f
-	db "drowsy if they", $51
-	db "hear a JIGGLYPUFF", $4f
-	db "singing.", $51
-	db "There are several", $4f
-	db "moves that can be", $51
-	db "used only while a", $4f
-	db "#MON is asleep.", $57
+	text "Most #MON get"
+	line "drowsy if they"
+
+	para "hear a JIGGLYPUFF"
+	line "singing."
+
+	para "There are several"
+	line "moves that can be"
+
+	para "used only while a"
+	line "#MON is asleep."
+	done
 ; 0x1a2ff4
 
 PewterPokeCenter1F_MapEventHeader: ; 0x1a2ff4

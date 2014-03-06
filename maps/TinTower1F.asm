@@ -336,164 +336,228 @@ MovementData_0x1851fe: ; 0x1851fe
 ; 0x185203
 
 UnknownText_0x185203: ; 0x185203
-	db $0, "EUSINE: Awesome!", $4f
-	db "Too awesome, even!", $51
-	db "I've never seen a", $4f
-	db "battle that great.", $51
-	db "That was truly", $4f
-	db "inspiring to see.", $51
-	db "SUICUNE was tough,", $4f
-	db "but you were even", $51
-	db "more incredible,", $4f
-	db $52, ".", $51
-	db "I heard SUICUNE's", $4f
-	db "mystic power", $51
-	db "summons a rainbow-", $4f
-	db "colored #MON.", $51
-	db "Maybe, just maybe,", $4f
-	db "what went on today", $51
-	db "will cause that", $4f
-	db "#MON to appear.", $51
-	db "I'm going to study", $4f
-	db "the legends more.", $51
-	db "Thanks for showing", $4f
-	db "me that fantastic", $55
-	db "battle.", $51
-	db "Later, ", $52, "!", $57
+	text "EUSINE: Awesome!"
+	line "Too awesome, even!"
+
+	para "I've never seen a"
+	line "battle that great."
+
+	para "That was truly"
+	line "inspiring to see."
+
+	para "SUICUNE was tough,"
+	line "but you were even"
+
+	para "more incredible,"
+	line $52, "."
+
+	para "I heard SUICUNE's"
+	line "mystic power"
+
+	para "summons a rainbow-"
+	line "colored #MON."
+
+	para "Maybe, just maybe,"
+	line "what went on today"
+
+	para "will cause that"
+	line "#MON to appear."
+
+	para "I'm going to study"
+	line "the legends more."
+
+	para "Thanks for showing"
+	line "me that fantastic"
+	cont "battle."
+
+	para "Later, ", $52, "!"
+	done
 ; 0x185386
 
 UnknownText_0x185386: ; 0x185386
-	db $0, "According to", $4f
-	db "legend…", $51
-	db "When the souls of", $4f
-	db "#MON and humans", $51
-	db "commune, from the", $4f
-	db "heavens descends a", $51
-	db "#MON of rainbow", $4f
-	db "colors…", $51
-	db "Could it mean the", $4f
-	db "legendary #MON", $51
-	db "are testing us", $4f
-	db "humans?", $57
+	text "According to"
+	line "legend…"
+
+	para "When the souls of"
+	line "#MON and humans"
+
+	para "commune, from the"
+	line "heavens descends a"
+
+	para "#MON of rainbow"
+	line "colors…"
+
+	para "Could it mean the"
+	line "legendary #MON"
+
+	para "are testing us"
+	line "humans?"
+	done
 ; 0x185433
 
 UnknownText_0x185433: ; 0x185433
-	db $0, "When the BRASS", $4f
-	db "TOWER burned down,", $51
-	db "three nameless", $4f
-	db "#MON were said", $51
-	db "to have perished.", $4f
-	db "It was tragic.", $51
-	db "However…", $51
-	db "A rainbow-colored", $4f
-	db "#MON…", $51
-	db "In other words…", $51
-	db "HO-OH descended", $4f
-	db "from the sky and", $51
-	db "gave new life to", $4f
-	db "the three #MON.", $51
-	db "They are…", $51
-	db "SUICUNE, ENTEI and", $4f
-	db "RAIKOU.", $51
-	db "That is what they", $4f
-	db "say.", $57
+	text "When the BRASS"
+	line "TOWER burned down,"
+
+	para "three nameless"
+	line "#MON were said"
+
+	para "to have perished."
+	line "It was tragic."
+
+	para "However…"
+
+	para "A rainbow-colored"
+	line "#MON…"
+
+	para "In other words…"
+
+	para "HO-OH descended"
+	line "from the sky and"
+
+	para "gave new life to"
+	line "the three #MON."
+
+	para "They are…"
+
+	para "SUICUNE, ENTEI and"
+	line "RAIKOU."
+
+	para "That is what they"
+	line "say."
+	done
 ; 0x185544
 
 UnknownText_0x185544: ; 0x185544
-	db $0, "The two TOWERS are", $4f
-	db "said to have been", $51
-	db "built to foster", $4f
-	db "friendship and", $51
-	db "hope between #-", $4f
-	db "MON and people.", $51
-	db "That was 700 years", $4f
-	db "ago, but the ideal", $51
-	db "still remains", $4f
-	db "important today.", $57
+	text "The two TOWERS are"
+	line "said to have been"
+
+	para "built to foster"
+	line "friendship and"
+
+	para "hope between #-"
+	line "MON and people."
+
+	para "That was 700 years"
+	line "ago, but the ideal"
+
+	para "still remains"
+	line "important today."
+	done
 ; 0x1855ee
 
 UnknownText_0x1855ee: ; 0x1855ee
-	db $0, "HO-OH appears to", $4f
-	db "have descended", $51
-	db "upon this, the TIN", $4f
-	db "TOWER!", $57
+	text "HO-OH appears to"
+	line "have descended"
+
+	para "upon this, the TIN"
+	line "TOWER!"
+	done
 ; 0x185629
 
 UnknownText_0x185629: ; 0x185629
-	db $0, "This will protect", $4f
-	db "you. Take it.", $57
+	text "This will protect"
+	line "you. Take it."
+	done
 ; 0x18564a
 
 UnknownText_0x18564a: ; 0x18564a
-	db $0, "Now, go.", $57
+	text "Now, go."
+	done
 ; 0x185654
 
 UnknownText_0x185654: ; 0x185654
-	db $0, "I believe you are", $4f
-	db "being tested.", $51
-	db "Free your mind", $4f
-	db "from uncertainty,", $55
-	db "and advance.", $57
+	text "I believe you are"
+	line "being tested."
+
+	para "Free your mind"
+	line "from uncertainty,"
+	cont "and advance."
+	done
 ; 0x1856a3
 
 UnknownText_0x1856a3: ; 0x1856a3
-	db $0, "I knew it.", $51
-	db "I knew you'd get", $4f
-	db "to see the #MON", $51
-	db "of rainbow colors,", $4f
-	db $52, ".", $51
-	db "It happened just", $4f
-	db "as I envisioned.", $51
-	db "My research isn't", $4f
-	db "bad, I might say.", $51
-	db "I'm going to keep", $4f
-	db "studying #MON", $51
-	db "to become a famous", $4f
-	db "#MANIAC!", $57
+	text "I knew it."
+
+	para "I knew you'd get"
+	line "to see the #MON"
+
+	para "of rainbow colors,"
+	line $52, "."
+
+	para "It happened just"
+	line "as I envisioned."
+
+	para "My research isn't"
+	line "bad, I might say."
+
+	para "I'm going to keep"
+	line "studying #MON"
+
+	para "to become a famous"
+	line "#MANIAC!"
+	done
 ; 0x185765
 
 UnknownText_0x185765: ; 0x185765
-	db $0, "The legendary", $4f
-	db "#MON are said", $51
-	db "to embody three", $4f
-	db "powers…", $51
-	db "The lightning that", $4f
-	db "struck the TOWER.", $51
-	db "The fire that", $4f
-	db "burned the TOWER.", $51
-	db "And the rain that", $4f
-	db "put out the fire…", $57
+	text "The legendary"
+	line "#MON are said"
+
+	para "to embody three"
+	line "powers…"
+
+	para "The lightning that"
+	line "struck the TOWER."
+
+	para "The fire that"
+	line "burned the TOWER."
+
+	para "And the rain that"
+	line "put out the fire…"
+	done
 ; 0x185803
 
 UnknownText_0x185803: ; 0x185803
-	db $0, "When the legendary", $4f
-	db "#MON appeared…", $51
-	db "They struck terror", $4f
-	db "in those who saw", $55
-	db "their rise.", $51
-	db "And…", $51
-	db "Some even took to", $4f
-	db "futile attacks.", $51
-	db "The legendary", $4f
-	db "#MON, knowing", $51
-	db "their own power,", $4f
-	db "fled, ignoring the", $55
-	db "frightened people.", $57
+	text "When the legendary"
+	line "#MON appeared…"
+
+	para "They struck terror"
+	line "in those who saw"
+	cont "their rise."
+
+	para "And…"
+
+	para "Some even took to"
+	line "futile attacks."
+
+	para "The legendary"
+	line "#MON, knowing"
+
+	para "their own power,"
+	line "fled, ignoring the"
+	cont "frightened people."
+	done
 ; 0x1858d0
 
 UnknownText_0x1858d0: ; 0x1858d0
-	db $0, "Of the legendary", $4f
-	db "#MON, SUICUNE", $51
-	db "is said to be the", $4f
-	db "closest to HO-OH.", $51
-	db "I hear there may", $4f
-	db "also be a link to", $51
-	db "#MON known as", $4f
-	db "UNOWN.", $51
-	db "The #MON UNOWN", $4f
-	db "must be sharing a", $51
-	db "cooperative bond", $4f
-	db "with SUICUNE.", $57
+	text "Of the legendary"
+	line "#MON, SUICUNE"
+
+	para "is said to be the"
+	line "closest to HO-OH."
+
+	para "I hear there may"
+	line "also be a link to"
+
+	para "#MON known as"
+	line "UNOWN."
+
+	para "The #MON UNOWN"
+	line "must be sharing a"
+
+	para "cooperative bond"
+	line "with SUICUNE."
+	done
 ; 0x18598c
 
 TinTower1F_MapEventHeader: ; 0x18598c

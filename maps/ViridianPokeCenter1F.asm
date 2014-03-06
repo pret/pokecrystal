@@ -37,34 +37,42 @@ BugCatcherScript_0x9b6aa: ; 0x9b6aa
 ; 0x9b6ad
 
 UnknownText_0x9b6ad: ; 0x9b6ad
-	db $0, "Where in the world", $4f
-	db "is VIRIDIAN's GYM", $51
-	db "LEADER? I wanted", $4f
-	db "to challenge him.", $57
+	text "Where in the world"
+	line "is VIRIDIAN's GYM"
+
+	para "LEADER? I wanted"
+	line "to challenge him."
+	done
 ; 0x9b6f5
 
 UnknownText_0x9b6f5: ; 0x9b6f5
-	db $0, "There are no GYM", $4f
-	db "TRAINERS at the", $55
-	db "VIRIDIAN GYM.", $51
-	db "The LEADER claims", $4f
-	db "his policy is to", $51
-	db "win without having", $4f
-	db "any underlings.", $57
+	text "There are no GYM"
+	line "TRAINERS at the"
+	cont "VIRIDIAN GYM."
+
+	para "The LEADER claims"
+	line "his policy is to"
+
+	para "win without having"
+	line "any underlings."
+	done
 ; 0x9b76b
 
 UnknownText_0x9b76b: ; 0x9b76b
-	db $0, "I heard that the", $4f
-	db "GYM in CINNABAR is", $55
-	db "gone.", $51
-	db "I wonder what be-", $4f
-	db "came of BLAINE,", $55
-	db "the GYM LEADER.", $57
+	text "I heard that the"
+	line "GYM in CINNABAR is"
+	cont "gone."
+
+	para "I wonder what be-"
+	line "came of BLAINE,"
+	cont "the GYM LEADER."
+	done
 ; 0x9b7c8
 
 UnknownText_0x9b7c8: ; 0x9b7c8
-	db $0, "My dream is to be-", $4f
-	db "come a GYM LEADER.", $57
+	text "My dream is to be-"
+	line "come a GYM LEADER."
+	done
 ; 0x9b7ef
 
 ViridianPokeCenter1F_MapEventHeader: ; 0x9b7ef

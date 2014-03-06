@@ -161,558 +161,721 @@ MovementData_0x6106c: ; 0x6106c
 
 ; unused
 UnknownText_0x61072: ; 0x61072
-	db $0, "Hello! Welcome to", $4f
-	db "#COM CENTER", $55
-	db "TRADE CORNER.", $51
-	db "You can trade", $4f
-	db "#MON with other", $55
-	db "people far away.", $57
+	text "Hello! Welcome to"
+	line "#COM CENTER"
+	cont "TRADE CORNER."
+
+	para "You can trade"
+	line "#MON with other"
+	cont "people far away."
+	done
 ; 0x610ce
 
 UnknownText_0x610ce: ; 0x610ce
-	db $0, "To make a trade,", $4f
-	db "we must hold your", $55
-	db "#MON.", $51
-	db "Would you like to", $4f
-	db "trade?", $57
+	text "To make a trade,"
+	line "we must hold your"
+	cont "#MON."
+
+	para "Would you like to"
+	line "trade?"
+	done
 ; 0x61111
 
 UnknownText_0x61111: ; 0x61111
-	db $0, "What kind of", $4f
-	db "#MON do you", $55
-	db "want in return?", $57
+	text "What kind of"
+	line "#MON do you"
+	cont "want in return?"
+	done
 ; 0x6113b
 
 UnknownText_0x6113b: ; 0x6113b
-	db $0, "Fine. We will try", $4f
-	db "to trade your", $51
-	db "@"
+	text "Fine. We will try"
+	line "to trade your"
+
+	para "@"
 	text_from_ram $d099
-	db $0, " for", $4f
-	db "@"
+	text " for"
+	line "@"
 	text_from_ram $d0ac
-	db $0, ".", $51
-	db "We'll have to hold", $4f
-	db "your #MON", $55
-	db "during the trade.", $51
-	db "Please wait while", $4f
-	db "we prepare the", $55
-	db "room for it.", $57
+	text "."
+
+	para "We'll have to hold"
+	line "your #MON"
+	cont "during the trade."
+
+	para "Please wait while"
+	line "we prepare the"
+	cont "room for it."
+	done
 ; 0x611c9
 
 UnknownText_0x611c9: ; 0x611c9
-	db $0, "Fine. We will try", $4f
-	db "to trade your", $51
-	db "@"
+	text "Fine. We will try"
+	line "to trade your"
+
+	para "@"
 	text_from_ram $d099
-	db $0, " for a", $4f
-	db "#MON that you", $55
-	db "have never seen.", $51
-	db "We'll have to hold", $4f
-	db "your #MON", $55
-	db "during the trade.", $51
-	db "Please wait while", $4f
-	db "we prepare the", $55
-	db "room for it.", $57
+	text " for a"
+	line "#MON that you"
+	cont "have never seen."
+
+	para "We'll have to hold"
+	line "your #MON"
+	cont "during the trade."
+
+	para "Please wait while"
+	line "we prepare the"
+	cont "room for it."
+	done
 ; 0x61271
 
 UnknownText_0x61271: ; 0x61271
-	db $0, "Your trade #MON", $4f
-	db "has been received.", $51
-	db "It will take time", $4f
-	db "to find a trade", $51
-	db "partner. Please", $4f
-	db "come back later.", $57
+	text "Your trade #MON"
+	line "has been received."
+
+	para "It will take time"
+	line "to find a trade"
+
+	para "partner. Please"
+	line "come back later."
+	done
 ; 0x612d8
 
 UnknownText_0x612d8: ; 0x612d8
-	db $0, "Oh? You have only", $4f
-	db "one #MON in", $55
-	db "your party. ", $51
-	db "Please come back", $4f
-	db "once you've in-", $55
-	db "creased the size", $55
-	db "of your party.", $57
+	text "Oh? You have only"
+	line "one #MON in"
+	cont "your party. "
+
+	para "Please come back"
+	line "once you've in-"
+	cont "creased the size"
+	cont "of your party."
+	done
 ; 0x61344
 
 UnknownText_0x61344: ; 0x61344
-	db $0, "We hope to see you", $4f
-	db "again.", $57
+	text "We hope to see you"
+	line "again."
+	done
 ; 0x6135f
 
 UnknownText_0x6135f: ; 0x6135f
-	db $0, "Communication", $4f
-	db "error…", $57
+	text "Communication"
+	line "error…"
+	done
 ; 0x61375
 
 UnknownText_0x61375: ; 0x61375
-	db $0, "If we accept that", $4f
-	db "#MON, what will", $55
-	db "you battle with?", $57
+	text "If we accept that"
+	line "#MON, what will"
+	cont "you battle with?"
+	done
 ; 0x613a9
 
 UnknownText_0x613a9: ; 0x613a9
-	db $0, "Sorry. We can't", $4f
-	db "accept an EGG.", $57
+	text "Sorry. We can't"
+	line "accept an EGG."
+	done
 ; 0x613c8
 
 UnknownText_0x613c8: ; 0x613c8
-	db $0, "Sorry, but your", $4f
-	db "#MON appears to", $51
-	db "be abnormal. We", $4f
-	db "can't accept it.", $57
+	text "Sorry, but your"
+	line "#MON appears to"
+
+	para "be abnormal. We"
+	line "can't accept it."
+	done
 ; 0x61409
 
 UnknownText_0x61409: ; 0x61409
-	db $0, "Oh? Aren't we", $4f
-	db "already holding a", $55
-	db "#MON of yours?", $57
+	text "Oh? Aren't we"
+	line "already holding a"
+	cont "#MON of yours?"
+	done
 ; 0x61438
 
 UnknownText_0x61438: ; 0x61438
-	db $0, "We'll check the", $4f
-	db "rooms.", $51
-	db "Please wait.", $57
+	text "We'll check the"
+	line "rooms."
+
+	para "Please wait."
+	done
 ; 0x6145c
 
 UnknownText_0x6145c: ; 0x6145c
-	db $0, "Thank you for your", $4f
-	db "patience.", $51
-	db "A trade partner", $4f
-	db "has been found.", $57
+	text "Thank you for your"
+	line "patience."
+
+	para "A trade partner"
+	line "has been found."
+	done
 ; 0x6149a
 
 UnknownText_0x6149a: ; 0x6149a
-	db $0, "It's your new", $4f
-	db "partner.", $51
-	db "Please take care", $4f
-	db "of it with love.", $51
-	db "We hope to see you", $4f
-	db "again.", $57
+	text "It's your new"
+	line "partner."
+
+	para "Please take care"
+	line "of it with love."
+
+	para "We hope to see you"
+	line "again."
+	done
 ; 0x614ed
 
 UnknownText_0x614ed: ; 0x614ed
-	db $0, "Uh-oh. Your party", $4f
-	db "is already full.", $51
-	db "Please come back", $4f
-	db "when you have room", $55
-	db "in your party.", $57
+	text "Uh-oh. Your party"
+	line "is already full."
+
+	para "Please come back"
+	line "when you have room"
+	cont "in your party."
+	done
 ; 0x61544
 
 UnknownText_0x61544: ; 0x61544
-	db $0, "It's unfortunate,", $4f
-	db "but no one has", $51
-	db "come forward as a", $4f
-	db "trade partner.", $51
-	db "Would you like", $4f
-	db "your #MON back?", $57
+	text "It's unfortunate,"
+	line "but no one has"
+
+	para "come forward as a"
+	line "trade partner."
+
+	para "Would you like"
+	line "your #MON back?"
+	done
 ; 0x615a5
 
 UnknownText_0x615a5: ; 0x615a5
-	db $0, "We have returned", $4f
-	db "your #MON.", $57
+	text "We have returned"
+	line "your #MON."
+	done
 ; 0x615c2
 
 UnknownText_0x615c2: ; 0x615c2
-	db $0, "It's unfortunate,", $4f
-	db "but no one has", $51
-	db "come forward as a", $4f
-	db "trade partner.", $51
-	db "We've held your", $4f
-	db "#MON for a long", $51
-	db "time. As a result,", $4f
-	db "it is very lonely.", $51
-	db "Sorry, but we must", $4f
-	db "return it to you.", $57
+	text "It's unfortunate,"
+	line "but no one has"
+
+	para "come forward as a"
+	line "trade partner."
+
+	para "We've held your"
+	line "#MON for a long"
+
+	para "time. As a result,"
+	line "it is very lonely."
+
+	para "Sorry, but we must"
+	line "return it to you."
+	done
 ; 0x6166e
 
 UnknownText_0x6166e: ; 0x6166e
-	db $0, "We hope to see you", $4f
-	db "again.", $57
+	text "We hope to see you"
+	line "again."
+	done
 ; 0x61689
 
 UnknownText_0x61689: ; 0x61689
-	db $0, "Fine. We will", $4f
-	db "continue to hold", $55
-	db "your #MON.", $57
+	text "Fine. We will"
+	line "continue to hold"
+	cont "your #MON."
+	done
 ; 0x616b4
 
 UnknownText_0x616b4: ; 0x616b4
-	db $0, "Oh? You left your", $4f
-	db "#MON with us", $55
-	db "only recently.", $51
-	db "Please come back", $4f
-	db "later.", $57
+	text "Oh? You left your"
+	line "#MON with us"
+	cont "only recently."
+
+	para "Please come back"
+	line "later."
+	done
 ; 0x616fb
 
 UnknownText_0x616fb: ; 0x616fb
-	db $0, "We'll SAVE before", $4f
-	db "connecting to the", $55
-	db "CENTER.", $57
+	text "We'll SAVE before"
+	line "connecting to the"
+	cont "CENTER."
+	done
 ; 0x61727
 
 UnknownText_0x61727: ; 0x61727
-	db $0, "Which #MON do", $4f
-	db "you want to trade?", $57
+	text "Which #MON do"
+	line "you want to trade?"
+	done
 ; 0x61749
 
 UnknownText_0x61749: ; 0x61749
-	db $0, "Sorry, but we must", $4f
-	db "cancel the trade.", $57
+	text "Sorry, but we must"
+	line "cancel the trade."
+	done
 ; 0x6176f
 
 UnknownText_0x6176f: ; 0x6176f
-	db $0, "Oh!", $51
-	db "I see you have an", $4f
-	db "EGG TICKET!", $51
-	db "It's a coupon that", $4f
-	db "special people can", $51
-	db "redeem for a", $4f
-	db "special #MON!", $57
+	text "Oh!"
+
+	para "I see you have an"
+	line "EGG TICKET!"
+
+	para "It's a coupon that"
+	line "special people can"
+
+	para "redeem for a"
+	line "special #MON!"
+	done
 ; 0x617d2
 
 UnknownText_0x617d2: ; 0x617d2
-	db $0, "Let me give you a", $4f
-	db "quick briefing.", $51
-	db "Trades held at the", $4f
-	db "TRADE CORNER are", $51
-	db "between two", $4f
-	db "trainers who don't", $51
-	db "know each other's", $4f
-	db "identity.", $51
-	db "As a result, it", $4f
-	db "may take time.", $51
-	db "However, an ODD", $4f
-	db "EGG is available", $55
-	db "just for you.", $51
-	db "It will be sent to", $4f
-	db "you right away.", $51
-	db "Please choose one", $4f
-	db "of the rooms in", $51
-	db "the CENTER.", $4f
-	db "An ODD EGG will be", $51
-	db "sent from the", $4f
-	db "chosen room.", $57
+	text "Let me give you a"
+	line "quick briefing."
+
+	para "Trades held at the"
+	line "TRADE CORNER are"
+
+	para "between two"
+	line "trainers who don't"
+
+	para "know each other's"
+	line "identity."
+
+	para "As a result, it"
+	line "may take time."
+
+	para "However, an ODD"
+	line "EGG is available"
+	cont "just for you."
+
+	para "It will be sent to"
+	line "you right away."
+
+	para "Please choose one"
+	line "of the rooms in"
+
+	para "the CENTER."
+	line "An ODD EGG will be"
+
+	para "sent from the"
+	line "chosen room."
+	done
 ; 0x6191f
 
 UnknownText_0x6191f: ; 0x6191f
-	db $0, "Please wait a", $4f
-	db "moment.", $57
+	text "Please wait a"
+	line "moment."
+	done
 ; 0x61936
 
 UnknownText_0x61936: ; 0x61936
-	db $0, "Thank you for", $4f
-	db "waiting.", $51
-	db "We received your", $4f
-	db "ODD EGG.", $51
-	db "Here it is!", $51
-	db "Please raise it", $4f
-	db "with loving care.", $57
+	text "Thank you for"
+	line "waiting."
+
+	para "We received your"
+	line "ODD EGG."
+
+	para "Here it is!"
+
+	para "Please raise it"
+	line "with loving care."
+	done
 ; 0x61996
 
 UnknownText_0x61996: ; 0x61996
-	db $0, "I'm awfully sorry.", $51
-	db "The EGG TICKET", $4f
-	db "exchange service", $55
-	db "isn't running now.", $57
+	text "I'm awfully sorry."
+
+	para "The EGG TICKET"
+	line "exchange service"
+	cont "isn't running now."
+	done
 ; 0x619db
 
 UnknownText_0x619db: ; 0x619db
-	db $0, "It's a #MON", $4f
-	db "NEWS MACHINE.", $57
+	text "It's a #MON"
+	line "NEWS MACHINE."
+	done
 ; 0x619f5
 
 UnknownText_0x619f5: ; 0x619f5
-	db $0, "What would you", $4f
-	db "like to do?", $57
+	text "What would you"
+	line "like to do?"
+	done
 ; 0x61a11
 
 UnknownText_0x61a11: ; 0x61a11
-	db $0, "#MON NEWS is", $4f
-	db "news compiled from", $51
-	db "the SAVE files of", $4f
-	db "#MON trainers.", $51
-	db "When reading the", $4f
-	db "NEWS, your SAVE", $51
-	db "file may be sent", $4f
-	db "out.", $51
-	db "The SAVE file data", $4f
-	db "will contain your", $51
-	db "adventure log and", $4f
-	db "mobile profile.", $51
-	db "Your phone number", $4f
-	db "will not be sent.", $51
-	db "The contents of", $4f
-	db "the NEWS will vary", $51
-	db "depending on the", $4f
-	db "SAVE files sent by", $51
-	db "you and the other", $4f
-	db "#MON trainers.", $51
-	db "You might even be", $4f
-	db "in the NEWS!", $57
+	text "#MON NEWS is"
+	line "news compiled from"
+
+	para "the SAVE files of"
+	line "#MON trainers."
+
+	para "When reading the"
+	line "NEWS, your SAVE"
+
+	para "file may be sent"
+	line "out."
+
+	para "The SAVE file data"
+	line "will contain your"
+
+	para "adventure log and"
+	line "mobile profile."
+
+	para "Your phone number"
+	line "will not be sent."
+
+	para "The contents of"
+	line "the NEWS will vary"
+
+	para "depending on the"
+	line "SAVE files sent by"
+
+	para "you and the other"
+	line "#MON trainers."
+
+	para "You might even be"
+	line "in the NEWS!"
+	done
 ; 0x61b7c
 
 UnknownText_0x61b7c: ; 0x61b7c
-	db $0, "Would you like to", $4f
-	db "get the NEWS?", $57
+	text "Would you like to"
+	line "get the NEWS?"
+	done
 ; 0x61b9d
 
 UnknownText_0x61b9d: ; 0x61b9d
-	db $0, "Reading the latest", $4f
-	db "NEWS… Please wait.", $57
+	text "Reading the latest"
+	line "NEWS… Please wait."
+	done
 ; 0x61bc4
 
 UnknownText_0x61bc4: ; 0x61bc4
-	db $0, "There is no old", $4f
-	db "NEWS…", $57
+	text "There is no old"
+	line "NEWS…"
+	done
 ; 0x61bdb
 
 UnknownText_0x61bdb: ; 0x61bdb
-	db $0, "The NEWS data is", $4f
-	db "corrupted.", $51
-	db "Please download", $4f
-	db "the NEWS again.", $57
+	text "The NEWS data is"
+	line "corrupted."
+
+	para "Please download"
+	line "the NEWS again."
+	done
 ; 0x61c18
 
 UnknownText_0x61c18: ; 0x61c18
-	db $0, "We're making", $4f
-	db "preparations.", $51
-	db "Please come back", $4f
-	db "later.", $57
+	text "We're making"
+	line "preparations."
+
+	para "Please come back"
+	line "later."
+	done
 ; 0x61c4b
 
 UnknownText_0x61c4b: ; 0x61c4b
-	db $0, "We will SAVE your", $4f
-	db "progress before", $51
-	db "starting the NEWS", $4f
-	db "MACHINE.", $57
+	text "We will SAVE your"
+	line "progress before"
+
+	para "starting the NEWS"
+	line "MACHINE."
+	done
 ; 0x61c89
 
 UnknownText_0x61c89: ; 0x61c89
-	db $0, "Whoa, this #MON", $4f
-	db "CENTER is huge.", $51
-	db "They just built", $4f
-	db "this place. They", $51
-	db "installed lots of", $4f
-	db "new machines too.", $57
+	text "Whoa, this #MON"
+	line "CENTER is huge."
+
+	para "They just built"
+	line "this place. They"
+
+	para "installed lots of"
+	line "new machines too."
+	done
 ; 0x61cef
 
 UnknownText_0x61cef: ; 0x61cef
-	db $0, "I thought up a fun", $4f
-	db "new thing for the", $55
-	db "TRADE CORNER!", $51
-	db "I make a PIDGEY", $4f
-	db "hold MAIL, then", $51
-	db "put it up for", $4f
-	db "trade for another", $55
-	db "one!", $51
-	db "If everyone did", $4f
-	db "that, MAIL could", $51
-	db "be traded with all", $4f
-	db "sorts of people!", $51
-	db "I call it PIDGEY", $4f
-	db "MAIL!", $51
-	db "If it becomes", $4f
-	db "popular, I might", $51
-	db "make lots of new", $4f
-	db "friends!", $57
+	text "I thought up a fun"
+	line "new thing for the"
+	cont "TRADE CORNER!"
+
+	para "I make a PIDGEY"
+	line "hold MAIL, then"
+
+	para "put it up for"
+	line "trade for another"
+	cont "one!"
+
+	para "If everyone did"
+	line "that, MAIL could"
+
+	para "be traded with all"
+	line "sorts of people!"
+
+	para "I call it PIDGEY"
+	line "MAIL!"
+
+	para "If it becomes"
+	line "popular, I might"
+
+	para "make lots of new"
+	line "friends!"
+	done
 ; 0x61dfd
 
 UnknownText_0x61dfd: ; 0x61dfd
-	db $0, "They said you can", $4f
-	db "trade #MON with", $51
-	db "total strangers up", $4f
-	db "here.", $51
-	db "But they're still", $4f
-	db "adjusting things.", $57
+	text "They said you can"
+	line "trade #MON with"
+
+	para "total strangers up"
+	line "here."
+
+	para "But they're still"
+	line "adjusting things."
+	done
 ; 0x61e5c
 
 UnknownText_0x61e5c: ; 0x61e5c
-	db $0, "Some girl I don't", $4f
-	db "know sent me her", $51
-	db "HOPPIP.", $4f
-	db "You should trade", $51
-	db "for a #MON that", $4f
-	db "you want.", $57
+	text "Some girl I don't"
+	line "know sent me her"
+
+	para "HOPPIP."
+	line "You should trade"
+
+	para "for a #MON that"
+	line "you want."
+	done
 ; 0x61eb2
 
 UnknownText_0x61eb2: ; 0x61eb2
-	db $0, "I received a", $4f
-	db "female HOPPIP, but", $55
-	db "its named STANLEY!", $51
-	db "That's my dad's", $4f
-	db "name!", $57
+	text "I received a"
+	line "female HOPPIP, but"
+	cont "its named STANLEY!"
+
+	para "That's my dad's"
+	line "name!"
+	done
 ; 0x61efa
 
 UnknownText_0x61efa: ; 0x61efa
-	db $0, "What is the NEWS", $4f
-	db "MACHINE?", $51
-	db "Does it get news", $4f
-	db "from a wider area", $55
-	db "than the radio?", $57
+	text "What is the NEWS"
+	line "MACHINE?"
+
+	para "Does it get news"
+	line "from a wider area"
+	cont "than the radio?"
+	done
 ; 0x61f48
 
 UnknownText_0x61f48: ; 0x61f48
-	db $0, "The #COM CENTER", $4f
-	db "will link with all", $51
-	db "#MON CENTERS in", $4f
-	db "a wireless net.", $51
-	db "That must mean", $4f
-	db "I'll be able to", $51
-	db "link with all", $4f
-	db "sorts of people.", $57
+	text "The #COM CENTER"
+	line "will link with all"
+
+	para "#MON CENTERS in"
+	line "a wireless net."
+
+	para "That must mean"
+	line "I'll be able to"
+
+	para "link with all"
+	line "sorts of people."
+	done
 ; 0x61fc9
 
 UnknownText_0x61fc9: ; 0x61fc9
-	db $0, "The machines here", $4f
-	db "can't be used yet.", $51
-	db "Still, it's nice", $4f
-	db "coming to a trendy", $51
-	db "place before other", $4f
-	db "people.", $57
+	text "The machines here"
+	line "can't be used yet."
+
+	para "Still, it's nice"
+	line "coming to a trendy"
+
+	para "place before other"
+	line "people."
+	done
 ; 0x6202c
 
 UnknownText_0x6202c: ; 0x6202c
-	db $0, "My friend was in", $4f
-	db "the NEWS a while", $51
-	db "back. I was really", $4f
-	db "surprised!", $57
+	text "My friend was in"
+	line "the NEWS a while"
+
+	para "back. I was really"
+	line "surprised!"
+	done
 ; 0x6206d
 
 UnknownText_0x6206d: ; 0x6206d
-	db $0, "I get anxious if I", $4f
-	db "don't check out", $55
-	db "the latest NEWS!", $57
+	text "I get anxious if I"
+	line "don't check out"
+	cont "the latest NEWS!"
+	done
 ; 0x620a1
 
 UnknownText_0x620a1: ; 0x620a1
-	db $0, "If I get in the", $4f
-	db "NEWS and become", $51
-	db "famous, I bet I'll", $4f
-	db "be adored.", $51
-	db "I wonder how I", $4f
-	db "could get in the", $55
-	db "NEWS?", $57
+	text "If I get in the"
+	line "NEWS and become"
+
+	para "famous, I bet I'll"
+	line "be adored."
+
+	para "I wonder how I"
+	line "could get in the"
+	cont "NEWS?"
+	done
 ; 0x62105
 
 UnknownText_0x62105: ; 0x62105
-	db $0, "The COLOSSEUM", $4f
-	db "upstairs is for", $55
-	db "link battles.", $51
-	db "Battle records are", $4f
-	db "posted on the", $51
-	db "wall, so I can't", $4f
-	db "afford to lose.", $57
+	text "The COLOSSEUM"
+	line "upstairs is for"
+	cont "link battles."
+
+	para "Battle records are"
+	line "posted on the"
+
+	para "wall, so I can't"
+	line "afford to lose."
+	done
 ; 0x62173
 
 UnknownText_0x62173: ; 0x62173
-	db $0, "I came over here", $4f
-	db "when I got word", $51
-	db "that GOLDENROD's", $4f
-	db "#MON CENTER has", $51
-	db "new machines that", $4f
-	db "no one's ever seen", $55
-	db "before.", $51
-	db "But it looks like", $4f
-	db "they're still busy", $51
-	db "with all their", $4f
-	db "preparations…", $57
+	text "I came over here"
+	line "when I got word"
+
+	para "that GOLDENROD's"
+	line "#MON CENTER has"
+
+	para "new machines that"
+	line "no one's ever seen"
+	cont "before."
+
+	para "But it looks like"
+	line "they're still busy"
+
+	para "with all their"
+	line "preparations…"
+	done
 ; 0x62222
 
 UnknownText_0x62222: ; 0x62222
-	db $0, "Just seeing all", $4f
-	db "these new things", $51
-	db "here makes me feel", $4f
-	db "younger!", $57
+	text "Just seeing all"
+	line "these new things"
+
+	para "here makes me feel"
+	line "younger!"
+	done
 ; 0x62260
 
 UnknownText_0x62260: ; 0x62260
-	db $0, "A higher level", $4f
-	db "#MON doesn't", $55
-	db "always win.", $51
-	db "After all, it may", $4f
-	db "have a type dis-", $55
-	db "advantage.", $51
-	db "I don't think", $4f
-	db "there is a single", $51
-	db "#MON that is", $4f
-	db "the toughest.", $57
+	text "A higher level"
+	line "#MON doesn't"
+	cont "always win."
+
+	para "After all, it may"
+	line "have a type dis-"
+	cont "advantage."
+
+	para "I don't think"
+	line "there is a single"
+
+	para "#MON that is"
+	line "the toughest."
+	done
 ; 0x622f0
 
 UnknownText_0x622f0: ; 0x622f0
-	db $0, $52, ", isn't it?", $51
-	db "Congratulations!", $51
-	db "As a special deal,", $4f
-	db "a GS BALL has been", $55
-	db "sent just for you!", $51
-	db "Please accept it!", $57
+	text $52, ", isn't it?"
+
+	para "Congratulations!"
+
+	para "As a special deal,"
+	line "a GS BALL has been"
+	cont "sent just for you!"
+
+	para "Please accept it!"
+	done
 ; 0x62359
 
 UnknownText_0x62359: ; 0x62359
-	db $0, "Please do come", $4f
-	db "again!", $57
+	text "Please do come"
+	line "again!"
+	done
 ; 0x62370
 
 UnknownText_0x62370: ; 0x62370
-	db $0, "#COM CENTER", $4f
-	db "1F INFORMATION", $51
-	db "Left:", $4f
-	db "ADMINISTRATION", $51
-	db "Center:", $4f
-	db "TRADE CORNER", $51
-	db "Right:", $4f
-	db "#MON NEWS", $57
+	text "#COM CENTER"
+	line "1F INFORMATION"
+
+	para "Left:"
+	line "ADMINISTRATION"
+
+	para "Center:"
+	line "TRADE CORNER"
+
+	para "Right:"
+	line "#MON NEWS"
+	done
 ; 0x623c7
 
 UnknownText_0x623c7: ; 0x623c7
-	db $0, "It's a #MON", $4f
-	db "NEWS MACHINE!", $51
-	db "It's not in", $4f
-	db "operation yet…", $57
+	text "It's a #MON"
+	line "NEWS MACHINE!"
+
+	para "It's not in"
+	line "operation yet…"
+	done
 ; 0x623fb
 
 UnknownText_0x623fb: ; 0x623fb
-	db $0, "Oh my, your pack", $4f
-	db "looks so heavy!", $51
-	db "Oh! Do you happen", $4f
-	db "to have something", $55
-	db "named EON MAIL?", $51
-	db "My daughter is", $4f
-	db "after one.", $51
-	db "You can part with", $4f
-	db "one, can't you?", $57
+	text "Oh my, your pack"
+	line "looks so heavy!"
+
+	para "Oh! Do you happen"
+	line "to have something"
+	cont "named EON MAIL?"
+
+	para "My daughter is"
+	line "after one."
+
+	para "You can part with"
+	line "one, can't you?"
+	done
 ; 0x6248c
 
 UnknownText_0x6248c: ; 0x6248c
-	db $0, "Give away an EON", $4f
-	db "MAIL?", $57
+	text "Give away an EON"
+	line "MAIL?"
+	done
 ; 0x624a4
 
 UnknownText_0x624a4: ; 0x624a4
-	db $0, "Oh, that's great!", $4f
-	db "Thank you, honey!", $51
-	db "Here, this is for", $4f
-	db "you in return!", $57
+	text "Oh, that's great!"
+	line "Thank you, honey!"
+
+	para "Here, this is for"
+	line "you in return!"
+	done
 ; 0x624e9
 
 UnknownText_0x624e9: ; 0x624e9
-	db $0, "My daughter will", $4f
-	db "be delighted!", $57
+	text "My daughter will"
+	line "be delighted!"
+	done
 ; 0x62509
 
 UnknownText_0x62509: ; 0x62509
-	db $0, "Oh? You don't have", $4f
-	db "one? Too bad.", $57
+	text "Oh? You don't have"
+	line "one? Too bad."
+	done
 ; 0x6252a
 
 UnknownText_0x6252a: ; 0x6252a
-	db $0, "Oh… Well, another", $4f
-	db "time, then.", $57
+	text "Oh… Well, another"
+	line "time, then."
+	done
 ; 0x62549
 
 UnknownText_0x62549: ; 0x62549
-	db $0, $52, " gave away", $4f
-	db "the EON MAIL.", $57
+	text $52, " gave away"
+	line "the EON MAIL."
+	done
 ; 0x62564
 
 GoldenrodPokeCenter1F_MapEventHeader: ; 0x62564

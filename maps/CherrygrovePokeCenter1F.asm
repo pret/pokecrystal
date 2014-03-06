@@ -37,32 +37,39 @@ UnknownScript_0x196984: ; 0x196984
 ; 0x19698a
 
 UnknownText_0x19698a: ; 0x19698a
-	db $0, "It's great. I can", $4f
-	db "store any number", $51
-	db "of #MON, and", $4f
-	db "it's all free.", $57
+	text "It's great. I can"
+	line "store any number"
+
+	para "of #MON, and"
+	line "it's all free."
+	done
 ; 0x1969c8
 
 UnknownText_0x1969c8: ; 0x1969c8
-	db $0, "That PC is free", $4f
-	db "for any trainer", $55
-	db "to use.", $57
+	text "That PC is free"
+	line "for any trainer"
+	cont "to use."
+	done
 ; 0x1969f1
 
 UnknownText_0x1969f1: ; 0x1969f1
-	db $0, "The COMMUNICATION", $4f
-	db "CENTER upstairs", $55
-	db "was just built.", $51
-	db "But they're still", $4f
-	db "finishing it up.", $57
+	text "The COMMUNICATION"
+	line "CENTER upstairs"
+	cont "was just built."
+
+	para "But they're still"
+	line "finishing it up."
+	done
 ; 0x196a46
 
 UnknownText_0x196a46: ; 0x196a46
-	db $0, "The COMMUNICATION", $4f
-	db "CENTER upstairs", $55
-	db "was just built.", $51
-	db "I traded #MON", $4f
-	db "there already!", $57
+	text "The COMMUNICATION"
+	line "CENTER upstairs"
+	cont "was just built."
+
+	para "I traded #MON"
+	line "there already!"
+	done
 ; 0x196a96
 
 CherrygrovePokeCenter1F_MapEventHeader: ; 0x196a96

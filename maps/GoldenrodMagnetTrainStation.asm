@@ -117,54 +117,69 @@ MovementData_0x55158: ; 0x55158
 ; 0x55160
 
 UnknownText_0x55160: ; 0x55160
-	db $0, "The train hasn't", $4f
-	db "come in…", $51
-	db "I know! I'll carry", $4f
-	db "the passengers on", $55
-	db "my back!", $51
-	db "That won't work.", $57
+	text "The train hasn't"
+	line "come in…"
+
+	para "I know! I'll carry"
+	line "the passengers on"
+	cont "my back!"
+
+	para "That won't work."
+	done
 ; 0x551b7
 
 UnknownText_0x551b7: ; 0x551b7
-	db $0, "We'll soon depart", $4f
-	db "for SAFFRON.", $51
-	db "Are you coming", $4f
-	db "aboard?", $57
+	text "We'll soon depart"
+	line "for SAFFRON."
+
+	para "Are you coming"
+	line "aboard?"
+	done
 ; 0x551ed
 
 UnknownText_0x551ed: ; 0x551ed
-	db $0, "May I see your", $4f
-	db "rail PASS, please?", $51
-	db "OK. Right this", $4f
-	db "way, please.", $57
+	text "May I see your"
+	line "rail PASS, please?"
+
+	para "OK. Right this"
+	line "way, please."
+	done
 ; 0x5522c
 
 UnknownText_0x5522c: ; 0x5522c
-	db $0, "Sorry. You don't", $4f
-	db "have a rail PASS.", $57
+	text "Sorry. You don't"
+	line "have a rail PASS."
+	done
 ; 0x5524f
 
 UnknownText_0x5524f: ; 0x5524f
-	db $0, "We hope to see you", $4f
-	db "again!", $57
+	text "We hope to see you"
+	line "again!"
+	done
 ; 0x5526a
 
 UnknownText_0x5526a: ; 0x5526a
-	db $0, "We have arrived in", $4f
-	db "GOLDENROD.", $51
-	db "We hope to see you", $4f
-	db "again.", $57
+	text "We have arrived in"
+	line "GOLDENROD."
+
+	para "We hope to see you"
+	line "again."
+	done
 ; 0x552a3
 
 UnknownText_0x552a3: ; 0x552a3
-	db $0, "I'm the PRESIDENT.", $51
-	db "My dream was to", $4f
-	db "build a train that", $51
-	db "is faster than any", $4f
-	db "#MON.", $51
-	db "It really brings", $4f
-	db "JOHTO much closer", $55
-	db "to KANTO.", $57
+	text "I'm the PRESIDENT."
+
+	para "My dream was to"
+	line "build a train that"
+
+	para "is faster than any"
+	line "#MON."
+
+	para "It really brings"
+	line "JOHTO much closer"
+	cont "to KANTO."
+	done
 ; 0x5531f
 
 GoldenrodMagnetTrainStation_MapEventHeader: ; 0x5531f

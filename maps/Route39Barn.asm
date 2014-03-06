@@ -136,62 +136,76 @@ UnknownScript_0x9cd25: ; 0x9cd25
 ; 0x9cd2e
 
 UnknownText_0x9cd2e: ; 0x9cd2e
-	db $0, "MOOMOO is sick…", $51
-	db "She needs lots of", $4f
-	db "BERRIES.", $57
+	text "MOOMOO is sick…"
+
+	para "She needs lots of"
+	line "BERRIES."
+	done
 ; 0x9cd5a
 
 UnknownText_0x9cd5a: ; 0x9cd5a
-	db $0, "We're feeding", $4f
-	db "MOOMOO!", $57
+	text "We're feeding"
+	line "MOOMOO!"
+	done
 ; 0x9cd70
 
 UnknownText_0x9cd70: ; 0x9cd70
-	db $0, "MILTANK: …Moo…", $57
+	text "MILTANK: …Moo…"
+	done
 ; 0x9cd80
 
 UnknownText_0x9cd80: ; 0x9cd80
-	db $0, "Its cry is weak…", $57
+	text "Its cry is weak…"
+	done
 ; 0x9cd92
 
 UnknownText_0x9cd92: ; 0x9cd92
-	db $0, "MILTANK: Mooo!", $57
+	text "MILTANK: Mooo!"
+	done
 ; 0x9cda2
 
 UnknownText_0x9cda2: ; 0x9cda2
-	db $0, "Give a BERRY to", $4f
-	db "MILTANK?", $57
+	text "Give a BERRY to"
+	line "MILTANK?"
+	done
 ; 0x9cdbc
 
 UnknownText_0x9cdbc: ; 0x9cdbc
-	db $0, $52, " gave a", $4f
-	db "BERRY to MILTANK.", $57
+	text $52, " gave a"
+	line "BERRY to MILTANK."
+	done
 ; 0x9cdd8
 
 UnknownText_0x9cdd8: ; 0x9cdd8
-	db $0, "MILTANK became a", $4f
-	db "little healthier!", $57
+	text "MILTANK became a"
+	line "little healthier!"
+	done
 ; 0x9cdfc
 
 UnknownText_0x9cdfc: ; 0x9cdfc
-	db $0, "MILTANK became", $4f
-	db "quite healthy!", $57
+	text "MILTANK became"
+	line "quite healthy!"
+	done
 ; 0x9ce1b
 
 UnknownText_0x9ce1b: ; 0x9ce1b
-	db $0, "MILTANK became", $4f
-	db "totally healthy!", $57
+	text "MILTANK became"
+	line "totally healthy!"
+	done
 ; 0x9ce3c
 
 UnknownText_0x9ce3c: ; 0x9ce3c
-	db $0, $52, " has no", $4f
-	db "BERRIES…", $57
+	text $52, " has no"
+	line "BERRIES…"
+	done
 ; 0x9ce4f
 
 UnknownText_0x9ce4f: ; 0x9ce4f
-	db $0, $52, " wouldn't", $4f
-	db "give a BERRY.", $51
-	db "MILTANK looks sad.", $57
+	text $52, " wouldn't"
+	line "give a BERRY."
+
+	para "MILTANK looks sad."
+	done
 ; 0x9ce7b
 
 Route39Barn_MapEventHeader: ; 0x9ce7b

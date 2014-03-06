@@ -15,19 +15,24 @@ MapCeladonMansionRoofSignpost0Script: ; 0x71a3c
 ; 0x71a3f
 
 UnknownText_0x71a3f: ; 0x71a3f
-	db $0, "High places--I do", $4f
-	db "love them so!", $51
-	db "I'd say the only", $4f
-	db "thing that loves", $51
-	db "heights as much as", $4f
-	db "me is smoke!", $57
+	text "High places--I do"
+	line "love them so!"
+
+	para "I'd say the only"
+	line "thing that loves"
+
+	para "heights as much as"
+	line "me is smoke!"
+	done
 ; 0x71aa1
 
 UnknownText_0x71aa1: ; 0x71aa1
-	db $0, "There's graffiti", $4f
-	db "on the wall…", $51
-	db $52, " added a", $4f
-	db "moustache!", $57
+	text "There's graffiti"
+	line "on the wall…"
+
+	para $52, " added a"
+	line "moustache!"
+	done
 ; 0x71ad4
 
 CeladonMansionRoof_MapEventHeader: ; 0x71ad4

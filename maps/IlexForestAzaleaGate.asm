@@ -15,17 +15,20 @@ GrannyScript_0x62c7d: ; 0x62c7d
 ; 0x62c80
 
 UnknownText_0x62c80: ; 0x62c80
-	db $0, "ILEX FOREST is", $4f
-	db "big. Be careful!", $55
-	db "Don't get lost.", $57
+	text "ILEX FOREST is"
+	line "big. Be careful!"
+	cont "Don't get lost."
+	done
 ; 0x62cb0
 
 UnknownText_0x62cb0: ; 0x62cb0
-	db $0, "The FOREST is", $4f
-	db "watched over by", $55
-	db "its protector.", $51
-	db "Stay out of", $4f
-	db "mischief!", $57
+	text "The FOREST is"
+	line "watched over by"
+	cont "its protector."
+
+	para "Stay out of"
+	line "mischief!"
+	done
 ; 0x62cf4
 
 IlexForestAzaleaGate_MapEventHeader: ; 0x62cf4

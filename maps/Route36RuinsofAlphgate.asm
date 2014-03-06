@@ -15,20 +15,24 @@ GrampsScript_0x6aa1d: ; 0x6aa1d
 ; 0x6aa20
 
 UnknownText_0x6aa20: ; 0x6aa20
-	db $0, "Don't you wonder", $4f
-	db "who'd make some-", $55
-	db "thing like this?", $55
-	db "And why?", $57
+	text "Don't you wonder"
+	line "who'd make some-"
+	cont "thing like this?"
+	cont "And why?"
+	done
 ; 0x6aa5b
 
 UnknownText_0x6aa5b: ; 0x6aa5b
-	db $0, "Did you see that", $4f
-	db "strange tree in", $55
-	db "the road?", $51
-	db "That may explain", $4f
-	db "why fewer people", $51
-	db "are visiting the", $4f
-	db "RUINS OF ALPH.", $57
+	text "Did you see that"
+	line "strange tree in"
+	cont "the road?"
+
+	para "That may explain"
+	line "why fewer people"
+
+	para "are visiting the"
+	line "RUINS OF ALPH."
+	done
 ; 0x6aac9
 
 Route36RuinsofAlphgate_MapEventHeader: ; 0x6aac9

@@ -23,53 +23,68 @@ MapElmsHouseSignpost2Script: ; 0x7aef4
 ; 0x7aef7
 
 UnknownText_0x7aef7: ; 0x7aef7
-	db $0, "Hi, ", $14, "! My", $4f
-	db "husband's always", $51
-	db "so busy--I hope", $4f
-	db "he's OK.", $51
-	db "When he's caught", $4f
-	db "up in his #MON", $51
-	db "research, he even", $4f
-	db "forgets to eat.", $57
+	text "Hi, ", $14, "! My"
+	line "husband's always"
+
+	para "so busy--I hope"
+	line "he's OK."
+
+	para "When he's caught"
+	line "up in his #MON"
+
+	para "research, he even"
+	line "forgets to eat."
+	done
 ; 0x7af6b
 
 UnknownText_0x7af6b: ; 0x7af6b
-	db $0, "When I grow up,", $4f
-	db "I'm going to help", $55
-	db "my dad!", $51
-	db "I'm going to be a", $4f
-	db "great #MON", $55
-	db "professor!", $57
+	text "When I grow up,"
+	line "I'm going to help"
+	cont "my dad!"
+
+	para "I'm going to be a"
+	line "great #MON"
+	cont "professor!"
+	done
 ; 0x7afbc
 
 UnknownText_0x7afbc: ; 0x7afbc
-	db $0, "There's some food", $4f
-	db "here. It must be", $55
-	db "for the LAB.", $57
+	text "There's some food"
+	line "here. It must be"
+	cont "for the LAB."
+	done
 ; 0x7afec
 
 UnknownText_0x7afec: ; 0x7afec
-	db $0, "There's some food", $4f
-	db "here. This must be", $55
-	db "for #MON.", $57
+	text "There's some food"
+	line "here. This must be"
+	cont "for #MON."
+	done
 ; 0x7b01b
 
 UnknownText_0x7b01b: ; 0x7b01b
-	db $0, "#MON. Where do", $4f
-	db "they come from? ", $51
-	db "Where are they", $4f
-	db "going?", $51
-	db "Why has no one", $4f
-	db "ever witnessed a", $55
-	db "#MON's birth?", $51
-	db "I want to know! I", $4f
-	db "will dedicate my", $51
-	db "life to the study", $4f
-	db "of #MON!", $51
-	db "…", $51
-	db "It's a part of", $4f
-	db "PROF.ELM's re-", $55
-	db "search papers.", $57
+	text "#MON. Where do"
+	line "they come from? "
+
+	para "Where are they"
+	line "going?"
+
+	para "Why has no one"
+	line "ever witnessed a"
+	cont "#MON's birth?"
+
+	para "I want to know! I"
+	line "will dedicate my"
+
+	para "life to the study"
+	line "of #MON!"
+
+	para "…"
+
+	para "It's a part of"
+	line "PROF.ELM's re-"
+	cont "search papers."
+	done
 ; 0x7b0ea
 
 ElmsHouse_MapEventHeader: ; 0x7b0ea

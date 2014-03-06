@@ -143,128 +143,162 @@ MapVermilionCitySignpostItem7: ; 0x1aaa12
 ; 0x1aaa15
 
 UnknownText_0x1aaa15: ; 0x1aaa15
-	db $0, "VERMILION PORT is", $4f
-	db "KANTO's seaside", $55
-	db "gateway.", $51
-	db "Luxury liners from", $4f
-	db "around the world", $55
-	db "dock here.", $57
+	text "VERMILION PORT is"
+	line "KANTO's seaside"
+	cont "gateway."
+
+	para "Luxury liners from"
+	line "around the world"
+	cont "dock here."
+	done
 ; 0x1aaa6f
 
 UnknownText_0x1aaa6f: ; 0x1aaa6f
-	db $0, "My #MON is", $4f
-	db "preparing the land", $55
-	db "for construction.", $51
-	db "But I have no", $4f
-	db "money to start the", $55
-	db "project…", $57
+	text "My #MON is"
+	line "preparing the land"
+	cont "for construction."
+
+	para "But I have no"
+	line "money to start the"
+	cont "project…"
+	done
 ; 0x1aaaca
 
 UnknownText_0x1aaaca: ; 0x1aaaca
-	db $0, "MACHOP: Guooh", $4f
-	db "gogogoh!", $57
+	text "MACHOP: Guooh"
+	line "gogogoh!"
+	done
 ; 0x1aaae2
 
 UnknownText_0x1aaae2: ; 0x1aaae2
-	db $0, "A MACHOP is growl-", $4f
-	db "ing while stomping", $55
-	db "the ground flat.", $57
+	text "A MACHOP is growl-"
+	line "ing while stomping"
+	cont "the ground flat."
+	done
 ; 0x1aab1a
 
 UnknownText_0x1aab1a: ; 0x1aab1a
-	db $0, "There are eight", $4f
-	db "GYMS in KANTO.", $51
-	db "That big building", $4f
-	db "is VERMILION's", $55
-	db "#MON GYM.", $57
+	text "There are eight"
+	line "GYMS in KANTO."
+
+	para "That big building"
+	line "is VERMILION's"
+	cont "#MON GYM."
+	done
 ; 0x1aab64
 
 UnknownText_0x1aab64: ; 0x1aab64
-	db $0, "SNORLAX is snoring", $4f
-	db "peacefully…", $57
+	text "SNORLAX is snoring"
+	line "peacefully…"
+	done
 ; 0x1aab84
 
 UnknownText_0x1aab84: ; 0x1aab84
-	db $0, "The #GEAR was", $4f
-	db "placed near the", $55
-	db "sleeping SNORLAX…", $51
-	db "…", $51
-	db "SNORLAX woke up!", $57
+	text "The #GEAR was"
+	line "placed near the"
+	cont "sleeping SNORLAX…"
+
+	para "…"
+
+	para "SNORLAX woke up!"
+	done
 ; 0x1aabc8
 
 UnknownText_0x1aabc8: ; 0x1aabc8
-	db $0, "Skilled trainers", $4f
-	db "gather in KANTO.", $51
-	db "GYM LEADERS are", $4f
-	db "especially strong.", $51
-	db "They won't be easy", $4f
-	db "to defeat.", $57
+	text "Skilled trainers"
+	line "gather in KANTO."
+
+	para "GYM LEADERS are"
+	line "especially strong."
+
+	para "They won't be easy"
+	line "to defeat."
+	done
 ; 0x1aac2b
 
 UnknownText_0x1aac2b: ; 0x1aac2b
-	db $0, "You've started to", $4f
-	db "collect KANTO GYM", $55
-	db "BADGES?", $51
-	db "Don't you agree", $4f
-	db "that the trainers", $55
-	db "here are tough?", $57
+	text "You've started to"
+	line "collect KANTO GYM"
+	cont "BADGES?"
+
+	para "Don't you agree"
+	line "that the trainers"
+	cont "here are tough?"
+	done
 ; 0x1aac88
 
 UnknownText_0x1aac88: ; 0x1aac88
-	db $0, "I guess you'll be", $4f
-	db "finished with your", $51
-	db "conquest of KANTO", $4f
-	db "GYMS soon.", $51
-	db "Let me know if", $4f
-	db "you get all eight", $55
-	db "BADGES.", $57
+	text "I guess you'll be"
+	line "finished with your"
+
+	para "conquest of KANTO"
+	line "GYMS soon."
+
+	para "Let me know if"
+	line "you get all eight"
+	cont "BADGES."
+	done
 ; 0x1aacf3
 
 UnknownText_0x1aacf3: ; 0x1aacf3
-	db $0, "Congratulations!", $51
-	db "You got all the", $4f
-	db "KANTO GYM BADGES.", $51
-	db "I've got a reward", $4f
-	db "for your efforts.", $57
+	text "Congratulations!"
+
+	para "You got all the"
+	line "KANTO GYM BADGES."
+
+	para "I've got a reward"
+	line "for your efforts."
+	done
 ; 0x1aad4a
 
 UnknownText_0x1aad4a: ; 0x1aad4a
-	db $0, "Having a variety", $4f
-	db "of #MON types", $51
-	db "should give you an", $4f
-	db "edge in battle.", $51
-	db "I'm sure the KANTO", $4f
-	db "GYM BADGES will", $55
-	db "help you.", $57
+	text "Having a variety"
+	line "of #MON types"
+
+	para "should give you an"
+	line "edge in battle."
+
+	para "I'm sure the KANTO"
+	line "GYM BADGES will"
+	cont "help you."
+	done
 ; 0x1aadb9
 
 UnknownText_0x1aadb9: ; 0x1aadb9
-	db $0, "VERMILION CITY", $51
-	db "The Port of", $4f
-	db "Exquisite Sunsets", $57
+	text "VERMILION CITY"
+
+	para "The Port of"
+	line "Exquisite Sunsets"
+	done
 ; 0x1aade7
 
 UnknownText_0x1aade7: ; 0x1aade7
-	db $0, "VERMILION CITY", $4f
-	db "#MON GYM", $55
-	db "LEADER: LT.SURGE", $51
-	db "The Lightning", $4f
-	db "American", $57
+	text "VERMILION CITY"
+	line "#MON GYM"
+	cont "LEADER: LT.SURGE"
+
+	para "The Lightning"
+	line "American"
+	done
 ; 0x1aae28
 
 UnknownText_0x1aae28: ; 0x1aae28
-	db $0, "#MON FAN CLUB", $51
-	db "All #MON Fans", $4f
-	db "Welcome!", $57
+	text "#MON FAN CLUB"
+
+	para "All #MON Fans"
+	line "Welcome!"
+	done
 ; 0x1aae4e
 
 UnknownText_0x1aae4e: ; 0x1aae4e
-	db $0, "DIGLETT'S CAVE", $57
+	text "DIGLETT'S CAVE"
+	done
 ; 0x1aae5e
 
 UnknownText_0x1aae5e: ; 0x1aae5e
-	db $0, "VERMILION PORT", $4f
-	db "ENTRANCE", $57
+	text "VERMILION PORT"
+	line "ENTRANCE"
+	done
 ; 0x1aae77
 
 VermilionCity_MapEventHeader: ; 0x1aae77

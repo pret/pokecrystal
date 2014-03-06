@@ -256,67 +256,83 @@ MovementData_0x74efe: ; 0x74efe
 ; 0x74f06
 
 UnknownText_0x74f06: ; 0x74f06
-	db $0, "We're departing", $4f
-	db "soon. Please get", $55
-	db "on board.", $57
+	text "We're departing"
+	line "soon. Please get"
+	cont "on board."
+	done
 ; 0x74f31
 
 UnknownText_0x74f31: ; 0x74f31
-	db $0, "Sorry. You can't", $4f
-	db "board now.", $57
+	text "Sorry. You can't"
+	line "board now."
+	done
 ; 0x74f4d
 
 UnknownText_0x74f4d: ; 0x74f4d
-	db $0, "Welcome to FAST", $4f
-	db "SHIP S.S.AQUA.", $51
-	db "Will you be board-", $4f
-	db "ing today?", $57
+	text "Welcome to FAST"
+	line "SHIP S.S.AQUA."
+
+	para "Will you be board-"
+	line "ing today?"
+	done
 ; 0x74f8b
 
 UnknownText_0x74f8b: ; 0x74f8b
-	db $0, "May I see your", $4f
-	db "S.S.TICKET?", $57
+	text "May I see your"
+	line "S.S.TICKET?"
+	done
 ; 0x74fa7
 
 UnknownText_0x74fa7: ; 0x74fa7
-	db $0, "We hope to see you", $4f
-	db "again!", $57
+	text "We hope to see you"
+	line "again!"
+	done
 ; 0x74fc2
 
 UnknownText_0x74fc2: ; 0x74fc2
-	db $0, $52, " flashed", $4f
-	db "the S.S.TICKET.", $51
-	db "That's it.", $4f
-	db "Thank you!", $57
+	text $52, " flashed"
+	line "the S.S.TICKET."
+
+	para "That's it."
+	line "Thank you!"
+	done
 ; 0x74ff2
 
 UnknownText_0x74ff2: ; 0x74ff2
-	db $0, $52, " tried to", $4f
-	db "show the S.S.", $55
-	db "TICKET…", $51
-	db "…But no TICKET!", $51
-	db "Sorry!", $4f
-	db "You may board only", $51
-	db "if you have an", $4f
-	db "S.S.TICKET.", $57
+	text $52, " tried to"
+	line "show the S.S."
+	cont "TICKET…"
+
+	para "…But no TICKET!"
+
+	para "Sorry!"
+	line "You may board only"
+
+	para "if you have an"
+	line "S.S.TICKET."
+	done
 ; 0x75059
 
 UnknownText_0x75059: ; 0x75059
-	db $0, "The FAST SHIP will", $4f
-	db "sail on Wednesday.", $57
+	text "The FAST SHIP will"
+	line "sail on Wednesday."
+	done
 ; 0x75080
 
 UnknownText_0x75080: ; 0x75080
-	db $0, "The FAST SHIP will", $4f
-	db "sail next Sunday.", $57
+	text "The FAST SHIP will"
+	line "sail next Sunday."
+	done
 ; 0x750a6
 
 UnknownText_0x750a6: ; 0x750a6
-	db $0, "You came from", $4f
-	db "JOHTO?", $51
-	db "I hear many rare", $4f
-	db "#MON live over", $55
-	db "there.", $57
+	text "You came from"
+	line "JOHTO?"
+
+	para "I hear many rare"
+	line "#MON live over"
+	cont "there."
+	done
 ; 0x750e3
 
 VermilionPort_MapEventHeader: ; 0x750e3

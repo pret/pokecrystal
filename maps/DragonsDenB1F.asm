@@ -292,174 +292,227 @@ MovementData_0x18c9b3: ; 0x18c9b3
 ; 0x18c9b8
 
 UnknownText_0x18c9b8: ; 0x18c9b8
-	db $0, "Wait!", $57
+	text "Wait!"
+	done
 ; 0x18c9bf
 
 UnknownText_0x18c9bf: ; 0x18c9bf
-	db $0, "CLAIR: I'm sorry", $4f
-	db "about this.", $51
-	db "Here, take this as", $4f
-	db "my apology.", $57
+	text "CLAIR: I'm sorry"
+	line "about this."
+
+	para "Here, take this as"
+	line "my apology."
+	done
 ; 0x18c9fb
 
 UnknownText_0x18c9fb: ; 0x18c9fb
-	db $0, $52, " received", $4f
-	db "TM24.", $57
+	text $52, " received"
+	line "TM24."
+	done
 ; 0x18ca0d
 
 UnknownText_0x18ca0d: ; 0x18ca0d
-	db $0, "That contains", $4f
-	db "DRAGONBREATH.", $51
-	db "No, it doesn't", $4f
-	db "have anything to", $55
-	db "do with my breath.", $51
-	db "If you don't want", $4f
-	db "it, you don't have", $55
-	db "to take it.", $57
+	text "That contains"
+	line "DRAGONBREATH."
+
+	para "No, it doesn't"
+	line "have anything to"
+	cont "do with my breath."
+
+	para "If you don't want"
+	line "it, you don't have"
+	cont "to take it."
+	done
 ; 0x18ca8b
 
 UnknownText_0x18ca8b: ; 0x18ca8b
-	db $0, "Oh? You don't have", $4f
-	db "any room for this.", $51
-	db "I'm going back to", $4f
-	db "the GYM, so make", $51
-	db "room, then come", $4f
-	db "see me there.", $57
+	text "Oh? You don't have"
+	line "any room for this."
+
+	para "I'm going back to"
+	line "the GYM, so make"
+
+	para "room, then come"
+	line "see me there."
+	done
 ; 0x18caf1
 
 UnknownText_0x18caf1: ; 0x18caf1
-	db $0, "CLAIR: What's the", $4f
-	db "matter? Aren't you", $51
-	db "going on to the", $4f
-	db "#MON LEAGUE?", $51
-	db "Do you know how to", $4f
-	db "get there?", $51
-	db "From here, go to", $4f
-	db "NEW BARK TOWN.", $51
-	db "Then SURF east to", $4f
-	db "#MON LEAGUE.", $51
-	db "The route there is", $4f
-	db "very tough.", $51
-	db "Don't you dare", $4f
-	db "lose at the #-", $55
-	db "MON LEAGUE!", $51
-	db "If you do, I'll", $4f
-	db "feel even worse", $51
-	db "about having lost", $4f
-	db "to you!", $51
-	db "Give it everything", $4f
-	db "you've got.", $57
+	text "CLAIR: What's the"
+	line "matter? Aren't you"
+
+	para "going on to the"
+	line "#MON LEAGUE?"
+
+	para "Do you know how to"
+	line "get there?"
+
+	para "From here, go to"
+	line "NEW BARK TOWN."
+
+	para "Then SURF east to"
+	line "#MON LEAGUE."
+
+	para "The route there is"
+	line "very tough."
+
+	para "Don't you dare"
+	line "lose at the #-"
+	cont "MON LEAGUE!"
+
+	para "If you do, I'll"
+	line "feel even worse"
+
+	para "about having lost"
+	line "to you!"
+
+	para "Give it everything"
+	line "you've got."
+	done
 ; 0x18cc2e
 
 UnknownText_0x18cc2e: ; 0x18cc2e
-	db $0, "DRAGON SHRINE", $51
-	db "A shrine honoring", $4f
-	db "the dragon #MON", $51
-	db "said to have lived", $4f
-	db "in DRAGON'S DEN.", $57
+	text "DRAGON SHRINE"
+
+	para "A shrine honoring"
+	line "the dragon #MON"
+
+	para "said to have lived"
+	line "in DRAGON'S DEN."
+	done
 ; 0x18cc83
 
 UnknownText_0x18cc83: ; 0x18cc83
-	db $0, "…", $4f
-	db "What? ", $52, "?", $51
-	db "…No, I won't", $4f
-	db "battle you now…", $51
-	db "My #MON aren't", $4f
-	db "ready to beat you.", $51
-	db "I can't push them", $4f
-	db "too hard now.", $51
-	db "I have to be dis-", $4f
-	db "ciplined to become", $51
-	db "the greatest #-", $4f
-	db "MON trainer…", $57
+	text "…"
+	line "What? ", $52, "?"
+
+	para "…No, I won't"
+	line "battle you now…"
+
+	para "My #MON aren't"
+	line "ready to beat you."
+
+	para "I can't push them"
+	line "too hard now."
+
+	para "I have to be dis-"
+	line "ciplined to become"
+
+	para "the greatest #-"
+	line "MON trainer…"
+	done
 ; 0x18cd2d
 
 UnknownText_0x18cd2d: ; 0x18cd2d
-	db $0, "…", $51
-	db "Whew…", $51
-	db "Learn to stay out", $4f
-	db "of my way…", $57
+	text "…"
+
+	para "Whew…"
+
+	para "Learn to stay out"
+	line "of my way…"
+	done
 ; 0x18cd53
 
 CooltrainermDarinSeenText: ; 0x18cd53
-	db $0, "You! How dare you", $4f
-	db "enter uninvited!", $57
+	text "You! How dare you"
+	line "enter uninvited!"
+	done
 ; 0x18cd77
 
 CooltrainermDarinBeatenText: ; 0x18cd77
-	db $0, "S-strong!", $57
+	text "S-strong!"
+	done
 ; 0x18cd82
 
 UnknownText_0x18cd82: ; 0x18cd82
-	db $0, "The SHRINE ahead", $4f
-	db "is home to the", $51
-	db "MASTER of our", $4f
-	db "dragon-user clan.", $51
-	db "You're not allowed", $4f
-	db "to just go in!", $57
+	text "The SHRINE ahead"
+	line "is home to the"
+
+	para "MASTER of our"
+	line "dragon-user clan."
+
+	para "You're not allowed"
+	line "to just go in!"
+	done
 ; 0x18cde4
 
 CooltrainerfCaraSeenText: ; 0x18cde4
-	db $0, "You shouldn't be", $4f
-	db "in here!", $57
+	text "You shouldn't be"
+	line "in here!"
+	done
 ; 0x18cdfe
 
 CooltrainerfCaraBeatenText: ; 0x18cdfe
-	db $0, "Oh yikes, I lost!", $57
+	text "Oh yikes, I lost!"
+	done
 ; 0x18ce11
 
 UnknownText_0x18ce11: ; 0x18ce11
-	db $0, "Soon I'm going to", $4f
-	db "get permission", $51
-	db "from our MASTER to", $4f
-	db "use dragons.", $51
-	db "When I do, I'm", $4f
-	db "going to become an", $51
-	db "admirable dragon", $4f
-	db "trainer and gain", $51
-	db "our MASTER's", $4f
-	db "approval.", $57
+	text "Soon I'm going to"
+	line "get permission"
+
+	para "from our MASTER to"
+	line "use dragons."
+
+	para "When I do, I'm"
+	line "going to become an"
+
+	para "admirable dragon"
+	line "trainer and gain"
+
+	para "our MASTER's"
+	line "approval."
+	done
 ; 0x18ceab
 
 TwinsLeaandpia1SeenText: ; 0x18ceab
-	db $0, "It's a stranger we", $4f
-	db "don't know.", $57
+	text "It's a stranger we"
+	line "don't know."
+	done
 ; 0x18cec9
 
 TwinsLeaandpia1BeatenText: ; 0x18cec9
-	db $0, "Ouchies.", $57
+	text "Ouchies."
+	done
 ; 0x18ced3
 
 UnknownText_0x18ced3: ; 0x18ced3
-	db $0, "It was like having", $4f
-	db "to battle LANCE.", $57
+	text "It was like having"
+	line "to battle LANCE."
+	done
 ; 0x18cef8
 
 TwinsLeaandpia2SeenText: ; 0x18cef8
-	db $0, "Who are you?", $57
+	text "Who are you?"
+	done
 ; 0x18cf06
 
 TwinsLeaandpia2BeatenText: ; 0x18cf06
-	db $0, "Meanie.", $57
+	text "Meanie."
+	done
 ; 0x18cf0f
 
 UnknownText_0x18cf0f: ; 0x18cf0f
-	db $0, "We'll tell on you.", $51
-	db "MASTER will be", $4f
-	db "angry with you.", $57
+	text "We'll tell on you."
+
+	para "MASTER will be"
+	line "angry with you."
+	done
 ; 0x18cf41
 
 UnknownText_0x18cf41: ; 0x18cf41
-	db $0, $52, " found", $4f
-	db "@"
+	text $52, " found"
+	line "@"
 	text_from_ram $d099
-	db $0, "!", $57
+	text "!"
+	done
 ; 0x18cf51
 
 UnknownText_0x18cf51: ; 0x18cf51
-	db $0, "But ", $52, " can't", $4f
-	db "carry any more", $55
-	db "items.", $57
+	text "But ", $52, " can't"
+	line "carry any more"
+	cont "items."
+	done
 ; 0x18cf73
 
 DragonsDenB1F_MapEventHeader: ; 0x18cf73

@@ -22,17 +22,20 @@ CooltrainerFScript_0x18a3c9: ; 0x18a3c9
 ; 0x18a3cc
 
 UnknownText_0x18a3cc: ; 0x18a3cc
-	db $0, "There's a big", $4f
-	db "RADIO TOWER in", $55
-	db "LAVENDER.", $57
+	text "There's a big"
+	line "RADIO TOWER in"
+	cont "LAVENDER."
+	done
 ; 0x18a3f3
 
 UnknownText_0x18a3f3: ; 0x18a3f3
-	db $0, "I want to become", $4f
-	db "stronger, but I'm", $55
-	db "not good yet…", $51
-	db "Could you show me", $4f
-	db "how sometime?", $57
+	text "I want to become"
+	line "stronger, but I'm"
+	cont "not good yet…"
+
+	para "Could you show me"
+	line "how sometime?"
+	done
 ; 0x18a444
 
 SaffronMart_MapEventHeader: ; 0x18a444

@@ -239,148 +239,194 @@ MovementData_0x7a602: ; 0x7a602
 ; 0x7a604
 
 UnknownText_0x7a604: ; 0x7a604
-	db $0, "Oh, ", $52, "…! Our", $4f
-	db "neighbor, PROF.", $51
-	db "ELM, was looking", $4f
-	db "for you.", $51
-	db "He said he wanted", $4f
-	db "you to do some-", $55
-	db "thing for him.", $51
-	db "Oh! I almost for-", $4f
-	db "got! Your #MON", $51
-	db "GEAR is back from", $4f
-	db "the repair shop.", $51
-	db "Here you go!", $57
+	text "Oh, ", $52, "…! Our"
+	line "neighbor, PROF."
+
+	para "ELM, was looking"
+	line "for you."
+
+	para "He said he wanted"
+	line "you to do some-"
+	cont "thing for him."
+
+	para "Oh! I almost for-"
+	line "got! Your #MON"
+
+	para "GEAR is back from"
+	line "the repair shop."
+
+	para "Here you go!"
+	done
 ; 0x7a6bd
 
 UnknownText_0x7a6bd: ; 0x7a6bd
-	db $0, "#MON GEAR, or", $4f
-	db "just #GEAR.", $51
-	db "It's essential if", $4f
-	db "you want to be a", $55
-	db "good trainer.", $51
-	db "Oh, the day of the", $4f
-	db "week isn't set.", $51
-	db "You mustn't forget", $4f
-	db "that!", $57
+	text "#MON GEAR, or"
+	line "just #GEAR."
+
+	para "It's essential if"
+	line "you want to be a"
+	cont "good trainer."
+
+	para "Oh, the day of the"
+	line "week isn't set."
+
+	para "You mustn't forget"
+	line "that!"
+	done
 ; 0x7a742
 
 UnknownText_0x7a742: ; 0x7a742
-	db $0, "Is it Daylight", $4f
-	db "Saving Time now?", $57
+	text "Is it Daylight"
+	line "Saving Time now?"
+	done
 ; 0x7a763
 
 UnknownText_0x7a763: ; 0x7a763
-	db $0, "Come home to", $4f
-	db "adjust your clock", $51
-	db "for Daylight", $4f
-	db "Saving Time.", $51
-	db "By the way, do you", $4f
-	db "know how to use", $55
-	db "the PHONE?", $57
+	text "Come home to"
+	line "adjust your clock"
+
+	para "for Daylight"
+	line "Saving Time."
+
+	para "By the way, do you"
+	line "know how to use"
+	cont "the PHONE?"
+	done
 ; 0x7a7cb
 
 UnknownText_0x7a7cb: ; 0x7a7cb
-	db $0, "Don't you just", $4f
-	db "turn the #GEAR", $51
-	db "on and select the", $4f
-	db "PHONE icon?", $57
+	text "Don't you just"
+	line "turn the #GEAR"
+
+	para "on and select the"
+	line "PHONE icon?"
+	done
 ; 0x7a807
 
 UnknownText_0x7a807: ; 0x7a807
-	db $0, "I'll read the", $4f
-	db "instructions.", $51
-	db "Turn the #GEAR", $4f
-	db "on and select the", $55
-	db "PHONE icon.", $57
+	text "I'll read the"
+	line "instructions."
+
+	para "Turn the #GEAR"
+	line "on and select the"
+	cont "PHONE icon."
+	done
 ; 0x7a850
 
 UnknownText_0x7a850: ; 0x7a850
-	db $0, "Phone numbers are", $4f
-	db "stored in memory.", $51
-	db "Just choose a name", $4f
-	db "you want to call.", $51
-	db "Gee, isn't that", $4f
-	db "convenient?", $57
+	text "Phone numbers are"
+	line "stored in memory."
+
+	para "Just choose a name"
+	line "you want to call."
+
+	para "Gee, isn't that"
+	line "convenient?"
+	done
 ; 0x7a8b5
 
 UnknownText_0x7a8b5: ; 0x7a8b5
-	db $0, "PROF.ELM is wait-", $4f
-	db "ing for you.", $51
-	db "Hurry up, baby!", $57
+	text "PROF.ELM is wait-"
+	line "ing for you."
+
+	para "Hurry up, baby!"
+	done
 ; 0x7a8e5
 
 UnknownText_0x7a8e5: ; 0x7a8e5
-	db $0, "So, what was PROF.", $4f
-	db "ELM's errand?", $51
-	db "…", $51
-	db "That does sound", $4f
-	db "challenging.", $51
-	db "But, you should be", $4f
-	db "proud that people", $55
-	db "rely on you.", $57
+	text "So, what was PROF."
+	line "ELM's errand?"
+
+	para "…"
+
+	para "That does sound"
+	line "challenging."
+
+	para "But, you should be"
+	line "proud that people"
+	cont "rely on you."
+	done
 ; 0x7a957
 
 UnknownText_0x7a957: ; 0x7a957
-	db $0, $52, ", do it!", $51
-	db "I'm behind you all", $4f
-	db "the way!", $57
+	text $52, ", do it!"
+
+	para "I'm behind you all"
+	line "the way!"
+	done
 ; 0x7a97d
 
 UnknownText_0x7a97d: ; 0x7a97d
-	db $0, "Good morning,", $4f
-	db $14, "!", $51
-	db "I'm visiting!", $57
+	text "Good morning,"
+	line $14, "!"
+
+	para "I'm visiting!"
+	done
 ; 0x7a99c
 
 UnknownText_0x7a99c: ; 0x7a99c
-	db $0, "Hello, ", $14, "!", $4f
-	db "I'm visiting!", $57
+	text "Hello, ", $14, "!"
+	line "I'm visiting!"
+	done
 ; 0x7a9b4
 
 UnknownText_0x7a9b4: ; 0x7a9b4
-	db $0, "Good evening,", $4f
-	db $14, "!", $51
-	db "I'm visiting!", $57
+	text "Good evening,"
+	line $14, "!"
+
+	para "I'm visiting!"
+	done
 ; 0x7a9d3
 
 UnknownText_0x7a9d3: ; 0x7a9d3
-	db $0, $14, ", have you", $4f
-	db "heard?", $51
-	db "My daughter is", $4f
-	db "adamant about", $51
-	db "becoming PROF.", $4f
-	db "ELM's assistant.", $51
-	db "She really loves", $4f
-	db "#MON!", $57
+	text $14, ", have you"
+	line "heard?"
+
+	para "My daughter is"
+	line "adamant about"
+
+	para "becoming PROF."
+	line "ELM's assistant."
+
+	para "She really loves"
+	line "#MON!"
+	done
 ; 0x7aa3a
 
 UnknownText_0x7aa3a: ; 0x7aa3a
-	db $0, "Mom's specialty!", $51
-	db "CINNABAR VOLCANO", $4f
-	db "BURGER!", $57
+	text "Mom's specialty!"
+
+	para "CINNABAR VOLCANO"
+	line "BURGER!"
+	done
 ; 0x7aa64
 
 UnknownText_0x7aa64: ; 0x7aa64
-	db $0, "The sink is spot-", $4f
-	db "less. Mom likes it", $55
-	db "clean.", $57
+	text "The sink is spot-"
+	line "less. Mom likes it"
+	cont "clean."
+	done
 ; 0x7aa91
 
 UnknownText_0x7aa91: ; 0x7aa91
-	db $0, "Let's see what's", $4f
-	db "in the fridge…", $51
-	db "FRESH WATER and", $4f
-	db "tasty LEMONADE!", $57
+	text "Let's see what's"
+	line "in the fridge…"
+
+	para "FRESH WATER and"
+	line "tasty LEMONADE!"
+	done
 ; 0x7aad0
 
 UnknownText_0x7aad0: ; 0x7aad0
-	db $0, "There's a movie on", $4f
-	db "TV: Stars dot the", $51
-	db "sky as two boys", $4f
-	db "ride on a train…", $51
-	db "I'd better get", $4f
-	db "rolling too!", $57
+	text "There's a movie on"
+	line "TV: Stars dot the"
+
+	para "sky as two boys"
+	line "ride on a train…"
+
+	para "I'd better get"
+	line "rolling too!"
+	done
 ; 0x7ab31
 
 KrissHouse1F_MapEventHeader: ; 0x7ab31

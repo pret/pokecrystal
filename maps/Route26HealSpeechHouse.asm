@@ -32,17 +32,22 @@ MapRoute26HealSpeechHouseSignpost1Script: ; 0x7b14a
 ; 0x7b14d
 
 UnknownText_0x7b14d: ; 0x7b14d
-	db $0, "Your #MON look", $4f
-	db "a little tired.", $51
-	db "You should rest", $4f
-	db "them a while.", $57
+	text "Your #MON look"
+	line "a little tired."
+
+	para "You should rest"
+	line "them a while."
+	done
 ; 0x7b18b
 
 UnknownText_0x7b18b: ; 0x7b18b
-	db $0, "There!", $51
-	db "Your #MON are", $4f
-	db "looking good!", $51
-	db "Keep at it!", $57
+	text "There!"
+
+	para "Your #MON are"
+	line "looking good!"
+
+	para "Keep at it!"
+	done
 ; 0x7b1bb
 
 Route26HealSpeechHouse_MapEventHeader: ; 0x7b1bb

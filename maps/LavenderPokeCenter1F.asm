@@ -37,41 +37,51 @@ UnknownScript_0x7e6b7: ; 0x7e6b7
 ; 0x7e6bd
 
 UnknownText_0x7e6bd: ; 0x7e6bd
-	db $0, "To the north of", $4f
-	db "LAVENDER is ROCK", $51
-	db "TUNNEL. Go through", $4f
-	db "it to get to the", $55
-	db "POWER PLANT.", $57
+	text "To the north of"
+	line "LAVENDER is ROCK"
+
+	para "TUNNEL. Go through"
+	line "it to get to the"
+	cont "POWER PLANT."
+	done
 ; 0x7e710
 
 UnknownText_0x7e710: ; 0x7e710
-	db $0, "There's a radio", $4f
-	db "program that plays", $55
-	db "# FLUTE music.", $51
-	db "Oh? Ah, your radio", $4f
-	db "needs an EXPN CARD", $55
-	db "to tune into it.", $57
+	text "There's a radio"
+	line "program that plays"
+	cont "# FLUTE music."
+
+	para "Oh? Ah, your radio"
+	line "needs an EXPN CARD"
+	cont "to tune into it."
+	done
 ; 0x7e779
 
 UnknownText_0x7e779: ; 0x7e779
-	db $0, "If the POWER PLANT", $4f
-	db "isn't running, the", $51
-	db "MAGNET TRAIN won't", $4f
-	db "run either…", $51
-	db "It also means the", $4f
-	db "RADIO STATION", $55
-	db "can't broadcast…", $57
+	text "If the POWER PLANT"
+	line "isn't running, the"
+
+	para "MAGNET TRAIN won't"
+	line "run either…"
+
+	para "It also means the"
+	line "RADIO STATION"
+	cont "can't broadcast…"
+	done
 ; 0x7e7ed
 
 UnknownText_0x7e7ed: ; 0x7e7ed
-	db $0, "The DIRECTOR of", $4f
-	db "the RADIO STATION", $55
-	db "sure was happy.", $51
-	db "He said they're", $4f
-	db "back on the air", $51
-	db "because the POWER", $4f
-	db "PLANT is running", $55
-	db "smoothly again.", $57
+	text "The DIRECTOR of"
+	line "the RADIO STATION"
+	cont "sure was happy."
+
+	para "He said they're"
+	line "back on the air"
+
+	para "because the POWER"
+	line "PLANT is running"
+	cont "smoothly again."
+	done
 ; 0x7e872
 
 LavenderPokeCenter1F_MapEventHeader: ; 0x7e872

@@ -137,77 +137,96 @@ MapRoute11SignpostItem1: ; 0x68057
 ; 0x6805a
 
 YoungsterOwenSeenText: ; 0x6805a
-	db $0, "There's no cheat-", $4f
-	db "ing in #MON.", $51
-	db "Let's keep it fair", $4f
-	db "and square!", $57
+	text "There's no cheat-"
+	line "ing in #MON."
+
+	para "Let's keep it fair"
+	line "and square!"
+	done
 ; 0x68097
 
 YoungsterOwenBeatenText: ; 0x68097
-	db $0, "Huh? How did this", $4f
-	db "happen?", $57
+	text "Huh? How did this"
+	line "happen?"
+	done
 ; 0x680b2
 
 UnknownText_0x680b2: ; 0x680b2
-	db $0, "I fought fair and", $4f
-	db "square with honor.", $51
-	db "I don't regret", $4f
-	db "this at all.", $57
+	text "I fought fair and"
+	line "square with honor."
+
+	para "I don't regret"
+	line "this at all."
+	done
 ; 0x680f3
 
 YoungsterJasonSeenText: ; 0x680f3
-	db $0, "It itches and", $4f
-	db "tickles a bit when", $51
-	db "I wear shorts in", $4f
-	db "the grass.", $57
+	text "It itches and"
+	line "tickles a bit when"
+
+	para "I wear shorts in"
+	line "the grass."
+	done
 ; 0x68131
 
 YoungsterJasonBeatenText: ; 0x68131
-	db $0, "Aiyaaah!", $4f
-	db "I got stomped!", $57
+	text "Aiyaaah!"
+	line "I got stomped!"
+	done
 ; 0x6814a
 
 UnknownText_0x6814a: ; 0x6814a
-	db $0, "I'm going to catch", $4f
-	db "more #MON in", $55
-	db "the grass.", $57
+	text "I'm going to catch"
+	line "more #MON in"
+	cont "the grass."
+	done
 ; 0x68175
 
 PsychicHermanSeenText: ; 0x68175
-	db $0, "…", $57
+	text "…"
+	done
 ; 0x68178
 
 PsychicHermanBeatenText: ; 0x68178
-	db $0, "…", $57
+	text "…"
+	done
 ; 0x6817b
 
 UnknownText_0x6817b: ; 0x6817b
-	db $0, "…", $51
-	db "I lost while I had", $4f
-	db "my eyes closed…", $57
+	text "…"
+
+	para "I lost while I had"
+	line "my eyes closed…"
+	done
 ; 0x681a1
 
 PsychicFidelSeenText: ; 0x681a1
-	db $0, "I can see it…", $51
-	db "Everything to see", $4f
-	db "about you…", $57
+	text "I can see it…"
+
+	para "Everything to see"
+	line "about you…"
+	done
 ; 0x681cd
 
 PsychicFidelBeatenText: ; 0x681cd
-	db $0, "I couldn't foresee", $4f
-	db "your power…", $57
+	text "I couldn't foresee"
+	line "your power…"
+	done
 ; 0x681ec
 
 UnknownText_0x681ec: ; 0x681ec
-	db $0, "Strength in con-", $4f
-	db "viction…", $51
-	db "You're strong be-", $4f
-	db "cause you believe", $55
-	db "in your #MON.", $57
+	text "Strength in con-"
+	line "viction…"
+
+	para "You're strong be-"
+	line "cause you believe"
+	cont "in your #MON."
+	done
 ; 0x68238
 
 UnknownText_0x68238: ; 0x68238
-	db $0, "ROUTE 11", $57
+	text "ROUTE 11"
+	done
 ; 0x68242
 
 Route11_MapEventHeader: ; 0x68242

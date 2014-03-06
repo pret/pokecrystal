@@ -41,35 +41,46 @@ MapRedsHouse1FSignpost1Script: ; 0x19aebd
 ; 0x19aec0
 
 UnknownText_0x19aec0: ; 0x19aec0
-	db $0, "Hi!", $51
-	db "RED's been away", $4f
-	db "for a long time.", $51
-	db "He hasn't called", $4f
-	db "either, so I have", $51
-	db "no idea where he", $4f
-	db "is or what he's", $55
-	db "been doing.", $51
-	db "They say that no", $4f
-	db "word is proof that", $51
-	db "he's doing fine,", $4f
-	db "but I do worry", $55
-	db "about him.", $57
+	text "Hi!"
+
+	para "RED's been away"
+	line "for a long time."
+
+	para "He hasn't called"
+	line "either, so I have"
+
+	para "no idea where he"
+	line "is or what he's"
+	cont "been doing."
+
+	para "They say that no"
+	line "word is proof that"
+
+	para "he's doing fine,"
+	line "but I do worry"
+	cont "about him."
+	done
 ; 0x19af81
 
 UnknownText_0x19af81: ; 0x19af81
-	db $0, "I worry about RED", $4f
-	db "getting hurt or", $51
-	db "sick, but he's a", $4f
-	db "boy. I'm proud", $51
-	db "that he is doing", $4f
-	db "what he wants to", $51
-	db "do.", $57
+	text "I worry about RED"
+	line "getting hurt or"
+
+	para "sick, but he's a"
+	line "boy. I'm proud"
+
+	para "that he is doing"
+	line "what he wants to"
+
+	para "do."
+	done
 ; 0x19afe8
 
 UnknownText_0x19afe8: ; 0x19afe8
-	db $0, "They have programs", $4f
-	db "that aren't shown", $55
-	db "in JOHTO…", $57
+	text "They have programs"
+	line "that aren't shown"
+	cont "in JOHTO…"
+	done
 ; 0x19b017
 
 RedsHouse1F_MapEventHeader: ; 0x19b017

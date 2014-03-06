@@ -43,30 +43,37 @@ MapCeladonDeptStore5FSignpost1Script: ; 0x71020
 ; 0x71023
 
 UnknownText_0x71023: ; 0x71023
-	db $0, "I want to buy some", $4f
-	db "items that raise", $51
-	db "#MON stats, but", $4f
-	db "I don't have", $55
-	db "enough money…", $57
+	text "I want to buy some"
+	line "items that raise"
+
+	para "#MON stats, but"
+	line "I don't have"
+	cont "enough money…"
+	done
 ; 0x71072
 
 UnknownText_0x71072: ; 0x71072
-	db $0, "I want PP UP, so I", $4f
-	db "can raise the PP", $51
-	db "of moves. But you", $4f
-	db "can't buy it…", $57
+	text "I want PP UP, so I"
+	line "can raise the PP"
+
+	para "of moves. But you"
+	line "can't buy it…"
+	done
 ; 0x710b6
 
 UnknownText_0x710b6: ; 0x710b6
-	db $0, "Using items on", $4f
-	db "them makes #-", $55
-	db "MON happy.", $51
-	db "They hate certain", $4f
-	db "items, though…", $57
+	text "Using items on"
+	line "them makes #-"
+	cont "MON happy."
+
+	para "They hate certain"
+	line "items, though…"
+	done
 ; 0x71100
 
 UnknownText_0x71100: ; 0x71100
-	db $0, "5F: DRUG STORE", $57
+	text "5F: DRUG STORE"
+	done
 ; 0x71110
 
 CeladonDeptStore5F_MapEventHeader: ; 0x71110

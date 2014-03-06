@@ -306,195 +306,240 @@ MapRoute41SignpostItem0: ; 0x1a690c
 ; 0x1a690f
 
 SwimmermCharlieSeenText: ; 0x1a690f
-	db $0, "The water's warm", $4f
-	db "here. I'm loose", $55
-	db "and limber.", $51
-	db "Sure, I'll take", $4f
-	db "you on!", $57
+	text "The water's warm"
+	line "here. I'm loose"
+	cont "and limber."
+
+	para "Sure, I'll take"
+	line "you on!"
+	done
 ; 0x1a6952
 
 SwimmermCharlieBeatenText: ; 0x1a6952
-	db $0, "Yikes! I've got", $4f
-	db "prune skin!", $57
+	text "Yikes! I've got"
+	line "prune skin!"
+	done
 ; 0x1a696e
 
 UnknownText_0x1a696e: ; 0x1a696e
-	db $0, "Isn't it relaxing", $4f
-	db "just floating like", $55
-	db "this?", $57
+	text "Isn't it relaxing"
+	line "just floating like"
+	cont "this?"
+	done
 ; 0x1a6999
 
 SwimmermGeorgeSeenText: ; 0x1a6999
-	db $0, "I'm a bit tired.", $4f
-	db "If I win, lend me", $55
-	db "your #MON.", $57
+	text "I'm a bit tired."
+	line "If I win, lend me"
+	cont "your #MON."
+	done
 ; 0x1a69c7
 
 SwimmermGeorgeBeatenText: ; 0x1a69c7
-	db $0, "Pant, pant…", $57
+	text "Pant, pant…"
+	done
 ; 0x1a69d4
 
 UnknownText_0x1a69d4: ; 0x1a69d4
-	db $0, "It's so far to", $4f
-	db "CIANWOOD.", $51
-	db "But it's no easy", $4f
-	db "return trip to", $55
-	db "OLIVINE either.", $51
-	db "What should I do?", $57
+	text "It's so far to"
+	line "CIANWOOD."
+
+	para "But it's no easy"
+	line "return trip to"
+	cont "OLIVINE either."
+
+	para "What should I do?"
+	done
 ; 0x1a6a2e
 
 SwimmermBerkeSeenText: ; 0x1a6a2e
-	db $0, "See those islands", $4f
-	db "that are blocked", $55
-	db "by whirlpools?", $51
-	db "There just has to", $4f
-	db "be a secret!", $57
+	text "See those islands"
+	line "that are blocked"
+	cont "by whirlpools?"
+
+	para "There just has to"
+	line "be a secret!"
+	done
 ; 0x1a6a80
 
 SwimmermBerkeBeatenText: ; 0x1a6a80
-	db $0, "What's the secret", $4f
-	db "to your strength?", $57
+	text "What's the secret"
+	line "to your strength?"
+	done
 ; 0x1a6aa4
 
 UnknownText_0x1a6aa4: ; 0x1a6aa4
-	db $0, "It was a dark and", $4f
-	db "stormy night…", $51
-	db "I saw this giant", $4f
-	db "#MON flying", $55
-	db "from the islands.", $51
-	db "It was scattering", $4f
-	db "feathers from its", $55
-	db "silver wings.", $57
+	text "It was a dark and"
+	line "stormy night…"
+
+	para "I saw this giant"
+	line "#MON flying"
+	cont "from the islands."
+
+	para "It was scattering"
+	line "feathers from its"
+	cont "silver wings."
+	done
 ; 0x1a6b26
 
 SwimmermKirkSeenText: ; 0x1a6b26
-	db $0, "The waves are wild", $4f
-	db "here.", $51
-	db "They tire you out", $4f
-	db "while you swim.", $57
+	text "The waves are wild"
+	line "here."
+
+	para "They tire you out"
+	line "while you swim."
+	done
 ; 0x1a6b62
 
 SwimmermKirkBeatenText: ; 0x1a6b62
-	db $0, "I'm beat!", $57
+	text "I'm beat!"
+	done
 ; 0x1a6b6c
 
 UnknownText_0x1a6b6c: ; 0x1a6b6c
-	db $0, "The currents keep", $4f
-	db "me from reaching", $55
-	db "that island.", $57
+	text "The currents keep"
+	line "me from reaching"
+	cont "that island."
+	done
 ; 0x1a6b9d
 
 SwimmermMathewSeenText: ; 0x1a6b9d
-	db $0, "Are you seeking", $4f
-	db "the secrets of", $55
-	db "WHIRL ISLANDS?", $57
+	text "Are you seeking"
+	line "the secrets of"
+	cont "WHIRL ISLANDS?"
+	done
 ; 0x1a6bcc
 
 SwimmermMathewBeatenText: ; 0x1a6bcc
-	db $0, "Ooh, you've got", $4f
-	db "great endurance!", $57
+	text "Ooh, you've got"
+	line "great endurance!"
+	done
 ; 0x1a6bed
 
 UnknownText_0x1a6bed: ; 0x1a6bed
-	db $0, "A secret about", $4f
-	db "WHIRL ISLANDS…", $51
-	db "It's pitch-black", $4f
-	db "inside!", $57
+	text "A secret about"
+	line "WHIRL ISLANDS…"
+
+	para "It's pitch-black"
+	line "inside!"
+	done
 ; 0x1a6c24
 
 SwimmerfKayleeSeenText: ; 0x1a6c24
-	db $0, "I'm on my way to", $4f
-	db "WHIRL ISLANDS.", $51
-	db "I'm going explor-", $4f
-	db "ing with friends.", $57
+	text "I'm on my way to"
+	line "WHIRL ISLANDS."
+
+	para "I'm going explor-"
+	line "ing with friends."
+	done
 ; 0x1a6c67
 
 SwimmerfKayleeBeatenText: ; 0x1a6c67
-	db $0, "Is that how you do", $4f
-	db "it?", $57
+	text "Is that how you do"
+	line "it?"
+	done
 ; 0x1a6c7f
 
 UnknownText_0x1a6c7f: ; 0x1a6c7f
-	db $0, "There's supposed", $4f
-	db "to be a big #-", $55
-	db "MON deep beneath", $55
-	db "WHIRL ISLANDS.", $51
-	db "I wonder what it", $4f
-	db "could be?", $57
+	text "There's supposed"
+	line "to be a big #-"
+	cont "MON deep beneath"
+	cont "WHIRL ISLANDS."
+
+	para "I wonder what it"
+	line "could be?"
+	done
 ; 0x1a6cda
 
 SwimmerfSusieSeenText: ; 0x1a6cda
-	db $0, "You look so ele-", $4f
-	db "gant, riding your", $55
-	db "#MON.", $57
+	text "You look so ele-"
+	line "gant, riding your"
+	cont "#MON."
+	done
 ; 0x1a6d04
 
 SwimmerfSusieBeatenText: ; 0x1a6d04
-	db $0, "I'm crushed…", $57
+	text "I'm crushed…"
+	done
 ; 0x1a6d11
 
 UnknownText_0x1a6d11: ; 0x1a6d11
-	db $0, "Wasn't there a hit", $4f
-	db "song about a boy", $55
-	db "riding a LAPRAS?", $57
+	text "Wasn't there a hit"
+	line "song about a boy"
+	cont "riding a LAPRAS?"
+	done
 ; 0x1a6d46
 
 SwimmerfDeniseSeenText: ; 0x1a6d46
-	db $0, "The weather is so", $4f
-	db "beautiful, I'm in", $55
-	db "a daze!", $57
+	text "The weather is so"
+	line "beautiful, I'm in"
+	cont "a daze!"
+	done
 ; 0x1a6d72
 
 SwimmerfDeniseBeatenText: ; 0x1a6d72
-	db $0, "Ohhh!", $57
+	text "Ohhh!"
+	done
 ; 0x1a6d79
 
 UnknownText_0x1a6d79: ; 0x1a6d79
-	db $0, "A sunburn is the", $4f
-	db "worst for skin.", $51
-	db "But I don't use a", $4f
-	db "sunblock.", $51
-	db "I won't pollute", $4f
-	db "the water.", $57
+	text "A sunburn is the"
+	line "worst for skin."
+
+	para "But I don't use a"
+	line "sunblock."
+
+	para "I won't pollute"
+	line "the water."
+	done
 ; 0x1a6dd0
 
 SwimmerfKaraSeenText: ; 0x1a6dd0
-	db $0, "If you need to", $4f
-	db "rest, just tread", $55
-	db "water.", $51
-	db "You'll get your", $4f
-	db "wind back, so you", $51
-	db "can keep on going", $4f
-	db "strong.", $57
+	text "If you need to"
+	line "rest, just tread"
+	cont "water."
+
+	para "You'll get your"
+	line "wind back, so you"
+
+	para "can keep on going"
+	line "strong."
+	done
 ; 0x1a6e33
 
 SwimmerfKaraBeatenText: ; 0x1a6e33
-	db $0, "Oh! You have more", $4f
-	db "energy than I do.", $57
+	text "Oh! You have more"
+	line "energy than I do."
+	done
 ; 0x1a6e58
 
 UnknownText_0x1a6e58: ; 0x1a6e58
-	db $0, "I heard roars from", $4f
-	db "deep inside the", $55
-	db "ISLANDS.", $57
+	text "I heard roars from"
+	line "deep inside the"
+	cont "ISLANDS."
+	done
 ; 0x1a6e85
 
 SwimmerfWendySeenText: ; 0x1a6e85
-	db $0, "At night, STARYU", $4f
-	db "gather near the", $55
-	db "water's surface.", $57
+	text "At night, STARYU"
+	line "gather near the"
+	cont "water's surface."
+	done
 ; 0x1a6eb7
 
 SwimmerfWendyBeatenText: ; 0x1a6eb7
-	db $0, "Oh, dear…", $57
+	text "Oh, dear…"
+	done
 ; 0x1a6ec2
 
 UnknownText_0x1a6ec2: ; 0x1a6ec2
-	db $0, "The clusters of", $4f
-	db "STARYU light up", $55
-	db "at the same time.", $51
-	db "It's so beautiful,", $4f
-	db "it's scary.", $57
+	text "The clusters of"
+	line "STARYU light up"
+	cont "at the same time."
+
+	para "It's so beautiful,"
+	line "it's scary."
+	done
 ; 0x1a6f12
 
 Route41_MapEventHeader: ; 0x1a6f12

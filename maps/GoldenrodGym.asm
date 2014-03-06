@@ -267,174 +267,221 @@ BridgetWalksAwayMovement: ; 0x5411f
 ; 0x54122
 
 UnknownText_0x54122: ; 0x54122
-	db $0, "Hi! I'm WHITNEY!", $51
-	db "Everyone was into", $4f
-	db "#MON, so I got", $55
-	db "into it too!", $51
-	db "#MON are", $4f
-	db "super-cute!", $51
-	db "You want to bat-", $4f
-	db "tle? I'm warning", $55
-	db "you--I'm good!", $57
+	text "Hi! I'm WHITNEY!"
+
+	para "Everyone was into"
+	line "#MON, so I got"
+	cont "into it too!"
+
+	para "#MON are"
+	line "super-cute!"
+
+	para "You want to bat-"
+	line "tle? I'm warning"
+	cont "you--I'm good!"
+	done
 ; 0x541a5
 
 UnknownText_0x541a5: ; 0x541a5
-	db $0, "Sob…", $51
-	db "…Waaaaaaah!", $4f
-	db "You're mean!", $51
-	db "You shouldn't be", $4f
-	db "so serious! You…", $55
-	db "you child, you!", $57
+	text "Sob…"
+
+	para "…Waaaaaaah!"
+	line "You're mean!"
+
+	para "You shouldn't be"
+	line "so serious! You…"
+	cont "you child, you!"
+	done
 ; 0x541f4
 
 UnknownText_0x541f4: ; 0x541f4
-	db $0, "Waaaaah!", $51
-	db "Waaaaah!", $51
-	db "…Snivel, hic…", $4f
-	db "…You meanie!", $57
+	text "Waaaaah!"
+
+	para "Waaaaah!"
+
+	para "…Snivel, hic…"
+	line "…You meanie!"
+	done
 ; 0x54222
 
 UnknownText_0x54222: ; 0x54222
-	db $0, "…Sniff…", $51
-	db "What? What do you", $4f
-	db "want? A BADGE?", $51
-	db "Oh, right.", $4f
-	db "I forgot. Here's", $55
-	db "PLAINBADGE.", $57
+	text "…Sniff…"
+
+	para "What? What do you"
+	line "want? A BADGE?"
+
+	para "Oh, right."
+	line "I forgot. Here's"
+	cont "PLAINBADGE."
+	done
 ; 0x54273
 
 UnknownText_0x54273: ; 0x54273
-	db $0, $52, " received", $4f
-	db "PLAINBADGE.", $57
+	text $52, " received"
+	line "PLAINBADGE."
+	done
 ; 0x5428b
 
 UnknownText_0x5428b: ; 0x5428b
-	db $0, "PLAINBADGE lets", $4f
-	db "your #MON use", $51
-	db "STRENGTH outside", $4f
-	db "of battle.", $51
-	db "It also boosts", $4f
-	db "your #MON's", $55
-	db "SPEED.", $51
-	db "Oh, you can have", $4f
-	db "this too!", $57
+	text "PLAINBADGE lets"
+	line "your #MON use"
+
+	para "STRENGTH outside"
+	line "of battle."
+
+	para "It also boosts"
+	line "your #MON's"
+	cont "SPEED."
+
+	para "Oh, you can have"
+	line "this too!"
+	done
 ; 0x54302
 
 UnknownText_0x54302: ; 0x54302
-	db $0, "It's ATTRACT!", $4f
-	db "It makes full use", $51
-	db "of a #MON's", $4f
-	db "charm.", $51
-	db "Isn't it just per-", $4f
-	db "fect for a cutie", $55
-	db "like me?", $57
+	text "It's ATTRACT!"
+	line "It makes full use"
+
+	para "of a #MON's"
+	line "charm."
+
+	para "Isn't it just per-"
+	line "fect for a cutie"
+	cont "like me?"
+	done
 ; 0x54360
 
 UnknownText_0x54360: ; 0x54360
-	db $0, "Ah, that was a", $4f
-	db "good cry!", $51
-	db "Come for a visit", $4f
-	db "again! Bye-bye!", $57
+	text "Ah, that was a"
+	line "good cry!"
+
+	para "Come for a visit"
+	line "again! Bye-bye!"
+	done
 ; 0x5439b
 
 LassCarrieSeenText: ; 0x5439b
-	db $0, "Don't let my", $4f
-	db "#MON's cute", $51
-	db "looks fool you.", $4f
-	db "They can whip you!", $57
+	text "Don't let my"
+	line "#MON's cute"
+
+	para "looks fool you."
+	line "They can whip you!"
+	done
 ; 0x543d6
 
 LassCarrieBeatenText: ; 0x543d6
-	db $0, "Darn… I thought", $4f
-	db "you were weak…", $57
+	text "Darn… I thought"
+	line "you were weak…"
+	done
 ; 0x543f6
 
 LassCarrieOWText: ; 0x543f6
-	db $0, "Do my #MON", $4f
-	db "think I'm cute?", $57
+	text "Do my #MON"
+	line "think I'm cute?"
+	done
 ; 0x54411
 
 LassBridgetSeenText: ; 0x54411
-	db $0, "I like cute #-", $4f
-	db "MON better than", $55
-	db "strong #MON.", $51
-	db "But I have strong", $4f
-	db "and cute #MON!", $57
+	text "I like cute #-"
+	line "MON better than"
+	cont "strong #MON."
+
+	para "But I have strong"
+	line "and cute #MON!"
+	done
 ; 0x5445f
 
 LassBridgetBeatenText: ; 0x5445f
-	db $0, "Oh, no, no, no!", $57
+	text "Oh, no, no, no!"
+	done
 ; 0x54470
 
 LassBridgetOWText: ; 0x54470
-	db $0, "I'm trying to beat", $4f
-	db "WHITNEY, but…", $55
-	db "It's depressing.", $51
-	db "I'm okay! If I", $4f
-	db "lose, I'll just", $51
-	db "try harder next", $4f
-	db "time!", $57
+	text "I'm trying to beat"
+	line "WHITNEY, but…"
+	cont "It's depressing."
+
+	para "I'm okay! If I"
+	line "lose, I'll just"
+
+	para "try harder next"
+	line "time!"
+	done
 ; 0x544d4
 
 BridgetWhitneyCriesText: ; 0x544d4
-	db $0, "Oh, no. You made", $4f
-	db "WHITNEY cry.", $51
-	db "It's OK. She'll", $4f
-	db "stop soon. She", $51
-	db "always cries when", $4f
-	db "she loses.", $57
+	text "Oh, no. You made"
+	line "WHITNEY cry."
+
+	para "It's OK. She'll"
+	line "stop soon. She"
+
+	para "always cries when"
+	line "she loses."
+	done
 ; 0x5452d
 
 BeautyVictoriaSeenText: ; 0x5452d
-	db $0, "Oh, you are a cute", $4f
-	db "little trainer! ", $51
-	db "I like you, but I", $4f
-	db "won't hold back!", $57
+	text "Oh, you are a cute"
+	line "little trainer! "
+
+	para "I like you, but I"
+	line "won't hold back!"
+	done
 ; 0x54574
 
 BeautyVictoriaBeatenText: ; 0x54574
-	db $0, "Let's see… Oops,", $4f
-	db "it's over?", $57
+	text "Let's see… Oops,"
+	line "it's over?"
+	done
 ; 0x5458f
 
 BeautyVictoriaOWText: ; 0x5458f
-	db $0, "Wow, you must be", $4f
-	db "good to beat me!", $55
-	db "Keep it up!", $57
+	text "Wow, you must be"
+	line "good to beat me!"
+	cont "Keep it up!"
+	done
 ; 0x545be
 
 BeautySamanthaSeenText: ; 0x545be
-	db $0, "Give it your best", $4f
-	db "shot, or I'll take", $55
-	db "you down!", $57
+	text "Give it your best"
+	line "shot, or I'll take"
+	cont "you down!"
+	done
 ; 0x545ed
 
 BeautySamanthaBeatenText: ; 0x545ed
-	db $0, "No! Oh, MEOWTH,", $4f
-	db "I'm so sorry!", $57
+	text "No! Oh, MEOWTH,"
+	line "I'm so sorry!"
+	done
 ; 0x5460b
 
 BeautySamanthaOWText: ; 0x5460b
-	db $0, "I taught MEOWTH", $4f
-	db "moves for taking", $55
-	db "on any type…", $57
+	text "I taught MEOWTH"
+	line "moves for taking"
+	cont "on any type…"
+	done
 ; 0x5463a
 
 GoldenrodGymGuyText: ; 0x5463a
-	db $0, "Yo! CHAMP in", $4f
-	db "making!", $51
-	db "This GYM is home", $4f
-	db "to normal-type", $55
-	db "#MON trainers.", $51
-	db "I recommend you", $4f
-	db "use fighting-type", $55
-	db "#MON.", $57
+	text "Yo! CHAMP in"
+	line "making!"
+
+	para "This GYM is home"
+	line "to normal-type"
+	cont "#MON trainers."
+
+	para "I recommend you"
+	line "use fighting-type"
+	cont "#MON."
+	done
 ; 0x546a7
 
 GoldenrodGymGuyWinText: ; 0x546a7
-	db $0, "You won? Great! I", $4f
-	db "was busy admiring", $55
-	db "the ladies here.", $57
+	text "You won? Great! I"
+	line "was busy admiring"
+	cont "the ladies here."
+	done
 ; 0x546dd
 
 GoldenrodGym_MapEventHeader: ; 0x546dd

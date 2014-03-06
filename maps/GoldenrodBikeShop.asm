@@ -52,51 +52,64 @@ MapGoldenrodBikeShopSignpost8Script: ; 0x54784
 ; 0x54787
 
 UnknownText_0x54787: ; 0x54787
-	db $0, "…sigh… I moved", $4f
-	db "here, but I can't", $51
-	db "sell my BICYCLES.", $4f
-	db "Why is that?", $51
-	db "Could you ride a", $4f
-	db "BICYCLE and adver-", $55
-	db "tise for me?", $57
+	text "…sigh… I moved"
+	line "here, but I can't"
+
+	para "sell my BICYCLES."
+	line "Why is that?"
+
+	para "Could you ride a"
+	line "BICYCLE and adver-"
+	cont "tise for me?"
+	done
 ; 0x547f8
 
 UnknownText_0x547f8: ; 0x547f8
-	db $0, "Really? Great!", $51
-	db "Give me your name", $4f
-	db "and phone number,", $51
-	db "and I'll loan you", $4f
-	db "a BICYCLE.", $57
+	text "Really? Great!"
+
+	para "Give me your name"
+	line "and phone number,"
+
+	para "and I'll loan you"
+	line "a BICYCLE."
+	done
 ; 0x54848
 
 UnknownText_0x54848: ; 0x54848
-	db $0, $52, " borrowed a", $4f
-	db "BICYCLE.", $57
+	text $52, " borrowed a"
+	line "BICYCLE."
+	done
 ; 0x5485f
 
 UnknownText_0x5485f: ; 0x5485f
-	db $0, "My BICYCLES are", $4f
-	db "first-rate! You", $51
-	db "can ride them", $4f
-	db "anywhere.", $57
+	text "My BICYCLES are"
+	line "first-rate! You"
+
+	para "can ride them"
+	line "anywhere."
+	done
 ; 0x54898
 
 UnknownText_0x54898: ; 0x54898
-	db $0, "…sigh… Oh, for", $4f
-	db "the kindness of", $55
-	db "people…", $57
+	text "…sigh… Oh, for"
+	line "the kindness of"
+	cont "people…"
+	done
 ; 0x548c0
 
 ; possibly unused
 UnknownText_0x548c0: ; 0x548c0
-	db $0, "Just released!", $51
-	db "First-rate compact", $4f
-	db "BICYCLES!", $57
+	text "Just released!"
+
+	para "First-rate compact"
+	line "BICYCLES!"
+	done
 ; 0x548ed
 
 UnknownText_0x548ed: ; 0x548ed
-	db $0, "It's a shiny new", $4f
-	db "BICYCLE!", $57
+	text "It's a shiny new"
+	line "BICYCLE!"
+	done
 ; 0x54907
 
 GoldenrodBikeShop_MapEventHeader: ; 0x54907

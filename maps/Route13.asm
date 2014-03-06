@@ -170,109 +170,133 @@ MapRoute13SignpostItem3: ; 0x1a249f
 ; 0x1a24a2
 
 PokefanmAlexSeenText: ; 0x1a24a2
-	db $0, "Bow down before my", $4f
-	db "regal #MON!", $57
+	text "Bow down before my"
+	line "regal #MON!"
+	done
 ; 0x1a24c2
 
 PokefanmAlexBeatenText: ; 0x1a24c2
-	db $0, "How… How dare you", $4f
-	db "mock royalty!", $57
+	text "How… How dare you"
+	line "mock royalty!"
+	done
 ; 0x1a24e3
 
 UnknownText_0x1a24e3: ; 0x1a24e3
-	db $0, "Doesn't everyone", $4f
-	db "wish to someday be", $55
-	db "a king?", $57
+	text "Doesn't everyone"
+	line "wish to someday be"
+	cont "a king?"
+	done
 ; 0x1a250f
 
 PokefanmJoshuaSeenText: ; 0x1a250f
-	db $0, "Nihihi! Would you", $4f
-	db "like to battle my", $55
-	db "PIKACHU gang?", $57
+	text "Nihihi! Would you"
+	line "like to battle my"
+	cont "PIKACHU gang?"
+	done
 ; 0x1a2542
 
 PokefanmJoshuaBeatenText: ; 0x1a2542
-	db $0, "PI-PIKACHU!", $57
+	text "PI-PIKACHU!"
+	done
 ; 0x1a254f
 
 UnknownText_0x1a254f: ; 0x1a254f
-	db $0, "You look like you", $4f
-	db "have many #MON,", $51
-	db "but PIKACHU is", $4f
-	db "still the best.", $57
+	text "You look like you"
+	line "have many #MON,"
+
+	para "but PIKACHU is"
+	line "still the best."
+	done
 ; 0x1a2591
 
 Bird_keeperPerrySeenText: ; 0x1a2591
-	db $0, "Agility is the key", $4f
-	db "attribute of bird", $55
-	db "#MON.", $57
+	text "Agility is the key"
+	line "attribute of bird"
+	cont "#MON."
+	done
 ; 0x1a25bd
 
 Bird_keeperPerryBeatenText: ; 0x1a25bd
-	db $0, "You beat me with", $4f
-	db "your speed…", $57
+	text "You beat me with"
+	line "your speed…"
+	done
 ; 0x1a25db
 
 UnknownText_0x1a25db: ; 0x1a25db
-	db $0, "Your #MON are", $4f
-	db "remarkably well-", $55
-	db "trained.", $57
+	text "Your #MON are"
+	line "remarkably well-"
+	cont "trained."
+	done
 ; 0x1a2604
 
 Bird_keeperBretSeenText: ; 0x1a2604
-	db $0, "Check out my #-", $4f
-	db "MON. Just look at", $51
-	db "their coloring and", $4f
-	db "their plumage.", $57
+	text "Check out my #-"
+	line "MON. Just look at"
+
+	para "their coloring and"
+	line "their plumage."
+	done
 ; 0x1a2649
 
 Bird_keeperBretBeatenText: ; 0x1a2649
-	db $0, "Shoot!", $4f
-	db "Not good enough!", $57
+	text "Shoot!"
+	line "Not good enough!"
+	done
 ; 0x1a2662
 
 UnknownText_0x1a2662: ; 0x1a2662
-	db $0, "If you groom them,", $4f
-	db "#MON get happy.", $57
+	text "If you groom them,"
+	line "#MON get happy."
+	done
 ; 0x1a2686
 
 HikerKennySeenText: ; 0x1a2686
-	db $0, "I should go to", $4f
-	db "ROCK TUNNEL to get", $55
-	db "myself an ONIX.", $57
+	text "I should go to"
+	line "ROCK TUNNEL to get"
+	cont "myself an ONIX."
+	done
 ; 0x1a26b9
 
 HikerKennyBeatenText: ; 0x1a26b9
-	db $0, "I lost…", $57
+	text "I lost…"
+	done
 ; 0x1a26c2
 
 UnknownText_0x1a26c2: ; 0x1a26c2
-	db $0, "Geological fea-", $4f
-	db "tures don't appear", $55
-	db "to change.", $51
-	db "But they actually", $4f
-	db "change, little by", $55
-	db "little.", $57
+	text "Geological fea-"
+	line "tures don't appear"
+	cont "to change."
+
+	para "But they actually"
+	line "change, little by"
+	cont "little."
+	done
 ; 0x1a271c
 
 UnknownText_0x1a271c: ; 0x1a271c
-	db $0, "TRAINER TIPS", $51
-	db "Look! Right there,", $4f
-	db "at the left side", $55
-	db "of the post.", $57
+	text "TRAINER TIPS"
+
+	para "Look! Right there,"
+	line "at the left side"
+	cont "of the post."
+	done
 ; 0x1a275b
 
 UnknownText_0x1a275b: ; 0x1a275b
-	db $0, "ROUTE 13", $51
-	db "NORTH TO SILENCE", $4f
-	db "BRIDGE", $57
+	text "ROUTE 13"
+
+	para "NORTH TO SILENCE"
+	line "BRIDGE"
+	done
 ; 0x1a277d
 
 UnknownText_0x1a277d: ; 0x1a277d
-	db $0, "NORTH TO LAVENDER", $4f
-	db "TOWN", $51
-	db "WEST TO FUCHSIA", $4f
-	db "CITY", $57
+	text "NORTH TO LAVENDER"
+	line "TOWN"
+
+	para "WEST TO FUCHSIA"
+	line "CITY"
+	done
 ; 0x1a27aa
 
 Route13_MapEventHeader: ; 0x1a27aa

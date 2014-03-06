@@ -344,113 +344,142 @@ MapGoldenrodGameCornerSignpost29Script: ; 0x56e49
 ; 0x56e50
 
 UnknownText_0x56e50: ; 0x56e50
-	db $0, "Welcome!", $51
-	db "We exchange your", $4f
-	db "game coins for", $55
-	db "fabulous prizes!", $57
+	text "Welcome!"
+
+	para "We exchange your"
+	line "game coins for"
+	cont "fabulous prizes!"
+	done
 ; 0x56e8b
 
 UnknownText_0x56e8b: ; 0x56e8b
-	db $0, "Which prize would", $4f
-	db "you like?", $57
+	text "Which prize would"
+	line "you like?"
+	done
 ; 0x56ea8
 
 UnknownText_0x56ea8: ; 0x56ea8
 	text_from_ram $d099
-	db $0, ".", $4f
-	db "Is that right?", $57
+	text "."
+	line "Is that right?"
+	done
 ; 0x56ebd
 
 UnknownText_0x56ebd: ; 0x56ebd
-	db $0, "Here you go!", $57
+	text "Here you go!"
+	done
 ; 0x56ecb
 
 UnknownText_0x56ecb: ; 0x56ecb
-	db $0, "Sorry! You need", $4f
-	db "more coins.", $57
+	text "Sorry! You need"
+	line "more coins."
+	done
 ; 0x56ee8
 
 UnknownText_0x56ee8: ; 0x56ee8
-	db $0, "Sorry. You can't", $4f
-	db "carry any more.", $57
+	text "Sorry. You can't"
+	line "carry any more."
+	done
 ; 0x56f09
 
 UnknownText_0x56f09: ; 0x56f09
-	db $0, "OK. Please save", $4f
-	db "your coins and", $55
-	db "come again!", $57
+	text "OK. Please save"
+	line "your coins and"
+	cont "come again!"
+	done
 ; 0x56f35
 
 UnknownText_0x56f35: ; 0x56f35
-	db $0, "Oh? You don't have", $4f
-	db "a COIN CASE.", $57
+	text "Oh? You don't have"
+	line "a COIN CASE."
+	done
 ; 0x56f55
 
 UnknownText_0x56f55: ; 0x56f55
-	db $0, "I always play this", $4f
-	db "slot machine. It", $51
-	db "pays out more than", $4f
-	db "others, I think.", $57
+	text "I always play this"
+	line "slot machine. It"
+
+	para "pays out more than"
+	line "others, I think."
+	done
 ; 0x56f9e
 
 UnknownText_0x56f9e: ; 0x56f9e
-	db $0, "I just love this", $4f
-	db "new slot machine.", $51
-	db "It's more of a", $4f
-	db "challenge than the", $55
-	db "ones in CELADON.", $57
+	text "I just love this"
+	line "new slot machine."
+
+	para "It's more of a"
+	line "challenge than the"
+	cont "ones in CELADON."
+	done
 ; 0x56ff4
 
 UnknownText_0x56ff4: ; 0x56ff4
-	db $0, "Life is a gamble.", $4f
-	db "I'm going to flip", $55
-	db "cards till I drop!", $57
+	text "Life is a gamble."
+	line "I'm going to flip"
+	cont "cards till I drop!"
+	done
 ; 0x5702b
 
 UnknownText_0x5702b: ; 0x5702b
-	db $0, "Card flip…", $51
-	db "I prefer it over", $4f
-	db "the slots because", $51
-	db "it's easier to", $4f
-	db "figure the odds.", $51
-	db "But the payout is", $4f
-	db "much lower.", $57
+	text "Card flip…"
+
+	para "I prefer it over"
+	line "the slots because"
+
+	para "it's easier to"
+	line "figure the odds."
+
+	para "But the payout is"
+	line "much lower."
+	done
 ; 0x57097
 
 UnknownText_0x57097: ; 0x57097
-	db $0, "I won't quit until", $4f
-	db "I win!", $57
+	text "I won't quit until"
+	line "I win!"
+	done
 ; 0x570b1
 
 UnknownText_0x570b1: ; 0x570b1
-	db $0, "I taught BLIZZARD", $4f
-	db "to my #MON.", $51
-	db "It was hard to get", $4f
-	db "enough coins for", $51
-	db "it, but it was", $4f
-	db "worth it.", $57
+	text "I taught BLIZZARD"
+	line "to my #MON."
+
+	para "It was hard to get"
+	line "enough coins for"
+
+	para "it, but it was"
+	line "worth it."
+	done
 ; 0x5710d
 
 UnknownText_0x5710d: ; 0x5710d
-	db $0, "I couldn't win at", $4f
-	db "the slots, and I", $51
-	db "blew it on card", $4f
-	db "flipping…", $51
-	db "I got so furious,", $4f
-	db "I tossed out my", $51
-	db "COIN CASE in the", $4f
-	db "UNDERGROUND.", $57
+	text "I couldn't win at"
+	line "the slots, and I"
+
+	para "blew it on card"
+	line "flipping…"
+
+	para "I got so furious,"
+	line "I tossed out my"
+
+	para "COIN CASE in the"
+	line "UNDERGROUND."
+	done
 ; 0x5718a
 
 UnknownText_0x5718a: ; 0x5718a
-	db $0, "Wahahah! The coins", $4f
-	db "keep rolling in!", $57
+	text "Wahahah! The coins"
+	line "keep rolling in!"
+	done
 ; 0x571af
 
 UnknownText_0x571af: ; 0x571af
-	db $0, "Someone left their", $4f
-	db "drink.", $51
-	db "It smells sweet.", $57
+	text "Someone left their"
+	line "drink."
+
+	para "It smells sweet."
+	done
 ; 0x571db
 
 GoldenrodGameCorner_MapEventHeader: ; 0x571db

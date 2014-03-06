@@ -47,46 +47,58 @@ CooltrainerFScript_0x69b80: ; 0x69b80
 ; 0x69b83
 
 UnknownText_0x69b83: ; 0x69b83
-	db $0, "This is a great", $4f
-	db "fishing spot.", $51
-	db "You saw people", $4f
-	db "fishing? How", $55
-	db "about you?", $51
-	db "Would you like one", $4f
-	db "of my RODS?", $57
+	text "This is a great"
+	line "fishing spot."
+
+	para "You saw people"
+	line "fishing? How"
+	cont "about you?"
+
+	para "Would you like one"
+	line "of my RODS?"
+	done
 ; 0x69be8
 
 UnknownText_0x69be8: ; 0x69be8
-	db $0, "Heh, that's good", $4f
-	db "to hear.", $51
-	db "Now you're an", $4f
-	db "angler too!", $57
+	text "Heh, that's good"
+	line "to hear."
+
+	para "Now you're an"
+	line "angler too!"
+	done
 ; 0x69c1b
 
 UnknownText_0x69c1b: ; 0x69c1b
-	db $0, "Fishing is great!", $51
-	db "If there's water,", $4f
-	db "be it the sea or a", $51
-	db "stream, try out", $4f
-	db "your ROD.", $57
+	text "Fishing is great!"
+
+	para "If there's water,"
+	line "be it the sea or a"
+
+	para "stream, try out"
+	line "your ROD."
+	done
 ; 0x69c6c
 
 UnknownText_0x69c6c: ; 0x69c6c
-	db $0, "Oh. That's rather", $4f
-	db "disappointing…", $57
+	text "Oh. That's rather"
+	line "disappointing…"
+	done
 ; 0x69c8d
 
 UnknownText_0x69c8d: ; 0x69c8d
-	db $0, "Yo, kid. How are", $4f
-	db "they biting?", $57
+	text "Yo, kid. How are"
+	line "they biting?"
+	done
 ; 0x69cac
 
 UnknownText_0x69cac: ; 0x69cac
-	db $0, "What should I make", $4f
-	db "my #MON hold?", $51
-	db "Maybe an item that", $4f
-	db "increases ATTACK", $55
-	db "power…", $57
+	text "What should I make"
+	line "my #MON hold?"
+
+	para "Maybe an item that"
+	line "increases ATTACK"
+	cont "power…"
+	done
 ; 0x69cf9
 
 Route32PokeCenter1F_MapEventHeader: ; 0x69cf9

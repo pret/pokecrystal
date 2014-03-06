@@ -204,32 +204,47 @@ MovementData_0x186263: ; 0x186263
 ; 0x18626a
 
 UnknownText_0x18626a: ; 0x18626a
-	db $0, "EUSINE: I dug a", $4f
-	db "hole here, too…", $51
-	db "I was shocked!", $51
-	db "SUICUNE raced by", $4f
-	db "like a blur, right", $51
-	db "in front of my", $4f
-	db "eyes!", $51
-	db "For ten years I", $4f
-	db "chased SUICUNE,", $51
-	db "and I finally got", $4f
-	db "to see it.", $51
-	db "I'm all choked up!", $51
-	db $52, ", I owe", $4f
-	db "this all to you!", $51
-	db "Thank you!", $51
-	db "I heard that the", $4f
-	db "legendary #MON", $51
-	db "of ECRUTEAK test", $4f
-	db "chosen humans by", $51
-	db "allowing them to", $4f
-	db "get close.", $51
-	db "I'm going to track", $4f
-	db "SUICUNE.", $51
-	db $52, ", let's", $4f
-	db "meet again!", $51
-	db "Farewell!", $57
+	text "EUSINE: I dug a"
+	line "hole here, too…"
+
+	para "I was shocked!"
+
+	para "SUICUNE raced by"
+	line "like a blur, right"
+
+	para "in front of my"
+	line "eyes!"
+
+	para "For ten years I"
+	line "chased SUICUNE,"
+
+	para "and I finally got"
+	line "to see it."
+
+	para "I'm all choked up!"
+
+	para $52, ", I owe"
+	line "this all to you!"
+
+	para "Thank you!"
+
+	para "I heard that the"
+	line "legendary #MON"
+
+	para "of ECRUTEAK test"
+	line "chosen humans by"
+
+	para "allowing them to"
+	line "get close."
+
+	para "I'm going to track"
+	line "SUICUNE."
+
+	para $52, ", let's"
+	line "meet again!"
+
+	para "Farewell!"
+	done
 ; 0x1863de
 
 BurnedTowerB1F_MapEventHeader: ; 0x1863de

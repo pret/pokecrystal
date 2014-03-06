@@ -73,45 +73,56 @@ ItemFragment_0x1847a7: ; 0x1847a7
 ; 0x1847a9
 
 SageNicoSeenText: ; 0x1847a9
-	db $0, "However hard we", $4f
-	db "battle, the TOWER", $55
-	db "will stand strong.", $57
+	text "However hard we"
+	line "battle, the TOWER"
+	cont "will stand strong."
+	done
 ; 0x1847df
 
 SageNicoBeatenText: ; 0x1847df
-	db $0, "I fought hard but", $4f
-	db "I'm too weak.", $57
+	text "I fought hard but"
+	line "I'm too weak."
+	done
 ; 0x1847ff
 
 UnknownText_0x1847ff: ; 0x1847ff
-	db $0, "The flexible pil-", $4f
-	db "lar protects the", $51
-	db "TOWER, even from", $4f
-	db "earthquakes.", $57
+	text "The flexible pil-"
+	line "lar protects the"
+
+	para "TOWER, even from"
+	line "earthquakes."
+	done
 ; 0x184841
 
 SageEdmondSeenText: ; 0x184841
-	db $0, "…Sway like leaves", $4f
-	db "in the wind…", $57
+	text "…Sway like leaves"
+	line "in the wind…"
+	done
 ; 0x184861
 
 SageEdmondBeatenText: ; 0x184861
-	db $0, "Oh, I'm weak!", $57
+	text "Oh, I'm weak!"
+	done
 ; 0x18486f
 
 UnknownText_0x18486f: ; 0x18486f
-	db $0, "I tried to copy", $4f
-	db "BELLSPROUT's", $51
-	db "gentle movements", $4f
-	db "for battle…", $51
-	db "But I didn't train", $4f
-	db "well enough.", $57
+	text "I tried to copy"
+	line "BELLSPROUT's"
+
+	para "gentle movements"
+	line "for battle…"
+
+	para "But I didn't train"
+	line "well enough."
+	done
 ; 0x1848c8
 
 UnknownText_0x1848c8: ; 0x1848c8
-	db $0, "A #MON statue…", $51
-	db "It looks very", $4f
-	db "distinguished.", $57
+	text "A #MON statue…"
+
+	para "It looks very"
+	line "distinguished."
+	done
 ; 0x1848f5
 
 SproutTower2F_MapEventHeader: ; 0x1848f5

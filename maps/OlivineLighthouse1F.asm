@@ -15,21 +15,26 @@ PokefanFScript_0x5ae6a: ; 0x5ae6a
 ; 0x5ae6d
 
 UnknownText_0x5ae6d: ; 0x5ae6d
-	db $0, "People train at", $4f
-	db "this LIGHTHOUSE.", $51
-	db "It's not easy to", $4f
-	db "climb because of", $55
-	db "all the trainers.", $57
+	text "People train at"
+	line "this LIGHTHOUSE."
+
+	para "It's not easy to"
+	line "climb because of"
+	cont "all the trainers."
+	done
 ; 0x5aec2
 
 UnknownText_0x5aec2: ; 0x5aec2
-	db $0, "In the past, #-", $4f
-	db "MON used to light", $51
-	db "the sea around", $4f
-	db "OLIVINE at night.", $51
-	db "The LIGHTHOUSE was", $4f
-	db "made in honor of", $55
-	db "those #MON.", $57
+	text "In the past, #-"
+	line "MON used to light"
+
+	para "the sea around"
+	line "OLIVINE at night."
+
+	para "The LIGHTHOUSE was"
+	line "made in honor of"
+	cont "those #MON."
+	done
 ; 0x5af36
 
 OlivineLighthouse1F_MapEventHeader: ; 0x5af36

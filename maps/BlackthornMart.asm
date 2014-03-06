@@ -22,23 +22,29 @@ BlackBeltScript_0x195a67: ; 0x195a67
 ; 0x195a6a
 
 UnknownText_0x195a6a: ; 0x195a6a
-	db $0, "You can't buy MAX", $4f
-	db "REVIVE, but it", $51
-	db "fully restores a", $4f
-	db "fainted #MON.", $51
-	db "Beware--it won't", $4f
-	db "restore PP, the", $51
-	db "POWER POINTS", $4f
-	db "needed for moves.", $57
+	text "You can't buy MAX"
+	line "REVIVE, but it"
+
+	para "fully restores a"
+	line "fainted #MON."
+
+	para "Beware--it won't"
+	line "restore PP, the"
+
+	para "POWER POINTS"
+	line "needed for moves."
+	done
 ; 0x195ae9
 
 UnknownText_0x195ae9: ; 0x195ae9
-	db $0, "MAX REPEL keeps", $4f
-	db "weak #MON away", $55
-	db "from you.", $51
-	db "It's the longest", $4f
-	db "lasting of the", $55
-	db "REPEL sprays.", $57
+	text "MAX REPEL keeps"
+	line "weak #MON away"
+	cont "from you."
+
+	para "It's the longest"
+	line "lasting of the"
+	cont "REPEL sprays."
+	done
 ; 0x195b40
 
 BlackthornMart_MapEventHeader: ; 0x195b40

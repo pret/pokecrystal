@@ -39,29 +39,37 @@ MapCeladonDeptStore2FSignpost1Script: ; 0x70bc6
 ; 0x70bc9
 
 UnknownText_0x70bc9: ; 0x70bc9
-	db $0, "I just recently", $4f
-	db "became a trainer.", $51
-	db "My son encouraged", $4f
-	db "me to do it.", $51
-	db "I'm impressed by", $4f
-	db "the selection of", $55
-	db "convenient items.", $57
+	text "I just recently"
+	line "became a trainer."
+
+	para "My son encouraged"
+	line "me to do it."
+
+	para "I'm impressed by"
+	line "the selection of"
+	cont "convenient items."
+	done
 ; 0x70c3e
 
 UnknownText_0x70c3e: ; 0x70c3e
-	db $0, "My dad's having a", $4f
-	db "hard time learning", $51
-	db "the names of items", $4f
-	db "and how they are", $51
-	db "supposed to be", $4f
-	db "used…", $57
+	text "My dad's having a"
+	line "hard time learning"
+
+	para "the names of items"
+	line "and how they are"
+
+	para "supposed to be"
+	line "used…"
+	done
 ; 0x70c9c
 
 UnknownText_0x70c9c: ; 0x70c9c
-	db $0, "Top Grade Items", $4f
-	db "for Trainers!", $51
-	db "2F: TRAINER'S", $4f
-	db "    MARKET", $57
+	text "Top Grade Items"
+	line "for Trainers!"
+
+	para "2F: TRAINER'S"
+	line "    MARKET"
+	done
 ; 0x70cd4
 
 CeladonDeptStore2F_MapEventHeader: ; 0x70cd4

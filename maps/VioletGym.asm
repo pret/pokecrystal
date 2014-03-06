@@ -153,143 +153,186 @@ UnknownScript_0x6846c: ; 0x6846c
 ; 0x68473
 
 UnknownText_0x68473: ; 0x68473
-	db $0, "I'm FALKNER, the", $4f
-	db "VIOLET #MON GYM", $55
-	db "leader!", $51
-	db "People say you can", $4f
-	db "clip flying-type", $51
-	db "#MON's wings", $4f
-	db "with a jolt of", $55
-	db "electricity…", $51
-	db "I won't allow such", $4f
-	db "insults to bird", $55
-	db "#MON!", $51
-	db "I'll show you the", $4f
-	db "real power of the", $51
-	db "magnificent bird", $4f
-	db "#MON!", $57
+	text "I'm FALKNER, the"
+	line "VIOLET #MON GYM"
+	cont "leader!"
+
+	para "People say you can"
+	line "clip flying-type"
+
+	para "#MON's wings"
+	line "with a jolt of"
+	cont "electricity…"
+
+	para "I won't allow such"
+	line "insults to bird"
+	cont "#MON!"
+
+	para "I'll show you the"
+	line "real power of the"
+
+	para "magnificent bird"
+	line "#MON!"
+	done
 ; 0x6854a
 
 UnknownText_0x6854a: ; 0x6854a
-	db $0, "…Darn! My dad's", $4f
-	db "cherished bird", $55
-	db "#MON…", $51
-	db "All right.", $4f
-	db "Take this.", $51
-	db "It's the official", $4f
-	db "#MON LEAGUE", $55
-	db "ZEPHYRBADGE.", $57
+	text "…Darn! My dad's"
+	line "cherished bird"
+	cont "#MON…"
+
+	para "All right."
+	line "Take this."
+
+	para "It's the official"
+	line "#MON LEAGUE"
+	cont "ZEPHYRBADGE."
+	done
 ; 0x685af
 
 UnknownText_0x685af: ; 0x685af
-	db $0, $52, " received", $4f
-	db "ZEPHYRBADGE.", $57
+	text $52, " received"
+	line "ZEPHYRBADGE."
+	done
 ; 0x685c8
 
 UnknownText_0x685c8: ; 0x685c8
-	db $0, "ZEPHYRBADGE", $4f
-	db "raises the attack", $55
-	db "power of #MON.", $51
-	db "It also enables", $4f
-	db "#MON to use", $51
-	db "FLASH, if they", $4f
-	db "have it, anytime.", $51
-	db "Here--take this", $4f
-	db "too.", $57
+	text "ZEPHYRBADGE"
+	line "raises the attack"
+	cont "power of #MON."
+
+	para "It also enables"
+	line "#MON to use"
+
+	para "FLASH, if they"
+	line "have it, anytime."
+
+	para "Here--take this"
+	line "too."
+	done
 ; 0x68648
 
 UnknownText_0x68648: ; 0x68648
-	db $0, "By using a TM, a", $4f
-	db "#MON will", $51
-	db "instantly learn a", $4f
-	db "new move.", $51
-	db "Think before you", $4f
-	db "act--a TM can be", $55
-	db "used only once.", $51
-	db "TM31 contains", $4f
-	db "MUD-SLAP.", $51
-	db "It reduces the", $4f
-	db "enemy's accuracy", $51
-	db "while it causes", $4f
-	db "damage.", $51
-	db "In other words, it", $4f
-	db "is both defensive", $55
-	db "and offensive.", $57
+	text "By using a TM, a"
+	line "#MON will"
+
+	para "instantly learn a"
+	line "new move."
+
+	para "Think before you"
+	line "act--a TM can be"
+	cont "used only once."
+
+	para "TM31 contains"
+	line "MUD-SLAP."
+
+	para "It reduces the"
+	line "enemy's accuracy"
+
+	para "while it causes"
+	line "damage."
+
+	para "In other words, it"
+	line "is both defensive"
+	cont "and offensive."
+	done
 ; 0x68735
 
 UnknownText_0x68735: ; 0x68735
-	db $0, "There are #MON", $4f
-	db "GYMS in cities and", $55
-	db "towns ahead.", $51
-	db "You should test", $4f
-	db "your skills at", $55
-	db "these GYMS.", $51
-	db "I'm going to train", $4f
-	db "harder to become", $51
-	db "the greatest bird", $4f
-	db "master!", $57
+	text "There are #MON"
+	line "GYMS in cities and"
+	cont "towns ahead."
+
+	para "You should test"
+	line "your skills at"
+	cont "these GYMS."
+
+	para "I'm going to train"
+	line "harder to become"
+
+	para "the greatest bird"
+	line "master!"
+	done
 ; 0x687cd
 
 Bird_keeperRodSeenText: ; 0x687cd
-	db $0, "The keyword is", $4f
-	db "guts!", $51
-	db "Those here are", $4f
-	db "training night and", $51
-	db "day to become bird", $4f
-	db "#MON masters.", $51
-	db "Come on!", $57
+	text "The keyword is"
+	line "guts!"
+
+	para "Those here are"
+	line "training night and"
+
+	para "day to become bird"
+	line "#MON masters."
+
+	para "Come on!"
+	done
 ; 0x6882f
 
 Bird_keeperRodBeatenText: ; 0x6882f
-	db $0, "Gaaah!", $57
+	text "Gaaah!"
+	done
 ; 0x68837
 
 UnknownText_0x68837: ; 0x68837
-	db $0, "FALKNER's skills", $4f
-	db "are for real!", $51
-	db "Don't get cocky", $4f
-	db "just because you", $55
-	db "beat me!", $57
+	text "FALKNER's skills"
+	line "are for real!"
+
+	para "Don't get cocky"
+	line "just because you"
+	cont "beat me!"
+	done
 ; 0x6887f
 
 Bird_keeperAbeSeenText: ; 0x6887f
-	db $0, "Let me see if you", $4f
-	db "are good enough to", $55
-	db "face FALKNER!", $57
+	text "Let me see if you"
+	line "are good enough to"
+	cont "face FALKNER!"
+	done
 ; 0x688b3
 
 Bird_keeperAbeBeatenText: ; 0x688b3
-	db $0, "This can't be", $4f
-	db "true!", $57
+	text "This can't be"
+	line "true!"
+	done
 ; 0x688c7
 
 UnknownText_0x688c7: ; 0x688c7
-	db $0, "This is pathetic,", $4f
-	db "losing to some", $55
-	db "rookie trainer…", $57
+	text "This is pathetic,"
+	line "losing to some"
+	cont "rookie trainer…"
+	done
 ; 0x688f9
 
 VioletGymGuyText: ; 0x688f9
-	db $0, "Hey! I'm no train-", $4f
-	db "er but I can give", $55
-	db "some advice!", $51
-	db "Believe me!", $4f
-	db "If you believe, a", $51
-	db "championship dream", $4f
-	db "can come true.", $51
-	db "You believe?", $4f
-	db "Then listen.", $51
-	db "The grass-type is", $4f
-	db "weak against the", $51
-	db "flying-type. Keep", $4f
-	db "this in mind.", $57
+	text "Hey! I'm no train-"
+	line "er but I can give"
+	cont "some advice!"
+
+	para "Believe me!"
+	line "If you believe, a"
+
+	para "championship dream"
+	line "can come true."
+
+	para "You believe?"
+	line "Then listen."
+
+	para "The grass-type is"
+	line "weak against the"
+
+	para "flying-type. Keep"
+	line "this in mind."
+	done
 ; 0x689c8
 
 VioletGymGuyWinText: ; 0x689c8
-	db $0, "Nice battle! Keep", $4f
-	db "it up, and you'll", $51
-	db "be the CHAMP in no", $4f
-	db "time at all!", $57
+	text "Nice battle! Keep"
+	line "it up, and you'll"
+
+	para "be the CHAMP in no"
+	line "time at all!"
+	done
 ; 0x68a0c
 
 VioletGym_MapEventHeader: ; 0x68a0c

@@ -19,9 +19,10 @@ LassScript_0x771b0: ; 0x771b0
 ; 0x771b3
 
 UnknownText_0x771b3: ; 0x771b3
-	db $0, "When the sun goes", $4f
-	db "down, CLEFAIRY", $55
-	db "come out to play.", $57
+	text "When the sun goes"
+	line "down, CLEFAIRY"
+	cont "come out to play."
+	done
 ; 0x771e7
 
 MountMoonGiftShop_MapEventHeader: ; 0x771e7

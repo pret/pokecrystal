@@ -311,93 +311,116 @@ MovementData_0x74a49: ; 0x74a49
 ; 0x74a55
 
 UnknownText_0x74a55: ; 0x74a55
-	db $0, "We're departing", $4f
-	db "soon. Please get", $55
-	db "on board.", $57
+	text "We're departing"
+	line "soon. Please get"
+	cont "on board."
+	done
 ; 0x74a80
 
 UnknownText_0x74a80: ; 0x74a80
-	db $0, "Sorry. You can't", $4f
-	db "board now.", $57
+	text "Sorry. You can't"
+	line "board now."
+	done
 ; 0x74a9c
 
 UnknownText_0x74a9c: ; 0x74a9c
-	db $0, "Welcome to FAST", $4f
-	db "SHIP S.S.AQUA.", $51
-	db "Will you be board-", $4f
-	db "ing today?", $57
+	text "Welcome to FAST"
+	line "SHIP S.S.AQUA."
+
+	para "Will you be board-"
+	line "ing today?"
+	done
 ; 0x74ada
 
 UnknownText_0x74ada: ; 0x74ada
-	db $0, "May I see your", $4f
-	db "S.S.TICKET?", $57
+	text "May I see your"
+	line "S.S.TICKET?"
+	done
 ; 0x74af6
 
 UnknownText_0x74af6: ; 0x74af6
-	db $0, "We hope to see you", $4f
-	db "again!", $57
+	text "We hope to see you"
+	line "again!"
+	done
 ; 0x74b11
 
 UnknownText_0x74b11: ; 0x74b11
-	db $0, $52, " flashed", $4f
-	db "the S.S.TICKET.", $51
-	db "That's it.", $4f
-	db "Thank you!", $57
+	text $52, " flashed"
+	line "the S.S.TICKET."
+
+	para "That's it."
+	line "Thank you!"
+	done
 ; 0x74b41
 
 UnknownText_0x74b41: ; 0x74b41
-	db $0, $52, " tried to", $4f
-	db "show the S.S.", $55
-	db "TICKET…", $51
-	db "…But no TICKET!", $51
-	db "Sorry!", $4f
-	db "You may board only", $51
-	db "if you have an", $4f
-	db "S.S.TICKET.", $57
+	text $52, " tried to"
+	line "show the S.S."
+	cont "TICKET…"
+
+	para "…But no TICKET!"
+
+	para "Sorry!"
+	line "You may board only"
+
+	para "if you have an"
+	line "S.S.TICKET."
+	done
 ; 0x74ba8
 
 UnknownText_0x74ba8: ; 0x74ba8
-	db $0, "The FAST SHIP will", $4f
-	db "sail next Monday.", $57
+	text "The FAST SHIP will"
+	line "sail next Monday."
+	done
 ; 0x74bce
 
 UnknownText_0x74bce: ; 0x74bce
-	db $0, "The FAST SHIP will", $4f
-	db "sail next Friday.", $57
+	text "The FAST SHIP will"
+	line "sail next Friday."
+	done
 ; 0x74bf4
 
 UnknownText_0x74bf4: ; 0x74bf4
-	db $0, "SHELLDER are easy", $4f
-	db "to catch here.", $51
-	db "They're kind of", $4f
-	db "rare elsewhere.", $57
+	text "SHELLDER are easy"
+	line "to catch here."
+
+	para "They're kind of"
+	line "rare elsewhere."
+	done
 ; 0x74c35
 
 UnknownText_0x74c35: ; 0x74c35
-	db $0, "How many RODS do", $4f
-	db "you have?", $51
-	db "Different RODS", $4f
-	db "catch different", $55
-	db "#MON.", $57
+	text "How many RODS do"
+	line "you have?"
+
+	para "Different RODS"
+	line "catch different"
+	cont "#MON."
+	done
 ; 0x74c76
 
 UnknownText_0x74c76: ; 0x74c76
-	db $0, "S.S.AQUA uses jets", $4f
-	db "to skim over the", $55
-	db "waves!", $57
+	text "S.S.AQUA uses jets"
+	line "to skim over the"
+	cont "waves!"
+	done
 ; 0x74ca2
 
 UnknownText_0x74ca2: ; 0x74ca2
-	db $0, "There are lots of", $4f
-	db "#MON in KANTO.", $51
-	db "I wish I could go…", $57
+	text "There are lots of"
+	line "#MON in KANTO."
+
+	para "I wish I could go…"
+	done
 ; 0x74cd7
 
 UnknownText_0x74cd7: ; 0x74cd7
-	db $0, "We don't want you", $4f
-	db "to fall into the", $51
-	db "sea, so you're not", $4f
-	db "allowed in.", $57
+	text "We don't want you"
+	line "to fall into the"
+
+	para "sea, so you're not"
+	line "allowed in."
+	done
 ; 0x74d18
 
 OlivinePort_MapEventHeader: ; 0x74d18

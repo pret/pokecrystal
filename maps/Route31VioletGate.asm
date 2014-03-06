@@ -15,15 +15,17 @@ CooltrainerFScript_0x197637: ; 0x197637
 ; 0x19763a
 
 UnknownText_0x19763a: ; 0x19763a
-	db $0, "Hi there!", $4f
-	db "Did you visit", $55
-	db "SPROUT TOWER?", $57
+	text "Hi there!"
+	line "Did you visit"
+	cont "SPROUT TOWER?"
+	done
 ; 0x197661
 
 UnknownText_0x197661: ; 0x197661
-	db $0, "I came too far", $4f
-	db "out. I'd better", $55
-	db "phone home!", $57
+	text "I came too far"
+	line "out. I'd better"
+	cont "phone home!"
+	done
 ; 0x19768c
 
 Route31VioletGate_MapEventHeader: ; 0x19768c

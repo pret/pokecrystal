@@ -127,73 +127,90 @@ MapRoute3Signpost0Script: ; 0x1adfb5
 ; 0x1adfb8
 
 FirebreatherOtisSeenText: ; 0x1adfb8
-	db $0, "Ah! The weather's", $4f
-	db "as fine as ever.", $57
+	text "Ah! The weather's"
+	line "as fine as ever."
+	done
 ; 0x1adfdb
 
 FirebreatherOtisBeatenText: ; 0x1adfdb
-	db $0, "It's sunny, but", $4f
-	db "I'm all wet…", $57
+	text "It's sunny, but"
+	line "I'm all wet…"
+	done
 ; 0x1adff7
 
 UnknownText_0x1adff7: ; 0x1adff7
-	db $0, "When it rains,", $4f
-	db "it's hard to get", $55
-	db "ignition…", $57
+	text "When it rains,"
+	line "it's hard to get"
+	cont "ignition…"
+	done
 ; 0x1ae021
 
 YoungsterWarrenSeenText: ; 0x1ae021
-	db $0, "Hmmm… I don't know", $4f
-	db "what to do…", $57
+	text "Hmmm… I don't know"
+	line "what to do…"
+	done
 ; 0x1ae040
 
 YoungsterWarrenBeatenText: ; 0x1ae040
-	db $0, "I knew I'd lose…", $57
+	text "I knew I'd lose…"
+	done
 ; 0x1ae051
 
 UnknownText_0x1ae051: ; 0x1ae051
-	db $0, "You looked strong.", $51
-	db "I was afraid to", $4f
-	db "take you on…", $57
+	text "You looked strong."
+
+	para "I was afraid to"
+	line "take you on…"
+	done
 ; 0x1ae082
 
 YoungsterJimmySeenText: ; 0x1ae082
-	db $0, "I can run like the", $4f
-	db "wind!", $57
+	text "I can run like the"
+	line "wind!"
+	done
 ; 0x1ae09c
 
 YoungsterJimmyBeatenText: ; 0x1ae09c
-	db $0, "Blown away!", $57
+	text "Blown away!"
+	done
 ; 0x1ae0a9
 
 UnknownText_0x1ae0a9: ; 0x1ae0a9
-	db $0, "I wear shorts the", $4f
-	db "whole year round.", $51
-	db "That's my fashion", $4f
-	db "policy.", $57
+	text "I wear shorts the"
+	line "whole year round."
+
+	para "That's my fashion"
+	line "policy."
+	done
 ; 0x1ae0e7
 
 FirebreatherBurtSeenText: ; 0x1ae0e7
-	db $0, "Step right up and", $4f
-	db "take a look!", $57
+	text "Step right up and"
+	line "take a look!"
+	done
 ; 0x1ae107
 
 FirebreatherBurtBeatenText: ; 0x1ae107
-	db $0, "Yow! That's hot!", $57
+	text "Yow! That's hot!"
+	done
 ; 0x1ae118
 
 UnknownText_0x1ae118: ; 0x1ae118
-	db $0, "The greatest fire-", $4f
-	db "breather in KANTO,", $55
-	db "that's me.", $51
-	db "But not the best", $4f
-	db "trainer…", $57
+	text "The greatest fire-"
+	line "breather in KANTO,"
+	cont "that's me."
+
+	para "But not the best"
+	line "trainer…"
+	done
 ; 0x1ae163
 
 UnknownText_0x1ae163: ; 0x1ae163
-	db $0, "MT.MOON SQUARE", $51
-	db "Just go up the", $4f
-	db "stairs.", $57
+	text "MT.MOON SQUARE"
+
+	para "Just go up the"
+	line "stairs."
+	done
 ; 0x1ae18a
 
 Route3_MapEventHeader: ; 0x1ae18a

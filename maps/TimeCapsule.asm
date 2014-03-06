@@ -58,8 +58,9 @@ ChrisScript_0x19351a: ; 0x19351a
 ; 0x193521
 
 UnknownText_0x193521: ; 0x193521
-	db $0, "Your friend is", $4f
-	db "ready.", $57
+	text "Your friend is"
+	line "ready."
+	done
 ; 0x193538
 
 TimeCapsule_MapEventHeader: ; 0x193538

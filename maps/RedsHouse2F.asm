@@ -15,16 +15,19 @@ MapRedsHouse2FSignpost1Script: ; 0x19b04d
 ; 0x19b050
 
 UnknownText_0x19b050: ; 0x19b050
-	db $0, $52, " played the", $4f
-	db "N64.", $51
-	db "Better get going--", $4f
-	db "no time to lose!", $57
+	text $52, " played the"
+	line "N64."
+
+	para "Better get going--"
+	line "no time to lose!"
+	done
 ; 0x19b087
 
 UnknownText_0x19b087: ; 0x19b087
-	db $0, "It looks like it", $4f
-	db "hasn't been used", $55
-	db "in a long time…", $57
+	text "It looks like it"
+	line "hasn't been used"
+	cont "in a long time…"
+	done
 ; 0x19b0b9
 
 RedsHouse2F_MapEventHeader: ; 0x19b0b9

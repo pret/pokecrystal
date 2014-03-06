@@ -215,173 +215,224 @@ MovementData_0x59276: ; 0x59276
 ; 0x59278
 
 UnknownText_0x59278: ; 0x59278
-	db $0, "Done!", $51
-	db "I modified your", $4f
-	db "#DEX.", $51
-	db "I added an", $4f
-	db "optional #DEX", $51
-	db "to store UNOWN", $4f
-	db "data.", $51
-	db "It records them in", $4f
-	db "the sequence that", $55
-	db "they were caught.", $57
+	text "Done!"
+
+	para "I modified your"
+	line "#DEX."
+
+	para "I added an"
+	line "optional #DEX"
+
+	para "to store UNOWN"
+	line "data."
+
+	para "It records them in"
+	line "the sequence that"
+	cont "they were caught."
+	done
 ; 0x592fa
 
 UnknownText_0x592fa: ; 0x592fa
-	db $0, $52, "'s #DEX", $4f
-	db "was upgraded.", $57
+	text $52, "'s #DEX"
+	line "was upgraded."
+	done
 ; 0x59311
 
 UnknownText_0x59311: ; 0x59311
-	db $0, "The UNOWN you", $4f
-	db "catch will all be", $55
-	db "recorded.", $51
-	db "Check to see how", $4f
-	db "many kinds exist.", $57
+	text "The UNOWN you"
+	line "catch will all be"
+	cont "recorded."
+
+	para "Check to see how"
+	line "many kinds exist."
+	done
 ; 0x5935f
 
 UnknownText_0x5935f: ; 0x5935f
-	db $0, "You caught all the", $4f
-	db "UNOWN variations?", $51
-	db "That's a great", $4f
-	db "achievement!", $51
-	db "I've set up the", $4f
-	db "printer here for", $55
-	db "handling UNOWN.", $51
-	db "Feel free to use", $4f
-	db "it anytime.", $57
+	text "You caught all the"
+	line "UNOWN variations?"
+
+	para "That's a great"
+	line "achievement!"
+
+	para "I've set up the"
+	line "printer here for"
+	cont "handling UNOWN."
+
+	para "Feel free to use"
+	line "it anytime."
+	done
 ; 0x593ed
 
 UnknownText_0x593ed: ; 0x593ed
-	db $0, "The RUINS are", $4f
-	db "about 1500 years", $55
-	db "old.", $51
-	db "But it's not known", $4f
-	db "why they were", $55
-	db "built--or by whom.", $57
+	text "The RUINS are"
+	line "about 1500 years"
+	cont "old."
+
+	para "But it's not known"
+	line "why they were"
+	cont "built--or by whom."
+	done
 ; 0x59445
 
 UnknownText_0x59445: ; 0x59445
-	db $0, "I wonder how many", $4f
-	db "kinds of #MON", $55
-	db "are in the RUINS?", $57
+	text "I wonder how many"
+	line "kinds of #MON"
+	cont "are in the RUINS?"
+	done
 ; 0x59478
 
 UnknownText_0x59478: ; 0x59478
-	db $0, "#MON appeared", $4f
-	db "in the RUINS?", $51
-	db "That's incredible", $4f
-	db "news!", $51
-	db "We'll need to", $4f
-	db "investigate this.", $57
+	text "#MON appeared"
+	line "in the RUINS?"
+
+	para "That's incredible"
+	line "news!"
+
+	para "We'll need to"
+	line "investigate this."
+	done
 ; 0x594cb
 
 UnknownText_0x594cb: ; 0x594cb
-	db $0, "Our investigation,", $4f
-	db "with your help, is", $51
-	db "giving us insight", $4f
-	db "into the RUINS.", $51
-	db "The RUINS appear", $4f
-	db "to have been built", $51
-	db "as a habitat for", $4f
-	db "#MON.", $57
+	text "Our investigation,"
+	line "with your help, is"
+
+	para "giving us insight"
+	line "into the RUINS."
+
+	para "The RUINS appear"
+	line "to have been built"
+
+	para "as a habitat for"
+	line "#MON."
+	done
 ; 0x5954f
 
 UnknownText_0x5954f: ; 0x5954f
-	db $0, "There are odd pat-", $4f
-	db "terns drawn on the", $51
-	db "walls of the", $4f
-	db "RUINS.", $51
-	db "They must be the", $4f
-	db "keys for unravel-", $55
-	db "ing the mystery", $55
-	db "of the RUINS.", $57
+	text "There are odd pat-"
+	line "terns drawn on the"
+
+	para "walls of the"
+	line "RUINS."
+
+	para "They must be the"
+	line "keys for unravel-"
+	cont "ing the mystery"
+	cont "of the RUINS."
+	done
 ; 0x595cb
 
 UnknownText_0x595cb: ; 0x595cb
-	db $0, "The strange #-", $4f
-	db "MON you saw in the", $55
-	db "RUINS?", $51
-	db "They appear to be", $4f
-	db "very much like the", $51
-	db "drawings on the", $4f
-	db "walls there.", $51
-	db "Hmm…", $51
-	db "That must mean", $4f
-	db "there are many", $55
-	db "kinds of them…", $57
+	text "The strange #-"
+	line "MON you saw in the"
+	cont "RUINS?"
+
+	para "They appear to be"
+	line "very much like the"
+
+	para "drawings on the"
+	line "walls there."
+
+	para "Hmm…"
+
+	para "That must mean"
+	line "there are many"
+	cont "kinds of them…"
+	done
 ; 0x59669
 
 ; possibly unused
 UnknownText_0x59669: ; 0x59669
-	db $0, "We think something", $4f
-	db "caused the cryptic", $51
-	db "patterns to appear", $4f
-	db "in the RUINS.", $51
-	db "We've focused our", $4f
-	db "studies on that.", $57
+	text "We think something"
+	line "caused the cryptic"
+
+	para "patterns to appear"
+	line "in the RUINS."
+
+	para "We've focused our"
+	line "studies on that."
+	done
 ; 0x596d3
 
 ; possibly unused
 UnknownText_0x596d3: ; 0x596d3
-	db $0, "According to my", $4f
-	db "research…", $51
-	db "Those mysterious", $4f
-	db "patterns appeared", $51
-	db "when the #COM", $4f
-	db "CENTER was built.", $51
-	db "It must mean that", $4f
-	db "radio waves have", $51
-	db "some sort of a", $4f
-	db "link…", $57
+	text "According to my"
+	line "research…"
+
+	para "Those mysterious"
+	line "patterns appeared"
+
+	para "when the #COM"
+	line "CENTER was built."
+
+	para "It must mean that"
+	line "radio waves have"
+
+	para "some sort of a"
+	line "link…"
+	done
 ; 0x59769
 
 UnknownText_0x59769: ; 0x59769
-	db $0, "Why did those", $4f
-	db "ancient patterns", $51
-	db "appear on the wall", $4f
-	db "now?", $51
-	db "The mystery", $4f
-	db "deepens…", $57
+	text "Why did those"
+	line "ancient patterns"
+
+	para "appear on the wall"
+	line "now?"
+
+	para "The mystery"
+	line "deepens…"
+	done
 ; 0x597b6
 
 UnknownText_0x597b6: ; 0x597b6
-	db $0, "RUINS OF ALPH", $51
-	db "Exploration", $4f
-	db "Year 10", $57
+	text "RUINS OF ALPH"
+
+	para "Exploration"
+	line "Year 10"
+	done
 ; 0x597d9
 
 UnknownText_0x597d9: ; 0x597d9
-	db $0, "Mystery #MON", $4f
-	db "Name: UNOWN", $51
-	db "A total of 26", $4f
-	db "kinds found.", $57
+	text "Mystery #MON"
+	line "Name: UNOWN"
+
+	para "A total of 26"
+	line "kinds found."
+	done
 ; 0x5980e
 
 UnknownText_0x5980e: ; 0x5980e
-	db $0, "This doesn't seem", $4f
-	db "to work yet.", $57
+	text "This doesn't seem"
+	line "to work yet."
+	done
 ; 0x5982d
 
 UnknownText_0x5982d: ; 0x5982d
-	db $0, "UNOWN may be", $4f
-	db "printed out.", $57
+	text "UNOWN may be"
+	line "printed out."
+	done
 ; 0x59848
 
 ; possibly unused
 UnknownText_0x59848: ; 0x59848
-	db $0, "It's a photo of", $4f
-	db "the RESEARCH", $51
-	db "CENTER'S founder,", $4f
-	db "PROF.SILKTREE.", $57
+	text "It's a photo of"
+	line "the RESEARCH"
+
+	para "CENTER'S founder,"
+	line "PROF.SILKTREE."
+	done
 ; 0x59886
 
 UnknownText_0x59886: ; 0x59886
-	db $0, "There are many", $4f
-	db "academic books.", $51
-	db "Ancient Ruins…", $4f
-	db "Mysteries of the", $55
-	db "Ancients…", $57
+	text "There are many"
+	line "academic books."
+
+	para "Ancient Ruins…"
+	line "Mysteries of the"
+	cont "Ancients…"
+	done
 ; 0x598d0
 
 RuinsofAlphResearchCenter_MapEventHeader: ; 0x598d0

@@ -23,19 +23,23 @@ MapOlivinePunishmentSpeechHouseSignpost0Script: ; 0x9c640
 ; 0x9c643
 
 UnknownText_0x9c643: ; 0x9c643
-	db $0, "Along the way to", $4f
-	db "CIANWOOD, there", $51
-	db "are four deserted", $4f
-	db "islands.", $51
-	db "Bad kids are taken", $4f
-	db "to the islands as", $55
-	db "punishment!", $57
+	text "Along the way to"
+	line "CIANWOOD, there"
+
+	para "are four deserted"
+	line "islands."
+
+	para "Bad kids are taken"
+	line "to the islands as"
+	cont "punishment!"
+	done
 ; 0x9c6b1
 
 UnknownText_0x9c6b1: ; 0x9c6b1
-	db $0, "Whenever I get in", $4f
-	db "trouble, Daddy", $55
-	db "always scares me.", $57
+	text "Whenever I get in"
+	line "trouble, Daddy"
+	cont "always scares me."
+	done
 ; 0x9c6e5
 
 OlivinePunishmentSpeechHouse_MapEventHeader: ; 0x9c6e5

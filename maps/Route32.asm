@@ -719,362 +719,458 @@ MovementData_0x19078e: ; 0x19078e
 ; 0x190790
 
 UnknownText_0x190790: ; 0x190790
-	db $0, "Wait up!", $4f
-	db "What's the hurry?", $57
+	text "Wait up!"
+	line "What's the hurry?"
+	done
 ; 0x1907ab
 
 UnknownText_0x1907ab: ; 0x1907ab
-	db $0, $52, ", right?", $4f
-	db "Some guy wearing", $51
-	db "glasses was look-", $4f
-	db "ing for you.", $51
-	db "See for yourself.", $4f
-	db "He's waiting for", $51
-	db "you at the #MON", $4f
-	db "CENTER.", $57
+	text $52, ", right?"
+	line "Some guy wearing"
+
+	para "glasses was look-"
+	line "ing for you."
+
+	para "See for yourself."
+	line "He's waiting for"
+
+	para "you at the #MON"
+	line "CENTER."
+	done
 ; 0x190820
 
 ; might not be referenced anywhere
 UnknownText_0x190820: ; 0x190820
-	db $0, "Have you gone to", $4f
-	db "SPROUT TOWER?", $51
-	db "If you ever visit", $4f
-	db "VIOLET CITY, ", $51
-	db "they'll expect you", $4f
-	db "to train there.", $51
-	db "That's basic for", $4f
-	db "trainers. Go to", $55
-	db "SPROUT TOWER!", $57
+	text "Have you gone to"
+	line "SPROUT TOWER?"
+
+	para "If you ever visit"
+	line "VIOLET CITY, "
+
+	para "they'll expect you"
+	line "to train there."
+
+	para "That's basic for"
+	line "trainers. Go to"
+	cont "SPROUT TOWER!"
+	done
 ; 0x1908b0
 
 UnknownText_0x1908b0: ; 0x1908b0
-	db $0, "Have you gone to", $4f
-	db "the #MON GYM?", $51
-	db "You can test your", $4f
-	db "#MON and your-", $55
-	db "self there.", $51
-	db "It's a rite of", $4f
-	db "passage for all", $55
-	db "trainers!", $57
+	text "Have you gone to"
+	line "the #MON GYM?"
+
+	para "You can test your"
+	line "#MON and your-"
+	cont "self there."
+
+	para "It's a rite of"
+	line "passage for all"
+	cont "trainers!"
+	done
 ; 0x190925
 
 UnknownText_0x190925: ; 0x190925
-	db $0, "You have some good", $4f
-	db "#MON there.", $51
-	db "It must be from", $4f
-	db "the training you", $51
-	db "gave them around", $4f
-	db "VIOLET CITY.", $51
-	db "The training at", $4f
-	db "the GYM must have", $51
-	db "been especially", $4f
-	db "helpful.", $51
-	db "As a souvenir of", $4f
-	db "VIOLET CITY, take", $55
-	db "this.", $51
-	db "It increases the", $4f
-	db "power of grass-", $55
-	db "type moves.", $57
+	text "You have some good"
+	line "#MON there."
+
+	para "It must be from"
+	line "the training you"
+
+	para "gave them around"
+	line "VIOLET CITY."
+
+	para "The training at"
+	line "the GYM must have"
+
+	para "been especially"
+	line "helpful."
+
+	para "As a souvenir of"
+	line "VIOLET CITY, take"
+	cont "this."
+
+	para "It increases the"
+	line "power of grass-"
+	cont "type moves."
+	done
 ; 0x190a15
 
 UnknownText_0x190a15: ; 0x190a15
-	db $0, "Your experiences", $4f
-	db "in VIOLET CITY", $51
-	db "should be useful", $4f
-	db "for your journey.", $57
+	text "Your experiences"
+	line "in VIOLET CITY"
+
+	para "should be useful"
+	line "for your journey."
+	done
 ; 0x190a59
 
 UnknownText_0x190a59: ; 0x190a59
-	db $0, "How would you like", $4f
-	db "to have this", $51
-	db "tasty, nutritious", $4f
-	db "SLOWPOKETAIL?", $51
-	db "For you right now,", $4f
-	db "just ¥1,000,000!", $51
-	db "You'll want this!", $57
+	text "How would you like"
+	line "to have this"
+
+	para "tasty, nutritious"
+	line "SLOWPOKETAIL?"
+
+	para "For you right now,"
+	line "just ¥1,000,000!"
+
+	para "You'll want this!"
+	done
 ; 0x190acf
 
 UnknownText_0x190acf: ; 0x190acf
-	db $0, "Tch! I thought", $4f
-	db "kids these days", $55
-	db "were loaded…", $57
+	text "Tch! I thought"
+	line "kids these days"
+	cont "were loaded…"
+	done
 ; 0x190afc
 
 UnknownText_0x190afc: ; 0x190afc
-	db $0, "You don't want it?", $4f
-	db "Then scram. Shoo!", $57
+	text "You don't want it?"
+	line "Then scram. Shoo!"
+	done
 ; 0x190b21
 
 FisherJustinSeenText: ; 0x190b21
-	db $0, "Whoa!", $51
-	db "You made me lose", $4f
-	db "that fish!", $57
+	text "Whoa!"
+
+	para "You made me lose"
+	line "that fish!"
+	done
 ; 0x190b44
 
 FisherJustinBeatenText: ; 0x190b44
-	db $0, "Sploosh!", $57
+	text "Sploosh!"
+	done
 ; 0x190b4e
 
 UnknownText_0x190b4e: ; 0x190b4e
-	db $0, "Calm, collected…", $4f
-	db "The essence of", $51
-	db "fishing and #-", $4f
-	db "MON is the same.", $57
+	text "Calm, collected…"
+	line "The essence of"
+
+	para "fishing and #-"
+	line "MON is the same."
+	done
 ; 0x190b8f
 
 FisherRalph1SeenText: ; 0x190b8f
-	db $0, "I'm really good at", $4f
-	db "both fishing and", $55
-	db "#MON.", $51
-	db "I'm not about to", $4f
-	db "lose to any kid!", $57
+	text "I'm really good at"
+	line "both fishing and"
+	cont "#MON."
+
+	para "I'm not about to"
+	line "lose to any kid!"
+	done
 ; 0x190bda
 
 FisherRalph1BeatenText: ; 0x190bda
-	db $0, "Tch! I tried to", $4f
-	db "rush things…", $57
+	text "Tch! I tried to"
+	line "rush things…"
+	done
 ; 0x190bf8
 
 UnknownText_0x190bf8: ; 0x190bf8
-	db $0, "Fishing is a life-", $4f
-	db "long passion.", $51
-	db "#MON are life-", $4f
-	db "long friends!", $57
+	text "Fishing is a life-"
+	line "long passion."
+
+	para "#MON are life-"
+	line "long friends!"
+	done
 ; 0x190c37
 
 UnknownText_0x190c37: ; 0x190c37
-	db $0, "One, two, three…", $4f
-	db "Muahahaha, what a", $51
-	db "great haul!", $4f
-	db "I'm done! Go ahead", $51
-	db "and catch as many", $4f
-	db "as you can, kid!", $57
+	text "One, two, three…"
+	line "Muahahaha, what a"
+
+	para "great haul!"
+	line "I'm done! Go ahead"
+
+	para "and catch as many"
+	line "as you can, kid!"
+	done
 ; 0x190c9c
 
 ; --- start a segment of possibly unused texts
 
 UnknownText_0x190c9c: ; 0x190c9c
-	db $0, "I keep catching", $4f
-	db "the same #MON…", $51
-	db "Maybe a battle", $4f
-	db "will turn things", $55
-	db "around for me.", $57
+	text "I keep catching"
+	line "the same #MON…"
+
+	para "Maybe a battle"
+	line "will turn things"
+	cont "around for me."
+	done
 ; 0x190ceb
 
 UnknownText_0x190ceb: ; 0x190ceb
-	db $0, "Nothing ever goes", $4f
-	db "right for me now…", $57
+	text "Nothing ever goes"
+	line "right for me now…"
+	done
 ; 0x190d10
 
 UnknownText_0x190d10: ; 0x190d10
-	db $0, "How come the guy", $4f
-	db "next to me catches", $55
-	db "good #MON?", $57
+	text "How come the guy"
+	line "next to me catches"
+	cont "good #MON?"
+	done
 ; 0x190d40
 
 UnknownText_0x190d40: ; 0x190d40
-	db $0, "Heh, I'm on a roll", $4f
-	db "today. How about a", $55
-	db "battle, kid?", $57
+	text "Heh, I'm on a roll"
+	line "today. How about a"
+	cont "battle, kid?"
+	done
 ; 0x190d73
 
 UnknownText_0x190d73: ; 0x190d73
-	db $0, "Oof. I wasn't", $4f
-	db "lucky that time.", $57
+	text "Oof. I wasn't"
+	line "lucky that time."
+	done
 ; 0x190d92
 
 UnknownText_0x190d92: ; 0x190d92
-	db $0, "You have to have a", $4f
-	db "good ROD if you", $51
-	db "want to catch good", $4f
-	db "#MON.", $57
+	text "You have to have a"
+	line "good ROD if you"
+
+	para "want to catch good"
+	line "#MON."
+	done
 ; 0x190dcf
 
 ; --- end a segment of possibly unused texts
 
 FisherHenrySeenText: ; 0x190dcf
-	db $0, "My #MON?", $4f
-	db "Freshly caught!", $57
+	text "My #MON?"
+	line "Freshly caught!"
+	done
 ; 0x190de9
 
 FisherHenryBeatenText: ; 0x190de9
-	db $0, "SPLASH?", $57
+	text "SPLASH?"
+	done
 ; 0x190df2
 
 UnknownText_0x190df2: ; 0x190df2
-	db $0, "Freshly caught", $4f
-	db "#MON are no", $51
-	db "match for properly", $4f
-	db "raised ones.", $57
+	text "Freshly caught"
+	line "#MON are no"
+
+	para "match for properly"
+	line "raised ones."
+	done
 ; 0x190e2e
 
 YoungsterAlbertSeenText: ; 0x190e2e
-	db $0, "I haven't seen you", $4f
-	db "around before.", $51
-	db "So you think you", $4f
-	db "are pretty tough?", $57
+	text "I haven't seen you"
+	line "around before."
+
+	para "So you think you"
+	line "are pretty tough?"
+	done
 ; 0x190e73
 
 YoungsterAlbertBeatenText: ; 0x190e73
-	db $0, "You're strong!", $57
+	text "You're strong!"
+	done
 ; 0x190e82
 
 UnknownText_0x190e82: ; 0x190e82
-	db $0, "I'm going to try", $4f
-	db "to be the best", $55
-	db "with my favorites.", $51
-	db "I'm not using the", $4f
-	db "same tough #MON", $55
-	db "as everyone else.", $57
+	text "I'm going to try"
+	line "to be the best"
+	cont "with my favorites."
+
+	para "I'm not using the"
+	line "same tough #MON"
+	cont "as everyone else."
+	done
 ; 0x190ee8
 
 YoungsterGordonSeenText: ; 0x190ee8
-	db $0, "I found some good", $4f
-	db "#MON in the", $55
-	db "grass!", $51
-	db "I think they'll do", $4f
-	db "it for me!", $57
+	text "I found some good"
+	line "#MON in the"
+	cont "grass!"
+
+	para "I think they'll do"
+	line "it for me!"
+	done
 ; 0x190f2b
 
 YoungsterGordonBeatenText: ; 0x190f2b
-	db $0, "Darn. I thought I", $4f
-	db "could win.", $57
+	text "Darn. I thought I"
+	line "could win."
+	done
 ; 0x190f49
 
 UnknownText_0x190f49: ; 0x190f49
-	db $0, "The grass is full", $4f
-	db "of clingy things.", $57
+	text "The grass is full"
+	line "of clingy things."
+	done
 ; 0x190f6e
 
 CamperRolandSeenText: ; 0x190f6e
-	db $0, "That glance…", $4f
-	db "It's intriguing.", $57
+	text "That glance…"
+	line "It's intriguing."
+	done
 ; 0x190f8c
 
 CamperRolandBeatenText: ; 0x190f8c
-	db $0, "Hmmm. This is", $4f
-	db "disappointing.", $57
+	text "Hmmm. This is"
+	line "disappointing."
+	done
 ; 0x190faa
 
 UnknownText_0x190faa: ; 0x190faa
-	db $0, "If you don't want", $4f
-	db "to battle, just", $55
-	db "avoid eye contact.", $57
+	text "If you don't want"
+	line "to battle, just"
+	cont "avoid eye contact."
+	done
 ; 0x190fdf
 
 PicnickerLiz1SeenText: ; 0x190fdf
-	db $0, "Uh-huh. Yeah, and", $4f
-	db "you know…", $51
-	db "Pardon? Battle?", $4f
-	db "I'm on the phone.", $51
-	db "Oh, all right. But", $4f
-	db "make it fast.", $57
+	text "Uh-huh. Yeah, and"
+	line "you know…"
+
+	para "Pardon? Battle?"
+	line "I'm on the phone."
+
+	para "Oh, all right. But"
+	line "make it fast."
+	done
 ; 0x19103e
 
 PicnickerLiz1BeatenText: ; 0x19103e
-	db $0, "Oh! I've got to", $4f
-	db "relieve my anger!", $57
+	text "Oh! I've got to"
+	line "relieve my anger!"
+	done
 ; 0x191060
 
 UnknownText_0x191060: ; 0x191060
-	db $0, "I was having a", $4f
-	db "nice chat too.", $57
+	text "I was having a"
+	line "nice chat too."
+	done
 ; 0x19107f
 
 Bird_keeperPeterSeenText: ; 0x19107f
-	db $0, "That BADGE! It's", $4f
-	db "from VIOLET CITY!", $51
-	db "You beat FALKNER?", $57
+	text "That BADGE! It's"
+	line "from VIOLET CITY!"
+
+	para "You beat FALKNER?"
+	done
 ; 0x1910b4
 
 Bird_keeperPeterBeatenText: ; 0x1910b4
-	db $0, "I know what my", $4f
-	db "weaknesses are.", $57
+	text "I know what my"
+	line "weaknesses are."
+	done
 ; 0x1910d4
 
 UnknownText_0x1910d4: ; 0x1910d4
-	db $0, "I should train", $4f
-	db "again at the GYM", $55
-	db "in VIOLET CITY.", $57
+	text "I should train"
+	line "again at the GYM"
+	cont "in VIOLET CITY."
+	done
 ; 0x191105
 
 ; possibly unused
 UnknownText_0x191105: ; 0x191105
-	db $0, "The fishermen", $4f
-	db "yelled at me for", $55
-	db "bugging them…", $57
+	text "The fishermen"
+	line "yelled at me for"
+	cont "bugging them…"
+	done
 ; 0x191133
 
 UnknownText_0x191133: ; 0x191133
-	db $0, "WROOOOAR!", $4f
-	db "PEOPLE RUN WHEN I", $51
-	db "ROAR! BUT YOU", $4f
-	db "CAME LOOKING!", $51
-	db "THAT PLEASES ME!", $4f
-	db "NOW TAKE THIS!", $57
+	text "WROOOOAR!"
+	line "PEOPLE RUN WHEN I"
+
+	para "ROAR! BUT YOU"
+	line "CAME LOOKING!"
+
+	para "THAT PLEASES ME!"
+	line "NOW TAKE THIS!"
+	done
 ; 0x19118c
 
 UnknownText_0x19118c: ; 0x19118c
-	db $0, "WROOOAR!", $4f
-	db "IT'S ROAR!", $51
-	db "EVEN #MON RUN", $4f
-	db "FROM A GOOD ROAR!", $57
+	text "WROOOAR!"
+	line "IT'S ROAR!"
+
+	para "EVEN #MON RUN"
+	line "FROM A GOOD ROAR!"
+	done
 ; 0x1911c1
 
 UnknownText_0x1911c1: ; 0x1911c1
-	db $0, "FRIEDA: Yahoo!", $4f
-	db "It's Friday!", $51
-	db "I'm FRIEDA of", $4f
-	db "Friday!", $51
-	db "Nice to meet you!", $57
+	text "FRIEDA: Yahoo!"
+	line "It's Friday!"
+
+	para "I'm FRIEDA of"
+	line "Friday!"
+
+	para "Nice to meet you!"
+	done
 ; 0x191204
 
 UnknownText_0x191204: ; 0x191204
-	db $0, "Here's a POISON", $4f
-	db "BARB for you!", $57
+	text "Here's a POISON"
+	line "BARB for you!"
+	done
 ; 0x191222
 
 UnknownText_0x191222: ; 0x191222
-	db $0, "FRIEDA: Give it to", $4f
-	db "a #MON that has", $55
-	db "poison-type moves.", $51
-	db "Oh!", $51
-	db "It's wicked!", $51
-	db "You'll be shocked", $4f
-	db "how good it makes", $55
-	db "poison moves!", $57
+	text "FRIEDA: Give it to"
+	line "a #MON that has"
+	cont "poison-type moves."
+
+	para "Oh!"
+
+	para "It's wicked!"
+
+	para "You'll be shocked"
+	line "how good it makes"
+	cont "poison moves!"
+	done
 ; 0x19129a
 
 UnknownText_0x19129a: ; 0x19129a
-	db $0, "FRIEDA: Hiya! What", $4f
-	db "day do you like?", $51
-	db "I love Friday. No", $4f
-	db "doubt about it!", $51
-	db "Don't you think", $4f
-	db "it's great too?", $57
+	text "FRIEDA: Hiya! What"
+	line "day do you like?"
+
+	para "I love Friday. No"
+	line "doubt about it!"
+
+	para "Don't you think"
+	line "it's great too?"
+	done
 ; 0x1912ff
 
 UnknownText_0x1912ff: ; 0x1912ff
-	db $0, "FRIEDA: Isn't it", $4f
-	db "Friday today?", $51
-	db "It's so boring", $4f
-	db "when it's not!", $57
+	text "FRIEDA: Isn't it"
+	line "Friday today?"
+
+	para "It's so boring"
+	line "when it's not!"
+	done
 ; 0x19133a
 
 UnknownText_0x19133a: ; 0x19133a
-	db $0, "ROUTE 32", $51
-	db "VIOLET CITY -", $4f
-	db "AZALEA TOWN", $57
+	text "ROUTE 32"
+
+	para "VIOLET CITY -"
+	line "AZALEA TOWN"
+	done
 ; 0x19135e
 
 UnknownText_0x19135e: ; 0x19135e
-	db $0, "RUINS OF ALPH", $4f
-	db "EAST ENTRANCE", $57
+	text "RUINS OF ALPH"
+	line "EAST ENTRANCE"
+	done
 ; 0x19137b
 
 UnknownText_0x19137b: ; 0x19137b
-	db $0, "UNION CAVE", $4f
-	db "AHEAD", $57
+	text "UNION CAVE"
+	line "AHEAD"
+	done
 ; 0x19138d
 
 Route32_MapEventHeader: ; 0x19138d

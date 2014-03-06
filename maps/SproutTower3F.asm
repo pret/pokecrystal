@@ -214,155 +214,198 @@ MovementData_0x184a24: ; 0x184a24
 ; 0x184a27
 
 UnknownText_0x184a27: ; 0x184a27
-	db $0, "ELDER: You are in-", $4f
-	db "deed skilled as a", $55
-	db "trainer.", $51
-	db "As promised, here", $4f
-	db "is your HM.", $51
-	db "But let me say", $4f
-	db "this: You should", $51
-	db "treat your", $4f
-	db "#MON better.", $51
-	db "The way you battle", $4f
-	db "is far too harsh.", $51
-	db "#MON are not", $4f
-	db "tools of war…", $57
+	text "ELDER: You are in-"
+	line "deed skilled as a"
+	cont "trainer."
+
+	para "As promised, here"
+	line "is your HM."
+
+	para "But let me say"
+	line "this: You should"
+
+	para "treat your"
+	line "#MON better."
+
+	para "The way you battle"
+	line "is far too harsh."
+
+	para "#MON are not"
+	line "tools of war…"
+	done
 ; 0x184aec
 
 UnknownText_0x184aec: ; 0x184aec
-	db $0, "…", $4f
-	db "…Humph!", $51
-	db "He claims to be", $4f
-	db "the ELDER but", $55
-	db "he's weak.", $51
-	db "It stands to", $4f
-	db "reason.", $51
-	db "I'd never lose to", $4f
-	db "fools who babble", $51
-	db "about being nice", $4f
-	db "to #MON.", $51
-	db "I only care about", $4f
-	db "strong #MON", $55
-	db "that can win.", $51
-	db "I really couldn't", $4f
-	db "care less about", $55
-	db "weak #MON.", $57
+	text "…"
+	line "…Humph!"
+
+	para "He claims to be"
+	line "the ELDER but"
+	cont "he's weak."
+
+	para "It stands to"
+	line "reason."
+
+	para "I'd never lose to"
+	line "fools who babble"
+
+	para "about being nice"
+	line "to #MON."
+
+	para "I only care about"
+	line "strong #MON"
+	cont "that can win."
+
+	para "I really couldn't"
+	line "care less about"
+	cont "weak #MON."
+	done
 ; 0x184bc8
 
 UnknownText_0x184bc8: ; 0x184bc8
-	db $0, $53, " used an", $4f
-	db "ESCAPE ROPE!", $57
+	text $53, " used an"
+	line "ESCAPE ROPE!"
+	done
 ; 0x184be0
 
 SageLiSeenText: ; 0x184be0
-	db $0, "So good of you to", $4f
-	db "come here!", $51
-	db "SPROUT TOWER is a", $4f
-	db "place of training.", $51
-	db "People and #MON", $4f
-	db "test their bonds", $51
-	db "to build a bright", $4f
-	db "future together.", $51
-	db "I am the final", $4f
-	db "test.", $51
-	db "Allow me to check", $4f
-	db "the ties between", $51
-	db "your #MON and", $4f
-	db "you!", $57
+	text "So good of you to"
+	line "come here!"
+
+	para "SPROUT TOWER is a"
+	line "place of training."
+
+	para "People and #MON"
+	line "test their bonds"
+
+	para "to build a bright"
+	line "future together."
+
+	para "I am the final"
+	line "test."
+
+	para "Allow me to check"
+	line "the ties between"
+
+	para "your #MON and"
+	line "you!"
+	done
 ; 0x184cb2
 
 SageLiBeatenText: ; 0x184cb2
-	db $0, "Ah, excellent!", $57
+	text "Ah, excellent!"
+	done
 ; 0x184cc2
 
 UnknownText_0x184cc2: ; 0x184cc2
-	db $0, "You and your #-", $4f
-	db "MON should have", $51
-	db "no problem using", $4f
-	db "this move.", $51
-	db "Take this FLASH", $4f
-	db "HM.", $57
+	text "You and your #-"
+	line "MON should have"
+
+	para "no problem using"
+	line "this move."
+
+	para "Take this FLASH"
+	line "HM."
+	done
 ; 0x184d13
 
 UnknownText_0x184d13: ; 0x184d13
-	db $0, "FLASH illuminates", $4f
-	db "even the darkest", $55
-	db "of all places.", $51
-	db "But to use it out", $4f
-	db "of battle, you", $51
-	db "need the BADGE", $4f
-	db "from VIOLET's GYM.", $57
+	text "FLASH illuminates"
+	line "even the darkest"
+	cont "of all places."
+
+	para "But to use it out"
+	line "of battle, you"
+
+	para "need the BADGE"
+	line "from VIOLET's GYM."
+	done
 ; 0x184d88
 
 UnknownText_0x184d88: ; 0x184d88
-	db $0, "I hope you learn", $4f
-	db "and grow from your", $55
-	db "journey.", $57
+	text "I hope you learn"
+	line "and grow from your"
+	cont "journey."
+	done
 ; 0x184db6
 
 SageJinSeenText: ; 0x184db6
-	db $0, "I train to find", $4f
-	db "enlightenment in", $55
-	db "#MON!", $57
+	text "I train to find"
+	line "enlightenment in"
+	cont "#MON!"
+	done
 ; 0x184dde
 
 SageJinBeatenText: ; 0x184dde
-	db $0, "My training is", $4f
-	db "incomplete…", $57
+	text "My training is"
+	line "incomplete…"
+	done
 ; 0x184dfa
 
 UnknownText_0x184dfa: ; 0x184dfa
-	db $0, "As #MON grow", $4f
-	db "stronger, so does", $55
-	db "the trainer.", $51
-	db "No, wait. As the", $4f
-	db "trainer grows", $51
-	db "stronger, so do", $4f
-	db "the #MON.", $57
+	text "As #MON grow"
+	line "stronger, so does"
+	cont "the trainer."
+
+	para "No, wait. As the"
+	line "trainer grows"
+
+	para "stronger, so do"
+	line "the #MON."
+	done
 ; 0x184e60
 
 SageTroySeenText: ; 0x184e60
-	db $0, "Let me see how", $4f
-	db "much you trust", $55
-	db "your #MON.", $57
+	text "Let me see how"
+	line "much you trust"
+	cont "your #MON."
+	done
 ; 0x184e8a
 
 SageTroyBeatenText: ; 0x184e8a
-	db $0, "Yes, your trust is", $4f
-	db "real!", $57
+	text "Yes, your trust is"
+	line "real!"
+	done
 ; 0x184ea4
 
 UnknownText_0x184ea4: ; 0x184ea4
-	db $0, "It is not far to", $4f
-	db "the ELDER.", $57
+	text "It is not far to"
+	line "the ELDER."
+	done
 ; 0x184ec1
 
 SageNealSeenText: ; 0x184ec1
-	db $0, "The ELDER's HM", $4f
-	db "lights even pitch-", $55
-	db "black darkness.", $57
+	text "The ELDER's HM"
+	line "lights even pitch-"
+	cont "black darkness."
+	done
 ; 0x184ef3
 
 SageNealBeatenText: ; 0x184ef3
-	db $0, "It is my head that", $4f
-	db "is bright!", $57
+	text "It is my head that"
+	line "is bright!"
+	done
 ; 0x184f12
 
 UnknownText_0x184f12: ; 0x184f12
-	db $0, "Let there be light", $4f
-	db "on your journey.", $57
+	text "Let there be light"
+	line "on your journey."
+	done
 ; 0x184f37
 
 UnknownText_0x184f37: ; 0x184f37
-	db $0, "It's a powerful", $4f
-	db "painting of a", $55
-	db "BELLSPROUT.", $57
+	text "It's a powerful"
+	line "painting of a"
+	cont "BELLSPROUT."
+	done
 ; 0x184f61
 
 UnknownText_0x184f61: ; 0x184f61
-	db $0, "A #MON statue…", $51
-	db "It looks very", $4f
-	db "distinguished.", $57
+	text "A #MON statue…"
+
+	para "It looks very"
+	line "distinguished."
+	done
 ; 0x184f8e
 
 SproutTower3F_MapEventHeader: ; 0x184f8e

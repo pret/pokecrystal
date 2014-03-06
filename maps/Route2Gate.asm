@@ -11,14 +11,18 @@ ScientistScript_0x9b952: ; 0x9b952
 ; 0x9b955
 
 UnknownText_0x9b955: ; 0x9b955
-	db $0, "Are you ", $14, "?", $51
-	db "I work as PROF.", $4f
-	db "OAK's AIDE.", $51
-	db "I had no idea that", $4f
-	db "you were out here.", $51
-	db "PROF.OAK's LAB is", $4f
-	db "nearby in PALLET", $55
-	db "TOWN.", $57
+	text "Are you ", $14, "?"
+
+	para "I work as PROF."
+	line "OAK's AIDE."
+
+	para "I had no idea that"
+	line "you were out here."
+
+	para "PROF.OAK's LAB is"
+	line "nearby in PALLET"
+	cont "TOWN."
+	done
 ; 0x9b9ca
 
 Route2Gate_MapEventHeader: ; 0x9b9ca

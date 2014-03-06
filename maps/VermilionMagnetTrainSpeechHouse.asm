@@ -19,17 +19,20 @@ MapVermilionMagnetTrainSpeechHouseSignpost1Script: ; 0x191ebd
 ; 0x191ec0
 
 UnknownText_0x191ec0: ; 0x191ec0
-	db $0, "Do you know about", $4f
-	db "the MAGNET TRAIN?", $51
-	db "It's a railway", $4f
-	db "that goes to GOL-", $55
-	db "DENROD in JOHTO.", $57
+	text "Do you know about"
+	line "the MAGNET TRAIN?"
+
+	para "It's a railway"
+	line "that goes to GOL-"
+	cont "DENROD in JOHTO."
+	done
 ; 0x191f16
 
 UnknownText_0x191f16: ; 0x191f16
-	db $0, "I want to go to", $4f
-	db "SAFFRON to see", $55
-	db "the MAGNET TRAIN.", $57
+	text "I want to go to"
+	line "SAFFRON to see"
+	cont "the MAGNET TRAIN."
+	done
 ; 0x191f48
 
 VermilionMagnetTrainSpeechHouse_MapEventHeader: ; 0x191f48

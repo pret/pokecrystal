@@ -11,10 +11,12 @@ TeacherScript_0x18b555: ; 0x18b555
 ; 0x18b558
 
 UnknownText_0x18b558: ; 0x18b558
-	db $0, "Many cities in", $4f
-	db "JOHTO have long", $51
-	db "histories. I'd", $4f
-	db "love to visit!", $57
+	text "Many cities in"
+	line "JOHTO have long"
+
+	para "histories. I'd"
+	line "love to visit!"
+	done
 ; 0x18b595
 
 Route5UndergroundEntrance_MapEventHeader: ; 0x18b595

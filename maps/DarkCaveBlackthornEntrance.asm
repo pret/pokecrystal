@@ -33,26 +33,33 @@ ItemFragment_0x18c73d: ; 0x18c73d
 ; 0x18c73f
 
 UnknownText_0x18c73f: ; 0x18c73f
-	db $0, "Whoa! You startled", $4f
-	db "me there!", $51
-	db "I had my BLACK-", $4f
-	db "GLASSES on, so I", $51
-	db "didn't notice you", $4f
-	db "at all.", $51
-	db "What am I doing", $4f
-	db "here?", $51
-	db "Hey, don't you", $4f
-	db "worry about it.", $51
-	db "I'll give you a", $4f
-	db "pair of BLACK-", $55
-	db "GLASSES, so forget", $55
-	db "you saw me, OK?", $57
+	text "Whoa! You startled"
+	line "me there!"
+
+	para "I had my BLACK-"
+	line "GLASSES on, so I"
+
+	para "didn't notice you"
+	line "at all."
+
+	para "What am I doing"
+	line "here?"
+
+	para "Hey, don't you"
+	line "worry about it."
+
+	para "I'll give you a"
+	line "pair of BLACK-"
+	cont "GLASSES, so forget"
+	cont "you saw me, OK?"
+	done
 ; 0x18c80c
 
 UnknownText_0x18c80c: ; 0x18c80c
-	db $0, "BLACKGLASSES ups", $4f
-	db "the power of dark-", $55
-	db "type moves.", $57
+	text "BLACKGLASSES ups"
+	line "the power of dark-"
+	cont "type moves."
+	done
 ; 0x18c83d
 
 DarkCaveBlackthornEntrance_MapEventHeader: ; 0x18c83d

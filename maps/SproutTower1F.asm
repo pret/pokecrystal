@@ -60,57 +60,71 @@ MapSproutTower1FSignpost1Script: ; 0x184520
 ; 0x184523
 
 SageChowSeenText: ; 0x184523
-	db $0, "We stand guard in", $4f
-	db "this tower.", $51
-	db "Here, we express", $4f
-	db "our gratitude to", $55
-	db "honor all #MON.", $57
+	text "We stand guard in"
+	line "this tower."
+
+	para "Here, we express"
+	line "our gratitude to"
+	cont "honor all #MON."
+	done
 ; 0x184574
 
 SageChowBeatenText: ; 0x184574
-	db $0, "Th-Thank you!", $57
+	text "Th-Thank you!"
+	done
 ; 0x184583
 
 UnknownText_0x184583: ; 0x184583
-	db $0, "All living beings", $4f
-	db "coexist through", $55
-	db "cooperation.", $51
-	db "We must always be", $4f
-	db "thankful for this.", $57
+	text "All living beings"
+	line "coexist through"
+	cont "cooperation."
+
+	para "We must always be"
+	line "thankful for this."
+	done
 ; 0x1845d8
 
 UnknownText_0x1845d8: ; 0x1845d8
-	db $0, "Only if you reach", $4f
-	db "the top will you", $55
-	db "obtain an HM.", $57
+	text "Only if you reach"
+	line "the top will you"
+	cont "obtain an HM."
+	done
 ; 0x18460a
 
 UnknownText_0x18460a: ; 0x18460a
-	db $0, "SPROUT TOWER was", $4f
-	db "built long ago", $51
-	db "as a place for", $4f
-	db "#MON training.", $57
+	text "SPROUT TOWER was"
+	line "built long ago"
+
+	para "as a place for"
+	line "#MON training."
+	done
 ; 0x184649
 
 UnknownText_0x184649: ; 0x184649
-	db $0, "A BELLSPROUT over", $4f
-	db "100 feet tall…", $51
-	db "People say that it", $4f
-	db "became the center", $55
-	db "pillar here.", $57
+	text "A BELLSPROUT over"
+	line "100 feet tall…"
+
+	para "People say that it"
+	line "became the center"
+	cont "pillar here."
+	done
 ; 0x18469d
 
 UnknownText_0x18469d: ; 0x18469d
-	db $0, "See the pillar", $4f
-	db "shaking?", $51
-	db "People are train-", $4f
-	db "ing upstairs.", $57
+	text "See the pillar"
+	line "shaking?"
+
+	para "People are train-"
+	line "ing upstairs."
+	done
 ; 0x1846d6
 
 UnknownText_0x1846d6: ; 0x1846d6
-	db $0, "A #MON statue…", $51
-	db "It looks very", $4f
-	db "distinguished.", $57
+	text "A #MON statue…"
+
+	para "It looks very"
+	line "distinguished."
+	done
 ; 0x184703
 
 SproutTower1F_MapEventHeader: ; 0x184703

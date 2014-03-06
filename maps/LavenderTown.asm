@@ -56,56 +56,70 @@ MapLavenderTownSignpost5Script: ; 0x1ad6ff
 ; 0x1ad702
 
 UnknownText_0x1ad702: ; 0x1ad702
-	db $0, "That's quite some", $4f
-	db "building, eh?", $51
-	db "It's KANTO's RADIO", $4f
-	db "TOWER.", $57
+	text "That's quite some"
+	line "building, eh?"
+
+	para "It's KANTO's RADIO"
+	line "TOWER."
+	done
 ; 0x1ad73a
 
 UnknownText_0x1ad73a: ; 0x1ad73a
-	db $0, "KANTO has many", $4f
-	db "good radio shows.", $57
+	text "KANTO has many"
+	line "good radio shows."
+	done
 ; 0x1ad75c
 
 UnknownText_0x1ad75c: ; 0x1ad75c
-	db $0, "People come from", $4f
-	db "all over to pay", $51
-	db "their respects to", $4f
-	db "the departed souls", $55
-	db "of #MON.", $57
+	text "People come from"
+	line "all over to pay"
+
+	para "their respects to"
+	line "the departed souls"
+	cont "of #MON."
+	done
 ; 0x1ad7ac
 
 UnknownText_0x1ad7ac: ; 0x1ad7ac
-	db $0, "You need a #", $4f
-	db "FLUTE to wake", $55
-	db "sleeping #MON.", $51
-	db "Every trainer has", $4f
-	db "to know that!", $57
+	text "You need a #"
+	line "FLUTE to wake"
+	cont "sleeping #MON."
+
+	para "Every trainer has"
+	line "to know that!"
+	done
 ; 0x1ad7f7
 
 UnknownText_0x1ad7f7: ; 0x1ad7f7
-	db $0, "LAVENDER TOWN", $51
-	db "The Noble Purple", $4f
-	db "Town", $57
+	text "LAVENDER TOWN"
+
+	para "The Noble Purple"
+	line "Town"
+	done
 ; 0x1ad81c
 
 UnknownText_0x1ad81c: ; 0x1ad81c
-	db $0, "KANTO RADIO", $4f
-	db "STATION", $51
-	db "Your Favorite", $4f
-	db "Programs On-Air", $55
-	db "Around the Clock!", $57
+	text "KANTO RADIO"
+	line "STATION"
+
+	para "Your Favorite"
+	line "Programs On-Air"
+	cont "Around the Clock!"
+	done
 ; 0x1ad861
 
 UnknownText_0x1ad861: ; 0x1ad861
-	db $0, "LAVENDER VOLUNTEER", $4f
-	db "#MON HOUSE", $57
+	text "LAVENDER VOLUNTEER"
+	line "#MON HOUSE"
+	done
 ; 0x1ad880
 
 UnknownText_0x1ad880: ; 0x1ad880
-	db $0, "SOUL HOUSE", $51
-	db "May the Souls of", $4f
-	db "#MON Rest Easy", $57
+	text "SOUL HOUSE"
+
+	para "May the Souls of"
+	line "#MON Rest Easy"
+	done
 ; 0x1ad8ac
 
 LavenderTown_MapEventHeader: ; 0x1ad8ac

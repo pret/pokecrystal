@@ -119,56 +119,69 @@ MovementData_0x9b41d: ; 0x9b41d
 ; 0x9b420
 
 UnknownText_0x9b420: ; 0x9b420
-	db $0, "Hi. Welcome to our", $4f
-	db "TRAINING HALL.", $51
-	db "You may battle a", $4f
-	db "trainer once per", $55
-	db "day.", $57
+	text "Hi. Welcome to our"
+	line "TRAINING HALL."
+
+	para "You may battle a"
+	line "trainer once per"
+	cont "day."
+	done
 ; 0x9b46a
 
 UnknownText_0x9b46a: ; 0x9b46a
 	text_from_ram $d099
-	db $0, " is your", $4f
-	db "opponent today.", $57
+	text " is your"
+	line "opponent today."
+	done
 ; 0x9b487
 
 UnknownText_0x9b487: ; 0x9b487
-	db $0, "Would you like to", $4f
-	db "battle?", $57
+	text "Would you like to"
+	line "battle?"
+	done
 ; 0x9b4a2
 
 UnknownText_0x9b4a2: ; 0x9b4a2
-	db $0, "Please go right", $4f
-	db "through.", $51
-	db "You may begin", $4f
-	db "right away.", $57
+	text "Please go right"
+	line "through."
+
+	para "You may begin"
+	line "right away."
+	done
 ; 0x9b4d6
 
 UnknownText_0x9b4d6: ; 0x9b4d6
-	db $0, "Sorry. Only those", $4f
-	db "trainers who will", $51
-	db "be battling are", $4f
-	db "allowed to go in.", $57
+	text "Sorry. Only those"
+	line "trainers who will"
+
+	para "be battling are"
+	line "allowed to go in."
+	done
 ; 0x9b51d
 
 UnknownText_0x9b51d: ; 0x9b51d
-	db $0, "I'm sorry.", $4f
-	db "This would be your", $51
-	db "second time today.", $4f
-	db "You're permitted", $51
-	db "to enter just once", $4f
-	db "a day.", $57
+	text "I'm sorry."
+	line "This would be your"
+
+	para "second time today."
+	line "You're permitted"
+
+	para "to enter just once"
+	line "a day."
+	done
 ; 0x9b578
 
 UnknownText_0x9b578: ; 0x9b578
-	db $0, "I lost…", $4f
-	db "Darn…", $57
+	text "I lost…"
+	line "Darn…"
+	done
 ; 0x9b587
 
 UnknownText_0x9b587: ; 0x9b587
-	db $0, "I traveled out", $4f
-	db "here just so I", $55
-	db "could battle you.", $57
+	text "I traveled out"
+	line "here just so I"
+	cont "could battle you."
+	done
 ; 0x9b5b8
 
 TrainerHouseB1F_MapEventHeader: ; 0x9b5b8

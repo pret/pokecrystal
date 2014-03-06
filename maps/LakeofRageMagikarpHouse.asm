@@ -100,97 +100,126 @@ MapLakeofRageMagikarpHouseSignpost1Script: ; 0x19a72b
 ; 0x19a72e
 
 UnknownText_0x19a72e: ; 0x19a72e
-	db $0, "LAKE OF RAGE is", $4f
-	db "actually a crater", $51
-	db "made by rampaging", $4f
-	db "GYARADOS.", $51
-	db "The crater filled", $4f
-	db "up with rainwater", $51
-	db "and the LAKE was", $4f
-	db "formed.", $51
-	db "That's the story", $4f
-	db "passed on from my", $51
-	db "Grandpa's great-", $4f
-	db "great-grandpa.", $51
-	db "It used to be that", $4f
-	db "you could catch", $51
-	db "lively MAGIKARP", $4f
-	db "there, but…", $51
-	db "I don't understand", $4f
-	db "what's happening.", $57
+	text "LAKE OF RAGE is"
+	line "actually a crater"
+
+	para "made by rampaging"
+	line "GYARADOS."
+
+	para "The crater filled"
+	line "up with rainwater"
+
+	para "and the LAKE was"
+	line "formed."
+
+	para "That's the story"
+	line "passed on from my"
+
+	para "Grandpa's great-"
+	line "great-grandpa."
+
+	para "It used to be that"
+	line "you could catch"
+
+	para "lively MAGIKARP"
+	line "there, but…"
+
+	para "I don't understand"
+	line "what's happening."
+	done
 ; 0x19a84d
 
 UnknownText_0x19a84d: ; 0x19a84d
-	db $0, "The LAKE hasn't", $4f
-	db "been normal since", $51
-	db "those men wearing", $4f
-	db "black arrived.", $57
+	text "The LAKE hasn't"
+	line "been normal since"
+
+	para "those men wearing"
+	line "black arrived."
+	done
 ; 0x19a890
 
 UnknownText_0x19a890: ; 0x19a890
-	db $0, "LAKE OF RAGE is", $4f
-	db "back to normal.", $51
-	db "The MAGIKARP have", $4f
-	db "returned.", $51
-	db "I may yet realize", $4f
-	db "my dream of see-", $55
-	db "ing the world's", $55
-	db "largest MAGIKARP.", $51
-	db "Do you have a ROD?", $4f
-	db "Please help me if", $55
-	db "you do.", $57
+	text "LAKE OF RAGE is"
+	line "back to normal."
+
+	para "The MAGIKARP have"
+	line "returned."
+
+	para "I may yet realize"
+	line "my dream of see-"
+	cont "ing the world's"
+	cont "largest MAGIKARP."
+
+	para "Do you have a ROD?"
+	line "Please help me if"
+	cont "you do."
+	done
 ; 0x19a93e
 
 UnknownText_0x19a93e: ; 0x19a93e
-	db $0, "Ah, you have a", $4f
-	db "MAGIKARP! Let's", $51
-	db "see how big that", $4f
-	db "baby is.", $57
+	text "Ah, you have a"
+	line "MAGIKARP! Let's"
+
+	para "see how big that"
+	line "baby is."
+	done
 ; 0x19a977
 
 UnknownText_0x19a977: ; 0x19a977
-	db $0, "Wow! This one is", $4f
-	db "outstanding!", $51
-	db "I tip my hat to", $4f
-	db "you!", $51
-	db "Take this as a", $4f
-	db "memento!", $57
+	text "Wow! This one is"
+	line "outstanding!"
+
+	para "I tip my hat to"
+	line "you!"
+
+	para "Take this as a"
+	line "memento!"
+	done
 ; 0x19a9c3
 
 UnknownText_0x19a9c3: ; 0x19a9c3
-	db $0, "The record is the", $4f
-	db "important thing.", $51
-	db "Think of that as", $4f
-	db "a bonus!", $57
+	text "The record is the"
+	line "important thing."
+
+	para "Think of that as"
+	line "a bonus!"
+	done
 ; 0x19aa01
 
 UnknownText_0x19aa01: ; 0x19aa01
-	db $0, "Wow! This one is", $4f
-	db "outstanding!", $51
-	db "…I wish I could", $4f
-	db "say that, but I've", $51
-	db "seen a bigger one", $4f
-	db "before.", $57
+	text "Wow! This one is"
+	line "outstanding!"
+
+	para "…I wish I could"
+	line "say that, but I've"
+
+	para "seen a bigger one"
+	line "before."
+	done
 ; 0x19aa5c
 
 UnknownText_0x19aa5c: ; 0x19aa5c
-	db $0, "What? That's not a", $4f
-	db "MAGIKARP!", $57
+	text "What? That's not a"
+	line "MAGIKARP!"
+	done
 ; 0x19aa79
 
 UnknownText_0x19aa79: ; 0x19aa79
-	db $0, "Oh… So you didn't", $4f
-	db "get one good", $51
-	db "enough to show me?", $4f
-	db "Maybe next time.", $57
+	text "Oh… So you didn't"
+	line "get one good"
+
+	para "enough to show me?"
+	line "Maybe next time."
+	done
 ; 0x19aabc
 
 UnknownText_0x19aabc: ; 0x19aabc
-	db $0, "CURRENT RECORD", $51
-	db "@"
+	text "CURRENT RECORD"
+
+	para "@"
 	text_from_ram $d099
-	db $0, " caught by", $4f
-	db "@"
+	text " caught by"
+	line "@"
 	text_from_ram $d0ac
 	db "@@"
 ; 0x19aae2

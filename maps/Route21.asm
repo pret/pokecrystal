@@ -94,49 +94,58 @@ FisherArnoldScript: ; 0x1ac848
 ; 0x1ac850
 
 SwimmermSethSeenText: ; 0x1ac850
-	db $0, "Land ho! Gotta", $4f
-	db "keep going!", $57
+	text "Land ho! Gotta"
+	line "keep going!"
+	done
 ; 0x1ac86c
 
 SwimmermSethBeatenText: ; 0x1ac86c
-	db $0, "Glug…", $57
+	text "Glug…"
+	done
 ; 0x1ac873
 
 UnknownText_0x1ac873: ; 0x1ac873
-	db $0, "This arrogant guy", $4f
-	db "was at CINNABAR's", $55
-	db "volcano.", $57
+	text "This arrogant guy"
+	line "was at CINNABAR's"
+	cont "volcano."
+	done
 ; 0x1ac8a0
 
 SwimmerfNikkiSeenText: ; 0x1ac8a0
-	db $0, "If I win, you have", $4f
-	db "to help me with my", $55
-	db "suntan lotion!", $57
+	text "If I win, you have"
+	line "to help me with my"
+	cont "suntan lotion!"
+	done
 ; 0x1ac8d6
 
 SwimmerfNikkiBeatenText: ; 0x1ac8d6
-	db $0, "I'm worried about", $4f
-	db "sunburn…", $57
+	text "I'm worried about"
+	line "sunburn…"
+	done
 ; 0x1ac8f1
 
 UnknownText_0x1ac8f1: ; 0x1ac8f1
-	db $0, "I have to watch", $4f
-	db "out for blemishes", $55
-	db "caused by the sun.", $57
+	text "I have to watch"
+	line "out for blemishes"
+	cont "caused by the sun."
+	done
 ; 0x1ac927
 
 FisherArnoldSeenText: ; 0x1ac927
-	db $0, "I'm bored by fish-", $4f
-	db "ing. Let's battle!", $57
+	text "I'm bored by fish-"
+	line "ing. Let's battle!"
+	done
 ; 0x1ac94c
 
 FisherArnoldBeatenText: ; 0x1ac94c
-	db $0, "Utter failure…", $57
+	text "Utter failure…"
+	done
 ; 0x1ac95c
 
 UnknownText_0x1ac95c: ; 0x1ac95c
-	db $0, "I'll just go back", $4f
-	db "to fishing…", $57
+	text "I'll just go back"
+	line "to fishing…"
+	done
 ; 0x1ac97a
 
 Route21_MapEventHeader: ; 0x1ac97a

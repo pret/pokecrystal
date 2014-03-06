@@ -22,22 +22,28 @@ LassScript_0x9cad1: ; 0x9cad1
 ; 0x9cad4
 
 UnknownText_0x9cad4: ; 0x9cad4
-	db $0, "Do your #MON", $4f
-	db "already know the", $51
-	db "move for carrying", $4f
-	db "people on water?", $57
+	text "Do your #MON"
+	line "already know the"
+
+	para "move for carrying"
+	line "people on water?"
+	done
 ; 0x9cb16
 
 UnknownText_0x9cb16: ; 0x9cb16
-	db $0, "My BUTTERFREE came", $4f
-	db "from my boyfriend", $55
-	db "overseas.", $51
-	db "It carried some", $4f
-	db "MAIL from him.", $51
-	db "Want to know what", $4f
-	db "it says?", $51
-	db "Let's see… Nope!", $4f
-	db "It's a secret!", $57
+	text "My BUTTERFREE came"
+	line "from my boyfriend"
+	cont "overseas."
+
+	para "It carried some"
+	line "MAIL from him."
+
+	para "Want to know what"
+	line "it says?"
+
+	para "Let's see… Nope!"
+	line "It's a secret!"
+	done
 ; 0x9cb9e
 
 OlivineMart_MapEventHeader: ; 0x9cb9e

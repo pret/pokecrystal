@@ -11,9 +11,11 @@ MapRoute22Signpost0Script: ; 0x7c002
 ; 0x7c005
 
 UnknownText_0x7c005: ; 0x7c005
-	db $0, "#MON LEAGUE", $51
-	db "VICTORY ROAD", $4f
-	db "ENTRANCE", $57
+	text "#MON LEAGUE"
+
+	para "VICTORY ROAD"
+	line "ENTRANCE"
+	done
 ; 0x7c028
 
 Route22_MapEventHeader: ; 0x7c028

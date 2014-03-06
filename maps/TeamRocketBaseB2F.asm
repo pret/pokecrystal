@@ -656,286 +656,381 @@ MovementData_0x6d2a4: ; 0x6d2a4
 ; 0x6d2ad
 
 UnknownText_0x6d2ad: ; 0x6d2ad
-	db $0, "Hold it right", $4f
-	db "there!", $57
+	text "Hold it right"
+	line "there!"
+	done
 ; 0x6d2c3
 
 UnknownText_0x6d2c3: ; 0x6d2c3
-	db $0, "We can't have a", $4f
-	db "brat like you on", $55
-	db "the loose.", $51
-	db "It's harmful to", $4f
-	db "TEAM ROCKET's", $55
-	db "pride, you see.", $51
-	db "However strong you", $4f
-	db "may be, you can't", $51
-	db "take both of us at", $4f
-	db "the same time.", $51
-	db "Sorry, baby. Now", $4f
-	db "get ready to be", $55
-	db "thrashed.", $57
+	text "We can't have a"
+	line "brat like you on"
+	cont "the loose."
+
+	para "It's harmful to"
+	line "TEAM ROCKET's"
+	cont "pride, you see."
+
+	para "However strong you"
+	line "may be, you can't"
+
+	para "take both of us at"
+	line "the same time."
+
+	para "Sorry, baby. Now"
+	line "get ready to be"
+	cont "thrashed."
+	done
 ; 0x6d38c
 
 UnknownText_0x6d38c: ; 0x6d38c
-	db $0, "Hey! Don't be so", $4f
-	db "selfish. Spread", $55
-	db "the fun around.", $57
+	text "Hey! Don't be so"
+	line "selfish. Spread"
+	cont "the fun around."
+	done
 ; 0x6d3bd
 
 UnknownText_0x6d3bd: ; 0x6d3bd
-	db $0, "What? You had an", $4f
-	db "accomplice?", $51
-	db "Where is your", $4f
-	db "sense of honor?", $51
-	db "As the interim", $4f
-	db "boss in place of", $51
-	db "GIOVANNI, I'll", $4f
-	db "show you how wrong", $51
-	db "it is to meddle", $4f
-	db "with TEAM ROCKET!", $57
+	text "What? You had an"
+	line "accomplice?"
+
+	para "Where is your"
+	line "sense of honor?"
+
+	para "As the interim"
+	line "boss in place of"
+
+	para "GIOVANNI, I'll"
+	line "show you how wrong"
+
+	para "it is to meddle"
+	line "with TEAM ROCKET!"
+	done
 ; 0x6d45c
 
 UnknownText_0x6d45c: ; 0x6d45c
-	db $0, "Tch, you really", $4f
-	db "are strong.", $51
-	db "It's too bad.", $51
-	db "If you were to", $4f
-	db "join TEAM ROCKET,", $51
-	db "you could become", $4f
-	db "an EXECUTIVE.", $57
+	text "Tch, you really"
+	line "are strong."
+
+	para "It's too bad."
+
+	para "If you were to"
+	line "join TEAM ROCKET,"
+
+	para "you could become"
+	line "an EXECUTIVE."
+	done
 ; 0x6d4c6
 
 UnknownText_0x6d4c6: ; 0x6d4c6
-	db $0, "…This hideout is", $4f
-	db "done for…", $51
-	db "But that's fine.", $4f
-	db "The broadcast ex-", $55
-	db "periment was a", $55
-	db "total success.", $51
-	db "It doesn't matter", $4f
-	db "what happens to", $55
-	db "this hideout now.", $51
-	db "We have much big-", $4f
-	db "ger plans.", $51
-	db "You'll come to", $4f
-	db "appreciate TEAM", $51
-	db "ROCKET's true", $4f
-	db "power soon enough.", $51
-	db "Enjoy yourself", $4f
-	db "while you can…", $51
-	db "Fufufufu…", $57
+	text "…This hideout is"
+	line "done for…"
+
+	para "But that's fine."
+	line "The broadcast ex-"
+	cont "periment was a"
+	cont "total success."
+
+	para "It doesn't matter"
+	line "what happens to"
+	cont "this hideout now."
+
+	para "We have much big-"
+	line "ger plans."
+
+	para "You'll come to"
+	line "appreciate TEAM"
+
+	para "ROCKET's true"
+	line "power soon enough."
+
+	para "Enjoy yourself"
+	line "while you can…"
+
+	para "Fufufufu…"
+	done
 ; 0x6d5d8
 
 UnknownText_0x6d5d8: ; 0x6d5d8
-	db $0, "LANCE: That did", $4f
-	db "it. We defeated", $51
-	db "all the ROCKETS", $4f
-	db "here.", $51
-	db "But I'm concerned", $4f
-	db "about the young", $51
-	db "guy I battled in", $4f
-	db "the process…", $57
+	text "LANCE: That did"
+	line "it. We defeated"
+
+	para "all the ROCKETS"
+	line "here."
+
+	para "But I'm concerned"
+	line "about the young"
+
+	para "guy I battled in"
+	line "the process…"
+	done
 ; 0x6d64e
 
 UnknownText_0x6d64e: ; 0x6d64e
-	db $0, "Sorry, ", $14, ".", $4f
-	db "I saw how well you", $51
-	db "were doing, so I", $4f
-	db "just hung back.", $51
-	db "Now all there is", $4f
-	db "left to do is to", $51
-	db "turn off that odd", $4f
-	db "radio signal.", $57
+	text "Sorry, ", $14, "."
+	line "I saw how well you"
+
+	para "were doing, so I"
+	line "just hung back."
+
+	para "Now all there is"
+	line "left to do is to"
+
+	para "turn off that odd"
+	line "radio signal."
+	done
 ; 0x6d6cf
 
 UnknownText_0x6d6cf: ; 0x6d6cf
-	db $0, "It's this machine", $4f
-	db "that's causing all", $55
-	db "the problems.", $51
-	db "I don't see a", $4f
-	db "switch on it…", $51
-	db "We have no choice.", $4f
-	db "We have to make", $51
-	db "all the ELECTRODE", $4f
-	db "faint.", $51
-	db "That should stop", $4f
-	db "this machine from", $51
-	db "transmitting that", $4f
-	db "strange signal.", $51
-	db "It's no fault of", $4f
-	db "the #MON, so it", $51
-	db "makes me feel", $4f
-	db "guilty.", $51
-	db $14, ", let's", $4f
-	db "split the job.", $57
+	text "It's this machine"
+	line "that's causing all"
+	cont "the problems."
+
+	para "I don't see a"
+	line "switch on it…"
+
+	para "We have no choice."
+	line "We have to make"
+
+	para "all the ELECTRODE"
+	line "faint."
+
+	para "That should stop"
+	line "this machine from"
+
+	para "transmitting that"
+	line "strange signal."
+
+	para "It's no fault of"
+	line "the #MON, so it"
+
+	para "makes me feel"
+	line "guilty."
+
+	para $14, ", let's"
+	line "split the job."
+	done
 ; 0x6d7ea
 
 UnknownText_0x6d7ea: ; 0x6d7ea
-	db $0, "LANCE: Leave this", $4f
-	db "side to me.", $57
+	text "LANCE: Leave this"
+	line "side to me."
+	done
 ; 0x6d809
 
 UnknownText_0x6d809: ; 0x6d809
-	db $0, "LANCE: That odd", $4f
-	db "signal has finally", $55
-	db "stopped.", $51
-	db "The LAKE should be", $4f
-	db "back to normal.", $51
-	db "You're the hero!", $4f
-	db "Let me thank you", $51
-	db "on behalf of all", $4f
-	db "the #MON.", $51
-	db "Oh, yes. You", $4f
-	db "should take this.", $51
-	db "I found it here,", $4f
-	db "but I don't have", $55
-	db "any need for it.", $57
+	text "LANCE: That odd"
+	line "signal has finally"
+	cont "stopped."
+
+	para "The LAKE should be"
+	line "back to normal."
+
+	para "You're the hero!"
+	line "Let me thank you"
+
+	para "on behalf of all"
+	line "the #MON."
+
+	para "Oh, yes. You"
+	line "should take this."
+
+	para "I found it here,"
+	line "but I don't have"
+	cont "any need for it."
+	done
 ; 0x6d8e6
 
 UnknownText_0x6d8e6: ; 0x6d8e6
-	db $0, $52, " received", $4f
-	db "HM06.", $57
+	text $52, " received"
+	line "HM06."
+	done
 ; 0x6d8f8
 
 UnknownText_0x6d8f8: ; 0x6d8f8
-	db $0, "That's WHIRLPOOL.", $4f
-	db "Teach it to a", $51
-	db "#MON to get", $4f
-	db "across wild water.", $51
-	db "But keep this in", $4f
-	db "mind.", $51
-	db "You can use that", $4f
-	db "out of battle only", $51
-	db "with the BADGE", $4f
-	db "from MAHOGANY GYM.", $57
+	text "That's WHIRLPOOL."
+	line "Teach it to a"
+
+	para "#MON to get"
+	line "across wild water."
+
+	para "But keep this in"
+	line "mind."
+
+	para "You can use that"
+	line "out of battle only"
+
+	para "with the BADGE"
+	line "from MAHOGANY GYM."
+	done
 ; 0x6d994
 
 UnknownText_0x6d994: ; 0x6d994
-	db $0, $14, "…", $51
-	db "The journey to be-", $4f
-	db "coming the #MON", $51
-	db "MASTER is long and", $4f
-	db "difficult.", $51
-	db "Knowing that, will", $4f
-	db "you keep going?", $51
-	db "…", $51
-	db "I see. No, you're", $4f
-	db "right.", $51
-	db "If you would give", $4f
-	db "up that easily,", $51
-	db "you would have", $4f
-	db "never chased that", $51
-	db "dream in the first", $4f
-	db "place.", $51
-	db "I look forward to", $4f
-	db "seeing you again!", $57
+	text $14, "…"
+
+	para "The journey to be-"
+	line "coming the #MON"
+
+	para "MASTER is long and"
+	line "difficult."
+
+	para "Knowing that, will"
+	line "you keep going?"
+
+	para "…"
+
+	para "I see. No, you're"
+	line "right."
+
+	para "If you would give"
+	line "up that easily,"
+
+	para "you would have"
+	line "never chased that"
+
+	para "dream in the first"
+	line "place."
+
+	para "I look forward to"
+	line "seeing you again!"
+	done
 ; 0x6da97
 
 UnknownText_0x6da97: ; 0x6da97
-	db $0, "LANCE: Are you all", $4f
-	db "right?", $51
-	db "Your #MON are", $4f
-	db "hurt and tired.", $51
-	db "Here, give them", $4f
-	db "some of my medi-", $55
-	db "cine.", $57
+	text "LANCE: Are you all"
+	line "right?"
+
+	para "Your #MON are"
+	line "hurt and tired."
+
+	para "Here, give them"
+	line "some of my medi-"
+	cont "cine."
+	done
 ; 0x6daf7
 
 UnknownText_0x6daf7: ; 0x6daf7
-	db $0, "LANCE: ", $14, ",", $4f
-	db "let's give it our", $55
-	db "best for #MON.", $57
+	text "LANCE: ", $14, ","
+	line "let's give it our"
+	cont "best for #MON."
+	done
 ; 0x6db22
 
 GruntM17SeenText: ; 0x6db22
-	db $0, "The door won't", $4f
-	db "open?", $51
-	db "Well, duh.", $4f
-	db "It has to have a", $51
-	db "password that only", $4f
-	db "TEAM ROCKET knows.", $57
+	text "The door won't"
+	line "open?"
+
+	para "Well, duh."
+	line "It has to have a"
+
+	para "password that only"
+	line "TEAM ROCKET knows."
+	done
 ; 0x6db79
 
 GruntM17BeatenText: ; 0x6db79
-	db $0, "What? I lost?", $57
+	text "What? I lost?"
+	done
 ; 0x6db88
 
 UnknownText_0x6db88: ; 0x6db88
-	db $0, "Heh, I'm just a", $4f
-	db "GRUNT.", $51
-	db "I don't know the", $4f
-	db "password. Too bad", $55
-	db "for you.", $57
+	text "Heh, I'm just a"
+	line "GRUNT."
+
+	para "I don't know the"
+	line "password. Too bad"
+	cont "for you."
+	done
 ; 0x6dbca
 
 GruntM18SeenText: ; 0x6dbca
-	db $0, "Oh, a kid? I don't", $4f
-	db "really like this,", $51
-	db "but eliminate you", $4f
-	db "I must.", $57
+	text "Oh, a kid? I don't"
+	line "really like this,"
+
+	para "but eliminate you"
+	line "I must."
+	done
 ; 0x6dc09
 
 GruntM18BeatenText: ; 0x6dc09
-	db $0, "I knew I'd lose…", $57
+	text "I knew I'd lose…"
+	done
 ; 0x6dc1a
 
 UnknownText_0x6dc1a: ; 0x6dc1a
-	db $0, "I got wiped out on", $4f
-	db "the last mission", $55
-	db "by a kid too.", $51
-	db "When we were ab-", $4f
-	db "ducting #MON,", $51
-	db "this kid with long", $4f
-	db "red hair and mean-", $51
-	db "looking eyes just", $4f
-	db "creamed me…", $57
+	text "I got wiped out on"
+	line "the last mission"
+	cont "by a kid too."
+
+	para "When we were ab-"
+	line "ducting #MON,"
+
+	para "this kid with long"
+	line "red hair and mean-"
+
+	para "looking eyes just"
+	line "creamed me…"
+	done
 ; 0x6dcb0
 
 GruntM19SeenText: ; 0x6dcb0
-	db $0, "You rotten little", $4f
-	db "pest!", $57
+	text "You rotten little"
+	line "pest!"
+	done
 ; 0x6dcc9
 
 GruntM19BeatenText: ; 0x6dcc9
-	db $0, "Grrrr…", $57
+	text "Grrrr…"
+	done
 ; 0x6dcd1
 
 UnknownText_0x6dcd1: ; 0x6dcd1
-	db $0, "Heh, only the boss", $4f
-	db "knows the password", $55
-	db "for that door.", $51
-	db "Where's the boss?", $4f
-	db "Who knows? Go look", $55
-	db "for yourself.", $57
+	text "Heh, only the boss"
+	line "knows the password"
+	cont "for that door."
+
+	para "Where's the boss?"
+	line "Who knows? Go look"
+	cont "for yourself."
+	done
 ; 0x6dd39
 
 UnknownText_0x6dd39: ; 0x6dd39
-	db $0, "The door's closed…", $51
-	db "It needs a pass-", $4f
-	db "word to open.", $57
+	text "The door's closed…"
+
+	para "It needs a pass-"
+	line "word to open."
+	done
 ; 0x6dd6b
 
 UnknownText_0x6dd6b: ; 0x6dd6b
-	db $0, "The door's closed…", $51
-	db $52, " entered", $4f
-	db "the password.", $51
-	db "The door opened!", $57
+	text "The door's closed…"
+
+	para $52, " entered"
+	line "the password."
+
+	para "The door opened!"
+	done
 ; 0x6dda7
 
 UnknownText_0x6dda7: ; 0x6dda7
-	db $0, "It's the radio", $4f
-	db "transmitter that's", $51
-	db "sending the", $4f
-	db "sinister signal.", $51
-	db "It's working at", $4f
-	db "full capacity.", $57
+	text "It's the radio"
+	line "transmitter that's"
+
+	para "sending the"
+	line "sinister signal."
+
+	para "It's working at"
+	line "full capacity."
+	done
 ; 0x6de03
 
 UnknownText_0x6de03: ; 0x6de03
-	db $0, "The radio trans-", $4f
-	db "mitter has finally", $51
-	db "stopped its evil", $4f
-	db "broadcast.", $57
+	text "The radio trans-"
+	line "mitter has finally"
+
+	para "stopped its evil"
+	line "broadcast."
+	done
 ; 0x6de44
 
 TeamRocketBaseB2F_MapEventHeader: ; 0x6de44

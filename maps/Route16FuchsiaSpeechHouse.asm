@@ -15,10 +15,12 @@ MapRoute16FuchsiaSpeechHouseSignpost1Script: ; 0x73376
 ; 0x73379
 
 UnknownText_0x73379: ; 0x73379
-	db $0, "If you cruise down", $4f
-	db "CYCLING ROAD, you", $51
-	db "will end up in", $4f
-	db "FUCHSIA CITY.", $57
+	text "If you cruise down"
+	line "CYCLING ROAD, you"
+
+	para "will end up in"
+	line "FUCHSIA CITY."
+	done
 ; 0x733bc
 
 Route16FuchsiaSpeechHouse_MapEventHeader: ; 0x733bc

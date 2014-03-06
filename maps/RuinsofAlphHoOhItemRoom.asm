@@ -27,9 +27,10 @@ MapRuinsofAlphHoOhItemRoomSignpost1Script: ; 0x59920
 ; 0x59923
 
 UnknownText_0x59923: ; 0x59923
-	db $0, "It's a replica of", $4f
-	db "an ancient #-", $55
-	db "MON.", $57
+	text "It's a replica of"
+	line "an ancient #-"
+	cont "MON."
+	done
 ; 0x59948
 
 RuinsofAlphHoOhItemRoom_MapEventHeader: ; 0x59948

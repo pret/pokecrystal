@@ -41,35 +41,45 @@ MapGoldenrodDeptStore4FSignpost1Script: ; 0x55f05
 ; 0x55f08
 
 UnknownText_0x55f08: ; 0x55f08
-	db $0, "Hey. I love strong", $4f
-	db "#MON.", $51
-	db "I feed them PRO-", $4f
-	db "TEIN to crank up", $55
-	db "their ATTACK.", $57
+	text "Hey. I love strong"
+	line "#MON."
+
+	para "I feed them PRO-"
+	line "TEIN to crank up"
+	cont "their ATTACK."
+	done
 ; 0x55f52
 
 UnknownText_0x55f52: ; 0x55f52
-	db $0, "IRON adds to your", $4f
-	db "#MON's DEFENSE.", $57
+	text "IRON adds to your"
+	line "#MON's DEFENSE."
+	done
 ; 0x55f74
 
 UnknownText_0x55f74: ; 0x55f74
-	db $0, "Some #MON", $4f
-	db "evolve only by", $51
-	db "being traded via a", $4f
-	db "Game Link cable.", $51
-	db "I know of four:", $4f
-	db "MACHOKE, KADABRA,", $51
-	db "HAUNTER and, um,", $4f
-	db "GRAVELER.", $51
-	db "I heard there are", $4f
-	db "others too.", $57
+	text "Some #MON"
+	line "evolve only by"
+
+	para "being traded via a"
+	line "Game Link cable."
+
+	para "I know of four:"
+	line "MACHOKE, KADABRA,"
+
+	para "HAUNTER and, um,"
+	line "GRAVELER."
+
+	para "I heard there are"
+	line "others too."
+	done
 ; 0x5600d
 
 UnknownText_0x5600d: ; 0x5600d
-	db $0, "Let Us Pump Up", $4f
-	db "Your #MON!", $51
-	db "4F MEDICINE BOX", $57
+	text "Let Us Pump Up"
+	line "Your #MON!"
+
+	para "4F MEDICINE BOX"
+	done
 ; 0x56038
 
 GoldenrodDeptStore4F_MapEventHeader: ; 0x56038

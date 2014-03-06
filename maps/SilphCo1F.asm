@@ -29,26 +29,32 @@ UnknownScript_0x18ac01: ; 0x18ac01
 ; 0x18ac03
 
 UnknownText_0x18ac03: ; 0x18ac03
-	db $0, "Welcome. This is", $4f
-	db "SILPH CO.'s HEAD", $55
-	db "OFFICE BUILDING.", $57
+	text "Welcome. This is"
+	line "SILPH CO.'s HEAD"
+	cont "OFFICE BUILDING."
+	done
 ; 0x18ac36
 
 UnknownText_0x18ac36: ; 0x18ac36
-	db $0, "Only employees are", $4f
-	db "permitted to go", $55
-	db "upstairs.", $51
-	db "But since you came", $4f
-	db "such a long way,", $51
-	db "have this neat", $4f
-	db "little souvenir.", $57
+	text "Only employees are"
+	line "permitted to go"
+	cont "upstairs."
+
+	para "But since you came"
+	line "such a long way,"
+
+	para "have this neat"
+	line "little souvenir."
+	done
 ; 0x18aca8
 
 UnknownText_0x18aca8: ; 0x18aca8
-	db $0, "It's SILPH CO.'s", $4f
-	db "latest product.", $51
-	db "It's not for sale", $4f
-	db "anywhere yet.", $57
+	text "It's SILPH CO.'s"
+	line "latest product."
+
+	para "It's not for sale"
+	line "anywhere yet."
+	done
 ; 0x18ace7
 
 SilphCo1F_MapEventHeader: ; 0x18ace7

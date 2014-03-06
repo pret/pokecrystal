@@ -15,9 +15,10 @@ MapPewterSnoozeSpeechHouseSignpost1Script: ; 0x1a305c
 ; 0x1a305f
 
 UnknownText_0x1a305f: ; 0x1a305f
-	db $0, "I like snoozing", $4f
-	db "with the radio on…", $55
-	db "…Zzzz…", $57
+	text "I like snoozing"
+	line "with the radio on…"
+	cont "…Zzzz…"
+	done
 ; 0x1a308a
 
 PewterSnoozeSpeechHouse_MapEventHeader: ; 0x1a308a

@@ -15,14 +15,17 @@ MapGuideGentsHouseSignpost1Script: ; 0x196c0a
 ; 0x196c0d
 
 UnknownText_0x196c0d: ; 0x196c0d
-	db $0, "When I was a wee", $4f
-	db "lad, I was a hot-", $55
-	db "shot trainer!", $51
-	db "Here's a word of", $4f
-	db "advice: Catch lots", $55
-	db "of #MON!", $51
-	db "Treat them all", $4f
-	db "with kindness!", $57
+	text "When I was a wee"
+	line "lad, I was a hot-"
+	cont "shot trainer!"
+
+	para "Here's a word of"
+	line "advice: Catch lots"
+	cont "of #MON!"
+
+	para "Treat them all"
+	line "with kindness!"
+	done
 ; 0x196c89
 
 GuideGentsHouse_MapEventHeader: ; 0x196c89

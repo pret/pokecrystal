@@ -103,46 +103,59 @@ MapMountMortar1FInsideSignpostItem0: ; 0x7de8a
 ; 0x7de8d
 
 PokemaniacMillerSeenText: ; 0x7de8d
-	db $0, "I'm not losing", $4f
-	db "this time!", $57
+	text "I'm not losing"
+	line "this time!"
+	done
 ; 0x7dea7
 
 PokemaniacMillerBeatenText: ; 0x7dea7
-	db $0, "I lost to some", $4f
-	db "kid…?", $57
+	text "I lost to some"
+	line "kid…?"
+	done
 ; 0x7debd
 
 UnknownText_0x7debd: ; 0x7debd
-	db $0, "A while back, this", $4f
-	db "karate dude wanted", $51
-	db "to battle. He was", $4f
-	db "ridiculously good.", $51
-	db "He just thrashed", $4f
-	db "us silly.", $51
-	db "He went in deeper", $4f
-	db "saying it was for", $51
-	db "his training. I", $4f
-	db "wonder how he is?", $57
+	text "A while back, this"
+	line "karate dude wanted"
+
+	para "to battle. He was"
+	line "ridiculously good."
+
+	para "He just thrashed"
+	line "us silly."
+
+	para "He went in deeper"
+	line "saying it was for"
+
+	para "his training. I"
+	line "wonder how he is?"
+	done
 ; 0x7df6a
 
 SupernerdMarkusSeenText: ; 0x7df6a
-	db $0, "Hey! HUGH!", $57
+	text "Hey! HUGH!"
+	done
 ; 0x7df76
 
 SupernerdMarkusBeatenText: ; 0x7df76
-	db $0, "I mistook you for", $4f
-	db "someone else…", $57
+	text "I mistook you for"
+	line "someone else…"
+	done
 ; 0x7df97
 
 UnknownText_0x7df97: ; 0x7df97
-	db $0, "I came to explore", $4f
-	db "MT.MORTAR, but I", $51
-	db "got separated from", $4f
-	db "my partner…", $51
-	db "Did you run into a", $4f
-	db "trainer who uses a", $51
-	db "SEADRA that knows", $4f
-	db "WATERFALL?", $57
+	text "I came to explore"
+	line "MT.MORTAR, but I"
+
+	para "got separated from"
+	line "my partner…"
+
+	para "Did you run into a"
+	line "trainer who uses a"
+
+	para "SEADRA that knows"
+	line "WATERFALL?"
+	done
 ; 0x7e01d
 
 MountMortar1FInside_MapEventHeader: ; 0x7e01d

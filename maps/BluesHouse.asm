@@ -69,72 +69,91 @@ UnknownScript_0x19b12a: ; 0x19b12a
 ; 0x19b130
 
 UnknownText_0x19b130: ; 0x19b130
-	db $0, "DAISY: Hi! My kid", $4f
-	db "brother is the GYM", $51
-	db "LEADER in VIRIDIAN", $4f
-	db "CITY.", $51
-	db "But he goes out", $4f
-	db "of town so often,", $51
-	db "it causes problems", $4f
-	db "for the trainers.", $57
+	text "DAISY: Hi! My kid"
+	line "brother is the GYM"
+
+	para "LEADER in VIRIDIAN"
+	line "CITY."
+
+	para "But he goes out"
+	line "of town so often,"
+
+	para "it causes problems"
+	line "for the trainers."
+	done
 ; 0x19b1b6
 
 UnknownText_0x19b1b6: ; 0x19b1b6
-	db $0, "DAISY: Hi! Good", $4f
-	db "timing. I'm about", $55
-	db "to have some tea.", $51
-	db "Would you like to", $4f
-	db "join me?", $51
-	db "Oh, your #MON", $4f
-	db "are a bit dirty.", $51
-	db "Would you like me", $4f
-	db "to groom one?", $57
+	text "DAISY: Hi! Good"
+	line "timing. I'm about"
+	cont "to have some tea."
+
+	para "Would you like to"
+	line "join me?"
+
+	para "Oh, your #MON"
+	line "are a bit dirty."
+
+	para "Would you like me"
+	line "to groom one?"
+	done
 ; 0x19b244
 
 UnknownText_0x19b244: ; 0x19b244
-	db $0, "DAISY: Which one", $4f
-	db "should I groom?", $57
+	text "DAISY: Which one"
+	line "should I groom?"
+	done
 ; 0x19b266
 
 UnknownText_0x19b266: ; 0x19b266
-	db $0, "DAISY: OK, I'll", $4f
-	db "get it looking", $55
-	db "nice in no time.", $57
+	text "DAISY: OK, I'll"
+	line "get it looking"
+	cont "nice in no time."
+	done
 ; 0x19b296
 
 UnknownText_0x19b296: ; 0x19b296
 	text_from_ram $d099
-	db $0, " looks", $4f
-	db "content.", $57
+	text " looks"
+	line "content."
+	done
 ; 0x19b2aa
 
 UnknownText_0x19b2aa: ; 0x19b2aa
-	db $0, "DAISY: There you", $4f
-	db "go! All done.", $51
-	db "See? Doesn't it", $4f
-	db "look nice?", $51
-	db "It's such a cute", $4f
-	db "#MON.", $57
+	text "DAISY: There you"
+	line "go! All done."
+
+	para "See? Doesn't it"
+	line "look nice?"
+
+	para "It's such a cute"
+	line "#MON."
+	done
 ; 0x19b2fa
 
 UnknownText_0x19b2fa: ; 0x19b2fa
-	db $0, "DAISY: I always", $4f
-	db "have tea around", $51
-	db "this time. Come", $4f
-	db "join me.", $57
+	text "DAISY: I always"
+	line "have tea around"
+
+	para "this time. Come"
+	line "join me."
+	done
 ; 0x19b334
 
 UnknownText_0x19b334: ; 0x19b334
-	db $0, "DAISY: You don't", $4f
-	db "want to have one", $51
-	db "groomed? OK, we'll", $4f
-	db "just have tea.", $57
+	text "DAISY: You don't"
+	line "want to have one"
+
+	para "groomed? OK, we'll"
+	line "just have tea."
+	done
 ; 0x19b377
 
 UnknownText_0x19b377: ; 0x19b377
-	db $0, "DAISY: Oh, sorry.", $4f
-	db "I honestly can't", $55
-	db "groom an EGG.", $57
+	text "DAISY: Oh, sorry."
+	line "I honestly can't"
+	cont "groom an EGG."
+	done
 ; 0x19b3a8
 
 BluesHouse_MapEventHeader: ; 0x19b3a8

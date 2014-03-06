@@ -176,46 +176,59 @@ FruitTreeScript_0x1ac0ea: ; 0x1ac0ea
 ; 0x1ac0ec
 
 HikerAnthony2SeenText: ; 0x1ac0ec
-	db $0, "I came through the", $4f
-	db "tunnel, but I", $51
-	db "still have plenty", $4f
-	db "of energy left.", $57
+	text "I came through the"
+	line "tunnel, but I"
+
+	para "still have plenty"
+	line "of energy left."
+	done
 ; 0x1ac130
 
 HikerAnthony2BeatenText: ; 0x1ac130
-	db $0, "Whoa! You've got", $4f
-	db "more zip than me!", $57
+	text "Whoa! You've got"
+	line "more zip than me!"
+	done
 ; 0x1ac153
 
 UnknownText_0x1ac153: ; 0x1ac153
-	db $0, "We HIKERS are at", $4f
-	db "our best in the", $55
-	db "mountains.", $57
+	text "We HIKERS are at"
+	line "our best in the"
+	cont "mountains."
+	done
 ; 0x1ac180
 
 UnknownText_0x1ac180: ; 0x1ac180
-	db $0, "Hey, did you get a", $4f
-	db "DUNSPARCE?", $51
-	db "I caught one too.", $51
-	db "Take a look at it", $4f
-	db "in the light. It's", $55
-	db "got a funny face!", $57
+	text "Hey, did you get a"
+	line "DUNSPARCE?"
+
+	para "I caught one too."
+
+	para "Take a look at it"
+	line "in the light. It's"
+	cont "got a funny face!"
+	done
 ; 0x1ac1e7
 
 UnknownText_0x1ac1e7: ; 0x1ac1e7
-	db $0, "Pant, pant…", $51
-	db "I finally got", $4f
-	db "through that cave.", $51
-	db "It was much bigger", $4f
-	db "than I'd expected.", $51
-	db "I got too tired to", $4f
-	db "explore the whole", $51
-	db "thing, so I came", $4f
-	db "outside.", $57
+	text "Pant, pant…"
+
+	para "I finally got"
+	line "through that cave."
+
+	para "It was much bigger"
+	line "than I'd expected."
+
+	para "I got too tired to"
+	line "explore the whole"
+
+	para "thing, so I came"
+	line "outside."
+	done
 ; 0x1ac279
 
 UnknownText_0x1ac279: ; 0x1ac279
-	db $0, "ROUTE 33", $57
+	text "ROUTE 33"
+	done
 ; 0x1ac283
 
 Route33_MapEventHeader: ; 0x1ac283

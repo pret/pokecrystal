@@ -23,43 +23,56 @@ GrannyScript_0x7ec50: ; 0x7ec50
 ; 0x7ec53
 
 UnknownText_0x7ec53: ; 0x7ec53
-	db $0, "MR.FUJI: Welcome.", $51
-	db "Hmm… You appear to", $4f
-	db "be raising your", $51
-	db "#MON in a kind", $4f
-	db "and loving manner.", $51
-	db "#MON lovers", $4f
-	db "come here to pay", $51
-	db "their respects to", $4f
-	db "departed #MON.", $51
-	db "Please offer con-", $4f
-	db "dolences for the", $51
-	db "souls of the de-", $4f
-	db "parted #MON.", $51
-	db "I'm sure that will", $4f
-	db "make them happy.", $57
+	text "MR.FUJI: Welcome."
+
+	para "Hmm… You appear to"
+	line "be raising your"
+
+	para "#MON in a kind"
+	line "and loving manner."
+
+	para "#MON lovers"
+	line "come here to pay"
+
+	para "their respects to"
+	line "departed #MON."
+
+	para "Please offer con-"
+	line "dolences for the"
+
+	para "souls of the de-"
+	line "parted #MON."
+
+	para "I'm sure that will"
+	line "make them happy."
+	done
 ; 0x7ed4d
 
 UnknownText_0x7ed4d: ; 0x7ed4d
-	db $0, "There are other", $4f
-	db "graves of #MON", $55
-	db "here, I think.", $51
-	db "There are many", $4f
-	db "chambers that only", $55
-	db "MR.FUJI may enter.", $57
+	text "There are other"
+	line "graves of #MON"
+	cont "here, I think."
+
+	para "There are many"
+	line "chambers that only"
+	cont "MR.FUJI may enter."
+	done
 ; 0x7edb1
 
 UnknownText_0x7edb1: ; 0x7edb1
-	db $0, "I came with my mom", $4f
-	db "to visit #MON", $55
-	db "graves…", $57
+	text "I came with my mom"
+	line "to visit #MON"
+	cont "graves…"
+	done
 ; 0x7eddb
 
 UnknownText_0x7eddb: ; 0x7eddb
-	db $0, "The #MON that", $4f
-	db "lived with me…", $51
-	db "I loved them like", $4f
-	db "my grandchildren…", $57
+	text "The #MON that"
+	line "lived with me…"
+
+	para "I loved them like"
+	line "my grandchildren…"
+	done
 ; 0x7ee1d
 
 SoulHouse_MapEventHeader: ; 0x7ee1d

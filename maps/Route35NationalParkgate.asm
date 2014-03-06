@@ -252,182 +252,235 @@ MovementData_0x6a2e9: ; 0x6a2e9
 ; 0x6a2eb
 
 UnknownText_0x6a2eb: ; 0x6a2eb
-	db $0, "Today's @"
+	text "Today's @"
 	text_from_ram $d099
-	db $0, ".", $4f
-	db "That means the", $51
-	db "Bug-Catching Con-", $4f
-	db "test is on today.", $51
-	db "The rules are sim-", $4f
-	db "ple.", $51
-	db "Using one of your", $4f
-	db "#MON, catch a", $51
-	db "bug #MON to be", $4f
-	db "judged.", $51
-	db "Would you like to", $4f
-	db "give it a try?", $57
+	text "."
+	line "That means the"
+
+	para "Bug-Catching Con-"
+	line "test is on today."
+
+	para "The rules are sim-"
+	line "ple."
+
+	para "Using one of your"
+	line "#MON, catch a"
+
+	para "bug #MON to be"
+	line "judged."
+
+	para "Would you like to"
+	line "give it a try?"
+	done
 ; 0x6a39d
 
 UnknownText_0x6a39d: ; 0x6a39d
-	db $0, "Here are the PARK", $4f
-	db "BALLS for the", $55
-	db "Contest.", $57
+	text "Here are the PARK"
+	line "BALLS for the"
+	cont "Contest."
+	done
 ; 0x6a3c7
 
 UnknownText_0x6a3c7: ; 0x6a3c7
-	db $0, $52, " received", $4f
-	db "20 PARK BALLS.", $57
+	text $52, " received"
+	line "20 PARK BALLS."
+	done
 ; 0x6a3e2
 
 UnknownText_0x6a3e2: ; 0x6a3e2
-	db $0, "The person who", $4f
-	db "gets the strong-", $55
-	db "est bug #MON", $55
-	db "is the winner.", $51
-	db "You have 20", $4f
-	db "minutes.", $51
-	db "If you run out of", $4f
-	db "PARK BALLS, you're", $55
-	db "done.", $51
-	db "You can keep the", $4f
-	db "last #MON you", $55
-	db "catch as your own.", $51
-	db "Go out and catch", $4f
-	db "the strongest bug", $51
-	db "#MON you can", $4f
-	db "find!", $57
+	text "The person who"
+	line "gets the strong-"
+	cont "est bug #MON"
+	cont "is the winner."
+
+	para "You have 20"
+	line "minutes."
+
+	para "If you run out of"
+	line "PARK BALLS, you're"
+	cont "done."
+
+	para "You can keep the"
+	line "last #MON you"
+	cont "catch as your own."
+
+	para "Go out and catch"
+	line "the strongest bug"
+
+	para "#MON you can"
+	line "find!"
+	done
 ; 0x6a4c6
 
 UnknownText_0x6a4c6: ; 0x6a4c6
-	db $0, "Uh-oh…", $51
-	db "You have more than", $4f
-	db "one #MON.", $51
-	db "You'll have to use", $4f
-	db "@"
+	text "Uh-oh…"
+
+	para "You have more than"
+	line "one #MON."
+
+	para "You'll have to use"
+	line "@"
 	text_from_ram $d099
-	db $0, ", the", $51
-	db "first #MON in", $4f
-	db "your party.", $51
-	db "Is that OK with", $4f
-	db "you?", $57
+	text ", the"
+
+	para "first #MON in"
+	line "your party."
+
+	para "Is that OK with"
+	line "you?"
+	done
 ; 0x6a537
 
 UnknownText_0x6a537: ; 0x6a537
-	db $0, "Fine, we'll hold", $4f
-	db "your other #MON", $55
-	db "while you compete.", $57
+	text "Fine, we'll hold"
+	line "your other #MON"
+	cont "while you compete."
+	done
 ; 0x6a56b
 
 UnknownText_0x6a56b: ; 0x6a56b
-	db $0, $52, "'s #MON", $4f
-	db "were left with the", $55
-	db "CONTEST HELPER.", $57
+	text $52, "'s #MON"
+	line "were left with the"
+	cont "CONTEST HELPER."
+	done
 ; 0x6a597
 
 UnknownText_0x6a597: ; 0x6a597
-	db $0, "Please choose the", $4f
-	db "#MON to be used", $51
-	db "in the Contest,", $4f
-	db "then come see me.", $57
+	text "Please choose the"
+	line "#MON to be used"
+
+	para "in the Contest,"
+	line "then come see me."
+	done
 ; 0x6a5dc
 
 UnknownText_0x6a5dc: ; 0x6a5dc
-	db $0, "OK. We hope you'll", $4f
-	db "take part in the", $55
-	db "future.", $57
+	text "OK. We hope you'll"
+	line "take part in the"
+	cont "future."
+	done
 ; 0x6a608
 
 UnknownText_0x6a608: ; 0x6a608
-	db $0, "Uh-oh…", $4f
-	db "The first #MON", $51
-	db "in your party", $4f
-	db "can't battle.", $51
-	db "Please switch it", $4f
-	db "with the #MON", $51
-	db "you want to use,", $4f
-	db "then come see me.", $57
+	text "Uh-oh…"
+	line "The first #MON"
+
+	para "in your party"
+	line "can't battle."
+
+	para "Please switch it"
+	line "with the #MON"
+
+	para "you want to use,"
+	line "then come see me."
+	done
 ; 0x6a67c
 
 UnknownText_0x6a67c: ; 0x6a67c
-	db $0, "Uh-oh…", $4f
-	db "Both your party", $51
-	db "and your PC BOX", $4f
-	db "are full.", $51
-	db "You have no room", $4f
-	db "to put the bug", $55
-	db "#MON you catch.", $51
-	db "Please make room", $4f
-	db "in your party or", $51
-	db "your PC BOX, then", $4f
-	db "come see me.", $57
+	text "Uh-oh…"
+	line "Both your party"
+
+	para "and your PC BOX"
+	line "are full."
+
+	para "You have no room"
+	line "to put the bug"
+	cont "#MON you catch."
+
+	para "Please make room"
+	line "in your party or"
+
+	para "your PC BOX, then"
+	line "come see me."
+	done
 ; 0x6a71f
 
 UnknownText_0x6a71f: ; 0x6a71f
-	db $0, "Uh-oh…", $4f
-	db "You have an EGG as", $51
-	db "the first #MON", $4f
-	db "in your party.", $51
-	db "Please switch it", $4f
-	db "with the #MON", $51
-	db "you want to use,", $4f
-	db "then come see me.", $57
+	text "Uh-oh…"
+	line "You have an EGG as"
+
+	para "the first #MON"
+	line "in your party."
+
+	para "Please switch it"
+	line "with the #MON"
+
+	para "you want to use,"
+	line "then come see me."
+	done
 ; 0x6a79a
 
 UnknownText_0x6a79a: ; 0x6a79a
-	db $0, "You still have @"
+	text "You still have @"
 	text_from_ram $d099
-	db $0, $4f
-	db "minute(s) left.", $51
-	db "Do you want to", $4f
-	db "finish now?", $57
+	db $0
+	line "minute(s) left."
+
+	para "Do you want to"
+	line "finish now?"
+	done
 ; 0x6a7db
 
 UnknownText_0x6a7db: ; 0x6a7db
-	db $0, "OK. Please wait at", $4f
-	db "the North Gate for", $51
-	db "the announcement", $4f
-	db "of the winners.", $57
+	text "OK. Please wait at"
+	line "the North Gate for"
+
+	para "the announcement"
+	line "of the winners."
+	done
 ; 0x6a823
 
 UnknownText_0x6a823: ; 0x6a823
-	db $0, "OK. Please get", $4f
-	db "back outside and", $55
-	db "finish up.", $57
+	text "OK. Please get"
+	line "back outside and"
+	cont "finish up."
+	done
 ; 0x6a84f
 
 UnknownText_0x6a84f: ; 0x6a84f
-	db $0, "Today's Contest is", $4f
-	db "over. We hope you", $51
-	db "will participate", $4f
-	db "in the future.", $57
+	text "Today's Contest is"
+	line "over. We hope you"
+
+	para "will participate"
+	line "in the future."
+	done
 ; 0x6a894
 
 UnknownText_0x6a894: ; 0x6a894
-	db $0, "We hold Contests", $4f
-	db "regularly in the", $51
-	db "PARK. You should", $4f
-	db "give it a shot.", $57
+	text "We hold Contests"
+	line "regularly in the"
+
+	para "PARK. You should"
+	line "give it a shot."
+	done
 ; 0x6a8d8
 
 UnknownText_0x6a8d8: ; 0x6a8d8
-	db $0, "When is the next", $4f
-	db "Bug-Catching Con-", $55
-	db "test going to be?", $57
+	text "When is the next"
+	line "Bug-Catching Con-"
+	cont "test going to be?"
+	done
 ; 0x6a90e
 
 UnknownText_0x6a90e: ; 0x6a90e
-	db $0, "The Bug-Catching", $4f
-	db "Contest is held on", $51
-	db "Tuesday, Thursday", $4f
-	db "and Saturday.", $51
-	db "Not only do you", $4f
-	db "earn a prize just", $51
-	db "for participating,", $4f
-	db "you also get to", $51
-	db "keep the bug", $4f
-	db "#MON you may", $51
-	db "have at the end of", $4f
-	db "the contest.", $57
+	text "The Bug-Catching"
+	line "Contest is held on"
+
+	para "Tuesday, Thursday"
+	line "and Saturday."
+
+	para "Not only do you"
+	line "earn a prize just"
+
+	para "for participating,"
+	line "you also get to"
+
+	para "keep the bug"
+	line "#MON you may"
+
+	para "have at the end of"
+	line "the contest."
+	done
 ; 0x6a9d2
 
 Route35NationalParkgate_MapEventHeader: ; 0x6a9d2

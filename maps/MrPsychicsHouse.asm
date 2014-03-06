@@ -29,17 +29,24 @@ MapMrPsychicsHouseSignpost1Script: ; 0x18a795
 ; 0x18a798
 
 UnknownText_0x18a798: ; 0x18a798
-	db $0, "…", $51
-	db "…", $51
-	db "…", $51
-	db "…I got it!", $51
-	db "You wanted this!", $57
+	text "…"
+
+	para "…"
+
+	para "…"
+
+	para "…I got it!"
+
+	para "You wanted this!"
+	done
 ; 0x18a7bb
 
 UnknownText_0x18a7bb: ; 0x18a7bb
-	db $0, "TM29 is PSYCHIC.", $51
-	db "It may lower the", $4f
-	db "target's SPCL.DEF.", $57
+	text "TM29 is PSYCHIC."
+
+	para "It may lower the"
+	line "target's SPCL.DEF."
+	done
 ; 0x18a7f0
 
 MrPsychicsHouse_MapEventHeader: ; 0x18a7f0

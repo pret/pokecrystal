@@ -33,28 +33,35 @@ GrowlitheScript_0x9ae4a: ; 0x9ae4a
 ; 0x9ae54
 
 UnknownText_0x9ae54: ; 0x9ae54
-	db $0, "Do you put a lot", $4f
-	db "of thought into", $51
-	db "naming your", $4f
-	db "#MON?", $51
-	db "Giving them good", $4f
-	db "nicknames adds to", $51
-	db "the fun of trading", $4f
-	db "with others.", $57
+	text "Do you put a lot"
+	line "of thought into"
+
+	para "naming your"
+	line "#MON?"
+
+	para "Giving them good"
+	line "nicknames adds to"
+
+	para "the fun of trading"
+	line "with others."
+	done
 ; 0x9aecb
 
 UnknownText_0x9aecb: ; 0x9aecb
-	db $0, "They're SPEARY--", $4f
-	db "a SPEAROW--and", $55
-	db "RATTEY--a RATTATA.", $57
+	text "They're SPEARY--"
+	line "a SPEAROW--and"
+	cont "RATTEY--a RATTATA."
+	done
 ; 0x9aefe
 
 UnknownText_0x9aefe: ; 0x9aefe
-	db $0, "SPEARY: Ch-chun!", $57
+	text "SPEARY: Ch-chun!"
+	done
 ; 0x9af10
 
 UnknownText_0x9af10: ; 0x9af10
-	db $0, "RATTEY: Kikiii!", $57
+	text "RATTEY: Kikiii!"
+	done
 ; 0x9af21
 
 ViridianNicknameSpeechHouse_MapEventHeader: ; 0x9af21

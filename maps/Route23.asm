@@ -20,10 +20,13 @@ MapRoute23Signpost0Script: ; 0x1ae537
 ; 0x1ae53a
 
 UnknownText_0x1ae53a: ; 0x1ae53a
-	db $0, "INDIGO PLATEAU", $51
-	db "The Ultimate Goal", $4f
-	db "for Trainers!", $51
-	db "#MON LEAGUE HQ", $57
+	text "INDIGO PLATEAU"
+
+	para "The Ultimate Goal"
+	line "for Trainers!"
+
+	para "#MON LEAGUE HQ"
+	done
 ; 0x1ae579
 
 Route23_MapEventHeader: ; 0x1ae579

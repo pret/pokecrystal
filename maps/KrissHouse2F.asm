@@ -115,23 +115,27 @@ UnknownScript_0x7ac1e: ; 0x7ac1e
 ; 0x7ac24
 
 UnknownText_0x7ac24: ; 0x7ac24
-	db $0, "PROF.OAK'S #MON", $4f
-	db "TALK! Please tune", $55
-	db "in next time!", $57
+	text "PROF.OAK'S #MON"
+	line "TALK! Please tune"
+	cont "in next time!"
+	done
 ; 0x7ac55
 
 UnknownText_0x7ac55: ; 0x7ac55
-	db $0, "#MON CHANNEL!", $57
+	text "#MON CHANNEL!"
+	done
 ; 0x7ac64
 
 UnknownText_0x7ac64: ; 0x7ac64
-	db $0, "This is DJ MARY,", $4f
-	db "your co-host!", $57
+	text "This is DJ MARY,"
+	line "your co-host!"
+	done
 ; 0x7ac84
 
 UnknownText_0x7ac84: ; 0x7ac84
-	db $0, "#MON!", $4f
-	db "#MON CHANNEL…", $57
+	text "#MON!"
+	line "#MON CHANNEL…"
+	done
 ; 0x7ac99
 
 KrissHouse2F_MapEventHeader: ; 0x7ac99

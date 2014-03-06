@@ -897,209 +897,258 @@ MovementData_0x192d36: ; 0x192d36
 ; 0x192d39
 
 UnknownText_0x192d39: ; 0x192d39
-	db $0, "Would you like to", $4f
-	db "battle over a GAME", $51
-	db "LINK cable or by", $4f
-	db "mobile phone?", $57
+	text "Would you like to"
+	line "battle over a GAME"
+
+	para "LINK cable or by"
+	line "mobile phone?"
+	done
 ; 0x192d7e
 
 UnknownText_0x192d7e: ; 0x192d7e
-	db $0, "Would you like to", $4f
-	db "trade over a GAME", $51
-	db "LINK cable or by", $4f
-	db "mobile phone?", $57
+	text "Would you like to"
+	line "trade over a GAME"
+
+	para "LINK cable or by"
+	line "mobile phone?"
+	done
 ; 0x192dc2
 
 UnknownText_0x192dc2: ; 0x192dc2
-	db $0, "This way to the", $4f
-	db "MOBILE ROOM.", $57
+	text "This way to the"
+	line "MOBILE ROOM."
+	done
 ; 0x192de0
 
 UnknownText_0x192de0: ; 0x192de0
-	db $0, "Welcome to CABLE", $4f
-	db "CLUB COLOSSEUM.", $51
-	db "You may battle a", $4f
-	db "friend here.", $51
-	db "Would you like to", $4f
-	db "battle?", $57
+	text "Welcome to CABLE"
+	line "CLUB COLOSSEUM."
+
+	para "You may battle a"
+	line "friend here."
+
+	para "Would you like to"
+	line "battle?"
+	done
 ; 0x192e3a
 
 UnknownText_0x192e3a: ; 0x192e3a
-	db $0, "Welcome to CABLE", $4f
-	db "TRADE CENTER.", $51
-	db "You may trade your", $4f
-	db "#MON here with", $55
-	db "a friend.", $51
-	db "Would you like to", $4f
-	db "trade?", $57
+	text "Welcome to CABLE"
+	line "TRADE CENTER."
+
+	para "You may trade your"
+	line "#MON here with"
+	cont "a friend."
+
+	para "Would you like to"
+	line "trade?"
+	done
 ; 0x192e9f
 
 UnknownText_0x192e9f: ; 0x192e9f
-	db $0, "Welcome to CABLE", $4f
-	db "CLUB TIME CAPSULE.", $51
-	db "You can travel to", $4f
-	db "the past and trade", $55
-	db "your #MON.", $51
-	db "Would you like to", $4f
-	db "trade across time?", $57
+	text "Welcome to CABLE"
+	line "CLUB TIME CAPSULE."
+
+	para "You can travel to"
+	line "the past and trade"
+	cont "your #MON."
+
+	para "Would you like to"
+	line "trade across time?"
+	done
 ; 0x192f19
 
 UnknownText_0x192f19: ; 0x192f19
-	db $0, "Your friend is not", $4f
-	db "ready.", $58
+	text "Your friend is not"
+	line "ready."
+	prompt
 ; 0x192f34
 
 UnknownText_0x192f34: ; 0x192f34
-	db $0, "Before opening the", $4f
-	db "link, you must", $55
-	db "save your game.", $57
+	text "Before opening the"
+	line "link, you must"
+	cont "save your game."
+	done
 ; 0x192f67
 
 UnknownText_0x192f67: ; 0x192f67
-	db $0, "Please wait.", $57
+	text "Please wait."
+	done
 ; 0x192f75
 
 UnknownText_0x192f75: ; 0x192f75
-	db $0, "The link has been", $4f
-	db "closed because of", $55
-	db "inactivity.", $51
-	db "Please contact", $4f
-	db "your friend and", $55
-	db "come again.", $58
+	text "The link has been"
+	line "closed because of"
+	cont "inactivity."
+
+	para "Please contact"
+	line "your friend and"
+	cont "come again."
+	prompt
 ; 0x192fd1
 
 UnknownText_0x192fd1: ; 0x192fd1
-	db $0, "Please come again.", $58
+	text "Please come again."
+	prompt
 ; 0x192fe5
 
 UnknownText_0x192fe5: ; 0x192fe5
-	db $0, "Please come in.", $58
+	text "Please come in."
+	prompt
 ; 0x192ff6
 
 UnknownText_0x192ff6: ; 0x192ff6
-	db $0, "We'll put you in", $4f
-	db "the link room for", $55
-	db "the time being.", $57
+	text "We'll put you in"
+	line "the link room for"
+	cont "the time being."
+	done
 ; 0x193029
 
 UnknownText_0x193029: ; 0x193029
-	db $0, "You can't link to", $4f
-	db "the past here.", $58
+	text "You can't link to"
+	line "the past here."
+	prompt
 ; 0x19304a
 
 UnknownText_0x19304a: ; 0x19304a
-	db $0, "Incompatible rooms", $4f
-	db "were chosen.", $58
+	text "Incompatible rooms"
+	line "were chosen."
+	prompt
 ; 0x19306b
 
 UnknownText_0x19306b: ; 0x19306b
-	db $0, "Please come in.", $57
+	text "Please come in."
+	done
 ; 0x19307c
 
 UnknownText_0x19307c: ; 0x19307c
-	db $0, "Please enter.", $58
+	text "Please enter."
+	prompt
 ; 0x19308b
 
 UnknownText_0x19308b: ; 0x19308b
-	db $0, "Sorry--@"
+	text "Sorry--@"
 	text_from_ram $d073
-	db $0, $4f
-	db "can't be taken.", $58
+	db $0
+	line "can't be taken."
+	prompt
 ; 0x1930a8
 
 UnknownText_0x1930a8: ; 0x1930a8
-	db $0, "You can't take the", $4f
-	db "@"
+	text "You can't take the"
+	line "@"
 	text_from_ram $d073
-	db $0, " with a", $55
-	db "@"
+	text " with a"
+	cont "@"
 	text_from_ram $d086
-	db $0, ".", $58
+	text "."
+	prompt
 ; 0x1930cf
 
 UnknownText_0x1930cf: ; 0x1930cf
-	db $0, "You can't take the", $4f
-	db "@"
+	text "You can't take the"
+	line "@"
 	text_from_ram $d073
-	db $0, " that", $55
-	db "has MAIL with you.", $58
+	text " that"
+	cont "has MAIL with you."
+	prompt
 ; 0x193100
 
 UnknownText_0x193100: ; 0x193100
-	db $0, "I'm sorry--the", $4f
-	db "TIME CAPSULE is", $55
-	db "being adjusted.", $57
+	text "I'm sorry--the"
+	line "TIME CAPSULE is"
+	cont "being adjusted."
+	done
 ; 0x19312f
 
 UnknownText_0x19312f: ; 0x19312f
-	db $0, "I'm sorry--the", $4f
-	db "TRADE MACHINE is", $55
-	db "being adjusted.", $57
+	text "I'm sorry--the"
+	line "TRADE MACHINE is"
+	cont "being adjusted."
+	done
 ; 0x19315f
 
 UnknownText_0x19315f: ; 0x19315f
-	db $0, "I'm sorry--the", $4f
-	db "BATTLE MACHINE is", $55
-	db "being adjusted.", $57
+	text "I'm sorry--the"
+	line "BATTLE MACHINE is"
+	cont "being adjusted."
+	done
 ; 0x193190
 
 UnknownText_0x193190: ; 0x193190
-	db $0, "Hello! You're", $4f
-	db $52, ", right?", $51
-	db "I have some-", $4f
-	db "thing for you.", $57
+	text "Hello! You're"
+	line $52, ", right?"
+
+	para "I have some-"
+	line "thing for you."
+	done
 ; 0x1931c4
 
 UnknownText_0x1931c4: ; 0x1931c4
-	db $0, "Here you go!", $57
+	text "Here you go!"
+	done
 ; 0x1931d2
 
 UnknownText_0x1931d2: ; 0x1931d2
-	db $0, "We hope to serve", $4f
-	db "you again.", $57
+	text "We hope to serve"
+	line "you again."
+	done
 ; 0x1931ef
 
 UnknownText_0x1931ef: ; 0x1931ef
-	db $0, "Oh, you have no", $4f
-	db "space for this.", $51
-	db "Stop in at any", $4f
-	db "#MON CENTER", $51
-	db "across the country", $4f
-	db "to pick it up.", $57
+	text "Oh, you have no"
+	line "space for this."
+
+	para "Stop in at any"
+	line "#MON CENTER"
+
+	para "across the country"
+	line "to pick it up."
+	done
 ; 0x19324d
 
 UnknownText_0x19324d: ; 0x19324d
-	db $0, "No? That's very", $4f
-	db "strange…", $57
+	text "No? That's very"
+	line "strange…"
+	done
 ; 0x193266
 
 UnknownText_0x193266: ; 0x193266
-	db $0, "Oh, please wait.", $57
+	text "Oh, please wait."
+	done
 ; 0x193278
 
 UnknownText_0x193278: ; 0x193278
-	db $0, "We need to change", $4f
-	db "the look here…", $57
+	text "We need to change"
+	line "the look here…"
+	done
 ; 0x19329a
 
 UnknownText_0x19329a: ; 0x19329a
-	db $0, "How does this", $4f
-	db "style look to you?", $57
+	text "How does this"
+	line "style look to you?"
+	done
 ; 0x1932bc
 
 UnknownText_0x1932bc: ; 0x1932bc
-	db $0, "Excuse me!", $51
-	db "For STADIUM rules,", $4f
-	db "please bring six", $51
-	db "different #MON,", $4f
-	db "excluding EGGS.", $51
-	db "The six #MON", $4f
-	db "must be different.", $51
-	db "Also, they must", $4f
-	db "not be holding", $55
-	db "identical items.", $51
-	db "Please come back", $4f
-	db "when you're ready.", $57
+	text "Excuse me!"
+
+	para "For STADIUM rules,"
+	line "please bring six"
+
+	para "different #MON,"
+	line "excluding EGGS."
+
+	para "The six #MON"
+	line "must be different."
+
+	para "Also, they must"
+	line "not be holding"
+	cont "identical items."
+
+	para "Please come back"
+	line "when you're ready."
+	done
 ; 0x19337f
 
 PokeCenter2F_MapEventHeader: ; 0x19337f

@@ -66,77 +66,105 @@ SeafoamGymGuyScript: ; 0x1ab531
 ; 0x1ab548
 
 UnknownText_0x1ab548: ; 0x1ab548
-	db $0, "BLAINE: Waaah!", $51
-	db "My GYM in CINNABAR", $4f
-	db "burned down.", $51
-	db "My fire-breathing", $4f
-	db "#MON and I are", $51
-	db "homeless because", $4f
-	db "of the volcano.", $51
-	db "Waaah!", $51
-	db "But I'm back in", $4f
-	db "business as a GYM", $51
-	db "LEADER here in", $4f
-	db "this cave.", $51
-	db "If you can beat", $4f
-	db "me, I'll give you", $55
-	db "a BADGE.", $51
-	db "Ha! You'd better", $4f
-	db "have BURN HEAL!", $57
+	text "BLAINE: Waaah!"
+
+	para "My GYM in CINNABAR"
+	line "burned down."
+
+	para "My fire-breathing"
+	line "#MON and I are"
+
+	para "homeless because"
+	line "of the volcano."
+
+	para "Waaah!"
+
+	para "But I'm back in"
+	line "business as a GYM"
+
+	para "LEADER here in"
+	line "this cave."
+
+	para "If you can beat"
+	line "me, I'll give you"
+	cont "a BADGE."
+
+	para "Ha! You'd better"
+	line "have BURN HEAL!"
+	done
 ; 0x1ab646
 
 UnknownText_0x1ab646: ; 0x1ab646
-	db $0, "BLAINE: Awesome.", $4f
-	db "I've burned out…", $51
-	db "You've earned", $4f
-	db "VOLCANOBADGE!", $57
+	text "BLAINE: Awesome."
+	line "I've burned out…"
+
+	para "You've earned"
+	line "VOLCANOBADGE!"
+	done
 ; 0x1ab683
 
 UnknownText_0x1ab683: ; 0x1ab683
-	db $0, $52, " received", $4f
-	db "VOLCANOBADGE.", $57
+	text $52, " received"
+	line "VOLCANOBADGE."
+	done
 ; 0x1ab69d
 
 UnknownText_0x1ab69d: ; 0x1ab69d
-	db $0, "BLAINE: I did lose", $4f
-	db "this time, but I'm", $51
-	db "going to win the", $4f
-	db "next time.", $51
-	db "When I rebuild my", $4f
-	db "CINNABAR GYM,", $51
-	db "we'll have to have", $4f
-	db "a rematch.", $57
+	text "BLAINE: I did lose"
+	line "this time, but I'm"
+
+	para "going to win the"
+	line "next time."
+
+	para "When I rebuild my"
+	line "CINNABAR GYM,"
+
+	para "we'll have to have"
+	line "a rematch."
+	done
 ; 0x1ab71c
 
 UnknownText_0x1ab71c: ; 0x1ab71c
-	db $0, "BLAINE: My fire", $4f
-	db "#MON will be", $51
-	db "even stronger.", $4f
-	db "Just you watch!", $57
+	text "BLAINE: My fire"
+	line "#MON will be"
+
+	para "even stronger."
+	line "Just you watch!"
+	done
 ; 0x1ab759
 
 SeafoamGymGuyWinText: ; 0x1ab759
-	db $0, "Yo!", $51
-	db "… Huh? It's over", $4f
-	db "already?", $51
-	db "Sorry, sorry!", $51
-	db "CINNABAR GYM was", $4f
-	db "gone, so I didn't", $51
-	db "know where to find", $4f
-	db "you.", $51
-	db "But, hey, you're", $4f
-	db "plenty strong even", $51
-	db "without my advice.", $4f
-	db "I knew you'd win!", $57
+	text "Yo!"
+
+	para "… Huh? It's over"
+	line "already?"
+
+	para "Sorry, sorry!"
+
+	para "CINNABAR GYM was"
+	line "gone, so I didn't"
+
+	para "know where to find"
+	line "you."
+
+	para "But, hey, you're"
+	line "plenty strong even"
+
+	para "without my advice."
+	line "I knew you'd win!"
+	done
 ; 0x1ab806
 
 SeafoamGymGuyWinText2: ; 0x1ab806
-	db $0, "A #MON GYM can", $4f
-	db "be anywhere as", $51
-	db "long as the GYM", $4f
-	db "LEADER is there.", $51
-	db "There's no need", $4f
-	db "for a building.", $57
+	text "A #MON GYM can"
+	line "be anywhere as"
+
+	para "long as the GYM"
+	line "LEADER is there."
+
+	para "There's no need"
+	line "for a building."
+	done
 ; 0x1ab865
 
 SeafoamGym_MapEventHeader: ; 0x1ab865

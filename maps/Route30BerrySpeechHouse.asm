@@ -29,19 +29,23 @@ MapRoute30BerrySpeechHouseSignpost1Script: ; 0x196d7f
 ; 0x196d82
 
 UnknownText_0x196d82: ; 0x196d82
-	db $0, "You know, #MON", $4f
-	db "eat BERRIES.", $51
-	db "Well, my #MON", $4f
-	db "got healthier by", $55
-	db "eating a BERRY.", $51
-	db "Here. I'll share", $4f
-	db "one with you!", $57
+	text "You know, #MON"
+	line "eat BERRIES."
+
+	para "Well, my #MON"
+	line "got healthier by"
+	cont "eating a BERRY."
+
+	para "Here. I'll share"
+	line "one with you!"
+	done
 ; 0x196dec
 
 UnknownText_0x196dec: ; 0x196dec
-	db $0, "Check trees for", $4f
-	db "BERRIES. They just", $55
-	db "drop right off.", $57
+	text "Check trees for"
+	line "BERRIES. They just"
+	cont "drop right off."
+	done
 ; 0x196e20
 
 Route30BerrySpeechHouse_MapEventHeader: ; 0x196e20

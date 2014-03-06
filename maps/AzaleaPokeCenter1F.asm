@@ -30,43 +30,56 @@ PokefanFScript_0x18db31: ; 0x18db31
 ; 0x18db34
 
 UnknownText_0x18db34: ; 0x18db34
-	db $0, "Do your #MON", $4f
-	db "know HM moves?", $51
-	db "Those moves can", $4f
-	db "be used even if", $51
-	db "your #MON has", $4f
-	db "fainted.", $57
+	text "Do your #MON"
+	line "know HM moves?"
+
+	para "Those moves can"
+	line "be used even if"
+
+	para "your #MON has"
+	line "fainted."
+	done
 ; 0x18db88
 
 UnknownText_0x18db88: ; 0x18db88
-	db $0, "This BILL guy", $4f
-	db "created the system", $51
-	db "for storing", $4f
-	db "#MON in a PC.", $51
-	db "BILL's PC can", $4f
-	db "store up to 20", $55
-	db "#MON per BOX.", $57
+	text "This BILL guy"
+	line "created the system"
+
+	para "for storing"
+	line "#MON in a PC."
+
+	para "BILL's PC can"
+	line "store up to 20"
+	cont "#MON per BOX."
+	done
 ; 0x18dbee
 
 UnknownText_0x18dbee: ; 0x18dbee
-	db $0, "BILL's PC can", $4f
-	db "store up to 20", $55
-	db "#MON per BOX.", $57
+	text "BILL's PC can"
+	line "store up to 20"
+	cont "#MON per BOX."
+	done
 ; 0x18dc19
 
 UnknownText_0x18dc19: ; 0x18dc19
-	db $0, "Do you know about", $4f
-	db "APRICORNS?", $51
-	db "Crack one open,", $4f
-	db "hollow it out and", $51
-	db "fit it with a", $4f
-	db "special device.", $51
-	db "Then you can catch", $4f
-	db "#MON with it.", $51
-	db "Before # BALLS", $4f
-	db "were invented,", $51
-	db "everyone used", $4f
-	db "APRICORNS.", $57
+	text "Do you know about"
+	line "APRICORNS?"
+
+	para "Crack one open,"
+	line "hollow it out and"
+
+	para "fit it with a"
+	line "special device."
+
+	para "Then you can catch"
+	line "#MON with it."
+
+	para "Before # BALLS"
+	line "were invented,"
+
+	para "everyone used"
+	line "APRICORNS."
+	done
 ; 0x18dccf
 
 AzaleaPokeCenter1F_MapEventHeader: ; 0x18dccf

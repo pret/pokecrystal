@@ -19,24 +19,31 @@ MapEcruteakLugiaSpeechHouseSignpost0Script: ; 0x9933a
 ; 0x9933d
 
 UnknownText_0x9933d: ; 0x9933d
-	db $0, "This happened when", $4f
-	db "I was young.", $51
-	db "The sky suddenly", $4f
-	db "turned black. A", $51
-	db "giant flying #-", $4f
-	db "MON was blocking", $55
-	db "out the sun.", $51
-	db "I wonder what that", $4f
-	db "#MON was? ", $51
-	db "It was like a bird", $4f
-	db "and a dragon.", $57
+	text "This happened when"
+	line "I was young."
+
+	para "The sky suddenly"
+	line "turned black. A"
+
+	para "giant flying #-"
+	line "MON was blocking"
+	cont "out the sun."
+
+	para "I wonder what that"
+	line "#MON was? "
+
+	para "It was like a bird"
+	line "and a dragon."
+	done
 ; 0x993ec
 
 UnknownText_0x993ec: ; 0x993ec
-	db $0, "Is there really a", $4f
-	db "#MON that big?", $51
-	db "If it exists, it", $4f
-	db "must be powerful.", $57
+	text "Is there really a"
+	line "#MON that big?"
+
+	para "If it exists, it"
+	line "must be powerful."
+	done
 ; 0x99431
 
 EcruteakLugiaSpeechHouse_MapEventHeader: ; 0x99431

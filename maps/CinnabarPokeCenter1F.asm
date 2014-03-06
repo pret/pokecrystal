@@ -19,17 +19,20 @@ FisherScript_0x1ab332: ; 0x1ab332
 ; 0x1ab335
 
 UnknownText_0x1ab335: ; 0x1ab335
-	db $0, "CINNABAR GYM's", $4f
-	db "BLAINE apparently", $51
-	db "lives alone in the", $4f
-	db "SEAFOAM ISLANDS", $55
-	db "cave…", $57
+	text "CINNABAR GYM's"
+	line "BLAINE apparently"
+
+	para "lives alone in the"
+	line "SEAFOAM ISLANDS"
+	cont "cave…"
+	done
 ; 0x1ab37f
 
 UnknownText_0x1ab37f: ; 0x1ab37f
-	db $0, "It's been a year", $4f
-	db "since the volcano", $55
-	db "erupted.", $57
+	text "It's been a year"
+	line "since the volcano"
+	cont "erupted."
+	done
 ; 0x1ab3ab
 
 CinnabarPokeCenter1F_MapEventHeader: ; 0x1ab3ab

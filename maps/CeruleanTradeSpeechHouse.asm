@@ -33,23 +33,27 @@ ZubatScript_0x188143: ; 0x188143
 ; 0x18814d
 
 UnknownText_0x18814d: ; 0x18814d
-	db $0, "My husband lives", $4f
-	db "happily with #-", $55
-	db "MON he got through", $55
-	db "trades.", $57
+	text "My husband lives"
+	line "happily with #-"
+	cont "MON he got through"
+	cont "trades."
+	done
 ; 0x18818a
 
 UnknownText_0x18818a: ; 0x18818a
-	db $0, "Ah… I'm so happy…", $57
+	text "Ah… I'm so happy…"
+	done
 ; 0x18819c
 
 UnknownText_0x18819c: ; 0x18819c
-	db $0, "KANGASKHAN: Garu", $4f
-	db "garuu.", $57
+	text "KANGASKHAN: Garu"
+	line "garuu."
+	done
 ; 0x1881b5
 
 UnknownText_0x1881b5: ; 0x1881b5
-	db $0, "ZUBAT: Zuba zubaa.", $57
+	text "ZUBAT: Zuba zubaa."
+	done
 ; 0x1881c9
 
 CeruleanTradeSpeechHouse_MapEventHeader: ; 0x1881c9

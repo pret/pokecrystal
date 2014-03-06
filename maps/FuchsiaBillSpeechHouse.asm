@@ -15,15 +15,17 @@ YoungsterScript_0x1963c0: ; 0x1963c0
 ; 0x1963c3
 
 UnknownText_0x1963c3: ; 0x1963c3
-	db $0, "My grandpa is at ", $4f
-	db "my brother BILL's", $55
-	db "on CERULEAN CAPE.", $57
+	text "My grandpa is at "
+	line "my brother BILL's"
+	cont "on CERULEAN CAPE."
+	done
 ; 0x1963f9
 
 UnknownText_0x1963f9: ; 0x1963f9
-	db $0, "I saw these weird,", $4f
-	db "slow #MON on", $55
-	db "CYCLING ROAD.", $57
+	text "I saw these weird,"
+	line "slow #MON on"
+	cont "CYCLING ROAD."
+	done
 ; 0x196428
 
 FuchsiaBillSpeechHouse_MapEventHeader: ; 0x196428

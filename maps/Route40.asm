@@ -242,159 +242,201 @@ MovementData_0x1a622a: ; 0x1a622a
 ; 0x1a622f
 
 SwimmermSimonSeenText: ; 0x1a622f
-	db $0, "You have to warm", $4f
-	db "up before going", $55
-	db "into the water.", $51
-	db "That's basic.", $57
+	text "You have to warm"
+	line "up before going"
+	cont "into the water."
+
+	para "That's basic."
+	done
 ; 0x1a626e
 
 SwimmermSimonBeatenText: ; 0x1a626e
-	db $0, "OK! Uncle! I give!", $57
+	text "OK! Uncle! I give!"
+	done
 ; 0x1a6282
 
 UnknownText_0x1a6282: ; 0x1a6282
-	db $0, "CIANWOOD CITY is", $4f
-	db "a good distance", $55
-	db "away from here.", $57
+	text "CIANWOOD CITY is"
+	line "a good distance"
+	cont "away from here."
+	done
 ; 0x1a62b4
 
 SwimmermRandallSeenText: ; 0x1a62b4
-	db $0, "Hey, you're young", $4f
-	db "and fit!", $51
-	db "Don't ride your", $4f
-	db "#MON! Swim!", $57
+	text "Hey, you're young"
+	line "and fit!"
+
+	para "Don't ride your"
+	line "#MON! Swim!"
+	done
 ; 0x1a62ea
 
 SwimmermRandallBeatenText: ; 0x1a62ea
-	db $0, "Uh-oh. I lost…", $57
+	text "Uh-oh. I lost…"
+	done
 ; 0x1a62fa
 
 UnknownText_0x1a62fa: ; 0x1a62fa
-	db $0, "Swimming exercises", $4f
-	db "your entire body.", $55
-	db "It's healthy.", $57
+	text "Swimming exercises"
+	line "your entire body."
+	cont "It's healthy."
+	done
 ; 0x1a632d
 
 SwimmerfElaineSeenText: ; 0x1a632d
-	db $0, "Are you going to", $4f
-	db "CIANWOOD?", $51
-	db "How about a quick", $4f
-	db "battle first?", $57
+	text "Are you going to"
+	line "CIANWOOD?"
+
+	para "How about a quick"
+	line "battle first?"
+	done
 ; 0x1a6369
 
 SwimmerfElaineBeatenText: ; 0x1a6369
-	db $0, "I lost that one!", $57
+	text "I lost that one!"
+	done
 ; 0x1a637b
 
 UnknownText_0x1a637b: ; 0x1a637b
-	db $0, "I'd say I'm a bet-", $4f
-	db "ter swimmer than", $55
-	db "you. Yeah!", $57
+	text "I'd say I'm a bet-"
+	line "ter swimmer than"
+	cont "you. Yeah!"
+	done
 ; 0x1a63a9
 
 SwimmerfPaulaSeenText: ; 0x1a63a9
-	db $0, "No inner tube for", $4f
-	db "me.", $51
-	db "I'm hanging on to", $4f
-	db "a sea #MON!", $57
+	text "No inner tube for"
+	line "me."
+
+	para "I'm hanging on to"
+	line "a sea #MON!"
+	done
 ; 0x1a63dd
 
 SwimmerfPaulaBeatenText: ; 0x1a63dd
-	db $0, "Ooh, I'm feeling", $4f
-	db "dizzy!", $57
+	text "Ooh, I'm feeling"
+	line "dizzy!"
+	done
 ; 0x1a63f5
 
 UnknownText_0x1a63f5: ; 0x1a63f5
-	db $0, "While I float like", $4f
-	db "this, the waves", $55
-	db "carry me along.", $57
+	text "While I float like"
+	line "this, the waves"
+	cont "carry me along."
+	done
 ; 0x1a6429
 
 UnknownText_0x1a6429: ; 0x1a6429
-	db $0, "Although you can't", $4f
-	db "see it from here,", $51
-	db "CIANWOOD is across", $4f
-	db "the sea.", $57
+	text "Although you can't"
+	line "see it from here,"
+
+	para "CIANWOOD is across"
+	line "the sea."
+	done
 ; 0x1a646a
 
 UnknownText_0x1a646a: ; 0x1a646a
-	db $0, "Hm! There's a big", $4f
-	db "building up ahead!", $51
-	db "What is it?", $57
+	text "Hm! There's a big"
+	line "building up ahead!"
+
+	para "What is it?"
+	done
 ; 0x1a649b
 
 UnknownText_0x1a649b: ; 0x1a649b
-	db $0, "Hm! Look at all", $4f
-	db "those serious-", $55
-	db "looking trainers", $55
-	db "streaming in.", $51
-	db "What? What?", $57
+	text "Hm! Look at all"
+	line "those serious-"
+	cont "looking trainers"
+	cont "streaming in."
+
+	para "What? What?"
+	done
 ; 0x1a64e6
 
 UnknownText_0x1a64e6: ; 0x1a64e6
-	db $0, "I came to OLIVINE", $4f
-	db "by ship to see the", $51
-	db "sights and soak up", $4f
-	db "the atmosphere.", $51
-	db "Being a port, it", $4f
-	db "feels so different", $55
-	db "from a big city.", $57
+	text "I came to OLIVINE"
+	line "by ship to see the"
+
+	para "sights and soak up"
+	line "the atmosphere."
+
+	para "Being a port, it"
+	line "feels so different"
+	cont "from a big city."
+	done
 ; 0x1a6564
 
 UnknownText_0x1a6564: ; 0x1a6564
-	db $0, "Have you gone to", $4f
-	db "the BATTLE TOWER?", $51
-	db "I think a lot of", $4f
-	db "tough trainers", $51
-	db "have gathered", $4f
-	db "there already.", $51
-	db "But since you have", $4f
-	db "so many BADGES,", $51
-	db "you shouldn't do", $4f
-	db "badly at all.", $57
+	text "Have you gone to"
+	line "the BATTLE TOWER?"
+
+	para "I think a lot of"
+	line "tough trainers"
+
+	para "have gathered"
+	line "there already."
+
+	para "But since you have"
+	line "so many BADGES,"
+
+	para "you shouldn't do"
+	line "badly at all."
+	done
 ; 0x1a6606
 
 UnknownText_0x1a6606: ; 0x1a6606
-	db $0, "MONICA: Glad to", $4f
-	db "meet you. I'm", $51
-	db "MONICA of Monday.", $57
+	text "MONICA: Glad to"
+	line "meet you. I'm"
+
+	para "MONICA of Monday."
+	done
 ; 0x1a6636
 
 UnknownText_0x1a6636: ; 0x1a6636
-	db $0, "As a token of our", $4f
-	db "friendship, I have", $55
-	db "a gift for you!", $57
+	text "As a token of our"
+	line "friendship, I have"
+	cont "a gift for you!"
+	done
 ; 0x1a666c
 
 UnknownText_0x1a666c: ; 0x1a666c
-	db $0, "MONICA: It's an", $4f
-	db "item that raises", $51
-	db "the power of fly-", $4f
-	db "ing-type moves.", $51
-	db "You should equip a", $4f
-	db "bird #MON with", $55
-	db "that item.", $57
+	text "MONICA: It's an"
+	line "item that raises"
+
+	para "the power of fly-"
+	line "ing-type moves."
+
+	para "You should equip a"
+	line "bird #MON with"
+	cont "that item."
+	done
 ; 0x1a66dc
 
 UnknownText_0x1a66dc: ; 0x1a66dc
-	db $0, "MONICA: My broth-", $4f
-	db "ers and sisters", $51
-	db "are all over the", $4f
-	db "place.", $51
-	db "See if you could", $4f
-	db "find them all!", $57
+	text "MONICA: My broth-"
+	line "ers and sisters"
+
+	para "are all over the"
+	line "place."
+
+	para "See if you could"
+	line "find them all!"
+	done
 ; 0x1a6737
 
 UnknownText_0x1a6737: ; 0x1a6737
-	db $0, "MONICA: I don't", $4f
-	db "think today is", $55
-	db "Monday. How sad…", $57
+	text "MONICA: I don't"
+	line "think today is"
+	cont "Monday. How sad…"
+	done
 ; 0x1a6767
 
 UnknownText_0x1a6767: ; 0x1a6767
-	db $0, "ROUTE 40", $51
-	db "CIANWOOD CITY -", $4f
-	db "OLIVINE CITY", $57
+	text "ROUTE 40"
+
+	para "CIANWOOD CITY -"
+	line "OLIVINE CITY"
+	done
 ; 0x1a678e
 
 Route40_MapEventHeader: ; 0x1a678e

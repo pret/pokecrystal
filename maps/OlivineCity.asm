@@ -190,103 +190,134 @@ MovementData_0x1a88f7: ; 0x1a88f7
 ; 0x1a88fa
 
 UnknownText_0x1a88fa: ; 0x1a88fa
-	db $0, "…", $51
-	db "You again?", $51
-	db "There's no need to", $4f
-	db "panic. I don't", $51
-	db "bother with wimps", $4f
-	db "like you.", $51
-	db "Speaking of weak-", $4f
-	db "lings, the city's", $51
-	db "GYM LEADER isn't", $4f
-	db "here.", $51
-	db "Supposedly taking", $4f
-	db "care of a sick", $51
-	db "#MON at the", $4f
-	db "LIGHTHOUSE.", $51
-	db "Humph! Boo-hoo!", $4f
-	db "Just let sick", $55
-	db "#MON go!", $51
-	db "A #MON that", $4f
-	db "can't battle is", $55
-	db "worthless!", $51
-	db "Why don't you go", $4f
-	db "train at the", $55
-	db "LIGHTHOUSE?", $51
-	db "Who knows. It may", $4f
-	db "make you a bit", $55
-	db "less weak!", $57
+	text "…"
+
+	para "You again?"
+
+	para "There's no need to"
+	line "panic. I don't"
+
+	para "bother with wimps"
+	line "like you."
+
+	para "Speaking of weak-"
+	line "lings, the city's"
+
+	para "GYM LEADER isn't"
+	line "here."
+
+	para "Supposedly taking"
+	line "care of a sick"
+
+	para "#MON at the"
+	line "LIGHTHOUSE."
+
+	para "Humph! Boo-hoo!"
+	line "Just let sick"
+	cont "#MON go!"
+
+	para "A #MON that"
+	line "can't battle is"
+	cont "worthless!"
+
+	para "Why don't you go"
+	line "train at the"
+	cont "LIGHTHOUSE?"
+
+	para "Who knows. It may"
+	line "make you a bit"
+	cont "less weak!"
+	done
 ; 0x1a8a58
 
 UnknownText_0x1a8a58: ; 0x1a8a58
-	db $0, "Dark roads are", $4f
-	db "dangerous at", $55
-	db "night.", $51
-	db "But in the pitch-", $4f
-	db "black of night,", $51
-	db "the sea is even", $4f
-	db "more treacherous!", $51
-	db "Without the beacon", $4f
-	db "of the LIGHTHOUSE", $51
-	db "to guide it, no", $4f
-	db "ship can sail.", $57
+	text "Dark roads are"
+	line "dangerous at"
+	cont "night."
+
+	para "But in the pitch-"
+	line "black of night,"
+
+	para "the sea is even"
+	line "more treacherous!"
+
+	para "Without the beacon"
+	line "of the LIGHTHOUSE"
+
+	para "to guide it, no"
+	line "ship can sail."
+	done
 ; 0x1a8b04
 
 UnknownText_0x1a8b04: ; 0x1a8b04
-	db $0, "That thing you", $4f
-	db "have--it's a #-", $55
-	db "GEAR, right? Wow,", $55
-	db "that's cool.", $57
+	text "That thing you"
+	line "have--it's a #-"
+	cont "GEAR, right? Wow,"
+	cont "that's cool."
+	done
 ; 0x1a8b41
 
 UnknownText_0x1a8b41: ; 0x1a8b41
-	db $0, "Wow, you have a", $4f
-	db "#DEX!", $51
-	db "That is just so", $4f
-	db "awesome.", $57
+	text "Wow, you have a"
+	line "#DEX!"
+
+	para "That is just so"
+	line "awesome."
+	done
 ; 0x1a8b71
 
 UnknownText_0x1a8b71: ; 0x1a8b71
-	db $0, "The sea is sweet!", $51
-	db "Sunsets on the sea", $4f
-	db "are marvelous!", $51
-	db "Sing with me! ", $4f
-	db "Yo-ho! Blow the", $55
-	db "man down!…", $57
+	text "The sea is sweet!"
+
+	para "Sunsets on the sea"
+	line "are marvelous!"
+
+	para "Sing with me! "
+	line "Yo-ho! Blow the"
+	cont "man down!…"
+	done
 ; 0x1a8bd0
 
 UnknownText_0x1a8bd0: ; 0x1a8bd0
-	db $0, "OLIVINE CITY", $51
-	db "The Port Closest", $4f
-	db "to Foreign Lands", $57
+	text "OLIVINE CITY"
+
+	para "The Port Closest"
+	line "to Foreign Lands"
+	done
 ; 0x1a8c00
 
 UnknownText_0x1a8c00: ; 0x1a8c00
-	db $0, "OLIVINE PORT", $4f
-	db "FAST SHIP PIER", $57
+	text "OLIVINE PORT"
+	line "FAST SHIP PIER"
+	done
 ; 0x1a8c1d
 
 UnknownText_0x1a8c1d: ; 0x1a8c1d
-	db $0, "OLIVINE CITY", $4f
-	db "#MON GYM", $55
-	db "LEADER: JASMINE", $51
-	db "The Steel-Clad", $4f
-	db "Defense Girl", $57
+	text "OLIVINE CITY"
+	line "#MON GYM"
+	cont "LEADER: JASMINE"
+
+	para "The Steel-Clad"
+	line "Defense Girl"
+	done
 ; 0x1a8c60
 
 UnknownText_0x1a8c60: ; 0x1a8c60
-	db $0, "OLIVINE LIGHTHOUSE", $4f
-	db "Also known as the", $55
-	db "GLITTER LIGHTHOUSE", $57
+	text "OLIVINE LIGHTHOUSE"
+	line "Also known as the"
+	cont "GLITTER LIGHTHOUSE"
+	done
 ; 0x1a8c99
 
 UnknownText_0x1a8c99: ; 0x1a8c99
-	db $0, "BATTLE TOWER AHEAD", $4f
-	db "Opening Now!", $57
+	text "BATTLE TOWER AHEAD"
+	line "Opening Now!"
+	done
 ; 0x1a8cba
 
 UnknownText_0x1a8cba: ; 0x1a8cba
-	db $0, "BATTLE TOWER AHEAD", $57
+	text "BATTLE TOWER AHEAD"
+	done
 ; 0x1a8cce
 
 OlivineCity_MapEventHeader: ; 0x1a8cce

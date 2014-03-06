@@ -44,54 +44,67 @@ MapGoldenrodDeptStore2FSignpost1Script: ; 0x55b79
 
 ; possibly unused
 UnknownText_0x55b7c: ; 0x55b7c
-	db $0, "We intend to sell", $4f
-	db "items for #MON", $55
-	db "to hold.", $51
-	db "This is a free", $4f
-	db "gift. Have a #-", $55
-	db "MON hold it.", $57
+	text "We intend to sell"
+	line "items for #MON"
+	cont "to hold."
+
+	para "This is a free"
+	line "gift. Have a #-"
+	cont "MON hold it."
+	done
 ; 0x55bd3
 
 ; possibly unused
 UnknownText_0x55bd3: ; 0x55bd3
-	db $0, "By giving #MON", $4f
-	db "items to hold, I", $51
-	db "bet trainers will", $4f
-	db "develop new battle", $55
-	db "techniques.", $57
+	text "By giving #MON"
+	line "items to hold, I"
+
+	para "bet trainers will"
+	line "develop new battle"
+	cont "techniques."
+	done
 ; 0x55c25
 
 UnknownText_0x55c25: ; 0x55c25
-	db $0, "#GEAR can store", $4f
-	db "up to ten phone", $55
-	db "numbers.", $51
-	db "It's hard to de-", $4f
-	db "cide which numbers", $55
-	db "to keep.", $57
+	text "#GEAR can store"
+	line "up to ten phone"
+	cont "numbers."
+
+	para "It's hard to de-"
+	line "cide which numbers"
+	cont "to keep."
+	done
 ; 0x55c7b
 
 UnknownText_0x55c7b: ; 0x55c7b
-	db $0, "I got my ABRA at", $4f
-	db "the GAME CORNER.", $51
-	db "Now it's my best", $4f
-	db "partner.", $57
+	text "I got my ABRA at"
+	line "the GAME CORNER."
+
+	para "Now it's my best"
+	line "partner."
+	done
 ; 0x55cb7
 
 UnknownText_0x55cb7: ; 0x55cb7
-	db $0, "This DEPT.STORE", $4f
-	db "makes me realize", $51
-	db "that GOLDENROD is", $4f
-	db "a big city.", $51
-	db "The selection here", $4f
-	db "is unmatched any-", $55
-	db "where else.", $57
+	text "This DEPT.STORE"
+	line "makes me realize"
+
+	para "that GOLDENROD is"
+	line "a big city."
+
+	para "The selection here"
+	line "is unmatched any-"
+	cont "where else."
+	done
 ; 0x55d28
 
 UnknownText_0x55d28: ; 0x55d28
-	db $0, "Your Travel", $4f
-	db "Companion", $51
-	db "2F TRAINER'S", $4f
-	db "   MARKET", $57
+	text "Your Travel"
+	line "Companion"
+
+	para "2F TRAINER'S"
+	line "   MARKET"
+	done
 ; 0x55d56
 
 GoldenrodDeptStore2F_MapEventHeader: ; 0x55d56

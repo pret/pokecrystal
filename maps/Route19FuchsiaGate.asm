@@ -25,21 +25,26 @@ UnknownScript_0x1ab404: ; 0x1ab404
 ; 0x1ab40a
 
 UnknownText_0x1ab40a: ; 0x1ab40a
-	db $0, "CINNABAR's volcano", $4f
-	db "erupted.", $51
-	db "It hurled boulders", $4f
-	db "that cut off ROUTE", $55
-	db "19 indefinitely.", $51
-	db "I wonder if the", $4f
-	db "people of CINNABAR", $55
-	db "are safe…", $57
+	text "CINNABAR's volcano"
+	line "erupted."
+
+	para "It hurled boulders"
+	line "that cut off ROUTE"
+	cont "19 indefinitely."
+
+	para "I wonder if the"
+	line "people of CINNABAR"
+	cont "are safe…"
+	done
 ; 0x1ab48a
 
 UnknownText_0x1ab48a: ; 0x1ab48a
-	db $0, "No CINNABAR citi-", $4f
-	db "zens were injured", $51
-	db "by the eruption.", $4f
-	db "That's great!", $57
+	text "No CINNABAR citi-"
+	line "zens were injured"
+
+	para "by the eruption."
+	line "That's great!"
+	done
 ; 0x1ab4cd
 
 Route19FuchsiaGate_MapEventHeader: ; 0x1ab4cd

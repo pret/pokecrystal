@@ -108,64 +108,80 @@ MapRoute4SignpostItem1: ; 0x1ae211
 ; 0x1ae214
 
 Bird_keeperHankSeenText: ; 0x1ae214
-	db $0, "I'm raising my", $4f
-	db "#MON. Want to", $55
-	db "battle with me?", $57
+	text "I'm raising my"
+	line "#MON. Want to"
+	cont "battle with me?"
+	done
 ; 0x1ae241
 
 Bird_keeperHankBeatenText: ; 0x1ae241
-	db $0, "Ack! I lost that", $4f
-	db "one…", $57
+	text "Ack! I lost that"
+	line "one…"
+	done
 ; 0x1ae258
 
 UnknownText_0x1ae258: ; 0x1ae258
-	db $0, "If you have a", $4f
-	db "specific #MON", $51
-	db "that you want to", $4f
-	db "raise, put it out", $51
-	db "first, then switch", $4f
-	db "it right away.", $51
-	db "That's how to do", $4f
-	db "it.", $57
+	text "If you have a"
+	line "specific #MON"
+
+	para "that you want to"
+	line "raise, put it out"
+
+	para "first, then switch"
+	line "it right away."
+
+	para "That's how to do"
+	line "it."
+	done
 ; 0x1ae2ce
 
 PicnickerHopeSeenText: ; 0x1ae2ce
-	db $0, "I have a feeling", $4f
-	db "that I can win.", $51
-	db "Let's see if I'm", $4f
-	db "right!", $57
+	text "I have a feeling"
+	line "that I can win."
+
+	para "Let's see if I'm"
+	line "right!"
+	done
 ; 0x1ae306
 
 PicnickerHopeBeatenText: ; 0x1ae306
-	db $0, "Aww, you are too", $4f
-	db "strong.", $57
+	text "Aww, you are too"
+	line "strong."
+	done
 ; 0x1ae320
 
 UnknownText_0x1ae320: ; 0x1ae320
-	db $0, "I heard CLEFAIRY", $4f
-	db "appear at MT.MOON.", $51
-	db "But where could", $4f
-	db "they be?", $57
+	text "I heard CLEFAIRY"
+	line "appear at MT.MOON."
+
+	para "But where could"
+	line "they be?"
+	done
 ; 0x1ae35e
 
 PicnickerSharonSeenText: ; 0x1ae35e
-	db $0, "Um…", $4f
-	db "I…", $57
+	text "Um…"
+	line "I…"
+	done
 ; 0x1ae366
 
 PicnickerSharonBeatenText: ; 0x1ae366
-	db $0, "…", $57
+	text "…"
+	done
 ; 0x1ae369
 
 UnknownText_0x1ae369: ; 0x1ae369
-	db $0, "……I'll go train", $4f
-	db "some more…", $57
+	text "……I'll go train"
+	line "some more…"
+	done
 ; 0x1ae384
 
 UnknownText_0x1ae384: ; 0x1ae384
-	db $0, "MT.MOON SQUARE", $51
-	db "Just go up the", $4f
-	db "stairs.", $57
+	text "MT.MOON SQUARE"
+
+	para "Just go up the"
+	line "stairs."
+	done
 ; 0x1ae3ab
 
 Route4_MapEventHeader: ; 0x1ae3ab

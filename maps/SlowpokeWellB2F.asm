@@ -33,27 +33,34 @@ ItemFragment_0x5ad28: ; 0x5ad28
 ; 0x5ad2a
 
 UnknownText_0x5ad2a: ; 0x5ad2a
-	db $0, "I'm waiting to see", $4f
-	db "SLOWPOKE's moment", $55
-	db "of evolution.", $51
-	db "Through observa-", $4f
-	db "tion, I made a new", $55
-	db "discovery.", $51
-	db "A SLOWPOKE with a", $4f
-	db "KING'S ROCK often", $51
-	db "gets bitten by a", $4f
-	db "SHELLDER.", $51
-	db "Here, I'll share a", $4f
-	db "KING'S ROCK with", $55
-	db "you.", $57
+	text "I'm waiting to see"
+	line "SLOWPOKE's moment"
+	cont "of evolution."
+
+	para "Through observa-"
+	line "tion, I made a new"
+	cont "discovery."
+
+	para "A SLOWPOKE with a"
+	line "KING'S ROCK often"
+
+	para "gets bitten by a"
+	line "SHELLDER."
+
+	para "Here, I'll share a"
+	line "KING'S ROCK with"
+	cont "you."
+	done
 ; 0x5adf2
 
 UnknownText_0x5adf2: ; 0x5adf2
-	db $0, "I'm going to be", $4f
-	db "like SLOWPOKE.", $51
-	db "I'll wait patient-", $4f
-	db "ly, so I can see", $55
-	db "one evolve.", $57
+	text "I'm going to be"
+	line "like SLOWPOKE."
+
+	para "I'll wait patient-"
+	line "ly, so I can see"
+	cont "one evolve."
+	done
 ; 0x5ae40
 
 SlowpokeWellB2F_MapEventHeader: ; 0x5ae40

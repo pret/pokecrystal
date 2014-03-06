@@ -23,24 +23,31 @@ CooltrainerMScript_0x195b82: ; 0x195b82
 ; 0x195b85
 
 UnknownText_0x195b85: ; 0x195b85
-	db $0, "Deep inside far-", $4f
-	db "off INDIGO PLATEAU", $51
-	db "is the #MON", $4f
-	db "LEAGUE.", $51
-	db "I hear the best", $4f
-	db "trainers gather", $51
-	db "there from around", $4f
-	db "the country.", $57
+	text "Deep inside far-"
+	line "off INDIGO PLATEAU"
+
+	para "is the #MON"
+	line "LEAGUE."
+
+	para "I hear the best"
+	line "trainers gather"
+
+	para "there from around"
+	line "the country."
+	done
 ; 0x195bfd
 
 UnknownText_0x195bfd: ; 0x195bfd
-	db $0, "There was this", $4f
-	db "move I just had", $51
-	db "to teach my #-", $4f
-	db "MON.", $51
-	db "So I got the MOVE", $4f
-	db "DELETER to make it", $55
-	db "forget an HM move.", $57
+	text "There was this"
+	line "move I just had"
+
+	para "to teach my #-"
+	line "MON."
+
+	para "So I got the MOVE"
+	line "DELETER to make it"
+	cont "forget an HM move."
+	done
 ; 0x195c69
 
 BlackthornPokeCenter1F_MapEventHeader: ; 0x195c69

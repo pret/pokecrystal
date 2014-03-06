@@ -117,118 +117,151 @@ MapGoldenrodBillsHouseSignpost2Script: ; 0x54c71
 ; 0x54c74
 
 UnknownText_0x54c74: ; 0x54c74
-	db $0, "BILL: Hi, ", $52, "!", $4f
-	db "Do us a favor and", $55
-	db "take this EEVEE.", $51
-	db "It came over when", $4f
-	db "I was adjusting", $55
-	db "the TIME CAPSULE.", $51
-	db "Someone has to", $4f
-	db "take care of it,", $51
-	db "but I don't like", $4f
-	db "being outside.", $51
-	db "Can I count on you", $4f
-	db "to play with it,", $55
-	db $52, "?", $57
+	text "BILL: Hi, ", $52, "!"
+	line "Do us a favor and"
+	cont "take this EEVEE."
+
+	para "It came over when"
+	line "I was adjusting"
+	cont "the TIME CAPSULE."
+
+	para "Someone has to"
+	line "take care of it,"
+
+	para "but I don't like"
+	line "being outside."
+
+	para "Can I count on you"
+	line "to play with it,"
+	cont $52, "?"
+	done
 ; 0x54d3f
 
 UnknownText_0x54d3f: ; 0x54d3f
-	db $0, "BILL: I knew you'd", $4f
-	db "come through!", $51
-	db "Way to go! You're", $4f
-	db "the real deal!", $51
-	db "OK, I'm counting", $4f
-	db "on you.", $51
-	db "Take good care of", $4f
-	db "it!", $57
+	text "BILL: I knew you'd"
+	line "come through!"
+
+	para "Way to go! You're"
+	line "the real deal!"
+
+	para "OK, I'm counting"
+	line "on you."
+
+	para "Take good care of"
+	line "it!"
+	done
 ; 0x54dae
 
 UnknownText_0x54dae: ; 0x54dae
-	db $0, $52, " received", $4f
-	db "EEVEE!", $57
+	text $52, " received"
+	line "EEVEE!"
+	done
 ; 0x54dc1
 
 UnknownText_0x54dc1: ; 0x54dc1
-	db $0, "BILL: PROF.ELM", $4f
-	db "claims EEVEE may", $51
-	db "evolve in new and", $4f
-	db "unknown ways.", $57
+	text "BILL: PROF.ELM"
+	line "claims EEVEE may"
+
+	para "evolve in new and"
+	line "unknown ways."
+	done
 ; 0x54e02
 
 UnknownText_0x54e02: ; 0x54e02
-	db $0, "Whoa, wait. You", $4f
-	db "can't carry any", $55
-	db "more #MON.", $57
+	text "Whoa, wait. You"
+	line "can't carry any"
+	cont "more #MON."
+	done
 ; 0x54e2d
 
 UnknownText_0x54e2d: ; 0x54e2d
-	db $0, "Oh… Now what to", $4f
-	db "do?", $57
+	text "Oh… Now what to"
+	line "do?"
+	done
 ; 0x54e42
 
 UnknownText_0x54e42: ; 0x54e42
-	db $0, "BILL: My pop, he", $4f
-	db "won't work. All he", $51
-	db "does is goof off", $4f
-	db "all day long.", $51
-	db "He's getting to be", $4f
-	db "a real headache…", $57
+	text "BILL: My pop, he"
+	line "won't work. All he"
+
+	para "does is goof off"
+	line "all day long."
+
+	para "He's getting to be"
+	line "a real headache…"
+	done
 ; 0x54ea8
 
 UnknownText_0x54ea8: ; 0x54ea8
-	db $0, "Oh, you collect", $4f
-	db "#MON? My son", $55
-	db "BILL is an expert.", $51
-	db "He just got called", $4f
-	db "to the #MON", $51
-	db "CENTER in ECRUTEAK", $4f
-	db "CITY.", $51
-	db "My husband went", $4f
-	db "off to the GAME", $51
-	db "CORNER without", $4f
-	db "being called…", $57
+	text "Oh, you collect"
+	line "#MON? My son"
+	cont "BILL is an expert."
+
+	para "He just got called"
+	line "to the #MON"
+
+	para "CENTER in ECRUTEAK"
+	line "CITY."
+
+	para "My husband went"
+	line "off to the GAME"
+
+	para "CORNER without"
+	line "being called…"
+	done
 ; 0x54f4e
 
 UnknownText_0x54f4e: ; 0x54f4e
-	db $0, "My husband was", $4f
-	db "once known as a", $51
-	db "#MANIAC.", $4f
-	db "BILL must have", $51
-	db "taken after his", $4f
-	db "father.", $57
+	text "My husband was"
+	line "once known as a"
+
+	para "#MANIAC."
+	line "BILL must have"
+
+	para "taken after his"
+	line "father."
+	done
 ; 0x54f9e
 
 UnknownText_0x54f9e: ; 0x54f9e
-	db $0, "Are you a trainer?", $51
-	db "I've got a useful", $4f
-	db "phone number for", $55
-	db "you.", $57
+	text "Are you a trainer?"
+
+	para "I've got a useful"
+	line "phone number for"
+	cont "you."
+	done
 ; 0x54fd9
 
 UnknownText_0x54fd9: ; 0x54fd9
-	db $0, $52, " recorded", $4f
-	db "BILL's number.", $57
+	text $52, " recorded"
+	line "BILL's number."
+	done
 ; 0x54ff3
 
 UnknownText_0x54ff3: ; 0x54ff3
-	db $0, "My brother made", $4f
-	db "the PC #MON", $55
-	db "storage system.", $51
-	db "I was going to", $4f
-	db "give you BILL's", $55
-	db "number…", $57
+	text "My brother made"
+	line "the PC #MON"
+	cont "storage system."
+
+	para "I was going to"
+	line "give you BILL's"
+	cont "number…"
+	done
 ; 0x55046
 
 UnknownText_0x55046: ; 0x55046
-	db $0, "You can't record", $4f
-	db "any more numbers.", $57
+	text "You can't record"
+	line "any more numbers."
+	done
 ; 0x55069
 
 UnknownText_0x55069: ; 0x55069
-	db $0, "My big brother", $4f
-	db "BILL made the PC", $51
-	db "#MON storage", $4f
-	db "system.", $57
+	text "My big brother"
+	line "BILL made the PC"
+
+	para "#MON storage"
+	line "system."
+	done
 ; 0x5509f
 
 GoldenrodBillsHouse_MapEventHeader: ; 0x5509f

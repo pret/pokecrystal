@@ -369,209 +369,258 @@ MovementData_0x76010: ; 0x76010
 ; 0x76012
 
 UnknownText_0x76012: ; 0x76012
-	db $0, "Whew! Thanks for", $4f
-	db "coming along.", $51
-	db "Keeping that lit-", $4f
-	db "tle girl amused", $55
-	db "was exhausting.", $57
+	text "Whew! Thanks for"
+	line "coming along."
+
+	para "Keeping that lit-"
+	line "tle girl amused"
+	cont "was exhausting."
+	done
 ; 0x76064
 
 UnknownText_0x76064: ; 0x76064
-	db $0, "How do you like", $4f
-	db "S.S.AQUA's ride?", $51
-	db "She practically", $4f
-	db "skates across the", $55
-	db "waves.", $57
+	text "How do you like"
+	line "S.S.AQUA's ride?"
+
+	para "She practically"
+	line "skates across the"
+	cont "waves."
+	done
 ; 0x760ae
 
 UnknownText_0x760ae: ; 0x760ae
-	db $0, "Oh, hello…", $51
-	db "I still can't find", $4f
-	db "my granddaughter.", $51
-	db "If she's on the", $4f
-	db "ship, that's OK.", $51
-	db "She's an energetic", $4f
-	db "child, so she may", $51
-	db "be bugging some-", $4f
-	db "one. I'm worried…", $57
+	text "Oh, hello…"
+
+	para "I still can't find"
+	line "my granddaughter."
+
+	para "If she's on the"
+	line "ship, that's OK."
+
+	para "She's an energetic"
+	line "child, so she may"
+
+	para "be bugging some-"
+	line "one. I'm worried…"
+	done
 ; 0x76143
 
 UnknownText_0x76143: ; 0x76143
-	db $0, $14, ", was it?", $4f
-	db "I heard you enter-", $55
-	db "tained my grand-", $55
-	db "daughter.", $51
-	db "I want to thank", $4f
-	db "you for that.", $57
+	text $14, ", was it?"
+	line "I heard you enter-"
+	cont "tained my grand-"
+	cont "daughter."
+
+	para "I want to thank"
+	line "you for that."
+	done
 ; 0x7619b
 
 UnknownText_0x7619b: ; 0x7619b
-	db $0, "I know! I'd like", $4f
-	db "you to have this!", $57
+	text "I know! I'd like"
+	line "you to have this!"
+	done
 ; 0x761be
 
 UnknownText_0x761be: ; 0x761be
-	db $0, "We're traveling", $4f
-	db "around the world.", $57
+	text "We're traveling"
+	line "around the world."
+	done
 ; 0x761e0
 
 UnknownText_0x761e0: ; 0x761e0
-	db $0, "CAPTAIN, play with", $4f
-	db "me, please?", $51
-	db "I'm bored! I want", $4f
-	db "to play more!", $57
+	text "CAPTAIN, play with"
+	line "me, please?"
+
+	para "I'm bored! I want"
+	line "to play more!"
+	done
 ; 0x7621f
 
 UnknownText_0x7621f: ; 0x7621f
-	db $0, "Hi! Will you play", $4f
-	db "with me?", $51
-	db "…Oh!", $51
-	db "Grandpa's worried", $4f
-	db "about me?", $51
-	db "I have to go!", $51
-	db "I have to go find", $4f
-	db "Grandpa!", $57
+	text "Hi! Will you play"
+	line "with me?"
+
+	para "…Oh!"
+
+	para "Grandpa's worried"
+	line "about me?"
+
+	para "I have to go!"
+
+	para "I have to go find"
+	line "Grandpa!"
+	done
 ; 0x76284
 
 UnknownText_0x76284: ; 0x76284
-	db $0, "Grandpa, here I", $4f
-	db "am! I was playing", $51
-	db "with the CAPTAIN", $4f
-	db "and this guy!", $57
+	text "Grandpa, here I"
+	line "am! I was playing"
+
+	para "with the CAPTAIN"
+	line "and this guy!"
+	done
 ; 0x762c6
 
 UnknownText_0x762c6: ; 0x762c6
-	db $0, "Grandpa, here I", $4f
-	db "am! I was playing", $51
-	db "with the CAPTAIN", $4f
-	db "and this big girl!", $57
+	text "Grandpa, here I"
+	line "am! I was playing"
+
+	para "with the CAPTAIN"
+	line "and this big girl!"
+	done
 ; 0x7630d
 
 UnknownText_0x7630d: ; 0x7630d
-	db $0, "I had lots of fun", $4f
-	db "playing!", $57
+	text "I had lots of fun"
+	line "playing!"
+	done
 ; 0x76329
 
 PokefanmColinSeenText: ; 0x76329
-	db $0, "Hey, kid! Want to", $4f
-	db "battle with me?", $57
+	text "Hey, kid! Want to"
+	line "battle with me?"
+	done
 ; 0x7634c
 
 PokefanmColinBeatenText: ; 0x7634c
-	db $0, "You're strong!", $57
+	text "You're strong!"
+	done
 ; 0x7635b
 
 UnknownText_0x7635b: ; 0x7635b
-	db $0, "You're traveling", $4f
-	db "all alone?", $51
-	db "Isn't your mom", $4f
-	db "worried?", $57
+	text "You're traveling"
+	line "all alone?"
+
+	para "Isn't your mom"
+	line "worried?"
+	done
 ; 0x7638e
 
 TwinsMegandpeg1SeenText: ; 0x7638e
-	db $0, "You think I'm a", $4f
-	db "baby?", $55
-	db "That's not fair!", $57
+	text "You think I'm a"
+	line "baby?"
+	cont "That's not fair!"
+	done
 ; 0x763b4
 
 TwinsMegandpeg1BeatenText: ; 0x763b4
-	db $0, "Oh! We lost!", $57
+	text "Oh! We lost!"
+	done
 ; 0x763c2
 
 UnknownText_0x763c2: ; 0x763c2
-	db $0, "Baby is a rude", $4f
-	db "name to call us", $55
-	db "girls!", $57
+	text "Baby is a rude"
+	line "name to call us"
+	cont "girls!"
+	done
 ; 0x763e9
 
 TwinsMegandpeg2SeenText: ; 0x763e9
-	db $0, "I'm not a baby!", $51
-	db "That's not nice to", $4f
-	db "say to a lady!", $57
+	text "I'm not a baby!"
+
+	para "That's not nice to"
+	line "say to a lady!"
+	done
 ; 0x7641a
 
 TwinsMegandpeg2BeatenText: ; 0x7641a
-	db $0, "Oh! We lost!", $57
+	text "Oh! We lost!"
+	done
 ; 0x76428
 
 UnknownText_0x76428: ; 0x76428
-	db $0, "Sometimes, kids", $4f
-	db "are smarter than", $55
-	db "grown-ups!", $57
+	text "Sometimes, kids"
+	line "are smarter than"
+	cont "grown-ups!"
+	done
 ; 0x76455
 
 PsychicRodneySeenText: ; 0x76455
-	db $0, "Ssh! My brain is", $4f
-	db "picking up radio", $55
-	db "signals!", $57
+	text "Ssh! My brain is"
+	line "picking up radio"
+	cont "signals!"
+	done
 ; 0x76481
 
 PsychicRodneyBeatenText: ; 0x76481
-	db $0, "…I hear some-", $4f
-	db "thing!", $57
+	text "…I hear some-"
+	line "thing!"
+	done
 ; 0x76497
 
 UnknownText_0x76497: ; 0x76497
-	db $0, "I get it. You can", $4f
-	db "hear JOHTO's radio", $55
-	db "on the FAST SHIP.", $57
+	text "I get it. You can"
+	line "hear JOHTO's radio"
+	cont "on the FAST SHIP."
+	done
 ; 0x764ce
 
 PokefanmJeremySeenText: ; 0x764ce
-	db $0, "What do you think?", $4f
-	db "My #MON are", $55
-	db "beautiful, yes?", $57
+	text "What do you think?"
+	line "My #MON are"
+	cont "beautiful, yes?"
+	done
 ; 0x764fe
 
 PokefanmJeremyBeatenText: ; 0x764fe
-	db $0, "Oh, no! My beauti-", $4f
-	db "ful #MON!", $57
+	text "Oh, no! My beauti-"
+	line "ful #MON!"
+	done
 ; 0x7651c
 
 UnknownText_0x7651c: ; 0x7651c
-	db $0, "I must go to the", $4f
-	db "#MON SALON and", $55
-	db "fix them up nice!", $57
+	text "I must go to the"
+	line "#MON SALON and"
+	cont "fix them up nice!"
+	done
 ; 0x7654f
 
 PokefanfGeorgiaSeenText: ; 0x7654f
-	db $0, "I'm going to shop", $4f
-	db "at the DEPT.STORE", $55
-	db "and then…", $57
+	text "I'm going to shop"
+	line "at the DEPT.STORE"
+	cont "and then…"
+	done
 ; 0x7657d
 
 PokefanfGeorgiaBeatenText: ; 0x7657d
-	db $0, "What was I going", $4f
-	db "to do?", $57
+	text "What was I going"
+	line "to do?"
+	done
 ; 0x76596
 
 UnknownText_0x76596: ; 0x76596
-	db $0, "Oh, yes! I have to", $4f
-	db "get my #MON out", $55
-	db "of DAY-CARE!", $57
+	text "Oh, yes! I have to"
+	line "get my #MON out"
+	cont "of DAY-CARE!"
+	done
 ; 0x765c7
 
 SupernerdShawnSeenText: ; 0x765c7
-	db $0, "What kinds of #", $4f
-	db "BALLS do you have", $55
-	db "with you?", $57
+	text "What kinds of #"
+	line "BALLS do you have"
+	cont "with you?"
+	done
 ; 0x765f4
 
 SupernerdShawnBeatenText: ; 0x765f4
-	db $0, "Wait! Stop! Don't!", $4f
-	db "Please!", $57
+	text "Wait! Stop! Don't!"
+	line "Please!"
+	done
 ; 0x7660f
 
 UnknownText_0x7660f: ; 0x7660f
-	db $0, "You should use the", $4f
-	db "right BALLS to fit", $55
-	db "the situation.", $57
+	text "You should use the"
+	line "right BALLS to fit"
+	cont "the situation."
+	done
 ; 0x76645
 
 UnknownText_0x76645: ; 0x76645
-	db $0, "FAST SHIP S.S.AQUA", $4f
-	db "has arrived in", $55
-	db "VERMILION CITY.", $57
+	text "FAST SHIP S.S.AQUA"
+	line "has arrived in"
+	cont "VERMILION CITY."
+	done
 ; 0x76678
 
 FastShipCabins_SE_SSE_CaptainsCabin_MapEventHeader: ; 0x76678

@@ -29,22 +29,28 @@ UnknownScript_0x9b862: ; 0x9b862
 ; 0x9b865
 
 UnknownText_0x9b865: ; 0x9b865
-	db $0, "Hi! Wow, I'm glad", $4f
-	db "to see you.", $51
-	db "You're the first", $4f
-	db "visitor I've had", $55
-	db "in a long time.", $51
-	db "I'm super-happy!", $4f
-	db "Let me give you a", $55
-	db "little present.", $57
+	text "Hi! Wow, I'm glad"
+	line "to see you."
+
+	para "You're the first"
+	line "visitor I've had"
+	cont "in a long time."
+
+	para "I'm super-happy!"
+	line "Let me give you a"
+	cont "little present."
+	done
 ; 0x9b8e5
 
 UnknownText_0x9b8e5: ; 0x9b8e5
-	db $0, "That's a NUGGET.", $51
-	db "I can't give you", $4f
-	db "any nuggets of", $51
-	db "wisdom, so that'll", $4f
-	db "have to do!", $57
+	text "That's a NUGGET."
+
+	para "I can't give you"
+	line "any nuggets of"
+
+	para "wisdom, so that'll"
+	line "have to do!"
+	done
 ; 0x9b933
 
 Route2NuggetSpeechHouse_MapEventHeader: ; 0x9b933

@@ -44,45 +44,59 @@ MapRoute27SandstormHouseSignpost1Script: ; 0x7b3c3
 ; 0x7b3c6
 
 UnknownText_0x7b3c6: ; 0x7b3c6
-	db $0, "Where are you off", $4f
-	db "to with #MON?", $51
-	db "#MON LEAGUE?", $51
-	db "Are your #MON", $4f
-	db "loyal enough for", $55
-	db "you to win?", $51
-	db "Let me see…", $57
+	text "Where are you off"
+	line "to with #MON?"
+
+	para "#MON LEAGUE?"
+
+	para "Are your #MON"
+	line "loyal enough for"
+	cont "you to win?"
+
+	para "Let me see…"
+	done
 ; 0x7b42b
 
 UnknownText_0x7b42b: ; 0x7b42b
-	db $0, "Ah! Your #MON", $4f
-	db "trusts you very", $55
-	db "much.", $51
-	db "It's nice to see a", $4f
-	db "good trainer.", $51
-	db "Here. A gift for", $4f
-	db "your journey.", $57
+	text "Ah! Your #MON"
+	line "trusts you very"
+	cont "much."
+
+	para "It's nice to see a"
+	line "good trainer."
+
+	para "Here. A gift for"
+	line "your journey."
+	done
 ; 0x7b48f
 
 UnknownText_0x7b48f: ; 0x7b48f
-	db $0, "TM37 happens to be", $4f
-	db "SANDSTORM.", $51
-	db "It's a move that", $4f
-	db "inflicts damage on", $55
-	db "both battlers.", $51
-	db "It's for advanced", $4f
-	db "trainers only.", $51
-	db "Use it if you", $4f
-	db "dare. Good luck!", $57
+	text "TM37 happens to be"
+	line "SANDSTORM."
+
+	para "It's a move that"
+	line "inflicts damage on"
+	cont "both battlers."
+
+	para "It's for advanced"
+	line "trainers only."
+
+	para "Use it if you"
+	line "dare. Good luck!"
+	done
 ; 0x7b51f
 
 UnknownText_0x7b51f: ; 0x7b51f
-	db $0, "If it doesn't come", $4f
-	db "to trust you some", $51
-	db "more, it could be", $4f
-	db "tough going.", $51
-	db "Trust is the tie", $4f
-	db "that binds #MON", $55
-	db "and trainers.", $57
+	text "If it doesn't come"
+	line "to trust you some"
+
+	para "more, it could be"
+	line "tough going."
+
+	para "Trust is the tie"
+	line "that binds #MON"
+	cont "and trainers."
+	done
 ; 0x7b592
 
 Route27SandstormHouse_MapEventHeader: ; 0x7b592

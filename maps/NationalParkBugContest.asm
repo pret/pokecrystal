@@ -123,95 +123,119 @@ MapNationalParkBugContestSignpostItem2: ; 0x5c949
 ; 0x5c94c
 
 UnknownText_0x5c94c: ; 0x5c94c
-	db $0, "DON: I'm going to", $4f
-	db "win! Don't bother", $55
-	db "me.", $57
+	text "DON: I'm going to"
+	line "win! Don't bother"
+	cont "me."
+	done
 ; 0x5c973
 
 UnknownText_0x5c973: ; 0x5c973
-	db $0, "ED: My PARASECT", $4f
-	db "puts #MON to", $55
-	db "sleep with SPORE.", $57
+	text "ED: My PARASECT"
+	line "puts #MON to"
+	cont "sleep with SPORE."
+	done
 ; 0x5c9a3
 
 UnknownText_0x5c9a3: ; 0x5c9a3
-	db $0, "NICK: I'm raising", $4f
-	db "fast #MON for", $55
-	db "battles.", $57
+	text "NICK: I'm raising"
+	line "fast #MON for"
+	cont "battles."
+	done
 ; 0x5c9cc
 
 UnknownText_0x5c9cc: ; 0x5c9cc
-	db $0, "WILLIAM: I'm not", $4f
-	db "concerned about", $55
-	db "winning.", $51
-	db "I'm just looking", $4f
-	db "for rare #MON.", $57
+	text "WILLIAM: I'm not"
+	line "concerned about"
+	cont "winning."
+
+	para "I'm just looking"
+	line "for rare #MON."
+	done
 ; 0x5ca15
 
 UnknownText_0x5ca15: ; 0x5ca15
-	db $0, "BENNY: Ssh! You'll", $4f
-	db "scare off SCYTHER.", $51
-	db "I'll talk to you", $4f
-	db "later.", $57
+	text "BENNY: Ssh! You'll"
+	line "scare off SCYTHER."
+
+	para "I'll talk to you"
+	line "later."
+	done
 ; 0x5ca52
 
 UnknownText_0x5ca52: ; 0x5ca52
-	db $0, "BARRY: You should", $4f
-	db "weaken bug #MON", $51
-	db "first, then throw", $4f
-	db "a BALL.", $57
+	text "BARRY: You should"
+	line "weaken bug #MON"
+
+	para "first, then throw"
+	line "a BALL."
+	done
 ; 0x5ca8f
 
 UnknownText_0x5ca8f: ; 0x5ca8f
-	db $0, "CINDY: I love bug", $4f
-	db "#MON.", $51
-	db "I guess you must", $4f
-	db "like them too.", $57
+	text "CINDY: I love bug"
+	line "#MON."
+
+	para "I guess you must"
+	line "like them too."
+	done
 ; 0x5cac8
 
 UnknownText_0x5cac8: ; 0x5cac8
-	db $0, "JOSH: I've been", $4f
-	db "collecting bug", $51
-	db "#MON since I", $4f
-	db "was just a baby.", $51
-	db "There's no way I'm", $4f
-	db "going to lose!", $57
+	text "JOSH: I've been"
+	line "collecting bug"
+
+	para "#MON since I"
+	line "was just a baby."
+
+	para "There's no way I'm"
+	line "going to lose!"
+	done
 ; 0x5cb25
 
 UnknownText_0x5cb25: ; 0x5cb25
-	db $0, "SAMUEL: If you've", $4f
-	db "got the time to", $51
-	db "chat, go find some", $4f
-	db "bug #MON.", $57
+	text "SAMUEL: If you've"
+	line "got the time to"
+
+	para "chat, go find some"
+	line "bug #MON."
+	done
 ; 0x5cb64
 
 UnknownText_0x5cb64: ; 0x5cb64
-	db $0, "KIPP: I've studied", $4f
-	db "about bug #MON", $55
-	db "a lot.", $51
-	db "I'm going to win", $4f
-	db "for sure.", $57
+	text "KIPP: I've studied"
+	line "about bug #MON"
+	cont "a lot."
+
+	para "I'm going to win"
+	line "for sure."
+	done
 ; 0x5cba7
 
 UnknownText_0x5cba7: ; 0x5cba7
-	db $0, "RELAXATION SQUARE", $4f
-	db "NATIONAL PARK", $57
+	text "RELAXATION SQUARE"
+	line "NATIONAL PARK"
+	done
 ; 0x5cbc8
 
 UnknownText_0x5cbc8: ; 0x5cbc8
-	db $0, "What is this", $4f
-	db "notice?", $51
-	db "Please battle only", $4f
-	db "in the grass.", $51
-	db "NATIONAL PARK", $4f
-	db "WARDEN'S OFFICE", $57
+	text "What is this"
+	line "notice?"
+
+	para "Please battle only"
+	line "in the grass."
+
+	para "NATIONAL PARK"
+	line "WARDEN'S OFFICE"
+	done
 ; 0x5cc1d
 
 UnknownText_0x5cc1d: ; 0x5cc1d
-	db $0, "TRAINER TIPS", $51
-	db "Print out MAIL by", $4f
-	db "opening it then", $55
-	db "pressing START.", $57
+	text "TRAINER TIPS"
+
+	para "Print out MAIL by"
+	line "opening it then"
+	cont "pressing START."
+	done
 ; 0x5cc5d
 
 NationalParkBugContest_MapEventHeader: ; 0x5cc5d

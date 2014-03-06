@@ -66,85 +66,116 @@ UnknownScript_0x9aa74: ; 0x9aa74
 ; 0x9aa7b
 
 UnknownText_0x9aa7b: ; 0x9aa7b
-	db $0, "BLUE: Yo! Finally", $4f
-	db "got here, huh?", $51
-	db "I wasn't in the", $4f
-	db "mood at CINNABAR,", $51
-	db "but now I'm ready", $4f
-	db "to battle you.", $51
-	db "…", $51
-	db "You're telling me", $4f
-	db "you conquered all", $55
-	db "the GYMS in JOHTO?", $51
-	db "Heh! JOHTO's GYMS", $4f
-	db "must be pretty", $55
-	db "pathetic then.", $51
-	db "Hey, don't worry", $4f
-	db "about it.", $51
-	db "I'll know if you", $4f
-	db "are good or not by", $51
-	db "battling you right", $4f
-	db "now.", $51
-	db "Ready, JOHTO", $4f
-	db "CHAMP?", $57
+	text "BLUE: Yo! Finally"
+	line "got here, huh?"
+
+	para "I wasn't in the"
+	line "mood at CINNABAR,"
+
+	para "but now I'm ready"
+	line "to battle you."
+
+	para "…"
+
+	para "You're telling me"
+	line "you conquered all"
+	cont "the GYMS in JOHTO?"
+
+	para "Heh! JOHTO's GYMS"
+	line "must be pretty"
+	cont "pathetic then."
+
+	para "Hey, don't worry"
+	line "about it."
+
+	para "I'll know if you"
+	line "are good or not by"
+
+	para "battling you right"
+	line "now."
+
+	para "Ready, JOHTO"
+	line "CHAMP?"
+	done
 ; 0x9abae
 
 UnknownText_0x9abae: ; 0x9abae
-	db $0, "BLUE: What?", $51
-	db "How the heck did I", $4f
-	db "lose to you?", $51
-	db "…", $51
-	db "Tch, all right…", $4f
-	db "Here, take this--", $55
-	db "it's EARTHBADGE.", $57
+	text "BLUE: What?"
+
+	para "How the heck did I"
+	line "lose to you?"
+
+	para "…"
+
+	para "Tch, all right…"
+	line "Here, take this--"
+	cont "it's EARTHBADGE."
+	done
 ; 0x9ac0f
 
 UnknownText_0x9ac0f: ; 0x9ac0f
-	db $0, $52, " received", $4f
-	db "EARTHBADGE.", $57
+	text $52, " received"
+	line "EARTHBADGE."
+	done
 ; 0x9ac27
 
 UnknownText_0x9ac27: ; 0x9ac27
-	db $0, "BLUE: …", $51
-	db "All right, I was", $4f
-	db "wrong. You're the", $51
-	db "real deal. You are", $4f
-	db "a good trainer.", $51
-	db "But I'm going to", $4f
-	db "beat you someday.", $51
-	db "Don't you forget", $4f
-	db "it!", $57
+	text "BLUE: …"
+
+	para "All right, I was"
+	line "wrong. You're the"
+
+	para "real deal. You are"
+	line "a good trainer."
+
+	para "But I'm going to"
+	line "beat you someday."
+
+	para "Don't you forget"
+	line "it!"
+	done
 ; 0x9acab
 
 UnknownText_0x9acab: ; 0x9acab
-	db $0, "BLUE: Listen, you.", $51
-	db "You'd better not", $4f
-	db "lose until I beat", $55
-	db "you. Got it?", $57
+	text "BLUE: Listen, you."
+
+	para "You'd better not"
+	line "lose until I beat"
+	cont "you. Got it?"
+	done
 ; 0x9acee
 
 ViridianGymGuyText: ; 0x9acee
-	db $0, "Yo, CHAMP in", $4f
-	db "making!", $51
-	db "How's it going?", $4f
-	db "Looks like you're", $55
-	db "on a roll.", $51
-	db "The GYM LEADER is", $4f
-	db "a guy who battled", $51
-	db "the CHAMPION three", $4f
-	db "years ago.", $51
-	db "He's no pushover.", $51
-	db "Give it everything", $4f
-	db "you've got!", $57
+	text "Yo, CHAMP in"
+	line "making!"
+
+	para "How's it going?"
+	line "Looks like you're"
+	cont "on a roll."
+
+	para "The GYM LEADER is"
+	line "a guy who battled"
+
+	para "the CHAMPION three"
+	line "years ago."
+
+	para "He's no pushover."
+
+	para "Give it everything"
+	line "you've got!"
+	done
 ; 0x9ada0
 
 ViridianGymGuyWinText: ; 0x9ada0
-	db $0, "Man, you are truly", $4f
-	db "tough…", $51
-	db "That was a heck of", $4f
-	db "an inspirational", $51
-	db "battle. It brought", $4f
-	db "tears to my eyes.", $57
+	text "Man, you are truly"
+	line "tough…"
+
+	para "That was a heck of"
+	line "an inspirational"
+
+	para "battle. It brought"
+	line "tears to my eyes."
+	done
 ; 0x9ae04
 
 ViridianGym_MapEventHeader: ; 0x9ae04

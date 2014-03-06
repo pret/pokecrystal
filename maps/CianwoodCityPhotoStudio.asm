@@ -28,22 +28,27 @@ UnknownScript_0x9e0f3: ; 0x9e0f3
 ; 0x9e0f9
 
 UnknownText_0x9e0f9: ; 0x9e0f9
-	db $0, "You have magnifi-", $4f
-	db "cent #MON with", $55
-	db "you.", $51
-	db "How about a photo", $4f
-	db "for a souvenir?", $57
+	text "You have magnifi-"
+	line "cent #MON with"
+	cont "you."
+
+	para "How about a photo"
+	line "for a souvenir?"
+	done
 ; 0x9e142
 
 UnknownText_0x9e142: ; 0x9e142
-	db $0, "OK! Big smile now!", $57
+	text "OK! Big smile now!"
+	done
 ; 0x9e156
 
 UnknownText_0x9e156: ; 0x9e156
-	db $0, "Oh, that's too", $4f
-	db "bad. I thought it", $51
-	db "would be a great", $4f
-	db "memento…", $57
+	text "Oh, that's too"
+	line "bad. I thought it"
+
+	para "would be a great"
+	line "memento…"
+	done
 ; 0x9e191
 
 CianwoodCityPhotoStudio_MapEventHeader: ; 0x9e191

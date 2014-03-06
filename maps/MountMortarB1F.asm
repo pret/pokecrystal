@@ -78,52 +78,69 @@ MapMountMortarB1FSignpostItem0: ; 0x7e24a
 ; 0x7e24d
 
 UnknownText_0x7e24d: ; 0x7e24d
-	db $0, "Hey!", $51
-	db "I am the KARATE", $4f
-	db "KING!", $51
-	db "I train alone here", $4f
-	db "in the dark!", $51
-	db "You!", $4f
-	db "Battle with me!", $51
-	db "Hwaaarggh!", $57
+	text "Hey!"
+
+	para "I am the KARATE"
+	line "KING!"
+
+	para "I train alone here"
+	line "in the dark!"
+
+	para "You!"
+	line "Battle with me!"
+
+	para "Hwaaarggh!"
+	done
 ; 0x7e2a9
 
 UnknownText_0x7e2a9: ; 0x7e2a9
-	db $0, "Waaaarggh!", $4f
-	db "I'm beaten!", $57
+	text "Waaaarggh!"
+	line "I'm beaten!"
+	done
 ; 0x7e2c0
 
 UnknownText_0x7e2c0: ; 0x7e2c0
-	db $0, "I… I'm crushed…", $51
-	db "My training is", $4f
-	db "still not enough…", $51
-	db "But a loss is a", $4f
-	db "loss. I admit it.", $51
-	db "As proof that you", $4f
-	db "defeated me, I'll", $51
-	db "give you a rare", $4f
-	db "fighting #MON.", $57
+	text "I… I'm crushed…"
+
+	para "My training is"
+	line "still not enough…"
+
+	para "But a loss is a"
+	line "loss. I admit it."
+
+	para "As proof that you"
+	line "defeated me, I'll"
+
+	para "give you a rare"
+	line "fighting #MON."
+	done
 ; 0x7e355
 
 UnknownText_0x7e355: ; 0x7e355
-	db $0, $52, " received", $4f
-	db "TYROGUE.", $57
+	text $52, " received"
+	line "TYROGUE."
+	done
 ; 0x7e36a
 
 UnknownText_0x7e36a: ; 0x7e36a
-	db $0, "TYROGUE is a", $4f
-	db "fighting-type.", $51
-	db "It evolves into a", $4f
-	db "tougher #MON.", $51
-	db "Keep up the hard", $4f
-	db "work. I'll keep", $55
-	db "training too.", $51
-	db "Farewell!", $57
+	text "TYROGUE is a"
+	line "fighting-type."
+
+	para "It evolves into a"
+	line "tougher #MON."
+
+	para "Keep up the hard"
+	line "work. I'll keep"
+	cont "training too."
+
+	para "Farewell!"
+	done
 ; 0x7e3df
 
 UnknownText_0x7e3df: ; 0x7e3df
-	db $0, "You have no room", $4f
-	db "in your party!", $57
+	text "You have no room"
+	line "in your party!"
+	done
 ; 0x7e400
 
 MountMortarB1F_MapEventHeader: ; 0x7e400

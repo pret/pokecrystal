@@ -37,39 +37,51 @@ CooltrainerFScript_0x188bee: ; 0x188bee
 ; 0x188bf1
 
 UnknownText_0x188bf1: ; 0x188bf1
-	db $0, "A #MON CENTER", $4f
-	db "near a cave?", $51
-	db "That's mighty", $4f
-	db "convenient.", $57
+	text "A #MON CENTER"
+	line "near a cave?"
+
+	para "That's mighty"
+	line "convenient."
+	done
 ; 0x188c26
 
 UnknownText_0x188c26: ; 0x188c26
-	db $0, "The POWER PLANT's", $4f
-	db "MANAGER is looking", $51
-	db "for a strong #-", $4f
-	db "MON trainer.", $51
-	db "He needs help", $4f
-	db "getting back", $51
-	db "something that", $4f
-	db "was stolen.", $57
+	text "The POWER PLANT's"
+	line "MANAGER is looking"
+
+	para "for a strong #-"
+	line "MON trainer."
+
+	para "He needs help"
+	line "getting back"
+
+	para "something that"
+	line "was stolen."
+	done
 ; 0x188c9e
 
 UnknownText_0x188c9e: ; 0x188c9e
-	db $0, "I hear TEAM ROCKET", $4f
-	db "got back together", $51
-	db "in JOHTO but fell", $4f
-	db "apart right away.", $51
-	db "I didn't know any-", $4f
-	db "thing about that.", $57
+	text "I hear TEAM ROCKET"
+	line "got back together"
+
+	para "in JOHTO but fell"
+	line "apart right away."
+
+	para "I didn't know any-"
+	line "thing about that."
+	done
 ; 0x188d0c
 
 UnknownText_0x188d0c: ; 0x188d0c
-	db $0, "When you go out-", $4f
-	db "side, you can see", $51
-	db "the roof of a big", $4f
-	db "building.", $51
-	db "That's the POWER", $4f
-	db "PLANT.", $57
+	text "When you go out-"
+	line "side, you can see"
+
+	para "the roof of a big"
+	line "building."
+
+	para "That's the POWER"
+	line "PLANT."
+	done
 ; 0x188d63
 
 Route10PokeCenter1F_MapEventHeader: ; 0x188d63

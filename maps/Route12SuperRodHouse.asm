@@ -39,38 +39,48 @@ UnknownScript_0x7f4ac: ; 0x7f4ac
 ; 0x7f4af
 
 UnknownText_0x7f4af: ; 0x7f4af
-	db $0, "I'm the FISHING", $4f
-	db "GURU's younger", $55
-	db "brother.", $51
-	db "I can see that you", $4f
-	db "like fishing.", $51
-	db "There's no doubt", $4f
-	db "in my mind at all!", $51
-	db "So? I know I'm", $4f
-	db "right.", $57
+	text "I'm the FISHING"
+	line "GURU's younger"
+	cont "brother."
+
+	para "I can see that you"
+	line "like fishing."
+
+	para "There's no doubt"
+	line "in my mind at all!"
+
+	para "So? I know I'm"
+	line "right."
+	done
 ; 0x7f52f
 
 UnknownText_0x7f52f: ; 0x7f52f
-	db $0, "Yes, yes. Just as", $4f
-	db "I thought!", $51
-	db "Here, fishing fan!", $4f
-	db "Take this--it's a", $55
-	db "SUPER ROD.", $57
+	text "Yes, yes. Just as"
+	line "I thought!"
+
+	para "Here, fishing fan!"
+	line "Take this--it's a"
+	cont "SUPER ROD."
+	done
 ; 0x7f57c
 
 UnknownText_0x7f57c: ; 0x7f57c
-	db $0, "Try your hand at", $4f
-	db "fishing wherever", $55
-	db "there is water.", $51
-	db "Remember--you can", $4f
-	db "catch different", $51
-	db "#MON using", $4f
-	db "different RODS.", $57
+	text "Try your hand at"
+	line "fishing wherever"
+	cont "there is water."
+
+	para "Remember--you can"
+	line "catch different"
+
+	para "#MON using"
+	line "different RODS."
+	done
 ; 0x7f5ec
 
 UnknownText_0x7f5ec: ; 0x7f5ec
-	db $0, "Huh? My own eyes", $4f
-	db "deceived me?", $57
+	text "Huh? My own eyes"
+	line "deceived me?"
+	done
 ; 0x7f60b
 
 Route12SuperRodHouse_MapEventHeader: ; 0x7f60b

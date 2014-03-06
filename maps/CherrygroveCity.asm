@@ -368,184 +368,237 @@ MovementData_0x19c1da: ; 0x19c1da
 ; 0x19c1e3
 
 UnknownText_0x19c1e3: ; 0x19c1e3
-	db $0, "You're a rookie", $4f
-	db "trainer, aren't", $55
-	db "you? I can tell!", $51
-	db "That's OK! Every-", $4f
-	db "one is a rookie", $55
-	db "at some point!", $51
-	db "If you'd like, I", $4f
-	db "can teach you a", $55
-	db "few things.", $57
+	text "You're a rookie"
+	line "trainer, aren't"
+	cont "you? I can tell!"
+
+	para "That's OK! Every-"
+	line "one is a rookie"
+	cont "at some point!"
+
+	para "If you'd like, I"
+	line "can teach you a"
+	cont "few things."
+	done
 ; 0x19c26f
 
 UnknownText_0x19c26f: ; 0x19c26f
-	db $0, "OK, then!", $4f
-	db "Follow me!", $57
+	text "OK, then!"
+	line "Follow me!"
+	done
 ; 0x19c285
 
 UnknownText_0x19c285: ; 0x19c285
-	db $0, "This is a #MON", $4f
-	db "CENTER. They heal", $51
-	db "your #MON in no", $4f
-	db "time at all.", $51
-	db "You'll be relying", $4f
-	db "on them a lot, so", $51
-	db "you better learn", $4f
-	db "about them.", $57
+	text "This is a #MON"
+	line "CENTER. They heal"
+
+	para "your #MON in no"
+	line "time at all."
+
+	para "You'll be relying"
+	line "on them a lot, so"
+
+	para "you better learn"
+	line "about them."
+	done
 ; 0x19c304
 
 UnknownText_0x19c304: ; 0x19c304
-	db $0, "This is a #MON", $4f
-	db "MART.", $51
-	db "They sell BALLS", $4f
-	db "for catching wild", $51
-	db "#MON and other", $4f
-	db "useful items.", $57
+	text "This is a #MON"
+	line "MART."
+
+	para "They sell BALLS"
+	line "for catching wild"
+
+	para "#MON and other"
+	line "useful items."
+	done
 ; 0x19c359
 
 UnknownText_0x19c359: ; 0x19c359
-	db $0, "ROUTE 30 is out", $4f
-	db "this way.", $51
-	db "Trainers will be", $4f
-	db "battling their", $51
-	db "prized #MON", $4f
-	db "there.", $57
+	text "ROUTE 30 is out"
+	line "this way."
+
+	para "Trainers will be"
+	line "battling their"
+
+	para "prized #MON"
+	line "there."
+	done
 ; 0x19c3a7
 
 UnknownText_0x19c3a7: ; 0x19c3a7
-	db $0, "This is the sea,", $4f
-	db "as you can see.", $51
-	db "Some #MON are", $4f
-	db "found only in", $55
-	db "water.", $57
+	text "This is the sea,"
+	line "as you can see."
+
+	para "Some #MON are"
+	line "found only in"
+	cont "water."
+	done
 ; 0x19c3ec
 
 UnknownText_0x19c3ec: ; 0x19c3ec
-	db $0, "Here…", $51
-	db "It's my house!", $4f
-	db "Thanks for your", $55
-	db "company.", $51
-	db "Let me give you a", $4f
-	db "small gift.", $57
+	text "Here…"
+
+	para "It's my house!"
+	line "Thanks for your"
+	cont "company."
+
+	para "Let me give you a"
+	line "small gift."
+	done
 ; 0x19c438
 
 UnknownText_0x19c438: ; 0x19c438
-	db $0, $52, "'s #GEAR", $4f
-	db "now has a MAP!", $57
+	text $52, "'s #GEAR"
+	line "now has a MAP!"
+	done
 ; 0x19c451
 
 UnknownText_0x19c451: ; 0x19c451
-	db $0, "#GEAR becomes", $4f
-	db "more useful as you", $55
-	db "add CARDS.", $51
-	db "I wish you luck on", $4f
-	db "your journey!", $57
+	text "#GEAR becomes"
+	line "more useful as you"
+	cont "add CARDS."
+
+	para "I wish you luck on"
+	line "your journey!"
+	done
 ; 0x19c49f
 
 UnknownText_0x19c49f: ; 0x19c49f
-	db $0, "Oh… It's something", $4f
-	db "I enjoy doing…", $51
-	db "Fine. Come see me", $4f
-	db "when you like.", $57
+	text "Oh… It's something"
+	line "I enjoy doing…"
+
+	para "Fine. Come see me"
+	line "when you like."
+	done
 ; 0x19c4e2
 
 UnknownText_0x19c4e2: ; 0x19c4e2
-	db $0, $56, " ", $56, " ", $56, $51
-	db "You got a #MON", $4f
-	db "at the LAB.", $51
-	db "What a waste.", $4f
-	db "A wimp like you.", $51
-	db $56, " ", $56, " ", $56, $51
-	db "Don't you get what", $4f
-	db "I'm saying?", $51
-	db "Well, I too, have", $4f
-	db "a good #MON.", $51
-	db "I'll show you", $4f
-	db "what I mean!", $57
+	text $56, " ", $56, " ", $56
+
+	para "You got a #MON"
+	line "at the LAB."
+
+	para "What a waste."
+	line "A wimp like you."
+
+	para $56, " ", $56, " ", $56
+
+	para "Don't you get what"
+	line "I'm saying?"
+
+	para "Well, I too, have"
+	line "a good #MON."
+
+	para "I'll show you"
+	line "what I mean!"
+	done
 ; 0x19c57f
 
 UnknownText_0x19c57f: ; 0x19c57f
-	db $0, "Humph. Are you", $4f
-	db "happy you won?", $57
+	text "Humph. Are you"
+	line "happy you won?"
+	done
 ; 0x19c59e
 
 UnknownText_0x19c59e: ; 0x19c59e
-	db $0, $56, " ", $56, " ", $56, $51
-	db "My name's ???.", $51
-	db "I'm going to be", $4f
-	db "the world's great-", $55
-	db "est #MON", $55
-	db "trainer.", $57
+	text $56, " ", $56, " ", $56
+
+	para "My name's ???."
+
+	para "I'm going to be"
+	line "the world's great-"
+	cont "est #MON"
+	cont "trainer."
+	done
 ; 0x19c5e6
 
 UnknownText_0x19c5e6: ; 0x19c5e6
-	db $0, "Humph. That was a", $4f
-	db "waste of time.", $57
+	text "Humph. That was a"
+	line "waste of time."
+	done
 ; 0x19c608
 
 UnknownText_0x19c608: ; 0x19c608
-	db $0, $56, " ", $56, " ", $56, $51
-	db "My name's ???.", $51
-	db "I'm going to be", $4f
-	db "the world's great-", $55
-	db "est #MON", $55
-	db "trainer.", $57
+	text $56, " ", $56, " ", $56
+
+	para "My name's ???."
+
+	para "I'm going to be"
+	line "the world's great-"
+	cont "est #MON"
+	cont "trainer."
+	done
 ; 0x19c650
 
 UnknownText_0x19c650: ; 0x19c650
-	db $0, "Did you talk to", $4f
-	db "the old man by the", $55
-	db "#MON CENTER?", $51
-	db "He'll put a MAP of", $4f
-	db "JOHTO on your", $55
-	db "#GEAR.", $57
+	text "Did you talk to"
+	line "the old man by the"
+	cont "#MON CENTER?"
+
+	para "He'll put a MAP of"
+	line "JOHTO on your"
+	cont "#GEAR."
+	done
 ; 0x19c6a8
 
 UnknownText_0x19c6a8: ; 0x19c6a8
-	db $0, "When you're with", $4f
-	db "#MON, going", $55
-	db "anywhere is fun.", $57
+	text "When you're with"
+	line "#MON, going"
+	cont "anywhere is fun."
+	done
 ; 0x19c6d6
 
 UnknownText_0x19c6d6: ; 0x19c6d6
-	db $0, "MR.#MON's house", $4f
-	db "is still farther", $55
-	db "up ahead.", $57
+	text "MR.#MON's house"
+	line "is still farther"
+	cont "up ahead."
+	done
 ; 0x19c701
 
 UnknownText_0x19c701: ; 0x19c701
-	db $0, "I battled the", $4f
-	db "trainers on the", $55
-	db "road.", $51
-	db "My #MON lost.", $4f
-	db "They're a mess! I", $51
-	db "must take them to", $4f
-	db "a #MON CENTER.", $57
+	text "I battled the"
+	line "trainers on the"
+	cont "road."
+
+	para "My #MON lost."
+	line "They're a mess! I"
+
+	para "must take them to"
+	line "a #MON CENTER."
+	done
 ; 0x19c766
 
 UnknownText_0x19c766: ; 0x19c766
-	db $0, "A #MON I caught", $4f
-	db "had an item.", $51
-	db "I think it's", $4f
-	db "MYSTIC WATER.", $51
-	db "I don't need it,", $4f
-	db "so do you want it?", $57
+	text "A #MON I caught"
+	line "had an item."
+
+	para "I think it's"
+	line "MYSTIC WATER."
+
+	para "I don't need it,"
+	line "so do you want it?"
+	done
 ; 0x19c7c1
 
 UnknownText_0x19c7c1: ; 0x19c7c1
-	db $0, "Back to fishing", $4f
-	db "for me, then.", $57
+	text "Back to fishing"
+	line "for me, then."
+	done
 ; 0x19c7e0
 
 UnknownText_0x19c7e0: ; 0x19c7e0
-	db $0, "CHERRYGROVE CITY", $51
-	db "The City of Cute,", $4f
-	db "Fragrant Flowers", $57
+	text "CHERRYGROVE CITY"
+
+	para "The City of Cute,"
+	line "Fragrant Flowers"
+	done
 ; 0x19c815
 
 UnknownText_0x19c815: ; 0x19c815
-	db $0, "GUIDE GENT'S HOUSE", $57
+	text "GUIDE GENT'S HOUSE"
+	done
 ; 0x19c829
 
 CherrygroveCity_MapEventHeader: ; 0x19c829

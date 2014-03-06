@@ -139,80 +139,102 @@ MovementData_0x18a8a1: ; 0x18a8a1
 ; 0x18a8a9
 
 UnknownText_0x18a8a9: ; 0x18a8a9
-	db $0, "I'm sorry, but the", $4f
-	db "MAGNET TRAIN isn't", $55
-	db "operating now.", $57
+	text "I'm sorry, but the"
+	line "MAGNET TRAIN isn't"
+	cont "operating now."
+	done
 ; 0x18a8dd
 
 UnknownText_0x18a8dd: ; 0x18a8dd
-	db $0, "We'll soon depart", $4f
-	db "for GOLDENROD.", $51
-	db "Are you coming on", $4f
-	db "board?", $57
+	text "We'll soon depart"
+	line "for GOLDENROD."
+
+	para "Are you coming on"
+	line "board?"
+	done
 ; 0x18a917
 
 UnknownText_0x18a917: ; 0x18a917
-	db $0, "May I see your", $4f
-	db "rail PASS, please?", $51
-	db "OK. Right this", $4f
-	db "way, please.", $57
+	text "May I see your"
+	line "rail PASS, please?"
+
+	para "OK. Right this"
+	line "way, please."
+	done
 ; 0x18a956
 
 UnknownText_0x18a956: ; 0x18a956
-	db $0, "Sorry, but you", $4f
-	db "don't have a PASS.", $57
+	text "Sorry, but you"
+	line "don't have a PASS."
+	done
 ; 0x18a978
 
 UnknownText_0x18a978: ; 0x18a978
-	db $0, "We hope to see you", $4f
-	db "again.", $57
+	text "We hope to see you"
+	line "again."
+	done
 ; 0x18a993
 
 UnknownText_0x18a993: ; 0x18a993
-	db $0, "We have arrived in", $4f
-	db "SAFFRON.", $51
-	db "We hope to see you", $4f
-	db "again.", $57
+	text "We have arrived in"
+	line "SAFFRON."
+
+	para "We hope to see you"
+	line "again."
+	done
 ; 0x18a9ca
 
 UnknownText_0x18a9ca: ; 0x18a9ca
-	db $0, "The MAGNET TRAIN", $4f
-	db "is a super-modern", $51
-	db "rail liner that", $4f
-	db "uses electricity", $51
-	db "and magnets to", $4f
-	db "attain incredible", $55
-	db "speed.", $51
-	db "However, if there", $4f
-	db "isn't any elec-", $55
-	db "tricity…", $57
+	text "The MAGNET TRAIN"
+	line "is a super-modern"
+
+	para "rail liner that"
+	line "uses electricity"
+
+	para "and magnets to"
+	line "attain incredible"
+	cont "speed."
+
+	para "However, if there"
+	line "isn't any elec-"
+	cont "tricity…"
+	done
 ; 0x18aa61
 
 UnknownText_0x18aa61: ; 0x18aa61
-	db $0, "Whew…", $51
-	db "How many times", $4f
-	db "have I gone back", $51
-	db "and forth between", $4f
-	db "KANTO and JOHTO?", $57
+	text "Whew…"
+
+	para "How many times"
+	line "have I gone back"
+
+	para "and forth between"
+	line "KANTO and JOHTO?"
+	done
 ; 0x18aaab
 
 UnknownText_0x18aaab: ; 0x18aaab
-	db $0, "Before the MAGNET", $4f
-	db "TRAIN STATION was", $51
-	db "built, there was a", $4f
-	db "house there.", $51
-	db "A little girl", $4f
-	db "named COPYCAT used", $55
-	db "to live there.", $57
+	text "Before the MAGNET"
+	line "TRAIN STATION was"
+
+	para "built, there was a"
+	line "house there."
+
+	para "A little girl"
+	line "named COPYCAT used"
+	cont "to live there."
+	done
 ; 0x18ab20
 
 UnknownText_0x18ab20: ; 0x18ab20
-	db $0, "Hi. Do you have a", $4f
-	db "rail PASS? I have", $51
-	db "one. All the peo-", $4f
-	db "ple in SAFFRON who", $51
-	db "ride the MAGNET", $4f
-	db "TRAIN have PASSES.", $57
+	text "Hi. Do you have a"
+	line "rail PASS? I have"
+
+	para "one. All the peo-"
+	line "ple in SAFFRON who"
+
+	para "ride the MAGNET"
+	line "TRAIN have PASSES."
+	done
 ; 0x18ab8d
 
 SaffronTrainStation_MapEventHeader: ; 0x18ab8d

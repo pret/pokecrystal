@@ -91,42 +91,55 @@ MovementData_0x18078e: ; 0x18078e
 ; 0x180793
 
 UnknownText_0x180793: ; 0x180793
-	db $0, "Fwahahahaha!", $51
-	db "I am KOGA of the", $4f
-	db "ELITE FOUR.", $51
-	db "I live in shadows,", $4f
-	db "a ninja!", $51
-	db "My intricate style", $4f
-	db "will confound and", $55
-	db "destroy you!", $51
-	db "Confusion, sleep,", $4f
-	db "poison…", $51
-	db "Prepare to be the", $4f
-	db "victim of my sin-", $55
-	db "ister technique!", $51
-	db "Fwahahahaha!", $51
-	db "#MON is not", $4f
-	db "merely about brute", $51
-	db "force--you shall", $4f
-	db "see soon enough!", $57
+	text "Fwahahahaha!"
+
+	para "I am KOGA of the"
+	line "ELITE FOUR."
+
+	para "I live in shadows,"
+	line "a ninja!"
+
+	para "My intricate style"
+	line "will confound and"
+	cont "destroy you!"
+
+	para "Confusion, sleep,"
+	line "poison…"
+
+	para "Prepare to be the"
+	line "victim of my sin-"
+	cont "ister technique!"
+
+	para "Fwahahahaha!"
+
+	para "#MON is not"
+	line "merely about brute"
+
+	para "force--you shall"
+	line "see soon enough!"
+	done
 ; 0x1808a9
 
 UnknownText_0x1808a9: ; 0x1808a9
-	db $0, "Ah!", $4f
-	db "You have proven", $55
-	db "your worth!", $57
+	text "Ah!"
+	line "You have proven"
+	cont "your worth!"
+	done
 ; 0x1808ca
 
 UnknownText_0x1808ca: ; 0x1808ca
-	db $0, "I subjected you to", $4f
-	db "everything I could", $55
-	db "muster.", $51
-	db "But my efforts", $4f
-	db "failed. I must", $55
-	db "hone my skills.", $51
-	db "Go on to the next", $4f
-	db "room, and put your", $55
-	db "abilities to test!", $57
+	text "I subjected you to"
+	line "everything I could"
+	cont "muster."
+
+	para "But my efforts"
+	line "failed. I must"
+	cont "hone my skills."
+
+	para "Go on to the next"
+	line "room, and put your"
+	cont "abilities to test!"
+	done
 ; 0x18095f
 
 KogasRoom_MapEventHeader: ; 0x18095f

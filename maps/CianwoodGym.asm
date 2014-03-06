@@ -222,141 +222,179 @@ MovementData_0x9d6f3: ; 0x9d6f3
 ; 0x9d6f9
 
 UnknownText_0x9d6f9: ; 0x9d6f9
-	db $0, "WAHAHAH!", $51
-	db "So you've come", $4f
-	db "this far!", $51
-	db "Let me tell you,", $4f
-	db "I'm tough!", $51
-	db "My #MON will", $4f
-	db "crush stones and", $55
-	db "shatter bones!", $51
-	db "Watch this!", $57
+	text "WAHAHAH!"
+
+	para "So you've come"
+	line "this far!"
+
+	para "Let me tell you,"
+	line "I'm tough!"
+
+	para "My #MON will"
+	line "crush stones and"
+	cont "shatter bones!"
+
+	para "Watch this!"
+	done
 ; 0x9d76f
 
 UnknownText_0x9d76f: ; 0x9d76f
-	db $0, "CHUCK: Urggh!", $4f
-	db "…", $51
-	db "Oooarrgh!", $57
+	text "CHUCK: Urggh!"
+	line "…"
+
+	para "Oooarrgh!"
+	done
 ; 0x9d78a
 
 UnknownText_0x9d78a: ; 0x9d78a
-	db $0, "There! Scared now,", $4f
-	db "are you?", $51
-	db "What?", $4f
-	db "It has nothing to", $51
-	db "do with #MON?", $4f
-	db "That's true!", $51
-	db "Come on. We shall", $4f
-	db "do battle!", $57
+	text "There! Scared now,"
+	line "are you?"
+
+	para "What?"
+	line "It has nothing to"
+
+	para "do with #MON?"
+	line "That's true!"
+
+	para "Come on. We shall"
+	line "do battle!"
+	done
 ; 0x9d7f6
 
 UnknownText_0x9d7f6: ; 0x9d7f6
-	db $0, "Wha? Huh?", $4f
-	db "I lost?", $51
-	db "How about that!", $4f
-	db "You're worthy of", $55
-	db "STORMBADGE!", $57
+	text "Wha? Huh?"
+	line "I lost?"
+
+	para "How about that!"
+	line "You're worthy of"
+	cont "STORMBADGE!"
+	done
 ; 0x9d835
 
 UnknownText_0x9d835: ; 0x9d835
-	db $0, $52, " received", $4f
-	db "STORMBADGE.", $57
+	text $52, " received"
+	line "STORMBADGE."
+	done
 ; 0x9d84d
 
 UnknownText_0x9d84d: ; 0x9d84d
-	db $0, "STORMBADGE makes", $4f
-	db "all #MON up to", $51
-	db "L70 obey, even", $4f
-	db "traded ones.", $51
-	db "It also lets your", $4f
-	db "#MON use FLY", $51
-	db "when you're not in", $4f
-	db "a battle.", $51
-	db "Here, take this", $4f
-	db "too!", $57
+	text "STORMBADGE makes"
+	line "all #MON up to"
+
+	para "L70 obey, even"
+	line "traded ones."
+
+	para "It also lets your"
+	line "#MON use FLY"
+
+	para "when you're not in"
+	line "a battle."
+
+	para "Here, take this"
+	line "too!"
+	done
 ; 0x9d8da
 
 UnknownText_0x9d8da: ; 0x9d8da
-	db $0, "That is DYNAMIC-", $4f
-	db "PUNCH.", $51
-	db "It doesn't always", $4f
-	db "hit, but when it", $51
-	db "does, it causes", $4f
-	db "confusion!", $57
+	text "That is DYNAMIC-"
+	line "PUNCH."
+
+	para "It doesn't always"
+	line "hit, but when it"
+
+	para "does, it causes"
+	line "confusion!"
+	done
 ; 0x9d930
 
 UnknownText_0x9d930: ; 0x9d930
-	db $0, "WAHAHAH! I enjoyed", $4f
-	db "battling you!", $51
-	db "But a loss is a", $4f
-	db "loss!", $51
-	db "From now on, I'm", $4f
-	db "going to train 24", $55
-	db "hours a day!", $57
+	text "WAHAHAH! I enjoyed"
+	line "battling you!"
+
+	para "But a loss is a"
+	line "loss!"
+
+	para "From now on, I'm"
+	line "going to train 24"
+	cont "hours a day!"
+	done
 ; 0x9d997
 
 BlackbeltYoshiSeenText: ; 0x9d997
-	db $0, "My #MON and I", $4f
-	db "are bound togeth-", $55
-	db "er by friendship.", $51
-	db "Our bond will", $4f
-	db "never be broken!", $57
+	text "My #MON and I"
+	line "are bound togeth-"
+	cont "er by friendship."
+
+	para "Our bond will"
+	line "never be broken!"
+	done
 ; 0x9d9e9
 
 BlackbeltYoshiBeatenText: ; 0x9d9e9
-	db $0, "This isn't real!", $57
+	text "This isn't real!"
+	done
 ; 0x9d9fa
 
 UnknownText_0x9d9fa: ; 0x9d9fa
-	db $0, "You seem to have a", $4f
-	db "strong bond with", $55
-	db "your #MON too!", $57
+	text "You seem to have a"
+	line "strong bond with"
+	cont "your #MON too!"
+	done
 ; 0x9da2e
 
 BlackbeltLaoSeenText: ; 0x9da2e
-	db $0, "We martial artists", $4f
-	db "fear nothing!", $57
+	text "We martial artists"
+	line "fear nothing!"
+	done
 ; 0x9da50
 
 BlackbeltLaoBeatenText: ; 0x9da50
-	db $0, "That's shocking!", $57
+	text "That's shocking!"
+	done
 ; 0x9da61
 
 UnknownText_0x9da61: ; 0x9da61
-	db $0, "Fighting #MON", $4f
-	db "are afraid of psy-", $55
-	db "chics…", $57
+	text "Fighting #MON"
+	line "are afraid of psy-"
+	cont "chics…"
+	done
 ; 0x9da8a
 
 BlackbeltNobSeenText: ; 0x9da8a
-	db $0, "Words are useless.", $4f
-	db "Let your fists do", $55
-	db "the talking!", $57
+	text "Words are useless."
+	line "Let your fists do"
+	cont "the talking!"
+	done
 ; 0x9dabd
 
 BlackbeltNobBeatenText: ; 0x9dabd
-	db $0, "…", $57
+	text "…"
+	done
 ; 0x9dac0
 
 UnknownText_0x9dac0: ; 0x9dac0
-	db $0, "I lost! ", $4f
-	db "I'm speechless!", $57
+	text "I lost! "
+	line "I'm speechless!"
+	done
 ; 0x9dad9
 
 BlackbeltLungSeenText: ; 0x9dad9
-	db $0, "My raging fists", $4f
-	db "will shatter your", $55
-	db "#MON!", $57
+	text "My raging fists"
+	line "will shatter your"
+	cont "#MON!"
+	done
 ; 0x9db02
 
 BlackbeltLungBeatenText: ; 0x9db02
-	db $0, "I got shattered!", $57
+	text "I got shattered!"
+	done
 ; 0x9db14
 
 UnknownText_0x9db14: ; 0x9db14
-	db $0, "My #MON lost…", $4f
-	db "My… my pride is", $55
-	db "shattered…", $57
+	text "My #MON lost…"
+	line "My… my pride is"
+	cont "shattered…"
+	done
 ; 0x9db3e
 
 CianwoodGym_MapEventHeader: ; 0x9db3e

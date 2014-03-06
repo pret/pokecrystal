@@ -267,147 +267,185 @@ MapRoute39SignpostItem3: ; 0x1a5bf6
 ; 0x1a5bf9
 
 UnknownText_0x1a5bf9: ; 0x1a5bf9
-	db $0, "MILTANK: Mooo!", $57
+	text "MILTANK: Mooo!"
+	done
 ; 0x1a5c09
 
 SailorEugeneSeenText: ; 0x1a5c09
-	db $0, "I just got back to", $4f
-	db "OLIVINE.", $51
-	db "So how about a", $4f
-	db "#MON battle?", $57
+	text "I just got back to"
+	line "OLIVINE."
+
+	para "So how about a"
+	line "#MON battle?"
+	done
 ; 0x1a5c42
 
 SailorEugeneBeatenText: ; 0x1a5c42
-	db $0, "Awaaargh!", $57
+	text "Awaaargh!"
+	done
 ; 0x1a5c4d
 
 UnknownText_0x1a5c4d: ; 0x1a5c4d
-	db $0, "My #MON were", $4f
-	db "caught and raised", $55
-	db "overseas.", $51
-	db "They're my compan-", $4f
-	db "ions on those long", $55
-	db "voyages.", $57
+	text "My #MON were"
+	line "caught and raised"
+	cont "overseas."
+
+	para "They're my compan-"
+	line "ions on those long"
+	cont "voyages."
+	done
 ; 0x1a5ca5
 
 PokefanmDerek1SeenText: ; 0x1a5ca5
-	db $0, "This is a good", $4f
-	db "time to brag about", $55
-	db "my PIKACHU!", $57
+	text "This is a good"
+	line "time to brag about"
+	cont "my PIKACHU!"
+	done
 ; 0x1a5cd4
 
 PokefanmDerek1BeatenText: ; 0x1a5cd4
-	db $0, "I had no time to", $4f
-	db "show off PIKACHU…", $57
+	text "I had no time to"
+	line "show off PIKACHU…"
+	done
 ; 0x1a5cf8
 
 UnknownText_0x1a5cf8: ; 0x1a5cf8
-	db $0, "I'm not listening", $4f
-	db "to your bragging!", $51
-	db "We # FANS have", $4f
-	db "a policy of not", $51
-	db "listening to other", $4f
-	db "people brag!", $57
+	text "I'm not listening"
+	line "to your bragging!"
+
+	para "We # FANS have"
+	line "a policy of not"
+
+	para "listening to other"
+	line "people brag!"
+	done
 ; 0x1a5d5b
 
 PokefanfRuthSeenText: ; 0x1a5d5b
-	db $0, "Such darling", $4f
-	db "#MON.", $51
-	db "Let's show our", $4f
-	db "#MON together", $55
-	db "at the same time.", $57
+	text "Such darling"
+	line "#MON."
+
+	para "Let's show our"
+	line "#MON together"
+	cont "at the same time."
+	done
 ; 0x1a5d9d
 
 PokefanfRuthBeatenText: ; 0x1a5d9d
-	db $0, "I don't mind", $4f
-	db "losing.", $57
+	text "I don't mind"
+	line "losing."
+	done
 ; 0x1a5db2
 
 UnknownText_0x1a5db2: ; 0x1a5db2
-	db $0, "Do you know about", $4f
-	db "baby #MON?", $51
-	db "I bet they're just", $4f
-	db "adorable!", $57
+	text "Do you know about"
+	line "baby #MON?"
+
+	para "I bet they're just"
+	line "adorable!"
+	done
 ; 0x1a5dec
 
 UnknownText_0x1a5dec: ; 0x1a5dec
-	db $0, "PIKACHU is it!", $4f
-	db "Don't you agree?", $57
+	text "PIKACHU is it!"
+	line "Don't you agree?"
+	done
 ; 0x1a5e0c
 
 PsychicNormanSeenText: ; 0x1a5e0c
-	db $0, "Let me see what", $4f
-	db "your #MON are", $55
-	db "capable of.", $57
+	text "Let me see what"
+	line "your #MON are"
+	cont "capable of."
+	done
 ; 0x1a5e37
 
 PsychicNormanBeatenText: ; 0x1a5e37
-	db $0, "Ooh, your #MON", $4f
-	db "have potential.", $57
+	text "Ooh, your #MON"
+	line "have potential."
+	done
 ; 0x1a5e57
 
 UnknownText_0x1a5e57: ; 0x1a5e57
-	db $0, "You know how #-", $4f
-	db "MON have different", $55
-	db "abilities?", $51
-	db "People are like", $4f
-	db "that too. Every-", $55
-	db "one has different", $55
-	db "potential.", $57
+	text "You know how #-"
+	line "MON have different"
+	cont "abilities?"
+
+	para "People are like"
+	line "that too. Every-"
+	cont "one has different"
+	cont "potential."
+	done
 ; 0x1a5ec4
 
 UnknownText_0x1a5ec4: ; 0x1a5ec4
-	db $0, "Ufufufu… I hope it", $4f
-	db "gets dark soon.", $57
+	text "Ufufufu… I hope it"
+	line "gets dark soon."
+	done
 ; 0x1a5ee8
 
 UnknownText_0x1a5ee8: ; 0x1a5ee8
-	db $0, "You came at just", $4f
-	db "the right time.", $51
-	db "Let's battle.", $57
+	text "You came at just"
+	line "the right time."
+
+	para "Let's battle."
+	done
 ; 0x1a5f17
 
 UnknownText_0x1a5f17: ; 0x1a5f17
-	db $0, "Oh, how disap-", $4f
-	db "pointing…", $57
+	text "Oh, how disap-"
+	line "pointing…"
+	done
 ; 0x1a5f31
 
 UnknownText_0x1a5f31: ; 0x1a5f31
-	db $0, "I met my MEOWTH at", $4f
-	db "night, right here", $55
-	db "on ROUTE 39.", $51
-	db "I'm not sure why,", $4f
-	db "but it seems to", $51
-	db "like it when I", $4f
-	db "train here.", $51
-	db "It seems to become", $4f
-	db "friendlier by", $51
-	db "training here than", $4f
-	db "anywhere else.", $57
+	text "I met my MEOWTH at"
+	line "night, right here"
+	cont "on ROUTE 39."
+
+	para "I'm not sure why,"
+	line "but it seems to"
+
+	para "like it when I"
+	line "train here."
+
+	para "It seems to become"
+	line "friendlier by"
+
+	para "training here than"
+	line "anywhere else."
+	done
 ; 0x1a5fe3
 
 UnknownText_0x1a5fe3: ; 0x1a5fe3
-	db $0, "ROUTE 39", $51
-	db "OLIVINE CITY -", $4f
-	db "ECRUTEAK CITY", $57
+	text "ROUTE 39"
+
+	para "OLIVINE CITY -"
+	line "ECRUTEAK CITY"
+	done
 ; 0x1a600a
 
 UnknownText_0x1a600a: ; 0x1a600a
-	db $0, "MOOMOO FARM", $51
-	db "Enjoy Our Fresh", $4f
-	db "and Tasty Milk", $57
+	text "MOOMOO FARM"
+
+	para "Enjoy Our Fresh"
+	line "and Tasty Milk"
+	done
 ; 0x1a6036
 
 UnknownText_0x1a6036: ; 0x1a6036
-	db $0, "TRAINER TIPS", $51
-	db "Use HEADBUTT on", $4f
-	db "trees to shake", $55
-	db "#MON out.", $51
-	db "Different kinds of", $4f
-	db "#MON drop out", $55
-	db "of trees.", $51
-	db "Use HEADBUTT on", $4f
-	db "any tree you see!", $57
+	text "TRAINER TIPS"
+
+	para "Use HEADBUTT on"
+	line "trees to shake"
+	cont "#MON out."
+
+	para "Different kinds of"
+	line "#MON drop out"
+	cont "of trees."
+
+	para "Use HEADBUTT on"
+	line "any tree you see!"
+	done
 ; 0x1a60ba
 
 Route39_MapEventHeader: ; 0x1a60ba

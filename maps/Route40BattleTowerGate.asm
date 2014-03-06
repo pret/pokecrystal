@@ -24,45 +24,58 @@ TwinScript_0x9f66c: ; 0x9f66c
 ; 0x9f66f
 
 UnknownText_0x9f66f: ; 0x9f66f
-	db $0, "Did you come to", $4f
-	db "see the BATTLE", $55
-	db "TOWER too?", $51
-	db "But I guess you", $4f
-	db "can't go in yet.", $57
+	text "Did you come to"
+	line "see the BATTLE"
+	cont "TOWER too?"
+
+	para "But I guess you"
+	line "can't go in yet."
+	done
 ; 0x9f6ba
 
 UnknownText_0x9f6ba: ; 0x9f6ba
-	db $0, "BATTLE TOWER has", $4f
-	db "opened.", $51
-	db "I want to go, but", $4f
-	db "I haven't thought", $51
-	db "up a cool line for", $4f
-	db "when I win.", $57
+	text "BATTLE TOWER has"
+	line "opened."
+
+	para "I want to go, but"
+	line "I haven't thought"
+
+	para "up a cool line for"
+	line "when I win."
+	done
 ; 0x9f716
 
 UnknownText_0x9f716: ; 0x9f716
-	db $0, "Are you going to", $4f
-	db "the BATTLE TOWER?", $51
-	db "This is a secret,", $4f
-	db "but if you win a", $51
-	db "whole lot, you can", $4f
-	db "win special gifts.", $57
+	text "Are you going to"
+	line "the BATTLE TOWER?"
+
+	para "This is a secret,"
+	line "but if you win a"
+
+	para "whole lot, you can"
+	line "win special gifts."
+	done
 ; 0x9f783
 
 UnknownText_0x9f783: ; 0x9f783
-	db $0, "I'm going to train", $4f
-	db "my #MON so I'll", $51
-	db "be all ready for", $4f
-	db "the BATTLE TOWER.", $57
+	text "I'm going to train"
+	line "my #MON so I'll"
+
+	para "be all ready for"
+	line "the BATTLE TOWER."
+	done
 ; 0x9f7c8
 
 UnknownText_0x9f7c8: ; 0x9f7c8
-	db $0, "The levels of the", $4f
-	db "#MON I want to", $51
-	db "use are all", $4f
-	db "different.", $51
-	db "I have to go train", $4f
-	db "them now!", $57
+	text "The levels of the"
+	line "#MON I want to"
+
+	para "use are all"
+	line "different."
+
+	para "I have to go train"
+	line "them now!"
+	done
 ; 0x9f81e
 
 Route40BattleTowerGate_MapEventHeader: ; 0x9f81e

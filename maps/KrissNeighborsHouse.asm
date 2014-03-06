@@ -52,48 +52,61 @@ UnknownScript_0x7ad27: ; 0x7ad27
 ; 0x7ad2f
 
 UnknownText_0x7ad2f: ; 0x7ad2f
-	db $0, "PIKACHU is an", $4f
-	db "evolved #MON.", $51
-	db "I was amazed by", $4f
-	db "PROF.ELM's find-", $55
-	db "ings.", $51
-	db "He's so famous for", $4f
-	db "his research on", $55
-	db "#MON evolution.", $51
-	db "…sigh…", $51
-	db "I wish I could be", $4f
-	db "a researcher like", $55
-	db "him…", $57
+	text "PIKACHU is an"
+	line "evolved #MON."
+
+	para "I was amazed by"
+	line "PROF.ELM's find-"
+	cont "ings."
+
+	para "He's so famous for"
+	line "his research on"
+	cont "#MON evolution."
+
+	para "…sigh…"
+
+	para "I wish I could be"
+	line "a researcher like"
+	cont "him…"
+	done
 ; 0x7add4
 
 UnknownText_0x7add4: ; 0x7add4
-	db $0, "My daughter is", $4f
-	db "adamant about", $51
-	db "becoming PROF.", $4f
-	db "ELM's assistant.", $51
-	db "She really loves", $4f
-	db "#MON!", $51
-	db "But then, so do I!", $57
+	text "My daughter is"
+	line "adamant about"
+
+	para "becoming PROF."
+	line "ELM's assistant."
+
+	para "She really loves"
+	line "#MON!"
+
+	para "But then, so do I!"
+	done
 ; 0x7ae3b
 
 UnknownText_0x7ae3b: ; 0x7ae3b
-	db $0, "PROF.OAK'S #MON", $4f
-	db "TALK! Please tune", $55
-	db "in next time!", $57
+	text "PROF.OAK'S #MON"
+	line "TALK! Please tune"
+	cont "in next time!"
+	done
 ; 0x7ae6c
 
 UnknownText_0x7ae6c: ; 0x7ae6c
-	db $0, "#MON CHANNEL!", $57
+	text "#MON CHANNEL!"
+	done
 ; 0x7ae7b
 
 UnknownText_0x7ae7b: ; 0x7ae7b
-	db $0, "This is DJ MARY,", $4f
-	db "your co-host!", $57
+	text "This is DJ MARY,"
+	line "your co-host!"
+	done
 ; 0x7ae9b
 
 UnknownText_0x7ae9b: ; 0x7ae9b
-	db $0, "#MON!", $4f
-	db "#MON CHANNEL…", $57
+	text "#MON!"
+	line "#MON CHANNEL…"
+	done
 ; 0x7aeb0
 
 KrissNeighborsHouse_MapEventHeader: ; 0x7aeb0

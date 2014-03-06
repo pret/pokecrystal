@@ -117,45 +117,55 @@ UnknownScript_0x7124d: ; 0x7124d
 ; 0x71250
 
 UnknownText_0x71250: ; 0x71250
-	db $0, "A vending machine!", $4f
-	db "Here's the menu.", $57
+	text "A vending machine!"
+	line "Here's the menu."
+	done
 ; 0x71274
 
 UnknownText_0x71274: ; 0x71274
-	db $0, "Clang!", $51
-	db "@"
+	text "Clang!"
+
+	para "@"
 	text_from_ram $d099
-	db $0, $4f
-	db "popped out.", $57
+	db $0
+	line "popped out."
+	done
 ; 0x7128e
 
 UnknownText_0x7128e: ; 0x7128e
-	db $0, "Oops, not enough", $4f
-	db "money…", $57
+	text "Oops, not enough"
+	line "money…"
+	done
 ; 0x712a7
 
 UnknownText_0x712a7: ; 0x712a7
-	db $0, "There's no more", $4f
-	db "room for stuff…", $57
+	text "There's no more"
+	line "room for stuff…"
+	done
 ; 0x712c7
 
 UnknownText_0x712c7: ; 0x712c7
-	db $0, "A vending machine", $4f
-	db "with a prize rou-", $55
-	db "lette…", $51
-	db "You never see", $4f
-	db "those anymore.", $57
+	text "A vending machine"
+	line "with a prize rou-"
+	cont "lette…"
+
+	para "You never see"
+	line "those anymore."
+	done
 ; 0x71310
 
 UnknownText_0x71310: ; 0x71310
-	db $0, "Aww! There's no", $4f
-	db "games here!", $51
-	db "I wanted to play…", $57
+	text "Aww! There's no"
+	line "games here!"
+
+	para "I wanted to play…"
+	done
 ; 0x7133e
 
 UnknownText_0x7133e: ; 0x7133e
-	db $0, "6F: ROOFTOP SQUARE", $4f
-	db "VENDING MACHINES", $57
+	text "6F: ROOFTOP SQUARE"
+	line "VENDING MACHINES"
+	done
 ; 0x71363
 
 CeladonDeptStore6F_MapEventHeader: ; 0x71363

@@ -177,130 +177,163 @@ MapRadioTower4FSignpost1Script: ; 0x5ec0f
 ; 0x5ec12
 
 UnknownText_0x5ec12: ; 0x5ec12
-	db $0, "I listened to the", $4f
-	db "radio while I was", $55
-	db "at the RUINS.", $51
-	db "I heard a strange", $4f
-	db "broadcast there.", $57
+	text "I listened to the"
+	line "radio while I was"
+	cont "at the RUINS."
+
+	para "I heard a strange"
+	line "broadcast there."
+	done
 ; 0x5ec68
 
 UnknownText_0x5ec68: ; 0x5ec68
-	db $0, "MARY: Why? Why do", $4f
-	db "I have to suffer", $55
-	db "through this?", $51
-	db "MEOWTH, help me!", $57
+	text "MARY: Why? Why do"
+	line "I have to suffer"
+	cont "through this?"
+
+	para "MEOWTH, help me!"
+	done
 ; 0x5ecab
 
 UnknownText_0x5ecab: ; 0x5ecab
-	db $0, "MARY: Oh! You're", $4f
-	db "my little savior!", $51
-	db "Will you take this", $4f
-	db "as my thanks?", $57
+	text "MARY: Oh! You're"
+	line "my little savior!"
+
+	para "Will you take this"
+	line "as my thanks?"
+	done
 ; 0x5ecef
 
 UnknownText_0x5ecef: ; 0x5ecef
-	db $0, "MARY: It's just", $4f
-	db "right for #MON", $51
-	db "that know normal-", $4f
-	db "type moves.", $57
+	text "MARY: It's just"
+	line "right for #MON"
+
+	para "that know normal-"
+	line "type moves."
+	done
 ; 0x5ed2c
 
 UnknownText_0x5ed2c: ; 0x5ed2c
-	db $0, "MARY: Please tune", $4f
-	db "into me on PROF.", $51
-	db "OAK'S #MON TALK", $4f
-	db "show.", $57
+	text "MARY: Please tune"
+	line "into me on PROF."
+
+	para "OAK'S #MON TALK"
+	line "show."
+	done
 ; 0x5ed66
 
 UnknownText_0x5ed66: ; 0x5ed66
-	db $0, "MEOWTH: Meowth…", $57
+	text "MEOWTH: Meowth…"
+	done
 ; 0x5ed77
 
 GruntM10SeenText: ; 0x5ed77
-	db $0, "You plan to rescue", $4f
-	db "the DIRECTOR?", $51
-	db "That won't be pos-", $4f
-	db "sible because I'm", $55
-	db "going to beat you!", $57
+	text "You plan to rescue"
+	line "the DIRECTOR?"
+
+	para "That won't be pos-"
+	line "sible because I'm"
+	cont "going to beat you!"
+	done
 ; 0x5edcf
 
 GruntM10BeatenText: ; 0x5edcf
-	db $0, "No! Unbelievable!", $57
+	text "No! Unbelievable!"
+	done
 ; 0x5ede2
 
 UnknownText_0x5ede2: ; 0x5ede2
-	db $0, "I don't believe", $4f
-	db "it! I was beaten!", $57
+	text "I don't believe"
+	line "it! I was beaten!"
+	done
 ; 0x5ee04
 
 Executivem2SeenText: ; 0x5ee04
-	db $0, "Stop! I'm known as", $4f
-	db "the TEAM ROCKET", $55
-	db "fortress!", $51
-	db "You're not taking", $4f
-	db "another step!", $57
+	text "Stop! I'm known as"
+	line "the TEAM ROCKET"
+	cont "fortress!"
+
+	para "You're not taking"
+	line "another step!"
+	done
 ; 0x5ee50
 
 Executivem2BeatenText: ; 0x5ee50
-	db $0, "The fortress came", $4f
-	db "down!", $57
+	text "The fortress came"
+	line "down!"
+	done
 ; 0x5ee69
 
 UnknownText_0x5ee69: ; 0x5ee69
-	db $0, "You've earned my", $4f
-	db "respect, so here's", $55
-	db "some advice.", $51
-	db "It's not too late.", $4f
-	db "You can still turn", $55
-	db "back.", $57
+	text "You've earned my"
+	line "respect, so here's"
+	cont "some advice."
+
+	para "It's not too late."
+	line "You can still turn"
+	cont "back."
+	done
 ; 0x5eec4
 
 GruntF4SeenText: ; 0x5eec4
-	db $0, "Don't I think", $4f
-	db "#MON are cute?", $51
-	db "I'll think my", $4f
-	db "#MON are cute--", $51
-	db "after they beat", $4f
-	db "yours!", $57
+	text "Don't I think"
+	line "#MON are cute?"
+
+	para "I'll think my"
+	line "#MON are cute--"
+
+	para "after they beat"
+	line "yours!"
+	done
 ; 0x5ef15
 
 GruntF4BeatenText: ; 0x5ef15
-	db $0, "Oh, no! They're so", $4f
-	db "useless!", $57
+	text "Oh, no! They're so"
+	line "useless!"
+	done
 ; 0x5ef31
 
 UnknownText_0x5ef31: ; 0x5ef31
-	db $0, "I love my", $4f
-	db "beautiful self!", $51
-	db "Who cares about", $4f
-	db "#MON?", $57
+	text "I love my"
+	line "beautiful self!"
+
+	para "Who cares about"
+	line "#MON?"
+	done
 ; 0x5ef62
 
 ScientistRichSeenText: ; 0x5ef62
-	db $0, "Most excellent.", $51
-	db "This RADIO TOWER", $4f
-	db "will fulfill our", $55
-	db "grand design.", $57
+	text "Most excellent."
+
+	para "This RADIO TOWER"
+	line "will fulfill our"
+	cont "grand design."
+	done
 ; 0x5efa3
 
 ScientistRichBeatenText: ; 0x5efa3
-	db $0, "Hmmm…", $51
-	db "All grand plans", $4f
-	db "come with snags.", $57
+	text "Hmmm…"
+
+	para "All grand plans"
+	line "come with snags."
+	done
 ; 0x5efcb
 
 UnknownText_0x5efcb: ; 0x5efcb
-	db $0, "Do you honestly", $4f
-	db "believe you can", $55
-	db "stop TEAM ROCKET?", $57
+	text "Do you honestly"
+	line "believe you can"
+	cont "stop TEAM ROCKET?"
+	done
 ; 0x5effe
 
 UnknownText_0x5effe: ; 0x5effe
-	db $0, "4F PRODUCTION", $57
+	text "4F PRODUCTION"
+	done
 ; 0x5f00d
 
 UnknownText_0x5f00d: ; 0x5f00d
-	db $0, "4F STUDIO 2", $57
+	text "4F STUDIO 2"
+	done
 ; 0x5f01a
 
 RadioTower4F_MapEventHeader: ; 0x5f01a

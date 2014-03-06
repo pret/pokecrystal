@@ -11,10 +11,11 @@ TeacherScript_0x7701a: ; 0x7701a
 ; 0x7701d
 
 UnknownText_0x7701d: ; 0x7701d
-	db $0, "The FAST SHIP", $4f
-	db "sails on Wednes-", $55
-	db "days and Sundays", $55
-	db "every week.", $57
+	text "The FAST SHIP"
+	line "sails on Wednes-"
+	cont "days and Sundays"
+	cont "every week."
+	done
 ; 0x7705a
 
 VermilionPortPassage_MapEventHeader: ; 0x7705a

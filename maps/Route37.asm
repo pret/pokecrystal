@@ -180,113 +180,140 @@ MapRoute37SignpostItem1: ; 0x1a8e0f
 ; 0x1a8e12
 
 TwinsAnnandanne1SeenText: ; 0x1a8e12
-	db $0, "ANN: ANNE and I", $4f
-	db "are in this to-", $55
-	db "gether!", $57
+	text "ANN: ANNE and I"
+	line "are in this to-"
+	cont "gether!"
+	done
 ; 0x1a8e3b
 
 TwinsAnnandanne1BeatenText: ; 0x1a8e3b
-	db $0, "ANN & ANNE: Nnn… A", $4f
-	db "little too strong.", $57
+	text "ANN & ANNE: Nnn… A"
+	line "little too strong."
+	done
 ; 0x1a8e62
 
 UnknownText_0x1a8e62: ; 0x1a8e62
-	db $0, "ANN: I can tell", $4f
-	db "what my sister and", $51
-	db "my #MON are", $4f
-	db "thinking.", $57
+	text "ANN: I can tell"
+	line "what my sister and"
+
+	para "my #MON are"
+	line "thinking."
+	done
 ; 0x1a8e9c
 
 TwinsAnnandanne2SeenText: ; 0x1a8e9c
-	db $0, "ANNE: ANN and I", $4f
-	db "are in this to-", $55
-	db "gether!", $57
+	text "ANNE: ANN and I"
+	line "are in this to-"
+	cont "gether!"
+	done
 ; 0x1a8ec5
 
 TwinsAnnandanne2BeatenText: ; 0x1a8ec5
-	db $0, "ANN & ANNE: Nnn… A", $4f
-	db "little too strong.", $57
+	text "ANN & ANNE: Nnn… A"
+	line "little too strong."
+	done
 ; 0x1a8eec
 
 UnknownText_0x1a8eec: ; 0x1a8eec
-	db $0, "ANNE: We share the", $4f
-	db "same feelings as", $55
-	db "our #MON.", $57
+	text "ANNE: We share the"
+	line "same feelings as"
+	cont "our #MON."
+	done
 ; 0x1a8f1b
 
 PsychicGregSeenText: ; 0x1a8f1b
-	db $0, "#MON can't do a", $4f
-	db "thing if they are", $55
-	db "asleep.", $51
-	db "I'll show you how", $4f
-	db "scary that is!", $57
+	text "#MON can't do a"
+	line "thing if they are"
+	cont "asleep."
+
+	para "I'll show you how"
+	line "scary that is!"
+	done
 ; 0x1a8f65
 
 PsychicGregBeatenText: ; 0x1a8f65
-	db $0, "I lost. That's", $4f
-	db "pretty sad…", $57
+	text "I lost. That's"
+	line "pretty sad…"
+	done
 ; 0x1a8f80
 
 UnknownText_0x1a8f80: ; 0x1a8f80
-	db $0, "Putting #MON to", $4f
-	db "sleep or paralyz-", $55
-	db "ing them are good", $55
-	db "battle techniques.", $57
+	text "Putting #MON to"
+	line "sleep or paralyz-"
+	cont "ing them are good"
+	cont "battle techniques."
+	done
 ; 0x1a8fc8
 
 UnknownText_0x1a8fc8: ; 0x1a8fc8
-	db $0, "SUNNY: Hi!", $51
-	db "I'm SUNNY of Sun-", $4f
-	db "day, meaning it's", $55
-	db "Sunday today!", $57
+	text "SUNNY: Hi!"
+
+	para "I'm SUNNY of Sun-"
+	line "day, meaning it's"
+	cont "Sunday today!"
+	done
 ; 0x1a9004
 
 UnknownText_0x1a9004: ; 0x1a9004
-	db $0, "I was told to give", $4f
-	db "you this if I saw", $55
-	db "you!", $57
+	text "I was told to give"
+	line "you this if I saw"
+	cont "you!"
+	done
 ; 0x1a902f
 
 UnknownText_0x1a902f: ; 0x1a902f
-	db $0, "I was told to give", $4f
-	db "you this if I saw", $55
-	db "you!", $57
+	text "I was told to give"
+	line "you this if I saw"
+	cont "you!"
+	done
 ; 0x1a905a
 
 UnknownText_0x1a905a: ; 0x1a905a
-	db $0, "SUNNY: That thing…", $51
-	db "Um…", $51
-	db "… What was it now…", $51
-	db "…", $51
-	db "Oh! I remember", $4f
-	db "now!", $51
-	db "A #MON that", $4f
-	db "knows electric", $51
-	db "moves should hold", $4f
-	db "it.", $51
-	db "My sis MONICA said", $4f
-	db "it powers up", $55
-	db "electric moves!", $57
+	text "SUNNY: That thing…"
+
+	para "Um…"
+
+	para "… What was it now…"
+
+	para "…"
+
+	para "Oh! I remember"
+	line "now!"
+
+	para "A #MON that"
+	line "knows electric"
+
+	para "moves should hold"
+	line "it."
+
+	para "My sis MONICA said"
+	line "it powers up"
+	cont "electric moves!"
+	done
 ; 0x1a90fc
 
 UnknownText_0x1a90fc: ; 0x1a90fc
-	db $0, "SUNNY: My sisters", $4f
-	db "and brothers are", $55
-	db "MONICA, TUSCANY,", $55
-	db "WESLEY, ARTHUR,", $55
-	db "FRIEDA and SANTOS.", $51
-	db "They're all older", $4f
-	db "than me!", $57
+	text "SUNNY: My sisters"
+	line "and brothers are"
+	cont "MONICA, TUSCANY,"
+	cont "WESLEY, ARTHUR,"
+	cont "FRIEDA and SANTOS."
+
+	para "They're all older"
+	line "than me!"
+	done
 ; 0x1a916e
 
 UnknownText_0x1a916e: ; 0x1a916e
-	db $0, "SUNNY: Isn't today", $4f
-	db "Sunday?", $55
-	db "Um… I forgot!", $57
+	text "SUNNY: Isn't today"
+	line "Sunday?"
+	cont "Um… I forgot!"
+	done
 ; 0x1a9197
 
 UnknownText_0x1a9197: ; 0x1a9197
-	db $0, "ROUTE 37", $57
+	text "ROUTE 37"
+	done
 ; 0x1a91a1
 
 Route37_MapEventHeader: ; 0x1a91a1

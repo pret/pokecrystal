@@ -93,65 +93,83 @@ UnknownScript_0x553d1: ; 0x553d1
 ; 0x553d4
 
 UnknownText_0x553d4: ; 0x553d4
-	db $0, "Have you seen that", $4f
-	db "wiggly tree that's", $51
-	db "growing on ROUTE", $4f
-	db "36?", $51
-	db "My little sister", $4f
-	db "got all excited", $51
-	db "and went to see", $4f
-	db "it…", $51
-	db "I'm worried… Isn't", $4f
-	db "it dangerous?", $57
+	text "Have you seen that"
+	line "wiggly tree that's"
+
+	para "growing on ROUTE"
+	line "36?"
+
+	para "My little sister"
+	line "got all excited"
+
+	para "and went to see"
+	line "it…"
+
+	para "I'm worried… Isn't"
+	line "it dangerous?"
+	done
 ; 0x55463
 
 UnknownText_0x55463: ; 0x55463
-	db $0, "Do you want to", $4f
-	db "borrow the water", $51
-	db "bottle too?", $4f
-	db "I don't want you", $51
-	db "doing anything", $4f
-	db "dangerous with it.", $57
+	text "Do you want to"
+	line "borrow the water"
+
+	para "bottle too?"
+	line "I don't want you"
+
+	para "doing anything"
+	line "dangerous with it."
+	done
 ; 0x554c2
 
 UnknownText_0x554c2: ; 0x554c2
-	db $0, "Oh, you're better", $4f
-	db "than WHITNEY…", $51
-	db "You'll be OK,", $4f
-	db "then. Here's the", $55
-	db "SQUIRTBOTTLE!", $57
+	text "Oh, you're better"
+	line "than WHITNEY…"
+
+	para "You'll be OK,"
+	line "then. Here's the"
+	cont "SQUIRTBOTTLE!"
+	done
 ; 0x5550d
 
 UnknownText_0x5550d: ; 0x5550d
-	db $0, "Don't do anything", $4f
-	db "too dangerous!", $57
+	text "Don't do anything"
+	line "too dangerous!"
+	done
 ; 0x5552e
 
 UnknownText_0x5552e: ; 0x5552e
-	db $0, "Lalala lalalala.", $4f
-	db "Have plenty of", $55
-	db "water, my lovely!", $57
+	text "Lalala lalalala."
+	line "Have plenty of"
+	cont "water, my lovely!"
+	done
 ; 0x55561
 
 UnknownText_0x55561: ; 0x55561
-	db $0, "When I told my sis", $4f
-	db "about the jiggly", $51
-	db "tree, she told me", $4f
-	db "it's dangerous.", $51
-	db "If I beat WHITNEY,", $4f
-	db "I wonder if she'll", $51
-	db "lend me her water", $4f
-	db "bottle…", $57
+	text "When I told my sis"
+	line "about the jiggly"
+
+	para "tree, she told me"
+	line "it's dangerous."
+
+	para "If I beat WHITNEY,"
+	line "I wonder if she'll"
+
+	para "lend me her water"
+	line "bottle…"
+	done
 ; 0x555e6
 
 UnknownText_0x555e6: ; 0x555e6
-	db $0, "Wow, you beat", $4f
-	db "WHITNEY? Cool!", $57
+	text "Wow, you beat"
+	line "WHITNEY? Cool!"
+	done
 ; 0x55604
 
 UnknownText_0x55604: ; 0x55604
-	db $0, "So it really was a", $4f
-	db "#MON!", $57
+	text "So it really was a"
+	line "#MON!"
+	done
 ; 0x5561e
 
 GoldenrodFlowerShop_MapEventHeader: ; 0x5561e

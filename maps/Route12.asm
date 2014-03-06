@@ -145,89 +145,111 @@ MapRoute12SignpostItem2: ; 0x1a700f
 ; 0x1a7012
 
 FisherMartinSeenText: ; 0x1a7012
-	db $0, "Patience is the", $4f
-	db "key to both fish-", $55
-	db "ing and #MON.", $57
+	text "Patience is the"
+	line "key to both fish-"
+	cont "ing and #MON."
+	done
 ; 0x1a7043
 
 FisherMartinBeatenText: ; 0x1a7043
-	db $0, "Gwaaah!", $57
+	text "Gwaaah!"
+	done
 ; 0x1a704c
 
 UnknownText_0x1a704c: ; 0x1a704c
-	db $0, "I'm too impatient", $4f
-	db "for fishing…", $57
+	text "I'm too impatient"
+	line "for fishing…"
+	done
 ; 0x1a706b
 
 FisherStephenSeenText: ; 0x1a706b
-	db $0, "I feel so content,", $4f
-	db "fishing while lis-", $55
-	db "tening to some", $55
-	db "tunes on my radio.", $57
+	text "I feel so content,"
+	line "fishing while lis-"
+	cont "tening to some"
+	cont "tunes on my radio."
+	done
 ; 0x1a70b4
 
 FisherStephenBeatenText: ; 0x1a70b4
-	db $0, "My stupid radio", $4f
-	db "distracted me!", $57
+	text "My stupid radio"
+	line "distracted me!"
+	done
 ; 0x1a70d4
 
 UnknownText_0x1a70d4: ; 0x1a70d4
-	db $0, "Have you checked", $4f
-	db "out KANTO's radio", $51
-	db "programs? We get a", $4f
-	db "good variety here.", $57
+	text "Have you checked"
+	line "out KANTO's radio"
+
+	para "programs? We get a"
+	line "good variety here."
+	done
 ; 0x1a711d
 
 FisherBarneySeenText: ; 0x1a711d
-	db $0, "What's most impor-", $4f
-	db "tant in our every-", $55
-	db "day lives?", $57
+	text "What's most impor-"
+	line "tant in our every-"
+	cont "day lives?"
+	done
 ; 0x1a714e
 
 FisherBarneyBeatenText: ; 0x1a714e
-	db $0, "The answer is", $4f
-	db "coming up next!", $57
+	text "The answer is"
+	line "coming up next!"
+	done
 ; 0x1a716d
 
 UnknownText_0x1a716d: ; 0x1a716d
-	db $0, "I think electric-", $4f
-	db "ity is the most", $51
-	db "important thing in", $4f
-	db "our daily lives.", $51
-	db "If it weren't,", $4f
-	db "people wouldn't", $51
-	db "have made such a", $4f
-	db "fuss when the", $51
-	db "POWER PLANT went", $4f
-	db "out of commission.", $57
+	text "I think electric-"
+	line "ity is the most"
+
+	para "important thing in"
+	line "our daily lives."
+
+	para "If it weren't,"
+	line "people wouldn't"
+
+	para "have made such a"
+	line "fuss when the"
+
+	para "POWER PLANT went"
+	line "out of commission."
+	done
 ; 0x1a7214
 
 FisherKyleSeenText: ; 0x1a7214
-	db $0, "Do you remember?", $57
+	text "Do you remember?"
+	done
 ; 0x1a7226
 
 FisherKyleBeatenText: ; 0x1a7226
-	db $0, "You do remember?", $57
+	text "You do remember?"
+	done
 ; 0x1a7238
 
 UnknownText_0x1a7238: ; 0x1a7238
-	db $0, "The tug you feel", $4f
-	db "on the ROD when", $51
-	db "you hook a #-", $4f
-	db "MON…", $51
-	db "That's the best", $4f
-	db "feeling ever for", $55
-	db "an angler like me.", $57
+	text "The tug you feel"
+	line "on the ROD when"
+
+	para "you hook a #-"
+	line "MON…"
+
+	para "That's the best"
+	line "feeling ever for"
+	cont "an angler like me."
+	done
 ; 0x1a72a0
 
 UnknownText_0x1a72a0: ; 0x1a72a0
-	db $0, "ROUTE 12", $51
-	db "NORTH TO LAVENDER", $4f
-	db "TOWN", $57
+	text "ROUTE 12"
+
+	para "NORTH TO LAVENDER"
+	line "TOWN"
+	done
 ; 0x1a72c1
 
 UnknownText_0x1a72c1: ; 0x1a72c1
-	db $0, "FISHING SPOT", $57
+	text "FISHING SPOT"
+	done
 ; 0x1a72cf
 
 Route12_MapEventHeader: ; 0x1a72cf

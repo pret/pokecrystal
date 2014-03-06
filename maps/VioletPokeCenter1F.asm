@@ -113,96 +113,123 @@ MovementData_0x69551: ; 0x69551
 ; 0x69555
 
 UnknownText_0x69555: ; 0x69555
-	db $0, $14, ", long", $4f
-	db "time, no see.", $51
-	db "PROF.ELM asked me", $4f
-	db "to find you.", $51
-	db "He has another", $4f
-	db "favor to ask.", $51
-	db "Would you take the", $4f
-	db "#MON EGG?", $57
+	text $14, ", long"
+	line "time, no see."
+
+	para "PROF.ELM asked me"
+	line "to find you."
+
+	para "He has another"
+	line "favor to ask."
+
+	para "Would you take the"
+	line "#MON EGG?"
+	done
 ; 0x695c5
 
 UnknownText_0x695c5: ; 0x695c5
-	db $0, "We discovered that", $4f
-	db "a #MON will not", $51
-	db "hatch until it", $4f
-	db "grows in the EGG.", $51
-	db "It also has to be", $4f
-	db "with other active", $55
-	db "#MON to hatch.", $51
-	db $14, ", you're", $4f
-	db "the only person", $55
-	db "we can rely on.", $51
-	db "Please call PROF.", $4f
-	db "ELM when that EGG", $55
-	db "hatches!", $57
+	text "We discovered that"
+	line "a #MON will not"
+
+	para "hatch until it"
+	line "grows in the EGG."
+
+	para "It also has to be"
+	line "with other active"
+	cont "#MON to hatch."
+
+	para $14, ", you're"
+	line "the only person"
+	cont "we can rely on."
+
+	para "Please call PROF."
+	line "ELM when that EGG"
+	cont "hatches!"
+	done
 ; 0x69693
 
 UnknownText_0x69693: ; 0x69693
-	db $0, "Oh, no. You can't", $4f
-	db "carry any more", $55
-	db "#MON with you.", $51
-	db "I'll wait here", $4f
-	db "while you make", $55
-	db "room for the EGG.", $57
+	text "Oh, no. You can't"
+	line "carry any more"
+	cont "#MON with you."
+
+	para "I'll wait here"
+	line "while you make"
+	cont "room for the EGG."
+	done
 ; 0x696f2
 
 UnknownText_0x696f2: ; 0x696f2
-	db $0, "B-but… PROF.ELM", $4f
-	db "asked for you…", $57
+	text "B-but… PROF.ELM"
+	line "asked for you…"
+	done
 ; 0x69712
 
 UnknownText_0x69712: ; 0x69712
-	db $0, $14, ", will you", $4f
-	db "take the EGG?", $57
+	text $14, ", will you"
+	line "take the EGG?"
+	done
 ; 0x6972d
 
 UnknownText_0x6972d: ; 0x6972d
-	db $0, "I've been thinking", $4f
-	db "it'd be great to", $51
-	db "be able to link up", $4f
-	db "and battle with my", $51
-	db "friends who live", $4f
-	db "far away.", $57
+	text "I've been thinking"
+	line "it'd be great to"
+
+	para "be able to link up"
+	line "and battle with my"
+
+	para "friends who live"
+	line "far away."
+	done
 ; 0x69791
 
 UnknownText_0x69791: ; 0x69791
-	db $0, "I just battled a", $4f
-	db "friend in CIANWOOD", $55
-	db "over a link.", $51
-	db "If you connect a", $4f
-	db "MOBILE ADAPTER,", $51
-	db "you can link with", $4f
-	db "a friend far away.", $57
+	text "I just battled a"
+	line "friend in CIANWOOD"
+	cont "over a link."
+
+	para "If you connect a"
+	line "MOBILE ADAPTER,"
+
+	para "you can link with"
+	line "a friend far away."
+	done
 ; 0x69809
 
 UnknownText_0x69809: ; 0x69809
-	db $0, "A guy named BILL", $4f
-	db "made the #MON", $55
-	db "PC storage system.", $57
+	text "A guy named BILL"
+	line "made the #MON"
+	cont "PC storage system."
+	done
 ; 0x6983c
 
 UnknownText_0x6983c: ; 0x6983c
-	db $0, "It was around", $4f
-	db "three years ago.", $51
-	db "TEAM ROCKET was up", $4f
-	db "to no good with", $55
-	db "#MON.", $51
-	db "But justice pre-", $4f
-	db "vailed--a young", $55
-	db "kid broke 'em up.", $57
+	text "It was around"
+	line "three years ago."
+
+	para "TEAM ROCKET was up"
+	line "to no good with"
+	cont "#MON."
+
+	para "But justice pre-"
+	line "vailed--a young"
+	cont "kid broke 'em up."
+	done
 ; 0x698b8
 
 UnknownText_0x698b8: ; 0x698b8
-	db $0, "#MON are smart.", $4f
-	db "They won't obey a", $51
-	db "trainer they don't", $4f
-	db "respect.", $51
-	db "Without the right", $4f
-	db "GYM BADGES, they", $51
-	db "will just do as", $4f
-	db "they please.", $57
+	text "#MON are smart."
+	line "They won't obey a"
+
+	para "trainer they don't"
+	line "respect."
+
+	para "Without the right"
+	line "GYM BADGES, they"
+
+	para "will just do as"
+	line "they please."
+	done
 ; 0x69935
 
 VioletPokeCenter1F_MapEventHeader: ; 0x69935

@@ -456,139 +456,173 @@ FruitTreeScript_0x1a1f33: ; 0x1a1f33
 ; 0x1a1f35
 
 Bird_keeperTobySeenText: ; 0x1a1f35
-	db $0, "Fly high into the", $4f
-	db "sky, my beloved", $55
-	db "bird #MON!", $57
+	text "Fly high into the"
+	line "sky, my beloved"
+	cont "bird #MON!"
+	done
 ; 0x1a1f63
 
 Bird_keeperTobyBeatenText: ; 0x1a1f63
-	db $0, "I feel like just", $4f
-	db "flying away now.", $57
+	text "I feel like just"
+	line "flying away now."
+	done
 ; 0x1a1f86
 
 UnknownText_0x1a1f86: ; 0x1a1f86
-	db $0, "I plan to train in", $4f
-	db "CIANWOOD CITY to", $51
-	db "teach my #MON", $4f
-	db "how to FLY.", $57
+	text "I plan to train in"
+	line "CIANWOOD CITY to"
+
+	para "teach my #MON"
+	line "how to FLY."
+	done
 ; 0x1a1fc5
 
 SchoolboyChad1SeenText: ; 0x1a1fc5
-	db $0, "Let me try some-", $4f
-	db "thing I learned", $55
-	db "today.", $57
+	text "Let me try some-"
+	line "thing I learned"
+	cont "today."
+	done
 ; 0x1a1fee
 
 SchoolboyChad1BeatenText: ; 0x1a1fee
-	db $0, "I didn't study", $4f
-	db "enough, I guess.", $57
+	text "I didn't study"
+	line "enough, I guess."
+	done
 ; 0x1a200e
 
 UnknownText_0x1a200e: ; 0x1a200e
-	db $0, "I have to take so", $4f
-	db "many tests, I", $51
-	db "don't have much", $4f
-	db "time for #MON.", $51
-	db "So when I do get", $4f
-	db "to play, I really", $55
-	db "concentrate.", $57
+	text "I have to take so"
+	line "many tests, I"
+
+	para "don't have much"
+	line "time for #MON."
+
+	para "So when I do get"
+	line "to play, I really"
+	cont "concentrate."
+	done
 ; 0x1a207d
 
 LassDana1SeenText: ; 0x1a207d
-	db $0, "You seem to be", $4f
-	db "good at #MON.", $51
-	db "If you are, how", $4f
-	db "about giving me", $55
-	db "some advice?", $57
+	text "You seem to be"
+	line "good at #MON."
+
+	para "If you are, how"
+	line "about giving me"
+	cont "some advice?"
+	done
 ; 0x1a20c8
 
 LassDana1BeatenText: ; 0x1a20c8
-	db $0, "I see. So you can", $4f
-	db "battle that way.", $57
+	text "I see. So you can"
+	line "battle that way."
+	done
 ; 0x1a20ec
 
 UnknownText_0x1a20ec: ; 0x1a20ec
-	db $0, "I know something", $4f
-	db "good!", $51
-	db "MOOMOO FARM's milk", $4f
-	db "is famous for its", $55
-	db "flavor.", $57
+	text "I know something"
+	line "good!"
+
+	para "MOOMOO FARM's milk"
+	line "is famous for its"
+	cont "flavor."
+	done
 ; 0x1a2130
 
 BeautyValerieSeenText: ; 0x1a2130
-	db $0, "Hi! Aren't you a", $4f
-	db "cute trainer!", $51
-	db "May I see your", $4f
-	db "#MON?", $57
+	text "Hi! Aren't you a"
+	line "cute trainer!"
+
+	para "May I see your"
+	line "#MON?"
+	done
 ; 0x1a2164
 
 BeautyValerieBeatenText: ; 0x1a2164
-	db $0, "I'm glad I got to", $4f
-	db "see your #MON!", $57
+	text "I'm glad I got to"
+	line "see your #MON!"
+	done
 ; 0x1a2185
 
 UnknownText_0x1a2185: ; 0x1a2185
-	db $0, "When I see #-", $4f
-	db "MON, it seems to", $55
-	db "soothe my nerves.", $57
+	text "When I see #-"
+	line "MON, it seems to"
+	cont "soothe my nerves."
+	done
 ; 0x1a21b7
 
 SailorHarrySeenText: ; 0x1a21b7
-	db $0, "I've been over-", $4f
-	db "seas, so I know", $51
-	db "about all sorts of", $4f
-	db "#MON!", $57
+	text "I've been over-"
+	line "seas, so I know"
+
+	para "about all sorts of"
+	line "#MON!"
+	done
 ; 0x1a21f0
 
 SailorHarryBeatenText: ; 0x1a21f0
-	db $0, "Your skill is", $4f
-	db "world class!", $57
+	text "Your skill is"
+	line "world class!"
+	done
 ; 0x1a220c
 
 UnknownText_0x1a220c: ; 0x1a220c
-	db $0, "All kinds of peo-", $4f
-	db "ple around the", $51
-	db "world live happily", $4f
-	db "with #MON.", $57
+	text "All kinds of peo-"
+	line "ple around the"
+
+	para "world live happily"
+	line "with #MON."
+	done
 ; 0x1a224c
 
 BeautyOliviaSeenText: ; 0x1a224c
-	db $0, "Don't you think my", $4f
-	db "#MON and I are", $55
-	db "beautiful?", $57
+	text "Don't you think my"
+	line "#MON and I are"
+	cont "beautiful?"
+	done
 ; 0x1a2279
 
 BeautyOliviaBeatenText: ; 0x1a2279
-	db $0, "We drink MOOMOO", $4f
-	db "MILK every day.", $57
+	text "We drink MOOMOO"
+	line "MILK every day."
+	done
 ; 0x1a229a
 
 UnknownText_0x1a229a: ; 0x1a229a
-	db $0, "MOOMOO MILK is", $4f
-	db "good for beauty", $51
-	db "and health, but", $4f
-	db "inconveniently,", $51
-	db "they only sell a", $4f
-	db "bottle at a time.", $57
+	text "MOOMOO MILK is"
+	line "good for beauty"
+
+	para "and health, but"
+	line "inconveniently,"
+
+	para "they only sell a"
+	line "bottle at a time."
+	done
 ; 0x1a22fd
 
 UnknownText_0x1a22fd: ; 0x1a22fd
-	db $0, "ROUTE 38", $51
-	db "OLIVINE CITY -", $4f
-	db "ECRUTEAK CITY", $57
+	text "ROUTE 38"
+
+	para "OLIVINE CITY -"
+	line "ECRUTEAK CITY"
+	done
 ; 0x1a2324
 
 UnknownText_0x1a2324: ; 0x1a2324
-	db $0, "TRAINER TIPS", $51
-	db "If a #MON is", $4f
-	db "trying to evolve,", $55
-	db "you can stop it.", $51
-	db "Press the B But-", $4f
-	db "ton during evolu-", $55
-	db "tion.", $51
-	db "That startles the", $4f
-	db "#MON and stops", $55
-	db "its evolution.", $57
+	text "TRAINER TIPS"
+
+	para "If a #MON is"
+	line "trying to evolve,"
+	cont "you can stop it."
+
+	para "Press the B But-"
+	line "ton during evolu-"
+	cont "tion."
+
+	para "That startles the"
+	line "#MON and stops"
+	cont "its evolution."
+	done
 ; 0x1a23bb
 
 Route38_MapEventHeader: ; 0x1a23bb

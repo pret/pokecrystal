@@ -31,42 +31,54 @@ SailorScript_0x9c8dc: ; 0x9c8dc
 ; 0x9c8df
 
 UnknownText_0x9c8df: ; 0x9c8df
-	db $0, "Hah! Your #MON", $4f
-	db "sure look like", $55
-	db "lightweights!", $51
-	db "They don't have", $4f
-	db "the power to move", $55
-	db "boulders aside.", $51
-	db "Here, use this", $4f
-	db "and teach them", $55
-	db "STRENGTH!", $57
+	text "Hah! Your #MON"
+	line "sure look like"
+	cont "lightweights!"
+
+	para "They don't have"
+	line "the power to move"
+	cont "boulders aside."
+
+	para "Here, use this"
+	line "and teach them"
+	cont "STRENGTH!"
+	done
 ; 0x9c965
 
 UnknownText_0x9c965: ; 0x9c965
-	db $0, "On the sea, the", $4f
-	db "only thing you can", $51
-	db "count on is your", $4f
-	db "own good self!", $51
-	db "I'm so proud of my", $4f
-	db "buff bod!", $57
+	text "On the sea, the"
+	line "only thing you can"
+
+	para "count on is your"
+	line "own good self!"
+
+	para "I'm so proud of my"
+	line "buff bod!"
+	done
 ; 0x9c9c5
 
 UnknownText_0x9c9c5: ; 0x9c9c5
-	db $0, "OLIVINE CAFE's", $4f
-	db "menu is chock full", $51
-	db "of hearty fare for", $4f
-	db "beefy SAILORS!", $57
+	text "OLIVINE CAFE's"
+	line "menu is chock full"
+
+	para "of hearty fare for"
+	line "beefy SAILORS!"
+	done
 ; 0x9ca09
 
 UnknownText_0x9ca09: ; 0x9ca09
-	db $0, "Whenever I roll", $4f
-	db "into this town, I", $51
-	db "always visit the", $4f
-	db "OLIVINE CAFE.", $51
-	db "Everything on the", $4f
-	db "menu makes me feel", $51
-	db "stronger. I can't", $4f
-	db "stop eating!", $57
+	text "Whenever I roll"
+	line "into this town, I"
+
+	para "always visit the"
+	line "OLIVINE CAFE."
+
+	para "Everything on the"
+	line "menu makes me feel"
+
+	para "stronger. I can't"
+	line "stop eating!"
+	done
 ; 0x9ca8e
 
 OlivineCafe_MapEventHeader: ; 0x9ca8e

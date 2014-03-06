@@ -186,107 +186,129 @@ MapFastShipCabins_SW_SSW_NWSignpost2Script: ; 0x75b01
 ; 0x75b04
 
 FirebreatherLyleSeenText: ; 0x75b04
-	db $0, "I'm going to KANTO", $4f
-	db "to put on fire-", $55
-	db "breathing shows!", $57
+	text "I'm going to KANTO"
+	line "to put on fire-"
+	cont "breathing shows!"
+	done
 ; 0x75b38
 
 FirebreatherLyleBeatenText: ; 0x75b38
-	db $0, "Fizzle… The", $4f
-	db "flame's tiny…", $57
+	text "Fizzle… The"
+	line "flame's tiny…"
+	done
 ; 0x75b52
 
 UnknownText_0x75b52: ; 0x75b52
-	db $0, "I guess fire is", $4f
-	db "weak on the sea.", $51
-	db "It doesn't matter?", $4f
-	db "Really?", $57
+	text "I guess fire is"
+	line "weak on the sea."
+
+	para "It doesn't matter?"
+	line "Really?"
+	done
 ; 0x75b8e
 
 Bug_catcherKenSeenText: ; 0x75b8e
-	db $0, "I'm visiting my", $4f
-	db "grandma to catch", $55
-	db "me some bugs!", $57
+	text "I'm visiting my"
+	line "grandma to catch"
+	cont "me some bugs!"
+	done
 ; 0x75bbd
 
 Bug_catcherKenBeatenText: ; 0x75bbd
-	db $0, "Ooh, wow.", $4f
-	db "You're tough!", $57
+	text "Ooh, wow."
+	line "You're tough!"
+	done
 ; 0x75bd5
 
 UnknownText_0x75bd5: ; 0x75bd5
-	db $0, "You can find lots", $4f
-	db "of #MON in the", $55
-	db "trees of JOHTO!", $57
+	text "You can find lots"
+	line "of #MON in the"
+	cont "trees of JOHTO!"
+	done
 ; 0x75c07
 
 BeautyCassieSeenText: ; 0x75c07
-	db $0, "I'm trying to", $4f
-	db "forget my woes.", $55
-	db "Let's battle!", $57
+	text "I'm trying to"
+	line "forget my woes."
+	cont "Let's battle!"
+	done
 ; 0x75c32
 
 BeautyCassieBeatenText: ; 0x75c32
-	db $0, "My heart weeps…", $57
+	text "My heart weeps…"
+	done
 ; 0x75c43
 
 UnknownText_0x75c43: ; 0x75c43
-	db $0, "A voyage is best", $4f
-	db "for getting over", $55
-	db "a broken heart.", $51
-	db "But a FAST SHIP", $4f
-	db "trip is too short", $55
-	db "for grieving.", $57
+	text "A voyage is best"
+	line "for getting over"
+	cont "a broken heart."
+
+	para "But a FAST SHIP"
+	line "trip is too short"
+	cont "for grieving."
+	done
 ; 0x75ca6
 
 GuitaristClydeSeenText: ; 0x75ca6
-	db $0, "I'm going to audi-", $4f
-	db "tion my songs at", $51
-	db "GOLDENROD's RADIO", $4f
-	db "STATION.", $57
+	text "I'm going to audi-"
+	line "tion my songs at"
+
+	para "GOLDENROD's RADIO"
+	line "STATION."
+	done
 ; 0x75ce4
 
 GuitaristClydeBeatenText: ; 0x75ce4
-	db $0, "Yowza!", $4f
-	db "Total distortion!", $57
+	text "Yowza!"
+	line "Total distortion!"
+	done
 ; 0x75cfe
 
 UnknownText_0x75cfe: ; 0x75cfe
-	db $0, "I was going to", $4f
-	db "make my debut at", $55
-	db "the BATTLE TOWER…", $51
-	db "I should go back", $4f
-	db "to VERMILION and", $55
-	db "redo my training…", $57
+	text "I was going to"
+	line "make my debut at"
+	cont "the BATTLE TOWER…"
+
+	para "I should go back"
+	line "to VERMILION and"
+	cont "redo my training…"
+	done
 ; 0x75d65
 
 UnknownText_0x75d65: ; 0x75d65
-	db $0, "Speaking of the", $4f
-	db "RADIO STATION,", $51
-	db "what's this week's", $4f
-	db "lucky number?", $57
+	text "Speaking of the"
+	line "RADIO STATION,"
+
+	para "what's this week's"
+	line "lucky number?"
+	done
 ; 0x75da4
 
 UnknownText_0x75da4: ; 0x75da4
-	db $0, "A comfy bed!", $4f
-	db "Time to sleep…", $57
+	text "A comfy bed!"
+	line "Time to sleep…"
+	done
 ; 0x75dc1
 
 UnknownText_0x75dc1: ; 0x75dc1
-	db $0, "Ah, refreshed and", $4f
-	db "restored!", $57
+	text "Ah, refreshed and"
+	line "restored!"
+	done
 ; 0x75dde
 
 UnknownText_0x75dde: ; 0x75dde
-	db $0, "FAST SHIP S.S.AQUA", $4f
-	db "has arrived in", $55
-	db "OLIVINE CITY.", $57
+	text "FAST SHIP S.S.AQUA"
+	line "has arrived in"
+	cont "OLIVINE CITY."
+	done
 ; 0x75e0f
 
 UnknownText_0x75e0f: ; 0x75e0f
-	db $0, "FAST SHIP S.S.AQUA", $4f
-	db "has arrived in", $55
-	db "VERMILION CITY.", $57
+	text "FAST SHIP S.S.AQUA"
+	line "has arrived in"
+	cont "VERMILION CITY."
+	done
 ; 0x75e42
 
 FastShipCabins_SW_SSW_NW_MapEventHeader: ; 0x75e42

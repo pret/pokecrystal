@@ -19,29 +19,37 @@ UnknownScript_0x191493: ; 0x191493
 ; 0x191496
 
 UnknownText_0x191496: ; 0x191496
-	db $0, "I am the FISHING", $4f
-	db "DUDE, the elder of", $55
-	db "the FISHING BROS.", $51
-	db "Have you met the", $4f
-	db "FISHING GURU at", $55
-	db "LAKE OF RAGE?", $51
-	db "He dreams about", $4f
-	db "seeing the world's", $55
-	db "greatest MAGIKARP.", $51
-	db "If you don't mind,", $4f
-	db "could you show him", $51
-	db "any MAGIKARP you", $4f
-	db "catch?", $51
-	db "Who knows, you may", $4f
-	db "catch the MAGIKARP", $55
-	db "of his dreams.", $57
+	text "I am the FISHING"
+	line "DUDE, the elder of"
+	cont "the FISHING BROS."
+
+	para "Have you met the"
+	line "FISHING GURU at"
+	cont "LAKE OF RAGE?"
+
+	para "He dreams about"
+	line "seeing the world's"
+	cont "greatest MAGIKARP."
+
+	para "If you don't mind,"
+	line "could you show him"
+
+	para "any MAGIKARP you"
+	line "catch?"
+
+	para "Who knows, you may"
+	line "catch the MAGIKARP"
+	cont "of his dreams."
+	done
 ; 0x1915a3
 
 UnknownText_0x1915a3: ; 0x1915a3
-	db $0, "It's a photo of", $4f
-	db "people fishing…", $51
-	db "They're having a", $4f
-	db "great time…", $57
+	text "It's a photo of"
+	line "people fishing…"
+
+	para "They're having a"
+	line "great time…"
+	done
 ; 0x1915df
 
 VermilionHouseFishingSpeechHouse_MapEventHeader: ; 0x1915df

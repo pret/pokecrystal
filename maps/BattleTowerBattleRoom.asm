@@ -142,8 +142,9 @@ UnknownScript_0x9f4f7: ; 0x9f4f7
 
 
 UnknownText_0x9f50b: ; 0x9f50b
-	db $0, "You'll be returned", $4f
-	db "after you SAVE.", $57
+	text "You'll be returned"
+	line "after you SAVE."
+	done
 ; 0x9f52e
 
 

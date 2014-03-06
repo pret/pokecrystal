@@ -23,23 +23,29 @@ TeacherScript_0x9c00b: ; 0x9c00b
 ; 0x9c00e
 
 UnknownText_0x9c00e: ; 0x9c00e
-	db $0, "The SAILOR in the", $4f
-	db "OLIVINE CAFE next", $51
-	db "door is really", $4f
-	db "generous.", $51
-	db "He taught my", $4f
-	db "#MON STRENGTH.", $51
-	db "Now it can move", $4f
-	db "big boulders.", $57
+	text "The SAILOR in the"
+	line "OLIVINE CAFE next"
+
+	para "door is really"
+	line "generous."
+
+	para "He taught my"
+	line "#MON STRENGTH."
+
+	para "Now it can move"
+	line "big boulders."
+	done
 ; 0x9c086
 
 UnknownText_0x9c086: ; 0x9c086
-	db $0, "There's a person", $4f
-	db "in CIANWOOD CITY", $55
-	db "across the sea.", $51
-	db "I heard him brag-", $4f
-	db "ging about his", $55
-	db "rare #MON.", $57
+	text "There's a person"
+	line "in CIANWOOD CITY"
+	cont "across the sea."
+
+	para "I heard him brag-"
+	line "ging about his"
+	cont "rare #MON."
+	done
 ; 0x9c0e4
 
 OlivinePokeCenter1F_MapEventHeader: ; 0x9c0e4

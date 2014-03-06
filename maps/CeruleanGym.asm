@@ -265,151 +265,188 @@ MovementData_0x1884f7: ; 0x1884f7
 ; 0x1884fb
 
 UnknownText_0x1884fb: ; 0x1884fb
-	db $0, "Oops! I so sorry!", $4f
-	db "You not hurt,", $55
-	db "okay?", $51
-	db "I very busy.", $4f
-	db "No time for talk-", $55
-	db "ing with you. Not", $55
-	db "good for me if", $55
-	db "seen by somebody.", $57
+	text "Oops! I so sorry!"
+	line "You not hurt,"
+	cont "okay?"
+
+	para "I very busy."
+	line "No time for talk-"
+	cont "ing with you. Not"
+	cont "good for me if"
+	cont "seen by somebody."
+	done
 ; 0x188574
 
 UnknownText_0x188574: ; 0x188574
-	db $0, "Oh no! You seen", $4f
-	db "me already! I make", $55
-	db "big mistake!", $57
+	text "Oh no! You seen"
+	line "me already! I make"
+	cont "big mistake!"
+	done
 ; 0x1885a5
 
 UnknownText_0x1885a5: ; 0x1885a5
-	db $0, "Hey, you! Forget", $4f
-	db "you see me, okay?", $51
-	db "You see, hear,", $4f
-	db "know nothing,", $51
-	db "okay?", $4f
-	db "Bye, kid! Nothing!", $51
-	db "Bye-bye a go-go!", $57
+	text "Hey, you! Forget"
+	line "you see me, okay?"
+
+	para "You see, hear,"
+	line "know nothing,"
+
+	para "okay?"
+	line "Bye, kid! Nothing!"
+
+	para "Bye-bye a go-go!"
+	done
 ; 0x188610
 
 UnknownText_0x188610: ; 0x188610
-	db $0, "Sorry, I'll be out", $4f
-	db "for a while.", $55
-	db "MISTY, GYM LEADER", $57
+	text "Sorry, I'll be out"
+	line "for a while."
+	cont "MISTY, GYM LEADER"
+	done
 ; 0x188642
 
 UnknownText_0x188642: ; 0x188642
-	db $0, "Since MISTY's out,", $4f
-	db "we'll be away too.", $55
-	db "GYM TRAINERS", $57
+	text "Since MISTY's out,"
+	line "we'll be away too."
+	cont "GYM TRAINERS"
+	done
 ; 0x188674
 
 UnknownText_0x188674: ; 0x188674
-	db $0, "MISTY: I was ex-", $4f
-	db "pecting you, you", $55
-	db "pest!", $51
-	db "You may have a", $4f
-	db "lot of JOHTO GYM", $51
-	db "BADGES, but you'd", $4f
-	db "better not take me", $55
-	db "too lightly.", $51
-	db "My water-type", $4f
-	db "#MON are tough!", $57
+	text "MISTY: I was ex-"
+	line "pecting you, you"
+	cont "pest!"
+
+	para "You may have a"
+	line "lot of JOHTO GYM"
+
+	para "BADGES, but you'd"
+	line "better not take me"
+	cont "too lightly."
+
+	para "My water-type"
+	line "#MON are tough!"
+	done
 ; 0x18870c
 
 UnknownText_0x18870c: ; 0x18870c
-	db $0, "MISTY: You really", $4f
-	db "are good…", $51
-	db "I'll admit that", $4f
-	db "you are skilled…", $51
-	db "Here you go. It's", $4f
-	db "CASCADEBADGE.", $57
+	text "MISTY: You really"
+	line "are good…"
+
+	para "I'll admit that"
+	line "you are skilled…"
+
+	para "Here you go. It's"
+	line "CASCADEBADGE."
+	done
 ; 0x188768
 
 UnknownText_0x188768: ; 0x188768
-	db $0, $52, " received", $4f
-	db "CASCADEBADGE.", $57
+	text $52, " received"
+	line "CASCADEBADGE."
+	done
 ; 0x188782
 
 UnknownText_0x188782: ; 0x188782
-	db $0, "MISTY: Are there", $4f
-	db "many strong train-", $55
-	db "ers in JOHTO? Like", $55
-	db "you, I mean.", $51
-	db "I'm going to", $4f
-	db "travel one day, so", $51
-	db "I can battle some", $4f
-	db "skilled trainers.", $57
+	text "MISTY: Are there"
+	line "many strong train-"
+	cont "ers in JOHTO? Like"
+	cont "you, I mean."
+
+	para "I'm going to"
+	line "travel one day, so"
+
+	para "I can battle some"
+	line "skilled trainers."
+	done
 ; 0x18880a
 
 SwimmerfDianaSeenText: ; 0x18880a
-	db $0, "Sorry about being", $4f
-	db "away. Let's get on", $55
-	db "with it!", $57
+	text "Sorry about being"
+	line "away. Let's get on"
+	cont "with it!"
+	done
 ; 0x188838
 
 SwimmerfDianaBeatenText: ; 0x188838
-	db $0, "I give up! You're", $4f
-	db "the winner!", $57
+	text "I give up! You're"
+	line "the winner!"
+	done
 ; 0x188856
 
 UnknownText_0x188856: ; 0x188856
-	db $0, "I'll be swimming", $4f
-	db "quietly.", $57
+	text "I'll be swimming"
+	line "quietly."
+	done
 ; 0x188870
 
 SwimmerfBrianaSeenText: ; 0x188870
-	db $0, "Don't let my ele-", $4f
-	db "gant swimming un-", $55
-	db "nerve you.", $57
+	text "Don't let my ele-"
+	line "gant swimming un-"
+	cont "nerve you."
+	done
 ; 0x18889f
 
 SwimmerfBrianaBeatenText: ; 0x18889f
-	db $0, "Ooh, you calmly", $4f
-	db "disposed of me…", $57
+	text "Ooh, you calmly"
+	line "disposed of me…"
+	done
 ; 0x1888c0
 
 UnknownText_0x1888c0: ; 0x1888c0
-	db $0, "Don't be too smug", $4f
-	db "about beating me.", $51
-	db "MISTY will destroy", $4f
-	db "you if you get", $55
-	db "complacent.", $57
+	text "Don't be too smug"
+	line "about beating me."
+
+	para "MISTY will destroy"
+	line "you if you get"
+	cont "complacent."
+	done
 ; 0x188912
 
 SwimmermParkerSeenText: ; 0x188912
-	db $0, "Glub…", $51
-	db "I'm first! Come", $4f
-	db "and get me!", $57
+	text "Glub…"
+
+	para "I'm first! Come"
+	line "and get me!"
+	done
 ; 0x188934
 
 SwimmermParkerBeatenText: ; 0x188934
-	db $0, "This can't be…", $57
+	text "This can't be…"
+	done
 ; 0x188943
 
 UnknownText_0x188943: ; 0x188943
-	db $0, "MISTY has gotten", $4f
-	db "much better in the", $55
-	db "past few years.", $51
-	db "Don't let your", $4f
-	db "guard down, or", $55
-	db "you'll be crushed!", $57
+	text "MISTY has gotten"
+	line "much better in the"
+	cont "past few years."
+
+	para "Don't let your"
+	line "guard down, or"
+	cont "you'll be crushed!"
+	done
 ; 0x1889a7
 
 CeruleanGymGuyText: ; 0x1889a7
-	db $0, "Yo! CHAMP in", $4f
-	db "making!", $51
-	db "Since MISTY was", $4f
-	db "away, I went out", $51
-	db "for some fun too.", $4f
-	db "He-he-he.", $57
+	text "Yo! CHAMP in"
+	line "making!"
+
+	para "Since MISTY was"
+	line "away, I went out"
+
+	para "for some fun too."
+	line "He-he-he."
+	done
 ; 0x1889fa
 
 CeruleanGymGuyWinText: ; 0x1889fa
-	db $0, "Hoo, you showed me", $4f
-	db "how tough you are.", $51
-	db "As always, that", $4f
-	db "was one heck of a", $55
-	db "great battle!", $57
+	text "Hoo, you showed me"
+	line "how tough you are."
+
+	para "As always, that"
+	line "was one heck of a"
+	cont "great battle!"
+	done
 ; 0x188a51
 
 CeruleanGym_MapEventHeader: ; 0x188a51

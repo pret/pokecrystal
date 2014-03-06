@@ -469,170 +469,213 @@ MapRoute44SignpostItem2: ; 0x19da48
 ; 0x19da4b
 
 FisherWilton1SeenText: ; 0x19da4b
-	db $0, "Aack! You made me", $4f
-	db "lose a POLIWAG!", $51
-	db "What are you going", $4f
-	db "to do about it?", $57
+	text "Aack! You made me"
+	line "lose a POLIWAG!"
+
+	para "What are you going"
+	line "to do about it?"
+	done
 ; 0x19da91
 
 FisherWilton1BeatenText: ; 0x19da91
-	db $0, "Just forget about", $4f
-	db "it.", $57
+	text "Just forget about"
+	line "it."
+	done
 ; 0x19daa8
 
 UnknownText_0x19daa8: ; 0x19daa8
-	db $0, "That POLIWAG that", $4f
-	db "got away…", $55
-	db "It was huge.", $51
-	db "I swear it must've", $4f
-	db "been 16 feet long!", $57
+	text "That POLIWAG that"
+	line "got away…"
+	cont "It was huge."
+
+	para "I swear it must've"
+	line "been 16 feet long!"
+	done
 ; 0x19daf7
 
 FisherEdgarSeenText: ; 0x19daf7
-	db $0, "I fish until I", $4f
-	db "can't anymore.", $51
-	db "I also battle", $4f
-	db "until I drop.", $51
-	db "That's my", $4f
-	db "relationship", $55
-	db "with my #MON.", $57
+	text "I fish until I"
+	line "can't anymore."
+
+	para "I also battle"
+	line "until I drop."
+
+	para "That's my"
+	line "relationship"
+	cont "with my #MON."
+	done
 ; 0x19db55
 
 FisherEdgarBeatenText: ; 0x19db55
-	db $0, "Hmmmm… ", $4f
-	db "This isn't right.", $57
+	text "Hmmmm… "
+	line "This isn't right."
+	done
 ; 0x19db6f
 
 UnknownText_0x19db6f: ; 0x19db6f
-	db $0, "That's 100 wins", $4f
-	db "to 101 losses.", $51
-	db "I won't battle", $4f
-	db "again for a while.", $57
+	text "That's 100 wins"
+	line "to 101 losses."
+
+	para "I won't battle"
+	line "again for a while."
+	done
 ; 0x19dbaf
 
 Bird_keeperVance1SeenText: ; 0x19dbaf
-	db $0, "Do you know about", $4f
-	db "the legendary bird", $55
-	db "#MON?", $57
+	text "Do you know about"
+	line "the legendary bird"
+	cont "#MON?"
+	done
 ; 0x19dbdb
 
 Bird_keeperVance1BeatenText: ; 0x19dbdb
-	db $0, "Whew! You're hot", $4f
-	db "stuff.", $57
+	text "Whew! You're hot"
+	line "stuff."
+	done
 ; 0x19dbf3
 
 UnknownText_0x19dbf3: ; 0x19dbf3
-	db $0, "ARTICUNO, ZAPDOS", $4f
-	db "and MOLTRES are", $51
-	db "the three legend-", $4f
-	db "ary bird #MON.", $51
-	db "I heard there are", $4f
-	db "other legendary", $55
-	db "birds, though.", $57
+	text "ARTICUNO, ZAPDOS"
+	line "and MOLTRES are"
+
+	para "the three legend-"
+	line "ary bird #MON."
+
+	para "I heard there are"
+	line "other legendary"
+	cont "birds, though."
+	done
 ; 0x19dc67
 
 UnknownText_0x19dc67: ; 0x19dc67
-	db $0, "Why can't I ever", $4f
-	db "beat you?", $51
-	db "Oh yeah, here you", $4f
-	db "go. It's that gift", $51
-	db "I couldn't give", $4f
-	db "you last time.", $57
+	text "Why can't I ever"
+	line "beat you?"
+
+	para "Oh yeah, here you"
+	line "go. It's that gift"
+
+	para "I couldn't give"
+	line "you last time."
+	done
 ; 0x19dcc4
 
 PsychicPhilSeenText: ; 0x19dcc4
-	db $0, "I'm gonna win,", $4f
-	db "for sure!", $57
+	text "I'm gonna win,"
+	line "for sure!"
+	done
 ; 0x19dcdd
 
 PsychicPhilBeatenText: ; 0x19dcdd
-	db $0, "Arrgh… That's a", $4f
-	db "shocking loss…", $57
+	text "Arrgh… That's a"
+	line "shocking loss…"
+	done
 ; 0x19dcfc
 
 UnknownText_0x19dcfc: ; 0x19dcfc
-	db $0, "It's important to", $4f
-	db "have conviction", $55
-	db "on your side.", $57
+	text "It's important to"
+	line "have conviction"
+	cont "on your side."
+	done
 ; 0x19dd2c
 
 PokemaniacZachSeenText: ; 0x19dd2c
-	db $0, "I'll do anything", $4f
-	db "to get my hands on", $55
-	db "rare #MON!", $57
+	text "I'll do anything"
+	line "to get my hands on"
+	cont "rare #MON!"
+	done
 ; 0x19dd5b
 
 PokemaniacZachBeatenText: ; 0x19dd5b
-	db $0, "Oooh, your #MON", $4f
-	db "are so appealing.", $57
+	text "Oooh, your #MON"
+	line "are so appealing."
+	done
 ; 0x19dd7e
 
 UnknownText_0x19dd7e: ; 0x19dd7e
-	db $0, "If a #MON has", $4f
-	db "different colors", $51
-	db "from usual, it's", $4f
-	db "more valuable.", $51
-	db "What? You mean", $4f
-	db "that's not true?", $57
+	text "If a #MON has"
+	line "different colors"
+
+	para "from usual, it's"
+	line "more valuable."
+
+	para "What? You mean"
+	line "that's not true?"
+	done
 ; 0x19dddc
 
 CooltrainermAllenSeenText: ; 0x19dddc
-	db $0, "I can tell you're", $4f
-	db "a good trainer by", $55
-	db "looking at you.", $51
-	db "I'm good at #-", $4f
-	db "MON, and I can see", $55
-	db "that you are too.", $57
+	text "I can tell you're"
+	line "a good trainer by"
+	cont "looking at you."
+
+	para "I'm good at #-"
+	line "MON, and I can see"
+	cont "that you are too."
+	done
 ; 0x19de43
 
 CooltrainermAllenBeatenText: ; 0x19de43
-	db $0, "Tch! It's a total", $4f
-	db "loss on my part.", $57
+	text "Tch! It's a total"
+	line "loss on my part."
+	done
 ; 0x19de66
 
 UnknownText_0x19de66: ; 0x19de66
-	db $0, "Wow. You have a", $4f
-	db "lot of BADGES.", $51
-	db "No wonder you're", $4f
-	db "so tough.", $51
-	db "I wonder if", $4f
-	db "ECRUTEAK GYM's", $51
-	db "MORTY is still in", $4f
-	db "training?", $51
-	db "He really hammered", $4f
-	db "me.", $57
+	text "Wow. You have a"
+	line "lot of BADGES."
+
+	para "No wonder you're"
+	line "so tough."
+
+	para "I wonder if"
+	line "ECRUTEAK GYM's"
+
+	para "MORTY is still in"
+	line "training?"
+
+	para "He really hammered"
+	line "me."
+	done
 ; 0x19deed
 
 CooltrainerfCybilSeenText: ; 0x19deed
-	db $0, "You look strong.", $51
-	db "Good trainers seek", $4f
-	db "tough opponents", $55
-	db "instinctively.", $57
+	text "You look strong."
+
+	para "Good trainers seek"
+	line "tough opponents"
+	cont "instinctively."
+	done
 ; 0x19df31
 
 CooltrainerfCybilBeatenText: ; 0x19df31
-	db $0, "Nope! This won't", $4f
-	db "do at all.", $57
+	text "Nope! This won't"
+	line "do at all."
+	done
 ; 0x19df4d
 
 UnknownText_0x19df4d: ; 0x19df4d
-	db $0, "We all get better", $4f
-	db "by experiencing", $55
-	db "many battles.", $51
-	db "I battled a lot to", $4f
-	db "become what I am", $55
-	db "today--an elite.", $57
+	text "We all get better"
+	line "by experiencing"
+	cont "many battles."
+
+	para "I battled a lot to"
+	line "become what I am"
+	cont "today--an elite."
+	done
 ; 0x19dfb3
 
 UnknownText_0x19dfb3: ; 0x19dfb3
-	db $0, "ROUTE 44", $4f
-	db "ICE PATH AHEAD", $57
+	text "ROUTE 44"
+	line "ICE PATH AHEAD"
+	done
 ; 0x19dfcc
 
 UnknownText_0x19dfcc: ; 0x19dfcc
-	db $0, "ROUTE 44", $51
-	db "MAHOGANY TOWN -", $4f
-	db "BLACKTHORN CITY", $57
+	text "ROUTE 44"
+
+	para "MAHOGANY TOWN -"
+	line "BLACKTHORN CITY"
+	done
 ; 0x19dff6
 
 Route44_MapEventHeader: ; 0x19dff6

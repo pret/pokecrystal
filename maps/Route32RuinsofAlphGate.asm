@@ -19,26 +19,33 @@ YoungsterScript_0x69a33: ; 0x69a33
 ; 0x69a36
 
 UnknownText_0x69a36: ; 0x69a36
-	db $0, "RUINS OF ALPH", $51
-	db "A Look-and-Touch", $4f
-	db "Tourist Site", $51
-	db "Try the sliding", $4f
-	db "stone panels!", $57
+	text "RUINS OF ALPH"
+
+	para "A Look-and-Touch"
+	line "Tourist Site"
+
+	para "Try the sliding"
+	line "stone panels!"
+	done
 ; 0x69a81
 
 UnknownText_0x69a81: ; 0x69a81
-	db $0, "You're studying", $4f
-	db "the RUINS?", $51
-	db "I see a scientist", $4f
-	db "in the making.", $57
+	text "You're studying"
+	line "the RUINS?"
+
+	para "I see a scientist"
+	line "in the making."
+	done
 ; 0x69abd
 
 UnknownText_0x69abd: ; 0x69abd
-	db $0, "There are drawings", $4f
-	db "on stone panels.", $51
-	db "I tried moving", $4f
-	db "them. I wonder", $55
-	db "what they are.", $57
+	text "There are drawings"
+	line "on stone panels."
+
+	para "I tried moving"
+	line "them. I wonder"
+	cont "what they are."
+	done
 ; 0x69b0f
 
 Route32RuinsofAlphGate_MapEventHeader: ; 0x69b0f

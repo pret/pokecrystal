@@ -19,22 +19,28 @@ MapRoute5Signpost1Script: ; 0x1adb1f
 ; 0x1adb22
 
 UnknownText_0x1adb22: ; 0x1adb22
-	db $0, "The road is closed", $4f
-	db "until the problem", $51
-	db "at the POWER PLANT", $4f
-	db "is solved.", $57
+	text "The road is closed"
+	line "until the problem"
+
+	para "at the POWER PLANT"
+	line "is solved."
+	done
 ; 0x1adb66
 
 UnknownText_0x1adb66: ; 0x1adb66
-	db $0, "UNDERGROUND PATH", $51
-	db "CERULEAN CITY -", $4f
-	db "VERMILION CITY", $57
+	text "UNDERGROUND PATH"
+
+	para "CERULEAN CITY -"
+	line "VERMILION CITY"
+	done
 ; 0x1adb97
 
 UnknownText_0x1adb97: ; 0x1adb97
-	db $0, "What's this?", $51
-	db "House for Sale…", $4f
-	db "Nobody lives here.", $57
+	text "What's this?"
+
+	para "House for Sale…"
+	line "Nobody lives here."
+	done
 ; 0x1adbc7
 
 Route5_MapEventHeader: ; 0x1adbc7

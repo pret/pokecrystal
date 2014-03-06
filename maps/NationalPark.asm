@@ -406,183 +406,234 @@ MapNationalParkSignpostItem2: ; 0x5c1d0
 ; 0x5c1d3
 
 UnknownText_0x5c1d3: ; 0x5c1d3
-	db $0, "Look! Check out my", $4f
-	db "bag!", $51
-	db "I printed out my", $4f
-	db "favorites from my", $51
-	db "#DEX and stuck", $4f
-	db "them on my bag.", $57
+	text "Look! Check out my"
+	line "bag!"
+
+	para "I printed out my"
+	line "favorites from my"
+
+	para "#DEX and stuck"
+	line "them on my bag."
+	done
 ; 0x5c22e
 
 UnknownText_0x5c22e: ; 0x5c22e
-	db $0, "This is MAIL I got", $4f
-	db "from my daughter.", $55
-	db "It cheers me up.", $57
+	text "This is MAIL I got"
+	line "from my daughter."
+	cont "It cheers me up."
+	done
 ; 0x5c265
 
 UnknownText_0x5c265: ; 0x5c265
-	db $0, "Pay attention,", $4f
-	db "please!", $51
-	db "…Oops, I have to", $4f
-	db "quit thinking like", $51
-	db "a teacher all the", $4f
-	db "time.", $51
-	db "You must be a", $4f
-	db "#MON trainer.", $51
-	db "Since you're work-", $4f
-	db "ing so hard, I", $51
-	db "want you to have", $4f
-	db "this.", $57
+	text "Pay attention,"
+	line "please!"
+
+	para "…Oops, I have to"
+	line "quit thinking like"
+
+	para "a teacher all the"
+	line "time."
+
+	para "You must be a"
+	line "#MON trainer."
+
+	para "Since you're work-"
+	line "ing so hard, I"
+
+	para "want you to have"
+	line "this."
+	done
 ; 0x5c30d
 
 UnknownText_0x5c30d: ; 0x5c30d
-	db $0, "Let a #MON hold", $4f
-	db "that QUICK CLAW.", $51
-	db "Sometimes it will", $4f
-	db "strike first", $55
-	db "during battle.", $57
+	text "Let a #MON hold"
+	line "that QUICK CLAW."
+
+	para "Sometimes it will"
+	line "strike first"
+	cont "during battle."
+	done
 ; 0x5c35d
 
 UnknownText_0x5c35d: ; 0x5c35d
-	db $0, "I'm playing with", $4f
-	db "stickers I printed", $55
-	db "from my #DEX.", $57
+	text "I'm playing with"
+	line "stickers I printed"
+	cont "from my #DEX."
+	done
 ; 0x5c38f
 
 UnknownText_0x5c38f: ; 0x5c38f
-	db $0, "I get the other", $4f
-	db "guy's #DEX", $55
-	db "sticker if I win.", $57
+	text "I get the other"
+	line "guy's #DEX"
+	cont "sticker if I win."
+	done
 ; 0x5c3bc
 
 UnknownText_0x5c3bc: ; 0x5c3bc
-	db $0, "I take walks in", $4f
-	db "the PARK, but I", $51
-	db "never go into the", $4f
-	db "grass.", $51
-	db "Trainers always", $4f
-	db "want to battle…", $57
+	text "I take walks in"
+	line "the PARK, but I"
+
+	para "never go into the"
+	line "grass."
+
+	para "Trainers always"
+	line "want to battle…"
+	done
 ; 0x5c416
 
 UnknownText_0x5c416: ; 0x5c416
-	db $0, "PERSIAN: Fufushaa!", $57
+	text "PERSIAN: Fufushaa!"
+	done
 ; 0x5c42a
 
 UnknownText_0x5c42a: ; 0x5c42a
-	db $0, "I'm printing out", $4f
-	db "my #DEX.", $51
-	db "You can also print", $4f
-	db "out stuff like", $51
-	db "MAIL and your PC", $4f
-	db "BOXES.", $57
+	text "I'm printing out"
+	line "my #DEX."
+
+	para "You can also print"
+	line "out stuff like"
+
+	para "MAIL and your PC"
+	line "BOXES."
+	done
 ; 0x5c47e
 
 SchoolboyJack1SeenText: ; 0x5c47e
-	db $0, "The world of", $4f
-	db "#MON is deep.", $51
-	db "There are still", $4f
-	db "lots of things we", $55
-	db "don't know.", $51
-	db "But I know more", $4f
-	db "than you do!", $57
+	text "The world of"
+	line "#MON is deep."
+
+	para "There are still"
+	line "lots of things we"
+	cont "don't know."
+
+	para "But I know more"
+	line "than you do!"
+	done
 ; 0x5c4e4
 
 SchoolboyJack1BeatenText: ; 0x5c4e4
-	db $0, "Wha-wha-what?", $57
+	text "Wha-wha-what?"
+	done
 ; 0x5c4f3
 
 UnknownText_0x5c4f3: ; 0x5c4f3
-	db $0, "There is a lot", $4f
-	db "to learn.", $51
-	db "For example…", $51
-	db "There are 50 kinds", $4f
-	db "of TMs.", $51
-	db "Traded #MON", $4f
-	db "level up faster.", $57
+	text "There is a lot"
+	line "to learn."
+
+	para "For example…"
+
+	para "There are 50 kinds"
+	line "of TMs."
+
+	para "Traded #MON"
+	line "level up faster."
+	done
 ; 0x5c552
 
 PokefanfBeverly1SeenText: ; 0x5c552
-	db $0, "My #MON are", $4f
-	db "simply darling.", $51
-	db "Let me tell you", $4f
-	db "how proud my", $55
-	db "darlings make me.", $57
+	text "My #MON are"
+	line "simply darling."
+
+	para "Let me tell you"
+	line "how proud my"
+	cont "darlings make me."
+	done
 ; 0x5c59e
 
 PokefanfBeverly1BeatenText: ; 0x5c59e
-	db $0, "I can beat you in", $4f
-	db "pride, but…", $57
+	text "I can beat you in"
+	line "pride, but…"
+	done
 ; 0x5c5bd
 
 UnknownText_0x5c5bd: ; 0x5c5bd
-	db $0, "I must say, your", $4f
-	db "#MON are quite", $55
-	db "cute, too.", $57
+	text "I must say, your"
+	line "#MON are quite"
+	cont "cute, too."
+	done
 ; 0x5c5e9
 
 PokefanmWilliamSeenText: ; 0x5c5e9
-	db $0, "We adore our #-", $4f
-	db "MON, even if they", $55
-	db "dislike us.", $51
-	db "That's what being", $4f
-	db "a FAN is about.", $57
+	text "We adore our #-"
+	line "MON, even if they"
+	cont "dislike us."
+
+	para "That's what being"
+	line "a FAN is about."
+	done
 ; 0x5c639
 
 PokefanmWilliamBeatenText: ; 0x5c639
-	db $0, "M-my #MON!", $57
+	text "M-my #MON!"
+	done
 ; 0x5c645
 
 UnknownText_0x5c645: ; 0x5c645
-	db $0, "I lost the battle,", $4f
-	db "but my #MON win", $51
-	db "the prize for", $4f
-	db "being most lovely.", $57
+	text "I lost the battle,"
+	line "but my #MON win"
+
+	para "the prize for"
+	line "being most lovely."
+	done
 ; 0x5c68a
 
 UnknownText_0x5c68a: ; 0x5c68a
-	db $0, "My friend keeps a", $4f
-	db "MARILL!", $51
-	db "I find them very", $4f
-	db "endearing.", $51
-	db "Oh, I wish for a", $4f
-	db "MARILL of my own…", $57
+	text "My friend keeps a"
+	line "MARILL!"
+
+	para "I find them very"
+	line "endearing."
+
+	para "Oh, I wish for a"
+	line "MARILL of my own…"
+	done
 ; 0x5c6e4
 
 LassKriseSeenText: ; 0x5c6e4
-	db $0, "Hello? Why are you", $4f
-	db "staring at me?", $51
-	db "Oh, a battle?", $57
+	text "Hello? Why are you"
+	line "staring at me?"
+
+	para "Oh, a battle?"
+	done
 ; 0x5c715
 
 LassKriseBeatenText: ; 0x5c715
-	db $0, "…Hmmm…", $57
+	text "…Hmmm…"
+	done
 ; 0x5c71d
 
 UnknownText_0x5c71d: ; 0x5c71d
-	db $0, "I thought you were", $4f
-	db "staring at me", $55
-	db "because I'm cute!", $57
+	text "I thought you were"
+	line "staring at me"
+	cont "because I'm cute!"
+	done
 ; 0x5c750
 
 UnknownText_0x5c750: ; 0x5c750
-	db $0, "RELAXATION SQUARE", $4f
-	db "NATIONAL PARK", $57
+	text "RELAXATION SQUARE"
+	line "NATIONAL PARK"
+	done
 ; 0x5c771
 
 UnknownText_0x5c771: ; 0x5c771
-	db $0, "What is this", $4f
-	db "notice?", $51
-	db "Please battle only", $4f
-	db "in the grass.", $51
-	db "NATIONAL PARK", $4f
-	db "WARDEN'S OFFICE", $57
+	text "What is this"
+	line "notice?"
+
+	para "Please battle only"
+	line "in the grass."
+
+	para "NATIONAL PARK"
+	line "WARDEN'S OFFICE"
+	done
 ; 0x5c7c6
 
 UnknownText_0x5c7c6: ; 0x5c7c6
-	db $0, "TRAINER TIPS", $51
-	db "Print out MAIL by", $4f
-	db "opening it then", $55
-	db "pressing START.", $57
+	text "TRAINER TIPS"
+
+	para "Print out MAIL by"
+	line "opening it then"
+	cont "pressing START."
+	done
 ; 0x5c806
 
 NationalPark_MapEventHeader: ; 0x5c806

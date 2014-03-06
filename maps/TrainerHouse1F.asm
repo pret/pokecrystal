@@ -39,85 +39,112 @@ MapTrainerHouse1FSignpost2Script: ; 0x9af7c
 ; 0x9af7f
 
 UnknownText_0x9af7f: ; 0x9af7f
-	db $0, "Welcome to TRAINER", $4f
-	db "HOUSE, the newest", $51
-	db "and most happening", $4f
-	db "place in VIRIDIAN.", $51
-	db "We're open to", $4f
-	db "trainers only.", $51
-	db "You can battle", $4f
-	db "against the best", $51
-	db "of the best right", $4f
-	db "downstairs.", $57
+	text "Welcome to TRAINER"
+	line "HOUSE, the newest"
+
+	para "and most happening"
+	line "place in VIRIDIAN."
+
+	para "We're open to"
+	line "trainers only."
+
+	para "You can battle"
+	line "against the best"
+
+	para "of the best right"
+	line "downstairs."
+	done
 ; 0x9b025
 
 UnknownText_0x9b025: ; 0x9b025
-	db $0, "VIRIDIAN is the", $4f
-	db "town closest to", $55
-	db "INDIGO PLATEAU.", $51
-	db "They built this", $4f
-	db "place because so", $51
-	db "many trainers pass", $4f
-	db "through on their", $51
-	db "way up to INDIGO", $4f
-	db "PLATEAU.", $57
+	text "VIRIDIAN is the"
+	line "town closest to"
+	cont "INDIGO PLATEAU."
+
+	para "They built this"
+	line "place because so"
+
+	para "many trainers pass"
+	line "through on their"
+
+	para "way up to INDIGO"
+	line "PLATEAU."
+	done
 ; 0x9b0b5
 
 UnknownText_0x9b0b5: ; 0x9b0b5
-	db $0, "They hold practice", $4f
-	db "battles downstairs", $55
-	db "here.", $51
-	db "I would love to", $4f
-	db "see how well a", $51
-	db "trainer from JOHTO", $4f
-	db "battles.", $57
+	text "They hold practice"
+	line "battles downstairs"
+	cont "here."
+
+	para "I would love to"
+	line "see how well a"
+
+	para "trainer from JOHTO"
+	line "battles."
+	done
 ; 0x9b11d
 
 UnknownText_0x9b11d: ; 0x9b11d
-	db $0, "I guess you can't", $4f
-	db "become the CHAMP", $51
-	db "unless you go all", $4f
-	db "over the place and", $51
-	db "battle all kinds", $4f
-	db "of people.", $51
-	db "The CHAMPION from", $4f
-	db "PALLET traveled to", $51
-	db "all the cities and", $4f
-	db "towns in KANTO.", $57
+	text "I guess you can't"
+	line "become the CHAMP"
+
+	para "unless you go all"
+	line "over the place and"
+
+	para "battle all kinds"
+	line "of people."
+
+	para "The CHAMPION from"
+	line "PALLET traveled to"
+
+	para "all the cities and"
+	line "towns in KANTO."
+	done
 ; 0x9b1c9
 
 UnknownText_0x9b1c9: ; 0x9b1c9
-	db $0, "Whew… I'm taking a", $4f
-	db "rest from #MON", $55
-	db "battles.", $57
+	text "Whew… I'm taking a"
+	line "rest from #MON"
+	cont "battles."
+	done
 ; 0x9b1f4
 
 UnknownText_0x9b1f4: ; 0x9b1f4
-	db $0, "Practice battles", $4f
-	db "are held in the", $51
-	db "TRAINING HALL", $4f
-	db "downstairs.", $51
-	db "Skilled trainers", $4f
-	db "are invited to", $55
-	db "participate.", $57
+	text "Practice battles"
+	line "are held in the"
+
+	para "TRAINING HALL"
+	line "downstairs."
+
+	para "Skilled trainers"
+	line "are invited to"
+	cont "participate."
+	done
 ; 0x9b25d
 
 UnknownText_0x9b25d: ; 0x9b25d
-	db $0, "There are no rules", $4f
-	db "or regulations for", $51
-	db "practice matches.", $4f
-	db "Just like in field", $51
-	db "battles, anything", $4f
-	db "goes!", $57
+	text "There are no rules"
+	line "or regulations for"
+
+	para "practice matches."
+	line "Just like in field"
+
+	para "battles, anything"
+	line "goes!"
+	done
 ; 0x9b2c1
 
 UnknownText_0x9b2c1: ; 0x9b2c1
-	db $0, "…What's this?", $4f
-	db "A strategy memo?", $51
-	db "This writing looks", $4f
-	db "like ONIX tracks…", $51
-	db "It's completely", $4f
-	db "illegible…", $57
+	text "…What's this?"
+	line "A strategy memo?"
+
+	para "This writing looks"
+	line "like ONIX tracks…"
+
+	para "It's completely"
+	line "illegible…"
+	done
 ; 0x9b31f
 
 TrainerHouse1F_MapEventHeader: ; 0x9b31f

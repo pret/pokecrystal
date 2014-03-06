@@ -201,166 +201,219 @@ MovementData_0x1a00ec: ; 0x1a00ec
 ; 0x1a00f1
 
 UnknownText_0x1a00f1: ; 0x1a00f1
-	db $0, "You crossed the", $4f
-	db "sea to get here?", $51
-	db "That must have", $4f
-	db "been hard.", $51
-	db "It would be much", $4f
-	db "easier if your", $51
-	db "#MON knew how", $4f
-	db "to FLY…", $57
+	text "You crossed the"
+	line "sea to get here?"
+
+	para "That must have"
+	line "been hard."
+
+	para "It would be much"
+	line "easier if your"
+
+	para "#MON knew how"
+	line "to FLY…"
+	done
 ; 0x1a0163
 
 UnknownText_0x1a0163: ; 0x1a0163
-	db $0, "But you can't use", $4f
-	db "FLY without this", $55
-	db "city's GYM BADGE.", $51
-	db "If you beat the", $4f
-	db "GYM LEADER here,", $55
-	db "come see me.", $51
-	db "I'll have a nice", $4f
-	db "gift for you.", $57
+	text "But you can't use"
+	line "FLY without this"
+	cont "city's GYM BADGE."
+
+	para "If you beat the"
+	line "GYM LEADER here,"
+	cont "come see me."
+
+	para "I'll have a nice"
+	line "gift for you."
+	done
 ; 0x1a01e3
 
 UnknownText_0x1a01e3: ; 0x1a01e3
-	db $0, "That's CIANWOOD's", $4f
-	db "GYM BADGE!", $51
-	db "Then you should", $4f
-	db "take this HM.", $57
+	text "That's CIANWOOD's"
+	line "GYM BADGE!"
+
+	para "Then you should"
+	line "take this HM."
+	done
 ; 0x1a021d
 
 UnknownText_0x1a021d: ; 0x1a021d
-	db $0, "Teach FLY to your", $4f
-	db "#MON.", $51
-	db "You will be able", $4f
-	db "to FLY instantly", $51
-	db "to anywhere you ", $4f
-	db "have visited.", $57
+	text "Teach FLY to your"
+	line "#MON."
+
+	para "You will be able"
+	line "to FLY instantly"
+
+	para "to anywhere you "
+	line "have visited."
+	done
 ; 0x1a0277
 
 UnknownText_0x1a0277: ; 0x1a0277
-	db $0, "My husband lost to", $4f
-	db "you, so he needs", $55
-	db "to train harder.", $51
-	db "That's good, since", $4f
-	db "he was getting a", $55
-	db "little chubby.", $57
+	text "My husband lost to"
+	line "you, so he needs"
+	cont "to train harder."
+
+	para "That's good, since"
+	line "he was getting a"
+	cont "little chubby."
+	done
 ; 0x1a02df
 
 UnknownText_0x1a02df: ; 0x1a02df
-	db $0, "If you use FLY,", $4f
-	db "you can get back", $51
-	db "to OLIVINE in-", $4f
-	db "stantly.", $57
+	text "If you use FLY,"
+	line "you can get back"
+
+	para "to OLIVINE in-"
+	line "stantly."
+	done
 ; 0x1a0319
 
 UnknownText_0x1a0319: ; 0x1a0319
-	db $0, "Boulders to the", $4f
-	db "north of town can", $55
-	db "be crushed.", $51
-	db "They may be hiding", $4f
-	db "something.", $51
-	db "Your #MON could", $4f
-	db "use ROCK SMASH to", $55
-	db "break them.", $57
+	text "Boulders to the"
+	line "north of town can"
+	cont "be crushed."
+
+	para "They may be hiding"
+	line "something."
+
+	para "Your #MON could"
+	line "use ROCK SMASH to"
+	cont "break them."
+	done
 ; 0x1a0394
 
 UnknownText_0x1a0394: ; 0x1a0394
-	db $0, "CHUCK, the GYM", $4f
-	db "LEADER, spars with", $51
-	db "his fighting #-", $4f
-	db "MON.", $57
+	text "CHUCK, the GYM"
+	line "LEADER, spars with"
+
+	para "his fighting #-"
+	line "MON."
+	done
 ; 0x1a03cc
 
 ; possibly unused
 UnknownText_0x1a03cc: ; 0x1a03cc
-	db $0, "There are several", $4f
-	db "islands between", $55
-	db "here and OLIVINE.", $51
-	db "A mythical sea", $4f
-	db "creature supposed-", $55
-	db "ly lives there.", $57
+	text "There are several"
+	line "islands between"
+	cont "here and OLIVINE."
+
+	para "A mythical sea"
+	line "creature supposed-"
+	cont "ly lives there."
+	done
 ; 0x1a0433
 
 UnknownText_0x1a0433: ; 0x1a0433
-	db $0, "EUSINE: Yo,", $4f
-	db $52, ".", $51
-	db "Wasn't that", $4f
-	db "SUICUNE just now?", $51
-	db "I only caught a", $4f
-	db "quick glimpse, but", $51
-	db "I thought I saw", $4f
-	db "SUICUNE running on", $55
-	db "the waves.", $51
-	db "SUICUNE is beau-", $4f
-	db "tiful and grand.", $51
-	db "And it races", $4f
-	db "through towns and", $51
-	db "roads at simply", $4f
-	db "awesome speeds.", $51
-	db "It's wonderful…", $51
-	db "I want to see", $4f
-	db "SUICUNE up close…", $51
-	db "I've decided.", $51
-	db "I'll battle you as", $4f
-	db "a trainer to earn", $55
-	db "SUICUNE's respect!", $51
-	db "Come on, ", $52, ".", $4f
-	db "Let's battle now!", $57
+	text "EUSINE: Yo,"
+	line $52, "."
+
+	para "Wasn't that"
+	line "SUICUNE just now?"
+
+	para "I only caught a"
+	line "quick glimpse, but"
+
+	para "I thought I saw"
+	line "SUICUNE running on"
+	cont "the waves."
+
+	para "SUICUNE is beau-"
+	line "tiful and grand."
+
+	para "And it races"
+	line "through towns and"
+
+	para "roads at simply"
+	line "awesome speeds."
+
+	para "It's wonderful…"
+
+	para "I want to see"
+	line "SUICUNE up close…"
+
+	para "I've decided."
+
+	para "I'll battle you as"
+	line "a trainer to earn"
+	cont "SUICUNE's respect!"
+
+	para "Come on, ", $52, "."
+	line "Let's battle now!"
+	done
 ; 0x1a05a1
 
 UnknownText_0x1a05a1: ; 0x1a05a1
-	db $0, "I hate to admit", $4f
-	db "it, but you win.", $57
+	text "I hate to admit"
+	line "it, but you win."
+	done
 ; 0x1a05c3
 
 UnknownText_0x1a05c3: ; 0x1a05c3
-	db $0, "You're amazing,", $4f
-	db $52, "!", $51
-	db "No wonder #MON", $4f
-	db "gravitate to you.", $51
-	db "I get it now.", $51
-	db "I'm going to keep", $4f
-	db "searching for", $55
-	db "SUICUNE.", $51
-	db "I'm sure we'll see", $4f
-	db "each other again.", $51
-	db "See you around!", $57
+	text "You're amazing,"
+	line $52, "!"
+
+	para "No wonder #MON"
+	line "gravitate to you."
+
+	para "I get it now."
+
+	para "I'm going to keep"
+	line "searching for"
+	cont "SUICUNE."
+
+	para "I'm sure we'll see"
+	line "each other again."
+
+	para "See you around!"
+	done
 ; 0x1a0660
 
 UnknownText_0x1a0660: ; 0x1a0660
-	db $0, "CIANWOOD CITY", $51
-	db "A Port Surrounded", $4f
-	db "by Rough Seas", $57
+	text "CIANWOOD CITY"
+
+	para "A Port Surrounded"
+	line "by Rough Seas"
+	done
 ; 0x1a068f
 
 UnknownText_0x1a068f: ; 0x1a068f
-	db $0, "CIANWOOD CITY", $4f
-	db "#MON GYM", $51
-	db "LEADER: CHUCK", $51
-	db "His Roaring Fists", $4f
-	db "Do the Talking", $57
+	text "CIANWOOD CITY"
+	line "#MON GYM"
+
+	para "LEADER: CHUCK"
+
+	para "His Roaring Fists"
+	line "Do the Talking"
+	done
 ; 0x1a06d6
 
 UnknownText_0x1a06d6: ; 0x1a06d6
-	db $0, "500 Years of", $4f
-	db "Tradition", $51
-	db "CIANWOOD CITY", $4f
-	db "PHARMACY", $51
-	db "We Await Your", $4f
-	db "Medicinal Queries", $57
+	text "500 Years of"
+	line "Tradition"
+
+	para "CIANWOOD CITY"
+	line "PHARMACY"
+
+	para "We Await Your"
+	line "Medicinal Queries"
+	done
 ; 0x1a0725
 
 UnknownText_0x1a0725: ; 0x1a0725
-	db $0, "CIANWOOD CITY", $4f
-	db "PHOTO STUDIO", $51
-	db "Take a Snapshot as", $4f
-	db "a Keepsake!", $57
+	text "CIANWOOD CITY"
+	line "PHOTO STUDIO"
+
+	para "Take a Snapshot as"
+	line "a Keepsake!"
+	done
 ; 0x1a0760
 
 UnknownText_0x1a0760: ; 0x1a0760
-	db $0, "THE # SEER", $4f
-	db "AHEAD", $57
+	text "THE # SEER"
+	line "AHEAD"
+	done
 ; 0x1a0772
 
 CianwoodCity_MapEventHeader: ; 0x1a0772

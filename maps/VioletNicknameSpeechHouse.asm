@@ -25,21 +25,25 @@ BirdScript_0x693ef: ; 0x693ef
 ; 0x693fa
 
 UnknownText_0x693fa: ; 0x693fa
-	db $0, "She uses the names", $4f
-	db "of her favorite", $55
-	db "things to eat.", $51
-	db "For the nicknames", $4f
-	db "she gives to her", $55
-	db "#MON, I mean.", $57
+	text "She uses the names"
+	line "of her favorite"
+	cont "things to eat."
+
+	para "For the nicknames"
+	line "she gives to her"
+	cont "#MON, I mean."
+	done
 ; 0x6945e
 
 UnknownText_0x6945e: ; 0x6945e
-	db $0, "I call my PIDGEY", $4f
-	db "STRAWBERRY!", $57
+	text "I call my PIDGEY"
+	line "STRAWBERRY!"
+	done
 ; 0x6947c
 
 UnknownText_0x6947c: ; 0x6947c
-	db $0, "STRAWBERRY: Pijji!", $57
+	text "STRAWBERRY: Pijji!"
+	done
 ; 0x69490
 
 VioletNicknameSpeechHouse_MapEventHeader: ; 0x69490

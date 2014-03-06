@@ -91,137 +91,176 @@ MapCeladonCitySignpostItem7: ; 0x1a9f7a
 ; 0x1a9f7d
 
 UnknownText_0x1a9f7d: ; 0x1a9f7d
-	db $0, "This POLIWRATH is", $4f
-	db "my partner.", $51
-	db "I wonder if it'll", $4f
-	db "ever evolve into a", $55
-	db "frog #MON.", $57
+	text "This POLIWRATH is"
+	line "my partner."
+
+	para "I wonder if it'll"
+	line "ever evolve into a"
+	cont "frog #MON."
+	done
 ; 0x1a9fcb
 
 UnknownText_0x1a9fcb: ; 0x1a9fcb
-	db $0, "POLIWRATH: Croak!", $57
+	text "POLIWRATH: Croak!"
+	done
 ; 0x1a9fde
 
 UnknownText_0x1a9fde: ; 0x1a9fde
-	db $0, "I lost at the slot", $4f
-	db "machines again…", $51
-	db "We girls also play", $4f
-	db "the slots now.", $51
-	db "You should check", $4f
-	db "them out too.", $57
+	text "I lost at the slot"
+	line "machines again…"
+
+	para "We girls also play"
+	line "the slots now."
+
+	para "You should check"
+	line "them out too."
+	done
 ; 0x1aa043
 
 UnknownText_0x1aa043: ; 0x1aa043
-	db $0, "GRIMER have been", $4f
-	db "appearing lately.", $51
-	db "See that pond out", $4f
-	db "in front of the", $51
-	db "house? GRIMER live", $4f
-	db "there now.", $51
-	db "Where did they", $4f
-	db "come from? This is", $55
-	db "a serious problem…", $57
+	text "GRIMER have been"
+	line "appearing lately."
+
+	para "See that pond out"
+	line "in front of the"
+
+	para "house? GRIMER live"
+	line "there now."
+
+	para "Where did they"
+	line "come from? This is"
+	cont "a serious problem…"
+	done
 ; 0x1aa0dc
 
 UnknownText_0x1aa0dc: ; 0x1aa0dc
-	db $0, "Nihihi! This GYM", $4f
-	db "is great! Only", $51
-	db "girls are allowed", $4f
-	db "here!", $57
+	text "Nihihi! This GYM"
+	line "is great! Only"
+
+	para "girls are allowed"
+	line "here!"
+	done
 ; 0x1aa115
 
 UnknownText_0x1aa115: ; 0x1aa115
-	db $0, "Want to know a", $4f
-	db "secret?", $51
-	db "CELADON MANSION", $4f
-	db "has a hidden back", $55
-	db "door.", $57
+	text "Want to know a"
+	line "secret?"
+
+	para "CELADON MANSION"
+	line "has a hidden back"
+	cont "door."
+	done
 ; 0x1aa155
 
 UnknownText_0x1aa155: ; 0x1aa155
-	db $0, "They're holding an", $4f
-	db "eating contest at", $55
-	db "the restaurant.", $51
-	db "Just watching them", $4f
-	db "go at it makes me", $55
-	db "feel bloated…", $57
+	text "They're holding an"
+	line "eating contest at"
+	cont "the restaurant."
+
+	para "Just watching them"
+	line "go at it makes me"
+	cont "feel bloated…"
+	done
 ; 0x1aa1bd
 
 UnknownText_0x1aa1bd: ; 0x1aa1bd
-	db $0, "CELADON DEPT.STORE", $4f
-	db "has the biggest", $51
-	db "and best selection", $4f
-	db "of merchandise.", $51
-	db "If you can't get", $4f
-	db "it there, you", $51
-	db "can't get it any-", $4f
-	db "where.", $51
-	db "Gee… I sound like", $4f
-	db "a sales clerk.", $57
+	text "CELADON DEPT.STORE"
+	line "has the biggest"
+
+	para "and best selection"
+	line "of merchandise."
+
+	para "If you can't get"
+	line "it there, you"
+
+	para "can't get it any-"
+	line "where."
+
+	para "Gee… I sound like"
+	line "a sales clerk."
+	done
 ; 0x1aa25b
 
 ; possibly unused
 UnknownText_0x1aa25b: ; 0x1aa25b
-	db $0, "I love being", $4f
-	db "surrounded by tall", $55
-	db "buildings!", $51
-	db "Isn't it true that", $4f
-	db "GOLDENROD #MON", $51
-	db "CENTER was made", $4f
-	db "much, much bigger?", $51
-	db "That is so neat!", $4f
-	db "I wish we had a", $51
-	db "place like that in", $4f
-	db "KANTO…", $57
+	text "I love being"
+	line "surrounded by tall"
+	cont "buildings!"
+
+	para "Isn't it true that"
+	line "GOLDENROD #MON"
+
+	para "CENTER was made"
+	line "much, much bigger?"
+
+	para "That is so neat!"
+	line "I wish we had a"
+
+	para "place like that in"
+	line "KANTO…"
+	done
 ; 0x1aa306
 
 UnknownText_0x1aa306: ; 0x1aa306
-	db $0, "Looking at the", $4f
-	db "ground while I was", $51
-	db "walking made me", $4f
-	db "dizzy.", $57
+	text "Looking at the"
+	line "ground while I was"
+
+	para "walking made me"
+	line "dizzy."
+	done
 ; 0x1aa340
 
 UnknownText_0x1aa340: ; 0x1aa340
-	db $0, "CELADON CITY", $51
-	db "The City of", $4f
-	db "Rainbow Dreams", $57
+	text "CELADON CITY"
+
+	para "The City of"
+	line "Rainbow Dreams"
+	done
 ; 0x1aa369
 
 UnknownText_0x1aa369: ; 0x1aa369
-	db $0, "CELADON CITY", $4f
-	db "#MON GYM", $55
-	db "LEADER: ERIKA", $51
-	db "The Nature-Loving", $4f
-	db "Princess", $57
+	text "CELADON CITY"
+	line "#MON GYM"
+	cont "LEADER: ERIKA"
+
+	para "The Nature-Loving"
+	line "Princess"
+	done
 ; 0x1aa3a9
 
 UnknownText_0x1aa3a9: ; 0x1aa3a9
-	db $0, "Find What You", $4f
-	db "Need at CELADON", $55
-	db "DEPT.STORE!", $57
+	text "Find What You"
+	line "Need at CELADON"
+	cont "DEPT.STORE!"
+	done
 ; 0x1aa3d4
 
 UnknownText_0x1aa3d4: ; 0x1aa3d4
-	db $0, "CELADON MANSION", $57
+	text "CELADON MANSION"
+	done
 ; 0x1aa3e5
 
 UnknownText_0x1aa3e5: ; 0x1aa3e5
-	db $0, "The Playground for", $4f
-	db "Everybody--CELADON", $55
-	db "GAME CORNER", $57
+	text "The Playground for"
+	line "Everybody--CELADON"
+	cont "GAME CORNER"
+	done
 ; 0x1aa418
 
 UnknownText_0x1aa418: ; 0x1aa418
-	db $0, "TRAINER TIPS", $51
-	db "GUARD SPEC.", $4f
-	db "protects #MON", $51
-	db "against SPECIAL", $4f
-	db "attacks such as", $55
-	db "fire and water.", $51
-	db "Get your items at", $4f
-	db "CELADON DEPT.", $55
-	db "STORE!", $57
+	text "TRAINER TIPS"
+
+	para "GUARD SPEC."
+	line "protects #MON"
+
+	para "against SPECIAL"
+	line "attacks such as"
+	cont "fire and water."
+
+	para "Get your items at"
+	line "CELADON DEPT."
+	cont "STORE!"
+	done
 ; 0x1aa497
 
 CeladonCity_MapEventHeader: ; 0x1aa497

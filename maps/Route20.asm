@@ -107,60 +107,74 @@ MapRoute20Signpost0Script: ; 0x1acd65
 ; 0x1acd68
 
 SwimmerfNicoleSeenText: ; 0x1acd68
-	db $0, "I feel so much", $4f
-	db "lighter in water.", $57
+	text "I feel so much"
+	line "lighter in water."
+	done
 ; 0x1acd8a
 
 SwimmerfNicoleBeatenText: ; 0x1acd8a
-	db $0, "Oh, no!", $57
+	text "Oh, no!"
+	done
 ; 0x1acd93
 
 UnknownText_0x1acd93: ; 0x1acd93
-	db $0, "Swimming exercises", $4f
-	db "your full body.", $51
-	db "It's really good", $4f
-	db "for you.", $57
+	text "Swimming exercises"
+	line "your full body."
+
+	para "It's really good"
+	line "for you."
+	done
 ; 0x1acdd0
 
 SwimmerfLoriSeenText: ; 0x1acdd0
-	db $0, "What an impressive", $4f
-	db "collection of GYM", $51
-	db "BADGES. We should", $4f
-	db "battle!", $57
+	text "What an impressive"
+	line "collection of GYM"
+
+	para "BADGES. We should"
+	line "battle!"
+	done
 ; 0x1ace10
 
 SwimmerfLoriBeatenText: ; 0x1ace10
-	db $0, "No!", $57
+	text "No!"
+	done
 ; 0x1ace15
 
 UnknownText_0x1ace15: ; 0x1ace15
-	db $0, "SURF is no longer", $4f
-	db "the only HM move", $55
-	db "you use in water.", $57
+	text "SURF is no longer"
+	line "the only HM move"
+	cont "you use in water."
+	done
 ; 0x1ace4b
 
 SwimmermCameronSeenText: ; 0x1ace4b
-	db $0, "I guess it's im-", $4f
-	db "possible to swim", $51
-	db "all the way to", $4f
-	db "JOHTO.", $57
+	text "I guess it's im-"
+	line "possible to swim"
+
+	para "all the way to"
+	line "JOHTO."
+	done
 ; 0x1ace83
 
 SwimmermCameronBeatenText: ; 0x1ace83
-	db $0, "Aiyah!", $57
+	text "Aiyah!"
+	done
 ; 0x1ace8b
 
 UnknownText_0x1ace8b: ; 0x1ace8b
-	db $0, "Besides the sea, I", $4f
-	db "can also swim in", $55
-	db "ponds and rivers.", $57
+	text "Besides the sea, I"
+	line "can also swim in"
+	cont "ponds and rivers."
+	done
 ; 0x1acec2
 
 UnknownText_0x1acec2: ; 0x1acec2
-	db $0, "What does this", $4f
-	db "sign say?", $51
-	db "CINNABAR GYM", $4f
-	db "LEADER: BLAINE", $57
+	text "What does this"
+	line "sign say?"
+
+	para "CINNABAR GYM"
+	line "LEADER: BLAINE"
+	done
 ; 0x1acef8
 
 Route20_MapEventHeader: ; 0x1acef8

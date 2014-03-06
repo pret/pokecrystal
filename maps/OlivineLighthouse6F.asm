@@ -170,88 +170,111 @@ MovementData_0x60c79: ; 0x60c79
 ; 0x60c81
 
 UnknownText_0x60c81: ; 0x60c81
-	db $0, "JASMINE: … This", $4f
-	db "#MON always", $51
-	db "kept the sea lit", $4f
-	db "at night.", $51
-	db "…But it suddenly", $4f
-	db "got sick… It's", $55
-	db "gasping for air…", $51
-	db "…I understand", $4f
-	db "that there is a", $51
-	db "wonderful PHARMACY", $4f
-	db "in CIANWOOD…", $51
-	db "But that's across", $4f
-	db "the sea…", $51
-	db "And I can't leave", $4f
-	db "AMPHY unattended…", $57
+	text "JASMINE: … This"
+	line "#MON always"
+
+	para "kept the sea lit"
+	line "at night."
+
+	para "…But it suddenly"
+	line "got sick… It's"
+	cont "gasping for air…"
+
+	para "…I understand"
+	line "that there is a"
+
+	para "wonderful PHARMACY"
+	line "in CIANWOOD…"
+
+	para "But that's across"
+	line "the sea…"
+
+	para "And I can't leave"
+	line "AMPHY unattended…"
+	done
 ; 0x60d64
 
 UnknownText_0x60d64: ; 0x60d64
-	db $0, "…May I ask you to", $4f
-	db "get some medicine", $55
-	db "for me? Please?", $57
+	text "…May I ask you to"
+	line "get some medicine"
+	cont "for me? Please?"
+	done
 ; 0x60d99
 
 UnknownText_0x60d99: ; 0x60d99
-	db $0, "JASMINE: …Will", $4f
-	db "that medicine cure", $55
-	db "AMPHY?", $57
+	text "JASMINE: …Will"
+	line "that medicine cure"
+	cont "AMPHY?"
+	done
 ; 0x60dc3
 
 UnknownText_0x60dc3: ; 0x60dc3
-	db $0, $52, " handed the", $4f
-	db "SECRETPOTION to", $55
-	db "JASMINE.", $57
+	text $52, " handed the"
+	line "SECRETPOTION to"
+	cont "JASMINE."
+	done
 ; 0x60dea
 
 UnknownText_0x60dea: ; 0x60dea
-	db $0, "JASMINE: …Um,", $4f
-	db "please don't be", $55
-	db "offended…", $51
-	db "…AMPHY will not", $4f
-	db "take anything from", $55
-	db "anyone but me…", $57
+	text "JASMINE: …Um,"
+	line "please don't be"
+	cont "offended…"
+
+	para "…AMPHY will not"
+	line "take anything from"
+	cont "anyone but me…"
+	done
 ; 0x60e44
 
 UnknownText_0x60e44: ; 0x60e44
-	db $0, "JASMINE: …", $51
-	db "AMPHY, how are you", $4f
-	db "feeling?", $57
+	text "JASMINE: …"
+
+	para "AMPHY, how are you"
+	line "feeling?"
+	done
 ; 0x60e6c
 
 UnknownText_0x60e6c: ; 0x60e6c
-	db $0, "JASMINE: …Oh, I'm", $4f
-	db "so relieved…", $51
-	db "This is just so", $4f
-	db "wonderful…", $51
-	db "Thank you so very,", $4f
-	db "very much.", $51
-	db "…I will return to", $4f
-	db "the GYM…", $57
+	text "JASMINE: …Oh, I'm"
+	line "so relieved…"
+
+	para "This is just so"
+	line "wonderful…"
+
+	para "Thank you so very,"
+	line "very much."
+
+	para "…I will return to"
+	line "the GYM…"
+	done
 ; 0x60edf
 
 UnknownText_0x60edf: ; 0x60edf
-	db $0, "JASMINE: …I see…", $57
+	text "JASMINE: …I see…"
+	done
 ; 0x60ef1
 
 UnknownText_0x60ef1: ; 0x60ef1
-	db $0, "…AMPHY, hang on!", $57
+	text "…AMPHY, hang on!"
+	done
 ; 0x60f03
 
 UnknownText_0x60f03: ; 0x60f03
-	db $0, "AMPHY: …", $4f
-	db "…Pa… paloo…", $57
+	text "AMPHY: …"
+	line "…Pa… paloo…"
+	done
 ; 0x60f19
 
 UnknownText_0x60f19: ; 0x60f19
-	db $0, "Its breathing is", $4f
-	db "terribly labored…", $57
+	text "Its breathing is"
+	line "terribly labored…"
+	done
 ; 0x60f3d
 
 UnknownText_0x60f3d: ; 0x60f3d
-	db $0, "AMPHY: Palu!", $4f
-	db "Palulu!", $57
+	text "AMPHY: Palu!"
+	line "Palulu!"
+	done
 ; 0x60f53
 
 OlivineLighthouse6F_MapEventHeader: ; 0x60f53

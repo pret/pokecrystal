@@ -61,86 +61,115 @@ MapEcruteakItemfinderHouseSignpost0Script: ; 0x9a639
 ; 0x9a63c
 
 UnknownText_0x9a63c: ; 0x9a63c
-	db $0, "Ah. You're on an", $4f
-	db "adventure with", $55
-	db "your #MON?", $51
-	db "Well, what's an", $4f
-	db "adventure without", $55
-	db "treasure hunting?", $51
-	db "Am I right, or am", $4f
-	db "I right?", $57
+	text "Ah. You're on an"
+	line "adventure with"
+	cont "your #MON?"
+
+	para "Well, what's an"
+	line "adventure without"
+	cont "treasure hunting?"
+
+	para "Am I right, or am"
+	line "I right?"
+	done
 ; 0x9a6b5
 
 UnknownText_0x9a6b5: ; 0x9a6b5
-	db $0, "Good! You under-", $4f
-	db "stand the true", $51
-	db "spirit of adven-", $4f
-	db "ture.", $51
-	db "I like that! Take", $4f
-	db "this with you.", $57
+	text "Good! You under-"
+	line "stand the true"
+
+	para "spirit of adven-"
+	line "ture."
+
+	para "I like that! Take"
+	line "this with you."
+	done
 ; 0x9a70e
 
 UnknownText_0x9a70e: ; 0x9a70e
-	db $0, "There are many", $4f
-	db "items lying about", $51
-	db "that aren't ob-", $4f
-	db "vious.", $51
-	db "Use ITEMFINDER to", $4f
-	db "check if there is", $51
-	db "an item on the", $4f
-	db "ground near you.", $51
-	db "It doesn't show", $4f
-	db "the exact spot,", $51
-	db "so you'll have to", $4f
-	db "look yourself.", $51
-	db "Oh yeah--I heard", $4f
-	db "there are items", $51
-	db "in ECRUTEAK's", $4f
-	db "BURNED TOWER.", $57
+	text "There are many"
+	line "items lying about"
+
+	para "that aren't ob-"
+	line "vious."
+
+	para "Use ITEMFINDER to"
+	line "check if there is"
+
+	para "an item on the"
+	line "ground near you."
+
+	para "It doesn't show"
+	line "the exact spot,"
+
+	para "so you'll have to"
+	line "look yourself."
+
+	para "Oh yeah--I heard"
+	line "there are items"
+
+	para "in ECRUTEAK's"
+	line "BURNED TOWER."
+	done
 ; 0x9a805
 
 UnknownText_0x9a805: ; 0x9a805
-	db $0, "Oh… To each his", $4f
-	db "own, I suppose…", $57
+	text "Oh… To each his"
+	line "own, I suppose…"
+	done
 ; 0x9a826
 
 UnknownText_0x9a826: ; 0x9a826
-	db $0, "HISTORY OF", $4f
-	db "ECRUTEAK", $51
-	db "Want to read it?", $57
+	text "HISTORY OF"
+	line "ECRUTEAK"
+
+	para "Want to read it?"
+	done
 ; 0x9a84c
 
 UnknownText_0x9a84c: ; 0x9a84c
-	db $0, "In ECRUTEAK, there", $4f
-	db "were two towers.", $51
-	db "Each tower was the", $4f
-	db "roost of powerful", $55
-	db "flying #MON.", $51
-	db "But one of the", $4f
-	db "towers burned to", $55
-	db "the ground.", $51
-	db "The two #MON", $4f
-	db "haven't been seen", $55
-	db "since…", $51
-	db "Keep reading?", $57
+	text "In ECRUTEAK, there"
+	line "were two towers."
+
+	para "Each tower was the"
+	line "roost of powerful"
+	cont "flying #MON."
+
+	para "But one of the"
+	line "towers burned to"
+	cont "the ground."
+
+	para "The two #MON"
+	line "haven't been seen"
+	cont "since…"
+
+	para "Keep reading?"
+	done
 ; 0x9a902
 
 UnknownText_0x9a902: ; 0x9a902
-	db $0, "ECRUTEAK was also", $4f
-	db "home to three", $51
-	db "#MON that raced", $4f
-	db "around the town.", $51
-	db "They were said to", $4f
-	db "have been born of", $51
-	db "water, lightning", $4f
-	db "and fire.", $51
-	db "But they could not", $4f
-	db "contain their", $55
-	db "excessive power.", $51
-	db "So they say the", $4f
-	db "three ran like the", $51
-	db "wind off into the", $4f
-	db "grassland.", $57
+	text "ECRUTEAK was also"
+	line "home to three"
+
+	para "#MON that raced"
+	line "around the town."
+
+	para "They were said to"
+	line "have been born of"
+
+	para "water, lightning"
+	line "and fire."
+
+	para "But they could not"
+	line "contain their"
+	cont "excessive power."
+
+	para "So they say the"
+	line "three ran like the"
+
+	para "wind off into the"
+	line "grassland."
+	done
 ; 0x9a9f5
 
 EcruteakItemfinderHouse_MapEventHeader: ; 0x9a9f5

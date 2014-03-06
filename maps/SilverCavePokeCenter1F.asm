@@ -15,14 +15,18 @@ GrannyScript_0x1ae59d: ; 0x1ae59d
 ; 0x1ae5a0
 
 UnknownText_0x1ae5a0: ; 0x1ae5a0
-	db $0, "Trainers who seek", $4f
-	db "power climb MT.", $51
-	db "SILVER despite its", $4f
-	db "many dangers…", $51
-	db "With their trusted", $4f
-	db "#MON, they must", $51
-	db "feel they can go", $4f
-	db "anywhere…", $57
+	text "Trainers who seek"
+	line "power climb MT."
+
+	para "SILVER despite its"
+	line "many dangers…"
+
+	para "With their trusted"
+	line "#MON, they must"
+
+	para "feel they can go"
+	line "anywhere…"
+	done
 ; 0x1ae622
 
 SilverCavePokeCenter1F_MapEventHeader: ; 0x1ae622

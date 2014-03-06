@@ -415,203 +415,271 @@ MovementData_0x6e175: ; 0x6e175
 ; 0x6e179
 
 UnknownText_0x6e179: ; 0x6e179
-	db $0, "LANCE: It takes", $4f
-	db "two passwords to", $51
-	db "get into the", $4f
-	db "boss's quarters.", $51
-	db "Those passwords", $4f
-	db "are known only to", $55
-	db "a few ROCKETS.", $51
-	db "That ROCKET there", $4f
-	db "very graciously", $55
-	db "told me so.", $51
-	db $14, ", let's go", $4f
-	db "get the passwords.", $57
+	text "LANCE: It takes"
+	line "two passwords to"
+
+	para "get into the"
+	line "boss's quarters."
+
+	para "Those passwords"
+	line "are known only to"
+	cont "a few ROCKETS."
+
+	para "That ROCKET there"
+	line "very graciously"
+	cont "told me so."
+
+	para $14, ", let's go"
+	line "get the passwords."
+	done
 ; 0x6e235
 
 UnknownText_0x6e235: ; 0x6e235
-	db $0, "Urrggh… The guy", $4f
-	db "in the cape is", $55
-	db "incredibly tough…", $57
+	text "Urrggh… The guy"
+	line "in the cape is"
+	cont "incredibly tough…"
+	done
 ; 0x6e267
 
 UnknownText_0x6e267: ; 0x6e267
-	db $0, "…", $51
-	db "Didn't I tell you", $4f
-	db "that I was going", $51
-	db "to destroy TEAM", $4f
-	db "ROCKET?", $51
-	db "…Tell me, who was", $4f
-	db "the guy in the", $51
-	db "cape who used", $4f
-	db "dragon #MON?", $51
-	db "My #MON were no", $4f
-	db "match at all.", $51
-	db "I don't care that", $4f
-	db "I lost. I can beat", $51
-	db "him by getting", $4f
-	db "stronger #MON.", $51
-	db "It's what he said", $4f
-	db "that bothers me…", $51
-	db "He told me that", $4f
-	db "I don't love and", $51
-	db "trust my #MON", $4f
-	db "enough.", $51
-	db "I'm furious that I", $4f
-	db "lost to a bleeding", $55
-	db "heart like him.", $51
-	db "…Humph! I don't", $4f
-	db "have the time for", $55
-	db "the likes of you!", $57
+	text "…"
+
+	para "Didn't I tell you"
+	line "that I was going"
+
+	para "to destroy TEAM"
+	line "ROCKET?"
+
+	para "…Tell me, who was"
+	line "the guy in the"
+
+	para "cape who used"
+	line "dragon #MON?"
+
+	para "My #MON were no"
+	line "match at all."
+
+	para "I don't care that"
+	line "I lost. I can beat"
+
+	para "him by getting"
+	line "stronger #MON."
+
+	para "It's what he said"
+	line "that bothers me…"
+
+	para "He told me that"
+	line "I don't love and"
+
+	para "trust my #MON"
+	line "enough."
+
+	para "I'm furious that I"
+	line "lost to a bleeding"
+	cont "heart like him."
+
+	para "…Humph! I don't"
+	line "have the time for"
+	cont "the likes of you!"
+	done
 ; 0x6e400
 
 UnknownText_0x6e400: ; 0x6e400
-	db $0, "What? Who are you?", $4f
-	db "This is the office", $51
-	db "of our leader,", $4f
-	db "GIOVANNI.", $51
-	db "Since disbanding", $4f
-	db "TEAM ROCKET three", $51
-	db "years ago, he has", $4f
-	db "been in training.", $51
-	db "But we're certain", $4f
-	db "he will be back", $51
-	db "some day to assume", $4f
-	db "command again.", $51
-	db "That's why we're", $4f
-	db "standing guard.", $51
-	db "I won't let any-", $4f
-	db "one disturb this", $55
-	db "place!", $57
+	text "What? Who are you?"
+	line "This is the office"
+
+	para "of our leader,"
+	line "GIOVANNI."
+
+	para "Since disbanding"
+	line "TEAM ROCKET three"
+
+	para "years ago, he has"
+	line "been in training."
+
+	para "But we're certain"
+	line "he will be back"
+
+	para "some day to assume"
+	line "command again."
+
+	para "That's why we're"
+	line "standing guard."
+
+	para "I won't let any-"
+	line "one disturb this"
+	cont "place!"
+	done
 ; 0x6e511
 
 UnknownText_0x6e511: ; 0x6e511
-	db $0, "I… I couldn't do a", $4f
-	db "thing…", $51
-	db "GIOVANNI, please", $4f
-	db "forgive me…", $57
+	text "I… I couldn't do a"
+	line "thing…"
+
+	para "GIOVANNI, please"
+	line "forgive me…"
+	done
 ; 0x6e548
 
 UnknownText_0x6e548: ; 0x6e548
-	db $0, "No, I can't let", $4f
-	db "this affect me.", $51
-	db "I have to inform", $4f
-	db "the others…", $57
+	text "No, I can't let"
+	line "this affect me."
+
+	para "I have to inform"
+	line "the others…"
+	done
 ; 0x6e585
 
 UnknownText_0x6e585: ; 0x6e585
-	db $0, "MURKROW: The", $4f
-	db "password is…", $51
-	db "HAIL GIOVANNI.", $57
+	text "MURKROW: The"
+	line "password is…"
+
+	para "HAIL GIOVANNI."
+	done
 ; 0x6e5af
 
 GruntF5SeenText: ; 0x6e5af
-	db $0, "Do I know the", $4f
-	db "password?", $51
-	db "Maybe.", $51
-	db "But no weakling's", $4f
-	db "going to get it!", $57
+	text "Do I know the"
+	line "password?"
+
+	para "Maybe."
+
+	para "But no weakling's"
+	line "going to get it!"
+	done
 ; 0x6e5f1
 
 GruntF5BeatenText: ; 0x6e5f1
-	db $0, "All right. Stop.", $4f
-	db "I'll tell you.", $57
+	text "All right. Stop."
+	line "I'll tell you."
+	done
 ; 0x6e611
 
 UnknownText_0x6e611: ; 0x6e611
-	db $0, "The password to", $4f
-	db "the boss's room is", $51
-	db "SLOWPOKETAIL.", $51
-	db "But it's useless", $4f
-	db "unless you have", $55
-	db "two passwords.", $57
+	text "The password to"
+	line "the boss's room is"
+
+	para "SLOWPOKETAIL."
+
+	para "But it's useless"
+	line "unless you have"
+	cont "two passwords."
+	done
 ; 0x6e671
 
 GruntM28SeenText: ; 0x6e671
-	db $0, "Hyuck-hyuck-hyuck!", $51
-	db "You're challenging", $4f
-	db "me to a battle?", $51
-	db "Hah! You're nuts,", $4f
-	db "but you have guts!", $51
-	db "I like that!", $51
-	db "If you can beat", $4f
-	db "me, I'll tell you", $51
-	db "a password to the", $4f
-	db "boss's room!", $57
+	text "Hyuck-hyuck-hyuck!"
+
+	para "You're challenging"
+	line "me to a battle?"
+
+	para "Hah! You're nuts,"
+	line "but you have guts!"
+
+	para "I like that!"
+
+	para "If you can beat"
+	line "me, I'll tell you"
+
+	para "a password to the"
+	line "boss's room!"
+	done
 ; 0x6e717
 
 GruntM28BeatenText: ; 0x6e717
-	db $0, "Hyuck-hyuck-hyuck!", $4f
-	db "You're good!", $57
+	text "Hyuck-hyuck-hyuck!"
+	line "You're good!"
+	done
 ; 0x6e737
 
 UnknownText_0x6e737: ; 0x6e737
-	db $0, "Hyuck-hyuck-hyuck!", $51
-	db "The password to", $4f
-	db "the boss's room…", $51
-	db "Uh…, I think it is", $4f
-	db "RATICATE TAIL.", $57
+	text "Hyuck-hyuck-hyuck!"
+
+	para "The password to"
+	line "the boss's room…"
+
+	para "Uh…, I think it is"
+	line "RATICATE TAIL."
+	done
 ; 0x6e78d
 
 ScientistRossSeenText: ; 0x6e78d
-	db $0, "I used to work for", $4f
-	db "SILPH, but now I", $51
-	db "run research for", $4f
-	db "TEAM ROCKET.", $51
-	db "A meddlesome child", $4f
-	db "like you needs to", $55
-	db "be punished.", $57
+	text "I used to work for"
+	line "SILPH, but now I"
+
+	para "run research for"
+	line "TEAM ROCKET."
+
+	para "A meddlesome child"
+	line "like you needs to"
+	cont "be punished."
+	done
 ; 0x6e802
 
 ScientistRossBeatenText: ; 0x6e802
-	db $0, "A mere tactical", $4f
-	db "error cost me…", $57
+	text "A mere tactical"
+	line "error cost me…"
+	done
 ; 0x6e822
 
 UnknownText_0x6e822: ; 0x6e822
-	db $0, "A radio signal", $4f
-	db "that drives #-", $55
-	db "MON mad…", $51
-	db "My experiment is a", $4f
-	db "complete success.", $51
-	db "My promotion is", $4f
-	db "assured. This loss", $51
-	db "means absolutely", $4f
-	db "nothing.", $57
+	text "A radio signal"
+	line "that drives #-"
+	cont "MON mad…"
+
+	para "My experiment is a"
+	line "complete success."
+
+	para "My promotion is"
+	line "assured. This loss"
+
+	para "means absolutely"
+	line "nothing."
+	done
 ; 0x6e8ac
 
 ScientistMitchSeenText: ; 0x6e8ac
-	db $0, "I don't care that", $4f
-	db "#MON are hurt", $55
-	db "by our experiment.", $57
+	text "I don't care that"
+	line "#MON are hurt"
+	cont "by our experiment."
+	done
 ; 0x6e8df
 
 ScientistMitchBeatenText: ; 0x6e8df
-	db $0, "Thinking is my", $4f
-	db "strong suit, not", $55
-	db "battling.", $57
+	text "Thinking is my"
+	line "strong suit, not"
+	cont "battling."
+	done
 ; 0x6e90a
 
 UnknownText_0x6e90a: ; 0x6e90a
-	db $0, "If we turn up the", $4f
-	db "power of our radio", $51
-	db "signal for broad-", $4f
-	db "cast nationwide…", $51
-	db "The very thought", $4f
-	db "excites me!", $57
+	text "If we turn up the"
+	line "power of our radio"
+
+	para "signal for broad-"
+	line "cast nationwide…"
+
+	para "The very thought"
+	line "excites me!"
+	done
 ; 0x6e970
 
 UnknownText_0x6e970: ; 0x6e970
-	db $0, "The door's closed…", $51
-	db "It needs two", $4f
-	db "passwords to open.", $57
+	text "The door's closed…"
+
+	para "It needs two"
+	line "passwords to open."
+	done
 ; 0x6e9a3
 
 UnknownText_0x6e9a3: ; 0x6e9a3
-	db $0, "The door's closed…", $51
-	db $52, " entered", $4f
-	db "the two passwords.", $51
-	db "The door opened!", $57
+	text "The door's closed…"
+
+	para $52, " entered"
+	line "the two passwords."
+
+	para "The door opened!"
+	done
 ; 0x6e9e4
 
 TeamRocketBaseB3F_MapEventHeader: ; 0x6e9e4

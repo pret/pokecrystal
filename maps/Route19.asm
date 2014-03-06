@@ -184,118 +184,147 @@ MapRoute19Signpost1Script: ; 0x19ea78
 ; 0x19ea7b
 
 SwimmermHaroldSeenText: ; 0x19ea7b
-	db $0, "Have you ever gone", $4f
-	db "swimming in the", $55
-	db "sea at night?", $57
+	text "Have you ever gone"
+	line "swimming in the"
+	cont "sea at night?"
+	done
 ; 0x19eaad
 
 SwimmermHaroldBeatenText: ; 0x19eaad
-	db $0, "Glub…", $57
+	text "Glub…"
+	done
 ; 0x19eab4
 
 UnknownText_0x19eab4: ; 0x19eab4
-	db $0, "At night, the sea", $4f
-	db "turns black. It", $51
-	db "feels like it will", $4f
-	db "swallow you up.", $57
+	text "At night, the sea"
+	line "turns black. It"
+
+	para "feels like it will"
+	line "swallow you up."
+	done
 ; 0x19eafa
 
 SwimmermTuckerSeenText: ; 0x19eafa
-	db $0, "Pant, pant…", $4f
-	db "Just… a little…", $51
-	db "farther… to…", $4f
-	db "FUCHSIA…", $57
+	text "Pant, pant…"
+	line "Just… a little…"
+
+	para "farther… to…"
+	line "FUCHSIA…"
+	done
 ; 0x19eb2d
 
 SwimmermTuckerBeatenText: ; 0x19eb2d
-	db $0, "I'm drowning!", $57
+	text "I'm drowning!"
+	done
 ; 0x19eb3b
 
 UnknownText_0x19eb3b: ; 0x19eb3b
-	db $0, "I… asked my girl-", $4f
-	db "friend to swim to", $55
-	db "FUCHSIA… Gasp…", $57
+	text "I… asked my girl-"
+	line "friend to swim to"
+	cont "FUCHSIA… Gasp…"
+	done
 ; 0x19eb6f
 
 SwimmerfDawnSeenText: ; 0x19eb6f
-	db $0, "I'm disgusted by", $4f
-	db "wimpy people!", $57
+	text "I'm disgusted by"
+	line "wimpy people!"
+	done
 ; 0x19eb8e
 
 SwimmerfDawnBeatenText: ; 0x19eb8e
-	db $0, "I could beat you", $4f
-	db "at swimming…", $57
+	text "I could beat you"
+	line "at swimming…"
+	done
 ; 0x19ebad
 
 UnknownText_0x19ebad: ; 0x19ebad
-	db $0, "It's a quick swim", $4f
-	db "between FUCHSIA", $51
-	db "and SEAFOAM IS-", $4f
-	db "LANDS…", $51
-	db "Sheesh, some big", $4f
-	db "man my boyfriend", $51
-	db "is! What a wimp!", $57
+	text "It's a quick swim"
+	line "between FUCHSIA"
+
+	para "and SEAFOAM IS-"
+	line "LANDS…"
+
+	para "Sheesh, some big"
+	line "man my boyfriend"
+
+	para "is! What a wimp!"
+	done
 ; 0x19ec19
 
 SwimmermJeromeSeenText: ; 0x19ec19
-	db $0, "Swimming?", $4f
-	db "I'm lousy at it.", $51
-	db "I'm just splashing", $4f
-	db "around in these", $55
-	db "shallow waters.", $57
+	text "Swimming?"
+	line "I'm lousy at it."
+
+	para "I'm just splashing"
+	line "around in these"
+	cont "shallow waters."
+	done
 ; 0x19ec66
 
 SwimmermJeromeBeatenText: ; 0x19ec66
-	db $0, "I thought I could", $4f
-	db "win.", $57
+	text "I thought I could"
+	line "win."
+	done
 ; 0x19ec7e
 
 UnknownText_0x19ec7e: ; 0x19ec7e
-	db $0, "I might be bad at", $4f
-	db "swimming, but I", $55
-	db "love the sea.", $57
+	text "I might be bad at"
+	line "swimming, but I"
+	cont "love the sea."
+	done
 ; 0x19ecaf
 
 UnknownText_0x19ecaf: ; 0x19ecaf
-	db $0, "Sorry. This road", $4f
-	db "is closed for", $55
-	db "construction.", $51
-	db "If you want to get", $4f
-	db "to CINNABAR, you'd", $51
-	db "better go south", $4f
-	db "from PALLET TOWN.", $57
+	text "Sorry. This road"
+	line "is closed for"
+	cont "construction."
+
+	para "If you want to get"
+	line "to CINNABAR, you'd"
+
+	para "better go south"
+	line "from PALLET TOWN."
+	done
 ; 0x19ed24
 
 UnknownText_0x19ed24: ; 0x19ed24
-	db $0, "I'm all sweaty.", $4f
-	db "Time for a swim!", $57
+	text "I'm all sweaty."
+	line "Time for a swim!"
+	done
 ; 0x19ed45
 
 UnknownText_0x19ed45: ; 0x19ed45
-	db $0, "Who knows how long", $4f
-	db "it would take to", $55
-	db "move this boulder…", $57
+	text "Who knows how long"
+	line "it would take to"
+	cont "move this boulder…"
+	done
 ; 0x19ed7d
 
 UnknownText_0x19ed7d: ; 0x19ed7d
-	db $0, "The roadwork is", $4f
-	db "finally finished.", $51
-	db "Now I can go", $4f
-	db "fishing again.", $57
+	text "The roadwork is"
+	line "finally finished."
+
+	para "Now I can go"
+	line "fishing again."
+	done
 ; 0x19edbc
 
 UnknownText_0x19edbc: ; 0x19edbc
-	db $0, "ROUTE 19", $51
-	db "FUCHSIA CITY -", $4f
-	db "SEAFOAM ISLANDS", $57
+	text "ROUTE 19"
+
+	para "FUCHSIA CITY -"
+	line "SEAFOAM ISLANDS"
+	done
 ; 0x19ede5
 
 UnknownText_0x19ede5: ; 0x19ede5
-	db $0, "Please be careful", $4f
-	db "if you are swim-", $55
-	db "ming to SEAFOAM", $55
-	db "ISLANDS.", $51
-	db "FUCHSIA POLICE", $57
+	text "Please be careful"
+	line "if you are swim-"
+	cont "ming to SEAFOAM"
+	cont "ISLANDS."
+
+	para "FUCHSIA POLICE"
+	done
 ; 0x19ee31
 
 Route19_MapEventHeader: ; 0x19ee31

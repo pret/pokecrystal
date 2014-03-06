@@ -84,68 +84,90 @@ MapDayCareSignpost1Script: ; 0x62fd7
 ; 0x62fda
 
 UnknownText_0x62fda: ; 0x62fda
-	db $0, "Gramps was looking", $4f
-	db "for you.", $57
+	text "Gramps was looking"
+	line "for you."
+	done
 ; 0x62ff7
 
 UnknownText_0x62ff7: ; 0x62ff7
-	db $0, "I'm the DAY-CARE", $4f
-	db "MAN.", $51
-	db "There's something", $4f
-	db "new in GOLDENROD", $51
-	db "called the TRADE", $4f
-	db "CORNER.", $51
-	db "I was given an EGG", $4f
-	db "TICKET that can be", $51
-	db "traded in for a", $4f
-	db "ODD EGG.", $51
-	db "But since we run a", $4f
-	db "DAY-CARE, we don't", $51
-	db "need it. You may", $4f
-	db "as well have it.", $57
+	text "I'm the DAY-CARE"
+	line "MAN."
+
+	para "There's something"
+	line "new in GOLDENROD"
+
+	para "called the TRADE"
+	line "CORNER."
+
+	para "I was given an EGG"
+	line "TICKET that can be"
+
+	para "traded in for a"
+	line "ODD EGG."
+
+	para "But since we run a"
+	line "DAY-CARE, we don't"
+
+	para "need it. You may"
+	line "as well have it."
+	done
 ; 0x630ce
 
 UnknownText_0x630ce: ; 0x630ce
-	db $0, "I'm the DAY-CARE", $4f
-	db "MAN.", $51
-	db "Do you know about", $4f
-	db "EGGS?", $51
-	db "I was raising", $4f
-	db "#MON with my", $55
-	db "wife, you see.", $51
-	db "We were shocked to", $4f
-	db "find an EGG!", $51
-	db "How incredible is", $4f
-	db "that?", $51
-	db "Well, wouldn't you", $4f
-	db "like this EGG?", $51
-	db "Then fine, this is", $4f
-	db "yours to keep!", $57
+	text "I'm the DAY-CARE"
+	line "MAN."
+
+	para "Do you know about"
+	line "EGGS?"
+
+	para "I was raising"
+	line "#MON with my"
+	cont "wife, you see."
+
+	para "We were shocked to"
+	line "find an EGG!"
+
+	para "How incredible is"
+	line "that?"
+
+	para "Well, wouldn't you"
+	line "like this EGG?"
+
+	para "Then fine, this is"
+	line "yours to keep!"
+	done
 ; 0x631a1
 
 UnknownText_0x631a1: ; 0x631a1
-	db $0, "Come again.", $57
+	text "Come again."
+	done
 ; 0x631ae
 
 UnknownText_0x631ae: ; 0x631ae
-	db $0, $52, " received", $4f
-	db "ODD EGG!", $57
+	text $52, " received"
+	line "ODD EGG!"
+	done
 ; 0x631c3
 
 UnknownText_0x631c3: ; 0x631c3
-	db $0, "I found that when", $4f
-	db "I was caring for", $51
-	db "someone's #MON", $4f
-	db "before.", $51
-	db "But the trainer", $4f
-	db "didn't want the", $51
-	db "EGG, so I'd kept", $4f
-	db "it around.", $57
+	text "I found that when"
+	line "I was caring for"
+
+	para "someone's #MON"
+	line "before."
+
+	para "But the trainer"
+	line "didn't want the"
+
+	para "EGG, so I'd kept"
+	line "it around."
+	done
 ; 0x63237
 
 UnknownText_0x63237: ; 0x63237
-	db $0, "You've no room for", $4f
-	db "this.", $57
+	text "You've no room for"
+	line "this."
+	done
 ; 0x63250
 
 DayCare_MapEventHeader: ; 0x63250

@@ -204,115 +204,148 @@ MovementData_0x580c5: ; 0x580c5
 ; 0x580c7
 
 UnknownText_0x580c7: ; 0x580c7
-	db $0, "Hm? That's a #-", $4f
-	db "DEX, isn't it?", $55
-	db "May I see it?", $51
-	db "There are so many", $4f
-	db "kinds of #MON.", $51
-	db "Hm? What's this?", $51
-	db "What is this", $4f
-	db "#MON?", $51
-	db "It looks like the", $4f
-	db "strange writing on", $51
-	db "the walls of the", $4f
-	db "RUINS.", $51
-	db "If those drawings", $4f
-	db "are really #-", $55
-	db "MON, there should", $55
-	db "be many more.", $51
-	db "I know! Let me up-", $4f
-	db "grade your #-", $55
-	db "DEX. Follow me.", $57
+	text "Hm? That's a #-"
+	line "DEX, isn't it?"
+	cont "May I see it?"
+
+	para "There are so many"
+	line "kinds of #MON."
+
+	para "Hm? What's this?"
+
+	para "What is this"
+	line "#MON?"
+
+	para "It looks like the"
+	line "strange writing on"
+
+	para "the walls of the"
+	line "RUINS."
+
+	para "If those drawings"
+	line "are really #-"
+	cont "MON, there should"
+	cont "be many more."
+
+	para "I know! Let me up-"
+	line "grade your #-"
+	cont "DEX. Follow me."
+	done
 ; 0x581e5
 
 UnknownText_0x581e5: ; 0x581e5
-	db $0, "What do you want?", $4f
-	db "I'm studying--", $55
-	db "don't disturb me!", $57
+	text "What do you want?"
+	line "I'm studying--"
+	cont "don't disturb me!"
+	done
 ; 0x58217
 
 UnknownText_0x58217: ; 0x58217
-	db $0, "Sorry…", $4f
-	db "I'm frustrated by", $51
-	db "our lack of real", $4f
-	db "understanding…", $57
+	text "Sorry…"
+	line "I'm frustrated by"
+
+	para "our lack of real"
+	line "understanding…"
+	done
 ; 0x58250
 
 UnknownText_0x58250: ; 0x58250
-	db $0, "The RUINS are from", $4f
-	db "about 1500 years", $55
-	db "ago.", $51
-	db "Nobody knows who", $4f
-	db "built them.", $51
-	db "It's also not", $4f
-	db "known if the #-", $55
-	db "MON statues have", $55
-	db "any meaning.", $51
-	db "It's all one big", $4f
-	db "mystery…", $57
+	text "The RUINS are from"
+	line "about 1500 years"
+	cont "ago."
+
+	para "Nobody knows who"
+	line "built them."
+
+	para "It's also not"
+	line "known if the #-"
+	cont "MON statues have"
+	cont "any meaning."
+
+	para "It's all one big"
+	line "mystery…"
+	done
 ; 0x582eb
 
 PsychicNathanSeenText: ; 0x582eb
-	db $0, "Hmmm… This is a", $4f
-	db "strange place.", $57
+	text "Hmmm… This is a"
+	line "strange place."
+	done
 ; 0x5830b
 
 PsychicNathanBeatenText: ; 0x5830b
-	db $0, "…", $57
+	text "…"
+	done
 ; 0x5830e
 
 UnknownText_0x5830e: ; 0x5830e
-	db $0, "I like thinking", $4f
-	db "here.", $57
+	text "I like thinking"
+	line "here."
+	done
 ; 0x58325
 
 UnknownText_0x58325: ; 0x58325
-	db $0, "MYSTERY STONE", $4f
-	db "PANEL CHAMBER", $57
+	text "MYSTERY STONE"
+	line "PANEL CHAMBER"
+	done
 ; 0x58342
 
 UnknownText_0x58342: ; 0x58342
-	db $0, "RUINS OF ALPH", $4f
-	db "VISITORS WELCOME", $57
+	text "RUINS OF ALPH"
+	line "VISITORS WELCOME"
+	done
 ; 0x58362
 
 UnknownText_0x58362: ; 0x58362
-	db $0, "RUINS OF ALPH", $4f
-	db "RESEARCH CENTER", $51
-	db "THE AUTHORITY ON", $4f
-	db "THE RUINS OF ALPH", $57
+	text "RUINS OF ALPH"
+	line "RESEARCH CENTER"
+
+	para "THE AUTHORITY ON"
+	line "THE RUINS OF ALPH"
+	done
 ; 0x583a4
 
 UnknownText_0x583a4: ; 0x583a4
-	db $0, "While exploring", $4f
-	db "the RUINS, we", $51
-	db "suddenly noticed", $4f
-	db "an odd presence.", $51
-	db "We all got scared", $4f
-	db "and ran away.", $51
-	db "You should be", $4f
-	db "careful too.", $57
+	text "While exploring"
+	line "the RUINS, we"
+
+	para "suddenly noticed"
+	line "an odd presence."
+
+	para "We all got scared"
+	line "and ran away."
+
+	para "You should be"
+	line "careful too."
+	done
 ; 0x58420
 
 UnknownText_0x58420: ; 0x58420
-	db $0, "The RUINS hide a", $4f
-	db "huge secret!", $51
-	db "…I think…", $57
+	text "The RUINS hide a"
+	line "huge secret!"
+
+	para "…I think…"
+	done
 ; 0x58449
 
 UnknownText_0x58449: ; 0x58449
-	db $0, "There are many", $4f
-	db "kinds of UNOWN, so", $51
-	db "we use them for", $4f
-	db "our secret codes.", $57
+	text "There are many"
+	line "kinds of UNOWN, so"
+
+	para "we use them for"
+	line "our secret codes."
+	done
 ; 0x5848e
 
 UnknownText_0x5848e: ; 0x5848e
-	db $0, "A… H… E… A… D…", $4f
-	db "Hmm…", $51
-	db "What?", $51
-	db "I'm decoding this", $4f
-	db "message!", $57
+	text "A… H… E… A… D…"
+	line "Hmm…"
+
+	para "What?"
+
+	para "I'm decoding this"
+	line "message!"
+	done
 ; 0x584c3
 
 RuinsofAlphOutside_MapEventHeader: ; 0x584c3

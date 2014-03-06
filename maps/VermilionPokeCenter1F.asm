@@ -37,37 +37,47 @@ BugCatcherScript_0x19161d: ; 0x19161d
 ; 0x191620
 
 UnknownText_0x191620: ; 0x191620
-	db $0, "A sleeping #MON", $4f
-	db "is lying in front", $55
-	db "of DIGLETT'S CAVE.", $51
-	db "It's a fantastic", $4f
-	db "opportunity to get", $51
-	db "it, but how do you", $4f
-	db "wake it up?", $57
+	text "A sleeping #MON"
+	line "is lying in front"
+	cont "of DIGLETT'S CAVE."
+
+	para "It's a fantastic"
+	line "opportunity to get"
+
+	para "it, but how do you"
+	line "wake it up?"
+	done
 ; 0x191698
 
 UnknownText_0x191698: ; 0x191698
-	db $0, "There used to be a", $4f
-	db "sleeping #MON", $51
-	db "lying in front of", $4f
-	db "DIGLETT'S CAVE.", $51
-	db "But it seems to", $4f
-	db "have disappeared.", $57
+	text "There used to be a"
+	line "sleeping #MON"
+
+	para "lying in front of"
+	line "DIGLETT'S CAVE."
+
+	para "But it seems to"
+	line "have disappeared."
+	done
 ; 0x1916fe
 
 UnknownText_0x1916fe: ; 0x1916fe
-	db $0, "The FAST SHIP is a", $4f
-	db "great place to", $51
-	db "meet and battle", $4f
-	db "trainers.", $57
+	text "The FAST SHIP is a"
+	line "great place to"
+
+	para "meet and battle"
+	line "trainers."
+	done
 ; 0x19173b
 
 UnknownText_0x19173b: ; 0x19173b
-	db $0, "Oh? You have some", $4f
-	db "BADGES I've never", $55
-	db "seen before.", $51
-	db "Oh, I get it. You", $4f
-	db "got them in JOHTO.", $57
+	text "Oh? You have some"
+	line "BADGES I've never"
+	cont "seen before."
+
+	para "Oh, I get it. You"
+	line "got them in JOHTO."
+	done
 ; 0x191791
 
 VermilionPokeCenter1F_MapEventHeader: ; 0x191791

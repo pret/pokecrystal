@@ -46,7 +46,8 @@ HoOhScript_0x77244: ; 0x77244
 ; 0x77260
 
 UnknownText_0x77260: ; 0x77260
-	db $0, "Shaoooh!", $57
+	text "Shaoooh!"
+	done
 ; 0x7726a
 
 TinTowerRoof_MapEventHeader: ; 0x7726a

@@ -37,78 +37,103 @@ SuperNerdScript_0x9dbea: ; 0x9dbea
 ; 0x9dbed
 
 UnknownText_0x9dbed: ; 0x9dbed
-	db $0, "Did you meet the", $4f
-	db "#MANIAC?", $51
-	db "He's always brag-", $4f
-	db "ging about his", $55
-	db "rare #MON.", $57
+	text "Did you meet the"
+	line "#MANIAC?"
+
+	para "He's always brag-"
+	line "ging about his"
+	cont "rare #MON."
+	done
 ; 0x9dc33
 
 CianwoodGymGuyText: ; 0x9dc33
-	db $0, "The #MON GYM", $4f
-	db "trainers here are", $55
-	db "macho bullies.", $51
-	db "If I stick around,", $4f
-	db "they might come", $55
-	db "after me.", $51
-	db "Here's some ad-", $4f
-	db "vice: the GYM", $51
-	db "LEADER uses the", $4f
-	db "fighting-type.", $51
-	db "So you should", $4f
-	db "confound him with", $55
-	db "psychic #MON.", $51
-	db "Wipe out his #-", $4f
-	db "MON before they", $51
-	db "can use their", $4f
-	db "physical strength.", $51
-	db "And those boulders", $4f
-	db "in the middle of", $55
-	db "the GYM?", $51
-	db "If you don't move", $4f
-	db "them correctly,", $51
-	db "you won't reach", $4f
-	db "the GYM LEADER.", $51
-	db "If you get stuck,", $4f
-	db "go outside.", $57
+	text "The #MON GYM"
+	line "trainers here are"
+	cont "macho bullies."
+
+	para "If I stick around,"
+	line "they might come"
+	cont "after me."
+
+	para "Here's some ad-"
+	line "vice: the GYM"
+
+	para "LEADER uses the"
+	line "fighting-type."
+
+	para "So you should"
+	line "confound him with"
+	cont "psychic #MON."
+
+	para "Wipe out his #-"
+	line "MON before they"
+
+	para "can use their"
+	line "physical strength."
+
+	para "And those boulders"
+	line "in the middle of"
+	cont "the GYM?"
+
+	para "If you don't move"
+	line "them correctly,"
+
+	para "you won't reach"
+	line "the GYM LEADER."
+
+	para "If you get stuck,"
+	line "go outside."
+	done
 ; 0x9ddc5
 
 CianwoodGymGuyWinText: ; 0x9ddc5
-	db $0, $52, "! You won!", $4f
-	db "I could tell by", $55
-	db "looking at you!", $57
+	text $52, "! You won!"
+	line "I could tell by"
+	cont "looking at you!"
+	done
 ; 0x9ddf2
 
 UnknownText_0x9ddf2: ; 0x9ddf2
-	db $0, "Don't you get the", $4f
-	db "urge to show off", $51
-	db "your #MON to", $4f
-	db "friends?", $51
-	db "I wish I could", $4f
-	db "show the #MON I", $51
-	db "raised to my pal", $4f
-	db "in VIOLET.", $57
+	text "Don't you get the"
+	line "urge to show off"
+
+	para "your #MON to"
+	line "friends?"
+
+	para "I wish I could"
+	line "show the #MON I"
+
+	para "raised to my pal"
+	line "in VIOLET."
+	done
 ; 0x9de66
 
 UnknownText_0x9de66: ; 0x9de66
-	db $0, "I've been battling", $4f
-	db "my pal in VIOLET", $51
-	db "using a MOBILE", $4f
-	db "ADAPTER link.", $51
-	db "I'm down 5-7", $4f
-	db "against him. I've", $55
-	db "gotta crank it up!", $57
+	text "I've been battling"
+	line "my pal in VIOLET"
+
+	para "using a MOBILE"
+	line "ADAPTER link."
+
+	para "I'm down 5-7"
+	line "against him. I've"
+	cont "gotta crank it up!"
+	done
 ; 0x9ded7
 
 UnknownText_0x9ded7: ; 0x9ded7
-	db $0, "I love showing off", $4f
-	db "the #MON that", $51
-	db "I've raised.", $4f
-	db "Don't you?", $51
-	db "I'm going to get", $4f
-	db "into a bunch of", $51
-	db "battles, and show", $4f
-	db "off my #MON!", $57
+	text "I love showing off"
+	line "the #MON that"
+
+	para "I've raised."
+	line "Don't you?"
+
+	para "I'm going to get"
+	line "into a bunch of"
+
+	para "battles, and show"
+	line "off my #MON!"
+	done
 ; 0x9df4e
 
 CianwoodPokeCenter1F_MapEventHeader: ; 0x9df4e
