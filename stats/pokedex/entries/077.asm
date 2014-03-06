@@ -1,8 +1,12 @@
 ; PonytaPokedexEntry: ; 0x1b84f2
-	db "FIRE HORSE@" ; species name
+	db   "FIRE HORSE@" ; species name
 	dw 303, 660; height, width
 	
-	db "Training by", $4e, "jumping over grass", $4e, "that grows longer@"
-	db "every day has made", $4e, "it a world-class", $4e, "jumper.@"
+	db   "Training by"
+	next "jumping over grass"
+	next "that grows longer@"
+	db   "every day has made"
+	next "it a world-class"
+	next "jumper.@"
 ; 0x1b855e
 

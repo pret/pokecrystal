@@ -1,8 +1,12 @@
 ; SmearglePokedexEntry: ; 0x1d11e0
-	db "PAINTER@" ; species name
+	db   "PAINTER@" ; species name
 	dw 311, 1280; height, width
 	
-	db "The color of the", $4e, "mysterious fluid", $4e, "secreted from its@"
-	db "tail is predeter-", $4e, "mined for each", $4e, "SMEARGLE.@"
+	db   "The color of the"
+	next "mysterious fluid"
+	next "secreted from its@"
+	db   "tail is predeter-"
+	next "mined for each"
+	next "SMEARGLE.@"
 ; 0x1d124b
 

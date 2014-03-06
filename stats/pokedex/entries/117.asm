@@ -1,8 +1,12 @@
 ; SeadraPokedexEntry: ; 0x1b95b8
-	db "DRAGON@" ; species name
+	db   "DRAGON@" ; species name
 	dw 311, 550; height, width
 	
-	db "The male raises", $4e, "the young. If it", $4e, "is approached, it@"
-	db "uses its toxic", $4e, "spikes to fend off", $4e, "the intruder.@"
+	db   "The male raises"
+	next "the young. If it"
+	next "is approached, it@"
+	db   "uses its toxic"
+	next "spikes to fend off"
+	next "the intruder.@"
 ; 0x1b9626
 

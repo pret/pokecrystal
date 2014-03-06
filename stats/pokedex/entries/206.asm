@@ -1,8 +1,12 @@
 ; DunsparcePokedexEntry: ; 0x1d0593
-	db "LAND SNAKE@" ; species name
+	db   "LAND SNAKE@" ; species name
 	dw 411, 310; height, width
 	
-	db "It hides deep", $4e, "inside caves where", $4e, "no light ever@"
-	db "reaches it and", $4e, "remains virtually", $4e, "motionless there.@"
+	db   "It hides deep"
+	next "inside caves where"
+	next "no light ever@"
+	db   "reaches it and"
+	next "remains virtually"
+	next "motionless there.@"
 ; 0x1d0604
 

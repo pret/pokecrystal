@@ -1,8 +1,12 @@
 ; SmoochumPokedexEntry: ; 0x1d132b
-	db "KISS@" ; species name
+	db   "KISS@" ; species name
 	dw 104, 130; height, width
 	
-	db "The sensitivity of", $4e, "its lips develops", $4e, "most quickly.@"
-	db "It uses them to", $4e, "try to identify", $4e, "unknown objects.@"
+	db   "The sensitivity of"
+	next "its lips develops"
+	next "most quickly.@"
+	db   "It uses them to"
+	next "try to identify"
+	next "unknown objects.@"
 ; 0x1d1398
 

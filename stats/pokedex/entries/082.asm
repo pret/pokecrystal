@@ -1,8 +1,12 @@
 ; MagnetonPokedexEntry: ; 0x1b870a
-	db "MAGNET@" ; species name
+	db   "MAGNET@" ; species name
 	dw 303, 1320; height, width
 	
-	db "When many", $4e, "MAGNETON gather", $4e, "together, the@"
-	db "resulting magnetic", $4e, "storm disrupts", $4e, "radio waves.@"
+	db   "When many"
+	next "MAGNETON gather"
+	next "together, the@"
+	db   "resulting magnetic"
+	next "storm disrupts"
+	next "radio waves.@"
 ; 0x1b876c
 

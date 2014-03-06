@@ -1,8 +1,12 @@
 ; QwilfishPokedexEntry: ; 0x1d07b1
-	db "BALLOON@" ; species name
+	db   "BALLOON@" ; species name
 	dw 108, 90; height, width
 	
-	db "When faced with a", $4e, "larger opponent,", $4e, "it swallows as@"
-	db "much water as it", $4e, "can to match the", $4e, "opponent's size.@"
+	db   "When faced with a"
+	next "larger opponent,"
+	next "it swallows as@"
+	db   "much water as it"
+	next "can to match the"
+	next "opponent's size.@"
 ; 0x1d0821
 

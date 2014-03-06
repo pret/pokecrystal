@@ -1,8 +1,12 @@
 ; MurkrowPokedexEntry: ; 0x1d021e
-	db "DARKNESS@" ; species name
+	db   "DARKNESS@" ; species name
 	dw 108, 50; height, width
 	
-	db "It hides any shiny", $4e, "object it finds in", $4e, "a secret location.@"
-	db "MURKROW and", $4e, "MEOWTH loot one", $4e, "another's stashes.@"
+	db   "It hides any shiny"
+	next "object it finds in"
+	next "a secret location.@"
+	db   "MURKROW and"
+	next "MEOWTH loot one"
+	next "another's stashes.@"
 ; 0x1d0292
 

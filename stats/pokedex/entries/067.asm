@@ -1,8 +1,12 @@
 ; MachokePokedexEntry: ; 0x1b80cb
-	db "SUPERPOWER@" ; species name
+	db   "SUPERPOWER@" ; species name
 	dw 411, 1550; height, width
 	
-	db "This tough #MON", $4e, "always stays in", $4e, "the zone. Its@"
-	db "muscles become", $4e, "thicker after", $4e, "every battle.@"
+	db   "This tough #MON"
+	next "always stays in"
+	next "the zone. Its@"
+	db   "muscles become"
+	next "thicker after"
+	next "every battle.@"
 ; 0x1b8133
 

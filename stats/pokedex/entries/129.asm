@@ -1,8 +1,12 @@
 ; MagikarpPokedexEntry: ; 0x1cc000
-	db "FISH@" ; species name
+	db   "FISH@" ; species name
 	dw 211, 220; height, width
 	
-	db "This weak and", $4e, "pathetic #MON", $4e, "gets easily pushed@"
-	db "along rivers when", $4e, "there are strong", $4e, "currents.@"
+	db   "This weak and"
+	next "pathetic #MON"
+	next "gets easily pushed@"
+	db   "along rivers when"
+	next "there are strong"
+	next "currents.@"
 ; 0x1cc065
 
